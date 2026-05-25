@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Bus",
+    "fr": "Un bus",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 2,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "En Dësch",
+    "fr": "Une table",
+    "note": "Article déf: De/Den · Nég: Kee/Keen"
+  },
+  {
+    "id": 3,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "En Telefon",
+    "fr": "Un téléphone",
+    "note": "Article déf: De/Den · Nég: Kee/Keen"
+  },
+  {
+    "id": 4,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Computer",
+    "fr": "Un ordi",
+    "note": "Article déf: En · Nég: Kee/Keen"
+  },
+  {
+    "id": 5,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "En Auto",
+    "fr": "Une voiture",
+    "note": "Article déf: De/Den · Nég: Kee/Keen"
+  },
+  {
+    "id": 6,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Stull",
+    "fr": "Une chaise",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 7,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Fliger",
+    "fr": "Un avion",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 8,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "En Zuch",
+    "fr": "Un train",
+    "note": "Article déf: De/Den · Nég: Kee/Keen"
+  },
+  {
+    "id": 9,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Dier",
+    "fr": "Une porte",
+    "note": "Article déf: Eng · Nég: Keng"
+  },
+  {
+    "id": 10,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Auer",
+    "fr": "Une montre",
+    "note": "Article déf: D' · Nég: Keng"
+  },
+  {
+    "id": 11,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Tafel",
+    "fr": "Un tableau (mural)",
+    "note": "Article déf: Eng · Nég: Keng"
+  },
+  {
+    "id": 12,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Taass",
+    "fr": "Une tasse",
+    "note": "Article déf: Eng · Nég: Keng"
+  },
+  {
+    "id": 13,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Fënster",
+    "fr": "Une fenêtre",
+    "note": "Article déf: Eng · Nég: Keng"
+  },
+  {
+    "id": 14,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Flash",
+    "fr": "Une bouteille",
+    "note": "Article déf: Eng · Nég: Keng"
+  },
+  {
+    "id": 15,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Luucht",
+    "fr": "Une lampe",
+    "note": "Article déf: Eng · Nég: Keng"
+  },
+  {
+    "id": 16,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "Eng Schéier",
+    "fr": "Des ciseaux",
+    "note": "Article déf: Si/Se · Nég: Keng"
+  },
+  {
+    "id": 17,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Blat",
+    "fr": "Une feuille",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 18,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Buch",
+    "fr": "Un livre",
+    "note": "Article déf: D' · Nég: Kee/Keen"
+  },
+  {
+    "id": 19,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "En Haus",
+    "fr": "Une maison",
+    "note": "Article déf: D' · Nég: Kee/Keen"
+  },
+  {
+    "id": 20,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Glas",
+    "fr": "Un verre",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 21,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Gebai",
+    "fr": "Un immeuble",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 22,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Bild",
+    "fr": "Un tableau (peinture)",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 23,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "En Heft",
+    "fr": "Un cahier",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 24,
+    "lecon": 2,
+    "lecon_titre": "Objeten identifizéieren",
+    "lu": "E Bett",
+    "fr": "Un lit",
+    "note": "Article déf: E/En · Nég: Kee/Keen"
+  },
+  {
+    "id": 25,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen zu Lëtzebuerg.",
+    "fr": "J'habite au Luxembourg.",
+    "note": "Exception : zu (pas de/den)"
+  },
+  {
+    "id": 26,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen an Daitschland.",
+    "fr": "J'habite en Allemagne.",
+    "note": "Pays sans article → a/an"
+  },
+  {
+    "id": 27,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen a Frankräich.",
+    "fr": "J'habite en France.",
+    "note": "Pays sans article → a/an"
+  },
+  {
+    "id": 28,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen an der Belsch.",
+    "fr": "J'habite en Belgique.",
+    "note": "Pays féminin → an der"
+  },
+  {
+    "id": 29,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen an der Schwäiz.",
+    "fr": "J'habite en Suisse.",
+    "note": "Pays féminin → an der"
+  },
+  {
+    "id": 30,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen zu Metz.",
+    "fr": "J'habite à Metz.",
+    "note": "Ville → zu"
+  },
+  {
+    "id": 31,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen zu Esch.",
+    "fr": "J'habite à Esch.",
+    "note": "Ville → zu"
+  },
+  {
+    "id": 32,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen an der Stad.",
+    "fr": "J'habite en ville.",
+    "note": "Stad = féminin → an der"
+  },
+  {
+    "id": 33,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen um Kirchberg.",
+    "fr": "J'habite au Kirchberg.",
+    "note": "Quartier/lieu → um/am"
+  },
+  {
+    "id": 34,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen um Belair.",
+    "fr": "J'habite à Belair.",
+    "note": "Quartier/lieu → um/am"
+  },
+  {
+    "id": 35,
+    "lecon": 9,
+    "lecon_titre": "Wunnert (Habitation)",
+    "lu": "Ech wunnen am Gronn.",
+    "fr": "J'habite au Grund.",
+    "note": "Quartier/lieu → um/am"
+  }
+]

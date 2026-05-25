@@ -1,0 +1,312 @@
+{
+  "id": 4,
+  "titre": "De Konträr",
+  "titre_fr": "Les contraires – adjectifs opposés",
+  "couleur": "#d4845a",
+  "flashcards": [
+    { "id": 1,  "lu": "Nei",      "fr": "Nouveau / Nouvelle", "note": "Contraire : Al" },
+    { "id": 2,  "lu": "Al",       "fr": "Vieux / Vieille",    "note": "Contraire : Nei" },
+    { "id": 3,  "lu": "Kleng",    "fr": "Petit(e)",           "note": "Contraire : Grouss" },
+    { "id": 4,  "lu": "Grouss",   "fr": "Grand(e)",           "note": "Contraire : Kleng" },
+    { "id": 5,  "lu": "Liicht",   "fr": "Léger / Légère",     "note": "Contraire : Schwéier" },
+    { "id": 6,  "lu": "Schwéier", "fr": "Lourd(e)",           "note": "Contraire : Liicht" },
+    { "id": 7,  "lu": "Séier",    "fr": "Rapide",             "note": "Contraire : Lues" },
+    { "id": 8,  "lu": "Lues",     "fr": "Lent(e)",            "note": "Contraire : Séier" },
+    { "id": 9,  "lu": "Ronn",     "fr": "Rond(e)",            "note": "Contraire : Eckeg" },
+    { "id": 10, "lu": "Eckeg",    "fr": "Carré(e)",           "note": "Contraire : Ronn" },
+    { "id": 11, "lu": "Bëlleg",   "fr": "Pas cher / Bon marché", "note": "Contraire : Deier" },
+    { "id": 12, "lu": "Deier",    "fr": "Cher / Chère",       "note": "Contraire : Bëlleg" },
+    { "id": 13, "lu": "Héich",    "fr": "Haut(e)",            "note": "Contraire : Niddereg" },
+    { "id": 14, "lu": "Niddereg", "fr": "Bas / Basse",        "note": "Contraire : Héich" },
+    { "id": 15, "lu": "Voll",     "fr": "Plein(e)",           "note": "Contraire : Eidel" },
+    { "id": 16, "lu": "Eidel",    "fr": "Vide",               "note": "Contraire : Voll" },
+    { "id": 17, "lu": "Dënn",     "fr": "Mince / Fin(e)",     "note": "Contraire : Décks" },
+    { "id": 18, "lu": "Décks",    "fr": "Épais / Épaisse",    "note": "Contraire : Dënn" }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Quel est le contraire de NEI ?",
+      "reponse": "Al",
+      "distracteurs": ["Kleng", "Lues", "Eidel"]
+    },
+    {
+      "id": 2,
+      "question": "Quel est le contraire de GROUSS ?",
+      "reponse": "Kleng",
+      "distracteurs": ["Dënn", "Niddereg", "Lues"]
+    },
+    {
+      "id": 3,
+      "question": "Quel est le contraire de SÉIER ?",
+      "reponse": "Lues",
+      "distracteurs": ["Liicht", "Eidel", "Al"]
+    },
+    {
+      "id": 4,
+      "question": "Quel est le contraire de VOLL ?",
+      "reponse": "Eidel",
+      "distracteurs": ["Dënn", "Niddereg", "Bëlleg"]
+    },
+    {
+      "id": 5,
+      "question": "Quel est le contraire de HÉICH ?",
+      "reponse": "Niddereg",
+      "distracteurs": ["Kleng", "Lues", "Dënn"]
+    },
+    {
+      "id": 6,
+      "question": "Quel est le contraire de DEIER ?",
+      "reponse": "Bëlleg",
+      "distracteurs": ["Eidel", "Al", "Lues"]
+    },
+    {
+      "id": 7,
+      "question": "Quel est le contraire de SCHWÉIER ?",
+      "reponse": "Liicht",
+      "distracteurs": ["Séier", "Nei", "Ronn"]
+    },
+    {
+      "id": 8,
+      "question": "Quel est le contraire de ECKEG ?",
+      "reponse": "Ronn",
+      "distracteurs": ["Dënn", "Grouss", "Voll"]
+    },
+    {
+      "id": 9,
+      "question": "Quel est le contraire de DÉCKS ?",
+      "reponse": "Dënn",
+      "distracteurs": ["Kleng", "Niddereg", "Eidel"]
+    },
+	  {
+    "id": 10,
+    "question": "Quel est le contraire de AL ?",
+    "reponse": "Nei",
+    "distracteurs": ["Grouss", "Lues", "Eidel"]
+  },
+  {
+    "id": 11,
+    "question": "Quel est le contraire de KLENG ?",
+    "reponse": "Grouss",
+    "distracteurs": ["Héich", "Décks", "Séier"]
+  },
+  {
+    "id": 12,
+    "question": "Quel est le contraire de LUES ?",
+    "reponse": "Séier",
+    "distracteurs": ["Nei", "Liicht", "Ronn"]
+  },
+  {
+    "id": 13,
+    "question": "Quel est le contraire de EIDEL ?",
+    "reponse": "Voll",
+    "distracteurs": ["Kleng", "Dënn", "Niddereg"]
+  },
+  {
+    "id": 14,
+    "question": "Quel est le contraire de NIDDEREG ?",
+    "reponse": "Héich",
+    "distracteurs": ["Grouss", "Décks", "Voll"]
+  },
+  {
+    "id": 15,
+    "question": "Quel est le contraire de BËLLEG ?",
+    "reponse": "Deier",
+    "distracteurs": ["Al", "Lues", "Eidel"]
+  },
+  {
+    "id": 16,
+    "question": "Quel est le contraire de LIICHT ?",
+    "reponse": "Schwéier",
+    "distracteurs": ["Séier", "Nei", "Ronn"]
+  },
+  {
+    "id": 17,
+    "question": "Quel est le contraire de RONN ?",
+    "reponse": "Eckeg",
+    "distracteurs": ["Kleng", "Voll", "Dënn"]
+  },
+  {
+    "id": 18,
+    "question": "Quel est le contraire de DËNN ?",
+    "reponse": "Décks",
+    "distracteurs": ["Kleng", "Eidel", "Niddereg"]
+  }
+
+  ],
+  "trous": 
+[
+  {
+    "id": 1,
+    "fr": "Le smartphone est nouveau.",
+    "avant": "Den Handy ass",
+    "trou": "nei",
+    "apres": ".",
+    "choix": ["al", "grouss", "nei", "kleng"],
+    "note": "nei = nouveau · Den = article défini masculin"
+  },
+  {
+    "id": 2,
+    "fr": "Le téléphone est vieux.",
+    "avant": "Den Telefon ass",
+    "trou": "al",
+    "apres": ".",
+    "choix": ["lues", "al", "séier", "nei"],
+    "note": "al = vieux · contraire de nei"
+  },
+  {
+    "id": 3,
+    "fr": "La plume est légère.",
+    "avant": "D'Fieder ass",
+    "trou": "liicht",
+    "apres": ".",
+    "choix": ["liicht", "schwéier", "dënn", "décks"],
+    "note": "D' = article féminin devant voyelle"
+  },
+  {
+    "id": 4,
+    "fr": "L'enclume est lourde.",
+    "avant": "Den Amboss ass",
+    "trou": "schwéier",
+    "apres": ".",
+    "choix": ["liicht", "grouss", "décks", "schwéier"],
+    "note": "schwéier = lourd · contraire de liicht"
+  },
+  {
+    "id": 5,
+    "fr": "L'escargot est lent.",
+    "avant": "De Schleek ass",
+    "trou": "lues",
+    "apres": ".",
+    "choix": ["séier", "lues", "al", "niddereg"],
+    "note": "De = article défini masc. devant consonne"
+  },
+  {
+    "id": 6,
+    "fr": "La voiture est rapide.",
+    "avant": "Den Auto ass",
+    "trou": "séier",
+    "apres": ".",
+    "choix": ["lues", "grouss", "séier", "nei"],
+    "note": "séier = rapide · contraire de lues"
+  },
+  {
+    "id": 7,
+    "fr": "Le seau est vide.",
+    "avant": "Den Eemer ass",
+    "trou": "eidel",
+    "apres": ".",
+    "choix": ["eidel", "voll", "kleng", "dënn"],
+    "note": "eidel = vide · contraire de voll"
+  },
+  {
+    "id": 8,
+    "fr": "L'immeuble est grand.",
+    "avant": "D'Gebai ass",
+    "trou": "grouss",
+    "apres": ".",
+    "choix": ["kleng", "héich", "niddereg", "grouss"],
+    "note": "D' = article neutre · grouss = grand"
+  },
+  {
+    "id": 9,
+    "fr": "La boîte est carrée.",
+    "avant": "D'Këscht ass",
+    "trou": "eckeg",
+    "apres": ".",
+    "choix": ["ronn", "eckeg", "décks", "dënn"],
+    "note": "D' = article féminin · eckeg = carré"
+  },
+  {
+    "id": 10,
+    "fr": "La balle est ronde.",
+    "avant": "De Ball ass",
+    "trou": "ronn",
+    "apres": ".",
+    "choix": ["décks", "dënn", "ronn", "eckeg"],
+    "note": "ronn = rond · contraire de eckeg"
+  },
+  {
+    "id": 11,
+    "fr": "Le gratte-ciel est haut.",
+    "avant": "D'Wollekekrazer ass",
+    "trou": "héich",
+    "apres": ".",
+    "choix": ["héich", "niddereg", "grouss", "kleng"],
+    "note": "héich = haut · contraire de niddereg"
+  },
+  {
+    "id": 12,
+    "fr": "Le muret est bas.",
+    "avant": "D'Mauer ass",
+    "trou": "niddereg",
+    "apres": ".",
+    "choix": ["héich", "décks", "dënn", "niddereg"],
+    "note": "niddereg = bas · contraire de héich"
+  },
+  {
+    "id": 13,
+    "fr": "La bouteille est pleine.",
+    "avant": "D'Fläsch ass",
+    "trou": "voll",
+    "apres": ".",
+    "choix": ["eidel", "voll", "décks", "liicht"],
+    "note": "voll = plein · contraire de eidel"
+  },
+  {
+    "id": 14,
+    "fr": "Le fil est fin.",
+    "avant": "Den Drot ass",
+    "trou": "dënn",
+    "apres": ".",
+    "choix": ["schwéier", "grouss", "dënn", "décks"],
+    "note": "dënn = fin/mince · contraire de décks"
+  },
+  {
+    "id": 15,
+    "fr": "Le dictionnaire est épais.",
+    "avant": "D'Wierderbuch ass",
+    "trou": "décks",
+    "apres": ".",
+    "choix": ["décks", "dënn", "liicht", "eidel"],
+    "note": "décks = épais · contraire de dënn"
+  },
+  {
+    "id": 16,
+    "fr": "La souris est petite.",
+    "avant": "D'Maus ass",
+    "trou": "kleng",
+    "apres": ".",
+    "choix": ["grouss", "héich", "séier", "kleng"],
+    "note": "kleng = petit · contraire de grouss"
+  },
+  {
+    "id": 17,
+    "fr": "L'éléphant est grand.",
+    "avant": "Den Elefant ass",
+    "trou": "grouss",
+    "apres": ".",
+    "choix": ["lues", "grouss", "dënn", "kleng"],
+    "note": "grouss = grand · contraire de kleng"
+  },
+  {
+    "id": 18,
+    "fr": "La moto est chère.",
+    "avant": "De Moto ass",
+    "trou": "deier",
+    "apres": ".",
+    "choix": ["bëlleg", "séier", "deier", "nei"],
+    "note": "deier = cher · contraire de bëlleg"
+  },
+  {
+    "id": 19,
+    "fr": "Le stylo est bon marché.",
+    "avant": "De Bic ass",
+    "trou": "bëlleg",
+    "apres": ".",
+    "choix": ["bëlleg", "deier", "al", "eidel"],
+    "note": "bëlleg = bon marché · contraire de deier"
+  }
+]
+
+}

@@ -1,0 +1,247 @@
+{
+  "id": 7,
+  "titre": "D'Nationalitéit",
+  "titre_fr": "Les nationalités",
+  "couleur": "#7ab8e8",
+"flashcards": [
+  { "id": 1,  "lu": "e Portugis / eng Portugisin",        "fr": "Portugais / Portugaise",              "note": "Portugal · M → e Portugis · F → eng Portugisin" },
+  { "id": 2,  "lu": "e Spuenier / eng Spuenierin",        "fr": "Espagnol / Espagnole",                "note": "Spuenien · M → e Spuenier · F → eng Spuenierin" },
+  { "id": 3,  "lu": "en Englänner / eng Englännerin",     "fr": "Anglais / Anglaise",                  "note": "England · M → en Englänner · F → eng Englännerin" },
+  { "id": 4,  "lu": "en Italiener / eng Italienerin",     "fr": "Italien / Italienne",                 "note": "Italien · M → en Italiener · F → eng Italienerin" },
+  { "id": 5,  "lu": "e Lëtzebuerger / eng Lëtzebuergerin","fr": "Luxembourgeois / Luxembourgeoise",     "note": "Lëtzebuerg · M → e Lëtzebuerger · F → eng Lëtzebuergerin" },
+  { "id": 6,  "lu": "en Australier / eng Australierin",   "fr": "Australien / Australienne",           "note": "Australien · M → en Australier · F → eng Australierin" },
+  { "id": 7,  "lu": "en Argentinier / eng Argentinierin", "fr": "Argentin / Argentine",                "note": "Argentinien · M → en Argentinier · F → eng Argentinierin" },
+  { "id": 8,  "lu": "en Amerikaner / eng Amerikanerin",   "fr": "Américain / Américaine",              "note": "Amerika · M → en Amerikaner · F → eng Amerikanerin" },
+  { "id": 9,  "lu": "e Belsch / eng Belsch",              "fr": "Belge",                               "note": "Belsch · M = F = Belsch" },
+  { "id": 10, "lu": "en Däitschen / eng Däitsch",         "fr": "Allemand / Allemande",                "note": "Däitschland · M → en Däitschen · F → eng Däitsch" },
+  { "id": 11, "lu": "e Japaner / eng Japanerin",          "fr": "Japonais / Japonaise",                "note": "Japan · M → e Japaner · F → eng Japanerin" },
+  { "id": 12, "lu": "en Nordkoreaner / eng Nordkoreanerin","fr": "Nord-Coréen / Nord-Coréenne",         "note": "Nordkorea · M → en Nordkoreaner · F → eng Nordkoreanerin" },
+  { "id": 13, "lu": "e Fransous / eng Fransousin",        "fr": "Français / Française",                "note": "Frankräich · M → e Fransous · F → eng Fransousin" },
+  { "id": 14, "lu": "e Hollänner / eng Hollännerin",      "fr": "Néerlandais / Néerlandaise",          "note": "Holland · M → e Hollänner · F → eng Hollännerin" },
+  { "id": 15, "lu": "e Chinéis / eng Chinesin",           "fr": "Chinois / Chinoise",                  "note": "China · M → e Chinéis · F → eng Chinesin" },
+  { "id": 16, "lu": "e Schwed / eng Schwedin",            "fr": "Suédois / Suédoise",                  "note": "Schweden · M → e Schwed · F → eng Schwedin" },
+  { "id": 17, "lu": "Wat fir eng Nationalitéit huet de Ronaldo?", "fr": "De quelle nationalité est Ronaldo ?", "note": "Wat fir eng = quelle" },
+{ "id": 18, "lu": "Hien ass Portugis.",                         "fr": "Il est portugais.",                "note": "Hien = il" },
+{ "id": 19, "lu": "Ech sinn e Fransous.",                       "fr": "Je suis français.",               "note": "sinn = suis" },
+{ "id": 20, "lu": "Ech si Fransous.",                           "fr": "Je suis français.",               "note": "Forme abrégée fréquente" },
+{ "id": 21, "lu": "Ass de Ronaldo Portugis?",                   "fr": "Ronaldo est-il portugais ?",      "note": "Question fermée : Ass..." },
+{ "id": 22, "lu": "Jo, hien ass Portugis.",                     "fr": "Oui, il est portugais.",          "note": "Jo = oui" },
+{ "id": 23, "lu": "Nee, hien ass kee Spuenier.",                "fr": "Non, il n'est pas espagnol.",     "note": "kee + nationalité masculine" }
+],
+  "quiz": [
+  {
+    "id": 1,
+    "question": "Portugal - Garçon",
+    "reponse": "Portugis",
+    "distracteurs": ["Portugisin", "Portugiser", "Portugiserin"]
+  },
+  {
+    "id": 2,
+    "question": "Portugal - Fille",
+    "reponse": "Portugisin",
+    "distracteurs": ["Portugis", "Portugiser", "Portugiserin"]
+  },
+  {
+    "id": 3,
+    "question": "Espagne - Garçon",
+    "reponse": "Spuenier",
+    "distracteurs": ["Spuenierin", "Spuenis", "Spuenisin"]
+  },
+  {
+    "id": 4,
+    "question": "Espagne - Fille",
+    "reponse": "Spuenierin",
+    "distracteurs": ["Spuenier", "Spuenis", "Spuenisin"]
+  },
+  {
+    "id": 5,
+    "question": "Angleterre - Garçon",
+    "reponse": "Englänner",
+    "distracteurs": ["Englännerin", "Englis", "Englisin"]
+  },
+  {
+    "id": 6,
+    "question": "Angleterre - Fille",
+    "reponse": "Englännerin",
+    "distracteurs": ["Englänner", "Englis", "Englisin"]
+  },
+  {
+    "id": 7,
+    "question": "Italie - Garçon",
+    "reponse": "Italiener",
+    "distracteurs": ["Italienerin", "Italienis", "Italienisin"]
+  },
+  {
+    "id": 8,
+    "question": "Italie - Fille",
+    "reponse": "Italienerin",
+    "distracteurs": ["Italiener", "Italienis", "Italienisin"]
+  },
+  {
+    "id": 9,
+    "question": "Luxembourg - Garçon",
+    "reponse": "Lëtzebuerger",
+    "distracteurs": ["Lëtzebuergerin", "Lëtzebuergis", "Lëtzebuergisin"]
+  },
+  {
+    "id": 10,
+    "question": "Luxembourg - Fille",
+    "reponse": "Lëtzebuergerin",
+    "distracteurs": ["Lëtzebuerger", "Lëtzebuergis", "Lëtzebuergisin"]
+  },
+  {
+    "id": 11,
+    "question": "Australie - Garçon",
+    "reponse": "Australier",
+    "distracteurs": ["Australierin", "Australis", "Australisin"]
+  },
+  {
+    "id": 12,
+    "question": "Australie - Fille",
+    "reponse": "Australierin",
+    "distracteurs": ["Australier", "Australis", "Australisin"]
+  },
+  {
+    "id": 13,
+    "question": "Argentine - Garçon",
+    "reponse": "Argentinier",
+    "distracteurs": ["Argentinierin", "Argentinis", "Argentinisin"]
+  },
+  {
+    "id": 14,
+    "question": "Argentine - Fille",
+    "reponse": "Argentinierin",
+    "distracteurs": ["Argentinier", "Argentinis", "Argentinisin"]
+  },
+  {
+    "id": 15,
+    "question": "Amérique - Garçon",
+    "reponse": "Amerikaner",
+    "distracteurs": ["Amerikanerin", "Amerikais", "Amerikaisin"]
+  },
+  {
+    "id": 16,
+    "question": "Amérique - Fille",
+    "reponse": "Amerikanerin",
+    "distracteurs": ["Amerikaner", "Amerikais", "Amerikaisin"]
+  },
+  {
+    "id": 17,
+    "question": "Belgique - Garçon",
+    "reponse": "Belsch",
+    "distracteurs": ["Belschin", "Belscher", "Belscherin"]
+  },
+  {
+    "id": 18,
+    "question": "Belgique - Fille",
+    "reponse": "Belsch",
+    "distracteurs": ["Belschin", "Belscher", "Belscherin"]
+  },
+  {
+    "id": 19,
+    "question": "Allemagne - Garçon",
+    "reponse": "Däitschen",
+    "distracteurs": ["Däitsch", "Däitscherin", "Däitschin"]
+  },
+  {
+    "id": 20,
+    "question": "Allemagne - Fille",
+    "reponse": "Däitsch",
+    "distracteurs": ["Däitschen", "Däitscherin", "Däitschin"]
+  },
+  {
+    "id": 21,
+    "question": "Japon - Garçon",
+    "reponse": "Japaner",
+    "distracteurs": ["Japanerin", "Japanis", "Japanisin"]
+  },
+  {
+    "id": 22,
+    "question": "Japon - Fille",
+    "reponse": "Japanerin",
+    "distracteurs": ["Japaner", "Japanis", "Japanisin"]
+  },
+  {
+    "id": 23,
+    "question": "Corée du Nord - Garçon",
+    "reponse": "Nordkoreaner",
+    "distracteurs": ["Nordkoreanerin", "Nordkoreais", "Nordkoreaisin"]
+  },
+  {
+    "id": 24,
+    "question": "Corée du Nord - Fille",
+    "reponse": "Nordkoreanerin",
+    "distracteurs": ["Nordkoreaner", "Nordkoreais", "Nordkoreaisin"]
+  },
+  {
+    "id": 25,
+    "question": "France - Garçon",
+    "reponse": "Fransous",
+    "distracteurs": ["Fransousin", "Franser", "Franserin"]
+  },
+  {
+    "id": 26,
+    "question": "France - Fille",
+    "reponse": "Fransousin",
+    "distracteurs": ["Fransous", "Franser", "Franserin"]
+  },
+  {
+    "id": 27,
+    "question": "Pays-Bas - Garçon",
+    "reponse": "Hollänner",
+    "distracteurs": ["Hollännerin", "Holländis", "Holländisin"]
+  },
+  {
+    "id": 28,
+    "question": "Pays-Bas - Fille",
+    "reponse": "Hollännerin",
+    "distracteurs": ["Hollänner", "Holländis", "Holländisin"]
+  },
+  {
+    "id": 29,
+    "question": "Chine - Garçon",
+    "reponse": "Chinéis",
+    "distracteurs": ["Chinesin", "Chinéier", "Chinéierin"]
+  },
+  {
+    "id": 30,
+    "question": "Chine - Fille",
+    "reponse": "Chinesin",
+    "distracteurs": ["Chinéis", "Chinéier", "Chinéierin"]
+  },
+  {
+    "id": 31,
+    "question": "Suède - Garçon",
+    "reponse": "Schwed",
+    "distracteurs": ["Schwedin", "Schweder", "Schwederin"]
+  },
+  {
+    "id": 32,
+    "question": "Suède - Fille",
+    "reponse": "Schwedin",
+    "distracteurs": ["Schwed", "Schweder", "Schwederin"]
+  }
+],
+  "trous": [
+    { "id": 1,  "fr": "Oui, il est portugais.",           "avant": "Jo, hien ass",    "trou": "Portugis",       "apres": ".",  "choix": ["Portugis", "Spuenier", "Fransous", "Holläner"],          "note": "hien = il · Portugis = masc." },
+    { "id": 2,  "fr": "Non, il n'est pas espagnol.",      "avant": "Nee, hien ass",   "trou": "kee",            "apres": "Spuenier.", "choix": ["kee", "keen", "keng", "net"],                      "note": "Négation masc. → kee" },
+    { "id": 3,  "fr": "Oui, elle est anglaise.",          "avant": "Jo, hatt ass",    "trou": "eng",            "apres": "Engländerin.", "choix": ["e", "en", "eng", "keng"],                       "note": "Nationalité féminine → article eng" },
+    { "id": 4,  "fr": "Non, elle n'est pas italienne.",   "avant": "Nee, si ass",     "trou": "keng",           "apres": "Italienerin.", "choix": ["kee", "keen", "keng", "net"],                   "note": "Négation féminin → keng" },
+    { "id": 5,  "fr": "Il est luxembourgeois.",           "avant": "Hien ass",        "trou": "e",              "apres": "Lëtzebuerger.", "choix": ["e", "en", "eng", "kee"],                       "note": "Masc. devant consonne → e" },
+    { "id": 6,  "fr": "Elle est australienne.",           "avant": "Hatt ass",        "trou": "eng",            "apres": "Australierin.", "choix": ["e", "en", "eng", "keng"],                      "note": "Nationalité féminine → eng" },
+    { "id": 7,  "fr": "Non, il n'est pas argentin.",      "avant": "Nee, hien ass",   "trou": "kee",            "apres": "Argentinier.", "choix": ["kee", "keen", "keng", "net"],                   "note": "Négation masc. devant consonne → kee" },
+    { "id": 8,  "fr": "Oui, elle est américaine.",        "avant": "Jo, hatt ass",    "trou": "eng",            "apres": "Amerikanerin.", "choix": ["e", "en", "eng", "keng"],                     "note": "Nationalité féminine → eng" },
+    { "id": 9,  "fr": "Il est belge. (masc. invariable)", "avant": "Hien ass",        "trou": "e",              "apres": "Belsch.",  "choix": ["e", "en", "eng", "kee"],                           "note": "Belsch masc. → e Belsch" },
+    { "id": 10, "fr": "Elle est belge. (fém. invariable)","avant": "Si ass",          "trou": "eng",            "apres": "Belsch.",  "choix": ["e", "en", "eng", "keng"],                          "note": "Belsch fém. → eng Belsch (invariable)" },
+    { "id": 11, "fr": "Non, il n'est pas allemand.",      "avant": "Nee, hien ass",   "trou": "kee",            "apres": "Däitschen.", "choix": ["kee", "keen", "keng", "net"],                    "note": "Négation masc. → kee" },
+    { "id": 12, "fr": "Il est japonais.",                 "avant": "Hien ass",        "trou": "e",              "apres": "Japaner.",   "choix": ["e", "en", "eng", "kee"],                         "note": "Masc. devant consonne → e" },
+    { "id": 13, "fr": "Elle n'est pas nord-coréenne.",    "avant": "Hatt ass",        "trou": "keng",           "apres": "Nordkoreanerin.", "choix": ["kee", "keen", "keng", "net"],               "note": "Négation féminin → keng" },
+    { "id": 14, "fr": "Il est français.",                 "avant": "Hien ass",        "trou": "e",              "apres": "Fransous.",  "choix": ["e", "en", "eng", "kee"],                         "note": "Masc. devant consonne → e" },
+    { "id": 15, "fr": "Elle est hollandaise.",            "avant": "Si ass",          "trou": "eng",            "apres": "Holländerin.", "choix": ["e", "en", "eng", "keng"],                      "note": "Nationalité féminine → eng" },
+    { "id": 16, "fr": "Non, il n'est pas chinois.",       "avant": "Nee, hien ass",   "trou": "kee",            "apres": "Chinéis.",   "choix": ["kee", "keen", "keng", "net"],                    "note": "Négation masc. → kee" },
+    { "id": 17, "fr": "Oui, elle est suédoise.",          "avant": "Jo, hatt ass",    "trou": "eng",            "apres": "Schwedin.",  "choix": ["e", "en", "eng", "keng"],                        "note": "Nationalité féminine → eng" },
+    { "id": 18, "fr": "Est-ce que Ronaldo est portugais ?", "avant": "Ass de Ronaldo", "trou": "Portugis",      "apres": "?",         "choix": ["Portugis", "Spuenier", "Fransous", "Engländer"],  "note": "Structure : Ass de/d' + prénom + nationalité ?" },
+    { "id": 19, "fr": "Non, il n'est pas espagnol, il est portugais.", "avant": "Nee, hien ass", "trou": "kee", "apres": "Spuenier, hien ass Portugis.", "choix": ["kee", "keen", "keng", "net"],  "note": "kee + nationalité masc." },
+    { "id": 20, "fr": "Il est nord-coréen.",              "avant": "Hien ass",        "trou": "en",             "apres": "Nordkoreaner.", "choix": ["e", "en", "eng", "kee"],                      "note": "Masc. devant N → en" }
+  ]
+}

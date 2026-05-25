@@ -1,0 +1,214 @@
+{
+  "id": 3,
+  "titre": "Objete beschreiwen",
+  "titre_fr": "Décrire des objets – les couleurs",
+  "couleur": "#e8a030",
+  "flashcards": [
+    { "id": 1,  "lu": "Schwaarz", "fr": "Noir(e)",       "note": "Faarwen · contraire : Wäiss" },
+    { "id": 2,  "lu": "Wäiss",    "fr": "Blanc(he)",     "note": "Faarwen · contraire : Schwaarz" },
+    { "id": 3,  "lu": "Rout",     "fr": "Rouge",         "note": "Faarwen" },
+    { "id": 4,  "lu": "Giel",     "fr": "Jaune",         "note": "Faarwen" },
+    { "id": 5,  "lu": "Blo",      "fr": "Bleu(e)",       "note": "Faarwen" },
+    { "id": 6,  "lu": "Gréng",    "fr": "Vert(e)",       "note": "Faarwen" },
+    { "id": 7,  "lu": "Mof",      "fr": "Violet(te)",    "note": "Faarwen" },
+    { "id": 8,  "lu": "Orange",   "fr": "Orange",        "note": "Faarwen · même mot" },
+    { "id": 9,  "lu": "Beige",    "fr": "Beige",         "note": "Faarwen · même mot" },
+    { "id": 10, "lu": "Gro",      "fr": "Gris(e)",       "note": "Faarwen" },
+    { "id": 11, "lu": "Brong",    "fr": "Marron",        "note": "Faarwen" },
+    { "id": 12, "lu": "Rosa",     "fr": "Rose",          "note": "Faarwen" },
+	{ "id": 13, "lu": "Wat fir eng faarf huet de Bus ?",     "fr": "De quelle couleur est le bus ?",          "note": "" },
+	{ "id": 14, "lu": "De Bus ass Gréng.",     "fr": "Le bus est vert.",          "note": "" },
+	{ "id": 15, "lu": "Ass de Bus Orange ?",     "fr": "Le bus est-il orange ?",          "note": "" },
+	{ "id": 16, "lu": "Nee, de Bus ass net Orange.",     "fr": "Non, le bus n'est pas orange.",          "note": "" },
+	{ "id": 16, "lu": "Si ass Brong.",     "fr": "(La fenêtre) Elle est marron.",          "note": "Weiblech · Si/Se · Nég: Keng" },
+	{ "id": 16, "lu": "Hien ass Gro.",     "fr": "(Le bus) Il est gris.",          "note": "Männlech · E/En · Nég: Kee/Keen" },
+	{ "id": 16, "lu": "Et ass Gro.",     "fr": "(La Feuille) Elle est blanche.",          "note": "Sächlech · E/En · Nég: Kee/Keen" }
+  ],
+  "quiz": [
+    { "id": 1,  "question": "Schwaarz", "reponse": "Noir(e)",    "distracteurs": ["Blanc(he)", "Gris(e)", "Marron"] },
+    { "id": 2,  "question": "Wäiss",    "reponse": "Blanc(he)",  "distracteurs": ["Noir(e)", "Beige", "Gris(e)"] },
+    { "id": 3,  "question": "Rout",     "reponse": "Rouge",      "distracteurs": ["Orange", "Rose", "Violet(te)"] },
+    { "id": 4,  "question": "Giel",     "reponse": "Jaune",      "distracteurs": ["Orange", "Beige", "Blanc(he)"] },
+    { "id": 5,  "question": "Blo",      "reponse": "Bleu(e)",    "distracteurs": ["Vert(e)", "Violet(te)", "Gris(e)"] },
+    { "id": 6,  "question": "Gréng",    "reponse": "Vert(e)",    "distracteurs": ["Bleu(e)", "Jaune", "Marron"] },
+    { "id": 7,  "question": "Mof",      "reponse": "Violet(te)", "distracteurs": ["Rose", "Bleu(e)", "Gris(e)"] },
+    { "id": 8,  "question": "Brong",    "reponse": "Marron",     "distracteurs": ["Orange", "Beige", "Gris(e)"] },
+    { "id": 9,  "question": "Rosa",     "reponse": "Rose",       "distracteurs": ["Rouge", "Violet(te)", "Orange"] },
+    { "id": 10, "question": "Gro",      "reponse": "Gris(e)",    "distracteurs": ["Noir(e)", "Blanc(he)", "Beige"] }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "La voiture est rouge.",
+      "avant": "Den Auto ass",
+      "trou": "rout",
+      "apres": ".",
+      "choix": ["rout", "blo", "gréng", "giel"],
+      "note": "rout = rouge · Den = article défini masc."
+    },
+    {
+      "id": 2,
+      "fr": "La porte est blanche.",
+      "avant": "D'Dier ass",
+      "trou": "wäiss",
+      "apres": ".",
+      "choix": ["wäiss", "giel", "blo", "beige"],
+      "note": "wäiss = blanc · D' = article féminin devant voyelle"
+    },
+    {
+      "id": 3,
+      "fr": "Le livre est noir.",
+      "avant": "D'Buch ass",
+      "trou": "schwaarz",
+      "apres": ".",
+      "choix": ["schwaarz", "wäiss", "gro", "brong"],
+      "note": "schwaarz = noir · D' = article neutre devant B"
+    },
+    {
+      "id": 4,
+      "fr": "Non, le bus n'est pas rose.",
+      "avant": "Nee, de Bus ass",
+      "trou": "net",
+      "apres": "rosa.",
+      "choix": ["net", "ass", "jo", "keng"],
+      "note": "net = négation devant adjectif (≠ keng qui négative un nom)"
+    },
+    {
+  "id": 5,
+  "fr": "Le lit est beige.",
+  "avant": "D'Bett ass",
+  "trou": "beige",
+  "apres": ".",
+  "choix": ["beige", "brong", "blo", "schwaarz"],
+  "note": "beige = beige"
+    },
+    {
+      "id": 6,
+      "fr": "La fenêtre est grise.",
+      "avant": "D'Fënster ass",
+      "trou": "gro",
+      "apres": ".",
+      "choix": ["gro", "brong", "schwaarz", "wäiss"],
+      "note": "gro = gris · D' = article féminin"
+    },
+    {
+      "id": 7,
+      "fr": "Le tableau est bleu.",
+      "avant": "D'Bild ass",
+      "trou": "blo",
+      "apres": ".",
+      "choix": ["blo", "gréng", "mof", "rout"],
+      "note": "blo = bleu · D' = article neutre"
+    },
+	{
+  "id": 8,
+  "fr": "Le train est vert.",
+  "avant": "Den Zuch ass",
+  "trou": "gréng",
+  "apres": ".",
+  "choix": ["blo", "gréng", "rout", "giel"],
+  "note": "gréng = vert"
+},
+{
+  "id": 9,
+  "fr": "La tasse est jaune.",
+  "avant": "D'Taass ass",
+  "trou": "giel",
+  "apres": ".",
+  "choix": ["mof", "giel", "gro", "schwaarz"],
+  "note": "giel = jaune"
+},
+{
+  "id": 10,
+  "fr": "L'ordinateur est beige.",
+  "avant": "De Computer ass",
+  "trou": "beige",
+  "apres": ".",
+  "choix": ["brong", "wäiss", "beige", "rosa"],
+  "note": "beige = beige"
+},
+{
+  "id": 11,
+  "fr": "La maison est brune.",
+  "avant": "D'Haus ass",
+  "trou": "brong",
+  "apres": ".",
+  "choix": ["gro", "brong", "schwaarz", "gréng"],
+  "note": "brong = brun"
+},
+{
+  "id": 12,
+  "fr": "La montre est violette.",
+  "avant": "D'Auer ass",
+  "trou": "mof",
+  "apres": ".",
+  "choix": ["rosa", "blo", "mof", "giel"],
+  "note": "mof = violet"
+},
+{
+  "id": 13,
+  "fr": "La lampe est rose.",
+  "avant": "D'Luucht ass",
+  "trou": "rosa",
+  "apres": ".",
+  "choix": ["rosa", "beige", "wäiss", "gro"],
+  "note": "rosa = rose"
+},
+{
+  "id": 14,
+  "fr": "Le téléphone est bleu.",
+  "avant": "Den Telefon ass",
+  "trou": "blo",
+  "apres": ".",
+  "choix": ["rout", "giel", "blo", "brong"],
+  "note": "blo = bleu"
+},
+{
+  "id": 15,
+  "fr": "La chaise est rouge.",
+  "avant": "De Stull ass",
+  "trou": "rout",
+  "apres": ".",
+  "choix": ["gréng", "rout", "mof", "gro"],
+  "note": "rout = rouge"
+},
+{
+  "id": 16,
+  "fr": "Le drapeau est blanc.",
+  "avant": "D'Glas ass",
+  "trou": "wäiss",
+  "apres": ".",
+  "choix": ["schwaarz", "beige", "wäiss", "rosa"],
+  "note": "wäiss = blanc"
+},
+{
+  "id": 17,
+  "fr": "L'avion est gris.",
+  "avant": "De Fliger ass",
+  "trou": "gro",
+  "apres": ".",
+  "choix": ["gro", "giel", "brong", "blo"],
+  "note": "gro = gris"
+},
+{
+  "id": 18,
+  "fr": "Le cahier est noir.",
+  "avant": "D'Heft ass",
+  "trou": "schwaarz",
+  "apres": ".",
+  "choix": ["wäiss", "schwaarz", "rosa", "gréng"],
+  "note": "schwaarz = noir"
+},
+{
+  "id": 19,
+  "fr": "La feuille est verte.",
+  "avant": "D'Blat ass",
+  "trou": "gréng",
+  "apres": ".",
+  "choix": ["mof", "rosa", "gréng", "giel"],
+  "note": "gréng = vert"
+}
+
+  ]
+
+}

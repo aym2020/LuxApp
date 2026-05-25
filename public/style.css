@@ -1,0 +1,225 @@
+:root {
+  --bg: #0f0e0c;
+  --surface: #1a1916;
+  --surface2: #222120;
+  --card-bg: #f5f0e8;
+  --text: #f5f0e8;
+  --muted: #7a7060;
+  --accent: #e8c547;
+  --correct: #5ad4a8;
+  --wrong: #e8706a;
+  --r: 14px;
+  --title: 'Syne', sans-serif;
+  --serif: 'Instrument Serif', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--title); min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height pour Android */
+  display: flex; flex-direction: column; align-items: center;
+  /* safe area pour encoche et barre de navigation Android */
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ── VIEWS ───────────────────────────────────────────────────────────────── */
+.view { display: none; width: 100%; max-width: 520px; flex-direction: column; }
+.view.active { display: flex; }
+
+/* ── HOME ────────────────────────────────────────────────────────────────── */
+header {
+  padding: 2rem 1.4rem 1.2rem;
+  display: flex; flex-direction: column;
+}
+.app-title { font-size: 1.6rem; font-weight: 800; color: var(--accent); letter-spacing: -.01em; }
+.app-sub   { font-size: .75rem; color: var(--muted); font-weight: 700; letter-spacing: .12em; margin-top: .15rem; }
+
+.lecon-list { padding: 0 1rem 3rem; display: flex; flex-direction: column; gap: .7rem; }
+
+.lecon-card {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--surface); border: 1px solid #2a2926;
+  border-radius: var(--r); padding: 1rem 1.1rem;
+  cursor: pointer; transition: border-color .2s, background .2s;
+  /* min tap target */
+  min-height: 64px;
+}
+.lecon-card:active { background: var(--surface2); }
+.lecon-card-accent { width: 4px; border-radius: 999px; align-self: stretch; flex-shrink: 0; }
+.lecon-card-body { flex: 1; min-width: 0; }
+.lecon-card-num   { font-size: .65rem; font-weight: 800; letter-spacing: .12em; color: var(--muted); margin-bottom: .2rem; }
+.lecon-card-titre { font-size: .95rem; font-weight: 700; }
+.lecon-card-sous  { font-size: .72rem; color: var(--muted); margin-top: .15rem; font-style: italic; font-family: var(--serif); }
+.lecon-card-counts { display: flex; gap: .4rem; margin-top: .5rem; flex-wrap: wrap; }
+.lecon-pill {
+  font-size: .6rem; font-weight: 700; padding: .18rem .5rem;
+  border-radius: 999px; border: 1px solid #333; color: var(--muted);
+}
+.lecon-arrow { font-size: 1.1rem; color: var(--muted); flex-shrink: 0; }
+
+/* ── LEÇON HEADER ────────────────────────────────────────────────────────── */
+.lecon-header {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .9rem 1rem .6rem; border-bottom: 1px solid #222;
+}
+.back-btn {
+  font-family: var(--title); font-size: .75rem; font-weight: 700; color: var(--muted);
+  background: none; border: none; cursor: pointer;
+  /* bon tap target */
+  padding: .6rem .8rem; margin: -.3rem 0;
+  white-space: nowrap; transition: color .15s;
+  min-height: 44px; display: flex; align-items: center;
+}
+.lecon-header-info { display: flex; flex-direction: column; min-width: 0; }
+.lecon-num   { font-size: .6rem; font-weight: 800; letter-spacing: .12em; color: var(--muted); }
+.lecon-titre { font-size: .85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── TABS ────────────────────────────────────────────────────────────────── */
+.tab-bar { display: flex; border-bottom: 1px solid #222; padding: 0 1rem; }
+.tab-btn {
+  flex: 1; padding: .7rem .3rem;
+  font-family: var(--title); font-size: .78rem; font-weight: 700;
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--muted); cursor: pointer; transition: all .2s; margin-bottom: -1px;
+  min-height: 44px;
+}
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.tab { display: none; flex-direction: column; align-items: center; padding: .9rem 1rem; }
+.tab.active { display: flex; }
+
+/* ── PROGRESS ────────────────────────────────────────────────────────────── */
+.top-row { width: 100%; display: flex; align-items: center; gap: .7rem; margin-bottom: .9rem; }
+.progress-wrap { flex: 1; display: flex; align-items: center; gap: .6rem; width: 100%; }
+.progress-wrap span { font-size: .68rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
+.progress-bar { flex: 1; height: 3px; background: #2a2926; border-radius: 999px; overflow: hidden; }
+.progress-bar div { height: 100%; background: var(--accent); border-radius: 999px; transition: width .35s ease; }
+
+.dir-btn {
+  font-size: .68rem; font-weight: 700; font-family: var(--title);
+  padding: .5rem .8rem; border: 1px solid #333; border-radius: 999px;
+  background: var(--surface); color: var(--muted); cursor: pointer;
+  white-space: nowrap; transition: all .2s;
+  min-height: 36px;
+}
+
+/* ── FLASHCARD ───────────────────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  /* min-height au lieu de aspect-ratio pour éviter l'écrasement sur petit écran */
+  min-height: 180px;
+  aspect-ratio: 3/2;
+  max-height: 280px;
+  cursor: pointer; perspective: 1000px;
+}
+.card-inner {
+  width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+  transition: transform .48s cubic-bezier(.4,0,.2,1); border-radius: var(--r);
+}
+.card.flipped .card-inner { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+  position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--r);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 1.2rem 1.4rem; box-shadow: 0 6px 30px rgba(0,0,0,.5);
+  overflow: hidden;
+}
+.card-front { background: var(--card-bg); }
+.card-back  { background: var(--surface); border: 1px solid #2a2926; transform: rotateY(180deg); }
+
+.card-label {
+  font-size: .6rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+  padding: .18rem .65rem; border-radius: 999px; margin-bottom: .6rem;
+  background: rgba(232,197,71,.1); color: var(--accent); flex-shrink: 0;
+}
+.card-word {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 4.5vw, 2rem);
+  font-style: italic; color: #1a1916; text-align: center; line-height: 1.25;
+  overflow-wrap: break-word; word-break: break-word;
+}
+.card-hint { position: absolute; bottom: .7rem; font-size: .55rem; color: #a09880; }
+.card-translation {
+  font-family: var(--serif);
+  font-size: clamp(.95rem, 4vw, 1.8rem);
+  font-style: italic; color: var(--text); text-align: center;
+  margin-bottom: .4rem; overflow-wrap: break-word; word-break: break-word;
+}
+.card-note {
+  font-size: clamp(.6rem, 2.5vw, .68rem);
+  color: var(--muted); text-align: center; line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+.card-nav { display: flex; align-items: center; gap: .6rem; margin-top: .9rem; width: 100%; }
+.card-nav button {
+  border: 1px solid #2a2926; background: var(--surface); color: var(--text);
+  font-family: var(--title); font-size: .82rem; font-weight: 700;
+  cursor: pointer; border-radius: 999px; transition: all .15s;
+  padding: .7rem 1rem; min-height: 44px;
+}
+.card-nav button:first-child,
+.card-nav button:last-child { font-size: 1.1rem; padding: .7rem 1.3rem; }
+#btn-shuffle { flex: 1; }
+.card-nav button:disabled { opacity: .28; cursor: default; }
+
+/* ── QUIZ / TROU SHARED ──────────────────────────────────────────────────── */
+.question-card {
+  width: 100%; background: var(--surface); border: 1px solid #2a2926;
+  border-radius: var(--r); padding: 1.2rem 1.4rem; text-align: center; margin-bottom: .9rem;
+}
+.question-label { font-size: .6rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .6rem; }
+.question-word  {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 3.8vw, 1.8rem);
+  font-style: italic; overflow-wrap: break-word; word-break: break-word;
+}
+
+.choices { width: 100%; display: flex; flex-direction: column; gap: .5rem; }
+.choice {
+  width: 100%;
+  /* min 44px tap target */
+  min-height: 48px;
+  padding: .75rem 1rem;
+  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  color: var(--text); font-family: var(--title);
+  font-size: clamp(.8rem, 3vw, .9rem);
+  font-weight: 700; cursor: pointer; text-align: left; transition: all .12s;
+  display: flex; align-items: center;
+  overflow-wrap: break-word; word-break: break-word;
+}
+.choice:active { background: var(--surface2); }
+.choice.correct { border-color: var(--correct); background: rgba(90,212,168,.08); color: var(--correct); }
+.choice.wrong   { border-color: var(--wrong);   background: rgba(232,112,106,.08); color: var(--wrong); }
+
+.result-card {
+  width: 100%; text-align: center; margin-top: 1.2rem; padding: 1.4rem;
+  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+}
+.result-card > div { font-size: 1.4rem; font-weight: 800; color: var(--accent); margin-bottom: .9rem; }
+.result-card button {
+  padding: .75rem 2rem; background: var(--accent); color: #111;
+  border: none; border-radius: 999px;
+  font-family: var(--title); font-weight: 800; font-size: .9rem; cursor: pointer;
+  min-height: 44px;
+}
+
+/* ── À TROU ─────────────────────────────────────────────────────────────── */
+.trou-fr   { font-size: .75rem; color: var(--muted); margin-bottom: .7rem; font-style: italic; }
+.trou-sentence {
+  font-family: var(--serif);
+  font-size: clamp(.95rem, 3.2vw, 1.5rem);
+  line-height: 1.7; overflow-wrap: break-word; word-break: break-word;
+}
+.trou-blank {
+  display: inline-block; min-width: 52px; border-bottom: 2px solid var(--accent);
+  color: var(--accent); font-style: normal; padding: 0 .25rem; margin: 0 .15rem;
+  text-align: center; transition: color .2s;
+}
+.trou-note { font-size: .68rem; color: var(--correct); margin-top: .7rem; }
+
+.hidden { display: none !important; }

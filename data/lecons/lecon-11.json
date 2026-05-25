@@ -1,0 +1,588 @@
+{
+  "id": 11,
+  "titre": "Aarbechtsplaz",
+  "titre_fr": "Les lieux de travail",
+  "couleur": "#c47ae8",
+  "flashcards": [
+    {
+      "id": 1,
+      "fr": "Commissariat",
+      "lu": "e Policebüro",
+      "note": "Männlech · op engem Policebüro"
+    },
+    {
+      "id": 2,
+      "fr": "Hôpital",
+      "lu": "e Spidol",
+      "note": "Männlech · ⚠️ an engem Spidol (exception)"
+    },
+    {
+      "id": 3,
+      "fr": "Salon de coiffure",
+      "lu": "e Coiffersalon",
+      "note": "Männlech · an engem Coiffersalon"
+    },
+    {
+      "id": 4,
+      "fr": "Banque",
+      "lu": "eng Bank",
+      "note": "Weiblech · op enger Bank"
+    },
+    {
+      "id": 5,
+      "fr": "Pharmacie",
+      "lu": "eng Apdikt",
+      "note": "Weiblech · an enger Apdikt"
+    },
+    {
+      "id": 6,
+      "fr": "Poste",
+      "lu": "eng Post",
+      "note": "Weiblech · op enger Post"
+    },
+    {
+      "id": 7,
+      "fr": "Tribunal",
+      "lu": "e Gericht",
+      "note": "Männlech · op engem Gericht"
+    },
+    {
+      "id": 8,
+      "fr": "Boucherie",
+      "lu": "eng Metzlerei",
+      "note": "Weiblech · an enger Metzlerei"
+    },
+    {
+      "id": 9,
+      "fr": "Boulangerie",
+      "lu": "eng Bäckerei",
+      "note": "Weiblech · an enger Bäckerei"
+    },
+    {
+      "id": 10,
+      "fr": "Supermarché",
+      "lu": "e Supermarché",
+      "note": "Männlech · an engem Supermarché"
+    },
+    {
+      "id": 11,
+      "fr": "École",
+      "lu": "eng Schoul",
+      "note": "Weiblech · ⚠️ an engem Schoul (exception)"
+    },
+    {
+      "id": 12,
+      "fr": "Aéroport",
+      "lu": "e Fluchhafen",
+      "note": "Männlech · op engem Fluchhafen"
+    },
+    {
+      "id": 13,
+      "fr": "Restaurant",
+      "lu": "e Restaurant",
+      "note": "Männlech · an engem Restaurant"
+    },
+    {
+      "id": 14,
+      "fr": "travailler",
+      "lu": "schaffen",
+      "note": "Ech schaffen · Du schaffs · Hien/Si schafft"
+    },
+    {
+      "id": 15,
+      "fr": "Où travaillez-vous ? (formel)",
+      "lu": "Wou schafft Dir?",
+      "note": "Dir = vous formel"
+    },
+    {
+      "id": 16,
+      "fr": "Où travailles-tu ? (informel)",
+      "lu": "Wou schaffs du?",
+      "note": "du = tu informel"
+    },
+    {
+      "id": 17,
+      "fr": "Je travaille dans…",
+      "lu": "Ech schaffen an/op…",
+      "note": "an = dans · op = sur/à"
+    },
+    {
+      "id": 18,
+      "fr": "chez / auprès de",
+      "lu": "bei",
+      "note": "bei + nom d'entreprise ou bei engem + métier"
+    },
+    {
+      "id": 19,
+      "fr": "Je travaille chez un médecin.",
+      "lu": "Ech schaffe bei engem Dokter.",
+      "note": "bei engem + métier M/N"
+    },
+	{ "id": 20, "lu": "E Coiffer schafft an engem Coiffersalon.",      "fr": "Un coiffeur travaille dans un salon de coiffure.",     "note": "an engem = dans un (masculin/neutre)" },
+{ "id": 21, "lu": "E Bäcker schafft an enger Bäckerei.",            "fr": "Un boulanger travaille dans une boulangerie.",         "note": "an enger = dans une (féminin)" },
+{ "id": 22, "lu": "E Polizist schafft op engem Policebüro.",        "fr": "Un policier travaille dans un commissariat.",          "note": "op engem = sur/dans un lieu administratif" },
+{ "id": 23, "lu": "Wou schafft e Polizist?",                        "fr": "Où travaille un policier ?",                           "note": "Wou = où" },
+{ "id": 24, "lu": "Hie schafft op engem Policebüro.",               "fr": "Il travaille dans un commissariat.",                   "note": "Réponse à la question précédente" },
+{ "id": 25, "lu": "Wou schafft Dir?",                               "fr": "Où travaillez-vous ?",                                 "note": "Dir = vous (formel)" },
+{ "id": 26, "lu": "Wou schaffs du?",                                "fr": "Où travailles-tu ?",                                   "note": "du = tu (informel)" },
+{ "id": 27, "lu": "Ech schaffen an enger Bank.",                    "fr": "Je travaille dans une banque.",                        "note": "an enger = dans une" },
+{ "id": 28, "lu": "Ech schaffen an engem Büro.",                    "fr": "Je travaille dans un bureau.",                         "note": "an engem = dans un" },
+{ "id": 29, "lu": "Ech schaffen op engem Policebüro.",              "fr": "Je travaille dans un commissariat.",                   "note": "op engem = dans un commissariat" }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Où travaille le policier ? (orthographe)",
+      "reponse": "Policebüro",
+      "distracteurs": [
+        "Policebüra",
+        "Policebiuro",
+        "Polizeibüro"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Où travaille le médecin ? (orthographe)",
+      "reponse": "Spidol",
+      "distracteurs": [
+        "Spidal",
+        "Spidall",
+        "Spidoel"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Où travaille le coiffeur ? (orthographe)",
+      "reponse": "Coiffersalon",
+      "distracteurs": [
+        "Coifersalon",
+        "Coiffersallon",
+        "Coiffersalone"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Où travaille le banquier ? (orthographe)",
+      "reponse": "Bank",
+      "distracteurs": [
+        "Banke",
+        "Banck",
+        "Bankk"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Où travaille le pharmacien ? (orthographe)",
+      "reponse": "Apdikt",
+      "distracteurs": [
+        "Apdick",
+        "Apdict",
+        "Apdiqt"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Où travaille le facteur ? (orthographe)",
+      "reponse": "Post",
+      "distracteurs": [
+        "Poste",
+        "Posst",
+        "Phost"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Où travaille l'avocat ? (orthographe)",
+      "reponse": "Gericht",
+      "distracteurs": [
+        "Geright",
+        "Gerricht",
+        "Gerichtt"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Où travaille le boucher ? (orthographe)",
+      "reponse": "Metzlerei",
+      "distracteurs": [
+        "Metzlerai",
+        "Metzlerrei",
+        "Metzlerei"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Où travaille le boulanger ? (orthographe)",
+      "reponse": "Bäckerei",
+      "distracteurs": [
+        "Bäckerai",
+        "Backeräi",
+        "Bäckerrei"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Où travaille le caissier ? (orthographe)",
+      "reponse": "Supermarché",
+      "distracteurs": [
+        "Supermarche",
+        "Superimarché",
+        "Supermarshé"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Où travaille le professeur ? (orthographe)",
+      "reponse": "Schoul",
+      "distracteurs": [
+        "School",
+        "Schule",
+        "Schul"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Où travaille le pilote ? (orthographe)",
+      "reponse": "Fluchhafen",
+      "distracteurs": [
+        "Flughafen",
+        "Fluchafen",
+        "Fluchhaven"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "Où travaille le cuisinier ? (orthographe)",
+      "reponse": "Restaurant",
+      "distracteurs": [
+        "Restaurante",
+        "Restarant",
+        "Restaurannt"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Quel article pour Policebüro ?",
+      "reponse": "e Policebüro",
+      "distracteurs": [
+        "eng Policebüro",
+        "en Policebüro",
+        "d' Policebüro"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Quel article pour Spidol ?",
+      "reponse": "e Spidol",
+      "distracteurs": [
+        "eng Spidol",
+        "en Spidol",
+        "d' Spidol"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Quel article pour Bank ?",
+      "reponse": "eng Bank",
+      "distracteurs": [
+        "e Bank",
+        "en Bank",
+        "d' Bank"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Quel article pour Apdikt ?",
+      "reponse": "eng Apdikt",
+      "distracteurs": [
+        "e Apdikt",
+        "en Apdikt",
+        "d' Apdikt"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Quel article pour Schoul ?",
+      "reponse": "eng Schoul",
+      "distracteurs": [
+        "e Schoul",
+        "en Schoul",
+        "d' Schoul"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Quel article pour Metzlerei ?",
+      "reponse": "eng Metzlerei",
+      "distracteurs": [
+        "e Metzlerei",
+        "en Metzlerei",
+        "d' Metzlerei"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Quel article pour Fluchhafen ?",
+      "reponse": "e Fluchhafen",
+      "distracteurs": [
+        "eng Fluchhafen",
+        "en Fluchhafen",
+        "d' Fluchhafen"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "Le policier travaille au commissariat. (op + e → op engem)",
+      "avant": "De Polizist schafft op",
+      "trou": "engem",
+      "apres": "Policebüro.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "Policebüro = Männlech · op + e → op engem"
+    },
+    {
+      "id": 2,
+      "fr": "Le médecin travaille à l'hôpital. (an + e → an engem, exception !)",
+      "avant": "Den Dokter schafft an",
+      "trou": "engem",
+      "apres": "Spidol.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "⚠️ Spidol = exception → an engem (pas op engem)"
+    },
+    {
+      "id": 3,
+      "fr": "Le coiffeur travaille dans un salon de coiffure. (an + e → an engem)",
+      "avant": "De Coiffer schafft an",
+      "trou": "engem",
+      "apres": "Coiffersalon.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "Coiffersalon = Männlech · an + e → an engem"
+    },
+    {
+      "id": 4,
+      "fr": "Le banquier travaille à la banque. (op + eng → op enger)",
+      "avant": "De Banker schafft op",
+      "trou": "enger",
+      "apres": "Bank.",
+      "choix": [
+        "engem",
+        "enger",
+        "an engem",
+        "an enger"
+      ],
+      "note": "Bank = Weiblech · op + eng → op enger"
+    },
+    {
+      "id": 5,
+      "fr": "Le pharmacien travaille dans une pharmacie. (an + eng → an enger)",
+      "avant": "Den Apdixter schafft an",
+      "trou": "enger",
+      "apres": "Apdikt.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "Apdikt = Weiblech · an + eng → an enger"
+    },
+    {
+      "id": 6,
+      "fr": "Le facteur travaille à la poste. (op + eng → op enger)",
+      "avant": "De Breifdréier schafft op",
+      "trou": "enger",
+      "apres": "Post.",
+      "choix": [
+        "engem",
+        "enger",
+        "an engem",
+        "an enger"
+      ],
+      "note": "Post = Weiblech · op + eng → op enger"
+    },
+    {
+      "id": 7,
+      "fr": "L'avocat travaille au tribunal. (op + e → op engem)",
+      "avant": "Den Affekot schafft op",
+      "trou": "engem",
+      "apres": "Gericht.",
+      "choix": [
+        "engem",
+        "enger",
+        "an engem",
+        "an enger"
+      ],
+      "note": "Gericht = Männlech · op + e → op engem"
+    },
+    {
+      "id": 8,
+      "fr": "Le boucher travaille dans une boucherie. (an + eng → an enger)",
+      "avant": "De Metzler schafft an",
+      "trou": "enger",
+      "apres": "Metzlerei.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "Metzlerei = Weiblech · an + eng → an enger"
+    },
+    {
+      "id": 9,
+      "fr": "Le boulanger travaille dans une boulangerie. (an + eng → an enger)",
+      "avant": "De Bäcker schafft an",
+      "trou": "enger",
+      "apres": "Bäckerei.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "Bäckerei = Weiblech · an + eng → an enger"
+    },
+    {
+      "id": 10,
+      "fr": "Le caissier travaille dans un supermarché. (an + e → an engem)",
+      "avant": "De Caissier schafft an",
+      "trou": "engem",
+      "apres": "Supermarché.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "Supermarché = Männlech · an + e → an engem"
+    },
+    {
+      "id": 11,
+      "fr": "Le professeur travaille à l'école. (an + eng → an engem, exception !)",
+      "avant": "De Schoulmeeschter schafft an",
+      "trou": "engem",
+      "apres": "Schoul.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "⚠️ Schoul = exception → an engem (même si eng Schoul)"
+    },
+    {
+      "id": 12,
+      "fr": "Le pilote travaille à l'aéroport. (op + e → op engem)",
+      "avant": "De Pilot schafft op",
+      "trou": "engem",
+      "apres": "Fluchhafen.",
+      "choix": [
+        "engem",
+        "enger",
+        "an engem",
+        "an enger"
+      ],
+      "note": "Fluchhafen = Männlech · op + e → op engem"
+    },
+    {
+      "id": 13,
+      "fr": "Le cuisinier travaille dans un restaurant. (an + e → an engem)",
+      "avant": "De Kach schafft an",
+      "trou": "engem",
+      "apres": "Restaurant.",
+      "choix": [
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
+      ],
+      "note": "Restaurant = Männlech · an + e → an engem"
+    },
+    {
+      "id": 14,
+      "fr": "Je travaille chez un médecin.",
+      "avant": "Ech schaffe",
+      "trou": "bei",
+      "apres": "engem Dokter.",
+      "choix": [
+        "bei",
+        "an",
+        "op",
+        "als"
+      ],
+      "note": "bei = chez · bei engem Dokter"
+    },
+    {
+      "id": 15,
+      "fr": "Je travaille comme secrétaire chez un médecin.",
+      "avant": "Ech schaffen als Seкtärin",
+      "trou": "bei engem",
+      "apres": "Dokter.",
+      "choix": [
+        "bei engem",
+        "bei",
+        "op",
+        "als"
+      ],
+      "note": "als = comme · bei = chez"
+    },
+    {
+      "id": 16,
+      "fr": "Je travaille comme boulangère.",
+      "avant": "Ech schaffen",
+      "trou": "als",
+      "apres": "Bäckesch.",
+      "choix": [
+        "als",
+        "bei",
+        "an",
+        "op"
+      ],
+      "note": "als = comme / en tant que"
+    },
+    {
+      "id": 17,
+      "fr": "Où travailles-tu ? (informel)",
+      "avant": "Wou",
+      "trou": "schaffs",
+      "apres": "du?",
+      "choix": [
+        "schaffs",
+        "schafft",
+        "schaffen",
+        "schaffe"
+      ],
+      "note": "du → schaffs (2e personne singulier informel)"
+    },
+    {
+      "id": 18,
+      "fr": "Où travaillez-vous ? (formel)",
+      "avant": "Wou schafft",
+      "trou": "Dir",
+      "apres": "?",
+      "choix": [
+        "Dir",
+        "du",
+        "hien",
+        "si"
+      ],
+      "note": "Dir = vous formel (majuscule)"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Lëtzebuergesch A1.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ ACCUEIL : liste des leçons ══════════════════════════════════════════ -->
+  <div id="view-home" class="view active">
+    <header>
+      <div class="app-title">Lëtzebuergesch</div>
+      <div class="app-sub">A1.1</div>
+    </header>
+    <div id="lecon-list" class="lecon-list"></div>
+  </div>
+
+  <!-- ══ LEÇON : 3 onglets ════════════════════════════════════════════════════ -->
+  <div id="view-lecon" class="view">
+
+    <div class="lecon-header" id="lecon-header">
+      <button class="back-btn" onclick="goHome()">← Leçons</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num" id="lecon-num"></span>
+        <span class="lecon-titre" id="lecon-titre"></span>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="flashcards">Flashcards</button>
+      <button class="tab-btn" data-tab="quiz">Quiz</button>
+      <button class="tab-btn" data-tab="trous">À trou</button>
+    </div>
+
+    <!-- FLASHCARDS -->
+    <div id="tab-flashcards" class="tab active">
+      <div class="top-row">
+        <div class="progress-wrap">
+          <span id="fc-progress-text"></span>
+          <div class="progress-bar"><div id="fc-progress-fill"></div></div>
+        </div>
+        <button class="dir-btn" id="fc-dir-btn" onclick="toggleFcDir()">🇱🇺→🇫🇷</button>
+      </div>
+
+      <div id="card" class="card" onclick="flipCard()">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-label" id="fc-front-label"></div>
+            <div class="card-word"  id="fc-front-word"></div>
+            <div class="card-hint">appuyer pour retourner</div>
+          </div>
+          <div class="card-back">
+            <div class="card-label" id="fc-back-label"></div>
+            <div class="card-translation" id="fc-back-word"></div>
+            <div class="card-note" id="fc-note"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-nav">
+        <button id="btn-prev" onclick="prevCard()">←</button>
+        <button id="btn-shuffle" onclick="shuffleCards()">⇄</button>
+        <button id="btn-next" onclick="nextCard()">→</button>
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="tab-quiz" class="tab">
+      <div class="progress-wrap" style="margin-bottom:.9rem">
+        <span id="quiz-progress-text"></span>
+        <div class="progress-bar"><div id="quiz-progress-fill"></div></div>
+      </div>
+
+      <div class="question-card" id="quiz-question-wrap">
+        <div class="question-label" id="quiz-label"></div>
+        <div class="question-word"  id="quiz-word"></div>
+      </div>
+
+      <div id="quiz-choices" class="choices"></div>
+
+      <div id="quiz-result" class="result-card hidden">
+        <div id="quiz-score"></div>
+        <button onclick="startQuiz()">Recommencer</button>
+      </div>
+    </div>
+
+    <!-- À TROU -->
+    <div id="tab-trous" class="tab">
+      <div class="progress-wrap" style="margin-bottom:.9rem">
+        <span id="trou-progress-text"></span>
+        <div class="progress-bar"><div id="trou-progress-fill"></div></div>
+      </div>
+
+      <div class="question-card" id="trou-card">
+        <div class="trou-fr"       id="trou-fr"></div>
+        <div class="trou-sentence" id="trou-sentence"></div>
+        <div class="trou-note hidden" id="trou-note"></div>
+      </div>
+
+      <div id="trou-choices" class="choices" style="margin-top:.9rem"></div>
+
+      <div id="trou-result" class="result-card hidden">
+        <div id="trou-score"></div>
+        <button onclick="startTrous()">Recommencer</button>
+      </div>
+    </div>
+
+  </div><!-- /view-lecon -->
+
+  <script src="app.js"></script>
+</body>
+</html>

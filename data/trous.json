@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "lecon": 2,
+    "lu_avant": "Ass dat",
+    "trou": "eng",
+    "lu_apres": "Dier?",
+    "fr": "Est-ce que c'est une porte ?",
+    "choix": ["e", "en", "eng"],
+    "note": "Weiblech → eng"
+  },
+  {
+    "id": 2,
+    "lecon": 2,
+    "lu_avant": "Jo, dat ass",
+    "trou": "eng",
+    "lu_apres": "Dier.",
+    "fr": "Oui, c'est une porte.",
+    "choix": ["e", "en", "eng"],
+    "note": "Weiblech → eng"
+  },
+  {
+    "id": 3,
+    "lecon": 2,
+    "lu_avant": "Nee, dat ass",
+    "trou": "keng",
+    "lu_apres": "Dier.",
+    "fr": "Non, ce n'est pas une porte.",
+    "choix": ["kee", "keen", "keng"],
+    "note": "Négation Weiblech → keng"
+  },
+  {
+    "id": 4,
+    "lecon": 2,
+    "lu_avant": "Dat ass",
+    "trou": "e",
+    "lu_apres": "Bus.",
+    "fr": "C'est un bus.",
+    "choix": ["e", "en", "eng"],
+    "note": "Männlech/Sächlech → e"
+  },
+  {
+    "id": 5,
+    "lecon": 2,
+    "lu_avant": "Dat ass",
+    "trou": "en",
+    "lu_apres": "Dësch.",
+    "fr": "C'est une table.",
+    "choix": ["e", "en", "eng"],
+    "note": "Devant consonne douce → en"
+  },
+  {
+    "id": 6,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "zu",
+    "lu_apres": "Lëtzebuerg.",
+    "fr": "J'habite au Luxembourg.",
+    "choix": ["a", "an", "zu", "an der", "um"],
+    "note": "Exception Luxembourg → zu"
+  },
+  {
+    "id": 7,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "an",
+    "lu_apres": "Daitschland.",
+    "fr": "J'habite en Allemagne.",
+    "choix": ["a", "an", "zu", "an der", "um"],
+    "note": "Pays sans article → a/an"
+  },
+  {
+    "id": 8,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "an der",
+    "lu_apres": "Belsch.",
+    "fr": "J'habite en Belgique.",
+    "choix": ["a", "an", "zu", "an der", "um"],
+    "note": "Pays féminin → an der"
+  },
+  {
+    "id": 9,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "an der",
+    "lu_apres": "Schwäiz.",
+    "fr": "J'habite en Suisse.",
+    "choix": ["a", "an", "zu", "an der", "um"],
+    "note": "Pays féminin → an der"
+  },
+  {
+    "id": 10,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "zu",
+    "lu_apres": "Metz.",
+    "fr": "J'habite à Metz.",
+    "choix": ["a", "an", "zu", "an der", "um"],
+    "note": "Ville → zu"
+  },
+  {
+    "id": 11,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "an der",
+    "lu_apres": "Stad.",
+    "fr": "J'habite en ville.",
+    "choix": ["a", "an", "zu", "an der", "um"],
+    "note": "Stad = féminin → an der"
+  },
+  {
+    "id": 12,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "um",
+    "lu_apres": "Kirchberg.",
+    "fr": "J'habite au Kirchberg.",
+    "choix": ["a", "an", "zu", "an der", "um"],
+    "note": "Quartier → um/am"
+  },
+  {
+    "id": 13,
+    "lecon": 9,
+    "lu_avant": "Ech wunnen",
+    "trou": "am",
+    "lu_apres": "Gronn.",
+    "fr": "J'habite au Grund.",
+    "choix": ["a", "an", "zu", "an der", "am"],
+    "note": "Quartier → um/am"
+  }
+]

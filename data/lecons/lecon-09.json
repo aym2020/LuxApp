@@ -1,0 +1,196 @@
+{
+  "id": 9,
+  "titre": "Wunnert",
+  "titre_fr": "L'habitation – où j'habite",
+  "couleur": "#5ad4a8",
+  "flashcards": [
+    { "id": 1,  "lu": "Ech wunnen zu Lëtzebuerg.",    "fr": "J'habite au Luxembourg.",   "note": "Exception : zu (pas d'article)" },
+    { "id": 2,  "lu": "Ech wunnen an Daitschland.",   "fr": "J'habite en Allemagne.",    "note": "Pays sans article → a/an" },
+    { "id": 3,  "lu": "Ech wunnen a Frankräich.",     "fr": "J'habite en France.",       "note": "Pays sans article → a/an" },
+    { "id": 4,  "lu": "Ech wunnen an der Belsch.",    "fr": "J'habite en Belgique.",     "note": "Pays féminin → an der" },
+    { "id": 5,  "lu": "Ech wunnen an der Schwäiz.",   "fr": "J'habite en Suisse.",       "note": "Pays féminin → an der" },
+    { "id": 6,  "lu": "Ech wunnen zu Metz.",          "fr": "J'habite à Metz.",          "note": "Ville → zu" },
+    { "id": 7,  "lu": "Ech wunnen zu Esch.",          "fr": "J'habite à Esch.",          "note": "Ville → zu" },
+    { "id": 8,  "lu": "Ech wunnen an der Stad.",      "fr": "J'habite en ville.",        "note": "Stad = féminin → an der" },
+    { "id": 9,  "lu": "Ech wunnen um Kirchberg.",     "fr": "J'habite au Kirchberg.",    "note": "Quartier → um/am" },
+    { "id": 10, "lu": "Ech wunnen um Belair.",        "fr": "J'habite à Belair.",        "note": "Quartier → um/am" },
+    { "id": 11, "lu": "Ech wunnen am Gronn.",         "fr": "J'habite au Grund.",        "note": "Quartier → um/am" },
+	{ "id": 12, "lu": "Wou wunnt Dir?", "fr": "Où habitez-vous ?", "note": "Dir = vous (formel)" },
+{ "id": 13, "lu": "Wou wunns du?", "fr": "Où habites-tu ?", "note": "du = tu (informel)" }
+  ],
+"quiz": [
+  {
+    "id": 1,
+    "question": "J'habite au Luxembourg.",
+    "reponse": "zu Lëtzebuerg",
+    "distracteurs": ["a Lëtzebuerg", "an Lëtzebuerg", "an der Lëtzebuerg"]
+  },
+  {
+    "id": 2,
+    "question": "J'habite en Allemagne.",
+    "reponse": "an Daitschland",
+    "distracteurs": ["zu Daitschland", "an der Daitschland", "am Daitschland"]
+  },
+  {
+    "id": 3,
+    "question": "J'habite en France.",
+    "reponse": "a Frankräich",
+    "distracteurs": ["zu Frankräich", "an der Frankräich", "am Frankräich"]
+  },
+  {
+    "id": 4,
+    "question": "J'habite en Belgique.",
+    "reponse": "an der Belsch",
+    "distracteurs": ["a Belsch", "zu Belsch", "am Belsch"]
+  },
+  {
+    "id": 5,
+    "question": "J'habite en Suisse.",
+    "reponse": "an der Schwäiz",
+    "distracteurs": ["an Schwäiz", "zu Schwäiz", "am Schwäiz"]
+  },
+  {
+    "id": 6,
+    "question": "J'habite à Metz.",
+    "reponse": "zu Metz",
+    "distracteurs": ["a Metz", "an Metz", "am Metz"]
+  },
+  {
+    "id": 7,
+    "question": "J'habite à Esch.",
+    "reponse": "zu Esch",
+    "distracteurs": ["an Esch", "a Esch", "am Esch"]
+  },
+  {
+    "id": 8,
+    "question": "J'habite en ville.",
+    "reponse": "an der Stad",
+    "distracteurs": ["a Stad", "zu Stad", "am Stad"]
+  },
+  {
+    "id": 9,
+    "question": "J'habite au Kirchberg.",
+    "reponse": "um Kirchberg",
+    "distracteurs": ["am Kirchberg", "zu Kirchberg", "an der Kirchberg"]
+  },
+  {
+    "id": 10,
+    "question": "J'habite à Belair.",
+    "reponse": "um Belair",
+    "distracteurs": ["am Belair", "zu Belair", "an Belair"]
+  },
+  {
+    "id": 11,
+    "question": "J'habite au Grund.",
+    "reponse": "am Gronn",
+    "distracteurs": ["um Gronn", "zu Gronn", "an der Gronn"]
+  },
+  {
+    "id": 12,
+    "question": "Quelle préposition utilise-t-on avec une ville ?",
+    "reponse": "zu",
+    "distracteurs": ["a", "an der", "um"]
+  },
+  {
+    "id": 13,
+    "question": "Quelle préposition utilise-t-on avec un pays féminin ?",
+    "reponse": "an der",
+    "distracteurs": ["zu", "a", "um"]
+  },
+  {
+    "id": 14,
+    "question": "Quelle préposition utilise-t-on avec Lëtzebuerg ?",
+    "reponse": "zu",
+    "distracteurs": ["a", "an", "an der"]
+  },
+  {
+    "id": 15,
+    "question": "Quelle préposition utilise-t-on souvent avec un quartier ?",
+    "reponse": "um / am",
+    "distracteurs": ["zu", "an der", "a"]
+  }
+],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "J'habite au Luxembourg.",
+      "avant": "Ech wunnen",
+      "trou": "zu",
+      "apres": "Lëtzebuerg.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Exception Luxembourg → zu"
+    },
+    {
+      "id": 2,
+      "fr": "J'habite en Allemagne.",
+      "avant": "Ech wunnen",
+      "trou": "an",
+      "apres": "Daitschland.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Pays sans article → a/an"
+    },
+    {
+      "id": 3,
+      "fr": "J'habite en France.",
+      "avant": "Ech wunnen",
+      "trou": "a",
+      "apres": "Frankräich.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Pays sans article → a (devant F)"
+    },
+    {
+      "id": 4,
+      "fr": "J'habite en Belgique.",
+      "avant": "Ech wunnen",
+      "trou": "an der",
+      "apres": "Belsch.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Pays féminin → an der"
+    },
+    {
+      "id": 5,
+      "fr": "J'habite en Suisse.",
+      "avant": "Ech wunnen",
+      "trou": "an der",
+      "apres": "Schwäiz.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Pays féminin → an der"
+    },
+    {
+      "id": 6,
+      "fr": "J'habite à Metz.",
+      "avant": "Ech wunnen",
+      "trou": "zu",
+      "apres": "Metz.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Ville → zu"
+    },
+    {
+      "id": 7,
+      "fr": "J'habite en ville.",
+      "avant": "Ech wunnen",
+      "trou": "an der",
+      "apres": "Stad.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Stad = féminin → an der"
+    },
+    {
+      "id": 8,
+      "fr": "J'habite au Kirchberg.",
+      "avant": "Ech wunnen",
+      "trou": "um",
+      "apres": "Kirchberg.",
+      "choix": ["a", "an", "zu", "an der", "um"],
+      "note": "Quartier → um/am"
+    },
+    {
+      "id": 9,
+      "fr": "J'habite au Grund.",
+      "avant": "Ech wunnen",
+      "trou": "am",
+      "apres": "Gronn.",
+      "choix": ["a", "an", "zu", "an der", "am"],
+      "note": "Quartier → am (devant G)"
+    }
+  ]
+}

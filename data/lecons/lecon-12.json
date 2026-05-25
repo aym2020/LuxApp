@@ -1,0 +1,516 @@
+{
+  "id": 12,
+  "titre": "D'Familljësituatioun",
+  "titre_fr": "La situation familiale",
+  "couleur": "#e85a5a",
+  "flashcards": [
+    {
+      "id": 1,
+      "fr": "Marié(e)",
+      "lu": "bestuet",
+      "note": "Invariable · Nég: net bestuet"
+    },
+    {
+      "id": 2,
+      "fr": "Divorcé(e)",
+      "lu": "gescheet",
+      "note": "Invariable · Nég: net gescheet"
+    },
+    {
+      "id": 3,
+      "fr": "Séparé(e)",
+      "lu": "getrennt",
+      "note": "Invariable · Nég: net getrennt"
+    },
+    {
+      "id": 4,
+      "fr": "Pacsé(e)",
+      "lu": "gepacst",
+      "note": "Invariable · Nég: net gepacst"
+    },
+    {
+      "id": 5,
+      "fr": "En couple",
+      "lu": "an enger Beziehung",
+      "note": "Invariable · Nég: net an enger Beziehung"
+    },
+    {
+      "id": 6,
+      "fr": "Célibataire (M)",
+      "lu": "leedeg · e Jonggesell",
+      "note": "Nég: kee Jonggesell"
+    },
+    {
+      "id": 7,
+      "fr": "Célibataire (F)",
+      "lu": "leedeg · eng Jonggesellin",
+      "note": "Nég: keng Jonggesellin"
+    },
+    {
+      "id": 8,
+      "fr": "Petit ami / Copain",
+      "lu": "e Frënd",
+      "note": "Männlech · Nég: kee Frënd"
+    },
+    {
+      "id": 9,
+      "fr": "Petite amie / Copine",
+      "lu": "eng Frendin",
+      "note": "Weiblech · Nég: keng Frendin"
+    },
+    {
+      "id": 10,
+      "fr": "Un enfant / Les enfants",
+      "lu": "e Kand / Kanner",
+      "note": "Singulier / Pluriel"
+    },
+    {
+      "id": 11,
+      "fr": "Un garçon / Des garçons",
+      "lu": "e Jong / Jongen",
+      "note": "Singulier / Pluriel"
+    },
+    {
+      "id": 12,
+      "fr": "Une fille / Des filles",
+      "lu": "e Meedchen / Meedercher",
+      "note": "Singulier / Pluriel"
+    },
+	{ "id": 13, "lu": "Sidd Dir bestuet?",                 "fr": "Êtes-vous marié(e) ?",                     "note": "Dir = vous (formel)" },
+{ "id": 14, "lu": "Bass du bestuet?",                  "fr": "Es-tu marié(e) ?",                         "note": "du = tu (informel)" },
+{ "id": 15, "lu": "Jo, hien ass bestuet.",             "fr": "Oui, il est marié.",                       "note": "hien = il" },
+{ "id": 16, "lu": "Nee, hien ass net bestuet.",        "fr": "Non, il n'est pas marié.",                 "note": "net = négation" },
+{ "id": 17, "lu": "Huet si e Frënd?",                  "fr": "A-t-elle un copain ?",                     "note": "Frënd = copain" },
+{ "id": 18, "lu": "Jo, si huet e Frënd.",             "fr": "Oui, elle a un copain.",                   "note": "huet = a" },
+{ "id": 19, "lu": "Nee, si huet kee Frënd.",          "fr": "Non, elle n'a pas de copain.",             "note": "kee devant nom masculin" },
+{ "id": 20, "lu": "Huet Dir Kanner?",                 "fr": "Avez-vous des enfants ?",                  "note": "Dir = vous (formel)" },
+{ "id": 21, "lu": "Hues du Kanner?",                  "fr": "As-tu des enfants ?",                      "note": "du = tu (informel)" },
+{ "id": 22, "lu": "Ech hunn zwee Kanner, e Meedchen an e Jong.", "fr": "J'ai deux enfants, une fille et un garçon.", "note": "Meedchen = fille · Jong = garçon" }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Marié(e) en luxembourgeois ?",
+      "reponse": "bestuet",
+      "distracteurs": [
+        "gescheet",
+        "getrennt",
+        "gepacst"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Divorcé(e) en luxembourgeois ?",
+      "reponse": "gescheet",
+      "distracteurs": [
+        "bestuet",
+        "getrennt",
+        "gepacst"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Séparé(e) en luxembourgeois ?",
+      "reponse": "getrennt",
+      "distracteurs": [
+        "gescheet",
+        "gepacst",
+        "bestuet"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Pacsé(e) en luxembourgeois ?",
+      "reponse": "gepacst",
+      "distracteurs": [
+        "bestuet",
+        "gescheet",
+        "getrennt"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "En couple en luxembourgeois ?",
+      "reponse": "an enger Beziehung",
+      "distracteurs": [
+        "an engem Beziehung",
+        "op enger Beziehung",
+        "an enger Bezéiung"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Célibataire masculin en luxembourgeois ?",
+      "reponse": "e Jonggesell",
+      "distracteurs": [
+        "eng Jonggesell",
+        "e Jonggesellin",
+        "en Jonggesell"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Célibataire féminin en luxembourgeois ?",
+      "reponse": "eng Jonggesellin",
+      "distracteurs": [
+        "e Jonggesellin",
+        "eng Jonggesell",
+        "en Jonggesellin"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Petit ami / copain en luxembourgeois ?",
+      "reponse": "e Frënd",
+      "distracteurs": [
+        "eng Frënd",
+        "eng Frendin",
+        "en Frënd"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Petite amie / copine en luxembourgeois ?",
+      "reponse": "eng Frendin",
+      "distracteurs": [
+        "e Frendin",
+        "e Frënd",
+        "en Frendin"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Comment nier un statut invariable (bestuet, gescheet…) ?",
+      "reponse": "net bestuet",
+      "distracteurs": [
+        "kee bestuet",
+        "keng bestuet",
+        "pas bestuet"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Comment nier « il a un copain » ?",
+      "reponse": "kee Frënd",
+      "distracteurs": [
+        "net Frënd",
+        "keng Frënd",
+        "kee Frendin"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Comment nier « elle a une copine » ?",
+      "reponse": "keng Frendin",
+      "distracteurs": [
+        "kee Frendin",
+        "net Frendin",
+        "keng Frënd"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "Un enfant / les enfants en luxembourgeois ?",
+      "reponse": "e Kand / Kanner",
+      "distracteurs": [
+        "e Jong / Jongen",
+        "e Meedchen / Meedercher",
+        "e Kand / Kanden"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Un garçon / des garçons en luxembourgeois ?",
+      "reponse": "e Jong / Jongen",
+      "distracteurs": [
+        "e Kand / Kanner",
+        "e Meedchen / Meedercher",
+        "e Jong / Jonger"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Une fille / des filles en luxembourgeois ?",
+      "reponse": "e Meedchen / Meedercher",
+      "distracteurs": [
+        "e Jong / Jongen",
+        "e Kand / Kanner",
+        "e Meedchen / Meedchen"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Comment demander « es-tu marié ? » (informel) ?",
+      "reponse": "Bass du bestuet?",
+      "distracteurs": [
+        "Sidd Dir bestuet?",
+        "Ass hie bestuet?",
+        "Huet si bestuet?"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Comment demander « avez-vous des enfants ? » (formel) ?",
+      "reponse": "Hutt Dir Kanner?",
+      "distracteurs": [
+        "Hues du Kanner?",
+        "Huet si Kanner?",
+        "Sidd Dir Kanner?"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "Beyoncé est mariée.",
+      "avant": "D'Beyoncé ass",
+      "trou": "bestuet",
+      "apres": ".",
+      "choix": [
+        "bestuet",
+        "gescheet",
+        "getrennt",
+        "leedeg"
+      ],
+      "note": "bestuet = marié(e) · invariable M et F"
+    },
+    {
+      "id": 2,
+      "fr": "Brad Pitt est divorcé.",
+      "avant": "De Brad Pitt ass",
+      "trou": "gescheet",
+      "apres": ".",
+      "choix": [
+        "bestuet",
+        "gescheet",
+        "gepacst",
+        "getrennt"
+      ],
+      "note": "gescheet = divorcé(e)"
+    },
+    {
+      "id": 3,
+      "fr": "Shakira et Piqué sont séparés.",
+      "avant": "D'Shakira an de Piqué sinn",
+      "trou": "getrennt",
+      "apres": ".",
+      "choix": [
+        "getrennt",
+        "gescheet",
+        "bestuet",
+        "gepacst"
+      ],
+      "note": "getrennt = séparé(e)"
+    },
+    {
+      "id": 4,
+      "fr": "Non, il n'est pas marié.",
+      "avant": "Nee, hien ass",
+      "trou": "net",
+      "apres": "bestuet.",
+      "choix": [
+        "net",
+        "kee",
+        "keng",
+        "pas"
+      ],
+      "note": "Statut invariable → négation avec net (pas kee/keng)"
+    },
+    {
+      "id": 5,
+      "fr": "Oui, il est marié.",
+      "avant": "Jo, hien ass",
+      "trou": "bestuet",
+      "apres": ".",
+      "choix": [
+        "bestuet",
+        "gescheet",
+        "leedeg",
+        "getrennt"
+      ],
+      "note": "hien = il · ass = est"
+    },
+    {
+      "id": 6,
+      "fr": "Taylor Swift est en couple.",
+      "avant": "D'Taylor Swift ass an",
+      "trou": "enger",
+      "apres": "Beziehung.",
+      "choix": [
+        "enger",
+        "engem",
+        "an enger",
+        "op enger"
+      ],
+      "note": "Beziehung = féminin → an enger Beziehung"
+    },
+    {
+      "id": 7,
+      "fr": "Elle a un copain.",
+      "avant": "Si huet",
+      "trou": "e",
+      "apres": "Frënd.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Frënd = masculin → e Frënd"
+    },
+    {
+      "id": 8,
+      "fr": "Non, elle n'a pas de copine.",
+      "avant": "Nee, si huet",
+      "trou": "keng",
+      "apres": "Frendin.",
+      "choix": [
+        "kee",
+        "keng",
+        "net",
+        "keen"
+      ],
+      "note": "Frendin = féminin → keng Frendin"
+    },
+    {
+      "id": 9,
+      "fr": "Non, il n'a pas de copain.",
+      "avant": "Nee, hien huet",
+      "trou": "kee",
+      "apres": "Frënd.",
+      "choix": [
+        "kee",
+        "keng",
+        "net",
+        "keen"
+      ],
+      "note": "Frënd = masculin → kee Frënd"
+    },
+    {
+      "id": 10,
+      "fr": "Cristiano Ronaldo est célibataire. (masculin)",
+      "avant": "De Ronaldo ass",
+      "trou": "leedeg",
+      "apres": ".",
+      "choix": [
+        "leedeg",
+        "bestuet",
+        "gescheet",
+        "getrennt"
+      ],
+      "note": "leedeg = célibataire (invariable comme adjectif)"
+    },
+    {
+      "id": 11,
+      "fr": "Ariana Grande a un copain.",
+      "avant": "D'Ariana huet",
+      "trou": "e",
+      "apres": "Frënd.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Frënd = masculin → e Frënd"
+    },
+    {
+      "id": 12,
+      "fr": "J'ai deux enfants, un garçon et une fille.",
+      "avant": "Ech hunn 2 Kanner,",
+      "trou": "e",
+      "apres": "Jong an e Meedchen.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Jong = masculin → e Jong"
+    },
+    {
+      "id": 13,
+      "fr": "Est-il marié ?",
+      "avant": "Ass",
+      "trou": "hie",
+      "apres": "bestuet?",
+      "choix": [
+        "hie",
+        "hien",
+        "si",
+        "du"
+      ],
+      "note": "hie = forme réduite de hien devant un verbe commençant par voyelle"
+    },
+    {
+      "id": 14,
+      "fr": "As-tu des enfants ? (informel)",
+      "avant": "Hues",
+      "trou": "du",
+      "apres": "Kanner?",
+      "choix": [
+        "du",
+        "Dir",
+        "si",
+        "hien"
+      ],
+      "note": "Hues du = as-tu (informel) · Hutt Dir = avez-vous (formel)"
+    },
+    {
+      "id": 15,
+      "fr": "Avez-vous des enfants ? (formel)",
+      "avant": "Hutt",
+      "trou": "Dir",
+      "apres": "Kanner?",
+      "choix": [
+        "Dir",
+        "du",
+        "si",
+        "hien"
+      ],
+      "note": "Hutt Dir = avez-vous (formel) · majuscule obligatoire"
+    },
+    {
+      "id": 16,
+      "fr": "Non, il n'est pas séparé, il est divorcé.",
+      "avant": "Nee, hien ass net",
+      "trou": "getrennt",
+      "apres": ", hien ass gescheet.",
+      "choix": [
+        "getrennt",
+        "gescheet",
+        "gepacst",
+        "bestuet"
+      ],
+      "note": "getrennt = séparé · gescheet = divorcé"
+    },
+    {
+      "id": 17,
+      "fr": "Elle a deux filles.",
+      "avant": "Si huet zwou",
+      "trou": "Meedercher",
+      "apres": ".",
+      "choix": [
+        "Meedercher",
+        "Meedchen",
+        "Jongen",
+        "Kanner"
+      ],
+      "note": "Meedercher = des filles (pluriel de Meedchen)"
+    },
+    {
+      "id": 18,
+      "fr": "Il a trois garçons.",
+      "avant": "Hien huet dräi",
+      "trou": "Jongen",
+      "apres": ".",
+      "choix": [
+        "Jongen",
+        "Jong",
+        "Kanner",
+        "Meedercher"
+      ],
+      "note": "Jongen = des garçons (pluriel de Jong)"
+    }
+  ]
+}
