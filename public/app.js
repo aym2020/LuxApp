@@ -8,16 +8,15 @@ let fcIndex = 0;
 let fcDirLuFr = false;
 
 // quiz
-let qCards = [];
-let qIndex = 0;
-let qScore = 0;
-let qDirLuFr = true;
+let qCards    = [];
+let qIndex    = 0;
+let qScore    = 0;
 let qAnswered = false;
 
 // trous
-let tCards = [];
-let tIndex = 0;
-let tScore = 0;
+let tCards    = [];
+let tIndex    = 0;
+let tScore    = 0;
 let tAnswered = false;
 
 // ─── BOOT ─────────────────────────────────────────────────────────────────────
@@ -25,7 +24,7 @@ async function init() {
   lecons = await fetch('/api/lecons').then(r => r.json());
   renderHome();
   setupTabs();
-  setupSwipe();
+  setupCardInteraction(); // BUG 1 fix : remplace setupSwipe()
   setupKeyboard();
 }
 
@@ -57,18 +56,15 @@ function renderHome() {
 function openLecon(l) {
   currentLecon = l;
 
-  // header
   document.getElementById('lecon-num').textContent = `LEÇON ${l.id}`;
   document.getElementById('lecon-titre').textContent = l.titre;
   document.getElementById('lecon-header').style.borderBottomColor = l.couleur + '44';
 
-  // reset all tabs
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelector('.tab-btn[data-tab="flashcards"]').classList.add('active');
   document.getElementById('tab-flashcards').classList.add('active');
 
-  // init content
   fcCards = [...l.flashcards];
   fcIndex = 0;
   fcDirLuFr = false;
@@ -96,8 +92,9 @@ function setupTabs() {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-      if (btn.dataset.tab === 'quiz')   startQuiz();
-      if (btn.dataset.tab === 'trous')  startTrous();
+      window.scrollTo(0, 0); // BUG 6 fix : scroll haut au changement d'onglet
+      if (btn.dataset.tab === 'quiz')  startQuiz();
+      if (btn.dataset.tab === 'trous') startTrous();
     });
   });
 }
@@ -107,10 +104,13 @@ function renderFC() {
   if (!fcCards.length) return;
   const c = fcCards[fcIndex];
 
-  const card = document.getElementById('card');
-  card.style.transition = 'none';
-  card.classList.remove('flipped');
-  setTimeout(() => { card.style.transition = ''; }, 30);
+  // BUG 4 fix : désactive la transition via classe plutôt que style inline + timeout court
+  const cardEl = document.getElementById('card');
+  cardEl.classList.add('no-transition');
+  cardEl.classList.remove('flipped');
+  // forcer le reflow pour que le remove soit effectif avant de réactiver la transition
+  void cardEl.offsetHeight;
+  cardEl.classList.remove('no-transition');
 
   const fWord  = fcDirLuFr ? c.lu : c.fr;
   const bWord  = fcDirLuFr ? c.fr : c.lu;
@@ -145,7 +145,6 @@ function startQuiz() {
   document.getElementById('quiz-choices').classList.remove('hidden');
   document.getElementById('quiz-question-wrap').classList.remove('hidden');
 
-  // Build cards from quiz data + direction
   qCards = [...currentLecon.quiz].sort(() => Math.random() - .5);
   qIndex = 0; qScore = 0; qAnswered = false;
   renderQuizQ();
@@ -161,8 +160,13 @@ function renderQuizQ() {
   setProgress('quiz', qIndex, qCards.length);
 
   const answerText = q.reponse;
-  const wrongTexts = q.distracteurs;
-  const choices = [...new Set([...wrongTexts, answerText])].sort(() => Math.random() - .5);
+
+  // BUG 7 fix : ne pas dédupliquer — si distracteur == réponse, remplacer ce distracteur
+  const safeDistracteurs = q.distracteurs.map(d =>
+    d === answerText ? '—' : d
+  );
+  const choices = [...safeDistracteurs, answerText].sort(() => Math.random() - .5);
+
   const container = document.getElementById('quiz-choices');
   container.innerHTML = '';
   choices.forEach(ch => {
@@ -197,12 +201,6 @@ function showQuizResult() {
     `${pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📚'}  ${qScore} / ${qCards.length}  (${pct}%)`;
 }
 
-function toggleQuizDir() {
-  qDirLuFr = !qDirLuFr;
-  document.getElementById('quiz-dir-btn').textContent = qDirLuFr ? '🇱🇺→🇫🇷' : '🇫🇷→🇱🇺';
-  startQuiz();
-}
-
 // ─── À TROU ───────────────────────────────────────────────────────────────────
 function startTrous() {
   if (!currentLecon) return;
@@ -229,8 +227,12 @@ function renderTrou() {
 
   document.getElementById('trou-fr').textContent = t.fr;
   document.getElementById('trou-note').classList.add('hidden');
+
+  // BUG 5 fix : trim pour éviter l'espace parasite quand avant = ""
+  const avant = t.avant ? escHtml(t.avant) + ' ' : '';
+  const apres = t.apres ? ' ' + escHtml(t.apres) : '';
   document.getElementById('trou-sentence').innerHTML =
-    escHtml(t.avant) + ' <span class="trou-blank" id="trou-blank">___</span> ' + escHtml(t.apres);
+    avant + '<span class="trou-blank" id="trou-blank">___</span>' + apres;
 
   setProgress('trou', tIndex, tCards.length);
 
@@ -284,17 +286,45 @@ function setProgress(prefix, index, total) {
 }
 
 function escHtml(str) {
+  if (!str) return '';
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function setupSwipe() {
-  const card = document.getElementById('card');
-  let sx = 0;
-  card.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
-  card.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - sx;
-    if (Math.abs(dx) > 50) { dx < 0 ? nextCard() : prevCard(); } else flipCard();
-  });
+// ─── BUG 1 + 2 FIX : interaction carte unifiée, sans onclick HTML ─────────────
+function setupCardInteraction() {
+  const cardEl = document.getElementById('card');
+  let startX = 0;
+  let startY = 0;
+  let didMove = false;
+
+  // Touch : swipe ou tap immédiat sans délai 300ms
+  cardEl.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    didMove = false;
+  }, { passive: true });
+
+  cardEl.addEventListener('touchmove', e => {
+    const dx = Math.abs(e.touches[0].clientX - startX);
+    const dy = Math.abs(e.touches[0].clientY - startY);
+    if (dx > 8 || dy > 8) didMove = true;
+  }, { passive: true });
+
+  cardEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) {
+      // swipe
+      dx < 0 ? nextCard() : prevCard();
+    } else if (!didMove) {
+      // tap propre → flip immédiat, pas de délai
+      flipCard();
+    }
+    // preventDefault bloque le click synthétique Android (délai 300ms)
+    e.preventDefault();
+  }, { passive: false });
+
+  // Click pour desktop (souris)
+  cardEl.addEventListener('click', flipCard);
 }
 
 function setupKeyboard() {

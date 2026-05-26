@@ -223,3 +223,6 @@ header {
 .trou-note { font-size: .68rem; color: var(--correct); margin-top: .7rem; }
 
 .hidden { display: none !important; }
+
+/* BUG 4 fix : désactive la transition flip pour le changement de carte */
+.card.no-transition .card-inner { transition: none !important; }
