@@ -349,15 +349,14 @@ let ecrScore    = 0;
 let ecrAnswered = false;
 let ecrDirLuFr  = false; // false = fr→lu (défaut), true = lu→fr
 
-// Normalise : retire accents, diacritiques, ponctuation finale, espaces avant ponctuation
+// Normalise : retire accents, diacritiques, et toute ponctuation (insensible à virgule, point, etc.)
 function normalize(str) {
   return str
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')  // diacritiques
     .replace(/ë/gi, 'e').replace(/ä/gi, 'a').replace(/ö/gi, 'o').replace(/ü/gi, 'u')
     .toLowerCase()
-    .replace(/\s+([?.!,])/g, '$1')   // supprime espace avant ponctuation ("bonjour ?" → "bonjour?")
-    .replace(/[.!?,]+$/g, '')         // supprime ponctuation en fin de chaîne
+    .replace(/[.!?,;:]+/g, '')        // supprime toute ponctuation partout
     .replace(/\s+/g, ' ')
     .trim();
 }
