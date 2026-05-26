@@ -106,13 +106,16 @@
 
     <!-- ÉCRITURE -->
     <div id="tab-ecriture" class="tab">
-      <div class="progress-wrap" style="margin-bottom:.9rem">
-        <span id="ecr-progress-text"></span>
-        <div class="progress-bar"><div id="ecr-progress-fill"></div></div>
+      <div class="top-row">
+        <div class="progress-wrap">
+          <span id="ecr-progress-text"></span>
+          <div class="progress-bar"><div id="ecr-progress-fill"></div></div>
+        </div>
+        <button class="dir-btn" id="ecr-dir-btn" onclick="toggleEcritureDir()">🇫🇷→🇱🇺</button>
       </div>
 
       <div class="question-card hidden" id="ecr-card">
-        <div class="question-label">Écrivez en luxembourgeois</div>
+        <div class="question-label" id="ecr-dir-label">Écrivez en luxembourgeois</div>
         <div class="question-word" id="ecr-question"></div>
       </div>
 

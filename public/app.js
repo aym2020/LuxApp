@@ -343,18 +343,21 @@ function setupKeyboard() {
 init();
 
 // ─── ÉCRITURE ─────────────────────────────────────────────────────────────────
-let ecrCards  = [];
-let ecrIndex  = 0;
-let ecrScore  = 0;
+let ecrCards    = [];
+let ecrIndex    = 0;
+let ecrScore    = 0;
 let ecrAnswered = false;
+let ecrDirLuFr  = false; // false = fr→lu (défaut), true = lu→fr
 
-// Normalise : retire accents et diacritiques, lowercase, trim espaces multiples
+// Normalise : retire accents, diacritiques, ponctuation finale, espaces avant ponctuation
 function normalize(str) {
   return str
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')  // supprime les diacritiques
+    .replace(/[\u0300-\u036f]/g, '')  // diacritiques
     .replace(/ë/gi, 'e').replace(/ä/gi, 'a').replace(/ö/gi, 'o').replace(/ü/gi, 'u')
     .toLowerCase()
+    .replace(/\s+([?.!,])/g, '$1')   // supprime espace avant ponctuation ("bonjour ?" → "bonjour?")
+    .replace(/[.!?,]+$/g, '')         // supprime ponctuation en fin de chaîne
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -375,6 +378,7 @@ function startEcriture() {
 
   ecrCards = [...currentLecon.ecriture].sort(() => Math.random() - .5);
   ecrIndex = 0; ecrScore = 0; ecrAnswered = false;
+  document.getElementById('ecr-dir-btn').textContent = ecrDirLuFr ? '🇱🇺→🇫🇷' : '🇫🇷→🇱🇺';
   renderEcriture();
 }
 
@@ -383,7 +387,8 @@ function renderEcriture() {
   ecrAnswered = false;
 
   const q = ecrCards[ecrIndex];
-  document.getElementById('ecr-question').textContent = q.fr;
+  document.getElementById('ecr-question').textContent = ecrDirLuFr ? q.lu : q.fr;
+  document.getElementById('ecr-dir-label').textContent = ecrDirLuFr ? 'Écrivez en français' : 'Écrivez en luxembourgeois';
   document.querySelectorAll('.ecr-next-btn').forEach(b => b.remove());
   document.getElementById('ecr-feedback').classList.add('hidden');
   document.getElementById('ecr-feedback').className = 'ecr-feedback hidden';
@@ -410,7 +415,8 @@ function validateEcriture() {
 
   ecrAnswered = true;
   const q = ecrCards[ecrIndex];
-  const ok = normalize(userVal) === normalize(q.lu);
+  const target = ecrDirLuFr ? q.fr : q.lu;
+  const ok = normalize(userVal) === normalize(target);
 
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
@@ -425,7 +431,7 @@ function validateEcriture() {
   } else {
     feedback.className = 'ecr-feedback ko';
     feedback.innerHTML = '❌ Pas tout à fait…<span class="ecr-correct-answer">' +
-      escHtml(q.lu) + '</span>';
+      escHtml(target) + '</span>';
   }
 
   // Bouton suivant
@@ -455,6 +461,19 @@ function showEcritureResult() {
   const pct = Math.round(ecrScore / ecrCards.length * 100);
   document.getElementById('ecr-score').textContent =
     `${pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📚'}  ${ecrScore} / ${ecrCards.length}  (${pct}%)`;
+}
+
+function toggleEcritureDir() {
+  ecrDirLuFr = !ecrDirLuFr;
+  document.getElementById('ecr-dir-btn').textContent = ecrDirLuFr ? '🇱🇺→🇫🇷' : '🇫🇷→🇱🇺';
+  ecrCards = [...currentLecon.ecriture].sort(() => Math.random() - .5);
+  ecrIndex = 0; ecrScore = 0; ecrAnswered = false;
+  document.querySelectorAll('.ecr-next-btn').forEach(b => b.remove());
+  document.getElementById('ecr-feedback').className = 'ecr-feedback hidden';
+  document.getElementById('ecr-result').classList.add('hidden');
+  document.getElementById('ecr-card').classList.remove('hidden');
+  document.querySelector('.ecr-input-wrap').classList.remove('hidden');
+  renderEcriture();
 }
 
 // Textarea : auto-resize + Entrée pour valider (Shift+Entrée = saut de ligne)
