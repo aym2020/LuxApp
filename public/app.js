@@ -96,6 +96,7 @@ function setupTabs() {
       window.scrollTo(0, 0); // BUG 6 fix : scroll haut au changement d'onglet
       if (btn.dataset.tab === 'quiz')  startQuiz();
       if (btn.dataset.tab === 'trous') startTrous();
+      if (btn.dataset.tab === 'ecriture') startEcriture();
     });
   });
 }
