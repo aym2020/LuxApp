@@ -17,14 +17,6 @@
       <div class="app-sub">A1.1</div>
     </header>
     <div id="lecon-list" class="lecon-list"></div>
-
-    <!-- Entrée écriture libre depuis l'accueil -->
-    <div class="home-ecriture">
-      <button class="ecriture-home-btn" onclick="openEcriture()">
-        ✍️ <span>Écriture libre</span>
-        <span class="ecriture-sub">40 questions · toutes leçons</span>
-      </button>
-    </div>
   </div>
 
   <!-- ══ LEÇON ════════════════════════════════════════════════════════════════ -->
@@ -42,7 +34,6 @@
       <button class="tab-btn active" data-tab="flashcards">Cartes</button>
       <button class="tab-btn" data-tab="quiz">Quiz</button>
       <button class="tab-btn" data-tab="trous">À trou</button>
-      <button class="tab-btn" data-tab="ecriture">Écrire</button>
       <button class="tab-btn" data-tab="ecriture">Écrire</button>
     </div>
 
@@ -120,12 +111,12 @@
         <div class="progress-bar"><div id="ecr-progress-fill"></div></div>
       </div>
 
-      <div class="question-card" id="ecr-card">
+      <div class="question-card hidden" id="ecr-card">
         <div class="question-label">Écrivez en luxembourgeois</div>
         <div class="question-word" id="ecr-question"></div>
       </div>
 
-      <div class="ecr-input-wrap">
+      <div class="ecr-input-wrap hidden">
         <input type="text" id="ecr-input" class="ecr-input"
           placeholder="Tapez votre réponse…"
           autocomplete="off" autocorrect="off"
