@@ -227,135 +227,43 @@ header {
 /* BUG 4 fix : désactive la transition flip pour le changement de carte */
 .card.no-transition .card-inner { transition: none !important; }
 
-/* ── ÉCRIRE ──────────────────────────────────────────────────────────────── */
-.ecrire-input-wrap {
-  width: 100%; margin-bottom: .8rem;
-}
-.ecrire-input {
-  width: 100%; padding: .9rem 1rem;
-  background: var(--surface); border: 1px solid #444; border-radius: var(--r);
-  color: var(--text); font-family: var(--title); font-size: 1.05rem; font-weight: 700;
-  outline: none; transition: border-color .2s;
-  /* évite le zoom auto sur iOS/Android au focus */
-  font-size: max(1rem, 16px);
-}
-.ecrire-input:focus { border-color: var(--accent); }
-.ecrire-input.ok    { border-color: var(--correct); background: rgba(90,212,168,.06); }
-.ecrire-input.ko    { border-color: var(--wrong);   background: rgba(232,112,106,.06); }
-
-.ecrire-feedback {
-  margin-top: .6rem; padding: .7rem 1rem;
-  border-radius: var(--r); font-size: .82rem; font-weight: 700; line-height: 1.5;
-}
-.ecrire-feedback.ok {
-  background: rgba(90,212,168,.08); color: var(--correct); border: 1px solid var(--correct);
-}
-.ecrire-feedback.ko {
-  background: rgba(232,112,106,.08); color: var(--wrong); border: 1px solid var(--wrong);
-}
-
-.ecrire-actions { width: 100%; display: flex; gap: .6rem; }
-.ecrire-btn-valider {
-  flex: 1; padding: .8rem; background: var(--accent); color: #111;
-  border: none; border-radius: 999px;
-  font-family: var(--title); font-weight: 800; font-size: .9rem; cursor: pointer;
-  min-height: 48px; transition: opacity .15s;
-}
-.ecrire-btn-valider:disabled { opacity: .35; cursor: default; }
-.ecrire-btn-passer {
-  flex: 1; padding: .8rem; background: var(--surface); color: var(--text);
-  border: 1px solid #444; border-radius: 999px;
-  font-family: var(--title); font-weight: 700; font-size: .9rem; cursor: pointer;
-  min-height: 48px;
-}
-
-/* ── ÉCRITURE LIBRE ──────────────────────────────────────────────────────── */
-.home-ecriture {
-  padding: 0 1rem 2rem;
-}
-.ecriture-home-btn {
-  width: 100%; min-height: 64px;
-  display: flex; align-items: center; gap: 1rem;
-  background: var(--surface); border: 1px solid #2a2926;
-  border-radius: var(--r); padding: 1rem 1.1rem;
-  cursor: pointer; color: var(--text); font-family: var(--title);
-  text-align: left; transition: background .2s;
-}
-.ecriture-home-btn:active { background: var(--surface2); }
-.ecriture-home-btn > span:first-of-type { font-size: .95rem; font-weight: 700; flex: 1; }
-.ecriture-sub { font-size: .68rem; color: var(--muted); display: block; white-space: nowrap; }
-
+/* ── ÉCRIRE ─────────────────────────────────────────────────────────────── */
 .ecr-input-wrap {
-  width: 100%; display: flex; gap: .6rem; margin-top: .5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;   /* textarea au-dessus, bouton en dessous */
+  gap: .6rem;
+  margin-top: .5rem;
 }
+
+/* textarea auto-extensible */
 .ecr-input {
-  flex: 1; min-height: 48px;
-  background: var(--surface); border: 1px solid #444;
-  border-radius: var(--r); color: var(--text);
-  font-family: var(--serif); font-size: 1.1rem; font-style: italic;
-  padding: .6rem 1rem; outline: none; transition: border-color .2s;
-}
-.ecr-input:focus { border-color: var(--accent); }
-
-.ecr-validate-btn {
-  min-height: 48px; padding: .6rem 1.1rem;
-  background: var(--accent); color: #111;
-  border: none; border-radius: var(--r);
-  font-family: var(--title); font-weight: 800; font-size: .85rem;
-  cursor: pointer; white-space: nowrap;
-}
-
-.ecr-feedback {
-  width: 100%; margin-top: .9rem;
-  border-radius: var(--r); padding: 1.1rem 1.2rem;
-  font-family: var(--title); font-size: .88rem; line-height: 1.6;
-}
-.ecr-feedback.correct {
-  background: rgba(90,212,168,.08); border: 1px solid var(--correct); color: var(--correct);
-}
-.ecr-feedback.wrong {
-  background: rgba(232,112,106,.08); border: 1px solid var(--wrong); color: var(--text);
-}
-.ecr-feedback .ecr-correct-answer {
-  display: block; margin-top: .4rem;
-  font-family: var(--serif); font-style: italic;
-  font-size: 1rem; color: var(--correct);
-}
-.ecr-feedback .ecr-next-btn {
-  display: block; width: 100%; margin-top: .9rem;
-  padding: .65rem; background: var(--surface2);
-  border: 1px solid #444; border-radius: var(--r);
-  color: var(--text); font-family: var(--title);
-  font-weight: 700; font-size: .85rem; cursor: pointer;
-  min-height: 44px;
-}
-
-/* ── ÉCRITURE ────────────────────────────────────────────────────────────── */
-.ecr-input-wrap {
-  width: 100%; display: flex; gap: .6rem; margin-top: .2rem;
-}
-.ecr-input {
-  flex: 1; padding: .8rem 1rem;
+  width: 100%;
+  min-height: 54px;
+  resize: none;             /* pas de poignée manuelle */
+  overflow: hidden;         /* masque la scrollbar pendant l'auto-resize */
+  padding: .85rem 1rem;
   background: var(--surface); border: 1px solid #444; border-radius: var(--r);
-  color: var(--text); font-family: var(--title); font-size: 1rem; font-weight: 700;
+  color: var(--text); font-family: var(--serif);
+  font-size: max(1rem, 16px); /* évite le zoom auto Android/iOS */
+  font-style: italic; line-height: 1.5;
   outline: none; transition: border-color .2s;
-  min-height: 48px;
 }
-.ecr-input:focus { border-color: var(--accent); }
-.ecr-input.correct { border-color: var(--correct); }
-.ecr-input.wrong   { border-color: var(--wrong); }
+.ecr-input:focus  { border-color: var(--accent); }
+.ecr-input.correct { border-color: var(--correct); background: rgba(90,212,168,.05); }
+.ecr-input.wrong   { border-color: var(--wrong);   background: rgba(232,112,106,.05); }
 
 .ecr-btn-validate {
-  padding: .8rem 1.2rem; background: var(--accent); color: #111;
+  width: 100%; padding: .85rem;
+  background: var(--accent); color: #111;
   border: none; border-radius: var(--r);
-  font-family: var(--title); font-weight: 800; font-size: .85rem;
-  cursor: pointer; white-space: nowrap; min-height: 48px;
-  transition: opacity .15s;
+  font-family: var(--title); font-weight: 800; font-size: .95rem;
+  cursor: pointer; min-height: 48px; transition: opacity .15s;
 }
-.ecr-btn-validate:disabled { opacity: .4; cursor: default; }
+.ecr-btn-validate:disabled { opacity: .35; cursor: default; }
 
 .ecr-feedback {
-  width: 100%; margin-top: .8rem; padding: 1rem 1.2rem;
+  width: 100%; margin-top: .6rem; padding: 1rem 1.1rem;
   border-radius: var(--r); font-size: .85rem; line-height: 1.6;
 }
 .ecr-feedback.ok {
@@ -366,13 +274,15 @@ header {
 }
 .ecr-feedback .ecr-correct-answer {
   display: block; margin-top: .4rem;
-  color: var(--text); font-weight: 800; font-size: 1rem;
+  font-family: var(--serif); font-style: italic;
+  font-size: 1rem; color: var(--text); font-weight: 800;
 }
+
 .ecr-next-btn {
-  display: block; width: 100%; margin-top: .8rem;
-  padding: .75rem; background: var(--surface); border: 1px solid #444;
+  display: block; width: 100%; margin-top: .6rem;
+  padding: .8rem; background: var(--surface); border: 1px solid #444;
   border-radius: var(--r); color: var(--text);
-  font-family: var(--title); font-weight: 700; font-size: .85rem;
+  font-family: var(--title); font-weight: 700; font-size: .88rem;
   cursor: pointer; text-align: center; min-height: 48px;
   transition: border-color .2s;
 }

@@ -387,6 +387,7 @@ function renderEcriture() {
 
   const input = document.getElementById('ecr-input');
   input.value = '';
+  input.style.height = 'auto'; // reset auto-resize
   input.className = 'ecr-input';
   input.disabled = false;
   input.focus();
@@ -453,7 +454,19 @@ function showEcritureResult() {
     `${pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📚'}  ${ecrScore} / ${ecrCards.length}  (${pct}%)`;
 }
 
-// Valider avec Entrée
-document.getElementById('ecr-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') validateEcriture();
+// Textarea : auto-resize + Entrée pour valider (Shift+Entrée = saut de ligne)
+const ecrInput = document.getElementById('ecr-input');
+
+function autoResize() {
+  ecrInput.style.height = 'auto';
+  ecrInput.style.height = ecrInput.scrollHeight + 'px';
+}
+
+ecrInput.addEventListener('input', autoResize);
+
+ecrInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    validateEcriture();
+  }
 });
