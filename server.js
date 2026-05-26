@@ -6,6 +6,11 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 
+app.get('/api/ecriture', (req, res) => {
+  const raw = fs.readFileSync(path.join(__dirname, 'data/ecriture.json'), 'utf8');
+  res.json(JSON.parse(raw));
+});
+
 app.get('/api/lecons', (req, res) => {
   const dir = path.join(__dirname, 'data/lecons');
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort();

@@ -10,16 +10,24 @@
 </head>
 <body>
 
-  <!-- ══ ACCUEIL : liste des leçons ══════════════════════════════════════════ -->
+  <!-- ══ ACCUEIL ══════════════════════════════════════════════════════════════ -->
   <div id="view-home" class="view active">
     <header>
       <div class="app-title">Lëtzebuergesch</div>
       <div class="app-sub">A1.1</div>
     </header>
     <div id="lecon-list" class="lecon-list"></div>
+
+    <!-- Entrée écriture libre depuis l'accueil -->
+    <div class="home-ecriture">
+      <button class="ecriture-home-btn" onclick="openEcriture()">
+        ✍️ <span>Écriture libre</span>
+        <span class="ecriture-sub">40 questions · toutes leçons</span>
+      </button>
+    </div>
   </div>
 
-  <!-- ══ LEÇON : 3 onglets ════════════════════════════════════════════════════ -->
+  <!-- ══ LEÇON ════════════════════════════════════════════════════════════════ -->
   <div id="view-lecon" class="view">
 
     <div class="lecon-header" id="lecon-header">
@@ -31,9 +39,11 @@
     </div>
 
     <div class="tab-bar">
-      <button class="tab-btn active" data-tab="flashcards">Flashcards</button>
+      <button class="tab-btn active" data-tab="flashcards">Cartes</button>
       <button class="tab-btn" data-tab="quiz">Quiz</button>
       <button class="tab-btn" data-tab="trous">À trou</button>
+      <button class="tab-btn" data-tab="ecriture">Écrire</button>
+      <button class="tab-btn" data-tab="ecriture">Écrire</button>
     </div>
 
     <!-- FLASHCARDS -->
@@ -43,7 +53,7 @@
           <span id="fc-progress-text"></span>
           <div class="progress-bar"><div id="fc-progress-fill"></div></div>
         </div>
-        <button class="dir-btn" id="fc-dir-btn" onclick="toggleFcDir()">🇱🇺→🇫🇷</button>
+        <button class="dir-btn" id="fc-dir-btn" onclick="toggleFcDir()">🇫🇷→🇱🇺</button>
       </div>
 
       <div id="card" class="card">
@@ -74,14 +84,11 @@
         <span id="quiz-progress-text"></span>
         <div class="progress-bar"><div id="quiz-progress-fill"></div></div>
       </div>
-
       <div class="question-card" id="quiz-question-wrap">
         <div class="question-label" id="quiz-label"></div>
         <div class="question-word"  id="quiz-word"></div>
       </div>
-
       <div id="quiz-choices" class="choices"></div>
-
       <div id="quiz-result" class="result-card hidden">
         <div id="quiz-score"></div>
         <button onclick="startQuiz()">Recommencer</button>
@@ -94,18 +101,43 @@
         <span id="trou-progress-text"></span>
         <div class="progress-bar"><div id="trou-progress-fill"></div></div>
       </div>
-
       <div class="question-card" id="trou-card">
         <div class="trou-fr"       id="trou-fr"></div>
         <div class="trou-sentence" id="trou-sentence"></div>
         <div class="trou-note hidden" id="trou-note"></div>
       </div>
-
       <div id="trou-choices" class="choices" style="margin-top:.9rem"></div>
-
       <div id="trou-result" class="result-card hidden">
         <div id="trou-score"></div>
         <button onclick="startTrous()">Recommencer</button>
+      </div>
+    </div>
+
+    <!-- ÉCRITURE -->
+    <div id="tab-ecriture" class="tab">
+      <div class="progress-wrap" style="margin-bottom:.9rem">
+        <span id="ecr-progress-text"></span>
+        <div class="progress-bar"><div id="ecr-progress-fill"></div></div>
+      </div>
+
+      <div class="question-card" id="ecr-card">
+        <div class="question-label">Écrivez en luxembourgeois</div>
+        <div class="question-word" id="ecr-question"></div>
+      </div>
+
+      <div class="ecr-input-wrap">
+        <input type="text" id="ecr-input" class="ecr-input"
+          placeholder="Tapez votre réponse…"
+          autocomplete="off" autocorrect="off"
+          autocapitalize="none" spellcheck="false" />
+        <button class="ecr-btn-validate" id="ecr-btn" onclick="validateEcriture()">Valider ✓</button>
+      </div>
+
+      <div id="ecr-feedback" class="ecr-feedback hidden"></div>
+
+      <div id="ecr-result" class="result-card hidden">
+        <div id="ecr-score"></div>
+        <button onclick="startEcriture()">Recommencer</button>
       </div>
     </div>
 

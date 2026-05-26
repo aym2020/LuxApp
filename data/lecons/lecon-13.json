@@ -76,27 +76,120 @@
       "lu": "Dezember",
       "note": "Mois 12"
     },
-{ "id": 13, "lu": "Wéini ass d'Barbara gebuer?", "fr": "Quand Barbara est-elle née ?", "note": "gebuer = né(e)" },
-{ "id": 14, "lu": "D'Barbara ass den uechtzéngte Januar nonzéng honnert sechsannonzeg gebuer.", "fr": "Barbara est née le 18 janvier 1996.", "note": "Date complète" },
-{ "id": 15, "lu": "Wéini bass du gebuer?", "fr": "Quand es-tu né ?", "note": "informel" },
-{ "id": 16, "lu": "Wéini sidd Dir gebuer?", "fr": "Quand êtes-vous né ?", "note": "formel" },
-{ "id": 17, "lu": "Ech sinn den ... gebuer.", "fr": "Je suis né le ...", "note": "Réponse avec une date" },
-
-{ "id": 18, "lu": "Wéini huet d'Sara Gebuertsdag?", "fr": "Quelle est la date d'anniversaire de Sara ?", "note": "Gebuertsdag = anniversaire" },
-{ "id": 19, "lu": "Hatt huet den dräizéngte Juni nonzéng honnert zweeannonzeg Gebuertsdag.", "fr": "Son anniversaire est le 13 juin 1992.", "note": "Date complète" },
-{ "id": 20, "lu": "Wéini hues du Gebuertsdag?", "fr": "Quand est ton anniversaire ?", "note": "informel" },
-{ "id": 21, "lu": "Wéini hutt Dir Gebuertsdag?", "fr": "Quand est votre anniversaire ?", "note": "formel" },
-{ "id": 22, "lu": "Ech hunn den ... Gebuertsdag.", "fr": "Je suis né le ...", "note": "Réponse avec une date" },
-{ "id": 23, "lu": "Mäi Gebuertsdag ass den ...", "fr": "Mon anniversaire est le ...", "note": "Alternative" },
-
-{ "id": 24, "lu": "Uechtzéng Joer", "fr": "18 ans", "note": "Âge" },
-{ "id": 25, "lu": "Ech hunn zwanzeg Joer.", "fr": "J'ai 20 ans.", "note": "Expression de l'âge" },
-{ "id": 26, "lu": "Ech hunn véieranzwanzeg Joer.", "fr": "J'ai 24 ans.", "note": "Expression de l'âge" },
-{ "id": 27, "lu": "Wéi al bass du?", "fr": "Quel âge as-tu ?", "note": "informel" },
-{ "id": 28, "lu": "Wat ass däin Alter?", "fr": "Quel est ton âge ?", "note": "Alternative" },
-{ "id": 29, "lu": "Huet d'Carla 30 Joer?", "fr": "Carla a-t-elle 30 ans ?", "note": "Question sur l'âge" },
-{ "id": 30, "lu": "Wéi vill Joer hutt Dir?", "fr": "Quel âge avez-vous ?", "note": "formel" },
-{ "id": 31, "lu": "Wéi vill Joer hues du?", "fr": "Quel âge as-tu ?", "note": "informel" }
+    {
+      "id": 13,
+      "lu": "Wéini ass d'Barbara gebuer?",
+      "fr": "Quand Barbara est-elle née ?",
+      "note": "gebuer = né(e)"
+    },
+    {
+      "id": 14,
+      "lu": "D'Barbara ass den uechtzéngte Januar nonzéng honnert sechsannonzeg gebuer.",
+      "fr": "Barbara est née le 18 janvier 1996.",
+      "note": "Date complète"
+    },
+    {
+      "id": 15,
+      "lu": "Wéini bass du gebuer?",
+      "fr": "Quand es-tu né ?",
+      "note": "informel"
+    },
+    {
+      "id": 16,
+      "lu": "Wéini sidd Dir gebuer?",
+      "fr": "Quand êtes-vous né ?",
+      "note": "formel"
+    },
+    {
+      "id": 17,
+      "lu": "Ech sinn den ... gebuer.",
+      "fr": "Je suis né le ...",
+      "note": "Réponse avec une date"
+    },
+    {
+      "id": 18,
+      "lu": "Wéini huet d'Sara Gebuertsdag?",
+      "fr": "Quelle est la date d'anniversaire de Sara ?",
+      "note": "Gebuertsdag = anniversaire"
+    },
+    {
+      "id": 19,
+      "lu": "Hatt huet den dräizéngte Juni nonzéng honnert zweeannonzeg Gebuertsdag.",
+      "fr": "Son anniversaire est le 13 juin 1992.",
+      "note": "Date complète"
+    },
+    {
+      "id": 20,
+      "lu": "Wéini hues du Gebuertsdag?",
+      "fr": "Quand est ton anniversaire ?",
+      "note": "informel"
+    },
+    {
+      "id": 21,
+      "lu": "Wéini hutt Dir Gebuertsdag?",
+      "fr": "Quand est votre anniversaire ?",
+      "note": "formel"
+    },
+    {
+      "id": 22,
+      "lu": "Ech hunn den ... Gebuertsdag.",
+      "fr": "Je suis né le ...",
+      "note": "Réponse avec une date"
+    },
+    {
+      "id": 23,
+      "lu": "Mäi Gebuertsdag ass den ...",
+      "fr": "Mon anniversaire est le ...",
+      "note": "Alternative"
+    },
+    {
+      "id": 24,
+      "lu": "Uechtzéng Joer",
+      "fr": "18 ans",
+      "note": "Âge"
+    },
+    {
+      "id": 25,
+      "lu": "Ech hunn zwanzeg Joer.",
+      "fr": "J'ai 20 ans.",
+      "note": "Expression de l'âge"
+    },
+    {
+      "id": 26,
+      "lu": "Ech hunn véieranzwanzeg Joer.",
+      "fr": "J'ai 24 ans.",
+      "note": "Expression de l'âge"
+    },
+    {
+      "id": 27,
+      "lu": "Wéi al bass du?",
+      "fr": "Quel âge as-tu ?",
+      "note": "informel"
+    },
+    {
+      "id": 28,
+      "lu": "Wat ass däin Alter?",
+      "fr": "Quel est ton âge ?",
+      "note": "Alternative"
+    },
+    {
+      "id": 29,
+      "lu": "Huet d'Carla 30 Joer?",
+      "fr": "Carla a-t-elle 30 ans ?",
+      "note": "Question sur l'âge"
+    },
+    {
+      "id": 30,
+      "lu": "Wéi vill Joer hutt Dir?",
+      "fr": "Quel âge avez-vous ?",
+      "note": "formel"
+    },
+    {
+      "id": 31,
+      "lu": "Wéi vill Joer hues du?",
+      "fr": "Quel âge as-tu ?",
+      "note": "informel"
+    }
   ],
   "quiz": [
     {
@@ -386,61 +479,96 @@
       "note": "drësseg = 30 · attention orthographe"
     },
     {
-  "id": 7,
-  "fr": "Je suis né(e) en janvier.",
-  "avant": "Ech sinn am",
-  "trou": "Januar",
-  "apres": "gebuer.",
-  "choix": ["Januar", "Februar", "Juni", "Juli"]
-},
-{
-  "id": 8,
-  "fr": "Quand es-tu né(e) ?",
-  "avant": "Wéini",
-  "trou": "bass",
-  "apres": "du gebuer?",
-  "choix": ["bass", "sidd", "huet", "hues"]
-},
-{
-  "id": 9,
-  "fr": "Quand êtes-vous né(e) ?",
-  "avant": "Wéini",
-  "trou": "sidd",
-  "apres": "Dir gebuer?",
-  "choix": ["sidd", "bass", "hutt", "huet"]
-},
-{
-  "id": 10,
-  "fr": "Barbara est née le 18 janvier 1996.",
-  "avant": "D'Barbara ass den 18te",
-  "trou": "Januar",
-  "apres": "1996 gebuer.",
-  "choix": ["Januar", "Februar", "Juni", "Juli"]
-},
-{
-  "id": 11,
-  "fr": "Il est né en mars 2000.",
-  "avant": "Hien ass am",
-  "trou": "Mäerz",
-  "apres": "gebuer.",
-  "choix": ["Mäerz", "Merz", "Maerz", "März"]
-},
-{
-  "id": 12,
-  "fr": "Elle est née en mai.",
-  "avant": "Si ass am",
-  "trou": "Mee",
-  "apres": "gebuer.",
-  "choix": ["Mee", "Mai", "Mae", "Mei"]
-},
-{
-  "id": 13,
-  "fr": "Il est né en avril.",
-  "avant": "Hien ass am",
-  "trou": "Abrëll",
-  "apres": "gebuer.",
-  "choix": ["Abrëll", "Abrell", "Abreel", "Abröll"]
-},
+      "id": 7,
+      "fr": "Je suis né(e) en janvier.",
+      "avant": "Ech sinn am",
+      "trou": "Januar",
+      "apres": "gebuer.",
+      "choix": [
+        "Januar",
+        "Februar",
+        "Juni",
+        "Juli"
+      ]
+    },
+    {
+      "id": 8,
+      "fr": "Quand es-tu né(e) ?",
+      "avant": "Wéini",
+      "trou": "bass",
+      "apres": "du gebuer?",
+      "choix": [
+        "bass",
+        "sidd",
+        "huet",
+        "hues"
+      ]
+    },
+    {
+      "id": 9,
+      "fr": "Quand êtes-vous né(e) ?",
+      "avant": "Wéini",
+      "trou": "sidd",
+      "apres": "Dir gebuer?",
+      "choix": [
+        "sidd",
+        "bass",
+        "hutt",
+        "huet"
+      ]
+    },
+    {
+      "id": 10,
+      "fr": "Barbara est née le 18 janvier 1996.",
+      "avant": "D'Barbara ass den 18te",
+      "trou": "Januar",
+      "apres": "1996 gebuer.",
+      "choix": [
+        "Januar",
+        "Februar",
+        "Juni",
+        "Juli"
+      ]
+    },
+    {
+      "id": 11,
+      "fr": "Il est né en mars 2000.",
+      "avant": "Hien ass am",
+      "trou": "Mäerz",
+      "apres": "gebuer.",
+      "choix": [
+        "Mäerz",
+        "Merz",
+        "Maerz",
+        "März"
+      ]
+    },
+    {
+      "id": 12,
+      "fr": "Elle est née en mai.",
+      "avant": "Si ass am",
+      "trou": "Mee",
+      "apres": "gebuer.",
+      "choix": [
+        "Mee",
+        "Mai",
+        "Mae",
+        "Mei"
+      ]
+    },
+    {
+      "id": 13,
+      "fr": "Il est né en avril.",
+      "avant": "Hien ass am",
+      "trou": "Abrëll",
+      "apres": "gebuer.",
+      "choix": [
+        "Abrëll",
+        "Abrell",
+        "Abreel",
+        "Abröll"
+      ]
+    },
     {
       "id": 14,
       "fr": "Comment dire l'année 1999 ?",
@@ -484,20 +612,152 @@
       "note": "hu = forme contractée de hunn (courant à l'oral)"
     },
     {
-  "id": 17,
-  "fr": "Il est né en décembre.",
-  "avant": "Hien ass am",
-  "trou": "Dezember",
-  "apres": "gebuer.",
-  "choix": ["Dezember", "Decembre", "Dezémber", "December"]
-},
-{
-  "id": 18,
-  "fr": "Elle est née en octobre.",
-  "avant": "Si ass am",
-  "trou": "Oktober",
-  "apres": "gebuer.",
-  "choix": ["Oktober", "October", "Oktobar", "Oktaber"]
-}
+      "id": 17,
+      "fr": "Il est né en décembre.",
+      "avant": "Hien ass am",
+      "trou": "Dezember",
+      "apres": "gebuer.",
+      "choix": [
+        "Dezember",
+        "Decembre",
+        "Dezémber",
+        "December"
+      ]
+    },
+    {
+      "id": 18,
+      "fr": "Elle est née en octobre.",
+      "avant": "Si ass am",
+      "trou": "Oktober",
+      "apres": "gebuer.",
+      "choix": [
+        "Oktober",
+        "October",
+        "Oktobar",
+        "Oktaber"
+      ]
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "Janvier",
+      "lu": "Januar"
+    },
+    {
+      "fr": "Février",
+      "lu": "Februar"
+    },
+    {
+      "fr": "Mars",
+      "lu": "Mäerz"
+    },
+    {
+      "fr": "Avril",
+      "lu": "Abrëll"
+    },
+    {
+      "fr": "Mai",
+      "lu": "Mee"
+    },
+    {
+      "fr": "Juin",
+      "lu": "Juni"
+    },
+    {
+      "fr": "Juillet",
+      "lu": "Juli"
+    },
+    {
+      "fr": "Août",
+      "lu": "August"
+    },
+    {
+      "fr": "Septembre",
+      "lu": "September"
+    },
+    {
+      "fr": "Octobre",
+      "lu": "Oktober"
+    },
+    {
+      "fr": "Novembre",
+      "lu": "November"
+    },
+    {
+      "fr": "Décembre",
+      "lu": "Dezember"
+    },
+    {
+      "fr": "J'ai 18 ans.",
+      "lu": "Ech hunn uechtzéng Joer."
+    },
+    {
+      "fr": "J'ai 20 ans.",
+      "lu": "Ech hunn zwanzeg Joer."
+    },
+    {
+      "fr": "J'ai 24 ans.",
+      "lu": "Ech hu véierzwanzeg Joer."
+    },
+    {
+      "fr": "Quel âge as-tu ?",
+      "lu": "Wéi al bass du?"
+    },
+    {
+      "fr": "Quel est ton âge ?",
+      "lu": "Wat ass däin Alter?"
+    },
+    {
+      "fr": "Quel âge avez-vous ?",
+      "lu": "Wéi vill Joer hutt Dir?"
+    },
+    {
+      "fr": "Carla a-t-elle 30 ans ?",
+      "lu": "Huet d'Carla drësseg Joer?"
+    },
+    {
+      "fr": "1999",
+      "lu": "Nonzéng Honnert Néng an Nonzeg"
+    },
+    {
+      "fr": "2015",
+      "lu": "Zwee Dausend Fofzéng"
+    },
+    {
+      "fr": "2026",
+      "lu": "Zwee Dausend Sechs an Zwanzeg"
+    },
+    {
+      "fr": "Quand es-tu né(e) ?",
+      "lu": "Wéini bass du Gebuer?"
+    },
+    {
+      "fr": "Quand êtes-vous né(e) ?",
+      "lu": "Wéini sidd Dir Gebuer?"
+    },
+    {
+      "fr": "Je suis né(e) en janvier.",
+      "lu": "Ech sinn de Januar Gebuer."
+    },
+    {
+      "fr": "Il est né en mars.",
+      "lu": "Hien ass de Mäerz Gebuer."
+    },
+    {
+      "fr": "Elle est née en mai.",
+      "lu": "Si ass de Mee Gebuer."
+    },
+    {
+      "fr": "Barbara est née le 18 janvier 1996.",
+      "lu": "D'Barbara ass den 18te Januar Nonzéng Honnert Sechs an Nonzeg Gebuer."
+    },
+    {
+      "fr": "Il a 47 ans.",
+      "lu": "Hien huet siwen a véierzeg Joer."
+    },
+    {
+      "fr": "Elle a 30 ans.",
+      "lu": "Si huet drësseg Joer."
+    }
   ]
 }

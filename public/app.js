@@ -45,6 +45,7 @@ function renderHome() {
           <span class="lecon-pill">📖 ${l.flashcards.length} cartes</span>
           <span class="lecon-pill">❓ ${l.quiz.length} quiz</span>
           <span class="lecon-pill">✏️ ${l.trous.length} trous</span>
+          <span class="lecon-pill">${l.ecriture ? '✍️ ' + l.ecriture.length + ' écriture' : ''}</span>
         </div>
       </div>
       <div class="lecon-arrow">›</div>`;
@@ -339,3 +340,115 @@ function setupKeyboard() {
 }
 
 init();
+
+// ─── ÉCRITURE ─────────────────────────────────────────────────────────────────
+let ecrCards  = [];
+let ecrIndex  = 0;
+let ecrScore  = 0;
+let ecrAnswered = false;
+
+// Normalise : retire accents et diacritiques, lowercase, trim espaces multiples
+function normalize(str) {
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')  // supprime les diacritiques
+    .replace(/ë/gi, 'e').replace(/ä/gi, 'a').replace(/ö/gi, 'o').replace(/ü/gi, 'u')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function startEcriture() {
+  if (!currentLecon || !currentLecon.ecriture) return;
+
+  document.getElementById('ecr-result').classList.add('hidden');
+  document.getElementById('ecr-card').classList.remove('hidden');
+  document.querySelector('.ecr-input-wrap').classList.remove('hidden');
+  document.getElementById('ecr-feedback').classList.add('hidden');
+
+  ecrCards = [...currentLecon.ecriture].sort(() => Math.random() - .5);
+  ecrIndex = 0; ecrScore = 0; ecrAnswered = false;
+  renderEcriture();
+}
+
+function renderEcriture() {
+  if (ecrIndex >= ecrCards.length) { showEcritureResult(); return; }
+  ecrAnswered = false;
+
+  const q = ecrCards[ecrIndex];
+  document.getElementById('ecr-question').textContent = q.fr;
+  document.getElementById('ecr-feedback').classList.add('hidden');
+  document.getElementById('ecr-feedback').className = 'ecr-feedback hidden';
+
+  const input = document.getElementById('ecr-input');
+  input.value = '';
+  input.className = 'ecr-input';
+  input.disabled = false;
+  input.focus();
+
+  const btn = document.getElementById('ecr-btn');
+  btn.disabled = false;
+  btn.textContent = 'Valider ✓';
+
+  setProgress('ecr', ecrIndex, ecrCards.length);
+}
+
+function validateEcriture() {
+  if (ecrAnswered) return;
+  const input = document.getElementById('ecr-input');
+  const userVal = input.value.trim();
+  if (!userVal) return;
+
+  ecrAnswered = true;
+  const q = ecrCards[ecrIndex];
+  const ok = normalize(userVal) === normalize(q.lu);
+
+  input.disabled = true;
+  input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
+
+  const feedback = document.getElementById('ecr-feedback');
+  feedback.classList.remove('hidden');
+
+  if (ok) {
+    ecrScore++;
+    feedback.className = 'ecr-feedback ok';
+    feedback.innerHTML = '✅ Correct !';
+  } else {
+    feedback.className = 'ecr-feedback ko';
+    feedback.innerHTML = '❌ Pas tout à fait…<span class="ecr-correct-answer">' +
+      escHtml(q.lu) + '</span>';
+  }
+
+  // Bouton suivant
+  const btn = document.getElementById('ecr-btn');
+  btn.disabled = true;
+  btn.textContent = 'Valider ✓';
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'ecr-next-btn';
+  nextBtn.textContent = ecrIndex < ecrCards.length - 1 ? 'Question suivante →' : 'Voir le score →';
+  nextBtn.addEventListener('click', () => {
+    nextBtn.remove();
+    ecrIndex++;
+    renderEcriture();
+  });
+  feedback.after(nextBtn);
+}
+
+function showEcritureResult() {
+  document.getElementById('ecr-card').classList.add('hidden');
+  document.querySelector('.ecr-input-wrap').classList.add('hidden');
+  document.getElementById('ecr-feedback').classList.add('hidden');
+  // remove any leftover next btn
+  document.querySelectorAll('.ecr-next-btn').forEach(b => b.remove());
+
+  document.getElementById('ecr-result').classList.remove('hidden');
+  const pct = Math.round(ecrScore / ecrCards.length * 100);
+  document.getElementById('ecr-score').textContent =
+    `${pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📚'}  ${ecrScore} / ${ecrCards.length}  (${pct}%)`;
+}
+
+// Valider avec Entrée
+document.getElementById('ecr-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') validateEcriture();
+});

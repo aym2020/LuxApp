@@ -3,124 +3,314 @@
   "titre": "De Beruff",
   "titre_fr": "Les métiers",
   "couleur": "#e8d447",
-"flashcards": [
-  { "id": 1,  "fr": "Policier / Policière",      "lu": "e Polizist / eng Polizistin",         "note": "e → devant consonne" },
-  { "id": 2,  "fr": "Médecin (M/F)",            "lu": "en Dokter / eng Doktesch",              "note": "même forme au masculin et au féminin" },
-  { "id": 3,  "fr": "Coiffeur / Coiffeuse",     "lu": "e Coiffer / eng Coiffeuse",           "note": "e → devant consonne" },
-  { "id": 4,  "fr": "Banquier / Banquière",     "lu": "e Banker / eng Bankerin",             "note": "e → devant consonne" },
-  { "id": 5,  "fr": "Pharmacien / Pharmacienne","lu": "en Apdikter / eng Apdiktesch",        "note": "en → devant voyelle A" },
-  { "id": 6,  "fr": "Facteur / Factrice",       "lu": "e Bréifdréier / eng Bréifdréiesch",   "note": "Bréif = lettre" },
-  { "id": 7,  "fr": "Avocat / Avocate",         "lu": "en Affekot / eng Affekotin",          "note": "en → devant voyelle A" },
-  { "id": 8,  "fr": "Boucher / Bouchère",       "lu": "e Metzler / eng Metzlesch",           "note": "e → devant consonne" },
-  { "id": 9,  "fr": "Boulanger / Boulangère",   "lu": "e Bäcker / eng Bäckesch",             "note": "e → devant consonne" },
-  { "id": 10, "fr": "Infirmier / Infirmière",   "lu": "en Infirmier / eng Infirmière",       "note": "emprunt courant au français" },
-  { "id": 11, "fr": "Caissier / Caissière",     "lu": "e Caissier / eng Caissière",          "note": "emprunt courant au français" },
-  { "id": 12, "fr": "Professeur / Professeure", "lu": "e Professer / eng Professerin",       "note": "forme moderne courante" },
-  { "id": 13, "fr": "Pilote / Pilote",          "lu": "e Pilot / eng Pilotin",               "note": "e → devant consonne" },
-  { "id": 14, "fr": "Cuisinier / Cuisinière",   "lu": "e Kach / eng Kächin",                 "note": "e → devant consonne" },
-  { "id": 15, "fr": "comme / en tant que",      "lu": "als",                                 "note": "Ech schaffen als Dokter." },
-  { "id": 16, "lu": "Wat sidd Dir vu Beruff?",     "fr": "Quel est votre métier ?",            "note": "Dir = vous (formel) · Beruff = métier" },
-{ "id": 17, "lu": "Wat bass du vu Beruff?",      "fr": "Quel est ton métier ?",              "note": "du = tu (informel)" },
-{ "id": 18, "lu": "Wat schafft Dir?",            "fr": "Dans quoi travaillez-vous ?",        "note": "Question formelle" },
-{ "id": 19, "lu": "Wat schaffs du?",             "fr": "Dans quoi travailles-tu ?",          "note": "Question informelle" },
-{ "id": 20, "lu": "Ech schaffen als Polizist.",  "fr": "Je travaille comme policier.",       "note": "als = comme / en tant que" },
-{ "id": 21, "lu": "Ass hien Polizist?",          "fr": "Est-il policier ?",                  "note": "Ass = est" },
-{ "id": 22, "lu": "Jo, hien ass Polizist.",      "fr": "Oui, il est policier.",              "note": "Réponse affirmative" },
-{ "id": 23, "lu": "Nee, hien ass kee Polizist.", "fr": "Non, il n'est pas policier.",        "note": "kee devant métier masculin" },
-{ "id": 24, "lu": "Ass si eng Polizistin?",      "fr": "Est-elle policière ?",               "note": "eng devant métier féminin" },
-{ "id": 25, "lu": "Jo, si ass eng Polizistin.",  "fr": "Oui, elle est policière.",           "note": "Réponse affirmative" },
-{ "id": 26, "lu": "Nee, si ass keng Polizistin.","fr": "Non, elle n'est pas policière.",     "note": "keng devant métier féminin" }
-],
+  "flashcards": [
+    {
+      "id": 1,
+      "fr": "Policier / Policière",
+      "lu": "e Polizist / eng Polizistin",
+      "note": "e → devant consonne"
+    },
+    {
+      "id": 2,
+      "fr": "Médecin (M/F)",
+      "lu": "en Dokter / eng Doktesch",
+      "note": "même forme au masculin et au féminin"
+    },
+    {
+      "id": 3,
+      "fr": "Coiffeur / Coiffeuse",
+      "lu": "e Coiffer / eng Coiffeuse",
+      "note": "e → devant consonne"
+    },
+    {
+      "id": 4,
+      "fr": "Banquier / Banquière",
+      "lu": "e Banker / eng Bankerin",
+      "note": "e → devant consonne"
+    },
+    {
+      "id": 5,
+      "fr": "Pharmacien / Pharmacienne",
+      "lu": "en Apdikter / eng Apdiktesch",
+      "note": "en → devant voyelle A"
+    },
+    {
+      "id": 6,
+      "fr": "Facteur / Factrice",
+      "lu": "e Bréifdréier / eng Bréifdréiesch",
+      "note": "Bréif = lettre"
+    },
+    {
+      "id": 7,
+      "fr": "Avocat / Avocate",
+      "lu": "en Affekot / eng Affekotin",
+      "note": "en → devant voyelle A"
+    },
+    {
+      "id": 8,
+      "fr": "Boucher / Bouchère",
+      "lu": "e Metzler / eng Metzlesch",
+      "note": "e → devant consonne"
+    },
+    {
+      "id": 9,
+      "fr": "Boulanger / Boulangère",
+      "lu": "e Bäcker / eng Bäckesch",
+      "note": "e → devant consonne"
+    },
+    {
+      "id": 10,
+      "fr": "Infirmier / Infirmière",
+      "lu": "en Infirmier / eng Infirmière",
+      "note": "emprunt courant au français"
+    },
+    {
+      "id": 11,
+      "fr": "Caissier / Caissière",
+      "lu": "e Caissier / eng Caissière",
+      "note": "emprunt courant au français"
+    },
+    {
+      "id": 12,
+      "fr": "Professeur / Professeure",
+      "lu": "e Professer / eng Professerin",
+      "note": "forme moderne courante"
+    },
+    {
+      "id": 13,
+      "fr": "Pilote / Pilote",
+      "lu": "e Pilot / eng Pilotin",
+      "note": "e → devant consonne"
+    },
+    {
+      "id": 14,
+      "fr": "Cuisinier / Cuisinière",
+      "lu": "e Kach / eng Kächin",
+      "note": "e → devant consonne"
+    },
+    {
+      "id": 15,
+      "fr": "comme / en tant que",
+      "lu": "als",
+      "note": "Ech schaffen als Dokter."
+    },
+    {
+      "id": 16,
+      "lu": "Wat sidd Dir vu Beruff?",
+      "fr": "Quel est votre métier ?",
+      "note": "Dir = vous (formel) · Beruff = métier"
+    },
+    {
+      "id": 17,
+      "lu": "Wat bass du vu Beruff?",
+      "fr": "Quel est ton métier ?",
+      "note": "du = tu (informel)"
+    },
+    {
+      "id": 18,
+      "lu": "Wat schafft Dir?",
+      "fr": "Dans quoi travaillez-vous ?",
+      "note": "Question formelle"
+    },
+    {
+      "id": 19,
+      "lu": "Wat schaffs du?",
+      "fr": "Dans quoi travailles-tu ?",
+      "note": "Question informelle"
+    },
+    {
+      "id": 20,
+      "lu": "Ech schaffen als Polizist.",
+      "fr": "Je travaille comme policier.",
+      "note": "als = comme / en tant que"
+    },
+    {
+      "id": 21,
+      "lu": "Ass hien Polizist?",
+      "fr": "Est-il policier ?",
+      "note": "Ass = est"
+    },
+    {
+      "id": 22,
+      "lu": "Jo, hien ass Polizist.",
+      "fr": "Oui, il est policier.",
+      "note": "Réponse affirmative"
+    },
+    {
+      "id": 23,
+      "lu": "Nee, hien ass kee Polizist.",
+      "fr": "Non, il n'est pas policier.",
+      "note": "kee devant métier masculin"
+    },
+    {
+      "id": 24,
+      "lu": "Ass si eng Polizistin?",
+      "fr": "Est-elle policière ?",
+      "note": "eng devant métier féminin"
+    },
+    {
+      "id": 25,
+      "lu": "Jo, si ass eng Polizistin.",
+      "fr": "Oui, elle est policière.",
+      "note": "Réponse affirmative"
+    },
+    {
+      "id": 26,
+      "lu": "Nee, si ass keng Polizistin.",
+      "fr": "Non, elle n'est pas policière.",
+      "note": "keng devant métier féminin"
+    }
+  ],
   "quiz": [
     {
       "id": 1,
       "question": "Policier (masculin) en luxembourgeois ?",
       "reponse": "e Polizist",
-      "distracteurs": ["en Polizist", "e Polizistin", "en Polizistin"]
+      "distracteurs": [
+        "en Polizist",
+        "e Polizistin",
+        "en Polizistin"
+      ]
     },
     {
       "id": 2,
       "question": "Doctoresse (féminin) en luxembourgeois ?",
       "reponse": "eng Doktesch",
-      "distracteurs": ["en Doktesch", "eng Dokter", "e Doktesch"]
+      "distracteurs": [
+        "en Doktesch",
+        "eng Dokter",
+        "e Doktesch"
+      ]
     },
     {
       "id": 3,
       "question": "Coiffeur (masculin) en luxembourgeois ?",
       "reponse": "e Coiffer",
-      "distracteurs": ["en Coiffer", "e Coiffeuse", "eng Coiffeuse"]
+      "distracteurs": [
+        "en Coiffer",
+        "e Coiffeuse",
+        "eng Coiffeuse"
+      ]
     },
     {
       "id": 4,
       "question": "Banquière (féminin) en luxembourgeois ?",
       "reponse": "eng Bankerin",
-      "distracteurs": ["e Bankerin", "eng Banker", "en Banker"]
+      "distracteurs": [
+        "e Bankerin",
+        "eng Banker",
+        "en Banker"
+      ]
     },
     {
       "id": 5,
       "question": "Pharmacien (masculin) en luxembourgeois ?",
       "reponse": "en Apdixter",
-      "distracteurs": ["e Apdixter", "eng Apdixter", "en Apdixtesch"]
+      "distracteurs": [
+        "e Apdixter",
+        "eng Apdixter",
+        "en Apdixtesch"
+      ]
     },
     {
       "id": 6,
       "question": "Factrice (féminin) en luxembourgeois ?",
       "reponse": "eng Breifdréiesch",
-      "distracteurs": ["e Breifdréiesch", "eng Breifdréier", "en Breifdréier"]
+      "distracteurs": [
+        "e Breifdréiesch",
+        "eng Breifdréier",
+        "en Breifdréier"
+      ]
     },
     {
       "id": 7,
       "question": "Avocat (masculin) en luxembourgeois ?",
       "reponse": "en Affekot",
-      "distracteurs": ["e Affekot", "eng Affekot", "en Affekotin"]
+      "distracteurs": [
+        "e Affekot",
+        "eng Affekot",
+        "en Affekotin"
+      ]
     },
     {
       "id": 8,
       "question": "Bouchère (féminin) en luxembourgeois ?",
       "reponse": "eng Metzlesch",
-      "distracteurs": ["e Metzlesch", "eng Metzler", "en Metzler"]
+      "distracteurs": [
+        "e Metzlesch",
+        "eng Metzler",
+        "en Metzler"
+      ]
     },
     {
       "id": 9,
       "question": "Boulanger (masculin) en luxembourgeois ?",
       "reponse": "e Bäcker",
-      "distracteurs": ["en Bäcker", "e Bäckesch", "eng Bäckesch"]
+      "distracteurs": [
+        "en Bäcker",
+        "e Bäckesch",
+        "eng Bäckesch"
+      ]
     },
     {
       "id": 10,
       "question": "Infirmière (féminin) en luxembourgeois ?",
       "reponse": "eng Infirmière",
-      "distracteurs": ["e Infirmière", "eng Infirmier", "e Infirmier"]
+      "distracteurs": [
+        "e Infirmière",
+        "eng Infirmier",
+        "e Infirmier"
+      ]
     },
     {
       "id": 11,
       "question": "Caissier (masculin) en luxembourgeois ?",
       "reponse": "e Caissier",
-      "distracteurs": ["en Caissier", "e Caissière", "eng Caissière"]
+      "distracteurs": [
+        "en Caissier",
+        "e Caissière",
+        "eng Caissière"
+      ]
     },
     {
       "id": 12,
       "question": "Professeure (féminin) en luxembourgeois ?",
       "reponse": "eng Léierin",
-      "distracteurs": ["eng Schoulmeeschter", "e Léierin", "en Léierin"]
+      "distracteurs": [
+        "eng Schoulmeeschter",
+        "e Léierin",
+        "en Léierin"
+      ]
     },
     {
       "id": 13,
       "question": "Pilote (masculin) en luxembourgeois ?",
       "reponse": "e Pilot",
-      "distracteurs": ["en Pilot", "e Pilotin", "eng Pilotin"]
+      "distracteurs": [
+        "en Pilot",
+        "e Pilotin",
+        "eng Pilotin"
+      ]
     },
     {
       "id": 14,
       "question": "Cuisinière (féminin) en luxembourgeois ?",
       "reponse": "eng Kächin",
-      "distracteurs": ["e Kächin", "eng Kach", "en Kach"]
+      "distracteurs": [
+        "e Kächin",
+        "eng Kach",
+        "en Kach"
+      ]
     },
     {
       "id": 15,
       "question": "Comment dire « en tant que » en luxembourgeois ?",
       "reponse": "als",
-      "distracteurs": ["ass", "an", "aus"]
+      "distracteurs": [
+        "ass",
+        "an",
+        "aus"
+      ]
     }
   ],
   "trous": [
@@ -130,7 +320,12 @@
       "avant": "De Ronaldo ass",
       "trou": "e",
       "apres": "Pilot.",
-      "choix": ["e", "en", "eng", "kee"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
       "note": "Pilot → masc. devant consonne → e"
     },
     {
@@ -139,7 +334,12 @@
       "avant": "D'Michelle ass eng",
       "trou": "Affekotin",
       "apres": ".",
-      "choix": ["Affekotin", "Affekot", "Apdixtesch", "Infirmière"],
+      "choix": [
+        "Affekotin",
+        "Affekot",
+        "Apdixtesch",
+        "Infirmière"
+      ],
       "note": "Affekotin = avocate (féminin)"
     },
     {
@@ -148,7 +348,12 @@
       "avant": "De Gordon ass kee Bäcker, hien ass",
       "trou": "e",
       "apres": "Kach.",
-      "choix": ["e", "en", "eng", "kee"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
       "note": "Kach → masc. devant consonne → e"
     },
     {
@@ -157,7 +362,12 @@
       "avant": "De Doc Martin ass",
       "trou": "en",
       "apres": "Dokter.",
-      "choix": ["e", "en", "eng", "kee"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
       "note": "Dokter → masc. devant D → en"
     },
     {
@@ -166,7 +376,12 @@
       "avant": "D'Florence war",
       "trou": "eng",
       "apres": "Infirmière.",
-      "choix": ["e", "en", "eng", "keng"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "keng"
+      ],
       "note": "Infirmière → féminin → eng"
     },
     {
@@ -175,7 +390,12 @@
       "avant": "De Harvey ass",
       "trou": "en",
       "apres": "Affekot.",
-      "choix": ["e", "en", "eng", "kee"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
       "note": "Affekot → masc. devant voyelle A → en"
     },
     {
@@ -184,7 +404,12 @@
       "avant": "D'Lady Gaga ass",
       "trou": "eng",
       "apres": "Coiffeuse.",
-      "choix": ["e", "en", "eng", "keng"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "keng"
+      ],
       "note": "Coiffeuse → féminin → eng"
     },
     {
@@ -193,7 +418,12 @@
       "avant": "De Walter ass e Schoulmeeschter, kee",
       "trou": "Bäcker",
       "apres": ".",
-      "choix": ["Bäcker", "Bäckesch", "Metzler", "Kach"],
+      "choix": [
+        "Bäcker",
+        "Bäckesch",
+        "Metzler",
+        "Kach"
+      ],
       "note": "Bäcker = boulanger masc. · ≠ Bäckesch (féminin)"
     },
     {
@@ -202,7 +432,12 @@
       "avant": "Dës Fra schafft als",
       "trou": "Apdixtesch",
       "apres": ".",
-      "choix": ["Apdixtesch", "Apdixter", "Doktesch", "Infirmière"],
+      "choix": [
+        "Apdixtesch",
+        "Apdixter",
+        "Doktesch",
+        "Infirmière"
+      ],
       "note": "Apdixtesch = pharmacienne · als = en tant que"
     },
     {
@@ -211,7 +446,12 @@
       "avant": "Ech schaffen",
       "trou": "als",
       "apres": "Metzler.",
-      "choix": ["als", "ass", "aus", "an"],
+      "choix": [
+        "als",
+        "ass",
+        "aus",
+        "an"
+      ],
       "note": "als = comme / en tant que"
     },
     {
@@ -220,7 +460,12 @@
       "avant": "De Polizist ass",
       "trou": "kee",
       "apres": "Bäcker.",
-      "choix": ["kee", "keen", "keng", "net"],
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "net"
+      ],
       "note": "Négation masculin → kee"
     },
     {
@@ -229,7 +474,12 @@
       "avant": "D'Nicki ass",
       "trou": "eng",
       "apres": "Caissière.",
-      "choix": ["e", "en", "eng", "keng"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "keng"
+      ],
       "note": "Caissière → féminin → eng"
     },
     {
@@ -238,7 +488,12 @@
       "avant": "De Tony ass e Pilot, kee",
       "trou": "Banker",
       "apres": ".",
-      "choix": ["Banker", "Bankerin", "Pilot", "Kach"],
+      "choix": [
+        "Banker",
+        "Bankerin",
+        "Pilot",
+        "Kach"
+      ],
       "note": "Banker = banquier masc. · ≠ Bankerin (féminin)"
     },
     {
@@ -247,7 +502,12 @@
       "avant": "Dës Fra ass eng Apdixtesch,",
       "trou": "keng",
       "apres": "Polizistin.",
-      "choix": ["kee", "keen", "keng", "net"],
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "net"
+      ],
       "note": "Négation féminin → keng"
     },
     {
@@ -256,8 +516,135 @@
       "avant": "De Paul ass",
       "trou": "e",
       "apres": "Bäcker.",
-      "choix": ["e", "en", "eng", "kee"],
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
       "note": "Bäcker → masc. devant consonne → e"
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "Policier (M)",
+      "lu": "e Polizist"
+    },
+    {
+      "fr": "Policière (F)",
+      "lu": "eng Polizistin"
+    },
+    {
+      "fr": "Docteur (M)",
+      "lu": "en Dokter"
+    },
+    {
+      "fr": "Doctoresse (F)",
+      "lu": "eng Doktesch"
+    },
+    {
+      "fr": "Coiffeur (M)",
+      "lu": "e Coiffer"
+    },
+    {
+      "fr": "Coiffeuse (F)",
+      "lu": "eng Coiffeuse"
+    },
+    {
+      "fr": "Banquier (M)",
+      "lu": "e Banker"
+    },
+    {
+      "fr": "Banquière (F)",
+      "lu": "eng Bankerin"
+    },
+    {
+      "fr": "Pharmacien (M)",
+      "lu": "en Apdixter"
+    },
+    {
+      "fr": "Pharmacienne (F)",
+      "lu": "eng Apdiktesch"
+    },
+    {
+      "fr": "Facteur (M)",
+      "lu": "e Breifdréier"
+    },
+    {
+      "fr": "Factrice (F)",
+      "lu": "eng Breifdréiesch"
+    },
+    {
+      "fr": "Avocat (M)",
+      "lu": "en Affekot"
+    },
+    {
+      "fr": "Avocate (F)",
+      "lu": "eng Affekotin"
+    },
+    {
+      "fr": "Boucher (M)",
+      "lu": "e Metzler"
+    },
+    {
+      "fr": "Bouchère (F)",
+      "lu": "eng Metzlesch"
+    },
+    {
+      "fr": "Boulanger (M)",
+      "lu": "e Bäcker"
+    },
+    {
+      "fr": "Boulangère (F)",
+      "lu": "eng Bäckesch"
+    },
+    {
+      "fr": "Pilote (M)",
+      "lu": "e Pilot"
+    },
+    {
+      "fr": "Pilote (F)",
+      "lu": "eng Pilotin"
+    },
+    {
+      "fr": "Cuisinier (M)",
+      "lu": "e Kach"
+    },
+    {
+      "fr": "Cuisinière (F)",
+      "lu": "eng Kächin"
+    },
+    {
+      "fr": "Professeur (M)",
+      "lu": "e Schoulmeeschter"
+    },
+    {
+      "fr": "Professeure (F)",
+      "lu": "eng Léierin"
+    },
+    {
+      "fr": "comme / en tant que",
+      "lu": "als"
+    },
+    {
+      "fr": "Je travaille comme boucher.",
+      "lu": "Ech schaffen als Metzler."
+    },
+    {
+      "fr": "Il est avocat.",
+      "lu": "Hien ass en Affekot."
+    },
+    {
+      "fr": "Elle est pilote.",
+      "lu": "Si ass eng Pilotin."
+    },
+    {
+      "fr": "Il n'est pas boulanger.",
+      "lu": "Hien ass kee Bäcker."
+    },
+    {
+      "fr": "Elle est pharmacienne.",
+      "lu": "Si ass eng Apdiktesch."
     }
   ]
 }

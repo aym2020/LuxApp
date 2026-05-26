@@ -76,16 +76,66 @@
       "lu": "e Meedchen / Meedercher",
       "note": "Singulier / Pluriel"
     },
-	{ "id": 13, "lu": "Sidd Dir bestuet?",                 "fr": "Êtes-vous marié(e) ?",                     "note": "Dir = vous (formel)" },
-{ "id": 14, "lu": "Bass du bestuet?",                  "fr": "Es-tu marié(e) ?",                         "note": "du = tu (informel)" },
-{ "id": 15, "lu": "Jo, hien ass bestuet.",             "fr": "Oui, il est marié.",                       "note": "hien = il" },
-{ "id": 16, "lu": "Nee, hien ass net bestuet.",        "fr": "Non, il n'est pas marié.",                 "note": "net = négation" },
-{ "id": 17, "lu": "Huet si e Frënd?",                  "fr": "A-t-elle un copain ?",                     "note": "Frënd = copain" },
-{ "id": 18, "lu": "Jo, si huet e Frënd.",             "fr": "Oui, elle a un copain.",                   "note": "huet = a" },
-{ "id": 19, "lu": "Nee, si huet kee Frënd.",          "fr": "Non, elle n'a pas de copain.",             "note": "kee devant nom masculin" },
-{ "id": 20, "lu": "Huet Dir Kanner?",                 "fr": "Avez-vous des enfants ?",                  "note": "Dir = vous (formel)" },
-{ "id": 21, "lu": "Hues du Kanner?",                  "fr": "As-tu des enfants ?",                      "note": "du = tu (informel)" },
-{ "id": 22, "lu": "Ech hunn zwee Kanner, e Meedchen an e Jong.", "fr": "J'ai deux enfants, une fille et un garçon.", "note": "Meedchen = fille · Jong = garçon" }
+    {
+      "id": 13,
+      "lu": "Sidd Dir bestuet?",
+      "fr": "Êtes-vous marié(e) ?",
+      "note": "Dir = vous (formel)"
+    },
+    {
+      "id": 14,
+      "lu": "Bass du bestuet?",
+      "fr": "Es-tu marié(e) ?",
+      "note": "du = tu (informel)"
+    },
+    {
+      "id": 15,
+      "lu": "Jo, hien ass bestuet.",
+      "fr": "Oui, il est marié.",
+      "note": "hien = il"
+    },
+    {
+      "id": 16,
+      "lu": "Nee, hien ass net bestuet.",
+      "fr": "Non, il n'est pas marié.",
+      "note": "net = négation"
+    },
+    {
+      "id": 17,
+      "lu": "Huet si e Frënd?",
+      "fr": "A-t-elle un copain ?",
+      "note": "Frënd = copain"
+    },
+    {
+      "id": 18,
+      "lu": "Jo, si huet e Frënd.",
+      "fr": "Oui, elle a un copain.",
+      "note": "huet = a"
+    },
+    {
+      "id": 19,
+      "lu": "Nee, si huet kee Frënd.",
+      "fr": "Non, elle n'a pas de copain.",
+      "note": "kee devant nom masculin"
+    },
+    {
+      "id": 20,
+      "lu": "Huet Dir Kanner?",
+      "fr": "Avez-vous des enfants ?",
+      "note": "Dir = vous (formel)"
+    },
+    {
+      "id": 21,
+      "lu": "Hues du Kanner?",
+      "fr": "As-tu des enfants ?",
+      "note": "du = tu (informel)"
+    },
+    {
+      "id": 22,
+      "lu": "Ech hunn zwee Kanner, e Meedchen an e Jong.",
+      "fr": "J'ai deux enfants, une fille et un garçon.",
+      "note": "Meedchen = fille · Jong = garçon"
+    }
   ],
   "quiz": [
     {
@@ -511,6 +561,128 @@
         "Meedercher"
       ],
       "note": "Jongen = des garçons (pluriel de Jong)"
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "Marié(e)",
+      "lu": "bestuet"
+    },
+    {
+      "fr": "Divorcé(e)",
+      "lu": "gescheet"
+    },
+    {
+      "fr": "Séparé(e)",
+      "lu": "getrennt"
+    },
+    {
+      "fr": "Pacsé(e)",
+      "lu": "gepacst"
+    },
+    {
+      "fr": "En couple",
+      "lu": "an enger Beziehung"
+    },
+    {
+      "fr": "Célibataire (M)",
+      "lu": "e Jonggesell"
+    },
+    {
+      "fr": "Célibataire (F)",
+      "lu": "eng Jonggesellin"
+    },
+    {
+      "fr": "Petit ami / Copain",
+      "lu": "e Frënd"
+    },
+    {
+      "fr": "Petite amie / Copine",
+      "lu": "eng Frendin"
+    },
+    {
+      "fr": "Un enfant",
+      "lu": "e Kand"
+    },
+    {
+      "fr": "Les enfants",
+      "lu": "Kanner"
+    },
+    {
+      "fr": "Un garçon",
+      "lu": "e Jong"
+    },
+    {
+      "fr": "Des garçons",
+      "lu": "Jongen"
+    },
+    {
+      "fr": "Une fille",
+      "lu": "e Meedchen"
+    },
+    {
+      "fr": "Des filles",
+      "lu": "Meedercher"
+    },
+    {
+      "fr": "Il est marié.",
+      "lu": "Hien ass bestuet."
+    },
+    {
+      "fr": "Elle est mariée.",
+      "lu": "Si ass bestuet."
+    },
+    {
+      "fr": "Non, il n'est pas marié.",
+      "lu": "Nee, hien ass net bestuet."
+    },
+    {
+      "fr": "Elle a un copain.",
+      "lu": "Si huet e Frënd."
+    },
+    {
+      "fr": "Non, il n'a pas de copain.",
+      "lu": "Nee, hien huet kee Frënd."
+    },
+    {
+      "fr": "Non, elle n'a pas de copine.",
+      "lu": "Nee, si huet keng Frendin."
+    },
+    {
+      "fr": "Es-tu marié(e) ?",
+      "lu": "Bass du bestuet?"
+    },
+    {
+      "fr": "Êtes-vous marié(e) ?",
+      "lu": "Sidd Dir bestuet?"
+    },
+    {
+      "fr": "A-t-elle un copain ?",
+      "lu": "Huet si e Frënd?"
+    },
+    {
+      "fr": "As-tu des enfants ?",
+      "lu": "Hues du Kanner?"
+    },
+    {
+      "fr": "Avez-vous des enfants ?",
+      "lu": "Hutt Dir Kanner?"
+    },
+    {
+      "fr": "J'ai deux enfants.",
+      "lu": "Ech hunn 2 Kanner."
+    },
+    {
+      "fr": "Il est divorcé.",
+      "lu": "Hien ass gescheet."
+    },
+    {
+      "fr": "Elle est en couple.",
+      "lu": "Si ass an enger Beziehung."
+    },
+    {
+      "fr": "Elle a deux filles.",
+      "lu": "Si huet zwou Meedercher."
     }
   ]
 }
