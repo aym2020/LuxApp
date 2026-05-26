@@ -359,7 +359,11 @@ function normalize(str) {
 }
 
 function startEcriture() {
-  if (!currentLecon || !currentLecon.ecriture) return;
+  if (!currentLecon || !currentLecon.ecriture) {
+    document.getElementById('ecr-card').classList.remove('hidden');
+    document.getElementById('ecr-question').textContent = '⚠️ Données manquantes — rechargez la page.';
+    return;
+  }
 
   document.getElementById('ecr-result').classList.add('hidden');
   document.getElementById('ecr-card').classList.remove('hidden');
