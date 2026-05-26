@@ -366,6 +366,8 @@ function startEcriture() {
     return;
   }
 
+  // Nettoie tous les boutons 'suivante' résiduels
+  document.querySelectorAll('.ecr-next-btn').forEach(b => b.remove());
   document.getElementById('ecr-result').classList.add('hidden');
   document.getElementById('ecr-card').classList.remove('hidden');
   document.querySelector('.ecr-input-wrap').classList.remove('hidden');
@@ -382,6 +384,7 @@ function renderEcriture() {
 
   const q = ecrCards[ecrIndex];
   document.getElementById('ecr-question').textContent = q.fr;
+  document.querySelectorAll('.ecr-next-btn').forEach(b => b.remove());
   document.getElementById('ecr-feedback').classList.add('hidden');
   document.getElementById('ecr-feedback').className = 'ecr-feedback hidden';
 
