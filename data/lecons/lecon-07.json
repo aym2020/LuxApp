@@ -868,5 +868,72 @@
       "fr": "Il est nord-coréen.",
       "lu": "Hien ass en Nordkoreaner."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "La nationalité a une forme masculine et une forme féminine. On utilise l'article indéfini devant."
+    },
+    {
+      "type": "regle",
+      "titre": "Formation",
+      "lignes": [
+        "Masculin → <b>e</b> / <b>en</b> + nationalité (e Portugis, en Engländer)",
+        "Féminin → <b>eng</b> + nationalité + souvent terminaison <b>-in</b> (eng Portugisin)",
+        "Négation : <b>kee/keen</b> (M), <b>keng</b> (F)"
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Nationalités (M / F)",
+      "items": [
+        [
+          "e Portugis / eng Portugisin",
+          "portugais·e"
+        ],
+        [
+          "e Spuenier / eng Spuenierin",
+          "espagnol·e"
+        ],
+        [
+          "en Engländer / eng Engländerin",
+          "anglais·e"
+        ],
+        [
+          "en Italiener / eng Italienerin",
+          "italien·ne"
+        ],
+        [
+          "e Lëtzebuerger / eng Lëtzebuergerin",
+          "luxembourgeois·e"
+        ],
+        [
+          "e Fransous / eng Fransousin",
+          "français·e"
+        ],
+        [
+          "en Däitschen / eng Däitsch",
+          "allemand·e"
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Poser la question et répondre",
+      "echanges": [
+        [
+          "Ass de Ronaldo Portugis?",
+          "Est-ce que Ronaldo est portugais ?"
+        ],
+        [
+          "Jo, hien ass Portugis.",
+          "Oui, il est portugais."
+        ],
+        [
+          "Nee, hien ass kee Spuenier.",
+          "Non, il n'est pas espagnol."
+        ]
+      ]
+    }
   ]
 }

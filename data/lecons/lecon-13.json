@@ -759,5 +759,103 @@
       "fr": "Elle a 30 ans.",
       "lu": "Si huet drësseg Joer."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "L'âge et la date de naissance."
+    },
+    {
+      "type": "vocab",
+      "titre": "Les mois (Méint)",
+      "items": [
+        [
+          "Januar",
+          "janvier"
+        ],
+        [
+          "Februar",
+          "février"
+        ],
+        [
+          "Mäerz",
+          "mars"
+        ],
+        [
+          "Abrëll",
+          "avril"
+        ],
+        [
+          "Mee",
+          "mai"
+        ],
+        [
+          "Juni",
+          "juin"
+        ],
+        [
+          "Juli",
+          "juillet"
+        ],
+        [
+          "August",
+          "août"
+        ],
+        [
+          "September",
+          "septembre"
+        ],
+        [
+          "Oktober",
+          "octobre"
+        ],
+        [
+          "November",
+          "novembre"
+        ],
+        [
+          "Dezember",
+          "décembre"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Dire son âge",
+      "lignes": [
+        "<b>Ech hunn ... Joer.</b> (J'ai ... ans.)",
+        "Ech hunn zwanzeg Joer. (J'ai 20 ans.)"
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Les années",
+      "lignes": [
+        "Années 2000+ → <b>Zwee Dausend</b> + nombre (2026 = Zwee Dausend Sechs an Zwanzeg)",
+        "Années 1900+ → <b>Nonzéng Honnert</b> + nombre (1999 = Nonzéng Honnert Néng an Nonzeg)"
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Poser la question et répondre",
+      "echanges": [
+        [
+          "Wéi al bass du?",
+          "Quel âge as-tu ? (informel)"
+        ],
+        [
+          "Wéi vill Joer hutt Dir?",
+          "Quel âge avez-vous ? (formel)"
+        ],
+        [
+          "Wéini bass du Gebuer?",
+          "Quand es-tu né·e ?"
+        ],
+        [
+          "Ech sinn de Januar Gebuer.",
+          "Je suis né·e en janvier."
+        ]
+      ]
+    }
   ]
 }

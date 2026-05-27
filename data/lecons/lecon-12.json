@@ -684,5 +684,89 @@
       "fr": "Elle a deux filles.",
       "lu": "Si huet zwou Meedercher."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "La situation familiale. Les statuts sont invariables et se nient avec <b>net</b>."
+    },
+    {
+      "type": "vocab",
+      "titre": "Statuts (invariables)",
+      "items": [
+        [
+          "bestuet",
+          "marié·e"
+        ],
+        [
+          "gescheet",
+          "divorcé·e"
+        ],
+        [
+          "getrennt",
+          "séparé·e"
+        ],
+        [
+          "gepacst",
+          "pacsé·e"
+        ],
+        [
+          "an enger Beziehung",
+          "en couple"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Négation — attention !",
+      "lignes": [
+        "Statut (adjectif) → <b>net</b> : Hien ass <b>net</b> bestuet.",
+        "Nom (copain/copine) → <b>kee/keng</b> : Si huet <b>keng</b> Frendin."
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Famille",
+      "items": [
+        [
+          "e Frënd / eng Frendin",
+          "copain / copine"
+        ],
+        [
+          "e Kand / Kanner",
+          "un enfant / les enfants"
+        ],
+        [
+          "e Jong / Jongen",
+          "un garçon / des garçons"
+        ],
+        [
+          "e Meedchen / Meedercher",
+          "une fille / des filles"
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Poser la question et répondre",
+      "echanges": [
+        [
+          "Bass du bestuet?",
+          "Es-tu marié·e ?"
+        ],
+        [
+          "Sidd Dir bestuet?",
+          "Êtes-vous marié·e ? (formel)"
+        ],
+        [
+          "Huet si e Frënd?",
+          "A-t-elle un copain ?"
+        ],
+        [
+          "Hues du Kanner?",
+          "As-tu des enfants ?"
+        ]
+      ]
+    }
   ]
 }

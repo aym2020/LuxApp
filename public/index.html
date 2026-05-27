@@ -31,14 +31,20 @@
     </div>
 
     <div class="tab-bar">
-      <button class="tab-btn active" data-tab="flashcards">Cartes</button>
+      <button class="tab-btn active" data-tab="cours">Cours</button>
+      <button class="tab-btn" data-tab="flashcards">Cartes</button>
       <button class="tab-btn" data-tab="quiz">Quiz</button>
       <button class="tab-btn" data-tab="trous">À trou</button>
       <button class="tab-btn" data-tab="ecriture">Écrire</button>
     </div>
 
+    <!-- COURS -->
+    <div id="tab-cours" class="tab active">
+      <div id="cours-content" class="cours-content"></div>
+    </div>
+
     <!-- FLASHCARDS -->
-    <div id="tab-flashcards" class="tab active">
+    <div id="tab-flashcards" class="tab">
       <div class="top-row">
         <div class="progress-wrap">
           <span id="fc-progress-text"></span>

@@ -79,10 +79,10 @@ header {
 .lecon-titre { font-size: .85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ── TABS ────────────────────────────────────────────────────────────────── */
-.tab-bar { display: flex; border-bottom: 1px solid #222; padding: 0 1rem; }
+.tab-bar { display: flex; border-bottom: 1px solid #222; padding: 0 .5rem; }
 .tab-btn {
-  flex: 1; padding: .7rem .3rem;
-  font-family: var(--title); font-size: .78rem; font-weight: 700;
+  flex: 1; padding: .7rem .15rem;
+  font-family: var(--title); font-size: .72rem; font-weight: 700;
   background: none; border: none; border-bottom: 2px solid transparent;
   color: var(--muted); cursor: pointer; transition: all .2s; margin-bottom: -1px;
   min-height: 44px;
@@ -287,3 +287,48 @@ header {
   transition: border-color .2s;
 }
 .ecr-next-btn:hover { border-color: var(--accent); }
+
+/* ── COURS ──────────────────────────────────────────────────────────────── */
+.cours-content { width: 100%; padding-bottom: 2rem; }
+
+.cours-intro {
+  border: 1px solid; border-radius: var(--r);
+  padding: 1rem 1.2rem; margin-bottom: 1.2rem; text-align: center;
+}
+.cours-intro-titre { font-size: 1.2rem; font-weight: 800; }
+.cours-intro-sous  { font-size: .8rem; color: var(--muted); margin-top: .2rem; font-style: italic; font-family: var(--serif); }
+
+.cours-texte {
+  font-size: .9rem; line-height: 1.6; color: var(--text);
+  margin-bottom: 1.1rem; opacity: .92;
+}
+.cours-texte b { color: var(--accent); font-weight: 700; }
+
+.cours-regle {
+  background: var(--surface); border-left: 3px solid;
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: .9rem 1.1rem; margin-bottom: 1.1rem;
+}
+.cours-regle-titre { font-size: .8rem; font-weight: 800; letter-spacing: .04em; margin-bottom: .5rem; text-transform: uppercase; }
+.cours-regle ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+.cours-regle li { font-size: .85rem; line-height: 1.5; padding-left: 1rem; position: relative; }
+.cours-regle li::before { content: '·'; position: absolute; left: .2rem; color: var(--muted); }
+.cours-regle b { color: var(--text); font-weight: 800; }
+
+.cours-bloc {
+  background: var(--surface); border: 1px solid #2a2926;
+  border-radius: var(--r); padding: .9rem 1.1rem; margin-bottom: 1.1rem;
+}
+.cours-bloc-titre { font-size: .8rem; font-weight: 800; letter-spacing: .04em; margin-bottom: .7rem; text-transform: uppercase; color: var(--muted); }
+
+.cours-vocab { width: 100%; border-collapse: collapse; }
+.cours-vocab tr { border-bottom: 1px solid #242322; }
+.cours-vocab tr:last-child { border-bottom: none; }
+.cours-vocab td { padding: .5rem .3rem; vertical-align: top; }
+.cours-lu { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--text); width: 55%; }
+.cours-fr { font-size: .82rem; color: var(--muted); text-align: right; }
+
+.cours-dialogue { padding: .55rem 0; border-bottom: 1px solid #242322; }
+.cours-dialogue:last-child { border-bottom: none; }
+.cours-dialogue-lu { font-family: var(--serif); font-style: italic; font-size: 1.05rem; margin-bottom: .15rem; }
+.cours-dialogue-fr { font-size: .8rem; color: var(--muted); }

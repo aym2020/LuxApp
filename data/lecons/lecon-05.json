@@ -962,5 +962,146 @@
       "fr": "90",
       "lu": "Nonzeg"
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Les nombres et la formation du pluriel."
+    },
+    {
+      "type": "vocab",
+      "titre": "0 à 12",
+      "items": [
+        [
+          "null",
+          "0"
+        ],
+        [
+          "eent",
+          "1"
+        ],
+        [
+          "zwee / zwou",
+          "2"
+        ],
+        [
+          "dräi",
+          "3"
+        ],
+        [
+          "véier",
+          "4"
+        ],
+        [
+          "fënnef",
+          "5"
+        ],
+        [
+          "sechs",
+          "6"
+        ],
+        [
+          "siwen",
+          "7"
+        ],
+        [
+          "aacht",
+          "8"
+        ],
+        [
+          "néng",
+          "9"
+        ],
+        [
+          "zéng",
+          "10"
+        ],
+        [
+          "eelef",
+          "11"
+        ],
+        [
+          "zwielef",
+          "12"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Dizaines",
+      "items": [
+        [
+          "zwanzeg",
+          "20"
+        ],
+        [
+          "drësseg",
+          "30"
+        ],
+        [
+          "véierzeg",
+          "40"
+        ],
+        [
+          "fofzeg",
+          "50"
+        ],
+        [
+          "siechzeg",
+          "60"
+        ],
+        [
+          "siwwenzeg",
+          "70"
+        ],
+        [
+          "aachtzeg",
+          "80"
+        ],
+        [
+          "nonzeg",
+          "90"
+        ],
+        [
+          "honnert",
+          "100"
+        ],
+        [
+          "dausend",
+          "1000"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Construction des nombres composés",
+      "lignes": [
+        "unité + <b>an/a</b> + dizaine : <b>21 = Eent an Zwanzeg</b>",
+        "Devant voyelle → <b>an</b> (Eent <b>an</b> Zwanzeg)",
+        "Devant consonne → <b>a</b> (Siwen <b>a</b> Véierzeg = 47)"
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Le « 2 » change selon le genre",
+      "lignes": [
+        "Masculin / Neutre → <b>zwee</b> (zwee Bussen)",
+        "Féminin → <b>zwou</b> (zwou Dieren)"
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Poser la question et répondre",
+      "echanges": [
+        [
+          "Vei vill Käerzen sinn dat?",
+          "Combien de bougies y a-t-il ?"
+        ],
+        [
+          "Dat sinn 8 Käerzen.",
+          "Il y a 8 bougies."
+        ]
+      ]
+    }
   ]
 }

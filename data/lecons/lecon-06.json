@@ -828,5 +828,91 @@
       "fr": "Il vient d'Italie.",
       "lu": "Hien kënnt aus Italien."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Pour dire d'où vient quelqu'un, on utilise le verbe <b>kënnt</b> (vient) + une préposition qui dépend du pays."
+    },
+    {
+      "type": "regle",
+      "titre": "Les prépositions d'origine",
+      "lignes": [
+        "Règle générale (pays sans article) → <b>aus</b> (aus Portugal, aus Japan)",
+        "Exception Luxembourg → <b>vu</b> (vu Lëtzebuerg)",
+        "Pays féminins → <b>aus der</b> (aus der Belsch, aus der Schwäiz)",
+        "Pays masculins avec article → <b>aus dem</b> (aus dem Iran)",
+        "Cap-Vert → <b>vum</b> (vum Cap Vert)"
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Article devant les prénoms",
+      "lignes": [
+        "Prénom masculin devant consonne → <b>De</b> (De Ronaldo)",
+        "Prénom masculin devant voyelle → <b>Den</b> (Den David)",
+        "Prénom féminin → <b>D'</b> (D'Nicole)"
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Quelques pays",
+      "items": [
+        [
+          "Portugal",
+          "Portugal"
+        ],
+        [
+          "Spuenien",
+          "Espagne"
+        ],
+        [
+          "England",
+          "Angleterre"
+        ],
+        [
+          "Daitschland",
+          "Allemagne"
+        ],
+        [
+          "Frankräich",
+          "France"
+        ],
+        [
+          "Holland",
+          "Pays-Bas"
+        ],
+        [
+          "Belsch",
+          "Belgique"
+        ],
+        [
+          "Schwäiz",
+          "Suisse"
+        ],
+        [
+          "Lëtzebuerg",
+          "Luxembourg"
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Exemples",
+      "echanges": [
+        [
+          "De Ronaldo kënnt aus Portugal.",
+          "Ronaldo vient du Portugal."
+        ],
+        [
+          "De Guillaume kënnt vu Lëtzebuerg.",
+          "Guillaume vient du Luxembourg."
+        ],
+        [
+          "De Philippe kënnt aus der Belsch.",
+          "Philippe vient de Belgique."
+        ]
+      ]
+    }
   ]
 }

@@ -690,5 +690,92 @@
       "fr": "Elle ne parle pas chinois.",
       "lu": "Si schwätzt net Chineesesch."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Le nom de la langue est invariable. ⚠️ Ne pas confondre avec la nationalité : <b>Fransous</b> (nationalité) ≠ <b>Franséisch</b> (langue)."
+    },
+    {
+      "type": "vocab",
+      "titre": "Les langues (Sproochen)",
+      "items": [
+        [
+          "Portugisesch",
+          "portugais"
+        ],
+        [
+          "Spéinesch",
+          "espagnol"
+        ],
+        [
+          "Englesch",
+          "anglais"
+        ],
+        [
+          "Italienesch",
+          "italien"
+        ],
+        [
+          "Lëtzebuergesch",
+          "luxembourgeois"
+        ],
+        [
+          "Franséisch",
+          "français"
+        ],
+        [
+          "Däitsch",
+          "allemand"
+        ],
+        [
+          "Japanesch",
+          "japonais"
+        ],
+        [
+          "Koreanesch",
+          "coréen"
+        ],
+        [
+          "Chineesesch",
+          "chinois"
+        ],
+        [
+          "Holländesch",
+          "néerlandais"
+        ],
+        [
+          "Schweedesch",
+          "suédois"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Le verbe parler",
+      "lignes": [
+        "<b>schwätzen</b> = parler",
+        "Ech schwätzen, Du schwätz, Hien/Si schwätzt",
+        "Négation → <b>net</b> : Hien schwätzt net Japanesch."
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Exemples",
+      "echanges": [
+        [
+          "De Ronaldo schwätzt Portugisesch.",
+          "Ronaldo parle portugais."
+        ],
+        [
+          "Ech schwätzen Lëtzebuergesch.",
+          "Je parle luxembourgeois."
+        ],
+        [
+          "Wat fir eng Sprooch schwätzt du?",
+          "Quelle langue parles-tu ?"
+        ]
+      ]
+    }
   ]
 }

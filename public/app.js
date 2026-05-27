@@ -63,8 +63,10 @@ function openLecon(l) {
 
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelector('.tab-btn[data-tab="flashcards"]').classList.add('active');
-  document.getElementById('tab-flashcards').classList.add('active');
+  document.querySelector('.tab-btn[data-tab="cours"]').classList.add('active');
+  document.getElementById('tab-cours').classList.add('active');
+
+  renderCours();
 
   fcCards = [...l.flashcards];
   fcIndex = 0;
@@ -73,6 +75,57 @@ function openLecon(l) {
   renderFC();
 
   showView('view-lecon');
+}
+
+// ─── COURS ────────────────────────────────────────────────────────────────────
+function renderCours() {
+  const container = document.getElementById('cours-content');
+  const accent = currentLecon.couleur;
+
+  if (!currentLecon.cours) {
+    container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem">Cours indisponible pour cette leçon.</p>';
+    return;
+  }
+
+  let html = `<div class="cours-intro" style="border-color:${accent}55">
+    <div class="cours-intro-titre" style="color:${accent}">${currentLecon.titre}</div>
+    <div class="cours-intro-sous">${currentLecon.titre_fr}</div>
+  </div>`;
+
+  currentLecon.cours.forEach(sec => {
+    if (sec.type === 'texte') {
+      html += `<p class="cours-texte">${sec.contenu}</p>`;
+    }
+    else if (sec.type === 'regle') {
+      html += `<div class="cours-regle" style="border-left-color:${accent}">
+        <div class="cours-regle-titre" style="color:${accent}">${sec.titre}</div>
+        <ul>${sec.lignes.map(l => `<li>${l}</li>`).join('')}</ul>
+      </div>`;
+    }
+    else if (sec.type === 'vocab') {
+      html += `<div class="cours-bloc">
+        <div class="cours-bloc-titre">${sec.titre}</div>
+        <table class="cours-vocab">${
+          sec.items.map(([lu, fr]) =>
+            `<tr><td class="cours-lu">${lu}</td><td class="cours-fr">${fr}</td></tr>`
+          ).join('')
+        }</table>
+      </div>`;
+    }
+    else if (sec.type === 'dialogue') {
+      html += `<div class="cours-bloc">
+        <div class="cours-bloc-titre">${sec.titre}</div>${
+          sec.echanges.map(([lu, fr]) =>
+            `<div class="cours-dialogue">
+              <div class="cours-dialogue-lu" style="color:${accent}">${lu}</div>
+              <div class="cours-dialogue-fr">${fr}</div>
+            </div>`
+          ).join('')
+        }</div>`;
+    }
+  });
+
+  container.innerHTML = html;
 }
 
 function goHome() {
@@ -94,8 +147,9 @@ function setupTabs() {
       btn.classList.add('active');
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
       window.scrollTo(0, 0); // BUG 6 fix : scroll haut au changement d'onglet
-      if (btn.dataset.tab === 'quiz')  startQuiz();
-      if (btn.dataset.tab === 'trous') startTrous();
+      if (btn.dataset.tab === 'cours')    renderCours();
+      if (btn.dataset.tab === 'quiz')     startQuiz();
+      if (btn.dataset.tab === 'trous')    startTrous();
       if (btn.dataset.tab === 'ecriture') startEcriture();
     });
   });

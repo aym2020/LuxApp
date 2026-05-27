@@ -756,5 +756,92 @@
       "fr": "Je travaille dans un supermarché.",
       "lu": "Ech schaffen an engem Supermarché."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Les lieux de travail. On utilise le verbe <b>schaffen</b> (travailler) + une préposition contractée."
+    },
+    {
+      "type": "regle",
+      "titre": "Contraction préposition + article",
+      "lignes": [
+        "an + e → <b>an engem</b> (M/N) · an + eng → <b>an enger</b> (F)",
+        "op + e → <b>op engem</b> (M/N) · op + eng → <b>op enger</b> (F)",
+        "⚠️ Exceptions : Spidol et Schoul → <b>an engem</b>"
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Lieux de travail",
+      "items": [
+        [
+          "e Policebüro",
+          "commissariat"
+        ],
+        [
+          "e Spidol",
+          "hôpital"
+        ],
+        [
+          "eng Bank",
+          "banque"
+        ],
+        [
+          "eng Apdikt",
+          "pharmacie"
+        ],
+        [
+          "eng Post",
+          "poste"
+        ],
+        [
+          "e Gericht",
+          "tribunal"
+        ],
+        [
+          "eng Bäckerei",
+          "boulangerie"
+        ],
+        [
+          "eng Schoul",
+          "école"
+        ],
+        [
+          "e Fluchhafen",
+          "aéroport"
+        ],
+        [
+          "e Restaurant",
+          "restaurant"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Les mots « bei » et « als »",
+      "lignes": [
+        "<b>bei</b> = chez / auprès de (bei engem Dokter)",
+        "<b>als</b> = comme (als Seкtärin)"
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Exemples",
+      "echanges": [
+        [
+          "De Polizist schafft op engem Policebüro.",
+          "Le policier travaille au commissariat."
+        ],
+        [
+          "De Bäcker schafft an enger Bäckerei.",
+          "Le boulanger travaille dans une boulangerie."
+        ],
+        [
+          "Wou schaffs du?",
+          "Où travailles-tu ?"
+        ]
+      ]
+    }
   ]
 }

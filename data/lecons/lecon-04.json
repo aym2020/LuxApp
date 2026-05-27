@@ -684,5 +684,120 @@
       "fr": "Le contraire de plein",
       "lu": "Eidel"
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Cette leçon présente des adjectifs et leurs contraires. L'adjectif se place après le verbe <b>ass</b>."
+    },
+    {
+      "type": "vocab",
+      "titre": "Les contraires (Konträr)",
+      "items": [
+        [
+          "nei",
+          "nouveau"
+        ],
+        [
+          "al",
+          "vieux"
+        ],
+        [
+          "kleng",
+          "petit"
+        ],
+        [
+          "grouss",
+          "grand"
+        ],
+        [
+          "liicht",
+          "léger"
+        ],
+        [
+          "schwéier",
+          "lourd"
+        ],
+        [
+          "séier",
+          "rapide"
+        ],
+        [
+          "lues",
+          "lent"
+        ],
+        [
+          "ronn",
+          "rond"
+        ],
+        [
+          "eckeg",
+          "carré"
+        ],
+        [
+          "bëlleg",
+          "pas cher"
+        ],
+        [
+          "deier",
+          "cher"
+        ],
+        [
+          "héich",
+          "haut"
+        ],
+        [
+          "niddereg",
+          "bas"
+        ],
+        [
+          "voll",
+          "plein"
+        ],
+        [
+          "eidel",
+          "vide"
+        ],
+        [
+          "dënn",
+          "mince"
+        ],
+        [
+          "décks",
+          "épais"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Rappel des articles définis",
+      "lignes": [
+        "Masculin → <b>De</b> / <b>Den</b> (De Schleek, Den Auto)",
+        "Féminin → <b>D'</b> (D'Fieder)",
+        "Neutre → <b>D'</b> (D'Gebai)"
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Exemples",
+      "echanges": [
+        [
+          "Den Handy ass nei.",
+          "Le smartphone est nouveau."
+        ],
+        [
+          "Den Telefon ass al.",
+          "Le téléphone est vieux."
+        ],
+        [
+          "D'Fieder ass liicht.",
+          "La plume est légère."
+        ],
+        [
+          "Den Auto ass séier.",
+          "La voiture est rapide."
+        ]
+      ]
+    }
   ]
 }

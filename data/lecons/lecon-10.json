@@ -646,5 +646,62 @@
       "fr": "Elle est pharmacienne.",
       "lu": "Si ass eng Apdiktesch."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Les métiers ont une forme masculine et féminine. L'article <b>e</b> ou <b>en</b> dépend de la lettre qui suit."
+    },
+    {
+      "type": "regle",
+      "titre": "Article masculin",
+      "lignes": [
+        "Devant consonne → <b>e</b> (e Polizist, e Bäcker)",
+        "Devant voyelle ou d, n → <b>en</b> (en Dokter, en Affekot)",
+        "Féminin → <b>eng</b> (eng Polizistin)"
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Métiers (M / F)",
+      "items": [
+        [
+          "e Polizist / eng Polizistin",
+          "policier·ère"
+        ],
+        [
+          "en Dokter / eng Doktesch",
+          "docteur·e"
+        ],
+        [
+          "e Coiffer / eng Coiffeuse",
+          "coiffeur·euse"
+        ],
+        [
+          "en Affekot / eng Affekotin",
+          "avocat·e"
+        ],
+        [
+          "e Bäcker / eng Bäckesch",
+          "boulanger·ère"
+        ],
+        [
+          "e Schoulmeeschter / eng Léierin",
+          "professeur·e"
+        ],
+        [
+          "e Kach / eng Kächin",
+          "cuisinier·ère"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Le mot « als »",
+      "lignes": [
+        "<b>als</b> = comme / en tant que",
+        "Ech schaffen <b>als</b> Metzler. (Je travaille comme boucher.)"
+      ]
+    }
   ]
 }

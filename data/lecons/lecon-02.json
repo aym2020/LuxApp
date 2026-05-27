@@ -786,5 +786,160 @@
       "fr": "C'est un cahier.",
       "lu": "Dat ass en Heft."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Pour identifier un objet, on utilise l'article indéfini, qui dépend du genre du nom."
+    },
+    {
+      "type": "regle",
+      "titre": "Les articles indéfinis",
+      "lignes": [
+        "Masculin / Neutre devant consonne → <b>e</b> (e Bus, e Buch)",
+        "Masculin / Neutre devant voyelle ou d, h, n, t, z → <b>en</b> (en Auto, en Dësch)",
+        "Féminin → <b>eng</b> (eng Dier, eng Auer)"
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "La négation",
+      "lignes": [
+        "Masculin / Neutre → <b>kee</b> / <b>keen</b> (kee Bus, keen Auto)",
+        "Féminin → <b>keng</b> (keng Dier)"
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire — Masculin",
+      "items": [
+        [
+          "e Bus",
+          "un bus"
+        ],
+        [
+          "en Dësch",
+          "une table"
+        ],
+        [
+          "en Telefon",
+          "un téléphone"
+        ],
+        [
+          "e Computer",
+          "un ordinateur"
+        ],
+        [
+          "en Auto",
+          "une voiture"
+        ],
+        [
+          "e Stull",
+          "une chaise"
+        ],
+        [
+          "e Fliger",
+          "un avion"
+        ],
+        [
+          "en Zuch",
+          "un train"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire — Féminin",
+      "items": [
+        [
+          "eng Dier",
+          "une porte"
+        ],
+        [
+          "eng Auer",
+          "une montre"
+        ],
+        [
+          "eng Tafel",
+          "un tableau"
+        ],
+        [
+          "eng Taass",
+          "une tasse"
+        ],
+        [
+          "eng Fënster",
+          "une fenêtre"
+        ],
+        [
+          "eng Flash",
+          "une bouteille"
+        ],
+        [
+          "eng Luucht",
+          "une lampe"
+        ],
+        [
+          "eng Schéier",
+          "des ciseaux"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire — Neutre",
+      "items": [
+        [
+          "e Blat",
+          "une feuille"
+        ],
+        [
+          "e Buch",
+          "un livre"
+        ],
+        [
+          "en Haus",
+          "une maison"
+        ],
+        [
+          "e Glas",
+          "un verre"
+        ],
+        [
+          "e Gebai",
+          "un immeuble"
+        ],
+        [
+          "e Bild",
+          "un tableau (peinture)"
+        ],
+        [
+          "en Heft",
+          "un cahier"
+        ],
+        [
+          "e Bett",
+          "un lit"
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Poser la question et répondre",
+      "echanges": [
+        [
+          "Ass dat eng Dier?",
+          "Est-ce que c'est une porte ?"
+        ],
+        [
+          "Jo, dat ass eng Dier.",
+          "Oui, c'est une porte."
+        ],
+        [
+          "Nee, dat ass keng Dier.",
+          "Non, ce n'est pas une porte."
+        ]
+      ]
+    }
   ]
 }

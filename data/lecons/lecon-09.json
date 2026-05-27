@@ -493,5 +493,44 @@
       "fr": "J'habite en Chine.",
       "lu": "Ech wunnen a China."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Pour dire où on habite, on utilise le verbe <b>wunnen</b> + une préposition de lieu qui dépend du lieu."
+    },
+    {
+      "type": "regle",
+      "titre": "Les prépositions de lieu",
+      "lignes": [
+        "Villes → <b>zu</b> (zu Metz, zu Esch)",
+        "Exception Luxembourg → <b>zu</b> (zu Lëtzebuerg)",
+        "Pays sans article → <b>a / an</b> (an Daitschland, a Frankräich)",
+        "Pays féminins → <b>an der</b> (an der Belsch, an der Schwäiz)",
+        "Quartiers / lieux → <b>um / am</b> (um Kirchberg, am Gronn)"
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Exemples",
+      "echanges": [
+        [
+          "Ech wunnen zu Lëtzebuerg.",
+          "J'habite au Luxembourg."
+        ],
+        [
+          "Ech wunnen an der Belsch.",
+          "J'habite en Belgique."
+        ],
+        [
+          "Ech wunnen um Kirchberg.",
+          "J'habite au Kirchberg."
+        ],
+        [
+          "Wou wunns du?",
+          "Où habites-tu ?"
+        ]
+      ]
+    }
   ]
 }

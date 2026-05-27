@@ -610,5 +610,100 @@
       "fr": "La bouteille est rose.",
       "lu": "Eng Flash ass rosa."
     }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Pour décrire un objet, on utilise une couleur après le verbe <b>ass</b> (est). La couleur ne s'accorde pas."
+    },
+    {
+      "type": "vocab",
+      "titre": "Les couleurs (Faarwen)",
+      "items": [
+        [
+          "schwaarz",
+          "noir"
+        ],
+        [
+          "wäiss",
+          "blanc"
+        ],
+        [
+          "rout",
+          "rouge"
+        ],
+        [
+          "giel",
+          "jaune"
+        ],
+        [
+          "blo",
+          "bleu"
+        ],
+        [
+          "gréng",
+          "vert"
+        ],
+        [
+          "mof",
+          "violet"
+        ],
+        [
+          "orange",
+          "orange"
+        ],
+        [
+          "beige",
+          "beige"
+        ],
+        [
+          "gro",
+          "gris"
+        ],
+        [
+          "brong",
+          "marron"
+        ],
+        [
+          "rosa",
+          "rose"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Structure de la phrase",
+      "lignes": [
+        "Affirmation → <b>De Bus ass gréng.</b> (Le bus est vert.)",
+        "Négation → on ajoute <b>net</b> : <b>De Bus ass net rosa.</b> (Le bus n'est pas rose.)",
+        "⚠️ Pour nier une couleur (adjectif) on utilise <b>net</b>, pas kee/keng."
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Poser la question et répondre",
+      "echanges": [
+        [
+          "Wat fir eng Faarf huet de Bus?",
+          "De quelle couleur est le bus ?"
+        ],
+        [
+          "De Bus ass gréng.",
+          "Le bus est vert."
+        ],
+        [
+          "Ass de Bus gréng?",
+          "Est-ce que le bus est vert ?"
+        ],
+        [
+          "Jo, de Bus ass gréng.",
+          "Oui, le bus est vert."
+        ],
+        [
+          "Nee, de Bus ass net rosa.",
+          "Non, le bus n'est pas rose."
+        ]
+      ]
+    }
   ]
 }
