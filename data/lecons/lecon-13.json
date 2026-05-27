@@ -78,13 +78,13 @@
     },
     {
       "id": 13,
-      "lu": "Wéini ass d'Barbara gebuer?",
+      "lu": "D'Barbara ass den 18. Januar nonzénghonnertsechsannonzeg gebuer.",
       "fr": "Quand Barbara est-elle née ?",
       "note": "gebuer = né(e)"
     },
     {
       "id": 14,
-      "lu": "D'Barbara ass den uechtzéngte Januar nonzéng honnert sechsannonzeg gebuer.",
+      "lu": "D'Barbara ass den 18. Januar nonzénghonnertsechsannonzeg gebuer.",
       "fr": "Barbara est née le 18 janvier 1996.",
       "note": "Date complète"
     },
@@ -114,7 +114,7 @@
     },
     {
       "id": 19,
-      "lu": "Hatt huet den dräizéngte Juni nonzéng honnert zweeannonzeg Gebuertsdag.",
+      "lu": "Hatt huet den dräizéngte Juni nonzénghonnertzweeannonzeg Gebuertsdag.",
       "fr": "Son anniversaire est le 13 juin 1992.",
       "note": "Date complète"
     },
@@ -345,31 +345,31 @@
     {
       "id": 16,
       "question": "Comment dire 1999 en luxembourgeois ?",
-      "reponse": "Nonzéng Honnert Néngannonzeg",
+      "reponse": "nonzénghonnertnénganonzeg",
       "distracteurs": [
-        "Zwee Dausend Néngannonzeg",
-        "Nonzéng Honnert Nonzeg",
-        "Nonzéng Honnert Néngzéng"
+        "zweedausendnénganonzeg",
+        "nonzénghonnertnonzeg",
+        "nonzénghonnertnéngzéng"
       ]
     },
     {
       "id": 17,
       "question": "Comment dire 2015 en luxembourgeois ?",
-      "reponse": "Zwee Dausend Fofzéng",
+      "reponse": "zweedausendfofzéng",
       "distracteurs": [
-        "Zwee Dausend Fënnefanzéng",
-        "Zwee Dausend Fofzeg",
-        "Zwee Dausend Fënnefzéng"
+        "zweedausendfënnefanzéng",
+        "zweedausendfofzeg",
+        "zweedausendfënnefzéng"
       ]
     },
     {
       "id": 18,
       "question": "Comment dire 2026 en luxembourgeois ?",
-      "reponse": "Zwee Dausend Sechsanzwanzeg",
+      "reponse": "zweedausendsechsanzwanzeg",
       "distracteurs": [
-        "Zwee Dausend Siechzéng",
-        "Zwee Dausend Zwanzeg Sechs",
-        "Zwee Dausend Sechs Zwanzeg"
+        "zweedausendsiechzéng",
+        "zweedausendzwanzegsechs",
+        "zweedausendsechszwanzeg"
       ]
     },
     {
@@ -572,7 +572,7 @@
     {
       "id": 14,
       "fr": "Comment dire l'année 1999 ?",
-      "avant": "Nonzéng Honnert",
+      "avant": "nonzénghonnert",
       "trou": "Néngannonzeg",
       "apres": "",
       "choix": [
@@ -586,7 +586,7 @@
     {
       "id": 15,
       "fr": "Comment dire l'année 2026 ?",
-      "avant": "Zwee Dausend",
+      "avant": "zweedausend",
       "trou": "Sechsanzwanzeg",
       "apres": "",
       "choix": [
@@ -717,15 +717,15 @@
     },
     {
       "fr": "1999",
-      "lu": "Nonzéng Honnert Néngannonzeg"
+      "lu": "nonzénghonnertnénganonzeg"
     },
     {
       "fr": "2015",
-      "lu": "Zwee Dausend Fofzéng"
+      "lu": "zweedausendfofzéng"
     },
     {
       "fr": "2026",
-      "lu": "Zwee Dausend Sechsanzwanzeg"
+      "lu": "zweedausendsechsanzwanzeg"
     },
     {
       "fr": "Quand es-tu né(e) ?",
@@ -749,7 +749,7 @@
     },
     {
       "fr": "Barbara est née le 18 janvier 1996.",
-      "lu": "D'Barbara ass den 18te Januar Nonzéng Honnert Sechsannonzeg Gebuer."
+      "lu": "D'Barbara ass den 18te Januar NonzéngHonnertSechsannonzeg Gebuer."
     },
     {
       "fr": "Il a 47 ans.",
@@ -761,123 +761,123 @@
     },
     {
       "fr": "1881",
-      "lu": "Uechtzéng Honnert Eenanaachtzeg"
+      "lu": "uechtzénghonnerteenanaachtzeg"
     },
     {
       "fr": "1891",
-      "lu": "Uechtzéng Honnert Eenannonzeg"
+      "lu": "uechtzénghonnerteenanonzeg"
     },
     {
       "fr": "1897",
-      "lu": "Uechtzéng Honnert Siwenannonzeg"
+      "lu": "uechtzénghonnertsiwenanonzeg"
     },
     {
       "fr": "1900",
-      "lu": "Nonzéng Honnert"
+      "lu": "nonzénghonnert"
     },
     {
       "fr": "1903",
-      "lu": "Nonzéng Honnert Dräi"
+      "lu": "nonzénghonnertdräi"
     },
     {
       "fr": "1904",
-      "lu": "Nonzéng Honnert Véier"
+      "lu": "nonzénghonnertvéier"
     },
     {
       "fr": "1905",
-      "lu": "Nonzéng Honnert Fënnef"
+      "lu": "nonzénghonnertfënnef"
     },
     {
       "fr": "1906",
-      "lu": "Nonzéng Honnert Sechs"
+      "lu": "nonzénghonnertsechs"
     },
     {
       "fr": "1911",
-      "lu": "Nonzéng Honnert Eelef"
+      "lu": "nonzénghonnerteelef"
     },
     {
       "fr": "1919",
-      "lu": "Nonzéng Honnert Nonzéng"
+      "lu": "nonzénghonnertnonzéng"
     },
     {
       "fr": "1920",
-      "lu": "Nonzéng Honnert Zwanzeg"
+      "lu": "nonzénghonnertzwanzeg"
     },
     {
       "fr": "1929",
-      "lu": "Nonzéng Honnert Nénganzwanzeg"
+      "lu": "nonzénghonnertnénganzwanzeg"
     },
     {
       "fr": "1935",
-      "lu": "Nonzéng Honnert Fënnefandrësseg"
+      "lu": "nonzénghonnertfënnefandrësseg"
     },
     {
       "fr": "1938",
-      "lu": "Nonzéng Honnert Aachtandrësseg"
+      "lu": "nonzénghonnertaachtandrësseg"
     },
     {
       "fr": "1939",
-      "lu": "Nonzéng Honnert Néngandrësseg"
+      "lu": "nonzénghonnertnéngandrësseg"
     },
     {
       "fr": "1947",
-      "lu": "Nonzéng Honnert Siwenavéierzeg"
+      "lu": "nonzénghonnertsiwenavéierzeg"
     },
     {
       "fr": "1951",
-      "lu": "Nonzéng Honnert Eenafofzeg"
+      "lu": "nonzénghonnerteenafofzeg"
     },
     {
       "fr": "1954",
-      "lu": "Nonzéng Honnert Véierafofzeg"
+      "lu": "nonzénghonnertvéierafofzeg"
     },
     {
       "fr": "1955",
-      "lu": "Nonzéng Honnert Fënnefafofzeg"
+      "lu": "nonzénghonnertfënnefafofzeg"
     },
     {
       "fr": "1966",
-      "lu": "Nonzéng Honnert Sechsasiechzeg"
+      "lu": "nonzénghonnertsechsasiechzeg"
     },
     {
       "fr": "1967",
-      "lu": "Nonzéng Honnert Siwenasiechzeg"
+      "lu": "nonzénghonnertsiwenasiechzeg"
     },
     {
       "fr": "1968",
-      "lu": "Nonzéng Honnert Aachtasiechzeg"
+      "lu": "nonzénghonnertaachtasiechzeg"
     },
     {
       "fr": "1971",
-      "lu": "Nonzéng Honnert Eenasiwwenzeg"
+      "lu": "nonzénghonnerteenasiwwenzeg"
     },
     {
       "fr": "1972",
-      "lu": "Nonzéng Honnert Zweeasiwwenzeg"
+      "lu": "nonzénghonnertzweeasiwwenzeg"
     },
     {
       "fr": "1976",
-      "lu": "Nonzéng Honnert Sechsasiwwenzeg"
+      "lu": "nonzénghonnertsechsasiwwenzeg"
     },
     {
       "fr": "1977",
-      "lu": "Nonzéng Honnert Siwenasiwwenzeg"
+      "lu": "nonzénghonnertsiwenasiwwenzeg"
     },
     {
       "fr": "1988",
-      "lu": "Nonzéng Honnert Aachtanaachtzeg"
+      "lu": "nonzénghonnertaachtanaachtzeg"
     },
     {
       "fr": "1997",
-      "lu": "Nonzéng Honnert Siwenannonzeg"
+      "lu": "nonzénghonnertsiwenanonzeg"
     },
     {
       "fr": "2017",
-      "lu": "Zwee Dausend Siwwenzéng"
+      "lu": "zweedausendsiwwenzéng"
     },
     {
       "fr": "2021",
-      "lu": "Zwee Dausend Eenanzwanzeg"
+      "lu": "zweedausendeenanzwanzeg"
     }
   ],
   "cours": [
@@ -951,11 +951,11 @@
       "type": "regle",
       "titre": "Les années",
       "lignes": [
-        "Années 1800-1999 → <b>Aachtzéng/Nonzéng Honnert</b> + reste (espace après Honnert)",
-        "Années 2000+ → <b>Zwee Dausend</b> + reste (espace après Dausend)",
-        "1896 = <b>Uechtzéng Honnert Sechsannonzeg</b>",
-        "2026 = <b>Zwee Dausend Sechsanzwanzeg</b>",
-        "⚠️ Le reste (&lt; 100) est soudé : <b>Sechsanzwanzeg</b>, mais Honnert/Dausend gardent leur espace"
+        "⚠️ Tout est <b>soudé, sans espace</b>",
+        "1800-1999 → <b>uechtzénghonnert / nonzénghonnert</b> + reste",
+        "2000+ → <b>zweedausend</b> + reste",
+        "1958 = <b>nonzénghonnertaachtafofzeg</b>",
+        "2004 = <b>zweedausendvéier</b> · 2026 = <b>zweedausendsechsanzwanzeg</b>"
       ]
     },
     {

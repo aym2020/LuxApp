@@ -198,7 +198,7 @@
     },
     {
       "id": 33,
-      "lu": "Eentanzwanzeg",
+      "lu": "Eenanzwanzeg",
       "fr": "21",
       "note": "Construction : unité + AN + dizaine"
     },
@@ -330,7 +330,7 @@
     },
     {
       "id": 11,
-      "question": "Zweehonnert fënnefanzwanzeg",
+      "question": "Zweehonnertfënnefanzwanzeg",
       "reponse": "225",
       "distracteurs": [
         "252",
@@ -340,7 +340,7 @@
     },
     {
       "id": 12,
-      "question": "Siwenhonnert véierannéngzeg",
+      "question": "Siwenhonnertvéierannéngzeg",
       "reponse": "794",
       "distracteurs": [
         "749",
@@ -350,7 +350,7 @@
     },
     {
       "id": 13,
-      "question": "Nénghonnert eelef",
+      "question": "Nénghonnerteelef",
       "reponse": "911",
       "distracteurs": [
         "901",
@@ -410,7 +410,7 @@
     },
     {
       "id": 19,
-      "question": "Zweehonnert zwielef",
+      "question": "Zweehonnertzwielef",
       "reponse": "212",
       "distracteurs": [
         "221",
@@ -420,7 +420,7 @@
     },
     {
       "id": 20,
-      "question": "Dräihonnert aachtzeg",
+      "question": "Dräihonnertaachtzeg",
       "reponse": "380",
       "distracteurs": [
         "308",
@@ -430,7 +430,7 @@
     },
     {
       "id": 21,
-      "question": "Véierhonnert siwen",
+      "question": "Véierhonnertsiwen",
       "reponse": "407",
       "distracteurs": [
         "470",
@@ -440,7 +440,7 @@
     },
     {
       "id": 22,
-      "question": "Fënnefhonnert véieranvéierzeg",
+      "question": "Fënnefhonnertvéieranvéierzeg",
       "reponse": "544",
       "distracteurs": [
         "454",
@@ -450,7 +450,7 @@
     },
     {
       "id": 23,
-      "question": "Sechshonnert néngzeg",
+      "question": "Sechshonnertnéngzeg",
       "reponse": "690",
       "distracteurs": [
         "609",
@@ -460,7 +460,7 @@
     },
     {
       "id": 24,
-      "question": "Siwenhonnert dräianzwanzeg",
+      "question": "Siwenhonnertdräianzwanzeg",
       "reponse": "723",
       "distracteurs": [
         "732",
@@ -470,7 +470,7 @@
     },
     {
       "id": 25,
-      "question": "Aachthonnert fofzéng",
+      "question": "Aachthonnertfofzéng",
       "reponse": "815",
       "distracteurs": [
         "851",
@@ -480,7 +480,7 @@
     },
     {
       "id": 26,
-      "question": "Nénghonnert siwwenzeg",
+      "question": "Nénghonnertsiwwenzeg",
       "reponse": "970",
       "distracteurs": [
         "907",
@@ -490,7 +490,7 @@
     },
     {
       "id": 27,
-      "question": "Honnert néngannéngzeg",
+      "question": "Honnertnéngannéngzeg",
       "reponse": "199",
       "distracteurs": [
         "109",
@@ -500,7 +500,7 @@
     },
     {
       "id": 28,
-      "question": "Dräihonnert een an drësseg",
+      "question": "Dräihonnert eenandrësseg",
       "reponse": "331",
       "distracteurs": [
         "313",
@@ -510,7 +510,7 @@
     },
     {
       "id": 29,
-      "question": "Véierhonnert zweeansiechzeg",
+      "question": "Véierhonnertzweeansiechzeg",
       "reponse": "462",
       "distracteurs": [
         "426",
@@ -520,7 +520,7 @@
     },
     {
       "id": 30,
-      "question": "Fënnefhonnert aachtanaachtzeg",
+      "question": "Fënnefhonnertaachtanaachtzeg",
       "reponse": "588",
       "distracteurs": [
         "858",
@@ -530,7 +530,7 @@
     },
     {
       "id": 31,
-      "question": "Sechshonnert véierannéngzeg",
+      "question": "Sechshonnertvéierannéngzeg",
       "reponse": "694",
       "distracteurs": [
         "649",
@@ -540,7 +540,7 @@
     },
     {
       "id": 32,
-      "question": "Siwenhonnert fënnefanvéierzeg",
+      "question": "Siwenhonnertfënnefanvéierzeg",
       "reponse": "745",
       "distracteurs": [
         "754",
@@ -550,7 +550,7 @@
     },
     {
       "id": 33,
-      "question": "Aachthonnert zweeanzwanzeg",
+      "question": "Aachthonnertzweeanzwanzeg",
       "reponse": "822",
       "distracteurs": [
         "282",
@@ -779,7 +779,7 @@
       "choix": [
         "eentanaachtzeg",
         "eentannonzeg",
-        "een an aachtzeg",
+        "eenanaachtzeg",
         "zweeanaachtzeg"
       ],
       "note": "81 = eentanaachtzeg"
@@ -844,11 +844,11 @@
   "ecriture": [
     {
       "fr": "0",
-      "lu": "Null"
+      "lu": "null"
     },
     {
       "fr": "1",
-      "lu": "Eent"
+      "lu": "eent"
     },
     {
       "fr": "2 (masculin)",
@@ -860,79 +860,79 @@
     },
     {
       "fr": "3",
-      "lu": "Dräi"
+      "lu": "dräi"
     },
     {
       "fr": "4",
-      "lu": "Véier"
+      "lu": "véier"
     },
     {
       "fr": "5",
-      "lu": "Fënnef"
+      "lu": "fënnef"
     },
     {
       "fr": "6",
-      "lu": "Sechs"
+      "lu": "sechs"
     },
     {
       "fr": "7",
-      "lu": "Siwen"
+      "lu": "siwen"
     },
     {
       "fr": "8",
-      "lu": "Aacht"
+      "lu": "aacht"
     },
     {
       "fr": "9",
-      "lu": "Néng"
+      "lu": "néng"
     },
     {
       "fr": "10",
-      "lu": "Zéng"
+      "lu": "zéng"
     },
     {
       "fr": "11",
-      "lu": "Eelef"
+      "lu": "eelef"
     },
     {
       "fr": "12",
-      "lu": "Zwielef"
+      "lu": "zwielef"
     },
     {
       "fr": "15",
-      "lu": "Fofzéng"
+      "lu": "fofzéng"
     },
     {
       "fr": "20",
-      "lu": "Zwanzeg"
+      "lu": "zwanzeg"
     },
     {
       "fr": "30",
-      "lu": "Drësseg"
+      "lu": "drësseg"
     },
     {
       "fr": "50",
-      "lu": "Fofzeg"
+      "lu": "fofzeg"
     },
     {
       "fr": "80",
-      "lu": "Aachtzeg"
+      "lu": "aachtzeg"
     },
     {
       "fr": "100",
-      "lu": "Honnert"
+      "lu": "honnert"
     },
     {
       "fr": "1000",
-      "lu": "Dausend"
+      "lu": "dausend"
     },
     {
       "fr": "21",
-      "lu": "Eentanzwanzeg"
+      "lu": "eenanzwanzeg"
     },
     {
       "fr": "47",
-      "lu": "Siwenavéierzeg"
+      "lu": "siwenavéierzeg"
     },
     {
       "fr": "Il y a 8 bougies.",
@@ -952,135 +952,135 @@
     },
     {
       "fr": "200",
-      "lu": "Zweehonnert"
+      "lu": "zweehonnert"
     },
     {
       "fr": "13",
-      "lu": "Dräizéng"
+      "lu": "dräizéng"
     },
     {
       "fr": "90",
-      "lu": "Nonzeg"
+      "lu": "nonzeg"
     },
     {
       "fr": "24",
-      "lu": "Véieranzwanzeg"
+      "lu": "véieranzwanzeg"
     },
     {
       "fr": "25",
-      "lu": "Fënnefanzwanzeg"
+      "lu": "fënnefanzwanzeg"
     },
     {
       "fr": "32",
-      "lu": "Zweeandrësseg"
+      "lu": "zweeandrësseg"
     },
     {
       "fr": "34",
-      "lu": "Véierandrësseg"
+      "lu": "véierandrësseg"
     },
     {
       "fr": "35",
-      "lu": "Fënnefandrësseg"
+      "lu": "fënnefandrësseg"
     },
     {
       "fr": "38",
-      "lu": "Aachtandrësseg"
+      "lu": "aachtandrësseg"
     },
     {
       "fr": "48",
-      "lu": "Aachtavéierzeg"
+      "lu": "aachtavéierzeg"
     },
     {
       "fr": "49",
-      "lu": "Néngavéierzeg"
+      "lu": "néngavéierzeg"
     },
     {
       "fr": "52",
-      "lu": "Zweeafofzeg"
+      "lu": "zweeafofzeg"
     },
     {
       "fr": "56",
-      "lu": "Sechsafofzeg"
+      "lu": "sechsafofzeg"
     },
     {
       "fr": "75",
-      "lu": "Fënnefasiwwenzeg"
+      "lu": "fënnefasiwwenzeg"
     },
     {
       "fr": "85",
-      "lu": "Fënnefanaachtzeg"
+      "lu": "fënnefanaachtzeg"
     },
     {
       "fr": "96",
-      "lu": "Sechsannonzeg"
+      "lu": "sechsanonzeg"
     },
     {
       "fr": "98",
-      "lu": "Aachtannonzeg"
+      "lu": "aachtanonzeg"
     },
     {
       "fr": "100",
-      "lu": "Honnert"
+      "lu": "honnert"
     },
     {
       "fr": "128",
-      "lu": "Honnertaachtanzwanzeg"
+      "lu": "honnertaachtanzwanzeg"
     },
     {
       "fr": "200",
-      "lu": "Zweehonnert"
+      "lu": "zweehonnert"
     },
     {
       "fr": "304",
-      "lu": "Dräihonnertvéier"
+      "lu": "dräihonnertvéier"
     },
     {
       "fr": "326",
-      "lu": "Dräihonnertsechsanzwanzeg"
+      "lu": "dräihonnertsechsanzwanzeg"
     },
     {
       "fr": "385",
-      "lu": "Dräihonnertfënnefanaachtzeg"
+      "lu": "dräihonnertfënnefanaachtzeg"
     },
     {
       "fr": "500",
-      "lu": "Fënnefhonnert"
+      "lu": "fënnefhonnert"
     },
     {
       "fr": "659",
-      "lu": "Sechshonnertnéngafofzeg"
+      "lu": "sechshonnertnéngafofzeg"
     },
     {
       "fr": "675",
-      "lu": "Sechshonnertfënnefasiwwenzeg"
+      "lu": "sechshonnertfënnefasiwwenzeg"
     },
     {
       "fr": "704",
-      "lu": "Siwenhonnertvéier"
+      "lu": "siwenhonnertvéier"
     },
     {
       "fr": "766",
-      "lu": "Siwenhonnertsechsasiechzeg"
+      "lu": "siwenhonnertsechsasiechzeg"
     },
     {
       "fr": "819",
-      "lu": "Aachthonnertnonzéng"
+      "lu": "aachthonnertnonzéng"
     },
     {
       "fr": "834",
-      "lu": "Aachthonnertvéierandrësseg"
+      "lu": "aachthonnertvéierandrësseg"
     },
     {
       "fr": "929",
-      "lu": "Nénghonnertnénganzwanzeg"
+      "lu": "nénghonnertnénganzwanzeg"
     },
     {
       "fr": "991",
-      "lu": "Nénghonnerteenannonzeg"
+      "lu": "nénghonnerteenanonzeg"
     },
     {
       "fr": "1000",
-      "lu": "Dausend"
+      "lu": "dausend"
     }
   ],
   "cours": [
@@ -1196,20 +1196,21 @@
       "type": "regle",
       "titre": "Construction des nombres composés",
       "lignes": [
-        "unité + <b>an/a</b> + dizaine, <b>soudé en un seul mot</b> : <b>21 = Eenanzwanzeg</b>",
-        "Devant z, d, n, t (ou voyelle) → <b>an</b> (Een<b>an</b>zwanzeg)",
-        "Devant autre consonne → <b>a</b> (Siwen<b>a</b>véierzeg = 47)",
-        "⚠️ Les nombres &lt; 100 s'écrivent <b>sans espace</b> : Eenanzwanzeg, pas Een an Zwanzeg",
-        "Mais les paliers gardent un espace : <b>Honnert</b> et <b>Dausend</b> (ex : Zweehonnert, mais Zwee Dausend)"
+        "unité + <b>an/a</b> + dizaine, soudé : <b>21 = eenanzwanzeg</b>",
+        "Devant n, d, t, z (ou voyelle, h) → <b>an</b> (een<b>an</b>zwanzeg, fënnef<b>an</b>drësseg)",
+        "Devant autre consonne → <b>a</b> (siwen<b>a</b>véierzeg = 47, een<b>a</b>fofzeg = 51)",
+        "L'unité se place <b>avant</b> la dizaine (contrairement au français)"
       ]
     },
     {
       "type": "regle",
       "titre": "Centaines et milliers",
       "lignes": [
-        "100 = <b>Honnert</b> · 200 = <b>Zweehonnert</b> (soudé)",
-        "1000 = <b>Dausend</b> · 2000 = <b>Zwee Dausend</b> (espace avant Dausend)",
-        "Exemple complet : 247 = <b>Zweehonnertsiwenavéierzeg</b>"
+        "⚠️ Tout est <b>soudé, sans espace</b>, même honnert et dausend",
+        "100 = <b>honnert</b> · 200 = <b>zweehonnert</b> · 250 = <b>zweehonnertfofzeg</b>",
+        "1000 = <b>dausend</b> · 2000 = <b>zweedausend</b>",
+        "121 = <b>honnerteenanzwanzeg</b> · 1219 = <b>dausendzweehonnertnonzéng</b>",
+        "Ce sont des adjectifs → pas de majuscule"
       ]
     },
     {
