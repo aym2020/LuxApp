@@ -313,7 +313,7 @@ header {
 .cours-regle ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
 .cours-regle li { font-size: .85rem; line-height: 1.5; padding-left: 1rem; position: relative; }
 .cours-regle li::before { content: '·'; position: absolute; left: .2rem; color: var(--muted); }
-.cours-regle b { color: var(--text); font-weight: 800; }
+.cours-regle b { color: var(--text); font-weight: 800; font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
 
 .cours-bloc {
   background: var(--surface); border: 1px solid #2a2926;
