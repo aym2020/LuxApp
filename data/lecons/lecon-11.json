@@ -441,7 +441,7 @@
     {
       "id": 5,
       "fr": "Le pharmacien travaille dans une pharmacie. (an + eng → an enger)",
-      "avant": "Den Apdixter schafft an",
+      "avant": "Den Apdiker schafft an",
       "trou": "enger",
       "apres": "Apdikt.",
       "choix": [
@@ -750,7 +750,7 @@
     },
     {
       "fr": "Le pharmacien travaille dans une pharmacie.",
-      "lu": "Den Apdixter schafft an enger Apdikt."
+      "lu": "Den Apdiker schafft an enger Apdikt."
     },
     {
       "fr": "Je travaille dans un supermarché.",

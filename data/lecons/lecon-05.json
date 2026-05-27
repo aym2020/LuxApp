@@ -216,13 +216,13 @@
     },
     {
       "id": 36,
-      "lu": "Vei vill Käerzen sinn dat?",
+      "lu": "Wéi vill Käerze ginn et?",
       "fr": "Combien de bougies y a-t-il ?",
       "note": "Question quantité"
     },
     {
       "id": 37,
-      "lu": "Dat sinn 8 Käerzen.",
+      "lu": "Et sinn aacht Käerzen.",
       "fr": "Il y a 8 bougies.",
       "note": "Dat sinn + chiffre + pluriel"
     }
@@ -936,11 +936,11 @@
     },
     {
       "fr": "Il y a 8 bougies.",
-      "lu": "Dat sinn 8 Käerzen."
+      "lu": "Et sinn aacht Käerzen."
     },
     {
       "fr": "Combien de bougies y a-t-il ?",
-      "lu": "Vei vill Käerzen sinn dat?"
+      "lu": "Wéi vill Käerze ginn et?"
     },
     {
       "fr": "2 portes (féminin)",

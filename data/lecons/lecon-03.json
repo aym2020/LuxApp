@@ -78,43 +78,43 @@
     },
     {
       "id": 13,
-      "lu": "Wat fir eng faarf huet de Bus ?",
+      "lu": "Wat fir eng Faarf huet de Bus ?",
       "fr": "De quelle couleur est le bus ?",
       "note": ""
     },
     {
       "id": 14,
-      "lu": "De Bus ass Gréng.",
+      "lu": "De Bus ass gréng.",
       "fr": "Le bus est vert.",
       "note": ""
     },
     {
       "id": 15,
-      "lu": "Ass de Bus Orange ?",
+      "lu": "Ass de Bus orange ?",
       "fr": "Le bus est-il orange ?",
       "note": ""
     },
     {
       "id": 16,
-      "lu": "Nee, de Bus ass net Orange.",
+      "lu": "Nee, de Bus ass net orange.",
       "fr": "Non, le bus n'est pas orange.",
       "note": ""
     },
     {
       "id": 16,
-      "lu": "Si ass Brong.",
+      "lu": "Si ass brong.",
       "fr": "(La fenêtre) Elle est marron.",
       "note": "Weiblech · Si/Se · Nég: Keng"
     },
     {
       "id": 16,
-      "lu": "Hien ass Gro.",
+      "lu": "Hien ass gro.",
       "fr": "(Le bus) Il est gris.",
       "note": "Männlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 16,
-      "lu": "Et ass Gro.",
+      "lu": "Et ass wäiss.",
       "fr": "(La Feuille) Elle est blanche.",
       "note": "Sächlech · E/En · Nég: Kee/Keen"
     }

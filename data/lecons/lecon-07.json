@@ -18,9 +18,9 @@
     },
     {
       "id": 3,
-      "lu": "en Englänner / eng Englännerin",
+      "lu": "en Engländer / eng Engländerin",
       "fr": "Anglais / Anglaise",
-      "note": "England · M → en Englänner · F → eng Englännerin"
+      "note": "England · M → en Engländer · F → eng Engländerin"
     },
     {
       "id": 4,
@@ -84,9 +84,9 @@
     },
     {
       "id": 14,
-      "lu": "e Hollänner / eng Hollännerin",
+      "lu": "e Holländer / eng Holländerin",
       "fr": "Néerlandais / Néerlandaise",
-      "note": "Holland · M → e Hollänner · F → eng Hollännerin"
+      "note": "Holland · M → e Holländer · F → eng Holländerin"
     },
     {
       "id": 15,
@@ -187,9 +187,9 @@
     {
       "id": 5,
       "question": "Angleterre - Garçon",
-      "reponse": "Englänner",
+      "reponse": "Engländer",
       "distracteurs": [
-        "Englännerin",
+        "Engländerin",
         "Englis",
         "Englisin"
       ]
@@ -197,9 +197,9 @@
     {
       "id": 6,
       "question": "Angleterre - Fille",
-      "reponse": "Englännerin",
+      "reponse": "Engländerin",
       "distracteurs": [
-        "Englänner",
+        "Engländer",
         "Englis",
         "Englisin"
       ]
@@ -407,9 +407,9 @@
     {
       "id": 27,
       "question": "Pays-Bas - Garçon",
-      "reponse": "Hollänner",
+      "reponse": "Holländer",
       "distracteurs": [
-        "Hollännerin",
+        "Holländerin",
         "Holländis",
         "Holländisin"
       ]
@@ -417,9 +417,9 @@
     {
       "id": 28,
       "question": "Pays-Bas - Fille",
-      "reponse": "Hollännerin",
+      "reponse": "Holländerin",
       "distracteurs": [
-        "Hollänner",
+        "Holländer",
         "Holländis",
         "Holländisin"
       ]

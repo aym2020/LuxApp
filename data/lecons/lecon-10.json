@@ -31,7 +31,7 @@
     {
       "id": 5,
       "fr": "Pharmacien / Pharmacienne",
-      "lu": "en Apdikter / eng Apdiktesch",
+      "lu": "en Apdiker / eng Apdikesch",
       "note": "en → devant voyelle A"
     },
     {
@@ -205,10 +205,10 @@
     {
       "id": 5,
       "question": "Pharmacien (masculin) en luxembourgeois ?",
-      "reponse": "en Apdixter",
+      "reponse": "en Apdiker",
       "distracteurs": [
-        "e Apdixter",
-        "eng Apdixter",
+        "e Apdiker",
+        "eng Apdiker",
         "en Apdixtesch"
       ]
     },
@@ -434,7 +434,7 @@
       "apres": ".",
       "choix": [
         "Apdixtesch",
-        "Apdixter",
+        "Apdiker",
         "Doktesch",
         "Infirmière"
       ],
@@ -560,11 +560,11 @@
     },
     {
       "fr": "Pharmacien (M)",
-      "lu": "en Apdixter"
+      "lu": "en Apdiker"
     },
     {
       "fr": "Pharmacienne (F)",
-      "lu": "eng Apdiktesch"
+      "lu": "eng Apdikesch"
     },
     {
       "fr": "Facteur (M)",
@@ -644,7 +644,7 @@
     },
     {
       "fr": "Elle est pharmacienne.",
-      "lu": "Si ass eng Apdiktesch."
+      "lu": "Si ass eng Apdikesch."
     }
   ],
   "cours": [

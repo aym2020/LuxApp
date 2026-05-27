@@ -375,21 +375,21 @@
     {
       "id": 19,
       "question": "Comment demander « quand es-tu né(e) ? » (informel) ?",
-      "reponse": "Wéini bass du Gebuer?",
+      "reponse": "Wéini bass du gebuer?",
       "distracteurs": [
-        "Wéini sidd Dir Gebuer?",
-        "Wéini huet du Gebuer?",
-        "Wéini ass du Gebuer?"
+        "Wéini sidd Dir gebuer?",
+        "Wéini huet du gebuer?",
+        "Wéini ass du gebuer?"
       ]
     },
     {
       "id": 20,
       "question": "Comment dire « je suis né(e) le... » ?",
-      "reponse": "Ech sinn de(n) ___ Gebuer.",
+      "reponse": "Ech sinn de(n) ___ gebuer.",
       "distracteurs": [
-        "Ech hunn de(n) ___ Gebuer.",
-        "Ech ass de(n) ___ Gebuer.",
-        "Ech bin de(n) ___ Gebuer."
+        "Ech hunn de(n) ___ gebuer.",
+        "Ech ass de(n) ___ gebuer.",
+        "Ech bin de(n) ___ gebuer."
       ]
     }
   ],
@@ -729,27 +729,27 @@
     },
     {
       "fr": "Quand es-tu né(e) ?",
-      "lu": "Wéini bass du Gebuer?"
+      "lu": "Wéini bass du gebuer?"
     },
     {
       "fr": "Quand êtes-vous né(e) ?",
-      "lu": "Wéini sidd Dir Gebuer?"
+      "lu": "Wéini sidd Dir gebuer?"
     },
     {
       "fr": "Je suis né(e) en janvier.",
-      "lu": "Ech sinn de Januar Gebuer."
+      "lu": "Ech sinn de Januar gebuer."
     },
     {
       "fr": "Il est né en mars.",
-      "lu": "Hien ass de Mäerz Gebuer."
+      "lu": "Hien ass de Mäerz gebuer."
     },
     {
       "fr": "Elle est née en mai.",
-      "lu": "Si ass de Mee Gebuer."
+      "lu": "Si ass de Mee gebuer."
     },
     {
       "fr": "Barbara est née le 18 janvier 1996.",
-      "lu": "D'Barbara ass den 18te Januar NonzéngHonnertSechsannonzeg Gebuer."
+      "lu": "D'Barbara ass den 18te Januar NonzéngHonnertSechsannonzeg gebuer."
     },
     {
       "fr": "Il a 47 ans.",
@@ -971,11 +971,11 @@
           "Quel âge avez-vous ? (formel)"
         ],
         [
-          "Wéini bass du Gebuer?",
+          "Wéini bass du gebuer?",
           "Quand es-tu né·e ?"
         ],
         [
-          "Ech sinn de Januar Gebuer.",
+          "Ech sinn de Januar gebuer.",
           "Je suis né·e en janvier."
         ]
       ]

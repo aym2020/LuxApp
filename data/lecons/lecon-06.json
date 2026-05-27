@@ -60,9 +60,9 @@
     },
     {
       "id": 10,
-      "lu": "Daitschland",
+      "lu": "Däitschland",
       "fr": "Allemagne",
-      "note": "aus Daitschland"
+      "note": "aus Däitschland"
     },
     {
       "id": 11,
@@ -301,7 +301,7 @@
     {
       "id": 11,
       "question": "Traduction : Allemagne",
-      "reponse": "Daitschland",
+      "reponse": "Däitschland",
       "distracteurs": [
         "Däitschland",
         "Daitchland",
@@ -547,14 +547,14 @@
       "fr": "Angela vient d'Allemagne.",
       "avant": "D'Angela kënnt",
       "trou": "aus",
-      "apres": "Daitschland.",
+      "apres": "Däitschland.",
       "choix": [
         "aus",
         "vu",
         "aus der",
         "vum"
       ],
-      "note": "Daitschland = pas d'article → aus"
+      "note": "Däitschland = pas d'article → aus"
     },
     {
       "id": 5,
@@ -738,7 +738,7 @@
     },
     {
       "fr": "Allemagne",
-      "lu": "Daitschland"
+      "lu": "Däitschland"
     },
     {
       "fr": "Luxembourg",
@@ -782,7 +782,7 @@
     },
     {
       "fr": "Angela vient d'Allemagne.",
-      "lu": "D'Angela kënnt aus Daitschland."
+      "lu": "D'Angela kënnt aus Däitschland."
     },
     {
       "fr": "Il vient du Cap-Vert.",
@@ -871,7 +871,7 @@
           "Angleterre"
         ],
         [
-          "Daitschland",
+          "Däitschland",
           "Allemagne"
         ],
         [
