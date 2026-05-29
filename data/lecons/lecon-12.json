@@ -1,778 +1,845 @@
 {
   "id": 12,
-  "titre": "D'Familljësituatioun",
-  "titre_fr": "La situation familiale",
-  "couleur": "#e85a5a",
+  "titre": "Aarbechtsplaz",
+  "titre_fr": "Les lieux de travail",
+  "couleur": "#c47ae8",
   "flashcards": [
     {
       "id": 1,
-      "fr": "Marié(e)",
-      "lu": "bestuet",
-      "note": "Invariable · Nég: net bestuet"
+      "fr": "Commissariat",
+      "lu": "e Policebüro",
+      "note": "Männlech · op engem Policebüro"
     },
     {
       "id": 2,
-      "fr": "Divorcé(e)",
-      "lu": "gescheet",
-      "note": "Invariable · Nég: net gescheet"
+      "fr": "Hôpital",
+      "lu": "e Spidol",
+      "note": "Männlech · ⚠️ an engem Spidol (exception)"
     },
     {
       "id": 3,
-      "fr": "Séparé(e)",
-      "lu": "getrennt",
-      "note": "Invariable · Nég: net getrennt"
+      "fr": "Salon de coiffure",
+      "lu": "e Coiffersalon",
+      "note": "Männlech · an engem Coiffersalon"
     },
     {
       "id": 4,
-      "fr": "Pacsé(e)",
-      "lu": "gepacst",
-      "note": "Invariable · Nég: net gepacst"
+      "fr": "Banque",
+      "lu": "eng Bank",
+      "note": "Weiblech · op enger Bank"
     },
     {
       "id": 5,
-      "fr": "En couple",
-      "lu": "an enger Beziehung",
-      "note": "Invariable · Nég: net an enger Beziehung"
+      "fr": "Pharmacie",
+      "lu": "eng Apdikt",
+      "note": "Weiblech · an enger Apdikt"
     },
     {
       "id": 6,
-      "fr": "Célibataire (M)",
-      "lu": "leedeg · e Jonggesell",
-      "note": "Nég: kee Jonggesell"
+      "fr": "Poste",
+      "lu": "eng Post",
+      "note": "Weiblech · op enger Post"
     },
     {
       "id": 7,
-      "fr": "Célibataire (F)",
-      "lu": "leedeg · eng Jonggesellin",
-      "note": "Nég: keng Jonggesellin"
+      "fr": "Tribunal",
+      "lu": "e Gericht",
+      "note": "Männlech · op engem Gericht"
     },
     {
       "id": 8,
-      "fr": "Petit ami / Copain",
-      "lu": "e Frënd",
-      "note": "Männlech · Nég: kee Frënd"
+      "fr": "Boucherie",
+      "lu": "eng Metzlerei",
+      "note": "Weiblech · an enger Metzlerei"
     },
     {
       "id": 9,
-      "fr": "Petite amie / Copine",
-      "lu": "eng Frendin",
-      "note": "Weiblech · Nég: keng Frendin"
+      "fr": "Boulangerie",
+      "lu": "eng Bäckerei",
+      "note": "Weiblech · an enger Bäckerei"
     },
     {
       "id": 10,
-      "fr": "Un enfant / Les enfants",
-      "lu": "e Kand / Kanner",
-      "note": "Singulier / Pluriel"
+      "fr": "Supermarché",
+      "lu": "e Supermarché",
+      "note": "Männlech · an engem Supermarché"
     },
     {
       "id": 11,
-      "fr": "Un garçon / Des garçons",
-      "lu": "e Jong / Jongen",
-      "note": "Singulier / Pluriel"
+      "fr": "École",
+      "lu": "eng Schoul",
+      "note": "Weiblech · ⚠️ an engem Schoul (exception)"
     },
     {
       "id": 12,
-      "fr": "Une fille / Des filles",
-      "lu": "e Meedchen / Meedercher",
-      "note": "Singulier / Pluriel"
+      "fr": "Aéroport",
+      "lu": "e Fluchhafen",
+      "note": "Männlech · op engem Fluchhafen"
     },
     {
       "id": 13,
-      "lu": "Sidd Dir bestuet?",
-      "fr": "Êtes-vous marié(e) ?",
-      "note": "Dir = vous (formel)"
+      "fr": "Restaurant",
+      "lu": "e Restaurant",
+      "note": "Männlech · an engem Restaurant"
     },
     {
       "id": 14,
-      "lu": "Bass du bestuet?",
-      "fr": "Es-tu marié(e) ?",
-      "note": "du = tu (informel)"
+      "fr": "travailler",
+      "lu": "schaffen",
+      "note": "Ech schaffen · Du schaffs · Hien/Si schafft"
     },
     {
       "id": 15,
-      "lu": "Jo, hien ass bestuet.",
-      "fr": "Oui, il est marié.",
-      "note": "hien = il"
+      "fr": "Où travaillez-vous ? (formel)",
+      "lu": "Wou schafft Dir?",
+      "note": "Dir = vous formel"
     },
     {
       "id": 16,
-      "lu": "Nee, hien ass net bestuet.",
-      "fr": "Non, il n'est pas marié.",
-      "note": "net = négation"
+      "fr": "Où travailles-tu ? (informel)",
+      "lu": "Wou schaffs du?",
+      "note": "du = tu informel"
     },
     {
       "id": 17,
-      "lu": "Huet si e Frënd?",
-      "fr": "A-t-elle un copain ?",
-      "note": "Frënd = copain"
+      "fr": "Je travaille dans…",
+      "lu": "Ech schaffen an/op…",
+      "note": "an = dans · op = sur/à"
     },
     {
       "id": 18,
-      "lu": "Jo, si huet e Frënd.",
-      "fr": "Oui, elle a un copain.",
-      "note": "huet = a"
+      "fr": "chez / auprès de",
+      "lu": "bei",
+      "note": "bei + nom d'entreprise ou bei engem + métier"
     },
     {
       "id": 19,
-      "lu": "Nee, si huet kee Frënd.",
-      "fr": "Non, elle n'a pas de copain.",
-      "note": "kee devant nom masculin"
+      "fr": "Je travaille chez un médecin.",
+      "lu": "Ech schaffe bei engem Dokter.",
+      "note": "bei engem + métier M/N"
     },
     {
       "id": 20,
-      "lu": "Hutt Dir Kanner?",
-      "fr": "Avez-vous des enfants ?",
-      "note": "Dir = vous (formel)"
+      "lu": "E Coiffer schafft an engem Coiffersalon.",
+      "fr": "Un coiffeur travaille dans un salon de coiffure.",
+      "note": "an engem = dans un (masculin/neutre)"
     },
     {
       "id": 21,
-      "lu": "Hues du Kanner?",
-      "fr": "As-tu des enfants ?",
-      "note": "du = tu (informel)"
+      "lu": "E Bäcker schafft an enger Bäckerei.",
+      "fr": "Un boulanger travaille dans une boulangerie.",
+      "note": "an enger = dans une (féminin)"
     },
     {
       "id": 22,
-      "lu": "Ech hunn zwee Kanner, e Meedchen an e Jong.",
-      "fr": "J'ai deux enfants, une fille et un garçon.",
-      "note": "Meedchen = fille · Jong = garçon"
+      "lu": "E Polizist schafft op engem Policebüro.",
+      "fr": "Un policier travaille dans un commissariat.",
+      "note": "op engem = sur/dans un lieu administratif"
+    },
+    {
+      "id": 23,
+      "lu": "Wou schafft e Polizist?",
+      "fr": "Où travaille un policier ?",
+      "note": "Wou = où"
+    },
+    {
+      "id": 24,
+      "lu": "Hie schafft op engem Policebüro.",
+      "fr": "Il travaille dans un commissariat.",
+      "note": "Réponse à la question précédente"
+    },
+    {
+      "id": 25,
+      "lu": "Wou schafft Dir?",
+      "fr": "Où travaillez-vous ?",
+      "note": "Dir = vous (formel)"
+    },
+    {
+      "id": 26,
+      "lu": "Wou schaffs du?",
+      "fr": "Où travailles-tu ?",
+      "note": "du = tu (informel)"
+    },
+    {
+      "id": 27,
+      "lu": "Ech schaffen an enger Bank.",
+      "fr": "Je travaille dans une banque.",
+      "note": "an enger = dans une"
+    },
+    {
+      "id": 28,
+      "lu": "Ech schaffen an engem Büro.",
+      "fr": "Je travaille dans un bureau.",
+      "note": "an engem = dans un"
+    },
+    {
+      "id": 29,
+      "lu": "Ech schaffen op engem Policebüro.",
+      "fr": "Je travaille dans un commissariat.",
+      "note": "op engem = dans un commissariat"
     }
   ],
   "quiz": [
     {
       "id": 1,
-      "question": "Marié(e) en luxembourgeois ?",
-      "reponse": "bestuet",
+      "question": "Où travaille le policier ? (orthographe)",
+      "reponse": "Policebüro",
       "distracteurs": [
-        "gescheet",
-        "getrennt",
-        "gepacst"
+        "Policebüra",
+        "Policebiuro",
+        "Polizeibüro"
       ]
     },
     {
       "id": 2,
-      "question": "Divorcé(e) en luxembourgeois ?",
-      "reponse": "gescheet",
+      "question": "Où travaille le médecin ? (orthographe)",
+      "reponse": "Spidol",
       "distracteurs": [
-        "bestuet",
-        "getrennt",
-        "gepacst"
+        "Spidal",
+        "Spidall",
+        "Spidoel"
       ]
     },
     {
       "id": 3,
-      "question": "Séparé(e) en luxembourgeois ?",
-      "reponse": "getrennt",
+      "question": "Où travaille le coiffeur ? (orthographe)",
+      "reponse": "Coiffersalon",
       "distracteurs": [
-        "gescheet",
-        "gepacst",
-        "bestuet"
+        "Coifersalon",
+        "Coiffersallon",
+        "Coiffersalone"
       ]
     },
     {
       "id": 4,
-      "question": "Pacsé(e) en luxembourgeois ?",
-      "reponse": "gepacst",
+      "question": "Où travaille le banquier ? (orthographe)",
+      "reponse": "Bank",
       "distracteurs": [
-        "bestuet",
-        "gescheet",
-        "getrennt"
+        "Banke",
+        "Banck",
+        "Bankk"
       ]
     },
     {
       "id": 5,
-      "question": "En couple en luxembourgeois ?",
-      "reponse": "an enger Beziehung",
+      "question": "Où travaille le pharmacien ? (orthographe)",
+      "reponse": "Apdikt",
       "distracteurs": [
-        "an engem Beziehung",
-        "op enger Beziehung",
-        "an enger Bezéiung"
+        "Apdick",
+        "Apdict",
+        "Apdiqt"
       ]
     },
     {
       "id": 6,
-      "question": "Célibataire masculin en luxembourgeois ?",
-      "reponse": "e Jonggesell",
+      "question": "Où travaille le facteur ? (orthographe)",
+      "reponse": "Post",
       "distracteurs": [
-        "eng Jonggesell",
-        "e Jonggesellin",
-        "en Jonggesell"
+        "Poste",
+        "Posst",
+        "Phost"
       ]
     },
     {
       "id": 7,
-      "question": "Célibataire féminin en luxembourgeois ?",
-      "reponse": "eng Jonggesellin",
+      "question": "Où travaille l'avocat ? (orthographe)",
+      "reponse": "Gericht",
       "distracteurs": [
-        "e Jonggesellin",
-        "eng Jonggesell",
-        "en Jonggesellin"
+        "Geright",
+        "Gerricht",
+        "Gerichtt"
       ]
     },
     {
       "id": 8,
-      "question": "Petit ami / copain en luxembourgeois ?",
-      "reponse": "e Frënd",
+      "question": "Où travaille le boucher ? (orthographe)",
+      "reponse": "Metzlerei",
       "distracteurs": [
-        "eng Frënd",
-        "eng Frendin",
-        "en Frënd"
+        "Metzlerai",
+        "Metzlerrei",
+        "Metzlerei"
       ]
     },
     {
       "id": 9,
-      "question": "Petite amie / copine en luxembourgeois ?",
-      "reponse": "eng Frendin",
+      "question": "Où travaille le boulanger ? (orthographe)",
+      "reponse": "Bäckerei",
       "distracteurs": [
-        "e Frendin",
-        "e Frënd",
-        "en Frendin"
+        "Bäckerai",
+        "Backeräi",
+        "Bäckerrei"
       ]
     },
     {
       "id": 10,
-      "question": "Comment nier un statut invariable (bestuet, gescheet…) ?",
-      "reponse": "net bestuet",
+      "question": "Où travaille le caissier ? (orthographe)",
+      "reponse": "Supermarché",
       "distracteurs": [
-        "kee bestuet",
-        "keng bestuet",
-        "pas bestuet"
+        "Supermarche",
+        "Superimarché",
+        "Supermarshé"
       ]
     },
     {
       "id": 11,
-      "question": "Comment nier « il a un copain » ?",
-      "reponse": "kee Frënd",
+      "question": "Où travaille le professeur ? (orthographe)",
+      "reponse": "Schoul",
       "distracteurs": [
-        "net Frënd",
-        "keng Frënd",
-        "kee Frendin"
+        "School",
+        "Schule",
+        "Schul"
       ]
     },
     {
       "id": 12,
-      "question": "Comment nier « elle a une copine » ?",
-      "reponse": "keng Frendin",
+      "question": "Où travaille le pilote ? (orthographe)",
+      "reponse": "Fluchhafen",
       "distracteurs": [
-        "kee Frendin",
-        "net Frendin",
-        "keng Frënd"
+        "Flughafen",
+        "Fluchafen",
+        "Fluchhaven"
       ]
     },
     {
       "id": 13,
-      "question": "Un enfant / les enfants en luxembourgeois ?",
-      "reponse": "e Kand / Kanner",
+      "question": "Où travaille le cuisinier ? (orthographe)",
+      "reponse": "Restaurant",
       "distracteurs": [
-        "e Jong / Jongen",
-        "e Meedchen / Meedercher",
-        "e Kand / Kanden"
+        "Restaurante",
+        "Restarant",
+        "Restaurannt"
       ]
     },
     {
       "id": 14,
-      "question": "Un garçon / des garçons en luxembourgeois ?",
-      "reponse": "e Jong / Jongen",
+      "question": "Quel article pour Policebüro ?",
+      "reponse": "e Policebüro",
       "distracteurs": [
-        "e Kand / Kanner",
-        "e Meedchen / Meedercher",
-        "e Jong / Jonger"
+        "eng Policebüro",
+        "en Policebüro",
+        "d' Policebüro"
       ]
     },
     {
       "id": 15,
-      "question": "Une fille / des filles en luxembourgeois ?",
-      "reponse": "e Meedchen / Meedercher",
+      "question": "Quel article pour Spidol ?",
+      "reponse": "e Spidol",
       "distracteurs": [
-        "e Jong / Jongen",
-        "e Kand / Kanner",
-        "e Meedchen / Meedchen"
+        "eng Spidol",
+        "en Spidol",
+        "d' Spidol"
       ]
     },
     {
       "id": 16,
-      "question": "Comment demander « es-tu marié ? » (informel) ?",
-      "reponse": "Bass du bestuet?",
+      "question": "Quel article pour Bank ?",
+      "reponse": "eng Bank",
       "distracteurs": [
-        "Sidd Dir bestuet?",
-        "Ass hie bestuet?",
-        "Huet si bestuet?"
+        "e Bank",
+        "en Bank",
+        "d' Bank"
       ]
     },
     {
       "id": 17,
-      "question": "Comment demander « avez-vous des enfants ? » (formel) ?",
-      "reponse": "Hutt Dir Kanner?",
+      "question": "Quel article pour Apdikt ?",
+      "reponse": "eng Apdikt",
       "distracteurs": [
-        "Hues du Kanner?",
-        "Huet si Kanner?",
-        "Sidd Dir Kanner?"
+        "e Apdikt",
+        "en Apdikt",
+        "d' Apdikt"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Quel article pour Schoul ?",
+      "reponse": "eng Schoul",
+      "distracteurs": [
+        "e Schoul",
+        "en Schoul",
+        "d' Schoul"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Quel article pour Metzlerei ?",
+      "reponse": "eng Metzlerei",
+      "distracteurs": [
+        "e Metzlerei",
+        "en Metzlerei",
+        "d' Metzlerei"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Quel article pour Fluchhafen ?",
+      "reponse": "e Fluchhafen",
+      "distracteurs": [
+        "eng Fluchhafen",
+        "en Fluchhafen",
+        "d' Fluchhafen"
       ]
     }
   ],
   "trous": [
     {
       "id": 1,
-      "fr": "Beyoncé est mariée.",
-      "avant": "D'Beyoncé ass",
-      "trou": "bestuet",
-      "apres": ".",
+      "fr": "Le policier travaille au commissariat. (op + e → op engem)",
+      "avant": "De Polizist schafft op",
+      "trou": "engem",
+      "apres": "Policebüro.",
       "choix": [
-        "bestuet",
-        "gescheet",
-        "getrennt",
-        "leedeg"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "bestuet = marié(e) · invariable M et F"
+      "note": "Policebüro = Männlech · op + e → op engem"
     },
     {
       "id": 2,
-      "fr": "Brad Pitt est divorcé.",
-      "avant": "De Brad Pitt ass",
-      "trou": "gescheet",
-      "apres": ".",
+      "fr": "Le médecin travaille à l'hôpital. (an + e → an engem, exception !)",
+      "avant": "Den Dokter schafft an",
+      "trou": "engem",
+      "apres": "Spidol.",
       "choix": [
-        "bestuet",
-        "gescheet",
-        "gepacst",
-        "getrennt"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "gescheet = divorcé(e)"
+      "note": "⚠️ Spidol = exception → an engem (pas op engem)"
     },
     {
       "id": 3,
-      "fr": "Shakira et Piqué sont séparés.",
-      "avant": "D'Shakira an de Piqué sinn",
-      "trou": "getrennt",
-      "apres": ".",
+      "fr": "Le coiffeur travaille dans un salon de coiffure. (an + e → an engem)",
+      "avant": "De Coiffer schafft an",
+      "trou": "engem",
+      "apres": "Coiffersalon.",
       "choix": [
-        "getrennt",
-        "gescheet",
-        "bestuet",
-        "gepacst"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "getrennt = séparé(e)"
+      "note": "Coiffersalon = Männlech · an + e → an engem"
     },
     {
       "id": 4,
-      "fr": "Non, il n'est pas marié.",
-      "avant": "Nee, hien ass",
-      "trou": "net",
-      "apres": "bestuet.",
+      "fr": "Le banquier travaille à la banque. (op + eng → op enger)",
+      "avant": "De Banker schafft op",
+      "trou": "enger",
+      "apres": "Bank.",
       "choix": [
-        "net",
-        "kee",
-        "keng",
-        "pas"
+        "engem",
+        "enger",
+        "an engem",
+        "an enger"
       ],
-      "note": "Statut invariable → négation avec net (pas kee/keng)"
+      "note": "Bank = Weiblech · op + eng → op enger"
     },
     {
       "id": 5,
-      "fr": "Oui, il est marié.",
-      "avant": "Jo, hien ass",
-      "trou": "bestuet",
-      "apres": ".",
+      "fr": "Le pharmacien travaille dans une pharmacie. (an + eng → an enger)",
+      "avant": "Den Apdiker schafft an",
+      "trou": "enger",
+      "apres": "Apdikt.",
       "choix": [
-        "bestuet",
-        "gescheet",
-        "leedeg",
-        "getrennt"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "hien = il · ass = est"
+      "note": "Apdikt = Weiblech · an + eng → an enger"
     },
     {
       "id": 6,
-      "fr": "Taylor Swift est en couple.",
-      "avant": "D'Taylor Swift ass an",
+      "fr": "Le facteur travaille à la poste. (op + eng → op enger)",
+      "avant": "De Breifdréier schafft op",
       "trou": "enger",
-      "apres": "Beziehung.",
+      "apres": "Post.",
       "choix": [
-        "enger",
         "engem",
-        "an enger",
-        "op enger"
+        "enger",
+        "an engem",
+        "an enger"
       ],
-      "note": "Beziehung = féminin → an enger Beziehung"
+      "note": "Post = Weiblech · op + eng → op enger"
     },
     {
       "id": 7,
-      "fr": "Elle a un copain.",
-      "avant": "Si huet",
-      "trou": "e",
-      "apres": "Frënd.",
+      "fr": "L'avocat travaille au tribunal. (op + e → op engem)",
+      "avant": "Den Affekot schafft op",
+      "trou": "engem",
+      "apres": "Gericht.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "engem",
+        "enger",
+        "an engem",
+        "an enger"
       ],
-      "note": "Frënd = masculin → e Frënd"
+      "note": "Gericht = Männlech · op + e → op engem"
     },
     {
       "id": 8,
-      "fr": "Non, elle n'a pas de copine.",
-      "avant": "Nee, si huet",
-      "trou": "keng",
-      "apres": "Frendin.",
+      "fr": "Le boucher travaille dans une boucherie. (an + eng → an enger)",
+      "avant": "De Metzler schafft an",
+      "trou": "enger",
+      "apres": "Metzlerei.",
       "choix": [
-        "kee",
-        "keng",
-        "net",
-        "keen"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "Frendin = féminin → keng Frendin"
+      "note": "Metzlerei = Weiblech · an + eng → an enger"
     },
     {
       "id": 9,
-      "fr": "Non, il n'a pas de copain.",
-      "avant": "Nee, hien huet",
-      "trou": "kee",
-      "apres": "Frënd.",
+      "fr": "Le boulanger travaille dans une boulangerie. (an + eng → an enger)",
+      "avant": "De Bäcker schafft an",
+      "trou": "enger",
+      "apres": "Bäckerei.",
       "choix": [
-        "kee",
-        "keng",
-        "net",
-        "keen"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "Frënd = masculin → kee Frënd"
+      "note": "Bäckerei = Weiblech · an + eng → an enger"
     },
     {
       "id": 10,
-      "fr": "Cristiano Ronaldo est célibataire. (masculin)",
-      "avant": "De Ronaldo ass",
-      "trou": "leedeg",
-      "apres": ".",
+      "fr": "Le caissier travaille dans un supermarché. (an + e → an engem)",
+      "avant": "De Caissier schafft an",
+      "trou": "engem",
+      "apres": "Supermarché.",
       "choix": [
-        "leedeg",
-        "bestuet",
-        "gescheet",
-        "getrennt"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "leedeg = célibataire (invariable comme adjectif)"
+      "note": "Supermarché = Männlech · an + e → an engem"
     },
     {
       "id": 11,
-      "fr": "Ariana Grande a un copain.",
-      "avant": "D'Ariana huet",
-      "trou": "e",
-      "apres": "Frënd.",
+      "fr": "Le professeur travaille à l'école. (an + eng → an engem, exception !)",
+      "avant": "De Schoulmeeschter schafft an",
+      "trou": "engem",
+      "apres": "Schoul.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "Frënd = masculin → e Frënd"
+      "note": "⚠️ Schoul = exception → an engem (même si eng Schoul)"
     },
     {
       "id": 12,
-      "fr": "J'ai deux enfants, un garçon et une fille.",
-      "avant": "Ech hunn 2 Kanner,",
-      "trou": "e",
-      "apres": "Jong an e Meedchen.",
+      "fr": "Le pilote travaille à l'aéroport. (op + e → op engem)",
+      "avant": "De Pilot schafft op",
+      "trou": "engem",
+      "apres": "Fluchhafen.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "engem",
+        "enger",
+        "an engem",
+        "an enger"
       ],
-      "note": "Jong = masculin → e Jong"
+      "note": "Fluchhafen = Männlech · op + e → op engem"
     },
     {
       "id": 13,
-      "fr": "Est-il marié ?",
-      "avant": "Ass",
-      "trou": "hie",
-      "apres": "bestuet?",
+      "fr": "Le cuisinier travaille dans un restaurant. (an + e → an engem)",
+      "avant": "De Kach schafft an",
+      "trou": "engem",
+      "apres": "Restaurant.",
       "choix": [
-        "hie",
-        "hien",
-        "si",
-        "du"
+        "engem",
+        "enger",
+        "op engem",
+        "op enger"
       ],
-      "note": "hie = forme réduite de hien devant un verbe commençant par voyelle"
+      "note": "Restaurant = Männlech · an + e → an engem"
     },
     {
       "id": 14,
-      "fr": "As-tu des enfants ? (informel)",
-      "avant": "Hues",
-      "trou": "du",
-      "apres": "Kanner?",
+      "fr": "Je travaille chez un médecin.",
+      "avant": "Ech schaffe",
+      "trou": "bei",
+      "apres": "engem Dokter.",
       "choix": [
-        "du",
-        "Dir",
-        "si",
-        "hien"
+        "bei",
+        "an",
+        "op",
+        "als"
       ],
-      "note": "Hues du = as-tu (informel) · Hutt Dir = avez-vous (formel)"
+      "note": "bei = chez · bei engem Dokter"
     },
     {
       "id": 15,
-      "fr": "Avez-vous des enfants ? (formel)",
-      "avant": "Hutt",
-      "trou": "Dir",
-      "apres": "Kanner?",
+      "fr": "Je travaille comme secrétaire chez un médecin.",
+      "avant": "Ech schaffen als Seкtärin",
+      "trou": "bei engem",
+      "apres": "Dokter.",
       "choix": [
-        "Dir",
-        "du",
-        "si",
-        "hien"
+        "bei engem",
+        "bei",
+        "op",
+        "als"
       ],
-      "note": "Hutt Dir = avez-vous (formel) · majuscule obligatoire"
+      "note": "als = comme · bei = chez"
     },
     {
       "id": 16,
-      "fr": "Non, il n'est pas séparé, il est divorcé.",
-      "avant": "Nee, hien ass net",
-      "trou": "getrennt",
-      "apres": ", hien ass gescheet.",
+      "fr": "Je travaille comme boulangère.",
+      "avant": "Ech schaffen",
+      "trou": "als",
+      "apres": "Bäckesch.",
       "choix": [
-        "getrennt",
-        "gescheet",
-        "gepacst",
-        "bestuet"
+        "als",
+        "bei",
+        "an",
+        "op"
       ],
-      "note": "getrennt = séparé · gescheet = divorcé"
+      "note": "als = comme / en tant que"
     },
     {
       "id": 17,
-      "fr": "Elle a deux filles.",
-      "avant": "Si huet zwou",
-      "trou": "Meedercher",
-      "apres": ".",
+      "fr": "Où travailles-tu ? (informel)",
+      "avant": "Wou",
+      "trou": "schaffs",
+      "apres": "du?",
       "choix": [
-        "Meedercher",
-        "Meedchen",
-        "Jongen",
-        "Kanner"
+        "schaffs",
+        "schafft",
+        "schaffen",
+        "schaffe"
       ],
-      "note": "Meedercher = des filles (pluriel de Meedchen)"
+      "note": "du → schaffs (2e personne singulier informel)"
     },
     {
       "id": 18,
-      "fr": "Il a trois garçons.",
-      "avant": "Hien huet dräi",
-      "trou": "Jongen",
-      "apres": ".",
+      "fr": "Où travaillez-vous ? (formel)",
+      "avant": "Wou schafft",
+      "trou": "Dir",
+      "apres": "?",
       "choix": [
-        "Jongen",
-        "Jong",
-        "Kanner",
-        "Meedercher"
+        "Dir",
+        "du",
+        "hien",
+        "si"
       ],
-      "note": "Jongen = des garçons (pluriel de Jong)"
+      "note": "Dir = vous formel (majuscule)"
     }
   ],
   "ecriture": [
     {
-      "fr": "Marié(e)",
-      "lu": "bestuet"
+      "fr": "Commissariat",
+      "lu": "e Policebüro"
     },
     {
-      "fr": "Divorcé(e)",
-      "lu": "gescheet"
+      "fr": "Hôpital",
+      "lu": "e Spidol"
     },
     {
-      "fr": "Séparé(e)",
-      "lu": "getrennt"
+      "fr": "Salon de coiffure",
+      "lu": "e Coiffersalon"
     },
     {
-      "fr": "Pacsé(e)",
-      "lu": "gepacst"
+      "fr": "Banque",
+      "lu": "eng Bank"
     },
     {
-      "fr": "En couple",
-      "lu": "an enger Beziehung"
+      "fr": "Pharmacie",
+      "lu": "eng Apdikt"
     },
     {
-      "fr": "Célibataire (M)",
-      "lu": "e Jonggesell"
+      "fr": "Poste",
+      "lu": "eng Post"
     },
     {
-      "fr": "Célibataire (F)",
-      "lu": "eng Jonggesellin"
+      "fr": "Tribunal",
+      "lu": "e Gericht"
     },
     {
-      "fr": "Petit ami / Copain",
-      "lu": "e Frënd"
+      "fr": "Boucherie",
+      "lu": "eng Metzlerei"
     },
     {
-      "fr": "Petite amie / Copine",
-      "lu": "eng Frendin"
+      "fr": "Boulangerie",
+      "lu": "eng Bäckerei"
     },
     {
-      "fr": "Un enfant",
-      "lu": "e Kand"
+      "fr": "Supermarché",
+      "lu": "e Supermarché"
     },
     {
-      "fr": "Les enfants",
-      "lu": "Kanner"
+      "fr": "École",
+      "lu": "eng Schoul"
     },
     {
-      "fr": "Un garçon",
-      "lu": "e Jong"
+      "fr": "Aéroport",
+      "lu": "e Fluchhafen"
     },
     {
-      "fr": "Des garçons",
-      "lu": "Jongen"
+      "fr": "Restaurant",
+      "lu": "e Restaurant"
     },
     {
-      "fr": "Une fille",
-      "lu": "e Meedchen"
+      "fr": "travailler",
+      "lu": "schaffen"
     },
     {
-      "fr": "Des filles",
-      "lu": "Meedercher"
+      "fr": "Où travailles-tu ?",
+      "lu": "Wou schaffs du?"
     },
     {
-      "fr": "Il est marié.",
-      "lu": "Hien ass bestuet."
+      "fr": "Où travaillez-vous ?",
+      "lu": "Wou schafft Dir?"
     },
     {
-      "fr": "Elle est mariée.",
-      "lu": "Si ass bestuet."
+      "fr": "Le policier travaille au commissariat.",
+      "lu": "De Polizist schafft op engem Policebüro."
     },
     {
-      "fr": "Non, il n'est pas marié.",
-      "lu": "Nee, hien ass net bestuet."
+      "fr": "Le médecin travaille à l'hôpital.",
+      "lu": "Den Dokter schafft an engem Spidol."
     },
     {
-      "fr": "Elle a un copain.",
-      "lu": "Si huet e Frënd."
+      "fr": "Le facteur travaille à la poste.",
+      "lu": "De Breifdréier schafft op enger Post."
     },
     {
-      "fr": "Non, il n'a pas de copain.",
-      "lu": "Nee, hien huet kee Frënd."
+      "fr": "L'avocat travaille au tribunal.",
+      "lu": "Den Affekot schafft op engem Gericht."
     },
     {
-      "fr": "Non, elle n'a pas de copine.",
-      "lu": "Nee, si huet keng Frendin."
+      "fr": "Le boulanger travaille dans une boulangerie.",
+      "lu": "De Bäcker schafft an enger Bäckerei."
     },
     {
-      "fr": "Es-tu marié(e) ?",
-      "lu": "Bass du bestuet?"
+      "fr": "Le pilote travaille à l'aéroport.",
+      "lu": "De Pilot schafft op engem Fluchhafen."
     },
     {
-      "fr": "Êtes-vous marié(e) ?",
-      "lu": "Sidd Dir bestuet?"
+      "fr": "Je travaille chez un médecin.",
+      "lu": "Ech schaffe bei engem Dokter."
     },
     {
-      "fr": "A-t-elle un copain ?",
-      "lu": "Huet si e Frënd?"
+      "fr": "Je travaille comme boulangère.",
+      "lu": "Ech schaffen als Bäckesch."
     },
     {
-      "fr": "As-tu des enfants ?",
-      "lu": "Hues du Kanner?"
+      "fr": "chez / auprès de",
+      "lu": "bei"
     },
     {
-      "fr": "Avez-vous des enfants ?",
-      "lu": "Hutt Dir Kanner?"
+      "fr": "Le cuisinier travaille dans un restaurant.",
+      "lu": "De Kach schafft an engem Restaurant."
     },
     {
-      "fr": "J'ai deux enfants.",
-      "lu": "Ech hunn 2 Kanner."
+      "fr": "Le professeur travaille à l'école.",
+      "lu": "De Schoulmeeschter schafft an engem Schoul."
     },
     {
-      "fr": "Il est divorcé.",
-      "lu": "Hien ass gescheet."
+      "fr": "La banquière travaille à la banque.",
+      "lu": "D'Bankerin schafft op enger Bank."
     },
     {
-      "fr": "Elle est en couple.",
-      "lu": "Si ass an enger Beziehung."
+      "fr": "Le pharmacien travaille dans une pharmacie.",
+      "lu": "Den Apdiker schafft an enger Apdikt."
     },
     {
-      "fr": "Elle a deux filles.",
-      "lu": "Si huet zwou Meedercher."
+      "fr": "Je travaille dans un supermarché.",
+      "lu": "Ech schaffen an engem Supermarché."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "La situation familiale. Les statuts sont invariables et se nient avec <b>net</b>."
+      "contenu": "Les lieux de travail. On utilise le verbe <b>schaffen</b> (travailler) + une préposition contractée."
+    },
+    {
+      "type": "regle",
+      "titre": "Contraction préposition + article",
+      "lignes": [
+        "an + e → <b>an engem</b> (M/N) · an + eng → <b>an enger</b> (F)",
+        "op + e → <b>op engem</b> (M/N) · op + eng → <b>op enger</b> (F)",
+        "⚠️ Exceptions : Spidol et Schoul → <b>an engem</b>"
+      ]
     },
     {
       "type": "vocab",
-      "titre": "Statuts (invariables)",
+      "titre": "Lieux de travail",
       "items": [
         [
-          "bestuet",
-          "marié·e"
+          "e Policebüro",
+          "commissariat"
         ],
         [
-          "gescheet",
-          "divorcé·e"
+          "e Spidol",
+          "hôpital"
         ],
         [
-          "getrennt",
-          "séparé·e"
+          "eng Bank",
+          "banque"
         ],
         [
-          "gepacst",
-          "pacsé·e"
+          "eng Apdikt",
+          "pharmacie"
         ],
         [
-          "an enger Beziehung",
-          "en couple"
+          "eng Post",
+          "poste"
         ],
         [
-          "leedeg",
-          "célibataire (invariable)"
+          "e Gericht",
+          "tribunal"
         ],
         [
-          "e Jonggesell / eng Jonggesellin",
-          "un·e célibataire (nom M / F)"
+          "eng Bäckerei",
+          "boulangerie"
+        ],
+        [
+          "eng Schoul",
+          "école"
+        ],
+        [
+          "e Fluchhafen",
+          "aéroport"
+        ],
+        [
+          "e Restaurant",
+          "restaurant"
         ]
       ]
     },
     {
       "type": "regle",
-      "titre": "Négation — attention !",
+      "titre": "Les mots « bei » et « als »",
       "lignes": [
-        "Statut (adjectif) → <b>net</b> : Hien ass <b>net</b> bestuet.",
-        "Nom (copain/copine) → <b>kee/keng</b> : Si huet <b>keng</b> Frendin."
-      ]
-    },
-    {
-      "type": "vocab",
-      "titre": "Famille",
-      "items": [
-        [
-          "e Frënd / eng Frendin",
-          "copain / copine"
-        ],
-        [
-          "e Kand / Kanner",
-          "un enfant / les enfants"
-        ],
-        [
-          "e Jong / Jongen",
-          "un garçon / des garçons"
-        ],
-        [
-          "e Meedchen / Meedercher",
-          "une fille / des filles"
-        ]
+        "<b>bei</b> = chez / auprès de (bei engem Dokter)",
+        "<b>als</b> = comme (als Seкtärin)"
       ]
     },
     {
       "type": "dialogue",
-      "titre": "Poser la question et répondre",
+      "titre": "Exemples",
       "echanges": [
         [
-          "Bass du bestuet?",
-          "Es-tu marié·e ?"
+          "De Polizist schafft op engem Policebüro.",
+          "Le policier travaille au commissariat."
         ],
         [
-          "Sidd Dir bestuet?",
-          "Êtes-vous marié·e ? (formel)"
+          "De Bäcker schafft an enger Bäckerei.",
+          "Le boulanger travaille dans une boulangerie."
         ],
         [
-          "Huet si e Frënd?",
-          "A-t-elle un copain ?"
-        ],
-        [
-          "Hues du Kanner?",
-          "As-tu des enfants ?"
+          "Wou schaffs du?",
+          "Où travailles-tu ?"
         ]
       ]
     }

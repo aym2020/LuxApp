@@ -1,916 +1,607 @@
 {
   "id": 6,
-  "titre": "Persoune presentéieren",
-  "titre_fr": "Présenter des personnes – l'origine",
-  "couleur": "#e85a8f",
+  "titre": "De Plural vun den Objeten",
+  "titre_fr": "Le pluriel des objets",
+  "couleur": "#a07ad4",
+  "instructions": {
+    "flashcards": "Mémorise les pluriels. Identifie zwee (M/N) vs zwou (F) et les changements de la racine.",
+    "quiz": "Lis « Deux X » et trouve l'orthographe correcte du pluriel en luxembourgeois.",
+    "trous": "Complète avec zwee ou zwou selon le genre du nom singulier.",
+    "ecriture": "Écris la traduction en luxembourgeois. Respecte zwee/zwou et les modifications du mot."
+  },
   "flashcards": [
     {
       "id": 1,
-      "lu": "Portugal",
-      "fr": "Portugal",
-      "note": "aus Portugal"
+      "fr": "Deux stëft",
+      "lu": "zwee Stëfter",
+      "note": "Pluriel de e Stëft"
     },
     {
       "id": 2,
-      "lu": "Spuenien",
-      "fr": "Espagne",
-      "note": "aus Spuenien"
+      "fr": "Deux biller",
+      "lu": "zwee Biller",
+      "note": "Pluriel de e Biller"
     },
     {
       "id": 3,
-      "lu": "England",
-      "fr": "Angleterre",
-      "note": "aus England"
+      "fr": "Deux wecker",
+      "lu": "zwee Weckeren",
+      "note": "Pluriel de e Wecker"
     },
     {
       "id": 4,
-      "lu": "Italien",
-      "fr": "Italie",
-      "note": "aus Italien"
+      "fr": "Deux stull",
+      "lu": "zwee Stüll",
+      "note": "Pluriel de e Stull"
     },
     {
       "id": 5,
-      "lu": "Lëtzebuerg",
-      "fr": "Luxembourg",
-      "note": "vu Lëtzebuerg (exception !)"
+      "fr": "Deux glas",
+      "lu": "zwee Gläser",
+      "note": "Pluriel de e Glas"
     },
     {
       "id": 6,
-      "lu": "Australien",
-      "fr": "Australie",
-      "note": "aus Australien"
+      "fr": "Deux stëft",
+      "lu": "zwee Stëfter",
+      "note": "Pluriel de e Stëft"
     },
     {
       "id": 7,
-      "lu": "Argentinien",
-      "fr": "Argentine",
-      "note": "aus Argentinien"
+      "fr": "Deux ball",
+      "lu": "zwee Bäll",
+      "note": "Pluriel de e Ball"
     },
     {
       "id": 8,
-      "lu": "Amerika",
-      "fr": "Amérique",
-      "note": "aus Amerika"
+      "fr": "Deux fliger",
+      "lu": "zwee Fligeren",
+      "note": "Pluriel de e Fliger"
     },
     {
       "id": 9,
-      "lu": "Belsch",
-      "fr": "Belgique",
-      "note": "aus der Belsch (féminin)"
+      "fr": "Deux computer",
+      "lu": "zwee Computeren",
+      "note": "Pluriel de e Computer"
     },
     {
       "id": 10,
-      "lu": "Däitschland",
-      "fr": "Allemagne",
-      "note": "aus Däitschland"
+      "fr": "Deux telefon",
+      "lu": "zwee Telefonen",
+      "note": "Pluriel de e Telefon"
     },
     {
       "id": 11,
-      "lu": "Japan",
-      "fr": "Japon",
-      "note": "aus Japan"
+      "fr": "Deux vëlo",
+      "lu": "zwee Vëloen",
+      "note": "Pluriel de e Vëlo"
     },
     {
       "id": 12,
-      "lu": "Nordkorea",
-      "fr": "Corée du Nord",
-      "note": "aus Nordkorea"
+      "fr": "Deux fliger",
+      "lu": "zwee Fligeren",
+      "note": "Pluriel de e Fliger"
     },
     {
       "id": 13,
-      "lu": "Frankräich",
-      "fr": "France",
-      "note": "aus Frankräich"
+      "fr": "Deux classeur",
+      "lu": "zwee Classeuren",
+      "note": "Pluriel de e Classeur"
     },
     {
       "id": 14,
-      "lu": "Holland",
-      "fr": "Pays-Bas",
-      "note": "aus Holland"
+      "fr": "Deux drécker",
+      "lu": "zwee Drëckeren",
+      "note": "Pluriel de e Drécker"
     },
     {
       "id": 15,
-      "lu": "China",
-      "fr": "Chine",
-      "note": "aus China"
+      "fr": "Deux fläsch",
+      "lu": "zwou Fläschen",
+      "note": "Pluriel de eng Fläsch"
     },
     {
       "id": 16,
-      "lu": "Schweden",
-      "fr": "Suède",
-      "note": "aus Schweden"
+      "fr": "Deux maus",
+      "lu": "zwou Mäus",
+      "note": "Pluriel de eng Maus"
     },
     {
       "id": 17,
-      "lu": "Schwäiz",
-      "fr": "Suisse",
-      "note": "aus der Schwäiz (féminin)"
+      "fr": "Deux taass",
+      "lu": "zwou Tasen",
+      "note": "Pluriel de eng Taass"
     },
     {
       "id": 18,
-      "lu": "Ukrain",
-      "fr": "Ukraine",
-      "note": "aus der Ukrain (féminin)"
+      "fr": "Deux auer",
+      "lu": "zwou Aueren",
+      "note": "Pluriel de eng Auer"
     },
     {
       "id": 19,
-      "lu": "Cap Vert",
-      "fr": "Cap-Vert",
-      "note": "vum Cap Vert (masc. avec article)"
+      "fr": "Deux mapp",
+      "lu": "zwou Mappen / Mappen",
+      "note": "Pluriel de eng Mapp"
     },
     {
       "id": 20,
-      "lu": "Iran",
-      "fr": "Iran",
-      "note": "aus dem Iran (masc. avec article)"
+      "fr": "Deux posch",
+      "lu": "zwou Poschen",
+      "note": "Pluriel de eng Posch"
     },
     {
       "id": 21,
-      "lu": "Kënnt de Ronaldo aus Portugal?",
-      "fr": "Ronaldo vient-il du Portugal ?",
-      "note": "Question sur l'origine"
+      "fr": "Deux cd",
+      "lu": "zwou CDen",
+      "note": "Pluriel de eng CD"
     },
     {
       "id": 22,
-      "lu": "Jo, de Ronaldo kënnt aus Portugal.",
-      "fr": "Oui, Ronaldo vient du Portugal.",
-      "note": "Jo = oui"
+      "fr": "Deux kreditkaart",
+      "lu": "zwou Kreditkaarten",
+      "note": "Pluriel de eng Kreditkaart"
     },
     {
       "id": 23,
-      "lu": "Nee, de Jackie kënnt net aus Italien.",
-      "fr": "Non, Jackie ne vient pas d'Italie.",
-      "note": "net = négation"
+      "fr": "Deux fotell",
+      "lu": "zwou Fotellen",
+      "note": "Pluriel de eng Fotell"
     },
     {
       "id": 24,
-      "lu": "Vu wou kënnt de Ronaldo?",
-      "fr": "D'où vient Ronaldo ?",
-      "note": "Vu wou = d'où"
+      "fr": "Deux planz",
+      "lu": "zwou Planzen",
+      "note": "Pluriel de eng Planz"
     },
     {
       "id": 25,
-      "lu": "De Ronaldo kënnt aus Portugal.",
-      "fr": "Ronaldo vient du Portugal.",
-      "note": "Réponse à 'Vu wou?'"
+      "fr": "Deux enveloppe",
+      "lu": "zwou Enveloppen",
+      "note": "Pluriel de eng Enveloppe"
     },
     {
       "id": 26,
-      "lu": "Hie kënnt aus Portugal.",
-      "fr": "Il vient du Portugal.",
-      "note": "Hie = il (masculin)"
+      "fr": "Deux blat",
+      "lu": "zwee Blätter",
+      "note": "Pluriel de e Blat"
     },
     {
       "id": 27,
-      "lu": "Si kënnt aus Frankräich.",
-      "fr": "Elle vient de France.",
-      "note": "Si = elle (féminin)"
+      "fr": "Deux buch",
+      "lu": "zwee Bicher",
+      "note": "Pluriel de e Buch"
     },
     {
       "id": 28,
-      "lu": "Vu wou kommt Dir?",
-      "fr": "D'où venez-vous ?",
-      "note": "Dir = vous (formel)"
+      "fr": "Deux heft",
+      "lu": "zwee Hefter",
+      "note": "Pluriel de e Heft"
     },
     {
       "id": 29,
-      "lu": "Vu wou komms du?",
-      "fr": "D'où viens-tu ?",
-      "note": "du = tu (informel)"
+      "fr": "Deux gebai",
+      "lu": "zwee Gebaiën",
+      "note": "Pluriel de e Gebai"
     },
     {
       "id": 30,
-      "lu": "Ech kommen aus Portugal.",
-      "fr": "Je viens du Portugal.",
-      "note": "1ère personne du singulier"
+      "fr": "Deux bild",
+      "lu": "zwee Biller",
+      "note": "Pluriel de e Bild"
     },
     {
       "id": 31,
-      "lu": "Ech komme vu Lëtzebuerg.",
-      "fr": "Je viens du Luxembourg.",
-      "note": "Exception : vu Lëtzebuerg"
-    },
-    {
-      "id": 32,
-      "lu": "Ech kommen aus der Belsch.",
-      "fr": "Je viens de Belgique.",
-      "note": "Pays féminin → aus der"
+      "fr": "Deux regal",
+      "lu": "zwee Regaler",
+      "note": "Pluriel de e Regal"
     }
   ],
   "quiz": [
     {
       "id": 1,
-      "question": "Quelle préposition pour Portugal ?",
-      "reponse": "aus",
+      "question": "Deux avions",
+      "reponse": "zwee Fligeren",
       "distracteurs": [
-        "vu",
-        "vum",
-        "aus der"
+        "zwee Fligerin",
+        "zwee Fligerene",
+        "zwee Fligere"
       ]
     },
     {
       "id": 2,
-      "question": "Quelle préposition pour Lëtzebuerg ?",
-      "reponse": "vu",
+      "question": "Deux ordinateurs",
+      "reponse": "zwee Computeren",
       "distracteurs": [
-        "aus",
-        "vum",
-        "aus der"
+        "zwee Computerin",
+        "zwee Computerene",
+        "zwee Computere"
       ]
     },
     {
       "id": 3,
-      "question": "Quelle préposition pour Belsch ?",
-      "reponse": "aus der",
+      "question": "Deux bouteilles",
+      "reponse": "zwou Fläschen",
       "distracteurs": [
-        "aus",
-        "vu",
-        "aus dem"
+        "zwee Fläschen",
+        "zwou Fläsch",
+        "zwou Fläschene"
       ]
     },
     {
       "id": 4,
-      "question": "Quelle préposition pour Schwäiz ?",
-      "reponse": "aus der",
+      "question": "Deux tasses",
+      "reponse": "zwou Tasen",
       "distracteurs": [
-        "aus",
-        "vu",
-        "vum"
+        "zwee Tasen",
+        "zwou Taass",
+        "zwou Tasene"
       ]
     },
     {
       "id": 5,
-      "question": "Quelle préposition pour Iran ?",
-      "reponse": "aus dem",
+      "question": "Deux livres",
+      "reponse": "zwee Bicher",
       "distracteurs": [
-        "aus",
-        "vu",
-        "aus der"
+        "zwee Bucher",
+        "zwee Bichen",
+        "zwee Bicheren"
       ]
     },
     {
       "id": 6,
-      "question": "Quelle préposition pour Cap Vert ?",
-      "reponse": "vum",
+      "question": "Deux souris",
+      "reponse": "zwou Mäus",
       "distracteurs": [
-        "aus",
-        "vu",
-        "aus der"
+        "zwee Mäus",
+        "zwou Maus",
+        "zwou Mäuse"
       ]
     },
     {
       "id": 7,
-      "question": "Quelle préposition pour Frankräich ?",
-      "reponse": "aus",
+      "question": "Deux cahiers",
+      "reponse": "zwee Hefter",
       "distracteurs": [
-        "vu",
-        "aus der",
-        "aus dem"
+        "zwee Hefteren",
+        "zwee Hefte",
+        "zwee Heftere"
       ]
     },
     {
       "id": 8,
-      "question": "Quelle préposition pour Ukrain ?",
-      "reponse": "aus der",
+      "question": "Deux tables",
+      "reponse": "zwee Stüll",
       "distracteurs": [
-        "aus",
-        "vu",
-        "vum"
+        "zwee Stull",
+        "zwee Stüller",
+        "zwee Stülle"
       ]
     },
     {
       "id": 9,
-      "question": "Quelle préposition pour Japan ?",
-      "reponse": "aus",
+      "question": "Deux stylos",
+      "reponse": "zwee Stëfter",
       "distracteurs": [
-        "vu",
-        "vum",
-        "aus der"
+        "zwee Stëfteren",
+        "zwee Stëft",
+        "zwee Stëftern"
       ]
     },
     {
       "id": 10,
-      "question": "Traduction : Espagne",
-      "reponse": "Spuenien",
+      "question": "Deux réveils",
+      "reponse": "zwee Weckeren",
       "distracteurs": [
-        "Spunien",
-        "Spuenie",
-        "Spueniën"
+        "zwee Wecker",
+        "zwee Weckerin",
+        "zwee Weckerene"
       ]
     },
     {
       "id": 11,
-      "question": "Traduction : Allemagne",
-      "reponse": "Däitschland",
+      "question": "Deux enveloppes",
+      "reponse": "zwou Enveloppen",
       "distracteurs": [
-        "Däitschland",
-        "Daitchland",
-        "Deitschland"
+        "zwee Enveloppen",
+        "zwou Enveloppe",
+        "zwou Enveloppin"
       ]
     },
     {
       "id": 12,
-      "question": "Traduction : Pays-Bas",
-      "reponse": "Holland",
+      "question": "Deux lunettes",
+      "reponse": "zwee Brëller",
       "distracteurs": [
-        "Hollant",
-        "Hollandt",
-        "Holand"
-      ]
-    },
-    {
-      "id": 13,
-      "question": "Traduction : Suède",
-      "reponse": "Schweden",
-      "distracteurs": [
-        "Schweeden",
-        "Schweden",
-        "Schwäden"
-      ]
-    },
-    {
-      "id": 14,
-      "question": "Quel article devant un prénom féminin ? (D'Nicole…)",
-      "reponse": "D'",
-      "distracteurs": [
-        "De",
-        "Den",
-        "Eng"
-      ]
-    },
-    {
-      "id": 15,
-      "question": "Traduction : Italie",
-      "reponse": "Italien",
-      "distracteurs": [
-        "Italia",
-        "Italjen",
-        "Italiën"
-      ]
-    },
-    {
-      "id": 16,
-      "question": "Traduction : Angleterre",
-      "reponse": "England",
-      "distracteurs": [
-        "Engeland",
-        "Englend",
-        "Englant"
-      ]
-    },
-    {
-      "id": 17,
-      "question": "Traduction : Portugal",
-      "reponse": "Portugal",
-      "distracteurs": [
-        "Portogal",
-        "Portugall",
-        "Portugual"
-      ]
-    },
-    {
-      "id": 18,
-      "question": "Traduction : Luxembourg",
-      "reponse": "Lëtzebuerg",
-      "distracteurs": [
-        "Letzebuerg",
-        "Lëtzebourg",
-        "Lëtzeburg"
-      ]
-    },
-    {
-      "id": 19,
-      "question": "Traduction : Belgique",
-      "reponse": "Belsch",
-      "distracteurs": [
-        "Belsch",
-        "Belesch",
-        "Belch"
-      ]
-    },
-    {
-      "id": 20,
-      "question": "Traduction : France",
-      "reponse": "Frankräich",
-      "distracteurs": [
-        "Frankraich",
-        "Frankreich",
-        "Frankräisch"
-      ]
-    },
-    {
-      "id": 21,
-      "question": "Traduction : Suisse",
-      "reponse": "Schwäiz",
-      "distracteurs": [
-        "Schwaiz",
-        "Schweiz",
-        "Schwäts"
-      ]
-    },
-    {
-      "id": 22,
-      "question": "Traduction : Ukraine",
-      "reponse": "Ukrain",
-      "distracteurs": [
-        "Ukraine",
-        "Ukraïn",
-        "Ukran"
-      ]
-    },
-    {
-      "id": 23,
-      "question": "Traduction : Chine",
-      "reponse": "China",
-      "distracteurs": [
-        "Chine",
-        "Chyna",
-        "Chinna"
-      ]
-    },
-    {
-      "id": 24,
-      "question": "Traduction : Japon",
-      "reponse": "Japan",
-      "distracteurs": [
-        "Japon",
-        "Japann",
-        "Jappan"
-      ]
-    },
-    {
-      "id": 25,
-      "question": "Traduction : Corée du Nord",
-      "reponse": "Nordkorea",
-      "distracteurs": [
-        "Nord Korea",
-        "Nordkoreia",
-        "Nordcorea"
-      ]
-    },
-    {
-      "id": 26,
-      "question": "Traduction : Amérique",
-      "reponse": "Amerika",
-      "distracteurs": [
-        "America",
-        "Americka",
-        "Amerikah"
-      ]
-    },
-    {
-      "id": 27,
-      "question": "Traduction : Australie",
-      "reponse": "Australien",
-      "distracteurs": [
-        "Australia",
-        "Australjen",
-        "Australiën"
-      ]
-    },
-    {
-      "id": 28,
-      "question": "Traduction : Argentine",
-      "reponse": "Argentinien",
-      "distracteurs": [
-        "Argentina",
-        "Argentinen",
-        "Argentiniën"
-      ]
-    },
-    {
-      "id": 29,
-      "question": "Quelle préposition pour Australien ?",
-      "reponse": "aus",
-      "distracteurs": [
-        "vu",
-        "aus der",
-        "aus dem"
-      ]
-    },
-    {
-      "id": 30,
-      "question": "Quelle préposition pour China ?",
-      "reponse": "aus",
-      "distracteurs": [
-        "vum",
-        "aus der",
-        "vu"
+        "zwee Brëll",
+        "zwee Brëlleren",
+        "zwou Brëller"
       ]
     }
   ],
   "trous": [
     {
       "id": 1,
-      "fr": "Ronaldo vient du Portugal.",
-      "avant": "De Ronaldo kënnt",
-      "trou": "aus",
-      "apres": "Portugal.",
+      "fr": "Deux avions",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Fligeren",
       "choix": [
-        "aus",
-        "vu",
-        "vum",
-        "aus der"
+        "zwee",
+        "zwou"
       ],
-      "note": "Portugal = pas d'article → aus"
+      "note": "Avion = Fliger (M) → zwee Fligeren"
     },
     {
       "id": 2,
-      "fr": "Guillaume vient du Luxembourg.",
-      "avant": "De Guillaume kënnt",
-      "trou": "vu",
-      "apres": "Lëtzebuerg.",
+      "fr": "Deux tasses",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Tasen",
       "choix": [
-        "aus",
-        "vu",
-        "vum",
-        "aus der"
+        "zwee",
+        "zwou"
       ],
-      "note": "Exception Lëtzebuerg → vu (pas aus)"
+      "note": "Tasse = Taass (F) → zwou Tasen"
     },
     {
       "id": 3,
-      "fr": "Philippe vient de Belgique.",
-      "avant": "De Philippe kënnt",
-      "trou": "aus der",
-      "apres": "Belsch.",
+      "fr": "Deux livres",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Bicher",
       "choix": [
-        "aus",
-        "vu",
-        "aus der",
-        "aus dem"
+        "zwee",
+        "zwou"
       ],
-      "note": "Belsch = féminin → aus der"
+      "note": "Livre = Buch (N) → zwee Bicher"
     },
     {
       "id": 4,
-      "fr": "Angela vient d'Allemagne.",
-      "avant": "D'Angela kënnt",
-      "trou": "aus",
-      "apres": "Däitschland.",
+      "fr": "Deux bouteilles",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Fläschen",
       "choix": [
-        "aus",
-        "vu",
-        "aus der",
-        "vum"
+        "zwee",
+        "zwou"
       ],
-      "note": "Däitschland = pas d'article → aus"
+      "note": "Bouteille = Fläsch (F) → zwou Fläschen"
     },
     {
       "id": 5,
-      "fr": "Greta vient de Suède.",
-      "avant": "D'Greta kënnt",
-      "trou": "aus",
-      "apres": "Schweden.",
+      "fr": "Deux ordinateurs",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Computeren",
       "choix": [
-        "aus",
-        "vu",
-        "aus der",
-        "aus dem"
+        "zwee",
+        "zwou"
       ],
-      "note": "Schweden = pas d'article → aus"
+      "note": "Ordinateur = Computer (M) → zwee Computeren"
     },
     {
       "id": 6,
-      "fr": "Il vient du Cap-Vert.",
-      "avant": "Hien kënnt",
-      "trou": "vum",
-      "apres": "Cap Vert.",
+      "fr": "Deux cahiers",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Hefter",
       "choix": [
-        "aus",
-        "vu",
-        "vum",
-        "aus der"
+        "zwee",
+        "zwou"
       ],
-      "note": "Cap Vert = masculin avec article → vum (vu + dem)"
+      "note": "Cahier = Heft (N) → zwee Hefter"
     },
     {
       "id": 7,
-      "fr": "Elle vient d'Iran.",
-      "avant": "Si kënnt",
-      "trou": "aus dem",
-      "apres": "Iran.",
+      "fr": "Deux enveloppes",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Enveloppen",
       "choix": [
-        "aus",
-        "vu",
-        "aus dem",
-        "aus der"
+        "zwee",
+        "zwou"
       ],
-      "note": "Iran = masculin avec article → aus dem"
+      "note": "Enveloppe = Enveloppe (F) → zwou Enveloppen"
     },
     {
       "id": 8,
-      "fr": "Elle vient de Suisse.",
-      "avant": "Si kënnt",
-      "trou": "aus der",
-      "apres": "Schwäiz.",
-      "choix": [
-        "aus",
-        "vu",
-        "aus der",
-        "aus dem"
-      ],
-      "note": "Schwäiz = féminin → aus der"
-    },
-    {
-      "id": 9,
-      "fr": "Yoko vient du Japon.",
-      "avant": "D'Yoko kënnt",
-      "trou": "aus",
-      "apres": "Japan.",
-      "choix": [
-        "aus",
-        "vu",
-        "aus der",
-        "vum"
-      ],
-      "note": "Japan = pas d'article → aus"
-    },
-    {
-      "id": 10,
-      "fr": "Emmanuel vient de France.",
-      "avant": "Den Emmanuel kënnt",
-      "trou": "aus",
-      "apres": "Frankräich.",
-      "choix": [
-        "aus",
-        "vu",
-        "aus der",
-        "vum"
-      ],
-      "note": "Frankräich = pas d'article → aus"
-    },
-    {
-      "id": 11,
-      "fr": "Elle vient d'Ukraine.",
-      "avant": "Si kënnt",
-      "trou": "aus der",
-      "apres": "Ukrain.",
-      "choix": [
-        "aus",
-        "vu",
-        "aus der",
-        "aus dem"
-      ],
-      "note": "Ukrain = féminin → aus der"
-    },
-    {
-      "id": 12,
-      "fr": "Nicole vient d'Australie. (article devant prénom féminin)",
+      "fr": "Deux réveils",
       "avant": "",
-      "trou": "D'",
-      "apres": "Nicole kënnt aus Australien.",
+      "trou": "zwee",
+      "apres": "Weckeren",
       "choix": [
-        "De",
-        "Den",
-        "D'"
+        "zwee",
+        "zwou"
       ],
-      "note": "Prénom féminin commençant par N → D'"
-    },
-    {
-      "id": 13,
-      "fr": "David vient d'Angleterre. (article devant prénom masculin + voyelle)",
-      "avant": "",
-      "trou": "Den",
-      "apres": "David kënnt aus England.",
-      "choix": [
-        "De",
-        "Den",
-        "D'"
-      ],
-      "note": "Prénom masculin devant consonne D → Den"
-    },
-    {
-      "id": 14,
-      "fr": "Buffon vient d'Italie. (article devant prénom masculin + consonne)",
-      "avant": "",
-      "trou": "De",
-      "apres": "Buffon kënnt aus Italien.",
-      "choix": [
-        "De",
-        "Den",
-        "D'"
-      ],
-      "note": "Prénom masculin devant consonne B → De"
-    },
-    {
-      "id": 15,
-      "fr": "Penelope vient d'Espagne. (article devant prénom féminin + consonne)",
-      "avant": "",
-      "trou": "D'",
-      "apres": "Penelope kënnt aus Spuenien.",
-      "choix": [
-        "De",
-        "Den",
-        "D'"
-      ],
-      "note": "Prénom féminin → D'"
+      "note": "Réveil = Wecker (M) → zwee Weckeren"
     }
   ],
   "ecriture": [
     {
-      "fr": "vient de (règle générale)",
-      "lu": "kënnt aus"
+      "fr": "Deux avions",
+      "lu": "zwee Fligeren"
     },
     {
-      "fr": "vient de (Luxembourg)",
-      "lu": "kënnt vu"
+      "fr": "Deux ordinateurs",
+      "lu": "zwee Computeren"
     },
     {
-      "fr": "vient du (Cap-Vert)",
-      "lu": "kënnt vum"
+      "fr": "Deux téléphones",
+      "lu": "zwee Telefonen"
     },
     {
-      "fr": "vient de la (Belgique)",
-      "lu": "kënnt aus der"
+      "fr": "Deux vélos",
+      "lu": "zwee Vëloen"
     },
     {
-      "fr": "vient de l' (Iran)",
-      "lu": "kënnt aus dem"
+      "fr": "Deux classeurs",
+      "lu": "zwee Classeuren"
     },
     {
-      "fr": "Espagne",
-      "lu": "Spuenien"
+      "fr": "Deux imprimantes",
+      "lu": "zwee Drëckeren"
     },
     {
-      "fr": "Angleterre",
-      "lu": "England"
+      "fr": "Deux bouteilles",
+      "lu": "zwou Fläschen"
     },
     {
-      "fr": "Allemagne",
-      "lu": "Däitschland"
+      "fr": "Deux tasses",
+      "lu": "zwou Tasen"
     },
     {
-      "fr": "Luxembourg",
-      "lu": "Lëtzebuerg"
+      "fr": "Deux enveloppes",
+      "lu": "zwou Enveloppen"
     },
     {
-      "fr": "Belgique",
-      "lu": "Belsch"
+      "fr": "Deux cartes de crédit",
+      "lu": "zwou Kreditkaarten"
     },
     {
-      "fr": "Suisse",
-      "lu": "Schwäiz"
+      "fr": "Deux fauteuils",
+      "lu": "zwou Fotellen"
     },
     {
-      "fr": "France",
-      "lu": "Frankräich"
+      "fr": "Deux plantes",
+      "lu": "zwou Planzen"
     },
     {
-      "fr": "Pays-Bas",
-      "lu": "Holland"
+      "fr": "Deux souris",
+      "lu": "zwou Mäus"
     },
     {
-      "fr": "Suède",
-      "lu": "Schweden"
+      "fr": "Deux stylos",
+      "lu": "zwee Stëfter"
     },
     {
-      "fr": "Argentine",
-      "lu": "Argentinien"
+      "fr": "Deux livres",
+      "lu": "zwee Bicher"
     },
     {
-      "fr": "Ronaldo vient du Portugal.",
-      "lu": "De Ronaldo kënnt aus Portugal."
+      "fr": "Deux cahiers",
+      "lu": "zwee Hefter"
     },
     {
-      "fr": "Guillaume vient du Luxembourg.",
-      "lu": "De Guillaume kënnt vu Lëtzebuerg."
+      "fr": "Deux images",
+      "lu": "zwee Biller"
     },
     {
-      "fr": "Philippe vient de Belgique.",
-      "lu": "De Philippe kënnt aus der Belsch."
+      "fr": "Deux bâtiments",
+      "lu": "zwee Gebaiën"
     },
     {
-      "fr": "Angela vient d'Allemagne.",
-      "lu": "D'Angela kënnt aus Däitschland."
+      "fr": "Deux étagères",
+      "lu": "zwee Regaler"
     },
     {
-      "fr": "Il vient du Cap-Vert.",
-      "lu": "Hien kënnt vum Cap Vert."
+      "fr": "Deux réveils",
+      "lu": "zwee Weckeren"
     },
     {
-      "fr": "Elle vient d'Iran.",
-      "lu": "Si kënnt aus dem Iran."
+      "fr": "Deux tables",
+      "lu": "zwee Stüll"
     },
     {
-      "fr": "Elle vient de Suisse.",
-      "lu": "Si kënnt aus der Schwäiz."
+      "fr": "Deux verres",
+      "lu": "zwee Gläser"
     },
     {
-      "fr": "Emmanuel vient de France.",
-      "lu": "Den Emmanuel kënnt aus Frankräich."
+      "fr": "Deux balles",
+      "lu": "zwee Bäll"
     },
     {
-      "fr": "Greta vient de Suède.",
-      "lu": "D'Greta kënnt aus Schweden."
+      "fr": "Deux souris",
+      "lu": "zwou Mäus"
     },
     {
-      "fr": "Elle vient d'Ukraine.",
-      "lu": "Si kënnt aus der Ukrain."
+      "fr": "Deux feuilles",
+      "lu": "zwee Blätter"
     },
     {
-      "fr": "Origine / Provenance",
-      "lu": "Hierkonft"
+      "fr": "Deux murs",
+      "lu": "zwee Maueren"
     },
     {
-      "fr": "Je viens du Luxembourg.",
-      "lu": "Ech kënnt vu Lëtzebuerg."
+      "fr": "Deux cartes postales",
+      "lu": "zwee Karten"
     },
     {
-      "fr": "Je viens de France.",
-      "lu": "Ech kënnt aus Frankräich."
+      "fr": "Deux montre",
+      "lu": "zwou Aueren"
     },
     {
-      "fr": "D'où viens-tu ?",
-      "lu": "Vun wou kënns du?"
+      "fr": "Deux maisons",
+      "lu": "zwee Heiser"
     },
     {
-      "fr": "Il vient d'Italie.",
-      "lu": "Hien kënnt aus Italien."
+      "fr": "Deux sacs",
+      "lu": "zwou Mappen"
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Pour dire d'où vient quelqu'un, on utilise le verbe <b>kënnt</b> (vient) + une préposition qui dépend du pays."
+      "contenu": "Le pluriel en luxembourgeois change selon le genre du nom. Il utilise zwee (M/N) ou zwou (F)."
     },
     {
       "type": "regle",
-      "titre": "Les prépositions d'origine",
+      "titre": "Zwee vs Zwou",
       "lignes": [
-        "Règle générale (pays sans article) → <b>aus</b> (aus Portugal, aus Japan)",
-        "Exception Luxembourg → <b>vu</b> (vu Lëtzebuerg)",
-        "Pays féminins → <b>aus der</b> (aus der Belsch, aus der Schwäiz)",
-        "Pays masculins avec article → <b>aus dem</b> (aus dem Iran)",
-        "Cap-Vert → <b>vum</b> (vum Cap Vert)"
-      ]
-    },
-    {
-      "type": "regle",
-      "titre": "Article devant les prénoms",
-      "lignes": [
-        "Prénom masculin devant consonne → <b>De</b> (De Ronaldo)",
-        "Prénom masculin devant voyelle → <b>Den</b> (Den David)",
-        "Prénom féminin → <b>D'</b> (D'Nicole)"
+        "Masculin + Neutre → <b>zwee</b> : zwee Fligeren, zwee Bicher",
+        "Féminin → <b>zwou</b> : zwou Fläschen, zwou Tasen",
+        "⚠️ zwee = 2 (zwee Persounen = 2 personnes)"
       ]
     },
     {
       "type": "vocab",
-      "titre": "Quelques pays",
+      "titre": "Formation du pluriel — Exemples",
       "items": [
         [
-          "Portugal",
-          "Portugal"
+          "e Fliger → zwee Fligeren",
+          "un avion → deux avions (M)"
         ],
         [
-          "Spuenien",
-          "Espagne"
+          "eng Fläsch → zwou Fläschen",
+          "une bouteille → deux bouteilles (F)"
         ],
         [
-          "England",
-          "Angleterre"
+          "e Buch → zwee Bicher",
+          "un livre → deux livres (N)"
         ],
         [
-          "Däitschland",
-          "Allemagne"
+          "eng Taass → zwou Tasen",
+          "une tasse → deux tasses (F)"
         ],
         [
-          "Frankräich",
-          "France"
+          "e Stull → zwee Stüll",
+          "une table → deux tables (M)"
         ],
         [
-          "Holland",
-          "Pays-Bas"
-        ],
-        [
-          "Belsch",
-          "Belgique"
-        ],
-        [
-          "Schwäiz",
-          "Suisse"
-        ],
-        [
-          "Lëtzebuerg",
-          "Luxembourg"
+          "eng Planz → zwou Planzen",
+          "une plante → deux plantes (F)"
         ]
       ]
     },
     {
       "type": "dialogue",
-      "titre": "Exemples",
+      "titre": "Exemples de phrases",
       "echanges": [
         [
-          "De Ronaldo kënnt aus Portugal.",
-          "Ronaldo vient du Portugal."
+          "Huess du zwee Fligeren?",
+          "As-tu deux avions ?"
         ],
         [
-          "De Guillaume kënnt vu Lëtzebuerg.",
-          "Guillaume vient du Luxembourg."
+          "Nee, ech hunn zwee Vëloen.",
+          "Non, j'ai deux vélos."
         ],
         [
-          "De Philippe kënnt aus der Belsch.",
-          "Philippe vient de Belgique."
+          "Wéi vill Fläschen sinn dat?",
+          "Combien de bouteilles y a-t-il ?"
+        ],
+        [
+          "Dat sinn zwou Fläschen.",
+          "Ce sont deux bouteilles."
         ]
       ]
     }

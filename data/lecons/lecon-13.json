@@ -1,961 +1,757 @@
 {
   "id": 13,
-  "titre": "Den Alter & De Gebuertsdatum",
-  "titre_fr": "L'âge et la date de naissance",
-  "couleur": "#4ab8d4",
+  "titre": "D'Familljësituatioun",
+  "titre_fr": "La situation familiale",
+  "couleur": "#e85a5a",
   "flashcards": [
     {
       "id": 1,
-      "fr": "Janvier",
-      "lu": "Januar",
-      "note": "Mois 1 · e Mount"
+      "fr": "Marié(e)",
+      "lu": "bestuet",
+      "note": "Invariable · Nég: net bestuet"
     },
     {
       "id": 2,
-      "fr": "Février",
-      "lu": "Februar",
-      "note": "Mois 2"
+      "fr": "Divorcé(e)",
+      "lu": "gescheet",
+      "note": "Invariable · Nég: net gescheet"
     },
     {
       "id": 3,
-      "fr": "Mars",
-      "lu": "Mäerz",
-      "note": "Mois 3 · tréma !"
+      "fr": "Séparé(e)",
+      "lu": "getrennt",
+      "note": "Invariable · Nég: net getrennt"
     },
     {
       "id": 4,
-      "fr": "Avril",
-      "lu": "Abrëll",
-      "note": "Mois 4 · tréma !"
+      "fr": "Pacsé(e)",
+      "lu": "gepacst",
+      "note": "Invariable · Nég: net gepacst"
     },
     {
       "id": 5,
-      "fr": "Mai",
-      "lu": "Mee",
-      "note": "Mois 5 · court !"
+      "fr": "En couple",
+      "lu": "an enger Beziehung",
+      "note": "Invariable · Nég: net an enger Beziehung"
     },
     {
       "id": 6,
-      "fr": "Juin",
-      "lu": "Juni",
-      "note": "Mois 6"
+      "fr": "Célibataire (M)",
+      "lu": "leedeg · e Jonggesell",
+      "note": "Nég: kee Jonggesell"
     },
     {
       "id": 7,
-      "fr": "Juillet",
-      "lu": "Juli",
-      "note": "Mois 7"
+      "fr": "Célibataire (F)",
+      "lu": "leedeg · eng Jonggesellin",
+      "note": "Nég: keng Jonggesellin"
     },
     {
       "id": 8,
-      "fr": "Août",
-      "lu": "August",
-      "note": "Mois 8"
+      "fr": "Petit ami / Copain",
+      "lu": "e Frënd",
+      "note": "Männlech · Nég: kee Frënd"
     },
     {
       "id": 9,
-      "fr": "Septembre",
-      "lu": "September",
-      "note": "Mois 9 · même qu'en fr"
+      "fr": "Petite amie / Copine",
+      "lu": "eng Frendin",
+      "note": "Weiblech · Nég: keng Frendin"
     },
     {
       "id": 10,
-      "fr": "Octobre",
-      "lu": "Oktober",
-      "note": "Mois 10"
+      "fr": "Un enfant / Les enfants",
+      "lu": "e Kand / Kanner",
+      "note": "Singulier / Pluriel"
     },
     {
       "id": 11,
-      "fr": "Novembre",
-      "lu": "November",
-      "note": "Mois 11 · même qu'en fr"
+      "fr": "Un garçon / Des garçons",
+      "lu": "e Jong / Jongen",
+      "note": "Singulier / Pluriel"
     },
     {
       "id": 12,
-      "fr": "Décembre",
-      "lu": "Dezember",
-      "note": "Mois 12"
+      "fr": "Une fille / Des filles",
+      "lu": "e Meedchen / Meedercher",
+      "note": "Singulier / Pluriel"
     },
     {
       "id": 13,
-      "lu": "D'Barbara ass den 18. Januar nonzénghonnertsechsannonzeg gebuer.",
-      "fr": "Quand Barbara est-elle née ?",
-      "note": "gebuer = né(e)"
+      "lu": "Sidd Dir bestuet?",
+      "fr": "Êtes-vous marié(e) ?",
+      "note": "Dir = vous (formel)"
     },
     {
       "id": 14,
-      "lu": "D'Barbara ass den 18. Januar nonzénghonnertsechsannonzeg gebuer.",
-      "fr": "Barbara est née le 18 janvier 1996.",
-      "note": "Date complète"
+      "lu": "Bass du bestuet?",
+      "fr": "Es-tu marié(e) ?",
+      "note": "du = tu (informel)"
     },
     {
       "id": 15,
-      "lu": "Wéini bass du gebuer?",
-      "fr": "Quand es-tu né ?",
-      "note": "informel"
+      "lu": "Jo, hien ass bestuet.",
+      "fr": "Oui, il est marié.",
+      "note": "hien = il"
     },
     {
       "id": 16,
-      "lu": "Wéini sidd Dir gebuer?",
-      "fr": "Quand êtes-vous né ?",
-      "note": "formel"
+      "lu": "Nee, hien ass net bestuet.",
+      "fr": "Non, il n'est pas marié.",
+      "note": "net = négation"
     },
     {
       "id": 17,
-      "lu": "Ech sinn den ... gebuer.",
-      "fr": "Je suis né le ...",
-      "note": "Réponse avec une date"
+      "lu": "Huet si e Frënd?",
+      "fr": "A-t-elle un copain ?",
+      "note": "Frënd = copain"
     },
     {
       "id": 18,
-      "lu": "Wéini huet d'Sara Gebuertsdag?",
-      "fr": "Quelle est la date d'anniversaire de Sara ?",
-      "note": "Gebuertsdag = anniversaire"
+      "lu": "Jo, si huet e Frënd.",
+      "fr": "Oui, elle a un copain.",
+      "note": "huet = a"
     },
     {
       "id": 19,
-      "lu": "Hatt huet den dräizéngte Juni nonzénghonnertzweeannonzeg Gebuertsdag.",
-      "fr": "Son anniversaire est le 13 juin 1992.",
-      "note": "Date complète"
+      "lu": "Nee, si huet kee Frënd.",
+      "fr": "Non, elle n'a pas de copain.",
+      "note": "kee devant nom masculin"
     },
     {
       "id": 20,
-      "lu": "Wéini hues du Gebuertsdag?",
-      "fr": "Quand est ton anniversaire ?",
-      "note": "informel"
+      "lu": "Hutt Dir Kanner?",
+      "fr": "Avez-vous des enfants ?",
+      "note": "Dir = vous (formel)"
     },
     {
       "id": 21,
-      "lu": "Wéini hutt Dir Gebuertsdag?",
-      "fr": "Quand est votre anniversaire ?",
-      "note": "formel"
+      "lu": "Hues du Kanner?",
+      "fr": "As-tu des enfants ?",
+      "note": "du = tu (informel)"
     },
     {
       "id": 22,
-      "lu": "Ech hunn den ... Gebuertsdag.",
-      "fr": "Je suis né le ...",
-      "note": "Réponse avec une date"
-    },
-    {
-      "id": 23,
-      "lu": "Mäi Gebuertsdag ass den ...",
-      "fr": "Mon anniversaire est le ...",
-      "note": "Alternative"
-    },
-    {
-      "id": 24,
-      "lu": "Uechtzéng Joer",
-      "fr": "18 ans",
-      "note": "Âge"
-    },
-    {
-      "id": 25,
-      "lu": "Ech hunn zwanzeg Joer.",
-      "fr": "J'ai 20 ans.",
-      "note": "Expression de l'âge"
-    },
-    {
-      "id": 26,
-      "lu": "Ech hunn véieranzwanzeg Joer.",
-      "fr": "J'ai 24 ans.",
-      "note": "Expression de l'âge"
-    },
-    {
-      "id": 27,
-      "lu": "Wéi al bass du?",
-      "fr": "Quel âge as-tu ?",
-      "note": "informel"
-    },
-    {
-      "id": 28,
-      "lu": "Wat ass däin Alter?",
-      "fr": "Quel est ton âge ?",
-      "note": "Alternative"
-    },
-    {
-      "id": 29,
-      "lu": "Huet d'Carla 30 Joer?",
-      "fr": "Carla a-t-elle 30 ans ?",
-      "note": "Question sur l'âge"
-    },
-    {
-      "id": 30,
-      "lu": "Wéi vill Joer hutt Dir?",
-      "fr": "Quel âge avez-vous ?",
-      "note": "formel"
-    },
-    {
-      "id": 31,
-      "lu": "Wéi vill Joer hues du?",
-      "fr": "Quel âge as-tu ?",
-      "note": "informel"
+      "lu": "Ech hunn zwee Kanner, e Meedchen an e Jong.",
+      "fr": "J'ai deux enfants, une fille et un garçon.",
+      "note": "Meedchen = fille · Jong = garçon"
     }
   ],
   "quiz": [
     {
       "id": 1,
-      "question": "Janvier en luxembourgeois ?",
-      "reponse": "Januar",
+      "question": "Marié(e) en luxembourgeois ?",
+      "reponse": "bestuet",
       "distracteurs": [
-        "Juni",
-        "Juli",
-        "Februar"
+        "gescheet",
+        "getrennt",
+        "gepacst"
       ]
     },
     {
       "id": 2,
-      "question": "Février en luxembourgeois ?",
-      "reponse": "Februar",
+      "question": "Divorcé(e) en luxembourgeois ?",
+      "reponse": "gescheet",
       "distracteurs": [
-        "Januar",
-        "Mäerz",
-        "November"
+        "bestuet",
+        "getrennt",
+        "gepacst"
       ]
     },
     {
       "id": 3,
-      "question": "Mars en luxembourgeois ?",
-      "reponse": "Mäerz",
+      "question": "Séparé(e) en luxembourgeois ?",
+      "reponse": "getrennt",
       "distracteurs": [
-        "Merz",
-        "Maerz",
-        "Meerz"
+        "gescheet",
+        "gepacst",
+        "bestuet"
       ]
     },
     {
       "id": 4,
-      "question": "Avril en luxembourgeois ?",
-      "reponse": "Abrëll",
+      "question": "Pacsé(e) en luxembourgeois ?",
+      "reponse": "gepacst",
       "distracteurs": [
-        "Abreel",
-        "Abrëlll",
-        "Abrell"
+        "bestuet",
+        "gescheet",
+        "getrennt"
       ]
     },
     {
       "id": 5,
-      "question": "Mai en luxembourgeois ?",
-      "reponse": "Mee",
+      "question": "En couple en luxembourgeois ?",
+      "reponse": "an enger Beziehung",
       "distracteurs": [
-        "Mai",
-        "Mae",
-        "Mei"
+        "an engem Beziehung",
+        "op enger Beziehung",
+        "an enger Bezéiung"
       ]
     },
     {
       "id": 6,
-      "question": "Juin en luxembourgeois ?",
-      "reponse": "Juni",
+      "question": "Célibataire masculin en luxembourgeois ?",
+      "reponse": "e Jonggesell",
       "distracteurs": [
-        "Juli",
-        "August",
-        "Januar"
+        "eng Jonggesell",
+        "e Jonggesellin",
+        "en Jonggesell"
       ]
     },
     {
       "id": 7,
-      "question": "Juillet en luxembourgeois ?",
-      "reponse": "Juli",
+      "question": "Célibataire féminin en luxembourgeois ?",
+      "reponse": "eng Jonggesellin",
       "distracteurs": [
-        "Juni",
-        "August",
-        "Januar"
+        "e Jonggesellin",
+        "eng Jonggesell",
+        "en Jonggesellin"
       ]
     },
     {
       "id": 8,
-      "question": "Août en luxembourgeois ?",
-      "reponse": "August",
+      "question": "Petit ami / copain en luxembourgeois ?",
+      "reponse": "e Frënd",
       "distracteurs": [
-        "Oktober",
-        "September",
-        "Juli"
+        "eng Frënd",
+        "eng Frendin",
+        "en Frënd"
       ]
     },
     {
       "id": 9,
-      "question": "Septembre en luxembourgeois ?",
-      "reponse": "September",
+      "question": "Petite amie / copine en luxembourgeois ?",
+      "reponse": "eng Frendin",
       "distracteurs": [
-        "Oktober",
-        "November",
-        "Dezember"
+        "e Frendin",
+        "e Frënd",
+        "en Frendin"
       ]
     },
     {
       "id": 10,
-      "question": "Octobre en luxembourgeois ?",
-      "reponse": "Oktober",
+      "question": "Comment nier un statut invariable (bestuet, gescheet…) ?",
+      "reponse": "net bestuet",
       "distracteurs": [
-        "October",
-        "Oktaber",
-        "Oktobar"
+        "kee bestuet",
+        "keng bestuet",
+        "pas bestuet"
       ]
     },
     {
       "id": 11,
-      "question": "Novembre en luxembourgeois ?",
-      "reponse": "November",
+      "question": "Comment nier « il a un copain » ?",
+      "reponse": "kee Frënd",
       "distracteurs": [
-        "Dezember",
-        "Oktober",
-        "September"
+        "net Frënd",
+        "keng Frënd",
+        "kee Frendin"
       ]
     },
     {
       "id": 12,
-      "question": "Décembre en luxembourgeois ?",
-      "reponse": "Dezember",
+      "question": "Comment nier « elle a une copine » ?",
+      "reponse": "keng Frendin",
       "distracteurs": [
-        "Decembre",
-        "Dezémber",
-        "Dezambər"
+        "kee Frendin",
+        "net Frendin",
+        "keng Frënd"
       ]
     },
     {
       "id": 13,
-      "question": "Comment dire « j'ai 18 ans » ?",
-      "reponse": "Ech hunn uechtzéng Joer.",
+      "question": "Un enfant / les enfants en luxembourgeois ?",
+      "reponse": "e Kand / Kanner",
       "distracteurs": [
-        "Ech hunn achtzehn Joer.",
-        "Ech ass uechtzéng Joer.",
-        "Ech hu uechtzéng Alter."
+        "e Jong / Jongen",
+        "e Meedchen / Meedercher",
+        "e Kand / Kanden"
       ]
     },
     {
       "id": 14,
-      "question": "Comment dire « j'ai 20 ans » ?",
-      "reponse": "Ech hunn zwanzeg Joer.",
+      "question": "Un garçon / des garçons en luxembourgeois ?",
+      "reponse": "e Jong / Jongen",
       "distracteurs": [
-        "Ech hunn zwanzeg Alter.",
-        "Ech ass zwanzeg Joer.",
-        "Ech hu zwanzeg Joer alt."
+        "e Kand / Kanner",
+        "e Meedchen / Meedercher",
+        "e Jong / Jonger"
       ]
     },
     {
       "id": 15,
-      "question": "Comment demander l'âge informellement (wéi al) ?",
-      "reponse": "Wéi al bass du?",
+      "question": "Une fille / des filles en luxembourgeois ?",
+      "reponse": "e Meedchen / Meedercher",
       "distracteurs": [
-        "Wéi vill Joer hutt Dir?",
-        "Wat ass däin Alter?",
-        "Wéi al huet hien?"
+        "e Jong / Jongen",
+        "e Kand / Kanner",
+        "e Meedchen / Meedchen"
       ]
     },
     {
       "id": 16,
-      "question": "Comment dire 1999 en luxembourgeois ?",
-      "reponse": "nonzénghonnertnénganonzeg",
+      "question": "Comment demander « es-tu marié ? » (informel) ?",
+      "reponse": "Bass du bestuet?",
       "distracteurs": [
-        "zweedausendnénganonzeg",
-        "nonzénghonnertnonzeg",
-        "nonzénghonnertnéngzéng"
+        "Sidd Dir bestuet?",
+        "Ass hie bestuet?",
+        "Huet si bestuet?"
       ]
     },
     {
       "id": 17,
-      "question": "Comment dire 2015 en luxembourgeois ?",
-      "reponse": "zweedausendfofzéng",
+      "question": "Comment demander « avez-vous des enfants ? » (formel) ?",
+      "reponse": "Hutt Dir Kanner?",
       "distracteurs": [
-        "zweedausendfënnefanzéng",
-        "zweedausendfofzeg",
-        "zweedausendfënnefzéng"
-      ]
-    },
-    {
-      "id": 18,
-      "question": "Comment dire 2026 en luxembourgeois ?",
-      "reponse": "zweedausendsechsanzwanzeg",
-      "distracteurs": [
-        "zweedausendsiechzéng",
-        "zweedausendzwanzegsechs",
-        "zweedausendsechszwanzeg"
-      ]
-    },
-    {
-      "id": 19,
-      "question": "Comment demander « quand es-tu né(e) ? » (informel) ?",
-      "reponse": "Wéini bass du gebuer?",
-      "distracteurs": [
-        "Wéini sidd Dir gebuer?",
-        "Wéini huet du gebuer?",
-        "Wéini ass du gebuer?"
-      ]
-    },
-    {
-      "id": 20,
-      "question": "Comment dire « je suis né(e) le... » ?",
-      "reponse": "Ech sinn de(n) ___ gebuer.",
-      "distracteurs": [
-        "Ech hunn de(n) ___ gebuer.",
-        "Ech ass de(n) ___ gebuer.",
-        "Ech bin de(n) ___ gebuer."
+        "Hues du Kanner?",
+        "Huet si Kanner?",
+        "Sidd Dir Kanner?"
       ]
     }
   ],
   "trous": [
     {
       "id": 1,
-      "fr": "J'ai 18 ans.",
-      "avant": "Ech hunn",
-      "trou": "uechtzéng",
-      "apres": "Joer.",
+      "fr": "Beyoncé est mariée.",
+      "avant": "D'Beyoncé ass",
+      "trou": "bestuet",
+      "apres": ".",
       "choix": [
-        "uechtzéng",
-        "uechtzeg",
-        "aachtzéng",
-        "siechzéng"
+        "bestuet",
+        "gescheet",
+        "getrennt",
+        "leedeg"
       ],
-      "note": "18 = uechtzéng (Aacht → Uecht + zéng)"
+      "note": "bestuet = marié(e) · invariable M et F"
     },
     {
       "id": 2,
-      "fr": "Elle a 30 ans.",
-      "avant": "Si huet",
-      "trou": "drësseg",
-      "apres": "Joer.",
+      "fr": "Brad Pitt est divorcé.",
+      "avant": "De Brad Pitt ass",
+      "trou": "gescheet",
+      "apres": ".",
       "choix": [
-        "drësseg",
-        "dräizéng",
-        "drëss",
-        "dreesseg"
+        "bestuet",
+        "gescheet",
+        "gepacst",
+        "getrennt"
       ],
-      "note": "30 = drësseg"
+      "note": "gescheet = divorcé(e)"
     },
     {
       "id": 3,
-      "fr": "Il a 47 ans.",
-      "avant": "Hien huet siwen a",
-      "trou": "véierzeg",
-      "apres": "Joer.",
+      "fr": "Shakira et Piqué sont séparés.",
+      "avant": "D'Shakira an de Piqué sinn",
+      "trou": "getrennt",
+      "apres": ".",
       "choix": [
-        "véierzeg",
-        "véierzéng",
-        "véiereg",
-        "véirzeg"
+        "getrennt",
+        "gescheet",
+        "bestuet",
+        "gepacst"
       ],
-      "note": "47 = siwenavéierzeg"
+      "note": "getrennt = séparé(e)"
     },
     {
       "id": 4,
-      "fr": "Quel âge as-tu ? (informel, forme wéi al)",
-      "avant": "Wéi al",
-      "trou": "bass",
-      "apres": "du?",
+      "fr": "Non, il n'est pas marié.",
+      "avant": "Nee, hien ass",
+      "trou": "net",
+      "apres": "bestuet.",
       "choix": [
-        "bass",
-        "huet",
-        "hues",
-        "sidd"
+        "net",
+        "kee",
+        "keng",
+        "pas"
       ],
-      "note": "bass du = es-tu (être, informel)"
+      "note": "Statut invariable → négation avec net (pas kee/keng)"
     },
     {
       "id": 5,
-      "fr": "Quel âge avez-vous ? (formel, wéi vill Joer)",
-      "avant": "Wéi vill Joer",
-      "trou": "hutt",
-      "apres": "Dir?",
+      "fr": "Oui, il est marié.",
+      "avant": "Jo, hien ass",
+      "trou": "bestuet",
+      "apres": ".",
       "choix": [
-        "hutt",
-        "hues",
-        "huet",
-        "bass"
+        "bestuet",
+        "gescheet",
+        "leedeg",
+        "getrennt"
       ],
-      "note": "hutt Dir = avez-vous (avoir, formel)"
+      "note": "hien = il · ass = est"
     },
     {
       "id": 6,
-      "fr": "Carla a-t-elle 30 ans ?",
-      "avant": "Huet d'Carla",
-      "trou": "drësseg",
-      "apres": "Joer?",
+      "fr": "Taylor Swift est en couple.",
+      "avant": "D'Taylor Swift ass an",
+      "trou": "enger",
+      "apres": "Beziehung.",
       "choix": [
-        "drësseg",
-        "drëssech",
-        "dräizeg",
-        "drëssëg"
+        "enger",
+        "engem",
+        "an enger",
+        "op enger"
       ],
-      "note": "drësseg = 30 · attention orthographe"
+      "note": "Beziehung = féminin → an enger Beziehung"
     },
     {
       "id": 7,
-      "fr": "Je suis né(e) en janvier.",
-      "avant": "Ech sinn am",
-      "trou": "Januar",
-      "apres": "gebuer.",
+      "fr": "Elle a un copain.",
+      "avant": "Si huet",
+      "trou": "e",
+      "apres": "Frënd.",
       "choix": [
-        "Januar",
-        "Februar",
-        "Juni",
-        "Juli"
-      ]
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Frënd = masculin → e Frënd"
     },
     {
       "id": 8,
-      "fr": "Quand es-tu né(e) ?",
-      "avant": "Wéini",
-      "trou": "bass",
-      "apres": "du gebuer?",
+      "fr": "Non, elle n'a pas de copine.",
+      "avant": "Nee, si huet",
+      "trou": "keng",
+      "apres": "Frendin.",
       "choix": [
-        "bass",
-        "sidd",
-        "huet",
-        "hues"
-      ]
+        "kee",
+        "keng",
+        "net",
+        "keen"
+      ],
+      "note": "Frendin = féminin → keng Frendin"
     },
     {
       "id": 9,
-      "fr": "Quand êtes-vous né(e) ?",
-      "avant": "Wéini",
-      "trou": "sidd",
-      "apres": "Dir gebuer?",
+      "fr": "Non, il n'a pas de copain.",
+      "avant": "Nee, hien huet",
+      "trou": "kee",
+      "apres": "Frënd.",
       "choix": [
-        "sidd",
-        "bass",
-        "hutt",
-        "huet"
-      ]
+        "kee",
+        "keng",
+        "net",
+        "keen"
+      ],
+      "note": "Frënd = masculin → kee Frënd"
     },
     {
       "id": 10,
-      "fr": "Barbara est née le 18 janvier 1996.",
-      "avant": "D'Barbara ass den 18te",
-      "trou": "Januar",
-      "apres": "1996 gebuer.",
+      "fr": "Cristiano Ronaldo est célibataire. (masculin)",
+      "avant": "De Ronaldo ass",
+      "trou": "leedeg",
+      "apres": ".",
       "choix": [
-        "Januar",
-        "Februar",
-        "Juni",
-        "Juli"
-      ]
+        "leedeg",
+        "bestuet",
+        "gescheet",
+        "getrennt"
+      ],
+      "note": "leedeg = célibataire (invariable comme adjectif)"
     },
     {
       "id": 11,
-      "fr": "Il est né en mars 2000.",
-      "avant": "Hien ass am",
-      "trou": "Mäerz",
-      "apres": "gebuer.",
+      "fr": "Ariana Grande a un copain.",
+      "avant": "D'Ariana huet",
+      "trou": "e",
+      "apres": "Frënd.",
       "choix": [
-        "Mäerz",
-        "Merz",
-        "Maerz",
-        "März"
-      ]
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Frënd = masculin → e Frënd"
     },
     {
       "id": 12,
-      "fr": "Elle est née en mai.",
-      "avant": "Si ass am",
-      "trou": "Mee",
-      "apres": "gebuer.",
+      "fr": "J'ai deux enfants, un garçon et une fille.",
+      "avant": "Ech hunn 2 Kanner,",
+      "trou": "e",
+      "apres": "Jong an e Meedchen.",
       "choix": [
-        "Mee",
-        "Mai",
-        "Mae",
-        "Mei"
-      ]
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Jong = masculin → e Jong"
     },
     {
       "id": 13,
-      "fr": "Il est né en avril.",
-      "avant": "Hien ass am",
-      "trou": "Abrëll",
-      "apres": "gebuer.",
+      "fr": "Est-il marié ?",
+      "avant": "Ass",
+      "trou": "hie",
+      "apres": "bestuet?",
       "choix": [
-        "Abrëll",
-        "Abrell",
-        "Abreel",
-        "Abröll"
-      ]
+        "hie",
+        "hien",
+        "si",
+        "du"
+      ],
+      "note": "hie = forme réduite de hien devant un verbe commençant par voyelle"
     },
     {
       "id": 14,
-      "fr": "Comment dire l'année 1999 ?",
-      "avant": "nonzénghonnert",
-      "trou": "Néngannonzeg",
-      "apres": "",
+      "fr": "As-tu des enfants ? (informel)",
+      "avant": "Hues",
+      "trou": "du",
+      "apres": "Kanner?",
       "choix": [
-        "Néngannonzeg",
-        "Nonzeg Néng",
-        "Néngzéng",
-        "Nonzegannéng"
+        "du",
+        "Dir",
+        "si",
+        "hien"
       ],
-      "note": "99 = Néngannonzeg (unité + an + dizaine)"
+      "note": "Hues du = as-tu (informel) · Hutt Dir = avez-vous (formel)"
     },
     {
       "id": 15,
-      "fr": "Comment dire l'année 2026 ?",
-      "avant": "zweedausend",
-      "trou": "Sechsanzwanzeg",
-      "apres": "",
+      "fr": "Avez-vous des enfants ? (formel)",
+      "avant": "Hutt",
+      "trou": "Dir",
+      "apres": "Kanner?",
       "choix": [
-        "Sechsanzwanzeg",
-        "Zwanzeg Sechs",
-        "Siechzéng",
-        "Sechs Zwanzeg"
+        "Dir",
+        "du",
+        "si",
+        "hien"
       ],
-      "note": "26 = Sechsanzwanzeg"
+      "note": "Hutt Dir = avez-vous (formel) · majuscule obligatoire"
     },
     {
       "id": 16,
-      "fr": "J'ai 24 ans. (forme contractée de hunn)",
-      "avant": "Ech",
-      "trou": "hu",
-      "apres": "véierzwanzeg Joer.",
+      "fr": "Non, il n'est pas séparé, il est divorcé.",
+      "avant": "Nee, hien ass net",
+      "trou": "getrennt",
+      "apres": ", hien ass gescheet.",
       "choix": [
-        "hu",
-        "hunn",
-        "huet",
-        "hues"
+        "getrennt",
+        "gescheet",
+        "gepacst",
+        "bestuet"
       ],
-      "note": "hu = forme contractée de hunn (courant à l'oral)"
+      "note": "getrennt = séparé · gescheet = divorcé"
     },
     {
       "id": 17,
-      "fr": "Il est né en décembre.",
-      "avant": "Hien ass am",
-      "trou": "Dezember",
-      "apres": "gebuer.",
+      "fr": "Elle a deux filles.",
+      "avant": "Si huet zwou",
+      "trou": "Meedercher",
+      "apres": ".",
       "choix": [
-        "Dezember",
-        "Decembre",
-        "Dezémber",
-        "December"
-      ]
+        "Meedercher",
+        "Meedchen",
+        "Jongen",
+        "Kanner"
+      ],
+      "note": "Meedercher = des filles (pluriel de Meedchen)"
     },
     {
       "id": 18,
-      "fr": "Elle est née en octobre.",
-      "avant": "Si ass am",
-      "trou": "Oktober",
-      "apres": "gebuer.",
+      "fr": "Il a trois garçons.",
+      "avant": "Hien huet dräi",
+      "trou": "Jongen",
+      "apres": ".",
       "choix": [
-        "Oktober",
-        "October",
-        "Oktobar",
-        "Oktaber"
-      ]
+        "Jongen",
+        "Jong",
+        "Kanner",
+        "Meedercher"
+      ],
+      "note": "Jongen = des garçons (pluriel de Jong)"
     }
   ],
   "ecriture": [
     {
-      "fr": "Janvier",
-      "lu": "Januar"
+      "fr": "Marié(e)",
+      "lu": "bestuet"
     },
     {
-      "fr": "Février",
-      "lu": "Februar"
+      "fr": "Divorcé(e)",
+      "lu": "gescheet"
     },
     {
-      "fr": "Mars",
-      "lu": "Mäerz"
+      "fr": "Séparé(e)",
+      "lu": "getrennt"
     },
     {
-      "fr": "Avril",
-      "lu": "Abrëll"
+      "fr": "Pacsé(e)",
+      "lu": "gepacst"
     },
     {
-      "fr": "Mai",
-      "lu": "Mee"
+      "fr": "En couple",
+      "lu": "an enger Beziehung"
     },
     {
-      "fr": "Juin",
-      "lu": "Juni"
+      "fr": "Célibataire (M)",
+      "lu": "e Jonggesell"
     },
     {
-      "fr": "Juillet",
-      "lu": "Juli"
+      "fr": "Célibataire (F)",
+      "lu": "eng Jonggesellin"
     },
     {
-      "fr": "Août",
-      "lu": "August"
+      "fr": "Petit ami / Copain",
+      "lu": "e Frënd"
     },
     {
-      "fr": "Septembre",
-      "lu": "September"
+      "fr": "Petite amie / Copine",
+      "lu": "eng Frendin"
     },
     {
-      "fr": "Octobre",
-      "lu": "Oktober"
+      "fr": "Un enfant",
+      "lu": "e Kand"
     },
     {
-      "fr": "Novembre",
-      "lu": "November"
+      "fr": "Les enfants",
+      "lu": "Kanner"
     },
     {
-      "fr": "Décembre",
-      "lu": "Dezember"
+      "fr": "Un garçon",
+      "lu": "e Jong"
     },
     {
-      "fr": "J'ai 18 ans.",
-      "lu": "Ech hunn uechtzéng Joer."
+      "fr": "Des garçons",
+      "lu": "Jongen"
     },
     {
-      "fr": "J'ai 20 ans.",
-      "lu": "Ech hunn zwanzeg Joer."
+      "fr": "Une fille",
+      "lu": "e Meedchen"
     },
     {
-      "fr": "J'ai 24 ans.",
-      "lu": "Ech hu véierzwanzeg Joer."
+      "fr": "Des filles",
+      "lu": "Meedercher"
     },
     {
-      "fr": "Quel âge as-tu ?",
-      "lu": "Wéi al bass du?"
+      "fr": "Il est marié.",
+      "lu": "Hien ass bestuet."
     },
     {
-      "fr": "Quel est ton âge ?",
-      "lu": "Wat ass däin Alter?"
+      "fr": "Elle est mariée.",
+      "lu": "Si ass bestuet."
     },
     {
-      "fr": "Quel âge avez-vous ?",
-      "lu": "Wéi vill Joer hutt Dir?"
+      "fr": "Non, il n'est pas marié.",
+      "lu": "Nee, hien ass net bestuet."
     },
     {
-      "fr": "Carla a-t-elle 30 ans ?",
-      "lu": "Huet d'Carla drësseg Joer?"
+      "fr": "Elle a un copain.",
+      "lu": "Si huet e Frënd."
     },
     {
-      "fr": "1999",
-      "lu": "nonzénghonnertnénganonzeg"
+      "fr": "Non, il n'a pas de copain.",
+      "lu": "Nee, hien huet kee Frënd."
     },
     {
-      "fr": "2015",
-      "lu": "zweedausendfofzéng"
+      "fr": "Non, elle n'a pas de copine.",
+      "lu": "Nee, si huet keng Frendin."
     },
     {
-      "fr": "2026",
-      "lu": "zweedausendsechsanzwanzeg"
+      "fr": "Es-tu marié(e) ?",
+      "lu": "Bass du bestuet?"
     },
     {
-      "fr": "Quand es-tu né(e) ?",
-      "lu": "Wéini bass du gebuer?"
+      "fr": "Êtes-vous marié(e) ?",
+      "lu": "Sidd Dir bestuet?"
     },
     {
-      "fr": "Quand êtes-vous né(e) ?",
-      "lu": "Wéini sidd Dir gebuer?"
+      "fr": "A-t-elle un copain ?",
+      "lu": "Huet si e Frënd?"
     },
     {
-      "fr": "Je suis né(e) en janvier.",
-      "lu": "Ech sinn de Januar gebuer."
+      "fr": "As-tu des enfants ?",
+      "lu": "Hues du Kanner?"
     },
     {
-      "fr": "Il est né en mars.",
-      "lu": "Hien ass de Mäerz gebuer."
+      "fr": "Avez-vous des enfants ?",
+      "lu": "Hutt Dir Kanner?"
     },
     {
-      "fr": "Elle est née en mai.",
-      "lu": "Si ass de Mee gebuer."
+      "fr": "J'ai deux enfants.",
+      "lu": "Ech hunn 2 Kanner."
     },
     {
-      "fr": "Barbara est née le 18 janvier 1996.",
-      "lu": "D'Barbara ass den 18te Januar NonzéngHonnertSechsannonzeg gebuer."
+      "fr": "Il est divorcé.",
+      "lu": "Hien ass gescheet."
     },
     {
-      "fr": "Il a 47 ans.",
-      "lu": "Hien huet siwenavéierzeg Joer."
+      "fr": "Elle est en couple.",
+      "lu": "Si ass an enger Beziehung."
     },
     {
-      "fr": "Elle a 30 ans.",
-      "lu": "Si huet drësseg Joer."
-    },
-    {
-      "fr": "1881",
-      "lu": "uechtzénghonnerteenanaachtzeg"
-    },
-    {
-      "fr": "1891",
-      "lu": "uechtzénghonnerteenanonzeg"
-    },
-    {
-      "fr": "1897",
-      "lu": "uechtzénghonnertsiwenanonzeg"
-    },
-    {
-      "fr": "1900",
-      "lu": "nonzénghonnert"
-    },
-    {
-      "fr": "1903",
-      "lu": "nonzénghonnertdräi"
-    },
-    {
-      "fr": "1904",
-      "lu": "nonzénghonnertvéier"
-    },
-    {
-      "fr": "1905",
-      "lu": "nonzénghonnertfënnef"
-    },
-    {
-      "fr": "1906",
-      "lu": "nonzénghonnertsechs"
-    },
-    {
-      "fr": "1911",
-      "lu": "nonzénghonnerteelef"
-    },
-    {
-      "fr": "1919",
-      "lu": "nonzénghonnertnonzéng"
-    },
-    {
-      "fr": "1920",
-      "lu": "nonzénghonnertzwanzeg"
-    },
-    {
-      "fr": "1929",
-      "lu": "nonzénghonnertnénganzwanzeg"
-    },
-    {
-      "fr": "1935",
-      "lu": "nonzénghonnertfënnefandrësseg"
-    },
-    {
-      "fr": "1938",
-      "lu": "nonzénghonnertaachtandrësseg"
-    },
-    {
-      "fr": "1939",
-      "lu": "nonzénghonnertnéngandrësseg"
-    },
-    {
-      "fr": "1947",
-      "lu": "nonzénghonnertsiwenavéierzeg"
-    },
-    {
-      "fr": "1951",
-      "lu": "nonzénghonnerteenafofzeg"
-    },
-    {
-      "fr": "1954",
-      "lu": "nonzénghonnertvéierafofzeg"
-    },
-    {
-      "fr": "1955",
-      "lu": "nonzénghonnertfënnefafofzeg"
-    },
-    {
-      "fr": "1966",
-      "lu": "nonzénghonnertsechsasiechzeg"
-    },
-    {
-      "fr": "1967",
-      "lu": "nonzénghonnertsiwenasiechzeg"
-    },
-    {
-      "fr": "1968",
-      "lu": "nonzénghonnertaachtasiechzeg"
-    },
-    {
-      "fr": "1971",
-      "lu": "nonzénghonnerteenasiwwenzeg"
-    },
-    {
-      "fr": "1972",
-      "lu": "nonzénghonnertzweeasiwwenzeg"
-    },
-    {
-      "fr": "1976",
-      "lu": "nonzénghonnertsechsasiwwenzeg"
-    },
-    {
-      "fr": "1977",
-      "lu": "nonzénghonnertsiwenasiwwenzeg"
-    },
-    {
-      "fr": "1988",
-      "lu": "nonzénghonnertaachtanaachtzeg"
-    },
-    {
-      "fr": "1997",
-      "lu": "nonzénghonnertsiwenanonzeg"
-    },
-    {
-      "fr": "2017",
-      "lu": "zweedausendsiwwenzéng"
-    },
-    {
-      "fr": "2021",
-      "lu": "zweedausendeenanzwanzeg"
+      "fr": "Elle a deux filles.",
+      "lu": "Si huet zwou Meedercher."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "L'âge et la date de naissance."
+      "contenu": "La situation familiale. Les statuts sont invariables et se nient avec <b>net</b>."
     },
     {
       "type": "vocab",
-      "titre": "Les mois (Méint)",
+      "titre": "Statuts (invariables)",
       "items": [
         [
-          "Januar",
-          "janvier"
+          "bestuet",
+          "marié·e"
         ],
         [
-          "Februar",
-          "février"
+          "gescheet",
+          "divorcé·e"
         ],
         [
-          "Mäerz",
-          "mars"
+          "getrennt",
+          "séparé·e"
         ],
         [
-          "Abrëll",
-          "avril"
+          "gepacst",
+          "pacsé·e"
         ],
         [
-          "Mee",
-          "mai"
+          "an enger Beziehung",
+          "en couple"
         ],
         [
-          "Juni",
-          "juin"
+          "leedeg",
+          "célibataire (invariable)"
         ],
         [
-          "Juli",
-          "juillet"
-        ],
-        [
-          "August",
-          "août"
-        ],
-        [
-          "September",
-          "septembre"
-        ],
-        [
-          "Oktober",
-          "octobre"
-        ],
-        [
-          "November",
-          "novembre"
-        ],
-        [
-          "Dezember",
-          "décembre"
+          "e Jonggesell / eng Jonggesellin",
+          "un·e célibataire (nom M / F)"
         ]
       ]
     },
     {
       "type": "regle",
-      "titre": "Dire son âge",
+      "titre": "Négation — attention !",
       "lignes": [
-        "<b>Ech hunn ... Joer.</b> (J'ai ... ans.)",
-        "Ech hunn zwanzeg Joer. (J'ai 20 ans.)"
+        "Statut (adjectif) → <b>net</b> : Hien ass <b>net</b> bestuet.",
+        "Nom (copain/copine) → <b>kee/keng</b> : Si huet <b>keng</b> Frendin."
       ]
     },
     {
-      "type": "regle",
-      "titre": "Les années",
-      "lignes": [
-        "⚠️ Tout est <b>soudé, sans espace</b>",
-        "1800-1999 → <b>uechtzénghonnert / nonzénghonnert</b> + reste",
-        "2000+ → <b>zweedausend</b> + reste",
-        "1958 = <b>nonzénghonnertaachtafofzeg</b>",
-        "2004 = <b>zweedausendvéier</b> · 2026 = <b>zweedausendsechsanzwanzeg</b>"
+      "type": "vocab",
+      "titre": "Famille",
+      "items": [
+        [
+          "e Frënd / eng Frendin",
+          "copain / copine"
+        ],
+        [
+          "e Kand / Kanner",
+          "un enfant / les enfants"
+        ],
+        [
+          "e Jong / Jongen",
+          "un garçon / des garçons"
+        ],
+        [
+          "e Meedchen / Meedercher",
+          "une fille / des filles"
+        ]
       ]
     },
     {
@@ -963,20 +759,20 @@
       "titre": "Poser la question et répondre",
       "echanges": [
         [
-          "Wéi al bass du?",
-          "Quel âge as-tu ? (informel)"
+          "Bass du bestuet?",
+          "Es-tu marié·e ?"
         ],
         [
-          "Wéi vill Joer hutt Dir?",
-          "Quel âge avez-vous ? (formel)"
+          "Sidd Dir bestuet?",
+          "Êtes-vous marié·e ? (formel)"
         ],
         [
-          "Wéini bass du gebuer?",
-          "Quand es-tu né·e ?"
+          "Huet si e Frënd?",
+          "A-t-elle un copain ?"
         ],
         [
-          "Ech sinn de Januar gebuer.",
-          "Je suis né·e en janvier."
+          "Hues du Kanner?",
+          "As-tu des enfants ?"
         ]
       ]
     }

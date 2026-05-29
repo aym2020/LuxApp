@@ -1,706 +1,535 @@
 {
   "id": 10,
-  "titre": "De Beruff",
-  "titre_fr": "Les métiers",
-  "couleur": "#e8d447",
+  "titre": "Wunnert",
+  "titre_fr": "L'habitation – où j'habite",
+  "couleur": "#5ad4a8",
   "flashcards": [
     {
       "id": 1,
-      "fr": "Policier / Policière",
-      "lu": "e Polizist / eng Polizistin",
-      "note": "e → devant consonne"
+      "lu": "Ech wunnen zu Lëtzebuerg.",
+      "fr": "J'habite au Luxembourg.",
+      "note": "Exception : zu (pas d'article)"
     },
     {
       "id": 2,
-      "fr": "Médecin (M/F)",
-      "lu": "en Dokter / eng Doktesch",
-      "note": "même forme au masculin et au féminin"
+      "lu": "Ech wunnen an Daitschland.",
+      "fr": "J'habite en Allemagne.",
+      "note": "Pays sans article → a/an"
     },
     {
       "id": 3,
-      "fr": "Coiffeur / Coiffeuse",
-      "lu": "e Coiffer / eng Coiffeuse",
-      "note": "e → devant consonne"
+      "lu": "Ech wunnen a Frankräich.",
+      "fr": "J'habite en France.",
+      "note": "Pays sans article → a/an"
     },
     {
       "id": 4,
-      "fr": "Banquier / Banquière",
-      "lu": "e Banker / eng Bankerin",
-      "note": "e → devant consonne"
+      "lu": "Ech wunnen an der Belsch.",
+      "fr": "J'habite en Belgique.",
+      "note": "Pays féminin → an der"
     },
     {
       "id": 5,
-      "fr": "Pharmacien / Pharmacienne",
-      "lu": "en Apdiker / eng Apdikesch",
-      "note": "en → devant voyelle A"
+      "lu": "Ech wunnen an der Schwäiz.",
+      "fr": "J'habite en Suisse.",
+      "note": "Pays féminin → an der"
     },
     {
       "id": 6,
-      "fr": "Facteur / Factrice",
-      "lu": "e Bréifdréier / eng Bréifdréiesch",
-      "note": "Bréif = lettre"
+      "lu": "Ech wunnen zu Metz.",
+      "fr": "J'habite à Metz.",
+      "note": "Ville → zu"
     },
     {
       "id": 7,
-      "fr": "Avocat / Avocate",
-      "lu": "en Affekot / eng Affekotin",
-      "note": "en → devant voyelle A"
+      "lu": "Ech wunnen zu Esch.",
+      "fr": "J'habite à Esch.",
+      "note": "Ville → zu"
     },
     {
       "id": 8,
-      "fr": "Boucher / Bouchère",
-      "lu": "e Metzler / eng Metzlesch",
-      "note": "e → devant consonne"
+      "lu": "Ech wunnen an der Stad.",
+      "fr": "J'habite en ville.",
+      "note": "Stad = féminin → an der"
     },
     {
       "id": 9,
-      "fr": "Boulanger / Boulangère",
-      "lu": "e Bäcker / eng Bäckesch",
-      "note": "e → devant consonne"
+      "lu": "Ech wunnen um Kirchberg.",
+      "fr": "J'habite au Kirchberg.",
+      "note": "Quartier → um/am"
     },
     {
       "id": 10,
-      "fr": "Infirmier / Infirmière",
-      "lu": "en Infirmier / eng Infirmière",
-      "note": "emprunt courant au français"
+      "lu": "Ech wunnen um Belair.",
+      "fr": "J'habite à Belair.",
+      "note": "Quartier → um/am"
     },
     {
       "id": 11,
-      "fr": "Caissier / Caissière",
-      "lu": "e Caissier / eng Caissière",
-      "note": "emprunt courant au français"
+      "lu": "Ech wunnen am Gronn.",
+      "fr": "J'habite au Grund.",
+      "note": "Quartier → um/am"
     },
     {
       "id": 12,
-      "fr": "Professeur / Professeure",
-      "lu": "e Professer / eng Professerin",
-      "note": "forme moderne courante"
+      "lu": "Wou wunnt Dir?",
+      "fr": "Où habitez-vous ?",
+      "note": "Dir = vous (formel)"
     },
     {
       "id": 13,
-      "fr": "Pilote / Pilote",
-      "lu": "e Pilot / eng Pilotin",
-      "note": "e → devant consonne"
-    },
-    {
-      "id": 14,
-      "fr": "Cuisinier / Cuisinière",
-      "lu": "e Kach / eng Kächin",
-      "note": "e → devant consonne"
-    },
-    {
-      "id": 15,
-      "fr": "comme / en tant que",
-      "lu": "als",
-      "note": "Ech schaffen als Dokter."
-    },
-    {
-      "id": 16,
-      "lu": "Wat sidd Dir vu Beruff?",
-      "fr": "Quel est votre métier ?",
-      "note": "Dir = vous (formel) · Beruff = métier"
-    },
-    {
-      "id": 17,
-      "lu": "Wat bass du vu Beruff?",
-      "fr": "Quel est ton métier ?",
+      "lu": "Wou wunns du?",
+      "fr": "Où habites-tu ?",
       "note": "du = tu (informel)"
-    },
-    {
-      "id": 18,
-      "lu": "Wat schafft Dir?",
-      "fr": "Dans quoi travaillez-vous ?",
-      "note": "Question formelle"
-    },
-    {
-      "id": 19,
-      "lu": "Wat schaffs du?",
-      "fr": "Dans quoi travailles-tu ?",
-      "note": "Question informelle"
-    },
-    {
-      "id": 20,
-      "lu": "Ech schaffen als Polizist.",
-      "fr": "Je travaille comme policier.",
-      "note": "als = comme / en tant que"
-    },
-    {
-      "id": 21,
-      "lu": "Ass hien Polizist?",
-      "fr": "Est-il policier ?",
-      "note": "Ass = est"
-    },
-    {
-      "id": 22,
-      "lu": "Jo, hien ass Polizist.",
-      "fr": "Oui, il est policier.",
-      "note": "Réponse affirmative"
-    },
-    {
-      "id": 23,
-      "lu": "Nee, hien ass kee Polizist.",
-      "fr": "Non, il n'est pas policier.",
-      "note": "kee devant métier masculin"
-    },
-    {
-      "id": 24,
-      "lu": "Ass si eng Polizistin?",
-      "fr": "Est-elle policière ?",
-      "note": "eng devant métier féminin"
-    },
-    {
-      "id": 25,
-      "lu": "Jo, si ass eng Polizistin.",
-      "fr": "Oui, elle est policière.",
-      "note": "Réponse affirmative"
-    },
-    {
-      "id": 26,
-      "lu": "Nee, si ass keng Polizistin.",
-      "fr": "Non, elle n'est pas policière.",
-      "note": "keng devant métier féminin"
     }
   ],
   "quiz": [
     {
       "id": 1,
-      "question": "Policier (masculin) en luxembourgeois ?",
-      "reponse": "e Polizist",
+      "question": "J'habite au Luxembourg.",
+      "reponse": "zu Lëtzebuerg",
       "distracteurs": [
-        "en Polizist",
-        "e Polizistin",
-        "en Polizistin"
+        "a Lëtzebuerg",
+        "an Lëtzebuerg",
+        "an der Lëtzebuerg"
       ]
     },
     {
       "id": 2,
-      "question": "Doctoresse (féminin) en luxembourgeois ?",
-      "reponse": "eng Doktesch",
+      "question": "J'habite en Allemagne.",
+      "reponse": "an Daitschland",
       "distracteurs": [
-        "en Doktesch",
-        "eng Dokter",
-        "e Doktesch"
+        "zu Daitschland",
+        "an der Daitschland",
+        "am Daitschland"
       ]
     },
     {
       "id": 3,
-      "question": "Coiffeur (masculin) en luxembourgeois ?",
-      "reponse": "e Coiffer",
+      "question": "J'habite en France.",
+      "reponse": "a Frankräich",
       "distracteurs": [
-        "en Coiffer",
-        "e Coiffeuse",
-        "eng Coiffeuse"
+        "zu Frankräich",
+        "an der Frankräich",
+        "am Frankräich"
       ]
     },
     {
       "id": 4,
-      "question": "Banquière (féminin) en luxembourgeois ?",
-      "reponse": "eng Bankerin",
+      "question": "J'habite en Belgique.",
+      "reponse": "an der Belsch",
       "distracteurs": [
-        "e Bankerin",
-        "eng Banker",
-        "en Banker"
+        "a Belsch",
+        "zu Belsch",
+        "am Belsch"
       ]
     },
     {
       "id": 5,
-      "question": "Pharmacien (masculin) en luxembourgeois ?",
-      "reponse": "en Apdiker",
+      "question": "J'habite en Suisse.",
+      "reponse": "an der Schwäiz",
       "distracteurs": [
-        "e Apdiker",
-        "eng Apdiker",
-        "en Apdixtesch"
+        "an Schwäiz",
+        "zu Schwäiz",
+        "am Schwäiz"
       ]
     },
     {
       "id": 6,
-      "question": "Factrice (féminin) en luxembourgeois ?",
-      "reponse": "eng Breifdréiesch",
+      "question": "J'habite à Metz.",
+      "reponse": "zu Metz",
       "distracteurs": [
-        "e Breifdréiesch",
-        "eng Breifdréier",
-        "en Breifdréier"
+        "a Metz",
+        "an Metz",
+        "am Metz"
       ]
     },
     {
       "id": 7,
-      "question": "Avocat (masculin) en luxembourgeois ?",
-      "reponse": "en Affekot",
+      "question": "J'habite à Esch.",
+      "reponse": "zu Esch",
       "distracteurs": [
-        "e Affekot",
-        "eng Affekot",
-        "en Affekotin"
+        "an Esch",
+        "a Esch",
+        "am Esch"
       ]
     },
     {
       "id": 8,
-      "question": "Bouchère (féminin) en luxembourgeois ?",
-      "reponse": "eng Metzlesch",
+      "question": "J'habite en ville.",
+      "reponse": "an der Stad",
       "distracteurs": [
-        "e Metzlesch",
-        "eng Metzler",
-        "en Metzler"
+        "a Stad",
+        "zu Stad",
+        "am Stad"
       ]
     },
     {
       "id": 9,
-      "question": "Boulanger (masculin) en luxembourgeois ?",
-      "reponse": "e Bäcker",
+      "question": "J'habite au Kirchberg.",
+      "reponse": "um Kirchberg",
       "distracteurs": [
-        "en Bäcker",
-        "e Bäckesch",
-        "eng Bäckesch"
+        "am Kirchberg",
+        "zu Kirchberg",
+        "an der Kirchberg"
       ]
     },
     {
       "id": 10,
-      "question": "Infirmière (féminin) en luxembourgeois ?",
-      "reponse": "eng Infirmière",
+      "question": "J'habite à Belair.",
+      "reponse": "um Belair",
       "distracteurs": [
-        "e Infirmière",
-        "eng Infirmier",
-        "e Infirmier"
+        "am Belair",
+        "zu Belair",
+        "an Belair"
       ]
     },
     {
       "id": 11,
-      "question": "Caissier (masculin) en luxembourgeois ?",
-      "reponse": "e Caissier",
+      "question": "J'habite au Grund.",
+      "reponse": "am Gronn",
       "distracteurs": [
-        "en Caissier",
-        "e Caissière",
-        "eng Caissière"
+        "um Gronn",
+        "zu Gronn",
+        "an der Gronn"
       ]
     },
     {
       "id": 12,
-      "question": "Professeure (féminin) en luxembourgeois ?",
-      "reponse": "eng Léierin",
+      "question": "Quelle préposition utilise-t-on avec une ville ?",
+      "reponse": "zu",
       "distracteurs": [
-        "eng Schoulmeeschter",
-        "e Léierin",
-        "en Léierin"
+        "a",
+        "an der",
+        "um"
       ]
     },
     {
       "id": 13,
-      "question": "Pilote (masculin) en luxembourgeois ?",
-      "reponse": "e Pilot",
+      "question": "Quelle préposition utilise-t-on avec un pays féminin ?",
+      "reponse": "an der",
       "distracteurs": [
-        "en Pilot",
-        "e Pilotin",
-        "eng Pilotin"
+        "zu",
+        "a",
+        "um"
       ]
     },
     {
       "id": 14,
-      "question": "Cuisinière (féminin) en luxembourgeois ?",
-      "reponse": "eng Kächin",
+      "question": "Quelle préposition utilise-t-on avec Lëtzebuerg ?",
+      "reponse": "zu",
       "distracteurs": [
-        "e Kächin",
-        "eng Kach",
-        "en Kach"
+        "a",
+        "an",
+        "an der"
       ]
     },
     {
       "id": 15,
-      "question": "Comment dire « en tant que » en luxembourgeois ?",
-      "reponse": "als",
+      "question": "Quelle préposition utilise-t-on souvent avec un quartier ?",
+      "reponse": "um / am",
       "distracteurs": [
-        "ass",
-        "an",
-        "aus"
+        "zu",
+        "an der",
+        "a"
       ]
     }
   ],
   "trous": [
     {
       "id": 1,
-      "fr": "Cristiano Ronaldo est pilote. (masculin)",
-      "avant": "De Ronaldo ass",
-      "trou": "e",
-      "apres": "Pilot.",
+      "fr": "J'habite au Luxembourg.",
+      "avant": "Ech wunnen",
+      "trou": "zu",
+      "apres": "Lëtzebuerg.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Pilot → masc. devant consonne → e"
+      "note": "Exception Luxembourg → zu"
     },
     {
       "id": 2,
-      "fr": "Michelle Obama est avocate. (féminin)",
-      "avant": "D'Michelle ass eng",
-      "trou": "Affekotin",
-      "apres": ".",
+      "fr": "J'habite en Allemagne.",
+      "avant": "Ech wunnen",
+      "trou": "an",
+      "apres": "Daitschland.",
       "choix": [
-        "Affekotin",
-        "Affekot",
-        "Apdixtesch",
-        "Infirmière"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Affekotin = avocate (féminin)"
+      "note": "Pays sans article → a/an"
     },
     {
       "id": 3,
-      "fr": "Gordon Ramsay n'est pas boulanger, il est cuisinier.",
-      "avant": "De Gordon ass kee Bäcker, hien ass",
-      "trou": "e",
-      "apres": "Kach.",
+      "fr": "J'habite en France.",
+      "avant": "Ech wunnen",
+      "trou": "a",
+      "apres": "Frankräich.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Kach → masc. devant consonne → e"
+      "note": "Pays sans article → a (devant F)"
     },
     {
       "id": 4,
-      "fr": "Doc Martin est médecin. (masculin)",
-      "avant": "De Doc Martin ass",
-      "trou": "en",
-      "apres": "Dokter.",
+      "fr": "J'habite en Belgique.",
+      "avant": "Ech wunnen",
+      "trou": "an der",
+      "apres": "Belsch.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Dokter → masc. devant D → en"
+      "note": "Pays féminin → an der"
     },
     {
       "id": 5,
-      "fr": "Florence Nightingale était infirmière. (féminin)",
-      "avant": "D'Florence war",
-      "trou": "eng",
-      "apres": "Infirmière.",
+      "fr": "J'habite en Suisse.",
+      "avant": "Ech wunnen",
+      "trou": "an der",
+      "apres": "Schwäiz.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Infirmière → féminin → eng"
+      "note": "Pays féminin → an der"
     },
     {
       "id": 6,
-      "fr": "Harvey Specter est avocat. (masculin)",
-      "avant": "De Harvey ass",
-      "trou": "en",
-      "apres": "Affekot.",
+      "fr": "J'habite à Metz.",
+      "avant": "Ech wunnen",
+      "trou": "zu",
+      "apres": "Metz.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Affekot → masc. devant voyelle A → en"
+      "note": "Ville → zu"
     },
     {
       "id": 7,
-      "fr": "Lady Gaga est coiffeuse. (féminin)",
-      "avant": "D'Lady Gaga ass",
-      "trou": "eng",
-      "apres": "Coiffeuse.",
+      "fr": "J'habite en ville.",
+      "avant": "Ech wunnen",
+      "trou": "an der",
+      "apres": "Stad.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Coiffeuse → féminin → eng"
+      "note": "Stad = féminin → an der"
     },
     {
       "id": 8,
-      "fr": "Walter White est professeur, pas boulanger.",
-      "avant": "De Walter ass e Schoulmeeschter, kee",
-      "trou": "Bäcker",
-      "apres": ".",
+      "fr": "J'habite au Kirchberg.",
+      "avant": "Ech wunnen",
+      "trou": "um",
+      "apres": "Kirchberg.",
       "choix": [
-        "Bäcker",
-        "Bäckesch",
-        "Metzler",
-        "Kach"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "um"
       ],
-      "note": "Bäcker = boulanger masc. · ≠ Bäckesch (féminin)"
+      "note": "Quartier → um/am"
     },
     {
       "id": 9,
-      "fr": "Cette femme travaille comme pharmacienne.",
-      "avant": "Dës Fra schafft als",
-      "trou": "Apdixtesch",
-      "apres": ".",
+      "fr": "J'habite au Grund.",
+      "avant": "Ech wunnen",
+      "trou": "am",
+      "apres": "Gronn.",
       "choix": [
-        "Apdixtesch",
-        "Apdiker",
-        "Doktesch",
-        "Infirmière"
+        "a",
+        "an",
+        "zu",
+        "an der",
+        "am"
       ],
-      "note": "Apdixtesch = pharmacienne · als = en tant que"
-    },
-    {
-      "id": 10,
-      "fr": "Je travaille comme boucher.",
-      "avant": "Ech schaffen",
-      "trou": "als",
-      "apres": "Metzler.",
-      "choix": [
-        "als",
-        "ass",
-        "aus",
-        "an"
-      ],
-      "note": "als = comme / en tant que"
-    },
-    {
-      "id": 11,
-      "fr": "Ce policier n'est pas boulanger.",
-      "avant": "De Polizist ass",
-      "trou": "kee",
-      "apres": "Bäcker.",
-      "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
-      ],
-      "note": "Négation masculin → kee"
-    },
-    {
-      "id": 12,
-      "fr": "Nicki Minaj est caissière. (féminin)",
-      "avant": "D'Nicki ass",
-      "trou": "eng",
-      "apres": "Caissière.",
-      "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
-      ],
-      "note": "Caissière → féminin → eng"
-    },
-    {
-      "id": 13,
-      "fr": "Tony Stark est pilote, pas banquier.",
-      "avant": "De Tony ass e Pilot, kee",
-      "trou": "Banker",
-      "apres": ".",
-      "choix": [
-        "Banker",
-        "Bankerin",
-        "Pilot",
-        "Kach"
-      ],
-      "note": "Banker = banquier masc. · ≠ Bankerin (féminin)"
-    },
-    {
-      "id": 14,
-      "fr": "Cette femme est pharmacienne, pas policière.",
-      "avant": "Dës Fra ass eng Apdixtesch,",
-      "trou": "keng",
-      "apres": "Polizistin.",
-      "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
-      ],
-      "note": "Négation féminin → keng"
-    },
-    {
-      "id": 15,
-      "fr": "Paul Hollywood est boulanger.",
-      "avant": "De Paul ass",
-      "trou": "e",
-      "apres": "Bäcker.",
-      "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
-      ],
-      "note": "Bäcker → masc. devant consonne → e"
+      "note": "Quartier → am (devant G)"
     }
   ],
   "ecriture": [
     {
-      "fr": "Policier (M)",
-      "lu": "e Polizist"
+      "fr": "J'habite au Luxembourg.",
+      "lu": "Ech wunnen zu Lëtzebuerg."
     },
     {
-      "fr": "Policière (F)",
-      "lu": "eng Polizistin"
+      "fr": "J'habite en Allemagne.",
+      "lu": "Ech wunnen an Daitschland."
     },
     {
-      "fr": "Docteur (M)",
-      "lu": "en Dokter"
+      "fr": "J'habite en France.",
+      "lu": "Ech wunnen a Frankräich."
     },
     {
-      "fr": "Doctoresse (F)",
-      "lu": "eng Doktesch"
+      "fr": "J'habite en Belgique.",
+      "lu": "Ech wunnen an der Belsch."
     },
     {
-      "fr": "Coiffeur (M)",
-      "lu": "e Coiffer"
+      "fr": "J'habite en Suisse.",
+      "lu": "Ech wunnen an der Schwäiz."
     },
     {
-      "fr": "Coiffeuse (F)",
-      "lu": "eng Coiffeuse"
+      "fr": "J'habite à Metz.",
+      "lu": "Ech wunnen zu Metz."
     },
     {
-      "fr": "Banquier (M)",
-      "lu": "e Banker"
+      "fr": "J'habite à Esch.",
+      "lu": "Ech wunnen zu Esch."
     },
     {
-      "fr": "Banquière (F)",
-      "lu": "eng Bankerin"
+      "fr": "J'habite en ville.",
+      "lu": "Ech wunnen an der Stad."
     },
     {
-      "fr": "Pharmacien (M)",
-      "lu": "en Apdiker"
+      "fr": "J'habite au Kirchberg.",
+      "lu": "Ech wunnen um Kirchberg."
     },
     {
-      "fr": "Pharmacienne (F)",
-      "lu": "eng Apdikesch"
+      "fr": "J'habite au Grund.",
+      "lu": "Ech wunnen am Gronn."
     },
     {
-      "fr": "Facteur (M)",
-      "lu": "e Breifdréier"
+      "fr": "à / au (villes)",
+      "lu": "zu"
     },
     {
-      "fr": "Factrice (F)",
-      "lu": "eng Breifdréiesch"
+      "fr": "en (pays sans article)",
+      "lu": "a / an"
     },
     {
-      "fr": "Avocat (M)",
-      "lu": "en Affekot"
+      "fr": "en (pays féminin)",
+      "lu": "an der"
     },
     {
-      "fr": "Avocate (F)",
-      "lu": "eng Affekotin"
+      "fr": "au / à (quartiers)",
+      "lu": "um / am"
     },
     {
-      "fr": "Boucher (M)",
-      "lu": "e Metzler"
+      "fr": "Il habite au Luxembourg.",
+      "lu": "Hien wunnt zu Lëtzebuerg."
     },
     {
-      "fr": "Bouchère (F)",
-      "lu": "eng Metzlesch"
+      "fr": "Elle habite en Belgique.",
+      "lu": "Si wunnt an der Belsch."
     },
     {
-      "fr": "Boulanger (M)",
-      "lu": "e Bäcker"
+      "fr": "Tu habites où ?",
+      "lu": "Wou wunns du?"
     },
     {
-      "fr": "Boulangère (F)",
-      "lu": "eng Bäckesch"
+      "fr": "Où habitez-vous ?",
+      "lu": "Wou wunnt Dir?"
     },
     {
-      "fr": "Pilote (M)",
-      "lu": "e Pilot"
+      "fr": "Nous habitons à Luxembourg-Ville.",
+      "lu": "Mir wunnen zu Lëtzebuerg-Stad."
     },
     {
-      "fr": "Pilote (F)",
-      "lu": "eng Pilotin"
+      "fr": "Il habite à Belair.",
+      "lu": "Hien wunnt um Belair."
     },
     {
-      "fr": "Cuisinier (M)",
-      "lu": "e Kach"
+      "fr": "J'habite en Espagne.",
+      "lu": "Ech wunnen a Spuenien."
     },
     {
-      "fr": "Cuisinière (F)",
-      "lu": "eng Kächin"
+      "fr": "J'habite en Italie.",
+      "lu": "Ech wunnen an Italien."
     },
     {
-      "fr": "Professeur (M)",
-      "lu": "e Schoulmeeschter"
+      "fr": "J'habite en Angleterre.",
+      "lu": "Ech wunnen an England."
     },
     {
-      "fr": "Professeure (F)",
-      "lu": "eng Léierin"
+      "fr": "J'habite aux Pays-Bas.",
+      "lu": "Ech wunnen a Holland."
     },
     {
-      "fr": "comme / en tant que",
-      "lu": "als"
+      "fr": "J'habite en Suède.",
+      "lu": "Ech wunnen a Schweden."
     },
     {
-      "fr": "Je travaille comme boucher.",
-      "lu": "Ech schaffen als Metzler."
+      "fr": "J'habite à Paris.",
+      "lu": "Ech wunnen zu Paräis."
     },
     {
-      "fr": "Il est avocat.",
-      "lu": "Hien ass en Affekot."
+      "fr": "habiter",
+      "lu": "wunnen"
     },
     {
-      "fr": "Elle est pilote.",
-      "lu": "Si ass eng Pilotin."
+      "fr": "la ville",
+      "lu": "d'Stad"
     },
     {
-      "fr": "Il n'est pas boulanger.",
-      "lu": "Hien ass kee Bäcker."
+      "fr": "le quartier",
+      "lu": "de Quartier"
     },
     {
-      "fr": "Elle est pharmacienne.",
-      "lu": "Si ass eng Apdikesch."
+      "fr": "J'habite en Chine.",
+      "lu": "Ech wunnen a China."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Les métiers ont une forme masculine et féminine. L'article <b>e</b> ou <b>en</b> dépend de la lettre qui suit."
+      "contenu": "Pour dire où on habite, on utilise le verbe <b>wunnen</b> + une préposition de lieu qui dépend du lieu."
     },
     {
       "type": "regle",
-      "titre": "Article masculin",
+      "titre": "Les prépositions de lieu",
       "lignes": [
-        "Devant consonne → <b>e</b> (e Polizist, e Bäcker)",
-        "Devant voyelle ou d, n → <b>en</b> (en Dokter, en Affekot)",
-        "Féminin → <b>eng</b> (eng Polizistin)"
+        "Villes → <b>zu</b> (zu Metz, zu Esch)",
+        "Exception Luxembourg → <b>zu</b> (zu Lëtzebuerg)",
+        "Pays sans article → <b>a / an</b> (an Daitschland, a Frankräich)",
+        "Pays féminins → <b>an der</b> (an der Belsch, an der Schwäiz)",
+        "Quartiers / lieux → <b>um / am</b> (um Kirchberg, am Gronn)"
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Métiers (M / F)",
-      "items": [
+      "type": "dialogue",
+      "titre": "Exemples",
+      "echanges": [
         [
-          "e Polizist / eng Polizistin",
-          "policier·ère"
+          "Ech wunnen zu Lëtzebuerg.",
+          "J'habite au Luxembourg."
         ],
         [
-          "en Dokter / eng Doktesch",
-          "docteur·e"
+          "Ech wunnen an der Belsch.",
+          "J'habite en Belgique."
         ],
         [
-          "e Coiffer / eng Coiffeuse",
-          "coiffeur·euse"
+          "Ech wunnen um Kirchberg.",
+          "J'habite au Kirchberg."
         ],
         [
-          "en Affekot / eng Affekotin",
-          "avocat·e"
-        ],
-        [
-          "e Bäcker / eng Bäckesch",
-          "boulanger·ère"
-        ],
-        [
-          "e Schoulmeeschter / eng Léierin",
-          "professeur·e"
-        ],
-        [
-          "e Kach / eng Kächin",
-          "cuisinier·ère"
+          "Wou wunns du?",
+          "Où habites-tu ?"
         ]
-      ]
-    },
-    {
-      "type": "regle",
-      "titre": "Le mot « als »",
-      "lignes": [
-        "<b>als</b> = comme / en tant que",
-        "Ech schaffen <b>als</b> Metzler. (Je travaille comme boucher.)"
       ]
     }
   ]

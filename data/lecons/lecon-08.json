@@ -1,779 +1,937 @@
 {
   "id": 8,
-  "titre": "Sproochen",
-  "titre_fr": "Les langues",
-  "couleur": "#60c08a",
+  "titre": "D'Nationalitéit",
+  "titre_fr": "Les nationalités",
+  "couleur": "#7ab8e8",
   "flashcards": [
     {
       "id": 1,
-      "lu": "Portugisesch",
-      "fr": "Portugais",
-      "note": "Portugal"
+      "lu": "e Portugis / eng Portugisin",
+      "fr": "Portugais / Portugaise",
+      "note": "Portugal · M → e Portugis · F → eng Portugisin"
     },
     {
       "id": 2,
-      "lu": "Spéinesch",
-      "fr": "Espagnol",
-      "note": "Spuenien"
+      "lu": "e Spuenier / eng Spuenierin",
+      "fr": "Espagnol / Espagnole",
+      "note": "Spuenien · M → e Spuenier · F → eng Spuenierin"
     },
     {
       "id": 3,
-      "lu": "Englesch",
-      "fr": "Anglais",
-      "note": "England"
+      "lu": "en Engländer / eng Engländerin",
+      "fr": "Anglais / Anglaise",
+      "note": "England · M → en Engländer · F → eng Engländerin"
     },
     {
       "id": 4,
-      "lu": "Italienesch",
-      "fr": "Italien",
-      "note": "Italien"
+      "lu": "en Italiener / eng Italienerin",
+      "fr": "Italien / Italienne",
+      "note": "Italien · M → en Italiener · F → eng Italienerin"
     },
     {
       "id": 5,
-      "lu": "Lëtzebuergesch",
-      "fr": "Luxembourgeois",
-      "note": "Lëtzebuerg"
+      "lu": "e Lëtzebuerger / eng Lëtzebuergerin",
+      "fr": "Luxembourgeois / Luxembourgeoise",
+      "note": "Lëtzebuerg · M → e Lëtzebuerger · F → eng Lëtzebuergerin"
     },
     {
       "id": 6,
-      "lu": "Franséisch",
-      "fr": "Français",
-      "note": "Frankräich"
+      "lu": "en Australier / eng Australierin",
+      "fr": "Australien / Australienne",
+      "note": "Australien · M → en Australier · F → eng Australierin"
     },
     {
       "id": 7,
-      "lu": "Flammännesch",
-      "fr": "Flamand",
-      "note": "Belsch (partie flamande)"
+      "lu": "en Argentinier / eng Argentinierin",
+      "fr": "Argentin / Argentine",
+      "note": "Argentinien · M → en Argentinier · F → eng Argentinierin"
     },
     {
       "id": 8,
-      "lu": "Däitsch",
-      "fr": "Allemand",
-      "note": "Daitschland"
+      "lu": "en Amerikaner / eng Amerikanerin",
+      "fr": "Américain / Américaine",
+      "note": "Amerika · M → en Amerikaner · F → eng Amerikanerin"
     },
     {
       "id": 9,
-      "lu": "Japanesch",
-      "fr": "Japonais",
-      "note": "Japan"
+      "lu": "e Belsch / eng Belsch",
+      "fr": "Belge",
+      "note": "Belsch · M = F = Belsch"
     },
     {
       "id": 10,
-      "lu": "Koreanesch",
-      "fr": "Coréen",
-      "note": "Korea (Nord & Sud)"
+      "lu": "en Däitschen / eng Däitsch",
+      "fr": "Allemand / Allemande",
+      "note": "Däitschland · M → en Däitschen · F → eng Däitsch"
     },
     {
       "id": 11,
-      "lu": "Holländesch",
-      "fr": "Néerlandais",
-      "note": "Holland"
+      "lu": "e Japaner / eng Japanerin",
+      "fr": "Japonais / Japonaise",
+      "note": "Japan · M → e Japaner · F → eng Japanerin"
     },
     {
       "id": 12,
-      "lu": "Chineesesch",
-      "fr": "Chinois",
-      "note": "China"
+      "lu": "en Nordkoreaner / eng Nordkoreanerin",
+      "fr": "Nord-Coréen / Nord-Coréenne",
+      "note": "Nordkorea · M → en Nordkoreaner · F → eng Nordkoreanerin"
     },
     {
       "id": 13,
-      "lu": "Schweedesch",
-      "fr": "Suédois",
-      "note": "Schweden "
+      "lu": "e Fransous / eng Fransousin",
+      "fr": "Français / Française",
+      "note": "Frankräich · M → e Fransous · F → eng Fransousin"
     },
     {
       "id": 14,
-      "lu": "schwätzen",
-      "fr": "parler",
-      "note": "Verbe clé · Ech schwätzen Englesch."
+      "lu": "e Holländer / eng Holländerin",
+      "fr": "Néerlandais / Néerlandaise",
+      "note": "Holland · M → e Holländer · F → eng Holländerin"
     },
     {
       "id": 15,
-      "lu": "De Ronaldo schwätzt Portugisesch.",
-      "fr": "Ronaldo parle portugais.",
-      "note": "schwätzen = parler"
+      "lu": "e Chinéis / eng Chinesin",
+      "fr": "Chinois / Chinoise",
+      "note": "China · M → e Chinéis · F → eng Chinesin"
     },
     {
       "id": 16,
-      "lu": "Schwätzt de Ronaldo Portugisesch?",
-      "fr": "Ronaldo parle-t-il portugais ?",
-      "note": "Question fermée"
+      "lu": "e Schwed / eng Schwedin",
+      "fr": "Suédois / Suédoise",
+      "note": "Schweden · M → e Schwed · F → eng Schwedin"
     },
     {
       "id": 17,
-      "lu": "Jo, hie schwätzt Portugisesch.",
-      "fr": "Oui, il parle portugais.",
-      "note": "Jo = oui"
+      "lu": "Wat fir eng Nationalitéit huet de Ronaldo?",
+      "fr": "De quelle nationalité est Ronaldo ?",
+      "note": "Wat fir eng = quelle"
     },
     {
       "id": 18,
-      "lu": "Nee, hie schwätzt kee Däitsch.",
-      "fr": "Non, il ne parle pas allemand.",
-      "note": "kee devant une langue"
+      "lu": "Hien ass Portugis.",
+      "fr": "Il est portugais.",
+      "note": "Hien = il"
     },
     {
       "id": 19,
-      "lu": "Wat fir eng Sprooch schwätzt de Ronaldo?",
-      "fr": "Quelle langue parle Ronaldo ?",
-      "note": "Sprooch = langue"
+      "lu": "Ech sinn e Fransous.",
+      "fr": "Je suis français.",
+      "note": "sinn = suis"
     },
     {
       "id": 20,
-      "lu": "Hie schwätzt Portugisesch.",
-      "fr": "Il parle portugais.",
-      "note": "Réponse simple"
+      "lu": "Ech si Fransous.",
+      "fr": "Je suis français.",
+      "note": "Forme abrégée fréquente"
     },
     {
       "id": 21,
-      "lu": "Wat fir Sprooche schwätzt de Ronaldo?",
-      "fr": "Quelles langues parle Ronaldo ?",
-      "note": "Sprooche = langues"
+      "lu": "Ass de Ronaldo Portugis?",
+      "fr": "Ronaldo est-il portugais ?",
+      "note": "Question fermée : Ass..."
     },
     {
       "id": 22,
-      "lu": "Hie schwätzt Portugisesch, Englesch, etc.",
-      "fr": "Il parle portugais, anglais, etc.",
-      "note": "Plusieurs langues"
+      "lu": "Jo, hien ass Portugis.",
+      "fr": "Oui, il est portugais.",
+      "note": "Jo = oui"
     },
     {
       "id": 23,
-      "lu": "Wat fir Sprooch schwätzt Dir?",
-      "fr": "Quelle langue parlez-vous ?",
-      "note": "Dir = vous (formel)"
-    },
-    {
-      "id": 24,
-      "lu": "Wat fir Sprooch schwätzs du?",
-      "fr": "Quelle langue parles-tu ?",
-      "note": "du = tu (informel)"
-    },
-    {
-      "id": 25,
-      "lu": "Ech schwätze Franséisch, Englesch an e bësse Lëtzebuergesch.",
-      "fr": "Je parle français, anglais et un peu luxembourgeois.",
-      "note": "e bësse = un peu"
+      "lu": "Nee, hien ass kee Spuenier.",
+      "fr": "Non, il n'est pas espagnol.",
+      "note": "kee + nationalité masculine"
     }
   ],
   "quiz": [
     {
       "id": 1,
-      "question": "Quelle langue parle-t-on au Portugal ?",
-      "reponse": "Portugisesch",
+      "question": "Portugal - Garçon",
+      "reponse": "Portugis",
       "distracteurs": [
-        "Portugis",
         "Portugisin",
-        "Spéinesch"
+        "Portugiser",
+        "Portugiserin"
       ]
     },
     {
       "id": 2,
-      "question": "Quelle langue parle-t-on en Spuenien ?",
-      "reponse": "Spéinesch",
+      "question": "Portugal - Fille",
+      "reponse": "Portugisin",
       "distracteurs": [
-        "Spuenier",
-        "Spuenierin",
-        "Portugisesch"
+        "Portugis",
+        "Portugiser",
+        "Portugiserin"
       ]
     },
     {
       "id": 3,
-      "question": "Quelle langue parle-t-on en England ?",
-      "reponse": "Englesch",
+      "question": "Espagne - Garçon",
+      "reponse": "Spuenier",
       "distracteurs": [
-        "Engländer",
-        "Engländerin",
-        "Holländesch"
+        "Spuenierin",
+        "Spuenis",
+        "Spuenisin"
       ]
     },
     {
       "id": 4,
-      "question": "Quelle langue parle-t-on en Italien ?",
-      "reponse": "Italienesch",
+      "question": "Espagne - Fille",
+      "reponse": "Spuenierin",
       "distracteurs": [
-        "Italiener",
-        "Italienerin",
-        "Spéinesch"
+        "Spuenier",
+        "Spuenis",
+        "Spuenisin"
       ]
     },
     {
       "id": 5,
-      "question": "Quelle langue parle-t-on zu Lëtzebuerg ?",
-      "reponse": "Lëtzebuergesch",
+      "question": "Angleterre - Garçon",
+      "reponse": "Engländer",
       "distracteurs": [
-        "Lëtzebuerger",
-        "Lëtzebuergerin",
-        "Franséisch"
+        "Engländerin",
+        "Englis",
+        "Englisin"
       ]
     },
     {
       "id": 6,
-      "question": "Quelle langue parle-t-on a Frankräich ?",
-      "reponse": "Franséisch",
+      "question": "Angleterre - Fille",
+      "reponse": "Engländerin",
       "distracteurs": [
-        "Fransous",
-        "Fransousin",
-        "Italienesch"
+        "Engländer",
+        "Englis",
+        "Englisin"
       ]
     },
     {
       "id": 7,
-      "question": "Quelle est la 2e langue de la Belsch ?",
-      "reponse": "Flammännesch",
+      "question": "Italie - Garçon",
+      "reponse": "Italiener",
       "distracteurs": [
-        "Franséisch",
-        "Holländesch",
-        "Däitsch"
+        "Italienerin",
+        "Italienis",
+        "Italienisin"
       ]
     },
     {
       "id": 8,
-      "question": "Quelle langue parle-t-on an Daitschland ?",
-      "reponse": "Däitsch",
+      "question": "Italie - Fille",
+      "reponse": "Italienerin",
       "distracteurs": [
-        "Däitschen",
-        "Däitsch",
-        "Holländesch"
+        "Italiener",
+        "Italienis",
+        "Italienisin"
       ]
     },
     {
       "id": 9,
-      "question": "Quelle langue parle-t-on a Japan ?",
-      "reponse": "Japanesch",
+      "question": "Luxembourg - Garçon",
+      "reponse": "Lëtzebuerger",
       "distracteurs": [
-        "Japaner",
-        "Japanerin",
-        "Koreanesch"
+        "Lëtzebuergerin",
+        "Lëtzebuergis",
+        "Lëtzebuergisin"
       ]
     },
     {
       "id": 10,
-      "question": "Quelle langue parle-t-on a Korea ?",
-      "reponse": "Koreanesch",
+      "question": "Luxembourg - Fille",
+      "reponse": "Lëtzebuergerin",
       "distracteurs": [
-        "Nordkoreaner",
-        "Japanesch",
-        "Chineesesch"
+        "Lëtzebuerger",
+        "Lëtzebuergis",
+        "Lëtzebuergisin"
       ]
     },
     {
       "id": 11,
-      "question": "Quelle langue parle-t-on a Holland ?",
-      "reponse": "Holländesch",
+      "question": "Australie - Garçon",
+      "reponse": "Australier",
       "distracteurs": [
-        "Holläner",
-        "Holländerin",
-        "Flammännesch"
+        "Australierin",
+        "Australis",
+        "Australisin"
       ]
     },
     {
       "id": 12,
-      "question": "Quelle langue parle-t-on a China ?",
-      "reponse": "Chineesesch",
+      "question": "Australie - Fille",
+      "reponse": "Australierin",
       "distracteurs": [
-        "Chinéis",
-        "Chinéisin",
-        "Japanesch"
+        "Australier",
+        "Australis",
+        "Australisin"
       ]
     },
     {
       "id": 13,
-      "question": "Quelle langue parle-t-on a Schweden ?",
-      "reponse": "Schweedesch",
+      "question": "Argentine - Garçon",
+      "reponse": "Argentinier",
       "distracteurs": [
-        "Schweed",
-        "Schwedin",
-        "Holländesch"
+        "Argentinierin",
+        "Argentinis",
+        "Argentinisin"
       ]
     },
     {
       "id": 14,
-      "question": "Ronaldo kënnt aus Portugal. Wat schwätzt hien ?",
-      "reponse": "Portugisesch",
+      "question": "Argentine - Fille",
+      "reponse": "Argentinierin",
       "distracteurs": [
-        "Spéinesch",
-        "Englesch",
-        "Franséisch"
+        "Argentinier",
+        "Argentinis",
+        "Argentinisin"
       ]
     },
     {
       "id": 15,
-      "question": "Messi kënnt aus Argentinien. Wat schwätzt hien ?",
-      "reponse": "Spéinesch",
+      "question": "Amérique - Garçon",
+      "reponse": "Amerikaner",
       "distracteurs": [
-        "Portugisesch",
-        "Italienesch",
-        "Englesch"
+        "Amerikanerin",
+        "Amerikais",
+        "Amerikaisin"
       ]
     },
     {
       "id": 16,
-      "question": "BTS kënnt aus Korea. Wat schwätzen si ?",
-      "reponse": "Koreanesch",
+      "question": "Amérique - Fille",
+      "reponse": "Amerikanerin",
       "distracteurs": [
-        "Japanesch",
-        "Chineesesch",
-        "Englesch"
+        "Amerikaner",
+        "Amerikais",
+        "Amerikaisin"
       ]
     },
     {
       "id": 17,
-      "question": "Yoko kënnt aus Japan. Wat schwätzt si ?",
-      "reponse": "Japanesch",
+      "question": "Belgique - Garçon",
+      "reponse": "Belsch",
       "distracteurs": [
-        "Koreanesch",
-        "Chineesesch",
-        "Holländesch"
+        "Belschin",
+        "Belscher",
+        "Belscherin"
       ]
     },
     {
       "id": 18,
-      "question": "Jackie kënnt aus China. Wat schwätzt hien ?",
-      "reponse": "Chineesesch",
+      "question": "Belgique - Fille",
+      "reponse": "Belsch",
       "distracteurs": [
-        "Japanesch",
-        "Koreanesch",
-        "Englesch"
+        "Belschin",
+        "Belscher",
+        "Belscherin"
       ]
     },
     {
       "id": 19,
-      "question": "Greta kënnt aus Schweden. Wat schwätzt si ?",
-      "reponse": "Schweedesch",
+      "question": "Allemagne - Garçon",
+      "reponse": "Däitschen",
       "distracteurs": [
-        "Holländesch",
         "Däitsch",
-        "Englesch"
+        "Däitscherin",
+        "Däitschin"
       ]
     },
     {
       "id": 20,
-      "question": "Wilhem kënnt aus Holland. Wat schwätzt hien ?",
-      "reponse": "Holländesch",
+      "question": "Allemagne - Fille",
+      "reponse": "Däitsch",
       "distracteurs": [
-        "Flammännesch",
-        "Däitsch",
-        "Englesch"
+        "Däitschen",
+        "Däitscherin",
+        "Däitschin"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "Japon - Garçon",
+      "reponse": "Japaner",
+      "distracteurs": [
+        "Japanerin",
+        "Japanis",
+        "Japanisin"
+      ]
+    },
+    {
+      "id": 22,
+      "question": "Japon - Fille",
+      "reponse": "Japanerin",
+      "distracteurs": [
+        "Japaner",
+        "Japanis",
+        "Japanisin"
+      ]
+    },
+    {
+      "id": 23,
+      "question": "Corée du Nord - Garçon",
+      "reponse": "Nordkoreaner",
+      "distracteurs": [
+        "Nordkoreanerin",
+        "Nordkoreais",
+        "Nordkoreaisin"
+      ]
+    },
+    {
+      "id": 24,
+      "question": "Corée du Nord - Fille",
+      "reponse": "Nordkoreanerin",
+      "distracteurs": [
+        "Nordkoreaner",
+        "Nordkoreais",
+        "Nordkoreaisin"
+      ]
+    },
+    {
+      "id": 25,
+      "question": "France - Garçon",
+      "reponse": "Fransous",
+      "distracteurs": [
+        "Fransousin",
+        "Franser",
+        "Franserin"
+      ]
+    },
+    {
+      "id": 26,
+      "question": "France - Fille",
+      "reponse": "Fransousin",
+      "distracteurs": [
+        "Fransous",
+        "Franser",
+        "Franserin"
+      ]
+    },
+    {
+      "id": 27,
+      "question": "Pays-Bas - Garçon",
+      "reponse": "Holländer",
+      "distracteurs": [
+        "Holländerin",
+        "Holländis",
+        "Holländisin"
+      ]
+    },
+    {
+      "id": 28,
+      "question": "Pays-Bas - Fille",
+      "reponse": "Holländerin",
+      "distracteurs": [
+        "Holländer",
+        "Holländis",
+        "Holländisin"
+      ]
+    },
+    {
+      "id": 29,
+      "question": "Chine - Garçon",
+      "reponse": "Chinéis",
+      "distracteurs": [
+        "Chinesin",
+        "Chinéier",
+        "Chinéierin"
+      ]
+    },
+    {
+      "id": 30,
+      "question": "Chine - Fille",
+      "reponse": "Chinesin",
+      "distracteurs": [
+        "Chinéis",
+        "Chinéier",
+        "Chinéierin"
+      ]
+    },
+    {
+      "id": 31,
+      "question": "Suède - Garçon",
+      "reponse": "Schwed",
+      "distracteurs": [
+        "Schwedin",
+        "Schweder",
+        "Schwederin"
+      ]
+    },
+    {
+      "id": 32,
+      "question": "Suède - Fille",
+      "reponse": "Schwedin",
+      "distracteurs": [
+        "Schwed",
+        "Schweder",
+        "Schwederin"
       ]
     }
   ],
   "trous": [
     {
       "id": 1,
-      "fr": "Ronaldo parle portugais.",
-      "avant": "De Ronaldo",
-      "trou": "schwätzt",
-      "apres": "Portugisesch.",
+      "fr": "Oui, il est portugais.",
+      "avant": "Jo, hien ass",
+      "trou": "Portugis",
+      "apres": ".",
       "choix": [
-        "schwätzt",
-        "kënnt",
-        "ass",
-        "huet"
+        "Portugis",
+        "Spuenier",
+        "Fransous",
+        "Holläner"
       ],
-      "note": "schwätzen = parler · hien/si schwätzt"
+      "note": "hien = il · Portugis = masc."
     },
     {
       "id": 2,
-      "fr": "Messi parle espagnol.",
-      "avant": "De Messi schwätzt",
-      "trou": "Spéinesch",
-      "apres": ".",
+      "fr": "Non, il n'est pas espagnol.",
+      "avant": "Nee, hien ass",
+      "trou": "kee",
+      "apres": "Spuenier.",
       "choix": [
-        "Spéinesch",
-        "Spuenier",
-        "Portugisesch",
-        "Italienesch"
+        "kee",
+        "keen",
+        "keng",
+        "net"
       ],
-      "note": "Spéinesch = espagnol · ≠ Spuenier (nationalité)"
+      "note": "Négation masc. → kee"
     },
     {
       "id": 3,
-      "fr": "David Beckham parle anglais.",
-      "avant": "Den David schwätzt",
-      "trou": "Englesch",
-      "apres": ".",
+      "fr": "Oui, elle est anglaise.",
+      "avant": "Jo, hatt ass",
+      "trou": "eng",
+      "apres": "Engländerin.",
       "choix": [
-        "Englesch",
-        "Engländer",
-        "Holländesch",
-        "Franséisch"
+        "e",
+        "en",
+        "eng",
+        "keng"
       ],
-      "note": "Englesch = anglais · ≠ Engländer (nationalité)"
+      "note": "Nationalité féminine → article eng"
     },
     {
       "id": 4,
-      "fr": "Buffon ne parle pas japonais, il parle italien.",
-      "avant": "De Buffon schwätzt net",
-      "trou": "Japanesch",
-      "apres": ", hien schwätzt Italienesch.",
+      "fr": "Non, elle n'est pas italienne.",
+      "avant": "Nee, si ass",
+      "trou": "keng",
+      "apres": "Italienerin.",
       "choix": [
-        "Japanesch",
-        "Japaner",
-        "Koreanesch",
-        "Chineesesch"
+        "kee",
+        "keen",
+        "keng",
+        "net"
       ],
-      "note": "net + langue = négation"
+      "note": "Négation féminin → keng"
     },
     {
       "id": 5,
-      "fr": "Angela Merkel parle allemand.",
-      "avant": "D'Angela schwätzt",
-      "trou": "Däitsch",
-      "apres": ".",
+      "fr": "Il est luxembourgeois.",
+      "avant": "Hien ass",
+      "trou": "e",
+      "apres": "Lëtzebuerger.",
       "choix": [
-        "Däitsch",
-        "Däitschen",
-        "Holländesch",
-        "Flammännesch"
+        "e",
+        "en",
+        "eng",
+        "kee"
       ],
-      "note": "Däitsch = allemand · ≠ Däitschen (nationalité masc.)"
+      "note": "Masc. devant consonne → e"
     },
     {
       "id": 6,
-      "fr": "BTS parle coréen.",
-      "avant": "D'BTS schwätzt",
-      "trou": "Koreanesch",
-      "apres": ".",
+      "fr": "Elle est australienne.",
+      "avant": "Hatt ass",
+      "trou": "eng",
+      "apres": "Australierin.",
       "choix": [
-        "Koreanesch",
-        "Nordkoreaner",
-        "Japanesch",
-        "Chineesesch"
+        "e",
+        "en",
+        "eng",
+        "keng"
       ],
-      "note": "Koreanesch = coréen"
+      "note": "Nationalité féminine → eng"
     },
     {
       "id": 7,
-      "fr": "Emmanuel Macron parle français.",
-      "avant": "Den Emmanuel schwätzt",
-      "trou": "Franséisch",
-      "apres": ".",
+      "fr": "Non, il n'est pas argentin.",
+      "avant": "Nee, hien ass",
+      "trou": "kee",
+      "apres": "Argentinier.",
       "choix": [
-        "Franséisch",
-        "Fransous",
-        "Italienesch",
-        "Spéinesch"
+        "kee",
+        "keen",
+        "keng",
+        "net"
       ],
-      "note": "Franséisch = français · ≠ Fransous (nationalité)"
+      "note": "Négation masc. devant consonne → kee"
     },
     {
       "id": 8,
-      "fr": "Yoko Ono parle japonais.",
-      "avant": "D'Yoko schwätzt",
-      "trou": "Japanesch",
-      "apres": ".",
+      "fr": "Oui, elle est américaine.",
+      "avant": "Jo, hatt ass",
+      "trou": "eng",
+      "apres": "Amerikanerin.",
       "choix": [
-        "Japanesch",
-        "Japaner",
-        "Koreanesch",
-        "Chineesesch"
+        "e",
+        "en",
+        "eng",
+        "keng"
       ],
-      "note": "Japanesch = japonais"
+      "note": "Nationalité féminine → eng"
     },
     {
       "id": 9,
-      "fr": "Jackie Chan parle chinois.",
-      "avant": "De Jackie schwätzt",
-      "trou": "Chineesesch",
-      "apres": ".",
+      "fr": "Il est belge. (masc. invariable)",
+      "avant": "Hien ass",
+      "trou": "e",
+      "apres": "Belsch.",
       "choix": [
-        "Chineesesch",
-        "Chinéis",
-        "Japanesch",
-        "Koreanesch"
+        "e",
+        "en",
+        "eng",
+        "kee"
       ],
-      "note": "Chineesesch = chinois · ≠ Chinéis (nationalité)"
+      "note": "Belsch masc. → e Belsch"
     },
     {
       "id": 10,
-      "fr": "Greta Thunberg parle suédois.",
-      "avant": "D'Greta schwätzt",
-      "trou": "Schweedesch",
-      "apres": ".",
+      "fr": "Elle est belge. (fém. invariable)",
+      "avant": "Si ass",
+      "trou": "eng",
+      "apres": "Belsch.",
       "choix": [
-        "Schweedesch",
-        "Schweed",
-        "Holländesch",
-        "Däitsch"
+        "e",
+        "en",
+        "eng",
+        "keng"
       ],
-      "note": "Schweedesch = suédois · ≠ Schweed (nationalité)"
+      "note": "Belsch fém. → eng Belsch (invariable)"
     },
     {
       "id": 11,
-      "fr": "Wilhem parle néerlandais.",
-      "avant": "De Wilhem schwätzt",
-      "trou": "Holländesch",
-      "apres": ".",
+      "fr": "Non, il n'est pas allemand.",
+      "avant": "Nee, hien ass",
+      "trou": "kee",
+      "apres": "Däitschen.",
       "choix": [
-        "Holländesch",
-        "Holläner",
-        "Flammännesch",
-        "Däitsch"
+        "kee",
+        "keen",
+        "keng",
+        "net"
       ],
-      "note": "Holländesch = néerlandais · ≠ Holläner (nationalité)"
+      "note": "Négation masc. → kee"
     },
     {
       "id": 12,
-      "fr": "Philippe vient de Belgique et parle français.",
-      "avant": "De Philippe kënnt aus der Belsch a schwätzt",
-      "trou": "Franséisch",
-      "apres": ".",
+      "fr": "Il est japonais.",
+      "avant": "Hien ass",
+      "trou": "e",
+      "apres": "Japaner.",
       "choix": [
-        "Franséisch",
-        "Flammännesch",
-        "Fransous",
-        "Däitsch"
+        "e",
+        "en",
+        "eng",
+        "kee"
       ],
-      "note": "La Belsch a deux langues : Franséisch et Flammännesch"
+      "note": "Masc. devant consonne → e"
     },
     {
       "id": 13,
-      "fr": "Je parle luxembourgeois.",
-      "avant": "Ech schwätzen",
-      "trou": "Lëtzebuergesch",
-      "apres": ".",
+      "fr": "Elle n'est pas nord-coréenne.",
+      "avant": "Hatt ass",
+      "trou": "keng",
+      "apres": "Nordkoreanerin.",
       "choix": [
-        "Lëtzebuergesch",
-        "Lëtzebuerger",
-        "Franséisch",
-        "Däitsch"
+        "kee",
+        "keen",
+        "keng",
+        "net"
       ],
-      "note": "Lëtzebuergesch = nom de la langue nationale"
+      "note": "Négation féminin → keng"
     },
     {
       "id": 14,
-      "fr": "Nicolás est argentin, il parle espagnol, pas portugais.",
-      "avant": "De Nicolás schwätzt",
-      "trou": "Spéinesch",
-      "apres": ", net Portugisesch.",
+      "fr": "Il est français.",
+      "avant": "Hien ass",
+      "trou": "e",
+      "apres": "Fransous.",
       "choix": [
-        "Spéinesch",
-        "Portugisesch",
-        "Spuenier",
-        "Franséisch"
+        "e",
+        "en",
+        "eng",
+        "kee"
       ],
-      "note": "Argentine → Spéinesch (pas Portugisesch comme au Portugal)"
+      "note": "Masc. devant consonne → e"
     },
     {
       "id": 15,
-      "fr": "Kim Jong-un parle coréen, pas anglais.",
-      "avant": "De Kim schwätzt",
-      "trou": "Koreanesch",
-      "apres": ", net Englesch.",
+      "fr": "Elle est hollandaise.",
+      "avant": "Si ass",
+      "trou": "eng",
+      "apres": "Holländerin.",
       "choix": [
-        "Koreanesch",
-        "Japanesch",
-        "Englesch",
-        "Chineesesch"
+        "e",
+        "en",
+        "eng",
+        "keng"
       ],
-      "note": "Nordkorea → Koreanesch"
+      "note": "Nationalité féminine → eng"
+    },
+    {
+      "id": 16,
+      "fr": "Non, il n'est pas chinois.",
+      "avant": "Nee, hien ass",
+      "trou": "kee",
+      "apres": "Chinéis.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "net"
+      ],
+      "note": "Négation masc. → kee"
+    },
+    {
+      "id": 17,
+      "fr": "Oui, elle est suédoise.",
+      "avant": "Jo, hatt ass",
+      "trou": "eng",
+      "apres": "Schwedin.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "keng"
+      ],
+      "note": "Nationalité féminine → eng"
+    },
+    {
+      "id": 18,
+      "fr": "Est-ce que Ronaldo est portugais ?",
+      "avant": "Ass de Ronaldo",
+      "trou": "Portugis",
+      "apres": "?",
+      "choix": [
+        "Portugis",
+        "Spuenier",
+        "Fransous",
+        "Engländer"
+      ],
+      "note": "Structure : Ass de/d' + prénom + nationalité ?"
+    },
+    {
+      "id": 19,
+      "fr": "Non, il n'est pas espagnol, il est portugais.",
+      "avant": "Nee, hien ass",
+      "trou": "kee",
+      "apres": "Spuenier, hien ass Portugis.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "net"
+      ],
+      "note": "kee + nationalité masc."
+    },
+    {
+      "id": 20,
+      "fr": "Il est nord-coréen.",
+      "avant": "Hien ass",
+      "trou": "en",
+      "apres": "Nordkoreaner.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Masc. devant N → en"
     }
   ],
   "ecriture": [
     {
-      "fr": "Portugais (langue)",
-      "lu": "Portugisesch"
+      "fr": "Portugais (M)",
+      "lu": "Portugis"
     },
     {
-      "fr": "Espagnol (langue)",
-      "lu": "Spéinesch"
+      "fr": "Portugaise (F)",
+      "lu": "Portugisin"
     },
     {
-      "fr": "Anglais (langue)",
-      "lu": "Englesch"
+      "fr": "Espagnol (M)",
+      "lu": "Spuenier"
     },
     {
-      "fr": "Italien (langue)",
-      "lu": "Italienesch"
+      "fr": "Espagnole (F)",
+      "lu": "Spuenierin"
     },
     {
-      "fr": "Luxembourgeois (langue)",
-      "lu": "Lëtzebuergesch"
+      "fr": "Anglais (M)",
+      "lu": "Engländer"
     },
     {
-      "fr": "Français (langue)",
-      "lu": "Franséisch"
+      "fr": "Anglaise (F)",
+      "lu": "Engländerin"
     },
     {
-      "fr": "Flamand (langue)",
-      "lu": "Flammännesch"
+      "fr": "Italien (M)",
+      "lu": "Italiener"
     },
     {
-      "fr": "Allemand (langue)",
+      "fr": "Italienne (F)",
+      "lu": "Italienerin"
+    },
+    {
+      "fr": "Luxembourgeois (M)",
+      "lu": "Lëtzebuerger"
+    },
+    {
+      "fr": "Luxembourgeoise (F)",
+      "lu": "Lëtzebuergerin"
+    },
+    {
+      "fr": "Français (M)",
+      "lu": "Fransous"
+    },
+    {
+      "fr": "Française (F)",
+      "lu": "Fransousin"
+    },
+    {
+      "fr": "Allemand (M)",
+      "lu": "Däitschen"
+    },
+    {
+      "fr": "Allemande (F)",
       "lu": "Däitsch"
     },
     {
-      "fr": "Japonais (langue)",
-      "lu": "Japanesch"
+      "fr": "Japonais (M)",
+      "lu": "Japaner"
     },
     {
-      "fr": "Coréen (langue)",
-      "lu": "Koreanesch"
+      "fr": "Japonaise (F)",
+      "lu": "Japanerin"
     },
     {
-      "fr": "Néerlandais (langue)",
-      "lu": "Holländesch"
+      "fr": "Chinois (M)",
+      "lu": "Chinéis"
     },
     {
-      "fr": "Chinois (langue)",
-      "lu": "Chineesesch"
+      "fr": "Chinoise (F)",
+      "lu": "Chinéisin"
     },
     {
-      "fr": "Suédois (langue)",
-      "lu": "Schweedesch"
+      "fr": "Suédois (M)",
+      "lu": "Schweed"
     },
     {
-      "fr": "parler",
-      "lu": "schwätzen"
+      "fr": "Suédoise (F)",
+      "lu": "Schwedin"
     },
     {
-      "fr": "Ronaldo parle portugais.",
-      "lu": "De Ronaldo schwätzt Portugisesch."
+      "fr": "Oui, il est portugais.",
+      "lu": "Jo, hien ass Portugis."
     },
     {
-      "fr": "Messi parle espagnol.",
-      "lu": "De Messi schwätzt Spéinesch."
+      "fr": "Non, il n'est pas espagnol.",
+      "lu": "Nee, hien ass kee Spuenier."
     },
     {
-      "fr": "Angela Merkel parle allemand.",
-      "lu": "D'Angela schwätzt Däitsch."
+      "fr": "Elle est australienne.",
+      "lu": "Hatt ass eng Australierin."
     },
     {
-      "fr": "Je parle luxembourgeois.",
-      "lu": "Ech schwätzen Lëtzebuergesch."
+      "fr": "Non, elle n'est pas italienne.",
+      "lu": "Nee, si ass keng Italienerin."
     },
     {
-      "fr": "Yoko parle japonais.",
-      "lu": "D'Yoko schwätzt Japanesch."
+      "fr": "Il est luxembourgeois.",
+      "lu": "Hien ass e Lëtzebuerger."
     },
     {
-      "fr": "BTS parle coréen.",
-      "lu": "D'BTS schwätzt Koreanesch."
+      "fr": "Est-ce que Ronaldo est portugais ?",
+      "lu": "Ass de Ronaldo Portugis?"
     },
     {
-      "fr": "Jackie Chan parle chinois.",
-      "lu": "De Jackie schwätzt Chineesesch."
+      "fr": "Hollandaise (F)",
+      "lu": "Holländerin"
     },
     {
-      "fr": "Greta parle suédois.",
-      "lu": "D'Greta schwätzt Schweedesch."
+      "fr": "Belge (M/F)",
+      "lu": "Belsch"
     },
     {
-      "fr": "Il parle anglais, pas français.",
-      "lu": "Hien schwätzt Englesch, net Franséisch."
+      "fr": "Coréen (M)",
+      "lu": "Nordkoreaner"
     },
     {
-      "fr": "Buffon ne parle pas japonais.",
-      "lu": "De Buffon schwätzt net Japanesch."
-    },
-    {
-      "fr": "Elle parle flamand.",
-      "lu": "Si schwätzt Flammännesch."
-    },
-    {
-      "fr": "Wilhem parle néerlandais.",
-      "lu": "De Wilhem schwätzt Holländesch."
-    },
-    {
-      "fr": "Quelle langue parles-tu ?",
-      "lu": "Wat fir eng Sprooch schwätzt du?"
-    },
-    {
-      "fr": "Il parle deux langues.",
-      "lu": "Hien schwätzt zwou Sproochen."
-    },
-    {
-      "fr": "Je parle français et luxembourgeois.",
-      "lu": "Ech schwätzen Franséisch an Lëtzebuergesch."
-    },
-    {
-      "fr": "Elle ne parle pas chinois.",
-      "lu": "Si schwätzt net Chineesesch."
+      "fr": "Il est nord-coréen.",
+      "lu": "Hien ass en Nordkoreaner."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Le nom de la langue est invariable. ⚠️ Ne pas confondre avec la nationalité : <b>Fransous</b> (nationalité) ≠ <b>Franséisch</b> (langue)."
+      "contenu": "La nationalité a une forme masculine et une forme féminine. On utilise l'article indéfini devant."
+    },
+    {
+      "type": "regle",
+      "titre": "Formation",
+      "lignes": [
+        "Masculin → <b>e</b> / <b>en</b> + nationalité (e Portugis, en Engländer)",
+        "Féminin → <b>eng</b> + nationalité + souvent terminaison <b>-in</b> (eng Portugisin)",
+        "Négation : <b>kee/keen</b> (M), <b>keng</b> (F)"
+      ]
     },
     {
       "type": "vocab",
-      "titre": "Les langues (Sproochen)",
+      "titre": "Nationalités (M / F)",
       "items": [
         [
-          "Portugisesch",
-          "portugais"
+          "e Portugis / eng Portugisin",
+          "portugais·e"
         ],
         [
-          "Spéinesch",
-          "espagnol"
+          "e Spuenier / eng Spuenierin",
+          "espagnol·e"
         ],
         [
-          "Englesch",
-          "anglais"
+          "en Engländer / eng Engländerin",
+          "anglais·e"
         ],
         [
-          "Italienesch",
-          "italien"
+          "en Italiener / eng Italienerin",
+          "italien·ne"
         ],
         [
-          "Lëtzebuergesch",
-          "luxembourgeois"
+          "e Lëtzebuerger / eng Lëtzebuergerin",
+          "luxembourgeois·e"
         ],
         [
-          "Franséisch",
-          "français"
+          "e Fransous / eng Fransousin",
+          "français·e"
         ],
         [
-          "Däitsch",
-          "allemand"
-        ],
-        [
-          "Japanesch",
-          "japonais"
-        ],
-        [
-          "Koreanesch",
-          "coréen"
-        ],
-        [
-          "Chineesesch",
-          "chinois"
-        ],
-        [
-          "Holländesch",
-          "néerlandais"
-        ],
-        [
-          "Schweedesch",
-          "suédois"
+          "en Däitschen / eng Däitsch",
+          "allemand·e"
         ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "Le verbe parler",
-      "lignes": [
-        "<b>schwätzen</b> = parler",
-        "Ech schwätzen, Du schwätz, Hien/Si schwätzt",
-        "Négation → <b>net</b> : Hien schwätzt net Japanesch."
-      ]
-    },
-    {
       "type": "dialogue",
-      "titre": "Exemples",
+      "titre": "Poser la question et répondre",
       "echanges": [
         [
-          "De Ronaldo schwätzt Portugisesch.",
-          "Ronaldo parle portugais."
+          "Ass de Ronaldo Portugis?",
+          "Est-ce que Ronaldo est portugais ?"
         ],
         [
-          "Ech schwätzen Lëtzebuergesch.",
-          "Je parle luxembourgeois."
+          "Jo, hien ass Portugis.",
+          "Oui, il est portugais."
         ],
         [
-          "Wat fir eng Sprooch schwätzt du?",
-          "Quelle langue parles-tu ?"
+          "Nee, hien ass kee Spuenier.",
+          "Non, il n'est pas espagnol."
         ]
       ]
     }

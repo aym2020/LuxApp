@@ -1,937 +1,916 @@
 {
   "id": 7,
-  "titre": "D'Nationalitéit",
-  "titre_fr": "Les nationalités",
-  "couleur": "#7ab8e8",
+  "titre": "Persoune presentéieren",
+  "titre_fr": "Présenter des personnes – l'origine",
+  "couleur": "#e85a8f",
   "flashcards": [
     {
       "id": 1,
-      "lu": "e Portugis / eng Portugisin",
-      "fr": "Portugais / Portugaise",
-      "note": "Portugal · M → e Portugis · F → eng Portugisin"
+      "lu": "Portugal",
+      "fr": "Portugal",
+      "note": "aus Portugal"
     },
     {
       "id": 2,
-      "lu": "e Spuenier / eng Spuenierin",
-      "fr": "Espagnol / Espagnole",
-      "note": "Spuenien · M → e Spuenier · F → eng Spuenierin"
+      "lu": "Spuenien",
+      "fr": "Espagne",
+      "note": "aus Spuenien"
     },
     {
       "id": 3,
-      "lu": "en Engländer / eng Engländerin",
-      "fr": "Anglais / Anglaise",
-      "note": "England · M → en Engländer · F → eng Engländerin"
+      "lu": "England",
+      "fr": "Angleterre",
+      "note": "aus England"
     },
     {
       "id": 4,
-      "lu": "en Italiener / eng Italienerin",
-      "fr": "Italien / Italienne",
-      "note": "Italien · M → en Italiener · F → eng Italienerin"
+      "lu": "Italien",
+      "fr": "Italie",
+      "note": "aus Italien"
     },
     {
       "id": 5,
-      "lu": "e Lëtzebuerger / eng Lëtzebuergerin",
-      "fr": "Luxembourgeois / Luxembourgeoise",
-      "note": "Lëtzebuerg · M → e Lëtzebuerger · F → eng Lëtzebuergerin"
+      "lu": "Lëtzebuerg",
+      "fr": "Luxembourg",
+      "note": "vu Lëtzebuerg (exception !)"
     },
     {
       "id": 6,
-      "lu": "en Australier / eng Australierin",
-      "fr": "Australien / Australienne",
-      "note": "Australien · M → en Australier · F → eng Australierin"
+      "lu": "Australien",
+      "fr": "Australie",
+      "note": "aus Australien"
     },
     {
       "id": 7,
-      "lu": "en Argentinier / eng Argentinierin",
-      "fr": "Argentin / Argentine",
-      "note": "Argentinien · M → en Argentinier · F → eng Argentinierin"
+      "lu": "Argentinien",
+      "fr": "Argentine",
+      "note": "aus Argentinien"
     },
     {
       "id": 8,
-      "lu": "en Amerikaner / eng Amerikanerin",
-      "fr": "Américain / Américaine",
-      "note": "Amerika · M → en Amerikaner · F → eng Amerikanerin"
+      "lu": "Amerika",
+      "fr": "Amérique",
+      "note": "aus Amerika"
     },
     {
       "id": 9,
-      "lu": "e Belsch / eng Belsch",
-      "fr": "Belge",
-      "note": "Belsch · M = F = Belsch"
+      "lu": "Belsch",
+      "fr": "Belgique",
+      "note": "aus der Belsch (féminin)"
     },
     {
       "id": 10,
-      "lu": "en Däitschen / eng Däitsch",
-      "fr": "Allemand / Allemande",
-      "note": "Däitschland · M → en Däitschen · F → eng Däitsch"
+      "lu": "Däitschland",
+      "fr": "Allemagne",
+      "note": "aus Däitschland"
     },
     {
       "id": 11,
-      "lu": "e Japaner / eng Japanerin",
-      "fr": "Japonais / Japonaise",
-      "note": "Japan · M → e Japaner · F → eng Japanerin"
+      "lu": "Japan",
+      "fr": "Japon",
+      "note": "aus Japan"
     },
     {
       "id": 12,
-      "lu": "en Nordkoreaner / eng Nordkoreanerin",
-      "fr": "Nord-Coréen / Nord-Coréenne",
-      "note": "Nordkorea · M → en Nordkoreaner · F → eng Nordkoreanerin"
+      "lu": "Nordkorea",
+      "fr": "Corée du Nord",
+      "note": "aus Nordkorea"
     },
     {
       "id": 13,
-      "lu": "e Fransous / eng Fransousin",
-      "fr": "Français / Française",
-      "note": "Frankräich · M → e Fransous · F → eng Fransousin"
+      "lu": "Frankräich",
+      "fr": "France",
+      "note": "aus Frankräich"
     },
     {
       "id": 14,
-      "lu": "e Holländer / eng Holländerin",
-      "fr": "Néerlandais / Néerlandaise",
-      "note": "Holland · M → e Holländer · F → eng Holländerin"
+      "lu": "Holland",
+      "fr": "Pays-Bas",
+      "note": "aus Holland"
     },
     {
       "id": 15,
-      "lu": "e Chinéis / eng Chinesin",
-      "fr": "Chinois / Chinoise",
-      "note": "China · M → e Chinéis · F → eng Chinesin"
+      "lu": "China",
+      "fr": "Chine",
+      "note": "aus China"
     },
     {
       "id": 16,
-      "lu": "e Schwed / eng Schwedin",
-      "fr": "Suédois / Suédoise",
-      "note": "Schweden · M → e Schwed · F → eng Schwedin"
+      "lu": "Schweden",
+      "fr": "Suède",
+      "note": "aus Schweden"
     },
     {
       "id": 17,
-      "lu": "Wat fir eng Nationalitéit huet de Ronaldo?",
-      "fr": "De quelle nationalité est Ronaldo ?",
-      "note": "Wat fir eng = quelle"
+      "lu": "Schwäiz",
+      "fr": "Suisse",
+      "note": "aus der Schwäiz (féminin)"
     },
     {
       "id": 18,
-      "lu": "Hien ass Portugis.",
-      "fr": "Il est portugais.",
-      "note": "Hien = il"
+      "lu": "Ukrain",
+      "fr": "Ukraine",
+      "note": "aus der Ukrain (féminin)"
     },
     {
       "id": 19,
-      "lu": "Ech sinn e Fransous.",
-      "fr": "Je suis français.",
-      "note": "sinn = suis"
+      "lu": "Cap Vert",
+      "fr": "Cap-Vert",
+      "note": "vum Cap Vert (masc. avec article)"
     },
     {
       "id": 20,
-      "lu": "Ech si Fransous.",
-      "fr": "Je suis français.",
-      "note": "Forme abrégée fréquente"
+      "lu": "Iran",
+      "fr": "Iran",
+      "note": "aus dem Iran (masc. avec article)"
     },
     {
       "id": 21,
-      "lu": "Ass de Ronaldo Portugis?",
-      "fr": "Ronaldo est-il portugais ?",
-      "note": "Question fermée : Ass..."
+      "lu": "Kënnt de Ronaldo aus Portugal?",
+      "fr": "Ronaldo vient-il du Portugal ?",
+      "note": "Question sur l'origine"
     },
     {
       "id": 22,
-      "lu": "Jo, hien ass Portugis.",
-      "fr": "Oui, il est portugais.",
+      "lu": "Jo, de Ronaldo kënnt aus Portugal.",
+      "fr": "Oui, Ronaldo vient du Portugal.",
       "note": "Jo = oui"
     },
     {
       "id": 23,
-      "lu": "Nee, hien ass kee Spuenier.",
-      "fr": "Non, il n'est pas espagnol.",
-      "note": "kee + nationalité masculine"
+      "lu": "Nee, de Jackie kënnt net aus Italien.",
+      "fr": "Non, Jackie ne vient pas d'Italie.",
+      "note": "net = négation"
+    },
+    {
+      "id": 24,
+      "lu": "Vu wou kënnt de Ronaldo?",
+      "fr": "D'où vient Ronaldo ?",
+      "note": "Vu wou = d'où"
+    },
+    {
+      "id": 25,
+      "lu": "De Ronaldo kënnt aus Portugal.",
+      "fr": "Ronaldo vient du Portugal.",
+      "note": "Réponse à 'Vu wou?'"
+    },
+    {
+      "id": 26,
+      "lu": "Hie kënnt aus Portugal.",
+      "fr": "Il vient du Portugal.",
+      "note": "Hie = il (masculin)"
+    },
+    {
+      "id": 27,
+      "lu": "Si kënnt aus Frankräich.",
+      "fr": "Elle vient de France.",
+      "note": "Si = elle (féminin)"
+    },
+    {
+      "id": 28,
+      "lu": "Vu wou kommt Dir?",
+      "fr": "D'où venez-vous ?",
+      "note": "Dir = vous (formel)"
+    },
+    {
+      "id": 29,
+      "lu": "Vu wou komms du?",
+      "fr": "D'où viens-tu ?",
+      "note": "du = tu (informel)"
+    },
+    {
+      "id": 30,
+      "lu": "Ech kommen aus Portugal.",
+      "fr": "Je viens du Portugal.",
+      "note": "1ère personne du singulier"
+    },
+    {
+      "id": 31,
+      "lu": "Ech komme vu Lëtzebuerg.",
+      "fr": "Je viens du Luxembourg.",
+      "note": "Exception : vu Lëtzebuerg"
+    },
+    {
+      "id": 32,
+      "lu": "Ech kommen aus der Belsch.",
+      "fr": "Je viens de Belgique.",
+      "note": "Pays féminin → aus der"
     }
   ],
   "quiz": [
     {
       "id": 1,
-      "question": "Portugal - Garçon",
-      "reponse": "Portugis",
+      "question": "Quelle préposition pour Portugal ?",
+      "reponse": "aus",
       "distracteurs": [
-        "Portugisin",
-        "Portugiser",
-        "Portugiserin"
+        "vu",
+        "vum",
+        "aus der"
       ]
     },
     {
       "id": 2,
-      "question": "Portugal - Fille",
-      "reponse": "Portugisin",
+      "question": "Quelle préposition pour Lëtzebuerg ?",
+      "reponse": "vu",
       "distracteurs": [
-        "Portugis",
-        "Portugiser",
-        "Portugiserin"
+        "aus",
+        "vum",
+        "aus der"
       ]
     },
     {
       "id": 3,
-      "question": "Espagne - Garçon",
-      "reponse": "Spuenier",
+      "question": "Quelle préposition pour Belsch ?",
+      "reponse": "aus der",
       "distracteurs": [
-        "Spuenierin",
-        "Spuenis",
-        "Spuenisin"
+        "aus",
+        "vu",
+        "aus dem"
       ]
     },
     {
       "id": 4,
-      "question": "Espagne - Fille",
-      "reponse": "Spuenierin",
+      "question": "Quelle préposition pour Schwäiz ?",
+      "reponse": "aus der",
       "distracteurs": [
-        "Spuenier",
-        "Spuenis",
-        "Spuenisin"
+        "aus",
+        "vu",
+        "vum"
       ]
     },
     {
       "id": 5,
-      "question": "Angleterre - Garçon",
-      "reponse": "Engländer",
+      "question": "Quelle préposition pour Iran ?",
+      "reponse": "aus dem",
       "distracteurs": [
-        "Engländerin",
-        "Englis",
-        "Englisin"
+        "aus",
+        "vu",
+        "aus der"
       ]
     },
     {
       "id": 6,
-      "question": "Angleterre - Fille",
-      "reponse": "Engländerin",
+      "question": "Quelle préposition pour Cap Vert ?",
+      "reponse": "vum",
       "distracteurs": [
-        "Engländer",
-        "Englis",
-        "Englisin"
+        "aus",
+        "vu",
+        "aus der"
       ]
     },
     {
       "id": 7,
-      "question": "Italie - Garçon",
-      "reponse": "Italiener",
+      "question": "Quelle préposition pour Frankräich ?",
+      "reponse": "aus",
       "distracteurs": [
-        "Italienerin",
-        "Italienis",
-        "Italienisin"
+        "vu",
+        "aus der",
+        "aus dem"
       ]
     },
     {
       "id": 8,
-      "question": "Italie - Fille",
-      "reponse": "Italienerin",
+      "question": "Quelle préposition pour Ukrain ?",
+      "reponse": "aus der",
       "distracteurs": [
-        "Italiener",
-        "Italienis",
-        "Italienisin"
+        "aus",
+        "vu",
+        "vum"
       ]
     },
     {
       "id": 9,
-      "question": "Luxembourg - Garçon",
-      "reponse": "Lëtzebuerger",
+      "question": "Quelle préposition pour Japan ?",
+      "reponse": "aus",
       "distracteurs": [
-        "Lëtzebuergerin",
-        "Lëtzebuergis",
-        "Lëtzebuergisin"
+        "vu",
+        "vum",
+        "aus der"
       ]
     },
     {
       "id": 10,
-      "question": "Luxembourg - Fille",
-      "reponse": "Lëtzebuergerin",
+      "question": "Traduction : Espagne",
+      "reponse": "Spuenien",
       "distracteurs": [
-        "Lëtzebuerger",
-        "Lëtzebuergis",
-        "Lëtzebuergisin"
+        "Spunien",
+        "Spuenie",
+        "Spueniën"
       ]
     },
     {
       "id": 11,
-      "question": "Australie - Garçon",
-      "reponse": "Australier",
+      "question": "Traduction : Allemagne",
+      "reponse": "Däitschland",
       "distracteurs": [
-        "Australierin",
-        "Australis",
-        "Australisin"
+        "Däitschland",
+        "Daitchland",
+        "Deitschland"
       ]
     },
     {
       "id": 12,
-      "question": "Australie - Fille",
-      "reponse": "Australierin",
+      "question": "Traduction : Pays-Bas",
+      "reponse": "Holland",
       "distracteurs": [
-        "Australier",
-        "Australis",
-        "Australisin"
+        "Hollant",
+        "Hollandt",
+        "Holand"
       ]
     },
     {
       "id": 13,
-      "question": "Argentine - Garçon",
-      "reponse": "Argentinier",
+      "question": "Traduction : Suède",
+      "reponse": "Schweden",
       "distracteurs": [
-        "Argentinierin",
-        "Argentinis",
-        "Argentinisin"
+        "Schweeden",
+        "Schweden",
+        "Schwäden"
       ]
     },
     {
       "id": 14,
-      "question": "Argentine - Fille",
-      "reponse": "Argentinierin",
+      "question": "Quel article devant un prénom féminin ? (D'Nicole…)",
+      "reponse": "D'",
       "distracteurs": [
-        "Argentinier",
-        "Argentinis",
-        "Argentinisin"
+        "De",
+        "Den",
+        "Eng"
       ]
     },
     {
       "id": 15,
-      "question": "Amérique - Garçon",
-      "reponse": "Amerikaner",
+      "question": "Traduction : Italie",
+      "reponse": "Italien",
       "distracteurs": [
-        "Amerikanerin",
-        "Amerikais",
-        "Amerikaisin"
+        "Italia",
+        "Italjen",
+        "Italiën"
       ]
     },
     {
       "id": 16,
-      "question": "Amérique - Fille",
-      "reponse": "Amerikanerin",
+      "question": "Traduction : Angleterre",
+      "reponse": "England",
       "distracteurs": [
-        "Amerikaner",
-        "Amerikais",
-        "Amerikaisin"
+        "Engeland",
+        "Englend",
+        "Englant"
       ]
     },
     {
       "id": 17,
-      "question": "Belgique - Garçon",
-      "reponse": "Belsch",
+      "question": "Traduction : Portugal",
+      "reponse": "Portugal",
       "distracteurs": [
-        "Belschin",
-        "Belscher",
-        "Belscherin"
+        "Portogal",
+        "Portugall",
+        "Portugual"
       ]
     },
     {
       "id": 18,
-      "question": "Belgique - Fille",
-      "reponse": "Belsch",
+      "question": "Traduction : Luxembourg",
+      "reponse": "Lëtzebuerg",
       "distracteurs": [
-        "Belschin",
-        "Belscher",
-        "Belscherin"
+        "Letzebuerg",
+        "Lëtzebourg",
+        "Lëtzeburg"
       ]
     },
     {
       "id": 19,
-      "question": "Allemagne - Garçon",
-      "reponse": "Däitschen",
+      "question": "Traduction : Belgique",
+      "reponse": "Belsch",
       "distracteurs": [
-        "Däitsch",
-        "Däitscherin",
-        "Däitschin"
+        "Belsch",
+        "Belesch",
+        "Belch"
       ]
     },
     {
       "id": 20,
-      "question": "Allemagne - Fille",
-      "reponse": "Däitsch",
+      "question": "Traduction : France",
+      "reponse": "Frankräich",
       "distracteurs": [
-        "Däitschen",
-        "Däitscherin",
-        "Däitschin"
+        "Frankraich",
+        "Frankreich",
+        "Frankräisch"
       ]
     },
     {
       "id": 21,
-      "question": "Japon - Garçon",
-      "reponse": "Japaner",
+      "question": "Traduction : Suisse",
+      "reponse": "Schwäiz",
       "distracteurs": [
-        "Japanerin",
-        "Japanis",
-        "Japanisin"
+        "Schwaiz",
+        "Schweiz",
+        "Schwäts"
       ]
     },
     {
       "id": 22,
-      "question": "Japon - Fille",
-      "reponse": "Japanerin",
+      "question": "Traduction : Ukraine",
+      "reponse": "Ukrain",
       "distracteurs": [
-        "Japaner",
-        "Japanis",
-        "Japanisin"
+        "Ukraine",
+        "Ukraïn",
+        "Ukran"
       ]
     },
     {
       "id": 23,
-      "question": "Corée du Nord - Garçon",
-      "reponse": "Nordkoreaner",
+      "question": "Traduction : Chine",
+      "reponse": "China",
       "distracteurs": [
-        "Nordkoreanerin",
-        "Nordkoreais",
-        "Nordkoreaisin"
+        "Chine",
+        "Chyna",
+        "Chinna"
       ]
     },
     {
       "id": 24,
-      "question": "Corée du Nord - Fille",
-      "reponse": "Nordkoreanerin",
+      "question": "Traduction : Japon",
+      "reponse": "Japan",
       "distracteurs": [
-        "Nordkoreaner",
-        "Nordkoreais",
-        "Nordkoreaisin"
+        "Japon",
+        "Japann",
+        "Jappan"
       ]
     },
     {
       "id": 25,
-      "question": "France - Garçon",
-      "reponse": "Fransous",
+      "question": "Traduction : Corée du Nord",
+      "reponse": "Nordkorea",
       "distracteurs": [
-        "Fransousin",
-        "Franser",
-        "Franserin"
+        "Nord Korea",
+        "Nordkoreia",
+        "Nordcorea"
       ]
     },
     {
       "id": 26,
-      "question": "France - Fille",
-      "reponse": "Fransousin",
+      "question": "Traduction : Amérique",
+      "reponse": "Amerika",
       "distracteurs": [
-        "Fransous",
-        "Franser",
-        "Franserin"
+        "America",
+        "Americka",
+        "Amerikah"
       ]
     },
     {
       "id": 27,
-      "question": "Pays-Bas - Garçon",
-      "reponse": "Holländer",
+      "question": "Traduction : Australie",
+      "reponse": "Australien",
       "distracteurs": [
-        "Holländerin",
-        "Holländis",
-        "Holländisin"
+        "Australia",
+        "Australjen",
+        "Australiën"
       ]
     },
     {
       "id": 28,
-      "question": "Pays-Bas - Fille",
-      "reponse": "Holländerin",
+      "question": "Traduction : Argentine",
+      "reponse": "Argentinien",
       "distracteurs": [
-        "Holländer",
-        "Holländis",
-        "Holländisin"
+        "Argentina",
+        "Argentinen",
+        "Argentiniën"
       ]
     },
     {
       "id": 29,
-      "question": "Chine - Garçon",
-      "reponse": "Chinéis",
+      "question": "Quelle préposition pour Australien ?",
+      "reponse": "aus",
       "distracteurs": [
-        "Chinesin",
-        "Chinéier",
-        "Chinéierin"
+        "vu",
+        "aus der",
+        "aus dem"
       ]
     },
     {
       "id": 30,
-      "question": "Chine - Fille",
-      "reponse": "Chinesin",
+      "question": "Quelle préposition pour China ?",
+      "reponse": "aus",
       "distracteurs": [
-        "Chinéis",
-        "Chinéier",
-        "Chinéierin"
-      ]
-    },
-    {
-      "id": 31,
-      "question": "Suède - Garçon",
-      "reponse": "Schwed",
-      "distracteurs": [
-        "Schwedin",
-        "Schweder",
-        "Schwederin"
-      ]
-    },
-    {
-      "id": 32,
-      "question": "Suède - Fille",
-      "reponse": "Schwedin",
-      "distracteurs": [
-        "Schwed",
-        "Schweder",
-        "Schwederin"
+        "vum",
+        "aus der",
+        "vu"
       ]
     }
   ],
   "trous": [
     {
       "id": 1,
-      "fr": "Oui, il est portugais.",
-      "avant": "Jo, hien ass",
-      "trou": "Portugis",
-      "apres": ".",
+      "fr": "Ronaldo vient du Portugal.",
+      "avant": "De Ronaldo kënnt",
+      "trou": "aus",
+      "apres": "Portugal.",
       "choix": [
-        "Portugis",
-        "Spuenier",
-        "Fransous",
-        "Holläner"
+        "aus",
+        "vu",
+        "vum",
+        "aus der"
       ],
-      "note": "hien = il · Portugis = masc."
+      "note": "Portugal = pas d'article → aus"
     },
     {
       "id": 2,
-      "fr": "Non, il n'est pas espagnol.",
-      "avant": "Nee, hien ass",
-      "trou": "kee",
-      "apres": "Spuenier.",
+      "fr": "Guillaume vient du Luxembourg.",
+      "avant": "De Guillaume kënnt",
+      "trou": "vu",
+      "apres": "Lëtzebuerg.",
       "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
+        "aus",
+        "vu",
+        "vum",
+        "aus der"
       ],
-      "note": "Négation masc. → kee"
+      "note": "Exception Lëtzebuerg → vu (pas aus)"
     },
     {
       "id": 3,
-      "fr": "Oui, elle est anglaise.",
-      "avant": "Jo, hatt ass",
-      "trou": "eng",
-      "apres": "Engländerin.",
+      "fr": "Philippe vient de Belgique.",
+      "avant": "De Philippe kënnt",
+      "trou": "aus der",
+      "apres": "Belsch.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
       ],
-      "note": "Nationalité féminine → article eng"
+      "note": "Belsch = féminin → aus der"
     },
     {
       "id": 4,
-      "fr": "Non, elle n'est pas italienne.",
-      "avant": "Nee, si ass",
-      "trou": "keng",
-      "apres": "Italienerin.",
+      "fr": "Angela vient d'Allemagne.",
+      "avant": "D'Angela kënnt",
+      "trou": "aus",
+      "apres": "Däitschland.",
       "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
+        "aus",
+        "vu",
+        "aus der",
+        "vum"
       ],
-      "note": "Négation féminin → keng"
+      "note": "Däitschland = pas d'article → aus"
     },
     {
       "id": 5,
-      "fr": "Il est luxembourgeois.",
-      "avant": "Hien ass",
-      "trou": "e",
-      "apres": "Lëtzebuerger.",
+      "fr": "Greta vient de Suède.",
+      "avant": "D'Greta kënnt",
+      "trou": "aus",
+      "apres": "Schweden.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
       ],
-      "note": "Masc. devant consonne → e"
+      "note": "Schweden = pas d'article → aus"
     },
     {
       "id": 6,
-      "fr": "Elle est australienne.",
-      "avant": "Hatt ass",
-      "trou": "eng",
-      "apres": "Australierin.",
+      "fr": "Il vient du Cap-Vert.",
+      "avant": "Hien kënnt",
+      "trou": "vum",
+      "apres": "Cap Vert.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
+        "aus",
+        "vu",
+        "vum",
+        "aus der"
       ],
-      "note": "Nationalité féminine → eng"
+      "note": "Cap Vert = masculin avec article → vum (vu + dem)"
     },
     {
       "id": 7,
-      "fr": "Non, il n'est pas argentin.",
-      "avant": "Nee, hien ass",
-      "trou": "kee",
-      "apres": "Argentinier.",
+      "fr": "Elle vient d'Iran.",
+      "avant": "Si kënnt",
+      "trou": "aus dem",
+      "apres": "Iran.",
       "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
+        "aus",
+        "vu",
+        "aus dem",
+        "aus der"
       ],
-      "note": "Négation masc. devant consonne → kee"
+      "note": "Iran = masculin avec article → aus dem"
     },
     {
       "id": 8,
-      "fr": "Oui, elle est américaine.",
-      "avant": "Jo, hatt ass",
-      "trou": "eng",
-      "apres": "Amerikanerin.",
+      "fr": "Elle vient de Suisse.",
+      "avant": "Si kënnt",
+      "trou": "aus der",
+      "apres": "Schwäiz.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
       ],
-      "note": "Nationalité féminine → eng"
+      "note": "Schwäiz = féminin → aus der"
     },
     {
       "id": 9,
-      "fr": "Il est belge. (masc. invariable)",
-      "avant": "Hien ass",
-      "trou": "e",
-      "apres": "Belsch.",
+      "fr": "Yoko vient du Japon.",
+      "avant": "D'Yoko kënnt",
+      "trou": "aus",
+      "apres": "Japan.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "aus",
+        "vu",
+        "aus der",
+        "vum"
       ],
-      "note": "Belsch masc. → e Belsch"
+      "note": "Japan = pas d'article → aus"
     },
     {
       "id": 10,
-      "fr": "Elle est belge. (fém. invariable)",
-      "avant": "Si ass",
-      "trou": "eng",
-      "apres": "Belsch.",
+      "fr": "Emmanuel vient de France.",
+      "avant": "Den Emmanuel kënnt",
+      "trou": "aus",
+      "apres": "Frankräich.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
+        "aus",
+        "vu",
+        "aus der",
+        "vum"
       ],
-      "note": "Belsch fém. → eng Belsch (invariable)"
+      "note": "Frankräich = pas d'article → aus"
     },
     {
       "id": 11,
-      "fr": "Non, il n'est pas allemand.",
-      "avant": "Nee, hien ass",
-      "trou": "kee",
-      "apres": "Däitschen.",
+      "fr": "Elle vient d'Ukraine.",
+      "avant": "Si kënnt",
+      "trou": "aus der",
+      "apres": "Ukrain.",
       "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
       ],
-      "note": "Négation masc. → kee"
+      "note": "Ukrain = féminin → aus der"
     },
     {
       "id": 12,
-      "fr": "Il est japonais.",
-      "avant": "Hien ass",
-      "trou": "e",
-      "apres": "Japaner.",
+      "fr": "Nicole vient d'Australie. (article devant prénom féminin)",
+      "avant": "",
+      "trou": "D'",
+      "apres": "Nicole kënnt aus Australien.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "De",
+        "Den",
+        "D'"
       ],
-      "note": "Masc. devant consonne → e"
+      "note": "Prénom féminin commençant par N → D'"
     },
     {
       "id": 13,
-      "fr": "Elle n'est pas nord-coréenne.",
-      "avant": "Hatt ass",
-      "trou": "keng",
-      "apres": "Nordkoreanerin.",
+      "fr": "David vient d'Angleterre. (article devant prénom masculin + voyelle)",
+      "avant": "",
+      "trou": "Den",
+      "apres": "David kënnt aus England.",
       "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
+        "De",
+        "Den",
+        "D'"
       ],
-      "note": "Négation féminin → keng"
+      "note": "Prénom masculin devant consonne D → Den"
     },
     {
       "id": 14,
-      "fr": "Il est français.",
-      "avant": "Hien ass",
-      "trou": "e",
-      "apres": "Fransous.",
+      "fr": "Buffon vient d'Italie. (article devant prénom masculin + consonne)",
+      "avant": "",
+      "trou": "De",
+      "apres": "Buffon kënnt aus Italien.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
+        "De",
+        "Den",
+        "D'"
       ],
-      "note": "Masc. devant consonne → e"
+      "note": "Prénom masculin devant consonne B → De"
     },
     {
       "id": 15,
-      "fr": "Elle est hollandaise.",
-      "avant": "Si ass",
-      "trou": "eng",
-      "apres": "Holländerin.",
+      "fr": "Penelope vient d'Espagne. (article devant prénom féminin + consonne)",
+      "avant": "",
+      "trou": "D'",
+      "apres": "Penelope kënnt aus Spuenien.",
       "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
+        "De",
+        "Den",
+        "D'"
       ],
-      "note": "Nationalité féminine → eng"
-    },
-    {
-      "id": 16,
-      "fr": "Non, il n'est pas chinois.",
-      "avant": "Nee, hien ass",
-      "trou": "kee",
-      "apres": "Chinéis.",
-      "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
-      ],
-      "note": "Négation masc. → kee"
-    },
-    {
-      "id": 17,
-      "fr": "Oui, elle est suédoise.",
-      "avant": "Jo, hatt ass",
-      "trou": "eng",
-      "apres": "Schwedin.",
-      "choix": [
-        "e",
-        "en",
-        "eng",
-        "keng"
-      ],
-      "note": "Nationalité féminine → eng"
-    },
-    {
-      "id": 18,
-      "fr": "Est-ce que Ronaldo est portugais ?",
-      "avant": "Ass de Ronaldo",
-      "trou": "Portugis",
-      "apres": "?",
-      "choix": [
-        "Portugis",
-        "Spuenier",
-        "Fransous",
-        "Engländer"
-      ],
-      "note": "Structure : Ass de/d' + prénom + nationalité ?"
-    },
-    {
-      "id": 19,
-      "fr": "Non, il n'est pas espagnol, il est portugais.",
-      "avant": "Nee, hien ass",
-      "trou": "kee",
-      "apres": "Spuenier, hien ass Portugis.",
-      "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
-      ],
-      "note": "kee + nationalité masc."
-    },
-    {
-      "id": 20,
-      "fr": "Il est nord-coréen.",
-      "avant": "Hien ass",
-      "trou": "en",
-      "apres": "Nordkoreaner.",
-      "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
-      ],
-      "note": "Masc. devant N → en"
+      "note": "Prénom féminin → D'"
     }
   ],
   "ecriture": [
     {
-      "fr": "Portugais (M)",
-      "lu": "Portugis"
+      "fr": "vient de (règle générale)",
+      "lu": "kënnt aus"
     },
     {
-      "fr": "Portugaise (F)",
-      "lu": "Portugisin"
+      "fr": "vient de (Luxembourg)",
+      "lu": "kënnt vu"
     },
     {
-      "fr": "Espagnol (M)",
-      "lu": "Spuenier"
+      "fr": "vient du (Cap-Vert)",
+      "lu": "kënnt vum"
     },
     {
-      "fr": "Espagnole (F)",
-      "lu": "Spuenierin"
+      "fr": "vient de la (Belgique)",
+      "lu": "kënnt aus der"
     },
     {
-      "fr": "Anglais (M)",
-      "lu": "Engländer"
+      "fr": "vient de l' (Iran)",
+      "lu": "kënnt aus dem"
     },
     {
-      "fr": "Anglaise (F)",
-      "lu": "Engländerin"
+      "fr": "Espagne",
+      "lu": "Spuenien"
     },
     {
-      "fr": "Italien (M)",
-      "lu": "Italiener"
+      "fr": "Angleterre",
+      "lu": "England"
     },
     {
-      "fr": "Italienne (F)",
-      "lu": "Italienerin"
+      "fr": "Allemagne",
+      "lu": "Däitschland"
     },
     {
-      "fr": "Luxembourgeois (M)",
-      "lu": "Lëtzebuerger"
+      "fr": "Luxembourg",
+      "lu": "Lëtzebuerg"
     },
     {
-      "fr": "Luxembourgeoise (F)",
-      "lu": "Lëtzebuergerin"
-    },
-    {
-      "fr": "Français (M)",
-      "lu": "Fransous"
-    },
-    {
-      "fr": "Française (F)",
-      "lu": "Fransousin"
-    },
-    {
-      "fr": "Allemand (M)",
-      "lu": "Däitschen"
-    },
-    {
-      "fr": "Allemande (F)",
-      "lu": "Däitsch"
-    },
-    {
-      "fr": "Japonais (M)",
-      "lu": "Japaner"
-    },
-    {
-      "fr": "Japonaise (F)",
-      "lu": "Japanerin"
-    },
-    {
-      "fr": "Chinois (M)",
-      "lu": "Chinéis"
-    },
-    {
-      "fr": "Chinoise (F)",
-      "lu": "Chinéisin"
-    },
-    {
-      "fr": "Suédois (M)",
-      "lu": "Schweed"
-    },
-    {
-      "fr": "Suédoise (F)",
-      "lu": "Schwedin"
-    },
-    {
-      "fr": "Oui, il est portugais.",
-      "lu": "Jo, hien ass Portugis."
-    },
-    {
-      "fr": "Non, il n'est pas espagnol.",
-      "lu": "Nee, hien ass kee Spuenier."
-    },
-    {
-      "fr": "Elle est australienne.",
-      "lu": "Hatt ass eng Australierin."
-    },
-    {
-      "fr": "Non, elle n'est pas italienne.",
-      "lu": "Nee, si ass keng Italienerin."
-    },
-    {
-      "fr": "Il est luxembourgeois.",
-      "lu": "Hien ass e Lëtzebuerger."
-    },
-    {
-      "fr": "Est-ce que Ronaldo est portugais ?",
-      "lu": "Ass de Ronaldo Portugis?"
-    },
-    {
-      "fr": "Hollandaise (F)",
-      "lu": "Holländerin"
-    },
-    {
-      "fr": "Belge (M/F)",
+      "fr": "Belgique",
       "lu": "Belsch"
     },
     {
-      "fr": "Coréen (M)",
-      "lu": "Nordkoreaner"
+      "fr": "Suisse",
+      "lu": "Schwäiz"
     },
     {
-      "fr": "Il est nord-coréen.",
-      "lu": "Hien ass en Nordkoreaner."
+      "fr": "France",
+      "lu": "Frankräich"
+    },
+    {
+      "fr": "Pays-Bas",
+      "lu": "Holland"
+    },
+    {
+      "fr": "Suède",
+      "lu": "Schweden"
+    },
+    {
+      "fr": "Argentine",
+      "lu": "Argentinien"
+    },
+    {
+      "fr": "Ronaldo vient du Portugal.",
+      "lu": "De Ronaldo kënnt aus Portugal."
+    },
+    {
+      "fr": "Guillaume vient du Luxembourg.",
+      "lu": "De Guillaume kënnt vu Lëtzebuerg."
+    },
+    {
+      "fr": "Philippe vient de Belgique.",
+      "lu": "De Philippe kënnt aus der Belsch."
+    },
+    {
+      "fr": "Angela vient d'Allemagne.",
+      "lu": "D'Angela kënnt aus Däitschland."
+    },
+    {
+      "fr": "Il vient du Cap-Vert.",
+      "lu": "Hien kënnt vum Cap Vert."
+    },
+    {
+      "fr": "Elle vient d'Iran.",
+      "lu": "Si kënnt aus dem Iran."
+    },
+    {
+      "fr": "Elle vient de Suisse.",
+      "lu": "Si kënnt aus der Schwäiz."
+    },
+    {
+      "fr": "Emmanuel vient de France.",
+      "lu": "Den Emmanuel kënnt aus Frankräich."
+    },
+    {
+      "fr": "Greta vient de Suède.",
+      "lu": "D'Greta kënnt aus Schweden."
+    },
+    {
+      "fr": "Elle vient d'Ukraine.",
+      "lu": "Si kënnt aus der Ukrain."
+    },
+    {
+      "fr": "Origine / Provenance",
+      "lu": "Hierkonft"
+    },
+    {
+      "fr": "Je viens du Luxembourg.",
+      "lu": "Ech kënnt vu Lëtzebuerg."
+    },
+    {
+      "fr": "Je viens de France.",
+      "lu": "Ech kënnt aus Frankräich."
+    },
+    {
+      "fr": "D'où viens-tu ?",
+      "lu": "Vun wou kënns du?"
+    },
+    {
+      "fr": "Il vient d'Italie.",
+      "lu": "Hien kënnt aus Italien."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "La nationalité a une forme masculine et une forme féminine. On utilise l'article indéfini devant."
+      "contenu": "Pour dire d'où vient quelqu'un, on utilise le verbe <b>kënnt</b> (vient) + une préposition qui dépend du pays."
     },
     {
       "type": "regle",
-      "titre": "Formation",
+      "titre": "Les prépositions d'origine",
       "lignes": [
-        "Masculin → <b>e</b> / <b>en</b> + nationalité (e Portugis, en Engländer)",
-        "Féminin → <b>eng</b> + nationalité + souvent terminaison <b>-in</b> (eng Portugisin)",
-        "Négation : <b>kee/keen</b> (M), <b>keng</b> (F)"
+        "Règle générale (pays sans article) → <b>aus</b> (aus Portugal, aus Japan)",
+        "Exception Luxembourg → <b>vu</b> (vu Lëtzebuerg)",
+        "Pays féminins → <b>aus der</b> (aus der Belsch, aus der Schwäiz)",
+        "Pays masculins avec article → <b>aus dem</b> (aus dem Iran)",
+        "Cap-Vert → <b>vum</b> (vum Cap Vert)"
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Article devant les prénoms",
+      "lignes": [
+        "Prénom masculin devant consonne → <b>De</b> (De Ronaldo)",
+        "Prénom masculin devant voyelle → <b>Den</b> (Den David)",
+        "Prénom féminin → <b>D'</b> (D'Nicole)"
       ]
     },
     {
       "type": "vocab",
-      "titre": "Nationalités (M / F)",
+      "titre": "Quelques pays",
       "items": [
         [
-          "e Portugis / eng Portugisin",
-          "portugais·e"
+          "Portugal",
+          "Portugal"
         ],
         [
-          "e Spuenier / eng Spuenierin",
-          "espagnol·e"
+          "Spuenien",
+          "Espagne"
         ],
         [
-          "en Engländer / eng Engländerin",
-          "anglais·e"
+          "England",
+          "Angleterre"
         ],
         [
-          "en Italiener / eng Italienerin",
-          "italien·ne"
+          "Däitschland",
+          "Allemagne"
         ],
         [
-          "e Lëtzebuerger / eng Lëtzebuergerin",
-          "luxembourgeois·e"
+          "Frankräich",
+          "France"
         ],
         [
-          "e Fransous / eng Fransousin",
-          "français·e"
+          "Holland",
+          "Pays-Bas"
         ],
         [
-          "en Däitschen / eng Däitsch",
-          "allemand·e"
+          "Belsch",
+          "Belgique"
+        ],
+        [
+          "Schwäiz",
+          "Suisse"
+        ],
+        [
+          "Lëtzebuerg",
+          "Luxembourg"
         ]
       ]
     },
     {
       "type": "dialogue",
-      "titre": "Poser la question et répondre",
+      "titre": "Exemples",
       "echanges": [
         [
-          "Ass de Ronaldo Portugis?",
-          "Est-ce que Ronaldo est portugais ?"
+          "De Ronaldo kënnt aus Portugal.",
+          "Ronaldo vient du Portugal."
         ],
         [
-          "Jo, hien ass Portugis.",
-          "Oui, il est portugais."
+          "De Guillaume kënnt vu Lëtzebuerg.",
+          "Guillaume vient du Luxembourg."
         ],
         [
-          "Nee, hien ass kee Spuenier.",
-          "Non, il n'est pas espagnol."
+          "De Philippe kënnt aus der Belsch.",
+          "Philippe vient de Belgique."
         ]
       ]
     }
