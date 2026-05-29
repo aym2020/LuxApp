@@ -1,8 +1,14 @@
 {
   "id": 5,
   "titre": "Den Alter & De Nummeren",
-  "titre_fr": "Les nombres et comment compter",
+  "titre_fr": "Les nombres et la façon de compter en luxembourgeois",
   "couleur": "#a07ad4",
+  "instructions": {
+    "flashcards": "Mémorise les nombres en luxembourgeois. Comprends la formation des composés.",
+    "quiz": "Lis le nombre luxembourgeois et trouve sa valeur.",
+    "trous": "Complète les phrases avec le nombre ou l'année correct.",
+    "ecriture": "Écris le nombre ou l'année en toutes lettres en luxembourgeois. Respecte les liaisons (an/a)."
+  },
   "flashcards": [
     {
       "id": 1,
@@ -207,24 +213,6 @@
       "lu": "Siwenavéierzeg",
       "fr": "47",
       "note": "Construction : unité + A + dizaine"
-    },
-    {
-      "id": 35,
-      "lu": "Zwee (M/N) · Zwou (F)",
-      "fr": "2 selon le genre",
-      "note": "Seul chiffre variable en genre"
-    },
-    {
-      "id": 36,
-      "lu": "Wéi vill Käerze ginn et?",
-      "fr": "Combien de bougies y a-t-il ?",
-      "note": "Question quantité"
-    },
-    {
-      "id": 37,
-      "lu": "Et sinn aacht Käerzen.",
-      "fr": "Il y a 8 bougies.",
-      "note": "Dat sinn + chiffre + pluriel"
     }
   ],
   "quiz": [
@@ -919,10 +907,6 @@
       "lu": "aachtzeg"
     },
     {
-      "fr": "100",
-      "lu": "honnert"
-    },
-    {
       "fr": "1000",
       "lu": "dausend"
     },
@@ -949,10 +933,6 @@
     {
       "fr": "2 bus (masculin)",
       "lu": "Zwee Bussen"
-    },
-    {
-      "fr": "200",
-      "lu": "zweehonnert"
     },
     {
       "fr": "13",
@@ -1086,7 +1066,7 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Les nombres et la formation du pluriel."
+      "contenu": "Cette leçon présente les nombres luxembourgeois, leur construction et quelques règles utiles pour compter."
     },
     {
       "type": "vocab",
@@ -1222,24 +1202,27 @@
       ]
     },
     {
+      "type": "regle",
+      "titre": "Les années",
+      "lignes": [
+        "2025 = zweedausendfënnefanzwanzeg",
+        "1984 = nonzénghonnertvéieranaachtzeg",
+        "Les années suivent les mêmes règles que les nombres."
+      ]
+    },
+    {
       "type": "dialogue",
       "titre": "Poser la question et répondre",
       "echanges": [
         [
-          "Vei vill Käerzen sinn dat?",
+          "Wéi vill Käerze ginn et?",
           "Combien de bougies y a-t-il ?"
         ],
         [
-          "Dat sinn 8 Käerzen.",
+          "Et sinn aacht Käerzen.",
           "Il y a 8 bougies."
         ]
       ]
     }
   ],
-  "instructions": {
-    "flashcards": "Mémorise les nombres en luxembourgeois. Comprends la formation des composés.",
-    "quiz": "Lis le nombre français et trouve sa traduction en luxembourgeois.",
-    "trous": "Complète les phrases avec le nombre ou l'année correct.",
-    "ecriture": "Écris le nombre ou l'année en toutes lettres en luxembourgeois. Respecte les liaisons (an/a)."
-  }
 }
