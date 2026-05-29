@@ -78,9 +78,9 @@
     },
     {
       "id": 12,
-      "fr": "Merci !",
-      "lu": "Merci!",
-      "note": "Identique au français"
+      "fr": "S'il vous plaît",
+      "lu": "Wann ech gelift",
+      "note": "Souvent abrégé en 'wgl.'"
     },
     {
       "id": 13,
@@ -225,386 +225,232 @@
       "fr": "Quel est votre nom, s'il vous plaît ?",
       "lu": "Wéi ass Ären Numm wgl.?",
       "note": "wgl. = wann ech gelift = s'il vous plaît"
-    },
-    {
-      "id": 37,
-      "fr": "S'il vous plaît",
-      "lu": "Wann ech gelift",
-      "note": "Souvent abrégé en 'wgl.'"
     }
   ],
   "quiz": [
-    {
-      "id": 1,
-      "question": "Moien!",
-      "reponse": "Bonjour !",
-      "distracteurs": [
-        "Au revoir !",
-        "Bonne nuit !",
-        "Bonsoir !"
-      ]
-    },
-    {
-      "id": 2,
-      "question": "Comment dit-on « Bonsoir » ?",
-      "reponse": "Gudden Owend!",
-      "distracteurs": [
-        "Gudde Moien!",
-        "Gutt Nuecht!",
-        "Gudde Mëtteg!"
-      ]
-    },
-    {
-      "id": 3,
-      "question": "Wéi geet et dir?",
-      "reponse": "Comment vas-tu ?",
-      "distracteurs": [
-        "Comment t'appelles-tu ?",
-        "Où habites-tu ?",
-        "Quel âge as-tu ?"
-      ]
-    },
-    {
-      "id": 4,
-      "question": "Très bien !",
-      "reponse": "Ganz gutt!",
-      "distracteurs": [
-        "Schlecht.",
-        "Et geet.",
-        "Ganz schlecht."
-      ]
-    },
-    {
-      "id": 5,
-      "question": "Äddi!",
-      "reponse": "Au revoir !",
-      "distracteurs": [
-        "Merci !",
-        "Bonjour !",
-        "Bonne nuit !"
-      ]
-    },
-    {
-      "id": 6,
-      "question": "Comment dit-on « Bonne nuit » ?",
-      "reponse": "Gutt Nuecht!",
-      "distracteurs": [
-        "Gudden Owend!",
-        "Schlof gutt!",
-        "Moien!"
-      ]
-    },
-    {
-      "id": 7,
-      "question": "Et geet.",
-      "reponse": "Ça va.",
-      "distracteurs": [
-        "Très bien !",
-        "Très mal.",
-        "Bonjour !"
-      ]
-    },
-    {
-      "id": 8,
-      "question": "Comment dit-on « Comment allez-vous ? » (formel)",
-      "reponse": "Wéi geet et Iech?",
-      "distracteurs": [
-        "Wéi geet et dir?",
-        "Wou wunnt Dir?",
-        "Wéi al sidd Dir?"
-      ]
-    },
-    {
-      "id": 9,
-      "question": "Schlecht.",
-      "reponse": "Mal.",
-      "distracteurs": [
-        "Très bien !",
-        "Au revoir !",
-        "Ça va."
-      ]
-    },
-    {
-      "id": 10,
-      "question": "Mir geet et gutt.",
-      "reponse": "Je vais bien.",
-      "distracteurs": [
-        "Je vais mal.",
-        "Ça va.",
-        "Très bien !"
-      ]
-    },
-    {
-      "id": 11,
-      "question": "Comment dit-on « Dors bien » ?",
-      "reponse": "Schlof gutt!",
-      "distracteurs": [
-        "Gutt Nuecht!",
-        "Schéinen Owend!",
-        "Äddi!"
-      ]
-    },
-    {
-      "id": 12,
-      "question": "Net immens.",
-      "reponse": "Pas terrible.",
-      "distracteurs": [
-        "Très mal.",
-        "Ça va.",
-        "Pas du tout bien."
-      ]
-    },
-    {
-      "id": 13,
-      "question": "Comment dit-on « Et toi ? » (informel)",
-      "reponse": "An dir?",
-      "distracteurs": [
-        "An Iech?",
-        "An du?",
-        "Wéi dir?"
-      ]
-    },
-    {
-      "id": 14,
-      "question": "Gudde Moien!",
-      "reponse": "Bonjour ! (matin)",
-      "distracteurs": [
-        "Bonsoir !",
-        "Bonne nuit !",
-        "Bonjour ! (midi)"
-      ]
-    },
-    {
-      "id": 15,
-      "question": "Comment dit-on « Bonjour Monsieur » ?",
-      "reponse": "Bonjour Här.",
-      "distracteurs": [
-        "Bonjour Madamm.",
-        "Moien Här.",
-        "Gudde Mëtteg Här."
-      ]
-    },
-    {
-      "id": 16,
-      "question": "Salut!",
-      "reponse": "Salut !",
-      "distracteurs": [
-        "Bonsoir !",
-        "Au revoir !",
-        "Bonne nuit !"
-      ]
-    },
-    {
-      "id": 17,
-      "question": "Gudde Mëtteg!",
-      "reponse": "Bonjour ! (midi/après-midi)",
-      "distracteurs": [
-        "Bonjour ! (matin)",
-        "Bonsoir !",
-        "Bonne nuit !"
-      ]
-    },
-    {
-      "id": 18,
-      "question": "Gutt Nuecht!",
-      "reponse": "Bonne nuit !",
-      "distracteurs": [
-        "Bonsoir !",
-        "Dors bien !",
-        "Au revoir !"
-      ]
-    },
-    {
-      "id": 19,
-      "question": "Schlof gutt!",
-      "reponse": "Dors bien !",
-      "distracteurs": [
-        "Bonne nuit !",
-        "Bonne soirée !",
-        "Au revoir !"
-      ]
-    },
-    {
-      "id": 20,
-      "question": "Awar!",
-      "reponse": "Au revoir ! (familier)",
-      "distracteurs": [
-        "Bonjour !",
-        "Merci !",
-        "Bonne nuit !"
-      ]
-    },
-    {
-      "id": 21,
-      "question": "Schéinen Dag!",
-      "reponse": "Bonne journée !",
-      "distracteurs": [
-        "Bonne soirée !",
-        "Bonne nuit !",
-        "Bonjour !"
-      ]
-    },
-    {
-      "id": 22,
-      "question": "Schéinen Owend!",
-      "reponse": "Bonne soirée !",
-      "distracteurs": [
-        "Bonne journée !",
-        "Bonsoir !",
-        "Bonne nuit !"
-      ]
-    },
-    {
-      "id": 23,
-      "question": "Merci!",
-      "reponse": "Merci !",
-      "distracteurs": [
-        "Bonjour !",
-        "Au revoir !",
-        "Pardon !"
-      ]
-    },
-    {
-      "id": 24,
-      "question": "Merci gläichfalls!",
-      "reponse": "Merci pareillement !",
-      "distracteurs": [
-        "Merci beaucoup !",
-        "De rien !",
-        "Bonne journée !"
-      ]
-    },
-    {
-      "id": 25,
-      "question": "Wéi geet et Iech?",
-      "reponse": "Comment allez-vous ?",
-      "distracteurs": [
-        "Comment vas-tu ?",
-        "Comment vous appelez-vous ?",
-        "Qui êtes-vous ?"
-      ]
-    },
-    {
-      "id": 26,
-      "question": "Ganz gutt!",
-      "reponse": "Très bien !",
-      "distracteurs": [
-        "Ça va.",
-        "Mal.",
-        "Très mal."
-      ]
-    },
-    {
-      "id": 27,
-      "question": "Tipptopp!",
-      "reponse": "Tip top !",
-      "distracteurs": [
-        "Très mal.",
-        "Pas terrible.",
-        "Ça va."
-      ]
-    },
-    {
-      "id": 28,
-      "question": "Ganz schlecht.",
-      "reponse": "Très mal.",
-      "distracteurs": [
-        "Mal.",
-        "Ça va.",
-        "Très bien !"
-      ]
-    },
-    {
-      "id": 29,
-      "question": "Guer net gutt.",
-      "reponse": "Pas du tout bien.",
-      "distracteurs": [
-        "Très bien !",
-        "Ça va.",
-        "Pas terrible."
-      ]
-    },
-    {
-      "id": 30,
-      "question": "An Iech?",
-      "reponse": "Et vous ?",
-      "distracteurs": [
-        "Et toi ?",
-        "Comment allez-vous ?",
-        "Merci !"
-      ]
-    },
-    {
-      "id": 31,
-      "question": "Bonjour Madamm.",
-      "reponse": "Bonjour Madame.",
-      "distracteurs": [
-        "Bonjour Monsieur.",
-        "Bonsoir Madame.",
-        "Salut Madame."
-      ]
-    },
-    {
-      "id": 32,
-      "question": "Bonjour Här.",
-      "reponse": "Bonjour Monsieur.",
-      "distracteurs": [
-        "Bonjour Madame.",
-        "Bonsoir Monsieur.",
-        "Salut Monsieur."
-      ]
-    },
-    {
-      "id": 33,
-      "question": "Wéi ass Ären Numm?",
-      "reponse": "Quel est votre nom ?",
-      "distracteurs": [
-        "Comment allez-vous ?",
-        "Où habitez-vous ?",
-        "Quel âge avez-vous ?"
-      ]
-    },
-    {
-      "id": 34,
-      "question": "Mäin Numm ass...",
-      "reponse": "Je m'appelle...",
-      "distracteurs": [
-        "Je vais bien.",
-        "Je viens de...",
-        "Je suis..."
-      ]
-    },
-    {
-      "id": 35,
-      "question": "Et freet mech.",
-      "reponse": "Enchanté.",
-      "distracteurs": [
-        "Merci.",
-        "Au revoir.",
-        "Comment allez-vous ?"
-      ]
-    },
-    {
-      "id": 36,
-      "question": "Alles an der Rei!",
-      "reponse": "Tout va bien !",
-      "distracteurs": [
-        "Très mal.",
-        "Pas terrible.",
-        "Bonne journée !"
-      ]
-    },
-    {
-      "id": 37,
-      "question": "Wann ech gelift",
-      "reponse": "S'il vous plaît",
-      "distracteurs": [
-        "Merci",
-        "De rien",
-        "Enchanté"
-      ]
-    }
-  ],
+  {
+    "id": 1,
+    "question": "Moien!",
+    "reponse": "Bonjour !",
+    "distracteurs": ["Au revoir !", "Bonne nuit !", "Bonsoir !"]
+  },
+  {
+    "id": 2,
+    "question": "Gudden Owend!",
+    "reponse": "Bonsoir !",
+    "distracteurs": ["Bonjour ! (matin)", "Bonne nuit !", "Bonjour ! (midi/après-midi)"]
+  },
+  {
+    "id": 3,
+    "question": "Wéi geet et dir?",
+    "reponse": "Comment vas-tu ?",
+    "distracteurs": ["Comment t'appelles-tu ?", "Où habites-tu ?", "Quel âge as-tu ?"]
+  },
+  {
+    "id": 4,
+    "question": "Ganz gutt!",
+    "reponse": "Très bien !",
+    "distracteurs": ["Mal.", "Ça va.", "Très mal."]
+  },
+  {
+    "id": 5,
+    "question": "Äddi!",
+    "reponse": "Au revoir !",
+    "distracteurs": ["Merci !", "Bonjour !", "Bonne nuit !"]
+  },
+  {
+    "id": 6,
+    "question": "Gutt Nuecht!",
+    "reponse": "Bonne nuit !",
+    "distracteurs": ["Bonsoir !", "Dors bien !", "Bonjour !"]
+  },
+  {
+    "id": 7,
+    "question": "Et geet.",
+    "reponse": "Ça va.",
+    "distracteurs": ["Très bien !", "Très mal.", "Bonjour !"]
+  },
+  {
+    "id": 8,
+    "question": "Wéi geet et Iech?",
+    "reponse": "Comment allez-vous ?",
+    "distracteurs": ["Comment vas-tu ?", "Où habitez-vous ?", "Quel âge avez-vous ?"]
+  },
+  {
+    "id": 9,
+    "question": "Schlecht.",
+    "reponse": "Mal.",
+    "distracteurs": ["Très bien !", "Au revoir !", "Ça va."]
+  },
+  {
+    "id": 10,
+    "question": "Mir geet et gutt.",
+    "reponse": "Je vais bien.",
+    "distracteurs": ["Je vais mal.", "Ça va.", "Très bien !"]
+  },
+  {
+    "id": 11,
+    "question": "Schlof gutt!",
+    "reponse": "Dors bien !",
+    "distracteurs": ["Bonne nuit !", "Bonne soirée !", "Au revoir !"]
+  },
+  {
+    "id": 12,
+    "question": "Net immens.",
+    "reponse": "Pas terrible.",
+    "distracteurs": ["Très mal.", "Ça va.", "Pas du tout bien."]
+  },
+  {
+    "id": 13,
+    "question": "An dir?",
+    "reponse": "Et toi ?",
+    "distracteurs": ["Et vous ?", "Comment vas-tu ?", "Merci !"]
+  },
+  {
+    "id": 14,
+    "question": "Gudde Moien!",
+    "reponse": "Bonjour ! (matin)",
+    "distracteurs": ["Bonsoir !", "Bonne nuit !", "Bonjour ! (midi/après-midi)"]
+  },
+  {
+    "id": 15,
+    "question": "Bonjour Här.",
+    "reponse": "Bonjour Monsieur.",
+    "distracteurs": ["Bonjour Madame.", "Bonsoir Monsieur.", "Salut Monsieur."]
+  },
+  {
+    "id": 16,
+    "question": "Salut!",
+    "reponse": "Salut !",
+    "distracteurs": ["Bonsoir !", "Au revoir !", "Bonne nuit !"]
+  },
+  {
+    "id": 17,
+    "question": "Gudde Mëtteg!",
+    "reponse": "Bonjour ! (midi/après-midi)",
+    "distracteurs": ["Bonjour ! (matin)", "Bonsoir !", "Bonne nuit !"]
+  },
+  {
+    "id": 18,
+    "question": "Gutt Nuecht!",
+    "reponse": "Bonne nuit !",
+    "distracteurs": ["Bonsoir !", "Dors bien !", "Au revoir !"]
+  },
+  {
+    "id": 19,
+    "question": "Schlof gutt!",
+    "reponse": "Dors bien !",
+    "distracteurs": ["Bonne nuit !", "Bonne soirée !", "Au revoir !"]
+  },
+  {
+    "id": 20,
+    "question": "Awar!",
+    "reponse": "Au revoir ! (familier)",
+    "distracteurs": ["Bonjour !", "Merci !", "Bonne nuit !"]
+  },
+  {
+    "id": 21,
+    "question": "Schéinen Dag!",
+    "reponse": "Bonne journée !",
+    "distracteurs": ["Bonne soirée !", "Bonne nuit !", "Bonjour !"]
+  },
+  {
+    "id": 22,
+    "question": "Schéinen Owend!",
+    "reponse": "Bonne soirée !",
+    "distracteurs": ["Bonne journée !", "Bonsoir !", "Bonne nuit !"]
+  },
+  {
+    "id": 23,
+    "question": "Merci!",
+    "reponse": "Merci !",
+    "distracteurs": ["Bonjour !", "Au revoir !", "S'il vous plaît"]
+  },
+  {
+    "id": 24,
+    "question": "Merci gläichfalls!",
+    "reponse": "Merci pareillement !",
+    "distracteurs": ["Merci beaucoup !", "S'il vous plaît !", "Bonne journée !"]
+  },
+  {
+    "id": 25,
+    "question": "Wéi geet et Iech?",
+    "reponse": "Comment allez-vous ?",
+    "distracteurs": ["Comment vas-tu ?", "Comment vous appelez-vous ?", "Qui êtes-vous ?"]
+  },
+  {
+    "id": 26,
+    "question": "Ganz gutt!",
+    "reponse": "Très bien !",
+    "distracteurs": ["Ça va.", "Mal.", "Très mal."]
+  },
+  {
+    "id": 27,
+    "question": "Tipptopp!",
+    "reponse": "Tip top !",
+    "distracteurs": ["Très mal.", "Pas terrible.", "Ça va."]
+  },
+  {
+    "id": 28,
+    "question": "Ganz schlecht.",
+    "reponse": "Très mal.",
+    "distracteurs": ["Mal.", "Ça va.", "Très bien !"]
+  },
+  {
+    "id": 29,
+    "question": "Guer net gutt.",
+    "reponse": "Pas du tout bien.",
+    "distracteurs": ["Très bien !", "Ça va.", "Pas terrible."]
+  },
+  {
+    "id": 30,
+    "question": "An Iech?",
+    "reponse": "Et vous ?",
+    "distracteurs": ["Et toi ?", "Comment allez-vous ?", "Merci !"]
+  },
+  {
+    "id": 31,
+    "question": "Bonjour Madamm.",
+    "reponse": "Bonjour Madame.",
+    "distracteurs": ["Bonjour Monsieur.", "Bonsoir Madame.", "Salut Madame."]
+  },
+  {
+    "id": 32,
+    "question": "Bonjour Här.",
+    "reponse": "Bonjour Monsieur.",
+    "distracteurs": ["Bonjour Madame.", "Bonsoir Monsieur.", "Salut Monsieur."]
+  },
+  {
+    "id": 33,
+    "question": "Wéi ass Ären Numm?",
+    "reponse": "Quel est votre nom ?",
+    "distracteurs": ["Comment allez-vous ?", "Où habitez-vous ?", "Quel âge avez-vous ?"]
+  },
+  {
+    "id": 34,
+    "question": "Mäin Numm ass...",
+    "reponse": "Je m'appelle...",
+    "distracteurs": ["Je vais bien.", "Je viens de...", "Je suis..."]
+  },
+  {
+    "id": 35,
+    "question": "Et freet mech.",
+    "reponse": "Enchanté.",
+    "distracteurs": ["Merci.", "Au revoir.", "Comment allez-vous ?"]
+  },
+  {
+    "id": 36,
+    "question": "Alles an der Rei!",
+    "reponse": "Tout va bien !",
+    "distracteurs": ["Très mal.", "Pas terrible.", "Bonne journée !"]
+  },
+  {
+    "id": 37,
+    "question": "Wann ech gelift",
+    "reponse": "S'il vous plaît",
+    "distracteurs": ["Merci", "Au revoir", "Enchanté"]
+  }
+],
   "trous": [
     {
       "id": 1,
@@ -726,9 +572,9 @@
       "apres": "?",
       "choix": [
         "Iech",
-        "dir",
-        "du",
-        "Dir"
+        "Dir",
+        "Du",
+        "Mir"
       ],
       "note": "Iech = vous formel (majuscule)"
     },
@@ -750,13 +596,13 @@
       "id": 11,
       "fr": "Et toi ? (informel)",
       "avant": "An",
-      "trou": "dir",
+      "trou": "Dir",
       "apres": "?",
       "choix": [
-        "dir",
-        "Iech",
-        "du",
-        "Dir"
+      "Iech",
+      "Dir",
+      "Mir",
+      "Du"
       ],
       "note": "An dir? = Et toi ? · An Iech? = Et vous ?"
     },
@@ -824,9 +670,9 @@
       "apres": "?",
       "choix": [
         "Iech",
-        "dir",
-        "du",
-        "Dir"
+        "Dir",
+        "Du",
+        "Mir"
       ],
       "note": "Formel = Iech"
     },
@@ -967,10 +813,6 @@
       "lu": "Salut!"
     },
     {
-      "fr": "Hallo !",
-      "lu": "Hallo!"
-    },
-    {
       "fr": "Bonjour ! (matin)",
       "lu": "Gudde Moien!"
     },
@@ -1011,7 +853,7 @@
       "lu": "Moien Anna!"
     },
     {
-      "fr": "Au revoir !",
+      "fr": "Au revoir ! (adieu)",
       "lu": "Äddi!"
     },
     {
