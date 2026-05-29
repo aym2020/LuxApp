@@ -3,6 +3,12 @@
   "titre": "Moien! ...an Äddi!",
   "titre_fr": "Salutations et comment ça va",
   "couleur": "#e8a030",
+  "instructions": {
+    "flashcards": "Cartes de mémorisation avec les mots, expressions et phrases en français et en luxembourgeois. Le but est de reconnaître et mémoriser le vocabulaire de base.",
+    "quiz": "Question en luxembourgeois, réponses proposées en français. Le but est de reconnaître rapidement le sens du mot ou de l'expression.",
+    "trous": "Textes à trous centrés sur les subtilités de la leçon : formel/informel, mots proches, ordre des mots, expressions figées et petites différences grammaticales.",
+    "ecriture": "Exercice de rappel actif. Le mot, l'expression ou la phrase est donné en français, et l'utilisateur doit l'écrire correctement en luxembourgeois."
+  },
   "flashcards": [
     { "id": 1,  "fr": "Bonjour !",              "lu": "Moien!",          "note": "À toute heure · très courant" },
     { "id": 2,  "fr": "Salut !",                "lu": "Salut!",          "note": "Informel entre amis" },
@@ -30,7 +36,17 @@
     { "id": 24, "fr": "Et toi ?",              "lu": "An dir?",         "note": "Informel · An = et" },
     { "id": 25, "fr": "Et vous ?",             "lu": "An Iech?",        "note": "Formel · Iech majuscule" },
     { "id": 26, "fr": "Bonjour Madame.",        "lu": "Bonjour Madamm.", "note": "Madamm = Madame en luxo" },
-    { "id": 27, "fr": "Bonjour Monsieur.",      "lu": "Bonjour Här.",    "note": "Här = Monsieur" }
+    { "id": 27, "fr": "Bonjour Monsieur.",      "lu": "Bonjour Här.",    "note": "Här = Monsieur" },
+    { "id": 28, "fr": "Quel est votre nom ?", "lu": "Wéi ass Ären Numm?", "note": "Formel · Ären = votre" },
+    { "id": 29, "fr": "Je m'appelle...", "lu": "Mäin Numm ass...", "note": "Formule de présentation la plus simple" },
+    { "id": 30, "fr": "Comment t'appelles-tu ?", "lu": "A wéi heeschs du?", "note": "Informel" },
+    { "id": 31, "fr": "Comment vous appelez-vous ?", "lu": "A wéi heescht Dir?", "note": "Formel" },
+    { "id": 32, "fr": "Je m'appelle Mauro.", "lu": "Ech heesche Mauro.", "note": "heeschen = s'appeler" },
+    { "id": 33, "fr": "Enchanté.", "lu": "Et freet mech.", "note": "Litt. 'cela me fait plaisir'" },
+    { "id": 34, "fr": "Moi aussi.", "lu": "Mech och.", "note": "Réponse à 'Enchanté'" },
+    { "id": 35, "fr": "Tout va bien !", "lu": "Alles an der Rei!", "note": "Expression très fréquente" },
+    { "id": 36, "fr": "Quel est votre nom, s'il vous plaît ?", "lu": "Wéi ass Ären Numm wgl.?", "note": "wgl. = wann ech gelift = s'il vous plaît" },
+    { "id": 37, "fr": "S'il vous plaît", "lu": "Wann ech gelift", "note": "Souvent abrégé en 'wgl.'" }
   ],
   "quiz": [
     {
@@ -122,7 +138,139 @@
       "question": "Comment dit-on « Bonjour Monsieur » ?",
       "reponse": "Bonjour Här.",
       "distracteurs": ["Bonjour Madamm.", "Moien Här.", "Gudde Mëtteg Här."]
-    }
+    },
+    {
+      "id": 16,
+      "question": "Salut!",
+      "reponse": "Salut !",
+      "distracteurs": ["Bonsoir !", "Au revoir !", "Bonne nuit !"]
+      },
+      {
+      "id": 17,
+      "question": "Gudde Mëtteg!",
+      "reponse": "Bonjour ! (midi/après-midi)",
+      "distracteurs": ["Bonjour ! (matin)", "Bonsoir !", "Bonne nuit !"]
+      },
+      {
+      "id": 18,
+      "question": "Gutt Nuecht!",
+      "reponse": "Bonne nuit !",
+      "distracteurs": ["Bonsoir !", "Dors bien !", "Au revoir !"]
+      },
+      {
+      "id": 19,
+      "question": "Schlof gutt!",
+      "reponse": "Dors bien !",
+      "distracteurs": ["Bonne nuit !", "Bonne soirée !", "Au revoir !"]
+      },
+      {
+      "id": 20,
+      "question": "Awar!",
+      "reponse": "Au revoir ! (familier)",
+      "distracteurs": ["Bonjour !", "Merci !", "Bonne nuit !"]
+      },
+      {
+      "id": 21,
+      "question": "Schéinen Dag!",
+      "reponse": "Bonne journée !",
+      "distracteurs": ["Bonne soirée !", "Bonne nuit !", "Bonjour !"]
+      },
+      {
+      "id": 22,
+      "question": "Schéinen Owend!",
+      "reponse": "Bonne soirée !",
+      "distracteurs": ["Bonne journée !", "Bonsoir !", "Bonne nuit !"]
+      },
+      {
+      "id": 23,
+      "question": "Merci!",
+      "reponse": "Merci !",
+      "distracteurs": ["Bonjour !", "Au revoir !", "Pardon !"]
+      },
+      {
+      "id": 24,
+      "question": "Merci gläichfalls!",
+      "reponse": "Merci pareillement !",
+      "distracteurs": ["Merci beaucoup !", "De rien !", "Bonne journée !"]
+      },
+      {
+      "id": 25,
+      "question": "Wéi geet et Iech?",
+      "reponse": "Comment allez-vous ?",
+      "distracteurs": ["Comment vas-tu ?", "Comment vous appelez-vous ?", "Qui êtes-vous ?"]
+      },
+      {
+      "id": 26,
+      "question": "Ganz gutt!",
+      "reponse": "Très bien !",
+      "distracteurs": ["Ça va.", "Mal.", "Très mal."]
+      },
+      {
+      "id": 27,
+      "question": "Tipptopp!",
+      "reponse": "Tip top !",
+      "distracteurs": ["Très mal.", "Pas terrible.", "Ça va."]
+      },
+      {
+      "id": 28,
+      "question": "Ganz schlecht.",
+      "reponse": "Très mal.",
+      "distracteurs": ["Mal.", "Ça va.", "Très bien !"]
+      },
+      {
+      "id": 29,
+      "question": "Guer net gutt.",
+      "reponse": "Pas du tout bien.",
+      "distracteurs": ["Très bien !", "Ça va.", "Pas terrible."]
+      },
+      {
+      "id": 30,
+      "question": "An Iech?",
+      "reponse": "Et vous ?",
+      "distracteurs": ["Et toi ?", "Comment allez-vous ?", "Merci !"]
+      },
+      {
+      "id": 31,
+      "question": "Bonjour Madamm.",
+      "reponse": "Bonjour Madame.",
+      "distracteurs": ["Bonjour Monsieur.", "Bonsoir Madame.", "Salut Madame."]
+      },
+      {
+      "id": 32,
+      "question": "Bonjour Här.",
+      "reponse": "Bonjour Monsieur.",
+      "distracteurs": ["Bonjour Madame.", "Bonsoir Monsieur.", "Salut Monsieur."]
+      },
+      {
+      "id": 33,
+      "question": "Wéi ass Ären Numm?",
+      "reponse": "Quel est votre nom ?",
+      "distracteurs": ["Comment allez-vous ?", "Où habitez-vous ?", "Quel âge avez-vous ?"]
+      },
+      {
+      "id": 34,
+      "question": "Mäin Numm ass...",
+      "reponse": "Je m'appelle...",
+      "distracteurs": ["Je vais bien.", "Je viens de...", "Je suis..."]
+      },
+      {
+      "id": 35,
+      "question": "Et freet mech.",
+      "reponse": "Enchanté.",
+      "distracteurs": ["Merci.", "Au revoir.", "Comment allez-vous ?"]
+      },
+      {
+      "id": 36,
+      "question": "Alles an der Rei!",
+      "reponse": "Tout va bien !",
+      "distracteurs": ["Très mal.", "Pas terrible.", "Bonne journée !"]
+      },
+      {
+      "id": 37,
+      "question": "Wann ech gelift",
+      "reponse": "S'il vous plaît",
+      "distracteurs": ["Merci", "De rien", "Enchanté"]
+      }
   ],
   "trous": [
     {
@@ -259,40 +407,146 @@
       "apres": "!",
       "choix": ["Madamm", "Madame", "Här", "Merci"],
       "note": "Madamm = Madame en luxembourgeois"
-    }
+    },
+  {
+  "id": 16,
+  "fr": "Et vous ? (formel)",
+  "avant": "An",
+  "trou": "Iech",
+  "apres": "?",
+  "choix": ["Iech", "dir", "du", "Dir"],
+  "note": "Formel = Iech"
+  },
+  {
+  "id": 17,
+  "fr": "Merci pareillement !",
+  "avant": "Merci",
+  "trou": "gläichfalls",
+  "apres": "!",
+  "choix": ["gläichfalls", "gutt", "merci", "immens"],
+  "note": "Réponse à un souhait"
+  },
+  {
+  "id": 18,
+  "fr": "Je m'appelle Bertha.",
+  "avant": "Ech",
+  "trou": "heesche",
+  "apres": "Bertha.",
+  "choix": ["heesche", "kommen", "sinn", "ginn"],
+  "note": "heeschen = s'appeler"
+  },
+  {
+  "id": 19,
+  "fr": "Quel est votre nom ?",
+  "avant": "Wéi ass",
+  "trou": "Ären",
+  "apres": "Numm?",
+  "choix": ["Ären", "Mäin", "Däin", "Iech"],
+  "note": "Ären = votre"
+  },
+  {
+  "id": 20,
+  "fr": "Je m'appelle...",
+  "avant": "",
+  "trou": "Mäin",
+  "apres": "Numm ass...",
+  "choix": ["Mäin", "Ären", "Däin", "Mir"],
+  "note": "Mäin Numm ass..."
+  },
+  {
+  "id": 21,
+  "fr": "Enchanté.",
+  "avant": "Et",
+  "trou": "freet",
+  "apres": "mech.",
+  "choix": ["freet", "geet", "ass", "heescht"],
+  "note": "Et freet mech = enchanté"
+  },
+  {
+  "id": 22,
+  "fr": "Moi aussi.",
+  "avant": "Mech",
+  "trou": "och",
+  "apres": ".",
+  "choix": ["och", "gutt", "dir", "merci"],
+  "note": "och = aussi"
+  },
+  {
+  "id": 23,
+  "fr": "Tout va bien !",
+  "avant": "Alles an der",
+  "trou": "Rei",
+  "apres": "!",
+  "choix": ["Rei", "Nuecht", "Moien", "Owend"],
+  "note": "Alles an der Rei = tout va bien"
+  },
+  {
+  "id": 24,
+  "fr": "Comment t'appelles-tu ?",
+  "avant": "A wéi",
+  "trou": "heeschs",
+  "apres": "du?",
+  "choix": ["heeschs", "gees", "kënns", "bass"],
+  "note": "Forme informelle"
+  },
+  {
+  "id": 25,
+  "fr": "Comment vous appelez-vous ?",
+  "avant": "A wéi",
+  "trou": "heescht",
+  "apres": "Dir?",
+  "choix": ["heescht", "geet", "ass", "kommt"],
+  "note": "Forme formelle"
+  }
   ],
   "ecriture": [
-    { "fr": "Bonjour !", "lu": "Moien!" },
-    { "fr": "Salut !", "lu": "Salut!" },
-    { "fr": "Bonsoir !", "lu": "Gudden Owend!" },
-    { "fr": "Bonne nuit !", "lu": "Gutt Nuecht!" },
-    { "fr": "Au revoir !", "lu": "Äddi!" },
-    { "fr": "Comment vas-tu ?", "lu": "Wéi geet et dir?" },
-    { "fr": "Comment allez-vous ?", "lu": "Wéi geet et Iech?" },
-    { "fr": "Je vais bien.", "lu": "Mir geet et gutt." },
-    { "fr": "Très bien !", "lu": "Ganz gutt!" },
-    { "fr": "Ça va.", "lu": "Et geet." },
-    { "fr": "Pas terrible.", "lu": "Net immens." },
-    { "fr": "Mal.", "lu": "Schlecht." },
-    { "fr": "Très mal.", "lu": "Ganz schlecht." },
-    { "fr": "Et toi ?", "lu": "An dir?" },
-    { "fr": "Et vous ?", "lu": "An Iech?" },
-    { "fr": "Bonjour Madame.", "lu": "Bonjour Madamm." },
-    { "fr": "Bonjour Monsieur.", "lu": "Bonjour Här." },
-    { "fr": "Salut Pierre !", "lu": "Salut Pierre!" },
-    { "fr": "Bonsoir Madame Wagner.", "lu": "Gudden Owend Madamm Wagner." },
-    { "fr": "Bonne nuit !", "lu": "Gutt Nuecht!" },
-    { "fr": "Bonjour ! (matin)", "lu": "Gudde Moien!" },
-    { "fr": "Bonjour ! (midi)", "lu": "Gudde Mëtteg!" },
-    { "fr": "Au revoir ! (familier)", "lu": "Awar!" },
-    { "fr": "Dors bien !", "lu": "Schlof gutt!" },
-    { "fr": "Bonne journée !", "lu": "Schéinen Dag!" },
-    { "fr": "Bonne soirée !", "lu": "Schéinen Owend!" },
-    { "fr": "Merci !", "lu": "Merci!" },
-    { "fr": "Merci pareillement !", "lu": "Merci gläichfalls!" },
-    { "fr": "Pas du tout bien.", "lu": "Guer net gutt." },
-    { "fr": "Tip top !", "lu": "Tipptopp!" }
-  ],
+  { "fr": "Bonjour !", "lu": "Moien!" },
+  { "fr": "Salut !", "lu": "Salut!" },
+  { "fr": "Hallo !", "lu": "Hallo!" },
+  { "fr": "Bonjour ! (matin)", "lu": "Gudde Moien!" },
+  { "fr": "Bonjour ! (midi)", "lu": "Gudde Mëtteg!" },
+  { "fr": "Bonsoir !", "lu": "Gudden Owend!" },
+  { "fr": "Bonjour Madame.", "lu": "Bonjour Madamm." },
+  { "fr": "Bonjour Monsieur.", "lu": "Bonjour Här." },
+  { "fr": "Bonjour Madame Wagner.", "lu": "Gudden Owend Madamm Wagner." },
+  { "fr": "Bonsoir Monsieur Michels.", "lu": "O gudden Owend Här Michels!" },
+  { "fr": "Salut Pierre !", "lu": "Salut Pierre!" },
+  { "fr": "Salut Jean !", "lu": "Salut Jang!" },
+  { "fr": "Bonjour Anna !", "lu": "Moien Anna!" },
+  { "fr": "Au revoir !", "lu": "Äddi!" },
+  { "fr": "Au revoir ! (familier)", "lu": "Awar!" },
+  { "fr": "Bonne nuit !", "lu": "Gutt Nuecht!" },
+  { "fr": "Dors bien !", "lu": "Schlof gutt!" },
+  { "fr": "Bonne journée !", "lu": "Schéinen Dag!" },
+  { "fr": "Bonne soirée !", "lu": "Schéinen Owend!" },
+  { "fr": "Bonne fin de journée !", "lu": "Nach e schéinen Dag!" },
+  { "fr": "Bonne fin de soirée !", "lu": "Nach e schéinen Owend!" },
+  { "fr": "Merci !", "lu": "Merci!" },
+  { "fr": "Merci pareillement !", "lu": "Merci gläichfalls!" },
+  { "fr": "Merci pour l'invitation !", "lu": "Merci fir d'Invitatioun!" },
+  { "fr": "Comment vas-tu ?", "lu": "Wéi geet et dir?" },
+  { "fr": "Comment allez-vous ?", "lu": "Wéi geet et Iech?" },
+  { "fr": "Je vais bien.", "lu": "Mir geet et gutt." },
+  { "fr": "Très bien !", "lu": "Ganz gutt!" },
+  { "fr": "Tip top !", "lu": "Tipptopp!" },
+  { "fr": "Ça va.", "lu": "Et geet." },
+  { "fr": "Pas terrible.", "lu": "Net immens." },
+  { "fr": "Mal.", "lu": "Schlecht." },
+  { "fr": "Très mal.", "lu": "Ganz schlecht." },
+  { "fr": "Pas du tout bien.", "lu": "Guer net gutt." },
+  { "fr": "Et toi ?", "lu": "An dir?" },
+  { "fr": "Et vous ?", "lu": "An Iech?" },
+  { "fr": "Tout va bien !", "lu": "Alles an der Rei!" },
+  { "fr": "Je m'appelle Bertha.", "lu": "Mäin Numm ass Bertha." },
+  { "fr": "Je m'appelle Daniel.", "lu": "Mäin Numm ass Daniel." },
+  { "fr": "Je m'appelle Fabio.", "lu": "Mäin Numm ass Fabio." },
+  { "fr": "Comment vous appelez-vous ?", "lu": "A wéi heescht Dir?" },
+  { "fr": "Comment t'appelles-tu ?", "lu": "A wéi heeschs du?" },
+  { "fr": "Je m'appelle Mauro.", "lu": "Ech heesche Mauro." },
+  { "fr": "Enchanté.", "lu": "Et freet mech." },
+  { "fr": "Enchanté également.", "lu": "Mech och." },
+  { "fr": "Quel est votre nom, s'il vous plaît ?", "lu": "Wéi ass Ären Numm wgl.?" }
+],
   "cours": [
     {
       "type": "texte",
@@ -361,6 +615,79 @@
         ["Merci Här Schanck, ganz gutt. An Iech?", "Merci Monsieur Schanck, très bien. Et vous ?"],
         ["Och gutt, merci!", "Bien aussi, merci !"]
       ]
-    }
+    },
+    {
+      "type": "vocab",
+      "titre": "Se présenter",
+      "items": [
+      ["Mäin Numm ass...", "Je m'appelle..."],
+      ["Ech heesche...", "Je m'appelle..."],
+      ["A wéi heeschs du?", "Comment t'appelles-tu ?"],
+      ["A wéi heescht Dir?", "Comment vous appelez-vous ?"],
+      ["Wéi ass Ären Numm?", "Quel est votre nom ?"],
+      ["Wéi ass Ären Numm wgl.?", "Quel est votre nom, s'il vous plaît ?"]
+      ]
+      },
+      {
+      "type": "vocab",
+      "titre": "Politesse et présentation",
+      "items": [
+      ["Et freet mech.", "Enchanté."],
+      ["Mech och.", "Enchanté également."],
+      ["Merci!", "Merci !"],
+      ["Wann ech gelift", "S'il vous plaît"],
+      ["wgl.", "Abréviation de 'wann ech gelift'"]
+      ]
+      },
+      {
+      "type": "vocab",
+      "titre": "Expressions utiles",
+      "items": [
+      ["Alles an der Rei!", "Tout va bien !"],
+      ["Nach e schéinen Dag!", "Bonne fin de journée !"],
+      ["Nach e schéinen Owend!", "Bonne fin de soirée !"],
+      ["Merci fir d'Invitatioun!", "Merci pour l'invitation !"]
+      ]
+      },
+      {
+      "type": "regle",
+      "titre": "Deux façons de dire son nom",
+      "lignes": [
+      "Débutant : Mäin Numm ass Tom.",
+      "Plus naturel : Ech heesche Tom.",
+      "Les deux formes sont correctes et très utilisées."
+      ]
+      },
+      {
+      "type": "regle",
+      "titre": "Questions pour faire connaissance",
+      "lignes": [
+      "Wéi geet et dir? → Comment vas-tu ?",
+      "Wéi geet et Iech? → Comment allez-vous ?",
+      "A wéi heeschs du? → Comment t'appelles-tu ?",
+      "A wéi heescht Dir? → Comment vous appelez-vous ?"
+      ]
+      },
+      {
+      "type": "dialogue",
+      "titre": "Première rencontre",
+      "echanges": [
+      ["Moien! Mäin Numm ass Bertha.", "Bonjour ! Je m'appelle Bertha."],
+      ["A wéi heeschs du?", "Et comment t'appelles-tu ?"],
+      ["Ech heesche Mauro.", "Je m'appelle Mauro."],
+      ["Et freet mech.", "Enchanté."],
+      ["Mech och.", "Enchanté également."]
+      ]
+      },
+      {
+      "type": "dialogue",
+      "titre": "Prendre congé",
+      "echanges": [
+      ["Merci fir d'Invitatioun!", "Merci pour l'invitation !"],
+      ["Nach e schéinen Owend!", "Bonne fin de soirée !"],
+      ["Merci gläichfalls!", "Merci pareillement !"],
+      ["Äddi!", "Au revoir !"]
+      ]
+      }
   ]
 }
