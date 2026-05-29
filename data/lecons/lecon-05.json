@@ -1,7 +1,7 @@
 {
   "id": 5,
-  "titre": "De Plural vun den Objeten",
-  "titre_fr": "Les chiffres et le pluriel",
+  "titre": "Den Alter & De Nummeren",
+  "titre_fr": "Les nombres et comment compter",
   "couleur": "#a07ad4",
   "flashcards": [
     {
@@ -1235,5 +1235,11 @@
         ]
       ]
     }
-  ]
+  ],
+  "instructions": {
+    "flashcards": "Mémorise les nombres en luxembourgeois. Comprends la formation des composés.",
+    "quiz": "Lis le nombre français et trouve sa traduction en luxembourgeois.",
+    "trous": "Complète les phrases avec le nombre ou l'année correct.",
+    "ecriture": "Écris le nombre ou l'année en toutes lettres en luxembourgeois. Respecte les liaisons (an/a)."
+  }
 }

@@ -1,0 +1,609 @@
+{
+  "id": "5.1",
+  "titre": "De Plural vun den Objeten",
+  "titre_fr": "Le pluriel des objets",
+  "couleur": "#a07ad4",
+  "instructions": {
+    "flashcards": "Mémorise les pluriels. Identifie zwee (M/N) vs zwou (F) et les changements de la racine.",
+    "quiz": "Lis « Deux X » et trouve l'orthographe correcte du pluriel en luxembourgeois.",
+    "trous": "Complète avec zwee ou zwou selon le genre du nom singulier.",
+    "ecriture": "Écris la traduction en luxembourgeois. Respecte zwee/zwou et les modifications du mot."
+  },
+  "flashcards": [
+    {
+      "id": 1,
+      "fr": "Deux stëft",
+      "lu": "zwee Stëfter",
+      "note": "Pluriel de e Stëft"
+    },
+    {
+      "id": 2,
+      "fr": "Deux biller",
+      "lu": "zwee Biller",
+      "note": "Pluriel de e Biller"
+    },
+    {
+      "id": 3,
+      "fr": "Deux wecker",
+      "lu": "zwee Weckeren",
+      "note": "Pluriel de e Wecker"
+    },
+    {
+      "id": 4,
+      "fr": "Deux stull",
+      "lu": "zwee Stüll",
+      "note": "Pluriel de e Stull"
+    },
+    {
+      "id": 5,
+      "fr": "Deux glas",
+      "lu": "zwee Gläser",
+      "note": "Pluriel de e Glas"
+    },
+    {
+      "id": 6,
+      "fr": "Deux stëft",
+      "lu": "zwee Stëfter",
+      "note": "Pluriel de e Stëft"
+    },
+    {
+      "id": 7,
+      "fr": "Deux ball",
+      "lu": "zwee Bäll",
+      "note": "Pluriel de e Ball"
+    },
+    {
+      "id": 8,
+      "fr": "Deux fliger",
+      "lu": "zwee Fligeren",
+      "note": "Pluriel de e Fliger"
+    },
+    {
+      "id": 9,
+      "fr": "Deux computer",
+      "lu": "zwee Computeren",
+      "note": "Pluriel de e Computer"
+    },
+    {
+      "id": 10,
+      "fr": "Deux telefon",
+      "lu": "zwee Telefonen",
+      "note": "Pluriel de e Telefon"
+    },
+    {
+      "id": 11,
+      "fr": "Deux vëlo",
+      "lu": "zwee Vëloen",
+      "note": "Pluriel de e Vëlo"
+    },
+    {
+      "id": 12,
+      "fr": "Deux fliger",
+      "lu": "zwee Fligeren",
+      "note": "Pluriel de e Fliger"
+    },
+    {
+      "id": 13,
+      "fr": "Deux classeur",
+      "lu": "zwee Classeuren",
+      "note": "Pluriel de e Classeur"
+    },
+    {
+      "id": 14,
+      "fr": "Deux drécker",
+      "lu": "zwee Drëckeren",
+      "note": "Pluriel de e Drécker"
+    },
+    {
+      "id": 15,
+      "fr": "Deux fläsch",
+      "lu": "zwou Fläschen",
+      "note": "Pluriel de eng Fläsch"
+    },
+    {
+      "id": 16,
+      "fr": "Deux maus",
+      "lu": "zwou Mäus",
+      "note": "Pluriel de eng Maus"
+    },
+    {
+      "id": 17,
+      "fr": "Deux taass",
+      "lu": "zwou Tasen",
+      "note": "Pluriel de eng Taass"
+    },
+    {
+      "id": 18,
+      "fr": "Deux auer",
+      "lu": "zwou Aueren",
+      "note": "Pluriel de eng Auer"
+    },
+    {
+      "id": 19,
+      "fr": "Deux mapp",
+      "lu": "zwou Mappen / Mappen",
+      "note": "Pluriel de eng Mapp"
+    },
+    {
+      "id": 20,
+      "fr": "Deux posch",
+      "lu": "zwou Poschen",
+      "note": "Pluriel de eng Posch"
+    },
+    {
+      "id": 21,
+      "fr": "Deux cd",
+      "lu": "zwou CDen",
+      "note": "Pluriel de eng CD"
+    },
+    {
+      "id": 22,
+      "fr": "Deux kreditkaart",
+      "lu": "zwou Kreditkaarten",
+      "note": "Pluriel de eng Kreditkaart"
+    },
+    {
+      "id": 23,
+      "fr": "Deux fotell",
+      "lu": "zwou Fotellen",
+      "note": "Pluriel de eng Fotell"
+    },
+    {
+      "id": 24,
+      "fr": "Deux planz",
+      "lu": "zwou Planzen",
+      "note": "Pluriel de eng Planz"
+    },
+    {
+      "id": 25,
+      "fr": "Deux enveloppe",
+      "lu": "zwou Enveloppen",
+      "note": "Pluriel de eng Enveloppe"
+    },
+    {
+      "id": 26,
+      "fr": "Deux blat",
+      "lu": "zwee Blätter",
+      "note": "Pluriel de e Blat"
+    },
+    {
+      "id": 27,
+      "fr": "Deux buch",
+      "lu": "zwee Bicher",
+      "note": "Pluriel de e Buch"
+    },
+    {
+      "id": 28,
+      "fr": "Deux heft",
+      "lu": "zwee Hefter",
+      "note": "Pluriel de e Heft"
+    },
+    {
+      "id": 29,
+      "fr": "Deux gebai",
+      "lu": "zwee Gebaiën",
+      "note": "Pluriel de e Gebai"
+    },
+    {
+      "id": 30,
+      "fr": "Deux bild",
+      "lu": "zwee Biller",
+      "note": "Pluriel de e Bild"
+    },
+    {
+      "id": 31,
+      "fr": "Deux regal",
+      "lu": "zwee Regaler",
+      "note": "Pluriel de e Regal"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Deux avions",
+      "reponse": "zwee Fligeren",
+      "distracteurs": [
+        "zwee Fligerin",
+        "zwee Fligerene",
+        "zwee Fligere"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Deux ordinateurs",
+      "reponse": "zwee Computeren",
+      "distracteurs": [
+        "zwee Computerin",
+        "zwee Computerene",
+        "zwee Computere"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Deux bouteilles",
+      "reponse": "zwou Fläschen",
+      "distracteurs": [
+        "zwee Fläschen",
+        "zwou Fläsch",
+        "zwou Fläschene"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Deux tasses",
+      "reponse": "zwou Tasen",
+      "distracteurs": [
+        "zwee Tasen",
+        "zwou Taass",
+        "zwou Tasene"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Deux livres",
+      "reponse": "zwee Bicher",
+      "distracteurs": [
+        "zwee Bucher",
+        "zwee Bichen",
+        "zwee Bicheren"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Deux souris",
+      "reponse": "zwou Mäus",
+      "distracteurs": [
+        "zwee Mäus",
+        "zwou Maus",
+        "zwou Mäuse"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Deux cahiers",
+      "reponse": "zwee Hefter",
+      "distracteurs": [
+        "zwee Hefteren",
+        "zwee Hefte",
+        "zwee Heftere"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Deux tables",
+      "reponse": "zwee Stüll",
+      "distracteurs": [
+        "zwee Stull",
+        "zwee Stüller",
+        "zwee Stülle"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Deux stylos",
+      "reponse": "zwee Stëfter",
+      "distracteurs": [
+        "zwee Stëfteren",
+        "zwee Stëft",
+        "zwee Stëftern"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Deux réveils",
+      "reponse": "zwee Weckeren",
+      "distracteurs": [
+        "zwee Wecker",
+        "zwee Weckerin",
+        "zwee Weckerene"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Deux enveloppes",
+      "reponse": "zwou Enveloppen",
+      "distracteurs": [
+        "zwee Enveloppen",
+        "zwou Enveloppe",
+        "zwou Enveloppin"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Deux lunettes",
+      "reponse": "zwee Brëller",
+      "distracteurs": [
+        "zwee Brëll",
+        "zwee Brëlleren",
+        "zwou Brëller"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "Deux avions",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Fligeren",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Avion = Fliger (M) → zwee Fligeren"
+    },
+    {
+      "id": 2,
+      "fr": "Deux tasses",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Tasen",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Tasse = Taass (F) → zwou Tasen"
+    },
+    {
+      "id": 3,
+      "fr": "Deux livres",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Bicher",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Livre = Buch (N) → zwee Bicher"
+    },
+    {
+      "id": 4,
+      "fr": "Deux bouteilles",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Fläschen",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Bouteille = Fläsch (F) → zwou Fläschen"
+    },
+    {
+      "id": 5,
+      "fr": "Deux ordinateurs",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Computeren",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Ordinateur = Computer (M) → zwee Computeren"
+    },
+    {
+      "id": 6,
+      "fr": "Deux cahiers",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Hefter",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Cahier = Heft (N) → zwee Hefter"
+    },
+    {
+      "id": 7,
+      "fr": "Deux enveloppes",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Enveloppen",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Enveloppe = Enveloppe (F) → zwou Enveloppen"
+    },
+    {
+      "id": 8,
+      "fr": "Deux réveils",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Weckeren",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Réveil = Wecker (M) → zwee Weckeren"
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "Deux avions",
+      "lu": "zwee Fligeren"
+    },
+    {
+      "fr": "Deux ordinateurs",
+      "lu": "zwee Computeren"
+    },
+    {
+      "fr": "Deux téléphones",
+      "lu": "zwee Telefonen"
+    },
+    {
+      "fr": "Deux vélos",
+      "lu": "zwee Vëloen"
+    },
+    {
+      "fr": "Deux classeurs",
+      "lu": "zwee Classeuren"
+    },
+    {
+      "fr": "Deux imprimantes",
+      "lu": "zwee Drëckeren"
+    },
+    {
+      "fr": "Deux bouteilles",
+      "lu": "zwou Fläschen"
+    },
+    {
+      "fr": "Deux tasses",
+      "lu": "zwou Tasen"
+    },
+    {
+      "fr": "Deux enveloppes",
+      "lu": "zwou Enveloppen"
+    },
+    {
+      "fr": "Deux cartes de crédit",
+      "lu": "zwou Kreditkaarten"
+    },
+    {
+      "fr": "Deux fauteuils",
+      "lu": "zwou Fotellen"
+    },
+    {
+      "fr": "Deux plantes",
+      "lu": "zwou Planzen"
+    },
+    {
+      "fr": "Deux souris",
+      "lu": "zwou Mäus"
+    },
+    {
+      "fr": "Deux stylos",
+      "lu": "zwee Stëfter"
+    },
+    {
+      "fr": "Deux livres",
+      "lu": "zwee Bicher"
+    },
+    {
+      "fr": "Deux cahiers",
+      "lu": "zwee Hefter"
+    },
+    {
+      "fr": "Deux images",
+      "lu": "zwee Biller"
+    },
+    {
+      "fr": "Deux bâtiments",
+      "lu": "zwee Gebaiën"
+    },
+    {
+      "fr": "Deux étagères",
+      "lu": "zwee Regaler"
+    },
+    {
+      "fr": "Deux réveils",
+      "lu": "zwee Weckeren"
+    },
+    {
+      "fr": "Deux tables",
+      "lu": "zwee Stüll"
+    },
+    {
+      "fr": "Deux verres",
+      "lu": "zwee Gläser"
+    },
+    {
+      "fr": "Deux balles",
+      "lu": "zwee Bäll"
+    },
+    {
+      "fr": "Deux souris",
+      "lu": "zwou Mäus"
+    },
+    {
+      "fr": "Deux feuilles",
+      "lu": "zwee Blätter"
+    },
+    {
+      "fr": "Deux murs",
+      "lu": "zwee Maueren"
+    },
+    {
+      "fr": "Deux cartes postales",
+      "lu": "zwee Karten"
+    },
+    {
+      "fr": "Deux montre",
+      "lu": "zwou Aueren"
+    },
+    {
+      "fr": "Deux maisons",
+      "lu": "zwee Heiser"
+    },
+    {
+      "fr": "Deux sacs",
+      "lu": "zwou Mappen"
+    }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Le pluriel en luxembourgeois change selon le genre du nom. Il utilise zwee (M/N) ou zwou (F)."
+    },
+    {
+      "type": "regle",
+      "titre": "Zwee vs Zwou",
+      "lignes": [
+        "Masculin + Neutre → <b>zwee</b> : zwee Fligeren, zwee Bicher",
+        "Féminin → <b>zwou</b> : zwou Fläschen, zwou Tasen",
+        "⚠️ zwee = 2 (zwee Persounen = 2 personnes)"
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Formation du pluriel — Exemples",
+      "items": [
+        [
+          "e Fliger → zwee Fligeren",
+          "un avion → deux avions (M)"
+        ],
+        [
+          "eng Fläsch → zwou Fläschen",
+          "une bouteille → deux bouteilles (F)"
+        ],
+        [
+          "e Buch → zwee Bicher",
+          "un livre → deux livres (N)"
+        ],
+        [
+          "eng Taass → zwou Tasen",
+          "une tasse → deux tasses (F)"
+        ],
+        [
+          "e Stull → zwee Stüll",
+          "une table → deux tables (M)"
+        ],
+        [
+          "eng Planz → zwou Planzen",
+          "une plante → deux plantes (F)"
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Exemples de phrases",
+      "echanges": [
+        [
+          "Huess du zwee Fligeren?",
+          "As-tu deux avions ?"
+        ],
+        [
+          "Nee, ech hunn zwee Vëloen.",
+          "Non, j'ai deux vélos."
+        ],
+        [
+          "Wéi vill Fläschen sinn dat?",
+          "Combien de bouteilles y a-t-il ?"
+        ],
+        [
+          "Dat sinn zwou Fläschen.",
+          "Ce sont deux bouteilles."
+        ]
+      ]
+    }
+  ]
+}
