@@ -1057,10 +1057,6 @@
     {
       "fr": "991",
       "lu": "nénghonnerteenanonzeg"
-    },
-    {
-      "fr": "1000",
-      "lu": "dausend"
     }
   ],
   "cours": [
@@ -1224,5 +1220,5 @@
         ]
       ]
     }
-  ],
+  ]
 }
