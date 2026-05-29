@@ -4,10 +4,10 @@
   "titre_fr": "Identifier des objets – articles indéfinis",
   "couleur": "#5a8fd4",
   "instructions": {
-    "flashcards": "Mémorise l'article (e/en/eng) et le mot en luxembourgeois. Identifie le genre du nom.",
-    "quiz": "Lis le mot luxembourgeois et trouve sa traduction en français. Attention à l'orthographe.",
-    "trous": "Complète les phrases avec l'article correct (e, en, eng, kee, keen, keng) selon le genre du nom.",
-    "ecriture": "Écris la traduction du mot ou de la phrase en luxembourgeois. Respecte l'article et l'orthographe."
+    "flashcards": "Mémorise le mot, sa traduction et son article (e, en ou eng). Repère si le nom est masculin, féminin ou neutre.",
+    "quiz": "Lis le mot luxembourgeois et choisis sa traduction correcte en français.",
+    "trous": "Complète avec l'article ou la négation correcte (e, en, eng, kee, keen, keng) en fonction du genre du nom.",
+    "ecriture": "Traduis le mot ou la phrase en luxembourgeois en utilisant le bon article et la bonne orthographe."
   },
   "flashcards": [
     {
@@ -155,10 +155,22 @@
       "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
+      "id": 25,
+      "fr": "Une brique",
+      "lu": "Eng Zill",
+      "note": "Weiblech · keng Zill"
+    },
+    {
+      "id": 26,
+      "fr": "Une souris",
+      "lu": "Eng Maus",
+      "note": "Weiblech · keng Maus"
+    },
+    {
       "id": 27,
       "fr": "Un réveil",
       "lu": "E Wecker",
-      "note": "Männlech · kee Wecker"
+      "note": "Männlech · e/en · kee/keen"
     },
     {
       "id": 28,
@@ -246,15 +258,27 @@
     },
     {
       "id": 42,
-      "lu": "Ass dat eng Dier ?",
-      "fr": "Est-ce une porte ?",
-      "note": "Weiblech · Eng/D' · Nég: Keng"
+      "fr": "Un smartphone",
+      "lu": "En Handy",
+      "note": "Männlech · keen Handy"
     },
     {
       "id": 43,
-      "lu": "Nee, dat ass keng Dier.",
-      "fr": "Non, ce n'est pas une porte.",
-      "note": "Weiblech · Eng/D' · Nég: Keng"
+      "fr": "Un éléphant",
+      "lu": "En Elefant",
+      "note": "Männlech · keen Elefant"
+    },
+    {
+      "id": 44,
+      "fr": "Un coussin",
+      "lu": "E Këssen",
+      "note": "Sächlech · kee Këssen"
+    },
+    {
+      "id": 45,
+      "fr": "Un fil",
+      "lu": "E Fuedem",
+      "note": "Männlech · kee Fuedem"
     }
   ],
   "quiz": [
@@ -597,6 +621,48 @@
         "Une plante",
         "Un fauteuil"
       ]
+    },
+    {
+      "id": 35,
+      "question": "E Bichelchen",
+      "reponse": "Un petit livre",
+      "distracteurs": ["Une étagère", "Un cahier", "Un livre"]
+    },
+    {
+      "id": 36,
+      "question": "En Handy",
+      "reponse": "Un smartphone",
+      "distracteurs": ["Un téléphone", "Un ordinateur", "Une montre"]
+    },
+    {
+      "id": 37,
+      "question": "En Elefant",
+      "reponse": "Un éléphant",
+      "distracteurs": ["Une souris", "Un avion", "Un fauteuil"]
+    },
+    {
+      "id": 38,
+      "question": "E Këssen",
+      "reponse": "Un coussin",
+      "distracteurs": ["Un lit", "Un fauteuil", "Une chaise"]
+    },
+    {
+      "id": 39,
+      "question": "E Fuedem",
+      "reponse": "Un fil",
+      "distracteurs": ["Un stylo", "Un tampon", "Un classeur"]
+    },
+    {
+      "id": 40,
+      "question": "Eng Zill",
+      "reponse": "Une brique",
+      "distracteurs": ["Une bouteille", "Une enveloppe", "Une plante"]
+    },
+    {
+      "id": 41,
+      "question": "Eng Maus",
+      "reponse": "Une souris",
+      "distracteurs": ["Un éléphant", "Une montre", "Une lampe"]
     }
   ],
   "trous": [
@@ -784,7 +850,7 @@
     },
     {
       "id": 15,
-      "fr": "Ce n'est pas des ciseaux.",
+      "fr": "Ce ne sont pas des ciseaux.",
       "avant": "Dat si",
       "trou": "keng",
       "apres": "Schéier.",
@@ -860,34 +926,7 @@
       ],
       "note": "Sächlech devant consonne → e"
     },
-    {
-      "id": 19,
-      "fr": "Est-ce un réveil ? Oui, c'est un réveil.",
-      "avant": "Ass dat e Wecker? Jo, dat ass",
-      "trou": "e",
-      "apres": "Wecker.",
-      "choix": [
-        "e",
-        "en",
-        "eng",
-        "kee"
-      ],
-      "note": "Wecker = Männlech → e Wecker"
-    },
-    {
-      "id": 20,
-      "fr": "Non, ce ne sont pas des lunettes.",
-      "avant": "Nee, dat ass",
-      "trou": "kee",
-      "apres": "Brëll.",
-      "choix": [
-        "kee",
-        "keng",
-        "keen",
-        "net"
-      ],
-      "note": "Brëll = Männlech → kee Brëll"
-    },
+
     {
       "id": 21,
       "fr": "C'est une plante.",
@@ -942,7 +981,7 @@
         "eng",
         "keen"
       ],
-      "note": "Drécker = Männlech devant voyelle → en Drécker"
+      "note": "Drécker = Männlech → en Drécker"
     },
     {
       "id": 25,
@@ -971,6 +1010,88 @@
         "kee"
       ],
       "note": "Vëlo = Männlech → e Vëlo"
+    },
+    {
+      "id": 27,
+      "fr": "C'est un smartphone.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Handy.",
+      "choix": ["e", "en", "eng", "keen"],
+      "note": "Handy = Männlech devant H → en Handy"
+    },
+    {
+      "id": 28,
+      "fr": "Ce n'est pas un éléphant.",
+      "avant": "Dat ass",
+      "trou": "keen",
+      "apres": "Elefant.",
+      "choix": ["kee", "keen", "keng", "eng"],
+      "note": "Elefant = Männlech devant voyelle → keen Elefant"
+    },
+    {
+      "id": 29,
+      "fr": "C'est un coussin.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Këssen.",
+      "choix": ["e", "en", "eng", "kee"],
+      "note": "Këssen = Sächlech → e Këssen"
+    },
+    {
+      "id": 30,
+      "fr": "Ce n'est pas un fil.",
+      "avant": "Dat ass",
+      "trou": "kee",
+      "apres": "Fuedem.",
+      "choix": ["kee", "keen", "keng", "eng"],
+      "note": "Fuedem = Männlech → kee Fuedem"
+    },
+    {
+      "id": 31,
+      "fr": "C'est une brique.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Zill.",
+      "choix": ["e", "en", "eng", "keng"],
+      "note": "Zill = Weiblech → eng Zill"
+    },
+    {
+      "id": 32,
+      "fr": "Ce n'est pas une souris.",
+      "avant": "Dat ass",
+      "trou": "keng",
+      "apres": "Maus.",
+      "choix": ["kee", "keen", "keng", "eng"],
+      "note": "Maus = Weiblech → keng Maus"
+    },
+    {
+      "id": 33,
+      "fr": "Est-ce un réveil ? Oui, c'est un réveil.",
+      "avant": "Ass dat e Wecker? Jo, dat ass",
+      "trou": "e",
+      "apres": "Wecker.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Wecker = Männlech → e Wecker"
+    },
+    {
+      "id": 34,
+      "fr": "Non, ce ne sont pas des lunettes.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Brëll.",
+      "choix": [
+        "kee",
+        "keng",
+        "keen",
+        "net"
+      ],
+      "note": "Brëll = Männlech → kee Brëll"
     }
   ],
   "ecriture": [
@@ -1093,6 +1214,54 @@
     {
       "fr": "C'est un réveil.",
       "lu": "Dat ass e Wecker."
+    },
+    {
+      "fr": "Un smartphone",
+      "lu": "En Handy"
+    },
+    {
+      "fr": "Un éléphant",
+      "lu": "En Elefant"
+    },
+    {
+      "fr": "Un coussin",
+      "lu": "E Këssen"
+    },
+    {
+      "fr": "Un fil",
+      "lu": "E Fuedem"
+    },
+    {
+      "fr": "Une brique",
+      "lu": "Eng Zill"
+    },
+    {
+      "fr": "Une souris",
+      "lu": "Eng Maus"
+    },
+    {
+      "fr": "Ce n'est pas un smartphone.",
+      "lu": "Dat ass keen Handy."
+    },
+    {
+      "fr": "Ce n'est pas un éléphant.",
+      "lu": "Dat ass keen Elefant."
+    },
+    {
+      "fr": "C'est un coussin.",
+      "lu": "Dat ass e Këssen."
+    },
+    {
+      "fr": "Ce n'est pas un fil.",
+      "lu": "Dat ass kee Fuedem."
+    },
+    {
+      "fr": "C'est une brique.",
+      "lu": "Dat ass eng Zill."
+    },
+    {
+      "fr": "Ce n'est pas une souris.",
+      "lu": "Dat ass keng Maus."
     }
   ],
   "cours": [
@@ -1124,6 +1293,18 @@
         [
           "e Bus",
           "un bus"
+        ],
+        [
+          "en Handy",
+          "un smartphone"
+        ],
+        [
+          "en Elefant",
+          "un éléphant"
+        ],
+        [
+          "e Fuedem",
+          "un fil"
         ],
         [
           "en Dësch",
@@ -1192,6 +1373,14 @@
           "une porte"
         ],
         [
+          "eng Zill",
+          "une brique"
+        ],
+        [
+          "eng Maus",
+          "une souris"
+        ],
+        [
           "eng Auer",
           "une montre"
         ],
@@ -1208,7 +1397,7 @@
           "une fenêtre"
         ],
         [
-          "eng Flash",
+          "eng Fläsch",
           "une bouteille"
         ],
         [
@@ -1252,6 +1441,10 @@
         [
           "e Blat",
           "une feuille"
+        ],
+        [
+          "e Këssen",
+          "un coussin"
         ],
         [
           "e Buch",
@@ -1306,6 +1499,30 @@
         [
           "Nee, dat ass keng Dier.",
           "Non, ce n'est pas une porte."
+        ],
+        [
+          "Ass dat en Handy?",
+          "Est-ce que c'est un smartphone ?"
+        ],
+        [
+          "Jo, dat ass en Handy.",
+          "Oui, c'est un smartphone."
+        ],
+        [
+          "Nee, dat ass keen Handy.",
+          "Non, ce n'est pas un smartphone."
+        ],
+        [
+          "Ass dat e Këssen?",
+          "Est-ce que c'est un coussin ?"
+        ],
+        [
+          "Jo, dat ass e Këssen.",
+          "Oui, c'est un coussin."
+        ],
+        [
+          "Nee, dat ass kee Këssen.",
+          "Non, ce n'est pas un coussin."
         ]
       ]
     }
