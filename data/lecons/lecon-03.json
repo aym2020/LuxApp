@@ -3,6 +3,12 @@
   "titre": "Objete beschreiwen",
   "titre_fr": "Décrire des objets – les couleurs",
   "couleur": "#e8a030",
+  "instructions": {
+  "flashcards": "Mémorise les couleurs en luxembourgeois et leur traduction française.",
+  "quiz": "Lis la couleur en luxembourgeois et choisis la bonne traduction française.",
+  "trous": "Complète avec la bonne couleur ou la bonne négation. L'objectif est d'apprendre à décrire un objet avec ass et net.",
+  "ecriture": "Traduis en luxembourgeois les couleurs, les questions et les phrases complètes. Respecte les articles définis et l'ordre des mots."
+},
   "flashcards": [
     {
       "id": 1,
@@ -81,42 +87,6 @@
       "lu": "Wat fir eng Faarf huet de Bus ?",
       "fr": "De quelle couleur est le bus ?",
       "note": ""
-    },
-    {
-      "id": 14,
-      "lu": "De Bus ass gréng.",
-      "fr": "Le bus est vert.",
-      "note": ""
-    },
-    {
-      "id": 15,
-      "lu": "Ass de Bus orange ?",
-      "fr": "Le bus est-il orange ?",
-      "note": ""
-    },
-    {
-      "id": 16,
-      "lu": "Nee, de Bus ass net orange.",
-      "fr": "Non, le bus n'est pas orange.",
-      "note": ""
-    },
-    {
-      "id": 16,
-      "lu": "Si ass brong.",
-      "fr": "(La fenêtre) Elle est marron.",
-      "note": "Weiblech · Si/Se · Nég: Keng"
-    },
-    {
-      "id": 16,
-      "lu": "Hien ass gro.",
-      "fr": "(Le bus) Il est gris.",
-      "note": "Männlech · E/En · Nég: Kee/Keen"
-    },
-    {
-      "id": 16,
-      "lu": "Et ass wäiss.",
-      "fr": "(La Feuille) Elle est blanche.",
-      "note": "Sächlech · E/En · Nég: Kee/Keen"
     }
   ],
   "quiz": [
@@ -434,14 +404,14 @@
     },
     {
       "id": 16,
-      "fr": "Le drapeau est blanc.",
+      "fr": "Le verre est blanc.",
       "avant": "D'Glas ass",
       "trou": "wäiss",
       "apres": ".",
       "choix": [
-        "schwaarz",
-        "beige",
-        "wäiss",
+        "schwaarz", 
+        "beige", 
+        "wäiss", 
         "rosa"
       ],
       "note": "wäiss = blanc"
@@ -490,127 +460,143 @@
     }
   ],
   "ecriture": [
-    {
-      "fr": "Noir(e)",
-      "lu": "Schwaarz"
-    },
-    {
-      "fr": "Blanc(he)",
-      "lu": "Wäiss"
-    },
-    {
-      "fr": "Rouge",
-      "lu": "Rout"
-    },
-    {
-      "fr": "Jaune",
-      "lu": "Giel"
-    },
-    {
-      "fr": "Bleu(e)",
-      "lu": "Blo"
-    },
-    {
-      "fr": "Vert(e)",
-      "lu": "Gréng"
-    },
-    {
-      "fr": "Violet(te)",
-      "lu": "Mof"
-    },
-    {
-      "fr": "Orange",
-      "lu": "Orange"
-    },
-    {
-      "fr": "Beige",
-      "lu": "Beige"
-    },
-    {
-      "fr": "Gris(e)",
-      "lu": "Gro"
-    },
-    {
-      "fr": "Marron",
-      "lu": "Brong"
-    },
-    {
-      "fr": "Rose",
-      "lu": "Rosa"
-    },
-    {
-      "fr": "De quelle couleur est le bus ?",
-      "lu": "Wat fir eng Faarf huet de Bus?"
-    },
-    {
-      "fr": "Le bus est vert.",
-      "lu": "De Bus ass gréng."
-    },
-    {
-      "fr": "Non, le bus n'est pas rose.",
-      "lu": "Nee, de Bus ass net rosa."
-    },
-    {
-      "fr": "Est-ce que le bus est rose ?",
-      "lu": "Ass de Bus rosa?"
-    },
-    {
-      "fr": "Oui, le bus est vert.",
-      "lu": "Jo, de Bus ass gréng."
-    },
-    {
-      "fr": "La voiture est noire.",
-      "lu": "Den Auto ass schwaarz."
-    },
-    {
-      "fr": "La porte est blanche.",
-      "lu": "D'Dier ass wäiss."
-    },
-    {
-      "fr": "La table est grise.",
-      "lu": "Den Dësch ass gro."
-    },
-    {
-      "fr": "Le livre est bleu.",
-      "lu": "D'Buch ass blo."
-    },
-    {
-      "fr": "La fenêtre est verte.",
-      "lu": "D'Fënster ass gréng."
-    },
-    {
-      "fr": "La lampe est jaune.",
-      "lu": "Eng Luucht ass giel."
-    },
-    {
-      "fr": "Le cahier est rouge.",
-      "lu": "En Heft ass rout."
-    },
-    {
-      "fr": "La tasse est beige.",
-      "lu": "Eng Taass ass beige."
-    },
-    {
-      "fr": "Le verre est transparent.",
-      "lu": "E Glas ass kloer."
-    },
-    {
-      "fr": "La chaise est marron.",
-      "lu": "E Stull ass brong."
-    },
-    {
-      "fr": "Couleur",
-      "lu": "Faarf"
-    },
-    {
-      "fr": "Le tableau est violet.",
-      "lu": "D'Bild ass mof."
-    },
-    {
-      "fr": "La bouteille est rose.",
-      "lu": "Eng Flash ass rosa."
-    }
-  ],
+  {
+    "fr": "Noir(e)",
+    "lu": "Schwaarz"
+  },
+  {
+    "fr": "Blanc(he)",
+    "lu": "Wäiss"
+  },
+  {
+    "fr": "Rouge",
+    "lu": "Rout"
+  },
+  {
+    "fr": "Jaune",
+    "lu": "Giel"
+  },
+  {
+    "fr": "Bleu(e)",
+    "lu": "Blo"
+  },
+  {
+    "fr": "Vert(e)",
+    "lu": "Gréng"
+  },
+  {
+    "fr": "Violet(te)",
+    "lu": "Mof"
+  },
+  {
+    "fr": "Orange",
+    "lu": "Orange"
+  },
+  {
+    "fr": "Beige",
+    "lu": "Beige"
+  },
+  {
+    "fr": "Gris(e)",
+    "lu": "Gro"
+  },
+  {
+    "fr": "Marron",
+    "lu": "Brong"
+  },
+  {
+    "fr": "Rose",
+    "lu": "Rosa"
+  },
+  {
+    "fr": "Couleur",
+    "lu": "Faarf"
+  },
+  {
+    "fr": "De quelle couleur est le bus ?",
+    "lu": "Wat fir eng Faarf huet de Bus?"
+  },
+  {
+    "fr": "Est-ce que le bus est rose ?",
+    "lu": "Ass de Bus rosa?"
+  },
+  {
+    "fr": "Oui, le bus est vert.",
+    "lu": "Jo, de Bus ass gréng."
+  },
+  {
+    "fr": "Non, le bus n'est pas rose.",
+    "lu": "Nee, de Bus ass net rosa."
+  },
+  {
+    "fr": "La voiture est noire.",
+    "lu": "Den Auto ass schwaarz."
+  },
+  {
+    "fr": "La porte est blanche.",
+    "lu": "D'Dier ass wäiss."
+  },
+  {
+    "fr": "La table est grise.",
+    "lu": "Den Dësch ass gro."
+  },
+  {
+    "fr": "Le livre est bleu.",
+    "lu": "D'Buch ass blo."
+  },
+  {
+    "fr": "La fenêtre est verte.",
+    "lu": "D'Fënster ass gréng."
+  },
+  {
+    "fr": "La lampe est jaune.",
+    "lu": "D'Luucht ass giel."
+  },
+  {
+    "fr": "Le cahier est rouge.",
+    "lu": "D'Heft ass rout."
+  },
+  {
+    "fr": "La tasse est beige.",
+    "lu": "D'Taass ass beige."
+  },
+  {
+    "fr": "Le verre est transparent.",
+    "lu": "D'Glas ass kloer."
+  },
+  {
+    "fr": "Le tableau est violet.",
+    "lu": "D'Bild ass mof."
+  },
+  {
+    "fr": "La bouteille est rose.",
+    "lu": "D'Fläsch ass rosa."
+  },
+  {
+    "fr": "La montre est rouge.",
+    "lu": "D'Auer ass rout."
+  },
+  {
+    "fr": "Le stylo n'est pas bleu, il est noir.",
+    "lu": "De Bic ass net blo, en ass schwaarz."
+  },
+  {
+    "fr": "La table est brune et grande.",
+    "lu": "Den Dësch ass brong an en ass grouss."
+  },
+  {
+    "fr": "L'image n'est pas colorée, elle est en noir et blanc.",
+    "lu": "D'Bild ass net faarweg, et ass schwaarz-wäiss."
+  },
+  {
+    "fr": "La bouteille est bleue.",
+    "lu": "D'Fläsch ass blo."
+  },
+  {
+    "fr": "La chaise est brune.",
+    "lu": "De Stull ass brong."
+  }
+],
   "cours": [
     {
       "type": "texte",
@@ -702,6 +688,37 @@
         [
           "Nee, de Bus ass net rosa.",
           "Non, le bus n'est pas rose."
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Remplacer un objet",
+      "lignes": [
+        "Nom masculin → hien : De Bus ass gro. Hien ass gro.",
+        "Nom féminin → si : D'Fënster ass brong. Si ass brong.",
+        "Nom neutre → et : D'Blat ass wäiss. Et ass wäiss."
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Remplacer un objet par un pronom",
+      "echanges": [
+        [
+          "Wat fir eng Faarf huet de Bus?",
+          "De quelle couleur est le bus ?"
+        ],
+        [
+          "De Bus ass gro. Hien ass gro.",
+          "Le bus est gris. Il est gris."
+        ],
+        [
+          "D'Fënster ass gréng. Si ass gréng.",
+          "La fenêtre est verte. Elle est verte."
+        ],
+        [
+          "D'Blat ass wäiss. Et ass wäiss.",
+          "La feuille est blanche. Elle est blanche."
         ]
       ]
     }
