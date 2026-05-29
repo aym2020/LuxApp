@@ -32,7 +32,7 @@
       "id": 4,
       "lu": "E Computer",
       "fr": "Un ordinateur",
-      "note": "Männlech · En · Nég: Kee/Keen"
+      "note": "Männlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 5,
@@ -279,6 +279,36 @@
       "fr": "Un fil",
       "lu": "E Fuedem",
       "note": "Männlech · kee Fuedem"
+    },
+    {
+      "id": 46,
+      "fr": "Une enclume",
+      "lu": "En Amboss",
+      "note": "Männlech · keen Amboss"
+    },
+    {
+      "id": 47,
+      "fr": "Un escargot",
+      "lu": "E Schleek",
+      "note": "Männlech · kee Schleek"
+    },
+    {
+      "id": 48,
+      "fr": "Un gratte-ciel",
+      "lu": "E Wollekekrazer",
+      "note": "Männlech · kee Wollekekrazer"
+    },
+    {
+      "id": 49,
+      "fr": "Un seau",
+      "lu": "En Eemer",
+      "note": "Männlech · keen Eemer"
+    },
+    {
+      "id": 50,
+      "fr": "Une boîte",
+      "lu": "Eng Këscht",
+      "note": "Weiblech · keng Këscht"
     }
   ],
   "quiz": [
@@ -663,6 +693,36 @@
       "question": "Eng Maus",
       "reponse": "Une souris",
       "distracteurs": ["Un éléphant", "Une montre", "Une lampe"]
+    },
+    {
+      "id": 42,
+      "question": "En Amboss",
+      "reponse": "Une enclume",
+      "distracteurs": ["Une brique", "Une boîte", "Une porte"]
+    },
+    {
+      "id": 43,
+      "question": "E Schleek",
+      "reponse": "Un escargot",
+      "distracteurs": ["Un train", "Un avion", "Un éléphant"]
+    },
+    {
+      "id": 44,
+      "question": "E Wollekekrazer",
+      "reponse": "Un gratte-ciel",
+      "distracteurs": ["Un immeuble", "Un train", "Un avion"]
+    },
+    {
+      "id": 45,
+      "question": "En Eemer",
+      "reponse": "Un seau",
+      "distracteurs": ["Un verre", "Un coussin", "Un cahier"]
+    },
+    {
+      "id": 46,
+      "question": "Eng Këscht",
+      "reponse": "Une boîte",
+      "distracteurs": ["Une enveloppe", "Une fenêtre", "Une bouteille"]
     }
   ],
   "trous": [
@@ -1092,6 +1152,96 @@
         "net"
       ],
       "note": "Brëll = Männlech → kee Brëll"
+    },
+    {
+      "id": 35,
+      "fr": "C'est une enclume.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Amboss.",
+      "choix": ["e", "en", "eng", "kee"],
+      "note": "Amboss = Männlech → en Amboss"
+    },
+    {
+      "id": 36,
+      "fr": "Ce n'est pas une enclume.",
+      "avant": "Dat ass",
+      "trou": "keen",
+      "apres": "Amboss.",
+      "choix": ["kee", "keen", "keng", "net"],
+      "note": "Amboss = Männlech → keen Amboss"
+    },
+    {
+      "id": 37,
+      "fr": "C'est un escargot.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Schleek.",
+      "choix": ["e", "en", "eng", "kee"],
+      "note": "Schleek = Männlech → e Schleek"
+    },
+    {
+      "id": 38,
+      "fr": "Ce n'est pas un escargot.",
+      "avant": "Dat ass",
+      "trou": "kee",
+      "apres": "Schleek.",
+      "choix": ["kee", "keen", "keng", "net"],
+      "note": "Schleek = Männlech → kee Schleek"
+    },
+    {
+      "id": 39,
+      "fr": "C'est un gratte-ciel.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Wollekekrazer.",
+      "choix": ["e", "en", "eng", "kee"],
+      "note": "Wollekekrazer = Männlech → e Wollekekrazer"
+    },
+    {
+      "id": 40,
+      "fr": "Ce n'est pas un gratte-ciel.",
+      "avant": "Dat ass",
+      "trou": "kee",
+      "apres": "Wollekekrazer.",
+      "choix": ["kee", "keen", "keng", "net"],
+      "note": "Wollekekrazer = Männlech → kee Wollekekrazer"
+    },
+    {
+      "id": 41,
+      "fr": "C'est un seau.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Eemer.",
+      "choix": ["e", "en", "eng", "kee"],
+      "note": "Eemer = Männlech → en Eemer"
+    },
+    {
+      "id": 42,
+      "fr": "Ce n'est pas un seau.",
+      "avant": "Dat ass",
+      "trou": "keen",
+      "apres": "Eemer.",
+      "choix": ["kee", "keen", "keng", "net"],
+      "note": "Eemer = Männlech → keen Eemer"
+    },
+    {
+      "id": 43,
+      "fr": "C'est une boîte.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Këscht.",
+      "choix": ["e", "en", "eng", "kee"],
+      "note": "Këscht = Weiblech → eng Këscht"
+    },
+    {
+      "id": 44,
+      "fr": "Ce n'est pas une boîte.",
+      "avant": "Dat ass",
+      "trou": "keng",
+      "apres": "Këscht.",
+      "choix": ["kee", "keen", "keng", "net"],
+      "note": "Këscht = Weiblech → keng Këscht"
     }
   ],
   "ecriture": [
@@ -1232,6 +1382,26 @@
       "lu": "E Fuedem"
     },
     {
+      "fr": "Une enclume",
+      "lu": "En Amboss"
+    },
+    {
+      "fr": "Un escargot",
+      "lu": "E Schleek"
+    },
+    {
+      "fr": "Un gratte-ciel",
+      "lu": "E Wollekekrazer"
+    },
+    {
+      "fr": "Un seau",
+      "lu": "En Eemer"
+    },
+    {
+      "fr": "Une boîte",
+      "lu": "Eng Këscht"
+    },
+    {
       "fr": "Une brique",
       "lu": "Eng Zill"
     },
@@ -1262,6 +1432,46 @@
     {
       "fr": "Ce n'est pas une souris.",
       "lu": "Dat ass keng Maus."
+    },
+    {
+      "fr": "Ce n'est pas une enclume.",
+      "lu": "Dat ass keen Amboss."
+    },
+    {
+      "fr": "Ce n'est pas un escargot.",
+      "lu": "Dat ass kee Schleek."
+    },
+    {
+      "fr": "Ce n'est pas un gratte-ciel.",
+      "lu": "Dat ass kee Wollekekrazer."
+    },
+    {
+      "fr": "Ce n'est pas un seau.",
+      "lu": "Dat ass keen Eemer."
+    },
+    {
+      "fr": "Ce n'est pas une boîte.",
+      "lu": "Dat ass keng Këscht."
+    },
+    {
+      "fr": "C'est une enclume.",
+      "lu": "Dat ass en Amboss."
+    },
+    {
+      "fr": "C'est un escargot.",
+      "lu": "Dat ass e Schleek."
+    },
+    {
+      "fr": "C'est un gratte-ciel.",
+      "lu": "Dat ass e Wollekekrazer."
+    },
+    {
+      "fr": "C'est un seau.",
+      "lu": "Dat ass en Eemer."
+    },
+    {
+      "fr": "C'est une boîte.",
+      "lu": "Dat ass eng Këscht."
     }
   ],
   "cours": [

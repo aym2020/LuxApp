@@ -3,6 +3,12 @@
   "titre": "De Konträr",
   "titre_fr": "Les contraires – adjectifs opposés",
   "couleur": "#d4845a",
+  "instructions": {
+  "flashcards": "Mémorise les adjectifs en luxembourgeois, leur traduction française et leur contraire.",
+  "quiz": "Lis l'adjectif en luxembourgeois et choisis son contraire en luxembourgeois.",
+  "trous": "Complète la phrase avec l'adjectif luxembourgeois correct selon le contexte.",
+  "ecriture": "Traduis les adjectifs, expressions et phrases en luxembourgeois. Respecte l'orthographe et les accents."
+},
   "flashcards": [
     {
       "id": 1,
@@ -439,7 +445,7 @@
     {
       "id": 11,
       "fr": "Le gratte-ciel est haut.",
-      "avant": "D'Wollekekrazer ass",
+      "avant": "De Wollekekrazer ass",
       "trou": "héich",
       "apres": ".",
       "choix": [
@@ -481,7 +487,7 @@
     {
       "id": 14,
       "fr": "Le fil est fin.",
-      "avant": "Den Drot ass",
+      "avant": "Den Fuedem ass",
       "trou": "dënn",
       "apres": ".",
       "choix": [
@@ -536,8 +542,8 @@
     },
     {
       "id": 18,
-      "fr": "La moto est chère.",
-      "avant": "De Moto ass",
+      "fr": "La voiture est chère.",
+      "avant": "Den Auto ass",
       "trou": "deier",
       "apres": ".",
       "choix": [
@@ -673,16 +679,40 @@
       "lu": "D'Gebai ass grouss."
     },
     {
-      "fr": "Le contraire de grand",
-      "lu": "Kleng"
+      "fr": "La balle est ronde.",
+      "lu": "De Ball ass ronn."
     },
     {
-      "fr": "Le contraire de rapide",
-      "lu": "Lues"
+      "fr": "Le gratte-ciel est haut.",
+      "lu": "D'Wollekekrazer ass héich."
     },
     {
-      "fr": "Le contraire de plein",
-      "lu": "Eidel"
+      "fr": "La bouteille est pleine.",
+      "lu": "D'Fläsch ass voll."
+    },
+    {
+      "fr": "Le fil est fin.",
+      "lu": "De Fuedem ass dënn."
+    },
+    {
+      "fr": "Le dictionnaire est épais.",
+      "lu": "D'Wierderbuch ass décks."
+    },
+    {
+      "fr": "La souris est petite.",
+      "lu": "D'Maus ass kleng."
+    },
+    {
+      "fr": "Le stylo est bon marché.",
+      "lu": "De Bic ass bëlleg."
+    },
+    {
+      "fr": "La moto est chère.",
+      "lu": "De Moto ass deier."
+    },
+    {
+      "fr": "Le muret est bas.",
+      "lu": "D'Mauer ass niddereg."
     }
   ],
   "cours": [
@@ -770,11 +800,17 @@
     },
     {
       "type": "regle",
-      "titre": "Rappel des articles définis",
+      "titre": "Les principales oppositions",
       "lignes": [
-        "Masculin → <b>De</b> / <b>Den</b> (De Schleek, Den Auto)",
-        "Féminin → <b>D'</b> (D'Fieder)",
-        "Neutre → <b>D'</b> (D'Gebai)"
+        "Nei ↔ Al",
+        "Kleng ↔ Grouss",
+        "Liicht ↔ Schwéier",
+        "Séier ↔ Lues",
+        "Ronn ↔ Eckeg",
+        "Bëlleg ↔ Deier",
+        "Héich ↔ Niddereg",
+        "Voll ↔ Eidel",
+        "Dënn ↔ Décks"
       ]
     },
     {
