@@ -3,6 +3,12 @@
   "titre": "Objeten identifizéieren",
   "titre_fr": "Identifier des objets – articles indéfinis",
   "couleur": "#5a8fd4",
+  "instructions": {
+    "flashcards": "Mémorise l'article (e/en/eng) et le mot en luxembourgeois. Identifie le genre du nom.",
+    "quiz": "Lis le mot luxembourgeois et trouve sa traduction en français. Attention à l'orthographe.",
+    "trous": "Complète les phrases avec l'article correct (e, en, eng, kee, keen, keng) selon le genre du nom.",
+    "ecriture": "Écris la traduction du mot ou de la phrase en luxembourgeois. Respecte l'article et l'orthographe."
+  },
   "flashcards": [
     {
       "id": 1,
@@ -149,13 +155,103 @@
       "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
-      "id": 25,
+      "id": 27,
+      "fr": "Un réveil",
+      "lu": "E Wecker",
+      "note": "Männlech · kee Wecker"
+    },
+    {
+      "id": 28,
+      "fr": "Un stylo",
+      "lu": "E Stëft",
+      "note": "Männlech · kee Stëft"
+    },
+    {
+      "id": 29,
+      "fr": "Un tampon",
+      "lu": "E Stempel",
+      "note": "Männlech · kee Stempel"
+    },
+    {
+      "id": 30,
+      "fr": "Un classeur",
+      "lu": "E Classeur",
+      "note": "Männlech · kee Classeur"
+    },
+    {
+      "id": 31,
+      "fr": "Des lunettes",
+      "lu": "E Brëll",
+      "note": "Männlech · kee Brëll"
+    },
+    {
+      "id": 32,
+      "fr": "Un vélo",
+      "lu": "E Vëlo",
+      "note": "Männlech · kee Vëlo"
+    },
+    {
+      "id": 33,
+      "fr": "Une imprimante",
+      "lu": "En Drécker",
+      "note": "Männlech · keen Drécker"
+    },
+    {
+      "id": 34,
+      "fr": "Un CD",
+      "lu": "Eng CD",
+      "note": "Weiblech · keng CD"
+    },
+    {
+      "id": 35,
+      "fr": "Un fauteuil",
+      "lu": "Eng Fotell",
+      "note": "Weiblech · keng Fotell"
+    },
+    {
+      "id": 36,
+      "fr": "Une plante",
+      "lu": "Eng Planz",
+      "note": "Weiblech · keng Planz"
+    },
+    {
+      "id": 37,
+      "fr": "Un sac / cartable",
+      "lu": "Eng Mapp",
+      "note": "Weiblech · keng Mapp · aussi Posch"
+    },
+    {
+      "id": 38,
+      "fr": "Une enveloppe",
+      "lu": "Eng Enveloppe",
+      "note": "Weiblech · keng Enveloppe"
+    },
+    {
+      "id": 39,
+      "fr": "Une carte de crédit",
+      "lu": "Eng Kreditkaart",
+      "note": "Weiblech · keng Kreditkaart"
+    },
+    {
+      "id": 40,
+      "fr": "Un petit livre",
+      "lu": "E Bichelchen",
+      "note": "Sächlech · diminutif de Buch"
+    },
+    {
+      "id": 41,
+      "fr": "Une étagère",
+      "lu": "E Regal",
+      "note": "Sächlech · kee Regal"
+    },
+    {
+      "id": 42,
       "lu": "Ass dat eng Dier ?",
       "fr": "Est-ce une porte ?",
       "note": "Weiblech · Eng/D' · Nég: Keng"
     },
     {
-      "id": 26,
+      "id": 43,
       "lu": "Nee, dat ass keng Dier.",
       "fr": "Non, ce n'est pas une porte.",
       "note": "Weiblech · Eng/D' · Nég: Keng"
@@ -364,42 +460,142 @@
     },
     {
       "id": 21,
-      "question": "En Haus",
-      "reponse": "Une maison",
+      "question": "E Wecker",
+      "reponse": "Un réveil",
       "distracteurs": [
-        "Un immeuble",
-        "Un lit",
-        "Une porte"
+        "Un stylo",
+        "Un tampon",
+        "Un classeur"
       ]
     },
     {
       "id": 22,
-      "question": "E Glas",
-      "reponse": "Un verre",
+      "question": "E Stëft",
+      "reponse": "Un stylo",
       "distracteurs": [
-        "Une tasse",
-        "Une bouteille",
-        "Une montre"
+        "Un réveil",
+        "Un tampon",
+        "Un classeur"
       ]
     },
     {
       "id": 23,
-      "question": "E Gebai",
-      "reponse": "Un immeuble",
+      "question": "E Stempel",
+      "reponse": "Un tampon",
       "distracteurs": [
-        "Une maison",
-        "Un lit",
-        "Une table"
+        "Un stylo",
+        "Un réveil",
+        "Un classeur"
       ]
     },
     {
       "id": 24,
-      "question": "E Bild",
-      "reponse": "Un tableau (peinture)",
+      "question": "E Classeur",
+      "reponse": "Un classeur",
       "distracteurs": [
-        "Un tableau",
-        "Une feuille",
-        "Un cahier"
+        "Un stylo",
+        "Un tampon",
+        "Un réveil"
+      ]
+    },
+    {
+      "id": 25,
+      "question": "E Brëll",
+      "reponse": "Des lunettes",
+      "distracteurs": [
+        "Un vélo",
+        "Une imprimante",
+        "Un stylo"
+      ]
+    },
+    {
+      "id": 26,
+      "question": "E Vëlo",
+      "reponse": "Un vélo",
+      "distracteurs": [
+        "Des lunettes",
+        "Une imprimante",
+        "Un réveil"
+      ]
+    },
+    {
+      "id": 27,
+      "question": "En Drécker",
+      "reponse": "Une imprimante",
+      "distracteurs": [
+        "Un vélo",
+        "Des lunettes",
+        "Un CD"
+      ]
+    },
+    {
+      "id": 28,
+      "question": "Eng CD",
+      "reponse": "Un CD",
+      "distracteurs": [
+        "Un fauteuil",
+        "Une plante",
+        "Une imprimante"
+      ]
+    },
+    {
+      "id": 29,
+      "question": "Eng Fotell",
+      "reponse": "Un fauteuil",
+      "distracteurs": [
+        "Une plante",
+        "Un CD",
+        "Une enveloppe"
+      ]
+    },
+    {
+      "id": 30,
+      "question": "Eng Planz",
+      "reponse": "Une plante",
+      "distracteurs": [
+        "Un fauteuil",
+        "Une enveloppe",
+        "Un CD"
+      ]
+    },
+    {
+      "id": 31,
+      "question": "Eng Mapp",
+      "reponse": "Un sac / cartable",
+      "distracteurs": [
+        "Une enveloppe",
+        "Une carte de crédit",
+        "Une plante"
+      ]
+    },
+    {
+      "id": 32,
+      "question": "Eng Enveloppe",
+      "reponse": "Une enveloppe",
+      "distracteurs": [
+        "Un sac",
+        "Une carte de crédit",
+        "Une plante"
+      ]
+    },
+    {
+      "id": 33,
+      "question": "Eng Kreditkaart",
+      "reponse": "Une carte de crédit",
+      "distracteurs": [
+        "Une enveloppe",
+        "Un sac",
+        "Un CD"
+      ]
+    },
+    {
+      "id": 34,
+      "question": "E Regal",
+      "reponse": "Une étagère",
+      "distracteurs": [
+        "Un petit livre",
+        "Une plante",
+        "Un fauteuil"
       ]
     }
   ],
@@ -663,6 +859,118 @@
         "en"
       ],
       "note": "Sächlech devant consonne → e"
+    },
+    {
+      "id": 19,
+      "fr": "Est-ce un réveil ? Oui, c'est un réveil.",
+      "avant": "Ass dat e Wecker? Jo, dat ass",
+      "trou": "e",
+      "apres": "Wecker.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Wecker = Männlech → e Wecker"
+    },
+    {
+      "id": 20,
+      "fr": "Non, ce ne sont pas des lunettes.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Brëll.",
+      "choix": [
+        "kee",
+        "keng",
+        "keen",
+        "net"
+      ],
+      "note": "Brëll = Männlech → kee Brëll"
+    },
+    {
+      "id": 21,
+      "fr": "C'est une plante.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Planz.",
+      "choix": [
+        "eng",
+        "e",
+        "en",
+        "keng"
+      ],
+      "note": "Planz = Weiblech → eng Planz"
+    },
+    {
+      "id": 22,
+      "fr": "C'est un fauteuil.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Fotell.",
+      "choix": [
+        "eng",
+        "e",
+        "en",
+        "keng"
+      ],
+      "note": "Fotell = Weiblech → eng Fotell"
+    },
+    {
+      "id": 23,
+      "fr": "Non, ce n'est pas un fauteuil.",
+      "avant": "Nee, dat ass",
+      "trou": "keng",
+      "apres": "Fotell.",
+      "choix": [
+        "keng",
+        "kee",
+        "keen",
+        "net"
+      ],
+      "note": "Fotell = Weiblech → keng Fotell"
+    },
+    {
+      "id": 24,
+      "fr": "C'est une imprimante.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Drécker.",
+      "choix": [
+        "en",
+        "e",
+        "eng",
+        "keen"
+      ],
+      "note": "Drécker = Männlech devant voyelle → en Drécker"
+    },
+    {
+      "id": 25,
+      "fr": "C'est un stylo.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Stëft.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Stëft = Männlech → e Stëft"
+    },
+    {
+      "id": 26,
+      "fr": "C'est un vélo.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Vëlo.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "kee"
+      ],
+      "note": "Vëlo = Männlech → e Vëlo"
     }
   ],
   "ecriture": [
@@ -707,84 +1015,84 @@
       "lu": "Eng Auer"
     },
     {
-      "fr": "Un tableau (mural)",
-      "lu": "Eng Tafel"
+      "fr": "Un réveil",
+      "lu": "E Wecker"
     },
     {
-      "fr": "Une tasse",
-      "lu": "Eng Taass"
+      "fr": "Un stylo",
+      "lu": "E Stëft"
     },
     {
-      "fr": "Une fenêtre",
-      "lu": "Eng Fënster"
+      "fr": "Un tampon",
+      "lu": "E Stempel"
     },
     {
-      "fr": "Une bouteille",
-      "lu": "Eng Flash"
+      "fr": "Un classeur",
+      "lu": "E Classeur"
     },
     {
-      "fr": "Une lampe",
-      "lu": "Eng Luucht"
+      "fr": "Des lunettes",
+      "lu": "E Brëll"
     },
     {
-      "fr": "Des ciseaux",
-      "lu": "Eng Schéier"
+      "fr": "Un vélo",
+      "lu": "E Vëlo"
     },
     {
-      "fr": "Une feuille",
-      "lu": "E Blat"
+      "fr": "Une imprimante",
+      "lu": "En Drécker"
     },
     {
-      "fr": "Un livre",
-      "lu": "E Buch"
+      "fr": "Un CD",
+      "lu": "Eng CD"
     },
     {
-      "fr": "Une maison",
-      "lu": "En Haus"
+      "fr": "Un fauteuil",
+      "lu": "Eng Fotell"
     },
     {
-      "fr": "Un verre",
-      "lu": "E Glas"
+      "fr": "Une plante",
+      "lu": "Eng Planz"
     },
     {
-      "fr": "Un immeuble",
-      "lu": "E Gebai"
+      "fr": "Un sac",
+      "lu": "Eng Mapp"
     },
     {
-      "fr": "Un tableau (peinture)",
-      "lu": "E Bild"
+      "fr": "Une enveloppe",
+      "lu": "Eng Enveloppe"
     },
     {
-      "fr": "Un cahier",
-      "lu": "En Heft"
+      "fr": "Une carte de crédit",
+      "lu": "Eng Kreditkaart"
     },
     {
-      "fr": "Un lit",
-      "lu": "E Bett"
+      "fr": "Un petit livre",
+      "lu": "E Bichelchen"
     },
     {
-      "fr": "Est-ce que c'est une porte ?",
-      "lu": "Ass dat eng Dier?"
+      "fr": "Une étagère",
+      "lu": "E Regal"
     },
     {
-      "fr": "Oui, c'est une porte.",
-      "lu": "Jo, dat ass eng Dier."
+      "fr": "Ce n'est pas un vélo.",
+      "lu": "Dat ass kee Vëlo."
     },
     {
-      "fr": "Non, ce n'est pas une porte.",
-      "lu": "Nee, dat ass keng Dier."
+      "fr": "Ce n'est pas une plante.",
+      "lu": "Dat ass keng Planz."
     },
     {
-      "fr": "C'est un bus.",
-      "lu": "Dat ass e Bus."
+      "fr": "C'est un fauteuil.",
+      "lu": "Dat ass eng Fotell."
     },
     {
-      "fr": "Ce n'est pas un livre.",
-      "lu": "Dat ass kee Buch."
+      "fr": "C'est une imprimante.",
+      "lu": "Dat ass en Drécker."
     },
     {
-      "fr": "C'est un cahier.",
-      "lu": "Dat ass en Heft."
+      "fr": "C'est un réveil.",
+      "lu": "Dat ass e Wecker."
     }
   ],
   "cours": [
@@ -844,6 +1152,34 @@
         [
           "en Zuch",
           "un train"
+        ],
+        [
+          "e Wecker",
+          "un réveil"
+        ],
+        [
+          "e Stëft",
+          "un stylo"
+        ],
+        [
+          "e Stempel",
+          "un tampon"
+        ],
+        [
+          "e Classeur",
+          "un classeur"
+        ],
+        [
+          "e Brëll",
+          "des lunettes"
+        ],
+        [
+          "e Vëlo",
+          "un vélo"
+        ],
+        [
+          "en Drécker",
+          "une imprimante"
         ]
       ]
     },
@@ -882,6 +1218,30 @@
         [
           "eng Schéier",
           "des ciseaux"
+        ],
+        [
+          "eng CD",
+          "un CD"
+        ],
+        [
+          "eng Fotell",
+          "un fauteuil"
+        ],
+        [
+          "eng Planz",
+          "une plante"
+        ],
+        [
+          "eng Mapp",
+          "un sac / cartable"
+        ],
+        [
+          "eng Enveloppe",
+          "une enveloppe"
+        ],
+        [
+          "eng Kreditkaart",
+          "une carte de crédit"
         ]
       ]
     },
@@ -920,6 +1280,14 @@
         [
           "e Bett",
           "un lit"
+        ],
+        [
+          "e Bichelchen",
+          "un petit livre"
+        ],
+        [
+          "e Regal",
+          "une étagère"
         ]
       ]
     },
