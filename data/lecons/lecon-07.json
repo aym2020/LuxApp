@@ -3,6 +3,12 @@
   "titre": "Persoune presentéieren",
   "titre_fr": "Présenter des personnes – l'origine",
   "couleur": "#e85a8f",
+  "instructions": {
+  "flashcards": "Mémorise les noms des pays en luxembourgeois et leur traduction française.",
+  "quiz": "Lis le pays en français et retrouve son nom en luxembourgeois parmi plusieurs propositions.",
+  "trous": "Complète la phrase avec l'article ou la préposition correcte selon le pays (aus, vu, vum, aus der, aus dem).",
+  "ecriture": "Traduis les pays, expressions et phrases en luxembourgeois. Respecte les prépositions et les articles."
+},
   "flashcards": [
     {
       "id": 1,
@@ -123,382 +129,118 @@
       "lu": "Iran",
       "fr": "Iran",
       "note": "aus dem Iran (masc. avec article)"
-    },
-    {
-      "id": 21,
-      "lu": "Kënnt de Ronaldo aus Portugal?",
-      "fr": "Ronaldo vient-il du Portugal ?",
-      "note": "Question sur l'origine"
-    },
-    {
-      "id": 22,
-      "lu": "Jo, de Ronaldo kënnt aus Portugal.",
-      "fr": "Oui, Ronaldo vient du Portugal.",
-      "note": "Jo = oui"
-    },
-    {
-      "id": 23,
-      "lu": "Nee, de Jackie kënnt net aus Italien.",
-      "fr": "Non, Jackie ne vient pas d'Italie.",
-      "note": "net = négation"
-    },
-    {
-      "id": 24,
-      "lu": "Vu wou kënnt de Ronaldo?",
-      "fr": "D'où vient Ronaldo ?",
-      "note": "Vu wou = d'où"
-    },
-    {
-      "id": 25,
-      "lu": "De Ronaldo kënnt aus Portugal.",
-      "fr": "Ronaldo vient du Portugal.",
-      "note": "Réponse à 'Vu wou?'"
-    },
-    {
-      "id": 26,
-      "lu": "Hie kënnt aus Portugal.",
-      "fr": "Il vient du Portugal.",
-      "note": "Hie = il (masculin)"
-    },
-    {
-      "id": 27,
-      "lu": "Si kënnt aus Frankräich.",
-      "fr": "Elle vient de France.",
-      "note": "Si = elle (féminin)"
-    },
-    {
-      "id": 28,
-      "lu": "Vu wou kommt Dir?",
-      "fr": "D'où venez-vous ?",
-      "note": "Dir = vous (formel)"
-    },
-    {
-      "id": 29,
-      "lu": "Vu wou komms du?",
-      "fr": "D'où viens-tu ?",
-      "note": "du = tu (informel)"
-    },
-    {
-      "id": 30,
-      "lu": "Ech kommen aus Portugal.",
-      "fr": "Je viens du Portugal.",
-      "note": "1ère personne du singulier"
-    },
-    {
-      "id": 31,
-      "lu": "Ech komme vu Lëtzebuerg.",
-      "fr": "Je viens du Luxembourg.",
-      "note": "Exception : vu Lëtzebuerg"
-    },
-    {
-      "id": 32,
-      "lu": "Ech kommen aus der Belsch.",
-      "fr": "Je viens de Belgique.",
-      "note": "Pays féminin → aus der"
     }
   ],
   "quiz": [
-    {
-      "id": 1,
-      "question": "Quelle préposition pour Portugal ?",
-      "reponse": "aus",
-      "distracteurs": [
-        "vu",
-        "vum",
-        "aus der"
-      ]
-    },
-    {
-      "id": 2,
-      "question": "Quelle préposition pour Lëtzebuerg ?",
-      "reponse": "vu",
-      "distracteurs": [
-        "aus",
-        "vum",
-        "aus der"
-      ]
-    },
-    {
-      "id": 3,
-      "question": "Quelle préposition pour Belsch ?",
-      "reponse": "aus der",
-      "distracteurs": [
-        "aus",
-        "vu",
-        "aus dem"
-      ]
-    },
-    {
-      "id": 4,
-      "question": "Quelle préposition pour Schwäiz ?",
-      "reponse": "aus der",
-      "distracteurs": [
-        "aus",
-        "vu",
-        "vum"
-      ]
-    },
-    {
-      "id": 5,
-      "question": "Quelle préposition pour Iran ?",
-      "reponse": "aus dem",
-      "distracteurs": [
-        "aus",
-        "vu",
-        "aus der"
-      ]
-    },
-    {
-      "id": 6,
-      "question": "Quelle préposition pour Cap Vert ?",
-      "reponse": "vum",
-      "distracteurs": [
-        "aus",
-        "vu",
-        "aus der"
-      ]
-    },
-    {
-      "id": 7,
-      "question": "Quelle préposition pour Frankräich ?",
-      "reponse": "aus",
-      "distracteurs": [
-        "vu",
-        "aus der",
-        "aus dem"
-      ]
-    },
-    {
-      "id": 8,
-      "question": "Quelle préposition pour Ukrain ?",
-      "reponse": "aus der",
-      "distracteurs": [
-        "aus",
-        "vu",
-        "vum"
-      ]
-    },
-    {
-      "id": 9,
-      "question": "Quelle préposition pour Japan ?",
-      "reponse": "aus",
-      "distracteurs": [
-        "vu",
-        "vum",
-        "aus der"
-      ]
-    },
-    {
-      "id": 10,
-      "question": "Traduction : Espagne",
-      "reponse": "Spuenien",
-      "distracteurs": [
-        "Spunien",
-        "Spuenie",
-        "Spueniën"
-      ]
-    },
-    {
-      "id": 11,
-      "question": "Traduction : Allemagne",
-      "reponse": "Däitschland",
-      "distracteurs": [
-        "Däitschland",
-        "Daitchland",
-        "Deitschland"
-      ]
-    },
-    {
-      "id": 12,
-      "question": "Traduction : Pays-Bas",
-      "reponse": "Holland",
-      "distracteurs": [
-        "Hollant",
-        "Hollandt",
-        "Holand"
-      ]
-    },
-    {
-      "id": 13,
-      "question": "Traduction : Suède",
-      "reponse": "Schweden",
-      "distracteurs": [
-        "Schweeden",
-        "Schweden",
-        "Schwäden"
-      ]
-    },
-    {
-      "id": 14,
-      "question": "Quel article devant un prénom féminin ? (D'Nicole…)",
-      "reponse": "D'",
-      "distracteurs": [
-        "De",
-        "Den",
-        "Eng"
-      ]
-    },
-    {
-      "id": 15,
-      "question": "Traduction : Italie",
-      "reponse": "Italien",
-      "distracteurs": [
-        "Italia",
-        "Italjen",
-        "Italiën"
-      ]
-    },
-    {
-      "id": 16,
-      "question": "Traduction : Angleterre",
-      "reponse": "England",
-      "distracteurs": [
-        "Engeland",
-        "Englend",
-        "Englant"
-      ]
-    },
-    {
-      "id": 17,
-      "question": "Traduction : Portugal",
-      "reponse": "Portugal",
-      "distracteurs": [
-        "Portogal",
-        "Portugall",
-        "Portugual"
-      ]
-    },
-    {
-      "id": 18,
-      "question": "Traduction : Luxembourg",
-      "reponse": "Lëtzebuerg",
-      "distracteurs": [
-        "Letzebuerg",
-        "Lëtzebourg",
-        "Lëtzeburg"
-      ]
-    },
-    {
-      "id": 19,
-      "question": "Traduction : Belgique",
-      "reponse": "Belsch",
-      "distracteurs": [
-        "Belsch",
-        "Belesch",
-        "Belch"
-      ]
-    },
-    {
-      "id": 20,
-      "question": "Traduction : France",
-      "reponse": "Frankräich",
-      "distracteurs": [
-        "Frankraich",
-        "Frankreich",
-        "Frankräisch"
-      ]
-    },
-    {
-      "id": 21,
-      "question": "Traduction : Suisse",
-      "reponse": "Schwäiz",
-      "distracteurs": [
-        "Schwaiz",
-        "Schweiz",
-        "Schwäts"
-      ]
-    },
-    {
-      "id": 22,
-      "question": "Traduction : Ukraine",
-      "reponse": "Ukrain",
-      "distracteurs": [
-        "Ukraine",
-        "Ukraïn",
-        "Ukran"
-      ]
-    },
-    {
-      "id": 23,
-      "question": "Traduction : Chine",
-      "reponse": "China",
-      "distracteurs": [
-        "Chine",
-        "Chyna",
-        "Chinna"
-      ]
-    },
-    {
-      "id": 24,
-      "question": "Traduction : Japon",
-      "reponse": "Japan",
-      "distracteurs": [
-        "Japon",
-        "Japann",
-        "Jappan"
-      ]
-    },
-    {
-      "id": 25,
-      "question": "Traduction : Corée du Nord",
-      "reponse": "Nordkorea",
-      "distracteurs": [
-        "Nord Korea",
-        "Nordkoreia",
-        "Nordcorea"
-      ]
-    },
-    {
-      "id": 26,
-      "question": "Traduction : Amérique",
-      "reponse": "Amerika",
-      "distracteurs": [
-        "America",
-        "Americka",
-        "Amerikah"
-      ]
-    },
-    {
-      "id": 27,
-      "question": "Traduction : Australie",
-      "reponse": "Australien",
-      "distracteurs": [
-        "Australia",
-        "Australjen",
-        "Australiën"
-      ]
-    },
-    {
-      "id": 28,
-      "question": "Traduction : Argentine",
-      "reponse": "Argentinien",
-      "distracteurs": [
-        "Argentina",
-        "Argentinen",
-        "Argentiniën"
-      ]
-    },
-    {
-      "id": 29,
-      "question": "Quelle préposition pour Australien ?",
-      "reponse": "aus",
-      "distracteurs": [
-        "vu",
-        "aus der",
-        "aus dem"
-      ]
-    },
-    {
-      "id": 30,
-      "question": "Quelle préposition pour China ?",
-      "reponse": "aus",
-      "distracteurs": [
-        "vum",
-        "aus der",
-        "vu"
-      ]
-    }
-  ],
+  {
+    "id": 1,
+    "question": "Espagne",
+    "reponse": "Spuenien",
+    "distracteurs": ["Spuenier", "Spuenesch", "Spueniën"]
+  },
+  {
+    "id": 2,
+    "question": "Angleterre",
+    "reponse": "England",
+    "distracteurs": ["Englänner", "Englesch", "Engeland"]
+  },
+  {
+    "id": 3,
+    "question": "Luxembourg",
+    "reponse": "Lëtzebuerg",
+    "distracteurs": ["Lëtzebuerger", "Lëtzebuergesch", "Letzebuerg"]
+  },
+  {
+    "id": 4,
+    "question": "Australie",
+    "reponse": "Australien",
+    "distracteurs": ["Australier", "Englesch", "Australiën"]
+  },
+  {
+    "id": 5,
+    "question": "Argentine",
+    "reponse": "Argentinien",
+    "distracteurs": ["Argentinier", "Spuenesch", "Argentiniën"]
+  },
+  {
+    "id": 6,
+    "question": "Amérique",
+    "reponse": "Amerika",
+    "distracteurs": ["Amerikaner", "Englesch", "America"]
+  },
+  {
+    "id": 7,
+    "question": "Belgique",
+    "reponse": "Belsch",
+    "distracteurs": ["Belgesch", "Franséisch", "Belesch"]
+  },
+  {
+    "id": 8,
+    "question": "Allemagne",
+    "reponse": "Däitschland",
+    "distracteurs": ["Däitschen", "Däitsch", "Deitschland"]
+  },
+  {
+    "id": 9,
+    "question": "Japon",
+    "reponse": "Japan",
+    "distracteurs": ["Japaner", "Japanesch", "Jappan"]
+  },
+  {
+    "id": 10,
+    "question": "Corée du Nord",
+    "reponse": "Nordkorea",
+    "distracteurs": ["Nordkoreaner", "Koreanesch", "Nord Korea"]
+  },
+  {
+    "id": 11,
+    "question": "France",
+    "reponse": "Frankräich",
+    "distracteurs": ["Fransous", "Franséisch", "Frankreich"]
+  },
+  {
+    "id": 12,
+    "question": "Pays-Bas",
+    "reponse": "Holland",
+    "distracteurs": ["Hollänner", "Hollännesch", "Holand"]
+  },
+  {
+    "id": 13,
+    "question": "Chine",
+    "reponse": "China",
+    "distracteurs": ["Chinéis", "Chinesesch", "Chinna"]
+  },
+  {
+    "id": 14,
+    "question": "Suède",
+    "reponse": "Schweden",
+    "distracteurs": ["Schweed", "Schwedesch", "Schwäden"]
+  },
+  {
+    "id": 15,
+    "question": "Suisse",
+    "reponse": "Schwäiz",
+    "distracteurs": ["Schwäizer", "Däitsch", "Schweiz"]
+  },
+  {
+    "id": 16,
+    "question": "Ukraine",
+    "reponse": "Ukrain",
+    "distracteurs": ["Ukrainer", "Ukrainesch", "Ukraïn"]
+  },
+  {
+    "id": 17,
+    "question": "Cap-Vert",
+    "reponse": "Cap Vert",
+    "distracteurs": ["Kapverdianer", "Portugisesch", "Kapverden"]
+  },
+  {
+    "id": 18,
+    "question": "Italie",
+    "reponse": "Italien",
+    "distracteurs": ["Italiener", "Italienesch", "Italia"]
+  }
+],
   "trous": [
     {
       "id": 1,
@@ -656,78 +398,76 @@
     },
     {
       "id": 12,
-      "fr": "Nicole vient d'Australie. (article devant prénom féminin)",
-      "avant": "",
-      "trou": "D'",
-      "apres": "Nicole kënnt aus Australien.",
+      "fr": "Elle vient de Chine.",
+      "avant": "Si kënnt",
+      "trou": "aus",
+      "apres": "China.",
       "choix": [
-        "De",
-        "Den",
-        "D'"
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
       ],
-      "note": "Prénom féminin commençant par N → D'"
+      "note": "China → aus"
     },
     {
       "id": 13,
-      "fr": "David vient d'Angleterre. (article devant prénom masculin + voyelle)",
-      "avant": "",
-      "trou": "Den",
-      "apres": "David kënnt aus England.",
+      "fr": "Il vient des Pays-Bas.",
+      "avant": "Hien kënnt",
+      "trou": "aus",
+      "apres": "Holland.",
       "choix": [
-        "De",
-        "Den",
-        "D'"
+        "aus",
+        "vu",
+        "aus der",
+        "vum"
       ],
-      "note": "Prénom masculin devant consonne D → Den"
+      "note": "Holland → aus"
     },
     {
       "id": 14,
-      "fr": "Buffon vient d'Italie. (article devant prénom masculin + consonne)",
-      "avant": "",
-      "trou": "De",
-      "apres": "Buffon kënnt aus Italien.",
+      "fr": "Elle vient d'Australie.",
+      "avant": "Si kënnt",
+      "trou": "aus",
+      "apres": "Australien.",
       "choix": [
-        "De",
-        "Den",
-        "D'"
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
       ],
-      "note": "Prénom masculin devant consonne B → De"
+      "note": "Australien → aus"
     },
     {
       "id": 15,
-      "fr": "Penelope vient d'Espagne. (article devant prénom féminin + consonne)",
-      "avant": "",
-      "trou": "D'",
-      "apres": "Penelope kënnt aus Spuenien.",
+      "fr": "Il vient d'Argentine.",
+      "avant": "Hien kënnt",
+      "trou": "aus",
+      "apres": "Argentinien.",
       "choix": [
-        "De",
-        "Den",
-        "D'"
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
       ],
-      "note": "Prénom féminin → D'"
+      "note": "Argentinien → aus"
+    },
+    {
+      "id": 16,
+      "fr": "Elle vient d'Amérique.",
+      "avant": "Si kënnt",
+      "trou": "aus",
+      "apres": "Amerika.",
+      "choix": [
+        "aus",
+        "vu",
+        "aus der",
+        "aus dem"
+      ],
+      "note": "Amerika → aus"
     }
   ],
   "ecriture": [
-    {
-      "fr": "vient de (règle générale)",
-      "lu": "kënnt aus"
-    },
-    {
-      "fr": "vient de (Luxembourg)",
-      "lu": "kënnt vu"
-    },
-    {
-      "fr": "vient du (Cap-Vert)",
-      "lu": "kënnt vum"
-    },
-    {
-      "fr": "vient de la (Belgique)",
-      "lu": "kënnt aus der"
-    },
-    {
-      "fr": "vient de l' (Iran)",
-      "lu": "kënnt aus dem"
-    },
     {
       "fr": "Espagne",
       "lu": "Spuenien"
@@ -767,6 +507,42 @@
     {
       "fr": "Argentine",
       "lu": "Argentinien"
+    },
+    {
+      "fr": "Italie",
+      "lu": "Italien"
+    },
+    {
+      "fr": "Australie",
+      "lu": "Australien"
+    },
+    {
+      "fr": "Amérique",
+      "lu": "Amerika"
+    },
+    {
+      "fr": "Japon",
+      "lu": "Japan"
+    },
+    {
+      "fr": "Corée du Nord",
+      "lu": "Nordkorea"
+    },
+    {
+      "fr": "Chine",
+      "lu": "China"
+    },
+    {
+      "fr": "Ukraine",
+      "lu": "Ukrain"
+    },
+    {
+      "fr": "Cap-Vert",
+      "lu": "Cap Vert"
+    },
+    {
+      "fr": "Iran",
+      "lu": "Iran"
     },
     {
       "fr": "Ronaldo vient du Portugal.",
@@ -814,25 +590,65 @@
     },
     {
       "fr": "Je viens du Luxembourg.",
-      "lu": "Ech kënnt vu Lëtzebuerg."
+      "lu": "Ech kommen vu Lëtzebuerg."
     },
     {
       "fr": "Je viens de France.",
-      "lu": "Ech kënnt aus Frankräich."
-    },
-    {
-      "fr": "D'où viens-tu ?",
-      "lu": "Vun wou kënns du?"
+      "lu": "Ech kommen aus Frankräich."
     },
     {
       "fr": "Il vient d'Italie.",
       "lu": "Hien kënnt aus Italien."
+    },
+    {
+      "fr": "D'où vient-il ?",
+      "lu": "Vu wou kënnt hien?"
+    },
+    {
+      "fr": "D'où vient-elle ?",
+      "lu": "Vu wou kënnt si?"
+    },
+    {
+      "fr": "Je viens du Portugal.",
+      "lu": "Ech kommen aus Portugal."
+    },
+    {
+      "fr": "Je viens de Belgique.",
+      "lu": "Ech kommen aus der Belsch."
+    },
+    {
+      "fr": "Je viens de Suisse.",
+      "lu": "Ech kommen aus der Schwäiz."
+    },
+    {
+      "fr": "Je viens d'Iran.",
+      "lu": "Ech kommen aus dem Iran."
+    },
+    {
+      "fr": "Je viens du Cap-Vert.",
+      "lu": "Ech kommen vum Cap Vert."
+    },
+    {
+      "fr": "D'où viens-tu ?",
+      "lu": "Vu wou kënns du?"
+    },
+    {
+      "fr": "D'où venez-vous ?",
+      "lu": "Vu wou kommt Dir?"
+    },
+    {
+      "fr": "Je viens du Japon.",
+      "lu": "Ech kommen aus Japan."
+    },
+    {
+      "fr": "Je viens d'Italie.",
+      "lu": "Ech kommen aus Italien."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Pour dire d'où vient quelqu'un, on utilise le verbe <b>kënnt</b> (vient) + une préposition qui dépend du pays."
+      "contenu": "Pour dire d'où vient quelqu'un, on utilise le verbe <b>kënnt</b> (vient) + une préposition qui dépend du pays. Pour parler de sa propre origine, on utilise kommen : Ech kommen aus ..."
     },
     {
       "type": "regle",
@@ -854,48 +670,42 @@
         "Prénom féminin → <b>D'</b> (D'Nicole)"
       ]
     },
-    {
-      "type": "vocab",
-      "titre": "Quelques pays",
-      "items": [
-        [
-          "Portugal",
-          "Portugal"
-        ],
-        [
-          "Spuenien",
-          "Espagne"
-        ],
-        [
-          "England",
-          "Angleterre"
-        ],
-        [
-          "Däitschland",
-          "Allemagne"
-        ],
-        [
-          "Frankräich",
-          "France"
-        ],
-        [
-          "Holland",
-          "Pays-Bas"
-        ],
-        [
-          "Belsch",
-          "Belgique"
-        ],
-        [
-          "Schwäiz",
-          "Suisse"
-        ],
-        [
-          "Lëtzebuerg",
-          "Luxembourg"
-        ]
-      ]
-    },
+   {
+  "type": "vocab",
+  "titre": "Les pays",
+  "items": [
+    ["Portugal", "Portugal"],
+    ["Spuenien", "Espagne"],
+    ["England", "Angleterre"],
+    ["Italien", "Italie"],
+    ["Lëtzebuerg", "Luxembourg"],
+    ["Australien", "Australie"],
+    ["Argentinien", "Argentine"],
+    ["Amerika", "Amérique"],
+    ["Belsch", "Belgique"],
+    ["Däitschland", "Allemagne"],
+    ["Japan", "Japon"],
+    ["Nordkorea", "Corée du Nord"],
+    ["Frankräich", "France"],
+    ["Holland", "Pays-Bas"],
+    ["China", "Chine"],
+    ["Schweden", "Suède"],
+    ["Schwäiz", "Suisse"],
+    ["Ukrain", "Ukraine"],
+    ["Cap Vert", "Cap-Vert"],
+    ["Iran", "Iran"]
+  ]
+},
+{
+  "type": "regle",
+  "titre": "Kommen et kënnt",
+  "lignes": [
+    "Ech kommen = je viens",
+    "Hien kënnt = il vient",
+    "Si kënnt = elle vient",
+    "Dir kommt = vous venez"
+  ]
+},
     {
       "type": "dialogue",
       "titre": "Exemples",
@@ -911,6 +721,14 @@
         [
           "De Philippe kënnt aus der Belsch.",
           "Philippe vient de Belgique."
+        ],
+        [
+          "Si kënnt aus dem Iran.",
+          "Elle vient d'Iran."
+        ],
+        [
+          "Hien kënnt vum Cap Vert.",
+          "Il vient du Cap-Vert."
         ]
       ]
     }
