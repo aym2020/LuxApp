@@ -1004,18 +1004,6 @@
       ]
     },
     {
-      "type": "regle",
-      "titre": "Poser une question sur la nationalité",
-      "lignes": [
-        "Wat ass seng Nationalitéit? = Quelle est sa nationalité ?",
-        "Wat ass hir Nationalitéit? = Quelle est sa nationalité ?",
-        "Ass hien ...? = Est-il ... ?",
-        "Ass si ...? = Est-elle ... ?",
-        "Jo, hien/si ass ... = Oui, il/elle est ...",
-        "Nee, hien ass kee ... / si ass keng ... = Non, il/elle n'est pas ..."
-      ]
-    },
-    {
       "type": "vocab",
       "titre": "Nationalités (M / F)",
       "items": [
@@ -1039,6 +1027,18 @@
         ["e Kapverdianer / eng Kapverdianerin", "cap-verdien·ne"],
         ["en Iraner / eng Iranerin", "iranien·ne"],
         ["en Nordkoreaner / eng Nordkoreanerin", "nord-coréen·ne"]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Poser une question sur la nationalité",
+      "lignes": [
+        "Wat ass seng Nationalitéit? = Quelle est sa nationalité ?",
+        "Wat ass hir Nationalitéit? = Quelle est sa nationalité ?",
+        "Ass hien ...? = Est-il ... ?",
+        "Ass si ...? = Est-elle ... ?",
+        "Jo, hien/si ass ... = Oui, il/elle est ...",
+        "Nee, hien ass kee ... / si ass keng ... = Non, il/elle n'est pas ..."
       ]
     },
     {
