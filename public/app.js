@@ -260,7 +260,9 @@ async function handleAuth(mode) {
     return;
   }
 
-  // Connecté : fusionner local + cloud puis rafraîchir.
+  // Connecté : profil isolé pour ce compte, puis fusion local + cloud.
+  const user = await getCurrentUser();
+  if (user) setStorageProfile('user:' + user.id);
   await syncProgress();
   await updateAuthUI();
   renderDashboard();
@@ -268,13 +270,10 @@ async function handleAuth(mode) {
 }
 
 async function handleSignOut() {
-  const result = await signOut();
-
-  if (result && result.error) {
-    alert("Impossible de se déconnecter pour le moment.");
-    return;
-  }
-
+  await signOut();              // ne supprime PAS le localStorage
+  setStorageProfile('anonymous'); // repasse sur le profil anonyme
+  // Reload : garantit qu'au prochain boot aucun user n'est connecté
+  // et que la progression anonyme (pas celle du compte) s'affiche.
   window.location.reload();
 }
 

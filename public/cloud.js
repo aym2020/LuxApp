@@ -48,15 +48,8 @@ async function signIn(email, password) {
 }
 
 async function signOut() {
-  if (!sb) return { error: null };
-
-  const { error } = await sb.auth.signOut();
-
-  if (error) {
-    console.error("Erreur signOut:", error);
-  }
-
-  return { error };
+  if (!sb) return;
+  try { await sb.auth.signOut(); } catch (e) { /* ignore */ }
 }
 
 // ─── PAYLOAD : assemble / applique la progression locale ────────────────────
@@ -190,15 +183,16 @@ async function bootAuthAndSync() {
   if (!sb) return;
   try {
     const user = await getCurrentUser();
-    if (user) await syncProgress(); // charge + fusionne + réécrit local & cloud
+    if (user) {
+      // Profil isolé pour ce compte AVANT toute lecture/écriture locale.
+      setStorageProfile('user:' + user.id);
+      await syncProgress(); // charge ce profil + cloud, fusionne, réécrit les deux
+    }
+    // Sinon : on reste sur le profil "anonymous" (valeur par défaut).
   } catch (e) {
     // Supabase indisponible : on continue en local.
   }
   if (sb) {
-    sb.auth.onAuthStateChange(async () => {
-      await updateAuthUI();
-      renderDashboard();
-      renderLessonsProgress();
-    });
+    sb.auth.onAuthStateChange(() => updateAuthUI());
   }
 }

@@ -15,20 +15,38 @@ const STORAGE_KEY = 'luxProgress';
 const WRONG_KEY = 'luxWrong';   // nombre de fois ratée, par question
 const STREAK_KEY = 'luxStreak'; // série quotidienne
 
+// ─── PROFIL DE STOCKAGE (isolation par utilisateur) ─────────────────────────
+// Chaque profil a ses propres clés localStorage, pour éviter qu'un compte
+// connecté contamine la progression anonyme ou celle d'un autre compte.
+//   - non connecté -> "anonymous"
+//   - connecté     -> "user:<user_id>"
+let currentStorageProfile = 'anonymous';
+
+function setStorageProfile(profile) {
+  currentStorageProfile = profile || 'anonymous';
+  console.log('Storage profile:', currentStorageProfile);
+  console.log('Progress key:', storageKey('luxProgress'));
+}
+
+// Construit la clé localStorage propre au profil courant.
+function storageKey(baseKey) {
+  return baseKey + ':' + currentStorageProfile;
+}
+
 // Poids d'apparition selon le niveau (niveau bas = revient plus souvent).
 const LEVEL_WEIGHTS = { 1: 5, 2: 3, 3: 1 };
 
 // ─── LECTURE / ÉCRITURE DU STOCKAGE ─────────────────────────────────────────
 function getProgress() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return JSON.parse(localStorage.getItem(storageKey(STORAGE_KEY))) || {};
   } catch (e) {
     return {};
   }
 }
 
 function saveProgress(progress) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  localStorage.setItem(storageKey(STORAGE_KEY), JSON.stringify(progress));
 }
 
 // ─── NIVEAU D'UNE QUESTION ──────────────────────────────────────────────────
@@ -125,22 +143,22 @@ function resetLessonProgress(leconId) {
 
 // Efface TOUTE la progression (toutes les leçons + série).
 function resetProgress() {
-  localStorage.removeItem(STORAGE_KEY);
-  localStorage.removeItem(WRONG_KEY);
-  localStorage.removeItem(STREAK_KEY);
+  localStorage.removeItem(storageKey(STORAGE_KEY));
+  localStorage.removeItem(storageKey(WRONG_KEY));
+  localStorage.removeItem(storageKey(STREAK_KEY));
 }
 
 // ─── ERREURS : COMPTEUR PAR QUESTION ────────────────────────────────────────
 function getWrongStore() {
   try {
-    return JSON.parse(localStorage.getItem(WRONG_KEY)) || {};
+    return JSON.parse(localStorage.getItem(storageKey(WRONG_KEY))) || {};
   } catch (e) {
     return {};
   }
 }
 
 function saveWrongStore(store) {
-  localStorage.setItem(WRONG_KEY, JSON.stringify(store));
+  localStorage.setItem(storageKey(WRONG_KEY), JSON.stringify(store));
 }
 
 function getWrongCount(leconId, type, questionId) {
@@ -162,14 +180,14 @@ function incrementWrongCount(leconId, type, questionId) {
 // ─── SÉRIE QUOTIDIENNE (STREAK) ─────────────────────────────────────────────
 function getStreak() {
   try {
-    return JSON.parse(localStorage.getItem(STREAK_KEY)) || { count: 0, lastActive: null };
+    return JSON.parse(localStorage.getItem(storageKey(STREAK_KEY))) || { count: 0, lastActive: null };
   } catch (e) {
     return { count: 0, lastActive: null };
   }
 }
 
 function saveStreak(data) {
-  localStorage.setItem(STREAK_KEY, JSON.stringify(data));
+  localStorage.setItem(storageKey(STREAK_KEY), JSON.stringify(data));
 }
 
 // Renvoie une date locale au format AAAA-MM-JJ (offset en jours).
