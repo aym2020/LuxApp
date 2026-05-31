@@ -377,6 +377,12 @@ header {
 }
 .lp-reset:active { border-color: var(--wrong); color: var(--wrong); }
 
+/* ── SESSION (révision / examen / erreurs) ──────────────────────────────── */
+.session-body {
+  width: 100%; display: flex; flex-direction: column; align-items: center;
+  padding: .9rem 1rem;
+}
+
 /* ── DASHBOARD ──────────────────────────────────────────────────────────── */
 .dash { padding: 0 1rem 3rem; display: flex; flex-direction: column; gap: .8rem; }
 
