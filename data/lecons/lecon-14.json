@@ -8,7 +8,7 @@
     "quiz": "Présenter un mois, une question, une réponse ou une expression en français. La bonne réponse est la traduction luxembourgeoise correspondante. Pour les mois, privilégier des distracteurs constitués de fautes d'orthographe plausibles. Pour les autres questions, utiliser des expressions proches de la même leçon.",
     "trous": "Compléter des phrases liées à l'âge et à la date de naissance. Les mots à retrouver peuvent être des mois, des nombres, des ordinaux, des années ou des structures de la leçon. Les distracteurs doivent être plausibles et rester cohérents avec la notion travaillée.",
     "ecriture": "Produire en luxembourgeois les mois, les questions sur l'âge et la date de naissance, les réponses, les années, les dates complètes et les phrases utilisées dans la leçon. Toutes les structures importantes doivent apparaître au moins une fois."
-  }
+  },
   "flashcards": [
     {
       "id": 1,
