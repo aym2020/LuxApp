@@ -275,23 +275,7 @@ async function handleSignOut() {
     return;
   }
 
-  // Force immédiatement l'affichage local
-  const zone = document.getElementById("dash-auth");
-  if (zone) {
-    zone.innerHTML =
-      '<div class="auth-state">Progression locale uniquement</div>' +
-      '<div class="auth-actions">' +
-        '<button class="auth-btn" onclick="showAuthForm(\'signin\')">Connexion</button>' +
-        '<button class="auth-btn" onclick="showAuthForm(\'signup\')">Créer un compte</button>' +
-      '</div>' +
-      '<div id="auth-form" class="auth-form hidden"></div>';
-  }
-
-  renderDashboard();
-  renderLessonsProgress();
-
-  // Relit l’état réel après coup
-  setTimeout(updateAuthUI, 100);
+  window.location.reload();
 }
 
 async function handleSync() {
