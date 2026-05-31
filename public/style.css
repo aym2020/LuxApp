@@ -376,3 +376,47 @@ header {
   transition: all .2s;
 }
 .lp-reset:active { border-color: var(--wrong); color: var(--wrong); }
+
+/* ── DASHBOARD ──────────────────────────────────────────────────────────── */
+.dash { padding: 0 1rem 3rem; display: flex; flex-direction: column; gap: .8rem; }
+
+.dash-top { display: flex; gap: .7rem; }
+.dash-stat {
+  flex: 1; background: var(--surface); border: 1px solid #2a2926;
+  border-radius: var(--r); padding: 1.1rem 1rem; text-align: center;
+}
+.dash-stat-val { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+.dash-stat-lbl { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .25rem; }
+
+.dash-bar { height: 6px; background: #2a2926; border-radius: 999px; overflow: hidden; }
+.dash-bar div { height: 100%; width: 0; background: var(--correct); border-radius: 999px; transition: width .35s ease; }
+
+.dash-grid { display: flex; gap: .7rem; }
+.dash-mini {
+  flex: 1; background: var(--surface); border: 1px solid #2a2926;
+  border-radius: var(--r); padding: .9rem 1rem; text-align: center;
+}
+.dash-mini span { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+.dash-mini label { display: block; font-size: .62rem; font-weight: 700; color: var(--muted); margin-top: .25rem; }
+
+.dash-review {
+  text-align: center; font-size: .78rem; font-weight: 700; color: var(--muted);
+  padding: .6rem; border: 1px dashed #3a3935; border-radius: var(--r);
+}
+
+.dash-btn {
+  width: 100%; padding: 1rem; min-height: 56px;
+  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  color: var(--text); font-family: var(--title); font-weight: 700; font-size: .95rem;
+  cursor: pointer; text-align: center; transition: all .15s;
+}
+.dash-btn:active { background: var(--surface2); }
+.dash-btn.primary { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 800; }
+
+.dash-reset {
+  margin-top: .4rem; padding: .6rem; background: none;
+  border: 1px solid #3a3935; border-radius: var(--r);
+  color: var(--muted); font-family: var(--title); font-size: .7rem; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+}
+.dash-reset:active { border-color: var(--wrong); color: var(--wrong); }

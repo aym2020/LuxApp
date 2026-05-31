@@ -10,12 +10,58 @@
 </head>
 <body>
 
-  <!-- ══ ACCUEIL ══════════════════════════════════════════════════════════════ -->
-  <div id="view-home" class="view active">
+  <!-- ══ DASHBOARD ════════════════════════════════════════════════════════════ -->
+  <div id="view-dashboard" class="view active">
     <header>
       <div class="app-title">Lëtzebuergesch</div>
       <div class="app-sub">A1.1</div>
     </header>
+
+    <div class="dash">
+      <div class="dash-top">
+        <div class="dash-stat">
+          <div class="dash-stat-val" id="dash-streak">🔥 0 jour</div>
+          <div class="dash-stat-lbl">Série</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-val" id="dash-global">0%</div>
+          <div class="dash-stat-lbl">Progression</div>
+        </div>
+      </div>
+
+      <div class="dash-bar"><div id="dash-global-fill"></div></div>
+
+      <div class="dash-grid">
+        <div class="dash-mini">
+          <span id="dash-mastered">0 / 0</span>
+          <label>Questions maîtrisées</label>
+        </div>
+        <div class="dash-mini">
+          <span id="dash-lessons">0 / 0</span>
+          <label>Leçons maîtrisées</label>
+        </div>
+      </div>
+
+      <div class="dash-review" id="dash-review">À revoir : 0 question</div>
+
+      <button class="dash-btn primary" onclick="goLessons()">📚 Leçons</button>
+      <button class="dash-btn" onclick="startSession('review')">🔄 Réviser tout</button>
+      <button class="dash-btn" onclick="startSession('exam')">📝 Examen (50)</button>
+      <button class="dash-btn" onclick="startSession('errors')">⚠️ Erreurs fréquentes</button>
+
+      <button class="dash-reset" onclick="confirmResetAll()">Réinitialiser toute la progression</button>
+    </div>
+  </div>
+
+  <!-- ══ LISTE DES LEÇONS ═════════════════════════════════════════════════════ -->
+  <div id="view-lessons" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num">LEÇONS</span>
+        <span class="lecon-titre">Choisis une leçon</span>
+      </div>
+    </div>
     <div id="lecon-list" class="lecon-list"></div>
   </div>
 
@@ -23,7 +69,7 @@
   <div id="view-lecon" class="view">
 
     <div class="lecon-header" id="lecon-header">
-      <button class="back-btn" onclick="goHome()">← Leçons</button>
+      <button class="back-btn" onclick="goLessons()">← Leçons</button>
       <div class="lecon-header-info">
         <span class="lecon-num" id="lecon-num"></span>
         <span class="lecon-titre" id="lecon-titre"></span>
@@ -146,6 +192,49 @@
     </div>
 
   </div><!-- /view-lecon -->
+
+  <!-- ══ SESSION (révision / examen / erreurs) ════════════════════════════════ -->
+  <div id="view-session" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num" id="session-num"></span>
+        <span class="lecon-titre" id="session-titre"></span>
+      </div>
+    </div>
+
+    <div class="tab active">
+      <div class="progress-wrap" style="margin-bottom:.9rem">
+        <span id="session-progress-text"></span>
+        <div class="progress-bar"><div id="session-progress-fill"></div></div>
+      </div>
+
+      <div class="question-card" id="session-q">
+        <div class="level-dots" id="session-level"></div>
+        <div class="question-label" id="session-label"></div>
+        <div class="question-word" id="session-word"></div>
+        <div class="trou-sentence hidden" id="session-sentence"></div>
+      </div>
+
+      <div id="session-choices" class="choices hidden" style="margin-top:.9rem"></div>
+
+      <div class="ecr-input-wrap hidden" id="session-input-wrap">
+        <textarea id="session-input" class="ecr-input"
+          placeholder="Tapez votre réponse…"
+          rows="2"
+          autocomplete="off" autocorrect="off"
+          autocapitalize="none" spellcheck="false"></textarea>
+        <button class="ecr-btn-validate" id="session-input-btn" onclick="validateSessionInput()">Valider ✓</button>
+      </div>
+
+      <div id="session-feedback" class="ecr-feedback hidden"></div>
+
+      <div id="session-result" class="result-card hidden">
+        <div id="session-score"></div>
+        <button onclick="goDashboard()">Terminer</button>
+      </div>
+    </div>
+  </div><!-- /view-session -->
 
   <script src="progress.js"></script>
   <script src="app.js"></script>

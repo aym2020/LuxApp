@@ -12,6 +12,8 @@
 // }
 
 const STORAGE_KEY = 'luxProgress';
+const WRONG_KEY = 'luxWrong';   // nombre de fois ratée, par question
+const STREAK_KEY = 'luxStreak'; // série quotidienne
 
 // Poids d'apparition selon le niveau (niveau bas = revient plus souvent).
 const LEVEL_WEIGHTS = { 1: 5, 2: 3, 3: 1 };
@@ -109,20 +111,216 @@ function calculateLessonProgress(leconId) {
   return { quiz, trous, ecriture, global };
 }
 
-// ─── BADGE (label + couleur) SELON LE POURCENTAGE GLOBAL ────────────────────
-function progressBadge(percent) {
-  if (percent >= 90) return { label: 'maîtrisé', color: '#5ad4a8' };
-  if (percent >= 70) return { label: 'bien', color: '#8fd98f' };
-  if (percent >= 40) return { label: 'en cours', color: '#e8c547' };
-  return { label: 'début', color: '#e8857a' };
-}
-
 // ─── RÉINITIALISATION ───────────────────────────────────────────────────────
-// Efface toute la progression d'une leçon.
+// Efface toute la progression d'une leçon (niveaux + erreurs).
 function resetLessonProgress(leconId) {
   const progress = getProgress();
   delete progress[leconId];
   saveProgress(progress);
+
+  const wrong = getWrongStore();
+  delete wrong[leconId];
+  saveWrongStore(wrong);
+}
+
+// Efface TOUTE la progression (toutes les leçons + série).
+function resetProgress() {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(WRONG_KEY);
+  localStorage.removeItem(STREAK_KEY);
+}
+
+// ─── ERREURS : COMPTEUR PAR QUESTION ────────────────────────────────────────
+function getWrongStore() {
+  try {
+    return JSON.parse(localStorage.getItem(WRONG_KEY)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveWrongStore(store) {
+  localStorage.setItem(WRONG_KEY, JSON.stringify(store));
+}
+
+function getWrongCount(leconId, type, questionId) {
+  const store = getWrongStore();
+  if (store[leconId] && store[leconId][type] && store[leconId][type][questionId]) {
+    return store[leconId][type][questionId];
+  }
+  return 0;
+}
+
+function incrementWrongCount(leconId, type, questionId) {
+  const store = getWrongStore();
+  if (!store[leconId]) store[leconId] = {};
+  if (!store[leconId][type]) store[leconId][type] = {};
+  store[leconId][type][questionId] = (store[leconId][type][questionId] || 0) + 1;
+  saveWrongStore(store);
+}
+
+// ─── SÉRIE QUOTIDIENNE (STREAK) ─────────────────────────────────────────────
+function getStreak() {
+  try {
+    return JSON.parse(localStorage.getItem(STREAK_KEY)) || { count: 0, lastActive: null };
+  } catch (e) {
+    return { count: 0, lastActive: null };
+  }
+}
+
+function saveStreak(data) {
+  localStorage.setItem(STREAK_KEY, JSON.stringify(data));
+}
+
+// Renvoie une date locale au format AAAA-MM-JJ (offset en jours).
+function dayString(offset) {
+  const d = new Date();
+  d.setDate(d.getDate() + (offset || 0));
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return y + '-' + m + '-' + day;
+}
+
+// Appelé à chaque réponse. Valide le jour et met à jour la série.
+function updateStreak() {
+  const today = dayString(0);
+  const data = getStreak();
+
+  if (data.lastActive === today) return;            // déjà actif aujourd'hui
+
+  if (data.lastActive === dayString(-1)) data.count += 1; // actif hier -> +1
+  else data.count = 1;                                    // trou -> repart à 1
+
+  data.lastActive = today;
+  saveStreak(data);
+}
+
+// ─── PROGRESSION D'UNE QUESTION (niveau + erreurs réunis) ───────────────────
+function getQuestionProgress(leconId, type, questionId) {
+  return {
+    level: getQuestionLevel(leconId, type, questionId),
+    wrong: getWrongCount(leconId, type, questionId)
+  };
+}
+
+// Met à jour la progression après une réponse.
+// changeLevel = false en mode examen (on ne touche pas aux niveaux).
+function updateQuestionProgress(leconId, type, questionId, correct, changeLevel) {
+  if (changeLevel !== false) {
+    updateQuestionLevel(leconId, type, questionId, correct);
+  }
+  if (!correct) {
+    incrementWrongCount(leconId, type, questionId);
+  }
+  updateStreak();
+}
+
+// ─── TOUTES LES QUESTIONS (à plat, tous types et toutes leçons) ─────────────
+function getAllQuestions() {
+  const all = [];
+  lecons.forEach(l => {
+    (l.quiz || []).forEach(q => all.push({ leconId: l.id, type: 'quiz', qid: q.id, q }));
+    (l.trous || []).forEach(q => all.push({ leconId: l.id, type: 'trous', qid: q.id, q }));
+    (l.ecriture || []).forEach((q, i) => all.push({ leconId: l.id, type: 'ecriture', qid: i, q }));
+  });
+  return all;
+}
+
+// ─── SÉLECTION : RÉVISION (pondérée par niveau) ─────────────────────────────
+function getReviewQuestions(limit) {
+  const all = getAllQuestions();
+  const weighted = all.map(item => {
+    const level = getQuestionLevel(item.leconId, item.type, item.qid);
+    const weight = LEVEL_WEIGHTS[level];
+    return { item, sortKey: Math.random() / weight };
+  });
+  weighted.sort((a, b) => a.sortKey - b.sortKey);
+  return weighted.slice(0, limit || 20).map(w => w.item);
+}
+
+// ─── SÉLECTION : EXAMEN (aléatoire équilibré) ───────────────────────────────
+function getExamQuestions(limit) {
+  const all = getAllQuestions();
+  const shuffled = all.slice().sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, limit || 50);
+}
+
+// ─── SÉLECTION : ERREURS FRÉQUENTES (les plus ratées) ───────────────────────
+function getFrequentErrors(limit) {
+  const all = getAllQuestions();
+  return all
+    .map(item => ({ item, wrong: getWrongCount(item.leconId, item.type, item.qid) }))
+    .filter(x => x.wrong > 0)
+    .sort((a, b) => b.wrong - a.wrong)
+    .slice(0, limit || 10)
+    .map(x => x.item);
+}
+
+// ─── STATISTIQUES D'UNE LEÇON ───────────────────────────────────────────────
+// Maîtrisée seulement si TOUTES les questions sont au niveau 3.
+function calculateLessonStats(leconId) {
+  const lecon = lecons.find(l => l.id === leconId);
+  if (!lecon) return { percent: 0, n1: 0, n2: 0, n3: 0, total: 0, status: 'début', mastered: false };
+
+  const levels = [];
+  (lecon.quiz || []).forEach(q => levels.push(getQuestionLevel(leconId, 'quiz', q.id)));
+  (lecon.trous || []).forEach(q => levels.push(getQuestionLevel(leconId, 'trous', q.id)));
+  (lecon.ecriture || []).forEach((q, i) => levels.push(getQuestionLevel(leconId, 'ecriture', i)));
+
+  let n1 = 0, n2 = 0, n3 = 0, sum = 0;
+  levels.forEach(lv => {
+    if (lv === 1) n1++;
+    else if (lv === 2) n2++;
+    else n3++;
+    sum += (lv - 1) / 2;
+  });
+
+  const total = levels.length;
+  const percent = total ? Math.round((sum / total) * 100) : 0;
+  const mastered = total > 0 && n3 === total;
+
+  let status;
+  if (mastered) status = 'maîtrisé';
+  else if (percent >= 70) status = 'bien';
+  else if (percent >= 40) status = 'en cours';
+  else status = 'début';
+
+  return { percent, n1, n2, n3, total, status, mastered };
+}
+
+// ─── STATISTIQUES GLOBALES ──────────────────────────────────────────────────
+function calculateGlobalStats() {
+  const all = getAllQuestions();
+  let sum = 0, mastered = 0, toReview = 0;
+
+  all.forEach(item => {
+    const lv = getQuestionLevel(item.leconId, item.type, item.qid);
+    sum += (lv - 1) / 2;
+    if (lv === 3) mastered++;
+    if (lv === 1) toReview++;
+  });
+
+  let lessonsMastered = 0;
+  lecons.forEach(l => { if (calculateLessonStats(l.id).mastered) lessonsMastered++; });
+
+  const total = all.length;
+  return {
+    percent: total ? Math.round((sum / total) * 100) : 0,
+    masteredQuestions: mastered,
+    totalQuestions: total,
+    lessonsMastered,
+    totalLessons: lecons.length,
+    toReview
+  };
+}
+
+// ─── COULEUR SELON LE STATUT ────────────────────────────────────────────────
+function statusColor(status) {
+  if (status === 'maîtrisé') return '#5ad4a8';
+  if (status === 'bien') return '#8fd98f';
+  if (status === 'en cours') return '#e8c547';
+  return '#e8857a';
 }
 
 // ─── AFFICHAGE : POINTS DE NIVEAU (1, 2 ou 3 points) ────────────────────────
@@ -163,14 +361,14 @@ function renderLessonProgress() {
     </div>`;
 }
 
-// ─── AFFICHAGE : POURCENTAGE SUR LES CARTES DE L'ACCUEIL ────────────────────
-function renderHomeProgress() {
+// ─── AFFICHAGE : POURCENTAGE SUR LES CARTES DE LA LISTE DES LEÇONS ──────────
+function renderLessonsProgress() {
   document.querySelectorAll('.lecon-progress').forEach(el => {
     const id = Number(el.dataset.lecon);
-    const percent = calculateLessonProgress(id).global;
-    const badge = progressBadge(percent);
-    el.textContent = percent + '% · ' + badge.label;
-    el.style.color = badge.color;
-    el.style.borderColor = badge.color + '55';
+    const stats = calculateLessonStats(id);
+    const color = statusColor(stats.status);
+    el.textContent = stats.percent + '% · ' + stats.status;
+    el.style.color = color;
+    el.style.borderColor = color + '55';
   });
 }

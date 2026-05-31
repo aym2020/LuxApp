@@ -22,14 +22,15 @@ let tAnswered = false;
 // ─── BOOT ─────────────────────────────────────────────────────────────────────
 async function init() {
   lecons = await fetch('/api/lecons').then(r => r.json());
-  renderHome();
+  renderLessons();
+  renderDashboard();
   setupTabs();
   setupCardInteraction(); // BUG 1 fix : remplace setupSwipe()
   setupKeyboard();
 }
 
-// ─── HOME ─────────────────────────────────────────────────────────────────────
-function renderHome() {
+// ─── LISTE DES LEÇONS ───────────────────────────────────────────────────────
+function renderLessons() {
   const list = document.getElementById('lecon-list');
   list.innerHTML = '';
   lecons.forEach(l => {
@@ -55,7 +56,7 @@ function renderHome() {
     el.addEventListener('click', () => openLecon(l));
     list.appendChild(el);
   });
-  renderHomeProgress();
+  renderLessonsProgress();
 }
 
 function openLecon(l) {
@@ -134,9 +135,40 @@ function renderCours() {
   container.innerHTML = html;
 }
 
-function goHome() {
-  renderHomeProgress();
-  showView('view-home');
+function goDashboard() {
+  renderDashboard();
+  showView('view-dashboard');
+}
+
+function goLessons() {
+  renderLessonsProgress();
+  showView('view-lessons');
+}
+
+// ─── DASHBOARD ──────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const stats = calculateGlobalStats();
+  const streak = getStreak();
+
+  document.getElementById('dash-streak').textContent =
+    '🔥 ' + streak.count + ' jour' + (streak.count > 1 ? 's' : '');
+  document.getElementById('dash-global').textContent = stats.percent + '%';
+  document.getElementById('dash-global-fill').style.width = stats.percent + '%';
+  document.getElementById('dash-mastered').textContent =
+    stats.masteredQuestions + ' / ' + stats.totalQuestions;
+  document.getElementById('dash-lessons').textContent =
+    stats.lessonsMastered + ' / ' + stats.totalLessons;
+  document.getElementById('dash-review').textContent =
+    'À revoir : ' + stats.toReview + ' question' + (stats.toReview > 1 ? 's' : '');
+}
+
+// Réinitialise TOUTE la progression, après confirmation.
+function confirmResetAll() {
+  if (confirm('Effacer toute la progression de toutes les leçons ?')) {
+    resetProgress();
+    renderDashboard();
+    renderLessonsProgress();
+  }
 }
 
 // Réinitialise la progression de la leçon affichée, après confirmation.
@@ -145,6 +177,193 @@ function confirmResetLesson() {
     resetLessonProgress(currentLecon.id);
     renderCours();
   }
+}
+
+// ─── SESSION UNIFIÉE (révision / examen / erreurs) ──────────────────────────
+let session = { mode: null, questions: [], index: 0, score: 0, answered: false };
+
+function typeLabel(type) {
+  if (type === 'quiz') return 'Quiz';
+  if (type === 'trous') return 'À trou';
+  return 'Écriture';
+}
+
+function startSession(mode) {
+  let questions, titre;
+  if (mode === 'review') { questions = getReviewQuestions(20); titre = 'Révision'; }
+  else if (mode === 'exam') { questions = getExamQuestions(50); titre = 'Examen'; }
+  else { questions = getFrequentErrors(10); titre = 'Erreurs fréquentes'; }
+
+  if (!questions.length) {
+    alert(mode === 'errors'
+      ? 'Aucune erreur enregistrée pour le moment.'
+      : 'Aucune question disponible.');
+    return;
+  }
+
+  session = { mode, questions, index: 0, score: 0, answered: false };
+  document.getElementById('session-num').textContent = titre.toUpperCase();
+  document.getElementById('session-titre').textContent = questions.length + ' questions';
+  document.getElementById('session-result').classList.add('hidden');
+  document.getElementById('session-q').classList.remove('hidden');
+  showView('view-session');
+  renderSessionQ();
+}
+
+function renderSessionQ() {
+  if (session.index >= session.questions.length) { showSessionResult(); return; }
+  session.answered = false;
+
+  const item = session.questions[session.index];
+  const { type, q, leconId, qid } = item;
+
+  setProgress('session', session.index, session.questions.length);
+  renderLevelDots(document.getElementById('session-level'),
+    getQuestionLevel(leconId, type, qid));
+
+  // Réinitialise les zones d'affichage
+  const choicesEl = document.getElementById('session-choices');
+  const inputWrap = document.getElementById('session-input-wrap');
+  const sentenceEl = document.getElementById('session-sentence');
+  const feedback = document.getElementById('session-feedback');
+  choicesEl.innerHTML = '';
+  choicesEl.classList.add('hidden');
+  inputWrap.classList.add('hidden');
+  sentenceEl.classList.add('hidden');
+  feedback.className = 'ecr-feedback hidden';
+  document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
+
+  document.getElementById('session-label').textContent = typeLabel(type);
+  const wordEl = document.getElementById('session-word');
+
+  if (type === 'quiz') {
+    wordEl.textContent = q.question;
+    const answer = q.reponse;
+    const safe = q.distracteurs.map(d => d === answer ? '—' : d);
+    const choices = [...safe, answer].sort(() => Math.random() - .5);
+    buildSessionChoices(choices, answer);
+  }
+  else if (type === 'trous') {
+    wordEl.textContent = q.fr;
+    const avant = q.avant ? escHtml(q.avant) + ' ' : '';
+    const apres = q.apres ? ' ' + escHtml(q.apres) : '';
+    sentenceEl.innerHTML = avant + '<span class="trou-blank" id="session-blank">___</span>' + apres;
+    sentenceEl.classList.remove('hidden');
+    const choices = [...q.choix].sort(() => Math.random() - .5);
+    buildSessionChoices(choices, q.trou);
+  }
+  else { // ecriture
+    wordEl.textContent = q.fr;
+    inputWrap.classList.remove('hidden');
+    const input = document.getElementById('session-input');
+    input.value = '';
+    input.style.height = 'auto';
+    input.className = 'ecr-input';
+    input.disabled = false;
+    input.focus();
+    const btn = document.getElementById('session-input-btn');
+    btn.disabled = false;
+  }
+}
+
+function buildSessionChoices(choices, correctText) {
+  const container = document.getElementById('session-choices');
+  container.classList.remove('hidden');
+  container.innerHTML = '';
+  choices.forEach(ch => {
+    const btn = document.createElement('button');
+    btn.className = 'choice';
+    btn.textContent = ch;
+    btn.addEventListener('click', () => handleSessionChoice(btn, ch === correctText, correctText));
+    container.appendChild(btn);
+  });
+}
+
+function handleSessionChoice(btn, ok, correctText) {
+  if (session.answered) return;
+  session.answered = true;
+  const item = session.questions[session.index];
+  recordSessionAnswer(ok);
+
+  if (ok) { btn.classList.add('correct'); }
+  else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('#session-choices .choice').forEach(b => {
+      if (b.textContent === correctText) b.classList.add('correct');
+    });
+  }
+
+  if (item.type === 'trous') {
+    const blank = document.getElementById('session-blank');
+    if (blank) {
+      blank.textContent = item.q.trou;
+      blank.style.color = ok ? 'var(--correct)' : 'var(--wrong)';
+    }
+  }
+
+  document.querySelectorAll('#session-choices .choice').forEach(b => b.disabled = true);
+  setTimeout(nextSessionQ, item.type === 'trous' ? 1400 : 1100);
+}
+
+function validateSessionInput() {
+  if (session.answered) return;
+  const input = document.getElementById('session-input');
+  const val = input.value.trim();
+  if (!val) return;
+
+  session.answered = true;
+  const item = session.questions[session.index];
+  const target = item.q.lu;
+  const ok = normalize(val) === normalize(target);
+  recordSessionAnswer(ok);
+
+  input.disabled = true;
+  input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
+  document.getElementById('session-input-btn').disabled = true;
+
+  const feedback = document.getElementById('session-feedback');
+  feedback.classList.remove('hidden');
+  if (ok) {
+    feedback.className = 'ecr-feedback ok';
+    feedback.innerHTML = '✅ Correct !';
+  } else {
+    feedback.className = 'ecr-feedback ko';
+    feedback.innerHTML = '❌ Réponse :<span class="ecr-correct-answer">' + escHtml(target) + '</span>';
+  }
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'ecr-next-btn';
+  nextBtn.textContent = session.index < session.questions.length - 1 ? 'Suivante →' : 'Voir le score →';
+  nextBtn.addEventListener('click', () => { nextBtn.remove(); nextSessionQ(); });
+  feedback.after(nextBtn);
+}
+
+function recordSessionAnswer(ok) {
+  const item = session.questions[session.index];
+  if (ok) session.score++;
+  // En mode examen, on ne modifie pas les niveaux (changeLevel = false).
+  const changeLevel = session.mode !== 'exam';
+  updateQuestionProgress(item.leconId, item.type, item.qid, ok, changeLevel);
+}
+
+function nextSessionQ() {
+  document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
+  session.index++;
+  renderSessionQ();
+}
+
+function showSessionResult() {
+  document.getElementById('session-q').classList.add('hidden');
+  document.getElementById('session-choices').classList.add('hidden');
+  document.getElementById('session-input-wrap').classList.add('hidden');
+  document.getElementById('session-feedback').classList.add('hidden');
+  document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
+
+  const total = session.questions.length;
+  const pct = total ? Math.round(session.score / total * 100) : 0;
+  document.getElementById('session-result').classList.remove('hidden');
+  document.getElementById('session-score').textContent =
+    `${pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📚'}  ${session.score} / ${total}  (${pct}%)`;
 }
 
 function showView(id) {
@@ -254,7 +473,7 @@ function renderQuizQ() {
 function handleQuizAnswer(btn, ok, answer) {
   if (qAnswered) return;
   qAnswered = true;
-  updateQuestionLevel(currentLecon.id, 'quiz', qCards[qIndex]._qid, ok);
+  updateQuestionProgress(currentLecon.id, 'quiz', qCards[qIndex]._qid, ok);
   if (ok) { btn.classList.add('correct'); qScore++; }
   else {
     btn.classList.add('wrong');
@@ -327,7 +546,7 @@ function renderTrou() {
 function handleTrouAnswer(btn, ok, t) {
   if (tAnswered) return;
   tAnswered = true;
-  updateQuestionLevel(currentLecon.id, 'trous', t._qid, ok);
+  updateQuestionProgress(currentLecon.id, 'trous', t._qid, ok);
   const blank = document.getElementById('trou-blank');
   blank.textContent = t.trou;
   blank.style.color = ok ? 'var(--correct)' : 'var(--wrong)';
@@ -493,7 +712,7 @@ function validateEcriture() {
   const q = ecrCards[ecrIndex];
   const target = ecrDirLuFr ? q.fr : q.lu;
   const ok = normalize(userVal) === normalize(target);
-  updateQuestionLevel(currentLecon.id, 'ecriture', q._qid, ok);
+  updateQuestionProgress(currentLecon.id, 'ecriture', q._qid, ok);
 
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
@@ -569,3 +788,18 @@ ecrInput.addEventListener('keydown', e => {
     validateEcriture();
   }
 });
+
+// Textarea de session : même comportement (auto-resize + Entrée pour valider)
+const sessionInput = document.getElementById('session-input');
+if (sessionInput) {
+  sessionInput.addEventListener('input', () => {
+    sessionInput.style.height = 'auto';
+    sessionInput.style.height = sessionInput.scrollHeight + 'px';
+  });
+  sessionInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      validateSessionInput();
+    }
+  });
+}
