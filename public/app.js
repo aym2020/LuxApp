@@ -38,7 +38,10 @@ function renderHome() {
     el.innerHTML = `
       <div class="lecon-card-accent" style="background:${l.couleur}"></div>
       <div class="lecon-card-body">
-        <div class="lecon-card-num">LEÇON ${l.id}</div>
+        <div class="lecon-card-num">
+          LEÇON ${l.id}
+          <span class="lecon-progress" data-lecon="${l.id}"></span>
+        </div>
         <div class="lecon-card-titre">${l.titre}</div>
         <div class="lecon-card-sous">${l.titre_fr}</div>
         <div class="lecon-card-counts">
@@ -52,6 +55,7 @@ function renderHome() {
     el.addEventListener('click', () => openLecon(l));
     list.appendChild(el);
   });
+  renderHomeProgress();
 }
 
 function openLecon(l) {
@@ -92,6 +96,8 @@ function renderCours() {
     <div class="cours-intro-sous">${currentLecon.titre_fr}</div>
   </div>`;
 
+  html += renderLessonProgress();
+
   currentLecon.cours.forEach(sec => {
     if (sec.type === 'texte') {
       html += `<p class="cours-texte">${sec.contenu}</p>`;
@@ -129,6 +135,7 @@ function renderCours() {
 }
 
 function goHome() {
+  renderHomeProgress();
   showView('view-home');
 }
 
@@ -201,7 +208,7 @@ function startQuiz() {
   document.getElementById('quiz-choices').classList.remove('hidden');
   document.getElementById('quiz-question-wrap').classList.remove('hidden');
 
-  qCards = [...currentLecon.quiz].sort(() => Math.random() - .5);
+  qCards = getWeightedQuestions(currentLecon.id, 'quiz', currentLecon.quiz);
   qIndex = 0; qScore = 0; qAnswered = false;
   renderQuizQ();
 }
@@ -213,6 +220,8 @@ function renderQuizQ() {
 
   document.getElementById('quiz-label').textContent = q.label || '';
   document.getElementById('quiz-word').textContent  = q.question;
+  renderLevelDots(document.getElementById('quiz-level'),
+    getQuestionLevel(currentLecon.id, 'quiz', q._qid));
   setProgress('quiz', qIndex, qCards.length);
 
   const answerText = q.reponse;
@@ -237,6 +246,7 @@ function renderQuizQ() {
 function handleQuizAnswer(btn, ok, answer) {
   if (qAnswered) return;
   qAnswered = true;
+  updateQuestionLevel(currentLecon.id, 'quiz', qCards[qIndex]._qid, ok);
   if (ok) { btn.classList.add('correct'); qScore++; }
   else {
     btn.classList.add('wrong');
@@ -264,7 +274,7 @@ function startTrous() {
   document.getElementById('trou-choices').classList.remove('hidden');
   document.getElementById('trou-card').classList.remove('hidden');
 
-  tCards = [...currentLecon.trous].sort(() => Math.random() - .5);
+  tCards = getWeightedQuestions(currentLecon.id, 'trous', currentLecon.trous);
   tIndex = 0; tScore = 0; tAnswered = false;
 
   if (!tCards.length) {
@@ -283,6 +293,8 @@ function renderTrou() {
 
   document.getElementById('trou-fr').textContent = t.fr;
   document.getElementById('trou-note').classList.add('hidden');
+  renderLevelDots(document.getElementById('trou-level'),
+    getQuestionLevel(currentLecon.id, 'trous', t._qid));
 
   // BUG 5 fix : trim pour éviter l'espace parasite quand avant = ""
   const avant = t.avant ? escHtml(t.avant) + ' ' : '';
@@ -307,6 +319,7 @@ function renderTrou() {
 function handleTrouAnswer(btn, ok, t) {
   if (tAnswered) return;
   tAnswered = true;
+  updateQuestionLevel(currentLecon.id, 'trous', t._qid, ok);
   const blank = document.getElementById('trou-blank');
   blank.textContent = t.trou;
   blank.style.color = ok ? 'var(--correct)' : 'var(--wrong)';
@@ -429,7 +442,7 @@ function startEcriture() {
   document.querySelector('.ecr-input-wrap').classList.remove('hidden');
   document.getElementById('ecr-feedback').classList.add('hidden');
 
-  ecrCards = [...currentLecon.ecriture].sort(() => Math.random() - .5);
+  ecrCards = getWeightedQuestions(currentLecon.id, 'ecriture', currentLecon.ecriture);
   ecrIndex = 0; ecrScore = 0; ecrAnswered = false;
   document.getElementById('ecr-dir-btn').textContent = ecrDirLuFr ? '🇱🇺→🇫🇷' : '🇫🇷→🇱🇺';
   renderEcriture();
@@ -442,6 +455,8 @@ function renderEcriture() {
   const q = ecrCards[ecrIndex];
   document.getElementById('ecr-question').textContent = ecrDirLuFr ? q.lu : q.fr;
   document.getElementById('ecr-dir-label').textContent = ecrDirLuFr ? 'Écrivez en français' : 'Écrivez en luxembourgeois';
+  renderLevelDots(document.getElementById('ecr-level'),
+    getQuestionLevel(currentLecon.id, 'ecriture', q._qid));
   document.querySelectorAll('.ecr-next-btn').forEach(b => b.remove());
   document.getElementById('ecr-feedback').classList.add('hidden');
   document.getElementById('ecr-feedback').className = 'ecr-feedback hidden';
@@ -470,6 +485,7 @@ function validateEcriture() {
   const q = ecrCards[ecrIndex];
   const target = ecrDirLuFr ? q.fr : q.lu;
   const ok = normalize(userVal) === normalize(target);
+  updateQuestionLevel(currentLecon.id, 'ecriture', q._qid, ok);
 
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
@@ -519,7 +535,7 @@ function showEcritureResult() {
 function toggleEcritureDir() {
   ecrDirLuFr = !ecrDirLuFr;
   document.getElementById('ecr-dir-btn').textContent = ecrDirLuFr ? '🇱🇺→🇫🇷' : '🇫🇷→🇱🇺';
-  ecrCards = [...currentLecon.ecriture].sort(() => Math.random() - .5);
+  ecrCards = getWeightedQuestions(currentLecon.id, 'ecriture', currentLecon.ecriture);
   ecrIndex = 0; ecrScore = 0; ecrAnswered = false;
   document.querySelectorAll('.ecr-next-btn').forEach(b => b.remove());
   document.getElementById('ecr-feedback').className = 'ecr-feedback hidden';

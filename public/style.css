@@ -332,3 +332,38 @@ header {
 .cours-dialogue:last-child { border-bottom: none; }
 .cours-dialogue-lu { font-family: var(--serif); font-style: italic; font-size: 1.05rem; margin-bottom: .15rem; }
 .cours-dialogue-fr { font-size: .8rem; color: var(--muted); }
+
+/* ── PROGRESSION : POINTS DE NIVEAU ─────────────────────────────────────── */
+.level-dots { display: flex; gap: 4px; justify-content: center; margin-bottom: .6rem; }
+.level-dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: #3a3935;
+}
+.level-dot.on { background: var(--accent); }
+
+/* ── PROGRESSION : PASTILLE SUR LES CARTES D'ACCUEIL ────────────────────── */
+.lecon-progress {
+  font-size: .58rem; font-weight: 800; letter-spacing: .04em;
+  padding: .1rem .45rem; margin-left: .4rem;
+  border: 1px solid; border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* ── PROGRESSION : BLOC DANS LE COURS ───────────────────────────────────── */
+.lesson-progress {
+  background: var(--surface); border: 1px solid #2a2926;
+  border-radius: var(--r); padding: .9rem 1.1rem; margin-bottom: 1.2rem;
+}
+.lesson-progress-titre {
+  font-size: .8rem; font-weight: 800; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: .7rem;
+}
+.lp-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+.lp-row:last-child { margin-bottom: 0; }
+.lp-nom { font-size: .72rem; font-weight: 700; color: var(--muted); width: 70px; flex-shrink: 0; }
+.lp-bar { flex: 1; height: 5px; background: #2a2926; border-radius: 999px; overflow: hidden; }
+.lp-bar div { height: 100%; background: var(--accent); border-radius: 999px; transition: width .35s ease; }
+.lp-val { font-size: .72rem; font-weight: 800; color: var(--text); width: 38px; text-align: right; flex-shrink: 0; }
+.lp-global { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid #2a2926; }
+.lp-global .lp-nom { color: var(--text); }
+.lp-global .lp-bar div { background: var(--correct); }
