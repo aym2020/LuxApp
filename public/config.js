@@ -7,6 +7,6 @@
 // Row Level Security (RLS) protège les données de chaque utilisateur.
 
 window.APP_CONFIG = {
-  SUPABASE_URL: "https://xxxx.supabase.co",
-  SUPABASE_ANON_KEY: "xxxx"
+  SUPABASE_URL: "https://mybxwxfwjkttrxlnisru.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15Ynh3eGZ3amt0dHJ4bG5pc3J1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMDcwOTMsImV4cCI6MjA5NTc4MzA5M30.cEtUeAbCOcB3e8PgRWwBS9G1beyJ8KAVYS_4woMoFkc"
 };
