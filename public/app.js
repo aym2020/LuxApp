@@ -197,8 +197,8 @@ async function updateAuthUI() {
       '<div class="auth-state ok">Sauvegarde cloud activée</div>' +
       '<div class="auth-email">' + escHtml(user.email) + '</div>' +
       '<div class="auth-actions">' +
-        '<button class="auth-btn" onclick="handleSync()">Synchroniser</button>' +
-        '<button class="auth-btn" onclick="handleSignOut()">Déconnexion</button>' +
+        '<button class="auth-btn" id="sync-btn" onclick="handleSync(this)">Synchroniser</button>' +
+        '<button class="auth-btn" id="signout-btn" onclick="handleSignOut(this)">Déconnexion</button>' +
       '</div>';
   } else {
     zone.innerHTML =
@@ -269,19 +269,40 @@ async function handleAuth(mode) {
   renderLessonsProgress();
 }
 
-async function handleSignOut() {
-  await signOut();              // ne supprime PAS le localStorage
-  setStorageProfile('anonymous'); // repasse sur le profil anonyme
-  // Reload : garantit qu'au prochain boot aucun user n'est connecté
-  // et que la progression anonyme (pas celle du compte) s'affiche.
-  window.location.reload();
+async function handleSignOut(btn) {
+  if (!btn) btn = document.getElementById('signout-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Déconnexion...'; }
+
+  // Change l'UI immédiatement (l'utilisateur voit qu'il est deco)
+  setStorageProfile('anonymous');
+  await updateAuthUI();
+  renderDashboard();
+
+  // Cleanup serveur en arrière-plan, puis reload transparent
+  signOut().finally(() => {
+    window.location.reload();
+  });
 }
 
-async function handleSync() {
+async function handleSync(btn) {
+  if (!btn) btn = document.getElementById('sync-btn');
+  const origText = btn ? btn.textContent : 'Synchroniser';
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Synchronisation...'; }
+
   await syncProgress();
   await updateAuthUI();
   renderDashboard();
   renderLessonsProgress();
+
+  // Feedback de succès fugace
+  if (btn) {
+    btn.textContent = '✓ Synchronisé';
+    setTimeout(() => {
+      btn.textContent = origText;
+      btn.disabled = false;
+    }, 1500);
+  }
 }
 
 // Réinitialise la progression de la leçon affichée, après confirmation.
