@@ -48,8 +48,15 @@ async function signIn(email, password) {
 }
 
 async function signOut() {
-  if (!sb) return;
-  try { await sb.auth.signOut(); } catch (e) { /* ignore */ }
+  if (!sb) return { error: null };
+
+  const { error } = await sb.auth.signOut();
+
+  if (error) {
+    console.error("Erreur signOut:", error);
+  }
+
+  return { error };
 }
 
 // ─── PAYLOAD : assemble / applique la progression locale ────────────────────
@@ -188,6 +195,10 @@ async function bootAuthAndSync() {
     // Supabase indisponible : on continue en local.
   }
   if (sb) {
-    sb.auth.onAuthStateChange(() => updateAuthUI());
+    sb.auth.onAuthStateChange(async () => {
+      await updateAuthUI();
+      renderDashboard();
+      renderLessonsProgress();
+    });
   }
 }
