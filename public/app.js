@@ -198,7 +198,7 @@ async function updateAuthUI() {
       '<div class="auth-email">' + escHtml(user.email) + '</div>' +
       '<div class="auth-actions">' +
         '<button class="auth-btn" id="sync-btn" onclick="handleSync(this)">Synchroniser</button>' +
-        '<button class="auth-btn" id="signout-btn" onclick="handleSignOut(this)">Déconnexion</button>' +
+        '<button class="auth-btn" onclick="handleSignOut()">Déconnexion</button>' +
       '</div>';
   } else {
     zone.innerHTML =
@@ -269,19 +269,9 @@ async function handleAuth(mode) {
   renderLessonsProgress();
 }
 
-async function handleSignOut(btn) {
-  if (!btn) btn = document.getElementById('signout-btn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Déconnexion...'; }
-
-  // Change l'UI immédiatement (l'utilisateur voit qu'il est deco)
-  setStorageProfile('anonymous');
-  await updateAuthUI();
-  renderDashboard();
-
-  // Cleanup serveur en arrière-plan, puis reload transparent
-  signOut().finally(() => {
-    window.location.reload();
-  });
+async function handleSignOut() {
+  await signOut();
+  window.location.reload();
 }
 
 async function handleSync(btn) {
