@@ -27,6 +27,7 @@ async function init() {
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
   renderLessons();
   renderDashboard();       // 7. rendu (inclut l'état de connexion)
+  await updateAuthUI();    // mise à jour zone connexion (après bootAuthAndSync)
   setupTabs();
   setupCardInteraction(); // BUG 1 fix : remplace setupSwipe()
   setupKeyboard();
@@ -163,8 +164,6 @@ function renderDashboard() {
     stats.lessonsMastered + ' / ' + stats.totalLessons;
   document.getElementById('dash-review').textContent =
     'À revoir : ' + stats.toReview + ' question' + (stats.toReview > 1 ? 's' : '');
-
-  updateAuthUI(); // zone de connexion (sans effet si cloud non configuré)
 }
 
 // Réinitialise TOUTE la progression, après confirmation.
@@ -246,26 +245,37 @@ async function handleAuth(mode) {
   const { data, error } = await fn(email, pass);
   if (error) { msg.textContent = friendlyAuthError(error); return; }
 
-  // Inscription avec confirmation email requise (pas de session ouverte).
+  // Inscription : pas de session ouverte immédiatement.
   if (mode === 'signup' && data && data.user && !data.session) {
-    msg.textContent = 'Compte créé. Vérifie ton email pour confirmer ton inscription.';
+    // identities vide = email déjà utilisé (Supabase masque l'erreur pour la sécurité).
+    const isDuplicate = !data.user.identities || data.user.identities.length === 0;
+    const form = document.getElementById('auth-form');
+    if (form) {
+      form.innerHTML = '<div class="auth-msg ' + (isDuplicate ? '' : 'ok') + '">' +
+        escHtml(isDuplicate
+          ? 'Un compte existe déjà avec cet email.'
+          : 'Compte créé. Vérifie ton email pour confirmer ton inscription.') +
+        '</div>';
+    }
     return;
   }
 
   // Connecté : fusionner local + cloud puis rafraîchir.
-  msg.textContent = '';
   await syncProgress();
+  await updateAuthUI();
   renderDashboard();
   renderLessonsProgress();
 }
 
 async function handleSignOut() {
   await signOut();          // ne supprime PAS le localStorage
-  renderDashboard();        // repasse en mode local
+  await updateAuthUI();     // attend que la session soit bien effacée
+  renderDashboard();
 }
 
 async function handleSync() {
   await syncProgress();
+  await updateAuthUI();
   renderDashboard();
   renderLessonsProgress();
 }
