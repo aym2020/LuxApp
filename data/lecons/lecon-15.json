@@ -1,0 +1,1098 @@
+{
+    "id": 15,
+    "titre": "D'Auerzäit",
+    "titre_fr": "Lire et dire l'heure",
+    "couleur": "#f08c46",
+    "instructions": {
+        "flashcards": "Mémoriser les heures, les expressions permettant de lire l'heure en luxembourgeois, les moments de la journée ainsi que les questions et réponses utilisées pour demander et indiquer l'heure.",
+        "quiz": "Présenter une heure ou une expression en luxembourgeois. La bonne réponse est la traduction française correspondante. Les distracteurs doivent être des heures ou expressions proches de la même leçon afin d'éviter les réponses évidentes.",
+        "trous": "Compléter des phrases liées à l'heure. Les mots à retrouver peuvent être des nombres, des expressions temporelles comme op, vir ou hallwer, des moments de la journée ou des éléments de questions et réponses. Les distracteurs doivent rester cohérents avec la notion travaillée.",
+        "ecriture": "Produire en luxembourgeois toutes les heures, les questions, les réponses, les horaires et les expressions utilisées dans la leçon. Toutes les structures importantes du cours doivent apparaître au moins une fois."
+    },
+    "flashcards": [
+        {
+            "id": 1,
+            "fr": "Quelle heure est-il ?",
+            "lu": "Wéi vill Auer ass et ?",
+            "note": "Question principale"
+        },
+        {
+            "id": 2,
+            "fr": "Il est une heure.",
+            "lu": "Et ass eng Auer.",
+            "note": "1:00"
+        },
+        {
+            "id": 3,
+            "fr": "Il est deux heures.",
+            "lu": "Et ass zwou Auer.",
+            "note": "2:00"
+        },
+        {
+            "id": 4,
+            "fr": "Il est douze heures.",
+            "lu": "Et ass zwielef Auer.",
+            "note": "12:00"
+        },
+        {
+            "id": 5,
+            "fr": "Il est une heure cinq.",
+            "lu": "Et ass fënnef op eng.",
+            "note": "1:05"
+        },
+        {
+            "id": 6,
+            "fr": "Il est une heure dix.",
+            "lu": "Et ass zéng op eng.",
+            "note": "1:10"
+        },
+        {
+            "id": 7,
+            "fr": "Il est une heure et quart.",
+            "lu": "Et ass véierel op eng.",
+            "note": "1:15"
+        },
+        {
+            "id": 8,
+            "fr": "Il est une heure vingt.",
+            "lu": "Et ass zwanzeg op eng.",
+            "note": "1:20"
+        },
+        {
+            "id": 9,
+            "fr": "Il est une heure vingt-cinq.",
+            "lu": "Et ass fënnef vir hallwer zwou.",
+            "note": "1:25"
+        },
+        {
+            "id": 10,
+            "fr": "Il est une heure et demie.",
+            "lu": "Et ass hallwer vir zwou.",
+            "note": "1:30"
+        },
+        {
+            "id": 11,
+            "fr": "Il est une heure trente-cinq.",
+            "lu": "Et ass fënnef op hallwer zwou.",
+            "note": "1:35"
+        },
+        {
+            "id": 12,
+            "fr": "Il est une heure quarante.",
+            "lu": "Et ass zwanzeg vir zwou.",
+            "note": "1:40"
+        },
+        {
+            "id": 13,
+            "fr": "Il est deux heures moins le quart.",
+            "lu": "Et ass véierel vir zwou.",
+            "note": "1:45"
+        },
+        {
+            "id": 14,
+            "fr": "Il est deux heures moins dix.",
+            "lu": "Et ass zéng vir zwou.",
+            "note": "1:50"
+        },
+        {
+            "id": 15,
+            "fr": "Il est deux heures moins cinq.",
+            "lu": "Et ass fënnef vir zwou.",
+            "note": "1:55"
+        },
+        {
+            "id": 16,
+            "fr": "Le matin",
+            "lu": "moies",
+            "note": "Période de la journée"
+        },
+        {
+            "id": 17,
+            "fr": "À midi",
+            "lu": "mëttes",
+            "note": "Période de la journée"
+        },
+        {
+            "id": 18,
+            "fr": "L'après-midi",
+            "lu": "nomëttes",
+            "note": "Période de la journée"
+        },
+        {
+            "id": 19,
+            "fr": "Le soir",
+            "lu": "owes",
+            "note": "Période de la journée"
+        },
+        {
+            "id": 20,
+            "fr": "La nuit",
+            "lu": "nuets",
+            "note": "Période de la journée"
+        },
+        {
+            "id": 21,
+            "fr": "Minuit",
+            "lu": "Mëtternuecht",
+            "note": "00:00"
+        },
+        {
+            "id": 22,
+            "fr": "Minuit",
+            "lu": "Hallefnuecht",
+            "note": "00:00"
+        },
+        {
+            "id": 23,
+            "fr": "Je travaille de huit heures du matin à cinq heures de l'après-midi.",
+            "lu": "Ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes.",
+            "note": "Horaire de travail"
+        },
+        {
+            "id": 24,
+            "fr": "Je commence à huit heures du matin.",
+            "lu": "Ech fänken um aacht Auer moies un.",
+            "note": "Début du travail"
+        },
+        {
+            "id": 25,
+            "fr": "Je termine à cinq heures de l'après-midi.",
+            "lu": "Ech halen um fënnef Auer nomëttes op.",
+            "note": "Fin du travail"
+        },
+        {
+            "id": 26,
+            "fr": "À quelle heure commences-tu à travailler ?",
+            "lu": "Um wéi vill Auer fänks du mat schaffen un ?",
+            "note": "Question"
+        },
+        {
+            "id": 27,
+            "fr": "À quelle heure termines-tu de travailler ?",
+            "lu": "Um wéi vill Auer häls du mat schaffen op ?",
+            "note": "Question"
+        }
+    ],
+    "quiz": [
+        {
+            "id": 1,
+            "question": "Et ass eng Auer.",
+            "reponse": "Il est une heure.",
+            "distracteurs": [
+                "Il est deux heures.",
+                "Il est midi.",
+                "Il est une heure cinq."
+            ]
+        },
+        {
+            "id": 2,
+            "question": "Et ass zwou Auer.",
+            "reponse": "Il est deux heures.",
+            "distracteurs": [
+                "Il est une heure.",
+                "Il est midi.",
+                "Il est trois heures."
+            ]
+        },
+        {
+            "id": 3,
+            "question": "Et ass zwielef Auer.",
+            "reponse": "Il est douze heures.",
+            "distracteurs": [
+                "Il est minuit.",
+                "Il est onze heures.",
+                "Il est une heure."
+            ]
+        },
+        {
+            "id": 4,
+            "question": "Et ass fënnef op eng.",
+            "reponse": "Il est une heure cinq.",
+            "distracteurs": [
+                "Il est une heure dix.",
+                "Il est une heure vingt-cinq.",
+                "Il est deux heures moins cinq."
+            ]
+        },
+        {
+            "id": 5,
+            "question": "Et ass zéng op eng.",
+            "reponse": "Il est une heure dix.",
+            "distracteurs": [
+                "Il est une heure cinq.",
+                "Il est une heure quinze.",
+                "Il est deux heures moins dix."
+            ]
+        },
+        {
+            "id": 6,
+            "question": "Et ass véierel op eng.",
+            "reponse": "Il est une heure et quart.",
+            "distracteurs": [
+                "Il est une heure et demie.",
+                "Il est deux heures moins le quart.",
+                "Il est une heure vingt."
+            ]
+        },
+        {
+            "id": 7,
+            "question": "Et ass zwanzeg op eng.",
+            "reponse": "Il est une heure vingt.",
+            "distracteurs": [
+                "Il est une heure vingt-cinq.",
+                "Il est une heure quarante.",
+                "Il est une heure et quart."
+            ]
+        },
+        {
+            "id": 8,
+            "question": "Et ass fënnef vir hallwer zwou.",
+            "reponse": "Il est une heure vingt-cinq.",
+            "distracteurs": [
+                "Il est une heure trente.",
+                "Il est une heure trente-cinq.",
+                "Il est une heure vingt."
+            ]
+        },
+        {
+            "id": 9,
+            "question": "Et ass hallwer vir zwou.",
+            "reponse": "Il est une heure et demie.",
+            "distracteurs": [
+                "Il est une heure vingt-cinq.",
+                "Il est une heure trente-cinq.",
+                "Il est deux heures moins le quart."
+            ]
+        },
+        {
+            "id": 10,
+            "question": "Et ass fënnef op hallwer zwou.",
+            "reponse": "Il est une heure trente-cinq.",
+            "distracteurs": [
+                "Il est une heure trente.",
+                "Il est une heure quarante.",
+                "Il est une heure vingt-cinq."
+            ]
+        },
+        {
+            "id": 11,
+            "question": "Et ass zwanzeg vir zwou.",
+            "reponse": "Il est une heure quarante.",
+            "distracteurs": [
+                "Il est une heure vingt.",
+                "Il est une heure trente-cinq.",
+                "Il est deux heures moins dix."
+            ]
+        },
+        {
+            "id": 12,
+            "question": "Et ass véierel vir zwou.",
+            "reponse": "Il est deux heures moins le quart.",
+            "distracteurs": [
+                "Il est une heure et quart.",
+                "Il est deux heures moins dix.",
+                "Il est une heure quarante."
+            ]
+        },
+        {
+            "id": 13,
+            "question": "Et ass zéng vir zwou.",
+            "reponse": "Il est deux heures moins dix.",
+            "distracteurs": [
+                "Il est une heure dix.",
+                "Il est deux heures moins cinq.",
+                "Il est deux heures moins le quart."
+            ]
+        },
+        {
+            "id": 14,
+            "question": "Et ass fënnef vir zwou.",
+            "reponse": "Il est deux heures moins cinq.",
+            "distracteurs": [
+                "Il est une heure cinq.",
+                "Il est deux heures moins dix.",
+                "Il est une heure cinquante."
+            ]
+        },
+        {
+            "id": 15,
+            "question": "moies",
+            "reponse": "le matin",
+            "distracteurs": [
+                "à midi",
+                "le soir",
+                "la nuit"
+            ]
+        },
+        {
+            "id": 16,
+            "question": "mëttes",
+            "reponse": "à midi",
+            "distracteurs": [
+                "le matin",
+                "l'après-midi",
+                "la nuit"
+            ]
+        },
+        {
+            "id": 17,
+            "question": "nomëttes",
+            "reponse": "l'après-midi",
+            "distracteurs": [
+                "le matin",
+                "le soir",
+                "la nuit"
+            ]
+        },
+        {
+            "id": 18,
+            "question": "owes",
+            "reponse": "le soir",
+            "distracteurs": [
+                "le matin",
+                "à midi",
+                "la nuit"
+            ]
+        },
+        {
+            "id": 19,
+            "question": "nuets",
+            "reponse": "la nuit",
+            "distracteurs": [
+                "le matin",
+                "à midi",
+                "le soir"
+            ]
+        },
+        {
+            "id": 20,
+            "question": "Mëtternuecht",
+            "reponse": "minuit",
+            "distracteurs": [
+                "midi",
+                "une heure",
+                "deux heures"
+            ]
+        },
+        {
+            "id": 21,
+            "question": "Hallefnuecht",
+            "reponse": "minuit",
+            "distracteurs": [
+                "midi",
+                "le soir",
+                "la nuit"
+            ]
+        },
+        {
+            "id": 22,
+            "question": "Ech fänken um aacht Auer moies un.",
+            "reponse": "Je commence à huit heures du matin.",
+            "distracteurs": [
+                "Je termine à huit heures du matin.",
+                "Je travaille jusqu'à huit heures du matin.",
+                "Je commence à cinq heures de l'après-midi."
+            ]
+        },
+        {
+            "id": 23,
+            "question": "Ech halen um fënnef Auer nomëttes op.",
+            "reponse": "Je termine à cinq heures de l'après-midi.",
+            "distracteurs": [
+                "Je commence à cinq heures de l'après-midi.",
+                "Je travaille à cinq heures de l'après-midi.",
+                "Je termine à huit heures du matin."
+            ]
+        },
+        {
+            "id": 24,
+            "question": "Um wéi vill Auer fänks du mat schaffen un ?",
+            "reponse": "À quelle heure commences-tu à travailler ?",
+            "distracteurs": [
+                "À quelle heure termines-tu de travailler ?",
+                "Quelle heure est-il ?",
+                "Quand travailles-tu ?"
+            ]
+        },
+        {
+            "id": 25,
+            "question": "Um wéi vill Auer häls du mat schaffen op ?",
+            "reponse": "À quelle heure termines-tu de travailler ?",
+            "distracteurs": [
+                "À quelle heure commences-tu à travailler ?",
+                "Quelle heure est-il ?",
+                "Quand travailles-tu ?"
+            ]
+        }
+    ],
+    "trous": [
+        {
+            "id": 1,
+            "fr": "Quelle heure est-il ?",
+            "avant": "Wéi vill",
+            "trou": "Auer",
+            "apres": "ass et ?",
+            "choix": [
+                "Auer",
+                "Joer",
+                "Minutt",
+                "Dag"
+            ]
+        },
+        {
+            "id": 2,
+            "fr": "Il est une heure.",
+            "avant": "Et ass",
+            "trou": "eng",
+            "apres": "Auer.",
+            "choix": [
+                "eng",
+                "zwou",
+                "dräi",
+                "véier"
+            ]
+        },
+        {
+            "id": 3,
+            "fr": "Il est deux heures.",
+            "avant": "Et ass",
+            "trou": "zwou",
+            "apres": "Auer.",
+            "choix": [
+                "eng",
+                "zwou",
+                "dräi",
+                "véier"
+            ]
+        },
+        {
+            "id": 4,
+            "fr": "Il est une heure cinq.",
+            "avant": "Et ass",
+            "trou": "fënnef",
+            "apres": "op eng.",
+            "choix": [
+                "fënnef",
+                "zéng",
+                "véierel",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 5,
+            "fr": "Il est une heure dix.",
+            "avant": "Et ass",
+            "trou": "zéng",
+            "apres": "op eng.",
+            "choix": [
+                "fënnef",
+                "zéng",
+                "véierel",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 6,
+            "fr": "Il est une heure et quart.",
+            "avant": "Et ass",
+            "trou": "véierel",
+            "apres": "op eng.",
+            "choix": [
+                "véierel",
+                "fënnef",
+                "zéng",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 7,
+            "fr": "Il est une heure vingt.",
+            "avant": "Et ass",
+            "trou": "zwanzeg",
+            "apres": "op eng.",
+            "choix": [
+                "fënnef",
+                "zéng",
+                "véierel",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 8,
+            "fr": "Il est une heure vingt-cinq.",
+            "avant": "Et ass fënnef",
+            "trou": "vir",
+            "apres": "hallwer zwou.",
+            "choix": [
+                "vir",
+                "op",
+                "bis",
+                "um"
+            ]
+        },
+        {
+            "id": 9,
+            "fr": "Il est une heure et demie.",
+            "avant": "Et ass",
+            "trou": "hallwer",
+            "apres": "vir zwou.",
+            "choix": [
+                "hallwer",
+                "véierel",
+                "zéng",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 10,
+            "fr": "Il est une heure trente-cinq.",
+            "avant": "Et ass fënnef",
+            "trou": "op",
+            "apres": "hallwer zwou.",
+            "choix": [
+                "op",
+                "vir",
+                "bis",
+                "um"
+            ]
+        },
+        {
+            "id": 11,
+            "fr": "Il est une heure quarante.",
+            "avant": "Et ass zwanzeg",
+            "trou": "vir",
+            "apres": "zwou.",
+            "choix": [
+                "vir",
+                "op",
+                "bis",
+                "um"
+            ]
+        },
+        {
+            "id": 12,
+            "fr": "Il est deux heures moins le quart.",
+            "avant": "Et ass",
+            "trou": "véierel",
+            "apres": "vir zwou.",
+            "choix": [
+                "véierel",
+                "hallwer",
+                "zéng",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 13,
+            "fr": "Il est deux heures moins dix.",
+            "avant": "Et ass",
+            "trou": "zéng",
+            "apres": "vir zwou.",
+            "choix": [
+                "fënnef",
+                "zéng",
+                "véierel",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 14,
+            "fr": "Il est deux heures moins cinq.",
+            "avant": "Et ass",
+            "trou": "fënnef",
+            "apres": "vir zwou.",
+            "choix": [
+                "fënnef",
+                "zéng",
+                "véierel",
+                "zwanzeg"
+            ]
+        },
+        {
+            "id": 15,
+            "fr": "Il est huit heures du matin.",
+            "avant": "Et ass aacht Auer",
+            "trou": "moies",
+            "apres": ".",
+            "choix": [
+                "moies",
+                "mëttes",
+                "nomëttes",
+                "owes"
+            ]
+        },
+        {
+            "id": 16,
+            "fr": "Il est douze heures.",
+            "avant": "Et ass zwielef Auer",
+            "trou": "mëttes",
+            "apres": ".",
+            "choix": [
+                "moies",
+                "mëttes",
+                "nomëttes",
+                "nuets"
+            ]
+        },
+        {
+            "id": 17,
+            "fr": "Il est trois heures de l'après-midi.",
+            "avant": "Et ass dräi Auer",
+            "trou": "nomëttes",
+            "apres": ".",
+            "choix": [
+                "moies",
+                "mëttes",
+                "nomëttes",
+                "owes"
+            ]
+        },
+        {
+            "id": 18,
+            "fr": "Il est sept heures du soir.",
+            "avant": "Et ass siwen Auer",
+            "trou": "owes",
+            "apres": ".",
+            "choix": [
+                "moies",
+                "mëttes",
+                "nomëttes",
+                "owes"
+            ]
+        },
+        {
+            "id": 19,
+            "fr": "Il est minuit.",
+            "avant": "Et ass",
+            "trou": "Mëtternuecht",
+            "apres": ".",
+            "choix": [
+                "Mëtternuecht",
+                "moies",
+                "mëttes",
+                "owes"
+            ]
+        },
+        {
+            "id": 20,
+            "fr": "Je travaille de huit heures du matin à cinq heures de l'après-midi.",
+            "avant": "Ech schaffe vun aacht Auer moies bis fënnef Auer",
+            "trou": "nomëttes",
+            "apres": ".",
+            "choix": [
+                "moies",
+                "mëttes",
+                "nomëttes",
+                "owes"
+            ]
+        },
+        {
+            "id": 21,
+            "fr": "Je commence à huit heures du matin.",
+            "avant": "Ech",
+            "trou": "fänken",
+            "apres": "um aacht Auer moies un.",
+            "choix": [
+                "fänken",
+                "halen",
+                "schaffen",
+                "sinn"
+            ]
+        },
+        {
+            "id": 22,
+            "fr": "Je termine à cinq heures de l'après-midi.",
+            "avant": "Ech halen um fënnef Auer nomëttes",
+            "trou": "op",
+            "apres": ".",
+            "choix": [
+                "op",
+                "un",
+                "vir",
+                "opun"
+            ]
+        },
+        {
+            "id": 23,
+            "fr": "À quelle heure commences-tu à travailler ?",
+            "avant": "Um wéi vill Auer",
+            "trou": "fänks",
+            "apres": "du mat schaffen un ?",
+            "choix": [
+                "fänks",
+                "häls",
+                "bass",
+                "hues"
+            ]
+        },
+        {
+            "id": 24,
+            "fr": "À quelle heure termines-tu de travailler ?",
+            "avant": "Um wéi vill Auer",
+            "trou": "häls",
+            "apres": "du mat schaffen op ?",
+            "choix": [
+                "fänks",
+                "häls",
+                "bass",
+                "hues"
+            ]
+        }
+    ],
+    "ecriture": [
+        {
+            "fr": "Quelle heure est-il ?",
+            "lu": "Wéi vill Auer ass et ?"
+        },
+        {
+            "fr": "Il est une heure.",
+            "lu": "Et ass eng Auer."
+        },
+        {
+            "fr": "Il est deux heures.",
+            "lu": "Et ass zwou Auer."
+        },
+        {
+            "fr": "Il est douze heures.",
+            "lu": "Et ass zwielef Auer."
+        },
+        {
+            "fr": "Il est une heure cinq.",
+            "lu": "Et ass fënnef op eng."
+        },
+        {
+            "fr": "Il est une heure dix.",
+            "lu": "Et ass zéng op eng."
+        },
+        {
+            "fr": "Il est une heure et quart.",
+            "lu": "Et ass véierel op eng."
+        },
+        {
+            "fr": "Il est une heure vingt.",
+            "lu": "Et ass zwanzeg op eng."
+        },
+        {
+            "fr": "Il est une heure vingt-cinq.",
+            "lu": "Et ass fënnef vir hallwer zwou."
+        },
+        {
+            "fr": "Il est une heure et demie.",
+            "lu": "Et ass hallwer vir zwou."
+        },
+        {
+            "fr": "Il est une heure trente-cinq.",
+            "lu": "Et ass fënnef op hallwer zwou."
+        },
+        {
+            "fr": "Il est une heure quarante.",
+            "lu": "Et ass zwanzeg vir zwou."
+        },
+        {
+            "fr": "Il est deux heures moins le quart.",
+            "lu": "Et ass véierel vir zwou."
+        },
+        {
+            "fr": "Il est deux heures moins dix.",
+            "lu": "Et ass zéng vir zwou."
+        },
+        {
+            "fr": "Il est deux heures moins cinq.",
+            "lu": "Et ass fënnef vir zwou."
+        },
+        {
+            "fr": "Le matin",
+            "lu": "moies"
+        },
+        {
+            "fr": "À midi",
+            "lu": "mëttes"
+        },
+        {
+            "fr": "L'après-midi",
+            "lu": "nomëttes"
+        },
+        {
+            "fr": "Le soir",
+            "lu": "owes"
+        },
+        {
+            "fr": "La nuit",
+            "lu": "nuets"
+        },
+        {
+            "fr": "Minuit",
+            "lu": "Mëtternuecht"
+        },
+        {
+            "fr": "Minuit",
+            "lu": "Hallefnuecht"
+        },
+        {
+            "fr": "Il est huit heures du matin.",
+            "lu": "Et ass aacht Auer moies."
+        },
+        {
+            "fr": "Il est midi.",
+            "lu": "Et ass zwielef Auer mëttes."
+        },
+        {
+            "fr": "Il est trois heures de l'après-midi.",
+            "lu": "Et ass dräi Auer nomëttes."
+        },
+        {
+            "fr": "Il est sept heures du soir.",
+            "lu": "Et ass siwen Auer owes."
+        },
+        {
+            "fr": "Il est minuit.",
+            "lu": "Et ass zwielef Auer nuets."
+        },
+        {
+            "fr": "Je travaille de huit heures du matin à cinq heures de l'après-midi.",
+            "lu": "Ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes."
+        },
+        {
+            "fr": "Je commence à huit heures du matin.",
+            "lu": "Ech fänken um aacht Auer moies un."
+        },
+        {
+            "fr": "Je termine à cinq heures de l'après-midi.",
+            "lu": "Ech halen um fënnef Auer nomëttes op."
+        },
+        {
+            "fr": "À quelle heure commences-tu à travailler ?",
+            "lu": "Um wéi vill Auer fänks du mat schaffen un ?"
+        },
+        {
+            "fr": "À quelle heure termines-tu de travailler ?",
+            "lu": "Um wéi vill Auer häls du mat schaffen op ?"
+        },
+        {
+            "fr": "Il est cinq heures et quart.",
+            "lu": "Et ass véierel op fënnef."
+        },
+        {
+            "fr": "Je commence le travail à huit heures du matin.",
+            "lu": "Ech fänken um aacht Auer moies mat schaffen un."
+        },
+        {
+            "fr": "Je termine le travail à cinq heures de l'après-midi.",
+            "lu": "Ech halen um fënnef Auer nomëttes mat schaffen op."
+        }
+    ],
+    "cours": [
+        {
+            "type": "texte",
+            "contenu": "Cette leçon présente la manière de lire et de dire l'heure en luxembourgeois."
+        },
+        {
+            "type": "vocab",
+            "titre": "Question principale",
+            "items": [
+                [
+                    "Wéi vill Auer ass et ?",
+                    "Quelle heure est-il ?"
+                ]
+            ]
+        },
+        {
+            "type": "vocab",
+            "titre": "Heures pleines",
+            "items": [
+                [
+                    "Et ass eng Auer.",
+                    "Il est une heure."
+                ],
+                [
+                    "Et ass zwou Auer.",
+                    "Il est deux heures."
+                ],
+                [
+                    "Et ass zwielef Auer.",
+                    "Il est douze heures."
+                ]
+            ]
+        },
+        {
+            "type": "regle",
+            "titre": "Lire l'heure",
+            "lignes": [
+                "⚠️ En luxembourgeois, on utilise souvent <b>op</b> (après) et <b>vir</b> (avant).",
+                "<b>véierel op</b> = et quart.",
+                "<b>véierel vir</b> = moins le quart.",
+                "<b>hallwer vir zwou</b> signifie littéralement la moitié vers deux. Cette expression correspond à 1h30."
+            ]
+        },
+        {
+            "type": "vocab",
+            "titre": "Avant la demi-heure",
+            "items": [
+                [
+                    "Et ass fënnef op eng.",
+                    "Il est une heure cinq."
+                ],
+                [
+                    "Et ass zéng op eng.",
+                    "Il est une heure dix."
+                ],
+                [
+                    "Et ass véierel op eng.",
+                    "Il est une heure et quart."
+                ],
+                [
+                    "Et ass zwanzeg op eng.",
+                    "Il est une heure vingt."
+                ]
+            ]
+        },
+        {
+            "type": "vocab",
+            "titre": "Autour de la demi-heure",
+            "items": [
+                [
+                    "Et ass fënnef vir hallwer zwou.",
+                    "Il est une heure vingt-cinq."
+                ],
+                [
+                    "Et ass hallwer vir zwou.",
+                    "Il est une heure et demie."
+                ],
+                [
+                    "Et ass fënnef op hallwer zwou.",
+                    "Il est une heure trente-cinq."
+                ]
+            ]
+        },
+        {
+            "type": "vocab",
+            "titre": "Après la demi-heure",
+            "items": [
+                [
+                    "Et ass zwanzeg vir zwou.",
+                    "Il est une heure quarante."
+                ],
+                [
+                    "Et ass véierel vir zwou.",
+                    "Il est deux heures moins le quart."
+                ],
+                [
+                    "Et ass zéng vir zwou.",
+                    "Il est deux heures moins dix."
+                ],
+                [
+                    "Et ass fënnef vir zwou.",
+                    "Il est deux heures moins cinq."
+                ]
+            ]
+        },
+        {
+            "type": "vocab",
+            "titre": "Moments de la journée",
+            "items": [
+                [
+                    "moies",
+                    "le matin"
+                ],
+                [
+                    "mëttes",
+                    "à midi"
+                ],
+                [
+                    "nomëttes",
+                    "l'après-midi"
+                ],
+                [
+                    "owes",
+                    "le soir"
+                ],
+                [
+                    "nuets",
+                    "la nuit"
+                ],
+                [
+                    "Mëtternuecht",
+                    "minuit"
+                ],
+                [
+                    "Hallefnuecht",
+                    "minuit"
+                ]
+            ]
+        },
+        {
+            "type": "vocab",
+            "titre": "Exemples",
+            "items": [
+                [
+                    "Et ass aacht Auer moies.",
+                    "Il est huit heures du matin."
+                ],
+                [
+                    "Et ass zwielef Auer mëttes.",
+                    "Il est midi."
+                ],
+                [
+                    "Et ass dräi Auer nomëttes.",
+                    "Il est trois heures de l'après-midi."
+                ],
+                [
+                    "Et ass siwen Auer owes.",
+                    "Il est sept heures du soir."
+                ],
+                [
+                    "Et ass zwielef Auer nuets.",
+                    "Il est minuit."
+                ]
+            ]
+        },
+        {
+            "type": "vocab",
+            "titre": "Horaires de travail",
+            "items": [
+                [
+                    "Ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes.",
+                    "Je travaille de huit heures du matin à cinq heures de l'après-midi."
+                ],
+                [
+                    "Ech fänken um aacht Auer moies un.",
+                    "Je commence à huit heures du matin."
+                ],
+                [
+                    "Ech halen um fënnef Auer nomëttes op.",
+                    "Je termine à cinq heures de l'après-midi."
+                ]
+            ]
+        },
+        {
+            "type": "dialogue",
+            "titre": "Au travail",
+            "echanges": [
+                [
+                    "Wéi vill Auer ass et?",
+                    "Quelle heure est-il ?"
+                ],
+                [
+                    "Et ass véierel op fënnef.",
+                    "Il est cinq heures et quart."
+                ],
+                [
+                    "Um wéi vill Auer fänks du mat schaffen un?",
+                    "À quelle heure commences-tu à travailler ?"
+                ],
+                [
+                    "Ech fänken um aacht Auer moies un.",
+                    "Je commence à huit heures du matin."
+                ],
+                [
+                    "Um wéi vill Auer häls du mat schaffen op?",
+                    "À quelle heure termines-tu de travailler ?"
+                ],
+                [
+                    "Ech halen um fënnef Auer nomëttes op.",
+                    "Je termine à cinq heures de l'après-midi."
+                ]
+            ]
+        }
+    ]
+}
