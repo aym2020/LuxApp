@@ -367,3 +367,12 @@ header {
 .lp-global { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid #2a2926; }
 .lp-global .lp-nom { color: var(--text); }
 .lp-global .lp-bar div { background: var(--correct); }
+.lp-reset {
+  display: block; width: 100%; margin-top: .8rem;
+  padding: .55rem; background: none;
+  border: 1px solid #3a3935; border-radius: var(--r);
+  color: var(--muted); font-family: var(--title);
+  font-size: .68rem; font-weight: 700; cursor: pointer;
+  transition: all .2s;
+}
+.lp-reset:active { border-color: var(--wrong); color: var(--wrong); }

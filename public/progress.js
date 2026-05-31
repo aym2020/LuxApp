@@ -117,6 +117,14 @@ function progressBadge(percent) {
   return { label: 'début', color: '#e8857a' };
 }
 
+// ─── RÉINITIALISATION ───────────────────────────────────────────────────────
+// Efface toute la progression d'une leçon.
+function resetLessonProgress(leconId) {
+  const progress = getProgress();
+  delete progress[leconId];
+  saveProgress(progress);
+}
+
 // ─── AFFICHAGE : POINTS DE NIVEAU (1, 2 ou 3 points) ────────────────────────
 function renderLevelDots(el, level) {
   if (!el) return;
@@ -151,6 +159,7 @@ function renderLessonProgress() {
         <div class="lp-bar"><div style="width:${p.global}%"></div></div>
         <b class="lp-val">${p.global}%</b>
       </div>
+      <button class="lp-reset" onclick="confirmResetLesson()">Réinitialiser cette leçon</button>
     </div>`;
 }
 

@@ -139,6 +139,14 @@ function goHome() {
   showView('view-home');
 }
 
+// Réinitialise la progression de la leçon affichée, après confirmation.
+function confirmResetLesson() {
+  if (confirm('Réinitialiser toute la progression de cette leçon ?')) {
+    resetLessonProgress(currentLecon.id);
+    renderCours();
+  }
+}
+
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
