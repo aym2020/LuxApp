@@ -50,6 +50,8 @@
       <button class="dash-btn" onclick="startSession('errors')">Erreurs fréquentes</button>
 
       <button class="dash-reset" onclick="confirmResetAll()">Réinitialiser toute la progression</button>
+
+      <div class="dash-auth" id="dash-auth"></div>
     </div>
   </div>
 
@@ -236,7 +238,10 @@
     </div>
   </div><!-- /view-session -->
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
   <script src="progress.js"></script>
+  <script src="cloud.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

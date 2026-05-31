@@ -21,9 +21,12 @@ let tAnswered = false;
 
 // ─── BOOT ─────────────────────────────────────────────────────────────────────
 async function init() {
-  lecons = await fetch('/api/lecons').then(r => r.json());
+  lecons = await fetch('/api/lecons').then(r => r.json()); // 1. leçons
+  // 2. la progression locale est déjà lue à la demande depuis localStorage
+  initSupabase();          // 3. init Supabase (sans effet si non configuré)
+  await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
   renderLessons();
-  renderDashboard();
+  renderDashboard();       // 7. rendu (inclut l'état de connexion)
   setupTabs();
   setupCardInteraction(); // BUG 1 fix : remplace setupSwipe()
   setupKeyboard();
@@ -160,15 +163,111 @@ function renderDashboard() {
     stats.lessonsMastered + ' / ' + stats.totalLessons;
   document.getElementById('dash-review').textContent =
     'À revoir : ' + stats.toReview + ' question' + (stats.toReview > 1 ? 's' : '');
+
+  updateAuthUI(); // zone de connexion (sans effet si cloud non configuré)
 }
 
 // Réinitialise TOUTE la progression, après confirmation.
-function confirmResetAll() {
-  if (confirm('Effacer toute la progression de toutes les leçons ?')) {
-    resetProgress();
-    renderDashboard();
-    renderLessonsProgress();
+async function confirmResetAll() {
+  const user = isCloudEnabled() ? await getCurrentUser() : null;
+  const message = user
+    ? 'Effacer TOUTE ta progression, en local ET dans le cloud ? Cette action est irréversible.'
+    : 'Effacer toute la progression locale ? Cette action est irréversible.';
+  if (!confirm(message)) return;
+
+  resetProgress();                 // local
+  if (user) await deleteCloudProgress(); // cloud
+  renderDashboard();
+  renderLessonsProgress();
+}
+
+// ─── UI : ZONE DE CONNEXION SUR LE DASHBOARD ────────────────────────────────
+async function updateAuthUI() {
+  const zone = document.getElementById('dash-auth');
+  if (!zone) return;
+
+  // Cloud non configuré -> mention discrète, rien d'autre.
+  if (!isCloudEnabled()) {
+    zone.innerHTML = '<div class="auth-state">Progression locale uniquement</div>';
+    return;
   }
+
+  const user = await getCurrentUser();
+  if (user) {
+    zone.innerHTML =
+      '<div class="auth-state ok">Sauvegarde cloud activée</div>' +
+      '<div class="auth-email">' + escHtml(user.email) + '</div>' +
+      '<div class="auth-actions">' +
+        '<button class="auth-btn" onclick="handleSync()">Synchroniser</button>' +
+        '<button class="auth-btn" onclick="handleSignOut()">Déconnexion</button>' +
+      '</div>';
+  } else {
+    zone.innerHTML =
+      '<div class="auth-state">Progression locale uniquement</div>' +
+      '<div class="auth-actions">' +
+        '<button class="auth-btn" onclick="showAuthForm(\'signin\')">Connexion</button>' +
+        '<button class="auth-btn" onclick="showAuthForm(\'signup\')">Créer un compte</button>' +
+      '</div>' +
+      '<div id="auth-form" class="auth-form hidden"></div>';
+  }
+}
+
+function showAuthForm(mode) {
+  const f = document.getElementById('auth-form');
+  if (!f) return;
+  f.classList.remove('hidden');
+  f.innerHTML =
+    '<input id="auth-email" type="email" class="auth-input" placeholder="Email" autocomplete="email">' +
+    '<input id="auth-pass" type="password" class="auth-input" placeholder="Mot de passe" autocomplete="current-password">' +
+    '<button class="auth-btn primary" onclick="handleAuth(\'' + mode + '\')">' +
+      (mode === 'signup' ? 'Créer le compte' : 'Se connecter') +
+    '</button>' +
+    '<div id="auth-msg" class="auth-msg"></div>';
+}
+
+// Messages d'erreur clairs (jamais d'erreur technique brute).
+function friendlyAuthError(error) {
+  const m = ((error && error.message) || '').toLowerCase();
+  if (m.includes('invalid login')) return 'Email ou mot de passe incorrect.';
+  if (m.includes('already')) return 'Un compte existe déjà avec cet email.';
+  if (m.includes('password')) return 'Mot de passe trop court (6 caractères minimum).';
+  if (m.includes('email')) return 'Email invalide.';
+  return 'Une erreur est survenue. Réessaie.';
+}
+
+async function handleAuth(mode) {
+  const email = document.getElementById('auth-email').value.trim();
+  const pass = document.getElementById('auth-pass').value;
+  const msg = document.getElementById('auth-msg');
+  if (!email || !pass) { msg.textContent = 'Email et mot de passe requis.'; return; }
+  msg.textContent = '…';
+
+  const fn = mode === 'signup' ? signUp : signIn;
+  const { data, error } = await fn(email, pass);
+  if (error) { msg.textContent = friendlyAuthError(error); return; }
+
+  // Inscription avec confirmation email requise (pas de session ouverte).
+  if (mode === 'signup' && data && data.user && !data.session) {
+    msg.textContent = 'Compte créé. Vérifie ton email pour confirmer ton inscription.';
+    return;
+  }
+
+  // Connecté : fusionner local + cloud puis rafraîchir.
+  msg.textContent = '';
+  await syncProgress();
+  renderDashboard();
+  renderLessonsProgress();
+}
+
+async function handleSignOut() {
+  await signOut();          // ne supprime PAS le localStorage
+  renderDashboard();        // repasse en mode local
+}
+
+async function handleSync() {
+  await syncProgress();
+  renderDashboard();
+  renderLessonsProgress();
 }
 
 // Réinitialise la progression de la leçon affichée, après confirmation.

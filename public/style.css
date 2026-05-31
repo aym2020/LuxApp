@@ -426,3 +426,30 @@ header {
   cursor: pointer; transition: all .2s;
 }
 .dash-reset:active { border-color: var(--wrong); color: var(--wrong); }
+
+/* ── ZONE DE CONNEXION (cloud) ──────────────────────────────────────────── */
+.dash-auth {
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #2a2926;
+  display: flex; flex-direction: column; gap: .5rem; align-items: center;
+}
+.auth-state { font-size: .72rem; font-weight: 700; color: var(--muted); }
+.auth-state.ok { color: var(--correct); }
+.auth-email { font-size: .7rem; color: var(--text); font-family: var(--serif); font-style: italic; }
+.auth-actions { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+.auth-btn {
+  padding: .5rem .9rem; min-height: 38px;
+  background: var(--surface); border: 1px solid #3a3935; border-radius: 999px;
+  color: var(--text); font-family: var(--title); font-size: .72rem; font-weight: 700;
+  cursor: pointer; transition: all .15s;
+}
+.auth-btn:active { background: var(--surface2); }
+.auth-btn.primary { background: var(--accent); color: #111; border-color: var(--accent); }
+.auth-form { width: 100%; display: flex; flex-direction: column; gap: .5rem; margin-top: .5rem; }
+.auth-input {
+  width: 100%; padding: .7rem 1rem; min-height: 44px;
+  background: var(--surface); border: 1px solid #3a3935; border-radius: var(--r);
+  color: var(--text); font-family: var(--title); font-size: max(.85rem, 16px);
+  outline: none; transition: border-color .2s;
+}
+.auth-input:focus { border-color: var(--accent); }
+.auth-msg { font-size: .7rem; color: var(--muted); text-align: center; min-height: 1em; }

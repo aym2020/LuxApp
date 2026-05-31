@@ -214,6 +214,8 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
     incrementWrongCount(leconId, type, questionId);
   }
   updateStreak();
+  // Synchro cloud optionnelle (différée). Sans effet si non connecté.
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
 // ─── TOUTES LES QUESTIONS (à plat, tous types et toutes leçons) ─────────────
