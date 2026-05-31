@@ -269,8 +269,19 @@ async function handleAuth(mode) {
   renderLessonsProgress();
 }
 
-async function handleSignOut() {
-  await signOut();
+function handleSignOut() {
+  // 1. Efface immédiatement la session Supabase stockée en localStorage.
+  //    (les clés Supabase commencent par "sb-"). Synchrone => garanti avant reload.
+  try {
+    Object.keys(localStorage)
+      .filter(k => k.startsWith('sb-'))
+      .forEach(k => localStorage.removeItem(k));
+  } catch (e) { /* ignore */ }
+
+  // 2. Déconnexion serveur en arrière-plan (sans bloquer).
+  try { signOut(); } catch (e) { /* ignore */ }
+
+  // 3. Recharge : au boot, aucun user détecté -> profil "anonymous".
   window.location.reload();
 }
 
