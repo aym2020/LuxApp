@@ -67,7 +67,7 @@
         {
             "id": 10,
             "fr": "Il est une heure et demie.",
-            "lu": "Et ass hallwer vir zwou.",
+            "lu": "Et ass hallwer zwou.",
             "note": "1:30"
         },
         {
@@ -256,7 +256,7 @@
         },
         {
             "id": 9,
-            "question": "Et ass hallwer vir zwou.",
+            "question": "Et ass hallwer zwou.",
             "reponse": "Il est une heure et demie.",
             "distracteurs": [
                 "Il est une heure vingt-cinq.",
@@ -535,7 +535,7 @@
             "fr": "Il est une heure et demie.",
             "avant": "Et ass",
             "trou": "hallwer",
-            "apres": "vir zwou.",
+            "apres": "zwou.",
             "choix": [
                 "hallwer",
                 "véierel",
@@ -778,7 +778,7 @@
         },
         {
             "fr": "Il est une heure et demie.",
-            "lu": "Et ass hallwer vir zwou."
+            "lu": "Et ass hallwer zwou."
         },
         {
             "fr": "Il est une heure trente-cinq.",
@@ -921,7 +921,7 @@
                 "⚠️ En luxembourgeois, on utilise souvent <b>op</b> (après) et <b>vir</b> (avant).",
                 "<b>véierel op</b> = et quart.",
                 "<b>véierel vir</b> = moins le quart.",
-                "<b>hallwer vir zwou</b> signifie littéralement la moitié vers deux. Cette expression correspond à 1h30."
+                "<b>hallwer zwou</b> signifie la demi-heure avant deux, soit 1h30."
             ]
         },
         {
@@ -955,7 +955,7 @@
                     "Il est une heure vingt-cinq."
                 ],
                 [
-                    "Et ass hallwer vir zwou.",
+                    "Et ass hallwer zwou.",
                     "Il est une heure et demie."
                 ],
                 [

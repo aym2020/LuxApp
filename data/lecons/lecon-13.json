@@ -939,48 +939,43 @@
       ]
     },
     {
-      "type": "texte",
-      "contenu": "Ech hunn e Frënd. (J'ai un petit ami.)"
+      "type": "vocab",
+      "titre": "Exemples",
+      "items": [
+        ["Ech hunn e Frënd.", "J'ai un petit ami."],
+        ["Ech hunn eng Frëndin.", "J'ai une petite amie."],
+        ["Ech hunn e Kand, e Jong.", "J'ai un enfant, un garçon."],
+        ["Ech hunn e Kand, e Meedchen.", "J'ai un enfant, une fille."],
+        ["Ech hunn zwee Kanner, e Meedchen an e Jong.", "J'ai deux enfants, une fille et un garçon."],
+        ["De Paul Mercier ass bestuet. Hien huet zwee Kanner.", "Paul Mercier est marié. Il a deux enfants."],
+        ["Den Hubert Schmidt ass gescheet. Hien huet keng Kanner.", "Hubert Schmidt est divorcé. Il n'a pas d'enfants."],
+        ["D'Jeanne Schanck ass net bestuet.", "Jeanne Schanck n'est pas mariée."],
+        ["D'Jennifer ass Jonggesellin. Si huet e Frënd.", "Jennifer est célibataire. Elle a un petit ami."],
+        ["De Jean Thilges an d'Lydie Thilges si bestuet. Si hunn véier Kanner.", "Jean Thilges et Lydie Thilges sont mariés. Ils ont quatre enfants."],
+        ["Den Här Gustavsson an d'Madame Gustavsson si bestuet. Si hunn keng Kanner. Si hunn e Mupp an eng Kaz.", "Monsieur et Madame Gustavsson sont mariés. Ils n'ont pas d'enfants. Ils ont un chien et un chat."]
+      ]
     },
     {
-      "type": "texte",
-      "contenu": "Ech hunn eng Frëndin. (J'ai une petite amie.)"
-    },
-    {
-      "type": "texte",
-      "contenu": "Ech hunn e Kand, e Jong. (J'ai un enfant, un garçon.)"
-    },
-    {
-      "type": "texte",
-      "contenu": "Ech hunn e Kand, e Meedchen. (J'ai un enfant, une fille.)"
-    },
-    {
-      "type": "texte",
-      "contenu": "Ech hunn zwee Kanner, e Meedchen an e Jong. (J'ai deux enfants, une fille et un garçon.)"
-    },
-    {
-      "type": "texte",
-      "contenu": "De Paul Mercier ass bestuet. De Paul Mercier huet zwee Kanner."
-    },
-    {
-      "type": "texte",
-      "contenu": "Den Hubert Schmidt ass gescheet. Den Hubert Schmidt huet keng Kanner."
-    },
-    {
-      "type": "texte",
-      "contenu": "D'Jeanne Schanck ass net bestuet."
-    },
-    {
-      "type": "texte",
-      "contenu": "D'Jennifer ass Jonggesellin. D'Jennifer huet e Frënd."
-    },
-    {
-      "type": "texte",
-      "contenu": "De Jean Thilges an d'Lydie Thilges si bestuet. Si hunn véier Kanner."
-    },
-    {
-      "type": "texte",
-      "contenu": "Den Här Gustavsson an d'Madame Gustavsson si bestuet. Si hunn keng Kanner. Si hunn e Mupp an eng Kaz."
+      "type": "dialogue",
+      "titre": "Iwwer d'Famill",
+      "echanges": [
+        [
+          "Ass de Paul bestuet?",
+          "Paul est-il marié ?"
+        ],
+        [
+          "Jo, hien ass bestuet an huet zwee Kanner.",
+          "Oui, il est marié et a deux enfants."
+        ],
+        [
+          "Ass d'Jennifer bestuet?",
+          "Jennifer est-elle mariée ?"
+        ],
+        [
+          "Nee, si ass Jonggesellin an huet e Frënd.",
+          "Non, elle est célibataire et a un petit ami."
+        ]
+      ]
     }
   ]
 }
