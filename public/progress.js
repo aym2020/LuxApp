@@ -177,6 +177,17 @@ function incrementWrongCount(leconId, type, questionId) {
   saveWrongStore(store);
 }
 
+function decrementWrongCount(leconId, type, questionId) {
+  const store = getWrongStore();
+  if (!store[leconId] || !store[leconId][type] || !store[leconId][type][questionId]) return;
+  store[leconId][type][questionId] = Math.max(0, store[leconId][type][questionId] - 2);
+  // Si le compteur tombe à 0, on supprime l'entrée pour garder le store propre
+  if (store[leconId][type][questionId] === 0) {
+    delete store[leconId][type][questionId];
+  }
+  saveWrongStore(store);
+}
+
 // ─── SÉRIE QUOTIDIENNE (STREAK) ─────────────────────────────────────────────
 function getStreak() {
   try {
@@ -230,9 +241,10 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
   }
   if (!correct) {
     incrementWrongCount(leconId, type, questionId);
+  } else {
+    decrementWrongCount(leconId, type, questionId);  // ← ajout
   }
   updateStreak();
-  // Synchro cloud optionnelle (différée). Sans effet si non connecté.
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
