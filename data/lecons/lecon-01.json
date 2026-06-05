@@ -1005,14 +1005,6 @@
       "lu": "Schéinen Owend!"
     },
     {
-      "fr": "Bonne fin de journée !",
-      "lu": "Nach e schéinen Dag!"
-    },
-    {
-      "fr": "Bonne fin de soirée !",
-      "lu": "Nach e schéinen Owend!"
-    },
-    {
       "fr": "Merci !",
       "lu": "Merci!"
     },
@@ -1183,14 +1175,6 @@
         [
           "Schéinen Owend!",
           "Bonne soirée !"
-        ],
-        [
-          "Nach e schéinen Dag!",
-          "Bonne fin de journée !"
-        ],
-        [
-          "Nach e schéinen Owend!",
-          "Bonne fin de soirée !"
         ],
         [
           "Merci gläichfalls!",
