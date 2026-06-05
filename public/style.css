@@ -38,7 +38,7 @@ header {
 .app-title { font-size: 1.6rem; font-weight: 800; color: var(--accent); letter-spacing: -.01em; }
 .app-sub   { font-size: .75rem; color: var(--muted); font-weight: 700; letter-spacing: .12em; margin-top: .15rem; }
 
-.lecon-list { padding: 0 1rem 3rem; display: flex; flex-direction: column; gap: .7rem; }
+.lecon-list { padding: 1rem 1rem 3rem 1rem; display: flex; flex-direction: column; gap: .7rem; }
 
 .lecon-card {
   display: flex; align-items: center; gap: 1rem;
