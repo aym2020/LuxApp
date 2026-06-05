@@ -933,7 +933,7 @@
   ],
   "ecriture": [
     {
-      "fr": "Bonjour !",
+      "fr": "Bonjour ! (à toute heure)",
       "lu": "Moien!"
     },
     {
@@ -953,12 +953,12 @@
       "lu": "Gudden Owend!"
     },
     {
-      "fr": "Bonjour Madame.",
-      "lu": "Bonjour Madamm."
+      "fr": "Madame.",
+      "lu": "Madamm."
     },
     {
-      "fr": "Bonjour Monsieur.",
-      "lu": "Bonjour Här."
+      "fr": "Monsieur.",
+      "lu": "Här."
     },
     {
       "fr": "Bonsoir Madame Wagner.",
@@ -1102,7 +1102,7 @@
     },
     {
       "fr": "Quel est votre nom, s'il vous plaît ?",
-      "lu": "Wéi ass Ären Numm wann ech gelift?"
+      "lu": "Wéi ass Ären Numm, wann ech gelift?"
     }
   ],
   "cours": [
