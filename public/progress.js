@@ -289,6 +289,34 @@ function getFrequentErrors(limit) {
     .map(x => x.item);
 }
 
+// ─── SÉLECTION : RÉVISION CONFIGURÉE PAR L'UTILISATEUR ──────────────────────
+// leconIds : ids des leçons à inclure
+// types    : parmi 'quiz', 'trous', 'ecriture'
+// focus    : 'aleatoire' | 'connu' (niveau élevé d'abord) | 'erreurs' (les plus ratées)
+// limit    : nombre de questions
+function getConfiguredReview(leconIds, types, focus, limit) {
+  let all = getAllQuestions()
+    .filter(item => leconIds.includes(item.leconId))
+    .filter(item => types.includes(item.type));
+
+  if (focus === 'erreurs') {
+    all = all
+      .map(item => ({ item, wrong: getWrongCount(item.leconId, item.type, item.qid) }))
+      .filter(x => x.wrong > 0)            // on ignore celles jamais ratées
+      .sort((a, b) => b.wrong - a.wrong)
+      .map(x => x.item);
+  } else if (focus === 'connu') {
+    all = all
+      .map(item => ({ item, level: getQuestionLevel(item.leconId, item.type, item.qid) }))
+      .sort((a, b) => b.level - a.level)   // niveau le plus élevé d'abord
+      .map(x => x.item);
+  } else {
+    all = all.slice().sort(() => Math.random() - 0.5); // aléatoire
+  }
+
+  return all.slice(0, limit);
+}
+
 // ─── STATISTIQUES D'UNE LEÇON ───────────────────────────────────────────────
 // Maîtrisée seulement si TOUTES les questions sont au niveau 3.
 function calculateLessonStats(leconId) {

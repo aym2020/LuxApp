@@ -427,6 +427,36 @@ header {
 }
 .dash-reset:active { border-color: var(--wrong); color: var(--wrong); }
 
+/* ── CONFIGURATION DE RÉVISION ──────────────────────────────────────────── */
+.rs { padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+.rs-block {
+  background: var(--surface); border: 1px solid #2a2926;
+  border-radius: var(--r); padding: 1rem;
+}
+.rs-titre {
+  font-size: .7rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: .7rem;
+}
+.rs-checks { display: flex; flex-direction: column; gap: .55rem; }
+.rs-check {
+  display: flex; align-items: center; gap: .55rem;
+  color: var(--text); font-size: .9rem; cursor: pointer;
+}
+.rs-check input { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
+.rs-all {
+  margin-bottom: .7rem; padding: .4rem .7rem; background: none;
+  border: 1px solid #3a3935; border-radius: 999px;
+  color: var(--muted); font-family: var(--title); font-size: .7rem;
+  font-weight: 700; cursor: pointer;
+}
+.rs-count {
+  width: 100%; padding: .75rem; background: var(--bg);
+  border: 1px solid #444; border-radius: var(--r);
+  color: var(--text); font-family: var(--title); font-size: 1rem;
+}
+.rs-count:focus { border-color: var(--accent); outline: none; }
+
+
 /* ── ZONE DE CONNEXION (cloud) ──────────────────────────────────────────── */
 .dash-auth {
   margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #2a2926;

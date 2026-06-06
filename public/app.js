@@ -345,6 +345,55 @@ function startSession(mode) {
   renderSessionQ();
 }
 
+// ─── RÉVISION CONFIGURÉE ────────────────────────────────────────────────────
+function openReviewSetup() {
+  // Une case par leçon, toutes cochées au départ.
+  const box = document.getElementById('rs-lecons');
+  box.innerHTML = '';
+  lecons.forEach(l => {
+    const label = document.createElement('label');
+    label.className = 'rs-check';
+    label.innerHTML =
+      '<input type="checkbox" value="' + l.id + '" checked> Leçon ' + l.id + ' · ' + escHtml(l.titre);
+    box.appendChild(label);
+  });
+  showView('view-review-setup');
+}
+
+// Coche / décoche toutes les cases d'un conteneur.
+function toggleAllChecks(containerId) {
+  const boxes = document.querySelectorAll('#' + containerId + ' input[type="checkbox"]');
+  const allChecked = [...boxes].every(b => b.checked);
+  boxes.forEach(b => b.checked = !allChecked);
+}
+
+// Lit les choix, construit la liste et lance la session existante.
+function startConfiguredReview() {
+  const leconIds = [...document.querySelectorAll('#rs-lecons input:checked')].map(b => Number(b.value));
+  const types = [...document.querySelectorAll('#rs-types input:checked')].map(b => b.value);
+  const focus = document.querySelector('input[name="rs-focus"]:checked').value;
+  let count = parseInt(document.getElementById('rs-count').value, 10);
+  if (!count || count < 1) count = 20;
+
+  if (!leconIds.length) { alert('Choisis au moins une leçon.'); return; }
+  if (!types.length) { alert('Choisis au moins un type d\'exercice.'); return; }
+
+  const questions = getConfiguredReview(leconIds, types, focus, count);
+  if (!questions.length) {
+    alert('Aucune question ne correspond à ces critères.');
+    return;
+  }
+
+  // Réutilise le moteur de session (mode 'review' = les niveaux évoluent).
+  session = { mode: 'review', questions, index: 0, score: 0, answered: false };
+  document.getElementById('session-num').textContent = 'RÉVISION';
+  document.getElementById('session-titre').textContent = questions.length + ' questions';
+  document.getElementById('session-result').classList.add('hidden');
+  document.getElementById('session-q').classList.remove('hidden');
+  showView('view-session');
+  renderSessionQ();
+}
+
 function renderSessionQ() {
   if (session.index >= session.questions.length) { showSessionResult(); return; }
   session.answered = false;
