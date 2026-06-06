@@ -383,7 +383,7 @@ function readReviewSelection() {
 }
 
 // Met à jour le compteur affiché et l'état (actif/désactivé) d'un focus.
-function setFocusAvailability(focus, count, emptyHint) {
+function setFocusAvailability(focus, count, total, emptyHint) {
   const input = document.querySelector('input[name="rs-focus"][value="' + focus + '"]');
   const row = input.closest('.rs-check');
   const countEl = document.getElementById('rs-count-' + focus);
@@ -391,19 +391,21 @@ function setFocusAvailability(focus, count, emptyHint) {
 
   input.disabled = empty;
   row.classList.toggle('disabled', empty);
-  countEl.textContent = empty ? emptyHint : (count + ' disponible' + (count > 1 ? 's' : ''));
+  countEl.textContent = empty
+    ? emptyHint
+    : count + ' / ' + total + ' disponible' + (count > 1 ? 's' : '');
 }
 
 // Recalcule les 3 compteurs et empêche de rester sur un focus vide.
 function refreshReviewAvailability() {
   const { leconIds, types } = readReviewSelection();
+  const total = getAvailableReviewCount(leconIds, types, 'aleatoire'); // pool brut sans filtre
 
-  setFocusAvailability('aleatoire',
-    getAvailableReviewCount(leconIds, types, 'aleatoire'), 'Aucune question');
+  setFocusAvailability('aleatoire',  total, total, 'Aucune question');
   setFocusAvailability('connu',
-    getAvailableReviewCount(leconIds, types, 'connu'), 'Disponible après tes premières réponses.');
+    getAvailableReviewCount(leconIds, types, 'connu'),     total, 'Disponible après tes premières réponses.');
   setFocusAvailability('difficile',
-    getAvailableReviewCount(leconIds, types, 'difficile'), 'Disponible après tes premières erreurs.');
+    getAvailableReviewCount(leconIds, types, 'difficile'), total, 'Disponible après tes premières erreurs.');
 
   // Si le focus coché est devenu indisponible, on revient à Aléatoire.
   const checked = document.querySelector('input[name="rs-focus"]:checked');
