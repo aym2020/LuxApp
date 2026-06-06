@@ -924,6 +924,7 @@ ecrInput.addEventListener('input', autoResize);
 ecrInput.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
+    e.stopPropagation();   // ← empêche le listener global de re-traiter le même appui
     const nextBtn = document.querySelector('.ecr-next-btn');
     if (nextBtn) {
       nextBtn.click();
@@ -943,6 +944,7 @@ if (sessionInput) {
   sessionInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
+      e.stopPropagation();   // ← idem
       const nextBtn = document.querySelector('.ecr-next-btn');
       if (nextBtn) {
         nextBtn.click();
