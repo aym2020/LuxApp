@@ -943,7 +943,12 @@ if (sessionInput) {
   sessionInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      validateSessionInput();
+      const nextBtn = document.querySelector('.ecr-next-btn');
+      if (nextBtn) {
+        nextBtn.click();
+      } else {
+        validateSessionInput();
+      }
     }
   });
 }
