@@ -766,6 +766,10 @@ function setupKeyboard() {
       if (e.key === 'ArrowLeft')  prevCard();
       if (e.key === ' ') { e.preventDefault(); flipCard(); }
     }
+    if (e.key === 'Enter') {
+      const nextBtn = document.querySelector('.ecr-next-btn');
+      if (nextBtn) { e.preventDefault(); nextBtn.click(); }
+    }
   });
 }
 
