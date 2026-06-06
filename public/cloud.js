@@ -4,7 +4,8 @@
 //
 // Données synchronisées (jamais les leçons) :
 //   - progress.levels  = niveaux des questions (luxProgress)
-//   - progress.wrong   = compteurs d'erreurs (luxWrong)
+//   - progress.wrong   = compteurs d'erreurs actives (luxWrong)
+//   - progress.stats   = historique durable par question (luxQuestionStats)
 //   - streak           = série quotidienne (luxStreak)
 
 let sb = null;            // client Supabase (null = mode local uniquement)
@@ -55,7 +56,7 @@ async function signOut() {
 // ─── PAYLOAD : assemble / applique la progression locale ────────────────────
 function getProgressPayload() {
   return {
-    progress: { levels: getProgress(), wrong: getWrongStore() },
+    progress: { levels: getProgress(), wrong: getWrongStore(), stats: getStatsStore() },
     streak: getStreak()
   };
 }
@@ -65,6 +66,7 @@ function applyProgressPayload(payload) {
   if (payload.progress) {
     if (payload.progress.levels) saveProgress(payload.progress.levels);
     if (payload.progress.wrong) saveWrongStore(payload.progress.wrong);
+    if (payload.progress.stats) saveStatsStore(payload.progress.stats);
   }
   if (payload.streak) saveStreak(payload.streak);
 }
@@ -135,6 +137,38 @@ function mergeMaxNested(local, cloud) {
   return out;
 }
 
+// Stats : par question, on garde le record le plus riche (le plus d'essais).
+// À égalité d'essais, le plus récent (lastSeenAt) l'emporte. Évite de
+// fabriquer un record incohérent en mélangeant les champs.
+function pickRicherStat(a, b) {
+  if (!a) return b;
+  if (!b) return a;
+  const aa = a.attempts || 0, ba = b.attempts || 0;
+  if (aa !== ba) return aa > ba ? a : b;
+  return (a.lastSeenAt || '') >= (b.lastSeenAt || '') ? a : b;
+}
+
+function mergeStatsNested(local, cloud) {
+  const out = {};
+  const lessons = new Set(Object.keys(local || {}).concat(Object.keys(cloud || {})));
+  lessons.forEach(lid => {
+    const lt = (local && local[lid]) || {};
+    const ct = (cloud && cloud[lid]) || {};
+    out[lid] = {};
+    const types = new Set(Object.keys(lt).concat(Object.keys(ct)));
+    types.forEach(type => {
+      const lq = lt[type] || {};
+      const cq = ct[type] || {};
+      out[lid][type] = {};
+      const qids = new Set(Object.keys(lq).concat(Object.keys(cq)));
+      qids.forEach(qid => {
+        out[lid][type][qid] = pickRicherStat(lq[qid], cq[qid]);
+      });
+    });
+  });
+  return out;
+}
+
 // Streak : la date la plus récente l'emporte ; à égalité, le compteur le plus élevé.
 function mergeStreak(local, cloud) {
   local = local || { count: 0, lastActive: null };
@@ -154,7 +188,8 @@ function mergeLocalAndCloudProgress(localData, cloudData) {
   return {
     progress: {
       levels: mergeMaxNested(lp.levels || {}, cp.levels || {}),
-      wrong: mergeMaxNested(lp.wrong || {}, cp.wrong || {})
+      wrong: mergeMaxNested(lp.wrong || {}, cp.wrong || {}),
+      stats: mergeStatsNested(lp.stats || {}, cp.stats || {})
     },
     streak: mergeStreak(l.streak, c.streak)
   };

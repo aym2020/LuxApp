@@ -456,6 +456,10 @@ header {
 }
 .rs-count:focus { border-color: var(--accent); outline: none; }
 .rs-count-opts { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+.rs-focus-text { flex: 1; }
+.rs-focus-count { font-size: .72rem; color: var(--muted); text-align: right; }
+.rs-check.disabled { opacity: .45; cursor: not-allowed; }
+.rs-check.disabled input { cursor: not-allowed; }
 
 
 /* ── ZONE DE CONNEXION (cloud) ──────────────────────────────────────────── */

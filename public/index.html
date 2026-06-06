@@ -233,10 +233,22 @@
 
       <div class="rs-block">
         <div class="rs-titre">Focus</div>
-        <div class="rs-checks">
-          <label class="rs-check"><input type="radio" name="rs-focus" value="aleatoire" checked> Aléatoire</label>
-          <label class="rs-check"><input type="radio" name="rs-focus" value="connu"> À consolider</label>
-          <label class="rs-check"><input type="radio" name="rs-focus" value="difficile"> Difficile</label>
+        <div class="rs-checks" id="rs-focus">
+          <label class="rs-check">
+            <input type="radio" name="rs-focus" value="aleatoire" checked>
+            <span class="rs-focus-text">Aléatoire</span>
+            <span class="rs-focus-count" id="rs-count-aleatoire"></span>
+          </label>
+          <label class="rs-check">
+            <input type="radio" name="rs-focus" value="connu">
+            <span class="rs-focus-text">À consolider</span>
+            <span class="rs-focus-count" id="rs-count-connu"></span>
+          </label>
+          <label class="rs-check">
+            <input type="radio" name="rs-focus" value="difficile">
+            <span class="rs-focus-text">Difficile</span>
+            <span class="rs-focus-count" id="rs-count-difficile"></span>
+          </label>
         </div>
       </div>
 

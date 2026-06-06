@@ -364,9 +364,21 @@ function getFrequentErrors(limit) {
 // focus    : 'aleatoire' | 'connu' (à consolider) | 'difficile'
 // limit    : nombre max de questions (plafonné à 20)
 
-// Une question est "déjà vue" si elle a un historique ou un niveau > 1.
-function isSeen(stats, level) {
-  return stats.attempts > 0 || level > 1 || stats.wrongTotal > 0 || stats.lastSeenAt !== null;
+// Une question est "déjà vue" UNIQUEMENT si elle a un historique réel.
+// On n'utilise jamais le niveau seul : toutes les questions démarrent au niveau 1.
+function hasSeenQuestion(item) {
+  const stats = getQuestionStats(item.leconId, item.type, item.qid);
+  return stats.attempts > 0;
+}
+
+// Une question est "difficile" seulement si elle a déjà été vue ET a posé problème.
+function isDifficultQuestion(item) {
+  const stats = getQuestionStats(item.leconId, item.type, item.qid);
+  return stats.attempts > 0 && (
+    stats.wrongTotal > 0 ||
+    stats.difficultyScore > 0 ||
+    stats.lastWrongAt !== null
+  );
 }
 
 // Erreur "récente" = moins de 7 jours.
@@ -407,39 +419,39 @@ function getConsolidationPriority(item) {
   return p;
 }
 
-function getConfiguredReview(leconIds, types, focus, limit) {
-  limit = Math.min(limit || 20, 20);
-
-  let all = getAllQuestions()
+// Construit le pool brut (leçons + types), sans tri ni coupe.
+function buildReviewPool(leconIds, types) {
+  return getAllQuestions()
     .filter(item => leconIds.includes(item.leconId))
     .filter(item => types.includes(item.type));
+}
+
+function getConfiguredReview(leconIds, types, focus, limit) {
+  limit = Math.min(limit || 20, 20);
+  let all = buildReviewPool(leconIds, types);
 
   if (focus === 'difficile') {
-    // Questions avec un historique de difficulté (jamais "flushées" de la mémoire).
-    all = all.filter(item => {
-      const s = getQuestionStats(item.leconId, item.type, item.qid);
-      const level = getQuestionLevel(item.leconId, item.type, item.qid);
-      return s.wrongTotal > 0 || s.difficultyScore > 0 || s.lastWrongAt !== null
-        || (level === 1 && isSeen(s, level));
-    });
+    all = all.filter(isDifficultQuestion);
     all.sort((a, b) => getDifficultyPriority(b) - getDifficultyPriority(a));
   }
   else if (focus === 'connu') {
-    // Uniquement les questions déjà vues / partiellement maîtrisées.
-    all = all.filter(item => {
-      const s = getQuestionStats(item.leconId, item.type, item.qid);
-      const level = getQuestionLevel(item.leconId, item.type, item.qid);
-      return isSeen(s, level);
-    });
+    all = all.filter(hasSeenQuestion);
     all.sort((a, b) => getConsolidationPriority(b) - getConsolidationPriority(a));
   }
   else {
-    // aléatoire
-    all = all.slice().sort(() => Math.random() - 0.5);
+    all = all.slice().sort(() => Math.random() - 0.5); // aléatoire
   }
 
   // Jamais de répétition, jamais de remplissage aléatoire : on coupe au max.
   return all.slice(0, limit);
+}
+
+// Nombre de questions disponibles pour un focus (non plafonné, pour l'affichage).
+function getAvailableReviewCount(leconIds, types, focus) {
+  let all = buildReviewPool(leconIds, types);
+  if (focus === 'connu') all = all.filter(hasSeenQuestion);
+  else if (focus === 'difficile') all = all.filter(isDifficultQuestion);
+  return all.length;
 }
 
 // ─── STATISTIQUES D'UNE LEÇON ───────────────────────────────────────────────
