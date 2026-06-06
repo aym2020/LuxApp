@@ -924,7 +924,12 @@ ecrInput.addEventListener('input', autoResize);
 ecrInput.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
-    validateEcriture();
+    const nextBtn = document.querySelector('.ecr-next-btn');
+    if (nextBtn) {
+      nextBtn.click();
+    } else {
+      validateEcriture();
+    }
   }
 });
 
