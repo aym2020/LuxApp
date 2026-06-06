@@ -222,16 +222,21 @@
       </div>
 
       <div class="rs-block">
-        <div class="rs-titre">Nombre de questions</div>
-        <input type="number" id="rs-count" class="rs-count" value="20" min="1" max="200">
+        <div class="rs-titre">Nombre de questions (max 20)</div>
+        <div class="rs-checks rs-count-opts" id="rs-count">
+          <label class="rs-check"><input type="radio" name="rs-count" value="5"> 5 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="10"> 10 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="15"> 15 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="20" checked> 20 questions</label>
+        </div>
       </div>
 
       <div class="rs-block">
         <div class="rs-titre">Focus</div>
         <div class="rs-checks">
           <label class="rs-check"><input type="radio" name="rs-focus" value="aleatoire" checked> Aléatoire</label>
-          <label class="rs-check"><input type="radio" name="rs-focus" value="connu"> Déjà connu</label>
-          <label class="rs-check"><input type="radio" name="rs-focus" value="erreurs"> Erreurs fréquentes</label>
+          <label class="rs-check"><input type="radio" name="rs-focus" value="connu"> À consolider</label>
+          <label class="rs-check"><input type="radio" name="rs-focus" value="difficile"> Difficile</label>
         </div>
       </div>
 

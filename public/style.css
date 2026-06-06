@@ -455,6 +455,7 @@ header {
   color: var(--text); font-family: var(--title); font-size: 1rem;
 }
 .rs-count:focus { border-color: var(--accent); outline: none; }
+.rs-count-opts { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
 
 
 /* ── ZONE DE CONNEXION (cloud) ──────────────────────────────────────────── */

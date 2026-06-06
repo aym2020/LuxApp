@@ -12,8 +12,9 @@
 // }
 
 const STORAGE_KEY = 'luxProgress';
-const WRONG_KEY = 'luxWrong';   // nombre de fois ratée, par question
+const WRONG_KEY = 'luxWrong';   // erreurs ACTIVES (compteur qui descend), par question
 const STREAK_KEY = 'luxStreak'; // série quotidienne
+const STATS_KEY = 'luxQuestionStats'; // historique durable, par question (jamais effacé au succès)
 
 // ─── PROFIL DE STOCKAGE (isolation par utilisateur) ─────────────────────────
 // Chaque profil a ses propres clés localStorage, pour éviter qu'un compte
@@ -130,7 +131,7 @@ function calculateLessonProgress(leconId) {
 }
 
 // ─── RÉINITIALISATION ───────────────────────────────────────────────────────
-// Efface toute la progression d'une leçon (niveaux + erreurs).
+// Efface toute la progression d'une leçon (niveaux + erreurs + historique).
 function resetLessonProgress(leconId) {
   const progress = getProgress();
   delete progress[leconId];
@@ -139,13 +140,18 @@ function resetLessonProgress(leconId) {
   const wrong = getWrongStore();
   delete wrong[leconId];
   saveWrongStore(wrong);
+
+  const stats = getStatsStore();
+  delete stats[leconId];
+  saveStatsStore(stats);
 }
 
-// Efface TOUTE la progression (toutes les leçons + série).
+// Efface TOUTE la progression (toutes les leçons + série + historique).
 function resetProgress() {
   localStorage.removeItem(storageKey(STORAGE_KEY));
   localStorage.removeItem(storageKey(WRONG_KEY));
   localStorage.removeItem(storageKey(STREAK_KEY));
+  localStorage.removeItem(storageKey(STATS_KEY));
 }
 
 // ─── ERREURS : COMPTEUR PAR QUESTION ────────────────────────────────────────
@@ -186,6 +192,66 @@ function decrementWrongCount(leconId, type, questionId) {
     delete store[leconId][type][questionId];
   }
   saveWrongStore(store);
+}
+
+// ─── STATISTIQUES HISTORIQUES (DURABLES) ────────────────────────────────────
+// Contrairement aux erreurs actives (luxWrong), cet historique n'est jamais
+// effacé quand l'utilisateur réussit. Il alimente le focus "Difficile".
+function getStatsStore() {
+  try {
+    return JSON.parse(localStorage.getItem(storageKey(STATS_KEY))) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveStatsStore(store) {
+  localStorage.setItem(storageKey(STATS_KEY), JSON.stringify(store));
+}
+
+// Stats d'une question. Si rien n'existe encore, on reconstruit depuis les
+// erreurs actives déjà enregistrées (migration douce, sans bug).
+function getQuestionStats(leconId, type, questionId) {
+  const store = getStatsStore();
+  const existing = store[leconId] && store[leconId][type] && store[leconId][type][questionId];
+  if (existing) return existing;
+
+  const wrong = getWrongCount(leconId, type, questionId);
+  return {
+    attempts: 0,
+    correct: 0,
+    wrongTotal: wrong,
+    correctStreak: 0,
+    difficultyScore: wrong * 3,
+    lastSeenAt: null,
+    lastWrongAt: null
+  };
+}
+
+// Met à jour l'historique après une réponse.
+function updateQuestionStats(leconId, type, questionId, correct) {
+  const store = getStatsStore();
+  if (!store[leconId]) store[leconId] = {};
+  if (!store[leconId][type]) store[leconId][type] = {};
+
+  const s = store[leconId][type][questionId] || getQuestionStats(leconId, type, questionId);
+  const now = new Date().toISOString();
+
+  s.attempts += 1;
+  s.lastSeenAt = now;
+  if (correct) {
+    s.correct += 1;
+    s.correctStreak += 1;
+    s.difficultyScore = Math.max(0, s.difficultyScore - 1);
+  } else {
+    s.wrongTotal += 1;
+    s.correctStreak = 0;
+    s.difficultyScore += 3;
+    s.lastWrongAt = now;
+  }
+
+  store[leconId][type][questionId] = s;
+  saveStatsStore(store);
 }
 
 // ─── SÉRIE QUOTIDIENNE (STREAK) ─────────────────────────────────────────────
@@ -239,10 +305,13 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
   if (changeLevel !== false) {
     updateQuestionLevel(leconId, type, questionId, correct);
   }
+  // Historique d'abord : la migration lit getWrongCount AVANT qu'il ne change,
+  // sinon la 1ère erreur d'une question serait comptée deux fois.
+  updateQuestionStats(leconId, type, questionId, correct);
   if (!correct) {
     incrementWrongCount(leconId, type, questionId);
   } else {
-    decrementWrongCount(leconId, type, questionId);  // ← ajout
+    decrementWrongCount(leconId, type, questionId);
   }
   updateStreak();
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
@@ -292,28 +361,84 @@ function getFrequentErrors(limit) {
 // ─── SÉLECTION : RÉVISION CONFIGURÉE PAR L'UTILISATEUR ──────────────────────
 // leconIds : ids des leçons à inclure
 // types    : parmi 'quiz', 'trous', 'ecriture'
-// focus    : 'aleatoire' | 'connu' (niveau élevé d'abord) | 'erreurs' (les plus ratées)
-// limit    : nombre de questions
+// focus    : 'aleatoire' | 'connu' (à consolider) | 'difficile'
+// limit    : nombre max de questions (plafonné à 20)
+
+// Une question est "déjà vue" si elle a un historique ou un niveau > 1.
+function isSeen(stats, level) {
+  return stats.attempts > 0 || level > 1 || stats.wrongTotal > 0 || stats.lastSeenAt !== null;
+}
+
+// Erreur "récente" = moins de 7 jours.
+function isRecentWrong(lastWrongAt) {
+  if (!lastWrongAt) return false;
+  const days = (Date.now() - new Date(lastWrongAt).getTime()) / 86400000;
+  return days <= 7;
+}
+
+// Priorité de difficulté (plus c'est haut, plus la question remonte).
+function getDifficultyPriority(item) {
+  const s = getQuestionStats(item.leconId, item.type, item.qid);
+  const level = getQuestionLevel(item.leconId, item.type, item.qid);
+
+  const lowLevelBonus = level === 1 ? 6 : level === 2 ? 3 : 0;
+  const recentWrongBonus = isRecentWrong(s.lastWrongAt) ? 4 : 0;
+
+  return s.difficultyScore * 5
+    + Math.min(s.wrongTotal, 10) * 2
+    + recentWrongBonus
+    + lowLevelBonus
+    - s.correctStreak * 1.5;
+}
+
+// Priorité de consolidation (focus "à consolider").
+// Vise les notions encore fragiles : niveau 2 d'abord, puis niveau 1 déjà vu,
+// puis niveau 3 ancien. Bonus léger d'ancienneté.
+function getConsolidationPriority(item) {
+  const s = getQuestionStats(item.leconId, item.type, item.qid);
+  const level = getQuestionLevel(item.leconId, item.type, item.qid);
+
+  let p = level === 2 ? 10 : level === 1 ? 5 : 2;
+  if (level < 3) p += 3;                 // pas encore maîtrisée -> remonte
+  if (s.lastSeenAt) {                     // vue il y a longtemps -> remonte un peu
+    const days = (Date.now() - new Date(s.lastSeenAt).getTime()) / 86400000;
+    p += Math.min(days, 30) * 0.1;
+  }
+  return p;
+}
+
 function getConfiguredReview(leconIds, types, focus, limit) {
+  limit = Math.min(limit || 20, 20);
+
   let all = getAllQuestions()
     .filter(item => leconIds.includes(item.leconId))
     .filter(item => types.includes(item.type));
 
-  if (focus === 'erreurs') {
-    all = all
-      .map(item => ({ item, wrong: getWrongCount(item.leconId, item.type, item.qid) }))
-      .filter(x => x.wrong > 0)            // on ignore celles jamais ratées
-      .sort((a, b) => b.wrong - a.wrong)
-      .map(x => x.item);
-  } else if (focus === 'connu') {
-    all = all
-      .map(item => ({ item, level: getQuestionLevel(item.leconId, item.type, item.qid) }))
-      .sort((a, b) => b.level - a.level)   // niveau le plus élevé d'abord
-      .map(x => x.item);
-  } else {
-    all = all.slice().sort(() => Math.random() - 0.5); // aléatoire
+  if (focus === 'difficile') {
+    // Questions avec un historique de difficulté (jamais "flushées" de la mémoire).
+    all = all.filter(item => {
+      const s = getQuestionStats(item.leconId, item.type, item.qid);
+      const level = getQuestionLevel(item.leconId, item.type, item.qid);
+      return s.wrongTotal > 0 || s.difficultyScore > 0 || s.lastWrongAt !== null
+        || (level === 1 && isSeen(s, level));
+    });
+    all.sort((a, b) => getDifficultyPriority(b) - getDifficultyPriority(a));
+  }
+  else if (focus === 'connu') {
+    // Uniquement les questions déjà vues / partiellement maîtrisées.
+    all = all.filter(item => {
+      const s = getQuestionStats(item.leconId, item.type, item.qid);
+      const level = getQuestionLevel(item.leconId, item.type, item.qid);
+      return isSeen(s, level);
+    });
+    all.sort((a, b) => getConsolidationPriority(b) - getConsolidationPriority(a));
+  }
+  else {
+    // aléatoire
+    all = all.slice().sort(() => Math.random() - 0.5);
   }
 
+  // Jamais de répétition, jamais de remplissage aléatoire : on coupe au max.
   return all.slice(0, limit);
 }
 

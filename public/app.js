@@ -372,19 +372,25 @@ function startConfiguredReview() {
   const leconIds = [...document.querySelectorAll('#rs-lecons input:checked')].map(b => Number(b.value));
   const types = [...document.querySelectorAll('#rs-types input:checked')].map(b => b.value);
   const focus = document.querySelector('input[name="rs-focus"]:checked').value;
-  let count = parseInt(document.getElementById('rs-count').value, 10);
+  const countInput = document.querySelector('input[name="rs-count"]:checked');
+  let count = countInput ? parseInt(countInput.value, 10) : 20;
   if (!count || count < 1) count = 20;
+  count = Math.min(count, 20); // plafond strict à 20
 
   if (!leconIds.length) { alert('Choisis au moins une leçon.'); return; }
   if (!types.length) { alert('Choisis au moins un type d\'exercice.'); return; }
 
   const questions = getConfiguredReview(leconIds, types, focus, count);
   if (!questions.length) {
-    alert('Aucune question ne correspond à ces critères.');
+    // Message adapté au focus choisi.
+    if (focus === 'connu') alert('Aucune question déjà connue pour ces critères.');
+    else if (focus === 'difficile') alert('Aucune question difficile pour ces critères.');
+    else alert('Aucune question disponible pour ces critères.');
     return;
   }
 
   // Réutilise le moteur de session (mode 'review' = les niveaux évoluent).
+  // Le titre affiche le nombre RÉEL de questions, pas le nombre demandé.
   session = { mode: 'review', questions, index: 0, score: 0, answered: false };
   document.getElementById('session-num').textContent = 'RÉVISION';
   document.getElementById('session-titre').textContent = questions.length + ' questions';
