@@ -298,7 +298,7 @@
     },
     {
       "id": 9,
-      "question": "Dräianvéierzeg",
+      "question": "Dräiavéierzeg",
       "reponse": "43",
       "distracteurs": [
         "34",
@@ -328,7 +328,7 @@
     },
     {
       "id": 12,
-      "question": "Siwenhonnertvéierannéngzeg",
+      "question": "Siwenhonnertvéierannonzeg",
       "reponse": "794",
       "distracteurs": [
         "749",
@@ -348,7 +348,7 @@
     },
     {
       "id": 14,
-      "question": "Fënnefazwanzeg",
+      "question": "Fënnefanzwanzeg",
       "reponse": "25",
       "distracteurs": [
         "52",
@@ -378,7 +378,7 @@
     },
     {
       "id": 17,
-      "question": "Eentasiwwenzeg",
+      "question": "Eenasiwwenzeg",
       "reponse": "71",
       "distracteurs": [
         "17",
@@ -428,7 +428,7 @@
     },
     {
       "id": 22,
-      "question": "Fënnefhonnertvéieranvéierzeg",
+      "question": "Fënnefhonnertvéieravéierzeg",
       "reponse": "544",
       "distracteurs": [
         "454",
@@ -478,7 +478,7 @@
     },
     {
       "id": 27,
-      "question": "Honnertnéngannéngzeg",
+      "question": "Honnertnéngannonzeg",
       "reponse": "199",
       "distracteurs": [
         "109",
@@ -488,7 +488,7 @@
     },
     {
       "id": 28,
-      "question": "Dräihonnert eenandrësseg",
+      "question": "Dräihonnerteenandrësseg",
       "reponse": "331",
       "distracteurs": [
         "313",
@@ -498,7 +498,7 @@
     },
     {
       "id": 29,
-      "question": "Véierhonnertzweeansiechzeg",
+      "question": "Véierhonnertzweeasiechzeg",
       "reponse": "462",
       "distracteurs": [
         "426",
@@ -518,7 +518,7 @@
     },
     {
       "id": 31,
-      "question": "Sechshonnertvéierannéngzeg",
+      "question": "Sechshonnertvéierannonzeg",
       "reponse": "694",
       "distracteurs": [
         "649",
@@ -528,7 +528,7 @@
     },
     {
       "id": 32,
-      "question": "Siwenhonnertfënnefanvéierzeg",
+      "question": "Siwenhonnertfënnefavéierzeg",
       "reponse": "745",
       "distracteurs": [
         "754",
@@ -594,15 +594,15 @@
       "id": 4,
       "fr": "Il y a trente et une tables.",
       "avant": "Dat sinn",
-      "trou": "eentandrësseg",
+      "trou": "eenandrësseg",
       "apres": "Dëscher.",
       "choix": [
-        "eentandrësseg",
+        "eenandrësseg",
         "drësseg",
-        "eentanzwanzeg",
+        "eenanzwanzeg",
         "zweeandrësseg"
       ],
-      "note": "31 = eentandrësseg"
+      "note": "31 = eenandrësseg"
     },
     {
       "id": 5,
@@ -678,15 +678,15 @@
       "id": 10,
       "fr": "Il y a vingt-cinq montres.",
       "avant": "Dat sinn",
-      "trou": "fënnefazwanzeg",
+      "trou": "fënnefanzwanzeg",
       "apres": "Aueren.",
       "choix": [
-        "fënnefazwanzeg",
+        "fënnefanzwanzeg",
         "véierazwanzeg",
         "fënnefadrësseg",
         "zwanzeg"
       ],
-      "note": "25 = fënnefazwanzeg"
+      "note": "25 = fënnefanzwanzeg"
     },
     {
       "id": 11,
@@ -748,29 +748,29 @@
       "id": 15,
       "fr": "Il y a vingt-neuf lampes.",
       "avant": "Dat sinn",
-      "trou": "néngazwanzeg",
+      "trou": "nénganzwanzeg",
       "apres": "Luuchten.",
       "choix": [
-        "néngazwanzeg",
+        "nénganzwanzeg",
         "néngadrësseg",
         "aachtazwanzeg",
         "zwanzeg"
       ],
-      "note": "29 = néngazwanzeg"
+      "note": "29 = nénganzwanzeg"
     },
     {
       "id": 16,
       "fr": "Il y a quatre-vingt-un livres.",
       "avant": "Dat sinn",
-      "trou": "eentanaachtzeg",
+      "trou": "eenanaachtzeg",
       "apres": "Bicher.",
       "choix": [
-        "eentanaachtzeg",
-        "eentannonzeg",
         "eenanaachtzeg",
+        "eenannonzeg",
+        "eenasiwwenzeg",
         "zweeanaachtzeg"
       ],
-      "note": "81 = eentanaachtzeg"
+      "note": "81 = eenanaachtzeg"
     },
     {
       "id": 17,
@@ -992,11 +992,11 @@
     },
     {
       "fr": "96",
-      "lu": "sechsanonzeg"
+      "lu": "sechsannonzeg"
     },
     {
       "fr": "98",
-      "lu": "aachtanonzeg"
+      "lu": "aachtannonzeg"
     },
     {
       "fr": "100",
@@ -1056,7 +1056,7 @@
     },
     {
       "fr": "991",
-      "lu": "nénghonnerteenanonzeg"
+      "lu": "nénghonnerteenannonzeg"
     }
   ],
   "cours": [

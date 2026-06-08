@@ -60,7 +60,7 @@
   },
   {
     "id": 9,
-    "lu": "Chinesesch",
+    "lu": "Chineesesch",
     "fr": "chinois",
     "note": "Langue de la Chine"
   },
@@ -78,7 +78,7 @@
   },
   {
     "id": 12,
-    "lu": "Flammänesch",
+    "lu": "Flammännesch",
     "fr": "flamand",
     "note": "Langue parlée en Belgique"
   },
@@ -171,7 +171,7 @@
   {
     "id": 7,
     "question": "Flamand",
-    "reponse": "Flammänesch",
+    "reponse": "Flammännesch",
     "distracteurs": [
       "Belsch",
       "Holland",
@@ -215,13 +215,13 @@
     "distracteurs": [
       "Hollänner",
       "Holland",
-      "Flammänesch"
+      "Flammännesch"
     ]
   },
   {
     "id": 12,
     "question": "Chinois",
-    "reponse": "Chinesesch",
+    "reponse": "Chineesesch",
     "distracteurs": [
       "Chinees",
       "China",
@@ -322,9 +322,9 @@
     "id": 7,
     "fr": "Sofie parle flamand.",
     "avant": "D'Sofie schwätzt",
-    "trou": "Flammänesch",
+    "trou": "Flammännesch",
     "apres": ".",
-    "choix": ["Flammänesch", "Belsch", "Belsch", "Hollännesch"]
+    "choix": ["Flammännesch", "Belsch", "Engländer", "Hollännesch"]
   },
   {
     "id": 8,
@@ -352,19 +352,19 @@
   },
   {
     "id": 11,
-    "fr": "Willem parle néerlandais.",
-    "avant": "De Willem schwätzt",
+    "fr": "Wilhem parle néerlandais.",
+    "avant": "De Wilhem schwätzt",
     "trou": "Hollännesch",
     "apres": ".",
-    "choix": ["Hollännesch", "Hollänner", "Holland", "Flammänesch"]
+    "choix": ["Hollännesch", "Hollänner", "Holland", "Flammännesch"]
   },
   {
     "id": 12,
     "fr": "Li Na parle chinois.",
     "avant": "D'Li Na schwätzt",
-    "trou": "Chinesesch",
+    "trou": "Chineesesch",
     "apres": ".",
-    "choix": ["Chinesesch", "Chineesin", "China", "Japanesch"]
+    "choix": ["Chineesesch", "Chineesin", "China", "Japanesch"]
   },
   {
     "id": 13,
@@ -442,7 +442,7 @@
     },
     {
       "fr": "Néerlandais (langue)",
-      "lu": "Hollännesch "
+      "lu": "Hollännesch"
     },
     {
       "fr": "Chinois (langue)",
@@ -478,7 +478,7 @@
     },
     {
       "fr": "Angela Merkel parle allemand.",
-      "lu": "D'Angela schwätzt Däitsch."
+      "lu": "D'Angela Merkel schwätzt Däitsch."
     },
     {
       "fr": "Je parle luxembourgeois.",
@@ -494,7 +494,7 @@
     },
     {
       "fr": "Jackie Chan parle chinois.",
-      "lu": "De Jackie schwätzt Chineesesch."
+      "lu": "De Jackie Chan schwätzt Chineesesch."
     },
     {
       "fr": "Greta parle suédois.",
@@ -550,7 +550,7 @@
     },
     {
       "fr": "Elle est portugaise.",
-      "lu": "Si ass Portugisin."
+      "lu": "Si ass Portugisesch."
     },
     {
       "fr": "Elle vient du Portugal.",
@@ -655,7 +655,7 @@
           "suédois"
         ],
         [
-          "Flammänesch",
+          "Flammännesch",
           "flamand"
         ],
         [

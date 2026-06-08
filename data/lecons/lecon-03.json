@@ -577,16 +577,16 @@
     "lu": "D'Auer ass rout."
   },
   {
-    "fr": "Le stylo n'est pas bleu, il est noir.",
-    "lu": "De Bic ass net blo, en ass schwaarz."
+    "fr": "Le stylo n'est pas bleu. Il est noir.",
+    "lu": "De Stëft ass net blo. En ass schwaarz."
   },
   {
-    "fr": "La table est brune et grande.",
-    "lu": "Den Dësch ass brong an en ass grouss."
+    "fr": "La table est marron et grande.",
+    "lu": "Den Dësch ass brong an grouss."
   },
   {
-    "fr": "L'image n'est pas colorée, elle est en noir et blanc.",
-    "lu": "D'Bild ass net faarweg, et ass schwaarz-wäiss."
+    "fr": "L'image est colorée.",
+    "lu": "D'Bild ass faarweg."
   },
   {
     "fr": "La bouteille est bleue.",
@@ -695,7 +695,7 @@
       "type": "regle",
       "titre": "Remplacer un objet",
       "lignes": [
-        "Nom masculin → hien : De Bus ass gro. Hien ass gro.",
+        "Nom masculin → en : De Bus ass gro. En ass gro.",
         "Nom féminin → si : D'Fënster ass brong. Si ass brong.",
         "Nom neutre → et : D'Blat ass wäiss. Et ass wäiss."
       ]
@@ -709,7 +709,7 @@
           "De quelle couleur est le bus ?"
         ],
         [
-          "De Bus ass gro. Hien ass gro.",
+          "De Bus ass gro. En ass gro.",
           "Le bus est gris. Il est gris."
         ],
         [

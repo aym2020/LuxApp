@@ -110,11 +110,11 @@
       "id": 17,
       "lu": "Dënn",
       "fr": "Mince / Fin(e)",
-      "note": "Contraire : Décks"
+      "note": "Contraire : Déck"
     },
     {
       "id": 18,
-      "lu": "Décks",
+      "lu": "Déck",
       "fr": "Épais / Épaisse",
       "note": "Contraire : Dënn"
     }
@@ -202,7 +202,7 @@
     },
     {
       "id": 9,
-      "question": "Quel est le contraire de DÉCKS ?",
+      "question": "Quel est le contraire de Déck ?",
       "reponse": "Dënn",
       "distracteurs": [
         "Kleng",
@@ -226,7 +226,7 @@
       "reponse": "Grouss",
       "distracteurs": [
         "Héich",
-        "Décks",
+        "Déck",
         "Séier"
       ]
     },
@@ -256,7 +256,7 @@
       "reponse": "Héich",
       "distracteurs": [
         "Grouss",
-        "Décks",
+        "Déck",
         "Voll"
       ]
     },
@@ -293,7 +293,7 @@
     {
       "id": 18,
       "question": "Quel est le contraire de DËNN ?",
-      "reponse": "Décks",
+      "reponse": "Déck",
       "distracteurs": [
         "Kleng",
         "Eidel",
@@ -340,7 +340,7 @@
         "liicht",
         "schwéier",
         "dënn",
-        "décks"
+        "Déck"
       ],
       "note": "D' = article féminin devant voyelle"
     },
@@ -353,7 +353,7 @@
       "choix": [
         "liicht",
         "grouss",
-        "décks",
+        "Déck",
         "schwéier"
       ],
       "note": "schwéier = lourd · contraire de liicht"
@@ -423,7 +423,7 @@
       "choix": [
         "ronn",
         "eckeg",
-        "décks",
+        "déck",
         "dënn"
       ],
       "note": "D' = article féminin · eckeg = carré"
@@ -435,7 +435,7 @@
       "trou": "ronn",
       "apres": ".",
       "choix": [
-        "décks",
+        "déck",
         "dënn",
         "ronn",
         "eckeg"
@@ -445,7 +445,7 @@
     {
       "id": 11,
       "fr": "Le gratte-ciel est haut.",
-      "avant": "De Wollekekrazer ass",
+      "avant": "De Wollekekrazert ass",
       "trou": "héich",
       "apres": ".",
       "choix": [
@@ -464,7 +464,7 @@
       "apres": ".",
       "choix": [
         "héich",
-        "décks",
+        "déck",
         "dënn",
         "niddereg"
       ],
@@ -479,7 +479,7 @@
       "choix": [
         "eidel",
         "voll",
-        "décks",
+        "déck",
         "liicht"
       ],
       "note": "voll = plein · contraire de eidel"
@@ -494,23 +494,23 @@
         "schwéier",
         "grouss",
         "dënn",
-        "décks"
+        "Déck"
       ],
-      "note": "dënn = fin/mince · contraire de décks"
+      "note": "dënn = fin/mince · contraire de Déck"
     },
     {
       "id": 15,
       "fr": "Le dictionnaire est épais.",
       "avant": "D'Wierderbuch ass",
-      "trou": "décks",
+      "trou": "Déck",
       "apres": ".",
       "choix": [
-        "décks",
+        "Déck",
         "dënn",
         "liicht",
         "eidel"
       ],
-      "note": "décks = épais · contraire de dënn"
+      "note": "Déck = épais · contraire de dënn"
     },
     {
       "id": 16,
@@ -640,7 +640,7 @@
     },
     {
       "fr": "Épais / Épaisse",
-      "lu": "Décks"
+      "lu": "Déck"
     },
     {
       "fr": "Le smartphone est nouveau.",
@@ -684,7 +684,7 @@
     },
     {
       "fr": "Le gratte-ciel est haut.",
-      "lu": "D'Wollekekrazer ass héich."
+      "lu": "De Wollekekrazert ass héich."
     },
     {
       "fr": "La bouteille est pleine.",
@@ -696,7 +696,7 @@
     },
     {
       "fr": "Le dictionnaire est épais.",
-      "lu": "D'Wierderbuch ass décks."
+      "lu": "D'Wierderbuch ass Déck."
     },
     {
       "fr": "La souris est petite.",
@@ -793,7 +793,7 @@
           "mince"
         ],
         [
-          "décks",
+          "Déck",
           "épais"
         ]
       ]
@@ -810,7 +810,7 @@
         "Bëlleg ↔ Deier",
         "Héich ↔ Niddereg",
         "Voll ↔ Eidel",
-        "Dënn ↔ Décks"
+        "Dënn ↔ Déck"
       ]
     },
     {

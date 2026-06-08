@@ -304,25 +304,25 @@
     "id": 29,
     "question": "Chinois - garçon",
     "reponse": "e Chinees",
-    "distracteurs": ["eng Chineesin", "China", "Chinesesch"]
+    "distracteurs": ["eng Chineesin", "China", "Chineesesch"]
   },
   {
     "id": 30,
     "question": "Chinoise - fille",
     "reponse": "eng Chineesin",
-    "distracteurs": ["e Chinees", "China", "Chinesesch"]
+    "distracteurs": ["e Chinees", "China", "Chineesesch"]
   },
   {
     "id": 31,
     "question": "Suédois - garçon",
     "reponse": "e Schweed",
-    "distracteurs": ["eng Schweedin", "Schweden", "Schwedesch"]
+    "distracteurs": ["eng Schweedin", "Schweden", "Schweedesch"]
   },
   {
     "id": 32,
     "question": "Suédoise - fille",
     "reponse": "eng Schweedin",
-    "distracteurs": ["e Schweed", "Schweden", "Schwedesch"]
+    "distracteurs": ["e Schweed", "Schweden", "Schweedesch"]
   },
   {
     "id": 33,
@@ -578,7 +578,7 @@
     "avant": "De Li ass",
     "trou": "e Chinees",
     "apres": ".",
-    "choix": ["e Chinees", "eng Chineesin", "Chinesesch", "China"],
+    "choix": ["e Chinees", "eng Chineesin", "Chineesesch", "China"],
     "note": "e Chinees = un Chinois"
   },
   {
@@ -587,7 +587,7 @@
     "avant": "D'Mei ass",
     "trou": "eng Chineesin",
     "apres": ".",
-    "choix": ["e Chinees", "eng Chineesin", "Chinesesch", "China"],
+    "choix": ["e Chinees", "eng Chineesin", "Chineesesch", "China"],
     "note": "eng Chineesin = une Chinoise"
   },
   {
@@ -596,17 +596,17 @@
     "avant": "Den Erik ass",
     "trou": "e Schweed",
     "apres": ".",
-    "choix": ["e Schweed", "eng Schwedin", "Schwedesch", "Schweden"],
+    "choix": ["e Schweed", "eng Schweedin", "Schweedesch", "Schweden"],
     "note": "e Schweed = un Suédois"
   },
   {
     "id": 26,
     "fr": "Anna est suédoise.",
     "avant": "D'Anna ass",
-    "trou": "eng Schwedin",
+    "trou": "eng Schweedin",
     "apres": ".",
-    "choix": ["e Schweed", "eng Schwedin", "Schwedesch", "Schweden"],
-    "note": "eng Schwedin = une Suédoise"
+    "choix": ["e Schweed", "eng Schweedin", "Schweedesch", "Schweden"],
+    "note": "eng Schweedin = une Suédoise"
   },
   {
     "id": 27,
@@ -894,7 +894,7 @@
     },
     {
       "fr": "Elle est australienne.",
-      "lu": "Hatt ass eng Australierin."
+      "lu": "Si ass eng Australierin."
     },
     {
       "fr": "Non, elle n'est pas italienne.",
@@ -925,11 +925,11 @@
       "lu": "Si ass eng Ukrainerin."
     },
     {
-      "fr": "Quelle est sa nationalité ?",
+      "fr": "Quelle est sa nationalité ? (à lui)",
       "lu": "Wat ass seng Nationalitéit?"
     },
     {
-      "fr": "Quelle est sa nationalité ?",
+      "fr": "Quelle est sa nationalité ? (à elle)",
       "lu": "Wat ass hir Nationalitéit?"
     },
     {
@@ -998,9 +998,9 @@
       "type": "regle",
       "titre": "Formation",
       "lignes": [
-        "Masculin → <b>e</b> / <b>en</b> + nationalité (e Portugis, en Engländer)",
-        "Féminin → <b>eng</b> + nationalité + souvent terminaison <b>-in</b> (eng Portugisin)",
-        "Négation : <b>kee/keen</b> (M), <b>keng</b> (F)"
+        "Masculin → nationalité seule : Portugis, Spuenier, Englänner, Fransous.",
+        "Féminin → souvent nationalité + -in : Portugisin, Spuenierin, Englännerin, Fransousin.",
+        "Avec une négation, on utilise <b>kee</b> au masculin et <b>keng</b> au féminin : kee Spuenier, keng Italienerin."
       ]
     },
     {
@@ -1033,8 +1033,8 @@
       "type": "regle",
       "titre": "Poser une question sur la nationalité",
       "lignes": [
-        "Wat ass seng Nationalitéit? = Quelle est sa nationalité ?",
-        "Wat ass hir Nationalitéit? = Quelle est sa nationalité ?",
+        "Wat ass seng Nationalitéit? = Quelle est sa nationalité ? (à lui)",
+        "Wat ass hir Nationalitéit? = Quelle est sa nationalité ? (à elle)",
         "Ass hien ...? = Est-il ... ?",
         "Ass si ...? = Est-elle ... ?",
         "Jo, hien/si ass ... = Oui, il/elle est ...",

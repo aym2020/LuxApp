@@ -4,9 +4,8 @@
   "titre_fr": "Les lieux de travail",
   "couleur": "#c47ae8",
   "instructions": {
-    "flashcards": "Mémoriser le vocabulaire des lieux de travail en luxembourgeois ainsi que leur traduction française. Uniquement les lieux de travail, pas les articles et le reste.",
-    "quiz": "Lire un mot ou une expression en luxembourgeois et choisir la bonne traduction française. Les distracteurs doivent être d'autres lieux de travail ou expressions de lieu plausibles.",
-    "trous": "Compléter la phrase avec le bon article ou la bonne préposition. L'exercice doit principalement travailler l'utilisation de an, op, bei ainsi que les formes engem et enger devant les lieux de travail.",
+    "flashcards": "Mémoriser les lieux de travail en luxembourgeois avec leur article, afin d'identifier le genre et de former correctement engem/enger.",
+    "quiz": "Lire un lieu de travail en français et choisir sa traduction luxembourgeoise. Les distracteurs doivent être d'autres lieux de travail plausibles.",    "trous": "Compléter la phrase avec le bon article ou la bonne préposition. L'exercice doit principalement travailler l'utilisation de an, op, bei ainsi que les formes engem et enger devant les lieux de travail.",
     "ecriture": "Traduire du français vers le luxembourgeois. Inclure le vocabulaire des lieux de travail, les questions sur le travail, les réponses, les expressions avec an, op et bei, le verbe schaffen, ainsi que des phrases complètes indiquant où une personne travaille."
   },
   "flashcards": [
@@ -656,7 +655,7 @@
     },
     {
       "id": 22,
-      "fr": "Le pompiste travaille dans une station-service.",
+      "fr": "Le vendeur travaille dans une station-service.",
       "avant": "De Verkeefer schafft an",
       "trou": "enger",
       "apres": "Tankstell.",
@@ -923,7 +922,7 @@
     },
     {
       "fr": "Le professeur travaille à l'école.",
-      "lu": "De Schoulmeeschter schafft an engem Schoul."
+      "lu": "De Schoulmeeschter schafft an enger Schoul."
     },
     {
       "fr": "La banquière travaille à la banque.",
@@ -945,11 +944,13 @@
     },
     {
       "type": "regle",
-      "titre": "Contraction préposition + article",
+      "titre": "Préposition + article avec les lieux de travail",
       "lignes": [
-        "an + e → <b>an engem</b> (M/N) · an + eng → <b>an enger</b> (F)",
-        "op + e → <b>op engem</b> (M/N) · op + eng → <b>op enger</b> (F)",
-        "⚠️ Exceptions : Spidol et Schoul → <b>an engem</b>"
+        "Le choix de la préposition dépend du type de lieu : <b>an</b> pour un lieu physique, <b>op</b> pour certaines administrations ou institutions, <b>bei</b> pour travailler chez une personne ou un employeur.",
+        "La forme <b>engem / enger</b> dépend ensuite du genre du nom : M/N → <b>engem</b>, F → <b>enger</b>.",
+        "Avec <b>an</b> : an engem Büro, an engem Restaurant, an enger Klinik, an enger Schoul.",
+        "Avec <b>op</b> : op engem Policebüro, op enger Post, op engem Geriicht, op enger Universitéit.",
+        "Attention : même si <b>Spidol</b> et <b>Schoul</b> peuvent être vus comme des institutions, on utilise ici <b>an</b> : an engem Spidol, an enger Schoul."
       ]
     },
     {

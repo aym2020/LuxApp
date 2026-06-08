@@ -451,7 +451,7 @@
     },
     {
       "fr": "J'habite aux Pays-Bas.",
-      "lu": "Ech wunnen a Holland."
+      "lu": "Ech wunnen an Holland."
     },
     {
       "fr": "J'habite en Suède.",
@@ -561,7 +561,7 @@
       "lignes": [
         "Luxembourg → <b>zu Lëtzebuerg</b>",
         "Ville → <b>zu</b> (zu Metz, zu Esch, zu Paräis)",
-        "Pays sans article → <b>a / an</b> (a Frankräich, an Däitschland)",
+        "Pays sans article → <b>a / an</b> selon la première lettre : a Frankräich, a Spuenien, a Schweden, mais an Däitschland, an Italien, an England, an Holland.",
         "Pays féminins → <b>an der</b> (an der Belsch, an der Schwäiz)",
         "Ville (au sens général) → <b>an der Stad</b>",
         "Quartiers et lieux → <b>um / am</b> (um Kirchberg, um Belair, am Gronn)"
