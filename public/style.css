@@ -27,7 +27,7 @@ body {
 }
 
 /* ── VIEWS ───────────────────────────────────────────────────────────────── */
-.view { display: none; width: 100%; max-width: 720px; flex-direction: column; }
+.view { display: none; width: 100%; max-width: 1200px; flex-direction: column; }
 .view.active { display: flex; }
 
 /* ── HOME ────────────────────────────────────────────────────────────────── */
@@ -53,7 +53,7 @@ header {
 .lecon-card-body { flex: 1; min-width: 0; }
 .lecon-card-num   { font-size: .65rem; font-weight: 800; letter-spacing: .12em; color: var(--muted); margin-bottom: .2rem; }
 .lecon-card-titre { font-size: .95rem; font-weight: 700; }
-.lecon-card-sous  { font-size: .72rem; color: var(--muted); margin-top: .15rem; font-style: italic; font-family: var(--serif); }
+.lecon-card-sous  { font-size: .82rem; color: var(--muted); margin-top: .15rem; font-style: italic; font-family: var(--serif); }
 .lecon-card-counts { display: flex; gap: .4rem; margin-top: .5rem; flex-wrap: wrap; }
 .lecon-pill {
   font-size: .6rem; font-weight: 700; padding: .18rem .5rem;
