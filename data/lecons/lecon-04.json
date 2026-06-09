@@ -445,7 +445,7 @@
     {
       "id": 11,
       "fr": "Le gratte-ciel est haut.",
-      "avant": "De Wollekekrazert t ass",
+      "avant": "De Wollekekrazert ass",
       "trou": "héich",
       "apres": ".",
       "choix": [
@@ -684,7 +684,7 @@
     },
     {
       "fr": "Le gratte-ciel est haut.",
-      "lu": "De Wollekekrazert t ass héich."
+      "lu": "De Wollekekrazert ass héich."
     },
     {
       "fr": "La bouteille est pleine.",
