@@ -1,0 +1,1216 @@
+{
+  "id": 16,
+  "titre": "Den Dagesoflaf",
+  "titre_fr": "Le déroulement de la journée",
+  "couleur": "#7ad4c8",
+  "instructions": {
+    "flashcards": "Mémorise les activités quotidiennes, les phrases types du déroulement de la journée, les questions avec Um wéi vill Auer et Wat mécht, ainsi que l'association entre une activité et une heure.",
+    "quiz": "Lis une activité, une question ou une phrase en luxembourgeois et choisis la bonne traduction française. Les distracteurs doivent être des activités proches, des horaires proches ou des structures de question similaires.",
+    "trous": "Complète les phrases avec le verbe, l'activité, la préposition temporelle ou l'expression d'heure correcte. L'objectif est de replacer les activités de la journée dans un horaire précis.",
+    "ecriture": "Traduis en luxembourgeois les activités quotidiennes, les questions, les réponses et les phrases complètes. Respecte la conjugaison, la place de um avec l'heure et l'ordre des mots quand la phrase commence par une expression de temps."
+  },
+  "flashcards": [
+    {
+      "id": 1,
+      "lu": "erwächen",
+      "fr": "se réveiller",
+      "note": "D'Carla erwächt. · Ech erwächen."
+    },
+    {
+      "id": 2,
+      "lu": "duschen",
+      "fr": "se doucher",
+      "note": "D'Carla duscht. · Ech duschen."
+    },
+    {
+      "id": 3,
+      "lu": "Kaffi drénken",
+      "fr": "prendre le petit-déjeuner / boire du café",
+      "note": "D'Carla drénkt Kaffi."
+    },
+    {
+      "id": 4,
+      "lu": "erausgoen",
+      "fr": "sortir",
+      "note": "D'Carla geet eraus. · Ech ginn eraus."
+    },
+    {
+      "id": 5,
+      "lu": "mam Bus fueren",
+      "fr": "prendre le bus / aller en bus",
+      "note": "mam = mat dem"
+    },
+    {
+      "id": 6,
+      "lu": "telefonéieren",
+      "fr": "téléphoner",
+      "note": "D'Carla telefonéiert."
+    },
+    {
+      "id": 7,
+      "lu": "E-Mailen schreiwen",
+      "fr": "écrire des e-mails",
+      "note": "D'Carla schreift E-Mailen."
+    },
+    {
+      "id": 8,
+      "lu": "am Restaurant iessen",
+      "fr": "manger au restaurant",
+      "note": "D'Carla ësst am Restaurant."
+    },
+    {
+      "id": 9,
+      "lu": "e Rapport schreiwen",
+      "fr": "écrire un rapport",
+      "note": "e Rapport = un rapport"
+    },
+    {
+      "id": 10,
+      "lu": "heemgoen",
+      "fr": "rentrer chez soi",
+      "note": "D'Carla geet heem. · Ech ginn heem."
+    },
+    {
+      "id": 11,
+      "lu": "d'Tëlee kucken",
+      "fr": "regarder la télé",
+      "note": "D'Carla kuckt d'Tëlee."
+    },
+    {
+      "id": 12,
+      "lu": "schlofen",
+      "fr": "dormir",
+      "note": "Ech schlofen."
+    },
+    {
+      "id": 13,
+      "lu": "schlofe goen",
+      "fr": "aller dormir / se coucher",
+      "note": "Ech gi schlofen."
+    },
+    {
+      "id": 14,
+      "lu": "D'Carla erwächt um sechs Auer.",
+      "fr": "Carla se réveille à six heures.",
+      "note": "um + heure"
+    },
+    {
+      "id": 15,
+      "lu": "D'Carla duscht um zéng op sechs.",
+      "fr": "Carla se douche à six heures dix.",
+      "note": "zéng op sechs = 6:10"
+    },
+    {
+      "id": 16,
+      "lu": "D'Carla drénkt Kaffi um véierel vir siwen.",
+      "fr": "Carla prend le petit-déjeuner à six heures quarante-cinq.",
+      "note": "véierel vir siwen = 6:45"
+    },
+    {
+      "id": 17,
+      "lu": "D'Carla geet um véierel op siwen eraus.",
+      "fr": "Carla sort à sept heures quinze.",
+      "note": "véierel op siwen = 7:15"
+    },
+    {
+      "id": 18,
+      "lu": "D'Carla fiert um fënnef vir hallwer aacht mam Bus.",
+      "fr": "Carla prend le bus à sept heures vingt-cinq.",
+      "note": "fënnef vir hallwer aacht = 7:25"
+    },
+    {
+      "id": 19,
+      "lu": "D'Carla ësst um hallwer eng am Restaurant.",
+      "fr": "Carla mange au restaurant à douze heures trente.",
+      "note": "hallwer eng = 12:30"
+    },
+    {
+      "id": 20,
+      "lu": "D'Carla geet um hallwer siwen owes heem.",
+      "fr": "Carla rentre chez elle à dix-huit heures trente.",
+      "note": "owes = le soir"
+    },
+    {
+      "id": 21,
+      "lu": "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee.",
+      "fr": "Carla regarde la télé à vingt heures vingt.",
+      "note": "zwanzeg op aacht owes = 20:20"
+    },
+    {
+      "id": 22,
+      "lu": "D'Carla geet um zéng vir Hallefnuecht schlofen.",
+      "fr": "Carla va dormir à vingt-trois heures cinquante.",
+      "note": "zéng vir Hallefnuecht = 23:50"
+    },
+    {
+      "id": 23,
+      "lu": "Um wéi vill Auer erwächt d'Carla?",
+      "fr": "À quelle heure Carla se réveille-t-elle ?",
+      "note": "Question sur l'heure"
+    },
+    {
+      "id": 24,
+      "lu": "Wat mécht d'Carla um sechs Auer?",
+      "fr": "Que fait Carla à six heures ?",
+      "note": "Question sur l'activité"
+    },
+    {
+      "id": 25,
+      "lu": "Um sechs Auer erwächen ech.",
+      "fr": "À six heures, je me réveille.",
+      "note": "Temps en première position → verbe en deuxième position"
+    },
+    {
+      "id": 26,
+      "lu": "Ech erwächen um sechs Auer.",
+      "fr": "Je me réveille à six heures.",
+      "note": "Ordre simple : sujet + verbe + heure"
+    },
+    {
+      "id": 27,
+      "lu": "Ech gi schlofen.",
+      "fr": "Je vais dormir / je vais me coucher.",
+      "note": "goen + infinitif"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "erwächen",
+      "reponse": "se réveiller",
+      "distracteurs": [
+        "se doucher",
+        "dormir",
+        "sortir"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "duschen",
+      "reponse": "se doucher",
+      "distracteurs": [
+        "se réveiller",
+        "rentrer chez soi",
+        "regarder la télé"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Kaffi drénken",
+      "reponse": "prendre le petit-déjeuner / boire du café",
+      "distracteurs": [
+        "manger au restaurant",
+        "écrire un rapport",
+        "prendre le bus"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "erausgoen",
+      "reponse": "sortir",
+      "distracteurs": [
+        "rentrer chez soi",
+        "aller dormir",
+        "téléphoner"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "mam Bus fueren",
+      "reponse": "prendre le bus / aller en bus",
+      "distracteurs": [
+        "sortir",
+        "rentrer chez soi",
+        "écrire des e-mails"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "telefonéieren",
+      "reponse": "téléphoner",
+      "distracteurs": [
+        "écrire des e-mails",
+        "regarder la télé",
+        "se réveiller"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "E-Mailen schreiwen",
+      "reponse": "écrire des e-mails",
+      "distracteurs": [
+        "écrire un rapport",
+        "téléphoner",
+        "prendre le bus"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "am Restaurant iessen",
+      "reponse": "manger au restaurant",
+      "distracteurs": [
+        "prendre le petit-déjeuner",
+        "écrire un rapport",
+        "regarder la télé"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "e Rapport schreiwen",
+      "reponse": "écrire un rapport",
+      "distracteurs": [
+        "écrire des e-mails",
+        "téléphoner",
+        "dormir"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "heemgoen",
+      "reponse": "rentrer chez soi",
+      "distracteurs": [
+        "sortir",
+        "aller en bus",
+        "se coucher"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "d'Tëlee kucken",
+      "reponse": "regarder la télé",
+      "distracteurs": [
+        "écrire un rapport",
+        "dormir",
+        "se doucher"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "schlofen",
+      "reponse": "dormir",
+      "distracteurs": [
+        "aller dormir",
+        "se réveiller",
+        "sortir"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "schlofe goen",
+      "reponse": "aller dormir / se coucher",
+      "distracteurs": [
+        "dormir",
+        "rentrer chez soi",
+        "se réveiller"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "D'Carla erwächt um sechs Auer.",
+      "reponse": "Carla se réveille à six heures.",
+      "distracteurs": [
+        "Carla se douche à six heures.",
+        "Carla sort à six heures.",
+        "Carla dort à six heures."
+      ]
+    },
+    {
+      "id": 15,
+      "question": "D'Carla duscht um zéng op sechs.",
+      "reponse": "Carla se douche à six heures dix.",
+      "distracteurs": [
+        "Carla se douche à six heures vingt.",
+        "Carla se douche à cinq heures cinquante.",
+        "Carla se réveille à six heures dix."
+      ]
+    },
+    {
+      "id": 16,
+      "question": "D'Carla drénkt Kaffi um véierel vir siwen.",
+      "reponse": "Carla prend le petit-déjeuner à six heures quarante-cinq.",
+      "distracteurs": [
+        "Carla prend le petit-déjeuner à sept heures quinze.",
+        "Carla mange au restaurant à six heures quarante-cinq.",
+        "Carla téléphone à six heures quarante-cinq."
+      ]
+    },
+    {
+      "id": 17,
+      "question": "D'Carla geet um véierel op siwen eraus.",
+      "reponse": "Carla sort à sept heures quinze.",
+      "distracteurs": [
+        "Carla sort à six heures quarante-cinq.",
+        "Carla rentre chez elle à sept heures quinze.",
+        "Carla prend le bus à sept heures quinze."
+      ]
+    },
+    {
+      "id": 18,
+      "question": "D'Carla fiert um fënnef vir hallwer aacht mam Bus.",
+      "reponse": "Carla prend le bus à sept heures vingt-cinq.",
+      "distracteurs": [
+        "Carla prend le bus à sept heures trente-cinq.",
+        "Carla prend le bus à huit heures vingt-cinq.",
+        "Carla sort à sept heures vingt-cinq."
+      ]
+    },
+    {
+      "id": 19,
+      "question": "D'Carla telefonéiert a schreift um zéng op aacht E-Mailen.",
+      "reponse": "Carla téléphone et écrit des e-mails à huit heures dix.",
+      "distracteurs": [
+        "Carla téléphone à huit heures vingt.",
+        "Carla écrit un rapport à huit heures dix.",
+        "Carla regarde la télé à huit heures dix."
+      ]
+    },
+    {
+      "id": 20,
+      "question": "D'Carla ësst um hallwer eng am Restaurant.",
+      "reponse": "Carla mange au restaurant à douze heures trente.",
+      "distracteurs": [
+        "Carla mange au restaurant à treize heures trente.",
+        "Carla prend le petit-déjeuner à douze heures trente.",
+        "Carla rentre chez elle à douze heures trente."
+      ]
+    },
+    {
+      "id": 21,
+      "question": "D'Carla schreift um véierel vir zwou nomëttes e Rapport.",
+      "reponse": "Carla écrit un rapport à treize heures quarante-cinq.",
+      "distracteurs": [
+        "Carla écrit un rapport à quatorze heures quinze.",
+        "Carla écrit des e-mails à treize heures quarante-cinq.",
+        "Carla mange au restaurant à treize heures quarante-cinq."
+      ]
+    },
+    {
+      "id": 22,
+      "question": "D'Carla geet um hallwer siwen owes heem.",
+      "reponse": "Carla rentre chez elle à dix-huit heures trente.",
+      "distracteurs": [
+        "Carla sort à dix-huit heures trente.",
+        "Carla rentre chez elle à six heures trente du matin.",
+        "Carla regarde la télé à dix-huit heures trente."
+      ]
+    },
+    {
+      "id": 23,
+      "question": "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee.",
+      "reponse": "Carla regarde la télé à vingt heures vingt.",
+      "distracteurs": [
+        "Carla regarde la télé à huit heures vingt du matin.",
+        "Carla écrit un rapport à vingt heures vingt.",
+        "Carla va dormir à vingt heures vingt."
+      ]
+    },
+    {
+      "id": 24,
+      "question": "D'Carla geet um zéng vir Hallefnuecht schlofen.",
+      "reponse": "Carla va dormir à vingt-trois heures cinquante.",
+      "distracteurs": [
+        "Carla va dormir à minuit dix.",
+        "Carla dort à vingt-deux heures cinquante.",
+        "Carla rentre chez elle à vingt-trois heures cinquante."
+      ]
+    },
+    {
+      "id": 25,
+      "question": "Um wéi vill Auer erwächt d'Carla?",
+      "reponse": "À quelle heure Carla se réveille-t-elle ?",
+      "distracteurs": [
+        "Que fait Carla à six heures ?",
+        "À quelle heure Carla prend-elle le bus ?",
+        "À quelle heure Carla regarde-t-elle la télé ?"
+      ]
+    },
+    {
+      "id": 26,
+      "question": "Wat mécht d'Carla um sechs Auer?",
+      "reponse": "Que fait Carla à six heures ?",
+      "distracteurs": [
+        "À quelle heure Carla se réveille-t-elle ?",
+        "Que fait Carla à douze heures trente ?",
+        "À quelle heure Carla sort-elle ?"
+      ]
+    },
+    {
+      "id": 27,
+      "question": "Um sechs Auer erwächen ech.",
+      "reponse": "À six heures, je me réveille.",
+      "distracteurs": [
+        "À six heures, je dors.",
+        "À six heures, je me douche.",
+        "À six heures, je sors."
+      ]
+    },
+    {
+      "id": 28,
+      "question": "Ech gi schlofen.",
+      "reponse": "Je vais dormir / je vais me coucher.",
+      "distracteurs": [
+        "Je dors.",
+        "Je rentre chez moi.",
+        "Je sors."
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "Carla se réveille à six heures.",
+      "avant": "D'Carla",
+      "trou": "erwächt",
+      "apres": "um sechs Auer.",
+      "choix": [
+        "erwächt",
+        "duscht",
+        "schléift",
+        "kuckt"
+      ],
+      "note": "erwächen → D'Carla erwächt"
+    },
+    {
+      "id": 2,
+      "fr": "Carla se douche à six heures dix.",
+      "avant": "D'Carla",
+      "trou": "duscht",
+      "apres": "um zéng op sechs.",
+      "choix": [
+        "duscht",
+        "erwächt",
+        "drénkt",
+        "geet"
+      ],
+      "note": "duschen → D'Carla duscht"
+    },
+    {
+      "id": 3,
+      "fr": "Carla prend le petit-déjeuner à six heures quarante-cinq.",
+      "avant": "D'Carla drénkt Kaffi",
+      "trou": "um",
+      "apres": "véierel vir siwen.",
+      "choix": [
+        "um",
+        "am",
+        "mam",
+        "op"
+      ],
+      "note": "um + heure"
+    },
+    {
+      "id": 4,
+      "fr": "Carla sort à sept heures quinze.",
+      "avant": "D'Carla geet um véierel op siwen",
+      "trou": "eraus",
+      "apres": ".",
+      "choix": [
+        "eraus",
+        "heem",
+        "schlofen",
+        "Kaffi"
+      ],
+      "note": "erausgoen → D'Carla geet ... eraus"
+    },
+    {
+      "id": 5,
+      "fr": "Carla prend le bus à sept heures vingt-cinq.",
+      "avant": "D'Carla fiert um fënnef vir hallwer aacht",
+      "trou": "mam Bus",
+      "apres": ".",
+      "choix": [
+        "mam Bus",
+        "am Bus",
+        "d'Tëlee",
+        "heem"
+      ],
+      "note": "mam Bus fueren = prendre le bus"
+    },
+    {
+      "id": 6,
+      "fr": "Carla téléphone et écrit des e-mails à huit heures dix.",
+      "avant": "D'Carla telefonéiert a",
+      "trou": "schreift",
+      "apres": "um zéng op aacht E-Mailen.",
+      "choix": [
+        "schreift",
+        "schléift",
+        "drénkt",
+        "fiert"
+      ],
+      "note": "schreiwen → schreift"
+    },
+    {
+      "id": 7,
+      "fr": "Carla mange au restaurant à douze heures trente.",
+      "avant": "D'Carla",
+      "trou": "ësst",
+      "apres": "um hallwer eng am Restaurant.",
+      "choix": [
+        "ësst",
+        "drénkt",
+        "schreift",
+        "kuckt"
+      ],
+      "note": "iessen → D'Carla ësst"
+    },
+    {
+      "id": 8,
+      "fr": "Carla écrit un rapport à treize heures quarante-cinq.",
+      "avant": "D'Carla schreift um",
+      "trou": "véierel vir zwou",
+      "apres": "nomëttes e Rapport.",
+      "choix": [
+        "véierel vir zwou",
+        "véierel op zwou",
+        "hallwer zwou",
+        "zéng op zwou"
+      ],
+      "note": "véierel vir zwou = 13:45"
+    },
+    {
+      "id": 9,
+      "fr": "Carla rentre chez elle à dix-huit heures trente.",
+      "avant": "D'Carla geet um hallwer siwen owes",
+      "trou": "heem",
+      "apres": ".",
+      "choix": [
+        "heem",
+        "eraus",
+        "schlofen",
+        "mam Bus"
+      ],
+      "note": "heemgoen = rentrer chez soi"
+    },
+    {
+      "id": 10,
+      "fr": "Carla regarde la télé à vingt heures vingt.",
+      "avant": "D'Carla kuckt um zwanzeg op aacht owes",
+      "trou": "d'Tëlee",
+      "apres": ".",
+      "choix": [
+        "d'Tëlee",
+        "E-Mailen",
+        "e Rapport",
+        "Kaffi"
+      ],
+      "note": "d'Tëlee kucken = regarder la télé"
+    },
+    {
+      "id": 11,
+      "fr": "Carla va dormir à vingt-trois heures cinquante.",
+      "avant": "D'Carla geet um zéng vir Hallefnuecht",
+      "trou": "schlofen",
+      "apres": ".",
+      "choix": [
+        "schlofen",
+        "heem",
+        "eraus",
+        "iessen"
+      ],
+      "note": "schlofe goen = aller dormir"
+    },
+    {
+      "id": 12,
+      "fr": "À quelle heure Carla se réveille-t-elle ?",
+      "avant": "Um wéi vill Auer",
+      "trou": "erwächt",
+      "apres": "d'Carla?",
+      "choix": [
+        "erwächt",
+        "duscht",
+        "fiert",
+        "kuckt"
+      ],
+      "note": "Um wéi vill Auer + verbe + sujet"
+    },
+    {
+      "id": 13,
+      "fr": "À quelle heure Carla prend-elle le bus ?",
+      "avant": "Um wéi vill Auer",
+      "trou": "fiert",
+      "apres": "d'Carla mam Bus?",
+      "choix": [
+        "fiert",
+        "geet",
+        "drénkt",
+        "schreift"
+      ],
+      "note": "fueren → fiert"
+    },
+    {
+      "id": 14,
+      "fr": "Que fait Carla à six heures ?",
+      "avant": "Wat",
+      "trou": "mécht",
+      "apres": "d'Carla um sechs Auer?",
+      "choix": [
+        "mécht",
+        "fiert",
+        "geet",
+        "ass"
+      ],
+      "note": "Wat mécht...? = Que fait...?"
+    },
+    {
+      "id": 15,
+      "fr": "Carla se réveille bien à six heures.",
+      "avant": "D'Carla erwächt",
+      "trou": "um sechs Auer",
+      "apres": ".",
+      "choix": [
+        "um sechs Auer",
+        "um zéng op sechs",
+        "um véierel op siwen",
+        "um hallwer eng"
+      ],
+      "note": "um sechs Auer = à six heures"
+    },
+    {
+      "id": 16,
+      "fr": "Carla mange au restaurant.",
+      "avant": "D'Carla ësst",
+      "trou": "am Restaurant",
+      "apres": ".",
+      "choix": [
+        "am Restaurant",
+        "mam Bus",
+        "heem",
+        "d'Tëlee"
+      ],
+      "note": "am Restaurant iessen"
+    },
+    {
+      "id": 17,
+      "fr": "À six heures, je me réveille.",
+      "avant": "Um sechs Auer",
+      "trou": "erwächen",
+      "apres": "ech.",
+      "choix": [
+        "erwächen",
+        "erwächt",
+        "duscht",
+        "schléift"
+      ],
+      "note": "Temps au début → verbe en deuxième position"
+    },
+    {
+      "id": 18,
+      "fr": "Je me douche à six heures dix.",
+      "avant": "Ech",
+      "trou": "duschen",
+      "apres": "um zéng op sechs.",
+      "choix": [
+        "duschen",
+        "duscht",
+        "erwächt",
+        "schlofen"
+      ],
+      "note": "Ech duschen"
+    },
+    {
+      "id": 19,
+      "fr": "Je sors.",
+      "avant": "Ech ginn",
+      "trou": "eraus",
+      "apres": ".",
+      "choix": [
+        "eraus",
+        "heem",
+        "schlofen",
+        "Kaffi"
+      ],
+      "note": "Ech ginn eraus"
+    },
+    {
+      "id": 20,
+      "fr": "Je prends le bus.",
+      "avant": "Ech",
+      "trou": "fuere",
+      "apres": "mam Bus.",
+      "choix": [
+        "fuere",
+        "fiert",
+        "ginn",
+        "kucken"
+      ],
+      "note": "Ech fuere mam Bus"
+    },
+    {
+      "id": 21,
+      "fr": "J'écris des e-mails.",
+      "avant": "Ech schreiwen",
+      "trou": "E-Mailen",
+      "apres": ".",
+      "choix": [
+        "E-Mailen",
+        "d'Tëlee",
+        "Kaffi",
+        "mam Bus"
+      ],
+      "note": "E-Mailen schreiwen"
+    },
+    {
+      "id": 22,
+      "fr": "Je rentre chez moi.",
+      "avant": "Ech ginn",
+      "trou": "heem",
+      "apres": ".",
+      "choix": [
+        "heem",
+        "eraus",
+        "schlofen",
+        "am Restaurant"
+      ],
+      "note": "Ech ginn heem"
+    },
+    {
+      "id": 23,
+      "fr": "Je regarde la télé.",
+      "avant": "Ech kucken",
+      "trou": "d'Tëlee",
+      "apres": ".",
+      "choix": [
+        "d'Tëlee",
+        "e Rapport",
+        "E-Mailen",
+        "Kaffi"
+      ],
+      "note": "Ech kucken d'Tëlee"
+    },
+    {
+      "id": 24,
+      "fr": "Je vais dormir.",
+      "avant": "Ech gi",
+      "trou": "schlofen",
+      "apres": ".",
+      "choix": [
+        "schlofen",
+        "heem",
+        "eraus",
+        "iessen"
+      ],
+      "note": "Ech gi schlofen = je vais dormir / je vais me coucher"
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "Se réveiller",
+      "lu": "erwächen"
+    },
+    {
+      "fr": "Se doucher",
+      "lu": "duschen"
+    },
+    {
+      "fr": "Prendre le petit-déjeuner / boire du café",
+      "lu": "Kaffi drénken"
+    },
+    {
+      "fr": "Sortir",
+      "lu": "erausgoen"
+    },
+    {
+      "fr": "Prendre le bus / aller en bus",
+      "lu": "mam Bus fueren"
+    },
+    {
+      "fr": "Téléphoner",
+      "lu": "telefonéieren"
+    },
+    {
+      "fr": "Écrire des e-mails",
+      "lu": "E-Mailen schreiwen"
+    },
+    {
+      "fr": "Manger au restaurant",
+      "lu": "am Restaurant iessen"
+    },
+    {
+      "fr": "Écrire un rapport",
+      "lu": "e Rapport schreiwen"
+    },
+    {
+      "fr": "Rentrer chez soi",
+      "lu": "heemgoen"
+    },
+    {
+      "fr": "Regarder la télé",
+      "lu": "d'Tëlee kucken"
+    },
+    {
+      "fr": "Dormir",
+      "lu": "schlofen"
+    },
+    {
+      "fr": "Aller dormir / se coucher",
+      "lu": "schlofe goen"
+    },
+    {
+      "fr": "Carla se réveille à six heures.",
+      "lu": "D'Carla erwächt um sechs Auer."
+    },
+    {
+      "fr": "Carla se douche à six heures dix.",
+      "lu": "D'Carla duscht um zéng op sechs."
+    },
+    {
+      "fr": "Carla prend le petit-déjeuner à six heures quarante-cinq.",
+      "lu": "D'Carla drénkt Kaffi um véierel vir siwen."
+    },
+    {
+      "fr": "Carla sort à sept heures quinze.",
+      "lu": "D'Carla geet um véierel op siwen eraus."
+    },
+    {
+      "fr": "Carla prend le bus à sept heures vingt-cinq.",
+      "lu": "D'Carla fiert um fënnef vir hallwer aacht mam Bus."
+    },
+    {
+      "fr": "Carla téléphone et écrit des e-mails à huit heures dix.",
+      "lu": "D'Carla telefonéiert a schreift um zéng op aacht E-Mailen."
+    },
+    {
+      "fr": "Carla mange au restaurant à douze heures trente.",
+      "lu": "D'Carla ësst um hallwer eng am Restaurant."
+    },
+    {
+      "fr": "Carla écrit un rapport à treize heures quarante-cinq.",
+      "lu": "D'Carla schreift um véierel vir zwou nomëttes e Rapport."
+    },
+    {
+      "fr": "Carla rentre chez elle à dix-huit heures trente.",
+      "lu": "D'Carla geet um hallwer siwen owes heem."
+    },
+    {
+      "fr": "Carla regarde la télé à vingt heures vingt.",
+      "lu": "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee."
+    },
+    {
+      "fr": "Carla va dormir à vingt-trois heures cinquante.",
+      "lu": "D'Carla geet um zéng vir Hallefnuecht schlofen."
+    },
+    {
+      "fr": "À quelle heure Carla se réveille-t-elle ?",
+      "lu": "Um wéi vill Auer erwächt d'Carla?"
+    },
+    {
+      "fr": "À quelle heure Carla prend-elle le bus ?",
+      "lu": "Um wéi vill Auer fiert d'Carla mam Bus?"
+    },
+    {
+      "fr": "À quelle heure Carla regarde-t-elle la télé ?",
+      "lu": "Um wéi vill Auer kuckt d'Carla d'Tëlee?"
+    },
+    {
+      "fr": "Que fait Carla à six heures ?",
+      "lu": "Wat mécht d'Carla um sechs Auer?"
+    },
+    {
+      "fr": "Que fait Carla à douze heures trente ?",
+      "lu": "Wat mécht d'Carla um hallwer eng?"
+    },
+    {
+      "fr": "À six heures, je me réveille.",
+      "lu": "Um sechs Auer erwächen ech."
+    },
+    {
+      "fr": "Je me réveille à six heures.",
+      "lu": "Ech erwächen um sechs Auer."
+    },
+    {
+      "fr": "Je me douche à six heures dix.",
+      "lu": "Ech duschen um zéng op sechs."
+    },
+    {
+      "fr": "Je prends le petit-déjeuner / je bois du café.",
+      "lu": "Ech drénke Kaffi."
+    },
+    {
+      "fr": "Je sors.",
+      "lu": "Ech ginn eraus."
+    },
+    {
+      "fr": "Je prends le bus.",
+      "lu": "Ech fuere mam Bus."
+    },
+    {
+      "fr": "Je téléphone.",
+      "lu": "Ech telefonéieren."
+    },
+    {
+      "fr": "J'écris des e-mails.",
+      "lu": "Ech schreiwen E-Mailen."
+    },
+    {
+      "fr": "Je mange au restaurant.",
+      "lu": "Ech iessen am Restaurant."
+    },
+    {
+      "fr": "J'écris un rapport.",
+      "lu": "Ech schreiwen e Rapport."
+    },
+    {
+      "fr": "Je rentre chez moi.",
+      "lu": "Ech ginn heem."
+    },
+    {
+      "fr": "Je regarde la télé.",
+      "lu": "Ech kucken d'Tëlee."
+    },
+    {
+      "fr": "Je dors.",
+      "lu": "Ech schlofen."
+    },
+    {
+      "fr": "Je vais dormir / je vais me coucher.",
+      "lu": "Ech gi schlofen."
+    }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Den Dagesoflaf décrit les activités d'une journée, du matin au soir."
+    },
+    {
+      "type": "vocab",
+      "titre": "Les activités du matin au soir",
+      "items": [
+        [
+          "erwächen",
+          "se réveiller"
+        ],
+        [
+          "duschen",
+          "se doucher"
+        ],
+        [
+          "Kaffi drénken",
+          "prendre le petit-déjeuner / boire du café"
+        ],
+        [
+          "erausgoen",
+          "sortir"
+        ],
+        [
+          "mam Bus fueren",
+          "prendre le bus / aller en bus"
+        ],
+        [
+          "telefonéieren",
+          "téléphoner"
+        ],
+        [
+          "E-Mailen schreiwen",
+          "écrire des e-mails"
+        ],
+        [
+          "am Restaurant iessen",
+          "manger au restaurant"
+        ],
+        [
+          "e Rapport schreiwen",
+          "écrire un rapport"
+        ],
+        [
+          "heemgoen",
+          "rentrer chez soi"
+        ],
+        [
+          "d'Tëlee kucken",
+          "regarder la télé"
+        ],
+        [
+          "schlofen",
+          "dormir"
+        ],
+        [
+          "schlofe goen",
+          "aller dormir / se coucher"
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Dire à quelle heure une activité a lieu",
+      "lignes": [
+        "On utilise um devant l'heure : um sechs Auer, um hallwer eng, um zéng vir Hallefnuecht.",
+        "La structure simple est : sujet + verbe + um + heure.",
+        "Exemple : D'Carla erwächt um sechs Auer.",
+        "Avec une période de la journée, on peut ajouter moies, nomëttes ou owes : um hallwer siwen owes."
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Quand l'heure est au début de la phrase",
+      "lignes": [
+        "Si la phrase commence par l'heure, le verbe vient juste après.",
+        "Um sechs Auer erwächen ech. = À six heures, je me réveille.",
+        "Ech erwächen um sechs Auer. = Je me réveille à six heures.",
+        "Les deux phrases sont correctes, mais l'ordre des mots change."
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Questions utiles",
+      "lignes": [
+        "Um wéi vill Auer + verbe + sujet + ... ? = À quelle heure ... ?",
+        "Um wéi vill Auer erwächt d'Carla? = À quelle heure Carla se réveille-t-elle ?",
+        "Wat mécht + sujet + um + heure ? = Que fait ... à ... ?",
+        "Wat mécht d'Carla um sechs Auer? = Que fait Carla à six heures ?"
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Le déroulement de la journée de Carla",
+      "items": [
+        [
+          "D'Carla erwächt um sechs Auer.",
+          "Carla se réveille à six heures."
+        ],
+        [
+          "D'Carla duscht um zéng op sechs.",
+          "Carla se douche à six heures dix."
+        ],
+        [
+          "D'Carla drénkt Kaffi um véierel vir siwen.",
+          "Carla prend le petit-déjeuner à six heures quarante-cinq."
+        ],
+        [
+          "D'Carla geet um véierel op siwen eraus.",
+          "Carla sort à sept heures quinze."
+        ],
+        [
+          "D'Carla fiert um fënnef vir hallwer aacht mam Bus.",
+          "Carla prend le bus à sept heures vingt-cinq."
+        ],
+        [
+          "D'Carla telefonéiert a schreift um zéng op aacht E-Mailen.",
+          "Carla téléphone et écrit des e-mails à huit heures dix."
+        ],
+        [
+          "D'Carla ësst um hallwer eng am Restaurant.",
+          "Carla mange au restaurant à douze heures trente."
+        ],
+        [
+          "D'Carla schreift um véierel vir zwou nomëttes e Rapport.",
+          "Carla écrit un rapport à treize heures quarante-cinq."
+        ],
+        [
+          "D'Carla geet um hallwer siwen owes heem.",
+          "Carla rentre chez elle à dix-huit heures trente."
+        ],
+        [
+          "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee.",
+          "Carla regarde la télé à vingt heures vingt."
+        ],
+        [
+          "D'Carla geet um zéng vir Hallefnuecht schlofen.",
+          "Carla va dormir à vingt-trois heures cinquante."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Ma journée",
+      "items": [
+        [
+          "Ech erwächen um sechs Auer.",
+          "Je me réveille à six heures."
+        ],
+        [
+          "Um sechs Auer erwächen ech.",
+          "À six heures, je me réveille."
+        ],
+        [
+          "Ech duschen um zéng op sechs.",
+          "Je me douche à six heures dix."
+        ],
+        [
+          "Ech drénke Kaffi.",
+          "Je prends le petit-déjeuner / je bois du café."
+        ],
+        [
+          "Ech ginn eraus.",
+          "Je sors."
+        ],
+        [
+          "Ech fuere mam Bus.",
+          "Je prends le bus / je vais en bus."
+        ],
+        [
+          "Ech telefonéieren.",
+          "Je téléphone."
+        ],
+        [
+          "Ech schreiwen E-Mailen.",
+          "J'écris des e-mails."
+        ],
+        [
+          "Ech iessen am Restaurant.",
+          "Je mange au restaurant."
+        ],
+        [
+          "Ech schreiwen e Rapport.",
+          "J'écris un rapport."
+        ],
+        [
+          "Ech ginn heem.",
+          "Je rentre chez moi."
+        ],
+        [
+          "Ech kucken d'Tëlee.",
+          "Je regarde la télé."
+        ],
+        [
+          "Ech schlofen.",
+          "Je dors."
+        ],
+        [
+          "Ech gi schlofen.",
+          "Je vais dormir / je vais me coucher."
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Mini-dialogue",
+      "echanges": [
+        [
+          "Um wéi vill Auer erwächt d'Carla?",
+          "À quelle heure Carla se réveille-t-elle ?"
+        ],
+        [
+          "D'Carla erwächt um sechs Auer.",
+          "Carla se réveille à six heures."
+        ],
+        [
+          "Wat mécht d'Carla um hallwer eng?",
+          "Que fait Carla à douze heures trente ?"
+        ],
+        [
+          "D'Carla ësst am Restaurant.",
+          "Carla mange au restaurant."
+        ],
+        [
+          "Um wéi vill Auer kuckt d'Carla d'Tëlee?",
+          "À quelle heure Carla regarde-t-elle la télé ?"
+        ],
+        [
+          "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee.",
+          "Carla regarde la télé à vingt heures vingt."
+        ]
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Attention aux verbes proches",
+      "lignes": [
+        "schlofen = dormir : Ech schlofen.",
+        "schlofe goen = aller dormir / se coucher : Ech gi schlofen.",
+        "erausgoen = sortir : Ech ginn eraus.",
+        "heemgoen = rentrer chez soi : Ech ginn heem."
+      ]
+    }
+  ]
+}
