@@ -202,7 +202,7 @@
     },
     {
       "id": 9,
-      "question": "Quel est le contraire de Déck ?",
+      "question": "Quel est le contraire de DECK ?",
       "reponse": "Dënn",
       "distracteurs": [
         "Kleng",
@@ -340,7 +340,7 @@
         "liicht",
         "schwéier",
         "dënn",
-        "Déck"
+        "déck"
       ],
       "note": "D' = article féminin devant voyelle"
     },
@@ -353,7 +353,7 @@
       "choix": [
         "liicht",
         "grouss",
-        "Déck",
+        "déck",
         "schwéier"
       ],
       "note": "schwéier = lourd · contraire de liicht"
@@ -445,7 +445,7 @@
     {
       "id": 11,
       "fr": "Le gratte-ciel est haut.",
-      "avant": "De Wollekekrazert ass",
+      "avant": "De Wollekekrazert t ass",
       "trou": "héich",
       "apres": ".",
       "choix": [
@@ -502,10 +502,10 @@
       "id": 15,
       "fr": "Le dictionnaire est épais.",
       "avant": "D'Wierderbuch ass",
-      "trou": "Déck",
+      "trou": "déck",
       "apres": ".",
       "choix": [
-        "Déck",
+        "déck",
         "dënn",
         "liicht",
         "eidel"
@@ -684,7 +684,7 @@
     },
     {
       "fr": "Le gratte-ciel est haut.",
-      "lu": "De Wollekekrazert ass héich."
+      "lu": "De Wollekekrazert t ass héich."
     },
     {
       "fr": "La bouteille est pleine.",
@@ -695,8 +695,8 @@
       "lu": "De Fuedem ass dënn."
     },
     {
-      "fr": "Le dictionnaire est épais.",
-      "lu": "D'Wierderbuch ass Déck."
+      "fr": "Le livre est épais.",
+      "lu": "D'buch ass Déck."
     },
     {
       "fr": "La souris est petite.",
@@ -704,15 +704,15 @@
     },
     {
       "fr": "Le stylo est bon marché.",
-      "lu": "De Bic ass bëlleg."
+      "lu": "De Stëft ass bëlleg."
     },
     {
       "fr": "La moto est chère.",
       "lu": "De Moto ass deier."
     },
     {
-      "fr": "Le muret est bas.",
-      "lu": "D'Mauer ass niddereg."
+      "fr": "L'étagère est basse.",
+      "lu": "D'Regal ass niddereg."
     }
   ],
   "cours": [

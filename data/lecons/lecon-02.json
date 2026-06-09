@@ -295,8 +295,8 @@
     {
       "id": 48,
       "fr": "Un gratte-ciel",
-      "lu": "E Wollekekrazer",
-      "note": "Männlech · e Wollekekrazer · Nég: kee Wollekekrazer"
+      "lu": "E Wollekekrazert ",
+      "note": "Männlech · e Wollekekrazert  · Nég: kee Wollekekrazert "
     },
     {
       "id": 49,
@@ -744,7 +744,7 @@
     },
     {
       "id": 44,
-      "question": "E Wollekekrazer",
+      "question": "E Wollekekrazert ",
       "reponse": "Un gratte-ciel",
       "distracteurs": [
         "Un immeuble",
@@ -1291,28 +1291,28 @@
       "fr": "C'est un gratte-ciel.",
       "avant": "Dat ass",
       "trou": "e",
-      "apres": "Wollekekrazer.",
+      "apres": "Wollekekrazert .",
       "choix": [
         "e",
         "en",
         "eng",
         "kee"
       ],
-      "note": "Wollekekrazer = Männlech → e Wollekekrazer"
+      "note": "Wollekekrazert  = Männlech → e Wollekekrazert "
     },
     {
       "id": 40,
       "fr": "Ce n'est pas un gratte-ciel.",
       "avant": "Dat ass",
       "trou": "kee",
-      "apres": "Wollekekrazer.",
+      "apres": "Wollekekrazert .",
       "choix": [
         "kee",
         "keen",
         "keng",
         "net"
       ],
-      "note": "Wollekekrazer = Männlech → kee Wollekekrazer"
+      "note": "Wollekekrazert  = Männlech → kee Wollekekrazert "
     },
     {
       "id": 41,
@@ -1555,7 +1555,7 @@
     {
       "id": 37,
       "fr": "Un gratte-ciel",
-      "lu": "E Wollekekrazer"
+      "lu": "E Wollekekrazert "
     },
     {
       "id": 38,
@@ -1620,7 +1620,7 @@
     {
       "id": 50,
       "fr": "Ce n'est pas un gratte-ciel.",
-      "lu": "Dat ass kee Wollekekrazer."
+      "lu": "Dat ass kee Wollekekrazert ."
     },
     {
       "id": 51,
@@ -1645,7 +1645,7 @@
     {
       "id": 55,
       "fr": "C'est un gratte-ciel.",
-      "lu": "Dat ass e Wollekekrazer."
+      "lu": "Dat ass e Wollekekrazert ."
     },
     {
       "id": 56,
