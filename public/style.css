@@ -27,7 +27,7 @@ body {
 }
 
 /* ── VIEWS ───────────────────────────────────────────────────────────────── */
-.view { display: none; width: 100%; max-width: 1200px; flex-direction: column; }
+.view { display: none; width: 100%; max-width: 960px; flex-direction: column; }
 .view.active { display: flex; }
 
 /* ── HOME ────────────────────────────────────────────────────────────────── */
