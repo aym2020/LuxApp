@@ -136,251 +136,416 @@
     "id": 1,
     "question": "Portugais - garçon",
     "reponse": "e Portugis",
-    "distracteurs": ["eng Portugisin", "Portugal", "Portugisesch"]
+    "distracteurs": [
+      "e Portugisin",
+      "e Portugal",
+      "e Portugisesch"
+    ]
   },
   {
     "id": 2,
     "question": "Portugaise - fille",
     "reponse": "eng Portugisin",
-    "distracteurs": ["e Portugis", "Portugal", "Portugisesch"]
+    "distracteurs": [
+      "eng Portugis",
+      "eng Portugal",
+      "eng Portugisesch"
+    ]
   },
   {
     "id": 3,
     "question": "Espagnol - garçon",
     "reponse": "e Spuenier",
-    "distracteurs": ["eng Spuenierin", "Spuenien", "Spuenesch"]
+    "distracteurs": [
+      "e Spuenierin",
+      "e Spuenien",
+      "e Spuenesch"
+    ]
   },
   {
     "id": 4,
     "question": "Espagnole - fille",
     "reponse": "eng Spuenierin",
-    "distracteurs": ["e Spuenier", "Spuenien", "Spuenesch"]
+    "distracteurs": [
+      "eng Spuenier",
+      "eng Spuenien",
+      "eng Spuenesch"
+    ]
   },
   {
     "id": 5,
     "question": "Anglais - garçon",
     "reponse": "en Englänner",
-    "distracteurs": ["eng Englännerin", "England", "Englesch"]
+    "distracteurs": [
+      "en Englännerin",
+      "en England",
+      "en Englesch"
+    ]
   },
   {
     "id": 6,
     "question": "Anglaise - fille",
     "reponse": "eng Englännerin",
-    "distracteurs": ["en Englänner", "England", "Englesch"]
+    "distracteurs": [
+      "eng Englänner",
+      "eng England",
+      "eng Englesch"
+    ]
   },
   {
     "id": 7,
     "question": "Italien - garçon",
     "reponse": "en Italiener",
-    "distracteurs": ["eng Italienerin", "Italien", "Italienesch"]
+    "distracteurs": [
+      "en Italienerin",
+      "en Italien",
+      "en Italienesch"
+    ]
   },
   {
     "id": 8,
     "question": "Italienne - fille",
     "reponse": "eng Italienerin",
-    "distracteurs": ["en Italiener", "Italien", "Italienesch"]
+    "distracteurs": [
+      "eng Italiener",
+      "eng Italien",
+      "eng Italienesch"
+    ]
   },
   {
     "id": 9,
     "question": "Luxembourgeois - garçon",
     "reponse": "e Lëtzebuerger",
-    "distracteurs": ["eng Lëtzebuergerin", "Lëtzebuerg", "Lëtzebuergesch"]
+    "distracteurs": [
+      "e Lëtzebuergerin",
+      "e Lëtzebuerg",
+      "e Lëtzebuergesch"
+    ]
   },
   {
     "id": 10,
     "question": "Luxembourgeoise - fille",
     "reponse": "eng Lëtzebuergerin",
-    "distracteurs": ["e Lëtzebuerger", "Lëtzebuerg", "Lëtzebuergesch"]
+    "distracteurs": [
+      "eng Lëtzebuerger",
+      "eng Lëtzebuerg",
+      "eng Lëtzebuergesch"
+    ]
   },
   {
     "id": 11,
     "question": "Australien - garçon",
     "reponse": "en Australier",
-    "distracteurs": ["eng Australierin", "Australien", "Englesch"]
+    "distracteurs": [
+      "en Australierin",
+      "en Australien",
+      "en Englesch"
+    ]
   },
   {
     "id": 12,
     "question": "Australienne - fille",
     "reponse": "eng Australierin",
-    "distracteurs": ["en Australier", "Australien", "Englesch"]
+    "distracteurs": [
+      "eng Australier",
+      "eng Australien",
+      "eng Englesch"
+    ]
   },
   {
     "id": 13,
     "question": "Argentin - garçon",
     "reponse": "en Argentinier",
-    "distracteurs": ["eng Argentinierin", "Argentinien", "Spuenesch"]
+    "distracteurs": [
+      "en Argentinierin",
+      "en Argentinien",
+      "en Spuenesch"
+    ]
   },
   {
     "id": 14,
     "question": "Argentine - fille",
     "reponse": "eng Argentinierin",
-    "distracteurs": ["en Argentinier", "Argentinien", "Spuenesch"]
+    "distracteurs": [
+      "eng Argentinier",
+      "eng Argentinien",
+      "eng Spuenesch"
+    ]
   },
   {
     "id": 15,
     "question": "Américain - garçon",
     "reponse": "en Amerikaner",
-    "distracteurs": ["eng Amerikanerin", "Amerika", "Englesch"]
+    "distracteurs": [
+      "en Amerikanerin",
+      "en Amerika",
+      "en Englesch"
+    ]
   },
   {
     "id": 16,
     "question": "Américaine - fille",
     "reponse": "eng Amerikanerin",
-    "distracteurs": ["en Amerikaner", "Amerika", "Englesch"]
+    "distracteurs": [
+      "eng Amerikaner",
+      "eng Amerika",
+      "eng Englesch"
+    ]
   },
   {
     "id": 17,
     "question": "Belge - garçon",
     "reponse": "e Belsch",
-    "distracteurs": ["eng Belsch", "Belsch", "Belschesch"]
+    "distracteurs": [
+      "e Franséisch",
+      "e Däitsch",
+      "e Belschesch"
+    ]
   },
   {
     "id": 18,
     "question": "Belge - fille",
     "reponse": "eng Belsch",
-    "distracteurs": ["e Belsch", "Belsch", "Belschesch"]
+    "distracteurs": [
+      "eng Franséisch",
+      "eng Däitsch",
+      "eng Belschesch"
+    ]
   },
   {
     "id": 19,
     "question": "Allemand - garçon",
     "reponse": "en Däitschen",
-    "distracteurs": ["eng Däitsch", "Däitschland", "Däitsch"]
+    "distracteurs": [
+      "en Däitsch",
+      "en Däitschland",
+      "en Däitscher"
+    ]
   },
   {
     "id": 20,
     "question": "Allemande - fille",
     "reponse": "eng Däitsch",
-    "distracteurs": ["en Däitschen", "Däitschland", "Däitsch"]
+    "distracteurs": [
+      "eng Däitschen",
+      "eng Däitschland",
+      "eng Däitscher"
+    ]
   },
   {
     "id": 21,
     "question": "Japonais - garçon",
     "reponse": "e Japaner",
-    "distracteurs": ["eng Japanerin", "Japan", "Japanesch"]
+    "distracteurs": [
+      "e Japanerin",
+      "e Japan",
+      "e Japanesch"
+    ]
   },
   {
     "id": 22,
     "question": "Japonaise - fille",
     "reponse": "eng Japanerin",
-    "distracteurs": ["e Japaner", "Japan", "Japanesch"]
+    "distracteurs": [
+      "eng Japaner",
+      "eng Japan",
+      "eng Japanesch"
+    ]
   },
   {
     "id": 23,
     "question": "Nord-Coréen - garçon",
     "reponse": "en Nordkoreaner",
-    "distracteurs": ["eng Nordkoreanerin", "Nordkorea", "Koreanesch"]
+    "distracteurs": [
+      "en Nordkoreanerin",
+      "en Nordkorea",
+      "en Koreanesch"
+    ]
   },
   {
     "id": 24,
     "question": "Nord-Coréenne - fille",
     "reponse": "eng Nordkoreanerin",
-    "distracteurs": ["en Nordkoreaner", "Nordkorea", "Koreanesch"]
+    "distracteurs": [
+      "eng Nordkoreaner",
+      "eng Nordkorea",
+      "eng Koreanesch"
+    ]
   },
   {
     "id": 25,
     "question": "Français - garçon",
     "reponse": "e Fransous",
-    "distracteurs": ["eng Fransousin", "Frankräich", "Franséisch"]
+    "distracteurs": [
+      "e Fransousin",
+      "e Frankräich",
+      "e Franséisch"
+    ]
   },
   {
     "id": 26,
     "question": "Française - fille",
     "reponse": "eng Fransousin",
-    "distracteurs": ["e Fransous", "Frankräich", "Franséisch"]
+    "distracteurs": [
+      "eng Fransous",
+      "eng Frankräich",
+      "eng Franséisch"
+    ]
   },
   {
     "id": 27,
     "question": "Néerlandais - garçon",
     "reponse": "e Hollänner",
-    "distracteurs": ["eng Hollännerin", "Holland", "Hollännesch"]
+    "distracteurs": [
+      "e Hollännerin",
+      "e Holland",
+      "e Hollännesch"
+    ]
   },
   {
     "id": 28,
     "question": "Néerlandaise - fille",
     "reponse": "eng Hollännerin",
-    "distracteurs": ["e Hollänner", "Holland", "Hollännesch"]
+    "distracteurs": [
+      "eng Hollänner",
+      "eng Holland",
+      "eng Hollännesch"
+    ]
   },
   {
     "id": 29,
     "question": "Chinois - garçon",
     "reponse": "e Chinees",
-    "distracteurs": ["eng Chineesin", "China", "Chineesesch"]
+    "distracteurs": [
+      "e Chineesin",
+      "e China",
+      "e Chineesesch"
+    ]
   },
   {
     "id": 30,
     "question": "Chinoise - fille",
     "reponse": "eng Chineesin",
-    "distracteurs": ["e Chinees", "China", "Chineesesch"]
+    "distracteurs": [
+      "eng Chinees",
+      "eng China",
+      "eng Chineesesch"
+    ]
   },
   {
     "id": 31,
     "question": "Suédois - garçon",
     "reponse": "e Schweed",
-    "distracteurs": ["eng Schweedin", "Schweden", "Schweedesch"]
+    "distracteurs": [
+      "e Schweedin",
+      "e Schweden",
+      "e Schweedesch"
+    ]
   },
   {
     "id": 32,
     "question": "Suédoise - fille",
     "reponse": "eng Schweedin",
-    "distracteurs": ["e Schweed", "Schweden", "Schweedesch"]
+    "distracteurs": [
+      "eng Schweed",
+      "eng Schweden",
+      "eng Schweedesch"
+    ]
   },
   {
     "id": 33,
     "question": "Suisse - garçon",
     "reponse": "e Schwäizer",
-    "distracteurs": ["eng Schwäizerin", "Schwäiz", "Schwäizesch"]
+    "distracteurs": [
+      "e Schwäizerin",
+      "e Schwäiz",
+      "e Schwäizesch"
+    ]
   },
   {
     "id": 34,
     "question": "Suisse - fille",
     "reponse": "eng Schwäizerin",
-    "distracteurs": ["e Schwäizer", "Schwäiz", "Schwäizesch"]
+    "distracteurs": [
+      "eng Schwäizer",
+      "eng Schwäiz",
+      "eng Schwäizesch"
+    ]
   },
   {
     "id": 35,
     "question": "Ukrainien - garçon",
     "reponse": "en Ukrainer",
-    "distracteurs": ["eng Ukrainerin", "Ukrain", "Ukrainesch"]
+    "distracteurs": [
+      "en Ukrainerin",
+      "en Ukrain",
+      "en Ukrainesch"
+    ]
   },
   {
     "id": 36,
     "question": "Ukrainienne - fille",
     "reponse": "eng Ukrainerin",
-    "distracteurs": ["en Ukrainer", "Ukrain", "Ukrainesch"]
+    "distracteurs": [
+      "eng Ukrainer",
+      "eng Ukrain",
+      "eng Ukrainesch"
+    ]
   },
   {
     "id": 37,
     "question": "Cap-Verdien - garçon",
     "reponse": "e Kapverdianer",
-    "distracteurs": ["eng Kapverdianerin", "Cap Vert", "Portugisesch"]
+    "distracteurs": [
+      "e Kapverdianerin",
+      "e Cap Vert",
+      "e Portugisesch"
+    ]
   },
   {
     "id": 38,
     "question": "Cap-Verdienne - fille",
     "reponse": "eng Kapverdianerin",
-    "distracteurs": ["e Kapverdianer", "Cap Vert", "Portugisesch"]
+    "distracteurs": [
+      "eng Kapverdianer",
+      "eng Cap Vert",
+      "eng Portugisesch"
+    ]
   },
   {
     "id": 39,
     "question": "Iranien - garçon",
     "reponse": "en Iraner",
-    "distracteurs": ["eng Iranerin", "Iran", "Persesch"]
+    "distracteurs": [
+      "en Iranerin",
+      "en Iran",
+      "en Persesch"
+    ]
   },
   {
     "id": 40,
     "question": "Iranienne - fille",
     "reponse": "eng Iranerin",
-    "distracteurs": ["en Iraner", "Iran", "Persesch"]
+    "distracteurs": [
+      "eng Iraner",
+      "eng Iran",
+      "eng Persesch"
+    ]
   }
 ],
-  "trous": [
+"trous": [
   {
     "id": 1,
     "fr": "Ronaldo est portugais.",
     "avant": "De Ronaldo ass",
     "trou": "e Portugis",
     "apres": ".",
-    "choix": ["e Portugis", "eng Portugisin", "Portugisesch", "Portugal"],
+    "choix": [
+      "e Portugis",
+      "e Portugisin",
+      "e Portugisesch",
+      "e Portugal"
+    ],
     "note": "e Portugis = un Portugais"
   },
   {
@@ -389,7 +554,12 @@
     "avant": "D'Maria ass",
     "trou": "eng Portugisin",
     "apres": ".",
-    "choix": ["e Portugis", "eng Portugisin", "Portugisesch", "Portugal"],
+    "choix": [
+      "eng Portugis",
+      "eng Portugisin",
+      "eng Portugisesch",
+      "eng Portugal"
+    ],
     "note": "eng Portugisin = une Portugaise"
   },
   {
@@ -398,7 +568,12 @@
     "avant": "De Carlos ass",
     "trou": "e Spuenier",
     "apres": ".",
-    "choix": ["e Spuenier", "eng Spuenierin", "Spuenesch", "Spuenien"],
+    "choix": [
+      "e Spuenier",
+      "e Spuenierin",
+      "e Spuenesch",
+      "e Spuenien"
+    ],
     "note": "e Spuenier = un Espagnol"
   },
   {
@@ -407,7 +582,12 @@
     "avant": "D'Sofia ass",
     "trou": "eng Spuenierin",
     "apres": ".",
-    "choix": ["e Spuenier", "eng Spuenierin", "Spuenesch", "Spuenien"],
+    "choix": [
+      "eng Spuenier",
+      "eng Spuenierin",
+      "eng Spuenesch",
+      "eng Spuenien"
+    ],
     "note": "eng Spuenierin = une Espagnole"
   },
   {
@@ -416,7 +596,12 @@
     "avant": "Den Harry ass",
     "trou": "en Englänner",
     "apres": ".",
-    "choix": ["en Englänner", "eng Englännerin", "Englesch", "England"],
+    "choix": [
+      "en Englänner",
+      "en Englännerin",
+      "en Englesch",
+      "en England"
+    ],
     "note": "en Englänner = un Anglais"
   },
   {
@@ -425,7 +610,12 @@
     "avant": "D'Emily ass",
     "trou": "eng Englännerin",
     "apres": ".",
-    "choix": ["en Englänner", "eng Englännerin", "Englesch", "England"],
+    "choix": [
+      "eng Englänner",
+      "eng Englännerin",
+      "eng Englesch",
+      "eng England"
+    ],
     "note": "eng Englännerin = une Anglaise"
   },
   {
@@ -434,7 +624,12 @@
     "avant": "De Marco ass",
     "trou": "en Italiener",
     "apres": ".",
-    "choix": ["en Italiener", "eng Italienerin", "Italienesch", "Italien"],
+    "choix": [
+      "en Italiener",
+      "en Italienerin",
+      "en Italienesch",
+      "en Italien"
+    ],
     "note": "en Italiener = un Italien"
   },
   {
@@ -443,7 +638,12 @@
     "avant": "D'Giulia ass",
     "trou": "eng Italienerin",
     "apres": ".",
-    "choix": ["en Italiener", "eng Italienerin", "Italienesch", "Italien"],
+    "choix": [
+      "eng Italiener",
+      "eng Italienerin",
+      "eng Italienesch",
+      "eng Italien"
+    ],
     "note": "eng Italienerin = une Italienne"
   },
   {
@@ -452,7 +652,12 @@
     "avant": "De Luc ass",
     "trou": "e Lëtzebuerger",
     "apres": ".",
-    "choix": ["e Lëtzebuerger", "eng Lëtzebuergerin", "Lëtzebuergesch", "Lëtzebuerg"],
+    "choix": [
+      "e Lëtzebuerger",
+      "e Lëtzebuergerin",
+      "e Lëtzebuergesch",
+      "e Lëtzebuerg"
+    ],
     "note": "e Lëtzebuerger = un Luxembourgeois"
   },
   {
@@ -461,7 +666,12 @@
     "avant": "D'Anne ass",
     "trou": "eng Lëtzebuergerin",
     "apres": ".",
-    "choix": ["e Lëtzebuerger", "eng Lëtzebuergerin", "Lëtzebuergesch", "Lëtzebuerg"],
+    "choix": [
+      "eng Lëtzebuerger",
+      "eng Lëtzebuergerin",
+      "eng Lëtzebuergesch",
+      "eng Lëtzebuerg"
+    ],
     "note": "eng Lëtzebuergerin = une Luxembourgeoise"
   },
   {
@@ -470,7 +680,12 @@
     "avant": "De Jack ass",
     "trou": "en Australier",
     "apres": ".",
-    "choix": ["en Australier", "eng Australierin", "Englesch", "Australien"],
+    "choix": [
+      "en Australier",
+      "en Australierin",
+      "en Englesch",
+      "en Australien"
+    ],
     "note": "en Australier = un Australien"
   },
   {
@@ -479,7 +694,12 @@
     "avant": "D'Olivia ass",
     "trou": "eng Australierin",
     "apres": ".",
-    "choix": ["en Australier", "eng Australierin", "Englesch", "Australien"],
+    "choix": [
+      "eng Australier",
+      "eng Australierin",
+      "eng Englesch",
+      "eng Australien"
+    ],
     "note": "eng Australierin = une Australienne"
   },
   {
@@ -488,7 +708,12 @@
     "avant": "De Messi ass",
     "trou": "en Argentinier",
     "apres": ".",
-    "choix": ["en Argentinier", "eng Argentinierin", "Spuenesch", "Argentinien"],
+    "choix": [
+      "en Argentinier",
+      "en Argentinierin",
+      "en Spuenesch",
+      "en Argentinien"
+    ],
     "note": "en Argentinier = un Argentin"
   },
   {
@@ -497,7 +722,12 @@
     "avant": "D'Cristina ass",
     "trou": "eng Argentinierin",
     "apres": ".",
-    "choix": ["en Argentinier", "eng Argentinierin", "Spuenesch", "Argentinien"],
+    "choix": [
+      "eng Argentinier",
+      "eng Argentinierin",
+      "eng Spuenesch",
+      "eng Argentinien"
+    ],
     "note": "eng Argentinierin = une Argentine"
   },
   {
@@ -506,7 +736,12 @@
     "avant": "De John ass",
     "trou": "en Amerikaner",
     "apres": ".",
-    "choix": ["en Amerikaner", "eng Amerikanerin", "Englesch", "Amerika"],
+    "choix": [
+      "en Amerikaner",
+      "en Amerikanerin",
+      "en Englesch",
+      "en Amerika"
+    ],
     "note": "en Amerikaner = un Américain"
   },
   {
@@ -515,7 +750,12 @@
     "avant": "D'Jessica ass",
     "trou": "eng Amerikanerin",
     "apres": ".",
-    "choix": ["en Amerikaner", "eng Amerikanerin", "Englesch", "Amerika"],
+    "choix": [
+      "eng Amerikaner",
+      "eng Amerikanerin",
+      "eng Englesch",
+      "eng Amerika"
+    ],
     "note": "eng Amerikanerin = une Américaine"
   },
   {
@@ -524,7 +764,12 @@
     "avant": "De Philippe ass",
     "trou": "e Belsch",
     "apres": ".",
-    "choix": ["e Belsch", "eng Belsch", "Franséisch", "Belsch"],
+    "choix": [
+      "e Belsch",
+      "e Franséisch",
+      "e Däitsch",
+      "e Belschesch"
+    ],
     "note": "e Belsch = un Belge"
   },
   {
@@ -533,7 +778,12 @@
     "avant": "D'Julie ass",
     "trou": "eng Belsch",
     "apres": ".",
-    "choix": ["e Belsch", "eng Belsch", "Franséisch", "Belsch"],
+    "choix": [
+      "eng Belsch",
+      "eng Franséisch",
+      "eng Däitsch",
+      "eng Belschesch"
+    ],
     "note": "eng Belsch = une Belge"
   },
   {
@@ -542,7 +792,12 @@
     "avant": "Den Hans ass",
     "trou": "en Däitschen",
     "apres": ".",
-    "choix": ["en Däitschen", "eng Däitsch", "e Däitsch", "Däitschland"],
+    "choix": [
+      "en Däitschen",
+      "en Däitsch",
+      "en Däitscher",
+      "en Däitschland"
+    ],
     "note": "en Däitschen = un Allemand"
   },
   {
@@ -551,7 +806,12 @@
     "avant": "D'Anna ass",
     "trou": "eng Däitsch",
     "apres": ".",
-    "choix": ["en Däitschen", "eng Däitsch", "e Däitsch", "Däitschland"],
+    "choix": [
+      "eng Däitschen",
+      "eng Däitsch",
+      "eng Däitscher",
+      "eng Däitschland"
+    ],
     "note": "eng Däitsch = une Allemande"
   },
   {
@@ -560,7 +820,12 @@
     "avant": "D'Yuki ass",
     "trou": "eng Japanerin",
     "apres": ".",
-    "choix": ["e Japaner", "eng Japanerin", "Japanesch", "Japan"],
+    "choix": [
+      "eng Japaner",
+      "eng Japanerin",
+      "eng Japanesch",
+      "eng Japan"
+    ],
     "note": "eng Japanerin = une Japonaise"
   },
   {
@@ -569,7 +834,12 @@
     "avant": "De Ken ass",
     "trou": "e Japaner",
     "apres": ".",
-    "choix": ["e Japaner", "eng Japanerin", "Japanesch", "Japan"],
+    "choix": [
+      "e Japaner",
+      "e Japanerin",
+      "e Japanesch",
+      "e Japan"
+    ],
     "note": "e Japaner = un Japonais"
   },
   {
@@ -578,7 +848,12 @@
     "avant": "De Li ass",
     "trou": "e Chinees",
     "apres": ".",
-    "choix": ["e Chinees", "eng Chineesin", "Chineesesch", "China"],
+    "choix": [
+      "e Chinees",
+      "e Chineesin",
+      "e Chineesesch",
+      "e China"
+    ],
     "note": "e Chinees = un Chinois"
   },
   {
@@ -587,7 +862,12 @@
     "avant": "D'Mei ass",
     "trou": "eng Chineesin",
     "apres": ".",
-    "choix": ["e Chinees", "eng Chineesin", "Chineesesch", "China"],
+    "choix": [
+      "eng Chinees",
+      "eng Chineesin",
+      "eng Chineesesch",
+      "eng China"
+    ],
     "note": "eng Chineesin = une Chinoise"
   },
   {
@@ -596,7 +876,12 @@
     "avant": "Den Erik ass",
     "trou": "e Schweed",
     "apres": ".",
-    "choix": ["e Schweed", "eng Schweedin", "Schweedesch", "Schweden"],
+    "choix": [
+      "e Schweed",
+      "e Schweedin",
+      "e Schweedesch",
+      "e Schweden"
+    ],
     "note": "e Schweed = un Suédois"
   },
   {
@@ -605,7 +890,12 @@
     "avant": "D'Anna ass",
     "trou": "eng Schweedin",
     "apres": ".",
-    "choix": ["e Schweed", "eng Schweedin", "Schweedesch", "Schweden"],
+    "choix": [
+      "eng Schweed",
+      "eng Schweedin",
+      "eng Schweedesch",
+      "eng Schweden"
+    ],
     "note": "eng Schweedin = une Suédoise"
   },
   {
@@ -614,7 +904,12 @@
     "avant": "De Marc ass",
     "trou": "e Fransous",
     "apres": ".",
-    "choix": ["e Fransous", "eng Fransousin", "Franséisch", "Frankräich"],
+    "choix": [
+      "e Fransous",
+      "e Fransousin",
+      "e Franséisch",
+      "e Frankräich"
+    ],
     "note": "e Fransous = un Français"
   },
   {
@@ -623,7 +918,12 @@
     "avant": "D'Claire ass",
     "trou": "eng Fransousin",
     "apres": ".",
-    "choix": ["e Fransous", "eng Fransousin", "Franséisch", "Frankräich"],
+    "choix": [
+      "eng Fransous",
+      "eng Fransousin",
+      "eng Franséisch",
+      "eng Frankräich"
+    ],
     "note": "eng Fransousin = une Française"
   },
   {
@@ -632,7 +932,12 @@
     "avant": "De Peter ass",
     "trou": "e Hollänner",
     "apres": ".",
-    "choix": ["e Hollänner", "eng Hollännerin", "Hollännesch", "Holland"],
+    "choix": [
+      "e Hollänner",
+      "e Hollännerin",
+      "e Hollännesch",
+      "e Holland"
+    ],
     "note": "e Hollänner = un Néerlandais"
   },
   {
@@ -641,7 +946,12 @@
     "avant": "D'Sanne ass",
     "trou": "eng Hollännerin",
     "apres": ".",
-    "choix": ["e Hollänner", "eng Hollännerin", "Hollännesch", "Holland"],
+    "choix": [
+      "eng Hollänner",
+      "eng Hollännerin",
+      "eng Hollännesch",
+      "eng Holland"
+    ],
     "note": "eng Hollännerin = une Néerlandaise"
   },
   {
@@ -650,7 +960,12 @@
     "avant": "De Paul ass",
     "trou": "e Schwäizer",
     "apres": ".",
-    "choix": ["e Schwäizer", "eng Schwäizerin", "Schwäizesch", "Schwäiz"],
+    "choix": [
+      "e Schwäizer",
+      "e Schwäizerin",
+      "e Schwäizesch",
+      "e Schwäiz"
+    ],
     "note": "e Schwäizer = un Suisse"
   },
   {
@@ -659,7 +974,12 @@
     "avant": "D'Laura ass",
     "trou": "eng Schwäizerin",
     "apres": ".",
-    "choix": ["e Schwäizer", "eng Schwäizerin", "Schwäizesch", "Schwäiz"],
+    "choix": [
+      "eng Schwäizer",
+      "eng Schwäizerin",
+      "eng Schwäizesch",
+      "eng Schwäiz"
+    ],
     "note": "eng Schwäizerin = une Suissesse"
   },
   {
@@ -668,7 +988,12 @@
     "avant": "Den Oleh ass",
     "trou": "en Ukrainer",
     "apres": ".",
-    "choix": ["en Ukrainer", "eng Ukrainerin", "Ukrainesch", "Ukrain"],
+    "choix": [
+      "en Ukrainer",
+      "en Ukrainerin",
+      "en Ukrainesch",
+      "en Ukrain"
+    ],
     "note": "en Ukrainer = un Ukrainien"
   },
   {
@@ -677,7 +1002,12 @@
     "avant": "D'Olena ass",
     "trou": "eng Ukrainerin",
     "apres": ".",
-    "choix": ["en Ukrainer", "eng Ukrainerin", "Ukrainesch", "Ukrain"],
+    "choix": [
+      "eng Ukrainer",
+      "eng Ukrainerin",
+      "eng Ukrainesch",
+      "eng Ukrain"
+    ],
     "note": "eng Ukrainerin = une Ukrainienne"
   },
   {
@@ -686,7 +1016,12 @@
     "avant": "De José ass",
     "trou": "e Kapverdianer",
     "apres": ".",
-    "choix": ["e Kapverdianer", "eng Kapverdianerin", "Portugisesch", "Cap Vert"],
+    "choix": [
+      "e Kapverdianer",
+      "e Kapverdianerin",
+      "e Portugisesch",
+      "e Cap Vert"
+    ],
     "note": "e Kapverdianer = un Cap-Verdien"
   },
   {
@@ -695,7 +1030,12 @@
     "avant": "D'Marta ass",
     "trou": "eng Kapverdianerin",
     "apres": ".",
-    "choix": ["e Kapverdianer", "eng Kapverdianerin", "Portugisesch", "Cap Vert"],
+    "choix": [
+      "eng Kapverdianer",
+      "eng Kapverdianerin",
+      "eng Portugisesch",
+      "eng Cap Vert"
+    ],
     "note": "eng Kapverdianerin = une Cap-Verdienne"
   },
   {
@@ -704,7 +1044,12 @@
     "avant": "Den Ali ass",
     "trou": "en Iraner",
     "apres": ".",
-    "choix": ["en Iraner", "eng Iranerin", "Persesch", "Iran"],
+    "choix": [
+      "en Iraner",
+      "en Iranerin",
+      "en Persesch",
+      "en Iran"
+    ],
     "note": "en Iraner = un Iranien"
   },
   {
@@ -713,7 +1058,12 @@
     "avant": "D'Sara ass",
     "trou": "eng Iranerin",
     "apres": ".",
-    "choix": ["en Iraner", "eng Iranerin", "Persesch", "Iran"],
+    "choix": [
+      "eng Iraner",
+      "eng Iranerin",
+      "eng Persesch",
+      "eng Iran"
+    ],
     "note": "eng Iranerin = une Iranienne"
   },
   {
@@ -722,7 +1072,12 @@
     "avant": "De Kim ass",
     "trou": "en Nordkoreaner",
     "apres": ".",
-    "choix": ["en Nordkoreaner", "eng Nordkoreanerin", "Koreanesch", "Nordkorea"],
+    "choix": [
+      "en Nordkoreaner",
+      "en Nordkoreanerin",
+      "en Koreanesch",
+      "en Nordkorea"
+    ],
     "note": "en Nordkoreaner = un Nord-Coréen"
   },
   {
@@ -731,7 +1086,12 @@
     "avant": "D'Ji-a ass",
     "trou": "eng Nordkoreanerin",
     "apres": ".",
-    "choix": ["en Nordkoreaner", "eng Nordkoreanerin", "Koreanesch", "Nordkorea"],
+    "choix": [
+      "eng Nordkoreaner",
+      "eng Nordkoreanerin",
+      "eng Koreanesch",
+      "eng Nordkorea"
+    ],
     "note": "eng Nordkoreanerin = une Nord-Coréenne"
   }
 ],
@@ -894,7 +1254,7 @@
     },
     {
       "fr": "Elle est australienne.",
-      "lu": "Si ass eng Australierin."
+      "lu": "Si ass Australierin."
     },
     {
       "fr": "Non, elle n'est pas italienne.",
@@ -902,7 +1262,7 @@
     },
     {
       "fr": "Il est luxembourgeois.",
-      "lu": "Hien ass e Lëtzebuerger."
+      "lu": "Hien ass Lëtzebuerger."
     },
     {
       "fr": "Est-ce que Ronaldo est portugais ?",
@@ -910,19 +1270,19 @@
     },
     {
       "fr": "Il est nord-coréen.",
-      "lu": "Hien ass en Nordkoreaner."
+      "lu": "Hien ass Nordkoreaner."
     },
     {
       "fr": "Elle est américaine.",
-      "lu": "Si ass eng Amerikanerin."
+      "lu": "Si ass Amerikanerin."
     },
     {
       "fr": "Il est suisse.",
-      "lu": "Hien ass e Schwäizer."
+      "lu": "Hien ass Schwäizer."
     },
     {
       "fr": "Elle est ukrainienne.",
-      "lu": "Si ass eng Ukrainerin."
+      "lu": "Si ass Ukrainerin."
     },
     {
       "fr": "Quelle est sa nationalité ? (à lui)",
@@ -958,11 +1318,11 @@
     },
     {
       "fr": "Il est allemand.",
-      "lu": "Hien ass en Däitschen."
+      "lu": "Hien ass Däitschen."
     },
     {
       "fr": "Elle est japonaise.",
-      "lu": "Si ass eng Japanerin."
+      "lu": "Si ass Japanerin."
     },
     {
       "fr": "Je suis français.",
