@@ -10,329 +10,639 @@
     "ecriture": "Écris la traduction en luxembourgeois. Respecte zwee/zwou et les modifications du mot."
   },
   "flashcards": [
-  { "id": 1, "fr": "Deux stylos", "lu": "zwee Stëfter", "note": "Pluriel de e Stëft" },
-  { "id": 2, "fr": "Deux chaises", "lu": "zwee Still", "note": "Pluriel de e Stull" },
-  { "id": 3, "fr": "Deux tables", "lu": "zwee Dëscher", "note": "Pluriel de en Dësch" },
-  { "id": 4, "fr": "Deux réveils", "lu": "zwee Weckeren", "note": "Pluriel de e Wecker" },
-  { "id": 5, "fr": "Deux lunettes", "lu": "zwee Brëller", "note": "Pluriel de e Brëll" },
-  { "id": 6, "fr": "Deux tampons", "lu": "zwee Stempelen", "note": "Pluriel de e Stempel" },
-  { "id": 7, "fr": "Deux montres", "lu": "zwou Aueren", "note": "Pluriel de eng Auer" },
-  { "id": 8, "fr": "Deux enveloppes", "lu": "zwou Enveloppen", "note": "Pluriel de eng Enveloppe" },
-  { "id": 9, "fr": "Deux bouteilles", "lu": "zwou Fläschen", "note": "Pluriel de eng Fläsch" },
-  { "id": 10, "fr": "Deux fauteuils", "lu": "zwou Fotellen", "note": "Pluriel de eng Fotell" },
-  { "id": 11, "fr": "Deux plantes", "lu": "zwou Planzen", "note": "Pluriel de eng Planz" },
-  { "id": 12, "fr": "Deux livres", "lu": "zwee Bicher", "note": "Pluriel de e Buch" },
-  { "id": 13, "fr": "Deux feuilles", "lu": "zwee Blieder", "note": "Pluriel de e Blat" },
-  { "id": 14, "fr": "Deux cahiers", "lu": "zwee Hefter", "note": "Pluriel de en Heft" },
-  { "id": 15, "fr": "Deux bâtiments", "lu": "zwee Gebaier", "note": "Pluriel de e Gebai" },
-  { "id": 16, "fr": "Deux petits livres", "lu": "zwee Bichelcher", "note": "Pluriel de e Bichelchen" },
-  { "id": 17, "fr": "Deux ordinateurs", "lu": "zwee Computeren", "note": "Pluriel de e Computer" },
-  { "id": 18, "fr": "Deux téléphones", "lu": "zwee Telefonen", "note": "Pluriel de en Telefon" },
-  { "id": 19, "fr": "Deux vélos", "lu": "zwee Vëloen", "note": "Pluriel de e Vëlo" },
-  { "id": 20, "fr": "Deux avions", "lu": "zwee Fligeren", "note": "Pluriel de e Fliger" },
-  { "id": 21, "fr": "Deux classeurs", "lu": "zwee Classeuren", "note": "Pluriel de e Classeur" },
-  { "id": 22, "fr": "Deux imprimantes", "lu": "zwee Dréckeren", "note": "Pluriel de en Drécker" },
-  { "id": 23, "fr": "Deux sacs", "lu": "zwou Mappen", "note": "Pluriel de eng Mapp" },
-  { "id": 24, "fr": "Deux poches", "lu": "zwou Poschen", "note": "Pluriel de eng Posch" },
-  { "id": 25, "fr": "Deux CD", "lu": "zwou CDen", "note": "Pluriel de eng CD" },
-  { "id": 26, "fr": "Deux cartes de crédit", "lu": "zwou Kreditkaarten", "note": "Pluriel de eng Kreditkaart" },
-  { "id": 27, "fr": "Deux tasses", "lu": "zwou Tasen", "note": "Pluriel de eng Taass" },
-  { "id": 28, "fr": "Deux maisons", "lu": "zwee Haiser", "note": "Pluriel de en Haus" },
-  { "id": 29, "fr": "Deux verres", "lu": "zwee Glieser", "note": "Pluriel de e Glas" },
-  { "id": 30, "fr": "Deux images", "lu": "zwee Biller", "note": "Pluriel de e Bild" },
-  { "id": 31, "fr": "Deux étagères", "lu": "zwee Regaler", "note": "Pluriel de e Regal" },
-  { "id": 32, "fr": "Deux souris", "lu": "zwou Mais", "note": "Pluriel de eng Maus" },
-  { "id": 33, "fr": "Deux bus", "lu": "zwee Bussen", "note": "Pluriel de e Bus" }
-],
+    {
+      "id": 1,
+      "fr": "Deux stylos",
+      "lu": "zwee Stëfter",
+      "note": "Pluriel de e Stëft"
+    },
+    {
+      "id": 2,
+      "fr": "Deux chaises",
+      "lu": "zwee Still",
+      "note": "Pluriel de e Stull"
+    },
+    {
+      "id": 3,
+      "fr": "Deux tables",
+      "lu": "zwee Dëscher",
+      "note": "Pluriel de en Dësch"
+    },
+    {
+      "id": 4,
+      "fr": "Deux réveils",
+      "lu": "zwee Weckeren",
+      "note": "Pluriel de e Wecker"
+    },
+    {
+      "id": 5,
+      "fr": "Deux lunettes",
+      "lu": "zwee Brëller",
+      "note": "Pluriel de e Brëll"
+    },
+    {
+      "id": 6,
+      "fr": "Deux tampons",
+      "lu": "zwee Stempelen",
+      "note": "Pluriel de e Stempel"
+    },
+    {
+      "id": 7,
+      "fr": "Deux montres",
+      "lu": "zwou Aueren",
+      "note": "Pluriel de eng Auer"
+    },
+    {
+      "id": 8,
+      "fr": "Deux enveloppes",
+      "lu": "zwou Enveloppen",
+      "note": "Pluriel de eng Enveloppe"
+    },
+    {
+      "id": 9,
+      "fr": "Deux bouteilles",
+      "lu": "zwou Fläschen",
+      "note": "Pluriel de eng Fläsch"
+    },
+    {
+      "id": 10,
+      "fr": "Deux fauteuils",
+      "lu": "zwou Fotellen",
+      "note": "Pluriel de eng Fotell"
+    },
+    {
+      "id": 11,
+      "fr": "Deux plantes",
+      "lu": "zwou Planzen",
+      "note": "Pluriel de eng Planz"
+    },
+    {
+      "id": 12,
+      "fr": "Deux livres",
+      "lu": "zwee Bicher",
+      "note": "Pluriel de e Buch"
+    },
+    {
+      "id": 13,
+      "fr": "Deux feuilles",
+      "lu": "zwee Blieder",
+      "note": "Pluriel de e Blat"
+    },
+    {
+      "id": 14,
+      "fr": "Deux cahiers",
+      "lu": "zwee Hefter",
+      "note": "Pluriel de en Heft"
+    },
+    {
+      "id": 15,
+      "fr": "Deux bâtiments",
+      "lu": "zwee Gebaier",
+      "note": "Pluriel de e Gebai"
+    },
+    {
+      "id": 16,
+      "fr": "Deux petits livres",
+      "lu": "zwee Bichelcher",
+      "note": "Pluriel de e Bichelchen"
+    },
+    {
+      "id": 17,
+      "fr": "Deux ordinateurs",
+      "lu": "zwee Computeren",
+      "note": "Pluriel de e Computer"
+    },
+    {
+      "id": 18,
+      "fr": "Deux téléphones",
+      "lu": "zwee Telefonen",
+      "note": "Pluriel de en Telefon"
+    },
+    {
+      "id": 19,
+      "fr": "Deux vélos",
+      "lu": "zwee Vëloen",
+      "note": "Pluriel de e Vëlo"
+    },
+    {
+      "id": 20,
+      "fr": "Deux avions",
+      "lu": "zwee Fligeren",
+      "note": "Pluriel de e Fliger"
+    },
+    {
+      "id": 21,
+      "fr": "Deux classeurs",
+      "lu": "zwee Classeuren",
+      "note": "Pluriel de e Classeur"
+    },
+    {
+      "id": 22,
+      "fr": "Deux imprimantes",
+      "lu": "zwee Dréckeren",
+      "note": "Pluriel de en Drécker"
+    },
+    {
+      "id": 23,
+      "fr": "Deux sacs",
+      "lu": "zwou Mappen",
+      "note": "Pluriel de eng Mapp"
+    },
+    {
+      "id": 24,
+      "fr": "Deux poches",
+      "lu": "zwou Poschen",
+      "note": "Pluriel de eng Posch"
+    },
+    {
+      "id": 25,
+      "fr": "Deux CD",
+      "lu": "zwou CDen",
+      "note": "Pluriel de eng CD"
+    },
+    {
+      "id": 26,
+      "fr": "Deux cartes de crédit",
+      "lu": "zwou Kreditkaarten",
+      "note": "Pluriel de eng Kreditkaart"
+    },
+    {
+      "id": 27,
+      "fr": "Deux tasses",
+      "lu": "zwou Tasen",
+      "note": "Pluriel de eng Taass"
+    },
+    {
+      "id": 28,
+      "fr": "Deux maisons",
+      "lu": "zwee Haiser",
+      "note": "Pluriel de en Haus"
+    },
+    {
+      "id": 29,
+      "fr": "Deux verres",
+      "lu": "zwee Glieser",
+      "note": "Pluriel de e Glas"
+    },
+    {
+      "id": 30,
+      "fr": "Deux images",
+      "lu": "zwee Biller",
+      "note": "Pluriel de e Bild"
+    },
+    {
+      "id": 31,
+      "fr": "Deux étagères",
+      "lu": "zwee Regaler",
+      "note": "Pluriel de e Regal"
+    },
+    {
+      "id": 32,
+      "fr": "Deux souris",
+      "lu": "zwou Mais",
+      "note": "Pluriel de eng Maus"
+    },
+    {
+      "id": 33,
+      "fr": "Deux bus",
+      "lu": "zwee Bussen",
+      "note": "Pluriel de e Bus"
+    }
+  ],
   "quiz": [
-  {
-    "id": 1,
-    "question": "Deux stylos",
-    "reponse": "zwee Stëfter",
-    "distracteurs": ["zwee Stëft", "zwou Stëfter", "zwee Stëfteren"]
-  },
-  {
-    "id": 2,
-    "question": "Deux chaises",
-    "reponse": "zwee Still",
-    "distracteurs": ["zwee Stull", "zwou Still", "zwee Stiller"]
-  },
-  {
-    "id": 3,
-    "question": "Deux tables",
-    "reponse": "zwee Dëscher",
-    "distracteurs": ["zwee Dësch", "zwou Dëscher", "zwee Dëscheren"]
-  },
-  {
-    "id": 4,
-    "question": "Deux réveils",
-    "reponse": "zwee Weckeren",
-    "distracteurs": ["zwee Wecker", "zwou Weckeren", "zwee Weckeran"]
-  },
-  {
-    "id": 5,
-    "question": "Deux lunettes",
-    "reponse": "zwee Brëller",
-    "distracteurs": ["zwee Brëll", "zwou Brëller", "zwee Brëlleren"]
-  },
-  {
-    "id": 6,
-    "question": "Deux montres",
-    "reponse": "zwou Aueren",
-    "distracteurs": ["zwee Aueren", "zwou Auer", "zwou Auerenen"]
-  },
-  {
-    "id": 7,
-    "question": "Deux enveloppes",
-    "reponse": "zwou Enveloppen",
-    "distracteurs": ["zwee Enveloppen", "zwou Enveloppe", "zwou Envelopp"]
-  },
-  {
-    "id": 8,
-    "question": "Deux bouteilles",
-    "reponse": "zwou Fläschen",
-    "distracteurs": ["zwee Fläschen", "zwou Fläsch", "zwou Fläscheren"]
-  },
-  {
-    "id": 9,
-    "question": "Deux livres",
-    "reponse": "zwee Bicher",
-    "distracteurs": ["zwee Bucher", "zwou Bicher", "zwee Buch"]
-  },
-  {
-    "id": 10,
-    "question": "Deux feuilles",
-    "reponse": "zwee Blieder",
-    "distracteurs": ["zwee Blat", "zwou Blieder", "zwee Blätter"]
-  },
-  {
-    "id": 11,
-    "question": "Deux cahiers",
-    "reponse": "zwee Hefter",
-    "distracteurs": ["zwee Heft", "zwou Hefter", "zwee Hefteren"]
-  },
-  {
-    "id": 12,
-    "question": "Deux bâtiments",
-    "reponse": "zwee Gebaier",
-    "distracteurs": ["zwee Gebai", "zwou Gebaier", "zwee Gebaien"]
-  },
-  {
-    "id": 13,
-    "question": "Deux ordinateurs",
-    "reponse": "zwee Computeren",
-    "distracteurs": ["zwee Computer", "zwou Computeren", "zwee Computeran"]
-  },
-  {
-    "id": 14,
-    "question": "Deux téléphones",
-    "reponse": "zwee Telefonen",
-    "distracteurs": ["zwee Telefon", "zwou Telefonen", "zwee Telefone"]
-  },
-  {
-    "id": 15,
-    "question": "Deux vélos",
-    "reponse": "zwee Vëloen",
-    "distracteurs": ["zwee Vëlo", "zwou Vëloen", "zwee Vëlon"]
-  },
-  {
-    "id": 16,
-    "question": "Deux avions",
-    "reponse": "zwee Fligeren",
-    "distracteurs": ["zwee Fliger", "zwou Fligeren", "zwee Fligerenen"]
-  },
-  {
-    "id": 17,
-    "question": "Deux sacs",
-    "reponse": "zwou Mappen",
-    "distracteurs": ["zwee Mappen", "zwou Mapp", "zwou Mappan"]
-  },
-  {
-    "id": 18,
-    "question": "Deux poches",
-    "reponse": "zwou Poschen",
-    "distracteurs": ["zwee Poschen", "zwou Posch", "zwou Poscheren"]
-  },
-  {
-    "id": 19,
-    "question": "Deux CD",
-    "reponse": "zwou CDen",
-    "distracteurs": ["zwee CDen", "zwou CD", "zwou CDeren"]
-  },
-  {
-    "id": 20,
-    "question": "Deux cartes de crédit",
-    "reponse": "zwou Kreditkaarten",
-    "distracteurs": ["zwee Kreditkaarten", "zwou Kreditkaart", "zwou Kreditkarten"]
-  },
-  {
-    "id": 21,
-    "question": "Deux maisons",
-    "reponse": "zwee Haiser",
-    "distracteurs": ["zwee Haus", "zwou Haiser", "zwee Heiser"]
-  },
-  {
-    "id": 22,
-    "question": "Deux verres",
-    "reponse": "zwee Glieser",
-    "distracteurs": ["zwee Glas", "zwou Glieser", "zwee Gläser"]
-  },
-  {
-    "id": 23,
-    "question": "Deux images",
-    "reponse": "zwee Biller",
-    "distracteurs": ["zwee Bild", "zwou Biller", "zwee Bilder"]
-  },
-  {
-    "id": 24,
-    "question": "Deux étagères",
-    "reponse": "zwee Regaler",
-    "distracteurs": ["zwee Regal", "zwou Regaler", "zwee Regalen"]
-  },
-  {
-    "id": 25,
-    "question": "Deux souris",
-    "reponse": "zwou Mais",
-    "distracteurs": ["zwee Mais", "zwou Maus", "zwou Mäus"]
-  }
-],
+    {
+      "id": 1,
+      "question": "Deux stylos",
+      "reponse": "zwee Stëfter",
+      "distracteurs": [
+        "zwee Stëft",
+        "zwou Stëfter",
+        "zwou Stëft"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Deux chaises",
+      "reponse": "zwee Still",
+      "distracteurs": [
+        "zwee Stull",
+        "zwou Still",
+        "zwou Stull"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Deux tables",
+      "reponse": "zwee Dëscher",
+      "distracteurs": [
+        "zwee Dësch",
+        "zwou Dëscher",
+        "zwou Dësch"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Deux réveils",
+      "reponse": "zwee Weckeren",
+      "distracteurs": [
+        "zwee Wecker",
+        "zwou Weckeren",
+        "zwou Wecker"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Deux lunettes",
+      "reponse": "zwee Brëller",
+      "distracteurs": [
+        "zwee Brëll",
+        "zwou Brëller",
+        "zwou Brëll"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Deux montres",
+      "reponse": "zwou Aueren",
+      "distracteurs": [
+        "zwee Aueren",
+        "zwou Auer",
+        "zwee Auer"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Deux enveloppes",
+      "reponse": "zwou Enveloppen",
+      "distracteurs": [
+        "zwee Enveloppen",
+        "zwou Enveloppe",
+        "zwee Enveloppe"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Deux bouteilles",
+      "reponse": "zwou Fläschen",
+      "distracteurs": [
+        "zwee Fläschen",
+        "zwou Fläsch",
+        "zwee Fläsch"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Deux livres",
+      "reponse": "zwee Bicher",
+      "distracteurs": [
+        "zwee Buch",
+        "zwou Bicher",
+        "zwou Buch"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Deux feuilles",
+      "reponse": "zwee Blieder",
+      "distracteurs": [
+        "zwee Blat",
+        "zwou Blieder",
+        "zwou Blat"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Deux cahiers",
+      "reponse": "zwee Hefter",
+      "distracteurs": [
+        "zwee Heft",
+        "zwou Hefter",
+        "zwou Heft"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Deux bâtiments",
+      "reponse": "zwee Gebaier",
+      "distracteurs": [
+        "zwee Gebai",
+        "zwou Gebaier",
+        "zwou Gebai"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "Deux ordinateurs",
+      "reponse": "zwee Computeren",
+      "distracteurs": [
+        "zwee Computer",
+        "zwou Computeren",
+        "zwou Computer"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Deux téléphones",
+      "reponse": "zwee Telefonen",
+      "distracteurs": [
+        "zwee Telefon",
+        "zwou Telefonen",
+        "zwou Telefon"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Deux vélos",
+      "reponse": "zwee Vëloen",
+      "distracteurs": [
+        "zwee Vëlo",
+        "zwou Vëloen",
+        "zwou Vëlo"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Deux avions",
+      "reponse": "zwee Fligeren",
+      "distracteurs": [
+        "zwee Fliger",
+        "zwou Fligeren",
+        "zwou Fliger"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Deux sacs",
+      "reponse": "zwou Mappen",
+      "distracteurs": [
+        "zwee Mappen",
+        "zwou Mapp",
+        "zwee Mapp"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Deux poches",
+      "reponse": "zwou Poschen",
+      "distracteurs": [
+        "zwee Poschen",
+        "zwou Posch",
+        "zwee Posch"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Deux CD",
+      "reponse": "zwou CDen",
+      "distracteurs": [
+        "zwee CDen",
+        "zwou CD",
+        "zwee CD"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Deux cartes de crédit",
+      "reponse": "zwou Kreditkaarten",
+      "distracteurs": [
+        "zwee Kreditkaarten",
+        "zwou Kreditkaart",
+        "zwee Kreditkaart"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "Deux maisons",
+      "reponse": "zwee Haiser",
+      "distracteurs": [
+        "zwee Haus",
+        "zwou Haiser",
+        "zwou Haus"
+      ]
+    },
+    {
+      "id": 22,
+      "question": "Deux verres",
+      "reponse": "zwee Glieser",
+      "distracteurs": [
+        "zwee Glas",
+        "zwou Glieser",
+        "zwou Glas"
+      ]
+    },
+    {
+      "id": 23,
+      "question": "Deux images",
+      "reponse": "zwee Biller",
+      "distracteurs": [
+        "zwee Bild",
+        "zwou Biller",
+        "zwou Bild"
+      ]
+    },
+    {
+      "id": 24,
+      "question": "Deux étagères",
+      "reponse": "zwee Regaler",
+      "distracteurs": [
+        "zwee Regal",
+        "zwou Regaler",
+        "zwou Regal"
+      ]
+    },
+    {
+      "id": 25,
+      "question": "Deux souris",
+      "reponse": "zwou Mais",
+      "distracteurs": [
+        "zwee Mais",
+        "zwou Maus",
+        "zwee Maus"
+      ]
+    }
+  ],
   "trous": [
-  {
-    "id": 1,
-    "fr": "Deux stylos",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Stëfter",
-    "choix": ["zwee", "zwou"],
-    "note": "Stëft (M) → zwee"
-  },
-  {
-    "id": 2,
-    "fr": "Deux montres",
-    "avant": "",
-    "trou": "zwou",
-    "apres": "Aueren",
-    "choix": ["zwee", "zwou"],
-    "note": "Auer (F) → zwou"
-  },
-  {
-    "id": 3,
-    "fr": "Deux livres",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Bicher",
-    "choix": ["zwee", "zwou"],
-    "note": "Buch (N) → zwee"
-  },
-  {
-    "id": 4,
-    "fr": "Deux bouteilles",
-    "avant": "",
-    "trou": "zwou",
-    "apres": "Fläschen",
-    "choix": ["zwee", "zwou"],
-    "note": "Fläsch (F) → zwou"
-  },
-  {
-    "id": 5,
-    "fr": "Deux ordinateurs",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Computeren",
-    "choix": ["zwee", "zwou"],
-    "note": "Computer (M) → zwee"
-  },
-  {
-    "id": 6,
-    "fr": "Deux cahiers",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Hefter",
-    "choix": ["zwee", "zwou"],
-    "note": "Heft (N) → zwee"
-  },
-  {
-    "id": 7,
-    "fr": "Deux enveloppes",
-    "avant": "",
-    "trou": "zwou",
-    "apres": "Enveloppen",
-    "choix": ["zwee", "zwou"],
-    "note": "Enveloppe (F) → zwou"
-  },
-  {
-    "id": 8,
-    "fr": "Deux réveils",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Weckeren",
-    "choix": ["zwee", "zwou"],
-    "note": "Wecker (M) → zwee"
-  },
-  {
-    "id": 9,
-    "fr": "Deux maisons",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Haiser",
-    "choix": ["zwee", "zwou"],
-    "note": "Haus (N) → zwee"
-  },
-  {
-    "id": 10,
-    "fr": "Deux souris",
-    "avant": "",
-    "trou": "zwou",
-    "apres": "Mais",
-    "choix": ["zwee", "zwou"],
-    "note": "Maus (F) → zwou"
-  },
-  {
-    "id": 11,
-    "fr": "Deux images",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Biller",
-    "choix": ["zwee", "zwou"],
-    "note": "Bild (N) → zwee"
-  },
-  {
-    "id": 12,
-    "fr": "Deux cartes de crédit",
-    "avant": "",
-    "trou": "zwou",
-    "apres": "Kreditkaarten",
-    "choix": ["zwee", "zwou"],
-    "note": "Kreditkaart (F) → zwou"
-  },
-  {
-    "id": 13,
-    "fr": "Deux vélos",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Vëloen",
-    "choix": ["zwee", "zwou"],
-    "note": "Vëlo (M) → zwee"
-  },
-  {
-    "id": 14,
-    "fr": "Deux fauteuils",
-    "avant": "",
-    "trou": "zwou",
-    "apres": "Fotellen",
-    "choix": ["zwee", "zwou"],
-    "note": "Fotell (F) → zwou"
-  },
-  {
-    "id": 15,
-    "fr": "Deux bâtiments",
-    "avant": "",
-    "trou": "zwee",
-    "apres": "Gebaier",
-    "choix": ["zwee", "zwou"],
-    "note": "Gebai (N) → zwee"
-  }
-],
+    {
+      "id": 1,
+      "fr": "Deux stylos",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Stëfter",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Stëft (M) → zwee"
+    },
+    {
+      "id": 2,
+      "fr": "Deux montres",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Aueren",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Auer (F) → zwou"
+    },
+    {
+      "id": 3,
+      "fr": "Deux livres",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Bicher",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Buch (N) → zwee"
+    },
+    {
+      "id": 4,
+      "fr": "Deux bouteilles",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Fläschen",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Fläsch (F) → zwou"
+    },
+    {
+      "id": 5,
+      "fr": "Deux ordinateurs",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Computeren",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Computer (M) → zwee"
+    },
+    {
+      "id": 6,
+      "fr": "Deux cahiers",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Hefter",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Heft (N) → zwee"
+    },
+    {
+      "id": 7,
+      "fr": "Deux enveloppes",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Enveloppen",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Enveloppe (F) → zwou"
+    },
+    {
+      "id": 8,
+      "fr": "Deux réveils",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Weckeren",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Wecker (M) → zwee"
+    },
+    {
+      "id": 9,
+      "fr": "Deux maisons",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Haiser",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Haus (N) → zwee"
+    },
+    {
+      "id": 10,
+      "fr": "Deux souris",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Mais",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Maus (F) → zwou"
+    },
+    {
+      "id": 11,
+      "fr": "Deux images",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Biller",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Bild (N) → zwee"
+    },
+    {
+      "id": 12,
+      "fr": "Deux cartes de crédit",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Kreditkaarten",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Kreditkaart (F) → zwou"
+    },
+    {
+      "id": 13,
+      "fr": "Deux vélos",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Vëloen",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Vëlo (M) → zwee"
+    },
+    {
+      "id": 14,
+      "fr": "Deux fauteuils",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Fotellen",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Fotell (F) → zwou"
+    },
+    {
+      "id": 15,
+      "fr": "Deux bâtiments",
+      "avant": "",
+      "trou": "zwee",
+      "apres": "Gebaier",
+      "choix": [
+        "zwee",
+        "zwou"
+      ],
+      "note": "Gebai (N) → zwee"
+    }
+  ],
   "ecriture": [
     {
       "fr": "Deux avions",
