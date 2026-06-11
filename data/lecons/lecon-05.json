@@ -1,6 +1,6 @@
 {
   "id": 5,
-  "titre": "Den Alter & De Nummeren",
+  "titre": "D'Zuelen",
   "titre_fr": "Les nombres et la façon de compter en luxembourgeois",
   "couleur": "#a07ad4",
   "instructions": {
@@ -358,7 +358,7 @@
     },
     {
       "id": 15,
-      "question": "Néngadrësseg",
+      "question": "Néngandrësseg",
       "reponse": "39",
       "distracteurs": [
         "93",
@@ -438,7 +438,7 @@
     },
     {
       "id": 23,
-      "question": "Sechshonnertnéngzeg",
+      "question": "Sechshonnertnonzeg",
       "reponse": "690",
       "distracteurs": [
         "609",
@@ -551,7 +551,7 @@
     {
       "id": 1,
       "fr": "Il y a dix-huit voitures.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "uechtzéng",
       "apres": "Autoen.",
       "choix": [
@@ -565,7 +565,7 @@
     {
       "id": 2,
       "fr": "Il y a vingt-deux bus.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "zweeanzwanzeg",
       "apres": "Bussen.",
       "choix": [
@@ -579,13 +579,13 @@
     {
       "id": 3,
       "fr": "Il y a quarante-sept téléphones.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "siwenavéierzeg",
       "apres": "Telefonen.",
       "choix": [
         "siwenavéierzeg",
         "véierasiwwenzeg",
-        "siwenadrësseg",
+        "siwenandrësseg",
         "aachtavéierzeg"
       ],
       "note": "47 = siwenavéierzeg"
@@ -593,7 +593,7 @@
     {
       "id": 4,
       "fr": "Il y a trente et une tables.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "eenandrësseg",
       "apres": "Dëscher.",
       "choix": [
@@ -607,7 +607,7 @@
     {
       "id": 5,
       "fr": "Il y a cinquante-neuf ordinateurs.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "néngafofzeg",
       "apres": "Computeren.",
       "choix": [
@@ -621,9 +621,9 @@
     {
       "id": 6,
       "fr": "Il y a soixante-trois chaises.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "dräiasiechzeg",
-      "apres": "Stiller.",
+      "apres": "Still.",
       "choix": [
         "dräiasiechzeg",
         "dräiasiwwenzeg",
@@ -635,7 +635,7 @@
     {
       "id": 7,
       "fr": "Il y a soixante-dix-huit avions.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "aachtasiwwenzeg",
       "apres": "Fligeren.",
       "choix": [
@@ -649,7 +649,7 @@
     {
       "id": 8,
       "fr": "Il y a quatre-vingt-quatre trains.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "véieranaachtzeg",
       "apres": "Zich.",
       "choix": [
@@ -663,7 +663,7 @@
     {
       "id": 9,
       "fr": "Il y a quatre-vingt-dix-neuf portes.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "néngannonzeg",
       "apres": "Dieren.",
       "choix": [
@@ -677,13 +677,13 @@
     {
       "id": 10,
       "fr": "Il y a vingt-cinq montres.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "fënnefanzwanzeg",
       "apres": "Aueren.",
       "choix": [
         "fënnefanzwanzeg",
-        "véierazwanzeg",
-        "fënnefadrësseg",
+        "véieranzwanzeg",
+        "fënnefandrësseg",
         "zwanzeg"
       ],
       "note": "25 = fënnefanzwanzeg"
@@ -691,7 +691,7 @@
     {
       "id": 11,
       "fr": "Il y a quarante tableaux.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "véierzeg",
       "apres": "Tafelen.",
       "choix": [
@@ -705,9 +705,9 @@
     {
       "id": 12,
       "fr": "Il y a cinquante-deux tasses.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "zweeafofzeg",
-      "apres": "Taassen.",
+      "apres": "Tasen.",
       "choix": [
         "zweeafofzeg",
         "zwouafofzeg",
@@ -719,7 +719,7 @@
     {
       "id": 13,
       "fr": "Il y a trente-sept fenêtres.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "siwenandrësseg",
       "apres": "Fënsteren.",
       "choix": [
@@ -733,7 +733,7 @@
     {
       "id": 14,
       "fr": "Il y a soixante-quatorze bouteilles.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "véierasiwwenzeg",
       "apres": "Fläschen.",
       "choix": [
@@ -747,13 +747,13 @@
     {
       "id": 15,
       "fr": "Il y a vingt-neuf lampes.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "nénganzwanzeg",
       "apres": "Luuchten.",
       "choix": [
         "nénganzwanzeg",
-        "néngadrësseg",
-        "aachtazwanzeg",
+        "néngandrësseg",
+        "aachtanzwanzeg",
         "zwanzeg"
       ],
       "note": "29 = nénganzwanzeg"
@@ -761,7 +761,7 @@
     {
       "id": 16,
       "fr": "Il y a quatre-vingt-un livres.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "eenanaachtzeg",
       "apres": "Bicher.",
       "choix": [
@@ -775,21 +775,21 @@
     {
       "id": 17,
       "fr": "Il y a cent feuilles.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "honnert",
       "apres": "Blieder.",
       "choix": [
         "honnert",
         "zéng",
         "dausend",
-        "néngzeg"
+        "nonzeg"
       ],
       "note": "100 = honnert"
     },
     {
       "id": 18,
       "fr": "Il y a deux cents maisons.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "zweehonnert",
       "apres": "Haiser.",
       "choix": [
@@ -803,7 +803,7 @@
     {
       "id": 19,
       "fr": "Il y a trois cents verres.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "dräihonnert",
       "apres": "Glieser.",
       "choix": [
@@ -817,7 +817,7 @@
     {
       "id": 20,
       "fr": "Il y a mille immeubles.",
-      "avant": "Dat sinn",
+      "avant": "Et sinn",
       "trou": "dausend",
       "apres": "Gebaier.",
       "choix": [
@@ -839,7 +839,7 @@
       "lu": "eent"
     },
     {
-      "fr": "2 (masculin)",
+      "fr": "2 (masculin ou neutre)",
       "lu": "Zwee"
     },
     {
@@ -1173,7 +1173,7 @@
       "titre": "Construction des nombres composés",
       "lignes": [
         "unité + <b>an/a</b> + dizaine, soudé : <b>21 = eenanzwanzeg</b>",
-        "Devant n, d, t, z (ou voyelle, h) → <b>an</b> (een<b>an</b>zwanzeg, fënnef<b>an</b>drësseg)",
+        "Devant u, n, i, t, e, d, z, o, h, a → <b>an</b> (een<b>an</b>zwanzeg, fënnef<b>an</b>drësseg)",
         "Devant autre consonne → <b>a</b> (siwen<b>a</b>véierzeg = 47, een<b>a</b>fofzeg = 51)",
         "L'unité se place <b>avant</b> la dizaine (contrairement au français)"
       ]
