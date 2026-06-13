@@ -537,560 +537,560 @@
   {
     "id": 1,
     "fr": "Ronaldo est portugais.",
-    "avant": "De Ronaldo ass",
-    "trou": "e Portugis",
+    "avant": "De Ronaldo ass e",
+    "trou": "Portugis",
     "apres": ".",
     "choix": [
-      "e Portugis",
-      "e Portugisin",
-      "e Portugisesch",
-      "e Portugal"
+      "Portugis",
+      "Portugisin",
+      "Portugisesch",
+      "Portugal"
     ],
     "note": "e Portugis = un Portugais"
   },
   {
     "id": 2,
     "fr": "Maria est portugaise.",
-    "avant": "D'Maria ass",
-    "trou": "eng Portugisin",
+    "avant": "D'Maria ass eng",
+    "trou": "Portugisin",
     "apres": ".",
     "choix": [
-      "eng Portugis",
-      "eng Portugisin",
-      "eng Portugisesch",
-      "eng Portugal"
+      "Portugis",
+      "Portugisin",
+      "Portugisesch",
+      "Portugal"
     ],
     "note": "eng Portugisin = une Portugaise"
   },
   {
     "id": 3,
     "fr": "Carlos est espagnol.",
-    "avant": "De Carlos ass",
-    "trou": "e Spuenier",
+    "avant": "De Carlos ass e",
+    "trou": "Spuenier",
     "apres": ".",
     "choix": [
-      "e Spuenier",
-      "e Spuenierin",
-      "e Spuenesch",
-      "e Spuenien"
+      "Spuenier",
+      "Spuenierin",
+      "Spuenesch",
+      "Spuenien"
     ],
     "note": "e Spuenier = un Espagnol"
   },
   {
     "id": 4,
     "fr": "Sofia est espagnole.",
-    "avant": "D'Sofia ass",
-    "trou": "eng Spuenierin",
+    "avant": "D'Sofia ass eng",
+    "trou": "Spuenierin",
     "apres": ".",
     "choix": [
-      "eng Spuenier",
-      "eng Spuenierin",
-      "eng Spuenesch",
-      "eng Spuenien"
+      "Spuenier",
+      "Spuenierin",
+      "Spuenesch",
+      "Spuenien"
     ],
     "note": "eng Spuenierin = une Espagnole"
   },
   {
     "id": 5,
     "fr": "Harry est anglais.",
-    "avant": "Den Harry ass",
-    "trou": "en Englänner",
+    "avant": "Den Harry ass en",
+    "trou": "Englänner",
     "apres": ".",
     "choix": [
-      "en Englänner",
-      "en Englännerin",
-      "en Englesch",
-      "en England"
+      "Englänner",
+      "Englännerin",
+      "Englesch",
+      "England"
     ],
     "note": "en Englänner = un Anglais"
   },
   {
     "id": 6,
     "fr": "Emily est anglaise.",
-    "avant": "D'Emily ass",
-    "trou": "eng Englännerin",
+    "avant": "D'Emily ass eng",
+    "trou": "Englännerin",
     "apres": ".",
     "choix": [
-      "eng Englänner",
-      "eng Englännerin",
-      "eng Englesch",
-      "eng England"
+      "Englänner",
+      "Englännerin",
+      "Englesch",
+      "England"
     ],
     "note": "eng Englännerin = une Anglaise"
   },
   {
     "id": 7,
     "fr": "Marco est italien.",
-    "avant": "De Marco ass",
-    "trou": "en Italiener",
+    "avant": "De Marco ass en",
+    "trou": "Italiener",
     "apres": ".",
     "choix": [
-      "en Italiener",
-      "en Italienerin",
-      "en Italienesch",
-      "en Italien"
+      "Italiener",
+      "Italienerin",
+      "Italienesch",
+      "Italien"
     ],
     "note": "en Italiener = un Italien"
   },
   {
     "id": 8,
     "fr": "Giulia est italienne.",
-    "avant": "D'Giulia ass",
-    "trou": "eng Italienerin",
+    "avant": "D'Giulia ass eng",
+    "trou": "Italienerin",
     "apres": ".",
     "choix": [
-      "eng Italiener",
-      "eng Italienerin",
-      "eng Italienesch",
-      "eng Italien"
+      "Italiener",
+      "Italienerin",
+      "Italienesch",
+      "Italien"
     ],
     "note": "eng Italienerin = une Italienne"
   },
   {
     "id": 9,
     "fr": "Luc est luxembourgeois.",
-    "avant": "De Luc ass",
-    "trou": "e Lëtzebuerger",
+    "avant": "De Luc ass e",
+    "trou": "Lëtzebuerger",
     "apres": ".",
     "choix": [
-      "e Lëtzebuerger",
-      "e Lëtzebuergerin",
-      "e Lëtzebuergesch",
-      "e Lëtzebuerg"
+      "Lëtzebuerger",
+      "Lëtzebuergerin",
+      "Lëtzebuergesch",
+      "Lëtzebuerg"
     ],
     "note": "e Lëtzebuerger = un Luxembourgeois"
   },
   {
     "id": 10,
     "fr": "Anne est luxembourgeoise.",
-    "avant": "D'Anne ass",
-    "trou": "eng Lëtzebuergerin",
+    "avant": "D'Anne ass eng",
+    "trou": "Lëtzebuergerin",
     "apres": ".",
     "choix": [
-      "eng Lëtzebuerger",
-      "eng Lëtzebuergerin",
-      "eng Lëtzebuergesch",
-      "eng Lëtzebuerg"
+      "Lëtzebuerger",
+      "Lëtzebuergerin",
+      "Lëtzebuergesch",
+      "Lëtzebuerg"
     ],
     "note": "eng Lëtzebuergerin = une Luxembourgeoise"
   },
   {
     "id": 11,
     "fr": "Jack est australien.",
-    "avant": "De Jack ass",
-    "trou": "en Australier",
+    "avant": "De Jack ass en",
+    "trou": "Australier",
     "apres": ".",
     "choix": [
-      "en Australier",
-      "en Australierin",
-      "en Englesch",
-      "en Australien"
+      "Australier",
+      "Australierin",
+      "Englesch",
+      "Australien"
     ],
     "note": "en Australier = un Australien"
   },
   {
     "id": 12,
     "fr": "Olivia est australienne.",
-    "avant": "D'Olivia ass",
-    "trou": "eng Australierin",
+    "avant": "D'Olivia ass eng",
+    "trou": "Australierin",
     "apres": ".",
     "choix": [
-      "eng Australier",
-      "eng Australierin",
-      "eng Englesch",
-      "eng Australien"
+      "Australier",
+      "Australierin",
+      "Englesch",
+      "Australien"
     ],
     "note": "eng Australierin = une Australienne"
   },
   {
     "id": 13,
     "fr": "Messi est argentin.",
-    "avant": "De Messi ass",
-    "trou": "en Argentinier",
+    "avant": "De Messi ass en",
+    "trou": "Argentinier",
     "apres": ".",
     "choix": [
-      "en Argentinier",
-      "en Argentinierin",
-      "en Spuenesch",
-      "en Argentinien"
+      "Argentinier",
+      "Argentinierin",
+      "Spuenesch",
+      "Argentinien"
     ],
     "note": "en Argentinier = un Argentin"
   },
   {
     "id": 14,
     "fr": "Cristina est argentine.",
-    "avant": "D'Cristina ass",
-    "trou": "eng Argentinierin",
+    "avant": "D'Cristina ass eng",
+    "trou": "Argentinierin",
     "apres": ".",
     "choix": [
-      "eng Argentinier",
-      "eng Argentinierin",
-      "eng Spuenesch",
-      "eng Argentinien"
+      "Argentinier",
+      "Argentinierin",
+      "Spuenesch",
+      "Argentinien"
     ],
     "note": "eng Argentinierin = une Argentine"
   },
   {
     "id": 15,
     "fr": "John est américain.",
-    "avant": "De John ass",
-    "trou": "en Amerikaner",
+    "avant": "De John ass en",
+    "trou": "Amerikaner",
     "apres": ".",
     "choix": [
-      "en Amerikaner",
-      "en Amerikanerin",
-      "en Englesch",
-      "en Amerika"
+      "Amerikaner",
+      "Amerikanerin",
+      "Englesch",
+      "Amerika"
     ],
     "note": "en Amerikaner = un Américain"
   },
   {
     "id": 16,
     "fr": "Jessica est américaine.",
-    "avant": "D'Jessica ass",
-    "trou": "eng Amerikanerin",
+    "avant": "D'Jessica ass eng",
+    "trou": "Amerikanerin",
     "apres": ".",
     "choix": [
-      "eng Amerikaner",
-      "eng Amerikanerin",
-      "eng Englesch",
-      "eng Amerika"
+      "Amerikaner",
+      "Amerikanerin",
+      "Englesch",
+      "Amerika"
     ],
     "note": "eng Amerikanerin = une Américaine"
   },
   {
     "id": 17,
     "fr": "Philippe est belge.",
-    "avant": "De Philippe ass",
-    "trou": "e Belsch",
+    "avant": "De Philippe ass e",
+    "trou": "Belsch",
     "apres": ".",
     "choix": [
-      "e Belsch",
-      "e Franséisch",
-      "e Däitsch",
-      "e Belschesch"
+      "Belsch",
+      "Franséisch",
+      "Däitsch",
+      "Belschesch"
     ],
     "note": "e Belsch = un Belge"
   },
   {
     "id": 18,
     "fr": "Julie est belge.",
-    "avant": "D'Julie ass",
-    "trou": "eng Belsch",
+    "avant": "D'Julie ass eng",
+    "trou": "Belsch",
     "apres": ".",
     "choix": [
-      "eng Belsch",
-      "eng Franséisch",
-      "eng Däitsch",
-      "eng Belschesch"
+      "Belsch",
+      "Franséisch",
+      "Däitsch",
+      "Belschesch"
     ],
     "note": "eng Belsch = une Belge"
   },
   {
     "id": 19,
     "fr": "Hans est allemand.",
-    "avant": "Den Hans ass",
-    "trou": "en Däitschen",
+    "avant": "Den Hans ass en",
+    "trou": "Däitschen",
     "apres": ".",
     "choix": [
-      "en Däitschen",
-      "en Däitsch",
-      "en Däitscher",
-      "en Däitschland"
+      "Däitschen",
+      "Däitsch",
+      "Däitscher",
+      "Däitschland"
     ],
     "note": "en Däitschen = un Allemand"
   },
   {
     "id": 20,
     "fr": "Anna est allemande.",
-    "avant": "D'Anna ass",
-    "trou": "eng Däitsch",
+    "avant": "D'Anna ass eng",
+    "trou": "Däitsch",
     "apres": ".",
     "choix": [
-      "eng Däitschen",
-      "eng Däitsch",
-      "eng Däitscher",
-      "eng Däitschland"
+      "Däitschen",
+      "Däitsch",
+      "Däitscher",
+      "Däitschland"
     ],
     "note": "eng Däitsch = une Allemande"
   },
   {
     "id": 21,
     "fr": "Yuki est japonaise.",
-    "avant": "D'Yuki ass",
-    "trou": "eng Japanerin",
+    "avant": "D'Yuki ass eng",
+    "trou": "Japanerin",
     "apres": ".",
     "choix": [
-      "eng Japaner",
-      "eng Japanerin",
-      "eng Japanesch",
-      "eng Japan"
+      "Japaner",
+      "Japanerin",
+      "Japanesch",
+      "Japan"
     ],
     "note": "eng Japanerin = une Japonaise"
   },
   {
     "id": 22,
     "fr": "Ken est japonais.",
-    "avant": "De Ken ass",
-    "trou": "e Japaner",
+    "avant": "De Ken ass e",
+    "trou": "Japaner",
     "apres": ".",
     "choix": [
-      "e Japaner",
-      "e Japanerin",
-      "e Japanesch",
-      "e Japan"
+      "Japaner",
+      "Japanerin",
+      "Japanesch",
+      "Japan"
     ],
     "note": "e Japaner = un Japonais"
   },
   {
     "id": 23,
     "fr": "Li est chinois.",
-    "avant": "De Li ass",
-    "trou": "e Chinees",
+    "avant": "De Li ass e",
+    "trou": "Chinees",
     "apres": ".",
     "choix": [
-      "e Chinees",
-      "e Chineesin",
-      "e Chineesesch",
-      "e China"
+      "Chinees",
+      "Chineesin",
+      "Chineesesch",
+      "China"
     ],
     "note": "e Chinees = un Chinois"
   },
   {
     "id": 24,
     "fr": "Mei est chinoise.",
-    "avant": "D'Mei ass",
-    "trou": "eng Chineesin",
+    "avant": "D'Mei ass eng",
+    "trou": "Chineesin",
     "apres": ".",
     "choix": [
-      "eng Chinees",
-      "eng Chineesin",
-      "eng Chineesesch",
-      "eng China"
+      "Chinees",
+      "Chineesin",
+      "Chineesesch",
+      "China"
     ],
     "note": "eng Chineesin = une Chinoise"
   },
   {
     "id": 25,
     "fr": "Erik est suédois.",
-    "avant": "Den Erik ass",
-    "trou": "e Schweed",
+    "avant": "Den Erik ass e",
+    "trou": "Schweed",
     "apres": ".",
     "choix": [
-      "e Schweed",
-      "e Schweedin",
-      "e Schweedesch",
-      "e Schweden"
+      "Schweed",
+      "Schweedin",
+      "Schweedesch",
+      "Schweden"
     ],
     "note": "e Schweed = un Suédois"
   },
   {
     "id": 26,
     "fr": "Anna est suédoise.",
-    "avant": "D'Anna ass",
-    "trou": "eng Schweedin",
+    "avant": "D'Anna ass eng",
+    "trou": "Schweedin",
     "apres": ".",
     "choix": [
-      "eng Schweed",
-      "eng Schweedin",
-      "eng Schweedesch",
-      "eng Schweden"
+      "Schweed",
+      "Schweedin",
+      "Schweedesch",
+      "Schweden"
     ],
     "note": "eng Schweedin = une Suédoise"
   },
   {
     "id": 27,
     "fr": "Marc est français.",
-    "avant": "De Marc ass",
-    "trou": "e Fransous",
+    "avant": "De Marc ass e",
+    "trou": "Fransous",
     "apres": ".",
     "choix": [
-      "e Fransous",
-      "e Fransousin",
-      "e Franséisch",
-      "e Frankräich"
+      "Fransous",
+      "Fransousin",
+      "Franséisch",
+      "Frankräich"
     ],
     "note": "e Fransous = un Français"
   },
   {
     "id": 28,
     "fr": "Claire est française.",
-    "avant": "D'Claire ass",
-    "trou": "eng Fransousin",
+    "avant": "D'Claire ass eng",
+    "trou": "Fransousin",
     "apres": ".",
     "choix": [
-      "eng Fransous",
-      "eng Fransousin",
-      "eng Franséisch",
-      "eng Frankräich"
+      "Fransous",
+      "Fransousin",
+      "Franséisch",
+      "Frankräich"
     ],
     "note": "eng Fransousin = une Française"
   },
   {
     "id": 29,
     "fr": "Peter est néerlandais.",
-    "avant": "De Peter ass",
-    "trou": "e Hollänner",
+    "avant": "De Peter ass e",
+    "trou": "Hollänner",
     "apres": ".",
     "choix": [
-      "e Hollänner",
-      "e Hollännerin",
-      "e Hollännesch",
-      "e Holland"
+      "Hollänner",
+      "Hollännerin",
+      "Hollännesch",
+      "Holland"
     ],
     "note": "e Hollänner = un Néerlandais"
   },
   {
     "id": 30,
     "fr": "Sanne est néerlandaise.",
-    "avant": "D'Sanne ass",
-    "trou": "eng Hollännerin",
+    "avant": "D'Sanne ass eng",
+    "trou": "Hollännerin",
     "apres": ".",
     "choix": [
-      "eng Hollänner",
-      "eng Hollännerin",
-      "eng Hollännesch",
-      "eng Holland"
+      "Hollänner",
+      "Hollännerin",
+      "Hollännesch",
+      "Holland"
     ],
     "note": "eng Hollännerin = une Néerlandaise"
   },
   {
     "id": 31,
     "fr": "Paul est suisse.",
-    "avant": "De Paul ass",
-    "trou": "e Schwäizer",
+    "avant": "De Paul ass e",
+    "trou": "Schwäizer",
     "apres": ".",
     "choix": [
-      "e Schwäizer",
-      "e Schwäizerin",
-      "e Schwäizesch",
-      "e Schwäiz"
+      "Schwäizer",
+      "Schwäizerin",
+      "Schwäizesch",
+      "Schwäiz"
     ],
     "note": "e Schwäizer = un Suisse"
   },
   {
     "id": 32,
     "fr": "Laura est suisse.",
-    "avant": "D'Laura ass",
-    "trou": "eng Schwäizerin",
+    "avant": "D'Laura ass eng",
+    "trou": "Schwäizerin",
     "apres": ".",
     "choix": [
-      "eng Schwäizer",
-      "eng Schwäizerin",
-      "eng Schwäizesch",
-      "eng Schwäiz"
+      "Schwäizer",
+      "Schwäizerin",
+      "Schwäizesch",
+      "Schwäiz"
     ],
     "note": "eng Schwäizerin = une Suissesse"
   },
   {
     "id": 33,
     "fr": "Oleh est ukrainien.",
-    "avant": "Den Oleh ass",
-    "trou": "en Ukrainer",
+    "avant": "Den Oleh ass en",
+    "trou": "Ukrainer",
     "apres": ".",
     "choix": [
-      "en Ukrainer",
-      "en Ukrainerin",
-      "en Ukrainesch",
-      "en Ukrain"
+      "Ukrainer",
+      "Ukrainerin",
+      "Ukrainesch",
+      "Ukrain"
     ],
     "note": "en Ukrainer = un Ukrainien"
   },
   {
     "id": 34,
     "fr": "Olena est ukrainienne.",
-    "avant": "D'Olena ass",
-    "trou": "eng Ukrainerin",
+    "avant": "D'Olena ass eng",
+    "trou": "Ukrainerin",
     "apres": ".",
     "choix": [
-      "eng Ukrainer",
-      "eng Ukrainerin",
-      "eng Ukrainesch",
-      "eng Ukrain"
+      "Ukrainer",
+      "Ukrainerin",
+      "Ukrainesch",
+      "Ukrain"
     ],
     "note": "eng Ukrainerin = une Ukrainienne"
   },
   {
     "id": 35,
     "fr": "José est cap-verdien.",
-    "avant": "De José ass",
-    "trou": "e Kapverdianer",
+    "avant": "De José ass e",
+    "trou": "Kapverdianer",
     "apres": ".",
     "choix": [
-      "e Kapverdianer",
-      "e Kapverdianerin",
-      "e Portugisesch",
-      "e Cap Vert"
+      "Kapverdianer",
+      "Kapverdianerin",
+      "Portugisesch",
+      "Cap Vert"
     ],
     "note": "e Kapverdianer = un Cap-Verdien"
   },
   {
     "id": 36,
     "fr": "Marta est cap-verdienne.",
-    "avant": "D'Marta ass",
-    "trou": "eng Kapverdianerin",
+    "avant": "D'Marta ass eng",
+    "trou": "Kapverdianerin",
     "apres": ".",
     "choix": [
-      "eng Kapverdianer",
-      "eng Kapverdianerin",
-      "eng Portugisesch",
-      "eng Cap Vert"
+      "Kapverdianer",
+      "Kapverdianerin",
+      "Portugisesch",
+      "Cap Vert"
     ],
     "note": "eng Kapverdianerin = une Cap-Verdienne"
   },
   {
     "id": 37,
     "fr": "Ali est iranien.",
-    "avant": "Den Ali ass",
-    "trou": "en Iraner",
+    "avant": "Den Ali ass en",
+    "trou": "Iraner",
     "apres": ".",
     "choix": [
-      "en Iraner",
-      "en Iranerin",
-      "en Persesch",
-      "en Iran"
+      "Iraner",
+      "Iranerin",
+      "Persesch",
+      "Iran"
     ],
     "note": "en Iraner = un Iranien"
   },
   {
     "id": 38,
     "fr": "Sara est iranienne.",
-    "avant": "D'Sara ass",
-    "trou": "eng Iranerin",
+    "avant": "D'Sara ass eng",
+    "trou": "Iranerin",
     "apres": ".",
     "choix": [
-      "eng Iraner",
-      "eng Iranerin",
-      "eng Persesch",
-      "eng Iran"
+      "Iraner",
+      "Iranerin",
+      "Persesch",
+      "Iran"
     ],
     "note": "eng Iranerin = une Iranienne"
   },
   {
     "id": 39,
     "fr": "Kim est nord-coréen.",
-    "avant": "De Kim ass",
-    "trou": "en Nordkoreaner",
+    "avant": "De Kim ass en",
+    "trou": "Nordkoreaner",
     "apres": ".",
     "choix": [
-      "en Nordkoreaner",
-      "en Nordkoreanerin",
-      "en Koreanesch",
-      "en Nordkorea"
+      "Nordkoreaner",
+      "Nordkoreanerin",
+      "Koreanesch",
+      "Nordkorea"
     ],
     "note": "en Nordkoreaner = un Nord-Coréen"
   },
   {
     "id": 40,
     "fr": "Ji-a est nord-coréenne.",
-    "avant": "D'Ji-a ass",
-    "trou": "eng Nordkoreanerin",
+    "avant": "D'Ji-a ass eng",
+    "trou": "Nordkoreanerin",
     "apres": ".",
     "choix": [
-      "eng Nordkoreaner",
-      "eng Nordkoreanerin",
-      "eng Koreanesch",
-      "eng Nordkorea"
+      "Nordkoreaner",
+      "Nordkoreanerin",
+      "Koreanesch",
+      "Nordkorea"
     ],
     "note": "eng Nordkoreanerin = une Nord-Coréenne"
   }
