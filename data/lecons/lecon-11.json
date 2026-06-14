@@ -283,6 +283,176 @@
         "sportif",
         "avocat"
       ]
+    },
+    {
+      "id": 18,
+      "question": "eng Coiffeuse",
+      "reponse": "coiffeuse",
+      "distracteurs": [
+        "banquière",
+        "caissière",
+        "infirmière"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "e Banker",
+      "reponse": "banquier",
+      "distracteurs": [
+        "caissier",
+        "coiffeur",
+        "facteur"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "eng Apdiktesch",
+      "reponse": "pharmacienne",
+      "distracteurs": [
+        "doctoresse",
+        "infirmière",
+        "avocate"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "e Bréifdréier",
+      "reponse": "facteur",
+      "distracteurs": [
+        "boulanger",
+        "boucher",
+        "caissier"
+      ]
+    },
+    {
+      "id": 22,
+      "question": "eng Affekotin",
+      "reponse": "avocate",
+      "distracteurs": [
+        "banquière",
+        "pharmacienne",
+        "policière"
+      ]
+    },
+    {
+      "id": 23,
+      "question": "e Metzler",
+      "reponse": "boucher",
+      "distracteurs": [
+        "boulanger",
+        "cuisinier",
+        "facteur"
+      ]
+    },
+    {
+      "id": 24,
+      "question": "eng Bäckesch",
+      "reponse": "boulangère",
+      "distracteurs": [
+        "bouchère",
+        "cuisinière",
+        "caissière"
+      ]
+    },
+    {
+      "id": 25,
+      "question": "en Infirmier",
+      "reponse": "infirmier",
+      "distracteurs": [
+        "médecin",
+        "pharmacien",
+        "avocat"
+      ]
+    },
+    {
+      "id": 26,
+      "question": "eng Caissière",
+      "reponse": "caissière",
+      "distracteurs": [
+        "coiffeuse",
+        "banquière",
+        "infirmière"
+      ]
+    },
+    {
+      "id": 27,
+      "question": "e Schoulmeeschter",
+      "reponse": "instituteur",
+      "distracteurs": [
+        "journaliste",
+        "acteur",
+        "pilote"
+      ]
+    },
+    {
+      "id": 28,
+      "question": "eng Pilotin",
+      "reponse": "pilote",
+      "distracteurs": [
+        "sportive",
+        "actrice",
+        "journaliste"
+      ]
+    },
+    {
+      "id": 29,
+      "question": "e Kach",
+      "reponse": "cuisinier",
+      "distracteurs": [
+        "boulanger",
+        "boucher",
+        "pharmacien"
+      ]
+    },
+    {
+      "id": 30,
+      "question": "e Journalist",
+      "reponse": "journaliste (homme)",
+      "distracteurs": [
+        "acteur",
+        "sportif",
+        "avocat"
+      ]
+    },
+    {
+      "id": 31,
+      "question": "eng Journalistin",
+      "reponse": "journaliste (femme)",
+      "distracteurs": [
+        "actrice",
+        "sportive",
+        "avocate"
+      ]
+    },
+    {
+      "id": 32,
+      "question": "e Sportler",
+      "reponse": "sportif",
+      "distracteurs": [
+        "acteur",
+        "pilote",
+        "journaliste"
+      ]
+    },
+    {
+      "id": 33,
+      "question": "eng Sportlerin",
+      "reponse": "sportive",
+      "distracteurs": [
+        "actrice",
+        "pilote",
+        "journaliste"
+      ]
+    },
+    {
+      "id": 34,
+      "question": "eng Schauspillerin",
+      "reponse": "actrice",
+      "distracteurs": [
+        "sportive",
+        "journaliste",
+        "pilote"
+      ]
     }
   ],
   "trous": [
@@ -479,6 +649,253 @@
         "Journalist",
         "Sportler",
         "Pilot"
+      ]
+    },
+    {
+      "id": 16,
+      "fr": "Cet homme est policier.",
+      "avant": "Dëse Mann ass e",
+      "trou": "Polizist",
+      "apres": ".",
+      "choix": [
+        "Polizist",
+        "Pilot",
+        "Banker",
+        "Caissier"
+      ]
+    },
+    {
+      "id": 17,
+      "fr": "Cette femme est médecin.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Doktesch",
+      "apres": ".",
+      "choix": [
+        "Doktesch",
+        "Apdiktesch",
+        "Infirmière",
+        "Affekotin"
+      ]
+    },
+    {
+      "id": 18,
+      "fr": "Cet homme est coiffeur.",
+      "avant": "Dëse Mann ass e",
+      "trou": "Coiffer",
+      "apres": ".",
+      "choix": [
+        "Coiffer",
+        "Caissier",
+        "Banker",
+        "Bäcker"
+      ]
+    },
+    {
+      "id": 19,
+      "fr": "Cet homme est banquier.",
+      "avant": "Dëse Mann ass e",
+      "trou": "Banker",
+      "apres": ".",
+      "choix": [
+        "Banker",
+        "Polizist",
+        "Coiffer",
+        "Pilot"
+      ]
+    },
+    {
+      "id": 20,
+      "fr": "Cette femme est banquière.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Bankerin",
+      "apres": ".",
+      "choix": [
+        "Bankerin",
+        "Caissière",
+        "Coiffeuse",
+        "Polizistin"
+      ]
+    },
+    {
+      "id": 21,
+      "fr": "Cet homme est pharmacien.",
+      "avant": "Dëse Mann ass en",
+      "trou": "Apdikter",
+      "apres": ".",
+      "choix": [
+        "Apdikter",
+        "Dokter",
+        "Affekot",
+        "Infirmier"
+      ]
+    },
+    {
+      "id": 22,
+      "fr": "Cet homme est facteur.",
+      "avant": "Dëse Mann ass e",
+      "trou": "Bréifdréier",
+      "apres": ".",
+      "choix": [
+        "Bréifdréier",
+        "Bäcker",
+        "Metzler",
+        "Caissier"
+      ]
+    },
+    {
+      "id": 23,
+      "fr": "Cette femme est factrice.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Bréifdréiesch",
+      "apres": ".",
+      "choix": [
+        "Bréifdréiesch",
+        "Bäckesch",
+        "Metzlesch",
+        "Caissière"
+      ]
+    },
+    {
+      "id": 24,
+      "fr": "Cette femme est bouchère.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Metzlesch",
+      "apres": ".",
+      "choix": [
+        "Metzlesch",
+        "Bäckesch",
+        "Kächin",
+        "Bréifdréiesch"
+      ]
+    },
+    {
+      "id": 25,
+      "fr": "Cette femme est boulangère.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Bäckesch",
+      "apres": ".",
+      "choix": [
+        "Bäckesch",
+        "Metzlesch",
+        "Kächin",
+        "Caissière"
+      ]
+    },
+    {
+      "id": 26,
+      "fr": "Cet homme est infirmier.",
+      "avant": "Dëse Mann ass en",
+      "trou": "Infirmier",
+      "apres": ".",
+      "choix": [
+        "Infirmier",
+        "Dokter",
+        "Apdikter",
+        "Affekot"
+      ]
+    },
+    {
+      "id": 27,
+      "fr": "Cet homme est caissier.",
+      "avant": "Dëse Mann ass e",
+      "trou": "Caissier",
+      "apres": ".",
+      "choix": [
+        "Caissier",
+        "Coiffer",
+        "Banker",
+        "Pilot"
+      ]
+    },
+    {
+      "id": 28,
+      "fr": "Cette femme est pilote.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Pilotin",
+      "apres": ".",
+      "choix": [
+        "Pilotin",
+        "Sportlerin",
+        "Journalistin",
+        "Schauspillerin"
+      ]
+    },
+    {
+      "id": 29,
+      "fr": "Cette femme est cuisinière.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Kächin",
+      "apres": ".",
+      "choix": [
+        "Kächin",
+        "Bäckesch",
+        "Metzlesch",
+        "Caissière"
+      ]
+    },
+    {
+      "id": 30,
+      "fr": "Cet homme est journaliste.",
+      "avant": "Dëse Mann ass e",
+      "trou": "Journalist",
+      "apres": ".",
+      "choix": [
+        "Journalist",
+        "Schauspiller",
+        "Sportler",
+        "Pilot"
+      ]
+    },
+    {
+      "id": 31,
+      "fr": "Cette femme est journaliste.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Journalistin",
+      "apres": ".",
+      "choix": [
+        "Journalistin",
+        "Schauspillerin",
+        "Sportlerin",
+        "Pilotin"
+      ]
+    },
+    {
+      "id": 32,
+      "fr": "Cet homme est sportif.",
+      "avant": "Dëse Mann ass e",
+      "trou": "Sportler",
+      "apres": ".",
+      "choix": [
+        "Sportler",
+        "Journalist",
+        "Schauspiller",
+        "Pilot"
+      ]
+    },
+    {
+      "id": 33,
+      "fr": "Cette femme est sportive.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Sportlerin",
+      "apres": ".",
+      "choix": [
+        "Sportlerin",
+        "Journalistin",
+        "Schauspillerin",
+        "Pilotin"
+      ]
+    },
+    {
+      "id": 34,
+      "fr": "Cette femme est actrice.",
+      "avant": "Dës Fra ass eng",
+      "trou": "Schauspillerin",
+      "apres": ".",
+      "choix": [
+        "Schauspillerin",
+        "Sportlerin",
+        "Journalistin",
+        "Pilotin"
       ]
     }
   ],
@@ -690,6 +1107,102 @@
     {
       "fr": "Non, je ne suis pas policier.",
       "lu": "Nee, ech sinn kee Polizist."
+    },
+    {
+      "fr": "Je suis médecin (F).",
+      "lu": "Ech sinn eng Doktesch."
+    },
+    {
+      "fr": "Je suis coiffeur.",
+      "lu": "Ech sinn e Coiffer."
+    },
+    {
+      "fr": "Je suis banquier.",
+      "lu": "Ech sinn e Banker."
+    },
+    {
+      "fr": "Je suis banquière.",
+      "lu": "Ech sinn eng Bankerin."
+    },
+    {
+      "fr": "Je suis pharmacien.",
+      "lu": "Ech sinn en Apdikter."
+    },
+    {
+      "fr": "Je suis pharmacienne.",
+      "lu": "Ech sinn eng Apdiktesch."
+    },
+    {
+      "fr": "Je suis facteur.",
+      "lu": "Ech sinn e Bréifdréier."
+    },
+    {
+      "fr": "Je suis factrice.",
+      "lu": "Ech sinn eng Bréifdréiesch."
+    },
+    {
+      "fr": "Je suis bouchère.",
+      "lu": "Ech sinn eng Metzlesch."
+    },
+    {
+      "fr": "Je suis boulangère.",
+      "lu": "Ech sinn eng Bäckesch."
+    },
+    {
+      "fr": "Je suis infirmier.",
+      "lu": "Ech sinn en Infirmier."
+    },
+    {
+      "fr": "Je suis caissier.",
+      "lu": "Ech sinn e Caissier."
+    },
+    {
+      "fr": "Je suis caissière.",
+      "lu": "Ech sinn eng Caissière."
+    },
+    {
+      "fr": "Je suis instituteur.",
+      "lu": "Ech sinn e Schoulmeeschter."
+    },
+    {
+      "fr": "Je suis institutrice.",
+      "lu": "Ech sinn eng Léierin."
+    },
+    {
+      "fr": "Je suis pilote.",
+      "lu": "Ech sinn e Pilot."
+    },
+    {
+      "fr": "Je suis cuisinier.",
+      "lu": "Ech sinn e Kach."
+    },
+    {
+      "fr": "Je suis cuisinière.",
+      "lu": "Ech sinn eng Kächin."
+    },
+    {
+      "fr": "Je suis journaliste (homme).",
+      "lu": "Ech sinn e Journalist."
+    },
+    {
+      "fr": "Je suis journaliste (femme).",
+      "lu": "Ech sinn eng Journalistin."
+    },
+    {
+      "fr": "Je suis sportif.",
+      "lu": "Ech sinn e Sportler."
+    },
+    {
+      "fr": "Je suis sportive.",
+      "lu": "Ech sinn eng Sportlerin."
+    },
+    {
+      "fr": "Je suis acteur.",
+      "lu": "Ech sinn e Schauspiller."
+    },
+    {
+      "fr": "Je suis actrice.",
+      "lu": "Ech sinn eng Schauspillerin."
     }
   ],
   "cours": [
