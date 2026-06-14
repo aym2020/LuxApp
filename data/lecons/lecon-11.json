@@ -900,311 +900,143 @@
     }
   ],
   "ecriture": [
-    {
-      "fr": "Policier (M)",
-      "lu": "e Polizist"
-    },
-    {
-      "fr": "Policière (F)",
-      "lu": "eng Polizistin"
-    },
-    {
-      "fr": "Médecin (M)",
-      "lu": "en Dokter"
-    },
-    {
-      "fr": "Doctoresse (F)",
-      "lu": "eng Doktesch"
-    },
-    {
-      "fr": "Coiffeur (M)",
-      "lu": "e Coiffer"
-    },
-    {
-      "fr": "Coiffeuse (F)",
-      "lu": "eng Coiffeuse"
-    },
-    {
-      "fr": "Banquier (M)",
-      "lu": "e Banker"
-    },
-    {
-      "fr": "Banquière (F)",
-      "lu": "eng Bankerin"
-    },
-    {
-      "fr": "Pharmacien (M)",
-      "lu": "en Apdikter"
-    },
-    {
-      "fr": "Pharmacienne (F)",
-      "lu": "eng Apdiktesch"
-    },
-    {
-      "fr": "Facteur (M)",
-      "lu": "e Bréifdréier"
-    },
-    {
-      "fr": "Factrice (F)",
-      "lu": "eng Bréifdréiesch"
-    },
-    {
-      "fr": "Avocat (M)",
-      "lu": "en Affekot"
-    },
-    {
-      "fr": "Avocate (F)",
-      "lu": "eng Affekotin"
-    },
-    {
-      "fr": "Boucher (M)",
-      "lu": "e Metzler"
-    },
-    {
-      "fr": "Bouchère (F)",
-      "lu": "eng Metzlesch"
-    },
-    {
-      "fr": "Boulanger (M)",
-      "lu": "e Bäcker"
-    },
-    {
-      "fr": "Boulangère (F)",
-      "lu": "eng Bäckesch"
-    },
-    {
-      "fr": "Infirmier (M)",
-      "lu": "en Infirmier"
-    },
-    {
-      "fr": "Infirmière (F)",
-      "lu": "eng Infirmière"
-    },
-    {
-      "fr": "Caissier (M)",
-      "lu": "e Caissier"
-    },
-    {
-      "fr": "Caissière (F)",
-      "lu": "eng Caissière"
-    },
-    {
-      "fr": "instituteur (M)",
-      "lu": "e Schoulmeeschter"
-    },
-    {
-      "fr": "institutrice (F)",
-      "lu": "eng Léierin"
-    },
-    {
-      "fr": "Pilote (M)",
-      "lu": "e Pilot"
-    },
-    {
-      "fr": "Pilote (F)",
-      "lu": "eng Pilotin"
-    },
-    {
-      "fr": "Cuisinier (M)",
-      "lu": "e Kach"
-    },
-    {
-      "fr": "Cuisinière (F)",
-      "lu": "eng Kächin"
-    },
-    {
-      "fr": "Journaliste (M)",
-      "lu": "e Journalist"
-    },
-    {
-      "fr": "Journaliste (F)",
-      "lu": "eng Journalistin"
-    },
-    {
-      "fr": "Sportif (M)",
-      "lu": "e Sportler"
-    },
-    {
-      "fr": "Sportive (F)",
-      "lu": "eng Sportlerin"
-    },
-    {
-      "fr": "Acteur (M)",
-      "lu": "e Schauspiller"
-    },
-    {
-      "fr": "Actrice (F)",
-      "lu": "eng Schauspillerin"
-    },
-    {
-      "fr": "comme / en tant que",
-      "lu": "als"
-    },
-    {
-      "fr": "Quel est ton métier ?",
-      "lu": "Wat bass du vu Beruff ?"
-    },
-    {
-      "fr": "Quel est votre métier ?",
-      "lu": "Wat sidd Dir vu Beruff ?"
-    },
-    {
-      "fr": "Que fais-tu comme travail ?",
-      "lu": "Wat schaffs du ?"
-    },
-    {
-      "fr": "Que faites-vous comme travail ?",
-      "lu": "Wat schafft Dir ?"
-    },
-    {
-      "fr": "Je suis policier.",
-      "lu": "Ech sinn e Polizist."
-    },
-    {
-      "fr": "Je suis médecin.",
-      "lu": "Ech sinn en Dokter."
-    },
-    {
-      "fr": "Je suis infirmière.",
-      "lu": "Ech sinn eng Infirmière."
-    },
-    {
-      "fr": "Je suis avocate.",
-      "lu": "Ech sinn eng Affekotin."
-    },
-    {
-      "fr": "Je travaille comme boucher.",
-      "lu": "Ech schaffen als Metzler."
-    },
-    {
-      "fr": "Je travaille comme coiffeuse.",
-      "lu": "Ech schaffen als Coiffeuse."
-    },
-    {
-      "fr": "Il est avocat.",
-      "lu": "Hien ass en Affekot."
-    },
-    {
-      "fr": "Elle est pilote.",
-      "lu": "Si ass eng Pilotin."
-    },
-    {
-      "fr": "Il n'est pas boulanger.",
-      "lu": "Hien ass kee Bäcker."
-    },
-    {
-      "fr": "Elle n'est pas policière.",
-      "lu": "Si ass keng Polizistin."
-    },
-    {
-      "fr": "Es-tu policier ?",
-      "lu": "Bass du Polizist ?"
-    },
-    {
-      "fr": "Oui, je suis policier.",
-      "lu": "Jo, ech sinn e Polizist."
-    },
-    {
-      "fr": "Non, je ne suis pas policier.",
-      "lu": "Nee, ech sinn kee Polizist."
-    },
-    {
-      "fr": "Je suis médecin (F).",
-      "lu": "Ech sinn eng Doktesch."
-    },
-    {
-      "fr": "Je suis coiffeur.",
-      "lu": "Ech sinn e Coiffer."
-    },
-    {
-      "fr": "Je suis banquier.",
-      "lu": "Ech sinn e Banker."
-    },
-    {
-      "fr": "Je suis banquière.",
-      "lu": "Ech sinn eng Bankerin."
-    },
-    {
-      "fr": "Je suis pharmacien.",
-      "lu": "Ech sinn en Apdikter."
-    },
-    {
-      "fr": "Je suis pharmacienne.",
-      "lu": "Ech sinn eng Apdiktesch."
-    },
-    {
-      "fr": "Je suis facteur.",
-      "lu": "Ech sinn e Bréifdréier."
-    },
-    {
-      "fr": "Je suis factrice.",
-      "lu": "Ech sinn eng Bréifdréiesch."
-    },
-    {
-      "fr": "Je suis bouchère.",
-      "lu": "Ech sinn eng Metzlesch."
-    },
-    {
-      "fr": "Je suis boulangère.",
-      "lu": "Ech sinn eng Bäckesch."
-    },
-    {
-      "fr": "Je suis infirmier.",
-      "lu": "Ech sinn en Infirmier."
-    },
-    {
-      "fr": "Je suis caissier.",
-      "lu": "Ech sinn e Caissier."
-    },
-    {
-      "fr": "Je suis caissière.",
-      "lu": "Ech sinn eng Caissière."
-    },
-    {
-      "fr": "Je suis instituteur.",
-      "lu": "Ech sinn e Schoulmeeschter."
-    },
-    {
-      "fr": "Je suis institutrice.",
-      "lu": "Ech sinn eng Léierin."
-    },
-    {
-      "fr": "Je suis pilote.",
-      "lu": "Ech sinn e Pilot."
-    },
-    {
-      "fr": "Je suis cuisinier.",
-      "lu": "Ech sinn e Kach."
-    },
-    {
-      "fr": "Je suis cuisinière.",
-      "lu": "Ech sinn eng Kächin."
-    },
-    {
-      "fr": "Je suis journaliste (homme).",
-      "lu": "Ech sinn e Journalist."
-    },
-    {
-      "fr": "Je suis journaliste (femme).",
-      "lu": "Ech sinn eng Journalistin."
-    },
-    {
-      "fr": "Je suis sportif.",
-      "lu": "Ech sinn e Sportler."
-    },
-    {
-      "fr": "Je suis sportive.",
-      "lu": "Ech sinn eng Sportlerin."
-    },
-    {
-      "fr": "Je suis acteur.",
-      "lu": "Ech sinn e Schauspiller."
-    },
-    {
-      "fr": "Je suis actrice.",
-      "lu": "Ech sinn eng Schauspillerin."
-    }
-  ],
+  {
+    "fr": "Je suis policier.",
+    "lu": "Ech sinn e Polizist."
+  },
+  {
+    "fr": "Je ne suis pas policière.",
+    "lu": "Ech sinn keng Polizistin."
+  },
+  {
+    "fr": "Je travaille comme médecin (homme).",
+    "lu": "Ech schaffen als Dokter."
+  },
+  {
+    "fr": "Je suis médecin (femme).",
+    "lu": "Ech sinn eng Doktesch."
+  },
+  {
+    "fr": "Je ne suis pas coiffeur.",
+    "lu": "Ech sinn kee Coiffer."
+  },
+  {
+    "fr": "Je travaille comme coiffeuse.",
+    "lu": "Ech schaffen als Coiffeuse."
+  },
+  {
+    "fr": "Je suis banquier.",
+    "lu": "Ech sinn e Banker."
+  },
+  {
+    "fr": "Je ne suis pas banquière.",
+    "lu": "Ech sinn keng Bankerin."
+  },
+  {
+    "fr": "Je travaille comme pharmacien.",
+    "lu": "Ech schaffen als Apdikter."
+  },
+  {
+    "fr": "Je suis pharmacienne.",
+    "lu": "Ech sinn eng Apdiktesch."
+  },
+  {
+    "fr": "Je ne suis pas facteur.",
+    "lu": "Ech sinn kee Bréifdréier."
+  },
+  {
+    "fr": "Je travaille comme factrice.",
+    "lu": "Ech schaffen als Bréifdréiesch."
+  },
+  {
+    "fr": "Je suis avocat.",
+    "lu": "Ech sinn en Affekot."
+  },
+  {
+    "fr": "Je ne suis pas avocate.",
+    "lu": "Ech sinn keng Affekotin."
+  },
+  {
+    "fr": "Je travaille comme boucher.",
+    "lu": "Ech schaffen als Metzler."
+  },
+  {
+    "fr": "Je suis bouchère.",
+    "lu": "Ech sinn eng Metzlesch."
+  },
+  {
+    "fr": "Je ne suis pas boulanger.",
+    "lu": "Ech sinn kee Bäcker."
+  },
+  {
+    "fr": "Je travaille comme boulangère.",
+    "lu": "Ech schaffen als Bäckesch."
+  },
+  {
+    "fr": "Je suis infirmier.",
+    "lu": "Ech sinn en Infirmier."
+  },
+  {
+    "fr": "Je ne suis pas infirmière.",
+    "lu": "Ech sinn keng Infirmière."
+  },
+  {
+    "fr": "Je travaille comme caissier.",
+    "lu": "Ech schaffen als Caissier."
+  },
+  {
+    "fr": "Je suis caissière.",
+    "lu": "Ech sinn eng Caissière."
+  },
+  {
+    "fr": "Je ne suis pas instituteur.",
+    "lu": "Ech sinn kee Schoulmeeschter."
+  },
+  {
+    "fr": "Je travaille comme institutrice.",
+    "lu": "Ech schaffen als Léierin."
+  },
+  {
+    "fr": "Je suis pilote (homme).",
+    "lu": "Ech sinn e Pilot."
+  },
+  {
+    "fr": "Je ne suis pas pilote (femme).",
+    "lu": "Ech sinn keng Pilotin."
+  },
+  {
+    "fr": "Je travaille comme cuisinier.",
+    "lu": "Ech schaffen als Kach."
+  },
+  {
+    "fr": "Je suis cuisinière.",
+    "lu": "Ech sinn eng Kächin."
+  },
+  {
+    "fr": "Je ne suis pas journaliste (homme).",
+    "lu": "Ech sinn kee Journalist."
+  },
+  {
+    "fr": "Je travaille comme journaliste (femme).",
+    "lu": "Ech schaffen als Journalistin."
+  },
+  {
+    "fr": "Je suis sportif.",
+    "lu": "Ech sinn e Sportler."
+  },
+  {
+    "fr": "Je ne suis pas sportive.",
+    "lu": "Ech sinn keng Sportlerin."
+  },
+  {
+    "fr": "Je travaille comme acteur.",
+    "lu": "Ech schaffen als Schauspiller."
+  },
+  {
+    "fr": "Je suis actrice.",
+    "lu": "Ech sinn eng Schauspillerin."
+  }
+],
   "cours": [
     {
       "type": "texte",
