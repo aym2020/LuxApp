@@ -5,7 +5,8 @@
   "couleur": "#c47ae8",
   "instructions": {
     "flashcards": "Mémoriser les lieux de travail en luxembourgeois avec leur article, afin d'identifier le genre et de former correctement engem/enger.",
-    "quiz": "Lire un lieu de travail en français et choisir sa traduction luxembourgeoise. Les distracteurs doivent être d'autres lieux de travail plausibles.",    "trous": "Compléter la phrase avec le bon article ou la bonne préposition. L'exercice doit principalement travailler l'utilisation de an, op, bei ainsi que les formes engem et enger devant les lieux de travail.",
+    "quiz": "Lire un lieu de travail en français et choisir sa traduction luxembourgeoise. Les distracteurs doivent être d'autres lieux de travail plausibles.",
+    "trous": "Compléter la phrase avec le bon article ou la bonne préposition. L'exercice doit principalement travailler l'utilisation de an, op, bei ainsi que les formes engem et enger devant les lieux de travail.",
     "ecriture": "Traduire du français vers le luxembourgeois. Inclure le vocabulaire des lieux de travail, les questions sur le travail, les réponses, les expressions avec an, op et bei, le verbe schaffen, ainsi que des phrases complètes indiquant où une personne travaille."
   },
   "flashcards": [
@@ -370,352 +371,360 @@
       "id": 24,
       "question": "Librairie",
       "reponse": "Librairie",
-      "distracteurs": ["Buttek", "Büro", "Gare"]
+      "distracteurs": [
+        "Buttek",
+        "Büro",
+        "Gare"
+      ]
     },
     {
       "id": 25,
       "question": "Studio",
       "reponse": "Studio",
-      "distracteurs": ["Büro", "Cabinet", "Restaurant"]
+      "distracteurs": [
+        "Büro",
+        "Cabinet",
+        "Restaurant"
+      ]
     }
   ],
   "trous": [
     {
       "id": 1,
       "fr": "Le policier travaille dans un commissariat.",
-      "avant": "De Polizist schafft op",
-      "trou": "engem",
+      "avant": "De Polizist schafft",
+      "trou": "op engem",
       "apres": "Policebüro.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 2,
       "fr": "Le médecin travaille dans un hôpital.",
-      "avant": "Den Dokter schafft an",
-      "trou": "engem",
+      "avant": "Den Dokter schafft",
+      "trou": "an engem",
       "apres": "Spidol.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 3,
       "fr": "Le coiffeur travaille dans un salon de coiffure.",
-      "avant": "De Coiffer schafft an",
-      "trou": "engem",
+      "avant": "De Coiffer schafft",
+      "trou": "an engem",
       "apres": "Coiffersalon.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 4,
       "fr": "Le banquier travaille dans une banque.",
-      "avant": "De Banker schafft op",
-      "trou": "enger",
+      "avant": "De Banker schafft",
+      "trou": "op enger",
       "apres": "Bank.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 5,
       "fr": "Le pharmacien travaille dans une pharmacie.",
-      "avant": "Den Apdikter schafft an",
-      "trou": "enger",
+      "avant": "Den Apdikter schafft",
+      "trou": "an enger",
       "apres": "Apdikt.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 6,
       "fr": "Le facteur travaille à la poste.",
-      "avant": "De Bréifdréier schafft op",
-      "trou": "enger",
+      "avant": "De Bréifdréier schafft",
+      "trou": "op enger",
       "apres": "Post.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 7,
       "fr": "L'avocat travaille dans un tribunal.",
-      "avant": "Den Affekot schafft op",
-      "trou": "engem",
+      "avant": "Den Affekot schafft",
+      "trou": "op engem",
       "apres": "Geriicht.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 8,
       "fr": "Le boucher travaille dans une boucherie.",
-      "avant": "De Metzler schafft an",
-      "trou": "enger",
+      "avant": "De Metzler schafft",
+      "trou": "an enger",
       "apres": "Metzlerei.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 9,
       "fr": "Le boulanger travaille dans une boulangerie.",
-      "avant": "De Bäcker schafft an",
-      "trou": "enger",
+      "avant": "De Bäcker schafft",
+      "trou": "an enger",
       "apres": "Bäckerei.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 10,
       "fr": "Le caissier travaille dans un supermarché.",
-      "avant": "De Caissier schafft an",
-      "trou": "engem",
+      "avant": "De Caissier schafft",
+      "trou": "an engem",
       "apres": "Supermarché.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 11,
       "fr": "L'enseignant travaille dans une école.",
-      "avant": "De Schoulmeeschter schafft an",
-      "trou": "enger",
+      "avant": "De Schoulmeeschter schafft",
+      "trou": "an enger",
       "apres": "Schoul.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 12,
       "fr": "Le pilote travaille à l'aéroport.",
-      "avant": "De Pilot schafft op",
-      "trou": "engem",
+      "avant": "De Pilot schafft",
+      "trou": "op engem",
       "apres": "Fluchhafen.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 13,
       "fr": "Le cuisinier travaille dans un restaurant.",
-      "avant": "De Kach schafft an",
-      "trou": "engem",
+      "avant": "De Kach schafft",
+      "trou": "an engem",
       "apres": "Restaurant.",
       "choix": [
-        "engem",
-        "enger",
-        "bei",
-        "op"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 14,
       "fr": "La secrétaire travaille chez un médecin.",
-      "avant": "D'Sekretärin schafft bei",
-      "trou": "engem",
+      "avant": "D'Sekretärin schafft",
+      "trou": "bei engem",
       "apres": "Dokter.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "an"
+        "bei engem",
+        "bei enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 15,
       "fr": "L'infirmière travaille dans un cabinet médical.",
-      "avant": "D'Infirmière schafft an",
-      "trou": "engem",
+      "avant": "D'Infirmière schafft",
+      "trou": "an engem",
       "apres": "Cabinet.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 16,
       "fr": "Le médecin travaille dans une clinique.",
-      "avant": "Den Dokter schafft an",
-      "trou": "enger",
+      "avant": "Den Dokter schafft",
+      "trou": "an enger",
       "apres": "Klinik.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 17,
       "fr": "Le vendeur travaille au marché.",
-      "avant": "De Verkeefer schafft op",
-      "trou": "engem",
+      "avant": "De Verkeefer schafft",
+      "trou": "op engem",
       "apres": "Maart.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 18,
       "fr": "Le vendeur travaille dans un magasin.",
-      "avant": "De Verkeefer schafft an",
-      "trou": "engem",
+      "avant": "De Verkeefer schafft",
+      "trou": "an engem",
       "apres": "Buttek.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 19,
       "fr": "L'étudiant travaille à l'université.",
-      "avant": "De Student schafft op",
-      "trou": "enger",
+      "avant": "De Student schafft",
+      "trou": "op enger",
       "apres": "Universitéit.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 20,
       "fr": "Le professeur travaille au lycée.",
-      "avant": "De Professer schafft op",
-      "trou": "engem",
+      "avant": "De Professer schafft",
+      "trou": "op engem",
       "apres": "Lycée.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 21,
       "fr": "L'employé travaille dans un bureau.",
-      "avant": "Den Employé schafft an",
-      "trou": "engem",
+      "avant": "Den Employé schafft",
+      "trou": "an engem",
       "apres": "Büro.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 22,
       "fr": "Le vendeur travaille dans une station-service.",
-      "avant": "De Verkeefer schafft an",
-      "trou": "enger",
+      "avant": "De Verkeefer schafft",
+      "trou": "an enger",
       "apres": "Tankstell.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 23,
       "fr": "L'employé travaille à la gare.",
-      "avant": "Den Employé schafft op",
-      "trou": "enger",
+      "avant": "Den Employé schafft",
+      "trou": "op enger",
       "apres": "Gare.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 24,
       "fr": "Le sportif travaille dans une salle de sport.",
-      "avant": "De Sportler schafft an",
-      "trou": "enger",
+      "avant": "De Sportler schafft",
+      "trou": "an enger",
       "apres": "Sportshal.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 25,
       "fr": "Le libraire travaille dans une librairie.",
-      "avant": "De Libraire schafft an",
-      "trou": "enger",
+      "avant": "De Libraire schafft",
+      "trou": "an enger",
       "apres": "Librairie.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     },
     {
       "id": 26,
       "fr": "Le photographe travaille dans un studio.",
-      "avant": "De Fotograf schafft an",
-      "trou": "engem",
+      "avant": "De Fotograf schafft",
+      "trou": "an engem",
       "apres": "Studio.",
       "choix": [
-        "engem",
-        "enger",
-        "op",
-        "bei"
+        "op engem",
+        "op enger",
+        "an engem",
+        "an enger"
       ]
     }
   ],
