@@ -465,16 +465,16 @@ function calculateLessonStats(leconId) {
   (lecon.trous || []).forEach(q => levels.push(getQuestionLevel(leconId, 'trous', q.id)));
   (lecon.ecriture || []).forEach((q, i) => levels.push(getQuestionLevel(leconId, 'ecriture', i)));
 
-  let n1 = 0, n2 = 0, n3 = 0, sum = 0;
+  let n1 = 0, n2 = 0, n3 = 0;
   levels.forEach(lv => {
     if (lv === 1) n1++;
     else if (lv === 2) n2++;
     else n3++;
-    sum += (lv - 1) / 2;
   });
 
   const total = levels.length;
-  const percent = total ? Math.round((sum / total) * 100) : 0;
+  const percent = calculateLessonProgress(leconId).global;
+
   const mastered = total > 0 && n3 === total;
 
   let status;
