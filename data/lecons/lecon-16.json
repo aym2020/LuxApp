@@ -138,9 +138,9 @@
     },
     {
       "id": 22,
-      "lu": "D'Carla geet um zéng vir Hallefnuecht schlofen.",
+      "lu": "D'Carla geet um zéng vir Mëtternuecht schlofen.",
       "fr": "Carla va dormir à vingt-trois heures cinquante.",
-      "note": "zéng vir Hallefnuecht = 23:50"
+      "note": "zéng vir Mëtternuecht = 23:50"
     },
     {
       "id": 23,
@@ -406,7 +406,7 @@
     },
     {
       "id": 24,
-      "question": "D'Carla geet um zéng vir Hallefnuecht schlofen.",
+      "question": "D'Carla geet um zéng vir Mëtternuecht schlofen.",
       "reponse": "Carla va dormir à vingt-trois heures cinquante.",
       "distracteurs": [
         "Carla va dormir à minuit dix.",
@@ -599,7 +599,7 @@
     {
       "id": 11,
       "fr": "Carla va dormir à vingt-trois heures cinquante.",
-      "avant": "D'Carla geet um zéng vir Hallefnuecht",
+      "avant": "D'Carla geet um zéng vir Mëtternuecht",
       "trou": "schlofen",
       "apres": ".",
       "choix": [
@@ -888,7 +888,7 @@
     },
     {
       "fr": "Carla va dormir à vingt-trois heures cinquante.",
-      "lu": "D'Carla geet um zéng vir Hallefnuecht schlofen."
+      "lu": "D'Carla geet um zéng vir Mëtternuecht schlofen."
     },
     {
       "fr": "À quelle heure Carla se réveille-t-elle ?",
@@ -1034,7 +1034,7 @@
       "type": "regle",
       "titre": "Dire à quelle heure une activité a lieu",
       "lignes": [
-        "On utilise um devant l'heure : um sechs Auer, um hallwer eng, um zéng vir Hallefnuecht.",
+        "On utilise um devant l'heure : um sechs Auer, um hallwer eng, um zéng vir Mëtternuecht.",
         "La structure simple est : sujet + verbe + um + heure.",
         "Exemple : D'Carla erwächt um sechs Auer.",
         "Avec une période de la journée, on peut ajouter moies, nomëttes ou owes : um hallwer siwen owes."
@@ -1105,7 +1105,7 @@
           "Carla regarde la télé à vingt heures vingt."
         ],
         [
-          "D'Carla geet um zéng vir Hallefnuecht schlofen.",
+          "D'Carla geet um zéng vir Mëtternuecht schlofen.",
           "Carla va dormir à vingt-trois heures cinquante."
         ]
       ]
