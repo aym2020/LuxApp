@@ -81,30 +81,6 @@
       "fr": "Décembre",
       "lu": "Dezember",
       "note": "Mois 12"
-    },
-    {
-      "lu": "Wéi al bass du ?",
-      "fr": "Quel âge as-tu ?"
-    },
-    {
-      "lu": "Ech sinn ... Joer al.",
-      "fr": "J'ai ... ans."
-    },
-    {
-      "lu": "Wéini hues du Gebuertsdag ?",
-      "fr": "Quand est ton anniversaire ?"
-    },
-    {
-      "lu": "Ech hunn den ... Gebuertsdag.",
-      "fr": "Mon anniversaire est le ..."
-    },
-    {
-      "lu": "Wéini bass du gebuer ?",
-      "fr": "Quand es-tu né(e) ?"
-    },
-    {
-      "lu": "Ech sinn den ... gebuer.",
-      "fr": "Je suis né(e) le ..."
     }
   ],
   "quiz": [
@@ -251,9 +227,9 @@
     {
       "id": 15,
       "question": "J'ai vingt ans.",
-      "reponse": "Ech hunn zwanzeg Joer.",
+      "reponse": "Ech sinn zwanzeg Joer al.",
       "distracteurs": [
-        "Ech sinn zwanzeg Joer al.",
+        "Ech sinn aacht Joer al.",
         "Ech hunn zwee Joer.",
         "Ech si gebuer."
       ]
@@ -263,7 +239,7 @@
       "question": "J'ai trente ans.",
       "reponse": "Ech sinn drësseg Joer al.",
       "distracteurs": [
-        "Ech hunn drësseg Joer.",
+        "Ech si drësseg Joer.",
         "Ech hunn drësseg Kanner.",
         "Ech si drësseg gebuer."
       ]
@@ -313,9 +289,9 @@
     {
       "id": 1,
       "fr": "J'ai 18 ans.",
-      "avant": "Ech hunn",
+      "avant": "Ech sinn",
       "trou": "uechtzéng",
-      "apres": "Joer.",
+      "apres": "Joer al.",
       "choix": [
         "uechtzéng",
         "uechtzeg",
@@ -327,9 +303,9 @@
     {
       "id": 2,
       "fr": "J'ai 24 ans.",
-      "avant": "Ech hu",
+      "avant": "Ech si",
       "trou": "véieranzwanzeg",
-      "apres": "Joer.",
+      "apres": "Joer al.",
       "choix": [
         "véieranzwanzeg",
         "véierzéng",
@@ -554,15 +530,15 @@
       "id": 19,
       "fr": "Je suis né(e) en 1999.",
       "avant": "Ech sinn",
-      "trou": "nonzénghonnertnonanuechtzeg",
+      "trou": "nonzénghonnertnéngannonzeg",
       "apres": "gebuer.",
       "choix": [
-        "nonzénghonnertnonanuechtzeg",
         "nonzénghonnertnéngannonzeg",
+        "nonzénghonnertnonanuechtzeg",
         "nonzénghonnertnonzegnéng",
         "zweedausendnonanuechtzeg"
       ],
-      "note": "1999 = nonzénghonnertnonanuechtzeg"
+      "note": "1999 = nonzénghonnertnéngannonzeg"
     },
     {
       "id": 20,
@@ -594,11 +570,11 @@
       "id": 22,
       "fr": "Je suis né(e) le 13 juin 1999.",
       "avant": "Ech sinn den dräizéngte Juni",
-      "trou": "nonzénghonnertnonanuechtzeg",
+      "trou": "nonzénghonnertnéngannonzeg",
       "apres": "gebuer.",
       "choix": [
-        "nonzénghonnertnonanuechtzeg",
         "nonzénghonnertnéngannonzeg",
+        "nonzénghonnertnonanuechtzeg",
         "zweedausendnonanuechtzeg",
         "nonzénghonnertnonzegnéng"
       ]
@@ -681,15 +657,15 @@
     },
     {
       "fr": "J'ai 18 ans.",
-      "lu": "Ech hunn uechtzéng Joer."
+      "lu": "Ech sinn uechtzéng Joer al."
     },
     {
       "fr": "J'ai 20 ans.",
-      "lu": "Ech hunn zwanzeg Joer."
+      "lu": "Ech sinn zwanzeg Joer al."
     },
     {
       "fr": "J'ai 24 ans.",
-      "lu": "Ech hu véieranzwanzeg Joer."
+      "lu": "Ech si véieranzwanzeg Joer al."
     },
     {
       "fr": "Quel âge as-tu ?",
@@ -709,7 +685,7 @@
     },
     {
       "fr": "1999",
-      "lu": "nonzénghonnertnonanuechtzeg"
+      "lu": "nonzénghonnertnéngannonzeg"
     },
     {
       "fr": "2015",
@@ -717,7 +693,7 @@
     },
     {
       "fr": "2026",
-      "lu": "zweedausendsiechanzwanzeg"
+      "lu": "zweedausendsechsanzwanzeg"
     },
     {
       "fr": "Quand es-tu né(e) ?",
@@ -729,11 +705,11 @@
     },
     {
       "fr": "Il a 47 ans.",
-      "lu": "Hien huet siwenavéierzeg Joer."
+      "lu": "Hien ass siwenavéierzeg Joer al."
     },
     {
       "fr": "Elle a 30 ans.",
-      "lu": "Si huet drësseg Joer."
+      "lu": "Si ass drësseg Joer al."
     },
     {
       "fr": "1881",
@@ -741,7 +717,7 @@
     },
     {
       "fr": "1897",
-      "lu": "uechtzénghonnertsiwenanonzeg"
+      "lu": "uechtzénghonnertsiwenannonzeg"
     },
     {
       "fr": "1900",
@@ -841,7 +817,7 @@
     },
     {
       "fr": "1997",
-      "lu": "nonzénghonnertsiwenanonzeg"
+      "lu": "nonzénghonnertsiwenannonzeg"
     },
     {
       "fr": "2017",
@@ -861,7 +837,7 @@
     },
     {
       "fr": "Je suis né(e) le 13 juin 1999.",
-      "lu": "Ech sinn den dräizéngte Juni nonzénghonnertnonanuechtzeg gebuer."
+      "lu": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer."
     },
     {
       "fr": "Barbara est née le 18 janvier 1996.",
@@ -878,6 +854,14 @@
     {
       "fr": "Sophie est née le 28 septembre 2015.",
       "lu": "D'Sophie ass den aachtanzwanzegste September zweedausendfofzéng gebuer."
+    },
+    {
+      "fr": "Quand est ton anniversaire ?",
+      "lu": "Wéini hues du Gebuertsdag?"
+    },
+    {
+      "fr": "Mon anniversaire est le 13 juin.",
+      "lu": "Ech hunn den dräizéngte Juni Gebuertsdag."
     }
   ],
   "cours": [
@@ -947,10 +931,10 @@
         "1800-1999 → uechtzénghonnert / nonzénghonnert + reste.",
         "2000+ → zweedausend + reste.",
         "1958 = nonzénghonnertaachtafofzeg.",
-        "1999 = nonzénghonnertnonanuechtzeg.",
+        "1999 = nonzénghonnertnéngannonzeg.",
         "2004 = zweedausendvéier.",
         "2015 = zweedausendfofzéng.",
-        "2026 = zweedausendsiechanzwanzeg."
+        "2026 = zweedausendsechsanzwanzeg."
       ]
     },
     {
@@ -959,16 +943,14 @@
       "lignes": [
         "Dans les listes, les ordinaux apparaissent sous la forme : den dräizéngten, den uechtzéngten, den eenanzwanzegsten.",
         "Dans une date complète, on utilise généralement la forme courte : den dräizéngte Juni, den uechtzéngte Januar, de véieranzwanzegste Abrëll.",
-        "Pour parler d'une date de naissance : Ech sinn den dräizéngte Juni nonzénghonnertnonanuechtzeg gebuer."
+        "Pour parler d'une date de naissance : Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer."
       ]
     },
     {
       "type": "regle",
       "titre": "Dire son âge",
       "lignes": [
-        "Ech hunn ... Joer. = J'ai ... ans.",
         "Ech sinn ... Joer al. = J'ai ... ans.",
-        "Ech hunn zwanzeg Joer.",
         "Ech sinn drësseg Joer al."
       ]
     },
@@ -993,7 +975,7 @@
           "Quel est votre âge ?"
         ],
         [
-          "Ech hunn zwanzeg Joer.",
+          "Ech sinn zwanzeg Joer al.",
           "J'ai 20 ans."
         ],
         [
@@ -1007,7 +989,15 @@
       "titre": "Dire sa date de naissance",
       "lignes": [
         "Ech sinn den + jour + mois + année + gebuer.",
-        "Exemple : Ech sinn den dräizéngte Juni nonzénghonnertnonanuechtzeg gebuer."
+        "Exemple : Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer."
+      ]
+    },
+    {
+      "type": "regle",
+      "titre": "Dire son anniversaire",
+      "lignes": [
+        "Wéini hues du Gebuertsdag? = Quand est ton anniversaire ?",
+        "Ech hunn den ... Gebuertsdag. = Mon anniversaire est le ..."
       ]
     },
     {
@@ -1027,7 +1017,7 @@
           "Quand Barbara est-elle née ?"
         ],
         [
-          "Ech sinn den dräizéngte Juni nonzénghonnertnonanuechtzeg gebuer.",
+          "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
           "Je suis né(e) le 13 juin 1999."
         ],
         [
