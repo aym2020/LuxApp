@@ -135,42 +135,6 @@
             "fr": "Minuit",
             "lu": "Mëtternuecht",
             "note": "00:00"
-        },
-        {
-            "id": 22,
-            "fr": "Minuit",
-            "lu": "Hallefnuecht",
-            "note": "00:00"
-        },
-        {
-            "id": 23,
-            "fr": "Je travaille de huit heures du matin à cinq heures de l'après-midi.",
-            "lu": "Ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes.",
-            "note": "Horaire de travail"
-        },
-        {
-            "id": 24,
-            "fr": "Je commence à huit heures du matin.",
-            "lu": "Ech fänken um aacht Auer moies un.",
-            "note": "Début du travail"
-        },
-        {
-            "id": 25,
-            "fr": "Je termine à cinq heures de l'après-midi.",
-            "lu": "Ech halen um fënnef Auer nomëttes op.",
-            "note": "Fin du travail"
-        },
-        {
-            "id": 26,
-            "fr": "À quelle heure commences-tu à travailler ?",
-            "lu": "Um wéi vill Auer fänks du mat schaffen un ?",
-            "note": "Question"
-        },
-        {
-            "id": 27,
-            "fr": "À quelle heure termines-tu de travailler ?",
-            "lu": "Um wéi vill Auer häls du mat schaffen op ?",
-            "note": "Question"
         }
     ],
     "quiz": [
@@ -376,16 +340,6 @@
         },
         {
             "id": 21,
-            "question": "Hallefnuecht",
-            "reponse": "minuit",
-            "distracteurs": [
-                "midi",
-                "le soir",
-                "la nuit"
-            ]
-        },
-        {
-            "id": 22,
             "question": "Ech fänken um aacht Auer moies un.",
             "reponse": "Je commence à huit heures du matin.",
             "distracteurs": [
@@ -395,7 +349,7 @@
             ]
         },
         {
-            "id": 23,
+            "id": 22,
             "question": "Ech halen um fënnef Auer nomëttes op.",
             "reponse": "Je termine à cinq heures de l'après-midi.",
             "distracteurs": [
@@ -405,7 +359,7 @@
             ]
         },
         {
-            "id": 24,
+            "id": 23,
             "question": "Um wéi vill Auer fänks du mat schaffen un ?",
             "reponse": "À quelle heure commences-tu à travailler ?",
             "distracteurs": [
@@ -415,7 +369,7 @@
             ]
         },
         {
-            "id": 25,
+            "id": 24,
             "question": "Um wéi vill Auer häls du mat schaffen op ?",
             "reponse": "À quelle heure termines-tu de travailler ?",
             "distracteurs": [
@@ -825,10 +779,6 @@
             "lu": "Mëtternuecht"
         },
         {
-            "fr": "Minuit",
-            "lu": "Hallefnuecht"
-        },
-        {
             "fr": "Il est huit heures du matin.",
             "lu": "Et ass aacht Auer moies."
         },
@@ -1012,10 +962,6 @@
                 ],
                 [
                     "Mëtternuecht",
-                    "minuit"
-                ],
-                [
-                    "Hallefnuecht",
                     "minuit"
                 ]
             ]
