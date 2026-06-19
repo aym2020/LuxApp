@@ -4,15 +4,16 @@
   --surface2: #222120;
   --card-bg: #f5f0e8;
   --text: #f5f0e8;
-  --muted: #a89e8a;        /* éclairci : contraste suffisant sur fond sombre */
-  --muted-strong: #c2b8a4; /* pour les textes secondaires importants */
+  --muted: #a89e8a;        /* éclairci : lisible sur fond sombre */
+  --muted-strong: #c2b8a4; /* textes secondaires importants */
   --accent: #e8c547;
   --correct: #5ad4a8;
   --wrong: #e8706a;
+  --info: #6aa8e8;         /* bleu : encadrés d'information */
   --r: 14px;
-  --title: 'Syne', sans-serif;              /* titres / boutons : du caractère */
-  --font: 'Inter', system-ui, sans-serif;   /* texte de lecture : lisible */
-  --serif: 'Instrument Serif', serif;       /* mots-vedettes (cartes, vocab) */
+  --title: 'Syne', sans-serif;            /* titres / boutons */
+  --font: 'Inter', system-ui, sans-serif; /* texte de lecture */
+  --serif: 'Instrument Serif', serif;     /* mots-vedettes */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -317,7 +318,7 @@ header {
 .cours-regle-titre { font-size: .8rem; font-weight: 800; letter-spacing: .04em; margin-bottom: .5rem; text-transform: uppercase; }
 .cours-regle ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
 .cours-regle li { font-size: .9rem; line-height: 1.6; padding-left: 1rem; position: relative; color: var(--text); }
-.cours-regle li::before { content: '·'; position: absolute; left: .2rem; color: var(--muted); }
+.cours-regle li::before { content: '·'; position: absolute; left: .2rem; color: var(--accent); }
 .cours-regle b { color: var(--text); font-weight: 800; font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
 
 .cours-bloc {
@@ -326,17 +327,76 @@ header {
 }
 .cours-bloc-titre { font-size: .8rem; font-weight: 800; letter-spacing: .04em; margin-bottom: .7rem; text-transform: uppercase; color: var(--muted); }
 
+/* Vocabulaire : mot luxembourgeois net et scannable, traduction secondaire claire */
 .cours-vocab { width: 100%; border-collapse: collapse; }
-.cours-vocab tr { border-bottom: 1px solid #242322; }
+.cours-vocab tr { border-bottom: 1px solid #242322; transition: background .15s; }
 .cours-vocab tr:last-child { border-bottom: none; }
-.cours-vocab td { padding: .5rem .3rem; vertical-align: top; }
-.cours-lu { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--text); width: 55%; }
+.cours-vocab tr:hover { background: rgba(255,255,255,.03); }
+.cours-vocab td { padding: .6rem .4rem; vertical-align: middle; }
+.cours-lu {
+  font-family: var(--serif); font-style: normal; font-size: 1.08rem;
+  color: var(--text); width: 55%; line-height: 1.3;
+}
 .cours-fr { font-size: .86rem; color: var(--muted-strong); text-align: right; }
 
-.cours-dialogue { padding: .55rem 0; border-bottom: 1px solid #242322; }
+.cours-dialogue { padding: .6rem 0; border-bottom: 1px solid #242322; }
 .cours-dialogue:last-child { border-bottom: none; }
-.cours-dialogue-lu { font-family: var(--serif); font-style: italic; font-size: 1.05rem; margin-bottom: .15rem; }
+.cours-dialogue-lu { font-family: var(--serif); font-style: italic; font-size: 1.1rem; margin-bottom: .2rem; line-height: 1.35; }
 .cours-dialogue-fr { font-size: .84rem; color: var(--muted-strong); }
+
+/* ── BLOC : ENCADRÉ COLORÉ (callout) ────────────────────────────────────── */
+.cours-callout {
+  border-radius: var(--r); padding: .9rem 1.1rem .9rem 2.6rem;
+  margin-bottom: 1.1rem; position: relative;
+  border: 1px solid; line-height: 1.55;
+}
+.cours-callout::before {
+  position: absolute; left: 1rem; top: .9rem; font-size: 1rem;
+}
+.cours-callout-titre {
+  font-size: .82rem; font-weight: 800; letter-spacing: .03em;
+  text-transform: uppercase; margin-bottom: .45rem;
+}
+.cours-callout ul { list-style: none; display: flex; flex-direction: column; gap: .35rem; }
+.cours-callout li { font-size: .9rem; color: var(--text); line-height: 1.55; }
+.cours-callout b { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
+
+.cc-astuce    { background: rgba(232,197,71,.08);  border-color: rgba(232,197,71,.45); }
+.cc-astuce .cours-callout-titre { color: var(--accent); }
+.cc-astuce::before    { content: '💡'; }
+
+.cc-attention { background: rgba(232,112,106,.08); border-color: rgba(232,112,106,.45); }
+.cc-attention .cours-callout-titre { color: var(--wrong); }
+.cc-attention::before { content: '⚠️'; }
+
+.cc-info      { background: rgba(106,168,232,.08); border-color: rgba(106,168,232,.45); }
+.cc-info .cours-callout-titre { color: var(--info); }
+.cc-info::before      { content: 'ℹ️'; }
+
+.cc-retenir   { background: rgba(90,212,168,.08);  border-color: rgba(90,212,168,.45); }
+.cc-retenir .cours-callout-titre { color: var(--correct); }
+.cc-retenir::before   { content: '✅'; }
+
+/* ── BLOC : EXEMPLES MIS EN AVANT ───────────────────────────────────────── */
+.cours-ex-row { padding: .55rem 0; border-bottom: 1px solid #242322; }
+.cours-ex-row:last-child { border-bottom: none; }
+.cours-ex-lu { font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.3; }
+.cours-ex-fr { font-size: .85rem; color: var(--muted-strong); margin-top: .15rem; }
+
+/* ── BLOC : TABLEAU GÉNÉRIQUE ───────────────────────────────────────────── */
+.cours-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.cours-table th {
+  text-align: left; padding: .55rem .5rem; color: var(--accent);
+  font-family: var(--title); font-weight: 700; font-size: .72rem;
+  letter-spacing: .04em; text-transform: uppercase;
+  border-bottom: 2px solid #2a2926;
+}
+.cours-table td {
+  padding: .55rem .5rem; border-bottom: 1px solid #242322;
+  color: var(--text); vertical-align: top;
+}
+.cours-table tr:last-child td { border-bottom: none; }
+.cours-table td:first-child { font-family: var(--serif); font-style: italic; font-size: 1rem; }
 
 /* ── PROGRESSION : POINTS DE NIVEAU ─────────────────────────────────────── */
 .level-dots { display: flex; gap: 4px; justify-content: center; margin-bottom: .6rem; }

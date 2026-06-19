@@ -114,8 +114,8 @@ function renderCours() {
       </div>`;
     }
     else if (sec.type === 'vocab') {
-      html += `<div class="cours-bloc">
-        <div class="cours-bloc-titre">${sec.titre}</div>
+      html += `<div class="cours-bloc" style="border-left:3px solid ${accent}">
+        <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>
         <table class="cours-vocab">${
           sec.items.map(([lu, fr]) =>
             `<tr><td class="cours-lu">${lu}</td><td class="cours-fr">${fr}</td></tr>`
@@ -124,8 +124,8 @@ function renderCours() {
       </div>`;
     }
     else if (sec.type === 'dialogue') {
-      html += `<div class="cours-bloc">
-        <div class="cours-bloc-titre">${sec.titre}</div>${
+      html += `<div class="cours-bloc" style="border-left:3px solid ${accent}">
+        <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>${
           sec.echanges.map(([lu, fr]) =>
             `<div class="cours-dialogue">
               <div class="cours-dialogue-lu" style="color:${accent}">${lu}</div>
@@ -133,6 +133,40 @@ function renderCours() {
             </div>`
           ).join('')
         }</div>`;
+    }
+    // Encadré coloré : variant = astuce | attention | info | retenir
+    else if (sec.type === 'callout') {
+      const v = sec.variant || 'info';
+      html += `<div class="cours-callout cc-${v}">
+        <div class="cours-callout-titre">${sec.titre}</div>
+        <ul>${sec.lignes.map(l => `<li>${l}</li>`).join('')}</ul>
+      </div>`;
+    }
+    // Exemples mis en avant : paires luxembourgeois / français
+    else if (sec.type === 'exemple') {
+      html += `<div class="cours-bloc cours-exemple" style="border-left:3px solid ${accent}">
+        <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>${
+          sec.items.map(([lu, fr]) =>
+            `<div class="cours-ex-row">
+              <div class="cours-ex-lu" style="color:${accent}">${lu}</div>
+              <div class="cours-ex-fr">${fr}</div>
+            </div>`
+          ).join('')
+        }</div>`;
+    }
+    // Tableau générique : entetes = en-têtes, lignes = tableau de cellules
+    else if (sec.type === 'tableau') {
+      html += `<div class="cours-bloc" style="border-left:3px solid ${accent}">
+        <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>
+        <table class="cours-table">
+          <thead><tr>${sec.entetes.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+          <tbody>${
+            sec.lignes.map(row =>
+              `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`
+            ).join('')
+          }</tbody>
+        </table>
+      </div>`;
     }
   });
 
@@ -338,119 +372,6 @@ function startSession(mode) {
 
   session = { mode, questions, index: 0, score: 0, answered: false };
   document.getElementById('session-num').textContent = titre.toUpperCase();
-  document.getElementById('session-titre').textContent = questions.length + ' questions';
-  document.getElementById('session-result').classList.add('hidden');
-  document.getElementById('session-q').classList.remove('hidden');
-  showView('view-session');
-  renderSessionQ();
-}
-
-// ─── RÉVISION CONFIGURÉE ────────────────────────────────────────────────────
-let reviewListenerAttached = false;
-
-function openReviewSetup() {
-  // Une case par leçon, toutes cochées au départ.
-  const box = document.getElementById('rs-lecons');
-  box.innerHTML = '';
-  lecons.forEach(l => {
-    const label = document.createElement('label');
-    label.className = 'rs-check';
-    label.innerHTML =
-      '<input type="checkbox" value="' + l.id + '" checked> Leçon ' + l.id + ' · ' + escHtml(l.titre);
-    box.appendChild(label);
-  });
-
-  // Recalcule les compteurs dès qu'une case change (leçons, types, focus).
-  if (!reviewListenerAttached) {
-    document.getElementById('view-review-setup')
-      .addEventListener('change', refreshReviewAvailability);
-    reviewListenerAttached = true;
-  }
-
-  // Au départ : focus Aléatoire (jamais connu/difficile auto-sélectionné).
-  document.querySelector('input[name="rs-focus"][value="aleatoire"]').checked = true;
-
-  refreshReviewAvailability();
-  showView('view-review-setup');
-}
-
-// Lit les sélections courantes (leçons + types).
-function readReviewSelection() {
-  return {
-    leconIds: [...document.querySelectorAll('#rs-lecons input:checked')].map(b => Number(b.value)),
-    types: [...document.querySelectorAll('#rs-types input:checked')].map(b => b.value)
-  };
-}
-
-// Met à jour le compteur affiché et l'état (actif/désactivé) d'un focus.
-function setFocusAvailability(focus, count, total, emptyHint) {
-  const input = document.querySelector('input[name="rs-focus"][value="' + focus + '"]');
-  const row = input.closest('.rs-check');
-  const countEl = document.getElementById('rs-count-' + focus);
-  const empty = count === 0;
-
-  input.disabled = empty;
-  row.classList.toggle('disabled', empty);
-  countEl.textContent = empty
-    ? emptyHint
-    : count + ' / ' + total + ' disponible' + (count > 1 ? 's' : '');
-}
-
-// Recalcule les 3 compteurs et empêche de rester sur un focus vide.
-function refreshReviewAvailability() {
-  const { leconIds, types } = readReviewSelection();
-  const total = getAvailableReviewCount(leconIds, types, 'aleatoire'); // pool brut sans filtre
-
-  setFocusAvailability('aleatoire',  total, total, 'Aucune question');
-  setFocusAvailability('connu',
-    getAvailableReviewCount(leconIds, types, 'connu'),     total, 'Disponible après tes premières réponses.');
-  setFocusAvailability('difficile',
-    getAvailableReviewCount(leconIds, types, 'difficile'), total, 'Disponible après tes premières erreurs.');
-
-  // Si le focus coché est devenu indisponible, on revient à Aléatoire.
-  const checked = document.querySelector('input[name="rs-focus"]:checked');
-  if (checked && checked.disabled) {
-    document.querySelector('input[name="rs-focus"][value="aleatoire"]').checked = true;
-  }
-}
-
-// Coche / décoche toutes les cases d'un conteneur.
-function toggleAllChecks(containerId) {
-  const boxes = document.querySelectorAll('#' + containerId + ' input[type="checkbox"]');
-  const allChecked = [...boxes].every(b => b.checked);
-  boxes.forEach(b => b.checked = !allChecked);
-  refreshReviewAvailability(); // .checked programmatique ne déclenche pas 'change'
-}
-
-// Lit les choix, construit la liste et lance la session existante.
-function startConfiguredReview() {
-  const { leconIds, types } = readReviewSelection();
-  const focus = document.querySelector('input[name="rs-focus"]:checked').value;
-  const countInput = document.querySelector('input[name="rs-count"]:checked');
-  let count = countInput ? parseInt(countInput.value, 10) : 20;
-  if (!count || count < 1) count = 20;
-  count = Math.min(count, 20); // plafond strict à 20
-
-  if (!leconIds.length) { alert('Choisis au moins une leçon.'); return; }
-  if (!types.length) { alert('Choisis au moins un type d\'exercice.'); return; }
-
-  const questions = getConfiguredReview(leconIds, types, focus, count);
-  if (!questions.length) {
-    // Message adapté au focus choisi (jamais de session vide ni de remplissage).
-    if (focus === 'connu') {
-      alert('Aucune question à consolider pour le moment.\nFais d\'abord une révision aléatoire ou une leçon pour créer ton historique.');
-    } else if (focus === 'difficile') {
-      alert('Aucune question difficile pour le moment.\nLes questions difficiles apparaîtront après tes premières erreurs.');
-    } else {
-      alert('Aucune question disponible pour ces critères.');
-    }
-    return;
-  }
-
-  // Réutilise le moteur de session (mode 'review' = les niveaux évoluent).
-  // Le titre affiche le nombre RÉEL de questions, pas le nombre demandé.
-  session = { mode: 'review', questions, index: 0, score: 0, answered: false };
-  document.getElementById('session-num').textContent = 'RÉVISION';
   document.getElementById('session-titre').textContent = questions.length + ' questions';
   document.getElementById('session-result').classList.add('hidden');
   document.getElementById('session-q').classList.remove('hidden');
