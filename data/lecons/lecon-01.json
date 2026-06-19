@@ -18,9 +18,9 @@
     },
     {
       "id": 2,
-      "fr": "Désolé !",
-      "lu": "Entschëllegt!",
-      "note": ""
+      "fr": "Salut !",
+      "lu": "Salut!",
+      "note": "Informel entre amis"
     },
     {
       "id": 3,
@@ -84,8 +84,8 @@
     },
     {
       "id": 13,
-      "fr": "Pareillement !",
-      "lu": "Gläichfalls!",
+      "fr": "Merci pareillement !",
+      "lu": "Merci gläichfalls!",
       "note": "Réponse à un souhait"
     },
     {
@@ -103,7 +103,7 @@
     {
       "id": 16,
       "fr": "Je vais bien.",
-      "lu": "Et geet mir gutt.",
+      "lu": "Mir geet et gutt.",
       "note": "Litt. 'À moi ça va bien'"
     },
     {
@@ -187,7 +187,7 @@
     {
       "id": 30,
       "fr": "Comment t'appelles-tu ?",
-      "lu": "Wéi heeschs du?",
+      "lu": "A wéi heeschs du?",
       "note": "Informel"
     },
     {
@@ -219,6 +219,12 @@
       "fr": "Tout va bien ! (tout est en ordre)",
       "lu": "Alles an der Rei!",
       "note": "Expression très fréquente"
+    },
+    {
+      "id": 36,
+      "fr": "Quel est votre nom, s'il vous plaît ?",
+      "lu": "Wéi ass Ären Numm wgl.?",
+      "note": "wgl. = wann ech gelift = s'il vous plaît"
     }
   ],
   "quiz": [
@@ -364,8 +370,8 @@
     },
     {
       "id": 15,
-      "question": "Entschëllegt!",
-      "reponse": "Désolé !",
+      "question": "Salut!",
+      "reponse": "Salut !",
       "distracteurs": [
         "Bonsoir !",
         "Au revoir !",
@@ -718,11 +724,11 @@
       "id": 11,
       "fr": "Et toi ? (informel)",
       "avant": "An",
-      "trou": "Dir",
+      "trou": "dir",
       "apres": "?",
       "choix": [
+        "dir",
         "Iech",
-        "Dir",
         "Mir",
         "Du"
       ],
@@ -931,6 +937,10 @@
       "lu": "Moien!"
     },
     {
+      "fr": "Salut !",
+      "lu": "Salut!"
+    },
+    {
       "fr": "Bonjour ! (matin)",
       "lu": "Gudde Moien!"
     },
@@ -999,8 +1009,8 @@
       "lu": "Merci!"
     },
     {
-      "fr": "Pareillement !",
-      "lu": "Gläichfalls!"
+      "fr": "Merci pareillement !",
+      "lu": "Merci gläichfalls!"
     },
     {
       "fr": "Merci pour l'invitation !",
@@ -1055,8 +1065,16 @@
       "lu": "An Iech?"
     },
     {
-      "fr": "Tout va bien ! (Expression très fréquente)",
+      "fr": "Tout va bien ! (tout est en ordre)",
       "lu": "Alles an der Rei!"
+    },
+    {
+      "fr": "Mon nom est Bertha.",
+      "lu": "Mäin Numm ass Bertha."
+    },
+    {
+      "fr": "Mon nom est Daniel.",
+      "lu": "Mäin Numm ass Daniel."
     },
     {
       "fr": "Mon nom est Fabio.",
@@ -1090,16 +1108,57 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon permet de saluer quelqu'un, prendre congé, demander comment ça va, se présenter et demander le nom d'une personne. Il faut également distinguer le registre informel (amis, famille) du registre formel (inconnus, collègues, personnes âgées)."
+      "contenu": "Cette leçon apprend à saluer, prendre congé, demander comment ça va, se présenter et demander le nom de quelqu'un. Le point clé : distinguer le registre <b>informel</b> (amis, famille) du registre <b>formel</b> (inconnus, collègues, personnes âgées)."
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "La règle d'or : informel ou formel ?",
+      "lignes": [
+        "Avec des <b>amis</b> ou la <b>famille</b>, on tutoie avec <b>dir</b> : Wéi geet et dir?",
+        "Avec un <b>inconnu</b> ou au <b>travail</b>, on vouvoie avec <b>Iech</b> : Wéi geet et Iech?",
+        "Les pronoms de politesse <b>Iech</b>, <b>Dir</b>, <b>Är</b>, <b>Ären</b> prennent toujours une <b>majuscule</b>."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Saluer selon le moment",
+      "entetes": [
+        "Moment",
+        "Salutation"
+      ],
+      "lignes": [
+        [
+          "À toute heure",
+          "Moien!"
+        ],
+        [
+          "Le matin",
+          "Gudde Moien!"
+        ],
+        [
+          "Midi et après-midi",
+          "Gudde Mëtteg!"
+        ],
+        [
+          "Le soir",
+          "Gudden Owend!"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Moien : le mot à tout faire",
+      "lignes": [
+        "<b>Moien!</b> est la salutation la plus utilisée au Luxembourg.",
+        "Elle marche à <b>toute heure</b> : en cas de doute, dis simplement Moien!"
+      ]
     },
     {
       "type": "vocab",
-      "titre": "Salutations",
+      "titre": "Autres salutations",
       "items": [
-        [
-          "Moien!",
-          "Bonjour ! (à toute heure)"
-        ],
         [
           "Hallo!",
           "Salut !"
@@ -1107,18 +1166,6 @@
         [
           "Salut!",
           "Salut ! (informel)"
-        ],
-        [
-          "Gudde Moien!",
-          "Bonjour ! (matin)"
-        ],
-        [
-          "Gudde Mëtteg!",
-          "Bonjour ! (midi / après-midi)"
-        ],
-        [
-          "Gudden Owend!",
-          "Bonsoir !"
         ],
         [
           "Bonjour Madamm.",
@@ -1131,152 +1178,132 @@
       ]
     },
     {
-      "type": "vocab",
+      "type": "tableau",
       "titre": "Prendre congé",
-      "items": [
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Quand ?"
+      ],
+      "lignes": [
         [
           "Äddi!",
-          "Au revoir ! (courant)"
+          "Au revoir",
+          "Le plus courant"
         ],
         [
           "Awar! / Awuer!",
-          "Au revoir ! (familier)"
-        ],
-        [
-          "Gutt Nuecht!",
-          "Bonne nuit !"
-        ],
-        [
-          "Schlof gutt!",
-          "Dors bien !"
+          "Au revoir",
+          "Familier"
         ],
         [
           "Schéinen Dag!",
-          "Bonne journée !"
+          "Bonne journée",
+          "En partant dans la journée"
         ],
         [
           "Schéinen Owend!",
-          "Bonne soirée !"
+          "Bonne soirée",
+          "En partant le soir"
         ],
         [
-          "Merci gläichfalls!",
-          "Merci pareillement !"
+          "Gutt Nuecht!",
+          "Bonne nuit",
+          "Avant d'aller dormir"
         ],
         [
-          "Merci fir d'Invitatioun!",
-          "Merci pour l'invitation !"
+          "Schlof gutt!",
+          "Dors bien",
+          "Entre proches"
         ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "Formel ou informel ?",
+      "type": "callout",
+      "variant": "attention",
+      "titre": "À ne pas confondre",
       "lignes": [
-        "Entre amis ou en famille, on utilise <b>dir</b> : Wéi geet et dir?",
-        "Avec une personne inconnue ou dans un contexte professionnel, on utilise <b>Iech</b> : Wéi geet et Iech?",
-        "<b>Iech</b>, <b>Dir</b>, <b>Är</b> et <b>Ären</b> prennent une majuscule par politesse."
+        "<b>Gudden Owend!</b> sert à <b>saluer</b> le soir.",
+        "<b>Gutt Nuecht!</b> se dit seulement <b>avant de dormir</b>, jamais pour saluer.",
+        "<b>Schlof gutt!</b> est réservé aux <b>proches</b>."
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Demander comment ça va",
-      "items": [
+      "type": "tableau",
+      "titre": "Comment ça va ? L'échelle",
+      "entetes": [
+        "Sens",
+        "Luxembourgeois"
+      ],
+      "lignes": [
         [
+          "Très bien",
+          "Ganz gutt! · Tipptopp!"
+        ],
+        [
+          "Bien",
+          "Mir geet et gutt. · Gutt!"
+        ],
+        [
+          "Ça va",
+          "Et geet."
+        ],
+        [
+          "Pas terrible",
+          "Net immens."
+        ],
+        [
+          "Mal",
+          "Schlecht. · Net gutt."
+        ],
+        [
+          "Très mal",
+          "Ganz schlecht. · Guer net gutt."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Une réponse passe-partout",
+      "lignes": [
+        "<b>Alles an der Rei!</b> = Tout va bien / Tout est en ordre. Une réponse positive très fréquente."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Demander : informel ou formel",
+      "entetes": [
+        "Sens",
+        "Informel (tu)",
+        "Formel (vous)"
+      ],
+      "lignes": [
+        [
+          "Comment vas-tu ?",
           "Wéi geet et dir?",
-          "Comment vas-tu ?"
+          "Wéi geet et Iech?"
         ],
         [
-          "Wéi geet et Iech?",
-          "Comment allez-vous ?"
-        ],
-        [
+          "Et toi ?",
           "An dir?",
-          "Et toi ?"
+          "An Iech?"
         ],
         [
-          "An Iech?",
-          "Et vous ?"
-        ]
-      ]
-    },
-    {
-      "type": "vocab",
-      "titre": "Répondre",
-      "items": [
-        [
-          "Mir geet et gutt.",
-          "Je vais bien."
-        ],
-        [
-          "Gutt!",
-          "Bien !"
-        ],
-        [
-          "Ganz gutt!",
-          "Très bien !"
-        ],
-        [
-          "Tipptopp!",
-          "Tip top !"
-        ],
-        [
-          "Et geet.",
-          "Ça va."
-        ],
-        [
-          "Net immens.",
-          "Pas terrible."
-        ],
-        [
-          "Schlecht.",
-          "Mal."
-        ],
-        [
-          "Net gutt.",
-          "Pas bien."
-        ],
-        [
-          "Ganz schlecht.",
-          "Très mal."
-        ],
-        [
-          "Guer net gutt.",
-          "Pas du tout bien."
-        ],
-        [
-          "Alles an der Rei!",
-          "Tout va bien !"
-        ]
-      ]
-    },
-    {
-      "type": "vocab",
-      "titre": "Se présenter",
-      "items": [
-        [
-          "Mäin Numm ass...",
-          "Mon nom est..."
-        ],
-        [
-          "Ech heesche...",
-          "Je m'appelle..."
-        ],
-        [
+          "Comment t'appelles-tu ?",
           "Wéi heeschs du?",
-          "Comment t'appelles-tu ?"
-        ],
-        [
-          "Wéi heescht Dir?",
-          "Comment vous appelez-vous ?"
-        ],
-        [
-          "Wéi ass Ären Numm?",
-          "Quel est votre nom ?"
-        ],
-        [
-          "Wéi ass Ären Numm wgl.?",
-          "Quel est votre nom s'il vous plaît ?"
+          "Wéi heescht Dir?"
         ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Se présenter : deux structures",
+      "lignes": [
+        "<b>Mäin Numm ass …</b> = Mon nom est … (le plus simple).",
+        "<b>Ech heeschen …</b> = Je m'appelle … Le verbe se conjugue : ech <b>heesche</b>, du <b>heeschs</b>, Dir <b>heescht</b>.",
+        "Demander le nom poliment : <b>Wéi ass Ären Numm, wann ech gelift?</b>"
       ]
     },
     {
@@ -1296,21 +1323,30 @@
           "Merci !"
         ],
         [
+          "Merci gläichfalls!",
+          "Merci pareillement !"
+        ],
+        [
           "Wann ech gelift",
           "S'il vous plaît"
+        ],
+        [
+          "Entschëllegt!",
+          "Désolé ! / Excusez-moi !"
+        ],
+        [
+          "Merci fir d'Invitatioun!",
+          "Merci pour l'invitation !"
         ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "Points importants",
+      "type": "callout",
+      "variant": "info",
+      "titre": "Des mots venus du français",
       "lignes": [
-        "Moien est la salutation la plus utilisée au Luxembourg.",
-        "Gudde Moien est réservé au matin.",
-        "Gudde Mëtteg est utilisé vers midi et l'après-midi.",
-        "Gudden Owend est utilisé le soir.",
-        "Gutt Nuecht se dit lorsqu'on va dormir, pas pour saluer.",
-        "Schlof gutt est réservé aux proches."
+        "Plusieurs mots de politesse viennent du français : <b>Merci</b>, <b>Salut</b>, <b>Bonjour</b>, <b>Madamm</b>.",
+        "Mais <b>Här</b> (Monsieur) est d'origine germanique, pas français."
       ]
     },
     {
