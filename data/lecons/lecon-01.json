@@ -18,9 +18,9 @@
     },
     {
       "id": 2,
-      "fr": "Salut !",
-      "lu": "Salut!",
-      "note": "Informel entre amis"
+      "fr": "Désolé !",
+      "lu": "Entschëllegt!",
+      "note": ""
     },
     {
       "id": 3,
@@ -84,8 +84,8 @@
     },
     {
       "id": 13,
-      "fr": "Merci pareillement !",
-      "lu": "Merci gläichfalls!",
+      "fr": "Pareillement !",
+      "lu": "Gläichfalls!",
       "note": "Réponse à un souhait"
     },
     {
@@ -103,7 +103,7 @@
     {
       "id": 16,
       "fr": "Je vais bien.",
-      "lu": "Mir geet et gutt.",
+      "lu": "Et geet mir gutt.",
       "note": "Litt. 'À moi ça va bien'"
     },
     {
@@ -187,7 +187,7 @@
     {
       "id": 30,
       "fr": "Comment t'appelles-tu ?",
-      "lu": "A wéi heeschs du?",
+      "lu": "Wéi heeschs du?",
       "note": "Informel"
     },
     {
@@ -219,12 +219,6 @@
       "fr": "Tout va bien ! (tout est en ordre)",
       "lu": "Alles an der Rei!",
       "note": "Expression très fréquente"
-    },
-    {
-      "id": 36,
-      "fr": "Quel est votre nom, s'il vous plaît ?",
-      "lu": "Wéi ass Ären Numm wgl.?",
-      "note": "wgl. = wann ech gelift = s'il vous plaît"
     }
   ],
   "quiz": [
@@ -370,8 +364,8 @@
     },
     {
       "id": 15,
-      "question": "Salut!",
-      "reponse": "Salut !",
+      "question": "Entschëllegt!",
+      "reponse": "Désolé !",
       "distracteurs": [
         "Bonsoir !",
         "Au revoir !",
@@ -937,10 +931,6 @@
       "lu": "Moien!"
     },
     {
-      "fr": "Salut !",
-      "lu": "Salut!"
-    },
-    {
       "fr": "Bonjour ! (matin)",
       "lu": "Gudde Moien!"
     },
@@ -1009,8 +999,8 @@
       "lu": "Merci!"
     },
     {
-      "fr": "Merci pareillement !",
-      "lu": "Merci gläichfalls!"
+      "fr": "Pareillement !",
+      "lu": "Gläichfalls!"
     },
     {
       "fr": "Merci pour l'invitation !",
@@ -1065,16 +1055,8 @@
       "lu": "An Iech?"
     },
     {
-      "fr": "Tout va bien ! (tout est en ordre)",
+      "fr": "Tout va bien ! (Expression très fréquente)",
       "lu": "Alles an der Rei!"
-    },
-    {
-      "fr": "Mon nom est Bertha.",
-      "lu": "Mäin Numm ass Bertha."
-    },
-    {
-      "fr": "Mon nom est Daniel.",
-      "lu": "Mäin Numm ass Daniel."
     },
     {
       "fr": "Mon nom est Fabio.",
@@ -1316,10 +1298,6 @@
         [
           "Wann ech gelift",
           "S'il vous plaît"
-        ],
-        [
-          "wgl.",
-          "Abréviation de 'Wann ech gelift'"
         ]
       ]
     },

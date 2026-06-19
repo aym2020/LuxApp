@@ -4,20 +4,25 @@
   --surface2: #222120;
   --card-bg: #f5f0e8;
   --text: #f5f0e8;
-  --muted: #7a7060;
+  --muted: #a89e8a;        /* éclairci : contraste suffisant sur fond sombre */
+  --muted-strong: #c2b8a4; /* pour les textes secondaires importants */
   --accent: #e8c547;
   --correct: #5ad4a8;
   --wrong: #e8706a;
   --r: 14px;
-  --title: 'Syne', sans-serif;
-  --serif: 'Instrument Serif', serif;
+  --title: 'Syne', sans-serif;              /* titres / boutons : du caractère */
+  --font: 'Inter', system-ui, sans-serif;   /* texte de lecture : lisible */
+  --serif: 'Instrument Serif', serif;       /* mots-vedettes (cartes, vocab) */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 body {
   background: var(--bg); color: var(--text);
-  font-family: var(--title); min-height: 100vh;
+  font-family: var(--font); min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100dvh; /* dynamic viewport height pour Android */
   display: flex; flex-direction: column; align-items: center;
   /* safe area pour encoche et barre de navigation Android */
@@ -27,7 +32,7 @@ body {
 }
 
 /* ── VIEWS ───────────────────────────────────────────────────────────────── */
-.view { display: none; width: 100%; max-width: 960px; flex-direction: column; }
+.view { display: none; width: 100%; max-width: 720px; flex-direction: column; }
 .view.active { display: flex; }
 
 /* ── HOME ────────────────────────────────────────────────────────────────── */
@@ -53,7 +58,7 @@ header {
 .lecon-card-body { flex: 1; min-width: 0; }
 .lecon-card-num   { font-size: .65rem; font-weight: 800; letter-spacing: .12em; color: var(--muted); margin-bottom: .2rem; }
 .lecon-card-titre { font-size: .95rem; font-weight: 700; }
-.lecon-card-sous  { font-size: .82rem; color: var(--muted); margin-top: .15rem; font-style: italic; font-family: var(--serif); }
+.lecon-card-sous  { font-size: .72rem; color: var(--muted); margin-top: .15rem; font-style: italic; font-family: var(--serif); }
 .lecon-card-counts { display: flex; gap: .4rem; margin-top: .5rem; flex-wrap: wrap; }
 .lecon-pill {
   font-size: .6rem; font-weight: 700; padding: .18rem .5rem;
@@ -142,7 +147,7 @@ header {
   font-style: italic; color: #1a1916; text-align: center; line-height: 1.25;
   overflow-wrap: break-word; word-break: break-word;
 }
-.card-hint { position: absolute; bottom: .7rem; font-size: .55rem; color: #a09880; }
+.card-hint { position: absolute; bottom: .7rem; font-size: .6rem; color: #6f6757; }
 .card-translation {
   font-family: var(--serif);
   font-size: clamp(.95rem, 4vw, 1.8rem);
@@ -186,9 +191,9 @@ header {
   min-height: 48px;
   padding: .75rem 1rem;
   background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
-  color: var(--text); font-family: var(--title);
-  font-size: clamp(.8rem, 3vw, .9rem);
-  font-weight: 700; cursor: pointer; text-align: left; transition: all .12s;
+  color: var(--text); font-family: var(--font);
+  font-size: clamp(.85rem, 3vw, .95rem);
+  font-weight: 600; cursor: pointer; text-align: left; transition: all .12s;
   display: flex; align-items: center;
   overflow-wrap: break-word; word-break: break-word;
 }
@@ -209,7 +214,7 @@ header {
 }
 
 /* ── À TROU ─────────────────────────────────────────────────────────────── */
-.trou-fr   { font-size: .75rem; color: var(--muted); margin-bottom: .7rem; font-style: italic; }
+.trou-fr   { font-size: .82rem; color: var(--muted-strong); margin-bottom: .7rem; font-style: italic; }
 .trou-sentence {
   font-family: var(--serif);
   font-size: clamp(.95rem, 3.2vw, 1.5rem);
@@ -299,8 +304,8 @@ header {
 .cours-intro-sous  { font-size: .8rem; color: var(--muted); margin-top: .2rem; font-style: italic; font-family: var(--serif); }
 
 .cours-texte {
-  font-size: .9rem; line-height: 1.6; color: var(--text);
-  margin-bottom: 1.1rem; opacity: .92;
+  font-size: .96rem; line-height: 1.75; color: var(--text);
+  margin-bottom: 1.1rem;
 }
 .cours-texte b { color: var(--accent); font-weight: 700; }
 
@@ -311,7 +316,7 @@ header {
 }
 .cours-regle-titre { font-size: .8rem; font-weight: 800; letter-spacing: .04em; margin-bottom: .5rem; text-transform: uppercase; }
 .cours-regle ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
-.cours-regle li { font-size: .85rem; line-height: 1.5; padding-left: 1rem; position: relative; }
+.cours-regle li { font-size: .9rem; line-height: 1.6; padding-left: 1rem; position: relative; color: var(--text); }
 .cours-regle li::before { content: '·'; position: absolute; left: .2rem; color: var(--muted); }
 .cours-regle b { color: var(--text); font-weight: 800; font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
 
@@ -326,12 +331,12 @@ header {
 .cours-vocab tr:last-child { border-bottom: none; }
 .cours-vocab td { padding: .5rem .3rem; vertical-align: top; }
 .cours-lu { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--text); width: 55%; }
-.cours-fr { font-size: .82rem; color: var(--muted); text-align: right; }
+.cours-fr { font-size: .86rem; color: var(--muted-strong); text-align: right; }
 
 .cours-dialogue { padding: .55rem 0; border-bottom: 1px solid #242322; }
 .cours-dialogue:last-child { border-bottom: none; }
 .cours-dialogue-lu { font-family: var(--serif); font-style: italic; font-size: 1.05rem; margin-bottom: .15rem; }
-.cours-dialogue-fr { font-size: .8rem; color: var(--muted); }
+.cours-dialogue-fr { font-size: .84rem; color: var(--muted-strong); }
 
 /* ── PROGRESSION : POINTS DE NIVEAU ─────────────────────────────────────── */
 .level-dots { display: flex; gap: 4px; justify-content: center; margin-bottom: .6rem; }
@@ -426,41 +431,6 @@ header {
   cursor: pointer; transition: all .2s;
 }
 .dash-reset:active { border-color: var(--wrong); color: var(--wrong); }
-
-/* ── CONFIGURATION DE RÉVISION ──────────────────────────────────────────── */
-.rs { padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
-.rs-block {
-  background: var(--surface); border: 1px solid #2a2926;
-  border-radius: var(--r); padding: 1rem;
-}
-.rs-titre {
-  font-size: .7rem; font-weight: 800; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: .7rem;
-}
-.rs-checks { display: flex; flex-direction: column; gap: .55rem; }
-.rs-check {
-  display: flex; align-items: center; gap: .55rem;
-  color: var(--text); font-size: .9rem; cursor: pointer;
-}
-.rs-check input { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
-.rs-all {
-  margin-bottom: .7rem; padding: .4rem .7rem; background: none;
-  border: 1px solid #3a3935; border-radius: 999px;
-  color: var(--muted); font-family: var(--title); font-size: .7rem;
-  font-weight: 700; cursor: pointer;
-}
-.rs-count {
-  width: 100%; padding: .75rem; background: var(--bg);
-  border: 1px solid #444; border-radius: var(--r);
-  color: var(--text); font-family: var(--title); font-size: 1rem;
-}
-.rs-count:focus { border-color: var(--accent); outline: none; }
-.rs-count-opts { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
-.rs-focus-text { flex: 1; }
-.rs-focus-count { font-size: .72rem; color: var(--muted); text-align: right; }
-.rs-check.disabled { opacity: .45; cursor: not-allowed; }
-.rs-check.disabled input { cursor: not-allowed; }
-
 
 /* ── ZONE DE CONNEXION (cloud) ──────────────────────────────────────────── */
 .dash-auth {
