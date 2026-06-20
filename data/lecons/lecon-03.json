@@ -757,24 +757,6 @@
           "Non, le bus n'est pas rose."
         ]
       ]
-    },
-    {
-      "type": "dialogue",
-      "titre": "Remplacer un objet par un pronom",
-      "echanges": [
-        [
-          "De Bus ass gro. En ass gro.",
-          "Le bus est gris. Il est gris."
-        ],
-        [
-          "D'Fënster ass gréng. Si ass gréng.",
-          "La fenêtre est verte. Elle est verte."
-        ],
-        [
-          "D'Blat ass wäiss. Et ass wäiss.",
-          "La feuille est blanche. Elle est blanche."
-        ]
-      ]
     }
   ]
 }
