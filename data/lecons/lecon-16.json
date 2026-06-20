@@ -171,6 +171,12 @@
       "lu": "Ech gi schlofen.",
       "fr": "Je vais dormir / je vais me coucher.",
       "note": "goen + infinitif"
+    },
+    {
+      "id": 28,
+      "lu": "Ech fuere mam Auto op d'Aarbecht.",
+      "fr": "Je vais au travail en voiture.",
+      "note": "op d'Aarbecht = au travail"
     }
   ],
   "quiz": [
@@ -452,6 +458,16 @@
         "Je dors.",
         "Je rentre chez moi.",
         "Je sors."
+      ]
+    },
+    {
+      "id": 29,
+      "question": "Ech fuere mam Auto op d'Aarbecht.",
+      "reponse": "Je vais au travail en voiture.",
+      "distracteurs": [
+        "Je rentre en bus.",
+        "Je pars en voyage.",
+        "Je regarde un film."
       ]
     }
   ],
@@ -791,6 +807,20 @@
         "iessen"
       ],
       "note": "Ech gi schlofen = je vais dormir / je vais me coucher"
+    },
+    {
+      "id": 24,
+      "fr": "Je vais au travail en voiture.",
+      "avant": "Ech fuere mam Auto",
+      "trou": "op",
+      "apres": "d'Aarbecht.",
+      "choix": [
+        "op",
+        "an enger",
+        "als",
+        "bei"
+      ],
+      "note": "op d'Aarbecht = au travail"
     }
   ],
   "ecriture": [
@@ -841,6 +871,10 @@
     {
       "fr": "Dormir",
       "lu": "schlofen"
+    },
+    {
+      "fr": "op d'Aarbecht",
+      "lu": "au travail"
     },
     {
       "fr": "Aller dormir / se coucher",
@@ -965,6 +999,10 @@
     {
       "fr": "Je vais dormir / je vais me coucher.",
       "lu": "Ech gi schlofen."
+    },
+    {
+      "fr": "Je vais au travail en voiture.",
+      "lu": "Ech fuere mam Auto op d'Aarbecht."
     }
   ],
   "cours": [
@@ -1299,6 +1337,10 @@
         [
           "Ech fuere mam Bus.",
           "Je prends le bus / je vais en bus."
+        ],
+        [
+          "Ech fuere mam Auto op  d'Aarbecht.",
+          "Je vais au travail en voiture."
         ],
         [
           "Ech telefonéieren.",
