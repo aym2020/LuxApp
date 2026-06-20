@@ -158,14 +158,16 @@ function renderCours() {
     else if (sec.type === 'tableau') {
       html += `<div class="cours-bloc" style="border-left:3px solid ${accent}">
         <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>
-        <table class="cours-table">
-          <thead><tr>${sec.entetes.map(h => `<th>${h}</th>`).join('')}</tr></thead>
-          <tbody>${
-            sec.lignes.map(row =>
-              `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`
-            ).join('')
-          }</tbody>
-        </table>
+        <div class="cours-table-wrap">
+          <table class="cours-table">
+            <thead><tr>${sec.entetes.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+            <tbody>${
+              sec.lignes.map(row =>
+                `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`
+              ).join('')
+            }</tbody>
+          </table>
+        </div>
       </div>`;
     }
   });

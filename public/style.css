@@ -388,15 +388,22 @@ header {
 .cours-ex-fr { font-size: .88rem; color: var(--muted-strong); margin-top: .15rem; }
 
 /* ── BLOC : TABLEAU GÉNÉRIQUE ───────────────────────────────────────────── */
-.cours-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+/* Wrapper avec scroll horizontal de secours si le tableau a beaucoup de colonnes */
+.cours-table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cours-table {
+  width: 100%; min-width: 100%; border-collapse: collapse; font-size: .85rem;
+  table-layout: fixed; /* empêche le tableau de s'élargir selon le contenu et de déborder du cadre */
+}
 .cours-table th {
-  text-align: left; padding: .55rem .5rem; color: var(--accent);
-  font-weight: 800; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase;
+  text-align: left; padding: .55rem .4rem; color: var(--accent);
+  font-weight: 800; font-size: .68rem; letter-spacing: .03em; text-transform: uppercase;
   border-bottom: 2px solid #33312d;
+  overflow-wrap: break-word; word-break: break-word; hyphens: auto;
 }
 .cours-table td {
-  padding: .55rem .5rem; border-bottom: 1px solid #242322;
-  color: var(--text); vertical-align: top;
+  padding: .55rem .4rem; border-bottom: 1px solid #242322;
+  color: var(--text); vertical-align: top; line-height: 1.4;
+  overflow-wrap: break-word; word-break: break-word; hyphens: auto;
 }
 .cours-table tr:last-child td { border-bottom: none; }
 .cours-table td:first-child { font-weight: 600; }
