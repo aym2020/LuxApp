@@ -2,13 +2,13 @@
   "id": 3,
   "titre": "Objete beschreiwen",
   "titre_fr": "Décrire des objets – les couleurs",
-  "couleur": "#e8a030",
+  "couleur": "#BA6BF2",
   "instructions": {
-  "flashcards": "Mémorise les couleurs en luxembourgeois et leur traduction française.",
-  "quiz": "Lis la couleur en luxembourgeois et choisis la bonne traduction française.",
-  "trous": "Complète avec la bonne couleur ou la bonne négation. L'objectif est d'apprendre à décrire un objet avec ass et net.",
-  "ecriture": "Traduis en luxembourgeois les couleurs, les questions et les phrases complètes. Respecte les articles définis et l'ordre des mots."
-},
+    "flashcards": "Mémorise les couleurs en luxembourgeois et leur traduction française.",
+    "quiz": "Lis la couleur en luxembourgeois et choisis la bonne traduction française.",
+    "trous": "Complète avec la bonne couleur ou la bonne négation. L'objectif est d'apprendre à décrire un objet avec ass et net.",
+    "ecriture": "Traduis en luxembourgeois les couleurs, les questions et les phrases complètes. Respecte les articles définis et l'ordre des mots."
+  },
   "flashcards": [
     {
       "id": 1,
@@ -409,9 +409,9 @@
       "trou": "wäiss",
       "apres": ".",
       "choix": [
-        "schwaarz", 
-        "beige", 
-        "wäiss", 
+        "schwaarz",
+        "beige",
+        "wäiss",
         "rosa"
       ],
       "note": "wäiss = blanc"
@@ -460,143 +460,151 @@
     }
   ],
   "ecriture": [
-  {
-    "fr": "Noir(e)",
-    "lu": "Schwaarz"
-  },
-  {
-    "fr": "Blanc(he)",
-    "lu": "Wäiss"
-  },
-  {
-    "fr": "Rouge",
-    "lu": "Rout"
-  },
-  {
-    "fr": "Jaune",
-    "lu": "Giel"
-  },
-  {
-    "fr": "Bleu(e)",
-    "lu": "Blo"
-  },
-  {
-    "fr": "Vert(e)",
-    "lu": "Gréng"
-  },
-  {
-    "fr": "Violet(te)",
-    "lu": "Mof"
-  },
-  {
-    "fr": "Orange",
-    "lu": "Orange"
-  },
-  {
-    "fr": "Beige",
-    "lu": "Beige"
-  },
-  {
-    "fr": "Gris(e)",
-    "lu": "Gro"
-  },
-  {
-    "fr": "Marron",
-    "lu": "Brong"
-  },
-  {
-    "fr": "Rose",
-    "lu": "Rosa"
-  },
-  {
-    "fr": "Couleur",
-    "lu": "Faarf"
-  },
-  {
-    "fr": "De quelle couleur est le bus ?",
-    "lu": "Wat fir eng Faarf huet de Bus?"
-  },
-  {
-    "fr": "Est-ce que le bus est rose ?",
-    "lu": "Ass de Bus rosa?"
-  },
-  {
-    "fr": "Oui, le bus est vert.",
-    "lu": "Jo, de Bus ass gréng."
-  },
-  {
-    "fr": "Non, le bus n'est pas rose.",
-    "lu": "Nee, de Bus ass net rosa."
-  },
-  {
-    "fr": "La voiture est noire.",
-    "lu": "Den Auto ass schwaarz."
-  },
-  {
-    "fr": "La porte est blanche.",
-    "lu": "D'Dier ass wäiss."
-  },
-  {
-    "fr": "La table est grise.",
-    "lu": "Den Dësch ass gro."
-  },
-  {
-    "fr": "Le livre est bleu.",
-    "lu": "D'Buch ass blo."
-  },
-  {
-    "fr": "La fenêtre est verte.",
-    "lu": "D'Fënster ass gréng."
-  },
-  {
-    "fr": "La lampe est jaune.",
-    "lu": "D'Luucht ass giel."
-  },
-  {
-    "fr": "Le cahier est rouge.",
-    "lu": "D'Heft ass rout."
-  },
-  {
-    "fr": "La tasse est beige.",
-    "lu": "D'Taass ass beige."
-  },
-  {
-    "fr": "Le tableau est violet.",
-    "lu": "D'Bild ass mof."
-  },
-  {
-    "fr": "La bouteille est rose.",
-    "lu": "D'Fläsch ass rosa."
-  },
-  {
-    "fr": "La montre est rouge.",
-    "lu": "D'Auer ass rout."
-  },
-  {
-    "fr": "Le stylo n'est pas bleu. Il est noir.",
-    "lu": "De Stëft ass net blo. En ass schwaarz."
-  },
-  {
-    "fr": "La table est marron et blanche.",
-    "lu": "Den Dësch ass brong an wäiss."
-  },
-  {
-    "fr": "La bouteille est bleue.",
-    "lu": "D'Fläsch ass blo."
-  },
-  {
-    "fr": "La chaise est brune.",
-    "lu": "De Stull ass brong."
-  }
-],
+    {
+      "fr": "Noir(e)",
+      "lu": "Schwaarz"
+    },
+    {
+      "fr": "Blanc(he)",
+      "lu": "Wäiss"
+    },
+    {
+      "fr": "Rouge",
+      "lu": "Rout"
+    },
+    {
+      "fr": "Jaune",
+      "lu": "Giel"
+    },
+    {
+      "fr": "Bleu(e)",
+      "lu": "Blo"
+    },
+    {
+      "fr": "Vert(e)",
+      "lu": "Gréng"
+    },
+    {
+      "fr": "Violet(te)",
+      "lu": "Mof"
+    },
+    {
+      "fr": "Orange",
+      "lu": "Orange"
+    },
+    {
+      "fr": "Beige",
+      "lu": "Beige"
+    },
+    {
+      "fr": "Gris(e)",
+      "lu": "Gro"
+    },
+    {
+      "fr": "Marron",
+      "lu": "Brong"
+    },
+    {
+      "fr": "Rose",
+      "lu": "Rosa"
+    },
+    {
+      "fr": "Couleur",
+      "lu": "Faarf"
+    },
+    {
+      "fr": "De quelle couleur est le bus ?",
+      "lu": "Wat fir eng Faarf huet de Bus?"
+    },
+    {
+      "fr": "Est-ce que le bus est rose ?",
+      "lu": "Ass de Bus rosa?"
+    },
+    {
+      "fr": "Oui, le bus est vert.",
+      "lu": "Jo, de Bus ass gréng."
+    },
+    {
+      "fr": "Non, le bus n'est pas rose.",
+      "lu": "Nee, de Bus ass net rosa."
+    },
+    {
+      "fr": "La voiture est noire.",
+      "lu": "Den Auto ass schwaarz."
+    },
+    {
+      "fr": "La porte est blanche.",
+      "lu": "D'Dier ass wäiss."
+    },
+    {
+      "fr": "La table est grise.",
+      "lu": "Den Dësch ass gro."
+    },
+    {
+      "fr": "Le livre est bleu.",
+      "lu": "D'Buch ass blo."
+    },
+    {
+      "fr": "La fenêtre est verte.",
+      "lu": "D'Fënster ass gréng."
+    },
+    {
+      "fr": "La lampe est jaune.",
+      "lu": "D'Luucht ass giel."
+    },
+    {
+      "fr": "Le cahier est rouge.",
+      "lu": "D'Heft ass rout."
+    },
+    {
+      "fr": "La tasse est beige.",
+      "lu": "D'Taass ass beige."
+    },
+    {
+      "fr": "Le verre est transparent.",
+      "lu": "D'Glas ass kloer."
+    },
+    {
+      "fr": "Le tableau est violet.",
+      "lu": "D'Bild ass mof."
+    },
+    {
+      "fr": "La bouteille est rose.",
+      "lu": "D'Fläsch ass rosa."
+    },
+    {
+      "fr": "La montre est rouge.",
+      "lu": "D'Auer ass rout."
+    },
+    {
+      "fr": "Le stylo n'est pas bleu, il est noir.",
+      "lu": "De Bic ass net blo, en ass schwaarz."
+    },
+    {
+      "fr": "La table est brune et grande.",
+      "lu": "Den Dësch ass brong an en ass grouss."
+    },
+    {
+      "fr": "L'image n'est pas colorée, elle est en noir et blanc.",
+      "lu": "D'Bild ass net faarweg, et ass schwaarz-wäiss."
+    },
+    {
+      "fr": "La bouteille est bleue.",
+      "lu": "D'Fläsch ass blo."
+    },
+    {
+      "fr": "La chaise est brune.",
+      "lu": "De Stull ass brong."
+    }
+  ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Pour décrire un objet, on utilise une couleur après le verbe <b>ass</b> (est). La couleur ne s'accorde pas."
+      "contenu": "Pour décrire un objet : <b>article + nom + ass + couleur</b>. Exemple : <b>De Bus ass gréng.</b> (Le bus est vert.) La couleur est <b>invariable</b> : elle ne change jamais selon le genre."
     },
     {
       "type": "vocab",
-      "titre": "Les couleurs (Faarwen)",
+      "titre": "Les couleurs (d'Faarwen)",
       "items": [
         [
           "schwaarz",
@@ -649,12 +657,114 @@
       ]
     },
     {
-      "type": "regle",
-      "titre": "Structure de la phrase",
+      "type": "tableau",
+      "titre": "Décrire un objet : la structure",
+      "entetes": [
+        "Type",
+        "Luxembourgeois",
+        "Français"
+      ],
       "lignes": [
-        "Affirmation → <b>De Bus ass gréng.</b> (Le bus est vert.)",
-        "Négation → on ajoute <b>net</b> : <b>De Bus ass net rosa.</b> (Le bus n'est pas rose.)",
-        "⚠️ Pour nier une couleur (adjectif) on utilise <b>net</b>, pas kee/keng."
+        [
+          "Affirmation",
+          "De Bus ass gréng.",
+          "Le bus est vert."
+        ],
+        [
+          "Négation",
+          "De Bus ass net rosa.",
+          "Le bus n'est pas rose."
+        ],
+        [
+          "Question oui / non",
+          "Ass de Bus gréng?",
+          "Est-ce que le bus est vert ?"
+        ],
+        [
+          "Demander la couleur",
+          "Wat fir eng Faarf huet de Bus?",
+          "De quelle couleur est le bus ?"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Nier une couleur : net (jamais kee/keng)",
+      "lignes": [
+        "Une couleur est un <b>adjectif</b> : on la nie avec <b>net</b>.",
+        "<b>De Bus ass net rosa.</b> — et non « kee/keng ».",
+        "Rappel : <b>kee / keen / keng</b> servent à nier un <b>nom</b> (leçon 2), pas une couleur."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Combiner deux couleurs avec an",
+      "lignes": [
+        "<b>an</b> = et.",
+        "<b>Den Dësch ass brong an wäiss.</b> (La table est marron et blanche.)"
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "L'article défini (le / la)",
+      "entetes": [
+        "Genre",
+        "Article",
+        "Exemples"
+      ],
+      "lignes": [
+        [
+          "Masculin",
+          "de / den",
+          "de Bus · den Auto"
+        ],
+        [
+          "Féminin",
+          "d'",
+          "d'Dier · d'Auer"
+        ],
+        [
+          "Neutre",
+          "d'",
+          "d'Buch · d'Haus"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "den ou de ? (rappel UNITEDZOHA)",
+      "lignes": [
+        "Au masculin, on met <b>den</b> (avec -n) devant une voyelle ou n, d, t, z, h : <b>den</b> Auto, <b>den</b> Zuch, <b>den</b> Telefon.",
+        "Sinon <b>de</b> : <b>de</b> Bus, <b>de</b> Stull, <b>de</b> Computer."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Remplacer l'objet par un pronom",
+      "entetes": [
+        "Genre",
+        "Pronom",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "Masculin",
+          "en",
+          "De Bus ass gro. → En ass gro."
+        ],
+        [
+          "Féminin",
+          "si",
+          "D'Fënster ass brong. → Si ass brong."
+        ],
+        [
+          "Neutre",
+          "et",
+          "D'Blat ass wäiss. → Et ass wäiss."
+        ]
       ]
     },
     {
@@ -684,22 +794,9 @@
       ]
     },
     {
-      "type": "regle",
-      "titre": "Remplacer un objet",
-      "lignes": [
-        "Nom masculin → en : De Bus ass gro. En ass gro.",
-        "Nom féminin → si : D'Fënster ass brong. Si ass brong.",
-        "Nom neutre → et : D'Blat ass wäiss. Et ass wäiss."
-      ]
-    },
-    {
       "type": "dialogue",
       "titre": "Remplacer un objet par un pronom",
       "echanges": [
-        [
-          "Wat fir eng Faarf huet de Bus?",
-          "De quelle couleur est le bus ?"
-        ],
         [
           "De Bus ass gro. En ass gro.",
           "Le bus est gris. Il est gris."

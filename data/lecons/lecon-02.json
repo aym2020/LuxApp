@@ -14,301 +14,301 @@
       "id": 1,
       "lu": "E Bus",
       "fr": "Un bus",
-      "note": "Männlech · e Bus · Nég: kee Bus"
+      "note": "Männlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 2,
       "lu": "En Dësch",
       "fr": "Une table",
-      "note": "Männlech · en Dësch · Nég: keen Dësch"
+      "note": "Männlech · De/Den · Nég: Kee/Keen"
     },
     {
       "id": 3,
       "lu": "En Telefon",
       "fr": "Un téléphone",
-      "note": "Männlech · en Telefon · Nég: keen Telefon"
+      "note": "Männlech · De/Den · Nég: Kee/Keen"
     },
     {
       "id": 4,
       "lu": "E Computer",
       "fr": "Un ordinateur",
-      "note": "Männlech · e Computer · Nég: kee Computer"
+      "note": "Männlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 5,
       "lu": "En Auto",
       "fr": "Une voiture",
-      "note": "Männlech · en Auto · Nég: keen Auto"
+      "note": "Männlech · De/Den · Nég: Kee/Keen"
     },
     {
       "id": 6,
       "lu": "E Stull",
       "fr": "Une chaise",
-      "note": "Männlech · e Stull · Nég: kee Stull"
+      "note": "Männlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 7,
       "lu": "E Fliger",
       "fr": "Un avion",
-      "note": "Männlech · e Fliger · Nég: kee Fliger"
+      "note": "Männlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 8,
       "lu": "En Zuch",
       "fr": "Un train",
-      "note": "Männlech · en Zuch · Nég: keen Zuch"
+      "note": "Männlech · De/Den · Nég: Kee/Keen"
     },
     {
       "id": 9,
       "lu": "Eng Dier",
       "fr": "Une porte",
-      "note": "Weiblech · eng Dier · Nég: keng Dier"
+      "note": "Weiblech · Eng/D' · Nég: Keng"
     },
     {
       "id": 10,
       "lu": "Eng Auer",
       "fr": "Une montre",
-      "note": "Weiblech · eng Auer · Nég: keng Auer"
+      "note": "Weiblech · D' · Nég: Keng"
     },
     {
       "id": 11,
       "lu": "Eng Tafel",
       "fr": "Un tableau",
-      "note": "Weiblech · eng Tafel · Nég: keng Tafel"
+      "note": "Weiblech · Eng/D' · Nég: Keng"
     },
     {
       "id": 12,
       "lu": "Eng Taass",
       "fr": "Une tasse",
-      "note": "Weiblech · eng Taass · Nég: keng Taass"
+      "note": "Weiblech · Eng/D' · Nég: Keng"
     },
     {
       "id": 13,
       "lu": "Eng Fënster",
       "fr": "Une fenêtre",
-      "note": "Weiblech · eng Fënster · Nég: keng Fënster"
+      "note": "Weiblech · Eng/D' · Nég: Keng"
     },
     {
       "id": 14,
       "lu": "Eng Fläsch",
       "fr": "Une bouteille",
-      "note": "Weiblech · eng Fläsch · Nég: keng Fläsch"
+      "note": "Weiblech · Eng/D' · Nég: Keng"
     },
     {
       "id": 15,
       "lu": "Eng Luucht",
       "fr": "Une lampe",
-      "note": "Weiblech · eng Luucht · Nég: keng Luucht"
+      "note": "Weiblech · Eng/D' · Nég: Keng"
     },
     {
       "id": 16,
       "lu": "Eng Schéier",
-      "fr": "Une paire de ciseaux",
-      "note": "Weiblech singulier · eng Schéier · Nég: keng Schéier"
+      "fr": "Des ciseaux",
+      "note": "Weiblech · Si/Se · Nég: Keng"
     },
     {
       "id": 17,
       "lu": "E Blat",
       "fr": "Une feuille",
-      "note": "Sächlech · e Blat · Nég: kee Blat"
+      "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 18,
       "lu": "E Buch",
       "fr": "Un livre",
-      "note": "Sächlech · e Buch · Nég: kee Buch"
+      "note": "Sächlech · D' · Nég: Kee/Keen"
     },
     {
       "id": 19,
       "lu": "En Haus",
       "fr": "Une maison",
-      "note": "Sächlech · en Haus · Nég: keen Haus"
+      "note": "Sächlech · D' · Nég: Kee/Keen"
     },
     {
       "id": 20,
       "lu": "E Glas",
       "fr": "Un verre",
-      "note": "Sächlech · e Glas · Nég: kee Glas"
+      "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 21,
       "lu": "E Gebai",
       "fr": "Un immeuble",
-      "note": "Sächlech · e Gebai · Nég: kee Gebai"
+      "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 22,
       "lu": "E Bild",
       "fr": "Un tableau (peinture)",
-      "note": "Sächlech · e Bild · Nég: kee Bild"
+      "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 23,
       "lu": "En Heft",
       "fr": "Un cahier",
-      "note": "Sächlech · en Heft · Nég: keen Heft"
+      "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 24,
       "lu": "E Bett",
       "fr": "Un lit",
-      "note": "Sächlech · e Bett · Nég: kee Bett"
+      "note": "Sächlech · E/En · Nég: Kee/Keen"
     },
     {
       "id": 25,
       "fr": "Une brique",
       "lu": "Eng Zill",
-      "note": "Weiblech · eng Zill · Nég: keng Zill"
+      "note": "Weiblech · keng Zill"
     },
     {
       "id": 26,
       "fr": "Une souris",
       "lu": "Eng Maus",
-      "note": "Weiblech · eng Maus · Nég: keng Maus"
+      "note": "Weiblech · keng Maus"
     },
     {
       "id": 27,
       "fr": "Un réveil",
       "lu": "E Wecker",
-      "note": "Männlech · e Wecker · Nég: kee Wecker"
+      "note": "Männlech · e/en · kee/keen"
     },
     {
       "id": 28,
       "fr": "Un stylo",
       "lu": "E Stëft",
-      "note": "Männlech · e Stëft · Nég: kee Stëft"
+      "note": "Männlech · kee Stëft"
     },
     {
       "id": 29,
       "fr": "Un tampon",
       "lu": "E Stempel",
-      "note": "Männlech · e Stempel · Nég: kee Stempel"
+      "note": "Männlech · kee Stempel"
     },
     {
       "id": 30,
       "fr": "Un classeur",
       "lu": "E Classeur",
-      "note": "Männlech · e Classeur · Nég: kee Classeur"
+      "note": "Männlech · kee Classeur"
     },
     {
       "id": 31,
-      "fr": "Une paire de lunettes",
+      "fr": "Des lunettes",
       "lu": "E Brëll",
-      "note": "Männlech singulier · e Brëll · Nég: kee Brëll"
+      "note": "Männlech · kee Brëll"
     },
     {
       "id": 32,
       "fr": "Un vélo",
       "lu": "E Vëlo",
-      "note": "Männlech · e Vëlo · Nég: kee Vëlo"
+      "note": "Männlech · kee Vëlo"
     },
     {
       "id": 33,
       "fr": "Une imprimante",
       "lu": "En Drécker",
-      "note": "Männlech · en Drécker · Nég: keen Drécker"
+      "note": "Männlech · keen Drécker"
     },
     {
       "id": 34,
       "fr": "Un CD",
       "lu": "Eng CD",
-      "note": "Weiblech · eng CD · Nég: keng CD"
+      "note": "Weiblech · keng CD"
     },
     {
       "id": 35,
       "fr": "Un fauteuil",
       "lu": "Eng Fotell",
-      "note": "Weiblech · eng Fotell · Nég: keng Fotell"
+      "note": "Weiblech · keng Fotell"
     },
     {
       "id": 36,
       "fr": "Une plante",
       "lu": "Eng Planz",
-      "note": "Weiblech · eng Planz · Nég: keng Planz"
+      "note": "Weiblech · keng Planz"
     },
     {
       "id": 37,
       "fr": "Un sac / cartable",
       "lu": "Eng Mapp",
-      "note": "Weiblech · eng Mapp · Nég: keng Mapp"
+      "note": "Weiblech · keng Mapp · aussi Posch"
     },
     {
       "id": 38,
       "fr": "Une enveloppe",
       "lu": "Eng Enveloppe",
-      "note": "Weiblech · eng Enveloppe · Nég: keng Enveloppe"
+      "note": "Weiblech · keng Enveloppe"
     },
     {
       "id": 39,
       "fr": "Une carte de crédit",
       "lu": "Eng Kreditkaart",
-      "note": "Weiblech · eng Kreditkaart · Nég: keng Kreditkaart"
+      "note": "Weiblech · keng Kreditkaart"
     },
     {
       "id": 40,
       "fr": "Un petit livre",
       "lu": "E Bichelchen",
-      "note": "Sächlech · e Bichelchen · Nég: kee Bichelchen"
+      "note": "Sächlech · diminutif de Buch"
     },
     {
       "id": 41,
       "fr": "Une étagère",
       "lu": "E Regal",
-      "note": "Sächlech · e Regal · Nég: kee Regal"
+      "note": "Sächlech · kee Regal"
     },
     {
       "id": 42,
       "fr": "Un smartphone",
       "lu": "En Handy",
-      "note": "Männlech · en Handy · Nég: keen Handy"
+      "note": "Männlech · keen Handy"
     },
     {
       "id": 43,
       "fr": "Un éléphant",
       "lu": "En Elefant",
-      "note": "Männlech · en Elefant · Nég: keen Elefant"
+      "note": "Männlech · keen Elefant"
     },
     {
       "id": 44,
       "fr": "Un coussin",
       "lu": "E Këssen",
-      "note": "Sächlech · e Këssen · Nég: kee Këssen"
+      "note": "Sächlech · kee Këssen"
     },
     {
       "id": 45,
       "fr": "Un fil",
       "lu": "E Fuedem",
-      "note": "Männlech · e Fuedem · Nég: kee Fuedem"
+      "note": "Männlech · kee Fuedem"
     },
     {
       "id": 46,
       "fr": "Une enclume",
       "lu": "En Amboss",
-      "note": "Männlech · en Amboss · Nég: keen Amboss"
+      "note": "Männlech · keen Amboss"
     },
     {
       "id": 47,
       "fr": "Un escargot",
       "lu": "E Schleek",
-      "note": "Männlech · e Schleek · Nég: kee Schleek"
+      "note": "Männlech · kee Schleek"
     },
     {
       "id": 48,
       "fr": "Un gratte-ciel",
-      "lu": "E Wollekekrazert ",
-      "note": "Männlech · e Wollekekrazert  · Nég: kee Wollekekrazert "
+      "lu": "E Wollekekrazer",
+      "note": "Männlech · kee Wollekekrazer"
     },
     {
       "id": 49,
       "fr": "Un seau",
       "lu": "En Eemer",
-      "note": "Männlech · en Eemer · Nég: keen Eemer"
+      "note": "Männlech · keen Eemer"
     },
     {
       "id": 50,
       "fr": "Une boîte",
       "lu": "Eng Këscht",
-      "note": "Weiblech · eng Këscht · Nég: keng Këscht"
+      "note": "Weiblech · keng Këscht"
     }
   ],
   "quiz": [
@@ -389,7 +389,7 @@
       "distracteurs": [
         "Une lampe",
         "Une tasse",
-        "Une paire de ciseaux"
+        "Des ciseaux"
       ]
     },
     {
@@ -495,7 +495,7 @@
     {
       "id": 19,
       "question": "Eng Schéier",
-      "reponse": "Une paire de ciseaux",
+      "reponse": "Des ciseaux",
       "distracteurs": [
         "Une feuille",
         "Une tasse",
@@ -555,7 +555,7 @@
     {
       "id": 25,
       "question": "E Brëll",
-      "reponse": "Une paire de lunettes",
+      "reponse": "Des lunettes",
       "distracteurs": [
         "Un vélo",
         "Une imprimante",
@@ -567,7 +567,7 @@
       "question": "E Vëlo",
       "reponse": "Un vélo",
       "distracteurs": [
-        "Une paire de lunettes",
+        "Des lunettes",
         "Une imprimante",
         "Un réveil"
       ]
@@ -578,7 +578,7 @@
       "reponse": "Une imprimante",
       "distracteurs": [
         "Un vélo",
-        "Une paire de lunettes",
+        "Des lunettes",
         "Un CD"
       ]
     },
@@ -744,7 +744,7 @@
     },
     {
       "id": 44,
-      "question": "E Wollekekrazert ",
+      "question": "E Wollekekrazer",
       "reponse": "Un gratte-ciel",
       "distracteurs": [
         "Un immeuble",
@@ -824,7 +824,7 @@
         "en",
         "eng"
       ],
-      "note": "B n'est pas dans UNITEDZOHA → e Bus"
+      "note": "Männlech devant consonne → e"
     },
     {
       "id": 5,
@@ -915,7 +915,7 @@
         "keen",
         "keng"
       ],
-      "note": "T est dans UNITEDZOHA → keen Telefon"
+      "note": "Négation Männlech devant consonne → keen"
     },
     {
       "id": 12,
@@ -928,7 +928,7 @@
         "en",
         "e"
       ],
-      "note": "C n'est pas dans UNITEDZOHA → e Computer"
+      "note": "Männlech devant consonne → e"
     },
     {
       "id": 13,
@@ -958,8 +958,8 @@
     },
     {
       "id": 15,
-      "fr": "Ce n'est pas une paire de ciseaux.",
-      "avant": "Dat ass",
+      "fr": "Ce ne sont pas des ciseaux.",
+      "avant": "Dat si",
       "trou": "keng",
       "apres": "Schéier.",
       "choix": [
@@ -967,7 +967,7 @@
         "keen",
         "keng"
       ],
-      "note": "Schéier = Weiblech singulier → keng Schéier"
+      "note": "Schéier est féminin → keng"
     },
     {
       "id": 16,
@@ -980,20 +980,20 @@
         "en",
         "e"
       ],
-      "note": "B n'est pas dans UNITEDZOHA → e Blat"
+      "note": "Sächlech devant consonne → e"
     },
     {
       "id": 17,
       "fr": "Ce n'est pas une maison.",
       "avant": "Dat ass",
-      "trou": "keen",
+      "trou": "kee",
       "apres": "Haus.",
       "choix": [
         "kee",
         "keen",
         "keng"
       ],
-      "note": "H est dans UNITEDZOHA → keen Haus"
+      "note": "Négation Sächlech → kee"
     },
     {
       "id": 18,
@@ -1006,7 +1006,7 @@
         "eng",
         "e"
       ],
-      "note": "G n'est pas dans UNITEDZOHA → e Glas"
+      "note": "Sächlech devant consonne → e"
     },
     {
       "id": 19,
@@ -1032,7 +1032,7 @@
         "e",
         "en"
       ],
-      "note": "B n'est pas dans UNITEDZOHA → e Bild"
+      "note": "Sächlech devant consonne → e"
     },
     {
       "id": 21,
@@ -1144,7 +1144,7 @@
         "keng",
         "eng"
       ],
-      "note": "E est dans UNITEDZOHA → keen Elefant"
+      "note": "Elefant = Männlech devant voyelle → keen Elefant"
     },
     {
       "id": 29,
@@ -1218,7 +1218,7 @@
     },
     {
       "id": 34,
-      "fr": "Non, ce n'est pas une paire de lunettes.",
+      "fr": "Non, ce ne sont pas des lunettes.",
       "avant": "Nee, dat ass",
       "trou": "kee",
       "apres": "Brëll.",
@@ -1228,7 +1228,7 @@
         "keen",
         "net"
       ],
-      "note": "Brëll = Männlech singulier → kee Brëll"
+      "note": "Brëll = Männlech → kee Brëll"
     },
     {
       "id": 35,
@@ -1291,28 +1291,28 @@
       "fr": "C'est un gratte-ciel.",
       "avant": "Dat ass",
       "trou": "e",
-      "apres": "Wollekekrazert .",
+      "apres": "Wollekekrazer.",
       "choix": [
         "e",
         "en",
         "eng",
         "kee"
       ],
-      "note": "Wollekekrazert  = Männlech → e Wollekekrazert "
+      "note": "Wollekekrazer = Männlech → e Wollekekrazer"
     },
     {
       "id": 40,
       "fr": "Ce n'est pas un gratte-ciel.",
       "avant": "Dat ass",
       "trou": "kee",
-      "apres": "Wollekekrazert .",
+      "apres": "Wollekekrazer.",
       "choix": [
         "kee",
         "keen",
         "keng",
         "net"
       ],
-      "note": "Wollekekrazert  = Männlech → kee Wollekekrazert "
+      "note": "Wollekekrazer = Männlech → kee Wollekekrazer"
     },
     {
       "id": 41,
@@ -1373,287 +1373,230 @@
   ],
   "ecriture": [
     {
-      "id": 1,
       "fr": "Un bus",
       "lu": "E Bus"
     },
     {
-      "id": 2,
       "fr": "Une table",
       "lu": "En Dësch"
     },
     {
-      "id": 3,
       "fr": "Un téléphone",
       "lu": "En Telefon"
     },
     {
-      "id": 4,
       "fr": "Un ordinateur",
       "lu": "E Computer"
     },
     {
-      "id": 5,
       "fr": "Une voiture",
       "lu": "En Auto"
     },
     {
-      "id": 6,
       "fr": "Une chaise",
       "lu": "E Stull"
     },
     {
-      "id": 7,
       "fr": "Un avion",
       "lu": "E Fliger"
     },
     {
-      "id": 8,
       "fr": "Un train",
       "lu": "En Zuch"
     },
     {
-      "id": 9,
       "fr": "Une porte",
       "lu": "Eng Dier"
     },
     {
-      "id": 10,
       "fr": "Une montre",
       "lu": "Eng Auer"
     },
     {
-      "id": 11,
       "fr": "Un réveil",
       "lu": "E Wecker"
     },
     {
-      "id": 12,
       "fr": "Un stylo",
       "lu": "E Stëft"
     },
     {
-      "id": 13,
       "fr": "Un tampon",
       "lu": "E Stempel"
     },
     {
-      "id": 14,
       "fr": "Un classeur",
       "lu": "E Classeur"
     },
     {
-      "id": 15,
-      "fr": "Une paire de lunettes",
+      "fr": "Des lunettes",
       "lu": "E Brëll"
     },
     {
-      "id": 16,
       "fr": "Un vélo",
       "lu": "E Vëlo"
     },
     {
-      "id": 17,
       "fr": "Une imprimante",
       "lu": "En Drécker"
     },
     {
-      "id": 18,
       "fr": "Un CD",
       "lu": "Eng CD"
     },
     {
-      "id": 19,
       "fr": "Un fauteuil",
       "lu": "Eng Fotell"
     },
     {
-      "id": 20,
       "fr": "Une plante",
       "lu": "Eng Planz"
     },
     {
-      "id": 21,
-      "fr": "Un sac / cartable",
+      "fr": "Un sac",
       "lu": "Eng Mapp"
     },
     {
-      "id": 22,
       "fr": "Une enveloppe",
       "lu": "Eng Enveloppe"
     },
     {
-      "id": 23,
       "fr": "Une carte de crédit",
       "lu": "Eng Kreditkaart"
     },
     {
-      "id": 24,
       "fr": "Un petit livre",
       "lu": "E Bichelchen"
     },
     {
-      "id": 25,
       "fr": "Une étagère",
       "lu": "E Regal"
     },
     {
-      "id": 26,
       "fr": "Ce n'est pas un vélo.",
       "lu": "Dat ass kee Vëlo."
     },
     {
-      "id": 27,
       "fr": "Ce n'est pas une plante.",
       "lu": "Dat ass keng Planz."
     },
     {
-      "id": 28,
       "fr": "C'est un fauteuil.",
       "lu": "Dat ass eng Fotell."
     },
     {
-      "id": 29,
       "fr": "C'est une imprimante.",
       "lu": "Dat ass en Drécker."
     },
     {
-      "id": 30,
       "fr": "C'est un réveil.",
       "lu": "Dat ass e Wecker."
     },
     {
-      "id": 31,
       "fr": "Un smartphone",
       "lu": "En Handy"
     },
     {
-      "id": 32,
       "fr": "Un éléphant",
       "lu": "En Elefant"
     },
     {
-      "id": 33,
       "fr": "Un coussin",
       "lu": "E Këssen"
     },
     {
-      "id": 34,
       "fr": "Un fil",
       "lu": "E Fuedem"
     },
     {
-      "id": 35,
       "fr": "Une enclume",
       "lu": "En Amboss"
     },
     {
-      "id": 36,
       "fr": "Un escargot",
       "lu": "E Schleek"
     },
     {
-      "id": 37,
       "fr": "Un gratte-ciel",
-      "lu": "E Wollekekrazert "
+      "lu": "E Wollekekrazer"
     },
     {
-      "id": 38,
       "fr": "Un seau",
       "lu": "En Eemer"
     },
     {
-      "id": 39,
       "fr": "Une boîte",
       "lu": "Eng Këscht"
     },
     {
-      "id": 40,
       "fr": "Une brique",
       "lu": "Eng Zill"
     },
     {
-      "id": 41,
       "fr": "Une souris",
       "lu": "Eng Maus"
     },
     {
-      "id": 42,
       "fr": "Ce n'est pas un smartphone.",
       "lu": "Dat ass keen Handy."
     },
     {
-      "id": 43,
       "fr": "Ce n'est pas un éléphant.",
       "lu": "Dat ass keen Elefant."
     },
     {
-      "id": 44,
       "fr": "C'est un coussin.",
       "lu": "Dat ass e Këssen."
     },
     {
-      "id": 45,
       "fr": "Ce n'est pas un fil.",
       "lu": "Dat ass kee Fuedem."
     },
     {
-      "id": 46,
       "fr": "C'est une brique.",
       "lu": "Dat ass eng Zill."
     },
     {
-      "id": 47,
       "fr": "Ce n'est pas une souris.",
       "lu": "Dat ass keng Maus."
     },
     {
-      "id": 48,
       "fr": "Ce n'est pas une enclume.",
       "lu": "Dat ass keen Amboss."
     },
     {
-      "id": 49,
       "fr": "Ce n'est pas un escargot.",
       "lu": "Dat ass kee Schleek."
     },
     {
-      "id": 50,
       "fr": "Ce n'est pas un gratte-ciel.",
-      "lu": "Dat ass kee Wollekekrazert ."
+      "lu": "Dat ass kee Wollekekrazer."
     },
     {
-      "id": 51,
       "fr": "Ce n'est pas un seau.",
       "lu": "Dat ass keen Eemer."
     },
     {
-      "id": 52,
       "fr": "Ce n'est pas une boîte.",
       "lu": "Dat ass keng Këscht."
     },
     {
-      "id": 53,
       "fr": "C'est une enclume.",
       "lu": "Dat ass en Amboss."
     },
     {
-      "id": 54,
       "fr": "C'est un escargot.",
       "lu": "Dat ass e Schleek."
     },
     {
-      "id": 55,
       "fr": "C'est un gratte-ciel.",
-      "lu": "Dat ass e Wollekekrazert ."
+      "lu": "Dat ass e Wollekekrazer."
     },
     {
-      "id": 56,
       "fr": "C'est un seau.",
       "lu": "Dat ass en Eemer."
     },
     {
-      "id": 57,
       "fr": "C'est une boîte.",
       "lu": "Dat ass eng Këscht."
     }
@@ -1661,222 +1604,346 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Pour identifier un objet, on utilise l'article indéfini, qui dépend du genre du nom."
+      "contenu": "Pour identifier un objet, on dit <b>Dat ass …</b> (« C'est … »). L'article indéfini dépend du <b>genre</b> du nom : masculin, féminin ou neutre."
     },
     {
-      "type": "regle",
-      "titre": "Les articles indéfinis",
+      "type": "tableau",
+      "titre": "Article et négation selon le genre",
+      "entetes": [
+        "Genre",
+        "Affirmation",
+        "Négation"
+      ],
       "lignes": [
-        "Masculin / neutre sans N → <b>e</b> (e Bus, e Buch)",
-        "Masculin / neutre avec N devant <b>UNITEDZOHA</b> → <b>en</b> (en Auto, en Dësch, en Haus)",
-        "Féminin → <b>eng</b> (eng Dier, eng Auer)"
+        [
+          "Masculin / Neutre",
+          "e",
+          "kee"
+        ],
+        [
+          "… devant UNITEDZOHA",
+          "en",
+          "keen"
+        ],
+        [
+          "Féminin",
+          "eng",
+          "keng"
+        ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "La négation",
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "UNITEDZOHA : la règle du -n",
       "lignes": [
-        "Masculin / neutre sans N → <b>kee</b> (kee Bus, kee Buch)",
-        "Masculin / neutre avec N devant <b>UNITEDZOHA</b> → <b>keen</b> (keen Auto, keen Haus, keen Telefon)",
-        "Féminin → <b>keng</b> (keng Dier, keng Auer)"
+        "On garde le <b>-n</b> (<b>en</b> / <b>keen</b>) seulement si le mot suivant commence par une <b>voyelle</b> ou par <b>n, d, t, z, h</b>.",
+        "Moyen mnémotechnique : <b>U·N·I·T·E·D·Z·O·H·A</b>.",
+        "Avec -n : <b>en</b> Auto, <b>en</b> Dësch, <b>en</b> Telefon, <b>en</b> Haus.",
+        "Sans -n : <b>e</b> Bus, <b>e</b> Computer, <b>e</b> Stull, <b>e</b> Glas."
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Vocabulaire — Masculin",
-      "items": [
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le genre ne se devine pas",
+      "lignes": [
+        "Le genre luxembourgeois est souvent <b>différent du français</b>.",
+        "« une table » = <b>en Dësch</b> (masculin) · « une maison » = <b>en Haus</b> (neutre).",
+        "Mémorise toujours le genre <b>en même temps</b> que le mot."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Masculin — e / en",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Négation"
+      ],
+      "lignes": [
         [
           "e Bus",
-          "un bus"
-        ],
-        [
-          "en Handy",
-          "un smartphone"
-        ],
-        [
-          "en Elefant",
-          "un éléphant"
-        ],
-        [
-          "e Fuedem",
-          "un fil"
+          "un bus",
+          "kee Bus"
         ],
         [
           "en Dësch",
-          "une table"
+          "une table",
+          "keen Dësch"
         ],
         [
           "en Telefon",
-          "un téléphone"
+          "un téléphone",
+          "keen Telefon"
         ],
         [
           "e Computer",
-          "un ordinateur"
+          "un ordinateur",
+          "kee Computer"
         ],
         [
           "en Auto",
-          "une voiture"
+          "une voiture",
+          "keen Auto"
         ],
         [
           "e Stull",
-          "une chaise"
+          "une chaise",
+          "kee Stull"
         ],
         [
           "e Fliger",
-          "un avion"
+          "un avion",
+          "kee Fliger"
         ],
         [
           "en Zuch",
-          "un train"
+          "un train",
+          "keen Zuch"
         ],
         [
           "e Wecker",
-          "un réveil"
+          "un réveil",
+          "kee Wecker"
         ],
         [
           "e Stëft",
-          "un stylo"
+          "un stylo",
+          "kee Stëft"
         ],
         [
           "e Stempel",
-          "un tampon"
+          "un tampon",
+          "kee Stempel"
         ],
         [
           "e Classeur",
-          "un classeur"
+          "un classeur",
+          "kee Classeur"
         ],
         [
           "e Brëll",
-          "une paire de lunettes"
+          "une paire de lunettes",
+          "kee Brëll"
         ],
         [
           "e Vëlo",
-          "un vélo"
+          "un vélo",
+          "kee Vëlo"
         ],
         [
           "en Drécker",
-          "une imprimante"
+          "une imprimante",
+          "keen Drécker"
+        ],
+        [
+          "en Handy",
+          "un smartphone",
+          "keen Handy"
+        ],
+        [
+          "en Elefant",
+          "un éléphant",
+          "keen Elefant"
+        ],
+        [
+          "e Fuedem",
+          "un fil",
+          "kee Fuedem"
+        ],
+        [
+          "en Amboss",
+          "une enclume",
+          "keen Amboss"
+        ],
+        [
+          "e Schleek",
+          "un escargot",
+          "kee Schleek"
+        ],
+        [
+          "e Wollekekrazert",
+          "un gratte-ciel",
+          "kee Wollekekrazert"
+        ],
+        [
+          "en Eemer",
+          "un seau",
+          "keen Eemer"
         ]
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Vocabulaire — Féminin",
-      "items": [
+      "type": "tableau",
+      "titre": "Féminin — eng",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Négation"
+      ],
+      "lignes": [
         [
           "eng Dier",
-          "une porte"
-        ],
-        [
-          "eng Zill",
-          "une brique"
-        ],
-        [
-          "eng Maus",
-          "une souris"
+          "une porte",
+          "keng Dier"
         ],
         [
           "eng Auer",
-          "une montre"
+          "une montre",
+          "keng Auer"
         ],
         [
           "eng Tafel",
-          "un tableau"
+          "un tableau",
+          "keng Tafel"
         ],
         [
           "eng Taass",
-          "une tasse"
+          "une tasse",
+          "keng Taass"
         ],
         [
           "eng Fënster",
-          "une fenêtre"
+          "une fenêtre",
+          "keng Fënster"
         ],
         [
           "eng Fläsch",
-          "une bouteille"
+          "une bouteille",
+          "keng Fläsch"
         ],
         [
           "eng Luucht",
-          "une lampe"
+          "une lampe",
+          "keng Luucht"
         ],
         [
           "eng Schéier",
-          "une paire de ciseaux"
+          "une paire de ciseaux",
+          "keng Schéier"
+        ],
+        [
+          "eng Zill",
+          "une brique",
+          "keng Zill"
+        ],
+        [
+          "eng Maus",
+          "une souris",
+          "keng Maus"
         ],
         [
           "eng CD",
-          "un CD"
+          "un CD",
+          "keng CD"
         ],
         [
           "eng Fotell",
-          "un fauteuil"
+          "un fauteuil",
+          "keng Fotell"
         ],
         [
           "eng Planz",
-          "une plante"
+          "une plante",
+          "keng Planz"
         ],
         [
           "eng Mapp",
-          "un sac / cartable"
+          "un sac / cartable",
+          "keng Mapp"
         ],
         [
           "eng Enveloppe",
-          "une enveloppe"
+          "une enveloppe",
+          "keng Enveloppe"
         ],
         [
           "eng Kreditkaart",
-          "une carte de crédit"
+          "une carte de crédit",
+          "keng Kreditkaart"
+        ],
+        [
+          "eng Këscht",
+          "une boîte",
+          "keng Këscht"
         ]
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Vocabulaire — Neutre",
-      "items": [
+      "type": "tableau",
+      "titre": "Neutre — e / en",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Négation"
+      ],
+      "lignes": [
         [
           "e Blat",
-          "une feuille"
-        ],
-        [
-          "e Këssen",
-          "un coussin"
+          "une feuille",
+          "kee Blat"
         ],
         [
           "e Buch",
-          "un livre"
+          "un livre",
+          "kee Buch"
         ],
         [
           "en Haus",
-          "une maison"
+          "une maison",
+          "keen Haus"
         ],
         [
           "e Glas",
-          "un verre"
+          "un verre",
+          "kee Glas"
         ],
         [
           "e Gebai",
-          "un immeuble"
+          "un immeuble",
+          "kee Gebai"
         ],
         [
           "e Bild",
-          "un tableau (peinture)"
+          "un tableau (peinture)",
+          "kee Bild"
         ],
         [
           "en Heft",
-          "un cahier"
+          "un cahier",
+          "keen Heft"
         ],
         [
           "e Bett",
-          "un lit"
+          "un lit",
+          "kee Bett"
         ],
         [
           "e Bichelchen",
-          "un petit livre"
+          "un petit livre",
+          "kee Bichelchen"
         ],
         [
           "e Regal",
-          "une étagère"
+          "une étagère",
+          "kee Regal"
+        ],
+        [
+          "e Këssen",
+          "un coussin",
+          "kee Këssen"
         ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Poser la question",
+      "lignes": [
+        "<b>Ass dat e/eng … ?</b> = Est-ce que c'est un/une … ?",
+        "Oui : <b>Jo, dat ass …</b>",
+        "Non : <b>Nee, dat ass kee / keen / keng …</b>"
       ]
     },
     {
