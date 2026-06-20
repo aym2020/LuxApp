@@ -4,11 +4,11 @@
   "titre_fr": "Les contraires – adjectifs opposés",
   "couleur": "#d4845a",
   "instructions": {
-  "flashcards": "Mémorise les adjectifs en luxembourgeois, leur traduction française et leur contraire.",
-  "quiz": "Lis l'adjectif en luxembourgeois et choisis son contraire en luxembourgeois.",
-  "trous": "Complète la phrase avec l'adjectif luxembourgeois correct selon le contexte.",
-  "ecriture": "Traduis les adjectifs, expressions et phrases en luxembourgeois. Respecte l'orthographe et les accents."
-},
+    "flashcards": "Mémorise les adjectifs en luxembourgeois, leur traduction française et leur contraire.",
+    "quiz": "Lis l'adjectif en luxembourgeois et choisis son contraire en luxembourgeois.",
+    "trous": "Complète la phrase avec l'adjectif luxembourgeois correct selon le contexte.",
+    "ecriture": "Traduis les adjectifs, expressions et phrases en luxembourgeois. Respecte l'orthographe et les accents."
+  },
   "flashcards": [
     {
       "id": 1,
@@ -202,7 +202,7 @@
     },
     {
       "id": 9,
-      "question": "Quel est le contraire de DECK ?",
+      "question": "Quel est le contraire de Déck ?",
       "reponse": "Dënn",
       "distracteurs": [
         "Kleng",
@@ -445,7 +445,7 @@
     {
       "id": 11,
       "fr": "Le gratte-ciel est haut.",
-      "avant": "De Wollekekrazert ass",
+      "avant": "De Wollekekrazer ass",
       "trou": "héich",
       "apres": ".",
       "choix": [
@@ -487,16 +487,16 @@
     {
       "id": 14,
       "fr": "Le fil est fin.",
-      "avant": "Den Fuedem ass",
+      "avant": "De Fuedem ass",
       "trou": "dënn",
       "apres": ".",
       "choix": [
         "schwéier",
         "grouss",
         "dënn",
-        "Déck"
+        "déck"
       ],
-      "note": "dënn = fin/mince · contraire de Déck"
+      "note": "dënn = fin/mince · contraire de déck"
     },
     {
       "id": 15,
@@ -510,7 +510,7 @@
         "liicht",
         "eidel"
       ],
-      "note": "Déck = épais · contraire de dënn"
+      "note": "déck = épais · contraire de dënn"
     },
     {
       "id": 16,
@@ -684,7 +684,7 @@
     },
     {
       "fr": "Le gratte-ciel est haut.",
-      "lu": "De Wollekekrazert ass héich."
+      "lu": "D'Wollekekrazer ass héich."
     },
     {
       "fr": "La bouteille est pleine.",
@@ -696,7 +696,7 @@
     },
     {
       "fr": "Le livre est épais.",
-      "lu": "D'buch ass Déck."
+      "lu": "D'Buch ass déck."
     },
     {
       "fr": "La souris est petite.",
@@ -704,119 +704,102 @@
     },
     {
       "fr": "Le stylo est bon marché.",
-      "lu": "De Stëft ass bëlleg."
+      "lu": "De Bic ass bëlleg."
     },
     {
       "fr": "La moto est chère.",
       "lu": "De Moto ass deier."
     },
     {
-      "fr": "L'étagère est basse.",
-      "lu": "D'Regal ass niddereg."
+      "fr": "Le muret est bas.",
+      "lu": "D'Mauer ass niddereg."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon présente des adjectifs et leurs contraires. L'adjectif se place après le verbe <b>ass</b>."
+      "contenu": "Cette leçon présente des adjectifs et leurs <b>contraires</b>. L'adjectif se place après le verbe <b>ass</b> et reste <b>invariable</b> : <b>De Bus ass grouss.</b>"
     },
     {
-      "type": "vocab",
-      "titre": "Les contraires (Konträr)",
-      "items": [
+      "type": "tableau",
+      "titre": "Les contraires (de Konträr)",
+      "entetes": [
+        "Adjectif",
+        "↔ Contraire"
+      ],
+      "lignes": [
         [
-          "nei",
-          "nouveau"
+          "nei (nouveau)",
+          "al (vieux)"
         ],
         [
-          "al",
-          "vieux"
+          "kleng (petit)",
+          "grouss (grand)"
         ],
         [
-          "kleng",
-          "petit"
+          "liicht (léger)",
+          "schwéier (lourd)"
         ],
         [
-          "grouss",
-          "grand"
+          "séier (rapide)",
+          "lues (lent)"
         ],
         [
-          "liicht",
-          "léger"
+          "ronn (rond)",
+          "eckeg (carré)"
         ],
         [
-          "schwéier",
-          "lourd"
+          "bëlleg (pas cher)",
+          "deier (cher)"
         ],
         [
-          "séier",
-          "rapide"
+          "héich (haut)",
+          "niddereg (bas)"
         ],
         [
-          "lues",
-          "lent"
+          "voll (plein)",
+          "eidel (vide)"
         ],
         [
-          "ronn",
-          "rond"
+          "dënn (mince)",
+          "déck (épais)"
         ],
         [
-          "eckeg",
-          "carré"
+          "schéin (beau)",
+          "ellen (laid)"
         ],
         [
-          "bëlleg",
-          "pas cher"
-        ],
-        [
-          "deier",
-          "cher"
-        ],
-        [
-          "héich",
-          "haut"
-        ],
-        [
-          "niddereg",
-          "bas"
-        ],
-        [
-          "voll",
-          "plein"
-        ],
-        [
-          "eidel",
-          "vide"
-        ],
-        [
-          "dënn",
-          "mince"
-        ],
-        [
-          "Déck",
-          "épais"
+          "futti (cassé)",
+          "ganz (intact)"
         ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "Les principales oppositions",
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Apprends-les par paires",
       "lignes": [
-        "Nei ↔ Al",
-        "Kleng ↔ Grouss",
-        "Liicht ↔ Schwéier",
-        "Séier ↔ Lues",
-        "Ronn ↔ Eckeg",
-        "Bëlleg ↔ Deier",
-        "Héich ↔ Niddereg",
-        "Voll ↔ Eidel",
-        "Dënn ↔ Déck"
+        "Un contraire se retient mieux <b>à deux</b> : si tu connais <b>grouss</b>, tu connais <b>kleng</b>.",
+        "Au quiz, on te donne un adjectif et tu dois trouver son opposé."
       ]
     },
     {
-      "type": "dialogue",
-      "titre": "Exemples",
-      "echanges": [
+      "type": "callout",
+      "variant": "attention",
+      "titre": "ganz : deux sens à ne pas confondre",
+      "lignes": [
+        "Ici <b>ganz</b> = <b>intact, entier</b> (le contraire de futti) : <b>Den Handy ass ganz.</b>",
+        "Mais <b>ganz</b> veut aussi dire <b>très</b> (ganz gutt = très bien, leçon 1). Le sens dépend du contexte."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Exemples : décrire un objet",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
         [
           "Den Handy ass nei.",
           "Le smartphone est nouveau."
@@ -832,6 +815,14 @@
         [
           "Den Auto ass séier.",
           "La voiture est rapide."
+        ],
+        [
+          "Den Auto ass schéin.",
+          "La voiture est belle."
+        ],
+        [
+          "De Computer ass futti.",
+          "L'ordinateur est cassé."
         ]
       ]
     }

@@ -708,41 +708,6 @@
     },
     {
       "type": "tableau",
-      "titre": "L'article défini (le / la)",
-      "entetes": [
-        "Genre",
-        "Article",
-        "Exemples"
-      ],
-      "lignes": [
-        [
-          "Masculin",
-          "de / den",
-          "de Bus · den Auto"
-        ],
-        [
-          "Féminin",
-          "d'",
-          "d'Dier · d'Auer"
-        ],
-        [
-          "Neutre",
-          "d'",
-          "d'Buch · d'Haus"
-        ]
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "astuce",
-      "titre": "den ou de ? (rappel UNITEDZOHA)",
-      "lignes": [
-        "Au masculin, on met <b>den</b> (avec -n) devant une voyelle ou n, d, t, z, h : <b>den</b> Auto, <b>den</b> Zuch, <b>den</b> Telefon.",
-        "Sinon <b>de</b> : <b>de</b> Bus, <b>de</b> Stull, <b>de</b> Computer."
-      ]
-    },
-    {
-      "type": "tableau",
       "titre": "Remplacer l'objet par un pronom",
       "entetes": [
         "Genre",
