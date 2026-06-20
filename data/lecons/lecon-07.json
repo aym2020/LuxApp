@@ -646,91 +646,184 @@
     }
   ],
   "cours": [
-    {
-      "type": "texte",
-      "contenu": "Pour dire d'où vient quelqu'un, on utilise le verbe <b>kënnt</b> (vient) + une préposition qui dépend du pays. Pour parler de sa propre origine, on utilise kommen : Ech kommen aus ..."
-    },
-    {
-      "type": "regle",
-      "titre": "Les prépositions d'origine",
-      "lignes": [
-        "Règle générale (pays sans article) → <b>aus</b> (aus Portugal, aus Japan)",
-        "Exception Luxembourg → <b>vu</b> (vu Lëtzebuerg)",
-        "Pays féminins → <b>aus der</b> (aus der Belsch, aus der Schwäiz)",
-        "Pays masculins avec article → <b>aus dem</b> (aus dem Iran)",
-        "Cap-Vert → <b>vum</b> (vum Cap Vert)"
+  {
+    "type": "texte",
+    "contenu": "Pour dire d'où vient quelqu'un, on utilise <b>kommen / kënnt</b> + une préposition. Cette préposition <b>dépend du pays</b> : c'est le cœur de la leçon."
+  },
+  {
+    "type": "callout",
+    "variant": "retenir",
+    "titre": "Par défaut : aus",
+    "lignes": [
+      "La grande majorité des pays prennent simplement <b>aus</b> : aus Portugal, aus Japan, aus Frankräich.",
+      "Seuls <b>6 pays</b> font exception (article féminin/masculin, ou « vu ») — ce sont eux qu'il faut mémoriser."
+    ]
+  },
+  {
+    "type": "tableau",
+    "titre": "Les 6 cas particuliers (à mémoriser)",
+    "entetes": [
+      "Pays",
+      "Origine",
+      "Catégorie"
+    ],
+    "lignes": [
+      [
+        "Lëtzebuerg",
+        "vu Lëtzebuerg",
+        "exception (vu)"
+      ],
+      [
+        "Cap Vert",
+        "vum Cap Vert",
+        "vu + dem"
+      ],
+      [
+        "Belsch",
+        "aus der Belsch",
+        "féminin"
+      ],
+      [
+        "Schwäiz",
+        "aus der Schwäiz",
+        "féminin"
+      ],
+      [
+        "Ukrain",
+        "aus der Ukrain",
+        "féminin"
+      ],
+      [
+        "Iran",
+        "aus dem Iran",
+        "masculin + article"
       ]
-    },
-    {
-      "type": "regle",
-      "titre": "Article devant les prénoms",
-      "lignes": [
-        "Prénom masculin devant consonne → <b>De</b> (De Ronaldo)",
-        "Prénom masculin devant voyelle → <b>Den</b> (Den David)",
-        "Prénom féminin → <b>D'</b> (D'Nicole)"
+    ]
+  },
+  {
+    "type": "tableau",
+    "titre": "Tous les autres pays → aus",
+    "entetes": [
+      "Pays",
+      "Origine"
+    ],
+    "lignes": [
+      [
+        "Portugal",
+        "aus Portugal"
+      ],
+      [
+        "Spuenien",
+        "aus Spuenien"
+      ],
+      [
+        "England",
+        "aus England"
+      ],
+      [
+        "Italien",
+        "aus Italien"
+      ],
+      [
+        "Australien",
+        "aus Australien"
+      ],
+      [
+        "Argentinien",
+        "aus Argentinien"
+      ],
+      [
+        "Amerika",
+        "aus Amerika"
+      ],
+      [
+        "Däitschland",
+        "aus Däitschland"
+      ],
+      [
+        "Japan",
+        "aus Japan"
+      ],
+      [
+        "Nordkorea",
+        "aus Nordkorea"
+      ],
+      [
+        "Frankräich",
+        "aus Frankräich"
+      ],
+      [
+        "Holland",
+        "aus Holland"
+      ],
+      [
+        "China",
+        "aus China"
+      ],
+      [
+        "Schweden",
+        "aus Schweden"
       ]
-    },
-   {
-  "type": "vocab",
-  "titre": "Les pays",
-  "items": [
-    ["vu Lëtzebuerg", "du Luxembourg"],
-    ["aus der Belsch", "de Belgique"],
-    ["aus der Schwäiz", "de Suisse"],
-    ["aus der Ukrain", "d'Ukraine"],
-    ["aus dem Iran", "d'Iran"],
-    ["vum Cap Vert", "du Cap-Vert"],
-    ["aus Portugal", "du Portugal"],
-    ["aus Spuenien", "d'Espagne"],
-    ["aus England", "d'Angleterre"],
-    ["aus Italien", "d'Italie"],
-    ["aus Australien", "d'Australie"],
-    ["aus Argentinien", "d'Argentine"],
-    ["aus Amerika", "d'Amérique"],
-    ["aus Däitschland", "d'Allemagne"],
-    ["aus Japan", "du Japon"],
-    ["aus Nordkorea", "de Corée du Nord"],
-    ["aus Frankräich", "de France"],
-    ["aus Holland", "des Pays-Bas"],
-    ["aus China", "de Chine"],
-    ["aus Schweden", "de Suède"]
-  ]
-},
-{
-  "type": "regle",
-  "titre": "Kommen et kënnt",
-  "lignes": [
-    "Ech kommen = je viens",
-    "Hien kënnt = il vient",
-    "Si kënnt = elle vient",
-    "Dir kommt = vous venez"
-  ]
-},
-    {
-      "type": "dialogue",
-      "titre": "Exemples",
-      "echanges": [
-        [
-          "De Ronaldo kënnt aus Portugal.",
-          "Ronaldo vient du Portugal."
-        ],
-        [
-          "De Guillaume kënnt vu Lëtzebuerg.",
-          "Guillaume vient du Luxembourg."
-        ],
-        [
-          "De Philippe kënnt aus der Belsch.",
-          "Philippe vient de Belgique."
-        ],
-        [
-          "Si kënnt aus dem Iran.",
-          "Elle vient d'Iran."
-        ],
-        [
-          "Hien kënnt vum Cap Vert.",
-          "Il vient du Cap-Vert."
-        ]
+    ]
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "titre": "Le verbe : kommen",
+    "lignes": [
+      "<b>Ech kommen</b> = je viens · <b>Du kënns</b> = tu viens.",
+      "<b>Hien / Si kënnt</b> = il / elle vient · <b>Dir kommt</b> = vous venez."
+    ]
+  },
+  {
+    "type": "callout",
+    "variant": "astuce",
+    "titre": "Demander l'origine",
+    "lignes": [
+      "<b>Vu wou kënns du?</b> = D'où viens-tu ? · <b>Vu wou kommt Dir?</b> = D'où venez-vous ?",
+      "<b>Vu wou kënnt hien / si?</b> = D'où vient-il / elle ?",
+      "L'origine se dit <b>d'Hierkonft</b>."
+    ]
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "titre": "L'article devant les prénoms",
+    "lignes": [
+      "Prénom masculin (consonne) → <b>De</b> : De Ronaldo, De Guillaume.",
+      "Prénom masculin (voyelle) → <b>Den</b> : Den Emmanuel.",
+      "Prénom féminin → <b>D'</b> : D'Angela, D'Greta."
+    ]
+  },
+  {
+    "type": "dialogue",
+    "titre": "Poser la question et répondre",
+    "echanges": [
+      [
+        "Vu wou kënnt hien?",
+        "D'où vient-il ?"
+      ],
+      [
+        "De Ronaldo kënnt aus Portugal.",
+        "Ronaldo vient du Portugal."
+      ],
+      [
+        "De Guillaume kënnt vu Lëtzebuerg.",
+        "Guillaume vient du Luxembourg."
+      ],
+      [
+        "Si kënnt aus der Belsch.",
+        "Elle vient de Belgique."
+      ],
+      [
+        "Si kënnt aus dem Iran.",
+        "Elle vient d'Iran."
+      ],
+      [
+        "Hien kënnt vum Cap Vert.",
+        "Il vient du Cap-Vert."
       ]
-    }
-  ]
+    ]
+  }
+]
 }
