@@ -270,7 +270,7 @@ header {
 .trou-fr   { font-size: .88rem; color: var(--muted-strong); margin-bottom: .8rem; font-weight: 500; }
 .trou-sentence {
   font-weight: 600;
-  font-size: clamp(1.1rem, 3.4vw, 1.5rem);
+  font-size: clamp(1.1rem, 3.4vw, 1.9rem);
   line-height: 1.7; overflow-wrap: break-word; word-break: break-word;
 }
 .trou-blank {
