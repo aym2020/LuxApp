@@ -45,7 +45,7 @@
       <div class="dash-review" id="dash-review">À revoir : 0 question</div>
 
       <button class="dash-btn primary" onclick="goLessons()">Leçons</button>
-      <button class="dash-btn db-review" onclick="startSession('review')">Réviser tout</button>
+      <button class="dash-btn db-review" onclick="openReviewSetup()">Réviser</button>
       <button class="dash-btn db-exam" onclick="startSession('exam')">Examen · 50 questions</button>
       <button class="dash-btn db-errors" onclick="startSession('errors')">Erreurs fréquentes</button>
 
@@ -194,6 +194,67 @@
     </div>
 
   </div><!-- /view-lecon -->
+
+    <!-- ══ CONFIGURATION DE RÉVISION ════════════════════════════════════════════ -->
+  <div id="view-review-setup" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num">RÉVISER</span>
+        <span class="lecon-titre">Configure ta révision</span>
+      </div>
+    </div>
+
+    <div class="rs">
+      <div class="rs-block">
+        <div class="rs-titre">Leçons</div>
+        <button class="rs-all" onclick="toggleAllChecks('rs-lecons')">Tout cocher / décocher</button>
+        <div class="rs-checks" id="rs-lecons"></div>
+      </div>
+
+      <div class="rs-block">
+        <div class="rs-titre">Types d'exercice</div>
+        <div class="rs-checks" id="rs-types">
+          <label class="rs-check"><input type="checkbox" value="quiz" checked> Quiz</label>
+          <label class="rs-check"><input type="checkbox" value="trous" checked> À trou</label>
+          <label class="rs-check"><input type="checkbox" value="ecriture" checked> Écriture</label>
+        </div>
+      </div>
+
+      <div class="rs-block">
+        <div class="rs-titre">Nombre de questions (max 20)</div>
+        <div class="rs-checks rs-count-opts" id="rs-count">
+          <label class="rs-check"><input type="radio" name="rs-count" value="5"> 5 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="10"> 10 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="15"> 15 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="20" checked> 20 questions</label>
+        </div>
+      </div>
+
+      <div class="rs-block">
+        <div class="rs-titre">Focus</div>
+        <div class="rs-checks" id="rs-focus">
+          <label class="rs-check">
+            <input type="radio" name="rs-focus" value="aleatoire" checked>
+            <span class="rs-focus-text">Aléatoire</span>
+            <span class="rs-focus-count" id="rs-count-aleatoire"></span>
+          </label>
+          <label class="rs-check">
+            <input type="radio" name="rs-focus" value="connu">
+            <span class="rs-focus-text">À consolider</span>
+            <span class="rs-focus-count" id="rs-count-connu"></span>
+          </label>
+          <label class="rs-check">
+            <input type="radio" name="rs-focus" value="difficile">
+            <span class="rs-focus-text">Difficile</span>
+            <span class="rs-focus-count" id="rs-count-difficile"></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="dash-btn primary" onclick="startConfiguredReview()">Commencer la révision</button>
+    </div>
+  </div>
 
   <!-- ══ SESSION (révision / examen / erreurs) ════════════════════════════════ -->
   <div id="view-session" class="view">
