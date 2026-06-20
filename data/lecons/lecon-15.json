@@ -834,171 +834,346 @@
     "cours": [
         {
             "type": "texte",
-            "contenu": "Cette leçon présente la manière de lire et de dire l'heure en luxembourgeois."
+            "contenu": "Cette leçon sert à lire et dire l'heure en luxembourgeois. La difficulté principale est que le luxembourgeois ne traduit pas toujours l'heure comme le français : on utilise beaucoup op, vir et hallwer."
         },
         {
-            "type": "vocab",
+            "type": "callout",
+            "variant": "retenir",
+            "titre": "La logique générale",
+            "lignes": [
+                "Et ass ... = Il est ...",
+                "op indique ce qui vient après l'heure : fënnef op néng = 9h05.",
+                "vir indique ce qui vient avant l'heure suivante : fënnef vir aacht = 7h55.",
+                "hallwer indique la demi-heure avant l'heure annoncée : hallwer zwou = 1h30.",
+                "Autour de la demi-heure, on dit : fënnef vir hallwer zwou = 1h25 et fënnef op hallwer zwou = 1h35."
+            ]
+        },
+        {
+            "type": "callout",
+            "variant": "info",
+            "titre": "Le verbe : sinn",
+            "lignes": [
+                "Pour dire l'heure, on utilise la forme impersonnelle Et ass.",
+                "Et ass eng Auer. = Il est une heure.",
+                "Et ass zwou Auer. = Il est deux heures.",
+                "Et ass zwielef Auer. = Il est douze heures.",
+                "Ici, l'utilisateur n'a pas besoin de conjuguer tout le verbe : il doit surtout mémoriser Et ass."
+            ]
+        },
+        {
+            "type": "callout",
+            "variant": "astuce",
             "titre": "Question principale",
-            "items": [
+            "lignes": [
+                "Wéi vill Auer ass et? = Quelle heure est-il ?",
+                "La réponse commence presque toujours par Et ass...",
+                "Wéi vill Auer ass et? → Et ass véierel vir néng."
+            ]
+        },
+        {
+            "type": "tableau",
+            "titre": "Heures pleines",
+            "entetes": [
+                "Français",
+                "Luxembourgeois",
+                "Remarque"
+            ],
+            "lignes": [
                 [
-                    "Wéi vill Auer ass et ?",
-                    "Quelle heure est-il ?"
+                    "Il est une heure.",
+                    "Et ass eng Auer.",
+                    "eng Auer = une heure"
+                ],
+                [
+                    "Il est deux heures.",
+                    "Et ass zwou Auer.",
+                    "zwou Auer = deux heures"
+                ],
+                [
+                    "Il est huit heures.",
+                    "Et ass aacht Auer.",
+                    "heure pleine"
+                ],
+                [
+                    "Il est douze heures.",
+                    "Et ass zwielef Auer.",
+                    "midi ou minuit selon le contexte"
                 ]
             ]
         },
         {
-            "type": "vocab",
-            "titre": "Heures pleines",
+            "type": "tableau",
+            "titre": "Avant la demi-heure",
+            "entetes": [
+                "Heure",
+                "Luxembourgeois",
+                "Français"
+            ],
+            "lignes": [
+                [
+                    "9h05",
+                    "Et ass fënnef op néng.",
+                    "Il est neuf heures cinq."
+                ],
+                [
+                    "9h10",
+                    "Et ass zéng op néng.",
+                    "Il est neuf heures dix."
+                ],
+                [
+                    "9h15",
+                    "Et ass véierel op néng.",
+                    "Il est neuf heures et quart."
+                ],
+                [
+                    "9h20",
+                    "Et ass zwanzeg op néng.",
+                    "Il est neuf heures vingt."
+                ]
+            ]
+        },
+        {
+            "type": "tableau",
+            "titre": "Autour de la demi-heure",
+            "entetes": [
+                "Heure",
+                "Luxembourgeois",
+                "Français"
+            ],
+            "lignes": [
+                [
+                    "1h25",
+                    "Et ass fënnef vir hallwer zwou.",
+                    "Il est une heure vingt-cinq."
+                ],
+                [
+                    "1h30",
+                    "Et ass hallwer zwou.",
+                    "Il est une heure et demie."
+                ],
+                [
+                    "1h35",
+                    "Et ass fënnef op hallwer zwou.",
+                    "Il est une heure trente-cinq."
+                ],
+                [
+                    "7h35",
+                    "Et ass fënnef op hallwer aacht.",
+                    "Il est sept heures trente-cinq."
+                ]
+            ]
+        },
+        {
+            "type": "tableau",
+            "titre": "Après la demi-heure",
+            "entetes": [
+                "Heure",
+                "Luxembourgeois",
+                "Français"
+            ],
+            "lignes": [
+                [
+                    "8h40",
+                    "Et ass zwanzeg vir néng.",
+                    "Il est neuf heures moins vingt."
+                ],
+                [
+                    "8h45",
+                    "Et ass véierel vir néng.",
+                    "Il est neuf heures moins le quart."
+                ],
+                [
+                    "8h50",
+                    "Et ass zéng vir néng.",
+                    "Il est neuf heures moins dix."
+                ],
+                [
+                    "7h55",
+                    "Et ass fënnef vir aacht.",
+                    "Il est huit heures moins cinq."
+                ]
+            ]
+        },
+        {
+            "type": "callout",
+            "variant": "attention",
+            "titre": "Ne pas traduire mot à mot",
+            "lignes": [
+                "En français, on pense souvent à l'heure actuelle : 8h45 = huit heures quarante-cinq.",
+                "En luxembourgeois, on pense souvent à l'heure suivante : Et ass véierel vir néng = il est un quart avant neuf.",
+                "1h25 ne se dit pas mot à mot : on dit fënnef vir hallwer zwou.",
+                "7h35 se dit fënnef op hallwer aacht, car hallwer aacht = 7h30.",
+                "7h55 se dit fënnef vir aacht, car on est cinq minutes avant huit heures."
+            ]
+        },
+        {
+            "type": "tableau",
+            "titre": "Exemples à mémoriser",
+            "entetes": [
+                "Heure",
+                "Luxembourgeois",
+                "Traduction"
+            ],
+            "lignes": [
+                [
+                    "8h45",
+                    "Et ass véierel vir néng.",
+                    "Il est neuf heures moins le quart."
+                ],
+                [
+                    "1h25",
+                    "Et ass fënnef vir hallwer zwou.",
+                    "Il est une heure vingt-cinq."
+                ],
+                [
+                    "7h35",
+                    "Et ass fënnef op hallwer aacht.",
+                    "Il est sept heures trente-cinq."
+                ],
+                [
+                    "9h15",
+                    "Et ass véierel op néng.",
+                    "Il est neuf heures et quart."
+                ],
+                [
+                    "7h55",
+                    "Et ass fënnef vir aacht.",
+                    "Il est huit heures moins cinq."
+                ]
+            ]
+        },
+        {
+            "type": "tableau",
+            "titre": "Moments de la journée",
+            "entetes": [
+                "Luxembourgeois",
+                "Français",
+                "Exemple"
+            ],
+            "lignes": [
+                [
+                    "moies",
+                    "le matin",
+                    "Et ass aacht Auer moies."
+                ],
+                [
+                    "mëttes",
+                    "à midi",
+                    "Et ass zwielef Auer mëttes."
+                ],
+                [
+                    "nomëttes",
+                    "l'après-midi",
+                    "Et ass dräi Auer nomëttes."
+                ],
+                [
+                    "owes",
+                    "le soir",
+                    "Et ass siwen Auer owes."
+                ],
+                [
+                    "nuets",
+                    "la nuit",
+                    "Et ass zwielef Auer nuets."
+                ],
+                [
+                    "Mëtternuecht",
+                    "minuit",
+                    "Et ass Mëtternuecht."
+                ]
+            ]
+        },
+        {
+            "type": "callout",
+            "variant": "info",
+            "titre": "Le verbe : ufänken",
+            "lignes": [
+                "ufänken = commencer.",
+                "C'est un verbe séparable : un va souvent à la fin de la phrase.",
+                "Ech fänken um aacht Auer un. = Je commence à huit heures.",
+                "Du fänks um aacht Auer un. = Tu commences à huit heures.",
+                "Hien / Si fänkt um aacht Auer un. = Il / Elle commence à huit heures."
+            ]
+        },
+        {
+            "type": "callout",
+            "variant": "info",
+            "titre": "Le verbe : ophalen",
+            "lignes": [
+                "ophalen = arrêter, terminer.",
+                "C'est aussi un verbe séparable : op va souvent à la fin de la phrase.",
+                "Ech halen um fënnef Auer op. = Je termine à cinq heures.",
+                "Du häls um fënnef Auer op. = Tu termines à cinq heures.",
+                "Hien / Si hält um fënnef Auer op. = Il / Elle termine à cinq heures."
+            ]
+        },
+        {
+            "type": "tableau",
+            "titre": "Horaires de travail",
+            "entetes": [
+                "Français",
+                "Luxembourgeois",
+                "Structure"
+            ],
+            "lignes": [
+                [
+                    "Je travaille de huit heures du matin à cinq heures de l'après-midi.",
+                    "Ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes.",
+                    "vun ... bis ..."
+                ],
+                [
+                    "Je commence à huit heures du matin.",
+                    "Ech fänken um aacht Auer moies un.",
+                    "um ... Auer + un"
+                ],
+                [
+                    "Je termine à cinq heures de l'après-midi.",
+                    "Ech halen um fënnef Auer nomëttes op.",
+                    "um ... Auer + op"
+                ],
+                [
+                    "À quelle heure commences-tu ?",
+                    "Um wéi vill Auer fänks du un?",
+                    "question avec ufänken"
+                ],
+                [
+                    "À quelle heure termines-tu ?",
+                    "Um wéi vill Auer häls du op?",
+                    "question avec ophalen"
+                ]
+            ]
+        },
+        {
+            "type": "exemple",
+            "titre": "Phrases courtes à mémoriser",
             "items": [
+                [
+                    "Wéi vill Auer ass et?",
+                    "Quelle heure est-il ?"
+                ],
                 [
                     "Et ass eng Auer.",
                     "Il est une heure."
                 ],
                 [
-                    "Et ass zwou Auer.",
-                    "Il est deux heures."
+                    "Et ass véierel op néng.",
+                    "Il est neuf heures et quart."
                 ],
-                [
-                    "Et ass zwielef Auer.",
-                    "Il est douze heures."
-                ]
-            ]
-        },
-        {
-            "type": "regle",
-            "titre": "Lire l'heure",
-            "lignes": [
-                "⚠️ En luxembourgeois, on utilise souvent <b>op</b> (après) et <b>vir</b> (avant).",
-                "<b>véierel op</b> = et quart.",
-                "<b>véierel vir</b> = moins le quart.",
-                "<b>hallwer zwou</b> signifie la demi-heure avant deux, soit 1h30."
-            ]
-        },
-        {
-            "type": "vocab",
-            "titre": "Avant la demi-heure",
-            "items": [
-                [
-                    "Et ass fënnef op eng.",
-                    "Il est une heure cinq."
-                ],
-                [
-                    "Et ass zéng op eng.",
-                    "Il est une heure dix."
-                ],
-                [
-                    "Et ass véierel op eng.",
-                    "Il est une heure et quart."
-                ],
-                [
-                    "Et ass zwanzeg op eng.",
-                    "Il est une heure vingt."
-                ]
-            ]
-        },
-        {
-            "type": "vocab",
-            "titre": "Autour de la demi-heure",
-            "items": [
                 [
                     "Et ass fënnef vir hallwer zwou.",
                     "Il est une heure vingt-cinq."
                 ],
                 [
-                    "Et ass hallwer zwou.",
-                    "Il est une heure et demie."
+                    "Et ass fënnef op hallwer aacht.",
+                    "Il est sept heures trente-cinq."
                 ],
                 [
-                    "Et ass fënnef op hallwer zwou.",
-                    "Il est une heure trente-cinq."
-                ]
-            ]
-        },
-        {
-            "type": "vocab",
-            "titre": "Après la demi-heure",
-            "items": [
-                [
-                    "Et ass zwanzeg vir zwou.",
-                    "Il est une heure quarante."
+                    "Et ass véierel vir néng.",
+                    "Il est neuf heures moins le quart."
                 ],
                 [
-                    "Et ass véierel vir zwou.",
-                    "Il est deux heures moins le quart."
-                ],
-                [
-                    "Et ass zéng vir zwou.",
-                    "Il est deux heures moins dix."
-                ],
-                [
-                    "Et ass fënnef vir zwou.",
-                    "Il est deux heures moins cinq."
-                ]
-            ]
-        },
-        {
-            "type": "vocab",
-            "titre": "Moments de la journée",
-            "items": [
-                [
-                    "moies",
-                    "le matin"
-                ],
-                [
-                    "mëttes",
-                    "à midi"
-                ],
-                [
-                    "nomëttes",
-                    "l'après-midi"
-                ],
-                [
-                    "owes",
-                    "le soir"
-                ],
-                [
-                    "nuets",
-                    "la nuit"
-                ],
-                [
-                    "Mëtternuecht",
-                    "minuit"
-                ]
-            ]
-        },
-        {
-            "type": "vocab",
-            "titre": "Exemples",
-            "items": [
-                [
-                    "Et ass aacht Auer moies.",
-                    "Il est huit heures du matin."
-                ],
-                [
-                    "Et ass zwielef Auer mëttes.",
-                    "Il est midi."
-                ],
-                [
-                    "Et ass dräi Auer nomëttes.",
-                    "Il est trois heures de l'après-midi."
-                ],
-                [
-                    "Et ass siwen Auer owes.",
-                    "Il est sept heures du soir."
-                ],
-                [
-                    "Et ass zwielef Auer nuets.",
-                    "Il est minuit."
-                ]
-            ]
-        },
-        {
-            "type": "vocab",
-            "titre": "Horaires de travail",
-            "items": [
-                [
-                    "Ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes.",
-                    "Je travaille de huit heures du matin à cinq heures de l'après-midi."
+                    "Et ass fënnef vir aacht.",
+                    "Il est huit heures moins cinq."
                 ],
                 [
                     "Ech fänken um aacht Auer moies un.",
@@ -1012,31 +1187,61 @@
         },
         {
             "type": "dialogue",
-            "titre": "Au travail",
+            "titre": "Demander l'heure",
             "echanges": [
                 [
                     "Wéi vill Auer ass et?",
                     "Quelle heure est-il ?"
                 ],
                 [
-                    "Et ass véierel op fënnef.",
-                    "Il est cinq heures et quart."
+                    "Et ass véierel op néng.",
+                    "Il est neuf heures et quart."
                 ],
                 [
-                    "Um wéi vill Auer fänks du mat schaffen un?",
-                    "À quelle heure commences-tu à travailler ?"
+                    "Wéi vill Auer ass et?",
+                    "Quelle heure est-il ?"
+                ],
+                [
+                    "Et ass fënnef vir hallwer zwou.",
+                    "Il est une heure vingt-cinq."
+                ],
+                [
+                    "Wéi vill Auer ass et?",
+                    "Quelle heure est-il ?"
+                ],
+                [
+                    "Et ass véierel vir néng.",
+                    "Il est neuf heures moins le quart."
+                ]
+            ]
+        },
+        {
+            "type": "dialogue",
+            "titre": "Au travail",
+            "echanges": [
+                [
+                    "Um wéi vill Auer fänks du un?",
+                    "À quelle heure commences-tu ?"
                 ],
                 [
                     "Ech fänken um aacht Auer moies un.",
                     "Je commence à huit heures du matin."
                 ],
                 [
-                    "Um wéi vill Auer häls du mat schaffen op?",
-                    "À quelle heure termines-tu de travailler ?"
+                    "Um wéi vill Auer häls du op?",
+                    "À quelle heure termines-tu ?"
                 ],
                 [
                     "Ech halen um fënnef Auer nomëttes op.",
                     "Je termine à cinq heures de l'après-midi."
+                ],
+                [
+                    "Schaffs du moies?",
+                    "Tu travailles le matin ?"
+                ],
+                [
+                    "Jo, ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes.",
+                    "Oui, je travaille de huit heures du matin à cinq heures de l'après-midi."
                 ]
             ]
         }
