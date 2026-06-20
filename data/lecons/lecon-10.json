@@ -553,123 +553,217 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Pour dire où on habite, on utilise le verbe <b>wunnen</b> avec une préposition qui dépend du type de lieu : pays, ville, quartier ou lieu."
+      "contenu": "Pour dire où l'on habite, on utilise <b>wunnen</b> + une préposition. Cette préposition <b>dépend du type de lieu</b> : pays, ville, quartier ou expression fixe."
     },
     {
-      "type": "regle",
-      "titre": "Les prépositions pour parler de son lieu d'habitation",
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "La logique générale",
       "lignes": [
-        "Luxembourg → <b>zu Lëtzebuerg</b>",
-        "Ville → <b>zu</b> (zu Metz, zu Esch, zu Paräis)",
-        "Pays sans article → <b>a / an</b> selon la première lettre : a Frankräich, a Spuenien, a Schweden, mais an Däitschland, an Italien, an England, an Holland.",
-        "Pays féminins → <b>an der</b> (an der Belsch, an der Schwäiz)",
-        "Ville (au sens général) → <b>an der Stad</b>",
-        "Quartiers et lieux → <b>um / am</b> (um Kirchberg, um Belair, am Gronn)"
+        "Pays sans article → <b>a / an</b> : a Frankräich, an Däitschland.",
+        "Pays féminins → <b>an der</b> : an der Belsch, an der Schwäiz.",
+        "Villes → <b>zu</b> : zu Metz, zu Paräis, zu Esch.",
+        "Quartiers ou lieux particuliers → souvent <b>um / am</b> : um Kirchberg, am Gronn.",
+        "Luxembourg est une exception utile à mémoriser : <b>zu Lëtzebuerg</b>."
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Vocabulaire",
-      "items": [
+      "type": "tableau",
+      "titre": "Choisir la bonne préposition",
+      "entetes": [
+        "Type de lieu",
+        "Structure",
+        "Exemples"
+      ],
+      "lignes": [
         [
-          "wunnen",
-          "habiter"
+          "Pays sans article",
+          "a / an + pays",
+          "a Frankräich · an Däitschland"
         ],
         [
-          "d'Stad",
-          "la ville"
+          "Pays féminin",
+          "an der + pays",
+          "an der Belsch · an der Schwäiz"
         ],
         [
-          "de Quartier",
-          "le quartier"
+          "Luxembourg",
+          "zu + Lëtzebuerg",
+          "zu Lëtzebuerg"
         ],
         [
+          "Ville",
+          "zu + ville",
+          "zu Metz · zu Paräis · zu Esch"
+        ],
+        [
+          "Ville en général",
+          "an der Stad",
+          "an der Stad"
+        ],
+        [
+          "Quartier / lieu particulier",
+          "um / am + lieu",
+          "um Kirchberg · am Gronn"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les pays de la leçon",
+      "entetes": [
+        "Français",
+        "Luxembourgeois",
+        "Phrase modèle"
+      ],
+      "lignes": [
+        [
+          "Luxembourg",
           "Lëtzebuerg",
-          "Luxembourg"
+          "Ech wunnen zu Lëtzebuerg."
         ],
         [
-          "Belsch",
-          "Belgique"
-        ],
-        [
-          "Schwäiz",
-          "Suisse"
-        ],
-        [
-          "Däitschland",
-          "Allemagne"
-        ],
-        [
+          "France",
           "Frankräich",
-          "France"
+          "Ech wunnen a Frankräich."
         ],
+        [
+          "Allemagne",
+          "Däitschland",
+          "Ech wunnen an Däitschland."
+        ],
+        [
+          "Belgique",
+          "Belsch",
+          "Ech wunnen an der Belsch."
+        ],
+        [
+          "Suisse",
+          "Schwäiz",
+          "Ech wunnen an der Schwäiz."
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Villes, ville et quartiers",
+      "entetes": [
+        "Français",
+        "Luxembourgeois",
+        "Phrase modèle"
+      ],
+      "lignes": [
         [
           "Metz",
-          "Metz"
+          "Metz",
+          "Ech wunnen zu Metz."
+        ],
+        [
+          "Paris",
+          "Paräis",
+          "Ech wunnen zu Paräis."
         ],
         [
           "Esch",
-          "Esch"
+          "Esch",
+          "Ech wunnen zu Esch."
         ],
         [
-          "Tréier",
-          "Trèves"
+          "en ville",
+          "an der Stad",
+          "Ech wunnen an der Stad."
         ],
         [
-          "Kirchberg",
-          "Kirchberg"
+          "au Kirchberg",
+          "um Kirchberg",
+          "Ech wunnen um Kirchberg."
         ],
         [
-          "Belair",
-          "Belair"
-        ],
-        [
-          "Gronn",
-          "Grund"
+          "au Grund",
+          "am Gronn",
+          "Ech wunnen am Gronn."
         ]
       ]
     },
     {
-      "type": "dialogue",
-      "titre": "Exemples",
-      "echanges": [
-        [
-          "Ech wunnen zu Lëtzebuerg.",
-          "J'habite au Luxembourg."
-        ],
-        [
-          "Ech wunnen a Frankräich.",
-          "J'habite en France."
-        ],
-        [
-          "Ech wunnen an der Belsch.",
-          "J'habite en Belgique."
-        ],
-        [
-          "Ech wunnen zu Metz.",
-          "J'habite à Metz."
-        ],
-        [
-          "Ech wunnen um Kirchberg.",
-          "J'habite au Kirchberg."
-        ],
-        [
-          "Ech wunnen am Gronn.",
-          "J'habite au Grund."
-        ]
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le verbe : wunnen",
+      "lignes": [
+        "<b>Ech wunnen</b> = j'habite.",
+        "<b>Du wunns</b> = tu habites.",
+        "<b>Hien / Si wunnt</b> = il / elle habite.",
+        "<b>Dir wunnt</b> = vous habitez."
       ]
     },
     {
-      "type": "dialogue",
+      "type": "callout",
+      "variant": "astuce",
       "titre": "Demander où quelqu'un habite",
+      "lignes": [
+        "<b>Wou wunns du?</b> = Où habites-tu ?",
+        "<b>Wou wunnt hien?</b> = Où habite-t-il ?",
+        "<b>Wou wunnt si?</b> = Où habite-t-elle ?",
+        "<b>Wou wunnt Dir?</b> = Où habitez-vous ?"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Ne pas traduire le français mot à mot",
+      "lignes": [
+        "En français, on dit souvent <b>en</b>, <b>à</b> ou <b>au</b>. En luxembourgeois, il faut choisir la préposition selon le lieu.",
+        "<b>J'habite en France</b> → Ech wunnen <b>a Frankräich</b>.",
+        "<b>J'habite en Belgique</b> → Ech wunnen <b>an der Belsch</b>.",
+        "<b>J'habite au Luxembourg</b> → Ech wunnen <b>zu Lëtzebuerg</b>.",
+        "<b>J'habite au Grund</b> → Ech wunnen <b>am Gronn</b>."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Les contractions utiles",
+      "lignes": [
+        "<b>am</b> = an + dem : am Gronn.",
+        "<b>um</b> = op + dem : um Kirchberg.",
+        "Dans cette leçon, il vaut mieux apprendre directement les expressions complètes : <b>am Gronn</b>, <b>um Kirchberg</b>."
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Poser la question et répondre",
       "echanges": [
         [
           "Wou wunns du?",
           "Où habites-tu ?"
         ],
         [
+          "Ech wunnen zu Lëtzebuerg.",
+          "J'habite au Luxembourg."
+        ],
+        [
+          "Wou wunnt hien?",
+          "Où habite-t-il ?"
+        ],
+        [
+          "Hien wunnt a Frankräich.",
+          "Il habite en France."
+        ],
+        [
+          "Wou wunnt si?",
+          "Où habite-t-elle ?"
+        ],
+        [
+          "Si wunnt an der Belsch.",
+          "Elle habite en Belgique."
+        ],
+        [
           "Wou wunnt Dir?",
           "Où habitez-vous ?"
+        ],
+        [
+          "Ech wunnen am Gronn.",
+          "J'habite au Grund."
         ]
       ]
     }
