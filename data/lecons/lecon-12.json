@@ -941,180 +941,375 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Les lieux de travail. On utilise le verbe <b>schaffen</b> (travailler) + une préposition contractée."
+      "contenu": "Pour dire <b>où quelqu'un travaille</b>, on utilise le verbe <b>schaffen</b> + une préposition. Cette préposition dépend du type de lieu : lieu physique, institution, personne ou employeur."
     },
     {
-      "type": "regle",
-      "titre": "Préposition + article avec les lieux de travail",
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "La logique générale",
       "lignes": [
-        "Le choix de la préposition dépend du type de lieu : <b>an</b> pour un lieu physique, <b>op</b> pour certaines administrations ou institutions, <b>bei</b> pour travailler chez une personne ou un employeur.",
-        "La forme <b>engem / enger</b> dépend ensuite du genre du nom : M/N → <b>engem</b>, F → <b>enger</b>.",
-        "Avec <b>an</b> : an engem Büro, an engem Restaurant, an enger Klinik, an enger Schoul.",
-        "Avec <b>op</b> : op engem Policebüro, op enger Post, op engem Geriicht, op enger Universitéit.",
-        "Attention : même si <b>Spidol</b> et <b>Schoul</b> peuvent être vus comme des institutions, on utilise ici <b>an</b> : an engem Spidol, an enger Schoul."
+        "<b>an</b> = dans / dans un lieu physique : an engem Büro, an enger Klinik.",
+        "<b>op</b> = à / dans certaines institutions ou lieux publics : op enger Bank, op engem Policebüro.",
+        "<b>bei</b> = chez / auprès de quelqu'un : bei engem Dokter, bei enger Coiffeuse.",
+        "Après <b>an</b>, <b>op</b> et <b>bei</b>, on utilise souvent <b>engem</b> ou <b>enger</b>.",
+        "<b>engem</b> s'utilise avec les noms masculins ou neutres. <b>enger</b> s'utilise avec les noms féminins."
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Lieux de travail",
-      "items": [
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le verbe : schaffen",
+      "lignes": [
+        "<b>Ech schaffen</b> = je travaille.",
+        "<b>Du schaffs</b> = tu travailles.",
+        "<b>Hien / Si schafft</b> = il / elle travaille.",
+        "<b>Mir schaffen</b> = nous travaillons.",
+        "<b>Dir schafft</b> = vous travaillez.",
+        "<b>Si schaffen</b> = ils / elles travaillent.",
+        "<b>Dir schafft</b> = vous travaillez, forme polie."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Choisir la bonne structure",
+      "entetes": [
+        "Idée en français",
+        "Structure",
+        "Exemples"
+      ],
+      "lignes": [
         [
-          "e Policebüro",
-          "commissariat"
+          "Travailler dans un lieu concret",
+          "schaffen + an + engem / enger",
+          "an engem Büro · an enger Klinik"
         ],
         [
-          "e Spidol",
-          "hôpital"
+          "Travailler dans certaines institutions",
+          "schaffen + op + engem / enger",
+          "op enger Bank · op engem Policebüro"
         ],
         [
-          "eng Bank",
-          "banque"
+          "Travailler chez une personne",
+          "schaffen + bei + engem / enger",
+          "bei engem Dokter · bei enger Coiffeuse"
         ],
         [
-          "eng Apdikt",
-          "pharmacie"
-        ],
-        [
-          "eng Post",
-          "poste"
-        ],
-        [
-          "e Geriicht",
-          "tribunal"
-        ],
-        [
-          "eng Bäckerei",
-          "boulangerie"
-        ],
-        [
-          "eng Schoul",
-          "école"
-        ],
-        [
-          "e Fluchhafen",
-          "aéroport"
-        ],
-        [
-          "e Restaurant",
-          "restaurant"
-        ],
-        [
-          "e Coiffersalon",
-          "salon de coiffure"
-        ],
-        [
-          "eng Metzlerei",
-          "boucherie"
-        ],
-        [
-          "e Supermarché",
-          "supermarché"
-        ],
-        [
-          "e Büro",
-          "bureau"
-        ],
-        [
-          "e Cabinet",
-          "cabinet médical"
-        ],
-        [
-          "eng Klinik",
-          "clinique"
-        ],
-        [
-          "e Maart",
-          "marché"
-        ],
-        [
-          "eng Tankstell",
-          "station-service"
-        ],
-        [
-          "e Buttek",
-          "magasin"
-        ],
-        [
-          "eng Universitéit",
-          "université"
-        ],
-        [
-          "e Lycée",
-          "lycée"
-        ],
-        [
-          "eng Sportshal",
-          "salle de sport"
-        ],
-        [
-          "eng Gare",
-          "gare"
-        ],
-        [
-          "eng Librairie",
-          "librairie"
-        ],
-        [
-          "e Studio",
-          "studio"
+          "Travailler comme / en tant que",
+          "schaffen + als + métier",
+          "als Bäckesch · als Affekot"
         ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "bei et als",
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Comment choisir entre engem et enger ?",
       "lignes": [
-        "bei = chez / auprès de (bei engem Dokter)",
-        "als = comme / en tant que (als Bäckesch)"
+        "Regarde l'article du lieu dans le vocabulaire.",
+        "<b>e</b> ou <b>en</b> devient <b>engem</b> : e Büro → an engem Büro.",
+        "<b>eng</b> devient <b>enger</b> : eng Klinik → an enger Klinik.",
+        "Le piège n'est donc pas seulement la préposition. Il faut aussi connaître le genre du lieu."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Former engem / enger",
+      "entetes": [
+        "Article appris",
+        "Forme après an / op / bei",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "e Policebüro",
+          "engem",
+          "op engem Policebüro"
+        ],
+        [
+          "e Spidol",
+          "engem",
+          "an engem Spidol"
+        ],
+        [
+          "e Büro",
+          "engem",
+          "an engem Büro"
+        ],
+        [
+          "e Restaurant",
+          "engem",
+          "an engem Restaurant"
+        ],
+        [
+          "eng Bank",
+          "enger",
+          "op enger Bank"
+        ],
+        [
+          "eng Apdikt",
+          "enger",
+          "an enger Apdikt"
+        ],
+        [
+          "eng Schoul",
+          "enger",
+          "an enger Schoul"
+        ],
+        [
+          "eng Gare",
+          "enger",
+          "op enger Gare"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les lieux avec an",
+      "entetes": [
+        "Français",
+        "Luxembourgeois",
+        "Phrase modèle"
+      ],
+      "lignes": [
+        [
+          "hôpital",
+          "e Spidol",
+          "Den Dokter schafft an engem Spidol."
+        ],
+        [
+          "salon de coiffure",
+          "e Coiffersalon",
+          "De Coiffer schafft an engem Coiffersalon."
+        ],
+        [
+          "pharmacie",
+          "eng Apdikt",
+          "Den Apdikter schafft an enger Apdikt."
+        ],
+        [
+          "boucherie",
+          "eng Metzlerei",
+          "De Metzler schafft an enger Metzlerei."
+        ],
+        [
+          "boulangerie",
+          "eng Bäckerei",
+          "De Bäcker schafft an enger Bäckerei."
+        ],
+        [
+          "supermarché",
+          "e Supermarché",
+          "De Caissier schafft an engem Supermarché."
+        ],
+        [
+          "école",
+          "eng Schoul",
+          "De Schoulmeeschter schafft an enger Schoul."
+        ],
+        [
+          "restaurant",
+          "e Restaurant",
+          "De Kach schafft an engem Restaurant."
+        ],
+        [
+          "bureau",
+          "e Büro",
+          "Den Employé schafft an engem Büro."
+        ],
+        [
+          "cabinet médical",
+          "e Cabinet",
+          "D'Infirmière schafft an engem Cabinet."
+        ],
+        [
+          "clinique",
+          "eng Klinik",
+          "Den Dokter schafft an enger Klinik."
+        ],
+        [
+          "station-service",
+          "eng Tankstell",
+          "De Verkeefer schafft an enger Tankstell."
+        ],
+        [
+          "magasin",
+          "e Buttek",
+          "De Verkeefer schafft an engem Buttek."
+        ],
+        [
+          "salle de sport",
+          "eng Sportshal",
+          "De Sportler schafft an enger Sportshal."
+        ],
+        [
+          "librairie",
+          "eng Librairie",
+          "De Libraire schafft an enger Librairie."
+        ],
+        [
+          "studio",
+          "e Studio",
+          "De Fotograf schafft an engem Studio."
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les lieux avec op",
+      "entetes": [
+        "Français",
+        "Luxembourgeois",
+        "Phrase modèle"
+      ],
+      "lignes": [
+        [
+          "commissariat",
+          "e Policebüro",
+          "De Polizist schafft op engem Policebüro."
+        ],
+        [
+          "banque",
+          "eng Bank",
+          "D'Bankerin schafft op enger Bank."
+        ],
+        [
+          "poste",
+          "eng Post",
+          "De Bréifdréier schafft op enger Post."
+        ],
+        [
+          "tribunal",
+          "e Geriicht",
+          "Den Affekot schafft op engem Geriicht."
+        ],
+        [
+          "aéroport",
+          "e Fluchhafen",
+          "De Pilot schafft op engem Fluchhafen."
+        ],
+        [
+          "marché",
+          "e Maart",
+          "De Verkeefer schafft op engem Maart."
+        ],
+        [
+          "université",
+          "eng Universitéit",
+          "De Student schafft op enger Universitéit."
+        ],
+        [
+          "lycée",
+          "e Lycée",
+          "De Professer schafft op engem Lycée."
+        ],
+        [
+          "gare",
+          "eng Gare",
+          "Den Employé schafft op enger Gare."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Ne pas traduire le français mot à mot",
+      "lignes": [
+        "En français, on dit souvent <b>à</b>, <b>au</b>, <b>dans</b> ou <b>chez</b>. En luxembourgeois, il faut choisir la structure selon le lieu.",
+        "<b>Je travaille dans un bureau</b> → Ech schaffen <b>an engem Büro</b>.",
+        "<b>Je travaille à la banque</b> → Ech schaffen <b>op enger Bank</b>.",
+        "<b>Je travaille chez un médecin</b> → Ech schaffen <b>bei engem Dokter</b>.",
+        "<b>Je travaille comme boulangère</b> → Ech schaffen <b>als Bäckesch</b>."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Questions utiles",
+      "lignes": [
+        "<b>Wou schaffs du?</b> = Où travailles-tu ?",
+        "<b>Wou schafft hien?</b> = Où travaille-t-il ?",
+        "<b>Wou schafft si?</b> = Où travaille-t-elle ?",
+        "<b>Wou schafft Dir?</b> = Où travaillez-vous ?",
+        "<b>Wat schaffs du?</b> = Que fais-tu comme travail ?"
+      ]
+    },
+    {
+      "type": "exemple",
+      "titre": "Réponses courtes à mémoriser",
+      "items": [
+        [
+          "Ech schaffen an engem Büro.",
+          "Je travaille dans un bureau."
+        ],
+        [
+          "Ech schaffen an enger Klinik.",
+          "Je travaille dans une clinique."
+        ],
+        [
+          "Ech schaffen op enger Bank.",
+          "Je travaille à la banque."
+        ],
+        [
+          "Ech schaffen op engem Maart.",
+          "Je travaille au marché."
+        ],
+        [
+          "Ech schaffen bei engem Dokter.",
+          "Je travaille chez un médecin."
+        ],
+        [
+          "Ech schaffen bei enger Coiffeuse.",
+          "Je travaille chez une coiffeuse."
+        ],
+        [
+          "Ech schaffen als Bäckesch.",
+          "Je travaille comme boulangère."
+        ]
       ]
     },
     {
       "type": "dialogue",
-      "titre": "Exemples",
+      "titre": "Poser la question et répondre",
       "echanges": [
-        [
-          "De Polizist schafft op engem Policebüro.",
-          "Le policier travaille au commissariat."
-        ],
-        [
-          "De Bäcker schafft an enger Bäckerei.",
-          "Le boulanger travaille dans une boulangerie."
-        ],
         [
           "Wou schaffs du?",
           "Où travailles-tu ?"
         ],
         [
-          "De Coiffer schafft an engem Coiffersalon.",
-          "Le coiffeur travaille dans un salon de coiffure."
+          "Ech schaffen an engem Büro.",
+          "Je travaille dans un bureau."
         ],
         [
-          "De Metzler schafft an enger Metzlerei.",
-          "Le boucher travaille dans une boucherie."
+          "Wou schafft hien?",
+          "Où travaille-t-il ?"
         ],
         [
-          "De Banker schafft op enger Bank.",
-          "Le banquier travaille dans une banque."
+          "Hien schafft op engem Policebüro.",
+          "Il travaille au commissariat."
         ],
         [
-          "Den Apdikter schafft an enger Apdikt.",
-          "Le pharmacien travaille dans une pharmacie."
+          "Wou schafft si?",
+          "Où travaille-t-elle ?"
         ],
         [
-          "D'Sekretärin schafft bei engem Dokter.",
-          "La secrétaire travaille chez un médecin."
+          "Si schafft an enger Apdikt.",
+          "Elle travaille dans une pharmacie."
         ],
         [
-          "Ech schaffen als Bäckesch.",
-          "Je travaille comme boulangère."
-        ],
-        [
-          "Wou schafft Dir ?",
+          "Wou schafft Dir?",
           "Où travaillez-vous ?"
         ],
         [
-          "Ech schaffen an engem Büro.",
-          "Je travaille dans un bureau."
+          "Ech schaffen op enger Gare.",
+          "Je travaille à la gare."
+        ],
+        [
+          "Schaffs du bei engem Dokter?",
+          "Tu travailles chez un médecin ?"
+        ],
+        [
+          "Jo, ech schaffen bei engem Dokter.",
+          "Oui, je travaille chez un médecin."
         ]
       ]
     }
