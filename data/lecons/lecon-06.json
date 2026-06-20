@@ -784,50 +784,167 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Le pluriel en luxembourgeois change selon le genre du nom. Il utilise zwee (M/N) ou zwou (F)."
+      "contenu": "Mettre au pluriel demande <b>deux choses</b> : choisir <b>zwee</b> ou <b>zwou</b> selon le genre, et transformer le <b>nom</b> lui-même."
     },
     {
-      "type": "regle",
-      "titre": "Zwee vs Zwou",
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "zwee ou zwou ?",
       "lignes": [
-        "Masculin + Neutre → <b>zwee</b> : zwee Fligeren, zwee Bicher",
-        "Féminin → <b>zwou</b> : zwou Fläschen, zwou Tasen",
-        "⚠️ zwee = 2 (zwee Persounen = 2 personnes)"
+        "Nom <b>masculin</b> ou <b>neutre</b> → <b>zwee</b> : zwee Stëfter, zwee Bicher.",
+        "Nom <b>féminin</b> → <b>zwou</b> : zwou Fläschen, zwou Aueren.",
+        "C'est le genre du nom <b>au singulier</b> qui décide."
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Formation du pluriel — Exemples",
-      "items": [
+      "type": "tableau",
+      "titre": "zwee / zwou selon le genre",
+      "entetes": [
+        "Genre",
+        "2 =",
+        "Exemple"
+      ],
+      "lignes": [
         [
-          "e Fliger → zwee Fligeren",
-          "un avion → deux avions (M)"
+          "Masculin",
+          "zwee",
+          "zwee Stëfter"
         ],
         [
-          "eng Fläsch → zwou Fläschen",
-          "une bouteille → deux bouteilles (F)"
+          "Neutre",
+          "zwee",
+          "zwee Bicher"
         ],
         [
-          "e Buch → zwee Bicher",
-          "un livre → deux livres (N)"
-        ],
-        [
-          "eng Taass → zwou Tasen",
-          "une tasse → deux tasses (F)"
-        ],
-        [
-          "e Stull → zwee Still",
-          "une chaise → deux chaises (M)"
-        ],
-        [
-          "eng Planz → zwou Planzen",
-          "une plante → deux plantes (F)"
+          "Féminin",
+          "zwou",
+          "zwou Fläschen"
         ]
       ]
     },
     {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le nom aussi change",
+      "lignes": [
+        "Le pluriel ne se contente pas d'ajouter un mot : le nom se transforme.",
+        "Il existe trois schémas principaux : <b>-(e)n</b>, <b>-er</b> (souvent avec changement de voyelle), ou un <b>changement de voyelle seul</b>."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Schéma 1 : pluriel en -(e)n (le plus courant)",
+      "entetes": [
+        "Singulier",
+        "Pluriel"
+      ],
+      "lignes": [
+        [
+          "eng Auer",
+          "Aueren"
+        ],
+        [
+          "eng Fläsch",
+          "Fläschen"
+        ],
+        [
+          "e Computer",
+          "Computeren"
+        ],
+        [
+          "e Fliger",
+          "Fligeren"
+        ],
+        [
+          "eng Mapp",
+          "Mappen"
+        ],
+        [
+          "e Vëlo",
+          "Vëloen"
+        ],
+        [
+          "eng Mauer",
+          "Maueren"
+        ],
+        [
+          "e Bus",
+          "Bussen"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Schéma 2 : pluriel en -er (la voyelle change souvent)",
+      "entetes": [
+        "Singulier",
+        "Pluriel"
+      ],
+      "lignes": [
+        [
+          "e Buch",
+          "Bicher"
+        ],
+        [
+          "e Blat",
+          "Blieder"
+        ],
+        [
+          "en Haus",
+          "Haiser"
+        ],
+        [
+          "e Glas",
+          "Glieser"
+        ],
+        [
+          "e Bild",
+          "Biller"
+        ],
+        [
+          "en Heft",
+          "Hefter"
+        ],
+        [
+          "e Regal",
+          "Regaler"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Schéma 3 : changement de voyelle seul",
+      "entetes": [
+        "Singulier",
+        "Pluriel"
+      ],
+      "lignes": [
+        [
+          "e Stull",
+          "Still"
+        ],
+        [
+          "eng Maus",
+          "Mais"
+        ],
+        [
+          "e Ball",
+          "Bäll"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "À mémoriser avec le mot",
+      "lignes": [
+        "Le pluriel ne se devine pas toujours : apprends-le <b>en même temps</b> que le nom singulier.",
+        "Les flashcards te donnent chaque pluriel ; les trois schémas ci-dessus t'aident à les reconnaître."
+      ]
+    },
+    {
       "type": "dialogue",
-      "titre": "Exemples de phrases",
+      "titre": "Poser la question et répondre",
       "echanges": [
         [
           "Hues du zwee Fligeren?",
