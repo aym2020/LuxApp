@@ -970,148 +970,310 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Den Dagesoflaf décrit les activités d'une journée, du matin au soir."
+      "contenu": "Cette leçon sert à raconter le déroulement d'une journée : se réveiller, se doucher, sortir, aller au travail, manger, rentrer, regarder la télé et aller dormir. On apprend aussi à dire à quelle heure chaque action a lieu."
     },
     {
-      "type": "vocab",
-      "titre": "Les activités du matin au soir",
-      "items": [
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "La logique générale",
+      "lignes": [
+        "Pour dire à quelle heure une activité a lieu, on utilise um devant l'heure.",
+        "Structure simple : sujet + verbe + um + heure.",
+        "D'Carla erwächt um sechs Auer. = Carla se réveille à six heures.",
+        "On peut aussi commencer par l'heure : Um sechs Auer erwächt d'Carla.",
+        "Quand l'heure est au début, le verbe vient juste après l'heure."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le verbe : erwächen",
+      "lignes": [
+        "erwächen = se réveiller.",
+        "Ech erwächen = je me réveille.",
+        "Du erwächts = tu te réveilles.",
+        "Hien / Si erwächt = il / elle se réveille.",
+        "Mir erwächen = nous nous réveillons.",
+        "Dir erwächt = vous vous réveillez.",
+        "Si erwächen = ils / elles se réveillent."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Les verbes réguliers de la journée",
+      "lignes": [
+        "duschen = se doucher : Ech duschen, du duschs, hien / si duscht.",
+        "telefonéieren = téléphoner : Ech telefonéieren, du telefonéiers, hien / si telefonéiert.",
+        "kucken = regarder : Ech kucken, du kucks, hien / si kuckt.",
+        "Ces verbes restent assez réguliers : la forme avec hien / si se termine souvent par -t."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Les verbes importants",
+      "lignes": [
+        "drénken = boire : Ech drénken, du drénks, hien / si drénkt.",
+        "schreiwen = écrire : Ech schreiwen, du schreifs, hien / si schreift.",
+        "iessen = manger : Ech iessen, du ëss, hien / si ësst.",
+        "fueren = aller en véhicule / prendre : Ech fueren, du fiers, hien / si fiert.",
+        "schlofen = dormir : Ech schlofen, du schléifs, hien / si schléift."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Les verbes séparables",
+      "lignes": [
+        "erausgoen = sortir. Dans une phrase, on sépare souvent le verbe : D'Carla geet eraus.",
+        "heemgoen = rentrer chez soi. Dans une phrase : D'Carla geet heem.",
+        "Avec ech, on dit : Ech ginn eraus et Ech ginn heem.",
+        "Mais pour aller dormir, on utilise : Ech gi schlofen.",
+        "Le mot séparé se place souvent à la fin : D'Carla geet um hallwer siwen owes heem."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Verbes de la leçon",
+      "entetes": [
+        "Infinitif",
+        "Sens",
+        "Phrase modèle"
+      ],
+      "lignes": [
         [
           "erwächen",
-          "se réveiller"
+          "se réveiller",
+          "Ech erwächen um sechs Auer."
         ],
         [
           "duschen",
-          "se doucher"
+          "se doucher",
+          "Ech duschen um zéng op sechs."
         ],
         [
           "Kaffi drénken",
-          "prendre le petit-déjeuner / boire du café"
+          "prendre le petit-déjeuner / boire du café",
+          "Ech drénke Kaffi."
         ],
         [
           "erausgoen",
-          "sortir"
+          "sortir",
+          "Ech ginn eraus."
         ],
         [
           "mam Bus fueren",
-          "prendre le bus / aller en bus"
+          "prendre le bus / aller en bus",
+          "Ech fuere mam Bus."
         ],
         [
           "telefonéieren",
-          "téléphoner"
+          "téléphoner",
+          "Ech telefonéieren."
         ],
         [
           "E-Mailen schreiwen",
-          "écrire des e-mails"
+          "écrire des e-mails",
+          "Ech schreiwen E-Mailen."
         ],
         [
-          "am Restaurant iessen",
-          "manger au restaurant"
+          "iessen",
+          "manger",
+          "Ech iessen am Restaurant."
         ],
         [
           "e Rapport schreiwen",
-          "écrire un rapport"
+          "écrire un rapport",
+          "Ech schreiwen e Rapport."
         ],
         [
           "heemgoen",
-          "rentrer chez soi"
+          "rentrer chez soi",
+          "Ech ginn heem."
         ],
         [
           "d'Tëlee kucken",
-          "regarder la télé"
+          "regarder la télé",
+          "Ech kucken d'Tëlee."
         ],
         [
           "schlofen",
-          "dormir"
+          "dormir",
+          "Ech schlofen."
         ],
         [
           "schlofe goen",
-          "aller dormir / se coucher"
+          "aller dormir / se coucher",
+          "Ech gi schlofen."
         ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "Dire à quelle heure une activité a lieu",
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Dire l'heure d'une action",
       "lignes": [
-        "On utilise um devant l'heure : um sechs Auer, um hallwer eng, um zéng vir Mëtternuecht.",
-        "La structure simple est : sujet + verbe + um + heure.",
-        "Exemple : D'Carla erwächt um sechs Auer.",
-        "Avec une période de la journée, on peut ajouter moies, nomëttes ou owes : um hallwer siwen owes."
+        "um sechs Auer = à six heures.",
+        "um zéng op sechs = à six heures dix.",
+        "um véierel vir siwen = à six heures quarante-cinq.",
+        "um hallwer eng = à douze heures trente.",
+        "um zéng vir Mëtternuecht = à vingt-trois heures cinquante."
       ]
     },
     {
-      "type": "regle",
-      "titre": "Quand l'heure est au début de la phrase",
+      "type": "tableau",
+      "titre": "Structure des phrases",
+      "entetes": [
+        "Structure",
+        "Luxembourgeois",
+        "Français"
+      ],
       "lignes": [
-        "Si la phrase commence par l'heure, le verbe vient juste après.",
-        "Um sechs Auer erwächen ech. = À six heures, je me réveille.",
-        "Ech erwächen um sechs Auer. = Je me réveille à six heures.",
-        "Les deux phrases sont correctes, mais l'ordre des mots change."
-      ]
-    },
-    {
-      "type": "regle",
-      "titre": "Questions utiles",
-      "lignes": [
-        "Um wéi vill Auer + verbe + sujet + ... ? = À quelle heure ... ?",
-        "Um wéi vill Auer erwächt d'Carla? = À quelle heure Carla se réveille-t-elle ?",
-        "Wat mécht + sujet + um + heure ? = Que fait ... à ... ?",
-        "Wat mécht d'Carla um sechs Auer? = Que fait Carla à six heures ?"
-      ]
-    },
-    {
-      "type": "vocab",
-      "titre": "Le déroulement de la journée de Carla",
-      "items": [
         [
+          "Sujet + verbe + heure",
           "D'Carla erwächt um sechs Auer.",
           "Carla se réveille à six heures."
         ],
         [
-          "D'Carla duscht um zéng op sechs.",
-          "Carla se douche à six heures dix."
+          "Heure + verbe + sujet",
+          "Um sechs Auer erwächt d'Carla.",
+          "À six heures, Carla se réveille."
         ],
         [
-          "D'Carla drénkt Kaffi um véierel vir siwen.",
-          "Carla prend le petit-déjeuner à six heures quarante-cinq."
-        ],
-        [
+          "Sujet + verbe séparable + heure",
           "D'Carla geet um véierel op siwen eraus.",
           "Carla sort à sept heures quinze."
         ],
         [
+          "Sujet + verbe séparable + heure",
+          "D'Carla geet um hallwer siwen owes heem.",
+          "Carla rentre chez elle à dix-huit heures trente."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Quand l'heure est au début",
+      "lignes": [
+        "Si la phrase commence par l'heure, le verbe vient directement après.",
+        "Ech erwächen um sechs Auer. = Je me réveille à six heures.",
+        "Um sechs Auer erwächen ech. = À six heures, je me réveille.",
+        "Les deux phrases sont correctes, mais il ne faut pas garder l'ordre français quand l'heure est placée au début."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "La journée de Carla",
+      "entetes": [
+        "Heure",
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "6h00",
+          "D'Carla erwächt um sechs Auer.",
+          "Carla se réveille à six heures."
+        ],
+        [
+          "6h10",
+          "D'Carla duscht um zéng op sechs.",
+          "Carla se douche à six heures dix."
+        ],
+        [
+          "6h45",
+          "D'Carla drénkt Kaffi um véierel vir siwen.",
+          "Carla prend le petit-déjeuner à six heures quarante-cinq."
+        ],
+        [
+          "7h15",
+          "D'Carla geet um véierel op siwen eraus.",
+          "Carla sort à sept heures quinze."
+        ],
+        [
+          "7h25",
           "D'Carla fiert um fënnef vir hallwer aacht mam Bus.",
           "Carla prend le bus à sept heures vingt-cinq."
         ],
         [
+          "8h10",
           "D'Carla telefonéiert a schreift um zéng op aacht E-Mailen.",
           "Carla téléphone et écrit des e-mails à huit heures dix."
         ],
         [
+          "12h30",
           "D'Carla ësst um hallwer eng am Restaurant.",
           "Carla mange au restaurant à douze heures trente."
         ],
         [
+          "13h45",
           "D'Carla schreift um véierel vir zwou nomëttes e Rapport.",
           "Carla écrit un rapport à treize heures quarante-cinq."
         ],
         [
+          "18h30",
           "D'Carla geet um hallwer siwen owes heem.",
           "Carla rentre chez elle à dix-huit heures trente."
         ],
         [
+          "20h20",
           "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee.",
           "Carla regarde la télé à vingt heures vingt."
         ],
         [
+          "23h50",
           "D'Carla geet um zéng vir Mëtternuecht schlofen.",
           "Carla va dormir à vingt-trois heures cinquante."
         ]
       ]
     },
     {
-      "type": "vocab",
+      "type": "callout",
+      "variant": "info",
+      "titre": "Questions utiles",
+      "lignes": [
+        "Um wéi vill Auer erwächt d'Carla? = À quelle heure Carla se réveille-t-elle ?",
+        "Um wéi vill Auer geet d'Carla eraus? = À quelle heure Carla sort-elle ?",
+        "Um wéi vill Auer geet d'Carla heem? = À quelle heure Carla rentre-t-elle ?",
+        "Wat mécht d'Carla um sechs Auer? = Que fait Carla à six heures ?",
+        "Wat mécht d'Carla um hallwer eng? = Que fait Carla à douze heures trente ?"
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Questionner une activité",
+      "entetes": [
+        "Question",
+        "Réponse",
+        "Sens"
+      ],
+      "lignes": [
+        [
+          "Um wéi vill Auer erwächt d'Carla?",
+          "D'Carla erwächt um sechs Auer.",
+          "On demande l'heure."
+        ],
+        [
+          "Wat mécht d'Carla um sechs Auer?",
+          "Si erwächt.",
+          "On demande l'activité."
+        ],
+        [
+          "Um wéi vill Auer ësst d'Carla am Restaurant?",
+          "Si ësst um hallwer eng am Restaurant.",
+          "On demande l'heure."
+        ],
+        [
+          "Wat mécht d'Carla um hallwer eng?",
+          "Si ësst am Restaurant.",
+          "On demande l'activité."
+        ]
+      ]
+    },
+    {
+      "type": "exemple",
       "titre": "Ma journée",
       "items": [
         [
@@ -1173,6 +1335,18 @@
       ]
     },
     {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Ne pas confondre",
+      "lignes": [
+        "schlofen = dormir : Ech schlofen.",
+        "schlofe goen = aller dormir / se coucher : Ech gi schlofen.",
+        "erausgoen = sortir : Ech ginn eraus.",
+        "heemgoen = rentrer chez soi : Ech ginn heem.",
+        "fueren signifie aller en véhicule : Ech fuere mam Bus."
+      ]
+    },
+    {
       "type": "dialogue",
       "titre": "Mini-dialogue",
       "echanges": [
@@ -1199,17 +1373,15 @@
         [
           "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee.",
           "Carla regarde la télé à vingt heures vingt."
+        ],
+        [
+          "Um wéi vill Auer geet d'Carla schlofen?",
+          "À quelle heure Carla va-t-elle dormir ?"
+        ],
+        [
+          "D'Carla geet um zéng vir Mëtternuecht schlofen.",
+          "Carla va dormir à vingt-trois heures cinquante."
         ]
-      ]
-    },
-    {
-      "type": "regle",
-      "titre": "Attention aux verbes proches",
-      "lignes": [
-        "schlofen = dormir : Ech schlofen.",
-        "schlofe goen = aller dormir / se coucher : Ech gi schlofen.",
-        "erausgoen = sortir : Ech ginn eraus.",
-        "heemgoen = rentrer chez soi : Ech ginn heem."
       ]
     }
   ]
