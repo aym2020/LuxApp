@@ -384,7 +384,7 @@ header {
 /* ── BLOC : EXEMPLES MIS EN AVANT ───────────────────────────────────────── */
 .cours-ex-row { padding: .6rem 0; border-bottom: 1px solid #242322; }
 .cours-ex-row:last-child { border-bottom: none; }
-.cours-ex-lu { font-weight: 700; font-size: 1.05rem; line-height: 1.4; }
+.cours-ex-lu { font-weight: 600; font-size: 1rem; line-height: 1.4; }
 .cours-ex-fr { font-size: .88rem; color: var(--muted-strong); margin-top: .15rem; }
 
 /* ── BLOC : TABLEAU GÉNÉRIQUE ───────────────────────────────────────────── */
