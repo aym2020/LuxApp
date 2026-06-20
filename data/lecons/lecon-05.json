@@ -1062,7 +1062,7 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon présente les nombres luxembourgeois, leur construction et quelques règles utiles pour compter."
+      "contenu": "Les nombres luxembourgeois se construisent à partir des unités, des dizaines et des centaines. La règle clé : l'unité se place <b>avant</b> la dizaine, et tout s'écrit <b>soudé</b> (sans espace)."
     },
     {
       "type": "vocab",
@@ -1124,7 +1124,41 @@
     },
     {
       "type": "vocab",
-      "titre": "Dizaines",
+      "titre": "13 à 19",
+      "items": [
+        [
+          "dräizéng",
+          "13"
+        ],
+        [
+          "véierzéng",
+          "14"
+        ],
+        [
+          "fofzéng",
+          "15"
+        ],
+        [
+          "siechzéng",
+          "16"
+        ],
+        [
+          "siwwenzéng",
+          "17"
+        ],
+        [
+          "uechtzéng",
+          "18"
+        ],
+        [
+          "nonzéng",
+          "19"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Dizaines, centaine, millier",
       "items": [
         [
           "zwanzeg",
@@ -1169,41 +1203,134 @@
       ]
     },
     {
-      "type": "regle",
-      "titre": "Construction des nombres composés",
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Construire de 21 à 99",
       "lignes": [
-        "unité + <b>an/a</b> + dizaine, soudé : <b>21 = eenanzwanzeg</b>",
-        "Devant u, n, i, t, e, d, z, o, h, a → <b>an</b> (een<b>an</b>zwanzeg, fënnef<b>an</b>drësseg)",
-        "Devant autre consonne → <b>a</b> (siwen<b>a</b>véierzeg = 47, een<b>a</b>fofzeg = 51)",
-        "L'unité se place <b>avant</b> la dizaine (contrairement au français)"
+        "Schéma : <b>unité + an/a + dizaine</b>, le tout soudé.",
+        "L'unité vient <b>avant</b> la dizaine (à l'inverse du français) : <b>fënnefanzwanzeg</b> = « cinq-et-vingt » = 25.",
+        "Le <b>1</b> devient <b>een</b> : <b>eenanzwanzeg</b> (21)."
       ]
     },
     {
-      "type": "regle",
+      "type": "tableau",
+      "titre": "an ou a ? (règle UNITEDZOHA)",
+      "entetes": [
+        "Dizaine",
+        "Liaison",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "20 — zwanzeg",
+          "an",
+          "eenanzwanzeg (21)"
+        ],
+        [
+          "30 — drësseg",
+          "an",
+          "eenandrësseg (31)"
+        ],
+        [
+          "40 — véierzeg",
+          "a",
+          "eenavéierzeg (41)"
+        ],
+        [
+          "50 — fofzeg",
+          "a",
+          "eenafofzeg (51)"
+        ],
+        [
+          "60 — siechzeg",
+          "a",
+          "eenasiechzeg (61)"
+        ],
+        [
+          "70 — siwwenzeg",
+          "a",
+          "eenasiwwenzeg (71)"
+        ],
+        [
+          "80 — aachtzeg",
+          "an",
+          "eenanaachtzeg (81)"
+        ],
+        [
+          "90 — nonzeg",
+          "an",
+          "eenannonzeg (91)"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Quand met-on -n ?",
+      "lignes": [
+        "On garde <b>an</b> si la dizaine commence par une voyelle ou par <b>n, d, t, z, h</b> (moyen mnémotechnique <b>UNITEDZOHA</b>).",
+        "Sinon, on met <b>a</b> : devant v, f, s (véierzeg, fofzeg, siechzeg, siwwenzeg)."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Tout est soudé, sans espace",
+      "lignes": [
+        "Aucune espace, même avec honnert et dausend : <b>zweehonnertfofzeg</b> (250), pas « zweehonnert fofzeg ».",
+        "Les nombres sont des adjectifs → <b>pas de majuscule</b>."
+      ]
+    },
+    {
+      "type": "tableau",
       "titre": "Centaines et milliers",
+      "entetes": [
+        "Nombre",
+        "Luxembourgeois"
+      ],
       "lignes": [
-        "⚠️ Tout est <b>soudé, sans espace</b>, même honnert et dausend",
-        "100 = <b>honnert</b> · 200 = <b>zweehonnert</b> · 250 = <b>zweehonnertfofzeg</b>",
-        "1000 = <b>dausend</b> · 2000 = <b>zweedausend</b>",
-        "121 = <b>honnerteenanzwanzeg</b> · 1219 = <b>dausendzweehonnertnonzéng</b>",
-        "Ce sont des adjectifs → pas de majuscule"
+        [
+          "100",
+          "honnert"
+        ],
+        [
+          "200",
+          "zweehonnert"
+        ],
+        [
+          "121",
+          "honnerteenanzwanzeg"
+        ],
+        [
+          "250",
+          "zweehonnertfofzeg"
+        ],
+        [
+          "1000",
+          "dausend"
+        ],
+        [
+          "2025",
+          "zweedausendfënnefanzwanzeg"
+        ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "Le « 2 » change selon le genre",
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le « 2 » s'accorde au genre",
       "lignes": [
-        "Masculin / Neutre → <b>zwee</b> (zwee Bussen)",
-        "Féminin → <b>zwou</b> (zwou Dieren)"
+        "Masculin / Neutre → <b>zwee</b> : zwee Bussen.",
+        "Féminin → <b>zwou</b> : zwou Dieren."
       ]
     },
     {
-      "type": "regle",
+      "type": "callout",
+      "variant": "info",
       "titre": "Les années",
       "lignes": [
-        "2025 = zweedausendfënnefanzwanzeg",
-        "1984 = nonzénghonnertvéieranaachtzeg",
-        "Les années suivent les mêmes règles que les nombres."
+        "Avant 2000, on lit par centaines : 1984 = <b>nonzénghonnertvéieranaachtzeg</b> (19-cent-84).",
+        "À partir de 2000 : 2025 = <b>zweedausendfënnefanzwanzeg</b>."
       ]
     },
     {
