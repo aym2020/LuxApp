@@ -291,20 +291,6 @@
       "note": "blo = bleu · D' = article neutre"
     },
     {
-      "id": 8,
-      "fr": "Le train est vert.",
-      "avant": "Den Zuch ass",
-      "trou": "gréng",
-      "apres": ".",
-      "choix": [
-        "blo",
-        "gréng",
-        "rout",
-        "giel"
-      ],
-      "note": "gréng = vert"
-    },
-    {
       "id": 9,
       "fr": "La tasse est jaune.",
       "avant": "D'Taass ass",
@@ -317,20 +303,6 @@
         "schwaarz"
       ],
       "note": "giel = jaune"
-    },
-    {
-      "id": 10,
-      "fr": "L'ordinateur est beige.",
-      "avant": "De Computer ass",
-      "trou": "beige",
-      "apres": ".",
-      "choix": [
-        "brong",
-        "wäiss",
-        "beige",
-        "rosa"
-      ],
-      "note": "beige = beige"
     },
     {
       "id": 11,
@@ -373,76 +345,6 @@
         "gro"
       ],
       "note": "rosa = rose"
-    },
-    {
-      "id": 14,
-      "fr": "Le téléphone est bleu.",
-      "avant": "Den Telefon ass",
-      "trou": "blo",
-      "apres": ".",
-      "choix": [
-        "rout",
-        "giel",
-        "blo",
-        "brong"
-      ],
-      "note": "blo = bleu"
-    },
-    {
-      "id": 15,
-      "fr": "La chaise est rouge.",
-      "avant": "De Stull ass",
-      "trou": "rout",
-      "apres": ".",
-      "choix": [
-        "gréng",
-        "rout",
-        "mof",
-        "gro"
-      ],
-      "note": "rout = rouge"
-    },
-    {
-      "id": 16,
-      "fr": "Le verre est blanc.",
-      "avant": "D'Glas ass",
-      "trou": "wäiss",
-      "apres": ".",
-      "choix": [
-        "schwaarz",
-        "beige",
-        "wäiss",
-        "rosa"
-      ],
-      "note": "wäiss = blanc"
-    },
-    {
-      "id": 17,
-      "fr": "L'avion est gris.",
-      "avant": "De Fliger ass",
-      "trou": "gro",
-      "apres": ".",
-      "choix": [
-        "gro",
-        "giel",
-        "brong",
-        "blo"
-      ],
-      "note": "gro = gris"
-    },
-    {
-      "id": 18,
-      "fr": "Le cahier est noir.",
-      "avant": "D'Heft ass",
-      "trou": "schwaarz",
-      "apres": ".",
-      "choix": [
-        "wäiss",
-        "schwaarz",
-        "rosa",
-        "gréng"
-      ],
-      "note": "schwaarz = noir"
     },
     {
       "id": 19,
@@ -561,10 +463,6 @@
       "lu": "D'Taass ass beige."
     },
     {
-      "fr": "Le verre est transparent.",
-      "lu": "D'Glas ass kloer."
-    },
-    {
       "fr": "Le tableau est violet.",
       "lu": "D'Bild ass mof."
     },
@@ -573,24 +471,8 @@
       "lu": "D'Fläsch ass rosa."
     },
     {
-      "fr": "La montre est rouge.",
-      "lu": "D'Auer ass rout."
-    },
-    {
       "fr": "Le stylo n'est pas bleu, il est noir.",
       "lu": "De Bic ass net blo, en ass schwaarz."
-    },
-    {
-      "fr": "La table est brune et grande.",
-      "lu": "Den Dësch ass brong an en ass grouss."
-    },
-    {
-      "fr": "L'image n'est pas colorée, elle est en noir et blanc.",
-      "lu": "D'Bild ass net faarweg, et ass schwaarz-wäiss."
-    },
-    {
-      "fr": "La bouteille est bleue.",
-      "lu": "D'Fläsch ass blo."
     },
     {
       "fr": "La chaise est brune.",
