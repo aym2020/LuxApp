@@ -560,11 +560,11 @@
       "lu": "verlobt"
     },
     {
-      "fr": "Célibataire (homme)",
+      "fr": "Un célibataire (homme)",
       "lu": "e Jonggesell"
     },
     {
-      "fr": "Célibataire (femme)",
+      "fr": "Une célibataire (femme)",
       "lu": "eng Jonggesellin"
     },
     {
@@ -696,16 +696,16 @@
       "lu": "Si huet keng Frëndin."
     },
     {
-      "fr": "Il est célibataire.",
-      "lu": "Hien ass leedeg."
+      "fr": "C'est un célibataire.",
+      "lu": "Hien ass e Jonggesell."
     },
     {
-      "fr": "Elle est célibataire.",
-      "lu": "Si ass leedeg."
+      "fr": "C'est une célibataire.",
+      "lu": "Si ass eng Jonggesellin."
     },
     {
-      "fr": "Jennifer est célibataire.",
-      "lu": "D'Jennifer ass Jonggesellin."
+      "fr": "Jennifer est une célibataire.",
+      "lu": "D'Jennifer ass eng Jonggesellin."
     },
     {
       "fr": "Paul Mercier est marié.",
@@ -751,122 +751,338 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "La situation familiale. Les statuts sont généralement invariables. La négation utilise net pour les statuts et kee/keng pour les noms."
+      "contenu": "Cette leçon sert à parler de la <b>situation familiale</b> : être marié, divorcé, séparé, pacsé, fiancé ou célibataire, mais aussi dire si l'on a des enfants, un partenaire ou des animaux."
     },
     {
-      "type": "vocab",
-      "titre": "Statuts familiaux",
-      "items": [
-        [
-          "bestuet",
-          "marié(e)"
-        ],
-        [
-          "net bestuet",
-          "non marié(e)"
-        ],
-        [
-          "gescheet",
-          "divorcé(e)"
-        ],
-        [
-          "getrennt",
-          "séparé(e)"
-        ],
-        [
-          "gepacst",
-          "pacsé(e)"
-        ],
-        [
-          "verlobt",
-          "fiancé(e)"
-        ],
-        [
-          "leedeg",
-          "célibataire"
-        ],
-        [
-          "e Jonggesell",
-          "célibataire (homme)"
-        ],
-        [
-          "eng Jonggesellin",
-          "célibataire (femme)"
-        ],
-        [
-          "Wittmann",
-          "veuf"
-        ],
-        [
-          "Wittfra",
-          "veuve"
-        ]
-      ]
-    },
-    {
-      "type": "regle",
-      "titre": "Négation",
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "La distinction importante",
       "lignes": [
-        "Statut → net : Hien ass net bestuet.",
-        "Nom masculin → kee : Hien huet kee Frënd.",
-        "Nom féminin ou pluriel → keng : Si huet keng Frëndin. / Ech hu keng Kanner."
+        "<b>leedeg</b> est un statut : il signifie <b>être célibataire</b>.",
+        "<b>e Jonggesell</b> est un nom : il signifie <b>un célibataire</b>, pour un homme.",
+        "<b>eng Jonggesellin</b> est un nom : il signifie <b>une célibataire</b>, pour une femme.",
+        "Donc : <b>Hien ass leedeg</b> = Il est célibataire.",
+        "Mais : <b>Hien ass e Jonggesell</b> = C'est un célibataire."
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Relations",
-      "items": [
+      "type": "tableau",
+      "titre": "Être célibataire ou être un célibataire",
+      "entetes": [
+        "Français",
+        "Luxembourgeois",
+        "Explication"
+      ],
+      "lignes": [
         [
+          "Il est célibataire.",
+          "Hien ass leedeg.",
+          "On décrit son statut familial."
+        ],
+        [
+          "Elle est célibataire.",
+          "Si ass leedeg.",
+          "On décrit son statut familial."
+        ],
+        [
+          "C'est un célibataire.",
+          "Hien ass e Jonggesell.",
+          "On utilise un nom masculin avec article."
+        ],
+        [
+          "C'est une célibataire.",
+          "Si ass eng Jonggesellin.",
+          "On utilise un nom féminin avec article."
+        ],
+        [
+          "Jennifer est célibataire.",
+          "D'Jennifer ass leedeg.",
+          "Statut : on attend leedeg."
+        ],
+        [
+          "Jennifer est une célibataire.",
+          "D'Jennifer ass eng Jonggesellin.",
+          "Nom : on attend eng Jonggesellin."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le verbe : sinn",
+      "lignes": [
+        "<b>sinn</b> sert à dire le statut : être marié, divorcé, séparé, pacsé, fiancé ou célibataire.",
+        "<b>Ech si bestuet.</b> = Je suis marié(e).",
+        "<b>Du bass bestuet.</b> = Tu es marié(e).",
+        "<b>Hien / Si ass bestuet.</b> = Il / Elle est marié(e).",
+        "<b>Mir si bestuet.</b> = Nous sommes marié(e)s.",
+        "<b>Dir sidd bestuet.</b> = Vous êtes marié(e)(s).",
+        "<b>Si si bestuet.</b> = Ils / Elles sont marié(e)s."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "sinn ou si ?",
+      "lignes": [
+        "Dans cette leçon, devant un statut comme <b>bestuet</b>, <b>gescheet</b>, <b>getrennt</b>, <b>gepacst</b>, <b>verlobt</b> ou <b>leedeg</b>, on écrit souvent <b>si</b> au lieu de <b>sinn</b>.",
+        "<b>Ech si bestuet.</b> = Je suis marié(e).",
+        "<b>Ech si leedeg.</b> = Je suis célibataire.",
+        "Mais devant <b>net</b>, on garde <b>sinn</b> : <b>Ech sinn net bestuet.</b>"
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les statuts familiaux",
+      "entetes": [
+        "Français",
+        "Luxembourgeois",
+        "Phrase modèle"
+      ],
+      "lignes": [
+        [
+          "marié(e)",
+          "bestuet",
+          "Ech si bestuet."
+        ],
+        [
+          "non marié(e)",
+          "net bestuet",
+          "Ech sinn net bestuet."
+        ],
+        [
+          "divorcé(e)",
+          "gescheet",
+          "Hien ass gescheet."
+        ],
+        [
+          "séparé(e)",
+          "getrennt",
+          "Si ass getrennt."
+        ],
+        [
+          "pacsé(e)",
+          "gepacst",
+          "Si si gepacst."
+        ],
+        [
+          "fiancé(e)",
+          "verlobt",
+          "Hien ass verlobt."
+        ],
+        [
+          "célibataire, statut",
+          "leedeg",
+          "Si ass leedeg."
+        ],
+        [
+          "un célibataire",
+          "e Jonggesell",
+          "Hien ass e Jonggesell."
+        ],
+        [
+          "une célibataire",
+          "eng Jonggesellin",
+          "Si ass eng Jonggesellin."
+        ],
+        [
+          "veuf",
+          "Wittmann",
+          "Hien ass Wittmann."
+        ],
+        [
+          "veuve",
+          "Wittfra",
+          "Si ass Wittfra."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le verbe : hunn",
+      "lignes": [
+        "<b>hunn</b> sert à dire ce que l'on a : un enfant, des enfants, un petit ami, une petite amie, un chien ou un chat.",
+        "<b>Ech hunn e Kand.</b> = J'ai un enfant.",
+        "<b>Du hues e Kand.</b> = Tu as un enfant.",
+        "<b>Hien / Si huet e Kand.</b> = Il / Elle a un enfant.",
+        "<b>Mir hunn e Kand.</b> = Nous avons un enfant.",
+        "<b>Dir hutt e Kand.</b> = Vous avez un enfant.",
+        "<b>Si hunn e Kand.</b> = Ils / Elles ont un enfant."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Relations, enfants et animaux",
+      "entetes": [
+        "Français",
+        "Luxembourgeois",
+        "Phrase modèle"
+      ],
+      "lignes": [
+        [
+          "un petit ami",
           "e Frënd",
-          "petit ami"
+          "Ech hunn e Frënd."
         ],
         [
+          "une petite amie",
           "eng Frëndin",
-          "petite amie"
-        ]
-      ]
-    },
-    {
-      "type": "vocab",
-      "titre": "Kanner",
-      "items": [
+          "Ech hunn eng Frëndin."
+        ],
         [
+          "un enfant",
           "e Kand",
-          "un enfant"
+          "Ech hunn e Kand."
         ],
         [
+          "des enfants",
           "Kanner",
-          "des enfants"
+          "Ech hunn zwee Kanner."
         ],
         [
+          "un garçon",
           "e Jong",
-          "un garçon"
+          "Ech hunn e Kand, e Jong."
         ],
         [
+          "des garçons",
           "Jongen",
-          "des garçons"
+          "Si hunn zwee Jongen."
         ],
         [
+          "une fille",
           "e Meedchen",
-          "une fille"
+          "Ech hunn e Kand, e Meedchen."
         ],
         [
+          "des filles",
           "Meedercher",
-          "des filles"
+          "Si hunn zwou Meedercher."
+        ],
+        [
+          "un chien",
+          "e Mupp",
+          "Si hunn e Mupp."
+        ],
+        [
+          "un chat",
+          "eng Kaz",
+          "Si hunn eng Kaz."
         ]
       ]
     },
     {
-      "type": "vocab",
-      "titre": "Déieren",
-      "items": [
+      "type": "callout",
+      "variant": "attention",
+      "titre": "La négation",
+      "lignes": [
+        "Avec un <b>statut</b>, on utilise <b>net</b> : Ech sinn net bestuet.",
+        "Avec un <b>nom masculin</b>, on utilise <b>kee</b> : Hien huet kee Frënd.",
+        "Avec un <b>nom féminin</b>, on utilise <b>keng</b> : Si huet keng Frëndin.",
+        "Avec un <b>pluriel</b>, on utilise aussi <b>keng</b> : Ech hu keng Kanner."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "net, kee ou keng",
+      "entetes": [
+        "Structure",
+        "Exemple",
+        "Pourquoi"
+      ],
+      "lignes": [
         [
-          "e Mupp",
-          "un chien"
+          "net + statut",
+          "Ech sinn net bestuet.",
+          "bestuet est un statut."
         ],
         [
-          "eng Kaz",
-          "un chat"
+          "kee + nom masculin",
+          "Hien huet kee Frënd.",
+          "e Frënd est masculin."
+        ],
+        [
+          "keng + nom féminin",
+          "Si huet keng Frëndin.",
+          "eng Frëndin est féminin."
+        ],
+        [
+          "keng + pluriel",
+          "Ech hu keng Kanner.",
+          "Kanner est pluriel."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Questions utiles",
+      "lignes": [
+        "<b>Bass du bestuet?</b> = Es-tu marié(e) ?",
+        "<b>Sidd Dir bestuet?</b> = Êtes-vous marié(e) ?",
+        "<b>Bass du leedeg?</b> = Es-tu célibataire ?",
+        "<b>Hues du Kanner?</b> = As-tu des enfants ?",
+        "<b>Hutt Dir Kanner?</b> = Avez-vous des enfants ?",
+        "<b>Hues du e Frënd?</b> = As-tu un petit ami ?",
+        "<b>Hues du eng Frëndin?</b> = As-tu une petite amie ?"
+      ]
+    },
+    {
+      "type": "exemple",
+      "titre": "Phrases courtes à mémoriser",
+      "items": [
+        [
+          "Ech si bestuet.",
+          "Je suis marié(e)."
+        ],
+        [
+          "Ech sinn net bestuet.",
+          "Je ne suis pas marié(e)."
+        ],
+        [
+          "Ech si leedeg.",
+          "Je suis célibataire."
+        ],
+        [
+          "Hien ass leedeg.",
+          "Il est célibataire."
+        ],
+        [
+          "Si ass leedeg.",
+          "Elle est célibataire."
+        ],
+        [
+          "Hien ass e Jonggesell.",
+          "C'est un célibataire."
+        ],
+        [
+          "Si ass eng Jonggesellin.",
+          "C'est une célibataire."
+        ],
+        [
+          "Ech hunn e Frënd.",
+          "J'ai un petit ami."
+        ],
+        [
+          "Ech hunn eng Frëndin.",
+          "J'ai une petite amie."
+        ],
+        [
+          "Ech hunn e Kand.",
+          "J'ai un enfant."
+        ],
+        [
+          "Ech hunn zwee Kanner.",
+          "J'ai deux enfants."
+        ],
+        [
+          "Ech hu keng Kanner.",
+          "Je n'ai pas d'enfants."
+        ],
+        [
+          "Si hunn e Mupp an eng Kaz.",
+          "Ils ont un chien et un chat."
         ]
       ]
     },
@@ -874,18 +1090,6 @@
       "type": "dialogue",
       "titre": "Situation familiale",
       "echanges": [
-        [
-          "Sidd Dir bestuet?",
-          "Êtes-vous marié(e) ?"
-        ],
-        [
-          "Jo, ech si bestuet.",
-          "Oui, je suis marié(e)."
-        ],
-        [
-          "Nee, ech sinn net bestuet.",
-          "Non, je ne suis pas marié(e)."
-        ],
         [
           "Bass du bestuet?",
           "Es-tu marié(e) ?"
@@ -897,6 +1101,30 @@
         [
           "Nee, ech sinn net bestuet.",
           "Non, je ne suis pas marié(e)."
+        ],
+        [
+          "Bass du leedeg?",
+          "Es-tu célibataire ?"
+        ],
+        [
+          "Jo, ech si leedeg.",
+          "Oui, je suis célibataire."
+        ],
+        [
+          "Ass hien leedeg?",
+          "Est-il célibataire ?"
+        ],
+        [
+          "Jo, hien ass leedeg.",
+          "Oui, il est célibataire."
+        ],
+        [
+          "Ass hien e Jonggesell?",
+          "Est-ce un célibataire ?"
+        ],
+        [
+          "Jo, hien ass e Jonggesell.",
+          "Oui, c'est un célibataire."
         ]
       ]
     },
@@ -904,22 +1132,6 @@
       "type": "dialogue",
       "titre": "Les enfants",
       "echanges": [
-        [
-          "Hutt Dir Kanner?",
-          "Avez-vous des enfants ?"
-        ],
-        [
-          "Jo, ech hunn e Kand.",
-          "Oui, j'ai un enfant."
-        ],
-        [
-          "Jo, ech hunn zwee Kanner.",
-          "Oui, j'ai deux enfants."
-        ],
-        [
-          "Nee, ech hu keng Kanner.",
-          "Non, je n'ai pas d'enfants."
-        ],
         [
           "Hues du Kanner?",
           "As-tu des enfants ?"
@@ -935,24 +1147,15 @@
         [
           "Nee, ech hu keng Kanner.",
           "Non, je n'ai pas d'enfants."
+        ],
+        [
+          "Hutt Dir Kanner?",
+          "Avez-vous des enfants ?"
+        ],
+        [
+          "Jo, ech hunn zwee Kanner, e Meedchen an e Jong.",
+          "Oui, j'ai deux enfants, une fille et un garçon."
         ]
-      ]
-    },
-    {
-      "type": "vocab",
-      "titre": "Exemples",
-      "items": [
-        ["Ech hunn e Frënd.", "J'ai un petit ami."],
-        ["Ech hunn eng Frëndin.", "J'ai une petite amie."],
-        ["Ech hunn e Kand, e Jong.", "J'ai un enfant, un garçon."],
-        ["Ech hunn e Kand, e Meedchen.", "J'ai un enfant, une fille."],
-        ["Ech hunn zwee Kanner, e Meedchen an e Jong.", "J'ai deux enfants, une fille et un garçon."],
-        ["De Paul Mercier ass bestuet. Hien huet zwee Kanner.", "Paul Mercier est marié. Il a deux enfants."],
-        ["Den Hubert Schmidt ass gescheet. Hien huet keng Kanner.", "Hubert Schmidt est divorcé. Il n'a pas d'enfants."],
-        ["D'Jeanne Schanck ass net bestuet.", "Jeanne Schanck n'est pas mariée."],
-        ["D'Jennifer ass Jonggesellin. Si huet e Frënd.", "Jennifer est célibataire. Elle a un petit ami."],
-        ["De Jean Thilges an d'Lydie Thilges si bestuet. Si hunn véier Kanner.", "Jean Thilges et Lydie Thilges sont mariés. Ils ont quatre enfants."],
-        ["Den Här Gustavsson an d'Madame Gustavsson si bestuet. Si hunn keng Kanner. Si hunn e Mupp an eng Kaz.", "Monsieur et Madame Gustavsson sont mariés. Ils n'ont pas d'enfants. Ils ont un chien et un chat."]
       ]
     },
     {
@@ -960,20 +1163,28 @@
       "titre": "Iwwer d'Famill",
       "echanges": [
         [
-          "Ass de Paul bestuet?",
-          "Paul est-il marié ?"
+          "Ass de Paul Mercier bestuet?",
+          "Paul Mercier est-il marié ?"
         ],
         [
-          "Jo, hien ass bestuet an huet zwee Kanner.",
-          "Oui, il est marié et a deux enfants."
+          "Jo, hie ass bestuet. Hien huet zwee Kanner.",
+          "Oui, il est marié. Il a deux enfants."
+        ],
+        [
+          "Ass den Hubert Schmidt bestuet?",
+          "Hubert Schmidt est-il marié ?"
+        ],
+        [
+          "Nee, hien ass gescheet. Hien huet keng Kanner.",
+          "Non, il est divorcé. Il n'a pas d'enfants."
         ],
         [
           "Ass d'Jennifer bestuet?",
           "Jennifer est-elle mariée ?"
         ],
         [
-          "Nee, si ass Jonggesellin an huet e Frënd.",
-          "Non, elle est célibataire et a un petit ami."
+          "Nee, si ass leedeg. Si huet e Frënd.",
+          "Non, elle est célibataire. Elle a un petit ami."
         ]
       ]
     }
