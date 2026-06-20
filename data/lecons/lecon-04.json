@@ -117,7 +117,31 @@
       "lu": "Déck",
       "fr": "Épais / Épaisse",
       "note": "Contraire : Dënn"
-    }
+    },
+    {
+      "id": 19,
+      "lu": "Schéin",
+      "fr": "Beau / Belle",
+      "note": "Contraire : Ellen"
+    },
+    {
+      "id": 20,
+      "lu": "Ellen",
+      "fr": "Laid(e)",
+      "note": "Contraire : Schéin"
+    },
+    {
+      "id": 21,
+      "lu": "Futti",
+      "fr": "Cassé(e) / En panne",
+      "note": "Contraire : Ganz"
+    },
+    {
+      "id": 22,
+      "lu": "Ganz",
+      "fr": "Intact(e) / Entier",
+      "note": "Contraire : Futti · ≠ ganz = très"
+    },
   ],
   "quiz": [
     {
@@ -299,7 +323,47 @@
         "Eidel",
         "Niddereg"
       ]
-    }
+    },
+    {
+      "id": 19,
+      "question": "Quel est le contraire de SCHÉIN ?",
+      "reponse": "Ellen",
+      "distracteurs": [
+        "Al",
+        "Kleng",
+        "Lues"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Quel est le contraire de ELLEN ?",
+      "reponse": "Schéin",
+      "distracteurs": [
+        "Grouss",
+        "Nei",
+        "Voll"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "Quel est le contraire de FUTTI ?",
+      "reponse": "Ganz",
+      "distracteurs": [
+        "Eidel",
+        "Al",
+        "Dënn"
+      ]
+    },
+    {
+      "id": 22,
+      "question": "Quel est le contraire de GANZ ?",
+      "reponse": "Futti",
+      "distracteurs": [
+        "Voll",
+        "Nei",
+        "Héich"
+      ]
+    },
   ],
   "trous": [
     {
@@ -713,6 +777,30 @@
     {
       "fr": "Le muret est bas.",
       "lu": "D'Mauer ass niddereg."
+    },
+    {
+      "fr": "Beau / Belle",
+      "lu": "Schéin"
+    },
+    {
+      "fr": "Laid(e)",
+      "lu": "Ellen"
+    },
+    {
+      "fr": "Cassé(e)",
+      "lu": "Futti"
+    },
+    {
+      "fr": "Intact(e)",
+      "lu": "Ganz"
+    },
+    {
+      "fr": "La voiture est belle.",
+      "lu": "Den Auto ass schéin."
+    },
+    {
+      "fr": "Le smartphone est cassé.",
+      "lu": "Den Handy ass futti."
     }
   ],
   "cours": [
