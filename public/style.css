@@ -149,24 +149,27 @@ header {
   overflow: hidden;
   border: 1px solid #2f2d29; border-top: 3px solid transparent;
 }
-/* Face avant : question — accent or, fond sombre doux */
-.card-front {
-  background: linear-gradient(180deg, var(--surface2), var(--surface));
-  border-top-color: var(--accent);
+/* Les faces ne portent que la mise en page ; la couleur suit la LANGUE
+   (classes .face-fr / .face-lu posées en JS), pas la face. */
+.card-back { transform: rotateY(180deg); }
+
+/* Français → bleu · Luxembourgeois → or. Distinction nette des deux côtés. */
+.face-fr {
+  border-top-color: var(--info);
+  background: linear-gradient(180deg, rgba(111,176,242,.14), var(--surface));
 }
-/* Face arrière : réponse — accent ambre, légère teinte chaude pour la distinguer */
-.card-back {
-  background: linear-gradient(180deg, #211f1a, var(--surface));
-  border-top-color: var(--accent-2);
-  transform: rotateY(180deg);
+.face-lu {
+  border-top-color: var(--accent);
+  background: linear-gradient(180deg, rgba(245,207,77,.14), var(--surface));
 }
 
 .card-label {
   font-size: .62rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
   padding: .22rem .7rem; border-radius: 999px; margin-bottom: .8rem;
-  background: rgba(245,207,77,.16); color: var(--accent); flex-shrink: 0;
+  background: rgba(255,255,255,.08); color: var(--muted-strong); flex-shrink: 0;
 }
-.card-back .card-label { background: rgba(255,175,94,.16); color: var(--accent-2); }
+.face-fr .card-label { background: rgba(111,176,242,.18); color: var(--info); }
+.face-lu .card-label { background: rgba(245,207,77,.18); color: var(--accent); }
 .card-word {
   font-family: var(--title);
   font-size: clamp(1.4rem, 6vw, 2.4rem);

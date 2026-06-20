@@ -400,7 +400,7 @@ function openReviewSetup() {
   // Recalcule les compteurs dès qu'une case change (leçons, types, focus).
   if (!reviewListenerAttached) {
     document.getElementById('view-review-setup')
-      .addEventListener('change', refreshReviewAvailability);
+      .addEventListener('change', scheduleReviewRefresh);
     reviewListenerAttached = true;
   }
 
@@ -436,19 +436,26 @@ function setFocusAvailability(focus, count, total, emptyHint) {
 // Recalcule les 3 compteurs et empêche de rester sur un focus vide.
 function refreshReviewAvailability() {
   const { leconIds, types } = readReviewSelection();
-  const total = getAvailableReviewCount(leconIds, types, 'aleatoire'); // pool brut sans filtre
 
-  setFocusAvailability('aleatoire',  total, total, 'Aucune question');
-  setFocusAvailability('connu',
-    getAvailableReviewCount(leconIds, types, 'connu'),     total, 'Disponible après tes premières réponses.');
-  setFocusAvailability('difficile',
-    getAvailableReviewCount(leconIds, types, 'difficile'), total, 'Disponible après tes premières erreurs.');
+  // 1 seule passe ET 1 seule lecture du localStorage (voir getReviewCounts).
+  const { total, connu, difficile } = getReviewCounts(leconIds, types);
+
+  setFocusAvailability('aleatoire', total,     total, 'Aucune question');
+  setFocusAvailability('connu',     connu,     total, 'Disponible après tes premières réponses.');
+  setFocusAvailability('difficile', difficile, total, 'Disponible après tes premières erreurs.');
 
   // Si le focus coché est devenu indisponible, on revient à Aléatoire.
   const checked = document.querySelector('input[name="rs-focus"]:checked');
   if (checked && checked.disabled) {
     document.querySelector('input[name="rs-focus"][value="aleatoire"]').checked = true;
   }
+}
+
+// Débounce : un clic rapide sur plusieurs cases ne déclenche qu'un recalcul.
+let reviewRefreshTimer = null;
+function scheduleReviewRefresh() {
+  clearTimeout(reviewRefreshTimer);
+  reviewRefreshTimer = setTimeout(refreshReviewAvailability, 80);
 }
 
 // Coche / décoche toutes les cases d'un conteneur.
@@ -691,6 +698,14 @@ function renderFC() {
   const bWord  = fcDirLuFr ? c.fr : c.lu;
   const fLabel = fcDirLuFr ? 'Lëtzebuergesch' : 'Français';
   const bLabel = fcDirLuFr ? 'Français' : 'Lëtzebuergesch';
+
+  // Couleur par langue : bleu = français, or = luxembourgeois (suit la langue, pas la face).
+  const frontFace = cardEl.querySelector('.card-front');
+  const backFace  = cardEl.querySelector('.card-back');
+  frontFace.classList.toggle('face-lu', fcDirLuFr);
+  frontFace.classList.toggle('face-fr', !fcDirLuFr);
+  backFace.classList.toggle('face-lu', !fcDirLuFr);
+  backFace.classList.toggle('face-fr', fcDirLuFr);
 
   document.getElementById('fc-front-label').textContent = fLabel;
   document.getElementById('fc-front-word').textContent  = fWord;

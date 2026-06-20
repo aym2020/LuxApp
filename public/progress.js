@@ -454,6 +454,24 @@ function getAvailableReviewCount(leconIds, types, focus) {
   return all.length;
 }
 
+// Compte les 3 focus EN UNE SEULE PASSE (1 seule lecture du localStorage).
+// Utilisé par l'écran de configuration : évite de relire les stats des
+// milliers de fois à chaque case cochée (le calcul était trop lent).
+function getReviewCounts(leconIds, types) {
+  const pool = buildReviewPool(leconIds, types);
+  const store = getStatsStore(); // lu UNE fois, pas par question
+  let connu = 0, difficile = 0;
+  for (const item of pool) {
+    const byLecon = store[item.leconId];
+    const s = byLecon && byLecon[item.type] && byLecon[item.type][item.qid];
+    if (s && s.attempts > 0) {
+      connu++;
+      if (s.wrongTotal > 0 || s.difficultyScore > 0 || s.lastWrongAt !== null) difficile++;
+    }
+  }
+  return { total: pool.length, connu, difficile };
+}
+
 // ─── STATISTIQUES D'UNE LEÇON ───────────────────────────────────────────────
 // Maîtrisée seulement si TOUTES les questions sont au niveau 3.
 function calculateLessonStats(leconId) {
