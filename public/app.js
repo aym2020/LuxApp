@@ -40,6 +40,7 @@ function renderLessons() {
   lecons.forEach(l => {
     const el = document.createElement('div');
     el.className = 'lecon-card';
+    el.style.setProperty('--lc', l.couleur);
     el.innerHTML = `
       <div class="lecon-card-accent" style="background:${l.couleur}"></div>
       <div class="lecon-card-body">

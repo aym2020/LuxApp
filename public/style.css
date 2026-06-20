@@ -57,24 +57,29 @@ header {
   display: flex; align-items: center; gap: 1rem;
   background: var(--surface); border: 1px solid #2a2926;
   border-radius: var(--r); padding: 1rem 1.1rem;
-  cursor: pointer; transition: border-color .2s, background .2s;
+  cursor: pointer; transition: border-color .2s, background .2s, box-shadow .2s;
   /* min tap target */
   min-height: 64px;
 }
 .lecon-card:active { background: var(--surface2); }
-.lecon-card:hover { border-color: #3a3935; }
-.lecon-card-accent { width: 5px; border-radius: 999px; align-self: stretch; flex-shrink: 0; }
+@media (hover: hover) {
+  .lecon-card:hover {
+    border-color: var(--lc, #3a3935);
+    box-shadow: 0 0 0 1px var(--lc, transparent), 0 6px 20px rgba(0,0,0,.3);
+  }
+}
+.lecon-card-accent { width: 6px; border-radius: 999px; align-self: stretch; flex-shrink: 0; box-shadow: 0 0 12px -2px var(--lc, transparent); }
 .lecon-card-body { flex: 1; min-width: 0; }
-.lecon-card-num   { font-size: .65rem; font-weight: 800; letter-spacing: .12em; color: var(--muted); margin-bottom: .2rem; }
-.lecon-card-titre { font-size: 1rem; font-weight: 700; letter-spacing: -.01em; }
+.lecon-card-num   { font-size: .65rem; font-weight: 800; letter-spacing: .12em; color: var(--lc, var(--muted)); margin-bottom: .2rem; }
+.lecon-card-titre { font-size: 1.05rem; font-weight: 700; letter-spacing: -.01em; }
 .lecon-card-sous  { font-size: .82rem; color: var(--muted-strong); margin-top: .2rem; }
-.lecon-card-counts { display: flex; gap: .4rem; margin-top: .5rem; flex-wrap: wrap; }
+.lecon-card-counts { display: flex; gap: .4rem; margin-top: .55rem; flex-wrap: wrap; }
 .lecon-pill {
-  font-size: .62rem; font-weight: 700; padding: .2rem .55rem;
+  font-size: .62rem; font-weight: 700; padding: .22rem .55rem;
   border-radius: 999px; border: 1px solid #34322d; color: var(--muted-strong);
   background: rgba(255,255,255,.02);
 }
-.lecon-arrow { font-size: 1.3rem; color: var(--muted); flex-shrink: 0; }
+.lecon-arrow { font-size: 1.5rem; color: var(--lc, var(--muted)); flex-shrink: 0; opacity: .85; }
 
 /* ── LEÇON HEADER ────────────────────────────────────────────────────────── */
 .lecon-header {
@@ -112,7 +117,7 @@ header {
 .progress-wrap { flex: 1; display: flex; align-items: center; gap: .6rem; width: 100%; }
 .progress-wrap span { font-size: .68rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
 .progress-bar { flex: 1; height: 3px; background: #2a2926; border-radius: 999px; overflow: hidden; }
-.progress-bar div { height: 100%; background: var(--accent); border-radius: 999px; transition: width .35s ease; }
+.progress-bar div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 999px; transition: width .35s ease; }
 
 .dir-btn {
   font-size: .68rem; font-weight: 700; font-family: var(--title);
@@ -140,17 +145,19 @@ header {
 .card-front, .card-back {
   position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--r);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 1.2rem 1.4rem; box-shadow: 0 6px 30px rgba(0,0,0,.5);
+  padding: 1.4rem; box-shadow: 0 8px 34px rgba(0,0,0,.5);
   overflow: hidden;
 }
-.card-front { background: var(--card-bg); }
-.card-back  { background: var(--surface); border: 1px solid #2a2926; transform: rotateY(180deg); }
+.card-front, .card-back { border-top: 3px solid transparent; }
+.card-front { background: var(--card-bg); border-top-color: var(--accent); }
+.card-back  { background: var(--surface); border: 1px solid #2a2926; border-top: 3px solid var(--accent-2); transform: rotateY(180deg); }
 
 .card-label {
   font-size: .6rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-  padding: .18rem .65rem; border-radius: 999px; margin-bottom: .6rem;
-  background: rgba(232,197,71,.1); color: var(--accent); flex-shrink: 0;
+  padding: .22rem .7rem; border-radius: 999px; margin-bottom: .7rem;
+  background: rgba(245,207,77,.16); color: #b88a00; flex-shrink: 0;
 }
+.card-back .card-label { background: rgba(255,175,94,.16); color: var(--accent-2); }
 .card-word {
   font-family: var(--serif);
   font-size: clamp(1rem, 4.5vw, 2rem);
@@ -184,32 +191,56 @@ header {
 
 /* ── QUIZ / TROU SHARED ──────────────────────────────────────────────────── */
 .question-card {
-  width: 100%; background: var(--surface); border: 1px solid #2a2926;
-  border-radius: var(--r); padding: 1.2rem 1.4rem; text-align: center; margin-bottom: .9rem;
+  width: 100%; position: relative; overflow: hidden;
+  background: linear-gradient(180deg, var(--surface2), var(--surface));
+  border: 1px solid #2f2d29;
+  border-radius: var(--r); padding: 1.4rem 1.4rem 1.3rem; text-align: center; margin-bottom: .9rem;
+  box-shadow: 0 4px 22px rgba(0,0,0,.35);
 }
-.question-label { font-size: .6rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .6rem; }
+.question-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+.question-label { font-size: .62rem; color: var(--muted-strong); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .6rem; }
 .question-word  {
-  font-weight: 700; letter-spacing: -.01em;
-  font-size: clamp(1.05rem, 3.8vw, 1.8rem);
+  font-weight: 800; letter-spacing: -.01em;
+  font-size: clamp(1.15rem, 4vw, 1.9rem);
   overflow-wrap: break-word; word-break: break-word;
 }
 
-.choices { width: 100%; display: flex; flex-direction: column; gap: .5rem; }
+.choices { width: 100%; display: flex; flex-direction: column; gap: .55rem; counter-reset: choice; }
 .choice {
   width: 100%;
   /* min 44px tap target */
-  min-height: 48px;
-  padding: .75rem 1rem;
-  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  min-height: 52px;
+  padding: .7rem .9rem;
+  background: var(--surface); border: 1px solid #34322d; border-radius: var(--r);
   color: var(--text); font-family: var(--title);
-  font-size: clamp(.8rem, 3vw, .9rem);
+  font-size: clamp(.85rem, 3vw, .95rem);
   font-weight: 700; cursor: pointer; text-align: left; transition: all .12s;
-  display: flex; align-items: center;
+  display: flex; align-items: center; gap: .75rem;
+  counter-increment: choice;
   overflow-wrap: break-word; word-break: break-word;
 }
-.choice:active { background: var(--surface2); }
-.choice.correct { border-color: var(--correct); background: rgba(90,212,168,.08); color: var(--correct); }
-.choice.wrong   { border-color: var(--wrong);   background: rgba(232,112,106,.08); color: var(--wrong); }
+/* Badge de lettre (A, B, C, D) coloré devant chaque choix */
+.choice::before {
+  content: counter(choice, upper-alpha);
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  background: rgba(245,207,77,.14); color: var(--accent);
+  font-size: .8rem; font-weight: 800;
+  transition: all .12s;
+}
+.choice:active { background: var(--surface2); transform: scale(.99); }
+@media (hover: hover) {
+  .choice:hover { border-color: var(--accent); background: rgba(245,207,77,.06); }
+}
+.choice.correct { border-color: var(--correct); background: rgba(84,224,173,.1); color: var(--correct); }
+.choice.wrong   { border-color: var(--wrong);   background: rgba(239,122,115,.1); color: var(--wrong); }
+.choice.correct::before { background: rgba(84,224,173,.2); color: var(--correct); }
+.choice.wrong::before   { background: rgba(239,122,115,.2); color: var(--wrong); }
 
 .result-card {
   width: 100%; text-align: center; margin-top: 1.2rem; padding: 1.4rem;
@@ -225,15 +256,15 @@ header {
 }
 
 /* ── À TROU ─────────────────────────────────────────────────────────────── */
-.trou-fr   { font-size: .82rem; color: var(--muted-strong); margin-bottom: .7rem; }
+.trou-fr   { font-size: .88rem; color: var(--muted-strong); margin-bottom: .8rem; font-weight: 500; }
 .trou-sentence {
-  font-weight: 500;
-  font-size: clamp(1rem, 3.2vw, 1.4rem);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 3.4vw, 1.5rem);
   line-height: 1.7; overflow-wrap: break-word; word-break: break-word;
 }
 .trou-blank {
-  display: inline-block; min-width: 52px; border-bottom: 2px solid var(--accent);
-  color: var(--accent); font-style: normal; padding: 0 .25rem; margin: 0 .15rem;
+  display: inline-block; min-width: 56px; border-bottom: 2px solid var(--accent);
+  color: var(--accent); font-style: normal; font-weight: 800; padding: 0 .3rem; margin: 0 .15rem;
   text-align: center; transition: color .2s;
 }
 .trou-note { font-size: .68rem; color: var(--correct); margin-top: .7rem; }
@@ -409,12 +440,12 @@ header {
 .cours-table td:first-child { font-weight: 600; }
 
 /* ── PROGRESSION : POINTS DE NIVEAU ─────────────────────────────────────── */
-.level-dots { display: flex; gap: 4px; justify-content: center; margin-bottom: .6rem; }
+.level-dots { display: flex; gap: 5px; justify-content: center; margin-bottom: .7rem; }
 .level-dot {
-  width: 6px; height: 6px; border-radius: 999px;
-  background: #3a3935;
+  width: 7px; height: 7px; border-radius: 999px;
+  background: #3a3935; transition: background .2s;
 }
-.level-dot.on { background: var(--accent); }
+.level-dot.on { background: var(--accent); box-shadow: 0 0 6px rgba(245,207,77,.5); }
 
 /* ── PROGRESSION : PASTILLE SUR LES CARTES D'ACCUEIL ────────────────────── */
 .lecon-progress {
