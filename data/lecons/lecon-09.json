@@ -581,10 +581,10 @@
       "lu": "Ech schwätzen Portugisesch."
     }
   ],
-  "cours": [
+  "cours":[
     {
       "type": "texte",
-      "contenu": "Le nom de la langue est invariable. ⚠️ Ne pas confondre avec la nationalité : <b>Fransous</b> (nationalité) ≠ <b>Franséisch</b> (langue)."
+      "contenu": "Le nom d'une langue est <b>invariable</b> : il ne change jamais selon le genre ou la personne. <b>Ech schwätzen Lëtzebuergesch.</b>"
     },
     {
       "type": "vocab",
@@ -623,46 +623,110 @@
           "japonais"
         ],
         [
-          "Koreanesch",
-          "coréen"
-        ],
-        [
           "Chineesesch",
           "chinois"
-        ],
-        [
-          "Hollännesch ",
-          "néerlandais"
         ],
         [
           "Schweedesch",
           "suédois"
         ],
         [
+          "Hollännesch",
+          "néerlandais"
+        ],
+        [
           "Flammännesch",
           "flamand"
         ],
         [
-          "Griichesch", 
+          "Griichesch",
           "grec"
         ],
         [
-          "Polnesch", 
+          "Polnesch",
           "polonais"
         ],
         [
-          "Russesch", 
+          "Russesch",
           "russe"
+        ],
+        [
+          "Koreanesch",
+          "coréen"
         ]
       ]
     },
     {
-      "type": "regle",
-      "titre": "Le verbe parler",
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Langue ≠ nationalité",
       "lignes": [
-        "<b>schwätzen</b> = parler",
-        "Ech schwätzen, Du schwätz, Hien/Si schwätzt",
-        "Négation → <b>net</b> : Hien schwätzt net Japanesch."
+        "Ne confonds pas le nom de la <b>langue</b> avec celui de la <b>nationalité</b> — ils se ressemblent mais sont différents.",
+        "<b>Fransous</b> (un Français) ≠ <b>Franséisch</b> (le français).",
+        "<b>Spuenier</b> (un Espagnol) ≠ <b>Spuenesch</b> (l'espagnol).",
+        "C'est exactement ce que testent les pièges du quiz : repère bien la terminaison <b>-esch</b> des langues."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "schwätzen (parler) — conjugaison complète",
+      "entetes": [
+        "Personne",
+        "Forme"
+      ],
+      "lignes": [
+        [
+          "ech (je)",
+          "schwätzen"
+        ],
+        [
+          "du (tu)",
+          "schwätz"
+        ],
+        [
+          "hien / si (il/elle)",
+          "schwätzt"
+        ],
+        [
+          "mir (nous)",
+          "schwätzen"
+        ],
+        [
+          "Dir (vous)",
+          "schwätzt"
+        ],
+        [
+          "si (ils/elles)",
+          "schwätzen"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Affirmer et nier",
+      "lignes": [
+        "Affirmation : <b>Hien schwätzt Japanesch.</b>",
+        "Négation : on ajoute <b>net</b> avant la langue : <b>Hien schwätzt net Japanesch.</b>"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Demander quelle langue",
+      "lignes": [
+        "<b>Wat fir eng Sprooch schwätzt du?</b> = Quelle langue parles-tu ?",
+        "<b>Wat fir eng Sprooch schwätzt Dir?</b> = Quelle langue parlez-vous ? (formel)",
+        "Au pluriel (plusieurs langues) : <b>Wat fir Sprooche schwätzt hien?</b> = Quelles langues parle-t-il ?"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Parler plusieurs langues",
+      "lignes": [
+        "On relie les langues avec <b>an</b> (et) : <b>Ech schwätzen Franséisch an Lëtzebuergesch.</b>",
+        "Avec une liste de trois langues ou plus, on utilise des virgules puis <b>a</b> avant la dernière : <b>Portugisesch, Franséisch a Lëtzebuergesch.</b>"
       ]
     },
     {
@@ -670,16 +734,24 @@
       "titre": "Exemples",
       "echanges": [
         [
-          "De Ronaldo schwätzt Portugisesch.",
-          "Ronaldo parle portugais."
+          "Wat fir eng Sprooch schwätzt du?",
+          "Quelle langue parles-tu ?"
         ],
         [
           "Ech schwätzen Lëtzebuergesch.",
           "Je parle luxembourgeois."
         ],
         [
-          "Wat fir eng Sprooch schwätzt du?",
-          "Quelle langue parles-tu ?"
+          "De Ronaldo schwätzt Portugisesch.",
+          "Ronaldo parle portugais."
+        ],
+        [
+          "Hien schwätzt zwou Sproochen.",
+          "Il parle deux langues."
+        ],
+        [
+          "Si schwätzt net Chineesesch.",
+          "Elle ne parle pas chinois."
         ]
       ]
     }
