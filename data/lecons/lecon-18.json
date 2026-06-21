@@ -1,0 +1,957 @@
+{
+  "id": 18,
+  "titre": "E Rendez-vous maachen",
+  "titre_fr": "Prendre un rendez-vous",
+  "couleur": "#c86fb0",
+  "instructions": {
+    "flashcards": "Mémorise les jours de la semaine, les expressions pour prendre un rendez-vous (demander, accepter, refuser, remercier) et le petit vocabulaire du dialogue. Apprends-les par cœur comme des blocs.",
+    "quiz": "Lis une expression, un jour ou un mot en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont des expressions proches, d'autres jours ou des mots de sens voisin.",
+    "trous": "Complète chaque phrase avec l'expression de prise de rendez-vous ou le jour correct. Le trou porte toujours sur la formule clé de la conversation. Les distracteurs restent des expressions de rendez-vous plausibles.",
+    "ecriture": "Traduis en luxembourgeois les jours, les expressions, les questions, les réponses et les phrases du dialogue. Respecte l'orthographe des expressions figées et l'accusatif dans e schéinen Dag."
+  },
+  "flashcards": [
+    {
+      "id": 1,
+      "lu": "Méindeg",
+      "fr": "lundi",
+      "note": "e Méindeg = (un) lundi."
+    },
+    {
+      "id": 2,
+      "lu": "Dënschdeg",
+      "fr": "mardi"
+    },
+    {
+      "id": 3,
+      "lu": "Mëttwoch",
+      "fr": "mercredi"
+    },
+    {
+      "id": 4,
+      "lu": "Donneschdeg",
+      "fr": "jeudi"
+    },
+    {
+      "id": 5,
+      "lu": "Freideg",
+      "fr": "vendredi"
+    },
+    {
+      "id": 6,
+      "lu": "Samschdeg",
+      "fr": "samedi"
+    },
+    {
+      "id": 7,
+      "lu": "Sonndeg",
+      "fr": "dimanche"
+    },
+    {
+      "id": 8,
+      "lu": "d'Woch",
+      "fr": "la semaine",
+      "note": "bis d'nächst Woch = à la semaine prochaine."
+    },
+    {
+      "id": 9,
+      "lu": "Ech hätt gär e Rendez-vous",
+      "fr": "Je voudrais un rendez-vous",
+      "note": "Formule polie pour demander un rendez-vous."
+    },
+    {
+      "id": 10,
+      "lu": "Fir wéini?",
+      "fr": "Pour quand ?",
+      "note": "On répond avec un jour : Fir e Freideg."
+    },
+    {
+      "id": 11,
+      "lu": "Geet dat?",
+      "fr": "Est-ce que ça va ? / C'est possible ?"
+    },
+    {
+      "id": 12,
+      "lu": "Dat geet leider net",
+      "fr": "Ça ne va malheureusement pas",
+      "note": "leider = malheureusement."
+    },
+    {
+      "id": 13,
+      "lu": "Dat ass an der Rei",
+      "fr": "C'est d'accord / C'est en ordre"
+    },
+    {
+      "id": 14,
+      "lu": "Wéi ass Ären Numm?",
+      "fr": "Quel est votre nom ?",
+      "note": "Ären = votre (forme polie)."
+    },
+    {
+      "id": 15,
+      "lu": "Wéi buschtawéiert Dir dat?",
+      "fr": "Comment épelez-vous cela ?",
+      "note": "buschtawéieren = épeler."
+    },
+    {
+      "id": 16,
+      "lu": "Villmools Merci",
+      "fr": "Merci beaucoup"
+    },
+    {
+      "id": 17,
+      "lu": "Et ass gär geschitt",
+      "fr": "De rien / Je vous en prie"
+    },
+    {
+      "id": 18,
+      "lu": "Bis d'nächst Woch",
+      "fr": "À la semaine prochaine"
+    },
+    {
+      "id": 19,
+      "lu": "Nach e schéinen Dag",
+      "fr": "Bonne journée encore",
+      "note": "Accusatif masculin : schéinen Dag."
+    },
+    {
+      "id": 20,
+      "lu": "Merci gläichfalls",
+      "fr": "Merci, de même"
+    },
+    {
+      "id": 21,
+      "lu": "schaffen",
+      "fr": "travailler",
+      "note": "Ech schaffe bis 16:00 Auer."
+    },
+    {
+      "id": 22,
+      "lu": "fräi",
+      "fr": "libre",
+      "note": "Um 10:30 ass nach e Rendez-vous fräi."
+    },
+    {
+      "id": 23,
+      "lu": "den Nomëtteg",
+      "fr": "l'après-midi",
+      "note": "e Freideg den Nomëtteg = vendredi après-midi."
+    },
+    {
+      "id": 24,
+      "lu": "de Numm",
+      "fr": "le nom"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Méindeg",
+      "reponse": "lundi",
+      "distracteurs": [
+        "mardi",
+        "jeudi",
+        "dimanche"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Dënschdeg",
+      "reponse": "mardi",
+      "distracteurs": [
+        "lundi",
+        "mercredi",
+        "samedi"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Mëttwoch",
+      "reponse": "mercredi",
+      "distracteurs": [
+        "mardi",
+        "jeudi",
+        "vendredi"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Donneschdeg",
+      "reponse": "jeudi",
+      "distracteurs": [
+        "mercredi",
+        "vendredi",
+        "dimanche"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Freideg",
+      "reponse": "vendredi",
+      "distracteurs": [
+        "jeudi",
+        "samedi",
+        "lundi"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Samschdeg",
+      "reponse": "samedi",
+      "distracteurs": [
+        "vendredi",
+        "dimanche",
+        "mardi"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Sonndeg",
+      "reponse": "dimanche",
+      "distracteurs": [
+        "samedi",
+        "lundi",
+        "jeudi"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Ech hätt gär e Rendez-vous",
+      "reponse": "Je voudrais un rendez-vous",
+      "distracteurs": [
+        "J'ai un rendez-vous",
+        "Je cherche un rendez-vous",
+        "Je n'ai pas de rendez-vous"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Fir wéini?",
+      "reponse": "Pour quand ?",
+      "distracteurs": [
+        "Pour qui ?",
+        "Pourquoi ?",
+        "Pour où ?"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Geet dat?",
+      "reponse": "Est-ce que ça va ?",
+      "distracteurs": [
+        "Qu'est-ce que c'est ?",
+        "Où allez-vous ?",
+        "Comment ça va ?"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Dat geet leider net",
+      "reponse": "Ça ne va malheureusement pas",
+      "distracteurs": [
+        "C'est d'accord",
+        "Ça va très bien",
+        "Ce n'est pas grave"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Dat ass an der Rei",
+      "reponse": "C'est d'accord",
+      "distracteurs": [
+        "Ce n'est pas possible",
+        "C'est trop tard",
+        "Je ne sais pas"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "Wéi buschtawéiert Dir dat?",
+      "reponse": "Comment épelez-vous cela ?",
+      "distracteurs": [
+        "Comment dites-vous cela ?",
+        "Quel est votre nom ?",
+        "Comment allez-vous ?"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Villmools Merci",
+      "reponse": "Merci beaucoup",
+      "distracteurs": [
+        "Merci, de même",
+        "De rien",
+        "S'il vous plaît"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Et ass gär geschitt",
+      "reponse": "De rien",
+      "distracteurs": [
+        "Merci beaucoup",
+        "S'il vous plaît",
+        "Bonne journée"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Merci gläichfalls",
+      "reponse": "Merci, de même",
+      "distracteurs": [
+        "Merci beaucoup",
+        "Merci à vous",
+        "Non merci"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Bis d'nächst Woch",
+      "reponse": "À la semaine prochaine",
+      "distracteurs": [
+        "À demain",
+        "Bonne semaine",
+        "À bientôt"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Nach e schéinen Dag",
+      "reponse": "Bonne journée",
+      "distracteurs": [
+        "Bonne nuit",
+        "Bon week-end",
+        "À demain"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "schaffen",
+      "reponse": "travailler",
+      "distracteurs": [
+        "dormir",
+        "chercher",
+        "créer"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "fräi",
+      "reponse": "libre",
+      "distracteurs": [
+        "occupé",
+        "fermé",
+        "tôt"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "den Nomëtteg",
+      "reponse": "l'après-midi",
+      "distracteurs": [
+        "le matin",
+        "le soir",
+        "la nuit"
+      ]
+    },
+    {
+      "id": 22,
+      "question": "de Numm",
+      "reponse": "le nom",
+      "distracteurs": [
+        "le numéro",
+        "le jour",
+        "l'âge"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "Je voudrais un rendez-vous.",
+      "avant": "Ech",
+      "trou": "hätt gär",
+      "apres": "e Rendez-vous.",
+      "choix": [
+        "hätt gär",
+        "schaffen",
+        "kucken",
+        "ginn"
+      ],
+      "note": "Ech hätt gär = je voudrais."
+    },
+    {
+      "id": 2,
+      "fr": "Pour quand, s'il vous plaît ?",
+      "avant": "Fir",
+      "trou": "wéini",
+      "apres": ", w.e.g.?",
+      "choix": [
+        "wéini",
+        "wéi",
+        "wou",
+        "wat"
+      ]
+    },
+    {
+      "id": 3,
+      "fr": "Pour vendredi, est-ce que ça va ?",
+      "avant": "Fir e Freideg,",
+      "trou": "geet dat",
+      "apres": "?",
+      "choix": [
+        "geet dat",
+        "ass dat",
+        "mécht dat",
+        "kënnt dat"
+      ]
+    },
+    {
+      "id": 4,
+      "fr": "Ça ne va malheureusement pas.",
+      "avant": "Dat geet",
+      "trou": "leider net",
+      "apres": ".",
+      "choix": [
+        "leider net",
+        "gär",
+        "an der Rei",
+        "gläichfalls"
+      ]
+    },
+    {
+      "id": 5,
+      "fr": "Oui, c'est d'accord.",
+      "avant": "Jo, dat ass",
+      "trou": "an der Rei",
+      "apres": ".",
+      "choix": [
+        "an der Rei",
+        "leider net",
+        "gär geschitt",
+        "gläichfalls"
+      ]
+    },
+    {
+      "id": 6,
+      "fr": "Quel est votre nom ?",
+      "avant": "Wéi ass",
+      "trou": "Ären Numm",
+      "apres": "?",
+      "choix": [
+        "Ären Numm",
+        "Är Auer",
+        "Ären Dag",
+        "Är Woch"
+      ]
+    },
+    {
+      "id": 7,
+      "fr": "Comment épelez-vous cela ?",
+      "avant": "Wéi",
+      "trou": "buschtawéiert",
+      "apres": "Dir dat?",
+      "choix": [
+        "buschtawéiert",
+        "schreift",
+        "seet",
+        "liest"
+      ],
+      "note": "buschtawéieren = épeler."
+    },
+    {
+      "id": 8,
+      "fr": "Merci beaucoup !",
+      "avant": "",
+      "trou": "Villmools Merci",
+      "apres": "!",
+      "choix": [
+        "Villmools Merci",
+        "Merci gläichfalls",
+        "Et ass gär geschitt",
+        "Bis d'nächst Woch"
+      ]
+    },
+    {
+      "id": 9,
+      "fr": "De rien !",
+      "avant": "Et ass",
+      "trou": "gär geschitt",
+      "apres": "!",
+      "choix": [
+        "gär geschitt",
+        "an der Rei",
+        "leider net",
+        "gläichfalls"
+      ]
+    },
+    {
+      "id": 10,
+      "fr": "À la semaine prochaine.",
+      "avant": "Bis",
+      "trou": "d'nächst Woch",
+      "apres": ".",
+      "choix": [
+        "d'nächst Woch",
+        "de Moien",
+        "den Owend",
+        "e schéinen Dag"
+      ]
+    },
+    {
+      "id": 11,
+      "fr": "Et encore une bonne journée.",
+      "avant": "An nach",
+      "trou": "e schéinen Dag",
+      "apres": ".",
+      "choix": [
+        "e schéinen Dag",
+        "eng gutt Nuecht",
+        "eng schéin Woch",
+        "e gudde Moien"
+      ]
+    },
+    {
+      "id": 12,
+      "fr": "Merci, de même !",
+      "avant": "Merci",
+      "trou": "gläichfalls",
+      "apres": "!",
+      "choix": [
+        "gläichfalls",
+        "villmools",
+        "leider",
+        "gär"
+      ]
+    },
+    {
+      "id": 13,
+      "fr": "Je travaille jusqu'à 16h00.",
+      "avant": "Ech",
+      "trou": "schaffe",
+      "apres": "bis 16:00 Auer.",
+      "choix": [
+        "schaffe",
+        "kucken",
+        "ginn",
+        "hunn"
+      ]
+    },
+    {
+      "id": 14,
+      "fr": "À 10h30, il y a encore un rendez-vous libre.",
+      "avant": "Um 10:30 ass nach e Rendez-vous",
+      "trou": "fräi",
+      "apres": ".",
+      "choix": [
+        "fräi",
+        "zou",
+        "spéit",
+        "voll"
+      ]
+    },
+    {
+      "id": 15,
+      "fr": "Vendredi après-midi.",
+      "avant": "E",
+      "trou": "Freideg",
+      "apres": "den Nomëtteg.",
+      "choix": [
+        "Freideg",
+        "Méindeg",
+        "Sonndeg",
+        "Dënschdeg"
+      ]
+    },
+    {
+      "id": 16,
+      "fr": "Lundi.",
+      "avant": "E",
+      "trou": "Méindeg",
+      "apres": ".",
+      "choix": [
+        "Méindeg",
+        "Mëttwoch",
+        "Donneschdeg",
+        "Samschdeg"
+      ]
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "lundi",
+      "lu": "Méindeg"
+    },
+    {
+      "fr": "mardi",
+      "lu": "Dënschdeg"
+    },
+    {
+      "fr": "mercredi",
+      "lu": "Mëttwoch"
+    },
+    {
+      "fr": "jeudi",
+      "lu": "Donneschdeg"
+    },
+    {
+      "fr": "vendredi",
+      "lu": "Freideg"
+    },
+    {
+      "fr": "samedi",
+      "lu": "Samschdeg"
+    },
+    {
+      "fr": "dimanche",
+      "lu": "Sonndeg"
+    },
+    {
+      "fr": "la semaine",
+      "lu": "d'Woch"
+    },
+    {
+      "fr": "travailler",
+      "lu": "schaffen"
+    },
+    {
+      "fr": "libre",
+      "lu": "fräi"
+    },
+    {
+      "fr": "l'après-midi",
+      "lu": "den Nomëtteg"
+    },
+    {
+      "fr": "le nom",
+      "lu": "de Numm"
+    },
+    {
+      "fr": "Je voudrais un rendez-vous.",
+      "lu": "Ech hätt gär e Rendez-vous."
+    },
+    {
+      "fr": "Pour quand, s'il vous plaît ?",
+      "lu": "Fir wéini, w.e.g.?"
+    },
+    {
+      "fr": "Pour vendredi, est-ce que ça va ?",
+      "lu": "Fir e Freideg, geet dat?"
+    },
+    {
+      "fr": "Ça ne va malheureusement pas.",
+      "lu": "Dat geet leider net."
+    },
+    {
+      "fr": "Je travaille jusqu'à 16h00.",
+      "lu": "Ech schaffe bis 16:00 Auer."
+    },
+    {
+      "fr": "Oui, c'est d'accord.",
+      "lu": "Jo, dat ass an der Rei."
+    },
+    {
+      "fr": "Quel est votre nom ?",
+      "lu": "Wéi ass Ären Numm?"
+    },
+    {
+      "fr": "Comment épelez-vous cela ?",
+      "lu": "Wéi buschtawéiert Dir dat?"
+    },
+    {
+      "fr": "Merci beaucoup !",
+      "lu": "Villmools Merci!"
+    },
+    {
+      "fr": "De rien !",
+      "lu": "Et ass gär geschitt!"
+    },
+    {
+      "fr": "À la semaine prochaine.",
+      "lu": "Bis d'nächst Woch."
+    },
+    {
+      "fr": "Et encore une bonne journée.",
+      "lu": "An nach e schéinen Dag."
+    },
+    {
+      "fr": "Merci, de même !",
+      "lu": "Merci gläichfalls!"
+    },
+    {
+      "fr": "Bonjour, ici Molitor.",
+      "lu": "Gudde Moien, hei ass Molitor."
+    },
+    {
+      "fr": "À 10h30, il y a encore un rendez-vous libre.",
+      "lu": "Um 10:30 ass nach e Rendez-vous fräi."
+    },
+    {
+      "fr": "Vendredi après-midi.",
+      "lu": "E Freideg den Nomëtteg."
+    }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Cette leçon apprend à prendre un rendez-vous par téléphone, par exemple chez le médecin. On apprend les jours de la semaine, à demander un rendez-vous poliment, à accepter ou refuser un créneau, à donner et épeler son nom, puis à remercier et se saluer."
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "La logique générale",
+      "lignes": [
+        "On commence par demander : Ech hätt gär e Rendez-vous.",
+        "On propose ou on demande un jour : Fir e Freideg, geet dat?",
+        "On accepte avec : Dat ass an der Rei. On refuse avec : Dat geet leider net.",
+        "On donne et on épelle son nom : Mäin Numm ass Molitor. M-O-L-I-T-O-R.",
+        "On termine poliment : Villmools Merci. Bis d'nächst Woch. Merci gläichfalls."
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Les jours de la semaine (d'Woch)",
+      "items": [
+        [
+          "Méindeg",
+          "lundi"
+        ],
+        [
+          "Dënschdeg",
+          "mardi"
+        ],
+        [
+          "Mëttwoch",
+          "mercredi"
+        ],
+        [
+          "Donneschdeg",
+          "jeudi"
+        ],
+        [
+          "Freideg",
+          "vendredi"
+        ],
+        [
+          "Samschdeg",
+          "samedi"
+        ],
+        [
+          "Sonndeg",
+          "dimanche"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Demander un rendez-vous",
+      "lignes": [
+        "Ech hätt gär e Rendez-vous. = Je voudrais un rendez-vous.",
+        "Fir wéini? = Pour quand ?",
+        "Fir e Freideg, geet dat? = Pour vendredi, est-ce que ça va ?",
+        "Um 10:30 ass nach e Rendez-vous fräi. = À 10h30, il y a encore un rendez-vous libre.",
+        "On place le jour avec e : e Méindeg, e Freideg. On précise le moment : den Nomëtteg (l'après-midi)."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Accepter ou refuser",
+      "lignes": [
+        "Dat ass an der Rei. = C'est d'accord / c'est en ordre.",
+        "Dat geet leider net. = Ça ne va malheureusement pas.",
+        "leider = malheureusement.",
+        "Ech schaffe bis 16:00 Auer. = Je travaille jusqu'à 16h00.",
+        "Freides moies schaffen ech net. = Le vendredi matin, je ne travaille pas."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Donner et épeler son nom",
+      "lignes": [
+        "Wéi ass Ären Numm? = Quel est votre nom ?",
+        "Mäin Numm ass Molitor. = Mon nom est Molitor.",
+        "Wéi buschtawéiert Dir dat? = Comment épelez-vous cela ?",
+        "buschtawéieren = épeler : M-O-L-I-T-O-R.",
+        "Ären / Är = votre (forme polie, vouvoiement avec Dir)."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Les formules de politesse",
+      "lignes": [
+        "Villmools Merci = merci beaucoup.",
+        "Et ass gär geschitt = de rien / je vous en prie.",
+        "Bis d'nächst Woch = à la semaine prochaine.",
+        "Nach e schéinen Dag = bonne journée encore. Attention : schéinen Dag (accusatif masculin, -en).",
+        "Merci gläichfalls = merci, de même (on renvoie le souhait)."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les expressions clés",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Quand l'utiliser"
+      ],
+      "lignes": [
+        [
+          "Ech hätt gär e Rendez-vous.",
+          "Je voudrais un rendez-vous.",
+          "Pour demander un rendez-vous."
+        ],
+        [
+          "Fir wéini?",
+          "Pour quand ?",
+          "Pour demander la date."
+        ],
+        [
+          "Geet dat?",
+          "Est-ce que ça va ?",
+          "Pour proposer un créneau."
+        ],
+        [
+          "Dat ass an der Rei.",
+          "C'est d'accord.",
+          "Pour accepter."
+        ],
+        [
+          "Dat geet leider net.",
+          "Ça ne va malheureusement pas.",
+          "Pour refuser poliment."
+        ],
+        [
+          "Wéi buschtawéiert Dir dat?",
+          "Comment épelez-vous cela ?",
+          "Pour faire épeler un nom."
+        ],
+        [
+          "Villmools Merci.",
+          "Merci beaucoup.",
+          "Pour remercier."
+        ],
+        [
+          "Et ass gär geschitt.",
+          "De rien.",
+          "Pour répondre à un merci."
+        ],
+        [
+          "Merci gläichfalls.",
+          "Merci, de même.",
+          "Pour renvoyer un souhait."
+        ]
+      ]
+    },
+    {
+      "type": "exemple",
+      "titre": "Phrases types",
+      "items": [
+        [
+          "Ech hätt gär e Rendez-vous.",
+          "Je voudrais un rendez-vous."
+        ],
+        [
+          "Fir e Freideg den Nomëtteg, geet dat?",
+          "Pour vendredi après-midi, est-ce que ça va ?"
+        ],
+        [
+          "Dat geet leider net.",
+          "Ça ne va malheureusement pas."
+        ],
+        [
+          "Den nächste Freideg um 10:30 ass nach e Rendez-vous fräi.",
+          "Vendredi prochain à 10h30, il y a encore un rendez-vous libre."
+        ],
+        [
+          "Jo, dat ass an der Rei.",
+          "Oui, c'est d'accord."
+        ],
+        [
+          "Mäin Numm ass Molitor. M-O-L-I-T-O-R.",
+          "Mon nom est Molitor. M-O-L-I-T-O-R."
+        ],
+        [
+          "Villmools Merci. Bis d'nächst Woch.",
+          "Merci beaucoup. À la semaine prochaine."
+        ],
+        [
+          "Merci gläichfalls.",
+          "Merci, de même."
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Au téléphone : prendre un rendez-vous",
+      "echanges": [
+        [
+          "Praxis Dr Müller, gudde Moien.",
+          "Cabinet du Dr Müller, bonjour."
+        ],
+        [
+          "Gudde Moien, hei ass Molitor. Ech hätt gär e Rendez-vous.",
+          "Bonjour, ici Molitor. Je voudrais un rendez-vous."
+        ],
+        [
+          "Fir wéini, w.e.g.?",
+          "Pour quand, s'il vous plaît ?"
+        ],
+        [
+          "Fir e Freideg, geet dat?",
+          "Pour vendredi, est-ce que ça va ?"
+        ],
+        [
+          "Ech hunn nach e Rendez-vous fir e Freideg den Nomëtteg um 15:00 Auer.",
+          "J'ai encore un rendez-vous pour vendredi après-midi à 15h00."
+        ],
+        [
+          "Dat geet leider net. Ech schaffe bis 16:00 Auer, mee freides moies schaffen ech net.",
+          "Ça ne va malheureusement pas. Je travaille jusqu'à 16h00, mais le vendredi matin je ne travaille pas."
+        ],
+        [
+          "Den nächste Freideg, um 10:30 ass nach e Rendez-vous fräi.",
+          "Vendredi prochain, à 10h30, il y a encore un rendez-vous libre."
+        ],
+        [
+          "Jo, dat ass an der Rei.",
+          "Oui, c'est d'accord."
+        ],
+        [
+          "Wéi ass Ären Numm nach eng Kéier, w.e.g.?",
+          "Quel est votre nom encore une fois, s'il vous plaît ?"
+        ],
+        [
+          "Molitor Josée.",
+          "Molitor Josée."
+        ],
+        [
+          "Wéi buschtawéiert Dir dat?",
+          "Comment épelez-vous cela ?"
+        ],
+        [
+          "M-O-L-I-T-O-R.",
+          "M-O-L-I-T-O-R."
+        ],
+        [
+          "Villmools Merci!",
+          "Merci beaucoup !"
+        ],
+        [
+          "Et ass gär geschitt! Bis d'nächst Woch.",
+          "De rien ! À la semaine prochaine."
+        ],
+        [
+          "Jo, bis d'nächst Woch an nach e schéinen Dag.",
+          "Oui, à la semaine prochaine et encore une bonne journée."
+        ],
+        [
+          "Merci gläichfalls!",
+          "Merci, de même !"
+        ]
+      ]
+    }
+  ]
+}
