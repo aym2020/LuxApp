@@ -555,11 +555,13 @@ function renderSessionQ() {
   const choicesEl = document.getElementById('session-choices');
   const inputWrap = document.getElementById('session-input-wrap');
   const sentenceEl = document.getElementById('session-sentence');
+  const frEl = document.getElementById('session-fr');
   const feedback = document.getElementById('session-feedback');
   choicesEl.innerHTML = '';
   choicesEl.classList.add('hidden');
   inputWrap.classList.add('hidden');
   sentenceEl.classList.add('hidden');
+  frEl.classList.add('hidden');
   feedback.className = 'ecr-feedback hidden';
   document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
 
@@ -567,6 +569,7 @@ function renderSessionQ() {
   const wordEl = document.getElementById('session-word');
 
   if (type === 'quiz') {
+    wordEl.classList.remove('hidden');
     wordEl.textContent = q.question;
     const answer = q.reponse;
     const safe = q.distracteurs.map(d => d === answer ? '—' : d);
@@ -574,7 +577,9 @@ function renderSessionQ() {
     buildSessionChoices(choices, answer);
   }
   else if (type === 'trous') {
-    wordEl.textContent = q.fr;
+    wordEl.classList.add('hidden');
+    frEl.textContent = q.fr;
+    frEl.classList.remove('hidden');
     const avant = q.avant ? escHtml(q.avant) + ' ' : '';
     const apres = q.apres ? ' ' + escHtml(q.apres) : '';
     sentenceEl.innerHTML = avant + '<span class="trou-blank" id="session-blank">___</span>' + apres;
@@ -583,6 +588,7 @@ function renderSessionQ() {
     buildSessionChoices(choices, q.trou);
   }
   else { // ecriture
+    wordEl.classList.remove('hidden');
     wordEl.textContent = q.fr;
     inputWrap.classList.remove('hidden');
     const input = document.getElementById('session-input');
