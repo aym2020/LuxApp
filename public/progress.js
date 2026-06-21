@@ -419,16 +419,32 @@ function getConsolidationPriority(item) {
   return p;
 }
 
-// Construit le pool brut (leçons + types), sans tri ni coupe.
-function buildReviewPool(leconIds, types) {
-  return getAllQuestions()
-    .filter(item => leconIds.includes(item.leconId))
-    .filter(item => types.includes(item.type));
+// Niveau d'une question à partir d'un objet progress déjà lu (pas de relecture
+// du localStorage par question : évite les ralentissements).
+function levelFromStore(progress, item) {
+  const byLecon = progress[item.leconId];
+  const lv = byLecon && byLecon[item.type] && byLecon[item.type][item.qid];
+  return lv || 1;
 }
 
-function getConfiguredReview(leconIds, types, focus, limit) {
+// Normalise le filtre niveau : undefined => tous les niveaux ; [] => aucun.
+function levelFilter(niveaux) {
+  return niveaux == null ? [1, 2, 3] : niveaux;
+}
+
+// Construit le pool brut (leçons + types + niveaux), sans tri ni coupe.
+function buildReviewPool(leconIds, types, niveaux) {
+  const progress = getProgress();       // lu UNE fois pour tout le pool
+  const sel = levelFilter(niveaux);
+  return getAllQuestions()
+    .filter(item => leconIds.includes(item.leconId))
+    .filter(item => types.includes(item.type))
+    .filter(item => sel.includes(levelFromStore(progress, item)));
+}
+
+function getConfiguredReview(leconIds, types, focus, limit, niveaux) {
   limit = Math.min(limit || 20, 20);
-  let all = buildReviewPool(leconIds, types);
+  let all = buildReviewPool(leconIds, types, niveaux);
 
   if (focus === 'difficile') {
     // On calcule la priorité UNE fois par question, puis on trie.
@@ -454,21 +470,37 @@ function getConfiguredReview(leconIds, types, focus, limit) {
 }
 
 // Nombre de questions disponibles pour un focus (non plafonné, pour l'affichage).
-function getAvailableReviewCount(leconIds, types, focus) {
-  let all = buildReviewPool(leconIds, types);
+function getAvailableReviewCount(leconIds, types, focus, niveaux) {
+  let all = buildReviewPool(leconIds, types, niveaux);
   if (focus === 'connu') all = all.filter(hasSeenQuestion);
   else if (focus === 'difficile') all = all.filter(isDifficultQuestion);
   return all.length;
 }
 
-// Compte les 3 focus EN UNE SEULE PASSE (1 seule lecture du localStorage).
+// Compte les focus ET les niveaux EN UNE SEULE PASSE (1 lecture du localStorage).
 // Utilisé par l'écran de configuration : évite de relire les stats des
 // milliers de fois à chaque case cochée (le calcul était trop lent).
-function getReviewCounts(leconIds, types) {
-  const pool = buildReviewPool(leconIds, types);
-  const store = getStatsStore(); // lu UNE fois, pas par question
-  let connu = 0, difficile = 0;
+// - niv 1/2/3 : nombre de questions par niveau (leçons + types, sans filtre niveau)
+// - total/connu/difficile : après application du filtre niveau
+function getReviewCounts(leconIds, types, niveaux) {
+  const pool = getAllQuestions()
+    .filter(item => leconIds.includes(item.leconId))
+    .filter(item => types.includes(item.type));
+
+  const progress = getProgress();    // niveaux, lu UNE fois
+  const store = getStatsStore();     // historique, lu UNE fois
+  const sel = levelFilter(niveaux);
+
+  const niv = { 1: 0, 2: 0, 3: 0 };
+  let total = 0, connu = 0, difficile = 0;
+
   for (const item of pool) {
+    const level = levelFromStore(progress, item);
+    niv[level]++;
+
+    if (!sel.includes(level)) continue; // filtre niveau
+
+    total++;
     const byLecon = store[item.leconId];
     const s = byLecon && byLecon[item.type] && byLecon[item.type][item.qid];
     if (s && s.attempts > 0) {
@@ -476,7 +508,7 @@ function getReviewCounts(leconIds, types) {
       if (s.wrongTotal > 0 || s.difficultyScore > 0 || s.lastWrongAt !== null) difficile++;
     }
   }
-  return { total: pool.length, connu, difficile };
+  return { total, connu, difficile, niv };
 }
 
 // ─── STATISTIQUES D'UNE LEÇON ───────────────────────────────────────────────

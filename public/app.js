@@ -407,15 +407,19 @@ function openReviewSetup() {
   // Au départ : focus Aléatoire (jamais connu/difficile auto-sélectionné).
   document.querySelector('input[name="rs-focus"][value="aleatoire"]').checked = true;
 
+  // Au départ : tous les niveaux cochés.
+  document.querySelectorAll('#rs-niveaux input').forEach(b => b.checked = true);
+
   refreshReviewAvailability();
   showView('view-review-setup');
 }
 
-// Lit les sélections courantes (leçons + types).
+// Lit les sélections courantes (leçons + types + niveaux).
 function readReviewSelection() {
   return {
     leconIds: [...document.querySelectorAll('#rs-lecons input:checked')].map(b => Number(b.value)),
-    types: [...document.querySelectorAll('#rs-types input:checked')].map(b => b.value)
+    types: [...document.querySelectorAll('#rs-types input:checked')].map(b => b.value),
+    niveaux: [...document.querySelectorAll('#rs-niveaux input:checked')].map(b => Number(b.value))
   };
 }
 
@@ -433,12 +437,22 @@ function setFocusAvailability(focus, count, total, emptyHint) {
     : count + ' / ' + total + ' disponible' + (count > 1 ? 's' : '');
 }
 
+// Met à jour le compteur affiché à côté d'un niveau.
+function setNiveauCount(level, count) {
+  const el = document.getElementById('rs-niv-count-' + level);
+  if (el) el.textContent = count + ' question' + (count > 1 ? 's' : '');
+}
+
 // Recalcule les 3 compteurs et empêche de rester sur un focus vide.
 function refreshReviewAvailability() {
-  const { leconIds, types } = readReviewSelection();
+  const { leconIds, types, niveaux } = readReviewSelection();
 
   // 1 seule passe ET 1 seule lecture du localStorage (voir getReviewCounts).
-  const { total, connu, difficile } = getReviewCounts(leconIds, types);
+  const { total, connu, difficile, niv } = getReviewCounts(leconIds, types, niveaux);
+
+  setNiveauCount(1, niv[1]);
+  setNiveauCount(2, niv[2]);
+  setNiveauCount(3, niv[3]);
 
   setFocusAvailability('aleatoire', total,     total, 'Aucune question');
   setFocusAvailability('connu',     connu,     total, 'Disponible après tes premières réponses.');
@@ -468,7 +482,7 @@ function toggleAllChecks(containerId) {
 
 // Lit les choix, construit la liste et lance la session existante.
 function startConfiguredReview() {
-  const { leconIds, types } = readReviewSelection();
+  const { leconIds, types, niveaux } = readReviewSelection();
   const focus = document.querySelector('input[name="rs-focus"]:checked').value;
   const countInput = document.querySelector('input[name="rs-count"]:checked');
   let count = countInput ? parseInt(countInput.value, 10) : 20;
@@ -477,6 +491,7 @@ function startConfiguredReview() {
 
   if (!leconIds.length) { alert('Choisis au moins une leçon.'); return; }
   if (!types.length) { alert('Choisis au moins un type d\'exercice.'); return; }
+  if (!niveaux.length) { alert('Choisis au moins un niveau.'); return; }
 
   // Feedback immédiat : le bouton confirme l'appui et indique que ça arrive.
   const btn = document.querySelector('#view-review-setup .dash-btn.primary');
@@ -491,7 +506,7 @@ function startConfiguredReview() {
 
   // On laisse le navigateur afficher l'état "chargement" AVANT le calcul bloquant.
   setTimeout(() => {
-    const questions = getConfiguredReview(leconIds, types, focus, count);
+    const questions = getConfiguredReview(leconIds, types, focus, count, niveaux);
 
     // Remet le bouton à l'état normal (pour la prochaine visite de l'écran).
     if (btn) {
