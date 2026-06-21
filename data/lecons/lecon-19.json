@@ -1,0 +1,840 @@
+{
+  "id": 19,
+  "titre": "Familljememberen a Possessiv",
+  "titre_fr": "Les membres de la famille et les possessifs",
+  "couleur": "#7c83d6",
+  "instructions": {
+    "flashcards": "Mémorise les membres de la famille avec leur article (de / d') pour retenir leur genre. Apprends-les par cœur comme des blocs.",
+    "quiz": "Lis un mot luxembourgeois (un membre de la famille ou un possessif) et choisis la bonne traduction française. Les distracteurs sont d'autres membres proches ou d'autres possessifs.",
+    "trous": "Complète chaque phrase avec le bon possessif (mäi, meng, säi, seng, hir, hiert…) accordé au nom possédé, ou avec le bon membre de la famille. Les distracteurs restent des possessifs ou des membres plausibles.",
+    "ecriture": "Traduis en luxembourgeois les membres de la famille, les possessifs et des phrases courtes à la 1re et à la 3e personne du singulier. Respecte l'accord du possessif avec le nom possédé et la chute du -n (règle d'Eifel)."
+  },
+  "flashcards": [
+    {
+      "id": 1,
+      "lu": "de Papp",
+      "fr": "le père"
+    },
+    {
+      "id": 2,
+      "lu": "d'Mamm",
+      "fr": "la mère"
+    },
+    {
+      "id": 3,
+      "lu": "de Brudder",
+      "fr": "le frère",
+      "note": "pluriel : d'Bridder."
+    },
+    {
+      "id": 4,
+      "lu": "d'Schwëster",
+      "fr": "la sœur"
+    },
+    {
+      "id": 5,
+      "lu": "de Jong",
+      "fr": "le fils / le garçon",
+      "note": "aussi : de Bouf."
+    },
+    {
+      "id": 6,
+      "lu": "d'Duechter",
+      "fr": "la fille (descendante)"
+    },
+    {
+      "id": 7,
+      "lu": "d'Meedchen",
+      "fr": "la (jeune) fille",
+      "note": "neutre : dat Meedchen."
+    },
+    {
+      "id": 8,
+      "lu": "de Mann",
+      "fr": "le mari"
+    },
+    {
+      "id": 9,
+      "lu": "d'Fra",
+      "fr": "la femme / l'épouse"
+    },
+    {
+      "id": 10,
+      "lu": "de Monni",
+      "fr": "l'oncle"
+    },
+    {
+      "id": 11,
+      "lu": "d'Tatta",
+      "fr": "la tante"
+    },
+    {
+      "id": 12,
+      "lu": "de Cousin",
+      "fr": "le cousin"
+    },
+    {
+      "id": 13,
+      "lu": "d'Cousine",
+      "fr": "la cousine"
+    },
+    {
+      "id": 14,
+      "lu": "de Grousspapp",
+      "fr": "le grand-père",
+      "note": "familier : de Bopa / Bopi."
+    },
+    {
+      "id": 15,
+      "lu": "d'Groussmamm",
+      "fr": "la grand-mère",
+      "note": "familier : d'Boma / Bomi."
+    },
+    {
+      "id": 16,
+      "lu": "den Neveu",
+      "fr": "le neveu"
+    },
+    {
+      "id": 17,
+      "lu": "d'Niess",
+      "fr": "la nièce"
+    },
+    {
+      "id": 18,
+      "lu": "den Enkel",
+      "fr": "le petit-fils"
+    },
+    {
+      "id": 19,
+      "lu": "d'Enkelin",
+      "fr": "la petite-fille"
+    },
+    {
+      "id": 20,
+      "lu": "de Schwoer",
+      "fr": "le beau-frère"
+    },
+    {
+      "id": 21,
+      "lu": "d'Schwéiesch",
+      "fr": "la belle-sœur"
+    },
+    {
+      "id": 22,
+      "lu": "den Eedem",
+      "fr": "le beau-fils / le gendre"
+    },
+    {
+      "id": 23,
+      "lu": "d'Schnauer",
+      "fr": "la belle-fille / la bru"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "de Papp",
+      "reponse": "le père",
+      "distracteurs": [
+        "la mère",
+        "le frère",
+        "le grand-père"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "d'Mamm",
+      "reponse": "la mère",
+      "distracteurs": [
+        "le père",
+        "la sœur",
+        "la grand-mère"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "d'Schwëster",
+      "reponse": "la sœur",
+      "distracteurs": [
+        "le frère",
+        "la fille",
+        "la tante"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "de Brudder",
+      "reponse": "le frère",
+      "distracteurs": [
+        "la sœur",
+        "le fils",
+        "le cousin"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "d'Duechter",
+      "reponse": "la fille",
+      "distracteurs": [
+        "le fils",
+        "la sœur",
+        "la nièce"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "de Jong",
+      "reponse": "le fils / le garçon",
+      "distracteurs": [
+        "la fille",
+        "le frère",
+        "le mari"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "de Monni",
+      "reponse": "l'oncle",
+      "distracteurs": [
+        "la tante",
+        "le cousin",
+        "le grand-père"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "d'Tatta",
+      "reponse": "la tante",
+      "distracteurs": [
+        "l'oncle",
+        "la cousine",
+        "la grand-mère"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "de Grousspapp",
+      "reponse": "le grand-père",
+      "distracteurs": [
+        "la grand-mère",
+        "le père",
+        "l'oncle"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "den Neveu",
+      "reponse": "le neveu",
+      "distracteurs": [
+        "la nièce",
+        "le cousin",
+        "le petit-fils"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "d'Schwéiesch",
+      "reponse": "la belle-sœur",
+      "distracteurs": [
+        "le beau-frère",
+        "la belle-fille",
+        "la sœur"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "den Enkel",
+      "reponse": "le petit-fils",
+      "distracteurs": [
+        "la petite-fille",
+        "le neveu",
+        "le beau-fils"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "mäi Papp",
+      "reponse": "mon père",
+      "distracteurs": [
+        "ton père",
+        "son père",
+        "notre père"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "meng Mamm",
+      "reponse": "ma mère",
+      "distracteurs": [
+        "ta mère",
+        "sa mère",
+        "ma sœur"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "säi Brudder",
+      "reponse": "son frère (à lui)",
+      "distracteurs": [
+        "son frère (à elle)",
+        "ton frère",
+        "mon frère"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "hir Schwëster",
+      "reponse": "sa sœur (à elle)",
+      "distracteurs": [
+        "sa sœur (à lui)",
+        "ta sœur",
+        "leur frère"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "Ma mère habite à Esch.",
+      "avant": "",
+      "trou": "Meng",
+      "apres": "Mamm wunnt zu Esch.",
+      "choix": [
+        "Meng",
+        "Mäi",
+        "Mäin",
+        "Säi"
+      ],
+      "note": "Mamm = féminin → meng."
+    },
+    {
+      "id": 2,
+      "fr": "Mon père s'appelle Marc.",
+      "avant": "",
+      "trou": "Mäi",
+      "apres": "Papp heescht Marc.",
+      "choix": [
+        "Mäi",
+        "Meng",
+        "Mäin",
+        "Säi"
+      ],
+      "note": "Papp = masculin ; le -n tombe devant P → mäi."
+    },
+    {
+      "id": 3,
+      "fr": "Mon frère travaille au Luxembourg.",
+      "avant": "",
+      "trou": "Mäi",
+      "apres": "Brudder schafft zu Lëtzebuerg.",
+      "choix": [
+        "Mäi",
+        "Meng",
+        "Mäin",
+        "Hir"
+      ],
+      "note": "Brudder = masculin ; -n tombe devant B → mäi."
+    },
+    {
+      "id": 4,
+      "fr": "Ton oncle est gentil.",
+      "avant": "",
+      "trou": "Däi",
+      "apres": "Monni ass léif.",
+      "choix": [
+        "Däi",
+        "Deng",
+        "Däin",
+        "Säi"
+      ],
+      "note": "Monni = masculin ; -n tombe devant M → däi."
+    },
+    {
+      "id": 5,
+      "fr": "Son mari (à elle) s'appelle Tom.",
+      "avant": "",
+      "trou": "Hire",
+      "apres": "Mann heescht Tom.",
+      "choix": [
+        "Hire",
+        "Säi",
+        "Hir",
+        "Hiren"
+      ],
+      "note": "Possesseur féminin (si) → hir- ; Mann masculin, -n tombe devant M → hire."
+    },
+    {
+      "id": 6,
+      "fr": "Sa sœur (à lui) est étudiante.",
+      "avant": "",
+      "trou": "Seng",
+      "apres": "Schwëster ass Studentin.",
+      "choix": [
+        "Seng",
+        "Säi",
+        "Hir",
+        "Meng"
+      ],
+      "note": "Possesseur masculin (hien) + Schwëster féminin → seng."
+    },
+    {
+      "id": 7,
+      "fr": "Notre grand-mère est gentille.",
+      "avant": "",
+      "trou": "Eis",
+      "apres": "Groussmamm ass léif.",
+      "choix": [
+        "Eis",
+        "Eisen",
+        "Eist",
+        "Är"
+      ],
+      "note": "mir + Groussmamm féminin → eis."
+    },
+    {
+      "id": 8,
+      "fr": "Votre fils est grand.",
+      "avant": "",
+      "trou": "Äre",
+      "apres": "Jong ass grouss.",
+      "choix": [
+        "Äre",
+        "Är",
+        "Äert",
+        "Ären"
+      ],
+      "note": "Dir + Jong masculin ; -n tombe devant J → äre."
+    },
+    {
+      "id": 9,
+      "fr": "Leur (jeune) fille joue dehors.",
+      "avant": "",
+      "trou": "Hiert",
+      "apres": "Meedchen spillt dobaussen.",
+      "choix": [
+        "Hiert",
+        "Hir",
+        "Hiren",
+        "Seng"
+      ],
+      "note": "Meedchen = neutre → forme en -t : hiert."
+    },
+    {
+      "id": 10,
+      "fr": "Mes parents habitent ici.",
+      "avant": "",
+      "trou": "Meng",
+      "apres": "Elteren wunnen hei.",
+      "choix": [
+        "Meng",
+        "Mäi",
+        "Mäin",
+        "Eis"
+      ],
+      "note": "Pluriel (Elteren) → même forme que le féminin : meng."
+    },
+    {
+      "id": 11,
+      "fr": "La mère de Christian s'appelle Anne.",
+      "avant": "Dem Christian",
+      "trou": "seng",
+      "apres": "Mamm heescht Anne.",
+      "choix": [
+        "seng",
+        "säi",
+        "hir",
+        "säin"
+      ],
+      "note": "dem [Nom] + possessif accordé au nom possédé ; Mamm féminin → seng."
+    },
+    {
+      "id": 12,
+      "fr": "La fille de Michelle, c'est Isabelle.",
+      "avant": "Dem Michelle",
+      "trou": "säi",
+      "apres": "Meedchen ass d'Isabelle.",
+      "choix": [
+        "säi",
+        "seng",
+        "hiert",
+        "säin"
+      ],
+      "note": "Meedchen neutre → säi(n) ; -n tombe devant M → säi."
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "le père",
+      "lu": "de Papp"
+    },
+    {
+      "fr": "la mère",
+      "lu": "d'Mamm"
+    },
+    {
+      "fr": "le frère",
+      "lu": "de Brudder"
+    },
+    {
+      "fr": "la sœur",
+      "lu": "d'Schwëster"
+    },
+    {
+      "fr": "les parents",
+      "lu": "d'Elteren"
+    },
+    {
+      "fr": "les grands-parents",
+      "lu": "d'Grousselteren"
+    },
+    {
+      "fr": "l'oncle",
+      "lu": "de Monni"
+    },
+    {
+      "fr": "la tante",
+      "lu": "d'Tatta"
+    },
+    {
+      "fr": "mon père",
+      "lu": "mäi Papp"
+    },
+    {
+      "fr": "ma mère",
+      "lu": "meng Mamm"
+    },
+    {
+      "fr": "mon frère",
+      "lu": "mäi Brudder"
+    },
+    {
+      "fr": "ta sœur",
+      "lu": "deng Schwëster"
+    },
+    {
+      "fr": "son mari (à elle)",
+      "lu": "hire Mann"
+    },
+    {
+      "fr": "sa (jeune) fille (à lui)",
+      "lu": "säi Meedchen"
+    },
+    {
+      "fr": "Mon père s'appelle Marc.",
+      "lu": "Mäi Papp heescht Marc."
+    },
+    {
+      "fr": "Ma mère habite à Esch.",
+      "lu": "Meng Mamm wunnt zu Esch."
+    },
+    {
+      "fr": "J'ai un frère et une sœur.",
+      "lu": "Ech hunn e Brudder an eng Schwëster."
+    },
+    {
+      "fr": "Son frère (à lui) travaille au Luxembourg.",
+      "lu": "Säi Brudder schafft zu Lëtzebuerg."
+    },
+    {
+      "fr": "Sa mère (à elle) est gentille.",
+      "lu": "Hir Mamm ass léif."
+    },
+    {
+      "fr": "La sœur de Christian s'appelle Anne.",
+      "lu": "Dem Christian seng Schwëster heescht Anne."
+    }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Cette leçon présente les membres de la famille et les possessifs (mon, ton, son, notre, votre, leur). Le point clé : en luxembourgeois, le possessif s'accorde avec le nom possédé (ce qui est possédé), pas avec le possesseur. On apprend aussi la tournure « dem [Nom] säi/seng … » pour dire « le/la … de [quelqu'un] »."
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "La logique générale",
+      "lignes": [
+        "Chaque membre de la famille a un genre : de (masculin) ou d' (féminin / neutre / pluriel).",
+        "Le possessif change selon le genre du nom possédé : mäi Papp (M), meng Mamm (F), säi Meedchen (N), meng Elteren (Pl).",
+        "Le possesseur fixe seulement la « famille » du mot : ech → mäi/meng, hien → säi/seng, si → hir/hiert.",
+        "Pour « … de [Nom] » : dem [Nom] + säi/seng + nom possédé."
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Les membres de la famille (d'Familljememberen)",
+      "items": [
+        [
+          "de Papp",
+          "le père"
+        ],
+        [
+          "d'Mamm",
+          "la mère"
+        ],
+        [
+          "d'Elteren",
+          "les parents"
+        ],
+        [
+          "de Brudder (pl. d'Bridder)",
+          "le frère"
+        ],
+        [
+          "d'Schwëster",
+          "la sœur"
+        ],
+        [
+          "d'Geschwëster",
+          "les frères et sœurs"
+        ],
+        [
+          "de Jong / de Bouf",
+          "le fils / le garçon"
+        ],
+        [
+          "d'Duechter",
+          "la fille (descendante)"
+        ],
+        [
+          "d'Meedchen (neutre)",
+          "la (jeune) fille"
+        ],
+        [
+          "d'Kanner",
+          "les enfants"
+        ],
+        [
+          "de Mann",
+          "le mari"
+        ],
+        [
+          "d'Fra",
+          "la femme / l'épouse"
+        ],
+        [
+          "de Monni",
+          "l'oncle"
+        ],
+        [
+          "d'Tatta",
+          "la tante"
+        ],
+        [
+          "de Cousin",
+          "le cousin"
+        ],
+        [
+          "d'Cousine",
+          "la cousine"
+        ],
+        [
+          "de Grousspapp (fam. de Bopa/Bopi)",
+          "le grand-père"
+        ],
+        [
+          "d'Groussmamm (fam. d'Boma/Bomi)",
+          "la grand-mère"
+        ],
+        [
+          "d'Grousselteren",
+          "les grands-parents"
+        ],
+        [
+          "den Neveu",
+          "le neveu"
+        ],
+        [
+          "d'Niess",
+          "la nièce"
+        ],
+        [
+          "den Enkel",
+          "le petit-fils"
+        ],
+        [
+          "d'Enkelin",
+          "la petite-fille"
+        ],
+        [
+          "d'Enkelkanner",
+          "les petits-enfants"
+        ],
+        [
+          "de Schwoer",
+          "le beau-frère"
+        ],
+        [
+          "d'Schwéiesch",
+          "la belle-sœur"
+        ],
+        [
+          "den Eedem",
+          "le beau-fils / le gendre"
+        ],
+        [
+          "d'Schnauer",
+          "la belle-fille / la bru"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Le genre des membres (utile pour le possessif)",
+      "lignes": [
+        "Masculin : de Papp, de Brudder, de Jong, de Mann, de Monni, de Cousin, de Grousspapp, den Neveu, den Enkel, de Schwoer, den Eedem.",
+        "Féminin : d'Mamm, d'Schwëster, d'Duechter, d'Fra, d'Tatta, d'Cousine, d'Groussmamm, d'Niess, d'Enkelin, d'Schwéiesch, d'Schnauer.",
+        "Neutre : d'Meedchen, d'Kand. En luxembourgeois, une jeune fille (Meedchen) est neutre.",
+        "Pluriel : d'Elteren, d'Kanner, d'Geschwëster, d'Grousselteren."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les possessifs (selon le nom possédé)",
+      "entetes": [
+        "Possesseur",
+        "Masculin",
+        "Féminin",
+        "Neutre",
+        "Pluriel"
+      ],
+      "lignes": [
+        [
+          "ech (je)",
+          "mäi(n)",
+          "meng",
+          "mäi(n)",
+          "meng"
+        ],
+        [
+          "du (tu)",
+          "däi(n)",
+          "deng",
+          "däi(n)",
+          "deng"
+        ],
+        [
+          "hien/hatt (il)",
+          "säi(n)",
+          "seng",
+          "säi(n)",
+          "seng"
+        ],
+        [
+          "si (elle / ils)",
+          "hire(n)",
+          "hir",
+          "hiert",
+          "hir"
+        ],
+        [
+          "mir (nous)",
+          "eise(n)",
+          "eis",
+          "eist",
+          "eis"
+        ],
+        [
+          "Dir (vous)",
+          "Äre(n)",
+          "Är",
+          "Äert",
+          "Är"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "La règle d'accord",
+      "lignes": [
+        "Le possessif s'accorde avec le nom POSSÉDÉ, jamais avec le possesseur.",
+        "Une femme parle de son mari → hire Mann (Mann est masculin).",
+        "Un homme parle de sa mère → seng Mamm (Mamm est féminin).",
+        "Le (n) final suit la règle d'Eifel : on le garde devant a, e, i, o, u, d, t, n, z, h, sinon il tombe.",
+        "Ex. : säin Numm (devant N) mais säi Papp (devant P)."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Dire « le/la … de [Nom] »",
+      "lignes": [
+        "Tournure : dem [Nom] + säi/seng + nom possédé.",
+        "Dem Christian seng Mamm = la mère de Christian (Mamm féminin → seng).",
+        "Dem Michelle säi Meedchen = la fille de Michelle (Meedchen neutre → säi).",
+        "Question : Wien ass dem Michelle säi Meedchen? = Qui est la fille de Michelle ?"
+      ]
+    },
+    {
+      "type": "exemple",
+      "titre": "Phrases types",
+      "items": [
+        [
+          "Mäi Papp heescht Marc.",
+          "Mon père s'appelle Marc."
+        ],
+        [
+          "Meng Mamm wunnt zu Esch.",
+          "Ma mère habite à Esch."
+        ],
+        [
+          "Ech hunn e Brudder an eng Schwëster.",
+          "J'ai un frère et une sœur."
+        ],
+        [
+          "Säi Brudder schafft zu Lëtzebuerg.",
+          "Son frère (à lui) travaille au Luxembourg."
+        ],
+        [
+          "Hir Mamm ass léif.",
+          "Sa mère (à elle) est gentille."
+        ],
+        [
+          "Eis Grousselteren wunnen zu Diddeleng.",
+          "Nos grands-parents habitent à Dudelange."
+        ],
+        [
+          "Dem Christian seng Schwëster heescht Anne.",
+          "La sœur de Christian s'appelle Anne."
+        ],
+        [
+          "Wien ass dem Michelle säi Meedchen?",
+          "Qui est la fille de Michelle ?"
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Présenter sa famille",
+      "echanges": [
+        [
+          "Wéi vill Leit sidd der an der Famill?",
+          "Vous êtes combien dans la famille ?"
+        ],
+        [
+          "Mir sinn zu fënnef: meng Elteren, meng zwou Schwësteren an ech.",
+          "Nous sommes cinq : mes parents, mes deux sœurs et moi."
+        ],
+        [
+          "Huet däi Brudder Kanner?",
+          "Est-ce que ton frère a des enfants ?"
+        ],
+        [
+          "Jo, säi Jong heescht Liam a seng Duechter heescht Mia.",
+          "Oui, son fils s'appelle Liam et sa fille s'appelle Mia."
+        ],
+        [
+          "A wien ass dat?",
+          "Et qui est-ce ?"
+        ],
+        [
+          "Dat ass meng Tatta. Hire Mann, mäi Monni, schafft zu Lëtzebuerg.",
+          "C'est ma tante. Son mari, mon oncle, travaille au Luxembourg."
+        ]
+      ]
+    }
+  ]
+}
