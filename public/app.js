@@ -478,28 +478,51 @@ function startConfiguredReview() {
   if (!leconIds.length) { alert('Choisis au moins une leçon.'); return; }
   if (!types.length) { alert('Choisis au moins un type d\'exercice.'); return; }
 
-  const questions = getConfiguredReview(leconIds, types, focus, count);
-  if (!questions.length) {
-    // Message adapté au focus choisi (jamais de session vide ni de remplissage).
-    if (focus === 'connu') {
-      alert('Aucune question à consolider pour le moment.\nFais d\'abord une révision aléatoire ou une leçon pour créer ton historique.');
-    } else if (focus === 'difficile') {
-      alert('Aucune question difficile pour le moment.\nLes questions difficiles apparaîtront après tes premières erreurs.');
-    } else {
-      alert('Aucune question disponible pour ces critères.');
-    }
-    return;
+  // Feedback immédiat : le bouton confirme l'appui et indique que ça arrive.
+  const btn = document.querySelector('#view-review-setup .dash-btn.primary');
+  let originalLabel = '';
+  if (btn) {
+    originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Préparation…';
+    btn.style.opacity = '.8';
+    btn.style.cursor = 'progress';
   }
 
-  // Réutilise le moteur de session (mode 'review' = les niveaux évoluent).
-  // Le titre affiche le nombre RÉEL de questions, pas le nombre demandé.
-  session = { mode: 'review', questions, index: 0, score: 0, answered: false };
-  document.getElementById('session-num').textContent = 'RÉVISION';
-  document.getElementById('session-titre').textContent = questions.length + ' questions';
-  document.getElementById('session-result').classList.add('hidden');
-  document.getElementById('session-q').classList.remove('hidden');
-  showView('view-session');
-  renderSessionQ();
+  // On laisse le navigateur afficher l'état "chargement" AVANT le calcul bloquant.
+  setTimeout(() => {
+    const questions = getConfiguredReview(leconIds, types, focus, count);
+
+    // Remet le bouton à l'état normal (pour la prochaine visite de l'écran).
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = originalLabel || 'Commencer la révision';
+      btn.style.opacity = '';
+      btn.style.cursor = '';
+    }
+
+    if (!questions.length) {
+      // Message adapté au focus choisi (jamais de session vide ni de remplissage).
+      if (focus === 'connu') {
+        alert('Aucune question à consolider pour le moment.\nFais d\'abord une révision aléatoire ou une leçon pour créer ton historique.');
+      } else if (focus === 'difficile') {
+        alert('Aucune question difficile pour le moment.\nLes questions difficiles apparaîtront après tes premières erreurs.');
+      } else {
+        alert('Aucune question disponible pour ces critères.');
+      }
+      return;
+    }
+
+    // Réutilise le moteur de session (mode 'review' = les niveaux évoluent).
+    // Le titre affiche le nombre RÉEL de questions, pas le nombre demandé.
+    session = { mode: 'review', questions, index: 0, score: 0, answered: false };
+    document.getElementById('session-num').textContent = 'RÉVISION';
+    document.getElementById('session-titre').textContent = questions.length + ' questions';
+    document.getElementById('session-result').classList.add('hidden');
+    document.getElementById('session-q').classList.remove('hidden');
+    showView('view-session');
+    renderSessionQ();
+  }, 20);
 }
 
 function renderSessionQ() {

@@ -431,12 +431,19 @@ function getConfiguredReview(leconIds, types, focus, limit) {
   let all = buildReviewPool(leconIds, types);
 
   if (focus === 'difficile') {
-    all = all.filter(isDifficultQuestion);
-    all.sort((a, b) => getDifficultyPriority(b) - getDifficultyPriority(a));
+    // On calcule la priorité UNE fois par question, puis on trie.
+    // (Avant, le tri recalculait la priorité — et relisait le localStorage —
+    //  à chaque comparaison, d'où plusieurs secondes d'attente.)
+    all = all.filter(isDifficultQuestion)
+      .map(item => ({ item, prio: getDifficultyPriority(item) }))
+      .sort((a, b) => b.prio - a.prio)
+      .map(d => d.item);
   }
   else if (focus === 'connu') {
-    all = all.filter(hasSeenQuestion);
-    all.sort((a, b) => getConsolidationPriority(b) - getConsolidationPriority(a));
+    all = all.filter(hasSeenQuestion)
+      .map(item => ({ item, prio: getConsolidationPriority(item) }))
+      .sort((a, b) => b.prio - a.prio)
+      .map(d => d.item);
   }
   else {
     all = all.slice().sort(() => Math.random() - 0.5); // aléatoire
