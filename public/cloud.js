@@ -1,5 +1,5 @@
-// ─── SYNCHRO CLOUD (Supabase) ───────────────────────────────────────────────
-// Optionnel. Le localStorage reste la base : si Supabase n'est pas configuré,
+// ─── SYNCHRO CLOUD (Firebase) ───────────────────────────────────────────────
+// Optionnel. Le localStorage reste la base : si Firebase n'est pas configuré,
 // pas connecté, ou indisponible, l'application fonctionne normalement en local.
 //
 // Données synchronisées (jamais les leçons) :
@@ -7,50 +7,98 @@
 //   - progress.wrong   = compteurs d'erreurs actives (luxWrong)
 //   - progress.stats   = historique durable par question (luxQuestionStats)
 //   - streak           = série quotidienne (luxStreak)
+//
+// Stockage Firestore : collection "user_progress", 1 document par utilisateur
+// (id du document = uid). Le contenu est stocké en texte JSON dans le champ
+// "payload" : évite la limite Firestore sur le nombre de champs indexés.
 
-let sb = null;            // client Supabase (null = mode local uniquement)
+let fbAuth = null;        // Firebase Auth (null = mode local uniquement)
+let fbDb = null;          // Firestore
+let authReadyPromise = null;
 let cloudSaveTimer = null;
 
-// ─── INITIALISATION ─────────────────────────────────────────────────────────
-function initSupabase() {
-  const cfg = window.APP_CONFIG;
-  // Pas de config valide, ou librairie non chargée -> mode local.
-  if (!cfg || !cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) return null;
-  if (cfg.SUPABASE_URL.includes('xxxx') || !window.supabase) return null;
+const CLOUD_COLLECTION = 'user_progress';
+const CLOUD_TIMEOUT_MS = 8000;
 
-  sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
-  return sb;
+// ─── INITIALISATION ─────────────────────────────────────────────────────────
+function initFirebase() {
+  const cfg = window.APP_CONFIG && window.APP_CONFIG.FIREBASE;
+  // Pas de config valide, ou librairie non chargée -> mode local.
+  if (!cfg || !cfg.apiKey || !cfg.projectId) return null;
+  if (cfg.apiKey.includes('xxxx') || !window.firebase) return null;
+
+  try {
+    firebase.initializeApp(cfg);
+    fbAuth = firebase.auth();
+    fbDb = firebase.firestore();
+  } catch (e) {
+    fbAuth = null;
+    fbDb = null;
+  }
+  return fbAuth;
 }
 
 function isCloudEnabled() {
-  return sb !== null;
+  return fbAuth !== null;
+}
+
+// Coupe une requête cloud trop longue (réseau lent / hors ligne).
+function withTimeout(promise) {
+  const timeout = new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('timeout')), CLOUD_TIMEOUT_MS);
+  });
+  return Promise.race([promise, timeout]);
 }
 
 // ─── AUTHENTIFICATION ───────────────────────────────────────────────────────
-// getSession lit la session locale (rapide, fonctionne hors ligne).
+// Au chargement, Firebase restaure la session de façon asynchrone :
+// currentUser vaut null tant que le premier onAuthStateChanged n'est pas passé.
+function waitForAuthReady() {
+  if (!authReadyPromise) {
+    authReadyPromise = new Promise(resolve => {
+      const unsubscribe = fbAuth.onAuthStateChanged(() => {
+        unsubscribe();
+        resolve();
+      });
+    });
+  }
+  return authReadyPromise;
+}
+
 async function getCurrentUser() {
-  if (!sb) return null;
+  if (!fbAuth) return null;
   try {
-    const { data } = await sb.auth.getSession();
-    return (data && data.session && data.session.user) || null;
+    await waitForAuthReady();
+    return fbAuth.currentUser;
   } catch (e) {
     return null;
   }
 }
 
+// Même format de retour qu'avant : { data: { user }, error }.
 async function signUp(email, password) {
-  if (!sb) return { error: { message: 'cloud indisponible' } };
-  return await sb.auth.signUp({ email, password });
+  if (!fbAuth) return { error: { code: 'cloud-disabled' } };
+  try {
+    const cred = await fbAuth.createUserWithEmailAndPassword(email, password);
+    return { data: { user: cred.user }, error: null };
+  } catch (e) {
+    return { data: null, error: e };
+  }
 }
 
 async function signIn(email, password) {
-  if (!sb) return { error: { message: 'cloud indisponible' } };
-  return await sb.auth.signInWithPassword({ email, password });
+  if (!fbAuth) return { error: { code: 'cloud-disabled' } };
+  try {
+    const cred = await fbAuth.signInWithEmailAndPassword(email, password);
+    return { data: { user: cred.user }, error: null };
+  } catch (e) {
+    return { data: null, error: e };
+  }
 }
 
 async function signOut() {
-  if (!sb) return;
-  try { await sb.auth.signOut(); } catch (e) { /* ignore */ }
+  if (!fbAuth) return;
+  try { await fbAuth.signOut(); } catch (e) { /* ignore */ }
 }
 
 // ─── PAYLOAD : assemble / applique la progression locale ────────────────────
@@ -76,33 +124,30 @@ function loadLocalProgress() { return getProgressPayload(); }
 function saveLocalProgress(payload) { applyProgressPayload(payload); }
 
 // ─── LECTURE / ÉCRITURE CLOUD ───────────────────────────────────────────────
+function cloudDoc(user) {
+  return fbDb.collection(CLOUD_COLLECTION).doc(user.uid);
+}
+
+// Retourne les données cloud, ou null si aucun document n'existe encore.
+// LÈVE UNE ERREUR si le cloud est injoignable : l'appelant ne doit alors
+// surtout pas écraser le cloud avec la seule progression locale.
 async function loadCloudProgress() {
   const user = await getCurrentUser();
-  if (!sb || !user) return null;
-  try {
-    const { data, error } = await sb
-      .from('user_progress')
-      .select('progress, streak')
-      .eq('user_id', user.id)
-      .maybeSingle();
-    if (error || !data) return null;
-    return { progress: data.progress || {}, streak: data.streak || {} };
-  } catch (e) {
-    return null;
-  }
+  if (!fbDb || !user) return null;
+  const snap = await withTimeout(cloudDoc(user).get());
+  if (!snap.exists) return null;
+  const data = JSON.parse(snap.data().payload || '{}');
+  return { progress: data.progress || {}, streak: data.streak || {} };
 }
 
 async function saveCloudProgress() {
   const user = await getCurrentUser();
-  if (!sb || !user) return;
-  const payload = getProgressPayload();
+  if (!fbDb || !user) return;
   try {
-    await sb.from('user_progress').upsert({
-      user_id: user.id,
-      progress: payload.progress,
-      streak: payload.streak,
+    await withTimeout(cloudDoc(user).set({
+      payload: JSON.stringify(getProgressPayload()),
       updated_at: new Date().toISOString()
-    }, { onConflict: 'user_id' });
+    }));
   } catch (e) {
     // Échec silencieux : la progression reste sauvegardée en local.
   }
@@ -110,8 +155,8 @@ async function saveCloudProgress() {
 
 async function deleteCloudProgress() {
   const user = await getCurrentUser();
-  if (!sb || !user) return;
-  try { await sb.from('user_progress').delete().eq('user_id', user.id); } catch (e) { /* ignore */ }
+  if (!fbDb || !user) return;
+  try { await withTimeout(cloudDoc(user).delete()); } catch (e) { /* ignore */ }
 }
 
 // ─── FUSION OPTIMISTE (ne perd jamais de progression) ───────────────────────
@@ -195,11 +240,58 @@ function mergeLocalAndCloudProgress(localData, cloudData) {
   };
 }
 
+// ─── MIGRATION : ancienne progression Supabase restée en local ──────────────
+// Les anciens profils locaux s'appellent "user:<uuid Supabase>" (avec des
+// tirets). Un uid Firebase n'en contient jamais. À la première connexion
+// Firebase sur cet appareil, on fusionne ces anciens profils dans le nouveau.
+function readLegacyPayload(profileId) {
+  function read(baseKey) {
+    try {
+      return JSON.parse(localStorage.getItem(baseKey + ':user:' + profileId));
+    } catch (e) {
+      return null;
+    }
+  }
+  return {
+    progress: {
+      levels: read(STORAGE_KEY) || {},
+      wrong: read(WRONG_KEY) || {},
+      stats: read(STATS_KEY) || {}
+    },
+    streak: read(STREAK_KEY)
+  };
+}
+
+function migrateLegacyProfiles(user) {
+  const flagKey = 'luxLegacyMigrated:' + user.uid;
+  if (localStorage.getItem(flagKey)) return;
+
+  const prefix = STORAGE_KEY + ':user:';
+  const legacyIds = Object.keys(localStorage)
+    .filter(k => k.startsWith(prefix))
+    .map(k => k.slice(prefix.length))
+    .filter(id => id.includes('-'));
+
+  legacyIds.forEach(id => {
+    const merged = mergeLocalAndCloudProgress(getProgressPayload(), readLegacyPayload(id));
+    applyProgressPayload(merged);
+  });
+
+  localStorage.setItem(flagKey, '1');
+}
+
 // ─── SYNCHRONISATION COMPLÈTE ───────────────────────────────────────────────
 async function syncProgress() {
   const user = await getCurrentUser();
-  if (!sb || !user) return;
-  const cloud = await loadCloudProgress();
+  if (!fbDb || !user) return;
+  migrateLegacyProfiles(user);
+
+  let cloud;
+  try {
+    cloud = await loadCloudProgress();
+  } catch (e) {
+    return; // cloud injoignable : on ne touche à rien, on reste en local
+  }
   const local = getProgressPayload();
   const merged = mergeLocalAndCloudProgress(local, cloud);
   applyProgressPayload(merged); // écrit le fusionné en local
@@ -208,26 +300,23 @@ async function syncProgress() {
 
 // Sauvegarde cloud différée (évite trop de requêtes pendant une session).
 function debounceCloudSave() {
-  if (!sb) return;
+  if (!fbAuth) return;
   clearTimeout(cloudSaveTimer);
   cloudSaveTimer = setTimeout(saveCloudProgress, 800);
 }
 
 // ─── BOOT : appelé au démarrage de l'application ────────────────────────────
 async function bootAuthAndSync() {
-  if (!sb) return;
+  if (!fbAuth) return;
   try {
     const user = await getCurrentUser();
     if (user) {
       // Profil isolé pour ce compte AVANT toute lecture/écriture locale.
-      setStorageProfile('user:' + user.id);
+      setStorageProfile('user:' + user.uid);
       await syncProgress(); // charge ce profil + cloud, fusionne, réécrit les deux
     }
     // Sinon : on reste sur le profil "anonymous" (valeur par défaut).
   } catch (e) {
-    // Supabase indisponible : on continue en local.
-  }
-  if (sb) {
-    sb.auth.onAuthStateChange(() => updateAuthUI());
+    // Firebase indisponible : on continue en local.
   }
 }

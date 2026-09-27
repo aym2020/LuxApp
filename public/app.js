@@ -23,7 +23,7 @@ let tAnswered = false;
 async function init() {
   lecons = await fetch('/api/lecons').then(r => r.json()); // 1. leçons
   // 2. la progression locale est déjà lue à la demande depuis localStorage
-  initSupabase();          // 3. init Supabase (sans effet si non configuré)
+  initFirebase();          // 3. init Firebase (sans effet si non configuré)
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
   renderLessons();
   renderDashboard();       // 7. rendu (inclut l'état de connexion)
@@ -263,11 +263,14 @@ function showAuthForm(mode) {
 
 // Messages d'erreur clairs (jamais d'erreur technique brute).
 function friendlyAuthError(error) {
-  const m = ((error && error.message) || '').toLowerCase();
-  if (m.includes('invalid login')) return 'Email ou mot de passe incorrect.';
-  if (m.includes('already')) return 'Un compte existe déjà avec cet email.';
-  if (m.includes('password')) return 'Mot de passe trop court (6 caractères minimum).';
-  if (m.includes('email')) return 'Email invalide.';
+  const code = (error && error.code) || '';
+  if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' ||
+      code === 'auth/user-not-found') return 'Email ou mot de passe incorrect.';
+  if (code === 'auth/email-already-in-use') return 'Un compte existe déjà avec cet email.';
+  if (code === 'auth/weak-password') return 'Mot de passe trop court (6 caractères minimum).';
+  if (code === 'auth/invalid-email') return 'Email invalide.';
+  if (code === 'auth/too-many-requests') return 'Trop de tentatives. Réessaie dans quelques minutes.';
+  if (code === 'auth/network-request-failed') return 'Pas de connexion internet.';
   return 'Une erreur est survenue. Réessaie.';
 }
 
@@ -282,24 +285,10 @@ async function handleAuth(mode) {
   const { data, error } = await fn(email, pass);
   if (error) { msg.textContent = friendlyAuthError(error); return; }
 
-  // Inscription : pas de session ouverte immédiatement.
-  if (mode === 'signup' && data && data.user && !data.session) {
-    // identities vide = email déjà utilisé (Supabase masque l'erreur pour la sécurité).
-    const isDuplicate = !data.user.identities || data.user.identities.length === 0;
-    const form = document.getElementById('auth-form');
-    if (form) {
-      form.innerHTML = '<div class="auth-msg ' + (isDuplicate ? '' : 'ok') + '">' +
-        escHtml(isDuplicate
-          ? 'Un compte existe déjà avec cet email.'
-          : 'Compte créé. Vérifie ton email pour confirmer ton inscription.') +
-        '</div>';
-    }
-    return;
-  }
-
+  // Firebase ouvre la session directement (inscription comprise).
   // Connecté : profil isolé pour ce compte, puis fusion local + cloud.
   const user = await getCurrentUser();
-  if (user) setStorageProfile('user:' + user.id);
+  if (user) setStorageProfile('user:' + user.uid);
   await syncProgress();
   await updateAuthUI();
   renderDashboard();
@@ -307,19 +296,12 @@ async function handleAuth(mode) {
 }
 
 function handleSignOut() {
-  // 1. Efface immédiatement la session Supabase stockée en localStorage.
-  //    (les clés Supabase commencent par "sb-"). Synchrone => garanti avant reload.
-  try {
-    Object.keys(localStorage)
-      .filter(k => k.startsWith('sb-'))
-      .forEach(k => localStorage.removeItem(k));
-  } catch (e) { /* ignore */ }
-
-  // 2. Déconnexion serveur en arrière-plan (sans bloquer).
-  try { signOut(); } catch (e) { /* ignore */ }
-
-  // 3. Recharge : au boot, aucun user détecté -> profil "anonymous".
-  window.location.reload();
+  // Firebase garde la session dans IndexedDB : on attend la déconnexion
+  // (locale, rapide) puis on recharge. Sécurité : reload forcé après 2 s.
+  const reload = () => window.location.reload();
+  setTimeout(reload, 2000);
+  signOut().then(reload, reload);
+  // Au boot, aucun user détecté -> profil "anonymous".
 }
 
 async function handleSync(btn) {
