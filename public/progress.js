@@ -317,10 +317,30 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
-// ─── TOUTES LES QUESTIONS (à plat, tous types et toutes leçons) ─────────────
+// ─── NIVEAU ACTIF (A1.1, A1.2…) ─────────────────────────────────────────────
+// Le niveau choisi est mémorisé dans le navigateur.
+let niveauActif = localStorage.getItem('luxNiveau') || 'A1.1';
+
+// Leçons du niveau actif uniquement.
+// Une leçon sans champ "niveau" est considérée comme A1.1.
+function leconsActives() {
+  return lecons.filter(l => (l.niveau || 'A1.1') === niveauActif);
+}
+
+// Liste des niveaux présents dans les leçons, triée (ex : ['A1.1', 'A1.2']).
+function listeNiveaux() {
+  const niveaux = [];
+  lecons.forEach(l => {
+    const n = l.niveau || 'A1.1';
+    if (!niveaux.includes(n)) niveaux.push(n);
+  });
+  return niveaux.sort();
+}
+
+// ─── TOUTES LES QUESTIONS (à plat, tous types, leçons du niveau actif) ──────
 function getAllQuestions() {
   const all = [];
-  lecons.forEach(l => {
+  leconsActives().forEach(l => {
     (l.quiz || []).forEach(q => all.push({ leconId: l.id, type: 'quiz', qid: q.id, q }));
     (l.trous || []).forEach(q => all.push({ leconId: l.id, type: 'trous', qid: q.id, q }));
     (l.ecriture || []).forEach((q, i) => all.push({ leconId: l.id, type: 'ecriture', qid: i, q }));
@@ -555,8 +575,9 @@ function calculateGlobalStats() {
     if (lv === 1) toReview++;
   });
 
+  const leconsNiveau = leconsActives();
   let lessonsMastered = 0;
-  lecons.forEach(l => { if (calculateLessonStats(l.id).mastered) lessonsMastered++; });
+  leconsNiveau.forEach(l => { if (calculateLessonStats(l.id).mastered) lessonsMastered++; });
 
   const total = all.length;
   return {
@@ -564,7 +585,7 @@ function calculateGlobalStats() {
     masteredQuestions: mastered,
     totalQuestions: total,
     lessonsMastered,
-    totalLessons: lecons.length,
+    totalLessons: leconsNiveau.length,
     toReview
   };
 }

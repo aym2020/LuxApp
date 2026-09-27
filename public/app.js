@@ -25,6 +25,7 @@ async function init() {
   // 2. la progression locale est déjà lue à la demande depuis localStorage
   initFirebase();          // 3. init Firebase (sans effet si non configuré)
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
+  renderNiveauSwitch();
   renderLessons();
   renderDashboard();       // 7. rendu (inclut l'état de connexion)
   await updateAuthUI();    // mise à jour zone connexion (après bootAuthAndSync)
@@ -33,11 +34,40 @@ async function init() {
   setupKeyboard();
 }
 
+// ─── SÉLECTEUR DE NIVEAU ────────────────────────────────────────────────────
+// Un bouton par niveau présent dans les leçons (A1.1, A1.2…).
+function renderNiveauSwitch() {
+  const niveaux = listeNiveaux();
+
+  // Si le niveau mémorisé n'existe plus, on revient au premier niveau.
+  if (!niveaux.includes(niveauActif)) niveauActif = niveaux[0] || 'A1.1';
+
+  const box = document.getElementById('niveau-switch');
+  box.innerHTML = '';
+  niveaux.forEach(n => {
+    const btn = document.createElement('button');
+    btn.className = 'niveau-btn' + (n === niveauActif ? ' active' : '');
+    btn.textContent = n;
+    btn.addEventListener('click', () => changerNiveau(n));
+    box.appendChild(btn);
+  });
+
+  document.getElementById('lessons-niveau').textContent = niveauActif;
+}
+
+function changerNiveau(niveau) {
+  niveauActif = niveau;
+  localStorage.setItem('luxNiveau', niveau);
+  renderNiveauSwitch();
+  renderLessons();
+  renderDashboard();
+}
+
 // ─── LISTE DES LEÇONS ───────────────────────────────────────────────────────
 function renderLessons() {
   const list = document.getElementById('lecon-list');
   list.innerHTML = '';
-  lecons.forEach(l => {
+  leconsActives().forEach(l => {
     const el = document.createElement('div');
     el.className = 'lecon-card';
     el.style.setProperty('--lc', l.couleur);
@@ -368,10 +398,10 @@ function startSession(mode) {
 let reviewListenerAttached = false;
 
 function openReviewSetup() {
-  // Une case par leçon, toutes cochées au départ.
+  // Une case par leçon du niveau actif, toutes cochées au départ.
   const box = document.getElementById('rs-lecons');
   box.innerHTML = '';
-  lecons.forEach(l => {
+  leconsActives().forEach(l => {
     const label = document.createElement('label');
     label.className = 'rs-check';
     label.innerHTML =

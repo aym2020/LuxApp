@@ -51,6 +51,17 @@ header {
 }
 .app-sub   { font-size: .72rem; color: var(--muted-strong); font-weight: 700; letter-spacing: .14em; margin-top: .2rem; }
 
+/* Sélecteur de niveau (A1.1 / A1.2) */
+.niveau-switch { display: flex; gap: .4rem; margin-top: .6rem; }
+.niveau-btn {
+  font-family: inherit; font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+  padding: .35rem .8rem; border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--muted-strong); border: 1px solid #34322d;
+  transition: all .2s;
+}
+.niveau-btn:hover  { border-color: var(--accent); color: var(--accent); }
+.niveau-btn.active { background: var(--accent); border-color: var(--accent); color: #111; }
+
 .lecon-list { padding: 1rem 1rem 3rem 1rem; display: flex; flex-direction: column; gap: .7rem; }
 
 .lecon-card {

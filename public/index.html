@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Lëtzebuergesch A1.1</title>
+  <title>Lëtzebuergesch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
@@ -14,7 +14,7 @@
   <div id="view-dashboard" class="view active">
     <header>
       <div class="app-title">Lëtzebuergesch</div>
-      <div class="app-sub">A1.1</div>
+      <div id="niveau-switch" class="niveau-switch"></div>
     </header>
 
     <div class="dash">
@@ -60,7 +60,7 @@
     <div class="lecon-header">
       <button class="back-btn" onclick="goDashboard()">← Accueil</button>
       <div class="lecon-header-info">
-        <span class="lecon-num">LEÇONS</span>
+        <span class="lecon-num">LEÇONS · <span id="lessons-niveau"></span></span>
         <span class="lecon-titre">Choisis une leçon</span>
       </div>
     </div>

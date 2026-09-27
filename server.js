@@ -12,12 +12,22 @@ app.get('/api/ecriture', (req, res) => {
 });
 
 app.get('/api/lecons', (req, res) => {
-  const dir = path.join(__dirname, 'data/lecons');
-  const files = fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort();
-  const lecons = files.map(f => {
-    const raw = fs.readFileSync(path.join(dir, f), 'utf8');
-    return JSON.parse(raw);
+  const baseDir = path.join(__dirname, 'data/lecons');
+  const niveaux = fs.readdirSync(baseDir).sort(); // ['A1.1', 'A1.2']
+  const lecons = [];
+
+  niveaux.forEach(niveau => {
+    const dir = path.join(baseDir, niveau);
+    if (!fs.statSync(dir).isDirectory()) return;
+
+    const files = fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort();
+    files.forEach(f => {
+      const lecon = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+      lecon.niveau = niveau;
+      lecons.push(lecon);
+    });
   });
+
   res.json(lecons);
 });
 
