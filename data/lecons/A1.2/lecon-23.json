@@ -5,9 +5,9 @@
   "couleur": "#7c83d6",
   "instructions": {
     "flashcards": "Mémorise les membres de la famille avec leur article (de / d') pour retenir leur genre. Apprends-les par cœur comme des blocs.",
-    "quiz": "Lis un mot luxembourgeois (un membre de la famille ou un possessif) et choisis la bonne traduction française. Les distracteurs sont d'autres membres proches ou d'autres possessifs.",
-    "trous": "Complète chaque phrase avec le bon possessif (mäi, meng, säi, seng, hir, hiert…) accordé au nom possédé, ou avec le bon membre de la famille. Les distracteurs restent des possessifs ou des membres plausibles.",
-    "ecriture": "Traduis en luxembourgeois les membres de la famille, les possessifs et des phrases courtes à la 1re et à la 3e personne du singulier. Respecte l'accord du possessif avec le nom possédé et la chute du -n (règle d'Eifel)."
+    "quiz": "Lis un mot luxembourgeois (un membre de la famille, un possessif ou une tournure « le … de mon / ma / mes … ») et choisis la bonne traduction française. Les distracteurs sont d'autres membres proches ou d'autres possessifs.",
+    "trous": "Complète chaque phrase avec le bon possessif (mäi, meng, säi, seng, hir, hiert…) accordé au nom possédé, avec la bonne forme au datif dans « mengem Papp seng … » (mengem, menger, mengen, dem, der), ou avec le bon membre de la famille. Les distracteurs restent des possessifs ou des membres plausibles.",
+    "ecriture": "Traduis en luxembourgeois les membres de la famille, les possessifs, les tournures « le … de mon / ma / mes … » (mengem Papp seng Schwëster) et des phrases courtes pour décrire ta famille. Respecte l'accord du possessif avec le nom possédé et la chute du -n (règle d'Eifel)."
   },
   "flashcards": [
     {
@@ -129,6 +129,36 @@
       "id": 23,
       "lu": "d'Schnauer",
       "fr": "la belle-fille / la bru"
+    },
+    {
+      "id": 24,
+      "lu": "de Pätter",
+      "fr": "le parrain",
+      "note": "mäi Pätter (le n tombe devant P)."
+    },
+    {
+      "id": 25,
+      "lu": "d'Enkelkand",
+      "fr": "le petit-enfant",
+      "note": "Neutre · pluriel : d'Enkelkanner."
+    },
+    {
+      "id": 26,
+      "lu": "mengem Papp seng Schwëster",
+      "fr": "la sœur de mon père",
+      "note": "Papp (M) → datif mengem ; possesseur masculin → säi / seng."
+    },
+    {
+      "id": 27,
+      "lu": "menger Mamm hire Schwoer",
+      "fr": "le beau-frère de ma mère",
+      "note": "Mamm (F) → datif menger ; possesseur féminin → hire / hir / hiert."
+    },
+    {
+      "id": 28,
+      "lu": "mengen Elteren hire Jong",
+      "fr": "le fils de mes parents",
+      "note": "Pluriel → datif mengen ; possesseur pluriel → hire / hir / hiert."
     }
   ],
   "quiz": [
@@ -290,6 +320,66 @@
         "sa sœur (à lui)",
         "ta sœur",
         "leur frère"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "de Pätter",
+      "reponse": "le parrain",
+      "distracteurs": [
+        "l'oncle",
+        "le grand-père",
+        "le beau-frère"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "d'Enkelkand",
+      "reponse": "le petit-enfant",
+      "distracteurs": [
+        "l'enfant",
+        "le neveu",
+        "le beau-fils"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "mengem Papp seng Schwëster",
+      "reponse": "la sœur de mon père",
+      "distracteurs": [
+        "le frère de mon père",
+        "la sœur de ma mère",
+        "la belle-sœur de mon père"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "menger Mamm hire Schwoer",
+      "reponse": "le beau-frère de ma mère",
+      "distracteurs": [
+        "le frère de ma mère",
+        "le beau-frère de mon père",
+        "la belle-sœur de ma mère"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "mengen Elteren hire Jong",
+      "reponse": "le fils de mes parents",
+      "distracteurs": [
+        "la fille de mes parents",
+        "le fils de mon frère",
+        "le petit-fils de mes parents"
+      ]
+    },
+    {
+      "id": 22,
+      "question": "menge Grousselteren hir Schnauer",
+      "reponse": "la belle-fille de mes grands-parents",
+      "distracteurs": [
+        "le gendre de mes grands-parents",
+        "la petite-fille de mes grands-parents",
+        "la belle-sœur de mes parents"
       ]
     }
   ],
@@ -461,6 +551,104 @@
         "säin"
       ],
       "note": "Meedchen neutre → säi(n) ; -n tombe devant M → säi."
+    },
+    {
+      "id": 13,
+      "fr": "La sœur de mon père s'appelle Susy.",
+      "avant": "",
+      "trou": "Mengem",
+      "apres": "Papp seng Schwëster heescht Susy.",
+      "choix": [
+        "Mengem",
+        "Menger",
+        "Mengen",
+        "Mäi"
+      ],
+      "note": "Papp (M) → datif mengem."
+    },
+    {
+      "id": 14,
+      "fr": "La belle-sœur de ma mère s'appelle Susy.",
+      "avant": "Menger Mamm",
+      "trou": "hir",
+      "apres": "Schwéiesch heescht Susy.",
+      "choix": [
+        "hir",
+        "seng",
+        "hire",
+        "hiert"
+      ],
+      "note": "Possesseur féminin (Mamm) → hir- ; Schwéiesch (F) → hir."
+    },
+    {
+      "id": 15,
+      "fr": "Le beau-frère de ma mère s'appelle Hilaire.",
+      "avant": "Menger Mamm",
+      "trou": "hire",
+      "apres": "Schwoer heescht Hilaire.",
+      "choix": [
+        "hire",
+        "hir",
+        "säi",
+        "hiren"
+      ],
+      "note": "Possesseur féminin → hir- ; Schwoer (M), le n tombe devant S → hire."
+    },
+    {
+      "id": 16,
+      "fr": "Je suis leur neveu.",
+      "avant": "Ech sinn",
+      "trou": "hiren",
+      "apres": "Neveu.",
+      "choix": [
+        "hiren",
+        "hire",
+        "hir",
+        "säin"
+      ],
+      "note": "Possesseur pluriel → hir- ; Neveu (M) commence par N → le n reste : hiren."
+    },
+    {
+      "id": 17,
+      "fr": "Max est le fils de tante Susy.",
+      "avant": "De Max ass",
+      "trou": "der",
+      "apres": "Tatta Susy hire Jong.",
+      "choix": [
+        "der",
+        "dem",
+        "den",
+        "d'"
+      ],
+      "note": "Tatta (F) → datif der."
+    },
+    {
+      "id": 18,
+      "fr": "Max et Anna sont les petits-enfants de Hubert.",
+      "avant": "De Max an d'Anna sinn dem Hubert",
+      "trou": "seng",
+      "apres": "Enkelkanner.",
+      "choix": [
+        "seng",
+        "säi",
+        "hir",
+        "säin"
+      ],
+      "note": "Possesseur masculin (Hubert) + pluriel (Enkelkanner) → seng."
+    },
+    {
+      "id": 19,
+      "fr": "Hilaire est mon oncle et mon parrain.",
+      "avant": "Den Hilaire ass mäi Monni a mäi",
+      "trou": "Pätter",
+      "apres": ".",
+      "choix": [
+        "Pätter",
+        "Papp",
+        "Grousspapp",
+        "Schwoer"
+      ],
+      "note": "parrain = Pätter."
     }
   ],
   "ecriture": [
@@ -543,12 +731,68 @@
     {
       "fr": "La sœur de Christian s'appelle Anne.",
       "lu": "Dem Christian seng Schwëster heescht Anne."
+    },
+    {
+      "fr": "le parrain",
+      "lu": "de Pätter"
+    },
+    {
+      "fr": "le petit-enfant",
+      "lu": "d'Enkelkand"
+    },
+    {
+      "fr": "les petits-enfants",
+      "lu": "d'Enkelkanner"
+    },
+    {
+      "fr": "les nièces",
+      "lu": "d'Niessen"
+    },
+    {
+      "fr": "la sœur de mon père",
+      "lu": "mengem Papp seng Schwëster"
+    },
+    {
+      "fr": "la belle-sœur de ma mère",
+      "lu": "menger Mamm hir Schwéiesch"
+    },
+    {
+      "fr": "le fils de mes parents",
+      "lu": "mengen Elteren hire Jong"
+    },
+    {
+      "fr": "Mon oncle est aussi mon parrain.",
+      "lu": "Mäi Monni ass och mäi Pätter."
+    },
+    {
+      "fr": "Je suis leur neveu.",
+      "lu": "Ech sinn hiren Neveu."
+    },
+    {
+      "fr": "Susy est la sœur de mon père.",
+      "lu": "D'Susy ass mengem Papp seng Schwëster."
+    },
+    {
+      "fr": "Hilaire est le beau-frère de ma mère.",
+      "lu": "Den Hilaire ass menger Mamm hire Schwoer."
+    },
+    {
+      "fr": "Max est le fils de tante Susy.",
+      "lu": "De Max ass der Tatta Susy hire Jong."
+    },
+    {
+      "fr": "Je suis le fils de mes parents.",
+      "lu": "Ech si mengen Elteren hire Jong."
+    },
+    {
+      "fr": "Mes grands-parents ont six petits-enfants.",
+      "lu": "Meng Grousselteren hu sechs Enkelkanner."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon présente les membres de la famille et les possessifs (mon, ton, son, notre, votre, leur). Le point clé : en luxembourgeois, le possessif s'accorde avec le nom possédé (ce qui est possédé), pas avec le possesseur. On apprend aussi la tournure « dem [Nom] säi/seng … » pour dire « le/la … de [quelqu'un] »."
+      "contenu": "Cette leçon présente les membres de la famille et les possessifs (mon, ton, son, notre, votre, leur). Le point clé : en luxembourgeois, le possessif s'accorde avec le nom possédé (ce qui est possédé), pas avec le possesseur. On apprend aussi la tournure « dem [Nom] säi/seng … » pour dire « le/la … de [quelqu'un] ». Enfin, on apprend à dire « le … de mon / ma / mes … » avec le possessif au datif : mengem Papp seng Schwëster (la sœur de mon père)."
     },
     {
       "type": "callout",
@@ -646,7 +890,7 @@
           "le neveu"
         ],
         [
-          "d'Niess",
+          "d'Niess (pl. d'Niessen)",
           "la nièce"
         ],
         [
@@ -656,6 +900,10 @@
         [
           "d'Enkelin",
           "la petite-fille"
+        ],
+        [
+          "d'Enkelkand (neutre)",
+          "le petit-enfant"
         ],
         [
           "d'Enkelkanner",
@@ -676,6 +924,10 @@
         [
           "d'Schnauer",
           "la belle-fille / la bru"
+        ],
+        [
+          "de Pätter",
+          "le parrain"
         ]
       ]
     },
@@ -684,9 +936,9 @@
       "variant": "info",
       "titre": "Le genre des membres (utile pour le possessif)",
       "lignes": [
-        "Masculin : de Papp, de Brudder, de Jong, de Mann, de Monni, de Cousin, de Grousspapp, den Neveu, den Enkel, de Schwoer, den Eedem.",
+        "Masculin : de Papp, de Brudder, de Jong, de Mann, de Monni, de Cousin, de Grousspapp, den Neveu, den Enkel, de Schwoer, den Eedem, de Pätter.",
         "Féminin : d'Mamm, d'Schwëster, d'Duechter, d'Fra, d'Tatta, d'Cousine, d'Groussmamm, d'Niess, d'Enkelin, d'Schwéiesch, d'Schnauer.",
-        "Neutre : d'Meedchen, d'Kand. En luxembourgeois, une jeune fille (Meedchen) est neutre.",
+        "Neutre : d'Meedchen, d'Kand, d'Enkelkand. En luxembourgeois, une jeune fille (Meedchen) est neutre.",
         "Pluriel : d'Elteren, d'Kanner, d'Geschwëster, d'Grousselteren."
       ]
     },
@@ -766,6 +1018,93 @@
         "Dem Christian seng Mamm = la mère de Christian (Mamm féminin → seng).",
         "Dem Michelle säi Meedchen = la fille de Michelle (Meedchen neutre → säi).",
         "Question : Wien ass dem Michelle säi Meedchen? = Qui est la fille de Michelle ?"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Dire « le … de mon / ma / mes … »",
+      "lignes": [
+        "On met d'abord le possesseur au <b>datif</b>, puis son possessif, puis le membre de la famille : <b>mengem Papp seng Schwëster</b> = la sœur de mon père.",
+        "meng au datif : <b>mengem</b> + masculin / neutre (mengem Papp), <b>menger</b> + féminin (menger Mamm), <b>mengen</b> + pluriel (mengen Elteren ; menge Grousselteren, le n tombe devant G).",
+        "Le 2e possessif dépend du possesseur : masculin → säi / seng ; féminin ou pluriel → hire(n) / hir / hiert.",
+        "Avec un nom : <b>dem</b> + masculin / neutre (dem Hubert, dem Claire), <b>der</b> + féminin (der Tatta Susy)."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Le … de mon / ma / mes …",
+      "entetes": [
+        "Possesseur (datif)",
+        "+ masculin",
+        "+ féminin",
+        "+ pluriel"
+      ],
+      "lignes": [
+        [
+          "mengem Papp",
+          "säi Brudder",
+          "seng Schwëster",
+          "seng Kanner"
+        ],
+        [
+          "menger Mamm",
+          "hire Brudder",
+          "hir Schwëster",
+          "hir Kanner"
+        ],
+        [
+          "mengen Elteren",
+          "hire Jong",
+          "hir Duechter",
+          "hir Enkelkanner"
+        ]
+      ]
+    },
+    {
+      "type": "exemple",
+      "titre": "D'Famill Thilges : qui est qui ?",
+      "items": [
+        [
+          "Den Hubert an d'Catherine si meng Grousselteren.",
+          "Hubert et Catherine sont mes grands-parents."
+        ],
+        [
+          "D'Susy ass mengem Papp seng Schwëster.",
+          "Susy est la sœur de mon père."
+        ],
+        [
+          "D'Susy ass och menger Mamm hir Schwéiesch.",
+          "Susy est aussi la belle-sœur de ma mère."
+        ],
+        [
+          "Den Hilaire ass mäi Monni a mäi Pätter.",
+          "Hilaire est mon oncle et mon parrain."
+        ],
+        [
+          "Ech sinn hiren Neveu.",
+          "Je suis leur neveu."
+        ],
+        [
+          "Den Hilaire ass menger Mamm hire Schwoer.",
+          "Hilaire est le beau-frère de ma mère."
+        ],
+        [
+          "De Max ass der Tatta Susy hire Jong.",
+          "Max est le fils de tante Susy."
+        ],
+        [
+          "Meng Mamm ass menge Grousselteren hir Schnauer.",
+          "Ma mère est la belle-fille de mes grands-parents."
+        ],
+        [
+          "Den Hilaire ass hiren Eedem.",
+          "Hilaire est leur gendre."
+        ],
+        [
+          "Ech si mengen Elteren hire Jong.",
+          "Je suis le fils de mes parents."
+        ]
       ]
     },
     {
