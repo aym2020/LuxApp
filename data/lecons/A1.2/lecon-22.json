@@ -1,0 +1,1871 @@
+{
+  "id": 22,
+  "titre": "An der Fräizäit",
+  "titre_fr": "Les loisirs et le week-end – aimer faire (gär)",
+  "couleur": "#2e9e8f",
+  "instructions": {
+    "flashcards": "Mémorise les activités de loisirs (avec goen, spillen, fueren, maachen, kucken), les degrés de gär (ganz gär, gär, net gär, guer net gär), les mots de fréquence et les questions sur le temps libre. La note donne le genre, la préposition ou une forme conjuguée.",
+    "quiz": "Lis une activité, un mot de fréquence, une phrase avec gär ou une question en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont d'autres activités, un autre degré de gär, une autre fréquence ou une question proche.",
+    "trous": "Complète la phrase qui correspond à la traduction : verbe conjugué (kucken, fueren, spillen, maachen, goen), activité, degré de gär, fréquence ou préposition an / op / bei. Les distracteurs sont d'autres verbes, activités, fréquences ou prépositions de la leçon.",
+    "ecriture": "Traduis en luxembourgeois les activités de loisirs, les mots de fréquence, les questions sur le temps libre et des phrases complètes avec gär, goen et an / op / bei. Attention à la règle de l'Eifel : Ech kucke gär, mais Ech kucken net gär."
+  },
+  "flashcards": [
+    {
+      "id": 1,
+      "lu": "spadséiere goen",
+      "fr": "se promener",
+      "note": "Ech gi gär spadséieren."
+    },
+    {
+      "id": 2,
+      "lu": "en Trëppeltour maachen",
+      "fr": "faire une balade / une randonnée à pied",
+      "note": "Masculin · = spadséiere goen"
+    },
+    {
+      "id": 3,
+      "lu": "schwamme goen",
+      "fr": "aller nager",
+      "note": "Ech gi gär schwammen."
+    },
+    {
+      "id": 4,
+      "lu": "an d'Schwämm goen",
+      "fr": "aller à la piscine",
+      "note": "d'Schwämm = féminin → an d'"
+    },
+    {
+      "id": 5,
+      "lu": "lafe goen",
+      "fr": "aller courir",
+      "note": "Ech ginn all Dag lafen."
+    },
+    {
+      "id": 6,
+      "lu": "akafe goen",
+      "fr": "faire les courses / du shopping",
+      "note": "Ech gi gär akafen."
+    },
+    {
+      "id": 7,
+      "lu": "eppes drénke goen",
+      "fr": "aller boire un verre",
+      "note": "Ech gi gär eppes drénken."
+    },
+    {
+      "id": 8,
+      "lu": "an de Bësch goen",
+      "fr": "aller en forêt",
+      "note": "de Bësch = masculin → an de"
+    },
+    {
+      "id": 9,
+      "lu": "an d'Disco goen",
+      "fr": "aller en boîte",
+      "note": "d'Disco = féminin → an d'"
+    },
+    {
+      "id": 10,
+      "lu": "an de Kino goen",
+      "fr": "aller au cinéma",
+      "note": "de Kino = masculin · bâtiment → an"
+    },
+    {
+      "id": 11,
+      "lu": "op e Concert goen",
+      "fr": "aller à un concert",
+      "note": "Événement → op"
+    },
+    {
+      "id": 12,
+      "lu": "op e Floumaart goen",
+      "fr": "aller à un marché aux puces",
+      "note": "Lieu ouvert → op"
+    },
+    {
+      "id": 13,
+      "lu": "op d'Gemeng goen",
+      "fr": "aller à la commune",
+      "note": "Administration → op"
+    },
+    {
+      "id": 14,
+      "lu": "bei de Coiffer goen",
+      "fr": "aller chez le coiffeur",
+      "note": "Personne → bei"
+    },
+    {
+      "id": 15,
+      "lu": "Fussball spillen",
+      "fr": "jouer au football",
+      "note": "Sans article · du spills, hie spillt"
+    },
+    {
+      "id": 16,
+      "lu": "Gittar spillen",
+      "fr": "jouer de la guitare",
+      "note": "Instrument sans article"
+    },
+    {
+      "id": 17,
+      "lu": "Gei spillen",
+      "fr": "jouer du violon",
+      "note": "Instrument sans article"
+    },
+    {
+      "id": 18,
+      "lu": "Videospiller spillen",
+      "fr": "jouer aux jeux vidéo",
+      "note": "e Videospill → Videospiller"
+    },
+    {
+      "id": 19,
+      "lu": "Vëlo fueren",
+      "fr": "faire du vélo",
+      "note": "Sans article · du fiers, hie fiert"
+    },
+    {
+      "id": 20,
+      "lu": "Schi fueren",
+      "fr": "faire du ski",
+      "note": "Sans article"
+    },
+    {
+      "id": 21,
+      "lu": "Sport maachen",
+      "fr": "faire du sport",
+      "note": "du méchs, hie mécht"
+    },
+    {
+      "id": 22,
+      "lu": "e Cours maachen",
+      "fr": "suivre un cours",
+      "note": "de Cours = masculin"
+    },
+    {
+      "id": 23,
+      "lu": "e Film kucken",
+      "fr": "regarder un film",
+      "note": "kucken = leçon 16"
+    },
+    {
+      "id": 24,
+      "lu": "Musek lauschteren",
+      "fr": "écouter de la musique",
+      "note": "Ech lauschtere gär Musek."
+    },
+    {
+      "id": 25,
+      "lu": "liesen",
+      "fr": "lire",
+      "note": "Ech liese gär."
+    },
+    {
+      "id": 26,
+      "lu": "raschten",
+      "fr": "se reposer",
+      "note": "Ech raschte gär."
+    },
+    {
+      "id": 27,
+      "lu": "danzen",
+      "fr": "danser",
+      "note": "Ech danze gär."
+    },
+    {
+      "id": 28,
+      "lu": "sangen",
+      "fr": "chanter",
+      "note": "Ech sange gär."
+    },
+    {
+      "id": 29,
+      "lu": "molen",
+      "fr": "peindre / dessiner",
+      "note": "Ech mole gär."
+    },
+    {
+      "id": 30,
+      "lu": "kachen",
+      "fr": "faire la cuisine",
+      "note": "Ech kache gär."
+    },
+    {
+      "id": 31,
+      "lu": "baken",
+      "fr": "faire de la pâtisserie",
+      "note": "Ech bake gär."
+    },
+    {
+      "id": 32,
+      "lu": "ganz gär",
+      "fr": "j'adore (très volontiers)",
+      "note": "Ech kucke ganz gär e Film."
+    },
+    {
+      "id": 33,
+      "lu": "gär",
+      "fr": "j'aime (bien) faire",
+      "note": "Verbe + gär : Ech kucke gär e Film."
+    },
+    {
+      "id": 34,
+      "lu": "net gär",
+      "fr": "je n'aime pas faire",
+      "note": "Ech kucken net gär e Film."
+    },
+    {
+      "id": 35,
+      "lu": "guer net gär",
+      "fr": "je n'aime pas du tout faire",
+      "note": "Ech kucke guer net gär e Film."
+    },
+    {
+      "id": 36,
+      "lu": "all Dag",
+      "fr": "tous les jours",
+      "note": "Fréquence"
+    },
+    {
+      "id": 37,
+      "lu": "oft",
+      "fr": "souvent",
+      "note": "Fréquence"
+    },
+    {
+      "id": 38,
+      "lu": "heiansdo",
+      "fr": "parfois",
+      "note": "Fréquence"
+    },
+    {
+      "id": 39,
+      "lu": "ni",
+      "fr": "jamais",
+      "note": "Fréquence"
+    },
+    {
+      "id": 40,
+      "lu": "eemol d'Woch",
+      "fr": "une fois par semaine",
+      "note": "d'Woch = la semaine"
+    },
+    {
+      "id": 41,
+      "lu": "eemol de Mount",
+      "fr": "une fois par mois",
+      "note": "de Mount = le mois"
+    },
+    {
+      "id": 42,
+      "lu": "goen",
+      "fr": "aller (à pied)",
+      "note": "ech ginn · du gees · hie geet · mir ginn · dir gitt · si ginn"
+    },
+    {
+      "id": 43,
+      "lu": "maachen",
+      "fr": "faire",
+      "note": "ech maachen · du méchs · hie mécht · mir maachen · dir maacht · si maachen"
+    },
+    {
+      "id": 44,
+      "lu": "Wat méchs du gär an der Fräizäit?",
+      "fr": "Qu'est-ce que tu aimes faire pendant ton temps libre ?",
+      "note": "Tutoiement (du)"
+    },
+    {
+      "id": 45,
+      "lu": "Wat maacht Dir gär de Weekend?",
+      "fr": "Qu'est-ce que vous aimez faire le week-end ?",
+      "note": "Vouvoiement (Dir)"
+    },
+    {
+      "id": 46,
+      "lu": "Wéi oft?",
+      "fr": "À quelle fréquence ? / Combien de fois ?",
+      "note": "Wéi oft gees du an de Kino?"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "spadséiere goen",
+      "reponse": "se promener",
+      "distracteurs": [
+        "aller courir",
+        "aller nager",
+        "faire les courses"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "en Trëppeltour maachen",
+      "reponse": "faire une balade à pied",
+      "distracteurs": [
+        "aller en forêt",
+        "faire du vélo",
+        "faire du ski"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "schwamme goen",
+      "reponse": "aller nager",
+      "distracteurs": [
+        "aller courir",
+        "se reposer",
+        "aller boire un verre"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "an d'Schwämm goen",
+      "reponse": "aller à la piscine",
+      "distracteurs": [
+        "aller en boîte",
+        "aller en forêt",
+        "aller au cinéma"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "lafe goen",
+      "reponse": "aller courir",
+      "distracteurs": [
+        "aller nager",
+        "se promener",
+        "faire du vélo"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "akafe goen",
+      "reponse": "faire les courses",
+      "distracteurs": [
+        "aller au marché aux puces",
+        "faire la cuisine",
+        "aller boire un verre"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "eppes drénke goen",
+      "reponse": "aller boire un verre",
+      "distracteurs": [
+        "faire les courses",
+        "aller en boîte",
+        "faire la cuisine"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "an de Bësch goen",
+      "reponse": "aller en forêt",
+      "distracteurs": [
+        "aller au cinéma",
+        "aller à la piscine",
+        "aller à la commune"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "an d'Disco goen",
+      "reponse": "aller en boîte",
+      "distracteurs": [
+        "aller au cinéma",
+        "aller à un concert",
+        "aller à la piscine"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "an de Kino goen",
+      "reponse": "aller au cinéma",
+      "distracteurs": [
+        "regarder un film",
+        "aller à un concert",
+        "aller en boîte"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "op e Concert goen",
+      "reponse": "aller à un concert",
+      "distracteurs": [
+        "aller au cinéma",
+        "aller en boîte",
+        "chanter"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "op e Floumaart goen",
+      "reponse": "aller à un marché aux puces",
+      "distracteurs": [
+        "faire les courses",
+        "aller à la commune",
+        "aller en forêt"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "op d'Gemeng goen",
+      "reponse": "aller à la commune",
+      "distracteurs": [
+        "aller au travail",
+        "aller chez le coiffeur",
+        "aller au marché aux puces"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "bei de Coiffer goen",
+      "reponse": "aller chez le coiffeur",
+      "distracteurs": [
+        "aller chez le médecin",
+        "aller à la commune",
+        "aller au cinéma"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Fussball spillen",
+      "reponse": "jouer au football",
+      "distracteurs": [
+        "regarder un match de football",
+        "jouer aux jeux vidéo",
+        "faire du sport"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Gittar spillen",
+      "reponse": "jouer de la guitare",
+      "distracteurs": [
+        "jouer du violon",
+        "chanter",
+        "écouter de la musique"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Gei spillen",
+      "reponse": "jouer du violon",
+      "distracteurs": [
+        "jouer de la guitare",
+        "chanter",
+        "danser"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Videospiller spillen",
+      "reponse": "jouer aux jeux vidéo",
+      "distracteurs": [
+        "regarder la télé",
+        "jouer au football",
+        "jouer au mini-golf"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Vëlo fueren",
+      "reponse": "faire du vélo",
+      "distracteurs": [
+        "faire du ski",
+        "aller courir",
+        "se promener"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Schi fueren",
+      "reponse": "faire du ski",
+      "distracteurs": [
+        "faire du vélo",
+        "aller nager",
+        "faire du sport"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "Sport maachen",
+      "reponse": "faire du sport",
+      "distracteurs": [
+        "suivre un cours",
+        "jouer au football",
+        "faire du ski"
+      ]
+    },
+    {
+      "id": 22,
+      "question": "e Cours maachen",
+      "reponse": "suivre un cours",
+      "distracteurs": [
+        "faire du sport",
+        "aller à l'école",
+        "écrire un rapport"
+      ]
+    },
+    {
+      "id": 23,
+      "question": "e Film kucken",
+      "reponse": "regarder un film",
+      "distracteurs": [
+        "aller au cinéma",
+        "regarder un match de football",
+        "écouter de la musique"
+      ]
+    },
+    {
+      "id": 24,
+      "question": "Musek lauschteren",
+      "reponse": "écouter de la musique",
+      "distracteurs": [
+        "jouer de la guitare",
+        "chanter",
+        "regarder un film"
+      ]
+    },
+    {
+      "id": 25,
+      "question": "liesen",
+      "reponse": "lire",
+      "distracteurs": [
+        "écrire",
+        "chanter",
+        "se reposer"
+      ]
+    },
+    {
+      "id": 26,
+      "question": "raschten",
+      "reponse": "se reposer",
+      "distracteurs": [
+        "dormir",
+        "se promener",
+        "lire"
+      ]
+    },
+    {
+      "id": 27,
+      "question": "danzen",
+      "reponse": "danser",
+      "distracteurs": [
+        "chanter",
+        "peindre",
+        "courir"
+      ]
+    },
+    {
+      "id": 28,
+      "question": "sangen",
+      "reponse": "chanter",
+      "distracteurs": [
+        "danser",
+        "écouter de la musique",
+        "jouer de la guitare"
+      ]
+    },
+    {
+      "id": 29,
+      "question": "molen",
+      "reponse": "peindre / dessiner",
+      "distracteurs": [
+        "faire la cuisine",
+        "lire",
+        "chanter"
+      ]
+    },
+    {
+      "id": 30,
+      "question": "kachen",
+      "reponse": "faire la cuisine",
+      "distracteurs": [
+        "faire de la pâtisserie",
+        "faire les courses",
+        "manger"
+      ]
+    },
+    {
+      "id": 31,
+      "question": "baken",
+      "reponse": "faire de la pâtisserie",
+      "distracteurs": [
+        "faire la cuisine",
+        "peindre / dessiner",
+        "faire les courses"
+      ]
+    },
+    {
+      "id": 32,
+      "question": "Ech kucke ganz gär e Film.",
+      "reponse": "J'adore regarder un film.",
+      "distracteurs": [
+        "J'aime bien regarder un film.",
+        "Je n'aime pas regarder un film.",
+        "Je n'aime pas du tout regarder un film."
+      ]
+    },
+    {
+      "id": 33,
+      "question": "Ech spille gär Fussball.",
+      "reponse": "J'aime bien jouer au football.",
+      "distracteurs": [
+        "J'adore jouer au football.",
+        "Je n'aime pas jouer au football.",
+        "Je joue souvent au football."
+      ]
+    },
+    {
+      "id": 34,
+      "question": "Ech fueren net gär Vëlo.",
+      "reponse": "Je n'aime pas faire du vélo.",
+      "distracteurs": [
+        "Je n'aime pas du tout faire du vélo.",
+        "J'aime bien faire du vélo.",
+        "Je ne fais jamais de vélo."
+      ]
+    },
+    {
+      "id": 35,
+      "question": "Ech gi guer net gär akafen.",
+      "reponse": "Je n'aime pas du tout faire les courses.",
+      "distracteurs": [
+        "Je n'aime pas faire les courses.",
+        "J'adore faire les courses.",
+        "Je ne fais jamais les courses."
+      ]
+    },
+    {
+      "id": 36,
+      "question": "all Dag",
+      "reponse": "tous les jours",
+      "distracteurs": [
+        "souvent",
+        "une fois par semaine",
+        "aujourd'hui"
+      ]
+    },
+    {
+      "id": 37,
+      "question": "oft",
+      "reponse": "souvent",
+      "distracteurs": [
+        "parfois",
+        "jamais",
+        "tous les jours"
+      ]
+    },
+    {
+      "id": 38,
+      "question": "heiansdo",
+      "reponse": "parfois",
+      "distracteurs": [
+        "souvent",
+        "jamais",
+        "aujourd'hui"
+      ]
+    },
+    {
+      "id": 39,
+      "question": "ni",
+      "reponse": "jamais",
+      "distracteurs": [
+        "parfois",
+        "pas du tout",
+        "souvent"
+      ]
+    },
+    {
+      "id": 40,
+      "question": "eemol d'Woch",
+      "reponse": "une fois par semaine",
+      "distracteurs": [
+        "une fois par mois",
+        "tous les jours",
+        "la semaine prochaine"
+      ]
+    },
+    {
+      "id": 41,
+      "question": "eemol de Mount",
+      "reponse": "une fois par mois",
+      "distracteurs": [
+        "une fois par semaine",
+        "souvent",
+        "parfois"
+      ]
+    },
+    {
+      "id": 42,
+      "question": "Wat méchs du gär an der Fräizäit?",
+      "reponse": "Qu'est-ce que tu aimes faire pendant ton temps libre ?",
+      "distracteurs": [
+        "Qu'est-ce que tu fais ce week-end ?",
+        "Où vas-tu pendant ton temps libre ?",
+        "Qu'est-ce que tu fais comme travail ?"
+      ]
+    },
+    {
+      "id": 43,
+      "question": "Wat maacht Dir gär de Weekend?",
+      "reponse": "Qu'est-ce que vous aimez faire le week-end ?",
+      "distracteurs": [
+        "Qu'est-ce que tu aimes faire le week-end ?",
+        "Où allez-vous le week-end ?",
+        "Qu'est-ce que vous faites à six heures ?"
+      ]
+    },
+    {
+      "id": 44,
+      "question": "Wéi oft gees du an de Kino?",
+      "reponse": "À quelle fréquence vas-tu au cinéma ?",
+      "distracteurs": [
+        "Quand vas-tu au cinéma ?",
+        "Aimes-tu aller au cinéma ?",
+        "À quelle heure vas-tu au cinéma ?"
+      ]
+    },
+    {
+      "id": 45,
+      "question": "Gees du gär an de Kino?",
+      "reponse": "Aimes-tu aller au cinéma ?",
+      "distracteurs": [
+        "Vas-tu souvent au cinéma ?",
+        "Aimes-tu regarder un film ?",
+        "Vas-tu au cinéma aujourd'hui ?"
+      ]
+    },
+    {
+      "id": 46,
+      "question": "Wat méchs du de Weekend?",
+      "reponse": "Qu'est-ce que tu fais ce week-end ?",
+      "distracteurs": [
+        "Qu'est-ce que tu aimes faire le week-end ?",
+        "Où vas-tu ce week-end ?",
+        "Que fais-tu pendant la semaine ?"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "J'aime regarder un film.",
+      "avant": "Ech",
+      "trou": "kucke",
+      "apres": "gär e Film.",
+      "choix": [
+        "kucke",
+        "spille",
+        "fuere",
+        "maache"
+      ],
+      "note": "kucken → Ech kucke gär (le n tombe devant g)."
+    },
+    {
+      "id": 2,
+      "fr": "Vous n'aimez pas vous promener.",
+      "avant": "Dir",
+      "trou": "gitt",
+      "apres": "net gär spadséieren.",
+      "choix": [
+        "gitt",
+        "maacht",
+        "spillt",
+        "fuert"
+      ],
+      "note": "goen : Dir gitt."
+    },
+    {
+      "id": 3,
+      "fr": "Tu adores aller à un concert.",
+      "avant": "Du",
+      "trou": "gees",
+      "apres": "ganz gär op e Concert.",
+      "choix": [
+        "gees",
+        "méchs",
+        "spills",
+        "fiers"
+      ],
+      "note": "goen : du gees."
+    },
+    {
+      "id": 4,
+      "fr": "Elle suit un cours.",
+      "avant": "Hatt",
+      "trou": "mécht",
+      "apres": "e Cours.",
+      "choix": [
+        "mécht",
+        "geet",
+        "spillt",
+        "kuckt"
+      ],
+      "note": "e Cours maachen = suivre un cours · hatt mécht."
+    },
+    {
+      "id": 5,
+      "fr": "Je n'aime pas du tout aller au marché aux puces.",
+      "avant": "Ech gi guer net gär",
+      "trou": "op",
+      "apres": "e Floumaart.",
+      "choix": [
+        "op",
+        "an",
+        "bei",
+        "un"
+      ],
+      "note": "Lieu ouvert → op e Floumaart."
+    },
+    {
+      "id": 6,
+      "fr": "Il joue du violon tous les jours.",
+      "avant": "Hie",
+      "trou": "spillt",
+      "apres": "all Dag Gei.",
+      "choix": [
+        "spillt",
+        "mécht",
+        "fiert",
+        "geet"
+      ],
+      "note": "Gei spillen = jouer du violon."
+    },
+    {
+      "id": 7,
+      "fr": "Je n'aime pas du tout faire du vélo.",
+      "avant": "Ech",
+      "trou": "fuere",
+      "apres": "guer net gär Vëlo.",
+      "choix": [
+        "fuere",
+        "spille",
+        "maache",
+        "kucke"
+      ],
+      "note": "Vëlo fueren = faire du vélo."
+    },
+    {
+      "id": 8,
+      "fr": "Tu vas souvent au cinéma.",
+      "avant": "Du gees oft",
+      "trou": "an",
+      "apres": "de Kino.",
+      "choix": [
+        "an",
+        "op",
+        "bei",
+        "un"
+      ],
+      "note": "Bâtiment → an de Kino."
+    },
+    {
+      "id": 9,
+      "fr": "Nous ne jouons jamais au mini-golf.",
+      "avant": "Mir spillen",
+      "trou": "ni",
+      "apres": "Mini-Golf.",
+      "choix": [
+        "ni",
+        "net",
+        "oft",
+        "heiansdo"
+      ],
+      "note": "ni = jamais · net = ne… pas."
+    },
+    {
+      "id": 10,
+      "fr": "Vous n'aimez pas faire du sport.",
+      "avant": "Dir",
+      "trou": "maacht",
+      "apres": "net gär Sport.",
+      "choix": [
+        "maacht",
+        "gitt",
+        "spillt",
+        "kuckt"
+      ],
+      "note": "maachen : Dir maacht."
+    },
+    {
+      "id": 11,
+      "fr": "Aujourd'hui, nous regardons un match de football.",
+      "avant": "Mir",
+      "trou": "kucken",
+      "apres": "haut e Fussballmatch.",
+      "choix": [
+        "kucken",
+        "spillen",
+        "maachen",
+        "fueren"
+      ],
+      "note": "e Match kucken = regarder un match."
+    },
+    {
+      "id": 12,
+      "fr": "Je fais parfois du ski.",
+      "avant": "Ech fueren",
+      "trou": "heiansdo",
+      "apres": "Schi.",
+      "choix": [
+        "heiansdo",
+        "oft",
+        "ni",
+        "all Dag"
+      ],
+      "note": "heiansdo = parfois."
+    },
+    {
+      "id": 13,
+      "fr": "J'aime aller chez le coiffeur.",
+      "avant": "Ech gi gär",
+      "trou": "bei",
+      "apres": "de Coiffer.",
+      "choix": [
+        "bei",
+        "an",
+        "op",
+        "un"
+      ],
+      "note": "Personne → bei de Coiffer."
+    },
+    {
+      "id": 14,
+      "fr": "Je vais à la commune une fois par mois.",
+      "avant": "Ech ginn eemol de Mount",
+      "trou": "op",
+      "apres": "d'Gemeng.",
+      "choix": [
+        "op",
+        "an",
+        "bei",
+        "un"
+      ],
+      "note": "Administration → op d'Gemeng."
+    },
+    {
+      "id": 15,
+      "fr": "J'aime aller à la piscine.",
+      "avant": "Ech gi gär an",
+      "trou": "d'Schwämm",
+      "apres": ".",
+      "choix": [
+        "d'Schwämm",
+        "d'Disco",
+        "de Bësch",
+        "de Kino"
+      ],
+      "note": "d'Schwämm = la piscine."
+    },
+    {
+      "id": 16,
+      "fr": "Je n'aime pas aller en boîte.",
+      "avant": "Ech ginn net gär an",
+      "trou": "d'Disco",
+      "apres": ".",
+      "choix": [
+        "d'Disco",
+        "d'Schwämm",
+        "de Kino",
+        "d'Gemeng"
+      ],
+      "note": "an d'Disco goen = aller en boîte."
+    },
+    {
+      "id": 17,
+      "fr": "Nous aimons aller en forêt.",
+      "avant": "Mir gi gär an",
+      "trou": "de Bësch",
+      "apres": ".",
+      "choix": [
+        "de Bësch",
+        "de Kino",
+        "d'Schwämm",
+        "d'Disco"
+      ],
+      "note": "de Bësch = la forêt."
+    },
+    {
+      "id": 18,
+      "fr": "J'aime écouter de la musique.",
+      "avant": "Ech lauschtere gär",
+      "trou": "Musek",
+      "apres": ".",
+      "choix": [
+        "Musek",
+        "Gittar",
+        "Gei",
+        "Fussball"
+      ],
+      "note": "Musek lauschteren = écouter de la musique."
+    },
+    {
+      "id": 19,
+      "fr": "Tu joues de la guitare ?",
+      "avant": "Spills du",
+      "trou": "Gittar",
+      "apres": "?",
+      "choix": [
+        "Gittar",
+        "Gei",
+        "Fussball",
+        "Mini-Golf"
+      ],
+      "note": "Gittar spillen = jouer de la guitare."
+    },
+    {
+      "id": 20,
+      "fr": "Tu aimes faire du vélo ?",
+      "avant": "Fiers du gär",
+      "trou": "Vëlo",
+      "apres": "?",
+      "choix": [
+        "Vëlo",
+        "Schi",
+        "Sport",
+        "Fussball"
+      ],
+      "note": "Vëlo fueren = faire du vélo."
+    },
+    {
+      "id": 21,
+      "fr": "Il n'aime pas du tout faire la cuisine.",
+      "avant": "Hie kacht",
+      "trou": "guer net gär",
+      "apres": ".",
+      "choix": [
+        "guer net gär",
+        "net gär",
+        "gär",
+        "ganz gär"
+      ],
+      "note": "guer net gär = pas du tout."
+    },
+    {
+      "id": 22,
+      "fr": "Elle adore danser.",
+      "avant": "Si danzt",
+      "trou": "ganz gär",
+      "apres": ".",
+      "choix": [
+        "ganz gär",
+        "gär",
+        "net gär",
+        "guer net gär"
+      ],
+      "note": "ganz gär = j'adore / très volontiers."
+    },
+    {
+      "id": 23,
+      "fr": "Je fais la cuisine une fois par semaine.",
+      "avant": "Ech kachen",
+      "trou": "eemol d'Woch",
+      "apres": ".",
+      "choix": [
+        "eemol d'Woch",
+        "eemol de Mount",
+        "all Dag",
+        "heiansdo"
+      ],
+      "note": "eemol d'Woch = une fois par semaine."
+    },
+    {
+      "id": 24,
+      "fr": "Nous aimons nous promener.",
+      "avant": "Mir gi gär",
+      "trou": "spadséieren",
+      "apres": ".",
+      "choix": [
+        "spadséieren",
+        "schwammen",
+        "lafen",
+        "akafen"
+      ],
+      "note": "spadséiere goen → l'infinitif va à la fin."
+    },
+    {
+      "id": 25,
+      "fr": "Samedi, je vais faire les courses.",
+      "avant": "E Samschdeg ginn ech",
+      "trou": "akafen",
+      "apres": ".",
+      "choix": [
+        "akafen",
+        "lafen",
+        "schwammen",
+        "spadséieren"
+      ],
+      "note": "akafe goen = faire les courses."
+    },
+    {
+      "id": 26,
+      "fr": "Pendant mon temps libre, j'aime lire.",
+      "avant": "An der Fräizäit",
+      "trou": "liesen",
+      "apres": "ech gär.",
+      "choix": [
+        "liesen",
+        "molen",
+        "baken",
+        "raschten"
+      ],
+      "note": "liesen = lire · le verbe vient en 2e position."
+    },
+    {
+      "id": 27,
+      "fr": "Qu'est-ce que tu aimes faire le week-end ?",
+      "avant": "Wat",
+      "trou": "méchs",
+      "apres": "du gär de Weekend?",
+      "choix": [
+        "méchs",
+        "mécht",
+        "maacht",
+        "maachen"
+      ],
+      "note": "maachen : du méchs."
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "se promener",
+      "lu": "spadséiere goen"
+    },
+    {
+      "fr": "faire une balade à pied",
+      "lu": "en Trëppeltour maachen"
+    },
+    {
+      "fr": "aller nager",
+      "lu": "schwamme goen"
+    },
+    {
+      "fr": "aller à la piscine",
+      "lu": "an d'Schwämm goen"
+    },
+    {
+      "fr": "aller courir",
+      "lu": "lafe goen"
+    },
+    {
+      "fr": "faire les courses",
+      "lu": "akafe goen"
+    },
+    {
+      "fr": "aller boire un verre",
+      "lu": "eppes drénke goen"
+    },
+    {
+      "fr": "aller en forêt",
+      "lu": "an de Bësch goen"
+    },
+    {
+      "fr": "aller en boîte",
+      "lu": "an d'Disco goen"
+    },
+    {
+      "fr": "aller au cinéma",
+      "lu": "an de Kino goen"
+    },
+    {
+      "fr": "aller à un concert",
+      "lu": "op e Concert goen"
+    },
+    {
+      "fr": "aller à la commune",
+      "lu": "op d'Gemeng goen"
+    },
+    {
+      "fr": "aller chez le coiffeur",
+      "lu": "bei de Coiffer goen"
+    },
+    {
+      "fr": "jouer au football",
+      "lu": "Fussball spillen"
+    },
+    {
+      "fr": "jouer de la guitare",
+      "lu": "Gittar spillen"
+    },
+    {
+      "fr": "jouer aux jeux vidéo",
+      "lu": "Videospiller spillen"
+    },
+    {
+      "fr": "faire du vélo",
+      "lu": "Vëlo fueren"
+    },
+    {
+      "fr": "faire du ski",
+      "lu": "Schi fueren"
+    },
+    {
+      "fr": "faire du sport",
+      "lu": "Sport maachen"
+    },
+    {
+      "fr": "écouter de la musique",
+      "lu": "Musek lauschteren"
+    },
+    {
+      "fr": "se reposer",
+      "lu": "raschten"
+    },
+    {
+      "fr": "faire la cuisine",
+      "lu": "kachen"
+    },
+    {
+      "fr": "peindre / dessiner",
+      "lu": "molen"
+    },
+    {
+      "fr": "tous les jours",
+      "lu": "all Dag"
+    },
+    {
+      "fr": "souvent",
+      "lu": "oft"
+    },
+    {
+      "fr": "parfois",
+      "lu": "heiansdo"
+    },
+    {
+      "fr": "jamais",
+      "lu": "ni"
+    },
+    {
+      "fr": "une fois par mois",
+      "lu": "eemol de Mount"
+    },
+    {
+      "fr": "tu vas (goen)",
+      "lu": "du gees"
+    },
+    {
+      "fr": "tu fais (maachen)",
+      "lu": "du méchs"
+    },
+    {
+      "fr": "Qu'est-ce que tu aimes faire pendant ton temps libre ?",
+      "lu": "Wat méchs du gär an der Fräizäit?"
+    },
+    {
+      "fr": "Qu'est-ce que vous aimez faire le week-end ?",
+      "lu": "Wat maacht Dir gär de Weekend?"
+    },
+    {
+      "fr": "Aimes-tu jouer au football ?",
+      "lu": "Spills du gär Fussball?"
+    },
+    {
+      "fr": "Aimes-tu aller au cinéma ?",
+      "lu": "Gees du gär an de Kino?"
+    },
+    {
+      "fr": "À quelle fréquence vas-tu au cinéma ?",
+      "lu": "Wéi oft gees du an de Kino?"
+    },
+    {
+      "fr": "Qu'est-ce que tu fais ce week-end ?",
+      "lu": "Wat méchs du de Weekend?"
+    },
+    {
+      "fr": "Oui, très volontiers !",
+      "lu": "Jo, ganz gär!"
+    },
+    {
+      "fr": "J'aime regarder un film.",
+      "lu": "Ech kucke gär e Film."
+    },
+    {
+      "fr": "J'adore lire.",
+      "lu": "Ech liese ganz gär."
+    },
+    {
+      "fr": "Je n'aime pas faire du sport.",
+      "lu": "Ech maachen net gär Sport."
+    },
+    {
+      "fr": "Je n'aime pas du tout faire du vélo.",
+      "lu": "Ech fuere guer net gär Vëlo."
+    },
+    {
+      "fr": "J'aime aller me promener.",
+      "lu": "Ech gi gär spadséieren."
+    },
+    {
+      "fr": "Tu vas souvent au cinéma.",
+      "lu": "Du gees oft an de Kino."
+    },
+    {
+      "fr": "Il joue du violon tous les jours.",
+      "lu": "Hie spillt all Dag Gei."
+    },
+    {
+      "fr": "Nous ne jouons jamais au mini-golf.",
+      "lu": "Mir spillen ni Mini-Golf."
+    },
+    {
+      "fr": "Elle (hatt) suit un cours.",
+      "lu": "Hatt mécht e Cours."
+    },
+    {
+      "fr": "Je vais à un concert.",
+      "lu": "Ech ginn op e Concert."
+    },
+    {
+      "fr": "Je vais chez le coiffeur.",
+      "lu": "Ech gi bei de Coiffer."
+    },
+    {
+      "fr": "Je vais à la commune une fois par mois.",
+      "lu": "Ech ginn eemol de Mount op d'Gemeng."
+    },
+    {
+      "fr": "Je fais parfois du ski.",
+      "lu": "Ech fueren heiansdo Schi."
+    },
+    {
+      "fr": "Aujourd'hui, nous regardons un match de football.",
+      "lu": "Haut kucke mir e Fussballmatch."
+    },
+    {
+      "fr": "Samedi, je vais faire les courses.",
+      "lu": "E Samschdeg ginn ech akafen."
+    },
+    {
+      "fr": "Dimanche, nous allons en forêt.",
+      "lu": "E Sonndeg gi mir an de Bësch."
+    }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Cette leçon apprend à dire <b>ce qu'on aime faire</b> (ou pas) pendant son temps libre et le week-end, <b>à quelle fréquence</b>, et à parler de ses <b>projets pour le week-end</b>. On voit aussi la différence entre <b>an</b>, <b>op</b> et <b>bei</b> quand on dit où l'on va."
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Aimer faire : verbe + gär",
+      "lignes": [
+        "En luxembourgeois, on ne dit pas « j'aime » : on met <b>gär</b> juste après le verbe conjugué.",
+        "<b>Ech kucke gär e Film.</b> = J'aime regarder un film.",
+        "Structure : sujet + verbe + (net) gär + reste de la phrase.",
+        "Ne pas confondre avec <b>Ech hätt gär …</b> = je voudrais … (leçon 18)."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les degrés de gär",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "ganz gär",
+          "j'adore / très volontiers",
+          "Ech kucke ganz gär e Film."
+        ],
+        [
+          "gär",
+          "j'aime (bien)",
+          "Ech kucke gär e Film."
+        ],
+        [
+          "net gär",
+          "je n'aime pas",
+          "Ech kucken net gär e Film."
+        ],
+        [
+          "guer net gär",
+          "je n'aime pas du tout",
+          "Ech kucke guer net gär e Film."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Activités de loisirs (Fräizäitaktivitéiten)",
+      "items": [
+        [
+          "spadséiere goen",
+          "se promener"
+        ],
+        [
+          "en Trëppeltour maachen",
+          "faire une balade / une randonnée à pied"
+        ],
+        [
+          "schwamme goen",
+          "aller nager"
+        ],
+        [
+          "lafe goen",
+          "aller courir"
+        ],
+        [
+          "akafe goen",
+          "faire les courses / du shopping"
+        ],
+        [
+          "eppes drénke goen",
+          "aller boire un verre"
+        ],
+        [
+          "Fussball spillen",
+          "jouer au football"
+        ],
+        [
+          "Gittar spillen",
+          "jouer de la guitare"
+        ],
+        [
+          "Gei spillen",
+          "jouer du violon"
+        ],
+        [
+          "Videospiller spillen",
+          "jouer aux jeux vidéo"
+        ],
+        [
+          "Mini-Golf spillen",
+          "jouer au mini-golf"
+        ],
+        [
+          "Vëlo fueren",
+          "faire du vélo"
+        ],
+        [
+          "Schi fueren",
+          "faire du ski"
+        ],
+        [
+          "Sport maachen",
+          "faire du sport"
+        ],
+        [
+          "e Cours maachen",
+          "suivre un cours"
+        ],
+        [
+          "e Film kucken",
+          "regarder un film"
+        ],
+        [
+          "e Fussballmatch kucken",
+          "regarder un match de football"
+        ],
+        [
+          "Musek lauschteren",
+          "écouter de la musique"
+        ],
+        [
+          "liesen",
+          "lire"
+        ],
+        [
+          "raschten",
+          "se reposer"
+        ],
+        [
+          "danzen",
+          "danser"
+        ],
+        [
+          "sangen",
+          "chanter"
+        ],
+        [
+          "molen",
+          "peindre / dessiner"
+        ],
+        [
+          "kachen",
+          "faire la cuisine"
+        ],
+        [
+          "baken",
+          "faire de la pâtisserie"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Sans article",
+      "lignes": [
+        "Avec les sports, les instruments et Vëlo / Schi, il n'y a <b>pas d'article</b>.",
+        "Fussball spillen · Gittar spillen · Gei spillen · Vëlo fueren · Schi fueren · Sport maachen.",
+        "Le français dit « du », « de la », « au » : le luxembourgeois ne dit rien."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Conjugaison des verbes de la leçon",
+      "entetes": [
+        "Pronom",
+        "goen",
+        "maachen",
+        "spillen",
+        "fueren"
+      ],
+      "lignes": [
+        [
+          "ech",
+          "ginn",
+          "maachen",
+          "spillen",
+          "fueren"
+        ],
+        [
+          "du",
+          "gees",
+          "méchs",
+          "spills",
+          "fiers"
+        ],
+        [
+          "hien / si / hatt",
+          "geet",
+          "mécht",
+          "spillt",
+          "fiert"
+        ],
+        [
+          "mir",
+          "ginn",
+          "maachen",
+          "spillen",
+          "fueren"
+        ],
+        [
+          "dir / Dir",
+          "gitt",
+          "maacht",
+          "spillt",
+          "fuert"
+        ],
+        [
+          "si",
+          "ginn",
+          "maachen",
+          "spillen",
+          "fueren"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Formes à surveiller",
+      "lignes": [
+        "<b>goen</b> est irrégulier : ech ginn, du gees, hie geet, dir gitt.",
+        "<b>maachen</b> change de voyelle : du <b>méchs</b>, hie <b>mécht</b>, mais dir <b>maacht</b>.",
+        "<b>fueren</b> : du <b>fiers</b>, hie <b>fiert</b> (leçon 16).",
+        "<b>kucken</b> est régulier : ech kucken, du kucks, hie kuckt (leçon 16).",
+        "<b>hatt</b> = elle, pour une fille ou une femme qu'on appelle par son prénom : Hatt mécht e Cours."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Verbe + goen",
+      "lignes": [
+        "Beaucoup d'activités se forment avec <b>goen</b> : spadséiere goen, schwamme goen, lafe goen, akafe goen, eppes drénke goen.",
+        "Dans la phrase, on conjugue <b>goen</b> et l'autre verbe va <b>à la fin</b>, à l'infinitif.",
+        "Ech gi gär <b>spadséieren</b>. = J'aime me promener.",
+        "Ech ginn all Dag <b>lafen</b>. = Je vais courir tous les jours."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Règle de l'Eifel (rappel)",
+      "lignes": [
+        "Le <b>n</b> final tombe devant une consonne, sauf devant <b>n, d, t, z, h</b> et devant une voyelle.",
+        "Ech kucke gär · Ech spille gär · Ech gi gär → le n tombe devant <b>g</b>.",
+        "Ech kucken net gär · Ech fueren heiansdo Schi · Ech ginn eemol de Mount → le n reste.",
+        "Hie spillt all Dag Gei → hien devient hie devant <b>s</b>."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "an, op ou bei ? (Wat ass den Ënnerscheed?)",
+      "lignes": [
+        "<b>an</b> = dans un bâtiment ou un espace fermé : an de Kino, an d'Schwämm, an d'Disco, an de Bësch.",
+        "<b>op</b> = lieu ouvert, événement ou administration : op e Floumaart, op e Concert, op d'Gemeng, op d'Aarbecht.",
+        "<b>bei</b> = chez une personne : bei de Coiffer, bei den Dokter.",
+        "C'est la même logique que pour le lieu de travail (leçon 12)."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Où est-ce que je vais ?",
+      "entetes": [
+        "Préposition",
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "an",
+          "an de Kino goen",
+          "aller au cinéma"
+        ],
+        [
+          "an",
+          "an d'Schwämm goen",
+          "aller à la piscine"
+        ],
+        [
+          "an",
+          "an d'Disco goen",
+          "aller en boîte"
+        ],
+        [
+          "an",
+          "an de Bësch goen",
+          "aller en forêt"
+        ],
+        [
+          "op",
+          "op e Concert goen",
+          "aller à un concert"
+        ],
+        [
+          "op",
+          "op e Floumaart goen",
+          "aller à un marché aux puces"
+        ],
+        [
+          "op",
+          "op d'Gemeng goen",
+          "aller à la commune"
+        ],
+        [
+          "bei",
+          "bei de Coiffer goen",
+          "aller chez le coiffeur"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Wou? ou Wouhin?",
+      "lignes": [
+        "Pour dire <b>où l'on va</b> (Wouhin?), on utilise <b>de</b> / <b>d'</b> : Ech ginn an de Kino. Ech ginn an d'Schwämm.",
+        "Pour dire <b>où l'on est</b> (Wou?, leçons 20 et 21), on utilise <b>am</b> / <b>an der</b> : Ech sinn am Kino. Ech sinn an der Schwämm.",
+        "Pour l'instant, retiens les expressions avec goen comme des blocs."
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "La fréquence",
+      "items": [
+        [
+          "all Dag",
+          "tous les jours"
+        ],
+        [
+          "oft",
+          "souvent"
+        ],
+        [
+          "heiansdo",
+          "parfois"
+        ],
+        [
+          "ni",
+          "jamais"
+        ],
+        [
+          "eemol d'Woch",
+          "une fois par semaine"
+        ],
+        [
+          "eemol de Mount",
+          "une fois par mois"
+        ],
+        [
+          "haut",
+          "aujourd'hui"
+        ],
+        [
+          "de Weekend",
+          "le week-end"
+        ],
+        [
+          "an der Fräizäit",
+          "pendant le temps libre"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Place des mots",
+      "lignes": [
+        "La fréquence se place juste après le verbe conjugué : Du gees <b>oft</b> an de Kino.",
+        "<b>ni</b> = jamais ≠ <b>net</b> = ne… pas : Mir spillen <b>ni</b> Mini-Golf.",
+        "Si la phrase commence par un mot de temps, le verbe vient en 2e position : <b>E Samschdeg ginn ech</b> akafen. (leçon 16)"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Questions utiles",
+      "lignes": [
+        "Wat méchs du gär an der Fräizäit? = Qu'est-ce que tu aimes faire pendant ton temps libre ?",
+        "Wat maacht Dir gär de Weekend? = Qu'est-ce que vous aimez faire le week-end ?",
+        "Spills du gär Fussball? = Aimes-tu jouer au football ?",
+        "Gees du gär an de Kino? = Aimes-tu aller au cinéma ?",
+        "Wéi oft gees du an de Kino? = À quelle fréquence vas-tu au cinéma ?",
+        "Wat méchs du de Weekend? = Qu'est-ce que tu fais ce week-end ?",
+        "Réponses courtes : Jo, ganz gär! · Jo, gär. · Nee, net gär. · Nee, guer net gär."
+      ]
+    },
+    {
+      "type": "exemple",
+      "titre": "Ce que j'aime faire (ou pas)",
+      "items": [
+        [
+          "Ech kucke gär e Film.",
+          "J'aime regarder un film."
+        ],
+        [
+          "Dir gitt net gär spadséieren.",
+          "Vous n'aimez pas vous promener."
+        ],
+        [
+          "Du gees ganz gär op e Concert.",
+          "Tu adores aller à un concert."
+        ],
+        [
+          "Hatt mécht e Cours.",
+          "Elle suit un cours."
+        ],
+        [
+          "Ech gi guer net gär op e Floumaart.",
+          "Je n'aime pas du tout aller au marché aux puces."
+        ],
+        [
+          "Hie spillt all Dag Gei.",
+          "Il joue du violon tous les jours."
+        ],
+        [
+          "Ech fuere guer net gär Vëlo.",
+          "Je n'aime pas du tout faire du vélo."
+        ],
+        [
+          "Du gees oft an de Kino.",
+          "Tu vas souvent au cinéma."
+        ],
+        [
+          "Mir spillen ni Mini-Golf.",
+          "Nous ne jouons jamais au mini-golf."
+        ],
+        [
+          "Dir maacht net gär Sport.",
+          "Vous n'aimez pas faire du sport."
+        ],
+        [
+          "Mir kucken haut e Fussballmatch.",
+          "Nous regardons un match de football aujourd'hui."
+        ],
+        [
+          "Ech fueren heiansdo Schi.",
+          "Je fais parfois du ski."
+        ],
+        [
+          "Ech gi gär bei de Coiffer.",
+          "J'aime aller chez le coiffeur."
+        ],
+        [
+          "Ech ginn eemol de Mount op d'Gemeng.",
+          "Je vais à la commune une fois par mois."
+        ]
+      ]
+    },
+    {
+      "type": "exemple",
+      "titre": "Mes projets pour le week-end",
+      "items": [
+        [
+          "E Samschdeg ginn ech akafen.",
+          "Samedi, je vais faire les courses."
+        ],
+        [
+          "E Samschdeg den Owend ginn ech an de Kino.",
+          "Samedi soir, je vais au cinéma."
+        ],
+        [
+          "E Sonndeg gi mir an de Bësch.",
+          "Dimanche, nous allons en forêt."
+        ],
+        [
+          "Haut kucke mir e Fussballmatch.",
+          "Aujourd'hui, nous regardons un match de football."
+        ]
+      ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "Wat méchs du gär an der Fräizäit?",
+      "echanges": [
+        [
+          "Moien Sarah! Wat méchs du gär an der Fräizäit?",
+          "Salut Sarah ! Qu'est-ce que tu aimes faire pendant ton temps libre ?"
+        ],
+        [
+          "Ech liese ganz gär an ech lauschtere gär Musek. An du?",
+          "J'adore lire et j'aime écouter de la musique. Et toi ?"
+        ],
+        [
+          "Ech maache gär Sport. Ech ginn all Dag lafen.",
+          "J'aime faire du sport. Je vais courir tous les jours."
+        ],
+        [
+          "Spills du gär Fussball?",
+          "Aimes-tu jouer au football ?"
+        ],
+        [
+          "Nee, ech spille guer net gär Fussball. Mee ech fuere gär Vëlo.",
+          "Non, je n'aime pas du tout jouer au football. Mais j'aime faire du vélo."
+        ],
+        [
+          "Wat méchs du de Weekend?",
+          "Qu'est-ce que tu fais ce week-end ?"
+        ],
+        [
+          "E Samschdeg ginn ech op e Floumaart. E Sonndeg gi mir an de Bësch.",
+          "Samedi, je vais à un marché aux puces. Dimanche, nous allons en forêt."
+        ],
+        [
+          "Gees du gär an de Kino?",
+          "Aimes-tu aller au cinéma ?"
+        ],
+        [
+          "Jo, ganz gär!",
+          "Oui, très volontiers !"
+        ],
+        [
+          "Wéi oft gees du an de Kino?",
+          "À quelle fréquence vas-tu au cinéma ?"
+        ],
+        [
+          "Eemol de Mount.",
+          "Une fois par mois."
+        ]
+      ]
+    }
+  ]
+}
