@@ -7,7 +7,7 @@
     "flashcards": "Mémorise les membres de la famille avec leur article (de / d') pour retenir leur genre. Apprends-les par cœur comme des blocs.",
     "quiz": "Lis un mot luxembourgeois (un membre de la famille, un possessif ou une tournure « le … de mon / ma / mes … ») et choisis la bonne traduction française. Les distracteurs sont d'autres membres proches ou d'autres possessifs.",
     "trous": "Complète chaque phrase avec le bon possessif (mäi, meng, säi, seng, hir, hiert…) accordé au nom possédé, avec la bonne forme au datif dans « mengem Papp seng … » (mengem, menger, mengen, dem, der), ou avec le bon membre de la famille. Les distracteurs restent des possessifs ou des membres plausibles.",
-    "ecriture": "Traduis en luxembourgeois les membres de la famille, les possessifs, les tournures « le … de mon / ma / mes … » (mengem Papp seng Schwëster) et des phrases courtes pour décrire ta famille. Respecte l'accord du possessif avec le nom possédé et la chute du -n (règle d'Eifel)."
+    "ecriture": "Traduis en luxembourgeois les membres de la famille, les possessifs, les tournures « le … de mon / ma / mes … » (mengem Papp seng Schwëster) et des phrases courtes pour décrire ta famille. Respecte l'accord du possessif avec le nom possédé et la chute du -n (règle UNITEDZOHA)."
   },
   "flashcards": [
     {
@@ -1005,7 +1005,7 @@
         "Le possessif s'accorde avec le nom POSSÉDÉ, jamais avec le possesseur.",
         "Une femme parle de son mari → hire Mann (Mann est masculin).",
         "Un homme parle de sa mère → seng Mamm (Mamm est féminin).",
-        "Le (n) final suit la règle d'Eifel : on le garde devant a, e, i, o, u, d, t, n, z, h, sinon il tombe.",
+        "Le (n) final suit la règle <b>UNITEDZOHA</b> : on le garde devant une voyelle ou n, d, t, z, h, sinon il tombe.",
         "Ex. : säin Numm (devant N) mais säi Papp (devant P)."
       ]
     },

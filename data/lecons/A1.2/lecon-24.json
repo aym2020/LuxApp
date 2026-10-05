@@ -7,7 +7,7 @@
     "flashcards": "Mémorise le passé composé des verbes de la journée et des loisirs à la 1re personne (auxiliaire hunn ou sinn + participe passé), les formes war et hat, les mots de temps du passé et les deux questions clés. La note donne l'infinitif, l'auxiliaire et les particularités.",
     "quiz": "Lis un infinitif luxembourgeois et choisis son passé composé correct (bon auxiliaire + bon participe). Les distracteurs sont le mauvais auxiliaire, le participe d'un autre verbe ou le présent. Pour war / hat, les mots de temps et les questions, choisis la traduction française.",
     "trous": "Complète la phrase qui correspond à la traduction : auxiliaire conjugué (hunn ou sinn), participe passé, war / hat ou mot de temps. Les distracteurs sont l'autre auxiliaire, une autre personne, un autre participe ou l'infinitif.",
-    "ecriture": "Traduis en luxembourgeois les verbes au passé composé, war / hat, les mots de temps, les questions et des phrases complètes. Le participe va à la fin. Attention à la règle de l'Eifel : Ech hu geschafft, mais Ech hunn de Moien geschafft."
+    "ecriture": "Traduis en luxembourgeois les verbes au passé composé, war / hat, les mots de temps, les questions et des phrases complètes. Le participe va à la fin. Attention à la règle UNITEDZOHA : Ech hu geschafft, mais Ech hunn de Moien geschafft."
   },
   "flashcards": [
     {
@@ -1487,12 +1487,12 @@
     {
       "type": "callout",
       "variant": "attention",
-      "titre": "Ordre des mots et règle de l'Eifel",
+      "titre": "Ordre des mots et règle UNITEDZOHA",
       "lignes": [
         "Si la phrase commence par le temps, l'auxiliaire reste en <b>2e position</b> : <b>Gëschter hunn ech</b> geschafft.",
         "La négation <b>net</b> se place avant le participe : Ech hunn <b>net</b> geschafft.",
         "Question : l'auxiliaire passe avant le sujet : <b>Hues du</b> gutt geschlof?",
-        "Règle de l'Eifel : <b>hunn → hu</b> et <b>sinn → si</b> devant une consonne, sauf n, d, t, z, h.",
+        "<b>UNITEDZOHA</b> : on garde le n de <b>hunn</b> et <b>sinn</b> devant une voyelle ou n, d, t, z, h. Sinon : <b>hunn → hu</b> et <b>sinn → si</b>.",
         "Ech <b>hu</b> geschafft · Ech <b>si</b> gefuer, mais Ech <b>hunn</b> de Moien… · Ech <b>sinn</b> heemgaangen · Ech <b>sinn</b> erwächt."
       ]
     },

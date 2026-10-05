@@ -7,7 +7,7 @@
     "flashcards": "Mémorise les activités de loisirs (avec goen, spillen, fueren, maachen, kucken), les degrés de gär (ganz gär, gär, net gär, guer net gär), les mots de fréquence et les questions sur le temps libre. La note donne le genre, la préposition ou une forme conjuguée.",
     "quiz": "Lis une activité, un mot de fréquence, une phrase avec gär ou une question en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont d'autres activités, un autre degré de gär, une autre fréquence ou une question proche.",
     "trous": "Complète la phrase qui correspond à la traduction : verbe conjugué (kucken, fueren, spillen, maachen, goen), activité, degré de gär, fréquence ou préposition an / op / bei. Les distracteurs sont d'autres verbes, activités, fréquences ou prépositions de la leçon.",
-    "ecriture": "Traduis en luxembourgeois les activités de loisirs, les mots de fréquence, les questions sur le temps libre et des phrases complètes avec gär, goen et an / op / bei. Attention à la règle de l'Eifel : Ech kucke gär, mais Ech kucken net gär."
+    "ecriture": "Traduis en luxembourgeois les activités de loisirs, les mots de fréquence, les questions sur le temps libre et des phrases complètes avec gär, goen et an / op / bei. Attention à la règle UNITEDZOHA : Ech kucke gär, mais Ech kucken net gär."
   },
   "flashcards": [
     {
@@ -1587,9 +1587,9 @@
     {
       "type": "callout",
       "variant": "attention",
-      "titre": "Règle de l'Eifel (rappel)",
+      "titre": "Règle UNITEDZOHA (rappel)",
       "lignes": [
-        "Le <b>n</b> final tombe devant une consonne, sauf devant <b>n, d, t, z, h</b> et devant une voyelle.",
+        "<b>UNITEDZOHA</b> : on garde le <b>n</b> final devant une voyelle ou <b>n, d, t, z, h</b>. Sinon, il tombe.",
         "Ech kucke gär · Ech spille gär · Ech gi gär → le n tombe devant <b>g</b>.",
         "Ech kucken net gär · Ech fueren heiansdo Schi · Ech ginn eemol de Mount → le n reste.",
         "Hie spillt all Dag Gei → hien devient hie devant <b>s</b>."
