@@ -1,0 +1,520 @@
+{
+  "id": "a12-07",
+  "titre": "Annale 05",
+  "titre_fr": "Test de fin de formation (Gréiss aus der Vakanz)",
+  "couleur": "#e57373",
+  "parties": [
+    {
+      "section": "Sproochgebrauch",
+      "titre": "Um Maart",
+      "type": "trous",
+      "consigne": "Complète le dialogue avec les mots de la liste. Chaque mot sert une seule fois.",
+      "banque": [
+        "hätt",
+        "kritt",
+        "soss nach eppes",
+        "bezuelen",
+        "eng Tut",
+        "Dosen",
+        "zesummen",
+        "huelen"
+      ],
+      "lignes": [
+        [
+          "Maartfra",
+          "U wiem ass et, wann ech gelift?"
+        ],
+        [
+          "Client",
+          "Et ass u mir!"
+        ],
+        [
+          "Maartfra",
+          "Wat {1} Dir, wann ech gelift?"
+        ],
+        [
+          "Client",
+          "Ech {2} gär e Kilo Lëtzebuerger Äppel, wann ech gelift."
+        ],
+        [
+          "Maartfra",
+          "Jo… Kritt Dir {3}?"
+        ],
+        [
+          "Client",
+          "Jo, ech {4} och nach Biren aus Frankräich."
+        ],
+        [
+          "Maartfra",
+          "Wéi vill hätt Dir der gär?"
+        ],
+        [
+          "Client",
+          "Eng {5}. Dat wier dann alles."
+        ],
+        [
+          "Maartfra",
+          "Merci. Wëllt Dir {6}?"
+        ],
+        [
+          "Client",
+          "Nee merci, ech hunn en Akafskuerf."
+        ],
+        [
+          "Maartfra",
+          "Voilà, dat mécht dann {7} aacht Euro."
+        ],
+        [
+          "Client",
+          "Kann ech mat der Kaart {8}?"
+        ],
+        [
+          "Maartfra",
+          "Jo, natierlech!"
+        ]
+      ],
+      "trous": [
+        {
+          "reponse": "kritt",
+          "note": "Wat kritt Dir? = Que désirez-vous ? (verbe kréien)"
+        },
+        {
+          "reponse": "hätt",
+          "note": "Ech hätt gär… = Je voudrais…"
+        },
+        {
+          "reponse": "soss nach eppes",
+          "note": "Soss nach eppes? = Encore autre chose ?"
+        },
+        {
+          "reponse": "huelen",
+          "note": "Ech huelen… = Je prends…"
+        },
+        {
+          "reponse": "Dosen",
+          "note": "Eng Dosen = une douzaine."
+        },
+        {
+          "reponse": "eng Tut",
+          "note": "Eng Tut = un sachet."
+        },
+        {
+          "reponse": "zesummen",
+          "note": "Dat mécht zesummen… = Ça fait en tout…"
+        },
+        {
+          "reponse": "bezuelen",
+          "note": "Mat der Kaart bezuelen = payer par carte."
+        }
+      ]
+    },
+    {
+      "section": "Sproochgebrauch",
+      "titre": "D'Virstellung",
+      "type": "trous",
+      "consigne": "Complète la présentation. Pour chaque trou, choisis parmi les trois propositions.",
+      "lignes": [
+        [
+          "",
+          "Moien, ech sinn de Pierre. Ech wunne schonn zënter siwe Joer hei zu Lëtzebuerg {1}. Dat ass mäin {2}: ech sti moies um siwen Auer op. Dann duschen ech, drénke Kaffi an {3} eng Schmier mat Botter a Gebeess."
+        ],
+        [
+          "",
+          "Meng Aarbecht fänkt {4} um hallwer néng un an ech maachen um zwielef Auer Mëttespaus. Ech {5} an d'Kantin iessen. Nomëttes {6} ech oft Reuniounen. Owes sinn ech géint hallwer siwen {7}. Ech preparéieren {8} fir meng Fra a meng Kanner. Nom Iesse schwätze mir nach e bëssen zesummen an da ginn d'Kanner {9}."
+        ],
+        [
+          "",
+          "Ech gi meeschtens {10} eelef Auer an d'Bett."
+        ]
+      ],
+      "trous": [
+        {
+          "choix": [
+            "an der Stad",
+            "op der Stad",
+            "zu der Stad"
+          ],
+          "reponse": "an der Stad",
+          "note": "An der Stad = en ville (à Luxembourg-ville). « Zu » s'emploie sans article devant un nom de ville."
+        },
+        {
+          "choix": [
+            "Dag",
+            "Weekend",
+            "Woch"
+          ],
+          "reponse": "Dag",
+          "note": "Il décrit sa journée : mäin Dag. Woch est féminin (meng Woch)."
+        },
+        {
+          "choix": [
+            "kachen",
+            "kucken",
+            "iessen"
+          ],
+          "reponse": "iessen",
+          "note": "Eng Schmier iessen = manger une tartine."
+        },
+        {
+          "choix": [
+            "all moies",
+            "moies",
+            "de Moien"
+          ],
+          "reponse": "moies",
+          "note": "Moies = le matin (habitude). De Moien = ce matin. « Chaque matin » se dit all Moien."
+        },
+        {
+          "choix": [
+            "ginn",
+            "goen",
+            "spadséieren"
+          ],
+          "reponse": "ginn",
+          "note": "Iesse goen : ech ginn… iessen. Goen est l'infinitif."
+        },
+        {
+          "choix": [
+            "sinn",
+            "hunn",
+            "studéieren"
+          ],
+          "reponse": "hunn",
+          "note": "Eng Reunioun hunn = avoir une réunion."
+        },
+        {
+          "choix": [
+            "doheem",
+            "heem",
+            "op der Aarbecht"
+          ],
+          "reponse": "doheem",
+          "note": "Doheem = à la maison (on y est). Heem = à la maison (on y va)."
+        },
+        {
+          "choix": [
+            "de Kaffi",
+            "d'Mëttesiesse",
+            "d'Owendiesse"
+          ],
+          "reponse": "d'Owendiesse",
+          "note": "Owes = le soir, donc d'Owendiessen (le dîner). On dit aussi d'Owesiessen."
+        },
+        {
+          "choix": [
+            "léieren",
+            "schaffen",
+            "schlofen"
+          ],
+          "reponse": "schlofen",
+          "note": "Schlofe goen = aller dormir : d'Kanner gi schlofen."
+        },
+        {
+          "choix": [
+            "géint",
+            "tëscht",
+            "vun"
+          ],
+          "reponse": "géint",
+          "note": "Géint eelef Auer = vers onze heures. Tëscht = entre, vun = de."
+        }
+      ]
+    },
+    {
+      "section": "Sproochgebrauch",
+      "titre": "E Message",
+      "type": "trous",
+      "consigne": "Complète le message avec « hunn » ou « sinn » à l'imparfait. Attention à la règle du n.",
+      "lignes": [
+        [
+          "",
+          "Salut Pir,"
+        ],
+        [
+          "",
+          "alles an der Rei?"
+        ],
+        [
+          "",
+          "Gëschter {1} ech vill Aarbecht. Vill Kolleege {2} krank an de Chef {3} am Congé. Gëschter Moien {4} mir eng Reunioun a gëschter Mëtteg hunn ech mat Kolleegen an der Kantin giess: Ech {5} net immens hongereg, mee ech {6} e groussen Duuscht. Gëschter Nomëtteg {7} ech net vill Loscht ze schaffen…"
+        ],
+        [
+          "",
+          "Bis geschwënn!"
+        ],
+        [
+          "",
+          "Pit"
+        ]
+      ],
+      "trous": [
+        {
+          "choix": [
+            "hat",
+            "war",
+            "hunn"
+          ],
+          "reponse": "hat",
+          "note": "Vill Aarbecht hunn → imparfait : ech hat (j'avais)."
+        },
+        {
+          "choix": [
+            "war",
+            "ware",
+            "waren"
+          ],
+          "reponse": "ware",
+          "note": "Krank sinn, sujet pluriel : si waren. Le n tombe devant « krank »."
+        },
+        {
+          "choix": [
+            "war",
+            "hat",
+            "waren"
+          ],
+          "reponse": "war",
+          "note": "Am Congé sinn → imparfait : de Chef war (il était)."
+        },
+        {
+          "choix": [
+            "hat",
+            "hate",
+            "haten"
+          ],
+          "reponse": "hate",
+          "note": "Eng Reunioun hunn : mir haten. Le n tombe devant « mir »."
+        },
+        {
+          "choix": [
+            "hat",
+            "war",
+            "waren"
+          ],
+          "reponse": "war",
+          "note": "Hongereg sinn = avoir faim (être affamé) : ech war."
+        },
+        {
+          "choix": [
+            "hat",
+            "war",
+            "hate"
+          ],
+          "reponse": "hat",
+          "note": "Duuscht hunn = avoir soif : ech hat."
+        },
+        {
+          "choix": [
+            "hat",
+            "war",
+            "haten"
+          ],
+          "reponse": "hat",
+          "note": "Loscht hunn = avoir envie : ech hat."
+        }
+      ]
+    },
+    {
+      "section": "Liesverstoen",
+      "titre": "E ganz normalen Aarbechtsdag vum Max",
+      "type": "qcm",
+      "consigne": "Lis le texte, puis réponds : richteg (vrai) ou falsch (faux).",
+      "lignes": [
+        [
+          "08.00",
+          "Zäit, fir unzefänke mat schaffen!"
+        ],
+        [
+          "08.30",
+          "De Max mécht de Computer un."
+        ],
+        [
+          "08.35",
+          "Hien drénkt eng Taass Kaffi an ësst eng Schmier."
+        ],
+        [
+          "08.45",
+          "Hie liest seng E-Mailen. Vill Messagë kommen vun de Kolleegen… si sinn net seriö! D'E-Maile vun de Clientë liest hien net."
+        ],
+        [
+          "09.15",
+          "Hie schéckt senge Kolleegen a Frënn Noriichten a Fotoen iwwer de Messenger. Duerno hëlt hie seng Taass Kaffi a geet all sengen Aarbechtskolleege Moie soen."
+        ],
+        [
+          "10.00",
+          "Hien ass erëm am Büro: Hie kontrolléiert, ob seng Kolleegen a Frënn um Messenger reagéiert hunn."
+        ],
+        [
+          "10.30",
+          "Elo ass et Zäit fir eng kleng Kaffispaus!"
+        ],
+        [
+          "11.15",
+          "Da muss de Max nach senger Frëndin telefonéieren. Si huet awer net vill Zäit fir ze schwätzen."
+        ],
+        [
+          "11.30",
+          "D'Blumm bei der Fënster huet e Problem an de Max gëtt der Planz e bësse Waasser."
+        ],
+        [
+          "11.50",
+          "De Max kuckt op d'Auer. Scho Mëtteg? Hie geet séier an d'Stad, fir mat de Kolleegen op enger Terrass zu Mëtteg ze iessen."
+        ]
+      ],
+      "questions": [
+        {
+          "question": "Vun aacht Auer bis hallwer néng schafft de Max um Computer.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Il n'allume l'ordinateur qu'à 8 h 30 (hallwer néng)."
+        },
+        {
+          "question": "Tëscht fënnef op hallwer néng a Véierel vir néng drénkt hien um Büro Kaffi.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "Fënnef op hallwer néng = 8 h 35, Véierel vir néng = 8 h 45. À 8 h 35 il boit son café."
+        },
+        {
+          "question": "Géint zéng Auer reagéiert hien op d'E-Maile vun de Clienten.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Il ne lit pas les e-mails des clients. À 10 h il regarde Messenger."
+        },
+        {
+          "question": "Um Véierel op eelef telefonéiert de Max mat senger Frëndin.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "Véierel op eelef = 11 h 15 : il appelle sa copine."
+        },
+        {
+          "question": "Virun der Mëttespaus kuckt de Max no senger Planz.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "À 11 h 30, avant midi, il arrose sa plante. Kucken no = s'occuper de."
+        }
+      ]
+    },
+    {
+      "section": "Liesverstoen",
+      "titre": "Gréiss aus der Vakanz",
+      "type": "qcm",
+      "consigne": "Lis les deux messages, puis réponds : richteg (vrai) ou falsch (faux).",
+      "lignes": [
+        [
+          "Jeanne",
+          "Salut Jennifer, wéi geet et dir? Mäi Frënd an ech sinn an Thailand op Koh Samui geflunn. Do hu mir de ganze September eng Villa mat Vue op d'Mier gelount a sinn all Owend an de Restaurant iesse gaangen. Mir kachen allen zwee net gär."
+        ],
+        [
+          "Jennifer",
+          "Villmools merci Jeanne fir däi Message. Ech sinn net fortgefuer. Mäi Frënd ass mech am Summer hei op Lëtzebuerg besiche komm… a mir sinn heiansdo op de Séi schwamme gaangen. Owes si mir an d'Jugendherberg schlofe gaangen. Vläicht fueren ech nach an Italien, mol kucken."
+        ]
+      ],
+      "questions": [
+        {
+          "question": "D'Jeanne ass net eleng mam Fliger an Asie gereest.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "Elle est partie en avion (geflunn) avec son copain en Thaïlande, donc en Asie."
+        },
+        {
+          "question": "Hatt hat véier Woche Vakanz am September.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "De ganze September = tout le mois de septembre, soit quatre semaines."
+        },
+        {
+          "question": "D'Villa war beim Mier.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "Eng Villa mat Vue op d'Mier = une villa avec vue sur la mer."
+        },
+        {
+          "question": "Hatt huet just owes am Restaurant giess.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "All Owend an de Restaurant = tous les soirs au restaurant. Le texte ne parle que du soir."
+        },
+        {
+          "question": "Kachen ass säin Hobby.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Mir kachen allen zwee net gär = aucun des deux n'aime cuisiner."
+        },
+        {
+          "question": "D'Jennifer ass doheembliwwen.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "Ech sinn net fortgefuer = je ne suis pas partie."
+        },
+        {
+          "question": "Eng Frëndin ass bei hatt op Lëtzebuerg komm.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Mäi Frënd = mon copain (un homme). Eng Frëndin = une amie."
+        },
+        {
+          "question": "Si sinn heiansdo zesummen an d'Schwämm gaangen.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Ils ont nagé au lac (op de Séi), pas à la piscine (an d'Schwämm)."
+        },
+        {
+          "question": "Owes hu si net beim Jennifer doheem geschlof.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "Ils dormaient à l'auberge de jeunesse (an d'Jugendherberg)."
+        },
+        {
+          "question": "Vläicht fiert d'Jennifer bei seng Frëndin an Italien.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Elle ira peut-être en Italie, mais elle ne dit pas que c'est chez une amie."
+        }
+      ]
+    }
+  ]
+}
