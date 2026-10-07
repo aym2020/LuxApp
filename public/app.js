@@ -22,6 +22,7 @@ let tAnswered = false;
 // ─── BOOT ─────────────────────────────────────────────────────────────────────
 async function init() {
   lecons = await fetch('/api/lecons').then(r => r.json()); // 1. leçons
+  await loadExamens();     // 1 bis. sujets d'examen (voir examens.js)
   // 2. la progression locale est déjà lue à la demande depuis localStorage
   initFirebase();          // 3. init Firebase (sans effet si non configuré)
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
@@ -242,6 +243,7 @@ async function confirmResetAll() {
   if (!confirm(message)) return;
 
   resetProgress();                 // local
+  resetExamScores();               // meilleurs scores des sujets d'examen
   if (user) await deleteCloudProgress(); // cloud
   renderDashboard();
   renderLessonsProgress();

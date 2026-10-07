@@ -46,7 +46,7 @@
 
       <button class="dash-btn primary" onclick="goLessons()">Leçons</button>
       <button class="dash-btn db-review" onclick="openReviewSetup()">Réviser</button>
-      <button class="dash-btn db-exam" onclick="startSession('exam')">Examen · 50 questions</button>
+      <button class="dash-btn db-exam" onclick="openExamens()">Examens</button>
       <button class="dash-btn db-errors" onclick="startSession('errors')">Erreurs fréquentes</button>
 
       <button class="dash-reset" onclick="confirmResetAll()">Réinitialiser toute la progression</button>
@@ -320,12 +320,62 @@
     </div>
   </div><!-- /view-session -->
 
+  <!-- ══ EXAMENS : LISTE DES SUJETS ═══════════════════════════════════════════ -->
+  <div id="view-examens" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num">EXAMENS · <span id="examens-niveau"></span></span>
+        <span class="lecon-titre">Choisis un sujet</span>
+      </div>
+    </div>
+    <div id="examens-list" class="lecon-list"></div>
+  </div>
+
+  <!-- ══ EXAMEN : PASSAGE D'UN SUJET ══════════════════════════════════════════ -->
+  <div id="view-examen" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="quitExamen()">← Sujets</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num" id="ex-num"></span>
+        <span class="lecon-titre" id="ex-titre"></span>
+      </div>
+    </div>
+
+    <!-- Une case par partie : pleine = terminée, entourée = partie affichée -->
+    <div class="ex-steps" id="ex-steps"></div>
+
+    <div class="ex-body" id="ex-body"></div>
+
+    <!-- Barre collée en bas : mots à placer (parties à trous) + navigation -->
+    <div class="ex-bottom">
+      <div class="ex-tray hidden" id="ex-tray"></div>
+      <div class="ex-nav">
+        <button class="ex-nav-btn" id="ex-prev" onclick="examPrev()">Précédent</button>
+        <button class="ex-nav-btn primary" id="ex-next" onclick="examNext()">Suivant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ EXAMEN : SCORE + CORRECTION ══════════════════════════════════════════ -->
+  <div id="view-examen-result" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="openExamens()">← Sujets</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num">RÉSULTAT</span>
+        <span class="lecon-titre" id="exr-titre"></span>
+      </div>
+    </div>
+    <div class="ex-body" id="exr-body"></div>
+  </div>
+
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
   <script src="config.js"></script>
   <script src="progress.js"></script>
   <script src="cloud.js"></script>
+  <script src="examens.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

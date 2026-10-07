@@ -151,6 +151,26 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
 
 ---
 
+## 7 ter. Examens (sujets complets)
+
+- Bouton « Examens » de l'accueil → liste des sujets du niveau actif (`openExamens()`).
+- Un sujet = un fichier `data/examens/<niveau>/examen-NN.json`, servi par `/api/examens`.
+  **Ajouter un sujet = ajouter un fichier**, aucun code à toucher.
+- Tout le front est dans `public/examens.js` (+ bloc « EXAMENS » à la fin de `style.css`).
+- Deux types de partie, 1 point par réponse :
+  - `trous` : texte avec `{1}`, `{2}`… + soit `banque` (mots communs, un seul usage),
+    soit `choix` dans chaque trou (3 propositions).
+  - `qcm` : texte à lire + `questions` (vrai/faux = choix `["richteg", "falsch"]`).
+- Pas d'expression écrite ni d'oral (non corrigeables) : un sujet est noté sur 40.
+- Pas de correction pendant le sujet. À la fin : score, score par section, correction
+  complète ou « Mes erreurs » seulement, avec la `note` en français de chaque réponse.
+- Meilleur score par sujet : `luxExamens:<profil>` dans localStorage (local, pas de cloud).
+- L'ancien examen (50 questions aléatoires) reste accessible en bas de la liste des sujets.
+- Vérifier un sujet : chaque `reponse` est dans ses `choix` (ou dans la `banque`),
+  et les numéros `{n}` du texte vont de 1 au nombre de trous.
+
+---
+
 ## 8. Patterns de test (à réutiliser systématiquement)
 
 ### Test de logique → script Node autonome dans `/tmp/`

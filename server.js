@@ -31,5 +31,27 @@ app.get('/api/lecons', (req, res) => {
   res.json(lecons);
 });
 
+// Sujets d'examen : même principe que les leçons, un dossier par niveau.
+// data/examens/A1.2/examen-01.json -> { ..., niveau: 'A1.2' }
+app.get('/api/examens', (req, res) => {
+  const baseDir = path.join(__dirname, 'data/examens');
+  const examens = [];
+  if (!fs.existsSync(baseDir)) return res.json(examens);
+
+  fs.readdirSync(baseDir).sort().forEach(niveau => {
+    const dir = path.join(baseDir, niveau);
+    if (!fs.statSync(dir).isDirectory()) return;
+
+    const files = fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort();
+    files.forEach(f => {
+      const examen = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+      examen.niveau = niveau;
+      examens.push(examen);
+    });
+  });
+
+  res.json(examens);
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`✅  http://localhost:${PORT}`));
