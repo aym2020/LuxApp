@@ -4,7 +4,7 @@
 //
 // Structure d'un sujet :
 // {
-//   "id": "a12-01", "titre": "Sujet 1", "titre_fr": "...", "couleur": "#6fb0f2",
+//   "id": "a12-01", "titre": "Annale 01", "titre_fr": "...", "couleur": "#6fb0f2",
 //   "parties": [ ... ]
 // }
 //

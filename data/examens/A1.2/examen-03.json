@@ -1,62 +1,58 @@
 {
-  "id": "a12-03",
-  "titre": "Sujet 3",
-  "titre_fr": "Entraînement : rendez-vous, maison, famille",
-  "couleur": "#b18cf0",
+  "id": "a12-02",
+  "titre": "Sujet 1",
+  "titre_fr": "Entraînement : restaurant, week-end, logement",
+  "couleur": "#54e0ad",
   "parties": [
     {
       "section": "Sproochgebrauch",
-      "titre": "Um Telefon",
+      "titre": "Am Restaurant",
       "consigne": "Complète le dialogue avec les mots de la liste. Chaque mot sert une seule fois.",
       "type": "trous",
-      "banque": ["fräi", "Rei", "wéini", "Dag", "leider", "geet", "Rendez-vous", "buschtawéiert"],
+      "banque": ["geschmaacht", "Dësch", "zesummen", "hätt", "Fläsch", "Rechnung", "drénken", "gewielt"],
       "lignes": [
-        ["Sekretärin", "Praxis Dr Weber, gudde Moien."],
-        ["Patient", "Gudde Moien, hei ass Thill. Ech hätt gär e {1}."],
-        ["Sekretärin", "Fir {2}, wann ech gelift?"],
-        ["Patient", "Fir en Dënschdeg, {3} dat?"],
-        ["Sekretärin", "Dat geet {4} net. En Dënschdeg ass den Dokter net do."],
-        ["Patient", "An e Mëttwoch?"],
-        ["Sekretärin", "E Mëttwoch um hallwer zéng ass nach eng Plaz {5}."],
-        ["Patient", "Jo, dat ass an der {6}."],
-        ["Sekretärin", "Wéi {7} Dir Ären Numm?"],
-        ["Patient", "T-H-I-L-L."],
-        ["Sekretärin", "Merci. Bis e Mëttwoch!"],
-        ["Patient", "Villmools Merci! Nach e schéinen {8}!"],
-        ["Sekretärin", "Merci gläichfalls!"]
+        ["Serveur", "Gudden Owend! Hutt Dir reservéiert?"],
+        ["Client", "Jo, en {1} fir zwou Persounen, op den Numm Weber."],
+        ["Serveur", "Wann ech gelift. Wat wëllt Dir {2}?"],
+        ["Client", "Eng {3} Waasser an e Glas roude Wäin, wann ech gelift."],
+        ["Serveur", "Hutt Dir scho {4}?"],
+        ["Client", "Jo, ech {5} gär d'Bouneschlupp an duerno de Fësch."],
+        ["Serveur", "Huet et {6}?"],
+        ["Client", "Jo, et war ganz gutt. D'{7}, wann ech gelift."],
+        ["Serveur", "Bezuelt Dir {8} oder getrennt?"],
+        ["Client", "Ech bezuelen alles, merci."]
       ],
       "trous": [
-        { "reponse": "Rendez-vous", "note": "Ech hätt gär e Rendez-vous = Je voudrais un rendez-vous." },
-        { "reponse": "wéini", "note": "Fir wéini? = Pour quand ?" },
-        { "reponse": "geet", "note": "Geet dat? = Est-ce que ça va ?" },
-        { "reponse": "leider", "note": "Dat geet leider net = Ça ne va malheureusement pas." },
-        { "reponse": "fräi", "note": "Fräi = libre." },
-        { "reponse": "Rei", "note": "Dat ass an der Rei = C'est d'accord." },
-        { "reponse": "buschtawéiert", "note": "Wéi buschtawéiert Dir dat? = Comment épelez-vous cela ?" },
-        { "reponse": "Dag", "note": "Nach e schéinen Dag = Bonne journée." }
+        { "reponse": "Dësch", "note": "En Dësch reservéieren = réserver une table." },
+        { "reponse": "drénken", "note": "Wat wëllt Dir drénken? = Que voulez-vous boire ?" },
+        { "reponse": "Fläsch", "note": "Eng Fläsch Waasser = une bouteille d'eau." },
+        { "reponse": "gewielt", "note": "Hutt Dir scho gewielt? = Avez-vous déjà choisi ? (wielen)" },
+        { "reponse": "hätt", "note": "Ech hätt gär… = Je voudrais…" },
+        { "reponse": "geschmaacht", "note": "Huet et geschmaacht? = Ça vous a plu ? (schmaachen)" },
+        { "reponse": "Rechnung", "note": "D'Rechnung = l'addition." },
+        { "reponse": "zesummen", "note": "Zesummen oder getrennt? = Ensemble ou séparément ?" }
       ]
     },
     {
       "section": "Sproochgebrauch",
-      "titre": "Meng Wunneng",
+      "titre": "Mäi Weekend",
       "consigne": "Complète le texte. Pour chaque trou, choisis parmi les trois propositions.",
       "type": "trous",
       "lignes": [
-        ["", "Moien, ech sinn d'Julie. Ech wunnen {1} zwee Joer zu Bartreng. Meng Wunneng ass {2} zweete Stack. Si huet {3} Zëmmeren: eng Stuff, eng Kichen, e Schlofzëmmer an e Buedzëmmer."],
-        ["", "An der Stuff {4} e grousse Kannapee an d'Biller hänken {5} der Mauer. D'Kichen ass kleng, {6} modern. Um Dësch {7} ëmmer Blummen. Am Schlofzëmmer steet niewent dem Bett en {8}."],
-        ["", "Ech hu kee {9}, mee e grousse Balcon. D'Wunneng gefält {10} ganz gutt!"]
+        ["", "Moien, ech heeschen Anna an ech wunnen {1} Diddeleng. De Weekend {2} ech net schaffen. Samschdes moies ginn ech {3} de Maart. Do kafen ech Uebst a {4}. Nomëttes {5} ech mat menger Frëndin Tennis."],
+        ["", "Owes gi mir oft {6} Kino. Sonndes stinn ech spéit {7}. Ech drénke Kaffi a {8} d'Zeitung. Mëttes iesse mir bei {9} Elteren. Owes kucken ech {10} e Film, mee ni ze spéit!"]
       ],
       "trous": [
-        { "choix": ["virun", "zënter", "bis"], "reponse": "zënter", "note": "Zënter zwee Joer = depuis deux ans." },
-        { "choix": ["um", "an", "zu"], "reponse": "um", "note": "Um zweete Stack = au deuxième étage." },
-        { "choix": ["dräi", "véier", "fënnef"], "reponse": "véier", "note": "Stuff, Kichen, Schlofzëmmer, Buedzëmmer : quatre pièces." },
-        { "choix": ["stinn", "steet", "stoen"], "reponse": "steet", "note": "Un seul canapé : hie steet." },
-        { "choix": ["op", "un", "ënnert"], "reponse": "un", "note": "Un der Mauer = au mur (contact vertical)." },
-        { "choix": ["oder", "well", "mee"], "reponse": "mee", "note": "Mee = mais : petite, mais moderne." },
-        { "choix": ["steet", "läit", "stinn"], "reponse": "stinn", "note": "Blummen est au pluriel : si stinn." },
-        { "choix": ["Nuetsdësch", "Spullsteen", "Frigo"], "reponse": "Nuetsdësch", "note": "À côté du lit : en Nuetsdësch (table de nuit)." },
-        { "choix": ["Terrass", "Gaart", "Kichen"], "reponse": "Gaart", "note": "Kee(n) = masculin ou neutre : kee Gaart. Terrass et Kichen sont féminins (keng)." },
-        { "choix": ["mech", "mir", "ech"], "reponse": "mir", "note": "Gefalen + datif : dat gefält mir." }
+        { "choix": ["an", "zu", "op"], "reponse": "zu", "note": "Devant un nom de ville : zu Diddeleng." },
+        { "choix": ["mussen", "muss", "musst"], "reponse": "muss", "note": "Mussen : ech muss, du muss, hie muss, mir mussen." },
+        { "choix": ["op", "an", "bei"], "reponse": "op", "note": "Op de Maart goen = aller au marché." },
+        { "choix": ["Miwwelen", "Kleeder", "Geméis"], "reponse": "Geméis", "note": "Uebst a Geméis = des fruits et des légumes." },
+        { "choix": ["maachen", "spillen", "fueren"], "reponse": "spillen", "note": "Tennis spillen = jouer au tennis." },
+        { "choix": ["op de", "bei de", "an de"], "reponse": "an de", "note": "An de Kino goen = aller au cinéma." },
+        { "choix": ["op", "un", "aus"], "reponse": "op", "note": "Opstoen est séparable : ech stinn… op." },
+        { "choix": ["schreiwen", "liesen", "lauschteren"], "reponse": "liesen", "note": "D'Zeitung liesen = lire le journal." },
+        { "choix": ["mengem", "menger", "mengen"], "reponse": "mengen", "note": "Bei + datif pluriel : bei mengen Elteren." },
+        { "choix": ["gëschter", "heiansdo", "ni"], "reponse": "heiansdo", "note": "Heiansdo = parfois. Gëschter demanderait le passé, et ni (jamais) contredit la suite « mee ni ze spéit »." }
       ]
     },
     {
@@ -65,67 +61,69 @@
       "consigne": "Complète l'e-mail. Pour chaque trou, choisis parmi les trois propositions.",
       "type": "trous",
       "lignes": [
-        ["", "Léif Marie,"],
-        ["", "Gëschter {1} ech e laangen Dag. Ech sinn um sechs Auer {2}. Um Büro hunn ech vill E-Maile {3}. Mëttes {4} ech mat engem Client am Restaurant giess. Nomëttes {5} mir eng laang Reunioun. Ech {6} eréischt um aacht Auer heemgaangen. Doheem hunn ech nach e bësse Musek {7}. Ech war ganz midd!"],
+        ["", "Moien Lisa,"],
+        ["", "De leschte Weekend {1} ech mat menger Schwëster zu Paräis. Mir {2} mam Zuch gefuer. Samschdes hunn ech den Eiffeltuerm {3} a vill Fotoe {4}. Owes hu mir an engem klenge Restaurant eng Pizza {5}. Sonndes {6} mir laang geschlof. Duerno si mir duerch d'Stad {7}. Et war e flotte Weekend!"],
         ["", "Bis geschwënn,"],
-        ["", "Sophie"]
+        ["", "Tom"]
       ],
       "trous": [
-        { "choix": ["war", "hat", "hunn"], "reponse": "hat", "note": "Ech hat e laangen Dag = j'ai eu une longue journée." },
-        { "choix": ["opstoen", "opgestanen", "steet op"], "reponse": "opgestanen", "note": "Opstoen → ech sinn opgestanen." },
-        { "choix": ["geschriwwen", "schreiwen", "gekacht"], "reponse": "geschriwwen", "note": "Schreiwen → ech hu geschriwwen." },
-        { "choix": ["sinn", "hunn", "war"], "reponse": "hunn", "note": "Iessen se conjugue avec hunn : ech hu giess." },
-        { "choix": ["ware", "si", "hate"], "reponse": "hate", "note": "Mir haten = nous avions. Le n tombe devant « mir »." },
-        { "choix": ["hunn", "sinn", "hat"], "reponse": "sinn", "note": "Heemgoen (déplacement) → ech sinn heemgaangen." },
-        { "choix": ["gelauschtert", "lauschteren", "gekuckt"], "reponse": "gelauschtert", "note": "Musek lauschteren → ech hu gelauschtert." }
+        { "choix": ["hat", "war", "sinn"], "reponse": "war", "note": "Ech war zu Paräis = j'étais à Paris." },
+        { "choix": ["hu", "si", "war"], "reponse": "si", "note": "Fueren se conjugue avec sinn : mir si gefuer." },
+        { "choix": ["besichen", "besicht", "gewiescht"], "reponse": "besicht", "note": "Besichen → ech hu besicht (pas de ge-)." },
+        { "choix": ["gemaach", "maachen", "mécht"], "reponse": "gemaach", "note": "Fotoe maachen → ech hu Fotoe gemaach." },
+        { "choix": ["gedronk", "iessen", "giess"], "reponse": "giess", "note": "Iessen → mir hu giess." },
+        { "choix": ["si", "hu", "war"], "reponse": "hu", "note": "Schlofen se conjugue avec hunn : mir hu geschlof." },
+        { "choix": ["getrëppelt", "trëppelen", "gespillt"], "reponse": "getrëppelt", "note": "Trëppelen (déplacement) → mir si getrëppelt." }
       ]
     },
     {
       "section": "Liesverstoen",
-      "titre": "D'Woch vum Sarah",
-      "consigne": "Lis l'agenda, puis réponds : richteg (vrai) ou falsch (faux).",
+      "titre": "E Samschdeg bei der Famill Schmit",
+      "consigne": "Lis le texte, puis réponds : richteg (vrai) ou falsch (faux).",
       "type": "qcm",
       "lignes": [
-        ["Méindeg", "18.30 Auer: mam Julie schwamme goen."],
-        ["Dënschdeg", "12.15 Auer: Mëttegiesse mam Chef am Restaurant."],
-        ["Mëttwoch", "17.00 Auer: Rendez-vous beim Zänndokter. Net vergiessen!"],
-        ["Donneschdeg", "19.00 Auer: Franséischcours, wéi all Donneschdeg."],
-        ["Freideg", "Congé! Moies bei de Coiffer. Owes um 20.15 Auer mam Marc an de Kino."],
-        ["Samschdeg", "Akafe fir d'Party. Nomëttes e Kuch baken."],
-        ["Sonndeg", "12.00 Auer: Gebuertsdag vun der Mamm (70 Joer!)."]
+        ["08.30", "D'Léa steet op an duscht. De Paul schléift nach."],
+        ["09.15", "D'Léa geet bei de Bäcker a keeft Croissanten a Brout."],
+        ["10.00", "D'ganz Famill ësst zesummen. D'Kanner drénke Kakao, d'Elteren drénke Kaffi."],
+        ["11.30", "De Paul fiert mat de Kanner an d'Schwämm. D'Léa bleift doheem a liest e Buch."],
+        ["13.00", "De Paul kacht Spaghettie fir d'Mëttegiessen. Hie kacht ganz gär."],
+        ["15.00", "D'Famill mécht en Trëppeltour am Bësch. Et reent e bëssen, mee dat ass net schlëmm."],
+        ["19.00", "D'Grousseltere kommen iessen. Duerno spillen d'Kanner mam Grousspapp Kaarten."],
+        ["22.00", "D'Kanner sinn am Bett. D'Léa an de Paul kucken e Film."]
       ],
       "questions": [
-        { "question": "E Méindeg geet d'Sarah eleng schwammen.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Elle y va avec Julie (mam Julie)." },
-        { "question": "E Mëttwoch moies huet d'Sarah e Rendez-vous.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Le rendez-vous est à 17 h, donc l'après-midi (nomëttes)." },
-        { "question": "D'Sarah léiert Franséisch.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "Elle a un cours de français tous les jeudis." },
-        { "question": "E Freideg schafft d'Sarah.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Congé = elle est en congé." },
-        { "question": "D'Mamm vum Sarah gëtt siwwenzeg Joer al.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "70 Joer = siwwenzeg Joer." }
+        { "question": "D'Léa an de Paul stinn zesummen op.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "À 8 h 30, Paul dort encore (schléift nach)." },
+        { "question": "D'Léa keeft d'Brout am Supermarché.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Elle va chez le boulanger (bei de Bäcker)." },
+        { "question": "Moies geet d'ganz Famill schwammen.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Léa reste à la maison et lit un livre." },
+        { "question": "De Paul kacht gär.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "Hie kacht ganz gär = il adore cuisiner." },
+        { "question": "Owes sinn d'Grousselteren do.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "À 19 h, les grands-parents viennent manger." }
       ]
     },
     {
       "section": "Liesverstoen",
-      "titre": "Eng Foto vun der Famill",
+      "titre": "Eng Invitatioun",
       "consigne": "Lis le dialogue, puis choisis la bonne réponse. Une seule réponse est correcte.",
       "type": "qcm",
       "lignes": [
-        ["Lena", "Kuck, Max, dat ass eng Foto vu menger Famill."],
-        ["Max", "Flott! Wien ass de Mann mam Brëll?"],
-        ["Lena", "Dat ass mäi Papp. Hien ass Proff a schafft an engem Lycée an der Stad."],
-        ["Max", "An d'Fra niewent him?"],
-        ["Lena", "Dat ass meng Tatta Josiane, mengem Papp seng Schwëster. Si wunnt zu Bréissel."],
-        ["Max", "Hues du och Geschwëster?"],
-        ["Lena", "Jo, ee Brudder an zwou Schwësteren. Mäi Brudder ass de Klengen hei, hien ass eréischt zéng Joer al."],
-        ["Max", "An deng Mamm? Ass si net op der Foto?"],
-        ["Lena", "Nee, si huet d'Foto gemaach!"],
-        ["Max", "A wou war dat?"],
-        ["Lena", "Dat war d'lescht Joer an der Vakanz an Italien."]
+        ["Nora", "Salut Ben! Wat méchs du e Samschdeg?"],
+        ["Ben", "Moies ginn ech lafen, wéi all Samschdeg. Firwat?"],
+        ["Nora", "Meng Schwëster huet Gebuertsdag. Mir maachen eng kleng Party bei mir doheem. Kënns du och?"],
+        ["Ben", "Jo, gär! Um wéi vill Auer?"],
+        ["Nora", "Um véierel op aacht. Mir iessen eng Raclette."],
+        ["Ben", "Super. Soll ech eppes matbréngen?"],
+        ["Nora", "Jo, eng Fläsch Wäin oder en Dessert."],
+        ["Ben", "Ech baken e Kuch. Wéi al gëtt deng Schwëster dann?"],
+        ["Nora", "Drësseg! Hatt wunnt elo zu Tréier, mee hatt kënnt fir de Weekend heem."],
+        ["Ben", "Flott. Kommen deng Elteren och?"],
+        ["Nora", "Nee, si sinn an der Vakanz a Spuenien."],
+        ["Ben", "Okay. Da bis e Samschdeg!"]
       ],
       "questions": [
-        { "question": "De Papp vum Lena schafft an enger Schoul.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "richteg", "note": "Il est professeur dans un lycée." },
-        { "question": "D'Josiane ass d'Schwëster vun der Mamm.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "falsch", "note": "Mengem Papp seng Schwëster = la sœur de mon père." },
-        { "question": "D'Lena huet dräi Geschwëster.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "richteg", "note": "Ee Brudder an zwou Schwësteren : 1 + 2 = 3." },
-        { "question": "D'Tatta Josiane huet Kanner.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "Mir wëssen dat net", "note": "Le dialogue ne dit rien sur ses enfants." },
-        { "question": "Firwat ass d'Mamm net op der Foto?", "choix": ["Si war net an der Vakanz.", "Si huet d'Foto gemaach.", "Si wunnt zu Bréissel."], "reponse": "Si huet d'Foto gemaach.", "note": "C'est elle qui a pris la photo." }
+        { "question": "De Ben geet all Samschdeg lafen.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "richteg", "note": "Wéi all Samschdeg = comme tous les samedis." },
+        { "question": "D'Party fänkt um 19.45 Auer un.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "falsch", "note": "Véierel op aacht = 20 h 15. 19 h 45 se dit véierel vir aacht." },
+        { "question": "De Ben bréngt eng Fläsch Wäin mat.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "falsch", "note": "Il apporte un gâteau : ech baken e Kuch." },
+        { "question": "D'Schwëster vum Nora schafft zu Tréier.", "choix": ["richteg", "falsch", "Mir wëssen dat net"], "reponse": "Mir wëssen dat net", "note": "On sait qu'elle y habite (wunnt), pas où elle travaille." },
+        { "question": "Wou sinn d'Eltere vum Nora?", "choix": ["doheem", "zu Tréier", "an der Vakanz"], "reponse": "an der Vakanz", "note": "Si sinn an der Vakanz a Spuenien." }
       ]
     },
     {
@@ -133,22 +131,23 @@
       "titre": "D'Annonce",
       "consigne": "Lis l'annonce, puis choisis la bonne réponse.",
       "type": "qcm",
-      "chapeau": "Sportsclub Diddeleng: neie Yogacours fir Ufänger",
+      "chapeau": "Ze verlounen: Appartement zu Miersch",
       "lignes": [
-        ["•", "Wéini? All Dënschdeg vun 18.30 bis 19.45 Auer, vum 15. September un"],
-        ["•", "Wou? An der Schoul, 12 rue de la Gare"],
-        ["•", "Präis: 120 € fir 10 Coursen"],
-        ["•", "Den éischte Cours ass gratis!"],
-        ["•", "Bréngt w.e.g. en Handduch an eng Fläsch Waasser mat."],
-        ["•", "Maximal 15 Persounen"],
-        ["", "Umeldung bis den 10. September per E-Mail: yoga@sportsclub-diddeleng.lu"]
+        ["•", "75 m², um 2. Stack, mat Lift"],
+        ["•", "2 Schlofzëmmeren, Living, equipéiert Kichen, Buedzëmmer mat Dusch"],
+        ["•", "Balcon a Keller, 1 Parkplaz an der Garage"],
+        ["•", "5 Minutten zu Fouss vun der Gare"],
+        ["•", "Loyer: 1.450 € de Mount + 200 € Chargen"],
+        ["•", "Fräi vum 1. Mäerz un"],
+        ["•", "Hausdéiere sinn net erlaabt"],
+        ["", "Kontakt: Agence Immo Miersch, Tel. 26 12 34 56 (méindes bis freides, vun 9 bis 17 Auer)"]
       ],
       "questions": [
-        { "question": "Wat fir eng Annonce ass dat?", "choix": ["eng Aarbechtsannonce", "eng Annonce fir e Cours", "eng Verkaafsannonce"], "reponse": "eng Annonce fir e Cours", "note": "Le club annonce un nouveau cours de yoga." },
-        { "question": "De Cours ass fir Leit, déi scho laang Yoga maachen.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Fir Ufänger = pour débutants." },
-        { "question": "De Cours dauert méi wéi eng Stonn.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "De 18 h 30 à 19 h 45 : 1 h 15." },
-        { "question": "Fir den éischte Cours bezilt een näischt.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "Den éischte Cours ass gratis." },
-        { "question": "De 14. September kann ee sech nach umellen.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Inscription jusqu'au 10 septembre." }
+        { "question": "Wat fir eng Annonce ass dat?", "choix": ["eng Wunneng fir ze kafen", "eng Wunneng fir ze lounen", "eng Aarbechtsannonce"], "reponse": "eng Wunneng fir ze lounen", "note": "Ze verlounen = à louer. On parle d'un loyer par mois." },
+        { "question": "D'Wunneng huet e Gaart.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Il y a un balcon et une cave, pas de jardin." },
+        { "question": "D'Gare ass net wäit.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "5 Minutten zu Fouss = à 5 minutes à pied." },
+        { "question": "E Samschdeg kann een der Agence uruffen.", "choix": ["richteg", "falsch"], "reponse": "falsch", "note": "Seulement du lundi au vendredi (méindes bis freides)." },
+        { "question": "Mat engem Hond kann een do net wunnen.", "choix": ["richteg", "falsch"], "reponse": "richteg", "note": "Hausdéiere sinn net erlaabt = animaux non autorisés." }
       ]
     }
   ]
