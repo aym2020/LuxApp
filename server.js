@@ -50,6 +50,10 @@ app.get('/api/examens', (req, res) => {
     });
   });
 
+  // Tri par titre : « Annale 1 », « Annale 2 »… puis « Sujet 1 », « Sujet 2 »…
+  // numeric: true pour que « Sujet 10 » passe après « Sujet 2 ».
+  examens.sort((a, b) => a.titre.localeCompare(b.titre, 'fr', { numeric: true }));
+
   res.json(examens);
 });
 

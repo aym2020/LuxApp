@@ -1,10 +1,11 @@
 // ─── EXAMENS : SUJETS COMPLETS ──────────────────────────────────────────────
 // Un sujet = un fichier JSON dans data/examens/<niveau>/ (ex : A1.2/examen-01.json).
 // Ajouter un sujet = ajouter un fichier. Rien à changer dans le code.
+// La liste est triée par titre : « Annale 1 », « Annale 2 »… puis « Sujet 1 »…
 //
 // Structure d'un sujet :
 // {
-//   "id": "a12-01", "titre": "Annale 01", "titre_fr": "...", "couleur": "#6fb0f2",
+//   "id": "a12-01", "titre": "Annale 1", "titre_fr": "2023 - 1", "couleur": "#6fb0f2",
 //   "parties": [ ... ]
 // }
 //
@@ -17,6 +18,7 @@
 //      soit "choix" dans chaque trou (3 propositions).
 //
 // 2) "qcm" : un texte à lire ("lignes", "chapeau" facultatif) puis des questions
+//    - "lignes": [] s'il n'y a pas de texte à lire (questions seules).
 //    - "questions" : [{ "question", "choix": [...], "reponse", "note" }, …]
 //    - vrai/faux = un qcm avec les choix ["richteg", "falsch"].
 
@@ -189,7 +191,8 @@ function renderExamPart() {
   if (part.type === 'trous') {
     html += '<div class="ex-text">' + examLinesHtml(part, examBlankHtml) + '</div>';
   } else {
-    html += '<div class="ex-text read">' + examLinesHtml(part) + '</div>';
+    const texte = examLinesHtml(part);
+    if (texte) html += '<div class="ex-text read">' + texte + '</div>'; // pas de cadre vide
     part.questions.forEach((q, i) => html += examQuestionHtml(q, i));
   }
 
@@ -521,8 +524,11 @@ function examCorrectionHtml(part, p, r) {
     });
   } else {
     // Le texte est replié pour garder la correction courte.
-    html += '<details class="exr-details"><summary>Revoir le texte</summary>' +
-      '<div class="ex-text read">' + examLinesHtml(part) + '</div></details>';
+    const texte = examLinesHtml(part);
+    if (texte) {
+      html += '<details class="exr-details"><summary>Revoir le texte</summary>' +
+        '<div class="ex-text read">' + texte + '</div></details>';
+    }
 
     part.questions.forEach((q, i) => {
       const juste = answers[i] === q.reponse;

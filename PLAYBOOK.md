@@ -156,11 +156,16 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
 - Bouton « Examens » de l'accueil → liste des sujets du niveau actif (`openExamens()`).
 - Un sujet = un fichier `data/examens/<niveau>/examen-NN.json`, servi par `/api/examens`.
   **Ajouter un sujet = ajouter un fichier**, aucun code à toucher.
+- La liste est triée par `titre` (pas par nom de fichier) : « Annale N » = vrai test de fin
+  de formation, « Sujet N » = sujet d'entraînement. Les annales passent donc en premier.
+- Avant d'ajouter une annale, comparer ses parties aux annales existantes : les tests
+  réutilisent souvent les mêmes textes d'une session à l'autre.
 - Tout le front est dans `public/examens.js` (+ bloc « EXAMENS » à la fin de `style.css`).
 - Deux types de partie, 1 point par réponse :
   - `trous` : texte avec `{1}`, `{2}`… + soit `banque` (mots communs, un seul usage),
     soit `choix` dans chaque trou (3 propositions).
   - `qcm` : texte à lire + `questions` (vrai/faux = choix `["richteg", "falsch"]`).
+    `"lignes": []` si la partie n'a pas de texte (ex. photos du sujet papier décrites en français).
 - Pas d'expression écrite ni d'oral (non corrigeables) : un sujet est noté sur 40.
 - Pas de correction pendant le sujet. À la fin : score, score par section, correction
   complète ou « Mes erreurs » seulement, avec la `note` en français de chaque réponse.
