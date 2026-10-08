@@ -652,6 +652,10 @@ header {
 .ex-step.started { border-color: var(--accent); color: var(--accent); }
 .ex-step.done    { background: rgba(245,207,77,.16); border-color: var(--accent); color: var(--accent); }
 .ex-step.current { box-shadow: 0 0 0 2px var(--text); color: var(--text); }
+/* Partie corrigée : la couleur (vert, or, rouge) est posée par examens.js. */
+.ex-step.checked { background: var(--surface); }
+/* Correction affichée pendant le sujet : pas de trait de séparation au-dessus. */
+.ex-body .exr-part { border-top: 0; padding-top: 0; }
 
 .ex-body { padding: 1rem 1rem 1.5rem; display: flex; flex-direction: column; gap: .9rem; }
 

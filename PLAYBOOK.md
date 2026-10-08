@@ -167,8 +167,11 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
   - `qcm` : texte à lire + `questions` (vrai/faux = choix `["richteg", "falsch"]`).
     `"lignes": []` si la partie n'a pas de texte (ex. photos du sujet papier décrites en français).
 - Pas d'expression écrite ni d'oral (non corrigeables) : un sujet est noté sur 40.
-- Pas de correction pendant le sujet. À la fin : score, score par section, correction
-  complète ou « Mes erreurs » seulement, avec la `note` en français de chaque réponse.
+- Correction partie par partie : le bouton « Corriger » affiche la correction de la partie
+  (`examChecked`), ses réponses sont alors verrouillées, puis « Suivant ». On ne peut voir
+  le score qu'une fois toutes les parties corrigées.
+- À la fin : score, score par section, correction complète ou « Mes erreurs » seulement,
+  avec la `note` en français de chaque réponse.
 - Meilleur score par sujet : `luxExamens:<profil>` dans localStorage (local, pas de cloud).
 - L'ancien examen (50 questions aléatoires) reste accessible en bas de la liste des sujets.
 - Vérifier un sujet : chaque `reponse` est dans ses `choix` (ou dans la `banque`),

@@ -36,6 +36,7 @@ let exam = null;             // sujet en cours
 let examAnswers = [];        // examAnswers[partie][numéro] = réponse choisie, ou null
 let examPart = 0;            // partie affichée
 let examBlank = 0;           // trou sélectionné (parties "trous")
+let examChecked = [];        // examChecked[partie] = true une fois la partie corrigée
 let examRes = null;          // résultat calculé à la fin
 let examOnlyErrors = false;  // correction : tout afficher ou seulement les erreurs
 
@@ -156,6 +157,7 @@ function startExamen(examId) {
 
   // Une case vide (null) par réponse attendue.
   examAnswers = exam.parties.map(p => examItems(p).map(() => null));
+  examChecked = exam.parties.map(() => false); // aucune partie corrigée au départ
   examPart = 0;
   examBlank = 0;
   examOnlyErrors = false;
@@ -172,14 +174,40 @@ function quitExamen() {
   openExamens();
 }
 
-// Affiche la partie courante (texte, questions, barre du bas).
+// Affiche la partie courante. Chaque partie se corrige avant de passer à la
+// suivante : tant qu'elle n'est pas corrigée on affiche l'exercice, ensuite sa correction.
 function renderExamPart() {
   const part = exam.parties[examPart];
-  const nb = examItems(part).length;
+  const corrigee = examChecked[examPart];
 
   document.getElementById('ex-titre').textContent =
     'Partie ' + (examPart + 1) + ' / ' + exam.parties.length;
   renderExamSteps();
+
+  if (corrigee) {
+    // Partie corrigée : les réponses ne sont plus modifiables.
+    document.getElementById('ex-body').innerHTML =
+      examCorrectionHtml(part, examPart, examPartScore(examPart));
+    document.getElementById('ex-tray').classList.add('hidden');
+  } else {
+    document.getElementById('ex-body').innerHTML = examExerciseHtml(part);
+    renderExamTray();
+  }
+
+  // Bouton principal : Corriger, puis Suivant (ou Voir le score à la fin).
+  let label = 'Corriger';
+  if (corrigee) {
+    const derniere = examPart === exam.parties.length - 1;
+    const toutCorrige = examChecked.every(c => c);
+    label = derniere && toutCorrige ? 'Voir le score' : 'Suivant';
+  }
+  document.getElementById('ex-next').textContent = label;
+  document.getElementById('ex-prev').disabled = examPart === 0;
+}
+
+// L'exercice à faire : consigne, puis texte à trous ou questions.
+function examExerciseHtml(part) {
+  const nb = examItems(part).length;
 
   let html =
     '<div class="ex-head">' +
@@ -195,25 +223,37 @@ function renderExamPart() {
     if (texte) html += '<div class="ex-text read">' + texte + '</div>'; // pas de cadre vide
     part.questions.forEach((q, i) => html += examQuestionHtml(q, i));
   }
+  return html;
+}
 
-  document.getElementById('ex-body').innerHTML = html;
-  renderExamTray();
-
-  document.getElementById('ex-prev').disabled = examPart === 0;
-  document.getElementById('ex-next').textContent =
-    examPart === exam.parties.length - 1 ? 'Terminer' : 'Suivant';
+// Score d'une partie : nombre de bonnes réponses sur le nombre de points.
+function examPartScore(p) {
+  const items = examItems(exam.parties[p]);
+  let ok = 0;
+  items.forEach((item, i) => { if (examAnswers[p][i] === item.reponse) ok++; });
+  return { score: ok, total: items.length };
 }
 
 // Une case par partie : montre où on en est et permet de sauter à une partie.
+// Une partie corrigée prend la couleur de son score (vert, or ou rouge).
 function renderExamSteps() {
   let html = '';
   exam.parties.forEach((p, i) => {
     const answers = examAnswers[i];
     let cls = 'ex-step';
-    if (answers.every(a => a !== null)) cls += ' done';
-    else if (answers.some(a => a !== null)) cls += ' started';
+    let style = '';
+    if (examChecked[i]) {
+      const r = examPartScore(i);
+      const color = examColor(Math.round(r.score / r.total * 100));
+      cls += ' checked';
+      style = ' style="color:' + color + ';border-color:' + color + '"';
+    } else if (answers.every(a => a !== null)) {
+      cls += ' done';
+    } else if (answers.some(a => a !== null)) {
+      cls += ' started';
+    }
     if (i === examPart) cls += ' current';
-    html += '<button class="' + cls + '" onclick="examGoTo(' + i + ')">' + (i + 1) + '</button>';
+    html += '<button class="' + cls + '"' + style + ' onclick="examGoTo(' + i + ')">' + (i + 1) + '</button>';
   });
   document.getElementById('ex-steps').innerHTML = html;
 }
@@ -380,22 +420,37 @@ function examPrev() {
   if (examPart > 0) examGoTo(examPart - 1);
 }
 
+// Bouton principal : corrige la partie, puis passe à la suivante.
 function examNext() {
-  if (examPart < exam.parties.length - 1) examGoTo(examPart + 1);
+  if (!examChecked[examPart]) { examCheck(); return; }
+
+  if (examPart < exam.parties.length - 1) { examGoTo(examPart + 1); return; }
+
+  // Dernière partie : s'il reste une partie non corrigée, on y retourne.
+  const reste = examChecked.indexOf(false);
+  if (reste !== -1) examGoTo(reste);
   else examFinish();
 }
 
-// ─── FIN : CALCUL DU SCORE ──────────────────────────────────────────────────
-function examFinish() {
+// Corrige la partie courante. Ensuite ses réponses ne peuvent plus changer.
+function examCheck() {
   let vides = 0;
-  examAnswers.forEach(part => part.forEach(a => { if (a === null) vides++; }));
+  examAnswers[examPart].forEach(a => { if (a === null) vides++; });
   if (vides > 0) {
     const msg = vides === 1
-      ? 'Il reste 1 réponse vide. Terminer quand même ?'
-      : 'Il reste ' + vides + ' réponses vides. Terminer quand même ?';
+      ? 'Il reste 1 réponse vide. Corriger quand même ?'
+      : 'Il reste ' + vides + ' réponses vides. Corriger quand même ?';
     if (!confirm(msg)) return;
   }
 
+  examChecked[examPart] = true;
+  renderExamPart();
+  window.scrollTo(0, 0);
+}
+
+// ─── FIN : CALCUL DU SCORE ──────────────────────────────────────────────────
+// Appelée quand toutes les parties sont corrigées.
+function examFinish() {
   examRes = examComputeResult();
   saveExamScore(exam.id, examRes.score, examRes.total);
   examOnlyErrors = false;
@@ -409,11 +464,11 @@ function examComputeResult() {
   const res = { score: 0, total: 0, parties: [], sections: [] };
 
   exam.parties.forEach((part, p) => {
+    const r = examPartScore(p);
+    const ok = r.score;
     const items = examItems(part);
-    let ok = 0;
-    items.forEach((item, i) => { if (examAnswers[p][i] === item.reponse) ok++; });
 
-    res.parties.push({ score: ok, total: items.length });
+    res.parties.push(r);
     res.score += ok;
     res.total += items.length;
 
