@@ -1,0 +1,941 @@
+{
+  "id": 25,
+  "titre": "Um Maart",
+  "titre_fr": "Faire ses courses au marché – quantités et paiement",
+  "couleur": "#3f8f5a",
+  "instructions": {
+    "flashcards": "Mémorise les phrases du dialogue au marché (marchande et client), les quantités (Kilo, Pond, Dosen), les emballages (Tut, Sak, Akafskuerf), le paiement et les quatre produits de l'examen. La note donne un exemple ou le genre.",
+    "quiz": "Lis une phrase ou un mot du marché en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont une autre phrase du dialogue, une autre quantité, un autre emballage ou un autre produit.",
+    "trous": "Complète le dialogue du marché comme à l'examen : verbe (kritt, hätt, huelen, bezuelen), formule (soss nach eppes, zesummen, wier), quantité, emballage ou produit. Les distracteurs sont les autres mots de la liste de l'examen.",
+    "ecriture": "Traduis en luxembourgeois les phrases du dialogue au marché, les quantités, les emballages, les produits et des commandes complètes. Attention à la règle UNITEDZOHA : zesummen aacht Euro, mais Ech bezuele boer."
+  },
+  "flashcards": [
+    {
+      "id": 1,
+      "lu": "U wiem ass et?",
+      "fr": "À qui le tour ?",
+      "note": "Réponse : Et ass u mir! = C'est à moi !"
+    },
+    {
+      "id": 2,
+      "lu": "Wat kritt Dir?",
+      "fr": "Que désirez-vous ?",
+      "note": "Question du vendeur · kréien → Dir kritt"
+    },
+    {
+      "id": 3,
+      "lu": "Ech hätt gär …",
+      "fr": "Je voudrais …",
+      "note": "Réponse du client · Ech hätt gär e Kilo Äppel."
+    },
+    {
+      "id": 4,
+      "lu": "Ech huelen …",
+      "fr": "Je prends …",
+      "note": "huelen = prendre · Ech huelen och nach Bieren."
+    },
+    {
+      "id": 5,
+      "lu": "Soss nach eppes?",
+      "fr": "Autre chose ?",
+      "note": "Kritt Dir soss nach eppes?"
+    },
+    {
+      "id": 6,
+      "lu": "Wéi vill?",
+      "fr": "Combien ?",
+      "note": "Wéi vill hätt Dir der gär? = Combien en voulez-vous ?"
+    },
+    {
+      "id": 7,
+      "lu": "Dat wier alles.",
+      "fr": "Ce sera tout.",
+      "note": "Dat ass alles. = C'est tout."
+    },
+    {
+      "id": 8,
+      "lu": "Dat mécht zesummen …",
+      "fr": "Ça fait … en tout",
+      "note": "Dat mécht zesummen aacht Euro."
+    },
+    {
+      "id": 9,
+      "lu": "bezuelen",
+      "fr": "payer",
+      "note": "ech bezuelen · Dir bezuelt"
+    },
+    {
+      "id": 10,
+      "lu": "mat der Kaart",
+      "fr": "par carte",
+      "note": "Kann ech mat der Kaart bezuelen?"
+    },
+    {
+      "id": 11,
+      "lu": "boer",
+      "fr": "en liquide",
+      "note": "Ech bezuele boer."
+    },
+    {
+      "id": 12,
+      "lu": "e Kilo",
+      "fr": "un kilo",
+      "note": "de Kilo : masculin"
+    },
+    {
+      "id": 13,
+      "lu": "e Pond",
+      "fr": "une livre (500 g)",
+      "note": "dräi Pond = 1,5 kg"
+    },
+    {
+      "id": 14,
+      "lu": "eng Dosen",
+      "fr": "une douzaine (12)",
+      "note": "eng hallef Dosen = une demi-douzaine (6)"
+    },
+    {
+      "id": 15,
+      "lu": "eng Tut",
+      "fr": "un sachet",
+      "note": "d'Tut : féminin · Wëllt Dir eng Tut?"
+    },
+    {
+      "id": 16,
+      "lu": "e Sak",
+      "fr": "un sac",
+      "note": "de Sak : masculin"
+    },
+    {
+      "id": 17,
+      "lu": "en Akafskuerf",
+      "fr": "un panier à provisions",
+      "note": "den Akafskuerf : masculin"
+    },
+    {
+      "id": 18,
+      "lu": "Äppel",
+      "fr": "des pommes",
+      "note": "en Apel → Äppel"
+    },
+    {
+      "id": 19,
+      "lu": "Bieren",
+      "fr": "des poires",
+      "note": "eng Bier → Bieren"
+    },
+    {
+      "id": 20,
+      "lu": "Gromperen",
+      "fr": "des pommes de terre",
+      "note": "eng Gromper → Gromperen"
+    },
+    {
+      "id": 21,
+      "lu": "Aprikosen",
+      "fr": "des abricots",
+      "note": "eng Aprikos → Aprikosen"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "U wiem ass et?",
+      "reponse": "À qui le tour ?",
+      "distracteurs": [
+        "C'est à moi !",
+        "Que désirez-vous ?",
+        "Ce sera tout ?"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Et ass u mir!",
+      "reponse": "C'est à moi !",
+      "distracteurs": [
+        "C'est à vous !",
+        "C'est tout !",
+        "À qui le tour ?"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Wat kritt Dir?",
+      "reponse": "Que désirez-vous ?",
+      "distracteurs": [
+        "Combien en voulez-vous ?",
+        "Qu'avez-vous reçu ?",
+        "À qui le tour ?"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Ech hätt gär …",
+      "reponse": "Je voudrais …",
+      "distracteurs": [
+        "Je prends …",
+        "J'ai …",
+        "J'aime …"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Ech huelen …",
+      "reponse": "Je prends …",
+      "distracteurs": [
+        "Je voudrais …",
+        "Je paie …",
+        "J'achète …"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Soss nach eppes?",
+      "reponse": "Autre chose ?",
+      "distracteurs": [
+        "Ce sera tout ?",
+        "Combien ?",
+        "Voulez-vous un sachet ?"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Wéi vill hätt Dir der gär?",
+      "reponse": "Combien en voulez-vous ?",
+      "distracteurs": [
+        "Que désirez-vous ?",
+        "Combien ça coûte ?",
+        "Autre chose ?"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Dat wier alles.",
+      "reponse": "Ce sera tout.",
+      "distracteurs": [
+        "Autre chose ?",
+        "Ça fait en tout …",
+        "Ce n'est pas tout."
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Dat mécht zesummen aacht Euro.",
+      "reponse": "Ça fait huit euros en tout.",
+      "distracteurs": [
+        "Ça coûte huit euros le kilo.",
+        "Ça fait huit euros chacun.",
+        "Ça fait dix-huit euros en tout."
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Kann ech mat der Kaart bezuelen?",
+      "reponse": "Puis-je payer par carte ?",
+      "distracteurs": [
+        "Puis-je payer en liquide ?",
+        "Avez-vous une carte ?",
+        "Puis-je prendre un sachet ?"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Ech bezuele boer.",
+      "reponse": "Je paie en liquide.",
+      "distracteurs": [
+        "Je paie par carte.",
+        "Je paie tout.",
+        "Je prends un sac."
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Wëllt Dir eng Tut?",
+      "reponse": "Voulez-vous un sachet ?",
+      "distracteurs": [
+        "Voulez-vous un sac ?",
+        "Voulez-vous une douzaine ?",
+        "Avez-vous un panier ?"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "eng Dosen",
+      "reponse": "une douzaine",
+      "distracteurs": [
+        "une demi-douzaine",
+        "un kilo",
+        "une livre"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "e Pond",
+      "reponse": "une livre (500 g)",
+      "distracteurs": [
+        "un kilo",
+        "une douzaine",
+        "un sachet"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "eng Tut",
+      "reponse": "un sachet",
+      "distracteurs": [
+        "un sac",
+        "un panier à provisions",
+        "une douzaine"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "e Sak",
+      "reponse": "un sac",
+      "distracteurs": [
+        "un sachet",
+        "un panier à provisions",
+        "une livre"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "en Akafskuerf",
+      "reponse": "un panier à provisions",
+      "distracteurs": [
+        "un sac",
+        "un sachet",
+        "un kilo"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Äppel",
+      "reponse": "des pommes",
+      "distracteurs": [
+        "des poires",
+        "des pommes de terre",
+        "des abricots"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Bieren",
+      "reponse": "des poires",
+      "distracteurs": [
+        "des pommes",
+        "des pommes de terre",
+        "des abricots"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Gromperen",
+      "reponse": "des pommes de terre",
+      "distracteurs": [
+        "des pommes",
+        "des poires",
+        "des abricots"
+      ]
+    },
+    {
+      "id": 21,
+      "question": "Aprikosen",
+      "reponse": "des abricots",
+      "distracteurs": [
+        "des pommes",
+        "des poires",
+        "des pommes de terre"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "Que désirez-vous, s'il vous plaît ?",
+      "avant": "Wat",
+      "trou": "kritt",
+      "apres": "Dir, wann ech gelift?",
+      "choix": [
+        "kritt",
+        "hätt",
+        "huelen",
+        "bezuelt"
+      ],
+      "note": "Wat kritt Dir? = question du vendeur (kréien → Dir kritt)."
+    },
+    {
+      "id": 2,
+      "fr": "Je voudrais un kilo de pommes.",
+      "avant": "Ech",
+      "trou": "hätt",
+      "apres": "gär e Kilo Äppel.",
+      "choix": [
+        "hätt",
+        "huelen",
+        "kritt",
+        "wier"
+      ],
+      "note": "Ech hätt gär… = Je voudrais… (réponse du client)."
+    },
+    {
+      "id": 3,
+      "fr": "Je prends aussi des poires.",
+      "avant": "Ech",
+      "trou": "huelen",
+      "apres": "och nach Bieren.",
+      "choix": [
+        "huelen",
+        "hätt",
+        "kritt",
+        "bezuelen"
+      ],
+      "note": "Ech huelen… = Je prends…"
+    },
+    {
+      "id": 4,
+      "fr": "Désirez-vous autre chose ?",
+      "avant": "Kritt Dir",
+      "trou": "soss nach eppes",
+      "apres": "?",
+      "choix": [
+        "soss nach eppes",
+        "zesummen",
+        "wéi vill",
+        "eng Tut"
+      ],
+      "note": "Soss nach eppes? = Autre chose ?"
+    },
+    {
+      "id": 5,
+      "fr": "À qui le tour, s'il vous plaît ?",
+      "avant": "U",
+      "trou": "wiem",
+      "apres": "ass et, wann ech gelift?",
+      "choix": [
+        "wiem",
+        "wat",
+        "wou",
+        "wéi"
+      ],
+      "note": "U wiem ass et? = À qui le tour ?"
+    },
+    {
+      "id": 6,
+      "fr": "C'est à moi !",
+      "avant": "Et ass u",
+      "trou": "mir",
+      "apres": "!",
+      "choix": [
+        "mir",
+        "Dir",
+        "ech",
+        "si"
+      ],
+      "note": "Et ass u mir! = C'est à moi !"
+    },
+    {
+      "id": 7,
+      "fr": "Combien en voulez-vous ?",
+      "avant": "Wéi",
+      "trou": "vill",
+      "apres": "hätt Dir der gär?",
+      "choix": [
+        "vill",
+        "wat",
+        "wou",
+        "wiem"
+      ],
+      "note": "Wéi vill? = Combien ?"
+    },
+    {
+      "id": 8,
+      "fr": "Une douzaine, s'il vous plaît.",
+      "avant": "Eng",
+      "trou": "Dosen",
+      "apres": ", wann ech gelift.",
+      "choix": [
+        "Dosen",
+        "Kilo",
+        "Pond",
+        "Tut"
+      ],
+      "note": "Eng Dosen = une douzaine (12). Kilo et Pond prennent e, pas eng."
+    },
+    {
+      "id": 9,
+      "fr": "Ce sera tout.",
+      "avant": "Dat",
+      "trou": "wier",
+      "apres": "alles.",
+      "choix": [
+        "wier",
+        "mécht",
+        "hätt",
+        "kritt"
+      ],
+      "note": "Dat wier alles. = Ce sera tout. (Dat ass alles. = C'est tout.)"
+    },
+    {
+      "id": 10,
+      "fr": "Voulez-vous un sachet ?",
+      "avant": "Wëllt Dir",
+      "trou": "eng Tut",
+      "apres": "?",
+      "choix": [
+        "eng Tut",
+        "e Sak",
+        "eng Dosen",
+        "e Pond"
+      ],
+      "note": "Eng Tut = un sachet."
+    },
+    {
+      "id": 11,
+      "fr": "Non merci, j'ai un panier à provisions.",
+      "avant": "Nee merci, ech hunn en",
+      "trou": "Akafskuerf",
+      "apres": ".",
+      "choix": [
+        "Akafskuerf",
+        "Tut",
+        "Sak",
+        "Dosen"
+      ],
+      "note": "En Akafskuerf = un panier à provisions. On garde le n de en devant une voyelle."
+    },
+    {
+      "id": 12,
+      "fr": "Je voudrais un sac de trois kilos de pommes de terre.",
+      "avant": "Ech hätt gär e",
+      "trou": "Sak",
+      "apres": "vun dräi Kilo Gromperen.",
+      "choix": [
+        "Sak",
+        "Tut",
+        "Dosen",
+        "Akafskuerf"
+      ],
+      "note": "Regarde l'article : e Sak (masculin), mais eng Tut (féminin)."
+    },
+    {
+      "id": 13,
+      "fr": "Je voudrais trois livres de pommes de terre.",
+      "avant": "Ech hätt gär dräi",
+      "trou": "Pond",
+      "apres": "Gromperen.",
+      "choix": [
+        "Pond",
+        "Dosen",
+        "Tut",
+        "Sak"
+      ],
+      "note": "E Pond = 500 g. Dräi Pond = 1,5 kg."
+    },
+    {
+      "id": 14,
+      "fr": "Ça fait huit euros en tout.",
+      "avant": "Dat mécht",
+      "trou": "zesummen",
+      "apres": "aacht Euro.",
+      "choix": [
+        "zesummen",
+        "alles",
+        "soss",
+        "nach"
+      ],
+      "note": "Dat mécht zesummen… = Ça fait… en tout."
+    },
+    {
+      "id": 15,
+      "fr": "Puis-je payer par carte ?",
+      "avant": "Kann ech mat der Kaart",
+      "trou": "bezuelen",
+      "apres": "?",
+      "choix": [
+        "bezuelen",
+        "huelen",
+        "kréien",
+        "kafen"
+      ],
+      "note": "Mat der Kaart bezuelen = payer par carte."
+    },
+    {
+      "id": 16,
+      "fr": "Je paie en liquide.",
+      "avant": "Ech bezuele",
+      "trou": "boer",
+      "apres": ".",
+      "choix": [
+        "boer",
+        "Kaart",
+        "zesummen",
+        "alles"
+      ],
+      "note": "Boer bezuelen = payer en liquide. Bezuele perd son n devant b (UNITEDZOHA)."
+    },
+    {
+      "id": 17,
+      "fr": "Je voudrais un kilo de pommes de terre pour faire un gratin.",
+      "avant": "Ech hätt gär e Kilo",
+      "trou": "Gromperen",
+      "apres": "fir e Gratin ze maachen.",
+      "choix": [
+        "Gromperen",
+        "Äppel",
+        "Bieren",
+        "Aprikosen"
+      ],
+      "note": "Gromperen = des pommes de terre."
+    },
+    {
+      "id": 18,
+      "fr": "Je prends une douzaine d'abricots.",
+      "avant": "Ech huelen eng Dosen",
+      "trou": "Aprikosen",
+      "apres": ".",
+      "choix": [
+        "Aprikosen",
+        "Äppel",
+        "Bieren",
+        "Gromperen"
+      ],
+      "note": "Aprikosen = des abricots (eng Aprikos)."
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "À qui le tour ?",
+      "lu": "U wiem ass et?"
+    },
+    {
+      "fr": "C'est à moi !",
+      "lu": "Et ass u mir!"
+    },
+    {
+      "fr": "Que désirez-vous ?",
+      "lu": "Wat kritt Dir?"
+    },
+    {
+      "fr": "Je voudrais un kilo de pommes.",
+      "lu": "Ech hätt gär e Kilo Äppel."
+    },
+    {
+      "fr": "Je prends aussi des poires.",
+      "lu": "Ech huelen och nach Bieren."
+    },
+    {
+      "fr": "Autre chose ?",
+      "lu": "Soss nach eppes?"
+    },
+    {
+      "fr": "Combien en voulez-vous ?",
+      "lu": "Wéi vill hätt Dir der gär?"
+    },
+    {
+      "fr": "Une douzaine, s'il vous plaît.",
+      "lu": "Eng Dosen, wann ech gelift."
+    },
+    {
+      "fr": "Ce sera tout.",
+      "lu": "Dat wier alles."
+    },
+    {
+      "fr": "Voulez-vous un sachet ?",
+      "lu": "Wëllt Dir eng Tut?"
+    },
+    {
+      "fr": "Non merci, j'ai un panier à provisions.",
+      "lu": "Nee merci, ech hunn en Akafskuerf."
+    },
+    {
+      "fr": "Ça fait huit euros en tout.",
+      "lu": "Dat mécht zesummen aacht Euro."
+    },
+    {
+      "fr": "Puis-je payer par carte ?",
+      "lu": "Kann ech mat der Kaart bezuelen?"
+    },
+    {
+      "fr": "Je paie en liquide.",
+      "lu": "Ech bezuele boer."
+    },
+    {
+      "fr": "un kilo",
+      "lu": "e Kilo"
+    },
+    {
+      "fr": "une livre (500 g)",
+      "lu": "e Pond"
+    },
+    {
+      "fr": "une douzaine",
+      "lu": "eng Dosen"
+    },
+    {
+      "fr": "un sachet",
+      "lu": "eng Tut"
+    },
+    {
+      "fr": "un sac",
+      "lu": "e Sak"
+    },
+    {
+      "fr": "des pommes",
+      "lu": "Äppel"
+    },
+    {
+      "fr": "des poires",
+      "lu": "Bieren"
+    },
+    {
+      "fr": "des pommes de terre",
+      "lu": "Gromperen"
+    },
+    {
+      "fr": "des abricots",
+      "lu": "Aprikosen"
+    },
+    {
+      "fr": "Je voudrais trois livres de pommes de terre.",
+      "lu": "Ech hätt gär dräi Pond Gromperen."
+    },
+    {
+      "fr": "Je prends une douzaine d'abricots.",
+      "lu": "Ech huelen eng Dosen Aprikosen."
+    }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Cette leçon prépare la partie <b>Um Maart</b> de l'examen A1.2 : un dialogue au marché à compléter (8 points). Il faut savoir qui dit quoi (la marchande ou le client), les <b>quantités</b> (Kilo, Pond, Dosen) et les mots pour <b>emballer</b> et <b>payer</b>. Les nombres sont ceux de la leçon 5."
+    },
+    {
+      "type": "dialogue",
+      "titre": "Um Maart (le dialogue type de l'examen)",
+      "echanges": [
+        [
+          "U wiem ass et, wann ech gelift?",
+          "À qui le tour, s'il vous plaît ?"
+        ],
+        [
+          "Et ass u mir!",
+          "C'est à moi !"
+        ],
+        [
+          "Wat kritt Dir, wann ech gelift?",
+          "Que désirez-vous, s'il vous plaît ?"
+        ],
+        [
+          "Ech hätt gär e Kilo Äppel, wann ech gelift.",
+          "Je voudrais un kilo de pommes, s'il vous plaît."
+        ],
+        [
+          "Kritt Dir soss nach eppes?",
+          "Désirez-vous autre chose ?"
+        ],
+        [
+          "Jo, ech huelen och nach Bieren.",
+          "Oui, je prends aussi des poires."
+        ],
+        [
+          "Wéi vill hätt Dir der gär?",
+          "Combien en voulez-vous ?"
+        ],
+        [
+          "Eng Dosen. Dat wier dann alles.",
+          "Une douzaine. Ce sera tout."
+        ],
+        [
+          "Wëllt Dir eng Tut?",
+          "Voulez-vous un sachet ?"
+        ],
+        [
+          "Nee merci, ech hunn en Akafskuerf.",
+          "Non merci, j'ai un panier à provisions."
+        ],
+        [
+          "Voilà, dat mécht dann zesummen aacht Euro.",
+          "Voilà, ça fait huit euros en tout."
+        ],
+        [
+          "Kann ech mat der Kaart bezuelen?",
+          "Puis-je payer par carte ?"
+        ],
+        [
+          "Jo, natierlech.",
+          "Oui, bien sûr."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Ce que dit la marchande (d'Maartfra)",
+      "items": [
+        [
+          "U wiem ass et?",
+          "À qui le tour ?"
+        ],
+        [
+          "Wat kritt Dir?",
+          "Que désirez-vous ?"
+        ],
+        [
+          "Soss nach eppes?",
+          "Autre chose ?"
+        ],
+        [
+          "Wéi vill hätt Dir der gär?",
+          "Combien en voulez-vous ?"
+        ],
+        [
+          "Wëllt Dir eng Tut?",
+          "Voulez-vous un sachet ?"
+        ],
+        [
+          "Dat mécht zesummen …",
+          "Ça fait … en tout"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Ce que dit le client",
+      "items": [
+        [
+          "Et ass u mir!",
+          "C'est à moi !"
+        ],
+        [
+          "Ech hätt gär …",
+          "Je voudrais …"
+        ],
+        [
+          "Ech huelen …",
+          "Je prends …"
+        ],
+        [
+          "Dat wier alles.",
+          "Ce sera tout."
+        ],
+        [
+          "Kann ech mat der Kaart bezuelen?",
+          "Puis-je payer par carte ?"
+        ],
+        [
+          "Ech bezuele boer.",
+          "Je paie en liquide."
+        ],
+        [
+          "Nee merci, ech hunn en Akafskuerf.",
+          "Non merci, j'ai un panier à provisions."
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les quantités et les emballages",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "À retenir"
+      ],
+      "lignes": [
+        [
+          "e Kilo",
+          "un kilo",
+          "1000 g · de Kilo (masculin)"
+        ],
+        [
+          "e Pond",
+          "une livre",
+          "500 g · dräi Pond = 1,5 kg"
+        ],
+        [
+          "eng Dosen",
+          "une douzaine",
+          "12 pièces · eng hallef Dosen = 6"
+        ],
+        [
+          "eng Tut",
+          "un sachet",
+          "féminin → eng"
+        ],
+        [
+          "e Sak",
+          "un sac",
+          "masculin → e"
+        ],
+        [
+          "en Akafskuerf",
+          "un panier à provisions",
+          "masculin → en (devant une voyelle)"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Les produits de l'examen",
+      "entetes": [
+        "Un",
+        "Plusieurs",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "en Apel",
+          "Äppel",
+          "pomme(s)"
+        ],
+        [
+          "eng Bier",
+          "Bieren",
+          "poire(s)"
+        ],
+        [
+          "eng Gromper",
+          "Gromperen",
+          "pomme(s) de terre"
+        ],
+        [
+          "eng Aprikos",
+          "Aprikosen",
+          "abricot(s)"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Les trois verbes du marché",
+      "lignes": [
+        "<b>kréien</b> : la marchande demande <b>Wat kritt Dir?</b>",
+        "<b>huelen</b> : ech huelen, Dir huelt. Ech huelen och nach Bieren.",
+        "<b>bezuelen</b> : ech bezuelen, Dir bezuelt. Kann ech mat der Kaart bezuelen?",
+        "Pour commander poliment : <b>Ech hätt gär …</b> (déjà vu avec gär, leçon 22)."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Les pièges de l'examen",
+      "lignes": [
+        "<b>kritt</b> ou <b>hätt</b> ? Wat <b>kritt</b> Dir? est la question de la marchande. Ech <b>hätt</b> gär est la réponse du client.",
+        "<b>Sak</b> ou <b>Tut</b> ? Regarde l'article : <b>e</b> Sak (masculin), <b>eng</b> Tut (féminin).",
+        "Après <b>eng</b> devant une quantité : eng <b>Dosen</b>. Kilo et Pond prennent <b>e</b>.",
+        "Avant un prix : Dat mécht <b>zesummen</b> …",
+        "Après « mat der Kaart » : <b>bezuelen</b>."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "UNITEDZOHA au marché",
+      "lignes": [
+        "On garde le n devant une voyelle : Dat mécht zesumme<b>n</b> aacht Euro. Ech hu<b>nn</b> en Akafskuerf.",
+        "On le perd devant les autres consonnes : Dat mécht zesumme fofzéng Euro. Ech bezuele boer.",
+        "Même règle pour l'article : <b>en</b> Akafskuerf, mais <b>e</b> Kilo, <b>e</b> Pond, <b>e</b> Sak."
+      ]
+    }
+  ]
+}
