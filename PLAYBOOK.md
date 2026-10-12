@@ -172,7 +172,8 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
   le score qu'une fois toutes les parties corrigées.
 - À la fin : score, score par section, correction complète ou « Mes erreurs » seulement,
   avec la `note` en français de chaque réponse (justes et fausses).
-- Traduction (bouton **FR** dans la correction, jamais pendant l'exercice) : 3e élément
+- Traduction (dans la correction seulement, jamais pendant l'exercice) : petit **FR** au bout de
+  chaque ligne / question (traduit cet élément), grand **FR** en tête de partie (traduit tout). 3e élément
   d'une ligne `[label, texte, traduction]`, `chapeau_fr`, et dans une question
   `question_fr` et `choix_fr` (même ordre que `choix`, pas besoin pour richteg / falsch).
   Tout est facultatif : sans traduction, le bouton n'apparaît pas.

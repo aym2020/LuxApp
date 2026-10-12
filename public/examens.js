@@ -274,13 +274,13 @@ function examLinesHtml(part, renderBlank, traduire) {
   let html = '';
   if (part.chapeau) {
     html += '<div class="ex-chapeau">' + escHtml(part.chapeau) +
-      (traduire ? examFrHtml(part.chapeau_fr) : '') + '</div>';
+      (traduire ? examFrBtn(part.chapeau_fr) + examFrHtml(part.chapeau_fr) : '') + '</div>';
   }
 
   part.lignes.forEach(ligne => {
     const label = ligne[0];
     let texte = examFillBlanks(ligne[1], renderBlank);
-    if (traduire) texte += examFrHtml(ligne[2]);
+    if (traduire) texte += examFrBtn(ligne[2]) + examFrHtml(ligne[2]);
 
     if (label === '•') {
       html += '<div class="ex-line ex-bullet">' + texte + '</div>';
@@ -298,6 +298,18 @@ function examFrHtml(fr) {
   return fr ? '<em class="ex-fr">' + escHtml(fr) + '</em>' : '';
 }
 
+// Petit bouton FR au bout d'une ligne ou d'une question (rien s'il n'y a pas de traduction).
+function examFrBtn(fr) {
+  return fr ? '<button class="ex-fr-mini" onclick="examToggleLine(this)">FR</button>' : '';
+}
+
+// Petit bouton FR : affiche ou cache la traduction de cette ligne / question seulement.
+function examToggleLine(btn) {
+  const bloc = btn.closest('.ex-q, .ex-line, .ex-chapeau');
+  const visible = bloc.classList.toggle('open');
+  btn.classList.toggle('active', visible);
+}
+
 // La partie a-t-elle au moins une traduction ? (sinon pas de bouton FR)
 function examHasFr(part) {
   if (part.chapeau_fr) return true;
@@ -305,7 +317,7 @@ function examHasFr(part) {
   return (part.questions || []).some(q => q.question_fr || q.choix_fr);
 }
 
-// Bouton FR : affiche ou cache les traductions de cette partie.
+// Grand bouton FR (en-tête de la partie) : affiche ou cache toutes les traductions de la partie.
 function examToggleFr(btn) {
   const bloc = btn.closest('.exr-part');
   const visible = bloc.classList.toggle('show-fr');
@@ -638,7 +650,8 @@ function examCorrectionHtml(part, p, r) {
       if (examOnlyErrors && juste) return;
 
       html += '<div class="ex-q"><div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' +
-        '<div>' + escHtml(q.question) + examFrHtml(q.question_fr) + '</div></div><div class="ex-opts stack">';
+        '<div>' + escHtml(q.question) + examFrBtn(q.question_fr) +
+        examFrHtml(q.question_fr) + '</div></div><div class="ex-opts stack">';
       q.choix.forEach((c, k) => {
         let cls = 'ex-opt fixed';
         let marque = '';

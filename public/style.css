@@ -790,7 +790,20 @@ header {
   display: none; margin-top: .2rem; font-size: .84rem; font-weight: 500; font-style: italic;
   line-height: 1.45; color: var(--muted-strong); text-decoration: none;
 }
-.show-fr .ex-fr { display: block; }
+.show-fr .ex-fr,
+.open > .ex-fr,
+.ex-q.open .ex-fr { display: block; }
+
+/* Petit bouton FR au bout d'une ligne ou d'une question (correction seulement) */
+.ex-fr-mini {
+  display: inline-flex; align-items: center; vertical-align: middle;
+  margin-left: .4rem; padding: .1rem .4rem; min-height: 22px;
+  background: none; border: 1px solid #45423c; border-radius: 6px; cursor: pointer;
+  color: var(--muted); font-family: var(--font); font-size: .62rem; font-weight: 800; letter-spacing: .05em;
+  line-height: 1;
+}
+.ex-fr-mini.active { color: var(--info); border-color: var(--info); }
+.show-fr .ex-fr-mini { display: none; } /* tout est déjà traduit : inutile */
 
 /* Trou corrigé dans le texte */
 .ex-fix {
