@@ -377,8 +377,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il boit du café (eng Taass Kaffi, Kaffispaus).",
-          "question_fr": "Il boit souvent du thé."
+          "note": "Il boit du café (Kaffi), pas du thé (Téi).",
+          "question_fr": "Il boit souvent du thé.",
+          "preuve": [
+            "Hien drénkt eng Taass Kaffi.",
+            "Il boit une tasse de café."
+          ]
         },
         {
           "question": "Hien ësst an der Mëttespaus nëmmen e Sandwich um Büro.",
@@ -387,8 +391,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "À midi il file en ville : op d'Plëss, op der Terrass.",
-          "question_fr": "À la pause de midi, il mange seulement un sandwich au bureau."
+          "note": "À midi, il sort manger en terrasse : il ne reste pas au bureau.",
+          "question_fr": "À la pause de midi, il mange seulement un sandwich au bureau.",
+          "preuve": [
+            "Séier op d'Plëss fir nach eng Plaz op der Terrass ze kréien.",
+            "Vite à la place d'Armes pour avoir une place en terrasse."
+          ]
         },
         {
           "question": "De Max schafft vill dobaussen.",
@@ -397,8 +405,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il passe sa matinée au bureau (am Büro).",
-          "question_fr": "Max travaille beaucoup dehors."
+          "note": "Max passe la matinée au bureau, devant son ordinateur. Dobaussen = dehors.",
+          "question_fr": "Max travaille beaucoup dehors.",
+          "preuve": [
+            "De Max mécht de Computer un.",
+            "Max allume l'ordinateur."
+          ]
         },
         {
           "question": "De Max ass laang mat senger Frëndin um Telefon.",
@@ -407,8 +419,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Hatt huet net vill Zäit fir ze schwätzen : elle n'a pas beaucoup de temps.",
-          "question_fr": "Max est longtemps au téléphone avec sa copine."
+          "note": "Sa copine n'a pas le temps : l'appel est court. Laang = longtemps.",
+          "question_fr": "Max est longtemps au téléphone avec sa copine.",
+          "preuve": [
+            "Hatt huet awer net vill Zäit fir ze schwätzen.",
+            "Mais elle n'a pas beaucoup de temps pour parler."
+          ]
         },
         {
           "question": "Hien huet eng Planz am Büro stoen.",
@@ -417,8 +433,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Son orchidée est près de la fenêtre (bei der Fënster).",
-          "question_fr": "Il a une plante au bureau."
+          "note": "Une orchidée est une plante (Planz), et elle est dans son bureau, près de la fenêtre.",
+          "question_fr": "Il a une plante au bureau.",
+          "preuve": [
+            "De Buedem vu senger Orchidee bei der Fënster ass ze dréchen",
+            "La terre de son orchidée, près de la fenêtre, est trop sèche"
+          ]
         }
       ]
     },
@@ -538,12 +558,16 @@
             "eng Verkafsannonce"
           ],
           "reponse": "eng Aarbechtsannonce",
-          "note": "La banque engage quelqu'un : c'est une offre d'emploi.",
+          "note": "Quelqu'un recrute (engagéiert) une secrétaire : c'est une offre d'emploi. Ce n'est pas une personne qui cherche du travail.",
           "question_fr": "Quel type d'annonce est-ce ?",
           "choix_fr": [
             "une offre d'emploi",
             "une annonce pour chercher du travail",
             "une annonce de vente"
+          ],
+          "preuve": [
+            "D'Spuerkeess engagéiert fir den 1. September 2022 eng Sekretärin / e Sekretär fir 20 Stonnen d'Woch",
+            "La Spuerkeess recrute pour le 1er septembre 2022 une secrétaire / un secrétaire pour 20 heures par semaine"
           ]
         },
         {
@@ -553,8 +577,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "5 Joer Experienz = 5 ans d'expérience demandés.",
-          "question_fr": "La personne n'a pas besoin d'expérience."
+          "note": "L'annonce demande 5 ans d'expérience (Experienz = Erfarung).",
+          "question_fr": "La personne n'a pas besoin d'expérience.",
+          "preuve": [
+            "5 Joer Experienz",
+            "5 ans d'expérience"
+          ]
         },
         {
           "question": "D'Firma sicht eng Persoun fir hallefdaags.",
@@ -563,8 +591,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "20 Stonnen d'Woch = un mi-temps (hallefdaags).",
-          "question_fr": "L'entreprise cherche une personne à mi-temps."
+          "note": "20 heures par semaine, c'est un mi-temps (hallefdaags). Un temps plein, c'est environ 40 heures.",
+          "question_fr": "L'entreprise cherche une personne à mi-temps.",
+          "preuve": [
+            "fir 20 Stonnen d'Woch",
+            "pour 20 heures par semaine"
+          ]
         },
         {
           "question": "Englesch ass Prioritéit.",
@@ -573,8 +605,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Englesch ass vu Virdeel = l'anglais est un atout, pas une obligation.",
-          "question_fr": "L'anglais est une priorité."
+          "note": "Vu Virdeel = un avantage, un plus. L'anglais n'est pas obligatoire, donc ce n'est pas une priorité.",
+          "question_fr": "L'anglais est une priorité.",
+          "preuve": [
+            "Englesch ass vu Virdeel",
+            "L'anglais est un plus"
+          ]
         },
         {
           "question": "Déi Interesséiert schécken d'Kandidature viru September.",
@@ -583,8 +619,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "La date limite est le 1er août, donc avant septembre.",
-          "question_fr": "Les intéressés envoient leur candidature avant septembre."
+          "note": "La date limite est le 1er août : les candidatures arrivent donc forcément avant septembre.",
+          "question_fr": "Les intéressés envoient leur candidature avant septembre.",
+          "preuve": [
+            "bis spéitstens den 1. August 2022",
+            "au plus tard le 1er août 2022"
+          ]
         }
       ],
       "chapeau_fr": "La Spuerkeess recrute pour le 1er septembre 2022 une secrétaire / un secrétaire pour 20 heures par semaine"

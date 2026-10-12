@@ -377,8 +377,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Elle y va avec Julie (mam Julie).",
-          "question_fr": "Lundi, Sarah va nager seule."
+          "note": "Elle nage avec Julie, pas seule (eleng).",
+          "question_fr": "Lundi, Sarah va nager seule.",
+          "preuve": [
+            "18.30 Auer: mam Julie schwamme goen.",
+            "Lundi, 18 h 30 : aller nager avec Julie."
+          ]
         },
         {
           "question": "E Mëttwoch moies huet d'Sarah e Rendez-vous.",
@@ -387,8 +391,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Le rendez-vous est à 17 h, donc l'après-midi (nomëttes).",
-          "question_fr": "Mercredi matin, Sarah a un rendez-vous."
+          "note": "Le rendez-vous est à 17 h, l'après-midi, pas le matin (moies).",
+          "question_fr": "Mercredi matin, Sarah a un rendez-vous.",
+          "preuve": [
+            "17.00 Auer: Rendez-vous beim Zänndokter.",
+            "Mercredi, 17 h : rendez-vous chez le dentiste."
+          ]
         },
         {
           "question": "D'Sarah léiert Franséisch.",
@@ -397,8 +405,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Elle a un cours de français tous les jeudis.",
-          "question_fr": "Sarah apprend le français."
+          "note": "Elle suit un cours de français : elle apprend (léiert) le français.",
+          "question_fr": "Sarah apprend le français.",
+          "preuve": [
+            "19.00 Auer: Franséischcours, wéi all Donneschdeg.",
+            "Jeudi, 19 h : cours de français, comme chaque jeudi."
+          ]
         },
         {
           "question": "E Freideg schafft d'Sarah.",
@@ -407,8 +419,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Congé = elle est en congé.",
-          "question_fr": "Vendredi, Sarah travaille."
+          "note": "Congé = jour de repos : vendredi, elle ne travaille pas.",
+          "question_fr": "Vendredi, Sarah travaille.",
+          "preuve": [
+            "Congé!",
+            "Vendredi : congé !"
+          ]
         },
         {
           "question": "D'Mamm vum Sarah gëtt siwwenzeg Joer al.",
@@ -417,8 +433,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "70 Joer = siwwenzeg Joer.",
-          "question_fr": "La mère de Sarah va avoir soixante-dix ans."
+          "note": "Siwwenzeg = 70.",
+          "question_fr": "La mère de Sarah va avoir soixante-dix ans.",
+          "preuve": [
+            "Gebuertsdag vun der Mamm (70 Joer!)",
+            "anniversaire de maman (70 ans !)"
+          ]
         }
       ]
     },
@@ -493,12 +513,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "richteg",
-          "note": "Il est professeur dans un lycée.",
+          "note": "Un lycée est une école (Schoul).",
           "question_fr": "Le père de Lena travaille dans une école.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "Hien ass Proff a schafft an engem Lycée an der Stad.",
+            "Il est professeur et travaille dans un lycée en ville."
           ]
         },
         {
@@ -509,12 +533,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "falsch",
-          "note": "Mengem Papp seng Schwëster = la sœur de mon père.",
+          "note": "Josiane est la sœur du père, pas de la mère (Mamm).",
           "question_fr": "Josiane est la sœur de la mère.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "mengem Papp seng Schwëster",
+            "la sœur de mon père"
           ]
         },
         {
@@ -525,12 +553,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "richteg",
-          "note": "Ee Brudder an zwou Schwësteren : 1 + 2 = 3.",
+          "note": "1 frère + 2 sœurs = 3 frères et sœurs (Geschwëster).",
           "question_fr": "Lena a trois frères et sœurs.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "ee Brudder an zwou Schwësteren",
+            "un frère et deux sœurs"
           ]
         },
         {
@@ -541,12 +573,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "Mir wëssen dat net",
-          "note": "Le dialogue ne dit rien sur ses enfants.",
+          "note": "Sur Josiane, le texte dit seulement où elle habite. Rien sur des enfants.",
           "question_fr": "La tante Josiane a des enfants.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "Si wunnt zu Bréissel.",
+            "Elle habite à Bruxelles."
           ]
         },
         {
@@ -557,12 +593,16 @@
             "Si wunnt zu Bréissel."
           ],
           "reponse": "Si huet d'Foto gemaach.",
-          "note": "C'est elle qui a pris la photo.",
+          "note": "Elle prenait la photo, donc elle n'est pas dessus.",
           "question_fr": "Pourquoi la mère n'est-elle pas sur la photo ?",
           "choix_fr": [
             "Elle n'était pas en vacances.",
             "C'est elle qui a pris la photo.",
             "Elle habite à Bruxelles."
+          ],
+          "preuve": [
+            "Nee, si huet d'Foto gemaach!",
+            "Non, c'est elle qui a pris la photo !"
           ]
         }
       ]
@@ -619,12 +659,16 @@
             "eng Verkafsannonce"
           ],
           "reponse": "eng Annonce fir e Cours",
-          "note": "Le club annonce un nouveau cours de yoga.",
+          "note": "C'est un cours de yoga, avec un prix et une inscription.",
           "question_fr": "Quel type d'annonce est-ce ?",
           "choix_fr": [
             "une offre d'emploi",
             "une annonce pour un cours",
             "une annonce de vente"
+          ],
+          "preuve": [
+            "Sportsclub Diddeleng: neie Yogacours fir Ufänger",
+            "Club de sport de Dudelange : nouveau cours de yoga pour débutants"
           ]
         },
         {
@@ -634,8 +678,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Fir Ufänger = pour débutants.",
-          "question_fr": "Le cours est pour les gens qui font du yoga depuis longtemps."
+          "note": "Ufänger = débutants : le cours est pour ceux qui commencent.",
+          "question_fr": "Le cours est pour les gens qui font du yoga depuis longtemps.",
+          "preuve": [
+            "neie Yogacours fir Ufänger",
+            "nouveau cours de yoga pour débutants"
+          ]
         },
         {
           "question": "De Cours dauert méi wéi eng Stonn.",
@@ -644,8 +692,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "De 18 h 30 à 19 h 45 : 1 h 15.",
-          "question_fr": "Le cours dure plus d'une heure."
+          "note": "De 18 h 30 à 19 h 45, ça fait 1 h 15 : plus d'une heure.",
+          "question_fr": "Le cours dure plus d'une heure.",
+          "preuve": [
+            "vun 18.30 bis 19.45 Auer",
+            "de 18 h 30 à 19 h 45"
+          ]
         },
         {
           "question": "Fir den éischte Cours bezilt een näischt.",
@@ -654,8 +706,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Den éischte Cours ass gratis.",
-          "question_fr": "On ne paie rien pour le premier cours."
+          "note": "Gratis = gratuit : on ne paie rien (näischt).",
+          "question_fr": "On ne paie rien pour le premier cours.",
+          "preuve": [
+            "Den éischte Cours ass gratis!",
+            "Le premier cours est gratuit !"
+          ]
         },
         {
           "question": "De 14. September kann ee sech nach umellen.",
@@ -664,8 +720,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Inscription jusqu'au 10 septembre.",
-          "question_fr": "Le 14 septembre, on peut encore s'inscrire."
+          "note": "On peut s'inscrire jusqu'au 10 septembre. Le 14, c'est trop tard.",
+          "question_fr": "Le 14 septembre, on peut encore s'inscrire.",
+          "preuve": [
+            "Umeldung bis den 10. September",
+            "Inscription jusqu'au 10 septembre"
+          ]
         }
       ],
       "chapeau_fr": "Club de sport de Dudelange : nouveau cours de yoga pour débutants"

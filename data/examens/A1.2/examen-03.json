@@ -363,8 +363,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "À 8 h 30, Paul dort encore (schléift nach).",
-          "question_fr": "Léa et Paul se lèvent ensemble."
+          "note": "Paul dort encore quand Léa se lève : ils ne se lèvent pas ensemble (zesummen).",
+          "question_fr": "Léa et Paul se lèvent ensemble.",
+          "preuve": [
+            "D'Léa steet op an duscht. De Paul schléift nach.",
+            "Léa se lève et se douche. Paul dort encore."
+          ]
         },
         {
           "question": "D'Léa keeft d'Brout am Supermarché.",
@@ -373,8 +377,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Elle va chez le boulanger (bei de Bäcker).",
-          "question_fr": "Léa achète le pain au supermarché."
+          "note": "Elle achète le pain chez le boulanger (Bäcker), pas au supermarché.",
+          "question_fr": "Léa achète le pain au supermarché.",
+          "preuve": [
+            "D'Léa geet bei de Bäcker a keeft Croissanten a Brout.",
+            "Léa va chez le boulanger et achète des croissants et du pain."
+          ]
         },
         {
           "question": "Moies geet d'ganz Famill schwammen.",
@@ -383,8 +391,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Léa reste à la maison et lit un livre.",
-          "question_fr": "Le matin, toute la famille va nager."
+          "note": "Léa reste à la maison : ce n'est pas toute la famille (d'ganz Famill).",
+          "question_fr": "Le matin, toute la famille va nager.",
+          "preuve": [
+            "De Paul fiert mat de Kanner an d'Schwämm. D'Léa bleift doheem a liest e Buch.",
+            "Paul va à la piscine avec les enfants. Léa reste à la maison et lit un livre."
+          ]
         },
         {
           "question": "De Paul kacht gär.",
@@ -393,8 +405,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Hie kacht ganz gär = il adore cuisiner.",
-          "question_fr": "Paul aime cuisiner."
+          "note": "Kacht gär = aime cuisiner.",
+          "question_fr": "Paul aime cuisiner.",
+          "preuve": [
+            "Hie kacht ganz gär.",
+            "Il adore cuisiner."
+          ]
         },
         {
           "question": "Owes sinn d'Grousselteren do.",
@@ -403,8 +419,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "À 19 h, les grands-parents viennent manger.",
-          "question_fr": "Le soir, les grands-parents sont là."
+          "note": "À 19 h, le soir (owes), les grands-parents viennent manger : ils sont là.",
+          "question_fr": "Le soir, les grands-parents sont là.",
+          "preuve": [
+            "D'Grousseltere kommen iessen.",
+            "(19 h) Les grands-parents viennent manger."
+          ]
         }
       ]
     },
@@ -484,12 +504,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "richteg",
-          "note": "Wéi all Samschdeg = comme tous les samedis.",
+          "note": "Wéi all Samschdeg = comme chaque samedi.",
           "question_fr": "Ben va courir chaque samedi.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "Moies ginn ech lafen, wéi all Samschdeg.",
+            "Le matin, je vais courir, comme chaque samedi."
           ]
         },
         {
@@ -500,12 +524,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "falsch",
-          "note": "Véierel op aacht = 20 h 15. 19 h 45 se dit véierel vir aacht.",
+          "note": "Véierel op aacht = 7 h 15, donc 19 h 15. Pour 19 h 45, on dirait véierel vir aacht.",
           "question_fr": "La fête commence à 19 h 45.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "Um véierel op aacht.",
+            "À sept heures et quart."
           ]
         },
         {
@@ -516,12 +544,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "falsch",
-          "note": "Il apporte un gâteau : ech baken e Kuch.",
+          "note": "Nora propose du vin ou un dessert. Ben choisit d'apporter un gâteau.",
           "question_fr": "Ben apporte une bouteille de vin.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "Ech baken e Kuch.",
+            "Je fais un gâteau."
           ]
         },
         {
@@ -532,12 +564,16 @@
             "Mir wëssen dat net"
           ],
           "reponse": "Mir wëssen dat net",
-          "note": "On sait qu'elle y habite (wunnt), pas où elle travaille.",
+          "note": "Le texte dit qu'elle habite (wunnt) à Trèves, pas qu'elle y travaille (schafft).",
           "question_fr": "La sœur de Nora travaille à Trèves.",
           "choix_fr": [
             "",
             "",
             "on ne sait pas"
+          ],
+          "preuve": [
+            "Hatt wunnt elo zu Tréier",
+            "Elle habite maintenant à Trèves"
           ]
         },
         {
@@ -548,12 +584,16 @@
             "an der Vakanz"
           ],
           "reponse": "an der Vakanz",
-          "note": "Si sinn an der Vakanz a Spuenien.",
+          "note": "Les parents sont en vacances en Espagne : ils ne viennent pas à la fête.",
           "question_fr": "Où sont les parents de Nora ?",
           "choix_fr": [
             "à la maison",
             "à Trèves",
             "en vacances"
+          ],
+          "preuve": [
+            "Nee, si sinn an der Vakanz a Spuenien.",
+            "Non, ils sont en vacances en Espagne."
           ]
         }
       ]
@@ -615,12 +655,16 @@
             "eng Aarbechtsannonce"
           ],
           "reponse": "eng Wunneng fir ze lounen",
-          "note": "Ze verlounen = à louer. On parle d'un loyer par mois.",
+          "note": "Verlounen = donner en location, et il y a un loyer (Loyer). On ne l'achète pas (kafen).",
           "question_fr": "Quel type d'annonce est-ce ?",
           "choix_fr": [
             "un logement à acheter",
             "un logement à louer",
             "une offre d'emploi"
+          ],
+          "preuve": [
+            "Ze verlounen: Appartement zu Miersch",
+            "À louer : appartement à Mersch"
           ]
         },
         {
@@ -630,8 +674,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il y a un balcon et une cave, pas de jardin.",
-          "question_fr": "L'appartement a un jardin."
+          "note": "L'annonce cite un balcon, une cave et un garage, mais pas de jardin (Gaart).",
+          "question_fr": "L'appartement a un jardin.",
+          "preuve": [
+            "Balcon a Keller, 1 Parkplaz an der Garage",
+            "Balcon et cave, 1 place de parking dans le garage"
+          ]
         },
         {
           "question": "D'Gare ass net wäit.",
@@ -640,8 +688,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "5 Minutten zu Fouss = à 5 minutes à pied.",
-          "question_fr": "La gare n'est pas loin."
+          "note": "5 minutes à pied : la gare n'est pas loin (net wäit).",
+          "question_fr": "La gare n'est pas loin.",
+          "preuve": [
+            "5 Minutten zu Fouss vun der Gare",
+            "À 5 minutes à pied de la gare"
+          ]
         },
         {
           "question": "E Samschdeg kann een der Agence uruffen.",
@@ -650,8 +702,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Seulement du lundi au vendredi (méindes bis freides).",
-          "question_fr": "On peut appeler l'agence le samedi."
+          "note": "On peut appeler du lundi au vendredi seulement, pas le samedi (Samschdeg).",
+          "question_fr": "On peut appeler l'agence le samedi.",
+          "preuve": [
+            "méindes bis freides, vun 9 bis 17 Auer",
+            "du lundi au vendredi, de 9 h à 17 h"
+          ]
         },
         {
           "question": "Mat engem Hond kann een do net wunnen.",
@@ -660,8 +716,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Hausdéiere sinn net erlaabt = animaux non autorisés.",
-          "question_fr": "On ne peut pas y habiter avec un chien."
+          "note": "Un chien (Hond) est un animal domestique : il est interdit.",
+          "question_fr": "On ne peut pas y habiter avec un chien.",
+          "preuve": [
+            "Hausdéiere sinn net erlaabt",
+            "Les animaux domestiques ne sont pas autorisés"
+          ]
         }
       ],
       "chapeau_fr": "À louer : appartement à Mersch"

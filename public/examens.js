@@ -25,6 +25,9 @@
 // Traductions (facultatives, visibles seulement dans la correction, bouton FR) :
 //    - ligne : 3e élément = traduction française  ["Client", "Et ass u mir!", "C'est à moi !"]
 //    - "chapeau_fr", et dans une question "question_fr" et "choix_fr" (même ordre que "choix").
+//
+// Explication d'une question (dans la correction, toujours visible) :
+//    - "preuve" : [passage exact du texte, sa traduction]  puis "note" : pourquoi c'est vrai / faux.
 
 const EXAM_KEY = 'luxExamens'; // meilleurs scores, par sujet
 
@@ -648,6 +651,13 @@ function examCorrectionHtml(part, p, r) {
       });
       html += '</div>';
       if (answers[i] === null) html += '<div class="exr-note exr-ko">Pas de réponse</div>';
+      // Le passage du texte qui donne la réponse, avec sa traduction.
+      if (q.preuve) {
+        html += '<div class="exr-preuve">' +
+          '<span class="exr-preuve-lu">« ' + escHtml(q.preuve[0]) + ' »</span>' +
+          '<span class="exr-preuve-fr">' + escHtml(q.preuve[1]) + '</span>' +
+        '</div>';
+      }
       if (q.note) html += '<div class="exr-note">' + escHtml(q.note) + '</div>';
       html += '</div>';
     });

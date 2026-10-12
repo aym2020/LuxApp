@@ -816,6 +816,14 @@ header {
 .exr-note { font-size: .84rem; font-weight: 500; color: var(--muted-strong); line-height: 1.5; margin-top: .45rem; }
 .exr-note.exr-ko { color: var(--wrong); font-weight: 700; }
 
+/* Passage du texte qui donne la réponse (QCM) */
+.exr-preuve {
+  margin-top: .6rem; padding: .5rem .75rem; line-height: 1.45;
+  border-left: 3px solid var(--info); border-radius: 0 8px 8px 0; background: rgba(255,255,255,.03);
+}
+.exr-preuve-lu { display: block; font-size: .88rem; font-weight: 700; color: var(--text); }
+.exr-preuve-fr { display: block; font-size: .84rem; font-style: italic; color: var(--muted-strong); margin-top: .1rem; }
+
 .exr-details summary {
   cursor: pointer; font-size: .82rem; font-weight: 700; color: var(--info);
   padding: .6rem 0;

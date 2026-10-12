@@ -176,6 +176,8 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
   d'une ligne `[label, texte, traduction]`, `chapeau_fr`, et dans une question
   `question_fr` et `choix_fr` (même ordre que `choix`, pas besoin pour richteg / falsch).
   Tout est facultatif : sans traduction, le bouton n'apparaît pas.
+- Explication des QCM : `"preuve": [passage exact du texte, traduction]` + `"note"` (pourquoi
+  vrai / faux, une ou deux phrases). Le passage doit être recopié tel quel depuis le texte.
 - Meilleur score par sujet : `luxExamens:<profil>` dans localStorage (local, pas de cloud).
 - L'ancien examen (50 questions aléatoires) reste accessible en bas de la liste des sujets.
 - Vérifier un sujet : chaque `reponse` est dans ses `choix` (ou dans la `banque`),

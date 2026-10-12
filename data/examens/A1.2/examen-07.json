@@ -397,8 +397,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il n'allume l'ordinateur qu'à 8 h 30 (hallwer néng).",
-          "question_fr": "De huit heures à huit heures et demie, Max travaille sur l'ordinateur."
+          "note": "Il allume l'ordinateur seulement à 8 h 30 (hallwer néng). Avant, il n'y travaille pas.",
+          "question_fr": "De huit heures à huit heures et demie, Max travaille sur l'ordinateur.",
+          "preuve": [
+            "De Max mécht de Computer un.",
+            "(8 h 30) Max allume l'ordinateur."
+          ]
         },
         {
           "question": "Tëscht fënnef op hallwer néng a Véierel vir néng drénkt hien um Büro Kaffi.",
@@ -407,8 +411,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Fënnef op hallwer néng = 8 h 35, Véierel vir néng = 8 h 45. À 8 h 35 il boit son café.",
-          "question_fr": "Entre 8 h 35 et 8 h 45, il boit du café au bureau."
+          "note": "Fënnef op hallwer néng = 8 h 35, Véierel vir néng = 8 h 45. Il boit son café à 8 h 35.",
+          "question_fr": "Entre 8 h 35 et 8 h 45, il boit du café au bureau.",
+          "preuve": [
+            "Hien drénkt eng Taass Kaffi an ësst eng Schmier.",
+            "(8 h 35) Il boit une tasse de café et mange une tartine."
+          ]
         },
         {
           "question": "Géint zéng Auer reagéiert hien op d'E-Maile vun de Clienten.",
@@ -417,8 +425,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il ne lit pas les e-mails des clients. À 10 h il regarde Messenger.",
-          "question_fr": "Vers dix heures, il répond aux e-mails des clients."
+          "note": "Vers 10 h, il regarde Messenger. Il ne lit même pas les e-mails des clients.",
+          "question_fr": "Vers dix heures, il répond aux e-mails des clients.",
+          "preuve": [
+            "D'E-Maile vun de Clientë liest hien net.",
+            "Les e-mails des clients, il ne les lit pas."
+          ]
         },
         {
           "question": "Um Véierel op eelef telefonéiert de Max mat senger Frëndin.",
@@ -427,8 +439,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Véierel op eelef = 11 h 15 : il appelle sa copine.",
-          "question_fr": "À onze heures et quart, Max téléphone à sa copine."
+          "note": "Véierel op eelef = 11 h 15 : c'est l'heure de l'appel.",
+          "question_fr": "À onze heures et quart, Max téléphone à sa copine.",
+          "preuve": [
+            "Da muss de Max nach senger Frëndin telefonéieren.",
+            "(11 h 15) Ensuite, Max doit encore téléphoner à sa copine."
+          ]
         },
         {
           "question": "Virun der Mëttespaus kuckt de Max no senger Planz.",
@@ -437,8 +453,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "À 11 h 30, avant midi, il arrose sa plante. Kucken no = s'occuper de.",
-          "question_fr": "Avant la pause de midi, Max s'occupe de sa plante."
+          "note": "11 h 30, c'est avant midi : il s'occupe de sa plante avant la pause.",
+          "question_fr": "Avant la pause de midi, Max s'occupe de sa plante.",
+          "preuve": [
+            "de Max gëtt der Planz e bësse Waasser",
+            "(11 h 30) Max donne un peu d'eau à la plante"
+          ]
         }
       ]
     },
@@ -467,8 +487,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Elle est partie en avion (geflunn) avec son copain en Thaïlande, donc en Asie.",
-          "question_fr": "Jeanne n'a pas voyagé seule en avion en Asie."
+          "note": "Elle part avec son copain (pas seule), en avion (geflunn), en Thaïlande, donc en Asie.",
+          "question_fr": "Jeanne n'a pas voyagé seule en avion en Asie.",
+          "preuve": [
+            "Mäi Frënd an ech sinn an Thailand op Koh Samui geflunn.",
+            "Mon copain et moi avons pris l'avion pour Koh Samui, en Thaïlande."
+          ]
         },
         {
           "question": "Hatt hat véier Woche Vakanz am September.",
@@ -477,8 +501,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "De ganze September = tout le mois de septembre, soit quatre semaines.",
-          "question_fr": "Elle a eu quatre semaines de vacances en septembre."
+          "note": "Tout le mois de septembre, c'est environ quatre semaines.",
+          "question_fr": "Elle a eu quatre semaines de vacances en septembre.",
+          "preuve": [
+            "de ganze September",
+            "tout le mois de septembre"
+          ]
         },
         {
           "question": "D'Villa war beim Mier.",
@@ -487,8 +515,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Eng Villa mat Vue op d'Mier = une villa avec vue sur la mer.",
-          "question_fr": "La villa était près de la mer."
+          "note": "La villa a vue sur la mer : elle est près de la mer.",
+          "question_fr": "La villa était près de la mer.",
+          "preuve": [
+            "eng Villa mat Vue op d'Mier",
+            "une villa avec vue sur la mer"
+          ]
         },
         {
           "question": "Hatt huet just owes am Restaurant giess.",
@@ -497,8 +529,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "All Owend an de Restaurant = tous les soirs au restaurant. Le texte ne parle que du soir.",
-          "question_fr": "Elle a mangé au restaurant seulement le soir."
+          "note": "Le texte parle seulement des soirs (all Owend).",
+          "question_fr": "Elle a mangé au restaurant seulement le soir.",
+          "preuve": [
+            "sinn all Owend an de Restaurant iesse gaangen",
+            "nous sommes allés manger au restaurant tous les soirs"
+          ]
         },
         {
           "question": "Kachen ass säin Hobby.",
@@ -507,8 +543,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Mir kachen allen zwee net gär = aucun des deux n'aime cuisiner.",
-          "question_fr": "Cuisiner est son hobby."
+          "note": "Ils n'aiment pas cuisiner : ce n'est pas un hobby.",
+          "question_fr": "Cuisiner est son hobby.",
+          "preuve": [
+            "Mir kachen allen zwee net gär.",
+            "Nous n'aimons cuisiner ni l'un ni l'autre."
+          ]
         },
         {
           "question": "D'Jennifer ass doheembliwwen.",
@@ -517,8 +557,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Ech sinn net fortgefuer = je ne suis pas partie.",
-          "question_fr": "Jennifer est restée chez elle."
+          "note": "Jennifer n'est pas partie : elle est restée à la maison (doheembliwwen).",
+          "question_fr": "Jennifer est restée chez elle.",
+          "preuve": [
+            "Ech sinn net fortgefuer.",
+            "Je ne suis pas partie."
+          ]
         },
         {
           "question": "Eng Frëndin ass bei hatt op Lëtzebuerg komm.",
@@ -527,8 +571,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Mäi Frënd = mon copain (un homme). Eng Frëndin = une amie.",
-          "question_fr": "Une amie est venue la voir au Luxembourg."
+          "note": "C'est son copain (Frënd) qui est venu, pas une amie (Frëndin).",
+          "question_fr": "Une amie est venue la voir au Luxembourg.",
+          "preuve": [
+            "Mäi Frënd ass mech am Summer hei op Lëtzebuerg besiche komm",
+            "Mon copain est venu me voir ici au Luxembourg cet été"
+          ]
         },
         {
           "question": "Si sinn heiansdo zesummen an d'Schwämm gaangen.",
@@ -537,8 +585,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Ils ont nagé au lac (op de Séi), pas à la piscine (an d'Schwämm).",
-          "question_fr": "Ils sont parfois allés ensemble à la piscine."
+          "note": "Ils nagent au lac (Séi), pas à la piscine (Schwämm).",
+          "question_fr": "Ils sont parfois allés ensemble à la piscine.",
+          "preuve": [
+            "mir sinn heiansdo op de Séi schwamme gaangen",
+            "nous sommes parfois allés nager au lac"
+          ]
         },
         {
           "question": "Owes hu si net beim Jennifer doheem geschlof.",
@@ -547,8 +599,12 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Ils dormaient à l'auberge de jeunesse (an d'Jugendherberg).",
-          "question_fr": "Le soir, ils n'ont pas dormi chez Jennifer."
+          "note": "Ils dorment à l'auberge de jeunesse, pas chez Jennifer.",
+          "question_fr": "Le soir, ils n'ont pas dormi chez Jennifer.",
+          "preuve": [
+            "Owes si mir an d'Jugendherberg schlofe gaangen.",
+            "Le soir, nous sommes allés dormir à l'auberge de jeunesse."
+          ]
         },
         {
           "question": "Vläicht fiert d'Jennifer bei seng Frëndin an Italien.",
@@ -557,8 +613,12 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Elle ira peut-être en Italie, mais elle ne dit pas que c'est chez une amie.",
-          "question_fr": "Peut-être que Jennifer ira chez son amie en Italie."
+          "note": "Elle ira peut-être en Italie, mais pas chez son amie : son amie Jeanne est en Thaïlande.",
+          "question_fr": "Peut-être que Jennifer ira chez son amie en Italie.",
+          "preuve": [
+            "Vläicht fueren ech nach an Italien, mol kucken.",
+            "Peut-être que j'irai encore en Italie, on verra."
+          ]
         }
       ]
     }
