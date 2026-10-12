@@ -171,7 +171,11 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
   (`examChecked`), ses réponses sont alors verrouillées, puis « Suivant ». On ne peut voir
   le score qu'une fois toutes les parties corrigées.
 - À la fin : score, score par section, correction complète ou « Mes erreurs » seulement,
-  avec la `note` en français de chaque réponse.
+  avec la `note` en français de chaque réponse (justes et fausses).
+- Traduction (bouton **FR** dans la correction, jamais pendant l'exercice) : 3e élément
+  d'une ligne `[label, texte, traduction]`, `chapeau_fr`, et dans une question
+  `question_fr` et `choix_fr` (même ordre que `choix`, pas besoin pour richteg / falsch).
+  Tout est facultatif : sans traduction, le bouton n'apparaît pas.
 - Meilleur score par sujet : `luxExamens:<profil>` dans localStorage (local, pas de cloud).
 - L'ancien examen (50 questions aléatoires) reste accessible en bas de la liste des sujets.
 - Vérifier un sujet : chaque `reponse` est dans ses `choix` (ou dans la `banque`),

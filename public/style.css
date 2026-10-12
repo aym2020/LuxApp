@@ -777,6 +777,21 @@ header {
 .exr-part-head small { display: block; font-size: .66rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--info); }
 .exr-badge { flex-shrink: 0; font-size: .85rem; font-weight: 800; padding: .25rem .7rem; border: 1px solid; border-radius: 999px; }
 
+/* Bouton FR : affiche la traduction de la partie corrigée */
+.exr-head-right { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
+.exr-fr-btn {
+  min-height: 32px; padding: .2rem .7rem; border-radius: 999px; cursor: pointer;
+  background: none; border: 1px solid #45423c; color: var(--muted-strong);
+  font-family: var(--font); font-size: .75rem; font-weight: 800; letter-spacing: .06em;
+}
+.exr-fr-btn.active { background: var(--info); border-color: var(--info); color: #10161c; }
+/* Traduction cachée par défaut, visible quand la partie a la classe show-fr */
+.ex-fr {
+  display: none; margin-top: .2rem; font-size: .84rem; font-weight: 500; font-style: italic;
+  line-height: 1.45; color: var(--muted-strong); text-decoration: none;
+}
+.show-fr .ex-fr { display: block; }
+
 /* Trou corrigé dans le texte */
 .ex-fix {
   display: inline-flex; align-items: center; gap: .35rem; vertical-align: middle;
@@ -787,14 +802,16 @@ header {
 .ex-fix.ko { color: var(--wrong); border-color: rgba(239,122,115,.5); background: rgba(239,122,115,.1); }
 .ex-fix.ko + .ex-fix.ok { padding-left: .55rem; }
 
-/* Détail d'une erreur sous le texte */
-.exr-err {
+/* Explication de chaque trou sous le texte : vert si juste, rouge si faux */
+.exr-item {
   display: flex; gap: .6rem; padding: .7rem .9rem; font-size: .92rem; font-weight: 700;
-  background: rgba(239,122,115,.07); border: 1px solid rgba(239,122,115,.35); border-radius: var(--r);
+  border: 1px solid; border-radius: var(--r);
 }
-.exr-err .ex-q-num { margin-top: .1rem; }
+.exr-item.ko { background: rgba(239,122,115,.07); border-color: rgba(239,122,115,.35); }
+.exr-item.ok { background: rgba(84,224,173,.05); border-color: rgba(84,224,173,.28); }
+.exr-item .ex-q-num { margin-top: .1rem; }
 .exr-ko { color: var(--wrong); }
-.exr-err s.exr-ko { text-decoration: line-through; }
+.exr-item s.exr-ko { text-decoration: line-through; }
 .exr-ok { color: var(--correct); }
 .exr-note { font-size: .84rem; font-weight: 500; color: var(--muted-strong); line-height: 1.5; margin-top: .45rem; }
 .exr-note.exr-ko { color: var(--wrong); font-weight: 700; }
@@ -809,4 +826,5 @@ header {
 .ex-opt.fixed small { font-size: .68rem; font-weight: 700; white-space: nowrap; }
 .ex-opt.fixed.ok { border-color: var(--correct); background: rgba(84,224,173,.1); color: var(--correct); }
 .ex-opt.fixed.ko { border-color: var(--wrong); background: rgba(239,122,115,.1); color: var(--wrong); }
-.ex-opt.fixed.ko span { text-decoration: line-through; }
+.ex-opt.fixed.ko .ex-opt-txt > span { text-decoration: line-through; }
+.ex-opt-txt { text-align: left; }

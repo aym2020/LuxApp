@@ -22,55 +22,68 @@
       "lignes": [
         [
           "Maartfra",
-          "U wiem ass et, wann ech gelift?"
+          "U wiem ass et, wann ech gelift?",
+          "À qui le tour, s'il vous plaît ?"
         ],
         [
           "Client",
-          "Et ass u mir!"
+          "Et ass u mir!",
+          "C'est à moi !"
         ],
         [
           "Maartfra",
-          "Wat {1} Dir, wann ech gelift?"
+          "Wat {1} Dir, wann ech gelift?",
+          "Que désirez-vous, s'il vous plaît ?"
         ],
         [
           "Client",
-          "Ech {2} gär e Kilo Lëtzebuerger Äppel, wann ech gelift."
+          "Ech {2} gär e Kilo Lëtzebuerger Äppel, wann ech gelift.",
+          "Je voudrais un kilo de pommes luxembourgeoises, s'il vous plaît."
         ],
         [
           "Maartfra",
-          "Jo… Kritt Dir {3}?"
+          "Jo… Kritt Dir {3}?",
+          "Oui… Vous désirez autre chose ?"
         ],
         [
           "Client",
-          "Jo, ech {4} och nach Bieren aus Frankräich."
+          "Jo, ech {4} och nach Bieren aus Frankräich.",
+          "Oui, je prends aussi des poires de France."
         ],
         [
           "Maartfra",
-          "Wéi vill hätt Dir der gär?"
+          "Wéi vill hätt Dir der gär?",
+          "Combien en voulez-vous ?"
         ],
         [
           "Client",
-          "Eng {5}. Dat wier dann alles."
+          "Eng {5}. Dat wier dann alles.",
+          "Une douzaine. Ce sera tout."
         ],
         [
           "Maartfra",
-          "Merci. Wëllt Dir {6}?"
+          "Merci. Wëllt Dir {6}?",
+          "Merci. Voulez-vous un sachet ?"
         ],
         [
           "Client",
-          "Nee merci, ech hunn en Akafskuerf."
+          "Nee merci, ech hunn en Akafskuerf.",
+          "Non merci, j'ai un panier à provisions."
         ],
         [
           "Maartfra",
-          "Voilà, dat mécht dann {7} aacht Euro."
+          "Voilà, dat mécht dann {7} aacht Euro.",
+          "Voilà, ça fait huit euros en tout."
         ],
         [
           "Client",
-          "Kann ech mat der Kaart {8}?"
+          "Kann ech mat der Kaart {8}?",
+          "Je peux payer par carte ?"
         ],
         [
           "Maartfra",
-          "Jo, natierlech!"
+          "Jo, natierlech!",
+          "Oui, bien sûr !"
         ]
       ],
       "trous": [
@@ -116,15 +129,18 @@
       "lignes": [
         [
           "",
-          "Moien, ech sinn de Pierre. Ech wunne schonn zënter siwe Joer hei zu Lëtzebuerg {1}. Dat ass mäin {2}: ech sti moies um siwen Auer op. Dann duschen ech, drénke Kaffi an {3} eng Schmier mat Botter a Gebeess."
+          "Moien, ech sinn de Pierre. Ech wunne schonn zënter siwe Joer hei zu Lëtzebuerg {1}. Dat ass mäin {2}: ech sti moies um siwen Auer op. Dann duschen ech, drénke Kaffi an {3} eng Schmier mat Botter a Gebeess.",
+          "Bonjour, je suis Pierre. J'habite ici à Luxembourg, en ville, depuis sept ans. Voici ma journée : je me lève à sept heures le matin. Ensuite je me douche, je bois du café et je mange une tartine de beurre et de confiture."
         ],
         [
           "",
-          "Meng Aarbecht fänkt {4} um hallwer néng un an ech maachen um zwielef Auer Mëttespaus. Ech {5} an d'Kantin iessen. Nomëttes {6} ech oft Reuniounen. Owes sinn ech géint hallwer siwen {7}. Ech preparéieren {8} fir meng Fra a meng Kanner. Nom Iesse schwätze mir nach e bëssen zesummen an da ginn d'Kanner {9}."
+          "Meng Aarbecht fänkt {4} um hallwer néng un an ech maachen um zwielef Auer Mëttespaus. Ech {5} an d'Kantin iessen. Nomëttes {6} ech oft Reuniounen. Owes sinn ech géint hallwer siwen {7}. Ech preparéieren {8} fir meng Fra a meng Kanner. Nom Iesse schwätze mir nach e bëssen zesummen an da ginn d'Kanner {9}.",
+          "Mon travail commence le matin à huit heures et demie et je fais la pause de midi à midi. Je vais manger à la cantine. L'après-midi, j'ai souvent des réunions. Le soir, je suis à la maison vers six heures et demie. Je prépare le dîner pour ma femme et mes enfants. Après le repas, nous discutons encore un peu ensemble, puis les enfants vont dormir."
         ],
         [
           "",
-          "Ech gi meeschtens {10} eelef Auer an d'Bett."
+          "Ech gi meeschtens {10} eelef Auer an d'Bett.",
+          "Je vais généralement au lit vers onze heures."
         ]
       ],
       "trous": [
@@ -232,15 +248,18 @@
         ],
         [
           "",
-          "alles an der Rei?"
+          "alles an der Rei?",
+          "tout va bien ?"
         ],
         [
           "",
-          "Gëschter {1} ech vill Aarbecht. Vill Kolleege {2} krank an de Chef {3} am Congé. Gëschter Moien {4} mir eng Reunioun a gëschter Mëtteg hunn ech mat Kolleegen an der Kantin giess: Ech {5} net immens hongereg, mee ech {6} e groussen Duuscht. Gëschter Nomëtteg {7} ech net vill Loscht ze schaffen…"
+          "Gëschter {1} ech vill Aarbecht. Vill Kolleege {2} krank an de Chef {3} am Congé. Gëschter Moien {4} mir eng Reunioun a gëschter Mëtteg hunn ech mat Kolleegen an der Kantin giess: Ech {5} net immens hongereg, mee ech {6} e groussen Duuscht. Gëschter Nomëtteg {7} ech net vill Loscht ze schaffen…",
+          "Hier, j'avais beaucoup de travail. Beaucoup de collègues étaient malades et le chef était en congé. Hier matin, nous avons eu une réunion, et hier midi, j'ai mangé à la cantine avec des collègues : je n'avais pas très faim, mais j'avais très soif. Hier après-midi, je n'avais pas très envie de travailler…"
         ],
         [
           "",
-          "Bis geschwënn!"
+          "Bis geschwënn!",
+          "À bientôt !"
         ],
         [
           "",
@@ -321,43 +340,53 @@
       "lignes": [
         [
           "08.00",
-          "Zäit, fir unzefänke mat schaffen!"
+          "Zäit, fir unzefänke mat schaffen!",
+          "Il est temps de commencer à travailler !"
         ],
         [
           "08.30",
-          "De Max mécht de Computer un."
+          "De Max mécht de Computer un.",
+          "Max allume l'ordinateur."
         ],
         [
           "08.35",
-          "Hien drénkt eng Taass Kaffi an ësst eng Schmier."
+          "Hien drénkt eng Taass Kaffi an ësst eng Schmier.",
+          "Il boit une tasse de café et mange une tartine."
         ],
         [
           "08.45",
-          "Hie liest seng E-Mailen. Vill Messagë kommen vun de Kolleegen… si sinn net seriö! D'E-Maile vun de Clientë liest hien net."
+          "Hie liest seng E-Mailen. Vill Messagë kommen vun de Kolleegen… si sinn net seriö! D'E-Maile vun de Clientë liest hien net.",
+          "Il lit ses e-mails. Beaucoup de messages viennent des collègues… ils ne sont pas sérieux ! Les e-mails des clients, il ne les lit pas."
         ],
         [
           "09.15",
-          "Hie schéckt senge Kolleegen a Frënn Noriichten a Fotoen iwwer de Messenger. Duerno hëlt hie seng Taass Kaffi a geet all sengen Aarbechtskolleege Moie soen."
+          "Hie schéckt senge Kolleegen a Frënn Noriichten a Fotoen iwwer de Messenger. Duerno hëlt hie seng Taass Kaffi a geet all sengen Aarbechtskolleege Moie soen.",
+          "Il envoie des nouvelles et des photos à ses collègues et à ses amis par Messenger. Ensuite, il prend sa tasse de café et va dire bonjour à tous ses collègues de travail."
         ],
         [
           "10.00",
-          "Hien ass erëm am Büro: Hie kontrolléiert, ob seng Kolleegen a Frënn um Messenger reagéiert hunn."
+          "Hien ass erëm am Büro: Hie kontrolléiert, ob seng Kolleegen a Frënn um Messenger reagéiert hunn.",
+          "Il est de retour au bureau : il vérifie si ses collègues et ses amis ont réagi sur Messenger."
         ],
         [
           "10.30",
-          "Elo ass et Zäit fir eng kleng Kaffispaus!"
+          "Elo ass et Zäit fir eng kleng Kaffispaus!",
+          "Maintenant, c'est l'heure d'une petite pause café !"
         ],
         [
           "11.15",
-          "Da muss de Max nach senger Frëndin telefonéieren. Si huet awer net vill Zäit fir ze schwätzen."
+          "Da muss de Max nach senger Frëndin telefonéieren. Si huet awer net vill Zäit fir ze schwätzen.",
+          "Ensuite, Max doit encore téléphoner à sa copine. Mais elle n'a pas beaucoup de temps pour parler."
         ],
         [
           "11.30",
-          "D'Blumm bei der Fënster huet e Problem an de Max gëtt der Planz e bësse Waasser."
+          "D'Blumm bei der Fënster huet e Problem an de Max gëtt der Planz e bësse Waasser.",
+          "La fleur près de la fenêtre a un problème et Max donne un peu d'eau à la plante."
         ],
         [
           "11.50",
-          "De Max kuckt op d'Auer. Scho Mëtteg? Hie geet séier an d'Stad, fir mat de Kolleegen op enger Terrass zu Mëtteg ze iessen."
+          "De Max kuckt op d'Auer. Scho Mëtteg? Hie geet séier an d'Stad, fir mat de Kolleegen op enger Terrass zu Mëtteg ze iessen.",
+          "Max regarde l'heure. Déjà midi ? Il va vite en ville pour déjeuner en terrasse avec ses collègues."
         ]
       ],
       "questions": [
@@ -368,7 +397,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il n'allume l'ordinateur qu'à 8 h 30 (hallwer néng)."
+          "note": "Il n'allume l'ordinateur qu'à 8 h 30 (hallwer néng).",
+          "question_fr": "De huit heures à huit heures et demie, Max travaille sur l'ordinateur."
         },
         {
           "question": "Tëscht fënnef op hallwer néng a Véierel vir néng drénkt hien um Büro Kaffi.",
@@ -377,7 +407,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Fënnef op hallwer néng = 8 h 35, Véierel vir néng = 8 h 45. À 8 h 35 il boit son café."
+          "note": "Fënnef op hallwer néng = 8 h 35, Véierel vir néng = 8 h 45. À 8 h 35 il boit son café.",
+          "question_fr": "Entre 8 h 35 et 8 h 45, il boit du café au bureau."
         },
         {
           "question": "Géint zéng Auer reagéiert hien op d'E-Maile vun de Clienten.",
@@ -386,7 +417,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il ne lit pas les e-mails des clients. À 10 h il regarde Messenger."
+          "note": "Il ne lit pas les e-mails des clients. À 10 h il regarde Messenger.",
+          "question_fr": "Vers dix heures, il répond aux e-mails des clients."
         },
         {
           "question": "Um Véierel op eelef telefonéiert de Max mat senger Frëndin.",
@@ -395,7 +427,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Véierel op eelef = 11 h 15 : il appelle sa copine."
+          "note": "Véierel op eelef = 11 h 15 : il appelle sa copine.",
+          "question_fr": "À onze heures et quart, Max téléphone à sa copine."
         },
         {
           "question": "Virun der Mëttespaus kuckt de Max no senger Planz.",
@@ -404,7 +437,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "À 11 h 30, avant midi, il arrose sa plante. Kucken no = s'occuper de."
+          "note": "À 11 h 30, avant midi, il arrose sa plante. Kucken no = s'occuper de.",
+          "question_fr": "Avant la pause de midi, Max s'occupe de sa plante."
         }
       ]
     },
@@ -416,11 +450,13 @@
       "lignes": [
         [
           "Jeanne",
-          "Salut Jennifer, wéi geet et dir? Mäi Frënd an ech sinn an Thailand op Koh Samui geflunn. Do hu mir de ganze September eng Villa mat Vue op d'Mier gelount a sinn all Owend an de Restaurant iesse gaangen. Mir kachen allen zwee net gär."
+          "Salut Jennifer, wéi geet et dir? Mäi Frënd an ech sinn an Thailand op Koh Samui geflunn. Do hu mir de ganze September eng Villa mat Vue op d'Mier gelount a sinn all Owend an de Restaurant iesse gaangen. Mir kachen allen zwee net gär.",
+          "Salut Jennifer, comment vas-tu ? Mon copain et moi avons pris l'avion pour Koh Samui, en Thaïlande. Là-bas, nous avons loué une villa avec vue sur la mer pendant tout le mois de septembre et nous sommes allés manger au restaurant tous les soirs. Nous n'aimons cuisiner ni l'un ni l'autre."
         ],
         [
           "Jennifer",
-          "Villmools merci Jeanne fir däi Message. Ech sinn net fortgefuer. Mäi Frënd ass mech am Summer hei op Lëtzebuerg besiche komm… a mir sinn heiansdo op de Séi schwamme gaangen. Owes si mir an d'Jugendherberg schlofe gaangen. Vläicht fueren ech nach an Italien, mol kucken."
+          "Villmools merci Jeanne fir däi Message. Ech sinn net fortgefuer. Mäi Frënd ass mech am Summer hei op Lëtzebuerg besiche komm… a mir sinn heiansdo op de Séi schwamme gaangen. Owes si mir an d'Jugendherberg schlofe gaangen. Vläicht fueren ech nach an Italien, mol kucken.",
+          "Merci beaucoup Jeanne pour ton message. Je ne suis pas partie. Mon copain est venu me voir ici au Luxembourg cet été… et nous sommes parfois allés nager au lac. Le soir, nous sommes allés dormir à l'auberge de jeunesse. Peut-être que j'irai encore en Italie, on verra."
         ]
       ],
       "questions": [
@@ -431,7 +467,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Elle est partie en avion (geflunn) avec son copain en Thaïlande, donc en Asie."
+          "note": "Elle est partie en avion (geflunn) avec son copain en Thaïlande, donc en Asie.",
+          "question_fr": "Jeanne n'a pas voyagé seule en avion en Asie."
         },
         {
           "question": "Hatt hat véier Woche Vakanz am September.",
@@ -440,7 +477,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "De ganze September = tout le mois de septembre, soit quatre semaines."
+          "note": "De ganze September = tout le mois de septembre, soit quatre semaines.",
+          "question_fr": "Elle a eu quatre semaines de vacances en septembre."
         },
         {
           "question": "D'Villa war beim Mier.",
@@ -449,7 +487,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Eng Villa mat Vue op d'Mier = une villa avec vue sur la mer."
+          "note": "Eng Villa mat Vue op d'Mier = une villa avec vue sur la mer.",
+          "question_fr": "La villa était près de la mer."
         },
         {
           "question": "Hatt huet just owes am Restaurant giess.",
@@ -458,7 +497,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "All Owend an de Restaurant = tous les soirs au restaurant. Le texte ne parle que du soir."
+          "note": "All Owend an de Restaurant = tous les soirs au restaurant. Le texte ne parle que du soir.",
+          "question_fr": "Elle a mangé au restaurant seulement le soir."
         },
         {
           "question": "Kachen ass säin Hobby.",
@@ -467,7 +507,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Mir kachen allen zwee net gär = aucun des deux n'aime cuisiner."
+          "note": "Mir kachen allen zwee net gär = aucun des deux n'aime cuisiner.",
+          "question_fr": "Cuisiner est son hobby."
         },
         {
           "question": "D'Jennifer ass doheembliwwen.",
@@ -476,7 +517,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Ech sinn net fortgefuer = je ne suis pas partie."
+          "note": "Ech sinn net fortgefuer = je ne suis pas partie.",
+          "question_fr": "Jennifer est restée chez elle."
         },
         {
           "question": "Eng Frëndin ass bei hatt op Lëtzebuerg komm.",
@@ -485,7 +527,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Mäi Frënd = mon copain (un homme). Eng Frëndin = une amie."
+          "note": "Mäi Frënd = mon copain (un homme). Eng Frëndin = une amie.",
+          "question_fr": "Une amie est venue la voir au Luxembourg."
         },
         {
           "question": "Si sinn heiansdo zesummen an d'Schwämm gaangen.",
@@ -494,7 +537,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Ils ont nagé au lac (op de Séi), pas à la piscine (an d'Schwämm)."
+          "note": "Ils ont nagé au lac (op de Séi), pas à la piscine (an d'Schwämm).",
+          "question_fr": "Ils sont parfois allés ensemble à la piscine."
         },
         {
           "question": "Owes hu si net beim Jennifer doheem geschlof.",
@@ -503,7 +547,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Ils dormaient à l'auberge de jeunesse (an d'Jugendherberg)."
+          "note": "Ils dormaient à l'auberge de jeunesse (an d'Jugendherberg).",
+          "question_fr": "Le soir, ils n'ont pas dormi chez Jennifer."
         },
         {
           "question": "Vläicht fiert d'Jennifer bei seng Frëndin an Italien.",
@@ -512,7 +557,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Elle ira peut-être en Italie, mais elle ne dit pas que c'est chez une amie."
+          "note": "Elle ira peut-être en Italie, mais elle ne dit pas que c'est chez une amie.",
+          "question_fr": "Peut-être que Jennifer ira chez son amie en Italie."
         }
       ]
     }

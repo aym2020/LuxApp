@@ -21,6 +21,10 @@
 //    - "lignes": [] s'il n'y a pas de texte à lire (questions seules).
 //    - "questions" : [{ "question", "choix": [...], "reponse", "note" }, …]
 //    - vrai/faux = un qcm avec les choix ["richteg", "falsch"].
+//
+// Traductions (facultatives, visibles seulement dans la correction, bouton FR) :
+//    - ligne : 3e élément = traduction française  ["Client", "Et ass u mir!", "C'est à moi !"]
+//    - "chapeau_fr", et dans une question "question_fr" et "choix_fr" (même ordre que "choix").
 
 const EXAM_KEY = 'luxExamens'; // meilleurs scores, par sujet
 
@@ -261,13 +265,20 @@ function renderExamSteps() {
 // ─── TEXTE D'UNE PARTIE ─────────────────────────────────────────────────────
 // renderBlank(i) fabrique le HTML du trou n° i. Il n'est pas le même pendant
 // l'examen (bouton à remplir) et dans la correction (réponse corrigée).
-function examLinesHtml(part, renderBlank) {
+// traduire = true : on ajoute la traduction sous chaque ligne (cachée tant
+// qu'on n'appuie pas sur le bouton FR). Jamais pendant l'examen.
+function examLinesHtml(part, renderBlank, traduire) {
   let html = '';
-  if (part.chapeau) html += '<div class="ex-chapeau">' + escHtml(part.chapeau) + '</div>';
+  if (part.chapeau) {
+    html += '<div class="ex-chapeau">' + escHtml(part.chapeau) +
+      (traduire ? examFrHtml(part.chapeau_fr) : '') + '</div>';
+  }
 
   part.lignes.forEach(ligne => {
     const label = ligne[0];
-    const texte = examFillBlanks(ligne[1], renderBlank);
+    let texte = examFillBlanks(ligne[1], renderBlank);
+    if (traduire) texte += examFrHtml(ligne[2]);
+
     if (label === '•') {
       html += '<div class="ex-line ex-bullet">' + texte + '</div>';
     } else if (label) {
@@ -277,6 +288,28 @@ function examLinesHtml(part, renderBlank) {
     }
   });
   return html;
+}
+
+// Traduction française (cachée par défaut, voir le bouton FR). Rien si elle manque.
+function examFrHtml(fr) {
+  return fr ? '<em class="ex-fr">' + escHtml(fr) + '</em>' : '';
+}
+
+// La partie a-t-elle au moins une traduction ? (sinon pas de bouton FR)
+function examHasFr(part) {
+  if (part.chapeau_fr) return true;
+  if (part.lignes.some(l => l[2])) return true;
+  return (part.questions || []).some(q => q.question_fr || q.choix_fr);
+}
+
+// Bouton FR : affiche ou cache les traductions de cette partie.
+function examToggleFr(btn) {
+  const bloc = btn.closest('.exr-part');
+  const visible = bloc.classList.toggle('show-fr');
+  btn.classList.toggle('active', visible);
+  // Le texte des questions est replié : on l'ouvre pour voir sa traduction.
+  const details = bloc.querySelector('details');
+  if (visible && details) details.open = true;
 }
 
 // Remplace chaque {n} du texte par le HTML du trou correspondant.
@@ -554,32 +587,44 @@ function examCorrectionHtml(part, p, r) {
     '<div class="exr-part">' +
       '<div class="exr-part-head">' +
         '<div><small>Partie ' + (p + 1) + ' · ' + escHtml(part.section) + '</small>' + escHtml(part.titre) + '</div>' +
-        '<span class="exr-badge" style="color:' + examColor(pct) + ';border-color:' + examColor(pct) + '">' +
-          r.score + ' / ' + r.total + '</span>' +
+        '<div class="exr-head-right">' +
+          (examHasFr(part) ? '<button class="exr-fr-btn" onclick="examToggleFr(this)">FR</button>' : '') +
+          '<span class="exr-badge" style="color:' + examColor(pct) + ';border-color:' + examColor(pct) + '">' +
+            r.score + ' / ' + r.total + '</span>' +
+        '</div>' +
       '</div>';
 
   if (part.type === 'trous') {
     // Le texte complet, avec chaque trou corrigé à sa place.
-    html += '<div class="ex-text">' + examLinesHtml(part, i => examFixedBlankHtml(part, answers, i)) + '</div>';
+    html += '<div class="ex-text">' + examLinesHtml(part, i => examFixedBlankHtml(part, answers, i), true) + '</div>';
 
-    // Sous le texte : le détail de chaque erreur, avec l'explication.
+    // Sous le texte : l'explication de chaque trou, en vert si juste, en rouge si faux.
     part.trous.forEach((trou, i) => {
-      if (answers[i] === trou.reponse) return;
+      const juste = answers[i] === trou.reponse;
+      if (examOnlyErrors && juste) return; // « Mes erreurs » : on n'affiche que les fautes
+
+      let reponse;
+      if (juste) {
+        reponse = '<span class="exr-ok">' + escHtml(trou.reponse) + '</span>';
+      } else {
+        const tienne = answers[i]
+          ? '<s class="exr-ko">' + escHtml(answers[i]) + '</s>'
+          : '<span class="exr-ko">Pas de réponse</span>';
+        reponse = tienne + ' → <span class="exr-ok">' + escHtml(trou.reponse) + '</span>';
+      }
+
       html +=
-        '<div class="exr-err">' +
+        '<div class="exr-item ' + (juste ? 'ok' : 'ko') + '">' +
           '<span class="ex-q-num">' + (i + 1) + '</span>' +
           '<div>' +
-            '<div>' + (answers[i]
-              ? '<s class="exr-ko">' + escHtml(answers[i]) + '</s>'
-              : '<span class="exr-ko">Pas de réponse</span>') +
-            ' → <span class="exr-ok">' + escHtml(trou.reponse) + '</span></div>' +
+            '<div>' + reponse + '</div>' +
             (trou.note ? '<div class="exr-note">' + escHtml(trou.note) + '</div>' : '') +
           '</div>' +
         '</div>';
     });
   } else {
     // Le texte est replié pour garder la correction courte.
-    const texte = examLinesHtml(part);
+    const texte = examLinesHtml(part, null, true);
     if (texte) {
       html += '<details class="exr-details"><summary>Revoir le texte</summary>' +
         '<div class="ex-text read">' + texte + '</div></details>';
@@ -590,14 +635,16 @@ function examCorrectionHtml(part, p, r) {
       if (examOnlyErrors && juste) return;
 
       html += '<div class="ex-q"><div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' +
-        escHtml(q.question) + '</div><div class="ex-opts stack">';
-      q.choix.forEach(c => {
+        '<div>' + escHtml(q.question) + examFrHtml(q.question_fr) + '</div></div><div class="ex-opts stack">';
+      q.choix.forEach((c, k) => {
         let cls = 'ex-opt fixed';
         let marque = '';
         if (c === q.reponse) { cls += ' ok'; marque = 'Bonne réponse'; }
         else if (c === answers[i]) { cls += ' ko'; marque = 'Ta réponse'; }
         if (c === q.reponse && juste) marque = 'Ta réponse, correcte';
-        html += '<div class="' + cls + '"><span>' + escHtml(c) + '</span><small>' + marque + '</small></div>';
+        const fr = q.choix_fr ? examFrHtml(q.choix_fr[k]) : '';
+        html += '<div class="' + cls + '"><div class="ex-opt-txt"><span>' + escHtml(c) + '</span>' + fr + '</div>' +
+          '<small>' + marque + '</small></div>';
       });
       html += '</div>';
       if (answers[i] === null) html += '<div class="exr-note exr-ko">Pas de réponse</div>';

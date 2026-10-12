@@ -1,0 +1,846 @@
+{
+  "id": 26,
+  "titre": "D'Aarbechtsannonce",
+  "titre_fr": "Lire une offre d'emploi – vrai ou faux",
+  "couleur": "#2f6f9f",
+  "instructions": {
+    "flashcards": "Mémorise les mots d'une offre d'emploi : qui recrute (sichen, engagéieren), le temps de travail (Stonnen d'Woch, hallefdaags, ganzdaags), le profil (Ausbildung, Kenntnesser, Erfarung, Führerschäin), les langues (vu Virdeel, Prioritéit) et la candidature (Kandidatur, schécken, bis spéitstens).",
+    "quiz": "Lis un mot ou une phrase d'offre d'emploi en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont un autre mot de l'annonce, le contraire ou un détail changé, comme dans le vrai / faux de l'examen.",
+    "trous": "Complète des phrases d'offre d'emploi et des phrases du vrai / faux de l'examen : verbe (sicht, engagéiert, brauch, schécken), temps de travail, profil, langues ou date limite. Les distracteurs sont d'autres mots de l'annonce.",
+    "ecriture": "Traduis en luxembourgeois les mots d'une offre d'emploi et des phrases complètes : qui recrute, le temps de travail, le profil, les langues et la date limite. Attention : hien brauch, sans t."
+  },
+  "flashcards": [
+    {
+      "id": 1,
+      "lu": "eng Annonce",
+      "fr": "une annonce",
+      "note": "Pluriel : Annoncen"
+    },
+    {
+      "id": 2,
+      "lu": "eng Aarbechtsannonce",
+      "fr": "une offre d'emploi",
+      "note": "d'Aarbecht (le travail) + d'Annonce"
+    },
+    {
+      "id": 3,
+      "lu": "sichen",
+      "fr": "chercher",
+      "note": "D'Bank sicht eng Sekretärin."
+    },
+    {
+      "id": 4,
+      "lu": "engagéieren",
+      "fr": "recruter, engager",
+      "note": "D'Gemeng engagéiert eng Sekretärin."
+    },
+    {
+      "id": 5,
+      "lu": "de Profil",
+      "fr": "le profil",
+      "note": "Ce que la personne doit savoir ou avoir"
+    },
+    {
+      "id": 6,
+      "lu": "d'Ausbildung",
+      "fr": "la formation",
+      "note": "Ausbildung am administrative Beräich"
+    },
+    {
+      "id": 7,
+      "lu": "d'Kenntnesser",
+      "fr": "les connaissances",
+      "note": "Kenntnesser am MS-Office"
+    },
+    {
+      "id": 8,
+      "lu": "d'Erfarung",
+      "fr": "l'expérience",
+      "note": "= d'Experienz · 5 Joer Experienz"
+    },
+    {
+      "id": 9,
+      "lu": "… Stonnen d'Woch",
+      "fr": "… heures par semaine",
+      "note": "fir 20 Stonnen d'Woch"
+    },
+    {
+      "id": 10,
+      "lu": "hallefdaags",
+      "fr": "à mi-temps",
+      "note": "≈ 20 Stonnen d'Woch"
+    },
+    {
+      "id": 11,
+      "lu": "ganzdaags",
+      "fr": "à temps plein",
+      "note": "≈ 40 Stonnen d'Woch"
+    },
+    {
+      "id": 12,
+      "lu": "vu Virdeel",
+      "fr": "un plus, un avantage",
+      "note": "Englesch ass vu Virdeel."
+    },
+    {
+      "id": 13,
+      "lu": "d'Prioritéit",
+      "fr": "la priorité",
+      "note": "Englesch ass Prioritéit."
+    },
+    {
+      "id": 14,
+      "lu": "d'Kandidatur",
+      "fr": "la candidature",
+      "note": "Pluriel : Kandidaturen"
+    },
+    {
+      "id": 15,
+      "lu": "schécken",
+      "fr": "envoyer",
+      "note": "Schéckt Är Kandidatur un …"
+    },
+    {
+      "id": 16,
+      "lu": "bis spéitstens den …",
+      "fr": "au plus tard le …",
+      "note": "bis spéitstens den 20. August"
+    },
+    {
+      "id": 17,
+      "lu": "brauchen",
+      "fr": "avoir besoin de",
+      "note": "D'Persoun brauch keng Erfarung. (hien brauch, sans t)"
+    },
+    {
+      "id": 18,
+      "lu": "de Führerschäin",
+      "fr": "le permis de conduire",
+      "note": "Führerschäin B = permis voiture"
+    },
+    {
+      "id": 19,
+      "lu": "viru Mëtt August",
+      "fr": "avant la mi-août",
+      "note": "d'Mëtt = le milieu"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "question": "eng Aarbechtsannonce",
+      "reponse": "une offre d'emploi",
+      "distracteurs": [
+        "une candidature",
+        "une annonce de logement",
+        "un contrat de travail"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "sichen",
+      "reponse": "chercher",
+      "distracteurs": [
+        "envoyer",
+        "recruter",
+        "avoir besoin de"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "engagéieren",
+      "reponse": "recruter, engager",
+      "distracteurs": [
+        "chercher",
+        "envoyer",
+        "travailler"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "d'Ausbildung",
+      "reponse": "la formation",
+      "distracteurs": [
+        "l'expérience",
+        "la candidature",
+        "le profil"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "d'Kenntnesser",
+      "reponse": "les connaissances",
+      "distracteurs": [
+        "les avantages",
+        "les priorités",
+        "les formations"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "d'Erfarung",
+      "reponse": "l'expérience",
+      "distracteurs": [
+        "la formation",
+        "la priorité",
+        "la candidature"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "hallefdaags",
+      "reponse": "à mi-temps",
+      "distracteurs": [
+        "à temps plein",
+        "au plus tard",
+        "le week-end"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "ganzdaags",
+      "reponse": "à temps plein",
+      "distracteurs": [
+        "à mi-temps",
+        "au plus tard",
+        "toute la semaine"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "vu Virdeel",
+      "reponse": "un plus, un avantage",
+      "distracteurs": [
+        "obligatoire",
+        "une priorité",
+        "pas nécessaire"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "d'Prioritéit",
+      "reponse": "la priorité",
+      "distracteurs": [
+        "l'avantage",
+        "l'expérience",
+        "la formation"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "d'Kandidatur",
+      "reponse": "la candidature",
+      "distracteurs": [
+        "l'offre d'emploi",
+        "la formation",
+        "l'expérience"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "schécken",
+      "reponse": "envoyer",
+      "distracteurs": [
+        "chercher",
+        "recruter",
+        "avoir besoin de"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "spéitstens",
+      "reponse": "au plus tard",
+      "distracteurs": [
+        "à partir de",
+        "au moins",
+        "à mi-temps"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "brauchen",
+      "reponse": "avoir besoin de",
+      "distracteurs": [
+        "chercher",
+        "envoyer",
+        "recruter"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "de Führerschäin",
+      "reponse": "le permis de conduire",
+      "distracteurs": [
+        "la carte d'identité",
+        "le diplôme",
+        "le contrat"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Wat fir eng Annonce ass dat?",
+      "reponse": "Quel type d'annonce est-ce ?",
+      "distracteurs": [
+        "Qui a écrit l'annonce ?",
+        "Où est l'annonce ?",
+        "Quand est l'annonce ?"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Englesch ass vu Virdeel.",
+      "reponse": "L'anglais est un plus.",
+      "distracteurs": [
+        "L'anglais est une priorité.",
+        "L'anglais est obligatoire.",
+        "L'anglais n'est pas utile."
+      ]
+    },
+    {
+      "id": 18,
+      "question": "D'Persoun brauch keng Erfarung.",
+      "reponse": "La personne n'a pas besoin d'expérience.",
+      "distracteurs": [
+        "La personne a besoin d'expérience.",
+        "La personne n'a pas de formation.",
+        "La personne cherche une expérience."
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Schéckt Är Kandidatur bis spéitstens den 20. August.",
+      "reponse": "Envoyez votre candidature au plus tard le 20 août.",
+      "distracteurs": [
+        "Envoyez votre candidature à partir du 20 août.",
+        "Envoyez votre candidature avant la mi-août.",
+        "Envoyez votre candidature le 20 avril."
+      ]
+    },
+    {
+      "id": 20,
+      "question": "20 Stonnen d'Woch",
+      "reponse": "à mi-temps",
+      "distracteurs": [
+        "à temps plein",
+        "le week-end",
+        "le soir"
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 1,
+      "fr": "La commune recrute une secrétaire.",
+      "avant": "D'Gemeng",
+      "trou": "engagéiert",
+      "apres": "eng Sekretärin.",
+      "choix": [
+        "engagéiert",
+        "schéckt",
+        "brauch",
+        "ass"
+      ],
+      "note": "engagéieren = recruter · d'Gemeng engagéiert"
+    },
+    {
+      "id": 2,
+      "fr": "La banque cherche une secrétaire.",
+      "avant": "D'Bank",
+      "trou": "sicht",
+      "apres": "eng Sekretärin.",
+      "choix": [
+        "sicht",
+        "schéckt",
+        "brauch",
+        "ass"
+      ],
+      "note": "sichen = chercher · d'Bank sicht"
+    },
+    {
+      "id": 3,
+      "fr": "pour 20 heures par semaine",
+      "avant": "fir 20",
+      "trou": "Stonnen",
+      "apres": "d'Woch",
+      "choix": [
+        "Stonnen",
+        "Joer",
+        "Auer",
+        "Deeg"
+      ],
+      "note": "Stonnen d'Woch = heures par semaine."
+    },
+    {
+      "id": 4,
+      "fr": "La personne travaille à mi-temps.",
+      "avant": "D'Persoun schafft",
+      "trou": "hallefdaags",
+      "apres": ".",
+      "choix": [
+        "hallefdaags",
+        "ganzdaags",
+        "spéitstens",
+        "owes"
+      ],
+      "note": "hallefdaags = à mi-temps (≈ 20 Stonnen d'Woch)."
+    },
+    {
+      "id": 5,
+      "fr": "La personne travaille à temps plein : 40 heures par semaine.",
+      "avant": "D'Persoun schafft",
+      "trou": "ganzdaags",
+      "apres": ": 40 Stonnen d'Woch.",
+      "choix": [
+        "ganzdaags",
+        "hallefdaags",
+        "spéitstens",
+        "eleng"
+      ],
+      "note": "ganzdaags = à temps plein (≈ 40 Stonnen d'Woch)."
+    },
+    {
+      "id": 6,
+      "fr": "Profil : 5 ans d'expérience",
+      "avant": "Profil: 5 Joer",
+      "trou": "Erfarung",
+      "apres": "",
+      "choix": [
+        "Erfarung",
+        "Ausbildung",
+        "Kandidatur",
+        "Prioritéit"
+      ],
+      "note": "d'Erfarung = d'Experienz = l'expérience."
+    },
+    {
+      "id": 7,
+      "fr": "Profil : connaissances en MS-Office",
+      "avant": "Profil:",
+      "trou": "Kenntnesser",
+      "apres": "am MS-Office",
+      "choix": [
+        "Kenntnesser",
+        "Erfarung",
+        "Ausbildung",
+        "Virdeel"
+      ],
+      "note": "d'Kenntnesser = les connaissances (eng Kenntnes)."
+    },
+    {
+      "id": 8,
+      "fr": "La personne a besoin d'une formation.",
+      "avant": "D'Persoun brauch eng",
+      "trou": "Ausbildung",
+      "apres": ".",
+      "choix": [
+        "Ausbildung",
+        "Kandidatur",
+        "Prioritéit",
+        "Annonce"
+      ],
+      "note": "d'Ausbildung = la formation."
+    },
+    {
+      "id": 9,
+      "fr": "Profil : permis B",
+      "avant": "Profil:",
+      "trou": "Führerschäin",
+      "apres": "B",
+      "choix": [
+        "Führerschäin",
+        "Kenntnesser",
+        "Virdeel",
+        "Profil"
+      ],
+      "note": "de Führerschäin = le permis de conduire."
+    },
+    {
+      "id": 10,
+      "fr": "L'anglais est un plus.",
+      "avant": "Englesch ass vu",
+      "trou": "Virdeel",
+      "apres": ".",
+      "choix": [
+        "Virdeel",
+        "Prioritéit",
+        "Erfarung",
+        "Profil"
+      ],
+      "note": "vu Virdeel = un plus, pas obligatoire."
+    },
+    {
+      "id": 11,
+      "fr": "L'anglais est une priorité.",
+      "avant": "Englesch ass",
+      "trou": "Prioritéit",
+      "apres": ".",
+      "choix": [
+        "Prioritéit",
+        "Virdeel",
+        "Kandidatur",
+        "Profil"
+      ],
+      "note": "Prioritéit = priorité. Ce n'est pas la même chose que vu Virdeel."
+    },
+    {
+      "id": 12,
+      "fr": "La personne n'a pas besoin d'expérience.",
+      "avant": "D'Persoun",
+      "trou": "brauch",
+      "apres": "keng Erfarung.",
+      "choix": [
+        "brauch",
+        "sicht",
+        "schéckt",
+        "engagéiert"
+      ],
+      "note": "brauchen = avoir besoin de. Hien brauch, sans t."
+    },
+    {
+      "id": 13,
+      "fr": "Envoyez votre candidature.",
+      "avant": "Schéckt Är",
+      "trou": "Kandidatur",
+      "apres": ".",
+      "choix": [
+        "Kandidatur",
+        "Annonce",
+        "Ausbildung",
+        "Erfarung"
+      ],
+      "note": "d'Kandidatur = la candidature."
+    },
+    {
+      "id": 14,
+      "fr": "Les intéressés envoient leur candidature par e-mail.",
+      "avant": "Déi Interesséiert",
+      "trou": "schécken",
+      "apres": "hir Kandidatur per E-Mail.",
+      "choix": [
+        "schécken",
+        "sichen",
+        "brauchen",
+        "engagéieren"
+      ],
+      "note": "schécken = envoyer."
+    },
+    {
+      "id": 15,
+      "fr": "Envoyez votre candidature au plus tard le 20 août.",
+      "avant": "Schéckt Är Kandidatur bis",
+      "trou": "spéitstens",
+      "apres": "den 20. August.",
+      "choix": [
+        "spéitstens",
+        "ganzdaags",
+        "hallefdaags",
+        "Mëtt"
+      ],
+      "note": "bis spéitstens den … = au plus tard le …"
+    },
+    {
+      "id": 16,
+      "fr": "Les intéressés envoient leur candidature avant la mi-août.",
+      "avant": "Déi Interesséiert schécken hir Kandidatur viru",
+      "trou": "Mëtt",
+      "apres": "August.",
+      "choix": [
+        "Mëtt",
+        "Stonnen",
+        "Joer",
+        "Woch"
+      ],
+      "note": "Mëtt August = la mi-août (le 15 août)."
+    },
+    {
+      "id": 17,
+      "fr": "Quel type d'annonce est-ce ? Une offre d'emploi.",
+      "avant": "Wat fir eng Annonce ass dat? Eng",
+      "trou": "Aarbechtsannonce",
+      "apres": ".",
+      "choix": [
+        "Aarbechtsannonce",
+        "Kandidatur",
+        "Ausbildung",
+        "Prioritéit"
+      ],
+      "note": "eng Aarbechtsannonce = une offre d'emploi."
+    }
+  ],
+  "ecriture": [
+    {
+      "fr": "une offre d'emploi",
+      "lu": "eng Aarbechtsannonce"
+    },
+    {
+      "fr": "chercher",
+      "lu": "sichen"
+    },
+    {
+      "fr": "recruter",
+      "lu": "engagéieren"
+    },
+    {
+      "fr": "le profil",
+      "lu": "de Profil"
+    },
+    {
+      "fr": "la formation",
+      "lu": "d'Ausbildung"
+    },
+    {
+      "fr": "les connaissances",
+      "lu": "d'Kenntnesser"
+    },
+    {
+      "fr": "l'expérience",
+      "lu": "d'Erfarung"
+    },
+    {
+      "fr": "à mi-temps",
+      "lu": "hallefdaags"
+    },
+    {
+      "fr": "à temps plein",
+      "lu": "ganzdaags"
+    },
+    {
+      "fr": "la candidature",
+      "lu": "d'Kandidatur"
+    },
+    {
+      "fr": "envoyer",
+      "lu": "schécken"
+    },
+    {
+      "fr": "avoir besoin de",
+      "lu": "brauchen"
+    },
+    {
+      "fr": "le permis de conduire",
+      "lu": "de Führerschäin"
+    },
+    {
+      "fr": "vingt heures par semaine",
+      "lu": "zwanzeg Stonnen d'Woch"
+    },
+    {
+      "fr": "au plus tard le 20 août",
+      "lu": "bis spéitstens den 20. August"
+    },
+    {
+      "fr": "avant la mi-août",
+      "lu": "viru Mëtt August"
+    },
+    {
+      "fr": "La commune recrute une secrétaire.",
+      "lu": "D'Gemeng engagéiert eng Sekretärin."
+    },
+    {
+      "fr": "La banque cherche une secrétaire.",
+      "lu": "D'Bank sicht eng Sekretärin."
+    },
+    {
+      "fr": "L'anglais est un plus.",
+      "lu": "Englesch ass vu Virdeel."
+    },
+    {
+      "fr": "L'anglais est une priorité.",
+      "lu": "Englesch ass Prioritéit."
+    },
+    {
+      "fr": "La personne n'a pas besoin d'expérience.",
+      "lu": "D'Persoun brauch keng Erfarung."
+    },
+    {
+      "fr": "Envoyez votre candidature.",
+      "lu": "Schéckt Är Kandidatur."
+    },
+    {
+      "fr": "Quel type d'annonce est-ce ?",
+      "lu": "Wat fir eng Annonce ass dat?"
+    }
+  ],
+  "cours": [
+    {
+      "type": "texte",
+      "contenu": "Cette leçon prépare la partie <b>D'Annonce</b> de l'examen A1.2 (5 points). Dans les annales, c'est une <b>offre d'emploi</b> (eng Aarbechtsannonce) : on la lit, puis on répond richteg (vrai) ou falsch (faux). Il faut repérer cinq informations : qui recrute, quel poste, combien d'heures, quel profil, et jusqu'à quand postuler."
+    },
+    {
+      "type": "exemple",
+      "titre": "L'annonce type de l'examen",
+      "items": [
+        [
+          "D'Gemeng Lëtzebuerg engagéiert fir den 1. September eng Sekretärin / e Sekretär fir 20 Stonnen d'Woch.",
+          "La commune de Luxembourg recrute pour le 1er septembre une secrétaire / un secrétaire pour 20 heures par semaine."
+        ],
+        [
+          "Profil:",
+          "Profil :"
+        ],
+        [
+          "Ausbildung am administrativen a kommerzielle Beräich",
+          "formation dans le domaine administratif et commercial"
+        ],
+        [
+          "Kenntnesser am MS-Office",
+          "connaissances en MS-Office"
+        ],
+        [
+          "engagéiert a flexibel",
+          "motivé(e) et flexible"
+        ],
+        [
+          "5 Joer Experienz",
+          "5 ans d'expérience"
+        ],
+        [
+          "Lëtzebuergesch, Däitsch a Franséisch",
+          "luxembourgeois, allemand et français"
+        ],
+        [
+          "Englesch ass vu Virdeel",
+          "l'anglais est un plus"
+        ],
+        [
+          "Schéckt Är Kandidatur bis spéitstens den 20. August un: gemeng@letz.lu",
+          "Envoyez votre candidature au plus tard le 20 août à : gemeng@letz.lu"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Lire une annonce : les 5 informations",
+      "entetes": [
+        "Je cherche",
+        "Mots à repérer",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "Qui recrute ?",
+          "… engagéiert / … sicht",
+          "D'Gemeng Lëtzebuerg engagéiert …"
+        ],
+        [
+          "Quel poste ?",
+          "juste après",
+          "eng Sekretärin / e Sekretär"
+        ],
+        [
+          "Combien d'heures ?",
+          "Stonnen d'Woch",
+          "20 Stonnen d'Woch = hallefdaags"
+        ],
+        [
+          "Quel profil ?",
+          "Profil:",
+          "Ausbildung, Kenntnesser, Erfarung, Sproochen"
+        ],
+        [
+          "Jusqu'à quand ?",
+          "bis spéitstens den …",
+          "bis spéitstens den 20. August"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Les mots de l'annonce",
+      "items": [
+        [
+          "eng Aarbechtsannonce",
+          "une offre d'emploi"
+        ],
+        [
+          "sichen / engagéieren",
+          "chercher / recruter"
+        ],
+        [
+          "de Profil",
+          "le profil"
+        ],
+        [
+          "d'Ausbildung",
+          "la formation"
+        ],
+        [
+          "d'Kenntnesser",
+          "les connaissances"
+        ],
+        [
+          "d'Erfarung / d'Experienz",
+          "l'expérience"
+        ],
+        [
+          "hallefdaags / ganzdaags",
+          "à mi-temps / à temps plein"
+        ],
+        [
+          "vu Virdeel",
+          "un plus, un avantage"
+        ],
+        [
+          "d'Prioritéit",
+          "la priorité"
+        ],
+        [
+          "de Führerschäin",
+          "le permis de conduire"
+        ],
+        [
+          "d'Kandidatur",
+          "la candidature"
+        ],
+        [
+          "schécken",
+          "envoyer"
+        ],
+        [
+          "bis spéitstens den …",
+          "au plus tard le …"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Les pièges du vrai / faux",
+      "lignes": [
+        "<b>Les heures</b> : 20 Stonnen d'Woch = <b>hallefdaags</b> (mi-temps). 40 Stonnen d'Woch = <b>ganzdaags</b>.",
+        "<b>L'expérience</b> : si l'annonce demande 5 Joer Experienz, « D'Persoun brauch keng Erfarung » est <b>falsch</b>.",
+        "<b>Les langues</b> : « vu Virdeel » = un plus, ce n'est pas une <b>Prioritéit</b>. Si l'anglais est dans la liste des langues demandées, « Englesch ass Prioritéit » est <b>richteg</b>.",
+        "<b>La date</b> : bis spéitstens den 20. August → « viru Mëtt August » (avant le 15) est <b>falsch</b>, « viru September » est <b>richteg</b>."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "engagéiert : deux sens",
+      "lignes": [
+        "D'Gemeng <b>engagéiert</b> eng Sekretärin. = La commune <b>recrute</b> une secrétaire (verbe engagéieren).",
+        "Profil: <b>engagéiert</b> a flexibel = <b>motivé</b> et flexible (adjectif)."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Les verbes de l'annonce",
+      "lignes": [
+        "<b>sichen</b> : d'Bank sicht … = la banque cherche …",
+        "<b>engagéieren</b> : d'Gemeng engagéiert … = la commune recrute …",
+        "<b>schécken</b> : Schéckt Är Kandidatur! = Envoyez votre candidature ! (forme de politesse)",
+        "<b>brauchen</b> : ech brauch, hien brauch (sans t), mir brauchen. D'Persoun brauch keng Erfarung."
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Orthographe",
+      "lignes": [
+        "Erfarung et Experienz veulent dire la même chose : l'expérience.",
+        "Le dictionnaire LOD écrit <b>Kenntnesser</b> et <b>Führerschäin</b>. Le manuel écrit parfois Kenntnisser ou Fürerschäin."
+      ]
+    }
+  ]
+}

@@ -22,55 +22,68 @@
       "lignes": [
         [
           "Maartfra",
-          "U wiem ass et, wann ech gelift?"
+          "U wiem ass et, wann ech gelift?",
+          "À qui le tour, s'il vous plaît ?"
         ],
         [
           "Client",
-          "Et ass u mir!"
+          "Et ass u mir!",
+          "C'est à moi !"
         ],
         [
           "Maartfra",
-          "Wat {1} Dir, wann ech gelift?"
+          "Wat {1} Dir, wann ech gelift?",
+          "Que désirez-vous, s'il vous plaît ?"
         ],
         [
           "Client",
-          "Ech {2} gär e Kilo Lëtzebuerger Äppel, wann ech gelift."
+          "Ech {2} gär e Kilo Lëtzebuerger Äppel, wann ech gelift.",
+          "Je voudrais un kilo de pommes luxembourgeoises, s'il vous plaît."
         ],
         [
           "Maartfra",
-          "Jo, … Kritt Dir {3}?"
+          "Jo, … Kritt Dir {3}?",
+          "Oui… Vous désirez autre chose ?"
         ],
         [
           "Client",
-          "Jo, ech {4} och nach Bieren aus Frankräich."
+          "Jo, ech {4} och nach Bieren aus Frankräich.",
+          "Oui, je prends aussi des poires de France."
         ],
         [
           "Maartfra",
-          "Wéi vill, wann ech gelift?"
+          "Wéi vill, wann ech gelift?",
+          "Combien, s'il vous plaît ?"
         ],
         [
           "Client",
-          "Eng {5}. Dat wier dann och alles."
+          "Eng {5}. Dat wier dann och alles.",
+          "Une douzaine. Ce sera tout."
         ],
         [
           "Maartfra",
-          "Merci. Wëllt Dir {6}?"
+          "Merci. Wëllt Dir {6}?",
+          "Merci. Voulez-vous un sachet ?"
         ],
         [
           "Client",
-          "Nee merci, ech hunn en Akafskuerf."
+          "Nee merci, ech hunn en Akafskuerf.",
+          "Non merci, j'ai un panier à provisions."
         ],
         [
           "Maartfra",
-          "Voilà, dat mécht dann {7} aacht Euro."
+          "Voilà, dat mécht dann {7} aacht Euro.",
+          "Voilà, ça fait huit euros en tout."
         ],
         [
           "Client",
-          "Kann ech mat der Visa {8}?"
+          "Kann ech mat der Visa {8}?",
+          "Je peux payer avec la carte Visa ?"
         ],
         [
           "Maartfra",
-          "Jo, natierlech."
+          "Jo, natierlech.",
+          "Oui, bien sûr."
         ]
       ],
       "trous": [
@@ -116,15 +129,18 @@
       "lignes": [
         [
           "",
-          "Moien, ech sinn de Pierre. Ech wunne schonn zënter 7 Joer hei zu Lëtzebuerg {1}. Sou gesäit mäin {2} aus: ech sti moies um 7:00 Auer op. Dann duschen ech, drénke Kaffi an {3} eng Schmier mat Botter a Gebeess."
+          "Moien, ech sinn de Pierre. Ech wunne schonn zënter 7 Joer hei zu Lëtzebuerg {1}. Sou gesäit mäin {2} aus: ech sti moies um 7:00 Auer op. Dann duschen ech, drénke Kaffi an {3} eng Schmier mat Botter a Gebeess.",
+          "Bonjour, je suis Pierre. J'habite ici à Luxembourg, dans le quartier de la Gare, depuis 7 ans. Voici à quoi ressemble ma journée : je me lève à 7 h le matin. Ensuite je me douche, je bois du café et je mange une tartine de beurre et de confiture."
         ],
         [
           "",
-          "Meng Aarbecht fänkt {4} um 8:30 Auer un an ech maachen um 12:00 Auer Mëttespaus. Ech {5} an de Restaurant iessen. Nomëttes {6} ech oft Reuniounen. Owes sinn ech géint 18:30 Auer {7}. Ech bereeden {8} fir meng Fra a meng Kanner vir. Nom Iesse schwätze mir nach e bëssen zesummen an da ginn d'Kanner {9}."
+          "Meng Aarbecht fänkt {4} um 8:30 Auer un an ech maachen um 12:00 Auer Mëttespaus. Ech {5} an de Restaurant iessen. Nomëttes {6} ech oft Reuniounen. Owes sinn ech géint 18:30 Auer {7}. Ech bereeden {8} fir meng Fra a meng Kanner vir. Nom Iesse schwätze mir nach e bëssen zesummen an da ginn d'Kanner {9}.",
+          "Mon travail commence le matin à 8 h 30 et je fais la pause de midi à 12 h. Je vais manger au restaurant. L'après-midi, j'ai souvent des réunions. Le soir, je suis à la maison vers 18 h 30. Je prépare le dîner pour ma femme et mes enfants. Après le repas, nous discutons encore un peu ensemble, puis les enfants vont au lit."
         ],
         [
           "",
-          "Ech gi meeschtens {10} 23:00 Auer schlofen."
+          "Ech gi meeschtens {10} 23:00 Auer schlofen.",
+          "Je vais généralement dormir vers 23 h."
         ]
       ],
       "trous": [
@@ -232,15 +248,18 @@
         ],
         [
           "",
-          "D'lescht Woch {1} ech vill Aarbecht. Vill Kolleege {2} krank. Gëschter Moien hate mir eng Reunioun vu bal dräi {3}. Mir hunn eng PowerPoint-Presentatioun vum neie Projet {4} a vill diskutéiert. Gëschter Nomëtteg hunn ech de Rapport vun der Reunioun {5} an owes si mir mam Service eppes drénke {6}. Ech war zimmlech spéit doheem."
+          "D'lescht Woch {1} ech vill Aarbecht. Vill Kolleege {2} krank. Gëschter Moien hate mir eng Reunioun vu bal dräi {3}. Mir hunn eng PowerPoint-Presentatioun vum neie Projet {4} a vill diskutéiert. Gëschter Nomëtteg hunn ech de Rapport vun der Reunioun {5} an owes si mir mam Service eppes drénke {6}. Ech war zimmlech spéit doheem.",
+          "La semaine dernière, j'avais beaucoup de travail. Beaucoup de collègues étaient malades. Hier matin, nous avons eu une réunion de presque trois heures. Nous avons regardé une présentation PowerPoint du nouveau projet et beaucoup discuté. Hier après-midi, j'ai écrit le compte rendu de la réunion et le soir, nous sommes allés boire un verre avec le service. Je suis rentrée assez tard à la maison."
         ],
         [
           "",
-          "Mee elo hunn ech e puer Deeg Congé. Ech {7} muer mam TGV op Paräis an huelen natierlech mäin Handy mat. Schéck mir e Message, wann e Problem ass."
+          "Mee elo hunn ech e puer Deeg Congé. Ech {7} muer mam TGV op Paräis an huelen natierlech mäin Handy mat. Schéck mir e Message, wann e Problem ass.",
+          "Mais maintenant, j'ai quelques jours de congé. Demain, je pars à Paris en TGV et j'emporte bien sûr mon portable. Envoie-moi un message s'il y a un problème."
         ],
         [
           "",
-          "Léif Gréiss"
+          "Léif Gréiss",
+          "Bien amicalement"
         ],
         [
           "",
@@ -321,31 +340,38 @@
       "lignes": [
         [
           "08.12",
-          "8 Auer: Zäit fir mat schaffen unzefänken."
+          "8 Auer: Zäit fir mat schaffen unzefänken.",
+          "8 heures : il est temps de commencer à travailler."
         ],
         [
           "08.33",
-          "De Max mécht de Computer un. Hien drénkt eng Taass Kaffi."
+          "De Max mécht de Computer un. Hien drénkt eng Taass Kaffi.",
+          "Max allume l'ordinateur. Il boit une tasse de café."
         ],
         [
           "08.45",
-          "D'E-Mailen a senger Mailbox liest hie ganz genee. Et sinn haaptsächlech Witzer a Biller. Hie schéckt d'E-Mailen u seng Kolleegen a Frënn weider. Mat der Taass Kaffi an der Hand geet hien all senge Kolleege Moie soen."
+          "D'E-Mailen a senger Mailbox liest hie ganz genee. Et sinn haaptsächlech Witzer a Biller. Hie schéckt d'E-Mailen u seng Kolleegen a Frënn weider. Mat der Taass Kaffi an der Hand geet hien all senge Kolleege Moie soen.",
+          "Il lit très attentivement les e-mails de sa boîte. Ce sont surtout des blagues et des images. Il transfère les e-mails à ses collègues et à ses amis. La tasse de café à la main, il va dire bonjour à tous ses collègues."
         ],
         [
           "10.18",
-          "Zeréck am Büro: D'Mailbox gëtt nach eng Kéier kontrolléiert fir ze kucken, ob keng nei E-Mailen do sinn. Héich Zäit fir eng Kaffispaus!"
+          "Zeréck am Büro: D'Mailbox gëtt nach eng Kéier kontrolléiert fir ze kucken, ob keng nei E-Mailen do sinn. Héich Zäit fir eng Kaffispaus!",
+          "De retour au bureau : il vérifie encore une fois sa boîte pour voir s'il n'y a pas de nouveaux e-mails. Il est grand temps de faire une pause café !"
         ],
         [
           "11.12",
-          "Elo muss de Max nach der Frëndin uruffen. Hatt huet awer net vill Zäit fir ze schwätzen."
+          "Elo muss de Max nach der Frëndin uruffen. Hatt huet awer net vill Zäit fir ze schwätzen.",
+          "Maintenant, Max doit encore appeler sa copine. Mais elle n'a pas beaucoup de temps pour parler."
         ],
         [
           "11.23",
-          "De Buedem vu senger Orchidee bei der Fënster ass ze dréchen: Déi aarm Planz kritt e bësse Waasser."
+          "De Buedem vu senger Orchidee bei der Fënster ass ze dréchen: Déi aarm Planz kritt e bësse Waasser.",
+          "La terre de son orchidée, près de la fenêtre, est trop sèche : la pauvre plante reçoit un peu d'eau."
         ],
         [
           "11.48",
-          "Scho Mëtteg? Séier op d'Plëss fir nach eng Plaz op der Terrass ze kréien."
+          "Scho Mëtteg? Séier op d'Plëss fir nach eng Plaz op der Terrass ze kréien.",
+          "Déjà midi ? Vite à la place d'Armes (d'Plëss) pour avoir encore une place en terrasse."
         ]
       ],
       "questions": [
@@ -356,7 +382,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il boit du café (eng Taass Kaffi, Kaffispaus)."
+          "note": "Il boit du café (eng Taass Kaffi, Kaffispaus).",
+          "question_fr": "Il boit souvent du thé."
         },
         {
           "question": "Hien ësst an der Mëttespaus nëmmen e Sandwich um Büro.",
@@ -365,7 +392,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "À midi il file en ville : op d'Plëss, op der Terrass."
+          "note": "À midi il file en ville : op d'Plëss, op der Terrass.",
+          "question_fr": "À la pause de midi, il mange seulement un sandwich au bureau."
         },
         {
           "question": "De Max schafft vill dobaussen.",
@@ -374,7 +402,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il passe sa matinée au bureau (am Büro)."
+          "note": "Il passe sa matinée au bureau (am Büro).",
+          "question_fr": "Max travaille beaucoup dehors."
         },
         {
           "question": "De Max ass laang mat senger Frëndin um Telefon.",
@@ -383,7 +412,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Hatt huet net vill Zäit fir ze schwätzen : elle n'a pas beaucoup de temps."
+          "note": "Hatt huet net vill Zäit fir ze schwätzen : elle n'a pas beaucoup de temps.",
+          "question_fr": "Max est longtemps au téléphone avec sa copine."
         },
         {
           "question": "Hien huet eng Planz am Büro stoen.",
@@ -392,7 +422,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "Son orchidée est près de la fenêtre (bei der Fënster)."
+          "note": "Son orchidée est près de la fenêtre (bei der Fënster).",
+          "question_fr": "Il a une plante au bureau."
         }
       ]
     },
@@ -404,59 +435,73 @@
       "lignes": [
         [
           "Sandra",
-          "So Marc, ech hunn eng flott Wunneng gesinn. Déi gefält mir."
+          "So Marc, ech hunn eng flott Wunneng gesinn. Déi gefält mir.",
+          "Dis Marc, j'ai vu un super appartement. Il me plaît."
         ],
         [
           "Marc",
-          "A wou?"
+          "A wou?",
+          "Et où ?"
         ],
         [
           "Sandra",
-          "Majo, zu Esch, net wäit vun der Rockhal. Si ass grouss, schéin hell a frësch renovéiert. Si ass scho fräi an och net ze deier."
+          "Majo, zu Esch, net wäit vun der Rockhal. Si ass grouss, schéin hell a frësch renovéiert. Si ass scho fräi an och net ze deier.",
+          "Eh bien, à Esch, pas loin de la Rockhal. Il est grand, bien lumineux et fraîchement rénové. Il est déjà libre et pas trop cher non plus."
         ],
         [
           "Marc",
-          "Jo, Esch gefält mir och! Da gi mir se mol zesumme kucken. Méchs du e Rendez-vous mat der Agence? Ech hunn ëmmer nëmmen owes no hallwer sechs Zäit."
+          "Jo, Esch gefält mir och! Da gi mir se mol zesumme kucken. Méchs du e Rendez-vous mat der Agence? Ech hunn ëmmer nëmmen owes no hallwer sechs Zäit.",
+          "Oui, Esch me plaît aussi ! Alors allons le voir ensemble. Tu prends rendez-vous avec l'agence ? Je n'ai jamais le temps avant le soir, après cinq heures et demie (17 h 30)."
         ],
         [
           "Sandra",
-          "Jo, dat geet och fir mech."
+          "Jo, dat geet och fir mech.",
+          "Oui, ça me va aussi."
         ],
         [
           "Marc",
-          "Huet d'Wunneng eng Garage?"
+          "Huet d'Wunneng eng Garage?",
+          "L'appartement a un garage ?"
         ],
         [
           "Sandra",
-          "Nee, mee d'Gebai huet e Parking an all Wunneng huet zwou Parkplazen."
+          "Nee, mee d'Gebai huet e Parking an all Wunneng huet zwou Parkplazen.",
+          "Non, mais l'immeuble a un parking et chaque appartement a deux places."
         ],
         [
           "Marc",
-          "Wéi vill Schlofzëmmeren huet d'Wunneng dann?"
+          "Wéi vill Schlofzëmmeren huet d'Wunneng dann?",
+          "Combien de chambres a l'appartement ?"
         ],
         [
           "Sandra",
-          "Zwee Schlofzëmmeren an e klenge Büro."
+          "Zwee Schlofzëmmeren an e klenge Büro.",
+          "Deux chambres et un petit bureau."
         ],
         [
           "Marc",
-          "Du weess jo, ech kache gär. Wéi ass d'Kichen?"
+          "Du weess jo, ech kache gär. Wéi ass d'Kichen?",
+          "Tu sais, j'aime cuisiner. Comment est la cuisine ?"
         ],
         [
           "Sandra",
-          "Dat ass de Clou! D'Kichen ass fonkelnei a vollequipéiert. Vun der Kiche kënns du op de Balcon."
+          "Dat ass de Clou! D'Kichen ass fonkelnei a vollequipéiert. Vun der Kiche kënns du op de Balcon.",
+          "C'est le clou ! La cuisine est flambant neuve et tout équipée. De la cuisine, tu accèdes au balcon."
         ],
         [
           "Marc",
-          "An hu mir e Gaart?"
+          "An hu mir e Gaart?",
+          "Et on a un jardin ?"
         ],
         [
           "Sandra",
-          "Du schaffs ni am Gaart, mir brauche keen!"
+          "Du schaffs ni am Gaart, mir brauche keen!",
+          "Tu ne travailles jamais au jardin, on n'en a pas besoin !"
         ],
         [
           "Marc",
-          "Jo, dat ass och erëm wouer…"
+          "Jo, dat ass och erëm wouer…",
+          "Oui, c'est vrai aussi…"
         ]
       ],
       "questions": [
@@ -468,7 +513,13 @@
             "Mir wëssen dat net"
           ],
           "reponse": "falsch",
-          "note": "Si ass scho fräi = il est déjà libre."
+          "note": "Si ass scho fräi = il est déjà libre.",
+          "question_fr": "En ce moment, des gens habitent encore dans l'appartement.",
+          "choix_fr": [
+            "",
+            "",
+            "on ne sait pas"
+          ]
         },
         {
           "question": "De Marc huet ni um sechs Auer Zäit.",
@@ -478,7 +529,13 @@
             "Mir wëssen dat net"
           ],
           "reponse": "falsch",
-          "note": "Hallwer sechs = 5 h 30. Il est libre le soir après 17 h 30, donc aussi à 18 h."
+          "note": "Hallwer sechs = 5 h 30. Il est libre le soir après 17 h 30, donc aussi à 18 h.",
+          "question_fr": "Marc n'a jamais le temps à six heures.",
+          "choix_fr": [
+            "",
+            "",
+            "on ne sait pas"
+          ]
         },
         {
           "question": "D'Sandra huet heiansdo an der Mëttesstonn Zäit.",
@@ -488,7 +545,13 @@
             "Mir wëssen dat net"
           ],
           "reponse": "Mir wëssen dat net",
-          "note": "Elle dit seulement que le soir lui convient aussi. Rien sur midi."
+          "note": "Elle dit seulement que le soir lui convient aussi. Rien sur midi.",
+          "question_fr": "Sandra a parfois le temps à l'heure de midi.",
+          "choix_fr": [
+            "",
+            "",
+            "on ne sait pas"
+          ]
         },
         {
           "question": "Wéi ass d'Wunneng?",
@@ -498,7 +561,13 @@
             "geraimeg, frëndlech"
           ],
           "reponse": "geraimeg, frëndlech",
-          "note": "Grouss = geraimeg (spacieux), schéin hell = frëndlech (accueillant). Il est rénové, pas neuf."
+          "note": "Grouss = geraimeg (spacieux), schéin hell = frëndlech (accueillant). Il est rénové, pas neuf.",
+          "question_fr": "Comment est l'appartement ?",
+          "choix_fr": [
+            "neuf, bon marché",
+            "sombre, tout équipé",
+            "spacieux, agréable"
+          ]
         },
         {
           "question": "De Marc brauch e Gaart.",
@@ -508,7 +577,13 @@
             "Mir wëssen dat net"
           ],
           "reponse": "falsch",
-          "note": "Du schaffs ni am Gaart, mir brauche keen = nous n'en avons pas besoin."
+          "note": "Du schaffs ni am Gaart, mir brauche keen = nous n'en avons pas besoin.",
+          "question_fr": "Marc a besoin d'un jardin.",
+          "choix_fr": [
+            "",
+            "",
+            "on ne sait pas"
+          ]
         }
       ]
     },
@@ -521,35 +596,43 @@
       "lignes": [
         [
           "",
-          "Profil:"
+          "Profil:",
+          "Profil :"
         ],
         [
           "•",
-          "Ausbildung am administrativen a kommerzielle Beräich"
+          "Ausbildung am administrativen a kommerzielle Beräich",
+          "Formation dans le domaine administratif et commercial"
         ],
         [
           "•",
-          "Kenntnisser am MS-Office"
+          "Kenntnesser am MS-Office",
+          "Connaissances en MS-Office"
         ],
         [
           "•",
-          "engagéiert a flexibel"
+          "engagéiert a flexibel",
+          "Motivé(e) et flexible"
         ],
         [
           "•",
-          "5 Joer Experienz"
+          "5 Joer Experienz",
+          "5 ans d'expérience"
         ],
         [
           "•",
-          "Lëtzebuergesch, Däitsch a Franséisch"
+          "Lëtzebuergesch, Däitsch a Franséisch",
+          "Luxembourgeois, allemand et français"
         ],
         [
           "•",
-          "Englesch ass vu Virdeel"
+          "Englesch ass vu Virdeel",
+          "L'anglais est un plus"
         ],
         [
           "",
-          "Schéckt Är Kandidatur bis spéitstens den 20. August 2023 un: gemeng@letz.lu"
+          "Schéckt Är Kandidatur bis spéitstens den 20. August 2023 un: gemeng@letz.lu",
+          "Envoyez votre candidature au plus tard le 20 août 2023 à : gemeng@letz.lu"
         ]
       ],
       "questions": [
@@ -561,7 +644,13 @@
             "eng Verkafsannonce"
           ],
           "reponse": "eng Aarbechtsannonce",
-          "note": "La commune engage quelqu'un : c'est une offre d'emploi."
+          "note": "La commune engage quelqu'un : c'est une offre d'emploi.",
+          "question_fr": "Quel type d'annonce est-ce ?",
+          "choix_fr": [
+            "une offre d'emploi",
+            "une annonce pour chercher du travail",
+            "une annonce de vente"
+          ]
         },
         {
           "question": "D'Persoun brauch keng Erfarung.",
@@ -570,7 +659,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "5 Joer Experienz = 5 ans d'expérience demandés."
+          "note": "5 Joer Experienz = 5 ans d'expérience demandés.",
+          "question_fr": "La personne n'a pas besoin d'expérience."
         },
         {
           "question": "D'Gemeng sicht eng Persoun fir hallefdaags.",
@@ -579,7 +669,8 @@
             "falsch"
           ],
           "reponse": "richteg",
-          "note": "20 Stonnen d'Woch = un mi-temps (hallefdaags)."
+          "note": "20 Stonnen d'Woch = un mi-temps (hallefdaags).",
+          "question_fr": "La commune cherche une personne à mi-temps."
         },
         {
           "question": "Englesch ass Prioritéit.",
@@ -588,7 +679,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Englesch ass vu Virdeel = l'anglais est un atout, pas une obligation."
+          "note": "Englesch ass vu Virdeel = l'anglais est un atout, pas une obligation.",
+          "question_fr": "L'anglais est une priorité."
         },
         {
           "question": "Déi Interesséiert schécken d'Kandidature viru Mëtt August.",
@@ -597,9 +689,11 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "La date limite est le 20 août, donc après la mi-août."
+          "note": "La date limite est le 20 août, donc après la mi-août.",
+          "question_fr": "Les intéressés envoient leur candidature avant la mi-août."
         }
-      ]
+      ],
+      "chapeau_fr": "La commune de Luxembourg recrute pour le 1er septembre 2023 une secrétaire / un secrétaire pour 20 heures par semaine"
     }
   ]
 }
