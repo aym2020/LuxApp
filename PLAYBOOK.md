@@ -42,8 +42,8 @@ modifs (CSS / JS), il ne faut JAMAIS les écraser.
 
 - **Toujours vérifier l'orthographe sur LOD.lu.**
 - **Nombres** : entièrement soudés, sans espaces. Ex : `zweedausendvéier`.
-- **Eifeler Regel** : gère la liaison `an` vs `a`.
-  - Cas spécial : utiliser `a` devant un mot commençant par `n` pour éviter le double-n.
+- **Eifeler Reegel / règle du -n final** : le -n final tombe devant de nombreuses consonnes et reste notamment devant les voyelles et n, d, t, z, h. Exemples : `Ech schwätze Franséisch`, `Ech schwätzen Englesch`, `Ech si kee Coiffer`, `Ech komme vu Lëtzebuerg`.
+  - Pour la conjonction « et » (`an` / `a`), ne pas appliquer une prétendue règle « a devant n » : vérifier l'expression dans LOD.lu et le contexte.
 - Toujours vérifier : genres, articles, pluriels, prépositions, formes irrégulières.
 - Utiliser un luxembourgeois standard.
 - Réutiliser le vocabulaire déjà appris quand c'est pertinent.
@@ -408,10 +408,12 @@ Règles à vérifier à chaque leçon :
 
 Migrées : leçons 1 à 13 (parcours A1.1 continu), ainsi que 21 et 22. Les autres sont encore en v1 et restent valides.
 
-**Migrer une leçon v1** : un script par leçon dans `tools/migration/lecon-NN.py` (petite fabrique
+**Migrer une leçon v1** : les leçons du premier lot disposent chacune d'un script dans `tools/migration/lecon-NN.py` (petite fabrique
 `fabrique.py` : ids donnés à partir de 2001, champ `v1` rempli tout seul). Lancer
 `python3 tools/migration/lecon-NN.py`, puis `node tools/valider-lecons.js` et
 `python3 tests/test_migration.py` (chaque unité et la mission jouées de bout en bout).
+
+**Lot 2 (7, 9, 10, 11, 12, 13)** : JSON migrés et versionnés directement dans Git, avec archive `v1` préservant l'ancien acquis. Vérification structurelle : `node tests/test_lot2_contenu.js` ; test d'interface : `python3 tests/test_migration.py` (étendu au lot 2). Avant toute nouvelle migration, partir du dernier état Git et ne pas écraser les JSON v2.
 - `"v1": { "quiz": 35, "trous": 25, "ecriture": 43 }` = nombre de questions de l'ancienne version.
   Il sert à garder l'acquis : une leçon réussie en v1 (≥ 70 %, ids < 1000) reste **terminée**
   (« Acquise » sur le chemin, `acquisV1`), sans score inventé pour les nouvelles unités.
