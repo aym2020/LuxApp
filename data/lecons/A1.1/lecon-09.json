@@ -3,588 +3,1030 @@
   "titre": "Sproochen",
   "titre_fr": "Les langues",
   "couleur": "#8f87f0",
+  "v1": {
+    "quiz": 16,
+    "trous": 16,
+    "ecriture": 45
+  },
   "instructions": {
-  "flashcards": "Créer des cartes contenant la langue en luxembourgeois et sa traduction française. Une carte par langue.",
-  "quiz": "Présenter une langue en français. La bonne réponse est la langue correspondante en luxembourgeois. Les distracteurs doivent être des langues proches, la nationalité associée ou le pays lorsque c'est pertinent.",
-  "trous": "Créer des phrases avec des prénoms masculins et féminins. L'utilisateur doit retrouver la bonne langue luxembourgeoise. Les distracteurs doivent inclure la nationalité associée, le pays ou une langue proche lorsque c'est pertinent.",
-  "ecriture": "Inclure toutes les langues de la leçon, ainsi que des expressions, questions et phrases complètes. Chaque langue importante doit apparaître au moins une fois dans cette section."
-},
+    "flashcards": "Mot caché : retrouve le nom luxembourgeois d'une langue ou un mot clé pour en parler.",
+    "quiz": "Choisis le nom luxembourgeois de la langue ou la structure correcte pour parler, demander et nier.",
+    "trous": "Complète avec une langue ou une forme utile pour parler et répondre.",
+    "ecriture": "Écris en luxembourgeois les langues et des phrases complètes avec schwätzen, net ou e bësse."
+  },
+  "mission": {
+    "titre": "Au café des langues",
+    "contexte": "Lors de la pause, ton collègue Paul te demande quelles langues tu parles et ce que tu aimerais pratiquer. Vous discutez de vos langues.",
+    "objectif": "dire les langues que tu parles, nier et répondre à une question sur les langues."
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Paul",
+      "lu": "Moien! Schwätz du Franséisch?",
+      "fr": "Bonjour ! Parles-tu français ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech schwätzen Franséisch.",
+      "fr": "Je parle français.",
+      "aide": "Le verbe est <b>schwätzen</b> à la première personne."
+    },
+    {
+      "unite": 1,
+      "qui": "Paul",
+      "lu": "An Englesch?",
+      "fr": "Et anglais ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech schwätzen Englesch an Franséisch.",
+      "fr": "Je parle anglais et français.",
+      "aide": "Deux langues sont reliées par <b>an</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Paul",
+      "lu": "Wat fir eng Sprooch schwätzt du nach?",
+      "fr": "Quelle autre langue parles-tu ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Ech schwätzen e bësse Lëtzebuergesch.",
+      "fr": "Je parle un peu luxembourgeois.",
+      "aide": "Un peu se dit <b>e bësse</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Paul",
+      "lu": "Schwätz du och Däitsch?",
+      "fr": "Parles-tu aussi allemand ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Nee, ech schwätzen net Däitsch.",
+      "fr": "Non, je ne parle pas allemand.",
+      "aide": "Pour nier, utilise <b>net</b> devant la langue."
+    }
+  ],
+  "unites": [
+    {
+      "id": 1,
+      "titre": "Dire les langues qu'on parle",
+      "phrase": [
+        "Ech schwätzen Franséisch an Lëtzebuergesch.",
+        "Je parle français et luxembourgeois."
+      ],
+      "regle": "Une langue reste invariable. Avec « je », on dit <b>Ech schwätzen</b> ; avec « il / elle », <b>Hien / Si schwätzt</b>.",
+      "exemple": "Ech schwätzen <b>Franséisch</b> an <b>Lëtzebuergesch</b>.",
+      "pieges": [
+        "Une langue n'est pas une nationalité : Franséisch ≠ Fransous.",
+        "On ne met pas d'article devant le nom d'une langue."
+      ]
+    },
+    {
+      "id": 2,
+      "titre": "Demander et répondre non",
+      "phrase": [
+        "Wat fir eng Sprooch schwätzt du? – Ech schwätzen e bësse Lëtzebuergesch.",
+        "Quelle langue parles-tu ? – Je parle un peu luxembourgeois."
+      ],
+      "regle": "Question : <b>Wat fir eng Sprooch schwätzt du?</b> · Négation : <b>schwätzt net</b> + langue.",
+      "exemple": "Ech schwätzen <b>e bësse</b> Lëtzebuergesch · Hien schwätzt <b>net</b> Däitsch.",
+      "pieges": [
+        "<b>net</b> nie le verbe : il ne parle pas allemand = Hien schwätzt net Däitsch.",
+        "<b>e bësse</b> signifie « un peu » et précède la langue."
+      ]
+    }
+  ],
   "flashcards": [
-  {
-    "id": 1,
-    "lu": "Portugisesch",
-    "fr": "portugais",
-    "note": "Langue du Portugal"
-  },
-  {
-    "id": 2,
-    "lu": "Spuenesch",
-    "fr": "espagnol",
-    "note": "Langue de l'Espagne"
-  },
-  {
-    "id": 3,
-    "lu": "Englesch",
-    "fr": "anglais",
-    "note": "Langue de l'Angleterre"
-  },
-  {
-    "id": 4,
-    "lu": "Italienesch",
-    "fr": "italien",
-    "note": "Langue de l'Italie"
-  },
-  {
-    "id": 5,
-    "lu": "Lëtzebuergesch",
-    "fr": "luxembourgeois",
-    "note": "Langue du Luxembourg"
-  },
-  {
-    "id": 6,
-    "lu": "Franséisch",
-    "fr": "français",
-    "note": "Langue de la France"
-  },
-  {
-    "id": 7,
-    "lu": "Däitsch",
-    "fr": "allemand",
-    "note": "Langue de l'Allemagne"
-  },
-  {
-    "id": 8,
-    "lu": "Japanesch",
-    "fr": "japonais",
-    "note": "Langue du Japon"
-  },
-  {
-    "id": 9,
-    "lu": "Chineesesch",
-    "fr": "chinois",
-    "note": "Langue de la Chine"
-  },
-  {
-    "id": 10,
-    "lu": "Schweedesch",
-    "fr": "suédois",
-    "note": "Langue de la Suède"
-  },
-  {
-    "id": 11,
-    "lu": "Hollännesch",
-    "fr": "néerlandais",
-    "note": "Langue des Pays-Bas"
-  },
-  {
-    "id": 12,
-    "lu": "Flammännesch",
-    "fr": "flamand",
-    "note": "Langue parlée en Belgique"
-  },
-  {
-    "id": 13,
-    "lu": "Griichesch",
-    "fr": "grec",
-    "note": "Langue de la Grèce"
-  },
-  {
-    "id": 14,
-    "lu": "Polnesch",
-    "fr": "polonais",
-    "note": "Langue de la Pologne"
-  },
-  {
-    "id": 15,
-    "lu": "Russesch",
-    "fr": "russe",
-    "note": "Langue de la Russie"
-  },
-  {
-    "id": 16,
-    "lu": "Koreanesch",
-    "fr": "coréen",
-    "note": "Langue de la Corée"
-  }
-],
+    {
+      "id": 2001,
+      "unite": 1,
+      "lu": "Portugisesch",
+      "fr": "portugais",
+      "note": "Langue du Portugal"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "lu": "Spuenesch",
+      "fr": "espagnol",
+      "note": "Langue de l'Espagne"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "lu": "Englesch",
+      "fr": "anglais",
+      "note": "Langue de l'Angleterre"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "lu": "Italienesch",
+      "fr": "italien",
+      "note": "Langue de l'Italie"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "lu": "Lëtzebuergesch",
+      "fr": "luxembourgeois",
+      "note": "Langue du Luxembourg"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "lu": "Franséisch",
+      "fr": "français",
+      "note": "Langue de la France"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "lu": "Däitsch",
+      "fr": "allemand",
+      "note": "Langue de l'Allemagne"
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "lu": "Japanesch",
+      "fr": "japonais",
+      "note": "Langue du Japon"
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "lu": "Chineesesch",
+      "fr": "chinois",
+      "note": "Langue de la Chine"
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "lu": "Schweedesch",
+      "fr": "suédois",
+      "note": "Langue de la Suède"
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "lu": "Hollännesch",
+      "fr": "néerlandais",
+      "note": "Langue des Pays-Bas"
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "lu": "Flammännesch",
+      "fr": "flamand",
+      "note": "Langue parlée en Belgique"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "lu": "Griichesch",
+      "fr": "grec",
+      "note": "Langue de la Grèce"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "lu": "Polnesch",
+      "fr": "polonais",
+      "note": "Langue de la Pologne",
+      "plus": true
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "lu": "Russesch",
+      "fr": "russe",
+      "note": "Langue de la Russie",
+      "plus": true
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "lu": "Koreanesch",
+      "fr": "coréen",
+      "note": "Langue de la Corée",
+      "plus": true
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "parler",
+      "lu": "schwätzen",
+      "note": "ech schwätzen · si schwätzt"
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "ne… pas",
+      "lu": "net"
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "fr": "un peu",
+      "lu": "e bësse"
+    }
+  ],
   "quiz": [
-  {
-    "id": 1,
-    "question": "Portugais",
-    "reponse": "Portugisesch",
-    "distracteurs": [
-      "Portugis",
-      "Portugal",
-      "Spuenesch"
-    ]
-  },
-  {
-    "id": 2,
-    "question": "Espagnol",
-    "reponse": "Spuenesch",
-    "distracteurs": [
-      "Spuenier",
-      "Spuenien",
-      "Portugisesch"
-    ]
-  },
-  {
-    "id": 3,
-    "question": "Anglais",
-    "reponse": "Englesch",
-    "distracteurs": [
-      "Engländer",
-      "England",
-      "Hollännesch"
-    ]
-  },
-  {
-    "id": 4,
-    "question": "Italien",
-    "reponse": "Italienesch",
-    "distracteurs": [
-      "Italiener",
-      "Italien",
-      "Spuenesch"
-    ]
-  },
-  {
-    "id": 5,
-    "question": "Luxembourgeois",
-    "reponse": "Lëtzebuergesch",
-    "distracteurs": [
-      "Lëtzebuerger",
-      "Lëtzebuerg",
-      "Franséisch"
-    ]
-  },
-  {
-    "id": 6,
-    "question": "Français",
-    "reponse": "Franséisch",
-    "distracteurs": [
-      "Fransous",
-      "Frankräich",
-      "Italienesch"
-    ]
-  },
-  {
-    "id": 7,
-    "question": "Flamand",
-    "reponse": "Flammännesch",
-    "distracteurs": [
-      "Belsch",
-      "Holland",
-      "Hollännesch"
-    ]
-  },
-  {
-    "id": 8,
-    "question": "Allemand",
-    "reponse": "Däitsch",
-    "distracteurs": [
-      "Däitschen",
-      "Däitschland",
-      "Hollännesch"
-    ]
-  },
-  {
-    "id": 9,
-    "question": "Japonais",
-    "reponse": "Japanesch",
-    "distracteurs": [
-      "Japaner",
-      "Japan",
-      "Koreanesch"
-    ]
-  },
-  {
-    "id": 10,
-    "question": "Coréen",
-    "reponse": "Koreanesch",
-    "distracteurs": [
-      "Nordkoreaner",
-      "Korea",
-      "Japanesch"
-    ]
-  },
-  {
-    "id": 11,
-    "question": "Néerlandais",
-    "reponse": "Hollännesch",
-    "distracteurs": [
-      "Hollänner",
-      "Holland",
-      "Flammännesch"
-    ]
-  },
-  {
-    "id": 12,
-    "question": "Chinois",
-    "reponse": "Chineesesch",
-    "distracteurs": [
-      "Chinees",
-      "China",
-      "Japanesch"
-    ]
-  },
-  {
-    "id": 13,
-    "question": "Suédois",
-    "reponse": "Schweedesch",
-    "distracteurs": [
-      "Schweed",
-      "Schweden",
-      "Hollännesch"
-    ]
-  },
-  {
-    "id": 14,
-    "question": "Grec",
-    "reponse": "Griichesch",
-    "distracteurs": [
-      "Griicheland",
-      "Griich",
-      "Italienesch"
-    ]
-  },
-  {
-    "id": 15,
-    "question": "Polonais",
-    "reponse": "Polnesch",
-    "distracteurs": [
-      "Polen",
-      "Pol",
-      "Russesch"
-    ]
-  },
-  {
-    "id": 16,
-    "question": "Russe",
-    "reponse": "Russesch",
-    "distracteurs": [
-      "Russland",
-      "Russe",
-      "Polnesch"
-    ]
-  }
-],
+    {
+      "id": 2001,
+      "unite": 1,
+      "question": "Portugais",
+      "reponse": "Portugisesch",
+      "distracteurs": [
+        "Portugis",
+        "Portugal",
+        "Spuenesch"
+      ]
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "question": "Espagnol",
+      "reponse": "Spuenesch",
+      "distracteurs": [
+        "Spuenier",
+        "Spuenien",
+        "Portugisesch"
+      ]
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "question": "Anglais",
+      "reponse": "Englesch",
+      "distracteurs": [
+        "Engländer",
+        "England",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "question": "Italien",
+      "reponse": "Italienesch",
+      "distracteurs": [
+        "Italiener",
+        "Italien",
+        "Spuenesch"
+      ]
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "question": "Luxembourgeois",
+      "reponse": "Lëtzebuergesch",
+      "distracteurs": [
+        "Lëtzebuerger",
+        "Lëtzebuerg",
+        "Franséisch"
+      ]
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "question": "Français",
+      "reponse": "Franséisch",
+      "distracteurs": [
+        "Fransous",
+        "Frankräich",
+        "Italienesch"
+      ]
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "question": "Flamand",
+      "reponse": "Flammännesch",
+      "distracteurs": [
+        "Belsch",
+        "Holland",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "question": "Allemand",
+      "reponse": "Däitsch",
+      "distracteurs": [
+        "Däitschen",
+        "Däitschland",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "question": "Japonais",
+      "reponse": "Japanesch",
+      "distracteurs": [
+        "Japaner",
+        "Japan",
+        "Koreanesch"
+      ]
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "question": "Coréen",
+      "reponse": "Koreanesch",
+      "distracteurs": [
+        "Nordkoreaner",
+        "Korea",
+        "Japanesch"
+      ]
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "question": "Néerlandais",
+      "reponse": "Hollännesch",
+      "distracteurs": [
+        "Hollänner",
+        "Holland",
+        "Flammännesch"
+      ]
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "question": "Chinois",
+      "reponse": "Chineesesch",
+      "distracteurs": [
+        "Chinees",
+        "China",
+        "Japanesch"
+      ]
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "question": "Suédois",
+      "reponse": "Schweedesch",
+      "distracteurs": [
+        "Schweed",
+        "Schweden",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "question": "Grec",
+      "reponse": "Griichesch",
+      "distracteurs": [
+        "Griicheland",
+        "Griich",
+        "Italienesch"
+      ]
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "question": "Polonais",
+      "reponse": "Polnesch",
+      "distracteurs": [
+        "Polen",
+        "Pol",
+        "Russesch"
+      ],
+      "plus": true
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "question": "Russe",
+      "reponse": "Russesch",
+      "distracteurs": [
+        "Russland",
+        "Russe",
+        "Polnesch"
+      ],
+      "plus": true
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "question": "Je parle un peu luxembourgeois.",
+      "reponse": "Ech schwätzen e bësse Lëtzebuergesch.",
+      "distracteurs": [
+        "Ech schwätzt e bësse Lëtzebuergesch.",
+        "Ech schwätzen net Lëtzebuergesch.",
+        "Ech schwätzen Lëtzebuergesch e bësse."
+      ]
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "question": "Il ne parle pas allemand.",
+      "reponse": "Hien schwätzt net Däitsch.",
+      "distracteurs": [
+        "Hien schwätzen net Däitsch.",
+        "Hien schwätzt kee Däitsch.",
+        "Hien net schwätzt Däitsch."
+      ]
+    }
+  ],
   "trous": [
-  {
-    "id": 1,
-    "fr": "Ronaldo parle portugais.",
-    "avant": "De Ronaldo schwätzt",
-    "trou": "Portugisesch",
-    "apres": ".",
-    "choix": ["Portugisesch", "Portugis", "Portugal", "Spuenesch"]
-  },
-  {
-    "id": 2,
-    "fr": "Maria parle espagnol.",
-    "avant": "D'Maria schwätzt",
-    "trou": "Spuenesch",
-    "apres": ".",
-    "choix": ["Spuenesch", "Spuenierin", "Spuenien", "Portugisesch"]
-  },
-  {
-    "id": 3,
-    "fr": "John parle anglais.",
-    "avant": "De John schwätzt",
-    "trou": "Englesch",
-    "apres": ".",
-    "choix": ["Englesch", "Engländer", "England", "Hollännesch"]
-  },
-  {
-    "id": 4,
-    "fr": "Giulia parle italien.",
-    "avant": "D'Giulia schwätzt",
-    "trou": "Italienesch",
-    "apres": ".",
-    "choix": ["Italienesch", "Italienerin", "Italien", "Spuenesch"]
-  },
-  {
-    "id": 5,
-    "fr": "Anne parle luxembourgeois.",
-    "avant": "D'Anne schwätzt",
-    "trou": "Lëtzebuergesch",
-    "apres": ".",
-    "choix": ["Lëtzebuergesch", "Lëtzebuergerin", "Lëtzebuerg", "Franséisch"]
-  },
-  {
-    "id": 6,
-    "fr": "Pierre parle français.",
-    "avant": "De Pierre schwätzt",
-    "trou": "Franséisch",
-    "apres": ".",
-    "choix": ["Franséisch", "Fransous", "Frankräich", "Italienesch"]
-  },
-  {
-    "id": 7,
-    "fr": "Sofie parle flamand.",
-    "avant": "D'Sofie schwätzt",
-    "trou": "Flammännesch",
-    "apres": ".",
-    "choix": ["Flammännesch", "Belsch", "Engländer", "Hollännesch"]
-  },
-  {
-    "id": 8,
-    "fr": "Hans parle allemand.",
-    "avant": "Den Hans schwätzt",
-    "trou": "Däitsch",
-    "apres": ".",
-    "choix": ["Däitsch", "Däitschen", "Däitschland", "Hollännesch"]
-  },
-  {
-    "id": 9,
-    "fr": "Yuki parle japonais.",
-    "avant": "D'Yuki schwätzt",
-    "trou": "Japanesch",
-    "apres": ".",
-    "choix": ["Japanesch", "Japanerin", "Japan", "Koreanesch"]
-  },
-  {
-    "id": 10,
-    "fr": "Min-Jun parle coréen.",
-    "avant": "De Min-Jun schwätzt",
-    "trou": "Koreanesch",
-    "apres": ".",
-    "choix": ["Koreanesch", "Nordkoreaner", "Korea", "Japanesch"]
-  },
-  {
-    "id": 11,
-    "fr": "Wilhem parle néerlandais.",
-    "avant": "De Wilhem schwätzt",
-    "trou": "Hollännesch",
-    "apres": ".",
-    "choix": ["Hollännesch", "Hollänner", "Holland", "Flammännesch"]
-  },
-  {
-    "id": 12,
-    "fr": "Li Na parle chinois.",
-    "avant": "D'Li Na schwätzt",
-    "trou": "Chineesesch",
-    "apres": ".",
-    "choix": ["Chineesesch", "Chineesin", "China", "Japanesch"]
-  },
-  {
-    "id": 13,
-    "fr": "Greta parle suédois.",
-    "avant": "D'Greta schwätzt",
-    "trou": "Schweedesch",
-    "apres": ".",
-    "choix": ["Schweedesch", "Schweedin", "Schweden", "Hollännesch"]
-  },
-  {
-    "id": 14,
-    "fr": "Nikos parle grec.",
-    "avant": "De Nikos schwätzt",
-    "trou": "Griichesch",
-    "apres": ".",
-    "choix": ["Griichesch", "Griich", "Griicheland", "Italienesch"]
-  },
-  {
-    "id": 15,
-    "fr": "Anna parle polonais.",
-    "avant": "D'Anna schwätzt",
-    "trou": "Polnesch",
-    "apres": ".",
-    "choix": ["Polnesch", "Polin", "Polen", "Russesch"]
-  },
-  {
-    "id": 16,
-    "fr": "Ivan parle russe.",
-    "avant": "Den Ivan schwätzt",
-    "trou": "Russesch",
-    "apres": ".",
-    "choix": ["Russesch", "Russ", "Russland", "Polnesch"]
-  }
-],
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "Ronaldo parle portugais.",
+      "avant": "De Ronaldo schwätzt",
+      "trou": "Portugisesch",
+      "apres": ".",
+      "choix": [
+        "Portugisesch",
+        "Portugis",
+        "Portugal",
+        "Spuenesch"
+      ]
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "Maria parle espagnol.",
+      "avant": "D'Maria schwätzt",
+      "trou": "Spuenesch",
+      "apres": ".",
+      "choix": [
+        "Spuenesch",
+        "Spuenierin",
+        "Spuenien",
+        "Portugisesch"
+      ]
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "John parle anglais.",
+      "avant": "De John schwätzt",
+      "trou": "Englesch",
+      "apres": ".",
+      "choix": [
+        "Englesch",
+        "Engländer",
+        "England",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "Giulia parle italien.",
+      "avant": "D'Giulia schwätzt",
+      "trou": "Italienesch",
+      "apres": ".",
+      "choix": [
+        "Italienesch",
+        "Italienerin",
+        "Italien",
+        "Spuenesch"
+      ]
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "Anne parle luxembourgeois.",
+      "avant": "D'Anne schwätzt",
+      "trou": "Lëtzebuergesch",
+      "apres": ".",
+      "choix": [
+        "Lëtzebuergesch",
+        "Lëtzebuergerin",
+        "Lëtzebuerg",
+        "Franséisch"
+      ]
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "Pierre parle français.",
+      "avant": "De Pierre schwätzt",
+      "trou": "Franséisch",
+      "apres": ".",
+      "choix": [
+        "Franséisch",
+        "Fransous",
+        "Frankräich",
+        "Italienesch"
+      ]
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "Sofie parle flamand.",
+      "avant": "D'Sofie schwätzt",
+      "trou": "Flammännesch",
+      "apres": ".",
+      "choix": [
+        "Flammännesch",
+        "Belsch",
+        "Engländer",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "Hans parle allemand.",
+      "avant": "Den Hans schwätzt",
+      "trou": "Däitsch",
+      "apres": ".",
+      "choix": [
+        "Däitsch",
+        "Däitschen",
+        "Däitschland",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "fr": "Yuki parle japonais.",
+      "avant": "D'Yuki schwätzt",
+      "trou": "Japanesch",
+      "apres": ".",
+      "choix": [
+        "Japanesch",
+        "Japanerin",
+        "Japan",
+        "Koreanesch"
+      ]
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "fr": "Min-Jun parle coréen.",
+      "avant": "De Min-Jun schwätzt",
+      "trou": "Koreanesch",
+      "apres": ".",
+      "choix": [
+        "Koreanesch",
+        "Nordkoreaner",
+        "Korea",
+        "Japanesch"
+      ]
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "fr": "Wilhem parle néerlandais.",
+      "avant": "De Wilhem schwätzt",
+      "trou": "Hollännesch",
+      "apres": ".",
+      "choix": [
+        "Hollännesch",
+        "Hollänner",
+        "Holland",
+        "Flammännesch"
+      ]
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "fr": "Li Na parle chinois.",
+      "avant": "D'Li Na schwätzt",
+      "trou": "Chineesesch",
+      "apres": ".",
+      "choix": [
+        "Chineesesch",
+        "Chineesin",
+        "China",
+        "Japanesch"
+      ]
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "Greta parle suédois.",
+      "avant": "D'Greta schwätzt",
+      "trou": "Schweedesch",
+      "apres": ".",
+      "choix": [
+        "Schweedesch",
+        "Schweedin",
+        "Schweden",
+        "Hollännesch"
+      ]
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "Nikos parle grec.",
+      "avant": "De Nikos schwätzt",
+      "trou": "Griichesch",
+      "apres": ".",
+      "choix": [
+        "Griichesch",
+        "Griich",
+        "Griicheland",
+        "Italienesch"
+      ]
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "fr": "Anna parle polonais.",
+      "avant": "D'Anna schwätzt",
+      "trou": "Polnesch",
+      "apres": ".",
+      "choix": [
+        "Polnesch",
+        "Polin",
+        "Polen",
+        "Russesch"
+      ],
+      "plus": true
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "Ivan parle russe.",
+      "avant": "Den Ivan schwätzt",
+      "trou": "Russesch",
+      "apres": ".",
+      "choix": [
+        "Russesch",
+        "Russ",
+        "Russland",
+        "Polnesch"
+      ],
+      "plus": true
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "Je parle un peu luxembourgeois.",
+      "avant": "Ech schwätzen",
+      "trou": "e bësse",
+      "apres": "Lëtzebuergesch.",
+      "choix": [
+        "e bësse",
+        "net",
+        "ganz",
+        "kee"
+      ],
+      "note": "Un peu : e bësse, placé avant la langue."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "Il ne parle pas allemand.",
+      "avant": "Hien schwätzt",
+      "trou": "net",
+      "apres": "Däitsch.",
+      "choix": [
+        "net",
+        "kee",
+        "keng",
+        "keen"
+      ],
+      "note": "Devant une langue : net."
+    }
+  ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "Portugais (langue)",
-      "lu": "Portugisesch"
+      "lu": "Portugisesch",
+      "plus": true
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "Espagnol (langue)",
-      "lu": "Spuenesch"
+      "lu": "Spuenesch",
+      "plus": true
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "Anglais (langue)",
-      "lu": "Englesch"
+      "lu": "Englesch",
+      "plus": true
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "Italien (langue)",
-      "lu": "Italienesch"
+      "lu": "Italienesch",
+      "plus": true
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "Luxembourgeois (langue)",
-      "lu": "Lëtzebuergesch"
+      "lu": "Lëtzebuergesch",
+      "plus": true
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "Français (langue)",
-      "lu": "Franséisch"
+      "lu": "Franséisch",
+      "plus": true
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "Flamand (langue)",
-      "lu": "Flammännesch"
+      "lu": "Flammännesch",
+      "plus": true
     },
     {
+      "id": 2008,
+      "unite": 1,
       "fr": "Allemand (langue)",
-      "lu": "Däitsch"
+      "lu": "Däitsch",
+      "plus": true
     },
     {
+      "id": 2009,
+      "unite": 1,
       "fr": "Japonais (langue)",
-      "lu": "Japanesch"
+      "lu": "Japanesch",
+      "plus": true
     },
     {
+      "id": 2010,
+      "unite": 1,
       "fr": "Coréen (langue)",
-      "lu": "Koreanesch"
+      "lu": "Koreanesch",
+      "plus": true
     },
     {
+      "id": 2011,
+      "unite": 1,
       "fr": "Néerlandais (langue)",
-      "lu": "Hollännesch"
+      "lu": "Hollännesch",
+      "plus": true
     },
     {
+      "id": 2012,
+      "unite": 1,
       "fr": "Chinois (langue)",
-      "lu": "Chineesesch"
+      "lu": "Chineesesch",
+      "plus": true
     },
     {
+      "id": 2013,
+      "unite": 1,
       "fr": "Suédois (langue)",
-      "lu": "Schweedesch"
+      "lu": "Schweedesch",
+      "plus": true
     },
     {
+      "id": 2014,
+      "unite": 1,
       "fr": "parler",
-      "lu": "schwätzen"
+      "lu": "schwätzen",
+      "plus": true
     },
     {
+      "id": 2015,
+      "unite": 1,
       "fr": "Grec (langue)",
-      "lu": "Griichesch"
+      "lu": "Griichesch",
+      "plus": true
     },
     {
+      "id": 2016,
+      "unite": 1,
       "fr": "Polonais (langue)",
-      "lu": "Polnesch"
+      "lu": "Polnesch",
+      "plus": true
     },
     {
+      "id": 2017,
+      "unite": 1,
       "fr": "Russe (langue)",
-      "lu": "Russesch"
+      "lu": "Russesch",
+      "plus": true
     },
     {
+      "id": 2018,
+      "unite": 1,
       "fr": "Ronaldo parle portugais.",
       "lu": "De Ronaldo schwätzt Portugisesch."
     },
     {
+      "id": 2019,
+      "unite": 1,
       "fr": "Messi parle espagnol.",
       "lu": "De Messi schwätzt Spuenesch."
     },
     {
+      "id": 2020,
+      "unite": 1,
       "fr": "Angela Merkel parle allemand.",
       "lu": "D'Angela Merkel schwätzt Däitsch."
     },
     {
+      "id": 2021,
+      "unite": 1,
       "fr": "Je parle luxembourgeois.",
       "lu": "Ech schwätzen Lëtzebuergesch."
     },
     {
+      "id": 2022,
+      "unite": 1,
       "fr": "Yoko parle japonais.",
       "lu": "D'Yoko schwätzt Japanesch."
     },
     {
+      "id": 2023,
+      "unite": 1,
       "fr": "BTS parle coréen.",
-      "lu": "D'BTS schwätzt Koreanesch."
+      "lu": "D'BTS schwätzt Koreanesch.",
+      "plus": true
     },
     {
+      "id": 2024,
+      "unite": 1,
       "fr": "Jackie Chan parle chinois.",
       "lu": "De Jackie Chan schwätzt Chineesesch."
     },
     {
+      "id": 2025,
+      "unite": 1,
       "fr": "Greta parle suédois.",
-      "lu": "D'Greta schwätzt Schweedesch."
+      "lu": "D'Greta schwätzt Schweedesch.",
+      "plus": true
     },
     {
+      "id": 2026,
+      "unite": 2,
       "fr": "Il parle anglais, pas français.",
       "lu": "Hien schwätzt Englesch, net Franséisch."
     },
     {
+      "id": 2027,
+      "unite": 2,
       "fr": "Buffon ne parle pas japonais.",
       "lu": "De Buffon schwätzt net Japanesch."
     },
     {
+      "id": 2028,
+      "unite": 2,
       "fr": "Elle parle flamand.",
-      "lu": "Si schwätzt Flammännesch."
+      "lu": "Si schwätzt Flammännesch.",
+      "plus": true
     },
     {
+      "id": 2029,
+      "unite": 2,
       "fr": "Wilhem parle néerlandais.",
-      "lu": "De Wilhem schwätzt Hollännesch."
+      "lu": "De Wilhem schwätzt Hollännesch.",
+      "plus": true
     },
     {
+      "id": 2030,
+      "unite": 2,
       "fr": "Quelle langue parles-tu ?",
       "lu": "Wat fir eng Sprooch schwätzt du?"
     },
     {
+      "id": 2031,
+      "unite": 2,
       "fr": "Il parle deux langues.",
       "lu": "Hien schwätzt zwou Sproochen."
     },
     {
+      "id": 2032,
+      "unite": 2,
       "fr": "Je parle français et luxembourgeois.",
-      "lu": "Ech schwätzen Franséisch an Lëtzebuergesch."
+      "lu": "Ech schwätzen Franséisch an Lëtzebuergesch.",
+      "plus": true
     },
     {
+      "id": 2033,
+      "unite": 2,
       "fr": "Elle ne parle pas chinois.",
       "lu": "Si schwätzt net Chineesesch."
     },
     {
+      "id": 2034,
+      "unite": 2,
       "fr": "Quelle langue parlez-vous ?",
       "lu": "Wat fir eng Sprooch schwätzt Dir?"
     },
     {
+      "id": 2035,
+      "unite": 2,
       "fr": "Je parle français, anglais et un peu luxembourgeois.",
       "lu": "Ech schwätzen Franséisch, Englesch an e bësse Lëtzebuergesch."
     },
     {
+      "id": 2036,
+      "unite": 2,
       "fr": "Je parle portugais et anglais.",
-      "lu": "Ech schwätzen Portugisesch an Englesch."
+      "lu": "Ech schwätzen Portugisesch an Englesch.",
+      "plus": true
     },
     {
+      "id": 2037,
+      "unite": 2,
       "fr": "Elle parle portugais, français et luxembourgeois.",
-      "lu": "Si schwätzt Portugisesch, Franséisch a Lëtzebuergesch."
+      "lu": "Si schwätzt Portugisesch, Franséisch a Lëtzebuergesch.",
+      "plus": true
     },
     {
+      "id": 2038,
+      "unite": 2,
       "fr": "Quelle langue parle Ronaldo ?",
-      "lu": "Wat fir eng Sprooch schwätzt de Ronaldo?"
+      "lu": "Wat fir eng Sprooch schwätzt de Ronaldo?",
+      "plus": true
     },
     {
+      "id": 2039,
+      "unite": 2,
       "fr": "Quelles langues parle Ronaldo ?",
-      "lu": "Wat fir Sprooche schwätzt de Ronaldo?"
+      "lu": "Wat fir Sprooche schwätzt de Ronaldo?",
+      "plus": true
     },
     {
+      "id": 2040,
+      "unite": 2,
       "fr": "Oui, il parle portugais.",
-      "lu": "Jo, hien schwätzt Portugisesch."
+      "lu": "Jo, hien schwätzt Portugisesch.",
+      "plus": true
     },
     {
+      "id": 2041,
+      "unite": 2,
       "fr": "Non, il ne parle pas allemand.",
       "lu": "Nee, hien schwätzt net Däitsch."
     },
     {
+      "id": 2042,
+      "unite": 2,
       "fr": "Je parle allemand.",
-      "lu": "Ech schwätzen Däitsch."
+      "lu": "Ech schwätzen Däitsch.",
+      "plus": true
     },
     {
+      "id": 2043,
+      "unite": 2,
       "fr": "Je parle anglais.",
-      "lu": "Ech schwätzen Englesch."
+      "lu": "Ech schwätzen Englesch.",
+      "plus": true
     },
     {
+      "id": 2044,
+      "unite": 2,
       "fr": "Je parle espagnol.",
-      "lu": "Ech schwätzen Spuenesch."
+      "lu": "Ech schwätzen Spuenesch.",
+      "plus": true
     },
     {
+      "id": 2045,
+      "unite": 2,
       "fr": "Je parle portugais.",
-      "lu": "Ech schwätzen Portugisesch."
+      "lu": "Ech schwätzen Portugisesch.",
+      "plus": true
     }
   ],
-  "cours":[
+  "cours": [
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Unité 1 · Dire les langues qu'on parle",
+      "lignes": [
+        "Une langue reste invariable. Avec « je », on dit <b>Ech schwätzen</b> ; avec « il / elle », <b>Hien / Si schwätzt</b>.",
+        "Ech schwätzen <b>Franséisch</b> an <b>Lëtzebuergesch</b>."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Unité 2 · Demander et répondre non",
+      "lignes": [
+        "Question : <b>Wat fir eng Sprooch schwätzt du?</b> · Négation : <b>schwätzt net</b> + langue.",
+        "Ech schwätzen <b>e bësse</b> Lëtzebuergesch · Hien schwätzt <b>net</b> Däitsch."
+      ],
+      "unite": 2
+    },
     {
       "type": "texte",
-      "contenu": "Le nom d'une langue est <b>invariable</b> : il ne change jamais selon le genre ou la personne. <b>Ech schwätzen Lëtzebuergesch.</b>"
+      "contenu": "Le nom d'une langue est <b>invariable</b> : il ne change jamais selon le genre ou la personne. <b>Ech schwätzen Lëtzebuergesch.</b>",
+      "unite": 0
     },
     {
       "type": "vocab",
@@ -654,7 +1096,8 @@
           "Koreanesch",
           "coréen"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -665,7 +1108,8 @@
         "<b>Fransous</b> (un Français) ≠ <b>Franséisch</b> (le français).",
         "<b>Spuenier</b> (un Espagnol) ≠ <b>Spuenesch</b> (l'espagnol).",
         "C'est exactement ce que testent les pièges du quiz : repère bien la terminaison <b>-esch</b> des langues."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -699,7 +1143,8 @@
           "si (ils/elles)",
           "schwätzen"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -708,7 +1153,8 @@
       "lignes": [
         "Affirmation : <b>Hien schwätzt Japanesch.</b>",
         "Négation : on ajoute <b>net</b> avant la langue : <b>Hien schwätzt net Japanesch.</b>"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -718,7 +1164,8 @@
         "<b>Wat fir eng Sprooch schwätzt du?</b> = Quelle langue parles-tu ?",
         "<b>Wat fir eng Sprooch schwätzt Dir?</b> = Quelle langue parlez-vous ? (formel)",
         "Au pluriel (plusieurs langues) : <b>Wat fir Sprooche schwätzt hien?</b> = Quelles langues parle-t-il ?"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -727,7 +1174,8 @@
       "lignes": [
         "On relie les langues avec <b>an</b> (et) : <b>Ech schwätzen Franséisch an Lëtzebuergesch.</b>",
         "Avec une liste de trois langues ou plus, on utilise des virgules puis <b>a</b> avant la dernière : <b>Portugisesch, Franséisch a Lëtzebuergesch.</b>"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -753,7 +1201,8 @@
           "Si schwätzt net Chineesesch.",
           "Elle ne parle pas chinois."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
