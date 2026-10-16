@@ -34,19 +34,6 @@
       "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
     },
     {
-      "unite": 1,
-      "qui": "Marie",
-      "lu": "An däi Frënd?",
-      "fr": "Et ton ami ?"
-    },
-    {
-      "unite": 1,
-      "qui": "toi",
-      "lu": "Hien ass gescheet.",
-      "fr": "Il est divorcé.",
-      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
-    },
-    {
       "unite": 2,
       "qui": "Marie",
       "lu": "Hues du Kanner?",
