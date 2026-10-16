@@ -34,19 +34,6 @@
       "aide": "Pour un bureau : <b>an engem</b>."
     },
     {
-      "unite": 1,
-      "qui": "Marie",
-      "lu": "An deng Kollegin?",
-      "fr": "Et ta collègue ?"
-    },
-    {
-      "unite": 1,
-      "qui": "toi",
-      "lu": "Si schafft an enger Klinik.",
-      "fr": "Elle travaille dans une clinique.",
-      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
-    },
-    {
       "unite": 2,
       "qui": "Marie",
       "lu": "Wou schafft d'Bankerin?",
@@ -57,19 +44,6 @@
       "qui": "toi",
       "lu": "D'Bankerin schafft op enger Bank.",
       "fr": "La banquière travaille à la banque.",
-      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
-    },
-    {
-      "unite": 2,
-      "qui": "Marie",
-      "lu": "A wou schafft de Bréifdréier?",
-      "fr": "Et où travaille le facteur ?"
-    },
-    {
-      "unite": 2,
-      "qui": "toi",
-      "lu": "De Bréifdréier schafft op enger Post.",
-      "fr": "Le facteur travaille à la poste.",
       "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
     },
     {
