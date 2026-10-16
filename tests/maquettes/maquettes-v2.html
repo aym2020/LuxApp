@@ -1,0 +1,993 @@
+<title>Maquettes LuxApp v2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* Maquettes LuxApp v2 — specs S12 + S13.
+   Mise en page : une colonne d'app (max 430 px), barre d'onglets des maquettes en haut,
+   bande « Démo » sous chaque écran pour déclencher les animations.
+   Thème : sombre uniquement, comme l'app (choix délibéré). */
+:root {
+  color-scheme: dark;
+  /* Fonds : 3 niveaux */
+  --fond: #0f0e0c;
+  --surface-1: #1b1a17;
+  --surface-2: #262420;
+  --bord-1: #2c2a26;
+  --bord-2: #3f3b32;
+  /* Texte */
+  --texte: #f6f1e9;
+  --gris: #aaa090;
+  --gris-fort: #c8bda8;
+  /* Statuts */
+  --or: #f5cf4d;        /* action, en cours, acquis */
+  --or-fond: #2b2514;
+  --vert: #54e0ad;      /* terminé, bonne réponse */
+  --vert-fond: #12261f;
+  --vert-plein: #1f7a5a;
+  --turquoise: #4fd1c5; /* révision, progression */
+  --turq-fond: #10282a;
+  --bleu: #7db4f5;      /* examens, information */
+  --bleu-fond: #172235;
+  --rouge: #ef7a73;     /* erreur */
+  --rouge-fond: #2e1716;
+  --a-venir: #6d665b;   /* à venir */
+  /* Typo */
+  --f-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --fs-micro: .75rem; --fs-sec: .875rem; --fs-corps: 1rem;
+  --fs-titre: 1.375rem; --fs-question: clamp(1.5rem, 6.5vw, 1.75rem); --fs-grand: clamp(2rem, 9vw, 2.5rem);
+  /* Espaces, rayons */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
+  --r-carte: 20px; --r-tuile: 18px; --r-bouton: 14px;
+  --toucher: 44px;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--fond); color: var(--texte); }
+body {
+  margin: 0; font-family: var(--f-ui); font-size: var(--fs-corps); line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--or); outline-offset: 2px; }
+svg.ic { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── Barre des maquettes (hors app) ── */
+.maq-barre {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+  background: color-mix(in srgb, var(--fond) 92%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--bord-1);
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 31; background: var(--fond); }
+.maq-barre-in {
+  max-width: 430px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 10px;
+}
+.maq-onglets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: var(--surface-1); border: 1px solid var(--bord-1); border-radius: 12px; padding: 4px; }
+.maq-onglets button {
+  min-height: 36px; border: 0; background: transparent; border-radius: 9px;
+  font-size: var(--fs-micro); font-weight: 600; color: var(--gris); padding: 0 2px;
+}
+.maq-onglets button[aria-selected="true"] { background: var(--surface-2); color: var(--texte); box-shadow: inset 0 0 0 1px var(--bord-2); }
+
+/* ── Colonne de l'app ── */
+.app {
+  max-width: 430px; margin: 0 auto; position: relative;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 0;
+}
+.ecran { display: flex; flex-direction: column; gap: var(--sp-5); min-height: 70vh; }
+.ecran[hidden] { display: none !important; }
+
+/* Intitulés en petites capitales */
+.etiquette { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.etiquette.or { color: var(--or); }
+
+/* ── Accueil : en-tête ── */
+.ent { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-3); }
+.ent h1 { margin: 0; font-family: var(--f-serif); font-weight: 400; font-size: 2.6rem; line-height: 1; letter-spacing: -.01em; }
+.ent .sous { margin-top: 6px; color: var(--gris); font-size: var(--fs-sec); }
+.ent-droite { display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-2); }
+.serie {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px;
+  border-radius: 999px; background: #2e1d0f; color: #ffb35e; font-weight: 700; font-size: var(--fs-sec);
+  font-variant-numeric: tabular-nums;
+}
+.serie .ic { width: 16px; height: 16px; }
+.puce-niveau {
+  display: inline-flex; align-items: center; gap: 4px; min-height: var(--toucher); padding: 0 12px 0 14px;
+  border-radius: 999px; border: 1.5px solid var(--or); background: transparent; color: var(--or);
+  font-weight: 700; font-size: var(--fs-sec);
+}
+.puce-niveau .ic { width: 16px; height: 16px; }
+.point-synchro { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-micro); color: var(--gris); }
+.point-synchro i { width: 7px; height: 7px; border-radius: 50%; background: var(--vert); display: inline-block; }
+
+/* ── Grande carte ── */
+.carte-p {
+  background: var(--surface-2); border: 1px solid var(--bord-2); border-radius: var(--r-carte);
+  padding: var(--sp-5) 20px; display: flex; flex-direction: column; gap: var(--sp-4);
+}
+.ligne-entre { display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-3); }
+.compte { font-weight: 700; font-size: var(--fs-sec); font-variant-numeric: tabular-nums; }
+.compte b { font-size: var(--fs-titre); }
+.barre { height: 8px; border-radius: 999px; background: #3a362e; overflow: hidden; }
+.barre > i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--turquoise), #7be3c9); transform-origin: left; }
+.sep { height: 1px; background: var(--bord-2); }
+.reprendre-tete { display: flex; align-items: center; gap: 8px; color: var(--or); }
+.reprendre-tete .ic { width: 18px; height: 18px; }
+.lecon-titre { margin: 0; font-size: 1.6rem; line-height: 1.15; font-weight: 800; letter-spacing: -.01em; text-wrap: balance; }
+.lecon-lux { font-family: var(--f-serif); font-style: italic; color: var(--gris-fort); font-size: 1.15rem; }
+.etape-cours { display: flex; flex-direction: column; gap: 6px; }
+.etape { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sec); color: var(--gris-fort); }
+.etape .pt { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--or); flex: none; }
+.etape.mission .pt { border-color: var(--bleu); border-radius: 3px; }
+.etape b { color: var(--texte); font-weight: 600; }
+
+.btn-jaune {
+  min-height: 56px; width: 100%; border: 0; border-radius: var(--r-bouton);
+  background: var(--or); color: #1a1505; font-weight: 800; font-size: 1.05rem;
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 0 18px;
+  box-shadow: 0 6px 20px -8px rgba(245,207,77,.55);
+  transition: transform .1s ease, filter .1s ease;
+}
+.btn-jaune:active, .tuile:active, .btn-contour:active, .carte-lecon:active { transform: scale(.97); }
+.btn-jaune .fleche { margin-left: auto; }
+.btn-jaune .ic { width: 22px; height: 22px; }
+
+/* ── Tuiles ── */
+.tuiles { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.tuile {
+  text-align: left; border-radius: var(--r-tuile); padding: 16px; min-height: 128px;
+  display: flex; flex-direction: column; gap: 6px; transition: transform .1s ease;
+  border: 1px solid; min-width: 0;
+}
+.tuile .ic { width: 24px; height: 24px; margin-bottom: 6px; }
+.tuile h3 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--texte); }
+.tuile p { margin: 0; font-size: var(--fs-sec); }
+.tuile.rev { background: var(--turq-fond); border-color: #2b6b68; color: var(--turquoise); }
+.tuile.rev p { color: #9fe3dc; }
+.tuile.exa { background: var(--bleu-fond); border-color: #34507d; color: var(--bleu); }
+.tuile.exa p { color: #b7d3fb; }
+.mini-barre { margin-top: auto; height: 5px; border-radius: 999px; background: #1d4a49; overflow: hidden; }
+.mini-barre > i { display: block; height: 100%; background: var(--turquoise); border-radius: inherit; transform-origin: left; }
+
+/* ── Barre du bas ── */
+.nav-bas {
+  position: sticky; bottom: 0; z-index: 20; margin-top: var(--sp-5);
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  background: var(--surface-1); border-top: 1px solid var(--bord-1);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
+}
+.nav-bas button {
+  background: transparent; border: 0; min-height: 52px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 3px; color: var(--gris); font-size: var(--fs-micro); font-weight: 600;
+}
+.nav-bas button .ic { transition: transform .15s ease; }
+.nav-bas button[aria-current="page"] { color: var(--or); }
+.nav-bas button[aria-current="page"] .ic { transform: scale(1.12); }
+
+/* ── Bande démo (hors app) ── */
+.demo {
+  border: 1.5px dashed #4a453b; border-radius: 14px; padding: 12px;
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+}
+.demo span { width: 100%; font-size: var(--fs-micro); color: var(--gris); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.demo button {
+  min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--bord-2);
+  background: var(--surface-1); font-size: var(--fs-sec); font-weight: 600;
+}
+
+/* ── Panneau de choix du niveau ── */
+.voile { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.55); animation: fondu .25s ease both; }
+.panneau {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 51; margin: 0 auto; max-width: 430px;
+  background: var(--surface-2); border: 1px solid var(--bord-2); border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+  padding: 10px max(20px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
+  animation: monte .25s cubic-bezier(.2,.8,.2,1) both;
+}
+.panneau .poignee { width: 40px; height: 4px; border-radius: 4px; background: var(--bord-2); margin: 0 auto 16px; }
+.panneau h2 { margin: 0 0 4px; font-size: var(--fs-titre); }
+.panneau p { margin: 0 0 16px; color: var(--gris); font-size: var(--fs-sec); }
+.choix-niv {
+  width: 100%; display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 16px; margin-bottom: 8px;
+  border-radius: 16px; border: 1.5px solid var(--bord-2); background: var(--surface-1); text-align: left;
+}
+.choix-niv .nom { font-weight: 800; font-size: 1.1rem; width: 52px; }
+.choix-niv .det { flex: 1; font-size: var(--fs-sec); color: var(--gris-fort); }
+.choix-niv[aria-pressed="true"] { border-color: var(--or); background: var(--or-fond); }
+.choix-niv[aria-pressed="true"] .nom { color: var(--or); }
+
+/* ── Chemin ── */
+.chemin-tete h1 { margin: 6px 0 0; font-size: 2rem; font-weight: 800; letter-spacing: -.02em; }
+.resume { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.pastille {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px; border-radius: 999px;
+  font-size: var(--fs-sec); font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.pastille i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.pastille.v { background: var(--vert-fond); color: var(--vert); } .pastille.v i { background: var(--vert); }
+.pastille.o { background: var(--or-fond); color: var(--or); } .pastille.o i { background: var(--or); }
+
+.chemin { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.pas { display: grid; grid-template-columns: 44px 1fr; column-gap: 12px; position: relative; padding-bottom: 14px; }
+.pas::before { /* trait vers le rond suivant */
+  content: ""; position: absolute; left: 20.5px; top: 46px; bottom: -2px; width: 3px; border-radius: 3px; background: #37332b;
+}
+.pas:last-child::before { display: none; }
+.pas.fait::before { background: var(--vert-plein); }
+.pas.trait-anime::before { background: var(--vert-plein); transform-origin: top; animation: remplit-v .6s ease both; }
+.rond {
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; position: relative; z-index: 1;
+  background: #2a2721; color: var(--gris); border: 2px solid #3d392f;
+}
+.rond .ic { width: 20px; height: 20px; }
+.pas.fait .rond { background: var(--vert-plein); border-color: var(--vert-plein); color: #eafff6; }
+.pas.encours .rond { background: var(--or); border-color: var(--or); color: #1a1505; }
+.pas.exam .rond { background: var(--bleu-fond); border-color: #34507d; color: var(--bleu); }
+.pas.encours .rond::after { /* halo qui pulse 3 fois */
+  content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid var(--or);
+  animation: halo 2s ease-out 3;
+}
+.carte-lecon {
+  border-radius: 18px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--bord-1);
+  text-align: left; width: 100%; min-width: 0; display: flex; flex-direction: column; gap: 4px;
+  transition: transform .1s ease;
+  background-image: linear-gradient(135deg, color-mix(in srgb, var(--teinte) 13%, transparent), transparent 60%);
+}
+.carte-lecon .haut { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.carte-lecon .num { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gris); }
+.carte-lecon .num b { color: var(--teinte); }
+.carte-lecon h3 { margin: 0; font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
+.carte-lecon .lux { font-family: var(--f-serif); font-style: italic; color: var(--gris); font-size: 1rem; }
+.pas.fait .carte-lecon .num .st { color: var(--vert); }
+.etoiles { display: inline-flex; gap: 2px; color: var(--or); }
+.etoiles svg { width: 14px; height: 14px; fill: currentColor; }
+.etoiles .vide { color: #4a453b; }
+.sans-faute { font-size: var(--fs-micro); font-weight: 800; color: var(--or); letter-spacing: .06em; }
+.pas.encours .carte-lecon { background: var(--or-fond); border-color: #6b5a22; padding: 16px; gap: 6px; }
+.pas.encours .carte-lecon .num .st { color: var(--or); }
+.pas.encours h3 { font-size: 1.25rem; }
+.unites { list-style: none; margin: 10px 0 12px; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.unites li { display: flex; align-items: center; gap: 12px; min-height: 40px; font-size: var(--fs-sec); color: var(--gris-fort); }
+.unites .etat { width: 24px; height: 24px; border-radius: 50%; flex: none; display: grid; place-items: center; background: #3a362e; }
+.unites .etat .ic { width: 14px; height: 14px; stroke-width: 3; }
+.unites li.ok .etat { background: var(--vert-plein); color: #eafff6; }
+.unites li.ok { color: var(--gris-fort); }
+.unites li.actuelle { color: var(--or); font-weight: 700; }
+.unites li.actuelle .etat { background: transparent; border: 2px solid var(--or); }
+.unites li.actuelle .etat::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--or); }
+.unites li.mission .etat { border-radius: 7px; background: var(--bleu-fond); color: var(--bleu); }
+.unites li.mission .etat .ic { stroke-width: 2; }
+.unites li.mission.ok .etat { background: var(--vert-plein); }
+.unites .tag { margin-left: auto; font-size: var(--fs-micro); color: var(--gris); font-weight: 600; }
+.pas.exam .carte-lecon { background: var(--bleu-fond); border-color: #34507d; }
+.pas.exam .num .st { color: var(--bleu); }
+.lien-bleu { color: var(--bleu); font-weight: 700; font-size: var(--fs-sec); display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; }
+.lien-bleu .ic { width: 16px; height: 16px; }
+
+/* ── Bienvenue ── */
+.bienv { display: flex; flex-direction: column; gap: var(--sp-5); padding-top: var(--sp-5); }
+.bienv h1 { margin: 0; font-family: var(--f-serif); font-weight: 400; font-size: 3.4rem; line-height: .95; }
+.bienv h1 em { color: var(--or); font-style: italic; }
+.bienv .accroche { margin: 0; font-size: 1.1rem; color: var(--gris-fort); max-width: 32ch; }
+.bienv .carte-p { gap: 18px; }
+.bienv .question { margin: 0; font-weight: 700; font-size: 1.05rem; }
+.choix-deux { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.choix-deux button {
+  min-height: 76px; border-radius: 16px; border: 1.5px solid var(--bord-2); background: var(--surface-1);
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; padding: 10px 14px; text-align: left;
+  transition: border-color .15s ease, background-color .15s ease, transform .1s ease;
+}
+.choix-deux button:active { transform: scale(.97); }
+.choix-deux b { font-size: 1.25rem; }
+.choix-deux small { color: var(--gris); font-size: var(--fs-micro); }
+.choix-deux button[aria-pressed="true"] { border-color: var(--or); background: var(--or-fond); }
+.choix-deux button[aria-pressed="true"] b { color: var(--or); }
+.bienv .note { margin: 0; color: var(--gris); font-size: var(--fs-sec); }
+.trois-pas { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.trois-pas li { display: flex; gap: 12px; align-items: flex-start; font-size: var(--fs-sec); color: var(--gris-fort); }
+.trois-pas .pastille-ic { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.trois-pas b { color: var(--texte); display: block; font-size: var(--fs-corps); }
+
+/* ── Exercice ── */
+.ex-tete { display: flex; align-items: center; gap: 10px; }
+.ex-tete button.icone {
+  width: var(--toucher); height: var(--toucher); border-radius: 14px; border: 1px solid var(--bord-1);
+  background: var(--surface-1); display: grid; place-items: center; color: var(--gris-fort);
+}
+.ex-tete .barre { flex: 1; height: 10px; }
+.ex-tete .barre > i { transition: width .3s ease; }
+.ex-tete .n { font-size: var(--fs-micro); color: var(--gris); font-weight: 700; font-variant-numeric: tabular-nums; }
+.ex-unite { display: flex; align-items: center; gap: 8px; font-size: var(--fs-sec); color: var(--gris); }
+.ex-unite b { color: #7ab8e8; font-weight: 700; }
+.ex-carte { display: flex; flex-direction: column; gap: 18px; }
+.ex-consigne { margin: 0; font-size: var(--fs-sec); color: var(--gris); }
+.ex-question { margin: 0; font-family: var(--f-serif); font-size: 2.1rem; line-height: 1.1; }
+.ex-champ { position: relative; }
+.ex-champ input {
+  width: 100%; min-height: 58px; border-radius: 14px; border: 2px solid var(--bord-2); background: var(--fond);
+  color: var(--texte); font: inherit; font-size: 1.1rem; padding: 0 52px 0 16px;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.ex-champ input::placeholder { color: #776f62; }
+.ex-champ.juste input { border-color: var(--vert); background: var(--vert-fond); }
+.ex-champ.faux input { border-color: var(--rouge); background: var(--rouge-fond); }
+.ex-champ .coche { position: absolute; right: 14px; top: 50%; width: 28px; height: 28px; margin-top: -14px; color: var(--vert); display: none; }
+.ex-champ.juste .coche { display: block; }
+.coche path { stroke-dasharray: 30; stroke-dashoffset: 0; }
+.ex-champ.juste .coche path { animation: dessine .3s ease-out both; }
+.ex-champ.juste { animation: rebond .3s ease-out; }
+.ex-champ.secoue { animation: secousse .3s ease; }
+.retour { border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; animation: glisse .2s ease-out both; font-size: var(--fs-sec); }
+.retour.bon { background: var(--vert-fond); border: 1px solid #23604a; }
+.retour.bon .t { color: var(--vert); }
+.retour.mauvais { background: var(--rouge-fond); border: 1px solid #6a2f2c; }
+.retour.mauvais .t { color: var(--rouge); }
+.retour .t { font-weight: 800; font-size: var(--fs-corps); }
+.retour .diag { display: inline-flex; align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #43201e; color: #ffb4ae; font-weight: 700; }
+.retour .note { color: var(--gris-fort); }
+.retour .note b { color: var(--texte); }
+.retour .solution { font-family: var(--f-serif); font-size: 1.35rem; color: var(--texte); }
+.btn-contour {
+  min-height: var(--toucher); border-radius: var(--r-bouton); border: 1.5px solid var(--bord-2); background: transparent;
+  font-weight: 700; padding: 0 16px; transition: transform .1s ease;
+}
+
+/* Fin d'unité */
+.fin { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 24px; }
+.fin .etiquette { color: var(--vert); }
+.fin h2 { margin: 0; font-family: var(--f-serif); font-weight: 400; font-size: 2.6rem; line-height: 1; }
+.score { font-size: 4.5rem; font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1; }
+.score small { font-size: 1.8rem; color: var(--gris); font-weight: 700; }
+.grandes-etoiles { display: flex; gap: 10px; }
+.grandes-etoiles svg { width: 46px; height: 46px; fill: #3a362e; }
+.grandes-etoiles svg.on { fill: var(--or); animation: pop .4s cubic-bezier(.3,1.6,.5,1) both; }
+.fin .detail { color: var(--gris-fort); font-size: var(--fs-sec); margin: 0; }
+.fin .actions { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.fin .mission-gain { width: 100%; text-align: left; background: var(--bleu-fond); border: 1px solid #34507d; border-radius: 16px; padding: 12px 14px; font-size: var(--fs-sec); color: #b7d3fb; display: flex; gap: 10px; align-items: center; }
+.fin .mission-gain .ic { color: var(--bleu); }
+
+/* Confettis */
+.confettis { position: fixed; inset: 0; pointer-events: none; z-index: 60; overflow: hidden; }
+.confettis i { position: absolute; top: -12px; width: 8px; height: 12px; border-radius: 2px; animation: tombe 1.2s cubic-bezier(.3,.6,.4,1) forwards; }
+
+/* Message flottant */
+.toast {
+  position: fixed; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 70;
+  background: var(--surface-2); border: 1px solid var(--bord-2); padding: 10px 16px; border-radius: 12px;
+  font-size: var(--fs-sec); animation: glisse .2s ease-out both; max-width: calc(100% - 32px);
+}
+
+/* Animations du catalogue S12 */
+.entre { animation: entre .2s ease-out both; }
+.entre-2 { animation: entre .25s ease-out .06s both; }
+.entre-3 { animation: entre .25s ease-out .12s both; }
+.entre-4 { animation: entre .25s ease-out .18s both; }
+.remplit { animation: remplit .5s cubic-bezier(.2,.8,.2,1) .15s both; }
+.bulle-in { animation: entre .15s ease-out both; }
+.vient-de-finir .etat { animation: pop .4s cubic-bezier(.3,1.6,.5,1) both; }
+.vient-de-finir .etat .ic path { stroke-dasharray: 30; animation: dessine .35s ease-out .1s both; }
+.rond.vient-de-finir { animation: pop .45s cubic-bezier(.3,1.6,.5,1) both; }
+.deplie { animation: entre .3s ease-out both; }
+.serie.bump { animation: pop .4s cubic-bezier(.3,1.6,.5,1); }
+@keyframes entre { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes glisse { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes fondu { from { opacity: 0; } to { opacity: 1; } }
+@keyframes monte { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes remplit { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes remplit-v { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes halo { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+@keyframes dessine { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+@keyframes rebond { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
+@keyframes secousse { 0%,100% { transform: none; } 20% { transform: translateX(-8px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(3px); } }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes tombe { to { transform: translate(var(--dx), 105vh) rotate(var(--rot)); opacity: .9; } }
+
+/* Animations réduites : tout est coupé, l'état final s'affiche directement */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .confettis { display: none; }
+}
+</style>
+
+<!-- ================= Barre des maquettes ================= -->
+<div class="maq-barre">
+  <div class="maq-barre-in">
+    <div class="maq-onglets" role="tablist" aria-label="Écrans">
+      <button role="tab" id="t-accueil" data-ecran="accueil" aria-selected="true">Accueil</button>
+      <button role="tab" id="t-chemin" data-ecran="chemin" aria-selected="false">Chemin</button>
+      <button role="tab" id="t-bienvenue" data-ecran="bienvenue" aria-selected="false">Bienvenue</button>
+      <button role="tab" id="t-exercice" data-ecran="exercice" aria-selected="false">Exercice</button>
+    </div>
+  </div>
+</div>
+
+<main class="app">
+  <section class="ecran" id="ecran-accueil"></section>
+  <section class="ecran" id="ecran-chemin" hidden></section>
+  <section class="ecran" id="ecran-bienvenue" hidden></section>
+  <section class="ecran" id="ecran-exercice" hidden></section>
+
+  <nav class="nav-bas" id="nav-bas" aria-label="Navigation">
+    <button data-nav="accueil" aria-current="page"><svg class="ic" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Accueil</button>
+    <button data-nav="chemin"><svg class="ic" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>Chemin</button>
+    <button data-nav="reviser"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Réviser</button>
+    <button data-nav="plus"><svg class="ic" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>Plus</button>
+  </nav>
+</main>
+
+<script>
+// ─── Icônes (SVG au trait) ──────────────────────────────────────────────────
+const IC = {
+  livre: '<svg class="ic" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg>',
+  lecture: '<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></svg>',
+  fleche: '<svg class="ic fleche" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+  flecheP: '<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+  revision: '<svg class="ic" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>',
+  toque: '<svg class="ic" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>',
+  flamme: '<svg class="ic" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3.3.3 1.4 1.3 2.8 2.5 2.8z"/></svg>',
+  chevron: '<svg class="ic" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>',
+  coche: '<svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>',
+  maison: '<svg class="ic" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
+  croix: '<svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  bulle: '<svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  etoile: '<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>'
+};
+
+// ─── Données (vraies leçons ; progression d'exemple) ───────────────────────
+const LECONS = {
+  'A1.1': [
+    { id: 1, fr: 'Salutations et comment ça va', lu: 'Moien! …an Äddi!', c: '#e8a030', etoiles: 3 },
+    { id: 2, fr: 'Identifier des objets', lu: 'Objeten identifizéieren', c: '#5a8fd4', etoiles: 'sf' },
+    { id: 3, fr: 'Décrire des objets : les couleurs', lu: 'Objete beschreiwen', c: '#BA6BF2', etoiles: 2 },
+    { id: 4, fr: 'Les contraires', lu: 'De Konträr', c: '#d4845a', etoiles: 3 },
+    { id: 5, fr: 'Les nombres', lu: "D'Zuelen", c: '#a07ad4', etoiles: 2 },
+    { id: 6, fr: 'Le pluriel des objets', lu: 'De Plural vun den Objeten', c: '#a07ad4', etoiles: 3 },
+    { id: 7, fr: "Présenter des personnes : l'origine", lu: 'Persoune presentéieren', c: '#e85a8f', etoiles: 'sf' },
+    { id: 8, fr: 'Les nationalités', lu: "D'Nationalitéit", c: '#7ab8e8',
+      unites: ['Dire sa nationalité', 'Au féminin', 'Poser la question, répondre non'],
+      mission: 'La fête des voisins', repliques: 4 },
+    { id: 9, fr: 'Les langues', lu: 'Sproochen', c: '#60c08a',
+      unites: ['Les langues que je parle', 'Un peu, bien, couramment', 'Quelle langue tu parles ?'], mission: 'Au café des langues', repliques: 4 },
+    { id: 10, fr: "L'habitation : où j'habite", lu: 'Wunnen', c: '#5ad4a8' },
+    { id: 11, fr: 'Les métiers', lu: 'De Beruff', c: '#e8d447' },
+    { id: 12, fr: 'Les lieux de travail', lu: 'Aarbechtsplaz', c: '#c47ae8' },
+    { id: 13, fr: 'La situation familiale', lu: "D'Familljësituatioun", c: '#e85a5a' },
+    { id: 14, fr: "L'âge et la date de naissance", lu: 'Den Alter & De Gebuertsdatum', c: '#4ab8d4' },
+    { id: 15, fr: "Lire et dire l'heure", lu: "D'Auerzäit", c: '#f08c46' },
+    { id: 16, fr: 'Le déroulement de la journée', lu: 'Den Dagesoflaf', c: '#7ad4c8' },
+    { id: 17, fr: 'Prendre un rendez-vous', lu: 'E Rendez-vous maachen', c: '#c86fb0' }
+  ],
+  'A1.2': [
+    { id: 20, fr: 'Les prépositions de lieu', lu: "D'Wiesselprepositiounen", c: '#8fb04a',
+      unites: ['Wou ass de Ball ?', 'Mettre, poser, accrocher', 'Avec le datif'], mission: 'Ranger le salon', repliques: 4 },
+    { id: 21, fr: 'Les meubles et objets', lu: 'An der Wunneng', c: '#b5835a' },
+    { id: 22, fr: 'Les loisirs et le week-end', lu: 'An der Fräizäit', c: '#2e9e8f' },
+    { id: 23, fr: 'La famille et les possessifs', lu: 'Familljememberen a Possessiv', c: '#7c83d6' },
+    { id: 24, fr: 'Le passé composé', lu: "D'Vergaangenheet", c: '#b84f6e' },
+    { id: 25, fr: 'Faire ses courses au marché', lu: 'Um Maart', c: '#3f8f5a' },
+    { id: 26, fr: "Lire une offre d'emploi", lu: "D'Aarbechtsannonce", c: '#2f6f9f' }
+  ]
+};
+// État de la démo : niveau choisi, leçon en cours, étape en cours (0-2 unités, 3 mission).
+const etat = {
+  niveau: 'A1.1',
+  enCours: { 'A1.1': 7, 'A1.2': 0 },   // index de la leçon en cours dans le niveau
+  etape: { 'A1.1': 1, 'A1.2': 0 },     // 1 = unité 2
+  serie: 6,
+  revision: 7                          // questions faites sur 20
+};
+const ETAPES_PAR_LECON = 4;            // 3 unités + mission
+
+function reduit() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+
+function etoilesHtml(n) {
+  if (n === 'sf') return '<span class="sans-faute">SANS FAUTE</span>';
+  let html = '<span class="etoiles" aria-label="' + n + ' étoiles sur 3">';
+  for (let i = 1; i <= 3; i++) html += IC.etoile.replace('<svg', '<svg class="' + (i <= n ? '' : 'vide') + '"');
+  return html + '</span>';
+}
+
+function progressionNiveau(niv) {
+  const total = LECONS[niv].length * ETAPES_PAR_LECON;
+  const faites = etat.enCours[niv] * ETAPES_PAR_LECON + etat.etape[niv];
+  return { faites, total, pourcent: Math.round(faites / total * 100) };
+}
+
+// ─── Accueil ────────────────────────────────────────────────────────────────
+function renderAccueil() {
+  const niv = etat.niveau;
+  const lecon = LECONS[niv][etat.enCours[niv]];
+  const e = etat.etape[niv];
+  const prog = progressionNiveau(niv);
+  const enMission = e === 3;
+  const libelleEtape = enMission
+    ? '<div class="etape mission"><span class="pt"></span><span><b>Mission</b> · ' + lecon.mission + '</span></div>'
+    : '<div class="etape"><span class="pt"></span><span><b>Unité ' + (e + 1) + '</b> · ' + lecon.unites[e] + '</span></div>' +
+      '<div class="etape mission"><span class="pt"></span><span>Mission · ' + lecon.mission + ' · tu sais dire ' + e + ' réplique' + (e > 1 ? 's' : '') + ' sur ' + lecon.repliques + '</span></div>';
+  const bouton = enMission ? 'Jouer la mission' : (e === 0 ? 'Commencer · unité 1' : 'Continuer · unité ' + (e + 1));
+
+  document.getElementById('ecran-accueil').innerHTML = `
+    <header class="ent entre">
+      <div>
+        <h1>Moien !</h1>
+        <div class="sous">Prêt pour ta pause luxembourgeois ?</div>
+      </div>
+      <div class="ent-droite">
+        <span class="serie" id="serie">${IC.flamme}<span id="serie-n">${etat.serie}</span> jours</span>
+        <button class="puce-niveau" id="btn-niveau" aria-haspopup="dialog">${niv}${IC.chevron}</button>
+      </div>
+    </header>
+
+    <article class="carte-p entre-2">
+      <div class="ligne-entre">
+        <span class="etiquette or">Ton parcours · ${niv}</span>
+        <span class="compte"><b>${etat.enCours[niv]}</b> / ${LECONS[niv].length} leçons</span>
+      </div>
+      <div class="barre" role="progressbar" aria-valuenow="${prog.pourcent}" aria-valuemin="0" aria-valuemax="100" aria-label="Progression du niveau">
+        <i class="remplit" style="width:${Math.max(prog.pourcent, 2)}%"></i>
+      </div>
+      <div class="sep"></div>
+      <div class="reprendre-tete">${IC.livre}<span class="etiquette">${e === 0 ? 'Prochaine leçon' : 'Reprendre'}</span></div>
+      <div>
+        <h2 class="lecon-titre">Leçon ${lecon.id} · ${lecon.fr}</h2>
+        <div class="lecon-lux">${lecon.lu}</div>
+      </div>
+      <div class="etape-cours">${libelleEtape}</div>
+      <button class="btn-jaune" data-go="exercice">${IC.lecture}<span>${bouton}</span>${IC.fleche}</button>
+    </article>
+
+    <div class="tuiles entre-3">
+      <button class="tuile rev" data-toast="Ta révision reprend à la question ${etat.revision + 1}.">
+        ${IC.revision}
+        <h3>Réviser</h3>
+        <p>Séance du jour · ${etat.revision} / 20</p>
+        <div class="mini-barre"><i class="remplit" style="width:${etat.revision / 20 * 100}%"></i></div>
+      </button>
+      <button class="tuile exa" data-toast="Les examens ${niv} s'ouvrent ici, à tout moment.">
+        ${IC.toque}
+        <h3>Examens</h3>
+        <p>Entraîne-toi quand tu veux, même avant la fin</p>
+      </button>
+    </div>
+
+    <div class="point-synchro entre-4"><i></i>Synchronisé il y a 2 min</div>
+
+    <div class="demo">
+      <span>Démo des animations</span>
+      <button data-demo="rejouer-accueil">Rejouer l'ouverture</button>
+      <button data-demo="objectif">Objectif du jour atteint</button>
+    </div>`;
+}
+
+// ─── Choix du niveau (panneau) ─────────────────────────────────────────────
+function ouvrirNiveau() {
+  const voile = document.createElement('div');
+  voile.className = 'voile';
+  const panneau = document.createElement('div');
+  panneau.className = 'panneau';
+  panneau.setAttribute('role', 'dialog');
+  panneau.setAttribute('aria-label', 'Choisir mon niveau');
+  let html = '<div class="poignee"></div><h2>Mon niveau</h2><p>Tu peux en changer quand tu veux. Ta révision garde tous les niveaux.</p>';
+  Object.keys(LECONS).forEach(niv => {
+    const fini = etat.enCours[niv];
+    html += '<button class="choix-niv" data-niv="' + niv + '" aria-pressed="' + (niv === etat.niveau) + '">' +
+      '<span class="nom">' + niv + '</span><span class="det">' + fini + ' / ' + LECONS[niv].length + ' leçons finies</span>' +
+      (niv === etat.niveau ? IC.coche : '') + '</button>';
+  });
+  panneau.innerHTML = html;
+  document.body.append(voile, panneau);
+  const fermer = () => { voile.remove(); panneau.remove(); };
+  voile.addEventListener('click', fermer);
+  panneau.addEventListener('click', ev => {
+    const b = ev.target.closest('[data-niv]');
+    if (!b) return;
+    etat.niveau = b.dataset.niv;
+    fermer();
+    renderAccueil();
+    renderChemin();
+  });
+}
+
+// ─── Chemin ─────────────────────────────────────────────────────────────────
+let derniereAnim = null; // { type: 'unite' | 'lecon', index }
+
+function renderChemin() {
+  const niv = etat.niveau;
+  const liste = LECONS[niv];
+  const iCours = etat.enCours[niv];
+  const e = etat.etape[niv];
+  let html = `
+    <header class="chemin-tete entre">
+      <span class="etiquette or">Parcours ${niv}</span>
+      <h1>Mon chemin</h1>
+      <div class="resume">
+        <span class="pastille v"><i></i>${iCours} finie${iCours > 1 ? 's' : ''}</span>
+        <span class="pastille o"><i></i>1 en cours</span>
+      </div>
+    </header>
+    <ol class="chemin">`;
+
+  liste.forEach((l, i) => {
+    const style = 'style="--teinte:' + l.c + '"';
+    if (i < iCours) {
+      const anim = derniereAnim && derniereAnim.type === 'lecon' && derniereAnim.index === i;
+      html += `<li class="pas fait ${anim ? 'trait-anime' : ''}">
+        <span class="rond ${anim ? 'vient-de-finir' : ''}">${IC.coche}</span>
+        <button class="carte-lecon" ${style}>
+          <span class="haut"><span class="num"><b>Leçon ${l.id}</b> · <span class="st">Terminée</span></span>${etoilesHtml(l.etoiles || 3)}</span>
+          <h3>${l.fr}</h3>
+        </button></li>`;
+    } else if (i === iCours) {
+      let unites = '';
+      l.unites.forEach((u, k) => {
+        const cls = k < e ? 'ok' : (k === e ? 'actuelle' : '');
+        const anim = derniereAnim && derniereAnim.type === 'unite' && derniereAnim.index === k ? ' vient-de-finir' : '';
+        unites += `<li class="${cls}${anim}"><span class="etat">${k < e ? IC.coche : ''}</span>Unité ${k + 1} · ${u}</li>`;
+      });
+      const mCls = e === 3 ? 'actuelle' : '';
+      unites += `<li class="mission ${mCls}"><span class="etat">${IC.bulle}</span>Mission · ${l.mission}<span class="tag">${Math.min(e, 3)}/${l.repliques} répliques</span></li>`;
+      const bouton = e === 3 ? 'Jouer la mission' : (e === 0 ? 'Commencer l\'unité 1' : 'Continuer l\'unité ' + (e + 1));
+      html += `<li class="pas encours" id="pas-encours">
+        <span class="rond">${IC.lecture}</span>
+        <div class="carte-lecon ${derniereAnim && derniereAnim.type === 'lecon' ? 'deplie' : ''}" ${style}>
+          <span class="num"><b>Leçon ${l.id}</b> · <span class="st">En cours</span></span>
+          <h3>${l.fr}</h3>
+          <span class="lux">${l.lu}</span>
+          <ul class="unites">${unites}</ul>
+          <button class="btn-jaune" data-go="exercice">${bouton}${IC.fleche}</button>
+        </div></li>`;
+    } else {
+      html += `<li class="pas">
+        <span class="rond">${IC.livre}</span>
+        <button class="carte-lecon" ${style}>
+          <span class="num"><b>Leçon ${l.id}</b> · À découvrir</span>
+          <h3>${l.fr}</h3>
+          <span class="lux">${l.lu}</span>
+        </button></li>`;
+    }
+  });
+  html += `<li class="pas exam">
+      <span class="rond">${IC.toque}</span>
+      <button class="carte-lecon" data-toast="Les examens ${niv} s'ouvrent ici.">
+        <span class="num"><span class="st">Fin du parcours</span></span>
+        <h3>Examens ${niv}</h3>
+        <span style="color:#b7d3fb;font-size:var(--fs-sec)">Entraîne-toi quand tu veux, même avant d'avoir fini les leçons.</span>
+        <span class="lien-bleu">Voir les examens ${IC.flecheP}</span>
+      </button></li>
+    </ol>
+    <div class="demo">
+      <span>Démo des animations</span>
+      <button data-demo="finir-etape">Finir l'étape en cours</button>
+      <button data-demo="rejouer-chemin">Rejouer l'ouverture</button>
+    </div>`;
+  document.getElementById('ecran-chemin').innerHTML = html;
+  derniereAnim = null;
+}
+
+function allerALeconEnCours() {
+  const el = document.getElementById('pas-encours');
+  if (el) el.scrollIntoView({ behavior: reduit() ? 'auto' : 'smooth', block: 'center' });
+}
+
+function finirEtape() {
+  const niv = etat.niveau;
+  const lecon = LECONS[niv][etat.enCours[niv]];
+  if (!lecon.unites || !LECONS[niv][etat.enCours[niv] + 1].unites && etat.etape[niv] === 3) {
+    toast('Fin de la démo : rejoue la page pour recommencer.');
+    return;
+  }
+  if (etat.etape[niv] < 3) {
+    derniereAnim = { type: 'unite', index: etat.etape[niv] };
+    etat.etape[niv]++;
+  } else {
+    // Mission réussie : la leçon devient terminée, la suivante se déplie.
+    derniereAnim = { type: 'lecon', index: etat.enCours[niv] };
+    lecon.etoiles = 3;
+    etat.enCours[niv]++;
+    etat.etape[niv] = 0;
+    confettis();
+  }
+  renderChemin();
+  renderAccueil();
+  setTimeout(allerALeconEnCours, 50);
+}
+
+// ─── Bienvenue (premier lancement) ─────────────────────────────────────────
+let niveauBienvenue = 'A1.1';
+function renderBienvenue() {
+  document.getElementById('ecran-bienvenue').innerHTML = `
+    <div class="bienv">
+      <h1 class="entre">Moien<em> !</em></h1>
+      <p class="accroche entre-2">Apprends le luxembourgeois par petites unités de 5 minutes, chacune liée à une scène de la vie de tous les jours.</p>
+      <article class="carte-p entre-3">
+        <p class="question">Quel niveau travailles-tu ?</p>
+        <div class="choix-deux">
+          <button data-bniv="A1.1" aria-pressed="${niveauBienvenue === 'A1.1'}"><b>A1.1</b><small>Je commence · 17 leçons</small></button>
+          <button data-bniv="A1.2" aria-pressed="${niveauBienvenue === 'A1.2'}"><b>A1.2</b><small>J'ai les bases · 7 leçons</small></button>
+        </div>
+        <p class="note">Pas de test : tu pourras changer de niveau à tout moment.</p>
+        <button class="btn-jaune" data-demo="cest-parti">C'est parti${IC.fleche}</button>
+      </article>
+      <ul class="trois-pas entre-4">
+        <li><span class="pastille-ic" style="background:var(--or-fond);color:var(--or)">${IC.livre}</span><span><b>Des unités courtes</b>Une règle, quatre exercices, terminé.</span></li>
+        <li><span class="pastille-ic" style="background:var(--bleu-fond);color:var(--bleu)">${IC.bulle}</span><span><b>Une mission par leçon</b>Une vraie scène à jouer, comme au bureau ou chez les voisins.</span></li>
+        <li><span class="pastille-ic" style="background:var(--turq-fond);color:var(--turquoise)">${IC.revision}</span><span><b>Une révision par jour</b>Ce que tu oublies revient au bon moment.</span></li>
+      </ul>
+    </div>`;
+}
+
+// ─── Exercice : écriture, leçon 8, unité 2 ─────────────────────────────────
+const QUESTIONS = [
+  { fr: 'Elle est luxembourgeoise.', lu: 'Si ass Lëtzebuergerin.' },
+  { fr: 'Anne est luxembourgeoise.', lu: "D'Anne ass Lëtzebuergerin." },
+  { fr: 'Je suis française.', lu: 'Ech si Fransousin.' }
+];
+const NOTE = 'Féminin = masculin + <b>-in</b> : Fransous → <b>Fransousin</b>, Lëtzebuerger → <b>Lëtzebuergerin</b>';
+const ex = { i: 0, essais: 0, justesDuPremierCoup: 0, fini: false, repondu: false };
+
+function normalize(s) {
+  return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+    .replace(/[’]/g, "'").replace(/[.!?,;:]+/g, '').replace(/\s+/g, ' ').trim();
+}
+function motsDe(s) { const p = normalize(s).replace(/'/g, "' ").replace(/\s+/g, ' ').trim(); return p ? p.split(' ') : []; }
+
+// Diagnostic simplifié (même règles que diagnostic.js, plus « fin de mot »).
+function diagnostic(rep, att) {
+  const d = motsDe(rep), b = motsDe(att);
+  if (!d.length) return 'Écris ta réponse.';
+  if (d.length === b.length) {
+    const diff = [];
+    b.forEach((m, i) => { if (d[i] !== m) diff.push(i); });
+    if (diff.length === 1) {
+      const i = diff[0];
+      if (b[i].startsWith(d[i])) return 'Presque : il manque la fin d\'un mot.';
+      if (Math.abs(b[i].length - d[i].length) <= 1) return 'Presque : une lettre à corriger.';
+    }
+    if (d.slice().sort().join() === b.slice().sort().join()) return 'Tous les mots sont là, pas dans le bon ordre.';
+  }
+  if (d.length === b.length - 1) return 'Il manque un mot.';
+  if (d.length === b.length + 1) return 'Il y a un mot en trop.';
+  return '';
+}
+function masquer(note, att) {
+  let r = note;
+  motsDe(att).filter(m => m.length >= 4).forEach(m => {
+    r = r.replace(new RegExp('<b>[^<]*</b>', 'g'), x => normalize(x.replace(/<[^>]+>/g, '')) === m ? '<b>…</b>' : x);
+  });
+  return r;
+}
+
+function renderExercice(animer) {
+  const box = document.getElementById('ecran-exercice');
+  if (ex.fini) { renderFin(box); return; }
+  const q = QUESTIONS[ex.i];
+  box.innerHTML = `
+    <div class="ex-tete">
+      <button class="icone" aria-label="Fermer" data-nav="chemin">${IC.croix}</button>
+      <div class="barre"><i style="width:${(ex.i) / QUESTIONS.length * 100}%"></i></div>
+      <span class="n">${ex.i + 1}/${QUESTIONS.length}</span>
+      <button class="icone" aria-label="Accueil" data-nav="accueil">${IC.maison}</button>
+    </div>
+    <div class="ex-unite">Leçon 8 · <b>Unité 2 · Au féminin</b> · Écriture</div>
+    <div class="ex-carte ${animer ? 'entre' : ''}">
+      <p class="ex-consigne">Écris en luxembourgeois</p>
+      <p class="ex-question">${q.fr}</p>
+      <div class="ex-champ" id="champ">
+        <input id="reponse" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Ta réponse…" aria-label="Ta réponse">
+        <svg class="coche ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <div id="retour"></div>
+      <button class="btn-jaune" id="valider">Valider</button>
+    </div>
+    <div class="demo">
+      <span>Démo des animations</span>
+      <button data-demo="bonne">Écrire la bonne réponse</button>
+      <button data-demo="erreur">Écrire une erreur</button>
+    </div>`;
+  ex.repondu = false;
+  // Pas de focus automatique : sur téléphone, le clavier masquerait la maquette.
+}
+
+function valider() {
+  const champ = document.getElementById('champ');
+  const input = document.getElementById('reponse');
+  const retour = document.getElementById('retour');
+  const bouton = document.getElementById('valider');
+  const q = QUESTIONS[ex.i];
+  if (ex.repondu) { suivante(); return; }
+  const juste = normalize(input.value) === normalize(q.lu);
+  champ.classList.remove('juste', 'faux', 'secoue');
+  void champ.offsetWidth; // relance l'animation
+  if (juste) {
+    if (ex.essais === 0) ex.justesDuPremierCoup++;
+    champ.classList.add('juste');
+    retour.innerHTML = '<div class="retour bon"><span class="t">Bravo !</span><span class="note">' + NOTE + '</span></div>';
+    bouton.textContent = ex.i === QUESTIONS.length - 1 ? 'Voir mon résultat' : 'Question suivante';
+    ex.repondu = true;
+    return;
+  }
+  ex.essais++;
+  champ.classList.add('faux', 'secoue');
+  if (ex.essais === 1) {
+    const diag = diagnostic(input.value, q.lu);
+    retour.innerHTML = '<div class="retour mauvais"><span class="t">Pas tout à fait</span>' +
+      (diag ? '<span class="diag">' + diag + '</span>' : '') +
+      '<span class="note">' + masquer(NOTE, q.lu) + '</span></div>';
+    bouton.textContent = 'Réessayer';
+  } else {
+    retour.innerHTML = '<div class="retour mauvais"><span class="t">La bonne réponse</span><span class="solution">' + q.lu + '</span><span class="note">' + NOTE + '</span></div>';
+    bouton.textContent = ex.i === QUESTIONS.length - 1 ? 'Voir mon résultat' : 'Question suivante';
+    ex.repondu = true;
+  }
+}
+
+function suivante() {
+  ex.essais = 0;
+  if (ex.i === QUESTIONS.length - 1) { ex.fini = true; renderExercice(); return; }
+  ex.i++;
+  renderExercice(true);
+}
+
+function renderFin(box) {
+  const pourcent = Math.round(ex.justesDuPremierCoup / QUESTIONS.length * 100);
+  const nb = pourcent === 100 ? 3 : (pourcent >= 60 ? 2 : 1);
+  let etoiles = '';
+  for (let i = 1; i <= 3; i++) etoiles += IC.etoile.replace('<svg', '<svg data-e="' + i + '"');
+  box.innerHTML = `
+    <div class="ex-tete">
+      <button class="icone" aria-label="Fermer" data-nav="chemin">${IC.croix}</button>
+      <div class="barre"><i style="width:100%"></i></div>
+      <span class="n">${QUESTIONS.length}/${QUESTIONS.length}</span>
+      <button class="icone" aria-label="Accueil" data-nav="accueil">${IC.maison}</button>
+    </div>
+    <div class="fin">
+      <span class="etiquette">Unité 2 terminée</span>
+      <h2>${pourcent === 100 ? 'Sans faute !' : 'Bien joué !'}</h2>
+      <div class="score"><span id="score-n">0</span><small>%</small></div>
+      <div class="grandes-etoiles" aria-label="${nb} étoiles sur 3">${etoiles}</div>
+      <p class="detail">${ex.justesDuPremierCoup} réponse${ex.justesDuPremierCoup > 1 ? 's' : ''} juste${ex.justesDuPremierCoup > 1 ? 's' : ''} du premier coup sur ${QUESTIONS.length}</p>
+      <div class="mission-gain">${IC.bulle}<span>Mission « La fête des voisins » : tu sais maintenant dire <b>2 répliques sur 4</b>.</span></div>
+      <div class="actions">
+        <button class="btn-jaune" data-demo="vers-chemin">Continuer · unité 3${IC.fleche}</button>
+        <button class="btn-contour" data-demo="refaire">Refaire l'exercice</button>
+      </div>
+    </div>`;
+  compterJusqua(document.getElementById('score-n'), pourcent, 700);
+  // Étoiles une par une, après le compteur.
+  for (let i = 1; i <= nb; i++) {
+    const s = box.querySelector('[data-e="' + i + '"]');
+    if (reduit()) { s.classList.add('on'); continue; }
+    setTimeout(() => s.classList.add('on'), 600 + i * 180);
+  }
+  if (pourcent === 100) setTimeout(confettis, 900);
+}
+
+// ─── Aides d'animation (anim.js dans l'app) ────────────────────────────────
+function compterJusqua(el, cible, duree) {
+  if (reduit()) { el.textContent = cible; return; }
+  const debut = performance.now();
+  function pas(t) {
+    const p = Math.min(1, (t - debut) / duree);
+    el.textContent = Math.round(cible * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(pas);
+  }
+  requestAnimationFrame(pas);
+}
+function confettis() {
+  if (reduit()) return;
+  const couleurs = ['#f5cf4d', '#ffaf5e', '#54e0ad', '#4fd1c5', '#7db4f5', '#f6f1e9'];
+  const box = document.createElement('div');
+  box.className = 'confettis';
+  for (let i = 0; i < 28; i++) {
+    const c = document.createElement('i');
+    c.style.left = Math.random() * 100 + '%';
+    c.style.background = couleurs[i % couleurs.length];
+    c.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+    c.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+    c.style.animationDelay = (Math.random() * .25) + 's';
+    box.appendChild(c);
+  }
+  document.body.appendChild(box);
+  setTimeout(() => box.remove(), 1700);
+}
+function toast(texte) {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = texte;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2200);
+}
+
+// ─── Navigation entre écrans ───────────────────────────────────────────────
+function afficher(nom) {
+  ['accueil', 'chemin', 'bienvenue', 'exercice'].forEach(n => {
+    document.getElementById('ecran-' + n).hidden = n !== nom;
+    document.getElementById('t-' + n).setAttribute('aria-selected', n === nom);
+  });
+  // Barre du bas : présente sur Accueil et Chemin, masquée pendant un exercice et au premier lancement.
+  const nav = document.getElementById('nav-bas');
+  nav.hidden = nom === 'exercice' || nom === 'bienvenue';
+  nav.querySelectorAll('[data-nav]').forEach(b => {
+    if (b.dataset.nav === nom) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+  });
+  if (nom === 'accueil') renderAccueil();
+  if (nom === 'chemin') { renderChemin(); setTimeout(allerALeconEnCours, 250); }
+  if (nom === 'bienvenue') renderBienvenue();
+  if (nom === 'exercice') { if (ex.fini) { ex.i = 0; ex.essais = 0; ex.justesDuPremierCoup = 0; ex.fini = false; } renderExercice(true); }
+  window.scrollTo(0, 0);
+  try { localStorage.setItem('maq-ecran', nom); } catch (e) {}
+}
+
+document.addEventListener('click', ev => {
+  const onglet = ev.target.closest('[data-ecran]');
+  if (onglet) { afficher(onglet.dataset.ecran); return; }
+  const nav = ev.target.closest('[data-nav]');
+  if (nav) {
+    const n = nav.dataset.nav;
+    if (n === 'reviser' || n === 'plus') { toast(n === 'plus' ? 'Plus : Lexique, Examens, Pièges, Réglages.' : 'Réviser : ta séance du jour.'); return; }
+    afficher(n); return;
+  }
+  const go = ev.target.closest('[data-go]');
+  if (go) { ex.i = 0; ex.essais = 0; ex.justesDuPremierCoup = 0; ex.fini = false; afficher(go.dataset.go); return; }
+  if (ev.target.closest('#btn-niveau')) { ouvrirNiveau(); return; }
+  const t = ev.target.closest('[data-toast]');
+  if (t) { toast(t.dataset.toast); return; }
+  const bn = ev.target.closest('[data-bniv]');
+  if (bn) {
+    niveauBienvenue = bn.dataset.bniv;
+    document.querySelectorAll('[data-bniv]').forEach(b => b.setAttribute('aria-pressed', b.dataset.bniv === niveauBienvenue));
+    return;
+  }
+  if (ev.target.closest('#valider')) { valider(); return; }
+  const d = ev.target.closest('[data-demo]');
+  if (!d) return;
+  const demo = d.dataset.demo;
+  if (demo === 'rejouer-accueil') renderAccueil();
+  if (demo === 'objectif') {
+    etat.serie++;
+    const s = document.getElementById('serie');
+    s.classList.remove('bump'); void s.offsetWidth; s.classList.add('bump');
+    document.getElementById('serie-n').textContent = etat.serie;
+    toast('Objectif du jour atteint : révision + une unité.');
+  }
+  if (demo === 'finir-etape') finirEtape();
+  if (demo === 'rejouer-chemin') { renderChemin(); setTimeout(allerALeconEnCours, 250); }
+  if (demo === 'cest-parti') { etat.niveau = niveauBienvenue; afficher('accueil'); }
+  if (demo === 'bonne' || demo === 'erreur') {
+    if (ex.repondu) return;
+    const q = QUESTIONS[ex.i];
+    // Erreur réaliste : oubli du -in du féminin.
+    document.getElementById('reponse').value = demo === 'bonne' ? q.lu : q.lu.replace('in.', '.');
+    valider();
+  }
+  if (demo === 'vers-chemin') {
+    // L'unité 2 vient d'être finie : on revient au chemin avec l'animation.
+    if (etat.niveau === 'A1.1' && etat.enCours['A1.1'] === 7 && etat.etape['A1.1'] === 1) {
+      afficher('chemin');
+      setTimeout(finirEtape, 450);
+    } else afficher('chemin');
+  }
+  if (demo === 'refaire') { ex.i = 0; ex.essais = 0; ex.justesDuPremierCoup = 0; ex.fini = false; renderExercice(true); }
+});
+// Dès qu'on retape après une erreur, le champ redevient neutre et le bouton redit « Valider ».
+document.addEventListener('input', ev => {
+  if (ev.target.id !== 'reponse' || ex.repondu) return;
+  document.getElementById('champ').classList.remove('faux', 'secoue');
+  document.getElementById('valider').textContent = 'Valider';
+});
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Enter' && ev.target.id === 'reponse') valider();
+});
+
+let depart = 'accueil';
+try { depart = localStorage.getItem('maq-ecran') || 'accueil'; } catch (e) {}
+afficher(depart);
+</script>
