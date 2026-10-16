@@ -68,7 +68,7 @@
     {
       "unite": 3,
       "qui": "toi",
-      "lu": "Nee, ech sinn kee Coiffer.",
+      "lu": "Nee, ech si kee Coiffer.",
       "fr": "Non, je ne suis pas coiffeur.",
       "aide": "Pour nier une profession masculine, utilise <b>kee</b>."
     },
@@ -121,7 +121,7 @@
       "id": 3,
       "titre": "Travailler comme et dire non",
       "phrase": [
-        "Ech schaffen als Banker. Ech sinn kee Coiffer.",
+        "Ech schaffen als Banker. Ech si kee Coiffer.",
         "Je travaille comme banquier. Je ne suis pas coiffeur."
       ],
       "regle": "<b>schaffen als</b> sans article ; négation <b>kee</b> / <b>keng</b> devant un métier.",
@@ -834,9 +834,9 @@
       "id": 2036,
       "unite": 3,
       "question": "Je ne suis pas coiffeur.",
-      "reponse": "Ech sinn kee Coiffer.",
+      "reponse": "Ech si kee Coiffer.",
       "distracteurs": [
-        "Ech sinn keng Coiffer.",
+        "Ech si keng Coiffer.",
         "Ech sinn eng Coiffer.",
         "Ech schaffen kee Coiffer."
       ]
@@ -856,9 +856,9 @@
       "id": 2038,
       "unite": 3,
       "question": "Je ne suis pas banquière.",
-      "reponse": "Ech sinn keng Bankerin.",
+      "reponse": "Ech si keng Bankerin.",
       "distracteurs": [
-        "Ech sinn kee Bankerin.",
+        "Ech si kee Bankerin.",
         "Ech sinn eng Bankerin.",
         "Ech schaffen keng Bankerin."
       ]
@@ -1364,7 +1364,7 @@
       "id": 2002,
       "unite": 3,
       "fr": "Je ne suis pas policière.",
-      "lu": "Ech sinn keng Polizistin.",
+      "lu": "Ech si keng Polizistin.",
       "plus": true
     },
     {
@@ -1383,7 +1383,7 @@
       "id": 2005,
       "unite": 3,
       "fr": "Je ne suis pas coiffeur.",
-      "lu": "Ech sinn kee Coiffer.",
+      "lu": "Ech si kee Coiffer.",
       "plus": true
     },
     {
@@ -1402,7 +1402,7 @@
       "id": 2008,
       "unite": 3,
       "fr": "Je ne suis pas banquière.",
-      "lu": "Ech sinn keng Bankerin.",
+      "lu": "Ech si keng Bankerin.",
       "plus": true
     },
     {
@@ -1421,7 +1421,7 @@
       "id": 2011,
       "unite": 3,
       "fr": "Je ne suis pas facteur.",
-      "lu": "Ech sinn kee Bréifdréier.",
+      "lu": "Ech si kee Bréifdréier.",
       "plus": true
     },
     {
@@ -1440,7 +1440,7 @@
       "id": 2014,
       "unite": 3,
       "fr": "Je ne suis pas avocate.",
-      "lu": "Ech sinn keng Affekotin.",
+      "lu": "Ech si keng Affekotin.",
       "plus": true
     },
     {
@@ -1459,7 +1459,7 @@
       "id": 2017,
       "unite": 3,
       "fr": "Je ne suis pas boulanger.",
-      "lu": "Ech sinn kee Bäcker.",
+      "lu": "Ech si kee Bäcker.",
       "plus": true
     },
     {
@@ -1478,7 +1478,7 @@
       "id": 2020,
       "unite": 3,
       "fr": "Je ne suis pas infirmière.",
-      "lu": "Ech sinn keng Infirmière.",
+      "lu": "Ech si keng Infirmière.",
       "plus": true
     },
     {
@@ -1497,7 +1497,7 @@
       "id": 2023,
       "unite": 3,
       "fr": "Je ne suis pas instituteur.",
-      "lu": "Ech sinn kee Schoulmeeschter.",
+      "lu": "Ech si kee Schoulmeeschter.",
       "plus": true
     },
     {
@@ -1517,7 +1517,7 @@
       "id": 2026,
       "unite": 3,
       "fr": "Je ne suis pas pilote (femme).",
-      "lu": "Ech sinn keng Pilotin.",
+      "lu": "Ech si keng Pilotin.",
       "plus": true
     },
     {
@@ -1537,7 +1537,7 @@
       "id": 2029,
       "unite": 3,
       "fr": "Je ne suis pas journaliste (homme).",
-      "lu": "Ech sinn kee Journalist.",
+      "lu": "Ech si kee Journalist.",
       "plus": true
     },
     {
@@ -1557,7 +1557,7 @@
       "id": 2032,
       "unite": 3,
       "fr": "Je ne suis pas sportive.",
-      "lu": "Ech sinn keng Sportlerin.",
+      "lu": "Ech si keng Sportlerin.",
       "plus": true
     },
     {
@@ -2078,10 +2078,10 @@
       "variant": "info",
       "titre": "La négation avec un métier",
       "lignes": [
-        "Masculin avec e → kee : Ech sinn kee Polizist.",
-        "Masculin avec en → keen : Ech sinn keen Dokter.",
-        "Féminin avec eng → keng : Ech sinn keng Polizistin.",
-        "Exemples : Ech sinn kee Coiffer. · Ech sinn keen Affekot. · Ech sinn keng Bankerin."
+        "Masculin avec e → kee : Ech si kee Polizist.",
+        "Masculin avec en → keen : Ech si keen Dokter.",
+        "Féminin avec eng → keng : Ech si keng Polizistin.",
+        "Exemples : Ech si kee Coiffer. · Ech si keen Affekot. · Ech si keng Bankerin."
       ],
       "unite": 0
     },
