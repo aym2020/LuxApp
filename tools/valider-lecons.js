@@ -118,6 +118,26 @@ function verifierV2(f, l) {
   });
 }
 
+// Notes « attention » qui contiennent la réponse (S6) : elles sont masquées
+// automatiquement au 1er essai. On les compte pour pouvoir les relire.
+let nbNotesAvecReponse = 0;
+const MONTRER_NOTES = process.argv.includes('--notes');
+
+function sansAccents(t) {
+  return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function compterNotesAvecReponse(f, l) {
+  ['flashcards', 'ecriture'].forEach(type => (l[type] || []).forEach(x => {
+    if (!x.attention || !x.lu) return;
+    const texte = sansAccents(x.attention.replace(/<[^>]+>/g, ''));
+    if (texte.includes(sansAccents(x.lu))) {
+      nbNotesAvecReponse++;
+      if (MONTRER_NOTES) console.log('  NOTE      ' + f + ' : ' + type + ' « ' + x.lu + ' »');
+    }
+  }));
+}
+
 function verifierFichier(fichier) {
   const nom = path.relative(BASE, fichier);
   let l;
@@ -128,7 +148,10 @@ function verifierFichier(fichier) {
     return null;
   }
   ['id', 'titre', 'titre_fr', 'couleur'].forEach(k => { if (l[k] == null) erreur(nom, 'champ « ' + k + ' » manquant'); });
-  if (Array.isArray(l.unites)) verifierV2(nom, l);
+  if (Array.isArray(l.unites)) {
+    verifierV2(nom, l);
+    compterNotesAvecReponse(nom, l);
+  }
   return l;
 }
 
@@ -147,4 +170,8 @@ fs.readdirSync(BASE).sort().forEach(niveau => {
 });
 
 console.log('\n' + nbErreurs + ' erreur(s), ' + nbAttentions + ' attention(s).');
+if (nbNotesAvecReponse) {
+  console.log('Info : ' + nbNotesAvecReponse + ' notes « attention » contiennent la réponse ; elles sont masquées' +
+    ' au 1er essai. Liste : node tools/valider-lecons.js --notes');
+}
 process.exit(nbErreurs ? 1 : 0);

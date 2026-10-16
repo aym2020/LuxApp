@@ -236,18 +236,47 @@ function goLessons() {
 }
 
 // ─── DASHBOARD ──────────────────────────────────────────────────────────────
+// Profil neuf (rien pratiqué) : seulement la carte « Bienvenue » (S3).
+// Ensuite : des compteurs ACQUIS, qui ne baissent jamais.
 function renderDashboard() {
-  const stats = calculateGlobalStats();
+  const neuf = !aDejaPratique();
+  const acquis = document.getElementById('dash-acquis');
+  acquis.classList.toggle('hidden', neuf);
+  // Pièges et erreurs fréquentes : vides tant qu'il n'y a aucune erreur.
+  document.getElementById('btn-pieges').classList.toggle('hidden', neuf);
+  document.getElementById('btn-erreurs').classList.toggle('hidden', neuf);
 
-  document.getElementById('dash-global').textContent = stats.percent + '%';
-  document.getElementById('dash-global-fill').style.width = stats.percent + '%';
-  document.getElementById('dash-mastered').textContent =
-    stats.masteredQuestions + ' / ' + stats.totalQuestions;
-  document.getElementById('dash-sansfaute').textContent =
-    leconsActives().filter(leconSansFaute).length;
-  document.getElementById('dash-jours').textContent = totalJours();
+  if (!neuf) {
+    const tuiles = [
+      [compterUnitesTerminees(), 'Unités terminées'],
+      [leconsActives().filter(missionReussie).length, 'Missions réussies'],
+      [leconsActives().filter(leconSansFaute).length, 'Leçons sans faute'],
+      [totalJours(), 'Jours de pratique']
+    ];
+    acquis.innerHTML = tuiles.map(t =>
+      '<div class="dash-tuile"><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('');
+  }
 
   renderAujourdhui(); // bloc « Aujourd'hui » (revision.js)
+}
+
+// A-t-on déjà répondu à au moins une question (v1 ou v2) ?
+function aDejaPratique() {
+  return Object.keys(getStatsStore()).length > 0 || totalJours() > 0;
+}
+
+// Unités du fil terminées (v2) + leçons v1 au statut « bien ».
+function compterUnitesTerminees() {
+  let total = 0;
+  leconsActives().forEach(l => {
+    if (isParcoursLecon(l)) total += unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
+    else if (leconV1Faite(l)) total += 1;
+  });
+  return total;
+}
+
+function openReglages() {
+  showView('view-reglages');
 }
 
 // Réinitialise TOUTE la progression, après confirmation.
@@ -261,8 +290,8 @@ async function confirmResetAll() {
   resetProgress();                 // local
   resetExamScores();               // meilleurs scores des sujets d'examen
   if (user) await deleteCloudProgress(); // cloud
-  renderDashboard();
   renderLessonsProgress();
+  goDashboard();
 }
 
 // ─── UI : ZONE DE CONNEXION SUR LE DASHBOARD ────────────────────────────────
@@ -608,6 +637,7 @@ function demarrerSession(mode, titre, questions, options) {
 function renderSessionQ() {
   if (session.index >= session.questions.length) { showSessionResult(); return; }
   session.answered = false;
+  session.essais = 0; // essais ratés sur la question en cours (S6)
 
   const item = session.questions[session.index];
   const { type, q, leconId, qid } = item;
@@ -724,30 +754,50 @@ function ajouterBoutonSuivante(feedback) {
   feedback.after(nextBtn);
 }
 
+// Réponse écrite (mot caché, écriture). Deux essais hors examen (S6) :
+//   1er essai raté : l'erreur est comptée, aide sans la réponse, on réessaie ;
+//   2e essai : juste ou faux, on passe à la suite (la réponse s'affiche si faux).
 function validateSessionInput() {
   if (session.answered) return;
   const input = document.getElementById('session-input');
   const val = input.value.trim();
   if (!val) return;
 
-  session.answered = true;
   const item = session.questions[session.index];
   const target = item.q.lu;
   const ok = normalize(val) === normalize(target);
-  recordSessionAnswer(ok);
+  const attention = attentionDe(item);
+  const feedback = document.getElementById('session-feedback');
+  feedback.classList.remove('hidden');
+
+  // L'essai qui compte pour la progression : le premier.
+  if (session.essais === 0) recordSessionAnswer(ok);
+
+  // 1er essai raté (hors examen) : on aide sans donner la réponse.
+  if (!ok && session.essais === 0 && session.mode !== 'exam') {
+    session.essais = 1;
+    const aide = aideErreur(val, item.q, attention, 1);
+    feedback.className = 'ecr-feedback ko';
+    feedback.innerHTML = '❌ Pas encore · réessaie' +
+      (aide.diagnostic ? '<span class="session-diagnostic">' + escHtml(aide.diagnostic) + '</span>' : '') +
+      (aide.attention ? '<span class="session-attention">Attention : ' + aide.attention + '</span>' : '');
+    input.value = '';
+    input.focus();
+    return;
+  }
+
+  session.answered = true;
   // Réponse affichée : avec l'article pour un mot caché.
   const affiche = item.type === 'motcache' && item.q.article ? item.q.article + ' ' + target : target;
-  const attention = attentionDe(item);
 
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
   document.getElementById('session-input-btn').disabled = true;
 
-  const feedback = document.getElementById('session-feedback');
-  feedback.classList.remove('hidden');
   if (ok) {
     feedback.className = 'ecr-feedback ok';
-    feedback.innerHTML = '✅ Correct !';
+    feedback.innerHTML = (session.essais ? '✅ Correct, au 2e essai' : '✅ Correct !') +
+      (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   } else {
     feedback.className = 'ecr-feedback ko';
     feedback.innerHTML = '❌ Réponse :<span class="ecr-correct-answer">' + escHtml(affiche) + '</span>' +

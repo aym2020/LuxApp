@@ -18,13 +18,45 @@ const ESSAIS_MISSION = 2; // « Voir la réponse » apparaît après 2 essais ra
 
 let ms = null; // mission en cours : { idx, essais, revele, resultats: [] }
 
-// Une réplique est « débloquée » quand son unité est terminée (ou la mission déjà réussie).
-function repliqueVisible(l, ligne) {
-  return getMissionBest(l.id) != null || getUnitBest(l.id, ligne.unite) != null;
+// Une réplique est « apprise » quand l'unité qui l'enseigne est terminée.
+// (Toutes les répliques restent lisibles : la scène est le but de la leçon, S4.)
+function repliqueApprise(l, ligne) {
+  return getUnitBest(l.id, ligne.unite) != null;
 }
 
 function nbRepliquesToi(l) {
   return l.scene.filter(x => x.qui === 'toi').length;
+}
+
+// Nombre de répliques visibles avant « Voir toute la scène ».
+const REPLIQUES_APERCU = 3;
+
+// Statut de la mission : null (jamais jouée), jouee, reussie (≥ SEUIL_MISSION), sansfaute.
+function statutMission(l) {
+  const best = getMissionBest(l.id);
+  if (best == null) return null;
+  if (best === 100) return 'sansfaute';
+  if (best >= SEUIL_MISSION) return 'reussie';
+  return 'jouee';
+}
+
+function etiquetteMission(l) {
+  const best = getMissionBest(l.id);
+  const statut = statutMission(l);
+  if (statut === 'sansfaute') return 'MISSION · SANS FAUTE';
+  if (statut === 'reussie') return 'MISSION · RÉUSSIE ' + best + ' %';
+  if (statut === 'jouee') return 'MISSION · JOUÉE ' + best + ' % · À REJOUER';
+  return 'MISSION';
+}
+
+// Une bulle de la scène, avec la pastille de l'unité qui l'enseigne.
+function bulleSceneHtml(l, x) {
+  const toi = x.qui === 'toi';
+  const apprise = repliqueApprise(l, x);
+  return '<div class="ms-bulle' + (toi ? ' toi' : '') + '">' +
+    '<div class="ms-bulle-tete"><b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
+      '<span class="ms-pastille' + (apprise ? ' apprise' : '') + '">' + (apprise ? '✓ ' : '') + 'Unité ' + x.unite + '</span></div>' +
+    escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>';
 }
 
 // ─── CARTE MISSION (en haut de l'écran de la leçon) ─────────────────────────
@@ -32,26 +64,26 @@ function nbRepliquesToi(l) {
 function missionHtml(l, conseillee) {
   if (!l.mission || !l.scene) return '';
   const best = getMissionBest(l.id);
-  const visibles = l.scene.filter(x => repliqueVisible(l, x)).length;
+  const statut = statutMission(l);
+  const apprises = l.scene.filter(x => repliqueApprise(l, x)).length;
+  const apercu = l.scene.slice(0, REPLIQUES_APERCU);
+  const suite = l.scene.slice(REPLIQUES_APERCU);
 
   let html = '<div class="ms-carte">' +
-    '<div class="pc-mini-label pc-gold">MISSION' + (best != null ? ' · RÉUSSIE ' + best + ' %' : '') + '</div>' +
+    '<div class="pc-mini-label pc-gold' + (statut === 'jouee' ? ' ms-jouee' : '') + '">' + etiquetteMission(l) + '</div>' +
     '<div class="ms-titre">' + escHtml(l.mission.titre) + '</div>' +
     '<div class="ms-contexte">' + escHtml(l.mission.contexte) + '</div>' +
     '<div class="ms-objectif"><span>À la fin, tu sauras :</span> ' + escHtml(l.mission.objectif) + '</div>';
 
-  // La scène : les répliques débloquées en clair, les autres floutées.
-  html += '<div class="ms-scene">' + l.scene.map(x => {
-    const toi = x.qui === 'toi';
-    if (!repliqueVisible(l, x)) {
-      return '<div class="ms-bulle cachee' + (toi ? ' toi' : '') + '"><b>' + (toi ? 'Toi' : escHtml(x.qui)) +
-        '</b><span>Unité ' + x.unite + '</span></div>';
-    }
-    return '<div class="ms-bulle' + (toi ? ' toi' : '') + '"><b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
-      escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>';
-  }).join('') + '</div>';
+  // La scène : les premières répliques en clair, le reste derrière « Voir toute la scène ».
+  html += '<div class="ms-scene">' + apercu.map(x => bulleSceneHtml(l, x)).join('') + '</div>';
+  if (suite.length) {
+    html += '<details class="ms-suite"><summary>Voir toute la scène · ' + l.scene.length + ' répliques</summary>' +
+      '<div class="ms-scene">' + suite.map(x => bulleSceneHtml(l, x)).join('') + '</div></details>';
+  }
 
-  html += '<div class="ms-bas"><span>' + visibles + ' / ' + l.scene.length + ' répliques débloquées</span></div>' +
+  html += '<div class="ms-bas">Tu sais dire ' + apprises + ' réplique' + (apprises > 1 ? 's' : '') +
+      ' sur ' + l.scene.length + '</div>' +
     '<button class="pc-btn ' + (conseillee && best == null ? 'primary' : '') + ' wide" onclick="openMission()">' +
       (best != null ? 'Rejouer la mission' : 'Jouer la mission') + ' · ' + nbRepliquesToi(l) + ' répliques à dire</button>' +
     '</div>';
@@ -139,12 +171,12 @@ function missionValider() {
     return;
   }
 
-  // Faux : on réessaie (jamais bloqué), avec l'aide dès le 1er essai raté.
+  // Faux : on réessaie (jamais bloqué). 1er essai : diagnostic + aide sans la réponse (S6).
   ms.essais++;
   const err = document.getElementById('ms-erreur');
   err.classList.remove('hidden');
   err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · essai ' + ms.essais +
-    attentionHtml(ligne.aide || '');
+    aideErreurHtml(val, ligne, ligne.aide || '', ms.essais);
   if (ms.essais >= ESSAIS_MISSION) document.getElementById('ms-btn-voir').classList.remove('hidden');
   input.value = '';
   input.focus();

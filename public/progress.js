@@ -388,6 +388,40 @@ function savePlusFait(leconId, uniteId) {
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
+// ─── LEÇON DÉJÀ OUVERTE (S2) ─────────────────────────────────────────────────
+// progress[lid].vue = { ouverte: 1 } : toujours 3 niveaux (leçon → type → clé)
+// pour que la fusion cloud (mergeMaxNested) la conserve.
+function getLeconVue(leconId) {
+  const byLecon = getProgress()[leconId];
+  return !!(byLecon && byLecon.vue && byLecon.vue.ouverte);
+}
+
+function marquerLeconVue(leconId) {
+  if (getLeconVue(leconId)) return;
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  progress[leconId].vue = { ouverte: 1 };
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// ─── LEÇON V1 « FAITE » (S1) ────────────────────────────────────────────────
+// Même seuil que le statut « bien » affiché sur la carte de la leçon.
+const SEUIL_LECON_V1 = 70;
+
+function leconV1Faite(l) {
+  return calculateLessonStats(l.id).percent >= SEUIL_LECON_V1;
+}
+
+// Mission « réussie » = meilleur score d'au moins SEUIL_MISSION (S4).
+// En dessous, elle est seulement « jouée ».
+const SEUIL_MISSION = 80;
+
+function missionReussie(l) {
+  const best = getMissionBest(l.id);
+  return best != null && best >= SEUIL_MISSION;
+}
+
 // Meilleur score de la mission (0-100), ou null si jamais jouée.
 function getMissionBest(leconId) {
   const byLecon = getProgress()[leconId];

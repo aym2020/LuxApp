@@ -27,43 +27,38 @@
       <!-- Aujourd'hui : semaine, série, séance du jour (rempli par revision.js) -->
       <section class="today" id="today"></section>
 
-      <div class="dash-top">
-        <div class="dash-stat">
-          <div class="dash-stat-val" id="dash-global">0%</div>
-          <div class="dash-stat-lbl">Progression</div>
-        </div>
-        <div class="dash-stat">
-          <div class="dash-stat-val" id="dash-sansfaute">0</div>
-          <div class="dash-stat-lbl">Leçons sans faute</div>
-        </div>
-      </div>
-
-      <div class="dash-bar"><div id="dash-global-fill"></div></div>
-
-      <div class="dash-grid">
-        <div class="dash-mini">
-          <span id="dash-mastered">0 / 0</span>
-          <label>Questions maîtrisées</label>
-        </div>
-        <div class="dash-mini">
-          <span id="dash-jours">0</span>
-          <label>Jours de pratique</label>
-        </div>
-      </div>
+      <!-- Ce qui est acquis (ne baisse jamais) : rempli par renderDashboard -->
+      <div class="dash-acquis" id="dash-acquis"></div>
 
       <div class="dash-section-titre">Tout explorer</div>
       <div class="explore-grid">
         <button class="dash-btn" onclick="goLessons()">Leçons</button>
         <button class="dash-btn db-review" onclick="openReviewSetup()">Réviser</button>
         <button class="dash-btn" onclick="openLexique()">Lexique</button>
-        <button class="dash-btn db-pieges" onclick="openPieges()">Mes pièges</button>
+        <button class="dash-btn db-pieges" id="btn-pieges" onclick="openPieges()">Mes pièges</button>
         <button class="dash-btn db-exam" onclick="openExamens()">Examens</button>
-        <button class="dash-btn db-errors" onclick="startSession('errors')">Erreurs fréquentes</button>
+        <button class="dash-btn db-errors" id="btn-erreurs" onclick="startSession('errors')">Erreurs fréquentes</button>
       </div>
 
-      <button class="dash-reset" onclick="confirmResetAll()">Réinitialiser toute la progression</button>
-
       <div class="dash-auth" id="dash-auth"></div>
+      <button class="dash-reglages" onclick="openReglages()">Réglages</button>
+    </div>
+  </div>
+
+  <!-- ══ RÉGLAGES ════════════════════════════════════════════════════════════ -->
+  <div id="view-reglages" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <div class="lecon-header-info">
+        <span class="lecon-titre">Réglages</span>
+      </div>
+    </div>
+    <div class="reglages">
+      <div class="reglages-carte">
+        <div class="reglages-titre">Recommencer à zéro</div>
+        <p class="reglages-texte">Efface toute ta progression : unités, missions, révisions, jours de pratique. Si tu es connecté, la sauvegarde cloud est effacée aussi. Irréversible.</p>
+        <button class="dash-reset" onclick="confirmResetAll()">Réinitialiser toute la progression</button>
+      </div>
     </div>
   </div>
 
@@ -487,9 +482,11 @@
   <script src="progress.js"></script>
   <script src="cloud.js"></script>
   <script src="examens.js"></script>
+  <script src="diagnostic.js"></script>
   <script src="parcours.js"></script>
   <script src="mission.js"></script>
   <script src="revision.js"></script>
   <script src="app.js"></script>
+  <script src="ui.js"></script>
 </body>
 </html>

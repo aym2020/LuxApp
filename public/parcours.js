@@ -182,7 +182,7 @@ function carteLeconV2Html(l) {
   // (sinon des étoiles grises donneraient l'impression d'avoir perdu quelque chose).
   if (r.done === r.total) html += '<span class="lecon-pill pc-pill-stars">' + etoilesHtml(r.stars) + '</span>';
   if (leconSansFaute(l)) html += '<span class="lecon-pill pc-pill-sansfaute">Sans faute</span>';
-  if (getMissionBest(l.id) != null) html += '<span class="lecon-pill pc-pill-acquis">Mission ✓</span>';
+  if (missionReussie(l)) html += '<span class="lecon-pill pc-pill-acquis">Mission ✓</span>';
   if (leconComplete(l)) html += '<span class="lecon-pill pc-pill-acquis">Complète</span>';
   return html;
 }
@@ -216,6 +216,7 @@ function carteReprendre() {
 function openParcoursLecon(l) {
   pLecon = l;
   currentLecon = l;
+  marquerLeconVue(l.id); // la 1re visite passe par cet écran (S2)
   renderParcoursLecon();
   showView('view-plecon');
 }
@@ -705,8 +706,9 @@ function mcValider() {
     enregistrer(card, mcScore(), ok, { indices: mc.indices, essais: mc.essais, revele: mc.revele });
     input.disabled = true;
     input.className = 'ecr-input mc-input correct';
+    // Juste : le point d'attention complet, pour retenir le piège (S6).
     showFeedback(true, 'Juste !', '<b>' + escHtml(motComplet(card)) + '</b>' +
-      (card.note ? '<br>' + escHtml(card.note) : ''), reussir);
+      (card.note ? '<br>' + escHtml(card.note) : '') + attentionHtml(attentionItem(card, 'flashcards')), reussir);
     return;
   }
 
@@ -720,11 +722,12 @@ function mcValider() {
   renderCases();
   document.getElementById('mc-legende').classList.remove('hidden');
 
-  // Message d'erreur, avec le point d'attention du mot dès le 1er essai raté.
+  // Message d'erreur : au 1er essai, diagnostic + point d'attention SANS la
+  // réponse ; ensuite, le point d'attention complet (S6).
   const err = document.getElementById('mc-erreur');
   err.classList.remove('hidden');
   err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · essai ' + mc.essais +
-    attentionHtml(attentionItem(card, 'flashcards'));
+    aideErreurHtml(val, card, attentionItem(card, 'flashcards'), mc.essais);
 
   if (mc.essais >= ESSAIS_AVANT_REPONSE) {
     document.getElementById('mc-btn-voir').classList.remove('hidden');
@@ -824,12 +827,16 @@ function choisirP(btn, ok, bonne, item, type) {
 }
 
 // ─── ÉTAPE 4 : ÉCRITURE ─────────────────────────────────────────────────────
+let ecrEssais = 0; // essais ratés sur la phrase en cours
+
 function renderEcriturePc(e) {
+  ecrEssais = 0;
   document.getElementById('pc-body').innerHTML =
     '<div class="pc-question">' +
       '<div class="pc-mini-label">ÉCRIS EN LUXEMBOURGEOIS</div>' +
       '<div class="pc-question-mot">' + escHtml(e.fr) + '</div>' +
     '</div>' +
+    '<div class="mc-erreur hidden" id="pc-ecr-erreur"></div>' +
     '<label class="pc-input-label" for="pc-ecr-input">Ta réponse</label>' +
     '<textarea id="pc-ecr-input" class="ecr-input" rows="2" placeholder="Tape ta réponse…"' +
       ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
@@ -846,6 +853,10 @@ function renderEcriturePc(e) {
   input.focus();
 }
 
+// Écriture : deux essais (S6).
+//   1er essai raté : l'erreur est comptée, on aide sans donner la réponse, on réessaie.
+//   2e essai : juste → la phrase reviendra quand même à la fin de l'étape ;
+//              faux → la réponse et le point d'attention complet.
 function ecrValiderPc() {
   if (pAttente) return;
   const input = document.getElementById('pc-ecr-input');
@@ -853,19 +864,42 @@ function ecrValiderPc() {
   if (!val) return;
 
   const e = trouverItem(pLecon, 'ecriture', etapeCourante().queue[0]);
+  const attention = attentionItem(e, 'ecriture');
   const ok = normalize(val) === normalize(e.lu);
-  enregistrer(e, ok ? 1 : 0, ok);
+
+  if (ok && ecrEssais === 0) {
+    enregistrer(e, 1, true);
+    input.disabled = true;
+    input.className = 'ecr-input correct';
+    showFeedback(true, 'Juste !', '<b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention), reussir);
+    return;
+  }
+  if (ok) {
+    input.disabled = true;
+    input.className = 'ecr-input correct';
+    showFeedback(true, 'Juste, au 2e essai', '<b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention) +
+      'Cette phrase reviendra à la fin de l\'étape.', echouer);
+    return;
+  }
+
+  ecrEssais++;
+  if (ecrEssais === 1) {
+    enregistrer(e, 0, false); // l'erreur compte dès le 1er essai
+    const err = document.getElementById('pc-ecr-erreur');
+    err.classList.remove('hidden');
+    err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · réessaie' +
+      aideErreurHtml(val, e, attention, 1);
+    input.value = '';
+    input.focus();
+    return;
+  }
 
   input.disabled = true;
-  input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
-
-  if (ok) {
-    showFeedback(true, 'Juste !', '<b>' + escHtml(e.lu) + '</b>', reussir);
-  } else {
-    showFeedback(false, 'Pas encore',
-      'Réponse attendue : <b>' + escHtml(e.lu) + '</b>' + attentionHtml(attentionItem(e, 'ecriture')) +
-      'Cette phrase reviendra à la fin de l\'étape.', echouer);
-  }
+  input.className = 'ecr-input wrong';
+  document.getElementById('pc-ecr-erreur').classList.add('hidden');
+  showFeedback(false, 'Pas encore',
+    'Réponse attendue : <b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention) +
+    'Cette phrase reviendra à la fin de l\'étape.', echouer);
 }
 
 // ─── FIN DE PARTIE ──────────────────────────────────────────────────────────

@@ -1,0 +1,136 @@
+// ─── AIDE À L'ERREUR EN DEUX TEMPS (S6) ─────────────────────────────────────
+// Au 1er essai raté, on aide SANS donner la réponse :
+//   1. un diagnostic automatique (« Bon mot, mauvais article », etc.) ;
+//   2. le point d'attention, avec la réponse masquée par « … ».
+// Au 2e essai raté (ou « Voir la réponse »), le point d'attention complet.
+// Rien n'est annoté dans les leçons : tout se déduit de la réponse attendue.
+
+// Articles reconnus pour le diagnostic « mauvais article » (après normalize).
+const ARTICLES = ['e', 'en', 'eng', 'den', 'de', 'dat', 'dei', 'di', "d'"];
+
+// ─── 1. DIAGNOSTIC ──────────────────────────────────────────────────────────
+// Compare la réponse donnée à la réponse attendue, mot à mot.
+// Renvoie un message court, ou '' si l'erreur ne correspond à aucun cas connu.
+function diagnostic(reponse, attendu) {
+  const donne = motsDe(reponse);
+  const bon = motsDe(attendu);
+  if (!donne.length || donne.join(' ') === bon.join(' ')) return '';
+
+  // Même nombre de mots : on regarde les positions qui diffèrent.
+  if (donne.length === bon.length) {
+    const differences = [];
+    for (let i = 0; i < bon.length; i++) {
+      if (donne[i] !== bon[i]) differences.push(i);
+    }
+    if (differences.length === 1) {
+      const i = differences[0];
+      if (ARTICLES.includes(donne[i]) && ARTICLES.includes(bon[i])) {
+        return 'Bon mot, mauvais article. Le genre ne suit pas le français.';
+      }
+      if (distance(donne[i], bon[i]) === 1) {
+        return 'Presque : une lettre à corriger.';
+      }
+    }
+    // Mêmes mots, dans un autre ordre.
+    if (donne.slice().sort().join(' ') === bon.slice().sort().join(' ')) {
+      return 'Tous les mots sont là, mais pas dans le bon ordre.';
+    }
+    return '';
+  }
+
+  // Un mot de moins : la réponse attendue, avec un mot retiré ?
+  if (donne.length === bon.length - 1 && unMotRetire(bon, donne)) {
+    return 'Il manque un mot.';
+  }
+  // Un mot de plus : la réponse donnée, avec un mot retiré, redonne l'attendu ?
+  if (donne.length === bon.length + 1 && unMotRetire(donne, bon)) {
+    return 'Il y a un mot en trop.';
+  }
+  return '';
+}
+
+// Découpe en mots, après normalize (accents, majuscules, ponctuation ignorés).
+// « d'Mamm » est découpé en « d' » + « mamm » pour reconnaître l'article.
+function motsDe(texte) {
+  const propre = normalize(texte || '').replace(/[’']/g, "' ").replace(/\s+/g, ' ').trim();
+  return propre ? propre.split(' ') : [];
+}
+
+// Vrai si « court » = « long » avec exactement un mot en moins.
+function unMotRetire(long, court) {
+  for (let i = 0; i < long.length; i++) {
+    const sans = long.slice(0, i).concat(long.slice(i + 1));
+    if (sans.join(' ') === court.join(' ')) return true;
+  }
+  return false;
+}
+
+// Nombre de lettres à changer, ajouter ou retirer pour passer de a à b.
+function distance(a, b) {
+  const ligne = [];
+  for (let j = 0; j <= b.length; j++) ligne.push(j);
+  for (let i = 1; i <= a.length; i++) {
+    let precedent = ligne[0];
+    ligne[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const garde = ligne[j];
+      const cout = a[i - 1] === b[j - 1] ? 0 : 1;
+      ligne[j] = Math.min(ligne[j] + 1, ligne[j - 1] + 1, precedent + cout);
+      precedent = garde;
+    }
+  }
+  return ligne[b.length];
+}
+
+// ─── 2. POINT D'ATTENTION MASQUÉ ────────────────────────────────────────────
+// Les mots qui donneraient la réponse : la réponse entière, le mot avec son
+// article, et chaque mot de 4 lettres ou plus de la réponse.
+function motsReponse(item) {
+  const liste = [item.lu];
+  if (item.article) liste.push(item.article + ' ' + item.lu);
+  (item.lu || '').split(/\s+/).forEach(m => {
+    const mot = m.replace(/[.!?,;:]/g, '');
+    if (mot.length >= 4) liste.push(mot);
+  });
+  // Les plus longs d'abord, pour masquer « eng Mapp » avant « Mapp ».
+  return liste.filter(Boolean).sort((a, b) => b.length - a.length);
+}
+
+// Remplace dans le texte (HTML simple) les mots de la réponse par « … ».
+// Renvoie '' s'il ne reste presque rien d'utile (moins de 3 mots).
+function masquerReponse(texte, item) {
+  if (!texte) return '';
+  let resultat = texte;
+  motsReponse(item).forEach(mot => {
+    // Mot entier seulement (pas au milieu d'un autre mot), sans tenir compte des majuscules.
+    const motif = new RegExp('(^|[^\\p{L}])' + echapperRegex(mot) + '(?![\\p{L}])', 'giu');
+    resultat = resultat.replace(motif, '$1…');
+  });
+  // L'article juste avant un mot masqué le trahirait aussi : « <b>eng</b> … » → « … ».
+  const articles = '(e|en|eng|den|dat|déi|d\')';
+  resultat = resultat.replace(new RegExp('(<b>)?' + articles + '(<\\/b>)?\\s+…', 'gi'), '…');
+
+  const motsUtiles = resultat.replace(/<[^>]+>/g, ' ').replace(/…/g, ' ').split(/\s+/).filter(m => /\p{L}/u.test(m));
+  return motsUtiles.length >= 3 ? resultat : '';
+}
+
+function echapperRegex(texte) {
+  return texte.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// ─── 3. CE QU'ON AFFICHE APRÈS UNE ERREUR ───────────────────────────────────
+// essai = numéro de l'essai raté (1 = premier).
+// Renvoie { diagnostic, attention } : à chaque écran de les afficher à sa façon.
+function aideErreur(val, item, attention, essai) {
+  if (essai <= 1) {
+    return { diagnostic: diagnostic(val, item.lu), attention: masquerReponse(attention, item) };
+  }
+  return { diagnostic: '', attention: attention || '' };
+}
+
+// Version HTML commune aux écrans du parcours et de la mission.
+function aideErreurHtml(val, item, attention, essai) {
+  const aide = aideErreur(val, item, attention, essai);
+  return (aide.diagnostic ? '<div class="pc-diagnostic">' + escHtml(aide.diagnostic) + '</div>' : '') +
+    attentionHtml(aide.attention);
+}

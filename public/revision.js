@@ -27,10 +27,16 @@ function rafraichirHtml(nbDus) {
   return '<span class="lecon-pill pc-pill-fraicheur">À rafraîchir · ' + nbDus + '</span>';
 }
 
-// ─── PROCHAINE ÉTAPE CONSEILLÉE ─────────────────────────────────────────────
-// Partie en cours à reprendre, sinon première unité du fil jamais terminée,
-// sinon la mission d'une leçon dont le fil est fini.
-function prochaineEtape() {
+// ─── PROCHAIN PAS (S1, S2) ──────────────────────────────────────────────────
+// Une seule réponse à « que faire maintenant » côté leçons :
+//   1. une partie d'unité en cours à reprendre ;
+//   2. sinon, dans l'ordre des leçons (v1 et v2 mélangées), la première pas faite :
+//        - leçon v1 : faite au statut « bien » (70 % et plus) ;
+//        - leçon v2 : faite quand toutes ses unités du fil sont terminées ;
+//   3. sinon, la mission d'une leçon v2 jamais jouée.
+// La 1re fois dans une leçon v2, on ouvre l'écran de la leçon (mission en haut),
+// pas l'intro de l'unité.
+function prochainPas() {
   const saved = loadRun();
   if (saved) {
     const l = leconsActives().find(x => x.id === saved.leconId);
@@ -38,22 +44,29 @@ function prochaineEtape() {
       return { titre: 'Reprendre', texte: 'Leçon ' + l.id + ' · ' + nomPartie(saved.uniteId, saved.mode), fn: reprendreRun };
     }
   }
-  // Dans l'ordre des leçons : la première unité du fil pas encore faite,
-  // sinon la mission si elle n'a jamais été jouée.
   for (const l of leconsActives()) {
-    if (!isParcoursLecon(l)) continue;
+    if (!isParcoursLecon(l)) {
+      if (leconV1Faite(l)) continue;
+      return { titre: 'Prochaine leçon', texte: 'Leçon ' + l.id + ' · ' + l.titre_fr, lecon: l, fn: () => openLecon(l) };
+    }
     const u = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (u) {
       return {
         titre: 'Prochaine unité',
         texte: 'Leçon ' + l.id + ' · ' + u.titre,
-        fn: () => { openParcoursLecon(l); openIntro(u.id); }
+        lecon: l,
+        fn: () => {
+          const dejaVue = getLeconVue(l.id);
+          openParcoursLecon(l);
+          if (dejaVue) openIntro(u.id);
+        }
       };
     }
     if (l.mission && l.scene && getMissionBest(l.id) == null) {
       return {
         titre: 'Mission',
         texte: 'Leçon ' + l.id + ' · ' + l.mission.titre,
+        lecon: l,
         fn: () => { openParcoursLecon(l); openMission(); }
       };
     }
@@ -66,11 +79,18 @@ function renderAujourdhui() {
   const box = document.getElementById('today');
   if (!box) return;
 
+  // Profil neuf : une seule carte, un seul pas à faire (S3).
+  if (!aDejaPratique()) {
+    renderBienvenue(box);
+    return;
+  }
+
+  box.classList.remove('today-bienvenue');
   const nbDus = resumeRevision(leconsActives()).dus.length;
   const nbSeance = Math.min(nbDus, TAILLE_SEANCE);
   const enCours = loadSeance(); // séance commencée et pas finie
   const minutes = Math.max(1, Math.round(nbSeance * 12 / 60)); // ~12 s par question
-  const suite = prochaineEtape();
+  const suite = prochainPas();
   const objectifAtteint = getJours()[dayString(0)] === 2;
   const serie = serieActuelle();
 
@@ -111,6 +131,24 @@ function renderAujourdhui() {
     objectif +
     '<button class="pc-btn primary wide big" onclick="lancerSeance()">' +
       (enCours ? 'Reprendre ma séance · ' + enCours.index + ' / ' + enCours.questions.length : 'Ma séance') + '</button>';
+}
+
+// Carte d'accueil d'un profil neuf : la première leçon et un bouton.
+function renderBienvenue(box) {
+  const pas = prochainPas();
+  box.classList.add('today-bienvenue');
+  box.innerHTML =
+    '<div class="tb-titre">Bienvenue</div>' +
+    '<p class="tb-texte">Apprends le luxembourgeois par petites unités, chacune liée à une scène de la vie de tous les jours.</p>' +
+    (pas
+      ? '<div class="tb-lecon"><span>Commence par</span><b>' + escHtml(pas.texte) + '</b></div>' +
+        '<button class="pc-btn primary wide big" onclick="lancerPremierPas()">C\'est parti</button>'
+      : '');
+}
+
+function lancerPremierPas() {
+  const pas = prochainPas();
+  if (pas) pas.fn();
 }
 
 // ─── SÉANCE DU JOUR ─────────────────────────────────────────────────────────
@@ -183,7 +221,7 @@ function lancerSeance() {
 function nouvelleSeance() {
   clearSeance();
   const dus = resumeRevision(leconsActives()).dus;
-  const suite = prochaineEtape();
+  const suite = prochainPas();
 
   if (!dus.length) {
     if (suite) suite.fn();
@@ -204,7 +242,7 @@ function jouerSeance(questions, depart) {
     // Calculé à la fin de la séance : ce qui reste dépend des réponses données.
     actions: () => {
       const reste = resumeRevision(leconsActives()).dus.length;
-      const suiteFin = prochaineEtape();
+      const suiteFin = prochainPas();
       const actions = [];
       if (reste) {
         actions.push({ label: 'Encore ' + Math.min(reste, TAILLE_SEANCE) + ' questions', primary: true, fn: nouvelleSeance });
