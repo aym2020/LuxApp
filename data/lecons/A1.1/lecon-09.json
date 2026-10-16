@@ -1024,6 +1024,158 @@
       "unite": 2
     },
     {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Dire les langues qu'on parle",
+      "unite": 1,
+      "items": [
+        [
+          "Portugisesch",
+          "portugais"
+        ],
+        [
+          "Spuenesch",
+          "espagnol"
+        ],
+        [
+          "Englesch",
+          "anglais"
+        ],
+        [
+          "Italienesch",
+          "italien"
+        ],
+        [
+          "Lëtzebuergesch",
+          "luxembourgeois"
+        ],
+        [
+          "Franséisch",
+          "français"
+        ],
+        [
+          "Däitsch",
+          "allemand"
+        ],
+        [
+          "Japanesch",
+          "japonais"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Dire les langues qu'on parle",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "De Ronaldo schwätzt Portugisesch.",
+          "Ronaldo parle portugais."
+        ],
+        [
+          "De Messi schwätzt Spuenesch.",
+          "Messi parle espagnol."
+        ],
+        [
+          "D'Angela Merkel schwätzt Däitsch.",
+          "Angela Merkel parle allemand."
+        ],
+        [
+          "Ech schwätzen Lëtzebuergesch.",
+          "Je parle luxembourgeois."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Demander et répondre non",
+      "unite": 2,
+      "items": [
+        [
+          "Chineesesch",
+          "chinois"
+        ],
+        [
+          "Schweedesch",
+          "suédois"
+        ],
+        [
+          "Hollännesch",
+          "néerlandais"
+        ],
+        [
+          "Flammännesch",
+          "flamand"
+        ],
+        [
+          "Griichesch",
+          "grec"
+        ],
+        [
+          "schwätzen",
+          "parler"
+        ],
+        [
+          "net",
+          "ne… pas"
+        ],
+        [
+          "e bësse",
+          "un peu"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Pour aller plus loin · Demander et répondre non",
+      "unite": 2,
+      "plus": true,
+      "items": [
+        [
+          "Polnesch",
+          "polonais"
+        ],
+        [
+          "Russesch",
+          "russe"
+        ],
+        [
+          "Koreanesch",
+          "coréen"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Demander et répondre non",
+      "unite": 2,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Hien schwätzt Englesch, net Franséisch.",
+          "Il parle anglais, pas français."
+        ],
+        [
+          "De Buffon schwätzt net Japanesch.",
+          "Buffon ne parle pas japonais."
+        ],
+        [
+          "Wat fir eng Sprooch schwätzt du?",
+          "Quelle langue parles-tu ?"
+        ],
+        [
+          "Hien schwätzt zwou Sproochen.",
+          "Il parle deux langues."
+        ]
+      ]
+    },
+    {
       "type": "texte",
       "contenu": "Le nom d'une langue est <b>invariable</b> : il ne change jamais selon le genre ou la personne. <b>Ech schwätzen Lëtzebuergesch.</b>",
       "unite": 0
