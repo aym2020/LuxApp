@@ -41,13 +41,13 @@ function prochainPas() {
   if (saved) {
     const l = leconsActives().find(x => x.id === saved.leconId);
     if (isParcoursLecon(l)) {
-      return { titre: 'Reprendre', texte: 'Leçon ' + l.id + ' · ' + nomPartie(saved.uniteId, saved.mode), fn: reprendreRun };
+      return { titre: 'Reprendre', texte: 'Leçon ' + l.id + ' · ' + nomPartie(saved.uniteId, saved.mode), lecon: l, type: 'reprise', reprise: true, fn: reprendreRun };
     }
   }
   for (const l of leconsActives()) {
     if (!isParcoursLecon(l)) {
       if (leconV1Faite(l)) continue;
-      return { titre: 'Prochaine leçon', texte: 'Leçon ' + l.id + ' · ' + l.titre_fr, lecon: l, fn: () => openLecon(l) };
+      return { titre: 'Prochaine leçon', texte: 'Leçon ' + l.id + ' · ' + l.titre_fr, lecon: l, type: 'v1', fn: () => openLecon(l) };
     }
     const u = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (u) {
@@ -55,6 +55,8 @@ function prochainPas() {
         titre: 'Prochaine unité',
         texte: 'Leçon ' + l.id + ' · ' + u.titre,
         lecon: l,
+        type: 'unite',
+        unite: u,
         fn: () => {
           const dejaVue = getLeconVue(l.id);
           openParcoursLecon(l);
@@ -67,88 +69,12 @@ function prochainPas() {
         titre: 'Mission',
         texte: 'Leçon ' + l.id + ' · ' + l.mission.titre,
         lecon: l,
+        type: 'mission',
         fn: () => { openParcoursLecon(l); openMission(); }
       };
     }
   }
   return null;
-}
-
-// ─── BLOC « AUJOURD'HUI » DE L'ACCUEIL ──────────────────────────────────────
-function renderAujourdhui() {
-  const box = document.getElementById('today');
-  if (!box) return;
-
-  // Profil neuf : une seule carte, un seul pas à faire (S3).
-  if (!aDejaPratique()) {
-    renderBienvenue(box);
-    return;
-  }
-
-  box.classList.remove('today-bienvenue');
-  const nbDus = resumeRevision(leconsActives()).dus.length;
-  const nbSeance = Math.min(nbDus, TAILLE_SEANCE);
-  const enCours = loadSeance(); // séance commencée et pas finie
-  const minutes = Math.max(1, Math.round(nbSeance * 12 / 60)); // ~12 s par question
-  const suite = prochainPas();
-  const objectifAtteint = getJours()[dayString(0)] === 2;
-  const serie = serieActuelle();
-
-  const semaine = semaineEnCours().map(j => {
-    let classe = 'td-jour';
-    if (j.valeur === 2) classe += ' objectif';
-    else if (j.valeur === 1) classe += ' pratique';
-    if (j.aujourdhui) classe += ' auj';
-    if (j.futur) classe += ' futur';
-    return '<div class="' + classe + '"><span>' + j.lettre + '</span><i></i></div>';
-  }).join('');
-
-  let objectif;
-  if (objectifAtteint) objectif = '<div class="td-objectif ok">Objectif du jour atteint</div>';
-  else if (enCours) objectif = '<div class="td-objectif">Objectif : finir ta séance</div>';
-  else if (nbDus) objectif = '<div class="td-objectif">Objectif : ta révision du jour, ou une unité</div>';
-  else objectif = '<div class="td-objectif">Objectif : finir une unité</div>';
-
-  box.innerHTML =
-    '<div class="td-head">' +
-      '<div><div class="pc-mini-label pc-gold">AUJOURD\'HUI</div>' +
-      '<div class="td-serie">' + (serie ? 'Série : ' + serie + (serie > 1 ? ' jours' : ' jour') : 'Commence ta série aujourd\'hui') + '</div></div>' +
-    '</div>' +
-    '<div class="td-semaine">' + semaine + '</div>' +
-    '<div class="td-legende"><span class="pratique"><i></i>commencé</span><span class="objectif"><i></i>objectif atteint</span></div>' +
-    '<div class="td-lignes">' +
-      '<div class="td-ligne">' + (enCours
-        ? '<b>Séance commencée : ' + enCours.index + ' / ' + enCours.questions.length + '</b>' +
-          '<div class="td-barre"><i style="width:' + Math.round(enCours.index / enCours.questions.length * 100) + '%"></i></div>'
-        : nbDus
-        ? '<b>Ta séance : ' + nbSeance + (nbSeance > 1 ? ' questions' : ' question') + '</b> · environ ' + minutes + ' min' +
-          (nbDus > nbSeance ? '<span class="td-reserve">' + (nbDus - nbSeance) + ' autres en attente</span>' : '')
-        : 'Rien à réviser aujourd\'hui') + '</div>' +
-      '<div class="td-ligne">' + (suite
-        ? '<span class="td-muted">' + suite.titre + ' :</span> ' + escHtml(suite.texte)
-        : '<span class="td-muted">Toutes les unités sont terminées</span>') + '</div>' +
-    '</div>' +
-    objectif +
-    '<button class="pc-btn primary wide big" onclick="lancerSeance()">' +
-      (enCours ? 'Reprendre ma séance · ' + enCours.index + ' / ' + enCours.questions.length : 'Ma séance') + '</button>';
-}
-
-// Carte d'accueil d'un profil neuf : la première leçon et un bouton.
-function renderBienvenue(box) {
-  const pas = prochainPas();
-  box.classList.add('today-bienvenue');
-  box.innerHTML =
-    '<div class="tb-titre">Bienvenue</div>' +
-    '<p class="tb-texte">Apprends le luxembourgeois par petites unités, chacune liée à une scène de la vie de tous les jours.</p>' +
-    (pas
-      ? '<div class="tb-lecon"><span>Commence par</span><b>' + escHtml(pas.texte) + '</b></div>' +
-        '<button class="pc-btn primary wide big" onclick="lancerPremierPas()">C\'est parti</button>'
-      : '');
-}
-
-function lancerPremierPas() {
-  const pas = prochainPas();
-  if (pas) pas.fn();
 }
 
 // ─── SÉANCE DU JOUR ─────────────────────────────────────────────────────────
@@ -170,20 +96,25 @@ function saveSeance() {
     date: dayString(0),
     questions: session.questions.map(x => ({ leconId: x.leconId, type: x.type, qid: x.qid })),
     index: session.index + 1, // la question en cours vient d'être répondue
-    score: session.score
+    score: session.score,
+    maj: Date.now()           // pour la synchronisation : le plus récent gagne (S8)
   };
   try { localStorage.setItem(storageKey(SEANCE_KEY), JSON.stringify(data)); } catch (e) { /* ignore */ }
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
+// Séance finie ou abandonnée : on garde une marque « finie » datée, pour qu'un
+// autre appareil ne propose plus de reprendre l'ancienne version (S8).
 function clearSeance() {
-  try { localStorage.removeItem(storageKey(SEANCE_KEY)); } catch (e) { /* ignore */ }
+  try { localStorage.setItem(storageKey(SEANCE_KEY), JSON.stringify({ fini: true, maj: Date.now() })); } catch (e) { /* ignore */ }
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
 // Séance commencée aujourd'hui et pas finie, sinon null.
 function loadSeance() {
   let data = null;
   try { data = JSON.parse(localStorage.getItem(storageKey(SEANCE_KEY))); } catch (e) { data = null; }
-  if (!data || data.date !== dayString(0) || data.index >= data.questions.length) return null;
+  if (!data || data.fini || !data.questions || data.date !== dayString(0) || data.index >= data.questions.length) return null;
   return data;
 }
 
@@ -191,7 +122,7 @@ function loadSeance() {
 // Une question qui n'existe plus (leçon modifiée) est simplement sautée.
 function questionsSeance(data) {
   const toutes = {};
-  leconsActives().forEach(l => {
+  lecons.forEach(l => { // tous les niveaux : la révision n'est jamais filtrée (S13)
     itemsRevision(l).forEach(item => { toutes[item.leconId + '-' + item.type + '-' + item.qid] = item; });
   });
   const liste = [];
@@ -220,7 +151,7 @@ function lancerSeance() {
 
 function nouvelleSeance() {
   clearSeance();
-  const dus = resumeRevision(leconsActives()).dus;
+  const dus = resumeRevision(lecons).dus; // tous les niveaux (S13)
   const suite = prochainPas();
 
   if (!dus.length) {
@@ -237,18 +168,18 @@ function jouerSeance(questions, depart) {
     apresReponse: saveSeance, // sauvée après chaque réponse
     apresFin: () => {
       clearSeance();
-      marquerJour(2); // une séance finie = objectif du jour atteint
+      marquerRevisionFaite(); // révision du jour faite (S7)
     },
     // Calculé à la fin de la séance : ce qui reste dépend des réponses données.
     actions: () => {
-      const reste = resumeRevision(leconsActives()).dus.length;
+      const reste = resumeRevision(lecons).dus.length;
       const suiteFin = prochainPas();
       const actions = [];
-      if (reste) {
-        actions.push({ label: 'Encore ' + Math.min(reste, TAILLE_SEANCE) + ' questions', primary: true, fn: nouvelleSeance });
-      }
-      if (suiteFin) actions.push({ label: 'Continuer : ' + suiteFin.texte, primary: !reste, fn: suiteFin.fn });
-      actions.push({ label: 'Terminer', fn: goDashboard });
+      // La révision du jour est faite : la suite conseillée est la leçon (S7).
+      // « Réviser encore » reste possible, mais n'est plus le bouton principal.
+      if (suiteFin) actions.push({ label: 'Continuer : ' + suiteFin.texte, primary: true, fn: suiteFin.fn });
+      if (reste) actions.push({ label: 'Réviser encore · ' + Math.min(reste, TAILLE_SEANCE) + ' questions', primary: !suiteFin, fn: nouvelleSeance });
+      actions.push({ label: 'Accueil', fn: goDashboard });
       return actions;
     }
   });
@@ -274,7 +205,7 @@ function plusFragiles(listeLecons) {
 }
 
 function lancerPlusFragiles() {
-  const items = plusFragiles(leconsActives());
+  const items = plusFragiles(lecons);
   if (!items.length) {
     alert('Rien de fragile pour l\'instant : tout ce que tu as vu est solide.');
     goDashboard();

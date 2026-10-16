@@ -26,86 +26,25 @@ async function init() {
   // 2. la progression locale est déjà lue à la demande depuis localStorage
   initFirebase();          // 3. init Firebase (sans effet si non configuré)
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
-  renderNiveauSwitch();
+  appliquerNiveauChoisi(); // niveau choisi par l'utilisateur (S13)
   renderLessons();
-  renderDashboard();       // 7. rendu (inclut l'état de connexion)
+  renderAccueil(true);     // 7. rendu de l'accueil (avec animations d'entrée)
+  majNavigation('view-dashboard');
   await updateAuthUI();    // mise à jour zone connexion (après bootAuthAndSync)
   setupTabs();
   setupCardInteraction(); // BUG 1 fix : remplace setupSwipe()
   setupKeyboard();
 }
 
-// ─── SÉLECTEUR DE NIVEAU ────────────────────────────────────────────────────
-// Un bouton par niveau présent dans les leçons (A1.1, A1.2…).
-function renderNiveauSwitch() {
-  const niveaux = listeNiveaux();
-
-  // Si le niveau mémorisé n'existe plus, on revient au premier niveau.
-  if (!niveaux.includes(niveauActif)) niveauActif = niveaux[0] || 'A1.1';
-
-  const box = document.getElementById('niveau-switch');
-  box.innerHTML = '';
-  niveaux.forEach(n => {
-    const btn = document.createElement('button');
-    btn.className = 'niveau-btn' + (n === niveauActif ? ' active' : '');
-    btn.textContent = n;
-    btn.addEventListener('click', () => changerNiveau(n));
-    box.appendChild(btn);
-  });
-
-  document.getElementById('lessons-niveau').textContent = niveauActif;
-}
-
+// ─── NIVEAU ─────────────────────────────────────────────────────────────────
+// Le choix du niveau est dans niveau.js (S13). Ancien nom gardé pour les tests.
 function changerNiveau(niveau) {
-  niveauActif = niveau;
-  localStorage.setItem('luxNiveau', niveau);
-  renderNiveauSwitch();
+  choisirNiveau(niveau);
   renderLessons();
   renderDashboard();
 }
 
-// ─── LISTE DES LEÇONS ───────────────────────────────────────────────────────
-function renderLessons() {
-  const list = document.getElementById('lecon-list');
-  list.innerHTML = '';
-
-  // Unité en cours (leçons en unités) : carte "Reprendre" en premier.
-  const reprendre = carteReprendre();
-  if (reprendre) list.appendChild(reprendre);
-
-  // Fraîcheur de chaque leçon, calculée en une seule lecture des stats.
-  const revision = resumeRevision(leconsActives()).parLecon;
-
-  leconsActives().forEach(l => {
-    const v2 = isParcoursLecon(l); // leçon découpée en unités ?
-    const r = revision[l.id];
-    const el = document.createElement('div');
-    el.className = 'lecon-card';
-    el.style.setProperty('--lc', l.couleur);
-    el.innerHTML = `
-      ${anneauHtml(l.id, fraicheur(r), l.couleur)}
-      <div class="lecon-card-body">
-        <div class="lecon-card-num">
-          LEÇON ${l.id}
-          ${v2 ? '' : `<span class="lecon-progress" data-lecon="${l.id}"></span>`}
-        </div>
-        <div class="lecon-card-titre">${l.titre}</div>
-        <div class="lecon-card-sous">${l.titre_fr}</div>
-        <div class="lecon-card-counts">
-          ${v2 ? carteLeconV2Html(l) : `
-          <span class="lecon-pill">📖 ${l.flashcards.length} cartes</span>
-          <span class="lecon-pill">❓ ${l.quiz.length} quiz</span>
-          <span class="lecon-pill">✏️ ${l.trous.length} trous</span>
-          <span class="lecon-pill">${l.ecriture ? '✍️ ' + l.ecriture.length + ' écriture' : ''}</span>`}
-          ${rafraichirHtml(r && r.dus)}
-        </div>
-      </div>
-      <div class="lecon-arrow">›</div>`;
-    el.addEventListener('click', () => v2 ? openParcoursLecon(l) : openLecon(l));
-    list.appendChild(el);
-  });
-  renderLessonsProgress();
-}
+// La liste des leçons est devenue « Mon chemin » : voir chemin.js.
 
 function openLecon(l) {
   currentLecon = l;
@@ -226,38 +165,23 @@ function coursBlocsHtml(blocs, accent) {
 }
 
 function goDashboard() {
-  renderDashboard();
+  fermerPanneau();
+  renderAccueil(true); // on arrive sur l'accueil : animations d'entrée
   showView('view-dashboard');
 }
 
 function goLessons() {
-  renderLessons(); // reconstruit la liste : carte "Reprendre", étoiles à jour
+  fermerPanneau();
+  renderLessons(); // reconstruit le chemin : étapes et étoiles à jour
   showView('view-lessons');
+  setTimeout(allerALeconEnCours, 250);
 }
 
-// ─── DASHBOARD ──────────────────────────────────────────────────────────────
-// Profil neuf (rien pratiqué) : seulement la carte « Bienvenue » (S3).
-// Ensuite : des compteurs ACQUIS, qui ne baissent jamais.
+// ─── ACCUEIL ────────────────────────────────────────────────────────────────
+// L'accueil est construit par accueil.js. Ici : le réaffichage sans animation
+// (après une connexion, une synchronisation, un changement de niveau).
 function renderDashboard() {
-  const neuf = !aDejaPratique();
-  const acquis = document.getElementById('dash-acquis');
-  acquis.classList.toggle('hidden', neuf);
-  // Pièges et erreurs fréquentes : vides tant qu'il n'y a aucune erreur.
-  document.getElementById('btn-pieges').classList.toggle('hidden', neuf);
-  document.getElementById('btn-erreurs').classList.toggle('hidden', neuf);
-
-  if (!neuf) {
-    const tuiles = [
-      [compterUnitesTerminees(), 'Unités terminées'],
-      [leconsActives().filter(missionReussie).length, 'Missions réussies'],
-      [leconsActives().filter(leconSansFaute).length, 'Leçons sans faute'],
-      [totalJours(), 'Jours de pratique']
-    ];
-    acquis.innerHTML = tuiles.map(t =>
-      '<div class="dash-tuile"><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('');
-  }
-
-  renderAujourdhui(); // bloc « Aujourd'hui » (revision.js)
+  renderAccueil(false);
 }
 
 // A-t-on déjà répondu à au moins une question (v1 ou v2) ?
@@ -856,7 +780,38 @@ function showSessionResult() {
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  majNavigation(id);
   window.scrollTo(0, 0);
+}
+
+// ─── BARRE DU BAS (S9) ──────────────────────────────────────────────────────
+// Écrans de navigation -> onglet allumé. Les autres écrans (exercices, séance,
+// mission, fins, examen) n'ont pas de barre : on se concentre, et l'icône
+// maison en haut ramène à l'accueil.
+const ONGLET_DE_LA_VUE = {
+  'view-dashboard': 'accueil',
+  'view-lessons': 'chemin',
+  'view-lecon': 'chemin',
+  'view-plecon': 'chemin',
+  'view-review-setup': 'reviser',
+  'view-lexique': 'plus',
+  'view-pieges': 'plus',
+  'view-examens': 'plus',
+  'view-reglages': 'plus'
+};
+
+function majNavigation(id) {
+  const nav = document.getElementById('nav-bas');
+  if (!nav) return;
+  let onglet = ONGLET_DE_LA_VUE[id];
+  // Premier lancement (Bienvenue) : pas de barre, un seul chemin possible.
+  if (id === 'view-dashboard' && document.querySelector('#accueil .bienv')) onglet = null;
+  nav.classList.toggle('hidden', !onglet);
+  document.body.classList.toggle('avec-nav', !!onglet);
+  nav.querySelectorAll('[data-nav]').forEach(b => {
+    if (b.dataset.nav === onglet) b.setAttribute('aria-current', 'page');
+    else b.removeAttribute('aria-current');
+  });
 }
 
 // ─── TABS ─────────────────────────────────────────────────────────────────────

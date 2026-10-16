@@ -160,6 +160,8 @@ function resetProgress() {
   localStorage.removeItem(storageKey(STREAK_KEY));
   localStorage.removeItem(storageKey(STATS_KEY));
   localStorage.removeItem(storageKey('luxParcours')); // unité en cours (leçons v2)
+  localStorage.removeItem(storageKey('luxSeance'));   // séance du jour en cours
+  localStorage.removeItem(storageKey('luxChoix'));    // niveau choisi : on repasse par Bienvenue
 }
 
 // ─── ERREURS : COMPTEUR PAR QUESTION ────────────────────────────────────────
@@ -459,6 +461,53 @@ function marquerJour(valeur) {
   progress.jours.actif[today] = valeur;
   saveProgress(progress);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// ─── OBJECTIF DU JOUR (S7) : DEUX OBJECTIFS ─────────────────────────────────
+// Rangés comme les jours (3 niveaux, fusion cloud = max) :
+//   progress.jours.dues     = { "2026-10-16": 1 } -> des questions étaient dues ce jour-là
+//   progress.jours.revision = { "2026-10-16": 1 } -> révision du jour faite (20 questions)
+//   progress.jours.unite    = { "2026-10-16": 1 } -> une unité ou une mission finie
+// Objectif atteint = révision faite (s'il y avait des questions dues) ET une
+// unité ou une mission finie. Un des deux seulement = jour « commencé ».
+function marqueDuJour(type) {
+  const p = getProgress();
+  return !!(p.jours && p.jours[type] && p.jours[type][dayString(0)]);
+}
+
+function poserMarqueDuJour(type) {
+  if (marqueDuJour(type)) return;
+  const progress = getProgress();
+  if (!progress.jours) progress.jours = {};
+  if (!progress.jours[type]) progress.jours[type] = {};
+  progress.jours[type][dayString(0)] = 1;
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// Appelé à l'affichage de l'accueil : retient qu'il y avait des questions dues.
+function noterQuestionsDues(nbDus) {
+  if (nbDus > 0) poserMarqueDuJour('dues');
+}
+
+function revisionFaiteAujourdhui() {
+  return marqueDuJour('revision');
+}
+
+function marquerRevisionFaite() {
+  poserMarqueDuJour('revision');
+  verifierObjectifDuJour();
+}
+
+function marquerUniteFaite() {
+  poserMarqueDuJour('unite');
+  verifierObjectifDuJour();
+}
+
+function verifierObjectifDuJour() {
+  const revisionOk = revisionFaiteAujourdhui() || !marqueDuJour('dues');
+  const uniteOk = marqueDuJour('unite');
+  marquerJour(revisionOk && uniteOk ? 2 : 1);
 }
 
 // Série = jours d'affilée avec l'objectif atteint.

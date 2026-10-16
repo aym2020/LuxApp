@@ -18,7 +18,8 @@ def actif(page, vue):
 
 
 def visible(page, selecteur):
-    return page.evaluate("s => { const e = document.querySelector(s); return !!e && e.offsetParent !== null; }", selecteur)
+    # getClientRects : fonctionne aussi pour les éléments fixés (barre du bas, panneau)
+    return page.evaluate("s => { const e = document.querySelector(s); return !!e && e.getClientRects().length > 0; }", selecteur)
 
 
 with sync_playwright() as p:
@@ -31,14 +32,15 @@ with sync_playwright() as p:
     page.goto(URL)
     page.wait_for_selector('#today')
 
-    # ── S3 : profil neuf ──
-    assert page.inner_text('#today .tb-titre') == 'Bienvenue'
-    assert 'Leçon 1' in page.inner_text('#today .tb-lecon')
-    assert not visible(page, '#dash-acquis'), 'tuiles visibles sur un profil neuf'
-    assert not visible(page, '#btn-pieges') and not visible(page, '#btn-erreurs')
+    # ── S3 + S13 : profil neuf = Bienvenue avec le choix du niveau ──
+    assert 'Quel niveau' in page.inner_text('#today .question')
+    assert page.locator('#today .choix-niv').count() == len(page.evaluate('niveauxDisponibles()'))
+    assert page.get_attribute('#today .choix-niv >> nth=0', 'aria-pressed') == 'true'
+    assert not visible(page, '#nav-bas'), 'pas de barre du bas au premier lancement'
+    assert not visible(page, '.tuile'), 'pas de tuiles au premier lancement'
     assert page.locator('#view-dashboard >> text=Réinitialiser').count() == 0
     assert '1592' not in page.inner_text('#view-dashboard')
-    ok('profil neuf : carte Bienvenue seule, ni tuiles, ni pièges, ni « Réinitialiser », ni « 1592 »')
+    ok('profil neuf : Bienvenue + choix du niveau (A1.1 présélectionné), ni barre, ni tuiles, ni « Réinitialiser »')
 
     page.click('#today button:has-text("C\'est parti")')
     assert actif(page, 'view-lecon'), 'la leçon 1 (v1) doit s\'ouvrir'
@@ -69,15 +71,16 @@ with sync_playwright() as p:
     assert actif(page, 'view-pintro'), '2e visite : intro de l\'unité attendue'
     ok('leçon 1 au statut « bien » → prochain pas = leçon 2 ; 1re visite → écran de la leçon, ensuite → intro')
 
-    # ── S3 : compteurs acquis ──
+    # ── S3 : compteurs acquis (dans le menu « Plus », S9) ──
     page.evaluate('goDashboard()')
-    tuiles = page.locator('#dash-acquis .dash-tuile span').all_inner_texts()
-    assert tuiles == ['Unités terminées', 'Missions réussies', 'Leçons sans faute', 'Jours de pratique'], tuiles
-    assert page.inner_text('#dash-acquis .dash-tuile b >> nth=0') == '1'  # leçon 1 v1
-    page.click('.dash-reglages')
+    page.click('.nav-bas [data-nav="plus"]')
+    tuiles = page.locator('.plus-acquis span').all_inner_texts()
+    assert tuiles == ['unités terminées', 'missions réussies', 'jours de pratique'], tuiles
+    assert page.inner_text('.plus-acquis b >> nth=0') == '1'  # leçon 1 v1
+    page.click('.plus-ligne:has-text("Réglages")')
     assert actif(page, 'view-reglages') and visible(page, '#view-reglages .dash-reset')
     page.screenshot(path=OUT + 'lot1-reglages.png', full_page=True)
-    ok('tuiles acquises (unités, missions réussies, sans faute, jours) ; « Réinitialiser » dans Réglages')
+    ok('acquis dans « Plus » (unités, missions réussies, jours) ; « Réinitialiser » dans Réglages')
 
     # ── S4 : mission lisible ──
     page.evaluate('openParcoursLecon(lecons.find(l => l.id === 2))')
@@ -94,8 +97,9 @@ with sync_playwright() as p:
     assert not page.evaluate('missionReussie(lecons.find(l => l.id === 2))')
     page.evaluate('saveMissionBest(2, 85); renderParcoursLecon()')
     assert 'RÉUSSIE 85 %' in page.inner_text('.ms-carte .pc-mini-label')
-    page.evaluate('goDashboard()')
-    assert page.inner_text('#dash-acquis .dash-tuile b >> nth=1') == '1'
+    page.evaluate('goDashboard(); ouvrirPlus()')
+    assert page.inner_text('.plus-acquis b >> nth=1') == '1'
+    page.evaluate('fermerPanneau()')
     ok('mission : 3 répliques lisibles + « Voir toute la scène », pastilles d\'unité, Jouée 60 % / Réussie 85 %, tuile comptée')
 
     # ── S6 : mot caché « un sac » ──

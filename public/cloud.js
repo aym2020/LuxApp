@@ -105,8 +105,27 @@ async function signOut() {
 function getProgressPayload() {
   return {
     progress: { levels: getProgress(), wrong: getWrongStore(), stats: getStatsStore() },
-    streak: getStreak()
+    streak: getStreak(),
+    // S8, S13 : le choix du niveau et ce qui est en cours (séance du jour,
+    // partie d'unité). Fusionnés par « le plus récent gagne » (mergeDernier).
+    choix: getChoix(),
+    enCours: { seance: lireEnCours(SEANCE_KEY), partie: lireEnCours(RUN_KEY) }
   };
+}
+
+// ─── CE QUI EST EN COURS (S8) ───────────────────────────────────────────────
+// Séance du jour et partie d'unité, telles qu'enregistrées sur l'appareil.
+// Chacune porte sa date de mise à jour (maj). Une séance ou une partie finie
+// est gardée sous la forme { fini: true, maj } : ainsi, un autre appareil qui a
+// encore l'ancienne version sait qu'elle est terminée.
+function lireEnCours(cle) {
+  try { return JSON.parse(localStorage.getItem(storageKey(cle))); } catch (e) { return null; }
+}
+
+function ecrireEnCours(cle, valeur) {
+  try {
+    if (valeur) localStorage.setItem(storageKey(cle), JSON.stringify(valeur));
+  } catch (e) { /* ignore */ }
 }
 
 function applyProgressPayload(payload) {
@@ -117,6 +136,11 @@ function applyProgressPayload(payload) {
     if (payload.progress.stats) saveStatsStore(payload.progress.stats);
   }
   if (payload.streak) saveStreak(payload.streak);
+  if (payload.choix) saveChoix(payload.choix);
+  if (payload.enCours) {
+    ecrireEnCours(SEANCE_KEY, payload.enCours.seance);
+    ecrireEnCours(RUN_KEY, payload.enCours.partie);
+  }
 }
 
 // Alias demandés : lecture/écriture de la progression locale complète.
@@ -137,7 +161,7 @@ async function loadCloudProgress() {
   const snap = await withTimeout(cloudDoc(user).get());
   if (!snap.exists) return null;
   const data = JSON.parse(snap.data().payload || '{}');
-  return { progress: data.progress || {}, streak: data.streak || {} };
+  return { progress: data.progress || {}, streak: data.streak || {}, choix: data.choix || {}, enCours: data.enCours || {} };
 }
 
 async function saveCloudProgress() {
@@ -148,9 +172,38 @@ async function saveCloudProgress() {
       payload: JSON.stringify(getProgressPayload()),
       updated_at: new Date().toISOString()
     }));
+    noterSynchro(true);
   } catch (e) {
-    // Échec silencieux : la progression reste sauvegardée en local.
+    // La progression reste sauvegardée en local ; l'indicateur dit « en attente ».
+    noterSynchro(false);
   }
+}
+
+// ─── INDICATEUR DE SYNCHRONISATION (S8) ─────────────────────────────────────
+// luxDerniereSynchro = date (ms) de la dernière synchronisation réussie.
+let synchroEnAttente = false;
+
+function noterSynchro(ok) {
+  synchroEnAttente = !ok;
+  if (ok) {
+    try { localStorage.setItem('luxDerniereSynchro', String(Date.now())); } catch (e) { /* ignore */ }
+  }
+}
+
+// Texte de l'indicateur, ou null si l'utilisateur n'est pas connecté.
+//   { ok: true,  texte: 'Synchronisé il y a 2 min' }
+//   { ok: false, texte: 'En attente · hors ligne' }
+function etatSynchro() {
+  if (!fbAuth || !fbAuth.currentUser) return null;
+  if (synchroEnAttente || !navigator.onLine) return { ok: false, texte: 'En attente · hors ligne' };
+  const derniere = Number(localStorage.getItem('luxDerniereSynchro') || 0);
+  if (!derniere) return { ok: true, texte: 'Sauvegarde cloud activée' };
+  const minutes = Math.floor((Date.now() - derniere) / 60000);
+  if (minutes < 1) return { ok: true, texte: 'Synchronisé à l\'instant' };
+  if (minutes < 60) return { ok: true, texte: 'Synchronisé il y a ' + minutes + ' min' };
+  const heures = Math.floor(minutes / 60);
+  if (heures < 24) return { ok: true, texte: 'Synchronisé il y a ' + heures + ' h' };
+  return { ok: true, texte: 'Synchronisé il y a ' + Math.floor(heures / 24) + ' j' };
 }
 
 async function deleteCloudProgress() {
@@ -225,6 +278,22 @@ function mergeStreak(local, cloud) {
   return { lastActive: local.lastActive, count: Math.max(local.count || 0, cloud.count || 0) };
 }
 
+// « Le plus récent gagne » : pour chaque clé, on garde l'objet dont la date
+// de mise à jour (maj) est la plus grande. Sert au choix du niveau (S13) et à
+// ce qui est en cours (S8). Un objet sans maj compte comme le plus ancien.
+function mergeDernier(local, cloud) {
+  const out = {};
+  const cles = new Set(Object.keys(local || {}).concat(Object.keys(cloud || {})));
+  cles.forEach(cle => {
+    const a = local && local[cle];
+    const b = cloud && cloud[cle];
+    if (!a) { out[cle] = b || null; return; }
+    if (!b) { out[cle] = a; return; }
+    out[cle] = (a.maj || 0) >= (b.maj || 0) ? a : b;
+  });
+  return out;
+}
+
 function mergeLocalAndCloudProgress(localData, cloudData) {
   const l = localData || {};
   const c = cloudData || {};
@@ -236,7 +305,9 @@ function mergeLocalAndCloudProgress(localData, cloudData) {
       wrong: mergeMaxNested(lp.wrong || {}, cp.wrong || {}),
       stats: mergeStatsNested(lp.stats || {}, cp.stats || {})
     },
-    streak: mergeStreak(l.streak, c.streak)
+    streak: mergeStreak(l.streak, c.streak),
+    choix: mergeDernier(l.choix, c.choix),
+    enCours: mergeDernier(l.enCours, c.enCours)
   };
 }
 
@@ -290,6 +361,7 @@ async function syncProgress() {
   try {
     cloud = await loadCloudProgress();
   } catch (e) {
+    noterSynchro(false);
     return; // cloud injoignable : on ne touche à rien, on reste en local
   }
   const local = getProgressPayload();
@@ -304,6 +376,19 @@ function debounceCloudSave() {
   clearTimeout(cloudSaveTimer);
   cloudSaveTimer = setTimeout(saveCloudProgress, 800);
 }
+
+// Retour sur l'app (téléphone déverrouillé, onglet réaffiché) ou réseau revenu :
+// on resynchronise, pour reprendre ici ce qui a été commencé ailleurs (S8).
+async function resynchroniser() {
+  if (!fbAuth || !fbAuth.currentUser) return;
+  await syncProgress();
+  if (typeof apresSynchro === 'function') apresSynchro();
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') resynchroniser();
+});
+window.addEventListener('online', resynchroniser);
 
 // ─── BOOT : appelé au démarrage de l'application ────────────────────────────
 async function bootAuthAndSync() {

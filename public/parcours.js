@@ -46,6 +46,7 @@ let pSuite = null;      // fonction lancée par "Continuer"
 let pTimer = null;      // passage automatique à l'item suivant
 let pCoursUnite = null; // unité affichée dans le panneau Cours (null = toute la leçon)
 let pResultat = null;   // résultat de la dernière partie terminée
+let dernierFini = null; // { leconId, uniteId } : étape tout juste finie, animée une fois sur le chemin
 
 // ─── OUTILS ─────────────────────────────────────────────────────────────────
 function isParcoursLecon(l) {
@@ -148,16 +149,26 @@ function leconComplete(l) {
 }
 
 // ─── SAUVEGARDE DE LA PARTIE EN COURS ───────────────────────────────────────
+// La partie porte sa date de mise à jour (maj) : sur deux appareils, la plus
+// récente gagne à la synchronisation (S8).
 function saveRun() {
+  run.maj = Date.now();
   try { localStorage.setItem(storageKey(RUN_KEY), JSON.stringify(run)); } catch (e) { /* ignore */ }
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
+// Partie en cours, ou null (aucune, ou finie).
 function loadRun() {
-  try { return JSON.parse(localStorage.getItem(storageKey(RUN_KEY))); } catch (e) { return null; }
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem(storageKey(RUN_KEY))); } catch (e) { data = null; }
+  if (!data || data.fini || !data.steps) return null;
+  return data;
 }
 
+// Partie finie : marque « finie » datée, comme pour la séance du jour.
 function clearRun() {
-  try { localStorage.removeItem(storageKey(RUN_KEY)); } catch (e) { /* ignore */ }
+  try { localStorage.setItem(storageKey(RUN_KEY), JSON.stringify({ fini: true, maj: Date.now() })); } catch (e) { /* ignore */ }
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
 // ─── RÉSUMÉ D'UNE LEÇON (liste des leçons) ──────────────────────────────────
@@ -185,31 +196,6 @@ function carteLeconV2Html(l) {
   if (missionReussie(l)) html += '<span class="lecon-pill pc-pill-acquis">Mission ✓</span>';
   if (leconComplete(l)) html += '<span class="lecon-pill pc-pill-acquis">Complète</span>';
   return html;
-}
-
-// Carte "Reprendre" en haut de la liste des leçons (ou null).
-function carteReprendre() {
-  const saved = loadRun();
-  if (!saved) return null;
-  const l = leconsActives().find(x => x.id === saved.leconId);
-  if (!isParcoursLecon(l)) return null;
-  const step = saved.steps[saved.stepIdx];
-  if (!step) return null;
-
-  const el = document.createElement('div');
-  el.className = 'pc-reprendre';
-  el.innerHTML =
-    '<div class="pc-mini-label">REPRENDRE</div>' +
-    '<div class="pc-reprendre-row">' +
-      '<div class="pc-reprendre-txt">' +
-        '<div class="pc-reprendre-titre">' + escHtml(l.titre) + '</div>' +
-        '<div class="pc-reprendre-sous">' + nomPartie(saved.uniteId, saved.mode) + ' · étape ' + (saved.stepIdx + 1) +
-          ' sur ' + saved.steps.length + ' · ' + etapeInfo(step.type).label + '</div>' +
-      '</div>' +
-      '<button class="pc-btn primary" onclick="reprendreRun()">Continuer</button>' +
-    '</div>' +
-    '<div class="pc-steps">' + segmentsHtml(saved) + '</div>';
-  return el;
 }
 
 // ─── ÉCRAN DE LA LEÇON (liste des unités) ───────────────────────────────────
@@ -969,7 +955,8 @@ function finirRun() {
     unites.forEach(u => { if (aDuPlus(pLecon, u.id)) savePlusFait(run.leconId, u.id); });
   }
   if (run.mode === 'unite' || run.mode === 'lecon' || run.mode === 'plus') {
-    marquerJour(2); // une partie complète finie = objectif du jour atteint
+    marquerUniteFaite(); // une partie complète finie : objectif « unité » du jour (S7)
+    dernierFini = { leconId: run.leconId, uniteId: run.uniteId }; // animé sur le chemin
   }
 
   const erreurs = [];  // clés "type:id" pour "Refaire mes erreurs"
@@ -995,6 +982,7 @@ function finirRun() {
   clearRun();
   renderFin();
   showView('view-pfin');
+  animerFin(pResultat.sansFaute); // score qui compte, étoiles, confettis (S12)
 }
 
 function renderFin() {
@@ -1079,6 +1067,7 @@ function boutonsFinHtml(r, u) {
   }
 
   html += '<button class="pc-btn ' + (suite ? 'ghost' : 'primary big') + ' wide" onclick="openParcoursLecon(pLecon)">Retour à la leçon</button>';
+  html += '<button class="pc-btn ghost wide" onclick="goDashboard()">Accueil</button>'; // toujours en dernier (S9)
   return html;
 }
 

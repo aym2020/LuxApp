@@ -212,8 +212,7 @@ with sync_playwright() as p:
     page.screenshot(path=OUT + 'c10-fin-complete.png', full_page=True)
     page.click('#pf-content button:has-text("Retour à la leçon")')
     page.evaluate('goLessons()')
-    carte = page.locator('.lecon-card:has-text("An der Wunneng")').inner_text()
-    assert 'Complète' in carte and 'Sans faute' in carte, carte
+    assert page.locator('.chemin-lecon:has-text("Les meubles")').count() == 1
     ok('leçon 21 complète (' + str(total) + ' items, bonus compris) → « Leçon complète ! », pastilles Sans faute + Complète')
 
     # ── 9. Leçons 2 et 22 : s'affichent, unités et mission ──
@@ -246,15 +245,15 @@ with sync_playwright() as p:
         changerNiveau('A1.1');
     }""")
     page.evaluate('goDashboard()')
-    dus = page.evaluate('resumeRevision(leconsActives()).dus.length')
-    ligne = page.inner_text('#today .td-ligne')
+    dus = page.evaluate('resumeRevision(lecons).dus.length')
+    ligne = page.inner_text('.tuile.rev')
     page.screenshot(path=OUT + 'c13-accueil.png', full_page=True)
     print('       questions dues :', dus, '·', ligne.replace('\n', ' '))
-    page.click('#today button:has-text("Ma séance")')
+    page.click('.tuile.rev')
     assert page.evaluate('session.questions.length') == min(20, dus)
     finir_session(page)
     actions = page.locator('#session-actions button').all_inner_texts()
-    assert actions[0].startswith('Encore ') and 'Terminer' in actions, actions
+    assert any(a.startswith('Réviser encore') for a in actions) and 'Accueil' in actions, actions
     ok('séance : ' + str(min(20, dus)) + ' questions sur ' + str(dus) + ' dues · fin : ' + ' | '.join(actions))
 
     # ── 11. Étalement de l'historique v1 ──

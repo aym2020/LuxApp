@@ -201,7 +201,8 @@ function finirMission() {
   const percent = Math.round(ok / total * 100);
   const premiere = getMissionBest(pLecon.id) == null;
   saveMissionBest(pLecon.id, percent);
-  marquerJour(2); // mission jouée = objectif du jour atteint
+  marquerUniteFaite(); // mission jouée : objectif « unité » du jour (S7)
+  dernierFini = { leconId: pLecon.id, uniteId: 'mission' }; // animé sur le chemin
 
   let titre = 'Mission réussie !';
   if (percent === 100) titre = premiere ? 'Mission réussie, sans faute !' : 'Sans faute, encore une fois !';
@@ -214,7 +215,9 @@ function finirMission() {
     '<div class="pf-boutons">' +
       '<button class="pc-btn primary wide big" onclick="openParcoursLecon(pLecon)">Retour à la leçon</button>' +
       '<button class="pc-btn ghost wide" onclick="openMission()">Rejouer la mission</button>' +
+      '<button class="pc-btn ghost wide" onclick="goDashboard()">Accueil</button>' +
     '</div>';
   document.getElementById('ms-body').appendChild(fin);
+  if (percent >= SEUIL_MISSION) confettis(); // mission réussie : célébration (S12)
   if (fin.scrollIntoView) fin.scrollIntoView({ block: 'end' });
 }

@@ -69,13 +69,14 @@ with sync_playwright() as p:
     page.wait_for_function('lecons.length > 0')
 
     # 1. Liste des leçons
-    page.click('button:has-text("Leçons")')
+    page.evaluate('goLessons()')
     page.screenshot(path=OUT + '01-liste.png')
-    assert page.locator('.lecon-card:has-text("Objeten identifizéieren") .lecon-pill').first.inner_text() == '0 / 3 unités'
-    ok('liste : leçon 2 affichée en unités (0 / 3)')
+    assert page.evaluate('etapesLecon(lecons.find(l => l.id === 2))') == 4  # 3 unités + mission
+    assert page.locator('.chemin-lecon:has-text("Identifier des objets")').count() == 1
+    ok('chemin : leçon 2 affichée (3 unités + mission)')
 
     # 2. Ancienne leçon toujours en onglets
-    page.click('.lecon-card:has-text("Moien")')
+    page.click('.chemin-lecon:has-text("Salutations") .btn-jaune')
     assert actif(page, 'view-lecon')
     page.click('.tab-btn[data-tab="flashcards"]')
     page.click('#card')
@@ -84,7 +85,7 @@ with sync_playwright() as p:
     page.click('#view-lecon .back-btn')
 
     # 3. Leçon 2 -> unités -> intro
-    page.click('.lecon-card:has-text("Objeten identifizéieren")')
+    page.click('.chemin-lecon:has-text("Identifier des objets")')
     assert actif(page, 'view-plecon')
     page.screenshot(path=OUT + '02-lecon.png')
     page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')
@@ -183,10 +184,10 @@ with sync_playwright() as p:
     page.screenshot(path=OUT + '10-lecon-en-cours.png')
     page.reload()
     page.wait_for_function('lecons.length > 0')
-    page.click('button:has-text("Leçons")')
-    assert page.is_visible('.pc-reprendre')
+    page.evaluate('goLessons()')
+    assert page.inner_text('.pas.encours .btn-jaune') == 'Reprendre'
     page.screenshot(path=OUT + '11-reprendre.png')
-    page.click('.pc-reprendre button')
+    page.click('.pas.encours .btn-jaune')
     apres = page.evaluate('[run.stepIdx, run.steps[run.stepIdx].queue.length]')
     assert avant == apres, (avant, apres)
     ok('reprise après rechargement : même étape, même item ' + str(apres))
@@ -203,15 +204,15 @@ with sync_playwright() as p:
 
     # 10. Liste : étoiles et « À revoir »
     page.click('#view-plecon .back-btn')
-    pills = page.locator('.lecon-card:has-text("Objeten identifizéieren") .lecon-card-counts').inner_text()
-    assert '3 / 3 unités' in pills
+    assert page.evaluate('etapesFaites(lecons.find(l => l.id === 2))') == 3
+    carte = page.inner_text('.chemin-lecon:has-text("Identifier des objets")')
     page.screenshot(path=OUT + '12-liste-apres.png')
-    ok('liste : ' + ' | '.join(pills.split()))
+    ok('chemin : leçon 2 à 3 étapes sur 4 · ' + ' | '.join(carte.split('\n')[:3]))
 
     # 11. Les 3 autres leçons v2 s'ouvrent et démarrent
     for niveau, titre in [('A1.1', "D'Nationalitéit"), ('A1.2', 'An der Wunneng'), ('A1.2', 'An der Fräizäit')]:
         page.evaluate("n => { changerNiveau(n); goLessons(); }", niveau)
-        page.click('.lecon-card:has-text("' + titre + '")')
+        page.evaluate("t => ouvrirLeconDepuisListe(lecons.find(l => l.titre === t).id)", titre)
         page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')
         page.click('#pi-content button:has-text("Commencer")')
         repondre(page, True)

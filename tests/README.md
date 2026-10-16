@@ -13,6 +13,8 @@ PORT=3456 node server.js &       # serveur de test
 | `node tools/valider-lecons.js` | Format et cohérence des leçons | 1 s |
 | `node tests/test_cloud.js` | La v1 (branche main) garde les données v2 après fusion cloud | 1 s |
 | `python3 tests/test_lot1.py` | Lot 1 : guide, première visite, accueil, mission, aide à l'erreur | ~1 min |
+| `node tests/test_sync.js` | Lot 2 (S8, S13) : séance, partie et niveau synchronisés, le plus récent gagne | 1 s |
+| `python3 tests/test_lot2.py` | Lot 2 : niveau choisi, chemin, accueil, barre du bas, animations | ~40 s |
 | `python3 tests/test_parcours.py` | Parcours d'une leçon en unités | ~1 min |
 | `python3 tests/test_seance.py` | Séance du jour : quitter puis reprendre | ~30 s |
 | `python3 tests/test_etalement.py` | Étalement de l'historique v1 | ~10 s |

@@ -36,7 +36,12 @@ def repondre_session(page, juste=True):
 
 
 def jour(page):
-    return page.evaluate("document.querySelector('#today .td-jour.auj').className")
+    # 0 = rien, 1 = commencé, 2 = objectif atteint (S7 : révision ET unité)
+    return page.evaluate("getJours()[dayString(0)] || 0")
+
+
+def tuile(page):
+    return page.inner_text('.tuile.rev')
 
 
 with sync_playwright() as p:
@@ -67,10 +72,11 @@ with sync_playwright() as p:
         saveWrongStore(wrong);
         goDashboard();
     }""")
-    assert 'pratique' not in jour(page) and 'objectif' not in jour(page), jour(page)
-    print('  ok   avant la séance : point du jour vide')
+    assert jour(page) == 0, jour(page)
+    assert '20 questions' in tuile(page), tuile(page)
+    print('  ok   avant la séance : point du jour vide, tuile « 20 questions »')
 
-    page.click('#today button:has-text("Ma séance")')
+    page.click('.tuile.rev')
     premieres = page.evaluate('session.questions.map(x => x.leconId + "-" + x.type + "-" + x.qid)')
     assert len(premieres) == 20
     for i in range(7):
@@ -79,21 +85,18 @@ with sync_playwright() as p:
 
     # Retour à l'accueil au milieu de la séance
     page.click('#view-session .back-btn')
-    bouton = page.inner_text('#today button.pc-btn.primary')
-    ligne = page.inner_text('#today .td-ligne')
-    assert bouton == 'Reprendre ma séance · 7 / 20', bouton
-    assert 'Séance commencée : 7 / 20' in ligne, ligne
-    assert 'pratique' in jour(page) and 'objectif' not in jour(page), jour(page)
-    assert 'finir ta séance' in page.inner_text('#today .td-objectif')
+    assert 'Séance du jour · 7 / 20' in tuile(page), tuile(page)
+    assert 'À finir' in tuile(page)
+    assert jour(page) == 1, jour(page)
     page.screenshot(path=OUT + 's01-accueil-seance-commencee.png', full_page=True)
-    print('  ok   accueil :', bouton, '·', ligne.replace('\n', ' '), '· point = commencé')
+    print('  ok   accueil : tuile « Séance du jour · 7 / 20 · À finir » · point = commencé')
 
     # Rechargement de la page (fermer l'appli) : toujours reprenable
     page.reload()
     page.wait_for_selector('#today')
-    assert page.inner_text('#today button.pc-btn.primary') == 'Reprendre ma séance · 7 / 20'
+    assert 'Séance du jour · 7 / 20' in tuile(page)
 
-    page.click('#today button:has-text("Reprendre ma séance")')
+    page.click('.tuile.rev')
     assert page.evaluate('session.index') == 7
     assert page.evaluate('session.score') == score
     assert page.evaluate('session.questions.map(x => x.leconId + "-" + x.type + "-" + x.qid)') == premieres
@@ -103,11 +106,15 @@ with sync_playwright() as p:
     while page.evaluate("!document.getElementById('session-q').classList.contains('hidden')"):
         repondre_session(page)
     assert page.evaluate("loadSeance()") is None
-    page.click('#session-actions button:has-text("Terminer")')
-    assert 'objectif' in jour(page), jour(page)
-    assert page.inner_text('#today button.pc-btn.primary') == 'Ma séance'
+    actions = page.locator('#session-actions button').all_inner_texts()
+    assert actions[0].startswith('Continuer'), actions  # la leçon d'abord (S7)
+    page.click('#session-actions button:has-text("Accueil")')
+    assert 'Fait pour aujourd' in tuile(page), tuile(page)
+    assert jour(page) == 1, 'révision seule : jour « commencé » (S7)'
+    page.evaluate('marquerUniteFaite(); goDashboard()')
+    assert jour(page) == 2, 'révision + unité : objectif atteint'
     page.screenshot(path=OUT + 's02-accueil-seance-finie.png', full_page=True)
-    print('  ok   séance finie : point plein (objectif), bouton redevient « Ma séance »')
+    print('  ok   séance finie : fin = ' + ' | '.join(actions) + ' · tuile « Fait » · point plein seulement avec une unité')
 
     # Séance d'hier : oubliée
     page.evaluate("""() => {
@@ -115,7 +122,7 @@ with sync_playwright() as p:
             questions: [{ leconId: 1, type: 'quiz', qid: 1 }, { leconId: 1, type: 'quiz', qid: 2 }], index: 1, score: 1 }));
         goDashboard();
     }""")
-    assert page.inner_text('#today button.pc-btn.primary') == 'Ma séance'
+    assert 'Séance du jour' not in tuile(page)
     print("  ok   séance d'un autre jour : ignorée")
 
     print('  erreurs JS :', erreurs or 'aucune')
