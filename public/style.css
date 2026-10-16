@@ -1045,8 +1045,8 @@ body.no-scroll { overflow: hidden; }
 .cp-poignee { width: 40px; height: 5px; border-radius: 3px; background: #3a3730; margin: .6rem auto 0; }
 .cp-head { display: flex; justify-content: space-between; align-items: center; padding: .6rem .75rem 0 1.25rem; }
 .cp-titre { font-size: 1.2rem; font-weight: 600; }
-.cp-onglets { display: flex; gap: .5rem; padding: .7rem 1.25rem 0; }
-.cp-content { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
+.cp-onglets { display: flex; gap: .5rem; padding: .7rem 1.25rem .9rem; border-bottom: 1px solid #2a2823; }
+.cp-content { flex: 1; overflow-y: auto; padding: 1.25rem 1.25rem 1rem; }
 .cp-bas { padding: .7rem 1.25rem calc(1rem + env(safe-area-inset-bottom)); border-top: 1px solid #2a2823; }
 
 /* ══ RÉTENTION : aujourd'hui, fraîcheur, sans faute, pièges, lexique ═════════ */
