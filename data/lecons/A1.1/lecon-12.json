@@ -44,7 +44,7 @@
       "qui": "toi",
       "lu": "D'Bankerin schafft op enger Bank.",
       "fr": "La banquière travaille à la banque.",
-      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+      "aide": "Pour une banque : <b>op enger</b>."
     },
     {
       "unite": 3,
@@ -57,7 +57,7 @@
       "qui": "toi",
       "lu": "Ech schaffe bei engem Dokter.",
       "fr": "Je travaille chez un médecin.",
-      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+      "aide": "Pour travailler chez quelqu'un : <b>bei</b>."
     },
     {
       "unite": 3,
@@ -70,7 +70,7 @@
       "qui": "toi",
       "lu": "Si schafft bei enger Coiffeuse.",
       "fr": "Elle travaille chez une coiffeuse.",
-      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+      "aide": "Avec une coiffeuse : <b>bei enger</b>."
     },
     {
       "unite": 3,
@@ -233,7 +233,7 @@
     },
     {
       "id": 2015,
-      "unite": 1,
+      "unite": 2,
       "fr": "Marché",
       "lu": "Maart",
       "article": "e",
@@ -255,7 +255,7 @@
     },
     {
       "id": 2018,
-      "unite": 1,
+      "unite": 2,
       "fr": "Université",
       "lu": "Universitéit",
       "article": "eng",
@@ -263,7 +263,7 @@
     },
     {
       "id": 2019,
-      "unite": 1,
+      "unite": 2,
       "fr": "Lycée",
       "lu": "Lycée",
       "article": "e",
@@ -583,7 +583,7 @@
     },
     {
       "id": 2021,
-      "unite": 1,
+      "unite": 2,
       "question": "Lycée",
       "reponse": "Lycée",
       "distracteurs": [
@@ -979,7 +979,7 @@
     },
     {
       "id": 2020,
-      "unite": 1,
+      "unite": 2,
       "fr": "Le professeur travaille au lycée.",
       "avant": "De Professer schafft",
       "trou": "op engem",
@@ -1482,7 +1482,7 @@
     },
     {
       "id": 2050,
-      "unite": 1,
+      "unite": 2,
       "fr": "La banquière travaille à la banque.",
       "lu": "D'Bankerin schafft op enger Bank.",
       "plus": true
@@ -1503,39 +1503,9 @@
   ],
   "cours": [
     {
-      "type": "callout",
-      "variant": "retenir",
-      "titre": "Dans un lieu : an",
-      "lignes": [
-        "Pour de nombreux bâtiments : <b>an engem</b> (masculin/neutre), <b>an enger</b> (féminin).",
-        "an <b>engem</b> Büro · an <b>enger</b> Klinik."
-      ],
-      "unite": 1
-    },
-    {
-      "type": "callout",
-      "variant": "retenir",
-      "titre": "Sur un site : op",
-      "lignes": [
-        "Certains lieux prennent <b>op enger</b> ou <b>op engem</b> : op enger Bank, op enger Post, op engem Maart.",
-        "De Bréifdréier schafft <b>op enger</b> Post."
-      ],
-      "unite": 2
-    },
-    {
-      "type": "callout",
-      "variant": "retenir",
-      "titre": "Chez une personne et poser la question",
-      "lignes": [
-        "Chez une personne : <b>bei engem</b> Dokter, <b>bei enger</b> Coiffeuse.",
-        "<b>Wou schaffs du?</b> · <b>Wou schafft Dir?</b> (politesse)."
-      ],
-      "unite": 3
-    },
-    {
       "type": "vocab",
-      "titre": "Vocabulaire essentiel · Dans un lieu : an",
       "unite": 1,
+      "titre": "Vocabulaire essentiel · Dans un lieu : an",
       "items": [
         [
           "e Spidol",
@@ -1573,9 +1543,9 @@
     },
     {
       "type": "vocab",
-      "titre": "Pour aller plus loin · Dans un lieu : an",
       "unite": 1,
       "plus": true,
+      "titre": "Pour aller plus loin · Dans un lieu : an",
       "items": [
         [
           "eng Schoul",
@@ -1586,54 +1556,15 @@
           "Clinique"
         ],
         [
-          "e Maart",
-          "Marché"
-        ],
-        [
-          "eng Universitéit",
-          "Université"
-        ],
-        [
-          "e Lycée",
-          "Lycée"
-        ],
-        [
           "eng Librairie",
           "Librairie"
         ]
       ]
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Dans un lieu : an",
-      "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
-        [
-          "Ech schaffen an engem Büro.",
-          "Je travaille dans un bureau."
-        ],
-        [
-          "Ech schaffen an enger Klinik.",
-          "Je travaille dans une clinique."
-        ],
-        [
-          "Ech schaffen an engem Cabinet.",
-          "Je travaille dans un cabinet médical."
-        ],
-        [
-          "Ech schaffen an engem Buttek.",
-          "Je travaille dans un magasin."
-        ]
-      ]
-    },
-    {
       "type": "vocab",
-      "titre": "Vocabulaire essentiel · Sur un site : op",
       "unite": 2,
+      "titre": "Vocabulaire essentiel · Sur un site : op",
       "items": [
         [
           "e Policebüro",
@@ -1671,10 +1602,22 @@
     },
     {
       "type": "vocab",
-      "titre": "Pour aller plus loin · Sur un site : op",
       "unite": 2,
       "plus": true,
+      "titre": "Pour aller plus loin · Sur un site : op",
       "items": [
+        [
+          "e Maart",
+          "Marché"
+        ],
+        [
+          "eng Universitéit",
+          "Université"
+        ],
+        [
+          "e Lycée",
+          "Lycée"
+        ],
         [
           "e Studio",
           "Studio"
@@ -1686,6 +1629,94 @@
         [
           "e Fluchhafen",
           "Aéroport"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 3,
+      "titre": "Vocabulaire essentiel · Chez une personne et poser la question",
+      "items": [
+        [
+          "bei",
+          "chez (une personne)"
+        ],
+        [
+          "wou",
+          "où ?"
+        ],
+        [
+          "schaffen",
+          "travailler"
+        ],
+        [
+          "en Dokter",
+          "médecin (homme)"
+        ],
+        [
+          "eng Coiffeuse",
+          "coiffeuse"
+        ],
+        [
+          "e Büro",
+          "bureau"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Dans un lieu : an",
+      "lignes": [
+        "Pour de nombreux bâtiments : <b>an engem</b> (masculin/neutre), <b>an enger</b> (féminin).",
+        "an <b>engem</b> Büro · an <b>enger</b> Klinik."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Sur un site : op",
+      "lignes": [
+        "Certains lieux prennent <b>op enger</b> ou <b>op engem</b> : op enger Bank, op enger Post, op engem Maart.",
+        "De Bréifdréier schafft <b>op enger</b> Post."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Chez une personne et poser la question",
+      "lignes": [
+        "Chez une personne : <b>bei engem</b> Dokter, <b>bei enger</b> Coiffeuse.",
+        "<b>Wou schaffs du?</b> · <b>Wou schafft Dir?</b> (politesse)."
+      ],
+      "unite": 3
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Dans un lieu : an",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech schaffen an engem Büro.",
+          "Je travaille dans un bureau."
+        ],
+        [
+          "Ech schaffen an enger Klinik.",
+          "Je travaille dans une clinique."
+        ],
+        [
+          "Ech schaffen an engem Cabinet.",
+          "Je travaille dans un cabinet médical."
+        ],
+        [
+          "Ech schaffen an engem Buttek.",
+          "Je travaille dans un magasin."
         ]
       ]
     },
@@ -1713,37 +1744,6 @@
         [
           "Ech schaffen op enger Gare.",
           "Je travaille à la gare."
-        ]
-      ]
-    },
-    {
-      "type": "vocab",
-      "titre": "Vocabulaire essentiel · Chez une personne et poser la question",
-      "unite": 3,
-      "items": [
-        [
-          "bei",
-          "chez (une personne)"
-        ],
-        [
-          "wou",
-          "où ?"
-        ],
-        [
-          "schaffen",
-          "travailler"
-        ],
-        [
-          "en Dokter",
-          "médecin (homme)"
-        ],
-        [
-          "eng Coiffeuse",
-          "coiffeuse"
-        ],
-        [
-          "e Büro",
-          "bureau"
         ]
       ]
     },
