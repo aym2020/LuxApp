@@ -1099,7 +1099,8 @@ body.no-scroll { overflow: hidden; }
 .td-semaine { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
 .td-jour { display: flex; flex-direction: column; align-items: center; gap: .3rem; font-size: .7rem; font-weight: 700; color: var(--muted); }
 .td-jour i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #34322d; display: block; }
-.td-jour.pratique i { border-color: var(--fresh); background: radial-gradient(circle, var(--fresh) 0 4px, transparent 5px); }
+/* Commencé : anneau gris, petit point au centre. Objectif atteint : rond plein or. */
+.td-jour.pratique i { background: radial-gradient(circle, var(--muted) 0 4px, transparent 5px); }
 .td-jour.objectif i { border-color: var(--accent); background: var(--accent); }
 .td-jour.auj span { color: var(--text); }
 .td-jour.auj i { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px #5a5750; }
@@ -1211,3 +1212,14 @@ body.no-scroll { overflow: hidden; }
 .pi-plus[open] summary, .cp-plus[open] summary { margin-bottom: .6rem; }
 .pi-plus-note { font-size: .8rem; color: var(--muted); margin-top: -.2rem; }
 .cp-plus { margin-top: 1rem; }
+
+/* Légende des points de la semaine */
+.td-legende { display: flex; gap: 1rem; justify-content: center; font-size: .7rem; color: var(--muted); margin-top: -.2rem; }
+.td-legende span { display: flex; align-items: center; gap: .35rem; }
+.td-legende i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #34322d; display: block; }
+.td-legende .pratique i { background: radial-gradient(circle, var(--muted) 0 2px, transparent 3px); }
+.td-legende .objectif i { border-color: var(--accent); background: var(--accent); }
+
+/* Avancement de la séance commencée */
+.td-barre { height: 6px; border-radius: 3px; background: #2a2925; margin-top: .45rem; overflow: hidden; }
+.td-barre i { display: block; height: 100%; background: var(--fresh); border-radius: 3px; }

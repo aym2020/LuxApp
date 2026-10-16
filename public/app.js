@@ -589,9 +589,13 @@ function startConfiguredReview() {
 //              ou une fonction qui renvoie cette liste à la fin
 //              (par défaut : un bouton « Accueil »)
 //   apresFin : fonction lancée quand la dernière question est passée
+//   apresReponse : fonction lancée après chaque réponse (ex. sauver la séance)
+//   depart   : { index, score } pour reprendre une session commencée
 function demarrerSession(mode, titre, questions, options) {
   if (!questions.length) { alert('Aucune question disponible.'); return; }
-  session = { mode, questions, index: 0, score: 0, answered: false, options: options || {} };
+  const opts = options || {};
+  const depart = opts.depart || { index: 0, score: 0 };
+  session = { mode, questions, index: depart.index, score: depart.score, answered: false, options: opts };
   document.getElementById('session-num').textContent = titre;
   document.getElementById('session-titre').textContent = questions.length + ' questions';
   document.getElementById('session-result').classList.add('hidden');
@@ -759,6 +763,7 @@ function recordSessionAnswer(ok) {
   // En mode examen, on ne modifie pas les niveaux (changeLevel = false).
   const changeLevel = session.mode !== 'exam';
   updateQuestionProgress(item.leconId, item.type, item.qid, ok, changeLevel);
+  if (session.options.apresReponse) session.options.apresReponse();
 }
 
 function nextSessionQ() {

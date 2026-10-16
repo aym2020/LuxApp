@@ -68,6 +68,7 @@ function renderAujourdhui() {
 
   const nbDus = resumeRevision(leconsActives()).dus.length;
   const nbSeance = Math.min(nbDus, TAILLE_SEANCE);
+  const enCours = loadSeance(); // séance commencée et pas finie
   const minutes = Math.max(1, Math.round(nbSeance * 12 / 60)); // ~12 s par question
   const suite = prochaineEtape();
   const objectifAtteint = getJours()[dayString(0)] === 2;
@@ -84,6 +85,7 @@ function renderAujourdhui() {
 
   let objectif;
   if (objectifAtteint) objectif = '<div class="td-objectif ok">Objectif du jour atteint</div>';
+  else if (enCours) objectif = '<div class="td-objectif">Objectif : finir ta séance</div>';
   else if (nbDus) objectif = '<div class="td-objectif">Objectif : ta révision du jour, ou une unité</div>';
   else objectif = '<div class="td-objectif">Objectif : finir une unité</div>';
 
@@ -93,8 +95,12 @@ function renderAujourdhui() {
       '<div class="td-serie">' + (serie ? 'Série : ' + serie + (serie > 1 ? ' jours' : ' jour') : 'Commence ta série aujourd\'hui') + '</div></div>' +
     '</div>' +
     '<div class="td-semaine">' + semaine + '</div>' +
+    '<div class="td-legende"><span class="pratique"><i></i>commencé</span><span class="objectif"><i></i>objectif atteint</span></div>' +
     '<div class="td-lignes">' +
-      '<div class="td-ligne">' + (nbDus
+      '<div class="td-ligne">' + (enCours
+        ? '<b>Séance commencée : ' + enCours.index + ' / ' + enCours.questions.length + '</b>' +
+          '<div class="td-barre"><i style="width:' + Math.round(enCours.index / enCours.questions.length * 100) + '%"></i></div>'
+        : nbDus
         ? '<b>Ta séance : ' + nbSeance + (nbSeance > 1 ? ' questions' : ' question') + '</b> · environ ' + minutes + ' min' +
           (nbDus > nbSeance ? '<span class="td-reserve">' + (nbDus - nbSeance) + ' autres en attente</span>' : '')
         : 'Rien à réviser aujourd\'hui') + '</div>' +
@@ -103,7 +109,8 @@ function renderAujourdhui() {
         : '<span class="td-muted">Toutes les unités sont terminées</span>') + '</div>' +
     '</div>' +
     objectif +
-    '<button class="pc-btn primary wide big" onclick="lancerSeance()">Ma séance</button>';
+    '<button class="pc-btn primary wide big" onclick="lancerSeance()">' +
+      (enCours ? 'Reprendre ma séance · ' + enCours.index + ' / ' + enCours.questions.length : 'Ma séance') + '</button>';
 }
 
 // ─── SÉANCE DU JOUR ─────────────────────────────────────────────────────────
@@ -112,7 +119,69 @@ function renderAujourdhui() {
 // décide de continuer, sans limite, mais on ne lui montre jamais une montagne.
 const TAILLE_SEANCE = 20;
 
+// ─── SÉANCE EN COURS (pour la reprendre) ────────────────────────────────────
+// On garde sur l'appareil la liste des questions de la séance du jour, la
+// position et le score. Quitter la séance (« Accueil ») ne la perd plus :
+// « Reprendre ma séance » repart à la question où on s'est arrêté.
+//   luxSeance = { date: "2026-10-16", questions: [{ leconId, type, qid }], index: 7, score: 5 }
+// Une séance d'un autre jour est oubliée.
+const SEANCE_KEY = 'luxSeance';
+
+function saveSeance() {
+  const data = {
+    date: dayString(0),
+    questions: session.questions.map(x => ({ leconId: x.leconId, type: x.type, qid: x.qid })),
+    index: session.index + 1, // la question en cours vient d'être répondue
+    score: session.score
+  };
+  try { localStorage.setItem(storageKey(SEANCE_KEY), JSON.stringify(data)); } catch (e) { /* ignore */ }
+}
+
+function clearSeance() {
+  try { localStorage.removeItem(storageKey(SEANCE_KEY)); } catch (e) { /* ignore */ }
+}
+
+// Séance commencée aujourd'hui et pas finie, sinon null.
+function loadSeance() {
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem(storageKey(SEANCE_KEY))); } catch (e) { data = null; }
+  if (!data || data.date !== dayString(0) || data.index >= data.questions.length) return null;
+  return data;
+}
+
+// Retrouve les questions de la séance sauvegardée dans les leçons.
+// Une question qui n'existe plus (leçon modifiée) est simplement sautée.
+function questionsSeance(data) {
+  const toutes = {};
+  leconsActives().forEach(l => {
+    itemsRevision(l).forEach(item => { toutes[item.leconId + '-' + item.type + '-' + item.qid] = item; });
+  });
+  const liste = [];
+  let index = data.index;
+  data.questions.forEach((x, i) => {
+    const item = toutes[x.leconId + '-' + x.type + '-' + x.qid];
+    if (item) liste.push(item);
+    else if (i < data.index) index--; // question déjà faite qui a disparu
+  });
+  return { liste, index };
+}
+
+// Bouton « Ma séance » : reprend la séance en cours, sinon en lance une nouvelle.
 function lancerSeance() {
+  const enCours = loadSeance();
+  if (enCours) {
+    const q = questionsSeance(enCours);
+    if (q.index < q.liste.length) {
+      jouerSeance(q.liste, { index: q.index, score: enCours.score });
+      return;
+    }
+    clearSeance();
+  }
+  nouvelleSeance();
+}
+
+function nouvelleSeance() {
+  clearSeance();
   const dus = resumeRevision(leconsActives()).dus;
   const suite = prochaineEtape();
 
@@ -121,16 +190,24 @@ function lancerSeance() {
     else lancerPlusFragiles();
     return;
   }
+  jouerSeance(dus.slice(0, TAILLE_SEANCE), { index: 0, score: 0 });
+}
 
-  demarrerSession('review', 'SÉANCE DU JOUR', dus.slice(0, TAILLE_SEANCE), {
-    apresFin: () => marquerJour(2), // une séance faite = objectif du jour atteint
+function jouerSeance(questions, depart) {
+  demarrerSession('review', 'SÉANCE DU JOUR', questions, {
+    depart: depart,
+    apresReponse: saveSeance, // sauvée après chaque réponse
+    apresFin: () => {
+      clearSeance();
+      marquerJour(2); // une séance finie = objectif du jour atteint
+    },
     // Calculé à la fin de la séance : ce qui reste dépend des réponses données.
     actions: () => {
       const reste = resumeRevision(leconsActives()).dus.length;
       const suiteFin = prochaineEtape();
       const actions = [];
       if (reste) {
-        actions.push({ label: 'Encore ' + Math.min(reste, TAILLE_SEANCE) + ' questions', primary: true, fn: lancerSeance });
+        actions.push({ label: 'Encore ' + Math.min(reste, TAILLE_SEANCE) + ' questions', primary: true, fn: nouvelleSeance });
       }
       if (suiteFin) actions.push({ label: 'Continuer : ' + suiteFin.texte, primary: !reste, fn: suiteFin.fn });
       actions.push({ label: 'Terminer', fn: goDashboard });
