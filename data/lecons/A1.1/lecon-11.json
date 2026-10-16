@@ -99,7 +99,8 @@
       "pieges": [
         "L'article masculin peut être <b>e</b> ou <b>en</b>.",
         "<b>schaffen als</b> n'utilise pas d'article."
-      ]
+      ],
+      "articleAEcrire": true
     },
     {
       "id": 2,
@@ -113,7 +114,8 @@
       "pieges": [
         "Les féminins ne se font pas tous avec -in.",
         "Devant un métier féminin : <b>eng</b>."
-      ]
+      ],
+      "articleAEcrire": true
     },
     {
       "id": 3,
