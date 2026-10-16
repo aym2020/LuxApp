@@ -4,7 +4,8 @@
 //     ne baisse jamais ;
 //   - ce qui BOUGE (mots à réviser, fraîcheur, série) : en turquoise, se recharge
 //     en révisant.
-// Rien n'est verrouillé : la séance du jour est une proposition, pas une limite.
+// Rien n'est verrouillé : la séance du jour fait 20 questions, puis on propose
+// « Encore 20 ». « Réviser → Tout » reste disponible pour tout faire d'un coup.
 
 // ─── ANNEAU DE FRAÎCHEUR (autour du numéro d'une leçon) ─────────────────────
 // f = fraîcheur de 0 à 1, ou null si rien n'a encore été vu (anneau vide).
@@ -27,24 +28,33 @@ function rafraichirHtml(nbDus) {
 }
 
 // ─── PROCHAINE ÉTAPE CONSEILLÉE ─────────────────────────────────────────────
-// Unité en cours à reprendre, sinon première unité jamais terminée du niveau.
+// Partie en cours à reprendre, sinon première unité du fil jamais terminée,
+// sinon la mission d'une leçon dont le fil est fini.
 function prochaineEtape() {
   const saved = loadRun();
   if (saved) {
     const l = leconsActives().find(x => x.id === saved.leconId);
     if (isParcoursLecon(l)) {
-      const quoi = saved.uniteId === 'all' ? 'leçon complète' : 'unité ' + saved.uniteId;
-      return { titre: 'Reprendre', texte: 'Leçon ' + l.id + ' · ' + quoi, fn: reprendreRun };
+      return { titre: 'Reprendre', texte: 'Leçon ' + l.id + ' · ' + nomPartie(saved.uniteId, saved.mode), fn: reprendreRun };
     }
   }
+  // Dans l'ordre des leçons : la première unité du fil pas encore faite,
+  // sinon la mission si elle n'a jamais été jouée.
   for (const l of leconsActives()) {
     if (!isParcoursLecon(l)) continue;
-    const u = l.unites.find(x => getUnitBest(l.id, x.id) == null);
+    const u = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (u) {
       return {
         titre: 'Prochaine unité',
         texte: 'Leçon ' + l.id + ' · ' + u.titre,
         fn: () => { openParcoursLecon(l); openIntro(u.id); }
+      };
+    }
+    if (l.mission && l.scene && getMissionBest(l.id) == null) {
+      return {
+        titre: 'Mission',
+        texte: 'Leçon ' + l.id + ' · ' + l.mission.titre,
+        fn: () => { openParcoursLecon(l); openMission(); }
       };
     }
   }
@@ -57,7 +67,8 @@ function renderAujourdhui() {
   if (!box) return;
 
   const nbDus = resumeRevision(leconsActives()).dus.length;
-  const minutes = Math.max(1, Math.round(nbDus * 10 / 60)); // ~10 s par question
+  const nbSeance = Math.min(nbDus, TAILLE_SEANCE);
+  const minutes = Math.max(1, Math.round(nbSeance * 12 / 60)); // ~12 s par question
   const suite = prochaineEtape();
   const objectifAtteint = getJours()[dayString(0)] === 2;
   const serie = serieActuelle();
@@ -84,7 +95,8 @@ function renderAujourdhui() {
     '<div class="td-semaine">' + semaine + '</div>' +
     '<div class="td-lignes">' +
       '<div class="td-ligne">' + (nbDus
-        ? '<b>' + nbDus + (nbDus > 1 ? ' questions' : ' question') + ' à réviser</b> · environ ' + minutes + ' min'
+        ? '<b>Ta séance : ' + nbSeance + (nbSeance > 1 ? ' questions' : ' question') + '</b> · environ ' + minutes + ' min' +
+          (nbDus > nbSeance ? '<span class="td-reserve">' + (nbDus - nbSeance) + ' autres en attente</span>' : '')
         : 'Rien à réviser aujourd\'hui') + '</div>' +
       '<div class="td-ligne">' + (suite
         ? '<span class="td-muted">' + suite.titre + ' :</span> ' + escHtml(suite.texte)
@@ -95,8 +107,11 @@ function renderAujourdhui() {
 }
 
 // ─── SÉANCE DU JOUR ─────────────────────────────────────────────────────────
-// 1. Toutes les questions à réviser (les plus en retard d'abord, sans plafond).
-// 2. Puis la suite : prochaine unité, ou les plus fragiles.
+// Une séance = TAILLE_SEANCE questions au plus (les plus urgentes d'abord).
+// À la fin, on propose d'en faire encore autant : c'est l'utilisateur qui
+// décide de continuer, sans limite, mais on ne lui montre jamais une montagne.
+const TAILLE_SEANCE = 20;
+
 function lancerSeance() {
   const dus = resumeRevision(leconsActives()).dus;
   const suite = prochaineEtape();
@@ -107,14 +122,20 @@ function lancerSeance() {
     return;
   }
 
-  const actions = [];
-  if (suite) actions.push({ label: 'Continuer : ' + suite.texte, primary: true, fn: suite.fn });
-  actions.push({ label: 'Continuer avec les plus fragiles', primary: !suite, fn: lancerPlusFragiles });
-  actions.push({ label: 'Accueil', fn: goDashboard });
-
-  demarrerSession('review', 'SÉANCE DU JOUR', dus, {
-    apresFin: () => marquerJour(2), // révision du jour faite = objectif atteint
-    actions
+  demarrerSession('review', 'SÉANCE DU JOUR', dus.slice(0, TAILLE_SEANCE), {
+    apresFin: () => marquerJour(2), // une séance faite = objectif du jour atteint
+    // Calculé à la fin de la séance : ce qui reste dépend des réponses données.
+    actions: () => {
+      const reste = resumeRevision(leconsActives()).dus.length;
+      const suiteFin = prochaineEtape();
+      const actions = [];
+      if (reste) {
+        actions.push({ label: 'Encore ' + Math.min(reste, TAILLE_SEANCE) + ' questions', primary: true, fn: lancerSeance });
+      }
+      if (suiteFin) actions.push({ label: 'Continuer : ' + suiteFin.texte, primary: !reste, fn: suiteFin.fn });
+      actions.push({ label: 'Terminer', fn: goDashboard });
+      return actions;
+    }
   });
 }
 
@@ -144,8 +165,11 @@ function lancerPlusFragiles() {
     goDashboard();
     return;
   }
-  demarrerSession('review', 'LES PLUS FRAGILES', items, {
-    actions: [{ label: 'Accueil', primary: true, fn: goDashboard }]
+  demarrerSession('review', 'LES PLUS FRAGILES', items.slice(0, TAILLE_SEANCE), {
+    actions: [
+      { label: 'Encore ' + TAILLE_SEANCE + ' questions', primary: true, fn: lancerPlusFragiles },
+      { label: 'Terminer', fn: goDashboard }
+    ]
   });
 }
 

@@ -13,8 +13,8 @@ const path = require('path');
 const BASE = path.join(__dirname, '..', 'data', 'lecons');
 const TYPES = ['flashcards', 'quiz', 'trous', 'ecriture'];
 
-// Tailles conseillées par unité (min, max).
-const TAILLES = { flashcards: [6, 12], quiz: [6, 10], trous: [6, 10], ecriture: [5, 8] };
+// Tailles conseillées pour le CŒUR d'une unité (min, max). Le « + » n'a pas de limite.
+const TAILLES = { flashcards: [5, 10], quiz: [6, 10], trous: [6, 10], ecriture: [5, 8] };
 
 let nbErreurs = 0;
 let nbAttentions = 0;
@@ -47,11 +47,14 @@ function verifierV2(f, l) {
     items.forEach(x => {
       if (!idsUnites.includes(x.unite)) erreur(f, type + ' id ' + x.id + ' : unité « ' + x.unite + ' » inconnue');
       if (x.attention !== undefined && !x.attention) erreur(f, type + ' id ' + x.id + ' : « attention » vide');
+      if (x.plus !== undefined && x.plus !== true) erreur(f, type + ' id ' + x.id + ' : « plus » doit valoir true');
+      const u = l.unites.find(v => v.id === x.unite);
+      if (x.plus && u && u.bonus) attention(f, type + ' id ' + x.id + ' : « plus » dans une unité bonus (déjà facultative)');
     });
 
-    // Taille de chaque unité.
+    // Taille du cœur de chaque unité (sans le « + »).
     l.unites.forEach(u => {
-      const n = items.filter(x => x.unite === u.id).length;
+      const n = items.filter(x => x.unite === u.id && !x.plus).length;
       const [min, max] = TAILLES[type];
       if (n === 0) attention(f, 'unité ' + u.id + ' : aucun item ' + type);
       else if (n < min || n > max) attention(f, 'unité ' + u.id + ' : ' + n + ' ' + type + ' (conseillé ' + min + ' à ' + max + ')');
@@ -84,6 +87,28 @@ function verifierV2(f, l) {
     if (b.type === 'callout' && b.lignes && b.lignes.length > 3) {
       attention(f, 'bloc « ' + b.titre + ' » : ' + b.lignes.length + ' lignes (3 max conseillé)');
     }
+  });
+
+  // Mission : un fil par leçon (scène finale).
+  if (!l.mission || !l.scene) {
+    attention(f, 'pas de mission (« mission » + « scene ») : la leçon n\'a pas de fil');
+  } else {
+    ['titre', 'contexte', 'objectif'].forEach(k => { if (!l.mission[k]) erreur(f, 'mission sans « ' + k + ' »'); });
+    const fil = l.unites.filter(u => !u.bonus).map(u => u.id);
+    let derniere = 0;
+    l.scene.forEach((x, i) => {
+      if (!x.qui || !x.lu || !x.fr) erreur(f, 'réplique n°' + (i + 1) + ' : qui, lu ou fr manquant');
+      if (!fil.includes(x.unite)) erreur(f, 'réplique n°' + (i + 1) + ' : unité « ' + x.unite + ' » hors du fil');
+      if (x.unite < derniere) attention(f, 'réplique n°' + (i + 1) + ' : unité plus petite que la précédente (la scène se remplit dans le désordre)');
+      derniere = Math.max(derniere, x.unite);
+    });
+    if (!l.scene.some(x => x.qui === 'toi')) erreur(f, 'la scène n\'a aucune réplique « toi » à écrire');
+    fil.forEach(id => {
+      if (!l.scene.some(x => x.unite === id)) attention(f, 'unité ' + id + ' : aucune réplique dans la scène');
+    });
+  }
+  l.unites.forEach(u => {
+    if (!u.bonus && !u.phrase) attention(f, 'unité ' + u.id + ' sans « phrase » (la phrase de la scène qu\'elle apprend)');
   });
 
   // Chaque mot caché doit se retrouver dans le cours.

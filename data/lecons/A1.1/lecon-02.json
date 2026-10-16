@@ -4,396 +4,1334 @@
   "titre_fr": "Identifier des objets – articles indéfinis",
   "couleur": "#5a8fd4",
   "instructions": {
-    "flashcards": "Mot caché : retrouve le nom luxembourgeois à partir du français. L'article (e, en, eng) est affiché pour le mémoriser avec le mot.",
-    "quiz": "Lis le mot français et choisis la bonne forme luxembourgeoise (bon article + nom). Dans l'unité 3, choisis la bonne négation.",
-    "trous": "Complète avec l'article ou la négation correcte (e, en, eng, kee, keen, keng) selon le genre du nom.",
-    "ecriture": "Traduis la phrase en luxembourgeois : Dat ass …, Ass dat …?, Jo / Nee, avec le bon article ou la bonne négation."
+    "flashcards": "Mot caché : retrouve l'objet luxembourgeois à partir du français. L'article (e, en, eng) est affiché pour le mémoriser avec le mot. Unité 3 : les mots pour demander et dire non.",
+    "quiz": "Lis l'objet en français et choisis la bonne forme luxembourgeoise (bon article + nom). Unité 3 : choisis la bonne phrase (kee, keen, keng).",
+    "trous": "Complète avec l'article (e, en, eng) ou la négation (kee, keen, keng) selon le genre du nom.",
+    "ecriture": "Écris en luxembourgeois les phrases de la mission : Wat ass dat?, Dat ass …, Ass dat …?, Jo / Nee, dat ass kee / keen / keng …"
   },
+  "mission": {
+    "titre": "Premier jour au bureau",
+    "contexte": "C'est ton premier jour au bureau. Ta collègue Sarah te fait visiter et te teste : elle montre des objets, tu dis ce que c'est.",
+    "objectif": "demander ce que c'est, nommer un objet avec e, en ou eng, et répondre non."
+  },
+  "scene": [
+    {
+      "qui": "Sarah",
+      "lu": "Moien! Wat ass dat?",
+      "fr": "Bonjour ! Qu'est-ce que c'est ? (elle montre une chaise)",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass e Stull.",
+      "fr": "C'est une chaise.",
+      "unite": 1,
+      "aide": "Stull est masculin → <b>e</b> Stull."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
+      "fr": "Et ça ? (elle montre un sac)",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass eng Mapp.",
+      "fr": "C'est un sac.",
+      "unite": 1,
+      "aide": "Mapp est féminin → <b>eng</b> Mapp."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
+      "fr": "Et ça ? (elle montre un téléphone)",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass en Telefon.",
+      "fr": "C'est un téléphone.",
+      "unite": 2,
+      "aide": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "Ass dat en Handy?",
+      "fr": "C'est un smartphone ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, dat ass keen Handy.",
+      "fr": "Non, ce n'est pas un smartphone.",
+      "unite": 3,
+      "aide": "en Handy → <b>keen</b> Handy."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "Ass dat eng Luucht?",
+      "fr": "Et ça, c'est une lampe ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, dat ass eng Luucht.",
+      "fr": "Oui, c'est une lampe.",
+      "unite": 3,
+      "aide": "Oui → <b>Jo</b>, dat ass eng Luucht."
+    }
+  ],
   "unites": [
     {
       "id": 1,
-      "titre": "Masculin : e ou en",
-      "regle": "Masculin : <b>e</b>, ou <b>en</b> devant une voyelle ou n, d, t, z, h",
-      "exemple": "<b>e</b> Bus · <b>en</b> Dësch · <b>en</b> Auto",
-      "phrases": [
-        [
-          "Dat ass e Bus.",
-          "C'est un bus."
-        ],
-        [
-          "Dat ass en Dësch.",
-          "C'est une table."
-        ]
+      "titre": "C'est un … / C'est une …",
+      "phrase": [
+        "Wat ass dat? – Dat ass e Stull.",
+        "Qu'est-ce que c'est ? – C'est une chaise."
       ],
-      "pieges": [
-        "Le genre ne se devine pas : « une table » = <b>en Dësch</b> (masculin).",
-        "<b>en</b> seulement devant une voyelle ou n, d, t, z, h : <b>en</b> Auto, mais <b>e</b> Bus."
-      ]
-    },
-    {
-      "id": 2,
-      "titre": "Féminin : eng",
-      "regle": "Féminin : toujours <b>eng</b>",
-      "exemple": "<b>eng</b> Dier · <b>eng</b> Fläsch · <b>eng</b> Mapp (un sac)",
+      "regle": "Masculin et neutre → <b>e</b> · Féminin → <b>eng</b>",
+      "exemple": "<b>e</b> Stull · <b>e</b> Buch · <b>eng</b> Dier · <b>eng</b> Mapp",
       "phrases": [
         [
           "Dat ass eng Dier.",
           "C'est une porte."
         ],
         [
-          "Ass dat eng Fläsch?",
-          "Est-ce une bouteille ?"
+          "Dat ass e Computer.",
+          "C'est un ordinateur."
         ]
       ],
       "pieges": [
-        "« un sac » = <b>eng Mapp</b> : féminin en luxembourgeois.",
-        "Au féminin, toujours <b>eng</b> : jamais e ni en."
+        "Le genre ne se devine pas : « une chaise » = <b>e Stull</b> (masculin).",
+        "« un sac » = <b>eng Mapp</b> : féminin en luxembourgeois."
+      ]
+    },
+    {
+      "id": 2,
+      "titre": "e ou en ?",
+      "phrase": [
+        "Dat ass en Telefon.",
+        "C'est un téléphone."
+      ],
+      "regle": "<b>en</b> devant une voyelle ou n, d, t, z, h · sinon <b>e</b>",
+      "exemple": "<b>en</b> Telefon · <b>en</b> Dësch · <b>en</b> Auto · mais <b>e</b> Stull",
+      "phrases": [
+        [
+          "Dat ass en Dësch.",
+          "C'est une table."
+        ],
+        [
+          "Dat ass en Auto.",
+          "C'est une voiture."
+        ]
+      ],
+      "pieges": [
+        "Moyen mnémotechnique : <b>U·N·I·T·E·D·Z·O·H·A</b> (voyelles + n, d, t, z, h).",
+        "Au féminin, jamais en : toujours <b>eng</b> (eng Dier)."
       ]
     },
     {
       "id": 3,
-      "titre": "Neutre et négation",
-      "regle": "Neutre comme masculin : <b>e</b> / <b>en</b>. Négation : <b>kee</b> · <b>keen</b> · <b>keng</b>",
-      "exemple": "e Buch → <b>kee</b> Buch · en Haus → <b>keen</b> Haus · eng Dier → <b>keng</b> Dier",
+      "titre": "Demander et répondre non",
+      "phrase": [
+        "Ass dat en Handy? – Nee, dat ass keen Handy.",
+        "C'est un smartphone ? – Non, ce n'est pas un smartphone."
+      ],
+      "regle": "Non : e → <b>kee</b> · en → <b>keen</b> · eng → <b>keng</b>",
+      "exemple": "e Stull → <b>kee</b> Stull · en Handy → <b>keen</b> Handy · eng Dier → <b>keng</b> Dier",
       "phrases": [
         [
-          "Nee, dat ass kee Buch.",
-          "Non, ce n'est pas un livre."
+          "Ass dat eng Luucht?",
+          "Est-ce une lampe ?"
         ],
         [
-          "Nee, dat ass keng Dier.",
-          "Non, ce n'est pas une porte."
+          "Jo, dat ass eng Luucht.",
+          "Oui, c'est une lampe."
         ]
       ],
       "pieges": [
-        "<b>keen</b> devant une voyelle ou n, d, t, z, h : <b>keen</b> Haus, <b>keen</b> Telefon.",
-        "« une maison » = <b>en Haus</b> : neutre, et le H garde le -n."
+        "Même règle du n : <b>en</b> → <b>keen</b>, <b>e</b> → <b>kee</b>.",
+        "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
       ]
     }
   ],
   "flashcards": [
     {
-      "id": 1001,
+      "id": 2001,
       "unite": 1,
-      "fr": "un bus",
-      "lu": "Bus",
-      "article": "e",
-      "note": "Masculin · e devant B · négation : kee",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "fr": "Qu'est-ce que c'est ?",
+      "lu": "Wat ass dat?",
+      "note": "Réponse : Dat ass e … / eng …",
+      "attention": "<b>Wat ass dat?</b> = Qu'est-ce que c'est ?"
     },
     {
-      "id": 1002,
-      "unite": 1,
-      "fr": "une table",
-      "lu": "Dësch",
-      "article": "en",
-      "note": "Masculin · en devant D (UNITEDZOHA) · négation : keen",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
-    },
-    {
-      "id": 1003,
-      "unite": 1,
-      "fr": "un téléphone",
-      "lu": "Telefon",
-      "article": "en",
-      "note": "Masculin · en devant T (UNITEDZOHA) · négation : keen",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
-    },
-    {
-      "id": 1004,
-      "unite": 1,
-      "fr": "un ordinateur",
-      "lu": "Computer",
-      "article": "e",
-      "note": "Masculin · e devant C · négation : kee",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
-    },
-    {
-      "id": 1005,
-      "unite": 1,
-      "fr": "une voiture",
-      "lu": "Auto",
-      "article": "en",
-      "note": "Masculin · en devant A (UNITEDZOHA) · négation : keen",
-      "attention": "Auto commence par une voyelle → <b>en</b> Auto."
-    },
-    {
-      "id": 1006,
+      "id": 2002,
       "unite": 1,
       "fr": "une chaise",
       "lu": "Stull",
       "article": "e",
-      "note": "Masculin · e devant S · négation : kee",
+      "note": "Masculin · e devant S · non : kee Stull",
       "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
     },
     {
-      "id": 1007,
+      "id": 2003,
       "unite": 1,
-      "fr": "un avion",
-      "lu": "Fliger",
+      "fr": "un ordinateur",
+      "lu": "Computer",
       "article": "e",
-      "note": "Masculin · e devant F · négation : kee",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Masculin · e devant C · non : kee Computer",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1008,
-      "unite": 1,
-      "fr": "un train",
-      "lu": "Zuch",
-      "article": "en",
-      "note": "Masculin · en devant Z (UNITEDZOHA) · négation : keen",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b> Zuch."
-    },
-    {
-      "id": 1009,
+      "id": 2004,
       "unite": 1,
       "fr": "un stylo",
       "lu": "Stëft",
       "article": "e",
-      "note": "Masculin · e devant S · négation : kee",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Masculin · e devant S · non : kee Stëft",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1010,
+      "id": 2005,
       "unite": 1,
-      "fr": "un smartphone",
-      "lu": "Handy",
-      "article": "en",
-      "note": "Masculin · en devant H (UNITEDZOHA) · négation : keen",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Handy."
-    },
-    {
-      "id": 1011,
-      "unite": 2,
-      "fr": "une porte",
-      "lu": "Dier",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1012,
-      "unite": 2,
-      "fr": "une montre",
-      "lu": "Auer",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1013,
-      "unite": 2,
-      "fr": "une fenêtre",
-      "lu": "Fënster",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1014,
-      "unite": 2,
-      "fr": "une bouteille",
-      "lu": "Fläsch",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1015,
-      "unite": 2,
-      "fr": "une lampe",
-      "lu": "Luucht",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1016,
-      "unite": 2,
-      "fr": "une tasse",
-      "lu": "Taass",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1017,
-      "unite": 2,
-      "fr": "une plante",
-      "lu": "Planz",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1018,
-      "unite": 2,
-      "fr": "un sac / cartable",
-      "lu": "Mapp",
-      "article": "eng",
-      "note": "Féminin (≠ français) · eng · négation : keng",
-      "attention": "Mapp est <b>féminin</b> (≠ un sac) → <b>eng</b> Mapp."
-    },
-    {
-      "id": 1019,
-      "unite": 2,
-      "fr": "une boîte",
-      "lu": "Këscht",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1020,
-      "unite": 2,
-      "fr": "une souris",
-      "lu": "Maus",
-      "article": "eng",
-      "note": "Féminin · eng · négation : keng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1021,
-      "unite": 3,
       "fr": "un livre",
       "lu": "Buch",
       "article": "e",
-      "note": "Neutre · e devant B · négation : kee",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Neutre · e devant B · non : kee Buch",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1022,
-      "unite": 3,
-      "fr": "une maison",
-      "lu": "Haus",
-      "article": "en",
-      "note": "Neutre · en devant H (UNITEDZOHA) · négation : keen",
-      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+      "id": 2006,
+      "unite": 1,
+      "fr": "une porte",
+      "lu": "Dier",
+      "article": "eng",
+      "note": "Féminin · eng Dier · non : keng Dier",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1023,
-      "unite": 3,
+      "id": 2007,
+      "unite": 1,
+      "fr": "une fenêtre",
+      "lu": "Fënster",
+      "article": "eng",
+      "note": "Féminin · eng Fënster · non : keng Fënster",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "une lampe",
+      "lu": "Luucht",
+      "article": "eng",
+      "note": "Féminin · eng Luucht · non : keng Luucht",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "fr": "un sac / cartable",
+      "lu": "Mapp",
+      "article": "eng",
+      "note": "Féminin · eng Mapp · non : keng Mapp",
+      "attention": "Mapp est <b>féminin</b> (≠ un sac) → <b>eng</b> Mapp."
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "un bus",
+      "lu": "Bus",
+      "article": "e",
+      "note": "Masculin · e devant B · non : kee Bus",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "un avion",
+      "lu": "Fliger",
+      "article": "e",
+      "note": "Masculin · e devant F · non : kee Fliger",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "un réveil",
+      "lu": "Wecker",
+      "article": "e",
+      "note": "Masculin · e devant W · non : kee Wecker",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "un tampon",
+      "lu": "Stempel",
+      "article": "e",
+      "note": "Masculin · e devant S · non : kee Stempel",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "fr": "un classeur",
+      "lu": "Classeur",
+      "article": "e",
+      "note": "Masculin · e devant C · non : kee Classeur",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
+      "fr": "des lunettes",
+      "lu": "Brëll",
+      "article": "e",
+      "note": "Masculin · e devant B · non : kee Brëll",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2016,
+      "unite": 1,
+      "plus": true,
+      "fr": "un vélo",
+      "lu": "Vëlo",
+      "article": "e",
+      "note": "Masculin · e devant V · non : kee Vëlo",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "plus": true,
+      "fr": "un fil",
+      "lu": "Fuedem",
+      "article": "e",
+      "note": "Masculin · e devant F · non : kee Fuedem",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2018,
+      "unite": 1,
+      "plus": true,
+      "fr": "un escargot",
+      "lu": "Schleek",
+      "article": "e",
+      "note": "Masculin · e devant S · non : kee Schleek",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "plus": true,
+      "fr": "un gratte-ciel",
+      "lu": "Wollekekrazer",
+      "article": "e",
+      "note": "Masculin · e devant W · non : kee Wollekekrazer",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2020,
+      "unite": 1,
+      "plus": true,
       "fr": "un verre",
       "lu": "Glas",
       "article": "e",
-      "note": "Neutre · e devant G · négation : kee",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Neutre · e devant G · non : kee Glas",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1024,
-      "unite": 3,
+      "id": 2021,
+      "unite": 1,
+      "plus": true,
       "fr": "un lit",
       "lu": "Bett",
       "article": "e",
-      "note": "Neutre · e devant B · négation : kee",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Neutre · e devant B · non : kee Bett",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1025,
-      "unite": 3,
+      "id": 2022,
+      "unite": 1,
+      "plus": true,
       "fr": "un tableau (peinture)",
       "lu": "Bild",
       "article": "e",
-      "note": "Neutre · e devant B · négation : kee",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Neutre · e devant B · non : kee Bild",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1026,
-      "unite": 3,
-      "fr": "un cahier",
-      "lu": "Heft",
-      "article": "en",
-      "note": "Neutre · en devant H (UNITEDZOHA) · négation : keen",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Heft."
-    },
-    {
-      "id": 1027,
-      "unite": 3,
+      "id": 2023,
+      "unite": 1,
+      "plus": true,
       "fr": "une feuille",
       "lu": "Blat",
       "article": "e",
-      "note": "Neutre · e devant B · négation : kee",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Neutre · e devant B · non : kee Blat",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1028,
-      "unite": 3,
+      "id": 2024,
+      "unite": 1,
+      "plus": true,
       "fr": "un immeuble",
       "lu": "Gebai",
       "article": "e",
-      "note": "Neutre · e devant G · négation : kee",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Neutre · e devant G · non : kee Gebai",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2025,
+      "unite": 1,
+      "plus": true,
+      "fr": "un petit livre",
+      "lu": "Bichelchen",
+      "article": "e",
+      "note": "Neutre · e devant B · non : kee Bichelchen",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2026,
+      "unite": 1,
+      "plus": true,
+      "fr": "une étagère",
+      "lu": "Regal",
+      "article": "e",
+      "note": "Neutre · e devant R · non : kee Regal",
+      "attention": "Regal est <b>neutre</b> (≠ une étagère) → <b>e</b> Regal."
+    },
+    {
+      "id": 2027,
+      "unite": 1,
+      "plus": true,
+      "fr": "un coussin",
+      "lu": "Këssen",
+      "article": "e",
+      "note": "Neutre · e devant K · non : kee Këssen",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2028,
+      "unite": 1,
+      "plus": true,
+      "fr": "une montre",
+      "lu": "Auer",
+      "article": "eng",
+      "note": "Féminin · eng Auer · non : keng Auer",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2029,
+      "unite": 1,
+      "plus": true,
+      "fr": "un tableau (école)",
+      "lu": "Tafel",
+      "article": "eng",
+      "note": "Féminin · eng Tafel · non : keng Tafel",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2030,
+      "unite": 1,
+      "plus": true,
+      "fr": "une tasse",
+      "lu": "Taass",
+      "article": "eng",
+      "note": "Féminin · eng Taass · non : keng Taass",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2031,
+      "unite": 1,
+      "plus": true,
+      "fr": "une bouteille",
+      "lu": "Fläsch",
+      "article": "eng",
+      "note": "Féminin · eng Fläsch · non : keng Fläsch",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2032,
+      "unite": 1,
+      "plus": true,
+      "fr": "des ciseaux",
+      "lu": "Schéier",
+      "article": "eng",
+      "note": "Féminin · eng Schéier · non : keng Schéier",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2033,
+      "unite": 1,
+      "plus": true,
+      "fr": "une brique",
+      "lu": "Zill",
+      "article": "eng",
+      "note": "Féminin · eng Zill · non : keng Zill",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2034,
+      "unite": 1,
+      "plus": true,
+      "fr": "une souris",
+      "lu": "Maus",
+      "article": "eng",
+      "note": "Féminin · eng Maus · non : keng Maus",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2035,
+      "unite": 1,
+      "plus": true,
+      "fr": "un CD",
+      "lu": "CD",
+      "article": "eng",
+      "note": "Féminin · eng CD · non : keng CD",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2036,
+      "unite": 1,
+      "plus": true,
+      "fr": "un fauteuil",
+      "lu": "Fotell",
+      "article": "eng",
+      "note": "Féminin · eng Fotell · non : keng Fotell",
+      "attention": "Fotell est <b>féminin</b> (≠ un fauteuil) → <b>eng</b> Fotell."
+    },
+    {
+      "id": 2037,
+      "unite": 1,
+      "plus": true,
+      "fr": "une plante",
+      "lu": "Planz",
+      "article": "eng",
+      "note": "Féminin · eng Planz · non : keng Planz",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2038,
+      "unite": 1,
+      "plus": true,
+      "fr": "une enveloppe",
+      "lu": "Enveloppe",
+      "article": "eng",
+      "note": "Féminin · eng Enveloppe · non : keng Enveloppe",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2039,
+      "unite": 1,
+      "plus": true,
+      "fr": "une carte de crédit",
+      "lu": "Kreditkaart",
+      "article": "eng",
+      "note": "Féminin · eng Kreditkaart · non : keng Kreditkaart",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2040,
+      "unite": 1,
+      "plus": true,
+      "fr": "une boîte",
+      "lu": "Këscht",
+      "article": "eng",
+      "note": "Féminin · eng Këscht · non : keng Këscht",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2041,
+      "unite": 2,
+      "fr": "un téléphone",
+      "lu": "Telefon",
+      "article": "en",
+      "note": "Masculin · en devant T (UNITEDZOHA) · non : keen Telefon",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2042,
+      "unite": 2,
+      "fr": "une table",
+      "lu": "Dësch",
+      "article": "en",
+      "note": "Masculin · en devant D (UNITEDZOHA) · non : keen Dësch",
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "fr": "un smartphone",
+      "lu": "Handy",
+      "article": "en",
+      "note": "Masculin · en devant H (UNITEDZOHA) · non : keen Handy",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2044,
+      "unite": 2,
+      "fr": "un cahier",
+      "lu": "Heft",
+      "article": "en",
+      "note": "Neutre · en devant H (UNITEDZOHA) · non : keen Heft",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2045,
+      "unite": 2,
+      "fr": "une voiture",
+      "lu": "Auto",
+      "article": "en",
+      "note": "Masculin · en devant A (UNITEDZOHA) · non : keen Auto",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2046,
+      "unite": 2,
+      "fr": "une imprimante",
+      "lu": "Drécker",
+      "article": "en",
+      "note": "Masculin · en devant D (UNITEDZOHA) · non : keen Drécker",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2047,
+      "unite": 2,
+      "plus": true,
+      "fr": "un train",
+      "lu": "Zuch",
+      "article": "en",
+      "note": "Masculin · en devant Z (UNITEDZOHA) · non : keen Zuch",
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2048,
+      "unite": 2,
+      "plus": true,
+      "fr": "une maison",
+      "lu": "Haus",
+      "article": "en",
+      "note": "Neutre · en devant H (UNITEDZOHA) · non : keen Haus",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2049,
+      "unite": 2,
+      "plus": true,
+      "fr": "un éléphant",
+      "lu": "Elefant",
+      "article": "en",
+      "note": "Masculin · en devant E (UNITEDZOHA) · non : keen Elefant",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2050,
+      "unite": 2,
+      "plus": true,
+      "fr": "une enclume",
+      "lu": "Amboss",
+      "article": "en",
+      "note": "Masculin · en devant A (UNITEDZOHA) · non : keen Amboss",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2051,
+      "unite": 2,
+      "plus": true,
+      "fr": "un seau",
+      "lu": "Eemer",
+      "article": "en",
+      "note": "Masculin · en devant E (UNITEDZOHA) · non : keen Eemer",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2052,
+      "unite": 3,
+      "fr": "Est-ce que c'est … ?",
+      "lu": "Ass dat",
+      "note": "Ass dat en Handy?",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2053,
+      "unite": 3,
+      "fr": "oui",
+      "lu": "Jo",
+      "note": "Jo, dat ass en Handy.",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2054,
+      "unite": 3,
+      "fr": "non",
+      "lu": "Nee",
+      "note": "Nee, dat ass keen Handy.",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2055,
+      "unite": 3,
+      "fr": "pas un (après e)",
+      "lu": "kee",
+      "note": "e Stull → kee Stull",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2056,
+      "unite": 3,
+      "fr": "pas un (après en)",
+      "lu": "keen",
+      "note": "en Handy → keen Handy",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2057,
+      "unite": 3,
+      "fr": "pas une (féminin)",
+      "lu": "keng",
+      "note": "eng Dier → keng Dier",
+      "attention": "Féminin → <b>keng</b>."
     }
   ],
   "quiz": [
     {
-      "id": 1001,
+      "id": 2001,
       "unite": 1,
-      "question": "un bus",
-      "reponse": "e Bus",
+      "question": "une chaise",
+      "reponse": "e Stull",
       "distracteurs": [
-        "en Bus",
-        "eng Bus",
-        "e Stull"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
-    },
-    {
-      "id": 1002,
-      "unite": 1,
-      "question": "une table",
-      "reponse": "en Dësch",
-      "distracteurs": [
-        "e Dësch",
-        "eng Dësch",
-        "e Stull"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
-    },
-    {
-      "id": 1003,
-      "unite": 1,
-      "question": "un téléphone",
-      "reponse": "en Telefon",
-      "distracteurs": [
-        "e Telefon",
-        "eng Telefon",
+        "en Stull",
+        "eng Stull",
         "e Computer"
       ],
       "label": "CHOISIS LA BONNE FORME",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
+      "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
     },
     {
-      "id": 1004,
+      "id": 2002,
       "unite": 1,
       "question": "un ordinateur",
       "reponse": "e Computer",
       "distracteurs": [
         "en Computer",
         "eng Computer",
+        "e Stull"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "question": "un stylo",
+      "reponse": "e Stëft",
+      "distracteurs": [
+        "en Stëft",
+        "eng Stëft",
+        "e Stull"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "question": "un livre",
+      "reponse": "e Buch",
+      "distracteurs": [
+        "en Buch",
+        "eng Buch",
+        "e Stull"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "question": "une porte",
+      "reponse": "eng Dier",
+      "distracteurs": [
+        "e Dier",
+        "en Dier",
+        "e Stull"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "question": "une fenêtre",
+      "reponse": "eng Fënster",
+      "distracteurs": [
+        "e Fënster",
+        "en Fënster",
+        "e Stull"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "question": "une lampe",
+      "reponse": "eng Luucht",
+      "distracteurs": [
+        "e Luucht",
+        "en Luucht",
+        "e Stull"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "question": "un sac / cartable",
+      "reponse": "eng Mapp",
+      "distracteurs": [
+        "e Mapp",
+        "en Mapp",
+        "e Stull"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Mapp est <b>féminin</b> (≠ un sac) → <b>eng</b> Mapp."
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "question": "un bus",
+      "reponse": "e Bus",
+      "distracteurs": [
+        "en Bus",
+        "eng Bus",
+        "eng Schéier"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "question": "un avion",
+      "reponse": "e Fliger",
+      "distracteurs": [
+        "en Fliger",
+        "eng Fliger",
+        "e Blat"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "question": "un réveil",
+      "reponse": "e Wecker",
+      "distracteurs": [
+        "en Wecker",
+        "eng Wecker",
+        "e Blat"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "question": "un tampon",
+      "reponse": "e Stempel",
+      "distracteurs": [
+        "en Stempel",
+        "eng Stempel",
+        "eng Taass"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "question": "un classeur",
+      "reponse": "e Classeur",
+      "distracteurs": [
+        "en Classeur",
+        "eng Classeur",
+        "eng Planz"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "question": "des lunettes",
+      "reponse": "e Brëll",
+      "distracteurs": [
+        "en Brëll",
+        "eng Brëll",
+        "e Vëlo"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
+      "question": "un vélo",
+      "reponse": "e Vëlo",
+      "distracteurs": [
+        "en Vëlo",
+        "eng Vëlo",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2016,
+      "unite": 1,
+      "plus": true,
+      "question": "un fil",
+      "reponse": "e Fuedem",
+      "distracteurs": [
+        "en Fuedem",
+        "eng Fuedem",
+        "e Blat"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "plus": true,
+      "question": "un escargot",
+      "reponse": "e Schleek",
+      "distracteurs": [
+        "en Schleek",
+        "eng Schleek",
+        "eng Taass"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2018,
+      "unite": 1,
+      "plus": true,
+      "question": "un gratte-ciel",
+      "reponse": "e Wollekekrazer",
+      "distracteurs": [
+        "en Wollekekrazer",
+        "eng Wollekekrazer",
+        "e Fliger"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "plus": true,
+      "question": "un verre",
+      "reponse": "e Glas",
+      "distracteurs": [
+        "en Glas",
+        "eng Glas",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2020,
+      "unite": 1,
+      "plus": true,
+      "question": "un lit",
+      "reponse": "e Bett",
+      "distracteurs": [
+        "en Bett",
+        "eng Bett",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2021,
+      "unite": 1,
+      "plus": true,
+      "question": "un tableau (peinture)",
+      "reponse": "e Bild",
+      "distracteurs": [
+        "en Bild",
+        "eng Bild",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2022,
+      "unite": 1,
+      "plus": true,
+      "question": "une feuille",
+      "reponse": "e Blat",
+      "distracteurs": [
+        "en Blat",
+        "eng Blat",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2023,
+      "unite": 1,
+      "plus": true,
+      "question": "un immeuble",
+      "reponse": "e Gebai",
+      "distracteurs": [
+        "en Gebai",
+        "eng Gebai",
+        "e Brëll"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2024,
+      "unite": 1,
+      "plus": true,
+      "question": "un petit livre",
+      "reponse": "e Bichelchen",
+      "distracteurs": [
+        "en Bichelchen",
+        "eng Bichelchen",
+        "e Glas"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2025,
+      "unite": 1,
+      "plus": true,
+      "question": "une étagère",
+      "reponse": "e Regal",
+      "distracteurs": [
+        "en Regal",
+        "eng Regal",
+        "e Brëll"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Regal est <b>neutre</b> (≠ une étagère) → <b>e</b> Regal."
+    },
+    {
+      "id": 2026,
+      "unite": 1,
+      "plus": true,
+      "question": "un coussin",
+      "reponse": "e Këssen",
+      "distracteurs": [
+        "en Këssen",
+        "eng Këssen",
+        "e Bild"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2027,
+      "unite": 1,
+      "plus": true,
+      "question": "une montre",
+      "reponse": "eng Auer",
+      "distracteurs": [
+        "e Auer",
+        "en Auer",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2028,
+      "unite": 1,
+      "plus": true,
+      "question": "un tableau (école)",
+      "reponse": "eng Tafel",
+      "distracteurs": [
+        "e Tafel",
+        "en Tafel",
+        "e Brëll"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2029,
+      "unite": 1,
+      "plus": true,
+      "question": "une tasse",
+      "reponse": "eng Taass",
+      "distracteurs": [
+        "e Taass",
+        "en Taass",
+        "e Brëll"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2030,
+      "unite": 1,
+      "plus": true,
+      "question": "une bouteille",
+      "reponse": "eng Fläsch",
+      "distracteurs": [
+        "e Fläsch",
+        "en Fläsch",
+        "e Bild"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2031,
+      "unite": 1,
+      "plus": true,
+      "question": "des ciseaux",
+      "reponse": "eng Schéier",
+      "distracteurs": [
+        "e Schéier",
+        "en Schéier",
+        "eng Tafel"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2032,
+      "unite": 1,
+      "plus": true,
+      "question": "une brique",
+      "reponse": "eng Zill",
+      "distracteurs": [
+        "e Zill",
+        "en Zill",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2033,
+      "unite": 1,
+      "plus": true,
+      "question": "une souris",
+      "reponse": "eng Maus",
+      "distracteurs": [
+        "e Maus",
+        "en Maus",
+        "eng Kreditkaart"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2034,
+      "unite": 1,
+      "plus": true,
+      "question": "un CD",
+      "reponse": "eng CD",
+      "distracteurs": [
+        "e CD",
+        "en CD",
+        "e Gebai"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2035,
+      "unite": 1,
+      "plus": true,
+      "question": "un fauteuil",
+      "reponse": "eng Fotell",
+      "distracteurs": [
+        "e Fotell",
+        "en Fotell",
+        "e Bild"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Fotell est <b>féminin</b> (≠ un fauteuil) → <b>eng</b> Fotell."
+    },
+    {
+      "id": 2036,
+      "unite": 1,
+      "plus": true,
+      "question": "une plante",
+      "reponse": "eng Planz",
+      "distracteurs": [
+        "e Planz",
+        "en Planz",
+        "e Brëll"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2037,
+      "unite": 1,
+      "plus": true,
+      "question": "une enveloppe",
+      "reponse": "eng Enveloppe",
+      "distracteurs": [
+        "e Enveloppe",
+        "en Enveloppe",
+        "e Stempel"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2038,
+      "unite": 1,
+      "plus": true,
+      "question": "une carte de crédit",
+      "reponse": "eng Kreditkaart",
+      "distracteurs": [
+        "e Kreditkaart",
+        "en Kreditkaart",
+        "e Këssen"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2039,
+      "unite": 1,
+      "plus": true,
+      "question": "une boîte",
+      "reponse": "eng Këscht",
+      "distracteurs": [
+        "e Këscht",
+        "en Këscht",
+        "e Bild"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2040,
+      "unite": 2,
+      "question": "un téléphone",
+      "reponse": "en Telefon",
+      "distracteurs": [
+        "e Telefon",
+        "eng Telefon",
+        "en Drécker"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2041,
+      "unite": 2,
+      "question": "une table",
+      "reponse": "en Dësch",
+      "distracteurs": [
+        "e Dësch",
+        "eng Dësch",
         "en Telefon"
       ],
       "label": "CHOISIS LA BONNE FORME",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
     },
     {
-      "id": 1005,
-      "unite": 1,
+      "id": 2042,
+      "unite": 2,
+      "question": "un smartphone",
+      "reponse": "en Handy",
+      "distracteurs": [
+        "e Handy",
+        "eng Handy",
+        "en Telefon"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "question": "un cahier",
+      "reponse": "en Heft",
+      "distracteurs": [
+        "e Heft",
+        "eng Heft",
+        "en Auto"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2044,
+      "unite": 2,
       "question": "une voiture",
       "reponse": "en Auto",
       "distracteurs": [
         "e Auto",
         "eng Auto",
-        "en Zuch"
+        "en Heft"
       ],
       "label": "CHOISIS LA BONNE FORME",
-      "attention": "Auto commence par une voyelle → <b>en</b> Auto."
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
     },
     {
-      "id": 1006,
-      "unite": 1,
+      "id": 2045,
+      "unite": 2,
+      "question": "une imprimante",
+      "reponse": "en Drécker",
+      "distracteurs": [
+        "e Drécker",
+        "eng Drécker",
+        "en Auto"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2046,
+      "unite": 2,
+      "question": "un stylo",
+      "reponse": "e Stëft",
+      "distracteurs": [
+        "en Stëft",
+        "eng Stëft",
+        "en Telefon"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2047,
+      "unite": 2,
       "question": "une chaise",
       "reponse": "e Stull",
       "distracteurs": [
@@ -405,189 +1343,77 @@
       "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
     },
     {
-      "id": 1007,
-      "unite": 1,
+      "id": 2048,
+      "unite": 2,
+      "plus": true,
       "question": "un train",
       "reponse": "en Zuch",
       "distracteurs": [
         "e Zuch",
         "eng Zuch",
-        "e Bus"
+        "en Auto"
       ],
       "label": "CHOISIS LA BONNE FORME",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b> Zuch."
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
     },
     {
-      "id": 1008,
-      "unite": 1,
-      "question": "un smartphone",
-      "reponse": "en Handy",
-      "distracteurs": [
-        "e Handy",
-        "eng Handy",
-        "en Telefon"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Handy."
-    },
-    {
-      "id": 1009,
+      "id": 2049,
       "unite": 2,
-      "question": "une porte",
-      "reponse": "eng Dier",
-      "distracteurs": [
-        "e Dier",
-        "en Dier",
-        "eng Fënster"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1010,
-      "unite": 2,
-      "question": "une montre",
-      "reponse": "eng Auer",
-      "distracteurs": [
-        "e Auer",
-        "en Auer",
-        "eng Luucht"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1011,
-      "unite": 2,
-      "question": "une fenêtre",
-      "reponse": "eng Fënster",
-      "distracteurs": [
-        "e Fënster",
-        "en Fënster",
-        "eng Dier"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1012,
-      "unite": 2,
-      "question": "une bouteille",
-      "reponse": "eng Fläsch",
-      "distracteurs": [
-        "e Fläsch",
-        "en Fläsch",
-        "eng Taass"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1013,
-      "unite": 2,
-      "question": "une lampe",
-      "reponse": "eng Luucht",
-      "distracteurs": [
-        "e Luucht",
-        "en Luucht",
-        "eng Auer"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1014,
-      "unite": 2,
-      "question": "une tasse",
-      "reponse": "eng Taass",
-      "distracteurs": [
-        "e Taass",
-        "en Taass",
-        "eng Fläsch"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1015,
-      "unite": 2,
-      "question": "un sac / cartable",
-      "reponse": "eng Mapp",
-      "distracteurs": [
-        "e Mapp",
-        "en Mapp",
-        "eng Këscht"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Mapp est <b>féminin</b> (≠ un sac) → <b>eng</b> Mapp."
-    },
-    {
-      "id": 1016,
-      "unite": 2,
-      "question": "une boîte",
-      "reponse": "eng Këscht",
-      "distracteurs": [
-        "e Këscht",
-        "en Këscht",
-        "eng Mapp"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1017,
-      "unite": 3,
-      "question": "un livre",
-      "reponse": "e Buch",
-      "distracteurs": [
-        "en Buch",
-        "eng Buch",
-        "e Bett"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
-    },
-    {
-      "id": 1018,
-      "unite": 3,
+      "plus": true,
       "question": "une maison",
       "reponse": "en Haus",
       "distracteurs": [
         "e Haus",
         "eng Haus",
-        "en Heft"
+        "en Auto"
       ],
       "label": "CHOISIS LA BONNE FORME",
       "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
     },
     {
-      "id": 1019,
-      "unite": 3,
-      "question": "un verre",
-      "reponse": "e Glas",
+      "id": 2050,
+      "unite": 2,
+      "plus": true,
+      "question": "un éléphant",
+      "reponse": "en Elefant",
       "distracteurs": [
-        "en Glas",
-        "eng Glas",
-        "e Bild"
+        "e Elefant",
+        "eng Elefant",
+        "en Drécker"
       ],
       "label": "CHOISIS LA BONNE FORME",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
     },
     {
-      "id": 1020,
-      "unite": 3,
-      "question": "un cahier",
-      "reponse": "en Heft",
+      "id": 2051,
+      "unite": 2,
+      "plus": true,
+      "question": "une enclume",
+      "reponse": "en Amboss",
       "distracteurs": [
-        "e Heft",
-        "eng Heft",
-        "e Blat"
+        "e Amboss",
+        "eng Amboss",
+        "en Elefant"
       ],
       "label": "CHOISIS LA BONNE FORME",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Heft."
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
     },
     {
-      "id": 1021,
+      "id": 2052,
+      "unite": 2,
+      "plus": true,
+      "question": "un seau",
+      "reponse": "en Eemer",
+      "distracteurs": [
+        "e Eemer",
+        "eng Eemer",
+        "en Dësch"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2053,
       "unite": 3,
       "question": "Ce n'est pas un livre.",
       "reponse": "Dat ass kee Buch.",
@@ -596,24 +1422,24 @@
         "Dat ass keng Buch.",
         "Dat ass net Buch."
       ],
-      "label": "CHOISIS LA NÉGATION",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
     },
     {
-      "id": 1022,
+      "id": 2054,
       "unite": 3,
-      "question": "Ce n'est pas une maison.",
-      "reponse": "Dat ass keen Haus.",
+      "question": "Ce n'est pas un smartphone.",
+      "reponse": "Dat ass keen Handy.",
       "distracteurs": [
-        "Dat ass kee Haus.",
-        "Dat ass keng Haus.",
-        "Dat ass net Haus."
+        "Dat ass kee Handy.",
+        "Dat ass keng Handy.",
+        "Dat ass net Handy."
       ],
-      "label": "CHOISIS LA NÉGATION",
-      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
     },
     {
-      "id": 1023,
+      "id": 2055,
       "unite": 3,
       "question": "Ce n'est pas une porte.",
       "reponse": "Dat ass keng Dier.",
@@ -622,11 +1448,11 @@
         "Dat ass keen Dier.",
         "Dat ass net Dier."
       ],
-      "label": "CHOISIS LA NÉGATION",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Féminin → <b>keng</b>."
     },
     {
-      "id": 1024,
+      "id": 2056,
       "unite": 3,
       "question": "Ce n'est pas un téléphone.",
       "reponse": "Dat ass keen Telefon.",
@@ -635,73 +1461,151 @@
         "Dat ass keng Telefon.",
         "Dat ass net Telefon."
       ],
-      "label": "CHOISIS LA NÉGATION",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2057,
+      "unite": 3,
+      "question": "Ce n'est pas une chaise.",
+      "reponse": "Dat ass kee Stull.",
+      "distracteurs": [
+        "Dat ass keen Stull.",
+        "Dat ass keng Stull.",
+        "Dat ass net Stull."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2058,
+      "unite": 3,
+      "question": "Ce n'est pas un sac.",
+      "reponse": "Dat ass keng Mapp.",
+      "distracteurs": [
+        "Dat ass kee Mapp.",
+        "Dat ass keen Mapp.",
+        "Dat ass net Mapp."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2059,
+      "unite": 3,
+      "question": "Est-ce une lampe ?",
+      "reponse": "Ass dat eng Luucht?",
+      "distracteurs": [
+        "Ass dat en Luucht?",
+        "Ass dat e Luucht?",
+        "Wat ass eng Luucht?"
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2060,
+      "unite": 3,
+      "question": "Oui, c'est une lampe.",
+      "reponse": "Jo, dat ass eng Luucht.",
+      "distracteurs": [
+        "Nee, dat ass eng Luucht.",
+        "Jo, dat ass keng Luucht.",
+        "Jo, dat ass e Luucht."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2061,
+      "unite": 3,
+      "plus": true,
+      "question": "Ce n'est pas une maison.",
+      "reponse": "Dat ass keen Haus.",
+      "distracteurs": [
+        "Dat ass kee Haus.",
+        "Dat ass keng Haus.",
+        "Dat ass net Haus."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2062,
+      "unite": 3,
+      "plus": true,
+      "question": "Ce n'est pas un avion.",
+      "reponse": "Dat ass kee Fliger.",
+      "distracteurs": [
+        "Dat ass keen Fliger.",
+        "Dat ass keng Fliger.",
+        "Dat ass net Fliger."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2063,
+      "unite": 3,
+      "plus": true,
+      "question": "Ce n'est pas une souris.",
+      "reponse": "Dat ass keng Maus.",
+      "distracteurs": [
+        "Dat ass kee Maus.",
+        "Dat ass keen Maus.",
+        "Dat ass net Maus."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2064,
+      "unite": 3,
+      "plus": true,
+      "question": "Ce n'est pas un éléphant.",
+      "reponse": "Dat ass keen Elefant.",
+      "distracteurs": [
+        "Dat ass kee Elefant.",
+        "Dat ass keng Elefant.",
+        "Dat ass net Elefant."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
     }
   ],
   "trous": [
     {
-      "id": 1001,
+      "id": 2001,
       "unite": 1,
-      "fr": "C'est un bus.",
-      "avant": "Dat ass",
+      "fr": "C'est une chaise.",
+      "avant": "Wat ass dat? – Dat ass",
       "trou": "e",
-      "apres": "Bus.",
+      "apres": "Stull.",
       "choix": [
         "e",
         "en",
         "eng"
       ],
-      "note": "Männlech devant consonne → e",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Masculin devant S → e Stull",
+      "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
     },
     {
-      "id": 1002,
-      "unite": 1,
-      "fr": "C'est une table.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Dësch.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "Männlech devant D → en",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
-    },
-    {
-      "id": 1003,
+      "id": 2002,
       "unite": 1,
       "fr": "C'est un ordinateur.",
       "avant": "Dat ass",
       "trou": "e",
       "apres": "Computer.",
       "choix": [
-        "eng",
-        "en",
-        "e"
-      ],
-      "note": "Männlech devant consonne → e",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
-    },
-    {
-      "id": 1004,
-      "unite": 1,
-      "fr": "C'est un train.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Zuch.",
-      "choix": [
         "e",
-        "eng",
-        "en"
+        "en",
+        "eng"
       ],
-      "note": "Männlech devant Z → en",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b> Zuch."
+      "note": "Masculin devant C → e Computer",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1005,
+      "id": 2003,
       "unite": 1,
       "fr": "C'est un stylo.",
       "avant": "Dat ass",
@@ -712,59 +1616,29 @@
         "en",
         "eng"
       ],
-      "note": "Stëft = Männlech → e Stëft",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "Masculin devant S → e Stëft",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1006,
+      "id": 2004,
       "unite": 1,
-      "fr": "C'est un smartphone.",
+      "fr": "C'est un livre.",
       "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Handy.",
+      "trou": "e",
+      "apres": "Buch.",
       "choix": [
         "e",
         "en",
         "eng"
       ],
-      "note": "Handy = Männlech devant H → en Handy",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Handy."
+      "note": "Neutre devant B → e Buch",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
-      "id": 1007,
+      "id": 2005,
       "unite": 1,
-      "fr": "C'est une voiture.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Auto.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "Auto commence par une voyelle → en",
-      "attention": "Auto commence par une voyelle → <b>en</b> Auto."
-    },
-    {
-      "id": 1008,
-      "unite": 1,
-      "fr": "Oui, c'est un téléphone.",
-      "avant": "Jo, dat ass",
-      "trou": "en",
-      "apres": "Telefon.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "Männlech devant T → en",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
-    },
-    {
-      "id": 1009,
-      "unite": 2,
       "fr": "C'est une porte.",
-      "avant": "Jo, dat ass",
+      "avant": "Dat ass",
       "trou": "eng",
       "apres": "Dier.",
       "choix": [
@@ -772,12 +1646,394 @@
         "en",
         "eng"
       ],
-      "note": "Weiblech → eng",
+      "note": "Féminin → eng Dier",
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1010,
-      "unite": 2,
+      "id": 2006,
+      "unite": 1,
+      "fr": "C'est une fenêtre.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Fënster.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Fënster",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "C'est une lampe.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Luucht.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Luucht",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "C'est un sac.",
+      "avant": "Wat ass dat? – Dat ass",
+      "trou": "eng",
+      "apres": "Mapp.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Mapp",
+      "attention": "Mapp est <b>féminin</b> (≠ un sac) → <b>eng</b> Mapp."
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un bus.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Bus.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant B → e Bus",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un avion.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Fliger.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant F → e Fliger",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un réveil.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Wecker.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant W → e Wecker",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un tampon.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Stempel.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant S → e Stempel",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un classeur.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Classeur.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant C → e Classeur",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "fr": "Ce sont des lunettes.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Brëll.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant B → e Brëll",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un vélo.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Vëlo.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant V → e Vëlo",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2016,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un fil.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Fuedem.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant F → e Fuedem",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un escargot.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Schleek.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant S → e Schleek",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2018,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un gratte-ciel.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Wollekekrazer.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Masculin devant W → e Wollekekrazer",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un verre.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Glas.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant G → e Glas",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2020,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un lit.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Bett.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant B → e Bett",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2021,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un tableau (peinture).",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Bild.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant B → e Bild",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2022,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une feuille.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Blat.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant B → e Blat",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2023,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un immeuble.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Gebai.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant G → e Gebai",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2024,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un petit livre.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Bichelchen.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant B → e Bichelchen",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2025,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une étagère.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Regal.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant R → e Regal",
+      "attention": "Regal est <b>neutre</b> (≠ une étagère) → <b>e</b> Regal."
+    },
+    {
+      "id": 2026,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un coussin.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Këssen.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Neutre devant K → e Këssen",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2027,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une montre.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Auer.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Auer",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2028,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un tableau (école).",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Tafel.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Tafel",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2029,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une tasse.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Taass.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Taass",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2030,
+      "unite": 1,
+      "plus": true,
       "fr": "C'est une bouteille.",
       "avant": "Dat ass",
       "trou": "eng",
@@ -787,57 +2043,45 @@
         "en",
         "eng"
       ],
-      "note": "Weiblech → eng",
+      "note": "Féminin → eng Fläsch",
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1011,
-      "unite": 2,
-      "fr": "C'est une montre.",
+      "id": 2031,
+      "unite": 1,
+      "plus": true,
+      "fr": "Ce sont des ciseaux.",
       "avant": "Dat ass",
       "trou": "eng",
-      "apres": "Auer.",
-      "choix": [
-        "e",
-        "eng",
-        "en"
-      ],
-      "note": "Weiblech → eng",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1012,
-      "unite": 2,
-      "fr": "C'est une plante.",
-      "avant": "Dat ass",
-      "trou": "eng",
-      "apres": "Planz.",
+      "apres": "Schéier.",
       "choix": [
         "e",
         "en",
         "eng"
       ],
-      "note": "Planz = Weiblech → eng Planz",
+      "note": "Féminin → eng Schéier",
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1013,
-      "unite": 2,
-      "fr": "C'est une boîte.",
+      "id": 2032,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une brique.",
       "avant": "Dat ass",
       "trou": "eng",
-      "apres": "Këscht.",
+      "apres": "Zill.",
       "choix": [
         "e",
         "en",
         "eng"
       ],
-      "note": "Këscht = Weiblech → eng Këscht",
+      "note": "Féminin → eng Zill",
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1014,
-      "unite": 2,
+      "id": 2033,
+      "unite": 1,
+      "plus": true,
       "fr": "C'est une souris.",
       "avant": "Dat ass",
       "trou": "eng",
@@ -847,26 +2091,107 @@
         "en",
         "eng"
       ],
-      "note": "Maus = Weiblech → eng Maus",
+      "note": "Féminin → eng Maus",
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1015,
-      "unite": 2,
-      "fr": "C'est une chaise.",
+      "id": 2034,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un CD.",
       "avant": "Dat ass",
-      "trou": "e",
-      "apres": "Stull.",
+      "trou": "eng",
+      "apres": "CD.",
       "choix": [
         "e",
         "en",
         "eng"
       ],
-      "note": "Rappel unité 1 : Stull = Männlech → e Stull",
-      "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
+      "note": "Féminin → eng CD",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1016,
+      "id": 2035,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un fauteuil.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Fotell.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Fotell",
+      "attention": "Fotell est <b>féminin</b> (≠ un fauteuil) → <b>eng</b> Fotell."
+    },
+    {
+      "id": 2036,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une plante.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Planz.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Planz",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2037,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une enveloppe.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Enveloppe.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Enveloppe",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2038,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une carte de crédit.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Kreditkaart.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Kreditkaart",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2039,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une boîte.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Këscht.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → eng Këscht",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2040,
       "unite": 2,
       "fr": "C'est un téléphone.",
       "avant": "Dat ass",
@@ -877,27 +2202,42 @@
         "en",
         "eng"
       ],
-      "note": "Rappel unité 1 : Männlech devant T → en",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
+      "note": "T fait partie de UNITEDZOHA → en Telefon",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
     },
     {
-      "id": 1017,
-      "unite": 3,
-      "fr": "C'est une feuille.",
+      "id": 2041,
+      "unite": 2,
+      "fr": "C'est une table.",
       "avant": "Dat ass",
-      "trou": "e",
-      "apres": "Blat.",
+      "trou": "en",
+      "apres": "Dësch.",
       "choix": [
-        "eng",
+        "e",
         "en",
-        "e"
+        "eng"
       ],
-      "note": "Sächlech devant consonne → e",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "note": "D fait partie de UNITEDZOHA → en Dësch",
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
     },
     {
-      "id": 1018,
-      "unite": 3,
+      "id": 2042,
+      "unite": 2,
+      "fr": "C'est un smartphone.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Handy.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "H fait partie de UNITEDZOHA → en Handy",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
       "fr": "C'est un cahier.",
       "avant": "Dat ass",
       "trou": "en",
@@ -907,14 +2247,169 @@
         "en",
         "eng"
       ],
-      "note": "Sächlech devant H → en",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Heft."
+      "note": "H fait partie de UNITEDZOHA → en Heft",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
     },
     {
-      "id": 1019,
+      "id": 2044,
+      "unite": 2,
+      "fr": "C'est une voiture.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Auto.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "A fait partie de UNITEDZOHA → en Auto",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2045,
+      "unite": 2,
+      "fr": "C'est une imprimante.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Drécker.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "D fait partie de UNITEDZOHA → en Drécker",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2046,
+      "unite": 2,
+      "fr": "C'est un ordinateur.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Computer.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "C ne fait pas partie de UNITEDZOHA → e Computer",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2047,
+      "unite": 2,
+      "fr": "C'est une porte.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Dier.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → toujours eng, même devant D",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2048,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un train.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Zuch.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Z fait partie de UNITEDZOHA → en Zuch",
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2049,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est une maison.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Haus.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "H fait partie de UNITEDZOHA → en Haus",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2050,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un éléphant.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Elefant.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "E fait partie de UNITEDZOHA → en Elefant",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2051,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est une enclume.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Amboss.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "A fait partie de UNITEDZOHA → en Amboss",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2052,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un seau.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Eemer.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "E fait partie de UNITEDZOHA → en Eemer",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2053,
+      "unite": 3,
+      "fr": "Ce n'est pas une chaise.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Stull.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "S : le n tombe → kee Stull",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2054,
       "unite": 3,
       "fr": "Ce n'est pas un livre.",
-      "avant": "Dat ass",
+      "avant": "Nee, dat ass",
       "trou": "kee",
       "apres": "Buch.",
       "choix": [
@@ -922,58 +2417,13 @@
         "keen",
         "keng"
       ],
-      "note": "Négation Sächlech → kee",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "note": "B : le n tombe → kee Buch",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
     },
     {
-      "id": 1020,
+      "id": 2055,
       "unite": 3,
-      "fr": "Ce n'est pas une maison.",
-      "avant": "Dat ass",
-      "trou": "keen",
-      "apres": "Haus.",
-      "choix": [
-        "kee",
-        "keen",
-        "keng"
-      ],
-      "note": "Négation Sächlech devant H → keen (UNITEDZOHA)",
-      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
-    },
-    {
-      "id": 1021,
-      "unite": 3,
-      "fr": "Ce n'est pas un avion.",
-      "avant": "Dat ass",
-      "trou": "kee",
-      "apres": "Fliger.",
-      "choix": [
-        "kee",
-        "keen",
-        "keng"
-      ],
-      "note": "Négation Männlech → kee",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
-    },
-    {
-      "id": 1022,
-      "unite": 3,
-      "fr": "Ce n'est pas un téléphone.",
-      "avant": "Dat ass",
-      "trou": "keen",
-      "apres": "Telefon.",
-      "choix": [
-        "kee",
-        "keen",
-        "keng"
-      ],
-      "note": "Négation Männlech devant consonne → keen",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
-    },
-    {
-      "id": 1023,
-      "unite": 3,
-      "fr": "Non, ce n'est pas une porte.",
+      "fr": "Ce n'est pas une porte.",
       "avant": "Nee, dat ass",
       "trou": "keng",
       "apres": "Dier.",
@@ -982,165 +2432,633 @@
         "keen",
         "keng"
       ],
-      "note": "Négation Weiblech → keng",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "note": "Féminin → keng Dier",
+      "attention": "Féminin → <b>keng</b>."
     },
     {
-      "id": 1024,
+      "id": 2056,
+      "unite": 3,
+      "fr": "Ce n'est pas une fenêtre.",
+      "avant": "Nee, dat ass",
+      "trou": "keng",
+      "apres": "Fënster.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "Féminin → keng Fënster",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2057,
       "unite": 3,
       "fr": "Ce n'est pas une lampe.",
-      "avant": "Dat ass",
+      "avant": "Nee, dat ass",
       "trou": "keng",
       "apres": "Luucht.",
       "choix": [
-        "keng",
         "kee",
-        "keen"
+        "keen",
+        "keng"
       ],
-      "note": "Négation Weiblech → keng",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "note": "Féminin → keng Luucht",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2058,
+      "unite": 3,
+      "fr": "Ce n'est pas un téléphone.",
+      "avant": "Nee, dat ass",
+      "trou": "keen",
+      "apres": "Telefon.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "T garde le n → keen Telefon",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2059,
+      "unite": 3,
+      "fr": "Ce n'est pas une table.",
+      "avant": "Nee, dat ass",
+      "trou": "keen",
+      "apres": "Dësch.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "D garde le n → keen Dësch",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2060,
+      "unite": 3,
+      "fr": "Ce n'est pas un smartphone.",
+      "avant": "Nee, dat ass",
+      "trou": "keen",
+      "apres": "Handy.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "H garde le n → keen Handy",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2061,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un avion.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Fliger.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "F : le n tombe → kee Fliger",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2062,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce ne sont pas des lunettes.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Brëll.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "B : le n tombe → kee Brëll",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2063,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un fil.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Fuedem.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "F : le n tombe → kee Fuedem",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2064,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un escargot.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Schleek.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "S : le n tombe → kee Schleek",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2065,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un gratte-ciel.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Wollekekrazer.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "W : le n tombe → kee Wollekekrazer",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2066,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un immeuble.",
+      "avant": "Nee, dat ass",
+      "trou": "kee",
+      "apres": "Gebai.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "G : le n tombe → kee Gebai",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2067,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une souris.",
+      "avant": "Nee, dat ass",
+      "trou": "keng",
+      "apres": "Maus.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "Féminin → keng Maus",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2068,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un fauteuil.",
+      "avant": "Nee, dat ass",
+      "trou": "keng",
+      "apres": "Fotell.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "Féminin → keng Fotell",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2069,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une plante.",
+      "avant": "Nee, dat ass",
+      "trou": "keng",
+      "apres": "Planz.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "Féminin → keng Planz",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2070,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une boîte.",
+      "avant": "Nee, dat ass",
+      "trou": "keng",
+      "apres": "Këscht.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "Féminin → keng Këscht",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2071,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une maison.",
+      "avant": "Nee, dat ass",
+      "trou": "keen",
+      "apres": "Haus.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "H garde le n → keen Haus",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2072,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un éléphant.",
+      "avant": "Nee, dat ass",
+      "trou": "keen",
+      "apres": "Elefant.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "E garde le n → keen Elefant",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2073,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une enclume.",
+      "avant": "Nee, dat ass",
+      "trou": "keen",
+      "apres": "Amboss.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "A garde le n → keen Amboss",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2074,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un seau.",
+      "avant": "Nee, dat ass",
+      "trou": "keen",
+      "apres": "Eemer.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng"
+      ],
+      "note": "E garde le n → keen Eemer",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
     }
   ],
   "ecriture": [
     {
-      "id": 1001,
+      "id": 2001,
       "unite": 1,
-      "fr": "C'est un bus.",
-      "lu": "Dat ass e Bus.",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "fr": "Qu'est-ce que c'est ?",
+      "lu": "Wat ass dat?",
+      "attention": "<b>Wat ass dat?</b> = Qu'est-ce que c'est ?"
     },
     {
-      "id": 1002,
+      "id": 2002,
       "unite": 1,
-      "fr": "C'est une table.",
-      "lu": "Dat ass en Dësch.",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
-    },
-    {
-      "id": 1003,
-      "unite": 1,
-      "fr": "C'est un ordinateur.",
-      "lu": "Dat ass e Computer.",
-      "attention": "Consonne hors UNITEDZOHA → <b>e</b>, sans -n."
-    },
-    {
-      "id": 1004,
-      "unite": 1,
-      "fr": "C'est un smartphone.",
-      "lu": "Dat ass en Handy.",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Handy."
-    },
-    {
-      "id": 1005,
-      "unite": 1,
-      "fr": "Est-ce une voiture ?",
-      "lu": "Ass dat en Auto?",
-      "attention": "Auto commence par une voyelle → <b>en</b> Auto."
-    },
-    {
-      "id": 1006,
-      "unite": 1,
-      "fr": "Oui, c'est un train.",
-      "lu": "Jo, dat ass en Zuch.",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b> Zuch."
-    },
-    {
-      "id": 1007,
-      "unite": 2,
-      "fr": "C'est une porte.",
-      "lu": "Dat ass eng Dier.",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1008,
-      "unite": 2,
-      "fr": "C'est une bouteille.",
-      "lu": "Dat ass eng Fläsch.",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1009,
-      "unite": 2,
-      "fr": "Est-ce une lampe ?",
-      "lu": "Ass dat eng Luucht?",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1010,
-      "unite": 2,
-      "fr": "Oui, c'est une montre.",
-      "lu": "Jo, dat ass eng Auer.",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
-    },
-    {
-      "id": 1011,
-      "unite": 2,
-      "fr": "C'est un sac.",
-      "lu": "Dat ass eng Mapp.",
-      "attention": "Mapp est <b>féminin</b> (≠ un sac) → <b>eng</b> Mapp."
-    },
-    {
-      "id": 1012,
-      "unite": 2,
       "fr": "C'est une chaise.",
       "lu": "Dat ass e Stull.",
       "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
     },
     {
-      "id": 1013,
-      "unite": 3,
-      "fr": "C'est un livre.",
-      "lu": "Dat ass e Buch.",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "id": 2003,
+      "unite": 1,
+      "fr": "C'est une porte.",
+      "lu": "Dat ass eng Dier.",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 1014,
-      "unite": 3,
+      "id": 2004,
+      "unite": 1,
+      "fr": "C'est un ordinateur.",
+      "lu": "Dat ass e Computer.",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "C'est un sac.",
+      "lu": "Dat ass eng Mapp.",
+      "attention": "Mapp est <b>féminin</b> (≠ un sac) → <b>eng</b> Mapp."
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "C'est un livre.",
+      "lu": "Dat ass e Buch.",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "C'est une lampe.",
+      "lu": "Dat ass eng Luucht.",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un réveil.",
+      "lu": "Dat ass e Wecker.",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un vélo.",
+      "lu": "Dat ass e Vëlo.",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un verre.",
+      "lu": "Dat ass e Glas.",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un tableau (peinture).",
+      "lu": "Dat ass e Bild.",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une montre.",
+      "lu": "Dat ass eng Auer.",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une bouteille.",
+      "lu": "Dat ass eng Fläsch.",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est un fauteuil.",
+      "lu": "Dat ass eng Fotell.",
+      "attention": "Fotell est <b>féminin</b> (≠ un fauteuil) → <b>eng</b> Fotell."
+    },
+    {
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
+      "fr": "C'est une plante.",
+      "lu": "Dat ass eng Planz.",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "C'est un téléphone.",
+      "lu": "Dat ass en Telefon.",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "C'est une table.",
+      "lu": "Dat ass en Dësch.",
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "C'est un smartphone.",
+      "lu": "Dat ass en Handy.",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "fr": "C'est un cahier.",
+      "lu": "Dat ass en Heft.",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2020,
+      "unite": 2,
+      "fr": "C'est une voiture.",
+      "lu": "Dat ass en Auto.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2021,
+      "unite": 2,
+      "fr": "C'est une imprimante.",
+      "lu": "Dat ass en Drécker.",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2022,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un train.",
+      "lu": "Dat ass en Zuch.",
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2023,
+      "unite": 2,
+      "plus": true,
       "fr": "C'est une maison.",
       "lu": "Dat ass en Haus.",
       "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
     },
     {
-      "id": 1015,
-      "unite": 3,
-      "fr": "Est-ce un cahier ?",
-      "lu": "Ass dat en Heft?",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b> Heft."
+      "id": 2024,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un éléphant.",
+      "lu": "Dat ass en Elefant.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
     },
     {
-      "id": 1016,
-      "unite": 3,
-      "fr": "Oui, c'est un lit.",
-      "lu": "Jo, dat ass e Bett.",
-      "attention": "Neutre comme le masculin : consonne hors UNITEDZOHA → <b>e</b>, sans -n."
+      "id": 2025,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est une enclume.",
+      "lu": "Dat ass en Amboss.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
     },
     {
-      "id": 1017,
+      "id": 2026,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un seau.",
+      "lu": "Dat ass en Eemer.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "fr": "Est-ce un smartphone ?",
+      "lu": "Ass dat en Handy?",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "fr": "Non, ce n'est pas un smartphone.",
+      "lu": "Nee, dat ass keen Handy.",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "Oui, c'est une lampe.",
+      "lu": "Jo, dat ass eng Luucht.",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2030,
       "unite": 3,
       "fr": "Ce n'est pas un livre.",
       "lu": "Dat ass kee Buch.",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
     },
     {
-      "id": 1018,
+      "id": 2031,
       "unite": 3,
+      "fr": "Non, ce n'est pas une porte.",
+      "lu": "Nee, dat ass keng Dier.",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2032,
+      "unite": 3,
+      "fr": "Ce n'est pas un téléphone.",
+      "lu": "Dat ass keen Telefon.",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2033,
+      "unite": 3,
+      "fr": "Est-ce une chaise ?",
+      "lu": "Ass dat e Stull?",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
+    },
+    {
+      "id": 2034,
+      "unite": 3,
+      "plus": true,
       "fr": "Ce n'est pas une maison.",
       "lu": "Dat ass keen Haus.",
       "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
     },
     {
-      "id": 1019,
+      "id": 2035,
       "unite": 3,
-      "fr": "Non, ce n'est pas une porte.",
-      "lu": "Nee, dat ass keng Dier.",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "plus": true,
+      "fr": "Ce n'est pas un vélo.",
+      "lu": "Dat ass kee Vëlo.",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
     },
     {
-      "id": 1020,
+      "id": 2036,
       "unite": 3,
-      "fr": "Ce n'est pas un smartphone.",
-      "lu": "Dat ass keen Handy.",
-      "attention": "Négation : <b>kee</b>, <b>keen</b> devant une voyelle ou n, d, t, z, h, <b>keng</b> au féminin."
+      "plus": true,
+      "fr": "Ce n'est pas une plante.",
+      "lu": "Dat ass keng Planz.",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2037,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un éléphant.",
+      "lu": "Dat ass keen Elefant.",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2038,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un fil.",
+      "lu": "Dat ass kee Fuedem.",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2039,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une souris.",
+      "lu": "Dat ass keng Maus.",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2040,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une enclume.",
+      "lu": "Dat ass keen Amboss.",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h (comme en)."
+    },
+    {
+      "id": 2041,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas un escargot.",
+      "lu": "Dat ass kee Schleek.",
+      "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
+    },
+    {
+      "id": 2042,
+      "unite": 3,
+      "plus": true,
+      "fr": "Ce n'est pas une boîte.",
+      "lu": "Dat ass keng Këscht.",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 3,
+      "plus": true,
+      "fr": "Est-ce un réveil ?",
+      "lu": "Ass dat e Wecker?",
+      "attention": "Question : <b>Ass dat</b> … ? · Réponse : <b>Jo</b> / <b>Nee</b>, dat ass …"
     }
   ],
   "cours": [
@@ -1149,12 +3067,12 @@
       "titre": "Article et négation selon le genre",
       "entetes": [
         "Genre",
-        "Affirmation",
-        "Négation"
+        "Article",
+        "Non"
       ],
       "lignes": [
         [
-          "Masculin / Neutre",
+          "Masculin / neutre",
           "e",
           "kee"
         ],
@@ -1172,22 +3090,123 @@
     },
     {
       "type": "callout",
-      "variant": "astuce",
-      "titre": "UNITEDZOHA : la règle du -n",
+      "variant": "retenir",
+      "titre": "Dat ass e … / eng …",
       "lignes": [
-        "On garde le <b>-n</b> (<b>en</b> / <b>keen</b>) seulement devant une <b>voyelle</b> ou <b>n, d, t, z, h</b>.",
-        "Avec -n : <b>en</b> Auto, <b>en</b> Dësch, <b>en</b> Telefon, <b>en</b> Handy.",
-        "Sans -n : <b>e</b> Bus, <b>e</b> Computer, <b>e</b> Stull."
+        "<b>Wat ass dat?</b> = Qu'est-ce que c'est ?",
+        "Masculin et neutre → <b>e</b> : Dat ass <b>e</b> Stull. · Féminin → <b>eng</b> : Dat ass <b>eng</b> Dier."
       ],
       "unite": 1
     },
     {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Le genre ne se devine pas",
+      "lignes": [
+        "Le genre est souvent <b>différent du français</b> : « une chaise » = <b>e Stull</b> · « un sac » = <b>eng Mapp</b>.",
+        "Apprends toujours le mot <b>avec son article</b>."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "vocab",
+      "titre": "Les objets du bureau",
+      "items": [
+        [
+          "e Stull",
+          "une chaise"
+        ],
+        [
+          "e Computer",
+          "un ordinateur"
+        ],
+        [
+          "e Stëft",
+          "un stylo"
+        ],
+        [
+          "e Buch",
+          "un livre"
+        ],
+        [
+          "eng Dier",
+          "une porte"
+        ],
+        [
+          "eng Fënster",
+          "une fenêtre"
+        ],
+        [
+          "eng Luucht",
+          "une lampe"
+        ],
+        [
+          "eng Mapp",
+          "un sac / cartable"
+        ]
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "UNITEDZOHA : la règle du -n",
+      "lignes": [
+        "On garde le <b>-n</b> (<b>en</b>) devant une <b>voyelle</b> ou <b>n, d, t, z, h</b> : moyen mnémotechnique <b>U·N·I·T·E·D·Z·O·H·A</b>.",
+        "Avec -n : <b>en</b> Telefon, <b>en</b> Dësch, <b>en</b> Handy, <b>en</b> Auto. · Sans -n : <b>e</b> Stull, <b>e</b> Computer.",
+        "Au féminin, jamais en : toujours <b>eng</b>."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "vocab",
+      "titre": "Avec en",
+      "items": [
+        [
+          "en Telefon",
+          "un téléphone"
+        ],
+        [
+          "en Dësch",
+          "une table"
+        ],
+        [
+          "en Handy",
+          "un smartphone"
+        ],
+        [
+          "en Heft",
+          "un cahier"
+        ],
+        [
+          "en Auto",
+          "une voiture"
+        ],
+        [
+          "en Drécker",
+          "une imprimante"
+        ]
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Demander et répondre",
+      "lignes": [
+        "<b>Ass dat</b> en Handy? = Est-ce un smartphone ?",
+        "Oui : <b>Jo, dat ass</b> en Handy. · Non : <b>Nee, dat ass keen</b> Handy.",
+        "e → <b>kee</b> · en → <b>keen</b> · eng → <b>keng</b>."
+      ],
+      "unite": 3
+    },
+    {
       "type": "tableau",
-      "titre": "Masculin — e / en",
+      "titre": "Plus d'objets avec e (masculin, neutre)",
       "entetes": [
         "Luxembourgeois",
         "Français",
-        "Négation"
+        "Non"
       ],
       "lignes": [
         [
@@ -1196,221 +3215,10 @@
           "kee Bus"
         ],
         [
-          "en Dësch",
-          "une table",
-          "keen Dësch"
-        ],
-        [
-          "en Telefon",
-          "un téléphone",
-          "keen Telefon"
-        ],
-        [
-          "e Computer",
-          "un ordinateur",
-          "kee Computer"
-        ],
-        [
-          "en Auto",
-          "une voiture",
-          "keen Auto"
-        ],
-        [
-          "e Stull",
-          "une chaise",
-          "kee Stull"
-        ],
-        [
           "e Fliger",
           "un avion",
           "kee Fliger"
         ],
-        [
-          "en Zuch",
-          "un train",
-          "keen Zuch"
-        ],
-        [
-          "e Stëft",
-          "un stylo",
-          "kee Stëft"
-        ],
-        [
-          "en Handy",
-          "un smartphone",
-          "keen Handy"
-        ]
-      ],
-      "unite": 1
-    },
-    {
-      "type": "callout",
-      "variant": "info",
-      "titre": "Le genre ne se devine pas",
-      "lignes": [
-        "Le genre luxembourgeois est souvent <b>différent du français</b>.",
-        "« une table » = <b>en Dësch</b> · « un sac » = <b>eng Mapp</b>.",
-        "Apprends toujours le mot <b>avec son article</b>."
-      ],
-      "unite": 2
-    },
-    {
-      "type": "tableau",
-      "titre": "Féminin — eng",
-      "entetes": [
-        "Luxembourgeois",
-        "Français",
-        "Négation"
-      ],
-      "lignes": [
-        [
-          "eng Dier",
-          "une porte",
-          "keng Dier"
-        ],
-        [
-          "eng Auer",
-          "une montre",
-          "keng Auer"
-        ],
-        [
-          "eng Fënster",
-          "une fenêtre",
-          "keng Fënster"
-        ],
-        [
-          "eng Fläsch",
-          "une bouteille",
-          "keng Fläsch"
-        ],
-        [
-          "eng Luucht",
-          "une lampe",
-          "keng Luucht"
-        ],
-        [
-          "eng Taass",
-          "une tasse",
-          "keng Taass"
-        ],
-        [
-          "eng Planz",
-          "une plante",
-          "keng Planz"
-        ],
-        [
-          "eng Mapp",
-          "un sac / cartable",
-          "keng Mapp"
-        ],
-        [
-          "eng Këscht",
-          "une boîte",
-          "keng Këscht"
-        ],
-        [
-          "eng Maus",
-          "une souris",
-          "keng Maus"
-        ]
-      ],
-      "unite": 2
-    },
-    {
-      "type": "tableau",
-      "titre": "Neutre — e / en",
-      "entetes": [
-        "Luxembourgeois",
-        "Français",
-        "Négation"
-      ],
-      "lignes": [
-        [
-          "e Buch",
-          "un livre",
-          "kee Buch"
-        ],
-        [
-          "en Haus",
-          "une maison",
-          "keen Haus"
-        ],
-        [
-          "e Glas",
-          "un verre",
-          "kee Glas"
-        ],
-        [
-          "e Bett",
-          "un lit",
-          "kee Bett"
-        ],
-        [
-          "e Bild",
-          "un tableau (peinture)",
-          "kee Bild"
-        ],
-        [
-          "en Heft",
-          "un cahier",
-          "keen Heft"
-        ],
-        [
-          "e Blat",
-          "une feuille",
-          "kee Blat"
-        ],
-        [
-          "e Gebai",
-          "un immeuble",
-          "kee Gebai"
-        ]
-      ],
-      "unite": 3
-    },
-    {
-      "type": "callout",
-      "variant": "astuce",
-      "titre": "Poser la question",
-      "lignes": [
-        "<b>Ass dat e/eng … ?</b> = Est-ce que c'est un/une … ?",
-        "Oui : <b>Jo, dat ass …</b>",
-        "Non : <b>Nee, dat ass kee / keen / keng …</b>"
-      ],
-      "unite": 3
-    },
-    {
-      "type": "dialogue",
-      "titre": "Poser la question et répondre",
-      "echanges": [
-        [
-          "Ass dat eng Dier?",
-          "Est-ce que c'est une porte ?"
-        ],
-        [
-          "Nee, dat ass keng Dier.",
-          "Non, ce n'est pas une porte."
-        ],
-        [
-          "Ass dat en Handy?",
-          "Est-ce que c'est un smartphone ?"
-        ],
-        [
-          "Jo, dat ass en Handy.",
-          "Oui, c'est un smartphone."
-        ]
-      ],
-      "unite": 3
-    },
-    {
-      "type": "tableau",
-      "titre": "Pour aller plus loin",
-      "entetes": [
-        "Luxembourgeois",
-        "Français",
-        "Négation"
-      ],
-      "lignes": [
         [
           "e Wecker",
           "un réveil",
@@ -1428,7 +3236,7 @@
         ],
         [
           "e Brëll",
-          "une paire de lunettes",
+          "des lunettes",
           "kee Brëll"
         ],
         [
@@ -1437,24 +3245,9 @@
           "kee Vëlo"
         ],
         [
-          "en Drécker",
-          "une imprimante",
-          "keen Drécker"
-        ],
-        [
-          "en Elefant",
-          "un éléphant",
-          "keen Elefant"
-        ],
-        [
           "e Fuedem",
           "un fil",
           "kee Fuedem"
-        ],
-        [
-          "en Amboss",
-          "une enclume",
-          "keen Amboss"
         ],
         [
           "e Schleek",
@@ -1467,44 +3260,29 @@
           "kee Wollekekrazer"
         ],
         [
-          "en Eemer",
-          "un seau",
-          "keen Eemer"
+          "e Glas",
+          "un verre",
+          "kee Glas"
         ],
         [
-          "eng Tafel",
-          "un tableau",
-          "keng Tafel"
+          "e Bett",
+          "un lit",
+          "kee Bett"
         ],
         [
-          "eng Schéier",
-          "une paire de ciseaux",
-          "keng Schéier"
+          "e Bild",
+          "un tableau (peinture)",
+          "kee Bild"
         ],
         [
-          "eng Zill",
-          "une brique",
-          "keng Zill"
+          "e Blat",
+          "une feuille",
+          "kee Blat"
         ],
         [
-          "eng CD",
-          "un CD",
-          "keng CD"
-        ],
-        [
-          "eng Fotell",
-          "un fauteuil",
-          "keng Fotell"
-        ],
-        [
-          "eng Enveloppe",
-          "une enveloppe",
-          "keng Enveloppe"
-        ],
-        [
-          "eng Kreditkaart",
-          "une carte de crédit",
-          "keng Kreditkaart"
+          "e Gebai",
+          "un immeuble",
+          "kee Gebai"
         ],
         [
           "e Bichelchen",
@@ -1520,6 +3298,170 @@
           "e Këssen",
           "un coussin",
           "kee Këssen"
+        ]
+      ],
+      "unite": 1,
+      "plus": true
+    },
+    {
+      "type": "tableau",
+      "titre": "Plus d'objets avec eng (féminin)",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Non"
+      ],
+      "lignes": [
+        [
+          "eng Auer",
+          "une montre",
+          "keng Auer"
+        ],
+        [
+          "eng Tafel",
+          "un tableau (école)",
+          "keng Tafel"
+        ],
+        [
+          "eng Taass",
+          "une tasse",
+          "keng Taass"
+        ],
+        [
+          "eng Fläsch",
+          "une bouteille",
+          "keng Fläsch"
+        ],
+        [
+          "eng Schéier",
+          "des ciseaux",
+          "keng Schéier"
+        ],
+        [
+          "eng Zill",
+          "une brique",
+          "keng Zill"
+        ],
+        [
+          "eng Maus",
+          "une souris",
+          "keng Maus"
+        ],
+        [
+          "eng CD",
+          "un CD",
+          "keng CD"
+        ],
+        [
+          "eng Fotell",
+          "un fauteuil",
+          "keng Fotell"
+        ],
+        [
+          "eng Planz",
+          "une plante",
+          "keng Planz"
+        ],
+        [
+          "eng Enveloppe",
+          "une enveloppe",
+          "keng Enveloppe"
+        ],
+        [
+          "eng Kreditkaart",
+          "une carte de crédit",
+          "keng Kreditkaart"
+        ],
+        [
+          "eng Këscht",
+          "une boîte",
+          "keng Këscht"
+        ]
+      ],
+      "unite": 1,
+      "plus": true
+    },
+    {
+      "type": "tableau",
+      "titre": "Plus d'objets avec en",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Non"
+      ],
+      "lignes": [
+        [
+          "en Zuch",
+          "un train",
+          "keen Zuch"
+        ],
+        [
+          "en Haus",
+          "une maison",
+          "keen Haus"
+        ],
+        [
+          "en Elefant",
+          "un éléphant",
+          "keen Elefant"
+        ],
+        [
+          "en Amboss",
+          "une enclume",
+          "keen Amboss"
+        ],
+        [
+          "en Eemer",
+          "un seau",
+          "keen Eemer"
+        ]
+      ],
+      "unite": 2,
+      "plus": true
+    },
+    {
+      "type": "dialogue",
+      "titre": "Premier jour au bureau",
+      "echanges": [
+        [
+          "Moien! Wat ass dat?",
+          "Bonjour ! Qu'est-ce que c'est ? (elle montre une chaise)"
+        ],
+        [
+          "Dat ass e Stull.",
+          "C'est une chaise."
+        ],
+        [
+          "An dat?",
+          "Et ça ? (elle montre un sac)"
+        ],
+        [
+          "Dat ass eng Mapp.",
+          "C'est un sac."
+        ],
+        [
+          "An dat?",
+          "Et ça ? (elle montre un téléphone)"
+        ],
+        [
+          "Dat ass en Telefon.",
+          "C'est un téléphone."
+        ],
+        [
+          "Ass dat en Handy?",
+          "C'est un smartphone ?"
+        ],
+        [
+          "Nee, dat ass keen Handy.",
+          "Non, ce n'est pas un smartphone."
+        ],
+        [
+          "Ass dat eng Luucht?",
+          "Et ça, c'est une lampe ?"
+        ],
+        [
+          "Jo, dat ass eng Luucht.",
+          "Oui, c'est une lampe."
         ]
       ],
       "unite": 0

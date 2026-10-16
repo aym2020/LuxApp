@@ -585,7 +585,8 @@ function startConfiguredReview() {
 
 // Lance le moteur de session avec une liste de questions déjà prête.
 // options (facultatif) :
-//   actions  : boutons de l'écran de fin [{ label, fn, primary }]
+//   actions  : boutons de l'écran de fin [{ label, fn, primary }],
+//              ou une fonction qui renvoie cette liste à la fin
 //              (par défaut : un bouton « Accueil »)
 //   apresFin : fonction lancée quand la dernière question est passée
 function demarrerSession(mode, titre, questions, options) {
@@ -783,7 +784,9 @@ function showSessionResult() {
   if (opts.apresFin) opts.apresFin();
 
   // Boutons de fin : ceux donnés au lancement, sinon « Accueil ».
-  const actions = opts.actions && opts.actions.length ? opts.actions : [{ label: 'Accueil', fn: goDashboard, primary: true }];
+  // actions peut être une liste, ou une fonction qui la calcule à la fin.
+  let actions = typeof opts.actions === 'function' ? opts.actions() : opts.actions;
+  if (!actions || !actions.length) actions = [{ label: 'Accueil', fn: goDashboard, primary: true }];
   const box = document.getElementById('session-actions');
   box.innerHTML = '';
   actions.forEach(a => {

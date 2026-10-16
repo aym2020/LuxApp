@@ -101,24 +101,32 @@ Solution (déjà en place) :
   via `getUnitBest` / `saveUnitBest`. Rangé là exprès : la fusion cloud garde le **max**,
   et la v1 conserve la clé sans la lire.
 - Seuls « unité complète » et « leçon complète » mettent à jour les étoiles et le « Sans faute »
-  (pas « Refaire mes erreurs », ni une étape seule). Leçon complète = score et sans faute
-  calculés **par unité**.
+  (pas « Refaire mes erreurs », ni une étape seule, ni le « + »). Leçon complète = score et
+  sans faute calculés **par unité**, sur le cœur seulement (le « + » ne compte jamais).
+- **« + » fait** : `luxProgress[leconId].plus[uniteId] = 1` (`getPlusFait` / `savePlusFait`),
+  dès que le « + » de l'unité a été joué en entier (ou la leçon complète).
+- **Mission** : `luxProgress[leconId].mission.score` = meilleur score (0-100) de la scène finale
+  (`getMissionBest` / `saveMissionBest`). Toujours 3 niveaux (leçon → clé → valeur) pour que
+  la fusion cloud (max) marche.
+- **Complète** = fil terminé + tous les « + » + toutes les unités bonus (`leconComplete`).
 - Étoiles : 3 à partir de 90 %, 2 à partir de 70 %, 1 à partir de 50 %.
-  Étoiles d'une leçon = moyenne des meilleurs scores, affichées seulement quand toutes
-  les unités sont terminées.
+  Étoiles d'une leçon = moyenne des meilleurs scores des unités du **fil** (sans les bonus),
+  affichées seulement quand toutes ces unités sont terminées.
 - **Sans faute** : `luxProgress[leconId].sansfaute[uniteId] = 1` (`getSansFaute` / `saveSansFaute`).
   Tout juste du premier coup, sans indice ni « Voir la réponse ». Ne se perd jamais.
-  Leçon sans faute = toutes ses unités sans faute (`leconSansFaute`).
+  Leçon sans faute = toutes les unités du fil sans faute (`leconSansFaute`).
 - Partie en cours : `luxParcours:<profil>` dans localStorage, réécrit après chaque réponse.
   **Local seulement** (pas de cloud) : la reprise se fait sur le même appareil.
 
 ### Deux couches, jamais mélangées (règle de design)
 
-- **Acquis** = en or, ne baisse jamais : étoiles, Terminée, Sans faute, total de jours.
+- **Acquis** = en or, ne baisse jamais : étoiles, Terminée, Sans faute, Mission ✓, Complète,
+  total de jours.
 - **Vivant** = en turquoise (`--fresh`), bouge avec le temps : questions dues, fraîcheur,
   « À rafraîchir », série. On ne pâlit **jamais** une étoile ou un badge.
-- Rien n'est verrouillé : la séance du jour est une proposition, jamais une limite.
-  Aucune session n'est plafonnée (Réviser propose 10 / 20 / 50 / Tout).
+- Rien n'est verrouillé. La séance du jour fait **20 questions** (`TAILLE_SEANCE`), puis
+  « Encore 20 » / « Terminer » : on ne montre jamais une montagne, mais on peut tout enchaîner.
+  Réviser propose 10 / 20 / 50 / Tout.
 
 ### Révision espacée (aucune donnée en plus)
 
@@ -126,17 +134,26 @@ Solution (déjà en place) :
   `correctStreak` → 0 ou 1 : J+1 · 2 : J+3 · 3 : J+7 · 4 : J+14 · 5+ : J+30 (`INTERVALLES`).
   Une erreur remet `correctStreak` à 0 → la question revient le lendemain.
 - `itemsRevision(l)` : toutes les questions d'une leçon, mot caché compris (type `motcache`).
-- `resumeRevision(lecons)` : **une** lecture des stats → questions dues (les plus en retard
-  d'abord) + par leçon `{ vus, dus, dusParUnite }`. Fraîcheur = 1 − dus / vus.
-- Séance du jour (`lancerSeance`) : **toutes** les questions dues, puis la prochaine unité
-  ou « les plus fragiles » (`plusFragiles`, sans limite).
+- `resumeRevision(lecons)` : **une** lecture des stats → questions dues + par leçon
+  `{ vus, dus, dusParUnite }`. Fraîcheur = 1 − dus / vus.
+  Ordre des dues : 1. erreurs actives (`luxWrong` > 0) · 2. les plus en retard · 3. les plus fragiles.
+- **Étalement de l'historique v1** (`dateRevisionItem`) : une question vue avant `DEBUT_V2`
+  (2026-10-16) revient au plus tôt à DEBUT_V2 + 0 à 29 jours, jour calculé depuis son
+  identifiant (`numeroDeJour`, toujours le même, rien de stocké). Sinon, le jour de la v2,
+  des centaines de questions tombaient d'un coup. Les erreurs actives ne sont pas étalées.
+- Séance du jour (`lancerSeance`) : les 20 premières dues. Fin : « Encore 20 questions »
+  (recalculé à la fin), « Continuer : prochaine unité / mission », « Terminer ».
+  « Les plus fragiles » fonctionne aussi par paquets de 20.
+- `demarrerSession(…, { actions })` : `actions` peut être une liste ou une **fonction**
+  appelée à la fin (pour des boutons qui dépendent des réponses données).
 
 ### Jours, série, objectif du jour
 
 - `luxProgress.jours.actif["AAAA-MM-JJ"]` : 1 = pratiqué, 2 = objectif atteint
   (rangé dans la progression pour être synchronisé ; la fusion garde le max).
 - Pratiqué = au moins une réponse (`updateQuestionProgress` appelle `marquerJour(1)`).
-- Objectif atteint = séance du jour terminée, ou une unité / leçon complète finie (`marquerJour(2)`).
+- Objectif atteint = séance du jour terminée, une unité / un « + » / une leçon complète finie,
+  ou une mission jouée (`marquerJour(2)`).
 - Série = jours d'affilée avec l'objectif (celle d'hier compte tant qu'aujourd'hui n'est pas fini).
   Total de jours de pratique = ne baisse jamais. Semaine en cours : 7 cases sur l'accueil.
 - L'ancien `luxStreak` reste mis à jour pour la v1, mais la v2 ne l'affiche plus.
@@ -166,9 +183,9 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
   puis `lastSeenAt`.
 - Isolation localStorage par profil : `luxProgress:anonymous`, `luxProgress:user:<id>`.
 - **v1 et v2 partagent le même document cloud.** Règle : la v2 n'ajoute que de nouvelles clés,
-  sans changer la structure. Les exercices des leçons migrées ont des ids ≥ 1001, jamais
+  sans changer la structure. Les exercices des leçons migrées ont des ids ≥ 2001, jamais
   mélangés avec l'historique v1 (ids < 1000). Testé : une synchro faite par la v1 conserve
-  `unites`, `motcache` et leurs stats.
+  `unites`, `sansfaute`, `plus`, `mission`, `jours`, `motcache` et leurs stats.
 
 ---
 
@@ -288,7 +305,7 @@ eval(src);
 - Fix débordement tableau mobile : `table-layout:fixed` + conteneur scroll `.cours-table-wrap`.
 - **Pas d'emoji sur les boutons d'action.**
 
-### Parcours en unités (leçons v2) — `public/parcours.js`
+### Parcours en unités (leçons v2) — `public/parcours.js` et `public/mission.js`
 
 - Une leçon **avec** `unites` s'ouvre sur l'écran des unités (`view-plecon`).
   Une leçon **sans** `unites` garde l'ancien écran à onglets : rien ne casse pendant la migration.
@@ -305,27 +322,46 @@ eval(src);
   et le mot revient en fin d'étape. Score du mot = (lettres − indices) / lettres.
 - Fin de partie : score, étoiles, score par étape, moment « Première fois sans faute ! »,
   « À retravailler » (avec le point d'attention), « Refaire mes erreurs », « Unité suivante ».
-- Écran leçon, **rien n'est verrouillé** :
-  - carte « Toute la leçon » : leçon complète d'un coup (`uniteId = 'all'`, mode `lecon`),
-    une étape sur toute la leçon, « Tout revoir » (Réviser avec seulement cette leçon),
-    « Rafraîchir · n » (questions dues de la leçon) ;
-  - une carte par unité : état (Terminée / Sans faute / En cours), étoiles, « À rafraîchir · n »,
-    Commencer / Refaire, et les 4 étapes seules, même avant d'avoir fini l'unité ;
-  - le bilan (10 questions mélangées) est toujours ouvert.
-  Seule la prochaine unité à faire a le bouton jaune.
+- Écran leçon, de haut en bas, **rien n'est verrouillé** :
+  - **carte mission** (`missionHtml`, `mission.js`) : titre, contexte, « À la fin, tu sauras »,
+    la scène en bulles (une réplique est en clair quand son unité est terminée, sinon floutée
+    avec « Unité n »), « n / N répliques débloquées », bouton « Jouer la mission »
+    (jaune quand le fil est fini) ;
+  - une carte par unité : état, étoiles, **la phrase de l'unité**, aperçu des mots du cœur,
+    « À rafraîchir · n », Commencer / Refaire, les 4 étapes seules (sur le cœur) et le chip
+    **« + n mots »** (doré, coché quand il est fait). Unité bonus : bordure pointillée, « BONUS » ;
+  - carte « Toute la leçon » : **tout le contenu** d'un coup (cœur + « + » + bonus, mode `lecon`),
+    une étape sur toute la leçon, « Tout revoir », « Rafraîchir · n » ;
+  - le bilan (10 questions du fil, sans « + » ni bonus), toujours ouvert.
+  Seule la prochaine unité du fil à faire a le bouton jaune.
+- Modes de `startUnite(uniteId, mode)` : `unite` = cœur · `plus` = seulement le « + » ·
+  `lecon` = tout · `etape` / `erreurs` = filtre. `itemsUnite(l, type, unite, quoi)` avec
+  `quoi` = `coeur` / `plus` / `tout`.
+- « Avant de commencer » : la phrase de l'unité (en grand), la règle, les pièges, les mots du
+  cœur, puis **« + n autres mots · même phrase »** replié (`<details>`), les exemples.
+- Fin d'unité : « Ta mission avance » (les répliques débloquées), puis les boutons
+  Refaire mes erreurs · **Unité suivante** (ou **Jouer la mission** après la dernière) ·
+  **« Élargir : n mots de plus · x min »** · Retour. « Leçon complète ! » au moment où elle le devient.
+- **Mission** (`view-mission`) : les répliques des autres s'affichent seules ; pour chaque
+  réplique « toi », on écrit le luxembourgeois à partir du français (`normalize`, ponctuation
+  ignorée). Erreur → on réessaie, avec l'`aide` de la réplique ; « Voir la réponse » après
+  2 essais ratés. Score = répliques justes du premier coup. Pas de stats de révision.
 - **Points d'attention** : `unites[].pieges` (1 ou 2) sur l'écran « Avant de commencer »
   (encadré orange) ; `attention` d'un item affiché au moment de l'erreur (mot caché, quiz,
   trous, écriture, révision). Sans `attention`, un trou affiche sa `note`.
 - Liste des leçons : carte « Reprendre » en tête si une unité est en cours.
 - Panneau Cours : onglet « Unité n » (blocs de l'unité + blocs généraux) et « Toute la leçon ».
+  Les blocs `"plus": true` sont repliés en bas, sous « Voir + · les mots en plus ».
 - Les raccourcis clavier des cartes (espace, flèches) ne marchent que sur l'écran à onglets
   et jamais dans un champ de saisie (sinon la barre d'espace était bloquée).
 
 ### Accueil, lexique, mes pièges — `public/revision.js`
 
-- Accueil : bloc « Aujourd'hui » (série, semaine, questions dues + durée, prochaine étape,
-  objectif, bouton « Ma séance »), puis « Tout explorer » (Leçons, Réviser, Lexique,
-  Mes pièges, Examens, Erreurs fréquentes).
+- Accueil : bloc « Aujourd'hui » (série, semaine, « Ta séance : 20 questions · x min » +
+  « n autres en attente » en discret, prochaine étape, objectif, bouton « Ma séance »), puis
+  « Tout explorer » (Leçons, Réviser, Lexique, Mes pièges, Examens, Erreurs fréquentes).
+- Prochaine étape (`prochaineEtape`) : partie en cours, sinon première unité du fil jamais
+  faite, sinon la mission d'une leçon dont le fil est fini.
 - Liste des leçons : anneau de fraîcheur autour du numéro (toutes les leçons),
   pastilles d'acquis en or, « À rafraîchir · n » en turquoise.
 - Lexique : tous les mots (cartes) des leçons du niveau, recherche FR ou LU (`normalize`).
@@ -368,51 +404,66 @@ Règles à vérifier à chaque leçon :
 { "type": "dialogue", "titre": "...", "echanges": [["lu", "fr"]] }
 ```
 
-### Format v2 : leçon découpée en unités
+### Format v2 : une leçon avec un fil
 
 Migrées : leçons 2, 8, 21, 22. Les autres sont encore en v1 et restent valides.
+
+**Principe : chaque leçon mène à une conversation.** La mission est une scène de la vie
+réelle ; chaque unité apprend **une phrase** de cette scène ; la mission finale la rejoue.
+Tout le contenu testé reste dans la leçon : ce qui ne sert pas le fil va dans le « + »
+(même phrase, plus de mots), jamais une nouvelle règle.
 
 ```
 {
   "id", "titre", "titre_fr", "couleur",
   "instructions": {...},            // "flashcards" décrit le Mot caché
-  "unites": [
-    { "id": 1, "titre": "Masculin : e ou en",
-      "regle": "Masculin : <b>e</b>, ou <b>en</b> devant …",   // écran « Avant de commencer »
-      "exemple": "<b>e</b> Bus · <b>en</b> Dësch",
-      "phrases": [["Dat ass e Bus.", "C'est un bus."]],
-      "pieges": ["Le genre ne se devine pas : « une table » = <b>en Dësch</b>."] }
+  "mission": { "titre": "La fête des voisins",
+               "contexte": "Marie, ta voisine, vient se présenter. Tu joues Paul, français.",
+               "objectif": "dire ta nationalité, présenter quelqu'un, …" },
+  "scene": [                        // la conversation finale, dans l'ordre
+    { "qui": "Marie", "lu": "Moien! Ech sinn d'Marie.", "fr": "Bonjour ! …", "unite": 1 },
+    { "qui": "toi", "lu": "Ech si Fransous.", "fr": "Je suis français.", "unite": 1,
+      "aide": "Le n tombe devant F → <b>Ech si</b>." }      // affichée à l'erreur
   ],
-  "flashcards": [{ "id": 1001, "unite": 1, "fr": "une table", "lu": "Dësch",
-                   "article": "en", "indice": "masculin", "note": "…",
-                   "attention": "Dësch est <b>masculin</b> (≠ une table) …" }],   // facultatif
-  "quiz":     [{ "id": 1001, "unite": 1, ... }],   // mêmes champs qu'avant + "unite"
-  "trous":    [{ "id": 1001, "unite": 1, ... }],
-  "ecriture": [{ "id": 1001, "unite": 1, "fr": "…", "lu": "…" }],   // id obligatoire
-  "cours":    [{ ...bloc, "unite": 1 }]
+  "unites": [
+    { "id": 1, "titre": "Dire sa nationalité",
+      "phrase": ["Ech si Fransous.", "Je suis français."],   // LA phrase de l'unité
+      "regle": "…", "exemple": "…", "phrases": [["…", "…"]],  // exemples
+      "pieges": ["…", "…"] },
+    { "id": 4, "bonus": true, "titre": "Les pluriels", … }    // unité bonus (facultative)
+  ],
+  "flashcards": [{ "id": 2001, "unite": 1, "fr": "…", "lu": "…", "plus": true, … }],
+  "quiz":     [{ "id": 2001, "unite": 1, ... }],
+  "trous":    [{ "id": 2001, "unite": 1, ... }],
+  "ecriture": [{ "id": 2001, "unite": 1, "fr": "…", "lu": "…" }],
+  "cours":    [{ ...bloc, "unite": 1, "plus": true }]
 }
 ```
 
-Règles v2 :
-- **2 à 4 unités** par leçon, une petite notion par unité, ~6 min chacune.
-  Les unités suivantes peuvent réviser les précédentes (trous, écriture).
-- Tailles par unité : mot caché 6–12 · quiz 6–10 · trous 6–10 · écriture 5–8.
-- **Une carte = un mot** (jamais « e Portugis / eng Portugisin ») : `lu` = ce qu'on tape.
-  `article` (facultatif) est affiché à côté des cases ; `indice` (facultatif, ex. « féminin »)
-  sous le mot français.
-- Le mot caché porte le vocabulaire. **L'écriture = phrases et questions**, pas de mots isolés.
-- Ids de tous les exercices à partir de **1001** dans une leçon migrée.
-- Blocs de cours : `"unite": n` = affiché dans l'unité n ; sans `unite` = général (partout) ;
-  `"unite": 0` = seulement dans « Toute la leçon » (références longues, mots bonus).
+Règles du fil :
+- **Une unité = une phrase de la scène.** Les unités suivent l'ordre de la scène : les
+  répliques de l'unité 1 viennent en premier, etc. Chaque unité du fil a au moins une
+  réplique ; les répliques « toi » (3 à 5) sont ce que l'apprenant saura dire.
+- Une réplique n'utilise que ce que les unités ont appris (les répliques des autres peuvent
+  contenir un mot nouveau, puisque la traduction est affichée).
+- **Cœur** d'une unité : 5 à 10 mots, quiz 6–10, trous 6–10, écriture 5–8, tous au service
+  de la phrase. Le cœur d'une unité n'utilise **jamais** un mot du « + ».
+- **« + »** (`"plus": true`) : le reste du vocabulaire testé, **dans la même phrase**.
+  Pas de limite de taille. Jamais de nouvelle règle dans le « + ».
+- **Unité bonus** (`"bonus": true`) : une notion testée qui ne prolonge aucune phrase
+  (ex. les pluriels). Pas de réplique dans la scène, pas de « + ».
+- 2 à 4 unités par leçon (bonus compris).
+- **Une carte = un mot** : `lu` = ce qu'on tape. `article` affiché à côté des cases,
+  `indice` sous le mot français.
+- Ids de tous les exercices à partir de **2001** (1001+ = premier essai v2, < 1000 = v1).
+- Blocs de cours : `"unite": n` = unité n ; sans `unite` = général ; `"unite": 0` = seulement
+  « Toute la leçon » (la scène en dialogue). `"plus": true` = replié sous « Voir + ».
   3 lignes maximum par encadré.
-- Ne pas viser l'exhaustivité : les mots retirés des exercices vont dans un bloc
-  « Pour aller plus loin » (`"unite": 0`).
 - **Points d'attention** :
   - `unites[].pieges` : 1 ou 2 pièges par unité, courts, avec `<b>` sur le mot clé ;
-  - `attention` sur un item : le piège exact de cette question (« Haus commence par H → keen »).
-    Pour un trou, il porte sur le mot à trouver ; sinon la `note` du trou sert ;
-  - les encadrés « attention » du cours restent **dans l'unité** concernée, jamais seulement
-    dans « Toute la leçon ».
+  - `attention` sur un item : le piège exact de cette question. Pour un trou, il porte sur le
+    mot à trouver ; sinon la `note` du trou sert ;
+  - `scene[].aide` : le piège de la réplique, affiché à l'erreur dans la mission.
 
 ### Vérifier avant chaque livraison
 
@@ -420,8 +471,9 @@ Règles v2 :
 node tools/valider-lecons.js
 ```
 
-Contrôle toutes les leçons (JSON, ids, unités, réponse présente dans les choix, tailles,
-mots cachés présents dans le cours…). ERREUR = bloquant, ATTENTION = à regarder.
+Contrôle toutes les leçons (JSON, ids, unités, réponse présente dans les choix, tailles du
+cœur, mots cachés présents dans le cours, mission et scène, phrase de chaque unité…).
+ERREUR = bloquant, ATTENTION = à regarder.
 
 ---
 

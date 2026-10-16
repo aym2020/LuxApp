@@ -369,6 +369,42 @@ function saveSansFaute(leconId, uniteId) {
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
+// ─── « + » ET MISSION (leçons en unités) ────────────────────────────────────
+// Rangés comme les meilleurs scores, sur 3 niveaux (leçon -> clé -> valeur),
+// pour que la fusion cloud (max) les garde et que la v1 les ignore :
+//   progress["8"].plus    = { "1": 1 }     -> le « + » de l'unité 1 est fait
+//   progress["8"].mission = { "score": 80 } -> meilleur score de la scène finale
+function getPlusFait(leconId, uniteId) {
+  const byLecon = getProgress()[leconId];
+  return !!(byLecon && byLecon.plus && byLecon.plus[uniteId]);
+}
+
+function savePlusFait(leconId, uniteId) {
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  if (!progress[leconId].plus) progress[leconId].plus = {};
+  progress[leconId].plus[uniteId] = 1;
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// Meilleur score de la mission (0-100), ou null si jamais jouée.
+function getMissionBest(leconId) {
+  const byLecon = getProgress()[leconId];
+  if (byLecon && byLecon.mission && byLecon.mission.score != null) return byLecon.mission.score;
+  return null;
+}
+
+function saveMissionBest(leconId, percent) {
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  if (!progress[leconId].mission) progress[leconId].mission = {};
+  const old = progress[leconId].mission.score;
+  progress[leconId].mission.score = old == null ? percent : Math.max(old, percent);
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
 // ─── JOURNAL DES JOURS (série, total, semaine) ──────────────────────────────
 // progress.jours.actif = { "2026-10-16": 2, ... }
 //   1 = l'utilisateur a pratiqué ce jour-là
@@ -428,14 +464,43 @@ function semaineEnCours() {
 // Une erreur remet la série à 0 : la question revient le lendemain.
 const INTERVALLES = [1, 1, 3, 7, 14, 30];
 
-// Date (AAAA-MM-JJ) à laquelle une question revient.
-function dateRevision(stats) {
-  const jours = INTERVALLES[Math.min(stats.correctStreak || 0, INTERVALLES.length - 1)];
-  const d = new Date(stats.lastSeenAt);
-  d.setDate(d.getDate() + jours);
+// Date (AAAA-MM-JJ) d'une date ISO décalée de n jours.
+function ajouterJours(dateIso, n) {
+  const d = new Date(dateIso);
+  d.setDate(d.getDate() + n);
   const m = String(d.getMonth() + 1).padStart(2, '0');
   const j = String(d.getDate()).padStart(2, '0');
   return d.getFullYear() + '-' + m + '-' + j;
+}
+
+// Date (AAAA-MM-JJ) à laquelle une question revient.
+function dateRevision(stats) {
+  const jours = INTERVALLES[Math.min(stats.correctStreak || 0, INTERVALLES.length - 1)];
+  return ajouterJours(stats.lastSeenAt, jours);
+}
+
+// ─── ÉTALEMENT DE L'HISTORIQUE V1 ───────────────────────────────────────────
+// Le jour où la v2 arrive, tout l'historique de la v1 serait « à réviser » d'un
+// coup (des centaines de questions). On étale ces anciennes questions sur les
+// 30 jours qui suivent DEBUT_V2. Le jour choisi pour une question est toujours
+// le même (calculé à partir de son identifiant) : rien à stocker.
+// Les questions avec une erreur active ne sont pas étalées : elles restent dues.
+const DEBUT_V2 = '2026-10-16';
+
+// Petit nombre entre 0 et 29, toujours le même pour un même texte.
+function numeroDeJour(texte) {
+  let total = 0;
+  for (let i = 0; i < texte.length; i++) total = (total * 31 + texte.charCodeAt(i)) % 1000003;
+  return total % 30;
+}
+
+// Date de révision d'un item, avec l'étalement de l'historique v1.
+function dateRevisionItem(item, stats, erreurActive) {
+  const date = dateRevision(stats);
+  const avantV2 = stats.lastSeenAt.slice(0, 10) < DEBUT_V2;
+  if (!avantV2 || erreurActive) return date;
+  const etalee = ajouterJours(DEBUT_V2, numeroDeJour(item.leconId + '-' + item.type + '-' + item.qid));
+  return date > etalee ? date : etalee; // la plus tardive des deux
 }
 
 // Tous les items révisables d'une leçon, mot caché compris (type "motcache").
@@ -451,10 +516,12 @@ function itemsRevision(l) {
 }
 
 // Fait le point sur une liste de leçons, en UNE lecture des stats :
-//   - dus     : questions à réviser aujourd'hui (les plus en retard d'abord)
+//   - dus     : questions à réviser aujourd'hui, dans l'ordre de priorité :
+//               1. erreurs actives  2. les plus en retard  3. les plus fragiles
 //   - parLecon: { id: { vus, dus } } pour la fraîcheur de chaque leçon
 function resumeRevision(listeLecons) {
   const store = getStatsStore();
+  const wrong = getWrongStore();
   const today = dayString(0);
   const dus = [];
   const parLecon = {};
@@ -466,17 +533,23 @@ function resumeRevision(listeLecons) {
       const s = byLecon && byLecon[item.type] && byLecon[item.type][item.qid];
       if (!s || !s.attempts || !s.lastSeenAt) return; // jamais vue
       r.vus++;
-      const date = dateRevision(s);
+      const w = wrong[item.leconId] && wrong[item.leconId][item.type] && wrong[item.leconId][item.type][item.qid];
+      const erreur = w > 0 ? 1 : 0;
+      const date = dateRevisionItem(item, s, erreur);
       if (date <= today) {
         r.dus++;
         if (item.q.unite != null) r.dusParUnite[item.q.unite] = (r.dusParUnite[item.q.unite] || 0) + 1;
-        dus.push({ item, date });
+        dus.push({ item, date, erreur, serie: s.correctStreak || 0 });
       }
     });
     parLecon[l.id] = r;
   });
 
-  dus.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+  dus.sort((a, b) => {
+    if (a.erreur !== b.erreur) return b.erreur - a.erreur;  // erreurs d'abord
+    if (a.date !== b.date) return a.date < b.date ? -1 : 1; // puis les plus en retard
+    return a.serie - b.serie;                               // puis les plus fragiles
+  });
   return { dus: dus.map(d => d.item), parLecon };
 }
 

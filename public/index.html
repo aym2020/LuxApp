@@ -273,6 +273,16 @@
     <div class="pc-feedback hidden" id="pc-feedback"></div>
   </div>
 
+  <!-- ══ LEÇON EN UNITÉS : MISSION (la scène finale) ══════════════════════════ -->
+  <div id="view-mission" class="view">
+    <div class="pc-topbar">
+      <button class="pc-icon-btn" aria-label="Quitter" onclick="openParcoursLecon(pLecon)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <div class="ms-entete"><div class="pc-mini-label pc-gold">MISSION</div><div class="ms-entete-titre" id="ms-titre"></div></div>
+      <button class="pc-cours-btn" onclick="ouvrirCours(null)">Cours</button>
+    </div>
+    <div class="ms-body" id="ms-body"></div>
+  </div>
+
   <!-- ══ LEÇON EN UNITÉS : FIN D'UNITÉ ════════════════════════════════════════ -->
   <div id="view-pfin" class="view">
     <div class="pf-content" id="pf-content"></div>
@@ -478,6 +488,7 @@
   <script src="cloud.js"></script>
   <script src="examens.js"></script>
   <script src="parcours.js"></script>
+  <script src="mission.js"></script>
   <script src="revision.js"></script>
   <script src="app.js"></script>
 </body>

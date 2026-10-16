@@ -10,9 +10,20 @@
 //   - on avance seulement quand c'est juste ;
 //   - le score ne compte que le PREMIER passage de chaque item.
 //
-// Rien n'est verrouillé : toutes les unités, toutes les étapes, la leçon
-// complète d'un coup et le bilan sont ouverts dès le départ. Le bouton jaune
-// indique seulement la suite conseillée.
+// Une leçon a un FIL : une mission (une scène de la vie réelle). Chaque unité
+// apprend UNE phrase de cette scène ; la mission finale rejoue la scène.
+//
+// Le « + » : des mots en plus, marqués "plus": true, qui réutilisent la phrase
+// de leur unité (même phrase, plus de mots). Jamais de nouvelle règle.
+//   - « Commencer » une unité  -> seulement le cœur (unité courte) ;
+//   - « Élargir » / chip « + » -> seulement le « + » de l'unité ;
+//   - « Leçon complète »       -> tout : cœur, « + » et unités bonus.
+// Une unité "bonus": true contient une notion à part (ex. les pluriels) :
+// facultative pour terminer la leçon, comptée pour « Complète ».
+//
+// Rien n'est verrouillé : toutes les unités, toutes les étapes, le « + », la
+// mission et le bilan sont ouverts dès le départ. Le bouton jaune indique
+// seulement la suite conseillée.
 //
 // La partie en cours est sauvegardée après chaque réponse (clé luxParcours),
 // pour reprendre exactement là où on s'est arrêté.
@@ -46,10 +57,31 @@ function etapeInfo(type) {
 }
 
 // Items d'une unité pour un type d'exercice ('all' = toute la leçon).
-function itemsUnite(lecon, type, uniteId) {
-  const items = lecon[type] || [];
-  if (uniteId === TOUTE_LA_LECON) return items;
-  return items.filter(x => x.unite === uniteId);
+// quoi : 'coeur' (sans le « + »), 'plus' (seulement le « + ») ou 'tout' (défaut).
+function itemsUnite(lecon, type, uniteId, quoi) {
+  let items = lecon[type] || [];
+  if (uniteId !== TOUTE_LA_LECON) items = items.filter(x => x.unite === uniteId);
+  if (quoi === 'coeur') items = items.filter(x => !x.plus);
+  if (quoi === 'plus') items = items.filter(x => x.plus);
+  return items;
+}
+
+// Nombre d'items (tous types) d'une unité, pour une partie donnée.
+function nbItems(lecon, uniteId, quoi) {
+  let nb = 0;
+  ETAPES.forEach(e => { nb += itemsUnite(lecon, e.type, uniteId, quoi).length; });
+  return nb;
+}
+
+// Durée estimée en minutes (~12 s par item).
+function minutesPour(nb) {
+  return Math.max(1, Math.round(nb * 12 / 60));
+}
+
+// Unités du fil (sans les unités bonus) : elles seules comptent pour
+// « Terminée », les étoiles et « Sans faute ».
+function unitesCoeur(l) {
+  return l.unites.filter(u => !u.bonus);
 }
 
 function trouverItem(lecon, type, id) {
@@ -60,9 +92,10 @@ function trouverUnite(lecon, uniteId) {
   return lecon.unites.find(u => u.id === uniteId);
 }
 
-// Nom affiché d'une partie : « unité 2 » ou « leçon complète ».
-function nomPartie(uniteId) {
-  return uniteId === TOUTE_LA_LECON ? 'leçon complète' : 'unité ' + uniteId;
+// Nom affiché d'une partie : « unité 2 », « + de l'unité 2 » ou « leçon complète ».
+function nomPartie(uniteId, mode) {
+  if (uniteId === TOUTE_LA_LECON) return mode === 'plus' ? 'tous les « + »' : 'leçon complète';
+  return mode === 'plus' ? '« + » de l\'unité ' + uniteId : 'unité ' + uniteId;
 }
 
 function melanger(tableau) {
@@ -87,9 +120,31 @@ function motComplet(card) {
   return (card.article ? card.article + ' ' : '') + card.lu;
 }
 
-// Leçon « Sans faute » = toutes ses unités réussies sans faute au moins une fois.
+// Leçon « Sans faute » = toutes les unités du fil réussies sans faute au moins une fois.
 function leconSansFaute(l) {
-  return isParcoursLecon(l) && l.unites.every(u => getSansFaute(l.id, u.id));
+  return isParcoursLecon(l) && unitesCoeur(l).every(u => getSansFaute(l.id, u.id));
+}
+
+// Le « + » d'une unité existe-t-il ? (unité bonus : pas de « + », elle est déjà en plus)
+function aDuPlus(l, uniteId) {
+  return nbItems(l, uniteId, 'plus') > 0;
+}
+
+// « 9 mots », « 1 mot », ou « 6 questions » si le « + » n'a pas de mot nouveau.
+function textePlus(l, uniteId) {
+  const nbMots = itemsUnite(l, 'flashcards', uniteId, 'plus').length;
+  if (nbMots) return nbMots + (nbMots > 1 ? ' mots' : ' mot');
+  const nb = nbItems(l, uniteId, 'plus');
+  return nb + (nb > 1 ? ' questions' : ' question');
+}
+
+// Leçon « Complète » = fil terminé + tous les « + » + toutes les unités bonus.
+function leconComplete(l) {
+  if (!isParcoursLecon(l)) return false;
+  return l.unites.every(u => {
+    if (getUnitBest(l.id, u.id) == null) return false;
+    return !aDuPlus(l, u.id) || getPlusFait(l.id, u.id);
+  });
 }
 
 // ─── SAUVEGARDE DE LA PARTIE EN COURS ───────────────────────────────────────
@@ -108,13 +163,14 @@ function clearRun() {
 // ─── RÉSUMÉ D'UNE LEÇON (liste des leçons) ──────────────────────────────────
 // Étoiles de la leçon = moyenne des meilleurs scores (unité non faite = 0).
 function resumeLecon(l) {
+  const unites = unitesCoeur(l);
   let done = 0, somme = 0;
-  l.unites.forEach(u => {
+  unites.forEach(u => {
     const best = getUnitBest(l.id, u.id);
     if (best != null) { done++; somme += best; }
   });
-  const percent = Math.round(somme / l.unites.length);
-  return { done, total: l.unites.length, stars: etoiles(percent) };
+  const percent = Math.round(somme / unites.length);
+  return { done, total: unites.length, stars: etoiles(percent) };
 }
 
 // Pastilles d'une leçon v2 dans la liste : uniquement ce qui est ACQUIS (en or).
@@ -126,6 +182,8 @@ function carteLeconV2Html(l) {
   // (sinon des étoiles grises donneraient l'impression d'avoir perdu quelque chose).
   if (r.done === r.total) html += '<span class="lecon-pill pc-pill-stars">' + etoilesHtml(r.stars) + '</span>';
   if (leconSansFaute(l)) html += '<span class="lecon-pill pc-pill-sansfaute">Sans faute</span>';
+  if (getMissionBest(l.id) != null) html += '<span class="lecon-pill pc-pill-acquis">Mission ✓</span>';
+  if (leconComplete(l)) html += '<span class="lecon-pill pc-pill-acquis">Complète</span>';
   return html;
 }
 
@@ -145,7 +203,7 @@ function carteReprendre() {
     '<div class="pc-reprendre-row">' +
       '<div class="pc-reprendre-txt">' +
         '<div class="pc-reprendre-titre">' + escHtml(l.titre) + '</div>' +
-        '<div class="pc-reprendre-sous">' + nomPartie(saved.uniteId) + ' · étape ' + (saved.stepIdx + 1) +
+        '<div class="pc-reprendre-sous">' + nomPartie(saved.uniteId, saved.mode) + ' · étape ' + (saved.stepIdx + 1) +
           ' sur ' + saved.steps.length + ' · ' + etapeInfo(step.type).label + '</div>' +
       '</div>' +
       '<button class="pc-btn primary" onclick="reprendreRun()">Continuer</button>' +
@@ -162,12 +220,24 @@ function openParcoursLecon(l) {
   showView('view-plecon');
 }
 
-// Boutons d'étape (Mot caché, Quiz…) pour une unité ou pour toute la leçon.
+// Partie jouée par « une étape seule » : le cœur pour une unité, tout pour la leçon.
+function quoiEtape(uniteId) {
+  return uniteId === TOUTE_LA_LECON ? 'tout' : 'coeur';
+}
+
+// Boutons d'étape (Mot caché, Quiz…) pour une unité ou pour toute la leçon,
+// puis le chip « + » de l'unité (doré et coché quand il est fait).
 function chipsEtapes(uniteId) {
   const param = uniteId === TOUTE_LA_LECON ? '\'' + TOUTE_LA_LECON + '\'' : uniteId;
-  return ETAPES.filter(e => itemsUnite(pLecon, e.type, uniteId).length).map(e =>
+  let html = ETAPES.filter(e => itemsUnite(pLecon, e.type, uniteId, quoiEtape(uniteId)).length).map(e =>
     '<button class="pc-chip" onclick="startEtapeSeule(' + param + ', \'' + e.type + '\')">' + e.label + '</button>'
   ).join('');
+  if (uniteId !== TOUTE_LA_LECON && aDuPlus(pLecon, uniteId)) {
+    const fait = getPlusFait(pLecon.id, uniteId);
+    html += '<button class="pc-chip plus' + (fait ? ' fait' : '') + '" onclick="startUnite(' + uniteId + ', \'plus\')">' +
+      (fait ? '✓ ' : '') + '+ ' + textePlus(pLecon, uniteId) + '</button>';
+  }
+  return html;
 }
 
 function renderParcoursLecon() {
@@ -179,73 +249,88 @@ function renderParcoursLecon() {
   document.getElementById('pl-num').textContent = 'LEÇON ' + l.id;
   document.getElementById('pl-titre').textContent = l.titre;
   document.getElementById('pl-sous').textContent =
-    l.titre_fr + ' · ' + l.unites.length + ' unités';
+    l.titre_fr + ' · ' + unitesCoeur(l).length + ' unités';
   document.getElementById('view-plecon').style.setProperty('--lc', l.couleur);
 
-  // Seule la prochaine unité à faire a le bouton principal (jaune).
-  const prochaine = runIci ? null : l.unites.find(u => getUnitBest(l.id, u.id) == null);
+  // Seule la prochaine unité du fil à faire a le bouton principal (jaune).
+  const prochaine = runIci ? null : unitesCoeur(l).find(u => getUnitBest(l.id, u.id) == null);
 
-  // ── Toute la leçon : d'un coup, une étape, révision, fraîcheur ──
-  let html = '<div class="pl-unit pl-toute">';
+  // ── La mission : la scène qui se remplit au fil des unités ──
+  let html = missionHtml(l, !runIci && !prochaine);
+
+  // ── Une carte par unité (fil d'abord, bonus ensuite) ──
+  l.unites.forEach(u => {
+    html += carteUniteHtml(l, u, runIci, prochaine, revision);
+  });
+
+  // ── Toute la leçon : tout le contenu d'un coup, une étape, révision ──
+  const nbTout = nbItems(l, TOUTE_LA_LECON, 'tout');
+  html += '<div class="pl-unit pl-toute">';
   html += '<div class="pl-unit-top"><div>' +
-    '<div class="pc-mini-label">TOUTE LA LEÇON' + (leconSansFaute(l) ? ' · <span class="pc-gold">SANS FAUTE</span>' : '') + '</div>' +
-    '<div class="pl-unit-titre">Tout enchaîner d\'un coup</div></div></div>';
+    '<div class="pc-mini-label">TOUTE LA LEÇON' +
+      (leconComplete(l) ? ' · <span class="pc-gold">COMPLÈTE</span>' : '') + '</div>' +
+    '<div class="pl-unit-titre">Tout le contenu d\'un coup</div></div></div>' +
+    '<div class="pl-unit-mots">Le fil et tous les « + »' + (l.unites.some(u => u.bonus) ? ', bonus compris' : '') + ' · ' + nbTout +
+      ' questions · environ ' + minutesPour(nbTout) + ' min</div>';
   if (runIci && runIci.uniteId === TOUTE_LA_LECON) {
     html += '<div class="pc-steps">' + segmentsHtml(runIci) + '</div>' +
       '<button class="pc-btn primary wide" onclick="reprendreRun()">Continuer la leçon complète</button>';
   } else {
-    html += '<button class="pc-btn wide" onclick="startUnite(\'' + TOUTE_LA_LECON + '\', \'lecon\')">Leçon complète · 4 étapes</button>';
+    html += '<button class="pc-btn wide" onclick="startUnite(\'' + TOUTE_LA_LECON + '\', \'lecon\')">Leçon complète</button>';
   }
   html += '<div class="pl-unit-actions">' + chipsEtapes(TOUTE_LA_LECON) +
     '<button class="pc-chip" onclick="toutRevoir()">Tout revoir</button>' +
     (revision.dus ? '<button class="pc-chip fraicheur" onclick="rafraichirLecon()">Rafraîchir · ' + revision.dus + '</button>' : '') +
     '</div></div>';
 
-  // ── Une carte par unité ──
-  l.unites.forEach(u => {
-    const best = getUnitBest(l.id, u.id);
-    const sansFaute = getSansFaute(l.id, u.id);
-    const enCours = runIci && runIci.uniteId === u.id;
-    const nbDus = revision.dusParUnite[u.id] || 0;
-
-    let etat = '';
-    if (enCours) etat = ' · EN COURS';
-    else if (sansFaute) etat = ' · <span class="pc-gold">SANS FAUTE</span>';
-    else if (best != null) etat = ' · TERMINÉE';
-
-    const mots = itemsUnite(l, 'flashcards', u.id);
-    let apercu = mots.slice(0, 4).map(c => escHtml(c.lu)).join(' · ');
-    if (mots.length > 4) apercu += ' · +' + (mots.length - 4);
-
-    html += '<div class="pl-unit' + (enCours ? ' en-cours' : '') + '">';
-    html += '<div class="pl-unit-top"><div>' +
-      '<div class="pc-mini-label">UNITÉ ' + u.id + etat + '</div>' +
-      '<div class="pl-unit-titre">' + escHtml(u.titre) + '</div></div>' +
-      (best != null ? '<div class="pl-unit-stars">' + etoilesHtml(etoiles(best)) + '</div>' : '') +
-      '</div>';
-    html += '<div class="pl-unit-mots">' + apercu + '</div>';
-    if (nbDus) html += '<div class="pl-fraicheur">À rafraîchir · ' + nbDus + '</div>';
-
-    if (enCours) {
-      html += '<div class="pc-steps">' + segmentsHtml(runIci) + '</div>';
-      html += '<button class="pc-btn primary wide" onclick="reprendreRun()">Continuer</button>';
-    } else {
-      const classe = prochaine && prochaine.id === u.id ? 'pc-btn primary wide' : 'pc-btn wide';
-      html += '<button class="' + classe + '" onclick="openIntro(' + u.id + ')">' +
-        (best == null ? 'Commencer' : 'Refaire l\'unité') + '</button>';
-    }
-    // Les étapes seules sont toujours disponibles, même avant d'avoir fini l'unité.
-    html += '<div class="pl-unit-actions">' + chipsEtapes(u.id) + '</div>';
-    html += '</div>';
-  });
-
   // Bilan : toujours ouvert.
   html += '<div class="pl-unit pl-bilan">' +
     '<div class="pl-unit-titre">Bilan de la leçon</div>' +
-    '<div class="pl-unit-mots">10 questions mélangées sur toutes les unités</div>' +
+    '<div class="pl-unit-mots">10 questions mélangées sur le fil de la leçon</div>' +
     '<button class="pc-btn wide" onclick="lancerBilan()">Lancer le bilan</button></div>';
 
   document.getElementById('pl-units').innerHTML = html;
+}
+
+// Carte d'une unité dans l'écran de la leçon.
+function carteUniteHtml(l, u, runIci, prochaine, revision) {
+  const best = getUnitBest(l.id, u.id);
+  const sansFaute = getSansFaute(l.id, u.id);
+  const enCours = runIci && runIci.uniteId === u.id;
+  const nbDus = revision.dusParUnite[u.id] || 0;
+
+  let etat = '';
+  if (enCours) etat = ' · EN COURS';
+  else if (sansFaute) etat = ' · <span class="pc-gold">SANS FAUTE</span>';
+  else if (best != null) etat = ' · TERMINÉE';
+
+  const mots = itemsUnite(l, 'flashcards', u.id, 'coeur');
+  let apercu = mots.slice(0, 4).map(c => escHtml(c.lu)).join(' · ');
+  if (mots.length > 4) apercu += ' · +' + (mots.length - 4);
+
+  const label = u.bonus ? 'BONUS' : 'UNITÉ ' + u.id;
+  let html = '<div class="pl-unit' + (enCours ? ' en-cours' : '') + (u.bonus ? ' bonus' : '') + '">';
+  html += '<div class="pl-unit-top"><div>' +
+    '<div class="pc-mini-label">' + label + etat + '</div>' +
+    '<div class="pl-unit-titre">' + escHtml(u.titre) + '</div></div>' +
+    (best != null ? '<div class="pl-unit-stars">' + etoilesHtml(etoiles(best)) + '</div>' : '') +
+    '</div>';
+  if (u.phrase) html += '<div class="pl-unit-phrase">' + escHtml(u.phrase[0]) + '</div>';
+  html += '<div class="pl-unit-mots">' + apercu + '</div>';
+  if (nbDus) html += '<div class="pl-fraicheur">À rafraîchir · ' + nbDus + '</div>';
+
+  if (enCours) {
+    html += '<div class="pc-steps">' + segmentsHtml(runIci) + '</div>';
+    html += '<button class="pc-btn primary wide" onclick="reprendreRun()">Continuer</button>';
+  } else {
+    const classe = prochaine && prochaine.id === u.id ? 'pc-btn primary wide' : 'pc-btn wide';
+    html += '<button class="' + classe + '" onclick="openIntro(' + u.id + ')">' +
+      (best == null ? 'Commencer' : 'Refaire l\'unité') + '</button>';
+  }
+  // Les étapes seules et le « + » sont toujours disponibles.
+  html += '<div class="pl-unit-actions">' + chipsEtapes(u.id) + '</div>';
+  html += '</div>';
+  return html;
 }
 
 // "Tout revoir" : l'écran Réviser, avec seulement cette leçon cochée.
@@ -259,7 +344,8 @@ function retourLecon() {
 }
 
 function lancerBilan() {
-  const pool = itemsRevision(pLecon).filter(i => i.type !== 'motcache');
+  const pool = itemsRevision(pLecon).filter(i =>
+    i.type !== 'motcache' && !i.q.plus && !trouverUnite(pLecon, i.q.unite).bonus);
   demarrerSession('review', 'BILAN · LEÇON ' + pLecon.id, melanger(pool).slice(0, 10), { actions: retourLecon() });
 }
 
@@ -270,16 +356,24 @@ function rafraichirLecon() {
 }
 
 // ─── ÉCRAN "AVANT DE COMMENCER" ─────────────────────────────────────────────
+// Ordre : la phrase de l'unité, la règle, les pièges, les mots du cœur,
+// puis le « + » replié (même phrase, plus de mots).
 function openIntro(uniteId) {
   const u = trouverUnite(pLecon, uniteId);
-  const mots = itemsUnite(pLecon, 'flashcards', uniteId).slice(0, 6);
+  const mots = itemsUnite(pLecon, 'flashcards', uniteId, 'coeur');
+  const motsPlus = itemsUnite(pLecon, 'flashcards', uniteId, 'plus');
+  const minutes = minutesPour(nbItems(pLecon, uniteId, 'coeur'));
 
-  let nb = 0;
-  ETAPES.forEach(e => { nb += itemsUnite(pLecon, e.type, uniteId).length; });
-  const minutes = Math.max(1, Math.round(nb * 12 / 60)); // ~12 s par item
-
-  let html = '<div class="pc-mini-label pc-accent">UNITÉ ' + u.id + ' · CE QUE TU VAS APPRENDRE</div>' +
+  let html = '<div class="pc-mini-label pc-accent">' + (u.bonus ? 'BONUS' : 'UNITÉ ' + u.id) +
+    ' · CE QUE TU VAS APPRENDRE</div>' +
     '<h1 class="pi-titre">' + escHtml(u.titre) + '</h1>';
+
+  // La phrase de l'unité : c'est elle qu'on saura dire à la fin.
+  if (u.phrase) {
+    html += '<div class="pi-phrase"><div class="pc-mini-label">LA PHRASE DE L\'UNITÉ</div>' +
+      '<div class="pi-phrase-lu">' + escHtml(u.phrase[0]) + '</div>' +
+      '<div class="pi-phrase-fr">' + escHtml(u.phrase[1]) + '</div></div>';
+  }
 
   if (u.regle) {
     html += '<div class="pi-regle"><div class="pc-mini-label pc-gold">LA RÈGLE</div>' +
@@ -294,13 +388,18 @@ function openIntro(uniteId) {
   }
 
   if (mots.length) {
-    html += '<div class="pc-mini-label">LES MOTS</div><div class="pi-mots">' +
-      mots.map(c => '<div class="pi-mot"><b>' + escHtml(motComplet(c)) + '</b><span>' +
-        escHtml(c.fr) + '</span></div>').join('') + '</div>';
+    html += '<div class="pc-mini-label">LES MOTS</div><div class="pi-mots">' + motsHtml(mots) + '</div>';
+  }
+
+  // Le « + » : replié, à lire si on veut. Il se joue après l'unité (« Élargir »).
+  if (motsPlus.length) {
+    html += '<details class="pi-plus"><summary>+ ' + motsPlus.length + ' autres mots · même phrase</summary>' +
+      '<div class="pi-mots">' + motsHtml(motsPlus) + '</div>' +
+      '<div class="pi-plus-note">Tu pourras les travailler après l\'unité, avec « Élargir ».</div></details>';
   }
 
   if (u.phrases && u.phrases.length) {
-    html += '<div class="pc-mini-label">LA PHRASE</div><div class="pi-phrases">' +
+    html += '<div class="pc-mini-label">EXEMPLES</div><div class="pi-phrases">' +
       u.phrases.map(p => '<div><b>' + escHtml(p[0]) + '</b> <span>· ' + escHtml(p[1]) + '</span></div>').join('') +
       '</div>';
   }
@@ -312,17 +411,26 @@ function openIntro(uniteId) {
   showView('view-pintro');
 }
 
+function motsHtml(mots) {
+  return mots.map(c => '<div class="pi-mot"><b>' + escHtml(motComplet(c)) + '</b><span>' +
+    escHtml(c.fr) + '</span></div>').join('');
+}
+
 // ─── DÉMARRER / REPRENDRE UNE PARTIE ────────────────────────────────────────
 // uniteId : numéro d'unité, ou 'all' pour toute la leçon
-// mode    : 'unite'   (unité complète : étoiles + sans faute)
-//           'lecon'   (leçon complète d'un coup : étoiles + sans faute de chaque unité)
+// mode    : 'unite'   (le cœur de l'unité : étoiles + sans faute)
+//           'plus'    (le « + » de l'unité, ou de toute la leçon avec 'all')
+//           'lecon'   (tout le contenu d'un coup : étoiles, sans faute et « + » de chaque unité)
 //           'erreurs' (refaire ses erreurs) · 'etape' (une seule étape)
 // filtre  : liste de clés "type:id" à garder (null = tout)
 function startUnite(uniteId, mode, filtre) {
   mode = mode || 'unite';
+  let quoi = 'tout';
+  if (mode === 'unite') quoi = 'coeur';
+  if (mode === 'plus') quoi = 'plus';
   const steps = [];
   ETAPES.forEach(e => {
-    let items = itemsUnite(pLecon, e.type, uniteId);
+    let items = itemsUnite(pLecon, e.type, uniteId, quoi);
     if (filtre) items = items.filter(x => filtre.includes(e.type + ':' + x.id));
     if (!items.length) return;
     steps.push({
@@ -342,7 +450,7 @@ function startUnite(uniteId, mode, filtre) {
 }
 
 function startEtapeSeule(uniteId, type) {
-  const cles = itemsUnite(pLecon, type, uniteId).map(x => type + ':' + x.id);
+  const cles = itemsUnite(pLecon, type, uniteId, quoiEtape(uniteId)).map(x => type + ':' + x.id);
   startUnite(uniteId, 'etape', cles);
 }
 
@@ -778,14 +886,15 @@ function ligneErreur(type, item, d) {
 
 // Score (0-100) et « sans faute » d'une unité, à partir des étapes jouées.
 // uniteId = null -> tous les items de la partie.
+// Le « + » ne compte jamais pour les étoiles ni le « sans faute ».
 function bilanUnite(steps, uniteId) {
   const pourcents = [];
   let sansFaute = true;
   steps.forEach(s => {
     const ids = Object.keys(s.scores).filter(id => {
-      if (uniteId == null) return true;
       const item = trouverItem(pLecon, s.type, Number(id));
-      return item && item.unite === uniteId;
+      if (!item || item.plus) return false;
+      return uniteId == null || item.unite === uniteId;
     });
     if (!ids.length) return;
     const somme = ids.reduce((a, id) => a + s.scores[id], 0);
@@ -804,6 +913,7 @@ function finirRun() {
   });
   const total = Math.round(etapes.reduce((a, e) => a + e.percent, 0) / etapes.length);
   const global = bilanUnite(run.steps, null);
+  const etaitComplete = leconComplete(pLecon);
 
   // Étoiles et « Sans faute » : seulement pour une unité complète ou la leçon complète.
   // Le « Sans faute » se gagne une fois et ne se perd jamais.
@@ -818,7 +928,14 @@ function finirRun() {
         nouveauSansFaute = true;
       }
     });
-    marquerJour(2); // une unité (ou la leçon) finie = objectif du jour atteint
+  }
+  // Le « + » est fait dès qu'on l'a joué en entier (les erreurs reviennent en révision).
+  if (run.mode === 'plus' || run.mode === 'lecon') {
+    const unites = run.uniteId === TOUTE_LA_LECON ? pLecon.unites : [trouverUnite(pLecon, run.uniteId)];
+    unites.forEach(u => { if (aDuPlus(pLecon, u.id)) savePlusFait(run.leconId, u.id); });
+  }
+  if (run.mode === 'unite' || run.mode === 'lecon' || run.mode === 'plus') {
+    marquerJour(2); // une partie complète finie = objectif du jour atteint
   }
 
   const erreurs = [];  // clés "type:id" pour "Refaire mes erreurs"
@@ -837,7 +954,8 @@ function finirRun() {
   pResultat = {
     leconId: run.leconId, uniteId: run.uniteId, mode: run.mode, total, etapes, erreurs, lignes,
     sansFaute: global.sansFaute && (run.mode === 'unite' || run.mode === 'lecon'),
-    nouveauSansFaute
+    nouveauSansFaute,
+    nouvelleComplete: !etaitComplete && leconComplete(pLecon)
   };
   run = null;
   clearRun();
@@ -848,9 +966,11 @@ function finirRun() {
 function renderFin() {
   const r = pResultat;
   const complete = r.mode === 'unite' || r.mode === 'lecon';
+  const u = r.uniteId === TOUTE_LA_LECON ? null : trouverUnite(pLecon, r.uniteId);
   let titre;
-  if (r.mode === 'unite') titre = 'UNITÉ ' + r.uniteId + ' TERMINÉE';
+  if (r.mode === 'unite') titre = (u.bonus ? 'BONUS' : 'UNITÉ ' + r.uniteId) + ' TERMINÉE';
   else if (r.mode === 'lecon') titre = 'LEÇON ' + r.leconId + ' TERMINÉE';
+  else if (r.mode === 'plus') titre = '« + » TERMINÉ';
   else if (r.mode === 'erreurs') titre = 'ERREURS REFAITES';
   else titre = 'ÉTAPE TERMINÉE';
 
@@ -859,15 +979,22 @@ function renderFin() {
     (complete ? '<div class="pf-stars">' + etoilesHtml(etoiles(r.total)) + '</div>' : '') +
     '<div class="pf-score">' + r.total + ' %</div>' +
     (complete ? '<div class="pf-sous">3 étoiles à partir de 90 %</div>'
+              : r.mode === 'plus' ? '<div class="pf-sous">Les nouveaux mots rejoignent tes révisions</div>'
               : '<div class="pf-sous">Ce passage ne change pas les étoiles</div>') +
     '</div>';
 
-  // Moment « sans faute » : acquis pour toujours.
+  // Moments acquis pour toujours : « sans faute », leçon « complète ».
   if (r.sansFaute) {
     html += '<div class="pf-sansfaute">' +
       (r.nouveauSansFaute ? 'Première fois sans faute !' : 'Sans faute, encore une fois !') +
       '<span>Tout juste du premier coup, sans indice.</span></div>';
   }
+  if (r.nouvelleComplete) {
+    html += '<div class="pf-sansfaute">Leçon complète !<span>Le fil, tous les « + » et les bonus sont faits.</span></div>';
+  }
+
+  // La scène avance : les répliques que cette unité permet de dire.
+  if (r.mode === 'unite' && u && !u.bonus) html += repliquesDebloqueesHtml(pLecon, u.id);
 
   if (r.etapes.length > 1) {
     html += '<div class="pf-etapes">' + r.etapes.map(e =>
@@ -886,22 +1013,39 @@ function renderFin() {
     html += '<div class="pf-parfait">Aucune erreur, tout était juste du premier coup.</div>';
   }
 
-  // Boutons : refaire ses erreurs, puis unité suivante ou retour.
-  html += '<div class="pf-boutons">';
+  html += '<div class="pf-boutons">' + boutonsFinHtml(r, u) + '</div>';
+  document.getElementById('pf-content').innerHTML = html;
+}
+
+// Boutons de fin de partie, dans l'ordre : erreurs, suite conseillée (jaune),
+// « Élargir » (le « + » de l'unité), retour.
+function boutonsFinHtml(r, u) {
+  let html = '';
   if (r.erreurs.length) {
     html += '<button class="pc-btn wide" onclick="refaireErreurs()">Refaire mes erreurs</button>';
   }
-  const idx = pLecon.unites.findIndex(x => x.id === r.uniteId);
-  const suivante = idx >= 0 ? pLecon.unites[idx + 1] : null;
-  if (r.mode === 'unite' && suivante) {
-    html += '<button class="pc-btn primary wide big" onclick="openIntro(' + suivante.id + ')">Unité suivante</button>';
-    html += '<button class="pc-btn ghost wide" onclick="openParcoursLecon(pLecon)">Retour à la leçon</button>';
-  } else {
-    html += '<button class="pc-btn primary wide big" onclick="openParcoursLecon(pLecon)">Retour à la leçon</button>';
-  }
-  html += '</div>';
 
-  document.getElementById('pf-content').innerHTML = html;
+  // Suite conseillée : unité suivante du fil, sinon la mission.
+  let suite = '';
+  if (r.mode === 'unite' && u && !u.bonus) {
+    const fil = unitesCoeur(pLecon);
+    const suivante = fil[fil.findIndex(x => x.id === u.id) + 1];
+    if (suivante) suite = '<button class="pc-btn primary wide big" onclick="openIntro(' + suivante.id + ')">Unité suivante</button>';
+    else if (pLecon.scene) suite = '<button class="pc-btn primary wide big" onclick="openMission()">Jouer la mission</button>';
+  } else if (r.mode === 'plus' && pLecon.scene && getMissionBest(pLecon.id) == null) {
+    suite = '<button class="pc-btn primary wide big" onclick="openMission()">Jouer la mission</button>';
+  }
+  html += suite;
+
+  // « Élargir » : proposé juste après le cœur, quand la phrase vient d'être acquise.
+  if (r.mode === 'unite' && u && aDuPlus(pLecon, u.id)) {
+    const nb = nbItems(pLecon, u.id, 'plus');
+    html += '<button class="pc-btn plus wide" onclick="startUnite(' + u.id + ', \'plus\')">' +
+      (getPlusFait(pLecon.id, u.id) ? '✓ ' : '') + 'Élargir : ' + textePlus(pLecon, u.id) + ' de plus · ' + minutesPour(nb) + ' min</button>';
+  }
+
+  html += '<button class="pc-btn ' + (suite ? 'ghost' : 'primary big') + ' wide" onclick="openParcoursLecon(pLecon)">Retour à la leçon</button>';
+  return html;
 }
 
 function refaireErreurs() {
@@ -957,7 +1101,15 @@ function renderCoursPanel() {
   // Un bloc sans "unite" est général : il apparaît partout.
   // "unite": 0 = seulement dans « Toute la leçon ».
   const blocs = (l.cours || []).filter(b => pCoursUnite == null || b.unite == null || b.unite === pCoursUnite);
-  document.getElementById('cp-content').innerHTML = coursBlocsHtml(blocs, l.couleur);
+  // Les blocs « + » sont repliés en bas, sous « Voir + ».
+  const coeur = blocs.filter(b => !b.plus);
+  const plus = blocs.filter(b => b.plus);
+  let html = coursBlocsHtml(coeur, l.couleur);
+  if (plus.length) {
+    html += '<details class="cp-plus"><summary>Voir + · les mots en plus</summary>' +
+      coursBlocsHtml(plus, l.couleur) + '</details>';
+  }
+  document.getElementById('cp-content').innerHTML = html;
   document.getElementById('cp-content').scrollTop = 0;
 }
 

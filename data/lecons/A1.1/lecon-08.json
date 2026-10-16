@@ -4,600 +4,1371 @@
   "titre_fr": "Les nationalités",
   "couleur": "#7ab8e8",
   "instructions": {
-    "flashcards": "Mot caché : une carte par forme. Retrouve la nationalité luxembourgeoise (sans article) à partir du français ; l'indice donne le genre.",
-    "quiz": "Nationalité française avec le genre. Choisis la forme luxembourgeoise avec son article. Distracteurs : l'autre genre, le pays, la langue.",
-    "trous": "Phrase avec un prénom masculin ou féminin : retrouve la nationalité, ou la négation (kee / keng) dans l'unité 3.",
-    "ecriture": "Phrases complètes : Hien ass …, Si ass …, Ech si …, questions (Ass hien …?, Wat ass seng / hir Nationalitéit?) et négations."
+    "flashcards": "Mot caché : retrouve la nationalité luxembourgeoise (il ou elle) à partir du français. Unité 3 : les mots pour poser la question et dire non.",
+    "quiz": "Lis la nationalité française (il ou elle) et choisis la forme luxembourgeoise. Distracteurs : l'autre genre, le pays, la langue. Quelques questions : choisis la bonne phrase (si / sinn, kee / keen / keng, seng / hir).",
+    "trous": "Complète la phrase avec la nationalité (unités 1 et 2) ou avec kee / keen / keng, seng / hir, le verbe (unité 3).",
+    "ecriture": "Écris en luxembourgeois les phrases de la mission : dire sa nationalité, au féminin, poser la question et répondre non."
   },
+  "mission": {
+    "titre": "La fête des voisins",
+    "contexte": "C'est la fête des voisins dans ton immeuble. Marie, ta voisine, vient se présenter. Tu joues Paul, qui est français.",
+    "objectif": "dire ta nationalité, présenter quelqu'un, poser la question et répondre non."
+  },
+  "scene": [
+    {
+      "qui": "Marie",
+      "lu": "Moien! Ech sinn d'Marie.",
+      "fr": "Bonjour ! Moi, c'est Marie.",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Moien! Ech sinn de Paul. Ech si Fransous.",
+      "fr": "Bonjour ! Moi, c'est Paul. Je suis français.",
+      "unite": 1,
+      "aide": "<b>Ech sinn</b> de Paul (n devant d), mais <b>Ech si</b> Fransous (n tombe devant F). Pas d'article devant la nationalité."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ech si Lëtzebuergerin.",
+      "fr": "Moi, je suis luxembourgeoise.",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass d'Julie. Si ass Belsch.",
+      "fr": "Voici Julie. Elle est belge.",
+      "unite": 2,
+      "aide": "<b>Belsch</b> ne change pas au féminin : pas de -in."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Wat ass seng Nationalitéit?",
+      "fr": "Et lui, quelle est sa nationalité ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Ass hie Portugis?",
+      "fr": "Est-il portugais ?",
+      "unite": 3,
+      "aide": "Question : le verbe en premier → <b>Ass hie</b> Portugis? (hien perd son n devant P)"
+    },
+    {
+      "qui": "Marie",
+      "lu": "Nee, hien ass kee Portugis. Hien ass Däitschen.",
+      "fr": "Non, il n'est pas portugais. Il est allemand.",
+      "unite": 3
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ass d'Julie och Fransousin?",
+      "fr": "Julie est française aussi ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, si ass keng Fransousin. Si ass Belsch.",
+      "fr": "Non, elle n'est pas française. Elle est belge.",
+      "unite": 3,
+      "aide": "Féminin → <b>keng</b> Fransousin."
+    }
+  ],
   "unites": [
     {
       "id": 1,
-      "titre": "Les pays voisins",
-      "regle": "Féminin = masculin + <b>-in</b>",
-      "exemple": "Fransous → Fransous<b>in</b> · sauf <b>Belsch</b> (invariable) et <b>Däitschen / Däitsch</b>",
+      "titre": "Dire sa nationalité",
+      "phrase": [
+        "Ech si Fransous.",
+        "Je suis français."
+      ],
+      "regle": "Pour dire la nationalité : <b>pas d'article</b>",
+      "exemple": "Ech <b>si</b> Fransous · Ech <b>sinn</b> Däitschen (le n reste devant D)",
       "phrases": [
         [
           "Hien ass Lëtzebuerger.",
           "Il est luxembourgeois."
         ],
         [
-          "Si ass Fransousin.",
-          "Elle est française."
+          "Du bass Belsch.",
+          "Tu es belge."
         ]
       ],
       "pieges": [
-        "<b>Belsch</b> ne prend pas -in : e Belsch = eng Belsch.",
-        "Allemand : <b>Däitschen</b> (M) / <b>Däitsch</b> (F), sans -in."
+        "Pas d'article : <b>Ech si Fransous</b>, jamais « Ech si e Fransous ».",
+        "<b>Ech si</b> devant F, L, B, P… mais <b>Ech sinn</b> devant une voyelle ou n, d, t, z, h : Ech sinn Däitschen."
       ]
     },
     {
       "id": 2,
-      "titre": "Le reste de l'Europe",
-      "regle": "Dire la nationalité : <b>pas d'article</b>",
-      "exemple": "<b>Hien ass</b> Spuenier. · <b>Si ass</b> Italienerin.",
+      "titre": "Au féminin",
+      "phrase": [
+        "Si ass Lëtzebuergerin.",
+        "Elle est luxembourgeoise."
+      ],
+      "regle": "Féminin = masculin + <b>-in</b>",
+      "exemple": "Fransous → Fransous<b>in</b> · Portugis → Portugis<b>in</b>",
       "phrases": [
         [
-          "Hien ass Spuenier.",
-          "Il est espagnol."
+          "D'Anne ass Lëtzebuergerin.",
+          "Anne est luxembourgeoise."
         ],
         [
-          "Si ass Englännerin.",
-          "Elle est anglaise."
+          "Ech si Fransousin.",
+          "Je suis française."
         ]
       ],
       "pieges": [
-        "Après <b>ass</b>, pas d'article : Hien ass Spuenier (pas « e Spuenier »).",
-        "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+        "<b>Belsch</b> ne change pas : Si ass Belsch.",
+        "<b>Däitschen</b> → <b>Däitsch</b> au féminin (pas de -in)."
       ]
     },
     {
       "id": 3,
-      "titre": "Le reste du monde",
-      "regle": "Négation : <b>kee</b> (masculin) · <b>keng</b> (féminin)",
-      "exemple": "Hien ass <b>kee</b> Chinees. · Si ass <b>keng</b> Amerikanerin.",
+      "titre": "Poser la question, répondre non",
+      "phrase": [
+        "Ass hie Portugis? – Nee, hien ass kee Portugis.",
+        "Est-il portugais ? – Non, il n'est pas portugais."
+      ],
+      "regle": "Question : le <b>verbe en premier</b>. Non : <b>kee</b> (il) · <b>keng</b> (elle)",
+      "exemple": "<b>Ass</b> hie Portugis? · Hien ass <b>kee</b> Portugis · Si ass <b>keng</b> Fransousin",
       "phrases": [
         [
           "Wat ass seng Nationalitéit?",
           "Quelle est sa nationalité ? (à lui)"
         ],
         [
-          "Ass si Japanerin?",
-          "Est-elle japonaise ?"
+          "Bass du Lëtzebuerger?",
+          "Es-tu luxembourgeois ?"
         ]
       ],
       "pieges": [
-        "Négation : <b>kee</b> (M) · <b>keng</b> (F) · <b>keen</b> devant une voyelle : keen Amerikaner.",
-        "<b>seng</b> Nationalitéit = sa nationalité (à lui) · <b>hir</b> = à elle."
+        "<b>keen</b> devant une voyelle ou n, d, t, z, h : Hien ass <b>keen</b> Däitschen.",
+        "<b>seng</b> Nationalitéit = à lui · <b>hir</b> Nationalitéit = à elle."
       ]
     }
   ],
   "flashcards": [
     {
-      "id": 1001,
+      "id": 2001,
       "unite": 1,
       "fr": "Luxembourgeois",
       "lu": "Lëtzebuerger",
-      "indice": "masculin",
-      "note": "Lëtzebuerg · féminin : Lëtzebuergerin"
+      "indice": "il",
+      "note": "Lëtzebuerg · féminin : Lëtzebuergerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1002,
+      "id": 2002,
       "unite": 1,
+      "fr": "Français",
+      "lu": "Fransous",
+      "indice": "il",
+      "note": "Frankräich · féminin : Fransousin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "Belge",
+      "lu": "Belsch",
+      "indice": "il",
+      "note": "Belsch · le même au féminin",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "Allemand",
+      "lu": "Däitschen",
+      "indice": "il",
+      "note": "Däitschland · féminin : Däitsch",
+      "attention": "Allemand = <b>Däitschen</b> · allemande = Däitsch."
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "Portugais",
+      "lu": "Portugis",
+      "indice": "il",
+      "note": "Portugal · féminin : Portugisin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "Italien",
+      "lu": "Italiener",
+      "indice": "il",
+      "note": "Italien · féminin : Italienerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "plus": true,
+      "fr": "Espagnol",
+      "lu": "Spuenier",
+      "indice": "il",
+      "note": "Spuenien · féminin : Spuenierin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "plus": true,
+      "fr": "Anglais",
+      "lu": "Englänner",
+      "indice": "il",
+      "note": "England · féminin : Englännerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "Néerlandais",
+      "lu": "Hollänner",
+      "indice": "il",
+      "note": "Holland · féminin : Hollännerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "Suisse",
+      "lu": "Schwäizer",
+      "indice": "il",
+      "note": "Schwäiz · féminin : Schwäizerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "Suédois",
+      "lu": "Schweed",
+      "indice": "il",
+      "note": "Schweden · féminin : Schweedin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "Américain",
+      "lu": "Amerikaner",
+      "indice": "il",
+      "note": "Amerika · féminin : Amerikanerin",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "Japonais",
+      "lu": "Japaner",
+      "indice": "il",
+      "note": "Japan · féminin : Japanerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "fr": "Chinois",
+      "lu": "Chinees",
+      "indice": "il",
+      "note": "China · féminin : Chineesin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
+      "fr": "Cap-Verdien",
+      "lu": "Kapverdianer",
+      "indice": "il",
+      "note": "Cap Vert · féminin : Kapverdianerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2016,
+      "unite": 1,
+      "plus": true,
+      "fr": "Ukrainien",
+      "lu": "Ukrainer",
+      "indice": "il",
+      "note": "Ukrain · féminin : Ukrainerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "plus": true,
+      "fr": "Iranien",
+      "lu": "Iraner",
+      "indice": "il",
+      "note": "Iran · féminin : Iranerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2018,
+      "unite": 1,
+      "plus": true,
+      "fr": "Australien",
+      "lu": "Australier",
+      "indice": "il",
+      "note": "Australien · féminin : Australierin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "plus": true,
+      "fr": "Argentin",
+      "lu": "Argentinier",
+      "indice": "il",
+      "note": "Argentinien · féminin : Argentinierin",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2020,
+      "unite": 1,
+      "plus": true,
+      "fr": "Nord-Coréen",
+      "lu": "Nordkoreaner",
+      "indice": "il",
+      "note": "Nordkorea · féminin : Nordkoreanerin",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2021,
+      "unite": 2,
       "fr": "Luxembourgeoise",
       "lu": "Lëtzebuergerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Lëtzebuerg · masculin : Lëtzebuerger",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1003,
-      "unite": 1,
-      "fr": "Français",
-      "lu": "Fransous",
-      "indice": "masculin",
-      "note": "Frankräich · féminin : Fransousin"
-    },
-    {
-      "id": 1004,
-      "unite": 1,
+      "id": 2022,
+      "unite": 2,
       "fr": "Française",
       "lu": "Fransousin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Frankräich · masculin : Fransous",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1005,
-      "unite": 1,
+      "id": 2023,
+      "unite": 2,
       "fr": "Belge",
       "lu": "Belsch",
-      "indice": "masculin et féminin",
-      "note": "Belsch · invariable : pas de -in",
-      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
+      "indice": "elle",
+      "note": "Belsch · ne change pas : pas de -in",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
     },
     {
-      "id": 1006,
-      "unite": 1,
-      "fr": "Allemand",
-      "lu": "Däitschen",
-      "indice": "masculin",
-      "note": "Däitschland · irrégulier · féminin : Däitsch",
-      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
-    },
-    {
-      "id": 1007,
-      "unite": 1,
+      "id": 2024,
+      "unite": 2,
       "fr": "Allemande",
       "lu": "Däitsch",
-      "indice": "féminin",
-      "note": "Däitschland · irrégulier · masculin : Däitschen",
-      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
+      "indice": "elle",
+      "note": "Däitschland · irrégulier : masculin Däitschen",
+      "attention": "Allemande = <b>Däitsch</b>, sans -in · allemand = Däitschen."
     },
     {
-      "id": 1008,
-      "unite": 1,
-      "fr": "Portugais",
-      "lu": "Portugis",
-      "indice": "masculin",
-      "note": "Portugal · féminin : Portugisin"
-    },
-    {
-      "id": 1009,
-      "unite": 1,
+      "id": 2025,
+      "unite": 2,
       "fr": "Portugaise",
       "lu": "Portugisin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Portugal · masculin : Portugis",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1010,
-      "unite": 2,
-      "fr": "Espagnol",
-      "lu": "Spuenier",
-      "indice": "masculin",
-      "note": "Spuenien · féminin : Spuenierin"
-    },
-    {
-      "id": 1011,
-      "unite": 2,
-      "fr": "Espagnole",
-      "lu": "Spuenierin",
-      "indice": "féminin",
-      "note": "Spuenien · masculin : Spuenier",
-      "attention": "Féminin = masculin + <b>-in</b>."
-    },
-    {
-      "id": 1012,
-      "unite": 2,
-      "fr": "Italien",
-      "lu": "Italiener",
-      "indice": "masculin",
-      "note": "Italien · féminin : Italienerin"
-    },
-    {
-      "id": 1013,
+      "id": 2026,
       "unite": 2,
       "fr": "Italienne",
       "lu": "Italienerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Italien · masculin : Italiener",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1014,
+      "id": 2027,
       "unite": 2,
-      "fr": "Anglais",
-      "lu": "Englänner",
-      "indice": "masculin",
-      "note": "England · féminin : Englännerin",
-      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+      "plus": true,
+      "fr": "Espagnole",
+      "lu": "Spuenierin",
+      "indice": "elle",
+      "note": "Spuenien · masculin : Spuenier",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1015,
+      "id": 2028,
       "unite": 2,
+      "plus": true,
       "fr": "Anglaise",
       "lu": "Englännerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "England · masculin : Englänner",
-      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1016,
+      "id": 2029,
       "unite": 2,
-      "fr": "Néerlandais",
-      "lu": "Hollänner",
-      "indice": "masculin",
-      "note": "Holland · féminin : Hollännerin"
-    },
-    {
-      "id": 1017,
-      "unite": 2,
+      "plus": true,
       "fr": "Néerlandaise",
       "lu": "Hollännerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Holland · masculin : Hollänner",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1018,
+      "id": 2030,
       "unite": 2,
-      "fr": "Suisse",
-      "lu": "Schwäizer",
-      "indice": "masculin",
-      "note": "Schwäiz · féminin : Schwäizerin"
-    },
-    {
-      "id": 1019,
-      "unite": 2,
+      "plus": true,
       "fr": "Suissesse",
       "lu": "Schwäizerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Schwäiz · masculin : Schwäizer",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1020,
-      "unite": 3,
-      "fr": "Américain",
-      "lu": "Amerikaner",
-      "indice": "masculin",
-      "note": "Amerika · féminin : Amerikanerin"
+      "id": 2031,
+      "unite": 2,
+      "plus": true,
+      "fr": "Suédoise",
+      "lu": "Schweedin",
+      "indice": "elle",
+      "note": "Schweden · masculin : Schweed",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1021,
-      "unite": 3,
+      "id": 2032,
+      "unite": 2,
+      "plus": true,
       "fr": "Américaine",
       "lu": "Amerikanerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Amerika · masculin : Amerikaner",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1022,
-      "unite": 3,
-      "fr": "Japonais",
-      "lu": "Japaner",
-      "indice": "masculin",
-      "note": "Japan · féminin : Japanerin"
-    },
-    {
-      "id": 1023,
-      "unite": 3,
+      "id": 2033,
+      "unite": 2,
+      "plus": true,
       "fr": "Japonaise",
       "lu": "Japanerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Japan · masculin : Japaner",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1024,
-      "unite": 3,
-      "fr": "Chinois",
-      "lu": "Chinees",
-      "indice": "masculin",
-      "note": "China · féminin : Chineesin"
-    },
-    {
-      "id": 1025,
-      "unite": 3,
+      "id": 2034,
+      "unite": 2,
+      "plus": true,
       "fr": "Chinoise",
       "lu": "Chineesin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "China · masculin : Chinees",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1026,
-      "unite": 3,
-      "fr": "Cap-Verdien",
-      "lu": "Kapverdianer",
-      "indice": "masculin",
-      "note": "Cap Vert · féminin : Kapverdianerin"
-    },
-    {
-      "id": 1027,
-      "unite": 3,
+      "id": 2035,
+      "unite": 2,
+      "plus": true,
       "fr": "Cap-Verdienne",
       "lu": "Kapverdianerin",
-      "indice": "féminin",
+      "indice": "elle",
       "note": "Cap Vert · masculin : Kapverdianer",
       "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2036,
+      "unite": 2,
+      "plus": true,
+      "fr": "Ukrainienne",
+      "lu": "Ukrainerin",
+      "indice": "elle",
+      "note": "Ukrain · masculin : Ukrainer",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2037,
+      "unite": 2,
+      "plus": true,
+      "fr": "Iranienne",
+      "lu": "Iranerin",
+      "indice": "elle",
+      "note": "Iran · masculin : Iraner",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2038,
+      "unite": 2,
+      "plus": true,
+      "fr": "Australienne",
+      "lu": "Australierin",
+      "indice": "elle",
+      "note": "Australien · masculin : Australier",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2039,
+      "unite": 2,
+      "plus": true,
+      "fr": "Argentine",
+      "lu": "Argentinierin",
+      "indice": "elle",
+      "note": "Argentinien · masculin : Argentinier",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2040,
+      "unite": 2,
+      "plus": true,
+      "fr": "Nord-Coréenne",
+      "lu": "Nordkoreanerin",
+      "indice": "elle",
+      "note": "Nordkorea · masculin : Nordkoreaner",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2041,
+      "unite": 3,
+      "fr": "la nationalité",
+      "lu": "Nationalitéit",
+      "article": "d'",
+      "note": "féminin · Wat ass seng Nationalitéit?",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2042,
+      "unite": 3,
+      "fr": "son, sa (à lui)",
+      "lu": "seng",
+      "note": "Wat ass seng Nationalitéit?",
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 3,
+      "fr": "son, sa (à elle)",
+      "lu": "hir",
+      "note": "Wat ass hir Nationalitéit?",
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
+    },
+    {
+      "id": 2044,
+      "unite": 3,
+      "fr": "pas un (masculin)",
+      "lu": "kee",
+      "note": "Hien ass kee Portugis.",
+      "attention": "Masculin devant une consonne (hors n, d, t, z, h) → <b>kee</b>."
+    },
+    {
+      "id": 2045,
+      "unite": 3,
+      "fr": "pas un (devant voyelle, n, d, t, z, h)",
+      "lu": "keen",
+      "note": "Hien ass keen Däitschen.",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h ; sinon <b>kee</b>."
+    },
+    {
+      "id": 2046,
+      "unite": 3,
+      "fr": "pas une (féminin)",
+      "lu": "keng",
+      "note": "Si ass keng Fransousin.",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2047,
+      "unite": 3,
+      "fr": "aussi",
+      "lu": "och",
+      "note": "D'Julie ass och Belsch.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2048,
+      "unite": 3,
+      "plus": true,
+      "fr": "quel, quelle (sorte de)",
+      "lu": "Wat fir eng",
+      "note": "Wat fir eng Nationalitéit huet hien?",
+      "attention": "<b>Wat fir eng Nationalitéit huet hien / si?</b> = De quelle nationalité … ?"
     }
   ],
   "quiz": [
     {
-      "id": 1001,
+      "id": 2001,
       "unite": 1,
-      "question": "Luxembourgeois - garçon",
-      "reponse": "e Lëtzebuerger",
+      "question": "Luxembourgeois (il)",
+      "reponse": "Lëtzebuerger",
       "distracteurs": [
-        "e Lëtzebuergerin",
-        "e Lëtzebuerg",
-        "e Lëtzebuergesch"
+        "Lëtzebuergerin",
+        "Lëtzebuerg",
+        "Lëtzebuergesch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1002,
+      "id": 2002,
       "unite": 1,
-      "question": "Luxembourgeoise - fille",
-      "reponse": "eng Lëtzebuergerin",
+      "question": "Français (il)",
+      "reponse": "Fransous",
       "distracteurs": [
-        "eng Lëtzebuerger",
-        "eng Lëtzebuerg",
-        "eng Lëtzebuergesch"
+        "Fransousin",
+        "Frankräich",
+        "Franséisch"
       ],
-      "attention": "Féminin = masculin + <b>-in</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1003,
+      "id": 2003,
       "unite": 1,
-      "question": "Français - garçon",
-      "reponse": "e Fransous",
+      "question": "Belge (il)",
+      "reponse": "Belsch",
       "distracteurs": [
-        "e Fransousin",
-        "e Frankräich",
-        "e Franséisch"
+        "Belschin",
+        "Belschesch",
+        "Franséisch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
     },
     {
-      "id": 1004,
+      "id": 2004,
       "unite": 1,
-      "question": "Française - fille",
-      "reponse": "eng Fransousin",
+      "question": "Allemand (il)",
+      "reponse": "Däitschen",
       "distracteurs": [
-        "eng Fransous",
-        "eng Frankräich",
-        "eng Franséisch"
+        "Däitsch",
+        "Däitschland",
+        "Däitscher"
       ],
-      "attention": "Féminin = masculin + <b>-in</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Allemand = <b>Däitschen</b> · allemande = Däitsch."
     },
     {
-      "id": 1005,
+      "id": 2005,
       "unite": 1,
-      "question": "Belge - garçon",
-      "reponse": "e Belsch",
+      "question": "Portugais (il)",
+      "reponse": "Portugis",
       "distracteurs": [
-        "e Franséisch",
-        "e Däitsch",
-        "e Belschesch"
+        "Portugisin",
+        "Portugal",
+        "Portugisesch"
       ],
-      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1006,
+      "id": 2006,
       "unite": 1,
-      "question": "Belge - fille",
-      "reponse": "eng Belsch",
+      "question": "Italien (il)",
+      "reponse": "Italiener",
       "distracteurs": [
-        "eng Franséisch",
-        "eng Däitsch",
-        "eng Belschesch"
+        "Italienerin",
+        "Italien",
+        "Italienesch"
       ],
-      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1007,
+      "id": 2007,
       "unite": 1,
-      "question": "Allemand - garçon",
-      "reponse": "en Däitschen",
+      "question": "Je suis allemand.",
+      "reponse": "Ech sinn Däitschen.",
       "distracteurs": [
-        "en Däitsch",
-        "en Däitschland",
-        "en Däitscher"
+        "Ech si Däitschen.",
+        "Ech sinn en Däitschen.",
+        "Ech sinn Däitsch."
       ],
-      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
     },
     {
-      "id": 1008,
+      "id": 2008,
       "unite": 1,
-      "question": "Allemande - fille",
-      "reponse": "eng Däitsch",
+      "question": "Je suis français.",
+      "reponse": "Ech si Fransous.",
       "distracteurs": [
-        "eng Däitschen",
-        "eng Däitschland",
-        "eng Däitscher"
+        "Ech sinn Fransous.",
+        "Ech si e Fransous.",
+        "Ech si Franséisch."
       ],
-      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>Ech si</b> : le n tombe devant cette consonne."
     },
     {
-      "id": 1009,
-      "unite": 2,
-      "question": "Espagnol - garçon",
-      "reponse": "e Spuenier",
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "question": "Espagnol (il)",
+      "reponse": "Spuenier",
       "distracteurs": [
-        "e Spuenierin",
-        "e Spuenien",
-        "e Spuenesch"
+        "Spuenierin",
+        "Spuenien",
+        "Spuenesch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1010,
-      "unite": 2,
-      "question": "Espagnole - fille",
-      "reponse": "eng Spuenierin",
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "question": "Anglais (il)",
+      "reponse": "Englänner",
       "distracteurs": [
-        "eng Spuenier",
-        "eng Spuenien",
-        "eng Spuenesch"
+        "Englännerin",
+        "England",
+        "Englesch"
       ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "question": "Néerlandais (il)",
+      "reponse": "Hollänner",
+      "distracteurs": [
+        "Hollännerin",
+        "Holland",
+        "Hollännesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "question": "Suisse (il)",
+      "reponse": "Schwäizer",
+      "distracteurs": [
+        "Schwäizerin",
+        "Schwäiz",
+        "Schwäizesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "question": "Suédois (il)",
+      "reponse": "Schweed",
+      "distracteurs": [
+        "Schweedin",
+        "Schweden",
+        "Schweedesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "question": "Américain (il)",
+      "reponse": "Amerikaner",
+      "distracteurs": [
+        "Amerikanerin",
+        "Amerika",
+        "Englesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1011,
-      "unite": 2,
-      "question": "Italien - garçon",
-      "reponse": "en Italiener",
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
+      "question": "Japonais (il)",
+      "reponse": "Japaner",
       "distracteurs": [
-        "en Italienerin",
-        "en Italien",
-        "en Italienesch"
+        "Japanerin",
+        "Japan",
+        "Japanesch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1012,
-      "unite": 2,
-      "question": "Italienne - fille",
-      "reponse": "eng Italienerin",
+      "id": 2016,
+      "unite": 1,
+      "plus": true,
+      "question": "Chinois (il)",
+      "reponse": "Chinees",
       "distracteurs": [
-        "eng Italiener",
-        "eng Italien",
-        "eng Italienesch"
+        "Chineesin",
+        "China",
+        "Chineesesch"
       ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "plus": true,
+      "question": "Cap-Verdien (il)",
+      "reponse": "Kapverdianer",
+      "distracteurs": [
+        "Kapverdianerin",
+        "Cap Vert",
+        "Portugisesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2018,
+      "unite": 1,
+      "plus": true,
+      "question": "Ukrainien (il)",
+      "reponse": "Ukrainer",
+      "distracteurs": [
+        "Ukrainerin",
+        "Ukrain",
+        "Ukrainesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "plus": true,
+      "question": "Iranien (il)",
+      "reponse": "Iraner",
+      "distracteurs": [
+        "Iranerin",
+        "Iran",
+        "Persesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2020,
+      "unite": 1,
+      "plus": true,
+      "question": "Australien (il)",
+      "reponse": "Australier",
+      "distracteurs": [
+        "Australierin",
+        "Australien",
+        "Englesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2021,
+      "unite": 1,
+      "plus": true,
+      "question": "Argentin (il)",
+      "reponse": "Argentinier",
+      "distracteurs": [
+        "Argentinierin",
+        "Argentinien",
+        "Spuenesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1013,
+      "id": 2022,
+      "unite": 1,
+      "plus": true,
+      "question": "Nord-Coréen (il)",
+      "reponse": "Nordkoreaner",
+      "distracteurs": [
+        "Nordkoreanerin",
+        "Nordkorea",
+        "Koreanesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2023,
       "unite": 2,
-      "question": "Anglais - garçon",
-      "reponse": "en Englänner",
+      "question": "Luxembourgeoise (elle)",
+      "reponse": "Lëtzebuergerin",
       "distracteurs": [
-        "en Englännerin",
-        "en England",
-        "en Englesch"
+        "Lëtzebuerger",
+        "Lëtzebuerg",
+        "Lëtzebuergesch"
       ],
-      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1014,
+      "id": 2024,
       "unite": 2,
-      "question": "Anglaise - fille",
-      "reponse": "eng Englännerin",
+      "question": "Française (elle)",
+      "reponse": "Fransousin",
       "distracteurs": [
-        "eng Englänner",
-        "eng England",
-        "eng Englesch"
+        "Fransous",
+        "Frankräich",
+        "Franséisch"
       ],
-      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1015,
+      "id": 2025,
       "unite": 2,
-      "question": "Néerlandais - garçon",
-      "reponse": "en Hollänner",
+      "question": "Belge (elle)",
+      "reponse": "Belsch",
       "distracteurs": [
-        "en Hollännerin",
-        "en Holland",
-        "en Hollännesch"
+        "Belschin",
+        "Belschesch",
+        "Franséisch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
     },
     {
-      "id": 1016,
+      "id": 2026,
       "unite": 2,
-      "question": "Néerlandaise - fille",
-      "reponse": "eng Hollännerin",
+      "question": "Allemande (elle)",
+      "reponse": "Däitsch",
       "distracteurs": [
-        "eng Hollänner",
-        "eng Holland",
-        "eng Hollännesch"
+        "Däitschin",
+        "Däitschen",
+        "Däitschland"
       ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Allemande = <b>Däitsch</b>, sans -in · allemand = Däitschen."
+    },
+    {
+      "id": 2027,
+      "unite": 2,
+      "question": "Portugaise (elle)",
+      "reponse": "Portugisin",
+      "distracteurs": [
+        "Portugis",
+        "Portugal",
+        "Portugisesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1017,
-      "unite": 3,
-      "question": "Américain - garçon",
-      "reponse": "en Amerikaner",
+      "id": 2028,
+      "unite": 2,
+      "question": "Italienne (elle)",
+      "reponse": "Italienerin",
       "distracteurs": [
-        "en Amerikanerin",
-        "en Amerika",
-        "en Englesch"
+        "Italiener",
+        "Italien",
+        "Italienesch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
-    },
-    {
-      "id": 1018,
-      "unite": 3,
-      "question": "Américaine - fille",
-      "reponse": "eng Amerikanerin",
-      "distracteurs": [
-        "eng Amerikaner",
-        "eng Amerika",
-        "eng Englesch"
-      ],
+      "label": "CHOISIS LA NATIONALITÉ",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1019,
-      "unite": 3,
-      "question": "Japonais - garçon",
-      "reponse": "e Japaner",
+      "id": 2029,
+      "unite": 2,
+      "question": "Elle est belge.",
+      "reponse": "Si ass Belsch.",
       "distracteurs": [
-        "e Japanerin",
-        "e Japan",
-        "e Japanesch"
+        "Si ass Belschin.",
+        "Hien ass Belsch.",
+        "Si ass eng Belsch."
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
     },
     {
-      "id": 1020,
-      "unite": 3,
-      "question": "Japonaise - fille",
-      "reponse": "eng Japanerin",
+      "id": 2030,
+      "unite": 2,
+      "question": "Je suis française.",
+      "reponse": "Ech si Fransousin.",
       "distracteurs": [
-        "eng Japaner",
-        "eng Japan",
-        "eng Japanesch"
+        "Ech sinn Fransousin.",
+        "Ech si Fransous.",
+        "Ech si eng Fransousin."
       ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>Ech si</b> : le n tombe devant cette consonne."
+    },
+    {
+      "id": 2031,
+      "unite": 2,
+      "plus": true,
+      "question": "Espagnole (elle)",
+      "reponse": "Spuenierin",
+      "distracteurs": [
+        "Spuenier",
+        "Spuenien",
+        "Spuenesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1021,
-      "unite": 3,
-      "question": "Chinois - garçon",
-      "reponse": "e Chinees",
+      "id": 2032,
+      "unite": 2,
+      "plus": true,
+      "question": "Anglaise (elle)",
+      "reponse": "Englännerin",
       "distracteurs": [
-        "e Chineesin",
-        "e China",
-        "e Chineesesch"
+        "Englänner",
+        "England",
+        "Englesch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
-    },
-    {
-      "id": 1022,
-      "unite": 3,
-      "question": "Chinoise - fille",
-      "reponse": "eng Chineesin",
-      "distracteurs": [
-        "eng Chinees",
-        "eng China",
-        "eng Chineesesch"
-      ],
+      "label": "CHOISIS LA NATIONALITÉ",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1023,
-      "unite": 3,
-      "question": "Cap-Verdien - garçon",
-      "reponse": "e Kapverdianer",
+      "id": 2033,
+      "unite": 2,
+      "plus": true,
+      "question": "Néerlandaise (elle)",
+      "reponse": "Hollännerin",
       "distracteurs": [
-        "e Kapverdianerin",
-        "e Cap Vert",
-        "e Portugisesch"
+        "Hollänner",
+        "Holland",
+        "Hollännesch"
       ],
-      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1024,
-      "unite": 3,
-      "question": "Cap-Verdienne - fille",
-      "reponse": "eng Kapverdianerin",
+      "id": 2034,
+      "unite": 2,
+      "plus": true,
+      "question": "Suissesse (elle)",
+      "reponse": "Schwäizerin",
       "distracteurs": [
-        "eng Kapverdianer",
-        "eng Cap Vert",
-        "eng Portugisesch"
+        "Schwäizer",
+        "Schwäiz",
+        "Schwäizesch"
       ],
+      "label": "CHOISIS LA NATIONALITÉ",
       "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2035,
+      "unite": 2,
+      "plus": true,
+      "question": "Suédoise (elle)",
+      "reponse": "Schweedin",
+      "distracteurs": [
+        "Schweed",
+        "Schweden",
+        "Schweedesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2036,
+      "unite": 2,
+      "plus": true,
+      "question": "Américaine (elle)",
+      "reponse": "Amerikanerin",
+      "distracteurs": [
+        "Amerikaner",
+        "Amerika",
+        "Englesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2037,
+      "unite": 2,
+      "plus": true,
+      "question": "Japonaise (elle)",
+      "reponse": "Japanerin",
+      "distracteurs": [
+        "Japaner",
+        "Japan",
+        "Japanesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2038,
+      "unite": 2,
+      "plus": true,
+      "question": "Chinoise (elle)",
+      "reponse": "Chineesin",
+      "distracteurs": [
+        "Chinees",
+        "China",
+        "Chineesesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2039,
+      "unite": 2,
+      "plus": true,
+      "question": "Cap-Verdienne (elle)",
+      "reponse": "Kapverdianerin",
+      "distracteurs": [
+        "Kapverdianer",
+        "Cap Vert",
+        "Portugisesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2040,
+      "unite": 2,
+      "plus": true,
+      "question": "Ukrainienne (elle)",
+      "reponse": "Ukrainerin",
+      "distracteurs": [
+        "Ukrainer",
+        "Ukrain",
+        "Ukrainesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2041,
+      "unite": 2,
+      "plus": true,
+      "question": "Iranienne (elle)",
+      "reponse": "Iranerin",
+      "distracteurs": [
+        "Iraner",
+        "Iran",
+        "Persesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2042,
+      "unite": 2,
+      "plus": true,
+      "question": "Australienne (elle)",
+      "reponse": "Australierin",
+      "distracteurs": [
+        "Australier",
+        "Australien",
+        "Englesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "plus": true,
+      "question": "Argentine (elle)",
+      "reponse": "Argentinierin",
+      "distracteurs": [
+        "Argentinier",
+        "Argentinien",
+        "Spuenesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2044,
+      "unite": 2,
+      "plus": true,
+      "question": "Nord-Coréenne (elle)",
+      "reponse": "Nordkoreanerin",
+      "distracteurs": [
+        "Nordkoreaner",
+        "Nordkorea",
+        "Koreanesch"
+      ],
+      "label": "CHOISIS LA NATIONALITÉ",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2045,
+      "unite": 3,
+      "question": "Il n'est pas portugais.",
+      "reponse": "Hien ass kee Portugis.",
+      "distracteurs": [
+        "Hien ass keen Portugis.",
+        "Hien ass keng Portugis.",
+        "Hien ass e Portugis."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Masculin devant une consonne (hors n, d, t, z, h) → <b>kee</b>."
+    },
+    {
+      "id": 2046,
+      "unite": 3,
+      "question": "Il n'est pas allemand.",
+      "reponse": "Hien ass keen Däitschen.",
+      "distracteurs": [
+        "Hien ass kee Däitschen.",
+        "Hien ass keng Däitschen.",
+        "Hien ass keen Däitsch."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h ; sinon <b>kee</b>."
+    },
+    {
+      "id": 2047,
+      "unite": 3,
+      "question": "Elle n'est pas française.",
+      "reponse": "Si ass keng Fransousin.",
+      "distracteurs": [
+        "Si ass kee Fransousin.",
+        "Si ass keen Fransousin.",
+        "Si ass keng Fransous."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2048,
+      "unite": 3,
+      "question": "Est-il portugais ?",
+      "reponse": "Ass hie Portugis?",
+      "distracteurs": [
+        "Ass si Portugis?",
+        "Ass hie Portugisin?",
+        "Ass hie Portugal?"
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>hien</b> → <b>hie</b> devant une consonne (hors n, d, t, z, h) : Ass hie Portugis?"
+    },
+    {
+      "id": 2049,
+      "unite": 3,
+      "question": "Es-tu luxembourgeois ?",
+      "reponse": "Bass du Lëtzebuerger?",
+      "distracteurs": [
+        "Ass du Lëtzebuerger?",
+        "Sidd Dir Lëtzebuerger?",
+        "Bass du Lëtzebuergesch?"
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2050,
+      "unite": 3,
+      "question": "Êtes-vous belge ?",
+      "reponse": "Sidd Dir Belsch?",
+      "distracteurs": [
+        "Bass du Belsch?",
+        "Ass Dir Belsch?",
+        "Sidd Dir Belschin?"
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
+    },
+    {
+      "id": 2051,
+      "unite": 3,
+      "question": "Quelle est sa nationalité ? (à lui)",
+      "reponse": "Wat ass seng Nationalitéit?",
+      "distracteurs": [
+        "Wat ass hir Nationalitéit?",
+        "Wat ass säin Nationalitéit?",
+        "Wat ass hien Nationalitéit?"
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
+    },
+    {
+      "id": 2052,
+      "unite": 3,
+      "question": "Quelle est sa nationalité ? (à elle)",
+      "reponse": "Wat ass hir Nationalitéit?",
+      "distracteurs": [
+        "Wat ass seng Nationalitéit?",
+        "Wat ass si Nationalitéit?",
+        "Wat ass hiren Nationalitéit?"
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
+    },
+    {
+      "id": 2053,
+      "unite": 3,
+      "plus": true,
+      "question": "Il n'est pas espagnol.",
+      "reponse": "Hien ass kee Spuenier.",
+      "distracteurs": [
+        "Hien ass keen Spuenier.",
+        "Hien ass keng Spuenier.",
+        "Hien ass kee Spuenierin."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Masculin devant une consonne (hors n, d, t, z, h) → <b>kee</b>."
+    },
+    {
+      "id": 2054,
+      "unite": 3,
+      "plus": true,
+      "question": "Il n'est pas anglais.",
+      "reponse": "Hien ass keen Englänner.",
+      "distracteurs": [
+        "Hien ass kee Englänner.",
+        "Hien ass keng Englänner.",
+        "Hien ass keen Englännerin."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h ; sinon <b>kee</b>."
+    },
+    {
+      "id": 2055,
+      "unite": 3,
+      "plus": true,
+      "question": "Elle n'est pas italienne.",
+      "reponse": "Si ass keng Italienerin.",
+      "distracteurs": [
+        "Si ass kee Italienerin.",
+        "Si ass keen Italienerin.",
+        "Si ass keng Italiener."
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2056,
+      "unite": 3,
+      "plus": true,
+      "question": "De quelle nationalité est-il ?",
+      "reponse": "Wat fir eng Nationalitéit huet hien?",
+      "distracteurs": [
+        "Wat fir eng Nationalitéit huet si?",
+        "Wat fir eng Nationalitéit ass hien?",
+        "Wat ass hir Nationalitéit?"
+      ],
+      "label": "CHOISIS LA BONNE PHRASE",
+      "attention": "<b>Wat fir eng Nationalitéit huet hien / si?</b> = De quelle nationalité … ?"
     }
   ],
   "trous": [
     {
-      "id": 1001,
+      "id": 2001,
       "unite": 1,
       "fr": "Luc est luxembourgeois.",
       "avant": "De Luc ass",
@@ -609,26 +1380,11 @@
         "Lëtzebuergesch",
         "Lëtzebuerg"
       ],
-      "note": "e Lëtzebuerger = un Luxembourgeois"
+      "note": "Pas d'article : De Luc ass Lëtzebuerger.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1002,
-      "unite": 1,
-      "fr": "Anne est luxembourgeoise.",
-      "avant": "D'Anne ass",
-      "trou": "Lëtzebuergerin",
-      "apres": ".",
-      "choix": [
-        "Lëtzebuerger",
-        "Lëtzebuergerin",
-        "Lëtzebuergesch",
-        "Lëtzebuerg"
-      ],
-      "note": "eng Lëtzebuergerin = une Luxembourgeoise",
-      "attention": "Féminin = masculin + <b>-in</b>."
-    },
-    {
-      "id": 1003,
+      "id": 2002,
       "unite": 1,
       "fr": "Marc est français.",
       "avant": "De Marc ass",
@@ -640,26 +1396,11 @@
         "Franséisch",
         "Frankräich"
       ],
-      "note": "e Fransous = un Français"
+      "note": "Pas d'article : De Marc ass Fransous.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1004,
-      "unite": 1,
-      "fr": "Claire est française.",
-      "avant": "D'Claire ass",
-      "trou": "Fransousin",
-      "apres": ".",
-      "choix": [
-        "Fransous",
-        "Fransousin",
-        "Franséisch",
-        "Frankräich"
-      ],
-      "note": "eng Fransousin = une Française",
-      "attention": "Féminin = masculin + <b>-in</b>."
-    },
-    {
-      "id": 1005,
+      "id": 2003,
       "unite": 1,
       "fr": "Philippe est belge.",
       "avant": "De Philippe ass",
@@ -667,31 +1408,15 @@
       "apres": ".",
       "choix": [
         "Belsch",
-        "Franséisch",
-        "Däitsch",
-        "Belschesch"
+        "Belschin",
+        "Belschesch",
+        "Franséisch"
       ],
-      "note": "e Belsch = un Belge",
-      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
+      "note": "Pas d'article : De Philippe ass Belsch.",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
     },
     {
-      "id": 1006,
-      "unite": 1,
-      "fr": "Julie est belge.",
-      "avant": "D'Julie ass",
-      "trou": "Belsch",
-      "apres": ".",
-      "choix": [
-        "Belsch",
-        "Franséisch",
-        "Däitsch",
-        "Belschesch"
-      ],
-      "note": "eng Belsch = une Belge",
-      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
-    },
-    {
-      "id": 1007,
+      "id": 2004,
       "unite": 1,
       "fr": "Hans est allemand.",
       "avant": "Den Hans ass",
@@ -703,59 +1428,28 @@
         "Däitscher",
         "Däitschland"
       ],
-      "note": "en Däitschen = un Allemand",
-      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
+      "note": "Pas d'article : Den Hans ass Däitschen.",
+      "attention": "Allemand = <b>Däitschen</b> · allemande = Däitsch."
     },
     {
-      "id": 1008,
+      "id": 2005,
       "unite": 1,
-      "fr": "Anna est allemande.",
-      "avant": "D'Anna ass",
-      "trou": "Däitsch",
+      "fr": "Ronaldo est portugais.",
+      "avant": "De Ronaldo ass",
+      "trou": "Portugis",
       "apres": ".",
       "choix": [
-        "Däitschen",
-        "Däitsch",
-        "Däitscher",
-        "Däitschland"
+        "Portugis",
+        "Portugisin",
+        "Portugisesch",
+        "Portugal"
       ],
-      "note": "eng Däitsch = une Allemande",
-      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
+      "note": "Pas d'article : De Ronaldo ass Portugis.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1009,
-      "unite": 2,
-      "fr": "Carlos est espagnol.",
-      "avant": "De Carlos ass",
-      "trou": "Spuenier",
-      "apres": ".",
-      "choix": [
-        "Spuenier",
-        "Spuenierin",
-        "Spuenesch",
-        "Spuenien"
-      ],
-      "note": "e Spuenier = un Espagnol"
-    },
-    {
-      "id": 1010,
-      "unite": 2,
-      "fr": "Sofia est espagnole.",
-      "avant": "D'Sofia ass",
-      "trou": "Spuenierin",
-      "apres": ".",
-      "choix": [
-        "Spuenier",
-        "Spuenierin",
-        "Spuenesch",
-        "Spuenien"
-      ],
-      "note": "eng Spuenierin = une Espagnole",
-      "attention": "Féminin = masculin + <b>-in</b>."
-    },
-    {
-      "id": 1011,
-      "unite": 2,
+      "id": 2006,
+      "unite": 1,
       "fr": "Marco est italien.",
       "avant": "De Marco ass",
       "trou": "Italiener",
@@ -766,27 +1460,62 @@
         "Italienesch",
         "Italien"
       ],
-      "note": "en Italiener = un Italien"
+      "note": "Pas d'article : De Marco ass Italiener.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1012,
-      "unite": 2,
-      "fr": "Giulia est italienne.",
-      "avant": "D'Giulia ass",
-      "trou": "Italienerin",
+      "id": 2007,
+      "unite": 1,
+      "fr": "Je suis français.",
+      "avant": "Ech",
+      "trou": "si",
+      "apres": "Fransous.",
+      "choix": [
+        "si",
+        "sinn",
+        "ass",
+        "bass"
+      ],
+      "note": "Le n tombe devant F → Ech si Fransous.",
+      "attention": "<b>Ech si</b> : le n tombe devant cette consonne."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "Je suis allemand.",
+      "avant": "Ech",
+      "trou": "sinn",
+      "apres": "Däitschen.",
+      "choix": [
+        "si",
+        "sinn",
+        "ass",
+        "bass"
+      ],
+      "note": "D garde le n → Ech sinn Däitschen.",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "Carlos est espagnol.",
+      "avant": "De Carlos ass",
+      "trou": "Spuenier",
       "apres": ".",
       "choix": [
-        "Italiener",
-        "Italienerin",
-        "Italienesch",
-        "Italien"
+        "Spuenier",
+        "Spuenierin",
+        "Spuenesch",
+        "Spuenien"
       ],
-      "note": "eng Italienerin = une Italienne",
-      "attention": "Féminin = masculin + <b>-in</b>."
+      "note": "Pas d'article : De Carlos ass Spuenier.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1013,
-      "unite": 2,
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
       "fr": "Harry est anglais.",
       "avant": "Den Harry ass",
       "trou": "Englänner",
@@ -797,30 +1526,32 @@
         "Englesch",
         "England"
       ],
-      "note": "en Englänner = un Anglais",
-      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+      "note": "Pas d'article : Den Harry ass Englänner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1014,
-      "unite": 2,
-      "fr": "Emily est anglaise.",
-      "avant": "D'Emily ass",
-      "trou": "Englännerin",
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "Peter est néerlandais.",
+      "avant": "De Peter ass",
+      "trou": "Hollänner",
       "apres": ".",
       "choix": [
-        "Englänner",
-        "Englännerin",
-        "Englesch",
-        "England"
+        "Hollänner",
+        "Hollännerin",
+        "Hollännesch",
+        "Holland"
       ],
-      "note": "eng Englännerin = une Anglaise",
-      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+      "note": "Pas d'article : De Peter ass Hollänner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1015,
-      "unite": 2,
-      "fr": "Paul est suisse.",
-      "avant": "De Paul ass",
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "Nico est suisse.",
+      "avant": "Den Nico ass",
       "trou": "Schwäizer",
       "apres": ".",
       "choix": [
@@ -829,27 +1560,30 @@
         "Schwäizesch",
         "Schwäiz"
       ],
-      "note": "e Schwäizer = un Suisse"
+      "note": "Pas d'article : Den Nico ass Schwäizer.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1016,
-      "unite": 2,
-      "fr": "Laura est suisse.",
-      "avant": "D'Laura ass",
-      "trou": "Schwäizerin",
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "Erik est suédois.",
+      "avant": "Den Erik ass",
+      "trou": "Schweed",
       "apres": ".",
       "choix": [
-        "Schwäizer",
-        "Schwäizerin",
-        "Schwäizesch",
-        "Schwäiz"
+        "Schweed",
+        "Schweedin",
+        "Schweedesch",
+        "Schweden"
       ],
-      "note": "eng Schwäizerin = une Suissesse",
-      "attention": "Féminin = masculin + <b>-in</b>."
+      "note": "Pas d'article : Den Erik ass Schweed.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1017,
-      "unite": 3,
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
       "fr": "John est américain.",
       "avant": "De John ass",
       "trou": "Amerikaner",
@@ -860,43 +1594,13 @@
         "Englesch",
         "Amerika"
       ],
-      "note": "en Amerikaner = un Américain"
+      "note": "Pas d'article : De John ass Amerikaner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1018,
-      "unite": 3,
-      "fr": "Jessica est américaine.",
-      "avant": "D'Jessica ass",
-      "trou": "Amerikanerin",
-      "apres": ".",
-      "choix": [
-        "Amerikaner",
-        "Amerikanerin",
-        "Englesch",
-        "Amerika"
-      ],
-      "note": "eng Amerikanerin = une Américaine",
-      "attention": "Féminin = masculin + <b>-in</b>."
-    },
-    {
-      "id": 1019,
-      "unite": 3,
-      "fr": "Yuki est japonaise.",
-      "avant": "D'Yuki ass",
-      "trou": "Japanerin",
-      "apres": ".",
-      "choix": [
-        "Japaner",
-        "Japanerin",
-        "Japanesch",
-        "Japan"
-      ],
-      "note": "eng Japanerin = une Japonaise",
-      "attention": "Féminin = masculin + <b>-in</b>."
-    },
-    {
-      "id": 1020,
-      "unite": 3,
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
       "fr": "Ken est japonais.",
       "avant": "De Ken ass",
       "trou": "Japaner",
@@ -907,11 +1611,30 @@
         "Japanesch",
         "Japan"
       ],
-      "note": "e Japaner = un Japonais"
+      "note": "Pas d'article : De Ken ass Japaner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1021,
-      "unite": 3,
+      "id": 2016,
+      "unite": 1,
+      "plus": true,
+      "fr": "Li est chinois.",
+      "avant": "De Li ass",
+      "trou": "Chinees",
+      "apres": ".",
+      "choix": [
+        "Chinees",
+        "Chineesin",
+        "Chineesesch",
+        "China"
+      ],
+      "note": "Pas d'article : De Li ass Chinees.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "plus": true,
       "fr": "José est cap-verdien.",
       "avant": "De José ass",
       "trou": "Kapverdianer",
@@ -922,389 +1645,1071 @@
         "Portugisesch",
         "Cap Vert"
       ],
-      "note": "e Kapverdianer = un Cap-Verdien"
+      "note": "Pas d'article : De José ass Kapverdianer.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1022,
-      "unite": 3,
+      "id": 2018,
+      "unite": 1,
+      "plus": true,
+      "fr": "Oleh est ukrainien.",
+      "avant": "Den Oleh ass",
+      "trou": "Ukrainer",
+      "apres": ".",
+      "choix": [
+        "Ukrainer",
+        "Ukrainerin",
+        "Ukrainesch",
+        "Ukrain"
+      ],
+      "note": "Pas d'article : Den Oleh ass Ukrainer.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "plus": true,
+      "fr": "Ali est iranien.",
+      "avant": "Den Ali ass",
+      "trou": "Iraner",
+      "apres": ".",
+      "choix": [
+        "Iraner",
+        "Iranerin",
+        "Persesch",
+        "Iran"
+      ],
+      "note": "Pas d'article : Den Ali ass Iraner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2020,
+      "unite": 1,
+      "plus": true,
+      "fr": "Jack est australien.",
+      "avant": "De Jack ass",
+      "trou": "Australier",
+      "apres": ".",
+      "choix": [
+        "Australier",
+        "Australierin",
+        "Englesch",
+        "Australien"
+      ],
+      "note": "Pas d'article : De Jack ass Australier.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2021,
+      "unite": 1,
+      "plus": true,
+      "fr": "Messi est argentin.",
+      "avant": "De Messi ass",
+      "trou": "Argentinier",
+      "apres": ".",
+      "choix": [
+        "Argentinier",
+        "Argentinierin",
+        "Spuenesch",
+        "Argentinien"
+      ],
+      "note": "Pas d'article : De Messi ass Argentinier.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2022,
+      "unite": 1,
+      "plus": true,
+      "fr": "Kim est nord-coréen.",
+      "avant": "De Kim ass",
+      "trou": "Nordkoreaner",
+      "apres": ".",
+      "choix": [
+        "Nordkoreaner",
+        "Nordkoreanerin",
+        "Koreanesch",
+        "Nordkorea"
+      ],
+      "note": "Pas d'article : De Kim ass Nordkoreaner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2023,
+      "unite": 2,
+      "fr": "Anne est luxembourgeoise.",
+      "avant": "D'Anne ass",
+      "trou": "Lëtzebuergerin",
+      "apres": ".",
+      "choix": [
+        "Lëtzebuergerin",
+        "Lëtzebuerger",
+        "Lëtzebuergesch",
+        "Lëtzebuerg"
+      ],
+      "note": "D'Anne ass Lëtzebuergerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2024,
+      "unite": 2,
+      "fr": "Claire est française.",
+      "avant": "D'Claire ass",
+      "trou": "Fransousin",
+      "apres": ".",
+      "choix": [
+        "Fransousin",
+        "Fransous",
+        "Franséisch",
+        "Frankräich"
+      ],
+      "note": "D'Claire ass Fransousin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2025,
+      "unite": 2,
+      "fr": "Julie est belge.",
+      "avant": "D'Julie ass",
+      "trou": "Belsch",
+      "apres": ".",
+      "choix": [
+        "Belsch",
+        "Belschin",
+        "Belschesch",
+        "Franséisch"
+      ],
+      "note": "D'Julie ass Belsch.",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
+    },
+    {
+      "id": 2026,
+      "unite": 2,
+      "fr": "Anna est allemande.",
+      "avant": "D'Anna ass",
+      "trou": "Däitsch",
+      "apres": ".",
+      "choix": [
+        "Däitsch",
+        "Däitschen",
+        "Däitschin",
+        "Däitschland"
+      ],
+      "note": "D'Anna ass Däitsch.",
+      "attention": "Allemande = <b>Däitsch</b>, sans -in · allemand = Däitschen."
+    },
+    {
+      "id": 2027,
+      "unite": 2,
+      "fr": "Maria est portugaise.",
+      "avant": "D'Maria ass",
+      "trou": "Portugisin",
+      "apres": ".",
+      "choix": [
+        "Portugisin",
+        "Portugis",
+        "Portugisesch",
+        "Portugal"
+      ],
+      "note": "D'Maria ass Portugisin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2028,
+      "unite": 2,
+      "fr": "Giulia est italienne.",
+      "avant": "D'Giulia ass",
+      "trou": "Italienerin",
+      "apres": ".",
+      "choix": [
+        "Italienerin",
+        "Italiener",
+        "Italienesch",
+        "Italien"
+      ],
+      "note": "D'Giulia ass Italienerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2029,
+      "unite": 2,
+      "fr": "Il est allemand, elle est allemande.",
+      "avant": "Hien ass Däitschen, si ass",
+      "trou": "Däitsch",
+      "apres": ".",
+      "choix": [
+        "Däitsch",
+        "Däitschen",
+        "Däitschin",
+        "Däitschland"
+      ],
+      "note": "Allemande = Däitsch : pas de -in.",
+      "attention": "Allemande = <b>Däitsch</b>, sans -in · allemand = Däitschen."
+    },
+    {
+      "id": 2030,
+      "unite": 2,
+      "plus": true,
+      "fr": "Sofia est espagnole.",
+      "avant": "D'Sofia ass",
+      "trou": "Spuenierin",
+      "apres": ".",
+      "choix": [
+        "Spuenierin",
+        "Spuenier",
+        "Spuenesch",
+        "Spuenien"
+      ],
+      "note": "D'Sofia ass Spuenierin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2031,
+      "unite": 2,
+      "plus": true,
+      "fr": "Emily est anglaise.",
+      "avant": "D'Emily ass",
+      "trou": "Englännerin",
+      "apres": ".",
+      "choix": [
+        "Englännerin",
+        "Englänner",
+        "Englesch",
+        "England"
+      ],
+      "note": "D'Emily ass Englännerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2032,
+      "unite": 2,
+      "plus": true,
+      "fr": "Sanne est néerlandaise.",
+      "avant": "D'Sanne ass",
+      "trou": "Hollännerin",
+      "apres": ".",
+      "choix": [
+        "Hollännerin",
+        "Hollänner",
+        "Hollännesch",
+        "Holland"
+      ],
+      "note": "D'Sanne ass Hollännerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2033,
+      "unite": 2,
+      "plus": true,
+      "fr": "Laura est suissesse.",
+      "avant": "D'Laura ass",
+      "trou": "Schwäizerin",
+      "apres": ".",
+      "choix": [
+        "Schwäizerin",
+        "Schwäizer",
+        "Schwäizesch",
+        "Schwäiz"
+      ],
+      "note": "D'Laura ass Schwäizerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2034,
+      "unite": 2,
+      "plus": true,
+      "fr": "Astrid est suédoise.",
+      "avant": "D'Astrid ass",
+      "trou": "Schweedin",
+      "apres": ".",
+      "choix": [
+        "Schweedin",
+        "Schweed",
+        "Schweedesch",
+        "Schweden"
+      ],
+      "note": "D'Astrid ass Schweedin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2035,
+      "unite": 2,
+      "plus": true,
+      "fr": "Jessica est américaine.",
+      "avant": "D'Jessica ass",
+      "trou": "Amerikanerin",
+      "apres": ".",
+      "choix": [
+        "Amerikanerin",
+        "Amerikaner",
+        "Englesch",
+        "Amerika"
+      ],
+      "note": "D'Jessica ass Amerikanerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2036,
+      "unite": 2,
+      "plus": true,
+      "fr": "Yuki est japonaise.",
+      "avant": "D'Yuki ass",
+      "trou": "Japanerin",
+      "apres": ".",
+      "choix": [
+        "Japanerin",
+        "Japaner",
+        "Japanesch",
+        "Japan"
+      ],
+      "note": "D'Yuki ass Japanerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2037,
+      "unite": 2,
+      "plus": true,
+      "fr": "Mei est chinoise.",
+      "avant": "D'Mei ass",
+      "trou": "Chineesin",
+      "apres": ".",
+      "choix": [
+        "Chineesin",
+        "Chinees",
+        "Chineesesch",
+        "China"
+      ],
+      "note": "D'Mei ass Chineesin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2038,
+      "unite": 2,
+      "plus": true,
       "fr": "Marta est cap-verdienne.",
       "avant": "D'Marta ass",
       "trou": "Kapverdianerin",
       "apres": ".",
       "choix": [
-        "Kapverdianer",
         "Kapverdianerin",
+        "Kapverdianer",
         "Portugisesch",
         "Cap Vert"
       ],
-      "note": "eng Kapverdianerin = une Cap-Verdienne",
+      "note": "D'Marta ass Kapverdianerin.",
       "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1023,
+      "id": 2039,
+      "unite": 2,
+      "plus": true,
+      "fr": "Olena est ukrainienne.",
+      "avant": "D'Olena ass",
+      "trou": "Ukrainerin",
+      "apres": ".",
+      "choix": [
+        "Ukrainerin",
+        "Ukrainer",
+        "Ukrainesch",
+        "Ukrain"
+      ],
+      "note": "D'Olena ass Ukrainerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2040,
+      "unite": 2,
+      "plus": true,
+      "fr": "Sara est iranienne.",
+      "avant": "D'Sara ass",
+      "trou": "Iranerin",
+      "apres": ".",
+      "choix": [
+        "Iranerin",
+        "Iraner",
+        "Persesch",
+        "Iran"
+      ],
+      "note": "D'Sara ass Iranerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2041,
+      "unite": 2,
+      "plus": true,
+      "fr": "Olivia est australienne.",
+      "avant": "D'Olivia ass",
+      "trou": "Australierin",
+      "apres": ".",
+      "choix": [
+        "Australierin",
+        "Australier",
+        "Englesch",
+        "Australien"
+      ],
+      "note": "D'Olivia ass Australierin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2042,
+      "unite": 2,
+      "plus": true,
+      "fr": "Cristina est argentine.",
+      "avant": "D'Cristina ass",
+      "trou": "Argentinierin",
+      "apres": ".",
+      "choix": [
+        "Argentinierin",
+        "Argentinier",
+        "Spuenesch",
+        "Argentinien"
+      ],
+      "note": "D'Cristina ass Argentinierin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "plus": true,
+      "fr": "Ji-a est nord-coréenne.",
+      "avant": "D'Ji-a ass",
+      "trou": "Nordkoreanerin",
+      "apres": ".",
+      "choix": [
+        "Nordkoreanerin",
+        "Nordkoreaner",
+        "Koreanesch",
+        "Nordkorea"
+      ],
+      "note": "D'Ji-a ass Nordkoreanerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2044,
       "unite": 3,
-      "fr": "Ken n'est pas chinois.",
-      "avant": "De Ken ass",
+      "fr": "Il n'est pas portugais.",
+      "avant": "Hien ass",
+      "trou": "kee",
+      "apres": "Portugis.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "e"
+      ],
+      "note": "Masculin devant P → kee",
+      "attention": "Masculin devant une consonne (hors n, d, t, z, h) → <b>kee</b>."
+    },
+    {
+      "id": 2045,
+      "unite": 3,
+      "fr": "Il n'est pas italien.",
+      "avant": "Hien ass",
+      "trou": "keen",
+      "apres": "Italiener.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "en"
+      ],
+      "note": "Voyelle → keen",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h ; sinon <b>kee</b>."
+    },
+    {
+      "id": 2046,
+      "unite": 3,
+      "fr": "Il n'est pas allemand.",
+      "avant": "Hien ass",
+      "trou": "keen",
+      "apres": "Däitschen.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "en"
+      ],
+      "note": "D garde le n → keen",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h ; sinon <b>kee</b>."
+    },
+    {
+      "id": 2047,
+      "unite": 3,
+      "fr": "Elle n'est pas française.",
+      "avant": "Si ass",
+      "trou": "keng",
+      "apres": "Fransousin.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "eng"
+      ],
+      "note": "Féminin → keng",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2048,
+      "unite": 3,
+      "fr": "Quelle est sa nationalité ? (à elle)",
+      "avant": "Wat ass",
+      "trou": "hir",
+      "apres": "Nationalitéit?",
+      "choix": [
+        "hir",
+        "seng",
+        "si",
+        "hien"
+      ],
+      "note": "À elle → hir",
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
+    },
+    {
+      "id": 2049,
+      "unite": 3,
+      "fr": "Quelle est sa nationalité ? (à lui)",
+      "avant": "Wat ass",
+      "trou": "seng",
+      "apres": "Nationalitéit?",
+      "choix": [
+        "seng",
+        "hir",
+        "hien",
+        "säin"
+      ],
+      "note": "À lui → seng",
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
+    },
+    {
+      "id": 2050,
+      "unite": 3,
+      "fr": "Es-tu belge ?",
+      "avant": "",
+      "trou": "Bass",
+      "apres": "du Belsch?",
+      "choix": [
+        "Bass",
+        "Ass",
+        "Sidd",
+        "Sinn"
+      ],
+      "note": "du → Bass du … ?",
+      "attention": "Question : le verbe vient en premier."
+    },
+    {
+      "id": 2051,
+      "unite": 3,
+      "fr": "Julie est belge aussi.",
+      "avant": "D'Julie ass",
+      "trou": "och",
+      "apres": "Belsch.",
+      "choix": [
+        "och",
+        "kee",
+        "keng",
+        "net"
+      ],
+      "note": "och = aussi",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
+    },
+    {
+      "id": 2052,
+      "unite": 3,
+      "plus": true,
+      "fr": "John n'est pas américain.",
+      "avant": "De John ass",
+      "trou": "keen",
+      "apres": "Amerikaner.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "en"
+      ],
+      "note": "Voyelle → keen",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h ; sinon <b>kee</b>."
+    },
+    {
+      "id": 2053,
+      "unite": 3,
+      "plus": true,
+      "fr": "Mei n'est pas japonaise.",
+      "avant": "D'Mei ass",
+      "trou": "keng",
+      "apres": "Japanerin.",
+      "choix": [
+        "kee",
+        "keen",
+        "keng",
+        "eng"
+      ],
+      "note": "Féminin → keng",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2054,
+      "unite": 3,
+      "plus": true,
+      "fr": "Li n'est pas chinois.",
+      "avant": "De Li ass",
       "trou": "kee",
       "apres": "Chinees.",
       "choix": [
         "kee",
         "keen",
         "keng",
-        "net"
+        "e"
       ],
-      "note": "Négation masculin → kee (keen devant une voyelle ou n, d, t, z, h)",
-      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
+      "note": "Masculin devant C → kee",
+      "attention": "Masculin devant une consonne (hors n, d, t, z, h) → <b>kee</b>."
     },
     {
-      "id": 1024,
+      "id": 2055,
       "unite": 3,
-      "fr": "Mei n'est pas américaine.",
-      "avant": "D'Mei ass",
-      "trou": "keng",
-      "apres": "Amerikanerin.",
+      "plus": true,
+      "fr": "De quelle nationalité est-elle ?",
+      "avant": "Wat fir eng Nationalitéit huet",
+      "trou": "si",
+      "apres": "?",
       "choix": [
-        "kee",
-        "keen",
-        "keng",
-        "net"
+        "si",
+        "hien",
+        "du",
+        "ech"
       ],
-      "note": "Négation féminin → keng",
-      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
+      "note": "elle → si",
+      "attention": "<b>Wat fir eng Nationalitéit huet hien / si?</b> = De quelle nationalité … ?"
     }
   ],
   "ecriture": [
     {
-      "id": 1001,
+      "id": 2001,
+      "unite": 1,
+      "fr": "Je suis français.",
+      "lu": "Ech si Fransous.",
+      "attention": "<b>Ech si</b> : le n tombe devant cette consonne."
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "Je suis allemand.",
+      "lu": "Ech sinn Däitschen.",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
+    },
+    {
+      "id": 2003,
       "unite": 1,
       "fr": "Il est luxembourgeois.",
       "lu": "Hien ass Lëtzebuerger.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1002,
+      "id": 2004,
       "unite": 1,
-      "fr": "Elle est luxembourgeoise.",
-      "lu": "Si ass Lëtzebuergerin.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "fr": "Tu es belge.",
+      "lu": "Du bass Belsch.",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
     },
     {
-      "id": 1003,
+      "id": 2005,
       "unite": 1,
-      "fr": "Je suis française.",
-      "lu": "Ech si Fransousin.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "fr": "Marc est portugais.",
+      "lu": "De Marc ass Portugis.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1004,
+      "id": 2006,
       "unite": 1,
-      "fr": "Est-elle française ?",
-      "lu": "Ass si Fransousin?",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "fr": "Je suis italien.",
+      "lu": "Ech sinn Italiener.",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
     },
     {
-      "id": 1005,
+      "id": 2007,
       "unite": 1,
-      "fr": "Êtes-vous belge ?",
-      "lu": "Sidd Dir Belsch?",
-      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
+      "fr": "Moi, c'est Paul.",
+      "lu": "Ech sinn de Paul.",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
     },
     {
-      "id": 1006,
+      "id": 2008,
       "unite": 1,
-      "fr": "Il est allemand.",
-      "lu": "Hien ass Däitschen.",
-      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
-    },
-    {
-      "id": 1007,
-      "unite": 1,
-      "fr": "Oui, il est portugais.",
-      "lu": "Jo, hien ass Portugis.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
-    },
-    {
-      "id": 1008,
-      "unite": 2,
+      "plus": true,
       "fr": "Il est espagnol.",
       "lu": "Hien ass Spuenier.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1009,
-      "unite": 2,
-      "fr": "Je suis espagnole.",
-      "lu": "Ech si Spuenierin.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "Il est anglais.",
+      "lu": "Hien ass Englänner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
     },
     {
-      "id": 1010,
-      "unite": 2,
-      "fr": "Elle est italienne.",
-      "lu": "Si ass Italienerin.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "Je suis néerlandais.",
+      "lu": "Ech sinn Hollänner.",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
     },
     {
-      "id": 1011,
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "Je suis suisse.",
+      "lu": "Ech si Schwäizer.",
+      "attention": "<b>Ech si</b> : le n tombe devant cette consonne."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "Il est américain.",
+      "lu": "Hien ass Amerikaner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "Je suis ukrainien.",
+      "lu": "Ech sinn Ukrainer.",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "fr": "Il est nord-coréen.",
+      "lu": "Hien ass Nordkoreaner.",
+      "attention": "Pas d'article devant une nationalité · au féminin : + <b>-in</b>."
+    },
+    {
+      "id": 2015,
       "unite": 2,
+      "fr": "Je suis française.",
+      "lu": "Ech si Fransousin.",
+      "attention": "<b>Ech si</b> : le n tombe devant cette consonne."
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "Elle est luxembourgeoise.",
+      "lu": "Si ass Lëtzebuergerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "Julie est belge.",
+      "lu": "D'Julie ass Belsch.",
+      "attention": "<b>Belsch</b> ne change pas au féminin : pas de -in."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "Elle est allemande.",
+      "lu": "Si ass Däitsch.",
+      "attention": "Allemande = <b>Däitsch</b>, sans -in · allemand = Däitschen."
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "fr": "Maria est portugaise.",
+      "lu": "D'Maria ass Portugisin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2020,
+      "unite": 2,
+      "fr": "Je suis italienne.",
+      "lu": "Ech sinn Italienerin.",
+      "attention": "<b>sinn</b> garde le n devant une voyelle ou n, d, t, z, h."
+    },
+    {
+      "id": 2021,
+      "unite": 2,
+      "plus": true,
+      "fr": "Elle est espagnole.",
+      "lu": "Si ass Spuenierin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2022,
+      "unite": 2,
+      "plus": true,
       "fr": "Elle est anglaise.",
       "lu": "Si ass Englännerin.",
-      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1012,
+      "id": 2023,
       "unite": 2,
-      "fr": "Est-il néerlandais ?",
-      "lu": "Ass hien Hollänner?"
-    },
-    {
-      "id": 1013,
-      "unite": 2,
-      "fr": "Il est suisse.",
-      "lu": "Hien ass Schwäizer.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
-    },
-    {
-      "id": 1014,
-      "unite": 3,
+      "plus": true,
       "fr": "Elle est américaine.",
       "lu": "Si ass Amerikanerin.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1015,
-      "unite": 3,
+      "id": 2024,
+      "unite": 2,
+      "plus": true,
       "fr": "Elle est japonaise.",
       "lu": "Si ass Japanerin.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
-      "id": 1016,
+      "id": 2025,
+      "unite": 2,
+      "plus": true,
+      "fr": "Elle est ukrainienne.",
+      "lu": "Si ass Ukrainerin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2026,
+      "unite": 2,
+      "plus": true,
+      "fr": "Elle est australienne.",
+      "lu": "Si ass Australierin.",
+      "attention": "Féminin = masculin + <b>-in</b>."
+    },
+    {
+      "id": 2027,
+      "unite": 2,
+      "plus": true,
+      "fr": "Je suis suisse. (une femme)",
+      "lu": "Ech si Schwäizerin.",
+      "attention": "<b>Ech si</b> : le n tombe devant cette consonne."
+    },
+    {
+      "id": 2028,
       "unite": 3,
-      "fr": "Est-il chinois ?",
-      "lu": "Ass hien Chinees?"
+      "fr": "Es-tu luxembourgeois ?",
+      "lu": "Bass du Lëtzebuerger?",
+      "attention": "Question : le verbe vient en premier."
     },
     {
-      "id": 1017,
+      "id": 2029,
       "unite": 3,
-      "fr": "Il est cap-verdien.",
-      "lu": "Hien ass Kapverdianer.",
-      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
+      "fr": "Êtes-vous belge ?",
+      "lu": "Sidd Dir Belsch?",
+      "attention": "Question : le verbe vient en premier."
     },
     {
-      "id": 1018,
+      "id": 2030,
       "unite": 3,
-      "fr": "Non, il n'est pas espagnol.",
-      "lu": "Nee, hien ass kee Spuenier.",
-      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
+      "fr": "Est-il portugais ?",
+      "lu": "Ass hie Portugis?",
+      "attention": "<b>hien</b> → <b>hie</b> devant une consonne (hors n, d, t, z, h) : Ass hie Portugis?"
     },
     {
-      "id": 1019,
+      "id": 2031,
       "unite": 3,
-      "fr": "Non, elle n'est pas italienne.",
-      "lu": "Nee, si ass keng Italienerin.",
-      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
+      "fr": "Non, il n'est pas allemand.",
+      "lu": "Nee, hien ass keen Däitschen.",
+      "attention": "<b>keen</b> devant une voyelle ou n, d, t, z, h ; sinon <b>kee</b>."
     },
     {
-      "id": 1020,
+      "id": 2032,
+      "unite": 3,
+      "fr": "Non, elle n'est pas française.",
+      "lu": "Nee, si ass keng Fransousin.",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2033,
       "unite": 3,
       "fr": "Quelle est sa nationalité ? (à lui)",
       "lu": "Wat ass seng Nationalitéit?",
-      "attention": "<b>seng</b> = sa (à lui) · <b>hir</b> = sa (à elle)."
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
     },
     {
-      "id": 1021,
+      "id": 2034,
       "unite": 3,
       "fr": "Quelle est sa nationalité ? (à elle)",
       "lu": "Wat ass hir Nationalitéit?",
-      "attention": "<b>seng</b> = sa (à lui) · <b>hir</b> = sa (à elle)."
+      "attention": "à lui → <b>seng</b> · à elle → <b>hir</b>."
+    },
+    {
+      "id": 2035,
+      "unite": 3,
+      "plus": true,
+      "fr": "De quelle nationalité est-il ?",
+      "lu": "Wat fir eng Nationalitéit huet hien?",
+      "attention": "<b>Wat fir eng Nationalitéit huet hien / si?</b> = De quelle nationalité … ?"
+    },
+    {
+      "id": 2036,
+      "unite": 3,
+      "plus": true,
+      "fr": "De quelle nationalité est-elle ?",
+      "lu": "Wat fir eng Nationalitéit huet si?",
+      "attention": "<b>Wat fir eng Nationalitéit huet hien / si?</b> = De quelle nationalité … ?"
+    },
+    {
+      "id": 2037,
+      "unite": 3,
+      "plus": true,
+      "fr": "Non, il n'est pas espagnol.",
+      "lu": "Nee, hien ass kee Spuenier.",
+      "attention": "Masculin devant une consonne (hors n, d, t, z, h) → <b>kee</b>."
+    },
+    {
+      "id": 2038,
+      "unite": 3,
+      "plus": true,
+      "fr": "Non, elle n'est pas italienne.",
+      "lu": "Nee, si ass keng Italienerin.",
+      "attention": "Féminin → <b>keng</b>."
+    },
+    {
+      "id": 2039,
+      "unite": 3,
+      "plus": true,
+      "fr": "Est-ce que Ronaldo est portugais ?",
+      "lu": "Ass de Ronaldo Portugis?",
+      "attention": "Question : le verbe vient en premier."
+    },
+    {
+      "id": 2040,
+      "unite": 3,
+      "plus": true,
+      "fr": "Est-elle américaine ?",
+      "lu": "Ass si Amerikanerin?",
+      "attention": "Question : le verbe vient en premier."
     }
   ],
   "cours": [
     {
-      "type": "callout",
-      "variant": "info",
-      "titre": "Article masculin : e ou en ? (quiz)",
+      "type": "tableau",
+      "titre": "Les nationalités du fil",
+      "entetes": [
+        "Il",
+        "Elle",
+        "Pays"
+      ],
       "lignes": [
-        "Au masculin, <b>en</b> devant une voyelle ou n, d, t, z, h : <b>en</b> Italiener, <b>en</b> Amerikaner.",
-        "Sinon <b>e</b> : <b>e</b> Portugis, <b>e</b> Japaner. Le féminin est toujours <b>eng</b>."
+        [
+          "Lëtzebuerger",
+          "Lëtzebuergerin",
+          "Lëtzebuerg"
+        ],
+        [
+          "Fransous",
+          "Fransousin",
+          "Frankräich"
+        ],
+        [
+          "Belsch",
+          "Belsch",
+          "Belsch"
+        ],
+        [
+          "Däitschen",
+          "Däitsch",
+          "Däitschland"
+        ],
+        [
+          "Portugis",
+          "Portugisin",
+          "Portugal"
+        ],
+        [
+          "Italiener",
+          "Italienerin",
+          "Italien"
+        ]
       ]
     },
     {
       "type": "callout",
       "variant": "retenir",
-      "titre": "Former le féminin : + -in",
+      "titre": "Dire sa nationalité : sans article",
       "lignes": [
-        "Dans la plupart des cas, le féminin = masculin + <b>-in</b>.",
-        "<b>Fransous → Fransousin</b>, <b>Portugis → Portugisin</b>."
+        "<b>Ech si Fransous.</b> · <b>Hien ass Lëtzebuerger.</b>",
+        "Pas d'article devant la nationalité : jamais « Ech si e Fransous »."
       ],
       "unite": 1
     },
     {
       "type": "callout",
       "variant": "attention",
+      "titre": "Ech si ou Ech sinn ?",
+      "lignes": [
+        "Le <b>n</b> de sinn tombe devant une consonne : <b>Ech si</b> Fransous, Lëtzebuerger, Belsch, Portugis.",
+        "Il reste devant une voyelle ou n, d, t, z, h (UNITEDZOHA) : <b>Ech sinn</b> Däitschen, <b>Ech sinn</b> Italiener."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "vocab",
+      "titre": "Le verbe sinn (être)",
+      "items": [
+        [
+          "ech sinn / ech si",
+          "je suis"
+        ],
+        [
+          "du bass",
+          "tu es"
+        ],
+        [
+          "hien ass",
+          "il est"
+        ],
+        [
+          "si ass",
+          "elle est"
+        ],
+        [
+          "Dir sidd",
+          "vous êtes (politesse)"
+        ]
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Former le féminin : + -in",
+      "lignes": [
+        "Le féminin = masculin + <b>-in</b> : Fransous → <b>Fransousin</b>, Portugis → <b>Portugisin</b>.",
+        "<b>Hien ass Lëtzebuerger.</b> · <b>Si ass Lëtzebuergerin.</b>"
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
       "titre": "Deux irréguliers",
       "lignes": [
-        "<b>Belge</b> est invariable : <b>e Belsch</b> = <b>eng Belsch</b> (pas de -in).",
-        "<b>Allemand</b> ne suit pas le -in : <b>en Däitschen</b> (M) / <b>eng Däitsch</b> (F)."
-      ],
-      "unite": 1
-    },
-    {
-      "type": "tableau",
-      "titre": "Les pays voisins",
-      "entetes": [
-        "Masculin",
-        "Féminin",
-        "Sens"
-      ],
-      "lignes": [
-        [
-          "e Lëtzebuerger",
-          "eng Lëtzebuergerin",
-          "luxembourgeois·e"
-        ],
-        [
-          "e Fransous",
-          "eng Fransousin",
-          "français·e"
-        ],
-        [
-          "e Belsch",
-          "eng Belsch",
-          "belge"
-        ],
-        [
-          "en Däitschen",
-          "eng Däitsch",
-          "allemand·e"
-        ],
-        [
-          "e Portugis",
-          "eng Portugisin",
-          "portugais·e"
-        ]
-      ],
-      "unite": 1
-    },
-    {
-      "type": "callout",
-      "variant": "retenir",
-      "titre": "Dire la nationalité : sans article",
-      "lignes": [
-        "À l'affirmatif, <b>pas d'article</b> : <b>Hien ass Spuenier.</b> · <b>Si ass Italienerin.</b>"
-      ],
-      "unite": 2
-    },
-    {
-      "type": "tableau",
-      "titre": "Le reste de l'Europe",
-      "entetes": [
-        "Masculin",
-        "Féminin",
-        "Sens"
-      ],
-      "lignes": [
-        [
-          "e Spuenier",
-          "eng Spuenierin",
-          "espagnol·e"
-        ],
-        [
-          "en Italiener",
-          "eng Italienerin",
-          "italien·ne"
-        ],
-        [
-          "en Englänner",
-          "eng Englännerin",
-          "anglais·e"
-        ],
-        [
-          "en Hollänner",
-          "eng Hollännerin",
-          "néerlandais·e"
-        ],
-        [
-          "e Schwäizer",
-          "eng Schwäizerin",
-          "suisse"
-        ]
+        "<b>Belsch</b> ne change pas : Hien ass Belsch · Si ass <b>Belsch</b> (pas de -in).",
+        "<b>Däitschen</b> (il) → <b>Däitsch</b> (elle), pas de -in."
       ],
       "unite": 2
     },
     {
       "type": "callout",
       "variant": "retenir",
-      "titre": "La négation : kee / keng",
+      "titre": "Poser la question : le verbe en premier",
       "lignes": [
-        "Masculin <b>kee</b> · féminin <b>keng</b> : <b>Hien ass kee Spuenier.</b> · <b>Si ass keng Italienerin.</b>",
-        "<b>kee</b> devient <b>keen</b> devant une voyelle ou n, d, t, z, h : <b>Hien ass keen Amerikaner.</b>"
+        "<b>Bass du</b> Lëtzebuerger? · <b>Ass hie</b> Portugis? · <b>Sidd Dir</b> Belsch?",
+        "<b>hien</b> perd son n devant une consonne (hors n, d, t, z, h) : Ass <b>hie</b> Portugis? · mais Ass <b>hien</b> Däitschen?",
+        "<b>Wat ass seng Nationalitéit?</b> (à lui) · <b>Wat ass hir Nationalitéit?</b> (à elle)"
       ],
       "unite": 3
     },
     {
       "type": "callout",
-      "variant": "astuce",
-      "titre": "Demander la nationalité",
+      "variant": "attention",
+      "titre": "Répondre non : kee, keen, keng",
       "lignes": [
-        "<b>Wat ass seng Nationalitéit?</b> (à lui) · <b>Wat ass hir Nationalitéit?</b> (à elle).",
-        "<b>Ass hien Chinees?</b> = Est-il chinois ? · <b>Ass si Japanerin?</b> = Est-elle japonaise ?"
-      ],
-      "unite": 3
-    },
-    {
-      "type": "tableau",
-      "titre": "Le reste du monde",
-      "entetes": [
-        "Masculin",
-        "Féminin",
-        "Sens"
-      ],
-      "lignes": [
-        [
-          "en Amerikaner",
-          "eng Amerikanerin",
-          "américain·e"
-        ],
-        [
-          "e Japaner",
-          "eng Japanerin",
-          "japonais·e"
-        ],
-        [
-          "e Chinees",
-          "eng Chineesin",
-          "chinois·e"
-        ],
-        [
-          "e Kapverdianer",
-          "eng Kapverdianerin",
-          "cap-verdien·ne"
-        ]
-      ],
-      "unite": 3
-    },
-    {
-      "type": "dialogue",
-      "titre": "Parler des nationalités",
-      "echanges": [
-        [
-          "Wat ass seng Nationalitéit?",
-          "Quelle est sa nationalité ?"
-        ],
-        [
-          "Hien ass Portugis.",
-          "Il est portugais."
-        ],
-        [
-          "Ass hien Däitschen?",
-          "Est-il allemand ?"
-        ],
-        [
-          "Nee, hien ass kee Däitschen. Hien ass Schwäizer.",
-          "Non, il n'est pas allemand. Il est suisse."
-        ]
+        "Masculin : <b>kee</b>, ou <b>keen</b> devant une voyelle ou n, d, t, z, h.",
+        "Féminin : <b>keng</b>.",
+        "Hien ass <b>kee</b> Portugis · Hien ass <b>keen</b> Däitschen · Si ass <b>keng</b> Fransousin."
       ],
       "unite": 3
     },
@@ -1312,110 +2717,144 @@
       "type": "tableau",
       "titre": "Toutes les nationalités",
       "entetes": [
-        "Masculin",
-        "Féminin",
-        "Sens"
+        "Il",
+        "Elle",
+        "Pays"
       ],
       "lignes": [
         [
-          "e Portugis",
-          "eng Portugisin",
-          "portugais·e"
+          "Spuenier",
+          "Spuenierin",
+          "Spuenien"
         ],
         [
-          "e Spuenier",
-          "eng Spuenierin",
-          "espagnol·e"
+          "Englänner",
+          "Englännerin",
+          "England"
         ],
         [
-          "en Englänner",
-          "eng Englännerin",
-          "anglais·e"
+          "Hollänner",
+          "Hollännerin",
+          "Holland"
         ],
         [
-          "en Italiener",
-          "eng Italienerin",
-          "italien·ne"
+          "Schwäizer",
+          "Schwäizerin",
+          "Schwäiz"
         ],
         [
-          "e Lëtzebuerger",
-          "eng Lëtzebuergerin",
-          "luxembourgeois·e"
+          "Schweed",
+          "Schweedin",
+          "Schweden"
         ],
         [
-          "e Fransous",
-          "eng Fransousin",
-          "français·e"
+          "Amerikaner",
+          "Amerikanerin",
+          "Amerika"
         ],
         [
-          "en Däitschen",
-          "eng Däitsch",
-          "allemand·e"
+          "Japaner",
+          "Japanerin",
+          "Japan"
         ],
         [
-          "e Japaner",
-          "eng Japanerin",
-          "japonais·e"
+          "Chinees",
+          "Chineesin",
+          "China"
         ],
         [
-          "e Chinees",
-          "eng Chineesin",
-          "chinois·e"
+          "Kapverdianer",
+          "Kapverdianerin",
+          "Cap Vert"
         ],
         [
-          "e Schweed",
-          "eng Schweedin",
-          "suédois·e"
+          "Ukrainer",
+          "Ukrainerin",
+          "Ukrain"
         ],
         [
-          "en Hollänner",
-          "eng Hollännerin",
-          "néerlandais·e"
+          "Iraner",
+          "Iranerin",
+          "Iran"
         ],
         [
-          "e Schwäizer",
-          "eng Schwäizerin",
-          "suisse"
+          "Australier",
+          "Australierin",
+          "Australien"
         ],
         [
-          "en Australier",
-          "eng Australierin",
-          "australien·ne"
+          "Argentinier",
+          "Argentinierin",
+          "Argentinien"
         ],
         [
-          "en Argentinier",
-          "eng Argentinierin",
-          "argentin·e"
+          "Nordkoreaner",
+          "Nordkoreanerin",
+          "Nordkorea"
+        ]
+      ],
+      "plus": true
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Autre question : Wat fir eng … ?",
+      "lignes": [
+        "<b>Wat fir eng Nationalitéit huet hien?</b> = De quelle nationalité est-il ?",
+        "<b>Wat fir eng Nationalitéit huet si?</b> = De quelle nationalité est-elle ?"
+      ],
+      "unite": 3,
+      "plus": true
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Avec un article : e ou en ?",
+      "lignes": [
+        "Quand on parle d'<b>une personne</b> (pas de sa nationalité) : <b>e</b> Fransous, <b>en</b> Italiener, <b>eng</b> Portugisin.",
+        "<b>en</b> devant une voyelle ou n, d, t, z, h (UNITEDZOHA), sinon <b>e</b>. Au féminin : toujours <b>eng</b>."
+      ],
+      "plus": true
+    },
+    {
+      "type": "dialogue",
+      "titre": "La fête des voisins",
+      "echanges": [
+        [
+          "Moien! Ech sinn d'Marie.",
+          "Bonjour ! Moi, c'est Marie."
         ],
         [
-          "en Amerikaner",
-          "eng Amerikanerin",
-          "américain·e"
+          "Moien! Ech sinn de Paul. Ech si Fransous.",
+          "Bonjour ! Moi, c'est Paul. Je suis français."
         ],
         [
-          "e Belsch",
-          "eng Belsch",
-          "belge"
+          "Ech si Lëtzebuergerin.",
+          "Moi, je suis luxembourgeoise."
         ],
         [
-          "en Ukrainer",
-          "eng Ukrainerin",
-          "ukrainien·ne"
+          "Dat ass d'Julie. Si ass Belsch.",
+          "Voici Julie. Elle est belge."
         ],
         [
-          "e Kapverdianer",
-          "eng Kapverdianerin",
-          "cap-verdien·ne"
+          "Wat ass seng Nationalitéit?",
+          "Et lui, quelle est sa nationalité ?"
         ],
         [
-          "en Iraner",
-          "eng Iranerin",
-          "iranien·ne"
+          "Ass hie Portugis?",
+          "Est-il portugais ?"
         ],
         [
-          "en Nordkoreaner",
-          "eng Nordkoreanerin",
-          "nord-coréen·ne"
+          "Nee, hien ass kee Portugis. Hien ass Däitschen.",
+          "Non, il n'est pas portugais. Il est allemand."
+        ],
+        [
+          "Ass d'Julie och Fransousin?",
+          "Julie est française aussi ?"
+        ],
+        [
+          "Nee, si ass keng Fransousin. Si ass Belsch.",
+          "Non, elle n'est pas française. Elle est belge."
         ]
       ],
       "unite": 0
