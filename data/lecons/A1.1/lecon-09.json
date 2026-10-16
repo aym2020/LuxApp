@@ -29,7 +29,7 @@
     {
       "unite": 1,
       "qui": "toi",
-      "lu": "Ech schwätzen Franséisch.",
+      "lu": "Ech schwätze Franséisch.",
       "fr": "Je parle français.",
       "aide": "Le verbe est <b>schwätzen</b> à la première personne."
     },
@@ -78,11 +78,11 @@
       "id": 1,
       "titre": "Dire les langues qu'on parle",
       "phrase": [
-        "Ech schwätzen Franséisch an Lëtzebuergesch.",
+        "Ech schwätze Franséisch an Lëtzebuergesch.",
         "Je parle français et luxembourgeois."
       ],
       "regle": "Une langue reste invariable. Avec « je », on dit <b>Ech schwätzen</b> ; avec « il / elle », <b>Hien / Si schwätzt</b>.",
-      "exemple": "Ech schwätzen <b>Franséisch</b> an <b>Lëtzebuergesch</b>.",
+      "exemple": "Ech schwätze <b>Franséisch</b> an <b>Lëtzebuergesch</b>.",
       "pieges": [
         "Une langue n'est pas une nationalité : Franséisch ≠ Fransous.",
         "On ne met pas d'article devant le nom d'une langue."
@@ -426,7 +426,7 @@
       "distracteurs": [
         "Ech schwätzt e bësse Lëtzebuergesch.",
         "Ech schwätzen net Lëtzebuergesch.",
-        "Ech schwätzen Lëtzebuergesch e bësse."
+        "Ech schwätze Lëtzebuergesch e bësse."
       ]
     },
     {
@@ -841,7 +841,7 @@
       "id": 2021,
       "unite": 1,
       "fr": "Je parle luxembourgeois.",
-      "lu": "Ech schwätzen Lëtzebuergesch."
+      "lu": "Ech schwätze Lëtzebuergesch."
     },
     {
       "id": 2022,
@@ -911,7 +911,7 @@
       "id": 2032,
       "unite": 2,
       "fr": "Je parle français et luxembourgeois.",
-      "lu": "Ech schwätzen Franséisch an Lëtzebuergesch.",
+      "lu": "Ech schwätze Franséisch an Lëtzebuergesch.",
       "plus": true
     },
     {
@@ -930,13 +930,13 @@
       "id": 2035,
       "unite": 2,
       "fr": "Je parle français, anglais et un peu luxembourgeois.",
-      "lu": "Ech schwätzen Franséisch, Englesch an e bësse Lëtzebuergesch."
+      "lu": "Ech schwätze Franséisch, Englesch an e bësse Lëtzebuergesch."
     },
     {
       "id": 2036,
       "unite": 2,
       "fr": "Je parle portugais et anglais.",
-      "lu": "Ech schwätzen Portugisesch an Englesch.",
+      "lu": "Ech schwätze Portugisesch an Englesch.",
       "plus": true
     },
     {
@@ -991,14 +991,14 @@
       "id": 2044,
       "unite": 2,
       "fr": "Je parle espagnol.",
-      "lu": "Ech schwätzen Spuenesch.",
+      "lu": "Ech schwätze Spuenesch.",
       "plus": true
     },
     {
       "id": 2045,
       "unite": 2,
       "fr": "Je parle portugais.",
-      "lu": "Ech schwätzen Portugisesch.",
+      "lu": "Ech schwätze Portugisesch.",
       "plus": true
     }
   ],
@@ -1009,7 +1009,7 @@
       "titre": "Unité 1 · Dire les langues qu'on parle",
       "lignes": [
         "Une langue reste invariable. Avec « je », on dit <b>Ech schwätzen</b> ; avec « il / elle », <b>Hien / Si schwätzt</b>.",
-        "Ech schwätzen <b>Franséisch</b> an <b>Lëtzebuergesch</b>."
+        "Ech schwätze <b>Franséisch</b> an <b>Lëtzebuergesch</b>."
       ],
       "unite": 1
     },
@@ -1084,7 +1084,7 @@
           "Angela Merkel parle allemand."
         ],
         [
-          "Ech schwätzen Lëtzebuergesch.",
+          "Ech schwätze Lëtzebuergesch.",
           "Je parle luxembourgeois."
         ]
       ]
@@ -1177,7 +1177,7 @@
     },
     {
       "type": "texte",
-      "contenu": "Le nom d'une langue est <b>invariable</b> : il ne change jamais selon le genre ou la personne. <b>Ech schwätzen Lëtzebuergesch.</b>",
+      "contenu": "Le nom d'une langue est <b>invariable</b> : il ne change jamais selon le genre ou la personne. <b>Ech schwätze Lëtzebuergesch.</b>",
       "unite": 0
     },
     {
@@ -1324,7 +1324,7 @@
       "variant": "info",
       "titre": "Parler plusieurs langues",
       "lignes": [
-        "On relie les langues avec <b>an</b> (et) : <b>Ech schwätzen Franséisch an Lëtzebuergesch.</b>",
+        "On relie les langues avec <b>an</b> (et) : <b>Ech schwätze Franséisch an Lëtzebuergesch.</b>",
         "Avec une liste de trois langues ou plus, on utilise des virgules puis <b>a</b> avant la dernière : <b>Portugisesch, Franséisch a Lëtzebuergesch.</b>"
       ],
       "unite": 0
@@ -1338,7 +1338,7 @@
           "Quelle langue parles-tu ?"
         ],
         [
-          "Ech schwätzen Lëtzebuergesch.",
+          "Ech schwätze Lëtzebuergesch.",
           "Je parle luxembourgeois."
         ],
         [
