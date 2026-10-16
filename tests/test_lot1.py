@@ -43,25 +43,23 @@ with sync_playwright() as p:
     ok('profil neuf : Bienvenue + choix du niveau (A1.1 présélectionné), ni barre, ni tuiles, ni « Réinitialiser »')
 
     page.click('#today button:has-text("C\'est parti")')
-    assert actif(page, 'view-lecon'), 'la leçon 1 (v1) doit s\'ouvrir'
-    ok('« C\'est parti » → leçon 1 (format v1, écran à onglets)')
+    assert actif(page, 'view-plecon'), 'la leçon 1 (en unités) doit s\'ouvrir sur son écran'
+    ok('« C\'est parti » → leçon 1 en unités, écran de la leçon (1re visite)')
 
-    # ── S1 + S2 : leçon 1 faite → leçon 2, d'abord l'écran de la leçon ──
+    # ── Leçon migrée : l'acquis v1 est gardé (ids < 1000), le guide passe à la leçon 2 ──
     page.evaluate("""() => {
-        const l1 = lecons.find(l => l.id === 1);
         const progress = getProgress();
-        progress[1] = progress[1] || {};
-        ['quiz', 'trous'].forEach(t => {
-            progress[1][t] = {};
-            (l1[t] || []).forEach(q => { progress[1][t][q.id] = 3; });
-        });
-        progress[1].ecriture = {};
-        (l1.ecriture || []).forEach((q, i) => { progress[1].ecriture[ecritureId(q, i)] = 3; });
+        progress[1] = { quiz: {}, trous: {}, ecriture: {} };
+        for (let i = 1; i <= 35; i++) progress[1].quiz[i] = 3;
+        for (let i = 1; i <= 25; i++) progress[1].trous[i] = 3;
+        for (let i = 0; i < 43; i++) progress[1].ecriture[i] = 3;
         saveProgress(progress);
-        updateQuestionStats(1, 'quiz', l1.quiz[0].id, true);
+        updateQuestionStats(1, 'quiz', 1, true);
         goDashboard();
     }""")
-    assert page.evaluate('leconV1Faite(lecons.find(l => l.id === 1))')
+    assert page.evaluate('acquisV1(lecons.find(l => l.id === 1))')
+    assert page.evaluate('leconTerminee(lecons.find(l => l.id === 1))')
+    assert page.evaluate('getUnitBest(1, 1)') is None, 'aucun score inventé pour les nouvelles unités'
     assert 'Leçon 2' in page.evaluate('prochainPas().texte')
     assert not page.evaluate('getLeconVue(2)')
     page.evaluate('prochainPas().fn()')
@@ -69,14 +67,14 @@ with sync_playwright() as p:
     assert visible(page, '.ms-carte')
     page.evaluate('goDashboard(); prochainPas().fn()')
     assert actif(page, 'view-pintro'), '2e visite : intro de l\'unité attendue'
-    ok('leçon 1 au statut « bien » → prochain pas = leçon 2 ; 1re visite → écran de la leçon, ensuite → intro')
+    ok('leçon 1 acquise en v1 → terminée, sans score inventé ; prochain pas = leçon 2 ; 1re visite → écran de la leçon, ensuite → intro')
 
     # ── S3 : compteurs acquis (dans le menu « Plus », S9) ──
     page.evaluate('goDashboard()')
     page.click('.nav-bas [data-nav="plus"]')
     tuiles = page.locator('.plus-acquis span').all_inner_texts()
     assert tuiles == ['unités terminées', 'missions réussies', 'jours de pratique'], tuiles
-    assert page.inner_text('.plus-acquis b >> nth=0') == '1'  # leçon 1 v1
+    assert page.inner_text('.plus-acquis b >> nth=0') == '1'  # leçon 1 acquise en v1
     page.click('.plus-ligne:has-text("Réglages")')
     assert actif(page, 'view-reglages') and visible(page, '#view-reglages .dash-reset')
     page.screenshot(path=OUT + 'lot1-reglages.png', full_page=True)

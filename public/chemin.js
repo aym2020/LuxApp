@@ -83,6 +83,8 @@ function ligneFinieHtml(l) {
 
 // Étoiles d'une leçon terminée, ou « Sans faute ».
 function resultatLeconHtml(l) {
+  // Faite dans l'ancienne version, nouvelles unités pas encore jouées.
+  if (acquisV1(l) && resumeLecon(l).done === 0) return '<span class="acquise">Acquise</span>';
   if (isParcoursLecon(l)) {
     if (leconSansFaute(l)) return '<span class="sans-faute">Sans faute</span>';
     return '<span class="etoiles">' + etoilesHtml(resumeLecon(l).stars) + '</span>';

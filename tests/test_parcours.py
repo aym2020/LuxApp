@@ -76,12 +76,12 @@ with sync_playwright() as p:
     ok('chemin : leçon 2 affichée (3 unités + mission)')
 
     # 2. Ancienne leçon toujours en onglets
-    page.click('.chemin-lecon:has-text("Salutations") .btn-jaune')
+    page.evaluate('ouvrirLeconDepuisListe(7)')  # leçon 7 : encore au format v1
     assert actif(page, 'view-lecon')
     page.click('.tab-btn[data-tab="flashcards"]')
     page.click('#card')
     assert page.evaluate("document.getElementById('card').classList.contains('flipped')")
-    ok('leçon 1 (ancien format) : onglets et carte retournable')
+    ok('leçon 7 (ancien format) : onglets et carte retournable')
     page.click('#view-lecon .back-btn')
 
     # 3. Leçon 2 -> unités -> intro

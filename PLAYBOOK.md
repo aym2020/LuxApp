@@ -406,7 +406,17 @@ Règles à vérifier à chaque leçon :
 
 ### Format v2 : une leçon avec un fil
 
-Migrées : leçons 2, 8, 21, 22. Les autres sont encore en v1 et restent valides.
+Migrées : leçons 1, 2, 3, 4, 5, 6, 8, 21, 22. Les autres sont encore en v1 et restent valides.
+
+**Migrer une leçon v1** : un script par leçon dans `tools/migration/lecon-NN.py` (petite fabrique
+`fabrique.py` : ids donnés à partir de 2001, champ `v1` rempli tout seul). Lancer
+`python3 tools/migration/lecon-NN.py`, puis `node tools/valider-lecons.js` et
+`python3 tests/test_migration.py` (chaque unité et la mission jouées de bout en bout).
+- `"v1": { "quiz": 35, "trous": 25, "ecriture": 43 }` = nombre de questions de l'ancienne version.
+  Il sert à garder l'acquis : une leçon réussie en v1 (≥ 70 %, ids < 1000) reste **terminée**
+  (« Acquise » sur le chemin, `acquisV1`), sans score inventé pour les nouvelles unités.
+- Eifeler Regel aussi pour « et » : <b>an</b> devant voyelle et n, d, t, z, h, sinon <b>a</b>
+  (schwaarz a brong · gutt a bëlleg, vérifié sur LOD).
 
 **Principe : chaque leçon mène à une conversation.** La mission est une scène de la vie
 réelle ; chaque unité apprend **une phrase** de cette scène ; la mission finale la rejoue.

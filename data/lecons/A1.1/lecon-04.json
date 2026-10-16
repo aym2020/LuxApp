@@ -3,399 +3,719 @@
   "titre": "De Konträr",
   "titre_fr": "Les contraires – adjectifs opposés",
   "couleur": "#d4845a",
-  "instructions": {
-    "flashcards": "Mémorise les adjectifs en luxembourgeois, leur traduction française et leur contraire.",
-    "quiz": "Lis l'adjectif en luxembourgeois et choisis son contraire en luxembourgeois.",
-    "trous": "Complète la phrase avec l'adjectif luxembourgeois correct selon le contexte.",
-    "ecriture": "Traduis les adjectifs, expressions et phrases en luxembourgeois. Respecte l'orthographe et les accents."
+  "v1": {
+    "quiz": 22,
+    "trous": 19,
+    "ecriture": 42
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve l'adjectif luxembourgeois à partir du français.",
+    "quiz": "Lis l'adjectif luxembourgeois et choisis son contraire en luxembourgeois.",
+    "trous": "Complète la phrase avec l'adjectif luxembourgeois qui correspond au sens.",
+    "ecriture": "Écris en luxembourgeois les adjectifs et les phrases de la mission : décrire un objet et répondre par le contraire."
+  },
+  "mission": {
+    "titre": "À la brocante",
+    "contexte": "Tu cherches un vélo à la brocante. La vendeuse vante un vieux vélo : à chaque qualité, tu réponds par le contraire.",
+    "objectif": "décrire un objet avec un adjectif et répondre par son contraire."
+  },
+  "scene": [
+    {
+      "qui": "La vendeuse",
+      "lu": "Moien! De Vëlo ass nei!",
+      "fr": "Bonjour ! Le vélo est neuf !",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "De Vëlo ass net nei. En ass al.",
+      "fr": "Le vélo n'est pas neuf. Il est vieux.",
+      "unite": 1,
+      "aide": "nei ↔ <b>al</b> · un adjectif se nie avec <b>net</b> (leçon 3)."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Jo, mee en ass séier a liicht!",
+      "fr": "Oui, mais il est rapide et léger !",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, en ass lues a schwéier!",
+      "fr": "Non, il est lent et lourd !",
+      "unite": 2,
+      "aide": "séier ↔ <b>lues</b> · liicht ↔ <b>schwéier</b> · et = <b>a</b> devant s."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Mee en ass bëlleg!",
+      "fr": "Mais il n'est pas cher !",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, en ass deier. An en ass futti!",
+      "fr": "Non, il est cher. Et il est cassé !",
+      "unite": 3,
+      "aide": "bëlleg ↔ <b>deier</b> · cassé = <b>futti</b>."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "lu": "Nei",
-      "fr": "Nouveau / Nouvelle",
-      "note": "Contraire : Al"
+      "titre": "Neuf ou vieux, grand ou petit",
+      "phrase": [
+        "De Vëlo ass net nei. En ass al.",
+        "Le vélo n'est pas neuf. Il est vieux."
+      ],
+      "regle": "Objet + <b>ass</b> + adjectif, sans accord : De Vëlo ass <b>al</b>. · Contraires : nei ↔ al · grouss ↔ kleng · héich ↔ niddereg",
+      "exemple": "Den Handy ass nei. · Den Telefon ass al. · D'Maus ass kleng.",
+      "phrases": [
+        [
+          "Den Elefant ass grouss.",
+          "L'éléphant est grand."
+        ],
+        [
+          "D'Mauer ass niddereg.",
+          "Le muret est bas."
+        ]
+      ],
+      "pieges": [
+        "L'adjectif après <b>ass</b> reste <b>invariable</b> : d'Maus ass <b>kleng</b> (pas de « -e »).",
+        "Dire non : <b>net</b> devant l'adjectif : De Vëlo ass <b>net</b> nei."
+      ]
     },
     {
       "id": 2,
-      "lu": "Al",
-      "fr": "Vieux / Vieille",
-      "note": "Contraire : Nei"
+      "titre": "Rapide ou lent, léger ou lourd",
+      "phrase": [
+        "Nee, en ass lues a schwéier!",
+        "Non, il est lent et lourd !"
+      ],
+      "regle": "Contraires : séier ↔ lues · liicht ↔ schwéier · ronn ↔ eckeg · Et : <b>a</b> devant la plupart des consonnes",
+      "exemple": "Den Auto ass séier. · De Schleek ass lues. · D'Fieder ass liicht.",
+      "phrases": [
+        [
+          "Den Auto ass séier.",
+          "La voiture est rapide."
+        ],
+        [
+          "De Ball ass ronn.",
+          "La balle est ronde."
+        ]
+      ],
+      "pieges": [
+        "Deux adjectifs : <b>a</b> devant une consonne (séier <b>a</b> liicht), <b>an</b> devant une voyelle.",
+        "<b>liicht</b> = léger (pas « lumière ») · son contraire : <b>schwéier</b>."
+      ]
     },
     {
       "id": 3,
-      "lu": "Kleng",
-      "fr": "Petit(e)",
-      "note": "Contraire : Grouss"
+      "titre": "Le prix et l'état",
+      "phrase": [
+        "Nee, en ass deier. An en ass futti!",
+        "Non, il est cher. Et il est cassé !"
+      ],
+      "regle": "Contraires : deier ↔ bëlleg · futti ↔ ganz · schéin ↔ ellen · voll ↔ eidel",
+      "exemple": "De Moto ass deier. · Den Handy ass futti. · Den Auto ass schéin.",
+      "phrases": [
+        [
+          "Den Handy ass ganz.",
+          "Le smartphone est intact."
+        ],
+        [
+          "D'Fläsch ass voll.",
+          "La bouteille est pleine."
+        ]
+      ],
+      "pieges": [
+        "<b>ganz</b> a deux sens : intact (≠ futti) et très (ganz gutt, leçon 1).",
+        "<b>bëlleg</b> = pas cher, bon marché · son contraire : <b>deier</b>."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "neuf, nouveau",
+      "lu": "nei",
+      "note": "Contraire : al"
     },
     {
-      "id": 4,
-      "lu": "Grouss",
-      "fr": "Grand(e)",
-      "note": "Contraire : Kleng"
+      "id": 2002,
+      "unite": 1,
+      "fr": "vieux",
+      "lu": "al",
+      "note": "Contraire : nei"
     },
     {
-      "id": 5,
-      "lu": "Liicht",
-      "fr": "Léger / Légère",
-      "note": "Contraire : Schwéier"
+      "id": 2003,
+      "unite": 1,
+      "fr": "grand",
+      "lu": "grouss",
+      "note": "Contraire : kleng"
     },
     {
-      "id": 6,
-      "lu": "Schwéier",
-      "fr": "Lourd(e)",
-      "note": "Contraire : Liicht"
+      "id": 2004,
+      "unite": 1,
+      "fr": "petit",
+      "lu": "kleng",
+      "note": "Contraire : grouss"
     },
     {
-      "id": 7,
-      "lu": "Séier",
-      "fr": "Rapide",
-      "note": "Contraire : Lues"
+      "id": 2005,
+      "unite": 1,
+      "fr": "haut",
+      "lu": "héich",
+      "note": "Contraire : niddereg"
     },
     {
-      "id": 8,
-      "lu": "Lues",
-      "fr": "Lent(e)",
-      "note": "Contraire : Séier"
+      "id": 2006,
+      "unite": 1,
+      "fr": "bas",
+      "lu": "niddereg",
+      "note": "Contraire : héich"
     },
     {
-      "id": 9,
-      "lu": "Ronn",
-      "fr": "Rond(e)",
-      "note": "Contraire : Eckeg"
+      "id": 2007,
+      "unite": 1,
+      "fr": "le vélo",
+      "lu": "Vëlo",
+      "article": "de",
+      "note": "Masculin · pluriel : Vëloen"
     },
     {
-      "id": 10,
-      "lu": "Eckeg",
-      "fr": "Carré(e)",
-      "note": "Contraire : Ronn"
+      "id": 2008,
+      "unite": 2,
+      "fr": "rapide",
+      "lu": "séier",
+      "note": "Contraire : lues"
     },
     {
-      "id": 11,
-      "lu": "Bëlleg",
-      "fr": "Pas cher / Bon marché",
-      "note": "Contraire : Deier"
+      "id": 2009,
+      "unite": 2,
+      "fr": "lent",
+      "lu": "lues",
+      "note": "Contraire : séier"
     },
     {
-      "id": 12,
-      "lu": "Deier",
-      "fr": "Cher / Chère",
-      "note": "Contraire : Bëlleg"
+      "id": 2010,
+      "unite": 2,
+      "fr": "léger",
+      "lu": "liicht",
+      "note": "Contraire : schwéier"
     },
     {
-      "id": 13,
-      "lu": "Héich",
-      "fr": "Haut(e)",
-      "note": "Contraire : Niddereg"
+      "id": 2011,
+      "unite": 2,
+      "fr": "lourd",
+      "lu": "schwéier",
+      "note": "Contraire : liicht"
     },
     {
-      "id": 14,
-      "lu": "Niddereg",
-      "fr": "Bas / Basse",
-      "note": "Contraire : Héich"
+      "id": 2012,
+      "unite": 2,
+      "fr": "rond",
+      "lu": "ronn",
+      "note": "Contraire : eckeg"
     },
     {
-      "id": 15,
-      "lu": "Voll",
-      "fr": "Plein(e)",
-      "note": "Contraire : Eidel"
+      "id": 2013,
+      "unite": 2,
+      "fr": "anguleux, à angles",
+      "lu": "eckeg",
+      "note": "Contraire : ronn"
     },
     {
-      "id": 16,
-      "lu": "Eidel",
-      "fr": "Vide",
-      "note": "Contraire : Voll"
+      "id": 2014,
+      "unite": 2,
+      "plus": true,
+      "fr": "mince, fin",
+      "lu": "dënn",
+      "note": "Contraire : déck"
     },
     {
-      "id": 17,
-      "lu": "Dënn",
-      "fr": "Mince / Fin(e)",
-      "note": "Contraire : Déck"
+      "id": 2015,
+      "unite": 2,
+      "plus": true,
+      "fr": "épais",
+      "lu": "déck",
+      "note": "Contraire : dënn"
     },
     {
-      "id": 18,
-      "lu": "Déck",
-      "fr": "Épais / Épaisse",
-      "note": "Contraire : Dënn"
+      "id": 2016,
+      "unite": 3,
+      "fr": "cher",
+      "lu": "deier",
+      "note": "Contraire : bëlleg"
     },
     {
-      "id": 19,
-      "lu": "Schéin",
-      "fr": "Beau / Belle",
-      "note": "Contraire : Ellen"
+      "id": 2017,
+      "unite": 3,
+      "fr": "pas cher, bon marché",
+      "lu": "bëlleg",
+      "note": "Contraire : deier"
     },
     {
-      "id": 20,
-      "lu": "Ellen",
-      "fr": "Laid(e)",
-      "note": "Contraire : Schéin"
+      "id": 2018,
+      "unite": 3,
+      "fr": "cassé, en panne",
+      "lu": "futti",
+      "note": "Contraire : ganz"
     },
     {
-      "id": 21,
-      "lu": "Futti",
-      "fr": "Cassé(e) / En panne",
-      "note": "Contraire : Ganz"
+      "id": 2019,
+      "unite": 3,
+      "fr": "intact, entier",
+      "lu": "ganz",
+      "note": "Contraire : futti · ≠ ganz = très",
+      "attention": "Ici <b>ganz</b> = intact, entier (≠ futti). Ailleurs ganz = très (ganz gutt)."
     },
     {
-      "id": 22,
-      "lu": "Ganz",
-      "fr": "Intact(e) / Entier",
-      "note": "Contraire : Futti · ≠ ganz = très"
+      "id": 2020,
+      "unite": 3,
+      "fr": "beau",
+      "lu": "schéin",
+      "note": "Contraire : ellen"
+    },
+    {
+      "id": 2021,
+      "unite": 3,
+      "fr": "laid",
+      "lu": "ellen",
+      "note": "Contraire : schéin"
+    },
+    {
+      "id": 2022,
+      "unite": 3,
+      "plus": true,
+      "fr": "plein",
+      "lu": "voll",
+      "note": "Contraire : eidel"
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "plus": true,
+      "fr": "vide",
+      "lu": "eidel",
+      "note": "Contraire : voll"
     }
   ],
   "quiz": [
     {
-      "id": 1,
-      "question": "Quel est le contraire de NEI ?",
-      "reponse": "Al",
+      "id": 2001,
+      "unite": 1,
+      "question": "nei",
+      "reponse": "al",
       "distracteurs": [
-        "Kleng",
-        "Lues",
-        "Eidel"
-      ]
+        "kleng",
+        "lues",
+        "eidel"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 2,
-      "question": "Quel est le contraire de GROUSS ?",
-      "reponse": "Kleng",
+      "id": 2002,
+      "unite": 1,
+      "question": "al",
+      "reponse": "nei",
       "distracteurs": [
-        "Dënn",
-        "Niddereg",
-        "Lues"
-      ]
+        "grouss",
+        "lues",
+        "eidel"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 3,
-      "question": "Quel est le contraire de SÉIER ?",
-      "reponse": "Lues",
+      "id": 2003,
+      "unite": 1,
+      "question": "grouss",
+      "reponse": "kleng",
       "distracteurs": [
-        "Liicht",
-        "Eidel",
-        "Al"
-      ]
+        "dënn",
+        "niddereg",
+        "lues"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 4,
-      "question": "Quel est le contraire de VOLL ?",
-      "reponse": "Eidel",
+      "id": 2004,
+      "unite": 1,
+      "question": "kleng",
+      "reponse": "grouss",
       "distracteurs": [
-        "Dënn",
-        "Niddereg",
-        "Bëlleg"
-      ]
+        "héich",
+        "déck",
+        "séier"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 5,
-      "question": "Quel est le contraire de HÉICH ?",
-      "reponse": "Niddereg",
+      "id": 2005,
+      "unite": 1,
+      "question": "héich",
+      "reponse": "niddereg",
       "distracteurs": [
-        "Kleng",
-        "Lues",
-        "Dënn"
-      ]
+        "kleng",
+        "lues",
+        "dënn"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 6,
-      "question": "Quel est le contraire de DEIER ?",
-      "reponse": "Bëlleg",
+      "id": 2006,
+      "unite": 1,
+      "question": "niddereg",
+      "reponse": "héich",
       "distracteurs": [
-        "Eidel",
-        "Al",
-        "Lues"
-      ]
+        "grouss",
+        "déck",
+        "voll"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 7,
-      "question": "Quel est le contraire de SCHWÉIER ?",
-      "reponse": "Liicht",
+      "id": 2007,
+      "unite": 2,
+      "question": "séier",
+      "reponse": "lues",
       "distracteurs": [
-        "Séier",
-        "Nei",
-        "Ronn"
-      ]
+        "liicht",
+        "eidel",
+        "al"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 8,
-      "question": "Quel est le contraire de ECKEG ?",
-      "reponse": "Ronn",
+      "id": 2008,
+      "unite": 2,
+      "question": "lues",
+      "reponse": "séier",
       "distracteurs": [
-        "Dënn",
-        "Grouss",
-        "Voll"
-      ]
+        "nei",
+        "liicht",
+        "ronn"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 9,
-      "question": "Quel est le contraire de Déck ?",
-      "reponse": "Dënn",
+      "id": 2009,
+      "unite": 2,
+      "question": "liicht",
+      "reponse": "schwéier",
       "distracteurs": [
-        "Kleng",
-        "Niddereg",
-        "Eidel"
-      ]
+        "séier",
+        "nei",
+        "ronn"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 10,
-      "question": "Quel est le contraire de AL ?",
-      "reponse": "Nei",
+      "id": 2010,
+      "unite": 2,
+      "question": "schwéier",
+      "reponse": "liicht",
       "distracteurs": [
-        "Grouss",
-        "Lues",
-        "Eidel"
-      ]
+        "séier",
+        "nei",
+        "ronn"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 11,
-      "question": "Quel est le contraire de KLENG ?",
-      "reponse": "Grouss",
+      "id": 2011,
+      "unite": 2,
+      "question": "ronn",
+      "reponse": "eckeg",
       "distracteurs": [
-        "Héich",
-        "Déck",
-        "Séier"
-      ]
+        "kleng",
+        "voll",
+        "dënn"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 12,
-      "question": "Quel est le contraire de LUES ?",
-      "reponse": "Séier",
+      "id": 2012,
+      "unite": 2,
+      "question": "eckeg",
+      "reponse": "ronn",
       "distracteurs": [
-        "Nei",
-        "Liicht",
-        "Ronn"
-      ]
+        "dënn",
+        "grouss",
+        "voll"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 13,
-      "question": "Quel est le contraire de EIDEL ?",
-      "reponse": "Voll",
+      "id": 2013,
+      "unite": 2,
+      "plus": true,
+      "question": "dënn",
+      "reponse": "déck",
       "distracteurs": [
-        "Kleng",
-        "Dënn",
-        "Niddereg"
-      ]
+        "kleng",
+        "eidel",
+        "niddereg"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 14,
-      "question": "Quel est le contraire de NIDDEREG ?",
-      "reponse": "Héich",
+      "id": 2014,
+      "unite": 2,
+      "plus": true,
+      "question": "déck",
+      "reponse": "dënn",
       "distracteurs": [
-        "Grouss",
-        "Déck",
-        "Voll"
-      ]
+        "kleng",
+        "niddereg",
+        "eidel"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 15,
-      "question": "Quel est le contraire de BËLLEG ?",
-      "reponse": "Deier",
+      "id": 2015,
+      "unite": 3,
+      "question": "deier",
+      "reponse": "bëlleg",
       "distracteurs": [
-        "Al",
-        "Lues",
-        "Eidel"
-      ]
+        "eidel",
+        "al",
+        "lues"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 16,
-      "question": "Quel est le contraire de LIICHT ?",
-      "reponse": "Schwéier",
+      "id": 2016,
+      "unite": 3,
+      "question": "bëlleg",
+      "reponse": "deier",
       "distracteurs": [
-        "Séier",
-        "Nei",
-        "Ronn"
-      ]
+        "al",
+        "lues",
+        "eidel"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 17,
-      "question": "Quel est le contraire de RONN ?",
-      "reponse": "Eckeg",
+      "id": 2017,
+      "unite": 3,
+      "question": "futti",
+      "reponse": "ganz",
       "distracteurs": [
-        "Kleng",
-        "Voll",
-        "Dënn"
-      ]
+        "eidel",
+        "al",
+        "dënn"
+      ],
+      "label": "CHOISIS LE CONTRAIRE",
+      "attention": "Ici <b>ganz</b> = intact, entier (≠ futti). Ailleurs ganz = très (ganz gutt)."
     },
     {
-      "id": 18,
-      "question": "Quel est le contraire de DËNN ?",
-      "reponse": "Déck",
+      "id": 2018,
+      "unite": 3,
+      "question": "ganz",
+      "reponse": "futti",
       "distracteurs": [
-        "Kleng",
-        "Eidel",
-        "Niddereg"
-      ]
+        "voll",
+        "nei",
+        "héich"
+      ],
+      "label": "CHOISIS LE CONTRAIRE",
+      "attention": "Ici <b>ganz</b> = intact, entier (≠ futti). Ailleurs ganz = très (ganz gutt)."
     },
     {
-      "id": 19,
-      "question": "Quel est le contraire de SCHÉIN ?",
-      "reponse": "Ellen",
+      "id": 2019,
+      "unite": 3,
+      "question": "schéin",
+      "reponse": "ellen",
       "distracteurs": [
-        "Al",
-        "Kleng",
-        "Lues"
-      ]
+        "al",
+        "kleng",
+        "lues"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 20,
-      "question": "Quel est le contraire de ELLEN ?",
-      "reponse": "Schéin",
+      "id": 2020,
+      "unite": 3,
+      "question": "ellen",
+      "reponse": "schéin",
       "distracteurs": [
-        "Grouss",
-        "Nei",
-        "Voll"
-      ]
+        "grouss",
+        "nei",
+        "voll"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 21,
-      "question": "Quel est le contraire de FUTTI ?",
-      "reponse": "Ganz",
+      "id": 2021,
+      "unite": 3,
+      "plus": true,
+      "question": "voll",
+      "reponse": "eidel",
       "distracteurs": [
-        "Eidel",
-        "Al",
-        "Dënn"
-      ]
+        "dënn",
+        "niddereg",
+        "bëlleg"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     },
     {
-      "id": 22,
-      "question": "Quel est le contraire de GANZ ?",
-      "reponse": "Futti",
+      "id": 2022,
+      "unite": 3,
+      "plus": true,
+      "question": "eidel",
+      "reponse": "voll",
       "distracteurs": [
-        "Voll",
-        "Nei",
-        "Héich"
-      ]
+        "kleng",
+        "dënn",
+        "niddereg"
+      ],
+      "label": "CHOISIS LE CONTRAIRE"
     }
   ],
   "trous": [
     {
-      "id": 1,
-      "fr": "Le smartphone est nouveau.",
+      "id": 2001,
+      "unite": 1,
+      "fr": "Le smartphone est neuf.",
       "avant": "Den Handy ass",
       "trou": "nei",
       "apres": ".",
       "choix": [
+        "nei",
         "al",
         "grouss",
-        "nei",
         "kleng"
       ],
-      "note": "nei = nouveau · Den = article défini masculin"
+      "note": "nei = neuf, nouveau"
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "fr": "Le téléphone est vieux.",
       "avant": "Den Telefon ass",
       "trou": "al",
       "apres": ".",
       "choix": [
-        "lues",
         "al",
-        "séier",
-        "nei"
+        "nei",
+        "lues",
+        "séier"
       ],
       "note": "al = vieux · contraire de nei"
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
+      "fr": "La souris est petite.",
+      "avant": "D'Maus ass",
+      "trou": "kleng",
+      "apres": ".",
+      "choix": [
+        "kleng",
+        "grouss",
+        "héich",
+        "séier"
+      ],
+      "note": "kleng = petit",
+      "attention": "L'adjectif après <b>ass</b> ne change jamais : de Bus, d'Dier, d'Buch ass <b>al</b>."
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "L'éléphant est grand.",
+      "avant": "Den Elefant ass",
+      "trou": "grouss",
+      "apres": ".",
+      "choix": [
+        "grouss",
+        "kleng",
+        "lues",
+        "dënn"
+      ],
+      "note": "grouss = grand · contraire de kleng"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "Le bâtiment est haut.",
+      "avant": "D'Gebai ass",
+      "trou": "héich",
+      "apres": ".",
+      "choix": [
+        "héich",
+        "niddereg",
+        "grouss",
+        "kleng"
+      ],
+      "note": "héich = haut"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "Le muret est bas.",
+      "avant": "D'Mauer ass",
+      "trou": "niddereg",
+      "apres": ".",
+      "choix": [
+        "niddereg",
+        "héich",
+        "déck",
+        "dënn"
+      ],
+      "note": "niddereg = bas · contraire de héich"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "Le vélo n'est pas neuf. Il est vieux.",
+      "avant": "De Vëlo ass net nei. En ass",
+      "trou": "al",
+      "apres": ".",
+      "choix": [
+        "al",
+        "nei",
+        "grouss",
+        "kleng"
+      ],
+      "note": "nei ↔ al",
+      "attention": "nei ↔ <b>al</b>."
+    },
+    {
+      "id": 2008,
+      "unite": 2,
+      "fr": "La voiture est rapide.",
+      "avant": "Den Auto ass",
+      "trou": "séier",
+      "apres": ".",
+      "choix": [
+        "séier",
+        "lues",
+        "grouss",
+        "nei"
+      ],
+      "note": "séier = rapide · contraire de lues"
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "fr": "L'escargot est lent.",
+      "avant": "De Schleek ass",
+      "trou": "lues",
+      "apres": ".",
+      "choix": [
+        "lues",
+        "séier",
+        "al",
+        "niddereg"
+      ],
+      "note": "lues = lent"
+    },
+    {
+      "id": 2010,
+      "unite": 2,
       "fr": "La plume est légère.",
       "avant": "D'Fieder ass",
       "trou": "liicht",
@@ -406,83 +726,29 @@
         "dënn",
         "déck"
       ],
-      "note": "D' = article féminin devant voyelle"
+      "note": "liicht = léger · d'Fieder (féminin)"
     },
     {
-      "id": 4,
+      "id": 2011,
+      "unite": 2,
       "fr": "L'enclume est lourde.",
       "avant": "Den Amboss ass",
       "trou": "schwéier",
       "apres": ".",
       "choix": [
+        "schwéier",
         "liicht",
         "grouss",
-        "déck",
-        "schwéier"
+        "déck"
       ],
-      "note": "schwéier = lourd · contraire de liicht"
+      "note": "schwéier = lourd"
     },
     {
-      "id": 5,
-      "fr": "L'escargot est lent.",
-      "avant": "De Schleek ass",
-      "trou": "lues",
-      "apres": ".",
-      "choix": [
-        "séier",
-        "lues",
-        "al",
-        "niddereg"
-      ],
-      "note": "De = article défini masc. devant consonne"
-    },
-    {
-      "id": 6,
-      "fr": "La voiture est rapide.",
-      "avant": "Den Auto ass",
-      "trou": "séier",
-      "apres": ".",
-      "choix": [
-        "lues",
-        "grouss",
-        "séier",
-        "nei"
-      ],
-      "note": "séier = rapide · contraire de lues"
-    },
-    {
-      "id": 7,
-      "fr": "Le seau est vide.",
-      "avant": "Den Eemer ass",
-      "trou": "eidel",
-      "apres": ".",
-      "choix": [
-        "eidel",
-        "voll",
-        "kleng",
-        "dënn"
-      ],
-      "note": "eidel = vide · contraire de voll"
-    },
-    {
-      "id": 8,
-      "fr": "L'immeuble est grand.",
-      "avant": "D'Gebai ass",
-      "trou": "grouss",
-      "apres": ".",
-      "choix": [
-        "kleng",
-        "héich",
-        "niddereg",
-        "grouss"
-      ],
-      "note": "D' = article neutre · grouss = grand"
-    },
-    {
-      "id": 9,
-      "fr": "La boîte est carrée.",
-      "avant": "D'Këscht ass",
-      "trou": "eckeg",
+      "id": 2012,
+      "unite": 2,
+      "fr": "La balle est ronde.",
+      "avant": "De Ball ass",
+      "trou": "ronn",
       "apres": ".",
       "choix": [
         "ronn",
@@ -490,80 +756,58 @@
         "déck",
         "dënn"
       ],
-      "note": "D' = article féminin · eckeg = carré"
-    },
-    {
-      "id": 10,
-      "fr": "La balle est ronde.",
-      "avant": "De Ball ass",
-      "trou": "ronn",
-      "apres": ".",
-      "choix": [
-        "déck",
-        "dënn",
-        "ronn",
-        "eckeg"
-      ],
       "note": "ronn = rond · contraire de eckeg"
     },
     {
-      "id": 11,
-      "fr": "Le gratte-ciel est haut.",
-      "avant": "De Wollekekrazer ass",
-      "trou": "héich",
+      "id": 2013,
+      "unite": 2,
+      "fr": "La boîte a des angles.",
+      "avant": "D'Këscht ass",
+      "trou": "eckeg",
       "apres": ".",
       "choix": [
-        "héich",
-        "niddereg",
-        "grouss",
-        "kleng"
-      ],
-      "note": "héich = haut · contraire de niddereg"
-    },
-    {
-      "id": 12,
-      "fr": "Le muret est bas.",
-      "avant": "D'Mauer ass",
-      "trou": "niddereg",
-      "apres": ".",
-      "choix": [
-        "héich",
+        "eckeg",
+        "ronn",
         "déck",
-        "dënn",
-        "niddereg"
+        "dënn"
       ],
-      "note": "niddereg = bas · contraire de héich"
+      "note": "eckeg = anguleux, à angles"
     },
     {
-      "id": 13,
-      "fr": "La bouteille est pleine.",
-      "avant": "D'Fläsch ass",
-      "trou": "voll",
-      "apres": ".",
+      "id": 2014,
+      "unite": 2,
+      "fr": "Non, il est lent et lourd !",
+      "avant": "Nee, en ass lues",
+      "trou": "a",
+      "apres": "schwéier!",
       "choix": [
-        "eidel",
-        "voll",
-        "déck",
-        "liicht"
+        "a",
+        "an",
+        "ass"
       ],
-      "note": "voll = plein · contraire de eidel"
+      "note": "a devant s",
+      "attention": "Et = <b>a</b> devant la plupart des consonnes : lues <b>a</b> schwéier · <b>an</b> devant une voyelle."
     },
     {
-      "id": 14,
+      "id": 2015,
+      "unite": 2,
+      "plus": true,
       "fr": "Le fil est fin.",
       "avant": "De Fuedem ass",
       "trou": "dënn",
       "apres": ".",
       "choix": [
-        "schwéier",
-        "grouss",
         "dënn",
-        "déck"
+        "déck",
+        "schwéier",
+        "grouss"
       ],
-      "note": "dënn = fin/mince · contraire de déck"
+      "note": "dënn = fin, mince"
     },
     {
-      "id": 15,
+      "id": 2016,
+      "unite": 2,
+      "plus": true,
       "fr": "Le dictionnaire est épais.",
       "avant": "D'Wierderbuch ass",
       "trou": "déck",
@@ -574,54 +818,28 @@
         "liicht",
         "eidel"
       ],
-      "note": "déck = épais · contraire de dënn"
+      "note": "déck = épais"
     },
     {
-      "id": 16,
-      "fr": "La souris est petite.",
-      "avant": "D'Maus ass",
-      "trou": "kleng",
-      "apres": ".",
-      "choix": [
-        "grouss",
-        "héich",
-        "séier",
-        "kleng"
-      ],
-      "note": "kleng = petit · contraire de grouss"
-    },
-    {
-      "id": 17,
-      "fr": "L'éléphant est grand.",
-      "avant": "Den Elefant ass",
-      "trou": "grouss",
-      "apres": ".",
-      "choix": [
-        "lues",
-        "grouss",
-        "dënn",
-        "kleng"
-      ],
-      "note": "grouss = grand · contraire de kleng"
-    },
-    {
-      "id": 18,
+      "id": 2017,
+      "unite": 3,
       "fr": "La voiture est chère.",
       "avant": "Den Auto ass",
       "trou": "deier",
       "apres": ".",
       "choix": [
+        "deier",
         "bëlleg",
         "séier",
-        "deier",
         "nei"
       ],
       "note": "deier = cher · contraire de bëlleg"
     },
     {
-      "id": 19,
+      "id": 2018,
+      "unite": 3,
       "fr": "Le stylo est bon marché.",
-      "avant": "De Bic ass",
+      "avant": "De Stëft ass",
       "trou": "bëlleg",
       "apres": ".",
       "choix": [
@@ -630,255 +848,536 @@
         "al",
         "eidel"
       ],
-      "note": "bëlleg = bon marché · contraire de deier"
+      "note": "bëlleg = bon marché"
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "fr": "Le smartphone est cassé.",
+      "avant": "Den Handy ass",
+      "trou": "futti",
+      "apres": ".",
+      "choix": [
+        "futti",
+        "ganz",
+        "nei",
+        "al"
+      ],
+      "note": "futti = cassé, en panne"
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "fr": "La montre est intacte.",
+      "avant": "D'Auer ass",
+      "trou": "ganz",
+      "apres": ".",
+      "choix": [
+        "ganz",
+        "futti",
+        "eidel",
+        "lues"
+      ],
+      "note": "ganz = intact (≠ futti)",
+      "attention": "Ici <b>ganz</b> = intact, entier (≠ futti). Ailleurs ganz = très (ganz gutt)."
+    },
+    {
+      "id": 2021,
+      "unite": 3,
+      "fr": "La voiture est belle.",
+      "avant": "Den Auto ass",
+      "trou": "schéin",
+      "apres": ".",
+      "choix": [
+        "schéin",
+        "ellen",
+        "deier",
+        "séier"
+      ],
+      "note": "schéin = beau"
+    },
+    {
+      "id": 2022,
+      "unite": 3,
+      "fr": "Le tableau est laid.",
+      "avant": "D'Bild ass",
+      "trou": "ellen",
+      "apres": ".",
+      "choix": [
+        "ellen",
+        "schéin",
+        "eidel",
+        "kleng"
+      ],
+      "note": "ellen = laid"
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "fr": "Non, il est cher. Et il est cassé !",
+      "avant": "Nee, en ass deier. An en ass",
+      "trou": "futti",
+      "apres": "!",
+      "choix": [
+        "futti",
+        "ganz",
+        "bëlleg",
+        "nei"
+      ],
+      "note": "futti = cassé"
+    },
+    {
+      "id": 2024,
+      "unite": 3,
+      "plus": true,
+      "fr": "Le seau est vide.",
+      "avant": "Den Eemer ass",
+      "trou": "eidel",
+      "apres": ".",
+      "choix": [
+        "eidel",
+        "voll",
+        "kleng",
+        "dënn"
+      ],
+      "note": "eidel = vide"
+    },
+    {
+      "id": 2025,
+      "unite": 3,
+      "plus": true,
+      "fr": "La bouteille est pleine.",
+      "avant": "D'Fläsch ass",
+      "trou": "voll",
+      "apres": ".",
+      "choix": [
+        "voll",
+        "eidel",
+        "déck",
+        "liicht"
+      ],
+      "note": "voll = plein"
     }
   ],
   "ecriture": [
     {
-      "fr": "Nouveau / Nouvelle",
+      "id": 2001,
+      "unite": 1,
+      "fr": "Neuf, nouveau",
       "lu": "Nei"
     },
     {
-      "fr": "Vieux / Vieille",
+      "id": 2002,
+      "unite": 1,
+      "fr": "Vieux",
       "lu": "Al"
     },
     {
-      "fr": "Petit(e)",
-      "lu": "Kleng"
-    },
-    {
-      "fr": "Grand(e)",
+      "id": 2003,
+      "unite": 1,
+      "fr": "Grand",
       "lu": "Grouss"
     },
     {
-      "fr": "Léger / Légère",
-      "lu": "Liicht"
+      "id": 2004,
+      "unite": 1,
+      "fr": "Petit",
+      "lu": "Kleng"
     },
     {
-      "fr": "Lourd(e)",
-      "lu": "Schwéier"
-    },
-    {
-      "fr": "Rapide",
-      "lu": "Séier"
-    },
-    {
-      "fr": "Lent(e)",
-      "lu": "Lues"
-    },
-    {
-      "fr": "Rond(e)",
-      "lu": "Ronn"
-    },
-    {
-      "fr": "Carré(e)",
-      "lu": "Eckeg"
-    },
-    {
-      "fr": "Pas cher",
-      "lu": "Bëlleg"
-    },
-    {
-      "fr": "Cher / Chère",
-      "lu": "Deier"
-    },
-    {
-      "fr": "Haut(e)",
-      "lu": "Héich"
-    },
-    {
-      "fr": "Bas / Basse",
-      "lu": "Niddereg"
-    },
-    {
-      "fr": "Plein(e)",
-      "lu": "Voll"
-    },
-    {
-      "fr": "Vide",
-      "lu": "Eidel"
-    },
-    {
-      "fr": "Mince / Fin(e)",
-      "lu": "Dënn"
-    },
-    {
-      "fr": "Épais / Épaisse",
-      "lu": "Déck"
-    },
-    {
-      "fr": "Le smartphone est nouveau.",
+      "id": 2005,
+      "unite": 1,
+      "fr": "Le smartphone est neuf.",
       "lu": "Den Handy ass nei."
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "Le téléphone est vieux.",
       "lu": "Den Telefon ass al."
     },
     {
-      "fr": "La plume est légère.",
-      "lu": "D'Fieder ass liicht."
-    },
-    {
-      "fr": "L'enclume est lourde.",
-      "lu": "Den Amboss ass schwéier."
-    },
-    {
-      "fr": "L'escargot est lent.",
-      "lu": "De Schleek ass lues."
-    },
-    {
-      "fr": "La voiture est rapide.",
-      "lu": "Den Auto ass séier."
-    },
-    {
-      "fr": "Le seau est vide.",
-      "lu": "Den Eemer ass eidel."
-    },
-    {
-      "fr": "La boîte est carrée.",
-      "lu": "D'Këscht ass eckeg."
-    },
-    {
-      "fr": "L'immeuble est grand.",
-      "lu": "D'Gebai ass grouss."
-    },
-    {
-      "fr": "La balle est ronde.",
-      "lu": "De Ball ass ronn."
-    },
-    {
-      "fr": "Le gratte-ciel est haut.",
-      "lu": "D'Wollekekrazer ass héich."
-    },
-    {
-      "fr": "La bouteille est pleine.",
-      "lu": "D'Fläsch ass voll."
-    },
-    {
-      "fr": "Le fil est fin.",
-      "lu": "De Fuedem ass dënn."
-    },
-    {
-      "fr": "Le livre est épais.",
-      "lu": "D'Buch ass déck."
-    },
-    {
+      "id": 2007,
+      "unite": 1,
       "fr": "La souris est petite.",
-      "lu": "D'Maus ass kleng."
+      "lu": "D'Maus ass kleng.",
+      "attention": "L'adjectif après <b>ass</b> ne change jamais : de Bus, d'Dier, d'Buch ass <b>al</b>."
     },
     {
-      "fr": "Le stylo est bon marché.",
-      "lu": "De Bic ass bëlleg."
+      "id": 2008,
+      "unite": 1,
+      "fr": "Le vélo n'est pas neuf. Il est vieux.",
+      "lu": "De Vëlo ass net nei. En ass al.",
+      "attention": "Un adjectif se nie avec <b>net</b> : ass <b>net</b> nei."
     },
     {
-      "fr": "La moto est chère.",
-      "lu": "De Moto ass deier."
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "Haut",
+      "lu": "Héich"
     },
     {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "Bas",
+      "lu": "Niddereg"
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "Le bâtiment est haut.",
+      "lu": "D'Gebai ass héich."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
       "fr": "Le muret est bas.",
       "lu": "D'Mauer ass niddereg."
     },
     {
-      "fr": "Beau / Belle",
-      "lu": "Schéin"
+      "id": 2013,
+      "unite": 2,
+      "fr": "Rapide",
+      "lu": "Séier"
     },
     {
-      "fr": "Laid(e)",
-      "lu": "Ellen"
+      "id": 2014,
+      "unite": 2,
+      "fr": "Lent",
+      "lu": "Lues"
     },
     {
-      "fr": "Cassé(e)",
+      "id": 2015,
+      "unite": 2,
+      "fr": "Léger",
+      "lu": "Liicht"
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "Lourd",
+      "lu": "Schwéier"
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "La voiture est rapide.",
+      "lu": "Den Auto ass séier."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "L'escargot est lent.",
+      "lu": "De Schleek ass lues."
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "fr": "La plume est légère.",
+      "lu": "D'Fieder ass liicht."
+    },
+    {
+      "id": 2020,
+      "unite": 2,
+      "fr": "Non, il est lent et lourd !",
+      "lu": "Nee, en ass lues a schwéier!",
+      "attention": "Et = <b>a</b> devant la plupart des consonnes : lues <b>a</b> schwéier · <b>an</b> devant une voyelle."
+    },
+    {
+      "id": 2021,
+      "unite": 2,
+      "plus": true,
+      "fr": "Rond",
+      "lu": "Ronn"
+    },
+    {
+      "id": 2022,
+      "unite": 2,
+      "plus": true,
+      "fr": "Anguleux",
+      "lu": "Eckeg"
+    },
+    {
+      "id": 2023,
+      "unite": 2,
+      "plus": true,
+      "fr": "Mince, fin",
+      "lu": "Dënn"
+    },
+    {
+      "id": 2024,
+      "unite": 2,
+      "plus": true,
+      "fr": "Épais",
+      "lu": "Déck"
+    },
+    {
+      "id": 2025,
+      "unite": 2,
+      "plus": true,
+      "fr": "L'enclume est lourde.",
+      "lu": "Den Amboss ass schwéier."
+    },
+    {
+      "id": 2026,
+      "unite": 2,
+      "plus": true,
+      "fr": "La balle est ronde.",
+      "lu": "De Ball ass ronn."
+    },
+    {
+      "id": 2027,
+      "unite": 2,
+      "plus": true,
+      "fr": "Le fil est fin.",
+      "lu": "De Fuedem ass dënn."
+    },
+    {
+      "id": 2028,
+      "unite": 2,
+      "plus": true,
+      "fr": "Le livre est épais.",
+      "lu": "D'Buch ass déck."
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "Cher",
+      "lu": "Deier"
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "fr": "Pas cher",
+      "lu": "Bëlleg"
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "fr": "Cassé",
       "lu": "Futti"
     },
     {
-      "fr": "Intact(e)",
-      "lu": "Ganz"
+      "id": 2032,
+      "unite": 3,
+      "fr": "Intact",
+      "lu": "Ganz",
+      "attention": "Ici <b>ganz</b> = intact, entier (≠ futti). Ailleurs ganz = très (ganz gutt)."
     },
     {
+      "id": 2033,
+      "unite": 3,
+      "fr": "La moto est chère.",
+      "lu": "De Moto ass deier."
+    },
+    {
+      "id": 2034,
+      "unite": 3,
+      "fr": "Le smartphone est cassé.",
+      "lu": "Den Handy ass futti."
+    },
+    {
+      "id": 2035,
+      "unite": 3,
       "fr": "La voiture est belle.",
       "lu": "Den Auto ass schéin."
     },
     {
-      "fr": "Le smartphone est cassé.",
-      "lu": "Den Handy ass futti."
+      "id": 2036,
+      "unite": 3,
+      "fr": "Non, il est cher. Et il est cassé !",
+      "lu": "Nee, en ass deier. An en ass futti!"
+    },
+    {
+      "id": 2037,
+      "unite": 3,
+      "plus": true,
+      "fr": "Beau",
+      "lu": "Schéin"
+    },
+    {
+      "id": 2038,
+      "unite": 3,
+      "plus": true,
+      "fr": "Laid",
+      "lu": "Ellen"
+    },
+    {
+      "id": 2039,
+      "unite": 3,
+      "plus": true,
+      "fr": "Plein",
+      "lu": "Voll"
+    },
+    {
+      "id": 2040,
+      "unite": 3,
+      "plus": true,
+      "fr": "Vide",
+      "lu": "Eidel"
+    },
+    {
+      "id": 2041,
+      "unite": 3,
+      "plus": true,
+      "fr": "Le stylo est bon marché.",
+      "lu": "De Stëft ass bëlleg."
+    },
+    {
+      "id": 2042,
+      "unite": 3,
+      "plus": true,
+      "fr": "Le seau est vide.",
+      "lu": "Den Eemer ass eidel."
+    },
+    {
+      "id": 2043,
+      "unite": 3,
+      "plus": true,
+      "fr": "La bouteille est pleine.",
+      "lu": "D'Fläsch ass voll."
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon présente des adjectifs et leurs <b>contraires</b>. L'adjectif se place après le verbe <b>ass</b> et reste <b>invariable</b> : <b>De Bus ass grouss.</b>"
+      "contenu": "Cette leçon présente des adjectifs et leurs <b>contraires</b>. L'adjectif se place après <b>ass</b> et reste <b>invariable</b> : <b>De Bus ass grouss.</b> Un contraire se retient mieux à deux : si tu connais <b>grouss</b>, tu connais <b>kleng</b>."
     },
     {
       "type": "tableau",
-      "titre": "Les contraires (de Konträr)",
+      "titre": "Neuf, vieux, grand, petit",
       "entetes": [
         "Adjectif",
         "↔ Contraire"
       ],
       "lignes": [
         [
-          "nei (nouveau)",
+          "nei (neuf, nouveau)",
           "al (vieux)"
         ],
         [
-          "kleng (petit)",
-          "grouss (grand)"
+          "grouss (grand)",
+          "kleng (petit)"
+        ],
+        [
+          "héich (haut)",
+          "niddereg (bas)"
+        ]
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Décrire et dire non",
+      "lignes": [
+        "Objet + <b>ass</b> + adjectif : <b>De Vëlo ass al.</b>",
+        "Non : <b>net</b> devant l'adjectif : <b>De Vëlo ass net nei.</b>",
+        "Le vélo = <b>de Vëlo</b> (masculin) → pronom <b>en</b> : En ass al."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "tableau",
+      "titre": "Rapide, lent, léger, lourd",
+      "entetes": [
+        "Adjectif",
+        "↔ Contraire"
+      ],
+      "lignes": [
+        [
+          "séier (rapide)",
+          "lues (lent)"
         ],
         [
           "liicht (léger)",
           "schwéier (lourd)"
         ],
         [
-          "séier (rapide)",
-          "lues (lent)"
-        ],
-        [
           "ronn (rond)",
-          "eckeg (carré)"
-        ],
-        [
-          "bëlleg (pas cher)",
-          "deier (cher)"
-        ],
-        [
-          "héich (haut)",
-          "niddereg (bas)"
-        ],
-        [
-          "voll (plein)",
-          "eidel (vide)"
-        ],
-        [
-          "dënn (mince)",
-          "déck (épais)"
-        ],
-        [
-          "schéin (beau)",
-          "ellen (laid)"
-        ],
-        [
-          "futti (cassé)",
-          "ganz (intact)"
+          "eckeg (anguleux)"
         ]
-      ]
+      ],
+      "unite": 2
     },
     {
       "type": "callout",
       "variant": "astuce",
-      "titre": "Apprends-les par paires",
+      "titre": "Deux adjectifs : a ou an ?",
       "lignes": [
-        "Un contraire se retient mieux <b>à deux</b> : si tu connais <b>grouss</b>, tu connais <b>kleng</b>.",
-        "Au quiz, on te donne un adjectif et tu dois trouver son opposé."
-      ]
+        "Et = <b>an</b>, qui devient <b>a</b> devant la plupart des consonnes : séier <b>a</b> liicht, lues <b>a</b> schwéier.",
+        "Devant une voyelle et n, d, t, z, h, on garde <b>an</b>."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "tableau",
+      "titre": "Mince, épais",
+      "entetes": [
+        "Adjectif",
+        "↔ Contraire"
+      ],
+      "lignes": [
+        [
+          "dënn (mince, fin)",
+          "déck (épais)"
+        ]
+      ],
+      "unite": 2,
+      "plus": true
+    },
+    {
+      "type": "tableau",
+      "titre": "Le prix et l'état",
+      "entetes": [
+        "Adjectif",
+        "↔ Contraire"
+      ],
+      "lignes": [
+        [
+          "deier (cher)",
+          "bëlleg (pas cher)"
+        ],
+        [
+          "futti (cassé)",
+          "ganz (intact)"
+        ],
+        [
+          "schéin (beau)",
+          "ellen (laid)"
+        ]
+      ],
+      "unite": 3
     },
     {
       "type": "callout",
       "variant": "attention",
-      "titre": "ganz : deux sens à ne pas confondre",
+      "titre": "ganz : deux sens",
       "lignes": [
-        "Ici <b>ganz</b> = <b>intact, entier</b> (le contraire de futti) : <b>Den Handy ass ganz.</b>",
-        "Mais <b>ganz</b> veut aussi dire <b>très</b> (ganz gutt = très bien, leçon 1). Le sens dépend du contexte."
-      ]
+        "Ici <b>ganz</b> = <b>intact, entier</b> (≠ futti) : <b>Den Handy ass ganz.</b>",
+        "Mais <b>ganz</b> veut aussi dire <b>très</b> : ganz gutt = très bien (leçon 1)."
+      ],
+      "unite": 3
+    },
+    {
+      "type": "tableau",
+      "titre": "Plein, vide",
+      "entetes": [
+        "Adjectif",
+        "↔ Contraire"
+      ],
+      "lignes": [
+        [
+          "voll (plein)",
+          "eidel (vide)"
+        ]
+      ],
+      "unite": 3,
+      "plus": true
     },
     {
       "type": "tableau",
@@ -890,7 +1389,7 @@
       "lignes": [
         [
           "Den Handy ass nei.",
-          "Le smartphone est nouveau."
+          "Le smartphone est neuf."
         ],
         [
           "Den Telefon ass al.",
@@ -905,14 +1404,45 @@
           "La voiture est rapide."
         ],
         [
-          "Den Auto ass schéin.",
-          "La voiture est belle."
+          "De Moto ass deier.",
+          "La moto est chère."
         ],
         [
-          "De Computer ass futti.",
-          "L'ordinateur est cassé."
+          "Den Handy ass futti.",
+          "Le smartphone est cassé."
         ]
       ]
+    },
+    {
+      "type": "dialogue",
+      "titre": "À la brocante",
+      "echanges": [
+        [
+          "Moien! De Vëlo ass nei!",
+          "Bonjour ! Le vélo est neuf !"
+        ],
+        [
+          "De Vëlo ass net nei. En ass al.",
+          "Le vélo n'est pas neuf. Il est vieux."
+        ],
+        [
+          "Jo, mee en ass séier a liicht!",
+          "Oui, mais il est rapide et léger !"
+        ],
+        [
+          "Nee, en ass lues a schwéier!",
+          "Non, il est lent et lourd !"
+        ],
+        [
+          "Mee en ass bëlleg!",
+          "Mais il n'est pas cher !"
+        ],
+        [
+          "Nee, en ass deier. An en ass futti!",
+          "Non, il est cher. Et il est cassé !"
+        ]
+      ],
+      "unite": 0
     }
   ]
 }

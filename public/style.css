@@ -998,6 +998,7 @@ body.no-scroll { overflow: hidden; }
 .mc-case.vert   { background: #123329; border-bottom-color: var(--correct); color: var(--correct); }
 .mc-case.indice { background: #2e2810; border-bottom-color: var(--accent); color: var(--accent); }
 .mc-espace { width: 14px; }
+.mc-groupe { display: inline-flex; gap: 5px; align-items: center; } /* un mot = un bloc insécable */
 .mc-sep { display: flex; align-items: center; font-size: 1.25rem; font-weight: 600; color: var(--muted-strong); }
 .mc-cases.shake { animation: pc-shake .35s; }
 @keyframes pc-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
@@ -1562,6 +1563,7 @@ div.carte-lecon:active { transform: none; }
 }
 .ligne-finie .t { flex: 1; min-width: 0; }
 .etoiles { white-space: nowrap; font-size: var(--fs-sec); }
+.acquise { font-size: var(--fs-micro); font-weight: 700; color: var(--correct); white-space: nowrap; }
 .sans-faute { font-size: var(--fs-micro); font-weight: 800; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
 
 /* Leçons à venir : une ligne */

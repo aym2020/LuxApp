@@ -193,7 +193,11 @@ function aDejaPratique() {
 function compterUnitesTerminees() {
   let total = 0;
   leconsActives().forEach(l => {
-    if (isParcoursLecon(l)) total += unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
+    if (isParcoursLecon(l)) {
+      const faites = unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
+      // Leçon migrée, faite dans l'ancienne version : compte au moins 1 (un acquis ne baisse jamais).
+      total += faites || (acquisV1(l) ? 1 : 0);
+    }
     else if (leconV1Faite(l)) total += 1;
   });
   return total;

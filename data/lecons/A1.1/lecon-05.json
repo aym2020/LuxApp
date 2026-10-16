@@ -3,567 +3,1374 @@
   "titre": "D'Zuelen",
   "titre_fr": "Les nombres et la façon de compter en luxembourgeois",
   "couleur": "#a07ad4",
-  "instructions": {
-    "flashcards": "Mémorise les nombres en luxembourgeois. Comprends la formation des composés.",
-    "quiz": "Lis le nombre luxembourgeois et trouve sa valeur.",
-    "trous": "Complète les phrases avec le nombre ou l'année correct.",
-    "ecriture": "Écris le nombre ou l'année en toutes lettres en luxembourgeois. Respecte les liaisons (an/a)."
+  "v1": {
+    "quiz": 33,
+    "trous": 20,
+    "ecriture": 57
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : écris en lettres luxembourgeoises le nombre donné en chiffres.",
+    "quiz": "Lis le nombre luxembourgeois et choisis sa valeur en chiffres.",
+    "trous": "Complète la phrase avec le nombre luxembourgeois correct.",
+    "ecriture": "Écris le nombre en toutes lettres en luxembourgeois, soudé, et les phrases de la mission (Et sinn …). Respecte an / a."
+  },
+  "mission": {
+    "titre": "L'inventaire du bureau",
+    "contexte": "Ton chef prépare l'inventaire du bureau. Il te demande combien il y a d'ordinateurs, de chaises, de livres et de feuilles : tu comptes et tu réponds.",
+    "objectif": "répondre à « Wéi vill … ? » avec « Et sinn … » et dire un nombre de 0 à 1000."
+  },
+  "scene": [
     {
-      "id": 1,
-      "lu": "Null",
-      "fr": "0",
-      "note": "Chiffre de base"
+      "qui": "Le chef",
+      "lu": "Moien! Wéi vill Computere ginn et?",
+      "fr": "Bonjour ! Combien d'ordinateurs y a-t-il ?",
+      "unite": 1
     },
     {
-      "id": 2,
-      "lu": "Eent",
-      "fr": "1",
-      "note": "Chiffre de base"
+      "qui": "toi",
+      "lu": "Et sinn néng.",
+      "fr": "Il y en a neuf.",
+      "unite": 1,
+      "aide": "Il y a … = <b>Et sinn</b> … · 9 = <b>néng</b>."
     },
     {
-      "id": 3,
-      "lu": "Zwee",
-      "fr": "2",
-      "note": "(M/N) → zwee · (F) → zwou"
+      "qui": "Le chef",
+      "lu": "A wéi vill Still?",
+      "fr": "Et combien de chaises ?",
+      "unite": 2
     },
     {
-      "id": 4,
-      "lu": "Dräi",
-      "fr": "3",
-      "note": "Chiffre de base"
+      "qui": "toi",
+      "lu": "Et sinn uechtzéng.",
+      "fr": "Il y en a dix-huit.",
+      "unite": 2,
+      "aide": "18 = <b>uechtzéng</b> (pas aachtzéng)."
     },
     {
-      "id": 5,
-      "lu": "Véier",
-      "fr": "4",
-      "note": "Chiffre de base"
+      "qui": "Le chef",
+      "lu": "A wéi vill Bicher?",
+      "fr": "Et combien de livres ?",
+      "unite": 3
     },
     {
-      "id": 6,
-      "lu": "Fënnef",
-      "fr": "5",
-      "note": "Chiffre de base"
+      "qui": "toi",
+      "lu": "Et sinn eenanzwanzeg.",
+      "fr": "Il y en a vingt et un.",
+      "unite": 3,
+      "aide": "21 = <b>een</b> + <b>an</b> + zwanzeg, soudé."
     },
     {
-      "id": 7,
-      "lu": "Sechs",
-      "fr": "6",
-      "note": "Chiffre de base"
+      "qui": "Le chef",
+      "lu": "A wéi vill Blieder?",
+      "fr": "Et combien de feuilles ?",
+      "unite": 4
     },
     {
-      "id": 8,
-      "lu": "Siwen",
-      "fr": "7",
-      "note": "Chiffre de base"
+      "qui": "toi",
+      "lu": "Et sinn zweehonnertfofzeg.",
+      "fr": "Il y en a deux cent cinquante.",
+      "unite": 4,
+      "aide": "250 = zwee<b>honnert</b>fofzeg, tout soudé."
     },
     {
-      "id": 9,
-      "lu": "Aacht",
-      "fr": "8",
-      "note": "Chiffre de base"
-    },
-    {
-      "id": 10,
-      "lu": "Néng",
-      "fr": "9",
-      "note": "Chiffre de base"
-    },
-    {
-      "id": 11,
-      "lu": "Zéng",
-      "fr": "10",
-      "note": "Chiffre de base"
-    },
-    {
-      "id": 12,
-      "lu": "Eelef",
-      "fr": "11",
-      "note": "Irrégulier"
-    },
-    {
-      "id": 13,
-      "lu": "Zwielef",
-      "fr": "12",
-      "note": "Irrégulier"
-    },
-    {
-      "id": 14,
-      "lu": "Dräizéng",
-      "fr": "13",
-      "note": "Dräi + zéng"
-    },
-    {
-      "id": 15,
-      "lu": "Véierzéng",
-      "fr": "14",
-      "note": "Véier + zéng"
-    },
-    {
-      "id": 16,
-      "lu": "Fofzéng",
-      "fr": "15",
-      "note": "Irrégulier"
-    },
-    {
-      "id": 17,
-      "lu": "Siechzéng",
-      "fr": "16",
-      "note": "Sechs + zéng"
-    },
-    {
-      "id": 18,
-      "lu": "Siwwenzéng",
-      "fr": "17",
-      "note": "Siwen + zéng"
-    },
-    {
-      "id": 19,
-      "lu": "Uechtzéng",
-      "fr": "18",
-      "note": "Aacht → Uecht + zéng"
-    },
-    {
-      "id": 20,
-      "lu": "Nonzéng",
-      "fr": "19",
-      "note": "Néng → Non + zéng"
-    },
-    {
-      "id": 21,
-      "lu": "Zwanzeg",
-      "fr": "20",
-      "note": "Dizaine"
-    },
-    {
-      "id": 22,
-      "lu": "Drësseg",
-      "fr": "30",
-      "note": "Dizaine"
-    },
-    {
-      "id": 23,
-      "lu": "Véierzeg",
-      "fr": "40",
-      "note": "Dizaine"
-    },
-    {
-      "id": 24,
-      "lu": "Fofzeg",
-      "fr": "50",
-      "note": "Dizaine"
-    },
-    {
-      "id": 25,
-      "lu": "Siechzeg",
-      "fr": "60",
-      "note": "Dizaine"
-    },
-    {
-      "id": 26,
-      "lu": "Siwwenzeg",
-      "fr": "70",
-      "note": "Dizaine"
-    },
-    {
-      "id": 27,
-      "lu": "Aachtzeg",
-      "fr": "80",
-      "note": "Dizaine"
-    },
-    {
-      "id": 28,
-      "lu": "Nonzeg",
-      "fr": "90",
-      "note": "Dizaine"
-    },
-    {
-      "id": 29,
-      "lu": "Honnert",
-      "fr": "100",
-      "note": "Centaine"
-    },
-    {
-      "id": 30,
-      "lu": "Zweehonnert",
-      "fr": "200",
-      "note": "Zwee + honnert"
-    },
-    {
-      "id": 31,
-      "lu": "Dausend",
-      "fr": "1000",
-      "note": "Millier"
-    },
-    {
-      "id": 32,
-      "lu": "Zéngdausend",
-      "fr": "10 000",
-      "note": "Zéng + dausend"
-    },
-    {
-      "id": 33,
-      "lu": "Eenanzwanzeg",
-      "fr": "21",
-      "note": "Construction : unité + AN + dizaine"
-    },
-    {
-      "id": 34,
-      "lu": "Siwenavéierzeg",
-      "fr": "47",
-      "note": "Construction : unité + A + dizaine"
+      "qui": "Le chef",
+      "lu": "Super, merci!",
+      "fr": "Super, merci !",
+      "unite": 4
     }
   ],
-  "quiz": [
+  "unites": [
     {
       "id": 1,
-      "question": "Siwen",
-      "reponse": "7",
-      "distracteurs": [
-        "6",
-        "8",
-        "9"
+      "titre": "De 0 à 12",
+      "phrase": [
+        "Wéi vill Computere ginn et? – Et sinn néng.",
+        "Combien d'ordinateurs y a-t-il ? – Il y en a neuf."
+      ],
+      "regle": "Compter : <b>Wéi vill … ginn et?</b> – <b>Et sinn …</b> (Combien … ? – Il y en a …)",
+      "exemple": "eent, zwee, dräi, véier, fënnef, sechs, siwen, aacht, néng, zéng",
+      "phrases": [
+        [
+          "Et sinn aacht Käerzen.",
+          "Il y a huit bougies."
+        ],
+        [
+          "Wéi vill Käerze ginn et?",
+          "Combien de bougies y a-t-il ?"
+        ]
+      ],
+      "pieges": [
+        "2 : <b>zwee</b> (masculin, neutre), mais <b>zwou</b> (féminin) : zwou Dieren.",
+        "Les nombres sont des adjectifs : <b>pas de majuscule</b>."
       ]
     },
     {
       "id": 2,
-      "question": "Fënnef",
+      "titre": "De 13 à 20",
+      "phrase": [
+        "A wéi vill Still? – Et sinn uechtzéng.",
+        "Et combien de chaises ? – Il y en a dix-huit."
+      ],
+      "regle": "13 à 19 : unité + <b>zéng</b>, avec des formes à retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)",
+      "exemple": "dräizéng (13) · véierzéng (14) · siwwenzéng (17) · zwanzeg (20)",
+      "phrases": [
+        [
+          "Et sinn uechtzéng Autoen.",
+          "Il y a dix-huit voitures."
+        ],
+        [
+          "Et sinn zwanzeg Still.",
+          "Il y a vingt chaises."
+        ]
+      ],
+      "pieges": [
+        "<b>fofzéng</b> = 15 (pas fënnefzéng) · <b>uechtzéng</b> = 18 (pas aachtzéng).",
+        "<b>siwwenzéng</b> (17) s'écrit avec deux w, comme siwwenzeg (70)."
+      ]
+    },
+    {
+      "id": 3,
+      "titre": "Les dizaines, de 21 à 99",
+      "phrase": [
+        "A wéi vill Bicher? – Et sinn eenanzwanzeg.",
+        "Et combien de livres ? – Il y en a vingt et un."
+      ],
+      "regle": "21 à 99 : <b>unité + an / a + dizaine</b>, le tout soudé : fënnef<b>an</b>zwanzeg (25) · 1 devient <b>een</b> : eenanzwanzeg (21)",
+      "exemple": "eenanzwanzeg (21) · néngandrësseg (39) · siwenavéierzeg (47)",
+      "phrases": [
+        [
+          "Et sinn zweeanzwanzeg Bussen.",
+          "Il y a vingt-deux bus."
+        ],
+        [
+          "Et sinn siwenavéierzeg Telefonen.",
+          "Il y a quarante-sept téléphones."
+        ]
+      ],
+      "pieges": [
+        "<b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg.",
+        "L'unité vient <b>avant</b> la dizaine : 25 = « cinq-et-vingt »."
+      ]
+    },
+    {
+      "id": 4,
+      "titre": "Centaines et milliers",
+      "phrase": [
+        "A wéi vill Blieder? – Et sinn zweehonnertfofzeg.",
+        "Et combien de feuilles ? – Il y en a deux cent cinquante."
+      ],
+      "regle": "Centaines et milliers : tout <b>soudé</b> · <b>honnert</b> (100), <b>dausend</b> (1000) · 250 = zweehonnertfofzeg",
+      "exemple": "honnerteenanzwanzeg (121) · dräihonnertvéier (304) · zweedausendfënnefanzwanzeg (2025)",
+      "phrases": [
+        [
+          "Et sinn honnert Blieder.",
+          "Il y a cent feuilles."
+        ],
+        [
+          "Et sinn dausend Gebaier.",
+          "Il y a mille bâtiments."
+        ]
+      ],
+      "pieges": [
+        "Aucune espace : <b>zweehonnertfofzeg</b>, pas « zweehonnert fofzeg ».",
+        "Années avant 2000, par centaines : 1984 = <b>nonzénghonnertvéieranaachtzeg</b>."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "1",
+      "lu": "eent"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "2",
+      "lu": "zwee",
+      "attention": "2 = <b>zwee</b> (masculin, neutre) · <b>zwou</b> (féminin) : zwou Dieren."
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "3",
+      "lu": "dräi"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "4",
+      "lu": "véier"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "5",
+      "lu": "fënnef"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "6",
+      "lu": "sechs"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "7",
+      "lu": "siwen"
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "8",
+      "lu": "aacht"
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "fr": "9",
+      "lu": "néng"
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "fr": "10",
+      "lu": "zéng"
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "0",
+      "lu": "null"
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "2 (féminin)",
+      "lu": "zwou",
+      "note": "zwou Dieren",
+      "attention": "2 = <b>zwee</b> (masculin, neutre) · <b>zwou</b> (féminin) : zwou Dieren."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "11",
+      "lu": "eelef",
+      "note": "À retenir"
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "fr": "12",
+      "lu": "zwielef",
+      "note": "À retenir"
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "fr": "13",
+      "lu": "dräizéng"
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "14",
+      "lu": "véierzéng"
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "15",
+      "lu": "fofzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "16",
+      "lu": "siechzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "fr": "17",
+      "lu": "siwwenzéng"
+    },
+    {
+      "id": 2020,
+      "unite": 2,
+      "fr": "18",
+      "lu": "uechtzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2021,
+      "unite": 2,
+      "fr": "19",
+      "lu": "nonzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2022,
+      "unite": 2,
+      "fr": "20",
+      "lu": "zwanzeg"
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "fr": "30",
+      "lu": "drësseg"
+    },
+    {
+      "id": 2024,
+      "unite": 3,
+      "fr": "40",
+      "lu": "véierzeg"
+    },
+    {
+      "id": 2025,
+      "unite": 3,
+      "fr": "50",
+      "lu": "fofzeg"
+    },
+    {
+      "id": 2026,
+      "unite": 3,
+      "fr": "60",
+      "lu": "siechzeg"
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "fr": "70",
+      "lu": "siwwenzeg"
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "fr": "80",
+      "lu": "aachtzeg"
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "90",
+      "lu": "nonzeg"
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "fr": "21",
+      "lu": "eenanzwanzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "plus": true,
+      "fr": "47",
+      "lu": "siwenavéierzeg",
+      "note": "unité + a + dizaine",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2032,
+      "unite": 4,
+      "fr": "100",
+      "lu": "honnert",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2033,
+      "unite": 4,
+      "fr": "200",
+      "lu": "zweehonnert",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2034,
+      "unite": 4,
+      "fr": "300",
+      "lu": "dräihonnert",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2035,
+      "unite": 4,
+      "fr": "1000",
+      "lu": "dausend",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2036,
+      "unite": 4,
+      "fr": "2000",
+      "lu": "zweedausend",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2037,
+      "unite": 4,
+      "fr": "10 000",
+      "lu": "zéngdausend",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    }
+  ],
+  "quiz": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "question": "dräi",
+      "reponse": "3",
+      "distracteurs": [
+        "2",
+        "4",
+        "13"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "question": "véier",
+      "reponse": "4",
+      "distracteurs": [
+        "5",
+        "14",
+        "40"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "question": "fënnef",
       "reponse": "5",
       "distracteurs": [
         "4",
         "6",
         "15"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 3,
-      "question": "Eelef",
+      "id": 2004,
+      "unite": 1,
+      "question": "sechs",
+      "reponse": "6",
+      "distracteurs": [
+        "7",
+        "16",
+        "60"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "question": "siwen",
+      "reponse": "7",
+      "distracteurs": [
+        "6",
+        "8",
+        "9"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "question": "aacht",
+      "reponse": "8",
+      "distracteurs": [
+        "7",
+        "9",
+        "18"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "question": "néng",
+      "reponse": "9",
+      "distracteurs": [
+        "8",
+        "10",
+        "19"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "question": "zéng",
+      "reponse": "10",
+      "distracteurs": [
+        "9",
+        "11",
+        "100"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "question": "eelef",
       "reponse": "11",
       "distracteurs": [
         "10",
         "12",
         "21"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 4,
-      "question": "Zwielef",
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "question": "zwielef",
       "reponse": "12",
       "distracteurs": [
         "11",
         "13",
         "20"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 5,
-      "question": "Fofzéng",
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "question": "null",
+      "reponse": "0",
+      "distracteurs": [
+        "1",
+        "10",
+        "100"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "question": "dräizéng",
+      "reponse": "13",
+      "distracteurs": [
+        "30",
+        "3",
+        "14"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "question": "véierzéng",
+      "reponse": "14",
+      "distracteurs": [
+        "40",
+        "4",
+        "13"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "question": "fofzéng",
       "reponse": "15",
       "distracteurs": [
         "14",
         "16",
         "50"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
     },
     {
-      "id": 6,
-      "question": "Drësseg",
+      "id": 2015,
+      "unite": 2,
+      "question": "siechzéng",
+      "reponse": "16",
+      "distracteurs": [
+        "60",
+        "6",
+        "17"
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "question": "siwwenzéng",
+      "reponse": "17",
+      "distracteurs": [
+        "70",
+        "7",
+        "16"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "question": "uechtzéng",
+      "reponse": "18",
+      "distracteurs": [
+        "80",
+        "8",
+        "19"
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "question": "nonzéng",
+      "reponse": "19",
+      "distracteurs": [
+        "90",
+        "9",
+        "18"
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "question": "zwanzeg",
+      "reponse": "20",
+      "distracteurs": [
+        "12",
+        "2",
+        "30"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "question": "drësseg",
       "reponse": "30",
       "distracteurs": [
         "13",
         "40",
         "20"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 7,
-      "question": "Aachtzeg",
+      "id": 2021,
+      "unite": 3,
+      "question": "aachtzeg",
       "reponse": "80",
       "distracteurs": [
         "8",
         "18",
         "90"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 8,
-      "question": "Nonzeg",
+      "id": 2022,
+      "unite": 3,
+      "question": "nonzeg",
       "reponse": "90",
       "distracteurs": [
         "9",
         "19",
         "80"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 9,
-      "question": "Dräiavéierzeg",
-      "reponse": "43",
-      "distracteurs": [
-        "34",
-        "53",
-        "33"
-      ]
-    },
-    {
-      "id": 10,
-      "question": "Aachtasiechzeg",
-      "reponse": "68",
-      "distracteurs": [
-        "86",
-        "78",
-        "58"
-      ]
-    },
-    {
-      "id": 11,
-      "question": "Zweehonnertfënnefanzwanzeg",
-      "reponse": "225",
-      "distracteurs": [
-        "252",
-        "215",
-        "325"
-      ]
-    },
-    {
-      "id": 12,
-      "question": "Siwenhonnertvéierannonzeg",
-      "reponse": "794",
-      "distracteurs": [
-        "749",
-        "784",
-        "694"
-      ]
-    },
-    {
-      "id": 13,
-      "question": "Nénghonnerteelef",
-      "reponse": "911",
-      "distracteurs": [
-        "901",
-        "919",
-        "811"
-      ]
-    },
-    {
-      "id": 14,
-      "question": "Fënnefanzwanzeg",
+      "id": 2023,
+      "unite": 3,
+      "question": "fënnefanzwanzeg",
       "reponse": "25",
       "distracteurs": [
         "52",
         "35",
         "24"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 15,
-      "question": "Néngandrësseg",
+      "id": 2024,
+      "unite": 3,
+      "question": "néngandrësseg",
       "reponse": "39",
       "distracteurs": [
         "93",
         "29",
         "49"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 16,
-      "question": "Siwenafofzeg",
+      "id": 2025,
+      "unite": 3,
+      "question": "dräiavéierzeg",
+      "reponse": "43",
+      "distracteurs": [
+        "34",
+        "53",
+        "33"
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2026,
+      "unite": 3,
+      "question": "siwenafofzeg",
       "reponse": "57",
       "distracteurs": [
         "75",
         "67",
         "47"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
     },
     {
-      "id": 17,
-      "question": "Eenasiwwenzeg",
+      "id": 2027,
+      "unite": 3,
+      "question": "aachtasiechzeg",
+      "reponse": "68",
+      "distracteurs": [
+        "86",
+        "78",
+        "58"
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "plus": true,
+      "question": "véierzeg",
+      "reponse": "40",
+      "distracteurs": [
+        "14",
+        "4",
+        "50"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "plus": true,
+      "question": "fofzeg",
+      "reponse": "50",
+      "distracteurs": [
+        "15",
+        "5",
+        "60"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "plus": true,
+      "question": "siechzeg",
+      "reponse": "60",
+      "distracteurs": [
+        "16",
+        "6",
+        "70"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "plus": true,
+      "question": "siwwenzeg",
+      "reponse": "70",
+      "distracteurs": [
+        "17",
+        "7",
+        "60"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2032,
+      "unite": 3,
+      "plus": true,
+      "question": "eenasiwwenzeg",
       "reponse": "71",
       "distracteurs": [
         "17",
         "81",
         "61"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 18,
-      "question": "Dräianaachtzeg",
+      "id": 2033,
+      "unite": 3,
+      "plus": true,
+      "question": "dräianaachtzeg",
       "reponse": "83",
       "distracteurs": [
         "38",
         "73",
         "93"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 19,
-      "question": "Zweehonnertzwielef",
+      "id": 2034,
+      "unite": 4,
+      "question": "zweehonnertfënnefanzwanzeg",
+      "reponse": "225",
+      "distracteurs": [
+        "252",
+        "215",
+        "325"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2035,
+      "unite": 4,
+      "question": "nénghonnerteelef",
+      "reponse": "911",
+      "distracteurs": [
+        "901",
+        "919",
+        "811"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2036,
+      "unite": 4,
+      "question": "zweehonnertzwielef",
       "reponse": "212",
       "distracteurs": [
         "221",
         "202",
         "312"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 20,
-      "question": "Dräihonnertaachtzeg",
+      "id": 2037,
+      "unite": 4,
+      "question": "dräihonnertaachtzeg",
       "reponse": "380",
       "distracteurs": [
         "308",
         "390",
         "280"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 21,
-      "question": "Véierhonnertsiwen",
+      "id": 2038,
+      "unite": 4,
+      "question": "véierhonnertsiwen",
       "reponse": "407",
       "distracteurs": [
         "470",
         "417",
         "507"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 22,
-      "question": "Fënnefhonnertvéieravéierzeg",
-      "reponse": "544",
-      "distracteurs": [
-        "454",
-        "554",
-        "644"
-      ]
-    },
-    {
-      "id": 23,
-      "question": "Sechshonnertnonzeg",
-      "reponse": "690",
-      "distracteurs": [
-        "609",
-        "680",
-        "790"
-      ]
-    },
-    {
-      "id": 24,
-      "question": "Siwenhonnertdräianzwanzeg",
-      "reponse": "723",
-      "distracteurs": [
-        "732",
-        "713",
-        "823"
-      ]
-    },
-    {
-      "id": 25,
-      "question": "Aachthonnertfofzéng",
-      "reponse": "815",
-      "distracteurs": [
-        "851",
-        "805",
-        "915"
-      ]
-    },
-    {
-      "id": 26,
-      "question": "Nénghonnertsiwwenzeg",
-      "reponse": "970",
-      "distracteurs": [
-        "907",
-        "960",
-        "870"
-      ]
-    },
-    {
-      "id": 27,
-      "question": "Honnertnéngannonzeg",
+      "id": 2039,
+      "unite": 4,
+      "question": "honnertnéngannonzeg",
       "reponse": "199",
       "distracteurs": [
         "109",
         "189",
         "299"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 28,
-      "question": "Dräihonnerteenandrësseg",
+      "id": 2040,
+      "unite": 4,
+      "question": "zweehonnertfofzeg",
+      "reponse": "250",
+      "distracteurs": [
+        "205",
+        "150",
+        "215"
+      ],
+      "label": "CHOISIS LE NOMBRE",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2041,
+      "unite": 4,
+      "question": "dausend",
+      "reponse": "1000",
+      "distracteurs": [
+        "100",
+        "10 000",
+        "200"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2042,
+      "unite": 4,
+      "plus": true,
+      "question": "siwenhonnertvéierannonzeg",
+      "reponse": "794",
+      "distracteurs": [
+        "749",
+        "784",
+        "694"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2043,
+      "unite": 4,
+      "plus": true,
+      "question": "fënnefhonnertvéieravéierzeg",
+      "reponse": "544",
+      "distracteurs": [
+        "454",
+        "554",
+        "644"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2044,
+      "unite": 4,
+      "plus": true,
+      "question": "sechshonnertnonzeg",
+      "reponse": "690",
+      "distracteurs": [
+        "609",
+        "680",
+        "790"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2045,
+      "unite": 4,
+      "plus": true,
+      "question": "siwenhonnertdräianzwanzeg",
+      "reponse": "723",
+      "distracteurs": [
+        "732",
+        "713",
+        "823"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2046,
+      "unite": 4,
+      "plus": true,
+      "question": "aachthonnertfofzéng",
+      "reponse": "815",
+      "distracteurs": [
+        "851",
+        "805",
+        "915"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2047,
+      "unite": 4,
+      "plus": true,
+      "question": "nénghonnertsiwwenzeg",
+      "reponse": "970",
+      "distracteurs": [
+        "907",
+        "960",
+        "870"
+      ],
+      "label": "CHOISIS LE NOMBRE"
+    },
+    {
+      "id": 2048,
+      "unite": 4,
+      "plus": true,
+      "question": "dräihonnerteenandrësseg",
       "reponse": "331",
       "distracteurs": [
         "313",
         "341",
         "231"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 29,
-      "question": "Véierhonnertzweeasiechzeg",
+      "id": 2049,
+      "unite": 4,
+      "plus": true,
+      "question": "véierhonnertzweeasiechzeg",
       "reponse": "462",
       "distracteurs": [
         "426",
         "472",
         "562"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 30,
-      "question": "Fënnefhonnertaachtanaachtzeg",
+      "id": 2050,
+      "unite": 4,
+      "plus": true,
+      "question": "fënnefhonnertaachtanaachtzeg",
       "reponse": "588",
       "distracteurs": [
         "858",
         "578",
         "688"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 31,
-      "question": "Sechshonnertvéierannonzeg",
+      "id": 2051,
+      "unite": 4,
+      "plus": true,
+      "question": "sechshonnertvéierannonzeg",
       "reponse": "694",
       "distracteurs": [
         "649",
         "684",
         "794"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 32,
-      "question": "Siwenhonnertfënnefavéierzeg",
+      "id": 2052,
+      "unite": 4,
+      "plus": true,
+      "question": "siwenhonnertfënnefavéierzeg",
       "reponse": "745",
       "distracteurs": [
         "754",
         "735",
         "845"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     },
     {
-      "id": 33,
-      "question": "Aachthonnertzweeanzwanzeg",
+      "id": 2053,
+      "unite": 4,
+      "plus": true,
+      "question": "aachthonnertzweeanzwanzeg",
       "reponse": "822",
       "distracteurs": [
         "282",
         "832",
         "722"
-      ]
+      ],
+      "label": "CHOISIS LE NOMBRE"
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
+      "fr": "Il y a trois bus.",
+      "avant": "Et sinn",
+      "trou": "dräi",
+      "apres": "Bussen.",
+      "choix": [
+        "dräi",
+        "zwee",
+        "véier",
+        "dräizéng"
+      ],
+      "note": "dräi = 3"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "Il y a quatre tables.",
+      "avant": "Et sinn",
+      "trou": "véier",
+      "apres": "Dëscher.",
+      "choix": [
+        "véier",
+        "fënnef",
+        "véierzéng",
+        "véierzeg"
+      ],
+      "note": "véier = 4"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "Il y a cinq téléphones.",
+      "avant": "Et sinn",
+      "trou": "fënnef",
+      "apres": "Telefonen.",
+      "choix": [
+        "fënnef",
+        "véier",
+        "sechs",
+        "fofzéng"
+      ],
+      "note": "fënnef = 5"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "Il y a six voitures.",
+      "avant": "Et sinn",
+      "trou": "sechs",
+      "apres": "Autoen.",
+      "choix": [
+        "sechs",
+        "siwen",
+        "siechzéng",
+        "fënnef"
+      ],
+      "note": "sechs = 6"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "Il y a huit bougies.",
+      "avant": "Et sinn",
+      "trou": "aacht",
+      "apres": "Käerzen.",
+      "choix": [
+        "aacht",
+        "néng",
+        "uechtzéng",
+        "aachtzeg"
+      ],
+      "note": "aacht = 8"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "Il y a neuf ordinateurs.",
+      "avant": "Et sinn",
+      "trou": "néng",
+      "apres": "Computeren.",
+      "choix": [
+        "néng",
+        "aacht",
+        "nonzéng",
+        "zéng"
+      ],
+      "note": "néng = 9"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "Il y a dix bouteilles.",
+      "avant": "Et sinn",
+      "trou": "zéng",
+      "apres": "Fläschen.",
+      "choix": [
+        "zéng",
+        "néng",
+        "zwanzeg",
+        "eelef"
+      ],
+      "note": "zéng = 10"
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "Il y en a neuf.",
+      "avant": "Et",
+      "trou": "sinn",
+      "apres": "néng.",
+      "choix": [
+        "sinn",
+        "ass",
+        "geet",
+        "huet"
+      ],
+      "note": "Il y a … = Et sinn …"
+    },
+    {
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "Deux portes.",
+      "avant": "",
+      "trou": "zwou",
+      "apres": "Dieren",
+      "choix": [
+        "zwou",
+        "zwee"
+      ],
+      "note": "Dier est féminin → zwou",
+      "attention": "2 = <b>zwee</b> (masculin, neutre) · <b>zwou</b> (féminin) : zwou Dieren."
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "Il y a douze chaises.",
+      "avant": "Et sinn",
+      "trou": "zwielef",
+      "apres": "Still.",
+      "choix": [
+        "zwielef",
+        "eelef",
+        "zwanzeg",
+        "zéng"
+      ],
+      "note": "zwielef = 12"
+    },
+    {
+      "id": 2011,
+      "unite": 2,
       "fr": "Il y a dix-huit voitures.",
       "avant": "Et sinn",
       "trou": "uechtzéng",
       "apres": "Autoen.",
       "choix": [
         "uechtzéng",
+        "aachtzéng",
         "siwwenzéng",
-        "nonzéng",
-        "zwanzeg"
+        "nonzéng"
       ],
-      "note": "uechtzéng = 18 · Auto → Autoen"
+      "note": "uechtzéng = 18",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
     },
     {
-      "id": 2,
+      "id": 2012,
+      "unite": 2,
+      "fr": "Il y a quinze chaises.",
+      "avant": "Et sinn",
+      "trou": "fofzéng",
+      "apres": "Still.",
+      "choix": [
+        "fofzéng",
+        "fënnefzéng",
+        "véierzéng",
+        "fofzeg"
+      ],
+      "note": "fofzéng = 15",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "Il y a treize livres.",
+      "avant": "Et sinn",
+      "trou": "dräizéng",
+      "apres": "Bicher.",
+      "choix": [
+        "dräizéng",
+        "drësseg",
+        "dräi",
+        "véierzéng"
+      ],
+      "note": "dräizéng = 13"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "Il y a seize tasses.",
+      "avant": "Et sinn",
+      "trou": "siechzéng",
+      "apres": "Tasen.",
+      "choix": [
+        "siechzéng",
+        "sechszéng",
+        "siechzeg",
+        "siwwenzéng"
+      ],
+      "note": "siechzéng = 16",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "fr": "Il y a dix-sept bus.",
+      "avant": "Et sinn",
+      "trou": "siwwenzéng",
+      "apres": "Bussen.",
+      "choix": [
+        "siwwenzéng",
+        "siwenzéng",
+        "siwwenzeg",
+        "siechzéng"
+      ],
+      "note": "siwwenzéng = 17, deux w"
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "Il y a dix-neuf portes.",
+      "avant": "Et sinn",
+      "trou": "nonzéng",
+      "apres": "Dieren.",
+      "choix": [
+        "nonzéng",
+        "néngzéng",
+        "nonzeg",
+        "uechtzéng"
+      ],
+      "note": "nonzéng = 19",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "Il y a vingt chaises.",
+      "avant": "Et sinn",
+      "trou": "zwanzeg",
+      "apres": "Still.",
+      "choix": [
+        "zwanzeg",
+        "zwielef",
+        "zwee",
+        "drësseg"
+      ],
+      "note": "zwanzeg = 20"
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "plus": true,
+      "fr": "Il y a quatorze cahiers.",
+      "avant": "Et sinn",
+      "trou": "véierzéng",
+      "apres": "Hefter.",
+      "choix": [
+        "véierzéng",
+        "véierzeg",
+        "véier",
+        "dräizéng"
+      ],
+      "note": "véierzéng = 14"
+    },
+    {
+      "id": 2019,
+      "unite": 3,
       "fr": "Il y a vingt-deux bus.",
       "avant": "Et sinn",
       "trou": "zweeanzwanzeg",
@@ -577,7 +1384,8 @@
       "note": "22 = zweeanzwanzeg"
     },
     {
-      "id": 3,
+      "id": 2020,
+      "unite": 3,
       "fr": "Il y a quarante-sept téléphones.",
       "avant": "Et sinn",
       "trou": "siwenavéierzeg",
@@ -588,10 +1396,12 @@
         "siwenandrësseg",
         "aachtavéierzeg"
       ],
-      "note": "47 = siwenavéierzeg"
+      "note": "47 = siwenavéierzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
     },
     {
-      "id": 4,
+      "id": 2021,
+      "unite": 3,
       "fr": "Il y a trente et une tables.",
       "avant": "Et sinn",
       "trou": "eenandrësseg",
@@ -605,7 +1415,8 @@
       "note": "31 = eenandrësseg"
     },
     {
-      "id": 5,
+      "id": 2022,
+      "unite": 3,
       "fr": "Il y a cinquante-neuf ordinateurs.",
       "avant": "Et sinn",
       "trou": "néngafofzeg",
@@ -616,10 +1427,12 @@
         "aachtafofzeg",
         "fofzeg"
       ],
-      "note": "59 = néngafofzeg"
+      "note": "59 = néngafofzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
     },
     {
-      "id": 6,
+      "id": 2023,
+      "unite": 3,
       "fr": "Il y a soixante-trois chaises.",
       "avant": "Et sinn",
       "trou": "dräiasiechzeg",
@@ -630,24 +1443,12 @@
         "véierasiechzeg",
         "siechzeg"
       ],
-      "note": "63 = dräiasiechzeg"
+      "note": "63 = dräiasiechzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
     },
     {
-      "id": 7,
-      "fr": "Il y a soixante-dix-huit avions.",
-      "avant": "Et sinn",
-      "trou": "aachtasiwwenzeg",
-      "apres": "Fligeren.",
-      "choix": [
-        "aachtasiwwenzeg",
-        "siwenanaachtzeg",
-        "aachtasiechzeg",
-        "siwwenzeg"
-      ],
-      "note": "78 = aachtasiwwenzeg"
-    },
-    {
-      "id": 8,
+      "id": 2024,
+      "unite": 3,
       "fr": "Il y a quatre-vingt-quatre trains.",
       "avant": "Et sinn",
       "trou": "véieranaachtzeg",
@@ -658,24 +1459,12 @@
         "aachtanvéierzeg",
         "dräianaachtzeg"
       ],
-      "note": "84 = véieranaachtzeg"
+      "note": "84 = véieranaachtzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
     },
     {
-      "id": 9,
-      "fr": "Il y a quatre-vingt-dix-neuf portes.",
-      "avant": "Et sinn",
-      "trou": "néngannonzeg",
-      "apres": "Dieren.",
-      "choix": [
-        "néngannonzeg",
-        "nénganaachtzeg",
-        "nonzeg",
-        "aachtannonzeg"
-      ],
-      "note": "99 = néngannonzeg"
-    },
-    {
-      "id": 10,
+      "id": 2025,
+      "unite": 3,
       "fr": "Il y a vingt-cinq montres.",
       "avant": "Et sinn",
       "trou": "fënnefanzwanzeg",
@@ -689,7 +1478,57 @@
       "note": "25 = fënnefanzwanzeg"
     },
     {
-      "id": 11,
+      "id": 2026,
+      "unite": 3,
+      "fr": "Il y en a vingt et un.",
+      "avant": "Et sinn",
+      "trou": "eenanzwanzeg",
+      "apres": ".",
+      "choix": [
+        "eenanzwanzeg",
+        "eentanzwanzeg",
+        "zwanzegeent",
+        "eelef"
+      ],
+      "note": "21 = een + an + zwanzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "plus": true,
+      "fr": "Il y a soixante-dix-huit avions.",
+      "avant": "Et sinn",
+      "trou": "aachtasiwwenzeg",
+      "apres": "Fligeren.",
+      "choix": [
+        "aachtasiwwenzeg",
+        "siwenanaachtzeg",
+        "aachtasiechzeg",
+        "siwwenzeg"
+      ],
+      "note": "78 = aachtasiwwenzeg"
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "plus": true,
+      "fr": "Il y a quatre-vingt-dix-neuf portes.",
+      "avant": "Et sinn",
+      "trou": "néngannonzeg",
+      "apres": "Dieren.",
+      "choix": [
+        "néngannonzeg",
+        "nénganaachtzeg",
+        "nonzeg",
+        "aachtannonzeg"
+      ],
+      "note": "99 = néngannonzeg"
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "plus": true,
       "fr": "Il y a quarante tableaux.",
       "avant": "Et sinn",
       "trou": "véierzeg",
@@ -703,7 +1542,9 @@
       "note": "40 = véierzeg"
     },
     {
-      "id": 12,
+      "id": 2030,
+      "unite": 3,
+      "plus": true,
       "fr": "Il y a cinquante-deux tasses.",
       "avant": "Et sinn",
       "trou": "zweeafofzeg",
@@ -717,7 +1558,9 @@
       "note": "52 = zweeafofzeg"
     },
     {
-      "id": 13,
+      "id": 2031,
+      "unite": 3,
+      "plus": true,
       "fr": "Il y a trente-sept fenêtres.",
       "avant": "Et sinn",
       "trou": "siwenandrësseg",
@@ -731,7 +1574,9 @@
       "note": "37 = siwenandrësseg"
     },
     {
-      "id": 14,
+      "id": 2032,
+      "unite": 3,
+      "plus": true,
       "fr": "Il y a soixante-quatorze bouteilles.",
       "avant": "Et sinn",
       "trou": "véierasiwwenzeg",
@@ -745,7 +1590,9 @@
       "note": "74 = véierasiwwenzeg"
     },
     {
-      "id": 15,
+      "id": 2033,
+      "unite": 3,
+      "plus": true,
       "fr": "Il y a vingt-neuf lampes.",
       "avant": "Et sinn",
       "trou": "nénganzwanzeg",
@@ -759,7 +1606,9 @@
       "note": "29 = nénganzwanzeg"
     },
     {
-      "id": 16,
+      "id": 2034,
+      "unite": 3,
+      "plus": true,
       "fr": "Il y a quatre-vingt-un livres.",
       "avant": "Et sinn",
       "trou": "eenanaachtzeg",
@@ -773,7 +1622,8 @@
       "note": "81 = eenanaachtzeg"
     },
     {
-      "id": 17,
+      "id": 2035,
+      "unite": 4,
       "fr": "Il y a cent feuilles.",
       "avant": "Et sinn",
       "trou": "honnert",
@@ -787,7 +1637,8 @@
       "note": "100 = honnert"
     },
     {
-      "id": 18,
+      "id": 2036,
+      "unite": 4,
       "fr": "Il y a deux cents maisons.",
       "avant": "Et sinn",
       "trou": "zweehonnert",
@@ -798,10 +1649,12 @@
         "dausend",
         "dräihonnert"
       ],
-      "note": "200 = zweehonnert"
+      "note": "200 = zweehonnert",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
     },
     {
-      "id": 19,
+      "id": 2037,
+      "unite": 4,
       "fr": "Il y a trois cents verres.",
       "avant": "Et sinn",
       "trou": "dräihonnert",
@@ -815,8 +1668,9 @@
       "note": "300 = dräihonnert"
     },
     {
-      "id": 20,
-      "fr": "Il y a mille immeubles.",
+      "id": 2038,
+      "unite": 4,
+      "fr": "Il y a mille bâtiments.",
       "avant": "Et sinn",
       "trou": "dausend",
       "apres": "Gebaier.",
@@ -827,234 +1681,483 @@
         "zweehonnert"
       ],
       "note": "1000 = dausend"
+    },
+    {
+      "id": 2039,
+      "unite": 4,
+      "fr": "Il y en a deux cent cinquante.",
+      "avant": "Et sinn",
+      "trou": "zweehonnertfofzeg",
+      "apres": ".",
+      "choix": [
+        "zweehonnertfofzeg",
+        "fofzegzweehonnert",
+        "zweehonnertfënnefzeg",
+        "zweehonnertfofzéng"
+      ],
+      "note": "250 = zweehonnert + fofzeg, soudé",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2040,
+      "unite": 4,
+      "fr": "Il y a cinq cents livres.",
+      "avant": "Et sinn",
+      "trou": "fënnefhonnert",
+      "apres": "Bicher.",
+      "choix": [
+        "fënnefhonnert",
+        "fofzeghonnert",
+        "fënnefdausend",
+        "fofzéng"
+      ],
+      "note": "500 = fënnefhonnert"
     }
   ],
   "ecriture": [
     {
-      "fr": "0",
-      "lu": "null"
-    },
-    {
-      "fr": "1",
-      "lu": "eent"
-    },
-    {
-      "fr": "2 (masculin ou neutre)",
-      "lu": "Zwee"
-    },
-    {
-      "fr": "2 (féminin)",
-      "lu": "Zwou"
-    },
-    {
+      "id": 2001,
+      "unite": 1,
       "fr": "3",
       "lu": "dräi"
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "4",
       "lu": "véier"
     },
     {
-      "fr": "5",
-      "lu": "fënnef"
-    },
-    {
+      "id": 2003,
+      "unite": 1,
       "fr": "6",
       "lu": "sechs"
     },
     {
-      "fr": "7",
-      "lu": "siwen"
-    },
-    {
+      "id": 2004,
+      "unite": 1,
       "fr": "8",
       "lu": "aacht"
     },
     {
-      "fr": "9",
-      "lu": "néng"
-    },
-    {
+      "id": 2005,
+      "unite": 1,
       "fr": "10",
       "lu": "zéng"
     },
     {
-      "fr": "11",
-      "lu": "eelef"
-    },
-    {
-      "fr": "12",
-      "lu": "zwielef"
-    },
-    {
-      "fr": "15",
-      "lu": "fofzéng"
-    },
-    {
-      "fr": "20",
-      "lu": "zwanzeg"
-    },
-    {
-      "fr": "30",
-      "lu": "drësseg"
-    },
-    {
-      "fr": "50",
-      "lu": "fofzeg"
-    },
-    {
-      "fr": "80",
-      "lu": "aachtzeg"
-    },
-    {
-      "fr": "1000",
-      "lu": "dausend"
-    },
-    {
-      "fr": "21",
-      "lu": "eenanzwanzeg"
-    },
-    {
-      "fr": "47",
-      "lu": "siwenavéierzeg"
-    },
-    {
-      "fr": "Il y a 8 bougies.",
+      "id": 2006,
+      "unite": 1,
+      "fr": "Il y a huit bougies.",
       "lu": "Et sinn aacht Käerzen."
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "Combien de bougies y a-t-il ?",
       "lu": "Wéi vill Käerze ginn et?"
     },
     {
-      "fr": "2 portes (féminin)",
-      "lu": "Zwou Dieren"
+      "id": 2008,
+      "unite": 1,
+      "fr": "Il y en a neuf.",
+      "lu": "Et sinn néng."
     },
     {
-      "fr": "2 bus (masculin)",
-      "lu": "Zwee Bussen"
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "0",
+      "lu": "null"
     },
     {
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "1",
+      "lu": "eent"
+    },
+    {
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "2 (masculin ou neutre)",
+      "lu": "zwee",
+      "attention": "2 = <b>zwee</b> (masculin, neutre) · <b>zwou</b> (féminin) : zwou Dieren."
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "2 (féminin)",
+      "lu": "zwou",
+      "attention": "2 = <b>zwee</b> (masculin, neutre) · <b>zwou</b> (féminin) : zwou Dieren."
+    },
+    {
+      "id": 2013,
+      "unite": 1,
+      "plus": true,
+      "fr": "5",
+      "lu": "fënnef"
+    },
+    {
+      "id": 2014,
+      "unite": 1,
+      "plus": true,
+      "fr": "7",
+      "lu": "siwen"
+    },
+    {
+      "id": 2015,
+      "unite": 1,
+      "plus": true,
+      "fr": "9",
+      "lu": "néng"
+    },
+    {
+      "id": 2016,
+      "unite": 1,
+      "plus": true,
+      "fr": "11",
+      "lu": "eelef"
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "plus": true,
+      "fr": "12",
+      "lu": "zwielef"
+    },
+    {
+      "id": 2018,
+      "unite": 1,
+      "plus": true,
+      "fr": "Deux portes",
+      "lu": "zwou Dieren",
+      "attention": "2 = <b>zwee</b> (masculin, neutre) · <b>zwou</b> (féminin) : zwou Dieren."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "plus": true,
+      "fr": "Deux bus",
+      "lu": "zwee Bussen",
+      "attention": "2 = <b>zwee</b> (masculin, neutre) · <b>zwou</b> (féminin) : zwou Dieren."
+    },
+    {
+      "id": 2020,
+      "unite": 2,
       "fr": "13",
       "lu": "dräizéng"
     },
     {
-      "fr": "90",
-      "lu": "nonzeg"
+      "id": 2021,
+      "unite": 2,
+      "fr": "15",
+      "lu": "fofzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
     },
     {
-      "fr": "24",
-      "lu": "véieranzwanzeg"
+      "id": 2022,
+      "unite": 2,
+      "fr": "16",
+      "lu": "siechzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
     },
     {
+      "id": 2023,
+      "unite": 2,
+      "fr": "17",
+      "lu": "siwwenzéng"
+    },
+    {
+      "id": 2024,
+      "unite": 2,
+      "fr": "18",
+      "lu": "uechtzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2025,
+      "unite": 2,
+      "fr": "19",
+      "lu": "nonzéng",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2026,
+      "unite": 2,
+      "fr": "20",
+      "lu": "zwanzeg"
+    },
+    {
+      "id": 2027,
+      "unite": 2,
+      "fr": "Il y en a dix-huit.",
+      "lu": "Et sinn uechtzéng.",
+      "attention": "À retenir : <b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19)."
+    },
+    {
+      "id": 2028,
+      "unite": 2,
+      "plus": true,
+      "fr": "14",
+      "lu": "véierzéng"
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "21",
+      "lu": "eenanzwanzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2030,
+      "unite": 3,
       "fr": "25",
       "lu": "fënnefanzwanzeg"
     },
     {
+      "id": 2031,
+      "unite": 3,
+      "fr": "30",
+      "lu": "drësseg"
+    },
+    {
+      "id": 2032,
+      "unite": 3,
+      "fr": "47",
+      "lu": "siwenavéierzeg",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2033,
+      "unite": 3,
+      "fr": "50",
+      "lu": "fofzeg"
+    },
+    {
+      "id": 2034,
+      "unite": 3,
+      "fr": "80",
+      "lu": "aachtzeg"
+    },
+    {
+      "id": 2035,
+      "unite": 3,
+      "fr": "90",
+      "lu": "nonzeg"
+    },
+    {
+      "id": 2036,
+      "unite": 3,
+      "fr": "Il y en a vingt et un.",
+      "lu": "Et sinn eenanzwanzeg.",
+      "attention": "Liaison : <b>an</b> devant zwanzeg, drësseg, aachtzeg, nonzeg · <b>a</b> devant véierzeg, fofzeg, siechzeg, siwwenzeg."
+    },
+    {
+      "id": 2037,
+      "unite": 3,
+      "plus": true,
+      "fr": "24",
+      "lu": "véieranzwanzeg"
+    },
+    {
+      "id": 2038,
+      "unite": 3,
+      "plus": true,
       "fr": "32",
       "lu": "zweeandrësseg"
     },
     {
+      "id": 2039,
+      "unite": 3,
+      "plus": true,
       "fr": "34",
       "lu": "véierandrësseg"
     },
     {
+      "id": 2040,
+      "unite": 3,
+      "plus": true,
       "fr": "35",
       "lu": "fënnefandrësseg"
     },
     {
+      "id": 2041,
+      "unite": 3,
+      "plus": true,
       "fr": "38",
       "lu": "aachtandrësseg"
     },
     {
+      "id": 2042,
+      "unite": 3,
+      "plus": true,
       "fr": "48",
       "lu": "aachtavéierzeg"
     },
     {
+      "id": 2043,
+      "unite": 3,
+      "plus": true,
       "fr": "49",
       "lu": "néngavéierzeg"
     },
     {
+      "id": 2044,
+      "unite": 3,
+      "plus": true,
       "fr": "52",
       "lu": "zweeafofzeg"
     },
     {
+      "id": 2045,
+      "unite": 3,
+      "plus": true,
       "fr": "56",
       "lu": "sechsafofzeg"
     },
     {
+      "id": 2046,
+      "unite": 3,
+      "plus": true,
       "fr": "75",
       "lu": "fënnefasiwwenzeg"
     },
     {
+      "id": 2047,
+      "unite": 3,
+      "plus": true,
       "fr": "85",
       "lu": "fënnefanaachtzeg"
     },
     {
+      "id": 2048,
+      "unite": 3,
+      "plus": true,
       "fr": "96",
       "lu": "sechsannonzeg"
     },
     {
+      "id": 2049,
+      "unite": 3,
+      "plus": true,
       "fr": "98",
       "lu": "aachtannonzeg"
     },
     {
+      "id": 2050,
+      "unite": 4,
       "fr": "100",
       "lu": "honnert"
     },
     {
-      "fr": "128",
-      "lu": "honnertaachtanzwanzeg"
-    },
-    {
+      "id": 2051,
+      "unite": 4,
       "fr": "200",
       "lu": "zweehonnert"
     },
     {
-      "fr": "304",
-      "lu": "dräihonnertvéier"
-    },
-    {
-      "fr": "326",
-      "lu": "dräihonnertsechsanzwanzeg"
-    },
-    {
-      "fr": "385",
-      "lu": "dräihonnertfënnefanaachtzeg"
-    },
-    {
+      "id": 2052,
+      "unite": 4,
       "fr": "500",
       "lu": "fënnefhonnert"
     },
     {
+      "id": 2053,
+      "unite": 4,
+      "fr": "1000",
+      "lu": "dausend"
+    },
+    {
+      "id": 2054,
+      "unite": 4,
+      "fr": "128",
+      "lu": "honnertaachtanzwanzeg",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2055,
+      "unite": 4,
+      "fr": "304",
+      "lu": "dräihonnertvéier",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2056,
+      "unite": 4,
+      "fr": "Il y en a deux cent cinquante.",
+      "lu": "Et sinn zweehonnertfofzeg.",
+      "attention": "Un nombre s'écrit <b>soudé</b>, sans espace ni majuscule."
+    },
+    {
+      "id": 2057,
+      "unite": 4,
+      "plus": true,
+      "fr": "326",
+      "lu": "dräihonnertsechsanzwanzeg"
+    },
+    {
+      "id": 2058,
+      "unite": 4,
+      "plus": true,
+      "fr": "385",
+      "lu": "dräihonnertfënnefanaachtzeg"
+    },
+    {
+      "id": 2059,
+      "unite": 4,
+      "plus": true,
       "fr": "659",
       "lu": "sechshonnertnéngafofzeg"
     },
     {
+      "id": 2060,
+      "unite": 4,
+      "plus": true,
       "fr": "675",
       "lu": "sechshonnertfënnefasiwwenzeg"
     },
     {
+      "id": 2061,
+      "unite": 4,
+      "plus": true,
       "fr": "704",
       "lu": "siwenhonnertvéier"
     },
     {
+      "id": 2062,
+      "unite": 4,
+      "plus": true,
       "fr": "766",
       "lu": "siwenhonnertsechsasiechzeg"
     },
     {
+      "id": 2063,
+      "unite": 4,
+      "plus": true,
       "fr": "819",
       "lu": "aachthonnertnonzéng"
     },
     {
+      "id": 2064,
+      "unite": 4,
+      "plus": true,
       "fr": "834",
       "lu": "aachthonnertvéierandrësseg"
     },
     {
+      "id": 2065,
+      "unite": 4,
+      "plus": true,
       "fr": "929",
       "lu": "nénghonnertnénganzwanzeg"
     },
     {
+      "id": 2066,
+      "unite": 4,
+      "plus": true,
       "fr": "991",
       "lu": "nénghonnerteenannonzeg"
     }
@@ -1062,22 +2165,18 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Les nombres luxembourgeois se construisent à partir des unités, des dizaines et des centaines. La règle clé : l'unité se place <b>avant</b> la dizaine, et tout s'écrit <b>soudé</b> (sans espace)."
+      "contenu": "Les nombres luxembourgeois se construisent à partir des unités, des dizaines et des centaines. La règle clé : l'unité se place <b>avant</b> la dizaine, et tout s'écrit <b>soudé</b> (sans espace, sans majuscule)."
     },
     {
       "type": "vocab",
-      "titre": "0 à 12",
+      "titre": "De 1 à 10",
       "items": [
-        [
-          "null",
-          "0"
-        ],
         [
           "eent",
           "1"
         ],
         [
-          "zwee / zwou",
+          "zwee",
           "2"
         ],
         [
@@ -1111,6 +2210,28 @@
         [
           "zéng",
           "10"
+        ]
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Compter",
+      "lignes": [
+        "<b>Wéi vill … ginn et?</b> = Combien de … y a-t-il ?",
+        "<b>Et sinn …</b> = Il y a … / Il y en a …",
+        "2 : <b>zwee</b> (masculin, neutre) : zwee Bussen · <b>zwou</b> (féminin) : zwou Dieren."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "vocab",
+      "titre": "0, 11 et 12",
+      "items": [
+        [
+          "null",
+          "0"
         ],
         [
           "eelef",
@@ -1119,12 +2240,18 @@
         [
           "zwielef",
           "12"
+        ],
+        [
+          "zwou",
+          "2 (féminin)"
         ]
-      ]
+      ],
+      "unite": 1,
+      "plus": true
     },
     {
       "type": "vocab",
-      "titre": "13 à 19",
+      "titre": "De 13 à 20",
       "items": [
         [
           "dräizéng",
@@ -1153,12 +2280,27 @@
         [
           "nonzéng",
           "19"
+        ],
+        [
+          "zwanzeg",
+          "20"
         ]
-      ]
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Formes à retenir",
+      "lignes": [
+        "<b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19) : la première partie change.",
+        "<b>siwwenzéng</b> (17) prend deux w."
+      ],
+      "unite": 2
     },
     {
       "type": "vocab",
-      "titre": "Dizaines, centaine, millier",
+      "titre": "Les dizaines",
       "items": [
         [
           "zwanzeg",
@@ -1191,26 +2333,19 @@
         [
           "nonzeg",
           "90"
-        ],
-        [
-          "honnert",
-          "100"
-        ],
-        [
-          "dausend",
-          "1000"
         ]
-      ]
+      ],
+      "unite": 3
     },
     {
       "type": "callout",
       "variant": "astuce",
       "titre": "Construire de 21 à 99",
       "lignes": [
-        "Schéma : <b>unité + an/a + dizaine</b>, le tout soudé.",
-        "L'unité vient <b>avant</b> la dizaine (à l'inverse du français) : <b>fënnefanzwanzeg</b> = « cinq-et-vingt » = 25.",
+        "Schéma : <b>unité + an / a + dizaine</b>, le tout soudé : <b>fënnefanzwanzeg</b> = « cinq-et-vingt » = 25.",
         "Le <b>1</b> devient <b>een</b> : <b>eenanzwanzeg</b> (21)."
-      ]
+      ],
+      "unite": 3
     },
     {
       "type": "tableau",
@@ -1234,7 +2369,7 @@
         [
           "40 — véierzeg",
           "a",
-          "eenavéierzeg (41)"
+          "siwenavéierzeg (47)"
         ],
         [
           "50 — fofzeg",
@@ -1261,25 +2396,18 @@
           "an",
           "eenannonzeg (91)"
         ]
-      ]
+      ],
+      "unite": 3
     },
     {
       "type": "callout",
       "variant": "info",
-      "titre": "Quand met-on -n ?",
+      "titre": "Quand garder le n ?",
       "lignes": [
         "On garde <b>an</b> si la dizaine commence par une voyelle ou par <b>n, d, t, z, h</b> (moyen mnémotechnique <b>UNITEDZOHA</b>).",
         "Sinon, on met <b>a</b> : devant v, f, s (véierzeg, fofzeg, siechzeg, siwwenzeg)."
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "attention",
-      "titre": "Tout est soudé, sans espace",
-      "lignes": [
-        "Aucune espace, même avec honnert et dausend : <b>zweehonnertfofzeg</b> (250), pas « zweehonnert fofzeg ».",
-        "Les nombres sont des adjectifs → <b>pas de majuscule</b>."
-      ]
+      ],
+      "unite": 3
     },
     {
       "type": "tableau",
@@ -1298,6 +2426,10 @@
           "zweehonnert"
         ],
         [
+          "300",
+          "dräihonnert"
+        ],
+        [
           "121",
           "honnerteenanzwanzeg"
         ],
@@ -1310,19 +2442,25 @@
           "dausend"
         ],
         [
-          "2025",
-          "zweedausendfënnefanzwanzeg"
+          "2000",
+          "zweedausend"
+        ],
+        [
+          "10 000",
+          "zéngdausend"
         ]
-      ]
+      ],
+      "unite": 4
     },
     {
       "type": "callout",
-      "variant": "info",
-      "titre": "Le « 2 » s'accorde au genre",
+      "variant": "attention",
+      "titre": "Tout est soudé, sans espace",
       "lignes": [
-        "Masculin / Neutre → <b>zwee</b> : zwee Bussen.",
-        "Féminin → <b>zwou</b> : zwou Dieren."
-      ]
+        "Même avec honnert et dausend : <b>zweehonnertfofzeg</b> (250), pas « zweehonnert fofzeg ».",
+        "Les nombres sont des adjectifs → <b>pas de majuscule</b>."
+      ],
+      "unite": 4
     },
     {
       "type": "callout",
@@ -1331,21 +2469,52 @@
       "lignes": [
         "Avant 2000, on lit par centaines : 1984 = <b>nonzénghonnertvéieranaachtzeg</b> (19-cent-84).",
         "À partir de 2000 : 2025 = <b>zweedausendfënnefanzwanzeg</b>."
-      ]
+      ],
+      "unite": 4,
+      "plus": true
     },
     {
       "type": "dialogue",
-      "titre": "Poser la question et répondre",
+      "titre": "L'inventaire du bureau",
       "echanges": [
         [
-          "Wéi vill Käerze ginn et?",
-          "Combien de bougies y a-t-il ?"
+          "Moien! Wéi vill Computere ginn et?",
+          "Bonjour ! Combien d'ordinateurs y a-t-il ?"
         ],
         [
-          "Et sinn aacht Käerzen.",
-          "Il y a 8 bougies."
+          "Et sinn néng.",
+          "Il y en a neuf."
+        ],
+        [
+          "A wéi vill Still?",
+          "Et combien de chaises ?"
+        ],
+        [
+          "Et sinn uechtzéng.",
+          "Il y en a dix-huit."
+        ],
+        [
+          "A wéi vill Bicher?",
+          "Et combien de livres ?"
+        ],
+        [
+          "Et sinn eenanzwanzeg.",
+          "Il y en a vingt et un."
+        ],
+        [
+          "A wéi vill Blieder?",
+          "Et combien de feuilles ?"
+        ],
+        [
+          "Et sinn zweehonnertfofzeg.",
+          "Il y en a deux cent cinquante."
+        ],
+        [
+          "Super, merci!",
+          "Super, merci !"
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }

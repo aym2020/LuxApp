@@ -3,585 +3,951 @@
   "titre": "Moien! ...an Äddi!",
   "titre_fr": "Salutations et comment ça va",
   "couleur": "#e8a030",
-  "instructions": {
-    "flashcards": "Mémorise les salutations, les réponses et les structures de présentation. Les formulations françaises distinguent précisément les expressions proches.",
-    "quiz": "Lis l'expression luxembourgeoise et choisis sa traduction française exacte, en respectant le registre formel ou informel et la structure utilisée.",
-    "trous": "Complète la phrase avec le mot ou la forme exacte étudiée. Respecte notamment les majuscules de politesse et les minuscules de l'informel.",
-    "ecriture": "Traduis exactement la formulation française en luxembourgeois. Conserve les prénoms tels qu'ils sont donnés et distingue « Mon nom est... » de « Je m'appelle... »."
+  "v1": {
+    "quiz": 35,
+    "trous": 25,
+    "ecriture": 43
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve la formule luxembourgeoise à partir du français : saluer, demander comment ça va, se présenter, prendre congé.",
+    "quiz": "Lis la formule luxembourgeoise et choisis sa traduction française exacte, en respectant le registre (dir = tu, Iech = vous).",
+    "trous": "Complète la salutation ou la formule avec le mot exact (Moien, geet, Iech, heesche, gläichfalls…).",
+    "ecriture": "Écris en luxembourgeois les formules de la mission : saluer, demander et dire comment ça va, dire ton nom, prendre congé."
+  },
+  "mission": {
+    "titre": "Premier cours de luxembourgeois",
+    "contexte": "C'est ton premier cours au centre de langues. Tu salues Léa, une autre élève, puis Madame Weber, la professeure, qui te demande ton nom. Tu joues Paul. À la fin du cours, tu prends congé.",
+    "objectif": "saluer, demander et dire comment ça va, dire ton nom poliment, prendre congé."
+  },
+  "scene": [
+    {
+      "qui": "Léa",
+      "lu": "Moien!",
+      "fr": "Bonjour !",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Gudde Moien!",
+      "fr": "Bonjour ! (le matin)",
+      "unite": 1,
+      "aide": "Le matin : <b>Gudde</b> Moien! (sans n devant M)."
+    },
+    {
+      "qui": "Léa",
+      "lu": "Wéi geet et dir?",
+      "fr": "Comment vas-tu ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Mir geet et gutt. An dir?",
+      "fr": "Je vais bien. Et toi ?",
+      "unite": 2,
+      "aide": "On répond avec <b>Mir</b> geet et gutt · entre élèves on tutoie : <b>An dir?</b>"
+    },
+    {
+      "qui": "Léa",
+      "lu": "Ganz gutt, merci!",
+      "fr": "Très bien, merci !",
+      "unite": 2
+    },
+    {
+      "qui": "Madamm Weber",
+      "lu": "Gudde Moien! Wéi heescht Dir?",
+      "fr": "Bonjour ! Comment vous appelez-vous ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech heesche Paul. Et freet mech.",
+      "fr": "Je m'appelle Paul. Enchanté.",
+      "unite": 3,
+      "aide": "<b>Ech heesche</b> Paul (le n tombe devant P) · Enchanté = <b>Et freet mech</b>."
+    },
+    {
+      "qui": "Madamm Weber",
+      "lu": "Mech och!",
+      "fr": "Moi aussi !",
+      "unite": 3
+    },
+    {
+      "qui": "Madamm Weber",
+      "lu": "Äddi, schéinen Owend!",
+      "fr": "Au revoir, bonne soirée !",
+      "unite": 4
+    },
+    {
+      "qui": "toi",
+      "lu": "Merci, gläichfalls! Äddi!",
+      "fr": "Merci, pareillement ! Au revoir !",
+      "unite": 4,
+      "aide": "À un souhait, on répond <b>Merci, gläichfalls!</b>"
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "fr": "Bonjour !",
-      "lu": "Moien!",
-      "note": "À toute heure · très courant"
+      "titre": "Saluer",
+      "phrase": [
+        "Gudde Moien!",
+        "Bonjour ! (le matin)"
+      ],
+      "regle": "<b>Moien!</b> à toute heure · <b>Gudde Moien!</b> le matin · <b>Gudde Mëtteg!</b> à midi · <b>Gudden Owend!</b> le soir",
+      "exemple": "Moien Anna! · Gudde Moien, Madamm! · Gudden Owend, Här Michels!",
+      "phrases": [
+        [
+          "Moien Anna!",
+          "Bonjour Anna !"
+        ],
+        [
+          "Gudden Owend, Madamm Wagner!",
+          "Bonsoir, Madame Wagner !"
+        ]
+      ],
+      "pieges": [
+        "<b>Moien!</b> marche à toute heure : en cas de doute, dis Moien!",
+        "Le soir : <b>Gudden</b> Owend (le n reste devant une voyelle), mais <b>Gudde</b> Moien."
+      ]
     },
     {
       "id": 2,
-      "fr": "Salut !",
-      "lu": "Salut!",
-      "note": "Informel entre amis"
+      "titre": "Demander comment ça va",
+      "phrase": [
+        "Wéi geet et dir? – Mir geet et gutt. An dir?",
+        "Comment vas-tu ? – Je vais bien. Et toi ?"
+      ],
+      "regle": "Entre amis : <b>dir</b> (tu) · Poliment : <b>Iech</b> (vous, avec majuscule)",
+      "exemple": "Wéi geet et dir? · Wéi geet et Iech? · Mir geet et gutt. An dir?",
+      "phrases": [
+        [
+          "Wéi geet et Iech?",
+          "Comment allez-vous ?"
+        ],
+        [
+          "Ganz gutt, merci! An Iech?",
+          "Très bien, merci ! Et vous ?"
+        ]
+      ],
+      "pieges": [
+        "On répond avec <b>Mir</b> : Mir geet et gutt (litt. « à moi, ça va bien »).",
+        "Poli = <b>Iech</b>, toujours avec une majuscule : Wéi geet et <b>Iech</b>?"
+      ]
     },
     {
       "id": 3,
-      "fr": "Bonjour ! (matin)",
-      "lu": "Gudde Moien!",
-      "note": "Gudde = bon (M)"
+      "titre": "Se présenter",
+      "phrase": [
+        "Wéi heescht Dir? – Ech heesche Paul. Et freet mech.",
+        "Comment vous appelez-vous ? – Je m'appelle Paul. Enchanté."
+      ],
+      "regle": "<b>Ech heeschen …</b> = Je m'appelle … · <b>Mäin Numm ass …</b> = Mon nom est …",
+      "exemple": "Wéi heeschs du? (tu) · Wéi heescht Dir? (vous) · Et freet mech. – Mech och.",
+      "phrases": [
+        [
+          "Mäin Numm ass Bertha.",
+          "Mon nom est Bertha."
+        ],
+        [
+          "Wéi ass Ären Numm, wann ech gelift?",
+          "Quel est votre nom, s'il vous plaît ?"
+        ]
+      ],
+      "pieges": [
+        "Le n de <b>heeschen</b> tombe devant la plupart des consonnes : Ech <b>heesche</b> Paul, mais Ech <b>heeschen</b> Anna.",
+        "Poli : <b>Dir</b> et <b>Ären</b> prennent une majuscule."
+      ]
     },
     {
       "id": 4,
-      "fr": "Bonjour ! (midi/aprèm)",
-      "lu": "Gudde Mëtteg!",
-      "note": "Mëtteg = midi/après-midi"
+      "titre": "Prendre congé",
+      "phrase": [
+        "Äddi, schéinen Owend! – Merci, gläichfalls!",
+        "Au revoir, bonne soirée ! – Merci, pareillement !"
+      ],
+      "regle": "<b>Äddi!</b> = au revoir · on souhaite <b>Schéinen Dag!</b> / <b>Schéinen Owend!</b> · on répond <b>Merci, gläichfalls!</b>",
+      "exemple": "Äddi, schéinen Dag! · Gutt Nuecht! (avant de dormir)",
+      "phrases": [
+        [
+          "Äddi, schéinen Dag!",
+          "Au revoir, bonne journée !"
+        ],
+        [
+          "Gutt Nuecht!",
+          "Bonne nuit !"
+        ]
+      ],
+      "pieges": [
+        "<b>Gutt Nuecht!</b> se dit avant de dormir, jamais pour saluer le soir (= Gudden Owend!).",
+        "À un souhait, on répond <b>Merci, gläichfalls!</b> (merci, pareillement)."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "Bonjour ! (à toute heure)",
+      "lu": "Moien!",
+      "note": "Le plus courant, à toute heure"
     },
     {
-      "id": 5,
+      "id": 2002,
+      "unite": 1,
+      "fr": "Bonjour ! (le matin)",
+      "lu": "Gudde Moien!",
+      "note": "Gudde = bon"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "Bonjour ! (midi, après-midi)",
+      "lu": "Gudde Mëtteg!",
+      "note": "Mëtteg = midi, après-midi"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
       "fr": "Bonsoir !",
       "lu": "Gudden Owend!",
-      "note": "Owend = soir · Gudden devant voyelle"
+      "note": "Owend = soir · Gudden devant voyelle",
+      "attention": "Le soir : <b>Gudden</b> Owend, avec n devant la voyelle O."
     },
     {
-      "id": 6,
-      "fr": "Bonne nuit !",
-      "lu": "Gutt Nuecht!",
-      "note": "Gutt Nuecht = bonne nuit"
+      "id": 2005,
+      "unite": 1,
+      "fr": "Salut ! (entre amis)",
+      "lu": "Salut!",
+      "note": "Informel"
     },
     {
-      "id": 7,
-      "fr": "Dors bien !",
-      "lu": "Schlof gutt!",
-      "note": "Entre proches, avant de dormir"
+      "id": 2006,
+      "unite": 1,
+      "fr": "Madame",
+      "lu": "Madamm",
+      "note": "Bonjour Madamm!",
+      "attention": "Madame = <b>Madamm</b>, avec deux m."
     },
     {
-      "id": 8,
-      "fr": "Au revoir ! (courant)",
-      "lu": "Äddi!",
-      "note": "Le plus courant"
+      "id": 2007,
+      "unite": 1,
+      "fr": "Monsieur",
+      "lu": "Här",
+      "note": "Bonjour Här!",
+      "attention": "Monsieur = <b>Här</b> (mot germanique, pas français)."
     },
     {
-      "id": 9,
-      "fr": "Au revoir ! (familier)",
-      "lu": "Awar!",
-      "note": "Plus familier · aussi Awuer"
+      "id": 2008,
+      "unite": 1,
+      "plus": true,
+      "fr": "Salut ! (familier)",
+      "lu": "Hallo!",
+      "note": "Informel, comme Salut!"
     },
     {
-      "id": 10,
-      "fr": "Bonne journée !",
-      "lu": "Schéinen Dag!",
-      "note": "Schéinen = beau/bon (M acc.)"
-    },
-    {
-      "id": 11,
-      "fr": "Bonne soirée !",
-      "lu": "Schéinen Owend!",
-      "note": "En partant le soir"
-    },
-    {
-      "id": 12,
-      "fr": "S'il vous plaît",
-      "lu": "Wann ech gelift",
-      "note": "Souvent abrégé en 'wgl.'"
-    },
-    {
-      "id": 13,
-      "fr": "Merci pareillement !",
-      "lu": "Merci gläichfalls!",
-      "note": "Réponse à un souhait"
-    },
-    {
-      "id": 14,
+      "id": 2009,
+      "unite": 2,
       "fr": "Comment vas-tu ?",
       "lu": "Wéi geet et dir?",
-      "note": "Informel · dir = toi"
+      "note": "Informel · dir = toi",
+      "attention": "Tu = <b>dir</b> (amis, famille) · vous = Iech."
     },
     {
-      "id": 15,
+      "id": 2010,
+      "unite": 2,
       "fr": "Comment allez-vous ?",
       "lu": "Wéi geet et Iech?",
-      "note": "Formel · Iech = vous (majuscule)"
+      "note": "Formel · Iech avec majuscule",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
     },
     {
-      "id": 16,
+      "id": 2011,
+      "unite": 2,
       "fr": "Je vais bien.",
       "lu": "Mir geet et gutt.",
-      "note": "Litt. 'À moi ça va bien'"
+      "note": "Litt. « à moi, ça va bien »",
+      "attention": "On répond avec <b>Mir</b> : Mir geet et gutt."
     },
     {
-      "id": 17,
+      "id": 2012,
+      "unite": 2,
+      "fr": "Et toi ?",
+      "lu": "An dir?",
+      "note": "An = et"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "Et vous ?",
+      "lu": "An Iech?",
+      "note": "Formel",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
+    },
+    {
+      "id": 2014,
+      "unite": 2,
       "fr": "Très bien !",
       "lu": "Ganz gutt!",
-      "note": "Aussi : tipptopp!"
+      "note": "ganz = très"
     },
     {
-      "id": 18,
-      "fr": "Tip top !",
-      "lu": "Tipptopp!",
-      "note": "Très familier"
-    },
-    {
-      "id": 19,
+      "id": 2015,
+      "unite": 2,
       "fr": "Ça va.",
       "lu": "Et geet.",
       "note": "Réponse neutre"
     },
     {
-      "id": 20,
-      "fr": "Pas terrible.",
-      "lu": "Net immens.",
-      "note": "immens = beaucoup · net = pas"
-    },
-    {
-      "id": 21,
+      "id": 2016,
+      "unite": 2,
       "fr": "Mal.",
       "lu": "Schlecht.",
-      "note": "Aussi : net gutt."
+      "note": "Aussi : net gutt"
     },
     {
-      "id": 22,
+      "id": 2017,
+      "unite": 2,
+      "plus": true,
+      "fr": "Tip top !",
+      "lu": "Tipptopp!",
+      "note": "Très familier"
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "plus": true,
+      "fr": "Pas terrible.",
+      "lu": "Net immens.",
+      "note": "net = pas"
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "plus": true,
       "fr": "Très mal.",
       "lu": "Ganz schlecht.",
-      "note": "Aussi : guer net gutt."
+      "note": "ganz = très"
     },
     {
-      "id": 23,
+      "id": 2020,
+      "unite": 2,
+      "plus": true,
       "fr": "Pas du tout bien.",
       "lu": "Guer net gutt.",
       "note": "guer = pas du tout"
     },
     {
-      "id": 24,
-      "fr": "Et toi ?",
-      "lu": "An dir?",
-      "note": "Informel · An = et"
+      "id": 2021,
+      "unite": 2,
+      "plus": true,
+      "fr": "Tout va bien ! (tout est en ordre)",
+      "lu": "Alles an der Rei!",
+      "note": "Réponse positive très fréquente"
     },
     {
-      "id": 25,
-      "fr": "Et vous ?",
-      "lu": "An Iech?",
-      "note": "Formel · Iech majuscule"
+      "id": 2022,
+      "unite": 3,
+      "fr": "Comment vous appelez-vous ?",
+      "lu": "Wéi heescht Dir?",
+      "note": "Formel · Dir avec majuscule"
     },
     {
-      "id": 26,
-      "fr": "Bonjour Madame.",
-      "lu": "Bonjour Madamm.",
-      "note": "Madamm = Madame en luxo"
+      "id": 2023,
+      "unite": 3,
+      "fr": "Comment t'appelles-tu ?",
+      "lu": "Wéi heeschs du?",
+      "note": "Informel"
     },
     {
-      "id": 27,
-      "fr": "Bonjour Monsieur.",
-      "lu": "Bonjour Här.",
-      "note": "Här = Monsieur"
+      "id": 2024,
+      "unite": 3,
+      "fr": "Je m'appelle Paul.",
+      "lu": "Ech heesche Paul.",
+      "note": "heeschen = s'appeler",
+      "attention": "Le n tombe devant P, M, B… : Ech <b>heesche</b> Paul · il reste devant une voyelle : Ech heeschen Anna."
     },
     {
-      "id": 28,
+      "id": 2025,
+      "unite": 3,
+      "fr": "Mon nom est …",
+      "lu": "Mäin Numm ass",
+      "note": "Mäin Numm ass Bertha."
+    },
+    {
+      "id": 2026,
+      "unite": 3,
       "fr": "Quel est votre nom ?",
       "lu": "Wéi ass Ären Numm?",
       "note": "Formel · Ären = votre"
     },
     {
-      "id": 29,
-      "fr": "Mon nom est...",
-      "lu": "Mäin Numm ass...",
-      "note": "Formule de présentation la plus simple"
-    },
-    {
-      "id": 30,
-      "fr": "Comment t'appelles-tu ?",
-      "lu": "A wéi heeschs du?",
-      "note": "Informel"
-    },
-    {
-      "id": 31,
-      "fr": "Comment vous appelez-vous ?",
-      "lu": "Wéi heescht Dir?",
-      "note": "Formel"
-    },
-    {
-      "id": 32,
-      "fr": "Je m'appelle Mauro.",
-      "lu": "Ech heesche Mauro.",
-      "note": "heeschen = s'appeler"
-    },
-    {
-      "id": 33,
+      "id": 2027,
+      "unite": 3,
       "fr": "Enchanté.",
       "lu": "Et freet mech.",
-      "note": "Litt. 'cela me fait plaisir'"
+      "note": "Litt. « cela me fait plaisir »"
     },
     {
-      "id": 34,
+      "id": 2028,
+      "unite": 3,
       "fr": "Moi aussi.",
       "lu": "Mech och.",
-      "note": "Réponse à 'Enchanté'"
+      "note": "Réponse à Et freet mech."
     },
     {
-      "id": 35,
-      "fr": "Tout va bien ! (tout est en ordre)",
-      "lu": "Alles an der Rei!",
-      "note": "Expression très fréquente"
+      "id": 2029,
+      "unite": 3,
+      "plus": true,
+      "fr": "S'il vous plaît",
+      "lu": "Wann ech gelift",
+      "note": "Abrégé à l'écrit : wgl."
     },
     {
-      "id": 36,
-      "fr": "Quel est votre nom, s'il vous plaît ?",
-      "lu": "Wéi ass Ären Numm wgl.?",
-      "note": "wgl. = wann ech gelift = s'il vous plaît"
+      "id": 2030,
+      "unite": 3,
+      "plus": true,
+      "fr": "Excusez-moi !",
+      "lu": "Entschëllegt!",
+      "note": "Pour s'excuser ou interpeller"
+    },
+    {
+      "id": 2031,
+      "unite": 4,
+      "fr": "Au revoir ! (courant)",
+      "lu": "Äddi!",
+      "note": "Le plus courant"
+    },
+    {
+      "id": 2032,
+      "unite": 4,
+      "fr": "Au revoir ! (familier)",
+      "lu": "Awar!",
+      "note": "Familier · aussi Awuer!"
+    },
+    {
+      "id": 2033,
+      "unite": 4,
+      "fr": "Bonne journée !",
+      "lu": "Schéinen Dag!",
+      "note": "En partant dans la journée"
+    },
+    {
+      "id": 2034,
+      "unite": 4,
+      "fr": "Bonne soirée !",
+      "lu": "Schéinen Owend!",
+      "note": "En partant le soir"
+    },
+    {
+      "id": 2035,
+      "unite": 4,
+      "fr": "Bonne nuit !",
+      "lu": "Gutt Nuecht!",
+      "note": "Avant d'aller dormir",
+      "attention": "<b>Gutt Nuecht!</b> = bonne nuit, avant de dormir · pour saluer le soir : Gudden Owend!"
+    },
+    {
+      "id": 2036,
+      "unite": 4,
+      "fr": "Merci !",
+      "lu": "Merci!",
+      "note": "Comme en français"
+    },
+    {
+      "id": 2037,
+      "unite": 4,
+      "fr": "Merci pareillement !",
+      "lu": "Merci gläichfalls!",
+      "note": "Réponse à un souhait"
+    },
+    {
+      "id": 2038,
+      "unite": 4,
+      "plus": true,
+      "fr": "Dors bien !",
+      "lu": "Schlof gutt!",
+      "note": "Entre proches, avant de dormir"
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "question": "Moien!",
-      "reponse": "Bonjour !",
+      "reponse": "Bonjour ! (à toute heure)",
       "distracteurs": [
         "Au revoir !",
         "Bonne nuit !",
         "Bonsoir !"
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
+      "question": "Gudde Moien!",
+      "reponse": "Bonjour ! (le matin)",
+      "distracteurs": [
+        "Bonsoir !",
+        "Bonjour ! (midi, après-midi)",
+        "Bonne nuit !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "question": "Gudde Mëtteg!",
+      "reponse": "Bonjour ! (midi, après-midi)",
+      "distracteurs": [
+        "Bonjour ! (le matin)",
+        "Bonsoir !",
+        "Bonne nuit !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
       "question": "Gudden Owend!",
       "reponse": "Bonsoir !",
       "distracteurs": [
-        "Bonjour ! (matin)",
+        "Bonjour ! (le matin)",
         "Bonne nuit !",
-        "Bonjour ! (midi/après-midi)"
-      ]
+        "Bonjour ! (midi, après-midi)"
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "<b>Gudden Owend!</b> = Bonsoir (pour saluer) ; Bonne nuit = Gutt Nuecht!"
     },
     {
-      "id": 3,
-      "question": "Wéi geet et dir?",
-      "reponse": "Comment vas-tu ?",
-      "distracteurs": [
-        "Comment t'appelles-tu ?",
-        "Où habites-tu ?",
-        "Quel âge as-tu ?"
-      ]
-    },
-    {
-      "id": 4,
-      "question": "Ganz gutt!",
-      "reponse": "Très bien !",
-      "distracteurs": [
-        "Mal.",
-        "Ça va.",
-        "Très mal."
-      ]
-    },
-    {
-      "id": 5,
-      "question": "Äddi!",
-      "reponse": "Au revoir ! (courant)",
-      "distracteurs": [
-        "Merci !",
-        "Bonjour !",
-        "Bonne nuit !"
-      ]
-    },
-    {
-      "id": 6,
-      "question": "Gutt Nuecht!",
-      "reponse": "Bonne nuit !",
-      "distracteurs": [
-        "Bonsoir !",
-        "Dors bien !",
-        "Bonjour !"
-      ]
-    },
-    {
-      "id": 7,
-      "question": "Et geet.",
-      "reponse": "Ça va.",
-      "distracteurs": [
-        "Très bien !",
-        "Très mal.",
-        "Bonjour !"
-      ]
-    },
-    {
-      "id": 8,
-      "question": "Wéi geet et Iech?",
-      "reponse": "Comment allez-vous ?",
-      "distracteurs": [
-        "Comment vas-tu ?",
-        "Où habitez-vous ?",
-        "Quel âge avez-vous ?"
-      ]
-    },
-    {
-      "id": 9,
-      "question": "Schlecht.",
-      "reponse": "Mal.",
-      "distracteurs": [
-        "Très bien !",
-        "Au revoir !",
-        "Ça va."
-      ]
-    },
-    {
-      "id": 10,
-      "question": "Mir geet et gutt.",
-      "reponse": "Je vais bien.",
-      "distracteurs": [
-        "Je vais mal.",
-        "Ça va.",
-        "Très bien !"
-      ]
-    },
-    {
-      "id": 11,
-      "question": "Schlof gutt!",
-      "reponse": "Dors bien !",
-      "distracteurs": [
-        "Bonne nuit !",
-        "Bonne soirée !",
-        "Au revoir !"
-      ]
-    },
-    {
-      "id": 12,
-      "question": "Net immens.",
-      "reponse": "Pas terrible.",
-      "distracteurs": [
-        "Très mal.",
-        "Ça va.",
-        "Pas du tout bien."
-      ]
-    },
-    {
-      "id": 13,
-      "question": "An dir?",
-      "reponse": "Et toi ?",
-      "distracteurs": [
-        "Et vous ?",
-        "Comment vas-tu ?",
-        "Merci !"
-      ]
-    },
-    {
-      "id": 14,
-      "question": "Gudde Moien!",
-      "reponse": "Bonjour ! (matin)",
-      "distracteurs": [
-        "Bonsoir !",
-        "Bonne nuit !",
-        "Bonjour ! (midi/après-midi)"
-      ]
-    },
-    {
-      "id": 15,
+      "id": 2005,
+      "unite": 1,
       "question": "Salut!",
       "reponse": "Salut !",
       "distracteurs": [
         "Bonsoir !",
         "Au revoir !",
         "Bonne nuit !"
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 16,
-      "question": "Gudde Mëtteg!",
-      "reponse": "Bonjour ! (midi/après-midi)",
+      "id": 2006,
+      "unite": 1,
+      "question": "Bonjour Madamm!",
+      "reponse": "Bonjour Madame !",
       "distracteurs": [
-        "Bonjour ! (matin)",
-        "Bonsoir !",
-        "Bonne nuit !"
-      ]
+        "Bonjour Monsieur !",
+        "Bonsoir Madame !",
+        "Au revoir Madame !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 17,
-      "question": "Awar!",
-      "reponse": "Au revoir ! (familier)",
+      "id": 2007,
+      "unite": 1,
+      "question": "Bonjour Här!",
+      "reponse": "Bonjour Monsieur !",
       "distracteurs": [
-        "Bonjour !",
-        "Merci !",
-        "Bonne nuit !"
-      ]
+        "Bonjour Madame !",
+        "Bonsoir Monsieur !",
+        "Au revoir Monsieur !"
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "<b>Här</b> = Monsieur · <b>Madamm</b> = Madame."
     },
     {
-      "id": 18,
-      "question": "Schéinen Dag!",
-      "reponse": "Bonne journée !",
+      "id": 2008,
+      "unite": 1,
+      "plus": true,
+      "question": "Hallo!",
+      "reponse": "Salut !",
       "distracteurs": [
-        "Bonne soirée !",
-        "Bonne nuit !",
-        "Bonjour !"
-      ]
-    },
-    {
-      "id": 19,
-      "question": "Schéinen Owend!",
-      "reponse": "Bonne soirée !",
-      "distracteurs": [
-        "Bonne journée !",
-        "Bonsoir !",
-        "Bonne nuit !"
-      ]
-    },
-    {
-      "id": 20,
-      "question": "Merci!",
-      "reponse": "Merci !",
-      "distracteurs": [
-        "Bonjour !",
         "Au revoir !",
-        "S'il vous plaît"
-      ]
+        "Bonsoir !",
+        "Merci !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 21,
-      "question": "Merci gläichfalls!",
-      "reponse": "Merci pareillement !",
+      "id": 2009,
+      "unite": 2,
+      "question": "Wéi geet et dir?",
+      "reponse": "Comment vas-tu ?",
       "distracteurs": [
-        "Merci beaucoup !",
-        "S'il vous plaît !",
-        "Bonne journée !"
-      ]
+        "Comment allez-vous ?",
+        "Comment t'appelles-tu ?",
+        "Et toi ?"
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "Tu = <b>dir</b> (amis, famille) · vous = Iech."
     },
     {
-      "id": 22,
+      "id": 2010,
+      "unite": 2,
+      "question": "Wéi geet et Iech?",
+      "reponse": "Comment allez-vous ?",
+      "distracteurs": [
+        "Comment vas-tu ?",
+        "Comment vous appelez-vous ?",
+        "Et vous ?"
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "question": "Mir geet et gutt.",
+      "reponse": "Je vais bien.",
+      "distracteurs": [
+        "Je vais mal.",
+        "Ça va.",
+        "Très bien !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "question": "Ganz gutt!",
+      "reponse": "Très bien !",
+      "distracteurs": [
+        "Mal.",
+        "Ça va.",
+        "Très mal."
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "question": "Et geet.",
+      "reponse": "Ça va.",
+      "distracteurs": [
+        "Très bien !",
+        "Très mal.",
+        "Je vais bien."
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "question": "Schlecht.",
+      "reponse": "Mal.",
+      "distracteurs": [
+        "Très bien !",
+        "Ça va.",
+        "Pas terrible."
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "question": "An dir?",
+      "reponse": "Et toi ?",
+      "distracteurs": [
+        "Et vous ?",
+        "Comment vas-tu ?",
+        "Moi aussi."
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "Tu = <b>dir</b> (amis, famille) · vous = Iech."
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "question": "An Iech?",
+      "reponse": "Et vous ?",
+      "distracteurs": [
+        "Et toi ?",
+        "Comment allez-vous ?",
+        "Moi aussi."
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "plus": true,
       "question": "Tipptopp!",
       "reponse": "Tip top !",
       "distracteurs": [
         "Très mal.",
         "Pas terrible.",
         "Ça va."
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 23,
+      "id": 2018,
+      "unite": 2,
+      "plus": true,
+      "question": "Net immens.",
+      "reponse": "Pas terrible.",
+      "distracteurs": [
+        "Très mal.",
+        "Ça va.",
+        "Pas du tout bien."
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "plus": true,
       "question": "Ganz schlecht.",
       "reponse": "Très mal.",
       "distracteurs": [
         "Mal.",
         "Ça va.",
         "Très bien !"
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 24,
+      "id": 2020,
+      "unite": 2,
+      "plus": true,
       "question": "Guer net gutt.",
       "reponse": "Pas du tout bien.",
       "distracteurs": [
         "Très bien !",
         "Ça va.",
         "Pas terrible."
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 25,
-      "question": "An Iech?",
-      "reponse": "Et vous ?",
-      "distracteurs": [
-        "Et toi ?",
-        "Comment allez-vous ?",
-        "Merci !"
-      ]
-    },
-    {
-      "id": 26,
-      "question": "Bonjour Madamm.",
-      "reponse": "Bonjour Madame.",
-      "distracteurs": [
-        "Bonjour Monsieur.",
-        "Bonsoir Madame.",
-        "Salut Madame."
-      ]
-    },
-    {
-      "id": 27,
-      "question": "Bonjour Här.",
-      "reponse": "Bonjour Monsieur.",
-      "distracteurs": [
-        "Bonjour Madame.",
-        "Bonsoir Monsieur.",
-        "Salut Monsieur."
-      ]
-    },
-    {
-      "id": 28,
-      "question": "Wéi ass Ären Numm?",
-      "reponse": "Quel est votre nom ?",
-      "distracteurs": [
-        "Comment allez-vous ?",
-        "Où habitez-vous ?",
-        "Quel âge avez-vous ?"
-      ]
-    },
-    {
-      "id": 29,
-      "question": "Mäin Numm ass...",
-      "reponse": "Mon nom est...",
-      "distracteurs": [
-        "Je vais bien.",
-        "Je viens de...",
-        "Je suis..."
-      ]
-    },
-    {
-      "id": 30,
-      "question": "Et freet mech.",
-      "reponse": "Enchanté.",
-      "distracteurs": [
-        "Merci.",
-        "Au revoir.",
-        "Comment allez-vous ?"
-      ]
-    },
-    {
-      "id": 31,
+      "id": 2021,
+      "unite": 2,
+      "plus": true,
       "question": "Alles an der Rei!",
       "reponse": "Tout va bien !",
       "distracteurs": [
         "Très mal.",
         "Pas terrible.",
         "Bonne journée !"
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 32,
-      "question": "Wann ech gelift",
-      "reponse": "S'il vous plaît",
+      "id": 2022,
+      "unite": 3,
+      "question": "Wéi heescht Dir?",
+      "reponse": "Comment vous appelez-vous ?",
       "distracteurs": [
-        "Merci",
-        "Au revoir",
-        "Enchanté"
-      ]
+        "Comment t'appelles-tu ?",
+        "Comment allez-vous ?",
+        "Quel est votre nom ?"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 33,
+      "id": 2023,
+      "unite": 3,
       "question": "Wéi heeschs du?",
       "reponse": "Comment t'appelles-tu ?",
       "distracteurs": [
         "Comment vas-tu ?",
-        "Et comment allez-vous ?",
+        "Comment vous appelez-vous ?",
         "Quel est votre nom ?"
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     },
     {
-      "id": 34,
-      "question": "Wéi heescht Dir?",
-      "reponse": "Comment vous appelez-vous ?",
-      "distracteurs": [
-        "Et comment t'appelles-tu ?",
-        "Comment allez-vous ?",
-        "Quel est votre nom ?"
-      ]
-    },
-    {
-      "id": 35,
+      "id": 2024,
+      "unite": 3,
       "question": "Ech heesche Mauro.",
       "reponse": "Je m'appelle Mauro.",
       "distracteurs": [
         "Mon nom est Mauro.",
         "Je vais bien.",
         "Je suis Mauro."
-      ]
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2025,
+      "unite": 3,
+      "question": "Mäin Numm ass Mauro.",
+      "reponse": "Mon nom est Mauro.",
+      "distracteurs": [
+        "Je m'appelle Mauro.",
+        "Quel est votre nom ?",
+        "Je suis Mauro."
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2026,
+      "unite": 3,
+      "question": "Wéi ass Ären Numm?",
+      "reponse": "Quel est votre nom ?",
+      "distracteurs": [
+        "Comment allez-vous ?",
+        "Comment t'appelles-tu ?",
+        "Mon nom est …"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "question": "Et freet mech.",
+      "reponse": "Enchanté.",
+      "distracteurs": [
+        "Merci.",
+        "Au revoir.",
+        "Moi aussi."
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "question": "Mech och.",
+      "reponse": "Moi aussi.",
+      "distracteurs": [
+        "Enchanté.",
+        "Merci.",
+        "Et toi ?"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "plus": true,
+      "question": "Wann ech gelift",
+      "reponse": "S'il vous plaît",
+      "distracteurs": [
+        "Merci",
+        "Au revoir",
+        "Enchanté"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "plus": true,
+      "question": "Entschëllegt!",
+      "reponse": "Excusez-moi !",
+      "distracteurs": [
+        "Merci !",
+        "Enchanté.",
+        "S'il vous plaît"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2031,
+      "unite": 4,
+      "question": "Äddi!",
+      "reponse": "Au revoir ! (courant)",
+      "distracteurs": [
+        "Merci !",
+        "Bonjour !",
+        "Bonne nuit !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2032,
+      "unite": 4,
+      "question": "Awar!",
+      "reponse": "Au revoir ! (familier)",
+      "distracteurs": [
+        "Bonjour !",
+        "Merci !",
+        "Bonne nuit !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2033,
+      "unite": 4,
+      "question": "Schéinen Dag!",
+      "reponse": "Bonne journée !",
+      "distracteurs": [
+        "Bonne soirée !",
+        "Bonne nuit !",
+        "Bonjour !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2034,
+      "unite": 4,
+      "question": "Schéinen Owend!",
+      "reponse": "Bonne soirée !",
+      "distracteurs": [
+        "Bonne journée !",
+        "Bonsoir !",
+        "Bonne nuit !"
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "<b>Schéinen Owend!</b> = bonne soirée (en partant) · Gudden Owend! = bonsoir (en arrivant)."
+    },
+    {
+      "id": 2035,
+      "unite": 4,
+      "question": "Gutt Nuecht!",
+      "reponse": "Bonne nuit !",
+      "distracteurs": [
+        "Bonsoir !",
+        "Dors bien !",
+        "Bonne soirée !"
+      ],
+      "label": "CHOISIS LA TRADUCTION",
+      "attention": "<b>Gutt Nuecht!</b> = bonne nuit, avant de dormir · pour saluer le soir : Gudden Owend!"
+    },
+    {
+      "id": 2036,
+      "unite": 4,
+      "question": "Merci!",
+      "reponse": "Merci !",
+      "distracteurs": [
+        "Bonjour !",
+        "Au revoir !",
+        "S'il vous plaît"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2037,
+      "unite": 4,
+      "question": "Merci gläichfalls!",
+      "reponse": "Merci pareillement !",
+      "distracteurs": [
+        "Merci beaucoup !",
+        "S'il vous plaît !",
+        "Bonne journée !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
+    },
+    {
+      "id": 2038,
+      "unite": 4,
+      "plus": true,
+      "question": "Schlof gutt!",
+      "reponse": "Dors bien !",
+      "distracteurs": [
+        "Bonne nuit !",
+        "Bonne soirée !",
+        "Au revoir !"
+      ],
+      "label": "CHOISIS LA TRADUCTION"
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "fr": "Bonjour !",
       "avant": "",
       "trou": "Moien",
@@ -595,7 +961,38 @@
       "note": "Moien = Bonjour, à toute heure"
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
+      "fr": "Bonjour ! (le matin)",
+      "avant": "Gudde",
+      "trou": "Moien",
+      "apres": "!",
+      "choix": [
+        "Moien",
+        "Owend",
+        "Mëtteg",
+        "Nuecht"
+      ],
+      "note": "Gudde Moien = bonjour le matin"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "Bonjour ! (midi)",
+      "avant": "Gudde",
+      "trou": "Mëtteg",
+      "apres": "!",
+      "choix": [
+        "Mëtteg",
+        "Moien",
+        "Owend",
+        "Nuecht"
+      ],
+      "note": "Gudde Mëtteg = bonjour à midi, l'après-midi"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
       "fr": "Bonsoir !",
       "avant": "Gudden",
       "trou": "Owend",
@@ -609,7 +1006,54 @@
       "note": "Gudden Owend = Bonsoir"
     },
     {
-      "id": 3,
+      "id": 2005,
+      "unite": 1,
+      "fr": "Bonsoir !",
+      "avant": "",
+      "trou": "Gudden",
+      "apres": "Owend!",
+      "choix": [
+        "Gudden",
+        "Gudde",
+        "Gutt"
+      ],
+      "note": "Gudden devant une voyelle (Owend)",
+      "attention": "Le soir : <b>Gudden</b> Owend, avec n devant la voyelle O."
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "Bonjour Madame !",
+      "avant": "Bonjour",
+      "trou": "Madamm",
+      "apres": "!",
+      "choix": [
+        "Madamm",
+        "Madame",
+        "Här",
+        "Merci"
+      ],
+      "note": "Madamm = Madame en luxembourgeois",
+      "attention": "Madame = <b>Madamm</b>, avec deux m."
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "Bonsoir Monsieur Michels !",
+      "avant": "Gudden Owend,",
+      "trou": "Här",
+      "apres": "Michels!",
+      "choix": [
+        "Här",
+        "Madamm",
+        "Salut",
+        "Merci"
+      ],
+      "note": "Här = Monsieur"
+    },
+    {
+      "id": 2008,
+      "unite": 2,
       "fr": "Comment vas-tu ?",
       "avant": "Wéi",
       "trou": "geet",
@@ -623,7 +1067,40 @@
       "note": "Wéi geet et dir? = Comment vas-tu ?"
     },
     {
-      "id": 4,
+      "id": 2009,
+      "unite": 2,
+      "fr": "Comment allez-vous ? (poli)",
+      "avant": "Wéi geet et",
+      "trou": "Iech",
+      "apres": "?",
+      "choix": [
+        "Iech",
+        "dir",
+        "Dir",
+        "Mir"
+      ],
+      "note": "Iech = vous poli, avec majuscule",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "fr": "Je vais bien.",
+      "avant": "",
+      "trou": "Mir",
+      "apres": "geet et gutt.",
+      "choix": [
+        "Mir",
+        "Ech",
+        "Dir",
+        "Iech"
+      ],
+      "note": "On répond avec Mir : Mir geet et gutt",
+      "attention": "On répond avec <b>Mir</b> : Mir geet et gutt."
+    },
+    {
+      "id": 2011,
+      "unite": 2,
       "fr": "Je vais bien.",
       "avant": "Mir geet et",
       "trou": "gutt",
@@ -637,21 +1114,8 @@
       "note": "Mir geet et gutt = Je vais bien"
     },
     {
-      "id": 5,
-      "fr": "Bonne nuit !",
-      "avant": "Gutt",
-      "trou": "Nuecht",
-      "apres": "!",
-      "choix": [
-        "Nuecht",
-        "Owend",
-        "Moien",
-        "Dag"
-      ],
-      "note": "Gutt Nuecht = Bonne nuit"
-    },
-    {
-      "id": 6,
+      "id": 2012,
+      "unite": 2,
       "fr": "Très bien !",
       "avant": "Ganz",
       "trou": "gutt",
@@ -665,7 +1129,8 @@
       "note": "Ganz gutt = Très bien"
     },
     {
-      "id": 7,
+      "id": 2013,
+      "unite": 2,
       "fr": "Ça va.",
       "avant": "Et",
       "trou": "geet",
@@ -679,35 +1144,41 @@
       "note": "Et geet = Ça va"
     },
     {
-      "id": 8,
-      "fr": "Au revoir !",
-      "avant": "",
-      "trou": "Äddi",
-      "apres": "!",
+      "id": 2014,
+      "unite": 2,
+      "fr": "Et toi ?",
+      "avant": "An",
+      "trou": "dir",
+      "apres": "?",
       "choix": [
-        "Äddi",
-        "Moien",
-        "Salut",
-        "Merci"
+        "dir",
+        "Iech",
+        "Mir",
+        "du"
       ],
-      "note": "Äddi = Au revoir · aussi Awar"
+      "note": "An dir? = Et toi ? · An Iech? = Et vous ?",
+      "attention": "Tu = <b>dir</b> (amis, famille) · vous = Iech."
     },
     {
-      "id": 9,
-      "fr": "Comment allez-vous ? (formel)",
-      "avant": "Wéi geet et",
+      "id": 2015,
+      "unite": 2,
+      "fr": "Et vous ? (poli)",
+      "avant": "An",
       "trou": "Iech",
       "apres": "?",
       "choix": [
         "Iech",
+        "dir",
         "Dir",
-        "Du",
         "Mir"
       ],
-      "note": "Iech = vous formel (majuscule)"
+      "note": "Poli = Iech",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
     },
     {
-      "id": 10,
+      "id": 2016,
+      "unite": 2,
+      "plus": true,
       "fr": "Pas terrible.",
       "avant": "Net",
       "trou": "immens",
@@ -718,24 +1189,12 @@
         "schlecht",
         "geet"
       ],
-      "note": "Net immens = Pas terrible · immens = beaucoup"
+      "note": "Net immens = Pas terrible"
     },
     {
-      "id": 11,
-      "fr": "Et toi ? (informel)",
-      "avant": "An",
-      "trou": "dir",
-      "apres": "?",
-      "choix": [
-        "dir",
-        "Iech",
-        "Mir",
-        "Du"
-      ],
-      "note": "An dir? = Et toi ? · An Iech? = Et vous ?"
-    },
-    {
-      "id": 12,
+      "id": 2017,
+      "unite": 2,
+      "plus": true,
       "fr": "Très mal.",
       "avant": "Ganz",
       "trou": "schlecht",
@@ -749,147 +1208,9 @@
       "note": "Ganz schlecht = Très mal"
     },
     {
-      "id": 13,
-      "fr": "Bonjour ! (matin)",
-      "avant": "Gudde",
-      "trou": "Moien",
-      "apres": "!",
-      "choix": [
-        "Moien",
-        "Owend",
-        "Mëtteg",
-        "Nuecht"
-      ],
-      "note": "Gudde Moien = Bonjour le matin"
-    },
-    {
-      "id": 14,
-      "fr": "Dors bien !",
-      "avant": "Schlof",
-      "trou": "gutt",
-      "apres": "!",
-      "choix": [
-        "gutt",
-        "ganz",
-        "schlecht",
-        "net"
-      ],
-      "note": "Schlof gutt = Dors bien · entre proches"
-    },
-    {
-      "id": 15,
-      "fr": "Bonjour Madame !",
-      "avant": "Bonjour",
-      "trou": "Madamm",
-      "apres": "!",
-      "choix": [
-        "Madamm",
-        "Madame",
-        "Här",
-        "Merci"
-      ],
-      "note": "Madamm = Madame en luxembourgeois"
-    },
-    {
-      "id": 16,
-      "fr": "Et vous ? (formel)",
-      "avant": "An",
-      "trou": "Iech",
-      "apres": "?",
-      "choix": [
-        "Iech",
-        "Dir",
-        "Du",
-        "Mir"
-      ],
-      "note": "Formel = Iech"
-    },
-    {
-      "id": 17,
-      "fr": "Merci pareillement !",
-      "avant": "Merci",
-      "trou": "gläichfalls",
-      "apres": "!",
-      "choix": [
-        "gläichfalls",
-        "gutt",
-        "merci",
-        "immens"
-      ],
-      "note": "Réponse à un souhait"
-    },
-    {
-      "id": 18,
-      "fr": "Je m'appelle Bertha.",
-      "avant": "Ech",
-      "trou": "heesche",
-      "apres": "Bertha.",
-      "choix": [
-        "heesche",
-        "kommen",
-        "sinn",
-        "ginn"
-      ],
-      "note": "heeschen = s'appeler"
-    },
-    {
-      "id": 19,
-      "fr": "Quel est votre nom ?",
-      "avant": "Wéi ass",
-      "trou": "Ären",
-      "apres": "Numm?",
-      "choix": [
-        "Ären",
-        "Mäin",
-        "Däin",
-        "Iech"
-      ],
-      "note": "Ären = votre"
-    },
-    {
-      "id": 20,
-      "fr": "Mon nom est...",
-      "avant": "",
-      "trou": "Mäin",
-      "apres": "Numm ass...",
-      "choix": [
-        "Mäin",
-        "Ären",
-        "Däin",
-        "Mir"
-      ],
-      "note": "Mäin Numm ass..."
-    },
-    {
-      "id": 21,
-      "fr": "Enchanté.",
-      "avant": "Et",
-      "trou": "freet",
-      "apres": "mech.",
-      "choix": [
-        "freet",
-        "geet",
-        "ass",
-        "heescht"
-      ],
-      "note": "Et freet mech = enchanté"
-    },
-    {
-      "id": 22,
-      "fr": "Moi aussi.",
-      "avant": "Mech",
-      "trou": "och",
-      "apres": ".",
-      "choix": [
-        "och",
-        "gutt",
-        "dir",
-        "merci"
-      ],
-      "note": "och = aussi"
-    },
-    {
-      "id": 23,
+      "id": 2018,
+      "unite": 2,
+      "plus": true,
       "fr": "Tout va bien !",
       "avant": "Alles an der",
       "trou": "Rei",
@@ -903,222 +1224,563 @@
       "note": "Alles an der Rei = tout va bien"
     },
     {
-      "id": 24,
+      "id": 2019,
+      "unite": 3,
+      "fr": "Je m'appelle Bertha.",
+      "avant": "Ech",
+      "trou": "heesche",
+      "apres": "Bertha.",
+      "choix": [
+        "heesche",
+        "heeschen",
+        "heeschs",
+        "heescht"
+      ],
+      "note": "Le n tombe devant B : Ech heesche Bertha",
+      "attention": "Le n tombe devant P, M, B… : Ech <b>heesche</b> Paul · il reste devant une voyelle : Ech heeschen Anna."
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "fr": "Je m'appelle Anna.",
+      "avant": "Ech",
+      "trou": "heeschen",
+      "apres": "Anna.",
+      "choix": [
+        "heeschen",
+        "heesche",
+        "heeschs",
+        "heescht"
+      ],
+      "note": "Le n reste devant une voyelle : Ech heeschen Anna",
+      "attention": "Le n tombe devant P, M, B… : Ech <b>heesche</b> Paul · il reste devant une voyelle : Ech heeschen Anna."
+    },
+    {
+      "id": 2021,
+      "unite": 3,
       "fr": "Comment t'appelles-tu ?",
-      "avant": "A wéi",
+      "avant": "Wéi",
       "trou": "heeschs",
       "apres": "du?",
       "choix": [
         "heeschs",
-        "gees",
-        "kënns",
-        "bass"
+        "heescht",
+        "heesche",
+        "geet"
       ],
-      "note": "Forme informelle"
+      "note": "du heeschs = tu t'appelles"
     },
     {
-      "id": 25,
+      "id": 2022,
+      "unite": 3,
       "fr": "Comment vous appelez-vous ?",
-      "avant": "A wéi",
+      "avant": "Wéi",
       "trou": "heescht",
       "apres": "Dir?",
       "choix": [
         "heescht",
+        "heeschs",
+        "heesche",
+        "geet"
+      ],
+      "note": "Dir heescht = vous vous appelez"
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "fr": "Quel est votre nom ?",
+      "avant": "Wéi ass",
+      "trou": "Ären",
+      "apres": "Numm?",
+      "choix": [
+        "Ären",
+        "Mäin",
+        "Iech",
+        "Dir"
+      ],
+      "note": "Ären = votre (poli, majuscule)"
+    },
+    {
+      "id": 2024,
+      "unite": 3,
+      "fr": "Mon nom est Daniel.",
+      "avant": "",
+      "trou": "Mäin",
+      "apres": "Numm ass Daniel.",
+      "choix": [
+        "Mäin",
+        "Ären",
+        "Mir",
+        "Ech"
+      ],
+      "note": "Mäin Numm ass … = Mon nom est …"
+    },
+    {
+      "id": 2025,
+      "unite": 3,
+      "fr": "Enchanté.",
+      "avant": "Et",
+      "trou": "freet",
+      "apres": "mech.",
+      "choix": [
+        "freet",
         "geet",
         "ass",
-        "kommt"
+        "heescht"
       ],
-      "note": "Forme formelle"
+      "note": "Et freet mech = Enchanté"
+    },
+    {
+      "id": 2026,
+      "unite": 3,
+      "fr": "Moi aussi.",
+      "avant": "Mech",
+      "trou": "och",
+      "apres": ".",
+      "choix": [
+        "och",
+        "gutt",
+        "dir",
+        "merci"
+      ],
+      "note": "och = aussi"
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "plus": true,
+      "fr": "Quel est votre nom, s'il vous plaît ?",
+      "avant": "Wéi ass Ären Numm, wann ech",
+      "trou": "gelift",
+      "apres": "?",
+      "choix": [
+        "gelift",
+        "geet",
+        "heeschen",
+        "freet"
+      ],
+      "note": "wann ech gelift = s'il vous plaît"
+    },
+    {
+      "id": 2028,
+      "unite": 4,
+      "fr": "Au revoir !",
+      "avant": "",
+      "trou": "Äddi",
+      "apres": "!",
+      "choix": [
+        "Äddi",
+        "Moien",
+        "Salut",
+        "Merci"
+      ],
+      "note": "Äddi = Au revoir · familier : Awar"
+    },
+    {
+      "id": 2029,
+      "unite": 4,
+      "fr": "Bonne journée !",
+      "avant": "Schéinen",
+      "trou": "Dag",
+      "apres": "!",
+      "choix": [
+        "Dag",
+        "Owend",
+        "Nuecht",
+        "Moien"
+      ],
+      "note": "Schéinen Dag = Bonne journée"
+    },
+    {
+      "id": 2030,
+      "unite": 4,
+      "fr": "Bonne soirée !",
+      "avant": "Schéinen",
+      "trou": "Owend",
+      "apres": "!",
+      "choix": [
+        "Owend",
+        "Dag",
+        "Nuecht",
+        "Mëtteg"
+      ],
+      "note": "Schéinen Owend = Bonne soirée"
+    },
+    {
+      "id": 2031,
+      "unite": 4,
+      "fr": "Bonne nuit !",
+      "avant": "Gutt",
+      "trou": "Nuecht",
+      "apres": "!",
+      "choix": [
+        "Nuecht",
+        "Owend",
+        "Moien",
+        "Dag"
+      ],
+      "note": "Gutt Nuecht = Bonne nuit",
+      "attention": "<b>Gutt Nuecht!</b> = bonne nuit, avant de dormir · pour saluer le soir : Gudden Owend!"
+    },
+    {
+      "id": 2032,
+      "unite": 4,
+      "fr": "Au revoir, bonne journée !",
+      "avant": "Äddi,",
+      "trou": "schéinen",
+      "apres": "Dag!",
+      "choix": [
+        "schéinen",
+        "gutt",
+        "gudde",
+        "ganz"
+      ],
+      "note": "Schéinen Dag = Bonne journée"
+    },
+    {
+      "id": 2033,
+      "unite": 4,
+      "fr": "Merci pareillement !",
+      "avant": "Merci",
+      "trou": "gläichfalls",
+      "apres": "!",
+      "choix": [
+        "gläichfalls",
+        "gutt",
+        "och",
+        "immens"
+      ],
+      "note": "Réponse à un souhait"
+    },
+    {
+      "id": 2034,
+      "unite": 4,
+      "plus": true,
+      "fr": "Dors bien !",
+      "avant": "Schlof",
+      "trou": "gutt",
+      "apres": "!",
+      "choix": [
+        "gutt",
+        "ganz",
+        "schlecht",
+        "net"
+      ],
+      "note": "Schlof gutt = Dors bien"
     }
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "Bonjour ! (à toute heure)",
       "lu": "Moien!"
     },
     {
-      "fr": "Salut !",
-      "lu": "Salut!"
-    },
-    {
-      "fr": "Bonjour ! (matin)",
+      "id": 2002,
+      "unite": 1,
+      "fr": "Bonjour ! (le matin)",
       "lu": "Gudde Moien!"
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "Bonjour ! (midi)",
       "lu": "Gudde Mëtteg!"
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "Bonsoir !",
-      "lu": "Gudden Owend!"
+      "lu": "Gudden Owend!",
+      "attention": "Le soir : <b>Gudden</b> Owend, avec n devant la voyelle O."
     },
     {
-      "fr": "Madame.",
-      "lu": "Madamm."
-    },
-    {
-      "fr": "Monsieur.",
-      "lu": "Här."
-    },
-    {
-      "fr": "Bonsoir Madame Wagner.",
-      "lu": "Gudden Owend Madamm Wagner."
-    },
-    {
-      "fr": "Bonsoir Monsieur Michels.",
-      "lu": "Gudden Owend Här Michels!"
-    },
-    {
-      "fr": "Salut Pierre !",
-      "lu": "Salut Pierre!"
-    },
-    {
-      "fr": "Salut Jean !",
-      "lu": "Salut Jean!"
-    },
-    {
+      "id": 2005,
+      "unite": 1,
       "fr": "Bonjour Anna !",
       "lu": "Moien Anna!"
     },
     {
-      "fr": "Au revoir ! (courant)",
-      "lu": "Äddi!"
+      "id": 2006,
+      "unite": 1,
+      "fr": "Bonsoir Madame Wagner.",
+      "lu": "Gudden Owend Madamm Wagner."
     },
     {
-      "fr": "Au revoir ! (familier)",
-      "lu": "Awar!"
+      "id": 2007,
+      "unite": 1,
+      "fr": "Bonsoir Monsieur Michels.",
+      "lu": "Gudden Owend Här Michels."
     },
     {
-      "fr": "Bonne nuit !",
-      "lu": "Gutt Nuecht!"
+      "id": 2008,
+      "unite": 1,
+      "plus": true,
+      "fr": "Salut !",
+      "lu": "Salut!"
     },
     {
-      "fr": "Dors bien !",
-      "lu": "Schlof gutt!"
+      "id": 2009,
+      "unite": 1,
+      "plus": true,
+      "fr": "Salut Pierre !",
+      "lu": "Salut Pierre!"
     },
     {
-      "fr": "Bonne journée !",
-      "lu": "Schéinen Dag!"
+      "id": 2010,
+      "unite": 1,
+      "plus": true,
+      "fr": "Salut Jean !",
+      "lu": "Salut Jean!"
     },
     {
-      "fr": "Bonne soirée !",
-      "lu": "Schéinen Owend!"
+      "id": 2011,
+      "unite": 1,
+      "plus": true,
+      "fr": "Madame.",
+      "lu": "Madamm."
     },
     {
-      "fr": "Merci !",
-      "lu": "Merci!"
+      "id": 2012,
+      "unite": 1,
+      "plus": true,
+      "fr": "Monsieur.",
+      "lu": "Här."
     },
     {
-      "fr": "Merci pareillement !",
-      "lu": "Merci gläichfalls!"
-    },
-    {
-      "fr": "Merci pour l'invitation !",
-      "lu": "Merci fir d'Invitatioun!"
-    },
-    {
+      "id": 2013,
+      "unite": 2,
       "fr": "Comment vas-tu ?",
-      "lu": "Wéi geet et dir?"
+      "lu": "Wéi geet et dir?",
+      "attention": "Tu = <b>dir</b> (amis, famille) · vous = Iech."
     },
     {
+      "id": 2014,
+      "unite": 2,
       "fr": "Comment allez-vous ?",
-      "lu": "Wéi geet et Iech?"
+      "lu": "Wéi geet et Iech?",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
     },
     {
+      "id": 2015,
+      "unite": 2,
       "fr": "Je vais bien.",
       "lu": "Mir geet et gutt."
     },
     {
+      "id": 2016,
+      "unite": 2,
+      "fr": "Je vais bien. Et toi ?",
+      "lu": "Mir geet et gutt. An dir?"
+    },
+    {
+      "id": 2017,
+      "unite": 2,
       "fr": "Très bien !",
       "lu": "Ganz gutt!"
     },
     {
-      "fr": "Tip top !",
-      "lu": "Tipptopp!"
-    },
-    {
+      "id": 2018,
+      "unite": 2,
       "fr": "Ça va.",
       "lu": "Et geet."
     },
     {
-      "fr": "Pas terrible.",
-      "lu": "Net immens."
+      "id": 2019,
+      "unite": 2,
+      "fr": "Et vous ?",
+      "lu": "An Iech?",
+      "attention": "Poli (vous) = <b>Iech</b>, avec une majuscule · tu = dir."
     },
     {
+      "id": 2020,
+      "unite": 2,
+      "fr": "Très bien, merci ! Et vous ?",
+      "lu": "Ganz gutt, merci! An Iech?"
+    },
+    {
+      "id": 2021,
+      "unite": 2,
+      "plus": true,
       "fr": "Mal.",
       "lu": "Schlecht."
     },
     {
+      "id": 2022,
+      "unite": 2,
+      "plus": true,
+      "fr": "Tip top !",
+      "lu": "Tipptopp!"
+    },
+    {
+      "id": 2023,
+      "unite": 2,
+      "plus": true,
+      "fr": "Pas terrible.",
+      "lu": "Net immens."
+    },
+    {
+      "id": 2024,
+      "unite": 2,
+      "plus": true,
       "fr": "Très mal.",
       "lu": "Ganz schlecht."
     },
     {
+      "id": 2025,
+      "unite": 2,
+      "plus": true,
       "fr": "Pas du tout bien.",
       "lu": "Guer net gutt."
     },
     {
-      "fr": "Et toi ?",
-      "lu": "An dir?"
-    },
-    {
-      "fr": "Et vous ?",
-      "lu": "An Iech?"
-    },
-    {
+      "id": 2026,
+      "unite": 2,
+      "plus": true,
       "fr": "Tout va bien ! (tout est en ordre)",
       "lu": "Alles an der Rei!"
     },
     {
-      "fr": "Mon nom est Bertha.",
-      "lu": "Mäin Numm ass Bertha."
-    },
-    {
-      "fr": "Mon nom est Daniel.",
-      "lu": "Mäin Numm ass Daniel."
-    },
-    {
-      "fr": "Mon nom est Fabio.",
-      "lu": "Mäin Numm ass Fabio."
-    },
-    {
+      "id": 2027,
+      "unite": 3,
       "fr": "Comment vous appelez-vous ?",
       "lu": "Wéi heescht Dir?"
     },
     {
+      "id": 2028,
+      "unite": 3,
       "fr": "Comment t'appelles-tu ?",
       "lu": "Wéi heeschs du?"
     },
     {
+      "id": 2029,
+      "unite": 3,
       "fr": "Je m'appelle Mauro.",
-      "lu": "Ech heesche Mauro."
+      "lu": "Ech heesche Mauro.",
+      "attention": "Le n tombe devant P, M, B… : Ech <b>heesche</b> Paul · il reste devant une voyelle : Ech heeschen Anna."
     },
     {
+      "id": 2030,
+      "unite": 3,
+      "fr": "Je m'appelle Anna.",
+      "lu": "Ech heeschen Anna.",
+      "attention": "Le n tombe devant P, M, B… : Ech <b>heesche</b> Paul · il reste devant une voyelle : Ech heeschen Anna."
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "fr": "Mon nom est Bertha.",
+      "lu": "Mäin Numm ass Bertha."
+    },
+    {
+      "id": 2032,
+      "unite": 3,
       "fr": "Enchanté.",
       "lu": "Et freet mech."
     },
     {
+      "id": 2033,
+      "unite": 3,
       "fr": "Moi aussi.",
       "lu": "Mech och."
     },
     {
+      "id": 2034,
+      "unite": 3,
+      "fr": "Je m'appelle Paul. Enchanté.",
+      "lu": "Ech heesche Paul. Et freet mech.",
+      "attention": "Le n tombe devant P, M, B… : Ech <b>heesche</b> Paul · il reste devant une voyelle : Ech heeschen Anna."
+    },
+    {
+      "id": 2035,
+      "unite": 3,
+      "plus": true,
+      "fr": "Mon nom est Daniel.",
+      "lu": "Mäin Numm ass Daniel."
+    },
+    {
+      "id": 2036,
+      "unite": 3,
+      "plus": true,
+      "fr": "Mon nom est Fabio.",
+      "lu": "Mäin Numm ass Fabio."
+    },
+    {
+      "id": 2037,
+      "unite": 3,
+      "plus": true,
       "fr": "Quel est votre nom, s'il vous plaît ?",
       "lu": "Wéi ass Ären Numm, wann ech gelift?"
+    },
+    {
+      "id": 2038,
+      "unite": 4,
+      "fr": "Au revoir ! (courant)",
+      "lu": "Äddi!"
+    },
+    {
+      "id": 2039,
+      "unite": 4,
+      "fr": "Au revoir ! (familier)",
+      "lu": "Awar!"
+    },
+    {
+      "id": 2040,
+      "unite": 4,
+      "fr": "Bonne journée !",
+      "lu": "Schéinen Dag!"
+    },
+    {
+      "id": 2041,
+      "unite": 4,
+      "fr": "Bonne soirée !",
+      "lu": "Schéinen Owend!"
+    },
+    {
+      "id": 2042,
+      "unite": 4,
+      "fr": "Bonne nuit !",
+      "lu": "Gutt Nuecht!",
+      "attention": "<b>Gutt Nuecht!</b> = bonne nuit, avant de dormir · pour saluer le soir : Gudden Owend!"
+    },
+    {
+      "id": 2043,
+      "unite": 4,
+      "fr": "Merci !",
+      "lu": "Merci!"
+    },
+    {
+      "id": 2044,
+      "unite": 4,
+      "fr": "Merci pareillement !",
+      "lu": "Merci gläichfalls!"
+    },
+    {
+      "id": 2045,
+      "unite": 4,
+      "fr": "Merci, pareillement ! Au revoir !",
+      "lu": "Merci, gläichfalls! Äddi!"
+    },
+    {
+      "id": 2046,
+      "unite": 4,
+      "plus": true,
+      "fr": "Dors bien !",
+      "lu": "Schlof gutt!"
+    },
+    {
+      "id": 2047,
+      "unite": 4,
+      "plus": true,
+      "fr": "Merci pour l'invitation !",
+      "lu": "Merci fir d'Invitatioun!"
     }
   ],
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon apprend à saluer, prendre congé, demander comment ça va, se présenter et demander le nom de quelqu'un. Le point clé : distinguer le registre <b>informel</b> (amis, famille) du registre <b>formel</b> (inconnus, collègues, personnes âgées)."
-    },
-    {
-      "type": "callout",
-      "variant": "retenir",
-      "titre": "La règle d'or : informel ou formel ?",
-      "lignes": [
-        "Avec des <b>amis</b> ou la <b>famille</b>, on tutoie avec <b>dir</b> : Wéi geet et dir?",
-        "Avec un <b>inconnu</b> ou au <b>travail</b>, on vouvoie avec <b>Iech</b> : Wéi geet et Iech?",
-        "Les pronoms de politesse <b>Iech</b>, <b>Dir</b>, <b>Är</b>, <b>Ären</b> prennent toujours une <b>majuscule</b>."
-      ]
+      "contenu": "Cette leçon apprend à saluer, demander comment ça va, se présenter et prendre congé. Le point clé : distinguer le registre <b>informel</b> (amis, famille : <b>dir</b>, <b>du</b>) du registre <b>formel</b> (inconnus, travail : <b>Iech</b>, <b>Dir</b>)."
     },
     {
       "type": "tableau",
@@ -1144,38 +1806,245 @@
           "Le soir",
           "Gudden Owend!"
         ]
-      ]
+      ],
+      "unite": 1
     },
     {
       "type": "callout",
       "variant": "astuce",
-      "titre": "Moien : le mot à tout faire",
+      "titre": "Gudde ou Gudden ?",
       "lignes": [
-        "<b>Moien!</b> est la salutation la plus utilisée au Luxembourg.",
-        "Elle marche à <b>toute heure</b> : en cas de doute, dis simplement Moien!"
-      ]
+        "Le n final tombe devant la plupart des consonnes : <b>Gudde</b> Moien, <b>Gudde</b> Mëtteg.",
+        "Il reste devant une voyelle : <b>Gudden</b> Owend. C'est la même règle que e / en (leçon 2)."
+      ],
+      "unite": 1
     },
     {
       "type": "vocab",
-      "titre": "Autres salutations",
+      "titre": "Saluer quelqu'un",
       "items": [
+        [
+          "Salut!",
+          "Salut ! (entre amis)"
+        ],
         [
           "Hallo!",
           "Salut !"
         ],
         [
-          "Salut!",
-          "Salut ! (informel)"
+          "Madamm",
+          "Madame"
         ],
         [
-          "Bonjour Madamm.",
-          "Bonjour Madame."
+          "Här",
+          "Monsieur"
         ],
         [
-          "Bonjour Här.",
-          "Bonjour Monsieur."
+          "Bonjour Madamm!",
+          "Bonjour Madame !"
+        ],
+        [
+          "Gudden Owend, Här Michels!",
+          "Bonsoir, Monsieur Michels !"
         ]
-      ]
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Des mots venus du français",
+      "lignes": [
+        "<b>Merci</b>, <b>Salut</b>, <b>Bonjour</b> et <b>Madamm</b> viennent du français.",
+        "Mais <b>Här</b> (Monsieur) est d'origine germanique."
+      ],
+      "unite": 1,
+      "plus": true
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Informel ou formel ?",
+      "lignes": [
+        "Amis, famille : <b>dir</b> → Wéi geet et dir? · An dir?",
+        "Inconnus, travail : <b>Iech</b> → Wéi geet et Iech? · An Iech?",
+        "<b>Iech</b>, <b>Dir</b>, <b>Ären</b> prennent toujours une <b>majuscule</b>."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "tableau",
+      "titre": "Comment ça va ? L'échelle",
+      "entetes": [
+        "Sens",
+        "Luxembourgeois"
+      ],
+      "lignes": [
+        [
+          "Très bien",
+          "Ganz gutt! · Tipptopp!"
+        ],
+        [
+          "Bien",
+          "Mir geet et gutt."
+        ],
+        [
+          "Ça va",
+          "Et geet."
+        ],
+        [
+          "Pas terrible",
+          "Net immens."
+        ],
+        [
+          "Mal",
+          "Schlecht."
+        ],
+        [
+          "Très mal",
+          "Ganz schlecht. · Guer net gutt."
+        ]
+      ],
+      "unite": 2
+    },
+    {
+      "type": "vocab",
+      "titre": "Demander et répondre",
+      "items": [
+        [
+          "Wéi geet et dir?",
+          "Comment vas-tu ?"
+        ],
+        [
+          "Wéi geet et Iech?",
+          "Comment allez-vous ?"
+        ],
+        [
+          "Mir geet et gutt.",
+          "Je vais bien."
+        ],
+        [
+          "An dir?",
+          "Et toi ?"
+        ],
+        [
+          "An Iech?",
+          "Et vous ?"
+        ],
+        [
+          "Ganz gutt!",
+          "Très bien !"
+        ],
+        [
+          "Et geet.",
+          "Ça va."
+        ],
+        [
+          "Schlecht.",
+          "Mal."
+        ]
+      ],
+      "unite": 2
+    },
+    {
+      "type": "vocab",
+      "titre": "Plus de réponses",
+      "items": [
+        [
+          "Tipptopp!",
+          "Tip top !"
+        ],
+        [
+          "Net immens.",
+          "Pas terrible."
+        ],
+        [
+          "Ganz schlecht.",
+          "Très mal."
+        ],
+        [
+          "Guer net gutt.",
+          "Pas du tout bien."
+        ],
+        [
+          "Alles an der Rei!",
+          "Tout va bien ! (tout est en ordre)"
+        ]
+      ],
+      "unite": 2,
+      "plus": true
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "titre": "Se présenter : deux structures",
+      "lignes": [
+        "<b>Mäin Numm ass …</b> = Mon nom est … (le plus simple).",
+        "<b>Ech heeschen …</b> = Je m'appelle … : ech <b>heeschen</b>, du <b>heeschs</b>, Dir <b>heescht</b>.",
+        "Demander poliment : <b>Wéi ass Ären Numm, wann ech gelift?</b> (à l'écrit : wgl.)"
+      ],
+      "unite": 3
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Ech heesche ou Ech heeschen ?",
+      "lignes": [
+        "Devant la plupart des consonnes, le n tombe : <b>Ech heesche Paul.</b>",
+        "Devant une voyelle (et n, d, t, z, h), il reste : <b>Ech heeschen Anna.</b>"
+      ],
+      "unite": 3
+    },
+    {
+      "type": "vocab",
+      "titre": "Se présenter et répondre",
+      "items": [
+        [
+          "Wéi heescht Dir?",
+          "Comment vous appelez-vous ?"
+        ],
+        [
+          "Wéi heeschs du?",
+          "Comment t'appelles-tu ?"
+        ],
+        [
+          "Ech heesche Paul.",
+          "Je m'appelle Paul."
+        ],
+        [
+          "Mäin Numm ass Bertha.",
+          "Mon nom est Bertha."
+        ],
+        [
+          "Wéi ass Ären Numm?",
+          "Quel est votre nom ?"
+        ],
+        [
+          "Et freet mech.",
+          "Enchanté."
+        ],
+        [
+          "Mech och.",
+          "Moi aussi."
+        ]
+      ],
+      "unite": 3
+    },
+    {
+      "type": "vocab",
+      "titre": "Politesse",
+      "items": [
+        [
+          "Wann ech gelift",
+          "S'il vous plaît"
+        ],
+        [
+          "Entschëllegt!",
+          "Excusez-moi !"
+        ]
+      ],
+      "unite": 3,
+      "plus": true
     },
     {
       "type": "tableau",
@@ -1210,114 +2079,25 @@
           "Gutt Nuecht!",
           "Bonne nuit",
           "Avant d'aller dormir"
-        ],
-        [
-          "Schlof gutt!",
-          "Dors bien",
-          "Entre proches"
         ]
-      ]
+      ],
+      "unite": 4
     },
     {
       "type": "callout",
       "variant": "attention",
       "titre": "À ne pas confondre",
       "lignes": [
-        "<b>Gudden Owend!</b> sert à <b>saluer</b> le soir.",
-        "<b>Gutt Nuecht!</b> se dit seulement <b>avant de dormir</b>, jamais pour saluer.",
-        "<b>Schlof gutt!</b> est réservé aux <b>proches</b>."
-      ]
-    },
-    {
-      "type": "tableau",
-      "titre": "Comment ça va ? L'échelle",
-      "entetes": [
-        "Sens",
-        "Luxembourgeois"
+        "<b>Gudden Owend!</b> = bonsoir, pour <b>saluer</b> en arrivant.",
+        "<b>Schéinen Owend!</b> = bonne soirée, en <b>partant</b>.",
+        "<b>Gutt Nuecht!</b> = bonne nuit, seulement <b>avant de dormir</b>."
       ],
-      "lignes": [
-        [
-          "Très bien",
-          "Ganz gutt! · Tipptopp!"
-        ],
-        [
-          "Bien",
-          "Mir geet et gutt. · Gutt!"
-        ],
-        [
-          "Ça va",
-          "Et geet."
-        ],
-        [
-          "Pas terrible",
-          "Net immens."
-        ],
-        [
-          "Mal",
-          "Schlecht. · Net gutt."
-        ],
-        [
-          "Très mal",
-          "Ganz schlecht. · Guer net gutt."
-        ]
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "astuce",
-      "titre": "Une réponse passe-partout",
-      "lignes": [
-        "<b>Alles an der Rei!</b> = Tout va bien / Tout est en ordre. Une réponse positive très fréquente."
-      ]
-    },
-    {
-      "type": "tableau",
-      "titre": "Demander : informel ou formel",
-      "entetes": [
-        "Sens",
-        "Informel (tu)",
-        "Formel (vous)"
-      ],
-      "lignes": [
-        [
-          "Comment vas-tu ?",
-          "Wéi geet et dir?",
-          "Wéi geet et Iech?"
-        ],
-        [
-          "Et toi ?",
-          "An dir?",
-          "An Iech?"
-        ],
-        [
-          "Comment t'appelles-tu ?",
-          "Wéi heeschs du?",
-          "Wéi heescht Dir?"
-        ]
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "info",
-      "titre": "Se présenter : deux structures",
-      "lignes": [
-        "<b>Mäin Numm ass …</b> = Mon nom est … (le plus simple).",
-        "<b>Ech heeschen …</b> = Je m'appelle … Le verbe se conjugue : ech <b>heesche</b>, du <b>heeschs</b>, Dir <b>heescht</b>.",
-        "Demander le nom poliment : <b>Wéi ass Ären Numm, wann ech gelift?</b>"
-      ]
+      "unite": 4
     },
     {
       "type": "vocab",
-      "titre": "Politesse",
+      "titre": "Merci",
       "items": [
-        [
-          "Et freet mech.",
-          "Enchanté."
-        ],
-        [
-          "Mech och.",
-          "Moi aussi / Enchanté également."
-        ],
         [
           "Merci!",
           "Merci !"
@@ -1327,35 +2107,43 @@
           "Merci pareillement !"
         ],
         [
-          "Wann ech gelift",
-          "S'il vous plaît"
-        ],
+          "Merci, gläichfalls! Äddi!",
+          "Merci, pareillement ! Au revoir !"
+        ]
+      ],
+      "unite": 4
+    },
+    {
+      "type": "vocab",
+      "titre": "Entre proches",
+      "items": [
         [
-          "Entschëllegt!",
-          "Désolé ! / Excusez-moi !"
+          "Schlof gutt!",
+          "Dors bien !"
         ],
         [
           "Merci fir d'Invitatioun!",
           "Merci pour l'invitation !"
         ]
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "info",
-      "titre": "Des mots venus du français",
-      "lignes": [
-        "Plusieurs mots de politesse viennent du français : <b>Merci</b>, <b>Salut</b>, <b>Bonjour</b>, <b>Madamm</b>.",
-        "Mais <b>Här</b> (Monsieur) est d'origine germanique, pas français."
-      ]
+      ],
+      "unite": 4,
+      "plus": true
     },
     {
       "type": "dialogue",
-      "titre": "Dialogue informel",
+      "titre": "Premier cours de luxembourgeois",
       "echanges": [
         [
-          "Moien! Wéi geet et dir?",
-          "Salut ! Comment vas-tu ?"
+          "Moien!",
+          "Bonjour !"
+        ],
+        [
+          "Gudde Moien!",
+          "Bonjour ! (le matin)"
+        ],
+        [
+          "Wéi geet et dir?",
+          "Comment vas-tu ?"
         ],
         [
           "Mir geet et gutt. An dir?",
@@ -1364,26 +2152,29 @@
         [
           "Ganz gutt, merci!",
           "Très bien, merci !"
-        ]
-      ]
-    },
-    {
-      "type": "dialogue",
-      "titre": "Dialogue formel",
-      "echanges": [
-        [
-          "Bonjour Madamm, wéi geet et Iech?",
-          "Bonjour Madame, comment allez-vous ?"
         ],
         [
-          "Ganz gutt, merci. An Iech?",
-          "Très bien, merci. Et vous ?"
+          "Gudde Moien! Wéi heescht Dir?",
+          "Bonjour ! Comment vous appelez-vous ?"
         ],
         [
-          "Och gutt, merci!",
-          "Bien aussi, merci !"
+          "Ech heesche Paul. Et freet mech.",
+          "Je m'appelle Paul. Enchanté."
+        ],
+        [
+          "Mech och!",
+          "Moi aussi !"
+        ],
+        [
+          "Äddi, schéinen Owend!",
+          "Au revoir, bonne soirée !"
+        ],
+        [
+          "Merci, gläichfalls! Äddi!",
+          "Merci, pareillement ! Au revoir !"
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }

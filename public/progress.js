@@ -415,6 +415,35 @@ function leconV1Faite(l) {
   return calculateLessonStats(l.id).percent >= SEUIL_LECON_V1;
 }
 
+// ─── ACQUIS D'UNE LEÇON PASSÉE AU FORMAT EN UNITÉS ──────────────────────────
+// Quand une leçon v1 est migrée, ses nouveaux exercices ont des ids ≥ 2001 :
+// l'ancienne progression (ids < 1000) reste stockée, mais plus rien ne la lit.
+// La leçon migrée garde dans son JSON le nombre de questions de l'ancienne
+// version :  "v1": { "quiz": 35, "trous": 25, "ecriture": 43 }
+// On recalcule le pourcentage v1 comme avant (niveau 1 = 0 %, 3 = 100 %,
+// moyenne des 3 types). Au-dessus du seuil « bien », la leçon reste terminée.
+// On n'invente aucun score pour les nouvelles unités : elles restent à découvrir.
+function pourcentV1Archive(l) {
+  if (!l || !l.v1) return 0;
+  const parType = getProgress()[l.id] || {};
+  let total = 0;
+  ['quiz', 'trous', 'ecriture'].forEach(type => {
+    const nb = l.v1[type] || 0;
+    if (!nb) return;
+    const niveaux = parType[type] || {};
+    let somme = 0;
+    Object.keys(niveaux).forEach(qid => {
+      if (Number(qid) < 1000) somme += (niveaux[qid] - 1) / 2; // ancienne question
+    });
+    total += Math.round(Math.min(1, somme / nb) * 100);
+  });
+  return Math.round(total / 3);
+}
+
+function acquisV1(l) {
+  return !!(l && l.v1 && Array.isArray(l.unites) && pourcentV1Archive(l) >= SEUIL_LECON_V1);
+}
+
 // Mission « réussie » = meilleur score d'au moins SEUIL_MISSION (S4).
 // En dessous, elle est seulement « jouée ».
 const SEUIL_MISSION = 80;

@@ -637,16 +637,19 @@ function renderMotCache(card) {
 function renderCases() {
   const nbLettres = mc.cases.filter(c => c.lettre).length;
   const taille = nbLettres > 12 ? ' xs' : nbLettres > 9 ? ' sm' : '';
-  let html = '';
+  // Les cases d'un même mot restent groupées : on ne passe à la ligne
+  // qu'entre deux mots (jamais au milieu, ex. « Owen / d! »).
+  let html = '<span class="mc-groupe">';
   mc.cases.forEach(c => {
     if (!c.lettre) {
-      html += c.ch === ' ' ? '<span class="mc-espace"></span>' : '<span class="mc-sep">' + escHtml(c.ch) + '</span>';
+      html += c.ch === ' ' ? '</span><span class="mc-espace"></span><span class="mc-groupe">'
+                           : '<span class="mc-sep">' + escHtml(c.ch) + '</span>';
     } else {
       const visible = c.etat !== '';
       html += '<span class="mc-case ' + c.etat + taille + '">' + (visible ? escHtml(c.ch) : '') + '</span>';
     }
   });
-  document.getElementById('mc-cases').innerHTML = html;
+  document.getElementById('mc-cases').innerHTML = html + '</span>';
 }
 
 // Score du mot = lettres non révélées par indice / nombre de lettres.

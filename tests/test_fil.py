@@ -278,9 +278,9 @@ with sync_playwright() as p:
     ok('étalement v1 : ' + str(res['dusAuj']) + ' / 300 vieilles questions dues aujourd\'hui · erreurs actives toujours dues · stats récentes inchangées')
 
     # ── 12. Ancienne leçon : écran à onglets ──
-    page.evaluate("openLecon(lecons.find(l => l.id === 1))")
+    page.evaluate("openLecon(lecons.find(l => l.id === 7))")
     assert actif(page, 'view-lecon')
-    ok('leçon 1 (ancien format) : écran à onglets inchangé')
+    ok('leçon 7 (ancien format) : écran à onglets inchangé')
     nav.close()
 
 print('\nErreurs JavaScript :', erreurs_js or 'aucune')

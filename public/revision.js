@@ -49,6 +49,7 @@ function prochainPas() {
       if (leconV1Faite(l)) continue;
       return { titre: 'Prochaine leçon', texte: 'Leçon ' + l.id + ' · ' + l.titre_fr, lecon: l, type: 'v1', fn: () => openLecon(l) };
     }
+    if (acquisV1(l)) continue; // faite dans l'ancienne version : le guide passe à la suite
     const u = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (u) {
       return {
