@@ -406,7 +406,7 @@ Règles à vérifier à chaque leçon :
 
 ### Format v2 : une leçon avec un fil
 
-Migrées : leçons 1, 2, 3, 4, 5, 6, 8, 21, 22. Les autres sont encore en v1 et restent valides.
+Migrées : leçons 1 à 13, sauf aucune dans cette plage, puis 21 et 22. Les autres sont encore en v1 et restent valides.
 
 **Migrer une leçon v1** : un script par leçon dans `tools/migration/lecon-NN.py` (petite fabrique
 `fabrique.py` : ids donnés à partir de 2001, champ `v1` rempli tout seul). Lancer
