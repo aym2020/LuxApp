@@ -1138,6 +1138,188 @@
       "unite": 3
     },
     {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Marié, divorcé ou célibataire ?",
+      "unite": 1,
+      "items": [
+        [
+          "bestuet",
+          "marié(e)"
+        ],
+        [
+          "gescheet",
+          "divorcé(e)"
+        ],
+        [
+          "getrennt",
+          "séparé(e)"
+        ],
+        [
+          "gepacst",
+          "pacsé(e)"
+        ],
+        [
+          "verlobt",
+          "fiancé(e)"
+        ],
+        [
+          "leedeg",
+          "célibataire (état)"
+        ],
+        [
+          "e Jonggesell",
+          "un célibataire (homme)"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Marié, divorcé ou célibataire ?",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "bestuet",
+          "Marié(e)"
+        ],
+        [
+          "gescheet",
+          "Divorcé(e)"
+        ],
+        [
+          "getrennt",
+          "Séparé(e)"
+        ],
+        [
+          "gepacst",
+          "Pacsé(e)"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Les enfants",
+      "unite": 2,
+      "items": [
+        [
+          "e Kand",
+          "un enfant"
+        ],
+        [
+          "Kanner",
+          "des enfants"
+        ],
+        [
+          "e Jong",
+          "un garçon"
+        ],
+        [
+          "Jongen",
+          "des garçons"
+        ],
+        [
+          "e Meedchen",
+          "une fille"
+        ],
+        [
+          "Meedercher",
+          "des filles"
+        ],
+        [
+          "e Mupp",
+          "un chien"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Les enfants",
+      "unite": 2,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "e Kand",
+          "Un enfant"
+        ],
+        [
+          "Kanner",
+          "Des enfants"
+        ],
+        [
+          "e Jong",
+          "Un garçon"
+        ],
+        [
+          "Jongen",
+          "Des garçons"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Les proches et la négation",
+      "unite": 3,
+      "items": [
+        [
+          "eng Frëndin",
+          "une petite amie"
+        ],
+        [
+          "e Frënd",
+          "un petit ami"
+        ],
+        [
+          "eng Kaz",
+          "un chat"
+        ],
+        [
+          "eng Jonggesellin",
+          "une célibataire (femme)"
+        ],
+        [
+          "Wittmann",
+          "veuf"
+        ],
+        [
+          "Wittfra",
+          "veuve"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Les proches et la négation",
+      "unite": 3,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "e Frënd",
+          "Petit ami"
+        ],
+        [
+          "eng Frëndin",
+          "Petite amie"
+        ],
+        [
+          "e Mupp",
+          "Un chien"
+        ],
+        [
+          "eng Kaz",
+          "Un chat"
+        ]
+      ]
+    },
+    {
       "type": "texte",
       "contenu": "Cette leçon sert à parler de la <b>situation familiale</b> : être marié, divorcé, séparé, pacsé, fiancé ou célibataire, mais aussi dire si l'on a des enfants, un partenaire ou des animaux.",
       "unite": 0
