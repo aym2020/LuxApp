@@ -1,3 +1,11 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
 <title>Maquettes LuxApp v2</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +84,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .app {
   max-width: 430px; margin: 0 auto; position: relative;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 20px 0;
+  padding-block: 20px calc(96px + env(safe-area-inset-bottom, 0px));
 }
 .ecran { display: flex; flex-direction: column; gap: var(--sp-5); min-height: 70vh; }
 .ecran[hidden] { display: none !important; }
@@ -87,6 +95,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ── Accueil : en-tête ── */
 .ent { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-3); }
+.marque { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: var(--fs-micro); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--or); }
+.marque i { width: 8px; height: 8px; border-radius: 2px; background: var(--or); transform: rotate(45deg); }
 .ent h1 { margin: 0; font-family: var(--f-serif); font-weight: 400; font-size: 2.6rem; line-height: 1; letter-spacing: -.01em; }
 .ent .sous { margin-top: 6px; color: var(--gris); font-size: var(--fs-sec); }
 .ent-droite { display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-2); }
@@ -156,9 +166,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ── Barre du bas ── */
 .nav-bas {
-  position: sticky; bottom: 0; z-index: 20; margin-top: var(--sp-5);
-  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
-  margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; max-width: 430px; margin: 0 auto;
   background: var(--surface-1); border-top: 1px solid var(--bord-1);
   display: grid; grid-template-columns: repeat(4, 1fr);
   padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
@@ -266,6 +274,27 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .unites li.mission .etat .ic { stroke-width: 2; }
 .unites li.mission.ok .etat { background: var(--vert-plein); }
 .unites .tag { margin-left: auto; font-size: var(--fs-micro); color: var(--gris); font-weight: 600; }
+.groupe-tete { all: unset; box-sizing: border-box; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 8px; width: 100%; min-height: 40px; }
+.groupe-tete:focus-visible { outline: 2px solid var(--or); outline-offset: 2px; border-radius: 8px; }
+.groupe-tete b { display: block; font-size: 1.05rem; }
+.groupe-fini { background: var(--vert-fond); border-color: #23604a; background-image: none; }
+.groupe-fini .num .st { color: var(--vert); }
+.voir { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-sec); font-weight: 700; color: var(--vert); }
+.voir .ic { width: 16px; height: 16px; }
+.groupe-tete[aria-expanded="true"] .voir .ic { transform: rotate(180deg); }
+.lignes-finies { display: flex; flex-direction: column; margin-top: 8px; border-top: 1px solid #23604a; animation: entre .2s ease-out both; }
+.ligne-finie { display: flex; align-items: center; gap: 10px; min-height: 44px; background: transparent; border: 0; border-bottom: 1px solid #1d4a3b; text-align: left; padding: 0; font-size: var(--fs-sec); }
+.ligne-finie:last-child { border-bottom: 0; }
+.ligne-finie .n { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-weight: 800; font-size: var(--fs-micro); color: var(--teinte); background: color-mix(in srgb, var(--teinte) 18%, transparent); flex: none; }
+.ligne-finie .t { flex: 1; min-width: 0; color: var(--texte); }
+.carte-lecon.compacte { flex-direction: row; align-items: baseline; gap: 10px; padding: 12px 14px; min-height: 44px; }
+.carte-lecon.compacte .num { flex: none; }
+.carte-lecon.compacte h3 { font-size: var(--fs-corps); font-weight: 600; color: var(--gris-fort); }
+.pas.futur { padding-bottom: 8px; }
+.pas.futur::before { top: 46px; }
+.unites li.bilan .etat { border-radius: 7px; background: var(--turq-fond); color: var(--turquoise); }
+.unites li.bilan .etat .ic { stroke-width: 2; }
+.unites li.bilan { color: var(--gris); }
 .pas.exam .carte-lecon { background: var(--bleu-fond); border-color: #34507d; }
 .pas.exam .num .st { color: var(--bleu); }
 .lien-bleu { color: var(--bleu); font-weight: 700; font-size: var(--fs-sec); display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; }
@@ -278,14 +307,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .bienv .accroche { margin: 0; font-size: 1.1rem; color: var(--gris-fort); max-width: 32ch; }
 .bienv .carte-p { gap: 18px; }
 .bienv .question { margin: 0; font-weight: 700; font-size: 1.05rem; }
-.choix-deux { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.choix-deux { display: flex; flex-direction: column; gap: 10px; }
 .choix-deux button {
-  min-height: 76px; border-radius: 16px; border: 1.5px solid var(--bord-2); background: var(--surface-1);
-  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; padding: 10px 14px; text-align: left;
+  min-height: 60px; border-radius: 16px; border: 1.5px solid var(--bord-2); background: var(--surface-1);
+  display: flex; align-items: center; gap: 14px; padding: 10px 16px; text-align: left;
   transition: border-color .15s ease, background-color .15s ease, transform .1s ease;
 }
 .choix-deux button:active { transform: scale(.97); }
-.choix-deux b { font-size: 1.25rem; }
+.choix-deux b { font-size: 1.25rem; width: 52px; flex: none; }
 .choix-deux small { color: var(--gris); font-size: var(--fs-micro); }
 .choix-deux button[aria-pressed="true"] { border-color: var(--or); background: var(--or-fond); }
 .choix-deux button[aria-pressed="true"] b { color: var(--or); }
@@ -308,6 +337,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ex-unite b { color: #7ab8e8; font-weight: 700; }
 .ex-carte { display: flex; flex-direction: column; gap: 18px; }
 .ex-consigne { margin: 0; font-size: var(--fs-sec); color: var(--gris); }
+.ex-saisie { display: flex; flex-direction: column; gap: 14px; scroll-margin-bottom: 12px; }
 .ex-question { margin: 0; font-family: var(--f-serif); font-size: 2.1rem; line-height: 1.1; }
 .ex-champ { position: relative; }
 .ex-champ input {
@@ -325,6 +355,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ex-champ.juste { animation: rebond .3s ease-out; }
 .ex-champ.secoue { animation: secousse .3s ease; }
 .retour { border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; animation: glisse .2s ease-out both; font-size: var(--fs-sec); }
+.retour.vide { background: var(--surface-1); border: 1px solid var(--bord-2); color: var(--gris-fort); }
 .retour.bon { background: var(--vert-fond); border: 1px solid #23604a; }
 .retour.bon .t { color: var(--vert); }
 .retour.mauvais { background: var(--rouge-fond); border: 1px solid #6a2f2c; }
@@ -436,6 +467,7 @@ const IC = {
   coche: '<svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>',
   maison: '<svg class="ic" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
   croix: '<svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  cible: '<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
   bulle: '<svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
   etoile: '<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>'
 };
@@ -481,9 +513,12 @@ const etat = {
   enCours: { 'A1.1': 7, 'A1.2': 0 },   // index de la leçon en cours dans le niveau
   etape: { 'A1.1': 1, 'A1.2': 0 },     // 1 = unité 2
   serie: 6,
-  revision: 7                          // questions faites sur 20
+  revision: 7,                         // questions faites sur 20
+  finiesOuvertes: false
 };
-const ETAPES_PAR_LECON = 4;            // 3 unités + mission
+// Étapes qui comptent pour la progression : les unités de la leçon + sa mission.
+// Le bilan est facultatif et ne compte pas. (Maquette : 3 unités par défaut.)
+function etapesDe(l) { return (l.unites ? l.unites.length : 3) + 1; }
 
 function reduit() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
 
@@ -495,8 +530,12 @@ function etoilesHtml(n) {
 }
 
 function progressionNiveau(niv) {
-  const total = LECONS[niv].length * ETAPES_PAR_LECON;
-  const faites = etat.enCours[niv] * ETAPES_PAR_LECON + etat.etape[niv];
+  let total = 0, faites = 0;
+  LECONS[niv].forEach((l, i) => {
+    total += etapesDe(l);
+    if (i < etat.enCours[niv]) faites += etapesDe(l);
+  });
+  faites += etat.etape[niv];
   return { faites, total, pourcent: Math.round(faites / total * 100) };
 }
 
@@ -516,6 +555,7 @@ function renderAccueil() {
   document.getElementById('ecran-accueil').innerHTML = `
     <header class="ent entre">
       <div>
+        <span class="marque"><i></i>LuxApp</span>
         <h1>Moien !</h1>
         <div class="sous">Prêt pour ta pause luxembourgeois ?</div>
       </div>
@@ -608,23 +648,37 @@ function renderChemin() {
       <span class="etiquette or">Parcours ${niv}</span>
       <h1>Mon chemin</h1>
       <div class="resume">
-        <span class="pastille v"><i></i>${iCours} finie${iCours > 1 ? 's' : ''}</span>
+        <span class="pastille v"><i></i>${iCours} terminée${iCours > 1 ? 's' : ''}</span>
         <span class="pastille o"><i></i>1 en cours</span>
       </div>
     </header>
     <ol class="chemin">`;
 
+  // Leçons terminées : un seul bloc compact, dépliable (le chemin reste court).
+  if (iCours > 0) {
+    const anim = derniereAnim && derniereAnim.type === 'lecon';
+    let lignes = '';
+    if (etat.finiesOuvertes) {
+      liste.slice(0, iCours).forEach(l => {
+        lignes += `<button class="ligne-finie" style="--teinte:${l.c}" data-toast="Leçon ${l.id} : tu peux la rejouer quand tu veux.">
+          <span class="n">${l.id}</span><span class="t">${l.fr}</span>${etoilesHtml(l.etoiles || 3)}</button>`;
+      });
+    }
+    html += `<li class="pas fait ${anim ? 'trait-anime' : ''}">
+      <span class="rond ${anim ? 'vient-de-finir' : ''}">${IC.coche}</span>
+      <div class="carte-lecon groupe-fini">
+        <button class="groupe-tete" data-demo="ouvrir-finies" aria-expanded="${!!etat.finiesOuvertes}">
+          <span><span class="num"><span class="st">Terminées</span></span><b>Leçons ${liste[0].id} à ${liste[iCours - 1].id}</b></span>
+          <span class="voir">${etat.finiesOuvertes ? 'Masquer' : 'Voir'} ${IC.chevron}</span>
+        </button>
+        ${lignes ? '<div class="lignes-finies">' + lignes + '</div>' : ''}
+      </div></li>`;
+  }
+
   liste.forEach((l, i) => {
     const style = 'style="--teinte:' + l.c + '"';
-    if (i < iCours) {
-      const anim = derniereAnim && derniereAnim.type === 'lecon' && derniereAnim.index === i;
-      html += `<li class="pas fait ${anim ? 'trait-anime' : ''}">
-        <span class="rond ${anim ? 'vient-de-finir' : ''}">${IC.coche}</span>
-        <button class="carte-lecon" ${style}>
-          <span class="haut"><span class="num"><b>Leçon ${l.id}</b> · <span class="st">Terminée</span></span>${etoilesHtml(l.etoiles || 3)}</span>
-          <h3>${l.fr}</h3>
-        </button></li>`;
-    } else if (i === iCours) {
+    if (i < iCours) return; // déjà dans le bloc « Terminées »
+    if (i === iCours) {
       let unites = '';
       l.unites.forEach((u, k) => {
         const cls = k < e ? 'ok' : (k === e ? 'actuelle' : '');
@@ -633,6 +687,7 @@ function renderChemin() {
       });
       const mCls = e === 3 ? 'actuelle' : '';
       unites += `<li class="mission ${mCls}"><span class="etat">${IC.bulle}</span>Mission · ${l.mission}<span class="tag">${Math.min(e, 3)}/${l.repliques} répliques</span></li>`;
+      unites += `<li class="bilan"><span class="etat">${IC.cible}</span>Bilan · 10 questions mêlées<span class="tag">facultatif</span></li>`;
       const bouton = e === 3 ? 'Jouer la mission' : (e === 0 ? 'Commencer l\'unité 1' : 'Continuer l\'unité ' + (e + 1));
       html += `<li class="pas encours" id="pas-encours">
         <span class="rond">${IC.lecture}</span>
@@ -644,12 +699,11 @@ function renderChemin() {
           <button class="btn-jaune" data-go="exercice">${bouton}${IC.fleche}</button>
         </div></li>`;
     } else {
-      html += `<li class="pas">
+      html += `<li class="pas futur">
         <span class="rond">${IC.livre}</span>
-        <button class="carte-lecon" ${style}>
-          <span class="num"><b>Leçon ${l.id}</b> · À découvrir</span>
+        <button class="carte-lecon compacte" ${style} data-toast="Leçon ${l.id} : ouverte, même sans finir les précédentes.">
+          <span class="num"><b>Leçon ${l.id}</b></span>
           <h3>${l.fr}</h3>
-          <span class="lux">${l.lu}</span>
         </button></li>`;
     }
   });
@@ -705,7 +759,7 @@ function renderBienvenue() {
   document.getElementById('ecran-bienvenue').innerHTML = `
     <div class="bienv">
       <h1 class="entre">Moien<em> !</em></h1>
-      <p class="accroche entre-2">Apprends le luxembourgeois par petites unités de 5 minutes, chacune liée à une scène de la vie de tous les jours.</p>
+      <p class="accroche entre-2">Apprends le luxembourgeois par petites unités, chacune liée à une scène de la vie de tous les jours.</p>
       <article class="carte-p entre-3">
         <p class="question">Quel niveau travailles-tu ?</p>
         <div class="choix-deux">
@@ -779,12 +833,14 @@ function renderExercice(animer) {
     <div class="ex-carte ${animer ? 'entre' : ''}">
       <p class="ex-consigne">Écris en luxembourgeois</p>
       <p class="ex-question">${q.fr}</p>
+      <div class="ex-saisie" id="saisie">
       <div class="ex-champ" id="champ">
         <input id="reponse" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Ta réponse…" aria-label="Ta réponse">
         <svg class="coche ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
       </div>
       <div id="retour"></div>
       <button class="btn-jaune" id="valider">Valider</button>
+      </div>
     </div>
     <div class="demo">
       <span>Démo des animations</span>
@@ -802,6 +858,11 @@ function valider() {
   const bouton = document.getElementById('valider');
   const q = QUESTIONS[ex.i];
   if (ex.repondu) { suivante(); return; }
+  if (!input.value.trim()) {
+    retour.innerHTML = '<div class="retour vide">Écris ta réponse avant de valider.</div>';
+    input.focus();
+    return;
+  }
   const juste = normalize(input.value) === normalize(q.lu);
   champ.classList.remove('juste', 'faux', 'secoue');
   void champ.offsetWidth; // relance l'animation
@@ -959,6 +1020,7 @@ document.addEventListener('click', ev => {
     toast('Objectif du jour atteint : révision + une unité.');
   }
   if (demo === 'finir-etape') finirEtape();
+  if (demo === 'ouvrir-finies') { etat.finiesOuvertes = !etat.finiesOuvertes; renderChemin(); }
   if (demo === 'rejouer-chemin') { renderChemin(); setTimeout(allerALeconEnCours, 250); }
   if (demo === 'cest-parti') { etat.niveau = niveauBienvenue; afficher('accueil'); }
   if (demo === 'bonne' || demo === 'erreur') {
@@ -983,6 +1045,15 @@ document.addEventListener('input', ev => {
   document.getElementById('champ').classList.remove('faux', 'secoue');
   document.getElementById('valider').textContent = 'Valider';
 });
+// Clavier ouvert : on garde la saisie et « Valider » au-dessus du clavier (même logique que ui.js).
+function garderSaisieVisible() {
+  const zone = document.getElementById('saisie');
+  if (zone && document.activeElement && document.activeElement.id === 'reponse') {
+    zone.scrollIntoView({ block: 'end', behavior: reduit() ? 'auto' : 'smooth' });
+  }
+}
+document.addEventListener('focusin', ev => { if (ev.target.id === 'reponse') setTimeout(garderSaisieVisible, 300); });
+if (window.visualViewport) window.visualViewport.addEventListener('resize', garderSaisieVisible);
 document.addEventListener('keydown', ev => {
   if (ev.key === 'Enter' && ev.target.id === 'reponse') valider();
 });
@@ -991,3 +1062,6 @@ let depart = 'accueil';
 try { depart = localStorage.getItem('maq-ecran') || 'accueil'; } catch (e) {}
 afficher(depart);
 </script>
+
+</body>
+</html>
