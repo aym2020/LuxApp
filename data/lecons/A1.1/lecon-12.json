@@ -22,16 +22,16 @@
   "scene": [
     {
       "unite": 1,
-      "qui": "toi",
+      "qui": "Marie",
       "lu": "Wou schaffs du?",
-      "fr": "Où travailles-tu ?",
-      "aide": "Pour demander le lieu de travail : <b>Wou schaffs du?</b>"
+      "fr": "Où travailles-tu ?"
     },
     {
       "unite": 1,
-      "qui": "Marie",
+      "qui": "toi",
       "lu": "Ech schaffen an engem Büro.",
-      "fr": "Je travaille dans un bureau."
+      "fr": "Je travaille dans un bureau.",
+      "aide": "Pour un bureau : <b>an engem</b>."
     },
     {
       "unite": 1,
@@ -97,6 +97,19 @@
       "lu": "Si schafft bei enger Coiffeuse.",
       "fr": "Elle travaille chez une coiffeuse.",
       "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Wou schaffs du?",
+      "fr": "Où travailles-tu ?",
+      "aide": "Question informelle : <b>Wou schaffs du?</b>"
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "Ech schaffen an enger Klinik.",
+      "fr": "Je travaille dans une clinique."
     }
   ],
   "unites": [
