@@ -4,238 +4,323 @@
   "titre_fr": "Les meubles et objets de la maison",
   "couleur": "#b5835a",
   "instructions": {
-    "flashcards": "Mémorise les meubles et objets de la maison avec leur article (e, en, eng), quelques pluriels et les pièces (an der Kichen, am Buedzëmmer…). La note indique le genre et un exemple avec une préposition.",
-    "quiz": "Lis un mot, une pièce ou une phrase en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont d'autres objets de la maison, un pluriel ou, dans quelques phrases, une autre préposition.",
-    "trous": "Complète la phrase avec l'objet ou la pièce qui correspond à la traduction. Les prépositions de la leçon 20 sont utilisées dans les phrases ; quelques trous te font retrouver la préposition.",
-    "ecriture": "Traduis en luxembourgeois les objets avec leur article, quelques pluriels, les pièces de la maison, la question Wou ass …? et des phrases courtes pour dire où se trouve un objet."
+    "flashcards": "Mot caché : retrouve l'objet luxembourgeois à partir du français, pièce par pièce. L'article (e, en, eng) est affiché ; la note donne le genre et un exemple avec une préposition.",
+    "quiz": "Lis un objet, un pluriel, une pièce ou une phrase en luxembourgeois et choisis la bonne traduction française. Distracteurs : objets de la même pièce, pluriel, autre préposition.",
+    "trous": "Complète la phrase avec l'objet, la pièce ou la préposition qui correspond à la traduction (prépositions de la leçon 20).",
+    "ecriture": "Phrases complètes pour dire où se trouve un objet, et la question Wou ass …?"
   },
-  "flashcards": [
+  "unites": [
     {
       "id": 1,
-      "lu": "e Frigo",
-      "fr": "un frigo / réfrigérateur",
-      "note": "Masculin · am Frigo"
+      "titre": "La cuisine",
+      "regle": "Apprends chaque objet <b>avec son article</b> : e, en ou eng",
+      "exemple": "<b>en</b> Teller = une assiette · <b>eng</b> Pan = une poêle",
+      "phrases": [
+        [
+          "D'Glas ass am Frigo.",
+          "Le verre est dans le frigo."
+        ],
+        [
+          "Wou ass d'Pan?",
+          "Où est la poêle ?"
+        ]
+      ]
     },
     {
       "id": 2,
-      "lu": "e Kicheschaf",
-      "fr": "un placard de cuisine",
-      "note": "Neutre · am Kicheschaf"
+      "titre": "Le salon",
+      "regle": "Après une préposition : féminin → <b>der</b> · masculin et neutre → <b>dem</b>",
+      "exemple": "op <b>der</b> Kommod · virum (virun + <b>dem</b>) Kannapee",
+      "phrases": [
+        [
+          "D'Planz ass op der Kommod.",
+          "La plante est sur la commode."
+        ],
+        [
+          "Den Dësch ass virum Kannapee.",
+          "La table est devant le canapé."
+        ]
+      ]
     },
     {
       "id": 3,
-      "lu": "e Spullsteen",
-      "fr": "un évier",
-      "note": "Masculin · nieft dem Spullsteen"
+      "titre": "La salle de bain",
+      "regle": "Contractions : <b>an + dem = am</b> · <b>op + dem = um</b>",
+      "exemple": "<b>am</b> Buedzëmmer · <b>um</b> Lavabo",
+      "phrases": [
+        [
+          "De Becher ass um Lavabo.",
+          "Le gobelet est sur le lavabo."
+        ],
+        [
+          "D'Bidden ass am Buedzëmmer.",
+          "La baignoire est dans la salle de bain."
+        ]
+      ]
     },
     {
       "id": 4,
-      "lu": "eng Spullmaschinn",
+      "titre": "La chambre",
+      "regle": "Pour demander où est un objet : <b>Wou ass …?</b>",
+      "exemple": "Wou ass d'Luucht? → <b>D'Luucht ass um Nuetsdësch.</b>",
+      "phrases": [
+        [
+          "Den Teppech ass ënnert dem Bett.",
+          "Le tapis est sous le lit."
+        ],
+        [
+          "Wou ass d'Bett?",
+          "Où est le lit ?"
+        ]
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 1001,
+      "unite": 1,
+      "fr": "un frigo / réfrigérateur",
+      "lu": "Frigo",
+      "article": "e",
+      "note": "Masculin · am Frigo"
+    },
+    {
+      "id": 1002,
+      "unite": 1,
+      "fr": "un placard de cuisine",
+      "lu": "Kicheschaf",
+      "article": "e",
+      "note": "Neutre · am Kicheschaf"
+    },
+    {
+      "id": 1003,
+      "unite": 1,
+      "fr": "un évier",
+      "lu": "Spullsteen",
+      "article": "e",
+      "note": "Masculin · nieft dem Spullsteen"
+    },
+    {
+      "id": 1004,
+      "unite": 1,
       "fr": "un lave-vaisselle",
+      "lu": "Spullmaschinn",
+      "article": "eng",
       "note": "Féminin · an der Spullmaschinn"
     },
     {
-      "id": 5,
-      "lu": "e Schäffchen",
+      "id": 1005,
+      "unite": 1,
       "fr": "un four",
+      "lu": "Schäffchen",
+      "article": "e",
       "note": "Masculin · am Schäffchen"
     },
     {
-      "id": 6,
-      "lu": "eng Hott",
+      "id": 1006,
+      "unite": 1,
       "fr": "une hotte",
+      "lu": "Hott",
+      "article": "eng",
       "note": "Féminin · ënnert der Hott"
     },
     {
-      "id": 7,
-      "lu": "e Glas — Glieser",
-      "fr": "un verre — des verres",
+      "id": 1007,
+      "unite": 1,
+      "fr": "un verre",
+      "lu": "Glas",
+      "article": "e",
       "note": "Neutre · pluriel irrégulier"
     },
     {
-      "id": 8,
-      "lu": "en Teller — Telleren",
-      "fr": "une assiette — des assiettes",
+      "id": 1008,
+      "unite": 1,
+      "fr": "une assiette",
+      "lu": "Teller",
+      "article": "en",
       "note": "Masculin · pluriel en -en"
     },
     {
-      "id": 9,
-      "lu": "en Toaster",
-      "fr": "un grille-pain",
-      "note": "Masculin · nieft dem Toaster"
-    },
-    {
-      "id": 10,
-      "lu": "eng Kaffismaschinn",
-      "fr": "une machine à café",
-      "note": "Féminin · nieft der Kaffismaschinn"
-    },
-    {
-      "id": 11,
-      "lu": "eng Pan",
+      "id": 1009,
+      "unite": 1,
       "fr": "une poêle",
+      "lu": "Pan",
+      "article": "eng",
       "note": "Féminin · an der Pan"
     },
     {
-      "id": 12,
-      "lu": "en Dëppen",
+      "id": 1010,
+      "unite": 1,
       "fr": "une casserole / marmite",
+      "lu": "Dëppen",
+      "article": "en",
       "note": "Masculin · am Dëppen"
     },
     {
-      "id": 13,
-      "lu": "eng Kommod",
-      "fr": "une commode",
-      "note": "Féminin · op der Kommod"
-    },
-    {
-      "id": 14,
-      "lu": "eng Planz",
-      "fr": "une plante",
-      "note": "Féminin · nieft der Planz"
-    },
-    {
-      "id": 15,
-      "lu": "e Regal",
-      "fr": "une étagère",
-      "note": "Neutre · um Regal"
-    },
-    {
-      "id": 16,
-      "lu": "eng Fotell",
-      "fr": "un fauteuil",
-      "note": "Féminin (≠ français) · an der Fotell"
-    },
-    {
-      "id": 17,
-      "lu": "e Kannapee",
+      "id": 1011,
+      "unite": 2,
       "fr": "un canapé",
+      "lu": "Kannapee",
+      "article": "e",
       "note": "Masculin · um Kannapee"
     },
     {
-      "id": 18,
-      "lu": "en Dësch",
+      "id": 1012,
+      "unite": 2,
+      "fr": "un fauteuil",
+      "lu": "Fotell",
+      "article": "eng",
+      "note": "Féminin (≠ français) · an der Fotell"
+    },
+    {
+      "id": 1013,
+      "unite": 2,
       "fr": "une table",
+      "lu": "Dësch",
+      "article": "en",
       "note": "Masculin (≠ français) · um Dësch"
     },
     {
-      "id": 19,
-      "lu": "e Stull — Still",
-      "fr": "une chaise — des chaises",
+      "id": 1014,
+      "unite": 2,
+      "fr": "une chaise",
+      "lu": "Stull",
+      "article": "e",
       "note": "Masculin · pluriel irrégulier"
     },
     {
-      "id": 20,
-      "lu": "e Schaf",
+      "id": 1015,
+      "unite": 2,
+      "fr": "une commode",
+      "lu": "Kommod",
+      "article": "eng",
+      "note": "Féminin · op der Kommod"
+    },
+    {
+      "id": 1016,
+      "unite": 2,
+      "fr": "une étagère",
+      "lu": "Regal",
+      "article": "e",
+      "note": "Neutre · um Regal"
+    },
+    {
+      "id": 1017,
+      "unite": 2,
+      "fr": "une plante",
+      "lu": "Planz",
+      "article": "eng",
+      "note": "Féminin · nieft der Planz"
+    },
+    {
+      "id": 1018,
+      "unite": 2,
       "fr": "une armoire",
+      "lu": "Schaf",
+      "article": "e",
       "note": "Neutre · am Schaf"
     },
     {
-      "id": 21,
-      "lu": "eng Dusch",
+      "id": 1019,
+      "unite": 3,
       "fr": "une douche",
+      "lu": "Dusch",
+      "article": "eng",
       "note": "Féminin · an der Dusch"
     },
     {
-      "id": 22,
-      "lu": "e Spigel",
-      "fr": "un miroir",
-      "note": "Masculin · virum Spigel"
-    },
-    {
-      "id": 23,
-      "lu": "eng Bidden",
+      "id": 1020,
+      "unite": 3,
       "fr": "une baignoire",
+      "lu": "Bidden",
+      "article": "eng",
       "note": "Féminin · an der Bidden"
     },
     {
-      "id": 24,
-      "lu": "e Lavabo",
+      "id": 1021,
+      "unite": 3,
       "fr": "un lavabo",
+      "lu": "Lavabo",
+      "article": "e",
       "note": "Masculin · um Lavabo"
     },
     {
-      "id": 25,
-      "lu": "e Becher — Becheren",
-      "fr": "un gobelet — des gobelets",
+      "id": 1022,
+      "unite": 3,
+      "fr": "un miroir",
+      "lu": "Spigel",
+      "article": "e",
+      "note": "Masculin · virum Spigel"
+    },
+    {
+      "id": 1023,
+      "unite": 3,
+      "fr": "une serviette",
+      "lu": "Handduch",
+      "article": "en",
+      "note": "Neutre · pluriel irrégulier"
+    },
+    {
+      "id": 1024,
+      "unite": 3,
+      "fr": "un gobelet",
+      "lu": "Becher",
+      "article": "e",
       "note": "Masculin · pluriel en -en"
     },
     {
-      "id": 26,
-      "lu": "en Handduch — Handdicher",
-      "fr": "une serviette — des serviettes",
-      "note": "Neutre · pluriel irrégulier"
-    },
-    {
-      "id": 27,
-      "lu": "e Bild — Biller",
-      "fr": "une image / un tableau — des images / tableaux",
-      "note": "Neutre · pluriel irrégulier"
-    },
-    {
-      "id": 28,
-      "lu": "e Kleederschaf",
-      "fr": "une garde-robe",
-      "note": "Neutre · am Kleederschaf"
-    },
-    {
-      "id": 29,
-      "lu": "e Bett",
+      "id": 1025,
+      "unite": 4,
       "fr": "un lit",
+      "lu": "Bett",
+      "article": "e",
       "note": "Neutre · am Bett"
     },
     {
-      "id": 30,
-      "lu": "en Nuetsdësch",
+      "id": 1026,
+      "unite": 4,
       "fr": "une table de nuit",
+      "lu": "Nuetsdësch",
+      "article": "en",
       "note": "Masculin · um Nuetsdësch"
     },
     {
-      "id": 31,
-      "lu": "en Teppech",
+      "id": 1027,
+      "unite": 4,
+      "fr": "une garde-robe",
+      "lu": "Kleederschaf",
+      "article": "e",
+      "note": "Neutre · am Kleederschaf"
+    },
+    {
+      "id": 1028,
+      "unite": 4,
       "fr": "un tapis",
+      "lu": "Teppech",
+      "article": "en",
       "note": "Masculin · um Teppech"
     },
     {
-      "id": 32,
-      "lu": "eng Luucht",
+      "id": 1029,
+      "unite": 4,
       "fr": "une lampe",
+      "lu": "Luucht",
+      "article": "eng",
       "note": "Féminin · ënnert der Luucht"
     },
     {
-      "id": 33,
-      "lu": "an der Kichen",
-      "fr": "dans la cuisine",
-      "note": "d'Kichen = féminin → an der"
-    },
-    {
-      "id": 34,
-      "lu": "an der Stuff / am Living",
-      "fr": "dans le salon",
-      "note": "d'Stuff = féminin · de Living = masculin"
-    },
-    {
-      "id": 35,
-      "lu": "am Buedzëmmer",
-      "fr": "dans la salle de bain",
-      "note": "d'Buedzëmmer = neutre → am (an + dem)"
-    },
-    {
-      "id": 36,
-      "lu": "am Schlofzëmmer",
-      "fr": "dans la chambre",
-      "note": "d'Schlofzëmmer = neutre → am (an + dem)"
-    },
-    {
-      "id": 37,
-      "lu": "Wou ass …?",
-      "fr": "Où est … ?",
-      "note": "Question de la leçon 20"
+      "id": 1030,
+      "unite": 4,
+      "fr": "une image / un tableau",
+      "lu": "Bild",
+      "article": "e",
+      "note": "Neutre · pluriel irrégulier"
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 1001,
+      "unite": 1,
       "question": "e Frigo",
       "reponse": "un frigo",
       "distracteurs": [
@@ -245,17 +330,8 @@
       ]
     },
     {
-      "id": 2,
-      "question": "e Kicheschaf",
-      "reponse": "un placard de cuisine",
-      "distracteurs": [
-        "une garde-robe",
-        "une étagère",
-        "une armoire"
-      ]
-    },
-    {
-      "id": 3,
+      "id": 1002,
+      "unite": 1,
       "question": "e Spullsteen",
       "reponse": "un évier",
       "distracteurs": [
@@ -265,7 +341,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 1003,
+      "unite": 1,
       "question": "eng Spullmaschinn",
       "reponse": "un lave-vaisselle",
       "distracteurs": [
@@ -275,37 +352,8 @@
       ]
     },
     {
-      "id": 5,
-      "question": "e Schäffchen",
-      "reponse": "un four",
-      "distracteurs": [
-        "une hotte",
-        "un grille-pain",
-        "un frigo"
-      ]
-    },
-    {
-      "id": 6,
-      "question": "eng Hott",
-      "reponse": "une hotte",
-      "distracteurs": [
-        "un four",
-        "une poêle",
-        "une lampe"
-      ]
-    },
-    {
-      "id": 7,
-      "question": "e Glas",
-      "reponse": "un verre",
-      "distracteurs": [
-        "un gobelet",
-        "une assiette",
-        "des verres"
-      ]
-    },
-    {
-      "id": 8,
+      "id": 1004,
+      "unite": 1,
       "question": "en Teller",
       "reponse": "une assiette",
       "distracteurs": [
@@ -315,27 +363,8 @@
       ]
     },
     {
-      "id": 9,
-      "question": "en Toaster",
-      "reponse": "un grille-pain",
-      "distracteurs": [
-        "une machine à café",
-        "un four",
-        "une poêle"
-      ]
-    },
-    {
-      "id": 10,
-      "question": "eng Kaffismaschinn",
-      "reponse": "une machine à café",
-      "distracteurs": [
-        "un lave-vaisselle",
-        "un grille-pain",
-        "une casserole"
-      ]
-    },
-    {
-      "id": 11,
+      "id": 1005,
+      "unite": 1,
       "question": "eng Pan",
       "reponse": "une poêle",
       "distracteurs": [
@@ -345,7 +374,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 1006,
+      "unite": 1,
       "question": "en Dëppen",
       "reponse": "une casserole",
       "distracteurs": [
@@ -355,207 +385,8 @@
       ]
     },
     {
-      "id": 13,
-      "question": "eng Kommod",
-      "reponse": "une commode",
-      "distracteurs": [
-        "une étagère",
-        "une armoire",
-        "un fauteuil"
-      ]
-    },
-    {
-      "id": 14,
-      "question": "eng Planz",
-      "reponse": "une plante",
-      "distracteurs": [
-        "une lampe",
-        "une image",
-        "un tapis"
-      ]
-    },
-    {
-      "id": 15,
-      "question": "e Regal",
-      "reponse": "une étagère",
-      "distracteurs": [
-        "une commode",
-        "une armoire",
-        "un placard de cuisine"
-      ]
-    },
-    {
-      "id": 16,
-      "question": "eng Fotell",
-      "reponse": "un fauteuil",
-      "distracteurs": [
-        "un canapé",
-        "une chaise",
-        "une commode"
-      ]
-    },
-    {
-      "id": 17,
-      "question": "e Kannapee",
-      "reponse": "un canapé",
-      "distracteurs": [
-        "un fauteuil",
-        "un lit",
-        "une chaise"
-      ]
-    },
-    {
-      "id": 18,
-      "question": "en Dësch",
-      "reponse": "une table",
-      "distracteurs": [
-        "une table de nuit",
-        "une chaise",
-        "une commode"
-      ]
-    },
-    {
-      "id": 19,
-      "question": "e Stull",
-      "reponse": "une chaise",
-      "distracteurs": [
-        "un fauteuil",
-        "une table",
-        "des chaises"
-      ]
-    },
-    {
-      "id": 20,
-      "question": "e Schaf",
-      "reponse": "une armoire",
-      "distracteurs": [
-        "une étagère",
-        "une commode",
-        "un placard de cuisine"
-      ]
-    },
-    {
-      "id": 21,
-      "question": "eng Dusch",
-      "reponse": "une douche",
-      "distracteurs": [
-        "une baignoire",
-        "un lavabo",
-        "une serviette"
-      ]
-    },
-    {
-      "id": 22,
-      "question": "e Spigel",
-      "reponse": "un miroir",
-      "distracteurs": [
-        "une image",
-        "une lampe",
-        "un lavabo"
-      ]
-    },
-    {
-      "id": 23,
-      "question": "eng Bidden",
-      "reponse": "une baignoire",
-      "distracteurs": [
-        "une douche",
-        "un lavabo",
-        "un évier"
-      ]
-    },
-    {
-      "id": 24,
-      "question": "e Lavabo",
-      "reponse": "un lavabo",
-      "distracteurs": [
-        "un évier",
-        "une baignoire",
-        "un miroir"
-      ]
-    },
-    {
-      "id": 25,
-      "question": "e Becher",
-      "reponse": "un gobelet",
-      "distracteurs": [
-        "un verre",
-        "une casserole",
-        "des gobelets"
-      ]
-    },
-    {
-      "id": 26,
-      "question": "en Handduch",
-      "reponse": "une serviette",
-      "distracteurs": [
-        "un tapis",
-        "une douche",
-        "des serviettes"
-      ]
-    },
-    {
-      "id": 27,
-      "question": "e Bild",
-      "reponse": "une image / un tableau",
-      "distracteurs": [
-        "un miroir",
-        "une étagère",
-        "des images"
-      ]
-    },
-    {
-      "id": 28,
-      "question": "e Kleederschaf",
-      "reponse": "une garde-robe",
-      "distracteurs": [
-        "un placard de cuisine",
-        "une commode",
-        "une étagère"
-      ]
-    },
-    {
-      "id": 29,
-      "question": "e Bett",
-      "reponse": "un lit",
-      "distracteurs": [
-        "un canapé",
-        "une table de nuit",
-        "un fauteuil"
-      ]
-    },
-    {
-      "id": 30,
-      "question": "en Nuetsdësch",
-      "reponse": "une table de nuit",
-      "distracteurs": [
-        "une table",
-        "une commode",
-        "un lit"
-      ]
-    },
-    {
-      "id": 31,
-      "question": "en Teppech",
-      "reponse": "un tapis",
-      "distracteurs": [
-        "une serviette",
-        "un lit",
-        "une plante"
-      ]
-    },
-    {
-      "id": 32,
-      "question": "eng Luucht",
-      "reponse": "une lampe",
-      "distracteurs": [
-        "un miroir",
-        "une plante",
-        "une hotte"
-      ]
-    },
-    {
-      "id": 33,
+      "id": 1007,
+      "unite": 1,
       "question": "Glieser",
       "reponse": "des verres",
       "distracteurs": [
@@ -565,37 +396,8 @@
       ]
     },
     {
-      "id": 34,
-      "question": "Still",
-      "reponse": "des chaises",
-      "distracteurs": [
-        "une chaise",
-        "des tables",
-        "des fauteuils"
-      ]
-    },
-    {
-      "id": 35,
-      "question": "am Buedzëmmer",
-      "reponse": "dans la salle de bain",
-      "distracteurs": [
-        "dans la chambre",
-        "dans la cuisine",
-        "dans le salon"
-      ]
-    },
-    {
-      "id": 36,
-      "question": "an der Stuff",
-      "reponse": "dans le salon",
-      "distracteurs": [
-        "dans la cuisine",
-        "dans la chambre",
-        "dans la salle de bain"
-      ]
-    },
-    {
-      "id": 37,
+      "id": 1008,
+      "unite": 1,
       "question": "De Frigo ass an der Kichen.",
       "reponse": "Le frigo est dans la cuisine.",
       "distracteurs": [
@@ -605,47 +407,85 @@
       ]
     },
     {
-      "id": 38,
-      "question": "Den Teppech ass ënnert dem Bett.",
-      "reponse": "Le tapis est sous le lit.",
+      "id": 1009,
+      "unite": 2,
+      "question": "eng Kommod",
+      "reponse": "une commode",
       "distracteurs": [
-        "Le tapis est sur le lit.",
-        "La lampe est sous le lit.",
-        "Le tapis est sous la table."
+        "une étagère",
+        "une armoire",
+        "un fauteuil"
       ]
     },
     {
-      "id": 39,
-      "question": "De Spigel ass iwwert dem Lavabo.",
-      "reponse": "Le miroir est au-dessus du lavabo.",
+      "id": 1010,
+      "unite": 2,
+      "question": "eng Fotell",
+      "reponse": "un fauteuil",
       "distracteurs": [
-        "Le miroir est au-dessus de l'évier.",
-        "Le tableau est au-dessus du lavabo.",
-        "Le miroir est à côté du lavabo."
+        "un canapé",
+        "une chaise",
+        "une commode"
       ]
     },
     {
-      "id": 40,
-      "question": "D'Luucht ass um Nuetsdësch.",
-      "reponse": "La lampe est sur la table de nuit.",
+      "id": 1011,
+      "unite": 2,
+      "question": "e Kannapee",
+      "reponse": "un canapé",
       "distracteurs": [
-        "La lampe est sur la table.",
-        "La plante est sur la table de nuit.",
-        "La lampe est sous la table de nuit."
+        "un fauteuil",
+        "un lit",
+        "une chaise"
       ]
     },
     {
-      "id": 41,
-      "question": "D'Kaffismaschinn ass nieft dem Toaster.",
-      "reponse": "La machine à café est à côté du grille-pain.",
+      "id": 1012,
+      "unite": 2,
+      "question": "en Dësch",
+      "reponse": "une table",
       "distracteurs": [
-        "Le lave-vaisselle est à côté du grille-pain.",
-        "La machine à café est derrière le grille-pain.",
-        "La machine à café est à côté du four."
+        "une table de nuit",
+        "une chaise",
+        "une commode"
       ]
     },
     {
-      "id": 42,
+      "id": 1013,
+      "unite": 2,
+      "question": "e Schaf",
+      "reponse": "une armoire",
+      "distracteurs": [
+        "une étagère",
+        "une commode",
+        "un placard de cuisine"
+      ]
+    },
+    {
+      "id": 1014,
+      "unite": 2,
+      "question": "Still",
+      "reponse": "des chaises",
+      "distracteurs": [
+        "une chaise",
+        "des tables",
+        "des fauteuils"
+      ]
+    },
+    {
+      "id": 1015,
+      "unite": 2,
+      "question": "an der Stuff",
+      "reponse": "dans le salon",
+      "distracteurs": [
+        "dans la cuisine",
+        "dans la chambre",
+        "dans la salle de bain"
+      ]
+    },
+    {
+      "id": 1016,
+      "unite": 2,
       "question": "D'Planz ass op der Kommod.",
       "reponse": "La plante est sur la commode.",
       "distracteurs": [
@@ -655,7 +495,85 @@
       ]
     },
     {
-      "id": 43,
+      "id": 1017,
+      "unite": 3,
+      "question": "eng Dusch",
+      "reponse": "une douche",
+      "distracteurs": [
+        "une baignoire",
+        "un lavabo",
+        "une serviette"
+      ]
+    },
+    {
+      "id": 1018,
+      "unite": 3,
+      "question": "e Spigel",
+      "reponse": "un miroir",
+      "distracteurs": [
+        "une image",
+        "une lampe",
+        "un lavabo"
+      ]
+    },
+    {
+      "id": 1019,
+      "unite": 3,
+      "question": "eng Bidden",
+      "reponse": "une baignoire",
+      "distracteurs": [
+        "une douche",
+        "un lavabo",
+        "un évier"
+      ]
+    },
+    {
+      "id": 1020,
+      "unite": 3,
+      "question": "e Lavabo",
+      "reponse": "un lavabo",
+      "distracteurs": [
+        "un évier",
+        "une baignoire",
+        "un miroir"
+      ]
+    },
+    {
+      "id": 1021,
+      "unite": 3,
+      "question": "e Becher",
+      "reponse": "un gobelet",
+      "distracteurs": [
+        "un verre",
+        "une casserole",
+        "des gobelets"
+      ]
+    },
+    {
+      "id": 1022,
+      "unite": 3,
+      "question": "en Handduch",
+      "reponse": "une serviette",
+      "distracteurs": [
+        "un tapis",
+        "une douche",
+        "des serviettes"
+      ]
+    },
+    {
+      "id": 1023,
+      "unite": 3,
+      "question": "De Spigel ass iwwert dem Lavabo.",
+      "reponse": "Le miroir est au-dessus du lavabo.",
+      "distracteurs": [
+        "Le miroir est au-dessus de l'évier.",
+        "Le tableau est au-dessus du lavabo.",
+        "Le miroir est à côté du lavabo."
+      ]
+    },
+    {
+      "id": 1024,
+      "unite": 3,
       "question": "Wou ass d'Bidden?",
       "reponse": "Où est la baignoire ?",
       "distracteurs": [
@@ -663,11 +581,100 @@
         "Où est le lavabo ?",
         "Où est la serviette ?"
       ]
+    },
+    {
+      "id": 1025,
+      "unite": 4,
+      "question": "e Bild",
+      "reponse": "une image / un tableau",
+      "distracteurs": [
+        "un miroir",
+        "une étagère",
+        "des images"
+      ]
+    },
+    {
+      "id": 1026,
+      "unite": 4,
+      "question": "e Kleederschaf",
+      "reponse": "une garde-robe",
+      "distracteurs": [
+        "un placard de cuisine",
+        "une commode",
+        "une étagère"
+      ]
+    },
+    {
+      "id": 1027,
+      "unite": 4,
+      "question": "e Bett",
+      "reponse": "un lit",
+      "distracteurs": [
+        "un canapé",
+        "une table de nuit",
+        "un fauteuil"
+      ]
+    },
+    {
+      "id": 1028,
+      "unite": 4,
+      "question": "en Nuetsdësch",
+      "reponse": "une table de nuit",
+      "distracteurs": [
+        "une table",
+        "une commode",
+        "un lit"
+      ]
+    },
+    {
+      "id": 1029,
+      "unite": 4,
+      "question": "en Teppech",
+      "reponse": "un tapis",
+      "distracteurs": [
+        "une serviette",
+        "un lit",
+        "une plante"
+      ]
+    },
+    {
+      "id": 1030,
+      "unite": 4,
+      "question": "eng Luucht",
+      "reponse": "une lampe",
+      "distracteurs": [
+        "un miroir",
+        "une plante",
+        "une hotte"
+      ]
+    },
+    {
+      "id": 1031,
+      "unite": 4,
+      "question": "Den Teppech ass ënnert dem Bett.",
+      "reponse": "Le tapis est sous le lit.",
+      "distracteurs": [
+        "Le tapis est sur le lit.",
+        "La lampe est sous le lit.",
+        "Le tapis est sous la table."
+      ]
+    },
+    {
+      "id": 1032,
+      "unite": 4,
+      "question": "D'Luucht ass um Nuetsdësch.",
+      "reponse": "La lampe est sur la table de nuit.",
+      "distracteurs": [
+        "La lampe est sur la table.",
+        "La plante est sur la table de nuit.",
+        "La lampe est sous la table de nuit."
+      ]
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 1001,
+      "unite": 1,
       "fr": "Le verre est dans le frigo.",
       "avant": "D'Glas ass am",
       "trou": "Frigo",
@@ -681,7 +688,8 @@
       "note": "e Frigo = un frigo."
     },
     {
-      "id": 2,
+      "id": 1002,
+      "unite": 1,
       "fr": "La poêle est dans le placard de cuisine.",
       "avant": "D'Pan ass am",
       "trou": "Kicheschaf",
@@ -695,7 +703,8 @@
       "note": "e Kicheschaf = un placard de cuisine."
     },
     {
-      "id": 3,
+      "id": 1003,
+      "unite": 1,
       "fr": "La hotte est au-dessus du four.",
       "avant": "D'Hott ass iwwert dem",
       "trou": "Schäffchen",
@@ -709,7 +718,8 @@
       "note": "e Schäffchen = un four."
     },
     {
-      "id": 4,
+      "id": 1004,
+      "unite": 1,
       "fr": "Le lave-vaisselle est à côté de l'évier.",
       "avant": "D'Spullmaschinn ass nieft dem",
       "trou": "Spullsteen",
@@ -723,21 +733,8 @@
       "note": "e Spullsteen = un évier (cuisine) ; e Lavabo = un lavabo (salle de bain)."
     },
     {
-      "id": 5,
-      "fr": "La machine à café est à côté du grille-pain.",
-      "avant": "D'Kaffismaschinn ass nieft dem",
-      "trou": "Toaster",
-      "apres": ".",
-      "choix": [
-        "Toaster",
-        "Frigo",
-        "Dëppen",
-        "Becher"
-      ],
-      "note": "en Toaster = un grille-pain."
-    },
-    {
-      "id": 6,
+      "id": 1005,
+      "unite": 1,
       "fr": "La casserole est dans le four.",
       "avant": "Den",
       "trou": "Dëppen",
@@ -751,245 +748,8 @@
       "note": "en Dëppen = une casserole / marmite."
     },
     {
-      "id": 7,
-      "fr": "L'assiette est sur la table.",
-      "avant": "Den Teller ass um",
-      "trou": "Dësch",
-      "apres": ".",
-      "choix": [
-        "Dësch",
-        "Nuetsdësch",
-        "Stull",
-        "Teppech"
-      ],
-      "note": "en Dësch = une table ; en Nuetsdësch = une table de nuit."
-    },
-    {
-      "id": 8,
-      "fr": "La plante est sur la commode.",
-      "avant": "D'Planz ass op der",
-      "trou": "Kommod",
-      "apres": ".",
-      "choix": [
-        "Kommod",
-        "Fotell",
-        "Dusch",
-        "Hott"
-      ],
-      "note": "eng Kommod = une commode."
-    },
-    {
-      "id": 9,
-      "fr": "La table est devant le canapé.",
-      "avant": "Den Dësch ass virum",
-      "trou": "Kannapee",
-      "apres": ".",
-      "choix": [
-        "Kannapee",
-        "Stull",
-        "Teppech",
-        "Nuetsdësch"
-      ],
-      "note": "e Kannapee = un canapé. virum = virun + dem."
-    },
-    {
-      "id": 10,
-      "fr": "La table est entre le canapé et le fauteuil.",
-      "avant": "Den Dësch ass tëschent dem Kannapee an der",
-      "trou": "Fotell",
-      "apres": ".",
-      "choix": [
-        "Fotell",
-        "Kommod",
-        "Planz",
-        "Luucht"
-      ],
-      "note": "eng Fotell = un fauteuil (féminin en luxembourgeois)."
-    },
-    {
-      "id": 11,
-      "fr": "La plante est sur l'étagère.",
-      "avant": "D'Planz ass um",
-      "trou": "Regal",
-      "apres": ".",
-      "choix": [
-        "Regal",
-        "Schaf",
-        "Bett",
-        "Bild"
-      ],
-      "note": "e Regal = une étagère."
-    },
-    {
-      "id": 12,
-      "fr": "La chaise est devant la table.",
-      "avant": "De",
-      "trou": "Stull",
-      "apres": "ass virum Dësch.",
-      "choix": [
-        "Stull",
-        "Kannapee",
-        "Spigel",
-        "Becher"
-      ],
-      "note": "e Stull = une chaise."
-    },
-    {
-      "id": 13,
-      "fr": "L'armoire est dans le salon.",
-      "avant": "D'Schaf ass",
-      "trou": "an der Stuff",
-      "apres": ".",
-      "choix": [
-        "an der Kichen",
-        "an der Stuff",
-        "am Buedzëmmer",
-        "am Schlofzëmmer"
-      ],
-      "note": "d'Stuff = le salon → an der Stuff."
-    },
-    {
-      "id": 14,
-      "fr": "Le miroir est au-dessus du lavabo.",
-      "avant": "De Spigel ass iwwert dem",
-      "trou": "Lavabo",
-      "apres": ".",
-      "choix": [
-        "Lavabo",
-        "Spullsteen",
-        "Nuetsdësch",
-        "Becher"
-      ],
-      "note": "e Lavabo = un lavabo."
-    },
-    {
-      "id": 15,
-      "fr": "Le gobelet est sur le lavabo.",
-      "avant": "De",
-      "trou": "Becher",
-      "apres": "ass um Lavabo.",
-      "choix": [
-        "Becher",
-        "Spigel",
-        "Schäffchen",
-        "Stull"
-      ],
-      "note": "e Becher = un gobelet."
-    },
-    {
-      "id": 16,
-      "fr": "La serviette est à côté de la douche.",
-      "avant": "D'Handduch ass nieft der",
-      "trou": "Dusch",
-      "apres": ".",
-      "choix": [
-        "Dusch",
-        "Bidden",
-        "Kommod",
-        "Hott"
-      ],
-      "note": "eng Dusch = une douche."
-    },
-    {
-      "id": 17,
-      "fr": "La serviette est sur la baignoire.",
-      "avant": "D'Handduch ass op der",
-      "trou": "Bidden",
-      "apres": ".",
-      "choix": [
-        "Bidden",
-        "Dusch",
-        "Hott",
-        "Pan"
-      ],
-      "note": "eng Bidden = une baignoire."
-    },
-    {
-      "id": 18,
-      "fr": "Le miroir est dans la salle de bain.",
-      "avant": "De Spigel ass",
-      "trou": "am Buedzëmmer",
-      "apres": ".",
-      "choix": [
-        "an der Kichen",
-        "an der Stuff",
-        "am Buedzëmmer",
-        "am Schlofzëmmer"
-      ],
-      "note": "d'Buedzëmmer = la salle de bain → am Buedzëmmer."
-    },
-    {
-      "id": 19,
-      "fr": "Le tapis est sous le lit.",
-      "avant": "Den Teppech ass ënnert dem",
-      "trou": "Bett",
-      "apres": ".",
-      "choix": [
-        "Bett",
-        "Regal",
-        "Schaf",
-        "Bild"
-      ],
-      "note": "e Bett = un lit."
-    },
-    {
-      "id": 20,
-      "fr": "Au-dessus du lit, il y a un tableau.",
-      "avant": "Iwwert dem Bett ass e",
-      "trou": "Bild",
-      "apres": ".",
-      "choix": [
-        "Bild",
-        "Regal",
-        "Glas",
-        "Bett"
-      ],
-      "note": "e Bild = une image / un tableau."
-    },
-    {
-      "id": 21,
-      "fr": "La lampe est sur la table de nuit.",
-      "avant": "D'Luucht ass um",
-      "trou": "Nuetsdësch",
-      "apres": ".",
-      "choix": [
-        "Nuetsdësch",
-        "Dësch",
-        "Teppech",
-        "Toaster"
-      ],
-      "note": "en Nuetsdësch = une table de nuit."
-    },
-    {
-      "id": 22,
-      "fr": "Le lit est entre la table de nuit et la garde-robe.",
-      "avant": "D'Bett ass tëschent dem Nuetsdësch an dem",
-      "trou": "Kleederschaf",
-      "apres": ".",
-      "choix": [
-        "Kleederschaf",
-        "Kicheschaf",
-        "Schaf",
-        "Regal"
-      ],
-      "note": "e Kleederschaf = une garde-robe (armoire à vêtements)."
-    },
-    {
-      "id": 23,
-      "fr": "La lampe est dans la chambre.",
-      "avant": "D'Luucht ass",
-      "trou": "am Schlofzëmmer",
-      "apres": ".",
-      "choix": [
-        "an der Kichen",
-        "an der Stuff",
-        "am Buedzëmmer",
-        "am Schlofzëmmer"
-      ],
-      "note": "d'Schlofzëmmer = la chambre → am Schlofzëmmer."
-    },
-    {
-      "id": 24,
+      "id": 1006,
+      "unite": 1,
       "fr": "Le frigo est dans la cuisine.",
       "avant": "De Frigo ass",
       "trou": "an der Kichen",
@@ -1003,7 +763,338 @@
       "note": "d'Kichen = la cuisine → an der Kichen."
     },
     {
-      "id": 25,
+      "id": 1007,
+      "unite": 1,
+      "fr": "L'assiette est dans le lave-vaisselle.",
+      "avant": "Den Teller ass an der",
+      "trou": "Spullmaschinn",
+      "apres": ".",
+      "choix": [
+        "Spullmaschinn",
+        "Kaffismaschinn",
+        "Hott",
+        "Pan"
+      ],
+      "note": "eng Spullmaschinn = un lave-vaisselle · féminin → an der"
+    },
+    {
+      "id": 1008,
+      "unite": 1,
+      "fr": "Le verre est à côté de l'assiette.",
+      "avant": "D'Glas ass nieft dem",
+      "trou": "Teller",
+      "apres": ".",
+      "choix": [
+        "Teller",
+        "Dëppen",
+        "Frigo",
+        "Becher"
+      ],
+      "note": "en Teller = une assiette · masculin → dem"
+    },
+    {
+      "id": 1009,
+      "unite": 2,
+      "fr": "L'assiette est sur la table.",
+      "avant": "Den Teller ass um",
+      "trou": "Dësch",
+      "apres": ".",
+      "choix": [
+        "Dësch",
+        "Nuetsdësch",
+        "Stull",
+        "Teppech"
+      ],
+      "note": "en Dësch = une table ; en Nuetsdësch = une table de nuit."
+    },
+    {
+      "id": 1010,
+      "unite": 2,
+      "fr": "La plante est sur la commode.",
+      "avant": "D'Planz ass op der",
+      "trou": "Kommod",
+      "apres": ".",
+      "choix": [
+        "Kommod",
+        "Fotell",
+        "Dusch",
+        "Hott"
+      ],
+      "note": "eng Kommod = une commode."
+    },
+    {
+      "id": 1011,
+      "unite": 2,
+      "fr": "La table est devant le canapé.",
+      "avant": "Den Dësch ass virum",
+      "trou": "Kannapee",
+      "apres": ".",
+      "choix": [
+        "Kannapee",
+        "Stull",
+        "Teppech",
+        "Nuetsdësch"
+      ],
+      "note": "e Kannapee = un canapé. virum = virun + dem."
+    },
+    {
+      "id": 1012,
+      "unite": 2,
+      "fr": "La table est entre le canapé et le fauteuil.",
+      "avant": "Den Dësch ass tëschent dem Kannapee an der",
+      "trou": "Fotell",
+      "apres": ".",
+      "choix": [
+        "Fotell",
+        "Kommod",
+        "Planz",
+        "Luucht"
+      ],
+      "note": "eng Fotell = un fauteuil (féminin en luxembourgeois)."
+    },
+    {
+      "id": 1013,
+      "unite": 2,
+      "fr": "La plante est sur l'étagère.",
+      "avant": "D'Planz ass um",
+      "trou": "Regal",
+      "apres": ".",
+      "choix": [
+        "Regal",
+        "Schaf",
+        "Bett",
+        "Bild"
+      ],
+      "note": "e Regal = une étagère."
+    },
+    {
+      "id": 1014,
+      "unite": 2,
+      "fr": "La chaise est devant la table.",
+      "avant": "De",
+      "trou": "Stull",
+      "apres": "ass virum Dësch.",
+      "choix": [
+        "Stull",
+        "Kannapee",
+        "Spigel",
+        "Becher"
+      ],
+      "note": "e Stull = une chaise."
+    },
+    {
+      "id": 1015,
+      "unite": 2,
+      "fr": "L'armoire est dans le salon.",
+      "avant": "D'Schaf ass",
+      "trou": "an der Stuff",
+      "apres": ".",
+      "choix": [
+        "an der Kichen",
+        "an der Stuff",
+        "am Buedzëmmer",
+        "am Schlofzëmmer"
+      ],
+      "note": "d'Stuff = le salon → an der Stuff."
+    },
+    {
+      "id": 1016,
+      "unite": 2,
+      "fr": "La plante est à côté du canapé.",
+      "avant": "D'Planz ass",
+      "trou": "nieft",
+      "apres": "dem Kannapee.",
+      "choix": [
+        "nieft",
+        "ënnert",
+        "hannert",
+        "iwwert"
+      ],
+      "note": "nieft = à côté de (leçon 20)."
+    },
+    {
+      "id": 1017,
+      "unite": 3,
+      "fr": "Le miroir est au-dessus du lavabo.",
+      "avant": "De Spigel ass iwwert dem",
+      "trou": "Lavabo",
+      "apres": ".",
+      "choix": [
+        "Lavabo",
+        "Spullsteen",
+        "Nuetsdësch",
+        "Becher"
+      ],
+      "note": "e Lavabo = un lavabo."
+    },
+    {
+      "id": 1018,
+      "unite": 3,
+      "fr": "Le gobelet est sur le lavabo.",
+      "avant": "De",
+      "trou": "Becher",
+      "apres": "ass um Lavabo.",
+      "choix": [
+        "Becher",
+        "Spigel",
+        "Schäffchen",
+        "Stull"
+      ],
+      "note": "e Becher = un gobelet."
+    },
+    {
+      "id": 1019,
+      "unite": 3,
+      "fr": "La serviette est à côté de la douche.",
+      "avant": "D'Handduch ass nieft der",
+      "trou": "Dusch",
+      "apres": ".",
+      "choix": [
+        "Dusch",
+        "Bidden",
+        "Kommod",
+        "Hott"
+      ],
+      "note": "eng Dusch = une douche."
+    },
+    {
+      "id": 1020,
+      "unite": 3,
+      "fr": "La serviette est sur la baignoire.",
+      "avant": "D'Handduch ass op der",
+      "trou": "Bidden",
+      "apres": ".",
+      "choix": [
+        "Bidden",
+        "Dusch",
+        "Hott",
+        "Pan"
+      ],
+      "note": "eng Bidden = une baignoire."
+    },
+    {
+      "id": 1021,
+      "unite": 3,
+      "fr": "Le miroir est dans la salle de bain.",
+      "avant": "De Spigel ass",
+      "trou": "am Buedzëmmer",
+      "apres": ".",
+      "choix": [
+        "an der Kichen",
+        "an der Stuff",
+        "am Buedzëmmer",
+        "am Schlofzëmmer"
+      ],
+      "note": "d'Buedzëmmer = la salle de bain → am Buedzëmmer."
+    },
+    {
+      "id": 1022,
+      "unite": 3,
+      "fr": "Le gobelet est sous le miroir.",
+      "avant": "De Becher ass ënnert dem",
+      "trou": "Spigel",
+      "apres": ".",
+      "choix": [
+        "Spigel",
+        "Lavabo",
+        "Bidden",
+        "Handduch"
+      ],
+      "note": "e Spigel = un miroir · masculin → dem"
+    },
+    {
+      "id": 1023,
+      "unite": 3,
+      "fr": "Le miroir est au-dessus de la baignoire.",
+      "avant": "De Spigel ass",
+      "trou": "iwwert",
+      "apres": "der Bidden.",
+      "choix": [
+        "iwwert",
+        "ënnert",
+        "hannert",
+        "nieft"
+      ],
+      "note": "iwwert = au-dessus de (leçon 20)"
+    },
+    {
+      "id": 1024,
+      "unite": 4,
+      "fr": "Le tapis est sous le lit.",
+      "avant": "Den Teppech ass ënnert dem",
+      "trou": "Bett",
+      "apres": ".",
+      "choix": [
+        "Bett",
+        "Regal",
+        "Schaf",
+        "Bild"
+      ],
+      "note": "e Bett = un lit."
+    },
+    {
+      "id": 1025,
+      "unite": 4,
+      "fr": "Au-dessus du lit, il y a un tableau.",
+      "avant": "Iwwert dem Bett ass e",
+      "trou": "Bild",
+      "apres": ".",
+      "choix": [
+        "Bild",
+        "Regal",
+        "Glas",
+        "Bett"
+      ],
+      "note": "e Bild = une image / un tableau."
+    },
+    {
+      "id": 1026,
+      "unite": 4,
+      "fr": "La lampe est sur la table de nuit.",
+      "avant": "D'Luucht ass um",
+      "trou": "Nuetsdësch",
+      "apres": ".",
+      "choix": [
+        "Nuetsdësch",
+        "Dësch",
+        "Teppech",
+        "Toaster"
+      ],
+      "note": "en Nuetsdësch = une table de nuit."
+    },
+    {
+      "id": 1027,
+      "unite": 4,
+      "fr": "Le lit est entre la table de nuit et la garde-robe.",
+      "avant": "D'Bett ass tëschent dem Nuetsdësch an dem",
+      "trou": "Kleederschaf",
+      "apres": ".",
+      "choix": [
+        "Kleederschaf",
+        "Kicheschaf",
+        "Schaf",
+        "Regal"
+      ],
+      "note": "e Kleederschaf = une garde-robe (armoire à vêtements)."
+    },
+    {
+      "id": 1028,
+      "unite": 4,
+      "fr": "La lampe est dans la chambre.",
+      "avant": "D'Luucht ass",
+      "trou": "am Schlofzëmmer",
+      "apres": ".",
+      "choix": [
+        "an der Kichen",
+        "an der Stuff",
+        "am Buedzëmmer",
+        "am Schlofzëmmer"
+      ],
+      "note": "d'Schlofzëmmer = la chambre → am Schlofzëmmer."
+    },
+    {
+      "id": 1029,
+      "unite": 4,
       "fr": "Le tapis est sous la table.",
       "avant": "Den Teppech ass",
       "trou": "ënnert",
@@ -1017,260 +1108,192 @@
       "note": "ënnert = sous (leçon 20)."
     },
     {
-      "id": 26,
-      "fr": "La chaise est derrière la table.",
-      "avant": "De Stull ass",
-      "trou": "hannert",
-      "apres": "dem Dësch.",
+      "id": 1030,
+      "unite": 4,
+      "fr": "Le tapis est devant le lit.",
+      "avant": "Den",
+      "trou": "Teppech",
+      "apres": "ass virum Bett.",
       "choix": [
-        "hannert",
-        "ënnert",
-        "iwwert",
-        "nieft"
+        "Teppech",
+        "Teller",
+        "Toaster",
+        "Dëppen"
       ],
-      "note": "hannert = derrière (leçon 20)."
+      "note": "en Teppech = un tapis"
     },
     {
-      "id": 27,
-      "fr": "La plante est à côté du canapé.",
-      "avant": "D'Planz ass",
-      "trou": "nieft",
-      "apres": "dem Kannapee.",
+      "id": 1031,
+      "unite": 4,
+      "fr": "Où est la lampe ?",
+      "avant": "",
+      "trou": "Wou",
+      "apres": "ass d'Luucht?",
       "choix": [
-        "nieft",
-        "ënnert",
-        "hannert",
-        "iwwert"
+        "Wou",
+        "Wat",
+        "Wéi",
+        "Wien"
       ],
-      "note": "nieft = à côté de (leçon 20)."
+      "note": "Wou ass …? = Où est … ?"
     }
   ],
   "ecriture": [
     {
-      "fr": "un frigo",
-      "lu": "e Frigo"
+      "id": 1001,
+      "unite": 1,
+      "fr": "Le frigo est dans la cuisine.",
+      "lu": "De Frigo ass an der Kichen."
     },
     {
-      "fr": "un placard de cuisine",
-      "lu": "e Kicheschaf"
+      "id": 1002,
+      "unite": 1,
+      "fr": "Le verre est dans le frigo.",
+      "lu": "D'Glas ass am Frigo."
     },
     {
-      "fr": "un évier",
-      "lu": "e Spullsteen"
+      "id": 1003,
+      "unite": 1,
+      "fr": "Où est la poêle ?",
+      "lu": "Wou ass d'Pan?"
     },
     {
-      "fr": "un lave-vaisselle",
-      "lu": "eng Spullmaschinn"
-    },
-    {
-      "fr": "un four",
-      "lu": "e Schäffchen"
-    },
-    {
-      "fr": "une hotte",
-      "lu": "eng Hott"
-    },
-    {
-      "fr": "un verre",
-      "lu": "e Glas"
-    },
-    {
-      "fr": "des verres",
-      "lu": "Glieser"
-    },
-    {
-      "fr": "une assiette",
-      "lu": "en Teller"
-    },
-    {
-      "fr": "des assiettes",
-      "lu": "Telleren"
-    },
-    {
-      "fr": "un grille-pain",
-      "lu": "en Toaster"
-    },
-    {
-      "fr": "une machine à café",
-      "lu": "eng Kaffismaschinn"
-    },
-    {
-      "fr": "une poêle",
-      "lu": "eng Pan"
-    },
-    {
-      "fr": "une casserole",
-      "lu": "en Dëppen"
-    },
-    {
-      "fr": "une commode",
-      "lu": "eng Kommod"
-    },
-    {
-      "fr": "une plante",
-      "lu": "eng Planz"
-    },
-    {
-      "fr": "une étagère",
-      "lu": "e Regal"
-    },
-    {
-      "fr": "un fauteuil",
-      "lu": "eng Fotell"
-    },
-    {
-      "fr": "un canapé",
-      "lu": "e Kannapee"
-    },
-    {
-      "fr": "une table",
-      "lu": "en Dësch"
-    },
-    {
-      "fr": "une chaise",
-      "lu": "e Stull"
-    },
-    {
-      "fr": "des chaises",
-      "lu": "Still"
-    },
-    {
-      "fr": "une armoire",
-      "lu": "e Schaf"
-    },
-    {
-      "fr": "une douche",
-      "lu": "eng Dusch"
-    },
-    {
-      "fr": "un miroir",
-      "lu": "e Spigel"
-    },
-    {
-      "fr": "une baignoire",
-      "lu": "eng Bidden"
-    },
-    {
-      "fr": "un lavabo",
-      "lu": "e Lavabo"
-    },
-    {
-      "fr": "un gobelet",
-      "lu": "e Becher"
-    },
-    {
-      "fr": "des gobelets",
-      "lu": "Becheren"
-    },
-    {
-      "fr": "une serviette",
-      "lu": "en Handduch"
-    },
-    {
-      "fr": "des serviettes",
-      "lu": "Handdicher"
-    },
-    {
-      "fr": "une image / un tableau",
-      "lu": "e Bild"
-    },
-    {
-      "fr": "des images / tableaux",
-      "lu": "Biller"
-    },
-    {
-      "fr": "une garde-robe",
-      "lu": "e Kleederschaf"
-    },
-    {
-      "fr": "un lit",
-      "lu": "e Bett"
-    },
-    {
-      "fr": "une table de nuit",
-      "lu": "en Nuetsdësch"
-    },
-    {
-      "fr": "un tapis",
-      "lu": "en Teppech"
-    },
-    {
-      "fr": "une lampe",
-      "lu": "eng Luucht"
-    },
-    {
-      "fr": "dans la cuisine",
-      "lu": "an der Kichen"
-    },
-    {
-      "fr": "dans le salon (Stuff)",
-      "lu": "an der Stuff"
-    },
-    {
-      "fr": "dans le salon (Living)",
-      "lu": "am Living"
-    },
-    {
-      "fr": "dans la salle de bain",
-      "lu": "am Buedzëmmer"
-    },
-    {
-      "fr": "dans la chambre",
-      "lu": "am Schlofzëmmer"
-    },
-    {
-      "fr": "Où est le frigo ?",
-      "lu": "Wou ass de Frigo?"
-    },
-    {
-      "fr": "Dans la cuisine.",
-      "lu": "An der Kichen."
-    },
-    {
-      "fr": "Où est la baignoire ?",
-      "lu": "Wou ass d'Bidden?"
-    },
-    {
-      "fr": "La baignoire est dans la salle de bain.",
-      "lu": "D'Bidden ass am Buedzëmmer."
-    },
-    {
+      "id": 1004,
+      "unite": 1,
       "fr": "La poêle est dans le placard de cuisine.",
       "lu": "D'Pan ass am Kicheschaf."
     },
     {
+      "id": 1005,
+      "unite": 1,
+      "fr": "La hotte est au-dessus du four.",
+      "lu": "D'Hott ass iwwert dem Schäffchen."
+    },
+    {
+      "id": 1006,
+      "unite": 1,
+      "fr": "La casserole est dans le four.",
+      "lu": "Den Dëppen ass am Schäffchen."
+    },
+    {
+      "id": 1007,
+      "unite": 2,
       "fr": "L'assiette est sur la table.",
       "lu": "Den Teller ass um Dësch."
     },
     {
+      "id": 1008,
+      "unite": 2,
       "fr": "La plante est sur la commode.",
       "lu": "D'Planz ass op der Kommod."
     },
     {
-      "fr": "Le miroir est au-dessus du lavabo.",
-      "lu": "De Spigel ass iwwert dem Lavabo."
+      "id": 1009,
+      "unite": 2,
+      "fr": "La plante est sur l'étagère.",
+      "lu": "D'Planz ass um Regal."
     },
     {
-      "fr": "Le tapis est sous le lit.",
-      "lu": "Den Teppech ass ënnert dem Bett."
-    },
-    {
+      "id": 1010,
+      "unite": 2,
       "fr": "La table est devant le canapé.",
       "lu": "Den Dësch ass virum Kannapee."
     },
     {
+      "id": 1011,
+      "unite": 2,
+      "fr": "La chaise est devant la table.",
+      "lu": "De Stull ass virum Dësch."
+    },
+    {
+      "id": 1012,
+      "unite": 2,
+      "fr": "L'armoire est dans le salon.",
+      "lu": "D'Schaf ass an der Stuff."
+    },
+    {
+      "id": 1013,
+      "unite": 3,
+      "fr": "Le miroir est au-dessus du lavabo.",
+      "lu": "De Spigel ass iwwert dem Lavabo."
+    },
+    {
+      "id": 1014,
+      "unite": 3,
+      "fr": "Le gobelet est sur le lavabo.",
+      "lu": "De Becher ass um Lavabo."
+    },
+    {
+      "id": 1015,
+      "unite": 3,
       "fr": "La serviette est à côté de la douche.",
       "lu": "D'Handduch ass nieft der Dusch."
     },
     {
+      "id": 1016,
+      "unite": 3,
+      "fr": "La serviette est sur la baignoire.",
+      "lu": "D'Handduch ass op der Bidden."
+    },
+    {
+      "id": 1017,
+      "unite": 3,
+      "fr": "Où est la baignoire ?",
+      "lu": "Wou ass d'Bidden?"
+    },
+    {
+      "id": 1018,
+      "unite": 3,
+      "fr": "La baignoire est dans la salle de bain.",
+      "lu": "D'Bidden ass am Buedzëmmer."
+    },
+    {
+      "id": 1019,
+      "unite": 4,
+      "fr": "Le tapis est sous le lit.",
+      "lu": "Den Teppech ass ënnert dem Bett."
+    },
+    {
+      "id": 1020,
+      "unite": 4,
       "fr": "La lampe est sur la table de nuit.",
       "lu": "D'Luucht ass um Nuetsdësch."
+    },
+    {
+      "id": 1021,
+      "unite": 4,
+      "fr": "La lampe est dans la chambre.",
+      "lu": "D'Luucht ass am Schlofzëmmer."
+    },
+    {
+      "id": 1022,
+      "unite": 4,
+      "fr": "Au-dessus du lit, il y a un tableau.",
+      "lu": "Iwwert dem Bett ass e Bild."
+    },
+    {
+      "id": 1023,
+      "unite": 4,
+      "fr": "Où est le lit ?",
+      "lu": "Wou ass d'Bett?"
+    },
+    {
+      "id": 1024,
+      "unite": 4,
+      "fr": "Le lit est entre la table de nuit et la garde-robe.",
+      "lu": "D'Bett ass tëschent dem Nuetsdësch an dem Kleederschaf."
     }
   ],
   "cours": [
     {
-      "type": "texte",
-      "contenu": "Cette leçon présente les <b>meubles et objets de la maison</b>, pièce par pièce. Apprends toujours le mot <b>avec son article</b> (e, en, eng) : le genre sert ensuite pour dire où se trouve l'objet avec les prépositions de la leçon 20."
+      "type": "callout",
+      "variant": "info",
+      "titre": "Préposition + der / dem",
+      "lignes": [
+        "Féminin → <b>der</b> : op der Kommod, nieft der Dusch.",
+        "Masculin et neutre → <b>dem</b> : ënnert dem Bett, iwwert dem Lavabo.",
+        "Contractions : <b>an + dem = am</b> · <b>op + dem = um</b> · <b>virun + dem = virum</b>."
+      ]
     },
     {
       "type": "vocab",
@@ -1309,14 +1332,6 @@
           "une assiette — des assiettes"
         ],
         [
-          "en Toaster",
-          "un grille-pain"
-        ],
-        [
-          "eng Kaffismaschinn",
-          "une machine à café"
-        ],
-        [
           "eng Pan",
           "une poêle"
         ],
@@ -1324,31 +1339,20 @@
           "en Dëppen",
           "une casserole / marmite"
         ]
-      ]
+      ],
+      "unite": 1
     },
     {
       "type": "vocab",
       "titre": "An der Stuff / am Living — Dans le salon",
       "items": [
         [
-          "eng Kommod",
-          "une commode"
-        ],
-        [
-          "eng Planz",
-          "une plante"
-        ],
-        [
-          "e Regal",
-          "une étagère"
+          "e Kannapee",
+          "un canapé"
         ],
         [
           "eng Fotell",
           "un fauteuil"
-        ],
-        [
-          "e Kannapee",
-          "un canapé"
         ],
         [
           "en Dësch",
@@ -1359,10 +1363,34 @@
           "une chaise — des chaises"
         ],
         [
+          "eng Kommod",
+          "une commode"
+        ],
+        [
+          "e Regal",
+          "une étagère"
+        ],
+        [
+          "eng Planz",
+          "une plante"
+        ],
+        [
           "e Schaf",
           "une armoire"
         ]
-      ]
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "variant": "attention",
+      "titre": "Genre différent du français",
+      "lignes": [
+        "<b>eng Fotell</b> = un fauteuil → féminin.",
+        "<b>en Dësch</b> = une table → masculin · <b>e Regal</b> = une étagère → neutre.",
+        "<b>e Schaf</b> = une armoire → neutre."
+      ],
+      "unite": 2
     },
     {
       "type": "vocab",
@@ -1373,10 +1401,6 @@
           "une douche"
         ],
         [
-          "e Spigel",
-          "un miroir"
-        ],
-        [
           "eng Bidden",
           "une baignoire"
         ],
@@ -1385,27 +1409,24 @@
           "un lavabo"
         ],
         [
-          "e Becher — Becheren",
-          "un gobelet — des gobelets"
+          "e Spigel",
+          "un miroir"
         ],
         [
           "en Handduch — Handdicher",
           "une serviette — des serviettes"
+        ],
+        [
+          "e Becher — Becheren",
+          "un gobelet — des gobelets"
         ]
-      ]
+      ],
+      "unite": 3
     },
     {
       "type": "vocab",
       "titre": "Am Schlofzëmmer — Dans la chambre",
       "items": [
-        [
-          "e Bild — Biller",
-          "une image / un tableau — des images / tableaux"
-        ],
-        [
-          "e Kleederschaf",
-          "une garde-robe"
-        ],
         [
           "e Bett",
           "un lit"
@@ -1415,27 +1436,44 @@
           "une table de nuit"
         ],
         [
+          "e Kleederschaf",
+          "une garde-robe"
+        ],
+        [
           "en Teppech",
           "un tapis"
         ],
         [
           "eng Luucht",
           "une lampe"
+        ],
+        [
+          "e Bild — Biller",
+          "une image / un tableau — des images / tableaux"
         ]
-      ]
+      ],
+      "unite": 4
     },
     {
       "type": "callout",
-      "variant": "attention",
-      "titre": "Genre différent du français",
+      "variant": "astuce",
+      "titre": "Wou ass …? — Où est … ?",
       "lignes": [
-        "<b>eng Fotell</b> = un fauteuil → féminin en luxembourgeois.",
-        "<b>en Dësch</b> = une table → masculin.",
-        "<b>e Regal</b> = une étagère → neutre.",
-        "<b>en Teller</b> = une assiette · <b>en Dëppen</b> = une casserole → masculins.",
-        "<b>e Spullsteen</b> = un évier (cuisine) ≠ <b>e Lavabo</b> = un lavabo (salle de bain).",
-        "<b>e Kicheschaf</b> = placard de cuisine · <b>e Kleederschaf</b> = garde-robe · <b>e Schaf</b> = armoire."
-      ]
+        "<b>Wou ass d'Luucht?</b> → <b>D'Luucht ass um Nuetsdësch.</b>",
+        "Réponse courte possible : <b>Am Schlofzëmmer.</b>"
+      ],
+      "unite": 4
+    },
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "Les pièces de la maison",
+      "lignes": [
+        "<b>an der Kichen</b> = dans la cuisine · <b>an der Stuff</b> ou <b>am Living</b> = dans le salon.",
+        "<b>am Buedzëmmer</b> = dans la salle de bain · <b>am Schlofzëmmer</b> = dans la chambre.",
+        "Retiens ces expressions comme des blocs."
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1476,131 +1514,23 @@
           "Becheren",
           "des gobelets"
         ]
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "astuce",
-      "titre": "Les pièces de la maison",
-      "lignes": [
-        "<b>an der Kichen</b> = dans la cuisine (d'Kichen, féminin).",
-        "<b>an der Stuff</b> ou <b>am Living</b> = dans le salon.",
-        "<b>am Buedzëmmer</b> = dans la salle de bain.",
-        "<b>am Schlofzëmmer</b> = dans la chambre.",
-        "Retiens ces expressions comme des blocs."
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "info",
-      "titre": "Rappel : préposition + der / dem",
-      "lignes": [
-        "Après une préposition de lieu (leçon 20), l'article change selon le genre.",
-        "Féminin → <b>der</b> : op der Kommod, nieft der Dusch.",
-        "Masculin et neutre → <b>dem</b> : ënnert dem Bett, iwwert dem Lavabo.",
-        "Contractions fréquentes : <b>an + dem = am</b> · <b>op + dem = um</b> · <b>virun + dem = virum</b>.",
-        "Pas besoin de maîtriser la règle maintenant : l'important est de reconnaître l'objet."
-      ]
-    },
-    {
-      "type": "tableau",
-      "titre": "Exemples selon le genre",
-      "entetes": [
-        "Genre",
-        "Objet",
-        "Avec une préposition"
       ],
-      "lignes": [
-        [
-          "Féminin",
-          "eng Kommod",
-          "op der Kommod (sur la commode)"
-        ],
-        [
-          "Féminin",
-          "eng Dusch",
-          "nieft der Dusch (à côté de la douche)"
-        ],
-        [
-          "Masculin",
-          "en Dësch",
-          "um Dësch (sur la table)"
-        ],
-        [
-          "Masculin",
-          "e Frigo",
-          "am Frigo (dans le frigo)"
-        ],
-        [
-          "Masculin",
-          "e Kannapee",
-          "virum Kannapee (devant le canapé)"
-        ],
-        [
-          "Neutre",
-          "e Bett",
-          "ënnert dem Bett (sous le lit)"
-        ],
-        [
-          "Neutre",
-          "e Kicheschaf",
-          "am Kicheschaf (dans le placard)"
-        ]
-      ]
+      "unite": 0
     },
     {
-      "type": "exemple",
-      "titre": "Wou ass …? — Où est … ?",
+      "type": "vocab",
+      "titre": "Autres objets de la cuisine",
       "items": [
         [
-          "De Frigo ass an der Kichen.",
-          "Le frigo est dans la cuisine."
+          "en Toaster",
+          "un grille-pain"
         ],
         [
-          "D'Glas ass am Frigo.",
-          "Le verre est dans le frigo."
-        ],
-        [
-          "D'Pan ass am Kicheschaf.",
-          "La poêle est dans le placard de cuisine."
-        ],
-        [
-          "D'Hott ass iwwert dem Schäffchen.",
-          "La hotte est au-dessus du four."
-        ],
-        [
-          "D'Spullmaschinn ass nieft dem Spullsteen.",
-          "Le lave-vaisselle est à côté de l'évier."
-        ],
-        [
-          "Den Teller ass um Dësch.",
-          "L'assiette est sur la table."
-        ],
-        [
-          "D'Planz ass op der Kommod.",
-          "La plante est sur la commode."
-        ],
-        [
-          "Den Dësch ass virum Kannapee.",
-          "La table est devant le canapé."
-        ],
-        [
-          "De Spigel ass iwwert dem Lavabo.",
-          "Le miroir est au-dessus du lavabo."
-        ],
-        [
-          "D'Handduch ass nieft der Dusch.",
-          "La serviette est à côté de la douche."
-        ],
-        [
-          "Den Teppech ass ënnert dem Bett.",
-          "Le tapis est sous le lit."
-        ],
-        [
-          "D'Luucht ass um Nuetsdësch.",
-          "La lampe est sur la table de nuit."
+          "eng Kaffismaschinn",
+          "une machine à café"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1630,7 +1560,8 @@
           "De Becher ass um Lavabo, am Buedzëmmer.",
           "Le gobelet est sur le lavabo, dans la salle de bain."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
