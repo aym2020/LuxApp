@@ -91,6 +91,22 @@ Solution (déjà en place) :
 
 **Principe général** : une lecture localStorage, un passage de boucle. Pas de relectures multiples.
 
+### Leçons en unités (v2)
+
+- Type de stats du mot caché : `motcache` (à côté de `quiz`, `trous`, `ecriture`).
+  Pas inclus dans `getAllQuestions()` : le Dashboard et l'écran Réviser ne le comptent pas.
+- Seul le **premier passage** d'un item dans une unité est enregistré (niveau + stats).
+  Bonne réponse = juste du premier coup, sans indice ni « Voir la réponse ».
+- Meilleur score d'une unité : `luxProgress[leconId].unites[uniteId]` (0 à 100),
+  via `getUnitBest` / `saveUnitBest`. Rangé là exprès : la fusion cloud garde le **max**,
+  et la v1 conserve la clé sans la lire.
+- Seul le mode « unité complète » met à jour les étoiles (pas « Refaire mes erreurs », ni une étape seule).
+- Étoiles : 3 à partir de 90 %, 2 à partir de 70 %, 1 à partir de 50 %.
+  Étoiles d'une leçon = moyenne des meilleurs scores, unité non faite = 0.
+- Badge « À revoir » d'une leçon : au moins une erreur active (`luxWrong` > 0) dans la leçon.
+- Unité en cours : `luxParcours:<profil>` dans localStorage, réécrit après chaque réponse.
+  **Local seulement** (pas de cloud) : la reprise se fait sur le même appareil.
+
 ---
 
 ## 6. Bug récurrent — Pourcentages de progression incohérents
@@ -115,6 +131,10 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
 - `mergeStatsNested` : choisit l'enregistrement le plus riche par question, par `attempts`
   puis `lastSeenAt`.
 - Isolation localStorage par profil : `luxProgress:anonymous`, `luxProgress:user:<id>`.
+- **v1 et v2 partagent le même document cloud.** Règle : la v2 n'ajoute que de nouvelles clés,
+  sans changer la structure. Les exercices des leçons migrées ont des ids ≥ 1001, jamais
+  mélangés avec l'historique v1 (ids < 1000). Testé : une synchro faite par la v1 conserve
+  `unites`, `motcache` et leurs stats.
 
 ---
 
@@ -234,6 +254,31 @@ eval(src);
 - Fix débordement tableau mobile : `table-layout:fixed` + conteneur scroll `.cours-table-wrap`.
 - **Pas d'emoji sur les boutons d'action.**
 
+### Parcours en unités (leçons v2) — `public/parcours.js`
+
+- Une leçon **avec** `unites` s'ouvre sur l'écran des unités (`view-plecon`).
+  Une leçon **sans** `unites` garde l'ancien écran à onglets : rien ne casse pendant la migration.
+- Écrans : liste des unités → « Avant de commencer » (`view-pintro`) → exercice
+  (`view-parcours`) → fin d'unité (`view-pfin`). Panneau Cours par-dessus (`#cours-panel`).
+- Une unité = 4 étapes dans l'ordre : Mot caché → Quiz → Trous → Écriture.
+  Une étape sans item est sautée.
+- Erreur = l'item repart en fin d'étape (« +n à refaire » dans l'en-tête). On avance seulement
+  quand c'est juste. Quiz/trous justes : passage automatique ; faux : bandeau + Continuer.
+- **Mot caché** : une case par lettre ; espaces, apostrophes, tirets, « ? » déjà affichés.
+  Comparaison = `normalize()` de l'écriture (accents et ponctuation ignorés).
+  Erreur → les lettres bien placées passent en vert (gratuit). « Indice » révèle une lettre
+  au hasard (coûte des points). « Voir la réponse » apparaît après 3 essais ratés : score 0
+  et le mot revient en fin d'étape. Score du mot = (lettres − indices) / lettres.
+- Fin d'unité : score, étoiles, score par étape, « À retravailler », « Refaire mes erreurs »
+  (relance seulement les items ratés), « Unité suivante ».
+- Écran leçon : seule la prochaine unité à faire a le bouton jaune. Unité finie → « Refaire
+  l'unité » ou une seule étape. « Tout revoir » = écran Réviser avec seulement cette leçon
+  cochée. Bilan (10 questions mélangées) débloqué quand toutes les unités sont faites.
+- Liste des leçons : carte « Reprendre » en tête si une unité est en cours.
+- Panneau Cours : onglet « Unité n » (blocs de l'unité + blocs généraux) et « Toute la leçon ».
+- Les raccourcis clavier des cartes (espace, flèches) ne marchent que sur l'écran à onglets
+  et jamais dans un champ de saisie (sinon la barre d'espace était bloquée).
+
 ---
 
 ## 10. Conventions de structure d'une leçon
@@ -267,6 +312,53 @@ Règles à vérifier à chaque leçon :
 { "type": "regle",    "titre": "...", "lignes": [...] }   // courtes, précises, applicables
 { "type": "dialogue", "titre": "...", "echanges": [["lu", "fr"]] }
 ```
+
+### Format v2 : leçon découpée en unités
+
+Migrées : leçons 2, 8, 21, 22. Les autres sont encore en v1 et restent valides.
+
+```
+{
+  "id", "titre", "titre_fr", "couleur",
+  "instructions": {...},            // "flashcards" décrit le Mot caché
+  "unites": [
+    { "id": 1, "titre": "Masculin : e ou en",
+      "regle": "Masculin : <b>e</b>, ou <b>en</b> devant …",   // écran « Avant de commencer »
+      "exemple": "<b>e</b> Bus · <b>en</b> Dësch",
+      "phrases": [["Dat ass e Bus.", "C'est un bus."]] }
+  ],
+  "flashcards": [{ "id": 1001, "unite": 1, "fr": "une table", "lu": "Dësch",
+                   "article": "en", "indice": "masculin", "note": "…" }],
+  "quiz":     [{ "id": 1001, "unite": 1, ... }],   // mêmes champs qu'avant + "unite"
+  "trous":    [{ "id": 1001, "unite": 1, ... }],
+  "ecriture": [{ "id": 1001, "unite": 1, "fr": "…", "lu": "…" }],   // id obligatoire
+  "cours":    [{ ...bloc, "unite": 1 }]
+}
+```
+
+Règles v2 :
+- **2 à 4 unités** par leçon, une petite notion par unité, ~6 min chacune.
+  Les unités suivantes peuvent réviser les précédentes (trous, écriture).
+- Tailles par unité : mot caché 6–12 · quiz 6–10 · trous 6–10 · écriture 5–8.
+- **Une carte = un mot** (jamais « e Portugis / eng Portugisin ») : `lu` = ce qu'on tape.
+  `article` (facultatif) est affiché à côté des cases ; `indice` (facultatif, ex. « féminin »)
+  sous le mot français.
+- Le mot caché porte le vocabulaire. **L'écriture = phrases et questions**, pas de mots isolés.
+- Ids de tous les exercices à partir de **1001** dans une leçon migrée.
+- Blocs de cours : `"unite": n` = affiché dans l'unité n ; sans `unite` = général (partout) ;
+  `"unite": 0` = seulement dans « Toute la leçon » (références longues, mots bonus).
+  3 lignes maximum par encadré.
+- Ne pas viser l'exhaustivité : les mots retirés des exercices vont dans un bloc
+  « Pour aller plus loin » (`"unite": 0`).
+
+### Vérifier avant chaque livraison
+
+```
+node tools/valider-lecons.js
+```
+
+Contrôle toutes les leçons (JSON, ids, unités, réponse présente dans les choix, tailles,
+mots cachés présents dans le cours…). ERREUR = bloquant, ATTENTION = à regarder.
 
 ---
 

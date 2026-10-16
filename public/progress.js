@@ -79,10 +79,17 @@ function updateQuestionLevel(leconId, type, questionId, correct) {
 }
 
 // ─── IDENTIFIANT STABLE D'UNE QUESTION ──────────────────────────────────────
-// quiz et trous ont un champ "id". L'écriture n'en a pas -> on utilise l'index.
+// quiz et trous ont un champ "id". L'écriture des anciennes leçons n'en a pas
+// -> on utilise l'index. Les leçons en unités (v2) ont un "id" partout.
 function getQuestionId(type, question, index) {
-  if (type === 'ecriture') return index;
+  if (type === 'ecriture') return ecritureId(question, index);
   return question.id;
+}
+
+// Identifiant d'une phrase d'écriture : son "id" s'il existe, sinon son index.
+function ecritureId(question, index) {
+  if (question && question.id != null) return question.id;
+  return index;
 }
 
 // ─── ORDRE PONDÉRÉ DES QUESTIONS ────────────────────────────────────────────
@@ -152,6 +159,7 @@ function resetProgress() {
   localStorage.removeItem(storageKey(WRONG_KEY));
   localStorage.removeItem(storageKey(STREAK_KEY));
   localStorage.removeItem(storageKey(STATS_KEY));
+  localStorage.removeItem(storageKey('luxParcours')); // unité en cours (leçons v2)
 }
 
 // ─── ERREURS : COMPTEUR PAR QUESTION ────────────────────────────────────────
@@ -317,6 +325,40 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
+// ─── MEILLEUR SCORE PAR UNITÉ (leçons en unités) ────────────────────────────
+// Rangé dans la même structure que les niveaux, sous la clé "unites" :
+//   progress["8"].unites = { "1": 84, "2": 100 }   (pourcentage, 0 à 100)
+// Pourquoi ici : la fusion cloud garde déjà la valeur MAX de chaque clé.
+// Le meilleur score ne peut donc jamais baisser, et l'ancienne version de
+// l'app conserve ces valeurs sans les lire.
+function getUnitBest(leconId, uniteId) {
+  const progress = getProgress();
+  const byLecon = progress[leconId];
+  if (byLecon && byLecon.unites && byLecon.unites[uniteId] != null) {
+    return byLecon.unites[uniteId];
+  }
+  return null; // unité jamais terminée
+}
+
+function saveUnitBest(leconId, uniteId, percent) {
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  if (!progress[leconId].unites) progress[leconId].unites = {};
+  const old = progress[leconId].unites[uniteId];
+  progress[leconId].unites[uniteId] = old == null ? percent : Math.max(old, percent);
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// Vrai si la leçon a au moins une erreur active (compteur luxWrong > 0).
+function leconHasActiveErrors(leconId) {
+  const byLecon = getWrongStore()[leconId];
+  if (!byLecon) return false;
+  return Object.keys(byLecon).some(type =>
+    Object.keys(byLecon[type]).some(qid => byLecon[type][qid] > 0)
+  );
+}
+
 // ─── NIVEAU ACTIF (A1.1, A1.2…) ─────────────────────────────────────────────
 // Le niveau choisi est mémorisé dans le navigateur.
 let niveauActif = localStorage.getItem('luxNiveau') || 'A1.1';
@@ -343,7 +385,7 @@ function getAllQuestions() {
   leconsActives().forEach(l => {
     (l.quiz || []).forEach(q => all.push({ leconId: l.id, type: 'quiz', qid: q.id, q }));
     (l.trous || []).forEach(q => all.push({ leconId: l.id, type: 'trous', qid: q.id, q }));
-    (l.ecriture || []).forEach((q, i) => all.push({ leconId: l.id, type: 'ecriture', qid: i, q }));
+    (l.ecriture || []).forEach((q, i) => all.push({ leconId: l.id, type: 'ecriture', qid: ecritureId(q, i), q }));
   });
   return all;
 }
@@ -540,7 +582,7 @@ function calculateLessonStats(leconId) {
   const levels = [];
   (lecon.quiz || []).forEach(q => levels.push(getQuestionLevel(leconId, 'quiz', q.id)));
   (lecon.trous || []).forEach(q => levels.push(getQuestionLevel(leconId, 'trous', q.id)));
-  (lecon.ecriture || []).forEach((q, i) => levels.push(getQuestionLevel(leconId, 'ecriture', i)));
+  (lecon.ecriture || []).forEach((q, i) => levels.push(getQuestionLevel(leconId, 'ecriture', ecritureId(q, i))));
 
   let n1 = 0, n2 = 0, n3 = 0;
   levels.forEach(lv => {

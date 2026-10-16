@@ -201,6 +201,67 @@
 
   </div><!-- /view-lecon -->
 
+  <!-- ══ LEÇON EN UNITÉS (v2) : LISTE DES UNITÉS ══════════════════════════════ -->
+  <div id="view-plecon" class="view">
+    <div class="pc-topbar">
+      <button class="back-btn" onclick="goLessons()">← Leçons</button>
+      <button class="pc-cours-btn" onclick="ouvrirCours(null)">Cours</button>
+    </div>
+    <div class="pl-head">
+      <div class="pc-mini-label pc-lc" id="pl-num"></div>
+      <h1 class="pl-titre" id="pl-titre"></h1>
+      <div class="pl-sous" id="pl-sous"></div>
+      <button class="pc-chip" onclick="toutRevoir()">Tout revoir</button>
+    </div>
+    <div class="pl-units" id="pl-units"></div>
+  </div>
+
+  <!-- ══ LEÇON EN UNITÉS : AVANT DE COMMENCER ═════════════════════════════════ -->
+  <div id="view-pintro" class="view">
+    <div class="pc-topbar">
+      <button class="pc-icon-btn" aria-label="Fermer" onclick="openParcoursLecon(pLecon)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="pi-content" id="pi-content"></div>
+  </div>
+
+  <!-- ══ LEÇON EN UNITÉS : EXERCICE ═══════════════════════════════════════════ -->
+  <div id="view-parcours" class="view">
+    <div class="pc-topbar">
+      <button class="pc-icon-btn" aria-label="Quitter" onclick="quitterParcours()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <div class="pc-steps" id="pc-steps"></div>
+      <button class="pc-cours-btn" onclick="ouvrirCoursExercice()">Cours</button>
+    </div>
+    <div class="pc-sous-barre">
+      <span id="pc-etape"></span>
+      <span id="pc-compteur"></span>
+    </div>
+    <div class="pc-body" id="pc-body"></div>
+    <div class="pc-feedback hidden" id="pc-feedback"></div>
+  </div>
+
+  <!-- ══ LEÇON EN UNITÉS : FIN D'UNITÉ ════════════════════════════════════════ -->
+  <div id="view-pfin" class="view">
+    <div class="pf-content" id="pf-content"></div>
+  </div>
+
+  <!-- ══ PANNEAU COURS (par-dessus l'exercice) ════════════════════════════════ -->
+  <div id="cours-panel" class="cp hidden">
+    <div class="cp-fond" onclick="fermerCours()"></div>
+    <div class="cp-feuille" role="dialog" aria-label="Cours">
+      <div class="cp-poignee"></div>
+      <div class="cp-head">
+        <div>
+          <div class="pc-mini-label pc-accent">COURS</div>
+          <div class="cp-titre" id="cp-titre"></div>
+        </div>
+        <button class="pc-icon-btn" aria-label="Fermer le cours" onclick="fermerCours()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="cp-onglets" id="cp-onglets"></div>
+      <div class="cp-content cours-content" id="cp-content"></div>
+      <div class="cp-bas"><button class="pc-btn wide" onclick="fermerCours()">Revenir à l'exercice</button></div>
+    </div>
+  </div>
+
     <!-- ══ CONFIGURATION DE RÉVISION ════════════════════════════════════════════ -->
   <div id="view-review-setup" class="view">
     <div class="lecon-header">
@@ -321,7 +382,7 @@
 
       <div id="session-result" class="result-card hidden">
         <div id="session-score"></div>
-        <button onclick="goDashboard()">Terminer</button>
+        <button onclick="finSession()">Terminer</button>
       </div>
     </div>
   </div><!-- /view-session -->
@@ -382,6 +443,7 @@
   <script src="progress.js"></script>
   <script src="cloud.js"></script>
   <script src="examens.js"></script>
+  <script src="parcours.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

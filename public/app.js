@@ -68,7 +68,13 @@ function changerNiveau(niveau) {
 function renderLessons() {
   const list = document.getElementById('lecon-list');
   list.innerHTML = '';
+
+  // Unité en cours (leçons en unités) : carte "Reprendre" en premier.
+  const reprendre = carteReprendre();
+  if (reprendre) list.appendChild(reprendre);
+
   leconsActives().forEach(l => {
+    const v2 = isParcoursLecon(l); // leçon découpée en unités ?
     const el = document.createElement('div');
     el.className = 'lecon-card';
     el.style.setProperty('--lc', l.couleur);
@@ -77,19 +83,20 @@ function renderLessons() {
       <div class="lecon-card-body">
         <div class="lecon-card-num">
           LEÇON ${l.id}
-          <span class="lecon-progress" data-lecon="${l.id}"></span>
+          ${v2 ? '' : `<span class="lecon-progress" data-lecon="${l.id}"></span>`}
         </div>
         <div class="lecon-card-titre">${l.titre}</div>
         <div class="lecon-card-sous">${l.titre_fr}</div>
         <div class="lecon-card-counts">
+          ${v2 ? carteLeconV2Html(l) : `
           <span class="lecon-pill">📖 ${l.flashcards.length} cartes</span>
           <span class="lecon-pill">❓ ${l.quiz.length} quiz</span>
           <span class="lecon-pill">✏️ ${l.trous.length} trous</span>
-          <span class="lecon-pill">${l.ecriture ? '✍️ ' + l.ecriture.length + ' écriture' : ''}</span>
+          <span class="lecon-pill">${l.ecriture ? '✍️ ' + l.ecriture.length + ' écriture' : ''}</span>`}
         </div>
       </div>
       <div class="lecon-arrow">›</div>`;
-    el.addEventListener('click', () => openLecon(l));
+    el.addEventListener('click', () => v2 ? openParcoursLecon(l) : openLecon(l));
     list.appendChild(el);
   });
   renderLessonsProgress();
@@ -134,8 +141,15 @@ function renderCours() {
   </div>`;
 
   html += renderLessonProgress();
+  html += coursBlocsHtml(currentLecon.cours, accent);
 
-  currentLecon.cours.forEach(sec => {
+  container.innerHTML = html;
+}
+
+// HTML des blocs de cours (utilisé par l'onglet Cours et par le panneau Cours).
+function coursBlocsHtml(blocs, accent) {
+  let html = '';
+  blocs.forEach(sec => {
     if (sec.type === 'texte') {
       html += `<p class="cours-texte">${sec.contenu}</p>`;
     }
@@ -203,8 +217,7 @@ function renderCours() {
       </div>`;
     }
   });
-
-  container.innerHTML = html;
+  return html;
 }
 
 function goDashboard() {
@@ -213,7 +226,7 @@ function goDashboard() {
 }
 
 function goLessons() {
-  renderLessonsProgress();
+  renderLessons(); // reconstruit la liste : carte "Reprendre", étoiles à jour
   showView('view-lessons');
 }
 
@@ -399,15 +412,17 @@ function startSession(mode) {
 // ─── RÉVISION CONFIGURÉE ────────────────────────────────────────────────────
 let reviewListenerAttached = false;
 
-function openReviewSetup() {
+// seuleLeconId (optionnel) : ne coche que cette leçon ("Tout revoir" d'une leçon).
+function openReviewSetup(seuleLeconId) {
   // Une case par leçon du niveau actif, toutes cochées au départ.
   const box = document.getElementById('rs-lecons');
   box.innerHTML = '';
   leconsActives().forEach(l => {
+    const coche = seuleLeconId == null || l.id === seuleLeconId;
     const label = document.createElement('label');
     label.className = 'rs-check';
     label.innerHTML =
-      '<input type="checkbox" value="' + l.id + '" checked> Leçon ' + l.id + ' · ' + escHtml(l.titre);
+      '<input type="checkbox" value="' + l.id + '"' + (coche ? ' checked' : '') + '> Leçon ' + l.id + ' · ' + escHtml(l.titre);
     box.appendChild(label);
   });
 
@@ -552,6 +567,26 @@ function startConfiguredReview() {
     showView('view-session');
     renderSessionQ();
   }, 20);
+}
+
+// Lance le moteur de session avec une liste de questions déjà prête.
+// retourLeconId (optionnel) : "Terminer" ramène à cette leçon au lieu de l'accueil.
+function demarrerSession(mode, titre, questions, retourLeconId) {
+  if (!questions.length) { alert('Aucune question disponible.'); return; }
+  session = { mode, questions, index: 0, score: 0, answered: false, retourLeconId };
+  document.getElementById('session-num').textContent = titre;
+  document.getElementById('session-titre').textContent = questions.length + ' questions';
+  document.getElementById('session-result').classList.add('hidden');
+  document.getElementById('session-q').classList.remove('hidden');
+  showView('view-session');
+  renderSessionQ();
+}
+
+// Bouton "Terminer" et retour de session.
+function finSession() {
+  const l = lecons.find(x => x.id === session.retourLeconId);
+  if (isParcoursLecon(l)) openParcoursLecon(l);
+  else goDashboard();
 }
 
 function renderSessionQ() {
@@ -978,7 +1013,11 @@ function setupCardInteraction() {
 function setupKeyboard() {
   document.addEventListener('keydown', e => {
     const activeTab = document.querySelector('.tab-btn.active')?.dataset.tab;
-    if (activeTab === 'flashcards') {
+    // Raccourcis des cartes : seulement sur l'écran leçon (onglets), jamais
+    // pendant une saisie (sinon la barre d'espace est bloquée dans les champs).
+    const surLecon = document.getElementById('view-lecon').classList.contains('active');
+    const enSaisie = e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA');
+    if (activeTab === 'flashcards' && surLecon && !enSaisie) {
       if (e.key === 'ArrowRight') nextCard();
       if (e.key === 'ArrowLeft')  prevCard();
       if (e.key === ' ') { e.preventDefault(); flipCard(); }
