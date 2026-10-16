@@ -31,7 +31,7 @@
       "qui": "toi",
       "lu": "Ech sinn e Banker.",
       "fr": "Je suis banquier.",
-      "aide": "Vérifie la structure du métier et son article."
+      "aide": "Pour un métier masculin, choisis <b>e</b> ou <b>en</b> selon le mot."
     },
     {
       "unite": 2,
@@ -44,7 +44,7 @@
       "qui": "toi",
       "lu": "Si ass eng Bankerin.",
       "fr": "Elle est banquière.",
-      "aide": "Vérifie la structure du métier et son article."
+      "aide": "Devant un métier féminin, utilise <b>eng</b>."
     },
     {
       "unite": 2,
@@ -57,7 +57,7 @@
       "qui": "toi",
       "lu": "Si ass eng Doktesch.",
       "fr": "Elle est médecin (femme).",
-      "aide": "Vérifie la structure du métier et son article."
+      "aide": "Le nom féminin peut changer autrement qu'en ajoutant -in."
     },
     {
       "unite": 3,
@@ -70,7 +70,7 @@
       "qui": "toi",
       "lu": "Nee, ech sinn kee Coiffer.",
       "fr": "Non, je ne suis pas coiffeur.",
-      "aide": "Vérifie la structure du métier et son article."
+      "aide": "Pour nier une profession masculine, utilise <b>kee</b>."
     },
     {
       "unite": 3,
@@ -83,7 +83,7 @@
       "qui": "toi",
       "lu": "Ech schaffen als Banker.",
       "fr": "Je travaille comme banquier.",
-      "aide": "Vérifie la structure du métier et son article."
+      "aide": "Après <b>als</b>, ne mets pas d'article."
     }
   ],
   "unites": [
@@ -903,7 +903,7 @@
     },
     {
       "id": 2002,
-      "unite": 1,
+      "unite": 3,
       "fr": "Je travaille comme boucher.",
       "avant": "Ech schaffen als",
       "trou": "Metzler",
@@ -1362,7 +1362,7 @@
     },
     {
       "id": 2002,
-      "unite": 2,
+      "unite": 3,
       "fr": "Je ne suis pas policière.",
       "lu": "Ech sinn keng Polizistin.",
       "plus": true
@@ -1381,7 +1381,7 @@
     },
     {
       "id": 2005,
-      "unite": 1,
+      "unite": 3,
       "fr": "Je ne suis pas coiffeur.",
       "lu": "Ech sinn kee Coiffer.",
       "plus": true
@@ -1400,7 +1400,7 @@
     },
     {
       "id": 2008,
-      "unite": 2,
+      "unite": 3,
       "fr": "Je ne suis pas banquière.",
       "lu": "Ech sinn keng Bankerin.",
       "plus": true
@@ -1419,7 +1419,7 @@
     },
     {
       "id": 2011,
-      "unite": 1,
+      "unite": 3,
       "fr": "Je ne suis pas facteur.",
       "lu": "Ech sinn kee Bréifdréier.",
       "plus": true
@@ -1438,7 +1438,7 @@
     },
     {
       "id": 2014,
-      "unite": 2,
+      "unite": 3,
       "fr": "Je ne suis pas avocate.",
       "lu": "Ech sinn keng Affekotin.",
       "plus": true
@@ -1457,7 +1457,7 @@
     },
     {
       "id": 2017,
-      "unite": 1,
+      "unite": 3,
       "fr": "Je ne suis pas boulanger.",
       "lu": "Ech sinn kee Bäcker.",
       "plus": true
@@ -1476,7 +1476,7 @@
     },
     {
       "id": 2020,
-      "unite": 2,
+      "unite": 3,
       "fr": "Je ne suis pas infirmière.",
       "lu": "Ech sinn keng Infirmière.",
       "plus": true
@@ -1495,7 +1495,7 @@
     },
     {
       "id": 2023,
-      "unite": 1,
+      "unite": 3,
       "fr": "Je ne suis pas instituteur.",
       "lu": "Ech sinn kee Schoulmeeschter.",
       "plus": true
@@ -1515,7 +1515,7 @@
     },
     {
       "id": 2026,
-      "unite": 2,
+      "unite": 3,
       "fr": "Je ne suis pas pilote (femme).",
       "lu": "Ech sinn keng Pilotin.",
       "plus": true
@@ -1535,7 +1535,7 @@
     },
     {
       "id": 2029,
-      "unite": 1,
+      "unite": 3,
       "fr": "Je ne suis pas journaliste (homme).",
       "lu": "Ech sinn kee Journalist.",
       "plus": true
@@ -1555,7 +1555,7 @@
     },
     {
       "id": 2032,
-      "unite": 2,
+      "unite": 3,
       "fr": "Je ne suis pas sportive.",
       "lu": "Ech sinn keng Sportlerin.",
       "plus": true
