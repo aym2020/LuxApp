@@ -3,119 +3,431 @@
   "titre": "De Beruff",
   "titre_fr": "Les métiers",
   "couleur": "#a3cc52",
-  "instructions": {
-    "flashcards": "Mémoriser les métiers en luxembourgeois au masculin et au féminin avec leur traduction française.",
-    "quiz": "Lire un métier en luxembourgeois et choisir la bonne traduction française. Les distracteurs doivent être d'autres métiers de la leçon.",
-    "trous": "Compléter une phrase avec le métier luxembourgeois correspondant au métier français indiqué. Les distracteurs doivent être d'autres métiers de la leçon.",
-    "ecriture": "Produire les métiers, les questions sur le métier, les réponses et les phrases complètes utilisées dans la leçon."
+  "v1": {
+    "quiz": 34,
+    "trous": 34,
+    "ecriture": 34
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve un métier au masculin ou au féminin.",
+    "quiz": "Reconnais les professions luxembourgeoises et les phrases avec sinn, schaffen als et la négation.",
+    "trous": "Complète le métier, l'article ou la structure adaptée.",
+    "ecriture": "Traduis les métiers et les phrases complètes au masculin et au féminin, avec travailler comme et la négation."
+  },
+  "mission": {
+    "titre": "Rencontre au forum des métiers",
+    "contexte": "Au forum des métiers, tu parles de ta profession et de celle de tes proches avec Marie.",
+    "objectif": "dire son métier, parler d'une profession au féminin et utiliser travailler comme ou la négation."
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Wat bass du vu Beruff?",
+      "fr": "Quel métier fais-tu ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech sinn e Banker.",
+      "fr": "Je suis banquier.",
+      "aide": "Vérifie la structure du métier et son article."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "A wat mécht deng Frëndin?",
+      "fr": "Et que fait ton amie ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Si ass eng Bankerin.",
+      "fr": "Elle est banquière.",
+      "aide": "Vérifie la structure du métier et son article."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "Meng Schwëster ass Doktesch.",
+      "fr": "Ma sœur est médecin."
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Si ass eng Doktesch.",
+      "fr": "Elle est médecin (femme).",
+      "aide": "Vérifie la structure du métier et son article."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "Schaffs du als Coiffer?",
+      "fr": "Tu travailles comme coiffeur ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Nee, ech sinn kee Coiffer.",
+      "fr": "Non, je ne suis pas coiffeur.",
+      "aide": "Vérifie la structure du métier et son article."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "A wat méchs du?",
+      "fr": "Et que fais-tu ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Ech schaffen als Banker.",
+      "fr": "Je travaille comme banquier.",
+      "aide": "Vérifie la structure du métier et son article."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "fr": "Policier / Policière",
-      "lu": "e Polizist / eng Polizistin",
-      "note": "e → devant consonne"
+      "titre": "Dire son métier",
+      "phrase": [
+        "Ech sinn e Banker.",
+        "Je suis banquier."
+      ],
+      "regle": "Métier au masculin : <b>e Banker</b> · <b>en Dokter</b>.",
+      "exemple": "Ech sinn <b>e</b> Polizist.",
+      "pieges": [
+        "L'article masculin peut être <b>e</b> ou <b>en</b>.",
+        "<b>schaffen als</b> n'utilise pas d'article."
+      ]
     },
     {
       "id": 2,
-      "fr": "Médecin (M) / Médecin (F)",
-      "lu": "en Dokter / eng Doktesch",
-      "note": "en → devant D"
+      "titre": "Les métiers au féminin",
+      "phrase": [
+        "Si ass eng Bankerin.",
+        "Elle est banquière."
+      ],
+      "regle": "Au féminin : <b>eng</b> Bankerin, Polizistin, Doktesch.",
+      "exemple": "Dokter → <b>Doktesch</b> (forme particulière).",
+      "pieges": [
+        "Les féminins ne se font pas tous avec -in.",
+        "Devant un métier féminin : <b>eng</b>."
+      ]
     },
     {
       "id": 3,
-      "fr": "Coiffeur / Coiffeuse",
-      "lu": "e Coiffer / eng Coiffeuse",
-      "note": "e → devant consonne"
+      "titre": "Travailler comme et dire non",
+      "phrase": [
+        "Ech schaffen als Banker. Ech sinn kee Coiffer.",
+        "Je travaille comme banquier. Je ne suis pas coiffeur."
+      ],
+      "regle": "<b>schaffen als</b> sans article ; négation <b>kee</b> / <b>keng</b> devant un métier.",
+      "exemple": "Ech sinn <b>kee</b> Coiffer. Ech schaffen <b>als</b> Banker.",
+      "pieges": [
+        "Pas d'article après <b>als</b>.",
+        "<b>keng</b> devant un métier féminin."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "Policier",
+      "lu": "Polizist",
+      "article": "e"
     },
     {
-      "id": 4,
-      "fr": "Banquier / Banquière",
-      "lu": "e Banker / eng Bankerin",
-      "note": "e → devant consonne"
+      "id": 2002,
+      "unite": 2,
+      "fr": "Policière",
+      "lu": "Polizistin",
+      "article": "eng"
     },
     {
-      "id": 5,
-      "fr": "Pharmacien / Pharmacienne",
-      "lu": "en Apdikter / eng Apdiktesch",
-      "note": "en → devant voyelle A"
+      "id": 2003,
+      "unite": 1,
+      "fr": "Médecin (M)",
+      "lu": "Dokter",
+      "article": "en"
     },
     {
-      "id": 6,
-      "fr": "Facteur / Factrice",
-      "lu": "e Bréifdréier / eng Bréifdréiesch",
-      "note": "Bréif = lettre"
+      "id": 2004,
+      "unite": 2,
+      "fr": "Médecin (F)",
+      "lu": "Doktesch",
+      "article": "eng"
     },
     {
-      "id": 7,
-      "fr": "Avocat / Avocate",
-      "lu": "en Affekot / eng Affekotin",
-      "note": "en → devant voyelle A"
+      "id": 2005,
+      "unite": 1,
+      "fr": "Coiffeur",
+      "lu": "Coiffer",
+      "article": "e"
     },
     {
-      "id": 8,
-      "fr": "Boucher / Bouchère",
-      "lu": "e Metzler / eng Metzlesch",
-      "note": "e → devant consonne"
+      "id": 2006,
+      "unite": 2,
+      "fr": "Coiffeuse",
+      "lu": "Coiffeuse",
+      "article": "eng"
     },
     {
-      "id": 9,
-      "fr": "Boulanger / Boulangère",
-      "lu": "e Bäcker / eng Bäckesch",
-      "note": "e → devant consonne"
+      "id": 2007,
+      "unite": 1,
+      "fr": "Banquier",
+      "lu": "Banker",
+      "article": "e"
     },
     {
-      "id": 10,
-      "fr": "Infirmier / Infirmière",
-      "lu": "en Infirmier / eng Infirmière",
-      "note": "emprunt courant au français"
+      "id": 2008,
+      "unite": 2,
+      "fr": "Banquière",
+      "lu": "Bankerin",
+      "article": "eng"
     },
     {
-      "id": 11,
-      "fr": "Caissier / Caissière",
-      "lu": "e Caissier / eng Caissière",
-      "note": "emprunt courant au français"
+      "id": 2009,
+      "unite": 1,
+      "fr": "Pharmacien",
+      "lu": "Apdikter",
+      "article": "en"
     },
     {
-      "id": 12,
-      "fr": "Instituteur / Institutrice",
-      "lu": "e Schoulmeeschter / eng Léierin",
-      "note": "forme moderne courante"
+      "id": 2010,
+      "unite": 2,
+      "fr": "Pharmacienne",
+      "lu": "Apdiktesch",
+      "article": "eng"
     },
     {
-      "id": 13,
-      "fr": "Pilote / Pilote",
-      "lu": "e Pilot / eng Pilotin",
-      "note": "e → devant consonne"
+      "id": 2011,
+      "unite": 1,
+      "fr": "Facteur",
+      "lu": "Bréifdréier",
+      "article": "e"
     },
     {
-      "id": 14,
-      "fr": "Cuisinier / Cuisinière",
-      "lu": "e Kach / eng Kächin",
-      "note": "e → devant consonne"
+      "id": 2012,
+      "unite": 2,
+      "fr": "Factrice",
+      "lu": "Bréifdréiesch",
+      "article": "eng"
     },
     {
-      "id": 15,
-      "fr": "Journaliste / Journaliste",
-      "lu": "e Journalist / eng Journalistin",
-      "note": "e → devant consonne"
+      "id": 2013,
+      "unite": 1,
+      "fr": "Avocat",
+      "lu": "Affekot",
+      "article": "en"
     },
     {
-      "id": 16,
-      "fr": "Sportif / Sportive",
-      "lu": "e Sportler / eng Sportlerin",
-      "note": "e → devant consonne"
+      "id": 2014,
+      "unite": 2,
+      "fr": "Avocate",
+      "lu": "Affekotin",
+      "article": "eng"
     },
     {
-      "id": 17,
-      "fr": "Acteur / Actrice",
-      "lu": "e Schauspiller / eng Schauspillerin",
-      "note": "e → devant consonne"
+      "id": 2015,
+      "unite": 1,
+      "fr": "Boucher",
+      "lu": "Metzler",
+      "article": "e"
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "Bouchère",
+      "lu": "Metzlesch",
+      "article": "eng"
+    },
+    {
+      "id": 2017,
+      "unite": 1,
+      "fr": "Boulanger",
+      "lu": "Bäcker",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "Boulangère",
+      "lu": "Bäckesch",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "fr": "Infirmier",
+      "lu": "Infirmier",
+      "article": "en",
+      "plus": true
+    },
+    {
+      "id": 2020,
+      "unite": 2,
+      "fr": "Infirmière",
+      "lu": "Infirmière",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2021,
+      "unite": 1,
+      "fr": "Caissier",
+      "lu": "Caissier",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2022,
+      "unite": 2,
+      "fr": "Caissière",
+      "lu": "Caissière",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2023,
+      "unite": 1,
+      "fr": "Instituteur",
+      "lu": "Schoulmeeschter",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2024,
+      "unite": 2,
+      "fr": "Institutrice",
+      "lu": "Léierin",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2025,
+      "unite": 1,
+      "fr": "Pilote",
+      "lu": "Pilot",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2026,
+      "unite": 2,
+      "fr": "Pilote",
+      "lu": "Pilotin",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2027,
+      "unite": 1,
+      "fr": "Cuisinier",
+      "lu": "Kach",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2028,
+      "unite": 2,
+      "fr": "Cuisinière",
+      "lu": "Kächin",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2029,
+      "unite": 1,
+      "fr": "Journaliste",
+      "lu": "Journalist",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2030,
+      "unite": 2,
+      "fr": "Journaliste",
+      "lu": "Journalistin",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2031,
+      "unite": 1,
+      "fr": "Sportif",
+      "lu": "Sportler",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2032,
+      "unite": 2,
+      "fr": "Sportive",
+      "lu": "Sportlerin",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2033,
+      "unite": 1,
+      "fr": "Acteur",
+      "lu": "Schauspiller",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2034,
+      "unite": 2,
+      "fr": "Actrice",
+      "lu": "Schauspillerin",
+      "article": "eng",
+      "plus": true
+    },
+    {
+      "id": 2035,
+      "unite": 3,
+      "fr": "travailler",
+      "lu": "schaffen"
+    },
+    {
+      "id": 2036,
+      "unite": 3,
+      "fr": "comme (profession)",
+      "lu": "als"
+    },
+    {
+      "id": 2037,
+      "unite": 3,
+      "fr": "ne… pas (masculin)",
+      "lu": "kee"
+    },
+    {
+      "id": 2038,
+      "unite": 3,
+      "fr": "ne… pas (féminin)",
+      "lu": "keng"
+    },
+    {
+      "id": 2039,
+      "unite": 3,
+      "fr": "métier",
+      "lu": "Beruff"
+    },
+    {
+      "id": 2040,
+      "unite": 3,
+      "fr": "banquier",
+      "lu": "Banker"
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "question": "e Polizist",
       "reponse": "policier",
       "distracteurs": [
@@ -125,7 +437,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 2,
       "question": "eng Polizistin",
       "reponse": "policière",
       "distracteurs": [
@@ -135,7 +448,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "question": "en Dokter",
       "reponse": "médecin",
       "distracteurs": [
@@ -145,7 +459,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "question": "eng Doktesch",
       "reponse": "doctoresse",
       "distracteurs": [
@@ -155,7 +470,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "question": "e Coiffer",
       "reponse": "coiffeur",
       "distracteurs": [
@@ -165,7 +481,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "question": "eng Bankerin",
       "reponse": "banquière",
       "distracteurs": [
@@ -175,7 +492,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 1,
       "question": "en Apdikter",
       "reponse": "pharmacien",
       "distracteurs": [
@@ -185,7 +503,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "question": "eng Bréifdréiesch",
       "reponse": "factrice",
       "distracteurs": [
@@ -195,7 +514,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 1,
       "question": "en Affekot",
       "reponse": "avocat",
       "distracteurs": [
@@ -205,7 +525,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "question": "eng Metzlesch",
       "reponse": "bouchère",
       "distracteurs": [
@@ -215,7 +536,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 1,
       "question": "e Bäcker",
       "reponse": "boulanger",
       "distracteurs": [
@@ -225,7 +547,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "question": "eng Infirmière",
       "reponse": "infirmière",
       "distracteurs": [
@@ -235,7 +558,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 1,
       "question": "e Caissier",
       "reponse": "caissier",
       "distracteurs": [
@@ -245,7 +569,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 2,
       "question": "eng Léierin",
       "reponse": "institutrice",
       "distracteurs": [
@@ -255,7 +580,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 1,
       "question": "e Pilot",
       "reponse": "pilote",
       "distracteurs": [
@@ -265,7 +591,8 @@
       ]
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 2,
       "question": "eng Kächin",
       "reponse": "cuisinière",
       "distracteurs": [
@@ -275,293 +602,292 @@
       ]
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 1,
       "question": "e Schauspiller",
       "reponse": "acteur",
       "distracteurs": [
         "journaliste",
         "sportif",
         "avocat"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 2,
       "question": "eng Coiffeuse",
       "reponse": "coiffeuse",
       "distracteurs": [
         "banquière",
         "caissière",
         "infirmière"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 1,
       "question": "e Banker",
       "reponse": "banquier",
       "distracteurs": [
         "caissier",
         "coiffeur",
         "facteur"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 2,
       "question": "eng Apdiktesch",
       "reponse": "pharmacienne",
       "distracteurs": [
         "doctoresse",
         "infirmière",
         "avocate"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 1,
       "question": "e Bréifdréier",
       "reponse": "facteur",
       "distracteurs": [
         "boulanger",
         "boucher",
         "caissier"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 22,
+      "id": 2022,
+      "unite": 2,
       "question": "eng Affekotin",
       "reponse": "avocate",
       "distracteurs": [
         "banquière",
         "pharmacienne",
         "policière"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 23,
+      "id": 2023,
+      "unite": 1,
       "question": "e Metzler",
       "reponse": "boucher",
       "distracteurs": [
         "boulanger",
         "cuisinier",
         "facteur"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 24,
+      "id": 2024,
+      "unite": 2,
       "question": "eng Bäckesch",
       "reponse": "boulangère",
       "distracteurs": [
         "bouchère",
         "cuisinière",
         "caissière"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 25,
+      "id": 2025,
+      "unite": 1,
       "question": "en Infirmier",
       "reponse": "infirmier",
       "distracteurs": [
         "médecin",
         "pharmacien",
         "avocat"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 26,
+      "id": 2026,
+      "unite": 2,
       "question": "eng Caissière",
       "reponse": "caissière",
       "distracteurs": [
         "coiffeuse",
         "banquière",
         "infirmière"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 27,
+      "id": 2027,
+      "unite": 1,
       "question": "e Schoulmeeschter",
       "reponse": "instituteur",
       "distracteurs": [
         "journaliste",
         "acteur",
         "pilote"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 28,
+      "id": 2028,
+      "unite": 2,
       "question": "eng Pilotin",
       "reponse": "pilote",
       "distracteurs": [
         "sportive",
         "actrice",
         "journaliste"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 29,
+      "id": 2029,
+      "unite": 1,
       "question": "e Kach",
       "reponse": "cuisinier",
       "distracteurs": [
         "boulanger",
         "boucher",
         "pharmacien"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 30,
+      "id": 2030,
+      "unite": 2,
       "question": "e Journalist",
       "reponse": "journaliste (homme)",
       "distracteurs": [
         "acteur",
         "sportif",
         "avocat"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 31,
+      "id": 2031,
+      "unite": 1,
       "question": "eng Journalistin",
       "reponse": "journaliste (femme)",
       "distracteurs": [
         "actrice",
         "sportive",
         "avocate"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 32,
+      "id": 2032,
+      "unite": 2,
       "question": "e Sportler",
       "reponse": "sportif",
       "distracteurs": [
         "acteur",
         "pilote",
         "journaliste"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 33,
+      "id": 2033,
+      "unite": 1,
       "question": "eng Sportlerin",
       "reponse": "sportive",
       "distracteurs": [
         "actrice",
         "pilote",
         "journaliste"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 34,
+      "id": 2034,
+      "unite": 2,
       "question": "eng Schauspillerin",
       "reponse": "actrice",
       "distracteurs": [
         "sportive",
         "journaliste",
         "pilote"
+      ],
+      "plus": true
+    },
+    {
+      "id": 2035,
+      "unite": 3,
+      "question": "Je travaille comme banquier.",
+      "reponse": "Ech schaffen als Banker.",
+      "distracteurs": [
+        "Ech schaffen als e Banker.",
+        "Ech sinn als Banker.",
+        "Ech schafft als Banker."
+      ]
+    },
+    {
+      "id": 2036,
+      "unite": 3,
+      "question": "Je ne suis pas coiffeur.",
+      "reponse": "Ech sinn kee Coiffer.",
+      "distracteurs": [
+        "Ech sinn keng Coiffer.",
+        "Ech sinn eng Coiffer.",
+        "Ech schaffen kee Coiffer."
+      ]
+    },
+    {
+      "id": 2037,
+      "unite": 3,
+      "question": "Je suis banquier.",
+      "reponse": "Ech sinn e Banker.",
+      "distracteurs": [
+        "Ech schaffen e Banker.",
+        "Ech sinn eng Banker.",
+        "Ech sinn als Banker."
+      ]
+    },
+    {
+      "id": 2038,
+      "unite": 3,
+      "question": "Je ne suis pas banquière.",
+      "reponse": "Ech sinn keng Bankerin.",
+      "distracteurs": [
+        "Ech sinn kee Bankerin.",
+        "Ech sinn eng Bankerin.",
+        "Ech schaffen keng Bankerin."
+      ]
+    },
+    {
+      "id": 2039,
+      "unite": 3,
+      "question": "Je travaille comme médecin.",
+      "reponse": "Ech schaffen als Dokter.",
+      "distracteurs": [
+        "Ech schaffen en Dokter.",
+        "Ech sinn als Dokter.",
+        "Ech schaffs als Dokter."
+      ]
+    },
+    {
+      "id": 2040,
+      "unite": 3,
+      "question": "Je suis médecin (homme).",
+      "reponse": "Ech sinn en Dokter.",
+      "distracteurs": [
+        "Ech sinn e Dokter.",
+        "Ech schaffen en Dokter.",
+        "Ech sinn eng Dokter."
       ]
     }
   ],
   "trous": [
     {
-      "id": 1,
-      "fr": "Cristiano Ronaldo est pilote.",
-      "avant": "De Ronaldo ass e",
-      "trou": "Pilot",
-      "apres": ".",
-      "choix": [
-        "Pilot",
-        "Banker",
-        "Polizist",
-        "Dokter"
-      ]
-    },
-    {
-      "id": 2,
-      "fr": "Michelle Obama est avocate.",
-      "avant": "D'Michelle ass eng",
-      "trou": "Affekotin",
-      "apres": ".",
-      "choix": [
-        "Affekotin",
-        "Doktesch",
-        "Polizistin",
-        "Bankerin"
-      ]
-    },
-    {
-      "id": 3,
-      "fr": "Gordon Ramsay est cuisinier.",
-      "avant": "De Gordon ass e",
-      "trou": "Kach",
-      "apres": ".",
-      "choix": [
-        "Kach",
-        "Bäcker",
-        "Metzler",
-        "Dokter"
-      ]
-    },
-    {
-      "id": 4,
-      "fr": "Doc Martin est médecin.",
-      "avant": "Den Doc Martin ass en",
-      "trou": "Dokter",
-      "apres": ".",
-      "choix": [
-        "Dokter",
-        "Apdikter",
-        "Affekot",
-        "Pilot"
-      ]
-    },
-    {
-      "id": 5,
-      "fr": "Florence Nightingale est infirmière.",
-      "avant": "D'Florence ass eng",
-      "trou": "Infirmière",
-      "apres": ".",
-      "choix": [
-        "Infirmière",
-        "Doktesch",
-        "Caissière",
-        "Bankerin"
-      ]
-    },
-    {
-      "id": 6,
-      "fr": "Harvey Specter est avocat.",
-      "avant": "Den Harvey ass en",
-      "trou": "Affekot",
-      "apres": ".",
-      "choix": [
-        "Affekot",
-        "Dokter",
-        "Apdikter",
-        "Pilot"
-      ]
-    },
-    {
-      "id": 7,
-      "fr": "Lady Gaga est coiffeuse.",
-      "avant": "D'Lady Gaga ass eng",
-      "trou": "Coiffeuse",
-      "apres": ".",
-      "choix": [
-        "Coiffeuse",
-        "Doktesch",
-        "Caissière",
-        "Bankerin"
-      ]
-    },
-    {
-      "id": 8,
-      "fr": "Walter White est instituteur.",
-      "avant": "De Walter ass e",
-      "trou": "Schoulmeeschter",
-      "apres": ".",
-      "choix": [
-        "Schoulmeeschter",
-        "Dokter",
-        "Pilot",
-        "Metzler"
-      ]
-    },
-    {
-      "id": 9,
+      "id": 2001,
+      "unite": 2,
       "fr": "Cette femme est pharmacienne.",
       "avant": "Dës Fra ass eng",
       "trou": "Apdiktesch",
@@ -574,7 +900,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2002,
+      "unite": 1,
       "fr": "Je travaille comme boucher.",
       "avant": "Ech schaffen als",
       "trou": "Metzler",
@@ -584,10 +911,12 @@
         "Bäcker",
         "Kach",
         "Dokter"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 11,
+      "id": 2003,
+      "unite": 2,
       "fr": "Nicki Minaj est caissière.",
       "avant": "D'Nicki ass eng",
       "trou": "Caissière",
@@ -597,10 +926,12 @@
         "Bankerin",
         "Coiffeuse",
         "Doktesch"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 12,
+      "id": 2004,
+      "unite": 2,
       "fr": "Cette femme est institutrice.",
       "avant": "Dës Fra ass eng",
       "trou": "Léierin",
@@ -613,7 +944,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2005,
+      "unite": 1,
       "fr": "Paul Hollywood est boulanger.",
       "avant": "De Paul ass e",
       "trou": "Bäcker",
@@ -623,10 +955,12 @@
         "Metzler",
         "Kach",
         "Dokter"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 14,
+      "id": 2006,
+      "unite": 2,
       "fr": "Cette femme est policière.",
       "avant": "Dës Fra ass eng",
       "trou": "Polizistin",
@@ -639,7 +973,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2007,
+      "unite": 1,
       "fr": "Tom Cruise est acteur.",
       "avant": "Den Tom ass e",
       "trou": "Schauspiller",
@@ -649,10 +984,12 @@
         "Journalist",
         "Sportler",
         "Pilot"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 16,
+      "id": 2008,
+      "unite": 1,
       "fr": "Cet homme est policier.",
       "avant": "Dëse Mann ass e",
       "trou": "Polizist",
@@ -665,7 +1002,8 @@
       ]
     },
     {
-      "id": 17,
+      "id": 2009,
+      "unite": 2,
       "fr": "Cette femme est médecin.",
       "avant": "Dës Fra ass eng",
       "trou": "Doktesch",
@@ -678,7 +1016,8 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2010,
+      "unite": 1,
       "fr": "Cet homme est coiffeur.",
       "avant": "Dëse Mann ass e",
       "trou": "Coiffer",
@@ -691,7 +1030,8 @@
       ]
     },
     {
-      "id": 19,
+      "id": 2011,
+      "unite": 1,
       "fr": "Cet homme est banquier.",
       "avant": "Dëse Mann ass e",
       "trou": "Banker",
@@ -704,7 +1044,8 @@
       ]
     },
     {
-      "id": 20,
+      "id": 2012,
+      "unite": 2,
       "fr": "Cette femme est banquière.",
       "avant": "Dës Fra ass eng",
       "trou": "Bankerin",
@@ -717,7 +1058,8 @@
       ]
     },
     {
-      "id": 21,
+      "id": 2013,
+      "unite": 1,
       "fr": "Cet homme est pharmacien.",
       "avant": "Dëse Mann ass en",
       "trou": "Apdikter",
@@ -730,7 +1072,8 @@
       ]
     },
     {
-      "id": 22,
+      "id": 2014,
+      "unite": 1,
       "fr": "Cet homme est facteur.",
       "avant": "Dëse Mann ass e",
       "trou": "Bréifdréier",
@@ -743,7 +1086,8 @@
       ]
     },
     {
-      "id": 23,
+      "id": 2015,
+      "unite": 2,
       "fr": "Cette femme est factrice.",
       "avant": "Dës Fra ass eng",
       "trou": "Bréifdréiesch",
@@ -756,7 +1100,8 @@
       ]
     },
     {
-      "id": 24,
+      "id": 2016,
+      "unite": 2,
       "fr": "Cette femme est bouchère.",
       "avant": "Dës Fra ass eng",
       "trou": "Metzlesch",
@@ -769,7 +1114,8 @@
       ]
     },
     {
-      "id": 25,
+      "id": 2017,
+      "unite": 2,
       "fr": "Cette femme est boulangère.",
       "avant": "Dës Fra ass eng",
       "trou": "Bäckesch",
@@ -782,7 +1128,8 @@
       ]
     },
     {
-      "id": 26,
+      "id": 2018,
+      "unite": 1,
       "fr": "Cet homme est infirmier.",
       "avant": "Dëse Mann ass en",
       "trou": "Infirmier",
@@ -795,7 +1142,8 @@
       ]
     },
     {
-      "id": 27,
+      "id": 2019,
+      "unite": 1,
       "fr": "Cet homme est caissier.",
       "avant": "Dëse Mann ass e",
       "trou": "Caissier",
@@ -808,7 +1156,8 @@
       ]
     },
     {
-      "id": 28,
+      "id": 2020,
+      "unite": 2,
       "fr": "Cette femme est pilote.",
       "avant": "Dës Fra ass eng",
       "trou": "Pilotin",
@@ -818,10 +1167,12 @@
         "Sportlerin",
         "Journalistin",
         "Schauspillerin"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 29,
+      "id": 2021,
+      "unite": 2,
       "fr": "Cette femme est cuisinière.",
       "avant": "Dës Fra ass eng",
       "trou": "Kächin",
@@ -831,10 +1182,12 @@
         "Bäckesch",
         "Metzlesch",
         "Caissière"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 30,
+      "id": 2022,
+      "unite": 1,
       "fr": "Cet homme est journaliste.",
       "avant": "Dëse Mann ass e",
       "trou": "Journalist",
@@ -844,10 +1197,12 @@
         "Schauspiller",
         "Sportler",
         "Pilot"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 31,
+      "id": 2023,
+      "unite": 2,
       "fr": "Cette femme est journaliste.",
       "avant": "Dës Fra ass eng",
       "trou": "Journalistin",
@@ -857,10 +1212,12 @@
         "Schauspillerin",
         "Sportlerin",
         "Pilotin"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 32,
+      "id": 2024,
+      "unite": 1,
       "fr": "Cet homme est sportif.",
       "avant": "Dëse Mann ass e",
       "trou": "Sportler",
@@ -870,10 +1227,12 @@
         "Journalist",
         "Schauspiller",
         "Pilot"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 33,
+      "id": 2025,
+      "unite": 2,
       "fr": "Cette femme est sportive.",
       "avant": "Dës Fra ass eng",
       "trou": "Sportlerin",
@@ -883,10 +1242,12 @@
         "Journalistin",
         "Schauspillerin",
         "Pilotin"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 34,
+      "id": 2026,
+      "unite": 2,
       "fr": "Cette femme est actrice.",
       "avant": "Dës Fra ass eng",
       "trou": "Schauspillerin",
@@ -896,151 +1257,356 @@
         "Sportlerin",
         "Journalistin",
         "Pilotin"
-      ]
+      ],
+      "plus": true
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "fr": "Je travaille comme banquier.",
+      "avant": "Ech schaffen",
+      "trou": "als",
+      "apres": "Banker.",
+      "choix": [
+        "als",
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Vérifie l'article et la structure de la profession."
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "fr": "Je ne suis pas coiffeur.",
+      "avant": "Ech sinn",
+      "trou": "kee",
+      "apres": "Coiffer.",
+      "choix": [
+        "kee",
+        "keng",
+        "keen",
+        "net"
+      ],
+      "note": "Vérifie l'article et la structure de la profession."
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "Je ne suis pas banquière.",
+      "avant": "Ech sinn",
+      "trou": "keng",
+      "apres": "Bankerin.",
+      "choix": [
+        "keng",
+        "kee",
+        "keen",
+        "net"
+      ],
+      "note": "Vérifie l'article et la structure de la profession."
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "fr": "Je travaille comme médecin.",
+      "avant": "Ech schaffen",
+      "trou": "als",
+      "apres": "Dokter.",
+      "choix": [
+        "als",
+        "eng",
+        "en",
+        "e"
+      ],
+      "note": "Vérifie l'article et la structure de la profession."
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "fr": "Je suis médecin (homme).",
+      "avant": "Ech sinn",
+      "trou": "en",
+      "apres": "Dokter.",
+      "choix": [
+        "en",
+        "e",
+        "eng",
+        "kee"
+      ],
+      "note": "Vérifie l'article et la structure de la profession."
+    },
+    {
+      "id": 2032,
+      "unite": 3,
+      "fr": "Je suis banquier.",
+      "avant": "Ech sinn",
+      "trou": "e",
+      "apres": "Banker.",
+      "choix": [
+        "e",
+        "en",
+        "eng",
+        "als"
+      ],
+      "note": "Vérifie l'article et la structure de la profession."
     }
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "Je suis policier.",
       "lu": "Ech sinn e Polizist."
     },
     {
+      "id": 2002,
+      "unite": 2,
       "fr": "Je ne suis pas policière.",
-      "lu": "Ech sinn keng Polizistin."
+      "lu": "Ech sinn keng Polizistin.",
+      "plus": true
     },
     {
+      "id": 2003,
+      "unite": 3,
       "fr": "Je travaille comme médecin (homme).",
       "lu": "Ech schaffen als Dokter."
     },
     {
+      "id": 2004,
+      "unite": 2,
       "fr": "Je suis médecin (femme).",
       "lu": "Ech sinn eng Doktesch."
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "Je ne suis pas coiffeur.",
-      "lu": "Ech sinn kee Coiffer."
+      "lu": "Ech sinn kee Coiffer.",
+      "plus": true
     },
     {
+      "id": 2006,
+      "unite": 3,
       "fr": "Je travaille comme coiffeuse.",
       "lu": "Ech schaffen als Coiffeuse."
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "Je suis banquier.",
       "lu": "Ech sinn e Banker."
     },
     {
+      "id": 2008,
+      "unite": 2,
       "fr": "Je ne suis pas banquière.",
-      "lu": "Ech sinn keng Bankerin."
+      "lu": "Ech sinn keng Bankerin.",
+      "plus": true
     },
     {
+      "id": 2009,
+      "unite": 3,
       "fr": "Je travaille comme pharmacien.",
       "lu": "Ech schaffen als Apdikter."
     },
     {
+      "id": 2010,
+      "unite": 2,
       "fr": "Je suis pharmacienne.",
       "lu": "Ech sinn eng Apdiktesch."
     },
     {
+      "id": 2011,
+      "unite": 1,
       "fr": "Je ne suis pas facteur.",
-      "lu": "Ech sinn kee Bréifdréier."
+      "lu": "Ech sinn kee Bréifdréier.",
+      "plus": true
     },
     {
+      "id": 2012,
+      "unite": 3,
       "fr": "Je travaille comme factrice.",
       "lu": "Ech schaffen als Bréifdréiesch."
     },
     {
+      "id": 2013,
+      "unite": 1,
       "fr": "Je suis avocat.",
       "lu": "Ech sinn en Affekot."
     },
     {
+      "id": 2014,
+      "unite": 2,
       "fr": "Je ne suis pas avocate.",
-      "lu": "Ech sinn keng Affekotin."
+      "lu": "Ech sinn keng Affekotin.",
+      "plus": true
     },
     {
+      "id": 2015,
+      "unite": 3,
       "fr": "Je travaille comme boucher.",
       "lu": "Ech schaffen als Metzler."
     },
     {
+      "id": 2016,
+      "unite": 2,
       "fr": "Je suis bouchère.",
       "lu": "Ech sinn eng Metzlesch."
     },
     {
+      "id": 2017,
+      "unite": 1,
       "fr": "Je ne suis pas boulanger.",
-      "lu": "Ech sinn kee Bäcker."
+      "lu": "Ech sinn kee Bäcker.",
+      "plus": true
     },
     {
+      "id": 2018,
+      "unite": 3,
       "fr": "Je travaille comme boulangère.",
       "lu": "Ech schaffen als Bäckesch."
     },
     {
+      "id": 2019,
+      "unite": 1,
       "fr": "Je suis infirmier.",
       "lu": "Ech sinn en Infirmier."
     },
     {
+      "id": 2020,
+      "unite": 2,
       "fr": "Je ne suis pas infirmière.",
-      "lu": "Ech sinn keng Infirmière."
+      "lu": "Ech sinn keng Infirmière.",
+      "plus": true
     },
     {
+      "id": 2021,
+      "unite": 3,
       "fr": "Je travaille comme caissier.",
       "lu": "Ech schaffen als Caissier."
     },
     {
+      "id": 2022,
+      "unite": 2,
       "fr": "Je suis caissière.",
       "lu": "Ech sinn eng Caissière."
     },
     {
+      "id": 2023,
+      "unite": 1,
       "fr": "Je ne suis pas instituteur.",
-      "lu": "Ech sinn kee Schoulmeeschter."
+      "lu": "Ech sinn kee Schoulmeeschter.",
+      "plus": true
     },
     {
+      "id": 2024,
+      "unite": 3,
       "fr": "Je travaille comme institutrice.",
-      "lu": "Ech schaffen als Léierin."
+      "lu": "Ech schaffen als Léierin.",
+      "plus": true
     },
     {
+      "id": 2025,
+      "unite": 1,
       "fr": "Je suis pilote (homme).",
       "lu": "Ech sinn e Pilot."
     },
     {
+      "id": 2026,
+      "unite": 2,
       "fr": "Je ne suis pas pilote (femme).",
-      "lu": "Ech sinn keng Pilotin."
+      "lu": "Ech sinn keng Pilotin.",
+      "plus": true
     },
     {
+      "id": 2027,
+      "unite": 3,
       "fr": "Je travaille comme cuisinier.",
-      "lu": "Ech schaffen als Kach."
+      "lu": "Ech schaffen als Kach.",
+      "plus": true
     },
     {
+      "id": 2028,
+      "unite": 2,
       "fr": "Je suis cuisinière.",
       "lu": "Ech sinn eng Kächin."
     },
     {
+      "id": 2029,
+      "unite": 1,
       "fr": "Je ne suis pas journaliste (homme).",
-      "lu": "Ech sinn kee Journalist."
+      "lu": "Ech sinn kee Journalist.",
+      "plus": true
     },
     {
+      "id": 2030,
+      "unite": 3,
       "fr": "Je travaille comme journaliste (femme).",
-      "lu": "Ech schaffen als Journalistin."
+      "lu": "Ech schaffen als Journalistin.",
+      "plus": true
     },
     {
+      "id": 2031,
+      "unite": 1,
       "fr": "Je suis sportif.",
       "lu": "Ech sinn e Sportler."
     },
     {
+      "id": 2032,
+      "unite": 2,
       "fr": "Je ne suis pas sportive.",
-      "lu": "Ech sinn keng Sportlerin."
+      "lu": "Ech sinn keng Sportlerin.",
+      "plus": true
     },
     {
+      "id": 2033,
+      "unite": 3,
       "fr": "Je travaille comme acteur.",
-      "lu": "Ech schaffen als Schauspiller."
+      "lu": "Ech schaffen als Schauspiller.",
+      "plus": true
     },
     {
+      "id": 2034,
+      "unite": 2,
       "fr": "Je suis actrice.",
       "lu": "Ech sinn eng Schauspillerin."
     }
   ],
-  "cours":[
+  "cours": [
+    {
+      "type": "callout",
+      "titre": "Dire son métier",
+      "variant": "retenir",
+      "lignes": [
+        "Métier au masculin : <b>e Banker</b> · <b>en Dokter</b>.",
+        "Ech sinn <b>e</b> Polizist."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "titre": "Les métiers au féminin",
+      "variant": "retenir",
+      "lignes": [
+        "Au féminin : <b>eng</b> Bankerin, Polizistin, Doktesch.",
+        "Dokter → <b>Doktesch</b> (forme particulière)."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "titre": "Travailler comme et dire non",
+      "variant": "retenir",
+      "lignes": [
+        "<b>schaffen als</b> sans article ; négation <b>kee</b> / <b>keng</b> devant un métier.",
+        "Ech sinn <b>kee</b> Coiffer. Ech schaffen <b>als</b> Banker."
+      ],
+      "unite": 3
+    },
     {
       "type": "texte",
-      "contenu": "Pour parler du métier de quelqu'un, on utilise surtout sinn pour dire ce que l'on est, et schaffen als pour dire comme quoi on travaille. La difficulté principale de cette leçon est de retenir la forme masculine, la forme féminine et l'article qui va avec."
+      "contenu": "Pour parler du métier de quelqu'un, on utilise surtout sinn pour dire ce que l'on est, et schaffen als pour dire comme quoi on travaille. La difficulté principale de cette leçon est de retenir la forme masculine, la forme féminine et l'article qui va avec.",
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1051,7 +1617,8 @@
         "Ech sinn eng Polizistin. = Je suis policière.",
         "Ech schaffen als Dokter. = Je travaille comme médecin.",
         "Après als, on ne met généralement pas l'article : als Dokter, als Metzler, als Léierin."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1062,7 +1629,8 @@
         "Masculin devant certaines voyelles ou consonnes → en : en Dokter, en Affekot, en Apdikter.",
         "Féminin → eng : eng Polizistin, eng Bankerin, eng Doktesch.",
         "Dans les phrases avec sinn, on garde l'article : Ech sinn e Banker, Ech sinn eng Bankerin."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1158,7 +1726,8 @@
           "e Schauspiller",
           "eng Schauspillerin"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1168,7 +1737,8 @@
         "Beaucoup de métiers féminins se forment avec -in : Polizistin, Bankerin, Affekotin, Pilotin, Journalistin.",
         "Certains métiers ont une forme féminine particulière : Dokter → Doktesch, Apdikter → Apdiktesch, Bäcker → Bäckesch.",
         "Certains emprunts restent proches du français : en Infirmier / eng Infirmière, e Caissier / eng Caissière."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1209,7 +1779,8 @@
           "Ech schaffen als Léierin.",
           "schaffen als + métier"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1219,7 +1790,8 @@
         "Ech sinn en Dokter. = Je suis médecin.",
         "Ech schaffen als Dokter. = Je travaille comme médecin.",
         "Les deux phrases sont proches, mais elles ne se construisent pas pareil : avec sinn, on met l'article ; avec als, on ne le met pas."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1230,7 +1802,8 @@
         "Masculin avec en → keen : Ech sinn keen Dokter.",
         "Féminin avec eng → keng : Ech sinn keng Polizistin.",
         "Exemples : Ech sinn kee Coiffer. · Ech sinn keen Affekot. · Ech sinn keng Bankerin."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1252,7 +1825,8 @@
           "Wat schafft Dir?",
           "Que faites-vous comme travail ?"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1274,7 +1848,8 @@
           "Ech schaffen als Bäckesch.",
           "Je travaille comme boulangère."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1296,7 +1871,8 @@
           "Nee, si ass keng Bankerin.",
           "Non, elle n'est pas banquière."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
