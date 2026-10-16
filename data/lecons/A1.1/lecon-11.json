@@ -49,7 +49,7 @@
     {
       "unite": 2,
       "qui": "Marie",
-      "lu": "Meng Schwëster ass Doktesch.",
+      "lu": "Meng Schwëster ass eng Doktesch.",
       "fr": "Ma sœur est médecin."
     },
     {
@@ -1602,6 +1602,284 @@
         "Ech sinn <b>kee</b> Coiffer. Ech schaffen <b>als</b> Banker."
       ],
       "unite": 3
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Dire son métier",
+      "unite": 1,
+      "items": [
+        [
+          "e Polizist",
+          "Policier"
+        ],
+        [
+          "en Dokter",
+          "Médecin (M)"
+        ],
+        [
+          "e Coiffer",
+          "Coiffeur"
+        ],
+        [
+          "e Banker",
+          "Banquier"
+        ],
+        [
+          "en Apdikter",
+          "Pharmacien"
+        ],
+        [
+          "e Bréifdréier",
+          "Facteur"
+        ],
+        [
+          "en Affekot",
+          "Avocat"
+        ],
+        [
+          "e Metzler",
+          "Boucher"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Pour aller plus loin · Dire son métier",
+      "unite": 1,
+      "plus": true,
+      "items": [
+        [
+          "e Bäcker",
+          "Boulanger"
+        ],
+        [
+          "en Infirmier",
+          "Infirmier"
+        ],
+        [
+          "e Caissier",
+          "Caissier"
+        ],
+        [
+          "e Schoulmeeschter",
+          "Instituteur"
+        ],
+        [
+          "e Pilot",
+          "Pilote"
+        ],
+        [
+          "e Kach",
+          "Cuisinier"
+        ],
+        [
+          "e Journalist",
+          "Journaliste"
+        ],
+        [
+          "e Sportler",
+          "Sportif"
+        ],
+        [
+          "e Schauspiller",
+          "Acteur"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Dire son métier",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech sinn e Polizist.",
+          "Je suis policier."
+        ],
+        [
+          "Ech sinn e Banker.",
+          "Je suis banquier."
+        ],
+        [
+          "Ech sinn en Affekot.",
+          "Je suis avocat."
+        ],
+        [
+          "Ech sinn en Infirmier.",
+          "Je suis infirmier."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Les métiers au féminin",
+      "unite": 2,
+      "items": [
+        [
+          "eng Polizistin",
+          "Policière"
+        ],
+        [
+          "eng Doktesch",
+          "Médecin (F)"
+        ],
+        [
+          "eng Coiffeuse",
+          "Coiffeuse"
+        ],
+        [
+          "eng Bankerin",
+          "Banquière"
+        ],
+        [
+          "eng Apdiktesch",
+          "Pharmacienne"
+        ],
+        [
+          "eng Bréifdréiesch",
+          "Factrice"
+        ],
+        [
+          "eng Affekotin",
+          "Avocate"
+        ],
+        [
+          "eng Metzlesch",
+          "Bouchère"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Pour aller plus loin · Les métiers au féminin",
+      "unite": 2,
+      "plus": true,
+      "items": [
+        [
+          "eng Bäckesch",
+          "Boulangère"
+        ],
+        [
+          "eng Infirmière",
+          "Infirmière"
+        ],
+        [
+          "eng Caissière",
+          "Caissière"
+        ],
+        [
+          "eng Léierin",
+          "Institutrice"
+        ],
+        [
+          "eng Pilotin",
+          "Pilote"
+        ],
+        [
+          "eng Kächin",
+          "Cuisinière"
+        ],
+        [
+          "eng Journalistin",
+          "Journaliste"
+        ],
+        [
+          "eng Sportlerin",
+          "Sportive"
+        ],
+        [
+          "eng Schauspillerin",
+          "Actrice"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Les métiers au féminin",
+      "unite": 2,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech sinn eng Doktesch.",
+          "Je suis médecin (femme)."
+        ],
+        [
+          "Ech sinn eng Apdiktesch.",
+          "Je suis pharmacienne."
+        ],
+        [
+          "Ech sinn eng Metzlesch.",
+          "Je suis bouchère."
+        ],
+        [
+          "Ech sinn eng Caissière.",
+          "Je suis caissière."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Travailler comme et dire non",
+      "unite": 3,
+      "items": [
+        [
+          "schaffen",
+          "travailler"
+        ],
+        [
+          "als",
+          "comme (profession)"
+        ],
+        [
+          "kee",
+          "ne… pas (masculin)"
+        ],
+        [
+          "keng",
+          "ne… pas (féminin)"
+        ],
+        [
+          "Beruff",
+          "métier"
+        ],
+        [
+          "Banker",
+          "banquier"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Travailler comme et dire non",
+      "unite": 3,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech schaffen als Dokter.",
+          "Je travaille comme médecin (homme)."
+        ],
+        [
+          "Ech schaffen als Coiffeuse.",
+          "Je travaille comme coiffeuse."
+        ],
+        [
+          "Ech schaffen als Apdikter.",
+          "Je travaille comme pharmacien."
+        ],
+        [
+          "Ech schaffen als Bréifdréiesch.",
+          "Je travaille comme factrice."
+        ]
+      ]
     },
     {
       "type": "texte",
