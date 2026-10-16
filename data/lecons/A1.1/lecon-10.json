@@ -3,71 +3,182 @@
   "titre": "Wunnen",
   "titre_fr": "L'habitation – où j'habite",
   "couleur": "#ee6fb0",
-  "instructions": {
-    "flashcards": "Créer des cartes contenant des phrases complètes illustrant les différentes prépositions utilisées avec les lieux d'habitation. Les cartes doivent mettre en évidence les structures a/an, an der, zu, um/am et leurs traductions françaises.",
-    "quiz": "Présenter une phrase française indiquant un lieu d'habitation. L'utilisateur doit choisir la bonne préposition luxembourgeoise. Les distracteurs doivent être les autres prépositions de la leçon (a, an, an der, zu, um, am).",
-    "trous": "Créer des phrases de contexte avec des pays, villes, quartiers ou lieux. L'utilisateur doit retrouver la préposition correcte. Les distracteurs doivent être les autres prépositions étudiées dans la leçon.",
-    "ecriture": "Faire produire des phrases complètes en luxembourgeois à partir du français. Réutiliser tous les cas importants de la leçon : pays sans article, pays féminins, Luxembourg, villes, quartiers et lieux."
+  "v1": {
+    "quiz": 11,
+    "trous": 16,
+    "ecriture": 33
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve une formule courte pour dire ou demander où l'on habite.",
+    "quiz": "Choisis la bonne préposition ou la bonne expression pour indiquer son lieu d'habitation.",
+    "trous": "Complète avec zu, a, an, an der, um ou am selon le lieu.",
+    "ecriture": "Traduis en luxembourgeois les phrases « J'habite… », « Où habites-tu ? » et les variantes de pays, villes et quartiers."
+  },
+  "mission": {
+    "titre": "Où habites-tu ?",
+    "contexte": "Tu rencontres une collègue qui veut savoir dans quel pays et dans quelle ville tu habites. Vous parlez aussi des quartiers de Luxembourg.",
+    "objectif": "dire où tu habites, demander le lieu d'habitation et choisir la préposition adaptée."
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Moien! Wou wunns du?",
+      "fr": "Bonjour ! Où habites-tu ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech wunnen a Frankräich.",
+      "fr": "J'habite en France.",
+      "aide": "Pour la France, utilise <b>a Frankräich</b>."
+    },
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Ech wunnen an der Belsch.",
+      "fr": "Moi, j'habite en Belgique."
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Mäi Frënd wunnt zu Lëtzebuerg.",
+      "fr": "Mon ami habite au Luxembourg.",
+      "aide": "Pour le Luxembourg (pays), utilise <b>zu</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "A wou wunns du a Frankräich?",
+      "fr": "Et où habites-tu en France ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Ech wunnen zu Metz.",
+      "fr": "J'habite à Metz.",
+      "aide": "Pour une ville, utilise <b>zu</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "Wou wunnt deng Kollegin?",
+      "fr": "Où habite ta collègue ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Si wunnt um Kirchberg.",
+      "fr": "Elle habite au Kirchberg.",
+      "aide": "Pour ce quartier, utilise <b>um</b>."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
+      "titre": "Habiter dans un pays",
+      "phrase": [
+        "Ech wunnen a Frankräich.",
+        "J'habite en France."
+      ],
+      "regle": "Pays : <b>zu Lëtzebuerg</b>, <b>a Frankräich</b>, <b>an Däitschland</b>, <b>an der Belsch</b>.",
+      "exemple": "<b>Ech wunnen</b> = j'habite ; <b>hien / si wunnt</b> = il / elle habite.",
+      "pieges": [
+        "On dit <b>zu Lëtzebuerg</b> pour le pays, mais <b>a Frankräich</b>.",
+        "La Belsch et Schwäiz prennent <b>an der</b>."
+      ]
+    },
+    {
+      "id": 2,
+      "titre": "Villes, quartiers et questions",
+      "phrase": [
+        "Wou wunns du? – Ech wunnen zu Metz.",
+        "Où habites-tu ? – J'habite à Metz."
+      ],
+      "regle": "Ville : <b>zu</b> Metz, zu Esch · Quartier : <b>um</b> Kirchberg, <b>am</b> Gronn.",
+      "exemple": "<b>Wou wunns du?</b> (tu) · <b>Wou wunnt Dir?</b> (vous, politesse).",
+      "pieges": [
+        "Le français « à » ne se traduit pas partout pareil : ville = <b>zu</b>, quartier souvent <b>um / am</b>.",
+        "<b>Dir</b> avec majuscule est la forme de politesse."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
       "lu": "Ech wunnen a Frankräich.",
       "fr": "J'habite en France.",
       "note": "Pays sans article → a/an"
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "lu": "Ech wunnen an der Belsch.",
       "fr": "J'habite en Belgique.",
       "note": "Pays féminin → an der"
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "lu": "Ech wunnen zu Lëtzebuerg.",
       "fr": "J'habite au Luxembourg.",
       "note": "Exception → zu"
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "lu": "Ech wunnen zu Metz.",
       "fr": "J'habite à Metz.",
       "note": "Ville → zu"
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "lu": "Ech wunnen an der Stad.",
       "fr": "J'habite en ville.",
       "note": "Stad est féminin → an der"
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "lu": "Ech wunnen um Kirchberg.",
       "fr": "J'habite au Kirchberg.",
       "note": "Quartier → um/am"
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "lu": "Ech wunnen am Gronn.",
       "fr": "J'habite au Grund.",
       "note": "Quartier → um/am"
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "lu": "Wou wunns du?",
       "fr": "Où habites-tu ?",
       "note": "Question informelle → Ech wunnen zu Lëtzebuerg."
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 2,
       "lu": "Wou wunnt Dir?",
       "fr": "Où habitez-vous ?",
       "note": "Question formelle → Ech wunnen an der Belsch."
+    },
+    {
+      "id": 2010,
+      "unite": 1,
+      "fr": "habiter",
+      "lu": "wunnen",
+      "note": "ech wunnen · du wunns · hien/si wunnt"
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "question": "J'habite en France.",
       "reponse": "a Frankräich",
       "distracteurs": [
@@ -77,7 +188,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "question": "J'habite en Belgique.",
       "reponse": "an der Belsch",
       "distracteurs": [
@@ -87,7 +199,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "question": "J'habite au Luxembourg.",
       "reponse": "zu Lëtzebuerg",
       "distracteurs": [
@@ -97,7 +210,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "question": "J'habite à Metz.",
       "reponse": "zu Metz",
       "distracteurs": [
@@ -107,7 +221,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 2,
       "question": "J'habite en ville.",
       "reponse": "an der Stad",
       "distracteurs": [
@@ -117,7 +232,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "question": "J'habite au Kirchberg.",
       "reponse": "um Kirchberg",
       "distracteurs": [
@@ -127,7 +243,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "question": "J'habite au Grund.",
       "reponse": "am Gronn",
       "distracteurs": [
@@ -137,7 +254,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 1,
       "question": "J'habite en Espagne.",
       "reponse": "a Spuenien",
       "distracteurs": [
@@ -147,7 +265,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 2,
       "question": "J'habite à Paris.",
       "reponse": "zu Paräis",
       "distracteurs": [
@@ -157,7 +276,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "question": "J'habite à Belair.",
       "reponse": "um Belair",
       "distracteurs": [
@@ -167,7 +287,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 1,
       "question": "J'habite en Suisse.",
       "reponse": "an der Schwäiz",
       "distracteurs": [
@@ -175,11 +296,24 @@
         "zu Schwäiz",
         "um Schwäiz"
       ]
+    },
+    {
+      "id": 2012,
+      "unite": 1,
+      "question": "J'habite en Allemagne.",
+      "reponse": "an Däitschland",
+      "distracteurs": [
+        "a Däitschland",
+        "zu Däitschland",
+        "an der Däitschland"
+      ],
+      "attention": "L'Allemagne prend <b>an</b>."
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "fr": "J'habite au Luxembourg.",
       "avant": "Ech wunnen",
       "trou": "zu",
@@ -194,7 +328,8 @@
       "note": "Exception Luxembourg → zu"
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "fr": "J'habite en Allemagne.",
       "avant": "Ech wunnen",
       "trou": "an",
@@ -209,7 +344,8 @@
       "note": "Pays sans article"
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "fr": "J'habite en France.",
       "avant": "Ech wunnen",
       "trou": "a",
@@ -224,7 +360,8 @@
       "note": "Pays sans article"
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "fr": "J'habite en Belgique.",
       "avant": "Ech wunnen",
       "trou": "an der",
@@ -239,7 +376,8 @@
       "note": "Pays féminin"
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "fr": "J'habite en Suisse.",
       "avant": "Ech wunnen",
       "trou": "an der",
@@ -254,7 +392,8 @@
       "note": "Pays féminin"
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "fr": "J'habite à Metz.",
       "avant": "Ech wunnen",
       "trou": "zu",
@@ -269,7 +408,8 @@
       "note": "Ville"
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "fr": "J'habite à Esch.",
       "avant": "Ech wunnen",
       "trou": "zu",
@@ -284,7 +424,8 @@
       "note": "Ville"
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "fr": "J'habite à Trèves.",
       "avant": "Ech wunnen",
       "trou": "zu",
@@ -299,7 +440,8 @@
       "note": "Ville"
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 2,
       "fr": "J'habite en ville.",
       "avant": "Ech wunnen",
       "trou": "an der",
@@ -314,7 +456,8 @@
       "note": "Stad est féminin"
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "fr": "J'habite au Kirchberg.",
       "avant": "Ech wunnen",
       "trou": "um",
@@ -329,7 +472,8 @@
       "note": "Quartier"
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "fr": "J'habite à Belair.",
       "avant": "Ech wunnen",
       "trou": "um",
@@ -344,7 +488,8 @@
       "note": "Quartier"
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "fr": "J'habite au Limpertsberg.",
       "avant": "Ech wunnen",
       "trou": "um",
@@ -359,7 +504,8 @@
       "note": "Quartier"
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 2,
       "fr": "J'habite au Grund.",
       "avant": "Ech wunnen",
       "trou": "am",
@@ -374,7 +520,8 @@
       "note": "Quartier → am"
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 1,
       "fr": "J'habite en Belgique.",
       "avant": "Ech wunnen",
       "trou": "an der",
@@ -388,7 +535,8 @@
       "note": "Révision pays féminin"
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 2,
       "fr": "J'habite à Luxembourg-ville.",
       "avant": "Ech wunnen",
       "trou": "zu",
@@ -399,10 +547,12 @@
         "zu",
         "an der"
       ],
-      "note": "Ville"
+      "note": "Ville",
+      "plus": true
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 1,
       "fr": "J'habite en France.",
       "avant": "Ech wunnen",
       "trou": "a",
@@ -418,142 +568,247 @@
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "J'habite au Luxembourg.",
       "lu": "Ech wunnen zu Lëtzebuerg."
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "J'habite en Allemagne.",
       "lu": "Ech wunnen an Däitschland."
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "J'habite en France.",
       "lu": "Ech wunnen a Frankräich."
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "J'habite en Belgique.",
       "lu": "Ech wunnen an der Belsch."
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "J'habite en Suisse.",
       "lu": "Ech wunnen an der Schwäiz."
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "J'habite en Espagne.",
-      "lu": "Ech wunnen a Spuenien."
+      "lu": "Ech wunnen a Spuenien.",
+      "plus": true
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "J'habite en Italie.",
-      "lu": "Ech wunnen an Italien."
+      "lu": "Ech wunnen an Italien.",
+      "plus": true
     },
     {
+      "id": 2008,
+      "unite": 1,
       "fr": "J'habite en Angleterre.",
-      "lu": "Ech wunnen an England."
+      "lu": "Ech wunnen an England.",
+      "plus": true
     },
     {
+      "id": 2009,
+      "unite": 1,
       "fr": "J'habite aux Pays-Bas.",
-      "lu": "Ech wunnen an Holland."
+      "lu": "Ech wunnen an Holland.",
+      "plus": true
     },
     {
+      "id": 2010,
+      "unite": 1,
       "fr": "J'habite en Suède.",
       "lu": "Ech wunnen a Schweden."
     },
     {
+      "id": 2011,
+      "unite": 1,
       "fr": "J'habite en Chine.",
       "lu": "Ech wunnen a China."
     },
     {
+      "id": 2012,
+      "unite": 2,
       "fr": "J'habite à Metz.",
       "lu": "Ech wunnen zu Metz."
     },
     {
+      "id": 2013,
+      "unite": 2,
       "fr": "J'habite à Esch.",
       "lu": "Ech wunnen zu Esch."
     },
     {
+      "id": 2014,
+      "unite": 2,
       "fr": "J'habite à Trèves.",
       "lu": "Ech wunnen zu Tréier."
     },
     {
+      "id": 2015,
+      "unite": 2,
       "fr": "Elle habite à Paris.",
-      "lu": "Si wunnt zu Paräis."
+      "lu": "Si wunnt zu Paräis.",
+      "plus": true
     },
     {
+      "id": 2016,
+      "unite": 2,
       "fr": "J'habite à Paris.",
-      "lu": "Ech wunnen zu Paräis."
+      "lu": "Ech wunnen zu Paräis.",
+      "plus": true
     },
     {
+      "id": 2017,
+      "unite": 2,
       "fr": "J'habite à Luxembourg-Ville.",
-      "lu": "Ech wunnen zu Lëtzebuerg-Stad."
+      "lu": "Ech wunnen zu Lëtzebuerg-Stad.",
+      "plus": true
     },
     {
+      "id": 2018,
+      "unite": 2,
       "fr": "J'habite en ville.",
       "lu": "Ech wunnen an der Stad."
     },
     {
+      "id": 2019,
+      "unite": 2,
       "fr": "J'habite au Kirchberg.",
       "lu": "Ech wunnen um Kirchberg."
     },
     {
+      "id": 2020,
+      "unite": 2,
       "fr": "J'habite à Belair.",
-      "lu": "Ech wunnen um Belair."
+      "lu": "Ech wunnen um Belair.",
+      "plus": true
     },
     {
+      "id": 2021,
+      "unite": 2,
       "fr": "J'habite au Limpertsberg.",
-      "lu": "Ech wunnen um Limpertsberg."
+      "lu": "Ech wunnen um Limpertsberg.",
+      "plus": true
     },
     {
+      "id": 2022,
+      "unite": 2,
       "fr": "J'habite au Grund.",
       "lu": "Ech wunnen am Gronn."
     },
     {
+      "id": 2023,
+      "unite": 2,
       "fr": "Où habites-tu ?",
       "lu": "Wou wunns du?"
     },
     {
+      "id": 2024,
+      "unite": 2,
       "fr": "Où habitez-vous ?",
       "lu": "Wou wunnt Dir?"
     },
     {
+      "id": 2025,
+      "unite": 2,
       "fr": "Il habite au Luxembourg.",
-      "lu": "Hien wunnt zu Lëtzebuerg."
+      "lu": "Hien wunnt zu Lëtzebuerg.",
+      "plus": true
     },
     {
+      "id": 2026,
+      "unite": 2,
       "fr": "Elle habite en Belgique.",
-      "lu": "Si wunnt an der Belsch."
+      "lu": "Si wunnt an der Belsch.",
+      "plus": true
     },
     {
+      "id": 2027,
+      "unite": 2,
       "fr": "Nous habitons à Luxembourg-Ville.",
-      "lu": "Mir wunnen zu Lëtzebuerg-Stad."
+      "lu": "Mir wunnen zu Lëtzebuerg-Stad.",
+      "plus": true
     },
     {
+      "id": 2028,
+      "unite": 2,
       "fr": "Il habite à Belair.",
-      "lu": "Hien wunnt um Belair."
+      "lu": "Hien wunnt um Belair.",
+      "plus": true
     },
     {
+      "id": 2029,
+      "unite": 2,
       "fr": "Elle habite au Grund.",
-      "lu": "Si wunnt am Gronn."
+      "lu": "Si wunnt am Gronn.",
+      "plus": true
     },
     {
+      "id": 2030,
+      "unite": 2,
       "fr": "habiter",
-      "lu": "wunnen"
+      "lu": "wunnen",
+      "plus": true
     },
     {
+      "id": 2031,
+      "unite": 2,
       "fr": "la ville",
-      "lu": "d'Stad"
+      "lu": "d'Stad",
+      "plus": true
     },
     {
+      "id": 2032,
+      "unite": 2,
       "fr": "le quartier",
-      "lu": "de Quartier"
+      "lu": "de Quartier",
+      "plus": true
     },
     {
+      "id": 2033,
+      "unite": 2,
       "fr": "Grund",
-      "lu": "Gronn"
+      "lu": "Gronn",
+      "plus": true
     }
   ],
   "cours": [
     {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Unité 1 · Habiter dans un pays",
+      "lignes": [
+        "Pays : <b>zu Lëtzebuerg</b>, <b>a Frankräich</b>, <b>an Däitschland</b>, <b>an der Belsch</b>.",
+        "<b>Ech wunnen</b> = j'habite ; <b>hien / si wunnt</b> = il / elle habite."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Unité 2 · Villes, quartiers et questions",
+      "lignes": [
+        "Ville : <b>zu</b> Metz, zu Esch · Quartier : <b>um</b> Kirchberg, <b>am</b> Gronn.",
+        "<b>Wou wunns du?</b> (tu) · <b>Wou wunnt Dir?</b> (vous, politesse)."
+      ],
+      "unite": 2
+    },
+    {
       "type": "texte",
-      "contenu": "Pour dire où l'on habite, on utilise <b>wunnen</b> + une préposition. Cette préposition <b>dépend du type de lieu</b> : pays, ville, quartier ou expression fixe."
+      "contenu": "Pour dire où l'on habite, on utilise <b>wunnen</b> + une préposition. Cette préposition <b>dépend du type de lieu</b> : pays, ville, quartier ou expression fixe.",
+      "unite": 0
     },
     {
       "type": "callout",
@@ -565,7 +820,8 @@
         "Villes → <b>zu</b> : zu Metz, zu Paräis, zu Esch.",
         "Quartiers ou lieux particuliers → souvent <b>um / am</b> : um Kirchberg, am Gronn.",
         "Luxembourg est une exception utile à mémoriser : <b>zu Lëtzebuerg</b>."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -606,7 +862,8 @@
           "um / am + lieu",
           "um Kirchberg · am Gronn"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -642,7 +899,8 @@
           "Schwäiz",
           "Ech wunnen an der Schwäiz."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -683,7 +941,8 @@
           "am Gronn",
           "Ech wunnen am Gronn."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -694,7 +953,8 @@
         "<b>Du wunns</b> = tu habites.",
         "<b>Hien / Si wunnt</b> = il / elle habite.",
         "<b>Dir wunnt</b> = vous habitez."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -705,7 +965,8 @@
         "<b>Wou wunnt hien?</b> = Où habite-t-il ?",
         "<b>Wou wunnt si?</b> = Où habite-t-elle ?",
         "<b>Wou wunnt Dir?</b> = Où habitez-vous ?"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -717,7 +978,8 @@
         "<b>J'habite en Belgique</b> → Ech wunnen <b>an der Belsch</b>.",
         "<b>J'habite au Luxembourg</b> → Ech wunnen <b>zu Lëtzebuerg</b>.",
         "<b>J'habite au Grund</b> → Ech wunnen <b>am Gronn</b>."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -727,7 +989,8 @@
         "<b>am</b> = an + dem : am Gronn.",
         "<b>um</b> = op + dem : um Kirchberg.",
         "Dans cette leçon, il vaut mieux apprendre directement les expressions complètes : <b>am Gronn</b>, <b>um Kirchberg</b>."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -765,7 +1028,8 @@
           "Ech wunnen am Gronn.",
           "J'habite au Grund."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
