@@ -61,6 +61,14 @@ function verifierV2(f, l) {
     });
   });
 
+  // Article à écrire (S5) : dans ces unités, un nom seul doit avoir son article.
+  l.unites.filter(u => u.articleAEcrire).forEach(u => {
+    (l.flashcards || []).filter(c => c.unite === u.id && !c.plus).forEach(c => {
+      const nomSeul = c.lu && !/[\s?!.]/.test(c.lu) && /^[A-ZÄËÉÖÜ]/.test(c.lu);
+      if (nomSeul && !c.article) attention(f, 'unité ' + u.id + ' (article à écrire) : « ' + c.lu + ' » sans article');
+    });
+  });
+
   // Contenu de chaque type.
   (l.flashcards || []).forEach(c => {
     if (!c.fr || !c.lu) erreur(f, 'mot caché id ' + c.id + ' : fr ou lu manquant');

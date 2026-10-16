@@ -2,9 +2,9 @@
   "id": 2,
   "titre": "Objeten identifizéieren",
   "titre_fr": "Identifier des objets – articles indéfinis",
-  "couleur": "#5a8fd4",
+  "couleur": "#8f87f0",
   "instructions": {
-    "flashcards": "Mot caché : retrouve l'objet luxembourgeois à partir du français. L'article (e, en, eng) est affiché pour le mémoriser avec le mot. Unité 3 : les mots pour demander et dire non.",
+    "flashcards": "Mot caché : retrouve l'objet luxembourgeois à partir du français. Unité 1 : écris l'article et le mot (e, eng). Unités 2 et 3 : l'article est affiché pour le mémoriser avec le mot. Unité 3 : les mots pour demander et dire non.",
     "quiz": "Lis l'objet en français et choisis la bonne forme luxembourgeoise (bon article + nom). Unité 3 : choisis la bonne phrase (kee, keen, keng).",
     "trous": "Complète avec l'article (e, en, eng) ou la négation (kee, keen, keng) selon le genre du nom.",
     "ecriture": "Écris en luxembourgeois les phrases de la mission : Wat ass dat?, Dat ass …, Ass dat …?, Jo / Nee, dat ass kee / keen / keng …"
@@ -85,6 +85,7 @@
     {
       "id": 1,
       "titre": "C'est un … / C'est une …",
+      "articleAEcrire": true,
       "phrase": [
         "Wat ass dat? – Dat ass e Stull.",
         "Qu'est-ce que c'est ? – C'est une chaise."

@@ -120,10 +120,16 @@ with sync_playwright() as p:
     err2 = page.inner_text('#mc-erreur')
     assert 'Mapp' in err2, err2
     page.screenshot(path=OUT + 'lot1-aide-2e-essai.png', full_page=True)
+    # S5 : unité « article à écrire » : l'article n'est pas affiché, « Mapp » seul est refusé.
+    assert page.locator('#pc-body .mc-article').count() == 0, 'article affiché alors qu\'il est à écrire'
     page.fill('#mc-input', 'Mapp')
     page.click('#mc-btn-valider')
+    assert not page.evaluate('pAttente'), '« Mapp » sans article accepté'
+    page.fill('#mc-input', 'eng Mapp')
+    page.click('#mc-btn-valider')
     assert 'Attention' in page.inner_text('#pc-feedback')
-    ok('mot caché « un sac » : 1er essai sans « Mapp » (' + err1.split('\n')[-1][:50] + '…), 2e essai : note complète, juste : note affichée')
+    ok('mot caché « un sac » : 1er essai sans « Mapp » (' + err1.split('\n')[-1][:50] + '…), 2e essai : note complète ; '
+       '« Mapp » seul refusé, « eng Mapp » juste (S5)')
 
     # ── S6 : diagnostic en écriture (étape seule) ──
     page.evaluate("""() => {

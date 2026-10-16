@@ -83,11 +83,17 @@ function missionHtml(l, conseillee) {
   }
 
   html += '<div class="ms-bas">Tu sais dire ' + apprises + ' réplique' + (apprises > 1 ? 's' : '') +
-      ' sur ' + l.scene.length + '</div>' +
-    '<button class="pc-btn ' + (conseillee && best == null ? 'primary' : '') + ' wide" onclick="openMission()">' +
-      (best != null ? 'Rejouer la mission' : 'Jouer la mission') + ' · ' + nbRepliquesToi(l) + ' répliques à dire</button>' +
-    '</div>';
-  return html;
+      ' sur ' + l.scene.length + '</div>';
+  // S10 : tant qu'aucune unité n'est terminée, on propose de tenter sa chance
+  // (bouton secondaire : le chemin conseillé reste l'unité 1).
+  if (peutTenterSaChance(l)) {
+    html += '<button class="pc-btn wide ms-tenter" onclick="openMission(true)">Tu connais déjà ? Tente ta chance · ' +
+      nbRepliquesToi(l) + ' répliques</button>';
+  } else {
+    html += '<button class="pc-btn ' + (conseillee && best == null ? 'primary' : '') + ' wide" onclick="openMission()">' +
+      (best != null ? 'Rejouer la mission' : 'Jouer la mission') + ' · ' + nbRepliquesToi(l) + ' répliques à dire</button>';
+  }
+  return html + '</div>';
 }
 
 // Fin d'unité : les répliques que cette unité permet maintenant de dire.
@@ -102,9 +108,17 @@ function repliquesDebloqueesHtml(l, uniteId) {
     '</div>';
 }
 
+// ─── TENTER SA CHANCE (S10) ─────────────────────────────────────────────────
+// Proposé tant qu'aucune unité du fil n'est terminée (et pas déjà validée).
+function peutTenterSaChance(l) {
+  if (leconValideeParMission(l.id)) return false;
+  return unitesCoeur(l).every(u => getUnitBest(l.id, u.id) == null);
+}
+
 // ─── JOUER LA MISSION ───────────────────────────────────────────────────────
-function openMission() {
-  ms = { idx: 0, essais: 0, revele: false, resultats: [] };
+// tentative = true : « Tente ta chance », avant les unités (S10).
+function openMission(tentative) {
+  ms = { idx: 0, essais: 0, revele: false, resultats: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0 };
   document.getElementById('ms-titre').textContent = pLecon.mission.titre;
   showView('view-mission');
   renderMission();
@@ -123,10 +137,15 @@ function renderMission() {
     const res = ms.resultats[i];
     let classe = 'ms-bulle' + (toi ? ' toi' : '');
     if (toi && res === 'revele') classe += ' revele';
-    html += '<div class="' + classe + '"><b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
+    // Les nouvelles répliques arrivent une par une (S12).
+    const nouvelle = i >= ms.vues;
+    const delai = nouvelle ? ' style="animation-delay:' + ((i - ms.vues) * 150) + 'ms"' : '';
+    if (nouvelle) classe += ' bulle-in';
+    html += '<div class="' + classe + '"' + delai + '><b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
       escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>';
   }
   html += '</div>';
+  ms.vues = Math.min(ms.idx, scene.length);
 
   if (ms.idx >= scene.length) {
     document.getElementById('ms-body').innerHTML = html;
@@ -204,13 +223,19 @@ function finirMission() {
   marquerUniteFaite(); // mission jouée : objectif « unité » du jour (S7)
   dernierFini = { leconId: pLecon.id, uniteId: 'mission' }; // animé sur le chemin
 
-  let titre = 'Mission réussie !';
+  // « Tente ta chance » (S10) : écran de résultat dédié.
+  if (ms.tentative) {
+    finirTentative(percent, ok, total);
+    return;
+  }
+
+  let titre = percent >= SEUIL_MISSION ? 'Mission réussie !' : 'Mission jouée · à rejouer';
   if (percent === 100) titre = premiere ? 'Mission réussie, sans faute !' : 'Sans faute, encore une fois !';
 
   const fin = document.createElement('div');
   fin.className = 'ms-fin';
   fin.innerHTML =
-    '<div class="pf-sansfaute">' + titre + '<span>' + ok + ' / ' + total +
+    '<div class="pf-sansfaute ms-bandeau">' + titre + '<span>' + ok + ' / ' + total +
       ' répliques justes du premier coup · ' + percent + ' %</span></div>' +
     '<div class="pf-boutons">' +
       '<button class="pc-btn primary wide big" onclick="openParcoursLecon(pLecon)">Retour à la leçon</button>' +
@@ -219,5 +244,39 @@ function finirMission() {
     '</div>';
   document.getElementById('ms-body').appendChild(fin);
   if (percent >= SEUIL_MISSION) confettis(); // mission réussie : célébration (S12)
+  if (fin.scrollIntoView) fin.scrollIntoView({ block: 'end' });
+}
+
+// Résultat de « Tente ta chance » (S10).
+//   100 % du premier coup -> la leçon est validée par la mission, on passe à la suite ;
+//   sinon -> rien n'est perdu, les unités vont aider.
+function finirTentative(percent, ok, total) {
+  const fin = document.createElement('div');
+  fin.className = 'ms-fin';
+  const premiere = unitesCoeur(pLecon)[0];
+  if (percent === 100) {
+    saveValideeMission(pLecon.id);
+    fin.innerHTML =
+      '<div class="pf-sansfaute ms-bandeau">Tu connais déjà cette leçon<span>' + ok + ' / ' + total +
+        ' répliques justes du premier coup. Les unités sont validées par la mission.</span></div>' +
+      '<div class="pf-boutons">' +
+        '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">Leçon suivante</button>' +
+        '<button class="pc-btn ghost wide" onclick="openIntro(' + premiere.id + ')">Faire quand même les unités</button>' +
+        '<button class="pc-btn ghost wide" onclick="goDashboard()">Accueil</button>' +
+      '</div>';
+    confettis();
+  } else {
+    const justes = pLecon.scene.filter((x, i) => x.qui === 'toi' && ms.resultats[i] === 'ok');
+    fin.innerHTML =
+      '<div class="ms-aide-unites"><b>Les unités vont t\'aider</b><span>' + ok + ' / ' + total +
+        ' répliques justes du premier coup. Rien n\'est perdu : ton meilleur score est gardé.</span></div>' +
+      (justes.length ? '<div class="pc-mini-label">TU SAIS DÉJÀ DIRE</div><div class="ms-scene">' +
+        justes.map(x => '<div class="ms-bulle toi"><b>Toi</b>' + escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>').join('') + '</div>' : '') +
+      '<div class="pf-boutons">' +
+        '<button class="pc-btn primary wide big" onclick="openIntro(' + premiere.id + ')">Commencer l\'unité ' + premiere.id + '</button>' +
+        '<button class="pc-btn ghost wide" onclick="goDashboard()">Accueil</button>' +
+      '</div>';
+  }
+  document.getElementById('ms-body').appendChild(fin);
   if (fin.scrollIntoView) fin.scrollIntoView({ block: 'end' });
 }

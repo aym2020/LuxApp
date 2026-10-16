@@ -2,7 +2,7 @@
   "id": 26,
   "titre": "D'Aarbechtsannonce",
   "titre_fr": "Lire une offre d'emploi – vrai ou faux",
-  "couleur": "#2f6f9f",
+  "couleur": "#ee6fb0",
   "instructions": {
     "flashcards": "Mémorise les mots d'une offre d'emploi : qui recrute (sichen, engagéieren), le temps de travail (Stonnen d'Woch, hallefdaags, ganzdaags), le profil (Ausbildung, Kenntnesser, Erfarung, Führerschäin), les langues (vu Virdeel, Prioritéit) et la candidature (Kandidatur, schécken, bis spéitstens).",
     "quiz": "Lis un mot ou une phrase d'offre d'emploi en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont un autre mot de l'annonce, le contraire ou un détail changé, comme dans le vrai / faux de l'examen.",

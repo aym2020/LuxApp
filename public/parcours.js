@@ -116,6 +116,28 @@ function etoilesHtml(nb) {
          '<span class="pc-star">' + '★'.repeat(3 - nb) + '</span>';
 }
 
+// ─── ARTICLE À ÉCRIRE (S5) ──────────────────────────────────────────────────
+// Dans une unité dont la notion est l'article ("articleAEcrire": true), le mot
+// caché ne montre pas l'article : on écrit l'article ET le mot (« eng Mapp »).
+// Ailleurs, l'article reste affiché devant les cases (rien ne change).
+function articleAEcrire(lecon, card) {
+  if (!card || !card.article || !lecon || !Array.isArray(lecon.unites)) return false;
+  const u = lecon.unites.find(x => x.id === card.unite);
+  return !!(u && u.articleAEcrire);
+}
+
+// Ce qu'on doit taper dans le mot caché.
+function motATaper(lecon, card) {
+  return articleAEcrire(lecon, card) ? card.article + ' ' + card.lu : card.lu;
+}
+
+// La carte telle qu'on la corrige : réponse complète, sans article à part
+// (sert au diagnostic « Bon mot, mauvais article » et au masquage de l'aide).
+function carteACorriger(lecon, card) {
+  if (!articleAEcrire(lecon, card)) return card;
+  return Object.assign({}, card, { lu: motATaper(lecon, card), article: null });
+}
+
 // Texte luxembourgeois d'un mot caché, avec son article s'il en a un.
 function motComplet(card) {
   return (card.article ? card.article + ' ' : '') + card.lu;
@@ -290,6 +312,7 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   if (enCours) etat = ' · EN COURS';
   else if (sansFaute) etat = ' · <span class="pc-gold">SANS FAUTE</span>';
   else if (best != null) etat = ' · TERMINÉE';
+  else if (!u.bonus && leconValideeParMission(l.id)) etat = ' · <span class="pl-validee">✓ VALIDÉE PAR LA MISSION</span>'; // S10 : gris, pas doré
 
   const mots = itemsUnite(l, 'flashcards', u.id, 'coeur');
   let apercu = mots.slice(0, 4).map(c => escHtml(c.lu)).join(' · ');
@@ -472,6 +495,23 @@ function segmentsHtml(r) {
   }).join('');
 }
 
+// Met à jour la barre de progression de la partie. Si les segments existent
+// déjà, on change seulement leur largeur : la barre avance en douceur (S12).
+function majSegments(r) {
+  const box = document.getElementById('pc-steps');
+  if (box.children.length !== r.steps.length) {
+    box.innerHTML = segmentsHtml(r);
+    return;
+  }
+  r.steps.forEach((s, i) => {
+    let largeur = 0;
+    if (i < r.stepIdx) largeur = 100;
+    else if (i === r.stepIdx) largeur = Math.round((s.total - s.queue.length) / s.total * 100);
+    box.children[i].className = 'pc-seg' + (i < r.stepIdx ? ' fini' : '');
+    box.children[i].firstChild.style.width = largeur + '%';
+  });
+}
+
 function etapeCourante() {
   return run.steps[run.stepIdx];
 }
@@ -502,7 +542,7 @@ function renderItem() {
   }
 
   // En-tête : segments, nom de l'étape, compteur.
-  document.getElementById('pc-steps').innerHTML = segmentsHtml(run);
+  majSegments(run);
   const resolus = step.total - step.queue.length;
   const aRefaire = step.queue.filter(id => step.scores[id] !== undefined).length;
   document.getElementById('pc-etape').textContent =
@@ -517,6 +557,11 @@ function renderItem() {
   else if (step.type === 'quiz') renderQuizP(item);
   else if (step.type === 'trous') renderTrouP(item);
   else renderEcriturePc(item);
+  // L'item arrive en glissant (S12) : on relance l'animation à chaque item.
+  const corps = document.getElementById('pc-body');
+  corps.classList.remove('glisse');
+  void corps.offsetWidth;
+  corps.classList.add('glisse');
   window.scrollTo(0, 0);
 }
 
@@ -565,8 +610,9 @@ function showFeedback(ok, titre, texteHtml, suite) {
   pSuite = suite;
   const fb = document.getElementById('pc-feedback');
   fb.className = 'pc-feedback ' + (ok ? 'ok' : 'ko');
+  const coche = ok ? '<svg class="coche-anim" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' : '';
   fb.innerHTML =
-    '<div class="pc-fb-titre">' + titre + '</div>' +
+    '<div class="pc-fb-titre">' + coche + titre + '</div>' +
     (texteHtml ? '<div class="pc-fb-txt">' + texteHtml + '</div>' : '') +
     '<button class="pc-btn wide ' + (ok ? 'ok' : 'ko') + '" id="pc-continuer" onclick="continuerParcours()">Continuer</button>';
   document.getElementById('pc-continuer').focus();
@@ -589,7 +635,7 @@ function renderMotCache(card) {
   // Une case par caractère. Espaces, apostrophes et tirets sont déjà affichés.
   mc = {
     card,
-    cases: card.lu.split('').map(ch => ({ ch, lettre: estLettre(ch), etat: '' })),
+    cases: motATaper(pLecon, card).split('').map(ch => ({ ch, lettre: estLettre(ch), etat: '' })),
     indices: 0,   // lettres révélées avec le bouton Indice (coûtent des points)
     essais: 0,    // essais ratés
     revele: false // "Voir la réponse" utilisé
@@ -603,7 +649,7 @@ function renderMotCache(card) {
       (card.indice ? '<div class="mc-indice">' + escHtml(card.indice) + '</div>' : '') +
     '</div>' +
     '<div class="mc-mot">' +
-      (card.article ? '<span class="mc-article">' + escHtml(card.article) + '</span>' : '') +
+      (card.article && !articleAEcrire(pLecon, card) ? '<span class="mc-article">' + escHtml(card.article) + '</span>' : '') +
       '<div class="mc-cases" id="mc-cases"></div>' +
     '</div>' +
     '<div class="mc-legende hidden" id="mc-legende">' +
@@ -688,7 +734,7 @@ function mcValider() {
   const card = mc.card;
 
   // Juste (même comparaison que l'écriture : accents et ponctuation ignorés).
-  if (normalize(val) === normalize(card.lu)) {
+  if (normalize(val) === normalize(motATaper(pLecon, card))) {
     mc.cases.forEach(c => { if (c.lettre) c.etat = 'vert'; });
     renderCases();
     const ok = !mc.revele && mc.indices === 0 && mc.essais === 0;
@@ -716,7 +762,7 @@ function mcValider() {
   const err = document.getElementById('mc-erreur');
   err.classList.remove('hidden');
   err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · essai ' + mc.essais +
-    aideErreurHtml(val, card, attentionItem(card, 'flashcards'), mc.essais);
+    aideErreurHtml(val, carteACorriger(pLecon, card), attentionItem(card, 'flashcards'), mc.essais);
 
   if (mc.essais >= ESSAIS_AVANT_REPONSE) {
     document.getElementById('mc-btn-voir').classList.remove('hidden');

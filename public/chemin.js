@@ -85,6 +85,8 @@ function ligneFinieHtml(l) {
 function resultatLeconHtml(l) {
   // Faite dans l'ancienne version, nouvelles unités pas encore jouées.
   if (acquisV1(l) && resumeLecon(l).done === 0) return '<span class="acquise">Acquise</span>';
+  // Validée par la mission (S10) : passage à la suite, pas d'étoiles.
+  if (leconValideeParMission(l.id) && resumeLecon(l).done === 0) return '<span class="validee">Validée par la mission</span>';
   if (isParcoursLecon(l)) {
     if (leconSansFaute(l)) return '<span class="sans-faute">Sans faute</span>';
     return '<span class="etoiles">' + etoilesHtml(resumeLecon(l).stars) + '</span>';
@@ -111,8 +113,9 @@ function leconAVenirHtml(l, dus) {
 // Leçon en cours : dépliée.
 function leconEnCoursHtml(l, dus, anim) {
   const pas = prochainPas();
+  const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
   let html = '<li class="pas encours" id="pas-encours"><span class="rond">' + ICONES.lecture + '</span>' +
-    '<div class="carte-lecon chemin-lecon" style="--lc:' + l.couleur + '">' +
+    '<div class="carte-lecon chemin-lecon' + deplie + '" style="--lc:' + l.couleur + '">' +
       '<span class="num"><b>Leçon ' + l.id + '</b> · <span class="st">En cours</span></span>' +
       '<h3>' + escHtml(titreCourt(l)) + '</h3>' +
       '<span class="lux">' + escHtml(l.titre) + '</span>' + rafraichirPastille(dus);

@@ -17,6 +17,10 @@ def ok(msg):
 def actif(page, vue):
     return page.evaluate("id => document.getElementById(id).classList.contains('active')", vue)
 
+def cible(page, it):
+    # Ce qu'on tape dans le mot caché (S5 : l'article en plus dans les unités « article à écrire »).
+    return page.evaluate("id => motATaper(pLecon, trouverItem(pLecon, 'flashcards', id))", it['id'])
+
 
 def item_courant(page):
     return page.evaluate("""() => {
@@ -29,7 +33,7 @@ def repondre(page):
     c = item_courant(page)
     t, it = c['type'], c['item']
     if t == 'flashcards':
-        page.fill('#mc-input', it['lu'])
+        page.fill('#mc-input', cible(page, it))
         page.click('#mc-btn-valider')
         page.click('#pc-continuer')
     elif t in ('quiz', 'trous'):

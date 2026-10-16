@@ -453,6 +453,23 @@ function missionReussie(l) {
   return best != null && best >= SEUIL_MISSION;
 }
 
+// ─── LEÇON VALIDÉE PAR LA MISSION (S10) ─────────────────────────────────────
+// « Tente ta chance » : mission réussie à 100 % du premier coup avant toute
+// unité. progress[lid].valideeMission = { ok: 1 } (3 niveaux : la fusion cloud
+// garde le max). Donne le passage à la suite, jamais d'étoiles ni de badge doré.
+function leconValideeParMission(leconId) {
+  const byLecon = getProgress()[leconId];
+  return !!(byLecon && byLecon.valideeMission && byLecon.valideeMission.ok);
+}
+
+function saveValideeMission(leconId) {
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  progress[leconId].valideeMission = { ok: 1 };
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
 // Meilleur score de la mission (0-100), ou null si jamais jouée.
 function getMissionBest(leconId) {
   const byLecon = getProgress()[leconId];

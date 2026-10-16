@@ -69,6 +69,7 @@ function etapesLecon(l) {
 function etapesFaites(l) {
   if (!isParcoursLecon(l)) return leconV1Faite(l) ? 1 : 0;
   if (acquisV1(l)) return etapesLecon(l); // faite dans l'ancienne version : reste terminée
+  if (leconValideeParMission(l.id)) return etapesLecon(l); // mission réussie d'entrée (S10)
   let faites = unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
   if (l.mission && l.scene && getMissionBest(l.id) != null) faites++;
   return faites;

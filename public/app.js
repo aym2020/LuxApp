@@ -608,8 +608,10 @@ function renderSessionQ() {
   else { // ecriture, et mot caché (on écrit le mot à partir du français)
     wordEl.textContent = q.fr;
     if (type === 'motcache') {
-      let aide = 'Mot caché · écris le mot';
-      if (q.article) aide += ' · article : ' + q.article;
+      const lecon = lecons.find(l => l.id === leconId);
+      const avecArticle = articleAEcrire(lecon, q); // S5 : l'article fait partie de la réponse
+      let aide = avecArticle ? 'Mot caché · écris l\'article et le mot' : 'Mot caché · écris le mot';
+      if (q.article && !avecArticle) aide += ' · article : ' + q.article;
       if (q.indice) aide += ' · ' + q.indice;
       document.getElementById('session-label').textContent = aide;
     }
@@ -692,7 +694,10 @@ function validateSessionInput() {
   if (!val) return;
 
   const item = session.questions[session.index];
-  const target = item.q.lu;
+  const leconItem = lecons.find(l => l.id === item.leconId);
+  // Mot caché d'une unité « article à écrire » : la réponse est « eng Mapp » (S5).
+  const corrige = item.type === 'motcache' ? carteACorriger(leconItem, item.q) : item.q;
+  const target = corrige.lu;
   const ok = normalize(val) === normalize(target);
   const attention = attentionDe(item);
   const feedback = document.getElementById('session-feedback');
@@ -704,7 +709,7 @@ function validateSessionInput() {
   // 1er essai raté (hors examen) : on aide sans donner la réponse.
   if (!ok && session.essais === 0 && session.mode !== 'exam') {
     session.essais = 1;
-    const aide = aideErreur(val, item.q, attention, 1);
+    const aide = aideErreur(val, corrige, attention, 1);
     feedback.className = 'ecr-feedback ko';
     feedback.innerHTML = '❌ Pas encore · réessaie' +
       (aide.diagnostic ? '<span class="session-diagnostic">' + escHtml(aide.diagnostic) + '</span>' : '') +
@@ -716,7 +721,7 @@ function validateSessionInput() {
 
   session.answered = true;
   // Réponse affichée : avec l'article pour un mot caché.
-  const affiche = item.type === 'motcache' && item.q.article ? item.q.article + ' ' + target : target;
+  const affiche = item.type === 'motcache' && corrige.article ? corrige.article + ' ' + target : target;
 
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');

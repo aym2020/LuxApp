@@ -2,7 +2,7 @@
   "id": 9,
   "titre": "Sproochen",
   "titre_fr": "Les langues",
-  "couleur": "#60c08a",
+  "couleur": "#8f87f0",
   "instructions": {
   "flashcards": "Créer des cartes contenant la langue en luxembourgeois et sa traduction française. Une carte par langue.",
   "quiz": "Présenter une langue en français. La bonne réponse est la langue correspondante en luxembourgeois. Les distracteurs doivent être des langues proches, la nationalité associée ou le pays lorsque c'est pertinent.",

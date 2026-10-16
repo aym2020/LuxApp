@@ -18,6 +18,10 @@ def ok(msg):
 def actif(page, vue):
     return page.evaluate("id => document.getElementById(id).classList.contains('active')", vue)
 
+def cible(page, it):
+    # Ce qu'on tape dans le mot caché (S5 : l'article en plus dans les unités « article à écrire »).
+    return page.evaluate("id => motATaper(pLecon, trouverItem(pLecon, 'flashcards', id))", it['id'])
+
 
 def item_courant(page):
     return page.evaluate("""() => {
@@ -36,7 +40,7 @@ def repondre(page, juste=True):
     c = item_courant(page)
     t, it = c['type'], c['item']
     if t == 'flashcards':
-        page.fill('#mc-input', it['lu'] if juste else 'zzz')
+        page.fill('#mc-input', cible(page, it) if juste else 'zzz')
         page.click('#mc-btn-valider')
         if juste:
             continuer_si_besoin(page)
@@ -98,7 +102,14 @@ with sync_playwright() as p:
     # 4. Mot caché : erreur, lettres vertes, indice, puis juste
     page.screenshot(path=OUT + '04-motcache.png')
     it = item_courant(page)['item']
-    faux = it['lu'][:2] + 'q' * (len(it['lu']) - 2)
+    bon = cible(page, it)
+    # On garde les 2 premières LETTRES (un espace après « e » ne compte pas), le reste faux.
+    faux, lettres = '', 0
+    for ch in bon:
+        garder = lettres < 2 or not ch.isalpha()
+        faux += ch if garder else 'q'
+        if ch.isalpha() and lettres < 2:
+            lettres += 1
     page.fill('#mc-input', faux)
     page.keyboard.press('Enter')
     verts = page.locator('.mc-case.vert').count()
@@ -124,7 +135,7 @@ with sync_playwright() as p:
     assert not page.is_visible('#cours-panel')
     ok('panneau Cours : ouverture sur l\'unité, fermeture')
 
-    page.fill('#mc-input', it['lu'])
+    page.fill('#mc-input', bon)
     page.keyboard.press('Enter')
     page.screenshot(path=OUT + '07-motcache-juste.png')
     page.keyboard.press('Enter')  # Continuer au clavier

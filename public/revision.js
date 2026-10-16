@@ -50,6 +50,7 @@ function prochainPas() {
       return { titre: 'Prochaine leçon', texte: 'Leçon ' + l.id + ' · ' + l.titre_fr, lecon: l, type: 'v1', fn: () => openLecon(l) };
     }
     if (acquisV1(l)) continue; // faite dans l'ancienne version : le guide passe à la suite
+    if (leconValideeParMission(l.id)) continue; // mission réussie d'entrée (S10)
     const u = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (u) {
       return {

@@ -1563,6 +1563,16 @@ div.carte-lecon:active { transform: none; }
 }
 .ligne-finie .t { flex: 1; min-width: 0; }
 .etoiles { white-space: nowrap; font-size: var(--fs-sec); }
+.ms-tenter { border-style: dashed; }
+.ms-aide-unites { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: 14px;
+  background: var(--surface-2); border: 1px solid var(--bord-2); font-size: var(--fs-sec); color: var(--muted-strong); }
+.ms-aide-unites b { color: var(--text); font-size: var(--fs-corps); }
+.ms-tenter { border-style: dashed; }
+.ms-aide-unites { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: 14px;
+  background: var(--surface-2); border: 1px solid var(--bord-2); font-size: var(--fs-sec); color: var(--muted-strong); }
+.ms-aide-unites b { color: var(--text); font-size: var(--fs-corps); }
+.pl-validee { color: var(--muted-strong); }
+.validee { font-size: var(--fs-micro); font-weight: 600; color: var(--muted-strong); white-space: nowrap; }
 .acquise { font-size: var(--fs-micro); font-weight: 700; color: var(--correct); white-space: nowrap; }
 .sans-faute { font-size: var(--fs-micro); font-weight: 800; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
 
@@ -1627,3 +1637,53 @@ div.carte-lecon:active { transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .confettis { display: none; }
 }
+
+/* ══ S12 : ÉCRANS DE LEÇON, D'EXERCICE ET SECONDAIRES ═════════════════════════ */
+
+/* En-têtes des écrans secondaires (lexique, pièges, examens, réviser, réglages,
+   séance, leçon classique) : même style que « Mon chemin ». */
+.lecon-header { border-bottom: 0; padding: 1rem max(16px, 1.25rem) .5rem; align-items: flex-start; }
+.lecon-header .lecon-num { color: var(--accent); font-weight: 700; letter-spacing: .09em; }
+.lecon-header .lecon-titre { font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.2;
+  white-space: normal; overflow: visible; text-wrap: balance; margin-top: 2px; }
+body.avec-nav .lecon-header { padding-top: 1.25rem; }
+
+/* Écran d'une leçon : en-tête et carte mission à la couleur de la leçon */
+#view-plecon .pl-head {
+  margin: .25rem max(16px, 1.25rem) 1rem; padding: 1.1rem 1.1rem 1rem; border-radius: var(--r-carte);
+  background: linear-gradient(150deg, color-mix(in srgb, var(--lc) 34%, var(--surface-2)), var(--surface-1) 78%);
+  border: 1px solid color-mix(in srgb, var(--lc) 45%, var(--bord-1));
+}
+#view-plecon .pl-head .pc-mini-label { color: var(--lc); }
+#view-plecon .pl-titre { color: var(--text); }
+#view-plecon .ms-carte {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--lc) 16%, var(--surface-1)), var(--surface-1) 70%);
+  border-color: color-mix(in srgb, var(--lc) 55%, var(--bord-1)); border-radius: var(--r-carte);
+}
+#view-plecon .ms-carte > .pc-mini-label { color: var(--lc); }
+.pl-unit { background: var(--surface-1); border-color: var(--bord-1); border-radius: 18px; }
+.pl-unit .pc-mini-label .pc-gold { color: var(--accent); }
+
+/* Exercices : l'item arrive en glissant, la barre avance, le bandeau monte */
+.pc-body.glisse { animation: glisse-g .22s ease-out both; }
+#view-parcours { overflow-x: clip; } /* le glissement ne doit pas créer de défilement horizontal */
+.pc-seg > div { transition: width .3s ease; }
+.pc-feedback:not(.hidden):not(.discret) { animation: monte-b .2s ease-out both; }
+.pc-fb-titre { display: flex; align-items: center; gap: 8px; }
+.coche-anim { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.coche-anim path { stroke-dasharray: 30; animation: dessine .35s ease-out .05s both; }
+.choice.correct { animation: rebond .3s ease-out; }
+.mc-input.correct { animation: rebond .3s ease-out; }
+
+/* Mission : les répliques arrivent une par une, bandeau de réussite */
+.ms-bulle.bulle-in { animation: entre .25s ease-out both; }
+.ms-bandeau { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+
+/* Chemin : la leçon suivante se déplie */
+.carte-lecon.deplie { animation: deplie .45s ease-out .35s both; transform-origin: top; }
+
+@keyframes glisse-g { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+@keyframes monte-b { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes dessine { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+@keyframes rebond { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
+@keyframes deplie { from { opacity: 0; transform: scaleY(.85); } to { opacity: 1; transform: none; } }

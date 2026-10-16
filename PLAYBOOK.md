@@ -465,6 +465,11 @@ Règles du fil :
 - 2 à 4 unités par leçon (bonus compris).
 - **Une carte = un mot** : `lu` = ce qu'on tape. `article` affiché à côté des cases,
   `indice` sous le mot français.
+- **Article à écrire** (`"articleAEcrire": true` sur une unité) : quand l'article EST la
+  notion de l'unité (e / en / eng), le mot caché fait taper « eng Mapp », pas « Mapp » —
+  dans l'unité et en révision. Les cartes de cette unité portent leur `article` ; le
+  validateur signale un nom seul sans article. Les autres unités ne changent pas.
+- **Couleur** : une des 7 teintes de la palette, jamais la même que la leçon précédente.
 - Ids de tous les exercices à partir de **2001** (1001+ = premier essai v2, < 1000 = v1).
 - Blocs de cours : `"unite": n` = unité n ; sans `unite` = général ; `"unite": 0` = seulement
   « Toute la leçon » (la scène en dialogue). `"plus": true` = replié sous « Voir + ».
