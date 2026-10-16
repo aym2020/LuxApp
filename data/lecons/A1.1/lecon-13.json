@@ -3,113 +3,281 @@
   "titre": "D'Familljësituatioun",
   "titre_fr": "La situation familiale",
   "couleur": "#8fa6bd",
-  "instructions": {
-    "flashcards": "Mémorise le vocabulaire de la situation familiale en luxembourgeois et sa traduction française.",
-    "quiz": "Lis le mot en luxembourgeois et choisis sa traduction française. Les distracteurs doivent être des mots de la même catégorie (statuts familiaux, famille, animaux, relations).",
-    "trous": "Complète la phrase avec le mot luxembourgeois correct. Quelques phrases doivent également tester les formes négatives net, kee et keng.",
-    "ecriture": "Traduis en luxembourgeois le vocabulaire, les questions, les réponses et les phrases complètes de la leçon. Toutes les structures importantes doivent apparaître au moins une fois."
+  "v1": {
+    "quiz": 18,
+    "trous": 19,
+    "ecriture": 52
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve l'état familial ou le mot désignant un proche ; l'article accompagne les noms.",
+    "quiz": "Reconnais les mots de la famille et la situation familiale en luxembourgeois ; distingue genre et nombre.",
+    "trous": "Complète la phrase avec l'état familial, le nom d'un proche ou la négation adaptée.",
+    "ecriture": "Traduis en luxembourgeois les expressions et les phrases sur le statut familial, les enfants et les proches."
+  },
+  "mission": {
+    "titre": "Faire connaissance avec Marie",
+    "contexte": "Après le cours, Marie te demande si tu es marié, si tu as des enfants et te parle de ta famille.",
+    "objectif": "décrire sa situation familiale, parler des enfants et nommer ses proches."
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Bass du bestuet?",
+      "fr": "Es-tu marié ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Nee, ech sinn net bestuet.",
+      "fr": "Non, je ne suis pas marié.",
+      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+    },
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "An däi Frënd?",
+      "fr": "Et ton ami ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Hien ass gescheet.",
+      "fr": "Il est divorcé.",
+      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "Hues du Kanner?",
+      "fr": "As-tu des enfants ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Jo, ech hunn zwee Kanner.",
+      "fr": "Oui, j'ai deux enfants.",
+      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "E Jong an e Meedchen?",
+      "fr": "Un garçon et une fille ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Jo, e Meedchen an e Jong.",
+      "fr": "Oui, une fille et un garçon.",
+      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "Hues du eng Frëndin?",
+      "fr": "As-tu une petite amie ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Jo, ech hunn eng Frëndin.",
+      "fr": "Oui, j'ai une petite amie.",
+      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "Huet si en Hond?",
+      "fr": "A-t-elle un chien ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Nee, si huet eng Kaz.",
+      "fr": "Non, elle a un chat.",
+      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "fr": "Marié(e)",
-      "lu": "bestuet",
-      "note": "Invariable · Nég: net bestuet"
+      "titre": "Marié, divorcé ou célibataire ?",
+      "phrase": [
+        "Bass du bestuet? – Nee, ech sinn net bestuet.",
+        "Es-tu marié ? – Non, je ne suis pas marié."
+      ],
+      "regle": "Situation familiale : <b>bestuet</b>, <b>gescheet</b>, <b>leedeg</b> · négation : <b>net bestuet</b>.",
+      "exemple": "<b>Bass du bestuet?</b> (tu) · <b>Sidd Dir bestuet?</b> (vous).",
+      "pieges": [
+        "On nie un état avec <b>net</b>, pas kee.",
+        "<b>leedeg</b> et <b>e Jonggesell</b> ne sont pas la même structure."
+      ]
     },
     {
       "id": 2,
-      "fr": "Divorcé(e)",
-      "lu": "gescheet",
-      "note": "Invariable"
+      "titre": "Les enfants",
+      "phrase": [
+        "Hues du Kanner? – Jo, ech hunn zwee Kanner.",
+        "As-tu des enfants ? – Oui, j'ai deux enfants."
+      ],
+      "regle": "<b>e Kand</b> (un enfant), <b>Kanner</b> (des enfants) ; <b>hunn</b> (avoir).",
+      "exemple": "Ech hunn <b>zwee Kanner</b> · Ech hu <b>keng Kanner</b>.",
+      "pieges": [
+        "Un enfant = e Kand ; des enfants = <b>Kanner</b>.",
+        "La négation du pluriel utilise <b>keng</b>."
+      ]
     },
     {
       "id": 3,
-      "fr": "Séparé(e)",
-      "lu": "getrennt",
-      "note": "Invariable"
+      "titre": "Les proches et la négation",
+      "phrase": [
+        "Ech hunn eng Frëndin.",
+        "J'ai une petite amie."
+      ],
+      "regle": "Un petit ami : <b>e Frënd</b> ; une petite amie : <b>eng Frëndin</b>.",
+      "exemple": "Ech hunn eng Frëndin · Hien huet <b>kee Frënd</b>.",
+      "pieges": [
+        "Au féminin, utilise <b>eng</b> ou <b>keng</b>.",
+        "Frënd peut désigner un ami ou un petit ami selon le contexte."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "marié(e)",
+      "lu": "bestuet"
     },
     {
-      "id": 4,
-      "fr": "Pacsé(e)",
-      "lu": "gepacst",
-      "note": "Invariable"
+      "id": 2002,
+      "unite": 1,
+      "fr": "divorcé(e)",
+      "lu": "gescheet"
     },
     {
-      "id": 5,
-      "fr": "Fiancé(e)",
-      "lu": "verlobt",
-      "note": "Invariable"
+      "id": 2003,
+      "unite": 1,
+      "fr": "séparé(e)",
+      "lu": "getrennt"
     },
     {
-      "id": 6,
-      "fr": "Célibataire (M)",
-      "lu": "leedeg · e Jonggesell",
-      "note": "Forme générale + forme masculine"
+      "id": 2004,
+      "unite": 1,
+      "fr": "pacsé(e)",
+      "lu": "gepacst"
     },
     {
-      "id": 7,
-      "fr": "Célibataire (F)",
-      "lu": "leedeg · eng Jonggesellin",
-      "note": "Forme générale + forme féminine"
+      "id": 2005,
+      "unite": 1,
+      "fr": "fiancé(e)",
+      "lu": "verlobt"
     },
     {
-      "id": 8,
-      "fr": "Petit ami / Copain",
-      "lu": "e Frënd",
-      "note": "Nég: kee Frënd"
+      "id": 2006,
+      "unite": 1,
+      "fr": "célibataire (état)",
+      "lu": "leedeg"
     },
     {
-      "id": 9,
-      "fr": "Petite amie / Copine",
-      "lu": "eng Frëndin",
-      "note": "Nég: keng Frëndin"
+      "id": 2007,
+      "unite": 1,
+      "fr": "un célibataire (homme)",
+      "lu": "Jonggesell",
+      "article": "e"
     },
     {
-      "id": 10,
-      "fr": "Un enfant / Des enfants",
-      "lu": "e Kand / Kanner",
-      "note": "Singulier / Pluriel"
+      "id": 2008,
+      "unite": 2,
+      "fr": "un enfant",
+      "lu": "Kand",
+      "article": "e"
     },
     {
-      "id": 11,
-      "fr": "Un garçon / Des garçons",
-      "lu": "e Jong / Jongen",
-      "note": "Singulier / Pluriel"
+      "id": 2009,
+      "unite": 2,
+      "fr": "des enfants",
+      "lu": "Kanner"
     },
     {
-      "id": 12,
-      "fr": "Une fille / Des filles",
-      "lu": "e Meedchen / Meedercher",
-      "note": "Singulier / Pluriel"
+      "id": 2010,
+      "unite": 2,
+      "fr": "un garçon",
+      "lu": "Jong",
+      "article": "e"
     },
     {
-      "id": 13,
-      "fr": "Un chien",
-      "lu": "e Mupp",
-      "note": "Animal de compagnie"
+      "id": 2011,
+      "unite": 2,
+      "fr": "des garçons",
+      "lu": "Jongen"
     },
     {
-      "id": 14,
-      "fr": "Un chat",
-      "lu": "eng Kaz",
-      "note": "Animal de compagnie"
+      "id": 2012,
+      "unite": 2,
+      "fr": "une fille",
+      "lu": "Meedchen",
+      "article": "e"
     },
     {
-      "id": 15,
-      "fr": "Veuf",
-      "lu": "Wittmann",
-      "note": "Masculin"
+      "id": 2013,
+      "unite": 2,
+      "fr": "des filles",
+      "lu": "Meedercher"
     },
     {
-      "id": 16,
-      "fr": "Veuve",
-      "lu": "Wittfra",
-      "note": "Féminin"
+      "id": 2014,
+      "unite": 2,
+      "fr": "un chien",
+      "lu": "Mupp",
+      "article": "e"
+    },
+    {
+      "id": 2015,
+      "unite": 3,
+      "fr": "une petite amie",
+      "lu": "Frëndin",
+      "article": "eng"
+    },
+    {
+      "id": 2016,
+      "unite": 3,
+      "fr": "un petit ami",
+      "lu": "Frënd",
+      "article": "e"
+    },
+    {
+      "id": 2017,
+      "unite": 3,
+      "fr": "un chat",
+      "lu": "Kaz",
+      "article": "eng"
+    },
+    {
+      "id": 2018,
+      "unite": 3,
+      "fr": "une célibataire (femme)",
+      "lu": "Jonggesellin",
+      "article": "eng"
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "fr": "veuf",
+      "lu": "Wittmann"
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "fr": "veuve",
+      "lu": "Wittfra"
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "question": "bestuet",
       "reponse": "marié(e)",
       "distracteurs": [
@@ -119,7 +287,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "question": "gescheet",
       "reponse": "divorcé(e)",
       "distracteurs": [
@@ -129,7 +298,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "question": "getrennt",
       "reponse": "séparé(e)",
       "distracteurs": [
@@ -139,7 +309,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "question": "gepacst",
       "reponse": "pacsé(e)",
       "distracteurs": [
@@ -149,7 +320,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "question": "verlobt",
       "reponse": "fiancé(e)",
       "distracteurs": [
@@ -159,7 +331,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 1,
       "question": "leedeg",
       "reponse": "célibataire",
       "distracteurs": [
@@ -169,7 +342,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 1,
       "question": "e Jonggesell",
       "reponse": "célibataire (homme)",
       "distracteurs": [
@@ -179,7 +353,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 1,
       "question": "eng Jonggesellin",
       "reponse": "célibataire (femme)",
       "distracteurs": [
@@ -189,7 +364,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 3,
       "question": "e Frënd",
       "reponse": "petit ami",
       "distracteurs": [
@@ -199,7 +375,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 3,
       "question": "eng Frëndin",
       "reponse": "petite amie",
       "distracteurs": [
@@ -209,7 +386,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "question": "e Kand",
       "reponse": "un enfant",
       "distracteurs": [
@@ -219,7 +397,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "question": "Kanner",
       "reponse": "des enfants",
       "distracteurs": [
@@ -229,7 +408,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 2,
       "question": "e Jong",
       "reponse": "un garçon",
       "distracteurs": [
@@ -239,7 +419,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 2,
       "question": "e Meedchen",
       "reponse": "une fille",
       "distracteurs": [
@@ -249,7 +430,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 2,
       "question": "e Mupp",
       "reponse": "chien",
       "distracteurs": [
@@ -259,7 +441,8 @@
       ]
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 2,
       "question": "eng Kaz",
       "reponse": "chat",
       "distracteurs": [
@@ -269,7 +452,8 @@
       ]
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 3,
       "question": "Wittmann",
       "reponse": "veuf",
       "distracteurs": [
@@ -279,7 +463,8 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 3,
       "question": "Wittfra",
       "reponse": "veuve",
       "distracteurs": [
@@ -287,11 +472,34 @@
         "célibataire",
         "mariée"
       ]
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "question": "J'ai une petite amie.",
+      "reponse": "Ech hunn eng Frëndin.",
+      "distracteurs": [
+        "Ech hunn e Frëndin.",
+        "Ech sinn eng Frëndin.",
+        "Ech hunn keng Frëndin."
+      ]
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "question": "Je n'ai pas de petite amie.",
+      "reponse": "Ech hu keng Frëndin.",
+      "distracteurs": [
+        "Ech hunn net Frëndin.",
+        "Ech hu kee Frëndin.",
+        "Ech hunn eng Frëndin."
+      ]
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "fr": "Paul Mercier est marié.",
       "avant": "De Paul Mercier ass",
       "trou": "bestuet",
@@ -304,7 +512,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "fr": "Hubert Schmidt est divorcé.",
       "avant": "Den Hubert Schmidt ass",
       "trou": "gescheet",
@@ -317,7 +526,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "fr": "Elle est séparée.",
       "avant": "Si ass",
       "trou": "getrennt",
@@ -330,7 +540,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "fr": "Il est fiancé.",
       "avant": "Hien ass",
       "trou": "verlobt",
@@ -343,7 +554,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "fr": "Jennifer est célibataire.",
       "avant": "D'Jennifer ass",
       "trou": "Jonggesellin",
@@ -356,7 +568,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 3,
       "fr": "Jennifer a un petit ami.",
       "avant": "D'Jennifer huet e",
       "trou": "Frënd",
@@ -369,7 +582,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 3,
       "fr": "J'ai une petite amie.",
       "avant": "Ech hunn eng",
       "trou": "Frëndin",
@@ -382,7 +596,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "fr": "J'ai un enfant.",
       "avant": "Ech hunn e",
       "trou": "Kand",
@@ -395,7 +610,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 2,
       "fr": "Ils ont deux enfants.",
       "avant": "Si hunn zwee",
       "trou": "Kanner",
@@ -408,7 +624,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "fr": "J'ai un enfant, un garçon.",
       "avant": "Ech hunn e Kand, e",
       "trou": "Jong",
@@ -421,7 +638,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "fr": "J'ai un enfant, une fille.",
       "avant": "Ech hunn e Kand, e",
       "trou": "Meedchen",
@@ -434,7 +652,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "fr": "Ils ont un chien et un chat.",
       "avant": "Si hunn e Mupp an eng",
       "trou": "Kaz",
@@ -447,7 +666,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 1,
       "fr": "Non, je ne suis pas marié.",
       "avant": "Nee, ech sinn",
       "trou": "net",
@@ -460,7 +680,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 2,
       "fr": "Non, je n'ai pas d'enfants.",
       "avant": "Nee, ech hu",
       "trou": "keng",
@@ -473,7 +694,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 3,
       "fr": "Il n'a pas de petit ami.",
       "avant": "Hien huet",
       "trou": "kee",
@@ -486,7 +708,8 @@
       ]
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 3,
       "fr": "Non, elle n'a pas de petite amie.",
       "avant": "Si huet",
       "trou": "keng",
@@ -499,7 +722,8 @@
       ]
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 3,
       "fr": "Il est veuf.",
       "avant": "Hien ass",
       "trou": "Wittmann",
@@ -512,7 +736,8 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 3,
       "fr": "Elle est veuve.",
       "avant": "Si ass",
       "trou": "Wittfra",
@@ -525,7 +750,8 @@
       ]
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 3,
       "fr": "Ils sont pacsés.",
       "avant": "Si sinn",
       "trou": "gepacst",
@@ -540,218 +766,381 @@
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "Marié(e)",
       "lu": "bestuet"
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "Divorcé(e)",
       "lu": "gescheet"
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "Séparé(e)",
       "lu": "getrennt"
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "Pacsé(e)",
       "lu": "gepacst"
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "Fiancé(e)",
       "lu": "verlobt"
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "Un célibataire (homme)",
-      "lu": "e Jonggesell"
+      "lu": "e Jonggesell",
+      "plus": true
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "Une célibataire (femme)",
-      "lu": "eng Jonggesellin"
+      "lu": "eng Jonggesellin",
+      "plus": true
     },
     {
+      "id": 2008,
+      "unite": 3,
       "fr": "Petit ami",
       "lu": "e Frënd"
     },
     {
+      "id": 2009,
+      "unite": 3,
       "fr": "Petite amie",
       "lu": "eng Frëndin"
     },
     {
+      "id": 2010,
+      "unite": 2,
       "fr": "Un enfant",
       "lu": "e Kand"
     },
     {
+      "id": 2011,
+      "unite": 2,
       "fr": "Des enfants",
       "lu": "Kanner"
     },
     {
+      "id": 2012,
+      "unite": 2,
       "fr": "Un garçon",
       "lu": "e Jong"
     },
     {
+      "id": 2013,
+      "unite": 2,
       "fr": "Des garçons",
       "lu": "Jongen"
     },
     {
+      "id": 2014,
+      "unite": 2,
       "fr": "Une fille",
       "lu": "e Meedchen"
     },
     {
+      "id": 2015,
+      "unite": 1,
       "fr": "Des filles",
-      "lu": "Meedercher"
+      "lu": "Meedercher",
+      "plus": true
     },
     {
+      "id": 2016,
+      "unite": 3,
       "fr": "Un chien",
       "lu": "e Mupp"
     },
     {
+      "id": 2017,
+      "unite": 3,
       "fr": "Un chat",
       "lu": "eng Kaz"
     },
     {
+      "id": 2018,
+      "unite": 3,
       "fr": "Veuf",
       "lu": "Wittmann"
     },
     {
+      "id": 2019,
+      "unite": 3,
       "fr": "Veuve",
       "lu": "Wittfra"
     },
     {
+      "id": 2020,
+      "unite": 1,
       "fr": "Es-tu marié(e) ?",
       "lu": "Bass du bestuet?"
     },
     {
+      "id": 2021,
+      "unite": 1,
       "fr": "Êtes-vous marié(e) ?",
       "lu": "Sidd Dir bestuet?"
     },
     {
+      "id": 2022,
+      "unite": 2,
       "fr": "As-tu des enfants ?",
       "lu": "Hues du Kanner?"
     },
     {
+      "id": 2023,
+      "unite": 1,
       "fr": "Avez-vous des enfants ?",
-      "lu": "Hutt Dir Kanner?"
+      "lu": "Hutt Dir Kanner?",
+      "plus": true
     },
     {
+      "id": 2024,
+      "unite": 1,
       "fr": "Oui, je suis marié(e).",
       "lu": "Jo, ech si bestuet."
     },
     {
+      "id": 2025,
+      "unite": 1,
       "fr": "Non, je ne suis pas marié(e).",
-      "lu": "Nee, ech sinn net bestuet."
+      "lu": "Nee, ech sinn net bestuet.",
+      "plus": true
     },
     {
+      "id": 2026,
+      "unite": 2,
       "fr": "Oui, j'ai un enfant.",
       "lu": "Jo, ech hunn e Kand."
     },
     {
+      "id": 2027,
+      "unite": 2,
       "fr": "Oui, j'ai deux enfants.",
-      "lu": "Jo, ech hunn zwee Kanner."
+      "lu": "Jo, ech hunn zwee Kanner.",
+      "plus": true
     },
     {
+      "id": 2028,
+      "unite": 2,
       "fr": "Non, je n'ai pas d'enfants.",
       "lu": "Nee, ech hu keng Kanner."
     },
     {
+      "id": 2029,
+      "unite": 3,
       "fr": "J'ai un petit ami.",
       "lu": "Ech hunn e Frënd."
     },
     {
+      "id": 2030,
+      "unite": 3,
       "fr": "J'ai une petite amie.",
       "lu": "Ech hunn eng Frëndin."
     },
     {
+      "id": 2031,
+      "unite": 2,
       "fr": "J'ai un enfant, un garçon.",
-      "lu": "Ech hunn e Kand, e Jong."
+      "lu": "Ech hunn e Kand, e Jong.",
+      "plus": true
     },
     {
+      "id": 2032,
+      "unite": 2,
       "fr": "J'ai un enfant, une fille.",
-      "lu": "Ech hunn e Kand, e Meedchen."
+      "lu": "Ech hunn e Kand, e Meedchen.",
+      "plus": true
     },
     {
+      "id": 2033,
+      "unite": 2,
       "fr": "J'ai deux enfants, une fille et un garçon.",
-      "lu": "Ech hunn zwee Kanner, e Meedchen an e Jong."
+      "lu": "Ech hunn zwee Kanner, e Meedchen an e Jong.",
+      "plus": true
     },
     {
+      "id": 2034,
+      "unite": 3,
       "fr": "Il est marié.",
-      "lu": "Hien ass bestuet."
+      "lu": "Hien ass bestuet.",
+      "plus": true
     },
     {
+      "id": 2035,
+      "unite": 3,
       "fr": "Elle est mariée.",
-      "lu": "Si ass bestuet."
+      "lu": "Si ass bestuet.",
+      "plus": true
     },
     {
+      "id": 2036,
+      "unite": 3,
       "fr": "Il est divorcé.",
-      "lu": "Hien ass gescheet."
+      "lu": "Hien ass gescheet.",
+      "plus": true
     },
     {
+      "id": 2037,
+      "unite": 3,
       "fr": "Ils ont un chien et un chat.",
-      "lu": "Si hunn e Mupp an eng Kaz."
+      "lu": "Si hunn e Mupp an eng Kaz.",
+      "plus": true
     },
     {
+      "id": 2038,
+      "unite": 3,
       "fr": "Il n'a pas de petit ami.",
-      "lu": "Hien huet kee Frënd."
+      "lu": "Hien huet kee Frënd.",
+      "plus": true
     },
     {
+      "id": 2039,
+      "unite": 3,
       "fr": "Elle n'a pas de petite amie.",
-      "lu": "Si huet keng Frëndin."
+      "lu": "Si huet keng Frëndin.",
+      "plus": true
     },
     {
+      "id": 2040,
+      "unite": 3,
       "fr": "C'est un célibataire.",
-      "lu": "Hien ass e Jonggesell."
+      "lu": "Hien ass e Jonggesell.",
+      "plus": true
     },
     {
+      "id": 2041,
+      "unite": 3,
       "fr": "C'est une célibataire.",
-      "lu": "Si ass eng Jonggesellin."
+      "lu": "Si ass eng Jonggesellin.",
+      "plus": true
     },
     {
+      "id": 2042,
+      "unite": 3,
       "fr": "Jennifer est une célibataire.",
-      "lu": "D'Jennifer ass eng Jonggesellin."
+      "lu": "D'Jennifer ass eng Jonggesellin.",
+      "plus": true
     },
     {
+      "id": 2043,
+      "unite": 3,
       "fr": "Paul Mercier est marié.",
-      "lu": "De Paul Mercier ass bestuet."
+      "lu": "De Paul Mercier ass bestuet.",
+      "plus": true
     },
     {
+      "id": 2044,
+      "unite": 3,
       "fr": "Paul Mercier a deux enfants.",
-      "lu": "De Paul Mercier huet zwee Kanner."
+      "lu": "De Paul Mercier huet zwee Kanner.",
+      "plus": true
     },
     {
+      "id": 2045,
+      "unite": 3,
       "fr": "Hubert Schmidt est divorcé.",
-      "lu": "Den Hubert Schmidt ass gescheet."
+      "lu": "Den Hubert Schmidt ass gescheet.",
+      "plus": true
     },
     {
+      "id": 2046,
+      "unite": 3,
       "fr": "Hubert Schmidt n'a pas d'enfants.",
-      "lu": "Den Hubert Schmidt huet keng Kanner."
+      "lu": "Den Hubert Schmidt huet keng Kanner.",
+      "plus": true
     },
     {
+      "id": 2047,
+      "unite": 3,
       "fr": "Jeanne Schanck n'est pas mariée.",
-      "lu": "D'Jeanne Schanck ass net bestuet."
+      "lu": "D'Jeanne Schanck ass net bestuet.",
+      "plus": true
     },
     {
+      "id": 2048,
+      "unite": 3,
       "fr": "Jennifer a un petit ami.",
-      "lu": "D'Jennifer huet e Frënd."
+      "lu": "D'Jennifer huet e Frënd.",
+      "plus": true
     },
     {
+      "id": 2049,
+      "unite": 3,
       "fr": "Jean Thilges et Lydie Thilges sont mariés.",
-      "lu": "De Jean Thilges an d'Lydie Thilges si bestuet."
+      "lu": "De Jean Thilges an d'Lydie Thilges si bestuet.",
+      "plus": true
     },
     {
+      "id": 2050,
+      "unite": 3,
       "fr": "Ils ont quatre enfants.",
-      "lu": "Si hunn véier Kanner."
+      "lu": "Si hunn véier Kanner.",
+      "plus": true
     },
     {
+      "id": 2051,
+      "unite": 3,
       "fr": "Monsieur et Madame Gustavsson sont mariés.",
-      "lu": "Den Här Gustavsson an d'Madame Gustavsson si bestuet."
+      "lu": "Den Här Gustavsson an d'Madame Gustavsson si bestuet.",
+      "plus": true
     },
     {
+      "id": 2052,
+      "unite": 3,
       "fr": "Ils n'ont pas d'enfants.",
-      "lu": "Si hunn keng Kanner."
+      "lu": "Si hunn keng Kanner.",
+      "plus": true
     }
   ],
   "cours": [
     {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Marié, divorcé ou célibataire ?",
+      "lignes": [
+        "Situation familiale : <b>bestuet</b>, <b>gescheet</b>, <b>leedeg</b> · négation : <b>net bestuet</b>.",
+        "<b>Bass du bestuet?</b> (tu) · <b>Sidd Dir bestuet?</b> (vous)."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Les enfants",
+      "lignes": [
+        "<b>e Kand</b> (un enfant), <b>Kanner</b> (des enfants) ; <b>hunn</b> (avoir).",
+        "Ech hunn <b>zwee Kanner</b> · Ech hu <b>keng Kanner</b>."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Les proches et la négation",
+      "lignes": [
+        "Un petit ami : <b>e Frënd</b> ; une petite amie : <b>eng Frëndin</b>.",
+        "Ech hunn eng Frëndin · Hien huet <b>kee Frënd</b>."
+      ],
+      "unite": 3
+    },
+    {
       "type": "texte",
-      "contenu": "Cette leçon sert à parler de la <b>situation familiale</b> : être marié, divorcé, séparé, pacsé, fiancé ou célibataire, mais aussi dire si l'on a des enfants, un partenaire ou des animaux."
+      "contenu": "Cette leçon sert à parler de la <b>situation familiale</b> : être marié, divorcé, séparé, pacsé, fiancé ou célibataire, mais aussi dire si l'on a des enfants, un partenaire ou des animaux.",
+      "unite": 0
     },
     {
       "type": "callout",
@@ -763,7 +1152,8 @@
         "<b>eng Jonggesellin</b> est un nom : il signifie <b>une célibataire</b>, pour une femme.",
         "Donc : <b>Hien ass leedeg</b> = Il est célibataire.",
         "Mais : <b>Hien ass e Jonggesell</b> = C'est un célibataire."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -804,7 +1194,8 @@
           "D'Jennifer ass eng Jonggesellin.",
           "Nom : on attend eng Jonggesellin."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -818,7 +1209,8 @@
         "<b>Mir si bestuet.</b> = Nous sommes marié(e)s.",
         "<b>Dir sidd bestuet.</b> = Vous êtes marié(e)(s).",
         "<b>Si si bestuet.</b> = Ils / Elles sont marié(e)s."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -829,7 +1221,8 @@
         "<b>Ech si bestuet.</b> = Je suis marié(e).",
         "<b>Ech si leedeg.</b> = Je suis célibataire.",
         "Mais devant <b>net</b>, on garde <b>sinn</b> : <b>Ech sinn net bestuet.</b>"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -895,7 +1288,8 @@
           "Wittfra",
           "Si ass Wittfra."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -909,7 +1303,8 @@
         "<b>Mir hunn e Kand.</b> = Nous avons un enfant.",
         "<b>Dir hutt e Kand.</b> = Vous avez un enfant.",
         "<b>Si hunn e Kand.</b> = Ils / Elles ont un enfant."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -970,7 +1365,8 @@
           "eng Kaz",
           "Si hunn eng Kaz."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -981,7 +1377,8 @@
         "Avec un <b>nom masculin</b>, on utilise <b>kee</b> : Hien huet kee Frënd.",
         "Avec un <b>nom féminin</b>, on utilise <b>keng</b> : Si huet keng Frëndin.",
         "Avec un <b>pluriel</b>, on utilise aussi <b>keng</b> : Ech hu keng Kanner."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1012,7 +1409,8 @@
           "Ech hu keng Kanner.",
           "Kanner est pluriel."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1026,7 +1424,8 @@
         "<b>Hutt Dir Kanner?</b> = Avez-vous des enfants ?",
         "<b>Hues du e Frënd?</b> = As-tu un petit ami ?",
         "<b>Hues du eng Frëndin?</b> = As-tu une petite amie ?"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "exemple",
@@ -1084,7 +1483,8 @@
           "Si hunn e Mupp an eng Kaz.",
           "Ils ont un chien et un chat."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1126,7 +1526,8 @@
           "Jo, hien ass e Jonggesell.",
           "Oui, c'est un célibataire."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1156,7 +1557,8 @@
           "Jo, ech hunn zwee Kanner, e Meedchen an e Jong.",
           "Oui, j'ai deux enfants, une fille et un garçon."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1186,7 +1588,8 @@
           "Nee, si ass leedeg. Si huet e Frënd.",
           "Non, elle est célibataire. Elle a un petit ami."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
