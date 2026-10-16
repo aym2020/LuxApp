@@ -31,7 +31,7 @@
       "qui": "toi",
       "lu": "Nee, ech sinn net bestuet.",
       "fr": "Non, je ne suis pas marié.",
-      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+      "aide": "Pour nier un état, utilise <b>net</b>."
     },
     {
       "unite": 2,
@@ -44,7 +44,7 @@
       "qui": "toi",
       "lu": "Jo, ech hunn zwee Kanner.",
       "fr": "Oui, j'ai deux enfants.",
-      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+      "aide": "Pour décrire une situation : <b>ass</b> + état."
     },
     {
       "unite": 2,
@@ -57,7 +57,7 @@
       "qui": "toi",
       "lu": "Jo, e Meedchen an e Jong.",
       "fr": "Oui, une fille et un garçon.",
-      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+      "aide": "Deux enfants : <b>zwee Kanner</b>."
     },
     {
       "unite": 3,
@@ -70,12 +70,12 @@
       "qui": "toi",
       "lu": "Jo, ech hunn eng Frëndin.",
       "fr": "Oui, j'ai une petite amie.",
-      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+      "aide": "Une fille et un garçon : <b>e Meedchen</b> et <b>e Jong</b>."
     },
     {
       "unite": 3,
       "qui": "Marie",
-      "lu": "Huet si en Hond?",
+      "lu": "Huet si e Mupp?",
       "fr": "A-t-elle un chien ?"
     },
     {
@@ -83,7 +83,7 @@
       "qui": "toi",
       "lu": "Nee, si huet eng Kaz.",
       "fr": "Non, elle a un chat.",
-      "aide": "Vérifie la forme de sinn / hunn, le genre du nom et la négation."
+      "aide": "Une petite amie : <b>eng Frëndin</b>."
     }
   ],
   "unites": [
@@ -840,7 +840,7 @@
     },
     {
       "id": 2015,
-      "unite": 1,
+      "unite": 2,
       "fr": "Des filles",
       "lu": "Meedercher",
       "plus": true
@@ -889,7 +889,7 @@
     },
     {
       "id": 2023,
-      "unite": 1,
+      "unite": 2,
       "fr": "Avez-vous des enfants ?",
       "lu": "Hutt Dir Kanner?",
       "plus": true
@@ -961,21 +961,21 @@
     },
     {
       "id": 2034,
-      "unite": 3,
+      "unite": 1,
       "fr": "Il est marié.",
       "lu": "Hien ass bestuet.",
       "plus": true
     },
     {
       "id": 2035,
-      "unite": 3,
+      "unite": 1,
       "fr": "Elle est mariée.",
       "lu": "Si ass bestuet.",
       "plus": true
     },
     {
       "id": 2036,
-      "unite": 3,
+      "unite": 1,
       "fr": "Il est divorcé.",
       "lu": "Hien ass gescheet.",
       "plus": true
@@ -1003,56 +1003,56 @@
     },
     {
       "id": 2040,
-      "unite": 3,
+      "unite": 1,
       "fr": "C'est un célibataire.",
       "lu": "Hien ass e Jonggesell.",
       "plus": true
     },
     {
       "id": 2041,
-      "unite": 3,
+      "unite": 1,
       "fr": "C'est une célibataire.",
       "lu": "Si ass eng Jonggesellin.",
       "plus": true
     },
     {
       "id": 2042,
-      "unite": 3,
+      "unite": 1,
       "fr": "Jennifer est une célibataire.",
       "lu": "D'Jennifer ass eng Jonggesellin.",
       "plus": true
     },
     {
       "id": 2043,
-      "unite": 3,
+      "unite": 1,
       "fr": "Paul Mercier est marié.",
       "lu": "De Paul Mercier ass bestuet.",
       "plus": true
     },
     {
       "id": 2044,
-      "unite": 3,
+      "unite": 2,
       "fr": "Paul Mercier a deux enfants.",
       "lu": "De Paul Mercier huet zwee Kanner.",
       "plus": true
     },
     {
       "id": 2045,
-      "unite": 3,
+      "unite": 1,
       "fr": "Hubert Schmidt est divorcé.",
       "lu": "Den Hubert Schmidt ass gescheet.",
       "plus": true
     },
     {
       "id": 2046,
-      "unite": 3,
+      "unite": 2,
       "fr": "Hubert Schmidt n'a pas d'enfants.",
       "lu": "Den Hubert Schmidt huet keng Kanner.",
       "plus": true
     },
     {
       "id": 2047,
-      "unite": 3,
+      "unite": 1,
       "fr": "Jeanne Schanck n'est pas mariée.",
       "lu": "D'Jeanne Schanck ass net bestuet.",
       "plus": true
@@ -1066,28 +1066,28 @@
     },
     {
       "id": 2049,
-      "unite": 3,
+      "unite": 1,
       "fr": "Jean Thilges et Lydie Thilges sont mariés.",
       "lu": "De Jean Thilges an d'Lydie Thilges si bestuet.",
       "plus": true
     },
     {
       "id": 2050,
-      "unite": 3,
+      "unite": 2,
       "fr": "Ils ont quatre enfants.",
       "lu": "Si hunn véier Kanner.",
       "plus": true
     },
     {
       "id": 2051,
-      "unite": 3,
+      "unite": 1,
       "fr": "Monsieur et Madame Gustavsson sont mariés.",
       "lu": "Den Här Gustavsson an d'Madame Gustavsson si bestuet.",
       "plus": true
     },
     {
       "id": 2052,
-      "unite": 3,
+      "unite": 2,
       "fr": "Ils n'ont pas d'enfants.",
       "lu": "Si hunn keng Kanner.",
       "plus": true
