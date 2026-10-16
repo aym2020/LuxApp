@@ -48,16 +48,29 @@
     },
     {
       "unite": 2,
+      "qui": "Marie",
+      "lu": "A wou wunns du a Frankräich?",
+      "fr": "Et où habites-tu en France ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Ech wunnen zu Metz.",
+      "fr": "J'habite à Metz.",
+      "aide": "Une ville se dit avec <b>zu</b> : zu Metz."
+    },
+    {
+      "unite": 2,
       "qui": "toi",
       "lu": "Wou wunns du?",
       "fr": "Où habites-tu ?",
-      "aide": "Avec du : <b>Wou wunns du?</b>"
+      "aide": "Question informelle : <b>Wou wunns du?</b>"
     },
     {
       "unite": 2,
       "qui": "Marie",
-      "lu": "Ech wunnen zu Metz.",
-      "fr": "J'habite à Metz."
+      "lu": "Ech wunnen zu Esch.",
+      "fr": "J'habite à Esch."
     },
     {
       "unite": 2,
