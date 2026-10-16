@@ -1048,3 +1048,102 @@ body.no-scroll { overflow: hidden; }
 .cp-onglets { display: flex; gap: .5rem; padding: .7rem 1.25rem 0; }
 .cp-content { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
 .cp-bas { padding: .7rem 1.25rem calc(1rem + env(safe-area-inset-bottom)); border-top: 1px solid #2a2823; }
+
+/* ══ RÉTENTION : aujourd'hui, fraîcheur, sans faute, pièges, lexique ═════════ */
+/* Règle de design : ce qui est ACQUIS est en or et ne pâlit jamais
+   (étoiles, Terminée, Sans faute) ; ce qui BOUGE est en turquoise
+   (fraîcheur, à rafraîchir, séance du jour). */
+:root { --fresh: #4fc9c3; --orange: #f2a65a; }
+.pc-orange { color: var(--orange); }
+
+/* Anneau de fraîcheur autour du numéro de leçon */
+.anneau { position: relative; width: 44px; height: 44px; flex-shrink: 0; }
+.anneau svg { display: block; }
+.anneau-fond { fill: none; stroke: #2a2823; stroke-width: 3.5; }
+.anneau-arc  { fill: none; stroke: var(--fresh); stroke-width: 3.5; stroke-linecap: round; transition: stroke-dasharray .4s; }
+.anneau span {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; font-weight: 800; color: var(--lc, var(--text));
+}
+
+.pc-pill-sansfaute { color: #1a1408; background: var(--accent); border-color: var(--accent); }
+.pc-pill-fraicheur { color: var(--fresh); border-color: rgba(79,201,195,.4); background: rgba(79,201,195,.08); }
+.pl-fraicheur { font-size: .8rem; font-weight: 600; color: var(--fresh); }
+.pc-chip.fraicheur { color: var(--fresh); border-color: rgba(79,201,195,.5); }
+.pl-toute { border-color: #34322d; background: linear-gradient(180deg, var(--surface2), var(--surface)); }
+
+/* Points d'attention */
+.pi-piege { background: rgba(242,166,90,.09); border-left: 3px solid var(--orange); border-radius: 12px; padding: .85rem 1rem; display: flex; flex-direction: column; gap: .35rem; margin-bottom: .6rem; }
+.pi-piege-txt { font-size: .95rem; line-height: 1.45; }
+.pi-piege-txt b { color: var(--orange); }
+.pc-attention { margin: .45rem 0; padding: .55rem .7rem; border-radius: 10px; background: rgba(242,166,90,.12); color: var(--text); font-size: .88rem; line-height: 1.45; }
+.pc-attention b { color: var(--orange); }
+.mc-erreur .pc-attention { margin-bottom: 0; }
+.session-attention { display: block; margin-top: .5rem; padding: .5rem .7rem; border-radius: 10px; background: rgba(242,166,90,.12); color: var(--text); font-size: .85rem; font-weight: 500; }
+.session-attention b { color: var(--orange); }
+.pf-attention { color: var(--orange) !important; font-size: .78rem !important; margin-top: .15rem; }
+.pf-attention b { color: var(--orange); }
+
+/* Sans faute (fin de partie) */
+.pf-sansfaute {
+  text-align: center; padding: .9rem 1rem; border-radius: 16px;
+  background: rgba(245,207,77,.12); border: 1px solid var(--accent);
+  color: var(--accent); font-size: 1.15rem; font-weight: 800; display: flex; flex-direction: column; gap: .15rem;
+}
+.pf-sansfaute span { font-size: .82rem; font-weight: 500; color: var(--muted-strong); }
+
+/* Accueil : bloc « Aujourd'hui » */
+.today { background: var(--surface); border: 1px solid #34322d; border-radius: 18px; padding: 1rem; display: flex; flex-direction: column; gap: .85rem; }
+.td-head { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; }
+.td-serie { font-size: 1.15rem; font-weight: 700; margin-top: .15rem; }
+.td-semaine { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.td-jour { display: flex; flex-direction: column; align-items: center; gap: .3rem; font-size: .7rem; font-weight: 700; color: var(--muted); }
+.td-jour i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #34322d; display: block; }
+.td-jour.pratique i { border-color: var(--fresh); background: radial-gradient(circle, var(--fresh) 0 4px, transparent 5px); }
+.td-jour.objectif i { border-color: var(--accent); background: var(--accent); }
+.td-jour.auj span { color: var(--text); }
+.td-jour.auj i { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px #5a5750; }
+.td-jour.futur { opacity: .45; }
+.td-lignes { display: flex; flex-direction: column; gap: .3rem; font-size: .92rem; }
+.td-ligne b { color: var(--fresh); }
+.td-muted { color: var(--muted); }
+.td-objectif { font-size: .8rem; color: var(--muted); }
+.td-objectif.ok { color: var(--accent); font-weight: 700; }
+
+.dash-section-titre { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: .6rem; }
+.explore-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.explore-grid .dash-btn { min-height: 52px; padding: .8rem .6rem; font-size: .9rem; }
+.db-pieges { border-left: 4px solid var(--orange); }
+
+/* Fin de session : boutons */
+.session-actions { display: flex; flex-direction: column; gap: .55rem; }
+.session-action {
+  min-height: 48px; padding: .7rem 1rem; border-radius: 12px; cursor: pointer;
+  background: transparent; color: var(--text); border: 1px solid #3a3730;
+  font-family: var(--font); font-weight: 600; font-size: .92rem;
+}
+.session-action.primary { background: var(--accent); border-color: var(--accent); color: #0f0e0c; }
+
+/* Lexique */
+.lx-recherche { padding: .9rem 1rem .4rem; display: flex; flex-direction: column; gap: .35rem; }
+.lx-liste { padding: .4rem 1rem 3rem; display: flex; flex-direction: column; gap: .9rem; }
+.lx-groupe { background: var(--surface); border-radius: 14px; padding: .2rem .9rem .4rem; }
+.lx-lecon {
+  display: block; width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+  padding: .7rem 0 .4rem; font-family: var(--font); font-size: .72rem; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--lc, var(--muted)); min-height: 40px;
+}
+.lx-mot { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; padding: .55rem 0; border-top: 1px solid #2a2823; }
+.lx-mot > div { display: flex; flex-direction: column; min-width: 0; }
+.lx-mot em { font-style: normal; font-size: .75rem; color: var(--muted); }
+.lx-mot em b { color: var(--orange); font-weight: 600; }
+.lx-mot span { font-size: .85rem; color: var(--muted-strong); text-align: right; flex-shrink: 0; max-width: 45%; }
+.lx-vide { color: var(--muted); text-align: center; padding: 2rem 1rem; line-height: 1.5; }
+
+/* Mes pièges */
+.pg-content { padding: 1rem 1rem 3rem; display: flex; flex-direction: column; gap: .7rem; }
+.pg-carte { background: var(--surface); border-left: 3px solid var(--orange); border-radius: 12px; padding: .85rem 1rem; display: flex; flex-direction: column; gap: .35rem; }
+.pg-texte { font-size: .98rem; line-height: 1.45; }
+.pg-texte b { color: var(--orange); }
+.pg-meta { font-size: .75rem; font-weight: 700; color: var(--orange); }
+.pg-exemples { font-size: .82rem; color: var(--muted); line-height: 1.5; }

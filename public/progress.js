@@ -322,6 +322,7 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
     decrementWrongCount(leconId, type, questionId);
   }
   updateStreak();
+  marquerJour(1); // a pratiqué aujourd'hui
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
@@ -348,6 +349,142 @@ function saveUnitBest(leconId, uniteId, percent) {
   progress[leconId].unites[uniteId] = old == null ? percent : Math.max(old, percent);
   saveProgress(progress);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// ─── SANS FAUTE (leçons en unités) ──────────────────────────────────────────
+// Unité réussie au moins une fois en entier, tout juste du premier coup.
+// Rangé comme les meilleurs scores : progress["8"].sansfaute = { "1": 1 }.
+// Une fois gagné, ne se perd jamais (la fusion cloud garde le max).
+function getSansFaute(leconId, uniteId) {
+  const byLecon = getProgress()[leconId];
+  return !!(byLecon && byLecon.sansfaute && byLecon.sansfaute[uniteId]);
+}
+
+function saveSansFaute(leconId, uniteId) {
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  if (!progress[leconId].sansfaute) progress[leconId].sansfaute = {};
+  progress[leconId].sansfaute[uniteId] = 1;
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// ─── JOURNAL DES JOURS (série, total, semaine) ──────────────────────────────
+// progress.jours.actif = { "2026-10-16": 2, ... }
+//   1 = l'utilisateur a pratiqué ce jour-là
+//   2 = objectif du jour atteint (révision du jour faite, ou une unité finie)
+// Rangé dans la progression pour être synchronisé (fusion cloud = max).
+function getJours() {
+  const p = getProgress();
+  return (p.jours && p.jours.actif) || {};
+}
+
+function marquerJour(valeur) {
+  const progress = getProgress();
+  if (!progress.jours) progress.jours = {};
+  if (!progress.jours.actif) progress.jours.actif = {};
+  const today = dayString(0);
+  const old = progress.jours.actif[today] || 0;
+  if (valeur <= old) return; // rien de nouveau
+  progress.jours.actif[today] = valeur;
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// Série = jours d'affilée avec l'objectif atteint.
+// Si l'objectif n'est pas encore atteint aujourd'hui, la série d'hier compte encore.
+function serieActuelle() {
+  const jours = getJours();
+  let offset = jours[dayString(0)] === 2 ? 0 : -1;
+  let serie = 0;
+  while (jours[dayString(offset)] === 2) { serie++; offset--; }
+  return serie;
+}
+
+// Nombre total de jours de pratique : ne baisse jamais.
+function totalJours() {
+  return Object.keys(getJours()).length;
+}
+
+// Les 7 jours de la semaine en cours (lundi -> dimanche).
+function semaineEnCours() {
+  const jours = getJours();
+  const d = new Date();
+  const lundi = -((d.getDay() + 6) % 7); // décalage vers le lundi
+  const lettres = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+  const out = [];
+  for (let i = 0; i < 7; i++) {
+    const offset = lundi + i;
+    out.push({ lettre: lettres[i], valeur: jours[dayString(offset)] || 0, aujourdhui: offset === 0, futur: offset > 0 });
+  }
+  return out;
+}
+
+// ─── RÉVISION ESPACÉE ───────────────────────────────────────────────────────
+// Aucune donnée en plus : la date de révision se calcule à partir des stats
+// déjà enregistrées (lastSeenAt + bonnes réponses d'affilée).
+//   0 ou 1 bonne réponse d'affilée -> revient le lendemain (J+1)
+//   2 -> J+3 · 3 -> J+7 · 4 -> J+14 · 5 et plus -> J+30
+// Une erreur remet la série à 0 : la question revient le lendemain.
+const INTERVALLES = [1, 1, 3, 7, 14, 30];
+
+// Date (AAAA-MM-JJ) à laquelle une question revient.
+function dateRevision(stats) {
+  const jours = INTERVALLES[Math.min(stats.correctStreak || 0, INTERVALLES.length - 1)];
+  const d = new Date(stats.lastSeenAt);
+  d.setDate(d.getDate() + jours);
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const j = String(d.getDate()).padStart(2, '0');
+  return d.getFullYear() + '-' + m + '-' + j;
+}
+
+// Tous les items révisables d'une leçon, mot caché compris (type "motcache").
+function itemsRevision(l) {
+  const items = [];
+  if (Array.isArray(l.unites)) {
+    (l.flashcards || []).forEach(q => items.push({ leconId: l.id, type: 'motcache', qid: q.id, q }));
+  }
+  (l.quiz || []).forEach(q => items.push({ leconId: l.id, type: 'quiz', qid: q.id, q }));
+  (l.trous || []).forEach(q => items.push({ leconId: l.id, type: 'trous', qid: q.id, q }));
+  (l.ecriture || []).forEach((q, i) => items.push({ leconId: l.id, type: 'ecriture', qid: ecritureId(q, i), q }));
+  return items;
+}
+
+// Fait le point sur une liste de leçons, en UNE lecture des stats :
+//   - dus     : questions à réviser aujourd'hui (les plus en retard d'abord)
+//   - parLecon: { id: { vus, dus } } pour la fraîcheur de chaque leçon
+function resumeRevision(listeLecons) {
+  const store = getStatsStore();
+  const today = dayString(0);
+  const dus = [];
+  const parLecon = {};
+
+  listeLecons.forEach(l => {
+    const r = { vus: 0, dus: 0, dusParUnite: {} };
+    itemsRevision(l).forEach(item => {
+      const byLecon = store[item.leconId];
+      const s = byLecon && byLecon[item.type] && byLecon[item.type][item.qid];
+      if (!s || !s.attempts || !s.lastSeenAt) return; // jamais vue
+      r.vus++;
+      const date = dateRevision(s);
+      if (date <= today) {
+        r.dus++;
+        if (item.q.unite != null) r.dusParUnite[item.q.unite] = (r.dusParUnite[item.q.unite] || 0) + 1;
+        dus.push({ item, date });
+      }
+    });
+    parLecon[l.id] = r;
+  });
+
+  dus.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+  return { dus: dus.map(d => d.item), parLecon };
+}
+
+// Fraîcheur d'une leçon, de 0 (tout est à revoir) à 1 (tout est frais).
+// null si aucune question n'a encore été vue.
+function fraicheur(r) {
+  if (!r || !r.vus) return null;
+  return 1 - r.dus / r.vus;
 }
 
 // Vrai si la leçon a au moins une erreur active (compteur luxWrong > 0).
@@ -424,7 +561,7 @@ function getFrequentErrors(limit) {
 // leconIds : ids des leçons à inclure
 // types    : parmi 'quiz', 'trous', 'ecriture'
 // focus    : 'aleatoire' | 'connu' (à consolider) | 'difficile'
-// limit    : nombre max de questions (plafonné à 20)
+// limit    : nombre max de questions (0 = toutes, aucun plafond)
 
 // Une question est "déjà vue" UNIQUEMENT si elle a un historique réel.
 // On n'utilise jamais le niveau seul : toutes les questions démarrent au niveau 1.
@@ -505,7 +642,6 @@ function buildReviewPool(leconIds, types, niveaux) {
 }
 
 function getConfiguredReview(leconIds, types, focus, limit, niveaux) {
-  limit = Math.min(limit || 20, 20);
   let all = buildReviewPool(leconIds, types, niveaux);
 
   if (focus === 'difficile') {
@@ -527,8 +663,9 @@ function getConfiguredReview(leconIds, types, focus, limit, niveaux) {
     all = all.slice().sort(() => Math.random() - 0.5); // aléatoire
   }
 
-  // Jamais de répétition, jamais de remplissage aléatoire : on coupe au max.
-  return all.slice(0, limit);
+  // Jamais de répétition, jamais de remplissage aléatoire.
+  // limit = 0 -> toutes les questions disponibles.
+  return limit ? all.slice(0, limit) : all;
 }
 
 // Nombre de questions disponibles pour un focus (non plafonné, pour l'affichage).

@@ -100,12 +100,46 @@ Solution (déjà en place) :
 - Meilleur score d'une unité : `luxProgress[leconId].unites[uniteId]` (0 à 100),
   via `getUnitBest` / `saveUnitBest`. Rangé là exprès : la fusion cloud garde le **max**,
   et la v1 conserve la clé sans la lire.
-- Seul le mode « unité complète » met à jour les étoiles (pas « Refaire mes erreurs », ni une étape seule).
+- Seuls « unité complète » et « leçon complète » mettent à jour les étoiles et le « Sans faute »
+  (pas « Refaire mes erreurs », ni une étape seule). Leçon complète = score et sans faute
+  calculés **par unité**.
 - Étoiles : 3 à partir de 90 %, 2 à partir de 70 %, 1 à partir de 50 %.
-  Étoiles d'une leçon = moyenne des meilleurs scores, unité non faite = 0.
-- Badge « À revoir » d'une leçon : au moins une erreur active (`luxWrong` > 0) dans la leçon.
-- Unité en cours : `luxParcours:<profil>` dans localStorage, réécrit après chaque réponse.
+  Étoiles d'une leçon = moyenne des meilleurs scores, affichées seulement quand toutes
+  les unités sont terminées.
+- **Sans faute** : `luxProgress[leconId].sansfaute[uniteId] = 1` (`getSansFaute` / `saveSansFaute`).
+  Tout juste du premier coup, sans indice ni « Voir la réponse ». Ne se perd jamais.
+  Leçon sans faute = toutes ses unités sans faute (`leconSansFaute`).
+- Partie en cours : `luxParcours:<profil>` dans localStorage, réécrit après chaque réponse.
   **Local seulement** (pas de cloud) : la reprise se fait sur le même appareil.
+
+### Deux couches, jamais mélangées (règle de design)
+
+- **Acquis** = en or, ne baisse jamais : étoiles, Terminée, Sans faute, total de jours.
+- **Vivant** = en turquoise (`--fresh`), bouge avec le temps : questions dues, fraîcheur,
+  « À rafraîchir », série. On ne pâlit **jamais** une étoile ou un badge.
+- Rien n'est verrouillé : la séance du jour est une proposition, jamais une limite.
+  Aucune session n'est plafonnée (Réviser propose 10 / 20 / 50 / Tout).
+
+### Révision espacée (aucune donnée en plus)
+
+- Date de révision **calculée** depuis `luxQuestionStats` : `lastSeenAt` + intervalle selon
+  `correctStreak` → 0 ou 1 : J+1 · 2 : J+3 · 3 : J+7 · 4 : J+14 · 5+ : J+30 (`INTERVALLES`).
+  Une erreur remet `correctStreak` à 0 → la question revient le lendemain.
+- `itemsRevision(l)` : toutes les questions d'une leçon, mot caché compris (type `motcache`).
+- `resumeRevision(lecons)` : **une** lecture des stats → questions dues (les plus en retard
+  d'abord) + par leçon `{ vus, dus, dusParUnite }`. Fraîcheur = 1 − dus / vus.
+- Séance du jour (`lancerSeance`) : **toutes** les questions dues, puis la prochaine unité
+  ou « les plus fragiles » (`plusFragiles`, sans limite).
+
+### Jours, série, objectif du jour
+
+- `luxProgress.jours.actif["AAAA-MM-JJ"]` : 1 = pratiqué, 2 = objectif atteint
+  (rangé dans la progression pour être synchronisé ; la fusion garde le max).
+- Pratiqué = au moins une réponse (`updateQuestionProgress` appelle `marquerJour(1)`).
+- Objectif atteint = séance du jour terminée, ou une unité / leçon complète finie (`marquerJour(2)`).
+- Série = jours d'affilée avec l'objectif (celle d'hier compte tant qu'aujourd'hui n'est pas fini).
+  Total de jours de pratique = ne baisse jamais. Semaine en cours : 7 cases sur l'accueil.
+- L'ancien `luxStreak` reste mis à jour pour la v1, mais la v2 ne l'affiche plus.
 
 ---
 
@@ -269,15 +303,36 @@ eval(src);
   Erreur → les lettres bien placées passent en vert (gratuit). « Indice » révèle une lettre
   au hasard (coûte des points). « Voir la réponse » apparaît après 3 essais ratés : score 0
   et le mot revient en fin d'étape. Score du mot = (lettres − indices) / lettres.
-- Fin d'unité : score, étoiles, score par étape, « À retravailler », « Refaire mes erreurs »
-  (relance seulement les items ratés), « Unité suivante ».
-- Écran leçon : seule la prochaine unité à faire a le bouton jaune. Unité finie → « Refaire
-  l'unité » ou une seule étape. « Tout revoir » = écran Réviser avec seulement cette leçon
-  cochée. Bilan (10 questions mélangées) débloqué quand toutes les unités sont faites.
+- Fin de partie : score, étoiles, score par étape, moment « Première fois sans faute ! »,
+  « À retravailler » (avec le point d'attention), « Refaire mes erreurs », « Unité suivante ».
+- Écran leçon, **rien n'est verrouillé** :
+  - carte « Toute la leçon » : leçon complète d'un coup (`uniteId = 'all'`, mode `lecon`),
+    une étape sur toute la leçon, « Tout revoir » (Réviser avec seulement cette leçon),
+    « Rafraîchir · n » (questions dues de la leçon) ;
+  - une carte par unité : état (Terminée / Sans faute / En cours), étoiles, « À rafraîchir · n »,
+    Commencer / Refaire, et les 4 étapes seules, même avant d'avoir fini l'unité ;
+  - le bilan (10 questions mélangées) est toujours ouvert.
+  Seule la prochaine unité à faire a le bouton jaune.
+- **Points d'attention** : `unites[].pieges` (1 ou 2) sur l'écran « Avant de commencer »
+  (encadré orange) ; `attention` d'un item affiché au moment de l'erreur (mot caché, quiz,
+  trous, écriture, révision). Sans `attention`, un trou affiche sa `note`.
 - Liste des leçons : carte « Reprendre » en tête si une unité est en cours.
 - Panneau Cours : onglet « Unité n » (blocs de l'unité + blocs généraux) et « Toute la leçon ».
 - Les raccourcis clavier des cartes (espace, flèches) ne marchent que sur l'écran à onglets
   et jamais dans un champ de saisie (sinon la barre d'espace était bloquée).
+
+### Accueil, lexique, mes pièges — `public/revision.js`
+
+- Accueil : bloc « Aujourd'hui » (série, semaine, questions dues + durée, prochaine étape,
+  objectif, bouton « Ma séance »), puis « Tout explorer » (Leçons, Réviser, Lexique,
+  Mes pièges, Examens, Erreurs fréquentes).
+- Liste des leçons : anneau de fraîcheur autour du numéro (toutes les leçons),
+  pastilles d'acquis en or, « À rafraîchir · n » en turquoise.
+- Lexique : tous les mots (cartes) des leçons du niveau, recherche FR ou LU (`normalize`).
+- Mes pièges : **calculé** depuis les stats (rien de stocké) = questions avec un point
+  d'attention sur lesquelles on s'est trompé, regroupées par texte, triées par nombre d'erreurs.
+- Moteur de session (`app.js`) : accepte le type `motcache` (écrire le mot à partir du français),
+  affiche le point d'attention à l'erreur, boutons de fin passés à `demarrerSession(…, { actions })`.
 
 ---
 
@@ -325,10 +380,12 @@ Migrées : leçons 2, 8, 21, 22. Les autres sont encore en v1 et restent valides
     { "id": 1, "titre": "Masculin : e ou en",
       "regle": "Masculin : <b>e</b>, ou <b>en</b> devant …",   // écran « Avant de commencer »
       "exemple": "<b>e</b> Bus · <b>en</b> Dësch",
-      "phrases": [["Dat ass e Bus.", "C'est un bus."]] }
+      "phrases": [["Dat ass e Bus.", "C'est un bus."]],
+      "pieges": ["Le genre ne se devine pas : « une table » = <b>en Dësch</b>."] }
   ],
   "flashcards": [{ "id": 1001, "unite": 1, "fr": "une table", "lu": "Dësch",
-                   "article": "en", "indice": "masculin", "note": "…" }],
+                   "article": "en", "indice": "masculin", "note": "…",
+                   "attention": "Dësch est <b>masculin</b> (≠ une table) …" }],   // facultatif
   "quiz":     [{ "id": 1001, "unite": 1, ... }],   // mêmes champs qu'avant + "unite"
   "trous":    [{ "id": 1001, "unite": 1, ... }],
   "ecriture": [{ "id": 1001, "unite": 1, "fr": "…", "lu": "…" }],   // id obligatoire
@@ -350,6 +407,12 @@ Règles v2 :
   3 lignes maximum par encadré.
 - Ne pas viser l'exhaustivité : les mots retirés des exercices vont dans un bloc
   « Pour aller plus loin » (`"unite": 0`).
+- **Points d'attention** :
+  - `unites[].pieges` : 1 ou 2 pièges par unité, courts, avec `<b>` sur le mot clé ;
+  - `attention` sur un item : le piège exact de cette question (« Haus commence par H → keen »).
+    Pour un trou, il porte sur le mot à trouver ; sinon la `note` du trou sert ;
+  - les encadrés « attention » du cours restent **dans l'unité** concernée, jamais seulement
+    dans « Toute la leçon ».
 
 ### Vérifier avant chaque livraison
 

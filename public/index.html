@@ -24,14 +24,17 @@
     </header>
 
     <div class="dash">
+      <!-- Aujourd'hui : semaine, série, séance du jour (rempli par revision.js) -->
+      <section class="today" id="today"></section>
+
       <div class="dash-top">
-        <div class="dash-stat">
-          <div class="dash-stat-val" id="dash-streak">🔥 0 jour</div>
-          <div class="dash-stat-lbl">Série</div>
-        </div>
         <div class="dash-stat">
           <div class="dash-stat-val" id="dash-global">0%</div>
           <div class="dash-stat-lbl">Progression</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-val" id="dash-sansfaute">0</div>
+          <div class="dash-stat-lbl">Leçons sans faute</div>
         </div>
       </div>
 
@@ -43,17 +46,20 @@
           <label>Questions maîtrisées</label>
         </div>
         <div class="dash-mini">
-          <span id="dash-lessons">0 / 0</span>
-          <label>Leçons maîtrisées</label>
+          <span id="dash-jours">0</span>
+          <label>Jours de pratique</label>
         </div>
       </div>
 
-      <div class="dash-review" id="dash-review">À revoir : 0 question</div>
-
-      <button class="dash-btn primary" onclick="goLessons()">Leçons</button>
-      <button class="dash-btn db-review" onclick="openReviewSetup()">Réviser</button>
-      <button class="dash-btn db-exam" onclick="openExamens()">Examens</button>
-      <button class="dash-btn db-errors" onclick="startSession('errors')">Erreurs fréquentes</button>
+      <div class="dash-section-titre">Tout explorer</div>
+      <div class="explore-grid">
+        <button class="dash-btn" onclick="goLessons()">Leçons</button>
+        <button class="dash-btn db-review" onclick="openReviewSetup()">Réviser</button>
+        <button class="dash-btn" onclick="openLexique()">Lexique</button>
+        <button class="dash-btn db-pieges" onclick="openPieges()">Mes pièges</button>
+        <button class="dash-btn db-exam" onclick="openExamens()">Examens</button>
+        <button class="dash-btn db-errors" onclick="startSession('errors')">Erreurs fréquentes</button>
+      </div>
 
       <button class="dash-reset" onclick="confirmResetAll()">Réinitialiser toute la progression</button>
 
@@ -201,6 +207,35 @@
 
   </div><!-- /view-lecon -->
 
+  <!-- ══ LEXIQUE : tous les mots de toutes les leçons du niveau ═══════════════ -->
+  <div id="view-lexique" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num">LEXIQUE · <span id="lexique-niveau"></span></span>
+        <span class="lecon-titre" id="lexique-compte"></span>
+      </div>
+    </div>
+    <div class="lx-recherche">
+      <label class="pc-input-label" for="lexique-input">Chercher un mot (français ou luxembourgeois)</label>
+      <input id="lexique-input" class="ecr-input" type="search" placeholder="ex. table, Dësch…"
+        autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="renderLexique()">
+    </div>
+    <div class="lx-liste" id="lexique-liste"></div>
+  </div>
+
+  <!-- ══ MES PIÈGES : points d'attention sur lesquels on s'est trompé ═════════ -->
+  <div id="view-pieges" class="view">
+    <div class="lecon-header">
+      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <div class="lecon-header-info">
+        <span class="lecon-num">MES PIÈGES · <span id="pieges-niveau"></span></span>
+        <span class="lecon-titre">Les points d'attention où tu t'es trompé</span>
+      </div>
+    </div>
+    <div class="pg-content" id="pieges-content"></div>
+  </div>
+
   <!-- ══ LEÇON EN UNITÉS (v2) : LISTE DES UNITÉS ══════════════════════════════ -->
   <div id="view-plecon" class="view">
     <div class="pc-topbar">
@@ -211,7 +246,6 @@
       <div class="pc-mini-label pc-lc" id="pl-num"></div>
       <h1 class="pl-titre" id="pl-titre"></h1>
       <div class="pl-sous" id="pl-sous"></div>
-      <button class="pc-chip" onclick="toutRevoir()">Tout revoir</button>
     </div>
     <div class="pl-units" id="pl-units"></div>
   </div>
@@ -310,12 +344,12 @@
       </div>
 
       <div class="rs-block">
-        <div class="rs-titre">Nombre de questions (max 20)</div>
+        <div class="rs-titre">Nombre de questions</div>
         <div class="rs-checks rs-count-opts" id="rs-count">
-          <label class="rs-check"><input type="radio" name="rs-count" value="5"> 5 questions</label>
           <label class="rs-check"><input type="radio" name="rs-count" value="10"> 10 questions</label>
-          <label class="rs-check"><input type="radio" name="rs-count" value="15"> 15 questions</label>
           <label class="rs-check"><input type="radio" name="rs-count" value="20" checked> 20 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="50"> 50 questions</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="0"> Tout</label>
         </div>
       </div>
 
@@ -382,7 +416,7 @@
 
       <div id="session-result" class="result-card hidden">
         <div id="session-score"></div>
-        <button onclick="finSession()">Terminer</button>
+        <div class="session-actions" id="session-actions"></div>
       </div>
     </div>
   </div><!-- /view-session -->
@@ -444,6 +478,7 @@
   <script src="cloud.js"></script>
   <script src="examens.js"></script>
   <script src="parcours.js"></script>
+  <script src="revision.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

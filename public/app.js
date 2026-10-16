@@ -73,13 +73,17 @@ function renderLessons() {
   const reprendre = carteReprendre();
   if (reprendre) list.appendChild(reprendre);
 
+  // Fraîcheur de chaque leçon, calculée en une seule lecture des stats.
+  const revision = resumeRevision(leconsActives()).parLecon;
+
   leconsActives().forEach(l => {
     const v2 = isParcoursLecon(l); // leçon découpée en unités ?
+    const r = revision[l.id];
     const el = document.createElement('div');
     el.className = 'lecon-card';
     el.style.setProperty('--lc', l.couleur);
     el.innerHTML = `
-      <div class="lecon-card-accent" style="background:${l.couleur}"></div>
+      ${anneauHtml(l.id, fraicheur(r), l.couleur)}
       <div class="lecon-card-body">
         <div class="lecon-card-num">
           LEÇON ${l.id}
@@ -93,6 +97,7 @@ function renderLessons() {
           <span class="lecon-pill">❓ ${l.quiz.length} quiz</span>
           <span class="lecon-pill">✏️ ${l.trous.length} trous</span>
           <span class="lecon-pill">${l.ecriture ? '✍️ ' + l.ecriture.length + ' écriture' : ''}</span>`}
+          ${rafraichirHtml(r && r.dus)}
         </div>
       </div>
       <div class="lecon-arrow">›</div>`;
@@ -233,18 +238,16 @@ function goLessons() {
 // ─── DASHBOARD ──────────────────────────────────────────────────────────────
 function renderDashboard() {
   const stats = calculateGlobalStats();
-  const streak = getStreak();
 
-  document.getElementById('dash-streak').textContent =
-    '🔥 ' + streak.count + ' jour' + (streak.count > 1 ? 's' : '');
   document.getElementById('dash-global').textContent = stats.percent + '%';
   document.getElementById('dash-global-fill').style.width = stats.percent + '%';
   document.getElementById('dash-mastered').textContent =
     stats.masteredQuestions + ' / ' + stats.totalQuestions;
-  document.getElementById('dash-lessons').textContent =
-    stats.lessonsMastered + ' / ' + stats.totalLessons;
-  document.getElementById('dash-review').textContent =
-    'À revoir : ' + stats.toReview + ' question' + (stats.toReview > 1 ? 's' : '');
+  document.getElementById('dash-sansfaute').textContent =
+    leconsActives().filter(leconSansFaute).length;
+  document.getElementById('dash-jours').textContent = totalJours();
+
+  renderAujourdhui(); // bloc « Aujourd'hui » (revision.js)
 }
 
 // Réinitialise TOUTE la progression, après confirmation.
@@ -384,7 +387,15 @@ let session = { mode: null, questions: [], index: 0, score: 0, answered: false }
 function typeLabel(type) {
   if (type === 'quiz') return 'Quiz';
   if (type === 'trous') return 'À trou';
+  if (type === 'motcache') return 'Mot caché';
   return 'Écriture';
+}
+
+// Point d'attention d'une question : champ "attention", sinon la note d'un trou.
+function attentionDe(item) {
+  if (item.q.attention) return item.q.attention;
+  if (item.type === 'trous' && item.q.note) return item.q.note;
+  return '';
 }
 
 function startSession(mode) {
@@ -514,9 +525,9 @@ function startConfiguredReview() {
   const { leconIds, types, niveaux } = readReviewSelection();
   const focus = document.querySelector('input[name="rs-focus"]:checked').value;
   const countInput = document.querySelector('input[name="rs-count"]:checked');
+  // 0 = toutes les questions disponibles (aucun plafond).
   let count = countInput ? parseInt(countInput.value, 10) : 20;
-  if (!count || count < 1) count = 20;
-  count = Math.min(count, 20); // plafond strict à 20
+  if (!count || count < 0) count = 0;
 
   if (!leconIds.length) { alert('Choisis au moins une leçon.'); return; }
   if (!types.length) { alert('Choisis au moins un type d\'exercice.'); return; }
@@ -559,21 +570,27 @@ function startConfiguredReview() {
 
     // Réutilise le moteur de session (mode 'review' = les niveaux évoluent).
     // Le titre affiche le nombre RÉEL de questions, pas le nombre demandé.
-    session = { mode: 'review', questions, index: 0, score: 0, answered: false };
-    document.getElementById('session-num').textContent = 'RÉVISION';
-    document.getElementById('session-titre').textContent = questions.length + ' questions';
-    document.getElementById('session-result').classList.add('hidden');
-    document.getElementById('session-q').classList.remove('hidden');
-    showView('view-session');
-    renderSessionQ();
+    // En fin de session : on peut continuer avec les mêmes réglages, sans limite.
+    demarrerSession('review', 'RÉVISION', questions, {
+      actions: [
+        { label: 'Continuer à réviser', primary: true, fn: () => {
+          const encore = getConfiguredReview(leconIds, types, focus, count, niveaux);
+          demarrerSession('review', 'RÉVISION', encore, session.options);
+        } },
+        { label: 'Accueil', fn: goDashboard }
+      ]
+    });
   }, 20);
 }
 
 // Lance le moteur de session avec une liste de questions déjà prête.
-// retourLeconId (optionnel) : "Terminer" ramène à cette leçon au lieu de l'accueil.
-function demarrerSession(mode, titre, questions, retourLeconId) {
+// options (facultatif) :
+//   actions  : boutons de l'écran de fin [{ label, fn, primary }]
+//              (par défaut : un bouton « Accueil »)
+//   apresFin : fonction lancée quand la dernière question est passée
+function demarrerSession(mode, titre, questions, options) {
   if (!questions.length) { alert('Aucune question disponible.'); return; }
-  session = { mode, questions, index: 0, score: 0, answered: false, retourLeconId };
+  session = { mode, questions, index: 0, score: 0, answered: false, options: options || {} };
   document.getElementById('session-num').textContent = titre;
   document.getElementById('session-titre').textContent = questions.length + ' questions';
   document.getElementById('session-result').classList.add('hidden');
@@ -582,12 +599,6 @@ function demarrerSession(mode, titre, questions, retourLeconId) {
   renderSessionQ();
 }
 
-// Bouton "Terminer" et retour de session.
-function finSession() {
-  const l = lecons.find(x => x.id === session.retourLeconId);
-  if (isParcoursLecon(l)) openParcoursLecon(l);
-  else goDashboard();
-}
 
 function renderSessionQ() {
   if (session.index >= session.questions.length) { showSessionResult(); return; }
@@ -631,8 +642,14 @@ function renderSessionQ() {
     const choices = [...q.choix].sort(() => Math.random() - .5);
     buildSessionChoices(choices, q.trou);
   }
-  else { // ecriture
+  else { // ecriture, et mot caché (on écrit le mot à partir du français)
     wordEl.textContent = q.fr;
+    if (type === 'motcache') {
+      let aide = 'Mot caché · écris le mot';
+      if (q.article) aide += ' · article : ' + q.article;
+      if (q.indice) aide += ' · ' + q.indice;
+      document.getElementById('session-label').textContent = aide;
+    }
     inputWrap.classList.remove('hidden');
     const input = document.getElementById('session-input');
     input.value = '';
@@ -681,7 +698,25 @@ function handleSessionChoice(btn, ok, correctText) {
   }
 
   document.querySelectorAll('#session-choices .choice').forEach(b => b.disabled = true);
+
+  // Faux avec un point d'attention : on l'affiche et on attend « Suivante ».
+  const attention = attentionDe(item);
+  if (!ok && attention) {
+    const feedback = document.getElementById('session-feedback');
+    feedback.className = 'ecr-feedback ko';
+    feedback.innerHTML = '<span class="session-attention">Attention : ' + attention + '</span>';
+    ajouterBoutonSuivante(feedback);
+    return;
+  }
   setTimeout(nextSessionQ, item.type === 'trous' ? 1400 : 1100);
+}
+
+function ajouterBoutonSuivante(feedback) {
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'ecr-next-btn';
+  nextBtn.textContent = session.index < session.questions.length - 1 ? 'Suivante →' : 'Voir le score →';
+  nextBtn.addEventListener('click', () => { nextBtn.remove(); nextSessionQ(); });
+  feedback.after(nextBtn);
 }
 
 function validateSessionInput() {
@@ -695,6 +730,9 @@ function validateSessionInput() {
   const target = item.q.lu;
   const ok = normalize(val) === normalize(target);
   recordSessionAnswer(ok);
+  // Réponse affichée : avec l'article pour un mot caché.
+  const affiche = item.type === 'motcache' && item.q.article ? item.q.article + ' ' + target : target;
+  const attention = attentionDe(item);
 
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
@@ -707,14 +745,11 @@ function validateSessionInput() {
     feedback.innerHTML = '✅ Correct !';
   } else {
     feedback.className = 'ecr-feedback ko';
-    feedback.innerHTML = '❌ Réponse :<span class="ecr-correct-answer">' + escHtml(target) + '</span>';
+    feedback.innerHTML = '❌ Réponse :<span class="ecr-correct-answer">' + escHtml(affiche) + '</span>' +
+      (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   }
 
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'ecr-next-btn';
-  nextBtn.textContent = session.index < session.questions.length - 1 ? 'Suivante →' : 'Voir le score →';
-  nextBtn.addEventListener('click', () => { nextBtn.remove(); nextSessionQ(); });
-  feedback.after(nextBtn);
+  ajouterBoutonSuivante(feedback);
 }
 
 function recordSessionAnswer(ok) {
@@ -743,6 +778,21 @@ function showSessionResult() {
   document.getElementById('session-result').classList.remove('hidden');
   document.getElementById('session-score').textContent =
     `${pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📚'}  ${session.score} / ${total}  (${pct}%)`;
+
+  const opts = session.options || {};
+  if (opts.apresFin) opts.apresFin();
+
+  // Boutons de fin : ceux donnés au lancement, sinon « Accueil ».
+  const actions = opts.actions && opts.actions.length ? opts.actions : [{ label: 'Accueil', fn: goDashboard, primary: true }];
+  const box = document.getElementById('session-actions');
+  box.innerHTML = '';
+  actions.forEach(a => {
+    const btn = document.createElement('button');
+    btn.className = 'session-action' + (a.primary ? ' primary' : '');
+    btn.textContent = a.label;
+    btn.addEventListener('click', a.fn);
+    box.appendChild(btn);
+  });
 }
 
 function showView(id) {

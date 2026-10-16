@@ -33,6 +33,8 @@ function verifierV2(f, l) {
   l.unites.forEach(u => {
     if (!u.titre) erreur(f, 'unité ' + u.id + ' sans titre');
     if (!u.regle) attention(f, 'unité ' + u.id + ' sans règle (écran « Avant de commencer »)');
+    if (!u.pieges || !u.pieges.length) attention(f, 'unité ' + u.id + ' sans point d\'attention (« pieges »)');
+    else if (u.pieges.length > 2) attention(f, 'unité ' + u.id + ' : ' + u.pieges.length + ' pièges (2 max conseillé)');
   });
 
   TYPES.forEach(type => {
@@ -44,6 +46,7 @@ function verifierV2(f, l) {
 
     items.forEach(x => {
       if (!idsUnites.includes(x.unite)) erreur(f, type + ' id ' + x.id + ' : unité « ' + x.unite + ' » inconnue');
+      if (x.attention !== undefined && !x.attention) erreur(f, type + ' id ' + x.id + ' : « attention » vide');
     });
 
     // Taille de chaque unité.
