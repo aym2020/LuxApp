@@ -24,6 +24,10 @@
           "Spills du gär Fussball?",
           "Aimes-tu jouer au football ?"
         ]
+      ],
+      "pieges": [
+        "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär · mais il reste devant net : Ech kucken net gär.",
+        "Sport et instruments <b>sans article</b> : Fussball spillen, Gittar spillen."
       ]
     },
     {
@@ -40,6 +44,10 @@
           "Ech ginn op e Concert.",
           "Je vais à un concert."
         ]
+      ],
+      "pieges": [
+        "Avec <b>goen</b>, l'autre verbe va <b>à la fin</b> : Ech gi gär spadséieren.",
+        "<b>an</b> = bâtiment · <b>op</b> = événement, administration · <b>bei</b> = chez quelqu'un."
       ]
     },
     {
@@ -56,6 +64,10 @@
           "Eemol de Mount.",
           "Une fois par mois."
         ]
+      ],
+      "pieges": [
+        "<b>ni</b> = jamais ≠ <b>net</b> = ne… pas.",
+        "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
       ]
     }
   ],
@@ -65,35 +77,40 @@
       "unite": 1,
       "fr": "jouer au football",
       "lu": "Fussball spillen",
-      "note": "Sans article · du spills, hie spillt"
+      "note": "Sans article · du spills, hie spillt",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1002,
       "unite": 1,
       "fr": "jouer de la guitare",
       "lu": "Gittar spillen",
-      "note": "Instrument sans article"
+      "note": "Instrument sans article",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1003,
       "unite": 1,
       "fr": "faire du vélo",
       "lu": "Vëlo fueren",
-      "note": "Sans article · du fiers, hie fiert"
+      "note": "Sans article · du fiers, hie fiert",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1004,
       "unite": 1,
       "fr": "faire du ski",
       "lu": "Schi fueren",
-      "note": "Sans article"
+      "note": "Sans article",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1005,
       "unite": 1,
       "fr": "faire du sport",
       "lu": "Sport maachen",
-      "note": "du méchs, hie mécht"
+      "note": "du méchs, hie mécht",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1006,
@@ -128,133 +145,152 @@
       "unite": 1,
       "fr": "j'adore (très volontiers)",
       "lu": "ganz gär",
-      "note": "Ech kucke ganz gär e Film."
+      "note": "Ech kucke ganz gär e Film.",
+      "attention": "On ne dit pas « j'aime » : verbe + <b>gär</b>."
     },
     {
       "id": 1011,
       "unite": 1,
       "fr": "je n'aime pas du tout",
       "lu": "guer net gär",
-      "note": "Ech kucke guer net gär e Film."
+      "note": "Ech kucke guer net gär e Film.",
+      "attention": "On ne dit pas « j'aime » : verbe + <b>gär</b>."
     },
     {
       "id": 1012,
       "unite": 2,
       "fr": "se promener",
       "lu": "spadséiere goen",
-      "note": "Ech gi gär spadséieren."
+      "note": "Ech gi gär spadséieren.",
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1013,
       "unite": 2,
       "fr": "aller nager",
       "lu": "schwamme goen",
-      "note": "Ech gi gär schwammen."
+      "note": "Ech gi gär schwammen.",
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1014,
       "unite": 2,
       "fr": "aller courir",
       "lu": "lafe goen",
-      "note": "Ech ginn all Dag lafen."
+      "note": "Ech ginn all Dag lafen.",
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1015,
       "unite": 2,
       "fr": "faire les courses / du shopping",
       "lu": "akafe goen",
-      "note": "Ech gi gär akafen."
+      "note": "Ech gi gär akafen.",
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1016,
       "unite": 2,
       "fr": "aller au cinéma",
       "lu": "an de Kino goen",
-      "note": "de Kino = masculin · bâtiment → an"
+      "note": "de Kino = masculin · bâtiment → an",
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1017,
       "unite": 2,
       "fr": "aller à la piscine",
       "lu": "an d'Schwämm goen",
-      "note": "d'Schwämm = féminin → an d'"
+      "note": "d'Schwämm = féminin → an d'",
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1018,
       "unite": 2,
       "fr": "aller en forêt",
       "lu": "an de Bësch goen",
-      "note": "de Bësch = masculin → an de"
+      "note": "de Bësch = masculin → an de",
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1019,
       "unite": 2,
       "fr": "aller à un concert",
       "lu": "op e Concert goen",
-      "note": "Événement → op"
+      "note": "Événement → op",
+      "attention": "<b>op</b> = événement, lieu ouvert ou administration : op e Concert, op d'Gemeng."
     },
     {
       "id": 1020,
       "unite": 2,
       "fr": "aller à un marché aux puces",
       "lu": "op e Floumaart goen",
-      "note": "Lieu ouvert → op"
+      "note": "Lieu ouvert → op",
+      "attention": "<b>op</b> = événement, lieu ouvert ou administration : op e Concert, op d'Gemeng."
     },
     {
       "id": 1021,
       "unite": 2,
       "fr": "aller chez le coiffeur",
       "lu": "bei de Coiffer goen",
-      "note": "Personne → bei"
+      "note": "Personne → bei",
+      "attention": "<b>bei</b> = chez une personne : bei de Coiffer."
     },
     {
       "id": 1022,
       "unite": 3,
       "fr": "tous les jours",
       "lu": "all Dag",
-      "note": "Fréquence"
+      "note": "Fréquence",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1023,
       "unite": 3,
       "fr": "souvent",
       "lu": "oft",
-      "note": "Fréquence"
+      "note": "Fréquence",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1024,
       "unite": 3,
       "fr": "parfois",
       "lu": "heiansdo",
-      "note": "Fréquence"
+      "note": "Fréquence",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1025,
       "unite": 3,
       "fr": "jamais",
       "lu": "ni",
-      "note": "Fréquence"
+      "note": "Fréquence",
+      "attention": "<b>ni</b> = jamais ≠ <b>net</b> = ne… pas."
     },
     {
       "id": 1026,
       "unite": 3,
       "fr": "une fois par semaine",
       "lu": "eemol d'Woch",
-      "note": "d'Woch = la semaine"
+      "note": "d'Woch = la semaine",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1027,
       "unite": 3,
       "fr": "une fois par mois",
       "lu": "eemol de Mount",
-      "note": "de Mount = le mois"
+      "note": "de Mount = le mois",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1028,
       "unite": 3,
       "fr": "À quelle fréquence ? / Combien de fois ?",
       "lu": "Wéi oft?",
-      "note": "Wéi oft gees du an de Kino?"
+      "note": "Wéi oft gees du an de Kino?",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     }
   ],
   "quiz": [
@@ -267,7 +303,8 @@
         "regarder un match de football",
         "jouer aux jeux vidéo",
         "faire du sport"
-      ]
+      ],
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1002,
@@ -278,7 +315,8 @@
         "faire du ski",
         "aller courir",
         "se promener"
-      ]
+      ],
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1003,
@@ -289,7 +327,8 @@
         "suivre un cours",
         "jouer au football",
         "faire du ski"
-      ]
+      ],
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1004,
@@ -311,7 +350,8 @@
         "J'aime bien regarder un film.",
         "Je n'aime pas regarder un film.",
         "Je n'aime pas du tout regarder un film."
-      ]
+      ],
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1006,
@@ -322,7 +362,8 @@
         "J'adore jouer au football.",
         "Je n'aime pas jouer au football.",
         "Je joue souvent au football."
-      ]
+      ],
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1007,
@@ -333,7 +374,8 @@
         "Je n'aime pas du tout faire du vélo.",
         "J'aime bien faire du vélo.",
         "Je ne fais jamais de vélo."
-      ]
+      ],
+      "attention": "Devant <b>net</b>, le n reste : Ech kucken net gär (UNITEDZOHA)."
     },
     {
       "id": 1008,
@@ -344,7 +386,8 @@
         "Je n'aime pas faire les courses.",
         "J'adore faire les courses.",
         "Je ne fais jamais les courses."
-      ]
+      ],
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1009,
@@ -355,7 +398,8 @@
         "aller courir",
         "aller nager",
         "faire les courses"
-      ]
+      ],
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1010,
@@ -366,7 +410,8 @@
         "aller courir",
         "se reposer",
         "aller boire un verre"
-      ]
+      ],
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1011,
@@ -377,7 +422,8 @@
         "aller nager",
         "se promener",
         "faire du vélo"
-      ]
+      ],
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1012,
@@ -388,7 +434,8 @@
         "aller au marché aux puces",
         "faire la cuisine",
         "aller boire un verre"
-      ]
+      ],
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1013,
@@ -399,7 +446,8 @@
         "aller en boîte",
         "aller en forêt",
         "aller au cinéma"
-      ]
+      ],
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1014,
@@ -410,7 +458,8 @@
         "regarder un film",
         "aller à un concert",
         "aller en boîte"
-      ]
+      ],
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1015,
@@ -421,7 +470,8 @@
         "aller au cinéma",
         "aller en boîte",
         "chanter"
-      ]
+      ],
+      "attention": "<b>op</b> = événement, lieu ouvert ou administration : op e Concert, op d'Gemeng."
     },
     {
       "id": 1016,
@@ -432,7 +482,8 @@
         "aller chez le médecin",
         "aller à la commune",
         "aller au cinéma"
-      ]
+      ],
+      "attention": "<b>bei</b> = chez une personne : bei de Coiffer."
     },
     {
       "id": 1017,
@@ -443,7 +494,8 @@
         "souvent",
         "une fois par semaine",
         "aujourd'hui"
-      ]
+      ],
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1018,
@@ -454,7 +506,8 @@
         "parfois",
         "jamais",
         "tous les jours"
-      ]
+      ],
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1019,
@@ -465,7 +518,8 @@
         "souvent",
         "jamais",
         "aujourd'hui"
-      ]
+      ],
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1020,
@@ -476,7 +530,8 @@
         "parfois",
         "pas du tout",
         "souvent"
-      ]
+      ],
+      "attention": "<b>ni</b> = jamais ≠ <b>net</b> = ne… pas."
     },
     {
       "id": 1021,
@@ -487,7 +542,8 @@
         "une fois par mois",
         "tous les jours",
         "la semaine prochaine"
-      ]
+      ],
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1022,
@@ -498,7 +554,8 @@
         "une fois par semaine",
         "souvent",
         "parfois"
-      ]
+      ],
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1023,
@@ -509,7 +566,8 @@
         "Qu'est-ce que tu fais ce week-end ?",
         "Où vas-tu pendant ton temps libre ?",
         "Qu'est-ce que tu fais comme travail ?"
-      ]
+      ],
+      "attention": "maachen : du <b>méchs</b>, hie <b>mécht</b>, dir <b>maacht</b>."
     },
     {
       "id": 1024,
@@ -520,7 +578,8 @@
         "Quand vas-tu au cinéma ?",
         "Aimes-tu aller au cinéma ?",
         "À quelle heure vas-tu au cinéma ?"
-      ]
+      ],
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     }
   ],
   "trous": [
@@ -537,7 +596,8 @@
         "fuere",
         "maache"
       ],
-      "note": "kucken → Ech kucke gär (le n tombe devant g)."
+      "note": "kucken → Ech kucke gär (le n tombe devant g).",
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1002,
@@ -552,7 +612,8 @@
         "maache",
         "kucke"
       ],
-      "note": "Vëlo fueren = faire du vélo."
+      "note": "Vëlo fueren = faire du vélo.",
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1003,
@@ -567,7 +628,8 @@
         "spillt",
         "kuckt"
       ],
-      "note": "maachen : Dir maacht."
+      "note": "maachen : Dir maacht.",
+      "attention": "maachen : du <b>méchs</b>, hie <b>mécht</b>, dir <b>maacht</b>."
     },
     {
       "id": 1004,
@@ -597,7 +659,8 @@
         "Fussball",
         "Mini-Golf"
       ],
-      "note": "Gittar spillen = jouer de la guitare."
+      "note": "Gittar spillen = jouer de la guitare.",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1006,
@@ -612,7 +675,8 @@
         "Sport",
         "Fussball"
       ],
-      "note": "Vëlo fueren = faire du vélo."
+      "note": "Vëlo fueren = faire du vélo.",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1007,
@@ -627,7 +691,8 @@
         "gär",
         "ganz gär"
       ],
-      "note": "guer net gär = pas du tout."
+      "note": "guer net gär = pas du tout.",
+      "attention": "On ne dit pas « j'aime » : verbe + <b>gär</b>."
     },
     {
       "id": 1008,
@@ -642,7 +707,8 @@
         "net gär",
         "guer net gär"
       ],
-      "note": "ganz gär = j'adore / très volontiers."
+      "note": "ganz gär = j'adore / très volontiers.",
+      "attention": "On ne dit pas « j'aime » : verbe + <b>gär</b>."
     },
     {
       "id": 1009,
@@ -657,7 +723,8 @@
         "spillt",
         "fuert"
       ],
-      "note": "goen : Dir gitt."
+      "note": "goen : Dir gitt.",
+      "attention": "goen est irrégulier : du <b>gees</b>, hie <b>geet</b>, dir <b>gitt</b>."
     },
     {
       "id": 1010,
@@ -672,7 +739,8 @@
         "spills",
         "fiers"
       ],
-      "note": "goen : du gees."
+      "note": "goen : du gees.",
+      "attention": "goen est irrégulier : du <b>gees</b>, hie <b>geet</b>, dir <b>gitt</b>."
     },
     {
       "id": 1011,
@@ -687,7 +755,8 @@
         "bei",
         "un"
       ],
-      "note": "Lieu ouvert → op e Floumaart."
+      "note": "Lieu ouvert → op e Floumaart.",
+      "attention": "<b>an</b> = bâtiment · <b>op</b> = événement, lieu ouvert, administration · <b>bei</b> = chez quelqu'un."
     },
     {
       "id": 1012,
@@ -702,7 +771,8 @@
         "op",
         "un"
       ],
-      "note": "Personne → bei de Coiffer."
+      "note": "Personne → bei de Coiffer.",
+      "attention": "<b>an</b> = bâtiment · <b>op</b> = événement, lieu ouvert, administration · <b>bei</b> = chez quelqu'un."
     },
     {
       "id": 1013,
@@ -747,7 +817,8 @@
         "lafen",
         "akafen"
       ],
-      "note": "spadséiere goen → l'infinitif va à la fin."
+      "note": "spadséiere goen → l'infinitif va à la fin.",
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1016,
@@ -762,7 +833,8 @@
         "schwammen",
         "spadséieren"
       ],
-      "note": "akafe goen = faire les courses."
+      "note": "akafe goen = faire les courses.",
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1017,
@@ -777,7 +849,8 @@
         "oft",
         "heiansdo"
       ],
-      "note": "ni = jamais · net = ne… pas."
+      "note": "ni = jamais · net = ne… pas.",
+      "attention": "<b>ni</b> = jamais ≠ <b>net</b> = ne… pas."
     },
     {
       "id": 1018,
@@ -792,7 +865,8 @@
         "ni",
         "all Dag"
       ],
-      "note": "heiansdo = parfois."
+      "note": "heiansdo = parfois.",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1019,
@@ -807,7 +881,8 @@
         "all Dag",
         "heiansdo"
       ],
-      "note": "eemol d'Woch = une fois par semaine."
+      "note": "eemol d'Woch = une fois par semaine.",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1020,
@@ -822,7 +897,8 @@
         "ni",
         "heiansdo"
       ],
-      "note": "all Dag = tous les jours · juste après le verbe"
+      "note": "all Dag = tous les jours · juste après le verbe",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1021,
@@ -837,7 +913,8 @@
         "bei",
         "un"
       ],
-      "note": "Bâtiment → an de Kino."
+      "note": "Bâtiment → an de Kino.",
+      "attention": "<b>an</b> = bâtiment · <b>op</b> = événement, lieu ouvert, administration · <b>bei</b> = chez quelqu'un."
     },
     {
       "id": 1022,
@@ -852,7 +929,8 @@
         "bei",
         "un"
       ],
-      "note": "Administration → op d'Gemeng."
+      "note": "Administration → op d'Gemeng.",
+      "attention": "<b>an</b> = bâtiment · <b>op</b> = événement, lieu ouvert, administration · <b>bei</b> = chez quelqu'un."
     },
     {
       "id": 1023,
@@ -882,7 +960,8 @@
         "maacht",
         "maachen"
       ],
-      "note": "maachen : du méchs."
+      "note": "maachen : du méchs.",
+      "attention": "maachen : du <b>méchs</b>, hie <b>mécht</b>, dir <b>maacht</b>."
     }
   ],
   "ecriture": [
@@ -890,115 +969,134 @@
       "id": 1001,
       "unite": 1,
       "fr": "J'aime regarder un film.",
-      "lu": "Ech kucke gär e Film."
+      "lu": "Ech kucke gär e Film.",
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1002,
       "unite": 1,
       "fr": "J'adore lire.",
-      "lu": "Ech liese ganz gär."
+      "lu": "Ech liese ganz gär.",
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1003,
       "unite": 1,
       "fr": "Je n'aime pas faire du sport.",
-      "lu": "Ech maachen net gär Sport."
+      "lu": "Ech maachen net gär Sport.",
+      "attention": "Devant <b>net</b>, le n reste : Ech kucken net gär (UNITEDZOHA)."
     },
     {
       "id": 1004,
       "unite": 1,
       "fr": "Je n'aime pas du tout faire du vélo.",
-      "lu": "Ech fuere guer net gär Vëlo."
+      "lu": "Ech fuere guer net gär Vëlo.",
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1005,
       "unite": 1,
       "fr": "Aimes-tu jouer au football ?",
-      "lu": "Spills du gär Fussball?"
+      "lu": "Spills du gär Fussball?",
+      "attention": "Sport, instrument, Vëlo, Schi : <b>pas d'article</b>."
     },
     {
       "id": 1006,
       "unite": 1,
       "fr": "Oui, très volontiers !",
-      "lu": "Jo, ganz gär!"
+      "lu": "Jo, ganz gär!",
+      "attention": "On ne dit pas « j'aime » : verbe + <b>gär</b>."
     },
     {
       "id": 1007,
       "unite": 2,
       "fr": "J'aime aller me promener.",
-      "lu": "Ech gi gär spadséieren."
+      "lu": "Ech gi gär spadséieren.",
+      "attention": "Le <b>n</b> tombe devant <b>g</b> : Ech kucke gär (UNITEDZOHA)."
     },
     {
       "id": 1008,
       "unite": 2,
       "fr": "Je vais à un concert.",
-      "lu": "Ech ginn op e Concert."
+      "lu": "Ech ginn op e Concert.",
+      "attention": "<b>op</b> = événement, lieu ouvert ou administration : op e Concert, op d'Gemeng."
     },
     {
       "id": 1009,
       "unite": 2,
       "fr": "Je vais chez le coiffeur.",
-      "lu": "Ech gi bei de Coiffer."
+      "lu": "Ech gi bei de Coiffer.",
+      "attention": "<b>bei</b> = chez une personne : bei de Coiffer."
     },
     {
       "id": 1010,
       "unite": 2,
       "fr": "Aimes-tu aller au cinéma ?",
-      "lu": "Gees du gär an de Kino?"
+      "lu": "Gees du gär an de Kino?",
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1011,
       "unite": 2,
       "fr": "Samedi, je vais faire les courses.",
-      "lu": "E Samschdeg ginn ech akafen."
+      "lu": "E Samschdeg ginn ech akafen.",
+      "attention": "Avec <b>goen</b>, l'autre verbe va à la fin : Ech gi gär spadséieren."
     },
     {
       "id": 1012,
       "unite": 2,
       "fr": "Dimanche, nous allons en forêt.",
-      "lu": "E Sonndeg gi mir an de Bësch."
+      "lu": "E Sonndeg gi mir an de Bësch.",
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1013,
       "unite": 3,
       "fr": "Tu vas souvent au cinéma.",
-      "lu": "Du gees oft an de Kino."
+      "lu": "Du gees oft an de Kino.",
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1014,
       "unite": 3,
       "fr": "Je fais parfois du ski.",
-      "lu": "Ech fueren heiansdo Schi."
+      "lu": "Ech fueren heiansdo Schi.",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1015,
       "unite": 3,
       "fr": "Il joue du violon tous les jours.",
-      "lu": "Hie spillt all Dag Gei."
+      "lu": "Hie spillt all Dag Gei.",
+      "attention": "La fréquence se place juste <b>après le verbe</b> : Du gees oft an de Kino."
     },
     {
       "id": 1016,
       "unite": 3,
       "fr": "Nous ne jouons jamais au mini-golf.",
-      "lu": "Mir spillen ni Mini-Golf."
+      "lu": "Mir spillen ni Mini-Golf.",
+      "attention": "<b>ni</b> = jamais ≠ <b>net</b> = ne… pas."
     },
     {
       "id": 1017,
       "unite": 3,
       "fr": "Je vais à la commune une fois par mois.",
-      "lu": "Ech ginn eemol de Mount op d'Gemeng."
+      "lu": "Ech ginn eemol de Mount op d'Gemeng.",
+      "attention": "<b>op</b> = événement, lieu ouvert ou administration : op e Concert, op d'Gemeng."
     },
     {
       "id": 1018,
       "unite": 3,
       "fr": "À quelle fréquence vas-tu au cinéma ?",
-      "lu": "Wéi oft gees du an de Kino?"
+      "lu": "Wéi oft gees du an de Kino?",
+      "attention": "<b>an</b> = bâtiment ou lieu fermé : an de Kino, an d'Schwämm."
     },
     {
       "id": 1019,
       "unite": 3,
       "fr": "Qu'est-ce que tu aimes faire pendant ton temps libre ?",
-      "lu": "Wat méchs du gär an der Fräizäit?"
+      "lu": "Wat méchs du gär an der Fräizäit?",
+      "attention": "maachen : du <b>méchs</b>, hie <b>mécht</b>, dir <b>maacht</b>."
     }
   ],
   "cours": [
@@ -1376,7 +1474,7 @@
         "<b>fueren</b> : du <b>fiers</b>, hie <b>fiert</b> · <b>kucken</b> est régulier : du kucks, hie kuckt (leçon 16).",
         "<b>hatt</b> = elle, pour une fille ou une femme qu'on appelle par son prénom : Hatt mécht e Cours."
       ],
-      "unite": 0
+      "unite": 2
     },
     {
       "type": "callout",

@@ -24,6 +24,10 @@
           "Si ass Fransousin.",
           "Elle est française."
         ]
+      ],
+      "pieges": [
+        "<b>Belsch</b> ne prend pas -in : e Belsch = eng Belsch.",
+        "Allemand : <b>Däitschen</b> (M) / <b>Däitsch</b> (F), sans -in."
       ]
     },
     {
@@ -40,6 +44,10 @@
           "Si ass Englännerin.",
           "Elle est anglaise."
         ]
+      ],
+      "pieges": [
+        "Après <b>ass</b>, pas d'article : Hien ass Spuenier (pas « e Spuenier »).",
+        "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
       ]
     },
     {
@@ -56,6 +64,10 @@
           "Ass si Japanerin?",
           "Est-elle japonaise ?"
         ]
+      ],
+      "pieges": [
+        "Négation : <b>kee</b> (M) · <b>keng</b> (F) · <b>keen</b> devant une voyelle : keen Amerikaner.",
+        "<b>seng</b> Nationalitéit = sa nationalité (à lui) · <b>hir</b> = à elle."
       ]
     }
   ],
@@ -74,7 +86,8 @@
       "fr": "Luxembourgeoise",
       "lu": "Lëtzebuergerin",
       "indice": "féminin",
-      "note": "Lëtzebuerg · masculin : Lëtzebuerger"
+      "note": "Lëtzebuerg · masculin : Lëtzebuerger",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1003,
@@ -90,7 +103,8 @@
       "fr": "Française",
       "lu": "Fransousin",
       "indice": "féminin",
-      "note": "Frankräich · masculin : Fransous"
+      "note": "Frankräich · masculin : Fransous",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1005,
@@ -98,7 +112,8 @@
       "fr": "Belge",
       "lu": "Belsch",
       "indice": "masculin et féminin",
-      "note": "Belsch · invariable : pas de -in"
+      "note": "Belsch · invariable : pas de -in",
+      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
     },
     {
       "id": 1006,
@@ -106,7 +121,8 @@
       "fr": "Allemand",
       "lu": "Däitschen",
       "indice": "masculin",
-      "note": "Däitschland · irrégulier · féminin : Däitsch"
+      "note": "Däitschland · irrégulier · féminin : Däitsch",
+      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
     },
     {
       "id": 1007,
@@ -114,7 +130,8 @@
       "fr": "Allemande",
       "lu": "Däitsch",
       "indice": "féminin",
-      "note": "Däitschland · irrégulier · masculin : Däitschen"
+      "note": "Däitschland · irrégulier · masculin : Däitschen",
+      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
     },
     {
       "id": 1008,
@@ -130,7 +147,8 @@
       "fr": "Portugaise",
       "lu": "Portugisin",
       "indice": "féminin",
-      "note": "Portugal · masculin : Portugis"
+      "note": "Portugal · masculin : Portugis",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1010,
@@ -146,7 +164,8 @@
       "fr": "Espagnole",
       "lu": "Spuenierin",
       "indice": "féminin",
-      "note": "Spuenien · masculin : Spuenier"
+      "note": "Spuenien · masculin : Spuenier",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1012,
@@ -162,7 +181,8 @@
       "fr": "Italienne",
       "lu": "Italienerin",
       "indice": "féminin",
-      "note": "Italien · masculin : Italiener"
+      "note": "Italien · masculin : Italiener",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1014,
@@ -170,7 +190,8 @@
       "fr": "Anglais",
       "lu": "Englänner",
       "indice": "masculin",
-      "note": "England · féminin : Englännerin"
+      "note": "England · féminin : Englännerin",
+      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
     },
     {
       "id": 1015,
@@ -178,7 +199,8 @@
       "fr": "Anglaise",
       "lu": "Englännerin",
       "indice": "féminin",
-      "note": "England · masculin : Englänner"
+      "note": "England · masculin : Englänner",
+      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
     },
     {
       "id": 1016,
@@ -194,7 +216,8 @@
       "fr": "Néerlandaise",
       "lu": "Hollännerin",
       "indice": "féminin",
-      "note": "Holland · masculin : Hollänner"
+      "note": "Holland · masculin : Hollänner",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1018,
@@ -210,7 +233,8 @@
       "fr": "Suissesse",
       "lu": "Schwäizerin",
       "indice": "féminin",
-      "note": "Schwäiz · masculin : Schwäizer"
+      "note": "Schwäiz · masculin : Schwäizer",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1020,
@@ -226,7 +250,8 @@
       "fr": "Américaine",
       "lu": "Amerikanerin",
       "indice": "féminin",
-      "note": "Amerika · masculin : Amerikaner"
+      "note": "Amerika · masculin : Amerikaner",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1022,
@@ -242,7 +267,8 @@
       "fr": "Japonaise",
       "lu": "Japanerin",
       "indice": "féminin",
-      "note": "Japan · masculin : Japaner"
+      "note": "Japan · masculin : Japaner",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1024,
@@ -258,7 +284,8 @@
       "fr": "Chinoise",
       "lu": "Chineesin",
       "indice": "féminin",
-      "note": "China · masculin : Chinees"
+      "note": "China · masculin : Chinees",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1026,
@@ -274,7 +301,8 @@
       "fr": "Cap-Verdienne",
       "lu": "Kapverdianerin",
       "indice": "féminin",
-      "note": "Cap Vert · masculin : Kapverdianer"
+      "note": "Cap Vert · masculin : Kapverdianer",
+      "attention": "Féminin = masculin + <b>-in</b>."
     }
   ],
   "quiz": [
@@ -287,7 +315,8 @@
         "e Lëtzebuergerin",
         "e Lëtzebuerg",
         "e Lëtzebuergesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1002,
@@ -298,7 +327,8 @@
         "eng Lëtzebuerger",
         "eng Lëtzebuerg",
         "eng Lëtzebuergesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1003,
@@ -309,7 +339,8 @@
         "e Fransousin",
         "e Frankräich",
         "e Franséisch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1004,
@@ -320,7 +351,8 @@
         "eng Fransous",
         "eng Frankräich",
         "eng Franséisch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1005,
@@ -331,7 +363,8 @@
         "e Franséisch",
         "e Däitsch",
         "e Belschesch"
-      ]
+      ],
+      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
     },
     {
       "id": 1006,
@@ -342,7 +375,8 @@
         "eng Franséisch",
         "eng Däitsch",
         "eng Belschesch"
-      ]
+      ],
+      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
     },
     {
       "id": 1007,
@@ -353,7 +387,8 @@
         "en Däitsch",
         "en Däitschland",
         "en Däitscher"
-      ]
+      ],
+      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
     },
     {
       "id": 1008,
@@ -364,7 +399,8 @@
         "eng Däitschen",
         "eng Däitschland",
         "eng Däitscher"
-      ]
+      ],
+      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
     },
     {
       "id": 1009,
@@ -375,7 +411,8 @@
         "e Spuenierin",
         "e Spuenien",
         "e Spuenesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1010,
@@ -386,7 +423,8 @@
         "eng Spuenier",
         "eng Spuenien",
         "eng Spuenesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1011,
@@ -397,7 +435,8 @@
         "en Italienerin",
         "en Italien",
         "en Italienesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1012,
@@ -408,7 +447,8 @@
         "eng Italiener",
         "eng Italien",
         "eng Italienesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1013,
@@ -419,7 +459,8 @@
         "en Englännerin",
         "en England",
         "en Englesch"
-      ]
+      ],
+      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
     },
     {
       "id": 1014,
@@ -430,7 +471,8 @@
         "eng Englänner",
         "eng England",
         "eng Englesch"
-      ]
+      ],
+      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
     },
     {
       "id": 1015,
@@ -441,7 +483,8 @@
         "en Hollännerin",
         "en Holland",
         "en Hollännesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1016,
@@ -452,7 +495,8 @@
         "eng Hollänner",
         "eng Holland",
         "eng Hollännesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1017,
@@ -463,7 +507,8 @@
         "en Amerikanerin",
         "en Amerika",
         "en Englesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1018,
@@ -474,7 +519,8 @@
         "eng Amerikaner",
         "eng Amerika",
         "eng Englesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1019,
@@ -485,7 +531,8 @@
         "e Japanerin",
         "e Japan",
         "e Japanesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1020,
@@ -496,7 +543,8 @@
         "eng Japaner",
         "eng Japan",
         "eng Japanesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1021,
@@ -507,7 +555,8 @@
         "e Chineesin",
         "e China",
         "e Chineesesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1022,
@@ -518,7 +567,8 @@
         "eng Chinees",
         "eng China",
         "eng Chineesesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1023,
@@ -529,7 +579,8 @@
         "e Kapverdianerin",
         "e Cap Vert",
         "e Portugisesch"
-      ]
+      ],
+      "attention": "Au masculin : <b>en</b> devant une voyelle ou n, d, t, z, h, sinon <b>e</b>."
     },
     {
       "id": 1024,
@@ -540,7 +591,8 @@
         "eng Kapverdianer",
         "eng Cap Vert",
         "eng Portugisesch"
-      ]
+      ],
+      "attention": "Féminin = masculin + <b>-in</b>."
     }
   ],
   "trous": [
@@ -572,7 +624,8 @@
         "Lëtzebuergesch",
         "Lëtzebuerg"
       ],
-      "note": "eng Lëtzebuergerin = une Luxembourgeoise"
+      "note": "eng Lëtzebuergerin = une Luxembourgeoise",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1003,
@@ -602,7 +655,8 @@
         "Franséisch",
         "Frankräich"
       ],
-      "note": "eng Fransousin = une Française"
+      "note": "eng Fransousin = une Française",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1005,
@@ -617,7 +671,8 @@
         "Däitsch",
         "Belschesch"
       ],
-      "note": "e Belsch = un Belge"
+      "note": "e Belsch = un Belge",
+      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
     },
     {
       "id": 1006,
@@ -632,7 +687,8 @@
         "Däitsch",
         "Belschesch"
       ],
-      "note": "eng Belsch = une Belge"
+      "note": "eng Belsch = une Belge",
+      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
     },
     {
       "id": 1007,
@@ -647,7 +703,8 @@
         "Däitscher",
         "Däitschland"
       ],
-      "note": "en Däitschen = un Allemand"
+      "note": "en Däitschen = un Allemand",
+      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
     },
     {
       "id": 1008,
@@ -662,7 +719,8 @@
         "Däitscher",
         "Däitschland"
       ],
-      "note": "eng Däitsch = une Allemande"
+      "note": "eng Däitsch = une Allemande",
+      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
     },
     {
       "id": 1009,
@@ -692,7 +750,8 @@
         "Spuenesch",
         "Spuenien"
       ],
-      "note": "eng Spuenierin = une Espagnole"
+      "note": "eng Spuenierin = une Espagnole",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1011,
@@ -722,7 +781,8 @@
         "Italienesch",
         "Italien"
       ],
-      "note": "eng Italienerin = une Italienne"
+      "note": "eng Italienerin = une Italienne",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1013,
@@ -737,7 +797,8 @@
         "Englesch",
         "England"
       ],
-      "note": "en Englänner = un Anglais"
+      "note": "en Englänner = un Anglais",
+      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
     },
     {
       "id": 1014,
@@ -752,7 +813,8 @@
         "Englesch",
         "England"
       ],
-      "note": "eng Englännerin = une Anglaise"
+      "note": "eng Englännerin = une Anglaise",
+      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
     },
     {
       "id": 1015,
@@ -782,7 +844,8 @@
         "Schwäizesch",
         "Schwäiz"
       ],
-      "note": "eng Schwäizerin = une Suissesse"
+      "note": "eng Schwäizerin = une Suissesse",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1017,
@@ -812,7 +875,8 @@
         "Englesch",
         "Amerika"
       ],
-      "note": "eng Amerikanerin = une Américaine"
+      "note": "eng Amerikanerin = une Américaine",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1019,
@@ -827,7 +891,8 @@
         "Japanesch",
         "Japan"
       ],
-      "note": "eng Japanerin = une Japonaise"
+      "note": "eng Japanerin = une Japonaise",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1020,
@@ -872,7 +937,8 @@
         "Portugisesch",
         "Cap Vert"
       ],
-      "note": "eng Kapverdianerin = une Cap-Verdienne"
+      "note": "eng Kapverdianerin = une Cap-Verdienne",
+      "attention": "Féminin = masculin + <b>-in</b>."
     },
     {
       "id": 1023,
@@ -887,7 +953,8 @@
         "keng",
         "net"
       ],
-      "note": "Négation masculin → kee (keen devant une voyelle ou n, d, t, z, h)"
+      "note": "Négation masculin → kee (keen devant une voyelle ou n, d, t, z, h)",
+      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
     },
     {
       "id": 1024,
@@ -902,7 +969,8 @@
         "keng",
         "net"
       ],
-      "note": "Négation féminin → keng"
+      "note": "Négation féminin → keng",
+      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
     }
   ],
   "ecriture": [
@@ -910,67 +978,78 @@
       "id": 1001,
       "unite": 1,
       "fr": "Il est luxembourgeois.",
-      "lu": "Hien ass Lëtzebuerger."
+      "lu": "Hien ass Lëtzebuerger.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1002,
       "unite": 1,
       "fr": "Elle est luxembourgeoise.",
-      "lu": "Si ass Lëtzebuergerin."
+      "lu": "Si ass Lëtzebuergerin.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1003,
       "unite": 1,
       "fr": "Je suis française.",
-      "lu": "Ech si Fransousin."
+      "lu": "Ech si Fransousin.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1004,
       "unite": 1,
       "fr": "Est-elle française ?",
-      "lu": "Ass si Fransousin?"
+      "lu": "Ass si Fransousin?",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1005,
       "unite": 1,
       "fr": "Êtes-vous belge ?",
-      "lu": "Sidd Dir Belsch?"
+      "lu": "Sidd Dir Belsch?",
+      "attention": "<b>Belsch</b> est invariable : pas de -in au féminin."
     },
     {
       "id": 1006,
       "unite": 1,
       "fr": "Il est allemand.",
-      "lu": "Hien ass Däitschen."
+      "lu": "Hien ass Däitschen.",
+      "attention": "Allemand est irrégulier : <b>Däitschen</b> (M) / <b>Däitsch</b> (F)."
     },
     {
       "id": 1007,
       "unite": 1,
       "fr": "Oui, il est portugais.",
-      "lu": "Jo, hien ass Portugis."
+      "lu": "Jo, hien ass Portugis.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1008,
       "unite": 2,
       "fr": "Il est espagnol.",
-      "lu": "Hien ass Spuenier."
+      "lu": "Hien ass Spuenier.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1009,
       "unite": 2,
       "fr": "Je suis espagnole.",
-      "lu": "Ech si Spuenierin."
+      "lu": "Ech si Spuenierin.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1010,
       "unite": 2,
       "fr": "Elle est italienne.",
-      "lu": "Si ass Italienerin."
+      "lu": "Si ass Italienerin.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1011,
       "unite": 2,
       "fr": "Elle est anglaise.",
-      "lu": "Si ass Englännerin."
+      "lu": "Si ass Englännerin.",
+      "attention": "Anglais = <b>Englänner</b>, avec deux n (comme Hollänner)."
     },
     {
       "id": 1012,
@@ -982,19 +1061,22 @@
       "id": 1013,
       "unite": 2,
       "fr": "Il est suisse.",
-      "lu": "Hien ass Schwäizer."
+      "lu": "Hien ass Schwäizer.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1014,
       "unite": 3,
       "fr": "Elle est américaine.",
-      "lu": "Si ass Amerikanerin."
+      "lu": "Si ass Amerikanerin.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1015,
       "unite": 3,
       "fr": "Elle est japonaise.",
-      "lu": "Si ass Japanerin."
+      "lu": "Si ass Japanerin.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1016,
@@ -1006,31 +1088,36 @@
       "id": 1017,
       "unite": 3,
       "fr": "Il est cap-verdien.",
-      "lu": "Hien ass Kapverdianer."
+      "lu": "Hien ass Kapverdianer.",
+      "attention": "Après <b>ass</b>, pas d'article : Hien ass Spuenier."
     },
     {
       "id": 1018,
       "unite": 3,
       "fr": "Non, il n'est pas espagnol.",
-      "lu": "Nee, hien ass kee Spuenier."
+      "lu": "Nee, hien ass kee Spuenier.",
+      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
     },
     {
       "id": 1019,
       "unite": 3,
       "fr": "Non, elle n'est pas italienne.",
-      "lu": "Nee, si ass keng Italienerin."
+      "lu": "Nee, si ass keng Italienerin.",
+      "attention": "Négation : <b>kee</b> au masculin (<b>keen</b> devant une voyelle), <b>keng</b> au féminin."
     },
     {
       "id": 1020,
       "unite": 3,
       "fr": "Quelle est sa nationalité ? (à lui)",
-      "lu": "Wat ass seng Nationalitéit?"
+      "lu": "Wat ass seng Nationalitéit?",
+      "attention": "<b>seng</b> = sa (à lui) · <b>hir</b> = sa (à elle)."
     },
     {
       "id": 1021,
       "unite": 3,
       "fr": "Quelle est sa nationalité ? (à elle)",
-      "lu": "Wat ass hir Nationalitéit?"
+      "lu": "Wat ass hir Nationalitéit?",
+      "attention": "<b>seng</b> = sa (à lui) · <b>hir</b> = sa (à elle)."
     }
   ],
   "cours": [
