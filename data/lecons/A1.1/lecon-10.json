@@ -48,16 +48,16 @@
     },
     {
       "unite": 2,
-      "qui": "Marie",
-      "lu": "A wou wunns du a Frankräich?",
-      "fr": "Et où habites-tu en France ?"
+      "qui": "toi",
+      "lu": "Wou wunns du?",
+      "fr": "Où habites-tu ?",
+      "aide": "Avec du : <b>Wou wunns du?</b>"
     },
     {
       "unite": 2,
-      "qui": "toi",
+      "qui": "Marie",
       "lu": "Ech wunnen zu Metz.",
-      "fr": "J'habite à Metz.",
-      "aide": "Pour une ville, utilise <b>zu</b>."
+      "fr": "J'habite à Metz."
     },
     {
       "unite": 2,
@@ -814,6 +814,126 @@
         "<b>Wou wunns du?</b> (tu) · <b>Wou wunnt Dir?</b> (vous, politesse)."
       ],
       "unite": 2
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Habiter dans un pays",
+      "unite": 1,
+      "items": [
+        [
+          "Frankräich",
+          "France"
+        ],
+        [
+          "Däitschland",
+          "Allemagne"
+        ],
+        [
+          "Lëtzebuerg",
+          "Luxembourg"
+        ],
+        [
+          "Belsch",
+          "Belgique"
+        ],
+        [
+          "Schwäiz",
+          "Suisse"
+        ],
+        [
+          "Spuenien",
+          "Espagne"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Habiter dans un pays",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech wunnen zu Lëtzebuerg.",
+          "J'habite au Luxembourg."
+        ],
+        [
+          "Ech wunnen an Däitschland.",
+          "J'habite en Allemagne."
+        ],
+        [
+          "Ech wunnen a Frankräich.",
+          "J'habite en France."
+        ],
+        [
+          "Ech wunnen an der Belsch.",
+          "J'habite en Belgique."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Villes, quartiers et questions",
+      "unite": 2,
+      "items": [
+        [
+          "Metz",
+          "Metz"
+        ],
+        [
+          "Esch",
+          "Esch"
+        ],
+        [
+          "Paräis",
+          "Paris"
+        ],
+        [
+          "Kirchberg",
+          "Kirchberg"
+        ],
+        [
+          "Gronn",
+          "Grund"
+        ],
+        [
+          "d' Stad",
+          "ville"
+        ],
+        [
+          "de Quartier",
+          "quartier"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Villes, quartiers et questions",
+      "unite": 2,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech wunnen zu Metz.",
+          "J'habite à Metz."
+        ],
+        [
+          "Ech wunnen zu Esch.",
+          "J'habite à Esch."
+        ],
+        [
+          "Ech wunnen zu Tréier.",
+          "J'habite à Trèves."
+        ],
+        [
+          "Ech wunnen an der Stad.",
+          "J'habite en ville."
+        ]
+      ]
     },
     {
       "type": "texte",
