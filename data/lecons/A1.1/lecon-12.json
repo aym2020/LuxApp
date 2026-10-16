@@ -3,142 +3,375 @@
   "titre": "Aarbechtsplaz",
   "titre_fr": "Les lieux de travail",
   "couleur": "#b07ce0",
-  "instructions": {
-    "flashcards": "Mémoriser les lieux de travail en luxembourgeois avec leur article, afin d'identifier le genre et de former correctement engem/enger.",
-    "quiz": "Lire un lieu de travail en français et choisir sa traduction luxembourgeoise. Les distracteurs doivent être d'autres lieux de travail plausibles.",
-    "trous": "Compléter la phrase avec le bon article ou la bonne préposition. L'exercice doit principalement travailler l'utilisation de an, op, bei ainsi que les formes engem et enger devant les lieux de travail.",
-    "ecriture": "Traduire du français vers le luxembourgeois. Inclure le vocabulaire des lieux de travail, les questions sur le travail, les réponses, les expressions avec an, op et bei, le verbe schaffen, ainsi que des phrases complètes indiquant où une personne travaille."
+  "v1": {
+    "quiz": 25,
+    "trous": 26,
+    "ecriture": 52
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve le nom luxembourgeois d'un lieu de travail, avec l'article associé.",
+    "quiz": "Lis le lieu en français et choisis le nom luxembourgeois, puis reconnais les structures an, op et bei.",
+    "trous": "Complète les phrases avec la préposition et la forme de l'article correctes.",
+    "ecriture": "Traduis en luxembourgeois les lieux de travail, les questions et les phrases avec schaffen."
+  },
+  "mission": {
+    "titre": "Parler de son lieu de travail",
+    "contexte": "À la pause, Marie veut savoir où tu travailles et où travaillent tes collègues.",
+    "objectif": "indiquer son lieu de travail avec an, op ou bei, et poser la question Wou schaffs du?"
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Wou schaffs du?",
+      "fr": "Où travailles-tu ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech schaffen an engem Büro.",
+      "fr": "Je travaille dans un bureau.",
+      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+    },
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "An deng Kollegin?",
+      "fr": "Et ta collègue ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Si schafft an enger Klinik.",
+      "fr": "Elle travaille dans une clinique.",
+      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "Wou schafft d'Bankerin?",
+      "fr": "Où travaille la banquière ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "D'Bankerin schafft op enger Bank.",
+      "fr": "La banquière travaille à la banque.",
+      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "A wou schafft de Bréifdréier?",
+      "fr": "Et où travaille le facteur ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "De Bréifdréier schafft op enger Post.",
+      "fr": "Le facteur travaille à la poste.",
+      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "Schaffs du nach bei engem Dokter?",
+      "fr": "Travailles-tu aussi chez un médecin ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Ech schaffe bei engem Dokter.",
+      "fr": "Je travaille chez un médecin.",
+      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "An deng Frëndin?",
+      "fr": "Et ton amie ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Si schafft bei enger Coiffeuse.",
+      "fr": "Elle travaille chez une coiffeuse.",
+      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "fr": "Commissariat",
-      "lu": "e Policebüro"
+      "titre": "Dans un lieu : an",
+      "phrase": [
+        "Ech schaffen an engem Büro.",
+        "Je travaille dans un bureau."
+      ],
+      "regle": "Pour de nombreux bâtiments : <b>an engem</b> (masculin/neutre), <b>an enger</b> (féminin).",
+      "exemple": "an <b>engem</b> Büro · an <b>enger</b> Klinik.",
+      "pieges": [
+        "Le choix de <b>engem</b> ou <b>enger</b> suit le genre du lieu.",
+        "Ne traduis pas automatiquement le « dans » français."
+      ]
     },
     {
       "id": 2,
-      "fr": "Hôpital",
-      "lu": "e Spidol"
+      "titre": "Sur un site : op",
+      "phrase": [
+        "D'Bankerin schafft op enger Bank.",
+        "La banquière travaille à la banque."
+      ],
+      "regle": "Certains lieux prennent <b>op enger</b> ou <b>op engem</b> : op enger Bank, op enger Post, op engem Maart.",
+      "exemple": "De Bréifdréier schafft <b>op enger</b> Post.",
+      "pieges": [
+        "À la banque : <b>op enger Bank</b> dans cette leçon.",
+        "<b>op engem</b> pour un lieu masculin ou neutre."
+      ]
     },
     {
       "id": 3,
+      "titre": "Chez une personne et poser la question",
+      "phrase": [
+        "Wou schaffs du? – Ech schaffe bei engem Dokter.",
+        "Où travailles-tu ? – Je travaille chez un médecin."
+      ],
+      "regle": "Chez une personne : <b>bei engem</b> Dokter, <b>bei enger</b> Coiffeuse.",
+      "exemple": "<b>Wou schaffs du?</b> · <b>Wou schafft Dir?</b> (politesse).",
+      "pieges": [
+        "On emploie <b>bei</b> pour travailler chez quelqu'un.",
+        "<b>Dir</b> est la forme de politesse avec majuscule."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 2,
+      "fr": "Commissariat",
+      "lu": "Policebüro",
+      "article": "e"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "Hôpital",
+      "lu": "Spidol",
+      "article": "e"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
       "fr": "Salon de coiffure",
-      "lu": "e Coiffersalon"
+      "lu": "Coiffersalon",
+      "article": "e"
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "fr": "Banque",
-      "lu": "eng Bank"
+      "lu": "Bank",
+      "article": "eng"
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "fr": "Pharmacie",
-      "lu": "eng Apdikt"
+      "lu": "Apdikt",
+      "article": "eng"
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "fr": "Poste",
-      "lu": "eng Post"
+      "lu": "Post",
+      "article": "eng"
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "fr": "Boucherie",
-      "lu": "eng Metzlerei"
+      "lu": "Metzlerei",
+      "article": "eng"
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 1,
       "fr": "Boulangerie",
-      "lu": "eng Bäckerei"
+      "lu": "Bäckerei",
+      "article": "eng"
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 1,
       "fr": "Supermarché",
-      "lu": "e Supermarché"
+      "lu": "Supermarché",
+      "article": "e"
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 1,
       "fr": "École",
-      "lu": "eng Schoul"
+      "lu": "Schoul",
+      "article": "eng",
+      "plus": true
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 1,
       "fr": "Restaurant",
-      "lu": "e Restaurant"
+      "lu": "Restaurant",
+      "article": "e"
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "fr": "Bureau",
-      "lu": "e Büro"
+      "lu": "Büro",
+      "article": "e"
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 1,
       "fr": "Cabinet médical",
-      "lu": "e Cabinet"
+      "lu": "Cabinet",
+      "article": "e"
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 1,
       "fr": "Clinique",
-      "lu": "eng Klinik"
+      "lu": "Klinik",
+      "article": "eng",
+      "plus": true
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 1,
       "fr": "Marché",
-      "lu": "e Maart"
+      "lu": "Maart",
+      "article": "e",
+      "plus": true
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 1,
       "fr": "Station-service",
-      "lu": "eng Tankstell"
+      "lu": "Tankstell",
+      "article": "eng"
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 2,
       "fr": "Magasin",
-      "lu": "e Buttek"
+      "lu": "Buttek",
+      "article": "e"
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 1,
       "fr": "Université",
-      "lu": "eng Universitéit"
+      "lu": "Universitéit",
+      "article": "eng",
+      "plus": true
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 1,
       "fr": "Lycée",
-      "lu": "e Lycée"
+      "lu": "Lycée",
+      "article": "e",
+      "plus": true
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 2,
       "fr": "Salle de sport",
-      "lu": "eng Sportshal"
+      "lu": "Sportshal",
+      "article": "eng"
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 2,
       "fr": "Gare",
-      "lu": "eng Gare"
+      "lu": "Gare",
+      "article": "eng"
     },
     {
-      "id": 22,
+      "id": 2022,
+      "unite": 1,
       "fr": "Librairie",
-      "lu": "eng Librairie"
+      "lu": "Librairie",
+      "article": "eng",
+      "plus": true
     },
     {
-      "id": 23,
+      "id": 2023,
+      "unite": 2,
       "fr": "Studio",
-      "lu": "e Studio"
+      "lu": "Studio",
+      "article": "e",
+      "plus": true
     },
     {
-      "id": 24,
+      "id": 2024,
+      "unite": 2,
       "fr": "Tribunal",
-      "lu": "e Geriicht"
+      "lu": "Geriicht",
+      "article": "e",
+      "plus": true
     },
     {
-      "id": 25,
+      "id": 2025,
+      "unite": 2,
       "fr": "Aéroport",
-      "lu": "e Fluchhafen"
+      "lu": "Fluchhafen",
+      "article": "e",
+      "plus": true
+    },
+    {
+      "id": 2026,
+      "unite": 3,
+      "fr": "chez (une personne)",
+      "lu": "bei"
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "fr": "où ?",
+      "lu": "wou"
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "fr": "travailler",
+      "lu": "schaffen"
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "médecin (homme)",
+      "lu": "Dokter",
+      "article": "en"
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "fr": "coiffeuse",
+      "lu": "Coiffeuse",
+      "article": "eng"
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "fr": "bureau",
+      "lu": "Büro",
+      "article": "e"
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 2,
       "question": "Commissariat",
       "reponse": "Policebüro",
       "distracteurs": [
@@ -148,7 +381,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "question": "Hôpital",
       "reponse": "Spidol",
       "distracteurs": [
@@ -158,7 +392,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "question": "Salon de coiffure",
       "reponse": "Coiffersalon",
       "distracteurs": [
@@ -168,7 +403,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "question": "Banque",
       "reponse": "Bank",
       "distracteurs": [
@@ -178,7 +414,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "question": "Pharmacie",
       "reponse": "Apdikt",
       "distracteurs": [
@@ -188,7 +425,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "question": "Poste",
       "reponse": "Post",
       "distracteurs": [
@@ -198,7 +436,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "question": "Tribunal",
       "reponse": "Geriicht",
       "distracteurs": [
@@ -208,7 +447,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 1,
       "question": "Boucherie",
       "reponse": "Metzlerei",
       "distracteurs": [
@@ -218,7 +458,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 1,
       "question": "Boulangerie",
       "reponse": "Bäckerei",
       "distracteurs": [
@@ -228,7 +469,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 1,
       "question": "Supermarché",
       "reponse": "Supermarché",
       "distracteurs": [
@@ -238,7 +480,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 1,
       "question": "École",
       "reponse": "Schoul",
       "distracteurs": [
@@ -248,7 +491,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "question": "Aéroport",
       "reponse": "Fluchhafen",
       "distracteurs": [
@@ -258,7 +502,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 1,
       "question": "Restaurant",
       "reponse": "Restaurant",
       "distracteurs": [
@@ -268,37 +513,44 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 1,
       "question": "Bureau",
       "reponse": "Büro",
       "distracteurs": [
         "Cabinet",
         "Bank",
         "Schoul"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 1,
       "question": "Cabinet médical",
       "reponse": "Cabinet",
       "distracteurs": [
         "Klinik",
         "Büro",
         "Spidol"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 1,
       "question": "Clinique",
       "reponse": "Klinik",
       "distracteurs": [
         "Cabinet",
         "Spidol",
         "Schoul"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 2,
       "question": "Marché",
       "reponse": "Maart",
       "distracteurs": [
@@ -308,27 +560,32 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 1,
       "question": "Station-service",
       "reponse": "Tankstell",
       "distracteurs": [
         "Gare",
         "Buttek",
         "Bank"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 1,
       "question": "Magasin",
       "reponse": "Buttek",
       "distracteurs": [
         "Maart",
         "Tankstell",
         "Post"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 2,
       "question": "Université",
       "reponse": "Universitéit",
       "distracteurs": [
@@ -338,27 +595,32 @@
       ]
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 1,
       "question": "Lycée",
       "reponse": "Lycée",
       "distracteurs": [
         "Universitéit",
         "Schoul",
         "Büro"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 22,
+      "id": 2022,
+      "unite": 1,
       "question": "Salle de sport",
       "reponse": "Sportshal",
       "distracteurs": [
         "Schoul",
         "Restaurant",
         "Buttek"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 23,
+      "id": 2023,
+      "unite": 2,
       "question": "Gare",
       "reponse": "Gare",
       "distracteurs": [
@@ -368,29 +630,100 @@
       ]
     },
     {
-      "id": 24,
+      "id": 2024,
+      "unite": 1,
       "question": "Librairie",
       "reponse": "Librairie",
       "distracteurs": [
         "Buttek",
         "Büro",
         "Gare"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 25,
+      "id": 2025,
+      "unite": 1,
       "question": "Studio",
       "reponse": "Studio",
       "distracteurs": [
         "Büro",
         "Cabinet",
         "Restaurant"
+      ],
+      "plus": true
+    },
+    {
+      "id": 2026,
+      "unite": 3,
+      "question": "Je travaille chez un médecin.",
+      "reponse": "Ech schaffe bei engem Dokter.",
+      "distracteurs": [
+        "Ech schaffe an engem Dokter.",
+        "Ech schaffe op engem Dokter.",
+        "Ech schaffe bei enger Dokter."
+      ]
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "question": "Je travaille chez une coiffeuse.",
+      "reponse": "Ech schaffe bei enger Coiffeuse.",
+      "distracteurs": [
+        "Ech schaffe bei engem Coiffeuse.",
+        "Ech schaffe op enger Coiffeuse.",
+        "Ech schaffe an enger Coiffeuse."
+      ]
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "question": "Où travailles-tu ?",
+      "reponse": "Wou schaffs du?",
+      "distracteurs": [
+        "Wou schafft Dir?",
+        "Wou schafft du?",
+        "Wéi schaffs du?"
+      ]
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "question": "Où travaillez-vous ? (politesse)",
+      "reponse": "Wou schafft Dir?",
+      "distracteurs": [
+        "Wou schaffs du?",
+        "Wou schaffen Dir?",
+        "Wou schafft dir?"
+      ]
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "question": "Le facteur travaille à la poste.",
+      "reponse": "De Bréifdréier schafft op enger Post.",
+      "distracteurs": [
+        "De Bréifdréier schafft an enger Post.",
+        "De Bréifdréier schafft bei enger Post.",
+        "De Bréifdréier schaffen op enger Post."
+      ]
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "question": "Le médecin travaille à l'hôpital.",
+      "reponse": "Den Dokter schafft an engem Spidol.",
+      "distracteurs": [
+        "Den Dokter schafft op engem Spidol.",
+        "Den Dokter schafft an enger Spidol.",
+        "Den Dokter schaffen an engem Spidol."
       ]
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 2,
       "fr": "Le policier travaille dans un commissariat.",
       "avant": "De Polizist schafft",
       "trou": "op engem",
@@ -403,7 +736,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "fr": "Le médecin travaille dans un hôpital.",
       "avant": "Den Dokter schafft",
       "trou": "an engem",
@@ -416,7 +750,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "fr": "Le coiffeur travaille dans un salon de coiffure.",
       "avant": "De Coiffer schafft",
       "trou": "an engem",
@@ -429,7 +764,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "fr": "Le banquier travaille dans une banque.",
       "avant": "De Banker schafft",
       "trou": "op enger",
@@ -442,7 +778,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "fr": "Le pharmacien travaille dans une pharmacie.",
       "avant": "Den Apdikter schafft",
       "trou": "an enger",
@@ -455,7 +792,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "fr": "Le facteur travaille à la poste.",
       "avant": "De Bréifdréier schafft",
       "trou": "op enger",
@@ -468,7 +806,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "fr": "L'avocat travaille dans un tribunal.",
       "avant": "Den Affekot schafft",
       "trou": "op engem",
@@ -481,7 +820,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 1,
       "fr": "Le boucher travaille dans une boucherie.",
       "avant": "De Metzler schafft",
       "trou": "an enger",
@@ -494,7 +834,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 1,
       "fr": "Le boulanger travaille dans une boulangerie.",
       "avant": "De Bäcker schafft",
       "trou": "an enger",
@@ -507,7 +848,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 1,
       "fr": "Le caissier travaille dans un supermarché.",
       "avant": "De Caissier schafft",
       "trou": "an engem",
@@ -520,7 +862,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 1,
       "fr": "L'enseignant travaille dans une école.",
       "avant": "De Schoulmeeschter schafft",
       "trou": "an enger",
@@ -533,7 +876,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "fr": "Le pilote travaille à l'aéroport.",
       "avant": "De Pilot schafft",
       "trou": "op engem",
@@ -546,7 +890,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 1,
       "fr": "Le cuisinier travaille dans un restaurant.",
       "avant": "De Kach schafft",
       "trou": "an engem",
@@ -559,7 +904,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 3,
       "fr": "La secrétaire travaille chez un médecin.",
       "avant": "D'Sekretärin schafft",
       "trou": "bei engem",
@@ -572,7 +918,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 1,
       "fr": "L'infirmière travaille dans un cabinet médical.",
       "avant": "D'Infirmière schafft",
       "trou": "an engem",
@@ -582,10 +929,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 1,
       "fr": "Le médecin travaille dans une clinique.",
       "avant": "Den Dokter schafft",
       "trou": "an enger",
@@ -595,10 +944,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 2,
       "fr": "Le vendeur travaille au marché.",
       "avant": "De Verkeefer schafft",
       "trou": "op engem",
@@ -611,7 +962,8 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 1,
       "fr": "Le vendeur travaille dans un magasin.",
       "avant": "De Verkeefer schafft",
       "trou": "an engem",
@@ -621,10 +973,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 2,
       "fr": "L'étudiant travaille à l'université.",
       "avant": "De Student schafft",
       "trou": "op enger",
@@ -637,7 +991,8 @@
       ]
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 1,
       "fr": "Le professeur travaille au lycée.",
       "avant": "De Professer schafft",
       "trou": "op engem",
@@ -647,10 +1002,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 1,
       "fr": "L'employé travaille dans un bureau.",
       "avant": "Den Employé schafft",
       "trou": "an engem",
@@ -660,10 +1017,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 22,
+      "id": 2022,
+      "unite": 1,
       "fr": "Le vendeur travaille dans une station-service.",
       "avant": "De Verkeefer schafft",
       "trou": "an enger",
@@ -673,10 +1032,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 23,
+      "id": 2023,
+      "unite": 2,
       "fr": "L'employé travaille à la gare.",
       "avant": "Den Employé schafft",
       "trou": "op enger",
@@ -689,7 +1050,8 @@
       ]
     },
     {
-      "id": 24,
+      "id": 2024,
+      "unite": 1,
       "fr": "Le sportif travaille dans une salle de sport.",
       "avant": "De Sportler schafft",
       "trou": "an enger",
@@ -699,10 +1061,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 25,
+      "id": 2025,
+      "unite": 1,
       "fr": "Le libraire travaille dans une librairie.",
       "avant": "De Libraire schafft",
       "trou": "an enger",
@@ -712,10 +1076,12 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 26,
+      "id": 2026,
+      "unite": 1,
       "fr": "Le photographe travaille dans un studio.",
       "avant": "De Fotograf schafft",
       "trou": "an engem",
@@ -725,223 +1091,464 @@
         "op enger",
         "an engem",
         "an enger"
-      ]
+      ],
+      "plus": true
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "fr": "Je travaille chez un médecin.",
+      "avant": "Ech schaffe",
+      "trou": "bei engem",
+      "apres": "Dokter.",
+      "choix": [
+        "bei engem",
+        "bei enger",
+        "an engem",
+        "op engem"
+      ],
+      "note": "La préposition dépend du lieu et de son genre."
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "fr": "Je travaille chez une coiffeuse.",
+      "avant": "Ech schaffe",
+      "trou": "bei enger",
+      "apres": "Coiffeuse.",
+      "choix": [
+        "bei enger",
+        "bei engem",
+        "an enger",
+        "op enger"
+      ],
+      "note": "La préposition dépend du lieu et de son genre."
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "Où travailles-tu ?",
+      "avant": "Wou",
+      "trou": "schaffs",
+      "apres": "du?",
+      "choix": [
+        "schaffs",
+        "schafft",
+        "schaffen",
+        "schaff"
+      ],
+      "note": "La préposition dépend du lieu et de son genre."
+    },
+    {
+      "id": 2030,
+      "unite": 3,
+      "fr": "Où travaillez-vous ?",
+      "avant": "Wou",
+      "trou": "schafft",
+      "apres": "Dir?",
+      "choix": [
+        "schafft",
+        "schaffs",
+        "schaffen",
+        "schaff"
+      ],
+      "note": "La préposition dépend du lieu et de son genre."
+    },
+    {
+      "id": 2031,
+      "unite": 3,
+      "fr": "Le médecin travaille à l'hôpital.",
+      "avant": "Den Dokter schafft",
+      "trou": "an engem",
+      "apres": "Spidol.",
+      "choix": [
+        "an engem",
+        "an enger",
+        "op engem",
+        "bei engem"
+      ],
+      "note": "La préposition dépend du lieu et de son genre."
     }
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "Commissariat",
-      "lu": "e Policebüro"
+      "lu": "e Policebüro",
+      "plus": true
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "Hôpital",
-      "lu": "e Spidol"
+      "lu": "e Spidol",
+      "plus": true
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "Salon de coiffure",
-      "lu": "e Coiffersalon"
+      "lu": "e Coiffersalon",
+      "plus": true
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "Banque",
-      "lu": "eng Bank"
+      "lu": "eng Bank",
+      "plus": true
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "Pharmacie",
-      "lu": "eng Apdikt"
+      "lu": "eng Apdikt",
+      "plus": true
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "Poste",
-      "lu": "eng Post"
+      "lu": "eng Post",
+      "plus": true
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "Tribunal",
-      "lu": "e Geriicht"
+      "lu": "e Geriicht",
+      "plus": true
     },
     {
+      "id": 2008,
+      "unite": 1,
       "fr": "Boucherie",
-      "lu": "eng Metzlerei"
+      "lu": "eng Metzlerei",
+      "plus": true
     },
     {
+      "id": 2009,
+      "unite": 1,
       "fr": "Boulangerie",
-      "lu": "eng Bäckerei"
+      "lu": "eng Bäckerei",
+      "plus": true
     },
     {
+      "id": 2010,
+      "unite": 1,
       "fr": "Supermarché",
-      "lu": "e Supermarché"
+      "lu": "e Supermarché",
+      "plus": true
     },
     {
+      "id": 2011,
+      "unite": 1,
       "fr": "École",
-      "lu": "eng Schoul"
+      "lu": "eng Schoul",
+      "plus": true
     },
     {
+      "id": 2012,
+      "unite": 1,
       "fr": "Aéroport",
-      "lu": "e Fluchhafen"
+      "lu": "e Fluchhafen",
+      "plus": true
     },
     {
+      "id": 2013,
+      "unite": 1,
       "fr": "Restaurant",
-      "lu": "e Restaurant"
+      "lu": "e Restaurant",
+      "plus": true
     },
     {
+      "id": 2014,
+      "unite": 1,
       "fr": "Bureau",
-      "lu": "e Büro"
+      "lu": "e Büro",
+      "plus": true
     },
     {
+      "id": 2015,
+      "unite": 1,
       "fr": "Cabinet médical",
-      "lu": "e Cabinet"
+      "lu": "e Cabinet",
+      "plus": true
     },
     {
+      "id": 2016,
+      "unite": 1,
       "fr": "Clinique",
-      "lu": "eng Klinik"
+      "lu": "eng Klinik",
+      "plus": true
     },
     {
+      "id": 2017,
+      "unite": 1,
       "fr": "Marché",
-      "lu": "e Maart"
+      "lu": "e Maart",
+      "plus": true
     },
     {
+      "id": 2018,
+      "unite": 1,
       "fr": "Station-service",
-      "lu": "eng Tankstell"
+      "lu": "eng Tankstell",
+      "plus": true
     },
     {
+      "id": 2019,
+      "unite": 1,
       "fr": "Magasin",
-      "lu": "e Buttek"
+      "lu": "e Buttek",
+      "plus": true
     },
     {
+      "id": 2020,
+      "unite": 1,
       "fr": "Université",
-      "lu": "eng Universitéit"
+      "lu": "eng Universitéit",
+      "plus": true
     },
     {
+      "id": 2021,
+      "unite": 1,
       "fr": "Lycée",
-      "lu": "e Lycée"
+      "lu": "e Lycée",
+      "plus": true
     },
     {
+      "id": 2022,
+      "unite": 1,
       "fr": "Salle de sport",
-      "lu": "eng Sportshal"
+      "lu": "eng Sportshal",
+      "plus": true
     },
     {
+      "id": 2023,
+      "unite": 1,
       "fr": "Gare",
-      "lu": "eng Gare"
+      "lu": "eng Gare",
+      "plus": true
     },
     {
+      "id": 2024,
+      "unite": 1,
       "fr": "Librairie",
-      "lu": "eng Librairie"
+      "lu": "eng Librairie",
+      "plus": true
     },
     {
+      "id": 2025,
+      "unite": 1,
       "fr": "Studio",
-      "lu": "e Studio"
+      "lu": "e Studio",
+      "plus": true
     },
     {
+      "id": 2026,
+      "unite": 3,
       "fr": "Où travailles-tu ?",
       "lu": "Wou schaffs du?"
     },
     {
+      "id": 2027,
+      "unite": 1,
       "fr": "Je travaille dans un bureau.",
       "lu": "Ech schaffen an engem Büro."
     },
     {
+      "id": 2028,
+      "unite": 1,
       "fr": "Je travaille dans une clinique.",
       "lu": "Ech schaffen an enger Klinik."
     },
     {
+      "id": 2029,
+      "unite": 1,
       "fr": "Je travaille dans un cabinet médical.",
       "lu": "Ech schaffen an engem Cabinet."
     },
     {
+      "id": 2030,
+      "unite": 2,
       "fr": "Je travaille au marché.",
       "lu": "Ech schaffen op engem Maart."
     },
     {
+      "id": 2031,
+      "unite": 1,
       "fr": "Je travaille dans un magasin.",
       "lu": "Ech schaffen an engem Buttek."
     },
     {
+      "id": 2032,
+      "unite": 2,
       "fr": "Je travaille à l'université.",
       "lu": "Ech schaffen op enger Universitéit."
     },
     {
+      "id": 2033,
+      "unite": 2,
       "fr": "Je travaille au lycée.",
       "lu": "Ech schaffen op engem Lycée."
     },
     {
+      "id": 2034,
+      "unite": 1,
       "fr": "Je travaille dans une salle de sport.",
       "lu": "Ech schaffen an enger Sportshal."
     },
     {
+      "id": 2035,
+      "unite": 2,
       "fr": "Je travaille à la gare.",
       "lu": "Ech schaffen op enger Gare."
     },
     {
+      "id": 2036,
+      "unite": 1,
       "fr": "Je travaille dans une librairie.",
       "lu": "Ech schaffen an enger Librairie."
     },
     {
+      "id": 2037,
+      "unite": 1,
       "fr": "Je travaille dans un studio.",
       "lu": "Ech schaffen an engem Studio."
     },
     {
+      "id": 2038,
+      "unite": 3,
       "fr": "Je travaille chez une coiffeuse.",
       "lu": "Ech schaffe bei enger Coiffeuse."
     },
     {
+      "id": 2039,
+      "unite": 3,
       "fr": "Où travaillez-vous ?",
       "lu": "Wou schafft Dir?"
     },
     {
+      "id": 2040,
+      "unite": 2,
       "fr": "Le policier travaille au commissariat.",
       "lu": "De Polizist schafft op engem Policebüro."
     },
     {
+      "id": 2041,
+      "unite": 1,
       "fr": "Le médecin travaille à l'hôpital.",
-      "lu": "Den Dokter schafft an engem Spidol."
+      "lu": "Den Dokter schafft an engem Spidol.",
+      "plus": true
     },
     {
+      "id": 2042,
+      "unite": 2,
       "fr": "Le facteur travaille à la poste.",
       "lu": "De Bréifdréier schafft op enger Post."
     },
     {
+      "id": 2043,
+      "unite": 2,
       "fr": "L'avocat travaille au tribunal.",
       "lu": "Den Affekot schafft op engem Geriicht."
     },
     {
+      "id": 2044,
+      "unite": 1,
       "fr": "Le boulanger travaille dans une boulangerie.",
-      "lu": "De Bäcker schafft an enger Bäckerei."
+      "lu": "De Bäcker schafft an enger Bäckerei.",
+      "plus": true
     },
     {
+      "id": 2045,
+      "unite": 2,
       "fr": "Le pilote travaille à l'aéroport.",
       "lu": "De Pilot schafft op engem Fluchhafen."
     },
     {
+      "id": 2046,
+      "unite": 3,
       "fr": "Je travaille chez un médecin.",
       "lu": "Ech schaffe bei engem Dokter."
     },
     {
+      "id": 2047,
+      "unite": 3,
       "fr": "Je travaille comme boulangère.",
       "lu": "Ech schaffen als Bäckesch."
     },
     {
+      "id": 2048,
+      "unite": 3,
       "fr": "Le cuisinier travaille dans un restaurant.",
       "lu": "De Kach schafft an engem Restaurant."
     },
     {
+      "id": 2049,
+      "unite": 1,
       "fr": "Le professeur travaille à l'école.",
-      "lu": "De Schoulmeeschter schafft an enger Schoul."
+      "lu": "De Schoulmeeschter schafft an enger Schoul.",
+      "plus": true
     },
     {
+      "id": 2050,
+      "unite": 1,
       "fr": "La banquière travaille à la banque.",
-      "lu": "D'Bankerin schafft op enger Bank."
+      "lu": "D'Bankerin schafft op enger Bank.",
+      "plus": true
     },
     {
+      "id": 2051,
+      "unite": 1,
       "fr": "Le pharmacien travaille dans une pharmacie.",
-      "lu": "Den Apdikter schafft an enger Apdikt."
+      "lu": "Den Apdikter schafft an enger Apdikt.",
+      "plus": true
     },
     {
+      "id": 2052,
+      "unite": 1,
       "fr": "Je travaille dans un supermarché.",
       "lu": "Ech schaffen an engem Supermarché."
     }
   ],
   "cours": [
     {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Dans un lieu : an",
+      "lignes": [
+        "Pour de nombreux bâtiments : <b>an engem</b> (masculin/neutre), <b>an enger</b> (féminin).",
+        "an <b>engem</b> Büro · an <b>enger</b> Klinik."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Sur un site : op",
+      "lignes": [
+        "Certains lieux prennent <b>op enger</b> ou <b>op engem</b> : op enger Bank, op enger Post, op engem Maart.",
+        "De Bréifdréier schafft <b>op enger</b> Post."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "callout",
+      "variant": "retenir",
+      "titre": "Chez une personne et poser la question",
+      "lignes": [
+        "Chez une personne : <b>bei engem</b> Dokter, <b>bei enger</b> Coiffeuse.",
+        "<b>Wou schaffs du?</b> · <b>Wou schafft Dir?</b> (politesse)."
+      ],
+      "unite": 3
+    },
+    {
       "type": "texte",
-      "contenu": "Pour dire <b>où quelqu'un travaille</b>, on utilise le verbe <b>schaffen</b> + une préposition. Cette préposition dépend du type de lieu : lieu physique, institution, personne ou employeur."
+      "contenu": "Pour dire <b>où quelqu'un travaille</b>, on utilise le verbe <b>schaffen</b> + une préposition. Cette préposition dépend du type de lieu : lieu physique, institution, personne ou employeur.",
+      "unite": 0
     },
     {
       "type": "callout",
@@ -953,7 +1560,8 @@
         "<b>bei</b> = chez / auprès de quelqu'un : bei engem Dokter, bei enger Coiffeuse.",
         "Après <b>an</b>, <b>op</b> et <b>bei</b>, on utilise souvent <b>engem</b> ou <b>enger</b>.",
         "<b>engem</b> s'utilise avec les noms masculins ou neutres. <b>enger</b> s'utilise avec les noms féminins."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -967,7 +1575,8 @@
         "<b>Dir schafft</b> = vous travaillez.",
         "<b>Si schaffen</b> = ils / elles travaillent.",
         "<b>Dir schafft</b> = vous travaillez, forme polie."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -998,7 +1607,8 @@
           "schaffen + als + métier",
           "als Bäckesch · als Affekot"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1009,7 +1619,8 @@
         "<b>e</b> ou <b>en</b> devient <b>engem</b> : e Büro → an engem Büro.",
         "<b>eng</b> devient <b>enger</b> : eng Klinik → an enger Klinik.",
         "Le piège n'est donc pas seulement la préposition. Il faut aussi connaître le genre du lieu."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1060,7 +1671,8 @@
           "enger",
           "op enger Gare"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1151,7 +1763,8 @@
           "e Studio",
           "De Fotograf schafft an engem Studio."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1207,7 +1820,8 @@
           "eng Gare",
           "Den Employé schafft op enger Gare."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1219,7 +1833,8 @@
         "<b>Je travaille à la banque</b> → Ech schaffen <b>op enger Bank</b>.",
         "<b>Je travaille chez un médecin</b> → Ech schaffen <b>bei engem Dokter</b>.",
         "<b>Je travaille comme boulangère</b> → Ech schaffen <b>als Bäckesch</b>."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1231,7 +1846,8 @@
         "<b>Wou schafft si?</b> = Où travaille-t-elle ?",
         "<b>Wou schafft Dir?</b> = Où travaillez-vous ?",
         "<b>Wat schaffs du?</b> = Que fais-tu comme travail ?"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "exemple",
@@ -1265,7 +1881,8 @@
           "Ech schaffen als Bäckesch.",
           "Je travaille comme boulangère."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1311,7 +1928,8 @@
           "Jo, ech schaffen bei engem Dokter.",
           "Oui, je travaille chez un médecin."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
