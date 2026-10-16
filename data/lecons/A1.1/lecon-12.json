@@ -22,16 +22,16 @@
   "scene": [
     {
       "unite": 1,
-      "qui": "Marie",
+      "qui": "toi",
       "lu": "Wou schaffs du?",
-      "fr": "Où travailles-tu ?"
+      "fr": "Où travailles-tu ?",
+      "aide": "Pour demander le lieu de travail : <b>Wou schaffs du?</b>"
     },
     {
       "unite": 1,
-      "qui": "toi",
+      "qui": "Marie",
       "lu": "Ech schaffen an engem Büro.",
-      "fr": "Je travaille dans un bureau.",
-      "aide": "Regarde la préposition du lieu et le genre : engem ou enger."
+      "fr": "Je travaille dans un bureau."
     },
     {
       "unite": 1,
@@ -1544,6 +1544,248 @@
         "<b>Wou schaffs du?</b> · <b>Wou schafft Dir?</b> (politesse)."
       ],
       "unite": 3
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Dans un lieu : an",
+      "unite": 1,
+      "items": [
+        [
+          "e Spidol",
+          "Hôpital"
+        ],
+        [
+          "e Coiffersalon",
+          "Salon de coiffure"
+        ],
+        [
+          "eng Apdikt",
+          "Pharmacie"
+        ],
+        [
+          "eng Bäckerei",
+          "Boulangerie"
+        ],
+        [
+          "e Supermarché",
+          "Supermarché"
+        ],
+        [
+          "e Restaurant",
+          "Restaurant"
+        ],
+        [
+          "e Cabinet",
+          "Cabinet médical"
+        ],
+        [
+          "eng Tankstell",
+          "Station-service"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Pour aller plus loin · Dans un lieu : an",
+      "unite": 1,
+      "plus": true,
+      "items": [
+        [
+          "eng Schoul",
+          "École"
+        ],
+        [
+          "eng Klinik",
+          "Clinique"
+        ],
+        [
+          "e Maart",
+          "Marché"
+        ],
+        [
+          "eng Universitéit",
+          "Université"
+        ],
+        [
+          "e Lycée",
+          "Lycée"
+        ],
+        [
+          "eng Librairie",
+          "Librairie"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Dans un lieu : an",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech schaffen an engem Büro.",
+          "Je travaille dans un bureau."
+        ],
+        [
+          "Ech schaffen an enger Klinik.",
+          "Je travaille dans une clinique."
+        ],
+        [
+          "Ech schaffen an engem Cabinet.",
+          "Je travaille dans un cabinet médical."
+        ],
+        [
+          "Ech schaffen an engem Buttek.",
+          "Je travaille dans un magasin."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Sur un site : op",
+      "unite": 2,
+      "items": [
+        [
+          "e Policebüro",
+          "Commissariat"
+        ],
+        [
+          "eng Bank",
+          "Banque"
+        ],
+        [
+          "eng Post",
+          "Poste"
+        ],
+        [
+          "eng Metzlerei",
+          "Boucherie"
+        ],
+        [
+          "e Büro",
+          "Bureau"
+        ],
+        [
+          "e Buttek",
+          "Magasin"
+        ],
+        [
+          "eng Sportshal",
+          "Salle de sport"
+        ],
+        [
+          "eng Gare",
+          "Gare"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Pour aller plus loin · Sur un site : op",
+      "unite": 2,
+      "plus": true,
+      "items": [
+        [
+          "e Studio",
+          "Studio"
+        ],
+        [
+          "e Geriicht",
+          "Tribunal"
+        ],
+        [
+          "e Fluchhafen",
+          "Aéroport"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Sur un site : op",
+      "unite": 2,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech schaffen op engem Maart.",
+          "Je travaille au marché."
+        ],
+        [
+          "Ech schaffen op enger Universitéit.",
+          "Je travaille à l'université."
+        ],
+        [
+          "Ech schaffen op engem Lycée.",
+          "Je travaille au lycée."
+        ],
+        [
+          "Ech schaffen op enger Gare.",
+          "Je travaille à la gare."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Chez une personne et poser la question",
+      "unite": 3,
+      "items": [
+        [
+          "bei",
+          "chez (une personne)"
+        ],
+        [
+          "wou",
+          "où ?"
+        ],
+        [
+          "schaffen",
+          "travailler"
+        ],
+        [
+          "en Dokter",
+          "médecin (homme)"
+        ],
+        [
+          "eng Coiffeuse",
+          "coiffeuse"
+        ],
+        [
+          "e Büro",
+          "bureau"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Chez une personne et poser la question",
+      "unite": 3,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Wou schaffs du?",
+          "Où travailles-tu ?"
+        ],
+        [
+          "Ech schaffe bei enger Coiffeuse.",
+          "Je travaille chez une coiffeuse."
+        ],
+        [
+          "Wou schafft Dir?",
+          "Où travaillez-vous ?"
+        ],
+        [
+          "Ech schaffe bei engem Dokter.",
+          "Je travaille chez un médecin."
+        ]
+      ]
     },
     {
       "type": "texte",
