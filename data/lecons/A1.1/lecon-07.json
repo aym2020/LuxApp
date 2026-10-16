@@ -48,16 +48,16 @@
     },
     {
       "unite": 2,
-      "qui": "Marie",
-      "lu": "A vu wou kënnt de Guillaume?",
-      "fr": "Et d'où vient Guillaume ?"
+      "qui": "toi",
+      "lu": "Vu wou kënnt de Guillaume?",
+      "fr": "D'où vient Guillaume ?",
+      "aide": "Pour demander l'origine d'un homme : <b>Vu wou kënnt</b> … ?"
     },
     {
       "unite": 2,
-      "qui": "toi",
+      "qui": "Marie",
       "lu": "De Guillaume kënnt vu Lëtzebuerg.",
-      "fr": "Guillaume vient du Luxembourg.",
-      "aide": "Le Luxembourg prend <b>vu</b>."
+      "fr": "Guillaume vient du Luxembourg."
     },
     {
       "unite": 2,
@@ -1037,6 +1037,162 @@
         "<b>Vu wou kënns du?</b> = D'où viens-tu ? · <b>Vu wou kommt Dir?</b> = D'où venez-vous ?"
       ],
       "unite": 2
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Dire d'où l'on vient",
+      "unite": 1,
+      "items": [
+        [
+          "Portugal",
+          "Portugal"
+        ],
+        [
+          "Spuenien",
+          "Espagne"
+        ],
+        [
+          "Italien",
+          "Italie"
+        ],
+        [
+          "Däitschland",
+          "Allemagne"
+        ],
+        [
+          "Japan",
+          "Japon"
+        ],
+        [
+          "Frankräich",
+          "France"
+        ],
+        [
+          "China",
+          "Chine"
+        ],
+        [
+          "Schweden",
+          "Suède"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Pour aller plus loin · Dire d'où l'on vient",
+      "unite": 1,
+      "plus": true,
+      "items": [
+        [
+          "England",
+          "Angleterre"
+        ],
+        [
+          "Australien",
+          "Australie"
+        ],
+        [
+          "Argentinien",
+          "Argentine"
+        ],
+        [
+          "Amerika",
+          "Amérique"
+        ],
+        [
+          "Nordkorea",
+          "Corée du Nord"
+        ],
+        [
+          "Holland",
+          "Pays-Bas"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Dire d'où l'on vient",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "De Ronaldo kënnt aus Portugal.",
+          "Ronaldo vient du Portugal."
+        ],
+        [
+          "Hien kënnt vum Cap Vert.",
+          "Il vient du Cap-Vert."
+        ],
+        [
+          "Den Emmanuel kënnt aus Frankräich.",
+          "Emmanuel vient de France."
+        ],
+        [
+          "D'Greta kënnt aus Schweden.",
+          "Greta vient de Suède."
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel · Les pays particuliers et la question",
+      "unite": 2,
+      "items": [
+        [
+          "Lëtzebuerg",
+          "Luxembourg"
+        ],
+        [
+          "Belsch",
+          "Belgique"
+        ],
+        [
+          "Schwäiz",
+          "Suisse"
+        ],
+        [
+          "Ukrain",
+          "Ukraine"
+        ],
+        [
+          "Cap Vert",
+          "Cap-Vert"
+        ],
+        [
+          "Iran",
+          "Iran"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à savoir produire · Les pays particuliers et la question",
+      "unite": 2,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "De Guillaume kënnt vu Lëtzebuerg.",
+          "Guillaume vient du Luxembourg."
+        ],
+        [
+          "De Philippe kënnt aus der Belsch.",
+          "Philippe vient de Belgique."
+        ],
+        [
+          "Si kënnt aus dem Iran.",
+          "Elle vient d'Iran."
+        ],
+        [
+          "Si kënnt aus der Schwäiz.",
+          "Elle vient de Suisse."
+        ]
+      ]
     },
     {
       "type": "texte",
