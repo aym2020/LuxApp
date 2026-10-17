@@ -836,17 +836,17 @@
     {
       "id": 2022,
       "unite": 3,
-      "fr": "J'envoie ma candidature par e-mail.",
-      "avant": "Ech schécke meng Kandidatur",
+      "fr": "Envoyez votre candidature par e-mail.",
+      "avant": "Schéckt Är Kandidatur",
       "trou": "per E-Mail",
       "apres": ".",
       "choix": [
         "per E-Mail",
+        "bis spéitstens",
         "viru Mëtt August",
-        "spéitstens",
         "ganzdaags"
       ],
-      "note": "L'envoi par courriel est exprimé par per E-Mail."
+      "note": "L'envoi par courrier électronique se dit per E-Mail."
     }
   ],
   "ecriture": [
