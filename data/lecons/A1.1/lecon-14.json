@@ -3,89 +3,315 @@
   "titre": "Den Alter & De Gebuertsdatum",
   "titre_fr": "L'âge et la date de naissance",
   "couleur": "#d46fc4",
-  "instructions": {
-    "flashcards": "Mémoriser les mois, les questions pour demander l'âge et la date de naissance, les réponses pour dire son âge, ainsi que les structures permettant d'indiquer une date de naissance complète.",
-    "quiz": "Présenter un mois, une question, une réponse ou une expression en français. La bonne réponse est la traduction luxembourgeoise correspondante. Pour les mois, privilégier des distracteurs constitués de fautes d'orthographe plausibles. Pour les autres questions, utiliser des expressions proches de la même leçon.",
-    "trous": "Compléter des phrases liées à l'âge et à la date de naissance. Les mots à retrouver peuvent être des mois, des nombres, des ordinaux, des années ou des structures de la leçon. Les distracteurs doivent être plausibles et rester cohérents avec la notion travaillée.",
-    "ecriture": "Produire en luxembourgeois les mois, les questions sur l'âge et la date de naissance, les réponses, les années, les dates complètes et les phrases utilisées dans la leçon. Toutes les structures importantes doivent apparaître au moins une fois."
+  "v1": {
+    "quiz": 20,
+    "trous": 24,
+    "ecriture": 39
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve un mois, un nombre ou un mot clé de l'âge et de la date de naissance à partir du français. Les phrases longues restent dans l'écriture.",
+    "quiz": "Lis l'expression en français et choisis sa traduction luxembourgeoise, en distinguant âge, anniversaire et naissance.",
+    "trous": "Complète une phrase sur l'âge, les mois, la date ou le verbe adapté. Les réponses apparaissent dans les choix.",
+    "ecriture": "Traduis les mois, les questions d'âge et d'anniversaire, les ordinaux, les années et les dates complètes du français vers le luxembourgeois."
+  },
+  "mission": {
+    "titre": "Faire connaissance : âge et anniversaire",
+    "contexte": "Pendant une pause du cours, Marie te demande ton âge, ton anniversaire et ta date de naissance. Vous parlez aussi de Barbara.",
+    "objectif": "dire son âge, parler de son anniversaire et donner sa date de naissance complète."
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Moien! Wéi al bass du?",
+      "fr": "Bonjour ! Quel âge as-tu ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech sinn drësseg Joer al.",
+      "fr": "J'ai trente ans.",
+      "aide": "L'âge utilise <b>sinn</b> et finit par <b>Joer al</b>."
+    },
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "A wéi al ass d'Barbara?",
+      "fr": "Et quel âge a Barbara ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Si ass drësseg Joer al.",
+      "fr": "Elle a trente ans.",
+      "aide": "Avec si, le verbe être est <b>ass</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "Wéini hues du Gebuertsdag?",
+      "fr": "Quand est ton anniversaire ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Ech hunn den dräizéngte Juni Gebuertsdag.",
+      "fr": "Mon anniversaire est le 13 juin.",
+      "aide": "Pour l'anniversaire, utilise <b>hunn … Gebuertsdag</b>."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "Wéini bass du gebuer?",
+      "fr": "Quand es-tu né(e) ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+      "fr": "Je suis né(e) le 13 juin 1999.",
+      "aide": "Pour une date de naissance, place <b>gebuer</b> à la fin."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "A wéini ass d'Barbara gebuer?",
+      "fr": "Et quand Barbara est-elle née ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "D'Barbara ass den uechtzéngte Januar nonzénghonnertsechsannonzeg gebuer.",
+      "fr": "Barbara est née le 18 janvier 1996.",
+      "aide": "Avec Barbara, utilise <b>ass … gebuer</b>."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "fr": "Janvier",
-      "lu": "Januar",
-      "note": "Mois 1 · e Mount"
+      "titre": "Dire son âge",
+      "phrase": [
+        "Wéi al bass du? – Ech sinn drësseg Joer al.",
+        "Quel âge as-tu ? – J'ai trente ans."
+      ],
+      "regle": "Pour dire son âge : <b>Ech sinn … Joer al.</b> Question : <b>Wéi al bass du?</b> ou poliment <b>Wéi al sidd Dir?</b>",
+      "exemple": "Ech sinn uechtzéng Joer al. · Si ass drësseg Joer al.",
+      "pieges": [
+        "En luxembourgeois, l'âge se construit avec <b>sinn</b>, pas avec hunn.",
+        "<b>bass du</b> = tu ; <b>sidd Dir</b> = vous de politesse."
+      ]
     },
     {
       "id": 2,
-      "fr": "Février",
-      "lu": "Februar",
-      "note": "Mois 2"
+      "titre": "Les mois et l'anniversaire",
+      "phrase": [
+        "Wéini hues du Gebuertsdag? – Ech hunn den dräizéngte Juni Gebuertsdag.",
+        "Quand est ton anniversaire ? – Mon anniversaire est le 13 juin."
+      ],
+      "regle": "Les mois commencent par une majuscule. Pour parler de son anniversaire : <b>Ech hunn den dräizéngte Juni Gebuertsdag.</b>",
+      "exemple": "Wéini hues du Gebuertsdag? · Ech hunn den dräizéngte Juni Gebuertsdag.",
+      "pieges": [
+        "Les mois ont une <b>majuscule</b> en luxembourgeois.",
+        "<b>Gebuertsdag hunn</b> utilise hunn, mais l'âge utilise sinn."
+      ]
     },
     {
       "id": 3,
-      "fr": "Mars",
-      "lu": "Mäerz",
-      "note": "Mois 3 · tréma !"
+      "titre": "Naissance : jour, mois et année",
+      "phrase": [
+        "Wéini bass du gebuer? – Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+        "Quand es-tu né(e) ? – Je suis né(e) le 13 juin 1999."
+      ],
+      "regle": "Pour la naissance : <b>Ech sinn den … gebuer.</b> La date utilise un jour ordinal, un mois et une année écrite en un seul mot.",
+      "exemple": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+      "pieges": [
+        "Pour être né(e), on utilise <b>sinn … gebuer</b> (pas hunn).",
+        "Les années et les ordinaux s'écrivent <b>en un seul mot</b>."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "18",
+      "lu": "uechtzéng"
     },
     {
-      "id": 4,
-      "fr": "Avril",
-      "lu": "Abrëll",
-      "note": "Mois 4 · tréma !"
+      "id": 2002,
+      "unite": 1,
+      "fr": "20",
+      "lu": "zwanzeg"
     },
     {
-      "id": 5,
-      "fr": "Mai",
-      "lu": "Mee",
-      "note": "Mois 5 · court !"
+      "id": 2003,
+      "unite": 1,
+      "fr": "24",
+      "lu": "véieranzwanzeg"
     },
     {
-      "id": 6,
-      "fr": "Juin",
-      "lu": "Juni",
-      "note": "Mois 6"
+      "id": 2004,
+      "unite": 1,
+      "fr": "30",
+      "lu": "drësseg"
     },
     {
-      "id": 7,
+      "id": 2005,
+      "unite": 1,
+      "fr": "47",
+      "lu": "siwenavéierzeg"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "an (âge)",
+      "lu": "Joer"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "âge",
+      "lu": "Alter"
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "avoir … ans",
+      "lu": "Joer al"
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "fr": "janvier",
+      "lu": "Januar"
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "fr": "février",
+      "lu": "Februar"
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "fr": "mars",
+      "lu": "Mäerz"
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "fr": "avril",
+      "lu": "Abrëll"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "mai",
+      "lu": "Mee"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "juin",
+      "lu": "Juni"
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "fr": "septembre",
+      "lu": "September"
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "décembre",
+      "lu": "Dezember"
+    },
+    {
+      "id": 2017,
+      "unite": 3,
+      "fr": "quand ?",
+      "lu": "Wéini"
+    },
+    {
+      "id": 2018,
+      "unite": 3,
+      "fr": "né(e)",
+      "lu": "gebuer"
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "fr": "anniversaire",
+      "lu": "Gebuertsdag"
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "fr": "le 1er (ordinal)",
+      "lu": "éischte"
+    },
+    {
+      "id": 2021,
+      "unite": 3,
+      "fr": "le 13 (ordinal)",
+      "lu": "dräizéngte"
+    },
+    {
+      "id": 2022,
+      "unite": 3,
+      "fr": "le 18 (ordinal)",
+      "lu": "uechtzéngte"
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "fr": "le 24 (ordinal)",
+      "lu": "véieranzwanzegste"
+    },
+    {
+      "id": 2024,
+      "unite": 3,
+      "fr": "2004",
+      "lu": "zweedausendvéier"
+    },
+    {
+      "id": 2025,
+      "unite": 2,
       "fr": "Juillet",
       "lu": "Juli",
-      "note": "Mois 7"
+      "note": "Mois 7",
+      "plus": true
     },
     {
-      "id": 8,
+      "id": 2026,
+      "unite": 2,
       "fr": "Août",
       "lu": "August",
-      "note": "Mois 8"
+      "note": "Mois 8",
+      "plus": true
     },
     {
-      "id": 9,
-      "fr": "Septembre",
-      "lu": "September",
-      "note": "Mois 9 · même qu'en fr"
-    },
-    {
-      "id": 10,
+      "id": 2027,
+      "unite": 2,
       "fr": "Octobre",
       "lu": "Oktober",
-      "note": "Mois 10"
+      "note": "Mois 10",
+      "plus": true
     },
     {
-      "id": 11,
+      "id": 2028,
+      "unite": 2,
       "fr": "Novembre",
       "lu": "November",
-      "note": "Mois 11 · même qu'en fr"
-    },
-    {
-      "id": 12,
-      "fr": "Décembre",
-      "lu": "Dezember",
-      "note": "Mois 12"
+      "note": "Mois 11 · même qu'en fr",
+      "plus": true
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 2,
       "question": "janvier",
       "reponse": "Januar",
       "distracteurs": [
@@ -95,7 +321,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 2,
       "question": "février",
       "reponse": "Februar",
       "distracteurs": [
@@ -105,7 +332,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 2,
       "question": "mars",
       "reponse": "Mäerz",
       "distracteurs": [
@@ -115,7 +343,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "question": "avril",
       "reponse": "Abrëll",
       "distracteurs": [
@@ -125,7 +354,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 2,
       "question": "mai",
       "reponse": "Mee",
       "distracteurs": [
@@ -135,7 +365,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "question": "juin",
       "reponse": "Juni",
       "distracteurs": [
@@ -145,27 +376,32 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "question": "juillet",
       "reponse": "Juli",
       "distracteurs": [
         "Julië",
         "Jully",
         "Julli"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "question": "août",
       "reponse": "August",
       "distracteurs": [
         "Augst",
         "Auguscht",
         "Auguest"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 2,
       "question": "septembre",
       "reponse": "September",
       "distracteurs": [
@@ -175,27 +411,32 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "question": "octobre",
       "reponse": "Oktober",
       "distracteurs": [
         "October",
         "Oktaber",
         "Oktobar"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "question": "novembre",
       "reponse": "November",
       "distracteurs": [
         "Novembar",
         "Novembre",
         "Novenber"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "question": "décembre",
       "reponse": "Dezember",
       "distracteurs": [
@@ -205,7 +446,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 1,
       "question": "Quel âge as-tu ?",
       "reponse": "Wéi al bass du?",
       "distracteurs": [
@@ -215,7 +457,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 1,
       "question": "Quel âge avez-vous ?",
       "reponse": "Wéi al sidd Dir?",
       "distracteurs": [
@@ -225,7 +468,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 1,
       "question": "J'ai vingt ans.",
       "reponse": "Ech sinn zwanzeg Joer al.",
       "distracteurs": [
@@ -235,7 +479,8 @@
       ]
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 1,
       "question": "J'ai trente ans.",
       "reponse": "Ech sinn drësseg Joer al.",
       "distracteurs": [
@@ -245,7 +490,8 @@
       ]
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 3,
       "question": "Quand es-tu né(e) ?",
       "reponse": "Wéini bass du gebuer?",
       "distracteurs": [
@@ -255,7 +501,8 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 3,
       "question": "Quand êtes-vous né(e) ?",
       "reponse": "Wéini sidd Dir gebuer?",
       "distracteurs": [
@@ -265,7 +512,8 @@
       ]
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 3,
       "question": "Je suis né(e) le...",
       "reponse": "Ech sinn den ... gebuer.",
       "distracteurs": [
@@ -275,7 +523,8 @@
       ]
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 3,
       "question": "Quand Barbara est-elle née ?",
       "reponse": "Wéini ass d'Barbara gebuer?",
       "distracteurs": [
@@ -283,11 +532,56 @@
         "Wéi al ass d'Barbara?",
         "Wou wunnt d'Barbara?"
       ]
+    },
+    {
+      "id": 2021,
+      "unite": 1,
+      "question": "Il a 47 ans.",
+      "reponse": "Hien ass siwenavéierzeg Joer al.",
+      "distracteurs": [
+        "Hien huet siwenavéierzeg Joer al.",
+        "Hien ass siwenavéierzeg Joer.",
+        "Si ass siwenavéierzeg Joer al."
+      ]
+    },
+    {
+      "id": 2022,
+      "unite": 1,
+      "question": "Elle a 30 ans.",
+      "reponse": "Si ass drësseg Joer al.",
+      "distracteurs": [
+        "Si huet drësseg Joer al.",
+        "Si ass drësseg Joer.",
+        "Hien ass drësseg Joer al."
+      ]
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "question": "Barbara est née le 18 janvier 1996.",
+      "reponse": "D'Barbara ass den uechtzéngte Januar nonzénghonnertsechsannonzeg gebuer.",
+      "distracteurs": [
+        "D'Barbara huet den uechtzéngte Januar nonzénghonnertsechsannonzeg gebuer.",
+        "D'Barbara ass den uechtzéngte Juni nonzénghonnertsechsannonzeg gebuer.",
+        "D'Barbara ass den uechtzéngte Januar zweedausendsechs gebuer."
+      ]
+    },
+    {
+      "id": 2024,
+      "unite": 3,
+      "question": "Je suis né(e) le 13 juin 1999.",
+      "reponse": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+      "distracteurs": [
+        "Ech hunn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+        "Ech sinn den dräizéngte Januar nonzénghonnertnéngannonzeg gebuer.",
+        "Ech sinn den dräizéngte Juni zweedausendnéng gebuer."
+      ]
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "fr": "J'ai 18 ans.",
       "avant": "Ech sinn",
       "trou": "uechtzéng",
@@ -301,7 +595,8 @@
       "note": "18 = uechtzéng"
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "fr": "J'ai 24 ans.",
       "avant": "Ech si",
       "trou": "véieranzwanzeg",
@@ -315,7 +610,8 @@
       "note": "24 = véieranzwanzeg"
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "fr": "J'ai 30 ans.",
       "avant": "Ech sinn",
       "trou": "drësseg",
@@ -329,7 +625,8 @@
       "note": "30 = drësseg"
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "fr": "Quel âge as-tu ?",
       "avant": "Wéi al",
       "trou": "bass",
@@ -342,7 +639,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "fr": "Quel âge avez-vous ?",
       "avant": "Wéi al",
       "trou": "sidd",
@@ -355,7 +653,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 1,
       "fr": "Quel est ton âge ?",
       "avant": "Wat ass",
       "trou": "däin",
@@ -368,7 +667,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 1,
       "fr": "Quel est votre âge ?",
       "avant": "Wat ass",
       "trou": "Ären",
@@ -381,7 +681,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 3,
       "fr": "Quand es-tu né(e) ?",
       "avant": "Wéini",
       "trou": "bass",
@@ -394,7 +695,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 3,
       "fr": "Quand êtes-vous né(e) ?",
       "avant": "Wéini",
       "trou": "sidd",
@@ -407,7 +709,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "fr": "Je suis né(e) en mars.",
       "avant": "Ech sinn am",
       "trou": "Mäerz",
@@ -420,7 +723,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "fr": "Je suis né(e) en avril.",
       "avant": "Ech sinn am",
       "trou": "Abrëll",
@@ -433,7 +737,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "fr": "Je suis né(e) en mai.",
       "avant": "Ech sinn am",
       "trou": "Mee",
@@ -446,7 +751,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 2,
       "fr": "Je suis né(e) en octobre.",
       "avant": "Ech sinn am",
       "trou": "Oktober",
@@ -459,7 +765,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 2,
       "fr": "Je suis né(e) en décembre.",
       "avant": "Ech sinn am",
       "trou": "Dezember",
@@ -472,7 +779,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 3,
       "fr": "Je suis né(e) le 13 juin.",
       "avant": "Ech sinn den",
       "trou": "dräizéngte",
@@ -486,7 +794,8 @@
       "note": "Pour la date : den dräizéngte Juni"
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 3,
       "fr": "Barbara est née le 18 janvier.",
       "avant": "D'Barbara ass den",
       "trou": "uechtzéngte",
@@ -500,7 +809,8 @@
       "note": "Pour la date : den uechtzéngte Januar"
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 3,
       "fr": "Je suis né(e) le 1er janvier.",
       "avant": "Ech sinn den",
       "trou": "éischte",
@@ -514,7 +824,8 @@
       "note": "Pour la date : den éischte Januar"
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 3,
       "fr": "Je suis né(e) le 21 septembre.",
       "avant": "Ech sinn den",
       "trou": "eenanzwanzegste",
@@ -527,7 +838,8 @@
       ]
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 3,
       "fr": "Je suis né(e) en 1999.",
       "avant": "Ech sinn",
       "trou": "nonzénghonnertnéngannonzeg",
@@ -541,7 +853,8 @@
       "note": "1999 = nonzénghonnertnéngannonzeg"
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 3,
       "fr": "Je suis né(e) en 2004.",
       "avant": "Ech sinn",
       "trou": "zweedausendvéier",
@@ -554,7 +867,8 @@
       ]
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 3,
       "fr": "Je suis né(e) en 2015.",
       "avant": "Ech sinn",
       "trou": "zweedausendfofzéng",
@@ -564,10 +878,12 @@
         "zweedausendfofzeg",
         "zweedausendfënnefzéng",
         "zweedausendfënnefanzwanzeg"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 22,
+      "id": 2022,
+      "unite": 3,
       "fr": "Je suis né(e) le 13 juin 1999.",
       "avant": "Ech sinn den dräizéngte Juni",
       "trou": "nonzénghonnertnéngannonzeg",
@@ -577,10 +893,12 @@
         "nonzénghonnertnonanuechtzeg",
         "zweedausendnonanuechtzeg",
         "nonzénghonnertnonzegnéng"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 23,
+      "id": 2023,
+      "unite": 3,
       "fr": "Barbara est née le 18 janvier 1996.",
       "avant": "D'Barbara ass den uechtzéngte Januar",
       "trou": "nonzénghonnertsechsannonzeg",
@@ -590,10 +908,12 @@
         "nonzénghonnertsiechzéng",
         "nonzénghonnertnonansechzeg",
         "nonzénghonnertsechszéng"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 24,
+      "id": 2024,
+      "unite": 3,
       "fr": "Quand Barbara est-elle née ?",
       "avant": "Wéini ass",
       "trou": "d'Barbara",
@@ -603,171 +923,523 @@
         "du Barbara",
         "der Barbara",
         "den Barbara"
-      ]
+      ],
+      "plus": true
+    },
+    {
+      "id": 2025,
+      "unite": 2,
+      "fr": "Mon anniversaire est le 13 juin.",
+      "avant": "Ech hunn den dräizéngte Juni",
+      "trou": "Gebuertsdag",
+      "apres": ".",
+      "choix": [
+        "Gebuertsdag",
+        "Alter",
+        "Joer",
+        "gebuer"
+      ],
+      "note": "Pour l'anniversaire : Gebuertsdag hunn."
     }
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 2,
       "fr": "Janvier",
       "lu": "Januar"
     },
     {
+      "id": 2002,
+      "unite": 2,
       "fr": "Février",
       "lu": "Februar"
     },
     {
+      "id": 2003,
+      "unite": 2,
       "fr": "Mars",
       "lu": "Mäerz"
     },
     {
+      "id": 2004,
+      "unite": 2,
       "fr": "Avril",
       "lu": "Abrëll"
     },
     {
+      "id": 2005,
+      "unite": 2,
       "fr": "Mai",
       "lu": "Mee"
     },
     {
+      "id": 2006,
+      "unite": 2,
       "fr": "Juin",
       "lu": "Juni"
     },
     {
+      "id": 2007,
+      "unite": 2,
       "fr": "Juillet",
-      "lu": "Juli"
+      "lu": "Juli",
+      "plus": true
     },
     {
+      "id": 2008,
+      "unite": 2,
       "fr": "Août",
-      "lu": "August"
+      "lu": "August",
+      "plus": true
     },
     {
+      "id": 2009,
+      "unite": 2,
       "fr": "Septembre",
-      "lu": "September"
+      "lu": "September",
+      "plus": true
     },
     {
+      "id": 2010,
+      "unite": 2,
       "fr": "Octobre",
-      "lu": "Oktober"
+      "lu": "Oktober",
+      "plus": true
     },
     {
+      "id": 2011,
+      "unite": 2,
       "fr": "Novembre",
-      "lu": "November"
+      "lu": "November",
+      "plus": true
     },
     {
+      "id": 2012,
+      "unite": 2,
       "fr": "Décembre",
-      "lu": "Dezember"
+      "lu": "Dezember",
+      "plus": true
     },
     {
+      "id": 2013,
+      "unite": 1,
       "fr": "J'ai 18 ans.",
       "lu": "Ech sinn uechtzéng Joer al."
     },
     {
+      "id": 2014,
+      "unite": 1,
       "fr": "J'ai 20 ans.",
       "lu": "Ech sinn zwanzeg Joer al."
     },
     {
+      "id": 2015,
+      "unite": 1,
       "fr": "J'ai 24 ans.",
       "lu": "Ech si véieranzwanzeg Joer al."
     },
     {
+      "id": 2016,
+      "unite": 1,
       "fr": "Quel âge as-tu ?",
       "lu": "Wéi al bass du?"
     },
     {
+      "id": 2017,
+      "unite": 1,
       "fr": "Quel est ton âge ?",
       "lu": "Wat ass däin Alter?"
     },
     {
+      "id": 2018,
+      "unite": 1,
       "fr": "Quel âge avez-vous ?",
       "lu": "Wéi al sidd Dir?"
     },
     {
+      "id": 2019,
+      "unite": 1,
       "fr": "Carla a-t-elle 30 ans ?",
-      "lu": "Huet d'Carla drësseg Joer?"
+      "lu": "Huet d'Carla drësseg Joer?",
+      "plus": true
     },
     {
+      "id": 2020,
+      "unite": 1,
       "fr": "1999",
-      "lu": "nonzénghonnertnéngannonzeg"
+      "lu": "nonzénghonnertnéngannonzeg",
+      "plus": true
     },
     {
+      "id": 2021,
+      "unite": 3,
       "fr": "2015",
-      "lu": "zweedausendfofzéng"
+      "lu": "zweedausendfofzéng",
+      "plus": true
     },
     {
+      "id": 2022,
+      "unite": 3,
       "fr": "2026",
-      "lu": "zweedausendsechsanzwanzeg"
+      "lu": "zweedausendsechsanzwanzeg",
+      "plus": true
     },
     {
+      "id": 2023,
+      "unite": 3,
       "fr": "Quand es-tu né(e) ?",
       "lu": "Wéini bass du gebuer?"
     },
     {
+      "id": 2024,
+      "unite": 1,
       "fr": "Quand êtes-vous né(e) ?",
-      "lu": "Wéini sidd Dir gebuer?"
+      "lu": "Wéini sidd Dir gebuer?",
+      "plus": true
     },
     {
+      "id": 2025,
+      "unite": 1,
       "fr": "Il a 47 ans.",
-      "lu": "Hien ass siwenavéierzeg Joer al."
+      "lu": "Hien ass siwenavéierzeg Joer al.",
+      "plus": true
     },
     {
+      "id": 2026,
+      "unite": 1,
       "fr": "Elle a 30 ans.",
       "lu": "Si ass drësseg Joer al."
     },
     {
+      "id": 2027,
+      "unite": 1,
       "fr": "1988",
-      "lu": "nonzénghonnertaachtanaachtzeg"
+      "lu": "nonzénghonnertaachtanaachtzeg",
+      "plus": true
     },
     {
+      "id": 2028,
+      "unite": 3,
       "fr": "1997",
       "lu": "nonzénghonnertsiwenannonzeg"
     },
     {
+      "id": 2029,
+      "unite": 3,
       "fr": "2017",
-      "lu": "zweedausendsiwwenzéng"
+      "lu": "zweedausendsiwwenzéng",
+      "plus": true
     },
     {
+      "id": 2030,
+      "unite": 3,
       "fr": "2021",
-      "lu": "zweedausendeenanzwanzeg"
+      "lu": "zweedausendeenanzwanzeg",
+      "plus": true
     },
     {
+      "id": 2031,
+      "unite": 3,
       "fr": "Quel est votre âge ?",
-      "lu": "Wat ass Ären Alter?"
+      "lu": "Wat ass Ären Alter?",
+      "plus": true
     },
     {
+      "id": 2032,
+      "unite": 3,
       "fr": "J'ai trente ans.",
-      "lu": "Ech sinn drësseg Joer al."
+      "lu": "Ech sinn drësseg Joer al.",
+      "plus": true
     },
     {
+      "id": 2033,
+      "unite": 3,
       "fr": "Je suis né(e) le 13 juin 1999.",
       "lu": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer."
     },
     {
+      "id": 2034,
+      "unite": 3,
       "fr": "Barbara est née le 18 janvier 1996.",
       "lu": "D'Barbara ass den uechtzéngte Januar nonzénghonnertsechsannonzeg gebuer."
     },
     {
+      "id": 2035,
+      "unite": 3,
       "fr": "Quand Barbara est-elle née ?",
       "lu": "Wéini ass d'Barbara gebuer?"
     },
     {
+      "id": 2036,
+      "unite": 3,
       "fr": "Marc est né le 24 avril 2004.",
       "lu": "De Marc ass de véieranzwanzegste Abrëll zweedausendvéier gebuer."
     },
     {
+      "id": 2037,
+      "unite": 3,
       "fr": "Sophie est née le 28 septembre 2015.",
       "lu": "D'Sophie ass den aachtanzwanzegste September zweedausendfofzéng gebuer."
     },
     {
+      "id": 2038,
+      "unite": 2,
       "fr": "Quand est ton anniversaire ?",
       "lu": "Wéini hues du Gebuertsdag?"
     },
     {
+      "id": 2039,
+      "unite": 2,
       "fr": "Mon anniversaire est le 13 juin.",
       "lu": "Ech hunn den dräizéngte Juni Gebuertsdag."
     }
   ],
   "cours": [
     {
+      "type": "callout",
+      "titre": "Dire son âge",
+      "variant": "retenir",
+      "lignes": [
+        "Pour dire son âge : <b>Ech sinn … Joer al.</b> Question : <b>Wéi al bass du?</b> ou poliment <b>Wéi al sidd Dir?</b>",
+        "Ech sinn uechtzéng Joer al. · Si ass drësseg Joer al."
+      ],
+      "unite": 1
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel",
+      "unite": 1,
+      "items": [
+        [
+          "uechtzéng",
+          "18"
+        ],
+        [
+          "zwanzeg",
+          "20"
+        ],
+        [
+          "véieranzwanzeg",
+          "24"
+        ],
+        [
+          "drësseg",
+          "30"
+        ],
+        [
+          "siwenavéierzeg",
+          "47"
+        ],
+        [
+          "Joer",
+          "an (âge)"
+        ],
+        [
+          "Alter",
+          "âge"
+        ],
+        [
+          "Joer al",
+          "avoir … ans"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à produire",
+      "unite": 1,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech sinn uechtzéng Joer al.",
+          "J'ai 18 ans."
+        ],
+        [
+          "Ech sinn zwanzeg Joer al.",
+          "J'ai 20 ans."
+        ],
+        [
+          "Ech si véieranzwanzeg Joer al.",
+          "J'ai 24 ans."
+        ],
+        [
+          "Wéi al bass du?",
+          "Quel âge as-tu ?"
+        ],
+        [
+          "Wat ass däin Alter?",
+          "Quel est ton âge ?"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "titre": "Les mois et l'anniversaire",
+      "variant": "retenir",
+      "lignes": [
+        "Les mois commencent par une majuscule. Pour parler de son anniversaire : <b>Ech hunn den dräizéngte Juni Gebuertsdag.</b>",
+        "Wéini hues du Gebuertsdag? · Ech hunn den dräizéngte Juni Gebuertsdag."
+      ],
+      "unite": 2
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel",
+      "unite": 2,
+      "items": [
+        [
+          "Januar",
+          "janvier"
+        ],
+        [
+          "Februar",
+          "février"
+        ],
+        [
+          "Mäerz",
+          "mars"
+        ],
+        [
+          "Abrëll",
+          "avril"
+        ],
+        [
+          "Mee",
+          "mai"
+        ],
+        [
+          "Juni",
+          "juin"
+        ],
+        [
+          "September",
+          "septembre"
+        ],
+        [
+          "Dezember",
+          "décembre"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à produire",
+      "unite": 2,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Januar",
+          "Janvier"
+        ],
+        [
+          "Februar",
+          "Février"
+        ],
+        [
+          "Mäerz",
+          "Mars"
+        ],
+        [
+          "Abrëll",
+          "Avril"
+        ],
+        [
+          "Mee",
+          "Mai"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "titre": "Naissance : jour, mois et année",
+      "variant": "retenir",
+      "lignes": [
+        "Pour la naissance : <b>Ech sinn den … gebuer.</b> La date utilise un jour ordinal, un mois et une année écrite en un seul mot.",
+        "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer."
+      ],
+      "unite": 3
+    },
+    {
+      "type": "vocab",
+      "titre": "Vocabulaire essentiel",
+      "unite": 3,
+      "items": [
+        [
+          "Wéini",
+          "quand ?"
+        ],
+        [
+          "gebuer",
+          "né(e)"
+        ],
+        [
+          "Gebuertsdag",
+          "anniversaire"
+        ],
+        [
+          "éischte",
+          "le 1er (ordinal)"
+        ],
+        [
+          "dräizéngte",
+          "le 13 (ordinal)"
+        ],
+        [
+          "uechtzéngte",
+          "le 18 (ordinal)"
+        ],
+        [
+          "véieranzwanzegste",
+          "le 24 (ordinal)"
+        ],
+        [
+          "zweedausendvéier",
+          "2004"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "Phrases à produire",
+      "unite": 3,
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Wéini bass du gebuer?",
+          "Quand es-tu né(e) ?"
+        ],
+        [
+          "nonzénghonnertsiwenannonzeg",
+          "1997"
+        ],
+        [
+          "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+          "Je suis né(e) le 13 juin 1999."
+        ],
+        [
+          "D'Barbara ass den uechtzéngte Januar nonzénghonnertsechsannonzeg gebuer.",
+          "Barbara est née le 18 janvier 1996."
+        ],
+        [
+          "Wéini ass d'Barbara gebuer?",
+          "Quand Barbara est-elle née ?"
+        ]
+      ]
+    },
+    {
       "type": "texte",
-      "contenu": "Cette leçon sert à dire son âge, à demander l'âge de quelqu'un, à dire sa date de naissance et à parler de son anniversaire. On utilise surtout les verbes sinn et hunn."
+      "contenu": "Cette leçon sert à dire son âge, à demander l'âge de quelqu'un, à dire sa date de naissance et à parler de son anniversaire. On utilise surtout les verbes sinn et hunn.",
+      "unite": 0
     },
     {
       "type": "callout",
@@ -779,7 +1451,8 @@
         "Pour dire son anniversaire : Ech hunn den/de ... Gebuertsdag = Mon anniversaire est le ...",
         "Pour demander l'âge : Wéi al bass du? ou Wéi al sidd Dir?",
         "Pour demander la date de naissance : Wéini bass du gebuer? ou Wéini sidd Dir gebuer?"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -793,7 +1466,8 @@
         "Mir sinn = nous sommes.",
         "Dir sidd = vous êtes.",
         "Si sinn = ils / elles sont."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -806,7 +1480,8 @@
         "Ech sinn drësseg Joer al. → drësseg commence par d.",
         "Mais : Ech si véieranzwanzeg Joer al. → véieranzwanzeg commence par v.",
         "Dans cette leçon, apprends les phrases modèles telles qu'elles sont données."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -837,7 +1512,8 @@
           "Ech sinn drësseg Joer al.",
           "Ech sinn + âge + Joer al"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -848,7 +1524,8 @@
         "Wat ass däin Alter? = Quel est ton âge ?",
         "Wéi al sidd Dir? = Quel âge avez-vous ?",
         "Wat ass Ären Alter? = Quel est votre âge ?"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -919,7 +1596,8 @@
           "Dezember",
           "den zwanzegsten Dezember"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -931,7 +1609,8 @@
         "den uechtzéngte Januar = le 18 janvier.",
         "de véieranzwanzegste Abrëll = le 24 avril.",
         "La forme den peut devenir de devant certains mots, comme dans de véieranzwanzegste Abrëll."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -992,7 +1671,8 @@
           "véieranzwanzegste",
           "de véieranzwanzegste Abrëll"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1002,7 +1682,8 @@
         "Dans une liste, on peut apprendre la forme avec -en : den dräizéngten, den uechtzéngten, den eenanzwanzegsten.",
         "Dans une date complète avec le mois, on utilise souvent la forme courte : den dräizéngte Juni, den uechtzéngte Januar.",
         "Pour éviter de deviner, les exercices doivent toujours indiquer clairement si on attend une date complète."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1018,7 +1699,8 @@
         "2004 = zweedausendvéier.",
         "2015 = zweedausendfofzéng.",
         "2026 = zweedausendsechsanzwanzeg."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1044,7 +1726,8 @@
           "Ech sinn de véieranzwanzegste Abrëll zweedausendvéier gebuer.",
           "de + jour ordinal + mois + année"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1055,7 +1738,8 @@
         "Wéini sidd Dir gebuer? = Quand êtes-vous né(e) ?",
         "Wéini ass d'Barbara gebuer? = Quand Barbara est-elle née ?",
         "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer. = Je suis né(e) le 13 juin 1999."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1069,7 +1753,8 @@
         "Mir hunn = nous avons.",
         "Dir hutt = vous avez.",
         "Si hunn = ils / elles ont."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1100,7 +1785,8 @@
           "D'Barbara huet den uechtzéngte Januar Gebuertsdag.",
           "Nom + huet + date + Gebuertsdag"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "exemple",
@@ -1142,7 +1828,8 @@
           "Ech hunn den dräizéngte Juni Gebuertsdag.",
           "Mon anniversaire est le 13 juin."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1172,7 +1859,8 @@
           "Ech sinn véierzeg Joer al.",
           "J'ai 40 ans."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1202,7 +1890,8 @@
           "Ech hunn den dräizéngte Juni Gebuertsdag.",
           "Mon anniversaire est le 13 juin."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
