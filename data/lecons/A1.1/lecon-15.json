@@ -1032,17 +1032,17 @@
     {
       "id": 2027,
       "unite": 1,
-      "fr": "Quelle heure est-il ?",
-      "avant": "Wéi vill Auer",
-      "trou": "ass",
-      "apres": "et?",
+      "fr": "Il est quatre heures.",
+      "avant": "Et ass",
+      "trou": "véier",
+      "apres": "Auer.",
       "choix": [
-        "ass",
-        "bass",
-        "sidd",
-        "huet"
+        "véier",
+        "dräi",
+        "zwou",
+        "fënnef"
       ],
-      "note": "On emploie et ass."
+      "note": "Quatre heures : véier Auer."
     },
     {
       "id": 2028,
@@ -1062,7 +1062,7 @@
     {
       "id": 2029,
       "unite": 3,
-      "fr": "Il est une heure vingt.",
+      "fr": "Il est une heure vingt (en utilisant la demi-heure).",
       "avant": "Et ass zéng",
       "trou": "vir hallwer",
       "apres": "zwou.",
@@ -1077,7 +1077,7 @@
     {
       "id": 2030,
       "unite": 3,
-      "fr": "Il est une heure quarante.",
+      "fr": "Il est une heure quarante (en utilisant la demi-heure).",
       "avant": "Et ass zéng",
       "trou": "op hallwer",
       "apres": "zwou.",
