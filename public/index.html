@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
   <title>Lëtzebuergesch</title>
   <!-- Icône de l'app (onglet, écran d'accueil Android et iPhone) -->
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -256,13 +256,19 @@
 
   <!-- ══ LEÇON EN UNITÉS : MISSION (la scène finale) ══════════════════════════ -->
   <div id="view-mission" class="view">
-    <div class="pc-topbar">
+    <!-- En-tête de messagerie : retour, interlocuteur, progression, contexte et cours -->
+    <div class="ms-chat-tete">
       <button class="pc-icon-btn" data-retour aria-label="Retour" onclick="quitterMission()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-      <div class="ms-entete"><div class="pc-mini-label pc-gold">MISSION</div><div class="ms-entete-titre" id="ms-titre"></div></div>
+      <div class="ms-avatar" id="ms-avatar" aria-hidden="true"></div>
+      <div class="ms-identite"><div class="ms-personne" id="ms-titre"></div><div class="ms-sous-titre" id="ms-sous-titre"></div></div>
+      <span class="ms-compteur" id="ms-compteur"></span>
+      <button class="ms-lien" onclick="voirContexte()">Contexte</button>
       <button class="pc-cours-btn" onclick="ouvrirCours(null)">Cours</button>
-      <button class="pc-icon-btn maison" aria-label="Accueil" onclick="goDashboard()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
     </div>
-    <div class="ms-body" id="ms-body"></div>
+    <div class="ms-piste"><div id="ms-piste"></div></div>
+    <!-- La conversation défile seule ; la zone de réponse reste en bas -->
+    <div class="ms-body" id="ms-body" aria-live="polite"></div>
+    <div class="ms-reponse" id="ms-reponse"></div>
   </div>
 
   <!-- ══ LEÇON EN UNITÉS : FIN D'UNITÉ ════════════════════════════════════════ -->

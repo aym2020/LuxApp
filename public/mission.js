@@ -191,16 +191,20 @@ function peutTenterSaChance(l) {
   return unitesCoeur(l).every(u => getUnitBest(l.id, u.id) == null);
 }
 
-// ─── JOUER LA MISSION ───────────────────────────────────────────────────────
-// Une réplique à la fois : la réplique d'avant, la phrase française à dire,
-// le champ et Valider. Le clavier ne s'ouvre jamais tout seul.
+// ─── JOUER LA MISSION : UNE CONVERSATION FAÇON MESSAGERIE ───────────────────
+// Écran en trois zones : l'en-tête (interlocuteur, progression), la
+// conversation qui défile seule, et la zone de réponse en bas (la phrase à
+// traduire, le champ, le bouton d'envoi). Le clavier ne s'ouvre jamais tout
+// seul ; quand il s'ouvre, l'écran prend la hauteur visible (ui.js) et la zone
+// de réponse reste juste au-dessus du clavier.
 // Après chaque réponse, la correction reste affichée jusqu'à « Continuer ».
 // tentative = true : « Tente ta chance », avant les unités (S10).
 function openMission(tentative) {
-  ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0 };
-  document.getElementById('ms-titre').textContent = pLecon.mission.titre;
+  ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0, enBas: true };
+  renderEnteteMission();
   fermerClavier();
   showView('view-mission');
+  ecouterConversation();
   renderMission();
 }
 
@@ -209,72 +213,119 @@ function quitterMission() {
   retour();
 }
 
+// Les personnages de la scène (hors « toi »).
+function interlocuteurs(l) {
+  return [...new Set(l.scene.filter(x => x.qui !== 'toi').map(x => x.qui))];
+}
+
+function initiales(nom) {
+  return nom.split(/\s+/).map(m => m.charAt(0)).join('').slice(0, 2).toUpperCase();
+}
+
+// Un seul interlocuteur : son nom et son avatar en en-tête, plus aucun nom sur les bulles.
+// Plusieurs : le titre de la mission en en-tête, un petit avatar quand la personne change.
+function renderEnteteMission() {
+  const noms = interlocuteurs(pLecon);
+  const seul = noms.length === 1;
+  document.getElementById('ms-titre').textContent = seul ? noms[0] : pLecon.mission.titre;
+  document.getElementById('ms-sous-titre').textContent = seul ? 'Mission · ' + pLecon.mission.titre : noms.join(', ');
+  const avatar = document.getElementById('ms-avatar');
+  avatar.textContent = seul ? initiales(noms[0]) : '';
+  avatar.classList.toggle('hidden', !seul);
+}
+
+function majProgressionMission() {
+  const total = nbRepliquesToi(pLecon);
+  const fait = pLecon.scene.slice(0, ms.idx).filter(x => x.qui === 'toi').length;
+  const enCours = Math.min(fait + 1, total);
+  document.getElementById('ms-compteur').textContent = ms.idx >= pLecon.scene.length ? total + ' / ' + total : enCours + ' / ' + total;
+  document.getElementById('ms-piste').style.width = Math.round(fait / total * 100) + '%';
+}
+
 // Position de la réplique « toi » en cours : 1re, 2e… sur le total à dire.
 function numeroReplique(idx) {
   return pLecon.scene.slice(0, idx + 1).filter(x => x.qui === 'toi').length;
 }
 
-// Une bulle du dialogue. La traduction est cachée : un appui sur la bulle
-// l'affiche (pendant la mission, on lit d'abord le luxembourgeois).
+// Une bulle : à gauche pour les personnages, à droite pour toi.
+// La traduction est cachée : un appui sur la bulle l'affiche.
 // traduite = true : traduction visible d'emblée (bilan de fin).
 function bulleJeuHtml(x, i, traduite) {
   const toi = x.qui === 'toi';
   let classe = 'ms-bulle' + (toi ? ' toi' : '') + (traduite ? ' traduite' : '');
   if (toi && ms.resultats[i] === 'revele') classe += ' revele';
+  else if (toi && ms.resultats[i]) classe += ' valide';
+  // Plusieurs personnages : petit avatar quand la personne qui parle change
+  // (tes propres répliques ne comptent pas).
+  let avatar = '';
+  const avant = pLecon.scene.slice(0, i).filter(y => y.qui !== 'toi');
+  const precedent = avant[avant.length - 1];
+  if (!toi && interlocuteurs(pLecon).length > 1 && (!precedent || precedent.qui !== x.qui)) {
+    avatar = '<span class="ms-qui"><i>' + escHtml(initiales(x.qui)) + '</i>' + escHtml(x.qui) + '</span>';
+  }
   // Les nouvelles répliques arrivent une par une (S12).
   let delai = '';
   if (i >= ms.vues) {
     classe += ' bulle-in';
     delai = ' style="animation-delay:' + ((i - ms.vues) * 150) + 'ms"';
   }
-  return '<div class="' + classe + '"' + delai + ' onclick="this.classList.toggle(\'traduite\')">' +
-    '<b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
-    escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>';
+  const coche = toi && ms.resultats[i] && ms.resultats[i] !== 'revele' ? '<span class="ms-etat-envoi">' + ICONES.coche + '</span>' : '';
+  return avatar + '<div class="' + classe + '"' + delai + ' onclick="this.classList.toggle(\'traduite\')">' +
+    escHtml(x.lu) + coche + '<em>' + escHtml(x.fr) + '</em></div>';
 }
 
-// Nombre de répliques gardées à l'écran avant celle à dire ; les autres sont repliées.
-const REPLIQUES_RECENTES = 3;
+// La conversation reste collée en bas, sauf si on remonte lire d'anciens messages.
+function ecouterConversation() {
+  const body = document.getElementById('ms-body');
+  if (body.dataset.ecoute) return;
+  body.dataset.ecoute = '1';
+  body.addEventListener('scroll', () => {
+    if (ms) ms.enBas = body.scrollHeight - body.scrollTop - body.clientHeight < 48;
+  });
+  // Clavier ouvert ou fermé : la zone change de hauteur ; on garde le bas en vue.
+  if (window.ResizeObserver) {
+    new ResizeObserver(() => { if (ms && ms.enBas) allerEnBasConversation(); }).observe(body);
+  }
+}
+
+function allerEnBasConversation() {
+  const body = document.getElementById('ms-body');
+  body.scrollTop = body.scrollHeight;
+}
 
 function renderMission() {
   const scene = pLecon.scene;
   // Les répliques des autres passent toutes seules.
   while (ms.idx < scene.length && scene[ms.idx].qui !== 'toi') ms.idx++;
+  majProgressionMission();
 
   if (ms.idx >= scene.length) {
     finirMission();
     return;
   }
 
-  const debutRecent = Math.max(0, ms.idx - REPLIQUES_RECENTES);
-  const numero = numeroReplique(ms.idx);
-  let html = '<div class="ms-progres">' +
-    '<span class="pc-mini-label pc-gold">RÉPLIQUE ' + numero + ' / ' + nbRepliquesToi(pLecon) + '</span>' +
-    '<button class="ms-lien" onclick="voirContexte()">Contexte</button></div>';
-  if (debutRecent > 0) {
-    html += '<details class="ms-histoire"><summary>Répliques précédentes · ' + debutRecent + '</summary><div class="ms-scene">' +
-      scene.slice(0, debutRecent).map((x, i) => bulleJeuHtml(x, i)).join('') + '</div></details>';
-  }
-  html += '<div class="ms-scene">';
-  for (let i = debutRecent; i < ms.idx; i++) html += bulleJeuHtml(scene[i], i);
-
-  // La réplique à dire : une bulle « Toi » avec la consigne et le champ dedans.
-  const ligne = scene[ms.idx];
-  html += '<div class="ms-bulle toi ms-saisie bulle-in" id="ms-atoi">' +
-      '<b>Toi · en luxembourgeois</b>' +
-      '<div class="ms-consigne">' + escHtml(ligne.fr) + '</div>' +
-      '<div class="ms-champ">' +
-        '<textarea id="ms-input" rows="1" placeholder="Ta réponse…" enterkeyhint="send" aria-label="Ta réponse en luxembourgeois"' +
-          ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
-        '<button class="ms-envoyer" id="ms-btn-valider" aria-label="Valider" onclick="missionValider()">' + ICONES.fleche + '</button>' +
-      '</div>' +
-      '<div class="mc-erreur hidden" id="ms-erreur"></div>' +
-      '<button class="ms-lien hidden" id="ms-btn-voir" onclick="missionVoirReponse()">Voir la réponse</button>' +
-    '</div></div>';
-  if (numero === 1) html += '<div class="ms-astuce">Touche une bulle pour voir sa traduction.</div>';
+  // Toute la conversation jusqu'ici ; la zone de réponse en bas.
+  let html = '';
+  for (let i = 0; i < ms.idx; i++) html += bulleJeuHtml(scene[i], i);
+  if (numeroReplique(ms.idx) === 1) html += '<div class="ms-astuce">Touche une bulle pour voir sa traduction.</div>';
   ms.vues = ms.idx;
+  const body = document.getElementById('ms-body');
+  body.innerHTML = html;
+  ms.enBas = true;
+  allerEnBasConversation();
 
-  document.getElementById('ms-body').innerHTML = html;
-  window.scrollTo(0, 0);
+  const ligne = scene[ms.idx];
+  const zone = document.getElementById('ms-reponse');
+  zone.classList.remove('hidden');
+  zone.innerHTML =
+    '<div class="mc-erreur hidden" id="ms-erreur"></div>' +
+    '<div class="ms-a-traduire"><span>À traduire en luxembourgeois</span><div class="ms-consigne">' + escHtml(ligne.fr) + '</div></div>' +
+    '<div class="ms-champ">' +
+      '<textarea id="ms-input" rows="1" placeholder="Écris ta réponse…" enterkeyhint="send" aria-label="Ta réponse en luxembourgeois"' +
+        ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
+      '<button class="ms-envoyer" id="ms-btn-valider" aria-label="Envoyer" onclick="missionValider()">' + ICONES.fleche + '</button>' +
+    '</div>' +
+    '<button class="ms-lien hidden" id="ms-btn-voir" onclick="missionVoirReponse()">Voir la réponse</button>';
 
   const input = document.getElementById('ms-input');
   input.addEventListener('keydown', e => {
@@ -283,11 +334,17 @@ function renderMission() {
     e.stopPropagation();
     missionValider();
   });
-  // Dès qu'on corrige sa réponse, le bouton redevient « Valider ».
   input.addEventListener('input', () => {
-    document.getElementById('ms-btn-valider').setAttribute('aria-label', 'Valider');
+    document.getElementById('ms-btn-valider').setAttribute('aria-label', 'Envoyer');
+    agrandirChamp(input);
   });
   focusSiClavierPhysique(input); // sur téléphone, on touche le champ pour écrire
+}
+
+// Réponse longue : le champ grandit (jusqu'à 4 lignes), sans saut à chaque frappe.
+function agrandirChamp(input) {
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight, 120) + 'px';
 }
 
 // Contexte de la mission, à relire à tout moment (panneau).
@@ -302,8 +359,7 @@ function voirContexte() {
     'Contexte de la mission');
 }
 
-// Bouton principal : « Valider », ou « Réessayer » après une erreur.
-// « Réessayer » sans rien changer remet simplement le curseur dans le champ.
+// Bouton d'envoi : valider, ou (après une erreur, sans changement) remettre le curseur.
 function missionValider() {
   const input = document.getElementById('ms-input');
   if (!input || input.disabled) return;
@@ -314,14 +370,14 @@ function missionValider() {
   }
   const ligne = pLecon.scene[ms.idx];
 
-  // Juste : on enregistre, on ferme le clavier, on montre la correction.
+  // Juste : la réplique part dans la conversation, la correction s'affiche en bas.
   if (normalize(val) === normalize(ligne.lu)) {
     ms.resultats[ms.idx] = ms.essais === 0 ? 'ok' : 'essais';
     const titre = ms.essais === 0 ? 'Bonne réponse !' : 'Juste, au ' + (ms.essais + 1) + 'e essai';
     const sous = ms.essais === 0
       ? 'Réplique ' + numeroReplique(ms.idx) + ' sur ' + nbRepliquesToi(pLecon) + ' validée.'
-      : 'Réplique validée. Elle ne compte pas comme juste du premier coup.';
-    retourMission('ok', titre, ligne.lu, sous);
+      : 'Elle ne compte pas comme juste du premier coup.';
+    retourMission('ok', titre, sous);
     return;
   }
 
@@ -341,29 +397,24 @@ function missionValider() {
 function missionVoirReponse() {
   const ligne = pLecon.scene[ms.idx];
   ms.resultats[ms.idx] = 'revele';
-  retourMission('revele', 'La réponse', ligne.lu,
-    (ligne.aide ? ligne.aide + ' · ' : '') + 'Elle ne compte pas comme juste du premier coup.');
+  retourMission('revele', 'La réponse', (ligne.aide ? ligne.aide + ' · ' : '') + 'Elle ne compte pas comme juste du premier coup.');
 }
 
-// Correction dans la conversation : la bulle de saisie devient la réplique
-// dite (✓ si juste), jusqu'au clic sur « Continuer ».
-function retourMission(etat, titre, lu, sous) {
+// La réplique dite s'ajoute à la conversation (à droite) ; la zone de réponse
+// affiche la correction et « Continuer » jusqu'au clic.
+function retourMission(etat, titre, sous) {
   fermerClavier();
-  const atoi = document.getElementById('ms-atoi');
-  atoi.className = 'ms-bulle toi ' + (etat === 'ok' ? 'valide' : 'revele') + ' traduite';
-  atoi.removeAttribute('id');
-  atoi.innerHTML =
-    '<b class="ms-retour-titre">' + (etat === 'ok' ? 'Toi ' + ICONES.coche + '<span>' + escHtml(titre) + '</span>' : escHtml(titre)) + '</b>' +
-    '<div class="ms-retour-lu">' + escHtml(lu) + '</div>' +
-    '<em>' + sous + '</em>';
-  const bouton = document.createElement('button');
-  bouton.className = 'pc-btn primary wide ms-continuer';
-  bouton.id = 'ms-continuer';
-  bouton.textContent = 'Continuer →';
-  bouton.onclick = suiteMission;
-  atoi.parentNode.after(bouton);
-  bouton.focus({ preventScroll: true }); // Entrée = Continuer (ordinateur)
-  if (bouton.getBoundingClientRect().bottom > window.innerHeight) bouton.scrollIntoView({ block: 'nearest' });
+  const body = document.getElementById('ms-body');
+  body.insertAdjacentHTML('beforeend', bulleJeuHtml(pLecon.scene[ms.idx], ms.idx));
+  ms.vues = ms.idx + 1;
+  allerEnBasConversation();
+  document.getElementById('ms-reponse').innerHTML =
+    '<div class="ms-retour ' + etat + '">' +
+      '<div class="ms-retour-titre">' + (etat === 'ok' ? ICONES.coche : '') + escHtml(titre) + '</div>' +
+      '<div class="ms-retour-sous">' + sous + '</div>' +
+    '</div>' +
+    '<button class="pc-btn primary wide ms-continuer" id="ms-continuer" onclick="suiteMission()">Continuer →</button>';
+  document.getElementById('ms-continuer').focus({ preventScroll: true }); // Entrée = Continuer (ordinateur)
 }
 
 function suiteMission() {
@@ -407,14 +458,17 @@ function finirMission() {
   if (percent >= SEUIL_MISSION) confettis(); // mission réussie : célébration (S12)
 }
 
-// Bilan en haut de l'écran, la scène complète jouée en dessous.
+// Bilan en haut de la conversation, la scène complète (traduite) en dessous.
+// La zone de réponse disparaît.
 function afficherBilanMission(fin) {
   fermerClavier();
+  majProgressionMission();
+  document.getElementById('ms-reponse').classList.add('hidden');
   const body = document.getElementById('ms-body');
-  body.innerHTML = '<div class="pc-mini-label">TA SCÈNE</div><div class="ms-scene">' +
-    pLecon.scene.map((x, i) => bulleJeuHtml(x, i, true)).join('') + '</div>';
+  body.innerHTML = '<div class="pc-mini-label">TA SCÈNE</div>' +
+    pLecon.scene.map((x, i) => bulleJeuHtml(x, i, true)).join('');
   body.prepend(fin);
-  window.scrollTo(0, 0);
+  body.scrollTop = 0;
 }
 
 // Résultat de « Tente ta chance » (S10).
