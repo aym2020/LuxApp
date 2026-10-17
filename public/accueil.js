@@ -70,7 +70,7 @@ function enteteAccueilHtml() {
   return '<div class="ac-ent entre">' +
     '<div><span class="marque"><i></i>LuxApp</span>' +
       '<h1 class="ac-moien">Moien !</h1>' +
-      '<div class="ac-sous">Prêt pour ta pause luxembourgeois ?</div></div>' +
+      '<div class="ac-sous">Prêt pour ta pause de luxembourgeois ?</div></div>' +
     '<div class="ac-droite">' +
       (serie ? '<span class="serie" id="serie" aria-label="Série de ' + serie + ' jours">' + ICONES.flamme + serie + (serie > 1 ? ' jours' : ' jour') + '</span>' : '') +
       '<button class="puce-niveau" id="btn-niveau" aria-haspopup="dialog" onclick="ouvrirPanneauNiveau()">' +
