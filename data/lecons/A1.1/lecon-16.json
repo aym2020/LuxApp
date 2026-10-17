@@ -1070,9 +1070,10 @@
     {
       "id": 2013,
       "unite": 1,
-      "fr": "op d'Aarbecht",
-      "lu": "au travail",
-      "plus": true
+      "fr": "Je vais au travail en bus.",
+      "lu": "Ech fuere mam Bus op d'Aarbecht.",
+      "plus": true,
+      "attention": "Pour un trajet en bus, utilise <b>mam Bus fueren</b> et pour la destination <b>op d'Aarbecht</b>."
     },
     {
       "id": 2014,
