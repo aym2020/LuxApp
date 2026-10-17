@@ -168,8 +168,7 @@
       "id": 2006,
       "unite": 1,
       "fr": "commune",
-      "lu": "Gemeng",
-      "article": "d'"
+      "lu": "d'Gemeng"
     },
     {
       "id": 2007,
@@ -182,22 +181,19 @@
       "id": 2008,
       "unite": 2,
       "fr": "formation",
-      "lu": "Ausbildung",
-      "article": "d'"
+      "lu": "d'Ausbildung"
     },
     {
       "id": 2009,
       "unite": 2,
       "fr": "connaissances",
-      "lu": "Kenntnesser",
-      "article": "d'"
+      "lu": "d'Kenntnesser"
     },
     {
       "id": 2010,
       "unite": 2,
       "fr": "expérience",
-      "lu": "Erfarung",
-      "article": "d'"
+      "lu": "d'Erfarung"
     },
     {
       "id": 2011,
@@ -221,8 +217,7 @@
       "id": 2014,
       "unite": 2,
       "fr": "priorité",
-      "lu": "Prioritéit",
-      "article": "d'"
+      "lu": "d'Prioritéit"
     },
     {
       "id": 2015,
@@ -234,8 +229,7 @@
       "id": 2016,
       "unite": 3,
       "fr": "candidature",
-      "lu": "Kandidatur",
-      "article": "d'"
+      "lu": "d'Kandidatur"
     },
     {
       "id": 2017,
@@ -937,8 +931,8 @@
     {
       "id": 2014,
       "unite": 2,
-      "fr": "vingt heures par semaine",
-      "lu": "zwanzeg Stonnen d'Woch"
+      "fr": "Vingt heures par semaine.",
+      "lu": "Zwanzeg Stonnen d'Woch."
     },
     {
       "id": 2015,
