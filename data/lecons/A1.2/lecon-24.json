@@ -1278,17 +1278,17 @@
     {
       "id": 2029,
       "unite": 3,
-      "fr": "Hier, j'étais malade.",
+      "fr": "Hier, j'avais un rendez-vous.",
       "avant": "Gëschter",
-      "trou": "war",
-      "apres": "ech krank.",
+      "trou": "hat",
+      "apres": "ech e Rendez-vous.",
       "choix": [
-        "war",
         "hat",
+        "war",
         "sinn",
         "huet"
       ],
-      "note": "Après gëschter, le verbe est en deuxième position."
+      "note": "Après gëschter, le verbe conjugué est en deuxième position."
     }
   ],
   "ecriture": [
@@ -1320,7 +1320,8 @@
       "id": 2005,
       "unite": 1,
       "fr": "j'ai marché",
-      "lu": "ech si getrëppelt"
+      "lu": "ech si getrëppelt",
+      "plus": true
     },
     {
       "id": 2006,
@@ -1346,8 +1347,7 @@
       "id": 2009,
       "unite": 1,
       "fr": "je me suis levé",
-      "lu": "ech sinn opgestanen",
-      "plus": true
+      "lu": "ech sinn opgestanen"
     },
     {
       "id": 2010,
