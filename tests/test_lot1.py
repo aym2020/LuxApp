@@ -120,10 +120,12 @@ with sync_playwright() as p:
         renderItem();
     }""")
     assert 'sac' in page.inner_text('.mc-fr')
+    page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
     page.fill('#mc-input', 'bag')
     page.click('#mc-btn-valider')
     err1 = page.inner_text('#mc-erreur')
     assert 'Mapp' not in err1, err1
+    page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
     page.fill('#mc-input', 'Mappe')
     page.click('#mc-btn-valider')
     err2 = page.inner_text('#mc-erreur')
@@ -131,9 +133,11 @@ with sync_playwright() as p:
     page.screenshot(path=OUT + 'lot1-aide-2e-essai.png', full_page=True)
     # S5 : unité « article à écrire » : l'article n'est pas affiché, « Mapp » seul est refusé.
     assert page.locator('#pc-body .mc-article').count() == 0, 'article affiché alors qu\'il est à écrire'
+    page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
     page.fill('#mc-input', 'Mapp')
     page.click('#mc-btn-valider')
     assert not page.evaluate('pAttente'), '« Mapp » sans article accepté'
+    page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
     page.fill('#mc-input', 'eng Mapp')
     page.click('#mc-btn-valider')
     assert 'Attention' in page.inner_text('#pc-feedback')

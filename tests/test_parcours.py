@@ -40,6 +40,7 @@ def repondre(page, juste=True):
     c = item_courant(page)
     t, it = c['type'], c['item']
     if t == 'flashcards':
+        page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
         page.fill('#mc-input', cible(page, it) if juste else 'zzz')
         page.click('#mc-btn-valider')
         if juste:
@@ -117,6 +118,7 @@ with sync_playwright() as p:
         faux += ch if garder else 'q'
         if ch.isalpha() and lettres < 2:
             lettres += 1
+    page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
     page.fill('#mc-input', faux)
     page.keyboard.press('Enter')
     verts = page.locator('.mc-case.vert').count()
@@ -147,6 +149,8 @@ with sync_playwright() as p:
     assert not page.is_visible('#cours-panel')
     ok('panneau Cours : ouverture sur l\'unité, fermeture')
 
+    page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
+
     page.fill('#mc-input', bon)
     page.keyboard.press('Enter')
     page.screenshot(path=OUT + '07-motcache-juste.png')
@@ -157,6 +161,7 @@ with sync_playwright() as p:
     # 5. Voir la réponse après 3 essais -> le mot revient à la fin
     it2 = item_courant(page)['item']
     for _ in range(3):
+        page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
         page.fill('#mc-input', 'zzz')
         page.click('#mc-btn-valider')
     assert page.is_visible('#mc-btn-voir')

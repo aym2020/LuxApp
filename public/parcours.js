@@ -679,24 +679,66 @@ function estLettre(ch) {
   return /[a-z0-9]/.test(normalize(ch));
 }
 
+// Étape 1 : découvrir le mot, puis le reconstruire avec des lettres mélangées.
+//   1. Mot jamais vu : on le montre d'abord (français + luxembourgeois), aussi
+//      longtemps qu'on veut. Le but est d'introduire le vocabulaire, pas de
+//      faire deviner un mot inconnu au hasard.
+//   2. « À toi de reconstruire » : le mot est caché, on le recompose en
+//      touchant des lettres mélangées (celles du mot + 2 ou 3 intruses).
+//      Pas de clavier du téléphone. Avec un vrai clavier (ordinateur), on peut
+//      aussi taper les lettres.
+// Un mot déjà vu passe directement à la reconstruction.
 function renderMotCache(card) {
   // Une case par caractère. Espaces, apostrophes et tirets sont déjà affichés.
   mc = {
     card,
     cases: motATaper(pLecon, card).split('').map(ch => ({ ch, lettre: estLettre(ch), etat: '' })),
+    tuiles: [],   // lettres proposées : [{ ch }]
     indices: 0,   // lettres révélées avec le bouton Indice (coûtent des points)
     essais: 0,    // essais ratés
     revele: false // "Voir la réponse" utilisé
   };
-  const nbLettres = mc.cases.filter(c => c.lettre).length;
+  if (motDejaVu(card)) renderReconstruction();
+  else renderDecouverte();
+}
 
-  // On écrit directement dans les cases : une zone de saisie invisible est
-  // posée par-dessus. Toucher les cases ouvre le clavier.
-  // C'est un <textarea> : Chrome et Brave n'y affichent pas leur barre
-  // d'autoremplissage (mots de passe, carte, adresse), contrairement à <input>.
+// A-t-on déjà travaillé ce mot (dans une partie précédente, ou plus tôt dans celle-ci) ?
+function motDejaVu(card) {
+  const parLecon = getStatsStore()[pLecon.id];
+  const stat = parLecon && parLecon.motcache && parLecon.motcache[card.id];
+  return !!(stat && stat.attempts);
+}
+
+function renderDecouverte() {
+  const card = mc.card;
   document.getElementById('pc-body').innerHTML =
     '<div class="mc-top">' +
-      '<div class="pc-mini-label">TRADUIS</div>' +
+      '<div class="pc-mini-label pc-gold">NOUVEAU MOT</div>' +
+      '<div class="mc-fr">' + escHtml(card.fr) + '</div>' +
+    '</div>' +
+    '<div class="mc-decouverte">' +
+      '<div class="mc-decouverte-lu">' + escHtml(motComplet(card)) + '</div>' +
+      (card.note ? '<div class="mc-decouverte-note">' + escHtml(card.note) + '</div>' : '') +
+    '</div>' +
+    '<div class="mc-saisie">' +
+      '<div class="mc-info">Regarde bien le mot : tu vas le reconstruire.</div>' +
+      '<button class="pc-btn primary wide" id="mc-btn-reconstruire" onclick="renderReconstruction()">À toi de reconstruire →</button>' +
+    '</div>';
+  document.getElementById('mc-btn-reconstruire').focus({ preventScroll: true }); // Entrée = continuer (ordinateur)
+}
+
+function renderReconstruction() {
+  const card = mc.card;
+  const nbLettres = mc.cases.filter(c => c.lettre).length;
+  mc.tuiles = nouvellesTuiles();
+
+  // Une zone de saisie invisible est posée sur les cases. inputmode="none" :
+  // le clavier du téléphone ne s'ouvre pas, on touche les lettres proposées.
+  // C'est un <textarea> : Chrome et Brave n'y affichent pas leur barre
+  // d'autoremplissage (mots de passe, carte, adresse).
+  document.getElementById('pc-body').innerHTML =
+    '<div class="mc-top">' +
+      '<div class="pc-mini-label">RECONSTRUIS LE MOT</div>' +
       '<div class="mc-fr">' + escHtml(card.fr) + '</div>' +
       (card.indice ? '<div class="mc-indice">' + escHtml(card.indice) + '</div>' : '') +
     '</div>' +
@@ -704,19 +746,22 @@ function renderMotCache(card) {
     '<div class="mc-mot" id="mc-mot">' +
       (card.article && !articleAEcrire(pLecon, card) ? '<span class="mc-article">' + escHtml(card.article) + '</span>' : '') +
       '<div class="mc-cases" id="mc-cases"></div>' +
-      '<textarea id="mc-input" class="mc-input" rows="1" aria-label="Ta réponse en luxembourgeois"' +
+      '<textarea id="mc-input" class="mc-input" rows="1" inputmode="none" aria-label="Ta réponse en luxembourgeois"' +
         ' enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
     '</div>' +
     '<div class="mc-legende hidden" id="mc-legende">' +
       '<span><i class="mc-dot vert"></i>bien placée · gratuit</span>' +
       '<span><i class="mc-dot indice"></i>indice · coûte des points</span>' +
     '</div>' +
+    '<div class="mc-lettres" id="mc-lettres"></div>' +
     '<div class="mc-info" id="mc-info">' + nbLettres + ' lettres</div>' +
     '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
     '</div>' +
     '<div class="mc-saisie">' +
     '<div class="mc-score">Score du mot : <b id="mc-score">100 %</b></div>' +
-    '<div class="pc-actions">' +
+    '<div class="pc-actions mc-actions">' +
+      '<button class="pc-btn mc-effacer" id="mc-btn-effacer" aria-label="Effacer la dernière lettre" onclick="mcEffacer()">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 5H8l-6 7 6 7h13a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/><path d="m16 9-5 6M11 9l5 6"/></svg></button>' +
       '<button class="pc-btn" id="mc-btn-indice" onclick="mcIndice()">Indice</button>' +
       '<button class="pc-btn primary" id="mc-btn-valider" onclick="mcValider()">Valider</button>' +
     '</div>' +
@@ -725,6 +770,7 @@ function renderMotCache(card) {
 
   const input = document.getElementById('mc-input');
   input.addEventListener('keydown', e => {
+    if (e.key === 'Backspace' && !input.value) { e.preventDefault(); return; }
     if (e.key !== 'Enter') return;
     e.preventDefault();
     e.stopPropagation(); // évite que le listener global relance "Continuer"
@@ -735,8 +781,59 @@ function renderMotCache(card) {
   input.addEventListener('focus', mcMajFocus);
   input.addEventListener('blur', mcMajFocus);
   renderCases();
-  focusSiClavierPhysique(input); // sur téléphone, on touche les cases pour écrire
+  focusSiClavierPhysique(input); // ordinateur : on peut taper les lettres
   mcMajFocus();
+}
+
+// Lettres proposées : celles des cases encore à remplir, plus 2 intruses
+// (3 pour un mot de 6 lettres ou plus), dans le désordre.
+const LETTRES_INTRUSES = 'aeinrstuldghm';
+function nouvellesTuiles() {
+  const tuiles = mcCasesLettres().libres.map(i => ({ ch: mc.cases[i].ch }));
+  const nbIntruses = tuiles.length >= 6 ? 3 : 2;
+  for (let k = 0; k < nbIntruses && tuiles.length; k++) {
+    tuiles.push({ ch: LETTRES_INTRUSES[Math.floor(Math.random() * LETTRES_INTRUSES.length)] });
+  }
+  return melanger(tuiles);
+}
+
+// Quelles lettres proposées sont déjà posées dans les cases ?
+// Chaque lettre tapée « utilise » la première lettre proposée identique.
+function tuilesUtilisees() {
+  const utilisees = mc.tuiles.map(() => false);
+  mcLettresTapees().forEach(lettre => {
+    const k = mc.tuiles.findIndex((t, i) => !utilisees[i] && normalize(t.ch) === normalize(lettre));
+    if (k !== -1) utilisees[k] = true;
+  });
+  return utilisees;
+}
+
+function renderTuiles() {
+  const box = document.getElementById('mc-lettres');
+  if (!box) return;
+  const input = document.getElementById('mc-input');
+  const fini = !input || input.disabled;
+  const utilisees = tuilesUtilisees();
+  box.innerHTML = fini ? '' : mc.tuiles.map((t, i) =>
+    '<button class="mc-tuile' + (utilisees[i] ? ' utilisee' : '') + '"' + (utilisees[i] ? ' disabled' : '') +
+      ' onclick="mcPoserLettre(' + i + ')">' + escHtml(t.ch) + '</button>').join('');
+}
+
+// Toucher une lettre : elle va dans la première case vide.
+function mcPoserLettre(i) {
+  if (pAttente) return;
+  const input = document.getElementById('mc-input');
+  if (!input || input.disabled || tuilesUtilisees()[i]) return;
+  input.value = mcLettresTapees().join('') + mc.tuiles[i].ch;
+  mcSaisie();
+}
+
+// ⌫ : retire la dernière lettre posée.
+function mcEffacer() {
+  const input = document.getElementById('mc-input');
+  if (!input || input.disabled) return;
+  input.value = mcLettresTapees().slice(0, -1).join('');
+  renderCases();
 }
 
 // Les lettres tapées (espaces et ponctuation retirés : ils sont déjà affichés).
@@ -791,7 +888,7 @@ function mcMajFocus() {
   const actif = document.activeElement === input && !input.disabled;
   mot.classList.toggle('focus', actif);
   const nb = mcCasesLettres().toutes.length;
-  document.getElementById('mc-info').textContent = nb + ' lettres' + (actif || input.disabled ? '' : ' · touche les cases pour écrire');
+  document.getElementById('mc-info').textContent = nb + ' lettres' + (input.disabled ? '' : ' · touche les lettres dans l\'ordre');
   renderCases();
 }
 
@@ -823,6 +920,7 @@ function renderCases() {
     html += '<span class="' + classe + '">' + escHtml(texte) + '</span>';
   });
   document.getElementById('mc-cases').innerHTML = html + '</span>';
+  renderTuiles();
 }
 
 // Score du mot = lettres non révélées par indice / nombre de lettres.
@@ -854,6 +952,7 @@ function mcIndice() {
   }
   mc.cases[i].etat = 'indice';
   mc.indices++;
+  mc.tuiles = nouvellesTuiles();
   renderCases();
   mcMajScore();
   document.getElementById('mc-legende').classList.remove('hidden');
@@ -888,7 +987,7 @@ function mcValider() {
     const ok = !mc.revele && mc.indices === 0 && mc.essais === 0;
     enregistrer(card, mcScore(), ok, { indices: mc.indices, essais: mc.essais, revele: mc.revele });
     // Juste : le point d'attention complet, pour retenir le piège (S6).
-    showFeedback(true, 'Juste !', '<b>' + escHtml(motComplet(card)) + '</b>' +
+    showFeedback(true, 'Bien joué !', '<b>' + escHtml(motComplet(card)) + '</b> = ' + escHtml(card.fr) +
       (card.note ? '<br>' + escHtml(card.note) : '') + attentionHtml(attentionItem(card, 'flashcards')), reussir);
     return;
   }
@@ -901,6 +1000,7 @@ function mcValider() {
     }
   });
   input.value = '';
+  mc.tuiles = nouvellesTuiles();
   renderCases();
   document.getElementById('mc-legende').classList.remove('hidden');
 

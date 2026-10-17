@@ -19,6 +19,7 @@ PORT=3456 node server.js &       # serveur de test
 | `python3 tests/test_migration.py` | Les 24 leçons migrées : chaque unité et la mission jouées sans faute | ~45 min |
 | `python3 tests/test_parcours.py` | Parcours d'une leçon en unités | ~1 min |
 | `python3 tests/test_navigation.py` | Chemin en accordéon, Retour (et bouton Retour du téléphone) vers l'écran précédent, mission en conversation | ~20 s |
+| `python3 tests/test_motcache.py` | Mot caché : découverte du mot nouveau, reconstruction avec des lettres mélangées (sans clavier) | ~10 s |
 | `python3 tests/test_seance.py` | Séance du jour : quitter puis reprendre | ~30 s |
 | `python3 tests/test_etalement.py` | Étalement de l'historique v1 | ~10 s |
 | `node tests/test_lot2_contenu.js` | Lot 2 : six JSON, unités, scènes, distracteurs, IDs et cours | ~1 s |

@@ -46,6 +46,7 @@ with sync_playwright() as p:
     pg.click('#pi-content .pc-btn.primary')
     assert actif(pg, 'view-parcours')
     cible = pg.evaluate("motATaper(pLecon, trouverItem(pLecon,'flashcards', run.steps[run.stepIdx].queue[0]))")
+    pg.locator('#mc-btn-reconstruire').count() and pg.click('#mc-btn-reconstruire')
     pg.fill('#mc-input', cible); pg.click('#mc-btn-valider'); pg.click('#pc-continuer')
     # cours ouvert puis fermé
     pg.click('#view-parcours .pc-cours-btn'); assert pg.is_visible('#cours-panel')

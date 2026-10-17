@@ -29,6 +29,7 @@ def repondre(page):
     }""")
     t, it = c['type'], c['item']
     if t == 'flashcards':
+        page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
         page.fill('#mc-input', cible(page, it))
         page.click('#mc-btn-valider')
         page.click('#pc-continuer')

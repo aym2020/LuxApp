@@ -1986,3 +1986,28 @@ body.clavier-actif #view-mission.active .ms-body {
 body.clavier-actif #view-mission.active .ms-body { padding-top: .3rem; gap: .4rem; }
 body.clavier-actif #view-mission.active .ms-astuce,
 body.clavier-actif #view-mission.active .ms-histoire { display: none; }
+
+/* ══ MOT CACHÉ : DÉCOUVRIR PUIS RECONSTRUIRE ═════════════════════════════════ */
+/* 1. Découverte : le mot luxembourgeois, à regarder avant de le reconstruire */
+.mc-decouverte {
+  margin: 1.4rem auto 0; width: 100%; max-width: 420px; text-align: center;
+  padding: 1.1rem 1rem; border-radius: 18px;
+  border: 1px solid rgba(245, 207, 77, .55); background: rgba(245, 207, 77, .07);
+  animation: entre .3s ease-out both;
+}
+.mc-decouverte-lu { font-family: var(--serif); font-size: clamp(2rem, 10vw, 2.6rem); line-height: 1.1; color: var(--accent); }
+.mc-decouverte-note { margin-top: .5rem; font-size: var(--fs-sec); color: var(--muted-strong); }
+
+/* 2. Reconstruction : lettres à toucher, dans l'ordre */
+.mc-lettres { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: .4rem; }
+.mc-tuile {
+  min-width: 44px; height: 48px; padding: 0 .55rem; border-radius: 12px; cursor: pointer;
+  border: 1px solid #3a3730; border-bottom-width: 3px; background: var(--surface);
+  color: var(--text); font-family: var(--font); font-size: 1.3rem; font-weight: 700;
+  transition: transform .08s ease, opacity .15s ease;
+}
+.mc-tuile:active { transform: scale(.92); }
+.mc-tuile.utilisee { opacity: .18; cursor: default; }
+.mc-mot .mc-input { caret-color: transparent; }
+.mc-actions .mc-effacer { flex: none; width: 52px; padding: 0; display: grid; place-items: center; }
+.mc-effacer svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
