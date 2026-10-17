@@ -1810,3 +1810,61 @@ body.clavier-actif #view-mission.active .ms-body {
   overflow-y: auto;
   overscroll-behavior: contain;
 }
+
+/* ══ MISSION : CARTE COMPACTE, INTRODUCTION, JEU RÉPLIQUE PAR RÉPLIQUE ═══════════ */
+
+/* Carte compacte en haut de la leçon (le scénario s'ouvre à la demande) */
+.ms-carte.compacte { gap: .45rem; padding: .9rem 1rem; }
+.ms-carte.compacte .ms-titre { font-size: 1.35rem; }
+#view-plecon .ms-carte .ms-carte-haut > .pc-mini-label { color: var(--lc); }
+.ms-carte-haut { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+.ms-etat {
+  flex: none; font-size: var(--fs-micro); font-weight: 700; letter-spacing: .04em;
+  padding: .15rem .55rem; border-radius: 999px; color: var(--muted-strong); background: rgba(255,255,255,.06);
+}
+.ms-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .15rem; }
+.pc-chip.ms-jouer, .pc-chip.ms-tenter { color: var(--accent); border-color: rgba(245,207,77,.45); }
+.pc-chip.ms-jouer.conseille { background: var(--accent); color: #1a1406; border-color: var(--accent); }
+
+/* Panneau « Voir le scénario » */
+.panneau .ms-titre { margin: .2rem 0 .1rem; }
+.panneau .ms-scene { margin-bottom: .4rem; }
+.ms-panneau-bas { display: flex; flex-direction: column; gap: .5rem; margin-top: .4rem; }
+
+/* Introduction de la mission (1re découverte de la leçon) */
+.msi-content {
+  min-height: calc(100dvh - 70px); padding: 1.2rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 1.4rem;
+}
+.msi-haut { display: flex; flex-direction: column; gap: .7rem; }
+.msi-titre { font-family: var(--serif); font-size: clamp(2.1rem, 10vw, 2.8rem); line-height: 1.05; font-weight: 400; }
+.msi-contexte { font-size: 1.02rem; line-height: 1.5; color: var(--muted-strong); }
+.msi-objectif {
+  border: 1px solid rgba(242,166,90,.4); background: rgba(242,166,90,.07);
+  border-radius: 16px; padding: .9rem 1rem; display: flex; flex-direction: column; gap: .5rem;
+}
+.msi-objectif-titre { font-weight: 700; color: #f2a65a; }
+.msi-objectif-txt { display: flex; gap: .55rem; align-items: flex-start; line-height: 1.4; }
+.msi-objectif-txt .ic { flex: none; width: 18px; height: 18px; margin-top: 2px; stroke: #f2a65a; }
+.msi-bas { margin-top: auto; display: flex; flex-direction: column; gap: .6rem; }
+.msi-info { font-size: var(--fs-sec); color: var(--muted); text-align: center; }
+/* Entrée progressive (≈ 700 ms au total), coupée si le téléphone demande moins d'animations */
+#view-msintro.active .msi-in { animation: entre .35s ease-out both; }
+#view-msintro.active .msi-in:nth-child(2) { animation-delay: .08s; }
+#view-msintro.active .msi-in:nth-child(3) { animation-delay: .16s; }
+#view-msintro.active .msi-objectif { animation-delay: .26s; }
+#view-msintro.active .msi-bas { animation-delay: .36s; }
+
+/* Jeu : début du dialogue replié, correction affichée jusqu'à « Continuer » */
+.ms-histoire summary { cursor: pointer; font-size: var(--fs-sec); font-weight: 600; color: var(--muted-strong); padding: .3rem 0; }
+.ms-histoire[open] summary { margin-bottom: .4rem; }
+.ms-retour {
+  border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; gap: .45rem;
+  border: 1px solid var(--correct); background: #0f1d18; animation: entre .25s ease-out both;
+}
+.ms-retour.revele { border-color: #f2a65a; background: rgba(242,166,90,.08); }
+.ms-retour-titre { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--correct); }
+.ms-retour.revele .ms-retour-titre { color: #f2a65a; }
+.ms-retour-titre .ic { width: 22px; height: 22px; stroke: var(--correct); stroke-width: 2.5; }
+.ms-retour-lu { font-family: var(--serif); font-size: 1.9rem; line-height: 1.15; }
+.ms-retour-sous { font-size: var(--fs-sec); color: var(--muted-strong); }

@@ -34,8 +34,31 @@ function actualiserClavierMobile() {
     const zone = champ.closest('#view-parcours')?.querySelector('.pc-body');
     if (zone) zone.scrollTop = 0;
     window.scrollTo(0, 0);
+    // On ne repositionne que si le champ est vraiment caché par le clavier.
+    requestAnimationFrame(() => montrerChampSiCache(champ, hauteur));
   }
   dispositionClavierActive = true;
+}
+
+function montrerChampSiCache(champ, hauteurVisible) {
+  if (!champ || !champ.getBoundingClientRect) return;
+  const r = champ.getBoundingClientRect();
+  if (r.top < 0 || r.bottom > hauteurVisible) champ.scrollIntoView({ block: 'nearest' });
+}
+
+// Fermer le clavier du téléphone (avant d'afficher une correction).
+function fermerClavier() {
+  const champ = document.activeElement;
+  if (champ && (champ.tagName === 'INPUT' || champ.tagName === 'TEXTAREA') && champ.blur) champ.blur();
+}
+
+// Le clavier ne s'ouvre jamais tout seul sur téléphone : c'est l'utilisateur qui
+// touche le champ. Avec une souris et un vrai clavier (ordinateur), on garde le
+// curseur dans le champ pour pouvoir taper tout de suite.
+function focusSiClavierPhysique(champ) {
+  if (!champ || champ.disabled) return;
+  const ordinateur = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (ordinateur) champ.focus({ preventScroll: true });
 }
 
 document.addEventListener('focusin', () => requestAnimationFrame(actualiserClavierMobile));

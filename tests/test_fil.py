@@ -99,12 +99,16 @@ with sync_playwright() as p:
 
     # ── 1. Leçon 8 : la mission en haut, la scène floutée ──
     page.evaluate("openParcoursLecon(lecons.find(l => l.id === 8))")
+    if page.locator('#view-msintro.active').count():
+        page.click('#msi-content button:has-text("Voir les unités")')
     assert page.locator('.ms-carte').count() == 1
-    assert page.locator('.ms-carte .ms-bulle').count() == 9
-    assert page.locator('.ms-carte .ms-pastille.apprise').count() == 0  # scène lisible, rien d'appris (S4)
+    page.evaluate('voirScenario()')
+    assert page.locator('.panneau .ms-bulle').count() == 9
+    assert page.locator('.panneau .ms-pastille.apprise').count() == 0  # scène lisible, rien d'appris (S4)
+    page.evaluate('fermerPanneau()')
     assert page.locator('.pl-unit-phrase').count() == 3
     chip = page.locator('.pl-unit:has-text("UNITÉ 1") .pc-chip.plus').inner_text()
-    assert chip == '+ 14 mots', chip
+    assert chip == '+14 mots · S\'entraîner', chip
     page.screenshot(path=OUT + 'c01-lecon8.png', full_page=True)
     ok('leçon 8 : carte mission, 9 répliques lisibles, phrase sur chaque unité, chip « ' + chip + ' »')
 
@@ -115,7 +119,7 @@ with sync_playwright() as p:
     assert not page.evaluate("document.querySelector('details.pi-plus').open")
     page.click('details.pi-plus summary')
     page.screenshot(path=OUT + 'c02-intro.png', full_page=True)
-    ok('intro : la phrase de l\'unité, puis « + 14 autres mots » replié')
+    ok('intro : la phrase de l\'unité, puis « Voir les 14 mots supplémentaires » replié')
 
     # ── 3. Unité 1 : seulement le cœur ──
     page.click('#pi-content button:has-text("Commencer")')
@@ -126,7 +130,7 @@ with sync_playwright() as p:
     assert actif(page, 'view-pfin')
     assert page.locator('.ms-debloque .ms-bulle').count() == 2
     boutons = page.locator('.pf-boutons button').all_inner_texts()
-    assert boutons[0] == 'Unité suivante' and boutons[1].startswith('Élargir : 14 mots de plus'), boutons
+    assert boutons[0] == 'Unité suivante →' and boutons[1].startswith('Élargir : 14 mots de plus'), boutons
     page.screenshot(path=OUT + 'c03-fin-unite.png', full_page=True)
     ok('unité 1 : ' + str(total) + ' items (cœur seul) · « Ta mission avance » (2 répliques) · ' + ' | '.join(boutons))
 
@@ -142,7 +146,9 @@ with sync_playwright() as p:
     page.screenshot(path=OUT + 'c04-fin-plus.png', full_page=True)
     page.click('#pf-content button:has-text("Retour à la leçon")')
     assert page.locator('.pl-unit:has-text("UNITÉ 1") .pc-chip.plus.fait').count() == 1
-    assert page.locator('.ms-carte .ms-pastille.apprise').count() == 2
+    page.evaluate('voirScenario()')
+    assert page.locator('.panneau .ms-pastille.apprise').count() == 2
+    page.evaluate('fermerPanneau()')
     ok('« + » : ' + str(total_plus) + ' items, tous « plus » · chip coché · étoiles inchangées · 2 répliques débloquées')
 
     # ── 5. Unités 2 et 3, puis la mission conseillée ──
@@ -167,6 +173,7 @@ with sync_playwright() as p:
     page.click('#ms-body .pc-btn.primary')
     assert page.locator('#ms-btn-voir:not(.hidden)').count() == 1
     page.click('#ms-btn-voir')
+    page.click('#ms-continuer')
     scene = page.evaluate('pLecon.scene')
     n = 0
     while page.locator('#ms-input').count() and n < 20:
@@ -174,6 +181,7 @@ with sync_playwright() as p:
         idx = page.evaluate('ms.idx')
         page.fill('#ms-input', scene[idx]['lu'].replace('!', ''))  # la ponctuation est ignorée
         page.keyboard.press('Enter')
+        page.locator('#ms-continuer').count() and page.click('#ms-continuer')
     assert page.locator('.ms-fin').count() == 1
     score = page.evaluate('getMissionBest(8)')
     assert score == 75, score
@@ -186,6 +194,7 @@ with sync_playwright() as p:
         n += 1
         page.fill('#ms-input', scene[page.evaluate('ms.idx')]['lu'])
         page.keyboard.press('Enter')
+        page.locator('#ms-continuer').count() and page.click('#ms-continuer')
     assert 'sans faute' in page.inner_text('.ms-fin .pf-sansfaute').lower()
     assert page.evaluate('getMissionBest(8)') == 100
     page.click('.ms-fin button:has-text("Retour à la leçon")')
@@ -203,7 +212,7 @@ with sync_playwright() as p:
     ok('cours : blocs « + » repliés sous « Voir + »')
 
     # ── 8. Leçon 21 : leçon complète = fil + « + » + bonus → « Complète » ──
-    page.evaluate("changerNiveau('A1.2'); openParcoursLecon(lecons.find(l => l.id === 21))")
+    page.evaluate("changerNiveau('A1.2'); marquerIntroMissionVue(21); openParcoursLecon(lecons.find(l => l.id === 21))")
     assert page.locator('.pl-unit.bonus').count() == 1
     page.screenshot(path=OUT + 'c09-lecon21.png', full_page=True)
     attendu = page.evaluate("nbItems(pLecon, 'all', 'tout')")
@@ -222,6 +231,8 @@ with sync_playwright() as p:
     # ── 9. Leçons 2 et 22 : s'affichent, unités et mission ──
     for lid, niv in ((2, 'A1.1'), (22, 'A1.2')):
         page.evaluate("changerNiveau('%s'); openParcoursLecon(lecons.find(l => l.id === %d))" % (niv, lid))
+        if actif(page, 'view-msintro'):  # 1re découverte : introduction de la mission
+            page.click('#msi-content button:has-text("Voir les unités")')
         assert page.locator('.ms-carte').count() == 1
         page.screenshot(path=OUT + 'c11-lecon%d.png' % lid, full_page=True)
         page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')

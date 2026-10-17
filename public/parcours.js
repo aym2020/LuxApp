@@ -221,12 +221,49 @@ function carteLeconV2Html(l) {
 }
 
 // ─── ÉCRAN DE LA LEÇON (liste des unités) ───────────────────────────────────
-function openParcoursLecon(l) {
+// cible (facultatif) : la carte sur laquelle revenir, quand on quitte un
+// exercice, une introduction ou la mission. Numéro d'unité, 'all' (toute la
+// leçon) ou 'mission'. Sans cible, on arrive en haut de la leçon.
+let pRetourScroll = null; // une seule restauration de position à la fois
+
+function openParcoursLecon(l, cible) {
   pLecon = l;
   currentLecon = l;
   marquerLeconVue(l.id); // la 1re visite passe par cet écran (S2)
+  fermerClavier();
+  // 1re découverte d'une leçon avec mission : l'introduction, jusqu'à confirmation.
+  if (cible == null && introMissionAVoir(l)) {
+    renderIntroMission();
+    showView('view-msintro');
+    return;
+  }
   renderParcoursLecon();
   showView('view-plecon');
+  if (cible != null) allerALaCarte(cible);
+}
+
+// Id de la carte d'une unité, de « Toute la leçon » ou de la mission.
+function idCarte(cible) {
+  if (cible === 'mission') return 'pl-mission';
+  if (cible === TOUTE_LA_LECON) return 'pl-toute';
+  return 'pl-unite-' + cible;
+}
+
+// Texte à mettre dans un onclick : 'all' ou 'mission' entre guillemets, un numéro tel quel.
+function cibleJs(cible) {
+  return typeof cible === 'number' ? String(cible) : '\'' + cible + '\'';
+}
+
+// Fait défiler la page jusqu'à la carte, une fois l'écran dessiné.
+function allerALaCarte(cible) {
+  if (pRetourScroll) cancelAnimationFrame(pRetourScroll);
+  pRetourScroll = requestAnimationFrame(() => {
+    pRetourScroll = null;
+    const carte = document.getElementById(idCarte(cible));
+    if (!carte) return;
+    const haut = carte.getBoundingClientRect().top + window.scrollY - 12;
+    window.scrollTo(0, Math.max(0, haut));
+  });
 }
 
 // Partie jouée par « une étape seule » : le cœur pour une unité, tout pour la leçon.
@@ -244,7 +281,7 @@ function chipsEtapes(uniteId) {
   if (uniteId !== TOUTE_LA_LECON && aDuPlus(pLecon, uniteId)) {
     const fait = getPlusFait(pLecon.id, uniteId);
     html += '<button class="pc-chip plus' + (fait ? ' fait' : '') + '" onclick="startUnite(' + uniteId + ', \'plus\')">' +
-      (fait ? '✓ ' : '') + '+ ' + textePlus(pLecon, uniteId) + '</button>';
+      (fait ? '✓ ' : '') + '+' + textePlus(pLecon, uniteId) + ' · S\'entraîner</button>';
   }
   return html;
 }
@@ -274,7 +311,7 @@ function renderParcoursLecon() {
 
   // ── Toute la leçon : tout le contenu d'un coup, une étape, révision ──
   const nbTout = nbItems(l, TOUTE_LA_LECON, 'tout');
-  html += '<div class="pl-unit pl-toute">';
+  html += '<div class="pl-unit pl-toute" id="pl-toute">';
   html += '<div class="pl-unit-top"><div>' +
     '<div class="pc-mini-label">TOUTE LA LEÇON' +
       (leconComplete(l) ? ' · <span class="pc-gold">COMPLÈTE</span>' : '') + '</div>' +
@@ -319,7 +356,7 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   if (mots.length > 4) apercu += ' · +' + (mots.length - 4);
 
   const label = u.bonus ? 'BONUS' : 'UNITÉ ' + u.id;
-  let html = '<div class="pl-unit' + (enCours ? ' en-cours' : '') + (u.bonus ? ' bonus' : '') + '">';
+  let html = '<div class="pl-unit' + (enCours ? ' en-cours' : '') + (u.bonus ? ' bonus' : '') + '" id="pl-unite-' + u.id + '">';
   html += '<div class="pl-unit-top"><div>' +
     '<div class="pc-mini-label">' + label + etat + '</div>' +
     '<div class="pl-unit-titre">' + escHtml(u.titre) + '</div></div>' +
@@ -368,7 +405,11 @@ function rafraichirLecon() {
 // ─── ÉCRAN "AVANT DE COMMENCER" ─────────────────────────────────────────────
 // Ordre : la phrase de l'unité, la règle, les pièges, les mots du cœur,
 // puis le « + » replié (même phrase, plus de mots).
+let pIntroUnite = null; // unité de l'écran « Avant de commencer » (pour la croix)
+
 function openIntro(uniteId) {
+  pIntroUnite = uniteId;
+  fermerClavier();
   const u = trouverUnite(pLecon, uniteId);
   const mots = itemsUnite(pLecon, 'flashcards', uniteId, 'coeur');
   const motsPlus = itemsUnite(pLecon, 'flashcards', uniteId, 'plus');
@@ -403,9 +444,9 @@ function openIntro(uniteId) {
 
   // Le « + » : replié, à lire si on veut. Il se joue après l'unité (« Élargir »).
   if (motsPlus.length) {
-    html += '<details class="pi-plus"><summary>+ ' + motsPlus.length + ' autres mots · même phrase</summary>' +
+    html += '<details class="pi-plus"><summary>Voir les ' + motsPlus.length + ' mots supplémentaires</summary>' +
       '<div class="pi-mots">' + motsHtml(motsPlus) + '</div>' +
-      '<div class="pi-plus-note">Tu pourras les travailler après l\'unité, avec « Élargir ».</div></details>';
+      '<div class="pi-plus-note">Même phrase, d\'autres mots. Tu pourras t\'entraîner avec eux après l\'unité.</div></details>';
   }
 
   if (u.phrases && u.phrases.length) {
@@ -419,6 +460,11 @@ function openIntro(uniteId) {
 
   document.getElementById('pi-content').innerHTML = html;
   showView('view-pintro');
+}
+
+// Croix de « Avant de commencer » : retour sur la carte de cette unité.
+function fermerIntro() {
+  openParcoursLecon(pLecon, pIntroUnite);
 }
 
 function motsHtml(mots) {
@@ -476,11 +522,12 @@ function reprendreRun() {
   renderItem();
 }
 
-// Croix en haut : on garde la sauvegarde et on revient à la leçon.
+// Croix en haut : on garde la sauvegarde et on revient sur la carte de
+// l'unité quittée (ou de « Toute la leçon »).
 function quitterParcours() {
   clearTimeout(pTimer);
   pAttente = false;
-  openParcoursLecon(pLecon);
+  openParcoursLecon(pLecon, run ? run.uniteId : undefined);
 }
 
 // ─── AFFICHAGE D'UN ITEM ────────────────────────────────────────────────────
@@ -606,6 +653,7 @@ function attentionHtml(texte) {
 
 // Bandeau du bas : "Juste !" ou "Pas encore", avec un bouton Continuer.
 function showFeedback(ok, titre, texteHtml, suite) {
+  fermerClavier(); // la correction doit être visible, pas cachée par le clavier
   pAttente = true;
   pSuite = suite;
   const fb = document.getElementById('pc-feedback');
@@ -615,7 +663,7 @@ function showFeedback(ok, titre, texteHtml, suite) {
     '<div class="pc-fb-titre">' + coche + titre + '</div>' +
     (texteHtml ? '<div class="pc-fb-txt">' + texteHtml + '</div>' : '') +
     '<button class="pc-btn wide ' + (ok ? 'ok' : 'ko') + '" id="pc-continuer" onclick="continuerParcours()">Continuer</button>';
-  document.getElementById('pc-continuer').focus();
+  document.getElementById('pc-continuer').focus({ preventScroll: true });
 }
 
 function continuerParcours() {
@@ -687,7 +735,7 @@ function renderMotCache(card) {
   input.addEventListener('focus', mcMajFocus);
   input.addEventListener('blur', mcMajFocus);
   renderCases();
-  input.focus();
+  focusSiClavierPhysique(input); // sur téléphone, on touche les cases pour écrire
   mcMajFocus();
 }
 
@@ -810,7 +858,7 @@ function mcIndice() {
   mcMajScore();
   document.getElementById('mc-legende').classList.remove('hidden');
   if (libres.length === 1) document.getElementById('mc-btn-indice').disabled = true;
-  input.focus();
+  focusSiClavierPhysique(input);
 }
 
 function mcValider() {
@@ -873,7 +921,10 @@ function mcValider() {
   void cases.offsetWidth;
   cases.classList.add('shake');
 
-  input.focus();
+  // Le clavier se ferme pour laisser voir l'aide ; on touche les cases pour réessayer.
+  fermerClavier();
+  focusSiClavierPhysique(input);
+  mcMajFocus();
 }
 
 function mcVoirReponse() {
@@ -986,7 +1037,7 @@ function renderEcriturePc(e) {
     if (pAttente) continuerParcours();
     else ecrValiderPc();
   });
-  input.focus();
+  focusSiClavierPhysique(input); // sur téléphone, on touche le champ pour écrire
 }
 
 // Écriture : deux essais (S6).
@@ -1023,10 +1074,12 @@ function ecrValiderPc() {
     enregistrer(e, 0, false); // l'erreur compte dès le 1er essai
     const err = document.getElementById('pc-ecr-erreur');
     err.classList.remove('hidden');
-    err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · réessaie' +
+    err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · corrige ta réponse' +
       aideErreurHtml(val, e, attention, 1);
-    input.value = '';
-    input.focus();
+    // La réponse reste dans le champ pour la corriger ; le clavier se ferme
+    // pour laisser lire l'aide.
+    fermerClavier();
+    focusSiClavierPhysique(input);
     return;
   }
 
@@ -1202,7 +1255,7 @@ function boutonsFinHtml(r, u) {
   if (r.mode === 'unite' && u && !u.bonus) {
     const fil = unitesCoeur(pLecon);
     const suivante = fil[fil.findIndex(x => x.id === u.id) + 1];
-    if (suivante) suite = '<button class="pc-btn primary wide big" onclick="openIntro(' + suivante.id + ')">Unité suivante</button>';
+    if (suivante) suite = '<button class="pc-btn primary wide big" onclick="openIntro(' + suivante.id + ')">Unité suivante →</button>';
     else if (pLecon.scene) suite = '<button class="pc-btn primary wide big" onclick="openMission()">Jouer la mission</button>';
   } else if (r.mode === 'plus' && pLecon.scene && getMissionBest(pLecon.id) == null) {
     suite = '<button class="pc-btn primary wide big" onclick="openMission()">Jouer la mission</button>';
@@ -1216,7 +1269,11 @@ function boutonsFinHtml(r, u) {
       (getPlusFait(pLecon.id, u.id) ? '✓ ' : '') + 'Élargir : ' + textePlus(pLecon, u.id) + ' de plus · ' + minutesPour(nb) + ' min</button>';
   }
 
-  html += '<button class="pc-btn ' + (suite ? 'ghost' : 'primary big') + ' wide" onclick="openParcoursLecon(pLecon)">Retour à la leçon</button>';
+  // Retour à la leçon : sur la prochaine unité du fil, sinon sur celle qu'on vient de jouer.
+  const fil = unitesCoeur(pLecon);
+  const prochaine = fil.find(x => getUnitBest(pLecon.id, x.id) == null);
+  const cible = r.mode === 'unite' && prochaine ? prochaine.id : r.uniteId;
+  html += '<button class="pc-btn ' + (suite ? 'ghost' : 'primary big') + ' wide" onclick="openParcoursLecon(pLecon, ' + cibleJs(cible) + ')">Retour à la leçon</button>';
   html += '<button class="pc-btn ghost wide" onclick="goDashboard()">Accueil</button>'; // toujours en dernier (S9)
   return html;
 }

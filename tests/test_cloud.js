@@ -21,7 +21,7 @@ eval(v1('public/progress.js') + '\n' + v1('public/cloud.js') +
 `
 // Cloud écrit par la v2.
 const cloudV2 = { progress: {
-  levels: { "2": { quiz: { "3": 2, "1001": 3 }, unites: { "1": 91, "2": 80 }, motcache: { "1001": 2 }, sansfaute: { "1": 1 }, plus: { "1": 1 }, mission: { score: 75 } },
+  levels: { "2": { quiz: { "3": 2, "1001": 3 }, unites: { "1": 91, "2": 80 }, motcache: { "1001": 2 }, sansfaute: { "1": 1 }, plus: { "1": 1 }, mission: { score: 75 }, intro: { mission: 1 } },
             "jours": { actif: { "2026-10-15": 2, "2026-10-16": 1 } } },
   wrong:  { "2": { motcache: { "1004": 1 } } },
   stats:  { "2": { motcache: { "1004": { attempts: 1, correct: 0, wrongTotal: 1, correctStreak: 0, difficultyScore: 3, lastSeenAt: "2026-10-16", lastWrongAt: "2026-10-16" } } } }
@@ -44,6 +44,7 @@ const ok = [
   ['quiz v1 fusionné au max', lv.quiz["3"] === 3 && lv.quiz["4"] === 2],
   ['« sans faute » conservé', lv.sansfaute["1"] === 1],
   ['« + » fait conservé', lv.plus["1"] === 1],
+  ['introduction de mission confirmée conservée', !!(lv.intro && lv.intro.mission === 1)],
   ['score de mission conservé', lv.mission.score === 75],
   ['journal des jours conservé et fusionné au max', renvoye.progress.levels.jours.actif["2026-10-15"] === 2 && renvoye.progress.levels.jours.actif["2026-10-16"] === 2],
 ];

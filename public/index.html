@@ -218,11 +218,20 @@
     <div class="pl-units" id="pl-units"></div>
   </div>
 
+  <!-- ══ LEÇON EN UNITÉS : INTRODUCTION DE LA MISSION (1re découverte) ═══════════ -->
+  <div id="view-msintro" class="view">
+    <div class="pc-topbar">
+      <button class="pc-icon-btn" aria-label="Retour au chemin" onclick="goLessons()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="pc-cours-btn" onclick="voirUnitesDepuisIntro()">Passer</button>
+    </div>
+    <div class="msi-content" id="msi-content"></div>
+  </div>
+
   <!-- ══ LEÇON EN UNITÉS : AVANT DE COMMENCER ═════════════════════════════════ -->
   <div id="view-pintro" class="view">
     <div class="pc-topbar">
       <button class="pc-icon-btn maison" aria-label="Accueil" onclick="goDashboard()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
-      <button class="pc-icon-btn" aria-label="Fermer" onclick="openParcoursLecon(pLecon)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="pc-icon-btn" aria-label="Fermer" onclick="fermerIntro()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="pi-content" id="pi-content"></div>
   </div>
@@ -246,7 +255,7 @@
   <!-- ══ LEÇON EN UNITÉS : MISSION (la scène finale) ══════════════════════════ -->
   <div id="view-mission" class="view">
     <div class="pc-topbar">
-      <button class="pc-icon-btn" aria-label="Quitter" onclick="openParcoursLecon(pLecon)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="pc-icon-btn" aria-label="Quitter" onclick="quitterMission()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
       <div class="ms-entete"><div class="pc-mini-label pc-gold">MISSION</div><div class="ms-entete-titre" id="ms-titre"></div></div>
       <button class="pc-cours-btn" onclick="ouvrirCours(null)">Cours</button>
       <button class="pc-icon-btn maison" aria-label="Accueil" onclick="goDashboard()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>

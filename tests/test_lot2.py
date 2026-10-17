@@ -63,7 +63,7 @@ with sync_playwright() as p:
     assert 'Leçon 20' in page.inner_text('#today')
     page.click('#today .carte-suite')
     assert page.evaluate('niveauChoisi()') == 'A1.2'
-    assert actif(page, 'view-plecon') and page.evaluate('pLecon.id') == 20  # leçon 20 migrée en unités
+    assert actif(page, 'view-msintro') and page.evaluate('pLecon.id') == 20  # leçon 20 : introduction de la mission
     page.evaluate('goDashboard()')
     assert page.get_attribute('.puce-niv:has-text("A1.2")', 'aria-pressed') == 'true'
     assert 'Commencer' in page.inner_text('#today') and 'Leçon 20' in page.inner_text('#today')
@@ -134,7 +134,7 @@ with sync_playwright() as p:
     assert actif(page, 'view-pintro')
     page.evaluate('goLessons()')
     page.click('.pas.futur .chemin-lecon:has-text("Les langues")')
-    assert actif(page, 'view-lecon') or actif(page, 'view-plecon')  # leçon migrée ou non
+    assert actif(page, 'view-lecon') or actif(page, 'view-plecon') or actif(page, 'view-msintro')  # leçon future : intro de mission à la 1re découverte
     page.evaluate('goLessons()')
     page.click('.pas.encours .unites li.bilan button')
     assert actif(page, 'view-session') and page.evaluate('session.questions.length') > 0

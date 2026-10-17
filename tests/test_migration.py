@@ -55,7 +55,8 @@ def jouer_mission(page):
         n += 1
         reponse = page.evaluate('pLecon.scene[ms.idx].lu')
         page.fill('#ms-input', reponse)
-        page.click('#ms-body .pc-btn.primary')
+        page.click('#ms-btn-valider')
+        page.locator('#ms-continuer').count() and page.click('#ms-continuer')
     return n
 
 
@@ -69,6 +70,7 @@ with sync_playwright() as p:
     page.goto(URL)
     page.wait_for_selector('#today')
     page.evaluate("choisirNiveau('A1.1')")
+    page.evaluate("lecons.forEach(l => marquerIntroMissionVue(l.id))")  # introduction de mission : testée ailleurs
 
     for lid in LECONS:
         page.evaluate("id => openParcoursLecon(lecons.find(l => l.id === id))", lid)

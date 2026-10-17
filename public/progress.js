@@ -407,6 +407,24 @@ function marquerLeconVue(leconId) {
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
+// ─── INTRODUCTION DE LA MISSION CONFIRMÉE ───────────────────────────────────
+// progress[lid].intro = { mission: 1 } : posé quand l'utilisateur confirme
+// l'introduction (« J'ai compris » ou « Voir les unités »), pas à l'ouverture.
+// 3 niveaux (leçon → type → clé) : la fusion cloud (mergeMaxNested) le garde.
+function getIntroMissionVue(leconId) {
+  const byLecon = getProgress()[leconId];
+  return !!(byLecon && byLecon.intro && byLecon.intro.mission);
+}
+
+function marquerIntroMissionVue(leconId) {
+  if (getIntroMissionVue(leconId)) return;
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  progress[leconId].intro = { mission: 1 };
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
 // ─── LEÇON V1 « FAITE » (S1) ────────────────────────────────────────────────
 // Même seuil que le statut « bien » affiché sur la carte de la leçon.
 const SEUIL_LECON_V1 = 70;

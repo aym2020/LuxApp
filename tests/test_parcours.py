@@ -79,17 +79,23 @@ with sync_playwright() as p:
     assert page.locator('.chemin-lecon:has-text("Identifier des objets")').count() == 1
     ok('chemin : leçon 2 affichée (3 unités + mission)')
 
-    # 2. Ancienne leçon toujours en onglets
-    page.evaluate('ouvrirLeconDepuisListe(7)')  # leçon 7 : encore au format v1
-    assert actif(page, 'view-lecon')
-    page.click('.tab-btn[data-tab="flashcards"]')
-    page.click('#card')
-    assert page.evaluate("document.getElementById('card').classList.contains('flipped')")
-    ok('leçon 7 (ancien format) : onglets et carte retournable')
-    page.click('#view-lecon .back-btn')
+    # 2. Ancienne leçon toujours en onglets (seulement s'il en reste une au format v1)
+    v1 = page.evaluate('(lecons.find(l => !isParcoursLecon(l)) || {}).id')
+    if v1:
+        page.evaluate('id => ouvrirLeconDepuisListe(id)', v1)
+        assert actif(page, 'view-lecon')
+        page.click('.tab-btn[data-tab="flashcards"]')
+        page.click('#card')
+        assert page.evaluate("document.getElementById('card').classList.contains('flipped')")
+        ok('leçon %d (ancien format) : onglets et carte retournable' % v1)
+        page.click('#view-lecon .back-btn')
+    else:
+        ok('plus aucune leçon au format v1 : étape sautée')
 
     # 3. Leçon 2 -> unités -> intro
     page.click('.chemin-lecon:has-text("Identifier des objets")')
+    assert actif(page, 'view-msintro')  # 1re découverte : introduction de la mission
+    page.click('#msi-content button:has-text("Voir les unités")')
     assert actif(page, 'view-plecon')
     page.screenshot(path=OUT + '02-lecon.png')
     page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')
@@ -229,7 +235,8 @@ with sync_playwright() as p:
     for niveau, titre in [('A1.1', "D'Nationalitéit"), ('A1.2', 'An der Wunneng'), ('A1.2', 'An der Fräizäit')]:
         page.evaluate("n => { changerNiveau(n); goLessons(); }", niveau)
         page.evaluate("t => ouvrirLeconDepuisListe(lecons.find(l => l.titre === t).id)", titre)
-        page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')
+        # 1re découverte : « J'ai compris · Commencer » mène à l'unité 1
+        page.click('#msi-content button:has-text("J\'ai compris")')
         page.click('#pi-content button:has-text("Commencer")')
         repondre(page, True)
         page.click('#view-parcours .pc-icon-btn')

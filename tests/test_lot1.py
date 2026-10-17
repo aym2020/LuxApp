@@ -46,8 +46,9 @@ with sync_playwright() as p:
 
     page.click('#today .carte-suite')
     assert page.evaluate('niveauChoisi()') == 'A1.1'
-    assert actif(page, 'view-plecon'), 'la leçon 1 (en unités) doit s\'ouvrir sur son écran'
-    ok('« Commencer » → leçon 1 en unités, écran de la leçon (1re visite)')
+    assert actif(page, 'view-msintro'), '1re découverte : introduction de la mission attendue'
+    assert 'J\'ai compris' in page.inner_text('#msi-content')
+    ok('« Commencer » → leçon 1 en unités, introduction de la mission (1re découverte)')
 
     # ── Leçon migrée : l'acquis v1 est gardé (ids < 1000), le guide passe à la leçon 2 ──
     page.evaluate("""() => {
@@ -66,11 +67,14 @@ with sync_playwright() as p:
     assert 'Leçon 2' in page.evaluate('prochainPas().texte')
     assert not page.evaluate('getLeconVue(2)')
     page.evaluate('prochainPas().fn()')
-    assert actif(page, 'view-plecon'), '1re visite : écran de la leçon attendu'
-    assert visible(page, '.ms-carte')
+    assert actif(page, 'view-msintro'), '1re visite : introduction de la mission attendue'
     page.evaluate('goDashboard(); prochainPas().fn()')
-    assert actif(page, 'view-pintro'), '2e visite : intro de l\'unité attendue'
-    ok('leçon 1 acquise en v1 → terminée, sans score inventé ; prochain pas = leçon 2 ; 1re visite → écran de la leçon, ensuite → intro')
+    assert actif(page, 'view-msintro'), 'introduction pas confirmée : on la remontre'
+    page.click('#msi-content button:has-text("Voir les unités")')
+    assert actif(page, 'view-plecon') and visible(page, '.ms-carte.compacte')
+    page.evaluate('goDashboard(); prochainPas().fn()')
+    assert actif(page, 'view-pintro'), 'intro confirmée : intro de l\'unité attendue'
+    ok('leçon 1 acquise en v1 → terminée, sans score inventé ; prochain pas = leçon 2 ; introduction de mission jusqu\'à confirmation, ensuite → intro d\'unité')
 
     # ── S3 : compteurs acquis (dans le menu « Plus », S9) ──
     page.evaluate('goDashboard()')
@@ -85,14 +89,16 @@ with sync_playwright() as p:
 
     # ── S4 : mission lisible ──
     page.evaluate('openParcoursLecon(lecons.find(l => l.id === 2))')
-    assert page.locator('.ms-carte > .ms-scene .ms-bulle').count() == 3
-    assert page.locator('.ms-carte .ms-bulle.cachee').count() == 0
-    assert 'Voir toute la scène · 10 répliques' in page.inner_text('.ms-suite summary')
+    assert page.locator('.ms-carte.compacte .ms-bulle').count() == 0, 'carte compacte : pas de scène'
+    assert page.inner_text('.ms-carte .ms-etat') == 'À découvrir'
     assert page.inner_text('.ms-bas') == 'Tu sais dire 0 réplique sur 10'
-    page.click('.ms-suite summary')
-    assert page.locator('.ms-carte .ms-bulle').count() == 10
-    page.evaluate('saveUnitBest(2, 1, 100); renderParcoursLecon()')
-    assert 'sur 10' in page.inner_text('.ms-bas') and page.locator('.ms-pastille.apprise').count() >= 1
+    page.click('.ms-carte button:has-text("Voir le scénario")')
+    assert page.locator('.panneau .ms-bulle').count() == 10
+    page.evaluate('fermerPanneau()')
+    page.evaluate('saveUnitBest(2, 1, 100); renderParcoursLecon(); voirScenario()')
+    assert page.locator('.panneau .ms-pastille.apprise').count() >= 1
+    page.evaluate('fermerPanneau()')
+    assert page.inner_text('.ms-carte .ms-etat') == 'En préparation'
     page.evaluate('saveMissionBest(2, 60); renderParcoursLecon()')
     assert 'JOUÉE 60 % · À REJOUER' in page.inner_text('.ms-carte .pc-mini-label')
     assert not page.evaluate('missionReussie(lecons.find(l => l.id === 2))')
@@ -101,7 +107,7 @@ with sync_playwright() as p:
     page.evaluate('goDashboard(); ouvrirPlus()')
     assert page.inner_text('.plus-acquis b >> nth=1') == '1'
     page.evaluate('fermerPanneau()')
-    ok('mission : 3 répliques lisibles + « Voir toute la scène », pastilles d\'unité, Jouée 60 % / Réussie 85 %, tuile comptée')
+    ok('mission : carte compacte (À découvrir → En préparation), scénario complet dans un panneau, pastilles d\'unité, Jouée 60 % / Réussie 85 %, tuile comptée')
 
     # ── S6 : mot caché « un sac » ──
     page.evaluate("""() => {

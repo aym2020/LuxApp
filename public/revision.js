@@ -60,7 +60,8 @@ function prochainPas() {
         type: 'unite',
         unite: u,
         fn: () => {
-          const dejaVue = getLeconVue(l.id);
+          // Introduction de mission pas encore confirmée : on la montre d'abord.
+          const dejaVue = getLeconVue(l.id) && !introMissionAVoir(l);
           openParcoursLecon(l);
           if (dejaVue) openIntro(u.id);
         }
