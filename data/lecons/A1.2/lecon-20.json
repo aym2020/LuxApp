@@ -3,72 +3,212 @@
   "titre": "D'Wiesselprepositiounen",
   "titre_fr": "Les prépositions de lieu – Wou ass de Ball ?",
   "couleur": "#a3cc52",
-  "instructions": {
-    "flashcards": "Mémorise les 10 prépositions de lieu et la question Wou ass de Ball ?",
-    "quiz": "Lis une préposition ou une phrase en luxembourgeois et choisis la bonne traduction française. Les distracteurs sont d'autres prépositions, souvent le contraire.",
-    "trous": "Complète chaque phrase avec la bonne préposition pour dire où est le ballon. Les distracteurs sont d'autres prépositions.",
-    "ecriture": "Traduis en luxembourgeois les prépositions de lieu, la question Wou ass de Ball ? et des phrases courtes pour dire où est le ballon."
+  "v1": {
+    "quiz": 15,
+    "trous": 11,
+    "ecriture": 17
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve les prépositions de lieu et les mots courts des phrases étudiées.",
+    "quiz": "Lis une préposition ou une phrase luxembourgeoise et choisis sa traduction naturelle en français.",
+    "trous": "Complète les indications de lieu pour situer un ballon par rapport à une ou plusieurs boîtes.",
+    "ecriture": "Traduis les prépositions usuelles et les phrases complètes pour dire où se trouve le ballon ; aucune liste de synonymes n'est exigée."
+  },
+  "mission": {
+    "titre": "Retrouver le ballon",
+    "contexte": "Tu aides Louise à retrouver un ballon déplacé entre plusieurs boîtes. Elle te demande successivement où il se trouve.",
+    "objectif": "localiser un objet avec les principales prépositions de position et répondre à Wou ass … ?"
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Louise",
+      "lu": "Wou ass de Ball?",
+      "fr": "Où est le ballon ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "De Ball ass an der Këscht.",
+      "fr": "Le ballon est dans la boîte.",
+      "aide": "Dans = <b>an</b>."
+    },
+    {
+      "unite": 1,
+      "qui": "Louise",
+      "lu": "An elo? Ass en op der Këscht?",
+      "fr": "Et maintenant ? Est-il sur la boîte ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "De Ball ass ënnert der Këscht.",
+      "fr": "Le ballon est sous la boîte.",
+      "aide": "Sous = <b>ënnert</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Louise",
+      "lu": "Wou ass en elo?",
+      "fr": "Où est-il maintenant ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "De Ball ass nieft der Këscht.",
+      "fr": "Le ballon est à côté de la boîte.",
+      "aide": "À côté de = <b>nieft</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Louise",
+      "lu": "A wou ass de Ball tëschent de Këschten?",
+      "fr": "Et où est le ballon par rapport aux boîtes ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "De Ball ass tëschent zwou Këschten.",
+      "fr": "Le ballon est entre deux boîtes.",
+      "aide": "Entre = <b>tëschent</b>."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "lu": "an",
-      "fr": "dans / à l'intérieur de"
+      "titre": "Dans, sur, sous : situer un objet",
+      "phrase": [
+        "Wou ass de Ball? – De Ball ass an der Këscht.",
+        "Où est le ballon ? – Le ballon est dans la boîte."
+      ],
+      "regle": "Pour répondre à <b>Wou ass …?</b>, utilise <b>an</b> (dans), <b>op</b> (sur), <b>ënnert</b> (sous), <b>virun</b> (devant), <b>hannert</b> (derrière) ou <b>iwwert</b> (au-dessus), puis <b>der Këscht</b>.",
+      "exemple": "De Ball ass <b>ënnert der Këscht</b>.",
+      "pieges": [
+        "<b>op</b> signifie sur la boîte, avec contact ; <b>iwwert</b> indique au-dessus.",
+        "La boîte est féminine : avec ces prépositions de position, on utilise <b>der Këscht</b>."
+      ]
     },
     {
       "id": 2,
-      "lu": "op",
-      "fr": "sur"
+      "titre": "À côté, près de et entre",
+      "phrase": [
+        "De Ball ass tëschent zwou Këschten.",
+        "Le ballon est entre deux boîtes."
+      ],
+      "regle": "<b>nieft</b> = à côté de ; <b>bei</b> = près de ; <b>tëschent</b> = entre. Après <b>tëschent</b>, on peut dire <b>zwou Këschten</b>.",
+      "exemple": "De Ball ass <b>nieft der Këscht</b> · <b>tëschent zwou Këschten</b>.",
+      "pieges": [
+        "<b>nieft</b> désigne une position à côté ; <b>bei</b> indique la proximité.",
+        "Une boîte = eng Këscht ; deux boîtes = <b>zwou Këschten</b>."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "dans",
+      "lu": "an"
     },
     {
-      "id": 3,
-      "lu": "bei / niewent / nieft",
-      "fr": "à côté de / près de"
+      "id": 2002,
+      "unite": 1,
+      "fr": "sur",
+      "lu": "op"
     },
     {
-      "id": 4,
+      "id": 2003,
+      "unite": 1,
+      "fr": "sous",
+      "lu": "ënnert"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "au-dessus de",
+      "lu": "iwwert"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "devant",
+      "lu": "virun"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "derrière",
+      "lu": "hannert"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "boîte",
+      "lu": "Këscht",
+      "article": "eng"
+    },
+    {
+      "id": 2008,
+      "unite": 2,
+      "fr": "à côté de",
+      "lu": "nieft"
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "fr": "près de",
+      "lu": "bei"
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "fr": "entre",
+      "lu": "tëschent"
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "fr": "où ?",
+      "lu": "wou"
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "fr": "ballon",
+      "lu": "Ball",
+      "article": "de"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "deux (féminin)",
+      "lu": "zwou"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "des boîtes",
+      "lu": "Këschten"
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "fr": "contre, en contact",
       "lu": "un",
-      "fr": "à / contre (en contact avec)"
+      "plus": true
     },
     {
-      "id": 5,
-      "lu": "virun",
-      "fr": "devant"
-    },
-    {
-      "id": 6,
-      "lu": "hannert",
-      "fr": "derrière"
-    },
-    {
-      "id": 7,
-      "lu": "ënnert",
-      "fr": "sous / en dessous de"
-    },
-    {
-      "id": 8,
-      "lu": "iwwert",
-      "fr": "au-dessus de"
-    },
-    {
-      "id": 9,
-      "lu": "tëschent / tëscht",
-      "fr": "entre"
-    },
-    {
-      "id": 10,
+      "id": 2016,
+      "unite": 2,
+      "fr": "appuyé contre",
       "lu": "widdert",
-      "fr": "contre (appuyé contre)"
-    },
-    {
-      "id": 11,
-      "lu": "Wou ass de Ball?",
-      "fr": "Où est le ballon ?"
+      "plus": true
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "question": "an",
       "reponse": "dans",
       "distracteurs": [
@@ -78,7 +218,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "question": "op",
       "reponse": "sur",
       "distracteurs": [
@@ -88,7 +229,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "question": "ënnert",
       "reponse": "sous",
       "distracteurs": [
@@ -98,7 +240,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "question": "iwwert",
       "reponse": "au-dessus de",
       "distracteurs": [
@@ -108,7 +251,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "question": "virun",
       "reponse": "devant",
       "distracteurs": [
@@ -118,7 +262,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 1,
       "question": "hannert",
       "reponse": "derrière",
       "distracteurs": [
@@ -128,7 +273,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "question": "tëschent",
       "reponse": "entre",
       "distracteurs": [
@@ -138,37 +284,32 @@
       ]
     },
     {
-      "id": 8,
-      "question": "bei / niewent / nieft",
-      "reponse": "à côté de / près de",
-      "distracteurs": [
-        "entre",
-        "devant",
-        "derrière"
-      ]
-    },
-    {
-      "id": 9,
+      "id": 2008,
+      "unite": 2,
       "question": "un",
       "reponse": "à / contre (en contact avec)",
       "distracteurs": [
         "dans",
         "sur",
         "derrière"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 10,
+      "id": 2009,
+      "unite": 2,
       "question": "widdert",
       "reponse": "contre (appuyé contre)",
       "distracteurs": [
         "à côté de",
         "devant",
         "entre"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 11,
+      "id": 2010,
+      "unite": 1,
       "question": "De Ball ass an der Këscht.",
       "reponse": "Le ballon est dans la boîte.",
       "distracteurs": [
@@ -178,7 +319,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2011,
+      "unite": 1,
       "question": "De Ball ass ënnert der Këscht.",
       "reponse": "Le ballon est sous la boîte.",
       "distracteurs": [
@@ -188,7 +330,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2012,
+      "unite": 1,
       "question": "De Ball ass iwwert der Këscht.",
       "reponse": "Le ballon est au-dessus de la boîte.",
       "distracteurs": [
@@ -198,7 +341,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2013,
+      "unite": 1,
       "question": "De Ball ass hannert der Këscht.",
       "reponse": "Le ballon est derrière la boîte.",
       "distracteurs": [
@@ -208,7 +352,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2014,
+      "unite": 2,
       "question": "De Ball ass tëschent zwou Këschten.",
       "reponse": "Le ballon est entre deux boîtes.",
       "distracteurs": [
@@ -216,11 +361,56 @@
         "Le ballon est devant deux boîtes.",
         "Le ballon est dans deux boîtes."
       ]
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "question": "Wou ass de Ball?",
+      "reponse": "Où est le ballon ?",
+      "distracteurs": [
+        "Où habite le garçon ?",
+        "Où est la boîte ?",
+        "Quel ballon est-ce ?"
+      ]
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "question": "nieft",
+      "reponse": "à côté de",
+      "distracteurs": [
+        "devant",
+        "entre",
+        "derrière"
+      ]
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "question": "bei",
+      "reponse": "près de",
+      "distracteurs": [
+        "loin de",
+        "en dessous de",
+        "entre"
+      ]
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "question": "De Ball ass nieft der Këscht.",
+      "reponse": "Le ballon est à côté de la boîte.",
+      "distracteurs": [
+        "Le ballon est dans la boîte.",
+        "Le ballon est entre deux boîtes.",
+        "Le ballon est derrière la boîte."
+      ]
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "fr": "Le ballon est dans la boîte.",
       "avant": "De Ball ass",
       "trou": "an",
@@ -234,7 +424,8 @@
       "note": "an = dans."
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "fr": "Le ballon est sur la boîte.",
       "avant": "De Ball ass",
       "trou": "op",
@@ -248,7 +439,8 @@
       "note": "op = sur (avec contact)."
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "fr": "Le ballon est sous la boîte.",
       "avant": "De Ball ass",
       "trou": "ënnert",
@@ -262,7 +454,8 @@
       "note": "ënnert = sous."
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "fr": "Le ballon est au-dessus de la boîte.",
       "avant": "De Ball ass",
       "trou": "iwwert",
@@ -276,7 +469,8 @@
       "note": "iwwert = au-dessus (sans contact)."
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "fr": "Le ballon est devant la boîte.",
       "avant": "De Ball ass",
       "trou": "virun",
@@ -290,7 +484,8 @@
       "note": "virun = devant."
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 1,
       "fr": "Le ballon est derrière la boîte.",
       "avant": "De Ball ass",
       "trou": "hannert",
@@ -304,7 +499,8 @@
       "note": "hannert = derrière."
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "fr": "Le ballon est à côté de la boîte.",
       "avant": "De Ball ass",
       "trou": "nieft",
@@ -318,7 +514,8 @@
       "note": "nieft = niewent = à côté de."
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "fr": "Le ballon est près de la boîte.",
       "avant": "De Ball ass",
       "trou": "bei",
@@ -332,7 +529,8 @@
       "note": "bei = près de."
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 2,
       "fr": "Le ballon est entre deux boîtes.",
       "avant": "De Ball ass",
       "trou": "tëschent",
@@ -346,7 +544,8 @@
       "note": "tëschent (tëscht) = entre."
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "fr": "Le ballon est contre la boîte (en contact avec).",
       "avant": "De Ball ass",
       "trou": "un",
@@ -360,7 +559,8 @@
       "note": "un = à / contre, en contact avec."
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "fr": "Le ballon est appuyé contre la boîte.",
       "avant": "De Ball ass",
       "trou": "widdert",
@@ -372,82 +572,331 @@
         "tëschent"
       ],
       "note": "widdert = appuyé contre."
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "fr": "Où est le ballon ?",
+      "avant": "Wou ass",
+      "trou": "de Ball",
+      "apres": "?",
+      "choix": [
+        "de Ball",
+        "d'Këscht",
+        "de Papp",
+        "de Jong"
+      ],
+      "note": "Question : Wou ass de Ball?"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "Le ballon est entre deux boîtes.",
+      "avant": "De Ball ass tëschent",
+      "trou": "zwou",
+      "apres": "Këschten.",
+      "choix": [
+        "zwou",
+        "zwee",
+        "eng",
+        "dräi"
+      ],
+      "note": "Deux devant le féminin Këscht : zwou."
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "Le ballon est à côté de la boîte.",
+      "avant": "De Ball ass",
+      "trou": "nieft",
+      "apres": "der Këscht.",
+      "choix": [
+        "nieft",
+        "ënnert",
+        "hannert",
+        "virun"
+      ],
+      "note": "À côté de = nieft."
     }
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "dans",
       "lu": "an"
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "sur",
       "lu": "op"
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "sous",
       "lu": "ënnert"
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "au-dessus de",
       "lu": "iwwert"
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "devant",
       "lu": "virun"
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "derrière",
       "lu": "hannert"
     },
     {
+      "id": 2007,
+      "unite": 2,
       "fr": "entre (forme longue)",
       "lu": "tëschent"
     },
     {
-      "fr": "à côté de / près de (les 3 formes)",
-      "lu": "bei / niewent / nieft"
-    },
-    {
+      "id": 2008,
+      "unite": 2,
       "fr": "à / contre (en contact avec)",
-      "lu": "un"
+      "lu": "un",
+      "plus": true
     },
     {
+      "id": 2009,
+      "unite": 2,
       "fr": "contre (appuyé contre)",
-      "lu": "widdert"
+      "lu": "widdert",
+      "plus": true
     },
     {
+      "id": 2010,
+      "unite": 2,
       "fr": "Où est le ballon ?",
       "lu": "Wou ass de Ball?"
     },
     {
+      "id": 2011,
+      "unite": 1,
       "fr": "Le ballon est dans la boîte.",
       "lu": "De Ball ass an der Këscht."
     },
     {
+      "id": 2012,
+      "unite": 1,
       "fr": "Le ballon est sur la boîte.",
       "lu": "De Ball ass op der Këscht."
     },
     {
+      "id": 2013,
+      "unite": 1,
       "fr": "Le ballon est sous la boîte.",
-      "lu": "De Ball ass ënnert der Këscht."
+      "lu": "De Ball ass ënnert der Këscht.",
+      "plus": true
     },
     {
+      "id": 2014,
+      "unite": 1,
       "fr": "Le ballon est devant la boîte.",
-      "lu": "De Ball ass virun der Këscht."
+      "lu": "De Ball ass virun der Këscht.",
+      "plus": true
     },
     {
+      "id": 2015,
+      "unite": 1,
       "fr": "Le ballon est derrière la boîte.",
-      "lu": "De Ball ass hannert der Këscht."
+      "lu": "De Ball ass hannert der Këscht.",
+      "plus": true
     },
     {
+      "id": 2016,
+      "unite": 2,
       "fr": "Le ballon est entre deux boîtes.",
       "lu": "De Ball ass tëschent zwou Këschten."
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "Le ballon est à côté de la boîte.",
+      "lu": "De Ball ass nieft der Këscht."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "Le ballon est près de la boîte.",
+      "lu": "De Ball ass bei der Këscht."
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "fr": "Où est la boîte ?",
+      "lu": "Wou ass d'Këscht?"
     }
   ],
   "cours": [
     {
+      "type": "callout",
+      "unite": 1,
+      "variant": "retenir",
+      "titre": "Dans, sur, sous : situer un objet",
+      "lignes": [
+        "Pour répondre à <b>Wou ass …?</b>, utilise <b>an</b> (dans), <b>op</b> (sur), <b>ënnert</b> (sous), <b>virun</b> (devant), <b>hannert</b> (derrière) ou <b>iwwert</b> (au-dessus), puis <b>der Këscht</b>.",
+        "De Ball ass <b>ënnert der Këscht</b>."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 1,
+      "titre": "Mots de l'unité",
+      "items": [
+        [
+          "an",
+          "dans"
+        ],
+        [
+          "op",
+          "sur"
+        ],
+        [
+          "ënnert",
+          "sous"
+        ],
+        [
+          "iwwert",
+          "au-dessus de"
+        ],
+        [
+          "virun",
+          "devant"
+        ],
+        [
+          "hannert",
+          "derrière"
+        ],
+        [
+          "eng Këscht",
+          "boîte"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 1,
+      "titre": "Phrases à produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "an",
+          "dans"
+        ],
+        [
+          "op",
+          "sur"
+        ],
+        [
+          "ënnert",
+          "sous"
+        ],
+        [
+          "iwwert",
+          "au-dessus de"
+        ],
+        [
+          "virun",
+          "devant"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 2,
+      "variant": "retenir",
+      "titre": "À côté, près de et entre",
+      "lignes": [
+        "<b>nieft</b> = à côté de ; <b>bei</b> = près de ; <b>tëschent</b> = entre. Après <b>tëschent</b>, on peut dire <b>zwou Këschten</b>.",
+        "De Ball ass <b>nieft der Këscht</b> · <b>tëschent zwou Këschten</b>."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 2,
+      "titre": "Mots de l'unité",
+      "items": [
+        [
+          "nieft",
+          "à côté de"
+        ],
+        [
+          "bei",
+          "près de"
+        ],
+        [
+          "tëschent",
+          "entre"
+        ],
+        [
+          "wou",
+          "où ?"
+        ],
+        [
+          "de Ball",
+          "ballon"
+        ],
+        [
+          "zwou",
+          "deux (féminin)"
+        ],
+        [
+          "Këschten",
+          "des boîtes"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 2,
+      "titre": "Phrases à produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "tëschent",
+          "entre (forme longue)"
+        ],
+        [
+          "Wou ass de Ball?",
+          "Où est le ballon ?"
+        ],
+        [
+          "De Ball ass tëschent zwou Këschten.",
+          "Le ballon est entre deux boîtes."
+        ],
+        [
+          "De Ball ass nieft der Këscht.",
+          "Le ballon est à côté de la boîte."
+        ],
+        [
+          "De Ball ass bei der Këscht.",
+          "Le ballon est près de la boîte."
+        ]
+      ]
+    },
+    {
       "type": "texte",
-      "contenu": "Cette leçon présente 10 prépositions de lieu (d'Wiesselprepositiounen). Elles servent à répondre à la question Wou ass de Ball ? (Où est le ballon ?)."
+      "contenu": "Cette leçon présente 10 prépositions de lieu (d'Wiesselprepositiounen). Elles servent à répondre à la question Wou ass de Ball ? (Où est le ballon ?).",
+      "unite": 0
     },
     {
       "type": "vocab",
@@ -493,7 +942,8 @@
           "widdert",
           "contre (appuyé contre)"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -504,7 +954,8 @@
         "un = en contact avec ; widdert = appuyé contre.",
         "bei, niewent et nieft = à côté de / près de.",
         "tëschent et tëscht ont le même sens : entre."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -515,7 +966,8 @@
         "Réponse : De Ball ass + préposition + der Këscht.",
         "Ex. : De Ball ass op der Këscht. = Le ballon est sur la boîte.",
         "Retiens « der Këscht » comme un bloc : la règle sera vue plus tard."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "exemple",
@@ -565,7 +1017,8 @@
           "De Ball ass tëschent zwou Këschten.",
           "Le ballon est entre deux boîtes."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -587,7 +1040,8 @@
           "De Ball ass ënnert der Këscht.",
           "Le ballon est sous la boîte."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
