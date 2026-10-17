@@ -51,7 +51,7 @@
   <div id="view-lecon" class="view">
 
     <div class="lecon-header" id="lecon-header">
-      <button class="back-btn" onclick="goLessons()">← Chemin</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Mon chemin</span></button>
       <div class="lecon-header-info">
         <span class="lecon-num" id="lecon-num"></span>
         <span class="lecon-titre" id="lecon-titre"></span>
@@ -207,7 +207,7 @@
   <!-- ══ LEÇON EN UNITÉS (v2) : LISTE DES UNITÉS ══════════════════════════════ -->
   <div id="view-plecon" class="view">
     <div class="pc-topbar">
-      <button class="back-btn" onclick="goLessons()">← Chemin</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Mon chemin</span></button>
       <button class="pc-cours-btn" onclick="ouvrirCours(null)">Cours</button>
     </div>
     <div class="pl-head">
@@ -221,7 +221,7 @@
   <!-- ══ LEÇON EN UNITÉS : INTRODUCTION DE LA MISSION (1re découverte) ═══════════ -->
   <div id="view-msintro" class="view">
     <div class="pc-topbar">
-      <button class="pc-icon-btn" aria-label="Retour au chemin" onclick="goLessons()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Mon chemin</span></button>
       <button class="pc-cours-btn" onclick="voirUnitesDepuisIntro()">Passer</button>
     </div>
     <div class="msi-content" id="msi-content"></div>
@@ -230,8 +230,10 @@
   <!-- ══ LEÇON EN UNITÉS : AVANT DE COMMENCER ═════════════════════════════════ -->
   <div id="view-pintro" class="view">
     <div class="pc-topbar">
+      <button class="back-btn" data-retour onclick="fermerIntro()">← <span class="retour-txt">Mon chemin</span></button>
+      <span class="pc-espace"></span>
+      <button class="pc-cours-btn" onclick="ouvrirCours(pIntroUnite)">Cours</button>
       <button class="pc-icon-btn maison" aria-label="Accueil" onclick="goDashboard()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
-      <button class="pc-icon-btn" aria-label="Fermer" onclick="fermerIntro()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="pi-content" id="pi-content"></div>
   </div>
@@ -239,7 +241,7 @@
   <!-- ══ LEÇON EN UNITÉS : EXERCICE ═══════════════════════════════════════════ -->
   <div id="view-parcours" class="view">
     <div class="pc-topbar">
-      <button class="pc-icon-btn" aria-label="Quitter" onclick="quitterParcours()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="pc-icon-btn" data-retour aria-label="Retour" onclick="quitterParcours()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
       <div class="pc-steps" id="pc-steps"></div>
       <button class="pc-cours-btn" onclick="ouvrirCoursExercice()">Cours</button>
       <button class="pc-icon-btn maison" aria-label="Accueil" onclick="goDashboard()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
@@ -255,7 +257,7 @@
   <!-- ══ LEÇON EN UNITÉS : MISSION (la scène finale) ══════════════════════════ -->
   <div id="view-mission" class="view">
     <div class="pc-topbar">
-      <button class="pc-icon-btn" aria-label="Quitter" onclick="quitterMission()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="pc-icon-btn" data-retour aria-label="Retour" onclick="quitterMission()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
       <div class="ms-entete"><div class="pc-mini-label pc-gold">MISSION</div><div class="ms-entete-titre" id="ms-titre"></div></div>
       <button class="pc-cours-btn" onclick="ouvrirCours(null)">Cours</button>
       <button class="pc-icon-btn maison" aria-label="Accueil" onclick="goDashboard()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
@@ -371,7 +373,7 @@
   <!-- ══ SESSION (révision / examen / erreurs) ════════════════════════════════ -->
   <div id="view-session" class="view">
     <div class="lecon-header">
-      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Accueil</span></button>
       <div class="lecon-header-info">
         <span class="lecon-num" id="session-num"></span>
         <span class="lecon-titre" id="session-titre"></span>
@@ -485,5 +487,6 @@
   <script src="anim.js"></script>
   <script src="app.js"></script>
   <script src="ui.js"></script>
+  <script src="navigation.js"></script>
 </body>
 </html>

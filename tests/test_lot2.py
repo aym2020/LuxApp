@@ -133,9 +133,14 @@ with sync_playwright() as p:
     page.click('.pas.encours .unites li:has-text("Unité 2") button')
     assert actif(page, 'view-pintro')
     page.evaluate('goLessons()')
+    # Accordéon : un appui sur une leçon future la déplie (une seule dépliée à la fois)
     page.click('.pas.futur .chemin-lecon:has-text("Les langues")')
+    assert page.locator('.pas.ouverte').count() == 1 and 'Les langues' in page.inner_text('.pas.ouverte')
+    assert 'leçon 8' not in page.inner_text('.pas.ouverte').lower()
+    page.click('.pas.ouverte .lien-or')  # « Voir toute la leçon »
     assert actif(page, 'view-lecon') or actif(page, 'view-plecon') or actif(page, 'view-msintro')  # leçon future : intro de mission à la 1re découverte
     page.evaluate('goLessons()')
+    page.click('.pas.encours .carte-lecon')  # on redéplie la leçon conseillée
     page.click('.pas.encours .unites li.bilan button')
     assert actif(page, 'view-session') and page.evaluate('session.questions.length') > 0
     ok('chemin : « Leçons 1 à 7 » replié puis 7 lignes ; leçon 8 dépliée (unités, mission, bilan) ; tout s\'ouvre')

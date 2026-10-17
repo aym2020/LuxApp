@@ -166,11 +166,11 @@ with sync_playwright() as p:
     page.click('.pf-boutons button:has-text("Jouer la mission")')
     assert actif(page, 'view-mission')
     page.fill('#ms-input', 'Ech sinn Fransous')
-    page.click('#ms-body .pc-btn.primary')
+    page.click('#ms-btn-valider')
     assert page.locator('#ms-erreur:not(.hidden)').count() == 1  # aide en deux temps (S6)
     page.screenshot(path=OUT + 'c05-mission-erreur.png', full_page=True)
     page.fill('#ms-input', 'faux')
-    page.click('#ms-body .pc-btn.primary')
+    page.click('#ms-btn-valider')
     assert page.locator('#ms-btn-voir:not(.hidden)').count() == 1
     page.click('#ms-btn-voir')
     page.click('#ms-continuer')
@@ -197,7 +197,7 @@ with sync_playwright() as p:
         page.locator('#ms-continuer').count() and page.click('#ms-continuer')
     assert 'sans faute' in page.inner_text('.ms-fin .pf-sansfaute').lower()
     assert page.evaluate('getMissionBest(8)') == 100
-    page.click('.ms-fin button:has-text("Retour à la leçon")')
+    page.click('.ms-fin button:has-text("Retour ·")')
     assert page.locator('.ms-carte .ms-bulle.cachee').count() == 0
     assert 'SANS FAUTE' in page.inner_text('.ms-carte .pc-mini-label')
     page.screenshot(path=OUT + 'c07-lecon8-mission.png', full_page=True)

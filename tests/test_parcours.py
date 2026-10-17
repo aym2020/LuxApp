@@ -93,7 +93,8 @@ with sync_playwright() as p:
         ok('plus aucune leçon au format v1 : étape sautée')
 
     # 3. Leçon 2 -> unités -> intro
-    page.click('.chemin-lecon:has-text("Identifier des objets")')
+    page.click('.chemin-lecon:has-text("Identifier des objets")')  # accordéon : la leçon se déplie
+    page.click('.pas.ouverte .lien-or')  # « Voir toute la leçon »
     assert actif(page, 'view-msintro')  # 1re découverte : introduction de la mission
     page.click('#msi-content button:has-text("Voir les unités")')
     assert actif(page, 'view-plecon')
@@ -207,7 +208,7 @@ with sync_playwright() as p:
     page.reload()
     page.wait_for_function('lecons.length > 0')
     page.evaluate('goLessons()')
-    assert page.inner_text('.pas.encours .btn-jaune') == 'Reprendre'
+    assert page.inner_text('.pas.encours .btn-jaune').startswith('Reprendre'), page.inner_text('.pas.encours .btn-jaune')
     page.screenshot(path=OUT + '11-reprendre.png')
     page.click('.pas.encours .btn-jaune')
     apres = page.evaluate('[run.stepIdx, run.steps[run.stepIdx].queue.length]')

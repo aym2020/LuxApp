@@ -29,6 +29,7 @@ async function init() {
   appliquerNiveauChoisi(); // niveau choisi par l'utilisateur (S13)
   renderLessons();
   renderAccueil(true);     // 7. rendu de l'accueil (avec animations d'entrée)
+  noterNavigation('view-dashboard'); // la racine de l'historique
   majNavigation('view-dashboard');
   await updateAuthUI();    // mise à jour zone connexion (après bootAuthAndSync)
   setupTabs();
@@ -170,11 +171,12 @@ function goDashboard() {
   showView('view-dashboard');
 }
 
+// Le chemin s'ouvre en haut (titre visible), avec la leçon choisie dépliée.
 function goLessons() {
   fermerPanneau();
+  cheminArrivee = true; // l'étape conseillée pulse une fois à l'arrivée
   renderLessons(); // reconstruit le chemin : étapes et étoiles à jour
   showView('view-lessons');
-  setTimeout(allerALeconEnCours, 250);
 }
 
 // ─── ACCUEIL ────────────────────────────────────────────────────────────────
@@ -787,9 +789,11 @@ function showSessionResult() {
 }
 
 function showView(id) {
+  noterNavigation(id); // historique : le bouton Retour ramène à l'écran précédent
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   majNavigation(id);
+  majBoutonsRetour(id);
   window.scrollTo(0, 0);
 }
 

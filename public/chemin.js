@@ -1,13 +1,19 @@
 // ─── MON CHEMIN (S13) : remplace la liste des leçons ───────────────────────
 // Une ligne verticale de ronds reliés, pour le niveau choisi :
 //   - leçons terminées : UN bloc vert, replié (« Leçons 1 à 7 · Voir ») ;
-//   - leçon en cours : dépliée, avec ses unités, sa mission et le bilan
-//     (facultatif), et le bouton jaune de l'écran ;
-//   - leçons à venir : une ligne chacune, toujours cliquables ;
+//   - les autres leçons : une ligne compacte chacune ;
+//   - UNE seule leçon dépliée à la fois (accordéon) : par défaut la leçon
+//     conseillée ; un appui sur une autre leçon la déplie et replie la
+//     précédente ; un appui sur la leçon dépliée la replie ;
 //   - examens : en fin de chemin, ouverts à tout moment.
 // Rien n'est verrouillé : chaque leçon et chaque étape s'ouvre d'un appui.
+// Déplier une leçon ne change pas la leçon conseillée.
 
 let cheminFiniesOuvert = false;
+// Leçon dépliée : undefined = la leçon conseillée, null = toutes repliées, sinon son id.
+// Gardée en mémoire : on la retrouve en revenant d'un exercice.
+let cheminLeconOuverte;
+let cheminArrivee = false; // true à l'ouverture du chemin : l'étape conseillée pulse une fois
 
 // Ancien nom gardé : tout le code appelle renderLessons() pour la liste.
 function renderLessons() {
@@ -20,16 +26,22 @@ function renderLessons() {
   const fraicheurs = resumeRevision(liste).parLecon;
   const anim = dernierFini; // étape tout juste finie : animée une seule fois
   dernierFini = null;
+  const pulse = cheminArrivee;
+  cheminArrivee = false;
+
+  // Leçon dépliée (une leçon d'un autre niveau ne compte pas).
+  let ouverte = cheminLeconOuverte === undefined ? (enCours ? enCours.id : null) : cheminLeconOuverte;
+  if (ouverte != null && !liste.some(l => l.id === ouverte)) ouverte = enCours ? enCours.id : null;
+  const dus = l => (fraicheurs[l.id] ? fraicheurs[l.id].dus : 0);
 
   let html = '<div class="chemin-tete entre">' +
-    '<span class="etiquette or">Parcours ' + niveauActif + '</span>' +
-    '<h1>Mon chemin</h1>' +
+    '<div class="chemin-titre"><h1>Mon chemin</h1><span class="etiquette or">Parcours ' + niveauActif + '</span></div>' +
     '<div class="resume">' +
       '<span class="pastille v"><i></i>' + terminees.length + ' terminée' + (terminees.length > 1 ? 's' : '') + '</span>' +
       (enCours ? '<span class="pastille o"><i></i>1 en cours</span>' : '') +
     '</div></div><ol class="chemin">';
 
-  // 1. Bloc des leçons terminées.
+  // 1. Bloc des leçons terminées (et la leçon terminée dépliée, juste après).
   if (terminees.length) {
     const leconFinieAnimee = anim && terminees.some(l => l.id === anim.leconId) && anim.uniteId === 'mission';
     html += '<li class="pas fait' + (leconFinieAnimee ? ' trait-anime' : '') + '">' +
@@ -41,17 +53,19 @@ function renderLessons() {
         '</button>' +
         (cheminFiniesOuvert ? '<div class="lignes-finies">' + terminees.map(ligneFinieHtml).join('') + '</div>' : '') +
       '</div></li>';
+    const finieOuverte = terminees.find(l => l.id === ouverte);
+    if (finieOuverte) html += leconDeplieeHtml(finieOuverte, dus(finieOuverte), anim, false, pulse);
   }
 
-  // 2. Leçon en cours, puis 3. leçons à venir (dans l'ordre du niveau).
+  // 2. Leçons en cours et à venir (dans l'ordre du niveau).
   liste.forEach(l => {
     if (leconTerminee(l)) return;
-    const dus = fraicheurs[l.id] ? fraicheurs[l.id].dus : 0;
-    if (enCours && enCours.id === l.id) html += leconEnCoursHtml(l, dus, anim);
-    else html += leconAVenirHtml(l, dus);
+    const conseillee = !!(enCours && enCours.id === l.id);
+    if (l.id === ouverte) html += leconDeplieeHtml(l, dus(l), anim, conseillee, pulse);
+    else html += leconReplieeHtml(l, dus(l), conseillee);
   });
 
-  // 4. Examens, en fin de chemin.
+  // 3. Examens, en fin de chemin.
   html += '<li class="pas exam"><span class="rond">' + ICONES.toque + '</span>' +
     '<button class="carte-lecon" onclick="openExamens()">' +
       '<span class="num st">Fin du parcours</span>' +
@@ -74,9 +88,9 @@ function basculerTerminees() {
   renderLessons();
 }
 
-// Une leçon terminée dans le bloc déplié : numéro, titre, étoiles.
+// Une leçon terminée dans le bloc déplié : numéro, titre, étoiles. Un appui la déplie.
 function ligneFinieHtml(l) {
-  return '<button class="ligne-finie chemin-lecon" style="--lc:' + l.couleur + '" onclick="ouvrirLeconDepuisListe(' + l.id + ')">' +
+  return '<button class="ligne-finie chemin-lecon" style="--lc:' + l.couleur + '" onclick="basculerLeconChemin(' + l.id + ')">' +
     '<span class="n">' + l.id + '</span><span class="t">' + escHtml(titreCourt(l)) + '</span>' +
     resultatLeconHtml(l) + '</button>';
 }
@@ -98,81 +112,117 @@ function rafraichirPastille(dus) {
   return dus ? '<span class="pastille-fraicheur">À rafraîchir · ' + dus + '</span>' : '';
 }
 
-// Leçon à venir : une ligne, cliquable.
-function leconAVenirHtml(l, dus) {
+// Leçon repliée : une ligne, avec un chevron. Un appui la déplie.
+function leconReplieeHtml(l, dus, conseillee) {
   const faites = etapesFaites(l);
-  return '<li class="pas futur"><span class="rond">' + ICONES.livre + '</span>' +
-    '<button class="carte-lecon compacte chemin-lecon" style="--lc:' + l.couleur + '" onclick="ouvrirLeconDepuisListe(' + l.id + ')">' +
+  return '<li class="pas ' + (conseillee ? 'encours replie' : 'futur') + '" id="chemin-lecon-' + l.id + '">' +
+    '<span class="rond">' + (conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
+    '<button class="carte-lecon compacte chemin-lecon" style="--lc:' + l.couleur + '" aria-expanded="false" onclick="basculerLeconChemin(' + l.id + ')">' +
       '<span class="num"><b>Leçon ' + l.id + '</b></span>' +
       '<span class="titre">' + escHtml(titreCourt(l)) + '</span>' +
       (faites ? '<span class="avance">' + faites + '/' + etapesLecon(l) + '</span>' : '') +
+      '<span class="chevron-l">' + ICONES.chevron + '</span>' +
       rafraichirPastille(dus) +
     '</button></li>';
 }
 
-// Leçon en cours : dépliée.
-function leconEnCoursHtml(l, dus, anim) {
-  const pas = prochainPas();
+// Leçon dépliée : l'en-tête (qui la replie), ses étapes, puis LE bouton jaune,
+// qui agit sur CETTE leçon.
+function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
+  const fini = leconTerminee(l);
+  const etat = fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
   const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
-  let html = '<li class="pas encours" id="pas-encours"><span class="rond">' + ICONES.lecture + '</span>' +
-    '<div class="carte-lecon chemin-lecon' + deplie + '" style="--lc:' + l.couleur + '">' +
-      '<span class="num"><b>Leçon ' + l.id + '</b> · <span class="st">En cours</span></span>' +
-      '<h3>' + escHtml(titreCourt(l)) + '</h3>' +
-      '<span class="lux">' + escHtml(l.titre) + '</span>' + rafraichirPastille(dus);
+  const action = actionLeconChemin(l);
+
+  let html = '<li class="pas ' + (fini ? 'fait' : conseillee ? 'encours' : 'futur') + ' ouverte" id="chemin-lecon-' + l.id + '">' +
+    '<span class="rond">' + (fini ? ICONES.coche : conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
+    '<div class="carte-lecon chemin-lecon ouvre' + deplie + '" style="--lc:' + l.couleur + '">' +
+      '<button class="carte-tete" aria-expanded="true" onclick="basculerLeconChemin(' + l.id + ')">' +
+        '<span class="num"><b>Leçon ' + l.id + '</b> · <span class="st">' + etat + '</span></span>' +
+        '<span class="chevron-l">' + ICONES.chevron + '</span>' +
+        '<h3>' + escHtml(titreCourt(l)) + '</h3>' +
+      '</button>' + rafraichirPastille(dus);
 
   if (isParcoursLecon(l)) {
-    html += '<ul class="unites">' + etapesEnCoursHtml(l, pas, anim) + '</ul>';
+    html += '<ul class="unites">' + etapesLeconHtml(l, action.etape, anim, pulse && !fini) + '</ul>';
   } else {
     const pct = calculateLessonStats(l.id).percent;
     html += '<p class="v1-txt">Leçon classique : cours, cartes, quiz, trous et écriture.' +
       (pct ? ' Maîtrise : ' + pct + ' %.' : '') + '</p>';
   }
 
-  html += '<button class="btn-jaune" onclick="suivreProchainPas()"><span>' +
-      escHtml(pas && pas.lecon.id === l.id ? libelleBouton(pas) : 'Ouvrir la leçon') + '</span>' + ICONES.fleche + '</button>' +
+  html += '<button class="btn-jaune" onclick="lancerActionLecon(' + l.id + ')"><span>' + escHtml(action.libelle) + '</span>' + ICONES.fleche + '</button>' +
     '<button class="lien-or" onclick="ouvrirLeconDepuisListe(' + l.id + ')">Voir toute la leçon' + ICONES.fleche + '</button>' +
     '</div></li>';
   return html;
 }
 
-// Unités du fil, mission, bilan : chacune ouvrable d'un appui.
-function etapesEnCoursHtml(l, pas, anim) {
-  const run = loadRun();
-  const runIci = run && run.leconId === l.id ? run : null;
-  // L'étape « actuelle » (anneau doré) : partie en cours, sinon la première non faite.
-  let actuelle = null;
-  if (runIci) actuelle = runIci.uniteId;
-  else if (pas && pas.lecon.id === l.id) actuelle = pas.type === 'mission' ? 'mission' : (pas.unite ? pas.unite.id : null);
+// Ce que fait le bouton jaune d'une leçon dépliée, pour CETTE leçon :
+//   etape   : l'étape mise en avant (numéro d'unité, 'mission' ou null) ;
+//   libelle : le texte du bouton ;   fn : ce qu'il lance.
+function actionLeconChemin(l) {
+  if (!isParcoursLecon(l)) return { etape: null, libelle: 'Ouvrir la leçon', fn: () => openLecon(l) };
 
+  const saved = loadRun();
+  if (saved && saved.leconId === l.id) {
+    return { etape: saved.uniteId, libelle: 'Reprendre · ' + nomPartie(saved.uniteId, saved.mode), fn: () => ouvrirLeconEtReprendre(l) };
+  }
+  // 1re découverte : l'introduction de la mission.
+  if (introMissionAVoir(l)) {
+    return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir la leçon', fn: () => openParcoursLecon(l) };
+  }
+  const deja = acquisV1(l) || leconValideeParMission(l.id);
+  const u = deja ? null : unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
+  if (u) {
+    const aucune = unitesCoeur(l).every(x => getUnitBest(l.id, x.id) == null);
+    return { etape: u.id, libelle: (aucune ? 'Commencer' : 'Continuer') + ' l\'unité ' + u.id, fn: () => ouvrirUniteDepuisChemin(l.id, u.id) };
+  }
+  if (l.mission && l.scene && getMissionBest(l.id) == null) {
+    return { etape: 'mission', libelle: 'Jouer la mission', fn: () => ouvrirMissionDepuisChemin(l.id) };
+  }
+  return { etape: null, libelle: 'Revoir la leçon', fn: () => ouvrirLeconDepuisListe(l.id) };
+}
+
+function lancerActionLecon(leconId) {
+  actionLeconChemin(trouverLecon(leconId)).fn();
+}
+
+// Unités du fil, mission, bilan : chacune ouvrable d'un appui (chevron à droite).
+// etapeActuelle : l'étape mise en avant (anneau doré).
+function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
   let html = '';
   unitesCoeur(l).forEach(u => {
     const fait = getUnitBest(l.id, u.id) != null;
+    const actuelle = etapeActuelle === u.id;
     let classe = fait ? 'ok' : '';
-    if (actuelle === u.id) classe = 'actuelle';
+    if (actuelle) classe = 'actuelle' + (pulse ? ' pulse' : '');
     if (anim && anim.leconId === l.id && anim.uniteId === u.id) classe += ' vient-de-finir';
-    html += '<li class="' + classe + '"><button onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
-      '<span class="etat">' + (fait && actuelle !== u.id ? ICONES.coche : '') + '</span>' +
+    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
+      '<span class="etat">' + (fait && !actuelle ? ICONES.coche : '') + '</span>' +
       '<span class="nom">Unité ' + u.id + ' · ' + escHtml(u.titre) + '</span>' +
       (fait ? '<span class="tag">' + etoilesHtml(etoiles(getUnitBest(l.id, u.id))) + '</span>' : '') +
-      '</button></li>';
+      ICONES.droite + '</button></li>';
   });
 
   if (l.mission && l.scene) {
     const statut = statutMission(l);
-    let tag = l.scene.filter(x => repliqueApprise(l, x)).length + '/' + l.scene.length + ' répliques';
+    let tag = l.scene.filter(x => repliqueApprise(l, x)).length + '/' + l.scene.length;
     if (statut === 'sansfaute') tag = 'Sans faute';
     else if (statut === 'reussie') tag = 'Réussie';
     else if (statut === 'jouee') tag = 'À rejouer';
-    let classe = 'mission' + (statut ? ' ok' : '') + (actuelle === 'mission' ? ' actuelle' : '');
+    const actuelle = etapeActuelle === 'mission';
+    let classe = 'mission' + (statut ? ' ok' : '') + (actuelle ? ' actuelle' + (pulse ? ' pulse' : '') : '');
     if (anim && anim.leconId === l.id && anim.uniteId === 'mission') classe += ' vient-de-finir';
-    html += '<li class="' + classe + '"><button onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
+    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-mission"><button onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
       '<span class="etat">' + ICONES.bulle + '</span>' +
-      '<span class="nom">Mission · ' + escHtml(l.mission.titre) + '</span><span class="tag">' + tag + '</span></button></li>';
+      '<span class="nom">Mission · ' + escHtml(l.mission.titre) + '</span><span class="tag">' + tag + '</span>' +
+      ICONES.droite + '</button></li>';
   }
 
   html += '<li class="bilan"><button onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
     '<span class="etat">' + ICONES.cible + '</span>' +
-    '<span class="nom">Bilan · 10 questions mêlées</span><span class="tag">facultatif</span></button></li>';
+    '<span class="nom">Bilan · 10 questions</span><span class="tag">facultatif</span>' +
+    ICONES.droite + '</button></li>';
   return html;
 }
 
@@ -180,29 +230,82 @@ function trouverLecon(id) {
   return lecons.find(x => x.id === id);
 }
 
+// ─── ACCORDÉON ──────────────────────────────────────────────────────────────
+// Appui sur une leçon : elle se déplie (la précédente se replie), ou se replie.
+// La carte touchée reste à la même hauteur à l'écran, puis on la cadre.
+function basculerLeconChemin(leconId) {
+  const avant = document.getElementById('chemin-lecon-' + leconId);
+  const hautAvant = avant ? avant.getBoundingClientRect().top : null;
+  const dejaOuverte = !!(avant && avant.classList.contains('ouverte'));
+  cheminLeconOuverte = dejaOuverte ? null : leconId;
+  renderLessons();
+
+  const apres = document.getElementById('chemin-lecon-' + leconId);
+  if (!apres) return;
+  if (hautAvant != null) window.scrollBy(0, apres.getBoundingClientRect().top - hautAvant);
+  if (!dejaOuverte) cadrerCarteChemin(apres);
+}
+
+// Pour revenir d'un exercice : la leçon de l'exercice est dépliée.
+function ouvrirLeconDansChemin(leconId) {
+  cheminLeconOuverte = leconId;
+}
+
+// Hauteur visible au-dessus de la barre du bas.
+function basVisibleChemin() {
+  const nav = document.getElementById('nav-bas');
+  const hautNav = nav && !nav.classList.contains('hidden') ? nav.offsetHeight : 0;
+  return window.innerHeight - hautNav - 12;
+}
+
+// Montre la carte entière si elle tient, sinon son début (jamais centrée).
+function cadrerCarteChemin(carte) {
+  const r = carte.getBoundingClientRect();
+  const haut = 12;
+  const bas = basVisibleChemin();
+  let decalage = 0;
+  if (r.height > bas - haut || r.top < haut) decalage = r.top - haut;
+  else if (r.bottom > bas) decalage = r.bottom - bas;
+  if (!decalage) return;
+  const reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollBy({ top: decalage, behavior: reduit ? 'auto' : 'smooth' });
+}
+
+// Retour d'un exercice : l'étape quittée doit être visible (au-dessus de la barre du bas).
+function montrerEtapeChemin(leconId, etape) {
+  const el = document.getElementById('chemin-u-' + leconId + '-' + etape) || document.getElementById('chemin-lecon-' + leconId);
+  if (!el) return;
+  const r = el.getBoundingClientRect();
+  const bas = basVisibleChemin();
+  if (r.top < 12) window.scrollBy(0, r.top - 12);
+  else if (r.bottom > bas) window.scrollBy(0, r.bottom - bas);
+}
+
+// ─── OUVRIR UNE ÉTAPE DEPUIS LE CHEMIN ──────────────────────────────────────
 function ouvrirUniteDepuisChemin(leconId, uniteId) {
   const l = trouverLecon(leconId);
+  cheminLeconOuverte = leconId;
   openParcoursLecon(l);
   const run = loadRun();
   if (run && run.leconId === leconId && run.uniteId === uniteId) reprendreRun();
   else openIntro(uniteId);
 }
 
+function ouvrirLeconEtReprendre(l) {
+  cheminLeconOuverte = l.id;
+  openParcoursLecon(l);
+  reprendreRun();
+}
+
 function ouvrirMissionDepuisChemin(leconId) {
+  cheminLeconOuverte = leconId;
   openParcoursLecon(trouverLecon(leconId));
   openMission();
 }
 
 function lancerBilanDepuisChemin(leconId) {
+  cheminLeconOuverte = leconId;
   pLecon = trouverLecon(leconId);
   currentLecon = pLecon;
   lancerBilan();
-}
-
-// Le chemin s'ouvre sur la leçon en cours.
-function allerALeconEnCours() {
-  const el = document.getElementById('pas-encours');
-  if (!el || !el.scrollIntoView) return;
-  const reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  el.scrollIntoView({ behavior: reduit ? 'auto' : 'smooth', block: 'center' });
 }

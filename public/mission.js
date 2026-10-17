@@ -204,9 +204,9 @@ function openMission(tentative) {
   renderMission();
 }
 
-// Croix de la mission : retour sur la carte de la mission.
+// Retour depuis la mission : l'écran d'où on est parti (chemin ou leçon).
 function quitterMission() {
-  openParcoursLecon(pLecon, 'mission');
+  retour();
 }
 
 // Position de la réplique « toi » en cours : 1re, 2e… sur le total à dire.
@@ -214,9 +214,12 @@ function numeroReplique(idx) {
   return pLecon.scene.slice(0, idx + 1).filter(x => x.qui === 'toi').length;
 }
 
-function bulleJeuHtml(x, i) {
+// Une bulle du dialogue. La traduction est cachée : un appui sur la bulle
+// l'affiche (pendant la mission, on lit d'abord le luxembourgeois).
+// traduite = true : traduction visible d'emblée (bilan de fin).
+function bulleJeuHtml(x, i, traduite) {
   const toi = x.qui === 'toi';
-  let classe = 'ms-bulle' + (toi ? ' toi' : '');
+  let classe = 'ms-bulle' + (toi ? ' toi' : '') + (traduite ? ' traduite' : '');
   if (toi && ms.resultats[i] === 'revele') classe += ' revele';
   // Les nouvelles répliques arrivent une par une (S12).
   let delai = '';
@@ -224,9 +227,13 @@ function bulleJeuHtml(x, i) {
     classe += ' bulle-in';
     delai = ' style="animation-delay:' + ((i - ms.vues) * 150) + 'ms"';
   }
-  return '<div class="' + classe + '"' + delai + '><b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
+  return '<div class="' + classe + '"' + delai + ' onclick="this.classList.toggle(\'traduite\')">' +
+    '<b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
     escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>';
 }
+
+// Nombre de répliques gardées à l'écran avant celle à dire ; les autres sont repliées.
+const REPLIQUES_RECENTES = 3;
 
 function renderMission() {
   const scene = pLecon.scene;
@@ -238,38 +245,34 @@ function renderMission() {
     return;
   }
 
-  // On montre la réplique « toi » précédente et ce qui a été dit depuis.
-  // Le début du dialogue reste disponible, replié.
-  let debutRecent = 0;
-  for (let i = ms.idx - 1; i >= 0; i--) {
-    if (scene[i].qui === 'toi') { debutRecent = i; break; }
-  }
-  const avant = scene.slice(0, debutRecent);
-  let html = '<div class="pc-mini-label pc-gold">RÉPLIQUE ' + numeroReplique(ms.idx) + ' / ' + nbRepliquesToi(pLecon) + '</div>';
-  if (ms.idx === 0 || debutRecent === 0 && scene[0].qui !== 'toi') {
-    html += '<div class="ms-contexte">' + escHtml(pLecon.mission.contexte) + '</div>';
-  }
-  if (avant.length) {
-    html += '<details class="ms-histoire"><summary>Revoir le début du dialogue · ' + avant.length +
-      ' réplique' + (avant.length > 1 ? 's' : '') + '</summary><div class="ms-scene">' +
-      avant.map((x, i) => bulleJeuHtml(x, i)).join('') + '</div></details>';
+  const debutRecent = Math.max(0, ms.idx - REPLIQUES_RECENTES);
+  const numero = numeroReplique(ms.idx);
+  let html = '<div class="ms-progres">' +
+    '<span class="pc-mini-label pc-gold">RÉPLIQUE ' + numero + ' / ' + nbRepliquesToi(pLecon) + '</span>' +
+    '<button class="ms-lien" onclick="voirContexte()">Contexte</button></div>';
+  if (debutRecent > 0) {
+    html += '<details class="ms-histoire"><summary>Répliques précédentes · ' + debutRecent + '</summary><div class="ms-scene">' +
+      scene.slice(0, debutRecent).map((x, i) => bulleJeuHtml(x, i)).join('') + '</div></details>';
   }
   html += '<div class="ms-scene">';
   for (let i = debutRecent; i < ms.idx; i++) html += bulleJeuHtml(scene[i], i);
-  html += '</div>';
+
+  // La réplique à dire : une bulle « Toi » avec la consigne et le champ dedans.
+  const ligne = scene[ms.idx];
+  html += '<div class="ms-bulle toi ms-saisie bulle-in" id="ms-atoi">' +
+      '<b>Toi · en luxembourgeois</b>' +
+      '<div class="ms-consigne">' + escHtml(ligne.fr) + '</div>' +
+      '<div class="ms-champ">' +
+        '<textarea id="ms-input" rows="1" placeholder="Ta réponse…" enterkeyhint="send" aria-label="Ta réponse en luxembourgeois"' +
+          ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
+        '<button class="ms-envoyer" id="ms-btn-valider" aria-label="Valider" onclick="missionValider()">' + ICONES.fleche + '</button>' +
+      '</div>' +
+      '<div class="mc-erreur hidden" id="ms-erreur"></div>' +
+      '<button class="ms-lien hidden" id="ms-btn-voir" onclick="missionVoirReponse()">Voir la réponse</button>' +
+    '</div></div>';
+  if (numero === 1) html += '<div class="ms-astuce">Touche une bulle pour voir sa traduction.</div>';
   ms.vues = ms.idx;
 
-  // Réplique à écrire : on donne le français, l'utilisateur écrit le luxembourgeois.
-  const ligne = scene[ms.idx];
-  html += '<div class="ms-atoi" id="ms-atoi">' +
-    '<div class="pc-mini-label">À TOI · ÉCRIS EN LUXEMBOURGEOIS</div>' +
-    '<div class="ms-atoi-fr">' + escHtml(ligne.fr) + '</div>' +
-    '<div class="mc-erreur hidden" id="ms-erreur"></div>' +
-    '<textarea id="ms-input" class="ecr-input" rows="2" placeholder="Ta réplique…" enterkeyhint="done"' +
-      ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
-    '<div class="pc-actions"><button class="pc-btn primary wide" id="ms-btn-valider" onclick="missionValider()">Valider</button></div>' +
-    '<button class="pc-btn ghost wide hidden" id="ms-btn-voir" onclick="missionVoirReponse()">Voir la réponse</button>' +
-    '</div>';
   document.getElementById('ms-body').innerHTML = html;
   window.scrollTo(0, 0);
 
@@ -280,11 +283,23 @@ function renderMission() {
     e.stopPropagation();
     missionValider();
   });
-  // Dès qu'on corrige sa réponse, « Réessayer » redevient « Valider ».
+  // Dès qu'on corrige sa réponse, le bouton redevient « Valider ».
   input.addEventListener('input', () => {
-    document.getElementById('ms-btn-valider').textContent = 'Valider';
+    document.getElementById('ms-btn-valider').setAttribute('aria-label', 'Valider');
   });
   focusSiClavierPhysique(input); // sur téléphone, on touche le champ pour écrire
+}
+
+// Contexte de la mission, à relire à tout moment (panneau).
+function voirContexte() {
+  const l = pLecon;
+  ouvrirPanneau('<div class="poignee"></div>' +
+    '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + l.id + '</div>' +
+    '<h2 class="ms-titre">' + escHtml(l.mission.titre) + '</h2>' +
+    '<div class="ms-contexte">' + escHtml(l.mission.contexte) + '</div>' +
+    '<div class="ms-objectif"><span>À la fin, tu sauras :</span> ' + escHtml(l.mission.objectif) + '</div>' +
+    '<div class="ms-panneau-bas"><button class="pc-btn primary wide" onclick="fermerPanneau()">Continuer la mission</button></div>',
+    'Contexte de la mission');
 }
 
 // Bouton principal : « Valider », ou « Réessayer » après une erreur.
@@ -318,11 +333,9 @@ function missionValider() {
   err.classList.remove('hidden');
   err.innerHTML = '<b>Pas encore</b> · Essai ' + ms.essais +
     aideErreurHtml(val, ligne, ligne.aide || '', ms.essais);
-  document.getElementById('ms-btn-valider').textContent = 'Réessayer';
+  document.getElementById('ms-btn-valider').setAttribute('aria-label', 'Réessayer');
   if (ms.essais >= ESSAIS_MISSION) document.getElementById('ms-btn-voir').classList.remove('hidden');
   fermerClavier();
-  const atoi = document.getElementById('ms-atoi');
-  if (atoi) window.scrollTo(0, Math.max(0, atoi.getBoundingClientRect().top + window.scrollY - 12));
 }
 
 function missionVoirReponse() {
@@ -332,24 +345,25 @@ function missionVoirReponse() {
     (ligne.aide ? ligne.aide + ' · ' : '') + 'Elle ne compte pas comme juste du premier coup.');
 }
 
-// Correction affichée à la place de la question, jusqu'au clic sur « Continuer ».
+// Correction dans la conversation : la bulle de saisie devient la réplique
+// dite (✓ si juste), jusqu'au clic sur « Continuer ».
 function retourMission(etat, titre, lu, sous) {
   fermerClavier();
   const atoi = document.getElementById('ms-atoi');
-  atoi.className = 'ms-retour ' + etat;
+  atoi.className = 'ms-bulle toi ' + (etat === 'ok' ? 'valide' : 'revele') + ' traduite';
   atoi.removeAttribute('id');
   atoi.innerHTML =
-    '<div class="ms-retour-titre">' + (etat === 'ok' ? ICONES.coche : '') + escHtml(titre) + '</div>' +
+    '<b class="ms-retour-titre">' + (etat === 'ok' ? 'Toi ' + ICONES.coche + '<span>' + escHtml(titre) + '</span>' : escHtml(titre)) + '</b>' +
     '<div class="ms-retour-lu">' + escHtml(lu) + '</div>' +
-    '<div class="ms-retour-sous">' + sous + '</div>';
+    '<em>' + sous + '</em>';
   const bouton = document.createElement('button');
-  bouton.className = 'pc-btn primary wide';
+  bouton.className = 'pc-btn primary wide ms-continuer';
   bouton.id = 'ms-continuer';
   bouton.textContent = 'Continuer →';
   bouton.onclick = suiteMission;
-  atoi.after(bouton);
+  atoi.parentNode.after(bouton);
   bouton.focus({ preventScroll: true }); // Entrée = Continuer (ordinateur)
-  if (atoi.getBoundingClientRect().top < 0) atoi.scrollIntoView({ block: 'start' });
+  if (bouton.getBoundingClientRect().bottom > window.innerHeight) bouton.scrollIntoView({ block: 'nearest' });
 }
 
 function suiteMission() {
@@ -387,7 +401,7 @@ function finirMission() {
     '<div class="pf-boutons">' +
       '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">Continuer le parcours</button>' +
       '<button class="pc-btn ghost wide" onclick="openMission()">Rejouer la mission</button>' +
-      '<button class="pc-btn ghost wide" onclick="quitterMission()">Retour à la leçon</button>' +
+      '<button class="pc-btn ghost wide" onclick="quitterMission()">Retour · ' + escHtml(nomEcran(ecranPrecedent())) + '</button>' +
     '</div>';
   afficherBilanMission(fin);
   if (percent >= SEUIL_MISSION) confettis(); // mission réussie : célébration (S12)
@@ -398,7 +412,7 @@ function afficherBilanMission(fin) {
   fermerClavier();
   const body = document.getElementById('ms-body');
   body.innerHTML = '<div class="pc-mini-label">TA SCÈNE</div><div class="ms-scene">' +
-    pLecon.scene.map((x, i) => bulleJeuHtml(x, i)).join('') + '</div>';
+    pLecon.scene.map((x, i) => bulleJeuHtml(x, i, true)).join('') + '</div>';
   body.prepend(fin);
   window.scrollTo(0, 0);
 }

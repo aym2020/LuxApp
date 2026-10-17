@@ -462,9 +462,9 @@ function openIntro(uniteId) {
   showView('view-pintro');
 }
 
-// Croix de « Avant de commencer » : retour sur la carte de cette unité.
+// Retour depuis « Avant de commencer » : l'écran d'où on est parti, sur cette unité.
 function fermerIntro() {
-  openParcoursLecon(pLecon, pIntroUnite);
+  retour();
 }
 
 function motsHtml(mots) {
@@ -522,12 +522,12 @@ function reprendreRun() {
   renderItem();
 }
 
-// Croix en haut : on garde la sauvegarde et on revient sur la carte de
-// l'unité quittée (ou de « Toute la leçon »).
+// Flèche Retour (ou bouton Retour du téléphone) : la partie reste sauvegardée,
+// on revient à l'écran d'où on est parti (chemin ou leçon), sur cette unité.
 function quitterParcours() {
   clearTimeout(pTimer);
   pAttente = false;
-  openParcoursLecon(pLecon, run ? run.uniteId : undefined);
+  retour();
 }
 
 // ─── AFFICHAGE D'UN ITEM ────────────────────────────────────────────────────
@@ -1289,6 +1289,7 @@ function ouvrirCours(uniteId) {
   renderCoursPanel();
   document.getElementById('cours-panel').classList.remove('hidden');
   document.body.classList.add('no-scroll');
+  programmerGarde(); // le bouton Retour du téléphone fermera le cours
 }
 
 // Unité de la partie en cours (null si leçon complète ou aucune partie).
@@ -1304,8 +1305,10 @@ function ouvrirCoursExercice() {
 function fermerCours() {
   document.getElementById('cours-panel').classList.add('hidden');
   document.body.classList.remove('no-scroll');
+  programmerGarde();
+  // L'exercice reprend au même endroit ; sur téléphone, le clavier reste fermé.
   const input = document.querySelector('#view-parcours.active #mc-input, #view-parcours.active #pc-ecr-input');
-  if (input && !input.disabled) input.focus();
+  focusSiClavierPhysique(input);
 }
 
 function coursChoisir(uniteId) {

@@ -1868,3 +1868,121 @@ body.clavier-actif #view-mission.active .ms-body {
 .ms-retour-titre .ic { width: 22px; height: 22px; stroke: var(--correct); stroke-width: 2.5; }
 .ms-retour-lu { font-family: var(--serif); font-size: 1.9rem; line-height: 1.15; }
 .ms-retour-sous { font-size: var(--fs-sec); color: var(--muted-strong); }
+
+/* ══ NAVIGATION : BARRES DU HAUT FIXES (spec 15) ══════════════════════════════ */
+/* La barre reste visible en défilant, sous l'encoche du téléphone. */
+.view > .pc-topbar, .view > .lecon-header {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--bg);
+  padding-top: max(.6rem, env(safe-area-inset-top));
+  padding-bottom: .45rem;
+}
+.pc-espace { flex: 1; }
+.back-btn { display: inline-flex; align-items: center; gap: .35rem; min-height: var(--toucher); max-width: 60vw; }
+.back-btn .retour-txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#view-plecon .pl-head { padding-top: .2rem; }
+
+/* ══ MON CHEMIN : COMPACT ET EN ACCORDÉON (specs 13, 14, 16) ══════════════════ */
+.chemin-page { padding-top: .9rem; gap: .9rem; }
+.chemin-titre { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+.chemin-tete h1 { margin-top: 0; font-size: 1.65rem; }
+.chemin-tete .resume { margin-top: .5rem; }
+.chemin-tete .pastille { min-height: 30px; padding: 0 12px; }
+.pas { padding-bottom: 10px; }
+.pas.futur { padding-bottom: 6px; }
+.pas.ouverte .rond, .pas.encours .rond { box-shadow: 0 0 0 4px var(--bg); }
+
+/* En-tête d'une leçon dépliée : un appui la replie */
+.carte-tete {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: .5rem;
+  width: 100%; min-height: 44px; padding: 0; background: none; border: 0; text-align: left;
+  font-family: var(--font); color: var(--text); cursor: pointer;
+}
+.carte-tete .num { grid-column: 1; }
+.carte-tete h3 { grid-column: 1; font-size: 1.12rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carte-tete .chevron-l { grid-column: 2; grid-row: 1 / span 2; }
+.chevron-l { display: grid; place-items: center; width: 28px; height: 28px; color: var(--muted); flex: none; }
+.chevron-l .ic { width: 18px; height: 18px; }
+.carte-tete .chevron-l .ic { transform: rotate(180deg); }
+.carte-lecon.compacte .chevron-l { margin-left: auto; }
+.carte-lecon.compacte .titre { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Carte dépliée : plus serrée ; elle s'ouvre en douceur (≈ 250 ms) */
+.pas.ouverte .carte-lecon { padding: 10px 14px 8px; gap: 2px; }
+.pas.ouverte.futur .carte-lecon, .pas.ouverte.fait .carte-lecon { border-color: color-mix(in srgb, var(--lc) 55%, var(--bord-1)); }
+.carte-lecon.ouvre .carte-tete .chevron-l .ic { animation: chevron-tourne .25s ease-out both; }
+.carte-lecon.ouvre > :not(.carte-tete) { animation: entre .25s ease-out both; }
+.carte-lecon.ouvre > .unites { animation-delay: .03s; }
+.carte-lecon.ouvre > .btn-jaune { animation-delay: .06s; }
+@keyframes chevron-tourne { from { transform: rotate(0deg); } to { transform: rotate(180deg); } }
+.pas.encours.replie .carte-lecon { border-color: var(--or-bord); }
+.pas.encours.replie .carte-lecon .num b { color: var(--accent); }
+
+/* Étapes : une ligne chacune, un chevron = « on peut appuyer » */
+.pas.ouverte .unites { margin: 2px 0 6px; }
+.unites button { min-height: 44px; padding: 3px 6px 3px 0; border-radius: 10px; transition: background-color .12s ease; }
+.unites button:active { background: rgba(255, 255, 255, .06); }
+.unites .nom { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.unites .ic.droite { width: 16px; height: 16px; flex: none; color: var(--muted); }
+.unites li.actuelle .ic.droite { color: var(--accent); }
+.unites li.bilan .nom, .unites li.bilan .tag { color: var(--muted); }
+/* L'étape conseillée pulse deux fois à l'ouverture du chemin, puis plus rien */
+.unites li.pulse .etat { animation: pulse-etape 1.1s ease-out .3s 2; }
+@keyframes pulse-etape {
+  0% { box-shadow: 0 0 0 0 rgba(245, 207, 77, .55); }
+  100% { box-shadow: 0 0 0 10px rgba(245, 207, 77, 0); }
+}
+.pas.ouverte .btn-jaune { margin-top: 2px; }
+.pas.ouverte .lien-or { margin-top: 0; }
+
+/* ══ MISSION : CONVERSATION COMPACTE (spec 12) ════════════════════════════════ */
+#view-mission .ms-body { padding: .5rem 1rem 1.5rem; gap: .6rem; }
+.ms-progres { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.ms-lien {
+  background: none; border: 0; padding: 0 .2rem; min-height: var(--toucher); cursor: pointer;
+  font-family: var(--font); font-size: var(--fs-sec); font-weight: 600; color: var(--accent);
+}
+.ms-histoire summary { min-height: var(--toucher); display: flex; align-items: center; }
+/* Traduction cachée : un appui sur la bulle l'affiche */
+#view-mission .ms-bulle { cursor: pointer; }
+#view-mission .ms-bulle em { display: none; }
+#view-mission .ms-bulle.traduite em { display: block; }
+.ms-astuce { font-size: var(--fs-micro); color: var(--muted); text-align: center; }
+
+/* La bulle « Toi » où l'on écrit */
+#view-mission .ms-saisie {
+  cursor: default; max-width: 100%; width: 100%; gap: .35rem;
+  border: 1px solid rgba(245, 207, 77, .5); padding: .6rem .7rem .7rem;
+}
+.ms-consigne { font-family: var(--serif); font-size: 1.3rem; line-height: 1.2; color: var(--text); }
+.ms-champ { display: flex; align-items: flex-end; gap: .5rem; }
+.ms-champ textarea {
+  flex: 1; min-width: 0; min-height: 44px; max-height: 120px; resize: none; overflow-y: auto;
+  padding: .6rem .75rem; border-radius: 12px; border: 1px solid #3a3730; background: var(--bg);
+  color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.35;
+}
+.ms-champ textarea:focus { outline: none; border-color: var(--accent); }
+.ms-envoyer {
+  flex: none; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+  display: grid; place-items: center; background: var(--accent); color: #1a1406;
+}
+.ms-envoyer .ic { width: 22px; height: 22px; stroke-width: 2.5; }
+.ms-envoyer:active { transform: scale(.94); }
+#view-mission .ms-saisie .mc-erreur { font-size: .85rem; padding: .55rem .7rem; }
+#view-mission .ms-saisie .ms-lien { align-self: flex-start; min-height: 36px; }
+
+/* Réplique validée ou réponse montrée : elle reste dans la conversation */
+#view-mission .ms-bulle.valide { background: #0f1d18; border: 1px solid var(--correct); cursor: default; }
+#view-mission .ms-bulle.valide b { color: var(--correct); }
+#view-mission .ms-bulle.revele { border: 1px solid #f2a65a; cursor: default; }
+#view-mission .ms-bulle.revele b { color: #f2a65a; }
+#view-mission .ms-retour-titre { display: flex; align-items: center; gap: .35rem; }
+#view-mission .ms-retour-titre .ic { width: 16px; height: 16px; stroke: currentColor; stroke-width: 3; }
+#view-mission .ms-retour-titre span { margin-left: .3rem; text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--muted-strong); }
+#view-mission .ms-retour-lu { font-size: 1.15rem; font-family: var(--font); color: var(--text); }
+.ms-continuer { margin-top: .2rem; }
+
+/* Clavier ouvert : la conversation garde la bulle de saisie visible */
+body.clavier-actif #view-mission.active .ms-body { padding-top: .3rem; gap: .4rem; }
+body.clavier-actif #view-mission.active .ms-astuce,
+body.clavier-actif #view-mission.active .ms-histoire { display: none; }
