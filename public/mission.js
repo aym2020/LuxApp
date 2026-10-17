@@ -413,7 +413,8 @@ function retourMission(etat, titre, sous) {
       '<div class="ms-retour-titre">' + (etat === 'ok' ? ICONES.coche : '') + escHtml(titre) + '</div>' +
       '<div class="ms-retour-sous">' + sous + '</div>' +
     '</div>' +
-    '<button class="pc-btn primary wide ms-continuer" id="ms-continuer" onclick="suiteMission()">Continuer →</button>';
+    // Vert après une réussite, couleur d'erreur quand la réponse a été montrée.
+    '<button class="pc-btn ' + (etat === 'ok' ? 'ok' : 'ko') + ' wide ms-continuer" id="ms-continuer" onclick="suiteMission()">Continuer →</button>';
   document.getElementById('ms-continuer').focus({ preventScroll: true }); // Entrée = Continuer (ordinateur)
 }
 

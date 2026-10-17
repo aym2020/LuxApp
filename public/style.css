@@ -2094,3 +2094,19 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .ms-reponse .ms-lien { align-self: flex-start; min-height: 36px; }
 .ms-reponse .ms-retour { animation: entre .2s ease-out both; padding: .6rem .8rem; border-radius: 14px; gap: .15rem; }
 .ms-reponse .ms-retour-titre { font-size: .98rem; }
+
+/* ══ EXERCICES : UNE SEULE ACTION PRINCIPALE ════════════════════════════════ */
+/* Correction affichée : les commandes de saisie disparaissent (et sortent du
+   parcours clavier). Les lettres assemblées restent, en lecture seule. */
+#view-parcours[data-etat="corrige"] .pc-body .pc-actions,
+#view-parcours[data-etat="corrige"] #mc-btn-voir,
+#view-parcours[data-etat="corrige"] #mc-lettres,
+#view-parcours[data-etat="corrige"] .mc-score,
+#view-parcours[data-etat="corrige"] .mc-legende,
+#view-parcours[data-etat="corrige"] .mc-info { display: none; }
+#view-parcours[data-etat="corrige"] .mc-mot { pointer-events: none; }
+.pc-fb-score { margin-top: .35rem; font-size: var(--fs-sec); color: var(--muted-strong); }
+/* Correction longue : elle défile, « Continuer » reste visible en bas */
+.pc-feedback .pc-fb-txt { max-height: 38vh; overflow-y: auto; }
+/* Révision : une fois la réponse corrigée, le bouton « Valider » disparaît */
+#session-input-btn:disabled { display: none; }

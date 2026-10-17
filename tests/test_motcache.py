@@ -80,6 +80,11 @@ with sync_playwright() as p:
         pg.tap('#mc-btn-valider')
     assert pg.evaluate('pAttente') and 'Bien joué' in pg.inner_text('#pc-feedback')
     assert c['fr'] in pg.inner_text('#pc-feedback')
+    # Une seule action : plus de Valider / Indice / Effacer ni de lettres, « Continuer » en vert
+    for sel in ('#mc-btn-valider', '#mc-btn-indice', '#mc-btn-effacer', '#mc-lettres'):
+        assert not pg.is_visible(sel), sel + ' encore visible après la correction'
+    assert 'ok' in pg.get_attribute('#pc-continuer', 'class') and 'Score du mot' in pg.inner_text('#pc-feedback')
+    ok('après la correction : seul « Continuer » (vert), score du mot affiché dans le panneau')
     pg.screenshot(path=OUT + '3-juste.png')
     ok('mot reconstruit : « Bien joué ! %s = %s »' % (pg.evaluate("motComplet(mc.card)"), c['fr']))
 

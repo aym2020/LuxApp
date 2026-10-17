@@ -599,6 +599,7 @@ function renderItem() {
     (aRefaire ? ' <span class="pc-refaire">· +' + aRefaire + ' à refaire</span>' : '');
 
   document.getElementById('pc-feedback').className = 'pc-feedback hidden';
+  etatExercice('saisie'); // nouvel item : on repart de la saisie
 
   if (step.type === 'flashcards') renderMotCache(item);
   else if (step.type === 'quiz') renderQuizP(item);
@@ -651,9 +652,19 @@ function attentionHtml(texte) {
   return texte ? '<div class="pc-attention">Attention : ' + texte + '</div>' : '';
 }
 
+// ─── ÉTAT DE L'EXERCICE (commun à tous les types) ───────────────────────────
+//   'saisie'  : on répond (lettres, Effacer, Indice, Valider…)
+//   'corrige' : la correction est affichée ; les commandes de saisie
+//               disparaissent (CSS), il ne reste que « Continuer ».
+// Une seule action principale visible à la fois.
+function etatExercice(etat) {
+  document.getElementById('view-parcours').dataset.etat = etat;
+}
+
 // Bandeau du bas : "Juste !" ou "Pas encore", avec un bouton Continuer.
 function showFeedback(ok, titre, texteHtml, suite) {
   fermerClavier(); // la correction doit être visible, pas cachée par le clavier
+  etatExercice('corrige'); // plus de Valider / Indice / Effacer : une seule action
   pAttente = true;
   pSuite = suite;
   const fb = document.getElementById('pc-feedback');
@@ -988,6 +999,7 @@ function mcValider() {
     enregistrer(card, mcScore(), ok, { indices: mc.indices, essais: mc.essais, revele: mc.revele });
     // Juste : le point d'attention complet, pour retenir le piège (S6).
     showFeedback(true, 'Bien joué !', '<b>' + escHtml(motComplet(card)) + '</b> = ' + escHtml(card.fr) +
+      '<div class="pc-fb-score">Score du mot : <b>' + Math.round(mcScore() * 100) + ' %</b></div>' +
       (card.note ? '<br>' + escHtml(card.note) : '') + attentionHtml(attentionItem(card, 'flashcards')), reussir);
     return;
   }
@@ -1127,7 +1139,7 @@ function renderEcriturePc(e) {
     '<label class="pc-input-label" for="pc-ecr-input">Ta réponse</label>' +
     '<textarea id="pc-ecr-input" class="ecr-input" rows="2" placeholder="Tape ta réponse…"' +
       ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
-    '<div class="pc-actions"><button class="pc-btn primary wide" onclick="ecrValiderPc()">Valider</button></div>';
+    '<div class="pc-actions"><button class="pc-btn primary wide" id="pc-ecr-valider" onclick="ecrValiderPc()">Valider</button></div>';
 
   const input = document.getElementById('pc-ecr-input');
   input.addEventListener('keydown', ev => {
@@ -1137,6 +1149,7 @@ function renderEcriturePc(e) {
     if (pAttente) continuerParcours();
     else ecrValiderPc();
   });
+  input.addEventListener('input', () => { document.getElementById('pc-ecr-valider').textContent = 'Valider'; });
   focusSiClavierPhysique(input); // sur téléphone, on touche le champ pour écrire
 }
 
@@ -1177,7 +1190,8 @@ function ecrValiderPc() {
     err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · corrige ta réponse' +
       aideErreurHtml(val, e, attention, 1);
     // La réponse reste dans le champ pour la corriger ; le clavier se ferme
-    // pour laisser lire l'aide.
+    // pour laisser lire l'aide. Une seule action : « Réessayer ».
+    document.getElementById('pc-ecr-valider').textContent = 'Réessayer';
     fermerClavier();
     focusSiClavierPhysique(input);
     return;
