@@ -915,9 +915,10 @@
     {
       "id": 2011,
       "unite": 2,
-      "fr": "l'après-midi",
-      "lu": "den Nomëtteg",
-      "plus": true
+      "fr": "Je travaille.",
+      "lu": "Ech schaffen.",
+      "plus": true,
+      "attention": "Pour « je travaille », conjugue <b>schaffen</b> à la première personne."
     },
     {
       "id": 2012,
@@ -1014,7 +1015,7 @@
     {
       "id": 2027,
       "unite": 2,
-      "fr": "Vendredi après-midi.",
+      "fr": "Un vendredi après-midi.",
       "lu": "E Freideg den Nomëtteg."
     },
     {
