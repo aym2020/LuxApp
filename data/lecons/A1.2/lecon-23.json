@@ -1008,7 +1008,8 @@
       "id": 2005,
       "unite": 1,
       "fr": "les parents",
-      "lu": "d'Elteren"
+      "lu": "d'Elteren",
+      "plus": true
     },
     {
       "id": 2006,
@@ -1081,8 +1082,7 @@
       "id": 2017,
       "unite": 1,
       "fr": "J'ai un frère et une sœur.",
-      "lu": "Ech hunn e Brudder an eng Schwëster.",
-      "plus": true
+      "lu": "Ech hunn e Brudder an eng Schwëster."
     },
     {
       "id": 2018,
@@ -1285,8 +1285,12 @@
           "la sœur"
         ],
         [
-          "d'Elteren",
-          "les parents"
+          "de Monni",
+          "l'oncle"
+        ],
+        [
+          "d'Tatta",
+          "la tante"
         ]
       ]
     },
