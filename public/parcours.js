@@ -648,6 +648,7 @@ function renderMotCache(card) {
       '<div class="mc-fr">' + escHtml(card.fr) + '</div>' +
       (card.indice ? '<div class="mc-indice">' + escHtml(card.indice) + '</div>' : '') +
     '</div>' +
+    '<div class="mc-milieu">' +
     '<div class="mc-mot">' +
       (card.article && !articleAEcrire(pLecon, card) ? '<span class="mc-article">' + escHtml(card.article) + '</span>' : '') +
       '<div class="mc-cases" id="mc-cases"></div>' +
@@ -658,6 +659,8 @@ function renderMotCache(card) {
     '</div>' +
     '<div class="mc-info" id="mc-info">' + nbLettres + ' lettres</div>' +
     '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
+    '</div>' +
+    '<div class="mc-saisie">' +
     '<label class="pc-input-label" for="mc-input">Ta réponse</label>' +
     '<input id="mc-input" class="ecr-input mc-input" type="text" placeholder="Écris en luxembourgeois"' +
       ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">' +
@@ -666,7 +669,8 @@ function renderMotCache(card) {
       '<button class="pc-btn" id="mc-btn-indice" onclick="mcIndice()">Indice</button>' +
       '<button class="pc-btn primary" id="mc-btn-valider" onclick="mcValider()">Valider</button>' +
     '</div>' +
-    '<button class="pc-btn ghost wide hidden" id="mc-btn-voir" onclick="mcVoirReponse()">Voir la réponse</button>';
+    '<button class="pc-btn ghost wide hidden" id="mc-btn-voir" onclick="mcVoirReponse()">Voir la réponse</button>' +
+    '</div>';
 
   renderCases();
   const input = document.getElementById('mc-input');
