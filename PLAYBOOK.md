@@ -259,6 +259,26 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
 
 ## 8. Patterns de test (à réutiliser systématiquement)
 
+### Rythme de travail et niveaux de tests — RÈGLE
+
+Privilégier une implémentation rapide et ciblée. Ne pas relancer toute la suite
+après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
+**signaler** les problèmes secondaires au lieu de bloquer la livraison.
+
+| Quand | Quoi | Durée |
+| --- | --- | --- |
+| Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
+| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_seance.py` | ~5 min |
+| Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
+
+- La suite critique se lance **une seule fois, en fin de lot**.
+- **Ne jamais pousser** si un test critique échoue.
+- **Échec connu (oct. 2026)** : `test_fil.py` s'arrête à l'étape 10 (séance de révision,
+  attente de `#view-session .ecr-next-btn`). L'échec existe sans les changements récents :
+  ne pas le re-diagnostiquer à chaque livraison ; le corriger dans une tâche dédiée.
+- Les tests navigateur ont besoin d'un serveur local (`PORT=3456 node server.js`), à
+  démarrer pour la durée des tests puis arrêter.
+
 ### Test de logique → script Node autonome dans `/tmp/`
 
 1. Mocker `localStorage` avec un objet simple (proxy).
