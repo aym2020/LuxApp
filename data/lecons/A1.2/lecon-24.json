@@ -3,220 +3,458 @@
   "titre": "D'Vergaangenheet",
   "titre_fr": "Le passé composé – hunn / sinn + participe passé",
   "couleur": "#f08c46",
-  "instructions": {
-    "flashcards": "Mémorise le passé composé des verbes de la journée et des loisirs à la 1re personne (auxiliaire hunn ou sinn + participe passé), les formes war et hat, les mots de temps du passé et les deux questions clés. La note donne l'infinitif, l'auxiliaire et les particularités.",
-    "quiz": "Lis un infinitif luxembourgeois et choisis son passé composé correct (bon auxiliaire + bon participe). Les distracteurs sont le mauvais auxiliaire, le participe d'un autre verbe ou le présent. Pour war / hat, les mots de temps et les questions, choisis la traduction française.",
-    "trous": "Complète la phrase qui correspond à la traduction : auxiliaire conjugué (hunn ou sinn), participe passé, war / hat ou mot de temps. Les distracteurs sont l'autre auxiliaire, une autre personne, un autre participe ou l'infinitif.",
-    "ecriture": "Traduis en luxembourgeois les verbes au passé composé, war / hat, les mots de temps, les questions et des phrases complètes. Le participe va à la fin. Attention à la règle UNITEDZOHA : Ech hu geschafft, mais Ech hunn de Moien geschafft."
+  "v1": {
+    "quiz": 35,
+    "trous": 26,
+    "ecriture": 50
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve les participes passés et les mots fréquents pour raconter hier. Les phrases complètes sont travaillées en écriture.",
+    "quiz": "Associe un infinitif à son passé composé luxembourgeois ou reconnais une expression de temps ; puis distingue war et hat.",
+    "trous": "Complète les phrases du passé avec l'auxiliaire, le participe, war, hat ou l'expression de temps.",
+    "ecriture": "Traduis vers le luxembourgeois des phrases au passé avec sinn ou hunn, des questions et des réponses sur hier."
+  },
+  "mission": {
+    "titre": "Raconter sa journée d'hier",
+    "contexte": "Marie te demande comment s'est passée ta journée d'hier : déplacement, réveil, activités et soirée.",
+    "objectif": "raconter cinq actions et situations du passé en distinguant sinn, hunn et war."
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Wat hues du gëschter gemaach?",
+      "fr": "Qu'as-tu fait hier ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech si mam Auto an d'Stad gefuer.",
+      "fr": "Je suis allé en ville en voiture.",
+      "aide": "Pour se déplacer en voiture au passé, emploie <b>sinn</b>."
+    },
+    {
+      "unite": 1,
+      "qui": "Marie",
+      "lu": "Bass du fréi opgestanen?",
+      "fr": "Tu t'es levé tôt ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Jo, ech sinn opgestanen.",
+      "fr": "Oui, je me suis levé.",
+      "aide": "Le participe de opstoen est <b>opgestanen</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "A wat hues du gedronk?",
+      "fr": "Et qu'as-tu bu ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Ech hunn de Moien e Kaffi gedronk.",
+      "fr": "J'ai bu un café ce matin.",
+      "aide": "Avec drénken, utilise <b>hunn … gedronk</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Marie",
+      "lu": "Hues du och geschafft?",
+      "fr": "As-tu aussi travaillé ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Jo, ech hu geschafft.",
+      "fr": "Oui, j'ai travaillé.",
+      "aide": "Avec schaffen : <b>hu … geschafft</b>."
+    },
+    {
+      "unite": 3,
+      "qui": "Marie",
+      "lu": "Wou waars du owes?",
+      "fr": "Où étais-tu le soir ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "Ech war doheem.",
+      "fr": "J'étais à la maison.",
+      "aide": "« J'étais » = <b>Ech war</b>."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "lu": "ech si gefuer",
-      "fr": "je suis allé (en véhicule)",
-      "note": "fueren → gefuer · déplacement → sinn"
+      "titre": "Se déplacer au passé avec sinn",
+      "phrase": [
+        "Ech si mam Auto an d'Stad gefuer.",
+        "Je suis allé en ville en voiture."
+      ],
+      "regle": "Pour les déplacements et certains changements d'état, le passé composé utilise <b>sinn</b> + participe passé à la fin.",
+      "exemple": "Ech si <b>gefuer</b> · Ech si <b>gaangen</b> · Ech sinn <b>erwächt</b>.",
+      "pieges": [
+        "Un auxiliaire <b>sinn</b> ne se traduit pas toujours par « être » en français : j'ai couru = ech si gelaf.",
+        "Le participe passé se place en <b>fin de phrase</b>."
+      ]
     },
     {
       "id": 2,
-      "lu": "ech si gaangen",
-      "fr": "je suis allé (à pied)",
-      "note": "goen → gaangen · déplacement → sinn"
+      "titre": "Ce que j'ai fait : passé avec hunn",
+      "phrase": [
+        "Ech hunn de Moien e Kaffi gedronk.",
+        "J'ai bu un café ce matin."
+      ],
+      "regle": "Pour de nombreuses activités (travailler, boire, manger), on utilise <b>hunn</b> + participe passé à la fin.",
+      "exemple": "Ech hu <b>geschafft</b> · Ech hu <b>giess</b> · Ech hunn <b>de Moien e Kaffi gedronk</b>.",
+      "pieges": [
+        "<b>duschen</b> se construit avec hunn au passé, même si le français emploie « je me suis douché ».",
+        "Ne place pas le participe juste après l'auxiliaire quand il reste des compléments."
+      ]
     },
     {
       "id": 3,
-      "lu": "ech sinn heemgaangen",
-      "fr": "je suis rentré chez moi",
-      "note": "heemgoen → heem + gaangen · sinn"
+      "titre": "Hier : war, hat et questions",
+      "phrase": [
+        "Wou waars du gëschter? – Ech war doheem.",
+        "Où étais-tu hier ? – J'étais à la maison."
+      ],
+      "regle": "Pour « j'étais » et « j'avais », apprends <b>ech war</b> et <b>ech hat</b>. Après un temps en tête de phrase, le verbe conjugué garde la deuxième place.",
+      "exemple": "<b>Gëschter hunn ech</b> geschafft · <b>Ech war</b> doheem · <b>Ech hat</b> vill Aarbecht.",
+      "pieges": [
+        "<b>war</b> est le passé de sinn et <b>hat</b> celui de hunn.",
+        "Gëschter <b>war ech</b> krank : après gëschter, le verbe vient avant le sujet."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "conduit / allé en véhicule",
+      "lu": "gefuer"
     },
     {
-      "id": 4,
-      "lu": "ech sinn erausgaangen",
-      "fr": "je suis sorti",
-      "note": "erausgoen → eraus + gaangen · sinn"
+      "id": 2002,
+      "unite": 1,
+      "fr": "allé à pied",
+      "lu": "gaangen"
     },
     {
-      "id": 5,
-      "lu": "ech si getrëppelt",
-      "fr": "j'ai marché",
-      "note": "trëppelen → getrëppelt · sinn (en français : avoir)"
+      "id": 2003,
+      "unite": 1,
+      "fr": "rentré chez soi",
+      "lu": "heemgaangen"
     },
     {
-      "id": 6,
-      "lu": "ech si gelaf",
-      "fr": "j'ai couru",
-      "note": "lafen → gelaf · sinn (en français : avoir)"
+      "id": 2004,
+      "unite": 1,
+      "fr": "sorti",
+      "lu": "erausgaangen"
     },
     {
-      "id": 7,
-      "lu": "ech si gefall",
-      "fr": "je suis tombé",
-      "note": "falen → gefall · déplacement → sinn"
+      "id": 2005,
+      "unite": 1,
+      "fr": "réveillé",
+      "lu": "erwächt"
     },
     {
-      "id": 8,
-      "lu": "ech sinn erwächt",
-      "fr": "je me suis réveillé",
-      "note": "erwächen → erwächt (sans ge-) · changement → sinn"
+      "id": 2006,
+      "unite": 1,
+      "fr": "levé",
+      "lu": "opgestanen"
     },
     {
-      "id": 9,
-      "lu": "ech sinn opgestanen",
-      "fr": "je me suis levé",
-      "note": "opstoen → op + gestanen · changement → sinn"
+      "id": 2007,
+      "unite": 1,
+      "fr": "couru",
+      "lu": "gelaf"
     },
     {
-      "id": 10,
-      "lu": "ech hu giess",
-      "fr": "j'ai mangé",
-      "note": "iessen → giess · hunn"
+      "id": 2008,
+      "unite": 1,
+      "fr": "tombé",
+      "lu": "gefall"
     },
     {
-      "id": 11,
-      "lu": "ech hu gedronk",
-      "fr": "j'ai bu",
-      "note": "drénken → gedronk · hunn"
+      "id": 2009,
+      "unite": 2,
+      "fr": "mangé",
+      "lu": "giess"
     },
     {
-      "id": 12,
-      "lu": "ech hu geschafft",
-      "fr": "j'ai travaillé",
-      "note": "schaffen → geschafft · hunn"
+      "id": 2010,
+      "unite": 2,
+      "fr": "bu",
+      "lu": "gedronk"
     },
     {
-      "id": 13,
-      "lu": "ech hu gewunnt",
-      "fr": "j'ai habité",
-      "note": "wunnen → gewunnt · hunn"
+      "id": 2011,
+      "unite": 2,
+      "fr": "travaillé",
+      "lu": "geschafft"
     },
     {
-      "id": 14,
-      "lu": "ech hu geschlof",
-      "fr": "j'ai dormi",
-      "note": "schlofen → geschlof · hunn"
+      "id": 2012,
+      "unite": 2,
+      "fr": "dormi",
+      "lu": "geschlof"
     },
     {
-      "id": 15,
-      "lu": "ech hu gekuckt",
-      "fr": "j'ai regardé",
-      "note": "kucken → gekuckt · hunn"
+      "id": 2013,
+      "unite": 2,
+      "fr": "écrit",
+      "lu": "geschriwwen"
     },
     {
-      "id": 16,
-      "lu": "ech hu geschriwwen",
-      "fr": "j'ai écrit",
-      "note": "schreiwen → geschriwwen · hunn"
+      "id": 2014,
+      "unite": 2,
+      "fr": "fait",
+      "lu": "gemaach"
     },
     {
-      "id": 17,
-      "lu": "ech hu gemaach",
-      "fr": "j'ai fait",
-      "note": "maachen → gemaach · hunn"
+      "id": 2015,
+      "unite": 2,
+      "fr": "douché",
+      "lu": "geduscht"
     },
     {
-      "id": 18,
-      "lu": "ech hu geduscht",
-      "fr": "je me suis douché",
-      "note": "duschen → geduscht · hunn (en français : être)"
+      "id": 2016,
+      "unite": 2,
+      "fr": "téléphoné",
+      "lu": "telefonéiert"
     },
     {
-      "id": 19,
-      "lu": "ech hunn telefonéiert",
-      "fr": "j'ai téléphoné",
-      "note": "telefonéieren → telefonéiert (sans ge-) · hunn"
-    },
-    {
-      "id": 20,
-      "lu": "ech hu gespillt",
-      "fr": "j'ai joué",
-      "note": "spillen → gespillt · hunn"
-    },
-    {
-      "id": 21,
-      "lu": "ech hu gekacht",
-      "fr": "j'ai cuisiné",
-      "note": "kachen → gekacht · hunn"
-    },
-    {
-      "id": 22,
-      "lu": "ech hu gelies",
-      "fr": "j'ai lu",
-      "note": "liesen → gelies · hunn"
-    },
-    {
-      "id": 23,
-      "lu": "ech hu gelauschtert",
-      "fr": "j'ai écouté",
-      "note": "lauschteren → gelauschtert · hunn"
-    },
-    {
-      "id": 24,
-      "lu": "ech war",
+      "id": 2017,
+      "unite": 3,
       "fr": "j'étais",
-      "note": "sinn au passé · mir waren"
+      "lu": "ech war"
     },
     {
-      "id": 25,
-      "lu": "ech hat",
+      "id": 2018,
+      "unite": 3,
       "fr": "j'avais",
-      "note": "hunn au passé · mir haten"
+      "lu": "ech hat"
     },
     {
-      "id": 26,
-      "lu": "gëschter",
-      "fr": "hier"
+      "id": 2019,
+      "unite": 3,
+      "fr": "hier",
+      "lu": "gëschter"
     },
     {
-      "id": 27,
-      "lu": "gëschter Owend",
+      "id": 2020,
+      "unite": 3,
       "fr": "hier soir",
-      "note": "gëschter Moien = hier matin"
+      "lu": "gëschter Owend"
     },
     {
-      "id": 28,
-      "lu": "de Moien",
+      "id": 2021,
+      "unite": 3,
       "fr": "ce matin",
-      "note": "Ne pas confondre avec Moien! = bonjour"
+      "lu": "de Moien"
     },
     {
-      "id": 29,
-      "lu": "d'lescht Woch",
-      "fr": "la semaine dernière",
-      "note": "d'Woch : féminin"
+      "id": 2022,
+      "unite": 3,
+      "fr": "semaine dernière",
+      "lu": "d'lescht Woch"
     },
     {
-      "id": 30,
-      "lu": "de leschte Weekend",
-      "fr": "le week-end dernier",
-      "note": "de Weekend : masculin"
-    },
-    {
-      "id": 31,
-      "lu": "doheem",
+      "id": 2023,
+      "unite": 3,
       "fr": "à la maison",
-      "note": "Ech war doheem."
+      "lu": "doheem"
     },
     {
-      "id": 32,
-      "lu": "krank",
+      "id": 2024,
+      "unite": 3,
+      "fr": "week-end dernier",
+      "lu": "de leschte Weekend"
+    },
+    {
+      "id": 2025,
+      "unite": 1,
+      "fr": "je suis allé (en véhicule)",
+      "lu": "ech si gefuer",
+      "plus": true
+    },
+    {
+      "id": 2026,
+      "unite": 1,
+      "fr": "je suis allé (à pied)",
+      "lu": "ech si gaangen",
+      "plus": true
+    },
+    {
+      "id": 2027,
+      "unite": 1,
+      "fr": "je suis rentré chez moi",
+      "lu": "ech sinn heemgaangen",
+      "plus": true
+    },
+    {
+      "id": 2028,
+      "unite": 1,
+      "fr": "je suis sorti",
+      "lu": "ech sinn erausgaangen",
+      "plus": true
+    },
+    {
+      "id": 2029,
+      "unite": 1,
+      "fr": "j'ai marché",
+      "lu": "ech si getrëppelt",
+      "plus": true
+    },
+    {
+      "id": 2030,
+      "unite": 1,
+      "fr": "j'ai couru",
+      "lu": "ech si gelaf",
+      "plus": true
+    },
+    {
+      "id": 2031,
+      "unite": 1,
+      "fr": "je suis tombé",
+      "lu": "ech si gefall",
+      "plus": true
+    },
+    {
+      "id": 2032,
+      "unite": 1,
+      "fr": "je me suis réveillé",
+      "lu": "ech sinn erwächt",
+      "plus": true
+    },
+    {
+      "id": 2033,
+      "unite": 1,
+      "fr": "je me suis levé",
+      "lu": "ech sinn opgestanen",
+      "plus": true
+    },
+    {
+      "id": 2034,
+      "unite": 2,
+      "fr": "j'ai mangé",
+      "lu": "ech hu giess",
+      "plus": true
+    },
+    {
+      "id": 2035,
+      "unite": 2,
+      "fr": "j'ai bu",
+      "lu": "ech hu gedronk",
+      "plus": true
+    },
+    {
+      "id": 2036,
+      "unite": 2,
+      "fr": "j'ai travaillé",
+      "lu": "ech hu geschafft",
+      "plus": true
+    },
+    {
+      "id": 2037,
+      "unite": 2,
+      "fr": "j'ai habité",
+      "lu": "ech hu gewunnt",
+      "plus": true
+    },
+    {
+      "id": 2038,
+      "unite": 2,
+      "fr": "j'ai dormi",
+      "lu": "ech hu geschlof",
+      "plus": true
+    },
+    {
+      "id": 2039,
+      "unite": 2,
+      "fr": "j'ai regardé",
+      "lu": "ech hu gekuckt",
+      "plus": true
+    },
+    {
+      "id": 2040,
+      "unite": 2,
+      "fr": "j'ai écrit",
+      "lu": "ech hu geschriwwen",
+      "plus": true
+    },
+    {
+      "id": 2041,
+      "unite": 2,
+      "fr": "j'ai fait",
+      "lu": "ech hu gemaach",
+      "plus": true
+    },
+    {
+      "id": 2042,
+      "unite": 2,
+      "fr": "je me suis douché",
+      "lu": "ech hu geduscht",
+      "plus": true
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "fr": "j'ai téléphoné",
+      "lu": "ech hunn telefonéiert",
+      "plus": true
+    },
+    {
+      "id": 2044,
+      "unite": 2,
+      "fr": "j'ai joué",
+      "lu": "ech hu gespillt",
+      "plus": true
+    },
+    {
+      "id": 2045,
+      "unite": 2,
+      "fr": "j'ai cuisiné",
+      "lu": "ech hu gekacht",
+      "plus": true
+    },
+    {
+      "id": 2046,
+      "unite": 2,
+      "fr": "j'ai lu",
+      "lu": "ech hu gelies",
+      "plus": true
+    },
+    {
+      "id": 2047,
+      "unite": 2,
+      "fr": "j'ai écouté",
+      "lu": "ech hu gelauschtert",
+      "plus": true
+    },
+    {
+      "id": 2048,
+      "unite": 3,
       "fr": "malade",
-      "note": "Ech war krank."
+      "lu": "krank",
+      "plus": true
     },
     {
-      "id": 33,
-      "lu": "Wat hues du gëschter gemaach?",
-      "fr": "Qu'as-tu fait hier ?",
-      "note": "Vouvoiement : Wat hutt Dir gëschter gemaach?"
-    },
-    {
-      "id": 34,
-      "lu": "Wou waars du gëschter?",
+      "id": 2049,
+      "unite": 3,
       "fr": "Où étais-tu hier ?",
-      "note": "Vouvoiement : Wou waart Dir gëschter?"
+      "lu": "Wou waars du gëschter?",
+      "plus": true
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "question": "fueren",
       "reponse": "ech si gefuer",
       "distracteurs": [
@@ -226,7 +464,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "question": "goen",
       "reponse": "ech si gaangen",
       "distracteurs": [
@@ -236,7 +475,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "question": "heemgoen",
       "reponse": "ech sinn heemgaangen",
       "distracteurs": [
@@ -246,7 +486,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "question": "erausgoen",
       "reponse": "ech sinn erausgaangen",
       "distracteurs": [
@@ -256,7 +497,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "question": "trëppelen",
       "reponse": "ech si getrëppelt",
       "distracteurs": [
@@ -266,7 +508,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 1,
       "question": "lafen",
       "reponse": "ech si gelaf",
       "distracteurs": [
@@ -276,7 +519,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 1,
       "question": "falen",
       "reponse": "ech si gefall",
       "distracteurs": [
@@ -286,7 +530,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 1,
       "question": "erwächen",
       "reponse": "ech sinn erwächt",
       "distracteurs": [
@@ -296,17 +541,20 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 1,
       "question": "opstoen",
       "reponse": "ech sinn opgestanen",
       "distracteurs": [
         "ech hunn opgestanen",
         "ech sinn erwächt",
         "ech stinn op"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "question": "iessen",
       "reponse": "ech hu giess",
       "distracteurs": [
@@ -316,7 +564,8 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "question": "drénken",
       "reponse": "ech hu gedronk",
       "distracteurs": [
@@ -326,7 +575,8 @@
       ]
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "question": "schaffen",
       "reponse": "ech hu geschafft",
       "distracteurs": [
@@ -336,7 +586,8 @@
       ]
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 2,
       "question": "wunnen",
       "reponse": "ech hu gewunnt",
       "distracteurs": [
@@ -346,7 +597,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 2,
       "question": "schlofen",
       "reponse": "ech hu geschlof",
       "distracteurs": [
@@ -356,7 +608,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 2,
       "question": "kucken",
       "reponse": "ech hu gekuckt",
       "distracteurs": [
@@ -366,7 +619,8 @@
       ]
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 2,
       "question": "schreiwen",
       "reponse": "ech hu geschriwwen",
       "distracteurs": [
@@ -376,7 +630,8 @@
       ]
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 2,
       "question": "maachen",
       "reponse": "ech hu gemaach",
       "distracteurs": [
@@ -386,67 +641,80 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 2,
       "question": "duschen",
       "reponse": "ech hu geduscht",
       "distracteurs": [
         "ech si geduscht",
         "ech hu gedronk",
         "ech duschen"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 2,
       "question": "telefonéieren",
       "reponse": "ech hunn telefonéiert",
       "distracteurs": [
         "ech sinn telefonéiert",
         "ech hu geschriwwen",
         "ech telefonéieren"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 2,
       "question": "spillen",
       "reponse": "ech hu gespillt",
       "distracteurs": [
         "ech si gespillt",
         "ech hu gemaach",
         "ech spillen"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 2,
       "question": "kachen",
       "reponse": "ech hu gekacht",
       "distracteurs": [
         "ech si gekacht",
         "ech hu giess",
         "ech kachen"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 22,
+      "id": 2022,
+      "unite": 2,
       "question": "liesen",
       "reponse": "ech hu gelies",
       "distracteurs": [
         "ech si gelies",
         "ech hu geschriwwen",
         "ech liesen"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 23,
+      "id": 2023,
+      "unite": 2,
       "question": "lauschteren",
       "reponse": "ech hu gelauschtert",
       "distracteurs": [
         "ech si gelauschtert",
         "ech hu gekuckt",
         "ech lauschteren"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 24,
+      "id": 2024,
+      "unite": 3,
       "question": "ech war",
       "reponse": "j'étais",
       "distracteurs": [
@@ -456,7 +724,8 @@
       ]
     },
     {
-      "id": 25,
+      "id": 2025,
+      "unite": 3,
       "question": "ech hat",
       "reponse": "j'avais",
       "distracteurs": [
@@ -466,7 +735,8 @@
       ]
     },
     {
-      "id": 26,
+      "id": 2026,
+      "unite": 3,
       "question": "mir waren",
       "reponse": "nous étions",
       "distracteurs": [
@@ -476,7 +746,8 @@
       ]
     },
     {
-      "id": 27,
+      "id": 2027,
+      "unite": 3,
       "question": "mir haten",
       "reponse": "nous avions",
       "distracteurs": [
@@ -486,7 +757,8 @@
       ]
     },
     {
-      "id": 28,
+      "id": 2028,
+      "unite": 3,
       "question": "gëschter",
       "reponse": "hier",
       "distracteurs": [
@@ -496,7 +768,8 @@
       ]
     },
     {
-      "id": 29,
+      "id": 2029,
+      "unite": 3,
       "question": "gëschter Owend",
       "reponse": "hier soir",
       "distracteurs": [
@@ -506,7 +779,8 @@
       ]
     },
     {
-      "id": 30,
+      "id": 2030,
+      "unite": 3,
       "question": "de Moien",
       "reponse": "ce matin",
       "distracteurs": [
@@ -516,37 +790,44 @@
       ]
     },
     {
-      "id": 31,
+      "id": 2031,
+      "unite": 3,
       "question": "d'lescht Woch",
       "reponse": "la semaine dernière",
       "distracteurs": [
         "le week-end dernier",
         "une fois par semaine",
         "hier"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 32,
+      "id": 2032,
+      "unite": 3,
       "question": "de leschte Weekend",
       "reponse": "le week-end dernier",
       "distracteurs": [
         "la semaine dernière",
         "hier soir",
         "le week-end"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 33,
+      "id": 2033,
+      "unite": 3,
       "question": "doheem",
       "reponse": "à la maison",
       "distracteurs": [
         "au travail",
         "au restaurant",
         "malade"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 34,
+      "id": 2034,
+      "unite": 3,
       "question": "Wat hues du gëschter gemaach?",
       "reponse": "Qu'as-tu fait hier ?",
       "distracteurs": [
@@ -556,19 +837,22 @@
       ]
     },
     {
-      "id": 35,
+      "id": 2035,
+      "unite": 3,
       "question": "Wou waars du gëschter?",
       "reponse": "Où étais-tu hier ?",
       "distracteurs": [
         "Qu'as-tu fait hier ?",
         "Où es-tu aujourd'hui ?",
         "Où étiez-vous hier ?"
-      ]
+      ],
+      "plus": true
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "fr": "Je suis allé en ville en voiture.",
       "avant": "Ech",
       "trou": "si",
@@ -582,7 +866,8 @@
       "note": "fueren = déplacement → sinn. Devant m : sinn → si."
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 2,
       "fr": "J'ai bu un café ce matin.",
       "avant": "Ech",
       "trou": "hunn",
@@ -596,7 +881,8 @@
       "note": "drénken → hunn. Devant d, le n reste."
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "fr": "Tu es rentré à six heures.",
       "avant": "Du",
       "trou": "bass",
@@ -610,7 +896,8 @@
       "note": "heemgoen = déplacement → sinn : du bass."
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 2,
       "fr": "Elle a mangé au restaurant.",
       "avant": "Si",
       "trou": "huet",
@@ -624,7 +911,8 @@
       "note": "iessen → hunn : si huet."
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "fr": "Nous sommes allés au cinéma.",
       "avant": "Mir",
       "trou": "sinn",
@@ -638,7 +926,8 @@
       "note": "goen = déplacement → sinn."
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "fr": "Vous avez bien dormi ?",
       "avant": "",
       "trou": "Hutt",
@@ -652,7 +941,8 @@
       "note": "schlofen → hunn : Dir hutt."
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 1,
       "fr": "Il s'est réveillé à sept heures.",
       "avant": "Hien",
       "trou": "ass",
@@ -666,7 +956,8 @@
       "note": "erwächen = changement d'état → sinn."
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "fr": "Ils ont travaillé hier.",
       "avant": "Si",
       "trou": "hu",
@@ -680,7 +971,8 @@
       "note": "schaffen → hunn. Devant g : hunn → hu."
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 1,
       "fr": "L'enfant est tombé.",
       "avant": "D'Kand",
       "trou": "ass",
@@ -694,7 +986,8 @@
       "note": "falen = déplacement → sinn."
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 1,
       "fr": "Nous avons beaucoup marché.",
       "avant": "Mir",
       "trou": "si",
@@ -708,7 +1001,8 @@
       "note": "trëppelen = déplacement → sinn (en français : avoir)."
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 1,
       "fr": "Tu as couru ce matin ?",
       "avant": "",
       "trou": "Bass",
@@ -722,7 +1016,8 @@
       "note": "lafen = déplacement → sinn (en français : avoir)."
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 2,
       "fr": "Je me suis douché à six heures.",
       "avant": "Ech",
       "trou": "hunn",
@@ -736,7 +1031,8 @@
       "note": "duschen → hunn (en français : être)."
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 2,
       "fr": "J'ai regardé la télé hier soir.",
       "avant": "Ech hu gëschter Owend d'Tëlee",
       "trou": "gekuckt",
@@ -750,7 +1046,8 @@
       "note": "kucken → gekuckt. Le participe va à la fin."
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 2,
       "fr": "Elle a écrit un rapport.",
       "avant": "Si huet e Rapport",
       "trou": "geschriwwen",
@@ -764,7 +1061,8 @@
       "note": "schreiwen → geschriwwen (irrégulier)."
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 1,
       "fr": "Nous sommes allés au travail en bus.",
       "avant": "Mir si mam Bus op d'Aarbecht",
       "trou": "gefuer",
@@ -778,7 +1076,8 @@
       "note": "mam Bus → fueren. goen = à pied."
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 1,
       "fr": "Je suis allé me coucher à onze heures.",
       "avant": "Ech sinn um eelef Auer schlofe",
       "trou": "gaangen",
@@ -789,10 +1088,12 @@
         "geschlof",
         "goen"
       ],
-      "note": "schlofe goen → schlofe gaangen."
+      "note": "schlofe goen → schlofe gaangen.",
+      "plus": true
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 2,
       "fr": "Tu as fait du sport hier ?",
       "avant": "Hues du gëschter Sport",
       "trou": "gemaach",
@@ -806,7 +1107,8 @@
       "note": "Sport maachen → gemaach."
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 2,
       "fr": "Il a habité à Paris.",
       "avant": "Hien huet zu Paräis",
       "trou": "gewunnt",
@@ -817,10 +1119,12 @@
         "wunnt",
         "giess"
       ],
-      "note": "wunnen → gewunnt (régulier : ge- + wunn + -t)."
+      "note": "wunnen → gewunnt (régulier : ge- + wunn + -t).",
+      "plus": true
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 2,
       "fr": "Nous avons mangé à midi et demi.",
       "avant": "Mir hunn um hallwer eng",
       "trou": "giess",
@@ -831,10 +1135,12 @@
         "iessen",
         "gekacht"
       ],
-      "note": "iessen → giess (irrégulier)."
+      "note": "iessen → giess (irrégulier).",
+      "plus": true
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 2,
       "fr": "J'ai téléphoné ce matin.",
       "avant": "Ech hunn de Moien",
       "trou": "telefonéiert",
@@ -845,10 +1151,12 @@
         "telefonéieren",
         "geschriwwen"
       ],
-      "note": "Verbes en -éieren : pas de ge-."
+      "note": "Verbes en -éieren : pas de ge-.",
+      "plus": true
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 1,
       "fr": "Je me suis levé à sept heures.",
       "avant": "Ech sinn um siwen Auer",
       "trou": "opgestanen",
@@ -859,10 +1167,12 @@
         "opstoen",
         "heemgaangen"
       ],
-      "note": "opstoen → op + ge + stanen."
+      "note": "opstoen → op + ge + stanen.",
+      "plus": true
     },
     {
-      "id": 22,
+      "id": 2022,
+      "unite": 3,
       "fr": "La semaine dernière, j'avais beaucoup de travail.",
       "avant": "D'lescht Woch",
       "trou": "hat",
@@ -876,7 +1186,8 @@
       "note": "hunn au passé : ech hat."
     },
     {
-      "id": 23,
+      "id": 2023,
+      "unite": 3,
       "fr": "Hier, j'étais malade.",
       "avant": "Gëschter",
       "trou": "war",
@@ -890,7 +1201,8 @@
       "note": "sinn au passé : ech war."
     },
     {
-      "id": 24,
+      "id": 2024,
+      "unite": 3,
       "fr": "Nous étions à la maison.",
       "avant": "Mir",
       "trou": "waren",
@@ -904,7 +1216,8 @@
       "note": "sinn au passé : mir waren."
     },
     {
-      "id": 25,
+      "id": 2025,
+      "unite": 3,
       "fr": "Hier matin, nous avions une réunion.",
       "avant": "Gëschter Moien",
       "trou": "hate",
@@ -918,7 +1231,8 @@
       "note": "hunn au passé : mir haten. Devant m : haten → hate."
     },
     {
-      "id": 26,
+      "id": 2026,
+      "unite": 3,
       "fr": "Hier, j'ai travaillé.",
       "avant": "",
       "trou": "Gëschter",
@@ -930,214 +1244,626 @@
         "Heiansdo"
       ],
       "note": "Passé composé → gëschter. Le verbe conjugué reste en 2e position."
+    },
+    {
+      "id": 2027,
+      "unite": 3,
+      "fr": "J'étais à la maison.",
+      "avant": "Ech",
+      "trou": "war",
+      "apres": "doheem.",
+      "choix": [
+        "war",
+        "hat",
+        "hunn",
+        "ass"
+      ],
+      "note": "War = j'étais."
+    },
+    {
+      "id": 2028,
+      "unite": 3,
+      "fr": "J'avais beaucoup de travail.",
+      "avant": "Ech",
+      "trou": "hat",
+      "apres": "vill Aarbecht.",
+      "choix": [
+        "hat",
+        "war",
+        "hunn",
+        "sinn"
+      ],
+      "note": "Hat = j'avais."
+    },
+    {
+      "id": 2029,
+      "unite": 3,
+      "fr": "Hier, j'étais malade.",
+      "avant": "Gëschter",
+      "trou": "war",
+      "apres": "ech krank.",
+      "choix": [
+        "war",
+        "hat",
+        "sinn",
+        "huet"
+      ],
+      "note": "Après gëschter, le verbe est en deuxième position."
     }
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "je suis allé (en véhicule)",
       "lu": "ech si gefuer"
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "je suis allé (à pied)",
       "lu": "ech si gaangen"
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "je suis rentré chez moi",
       "lu": "ech sinn heemgaangen"
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "je suis sorti",
       "lu": "ech sinn erausgaangen"
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "j'ai marché",
       "lu": "ech si getrëppelt"
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "j'ai couru",
-      "lu": "ech si gelaf"
+      "lu": "ech si gelaf",
+      "plus": true
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "je suis tombé",
-      "lu": "ech si gefall"
+      "lu": "ech si gefall",
+      "plus": true
     },
     {
+      "id": 2008,
+      "unite": 1,
       "fr": "je me suis réveillé",
       "lu": "ech sinn erwächt"
     },
     {
+      "id": 2009,
+      "unite": 1,
       "fr": "je me suis levé",
-      "lu": "ech sinn opgestanen"
+      "lu": "ech sinn opgestanen",
+      "plus": true
     },
     {
+      "id": 2010,
+      "unite": 2,
       "fr": "j'ai mangé",
       "lu": "ech hu giess"
     },
     {
+      "id": 2011,
+      "unite": 2,
       "fr": "j'ai bu",
       "lu": "ech hu gedronk"
     },
     {
+      "id": 2012,
+      "unite": 2,
       "fr": "j'ai travaillé",
       "lu": "ech hu geschafft"
     },
     {
+      "id": 2013,
+      "unite": 2,
       "fr": "j'ai habité",
-      "lu": "ech hu gewunnt"
+      "lu": "ech hu gewunnt",
+      "plus": true
     },
     {
+      "id": 2014,
+      "unite": 2,
       "fr": "j'ai dormi",
       "lu": "ech hu geschlof"
     },
     {
+      "id": 2015,
+      "unite": 2,
       "fr": "j'ai regardé",
-      "lu": "ech hu gekuckt"
+      "lu": "ech hu gekuckt",
+      "plus": true
     },
     {
+      "id": 2016,
+      "unite": 2,
       "fr": "j'ai écrit",
-      "lu": "ech hu geschriwwen"
+      "lu": "ech hu geschriwwen",
+      "plus": true
     },
     {
+      "id": 2017,
+      "unite": 2,
       "fr": "j'ai fait",
       "lu": "ech hu gemaach"
     },
     {
+      "id": 2018,
+      "unite": 2,
       "fr": "je me suis douché",
-      "lu": "ech hu geduscht"
+      "lu": "ech hu geduscht",
+      "plus": true
     },
     {
+      "id": 2019,
+      "unite": 2,
       "fr": "j'ai téléphoné",
       "lu": "ech hunn telefonéiert"
     },
     {
+      "id": 2020,
+      "unite": 2,
       "fr": "j'ai joué",
-      "lu": "ech hu gespillt"
+      "lu": "ech hu gespillt",
+      "plus": true
     },
     {
+      "id": 2021,
+      "unite": 2,
       "fr": "j'ai cuisiné",
-      "lu": "ech hu gekacht"
+      "lu": "ech hu gekacht",
+      "plus": true
     },
     {
+      "id": 2022,
+      "unite": 2,
       "fr": "j'ai lu",
-      "lu": "ech hu gelies"
+      "lu": "ech hu gelies",
+      "plus": true
     },
     {
+      "id": 2023,
+      "unite": 2,
       "fr": "j'ai écouté",
-      "lu": "ech hu gelauschtert"
+      "lu": "ech hu gelauschtert",
+      "plus": true
     },
     {
+      "id": 2024,
+      "unite": 3,
       "fr": "j'étais",
       "lu": "ech war"
     },
     {
+      "id": 2025,
+      "unite": 3,
       "fr": "j'avais",
       "lu": "ech hat"
     },
     {
+      "id": 2026,
+      "unite": 3,
       "fr": "nous étions",
-      "lu": "mir waren"
+      "lu": "mir waren",
+      "plus": true
     },
     {
+      "id": 2027,
+      "unite": 3,
       "fr": "nous avions",
-      "lu": "mir haten"
+      "lu": "mir haten",
+      "plus": true
     },
     {
+      "id": 2028,
+      "unite": 3,
       "fr": "hier",
       "lu": "gëschter"
     },
     {
+      "id": 2029,
+      "unite": 3,
       "fr": "hier soir",
       "lu": "gëschter Owend"
     },
     {
+      "id": 2030,
+      "unite": 3,
       "fr": "ce matin",
-      "lu": "de Moien"
+      "lu": "de Moien",
+      "plus": true
     },
     {
+      "id": 2031,
+      "unite": 3,
       "fr": "la semaine dernière",
       "lu": "d'lescht Woch"
     },
     {
+      "id": 2032,
+      "unite": 3,
       "fr": "le week-end dernier",
-      "lu": "de leschte Weekend"
+      "lu": "de leschte Weekend",
+      "plus": true
     },
     {
+      "id": 2033,
+      "unite": 3,
       "fr": "à la maison",
-      "lu": "doheem"
+      "lu": "doheem",
+      "plus": true
     },
     {
+      "id": 2034,
+      "unite": 3,
       "fr": "malade",
-      "lu": "krank"
+      "lu": "krank",
+      "plus": true
     },
     {
+      "id": 2035,
+      "unite": 3,
       "fr": "Qu'as-tu fait hier ?",
       "lu": "Wat hues du gëschter gemaach?"
     },
     {
+      "id": 2036,
+      "unite": 3,
       "fr": "Qu'avez-vous fait le week-end dernier ?",
-      "lu": "Wat hutt Dir de leschte Weekend gemaach?"
+      "lu": "Wat hutt Dir de leschte Weekend gemaach?",
+      "plus": true
     },
     {
+      "id": 2037,
+      "unite": 3,
       "fr": "Où étais-tu hier ?",
-      "lu": "Wou waars du gëschter?"
+      "lu": "Wou waars du gëschter?",
+      "plus": true
     },
     {
+      "id": 2038,
+      "unite": 1,
       "fr": "Je suis allé en ville en voiture.",
       "lu": "Ech si mam Auto an d'Stad gefuer."
     },
     {
+      "id": 2039,
+      "unite": 2,
       "fr": "J'ai bu un café ce matin.",
       "lu": "Ech hunn de Moien e Kaffi gedronk."
     },
     {
+      "id": 2040,
+      "unite": 2,
       "fr": "Hier, j'ai travaillé.",
-      "lu": "Gëschter hunn ech geschafft."
+      "lu": "Gëschter hunn ech geschafft.",
+      "plus": true
     },
     {
+      "id": 2041,
+      "unite": 2,
       "fr": "Je n'ai pas travaillé.",
-      "lu": "Ech hunn net geschafft."
+      "lu": "Ech hunn net geschafft.",
+      "plus": true
     },
     {
+      "id": 2042,
+      "unite": 1,
       "fr": "Nous sommes allés au cinéma.",
       "lu": "Mir sinn an de Kino gaangen."
     },
     {
+      "id": 2043,
+      "unite": 2,
       "fr": "Elle a mangé au restaurant.",
-      "lu": "Si huet am Restaurant giess."
+      "lu": "Si huet am Restaurant giess.",
+      "plus": true
     },
     {
+      "id": 2044,
+      "unite": 1,
       "fr": "Il est rentré à six heures.",
-      "lu": "Hien ass um sechs Auer heemgaangen."
+      "lu": "Hien ass um sechs Auer heemgaangen.",
+      "plus": true
     },
     {
+      "id": 2045,
+      "unite": 2,
       "fr": "J'ai regardé la télé hier soir.",
       "lu": "Ech hu gëschter Owend d'Tëlee gekuckt."
     },
     {
+      "id": 2046,
+      "unite": 2,
       "fr": "Tu as bien dormi ?",
-      "lu": "Hues du gutt geschlof?"
+      "lu": "Hues du gutt geschlof?",
+      "plus": true
     },
     {
+      "id": 2047,
+      "unite": 1,
       "fr": "Je suis allé me coucher.",
-      "lu": "Ech si schlofe gaangen."
+      "lu": "Ech si schlofe gaangen.",
+      "plus": true
     },
     {
+      "id": 2048,
+      "unite": 3,
       "fr": "J'étais à la maison.",
       "lu": "Ech war doheem."
     },
     {
+      "id": 2049,
+      "unite": 3,
       "fr": "Hier, j'étais malade.",
       "lu": "Gëschter war ech krank."
     },
     {
+      "id": 2050,
+      "unite": 3,
       "fr": "J'avais beaucoup de travail.",
-      "lu": "Ech hat vill Aarbecht."
+      "lu": "Ech hat vill Aarbecht.",
+      "plus": true
     }
   ],
   "cours": [
     {
+      "type": "callout",
+      "unite": 1,
+      "variant": "retenir",
+      "titre": "Se déplacer au passé avec sinn",
+      "lignes": [
+        "Pour les déplacements et certains changements d'état, le passé composé utilise <b>sinn</b> + participe passé à la fin.",
+        "Ech si <b>gefuer</b> · Ech si <b>gaangen</b> · Ech sinn <b>erwächt</b>."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 1,
+      "titre": "Formes essentielles",
+      "items": [
+        [
+          "gefuer",
+          "conduit / allé en véhicule"
+        ],
+        [
+          "gaangen",
+          "allé à pied"
+        ],
+        [
+          "heemgaangen",
+          "rentré chez soi"
+        ],
+        [
+          "erausgaangen",
+          "sorti"
+        ],
+        [
+          "erwächt",
+          "réveillé"
+        ],
+        [
+          "opgestanen",
+          "levé"
+        ],
+        [
+          "gelaf",
+          "couru"
+        ],
+        [
+          "gefall",
+          "tombé"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 1,
+      "titre": "Phrases à savoir produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "ech si gefuer",
+          "je suis allé (en véhicule)"
+        ],
+        [
+          "ech si gaangen",
+          "je suis allé (à pied)"
+        ],
+        [
+          "ech sinn heemgaangen",
+          "je suis rentré chez moi"
+        ],
+        [
+          "ech sinn erausgaangen",
+          "je suis sorti"
+        ],
+        [
+          "ech si getrëppelt",
+          "j'ai marché"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 2,
+      "variant": "retenir",
+      "titre": "Ce que j'ai fait : passé avec hunn",
+      "lignes": [
+        "Pour de nombreuses activités (travailler, boire, manger), on utilise <b>hunn</b> + participe passé à la fin.",
+        "Ech hu <b>geschafft</b> · Ech hu <b>giess</b> · Ech hunn <b>de Moien e Kaffi gedronk</b>."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 2,
+      "titre": "Formes essentielles",
+      "items": [
+        [
+          "giess",
+          "mangé"
+        ],
+        [
+          "gedronk",
+          "bu"
+        ],
+        [
+          "geschafft",
+          "travaillé"
+        ],
+        [
+          "geschlof",
+          "dormi"
+        ],
+        [
+          "geschriwwen",
+          "écrit"
+        ],
+        [
+          "gemaach",
+          "fait"
+        ],
+        [
+          "geduscht",
+          "douché"
+        ],
+        [
+          "telefonéiert",
+          "téléphoné"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 2,
+      "titre": "Phrases à savoir produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "ech hu giess",
+          "j'ai mangé"
+        ],
+        [
+          "ech hu gedronk",
+          "j'ai bu"
+        ],
+        [
+          "ech hu geschafft",
+          "j'ai travaillé"
+        ],
+        [
+          "ech hu geschlof",
+          "j'ai dormi"
+        ],
+        [
+          "ech hu gemaach",
+          "j'ai fait"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 3,
+      "variant": "retenir",
+      "titre": "Hier : war, hat et questions",
+      "lignes": [
+        "Pour « j'étais » et « j'avais », apprends <b>ech war</b> et <b>ech hat</b>. Après un temps en tête de phrase, le verbe conjugué garde la deuxième place.",
+        "<b>Gëschter hunn ech</b> geschafft · <b>Ech war</b> doheem · <b>Ech hat</b> vill Aarbecht."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 3,
+      "titre": "Formes essentielles",
+      "items": [
+        [
+          "ech war",
+          "j'étais"
+        ],
+        [
+          "ech hat",
+          "j'avais"
+        ],
+        [
+          "gëschter",
+          "hier"
+        ],
+        [
+          "gëschter Owend",
+          "hier soir"
+        ],
+        [
+          "de Moien",
+          "ce matin"
+        ],
+        [
+          "d'lescht Woch",
+          "semaine dernière"
+        ],
+        [
+          "doheem",
+          "à la maison"
+        ],
+        [
+          "de leschte Weekend",
+          "week-end dernier"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 3,
+      "titre": "Phrases à savoir produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "ech war",
+          "j'étais"
+        ],
+        [
+          "ech hat",
+          "j'avais"
+        ],
+        [
+          "gëschter",
+          "hier"
+        ],
+        [
+          "gëschter Owend",
+          "hier soir"
+        ],
+        [
+          "d'lescht Woch",
+          "la semaine dernière"
+        ]
+      ]
+    },
+    {
       "type": "texte",
-      "contenu": "Cette leçon apprend à <b>parler du passé</b> : ce qu'on a fait hier, ce matin ou le week-end dernier. Le luxembourgeois utilise presque toujours le <b>passé composé</b> : un auxiliaire (<b>hunn</b> ou <b>sinn</b>) + un <b>participe passé</b>. On reprend les verbes de la journée (leçon 16) et des loisirs (leçon 22)."
+      "contenu": "Cette leçon apprend à <b>parler du passé</b> : ce qu'on a fait hier, ce matin ou le week-end dernier. Le luxembourgeois utilise presque toujours le <b>passé composé</b> : un auxiliaire (<b>hunn</b> ou <b>sinn</b>) + un <b>participe passé</b>. On reprend les verbes de la journée (leçon 16) et des loisirs (leçon 22).",
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1148,7 +1874,8 @@
         "Ech <b>si</b> mam Auto an d'Stad <b>gefuer</b>. = Je suis allé en ville en voiture.",
         "Ech <b>hunn</b> de Moien e Kaffi <b>gedronk</b>. = J'ai bu un café ce matin.",
         "Le participe ne change jamais : pas d'accord avec le sujet."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1189,7 +1916,8 @@
           "hunn",
           "sinn"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1199,7 +1927,8 @@
         "<b>sinn</b> = <b>déplacement</b> (Movement) : fueren, goen, heemgoen, erausgoen, trëppelen, lafen, falen.",
         "<b>sinn</b> = <b>changement d'état</b> (Changement) : erwächen, opstoen.",
         "<b>hunn</b> = tous les autres verbes (Positioun, activité) : iessen, drénken, schaffen, wunnen, schlofen…"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1265,7 +1994,8 @@
           "se lever",
           "Ech sinn opgestanen."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1361,7 +2091,8 @@
           "écouter",
           "Ech hu gelauschtert."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1373,7 +2104,8 @@
         "<b>Verbes séparables</b> : ge se place au milieu → opstoen : <b>opgestanen</b> · heemgoen : <b>heemgaangen</b> · erausgoen : <b>erausgaangen</b>.",
         "<b>Irréguliers</b> (à apprendre par cœur) : giess, gedronk, geschlof, geschriwwen, gemaach, gelies, gaangen, gefuer, gelaf, gefall.",
         "erwächen → <b>erwächt</b> : pas de ge-."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1384,7 +2116,8 @@
         "<b>duschen</b> prend <b>hunn</b> : Ech hu geduscht (en français : je me suis douché).",
         "<b>fueren</b> = aller en véhicule · <b>goen</b> = aller à pied : Ech si mam Bus gefuer, mais Ech sinn an de Kino gaangen.",
         "<b>schlofe goen</b> → Ech si schlofe <b>gaangen</b> (sinn) · <b>schlofen</b> → Ech hu <b>geschlof</b> (hunn)."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1425,7 +2158,8 @@
           "waren",
           "haten"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1436,7 +2170,8 @@
         "Ech <b>war</b> doheem. = J'étais à la maison.",
         "Ech <b>hat</b> vill Aarbecht. = J'avais beaucoup de travail.",
         "Les participes existent (gewiescht, gehat) mais sont rares à ce niveau."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "vocab",
@@ -1482,7 +2217,8 @@
           "d'Reunioun",
           "la réunion"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1494,7 +2230,8 @@
         "Question : l'auxiliaire passe avant le sujet : <b>Hues du</b> gutt geschlof?",
         "<b>UNITEDZOHA</b> : on garde le n de <b>hunn</b> et <b>sinn</b> devant une voyelle ou n, d, t, z, h. Sinon : <b>hunn → hu</b> et <b>sinn → si</b>.",
         "Ech <b>hu</b> geschafft · Ech <b>si</b> gefuer, mais Ech <b>hunn</b> de Moien… · Ech <b>sinn</b> heemgaangen · Ech <b>sinn</b> erwächt."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1525,7 +2262,8 @@
           "Jo, ech hu gutt geschlof.",
           "Tu as bien dormi ? – Oui, j'ai bien dormi."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "exemple",
@@ -1567,7 +2305,8 @@
           "Um eelef Auer sinn ech schlofe gaangen.",
           "À onze heures, je suis allé me coucher."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1597,7 +2336,8 @@
           "Ech war am Restaurant. Mir hu gutt giess.",
           "J'étais au restaurant. Nous avons bien mangé."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
