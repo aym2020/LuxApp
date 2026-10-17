@@ -161,26 +161,27 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
 //   etape   : l'étape mise en avant (numéro d'unité, 'mission' ou null) ;
 //   libelle : le texte du bouton ;   fn : ce qu'il lance.
 function actionLeconChemin(l) {
-  if (!isParcoursLecon(l)) return { etape: null, libelle: 'Ouvrir la leçon', fn: () => openLecon(l) };
+  // Un seul verbe : l'étape visée est déjà mise en avant dans la liste (spec 17).
+  if (!isParcoursLecon(l)) return { etape: null, libelle: 'Ouvrir', fn: () => openLecon(l) };
 
   const saved = loadRun();
   if (saved && saved.leconId === l.id) {
-    return { etape: saved.uniteId, libelle: 'Reprendre · ' + nomPartie(saved.uniteId, saved.mode), fn: () => ouvrirLeconEtReprendre(l) };
+    return { etape: saved.uniteId, libelle: 'Reprendre', fn: () => ouvrirLeconEtReprendre(l) };
   }
   // 1re découverte : l'introduction de la mission.
   if (introMissionAVoir(l)) {
-    return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir la leçon', fn: () => openParcoursLecon(l) };
+    return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir', fn: () => openParcoursLecon(l) };
   }
   const deja = acquisV1(l) || leconValideeParMission(l.id);
   const u = deja ? null : unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
   if (u) {
     const aucune = unitesCoeur(l).every(x => getUnitBest(l.id, x.id) == null);
-    return { etape: u.id, libelle: (aucune ? 'Commencer' : 'Continuer') + ' l\'unité ' + u.id, fn: () => ouvrirUniteDepuisChemin(l.id, u.id) };
+    return { etape: u.id, libelle: aucune ? 'Commencer' : 'Continuer', fn: () => ouvrirUniteDepuisChemin(l.id, u.id) };
   }
   if (l.mission && l.scene && getMissionBest(l.id) == null) {
-    return { etape: 'mission', libelle: 'Jouer la mission', fn: () => ouvrirMissionDepuisChemin(l.id) };
+    return { etape: 'mission', libelle: 'Continuer', fn: () => ouvrirMissionDepuisChemin(l.id) };
   }
-  return { etape: null, libelle: 'Revoir la leçon', fn: () => ouvrirLeconDepuisListe(l.id) };
+  return { etape: null, libelle: 'Revoir', fn: () => ouvrirLeconDepuisListe(l.id) };
 }
 
 function lancerActionLecon(leconId) {
@@ -199,7 +200,7 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     if (anim && anim.leconId === l.id && anim.uniteId === u.id) classe += ' vient-de-finir';
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
       '<span class="etat">' + (fait && !actuelle ? ICONES.coche : '') + '</span>' +
-      '<span class="nom">Unité ' + u.id + ' · ' + escHtml(u.titre) + '</span>' +
+      '<span class="nom">' + u.id + ' · ' + escHtml(u.titre) + '</span>' +
       (fait ? '<span class="tag">' + etoilesHtml(etoiles(getUnitBest(l.id, u.id))) + '</span>' : '') +
       ICONES.droite + '</button></li>';
   });

@@ -130,7 +130,7 @@ with sync_playwright() as p:
     assert 'leçon 8' in encours.lower() and 'mission' in encours.lower() and 'bilan' in encours.lower(), encours
     assert page.locator('.pas.futur').count() == 9
     page.screenshot(path=OUT + 'lot2-03-chemin.png', full_page=True)
-    page.click('.pas.encours .unites li:has-text("Unité 2") button')
+    page.click('#chemin-u-8-2 button')
     assert actif(page, 'view-pintro')
     page.evaluate('goLessons()')
     # Accordéon : un appui sur une leçon future la déplie (une seule dépliée à la fois)

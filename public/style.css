@@ -2011,3 +2011,19 @@ body.clavier-actif #view-mission.active .ms-histoire { display: none; }
 .mc-mot .mc-input { caret-color: transparent; }
 .mc-actions .mc-effacer { flex: none; width: 52px; padding: 0; display: grid; place-items: center; }
 .mc-effacer svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ══ MON CHEMIN : LISIBILITÉ (spec 17) — compacter l'interface, jamais l'information ══ */
+/* Leçon repliée : titre sur deux lignes au plus */
+.carte-lecon.compacte { flex-wrap: nowrap; align-items: center; }
+.carte-lecon.compacte .titre {
+  white-space: normal; overflow: hidden; text-overflow: clip; line-height: 1.3;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+}
+.carte-lecon.compacte .pastille-fraicheur { flex: none; }
+/* Leçon dépliée : titre et étapes en entier, la carte grandit */
+.carte-tete h3 { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.25; text-wrap: balance; }
+.unites button { align-items: center; padding-top: 6px; padding-bottom: 6px; }
+.unites .nom { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.3; }
+.unites .tag { flex: none; }
+/* Bouton jaune : un seul verbe, un peu moins haut */
+.pas.ouverte .btn-jaune { min-height: 48px; padding-top: 10px; padding-bottom: 10px; }
