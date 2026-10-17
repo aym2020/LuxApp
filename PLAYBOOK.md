@@ -406,12 +406,14 @@ Règles à vérifier à chaque leçon :
 
 ### Format v2 : une leçon avec un fil
 
-Migrées : leçons 1 à 17 (parcours A1.1 complet), ainsi que 21 et 22. Restent en v1 : 20, 23, 24, 25 et 26.
+**Toutes les 24 leçons sont migrées en V2** : A1.1 (1 à 17) et A1.2 (20 à 26). Aucune leçon au format V1 ne reste dans data/lecons/.
 
 **Migrer une leçon v1** : les leçons du premier lot disposent chacune d'un script dans `tools/migration/lecon-NN.py` (petite fabrique
 `fabrique.py` : ids donnés à partir de 2001, champ `v1` rempli tout seul). Lancer
 `python3 tools/migration/lecon-NN.py`, puis `node tools/valider-lecons.js` et
 `python3 tests/test_migration.py` (chaque unité et la mission jouées de bout en bout).
+
+**Lot 4 (20, 23, 24, 25, 26)** : unités et missions A1.2 avec conservation de `v1`. Vérification structurelle : `node tests/test_lot4_contenu.js`. Parcours navigateur : `python3 tests/test_migration.py` (toutes les leçons migrées).
 
 **Lot 2 (7, 9, 10, 11, 12, 13)** : JSON migrés et versionnés directement dans Git, avec archive `v1` préservant l'ancien acquis. Vérification structurelle : `node tests/test_lot2_contenu.js` ; test d'interface : `python3 tests/test_migration.py` (étendu au lot 2). Avant toute nouvelle migration, partir du dernier état Git et ne pas écraser les JSON v2.
 - `"v1": { "quiz": 35, "trous": 25, "ecriture": 43 }` = nombre de questions de l'ancienne version.
