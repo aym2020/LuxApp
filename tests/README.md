@@ -21,6 +21,7 @@ PORT=3456 node server.js &       # serveur de test
 | `python3 tests/test_seance.py` | Séance du jour : quitter puis reprendre | ~30 s |
 | `python3 tests/test_etalement.py` | Étalement de l'historique v1 | ~10 s |
 | `node tests/test_lot2_contenu.js` | Lot 2 : six JSON, unités, scènes, distracteurs, IDs et cours | ~1 s |
+| `node tests/test_lot3_contenu.js` | Lot 3 : leçons 14–17, missions, cours, V1, taille du cœur, distracteurs et doublons | ~1 s |
 | `python3 tests/test_fil.py` | Leçon complète avec mission, « + », bonus, séance | ~5 min |
 | `python3 tests/captures_ecrans.py avant` | Captures des écrans à 320, 360, 390, 430 px | ~30 s |
 
