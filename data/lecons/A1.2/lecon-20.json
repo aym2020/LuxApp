@@ -591,8 +591,8 @@
     {
       "id": 2013,
       "unite": 2,
-      "fr": "Le ballon est entre deux boîtes.",
-      "avant": "De Ball ass tëschent",
+      "fr": "Ce sont deux boîtes.",
+      "avant": "Dat sinn",
       "trou": "zwou",
       "apres": "Këschten.",
       "choix": [
@@ -601,22 +601,22 @@
         "eng",
         "dräi"
       ],
-      "note": "Deux devant le féminin Këscht : zwou."
+      "note": "Deux avec le féminin Këscht : zwou."
     },
     {
       "id": 2014,
       "unite": 2,
-      "fr": "Le ballon est à côté de la boîte.",
-      "avant": "De Ball ass",
-      "trou": "nieft",
-      "apres": "der Këscht.",
+      "fr": "Où est le ballon ?",
+      "avant": "",
+      "trou": "Wou",
+      "apres": "ass de Ball?",
       "choix": [
-        "nieft",
-        "ënnert",
-        "hannert",
-        "virun"
+        "Wou",
+        "Wat",
+        "Wéi",
+        "Wéini"
       ],
-      "note": "À côté de = nieft."
+      "note": "Question de lieu : Wou ass …?"
     }
   ],
   "ecriture": [
