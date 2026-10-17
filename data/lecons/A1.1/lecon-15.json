@@ -226,14 +226,14 @@
     {
       "id": 2014,
       "unite": 2,
-      "fr": "une (heure)",
-      "lu": "eng"
+      "fr": "et quart",
+      "lu": "véierel op"
     },
     {
       "id": 2015,
       "unite": 2,
-      "fr": "deux (heures)",
-      "lu": "zwou"
+      "fr": "moins le quart",
+      "lu": "véierel vir"
     },
     {
       "id": 2016,
@@ -256,26 +256,26 @@
     {
       "id": 2019,
       "unite": 3,
-      "fr": "cinq",
-      "lu": "fënnef"
+      "fr": "1 h 25",
+      "lu": "fënnef vir hallwer zwou"
     },
     {
       "id": 2020,
       "unite": 3,
-      "fr": "dix",
-      "lu": "zéng"
+      "fr": "1 h 30",
+      "lu": "hallwer zwou"
     },
     {
       "id": 2021,
       "unite": 3,
-      "fr": "deux (heures)",
-      "lu": "zwou"
+      "fr": "1 h 35",
+      "lu": "fënnef op hallwer zwou"
     },
     {
       "id": 2022,
       "unite": 3,
-      "fr": "trois",
-      "lu": "dräi"
+      "fr": "2 h 30",
+      "lu": "hallwer dräi"
     },
     {
       "id": 2023,
@@ -1455,12 +1455,12 @@
           "avant (heure)"
         ],
         [
-          "eng",
-          "une (heure)"
+          "véierel op",
+          "et quart"
         ],
         [
-          "zwou",
-          "deux (heures)"
+          "véierel vir",
+          "moins le quart"
         ]
       ]
     },
@@ -1523,20 +1523,20 @@
           "après la demi-heure"
         ],
         [
-          "fënnef",
-          "cinq"
+          "fënnef vir hallwer zwou",
+          "1 h 25"
         ],
         [
-          "zéng",
-          "dix"
+          "hallwer zwou",
+          "1 h 30"
         ],
         [
-          "zwou",
-          "deux (heures)"
+          "fënnef op hallwer zwou",
+          "1 h 35"
         ],
         [
-          "dräi",
-          "trois"
+          "hallwer dräi",
+          "2 h 30"
         ]
       ]
     },
