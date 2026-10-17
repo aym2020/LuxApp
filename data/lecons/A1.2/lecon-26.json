@@ -797,8 +797,8 @@
     {
       "id": 2019,
       "unite": 1,
-      "fr": "La banque cherche une secrétaire.",
-      "avant": "D'Bank",
+      "fr": "La commune cherche une secrétaire.",
+      "avant": "D'Gemeng",
       "trou": "sicht",
       "apres": "eng Sekretärin.",
       "choix": [
@@ -812,23 +812,23 @@
     {
       "id": 2020,
       "unite": 1,
-      "fr": "La commune recrute une secrétaire.",
-      "avant": "D'Gemeng engagéiert eng",
-      "trou": "Sekretärin",
-      "apres": ".",
+      "fr": "La banque recrute une secrétaire.",
+      "avant": "D'Bank",
+      "trou": "engagéiert",
+      "apres": "eng Sekretärin.",
       "choix": [
-        "Sekretärin",
-        "Kandidatur",
-        "Ausbildung",
-        "Annonce"
+        "engagéiert",
+        "sicht",
+        "schéckt",
+        "brauch"
       ],
       "note": "Retrouve la formulation exacte de l'annonce."
     },
     {
       "id": 2021,
       "unite": 3,
-      "fr": "Envoyez votre candidature au plus tard le 20 août.",
-      "avant": "Schéckt Är Kandidatur bis späistens den",
+      "fr": "Au plus tard le 20 août (date limite).",
+      "avant": "Bis spéitstens den",
       "trou": "20. August",
       "apres": ".",
       "choix": [
@@ -842,17 +842,17 @@
     {
       "id": 2022,
       "unite": 3,
-      "fr": "Envoyez votre candidature.",
-      "avant": "Schéckt Är",
-      "trou": "Kandidatur",
+      "fr": "J'envoie ma candidature par e-mail.",
+      "avant": "Ech schécke meng Kandidatur",
+      "trou": "per E-Mail",
       "apres": ".",
       "choix": [
-        "Kandidatur",
-        "Erfarung",
-        "Ausbildung",
-        "Prioritéit"
+        "per E-Mail",
+        "viru Mëtt August",
+        "spéitstens",
+        "ganzdaags"
       ],
-      "note": "Retrouve la formulation exacte de l'annonce."
+      "note": "L'envoi par courriel est exprimé par per E-Mail."
     }
   ],
   "ecriture": [
