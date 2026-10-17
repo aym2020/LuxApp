@@ -1687,3 +1687,102 @@ body.avec-nav .lecon-header { padding-top: 1.25rem; }
 @keyframes dessine { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
 @keyframes rebond { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
 @keyframes deplie { from { opacity: 0; transform: scaleY(.85); } to { opacity: 1; transform: none; } }
+
+
+/* Saisie mobile : le clavier ne doit jamais cacher la consigne. */
+.mc-milieu, .mc-saisie {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  min-width: 0;
+}
+.ac-ent > div:first-child { min-width: 0; flex: 1; }
+
+/* Activé uniquement lorsque visualViewport détecte un clavier réellement ouvert. */
+body.clavier-actif { overflow: hidden; }
+body.clavier-actif #view-parcours.active,
+body.clavier-actif #view-mission.active {
+  position: fixed;
+  top: var(--clavier-vtop, 0px);
+  left: 0;
+  right: 0;
+  bottom: auto;
+  height: var(--clavier-vh, 100dvh);
+  min-height: 0;
+  max-width: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+  z-index: 35;
+}
+body.clavier-actif #view-parcours.active .pc-topbar,
+body.clavier-actif #view-parcours.active .pc-sous-barre {
+  display: none;
+}
+body.clavier-actif #view-parcours.active .pc-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 14px 12px;
+  gap: .45rem;
+}
+body.clavier-actif #view-parcours.active .pc-body:has(.mc-saisie) {
+  overflow: hidden;
+}
+body.clavier-actif #view-parcours.active .mc-top {
+  flex: none;
+  margin-top: 0;
+  gap: .2rem;
+}
+body.clavier-actif #view-parcours.active .mc-fr {
+  font-size: clamp(1.6rem, 8vw, 2.2rem);
+  line-height: 1.05;
+  max-height: 3.15em;
+  overflow-y: auto;
+}
+body.clavier-actif #view-parcours.active .mc-milieu {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  gap: .4rem;
+}
+body.clavier-actif #view-parcours.active .mc-mot { margin-top: .15rem; }
+body.clavier-actif #view-parcours.active .mc-case {
+  width: 25px;
+  height: 34px;
+  font-size: 1rem;
+}
+body.clavier-actif #view-parcours.active .mc-case.sm {
+  width: 23px;
+  height: 32px;
+}
+body.clavier-actif #view-parcours.active .mc-case.xs {
+  width: 20px;
+  height: 30px;
+}
+body.clavier-actif #view-parcours.active .mc-saisie {
+  flex: none;
+  gap: .3rem;
+}
+body.clavier-actif #view-parcours.active .mc-saisie .pc-input-label { margin-top: 0; }
+body.clavier-actif #view-parcours.active .mc-input {
+  min-height: 44px;
+  padding: .55rem .8rem;
+}
+body.clavier-actif #view-parcours.active .mc-score { line-height: 1.2; }
+body.clavier-actif #view-parcours.active .pc-actions { margin-top: .1rem; }
+body.clavier-actif #view-parcours.active .pc-actions .pc-btn { min-height: 44px; }
+body.clavier-actif #view-parcours.active .pc-question {
+  gap: .3rem;
+  margin-bottom: .2rem;
+}
+body.clavier-actif #view-parcours.active .pc-question-mot {
+  font-size: clamp(1.5rem, 7vw, 2rem);
+}
+body.clavier-actif #view-mission.active .ms-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
