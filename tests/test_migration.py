@@ -1,4 +1,4 @@
-"""Leçons migrées au format en unités (lots 1, 2, 3 et 4 : 1, 3, 4, 5, 6, 7, 9 à 17).
+"""Leçons migrées au format en unités (toutes les 24 leçons : 1–17 et 20–26).
 Pour chaque leçon : l'écran de la leçon s'affiche, chaque unité se joue de bout
 en bout sans faute, la mission se joue sans faute, le bilan démarre, et la
 leçon devient terminée sur le chemin. Format mobile."""
@@ -6,7 +6,7 @@ import os
 from playwright.sync_api import sync_playwright
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
-LECONS = [1, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20, 23, 24, 25, 26]
+LECONS = list(range(1, 18)) + list(range(20, 27))
 erreurs_js = []
 
 
