@@ -3,167 +3,442 @@
   "titre": "Familljememberen a Possessiv",
   "titre_fr": "Les membres de la famille et les possessifs",
   "couleur": "#d46fc4",
-  "instructions": {
-    "flashcards": "Mémorise les membres de la famille avec leur article (de / d') pour retenir leur genre. Apprends-les par cœur comme des blocs.",
-    "quiz": "Lis un mot luxembourgeois (un membre de la famille, un possessif ou une tournure « le … de mon / ma / mes … ») et choisis la bonne traduction française. Les distracteurs sont d'autres membres proches ou d'autres possessifs.",
-    "trous": "Complète chaque phrase avec le bon possessif (mäi, meng, säi, seng, hir, hiert…) accordé au nom possédé, avec la bonne forme au datif dans « mengem Papp seng … » (mengem, menger, mengen, dem, der), ou avec le bon membre de la famille. Les distracteurs restent des possessifs ou des membres plausibles.",
-    "ecriture": "Traduis en luxembourgeois les membres de la famille, les possessifs, les tournures « le … de mon / ma / mes … » (mengem Papp seng Schwëster) et des phrases courtes pour décrire ta famille. Respecte l'accord du possessif avec le nom possédé et la chute du -n (règle UNITEDZOHA)."
+  "v1": {
+    "quiz": 22,
+    "trous": 19,
+    "ecriture": 34
   },
-  "flashcards": [
+  "instructions": {
+    "flashcards": "Mot caché : retrouve les noms de famille, puis les possessifs et les éléments nécessaires pour désigner un lien de parenté. L'article est à écrire lorsqu'il est enseigné.",
+    "quiz": "Reconnais les membres de la famille, les possessifs et la forme « la sœur de mon père ».",
+    "trous": "Choisis le possessif ou la forme de parenté qui convient au genre du nom et au possesseur.",
+    "ecriture": "Traduis du français vers le luxembourgeois les membres de la famille, les possessifs et des phrases pour présenter sa famille sans changer les prénoms."
+  },
+  "mission": {
+    "titre": "Présenter sa famille à Anne",
+    "contexte": "Pendant un échange de classe, Anne te demande qui fait partie de ta famille. Tu parles de tes proches et expliques le lien entre Susy et ton père.",
+    "objectif": "nommer ses proches, employer les possessifs et expliquer un lien familial plus précis."
+  },
+  "scene": [
+    {
+      "unite": 1,
+      "qui": "Anne",
+      "lu": "Hues du Geschwëster?",
+      "fr": "As-tu des frères ou sœurs ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech hunn e Brudder an eng Schwëster.",
+      "fr": "J'ai un frère et une sœur.",
+      "aide": "Pour frère et sœur : <b>e Brudder</b> et <b>eng Schwëster</b>."
+    },
+    {
+      "unite": 1,
+      "qui": "Anne",
+      "lu": "An eng Duechter?",
+      "fr": "Et une fille ?"
+    },
+    {
+      "unite": 1,
+      "qui": "toi",
+      "lu": "Ech hunn eng Duechter.",
+      "fr": "J'ai une fille.",
+      "aide": "La fille au sens de descendante : <b>eng Duechter</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Anne",
+      "lu": "Wéi heescht däi Papp?",
+      "fr": "Comment s'appelle ton père ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Mäi Papp heescht Marc.",
+      "fr": "Mon père s'appelle Marc.",
+      "aide": "Le masculin Papp prend <b>mäi</b>."
+    },
+    {
+      "unite": 2,
+      "qui": "Anne",
+      "lu": "A wou wunnt deng Mamm?",
+      "fr": "Et où habite ta mère ?"
+    },
+    {
+      "unite": 2,
+      "qui": "toi",
+      "lu": "Meng Mamm wunnt zu Esch.",
+      "fr": "Ma mère habite à Esch.",
+      "aide": "Le féminin Mamm prend <b>meng</b>."
+    },
+    {
+      "unite": 3,
+      "qui": "Anne",
+      "lu": "A wien ass d'Susy?",
+      "fr": "Et qui est Susy ?"
+    },
+    {
+      "unite": 3,
+      "qui": "toi",
+      "lu": "D'Susy ass mengem Papp seng Schwëster.",
+      "fr": "Susy est la sœur de mon père.",
+      "aide": "Avec le père au datif : <b>mengem Papp</b>."
+    }
+  ],
+  "unites": [
     {
       "id": 1,
-      "lu": "de Papp",
-      "fr": "le père"
+      "titre": "Présenter les membres de sa famille",
+      "phrase": [
+        "Ech hunn e Brudder an eng Schwëster.",
+        "J'ai un frère et une sœur."
+      ],
+      "regle": "Apprends les membres de la famille avec leur <b>genre</b> : de Papp, d'Mamm, de Brudder, d'Schwëster, d'Duechter.",
+      "exemple": "Ech hunn e Brudder an eng Schwëster.",
+      "pieges": [
+        "<b>d'Duechter</b> est une fille au sens de descendante ; <b>d'Meedchen</b> est une jeune fille.",
+        "Pour choisir un possessif plus tard, retiens le genre du membre de la famille."
+      ],
+      "articleAEcrire": true
     },
     {
       "id": 2,
-      "lu": "d'Mamm",
-      "fr": "la mère"
+      "titre": "Mon, ton, son : les possessifs",
+      "phrase": [
+        "Mäi Papp heescht Marc. Meng Mamm wunnt zu Esch.",
+        "Mon père s'appelle Marc. Ma mère habite à Esch."
+      ],
+      "regle": "Le possessif s'accorde avec le <b>nom possédé</b> : <b>mäi Papp</b> (masculin), <b>meng Mamm</b> (féminin), <b>säi Brudder</b>, <b>hir Mamm</b>.",
+      "exemple": "Mäi Brudder · meng Schwëster · hire Mann · säi Meedchen.",
+      "pieges": [
+        "Le genre à regarder est celui de la personne possédée, pas celui du possesseur.",
+        "<b>säi</b> renvoie à lui ; <b>hir / hire</b> renvoie à elle, avec accord selon le nom."
+      ]
     },
     {
       "id": 3,
-      "lu": "de Brudder",
+      "titre": "La sœur de mon père : désigner un lien familial",
+      "phrase": [
+        "D'Susy ass mengem Papp seng Schwëster.",
+        "Susy est la sœur de mon père."
+      ],
+      "regle": "Pour dire « le/la … de … », on peut placer la personne au <b>datif</b> puis son possessif : <b>mengem Papp seng Schwëster</b>.",
+      "exemple": "Menger Mamm hire Schwoer = le beau-frère de ma mère · dem Christian seng Schwëster.",
+      "pieges": [
+        "Avec un père : <b>mengem Papp</b> ; avec une mère : <b>menger Mamm</b>.",
+        "La deuxième partie dépend aussi du genre : <b>seng Schwëster</b>, <b>hire Schwoer</b>."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "le père",
+      "lu": "Papp",
+      "article": "de"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "la mère",
+      "lu": "Mamm",
+      "article": "d'"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
       "fr": "le frère",
-      "note": "pluriel : d'Bridder."
+      "lu": "Brudder",
+      "article": "de"
     },
     {
-      "id": 4,
-      "lu": "d'Schwëster",
-      "fr": "la sœur"
+      "id": 2004,
+      "unite": 1,
+      "fr": "la sœur",
+      "lu": "Schwëster",
+      "article": "d'"
     },
     {
-      "id": 5,
-      "lu": "de Jong",
+      "id": 2005,
+      "unite": 1,
       "fr": "le fils / le garçon",
-      "note": "aussi : de Bouf."
+      "lu": "Jong",
+      "article": "de"
     },
     {
-      "id": 6,
-      "lu": "d'Duechter",
-      "fr": "la fille (descendante)"
+      "id": 2006,
+      "unite": 1,
+      "fr": "la fille (descendante)",
+      "lu": "Duechter",
+      "article": "d'"
     },
     {
-      "id": 7,
-      "lu": "d'Meedchen",
+      "id": 2007,
+      "unite": 1,
       "fr": "la (jeune) fille",
-      "note": "neutre : dat Meedchen."
+      "lu": "Meedchen",
+      "article": "d'"
     },
     {
-      "id": 8,
-      "lu": "de Mann",
-      "fr": "le mari"
+      "id": 2008,
+      "unite": 1,
+      "fr": "le mari",
+      "lu": "Mann",
+      "article": "de"
     },
     {
-      "id": 9,
-      "lu": "d'Fra",
-      "fr": "la femme / l'épouse"
+      "id": 2009,
+      "unite": 1,
+      "fr": "l'oncle",
+      "lu": "Monni",
+      "article": "de",
+      "plus": true
     },
     {
-      "id": 10,
-      "lu": "de Monni",
-      "fr": "l'oncle"
+      "id": 2010,
+      "unite": 1,
+      "fr": "la tante",
+      "lu": "Tatta",
+      "article": "d'",
+      "plus": true
     },
     {
-      "id": 11,
-      "lu": "d'Tatta",
-      "fr": "la tante"
-    },
-    {
-      "id": 12,
-      "lu": "de Cousin",
-      "fr": "le cousin"
-    },
-    {
-      "id": 13,
-      "lu": "d'Cousine",
-      "fr": "la cousine"
-    },
-    {
-      "id": 14,
-      "lu": "de Grousspapp",
+      "id": 2011,
+      "unite": 1,
       "fr": "le grand-père",
-      "note": "familier : de Bopa / Bopi."
+      "lu": "Grousspapp",
+      "article": "de",
+      "plus": true
     },
     {
-      "id": 15,
-      "lu": "d'Groussmamm",
+      "id": 2012,
+      "unite": 1,
       "fr": "la grand-mère",
-      "note": "familier : d'Boma / Bomi."
+      "lu": "Groussmamm",
+      "article": "d'",
+      "plus": true
     },
     {
-      "id": 16,
-      "lu": "den Neveu",
-      "fr": "le neveu"
+      "id": 2013,
+      "unite": 2,
+      "fr": "mon père",
+      "lu": "mäi Papp"
     },
     {
-      "id": 17,
-      "lu": "d'Niess",
-      "fr": "la nièce"
+      "id": 2014,
+      "unite": 2,
+      "fr": "ma mère",
+      "lu": "meng Mamm"
     },
     {
-      "id": 18,
-      "lu": "den Enkel",
-      "fr": "le petit-fils"
+      "id": 2015,
+      "unite": 2,
+      "fr": "mon frère",
+      "lu": "mäi Brudder"
     },
     {
-      "id": 19,
-      "lu": "d'Enkelin",
-      "fr": "la petite-fille"
+      "id": 2016,
+      "unite": 2,
+      "fr": "ta sœur",
+      "lu": "deng Schwëster"
     },
     {
-      "id": 20,
-      "lu": "de Schwoer",
-      "fr": "le beau-frère"
+      "id": 2017,
+      "unite": 2,
+      "fr": "son frère (à lui)",
+      "lu": "säi Brudder"
     },
     {
-      "id": 21,
-      "lu": "d'Schwéiesch",
-      "fr": "la belle-sœur"
+      "id": 2018,
+      "unite": 2,
+      "fr": "sa sœur (à lui)",
+      "lu": "seng Schwëster"
     },
     {
-      "id": 22,
-      "lu": "den Eedem",
-      "fr": "le beau-fils / le gendre"
+      "id": 2019,
+      "unite": 2,
+      "fr": "son mari (à elle)",
+      "lu": "hire Mann"
     },
     {
-      "id": 23,
-      "lu": "d'Schnauer",
-      "fr": "la belle-fille / la bru"
+      "id": 2020,
+      "unite": 2,
+      "fr": "sa mère (à elle)",
+      "lu": "hir Mamm"
     },
     {
-      "id": 24,
-      "lu": "de Pätter",
+      "id": 2021,
+      "unite": 3,
+      "fr": "de mon père (datif)",
+      "lu": "mengem Papp"
+    },
+    {
+      "id": 2022,
+      "unite": 3,
+      "fr": "de ma mère (datif)",
+      "lu": "menger Mamm"
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "fr": "de mes parents (datif)",
+      "lu": "mengen Elteren"
+    },
+    {
+      "id": 2024,
+      "unite": 3,
+      "fr": "sa sœur (à lui)",
+      "lu": "seng Schwëster"
+    },
+    {
+      "id": 2025,
+      "unite": 3,
+      "fr": "son beau-frère (à elle)",
+      "lu": "hire Schwoer"
+    },
+    {
+      "id": 2026,
+      "unite": 3,
+      "fr": "son fils (à elle)",
+      "lu": "hire Jong"
+    },
+    {
+      "id": 2027,
+      "unite": 3,
       "fr": "le parrain",
-      "note": "mäi Pätter (le n tombe devant P)."
+      "lu": "Pätter"
     },
     {
-      "id": 25,
-      "lu": "d'Enkelkand",
+      "id": 2028,
+      "unite": 3,
+      "fr": "petit-enfant",
+      "lu": "Enkelkand"
+    },
+    {
+      "id": 2029,
+      "unite": 1,
+      "fr": "la femme / l'épouse",
+      "lu": "Fra",
+      "article": "d'",
+      "plus": true
+    },
+    {
+      "id": 2030,
+      "unite": 1,
+      "fr": "le cousin",
+      "lu": "Cousin",
+      "article": "de",
+      "plus": true
+    },
+    {
+      "id": 2031,
+      "unite": 1,
+      "fr": "la cousine",
+      "lu": "Cousine",
+      "article": "d'",
+      "plus": true
+    },
+    {
+      "id": 2032,
+      "unite": 1,
+      "fr": "le neveu",
+      "lu": "Neveu",
+      "article": "den",
+      "plus": true
+    },
+    {
+      "id": 2033,
+      "unite": 1,
+      "fr": "la nièce",
+      "lu": "Niess",
+      "article": "d'",
+      "plus": true
+    },
+    {
+      "id": 2034,
+      "unite": 1,
+      "fr": "le petit-fils",
+      "lu": "Enkel",
+      "article": "den",
+      "plus": true
+    },
+    {
+      "id": 2035,
+      "unite": 1,
+      "fr": "la petite-fille",
+      "lu": "Enkelin",
+      "article": "d'",
+      "plus": true
+    },
+    {
+      "id": 2036,
+      "unite": 1,
+      "fr": "le beau-frère",
+      "lu": "Schwoer",
+      "article": "de",
+      "plus": true
+    },
+    {
+      "id": 2037,
+      "unite": 1,
+      "fr": "la belle-sœur",
+      "lu": "Schwéiesch",
+      "article": "d'",
+      "plus": true
+    },
+    {
+      "id": 2038,
+      "unite": 1,
+      "fr": "le beau-fils / le gendre",
+      "lu": "Eedem",
+      "article": "den",
+      "plus": true
+    },
+    {
+      "id": 2039,
+      "unite": 1,
+      "fr": "la belle-fille / la bru",
+      "lu": "Schnauer",
+      "article": "d'",
+      "plus": true
+    },
+    {
+      "id": 2040,
+      "unite": 1,
+      "fr": "le parrain",
+      "lu": "Pätter",
+      "article": "de",
+      "plus": true
+    },
+    {
+      "id": 2041,
+      "unite": 1,
       "fr": "le petit-enfant",
-      "note": "Neutre · pluriel : d'Enkelkanner."
+      "lu": "Enkelkand",
+      "article": "d'",
+      "plus": true
     },
     {
-      "id": 26,
-      "lu": "mengem Papp seng Schwëster",
-      "fr": "la sœur de mon père",
-      "note": "Papp (M) → datif mengem ; possesseur masculin → säi / seng."
-    },
-    {
-      "id": 27,
-      "lu": "menger Mamm hire Schwoer",
+      "id": 2042,
+      "unite": 3,
       "fr": "le beau-frère de ma mère",
-      "note": "Mamm (F) → datif menger ; possesseur féminin → hire / hir / hiert."
+      "lu": "menger Mamm hire Schwoer",
+      "plus": true
     },
     {
-      "id": 28,
-      "lu": "mengen Elteren hire Jong",
+      "id": 2043,
+      "unite": 3,
       "fr": "le fils de mes parents",
-      "note": "Pluriel → datif mengen ; possesseur pluriel → hire / hir / hiert."
+      "lu": "mengen Elteren hire Jong",
+      "plus": true
     }
   ],
   "quiz": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "question": "de Papp",
       "reponse": "le père",
       "distracteurs": [
@@ -173,7 +448,8 @@
       ]
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "question": "d'Mamm",
       "reponse": "la mère",
       "distracteurs": [
@@ -183,7 +459,8 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "question": "d'Schwëster",
       "reponse": "la sœur",
       "distracteurs": [
@@ -193,7 +470,8 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "question": "de Brudder",
       "reponse": "le frère",
       "distracteurs": [
@@ -203,7 +481,8 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 1,
       "question": "d'Duechter",
       "reponse": "la fille",
       "distracteurs": [
@@ -213,7 +492,8 @@
       ]
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 1,
       "question": "de Jong",
       "reponse": "le fils / le garçon",
       "distracteurs": [
@@ -223,7 +503,8 @@
       ]
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 1,
       "question": "de Monni",
       "reponse": "l'oncle",
       "distracteurs": [
@@ -233,7 +514,8 @@
       ]
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 1,
       "question": "d'Tatta",
       "reponse": "la tante",
       "distracteurs": [
@@ -243,7 +525,8 @@
       ]
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 1,
       "question": "de Grousspapp",
       "reponse": "le grand-père",
       "distracteurs": [
@@ -253,7 +536,8 @@
       ]
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 1,
       "question": "den Neveu",
       "reponse": "le neveu",
       "distracteurs": [
@@ -263,27 +547,32 @@
       ]
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 1,
       "question": "d'Schwéiesch",
       "reponse": "la belle-sœur",
       "distracteurs": [
         "le beau-frère",
         "la belle-fille",
         "la sœur"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 12,
+      "id": 2012,
+      "unite": 1,
       "question": "den Enkel",
       "reponse": "le petit-fils",
       "distracteurs": [
         "la petite-fille",
         "le neveu",
         "le beau-fils"
-      ]
+      ],
+      "plus": true
     },
     {
-      "id": 13,
+      "id": 2013,
+      "unite": 2,
       "question": "mäi Papp",
       "reponse": "mon père",
       "distracteurs": [
@@ -293,7 +582,8 @@
       ]
     },
     {
-      "id": 14,
+      "id": 2014,
+      "unite": 2,
       "question": "meng Mamm",
       "reponse": "ma mère",
       "distracteurs": [
@@ -303,7 +593,8 @@
       ]
     },
     {
-      "id": 15,
+      "id": 2015,
+      "unite": 2,
       "question": "säi Brudder",
       "reponse": "son frère (à lui)",
       "distracteurs": [
@@ -313,7 +604,8 @@
       ]
     },
     {
-      "id": 16,
+      "id": 2016,
+      "unite": 2,
       "question": "hir Schwëster",
       "reponse": "sa sœur (à elle)",
       "distracteurs": [
@@ -323,7 +615,8 @@
       ]
     },
     {
-      "id": 17,
+      "id": 2017,
+      "unite": 2,
       "question": "de Pätter",
       "reponse": "le parrain",
       "distracteurs": [
@@ -333,7 +626,8 @@
       ]
     },
     {
-      "id": 18,
+      "id": 2018,
+      "unite": 2,
       "question": "d'Enkelkand",
       "reponse": "le petit-enfant",
       "distracteurs": [
@@ -343,7 +637,8 @@
       ]
     },
     {
-      "id": 19,
+      "id": 2019,
+      "unite": 3,
       "question": "mengem Papp seng Schwëster",
       "reponse": "la sœur de mon père",
       "distracteurs": [
@@ -353,7 +648,8 @@
       ]
     },
     {
-      "id": 20,
+      "id": 2020,
+      "unite": 3,
       "question": "menger Mamm hire Schwoer",
       "reponse": "le beau-frère de ma mère",
       "distracteurs": [
@@ -363,7 +659,8 @@
       ]
     },
     {
-      "id": 21,
+      "id": 2021,
+      "unite": 3,
       "question": "mengen Elteren hire Jong",
       "reponse": "le fils de mes parents",
       "distracteurs": [
@@ -373,19 +670,43 @@
       ]
     },
     {
-      "id": 22,
-      "question": "menge Grousselteren hir Schnauer",
-      "reponse": "la belle-fille de mes grands-parents",
+      "id": 2022,
+      "unite": 3,
+      "question": "La sœur de mon père",
+      "reponse": "mengem Papp seng Schwëster",
       "distracteurs": [
-        "le gendre de mes grands-parents",
-        "la petite-fille de mes grands-parents",
-        "la belle-sœur de mes parents"
+        "menger Mamm hir Schwëster",
+        "mengem Papp säi Brudder",
+        "mäi Papp seng Schwëster"
+      ]
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "question": "Le frère de ma mère",
+      "reponse": "menger Mamm hire Brudder",
+      "distracteurs": [
+        "mengem Papp säi Brudder",
+        "menger Mamm hir Schwëster",
+        "meng Mamm hire Brudder"
+      ]
+    },
+    {
+      "id": 2024,
+      "unite": 3,
+      "question": "Le fils de mes parents",
+      "reponse": "mengen Elteren hire Jong",
+      "distracteurs": [
+        "mengem Papp seng Schwëster",
+        "menger Mamm hire Schwoer",
+        "mengen Elteren hir Duechter"
       ]
     }
   ],
   "trous": [
     {
-      "id": 1,
+      "id": 2001,
+      "unite": 1,
       "fr": "Ma mère habite à Esch.",
       "avant": "",
       "trou": "Meng",
@@ -399,7 +720,8 @@
       "note": "Mamm = féminin → meng."
     },
     {
-      "id": 2,
+      "id": 2002,
+      "unite": 1,
       "fr": "Mon père s'appelle Marc.",
       "avant": "",
       "trou": "Mäi",
@@ -413,7 +735,8 @@
       "note": "Papp = masculin ; le -n tombe devant P → mäi."
     },
     {
-      "id": 3,
+      "id": 2003,
+      "unite": 1,
       "fr": "Mon frère travaille au Luxembourg.",
       "avant": "",
       "trou": "Mäi",
@@ -427,7 +750,8 @@
       "note": "Brudder = masculin ; -n tombe devant B → mäi."
     },
     {
-      "id": 4,
+      "id": 2004,
+      "unite": 1,
       "fr": "Ton oncle est gentil.",
       "avant": "",
       "trou": "Däi",
@@ -441,7 +765,8 @@
       "note": "Monni = masculin ; -n tombe devant M → däi."
     },
     {
-      "id": 5,
+      "id": 2005,
+      "unite": 2,
       "fr": "Son mari (à elle) s'appelle Tom.",
       "avant": "",
       "trou": "Hire",
@@ -455,7 +780,8 @@
       "note": "Possesseur féminin (si) → hir- ; Mann masculin, -n tombe devant M → hire."
     },
     {
-      "id": 6,
+      "id": 2006,
+      "unite": 2,
       "fr": "Sa sœur (à lui) est étudiante.",
       "avant": "",
       "trou": "Seng",
@@ -469,7 +795,8 @@
       "note": "Possesseur masculin (hien) + Schwëster féminin → seng."
     },
     {
-      "id": 7,
+      "id": 2007,
+      "unite": 2,
       "fr": "Notre grand-mère est gentille.",
       "avant": "",
       "trou": "Eis",
@@ -483,7 +810,8 @@
       "note": "mir + Groussmamm féminin → eis."
     },
     {
-      "id": 8,
+      "id": 2008,
+      "unite": 2,
       "fr": "Votre fils est grand.",
       "avant": "",
       "trou": "Äre",
@@ -497,7 +825,8 @@
       "note": "Dir + Jong masculin ; -n tombe devant J → äre."
     },
     {
-      "id": 9,
+      "id": 2009,
+      "unite": 2,
       "fr": "Leur (jeune) fille joue dehors.",
       "avant": "",
       "trou": "Hiert",
@@ -511,7 +840,8 @@
       "note": "Meedchen = neutre → forme en -t : hiert."
     },
     {
-      "id": 10,
+      "id": 2010,
+      "unite": 2,
       "fr": "Mes parents habitent ici.",
       "avant": "",
       "trou": "Meng",
@@ -525,7 +855,8 @@
       "note": "Pluriel (Elteren) → même forme que le féminin : meng."
     },
     {
-      "id": 11,
+      "id": 2011,
+      "unite": 2,
       "fr": "La mère de Christian s'appelle Anne.",
       "avant": "Dem Christian",
       "trou": "seng",
@@ -539,21 +870,8 @@
       "note": "dem [Nom] + possessif accordé au nom possédé ; Mamm féminin → seng."
     },
     {
-      "id": 12,
-      "fr": "La fille de Michelle, c'est Isabelle.",
-      "avant": "Dem Michelle",
-      "trou": "säi",
-      "apres": "Meedchen ass d'Isabelle.",
-      "choix": [
-        "säi",
-        "seng",
-        "hiert",
-        "säin"
-      ],
-      "note": "Meedchen neutre → säi(n) ; -n tombe devant M → säi."
-    },
-    {
-      "id": 13,
+      "id": 2012,
+      "unite": 3,
       "fr": "La sœur de mon père s'appelle Susy.",
       "avant": "",
       "trou": "Mengem",
@@ -567,7 +885,8 @@
       "note": "Papp (M) → datif mengem."
     },
     {
-      "id": 14,
+      "id": 2013,
+      "unite": 3,
       "fr": "La belle-sœur de ma mère s'appelle Susy.",
       "avant": "Menger Mamm",
       "trou": "hir",
@@ -581,7 +900,8 @@
       "note": "Possesseur féminin (Mamm) → hir- ; Schwéiesch (F) → hir."
     },
     {
-      "id": 15,
+      "id": 2014,
+      "unite": 3,
       "fr": "Le beau-frère de ma mère s'appelle Hilaire.",
       "avant": "Menger Mamm",
       "trou": "hire",
@@ -595,7 +915,8 @@
       "note": "Possesseur féminin → hir- ; Schwoer (M), le n tombe devant S → hire."
     },
     {
-      "id": 16,
+      "id": 2015,
+      "unite": 3,
       "fr": "Je suis leur neveu.",
       "avant": "Ech sinn",
       "trou": "hiren",
@@ -609,7 +930,8 @@
       "note": "Possesseur pluriel → hir- ; Neveu (M) commence par N → le n reste : hiren."
     },
     {
-      "id": 17,
+      "id": 2016,
+      "unite": 3,
       "fr": "Max est le fils de tante Susy.",
       "avant": "De Max ass",
       "trou": "der",
@@ -623,7 +945,8 @@
       "note": "Tatta (F) → datif der."
     },
     {
-      "id": 18,
+      "id": 2017,
+      "unite": 3,
       "fr": "Max et Anna sont les petits-enfants de Hubert.",
       "avant": "De Max an d'Anna sinn dem Hubert",
       "trou": "seng",
@@ -637,7 +960,8 @@
       "note": "Possesseur masculin (Hubert) + pluriel (Enkelkanner) → seng."
     },
     {
-      "id": 19,
+      "id": 2018,
+      "unite": 3,
       "fr": "Hilaire est mon oncle et mon parrain.",
       "avant": "Den Hilaire ass mäi Monni a mäi",
       "trou": "Pätter",
@@ -649,150 +973,513 @@
         "Schwoer"
       ],
       "note": "parrain = Pätter."
+    },
+    {
+      "id": 2019,
+      "unite": 1,
+      "fr": "J'ai un frère.",
+      "avant": "Ech hunn e",
+      "trou": "Brudder",
+      "apres": ".",
+      "choix": [
+        "Brudder",
+        "Papp",
+        "Monni",
+        "Jong"
+      ],
+      "note": "Frère : Brudder."
+    },
+    {
+      "id": 2020,
+      "unite": 1,
+      "fr": "J'ai une fille.",
+      "avant": "Ech hunn eng",
+      "trou": "Duechter",
+      "apres": ".",
+      "choix": [
+        "Duechter",
+        "Mamm",
+        "Schwëster",
+        "Tatta"
+      ],
+      "note": "Une fille, descendante : Duechter."
     }
   ],
   "ecriture": [
     {
+      "id": 2001,
+      "unite": 1,
       "fr": "le père",
       "lu": "de Papp"
     },
     {
+      "id": 2002,
+      "unite": 1,
       "fr": "la mère",
       "lu": "d'Mamm"
     },
     {
+      "id": 2003,
+      "unite": 1,
       "fr": "le frère",
       "lu": "de Brudder"
     },
     {
+      "id": 2004,
+      "unite": 1,
       "fr": "la sœur",
       "lu": "d'Schwëster"
     },
     {
+      "id": 2005,
+      "unite": 1,
       "fr": "les parents",
       "lu": "d'Elteren"
     },
     {
+      "id": 2006,
+      "unite": 1,
       "fr": "les grands-parents",
       "lu": "d'Grousselteren"
     },
     {
+      "id": 2007,
+      "unite": 1,
       "fr": "l'oncle",
       "lu": "de Monni"
     },
     {
+      "id": 2008,
+      "unite": 1,
       "fr": "la tante",
       "lu": "d'Tatta"
     },
     {
+      "id": 2009,
+      "unite": 2,
       "fr": "mon père",
       "lu": "mäi Papp"
     },
     {
+      "id": 2010,
+      "unite": 2,
       "fr": "ma mère",
       "lu": "meng Mamm"
     },
     {
+      "id": 2011,
+      "unite": 2,
       "fr": "mon frère",
       "lu": "mäi Brudder"
     },
     {
+      "id": 2012,
+      "unite": 2,
       "fr": "ta sœur",
       "lu": "deng Schwëster"
     },
     {
+      "id": 2013,
+      "unite": 2,
       "fr": "son mari (à elle)",
       "lu": "hire Mann"
     },
     {
+      "id": 2014,
+      "unite": 2,
       "fr": "sa (jeune) fille (à lui)",
       "lu": "säi Meedchen"
     },
     {
+      "id": 2015,
+      "unite": 2,
       "fr": "Mon père s'appelle Marc.",
       "lu": "Mäi Papp heescht Marc."
     },
     {
+      "id": 2016,
+      "unite": 2,
       "fr": "Ma mère habite à Esch.",
       "lu": "Meng Mamm wunnt zu Esch."
     },
     {
+      "id": 2017,
+      "unite": 1,
       "fr": "J'ai un frère et une sœur.",
-      "lu": "Ech hunn e Brudder an eng Schwëster."
+      "lu": "Ech hunn e Brudder an eng Schwëster.",
+      "plus": true
     },
     {
+      "id": 2018,
+      "unite": 2,
       "fr": "Son frère (à lui) travaille au Luxembourg.",
-      "lu": "Säi Brudder schafft zu Lëtzebuerg."
+      "lu": "Säi Brudder schafft zu Lëtzebuerg.",
+      "plus": true
     },
     {
+      "id": 2019,
+      "unite": 2,
       "fr": "Sa mère (à elle) est gentille.",
-      "lu": "Hir Mamm ass léif."
+      "lu": "Hir Mamm ass léif.",
+      "plus": true
     },
     {
+      "id": 2020,
+      "unite": 3,
       "fr": "La sœur de Christian s'appelle Anne.",
       "lu": "Dem Christian seng Schwëster heescht Anne."
     },
     {
+      "id": 2021,
+      "unite": 3,
       "fr": "le parrain",
-      "lu": "de Pätter"
+      "lu": "de Pätter",
+      "plus": true
     },
     {
+      "id": 2022,
+      "unite": 3,
       "fr": "le petit-enfant",
-      "lu": "d'Enkelkand"
+      "lu": "d'Enkelkand",
+      "plus": true
     },
     {
+      "id": 2023,
+      "unite": 3,
       "fr": "les petits-enfants",
-      "lu": "d'Enkelkanner"
+      "lu": "d'Enkelkanner",
+      "plus": true
     },
     {
+      "id": 2024,
+      "unite": 3,
       "fr": "les nièces",
-      "lu": "d'Niessen"
+      "lu": "d'Niessen",
+      "plus": true
     },
     {
+      "id": 2025,
+      "unite": 3,
       "fr": "la sœur de mon père",
       "lu": "mengem Papp seng Schwëster"
     },
     {
+      "id": 2026,
+      "unite": 3,
       "fr": "la belle-sœur de ma mère",
       "lu": "menger Mamm hir Schwéiesch"
     },
     {
+      "id": 2027,
+      "unite": 3,
       "fr": "le fils de mes parents",
       "lu": "mengen Elteren hire Jong"
     },
     {
+      "id": 2028,
+      "unite": 3,
       "fr": "Mon oncle est aussi mon parrain.",
-      "lu": "Mäi Monni ass och mäi Pätter."
+      "lu": "Mäi Monni ass och mäi Pätter.",
+      "plus": true
     },
     {
+      "id": 2029,
+      "unite": 3,
       "fr": "Je suis leur neveu.",
-      "lu": "Ech sinn hiren Neveu."
+      "lu": "Ech sinn hiren Neveu.",
+      "plus": true
     },
     {
+      "id": 2030,
+      "unite": 3,
       "fr": "Susy est la sœur de mon père.",
       "lu": "D'Susy ass mengem Papp seng Schwëster."
     },
     {
+      "id": 2031,
+      "unite": 3,
       "fr": "Hilaire est le beau-frère de ma mère.",
       "lu": "Den Hilaire ass menger Mamm hire Schwoer."
     },
     {
+      "id": 2032,
+      "unite": 3,
       "fr": "Max est le fils de tante Susy.",
       "lu": "De Max ass der Tatta Susy hire Jong."
     },
     {
+      "id": 2033,
+      "unite": 3,
       "fr": "Je suis le fils de mes parents.",
       "lu": "Ech si mengen Elteren hire Jong."
     },
     {
+      "id": 2034,
+      "unite": 3,
       "fr": "Mes grands-parents ont six petits-enfants.",
-      "lu": "Meng Grousselteren hu sechs Enkelkanner."
+      "lu": "Meng Grousselteren hu sechs Enkelkanner.",
+      "plus": true
+    },
+    {
+      "id": 2035,
+      "unite": 1,
+      "fr": "J'ai une fille.",
+      "lu": "Ech hunn eng Duechter.",
+      "plus": true
+    },
+    {
+      "id": 2036,
+      "unite": 3,
+      "fr": "Le frère de ma mère",
+      "lu": "menger Mamm hire Brudder",
+      "plus": true
     }
   ],
   "cours": [
     {
+      "type": "callout",
+      "unite": 1,
+      "variant": "retenir",
+      "titre": "Présenter les membres de sa famille",
+      "lignes": [
+        "Apprends les membres de la famille avec leur <b>genre</b> : de Papp, d'Mamm, de Brudder, d'Schwëster, d'Duechter.",
+        "Ech hunn e Brudder an eng Schwëster."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 1,
+      "titre": "Mots et expressions",
+      "items": [
+        [
+          "de Papp",
+          "le père"
+        ],
+        [
+          "d'Mamm",
+          "la mère"
+        ],
+        [
+          "de Brudder",
+          "le frère"
+        ],
+        [
+          "d'Schwëster",
+          "la sœur"
+        ],
+        [
+          "de Jong",
+          "le fils / le garçon"
+        ],
+        [
+          "d'Duechter",
+          "la fille (descendante)"
+        ],
+        [
+          "d'Meedchen",
+          "la (jeune) fille"
+        ],
+        [
+          "de Mann",
+          "le mari"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 1,
+      "titre": "À écrire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "de Papp",
+          "le père"
+        ],
+        [
+          "d'Mamm",
+          "la mère"
+        ],
+        [
+          "de Brudder",
+          "le frère"
+        ],
+        [
+          "d'Schwëster",
+          "la sœur"
+        ],
+        [
+          "d'Elteren",
+          "les parents"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 2,
+      "variant": "retenir",
+      "titre": "Mon, ton, son : les possessifs",
+      "lignes": [
+        "Le possessif s'accorde avec le <b>nom possédé</b> : <b>mäi Papp</b> (masculin), <b>meng Mamm</b> (féminin), <b>säi Brudder</b>, <b>hir Mamm</b>.",
+        "Mäi Brudder · meng Schwëster · hire Mann · säi Meedchen."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 2,
+      "titre": "Mots et expressions",
+      "items": [
+        [
+          "mäi Papp",
+          "mon père"
+        ],
+        [
+          "meng Mamm",
+          "ma mère"
+        ],
+        [
+          "mäi Brudder",
+          "mon frère"
+        ],
+        [
+          "deng Schwëster",
+          "ta sœur"
+        ],
+        [
+          "säi Brudder",
+          "son frère (à lui)"
+        ],
+        [
+          "seng Schwëster",
+          "sa sœur (à lui)"
+        ],
+        [
+          "hire Mann",
+          "son mari (à elle)"
+        ],
+        [
+          "hir Mamm",
+          "sa mère (à elle)"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 2,
+      "titre": "À écrire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "mäi Papp",
+          "mon père"
+        ],
+        [
+          "meng Mamm",
+          "ma mère"
+        ],
+        [
+          "mäi Brudder",
+          "mon frère"
+        ],
+        [
+          "deng Schwëster",
+          "ta sœur"
+        ],
+        [
+          "hire Mann",
+          "son mari (à elle)"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 3,
+      "variant": "retenir",
+      "titre": "La sœur de mon père : désigner un lien familial",
+      "lignes": [
+        "Pour dire « le/la … de … », on peut placer la personne au <b>datif</b> puis son possessif : <b>mengem Papp seng Schwëster</b>.",
+        "Menger Mamm hire Schwoer = le beau-frère de ma mère · dem Christian seng Schwëster."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 3,
+      "titre": "Mots et expressions",
+      "items": [
+        [
+          "mengem Papp",
+          "de mon père (datif)"
+        ],
+        [
+          "menger Mamm",
+          "de ma mère (datif)"
+        ],
+        [
+          "mengen Elteren",
+          "de mes parents (datif)"
+        ],
+        [
+          "seng Schwëster",
+          "sa sœur (à lui)"
+        ],
+        [
+          "hire Schwoer",
+          "son beau-frère (à elle)"
+        ],
+        [
+          "hire Jong",
+          "son fils (à elle)"
+        ],
+        [
+          "Pätter",
+          "le parrain"
+        ],
+        [
+          "Enkelkand",
+          "petit-enfant"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 3,
+      "titre": "À écrire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Dem Christian seng Schwëster heescht Anne.",
+          "La sœur de Christian s'appelle Anne."
+        ],
+        [
+          "mengem Papp seng Schwëster",
+          "la sœur de mon père"
+        ],
+        [
+          "menger Mamm hir Schwéiesch",
+          "la belle-sœur de ma mère"
+        ],
+        [
+          "mengen Elteren hire Jong",
+          "le fils de mes parents"
+        ],
+        [
+          "D'Susy ass mengem Papp seng Schwëster.",
+          "Susy est la sœur de mon père."
+        ]
+      ]
+    },
+    {
       "type": "texte",
-      "contenu": "Cette leçon présente les membres de la famille et les possessifs (mon, ton, son, notre, votre, leur). Le point clé : en luxembourgeois, le possessif s'accorde avec le nom possédé (ce qui est possédé), pas avec le possesseur. On apprend aussi la tournure « dem [Nom] säi/seng … » pour dire « le/la … de [quelqu'un] ». Enfin, on apprend à dire « le … de mon / ma / mes … » avec le possessif au datif : mengem Papp seng Schwëster (la sœur de mon père)."
+      "contenu": "Cette leçon présente les membres de la famille et les possessifs (mon, ton, son, notre, votre, leur). Le point clé : en luxembourgeois, le possessif s'accorde avec le nom possédé (ce qui est possédé), pas avec le possesseur. On apprend aussi la tournure « dem [Nom] säi/seng … » pour dire « le/la … de [quelqu'un] ». Enfin, on apprend à dire « le … de mon / ma / mes … » avec le possessif au datif : mengem Papp seng Schwëster (la sœur de mon père).",
+      "unite": 0
     },
     {
       "type": "callout",
@@ -803,7 +1490,8 @@
         "Le possessif change selon le genre du nom possédé : mäi Papp (M), meng Mamm (F), säi Meedchen (N), meng Elteren (Pl).",
         "Le possesseur fixe seulement la « famille » du mot : ech → mäi/meng, hien → säi/seng, si → hir/hiert.",
         "Pour « … de [Nom] » : dem [Nom] + säi/seng + nom possédé."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "vocab",
@@ -929,7 +1617,8 @@
           "de Pätter",
           "le parrain"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -940,7 +1629,8 @@
         "Féminin : d'Mamm, d'Schwëster, d'Duechter, d'Fra, d'Tatta, d'Cousine, d'Groussmamm, d'Niess, d'Enkelin, d'Schwéiesch, d'Schnauer.",
         "Neutre : d'Meedchen, d'Kand, d'Enkelkand. En luxembourgeois, une jeune fille (Meedchen) est neutre.",
         "Pluriel : d'Elteren, d'Kanner, d'Geschwëster, d'Grousselteren."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -995,7 +1685,8 @@
           "Äert",
           "Är"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1007,7 +1698,8 @@
         "Un homme parle de sa mère → seng Mamm (Mamm est féminin).",
         "Le (n) final suit la règle <b>UNITEDZOHA</b> : on le garde devant une voyelle ou n, d, t, z, h, sinon il tombe.",
         "Ex. : säin Numm (devant N) mais säi Papp (devant P)."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1018,7 +1710,8 @@
         "Dem Christian seng Mamm = la mère de Christian (Mamm féminin → seng).",
         "Dem Michelle säi Meedchen = la fille de Michelle (Meedchen neutre → säi).",
         "Question : Wien ass dem Michelle säi Meedchen? = Qui est la fille de Michelle ?"
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "callout",
@@ -1029,7 +1722,8 @@
         "meng au datif : <b>mengem</b> + masculin / neutre (mengem Papp), <b>menger</b> + féminin (menger Mamm), <b>mengen</b> + pluriel (mengen Elteren ; menge Grousselteren, le n tombe devant G).",
         "Le 2e possessif dépend du possesseur : masculin → säi / seng ; féminin ou pluriel → hire(n) / hir / hiert.",
         "Avec un nom : <b>dem</b> + masculin / neutre (dem Hubert, dem Claire), <b>der</b> + féminin (der Tatta Susy)."
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "tableau",
@@ -1059,7 +1753,8 @@
           "hir Duechter",
           "hir Enkelkanner"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "exemple",
@@ -1105,7 +1800,8 @@
           "Ech si mengen Elteren hire Jong.",
           "Je suis le fils de mes parents."
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "exemple",
@@ -1143,7 +1839,8 @@
           "Wien ass dem Michelle säi Meedchen?",
           "Qui est la fille de Michelle ?"
         ]
-      ]
+      ],
+      "unite": 0
     },
     {
       "type": "dialogue",
@@ -1173,7 +1870,8 @@
           "Dat ass meng Tatta. Hire Mann, mäi Monni, schafft zu Lëtzebuerg.",
           "C'est ma tante. Son mari, mon oncle, travaille au Luxembourg."
         ]
-      ]
+      ],
+      "unite": 0
     }
   ]
 }
