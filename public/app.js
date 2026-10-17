@@ -813,8 +813,8 @@ function majNavigation(id) {
   const nav = document.getElementById('nav-bas');
   if (!nav) return;
   let onglet = ONGLET_DE_LA_VUE[id];
-  // Premier lancement (Bienvenue) : pas de barre, un seul chemin possible.
-  if (id === 'view-dashboard' && document.querySelector('#accueil .bienv')) onglet = null;
+  // Accueil : pas de barre, les accès directs sont déjà sur l'écran.
+  if (id === 'view-dashboard') onglet = null;
   nav.classList.toggle('hidden', !onglet);
   document.body.classList.toggle('avec-nav', !!onglet);
   nav.querySelectorAll('[data-nav]').forEach(b => {

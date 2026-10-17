@@ -57,25 +57,22 @@ with sync_playwright() as p:
     page.wait_for_selector('#today')
 
     # ── S13 : premier lancement, choix du niveau A1.2 ──
-    page.screenshot(path=OUT + 'lot2-01-bienvenue.png', full_page=True)
-    page.click('#today .choix-niv:has-text("A1.2")')
-    assert page.get_attribute('#today .choix-niv:has-text("A1.2")', 'aria-pressed') == 'true'
-    page.click('#today .btn-jaune')
+    page.screenshot(path=OUT + 'lot2-01-nouveau.png', full_page=True)
+    page.click('.puce-niv:has-text("A1.2")')
+    assert page.get_attribute('.puce-niv:has-text("A1.2")', 'aria-pressed') == 'true'
+    assert 'Leçon 20' in page.inner_text('#today')
+    page.click('#today .carte-suite')
     assert page.evaluate('niveauChoisi()') == 'A1.2'
-    assert actif(page, 'view-lecon') and '20' in page.inner_text('#lecon-num')
+    assert actif(page, 'view-plecon') and page.evaluate('pLecon.id') == 20  # leçon 20 migrée en unités
     page.evaluate('goDashboard()')
-    assert 'A1.2' in page.inner_text('#btn-niveau')
-    assert 'ton parcours · a1.2' in page.inner_text('#today').lower()
-    assert '/ 7 leçons' in page.inner_text('#today .compte')
-    ok('Bienvenue : A1.2 choisi → leçon 20 ; accueil « Ton parcours · A1.2 · 0 / 7 leçons »')
+    assert page.get_attribute('.puce-niv:has-text("A1.2")', 'aria-pressed') == 'true'
+    assert 'Commencer' in page.inner_text('#today') and 'Leçon 20' in page.inner_text('#today')
+    ok('puce A1.2 → « Commencer » → leçon 20 (en unités) ; pas encore pratiqué : toujours « Commencer · Leçon 20 »')
 
     # ── S13 : changer de niveau depuis l'accueil ; révision tous niveaux ──
-    page.click('#btn-niveau')
-    assert page.locator('.panneau .choix-niv').count() == 2
-    page.screenshot(path=OUT + 'lot2-02-panneau-niveau.png')
-    page.click('.panneau .choix-niv:has-text("A1.1")')
+    page.click('.puce-niv:has-text("A1.1")')
     assert page.evaluate('niveauActif') == 'A1.1' and page.evaluate('niveauChoisi()') == 'A1.1'
-    assert not visible(page, '.panneau')
+    assert page.get_attribute('.puce-niv:has-text("A1.1")', 'aria-pressed') == 'true'
     page.evaluate("""() => {
         // Des questions de la leçon 20 (A1.2) vues il y a 40 jours : dues.
         const l = lecons.find(x => x.id === 20);
@@ -89,17 +86,20 @@ with sync_playwright() as p:
         saveWrongStore(wrong); // erreurs actives : dues tout de suite (pas d'étalement)
         goDashboard();
     }""")
-    assert '5 questions' in page.inner_text('.tuile.rev'), page.inner_text('.tuile.rev')
-    page.click('.tuile.rev')
+    chiffres = page.inner_text('.ac-chiffres')
+    assert '/ 17' in chiffres and 'Progression' in chiffres and 'Série' in chiffres, chiffres
+    assert 'Continuer' in page.inner_text('#today')
+    assert '5' in page.inner_text('.ac-btn.rev') and 'à revoir' in page.inner_text('.ac-btn.rev'), page.inner_text('.ac-btn.rev')
+    page.click('.ac-btn.rev')
     assert actif(page, 'view-session')
     assert all(x == 20 for x in page.evaluate('session.questions.map(q => q.leconId)'))
-    ok('niveau A1.1 choisi dans le panneau ; la révision du jour reprend des questions A1.2')
+    ok('niveau A1.1 choisi par la puce ; « Réviser · 5 à revoir » reprend des questions A1.2')
 
     # ── S9 : barre du bas ──
     assert not visible(page, '#nav-bas'), 'pas de barre pendant une séance'
     page.click('#view-session .back-btn')
-    assert visible(page, '#nav-bas') and page.get_attribute('.nav-bas [data-nav="accueil"]', 'aria-current') == 'page'
-    page.click('.nav-bas [data-nav="chemin"]')
+    assert actif(page, 'view-dashboard') and not visible(page, '#nav-bas'), 'pas de barre sur l\'accueil'
+    page.click('.ac-btn.lecons')
     assert actif(page, 'view-lessons') and page.get_attribute('.nav-bas [data-nav="chemin"]', 'aria-current') == 'page'
     page.click('.nav-bas [data-nav="reviser"]')
     assert actif(page, 'view-review-setup')
@@ -111,8 +111,9 @@ with sync_playwright() as p:
     assert actif(page, 'view-parcours') and not visible(page, '#nav-bas')
     page.click('#view-parcours .maison')
     assert actif(page, 'view-dashboard')
-    assert 'reprendre' in page.inner_text('#today .reprendre-tete').lower()
-    ok('barre : Accueil, Chemin, Réviser, Plus ; masquée en séance et en exercice ; maison → accueil')
+    carte = page.inner_text('#today')
+    assert 'Continuer' in carte and 'Leçon 2' in carte and 'restante' in carte, carte
+    ok('barre : Accueil, Chemin, Réviser, Plus ; masquée sur l\'accueil, en séance et en exercice ; maison → accueil « Continuer · questions restantes »')
 
     # ── S13 : chemin avec 7 leçons terminées ──
     page.evaluate('clearRun()')
@@ -133,7 +134,7 @@ with sync_playwright() as p:
     assert actif(page, 'view-pintro')
     page.evaluate('goLessons()')
     page.click('.pas.futur .chemin-lecon:has-text("Les langues")')
-    assert actif(page, 'view-lecon')
+    assert actif(page, 'view-lecon') or actif(page, 'view-plecon')  # leçon migrée ou non
     page.evaluate('goLessons()')
     page.click('.pas.encours .unites li.bilan button')
     assert actif(page, 'view-session') and page.evaluate('session.questions.length') > 0
@@ -158,10 +159,10 @@ with sync_playwright() as p:
         page.evaluate(FINIR_LECON, lid)
     page.evaluate('goDashboard()')
     assert 'niveau terminé' in page.inner_text('#today').lower()
-    assert page.inner_text('#today .btn-jaune') == 'Passer en A1.2'
+    assert 'Passer en A1.2' in page.inner_text('#today .carte-suite')
     assert page.evaluate('niveauActif') == 'A1.1'
     page.screenshot(path=OUT + 'lot2-04-niveau-termine.png', full_page=True)
-    page.click('#today .btn-jaune')
+    page.click('#today .carte-suite')
     assert page.evaluate('niveauActif') == 'A1.2'
     ok('A1.1 terminé : « Passer en A1.2 » proposé, niveau inchangé tant qu\'on n\'accepte pas')
 

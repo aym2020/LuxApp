@@ -32,19 +32,22 @@ with sync_playwright() as p:
     page.goto(URL)
     page.wait_for_selector('#today')
 
-    # ── S3 + S13 : profil neuf = Bienvenue avec le choix du niveau ──
-    assert 'Quel niveau' in page.inner_text('#today .question')
-    assert page.locator('#today .choix-niv').count() == len(page.evaluate('niveauxDisponibles()'))
-    assert page.get_attribute('#today .choix-niv >> nth=0', 'aria-pressed') == 'true'
-    assert not visible(page, '#nav-bas'), 'pas de barre du bas au premier lancement'
-    assert not visible(page, '.tuile'), 'pas de tuiles au premier lancement'
+    # ── V3 : profil neuf = accueil « Prêt à commencer ? » + puces de niveau ──
+    assert 'Prêt à commencer' in page.inner_text('#view-dashboard')
+    assert page.locator('.puce-niv').count() == len(page.evaluate('niveauxDisponibles()'))
+    assert page.get_attribute('.puce-niv >> nth=0', 'aria-pressed') == 'true'
+    assert 'Commencer' in page.inner_text('#today') and 'Leçon 1' in page.inner_text('#today')
+    assert page.locator('.ac-btn').all_inner_texts() == ['Leçons', 'Réviser', 'Examens', 'Erreurs fréquentes']
+    assert not visible(page, '.ac-chiffres'), 'pas de chiffres au premier lancement'
+    assert not visible(page, '#nav-bas'), 'pas de barre du bas sur l\'accueil'
     assert page.locator('#view-dashboard >> text=Réinitialiser').count() == 0
     assert '1592' not in page.inner_text('#view-dashboard')
-    ok('profil neuf : Bienvenue + choix du niveau (A1.1 présélectionné), ni barre, ni tuiles, ni « Réinitialiser »')
+    ok('profil neuf : « Commencer · Leçon 1 », A1.1 présélectionné, 4 accès visibles, ni chiffres, ni barre, ni « Réinitialiser »')
 
-    page.click('#today button:has-text("C\'est parti")')
+    page.click('#today .carte-suite')
+    assert page.evaluate('niveauChoisi()') == 'A1.1'
     assert actif(page, 'view-plecon'), 'la leçon 1 (en unités) doit s\'ouvrir sur son écran'
-    ok('« C\'est parti » → leçon 1 en unités, écran de la leçon (1re visite)')
+    ok('« Commencer » → leçon 1 en unités, écran de la leçon (1re visite)')
 
     # ── Leçon migrée : l'acquis v1 est gardé (ids < 1000), le guide passe à la leçon 2 ──
     page.evaluate("""() => {
@@ -71,7 +74,7 @@ with sync_playwright() as p:
 
     # ── S3 : compteurs acquis (dans le menu « Plus », S9) ──
     page.evaluate('goDashboard()')
-    page.click('.nav-bas [data-nav="plus"]')
+    page.click('.ac-menu')
     tuiles = page.locator('.plus-acquis span').all_inner_texts()
     assert tuiles == ['unités terminées', 'missions réussies', 'jours de pratique'], tuiles
     assert page.inner_text('.plus-acquis b >> nth=0') == '1'  # leçon 1 acquise en v1
