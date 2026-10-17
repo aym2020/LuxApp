@@ -189,20 +189,6 @@
       "unite": 2,
       "fr": "des boîtes",
       "lu": "Këschten"
-    },
-    {
-      "id": 2015,
-      "unite": 2,
-      "fr": "contre, en contact",
-      "lu": "un",
-      "plus": true
-    },
-    {
-      "id": 2016,
-      "unite": 2,
-      "fr": "appuyé contre",
-      "lu": "widdert",
-      "plus": true
     }
   ],
   "quiz": [
@@ -285,30 +271,6 @@
     },
     {
       "id": 2008,
-      "unite": 2,
-      "question": "un",
-      "reponse": "à / contre (en contact avec)",
-      "distracteurs": [
-        "dans",
-        "sur",
-        "derrière"
-      ],
-      "plus": true
-    },
-    {
-      "id": 2009,
-      "unite": 2,
-      "question": "widdert",
-      "reponse": "contre (appuyé contre)",
-      "distracteurs": [
-        "à côté de",
-        "devant",
-        "entre"
-      ],
-      "plus": true
-    },
-    {
-      "id": 2010,
       "unite": 1,
       "question": "De Ball ass an der Këscht.",
       "reponse": "Le ballon est dans la boîte.",
@@ -319,7 +281,7 @@
       ]
     },
     {
-      "id": 2011,
+      "id": 2009,
       "unite": 1,
       "question": "De Ball ass ënnert der Këscht.",
       "reponse": "Le ballon est sous la boîte.",
@@ -330,7 +292,7 @@
       ]
     },
     {
-      "id": 2012,
+      "id": 2010,
       "unite": 1,
       "question": "De Ball ass iwwert der Këscht.",
       "reponse": "Le ballon est au-dessus de la boîte.",
@@ -341,7 +303,7 @@
       ]
     },
     {
-      "id": 2013,
+      "id": 2011,
       "unite": 1,
       "question": "De Ball ass hannert der Këscht.",
       "reponse": "Le ballon est derrière la boîte.",
@@ -352,7 +314,7 @@
       ]
     },
     {
-      "id": 2014,
+      "id": 2012,
       "unite": 2,
       "question": "De Ball ass tëschent zwou Këschten.",
       "reponse": "Le ballon est entre deux boîtes.",
@@ -363,7 +325,7 @@
       ]
     },
     {
-      "id": 2015,
+      "id": 2013,
       "unite": 2,
       "question": "Wou ass de Ball?",
       "reponse": "Où est le ballon ?",
@@ -374,7 +336,7 @@
       ]
     },
     {
-      "id": 2016,
+      "id": 2014,
       "unite": 2,
       "question": "nieft",
       "reponse": "à côté de",
@@ -385,7 +347,7 @@
       ]
     },
     {
-      "id": 2017,
+      "id": 2015,
       "unite": 2,
       "question": "bei",
       "reponse": "près de",
@@ -396,7 +358,7 @@
       ]
     },
     {
-      "id": 2018,
+      "id": 2016,
       "unite": 2,
       "question": "De Ball ass nieft der Këscht.",
       "reponse": "Le ballon est à côté de la boîte.",
@@ -665,76 +627,62 @@
     {
       "id": 2008,
       "unite": 2,
-      "fr": "à / contre (en contact avec)",
-      "lu": "un",
-      "plus": true
-    },
-    {
-      "id": 2009,
-      "unite": 2,
-      "fr": "contre (appuyé contre)",
-      "lu": "widdert",
-      "plus": true
-    },
-    {
-      "id": 2010,
-      "unite": 2,
       "fr": "Où est le ballon ?",
       "lu": "Wou ass de Ball?"
     },
     {
-      "id": 2011,
+      "id": 2009,
       "unite": 1,
       "fr": "Le ballon est dans la boîte.",
       "lu": "De Ball ass an der Këscht."
     },
     {
-      "id": 2012,
+      "id": 2010,
       "unite": 1,
       "fr": "Le ballon est sur la boîte.",
       "lu": "De Ball ass op der Këscht."
     },
     {
-      "id": 2013,
+      "id": 2011,
       "unite": 1,
       "fr": "Le ballon est sous la boîte.",
       "lu": "De Ball ass ënnert der Këscht.",
       "plus": true
     },
     {
-      "id": 2014,
+      "id": 2012,
       "unite": 1,
       "fr": "Le ballon est devant la boîte.",
       "lu": "De Ball ass virun der Këscht.",
       "plus": true
     },
     {
-      "id": 2015,
+      "id": 2013,
       "unite": 1,
       "fr": "Le ballon est derrière la boîte.",
       "lu": "De Ball ass hannert der Këscht.",
       "plus": true
     },
     {
-      "id": 2016,
+      "id": 2014,
       "unite": 2,
       "fr": "Le ballon est entre deux boîtes.",
       "lu": "De Ball ass tëschent zwou Këschten."
     },
     {
-      "id": 2017,
+      "id": 2015,
       "unite": 2,
       "fr": "Le ballon est à côté de la boîte.",
       "lu": "De Ball ass nieft der Këscht."
     },
     {
-      "id": 2018,
+      "id": 2016,
       "unite": 2,
       "fr": "Le ballon est près de la boîte.",
       "lu": "De Ball ass bei der Këscht."
     },
     {
-      "id": 2019,
+      "id": 2017,
       "unite": 2,
       "fr": "Où est la boîte ?",
       "lu": "Wou ass d'Këscht?"
