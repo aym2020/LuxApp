@@ -122,10 +122,15 @@ with sync_playwright() as p:
     ok('mot caché : ' + str(verts) + ' lettres vertes après erreur, 1 indice, score ' + score)
 
     # Barre d'espace dans le champ (bug corrigé des raccourcis cartes)
-    page.click('#mc-input')
+    page.click('#mc-mot')
     page.keyboard.type('a b')
-    assert page.input_value('#mc-input') == 'a b'
-    ok('barre d\'espace utilisable dans le champ (après passage par l\'onglet Cartes)')
+    # On tape dans les cases : l'espace est accepté sans déclencher de raccourci, puis retiré.
+    assert page.input_value('#mc-input') == 'ab', page.input_value('#mc-input')
+    assert page.locator('.mc-case.tapee').count() == 2
+    page.keyboard.press('Backspace')
+    assert page.locator('.mc-case.tapee').count() == 1
+    page.keyboard.press('Backspace')
+    ok('écriture directe dans les cases : toucher les cases donne le clavier, espace sans raccourci, effacement')
 
     # Panneau cours
     page.click('#view-parcours .pc-cours-btn')

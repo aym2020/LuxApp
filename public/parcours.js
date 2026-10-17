@@ -642,6 +642,10 @@ function renderMotCache(card) {
   };
   const nbLettres = mc.cases.filter(c => c.lettre).length;
 
+  // On écrit directement dans les cases : une zone de saisie invisible est
+  // posée par-dessus. Toucher les cases ouvre le clavier.
+  // C'est un <textarea> : Chrome et Brave n'y affichent pas leur barre
+  // d'autoremplissage (mots de passe, carte, adresse), contrairement à <input>.
   document.getElementById('pc-body').innerHTML =
     '<div class="mc-top">' +
       '<div class="pc-mini-label">TRADUIS</div>' +
@@ -649,9 +653,11 @@ function renderMotCache(card) {
       (card.indice ? '<div class="mc-indice">' + escHtml(card.indice) + '</div>' : '') +
     '</div>' +
     '<div class="mc-milieu">' +
-    '<div class="mc-mot">' +
+    '<div class="mc-mot" id="mc-mot">' +
       (card.article && !articleAEcrire(pLecon, card) ? '<span class="mc-article">' + escHtml(card.article) + '</span>' : '') +
       '<div class="mc-cases" id="mc-cases"></div>' +
+      '<textarea id="mc-input" class="mc-input" rows="1" aria-label="Ta réponse en luxembourgeois"' +
+        ' enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
     '</div>' +
     '<div class="mc-legende hidden" id="mc-legende">' +
       '<span><i class="mc-dot vert"></i>bien placée · gratuit</span>' +
@@ -661,9 +667,6 @@ function renderMotCache(card) {
     '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
     '</div>' +
     '<div class="mc-saisie">' +
-    '<label class="pc-input-label" for="mc-input">Ta réponse</label>' +
-    '<input id="mc-input" class="ecr-input mc-input" type="text" placeholder="Écris en luxembourgeois"' +
-      ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">' +
     '<div class="mc-score">Score du mot : <b id="mc-score">100 %</b></div>' +
     '<div class="pc-actions">' +
       '<button class="pc-btn" id="mc-btn-indice" onclick="mcIndice()">Indice</button>' +
@@ -672,7 +675,6 @@ function renderMotCache(card) {
     '<button class="pc-btn ghost wide hidden" id="mc-btn-voir" onclick="mcVoirReponse()">Voir la réponse</button>' +
     '</div>';
 
-  renderCases();
   const input = document.getElementById('mc-input');
   input.addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
@@ -681,23 +683,96 @@ function renderMotCache(card) {
     if (pAttente) continuerParcours();
     else mcValider();
   });
+  input.addEventListener('input', mcSaisie);
+  input.addEventListener('focus', mcMajFocus);
+  input.addEventListener('blur', mcMajFocus);
+  renderCases();
   input.focus();
+  mcMajFocus();
+}
+
+// Les lettres tapées (espaces et ponctuation retirés : ils sont déjà affichés).
+function mcLettresTapees() {
+  return document.getElementById('mc-input').value.split('').filter(estLettre);
+}
+
+// Index des cases-lettres, et de celles encore à remplir (ni vertes, ni indices).
+function mcCasesLettres() {
+  const toutes = [], libres = [];
+  mc.cases.forEach((c, i) => {
+    if (!c.lettre) return;
+    toutes.push(i);
+    if (c.etat === '') libres.push(i);
+  });
+  return { toutes, libres };
+}
+
+// Lettre tapée pour chaque case : { indexCase: lettre }.
+// Normalement on remplit seulement les cases libres. Si la personne a tapé
+// (ou collé) le mot entier, on le répartit sur toutes les cases.
+function mcLettresParCase() {
+  const lettres = mcLettresTapees();
+  const { toutes, libres } = mcCasesLettres();
+  const cible = lettres.length > libres.length ? toutes : libres;
+  const parCase = {};
+  cible.forEach((i, k) => { if (k < lettres.length) parCase[i] = lettres[k]; });
+  return parCase;
+}
+
+// À chaque frappe : on nettoie le champ et on redessine les cases.
+function mcSaisie() {
+  const input = document.getElementById('mc-input');
+  // Entrée tapée sur certains claviers Android : on valide.
+  if (input.value.indexOf('\n') !== -1) {
+    input.value = input.value.replace(/\n/g, '');
+    if (pAttente) continuerParcours();
+    else mcValider();
+    return;
+  }
+  const max = mcCasesLettres().toutes.length;
+  const propre = mcLettresTapees().slice(0, max).join('');
+  // On ne réécrit le champ que si besoin (sinon le clavier perd sa saisie en cours).
+  if (input.value !== propre) input.value = propre;
+  renderCases();
+}
+
+function mcMajFocus() {
+  const input = document.getElementById('mc-input');
+  const mot = document.getElementById('mc-mot');
+  if (!input || !mot) return;
+  const actif = document.activeElement === input && !input.disabled;
+  mot.classList.toggle('focus', actif);
+  const nb = mcCasesLettres().toutes.length;
+  document.getElementById('mc-info').textContent = nb + ' lettres' + (actif || input.disabled ? '' : ' · touche les cases pour écrire');
+  renderCases();
 }
 
 function renderCases() {
   const nbLettres = mc.cases.filter(c => c.lettre).length;
   const taille = nbLettres > 12 ? ' xs' : nbLettres > 9 ? ' sm' : '';
+  const input = document.getElementById('mc-input');
+  const parCase = input ? mcLettresParCase() : {};
+  // Curseur : la première case libre encore vide (seulement si on peut écrire).
+  let curseur = -1;
+  if (input && !input.disabled && document.activeElement === input) {
+    curseur = mcCasesLettres().libres.find(i => parCase[i] === undefined);
+    if (curseur === undefined) curseur = -1;
+  }
   // Les cases d'un même mot restent groupées : on ne passe à la ligne
   // qu'entre deux mots (jamais au milieu, ex. « Owen / d! »).
   let html = '<span class="mc-groupe">';
-  mc.cases.forEach(c => {
+  mc.cases.forEach((c, i) => {
     if (!c.lettre) {
       html += c.ch === ' ' ? '</span><span class="mc-espace"></span><span class="mc-groupe">'
                            : '<span class="mc-sep">' + escHtml(c.ch) + '</span>';
-    } else {
-      const visible = c.etat !== '';
-      html += '<span class="mc-case ' + c.etat + taille + '">' + (visible ? escHtml(c.ch) : '') + '</span>';
+      return;
     }
+    let texte = '';
+    let classe = 'mc-case ' + c.etat + taille;
+    if (parCase[i] !== undefined) { texte = parCase[i]; classe += ' tapee'; }
+    else if (c.etat !== '') texte = c.ch;
+    if (i === curseur) classe += ' curseur';
+    html += '<span class="' + classe + '">' + escHtml(texte) + '</span>';
   });
   document.getElementById('mc-cases').innerHTML = html + '</span>';
 }
@@ -716,35 +791,54 @@ function mcMajScore() {
 
 function mcIndice() {
   if (pAttente) return;
-  const cachees = [];
-  mc.cases.forEach((c, i) => { if (c.lettre && c.etat === '') cachees.push(i); });
-  if (!cachees.length) return;
+  const input = document.getElementById('mc-input');
+  const { toutes, libres } = mcCasesLettres();
+  if (!libres.length) return;
 
-  const i = cachees[Math.floor(Math.random() * cachees.length)];
+  const i = libres[Math.floor(Math.random() * libres.length)];
+  // Si une lettre était déjà tapée dans cette case, on la retire du champ :
+  // les autres lettres tapées restent dans leur case.
+  const lettres = mcLettresTapees();
+  if (lettres.length <= libres.length) {
+    const position = libres.indexOf(i);
+    if (position < lettres.length) lettres.splice(position, 1);
+    input.value = lettres.join('');
+  }
   mc.cases[i].etat = 'indice';
   mc.indices++;
   renderCases();
   mcMajScore();
   document.getElementById('mc-legende').classList.remove('hidden');
-  if (cachees.length === 1) document.getElementById('mc-btn-indice').disabled = true;
-  document.getElementById('mc-input').focus();
+  if (libres.length === 1) document.getElementById('mc-btn-indice').disabled = true;
+  input.focus();
 }
 
 function mcValider() {
   if (pAttente) return;
   const input = document.getElementById('mc-input');
-  const val = input.value.trim();
-  if (!val) return;
+  if (!mcLettresTapees().length) { input.focus(); return; }
   const card = mc.card;
+
+  // Le mot proposé = cases remplies (vertes, indices et lettres tapées).
+  const parCase = mcLettresParCase();
+  let val = '', essaiAffiche = '';
+  mc.cases.forEach((c, i) => {
+    if (!c.lettre) { val += c.ch; essaiAffiche += c.ch; return; }
+    const lettre = parCase[i] !== undefined ? parCase[i] : (c.etat !== '' ? c.ch : '');
+    val += lettre;
+    essaiAffiche += lettre || '_';
+  });
 
   // Juste (même comparaison que l'écriture : accents et ponctuation ignorés).
   if (normalize(val) === normalize(motATaper(pLecon, card))) {
     mc.cases.forEach(c => { if (c.lettre) c.etat = 'vert'; });
+    input.value = '';
+    input.disabled = true;
     renderCases();
+    mcMajFocus();
+    document.getElementById('mc-cases').classList.add('juste');
     const ok = !mc.revele && mc.indices === 0 && mc.essais === 0;
     enregistrer(card, mcScore(), ok, { indices: mc.indices, essais: mc.essais, revele: mc.revele });
-    input.disabled = true;
-    input.className = 'ecr-input mc-input correct';
     // Juste : le point d'attention complet, pour retenir le piège (S6).
     showFeedback(true, 'Juste !', '<b>' + escHtml(motComplet(card)) + '</b>' +
       (card.note ? '<br>' + escHtml(card.note) : '') + attentionHtml(attentionItem(card, 'flashcards')), reussir);
@@ -754,10 +848,11 @@ function mcValider() {
   // Faux : les lettres bien placées passent en vert, gratuitement.
   mc.essais++;
   mc.cases.forEach((c, i) => {
-    if (c.lettre && c.etat === '' && i < val.length && normalize(val[i]) === normalize(c.ch)) {
+    if (c.lettre && c.etat === '' && parCase[i] !== undefined && normalize(parCase[i]) === normalize(c.ch)) {
       c.etat = 'vert';
     }
   });
+  input.value = '';
   renderCases();
   document.getElementById('mc-legende').classList.remove('hidden');
 
@@ -765,7 +860,7 @@ function mcValider() {
   // réponse ; ensuite, le point d'attention complet (S6).
   const err = document.getElementById('mc-erreur');
   err.classList.remove('hidden');
-  err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · essai ' + mc.essais +
+  err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(essaiAffiche) + ' · essai ' + mc.essais +
     aideErreurHtml(val, carteACorriger(pLecon, card), attentionItem(card, 'flashcards'), mc.essais);
 
   if (mc.essais >= ESSAIS_AVANT_REPONSE) {
@@ -778,7 +873,6 @@ function mcValider() {
   void cases.offsetWidth;
   cases.classList.add('shake');
 
-  input.value = '';
   input.focus();
 }
 
@@ -786,10 +880,13 @@ function mcVoirReponse() {
   if (pAttente) return;
   mc.revele = true;
   mc.cases.forEach(c => { if (c.lettre && c.etat === '') c.etat = 'indice'; });
+  const input = document.getElementById('mc-input');
+  input.value = '';
+  input.disabled = true;
   renderCases();
+  mcMajFocus();
   mcMajScore();
   enregistrer(mc.card, 0, false, { indices: mc.indices, essais: mc.essais, revele: true });
-  document.getElementById('mc-input').disabled = true;
   showFeedback(false, 'La réponse : ' + escHtml(motComplet(mc.card)),
     attentionHtml(attentionItem(mc.card, 'flashcards')) + 'Ce mot reviendra à la fin de l\'étape.', echouer);
 }
