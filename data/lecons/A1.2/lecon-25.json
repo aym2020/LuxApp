@@ -505,12 +505,12 @@
     {
       "id": 2022,
       "unite": 3,
-      "question": "Dat wier alles.",
-      "reponse": "Ce sera tout.",
+      "question": "Ech bezuelen aacht Euro boer.",
+      "reponse": "Je paie huit euros en liquide.",
       "distracteurs": [
-        "Autre chose ?",
-        "Combien cela coûte ?",
-        "Je prends tout."
+        "Je paie huit euros par carte.",
+        "Je reçois huit euros.",
+        "Je paie dix euros en liquide."
       ]
     },
     {
@@ -799,17 +799,17 @@
     {
       "id": 2019,
       "unite": 3,
-      "fr": "Ce sera tout.",
-      "avant": "Dat",
-      "trou": "wier",
-      "apres": "alles.",
+      "fr": "Je paie dix euros en liquide.",
+      "avant": "Ech bezuelen",
+      "trou": "zéng Euro",
+      "apres": "boer.",
       "choix": [
-        "wier",
-        "hätt",
-        "kritt",
-        "ass"
+        "zéng Euro",
+        "aacht Euro",
+        "dräi Euro",
+        "fënnef Euro"
       ],
-      "note": "La formule « Ce sera tout » utilise wier."
+      "note": "Dix euros : zéng Euro."
     },
     {
       "id": 2020,
@@ -839,7 +839,8 @@
         "huelen",
         "eng Tut"
       ],
-      "note": "Le total : zesummen."
+      "note": "Le total : zesummen.",
+      "plus": true
     }
   ],
   "ecriture": [
