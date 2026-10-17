@@ -508,36 +508,6 @@
     {
       "id": 2010,
       "unite": 2,
-      "fr": "Le ballon est contre la boîte (en contact avec).",
-      "avant": "De Ball ass",
-      "trou": "un",
-      "apres": "der Këscht.",
-      "choix": [
-        "un",
-        "an",
-        "op",
-        "iwwert"
-      ],
-      "note": "un = à / contre, en contact avec."
-    },
-    {
-      "id": 2011,
-      "unite": 2,
-      "fr": "Le ballon est appuyé contre la boîte.",
-      "avant": "De Ball ass",
-      "trou": "widdert",
-      "apres": "der Këscht.",
-      "choix": [
-        "widdert",
-        "virun",
-        "iwwert",
-        "tëschent"
-      ],
-      "note": "widdert = appuyé contre."
-    },
-    {
-      "id": 2012,
-      "unite": 2,
       "fr": "Où est le ballon ?",
       "avant": "Wou ass",
       "trou": "de Ball",
@@ -551,7 +521,7 @@
       "note": "Question : Wou ass de Ball?"
     },
     {
-      "id": 2013,
+      "id": 2011,
       "unite": 2,
       "fr": "Ce sont deux boîtes.",
       "avant": "Dat sinn",
@@ -566,7 +536,7 @@
       "note": "Deux avec le féminin Këscht : zwou."
     },
     {
-      "id": 2014,
+      "id": 2012,
       "unite": 2,
       "fr": "Où est la boîte ?",
       "avant": "",
