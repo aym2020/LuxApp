@@ -41,7 +41,7 @@ with sync_playwright() as p:
     page.on('dialog', lambda d: d.accept())
     page.goto(URL)
     page.wait_for_selector('#today')
-    page.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
+    page.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
     page.evaluate("choisirNiveau('A1.1')")
     page.evaluate("[2, 3, 8].forEach(id => marquerIntroMissionVue(id))")  # introduction de mission : testée ailleurs
 

@@ -28,7 +28,7 @@ with sync_playwright() as p:
     pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL)
     pg.wait_for_selector('#today')
-    pg.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
+    pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
     pg.evaluate("choisirNiveau('A1.1'); goLessons()")
 
     # Chemin → Découvrir → Retour : chemin, leçon 1 dépliée

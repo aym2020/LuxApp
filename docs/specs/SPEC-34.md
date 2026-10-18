@@ -16,7 +16,7 @@
 
 ## Exigences et implémentation
 
-- **Rappel des règles** : à la toute 1re mission (mémorisé dans la progression, donc synchronisé : `progress.guide.vies`), panneau « Tu as 3 vies ! » (3 cœurs animés, règles en 3 phrases, bouton « C'est parti ! → ») ; la conversation ne démarre qu'à sa fermeture. Ensuite, un appui sur les cœurs rouvre le rappel (« Continuer la mission »), sans effet sur la partie.
+- **Rappel des règles** *(remplacé par la [SPEC 36](./SPEC-36.md) : affichage à chaque lancement, case « Ne plus afficher »)* : à la toute 1re mission (mémorisé dans la progression, donc synchronisé : `progress.guide.vies`), panneau « Tu as 3 vies ! » (3 cœurs animés, règles en 3 phrases, bouton « C'est parti ! → ») ; la conversation ne démarre qu'à sa fermeture. Ensuite, un appui sur les cœurs rouvre le rappel (« Continuer la mission »), sans effet sur la partie.
 - **Cœurs** : ligne dédiée sous l'en-tête, centrée, 24 px, compteur « n / 10 » dessous ; visibles clavier ouvert. Vie perdue : le cœur bat une fois puis passe du rouge au contour gris.
 - **Missions** : les 24 leçons ont exactement **10 réponses à produire** (`mission.version: 2`). `valider-lecons` refuse une scène qui n'a pas 10 réponses, une version < 2 ou une unité du fil sans réponse.
 - **Versions** : chaque version de scène a son score et sa réussite (`mission.score` pour la v1, `mission.scoreV2` / `mission.reussieV2` pour la v2). Un ancien résultat ne valide jamais la nouvelle scène (`missionReussie`), mais la leçon acquise grâce à lui reste acquise (`leconAcquiseParMission`) : progression, étoiles et unités préservées.
@@ -24,7 +24,7 @@
 
 ## Critères d'acceptation
 
-- [x] 1re mission : rappel des règles avant la conversation ; missions suivantes : pas de rappel automatique.
+- [x] 1re mission : rappel des règles avant la conversation ; missions suivantes : pas de rappel automatique *(remplacé par la SPEC 36)*.
 - [x] Appui sur les cœurs : rappel des règles, partie inchangée.
 - [x] Cœurs 24 px centrés, compteur « n / 10 ».
 - [x] 1re erreur réelle = 1 vie ; 2e erreur sur la même réplique = aucune vie de plus ; coquille = aucune vie.

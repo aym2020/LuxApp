@@ -33,7 +33,7 @@ with sync_playwright() as p:
     pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL)
     pg.wait_for_selector('#today')
-    pg.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
+    pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
     pg.evaluate("choisirNiveau('A1.1'); lecons.forEach(l => marquerIntroMissionVue(l.id))")
 
     # 1. Leçon 1 : unités 1 à 3 faites, unité 4 interrompue (partie principale), mission réussie avec 1 vie
@@ -101,7 +101,7 @@ with sync_playwright() as p:
     # 4. Rechargement : tout est gardé
     pg.reload()
     pg.wait_for_selector('#today')
-    pg.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
+    pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
     assert pg.evaluate("leconTerminee(" + L1 + ") && getUnitBest(1, 4) == null && loadRun(true).uniteId === 4")
     ok('après rechargement : validation, unité 4 non faite et partie libre conservées')
 

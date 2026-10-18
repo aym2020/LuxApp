@@ -233,9 +233,9 @@ function openMission(tentative) {
   fermerClavier();
   showView('view-mission');
   ecouterConversation();
-  // Toute 1re mission : les règles des vies d'abord ; la conversation démarre
-  // à la fermeture du panneau (spec 34).
-  if (!reglesViesVues()) {
+  // Règles des vies à chaque lancement, sauf « Ne plus afficher » coché ;
+  // la conversation démarre à la fermeture du panneau (specs 34 et 36).
+  if (!reglesViesMasquees()) {
     document.getElementById('ms-body').innerHTML = '';
     document.getElementById('ms-reponse').innerHTML = '';
     voirReglesVies(true);
@@ -244,17 +244,29 @@ function openMission(tentative) {
   renderMission();
 }
 
-// ─── RÈGLES DES VIES (spec 34) ──────────────────────────────────────────────
-// Montrées d'office à la toute 1re mission (mémorisé dans la progression,
-// donc synchronisé), puis à la demande en touchant les cœurs. Consulter les
-// règles ne change rien à la partie en cours.
-function reglesViesVues() {
+// ─── RÈGLES DES VIES (specs 34 et 36) ───────────────────────────────────────
+// Montrées à chaque lancement de mission, sauf si l'utilisateur a coché
+// « Ne plus afficher » (mémorisé dans la progression, donc synchronisé).
+// Toujours consultables en touchant les cœurs ; la case y est aussi, pour
+// réactiver le rappel. Consulter les règles ne change rien à la partie.
+function reglesViesMasquees() {
   const p = getProgress();
-  return !!(p.guide && p.guide.vies);
+  return !!(p.guide && p.guide.viesMasquees);
 }
 
-function voirReglesVies(premiereFois) {
+// Appelée à chaque clic sur la case : le choix est enregistré tout de suite.
+function masquerReglesVies(masquer) {
+  const p = getProgress();
+  if (!p.guide) p.guide = {};
+  p.guide.viesMasquees = masquer ? 1 : 0;
+  saveProgress(p);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// auLancement = true : affichage automatique avant la conversation.
+function voirReglesVies(auLancement) {
   const coeurs = '<svg class="ms-coeur" viewBox="0 0 24 24" aria-hidden="true"><path d="' + CHEMIN_COEUR + '"/></svg>';
+  const coche = reglesViesMasquees() ? ' checked' : '';
   ouvrirPanneau('<div class="poignee"></div>' +
     '<div class="ms-regles">' +
       '<div class="ms-regles-coeurs">' + coeurs + coeurs + coeurs + '</div>' +
@@ -262,19 +274,16 @@ function voirReglesVies(premiereFois) {
       '<p>Chaque mauvaise réponse te fait perdre un cœur, un seul par réplique.</p>' +
       '<p>Garde au moins un cœur jusqu\'à la fin pour valider ta mission.</p>' +
       '<p>Une simple faute de frappe reconnue ne te fait pas perdre de vie.</p>' +
+      '<label class="ms-regles-masquer"><input type="checkbox" id="ms-regles-masquer"' + coche +
+        ' onchange="masquerReglesVies(this.checked)"> Ne plus afficher</label>' +
     '</div>' +
     '<div class="ms-panneau-bas"><button class="pc-btn primary wide big" onclick="fermerPanneau()">' +
-      (premiereFois ? 'C\'est parti ! →' : 'Continuer la mission') + '</button></div>',
+      (auLancement ? 'C\'est parti ! →' : 'Continuer la mission') + '</button></div>',
     'Règles des vies',
-    premiereFois ? demarrerApresRegles : null);
+    auLancement ? demarrerApresRegles : null);
 }
 
 function demarrerApresRegles() {
-  const p = getProgress();
-  if (!p.guide) p.guide = {};
-  p.guide.vies = 1;
-  saveProgress(p);
-  if (typeof debounceCloudSave === 'function') debounceCloudSave();
   if (document.getElementById('view-mission').classList.contains('active')) renderMission();
 }
 

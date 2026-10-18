@@ -1,4 +1,4 @@
-"""Specs 23, 24 et 32 : missions à 3 vies, réponses autonomes, faute de frappe
+"""Specs 23, 24, 32 et 36 : missions à 3 vies, réponses autonomes, faute de frappe
 corrigée gratuitement (algorithme local). Réussite = au moins une vie à la fin
 (spec 32), en mode normal comme avec « Tente ta chance »."""
 import os
@@ -65,23 +65,40 @@ with sync_playwright() as p:
     pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL)
     pg.wait_for_selector('#today')
-    # Spec 34 : 1re mission → règles des vies d'abord, la conversation attend
+    # Spec 36 : règles des vies à chaque lancement, la conversation attend
     pg.evaluate("choisirNiveau('A1.1'); marquerIntroMissionVue(12); openParcoursLecon(lecons.find(l => l.id === 12)); openMission()")
     assert pg.is_visible('.ms-regles') and 'Tu as 3 vies' in pg.inner_text('.ms-regles')
     assert pg.locator('#ms-body .ms-bulle').count() == 0 and pg.locator('#ms-input').count() == 0, 'la conversation attend'
+    assert not pg.is_checked('#ms-regles-masquer')
     pg.click('.panneau .pc-btn:has-text("C\'est parti")')
-    assert pg.locator('#ms-input').count() == 1 and pg.evaluate("reglesViesVues()")
+    assert pg.locator('#ms-input').count() == 1 and not pg.evaluate("reglesViesMasquees()")
     pg.fill('#ms-input', 'Ech weess et net'); pg.click('#ms-btn-valider')
     assert pg.evaluate("ms.vies") == 2
     pg.click('.ms-vies-zone')
     assert pg.is_visible('.ms-regles') and 'Continuer la mission' in pg.inner_text('.panneau')
     pg.click('.panneau .pc-btn')
     assert pg.evaluate("ms.vies") == 2 and pg.locator('#ms-input').count() == 1, 'consulter les règles ne change rien'
+    # 2e lancement : le rappel revient ; « Ne plus afficher » coché puis fermé
+    pg.evaluate("openMission()")
+    assert pg.is_visible('.ms-regles') and pg.locator('#ms-input').count() == 0, 'rappel à chaque lancement'
+    pg.check('#ms-regles-masquer')
+    assert pg.evaluate("reglesViesMasquees() && getProgress().guide.viesMasquees === 1")
+    pg.click('.panneau .pc-btn:has-text("C\'est parti")')
+    assert pg.locator('#ms-input').count() == 1
+    # 3e lancement : plus de rappel ; les cœurs le rouvrent, case cochée, et décocher le réactive
     pg.evaluate("openMission()")
     assert not pg.is_visible('.ms-regles') and pg.locator('#ms-input').count() == 1
+    pg.click('.ms-vies-zone')
+    assert pg.is_checked('#ms-regles-masquer')
+    pg.uncheck('#ms-regles-masquer')
+    pg.click('.panneau .pc-btn')
+    assert not pg.evaluate("reglesViesMasquees()") and pg.locator('#ms-input').count() == 1
+    pg.evaluate("openMission()")
+    assert pg.is_visible('.ms-regles'), 'rappel réactivé'
+    pg.evaluate("fermerPanneau(); masquerReglesVies(true)")
     r = pg.evaluate("[...document.querySelectorAll('#ms-vies .ms-coeur')].map(c => c.getBoundingClientRect().width)")
     assert r == [24, 24, 24], r
-    ok('1re mission : règles des vies avant la conversation ; cœurs de 24 px cliquables (règles sans effet) ; pas de 2e affichage')
+    ok('règles des vies à chaque lancement ; « Ne plus afficher » mémorisé ; cœurs : rappel sans effet, case pour réactiver')
     pg.evaluate("choisirNiveau('A1.1'); lecons.forEach(l => marquerIntroMissionVue(l.id)); saveUnitBest(12, 1, 100); openParcoursLecon(lecons.find(l => l.id === 12))")
     n = pg.evaluate("nbRepliquesToi(pLecon)")
     assert n == 10, n  # spec 34 : 10 réponses à produire

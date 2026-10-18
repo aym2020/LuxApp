@@ -2021,6 +2021,8 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .ms-regles-coeurs .ms-coeur:nth-child(3) { animation-delay: .2s; }
 .ms-regles h2 { font-size: var(--fs-titre); margin: var(--sp-3) 0 var(--sp-2); }
 .ms-regles p { color: var(--couleur-texte-2); font-size: var(--fs-sec); margin: 0 0 var(--sp-2); line-height: 1.4; }
+.ms-regles-masquer { display: flex; align-items: center; justify-content: center; gap: .5rem; margin: var(--sp-3) 0 var(--sp-2); font-size: var(--fs-sec); color: var(--couleur-texte-2); cursor: pointer; }
+.ms-regles-masquer input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); cursor: pointer; }
 .ms-apprentissage { font-size: var(--fs-micro); color: var(--couleur-texte-3); padding: .35rem .6rem; border-radius: var(--rayon-bouton); background: var(--couleur-surface-1); }
 
 /* ══ MON CHEMIN : TROIS ÉTATS D'UNITÉ (spec 27) ═══════════════════════════════
