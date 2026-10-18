@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire — non implémentée** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P0** |
 | Branche cible | `v2` |
 | Périmètre | `public/mission.js`, `public/progress.js`, `public/niveau.js`, `public/chemin.js`, `public/accueil.js`, `public/parcours.js`, tests ciblés |
@@ -72,16 +72,16 @@ Le statut **« Sans faute » de la mission** ne vaut que pour une mission termin
 
 ## 6. Tests d'acceptation (automatisés et contrôle ciblé)
 
-- [ ] Mission normale : 10/10, 9/10, 8/10 avec vies restantes → **réussite + leçon validée**.
-- [ ] Mission normale : 7/10, trois vraies erreurs sur des répliques distinctes, zéro vie → **échec**, conversation terminable, aucun raccourci.
-- [ ] Plusieurs erreurs dans **une même réplique** coûtent au maximum une seule vie.
-- [ ] Coquille corrigée éligible ne coûte pas de vie et ne bloque pas la réussite ni le « Sans faute » si tout le reste est correct.
-- [ ] « Tente ta chance » : **même règle** de réussite par vies restantes ; 8/10 avec une vie suffit à valider.
-- [ ] Leçon 1 : unités 1–3 terminées, unité 4 non faite, mission réussie → leçon comptée acquise, unité 4 sans coche/étoile, leçon 2 proposée.
-- [ ] Une unité principale interrompue avant la mission ne bloque plus l'avancement après le raccourci ; ses réponses restent récupérables.
-- [ ] Mission déjà « Sans faute » (historique) : après migration, la leçon devient validée sans rejouer ; les étoiles déjà acquises ne diminuent pas.
-- [ ] Mission échouée avec toutes les unités faites : **ne pas confondre « mission jouée » avec « mission réussie »**.
-- [ ] Rechargement, reprise, synchronisation cloud et suivi du niveau : pas de perte d'acquis, ni de progression artificiellement attribuée aux unités.
+- [x] Mission normale : 10/10, 9/10, 8/10 avec vies restantes → **réussite + leçon validée**.
+- [x] Mission normale : 7/10, trois vraies erreurs sur des répliques distinctes, zéro vie → **échec**, conversation terminable, aucun raccourci.
+- [x] Plusieurs erreurs dans **une même réplique** coûtent au maximum une seule vie.
+- [x] Coquille corrigée éligible ne coûte pas de vie et ne bloque pas la réussite ni le « Sans faute » si tout le reste est correct.
+- [x] « Tente ta chance » : **même règle** de réussite par vies restantes ; 8/10 avec une vie suffit à valider.
+- [x] Leçon 1 : unités 1–3 terminées, unité 4 non faite, mission réussie → leçon comptée acquise, unité 4 sans coche/étoile, leçon 2 proposée.
+- [x] Une unité principale interrompue avant la mission ne bloque plus l'avancement après le raccourci ; ses réponses restent récupérables.
+- [x] Mission déjà « Sans faute » (historique) : après migration, la leçon devient validée sans rejouer ; les étoiles déjà acquises ne diminuent pas.
+- [x] Mission échouée avec toutes les unités faites : **ne pas confondre « mission jouée » avec « mission réussie »**.
+- [x] Rechargement, reprise, synchronisation cloud et suivi du niveau : pas de perte d'acquis, ni de progression artificiellement attribuée aux unités.
 - [ ] Vérifier le comportement sur PC et Android ; ne pas élargir la recette visuelle à des écrans hors périmètre.
 
 ## Hors périmètre
@@ -91,6 +91,15 @@ Le statut **« Sans faute » de la mission** ne vaut que pour une mission termin
 
 ## Suivi
 
-**Non implémentée.** Cette fiche décrit uniquement la nouvelle règle validée pour développement sur `v2`. Après implémentation, renseigner les fichiers changés, les tests exécutés et les éventuels écarts ; ne pas déclarer « Validée » sans recette.
+**Implémentée sur `v2`**, recette PC et Android à faire (dernier critère non coché).
+
+- `public/progress.js` : `missionReussie()` = `valideeMission.ok` (ou, pour les résultats d'avant la spec, ancien score ≥ 80 %) ; `SEUIL_MISSION` devient `SEUIL_MISSION_HISTORIQUE`, utilisé seulement pour l'historique ; `leconTermineeAvantSpec32()` ; `figerAcquisMission()` écrit les acquis historiques (`valideeMission`, `historique.terminee`) puis `mission.regle32` au 1er essai avec la nouvelle règle. Toutes ces clés sont à 3 niveaux (fusion cloud = max, jamais perdues).
+- `public/mission.js` : réussite = `ms.vies > 0` à la fin, pour la mission normale et « Tente ta chance » ; plus de plafonnement du score ; `validerLeconParMission()` (validation + partie principale de la leçon déplacée en entraînement libre si cet emplacement est vide) ; fin : « Leçon suivante » si le prochain pas est ailleurs, bandeau neutre « Plus de vie · mission à rejouer » sinon.
+- `public/niveau.js` : `etapesFaites()` = unités réellement faites + mission **réussie** ; `leconTerminee()` vraie aussi si mission réussie ou leçon terminée avant la spec ; la progression du niveau compte une leçon acquise en entier.
+- `public/revision.js` (`prochainPas`), `public/chemin.js` : une leçon acquise n'est plus proposée (ni sa partie principale) ; leçon validée avant la fin des unités → « Validée par la mission », pas d'étoiles de leçon ; une mission jouée mais perdue reste le prochain pas.
+- `public/parcours.js` : unités pas faites d'une leçon validée = « FACULTATIVE · LEÇON VALIDÉE PAR LA MISSION » (plus de « ✓ »), jouées en entraînement libre.
+- Décision du 18/10/2026 : les leçons **déjà terminées** avant la mise à jour avec une mission seulement jouée (< 80 %) **restent terminées**.
+- Tests : `tests/test_mission_validation.py` (nouveau), `tests/test_mission_vies.py`, `tests/test_lot3.py`, `tests/test_chemin_lignes.py`, `tests/test_sync.js` adaptés ; suite critique verte.
+- Écart : les scènes actuelles ont 3 à 6 réponses (pas encore 10) ; la règle des vies s'applique telle quelle.
 
 Références : [SPEC 23 — Missions et vies](./SPEC-23.md), [SPEC 22 — Progression principale et libre](./SPEC-22.md), [SPEC 31 — Premier clic PC](./SPEC-31.md).

@@ -1,5 +1,6 @@
-"""Specs 23 et 24 : missions à 3 vies, réponses autonomes, faute de frappe corrigée
-gratuitement (algorithme local), règles de réussite adaptées au nombre de répliques."""
+"""Specs 23, 24 et 32 : missions à 3 vies, réponses autonomes, faute de frappe
+corrigée gratuitement (algorithme local). Réussite = au moins une vie à la fin
+(spec 32), en mode normal comme avec « Tente ta chance »."""
 import os
 from playwright.sync_api import sync_playwright
 
@@ -26,6 +27,9 @@ COQUILLE = """(lu) => {
   }
   return null;
 }"""
+
+
+RESET = "(id => { const p = getProgress(); if (p[id]) { delete p[id].mission; delete p[id].valideeMission; delete p[id].historique; } saveProgress(p); })"
 
 
 def jouer(pg, actions, tentative=False):
@@ -73,26 +77,27 @@ with sync_playwright() as p:
     ok('5 réponses justes : 5/5 autonomes, 3 vies, mission réussie')
 
     # Une faute de frappe corrigée : gratuite
-    pg.evaluate("delete getProgress()[12].mission; (p => { delete p[12].mission; saveProgress(p); })(getProgress())")
+    pg.evaluate(RESET + "(12)")
     bilan = jouer(pg, ['typo'] + ['ok'] * (n - 1))
     assert bilan['ok'] == 5 and bilan['vies'] == 3, bilan
     ok('faute de frappe corrigée : comptée autonome, aucune vie perdue')
 
     # Une vraie erreur : une vie, 4/5 = 80 % → réussie
-    pg.evaluate("(p => { delete p[12].mission; saveProgress(p); })(getProgress())")
+    pg.evaluate(RESET + "(12)")
     bilan = jouer(pg, ['err'] + ['ok'] * (n - 1))
     assert bilan['ok'] == 4 and bilan['vies'] == 2 and pg.evaluate("missionReussie(lecons.find(l => l.id === 12))"), bilan
     assert pg.locator('#ms-vies .ms-coeur.vide').count() == 1
     ok('une erreur : 4/5 autonomes (80 %), 2 vies, réussie ; un cœur vide')
 
     # Deux erreurs : 3/5 = 60 % → à rejouer
-    pg.evaluate("(p => { delete p[12].mission; saveProgress(p); })(getProgress())")
+    pg.evaluate(RESET + "(12)")
     bilan = jouer(pg, ['err', 'err'] + ['ok'] * (n - 2))
-    assert bilan['ok'] == 3 and bilan['vies'] == 1 and not pg.evaluate("missionReussie(lecons.find(l => l.id === 12))"), bilan
-    ok('deux erreurs sur 5 répliques : 60 %, à rejouer (8/10 adapté à la scène)')
+    assert bilan['ok'] == 3 and bilan['vies'] == 1 and pg.evaluate("missionReussie(lecons.find(l => l.id === 12))"), bilan
+    assert 'Mission réussie' in pg.inner_text('.ms-fin')
+    ok('deux erreurs : 3/5 autonomes, 1 vie restante → réussie (spec 32 : plus de seuil de 80 %)')
 
     # Trois erreurs : plus de vie, mode apprentissage, défi non validé
-    pg.evaluate("(p => { delete p[12].mission; saveProgress(p); })(getProgress())")
+    pg.evaluate(RESET + "(12)")
     pg.evaluate("openMission()")
     for k in range(3):
         lu = pg.evaluate("pLecon.scene[ms.idx].lu")
@@ -103,29 +108,34 @@ with sync_playwright() as p:
     for k in range(n - 3):
         pg.fill('#ms-input', pg.evaluate("pLecon.scene[ms.idx].lu")); pg.click('#ms-btn-valider'); pg.click('#ms-continuer')
     assert pg.evaluate("ms.bilan.vies") == 0 and not pg.evaluate("missionReussie(lecons.find(l => l.id === 12))")
+    assert 'Plus de vie' in pg.inner_text('.ms-fin') and not pg.evaluate("leconTerminee(lecons.find(l => l.id === 12))")
     ok('trois erreurs : 0 vie (une seule par réplique), conversation terminée en mode apprentissage, non validée')
 
     # Réponse révélée
-    pg.evaluate("(p => { delete p[12].mission; saveProgress(p); })(getProgress())")
+    pg.evaluate(RESET + "(12)")
     bilan = jouer(pg, ['revele'] + ['ok'] * (n - 1))
     assert bilan['reveles'] == 1 and bilan['ok'] == 4, bilan
     ok('réponse révélée : comptée échouée, une vie perdue')
 
-    # Tente ta chance : réussi (5/5) puis échoué (1 erreur sur 5 : 80 % < 90 %)
+    # Tente ta chance : même règle — une erreur (2 vies) valide, trois erreurs (0 vie) non
     pg.evaluate("(p => { [13, 14].forEach(id => { delete p[id]; }); saveProgress(p); })(getProgress()); openParcoursLecon(lecons.find(l => l.id === 13))")
     jouer(pg, ['ok'] * pg.evaluate("nbRepliquesToi(pLecon)"), tentative=True)
     assert pg.evaluate("leconValideeParMission(13)")
     pg.evaluate("openParcoursLecon(lecons.find(l => l.id === 14))")
     m = pg.evaluate("nbRepliquesToi(pLecon)")
     jouer(pg, ['err'] + ['ok'] * (m - 1), tentative=True)
+    assert pg.evaluate("leconValideeParMission(14)")
+    pg.evaluate(RESET + "(14)")
+    jouer(pg, ['err', 'err', 'err'] + ['ok'] * (m - 3), tentative=True)
     assert not pg.evaluate("leconValideeParMission(14)") and "Les unités vont t'aider" in pg.inner_text('.ms-fin')
-    ok('Tente ta chance : %d/%d → leçon validée ; une erreur sur %d → non validée' % (5, 5, m))
+    ok('Tente ta chance : 5/5 → validée ; une erreur sur %d (2 vies) → validée ; trois erreurs → non validée' % m)
 
     # Anciennes données : un score historique est gardé, la version est notée
     pg.evaluate("(p => { p[15] = { mission: { score: 75 } }; saveProgress(p); })(getProgress()); openParcoursLecon(lecons.find(l => l.id === 15))")
     jouer(pg, ['err', 'err'] + ['ok'] * (pg.evaluate("nbRepliquesToi(pLecon)") - 2))
     assert pg.evaluate("getMissionBest(15)") == 75 and pg.evaluate("getProgress()[15].mission.version") == 1
-    ok('ancien score 75 % gardé après une partie moins bonne ; version de la scène notée')
+    assert pg.evaluate("missionReussie(lecons.find(l => l.id === 15))"), 'deux erreurs, une vie : réussie'
+    ok('ancien score 75 % gardé (indicateur) ; nouvelle partie à 1 vie → réussie ; version notée')
 
     # Écriture : coquille → rien n'est enregistré avant la décision ; corrigée → juste du premier coup
     pg.evaluate("openParcoursLecon(lecons.find(l => l.id === 12)); startEtapeSeule(1, 'ecriture')")

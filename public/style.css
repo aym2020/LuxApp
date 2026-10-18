@@ -2139,3 +2139,6 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
   }
   .unites li .tag { justify-self: start; }
 }
+
+/* Spec 32 : mission perdue (plus de vie) — bandeau neutre, pas doré */
+.ms-bandeau.ms-echec { background: var(--couleur-surface-1); border-color: var(--couleur-bord-2); color: var(--couleur-texte); }

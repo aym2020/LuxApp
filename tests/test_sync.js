@@ -72,6 +72,14 @@ t.push(['ancien payload sans partieLibre : révision locale gardée', m.enCours.
 applyProgressPayload(m);
 t.push(['les deux parties écrites séparément en local', JSON.parse(store[storageKey('luxParcoursLibre')]).uniteId === 1 && JSON.parse(store[storageKey('luxParcours')]).uniteId === 3]);
 
+// 9. Spec 32 : la validation par la mission et les acquis historiques ne se perdent jamais.
+const avecMission = (lecon) => { const a = appareil({}, null, null); a.progress.levels[1] = lecon; return a; };
+m = mergeLocalAndCloudProgress(
+  avecMission({ mission: { score: 60, regle32: 1 }, valideeMission: { ok: 1 }, historique: { terminee: 1 } }),
+  avecMission({ mission: { score: 90 } }));
+t.push(['spec 32 : validation, historique et règle 32 gardés à la fusion',
+  m.progress.levels[1].valideeMission.ok === 1 && m.progress.levels[1].historique.terminee === 1 && m.progress.levels[1].mission.regle32 === 1 && m.progress.levels[1].mission.score === 90]);
+
 let rate = 0;
 t.forEach(([nom, ok]) => { console.log((ok ? '  ok    ' : '  ÉCHEC ') + nom); if (!ok) rate++; });
 console.log(rate ? rate + ' échec(s)' : 'tout est bon');

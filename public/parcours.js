@@ -214,7 +214,7 @@ function partieLibre(leconId, uniteId, mode) {
   const l = lecons.find(x => x.id === leconId);
   const u = l && trouverUnite(l, uniteId);
   if (!u || u.bonus) return true;
-  if (acquisV1(l) || leconValideeParMission(leconId)) return true;
+  if (acquisV1(l) || missionReussie(l)) return true; // leçon déjà acquise : unité facultative
   return getUnitBest(leconId, uniteId) != null;
 }
 
@@ -395,7 +395,7 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   if (enCours) etat = ' · EN COURS';
   else if (sansFaute) etat = ' · <span class="pc-gold">SANS FAUTE</span>';
   else if (best != null) etat = ' · TERMINÉE';
-  else if (!u.bonus && leconValideeParMission(l.id)) etat = ' · <span class="pl-validee">✓ VALIDÉE PAR LA MISSION</span>'; // S10 : gris, pas doré
+  else if (!u.bonus && missionReussie(l)) etat = ' · <span class="pl-validee">FACULTATIVE · LEÇON VALIDÉE PAR LA MISSION</span>'; // spec 32 : pas faite, pas de coche
 
   const mots = itemsUnite(l, 'flashcards', u.id, 'coeur');
   let apercu = mots.slice(0, 4).map(c => escHtml(c.lu)).join(' · ');
@@ -1527,7 +1527,7 @@ function suiteFin(r, u) {
     const suivante = fil[fil.findIndex(x => x.id === u.id) + 1];
     if (suivante) return { libelle: 'Unité suivante', onclick: 'openIntro(' + suivante.id + ')', retour: false };
     if (pLecon.scene) return { libelle: 'Jouer la mission', onclick: 'openMission()', retour: false };
-  } else if (r.mode === 'plus' && pLecon.scene && getMissionBest(pLecon.id) == null) {
+  } else if (r.mode === 'plus' && pLecon.scene && !missionReussie(pLecon)) {
     return { libelle: 'Jouer la mission', onclick: 'openMission()', retour: false };
   }
   const fil = unitesCoeur(pLecon);

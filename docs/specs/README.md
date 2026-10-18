@@ -46,7 +46,7 @@ Ce répertoire centralise les **32 spécifications** fonctionnelles et UX du pro
 | 29 | [Mon chemin : lignes compactes et statuts sans débordement](./SPEC-29.md) | P1 | Implémentée — validation à confirmer |
 | 30 | [Mon chemin homogène et compact, en-tête de mission sans troncature](./SPEC-30.md) | P1 | Implémentée — validation à confirmer |
 | 31 | [Mot caché : premier clic perdu sur PC](./SPEC-31.md) | P0 | Implémentée — validation à confirmer |
-| 32 | [Mission réussie avec trois vies : validation de la leçon sans étoiles fictives](./SPEC-32.md) | P0 | À faire |
+| 32 | [Mission réussie avec trois vies : validation de la leçon sans étoiles fictives](./SPEC-32.md) | P0 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

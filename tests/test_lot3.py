@@ -18,17 +18,18 @@ def actif(page, vue):
     return page.evaluate("id => document.getElementById(id).classList.contains('active')", vue)
 
 
-def jouer_mission(page, faute_sur_premiere=False):
-    premiere = True
+def jouer_mission(page, fautes=0):
+    """Joue la mission ; les `fautes` premières répliques sont d'abord fausses (une vie chacune)."""
+    n = 0
     while page.locator('#ms-input').count():
         bonne = page.evaluate('pLecon.scene[ms.idx].lu')
-        if faute_sur_premiere and premiere:
+        if n < fautes:
             page.fill('#ms-input', 'xxx')
             page.click('#ms-btn-valider')
         page.fill('#ms-input', bonne)
         page.click('#ms-btn-valider')
         page.locator('#ms-continuer').count() and page.click('#ms-continuer')
-        premiere = False
+        n += 1
 
 
 with sync_playwright() as p:
@@ -87,9 +88,9 @@ with sync_playwright() as p:
     ok('leçon 2 : « Tente ta chance · 5 répliques » (secondaire) → 100 % → validée par la mission, '
        'aucune étoile ni « Terminée », guide sur la suite, « Validée par la mission » sur le chemin')
 
-    # ── S10 : tentative ratée ──
+    # ── S10 : tentative ratée (trois erreurs, plus de vie) ──
     page.evaluate("openParcoursLecon(lecons.find(l => l.id === 8)); openMission(true)")
-    jouer_mission(page, faute_sur_premiere=True)
+    jouer_mission(page, fautes=3)  # spec 32 : ratée = plus de vie
     fin = page.inner_text('.ms-fin')
     assert "Les unités vont t'aider" in fin and "Commencer l'unité 1" in fin, fin
     assert not page.evaluate('leconValideeParMission(8)')

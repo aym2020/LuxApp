@@ -69,14 +69,17 @@ function etapesLecon(l) {
 function etapesFaites(l) {
   if (!isParcoursLecon(l)) return leconV1Faite(l) ? 1 : 0;
   if (acquisV1(l)) return etapesLecon(l); // faite dans l'ancienne version : reste terminée
-  if (leconValideeParMission(l.id)) return etapesLecon(l); // mission réussie d'entrée (S10)
+  // Étapes réellement faites : unités terminées + mission RÉUSSIE (jouée ne suffit pas,
+  // spec 32). Une leçon validée par la mission garde son vrai nombre d'unités faites.
   let faites = unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
-  if (l.mission && l.scene && getMissionBest(l.id) != null) faites++;
+  if (l.mission && l.scene && missionReussie(l)) faites++;
   return faites;
 }
 
-// Une leçon est terminée quand toutes ses étapes le sont (mission jouée comprise).
+// Leçon terminée (acquise pour le parcours) : toutes ses étapes faites, ou
+// mission réussie (raccourci, spec 32), ou terminée avant la spec 32.
 function leconTerminee(l) {
+  if (isParcoursLecon(l) && l.mission && l.scene && (missionReussie(l) || leconTermineeAvantSpec32(l))) return true;
   return etapesFaites(l) >= etapesLecon(l);
 }
 
@@ -85,7 +88,7 @@ function progressionNiveau(niveau) {
   let faites = 0, total = 0, terminees = 0;
   const liste = leconsDuNiveau(niveau);
   liste.forEach(l => {
-    faites += etapesFaites(l);
+    faites += leconTerminee(l) ? etapesLecon(l) : etapesFaites(l); // leçon acquise = toutes ses étapes pour le parcours
     total += etapesLecon(l);
     if (leconTerminee(l)) terminees++;
   });

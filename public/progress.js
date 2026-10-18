@@ -462,19 +462,19 @@ function acquisV1(l) {
   return !!(l && l.v1 && Array.isArray(l.unites) && pourcentV1Archive(l) >= SEUIL_LECON_V1);
 }
 
-// Mission « réussie » = meilleur score d'au moins SEUIL_MISSION (S4).
-// En dessous, elle est seulement « jouée ».
-const SEUIL_MISSION = 80;
+// ─── MISSION RÉUSSIE ET LEÇON VALIDÉE PAR LA MISSION (spec 32) ──────────────
+// Règle : une mission finie avec au moins une vie est réussie, en mode normal
+// comme avec « Tente ta chance ». La réussite valide la leçon (raccourci), sans
+// jamais donner d'étoile ni de coche aux unités pas faites.
+// État explicite : progress[lid].valideeMission = { ok: 1 } (3 niveaux : la
+// fusion cloud garde le max). Le score (mission.score) n'est qu'un indicateur.
+//
+// Résultats d'avant la spec 32 (rien n'est retiré) : tant qu'aucune mission n'a
+// été jouée avec la nouvelle règle (mission.regle32), un ancien score d'au moins
+// SEUIL_MISSION_HISTORIQUE vaut réussite. Au 1er essai avec la nouvelle règle,
+// ces acquis sont figés (figerAcquisMission).
+const SEUIL_MISSION_HISTORIQUE = 80;
 
-function missionReussie(l) {
-  const best = getMissionBest(l.id);
-  return best != null && best >= SEUIL_MISSION;
-}
-
-// ─── LEÇON VALIDÉE PAR LA MISSION (S10) ─────────────────────────────────────
-// « Tente ta chance » : mission réussie à 100 % du premier coup avant toute
-// unité. progress[lid].valideeMission = { ok: 1 } (3 niveaux : la fusion cloud
-// garde le max). Donne le passage à la suite, jamais d'étoiles ni de badge doré.
 function leconValideeParMission(leconId) {
   const byLecon = getProgress()[leconId];
   return !!(byLecon && byLecon.valideeMission && byLecon.valideeMission.ok);
@@ -484,6 +484,43 @@ function saveValideeMission(leconId) {
   const progress = getProgress();
   if (!progress[leconId]) progress[leconId] = {};
   progress[leconId].valideeMission = { ok: 1 };
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// La mission de cette leçon a-t-elle déjà été jouée avec la règle des vies (spec 32) ?
+function missionJoueeRegle32(leconId) {
+  const byLecon = getProgress()[leconId];
+  return !!(byLecon && byLecon.mission && byLecon.mission.regle32);
+}
+
+function missionReussie(l) {
+  if (leconValideeParMission(l.id)) return true;
+  const best = getMissionBest(l.id);
+  return !missionJoueeRegle32(l.id) && best != null && best >= SEUIL_MISSION_HISTORIQUE; // ancien résultat
+}
+
+// Leçon terminée avant la spec 32 : toutes les unités faites et la mission
+// jouée (même sous 80 %). Elle reste terminée (choix du 18/10/2026).
+function leconTermineeAvantSpec32(l) {
+  const byLecon = getProgress()[l.id];
+  if (byLecon && byLecon.historique && byLecon.historique.terminee) return true;
+  return !missionJoueeRegle32(l.id) && getMissionBest(l.id) != null &&
+    unitesCoeur(l).every(u => getUnitBest(l.id, u.id) != null);
+}
+
+// Juste avant le 1er essai avec la nouvelle règle : on écrit les acquis
+// historiques (réussite, leçon terminée), puis on marque la règle 32.
+function figerAcquisMission(l) {
+  if (missionJoueeRegle32(l.id)) return;
+  const reussie = missionReussie(l);
+  const terminee = leconTermineeAvantSpec32(l);
+  const progress = getProgress();
+  if (!progress[l.id]) progress[l.id] = {};
+  if (reussie) progress[l.id].valideeMission = { ok: 1 };
+  if (terminee) progress[l.id].historique = { terminee: 1 };
+  if (!progress[l.id].mission) progress[l.id].mission = {};
+  progress[l.id].mission.regle32 = 1;
   saveProgress(progress);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }

@@ -34,13 +34,14 @@ function nbRepliquesToi(l) {
   return l.scene.filter(x => x.qui === 'toi').length;
 }
 
-// Statut de la mission : null (jamais jouée), jouee, reussie (≥ SEUIL_MISSION), sansfaute.
+// Statut de la mission : null (jamais jouée), jouee (pas encore réussie),
+// reussie (finie avec au moins une vie, spec 32), sansfaute (100 % autonomes).
 function statutMission(l) {
   const best = getMissionBest(l.id);
-  if (best == null) return null;
   if (best === 100) return 'sansfaute';
-  if (best >= SEUIL_MISSION) return 'reussie';
-  return 'jouee';
+  if (missionReussie(l)) return 'reussie';
+  if (best != null) return 'jouee';
+  return null;
 }
 
 function etiquetteMission(l) {
@@ -213,7 +214,7 @@ function repliquesDebloqueesHtml(l, uniteId) {
 // ─── TENTER SA CHANCE (S10) ─────────────────────────────────────────────────
 // Proposé tant qu'aucune unité du fil n'est terminée (et pas déjà validée).
 function peutTenterSaChance(l) {
-  if (leconValideeParMission(l.id)) return false;
+  if (missionReussie(l)) return false;
   return unitesCoeur(l).every(u => getUnitBest(l.id, u.id) == null);
 }
 
@@ -490,7 +491,9 @@ function suiteMission() {
   renderMission();
 }
 
-// Score = réponses autonomes / répliques à dire.
+// Fin de la conversation (spec 32) : au moins une vie = mission réussie, en
+// mode normal comme avec « Tente ta chance ». Le pourcentage de réponses
+// autonomes n'est qu'un indicateur (meilleur score gardé).
 function finirMission() {
   const total = nbRepliquesToi(pLecon);
   let ok = 0, reveles = 0;
@@ -499,35 +502,58 @@ function finirMission() {
     if (ms.resultats[i] === 'ok' || ms.resultats[i] === 'coquille') ok++; // réponses autonomes
     if (ms.resultats[i] === 'revele') reveles++;
   });
-  let percent = Math.round(ok / total * 100);
-  // Plus de vie : le défi n'est pas validé cette fois (le score reste sous le seuil).
-  if (ms.vies === 0) percent = Math.min(percent, SEUIL_MISSION - 1);
+  const percent = Math.round(ok / total * 100);
+  const reussie = ms.vies > 0;
   ms.bilan = { ok, total, erreurs: total - ok, reveles, vies: ms.vies };
   const premiere = getMissionBest(pLecon.id) == null;
+  figerAcquisMission(pLecon); // anciens résultats gardés avant d'appliquer la nouvelle règle
   saveMissionBest(pLecon.id, percent, missionVersion(pLecon));
+  if (reussie) validerLeconParMission(pLecon.id);
   marquerUniteFaite(); // mission jouée : objectif « unité » du jour (S7)
   dernierFini = { leconId: pLecon.id, uniteId: 'mission' }; // animé sur le chemin
 
-  // « Tente ta chance » (S10) : écran de résultat dédié.
+  // « Tente ta chance » (S10) : écran de résultat dédié, même règle de réussite.
   if (ms.tentative) {
-    finirTentative(percent, ok, total);
+    finirTentative(reussie, ok, total);
     return;
   }
 
-  let titre = percent >= SEUIL_MISSION ? 'Mission réussie !' : 'Mission jouée · à rejouer';
-  if (percent === 100) titre = premiere ? 'Mission réussie, sans faute !' : 'Sans faute, encore une fois !';
-
+  let titre = reussie ? 'Mission réussie !' : 'Plus de vie · mission à rejouer';
+  if (reussie && percent === 100) titre = premiere ? 'Mission réussie, sans faute !' : 'Sans faute, encore une fois !';
   const fin = document.createElement('div');
   fin.className = 'ms-fin';
   fin.innerHTML =
-    '<div class="pf-sansfaute ms-bandeau">' + titre + '<span>' + bilanMissionTexte() + '</span></div>' +
+    '<div class="pf-sansfaute ms-bandeau' + (reussie ? '' : ' ms-echec') + '">' + titre + '<span>' + bilanMissionTexte() +
+      (reussie ? '. Leçon validée.' : '') + '</span></div>' +
     '<div class="pf-boutons">' +
-      '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">Continuer le parcours</button>' +
-      '<button class="pc-btn ghost wide" onclick="openMission()">Rejouer la mission</button>' +
+      (reussie
+        ? '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">' + libelleApresMission() + '</button>' +
+          '<button class="pc-btn ghost wide" onclick="openMission()">Rejouer la mission</button>'
+        : '<button class="pc-btn primary wide big" onclick="openMission()">Rejouer la mission</button>') +
       '<button class="pc-btn ghost wide" onclick="quitterMission()">Retour · ' + escHtml(nomEcran(ecranPrecedent())) + '</button>' +
     '</div>';
   afficherBilanMission(fin);
-  if (percent >= SEUIL_MISSION) confettis(); // mission réussie : célébration (S12)
+  if (reussie) confettis(); // mission réussie : célébration (S12)
+}
+
+// Mission réussie : la leçon est validée. Une unité principale interrompue de
+// cette leçon n'est plus « la » prochaine étape : elle passe en entraînement
+// libre (si cet emplacement est libre), sans perdre ses réponses (spec 32).
+function validerLeconParMission(leconId) {
+  saveValideeMission(leconId);
+  const principale = loadRun(false);
+  if (!principale || principale.leconId !== leconId || loadRun(true)) return;
+  principale.libre = true;
+  try {
+    localStorage.setItem(cleRun(true), JSON.stringify(principale));
+    localStorage.setItem(cleRun(false), JSON.stringify({ fini: true, maj: Date.now() }));
+  } catch (e) { /* ignore */ }
+}
+
+// « Leçon suivante » quand le prochain pas est ailleurs, sinon un libellé neutre.
+function libelleApresMission() {
+  const pas = prochainPas();
+  return pas && pas.lecon && pas.lecon.id !== pLecon.id ? 'Leçon suivante' : 'Continuer le parcours';
 }
 
 // « 8 / 10 réponses autonomes · 2 erreurs · 1 vie restante »
@@ -556,21 +582,19 @@ function afficherBilanMission(fin) {
   body.scrollTop = 0;
 }
 
-// Résultat de « Tente ta chance » (S10).
-//   100 % du premier coup -> la leçon est validée par la mission, on passe à la suite ;
+// Résultat de « Tente ta chance » (S10) — même règle que la mission (spec 32) :
+//   au moins une vie -> la leçon est validée par la mission, on passe à la suite ;
 //   sinon -> rien n'est perdu, les unités vont aider.
-function finirTentative(percent, ok, total) {
+function finirTentative(reussie, ok, total) {
   const fin = document.createElement('div');
   fin.className = 'ms-fin';
   const premiere = unitesCoeur(pLecon)[0];
-  // Spec 23 : 90 % de réponses autonomes (9 sur 10), aucune réponse révélée, au moins une vie.
-  if (ok >= Math.ceil(total * 0.9) && ms.bilan.reveles === 0 && ms.vies > 0) {
-    saveValideeMission(pLecon.id);
+  if (reussie) {
     fin.innerHTML =
-      '<div class="pf-sansfaute ms-bandeau">Tu connais déjà cette leçon<span>' + ok + ' / ' + total +
-        ' réponses autonomes. Les unités sont validées par la mission.</span></div>' +
+      '<div class="pf-sansfaute ms-bandeau">Tu connais déjà cette leçon<span>' + bilanMissionTexte() +
+        '. Leçon validée par la mission.</span></div>' +
       '<div class="pf-boutons">' +
-        '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">Leçon suivante</button>' +
+        '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">' + libelleApresMission() + '</button>' +
         '<button class="pc-btn ghost wide" onclick="openIntro(' + premiere.id + ')">Faire quand même les unités</button>' +
         '<button class="pc-btn ghost wide" onclick="goDashboard()">Accueil</button>' +
       '</div>';

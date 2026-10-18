@@ -40,7 +40,8 @@ function prochainPas() {
   const saved = loadRun();
   if (saved) {
     const l = leconsActives().find(x => x.id === saved.leconId);
-    if (isParcoursLecon(l)) {
+    // Une partie d'une leçon déjà acquise (validée par la mission) n'est plus le prochain pas (spec 32).
+    if (isParcoursLecon(l) && !leconTerminee(l)) {
       return { titre: 'Reprendre', texte: 'Leçon ' + l.id + ' · ' + nomPartie(saved.uniteId, saved.mode), lecon: l, type: 'reprise', reprise: true, fn: reprendreRun };
     }
   }
@@ -49,8 +50,7 @@ function prochainPas() {
       if (leconV1Faite(l)) continue;
       return { titre: 'Prochaine leçon', texte: 'Leçon ' + l.id + ' · ' + l.titre_fr, lecon: l, type: 'v1', fn: () => openLecon(l) };
     }
-    if (acquisV1(l)) continue; // faite dans l'ancienne version : le guide passe à la suite
-    if (leconValideeParMission(l.id)) continue; // mission réussie d'entrée (S10)
+    if (leconTerminee(l)) continue; // acquise (unités + mission réussie, raccourci par la mission, ancienne version)
     const u = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (u) {
       return {
@@ -67,7 +67,7 @@ function prochainPas() {
         }
       };
     }
-    if (l.mission && l.scene && getMissionBest(l.id) == null) {
+    if (l.mission && l.scene) { // unités faites, mission pas encore réussie
       return {
         titre: 'Mission',
         texte: 'Leçon ' + l.id + ' · ' + l.mission.titre,

@@ -99,8 +99,9 @@ function ligneFinieHtml(l) {
 function resultatLeconHtml(l) {
   // Faite dans l'ancienne version, nouvelles unités pas encore jouées.
   if (acquisV1(l) && resumeLecon(l).done === 0) return '<span class="acquise">Acquise</span>';
-  // Validée par la mission (S10) : passage à la suite, pas d'étoiles.
-  if (leconValideeParMission(l.id) && resumeLecon(l).done === 0) return '<span class="validee">Validée par la mission</span>';
+  // Validée par la mission avant la fin des unités (spec 32) : pas d'étoiles inventées.
+  const r = isParcoursLecon(l) ? resumeLecon(l) : null;
+  if (r && missionReussie(l) && r.done < r.total) return '<span class="validee">Validée par la mission</span>';
   if (isParcoursLecon(l)) {
     if (leconSansFaute(l)) return '<span class="sans-faute">Sans faute</span>';
     return '<span class="etoiles">' + etoilesHtml(resumeLecon(l).stars) + '</span>';
@@ -172,13 +173,13 @@ function actionLeconChemin(l) {
   if (l.mission && l.scene && !leconCommencee(l)) {
     return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir', fn: () => ouvrirIntroMission(l) };
   }
-  const deja = acquisV1(l) || leconValideeParMission(l.id);
+  const deja = leconTerminee(l); // acquise : plus d'unité obligatoire (spec 32)
   const u = deja ? null : unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
   if (u) {
     const aucune = unitesCoeur(l).every(x => getUnitBest(l.id, x.id) == null);
     return { etape: u.id, libelle: aucune ? 'Commencer' : 'Continuer', fn: () => ouvrirUniteDepuisChemin(l.id, u.id) };
   }
-  if (l.mission && l.scene && getMissionBest(l.id) == null) {
+  if (!deja && l.mission && l.scene) { // unités faites, mission pas encore réussie
     return { etape: 'mission', libelle: 'Continuer', fn: () => ouvrirMissionDepuisChemin(l.id) };
   }
   return { etape: null, libelle: 'Revoir', fn: () => ouvrirLeconDepuisListe(l.id) };

@@ -37,7 +37,7 @@
 ## Implémentation
 
 - Commit `31871d9`. Fichiers : `public/mission.js`, `public/progress.js`, `public/style.css`.
-- Moteur : 3 vies (une au plus par réplique), résultats `ok` / `coquille` / `essais` / `revele`, réussite ≥ 80 % de réponses autonomes avec au moins une vie, « Tente ta chance » ≥ 90 % sans réponse révélée, score enregistré avec `mission.version` (1 par défaut).
+- Moteur : 3 vies (une au plus par réplique), résultats `ok` / `coquille` / `essais` / `revele`, score enregistré avec `mission.version` (1 par défaut). Historique : réussite ≥ 80 % de réponses autonomes avec au moins une vie et « Tente ta chance » ≥ 90 % (commit `31871d9`), **remplacés le 18/10/2026 par la SPEC 32** (au moins une vie = réussie, pour les deux modes).
 - Tests : `tests/test_mission_vies.py`.
 - Reste à faire : réécrire les 24 scènes à 10 répliques « toi », puis `mission.version: 2`.
 
