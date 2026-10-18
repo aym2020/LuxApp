@@ -688,12 +688,35 @@ function reussir() {
   renderItem();
 }
 
-// Faux : l'item repart à la fin de la file.
+// Faux : l'item repart à la fin de la file, au plus RAPPELS_MAX fois (spec 40).
+// Au-delà, il sort de la partie : il reste une erreur (résultats, « Refaire
+// mes erreurs », révisions), mais l'étape ne devient pas interminable.
+const RAPPELS_MAX = 2;
+
+function vaRevenir() {
+  const step = etapeCourante();
+  const id = step.queue[0];
+  return ((step.rappels || {})[id] || 0) < RAPPELS_MAX;
+}
+
 function echouer() {
   const step = etapeCourante();
-  step.queue.push(step.queue.shift());
+  const revient = vaRevenir();
+  const id = step.queue.shift();
+  if (revient) {
+    if (!step.rappels) step.rappels = {}; // absent des parties sauvegardées avant la spec 40
+    step.rappels[id] = (step.rappels[id] || 0) + 1;
+    step.queue.push(id);
+  }
   saveRun();
   renderItem();
+}
+
+// Phrase sous la correction (spec 40) : toujours dans son propre bloc, pour ne
+// jamais se coller à la réponse. revient : l'item reviendra dans l'étape ;
+// plusTard : dernier rappel atteint, il part en révision.
+function rappelHtml(revient, plusTard) {
+  return '<div class="pc-fb-rappel">' + (vaRevenir() ? revient : plusTard) + '</div>';
 }
 
 // Point d'attention d'un item : champ "attention", sinon la note d'un trou.
@@ -1152,7 +1175,8 @@ function mcVoirReponse() {
   mcMajScore();
   enregistrer(mc.card, 0, false, { indices: mc.indices, essais: mc.essais, revele: true });
   showFeedback(false, 'La réponse : ' + escHtml(motComplet(mc.card)),
-    attentionHtml(attentionItem(mc.card, 'flashcards')) + 'Ce mot reviendra à la fin de l\'étape.', echouer);
+    attentionHtml(attentionItem(mc.card, 'flashcards')) +
+    rappelHtml('Ce mot reviendra à la fin de l\'étape.', 'Tu le retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
 }
 
 // ─── ÉTAPES 2 ET 3 : QUIZ ET TROUS (choix multiples) ────────────────────────
@@ -1222,7 +1246,7 @@ function choisirP(btn, ok, bonne, item, type) {
     showFeedback(false, 'Pas encore',
       'La bonne réponse : <b>' + escHtml(bonne) + '</b>' +
       attentionHtml(attentionItem(item, type)) +
-      'Cette question reviendra à la fin de l\'étape.', echouer);
+      rappelHtml('Cette question reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
   }
 }
 
@@ -1281,7 +1305,8 @@ function ecrValiderPc() {
     input.disabled = true;
     input.className = 'ecr-input correct';
     showFeedback(true, 'Juste, au 2e essai', '<b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention) +
-      'Cette phrase reviendra à la fin de l\'étape.', echouer);
+      rappelHtml('Pour la valider, trouve-la du premier coup : elle reviendra à la fin de l\'étape.',
+        'Elle est notée à revoir : tu la retrouveras dans tes révisions.'), echouer);
     return;
   }
 
@@ -1319,7 +1344,7 @@ function ecrValiderPc() {
   document.getElementById('pc-ecr-erreur').classList.add('hidden');
   showFeedback(false, 'Pas encore',
     'Réponse attendue : <b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention) +
-    'Cette phrase reviendra à la fin de l\'étape.', echouer);
+    rappelHtml('Cette phrase reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
 }
 
 // « Possible faute de frappe » : sans révéler la réponse, on montre le mot à vérifier.
@@ -1530,6 +1555,9 @@ function suiteFin(r, u) {
   } else if (r.mode === 'plus' && pLecon.scene && !missionReussie(pLecon)) {
     return { libelle: 'Jouer la mission', onclick: 'openMission()', retour: false };
   }
+  // Après « Refaire mes erreurs » : le chemin, centré sur la leçon (spec 40) ;
+  // « Retour à la leçon » reste dans les actions secondaires.
+  if (r.mode === 'erreurs') return { libelle: 'Mon chemin', onclick: 'cheminSurLecon(pLecon.id)', retour: false };
   const fil = unitesCoeur(pLecon);
   const prochaine = fil.find(x => getUnitBest(pLecon.id, x.id) == null);
   const cible = r.mode === 'unite' && prochaine ? prochaine.id : r.uniteId;

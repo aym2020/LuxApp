@@ -956,6 +956,7 @@ body.no-scroll { overflow: hidden; }
 .pc-feedback.ko .pc-fb-titre { color: var(--wrong); }
 .pc-fb-txt { font-size: .9rem; color: var(--muted-strong); line-height: 1.5; }
 .pc-fb-txt b { color: var(--text); }
+.pc-fb-rappel { margin-top: .4rem; } /* la phrase « reviendra » toujours sur sa ligne (spec 40) */
 #view-parcours.active { min-height: 100dvh; }
 
 /* Fin d'unité */

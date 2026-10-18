@@ -165,7 +165,12 @@ function retour() {
     return;
   }
   const quitte = pileNav.pop();
-  restaurerEcran(pileNav[pileNav.length - 1], cibleDeRetour(quitte));
+  const dest = pileNav[pileNav.length - 1];
+  restaurerEcran(dest, cibleDeRetour(quitte));
+  // Résultats de « Refaire mes erreurs » → chemin : la leçon centrée (spec 40).
+  if (quitte.vue === 'view-pfin' && pResultat && pResultat.mode === 'erreurs' && dest.vue === 'view-lessons') {
+    centrerLeconChemin(pResultat.leconId);
+  }
   majGarde();
 }
 

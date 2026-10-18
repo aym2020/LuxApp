@@ -392,9 +392,9 @@ les problèmes secondaires au lieu de bloquer la livraison.
 | --- | --- |
 | `navigation.js`, `accueil.js` (panneaux, retour) | `test_navigation`, `test_retours`, `test_retour_intro`, `test_decouverte` |
 | `mission.js` | `test_mission_vies`, `test_mission_validation`, `test_retour_intro` (+ `test_missions_10` si scènes ou correction) |
-| `parcours.js` (unités, fin de partie) | `test_parcours`, `test_libre`, `test_lot2` |
+| `parcours.js` (unités, fin de partie, rappels des erreurs) | `test_parcours`, `test_rappels`, `test_libre`, `test_lot2` |
 | `parcours.js` (mot caché) | `test_motcache` |
-| `chemin.js`, `niveau.js` | `test_chemin_lignes`, `test_lot3`, `test_decouverte` |
+| `chemin.js`, `niveau.js` | `test_chemin_lignes`, `test_lot3`, `test_decouverte`, `test_rappels` (centrage) |
 | `progress.js`, `cloud.js` | `node tests/test_cloud.js`, `node tests/test_sync.js`, `test_lot1` |
 | `correction.js` / analyse des réponses | `node tests/test_correction.js`, `test_mission_vies` |
 | `revision.js`, séance | `test_seance`, `test_lot2` |

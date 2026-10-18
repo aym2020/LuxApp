@@ -283,6 +283,25 @@ function montrerEtapeChemin(leconId, etape) {
   else if (r.bottom > bas) window.scrollBy(0, r.bottom - bas);
 }
 
+// Chemin ouvert sur une leçon, sa carte centrée dans la zone visible (spec 40).
+// Carte plus haute que l'écran : son début en haut.
+function centrerLeconChemin(leconId) {
+  const el = document.getElementById('chemin-lecon-' + leconId);
+  if (!el) return;
+  const r = el.getBoundingClientRect();
+  const bas = basVisibleChemin();
+  const haut = 12;
+  const decalage = r.height > bas - haut ? r.top - haut : (r.top + r.bottom) / 2 - (haut + bas) / 2;
+  window.scrollTo(0, Math.max(0, window.scrollY + decalage));
+}
+
+// Ouvre le chemin sur cette leçon (dépliée), centrée.
+function cheminSurLecon(leconId) {
+  ouvrirLeconDansChemin(leconId);
+  goLessons();
+  centrerLeconChemin(leconId);
+}
+
 // ─── OUVRIR UNE ÉTAPE DEPUIS LE CHEMIN ──────────────────────────────────────
 function ouvrirUniteDepuisChemin(leconId, uniteId) {
   const l = trouverLecon(leconId);
