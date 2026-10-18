@@ -229,20 +229,18 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     const actuelle = etapeActuelle === 'mission';
     let classe = 'mission' + (statut ? ' ok' : '') + (actuelle ? ' actuelle' + (pulse ? ' pulse' : '') : '');
     if (anim && anim.leconId === l.id && anim.uniteId === 'mission') classe += ' vient-de-finir';
-    // Spec 29 : « Mission » et le statut sur la 1re rangée, le titre en entier dessous.
+    // Mission et bilan : même structure (spec 30) — texte à gauche, statut discret à droite.
     const nomLu = 'Mission : ' + l.mission.titre + ', ' + tag;
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-mission"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
       '<span class="etat">' + ICONES.bulle + '</span>' +
-      '<span class="sur">Mission</span>' +
-      '<span class="tag pastille-statut">' + tag + '</span>' +
-      ICONES.droite +
-      '<span class="texte"><span class="nom">' + escHtml(l.mission.titre) + '</span></span>' +
-      '</button></li>';
+      '<span class="texte"><span class="sur">Mission</span><span class="nom">' + escHtml(l.mission.titre) + '</span></span>' +
+      '<span class="tag statut">' + tag + '</span>' +
+      ICONES.droite + '</button></li>';
   }
 
   html += '<li class="bilan"><button aria-label="Bilan, 10 questions, facultatif" onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
     '<span class="etat">' + ICONES.cible + '</span>' +
-    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions</span></span><span class="tag pastille-statut">Facultatif</span>' +
+    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions</span></span><span class="tag statut">Facultatif</span>' +
     ICONES.droite + '</button></li>';
   return html;
 }

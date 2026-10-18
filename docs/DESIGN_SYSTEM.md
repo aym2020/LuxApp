@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 1.5 | 2026-10-18 | Statut secondaire `.unites .statut` (sobre, sans bordure) remplace `.pastille-statut` ; icônes d'état du chemin 22 px ; en-tête de mission titre + vies (spec 30) |
 | 1.4 | 2026-10-18 | Lignes du chemin en grille (état · texte · statut · chevron), statut secondaire sous le titre, pastille `.pastille-statut`, requêtes de conteneur en `em` pour les cartes étroites ou le texte agrandi (spec 29) |
 | 1.3 | 2026-10-18 | `.cta-fixe` : fondu limité à la marge haute, ne capte plus les appuis hors de son bouton (spec 25). États d'unité du chemin `ok` / `actuelle` / `a-venir` (spec 27) |
 | 1.2 | 2026-10-18 | Tout l'exercice mot caché en `--police-lettres` (Nouveau mot, consigne, article, cases, tuiles, correction) |

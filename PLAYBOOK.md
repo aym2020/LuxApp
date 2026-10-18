@@ -498,9 +498,10 @@ rien modifier visuellement : comparer des captures avant / après.
   1re réussite d'une unité (`dernierFini.premiere`) : coche, étoiles une par une, halo vert,
   puis la prochaine unité pulse (`.pulse.apres`). Une seule fois ; coupé en mouvement réduit.
 - **Lignes du chemin (spec 29)** : grille état · `.texte` · `.tag` · chevron ; « Révision en
-  cours » en 2e rangée seulement si elle existe ; mission : « Mission » + statut en 1re rangée,
-  titre dessous ; requêtes de conteneur en `em` (< 18 em : « Facultatif » sous le bilan ;
-  < 13 em : étoiles sous le titre). Jamais de troncature. `aria-label` = titre + état.
+  cours » en 2e rangée seulement si elle existe ; mission et bilan : même structure, statut
+  `.statut` sobre à droite (spec 30) ; requêtes de conteneur en `em` (< 16 em : statuts mission
+  et bilan sous le titre ; < 13 em : étoiles aussi). Jamais de troncature. `aria-label` = titre
+  + état. En-tête de mission : titre de la mission (2 lignes max), vies et compteur dessous.
 - **Résultats (spec 28)** : `messageResultat(percent)` (Parfait / Excellent / Bien joué /
   Tu progresses / Continue à t'entraîner, purement visuel), score vert dès 75 %,
   « n / N réponses justes du premier coup », « Une réponse à retravailler. ». Étoiles et

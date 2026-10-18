@@ -252,14 +252,10 @@ function initiales(nom) {
 
 // Un seul interlocuteur : son nom et son avatar en en-tête, plus aucun nom sur les bulles.
 // Plusieurs : le titre de la mission en en-tête, un petit avatar quand la personne change.
+// En-tête (spec 30) : le titre de la mission en entier, les vies et la
+// progression dessous. Les noms des personnages sont dans les bulles.
 function renderEnteteMission() {
-  const noms = interlocuteurs(pLecon);
-  const seul = noms.length === 1;
-  document.getElementById('ms-titre').textContent = seul ? noms[0] : pLecon.mission.titre;
-  document.getElementById('ms-sous-titre').textContent = seul ? 'Mission · ' + pLecon.mission.titre : noms.join(', ');
-  const avatar = document.getElementById('ms-avatar');
-  avatar.textContent = seul ? initiales(noms[0]) : '';
-  avatar.classList.toggle('hidden', !seul);
+  document.getElementById('ms-titre').textContent = pLecon.mission.titre;
 }
 
 function majProgressionMission() {

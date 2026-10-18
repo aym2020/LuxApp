@@ -1,6 +1,6 @@
 """Spec 29 : lignes compactes de « Mon chemin ». Le titre d'une unité n'est
 jamais coupé ni recouvert, « Révision en cours » passe dessous, la mission
-affiche son statut à côté de « Mission » et son titre en entier dessous, rien
+et le bilan ont la même structure (statut discret à droite), rien
 ne déborde de 320 à 430 px (et texte agrandi), noms accessibles complets."""
 import os
 from playwright.sync_api import sync_playwright
@@ -62,9 +62,14 @@ with sync_playwright() as p:
         assert all(l['sous'] is None for l in lignes[1:]), 'pas de ligne de statut vide'
         mission = next(l for l in lignes if 'mission' in l['id'])
         assert mission['lignes'] <= 2 + (texte > 100), mission  # plus de colonne d'un mot par ligne
-        assert mission['tag']['bottom'] <= mission['nom']['top'] + 1, mission  # statut sur la ligne « Mission », titre dessous
         bilan = lignes[-1]
         assert bilan['lignes'] <= 2, bilan
+        # Spec 30 : mission et bilan ont la même structure — statut à droite du
+        # texte (393 px et plus), ou sous le titre pour les deux (carte étroite)
+        a_droite = [l['tag']['left'] >= l['nom']['right'] - 1 for l in (mission, bilan)]
+        assert a_droite[0] == a_droite[1], (mission, bilan)
+        if largeur >= 393 and texte == 100:
+            assert a_droite[0], mission
         if largeur >= 393 and texte == 100:
             assert u1['tag']['left'] > u1['nom']['right'] and u1['tag']['top'] < u1['nom']['bottom'], 'étoiles à droite du titre'
         ok('%d px, texte %d %% : titres entiers, rien ne se recouvre, révision sous « 1 · Saluer », mission sur %d ligne(s)'
@@ -90,6 +95,12 @@ with sync_playwright() as p:
             pg.click('#chemin-u-1-mission .tag')
             assert pg.evaluate("document.querySelector('.view.active').id") in ('view-mission', 'view-msintro', 'view-plecon')
             ok('unité 4 toujours recommandée ; toute la ligne de la mission s\'ouvre, statut compris')
+            # Spec 30 : en-tête de mission — titre de la mission en entier, vies et compteur dessous
+            pg.evaluate("openParcoursLecon(lecons.find(l => l.id === 1)); openMission()")
+            t = pg.evaluate("""() => { const e = document.getElementById('ms-titre'), v = document.getElementById('ms-vies').getBoundingClientRect();
+                return { titre: e.textContent, tronque: e.scrollHeight > e.clientHeight + 1, bas: e.getBoundingClientRect().bottom, vies: v.top }; }""")
+            assert t['titre'] == pg.evaluate('pLecon.mission.titre') and not t['tronque'] and t['vies'] >= t['bas'] - 1, t
+            ok('en-tête de mission : « %s » en entier, vies et compteur dessous' % t['titre'])
         ctx.close()
     assert not errs, errs
     b.close()

@@ -44,6 +44,7 @@ Ce répertoire centralise les **29 spécifications** fonctionnelles et UX du pro
 | 27 | [Valorisation visuelle des unités terminées](./SPEC-27.md) | P1 | Implémentée — validation à confirmer |
 | 28 | [Résultats d'étape plus gratifiants](./SPEC-28.md) | P1 | Implémentée — validation à confirmer |
 | 29 | [Mon chemin : lignes compactes et statuts sans débordement](./SPEC-29.md) | P1 | Implémentée — validation à confirmer |
+| 30 | [Mon chemin homogène et compact, en-tête de mission sans troncature](./SPEC-30.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 
