@@ -40,7 +40,7 @@ function renderLessons() {
     '<div class="chemin-titre"><h1>Mon chemin</h1><span class="etiquette or">Parcours ' + niveauActif + '</span></div>' +
     '<div class="resume">' +
       (terminees.length || !anciennes.length ? '<span class="pastille v"><i></i>' + terminees.length + ' terminée' + (terminees.length > 1 ? 's' : '') + '</span>' : '') +
-      (anciennes.length ? '<span class="pastille a"><i></i>' + anciennes.length + ' acquise' + (anciennes.length > 1 ? 's' : '') + ' · ancienne version</span>' : '') +
+      (anciennes.length ? '<span class="pastille a"><i></i>' + anciennes.length + ' acquise' + (anciennes.length > 1 ? 's' : '') + ' · v1</span>' : '') +
       (enCours ? '<span class="pastille o"><i></i>1 en cours</span>' : '') +
     '</div></div><ol class="chemin">';
 
@@ -70,7 +70,7 @@ function resultatLeconHtml(l) {
   // ni étoiles ni « Terminée » ; l'avancement réel s'il y en a un.
   if (acquiseAncienneVersion(l)) {
     const faites = etapesFaites(l);
-    return '<span class="acquise ancienne">Acquise · ancienne version' + (faites ? ' · ' + faites + '/' + etapesLecon(l) : '') + '</span>';
+    return '<span class="acquise ancienne">Acquise · v1' + (faites ? ' · ' + faites + '/' + etapesLecon(l) : '') + '</span>';
   }
   // Validée par la mission avant la fin des unités (spec 32) : pas d'étoiles inventées.
   const r = isParcoursLecon(l) ? resumeLecon(l) : null;
@@ -110,7 +110,7 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   const r = isParcoursLecon(l) ? resumeLecon(l) : null;
   const parMission = fini && r && r.done < r.total && leconAcquiseParMission(l);
   const ancienne = acquiseAncienneVersion(l); // spec 46
-  const etat = ancienne ? 'Acquise · ancienne version' : parMission ? 'Validée par la mission' : fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
+  const etat = ancienne ? 'Acquise · v1' : parMission ? 'Validée par la mission' : fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
   const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
   const action = actionLeconChemin(l);
 

@@ -24,15 +24,15 @@
 
 - `leconTerminee(l)` reste vrai pour un acquis v1. La leçon reste acquise : le parcours, la prochaine étape et l'accès aux leçons suivantes ne changent pas, rien n'est à refaire.
 - Chemin :
-  - statut **« Acquise · ancienne version »**, plus l'avancement réel s'il existe (ex. « · 1/3 ») ;
+  - statut **« Acquise · v1 »**, plus l'avancement réel s'il existe (ex. « · 1/3 ») ;
   - aucune étoile ni coche sur les unités non faites ;
   - bouton **« Faire les nouvelles unités »** (1re unité non faite), ou « Jouer la nouvelle mission » si seules les unités sont faites ;
-  - en-tête : pastille « N acquise(s) · ancienne version », séparée des leçons terminées.
-- Liste des unités : « NOUVELLE · LEÇON ACQUISE (ANCIENNE VERSION) » sur les unités non faites.
+  - en-tête : pastille « N acquise(s) · v1 », séparée des leçons terminées.
+- Liste des unités : « NOUVELLE · LEÇON ACQUISE (V1) » sur les unités non faites.
 - Indicateurs :
   - **Progression %** : pour ces leçons, seules les étapes réellement faites comptent (plus de 100 % artificiel). Les leçons validées par la mission comptent toutes leurs étapes, comme avant (spec 32) ;
-  - **Leçons** : « terminées / total · +N anciennes » ;
-  - **Plus** : « unités terminées » ne compte que les vraies unités, avec une tuile à part « leçons acquises · ancienne version ».
+  - **Leçons** : « terminées / total · +N v1 » ;
+  - **Plus** : « unités terminées » ne compte que les vraies unités, avec une tuile à part « leçons acquises · v1 ».
 - Une fois toutes les unités et la mission faites, la leçon redevient simplement « Terminée » (« Revoir »).
 
 ## Sécurité des données
@@ -41,8 +41,8 @@ Aucune écriture : seuls le calcul d'affichage et les compteurs changent. Les an
 
 ## Critères d'acceptation
 
-- [x] Compte v1 sans unité v2 : « Acquise · ancienne version », « Faire les nouvelles unités », 0 unité, 0 %, pastille et tuile dédiées, leçon toujours acquise, données identiques avant et après.
-- [x] Compte partiellement avancé : « ancienne version · 1/3 », 1 unité comptée, pourcentage réel.
+- [x] Compte v1 sans unité v2 : « Acquise · v1 », « Faire les nouvelles unités », 0 unité, 0 %, pastille et tuile dédiées, leçon toujours acquise, données identiques avant et après.
+- [x] Compte partiellement avancé : « v1 · 1/3 », 1 unité comptée, pourcentage réel.
 - [x] Compte ayant tout fait en v2 : « Terminée », « Revoir », comptée comme terminée.
 - [x] v1 + mission réussie : « Validée par la mission » conservé.
 - [ ] Vérification sur le compte réel de Clayton.
