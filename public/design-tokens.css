@@ -1,0 +1,121 @@
+/* ══ LUXAPP · DESIGN TOKENS (design system v1.0) ══════════════════════════════
+   Toutes les valeurs de référence de l'interface : couleurs, polices, tailles,
+   espacements, rayons, dimensions. Aucune autre feuille ne doit inventer de
+   nouvelle couleur ou taille « au hasard » : on ajoute un token ici, et on le
+   documente dans docs/DESIGN_SYSTEM.md.
+   Ordre de chargement : design-tokens.css → components.css → style.css.
+
+   Rôle des couleurs :
+     or (action)   = l'action principale de l'écran, la prochaine étape
+     vert          = réussi, terminé
+     rouge         = erreur
+     turquoise     = révision, progression
+     bleu          = examens, information, mission
+     couleur de la leçon (--lc, dans les JSON) = appartenance à une leçon
+   ═════════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Fonds et surfaces (du plus sombre au plus clair) ── */
+  --couleur-fond: #0f0e0c;
+  --couleur-surface-1: #1a1916;   /* carte */
+  --couleur-surface-2: #26241f;   /* carte principale (une par écran) */
+  --couleur-surface-alt: #222120;
+  --couleur-carte-claire: #f5f0e8;
+
+  /* ── Bordures ── */
+  --couleur-bord-1: #2a2926;      /* carte */
+  --couleur-bord-2: #3d3a31;      /* carte principale */
+  --couleur-bord-3: #3a3730;      /* bouton secondaire, puce, champ */
+
+  /* ── Textes ── */
+  --couleur-texte: #f6f1e9;
+  --couleur-texte-2: #c8bda8;     /* secondaire important */
+  --couleur-texte-3: #aaa090;     /* secondaire */
+
+  /* ── Action et états ── */
+  --couleur-action: #f5cf4d;      /* or : l'action principale */
+  --couleur-action-2: #ffaf5e;    /* ambre (dégradés) */
+  --couleur-sur-action: #0f0e0c;  /* texte sur un bouton or, vert ou rouge */
+  --couleur-sur-or: #1a1505;      /* texte sur le grand bouton jaune et les badges */
+  --couleur-reussi: #54e0ad;
+  --couleur-erreur: #ef7a73;
+  --couleur-info: #6fb0f2;
+  --couleur-violet: #b18cf0;
+  --couleur-orange: #f2a65a;
+  --couleur-fraicheur: #4fc9c3;
+
+  /* ── Fonds et bordures teintés (pastilles, cartes d'état) ── */
+  --couleur-turquoise: #4fd1c5;
+  --couleur-turq-fond: #10282a;
+  --couleur-turq-bord: #2b6b68;
+  --couleur-vert-fond: #12261f;
+  --couleur-vert-plein: #1f7a5a;
+  --couleur-vert-bord: #23604a;
+  --couleur-or-fond: #2b2514;
+  --couleur-or-bord: #6b5a22;
+  --couleur-bleu-fond: #172235;
+  --couleur-bleu-bord: #34507d;
+
+  /* ── Polices ── */
+  --police: 'Inter', system-ui, sans-serif;              /* interface et lecture */
+  --police-titre: 'Inter', system-ui, sans-serif;
+  --police-serif: 'Instrument Serif', serif;             /* mots, phrases courtes, titres narratifs */
+
+  /* ── Tailles de texte : une par rôle ── */
+  --fs-micro: .75rem;      /* 12 px : information très secondaire (compteur, étiquette) */
+  --fs-sec: .875rem;       /* 14 px : tout texte qu'il faut lire */
+  --fs-corps: 1rem;        /* 16 px : texte courant, champs de saisie */
+  --fs-titre: 1.375rem;    /* 22 px : titre d'écran, de carte principale */
+  --fs-question: clamp(1.4rem, 6vw, 1.75rem); /* ce qu'on doit traduire */
+  --fs-grand: clamp(1.9rem, 8vw, 2.4rem);     /* titre de leçon */
+
+  /* ── Espacements : plus d'espace entre les groupes qu'à l'intérieur ── */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
+
+  /* ── Rayons ── */
+  --rayon-bouton: 12px;
+  --rayon-moyen: 14px;
+  --rayon-carte: 20px;
+  --rayon-pilule: 999px;
+
+  /* ── Dimensions ── */
+  --toucher: 44px;          /* zone à toucher minimale */
+  --hauteur-bouton: 48px;
+  --hauteur-bouton-grand: 52px;
+  --hauteur-cta: 56px;      /* le grand bouton jaune */
+
+  /* ══ ALIAS (anciens noms, gardés pour compatibilité ; ne plus en créer) ══ */
+  --bg: var(--couleur-fond);
+  --surface: var(--couleur-surface-1);
+  --surface2: var(--couleur-surface-alt);
+  --surface-1: var(--couleur-surface-1);
+  --surface-2: var(--couleur-surface-2);
+  --card-bg: var(--couleur-carte-claire);
+  --bord-1: var(--couleur-bord-1);
+  --bord-2: var(--couleur-bord-2);
+  --text: var(--couleur-texte);
+  --muted: var(--couleur-texte-3);
+  --muted-strong: var(--couleur-texte-2);
+  --accent: var(--couleur-action);
+  --accent-2: var(--couleur-action-2);
+  --correct: var(--couleur-reussi);
+  --wrong: var(--couleur-erreur);
+  --info: var(--couleur-info);
+  --violet: var(--couleur-violet);
+  --orange: var(--couleur-orange);
+  --fresh: var(--couleur-fraicheur);
+  --turquoise: var(--couleur-turquoise);
+  --turq-fond: var(--couleur-turq-fond);
+  --turq-bord: var(--couleur-turq-bord);
+  --vert-fond: var(--couleur-vert-fond);
+  --vert-plein: var(--couleur-vert-plein);
+  --vert-bord: var(--couleur-vert-bord);
+  --or-fond: var(--couleur-or-fond);
+  --or-bord: var(--couleur-or-bord);
+  --bleu-fond: var(--couleur-bleu-fond);
+  --bleu-bord: var(--couleur-bleu-bord);
+  --title: var(--police-titre);
+  --font: var(--police);
+  --serif: var(--police-serif);
+  --r: var(--rayon-moyen);
+  --r-carte: var(--rayon-carte);
+}

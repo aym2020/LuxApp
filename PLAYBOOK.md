@@ -317,6 +317,15 @@ eval(src);
 
 ## 9. Détails UI à connaître
 
+### Design system — RÈGLE (spec 19)
+
+Référence : `docs/DESIGN_SYSTEM.md` ; catalogue vivant : `/catalogue.html`.
+Trois niveaux : `public/design-tokens.css` (valeurs) → `public/components.css` (composants) →
+`public/style.css` (écrans). Une nouvelle couleur, taille ou rayon devient un **token** ; un
+nouveau bouton ou badge réutilise un **composant**. Toute exception est documentée dans
+`docs/DESIGN_SYSTEM.md`, qui garde l'historique des versions. Pour un changement qui ne doit
+rien modifier visuellement : comparer des captures avant / après.
+
 - Coloration flashcards par langue : bleu pour le français (`.face-fr`), or pour le
   luxembourgeois (`.face-lu`).
 - Badges de choix lettrés (A/B/C/D) via compteurs CSS.

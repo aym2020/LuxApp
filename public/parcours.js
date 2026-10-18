@@ -356,7 +356,8 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   if (mots.length > 4) apercu += ' · +' + (mots.length - 4);
 
   const label = u.bonus ? 'BONUS' : 'UNITÉ ' + u.id;
-  let html = '<div class="pl-unit' + (enCours ? ' en-cours' : '') + (u.bonus ? ' bonus' : '') + '" id="pl-unite-' + u.id + '">';
+  const estProchaine = !!(prochaine && prochaine.id === u.id);
+  let html = '<div class="pl-unit' + (enCours ? ' en-cours' : '') + (estProchaine ? ' prochaine' : '') + (u.bonus ? ' bonus' : '') + '" id="pl-unite-' + u.id + '">';
   html += '<div class="pl-unit-top"><div>' +
     '<div class="pc-mini-label">' + label + etat + '</div>' +
     '<div class="pl-unit-titre">' + escHtml(u.titre) + '</div></div>' +

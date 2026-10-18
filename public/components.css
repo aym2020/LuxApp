@@ -1,0 +1,88 @@
+/* ══ LUXAPP · COMPOSANTS PARTAGÉS (design system v1.0) ════════════════════════
+   Un composant = une définition ici, avec ses variantes. Les écrans (style.css)
+   les assemblent et ne font que les placer. Valeurs : design-tokens.css.
+   Catalogue visuel de tous les états : /catalogue.html
+
+   Boutons
+     .pc-btn            bouton standard (48 px) ; variantes :
+       .primary          or : L'action principale (une seule par écran)
+       .ok / .ko         vert / rouge : continuer après une réussite / une erreur
+       .ghost            discret (action secondaire)
+       .wide .big .plus  pleine largeur, plus haut, accent « + »
+     .btn-jaune         grand bouton d'action (56 px) des écrans de navigation
+     .pc-chip           puce (choix, accès secondaire) ; .active, .plus, .plus.fait
+     .pc-icon-btn       bouton icône 44 × 44
+     .pc-cours-btn      pilule « Cours » des barres du haut
+     .back-btn          « ← écran précédent »
+   Étiquettes et badges
+     .pc-mini-label .etiquette(.or) .badge(.fait) .pastille(.v/.o) .lecon-pill
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+.back-btn {
+  font-family: var(--title); font-size: var(--fs-sec); font-weight: 700; color: var(--muted);
+  background: none; border: none; cursor: pointer;
+  /* bon tap target */
+  padding: .6rem .8rem; margin: -.3rem 0;
+  white-space: nowrap; transition: color .15s;
+  min-height: var(--toucher); display: flex; align-items: center;
+}
+.lecon-pill {
+  font-size: var(--fs-micro); font-weight: 700; padding: .22rem .55rem;
+  border-radius: var(--rayon-pilule); border: 1px solid #34322d; color: var(--muted-strong);
+  background: rgba(255,255,255,.02);
+}
+.pc-mini-label { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .12em; color: var(--muted); }
+.pc-btn {
+  font-family: var(--font); font-size: .95rem; font-weight: 600;
+  min-height: var(--hauteur-bouton); padding: 0 1.1rem; border-radius: var(--rayon-bouton); cursor: pointer;
+  background: transparent; color: var(--text); border: 1px solid var(--couleur-bord-3);
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  transition: background .15s, transform .1s;
+}
+.pc-btn:active { transform: scale(.98); }
+.pc-btn:disabled { opacity: .35; cursor: default; }
+.pc-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--couleur-sur-action); }
+.pc-btn.ok      { background: var(--correct); border-color: var(--correct); color: var(--couleur-sur-action); }
+.pc-btn.ko      { background: var(--wrong); border-color: var(--wrong); color: var(--couleur-sur-action); }
+.pc-btn.ghost   { border-color: transparent; color: var(--muted-strong); }
+.pc-btn.wide    { width: 100%; }
+.pc-btn.big     { min-height: var(--hauteur-bouton-grand); font-size: 1rem; }
+.pc-chip {
+  font-family: var(--font); font-size: var(--fs-sec); font-weight: 600;
+  min-height: var(--toucher); padding: 0 .9rem; border-radius: var(--rayon-pilule); cursor: pointer;
+  background: transparent; color: var(--muted-strong); border: 1px solid var(--couleur-bord-3);
+}
+.pc-chip.active { background: var(--accent); border-color: var(--accent); color: var(--couleur-sur-action); }
+.pc-icon-btn {
+  width: 44px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  background: none; border: none; color: var(--text); cursor: pointer; border-radius: 12px;
+}
+.pc-cours-btn {
+  font-family: var(--font); font-size: var(--fs-sec); font-weight: 600; flex-shrink: 0;
+  min-height: var(--toucher); padding: 0 .9rem; border-radius: var(--rayon-pilule); cursor: pointer;
+  background: transparent; color: var(--text); border: 1px solid var(--couleur-bord-3);
+}
+.pc-chip.plus { color: var(--accent); border-color: rgba(245,207,77,.45); }
+.pc-chip.plus.fait { background: rgba(245,207,77,.12); }
+.pc-btn.plus { color: var(--accent); border-color: rgba(245,207,77,.45); }
+.btn-jaune {
+  min-height: var(--hauteur-cta); width: 100%; border: 0; border-radius: var(--r); cursor: pointer;
+  background: var(--accent); color: var(--couleur-sur-or); font-family: var(--font); font-weight: 800; font-size: 1.05rem;
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 0 18px;
+  box-shadow: 0 6px 20px -8px rgba(245, 207, 77, .55);
+  transition: transform .1s ease;
+}
+.etiquette { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.etiquette.or { color: var(--accent); }
+.btn-jaune .ic { width: 22px; height: 22px; }
+.btn-jaune .fleche { margin-left: auto; }
+.badge { font-size: var(--fs-micro); font-weight: 800; padding: 3px 8px; border-radius: var(--rayon-pilule); background: var(--accent); color: var(--couleur-sur-or); display: inline-flex; align-items: center; }
+.badge.fait { background: var(--vert-plein); color: #eafff6; padding: 3px; }
+.badge.fait .ic { width: 14px; height: 14px; stroke-width: 3; }
+.pastille {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px; border-radius: var(--rayon-pilule);
+  font-size: var(--fs-sec); font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.pastille i { width: 8px; height: 8px; border-radius: 50%; }
+.pastille.v { background: var(--vert-fond); color: var(--correct); } .pastille.v i { background: var(--correct); }
+.pastille.o { background: var(--or-fond); color: var(--accent); } .pastille.o i { background: var(--accent); }

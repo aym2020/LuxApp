@@ -1,43 +1,3 @@
-:root {
-  --bg: #0f0e0c;
-  --surface: #1a1916;
-  --surface2: #222120;
-  --card-bg: #f5f0e8;
-  --text: #f6f1e9;
-  --muted: #aaa090;        /* éclairci : lisible sur fond sombre */
-  --muted-strong: #c8bda8; /* textes secondaires importants */
-  --accent: #f5cf4d;       /* or vif */
-  --accent-2: #ffaf5e;     /* ambre chaud (dégradés / accents) */
-  --correct: #54e0ad;
-  --wrong: #ef7a73;
-  --info: #6fb0f2;         /* bleu */
-  --violet: #b18cf0;       /* violet (accent supplémentaire) */
-  --r: 14px;
-  --title: 'Inter', system-ui, sans-serif; /* UI : propre et moderne */
-  --font:  'Inter', system-ui, sans-serif; /* texte de lecture */
-  --serif: 'Instrument Serif', serif;      /* textes courts : mot, courte phrase */
-
-  /* ── DESIGN SYSTEM (S12) ─────────────────────────────────────────────────
-     Rôles typographiques : une taille par rôle, jamais de taille « au hasard ». */
-  --fs-micro: .75rem;      /* 12 px : information très secondaire (compteur, étiquette) */
-  --fs-sec: .875rem;       /* 14 px : tout texte qu'il faut lire */
-  --fs-corps: 1rem;        /* 16 px : texte courant, champs de saisie */
-  --fs-titre: 1.375rem;    /* 22 px : titre d'écran, de carte principale */
-  --fs-question: clamp(1.4rem, 6vw, 1.75rem); /* ce qu'on doit traduire */
-  --fs-grand: clamp(1.9rem, 8vw, 2.4rem);     /* titre de leçon */
-
-  /* Espacements : plus d'espace entre les groupes qu'à l'intérieur. */
-  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
-
-  /* 3 niveaux de surface : fond < carte < carte principale. */
-  --surface-1: #1a1916;    /* carte */
-  --bord-1: #2a2926;
-  --surface-2: #26241f;    /* carte principale (une par écran) */
-  --bord-2: #3d3a31;
-
-  /* Zone à toucher minimale */
-  --toucher: 44px;
-}
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -87,7 +47,7 @@ header {
 
 .lecon-card {
   display: flex; align-items: center; gap: 1rem;
-  background: var(--surface); border: 1px solid #2a2926;
+  background: var(--surface); border: 1px solid var(--couleur-bord-1);
   border-radius: var(--r); padding: 1rem 1.1rem;
   cursor: pointer; transition: border-color .2s, background .2s, box-shadow .2s;
   /* min tap target */
@@ -106,25 +66,12 @@ header {
 .lecon-card-titre { font-size: 1.05rem; font-weight: 700; letter-spacing: -.01em; }
 .lecon-card-sous  { font-size: var(--fs-sec); color: var(--muted-strong); margin-top: .2rem; }
 .lecon-card-counts { display: flex; gap: .4rem; margin-top: .55rem; flex-wrap: wrap; }
-.lecon-pill {
-  font-size: var(--fs-micro); font-weight: 700; padding: .22rem .55rem;
-  border-radius: 999px; border: 1px solid #34322d; color: var(--muted-strong);
-  background: rgba(255,255,255,.02);
-}
 .lecon-arrow { font-size: 1.5rem; color: var(--lc, var(--muted)); flex-shrink: 0; opacity: .85; }
 
 /* ── LEÇON HEADER ────────────────────────────────────────────────────────── */
 .lecon-header {
   display: flex; align-items: center; gap: .8rem;
   padding: .9rem 1rem .6rem; border-bottom: 1px solid #222;
-}
-.back-btn {
-  font-family: var(--title); font-size: var(--fs-sec); font-weight: 700; color: var(--muted);
-  background: none; border: none; cursor: pointer;
-  /* bon tap target */
-  padding: .6rem .8rem; margin: -.3rem 0;
-  white-space: nowrap; transition: color .15s;
-  min-height: 44px; display: flex; align-items: center;
 }
 .lecon-header-info { display: flex; flex-direction: column; min-width: 0; }
 .lecon-num   { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .12em; color: var(--muted); }
@@ -148,7 +95,7 @@ header {
 .top-row { width: 100%; display: flex; align-items: center; gap: .7rem; margin-bottom: .9rem; }
 .progress-wrap { flex: 1; display: flex; align-items: center; gap: .6rem; width: 100%; }
 .progress-wrap span { font-size: var(--fs-micro); color: var(--muted); font-weight: 700; white-space: nowrap; }
-.progress-bar { flex: 1; height: 3px; background: #2a2926; border-radius: 999px; overflow: hidden; }
+.progress-bar { flex: 1; height: 3px; background: var(--couleur-bord-1); border-radius: 999px; overflow: hidden; }
 .progress-bar div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 999px; transition: width .35s ease; }
 
 .dir-btn {
@@ -225,7 +172,7 @@ header {
 
 .card-nav { display: flex; align-items: center; gap: .6rem; margin-top: .9rem; width: 100%; }
 .card-nav button {
-  border: 1px solid #2a2926; background: var(--surface); color: var(--text);
+  border: 1px solid var(--couleur-bord-1); background: var(--surface); color: var(--text);
   font-family: var(--title); font-size: var(--fs-sec); font-weight: 700;
   cursor: pointer; border-radius: 999px; transition: all .15s;
   padding: .7rem 1rem; min-height: 44px;
@@ -290,7 +237,7 @@ header {
 
 .result-card {
   width: 100%; text-align: center; margin-top: 1.2rem; padding: 1.4rem;
-  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: var(--r);
 }
 .result-card > div { font-size: 1.4rem; font-weight: 800; color: var(--accent); margin-bottom: .9rem; }
 .result-card button {
@@ -408,7 +355,7 @@ header {
 .cours-regle b { color: var(--accent); font-weight: 700; }
 
 .cours-bloc {
-  background: var(--surface); border: 1px solid #2a2926;
+  background: var(--surface); border: 1px solid var(--couleur-bord-1);
   border-radius: var(--r); padding: .95rem 1.1rem; margin-bottom: 1.1rem;
 }
 .cours-bloc-titre { font-size: var(--fs-sec); font-weight: 800; letter-spacing: .04em; margin-bottom: .7rem; text-transform: uppercase; color: var(--muted); }
@@ -503,7 +450,7 @@ header {
 
 /* ── PROGRESSION : BLOC DANS LE COURS ───────────────────────────────────── */
 .lesson-progress {
-  background: var(--surface); border: 1px solid #2a2926;
+  background: var(--surface); border: 1px solid var(--couleur-bord-1);
   border-radius: var(--r); padding: .9rem 1.1rem; margin-bottom: 1.2rem;
 }
 .lesson-progress-titre {
@@ -513,10 +460,10 @@ header {
 .lp-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; }
 .lp-row:last-child { margin-bottom: 0; }
 .lp-nom { font-size: var(--fs-micro); font-weight: 700; color: var(--muted); width: 70px; flex-shrink: 0; }
-.lp-bar { flex: 1; height: 5px; background: #2a2926; border-radius: 999px; overflow: hidden; }
+.lp-bar { flex: 1; height: 5px; background: var(--couleur-bord-1); border-radius: 999px; overflow: hidden; }
 .lp-bar div { height: 100%; background: var(--accent); border-radius: 999px; transition: width .35s ease; }
 .lp-val { font-size: var(--fs-micro); font-weight: 800; color: var(--text); width: 38px; text-align: right; flex-shrink: 0; }
-.lp-global { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid #2a2926; }
+.lp-global { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--couleur-bord-1); }
 .lp-global .lp-nom { color: var(--text); }
 .lp-global .lp-bar div { background: var(--correct); }
 .lp-reset {
@@ -540,18 +487,18 @@ header {
 
 .dash-top { display: flex; gap: .7rem; }
 .dash-stat {
-  flex: 1; background: var(--surface); border: 1px solid #2a2926;
+  flex: 1; background: var(--surface); border: 1px solid var(--couleur-bord-1);
   border-radius: var(--r); padding: 1.1rem 1rem; text-align: center;
 }
 .dash-stat-val { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
 .dash-stat-lbl { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .25rem; }
 
-.dash-bar { height: 6px; background: #2a2926; border-radius: 999px; overflow: hidden; }
+.dash-bar { height: 6px; background: var(--couleur-bord-1); border-radius: 999px; overflow: hidden; }
 .dash-bar div { height: 100%; width: 0; background: var(--correct); border-radius: 999px; transition: width .35s ease; }
 
 .dash-grid { display: flex; gap: .7rem; }
 .dash-mini {
-  flex: 1; background: var(--surface); border: 1px solid #2a2926;
+  flex: 1; background: var(--surface); border: 1px solid var(--couleur-bord-1);
   border-radius: var(--r); padding: .9rem 1rem; text-align: center;
 }
 .dash-mini span { font-size: 1.1rem; font-weight: 800; color: var(--text); }
@@ -564,7 +511,7 @@ header {
 
 .dash-btn {
   width: 100%; padding: 1rem; min-height: 56px;
-  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: var(--r);
   color: var(--text); font-family: var(--font); font-weight: 700; font-size: .95rem;
   letter-spacing: -.01em;
   cursor: pointer; text-align: center; transition: all .15s;
@@ -594,7 +541,7 @@ header {
 
 /* ── ZONE DE CONNEXION (cloud) ──────────────────────────────────────────── */
 .dash-auth {
-  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #2a2926;
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--couleur-bord-1);
   display: flex; flex-direction: column; gap: .5rem; align-items: center;
 }
 .auth-state { font-size: var(--fs-micro); font-weight: 700; color: var(--muted); }
@@ -623,7 +570,7 @@ header {
 /* ── CONFIGURATION DE RÉVISION ──────────────────────────────────────────── */
 .rs { padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
 .rs-block {
-  background: var(--surface); border: 1px solid #2a2926;
+  background: var(--surface); border: 1px solid var(--couleur-bord-1);
   border-radius: var(--r); padding: 1rem;
 }
 .rs-titre {
@@ -686,7 +633,7 @@ header {
 
 /* Texte à lire ou à compléter. Interligne large : les trous sont des boutons. */
 .ex-text {
-  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: var(--r);
   padding: 1rem 1.1rem; font-size: 1rem; line-height: 2.15;
 }
 .ex-line + .ex-line { margin-top: .5rem; }
@@ -696,7 +643,7 @@ header {
 .ex-label { font-size: var(--fs-sec); font-weight: 800; color: var(--info); margin-right: .45rem; }
 .ex-bullet { padding-left: 1.1rem; position: relative; line-height: 1.6; }
 .ex-bullet::before { content: '•'; position: absolute; left: .2rem; color: var(--info); }
-.ex-chapeau { font-weight: 800; line-height: 1.45; margin-bottom: .7rem; padding-bottom: .7rem; border-bottom: 1px solid #2a2926; }
+.ex-chapeau { font-weight: 800; line-height: 1.45; margin-bottom: .7rem; padding-bottom: .7rem; border-bottom: 1px solid var(--couleur-bord-1); }
 
 /* Trou à remplir */
 .ex-blank {
@@ -717,7 +664,7 @@ header {
 
 /* Question à choix (vrai / faux, 3 réponses) */
 .ex-q {
-  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: var(--r);
   padding: .9rem 1rem;
 }
 .ex-q-text { display: flex; gap: .6rem; font-size: .98rem; font-weight: 600; line-height: 1.45; }
@@ -736,7 +683,7 @@ header {
 /* Barre collée en bas : mots à placer + navigation */
 .ex-bottom {
   position: sticky; bottom: 0; margin-top: auto;
-  background: var(--bg); border-top: 1px solid #2a2926;
+  background: var(--bg); border-top: 1px solid var(--couleur-bord-1);
   padding: .7rem 1rem .8rem;
 }
 .ex-tray { margin-bottom: .7rem; }
@@ -766,7 +713,7 @@ header {
 .exr-hero { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .6rem 0 .2rem; }
 .exr-ring {
   width: 150px; height: 150px; border-radius: 999px; padding: 11px;
-  background: conic-gradient(var(--ring) calc(var(--pct) * 1%), #2a2926 0);
+  background: conic-gradient(var(--ring) calc(var(--pct) * 1%), var(--couleur-bord-1) 0);
 }
 .exr-ring-in {
   width: 100%; height: 100%; border-radius: 999px; background: var(--bg);
@@ -778,22 +725,22 @@ header {
 .exr-sub { font-size: var(--fs-sec); color: var(--muted); }
 
 .exr-sections {
-  background: var(--surface); border: 1px solid #2a2926; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: var(--r);
   padding: .9rem 1rem; display: flex; flex-direction: column; gap: .8rem;
 }
 .exr-row-top { display: flex; justify-content: space-between; align-items: baseline; font-size: .9rem; font-weight: 700; }
 .exr-row-top small { display: block; font-size: var(--fs-micro); font-weight: 500; color: var(--muted); }
-.exr-bar { height: 6px; margin-top: .4rem; background: #2a2926; border-radius: 999px; overflow: hidden; }
+.exr-bar { height: 6px; margin-top: .4rem; background: var(--couleur-bord-1); border-radius: 999px; overflow: hidden; }
 .exr-bar div { height: 100%; border-radius: 999px; }
 
-.exr-filter { display: flex; gap: .4rem; background: var(--surface); border: 1px solid #2a2926; border-radius: 999px; padding: .25rem; }
+.exr-filter { display: flex; gap: .4rem; background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: 999px; padding: .25rem; }
 .exr-filter button {
   flex: 1; min-height: 40px; border: none; border-radius: 999px; cursor: pointer;
   background: none; color: var(--muted-strong); font-family: var(--font); font-size: var(--fs-sec); font-weight: 700;
 }
 .exr-filter button.active { background: var(--accent); color: #1a1408; }
 
-.exr-part { display: flex; flex-direction: column; gap: .6rem; padding-top: .9rem; border-top: 1px solid #2a2926; }
+.exr-part { display: flex; flex-direction: column; gap: .6rem; padding-top: .9rem; border-top: 1px solid var(--couleur-bord-1); }
 .exr-part-head { display: flex; justify-content: space-between; align-items: center; gap: .8rem; font-size: 1.1rem; font-weight: 800; }
 .exr-part-head small { display: block; font-size: var(--fs-micro); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--info); }
 .exr-badge { flex-shrink: 0; font-size: var(--fs-sec); font-weight: 800; padding: .25rem .7rem; border: 1px solid; border-radius: 999px; }
@@ -875,44 +822,13 @@ header {
 /* Même palette que le reste de l'app. --lc = couleur de la leçon. */
 body.no-scroll { overflow: hidden; }
 
-.pc-mini-label { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .12em; color: var(--muted); }
 .pc-accent { color: var(--info); }
 .pc-gold   { color: var(--accent); }
 .pc-lc     { color: var(--lc, var(--info)); }
 
 /* Boutons */
-.pc-btn {
-  font-family: var(--font); font-size: .95rem; font-weight: 600;
-  min-height: 48px; padding: 0 1.1rem; border-radius: 12px; cursor: pointer;
-  background: transparent; color: var(--text); border: 1px solid #3a3730;
-  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  transition: background .15s, transform .1s;
-}
-.pc-btn:active { transform: scale(.98); }
-.pc-btn:disabled { opacity: .35; cursor: default; }
-.pc-btn.primary { background: var(--accent); border-color: var(--accent); color: #0f0e0c; }
-.pc-btn.ok      { background: var(--correct); border-color: var(--correct); color: #0f0e0c; }
-.pc-btn.ko      { background: var(--wrong); border-color: var(--wrong); color: #0f0e0c; }
-.pc-btn.ghost   { border-color: transparent; color: var(--muted-strong); }
-.pc-btn.wide    { width: 100%; }
-.pc-btn.big     { min-height: 52px; font-size: 1rem; }
 
-.pc-chip {
-  font-family: var(--font); font-size: var(--fs-sec); font-weight: 600;
-  min-height: var(--toucher); padding: 0 .9rem; border-radius: 999px; cursor: pointer;
-  background: transparent; color: var(--muted-strong); border: 1px solid #3a3730;
-}
-.pc-chip.active { background: var(--accent); border-color: var(--accent); color: #0f0e0c; }
 
-.pc-icon-btn {
-  width: 44px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  background: none; border: none; color: var(--text); cursor: pointer; border-radius: 12px;
-}
-.pc-cours-btn {
-  font-family: var(--font); font-size: var(--fs-sec); font-weight: 600; flex-shrink: 0;
-  min-height: var(--toucher); padding: 0 .9rem; border-radius: 999px; cursor: pointer;
-  background: transparent; color: var(--text); border: 1px solid #3a3730;
-}
 
 /* Barre du haut + segments de progression (un par étape) */
 .pc-topbar { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .7rem .75rem 0; }
@@ -923,7 +839,7 @@ body.no-scroll { overflow: hidden; }
 .pc-sous-barre { display: flex; justify-content: space-between; gap: .5rem; padding: .3rem 1.25rem 0; font-size: var(--fs-sec); color: var(--muted); }
 .pc-refaire { color: var(--wrong); }
 
-.pc-star    { color: #3a3730; letter-spacing: 1px; }
+.pc-star    { color: var(--couleur-bord-3); letter-spacing: 1px; }
 .pc-star.on { color: var(--accent); }
 .pc-pill-stars  { border-color: transparent; padding-left: 0; font-size: var(--fs-sec); }
 .pc-pill-revoir { color: var(--wrong); border-color: rgba(239,122,115,.4); background: rgba(239,122,115,.08); }
@@ -941,9 +857,7 @@ body.no-scroll { overflow: hidden; }
 .pl-titre { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 10vw, 2.6rem); line-height: 1.05; overflow-wrap: anywhere; hyphens: auto; }
 .pl-sous { font-size: .95rem; color: var(--muted-strong); margin-bottom: .4rem; }
 .pl-units { padding: 0 1.25rem 2.5rem; display: flex; flex-direction: column; gap: .65rem; }
-.pl-unit { background: var(--surface); border: 1px solid #2a2926; border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; gap: .75rem; }
-.pl-unit.en-cours { border-color: var(--lc, var(--info)); }
-.pl-unit.en-cours .pc-mini-label { color: var(--lc, var(--info)); }
+.pl-unit { background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; gap: .75rem; }
 .pl-unit-top { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; }
 .pl-unit-titre { font-size: 1.05rem; font-weight: 600; margin-top: .1rem; }
 .pl-unit-stars { font-size: 1rem; flex-shrink: 0; }
@@ -998,7 +912,7 @@ body.no-scroll { overflow: hidden; }
 .mc-article { font-size: 1.15rem; font-weight: 600; color: var(--muted-strong); }
 .mc-cases { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
 .mc-case {
-  width: 30px; height: 44px; border-radius: 8px; background: var(--surface); border-bottom: 3px solid #3a3730;
+  width: 30px; height: 44px; border-radius: 8px; background: var(--surface); border-bottom: 3px solid var(--couleur-bord-3);
   display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 600;
 }
 .mc-case.sm { width: 26px; height: 40px; font-size: 1.1rem; }
@@ -1032,7 +946,7 @@ body.no-scroll { overflow: hidden; }
   position: sticky; bottom: 0; margin-top: auto;
   padding: 1rem 1.25rem calc(1.2rem + env(safe-area-inset-bottom));
   display: flex; flex-direction: column; gap: .7rem;
-  background: #141310; border-top: 2px solid #3a3730;
+  background: #141310; border-top: 2px solid var(--couleur-bord-3);
 }
 .pc-feedback.ok { background: #0f1d18; border-top-color: var(--correct); }
 .pc-feedback.ko { background: #1f1513; border-top-color: var(--wrong); }
@@ -1077,7 +991,7 @@ body.no-scroll { overflow: hidden; }
   animation: cp-monte .22s ease-out;
 }
 @keyframes cp-monte { from { transform: translateY(30px); opacity: .5; } to { transform: none; opacity: 1; } }
-.cp-poignee { width: 40px; height: 5px; border-radius: 3px; background: #3a3730; margin: .6rem auto 0; }
+.cp-poignee { width: 40px; height: 5px; border-radius: 3px; background: var(--couleur-bord-3); margin: .6rem auto 0; }
 .cp-head { display: flex; justify-content: space-between; align-items: center; padding: .6rem .75rem 0 1.25rem; }
 .cp-titre { font-size: 1.2rem; font-weight: 600; }
 .cp-onglets { display: flex; gap: .5rem; padding: .7rem 1.25rem .9rem; border-bottom: 1px solid #2a2823; }
@@ -1088,7 +1002,6 @@ body.no-scroll { overflow: hidden; }
 /* Règle de design : ce qui est ACQUIS est en or et ne pâlit jamais
    (étoiles, Terminée, Sans faute) ; ce qui BOUGE est en turquoise
    (fraîcheur, à rafraîchir, séance du jour). */
-:root { --fresh: #4fc9c3; --orange: #f2a65a; }
 .pc-orange { color: var(--orange); }
 
 /* Anneau de fraîcheur autour du numéro de leçon */
@@ -1156,7 +1069,7 @@ body.no-scroll { overflow: hidden; }
 .session-actions { display: flex; flex-direction: column; gap: .55rem; }
 .session-action {
   min-height: 48px; padding: .7rem 1rem; border-radius: 12px; cursor: pointer;
-  background: transparent; color: var(--text); border: 1px solid #3a3730;
+  background: transparent; color: var(--text); border: 1px solid var(--couleur-bord-3);
   font-family: var(--font); font-weight: 600; font-size: .92rem;
 }
 .session-action.primary { background: var(--accent); border-color: var(--accent); color: #0f0e0c; }
@@ -1227,9 +1140,6 @@ body.no-scroll { overflow: hidden; }
 .pl-unit.bonus { border-style: dashed; }
 
 /* Chip et bouton « + » */
-.pc-chip.plus { color: var(--accent); border-color: rgba(245,207,77,.45); }
-.pc-chip.plus.fait { background: rgba(245,207,77,.12); }
-.pc-btn.plus { color: var(--accent); border-color: rgba(245,207,77,.45); }
 
 /* Avant de commencer : la phrase de l'unité, le « + » replié */
 .pi-phrase { border-left: 3px solid var(--accent); padding: .3rem 0 .3rem .9rem; margin-bottom: .6rem; display: flex; flex-direction: column; gap: .2rem; }
@@ -1329,19 +1239,6 @@ body.no-scroll { overflow: hidden; }
      turquoise = révision, progression
      bleu      = examens, information
      gris      = à venir                                                        */
-:root {
-  --turquoise: #4fd1c5;
-  --turq-fond: #10282a;
-  --turq-bord: #2b6b68;
-  --vert-fond: #12261f;
-  --vert-plein: #1f7a5a;
-  --vert-bord: #23604a;
-  --or-fond: #2b2514;
-  --or-bord: #6b5a22;
-  --bleu-fond: #172235;
-  --bleu-bord: #34507d;
-  --r-carte: 20px;
-}
 
 svg.ic { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -1472,27 +1369,13 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 }
 
 /* ── Éléments communs (chemin, séance) ──────────────────────────────────── */
-.btn-jaune {
-  min-height: 56px; width: 100%; border: 0; border-radius: var(--r); cursor: pointer;
-  background: var(--accent); color: #1a1505; font-family: var(--font); font-weight: 800; font-size: 1.05rem;
-  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 0 18px;
-  box-shadow: 0 6px 20px -8px rgba(245, 207, 77, .55);
-  transition: transform .1s ease;
-}
-.etiquette { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
-.etiquette.or { color: var(--accent); }
 .barre { height: 8px; border-radius: 999px; background: #3a362e; overflow: hidden; }
 .barre > i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--turquoise), #7be3c9); transform-origin: left; }
 .etape { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sec); color: var(--muted-strong); }
 .etape .pt { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); flex: none; }
 .etape.mission .pt { border-color: var(--info); border-radius: 3px; }
 .etape b { color: var(--text); font-weight: 600; }
-.btn-jaune .ic { width: 22px; height: 22px; }
-.btn-jaune .fleche { margin-left: auto; }
 .btn-jaune:active, .carte-lecon:active, .plus-ligne:active { transform: scale(.97); }
-.badge { font-size: var(--fs-micro); font-weight: 800; padding: 3px 8px; border-radius: 999px; background: var(--accent); color: #1a1505; display: inline-flex; align-items: center; }
-.badge.fait { background: var(--vert-plein); color: #eafff6; padding: 3px; }
-.badge.fait .ic { width: 14px; height: 14px; stroke-width: 3; }
 .point-synchro { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-micro); color: var(--muted); }
 .point-synchro i { width: 7px; height: 7px; border-radius: 50%; background: var(--correct); }
 .point-synchro.attente i { background: var(--accent-2); }
@@ -1528,13 +1411,6 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 .chemin-page { padding: 1.25rem max(16px, 1.25rem) var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-5); }
 .chemin-tete h1 { margin-top: 6px; font-size: 2rem; font-weight: 800; letter-spacing: -.02em; }
 .resume { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-.pastille {
-  display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px; border-radius: 999px;
-  font-size: var(--fs-sec); font-weight: 700; font-variant-numeric: tabular-nums;
-}
-.pastille i { width: 8px; height: 8px; border-radius: 50%; }
-.pastille.v { background: var(--vert-fond); color: var(--correct); } .pastille.v i { background: var(--correct); }
-.pastille.o { background: var(--or-fond); color: var(--accent); } .pastille.o i { background: var(--accent); }
 
 .chemin { list-style: none; display: flex; flex-direction: column; }
 .pas { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 12px; position: relative; padding-bottom: 14px; }
@@ -1679,20 +1555,23 @@ div.carte-lecon:active { transform: none; }
   white-space: normal; overflow: visible; text-wrap: balance; margin-top: 2px; }
 body.avec-nav .lecon-header { padding-top: 1.25rem; }
 
-/* Écran d'une leçon : en-tête et carte mission à la couleur de la leçon */
-#view-plecon .pl-head {
-  margin: .25rem max(16px, 1.25rem) 1rem; padding: 1.1rem 1.1rem 1rem; border-radius: var(--r-carte);
-  background: linear-gradient(150deg, color-mix(in srgb, var(--lc) 34%, var(--surface-2)), var(--surface-1) 78%);
-  border: 1px solid color-mix(in srgb, var(--lc) 45%, var(--bord-1));
-}
+/* Écran d'une leçon (spec 19) : même famille que « Mon chemin ».
+   En-tête directement sur le fond ; la couleur de la leçon marque l'appartenance
+   (étiquettes), l'or marque la prochaine action ; le reste est neutre. */
+#view-plecon .pl-head { margin: .1rem max(16px, 1.25rem) .9rem; padding: 0; gap: .25rem; }
 #view-plecon .pl-head .pc-mini-label { color: var(--lc); }
-#view-plecon .pl-titre { color: var(--text); }
+#view-plecon .pl-titre { color: var(--couleur-texte); }
+#view-plecon .pl-sous { margin-bottom: 0; }
 #view-plecon .ms-carte {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--lc) 16%, var(--surface-1)), var(--surface-1) 70%);
-  border-color: color-mix(in srgb, var(--lc) 55%, var(--bord-1)); border-radius: var(--r-carte);
+  background: var(--couleur-surface-1); border-color: var(--couleur-bord-1); border-radius: var(--rayon-carte);
 }
-#view-plecon .ms-carte > .pc-mini-label { color: var(--lc); }
-.pl-unit { background: var(--surface-1); border-color: var(--bord-1); border-radius: 18px; }
+#view-plecon .ms-carte .ms-carte-haut > .pc-mini-label { color: var(--couleur-info); } /* mission = bleu, comme sur le chemin */
+#view-plecon .ms-carte .ms-titre { font-family: var(--police); font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
+.pl-unit { background: var(--couleur-surface-1); border-color: var(--couleur-bord-1); border-radius: var(--rayon-carte); }
+#view-plecon .pl-unit > .pl-unit-top .pc-mini-label { color: var(--lc, var(--couleur-texte-3)); }
+#view-plecon .pl-unit.prochaine, #view-plecon .pl-unit.en-cours { background: var(--couleur-or-fond); border-color: var(--couleur-or-bord); }
+#view-plecon .pl-unit.prochaine > .pl-unit-top .pc-mini-label,
+#view-plecon .pl-unit.en-cours > .pl-unit-top .pc-mini-label { color: var(--couleur-action); }
 .pl-unit .pc-mini-label .pc-gold { color: var(--accent); }
 
 /* Exercices : l'item arrive en glissant, la barre avance, le bandeau monte */
@@ -1816,7 +1695,6 @@ body.clavier-actif #view-mission.active .ms-body {
 /* Carte compacte en haut de la leçon (le scénario s'ouvre à la demande) */
 .ms-carte.compacte { gap: .45rem; padding: .9rem 1rem; }
 .ms-carte.compacte .ms-titre { font-size: 1.35rem; }
-#view-plecon .ms-carte .ms-carte-haut > .pc-mini-label { color: var(--lc); }
 .ms-carte-haut { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
 .ms-etat {
   flex: none; font-size: var(--fs-micro); font-weight: 700; letter-spacing: .04em;
@@ -1958,7 +1836,7 @@ body.clavier-actif #view-mission.active .ms-body {
 .ms-champ { display: flex; align-items: flex-end; gap: .5rem; }
 .ms-champ textarea {
   flex: 1; min-width: 0; min-height: 44px; max-height: 120px; resize: none; overflow-y: auto;
-  padding: .6rem .75rem; border-radius: 12px; border: 1px solid #3a3730; background: var(--bg);
+  padding: .6rem .75rem; border-radius: 12px; border: 1px solid var(--couleur-bord-3); background: var(--bg);
   color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.35;
 }
 .ms-champ textarea:focus { outline: none; border-color: var(--accent); }
@@ -2002,7 +1880,7 @@ body.clavier-actif #view-mission.active .ms-histoire { display: none; }
 .mc-lettres { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: .4rem; }
 .mc-tuile {
   min-width: 44px; height: 48px; padding: 0 .55rem; border-radius: 12px; cursor: pointer;
-  border: 1px solid #3a3730; border-bottom-width: 3px; background: var(--surface);
+  border: 1px solid var(--couleur-bord-3); border-bottom-width: 3px; background: var(--surface);
   color: var(--text); font-family: var(--font); font-size: 1.3rem; font-weight: 700;
   transition: transform .08s ease, opacity .15s ease;
 }
