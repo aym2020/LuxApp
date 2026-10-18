@@ -10,6 +10,8 @@
 > **Traçabilité :** Moteur implémenté (commit `31871d9`) ; scènes à 10 réponses à écrire.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
+**Évolution décidée le 18/10/2026 :** les seuils 80 % (mission normale) et 90 % (« Tente ta chance ») présentés ci-dessous décrivent l'ancienne règle et sont **remplacés par la [SPEC 32](./SPEC-32.md)** à l'implémentation. Désormais, après les 10 réponses, **au moins 1 vie restante = mission réussie ; 0 vie = échouée**, pour les deux modes. La réussite de la mission valide la leçon sans attribuer d'étoiles fictives aux unités non faites. Les autres exigences de la présente SPEC restent applicables.
+
 ## Exigences
 
 - Chaque mission contient exactement 10 répliques prononcées par l'utilisateur (`qui: "toi"`) ; les personnages peuvent prononcer d'autres répliques. Toute scène doit rester pédagogique et naturelle.

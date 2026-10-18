@@ -1,8 +1,8 @@
 # LuxApp — Registre des spécifications
 
-Ce répertoire centralise les **29 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+Ce répertoire centralise les **32 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
-> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; la fiche 29 est une proposition d'amélioration UX, non implémentée. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
+> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 précise les nouvelles règles de mission et n'est pas encore implémentée. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
 ## Statuts
 
@@ -46,6 +46,7 @@ Ce répertoire centralise les **29 spécifications** fonctionnelles et UX du pro
 | 29 | [Mon chemin : lignes compactes et statuts sans débordement](./SPEC-29.md) | P1 | Implémentée — validation à confirmer |
 | 30 | [Mon chemin homogène et compact, en-tête de mission sans troncature](./SPEC-30.md) | P1 | Implémentée — validation à confirmer |
 | 31 | [Mot caché : premier clic perdu sur PC](./SPEC-31.md) | P0 | Implémentée — validation à confirmer |
+| 32 | [Mission réussie avec trois vies : validation de la leçon sans étoiles fictives](./SPEC-32.md) | P0 | À faire |
 
 ## Gestion des changements
 
