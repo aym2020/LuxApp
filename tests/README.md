@@ -21,6 +21,7 @@ PORT=3456 node server.js &       # serveur de test
 | `python3 tests/test_navigation.py` | Chemin en accordéon, Retour (et bouton Retour du téléphone) vers l'écran précédent, mission en conversation | ~20 s |
 | `python3 tests/test_motcache.py` | Mot caché : découverte du mot nouveau, reconstruction avec des lettres mélangées (sans clavier) | ~10 s |
 | `python3 tests/test_decouverte.py` | Spec 18 : explorer une leçon sans la commencer, Retour vers l'introduction | ~15 s |
+| `python3 tests/test_libre.py` | Spec 22 : refaire une unité ne change pas la prochaine étape, parties principale et libre gardées, migration | ~15 s |
 | `python3 tests/test_seance.py` | Séance du jour : quitter puis reprendre | ~30 s |
 | `python3 tests/test_etalement.py` | Étalement de l'historique v1 | ~10 s |
 | `node tests/test_lot2_contenu.js` | Lot 2 : six JSON, unités, scènes, distracteurs, IDs et cours | ~1 s |

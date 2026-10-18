@@ -27,6 +27,7 @@ async function init() {
   initFirebase();          // 3. init Firebase (sans effet si non configuré)
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
   appliquerNiveauChoisi(); // niveau choisi par l'utilisateur (S13)
+  migrerParties();         // spec 22 : une ancienne répétition passe dans l'entraînement libre
   renderLessons();
   renderAccueil(true);     // 7. rendu de l'accueil (avec animations d'entrée)
   noterNavigation('view-dashboard'); // la racine de l'historique

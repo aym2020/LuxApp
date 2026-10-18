@@ -192,6 +192,7 @@ function lancerActionLecon(leconId) {
 // etapeActuelle : l'étape mise en avant (anneau doré).
 function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
   let html = '';
+  const libre = loadRun(true); // révision interrompue : signalée, sans déplacer l'anneau doré
   unitesCoeur(l).forEach(u => {
     const fait = getUnitBest(l.id, u.id) != null;
     const actuelle = etapeActuelle === u.id;
@@ -201,6 +202,7 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
       '<span class="etat">' + (fait && !actuelle ? ICONES.coche : '') + '</span>' +
       '<span class="nom">' + u.id + ' · ' + escHtml(u.titre) + '</span>' +
+      (libre && libre.leconId === l.id && libre.uniteId === u.id ? '<span class="tag revision">Révision en cours</span>' : '') +
       (fait ? '<span class="tag">' + etoilesHtml(etoiles(getUnitBest(l.id, u.id))) + '</span>' : '') +
       ICONES.droite + '</button></li>';
   });
@@ -288,7 +290,9 @@ function ouvrirUniteDepuisChemin(leconId, uniteId) {
   cheminLeconOuverte = leconId;
   openParcoursLecon(l);
   const run = loadRun();
+  const libre = loadRun(true);
   if (run && run.leconId === leconId && run.uniteId === uniteId) reprendreRun();
+  else if (libre && libre.leconId === leconId && libre.uniteId === uniteId) reprendreRun(true); // révision interrompue
   else openIntro(uniteId);
 }
 

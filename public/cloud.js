@@ -109,7 +109,9 @@ function getProgressPayload() {
     // S8, S13 : le choix du niveau et ce qui est en cours (séance du jour,
     // partie d'unité). Fusionnés par « le plus récent gagne » (mergeDernier).
     choix: getChoix(),
-    enCours: { seance: lireEnCours(SEANCE_KEY), partie: lireEnCours(RUN_KEY) }
+    // Spec 22 : partie principale et entraînement libre, synchronisés séparément
+    // (chacun fusionné par « le plus récent gagne »).
+    enCours: { seance: lireEnCours(SEANCE_KEY), partie: lireEnCours(RUN_KEY), partieLibre: lireEnCours(RUN_LIBRE_KEY) }
   };
 }
 
@@ -140,6 +142,8 @@ function applyProgressPayload(payload) {
   if (payload.enCours) {
     ecrireEnCours(SEANCE_KEY, payload.enCours.seance);
     ecrireEnCours(RUN_KEY, payload.enCours.partie);
+    ecrireEnCours(RUN_LIBRE_KEY, payload.enCours.partieLibre); // absent des anciens payloads : ignoré
+    if (typeof migrerParties === 'function') migrerParties();
   }
 }
 

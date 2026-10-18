@@ -34,7 +34,8 @@ const ETAPES = [
   { type: 'trous',      stat: 'trous',    label: 'Trous' },
   { type: 'ecriture',   stat: 'ecriture', label: 'Écriture' }
 ];
-const RUN_KEY = 'luxParcours';
+const RUN_KEY = 'luxParcours';             // partie PRINCIPALE (ce qu'il reste à apprendre)
+const RUN_LIBRE_KEY = 'luxParcoursLibre';  // entraînement LIBRE (refaire, + , étape seule…) — spec 22
 const TOUTE_LA_LECON = 'all';   // "uniteId" utilisé pour jouer la leçon entière
 const ESSAIS_AVANT_REPONSE = 3; // "Voir la réponse" apparaît après 3 essais ratés
 
@@ -173,24 +174,66 @@ function leconComplete(l) {
 // ─── SAUVEGARDE DE LA PARTIE EN COURS ───────────────────────────────────────
 // La partie porte sa date de mise à jour (maj) : sur deux appareils, la plus
 // récente gagne à la synchronisation (S8).
+//
+// Deux emplacements indépendants (spec 22) :
+//   principal (luxParcours)     : une unité jamais terminée, commencée ou reprise.
+//                                 C'est elle que l'accueil et le chemin proposent.
+//   libre (luxParcoursLibre)    : refaire une unité terminée, ses erreurs, le « + »,
+//                                 une étape seule, la leçon complète, une unité bonus.
+//                                 Reprenable, mais ne change jamais la prochaine étape.
+// Le type est fixé au lancement (run.libre) et ne change plus.
+function cleRun(libre) {
+  return storageKey(libre ? RUN_LIBRE_KEY : RUN_KEY);
+}
+
 function saveRun() {
   run.maj = Date.now();
-  try { localStorage.setItem(storageKey(RUN_KEY), JSON.stringify(run)); } catch (e) { /* ignore */ }
+  try { localStorage.setItem(cleRun(run.libre), JSON.stringify(run)); } catch (e) { /* ignore */ }
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
-// Partie en cours, ou null (aucune, ou finie).
-function loadRun() {
+// Partie en cours, ou null (aucune, ou finie). libre = true : l'entraînement libre.
+function loadRun(libre) {
   let data = null;
-  try { data = JSON.parse(localStorage.getItem(storageKey(RUN_KEY))); } catch (e) { data = null; }
+  try { data = JSON.parse(localStorage.getItem(cleRun(libre))); } catch (e) { data = null; }
   if (!data || data.fini || !data.steps) return null;
   return data;
 }
 
 // Partie finie : marque « finie » datée, comme pour la séance du jour.
-function clearRun() {
-  try { localStorage.setItem(storageKey(RUN_KEY), JSON.stringify({ fini: true, maj: Date.now() })); } catch (e) { /* ignore */ }
+// Seul l'emplacement de cette partie est touché.
+function clearRun(libre) {
+  try { localStorage.setItem(cleRun(libre), JSON.stringify({ fini: true, maj: Date.now() })); } catch (e) { /* ignore */ }
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
+// Une partie est-elle de l'entraînement libre ? Principale seulement pour une
+// unité du fil jamais terminée, dans une leçon pas déjà acquise.
+function partieLibre(leconId, uniteId, mode) {
+  if (mode !== 'unite') return true;
+  const l = lecons.find(x => x.id === leconId);
+  const u = l && trouverUnite(l, uniteId);
+  if (!u || u.bonus) return true;
+  if (acquisV1(l) || leconValideeParMission(leconId)) return true;
+  return getUnitBest(leconId, uniteId) != null;
+}
+
+// Migration : une ancienne partie (sans « libre ») qui est en fait une
+// répétition passe dans l'emplacement libre, sans perdre ses réponses.
+function migrerParties() {
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem(cleRun(false))); } catch (e) { data = null; }
+  if (!data || data.fini || !data.steps || data.libre !== undefined) return;
+  data.libre = partieLibre(data.leconId, data.uniteId, data.mode);
+  try {
+    if (data.libre) {
+      const libre = loadRun(true);
+      if (!libre || (libre.maj || 0) < (data.maj || 0)) localStorage.setItem(cleRun(true), JSON.stringify(data));
+      localStorage.setItem(cleRun(false), JSON.stringify({ fini: true, maj: data.maj || 0 }));
+    } else {
+      localStorage.setItem(cleRun(false), JSON.stringify(data));
+    }
+  } catch (e) { /* ignore */ }
 }
 
 // ─── RÉSUMÉ D'UNE LEÇON (liste des leçons) ──────────────────────────────────
@@ -290,6 +333,8 @@ function renderParcoursLecon() {
   const l = pLecon;
   const saved = loadRun();
   const runIci = saved && saved.leconId === l.id ? saved : null;
+  const libre = loadRun(true);
+  pLibreIci = libre && libre.leconId === l.id ? libre : null;
   const revision = resumeRevision([l]).parLecon[l.id];
 
   document.getElementById('pl-num').textContent = 'LEÇON ' + l.id;
@@ -318,9 +363,10 @@ function renderParcoursLecon() {
     '<div class="pl-unit-titre">Tout le contenu d\'un coup</div></div></div>' +
     '<div class="pl-unit-mots">Le fil et tous les « + »' + (l.unites.some(u => u.bonus) ? ', bonus compris' : '') + ' · ' + nbTout +
       ' questions · environ ' + minutesPour(nbTout) + ' min</div>';
-  if (runIci && runIci.uniteId === TOUTE_LA_LECON) {
-    html += '<div class="pc-steps">' + segmentsHtml(runIci) + '</div>' +
-      '<button class="pc-btn primary wide" onclick="reprendreRun()">Continuer la leçon complète</button>';
+  // La leçon complète est de l'entraînement libre : reprenable, jamais l'action principale.
+  if (pLibreIci && pLibreIci.uniteId === TOUTE_LA_LECON) {
+    html += '<div class="pc-steps">' + segmentsHtml(pLibreIci) + '</div>' +
+      '<button class="pc-btn wide" onclick="reprendreRun(true)">Continuer la leçon complète</button>';
   } else {
     html += '<button class="pc-btn wide" onclick="startUnite(\'' + TOUTE_LA_LECON + '\', \'lecon\')">Leçon complète</button>';
   }
@@ -339,6 +385,8 @@ function renderParcoursLecon() {
 }
 
 // Carte d'une unité dans l'écran de la leçon.
+let pLibreIci = null; // entraînement libre interrompu dans la leçon affichée
+
 function carteUniteHtml(l, u, runIci, prochaine, revision) {
   const best = getUnitBest(l.id, u.id);
   const sansFaute = getSansFaute(l.id, u.id);
@@ -374,6 +422,11 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
     const classe = prochaine && prochaine.id === u.id ? 'pc-btn primary wide' : 'pc-btn wide';
     html += '<button class="' + classe + '" onclick="openIntro(' + u.id + ')">' +
       (best == null ? 'Commencer' : 'Refaire l\'unité') + '</button>';
+  }
+  // Révision libre interrompue sur cette unité : reprenable, sans être la prochaine étape.
+  if (pLibreIci && pLibreIci.uniteId === u.id) {
+    html += '<button class="pc-btn ghost wide pl-reprendre-revision" onclick="reprendreRun(true)">Reprendre la révision · ' +
+      escHtml(nomPartie(pLibreIci.uniteId, pLibreIci.mode)) + '</button>';
   }
   // Les étapes seules et le « + » sont toujours disponibles.
   html += '<div class="pl-unit-actions">' + chipsEtapes(u.id) + '</div>';
@@ -502,7 +555,7 @@ function startUnite(uniteId, mode, filtre) {
   });
   if (!steps.length) return;
 
-  run = { leconId: pLecon.id, uniteId, mode, steps, stepIdx: 0 };
+  run = { leconId: pLecon.id, uniteId, mode, steps, stepIdx: 0, libre: partieLibre(pLecon.id, uniteId, mode) };
   saveRun();
   showView('view-parcours');
   renderItem();
@@ -513,11 +566,12 @@ function startEtapeSeule(uniteId, type) {
   startUnite(uniteId, 'etape', cles);
 }
 
-function reprendreRun() {
-  const saved = loadRun();
+// libre = true : reprend l'entraînement libre (sinon la partie principale).
+function reprendreRun(libre) {
+  const saved = loadRun(libre);
   if (!saved) return;
   const l = lecons.find(x => x.id === saved.leconId);
-  if (!isParcoursLecon(l)) { clearRun(); return; }
+  if (!isParcoursLecon(l)) { clearRun(libre); return; }
   pLecon = l;
   currentLecon = l;
   run = saved;
@@ -1340,8 +1394,9 @@ function finirRun() {
     nouveauSansFaute,
     nouvelleComplete: !etaitComplete && leconComplete(pLecon)
   };
+  const etaitLibre = !!run.libre;
   run = null;
-  clearRun();
+  clearRun(etaitLibre); // l'autre emplacement reste intact
   renderFin();
   showView('view-pfin');
   animerFin(pResultat.sansFaute); // score qui compte, étoiles, confettis (S12)

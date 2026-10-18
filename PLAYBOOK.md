@@ -128,6 +128,16 @@ Solution (déjà en place) :
   « Encore 20 » / « Terminer » : on ne montre jamais une montagne, mais on peut tout enchaîner.
   Réviser propose 10 / 20 / 50 / Tout.
 
+### Partie principale et entraînement libre (spec 22)
+
+Deux emplacements de partie en cours : `luxParcours` (principale : une unité du fil jamais
+terminée) et `luxParcoursLibre` (refaire une unité terminée, ses erreurs, le « + », une étape
+seule, la leçon complète, une unité bonus). Le type est fixé au lancement (`run.libre`,
+`partieLibre()`). `prochainPas()`, l'accueil et le bouton jaune du chemin ne lisent que la
+principale ; la libre est signalée (« Révision en cours », « Reprendre la révision ») sans
+déplacer l'anneau doré. Synchronisées séparément (`enCours.partie` / `enCours.partieLibre`).
+`migrerParties()` range une ancienne répétition dans l'emplacement libre.
+
 ### Révision espacée (aucune donnée en plus)
 
 - Date de révision **calculée** depuis `luxQuestionStats` : `lastSeenAt` + intervalle selon
@@ -268,7 +278,7 @@ après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
 | Quand | Quoi | Durée |
 | --- | --- | --- |
 | Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
-| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_seance.py` | ~5 min |
+| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_seance.py` | ~5 min |
 | Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
 
 - La suite critique se lance **une seule fois, en fin de lot**.

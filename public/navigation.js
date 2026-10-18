@@ -128,7 +128,8 @@ function majBoutonsRetour(vue) {
 // Où se placer en revenant d'une activité : l'unité, la mission ou « toute la leçon ».
 function cibleDeRetour(quitte) {
   if (!quitte || !estActivite(quitte.vue)) return null;
-  const saved = typeof loadRun === 'function' ? loadRun() : null;
+  // La partie qu'on vient de quitter (principale ou libre), sinon la principale enregistrée.
+  const saved = (typeof run !== 'undefined' && run) || (typeof loadRun === 'function' ? loadRun() : null);
   if (saved && pLecon && saved.leconId === pLecon.id) return saved.uniteId;
   if (quitte.vue === 'view-pintro' && pIntroUnite != null) return pIntroUnite;
   if (quitte.vue === 'view-mission') return 'mission';

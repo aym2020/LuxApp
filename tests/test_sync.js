@@ -19,6 +19,8 @@ global.lecons = [];
 eval(pub('progress.js') + '\n' + pub('niveau.js') + '\n' + pub('cloud.js') + `
 const SEANCE_KEY = 'luxSeance';
 const RUN_KEY = 'luxParcours';
+const RUN_LIBRE_KEY = 'luxParcoursLibre';
+function migrerParties() {} // (parcours.js) : testé dans test_libre.py
 
 function appareil(choix, seance, partie) {
   return { progress: { levels: {}, wrong: {}, stats: {} }, streak: {}, choix, enCours: { seance, partie } };
@@ -54,6 +56,21 @@ t.push(['cloud v1 sans ces clés : niveau et séance locaux gardés', m.choix.ni
 applyProgressPayload(m);
 const relu = getProgressPayload();
 t.push(['écrit puis relu en local', relu.choix.niveau.valeur === 'A1.2' && relu.enCours.seance.index === 2]);
+
+// 7. Spec 22 : partie principale et entraînement libre fusionnés séparément.
+//    Sur B, la révision libre est finie (plus récente) ; sur A, la partie principale avance.
+const principaleA = { leconId: 1, uniteId: 3, mode: 'unite', steps: [], stepIdx: 2, maj: 5000, libre: false };
+const libreA = { leconId: 1, uniteId: 1, mode: 'unite', steps: [], stepIdx: 1, maj: 4000, libre: true };
+const A = appareil({}, null, principaleA); A.enCours.partieLibre = libreA;
+const B = appareil({}, null, { leconId: 1, uniteId: 3, mode: 'unite', steps: [], stepIdx: 0, maj: 3000, libre: false });
+B.enCours.partieLibre = { fini: true, maj: 6000 };
+m = mergeLocalAndCloudProgress(A, B);
+t.push(['libre finie sur B : la partie principale de A est gardée', m.enCours.partie.stepIdx === 2 && m.enCours.partieLibre.fini === true]);
+// 8. Ancien payload sans partieLibre : la révision libre locale est gardée.
+m = mergeLocalAndCloudProgress(A, appareil({}, null, null));
+t.push(['ancien payload sans partieLibre : révision locale gardée', m.enCours.partieLibre && m.enCours.partieLibre.uniteId === 1]);
+applyProgressPayload(m);
+t.push(['les deux parties écrites séparément en local', JSON.parse(store[storageKey('luxParcoursLibre')]).uniteId === 1 && JSON.parse(store[storageKey('luxParcours')]).uniteId === 3]);
 
 let rate = 0;
 t.forEach(([nom, ok]) => { console.log((ok ? '  ok    ' : '  ÉCHEC ') + nom); if (!ok) rate++; });
