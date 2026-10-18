@@ -22,7 +22,11 @@ const NIVEAU_VUE = {
   'view-dashboard': 0,
   'view-lessons': 1, 'view-review-setup': 1, 'view-lexique': 1, 'view-pieges': 1,
   'view-examens': 1, 'view-reglages': 1,
-  'view-plecon': 2, 'view-lecon': 2
+  'view-plecon': 2, 'view-lecon': 2,
+  // L'introduction de mission est un écran à part entière (spec 18) : ce qu'on
+  // ouvre depuis elle (unités, mission, 1re unité) s'empile au-dessus, et
+  // Retour y ramène.
+  'view-msintro': 3
 };
 
 let pileNav = [];          // [{ vue, scroll, lecon }]
@@ -59,7 +63,7 @@ function noterNavigation(vue) {
   const haut = pileNav[pileNav.length - 1];
 
   // Même écran (réaffichage) : rien de nouveau.
-  if (haut && haut.vue === vue && (NIVEAU_VUE[vue] !== 2 || haut.lecon === entree.lecon)) {
+  if (haut && haut.vue === vue && (NIVEAU_VUE[vue] < 2 || haut.lecon === entree.lecon)) {
     haut.lecon = entree.lecon;
     return;
   }
@@ -74,6 +78,12 @@ function noterNavigation(vue) {
   // Un écran de navigation : l'activité en cours se termine.
   if (haut && estActivite(haut.vue)) pileNav.pop();
   const niveau = NIVEAU_VUE[vue];
+  // Depuis l'introduction : « Voir les unités » s'empile (exploration).
+  const dessus = pileNav[pileNav.length - 1];
+  if (vue === 'view-plecon' && dessus && dessus.vue === 'view-msintro' && dessus.lecon === entree.lecon) {
+    pileNav.push(entree);
+    return;
+  }
   // Déjà dans la pile (ex. « Retour à la leçon ») : on y revient.
   const i = pileNav.findIndex(e => e.vue === vue && (niveau < 2 || e.lecon === entree.lecon));
   if (i !== -1) {
@@ -95,6 +105,7 @@ function nomEcran(e) {
     'view-lexique': 'Lexique', 'view-pieges': 'Mes pièges', 'view-examens': 'Sujets', 'view-reglages': 'Réglages'
   };
   if (noms[e.vue]) return noms[e.vue];
+  if (e.vue === 'view-msintro') return 'Introduction';
   if (l) return 'Leçon ' + l.id;
   return 'Retour';
 }
@@ -120,7 +131,7 @@ function cibleDeRetour(quitte) {
   const saved = typeof loadRun === 'function' ? loadRun() : null;
   if (saved && pLecon && saved.leconId === pLecon.id) return saved.uniteId;
   if (quitte.vue === 'view-pintro' && pIntroUnite != null) return pIntroUnite;
-  if (quitte.vue === 'view-mission' || quitte.vue === 'view-msintro') return 'mission';
+  if (quitte.vue === 'view-mission') return 'mission';
   if (quitte.vue === 'view-pfin' && pResultat) return pResultat.uniteId;
   return null;
 }
@@ -138,7 +149,7 @@ function retour() {
 
 // Réaffiche un écran de la pile, sans le noter de nouveau, à sa position.
 function restaurerEcran(e, cible) {
-  if (e.lecon != null && NIVEAU_VUE[e.vue] === 2) {
+  if (e.lecon != null && NIVEAU_VUE[e.vue] >= 2) {
     pLecon = lecons.find(x => x.id === e.lecon) || pLecon;
     currentLecon = pLecon;
   }
@@ -148,6 +159,7 @@ function restaurerEcran(e, cible) {
     if (cible != null && pLecon) ouvrirLeconDansChemin(pLecon.id);
     renderLessons();
   } else if (e.vue === 'view-plecon') renderParcoursLecon();
+  else if (e.vue === 'view-msintro') renderIntroMission();
   showView(e.vue);
   enRestauration = false;
 

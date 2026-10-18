@@ -73,6 +73,9 @@ with sync_playwright() as p:
     page.click('#msi-content button:has-text("Voir les unités")')
     assert actif(page, 'view-plecon') and visible(page, '.ms-carte.compacte')
     page.evaluate('goDashboard(); prochainPas().fn()')
+    assert actif(page, 'view-msintro'), '« Voir les unités » est de l\'exploration : introduction remontrée (spec 18)'
+    page.click('#msi-content button.primary')  # « J'ai compris » : confirmation
+    page.evaluate('goDashboard(); prochainPas().fn()')
     assert actif(page, 'view-pintro'), 'intro confirmée : intro de l\'unité attendue'
     ok('leçon 1 acquise en v1 → terminée, sans score inventé ; prochain pas = leçon 2 ; introduction de mission jusqu\'à confirmation, ensuite → intro d\'unité')
 

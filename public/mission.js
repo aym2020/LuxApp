@@ -117,11 +117,20 @@ function voirScenario() {
 }
 
 // ─── INTRODUCTION DE LA MISSION (1re découverte de la leçon) ────────────────
-// Montrée une seule fois, jusqu'à ce que l'utilisateur confirme.
-// Un utilisateur qui a déjà commencé la leçon ne la voit pas (migration).
+// Quatre états, à ne pas confondre (spec 18) :
+//   découverte    : on a ouvert l'introduction, les unités ou la mission
+//                   (getLeconVue) — n'engage à rien ;
+//   confirmation  : « J'ai compris » (getIntroMissionVue) ;
+//   apprentissage : une activité vraiment commencée (leconCommencee) ;
+//   progression   : réponses, unités terminées, scores.
+// « Voir les unités » et « Tente ta chance » sont de l'exploration : ils ne
+// confirment rien. Tant que rien n'est commencé, le chemin propose « Découvrir ».
 function leconCommencee(l) {
   if (l.unites.some(u => getUnitBest(l.id, u.id) != null || getPlusFait(l.id, u.id))) return true;
   if (getMissionBest(l.id) != null || leconValideeParMission(l.id) || acquisV1(l)) return true;
+  // Au moins une réponse enregistrée dans cette leçon (v2 : ids ≥ 2001).
+  const stats = getStatsStore()[l.id] || {};
+  if (Object.keys(stats).some(type => Object.keys(stats[type] || {}).some(id => Number(id) >= 1000))) return true;
   const saved = loadRun();
   return !!(saved && saved.leconId === l.id);
 }
@@ -160,16 +169,27 @@ function confirmerIntroMission() {
   openIntro(u.id);
 }
 
-// « Tente ta chance » depuis l'introduction : confirmée, on joue la scène.
+// Ouvre l'introduction de la mission (« Découvrir » sur le chemin).
+function ouvrirIntroMission(l) {
+  pLecon = l;
+  currentLecon = l;
+  marquerLeconVue(l.id);
+  fermerClavier();
+  renderIntroMission();
+  showView('view-msintro');
+}
+
+// « Tente ta chance » depuis l'introduction : exploration, rien n'est confirmé.
+// Retour → l'introduction.
 function tenterDepuisIntro() {
-  marquerIntroMissionVue(pLecon.id);
   openMission(true);
 }
 
-// « Voir les unités » : confirmée aussi, mais sans lancer d'exercice.
+// « Voir les unités » (ou « Passer ») : exploration, rien n'est confirmé.
+// On affiche la liste des unités par-dessus l'introduction (Retour → l'introduction).
 function voirUnitesDepuisIntro() {
-  marquerIntroMissionVue(pLecon.id);
-  openParcoursLecon(pLecon);
+  renderParcoursLecon();
+  showView('view-plecon');
 }
 
 // Fin d'unité : les répliques que cette unité permet maintenant de dire.

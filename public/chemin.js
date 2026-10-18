@@ -168,9 +168,9 @@ function actionLeconChemin(l) {
   if (saved && saved.leconId === l.id) {
     return { etape: saved.uniteId, libelle: 'Reprendre', fn: () => ouvrirLeconEtReprendre(l) };
   }
-  // 1re découverte : l'introduction de la mission.
-  if (introMissionAVoir(l)) {
-    return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir', fn: () => openParcoursLecon(l) };
+  // Rien de commencé (même si l'introduction a été lue) : « Découvrir » ouvre l'introduction.
+  if (l.mission && l.scene && !leconCommencee(l)) {
+    return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir', fn: () => ouvrirIntroMission(l) };
   }
   const deja = acquisV1(l) || leconValideeParMission(l.id);
   const u = deja ? null : unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
