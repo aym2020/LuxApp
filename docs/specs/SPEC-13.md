@@ -7,6 +7,8 @@
 | Référence | Branche `v2` |
 | Périmètre | `chemin.js, style.css` |
 
+> **Évolution SPEC 33 (à implémenter)** : l'accordéon à une seule leçon ouverte est conservé, mais les leçons terminées **ne seront plus déplacées dans un groupe « Terminées »**. Toutes restent dans leur position numérique, une seule carte par leçon.
+
 > **Traçabilité :** Synthèse structurée des specs validées en conversation, rapprochée des modules existants.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 

@@ -8,6 +8,8 @@
 | Périmètre | `public/mission.js`, `public/progress.js`, `public/niveau.js`, `public/chemin.js`, `public/accueil.js`, `public/parcours.js`, tests ciblés |
 | Décision | Une mission terminée avec au moins une vie restante valide la leçon, quelle que soit la progression dans les unités. Aucune étoile d'unité inventée. |
 
+> **Affichage complémentaire — SPEC 33 (à implémenter)** : une unité non jouée mais couverte par une mission réussie doit apparaître **visuellement validée en vert**, avec la mention « Validée par la mission », **sans étoiles et sans score fictif**. L'état visuel de validation du parcours ne doit pas être confondu avec l'achèvement réel de l'exercice. Les leçons acquises restent à leur position numérique dans « Mon chemin », sans regroupement « Terminées ».
+
 ## Problème constaté
 
 Capture Android du 18/10/2026 : mission de la leçon 1 affichée **« Sans faute »**, mais unité 4 encore à faire ; la leçon reste « Commencée », l'étape 4 reste recommandée, et la leçon 2 ne devient pas la prochaine étape. La mission normale peut aujourd'hui être « réussie » (≥ 80 % d'autonomie et vie restante) sans déclencher `saveValideeMission()` ; seul le mode « Tente ta chance » peut valider la leçon, sous un seuil encore différent (90 %).

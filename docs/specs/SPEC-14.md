@@ -7,6 +7,8 @@
 | Référence | Branche `v2` |
 | Périmètre | `chemin.js, style.css, app.js` |
 
+> **Correctif SPEC 33 (à implémenter)** : supprimer le flash du bandeau « Mon chemin » relancé à chaque `renderLessons()`, et éviter le double mouvement de scroll sur les bascules d'accordéon. Les comportements antérieurs de cadrage restent à préserver.
+
 > **Traçabilité :** Synthèse structurée des specs validées en conversation, rapprochée des modules existants.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
