@@ -45,6 +45,7 @@ Ce répertoire centralise les **29 spécifications** fonctionnelles et UX du pro
 | 28 | [Résultats d'étape plus gratifiants](./SPEC-28.md) | P1 | Implémentée — validation à confirmer |
 | 29 | [Mon chemin : lignes compactes et statuts sans débordement](./SPEC-29.md) | P1 | Implémentée — validation à confirmer |
 | 30 | [Mon chemin homogène et compact, en-tête de mission sans troncature](./SPEC-30.md) | P1 | Implémentée — validation à confirmer |
+| 31 | [Mot caché : premier clic perdu sur PC](./SPEC-31.md) | P0 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

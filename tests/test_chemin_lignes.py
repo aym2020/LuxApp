@@ -53,7 +53,7 @@ with sync_playwright() as p:
             assert not chevauche(l['sur'], l['tag']) and not chevauche(l['nom'], l['sur']), l
             if l['sur']:
                 assert l['sur']['right'] - l['sur']['left'] > 30, l  # « Mission » reste lisible
-            assert l['li']['height'] >= 44, l  # zone tactile
+            assert l['li']['height'] >= 43.5, l  # zone tactile (44 px, arrondi au sous-pixel)
             assert l['aria'] and l['mots'].replace('\xa0', ' ').split(' · ')[-1] in l['aria'], l  # nom accessible = titre complet + état
         u1 = lignes[0]
         assert u1['sous'] and u1['sous']['top'] >= u1['nom']['bottom'] - 1, u1  # « Révision en cours » sous le titre

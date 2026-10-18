@@ -993,10 +993,14 @@ function mcMajFocus() {
   mot.classList.toggle('focus', actif);
   const nb = mcCasesLettres().toutes.length;
   document.getElementById('mc-info').textContent = nb + ' lettres' + (input.disabled ? '' : ' · touche les lettres dans l\'ordre');
-  renderCases();
+  // Spec 31 : seulement les cases (le curseur dépend du focus). Ne pas
+  // redessiner les tuiles : sur PC, cliquer une tuile retire le focus du champ
+  // AVANT la fin du clic ; recréer les boutons à ce moment-là perdait le 1er clic.
+  renderCases(false);
 }
 
-function renderCases() {
+// avecTuiles = false : seulement les cases (les tuiles restent les mêmes boutons).
+function renderCases(avecTuiles = true) {
   const nbLettres = mc.cases.filter(c => c.lettre).length;
   const taille = nbLettres > 12 ? ' xs' : nbLettres > 9 ? ' sm' : '';
   const input = document.getElementById('mc-input');
@@ -1024,7 +1028,7 @@ function renderCases() {
     html += '<span class="' + classe + '">' + escHtml(texte) + '</span>';
   });
   document.getElementById('mc-cases').innerHTML = html + '</span>';
-  renderTuiles();
+  if (avecTuiles) renderTuiles();
 }
 
 // Score du mot = lettres non révélées par indice / nombre de lettres.

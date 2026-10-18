@@ -139,6 +139,33 @@ with sync_playwright() as p:
     assert pg.locator('.mc-case.vert').count() >= 3
     ok('nouvelle tentative : lettres justes en vert, tuiles renouvelées, aucune déjà prise')
 
+    # Spec 31 : sur PC (souris, champ invisible focalisé d'office), le 1er clic
+    # sur une tuile pose bien la lettre (il était perdu : les tuiles étaient
+    # recréées au moment où le champ perdait le focus).
+    pc = b.new_context(viewport={'width': 1280, 'height': 800})
+    pp = pc.new_page()
+    pp.on('pageerror', lambda e: errs.append(str(e)))
+    pp.route('**/*gstatic*/**', lambda r: r.abort())
+    pp.route('**/fonts.googleapis.com/**', lambda r: r.abort())
+    pp.goto(URL)
+    pp.wait_for_selector('#today')
+    pp.evaluate("choisirNiveau('A1.1'); marquerIntroMissionVue(2); openParcoursLecon(lecons.find(l => l.id === 2)); startUnite(1, 'unite')")
+    pp.locator('#mc-btn-reconstruire').count() and pp.click('#mc-btn-reconstruire')
+    assert pp.evaluate("document.activeElement.id") == 'mc-input', 'focus automatique sur PC'
+    attendu = pp.evaluate("mcCasesLettres().libres.map(i => mc.cases[i].ch)")
+    for n, lettre in enumerate(attendu[:2]):
+        i = pp.evaluate("""l => mc.tuiles.findIndex((t, i) => !tuilesUtilisees()[i] && t.ch === l)""", lettre)
+        pp.click('[data-tuile="%d"]' % i)  # vrai clic souris : mousedown, perte du focus, click
+        assert pp.evaluate('mc.choix.length') == n + 1, 'clic n°%d perdu' % (n + 1)
+    ok('PC : 1er clic sur une tuile pris en compte, 2e aussi')
+    pp.click('#mc-btn-effacer')
+    assert pp.evaluate('mc.choix.length') == 1
+    pp.focus('#mc-input')
+    pp.keyboard.type(attendu[1])
+    assert pp.evaluate('mc.choix.length') == 2
+    ok('PC : ⌫ puis clavier physique fonctionnent après les clics')
+    pc.close()
+
     print('\nErreurs JavaScript :', errs or 'aucune')
     assert not errs
     b.close()
