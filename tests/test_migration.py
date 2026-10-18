@@ -4,6 +4,7 @@ en bout sans faute, la mission se joue sans faute, le bilan démarre, et la
 leçon devient terminée sur le chemin. Format mobile."""
 import os
 from playwright.sync_api import sync_playwright
+from helpers import passer_delai
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
 LECONS = list(range(1, 18)) + list(range(20, 27))
@@ -43,7 +44,7 @@ def repondre(page):
                 trouve = True
                 break
         assert trouve, ('bonne réponse absente des choix', t, it['id'], bonne)
-        page.wait_for_function('!pAttente', timeout=4000)
+        passer_delai(page)  # même reussir() que l'app, sans le délai (helpers.py)
     else:
         page.fill('#pc-ecr-input', it['lu'])
         page.click('#pc-body .pc-btn.primary')

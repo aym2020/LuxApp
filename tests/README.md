@@ -1,6 +1,6 @@
 # Tests de LuxApp v2
 
-Tous les tests tournent contre un serveur local.
+Tous les tests tournent contre un serveur local. Helpers communs (ouvrir, répondre, finir une partie, `passer_delai`) : `tests/helpers.py`.
 
 ```bash
 npm install                      # une fois
@@ -10,14 +10,16 @@ PORT=3456 node server.js &       # serveur de test
 
 | Commande | Ce qu'elle vérifie | Durée |
 | --- | --- | --- |
+| `bash tools/critique.sh` | **Suite critique complète avant push** (démarre le serveur si besoin, tests navigateur 2 par 2) | ~1 min 30 |
+| `bash tools/critique.sh rapide` | Syntaxe, contenu et tests Node seulement | ~10 s |
 | `node tools/valider-lecons.js` | Format et cohérence des leçons | 1 s |
 | `node tests/test_cloud.js` | La v1 (branche main) garde les données v2 après fusion cloud | 1 s |
 | `python3 tests/test_lot1.py` | Lot 1 : guide, première visite, accueil, mission, aide à l'erreur | ~1 min |
 | `node tests/test_sync.js` | Lot 2 (S8, S13) : séance, partie et niveau synchronisés, le plus récent gagne | 1 s |
 | `python3 tests/test_lot2.py` | Lot 2 : niveau choisi, chemin, accueil, barre du bas, animations | ~40 s |
 | `python3 tests/test_lot3.py` | Lot 3 : article à écrire (S5), « Tente ta chance » (S10), palette, animations des exercices, largeurs 320–430 px (S12) | ~30 s |
-| `python3 tests/test_migration.py` | Les 24 leçons migrées : chaque unité et la mission jouées sans faute | ~45 min |
-| `python3 tests/test_parcours.py` | Parcours d'une leçon en unités | ~1 min |
+| `python3 tests/test_migration.py` | Les 24 leçons migrées : chaque unité et la mission jouées sans faute | ~16 min |
+| `python3 tests/test_parcours.py` | Parcours d'une leçon en unités | ~25 s |
 | `python3 tests/test_navigation.py` | Chemin en accordéon, Retour (et bouton Retour du téléphone) vers l'écran précédent, mission en conversation | ~20 s |
 | `python3 tests/test_motcache.py` | Mot caché : découverte du mot nouveau, reconstruction avec des lettres mélangées (sans clavier) | ~10 s |
 | `python3 tests/test_decouverte.py` | Spec 18 : explorer une leçon sans la commencer, Retour vers l'introduction | ~15 s |

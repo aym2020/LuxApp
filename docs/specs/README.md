@@ -53,6 +53,7 @@ Ce répertoire centralise les **38 spécifications** fonctionnelles et UX du pro
 | 36 | [Règles des vies à chaque lancement de mission, avec « Ne plus afficher »](./SPEC-36.md) | P1 | Implémentée — validation à confirmer |
 | 37 | [Boutons « Continuer » verts : plus d'anneau jaune après Entrée](./SPEC-37.md) | P1 | Implémentée — validation à confirmer |
 | 38 | [Retour après une leçon commencée : ne pas rouvrir l'introduction](./SPEC-38.md) | P0 | Implémentée — validation à confirmer |
+| 39 | [Outillage de test : suite critique en ~1 min 30 sans perte de couverture](./SPEC-39.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

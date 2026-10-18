@@ -5,6 +5,7 @@ n'affiche que les barres et étoiles pertinentes.
 Téléphone simulé (390 × 844, écran tactile)."""
 import os
 from playwright.sync_api import sync_playwright
+from helpers import passer_delai
 U = os.environ.get('LUX_URL', 'http://localhost:3456/')
 
 
@@ -33,7 +34,7 @@ def repondre(pg, juste=True):
                 bs.nth(i).click()
                 break
         if juste:
-            pg.wait_for_function('!pAttente', timeout=4000)
+            passer_delai(pg)  # même reussir() que l'app, sans le délai (helpers.py)
         else:
             pg.click('#pc-continuer')
     else:

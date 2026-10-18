@@ -2,6 +2,7 @@ import os
 """Test de bout en bout du parcours v2, en format mobile (390x844)."""
 import json, sys
 from playwright.sync_api import sync_playwright
+from helpers import passer_delai
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'captures') + '/'
@@ -54,8 +55,7 @@ def repondre(page, juste=True):
                 boutons.nth(i).click()
                 break
         if juste:
-            page.wait_for_function('!pAttente || pSuite !== null', timeout=4000)
-            page.wait_for_timeout(1700)
+            passer_delai(page)  # même reussir() que l'app, sans le délai (vrai délai vérifié plus bas)
         else:
             continuer_si_besoin(page)
     else:
@@ -177,6 +177,18 @@ with sync_playwright() as p:
     queue = page.evaluate('run.steps[0].queue')
     assert queue[-1] == it2['id'], queue
     ok('« Voir la réponse » après 3 essais, le mot repart en fin de file')
+
+    # Passage automatique réel après une bonne réponse (délai de l'app) : vérifié une fois ici,
+    # les autres réponses le déclenchent tout de suite (helpers.passer_delai)
+    while item_courant(page)['type'] not in ('quiz', 'trous'):
+        repondre(page, juste=True)
+    c = item_courant(page)
+    bonne = c['item']['reponse'] if c['type'] == 'quiz' else c['item']['trou']
+    avant = page.evaluate('run.stepIdx + "-" + run.steps[run.stepIdx].queue.length')
+    page.locator('#pc-choix .choice', has_text=bonne).first.click()
+    assert page.evaluate('pAttente'), 'la bonne réponse reste affichée un instant'
+    page.wait_for_function('a => !pAttente && (run.stepIdx + "-" + run.steps[run.stepIdx].queue.length) !== a', arg=avant, timeout=4000)
+    ok('bonne réponse en ' + c['type'] + ' : passage automatique à la suite après le délai')
 
     # 6. Finir l'unité : une erreur en quiz et en trous
     deja_faux = set()

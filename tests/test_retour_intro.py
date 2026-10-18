@@ -2,20 +2,10 @@
 unité lancée, leçon validée par la mission), Retour n'y ramène plus.
 Régression exacte : leçon 20, unité avec une erreur, « Refaire mes erreurs »,
 puis Retour. Exploration (« Voir les unités », « Tente ta chance ») préservée."""
-import os
 from playwright.sync_api import sync_playwright
+from helpers import ok, vue as actif, item_courant, repondre, finir, masquer_regles_vies, ouvrir
 
-URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
-erreurs_js = []
 L = 20
-
-
-def ok(msg):
-    print('  ok  ', msg, flush=True)
-
-
-def actif(pg):
-    return pg.evaluate("document.querySelector('.view.active').id")
 
 
 def pile(pg):
@@ -26,80 +16,15 @@ def libelle_retour(pg):
     return pg.evaluate("nomEcran(ecranPrecedent())")
 
 
-def item_courant(pg):
-    return pg.evaluate("""() => {
-        const s = run.steps[run.stepIdx];
-        return { type: s.type, item: trouverItem(pLecon, s.type, s.queue[0]) };
-    }""")
-
-
-def continuer_si_besoin(pg):
-    if pg.evaluate('pAttente && pSuite !== null'):
-        pg.click('#pc-continuer')
-
-
-def repondre(pg, juste=True):
-    c = item_courant(pg)
-    t, it = c['type'], c['item']
-    if t == 'flashcards':
-        pg.locator('#mc-btn-reconstruire').count() and pg.click('#mc-btn-reconstruire')
-        bon = pg.evaluate("id => motATaper(pLecon, trouverItem(pLecon, 'flashcards', id))", it['id'])
-        pg.fill('#mc-input', bon if juste else 'zzz')
-        pg.click('#mc-btn-valider')
-        if juste:
-            continuer_si_besoin(pg)
-    elif t in ('quiz', 'trous'):
-        bonne = it['reponse'] if t == 'quiz' else it['trou']
-        boutons = pg.locator('#pc-choix .choice')
-        for i in range(boutons.count()):
-            if (boutons.nth(i).inner_text() == bonne) == juste:
-                boutons.nth(i).click()
-                break
-        if juste:
-            pg.wait_for_function('!pAttente || pSuite !== null', timeout=4000)
-            pg.wait_for_timeout(1700)
-        else:
-            continuer_si_besoin(pg)
-    else:
-        pg.fill('#pc-ecr-input', it['lu'] if juste else 'faux')
-        pg.click('#pc-body .pc-btn.primary')
-        continuer_si_besoin(pg)
-
-
-def finir_avec_une_erreur(pg):
-    faute = False
-    n = 0
-    while actif(pg) == 'view-parcours' and n < 300:
-        n += 1
-        if not faute and item_courant(pg)['type'] in ('quiz', 'trous'):
-            faute = True
-            repondre(pg, juste=False)
-            continue
-        repondre(pg, juste=True)
-    assert actif(pg) == 'view-pfin' and faute, 'fin d\'unité non atteinte'
-
-
-def finir(pg):
-    n = 0
-    while actif(pg) == 'view-parcours' and n < 300:
-        n += 1
-        repondre(pg, juste=True)
-
-
 def remise_a_zero(pg):
     pg.evaluate("localStorage.clear()")
     pg.reload(); pg.wait_for_selector('#today')
-    pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")
+    masquer_regles_vies(pg)
     pg.evaluate("choisirNiveau('A1.2'); goLessons()")
 
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
-    pg = b.new_page(viewport={'width': 390, 'height': 844})
-    pg.on('pageerror', lambda e: erreurs_js.append(str(e)))
-    pg.route('**/*gstatic*/**', lambda r: r.abort())
-    pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
-    pg.goto(URL); pg.wait_for_selector('#today')
+    b, pg, erreurs_js = ouvrir(p)
 
     # ── 1. Régression exacte : chemin → introduction → J'ai compris → unité (1 erreur)
     #       → résultats → Refaire mes erreurs → résultat → Retour ──
@@ -109,7 +34,8 @@ with sync_playwright() as p:
     pg.click('#msi-content button.primary')
     assert actif(pg) == 'view-pintro' and libelle_retour(pg) == 'Mon chemin', (pile(pg), libelle_retour(pg))
     pg.click('#pi-commencer')
-    finir_avec_une_erreur(pg)
+    finir(pg, erreurs=1)
+    assert actif(pg) == 'view-pfin'
     etoiles = pg.evaluate("getUnitBest(%d, pResultat.uniteId)" % L)
     unite = pg.evaluate("pResultat.uniteId")
     pg.click('text=Refaire mes erreurs')

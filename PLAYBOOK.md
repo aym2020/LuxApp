@@ -374,23 +374,44 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
 
 ### Rythme de travail et niveaux de tests — RÈGLE
 
-Privilégier une implémentation rapide et ciblée. Ne pas relancer toute la suite
-après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
-**signaler** les problèmes secondaires au lieu de bloquer la livraison.
+Objectif : **temps de traitement minimal, qualité intacte**. Privilégier une
+implémentation rapide et ciblée. Ne pas relancer toute la suite après chaque
+correction (surtout CSS) ; limiter le perfectionnement visuel et **signaler**
+les problèmes secondaires au lieu de bloquer la livraison.
 
 | Quand | Quoi | Durée |
 | --- | --- | --- |
-| Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
-| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py`, `test_chemin_lignes.py`, `test_mission_validation.py`, `test_missions_10.py`, `test_retour_intro.py` | ~7 min |
-| Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
+| Pendant le travail | `node --check` des fichiers touchés + **le(s) test(s) ciblé(s)** du tableau ci-dessous | < 1 min |
+| Avant chaque push (**suite critique**) | `bash tools/critique.sh` (syntaxe, contenu, tests Node, puis 15 tests navigateur 2 par 2, les plus longs d'abord) | **~1 min 30** |
+| Petite modification sans risque (texte, CSS isolé, doc) | `bash tools/critique.sh rapide` + le test ciblé | < 1 min |
+| Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | long |
 
-- La suite critique se lance **une seule fois, en fin de lot**.
+**Tests ciblés selon le fichier touché** (pendant le travail) :
+
+| Fichier modifié | Tests à lancer |
+| --- | --- |
+| `navigation.js`, `accueil.js` (panneaux, retour) | `test_navigation`, `test_retours`, `test_retour_intro`, `test_decouverte` |
+| `mission.js` | `test_mission_vies`, `test_mission_validation`, `test_retour_intro` (+ `test_missions_10` si scènes ou correction) |
+| `parcours.js` (unités, fin de partie) | `test_parcours`, `test_libre`, `test_lot2` |
+| `parcours.js` (mot caché) | `test_motcache` |
+| `chemin.js`, `niveau.js` | `test_chemin_lignes`, `test_lot3`, `test_decouverte` |
+| `progress.js`, `cloud.js` | `node tests/test_cloud.js`, `node tests/test_sync.js`, `test_lot1` |
+| `correction.js` / analyse des réponses | `node tests/test_correction.js`, `test_mission_vies` |
+| `revision.js`, séance | `test_seance`, `test_lot2` |
+| `data/lecons/` | `node tools/valider-lecons.js`, `test_missions_10` si `scene` touchée |
+| `style.css` seul | aucun test navigateur ; capture d'écran du point touché |
+
+**Règles de vitesse :**
+
+- La suite critique se lance **une seule fois, en fin de lot**. Plusieurs specs à la suite → une seule suite et un seul push.
 - **Ne jamais pousser** si un test critique échoue.
+- Nouveaux tests : utiliser `tests/helpers.py` (`ouvrir`, `repondre`, `finir`, `passer_delai`…) au lieu de recopier les helpers. **Jamais d'attente fixe** (`wait_for_timeout`) quand on peut attendre un état (`wait_for_function`, `wait_for_selector`).
+- `passer_delai()` déclenche tout de suite le passage automatique après une bonne réponse (même `reussir()` que l'app). Le vrai délai est vérifié une seule fois, dans `test_parcours.py`.
+- Lire seulement les fonctions concernées par la spec ; écrire le test de régression en une passe, le faire échouer sans le correctif, puis corriger.
 - **Échec connu (oct. 2026)** : `test_fil.py` s'arrête à l'étape 10 (séance de révision,
   attente de `#view-session .ecr-next-btn`). L'échec existe sans les changements récents :
   ne pas le re-diagnostiquer à chaque livraison ; le corriger dans une tâche dédiée.
-- Les tests navigateur ont besoin d'un serveur local (`PORT=3456 node server.js`), à
-  démarrer pour la durée des tests puis arrêter.
+- `tools/critique.sh` démarre lui-même le serveur local (`PORT=3456`) s'il ne tourne pas, et récupère `main` si le clone est partiel (nécessaire à `test_cloud.js`).
 
 ### Test de logique → script Node autonome dans `/tmp/`
 

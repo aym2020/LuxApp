@@ -3,6 +3,7 @@ séance du jour limitée à 20 + « Encore », étalement de l'historique v1. Fo
 import os
 import sys
 from playwright.sync_api import sync_playwright
+from helpers import passer_delai
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'captures') + '/'
@@ -44,7 +45,7 @@ def repondre(page):
             if boutons.nth(i).inner_text() == bonne:
                 boutons.nth(i).click()
                 break
-        page.wait_for_function('!pAttente', timeout=4000)
+        passer_delai(page)  # même reussir() que l'app, sans le délai (helpers.py)
     else:
         page.fill('#pc-ecr-input', it['lu'])
         page.click('#pc-body .pc-btn.primary')
