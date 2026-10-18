@@ -2006,6 +2006,12 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .ms-debloque .ms-bulle b .ic { width: 13px; height: 13px; stroke: currentColor; stroke-width: 3; }
 
 /* ══ MOT CACHÉ : LETTRES LISIBLES (spec 21) ══════════════════════════════════
-   Tuiles et cases : police où I, l, i, 1, O et 0 se distinguent au premier coup d'œil. */
-.mc-case, .mc-tuile { font-family: var(--police-lettres); }
+   Tout l'exercice (Nouveau mot, consigne, article, cases, tuiles, correction) dans
+   une police où I, l, i, 1, O et 0 se distinguent au premier coup d'œil :
+   l'orthographe s'apprend ici. */
+.mc-case, .mc-tuile,
+#view-parcours[data-type="flashcards"] .pc-body,
+#view-parcours[data-type="flashcards"] .pc-body .mc-fr,
+#view-parcours[data-type="flashcards"] .pc-body .mc-decouverte-lu,
+#view-parcours[data-type="flashcards"] .pc-feedback { font-family: var(--police-lettres); }
 .mc-tuile { font-weight: 700; font-size: 1.4rem; }

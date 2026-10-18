@@ -603,6 +603,7 @@ function renderItem() {
 
   document.getElementById('pc-feedback').className = 'pc-feedback hidden';
   etatExercice('saisie'); // nouvel item : on repart de la saisie
+  document.getElementById('view-parcours').dataset.type = step.type; // police propre au mot caché
 
   if (step.type === 'flashcards') renderMotCache(item);
   else if (step.type === 'quiz') renderQuizP(item);

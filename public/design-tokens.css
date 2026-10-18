@@ -63,7 +63,7 @@
   --police: 'Inter', system-ui, sans-serif;              /* interface et lecture */
   --police-titre: 'Inter', system-ui, sans-serif;
   --police-serif: 'Instrument Serif', serif;             /* mots, phrases courtes, titres narratifs */
-  --police-lettres: 'Atkinson Hyperlegible', 'Inter', sans-serif; /* lettres isolées : I l i 1 O 0 bien distincts */
+  --police-lettres: 'Atkinson Hyperlegible', 'Inter', sans-serif; /* tout le mot caché : I l i 1 O 0 bien distincts */
 
   /* ── Tailles de texte : une par rôle ── */
   --fs-micro: .75rem;      /* 12 px : information très secondaire (compteur, étiquette) */
