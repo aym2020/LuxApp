@@ -1,8 +1,8 @@
 # LuxApp — Registre des spécifications
 
-Ce répertoire centralise les **38 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+Ce répertoire centralise les **41 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
-> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; les fiches 35 à 37 sont implémentées (recette à confirmer) ; la fiche 38 décrit le correctif d'historique après confirmation de l'introduction et rattrapage des erreurs. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
+> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; les fiches 35 à 37 sont implémentées (recette à confirmer) ; la fiche 38 décrit le correctif d'historique après confirmation de l'introduction et rattrapage des erreurs. La fiche 39 optimise l'outillage de tests ; la fiche 40 est implémentée (recette Android à confirmer) ; la fiche 41 spécifie deux corrections à réaliser (coquilles et navigation après rattrapage). Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
 ## Statuts
 
@@ -55,6 +55,7 @@ Ce répertoire centralise les **38 spécifications** fonctionnelles et UX du pro
 | 38 | [Retour après une leçon commencée : ne pas rouvrir l'introduction](./SPEC-38.md) | P0 | Implémentée — validation à confirmer |
 | 39 | [Outillage de test : suite critique en ~1 min 30 sans perte de couverture](./SPEC-39.md) | P1 | Implémentée — validation à confirmer |
 | 40 | [Correction lisible, rappels des erreurs limités, retour au chemin après « Refaire mes erreurs »](./SPEC-40.md) | P1 | Implémentée — validation à confirmer |
+| 41 | [Coquilles expliquées précisément et retour au véritable Chemin après rattrapage](./SPEC-41.md) | P1 | À faire |
 
 ## Gestion des changements
 
