@@ -75,6 +75,10 @@ function noterNavigation(vue) {
   // Une activité : elle remplace l'activité déjà en haut.
   if (estActivite(vue)) {
     if (haut && estActivite(haut.vue)) pileNav.pop();
+    // Une unité lancée (intro d'unité, exercice, fin) : l'introduction de la
+    // mission est dépassée, Retour n'y ramène plus (spec 38). La mission
+    // (« Tente ta chance ») reste de l'exploration : l'introduction est gardée.
+    if (vue !== 'view-mission') oublierIntroMission(entree.lecon);
     pileNav.push(entree);
     return;
   }
@@ -98,6 +102,15 @@ function noterNavigation(vue) {
   pileNav = pileNav.filter(e => NIVEAU_VUE[e.vue] !== undefined && NIVEAU_VUE[e.vue] < niveau);
   if (niveau > 0 && !pileNav.length) pileNav.push({ vue: 'view-dashboard', scroll: 0, lecon: null });
   pileNav.push(entree);
+}
+
+// Retire de l'historique l'introduction de mission de cette leçon (spec 38) :
+// elle est consommée (unité lancée ou leçon validée par la mission). Les
+// autres écrans (accueil, chemin, leçon) restent en place.
+function oublierIntroMission(leconId) {
+  const garder = e => !(e.vue === 'view-msintro' && e.lecon === leconId);
+  pileNav = pileNav.filter(garder);
+  if (pileAvantAppui) pileAvantAppui = pileAvantAppui.filter(garder);
 }
 
 // Nom de l'écran précédent, pour les boutons « ← … ».

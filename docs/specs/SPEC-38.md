@@ -2,10 +2,10 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire — non implémentée** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P0** |
 | Branche | `v2` |
-| Périmètre | `public/navigation.js`, `public/mission.js`, `public/parcours.js`, `tests/test_navigation.py`, `tests/test_retours.py` (ou tests équivalents ciblés) |
+| Périmètre | `public/navigation.js`, `public/mission.js`, `tests/test_retour_intro.py` (nouveau), `tests/test_decouverte.py`, `PLAYBOOK.md` |
 | Origine | Bug signalé le 18/10/2026 sur la **leçon 20**, après un parcours complet et « Refaire mes erreurs » |
 
 ## Bug constaté
@@ -67,19 +67,50 @@ Reproduction rapportée :
 
 ## Critères d'acceptation et tests
 
-- [ ] **Régression exacte leçon 20** : première découverte → « J'ai compris » → unité complète avec une erreur → résultats → « Refaire mes erreurs » → bonne réponse → résultat final → Retour. **Jamais « Introduction »** dans le libellé ni comme destination.
-- [ ] Après ce Retour, afficher « Mon chemin » ou « Leçon 20 » selon l'entrée réelle ; **étoiles, avancement et historique d'erreur inchangés**.
-- [ ] Refaire trois fois Retour après rattrapage : aucune boucle entre première introduction, introduction d'unité et résultats précédents.
-- [ ] Depuis introduction initiale → « Voir les unités » → Retour **sans démarrer d'unité** : introduction initiale retrouvée comme auparavant.
-- [ ] Depuis introduction initiale → « Voir les unités » → démarrer une unité → résultats → Retour : ne pas revenir à l'introduction initiale.
-- [ ] Depuis introduction initiale → « Tente ta chance » → quitter/échouer : comportement d'exploration antérieur conservé ; si mission réussie et leçon validée : pas de retour vers un état de première découverte.
-- [ ] Démarrer une leçon déjà commencée ou déjà validée : aucun Retour intempestif vers la première introduction.
-- [ ] Tester flèche UI + bouton Android ; vérifier clavier/Échap et bouton navigateur si applicables.
-- [ ] Tester retour d'exercice interrompu et reprise enregistrée, retour depuis fiche de leçon, et retour depuis le chemin sans fiche intermédiaire.
-- [ ] Tests de navigation existants `test_navigation.py` et `test_retours.py` ; ajouter au moins un test de régression reproduisant **la pile exacte avant/après correction des erreurs**.
+- [x] **Régression exacte leçon 20** : première découverte → « J'ai compris » → unité complète avec une erreur → résultats → « Refaire mes erreurs » → bonne réponse → résultat final → Retour. **Jamais « Introduction »** dans le libellé ni comme destination.
+- [x] Après ce Retour, afficher « Mon chemin » ou « Leçon 20 » selon l'entrée réelle ; **étoiles, avancement et historique d'erreur inchangés**.
+- [x] Refaire trois fois Retour après rattrapage : aucune boucle entre première introduction, introduction d'unité et résultats précédents.
+- [x] Depuis introduction initiale → « Voir les unités » → Retour **sans démarrer d'unité** : introduction initiale retrouvée comme auparavant.
+- [x] Depuis introduction initiale → « Voir les unités » → démarrer une unité → résultats → Retour : ne pas revenir à l'introduction initiale.
+- [x] Depuis introduction initiale → « Tente ta chance » → quitter/échouer : comportement d'exploration antérieur conservé ; si mission réussie et leçon validée : pas de retour vers un état de première découverte.
+- [x] Démarrer une leçon déjà commencée ou déjà validée : aucun Retour intempestif vers la première introduction.
+- [ ] Tester flèche UI + bouton Android ; vérifier clavier/Échap et bouton navigateur si applicables. *(Flèche de l'app et Retour navigateur testés automatiquement ; recette Android à faire.)*
+- [x] Tester retour d'exercice interrompu et reprise enregistrée, retour depuis fiche de leçon, et retour depuis le chemin sans fiche intermédiaire.
+- [x] Tests de navigation existants `test_navigation.py` et `test_retours.py` ; ajouter au moins un test de régression reproduisant **la pile exacte avant/après correction des erreurs**.
 
 ## Non-régression et suivi
 
 - Respecter [SPEC 15](./SPEC-15.md) (retour exact et position), [SPEC 18](./SPEC-18.md) (découverte sans engagement), [SPEC 25](./SPEC-25.md) (retour/scroll), [SPEC 32](./SPEC-32.md) (validation par mission).
 - Préserver toutes les données locales/cloud. Aucun nouveau champ de progression requis pour une simple correction de pile.
 - **À faire** : aucune implémentation applicative dans le commit de rédaction. Lors de l'implémentation, renseigner les fichiers changés, les tests réalisés et la recette Android. Ne pas déclarer « Validée » sans reproduction fonctionnelle.
+
+## Implémentation (18/10/2026)
+
+**Cause confirmée** par un test qui échoue sans le correctif : dès « J'ai compris · Commencer », la pile vaut `Accueil > Mon chemin > Introduction > intro d'unité` et le bouton Retour affiche « Introduction ». L'introduction confirmée restait dans l'historique sous toutes les activités qui suivaient (exercice, résultats, « Refaire mes erreurs »).
+
+**Correctif (routeur seulement, aucune donnée de progression touchée) :**
+
+- `navigation.js` : nouvelle fonction `oublierIntroMission(leconId)`, qui retire de la pile (et de `pileAvantAppui`) uniquement l'entrée `view-msintro` de cette leçon. Accueil, chemin et fiche de leçon restent en place.
+- `noterNavigation()` l'appelle quand une activité **autre que la mission** est notée : intro d'unité, exercice, résultats. Ça couvre « J'ai compris », une unité lancée depuis « Voir les unités », « Commencer l'unité » après un « Tente ta chance » raté, et « Refaire mes erreurs ».
+- La mission (« Tente ta chance ») reste de l'exploration : l'introduction est gardée, Retour y ramène.
+- `mission.js` (`finirMission`) : mission réussie, donc leçon validée : l'introduction est retirée et les libellés Retour sont recalculés tout de suite (`majBoutonsRetour`, `majGarde`).
+- Lancer une unité depuis « Voir les unités » **n'écrit pas** `intro.mission` : seul « J'ai compris » confirme.
+- `view-pintro` (introduction d'**unité**) n'est pas concernée.
+
+**Comportement obtenu :**
+
+| Parcours | Retour |
+|---|---|
+| Chemin → Introduction → J'ai compris → unité → résultats → Refaire mes erreurs → résultat | Mon chemin |
+| Introduction → Voir les unités → Retour | Introduction (inchangé) |
+| Introduction → Voir les unités → unité → résultats | Leçon 20, puis Mon chemin |
+| Introduction → Tente ta chance abandonnée | Introduction (inchangé) |
+| Introduction → Tente ta chance réussie | Mon chemin |
+
+**Tests :**
+
+- `tests/test_retour_intro.py` (nouveau, ajouté à la suite critique) : les cinq parcours ci-dessus, trois Retours supplémentaires sans boucle, leçon déjà commencée, étoiles inchangées. Il échoue sans le correctif.
+- `tests/test_decouverte.py` : l'attente « J'ai compris → 1re unité → Retour : introduction » (ancien comportement) devient « Retour : chemin ».
+- Suite critique verte.
+
+**Reste ouvert :** recette Android (bouton Retour système).

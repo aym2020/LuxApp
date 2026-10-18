@@ -62,14 +62,13 @@ with sync_playwright() as p:
     assert cta(pg, 1) == 'Découvrir'
     ok('après rechargement : leçon seulement consultée → « Découvrir »')
 
-    # Introduction → J'ai compris → 1re unité → Retour : introduction
+    # Introduction → J'ai compris → 1re unité → Retour : chemin (spec 38 : introduction consommée)
     pg.click('#chemin-lecon-1 .btn-jaune')
     pg.click('#msi-content button.primary')
-    assert actif(pg, 'view-pintro')
+    assert actif(pg, 'view-pintro') and 'Mon chemin' in pg.get_attribute('#view-pintro [data-retour]', 'aria-label')
     pg.click('#view-pintro [data-retour]'); pg.wait_for_timeout(200)
-    assert actif(pg, 'view-msintro')
-    ok('J\'ai compris → 1re unité → Retour : introduction')
-    pg.go_back(); pg.wait_for_timeout(200)
+    assert actif(pg, 'view-lessons')
+    ok('J\'ai compris → 1re unité → Retour : chemin, plus l\'introduction (spec 38)')
     assert cta(pg, 1) == 'Découvrir'
     ok('introduction confirmée mais rien commencé : toujours « Découvrir »')
 

@@ -565,6 +565,10 @@ function finirMission() {
   if (reussie) {
     validerLeconParMission(pLecon.id);
     marquerMissionReussie(pLecon.id, missionVersion(pLecon)); // réussite de CETTE version de la scène (spec 34)
+    // Leçon validée : plus de retour vers l'introduction de 1re découverte (spec 38).
+    oublierIntroMission(pLecon.id);
+    majBoutonsRetour('view-mission');
+    majGarde();
   }
   marquerUniteFaite(); // mission jouée : objectif « unité » du jour (S7)
   dernierFini = { leconId: pLecon.id, uniteId: 'mission' }; // animé sur le chemin

@@ -381,7 +381,7 @@ après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
 | Quand | Quoi | Durée |
 | --- | --- | --- |
 | Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
-| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py`, `test_chemin_lignes.py`, `test_mission_validation.py`, `test_missions_10.py` | ~7 min |
+| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py`, `test_chemin_lignes.py`, `test_mission_validation.py`, `test_missions_10.py`, `test_retour_intro.py` | ~7 min |
 | Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
 
 - La suite critique se lance **une seule fois, en fin de lot**.
