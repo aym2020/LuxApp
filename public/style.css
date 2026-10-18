@@ -2154,3 +2154,11 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .pas.fait .carte-lecon.compacte > .sans-faute, .pas.fait .carte-lecon.compacte > .acquise { order: 10; flex-basis: 100%; }
 .unites li.par-mission .etat { background: transparent; border: 2px solid var(--couleur-vert-plein); color: var(--couleur-reussi); box-shadow: none; }
 .unites .sous.par-mission { color: var(--couleur-reussi); font-weight: 600; }
+
+/* Spec 35 : ascenseur fin et sombre dans la conversation de la mission (ordinateur).
+   Les ascenseurs superposés des téléphones gardent leur comportement natif. */
+#view-mission .ms-body { scrollbar-width: thin; scrollbar-color: #5a554a transparent; }
+#view-mission .ms-body::-webkit-scrollbar { width: 6px; }
+#view-mission .ms-body::-webkit-scrollbar-track { background: transparent; }
+#view-mission .ms-body::-webkit-scrollbar-thumb { background: #5a554a; border-radius: 3px; }
+#view-mission .ms-body::-webkit-scrollbar-thumb:hover { background: #5c574c; }

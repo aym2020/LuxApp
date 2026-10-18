@@ -55,6 +55,18 @@ function fermerClavier() {
 // Le clavier ne s'ouvre jamais tout seul sur téléphone : c'est l'utilisateur qui
 // touche le champ. Avec une souris et un vrai clavier (ordinateur), on garde le
 // curseur dans le champ pour pouvoir taper tout de suite.
+// Spec 35 : la dernière interaction vient-elle du clavier ? (Entrée, Tab…)
+// Sert à ne donner le focus au bouton « Continuer » qu'après une saisie au
+// clavier : au clic ou au toucher, pas d'anneau de focus non demandé.
+let derniereActionClavier = false;
+document.addEventListener('keydown', () => { derniereActionClavier = true; }, true);
+document.addEventListener('pointerdown', () => { derniereActionClavier = false; }, true);
+
+// Donne le focus au bouton si on vient du clavier (Entrée = continuer).
+function focusApresClavier(bouton) {
+  if (bouton && derniereActionClavier) bouton.focus({ preventScroll: true });
+}
+
 function focusSiClavierPhysique(champ) {
   if (!champ || champ.disabled) return;
   const ordinateur = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;

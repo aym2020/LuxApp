@@ -174,6 +174,31 @@ with sync_playwright() as p:
     assert 'Pas encore' in pg.inner_text('#pc-ecr-erreur') and pg.evaluate("run.steps[run.stepIdx].details[%d].ok" % e['id']) is False
     ok('écriture : vraie erreur → enregistrée comme avant')
 
+    # Spec 35 : « Continuer » — focus seulement après une saisie au clavier ; retours en mots simples
+    pg.evaluate(RESET + "(12)")
+    pg.evaluate("openParcoursLecon(lecons.find(l => l.id === 12)); openMission()")
+    lu = pg.evaluate("pLecon.scene[ms.idx].lu")
+    pg.fill('#ms-input', lu)
+    pg.click('#ms-btn-valider')  # à la souris
+    assert pg.evaluate("document.activeElement.id") != 'ms-continuer', 'pas de focus (ni anneau) après un clic'
+    pg.click('#ms-continuer')
+    lu = pg.evaluate("pLecon.scene[ms.idx].lu")
+    pg.fill('#ms-input', 'Ech weess et net'); pg.press('#ms-input', 'Enter')
+    pg.fill('#ms-input', lu); pg.press('#ms-input', 'Enter')  # au clavier
+    assert pg.evaluate("document.activeElement.id") == 'ms-continuer' and pg.evaluate("document.activeElement.matches(':focus-visible')")
+    retour = pg.inner_text('.ms-retour')
+    assert 'Bonne réponse, au 2e essai !' in retour and 'Tu as trouvé après une erreur.' in retour and 'autonome' not in retour, retour
+    idx = pg.evaluate("ms.idx")
+    pg.keyboard.press('Enter')
+    assert pg.evaluate("ms.idx") > idx, 'Entrée continue'
+    ok('« Continuer » : pas de focus après un clic ; après Entrée, focus visible et Entrée continue ; « Bonne réponse, au 2e essai ! »')
+    pg.evaluate(RESET + "(12)")
+    jouer(pg, ['err', 'err'] + ['ok'] * (n - 2))
+    assert 'Réponses trouvées sans erreur : 8 / 10' in pg.inner_text('.ms-fin') and 'autonome' not in pg.inner_text('.ms-fin')
+    sb = pg.evaluate("getComputedStyle(document.getElementById('ms-body')).scrollbarWidth")
+    assert sb == 'thin', sb
+    ok('bilan : « Réponses trouvées sans erreur : 8 / 10 » ; ascenseur fin dans la conversation')
+
     print('\nErreurs JavaScript :', errs or 'aucune')
     assert not errs
     b.close()

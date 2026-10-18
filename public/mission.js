@@ -17,10 +17,9 @@
 
 const ESSAIS_MISSION = 2; // « Voir la réponse » apparaît après 2 essais ratés
 const VIES_MISSION = 3;   // spec 23 : une vraie erreur coûte une vie (une seule par réplique)
-// Réussite (spec 23), adaptée au nombre de répliques de la scène :
-//   mission : au moins 80 % de réponses autonomes (8 sur 10) et au moins une vie ;
-//   « Tente ta chance » : au moins 90 % (9 sur 10), aucune réponse révélée, au moins une vie.
-// Réponse autonome = juste du premier coup, ou juste après une faute de frappe corrigée.
+// Réussite (spec 32) : au moins une vie à la fin, mission comme « Tente ta chance ».
+// Réponse trouvée sans erreur = juste du premier coup, ou après une faute de frappe
+// corrigée : ce n'est qu'un indicateur (meilleur score gardé).
 
 let ms = null; // mission en cours : { idx, essais, revele, resultats: [] }
 
@@ -467,10 +466,12 @@ function missionValider() {
   // 'essais' (après une vraie erreur), 'revele' (réponse montrée).
   if (normalize(val) === normalize(ligne.lu)) {
     ms.resultats[ms.idx] = ms.essais > 0 ? 'essais' : (ms.coquille ? 'coquille' : 'ok');
-    const titre = ms.essais === 0 ? 'Bonne réponse !' : 'Juste, au ' + (ms.essais + 1) + 'e essai';
+    // Retours en mots simples (spec 35) : la vie perdue est déjà montrée par les cœurs.
+    const titre = ms.essais === 0 ? 'Bonne réponse !' : 'Bonne réponse, au ' + (ms.essais + 1) + 'e essai !';
     let sous = 'Réplique ' + numeroReplique(ms.idx) + ' sur ' + nbRepliquesToi(pLecon) + ' validée.';
-    if (ms.resultats[ms.idx] === 'coquille') sous = 'Faute de frappe corrigée : aucune vie perdue.';
-    if (ms.essais > 0) sous = 'Elle ne compte pas comme réponse autonome.';
+    if (ms.resultats[ms.idx] === 'coquille') sous = 'Petite faute de frappe corrigée : aucune vie perdue.';
+    if (ms.essais === 1) sous = 'Tu as trouvé après une erreur.';
+    if (ms.essais > 1) sous = 'Tu as trouvé après plusieurs essais.';
     retourMission('ok', titre, sous);
     return;
   }
@@ -506,7 +507,7 @@ function missionValider() {
 function missionVoirReponse() {
   const ligne = pLecon.scene[ms.idx];
   ms.resultats[ms.idx] = 'revele';
-  retourMission('revele', 'La réponse', (ligne.aide ? ligne.aide + ' · ' : '') + 'Elle ne compte pas comme juste du premier coup.');
+  retourMission('revele', 'La réponse', (ligne.aide ? ligne.aide + ' · ' : '') + 'La réponse t\'a été montrée.');
 }
 
 // La réplique dite s'ajoute à la conversation (à droite) ; la zone de réponse
@@ -524,7 +525,7 @@ function retourMission(etat, titre, sous) {
     '</div>' +
     // Vert après une réussite, couleur d'erreur quand la réponse a été montrée.
     '<button class="pc-btn ' + (etat === 'ok' ? 'ok' : 'ko') + ' wide ms-continuer" id="ms-continuer" onclick="suiteMission()">Continuer →</button>';
-  document.getElementById('ms-continuer').focus({ preventScroll: true }); // Entrée = Continuer (ordinateur)
+  focusApresClavier(document.getElementById('ms-continuer')); // validé avec Entrée → Entrée continue (spec 35)
 }
 
 function suiteMission() {
@@ -603,11 +604,12 @@ function libelleApresMission() {
   return pas && pas.lecon && pas.lecon.id !== pLecon.id ? 'Leçon suivante' : 'Continuer le parcours';
 }
 
-// « 8 / 10 réponses autonomes · 2 erreurs · 1 vie restante »
+// « Réponses trouvées sans erreur : 8 / 10 (fautes de frappe corrigées comprises) · 1 vie restante »
+// Ce score est une indication : la réussite dépend des vies (spec 32).
 function bilanMissionTexte() {
   const b = ms.bilan;
-  return b.ok + ' / ' + b.total + ' réponses autonomes · ' + b.erreurs + ' erreur' + (b.erreurs > 1 ? 's' : '') +
-    ' · ' + b.vies + ' vie' + (b.vies > 1 ? 's' : '') + ' restante' + (b.vies > 1 ? 's' : '');
+  return 'Réponses trouvées sans erreur : ' + b.ok + ' / ' + b.total + ' (fautes de frappe corrigées comprises) · ' +
+    b.vies + ' vie' + (b.vies > 1 ? 's' : '') + ' restante' + (b.vies > 1 ? 's' : '');
 }
 
 // Version de la scène (champ « version » de la mission, 1 par défaut) : pour
@@ -650,7 +652,7 @@ function finirTentative(reussie, ok, total) {
     const justes = pLecon.scene.filter((x, i) => x.qui === 'toi' && (ms.resultats[i] === 'ok' || ms.resultats[i] === 'coquille'));
     fin.innerHTML =
       '<div class="ms-aide-unites"><b>Les unités vont t\'aider</b><span>' + ok + ' / ' + total +
-        ' réponses autonomes · ' + ms.bilan.vies + ' vie' + (ms.bilan.vies > 1 ? 's' : '') + ' restante' + (ms.bilan.vies > 1 ? 's' : '') + '. Rien n\'est perdu : ton meilleur score est gardé.</span></div>' +
+        ' réponses trouvées sans erreur · ' + ms.bilan.vies + ' vie' + (ms.bilan.vies > 1 ? 's' : '') + ' restante' + (ms.bilan.vies > 1 ? 's' : '') + '. Rien n\'est perdu : ton meilleur score est gardé.</span></div>' +
       (justes.length ? '<div class="pc-mini-label">TU SAIS DÉJÀ DIRE</div><div class="ms-scene">' +
         justes.map(x => '<div class="ms-bulle toi"><b>Toi</b>' + escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>').join('') + '</div>' : '') +
       '<div class="pf-boutons">' +

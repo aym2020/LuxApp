@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire — non implémentée** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Branche cible | `v2` |
 | Périmètre | `public/mission.js`, `public/style.css` ; `public/ui.js` ou tests uniquement si nécessaire |
@@ -61,15 +61,15 @@ Tu as trouvé après plusieurs essais.
 
 ## 4. Critères d'acceptation
 
-- [ ] PC + souris : après soumission au clic, « Continuer » apparaît vert, **sans contour jaune non sollicité**, et reste immédiatement cliquable.
-- [ ] PC + clavier : Tab atteint « Continuer », avec **focus visible** ; Entrée continue. En soumettant au clavier avec Entrée, l'utilisateur peut aussi continuer avec Entrée sans étape cachée.
+- [x] PC + souris : après soumission au clic, « Continuer » apparaît vert, **sans contour jaune non sollicité**, et reste immédiatement cliquable.
+- [x] PC + clavier : Tab atteint « Continuer », avec **focus visible** ; Entrée continue. En soumettant au clavier avec Entrée, l'utilisateur peut aussi continuer avec Entrée sans étape cachée.
 - [ ] Android : « Continuer » vert sans anneau artificiel après toucher ; navigation tactile et boutons conservés.
 - [ ] Dans la mission et le « Mot caché », un succès se présente avec des couleurs et styles de bouton cohérents, hors focus légitime.
 - [ ] Sur Chrome/Edge/Brave PC, la scrollbar de la conversation ne présente plus un large rail blanc ; défilement par molette, glissement et clavier fonctionnel.
 - [ ] Firefox et navigateur mobile : comportement acceptable, pas de défilement bloqué ou de débordement.
-- [ ] Bonne réponse au 2e/4e essai : message court, compréhensible, sans jargon technique ni fausse promesse de vie intacte.
-- [ ] Coquille corrigée, vraie erreur, réponse révélée, zéro vie et bilan final : messages exacts et **score/validation identiques avant et après**.
-- [ ] Tests ciblés utiles + non-régression des événements de clavier de la mission ; pas d'itérations visuelles pixel par pixel au-delà d'une recette suffisante.
+- [x] Bonne réponse au 2e/4e essai : message court, compréhensible, sans jargon technique ni fausse promesse de vie intacte.
+- [x] Coquille corrigée, vraie erreur, réponse révélée, zéro vie et bilan final : messages exacts et **score/validation identiques avant et après**.
+- [x] Tests ciblés utiles + non-régression des événements de clavier de la mission ; pas d'itérations visuelles pixel par pixel au-delà d'une recette suffisante.
 
 ## Hors périmètre
 
@@ -77,4 +77,12 @@ Refonte de la mission, refonte des boutons globaux, changement des seuils ou des
 
 ## Suivi
 
-**Non implémentée.** Cette fiche est une spécification uniquement ; aucun code applicatif modifié dans ce commit. Références : [SPEC 24 — Coquilles](./SPEC-24.md), [SPEC 32 — Victoire par vies](./SPEC-32.md), [SPEC 34 — Missions à 10 répliques](./SPEC-34.md).
+**Implémentée sur `v2`**, recette Android et Firefox / Chrome PC à faire (critères correspondants non cochés).
+
+- `public/ui.js` : `derniereActionClavier` (keydown → vrai, pointerdown → faux) et `focusApresClavier(bouton)`. `:focus-visible` n'est pas touché.
+- `public/mission.js` (`retourMission`) et `public/parcours.js` (exercices, « Mot caché » compris) : le bouton « Continuer » ne reçoit le focus qu'après une validation au clavier — alors l'anneau est visible et Entrée continue ; après un clic ou un toucher, pas de focus programmatique, donc pas d'anneau.
+- Retours : « Bonne réponse, au Ne essai ! » + « Tu as trouvé après une erreur. » / « … après plusieurs essais. » ; coquille : « Petite faute de frappe corrigée : aucune vie perdue. » ; réponse montrée : « La réponse t'a été montrée. » ; bilan : « Réponses trouvées sans erreur : X / 10 (fautes de frappe corrigées comprises) · N vies restantes ». Résultats, vies, scores et validation inchangés.
+- `public/style.css` : ascenseur de `#view-mission .ms-body` seulement — `scrollbar-width: thin`, `scrollbar-color` gris sombre, `::-webkit-scrollbar` 6 px (Chrome/Edge/Brave anciens) ; jamais masqué.
+- Tests : `tests/test_mission_vies.py` (clic → pas de focus ; Entrée → focus visible, Entrée continue ; textes ; bilan ; ascenseur fin) ; suite critique verte.
+
+Références : [SPEC 24 — Coquilles](./SPEC-24.md), [SPEC 32 — Victoire par vies](./SPEC-32.md), [SPEC 34 — Missions à 10 répliques](./SPEC-34.md).

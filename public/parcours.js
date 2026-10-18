@@ -730,7 +730,7 @@ function showFeedback(ok, titre, texteHtml, suite) {
     '<div class="pc-fb-titre">' + coche + titre + '</div>' +
     (texteHtml ? '<div class="pc-fb-txt">' + texteHtml + '</div>' : '') +
     '<button class="pc-btn wide ' + (ok ? 'ok' : 'ko') + '" id="pc-continuer" onclick="continuerParcours()">Continuer</button>';
-  document.getElementById('pc-continuer').focus({ preventScroll: true });
+  focusApresClavier(document.getElementById('pc-continuer')); // focus seulement après une saisie au clavier (spec 35)
 }
 
 function continuerParcours() {

@@ -508,6 +508,9 @@ rien modifier visuellement : comparer des captures avant / après.
   `actuelle` (anneau, titre et chevron or), `a-venir` (cercle neutre, texte secondaire).
   1re réussite d'une unité (`dernierFini.premiere`) : coche, étoiles une par une, halo vert,
   puis la prochaine unité pulse (`.pulse.apres`). Une seule fois ; coupé en mouvement réduit.
+- **Focus « Continuer » (spec 35)** : `focusApresClavier()` (ui.js) — focus programmatique
+  seulement après une saisie au clavier ; ne jamais supprimer `:focus-visible`. Mission : retours
+  sans jargon (« Bonne réponse, au 2e essai ! », « Réponses trouvées sans erreur »), ascenseur fin.
 - **Chemin continu (spec 33)** : toutes les leçons dans l'ordre, une carte chacune (plus de
   bloc « Terminées ») ; leçon acquise verte ; unité non jouée d'une leçon acquise par la mission
   = `ok par-mission` (sans étoiles, « Validée par la mission »). En-tête animé seulement à
