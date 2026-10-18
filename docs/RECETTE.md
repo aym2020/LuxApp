@@ -39,7 +39,7 @@ Ce service suit la branche `v2` : chaque push met aussi la recette à jour.
 1. **Plus → Outils de test** (ou toucher l'onglet rose « MODE TEST » au bord droit de l'écran).
 2. Choisir la **leçon** (numéro affiché, ex. « Leçon 25 · Le passé composé »), l'**écran**, puis le **scénario**.
 3. **Voir cet écran →** : l'app vide la progression fictive, joue la leçon en accéléré avec ses vraies fonctions, puis affiche le vrai écran (moins d'une seconde dans les tests).
-4. Utiliser ensuite les vrais boutons (Continuer, Refaire mes erreurs, Mon chemin, Rejouer la mission, Retour Android…).
+4. Utiliser ensuite les vrais boutons (Continuer, Refaire mes erreurs, Mon chemin, Rejouer la mission, Retour Android…). Depuis tout résultat, « Mon chemin » et Retour mènent au Chemin, la leçon seule dépliée et cadrée (spec 45).
 5. **Tester l'actualisation (spec 44)** : sur n'importe quel écran obtenu (mission en cours, exercice, Chemin), tirer l'écran vers le bas pour actualiser. Le même écran doit revenir, avec les réponses, les vies, la leçon dépliée et la position.
 6. **Quitter le test** : efface toute la progression fictive (seul le dernier choix du panneau est gardé).
 

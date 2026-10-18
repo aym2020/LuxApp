@@ -1,11 +1,11 @@
-"""Spec 25 : « Accueil », « Retour » et « Retour à la leçon » mènent toujours au
+"""Specs 25 et 45 : « Accueil », « Retour » et « Mon chemin » mènent toujours au
 bon écran, et le retour sur la liste des unités cadre la carte sous l'en-tête.
 Spec 28 : l'écran de résultats félicite, compte les réponses justes et
 n'affiche que les barres et étoiles pertinentes.
 Téléphone simulé (390 × 844, écran tactile)."""
 import os
 from playwright.sync_api import sync_playwright
-from helpers import passer_delai
+from helpers import passer_delai, lecon_cadree
 U = os.environ.get('LUX_URL', 'http://localhost:3456/')
 
 
@@ -127,21 +127,22 @@ with sync_playwright() as p:
     assert msgs == ['Parfait !', 'Excellent !', 'Excellent !', 'Bien joué !', 'Bien joué !', 'Tu progresses !',
                     'Tu progresses !', "Continue à t'entraîner", "Continue à t'entraîner"], msgs
     ok('messages selon le score : 100, 90–99, 75–89, 50–74, moins de 50')
+    assert pg.inner_text('#pf-suite').startswith('Mon chemin')
     pg.click('#pf-suite')
-    assert vue(pg) == 'view-plecon'
-    r = carte_sous_entete(pg, '#pl-unite-4')
-    reste(pg, 'view-plecon')
-    ok('étape seule → « Retour à la leçon » : liste des unités, unité 4 à %d px (en-tête %d px)' % (r['carte'], r['entete']))
+    pg.wait_for_timeout(500)
+    r = lecon_cadree(pg, pg.evaluate('pLecon.id'))  # spec 45 : chemin, leçon dépliée et cadrée
+    reste(pg, 'view-lessons')
+    ok('étape seule → « Mon chemin » : chemin principal, leçon seule dépliée et cadrée (spec 45)')
 
     # 3. Retour du téléphone depuis l'écran de résultats
     pg.evaluate("startEtapeSeule(3, 'trous')")
     finir(pg)
     pg.go_back()
-    pg.wait_for_timeout(200)
-    assert vue(pg) == 'view-plecon'
-    carte_sous_entete(pg, '#pl-unite-3')
-    reste(pg, 'view-plecon')
-    ok('résultats → Retour du téléphone : liste des unités, unité 3 cadrée sous l\'en-tête')
+    pg.wait_for_timeout(500)
+    lecon_cadree(pg, pg.evaluate('pLecon.id'))
+    reste(pg, 'view-lessons')
+    ok('résultats → Retour du téléphone : chemin principal, leçon dépliée et cadrée (spec 45)')
+    liste()
 
     # 4. Exercice : Retour puis maison
     pg.evaluate("startEtapeSeule(2, 'quiz')")
@@ -166,6 +167,26 @@ with sync_playwright() as p:
     pg.click('#nav-bas [data-nav="accueil"]')
     reste(pg, 'view-dashboard')
     ok('mission → Retour : carte de la mission sous l\'en-tête ; barre du bas → accueil')
+
+    # 5 bis. Fin de mission (spec 45) : « Mon chemin » et la flèche → chemin, leçon dépliée et cadrée
+    def jouer_mission():
+        liste()
+        pg.evaluate("openMission()")
+        while pg.locator('#ms-input').count():
+            pg.fill('#ms-input', pg.evaluate("pLecon.scene[ms.idx].lu")); pg.click('#ms-btn-valider'); pg.click('#ms-continuer')
+        assert pg.evaluate("!!ms.bilan")
+    jouer_mission()
+    assert pg.locator('#view-mission button:has-text("Retour · ")').count() == 0
+    pg.click('#view-mission .ms-fin button:has-text("Mon chemin")')
+    pg.wait_for_timeout(500)
+    lecon_cadree(pg, 1)
+    jouer_mission()
+    assert pg.get_attribute('#view-mission [data-retour]', 'aria-label') == 'Retour à Mon chemin'
+    pg.click('#view-mission [data-retour]')
+    pg.wait_for_timeout(500)
+    lecon_cadree(pg, 1)
+    reste(pg, 'view-lessons')
+    ok('fin de mission → « Mon chemin » ou flèche : chemin principal, leçon 1 dépliée et cadrée (spec 45)')
 
     # 6. Révision libre (unité 1 déjà faite)
     liste()

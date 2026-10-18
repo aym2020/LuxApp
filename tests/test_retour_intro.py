@@ -3,7 +3,7 @@ unité lancée, leçon validée par la mission), Retour n'y ramène plus.
 Régression exacte : leçon 20, unité avec une erreur, « Refaire mes erreurs »,
 puis Retour. Exploration (« Voir les unités », « Tente ta chance ») préservée."""
 from playwright.sync_api import sync_playwright
-from helpers import relancer, ok, vue as actif, item_courant, repondre, finir, masquer_regles_vies, ouvrir
+from helpers import lecon_cadree, relancer, ok, vue as actif, item_courant, repondre, finir, masquer_regles_vies, ouvrir
 
 L = 20
 
@@ -81,12 +81,10 @@ with sync_playwright() as p:
     pg.click('#pi-commencer')
     finir(pg)
     assert actif(pg) == 'view-pfin' and 'view-msintro' not in pile(pg), pile(pg)
-    pg.go_back(); pg.wait_for_timeout(200)
-    assert actif(pg) == 'view-plecon', actif(pg)
-    pg.go_back(); pg.wait_for_timeout(200)
-    assert actif(pg) == 'view-lessons', actif(pg)
+    pg.go_back(); pg.wait_for_timeout(500)
+    lecon_cadree(pg, L)  # spec 45 : résultat → chemin, leçon dépliée
     assert not pg.evaluate("getIntroMissionVue(%d)" % L), 'lancer une unité ne confirme pas l\'introduction'
-    ok('Voir les unités → unité → résultats → Retour : la leçon, puis chemin ; introduction non confirmée')
+    ok('Voir les unités → unité → résultats → Retour : chemin, leçon dépliée (spec 45) ; introduction non confirmée')
 
     # ── 3. Tente ta chance abandonnée : Retour = introduction (exploration) ──
     remise_a_zero(pg)

@@ -147,7 +147,8 @@ with sync_playwright() as p:
     assert page.evaluate('getPlusFait(8, 1)')
     assert page.evaluate('getUnitBest(8, 1)') == 100  # le « + » ne change pas les étoiles
     page.screenshot(path=OUT + 'c04-fin-plus.png', full_page=True)
-    page.click('#view-pfin button:has-text("Retour à la leçon")')
+    page.click('#view-pfin button:has-text("Mon chemin")')  # spec 45 : le chemin, puis la leçon
+    page.evaluate('openParcoursLecon(pLecon)')
     assert page.locator('.pl-unit:has-text("UNITÉ 1") .pc-chip.plus.fait').count() == 1
     page.evaluate('voirScenario()')
     assert page.locator('.panneau .ms-pastille.apprise').count() == 2
@@ -160,7 +161,7 @@ with sync_playwright() as p:
         page.click('#pi-commencer')
         finir_partie(page)
         if u == 2:
-            page.click('#view-pfin button:has-text("Retour à la leçon")')
+            page.click('#view-pfin button:has-text("Mon chemin")'); page.evaluate('openParcoursLecon(pLecon)')  # spec 45
     assert page.inner_text('#pf-suite') == 'Jouer la mission →', page.inner_text('#pf-suite')
     ok('fin du fil : « Jouer la mission → » en bouton principal fixe')
 
@@ -225,8 +226,7 @@ with sync_playwright() as p:
     assert 'Leçon complète !' in page.inner_text('#pf-content')
     assert page.evaluate("leconComplete(pLecon)") and page.evaluate("leconSansFaute(pLecon)")
     page.screenshot(path=OUT + 'c10-fin-complete.png', full_page=True)
-    page.click('#view-pfin button:has-text("Retour à la leçon")')
-    page.evaluate('goLessons()')
+    page.click('#view-pfin button:has-text("Mon chemin")')  # spec 45
     assert page.locator('.chemin-lecon:has-text("Les meubles")').count() == 1
     ok('leçon 21 complète (' + str(total) + ' items, bonus compris) → « Leçon complète ! », pastilles Sans faute + Complète')
 

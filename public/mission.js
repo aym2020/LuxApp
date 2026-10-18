@@ -609,7 +609,7 @@ function finirMission() {
         ? '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">' + libelleApresMission() + '</button>' +
           '<button class="pc-btn ghost wide" onclick="openMission()">Rejouer la mission</button>'
         : '<button class="pc-btn primary wide big" onclick="openMission()">Rejouer la mission</button>') +
-      '<button class="pc-btn ghost wide" onclick="quitterMission()">Retour · ' + escHtml(nomEcran(ecranPrecedent())) + '</button>' +
+      '<button class="pc-btn ghost wide" onclick="cheminSurLecon(pLecon.id)">Mon chemin</button>' + // spec 45
     '</div>';
   afficherBilanMission(fin);
   if (reussie) confettis(); // mission réussie : célébration (S12)
@@ -660,6 +660,8 @@ function afficherBilanMission(fin) {
     pLecon.scene.map((x, i) => bulleJeuHtml(x, i, true)).join('');
   body.prepend(fin);
   body.scrollTop = 0;
+  // Spec 45 : depuis le bilan, la flèche mène au chemin (leçon dépliée).
+  document.querySelectorAll('#view-mission [data-retour]').forEach(b => b.setAttribute('aria-label', 'Retour à Mon chemin'));
 }
 
 // Résultat de « Tente ta chance » (S10) — même règle que la mission (spec 32) :

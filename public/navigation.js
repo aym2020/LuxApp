@@ -167,10 +167,12 @@ function retour() {
     return;
   }
   const quitte = pileNav[pileNav.length - 1];
-  // Résultats de « Refaire mes erreurs » : toujours le chemin principal, leçon
-  // centrée, jamais la liste des unités restée dans l'historique (specs 40-41).
-  if (quitte.vue === 'view-pfin' && pResultat && pResultat.mode === 'erreurs') {
-    cheminSurLecon(pResultat.leconId);
+  // Depuis un écran de résultat (fin d'étape, d'unité, de rattrapage, de
+  // mission) : toujours le chemin principal, la leçon dépliée et cadrée,
+  // jamais la liste des unités restée dans l'historique (specs 44-45).
+  const finMission = quitte.vue === 'view-mission' && typeof ms !== 'undefined' && ms && ms.bilan;
+  if ((quitte.vue === 'view-pfin' && pResultat) || finMission) {
+    cheminSurLecon(finMission ? pLecon.id : pResultat.leconId);
     majGarde();
     return;
   }
