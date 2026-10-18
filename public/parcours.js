@@ -1353,42 +1353,53 @@ function renderFin() {
     html += '<div class="pf-parfait">Aucune erreur, tout était juste du premier coup.</div>';
   }
 
-  html += '<div class="pf-boutons">' + boutonsFinHtml(r, u) + '</div>';
+  // Actions secondaires dans le contenu ; l'action principale, fixe en bas.
+  const suite = suiteFin(r, u);
+  html += '<div class="pf-boutons">' + boutonsFinHtml(r, u, suite) + '</div>';
   document.getElementById('pf-content').innerHTML = html;
+  document.getElementById('pf-cta').innerHTML =
+    '<button class="pc-btn primary wide big" id="pf-suite" onclick="' + suite.onclick + '">' + escHtml(suite.libelle) + ' →</button>';
 }
 
-// Boutons de fin de partie, dans l'ordre : erreurs, suite conseillée (jaune),
-// « Élargir » (le « + » de l'unité), retour.
-function boutonsFinHtml(r, u) {
+// L'action principale de fin de partie (spec 20) — même logique qu'avant :
+//   unité terminée et suivante disponible → Unité suivante ;
+//   dernière unité du fil, ou « + » avec une mission jamais jouée → Jouer la mission ;
+//   sinon → Retour à la leçon (sur la prochaine unité, ou celle qu'on vient de jouer).
+function suiteFin(r, u) {
+  if (r.mode === 'unite' && u && !u.bonus) {
+    const fil = unitesCoeur(pLecon);
+    const suivante = fil[fil.findIndex(x => x.id === u.id) + 1];
+    if (suivante) return { libelle: 'Unité suivante', onclick: 'openIntro(' + suivante.id + ')', retour: false };
+    if (pLecon.scene) return { libelle: 'Jouer la mission', onclick: 'openMission()', retour: false };
+  } else if (r.mode === 'plus' && pLecon.scene && getMissionBest(pLecon.id) == null) {
+    return { libelle: 'Jouer la mission', onclick: 'openMission()', retour: false };
+  }
+  const fil = unitesCoeur(pLecon);
+  const prochaine = fil.find(x => getUnitBest(pLecon.id, x.id) == null);
+  const cible = r.mode === 'unite' && prochaine ? prochaine.id : r.uniteId;
+  return { libelle: 'Retour à la leçon', onclick: 'openParcoursLecon(pLecon, ' + cibleJs(cible) + ')', retour: true };
+}
+
+// Actions secondaires de fin de partie (le bouton principal est fixe en bas) :
+// refaire ses erreurs, « Élargir », retour à la leçon (s'il n'est pas déjà
+// l'action principale), accueil.
+function boutonsFinHtml(r, u, suite) {
   let html = '';
   if (r.erreurs.length) {
     html += '<button class="pc-btn wide" onclick="refaireErreurs()">Refaire mes erreurs</button>';
   }
-
-  // Suite conseillée : unité suivante du fil, sinon la mission.
-  let suite = '';
-  if (r.mode === 'unite' && u && !u.bonus) {
-    const fil = unitesCoeur(pLecon);
-    const suivante = fil[fil.findIndex(x => x.id === u.id) + 1];
-    if (suivante) suite = '<button class="pc-btn primary wide big" onclick="openIntro(' + suivante.id + ')">Unité suivante →</button>';
-    else if (pLecon.scene) suite = '<button class="pc-btn primary wide big" onclick="openMission()">Jouer la mission</button>';
-  } else if (r.mode === 'plus' && pLecon.scene && getMissionBest(pLecon.id) == null) {
-    suite = '<button class="pc-btn primary wide big" onclick="openMission()">Jouer la mission</button>';
-  }
-  html += suite;
-
   // « Élargir » : proposé juste après le cœur, quand la phrase vient d'être acquise.
   if (r.mode === 'unite' && u && aDuPlus(pLecon, u.id)) {
     const nb = nbItems(pLecon, u.id, 'plus');
     html += '<button class="pc-btn plus wide" onclick="startUnite(' + u.id + ', \'plus\')">' +
       (getPlusFait(pLecon.id, u.id) ? '✓ ' : '') + 'Élargir : ' + textePlus(pLecon, u.id) + ' de plus · ' + minutesPour(nb) + ' min</button>';
   }
-
-  // Retour à la leçon : sur la prochaine unité du fil, sinon sur celle qu'on vient de jouer.
-  const fil = unitesCoeur(pLecon);
-  const prochaine = fil.find(x => getUnitBest(pLecon.id, x.id) == null);
-  const cible = r.mode === 'unite' && prochaine ? prochaine.id : r.uniteId;
-  html += '<button class="pc-btn ' + (suite ? 'ghost' : 'primary big') + ' wide" onclick="openParcoursLecon(pLecon, ' + cibleJs(cible) + ')">Retour à la leçon</button>';
+  if (!suite.retour) {
+    const fil = unitesCoeur(pLecon);
+    const prochaine = fil.find(x => getUnitBest(pLecon.id, x.id) == null);
+    const cible = r.mode === 'unite' && prochaine ? prochaine.id : r.uniteId;
+    html += '<button class="pc-btn ghost wide" onclick="openParcoursLecon(pLecon, ' + cibleJs(cible) + ')">Retour à la leçon</button>';
+  }
   html += '<button class="pc-btn ghost wide" onclick="goDashboard()">Accueil</button>'; // toujours en dernier (S9)
   return html;
 }

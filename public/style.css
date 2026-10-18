@@ -1822,9 +1822,9 @@ body.clavier-actif #view-mission.active .ms-body {
 }
 .ms-histoire summary { min-height: var(--toucher); display: flex; align-items: center; }
 /* Traduction cachée : un appui sur la bulle l'affiche */
-#view-mission .ms-bulle { cursor: pointer; }
-#view-mission .ms-bulle em { display: none; }
-#view-mission .ms-bulle.traduite em { display: block; }
+:is(#view-mission, .ms-debloque) .ms-bulle { cursor: pointer; }
+:is(#view-mission, .ms-debloque) .ms-bulle em { display: none; }
+:is(#view-mission, .ms-debloque) .ms-bulle.traduite em { display: block; }
 .ms-astuce { font-size: var(--fs-micro); color: var(--muted); text-align: center; }
 
 /* La bulle « Toi » où l'on écrit */
@@ -1850,10 +1850,10 @@ body.clavier-actif #view-mission.active .ms-body {
 #view-mission .ms-saisie .ms-lien { align-self: flex-start; min-height: 36px; }
 
 /* Réplique validée ou réponse montrée : elle reste dans la conversation */
-#view-mission .ms-bulle.valide { background: #0f1d18; border: 1px solid var(--correct); cursor: default; }
-#view-mission .ms-bulle.valide b { color: var(--correct); }
-#view-mission .ms-bulle.revele { border: 1px solid #f2a65a; cursor: default; }
-#view-mission .ms-bulle.revele b { color: #f2a65a; }
+:is(#view-mission, .ms-debloque) .ms-bulle.valide { background: #0f1d18; border: 1px solid var(--correct); cursor: default; }
+:is(#view-mission, .ms-debloque) .ms-bulle.valide b { color: var(--correct); }
+:is(#view-mission, .ms-debloque) .ms-bulle.revele { border: 1px solid #f2a65a; cursor: default; }
+:is(#view-mission, .ms-debloque) .ms-bulle.revele b { color: #f2a65a; }
 #view-mission .ms-retour-titre { display: flex; align-items: center; gap: .35rem; }
 #view-mission .ms-retour-titre .ic { width: 16px; height: 16px; stroke: currentColor; stroke-width: 3; }
 #view-mission .ms-retour-titre span { margin-left: .3rem; text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--muted-strong); }
@@ -1936,18 +1936,18 @@ body.clavier-actif #view-mission.active .ms-histoire { display: none; }
   flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
   display: flex; flex-direction: column; gap: .5rem; padding: .9rem 1rem .75rem;
 }
-#view-mission .ms-bulle {
+:is(#view-mission, .ms-debloque) .ms-bulle {
   display: block; align-self: flex-start; max-width: 84%; padding: .6rem .85rem;
   font-size: 1rem; line-height: 1.45; background: #26272b; color: #f2f1ee;
   border: 0; border-radius: 17px 17px 17px 5px; cursor: pointer;
 }
-#view-mission .ms-bulle.toi, #view-mission .ms-bulle.toi.valide {
+:is(#view-mission, .ms-debloque) .ms-bulle.toi, :is(#view-mission, .ms-debloque) .ms-bulle.toi.valide {
   align-self: flex-end; background: #e8b95c; color: #2f2411; border: 0; border-radius: 17px 17px 5px 17px;
 }
-#view-mission .ms-bulle.toi.revele { background: #f2a65a; border: 0; }
-#view-mission .ms-bulle em { display: none; margin-top: .2rem; font-style: normal; font-size: var(--fs-sec); color: var(--muted); }
-#view-mission .ms-bulle.toi em { color: #5c4620; }
-#view-mission .ms-bulle.traduite em { display: block; }
+:is(#view-mission, .ms-debloque) .ms-bulle.toi.revele { background: #f2a65a; border: 0; }
+:is(#view-mission, .ms-debloque) .ms-bulle em { display: none; margin-top: .2rem; font-style: normal; font-size: var(--fs-sec); color: var(--muted); }
+:is(#view-mission, .ms-debloque) .ms-bulle.toi em { color: #5c4620; }
+:is(#view-mission, .ms-debloque) .ms-bulle.traduite em { display: block; }
 .ms-etat-envoi .ic { width: 14px; height: 14px; margin-left: .35rem; vertical-align: -2px; stroke: currentColor; stroke-width: 3; }
 .ms-qui { align-self: flex-start; display: flex; align-items: center; gap: .4rem; margin-top: .35rem; font-size: var(--fs-micro); color: var(--muted); }
 .ms-qui i {
@@ -1988,3 +1988,27 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .pc-feedback .pc-fb-txt { max-height: 38vh; overflow-y: auto; }
 /* Révision : une fois la réponse corrigée, le bouton « Valider » disparaît */
 #session-input-btn:disabled { display: none; }
+
+/* ══ FIN DE PARTIE (spec 20) : contenu qui défile, action principale fixe ═════ */
+.pf-content { min-height: 0; padding: 1.4rem 1.25rem calc(96px + env(safe-area-inset-bottom)); gap: .9rem; }
+.pf-haut { gap: .15rem; }
+.pf-stars { font-size: 1.7rem; }
+.pf-score { font-family: var(--police); font-weight: 800; font-size: 3rem; letter-spacing: -.02em; }
+.pf-boutons { margin-top: .2rem; }
+.pf-bar > div { transform-origin: left; animation: remplit .6s ease-out .25s both; } /* les barres se remplissent */
+.pf-cta {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  max-width: 720px; margin: 0 auto;
+  padding: .7rem 1.25rem calc(.8rem + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--couleur-fond) 70%, transparent);
+}
+.pf-cta:empty { display: none; }
+#view-pfin:not(.active) .pf-cta { display: none; }
+/* « Ta mission avance » : les bulles de la messagerie, avec le nom de qui parle */
+.ms-debloque { background: var(--couleur-surface-1); border-color: var(--couleur-bord-1); gap: .5rem; }
+.ms-debloque .ms-bulle b {
+  display: flex; align-items: center; gap: .3rem; margin-bottom: .1rem;
+  font-size: var(--fs-micro); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--couleur-violet);
+}
+.ms-debloque .ms-bulle.toi b { color: #5c4620; }
+.ms-debloque .ms-bulle b .ic { width: 13px; height: 13px; stroke: currentColor; stroke-width: 3; }

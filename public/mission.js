@@ -197,10 +197,10 @@ function repliquesDebloqueesHtml(l, uniteId) {
   if (!l.scene) return '';
   const lignes = l.scene.filter(x => x.unite === uniteId);
   if (!lignes.length) return '';
+  // Mêmes bulles que la mission (messagerie) ; un appui affiche la traduction.
   return '<div class="ms-debloque"><div class="pc-mini-label pc-gold">TA MISSION AVANCE</div>' +
-    '<div class="ms-sous">« ' + escHtml(l.mission.titre) + ' » : tu sais maintenant dire</div>' +
-    lignes.map(x => '<div class="ms-bulle' + (x.qui === 'toi' ? ' toi' : '') + '"><b>' +
-      (x.qui === 'toi' ? 'Toi' : escHtml(x.qui)) + '</b>' + escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>').join('') +
+    lignes.map(x => '<div class="ms-bulle' + (x.qui === 'toi' ? ' toi' : '') + '" onclick="this.classList.toggle(\'traduite\')">' +
+      '<b>' + (x.qui === 'toi' ? 'Toi ' + ICONES.coche : escHtml(x.qui)) + '</b>' + escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>').join('') +
     '</div>';
 }
 

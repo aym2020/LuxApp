@@ -130,7 +130,7 @@ with sync_playwright() as p:
     finir_partie(page)
     assert actif(page, 'view-pfin')
     assert page.locator('.ms-debloque .ms-bulle').count() == 2
-    boutons = page.locator('.pf-boutons button').all_inner_texts()
+    boutons = [page.inner_text('#pf-suite')] + page.locator('.pf-boutons button').all_inner_texts()  # principal fixe, puis secondaires
     assert boutons[0] == 'Unité suivante →' and boutons[1].startswith('Élargir : 14 mots de plus'), boutons
     page.screenshot(path=OUT + 'c03-fin-unite.png', full_page=True)
     ok('unité 1 : ' + str(total) + ' items (cœur seul) · « Ta mission avance » (2 répliques) · ' + ' | '.join(boutons))
@@ -145,7 +145,7 @@ with sync_playwright() as p:
     assert page.evaluate('getPlusFait(8, 1)')
     assert page.evaluate('getUnitBest(8, 1)') == 100  # le « + » ne change pas les étoiles
     page.screenshot(path=OUT + 'c04-fin-plus.png', full_page=True)
-    page.click('#pf-content button:has-text("Retour à la leçon")')
+    page.click('#view-pfin button:has-text("Retour à la leçon")')
     assert page.locator('.pl-unit:has-text("UNITÉ 1") .pc-chip.plus.fait').count() == 1
     page.evaluate('voirScenario()')
     assert page.locator('.panneau .ms-pastille.apprise').count() == 2
@@ -158,13 +158,12 @@ with sync_playwright() as p:
         page.click('#pi-content button:has-text("Commencer")')
         finir_partie(page)
         if u == 2:
-            page.click('#pf-content button:has-text("Retour à la leçon")')
-    boutons = page.locator('.pf-boutons button').all_inner_texts()
-    assert 'Jouer la mission' in boutons, boutons
-    ok('fin du fil : « ' + boutons[[b for b in boutons].index('Jouer la mission')] + ' » proposé')
+            page.click('#view-pfin button:has-text("Retour à la leçon")')
+    assert page.inner_text('#pf-suite') == 'Jouer la mission →', page.inner_text('#pf-suite')
+    ok('fin du fil : « Jouer la mission → » en bouton principal fixe')
 
     # ── 6. La mission : une erreur (aide), voir la réponse, puis le reste juste ──
-    page.click('.pf-boutons button:has-text("Jouer la mission")')
+    page.click('#pf-suite')
     assert actif(page, 'view-mission')
     page.fill('#ms-input', 'Ech sinn Fransous')
     page.click('#ms-btn-valider')
@@ -224,7 +223,7 @@ with sync_playwright() as p:
     assert 'Leçon complète !' in page.inner_text('#pf-content')
     assert page.evaluate("leconComplete(pLecon)") and page.evaluate("leconSansFaute(pLecon)")
     page.screenshot(path=OUT + 'c10-fin-complete.png', full_page=True)
-    page.click('#pf-content button:has-text("Retour à la leçon")')
+    page.click('#view-pfin button:has-text("Retour à la leçon")')
     page.evaluate('goLessons()')
     assert page.locator('.chemin-lecon:has-text("Les meubles")').count() == 1
     ok('leçon 21 complète (' + str(total) + ' items, bonus compris) → « Leçon complète ! », pastilles Sans faute + Complète')
