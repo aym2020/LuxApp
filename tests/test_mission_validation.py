@@ -50,10 +50,28 @@ with sync_playwright() as p:
     assert 'Leçon suivante' in pg.inner_text('.ms-fin')
     ok('mission réussie avec 1 vie : leçon 1 validée, unité 4 sans étoile, partie de l\'unité 4 gardée en libre, leçon 2 proposée')
 
-    pg.evaluate("goLessons(); cheminFiniesOuvert = true; renderLessons()")
-    assert 'Validée par la mission' in pg.inner_text('.lignes-finies')
+    pg.evaluate("goLessons()")
+    assert pg.locator('#chemin-lecon-1.pas.fait').count() == 1 and 'Validée par la mission' in pg.inner_text('#chemin-lecon-1')
     assert pg.evaluate("progressionNiveau('A1.1').terminees") == 1
-    ok('chemin : leçon 1 dans les terminées, « Validée par la mission » (pas d\'étoiles de leçon)')
+    ok('chemin : leçon 1 verte à sa place, « Validée par la mission » (pas d\'étoiles de leçon)')
+    # Spec 33 : leçon 1 dépliée — unités 1 à 3 avec leurs vraies étoiles, unité 4 verte sans étoiles
+    pg.click('#chemin-lecon-1 .carte-lecon')
+    assert 'VALIDÉE PAR LA MISSION' in pg.inner_text('#chemin-lecon-1 .carte-tete').upper()
+    assert pg.locator('#chemin-u-1-4.ok.par-mission').count() == 1 and pg.locator('#chemin-u-1-4 .pc-star').count() == 0
+    assert 'validée par la mission' in pg.inner_text('#chemin-u-1-4').lower()
+    assert 'non réalisée' in pg.get_attribute('#chemin-u-1-4 button', 'aria-label')
+    assert pg.locator('#chemin-u-1-1 .pc-star.on').count() >= 1 and pg.locator('#chemin-u-1-1.par-mission').count() == 0
+    assert pg.evaluate("getUnitBest(1, 4)") is None
+    ok('leçon 1 dépliée : unités 1–3 et leurs étoiles réelles, unité 4 verte « Validée par la mission » sans étoiles, lue « non réalisée »')
+    # En-tête stable : pas d'animation d'entrée ni de déplacement quand on déplie / replie
+    haut = "(() => { const r = document.querySelector('.chemin-tete').getBoundingClientRect(); return r.top + scrollY; })()"
+    y0 = pg.evaluate(haut)
+    for lid in (1, 2, 2, 1):
+        pg.evaluate("id => basculerLeconChemin(id)", lid)
+        assert pg.locator('.chemin-tete.entre').count() == 0, "pas d'animation de l'en-tête"
+        assert pg.evaluate("getComputedStyle(document.querySelector('.chemin-tete')).animationName") == 'none'
+        assert pg.evaluate(haut) == y0
+    ok('en-tête du chemin : plus d\'animation d\'entrée en dépliant / repliant les leçons')
 
     # 2. Leçon 2 : toutes les unités faites, mission perdue (0 vie) → pas terminée, la mission revient
     pg.evaluate("unitesCoeur(lecons.find(l => l.id === 2)).forEach(u => saveUnitBest(2, u.id, 90)); openParcoursLecon(lecons.find(l => l.id === 2))")

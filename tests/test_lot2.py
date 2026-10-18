@@ -121,11 +121,11 @@ with sync_playwright() as p:
         page.evaluate(FINIR_LECON, lid)
     page.evaluate('goLessons()')
     page.wait_for_timeout(400)
-    assert page.inner_text('.groupe-tete b') == 'Leçons 1 à 7'
-    assert page.locator('.ligne-finie').count() == 0
+    # Spec 33 : un chemin continu, chaque leçon à sa place (plus de bloc « Terminées »)
+    ordre = page.evaluate("[...document.querySelectorAll('.chemin > li[id^=chemin-lecon-]')].map(li => Number(li.id.split('-').pop()))")
+    assert ordre == sorted(ordre) and ordre[:8] == list(range(1, 9)), ordre
+    assert page.locator('.pas.fait.replie').count() == 7
     assert '7 terminées' in page.inner_text('.resume').lower()
-    page.click('.groupe-tete')
-    assert page.locator('.ligne-finie').count() == 7
     encours = page.inner_text('.pas.encours')
     assert 'leçon 8' in encours.lower() and 'mission' in encours.lower() and 'bilan' in encours.lower(), encours
     assert page.locator('.pas.futur').count() == 9
@@ -143,7 +143,7 @@ with sync_playwright() as p:
     page.click('.pas.encours .carte-lecon')  # on redéplie la leçon conseillée
     page.click('.pas.encours .unites li.bilan button')
     assert actif(page, 'view-session') and page.evaluate('session.questions.length') > 0
-    ok('chemin : « Leçons 1 à 7 » replié puis 7 lignes ; leçon 8 dépliée (unités, mission, bilan) ; tout s\'ouvre')
+    ok('chemin : leçons 1 à 7 vertes à leur place, leçon 8 dépliée (unités, mission, bilan) ; tout s\'ouvre')
 
     # ── S12 : animation de l'étape tout juste finie, une seule fois ──
     page.evaluate("saveUnitBest(8, 1, 90); dernierFini = { leconId: 8, uniteId: 1 }; goLessons()")

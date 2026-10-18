@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 1.7 | 2026-10-18 | Chemin continu : bloc « Terminées » supprimé, carte de leçon acquise verte, unité `par-mission` (cercle vert non rempli) (spec 33) |
 | 1.6 | 2026-10-18 | Mission : ligne des vies `.ms-vies-zone` (cœurs 24 px centrés, compteur dessous), animation de vie perdue, panneau `.ms-regles` (spec 34) |
 | 1.5 | 2026-10-18 | Statut secondaire `.unites .statut` (sobre, sans bordure) remplace `.pastille-statut` ; icônes d'état du chemin 22 px ; en-tête de mission titre + vies (spec 30) |
 | 1.4 | 2026-10-18 | Lignes du chemin en grille (état · texte · statut · chevron), statut secondaire sous le titre, pastille `.pastille-statut`, requêtes de conteneur en `em` pour les cartes étroites ou le texte agrandi (spec 29) |

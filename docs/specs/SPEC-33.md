@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire — non implémentée** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P0** |
 | Branche | `v2` |
 | Périmètre | `public/chemin.js`, `public/style.css` ; éventuellement `public/niveau.js` et `public/parcours.js` uniquement si nécessaire à l'affichage |
@@ -84,16 +84,16 @@ L'exemple est un schéma de comportement, **pas** une maquette pixel-perfect ; n
 
 ## 5. Critères d'acceptation
 
-- [ ] Leçons 1, 2, 3, 4… affichées dans l'ordre permanent ; aucune leçon absorbée par un bloc « Terminées ».
-- [ ] Terminer directement la leçon 5 ne change pas la place des autres ni ne suggère que les leçons 2–4 sont acquises.
-- [ ] Après réussite de la mission de la leçon 1 avec unités 1–3 faites et unité 4 non faite : **leçon 1 verte** dans la carte fermée et ouverte ; **unité 4 verte « Validée par la mission » sans étoiles** ; unités 1–3 gardent leurs véritables étoiles ; **leçon 2 recommandée**.
-- [ ] Rouvrir l'unité 4 reste possible ; après la faire, ses étoiles apparaissent suivant son score réellement obtenu.
-- [ ] Aucun « Sans faute » de leçon ou résultat d'unité inventé par le raccourci ; les badges de mission gardent leur signification.
-- [ ] Tapoter plusieurs fois sur les leçons 1 et 2 lorsque « Mon chemin » et les pastilles sont visibles : **aucun flash d'opacité, aucun décalage vertical de l'en-tête**.
+- [x] Leçons 1, 2, 3, 4… affichées dans l'ordre permanent ; aucune leçon absorbée par un bloc « Terminées ».
+- [x] Terminer directement la leçon 5 ne change pas la place des autres ni ne suggère que les leçons 2–4 sont acquises.
+- [x] Après réussite de la mission de la leçon 1 avec unités 1–3 faites et unité 4 non faite : **leçon 1 verte** dans la carte fermée et ouverte ; **unité 4 verte « Validée par la mission » sans étoiles** ; unités 1–3 gardent leurs véritables étoiles ; **leçon 2 recommandée**.
+- [x] Rouvrir l'unité 4 reste possible ; après la faire, ses étoiles apparaissent suivant son score réellement obtenu.
+- [x] Aucun « Sans faute » de leçon ou résultat d'unité inventé par le raccourci ; les badges de mission gardent leur signification.
+- [x] Tapoter plusieurs fois sur les leçons 1 et 2 lorsque « Mon chemin » et les pastilles sont visibles : **aucun flash d'opacité, aucun décalage vertical de l'en-tête**.
 - [ ] Alterner entre carte courte et carte longue, replier, déplier, revenir d'un exercice : **pas de double saut**, pas de perte de position ni de CTA masqué.
 - [ ] Contrôler une largeur Android réelle puis 320/393 px si besoin ; texte accessible, pas de débordement horizontal, zones tactiles ≥ 44 px.
-- [ ] Navigation clavier, accordéon, bouton « Revoir », mission, bilan, progression de niveau, cloud et anciennes validations inchangés fonctionnellement.
-- [ ] Les tests automatisés existants du chemin et des missions passent ; ajouter des assertions ciblées sur **ordre des leçons**, **état visuel validé par mission** et **stabilité du header**.
+- [x] Navigation clavier, accordéon, bouton « Revoir », mission, bilan, progression de niveau, cloud et anciennes validations inchangés fonctionnellement.
+- [x] Les tests automatisés existants du chemin et des missions passent ; ajouter des assertions ciblées sur **ordre des leçons**, **état visuel validé par mission** et **stabilité du header**.
 
 ## Hors périmètre
 
@@ -101,4 +101,12 @@ Changement de la règle des trois vies (SPEC 32), attribution d'étoiles aux uni
 
 ## Suivi
 
-**Non implémentée.** Cette livraison ne modifie que les spécifications et le registre, **aucun CSS ni JavaScript applicatif**. Références : [SPEC 13](./SPEC-13.md), [SPEC 14](./SPEC-14.md), [SPEC 29](./SPEC-29.md), [SPEC 32](./SPEC-32.md), [Design system](../DESIGN_SYSTEM.md).
+**Implémentée sur `v2`**, recette Android à faire (critères « double saut » et largeur réelle non cochés).
+
+- `public/chemin.js` : plus de bloc « Terminées » (`cheminFiniesOuvert`, `basculerTerminees`, `ligneFinieHtml`, `titreGroupe` supprimés) ; une seule liste ordonnée, chaque leçon sur une carte dépliée sur place. Leçon acquise repliée : rond vert coché, résultat sous le titre (étoiles réelles, « Sans faute » ou « Validée par la mission »). Dépliée : « LEÇON 1 · VALIDÉE PAR LA MISSION » si des unités n'ont pas été jouées. Unités non jouées d'une leçon acquise par la mission : classe `ok par-mission`, cercle vert coché non rempli, « Validée par la mission », sans étoiles, nom accessible « validée par la mission, non réalisée » ; toujours cliquables. Aucun score écrit.
+- En-tête : la classe d'animation `entre` n'est posée qu'à l'arrivée sur le chemin (cause du clignotement : chaque bascule recréait l'en-tête animé).
+- Accordéon : un seul défilement immédiat par appui (`decalageCadrage` calcule compensation + cadrage ensemble ; plus de second défilement `smooth`).
+- `public/style.css` : règles du bloc supprimées ; carte acquise verte (y compris dépliée : l'ancienne bordure couleur de leçon est retirée pour `.pas.ouverte.fait`).
+- Tests : `test_lot2.py` (ordre des leçons), `test_lot3.py`, `test_mission_validation.py` (leçon 1 verte, unité 4 « validée par la mission » sans étoiles, en-tête sans animation ni déplacement) ; suite critique verte.
+
+Références : [SPEC 13](./SPEC-13.md), [SPEC 14](./SPEC-14.md), [SPEC 29](./SPEC-29.md), [SPEC 32](./SPEC-32.md), [Design system](../DESIGN_SYSTEM.md).

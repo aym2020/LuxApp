@@ -508,6 +508,10 @@ rien modifier visuellement : comparer des captures avant / après.
   `actuelle` (anneau, titre et chevron or), `a-venir` (cercle neutre, texte secondaire).
   1re réussite d'une unité (`dernierFini.premiere`) : coche, étoiles une par une, halo vert,
   puis la prochaine unité pulse (`.pulse.apres`). Une seule fois ; coupé en mouvement réduit.
+- **Chemin continu (spec 33)** : toutes les leçons dans l'ordre, une carte chacune (plus de
+  bloc « Terminées ») ; leçon acquise verte ; unité non jouée d'une leçon acquise par la mission
+  = `ok par-mission` (sans étoiles, « Validée par la mission »). En-tête animé seulement à
+  l'arrivée (`entre` si `cheminArrivee`) ; accordéon = un seul défilement immédiat.
 - **Lignes du chemin (spec 29)** : grille état · `.texte` · `.tag` · chevron ; « Révision en
   cours » en 2e rangée seulement si elle existe ; mission et bilan : même structure, statut
   `.statut` sobre à droite (spec 30) ; requêtes de conteneur en `em` (< 16 em : statuts mission

@@ -1453,29 +1453,6 @@ div.carte-lecon:active { transform: none; }
 .pastille-fraicheur { align-self: flex-start; font-size: var(--fs-micro); font-weight: 700; color: var(--turquoise); background: var(--turq-fond); padding: 3px 9px; border-radius: 999px; }
 .v1-txt { color: var(--muted-strong); font-size: var(--fs-sec); margin: 6px 0 10px; }
 
-/* Bloc des leçons terminées */
-.groupe-fini { background: var(--vert-fond); border-color: var(--vert-bord); background-image: none; }
-.groupe-fini .st { color: var(--correct); }
-.groupe-tete {
-  display: flex; justify-content: space-between; align-items: center; gap: 8px; width: 100%; min-height: 40px;
-  background: none; border: 0; padding: 0; color: var(--text); font-family: var(--font); cursor: pointer; text-align: left;
-}
-.groupe-tete b { display: block; font-size: 1.05rem; }
-.voir { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-sec); font-weight: 700; color: var(--correct); }
-.voir .ic { width: 16px; height: 16px; transition: transform .15s ease; }
-.groupe-tete[aria-expanded="true"] .voir .ic { transform: rotate(180deg); }
-.lignes-finies { display: flex; flex-direction: column; margin-top: 8px; border-top: 1px solid var(--vert-bord); animation: entre .2s ease-out both; }
-.ligne-finie {
-  display: flex; align-items: center; gap: 10px; min-height: 48px; background: transparent; border: 0;
-  border-bottom: 1px solid #1d4a3b; text-align: left; padding: 0; font-family: var(--font); color: var(--text);
-  font-size: var(--fs-sec); cursor: pointer;
-}
-.ligne-finie:last-child { border-bottom: 0; }
-.ligne-finie .n {
-  width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex: none; font-weight: 800;
-  font-size: var(--fs-micro); color: var(--lc); background: color-mix(in srgb, var(--lc) 18%, transparent);
-}
-.ligne-finie .t { flex: 1; min-width: 0; }
 .etoiles { white-space: nowrap; font-size: var(--fs-sec); }
 .ms-tenter { border-style: dashed; }
 .ms-aide-unites { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: 14px;
@@ -1486,7 +1463,7 @@ div.carte-lecon:active { transform: none; }
   background: var(--surface-2); border: 1px solid var(--bord-2); font-size: var(--fs-sec); color: var(--muted-strong); }
 .ms-aide-unites b { color: var(--text); font-size: var(--fs-corps); }
 .pl-validee { color: var(--muted-strong); }
-.validee { font-size: var(--fs-micro); font-weight: 600; color: var(--muted-strong); white-space: nowrap; }
+.validee { font-size: var(--fs-micro); font-weight: 600; color: var(--correct); white-space: nowrap; }
 .acquise { font-size: var(--fs-micro); font-weight: 700; color: var(--correct); white-space: nowrap; }
 .sans-faute { font-size: var(--fs-micro); font-weight: 800; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
 
@@ -1787,7 +1764,7 @@ body.clavier-actif #view-mission.active .ms-body {
 
 /* Carte dépliée : plus serrée ; elle s'ouvre en douceur (≈ 250 ms) */
 .pas.ouverte .carte-lecon { padding: 10px 14px 8px; gap: 2px; }
-.pas.ouverte.futur .carte-lecon, .pas.ouverte.fait .carte-lecon { border-color: color-mix(in srgb, var(--lc) 55%, var(--bord-1)); }
+.pas.ouverte.futur .carte-lecon { border-color: color-mix(in srgb, var(--lc) 55%, var(--bord-1)); } /* leçon acquise : bordure verte (spec 33) */
 .carte-lecon.ouvre .carte-tete .chevron-l .ic { animation: chevron-tourne .25s ease-out both; }
 .carte-lecon.ouvre > :not(.carte-tete) { animation: entre .25s ease-out both; }
 .carte-lecon.ouvre > .unites { animation-delay: .03s; }
@@ -2162,3 +2139,18 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 
 /* Spec 32 : mission perdue (plus de vie) — bandeau neutre, pas doré */
 .ms-bandeau.ms-echec { background: var(--couleur-surface-1); border-color: var(--couleur-bord-2); color: var(--couleur-texte); }
+
+/* ══ MON CHEMIN CONTINU (spec 33) ════════════════════════════════════════════
+   Toutes les leçons à leur place ; une leçon acquise est verte, repliée comme
+   dépliée. Une unité couverte par la mission (pas jouée) : cercle vert coché
+   non rempli et « Validée par la mission », sans étoiles. */
+.pas.fait.replie { padding-bottom: 8px; }
+.pas.fait .carte-lecon { background-color: var(--couleur-vert-fond); border-color: var(--couleur-vert-bord); }
+.pas.fait .st { color: var(--couleur-reussi); }
+.pas.fait .carte-lecon.compacte .titre { color: var(--couleur-texte); }
+/* Repliée : le résultat (étoiles, « Validée par la mission »…) passe sous le titre */
+.pas.fait .carte-lecon.compacte { flex-wrap: wrap; }
+.pas.fait .carte-lecon.compacte > .etoiles, .pas.fait .carte-lecon.compacte > .validee,
+.pas.fait .carte-lecon.compacte > .sans-faute, .pas.fait .carte-lecon.compacte > .acquise { order: 10; flex-basis: 100%; }
+.unites li.par-mission .etat { background: transparent; border: 2px solid var(--couleur-vert-plein); color: var(--couleur-reussi); box-shadow: none; }
+.unites .sous.par-mission { color: var(--couleur-reussi); font-weight: 600; }

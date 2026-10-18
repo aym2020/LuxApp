@@ -1,7 +1,7 @@
 // ─── MON CHEMIN (S13) : remplace la liste des leçons ───────────────────────
-// Une ligne verticale de ronds reliés, pour le niveau choisi :
-//   - leçons terminées : UN bloc vert, replié (« Leçons 1 à 7 · Voir ») ;
-//   - les autres leçons : une ligne compacte chacune ;
+// Une ligne verticale de ronds reliés, pour le niveau choisi (spec 33) :
+//   - TOUTES les leçons dans leur ordre (1, 2, 3…), chacune à sa place et sur
+//     une seule carte : terminée (verte), conseillée (or) ou à venir ;
 //   - UNE seule leçon dépliée à la fois (accordéon) : par défaut la leçon
 //     conseillée ; un appui sur une autre leçon la déplie et replie la
 //     précédente ; un appui sur la leçon dépliée la replie ;
@@ -9,7 +9,6 @@
 // Rien n'est verrouillé : chaque leçon et chaque étape s'ouvre d'un appui.
 // Déplier une leçon ne change pas la leçon conseillée.
 
-let cheminFiniesOuvert = false;
 // Leçon dépliée : undefined = la leçon conseillée, null = toutes repliées, sinon son id.
 // Gardée en mémoire : on la retrouve en revenant d'un exercice.
 let cheminLeconOuverte;
@@ -34,35 +33,20 @@ function renderLessons() {
   if (ouverte != null && !liste.some(l => l.id === ouverte)) ouverte = enCours ? enCours.id : null;
   const dus = l => (fraicheurs[l.id] ? fraicheurs[l.id].dus : 0);
 
-  let html = '<div class="chemin-tete entre">' +
+  // L'en-tête ne s'anime qu'à l'arrivée sur le chemin, jamais quand on
+  // déplie ou replie une leçon (il clignotait, spec 33).
+  let html = '<div class="chemin-tete' + (pulse ? ' entre' : '') + '">' +
     '<div class="chemin-titre"><h1>Mon chemin</h1><span class="etiquette or">Parcours ' + niveauActif + '</span></div>' +
     '<div class="resume">' +
       '<span class="pastille v"><i></i>' + terminees.length + ' terminée' + (terminees.length > 1 ? 's' : '') + '</span>' +
       (enCours ? '<span class="pastille o"><i></i>1 en cours</span>' : '') +
     '</div></div><ol class="chemin">';
 
-  // 1. Bloc des leçons terminées (et la leçon terminée dépliée, juste après).
-  if (terminees.length) {
-    const leconFinieAnimee = anim && terminees.some(l => l.id === anim.leconId) && anim.uniteId === 'mission';
-    html += '<li class="pas fait' + (leconFinieAnimee ? ' trait-anime' : '') + '">' +
-      '<span class="rond' + (leconFinieAnimee ? ' vient-de-finir' : '') + '">' + ICONES.coche + '</span>' +
-      '<div class="carte-lecon groupe-fini">' +
-        '<button class="groupe-tete" aria-expanded="' + cheminFiniesOuvert + '" onclick="basculerTerminees()">' +
-          '<span><span class="num st">Terminées</span><b>' + titreGroupe(terminees) + '</b></span>' +
-          '<span class="voir">' + (cheminFiniesOuvert ? 'Masquer' : 'Voir') + ICONES.chevron + '</span>' +
-        '</button>' +
-        (cheminFiniesOuvert ? '<div class="lignes-finies">' + terminees.map(ligneFinieHtml).join('') + '</div>' : '') +
-      '</div></li>';
-    const finieOuverte = terminees.find(l => l.id === ouverte);
-    if (finieOuverte) html += leconDeplieeHtml(finieOuverte, dus(finieOuverte), anim, false, pulse);
-  }
-
-  // 2. Leçons en cours et à venir (dans l'ordre du niveau).
+  // Les leçons dans leur ordre : une seule carte chacune, dépliée sur place.
   liste.forEach(l => {
-    if (leconTerminee(l)) return;
     const conseillee = !!(enCours && enCours.id === l.id);
     if (l.id === ouverte) html += leconDeplieeHtml(l, dus(l), anim, conseillee, pulse);
-    else html += leconReplieeHtml(l, dus(l), conseillee);
+    else html += leconReplieeHtml(l, dus(l), conseillee, anim);
   });
 
   // 3. Examens, en fin de chemin.
@@ -76,23 +60,6 @@ function renderLessons() {
 
   box.innerHTML = html;
   if (typeof renderLessonsProgress === 'function') renderLessonsProgress();
-}
-
-function titreGroupe(terminees) {
-  if (terminees.length === 1) return 'Leçon ' + terminees[0].id;
-  return 'Leçons ' + terminees[0].id + ' à ' + terminees[terminees.length - 1].id;
-}
-
-function basculerTerminees() {
-  cheminFiniesOuvert = !cheminFiniesOuvert;
-  renderLessons();
-}
-
-// Une leçon terminée dans le bloc déplié : numéro, titre, étoiles. Un appui la déplie.
-function ligneFinieHtml(l) {
-  return '<button class="ligne-finie chemin-lecon" style="--lc:' + l.couleur + '" onclick="basculerLeconChemin(' + l.id + ')">' +
-    '<span class="n">' + l.id + '</span><span class="t">' + escHtml(titreCourt(l)) + '</span>' +
-    resultatLeconHtml(l) + '</button>';
 }
 
 // Étoiles d'une leçon terminée, ou « Sans faute ».
@@ -114,14 +81,17 @@ function rafraichirPastille(dus) {
 }
 
 // Leçon repliée : une ligne, avec un chevron. Un appui la déplie.
-function leconReplieeHtml(l, dus, conseillee) {
+// Terminée : rond vert coché et son résultat (étoiles, « Sans faute » ou « Validée par la mission »).
+function leconReplieeHtml(l, dus, conseillee, anim) {
+  const fini = leconTerminee(l);
   const faites = etapesFaites(l);
-  return '<li class="pas ' + (conseillee ? 'encours replie' : 'futur') + '" id="chemin-lecon-' + l.id + '">' +
-    '<span class="rond">' + (conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
+  const vientDeFinir = fini && anim && anim.leconId === l.id && anim.uniteId === 'mission';
+  return '<li class="pas ' + (fini ? 'fait replie' : conseillee ? 'encours replie' : 'futur') + '" id="chemin-lecon-' + l.id + '">' +
+    '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '">' + (fini ? ICONES.coche : conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
     '<button class="carte-lecon compacte chemin-lecon" style="--lc:' + l.couleur + '" aria-expanded="false" onclick="basculerLeconChemin(' + l.id + ')">' +
       '<span class="num"><b>Leçon ' + l.id + '</b></span>' +
       '<span class="titre">' + escHtml(titreCourt(l)) + '</span>' +
-      (faites ? '<span class="avance">' + faites + '/' + etapesLecon(l) + '</span>' : '') +
+      (fini ? resultatLeconHtml(l) : faites ? '<span class="avance">' + faites + '/' + etapesLecon(l) + '</span>' : '') +
       '<span class="chevron-l">' + ICONES.chevron + '</span>' +
       rafraichirPastille(dus) +
     '</button></li>';
@@ -131,7 +101,9 @@ function leconReplieeHtml(l, dus, conseillee) {
 // qui agit sur CETTE leçon.
 function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   const fini = leconTerminee(l);
-  const etat = fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
+  const r = isParcoursLecon(l) ? resumeLecon(l) : null;
+  const parMission = fini && r && r.done < r.total && leconAcquiseParMission(l);
+  const etat = parMission ? 'Validée par la mission' : fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
   const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
   const action = actionLeconChemin(l);
 
@@ -200,8 +172,10 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
   unitesCoeur(l).forEach(u => {
     const fait = getUnitBest(l.id, u.id) != null;
     const actuelle = etapeActuelle === u.id;
-    // Trois états : terminée (ok), recommandée (actuelle), à découvrir (a-venir).
-    let classe = fait ? 'ok' : 'a-venir';
+    // Pas jouée mais couverte par la mission réussie (spec 33) : verte, sans étoiles.
+    const parMission = !fait && leconAcquiseParMission(l);
+    // États : terminée (ok), validée par la mission (ok par-mission), recommandée (actuelle), à découvrir (a-venir).
+    let classe = fait ? 'ok' : parMission ? 'ok par-mission' : 'a-venir';
     if (actuelle) classe = 'actuelle' + (pulse || premiere ? ' pulse' : '') + (premiere ? ' apres' : '');
     if (anim && anim.leconId === l.id && anim.uniteId === u.id) classe += ' vient-de-finir' + (premiere ? ' premiere' : '');
     // Spec 29 : le titre a toute la largeur restante ; « Révision en cours »
@@ -209,15 +183,16 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     const enRevision = libre && libre.leconId === l.id && libre.uniteId === u.id;
     const nbEtoiles = fait ? etoiles(getUnitBest(l.id, u.id)) : 0;
     // Nom lu par les lecteurs d'écran : titre complet + état utile.
-    let nomLu = u.id + ' · ' + u.titre + ', ' + (actuelle ? 'étape recommandée' : fait ? 'terminée' : 'à découvrir');
+    let nomLu = u.id + ' · ' + u.titre + ', ' + (actuelle ? 'étape recommandée' : fait ? 'terminée' : parMission ? 'validée par la mission, non réalisée' : 'à découvrir');
     if (fait) nomLu += ', ' + nbEtoiles + ' étoile' + (nbEtoiles > 1 ? 's' : '') + ' sur 3';
     if (enRevision) nomLu += ', révision en cours';
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
-      '<span class="etat">' + (fait && !actuelle ? ICONES.coche : '') + '</span>' +
+      '<span class="etat">' + ((fait || parMission) && !actuelle ? ICONES.coche : '') + '</span>' +
       '<span class="texte"><span class="nom">' + u.id + '&nbsp;·&nbsp;' + escHtml(u.titre) + '</span></span>' +
       (fait ? '<span class="tag">' + etoilesHtml(nbEtoiles) + '</span>' : '') +
       ICONES.droite +
-      (enRevision ? '<span class="sous revision">' + ICONES.revision + 'Révision en cours</span>' : '') +
+      (enRevision ? '<span class="sous revision">' + ICONES.revision + 'Révision en cours' + (parMission ? ' · validée par la mission' : '') + '</span>'
+        : parMission ? '<span class="sous par-mission">Validée par la mission</span>' : '') +
       '</button></li>';
   });
 
@@ -267,8 +242,12 @@ function basculerLeconChemin(leconId) {
 
   const apres = document.getElementById('chemin-lecon-' + leconId);
   if (!apres) return;
-  if (hautAvant != null) window.scrollBy(0, apres.getBoundingClientRect().top - hautAvant);
-  if (!dejaOuverte) cadrerCarteChemin(apres);
+  // Un seul défilement par appui (spec 33) : la carte touchée reste à la même
+  // hauteur, puis, si on vient de l'ouvrir, on la cadre — calculés ensemble.
+  const r = apres.getBoundingClientRect();
+  const compense = hautAvant != null ? r.top - hautAvant : 0;
+  const cadre = dejaOuverte ? 0 : decalageCadrage(r.top - compense, r.bottom - compense);
+  if (compense + cadre) window.scrollBy(0, compense + cadre);
 }
 
 // Pour revenir d'un exercice : la leçon de l'exercice est dépliée.
@@ -283,18 +262,16 @@ function basVisibleChemin() {
   return window.innerHeight - hautNav - 12;
 }
 
-// Montre la carte entière si elle tient, sinon son début (jamais centrée).
-function cadrerCarteChemin(carte) {
-  const r = carte.getBoundingClientRect();
+// Montre la carte entière si elle tient, sinon son début (jamais centrée) :
+// renvoie de combien défiler pour une carte placée entre top et bottom.
+function decalageCadrage(top, bottom) {
   const haut = 12;
   const bas = basVisibleChemin();
-  let decalage = 0;
-  if (r.height > bas - haut || r.top < haut) decalage = r.top - haut;
-  else if (r.bottom > bas) decalage = r.bottom - bas;
-  if (!decalage) return;
-  const reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  window.scrollBy({ top: decalage, behavior: reduit ? 'auto' : 'smooth' });
+  if (bottom - top > bas - haut || top < haut) return top - haut;
+  if (bottom > bas) return bottom - bas;
+  return 0;
 }
+
 
 // Retour d'un exercice : l'étape quittée doit être visible (au-dessus de la barre du bas).
 function montrerEtapeChemin(leconId, etape) {

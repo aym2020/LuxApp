@@ -84,8 +84,7 @@ with sync_playwright() as p:
     assert page.locator('.ms-carte .ms-tenter').count() == 0
     page.evaluate('goLessons()')
     assert page.evaluate('leconTerminee(lecons.find(l => l.id === 2))')
-    page.click('.groupe-tete')
-    assert 'Validée par la mission' in page.inner_text('.ligne-finie:has-text("Identifier des objets")')
+    assert 'Validée par la mission' in page.inner_text('#chemin-lecon-2')
     ok('leçon 2 : « Tente ta chance · 5 répliques » (secondaire) → 100 % → validée par la mission, '
        'aucune étoile ni « Terminée », guide sur la suite, « Validée par la mission » sur le chemin')
 
