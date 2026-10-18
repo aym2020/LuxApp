@@ -164,13 +164,16 @@ function retour() {
     goDashboard();
     return;
   }
-  const quitte = pileNav.pop();
-  const dest = pileNav[pileNav.length - 1];
-  restaurerEcran(dest, cibleDeRetour(quitte));
-  // Résultats de « Refaire mes erreurs » → chemin : la leçon centrée (spec 40).
-  if (quitte.vue === 'view-pfin' && pResultat && pResultat.mode === 'erreurs' && dest.vue === 'view-lessons') {
-    centrerLeconChemin(pResultat.leconId);
+  const quitte = pileNav[pileNav.length - 1];
+  // Résultats de « Refaire mes erreurs » : toujours le chemin principal, leçon
+  // centrée, jamais la liste des unités restée dans l'historique (specs 40-41).
+  if (quitte.vue === 'view-pfin' && pResultat && pResultat.mode === 'erreurs') {
+    cheminSurLecon(pResultat.leconId);
+    majGarde();
+    return;
   }
+  pileNav.pop();
+  restaurerEcran(pileNav[pileNav.length - 1], cibleDeRetour(quitte));
   majGarde();
 }
 

@@ -295,9 +295,10 @@ function centrerLeconChemin(leconId) {
   window.scrollTo(0, Math.max(0, window.scrollY + decalage));
 }
 
-// Ouvre le chemin sur cette leçon (dépliée), centrée.
+// Après « Refaire mes erreurs » : le chemin principal, leçon centrée et
+// repliée — sans liste des unités (spec 41, précise la spec 40).
 function cheminSurLecon(leconId) {
-  ouvrirLeconDansChemin(leconId);
+  cheminLeconOuverte = null;
   goLessons();
   centrerLeconChemin(leconId);
 }

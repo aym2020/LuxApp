@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Branche cible | `v2` |
 | Périmètre probable | `public/correction.js`, `public/parcours.js`, `public/navigation.js`, `public/chemin.js`, tests de correction et de navigation (à confirmer après lecture du code) |
@@ -50,13 +50,45 @@ Après une unité terminée, l'utilisateur lance **« Refaire mes erreurs »**, 
 
 ## 3. Tests ciblés et critères d'acceptation
 
-- [ ] Reproduire `d'dusch ass aam buedzemmer` : le moteur indique l'excès d'une lettre dans `aam`, **sans conseil grammatical hors sujet**.
-- [ ] Une réponse corrigée à la deuxième tentative est acceptée selon les règles de la SPEC 24, sans auto-validation de la première saisie.
-- [ ] Les exemples d'erreurs grammaticales proches mais réelles restent traités comme des erreurs ; la casse et les accents tolérés restent tolérés.
-- [ ] Depuis **« Refaire mes erreurs » → « Retour à la leçon »**, l'application montre la **vue principale Chemin** avec la bonne leçon visible, **sans ouverture de sa liste d'unités**.
-- [ ] Vérifier le même cheminement pour le Retour de l'interface et d'Android, sans casser la navigation ordinaire.
-- [ ] Préserver les données de progression et relancer les tests de correction/navigation concernés avec les helpers rapides de la SPEC 39.
+- [x] Reproduire `d'dusch ass aam buedzemmer` : le moteur indique l'excès d'une lettre dans `aam`, **sans conseil grammatical hors sujet**.
+- [x] Une réponse corrigée à la deuxième tentative est acceptée selon les règles de la SPEC 24, sans auto-validation de la première saisie.
+- [x] Les exemples d'erreurs grammaticales proches mais réelles restent traités comme des erreurs ; la casse et les accents tolérés restent tolérés.
+- [x] Depuis **« Refaire mes erreurs » → « Retour à la leçon »**, l'application montre la **vue principale Chemin** avec la bonne leçon visible, **sans ouverture de sa liste d'unités**.
+- [x] Vérifier le même cheminement pour le Retour de l'interface et d'Android, sans casser la navigation ordinaire.
+- [x] Préserver les données de progression et relancer les tests de correction/navigation concernés avec les helpers rapides de la SPEC 39.
 
 ## Livraison attendue
 
 Implémenter un correctif **minimal**, avec tests de non-régression. Ne pas refondre le moteur de correction ni les écrans de navigation, et ne pas modifier les données des leçons. Documenter les fichiers touchés et les tests réellement exécutés ; ne passer le statut à « Implémentée — validation à confirmer » qu'après livraison du code.
+
+## Implémentation (18/10/2026)
+
+### 1. Faute de frappe localisée — `public/diagnostic.js`
+
+- **Cause :** `am` est un mot court, donc `aam` est classé `mot_court` par `analyserReponse` (SPEC 24). C'est une vraie erreur, à juste titre. Mais l'aide affichait ensuite le diagnostic générique « une lettre à corriger » et la règle de grammaire masquée.
+- **Correctif :** nouvelle fonction `diagnosticLettre()`, utilisée au 1er essai par `aideErreur()` (parcours, mot caché, mission, révision). Elle donne une indication **seulement si** :
+  - un seul mot diffère, d'une seule lettre ;
+  - le mot tapé n'existe pas (ni forme protégée, ni mot du vocabulaire des leçons).
+- Message affiché : « Presque ! Une lettre en trop / Il manque une lettre / Une lettre à changer / Deux lettres inversées dans « mot » », avec le mot tel qu'il a été tapé. La règle de grammaire n'est alors pas affichée.
+- **Inchangé :**
+  - un autre mot réel (« an » pour « am »), un article, un pronom, un verbe protégé, plusieurs erreurs : aide habituelle, règle comprise ;
+  - la coquille gratuite de la SPEC 24 ;
+  - la 2e tentative obligatoire : rien n'est validé automatiquement.
+
+### 2. Retour au Chemin principal — `parcours.js`, `chemin.js`, `navigation.js`
+
+- Résultats de « Refaire mes erreurs » : l'action principale reste « Mon chemin ». Le bouton secondaire « Retour à la leçon » (liste des unités) n'est plus proposé.
+- `cheminSurLecon()` : chemin principal, leçon **repliée** (pas de liste des unités) et centrée. Cela ajuste la SPEC 40, qui la dépliait.
+- Retour (flèche, Android, navigateur) depuis ces résultats : même destination, même si la fiche de leçon est dans l'historique. Le Retour suivant mène à l'accueil.
+- Les autres retours ne changent pas.
+
+### Tests
+
+- `tests/test_rappels.py` (déjà dans la suite critique), complété :
+  - cas réel `d'dusch ass aam buedzemmer` (leçon 21, item 2005), avec acceptation au 2e essai seulement ;
+  - `an` (autre mot réel) qui garde la règle ;
+  - forme protégée, plusieurs erreurs, casse et accents tolérés ;
+  - chemin replié et centré par le bouton et par Retour, y compris en venant de la fiche de leçon.
+- Suite critique `bash tools/critique.sh` : verte.
+
+**Reste ouvert :** recette Android.

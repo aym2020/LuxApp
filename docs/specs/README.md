@@ -55,7 +55,7 @@ Ce répertoire centralise les **41 spécifications** fonctionnelles et UX du pro
 | 38 | [Retour après une leçon commencée : ne pas rouvrir l'introduction](./SPEC-38.md) | P0 | Implémentée — validation à confirmer |
 | 39 | [Outillage de test : suite critique en ~1 min 30 sans perte de couverture](./SPEC-39.md) | P1 | Implémentée — validation à confirmer |
 | 40 | [Correction lisible, rappels des erreurs limités, retour au chemin après « Refaire mes erreurs »](./SPEC-40.md) | P1 | Implémentée — validation à confirmer |
-| 41 | [Coquilles expliquées précisément et retour au véritable Chemin après rattrapage](./SPEC-41.md) | P1 | À faire |
+| 41 | [Coquilles expliquées précisément et retour au véritable Chemin après rattrapage](./SPEC-41.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

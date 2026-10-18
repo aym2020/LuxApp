@@ -1,4 +1,4 @@
-"""Spec 40 : phrase « reviendra » séparée de la réponse ; une question ratée
+"""Specs 40 et 41 : phrase « reviendra » séparée de la réponse ; une question ratée
 revient au plus 2 fois dans l'étape puis part en révision ; réussie du premier
 coup à son rappel, elle sort tout de suite ; après « Refaire mes erreurs », le
 chemin s'ouvre centré sur la leçon."""
@@ -140,7 +140,7 @@ with sync_playwright() as p:
         assert vue(pg) == 'view-pfin'
         if sortie == 'bouton':
             assert pg.inner_text('#pf-suite').startswith('Mon chemin'), pg.inner_text('#pf-suite')
-            assert pg.locator('#pf-content button:has-text("Retour à la leçon")').count() == 1
+            assert pg.locator('#pf-content button:has-text("Retour à la leçon")').count() == 0, 'spec 41 : pas de liste des unités'
             pg.click('#pf-suite')
         else:
             pg.go_back()
@@ -148,9 +148,53 @@ with sync_playwright() as p:
         assert vue(pg) == 'view-lessons', vue(pg)
         c = centree(pg, L)
         assert c['y'] > 0 and abs(c['milieu'] - c['zone']) < 4 if c['bas'] - c['haut'] < 2 * c['zone'] - 24 else c['haut'] > 0, c
-        assert pg.locator('#chemin-lecon-%d.ouverte' % L).count() == 1
+        assert pg.locator('#chemin-lecon-%d.ouverte' % L).count() == 0 and pg.locator('#chemin-lecon-%d' % L).count() == 1
         ok('Refaire mes erreurs → ' + ('« Mon chemin »' if sortie == 'bouton' else 'Retour') +
-           ' : chemin, leçon %d dépliée et centrée (défilement %d px)' % (L, c['y']))
+           ' : chemin principal, leçon %d repliée et centrée (défilement %d px)' % (L, c['y']))
+
+    # Spec 41 : entrée par la fiche de leçon (liste des unités dans l'historique) → Retour : chemin quand même
+    pg.evaluate("goLessons()")
+    pg.evaluate("openParcoursLecon(lecons.find(l => l.id === %d))" % L)
+    pg.evaluate("openIntro(1)")
+    pg.click('#pi-commencer')
+    finir(pg, erreurs=1)
+    pg.click('text=Refaire mes erreurs')
+    finir(pg)
+    assert 'view-plecon' in pg.evaluate("pileNav.map(e => e.vue)")
+    pg.go_back(); pg.wait_for_timeout(150)
+    assert vue(pg) == 'view-lessons' and pg.locator('#chemin-lecon-%d.ouverte' % L).count() == 0, vue(pg)
+    assert centree(pg, L)['visible']
+    pg.go_back(); pg.wait_for_timeout(150)
+    assert vue(pg) == 'view-dashboard', 'pas de rebond vers la liste des unités'
+    ok('entrée par la fiche de leçon → Refaire mes erreurs → Retour : chemin principal (pas la liste des unités), puis accueil')
+
+    # ── Spec 41 : faute de frappe localisée (cas réel, leçon 21) ──
+    pg.evaluate("choisirNiveau('A1.2'); openParcoursLecon(lecons.find(l => l.id === 21)); startEtapeSeule(1, 'ecriture')")
+    while pg.evaluate("trouverItem(pLecon, 'ecriture', run.steps[0].queue[0]).id") != 2005:
+        ecrire(pg, bonne_reponse(pg)); pg.click('#pc-continuer')
+    ecrire(pg, "d'dusch ass aam buedzemmer")
+    err = pg.inner_text('#pc-ecr-erreur')
+    assert 'Une lettre en trop dans « aam »' in err, err
+    assert 'Attention' not in err and 'Schlofz' not in err, err
+    assert not pg.evaluate('pAttente') and pg.input_value('#pc-ecr-input') == "d'dusch ass aam buedzemmer", 'pas d\'auto-validation'
+    ecrire(pg, "d'dusch ass am buedzemmer")
+    assert 'Juste, au 2e essai' in pg.inner_text('#pc-feedback')
+    pg.click('#pc-continuer')
+    ok('« aam » au lieu de « am » : « Une lettre en trop dans « aam » », sans règle hors sujet ; accepté au 2e essai seulement')
+
+    # Un autre mot réel (« an ») ou une forme protégée : vraie erreur, aide habituelle
+    pg.evaluate("startEtapeSeule(1, 'ecriture')")
+    while pg.evaluate("trouverItem(pLecon, 'ecriture', run.steps[0].queue[0]).id") != 2005:
+        ecrire(pg, bonne_reponse(pg)); pg.click('#pc-continuer')
+    ecrire(pg, "d'dusch ass an buedzemmer")
+    err = pg.inner_text('#pc-ecr-erreur')
+    assert '« an »' not in err and 'Attention' in err, err
+    ok('« an » (un autre mot réel) : pas d\'indication de frappe, la règle « am » reste affichée')
+    d = pg.evaluate('''() => [diagnosticLettre("Ech sin Lëtzebuerger", "Ech sinn Lëtzebuerger."),
+        diagnosticLettre("Dat si mi Elteren", "Dat sinn meng Elteren."),
+        diagnosticLettre("D'Dusch ass am Buedzëmmer", "D'Dusch ass am Buedzëmmer.")]''')
+    assert d == ['', '', ''], d
+    ok('forme protégée (sin/sinn), plusieurs erreurs, réponse juste (casse, accents) : aucune indication de frappe')
 
     b.close()
 

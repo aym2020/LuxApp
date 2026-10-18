@@ -219,8 +219,12 @@ with sync_playwright() as p:
     assert page.evaluate('getUnitBest(2, 1)') == best
     ok('« Refaire mes erreurs » : ' + str(total) + ' items, étoiles de l\'unité inchangées')
 
+    # Spec 41 : après « Refaire mes erreurs », l'action est « Mon chemin » (plus de « Retour à la leçon »)
+    assert page.inner_text('#pf-suite').startswith('Mon chemin')
+    assert page.locator('#view-pfin button:has-text("Retour à la leçon")').count() == 0
+
     # 8. Unité 2 : 3 réponses, quitter, reprendre après rechargement
-    page.click('text=Retour à la leçon')
+    page.evaluate('openParcoursLecon(lecons.find(l => l.id === 2))')
     page.click('.pl-unit:has-text("UNITÉ 2") button:has-text("Commencer")')
     page.click('#pi-commencer')
     for _ in range(3):

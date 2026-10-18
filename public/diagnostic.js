@@ -82,6 +82,35 @@ function distance(a, b) {
   return ligne[b.length];
 }
 
+// ─── 1 bis. UNE LETTRE DE TRAVERS, LOCALISÉE (spec 41) ──────────────────────
+// Une seule lettre de différence sur un seul mot, et le mot tapé n'existe
+// pas : c'est une faute de frappe, on montre le mot et la nature de l'écart.
+// Reste une vraie erreur (pas de correction gratuite) : on réessaie.
+// Pas d'indication si le mot tapé est un autre mot réel (« an » pour « am »),
+// une forme protégée (article, pronom, verbe fréquent) ou si l'écart est plus grand.
+const ECART_LETTRE = {
+  doublon: 'Une lettre en trop dans',
+  ajout: 'Une lettre en trop dans',
+  omission: 'Il manque une lettre dans',
+  substitution: 'Une lettre à changer dans',
+  inversion: 'Deux lettres inversées dans'
+};
+
+function diagnosticLettre(reponse, attendu) {
+  if (typeof analyserReponse !== 'function') return '';
+  const a = analyserReponse(reponse, attendu);
+  if (a.statut !== 'erreur' || !a.mot || !['mot_court', 'trop_different'].includes(a.typeErreur)) return '';
+  const { attendu: bon, saisi } = a.mot;
+  if (!saisi || distanceEdition(bon, saisi) !== 1) return '';
+  if (FORMES_PROTEGEES.has(saisi) || vocabulaireConnu().has(saisi)) return '';
+  const debut = ECART_LETTRE[natureEcart(bon, saisi).type];
+  if (!debut) return '';
+  // Le mot tel que l'utilisateur l'a tapé (majuscules et accents compris).
+  const tape = String(reponse).replace(/[’`´]/g, "'").split(/[\s.!?,;:()«»"–—-]+/)
+    .find(m => normaliserMot(m) === saisi) || saisi;
+  return 'Presque ! ' + debut + ' « ' + tape + ' ».';
+}
+
 // ─── 2. POINT D'ATTENTION MASQUÉ ────────────────────────────────────────────
 // Les mots qui donneraient la réponse : la réponse entière, le mot avec son
 // article, et chaque mot de 4 lettres ou plus de la réponse.
@@ -123,6 +152,10 @@ function echapperRegex(texte) {
 // Renvoie { diagnostic, attention } : à chaque écran de les afficher à sa façon.
 function aideErreur(val, item, attention, essai) {
   if (essai <= 1) {
+    // Une lettre de travers dans un mot qui n'existe pas : on dit où, et la
+    // règle de grammaire (hors sujet) n'est pas affichée (spec 41).
+    const lettre = diagnosticLettre(val, item.lu);
+    if (lettre) return { diagnostic: lettre, attention: '' };
     return { diagnostic: diagnostic(val, item.lu), attention: masquerReponse(attention, item) };
   }
   return { diagnostic: '', attention: attention || '' };

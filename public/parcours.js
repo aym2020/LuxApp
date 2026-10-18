@@ -1555,8 +1555,8 @@ function suiteFin(r, u) {
   } else if (r.mode === 'plus' && pLecon.scene && !missionReussie(pLecon)) {
     return { libelle: 'Jouer la mission', onclick: 'openMission()', retour: false };
   }
-  // Après « Refaire mes erreurs » : le chemin, centré sur la leçon (spec 40) ;
-  // « Retour à la leçon » reste dans les actions secondaires.
+  // Après « Refaire mes erreurs » : le chemin principal, centré sur la leçon
+  // (specs 40-41) ; pas de « Retour à la leçon » (liste des unités).
   if (r.mode === 'erreurs') return { libelle: 'Mon chemin', onclick: 'cheminSurLecon(pLecon.id)', retour: false };
   const fil = unitesCoeur(pLecon);
   const prochaine = fil.find(x => getUnitBest(pLecon.id, x.id) == null);
@@ -1578,7 +1578,7 @@ function boutonsFinHtml(r, u, suite) {
     html += '<button class="pc-btn plus wide" onclick="startUnite(' + u.id + ', \'plus\')">' +
       (getPlusFait(pLecon.id, u.id) ? '✓ ' : '') + 'Élargir : ' + textePlus(pLecon, u.id) + ' de plus · ' + minutesPour(nb) + ' min</button>';
   }
-  if (!suite.retour) {
+  if (!suite.retour && r.mode !== 'erreurs') {
     const fil = unitesCoeur(pLecon);
     const prochaine = fil.find(x => getUnitBest(pLecon.id, x.id) == null);
     const cible = r.mode === 'unite' && prochaine ? prochaine.id : r.uniteId;
