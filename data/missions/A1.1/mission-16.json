@@ -1,0 +1,131 @@
+{
+  "id": 16,
+  "lecon_id": 16,
+  "niveau": "A1.1",
+  "titre": "Une journée bien remplie",
+  "contexte_fr": "Deux personnes racontent leur journée, du réveil au coucher.",
+  "objectif_fr": "Décrire les activités quotidiennes et placer correctement les compléments de temps.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Um wéi vill Auer erwächts du?",
+      "fr": "À quelle heure te réveilles-tu ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech erwächen um sechs Auer.",
+      "fr": "Je me réveille à six heures."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Wat méchs du dann?",
+      "fr": "Que fais-tu ensuite ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Ech duschen.",
+      "fr": "Je me douche."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Drénks du moies Kaffi?",
+      "fr": "Bois-tu du café le matin ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech drénke moies Kaffi.",
+      "fr": "Oui, je bois du café le matin."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi gees du op d'Aarbecht?",
+      "fr": "Comment vas-tu au travail ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Ech fuere mam Bus.",
+      "fr": "Je vais en bus."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wéini gees du eraus?",
+      "fr": "Quand sors-tu ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Ech ginn um véierel op siwen eraus.",
+      "fr": "Je sors à sept heures et quart."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wat méchs du mëttes?",
+      "fr": "Que fais-tu à midi ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Ech iessen am Restaurant.",
+      "fr": "Je mange au restaurant."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wéini gees du heem?",
+      "fr": "Quand rentres-tu chez toi ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Ech ginn um hallwer siwen owes heem.",
+      "fr": "Je rentre chez moi à dix-huit heures trente."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Wat méchs du owes?",
+      "fr": "Que fais-tu le soir ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Ech kucken d'Tëlee.",
+      "fr": "Je regarde la télé."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Um wéi vill Auer gees du schlofen?",
+      "fr": "À quelle heure vas-tu dormir ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Ech gi géint zéng Auer schlofen.",
+      "fr": "Je vais me coucher vers dix heures."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Dat ass e laangen Dag!",
+      "fr": "C’est une longue journée !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech sinn midd.",
+      "fr": "Oui, je suis fatigué(e)."
+    }
+  ]
+}

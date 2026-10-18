@@ -1,0 +1,3281 @@
+{
+  "version": "brouillon_contenu_2026-10-18",
+  "note": "Contenus de missions conversationnelles, poussés comme brouillons pédagogiques le 18 octobre 2026. Format indépendant des specs techniques 23/24. Leçons 18 et 19 absentes de main : propositions provisoires, non intégrables telles quelles. Audit linguistique exhaustif à effectuer.",
+  "missions": [
+    {
+      "id": 1,
+      "lecon_id": 1,
+      "niveau": "A1.1",
+      "titre": "Première rencontre",
+      "contexte_fr": "Deux personnes font connaissance et se saluent.",
+      "objectif_fr": "Saluer, prendre des nouvelles, se présenter et prendre congé.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Moien!",
+          "fr": "Bonjour !"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Moien!",
+          "fr": "Bonjour !"
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi geet et dir?",
+          "fr": "Comment vas-tu ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Mir geet et gutt, merci. An dir?",
+          "fr": "Je vais bien, merci. Et toi ?"
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Och gutt, merci!",
+          "fr": "Bien aussi, merci !"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Dat freet mech.",
+          "fr": "Ça me fait plaisir."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi heeschs du?",
+          "fr": "Comment t’appelles-tu ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Ech heesche Marie.",
+          "fr": "Je m’appelle Marie."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Mäin Numm ass Tom.",
+          "fr": "Mon nom est Tom."
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Et freet mech, Tom.",
+          "fr": "Enchantée, Tom."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Mech och, Marie.",
+          "fr": "Moi aussi, Marie."
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Wéi geet et dir haut?",
+          "fr": "Comment vas-tu aujourd’hui ?"
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ganz gutt, merci!",
+          "fr": "Très bien, merci !"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Schéin!",
+          "fr": "Super !"
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ech muss elo goen.",
+          "fr": "Je dois partir maintenant."
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Dat ass an der Rei.",
+          "fr": "D’accord."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Äddi, Marie!",
+          "fr": "Au revoir, Marie !"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Äddi, Tom!",
+          "fr": "Au revoir, Tom !"
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Schéinen Dag nach!",
+          "fr": "Bonne journée !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Merci, gläichfalls!",
+          "fr": "Merci, également !"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "lecon_id": 2,
+      "niveau": "A1.1",
+      "titre": "Dans une salle de classe",
+      "contexte_fr": "Deux apprenants identifient les objets disposés sur une table.",
+      "objectif_fr": "Utiliser e, en, eng et la négation correcte.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat eng Dier?",
+          "fr": "Est-ce que c’est une porte ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Nee, dat ass keng Dier.",
+          "fr": "Non, ce n’est pas une porte."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat en Dësch?",
+          "fr": "Est-ce que c’est une table ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass en Dësch.",
+          "fr": "Oui, c’est une table."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat eng Luucht?",
+          "fr": "Est-ce que c’est une lampe ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass eng Luucht.",
+          "fr": "Oui, c’est une lampe."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat e Buch?",
+          "fr": "Est-ce que c’est un livre ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass e Buch.",
+          "fr": "Oui, c’est un livre."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat en Telefon?",
+          "fr": "Est-ce que c’est un téléphone ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, dat ass keen Telefon.",
+          "fr": "Non, ce n’est pas un téléphone."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat eng Fënster?",
+          "fr": "Est-ce que c’est une fenêtre ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass eng Fënster.",
+          "fr": "Oui, c’est une fenêtre."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat e Stull?",
+          "fr": "Est-ce que c’est une chaise ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass e Stull.",
+          "fr": "Oui, c’est une chaise."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat eng Taass?",
+          "fr": "Est-ce que c’est une tasse ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass eng Taass.",
+          "fr": "Oui, c’est une tasse."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat en Auto?",
+          "fr": "Est-ce que c’est une voiture ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Nee, dat ass keen Auto.",
+          "fr": "Non, ce n’est pas une voiture."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat e Glas?",
+          "fr": "Est-ce que c’est un verre ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass e Glas.",
+          "fr": "Oui, c’est un verre."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "lecon_id": 3,
+      "niveau": "A1.1",
+      "titre": "Quelles couleurs ?",
+      "contexte_fr": "Deux personnes décrivent la couleur de plusieurs objets.",
+      "objectif_fr": "Nommer les couleurs, questionner et nier avec net.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wat fir eng Faarf huet den Auto?",
+          "fr": "De quelle couleur est la voiture ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Den Auto ass rout.",
+          "fr": "La voiture est rouge."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Bus och rout?",
+          "fr": "Le bus est-il rouge aussi ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Nee, de Bus ass gréng.",
+          "fr": "Non, le bus est vert."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wat fir eng Faarf huet d'Dier?",
+          "fr": "De quelle couleur est la porte ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "D'Dier ass wäiss.",
+          "fr": "La porte est blanche."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Fënster schwaarz?",
+          "fr": "La fenêtre est-elle noire ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Nee, d'Fënster ass net schwaarz.",
+          "fr": "Non, la fenêtre n’est pas noire."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi ass d'Buch?",
+          "fr": "Comment est le livre ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "D'Buch ass blo.",
+          "fr": "Le livre est bleu."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wat fir eng Faarf huet d'Taass?",
+          "fr": "De quelle couleur est la tasse ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "D'Taass ass giel.",
+          "fr": "La tasse est jaune."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Luucht rosa?",
+          "fr": "La lampe est-elle rose ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, d'Luucht ass rosa.",
+          "fr": "Oui, la lampe est rose."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Wat fir eng Faarf huet den Dësch?",
+          "fr": "De quelle couleur est la table ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Den Dësch ass brong.",
+          "fr": "La table est marron."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Stull och brong?",
+          "fr": "La chaise est-elle marron aussi ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Nee, de Stull ass gro.",
+          "fr": "Non, la chaise est grise."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "An d'Bild?",
+          "fr": "Et le tableau ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "D'Bild ass orange.",
+          "fr": "Le tableau est orange."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "lecon_id": 4,
+      "niveau": "A1.1",
+      "titre": "Choisir les bons objets",
+      "contexte_fr": "Deux personnes comparent des objets avant de les utiliser.",
+      "objectif_fr": "Employer des adjectifs contraires dans des phrases simples.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Ass den Auto nei?",
+          "fr": "La voiture est-elle neuve ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Nee, den Auto ass al.",
+          "fr": "Non, la voiture est vieille."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Haus grouss?",
+          "fr": "La maison est-elle grande ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Nee, d'Haus ass kleng.",
+          "fr": "Non, la maison est petite."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Buch schwéier?",
+          "fr": "Le livre est-il lourd ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Nee, d'Buch ass liicht.",
+          "fr": "Non, le livre est léger."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Bus séier?",
+          "fr": "Le bus est-il rapide ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, de Bus ass séier.",
+          "fr": "Oui, le bus est rapide."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Ass den Zuch och séier?",
+          "fr": "Le train est-il rapide aussi ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, den Zuch ass lues.",
+          "fr": "Non, le train est lent."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Ass den Dësch ronn?",
+          "fr": "La table est-elle ronde ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Nee, den Dësch ass eckeg.",
+          "fr": "Non, la table est anguleuse."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass den Auto deier?",
+          "fr": "La voiture est-elle chère ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, den Auto ass deier.",
+          "fr": "Oui, la voiture est chère."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Haus bëlleg?",
+          "fr": "La maison est-elle bon marché ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Nee, d'Haus ass net bëlleg.",
+          "fr": "Non, la maison n’est pas bon marché."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Glas voll?",
+          "fr": "Le verre est-il plein ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Nee, d'Glas ass eidel.",
+          "fr": "Non, le verre est vide."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat Buch déck?",
+          "fr": "Ce livre est-il épais ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Nee, dat Buch ass dënn.",
+          "fr": "Non, ce livre est mince."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "lecon_id": 5,
+      "niveau": "A1.1",
+      "titre": "Compter au marché",
+      "contexte_fr": "Deux amis s’entraînent à compter les produits et à lire des nombres.",
+      "objectif_fr": "Réutiliser les nombres et les formes composées déjà étudiées.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill Äppel sinn dat?",
+          "fr": "Combien y a-t-il de pommes ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Dat si fënnef Äppel.",
+          "fr": "Ce sont cinq pommes."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "An hei, wéi vill Bicher sinn dat?",
+          "fr": "Et ici, combien y a-t-il de livres ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Dat sinn zéng Bicher.",
+          "fr": "Ce sont dix livres."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill Käerze ginn et?",
+          "fr": "Combien de bougies y a-t-il ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Et sinn aacht Käerzen.",
+          "fr": "Il y a huit bougies."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wat kënnt no zwanzeg?",
+          "fr": "Qu’est-ce qui vient après vingt ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Eenanzwanzeg.",
+          "fr": "Vingt et un."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wat kënnt no nénganzwanzeg?",
+          "fr": "Qu’est-ce qui vient après vingt-neuf ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Drësseg.",
+          "fr": "Trente."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill ass véierzeg an dräi?",
+          "fr": "Combien font quarante et trois ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Dräiavéierzeg.",
+          "fr": "Quarante-trois."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill ass siechzeg an aacht?",
+          "fr": "Combien font soixante et huit ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Aachtasiechzeg.",
+          "fr": "Soixante-huit."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill ass aachtzeg an eent?",
+          "fr": "Combien font quatre-vingts et un ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Eenanaachtzeg.",
+          "fr": "Quatre-vingt-un."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wat kënnt virun honnert?",
+          "fr": "Qu’est-ce qui vient avant cent ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Néngannonzeg.",
+          "fr": "Quatre-vingt-dix-neuf."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "A wat kënnt no néngannonzeg?",
+          "fr": "Et qu’est-ce qui vient après quatre-vingt-dix-neuf ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Honnert.",
+          "fr": "Cent."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "lecon_id": 6,
+      "niveau": "A1.1",
+      "titre": "Combien d’objets ?",
+      "contexte_fr": "Deux personnes inventorient les affaires dans une pièce.",
+      "objectif_fr": "Identifier les pluriels usuels et choisir zwee ou zwou.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwee Bicher?",
+          "fr": "As-tu deux livres ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwee Bicher.",
+          "fr": "Oui, j’ai deux livres."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwou Taassen?",
+          "fr": "As-tu deux tasses ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwou Taassen.",
+          "fr": "Oui, j’ai deux tasses."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwee Autoen?",
+          "fr": "As-tu deux voitures ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech hunn zwee Vëloen.",
+          "fr": "Non, j’ai deux vélos."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwou Fläschen?",
+          "fr": "As-tu deux bouteilles ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwou Fläschen.",
+          "fr": "Oui, j’ai deux bouteilles."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwee Haiser?",
+          "fr": "As-tu deux maisons ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech hunn een Haus.",
+          "fr": "Non, j’ai une maison."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwee Biller?",
+          "fr": "As-tu deux tableaux ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwee Biller.",
+          "fr": "Oui, j’ai deux tableaux."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwou Dieren?",
+          "fr": "As-tu deux portes ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwou Dieren.",
+          "fr": "Oui, j’ai deux portes."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwee Dëscher?",
+          "fr": "As-tu deux tables ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech hunn een Dësch.",
+          "fr": "Non, j’ai une table."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwee Blieder?",
+          "fr": "As-tu deux feuilles ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwee Blieder.",
+          "fr": "Oui, j’ai deux feuilles."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du zwou Fënsteren?",
+          "fr": "As-tu deux fenêtres ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwou Fënsteren.",
+          "fr": "Oui, j’ai deux fenêtres."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "lecon_id": 7,
+      "niveau": "A1.1",
+      "titre": "D’où viens-tu ?",
+      "contexte_fr": "Deux nouveaux collègues font connaissance et parlent de leur pays d’origine.",
+      "objectif_fr": "Utiliser kommen et les prépositions d’origine.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Vu wou kënns du?",
+          "fr": "D’où viens-tu ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech kommen aus Frankräich.",
+          "fr": "Je viens de France."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Kënns du aus der Belsch?",
+          "fr": "Viens-tu de Belgique ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech kommen aus Frankräich.",
+          "fr": "Non, je viens de France."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Vu wou kënnt de Ronaldo?",
+          "fr": "D’où vient Ronaldo ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "De Ronaldo kënnt aus Portugal.",
+          "fr": "Ronaldo vient du Portugal."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "A vu wou kënnt de Guillaume?",
+          "fr": "Et d’où vient Guillaume ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "De Guillaume kënnt vu Lëtzebuerg.",
+          "fr": "Guillaume vient du Luxembourg."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Kënnt d'Marie aus der Schwäiz?",
+          "fr": "Marie vient-elle de Suisse ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Jo, d'Marie kënnt aus der Schwäiz.",
+          "fr": "Oui, Marie vient de Suisse."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "A vum Cap Vert?",
+          "fr": "Et du Cap-Vert ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "De Paulo kënnt vum Cap Vert.",
+          "fr": "Paulo vient du Cap-Vert."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Kënnt de Karim aus dem Iran?",
+          "fr": "Karim vient-il d’Iran ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, de Karim kënnt aus dem Iran.",
+          "fr": "Oui, Karim vient d’Iran."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Kënnt d'Anna aus Däitschland?",
+          "fr": "Anna vient-elle d’Allemagne ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, d'Anna kënnt aus Däitschland.",
+          "fr": "Oui, Anna vient d’Allemagne."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "An du, kënns du vu Lëtzebuerg?",
+          "fr": "Et toi, viens-tu du Luxembourg ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech kommen aus Frankräich.",
+          "fr": "Non, je viens de France."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Merci fir deng Äntwerten!",
+          "fr": "Merci pour tes réponses !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Gär geschitt!",
+          "fr": "Je t’en prie !"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "lecon_id": 8,
+      "niveau": "A1.1",
+      "titre": "Qui est de quelle nationalité ?",
+      "contexte_fr": "Deux personnes présentent des collègues de différents pays.",
+      "objectif_fr": "Utiliser les nationalités au masculin et au féminin sans les confondre avec les langues.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wat ass dem Paulo seng Nationalitéit?",
+          "fr": "Quelle est la nationalité de Paulo ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Hien ass Portugis.",
+          "fr": "Il est portugais."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Anna och Portugisin?",
+          "fr": "Anna est-elle aussi portugaise ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Nee, si ass Däitsch.",
+          "fr": "Non, elle est allemande."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wat ass dem Jean seng Nationalitéit?",
+          "fr": "Quelle est la nationalité de Jean ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Hien ass Fransous.",
+          "fr": "Il est français."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Claire Fransousin?",
+          "fr": "Claire est-elle française ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, si ass Fransousin.",
+          "fr": "Oui, elle est française."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wat ass dem Carlos seng Nationalitéit?",
+          "fr": "Quelle est la nationalité de Carlos ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Hien ass Spuenier.",
+          "fr": "Il est espagnol."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "An d'Lucia?",
+          "fr": "Et Lucia ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Si ass Spuenierin.",
+          "fr": "Elle est espagnole."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Tom Lëtzebuerger?",
+          "fr": "Tom est-il luxembourgeois ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien ass Lëtzebuerger.",
+          "fr": "Oui, il est luxembourgeois."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Marie Lëtzebuergerin?",
+          "fr": "Marie est-elle luxembourgeoise ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, si ass Lëtzebuergerin.",
+          "fr": "Oui, elle est luxembourgeoise."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wat ass dem Marco seng Nationalitéit?",
+          "fr": "Quelle est la nationalité de Marco ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Hien ass Italiener.",
+          "fr": "Il est italien."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "An d'Giulia?",
+          "fr": "Et Giulia ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Si ass Italienerin.",
+          "fr": "Elle est italienne."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "lecon_id": 9,
+      "niveau": "A1.1",
+      "titre": "Quelles langues parles-tu ?",
+      "contexte_fr": "Des collègues découvrent les langues qu’ils parlent.",
+      "objectif_fr": "Utiliser schwätzen, les noms de langues et la négation.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wat fir eng Sprooch schwätz du?",
+          "fr": "Quelle langue parles-tu ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech schwätzen Franséisch.",
+          "fr": "Je parle français."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Schwätz du Lëtzebuergesch?",
+          "fr": "Parles-tu luxembourgeois ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech schwätzen e bëssen Lëtzebuergesch.",
+          "fr": "Oui, je parle un peu luxembourgeois."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Schwätz du och Däitsch?",
+          "fr": "Parles-tu aussi allemand ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech schwätzen net Däitsch.",
+          "fr": "Non, je ne parle pas allemand."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Schwätzt de Paulo Portugisesch?",
+          "fr": "Paulo parle-t-il portugais ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien schwätzt Portugisesch.",
+          "fr": "Oui, il parle portugais."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Schwätzt d'Lucia Spuenesch?",
+          "fr": "Lucia parle-t-elle espagnol ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Jo, si schwätzt Spuenesch.",
+          "fr": "Oui, elle parle espagnol."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Schwätzt de Tom Englesch?",
+          "fr": "Tom parle-t-il anglais ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien schwätzt Englesch.",
+          "fr": "Oui, il parle anglais."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Schwätzt d'Giulia Italienesch?",
+          "fr": "Giulia parle-t-elle italien ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, si schwätzt Italienesch.",
+          "fr": "Oui, elle parle italien."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Schwätz du Japanesch?",
+          "fr": "Parles-tu japonais ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech schwätzen net Japanesch.",
+          "fr": "Non, je ne parle pas japonais."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "A wéi eng Sprooch léiers du?",
+          "fr": "Et quelle langue apprends-tu ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Ech léieren Lëtzebuergesch.",
+          "fr": "J’apprends le luxembourgeois."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Dat ass flott!",
+          "fr": "C’est chouette !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Merci!",
+          "fr": "Merci !"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "lecon_id": 10,
+      "niveau": "A1.1",
+      "titre": "Où habites-tu ?",
+      "contexte_fr": "Deux collègues parlent de leur ville, de leur pays et de leur quartier.",
+      "objectif_fr": "Choisir correctement a, an, an der, zu, um et am.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wou wunns du?",
+          "fr": "Où habites-tu ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech wunnen zu Metz.",
+          "fr": "J’habite à Metz."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Wunns du a Frankräich?",
+          "fr": "Habites-tu en France ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech wunnen a Frankräich.",
+          "fr": "Oui, j’habite en France."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wunnt de Tom zu Lëtzebuerg?",
+          "fr": "Tom habite-t-il au Luxembourg ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien wunnt zu Lëtzebuerg.",
+          "fr": "Oui, il habite au Luxembourg."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wunnt d'Anna an Däitschland?",
+          "fr": "Anna habite-t-elle en Allemagne ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, si wunnt an Däitschland.",
+          "fr": "Oui, elle habite en Allemagne."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wunnt d'Claire an der Belsch?",
+          "fr": "Claire habite-t-elle en Belgique ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Jo, si wunnt an der Belsch.",
+          "fr": "Oui, elle habite en Belgique."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wunnt de Jean an der Schwäiz?",
+          "fr": "Jean habite-t-il en Suisse ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Nee, hien wunnt zu Paräis.",
+          "fr": "Non, il habite à Paris."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wunns du an der Stad?",
+          "fr": "Habites-tu en ville ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech wunnen net an der Stad.",
+          "fr": "Non, je n’habite pas en ville."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Wunnt de Paul um Kirchberg?",
+          "fr": "Paul habite-t-il au Kirchberg ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien wunnt um Kirchberg.",
+          "fr": "Oui, il habite au Kirchberg."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wunnt d'Marie am Gronn?",
+          "fr": "Marie habite-t-elle au Grund ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, si wunnt am Gronn.",
+          "fr": "Oui, elle habite au Grund."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Wou wunnt de Paulo?",
+          "fr": "Où habite Paulo ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Hie wunnt zu Esch.",
+          "fr": "Il habite à Esch."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "lecon_id": 11,
+      "niveau": "A1.1",
+      "titre": "Parlons de nos métiers",
+      "contexte_fr": "À une rencontre professionnelle, deux personnes présentent leurs métiers et ceux de leurs proches.",
+      "objectif_fr": "Employer sinn, schaffen als, les articles des métiers et la négation.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wat bass du vu Beruff?",
+          "fr": "Quel est ton métier ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech sinn e Polizist.",
+          "fr": "Je suis policier."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Schaffs du als Dokter?",
+          "fr": "Travailles-tu comme médecin ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech schaffen als Polizist.",
+          "fr": "Non, je travaille comme policier."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wat ass d'Marie vu Beruff?",
+          "fr": "Quel est le métier de Marie ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Si ass eng Doktesch.",
+          "fr": "Elle est médecin."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Paulo e Bäcker?",
+          "fr": "Paulo est-il boulanger ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien ass e Bäcker.",
+          "fr": "Oui, il est boulanger."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Anna eng Bäckesch?",
+          "fr": "Anna est-elle boulangère ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, si ass keng Bäckesch.",
+          "fr": "Non, elle n’est pas boulangère."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wat schafft si?",
+          "fr": "Que fait-elle comme travail ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Si schafft als Coiffeuse.",
+          "fr": "Elle travaille comme coiffeuse."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Jean e Coiffer?",
+          "fr": "Jean est-il coiffeur ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien ass e Coiffer.",
+          "fr": "Oui, il est coiffeur."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Wat ass d'Claire vu Beruff?",
+          "fr": "Quel est le métier de Claire ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Si ass eng Polizistin.",
+          "fr": "Elle est policière."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Schafft de Tom als Metzler?",
+          "fr": "Tom travaille-t-il comme boucher ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien schafft als Metzler.",
+          "fr": "Oui, il travaille comme boucher."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "A wat bass du vu Beruff?",
+          "fr": "Et quel est ton métier ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Ech sinn e Polizist.",
+          "fr": "Je suis policier."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "lecon_id": 12,
+      "niveau": "A1.1",
+      "titre": "Où travailles-tu ?",
+      "contexte_fr": "Deux collègues parlent des lieux de travail de leurs proches.",
+      "objectif_fr": "Employer schaffen avec an/op/bei, engem et enger.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wou schaffs du?",
+          "fr": "Où travailles-tu ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech schaffen an engem Büro.",
+          "fr": "Je travaille dans un bureau."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Schaffs du an enger Bank?",
+          "fr": "Travailles-tu dans une banque ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech schaffen net an enger Bank.",
+          "fr": "Non, je ne travaille pas dans une banque."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wou schafft d'Marie?",
+          "fr": "Où travaille Marie ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Si schafft an enger Apdikt.",
+          "fr": "Elle travaille dans une pharmacie."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wou schafft de Tom?",
+          "fr": "Où travaille Tom ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Hie schafft op engem Policebüro.",
+          "fr": "Il travaille au commissariat."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wou schafft d'Anna?",
+          "fr": "Où travaille Anna ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Si schafft an enger Schoul.",
+          "fr": "Elle travaille dans une école."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wou schafft de Jean?",
+          "fr": "Où travaille Jean ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Hie schafft an engem Spidol.",
+          "fr": "Il travaille dans un hôpital."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wou schafft d'Claire?",
+          "fr": "Où travaille Claire ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Si schafft op enger Gare.",
+          "fr": "Elle travaille à la gare."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Schafft de Paul bei engem Dokter?",
+          "fr": "Paul travaille-t-il chez un médecin ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien schafft bei engem Dokter.",
+          "fr": "Oui, il travaille chez un médecin."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Schafft d'Laura an enger Librairie?",
+          "fr": "Laura travaille-t-elle dans une librairie ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, si schafft an enger Librairie.",
+          "fr": "Oui, elle travaille dans une librairie."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Wou schaffs du nach eng Kéier?",
+          "fr": "Où travailles-tu déjà ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Ech schaffen an engem Büro.",
+          "fr": "Je travaille dans un bureau."
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "lecon_id": 13,
+      "niveau": "A1.1",
+      "titre": "Faire connaissance avec la famille",
+      "contexte_fr": "Deux personnes parlent de leur situation familiale et de leurs enfants.",
+      "objectif_fr": "Utiliser les statuts familiaux, hunn, net et kee/keng.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Bass du bestuet?",
+          "fr": "Es-tu marié(e) ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech si bestuet.",
+          "fr": "Oui, je suis marié(e)."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du Kanner?",
+          "fr": "As-tu des enfants ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn zwee Kanner.",
+          "fr": "Oui, j’ai deux enfants."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du e Jong?",
+          "fr": "As-tu un fils ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn e Jong.",
+          "fr": "Oui, j’ai un fils."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du och e Meedchen?",
+          "fr": "As-tu aussi une fille ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn och e Meedchen.",
+          "fr": "Oui, j’ai aussi une fille."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Tom bestuet?",
+          "fr": "Tom est-il marié ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, hien ass net bestuet.",
+          "fr": "Non, il n’est pas marié."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Ass hie leedeg?",
+          "fr": "Est-il célibataire ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Jo, hien ass leedeg.",
+          "fr": "Oui, il est célibataire."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Anna gescheet?",
+          "fr": "Anna est-elle divorcée ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, si ass gescheet.",
+          "fr": "Oui, elle est divorcée."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du e Mupp?",
+          "fr": "As-tu un chien ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech hunn kee Mupp.",
+          "fr": "Non, je n’ai pas de chien."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du eng Kaz?",
+          "fr": "As-tu un chat ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn eng Kaz.",
+          "fr": "Oui, j’ai un chat."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Merci fir d'Gespréich!",
+          "fr": "Merci pour cette conversation !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Gär geschitt!",
+          "fr": "Avec plaisir !"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "lecon_id": 14,
+      "niveau": "A1.1",
+      "titre": "Date de naissance et anniversaire",
+      "contexte_fr": "Deux collègues se présentent et parlent de leur âge et de leur anniversaire.",
+      "objectif_fr": "Demander l’âge, lire les mois et exprimer des dates.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi al bass du?",
+          "fr": "Quel âge as-tu ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech sinn zwanzeg Joer al.",
+          "fr": "J’ai vingt ans."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "An de Tom, wéi al ass hien?",
+          "fr": "Et Tom, quel âge a-t-il ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Hien ass drësseg Joer al.",
+          "fr": "Il a trente ans."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi al ass d'Anna?",
+          "fr": "Quel âge a Anna ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Si ass véierzeg Joer al.",
+          "fr": "Elle a quarante ans."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wéini hues du Gebuertsdag?",
+          "fr": "Quand est ton anniversaire ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Ech hunn den dräizéngte Juni Gebuertsdag.",
+          "fr": "Mon anniversaire est le 13 juin."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Ass däi Gebuertsdag am Januar?",
+          "fr": "Ton anniversaire est-il en janvier ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech hunn den dräizéngte Juni Gebuertsdag.",
+          "fr": "Non, mon anniversaire est le 13 juin."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wéini bass du gebuer?",
+          "fr": "Quand es-tu né(e) ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+          "fr": "Je suis né(e) le 13 juin 1999."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass den Tom am Mäerz gebuer?",
+          "fr": "Tom est-il né en mars ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Jo, den Tom ass am Mäerz gebuer.",
+          "fr": "Oui, Tom est né en mars."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Anna am Abrëll gebuer?",
+          "fr": "Anna est-elle née en avril ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Nee, si ass am Mee gebuer.",
+          "fr": "Non, elle est née en mai."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wéini huet de Jean Gebuertsdag?",
+          "fr": "Quand est l’anniversaire de Jean ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Hien huet am Dezember Gebuertsdag.",
+          "fr": "Son anniversaire est en décembre."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Schéine Gebuertsdag!",
+          "fr": "Joyeux anniversaire !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Villmools merci!",
+          "fr": "Merci beaucoup !"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "lecon_id": 15,
+      "niveau": "A1.1",
+      "titre": "Quelle heure est-il ?",
+      "contexte_fr": "Deux collègues regardent l’heure avant de commencer leur journée.",
+      "objectif_fr": "Lire les heures, la demi-heure et les quarts, et parler des horaires.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill Auer ass et?",
+          "fr": "Quelle heure est-il ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Et ass aacht Auer.",
+          "fr": "Il est huit heures."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Ass et schonn néng Auer?",
+          "fr": "Est-il déjà neuf heures ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Nee, et ass véierel op aacht.",
+          "fr": "Non, il est huit heures et quart."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill Auer ass et elo?",
+          "fr": "Quelle heure est-il maintenant ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Et ass hallwer néng.",
+          "fr": "Il est huit heures et demie."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass et elo néng Auer?",
+          "fr": "Est-il neuf heures maintenant ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Nee, et ass véierel vir néng.",
+          "fr": "Non, il est neuf heures moins le quart."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Um wéi vill Auer fänks du un?",
+          "fr": "À quelle heure commences-tu ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Ech fänken um aacht Auer moies un.",
+          "fr": "Je commence à huit heures du matin."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Um wéi vill Auer häls du op?",
+          "fr": "À quelle heure termines-tu ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Ech halen um fënnef Auer nomëttes op.",
+          "fr": "Je termine à cinq heures de l’après-midi."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill Auer ass et?",
+          "fr": "Quelle heure est-il ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Et ass fënnef op eng.",
+          "fr": "Il est une heure cinq."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "An elo?",
+          "fr": "Et maintenant ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Et ass fënnef vir hallwer zwou.",
+          "fr": "Il est une heure vingt-cinq."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill Auer ass et owes?",
+          "fr": "Quelle heure est-il le soir ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Et ass zwanzeg op aacht owes.",
+          "fr": "Il est vingt heures vingt."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Merci, ech muss elo goen.",
+          "fr": "Merci, je dois partir maintenant."
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Äddi, bis geschwënn!",
+          "fr": "Au revoir, à bientôt !"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "lecon_id": 16,
+      "niveau": "A1.1",
+      "titre": "Une journée bien remplie",
+      "contexte_fr": "Deux personnes racontent leur journée, du réveil au coucher.",
+      "objectif_fr": "Décrire les activités quotidiennes et placer correctement les compléments de temps.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Um wéi vill Auer erwächts du?",
+          "fr": "À quelle heure te réveilles-tu ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech erwächen um sechs Auer.",
+          "fr": "Je me réveille à six heures."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Wat méchs du dann?",
+          "fr": "Que fais-tu ensuite ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Ech duschen.",
+          "fr": "Je me douche."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Drénks du moies Kaffi?",
+          "fr": "Bois-tu du café le matin ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech drénke moies Kaffi.",
+          "fr": "Oui, je bois du café le matin."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi gees du op d'Aarbecht?",
+          "fr": "Comment vas-tu au travail ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Ech fuere mam Bus.",
+          "fr": "Je vais en bus."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wéini gees du eraus?",
+          "fr": "Quand sors-tu ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Ech ginn um véierel op siwen eraus.",
+          "fr": "Je sors à sept heures et quart."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wat méchs du mëttes?",
+          "fr": "Que fais-tu à midi ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Ech iessen am Restaurant.",
+          "fr": "Je mange au restaurant."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wéini gees du heem?",
+          "fr": "Quand rentres-tu chez toi ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Ech ginn um hallwer siwen owes heem.",
+          "fr": "Je rentre chez moi à dix-huit heures trente."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Wat méchs du owes?",
+          "fr": "Que fais-tu le soir ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Ech kucken d'Tëlee.",
+          "fr": "Je regarde la télé."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Um wéi vill Auer gees du schlofen?",
+          "fr": "À quelle heure vas-tu dormir ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Ech gi géint zéng Auer schlofen.",
+          "fr": "Je vais me coucher vers dix heures."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Dat ass e laangen Dag!",
+          "fr": "C’est une longue journée !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech sinn midd.",
+          "fr": "Oui, je suis fatigué(e)."
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "lecon_id": 17,
+      "niveau": "A1.1",
+      "titre": "Prendre rendez-vous chez le médecin",
+      "contexte_fr": "Un patient téléphone à un cabinet médical pour réserver un rendez-vous.",
+      "objectif_fr": "Demander un rendez-vous, proposer un jour et une heure, accepter et remercier.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Praxis Dr Müller, gudde Moien.",
+          "fr": "Cabinet du Dr Müller, bonjour."
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Gudde Moien, ech hätt gär e Rendez-vous.",
+          "fr": "Bonjour, je voudrais un rendez-vous."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Fir wéini, wann ech gelift?",
+          "fr": "Pour quand, s’il vous plaît ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Fir e Freideg, geet dat?",
+          "fr": "Pour vendredi, est-ce possible ?"
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "E Freideg um dräi Auer nomëttes?",
+          "fr": "Vendredi à trois heures de l’après-midi ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Dat geet leider net.",
+          "fr": "Malheureusement, cela ne va pas."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi ass et mam nächste Freideg?",
+          "fr": "Et vendredi prochain ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass gutt.",
+          "fr": "Oui, ça me va."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Um hallwer eelef?",
+          "fr": "À dix heures et demie ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Jo, um hallwer eelef ass gutt.",
+          "fr": "Oui, dix heures et demie me convient."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi ass Ären Numm?",
+          "fr": "Quel est votre nom ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Mäin Numm ass Martin.",
+          "fr": "Mon nom est Martin."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi buschtawéiert Dir dat?",
+          "fr": "Comment l’épelez-vous ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "M-A-R-T-I-N.",
+          "fr": "M-A-R-T-I-N."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Merci, Här Martin.",
+          "fr": "Merci, Monsieur Martin."
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Gär geschitt.",
+          "fr": "Je vous en prie."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Also, e Freideg um hallwer eelef.",
+          "fr": "Donc, vendredi à dix heures et demie."
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass an der Rei.",
+          "fr": "Oui, c’est d’accord."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Äddi, Här Martin!",
+          "fr": "Au revoir, Monsieur Martin !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Äddi, villmools merci!",
+          "fr": "Au revoir, merci beaucoup !"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "lecon_id": 18,
+      "niveau": "A1.2",
+      "titre": "Révision : organiser une rencontre",
+      "contexte_fr": "Deux collègues organisent une rencontre et vérifient le jour et l’heure.",
+      "objectif_fr": "Réinvestir les jours et horaires étudiés en leçon 17.",
+      "statut_source": "provisoire_source_absente",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Moien! Hues du e Freideg Zäit?",
+          "fr": "Salut ! As-tu du temps vendredi ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Moien! Jo, e Freideg hunn ech Zäit.",
+          "fr": "Salut ! Oui, j’ai du temps vendredi."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Geet et moies?",
+          "fr": "Est-ce que ça va le matin ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, moies ass gutt.",
+          "fr": "Oui, le matin, c’est bien."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Um néng Auer?",
+          "fr": "À neuf heures ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Nee, um néng Auer kann ech net.",
+          "fr": "Non, je ne peux pas à neuf heures."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "An um zéng Auer?",
+          "fr": "Et à dix heures ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, um zéng Auer ass gutt.",
+          "fr": "Oui, à dix heures, c’est bien."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Treffe mir eis zu Lëtzebuerg?",
+          "fr": "On se retrouve à Luxembourg ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Jo, mir treffen eis zu Lëtzebuerg.",
+          "fr": "Oui, on se retrouve à Luxembourg."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Kënns du mam Bus?",
+          "fr": "Tu viens en bus ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech fuere mam Bus.",
+          "fr": "Oui, je viens en bus."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wéini gees du eraus?",
+          "fr": "Quand sors-tu ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Ech ginn um hallwer néng eraus.",
+          "fr": "Je sors à huit heures et demie."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat an der Rei?",
+          "fr": "Est-ce que ça va ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass an der Rei.",
+          "fr": "Oui, c’est d’accord."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Bis e Freideg!",
+          "fr": "À vendredi !"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Bis e Freideg!",
+          "fr": "À vendredi !"
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Äddi!",
+          "fr": "Au revoir !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Äddi!",
+          "fr": "Au revoir !"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "lecon_id": 19,
+      "niveau": "A1.2",
+      "titre": "Révision : décrire une pièce",
+      "contexte_fr": "Deux amis décrivent des objets et indiquent où ils se trouvent.",
+      "objectif_fr": "Réinvestir les objets, couleurs et prépositions de lieu déjà enseignés.",
+      "statut_source": "provisoire_source_absente",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass de Ball?",
+          "fr": "Où est le ballon ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "De Ball ass op der Këscht.",
+          "fr": "Le ballon est sur la boîte."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Ball rout?",
+          "fr": "Le ballon est-il rouge ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, de Ball ass rout.",
+          "fr": "Oui, le ballon est rouge."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass d'Taass?",
+          "fr": "Où est la tasse ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "D'Taass ass op dem Dësch.",
+          "fr": "La tasse est sur la table."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Taass blo?",
+          "fr": "La tasse est-elle bleue ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Nee, d'Taass ass wäiss.",
+          "fr": "Non, la tasse est blanche."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass d'Buch?",
+          "fr": "Où est le livre ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "D'Buch ass op dem Stull.",
+          "fr": "Le livre est sur la chaise."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Buch schwéier?",
+          "fr": "Le livre est-il lourd ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Nee, d'Buch ass liicht.",
+          "fr": "Non, le livre est léger."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass d'Luucht?",
+          "fr": "Où est la lampe ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "D'Luucht ass nieft dem Bett.",
+          "fr": "La lampe est à côté du lit."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass d'Luucht nei?",
+          "fr": "La lampe est-elle neuve ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, d'Luucht ass nei.",
+          "fr": "Oui, la lampe est neuve."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass d'Fënster?",
+          "fr": "Où est la fenêtre ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "D'Fënster ass hannert dem Dësch.",
+          "fr": "La fenêtre est derrière la table."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Merci fir deng Hëllef!",
+          "fr": "Merci pour ton aide !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Gär geschitt!",
+          "fr": "Avec plaisir !"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "lecon_id": 20,
+      "niveau": "A1.2",
+      "titre": "Où est le ballon ?",
+      "contexte_fr": "Un enfant déplace un ballon autour d’une boîte et demande où il est.",
+      "objectif_fr": "Employer les prépositions de lieu de la leçon dans des phrases complètes.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass de Ball?",
+          "fr": "Où est le ballon ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "De Ball ass op der Këscht.",
+          "fr": "Le ballon est sur la boîte."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "An elo, wou ass de Ball?",
+          "fr": "Et maintenant, où est le ballon ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "De Ball ass ënnert der Këscht.",
+          "fr": "Le ballon est sous la boîte."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass de Ball elo?",
+          "fr": "Où est le ballon maintenant ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "De Ball ass an der Këscht.",
+          "fr": "Le ballon est dans la boîte."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Ball virun der Këscht?",
+          "fr": "Le ballon est-il devant la boîte ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, de Ball ass virun der Këscht.",
+          "fr": "Oui, le ballon est devant la boîte."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Ball hannert der Këscht?",
+          "fr": "Le ballon est-il derrière la boîte ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, de Ball ass net hannert der Këscht.",
+          "fr": "Non, le ballon n’est pas derrière la boîte."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass de Ball dann?",
+          "fr": "Où est donc le ballon ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "De Ball ass nieft der Këscht.",
+          "fr": "Le ballon est à côté de la boîte."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Ball iwwert der Këscht?",
+          "fr": "Le ballon est-il au-dessus de la boîte ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Nee, de Ball ass ënnert der Këscht.",
+          "fr": "Non, le ballon est sous la boîte."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Ball tëschent zwou Këschten?",
+          "fr": "Le ballon est-il entre deux boîtes ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, de Ball ass tëschent zwou Këschten.",
+          "fr": "Oui, le ballon est entre deux boîtes."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "An elo, wou ass en?",
+          "fr": "Et maintenant, où est-il ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Elo ass en op der Këscht.",
+          "fr": "Maintenant, il est sur la boîte."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Gutt gemaach!",
+          "fr": "Bien joué !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Merci!",
+          "fr": "Merci !"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "lecon_id": 21,
+      "niveau": "A1.2",
+      "titre": "Retrouver les objets de la maison",
+      "contexte_fr": "Deux colocataires cherchent plusieurs objets entre la cuisine et la salle de bain.",
+      "objectif_fr": "Nommer les objets domestiques et utiliser les articles avec les lieux.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass d'Pan?",
+          "fr": "Où est la poêle ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "D'Pan ass am Kicheschaf.",
+          "fr": "La poêle est dans le placard de cuisine."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "An den Dëppen?",
+          "fr": "Et la casserole ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Den Dëppen ass am Schäffchen.",
+          "fr": "La casserole est dans le four."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Wou sinn d'Telleren?",
+          "fr": "Où sont les assiettes ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "D'Telleren sinn am Kicheschaf.",
+          "fr": "Les assiettes sont dans le placard de cuisine."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wou sinn d'Glieser?",
+          "fr": "Où sont les verres ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "D'Glieser sinn nieft dem Frigo.",
+          "fr": "Les verres sont à côté du réfrigérateur."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass d'Spullmaschinn?",
+          "fr": "Où est le lave-vaisselle ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "D'Spullmaschinn ass an der Kichen.",
+          "fr": "Le lave-vaisselle est dans la cuisine."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass de Spullsteen?",
+          "fr": "Où est l’évier ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "De Spullsteen ass an der Kichen.",
+          "fr": "L’évier est dans la cuisine."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass de Becher?",
+          "fr": "Où est le gobelet ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "De Becher ass um Lavabo.",
+          "fr": "Le gobelet est sur le lavabo."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass de Lavabo am Buedzëmmer?",
+          "fr": "Le lavabo est-il dans la salle de bain ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, de Lavabo ass am Buedzëmmer.",
+          "fr": "Oui, le lavabo est dans la salle de bain."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wou ass d'Bett?",
+          "fr": "Où est le lit ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "D'Bett ass am Schlofzëmmer.",
+          "fr": "Le lit est dans la chambre."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Merci, elo hunn ech alles!",
+          "fr": "Merci, maintenant j’ai tout !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Gär geschitt!",
+          "fr": "Avec plaisir !"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "lecon_id": 22,
+      "niveau": "A1.2",
+      "titre": "Nos activités du week-end",
+      "contexte_fr": "Deux amis racontent ce qu’ils aiment faire et préparent leur week-end.",
+      "objectif_fr": "Employer gär, guer net gär et les activités de loisirs de la leçon.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wat méchs du gär an der Fräizäit?",
+          "fr": "Qu’aimes-tu faire pendant ton temps libre ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech liese gär.",
+          "fr": "J’aime lire."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Lauschters du gär Musek?",
+          "fr": "Aimes-tu écouter de la musique ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech lauschtere ganz gär Musek.",
+          "fr": "Oui, j’adore écouter de la musique."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Spills du gär Fussball?",
+          "fr": "Aimes-tu jouer au football ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Nee, ech spille guer net gär Fussball.",
+          "fr": "Non, je n’aime pas du tout jouer au football."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wat méchs du da gär?",
+          "fr": "Alors, qu’aimes-tu faire ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Ech fuere gär Vëlo.",
+          "fr": "J’aime faire du vélo."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Gees du gär lafen?",
+          "fr": "Aimes-tu aller courir ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech ginn all Dag lafen.",
+          "fr": "Oui, je vais courir tous les jours."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wat méchs du de Weekend?",
+          "fr": "Que fais-tu ce week-end ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "E Samschdeg ginn ech akafen.",
+          "fr": "Samedi, je vais faire les courses."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "An e Sonndeg?",
+          "fr": "Et dimanche ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "E Sonndeg ginn ech an de Bësch.",
+          "fr": "Dimanche, je vais en forêt."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Gees du gär an de Kino?",
+          "fr": "Aimes-tu aller au cinéma ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech ginn ganz gär an de Kino.",
+          "fr": "Oui, j’aime beaucoup aller au cinéma."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Wëlls du e Samschdeg an de Kino goen?",
+          "fr": "Veux-tu aller au cinéma samedi ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, gär!",
+          "fr": "Oui, volontiers !"
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Da bis e Samschdeg!",
+          "fr": "Alors, à samedi !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Bis e Samschdeg!",
+          "fr": "À samedi !"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "lecon_id": 23,
+      "niveau": "A1.2",
+      "titre": "Présenter sa famille",
+      "contexte_fr": "Deux amis regardent des photos de famille et expliquent qui est qui.",
+      "objectif_fr": "Utiliser le vocabulaire familial et les possessifs selon le genre.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Wien ass dat op der Foto?",
+          "fr": "Qui est-ce sur la photo ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Dat ass mäi Papp.",
+          "fr": "C’est mon père."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "An dat?",
+          "fr": "Et ça ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Dat ass meng Mamm.",
+          "fr": "C’est ma mère."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du e Brudder?",
+          "fr": "As-tu un frère ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Jo, mäi Brudder heescht Tom.",
+          "fr": "Oui, mon frère s’appelle Tom."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du och eng Schwëster?",
+          "fr": "As-tu aussi une sœur ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Jo, meng Schwëster heescht Anna.",
+          "fr": "Oui, ma sœur s’appelle Anna."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill Leit sidd der an der Famill?",
+          "fr": "Vous êtes combien dans la famille ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Mir sinn zu fënnef.",
+          "fr": "Nous sommes cinq."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wien ass dat hei?",
+          "fr": "Qui est-ce ici ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Dat ass meng Tatta.",
+          "fr": "C’est ma tante."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "An hire Mann?",
+          "fr": "Et son mari ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Hire Mann heescht Paul.",
+          "fr": "Son mari s’appelle Paul."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Ass dat däi Monni?",
+          "fr": "C’est ton oncle ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Jo, dat ass mäi Monni.",
+          "fr": "Oui, c’est mon oncle."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Huet däi Brudder Kanner?",
+          "fr": "Ton frère a-t-il des enfants ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, säi Jong heescht Liam.",
+          "fr": "Oui, son fils s’appelle Liam."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "An seng Duechter?",
+          "fr": "Et sa fille ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Seng Duechter heescht Mia.",
+          "fr": "Sa fille s’appelle Mia."
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "lecon_id": 24,
+      "niveau": "A1.2",
+      "titre": "Raconter sa journée d’hier",
+      "contexte_fr": "Deux collègues racontent ce qu’ils ont fait la veille.",
+      "objectif_fr": "Construire le passé composé avec hunn et sinn, et réutiliser war/hat.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "Moien! Wat hues du gëschter gemaach?",
+          "fr": "Bonjour ! Qu’as-tu fait hier ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Ech hu geschafft.",
+          "fr": "J’ai travaillé."
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Bass du duerno heemgaangen?",
+          "fr": "Es-tu ensuite rentré chez toi ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech sinn heemgaangen.",
+          "fr": "Oui, je suis rentré chez moi."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du doheem gekacht?",
+          "fr": "As-tu cuisiné à la maison ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hu gekacht.",
+          "fr": "Oui, j’ai cuisiné."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wat hues du giess?",
+          "fr": "Qu’as-tu mangé ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Ech hu gutt giess.",
+          "fr": "J’ai bien mangé."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du e Buch gelies?",
+          "fr": "As-tu lu un livre ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hunn e Buch gelies.",
+          "fr": "Oui, j’ai lu un livre."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Bass du och erausgaangen?",
+          "fr": "Es-tu aussi sorti ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech sinn erausgaangen.",
+          "fr": "Oui, je suis sorti."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Wou bass du higefuer?",
+          "fr": "Où es-tu allé en véhicule ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Ech sinn an de Kino gefuer.",
+          "fr": "Je suis allé au cinéma en voiture."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Wou waars du gëschter Owend?",
+          "fr": "Où étais-tu hier soir ?"
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Ech war doheem.",
+          "fr": "J’étais à la maison."
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Hues du Zäit gehat?",
+          "fr": "As-tu eu le temps ?"
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech hat Zäit.",
+          "fr": "Oui, j’avais du temps."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "War et e gudden Dag?",
+          "fr": "C’était une bonne journée ?"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Jo, et war e gudden Dag.",
+          "fr": "Oui, c’était une bonne journée."
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "lecon_id": 25,
+      "niveau": "A1.2",
+      "titre": "Au marché : faire ses achats",
+      "contexte_fr": "Une cliente et une marchande échangent sur les produits, les quantités et le paiement.",
+      "objectif_fr": "Réutiliser les formules du marché, les quantités et la politesse formelle.",
+      "statut_source": "ancree",
+      "repliques": [
+        {
+          "ordre": 1,
+          "locuteur": "interlocuteur",
+          "lu": "U wiem ass et, wann ech gelift?",
+          "fr": "À qui le tour, s’il vous plaît ?"
+        },
+        {
+          "ordre": 2,
+          "locuteur": "apprenant",
+          "lu": "Et ass u mir!",
+          "fr": "C’est à moi !"
+        },
+        {
+          "ordre": 3,
+          "locuteur": "interlocuteur",
+          "lu": "Wat kritt Dir, wann ech gelift?",
+          "fr": "Que désirez-vous, s’il vous plaît ?"
+        },
+        {
+          "ordre": 4,
+          "locuteur": "apprenant",
+          "lu": "Ech hätt gär e Kilo Äppel.",
+          "fr": "Je voudrais un kilo de pommes."
+        },
+        {
+          "ordre": 5,
+          "locuteur": "interlocuteur",
+          "lu": "Kritt Dir soss nach eppes?",
+          "fr": "Désirez-vous autre chose ?"
+        },
+        {
+          "ordre": 6,
+          "locuteur": "apprenant",
+          "lu": "Jo, ech huelen och nach Bieren.",
+          "fr": "Oui, je prends aussi des poires."
+        },
+        {
+          "ordre": 7,
+          "locuteur": "interlocuteur",
+          "lu": "Wéi vill hätt Dir der gär?",
+          "fr": "Combien en voulez-vous ?"
+        },
+        {
+          "ordre": 8,
+          "locuteur": "apprenant",
+          "lu": "Eng Dosen, wann ech gelift.",
+          "fr": "Une douzaine, s’il vous plaît."
+        },
+        {
+          "ordre": 9,
+          "locuteur": "interlocuteur",
+          "lu": "Wëllt Dir och nach Tomaten?",
+          "fr": "Voulez-vous aussi des tomates ?"
+        },
+        {
+          "ordre": 10,
+          "locuteur": "apprenant",
+          "lu": "Nee, merci.",
+          "fr": "Non, merci."
+        },
+        {
+          "ordre": 11,
+          "locuteur": "interlocuteur",
+          "lu": "Wëllt Dir eng Tut?",
+          "fr": "Voulez-vous un sachet ?"
+        },
+        {
+          "ordre": 12,
+          "locuteur": "apprenant",
+          "lu": "Jo, eng Tut, wann ech gelift.",
+          "fr": "Oui, un sachet, s’il vous plaît."
+        },
+        {
+          "ordre": 13,
+          "locuteur": "interlocuteur",
+          "lu": "Soss nach eppes?",
+          "fr": "Autre chose ?"
+        },
+        {
+          "ordre": 14,
+          "locuteur": "apprenant",
+          "lu": "Nee, dat wier alles.",
+          "fr": "Non, ce sera tout."
+        },
+        {
+          "ordre": 15,
+          "locuteur": "interlocuteur",
+          "lu": "Dat mécht zesummen zwanzeg Euro.",
+          "fr": "Ça fait vingt euros en tout."
+        },
+        {
+          "ordre": 16,
+          "locuteur": "apprenant",
+          "lu": "Kann ech mat der Kaart bezuelen?",
+          "fr": "Puis-je payer par carte ?"
+        },
+        {
+          "ordre": 17,
+          "locuteur": "interlocuteur",
+          "lu": "Jo, dat geet.",
+          "fr": "Oui, c’est possible."
+        },
+        {
+          "ordre": 18,
+          "locuteur": "apprenant",
+          "lu": "Villmools merci.",
+          "fr": "Merci beaucoup."
+        },
+        {
+          "ordre": 19,
+          "locuteur": "interlocuteur",
+          "lu": "Schéinen Dag nach!",
+          "fr": "Bonne journée !"
+        },
+        {
+          "ordre": 20,
+          "locuteur": "apprenant",
+          "lu": "Merci, gläichfalls!",
+          "fr": "Merci, également !"
+        }
+      ]
+    }
+  ]
+}

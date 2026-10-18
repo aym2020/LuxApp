@@ -1,0 +1,131 @@
+{
+  "id": 6,
+  "lecon_id": 6,
+  "niveau": "A1.1",
+  "titre": "Combien d’objets ?",
+  "contexte_fr": "Deux personnes inventorient les affaires dans une pièce.",
+  "objectif_fr": "Identifier les pluriels usuels et choisir zwee ou zwou.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwee Bicher?",
+      "fr": "As-tu deux livres ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwee Bicher.",
+      "fr": "Oui, j’ai deux livres."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwou Taassen?",
+      "fr": "As-tu deux tasses ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwou Taassen.",
+      "fr": "Oui, j’ai deux tasses."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwee Autoen?",
+      "fr": "As-tu deux voitures ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech hunn zwee Vëloen.",
+      "fr": "Non, j’ai deux vélos."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwou Fläschen?",
+      "fr": "As-tu deux bouteilles ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwou Fläschen.",
+      "fr": "Oui, j’ai deux bouteilles."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwee Haiser?",
+      "fr": "As-tu deux maisons ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech hunn een Haus.",
+      "fr": "Non, j’ai une maison."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwee Biller?",
+      "fr": "As-tu deux tableaux ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwee Biller.",
+      "fr": "Oui, j’ai deux tableaux."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwou Dieren?",
+      "fr": "As-tu deux portes ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwou Dieren.",
+      "fr": "Oui, j’ai deux portes."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwee Dëscher?",
+      "fr": "As-tu deux tables ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech hunn een Dësch.",
+      "fr": "Non, j’ai une table."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwee Blieder?",
+      "fr": "As-tu deux feuilles ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwee Blieder.",
+      "fr": "Oui, j’ai deux feuilles."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du zwou Fënsteren?",
+      "fr": "As-tu deux fenêtres ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwou Fënsteren.",
+      "fr": "Oui, j’ai deux fenêtres."
+    }
+  ]
+}

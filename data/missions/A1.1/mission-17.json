@@ -1,0 +1,131 @@
+{
+  "id": 17,
+  "lecon_id": 17,
+  "niveau": "A1.1",
+  "titre": "Prendre rendez-vous chez le médecin",
+  "contexte_fr": "Un patient téléphone à un cabinet médical pour réserver un rendez-vous.",
+  "objectif_fr": "Demander un rendez-vous, proposer un jour et une heure, accepter et remercier.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Praxis Dr Müller, gudde Moien.",
+      "fr": "Cabinet du Dr Müller, bonjour."
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Gudde Moien, ech hätt gär e Rendez-vous.",
+      "fr": "Bonjour, je voudrais un rendez-vous."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Fir wéini, wann ech gelift?",
+      "fr": "Pour quand, s’il vous plaît ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Fir e Freideg, geet dat?",
+      "fr": "Pour vendredi, est-ce possible ?"
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "E Freideg um dräi Auer nomëttes?",
+      "fr": "Vendredi à trois heures de l’après-midi ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Dat geet leider net.",
+      "fr": "Malheureusement, cela ne va pas."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi ass et mam nächste Freideg?",
+      "fr": "Et vendredi prochain ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass gutt.",
+      "fr": "Oui, ça me va."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Um hallwer eelef?",
+      "fr": "À dix heures et demie ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Jo, um hallwer eelef ass gutt.",
+      "fr": "Oui, dix heures et demie me convient."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi ass Ären Numm?",
+      "fr": "Quel est votre nom ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Mäin Numm ass Martin.",
+      "fr": "Mon nom est Martin."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi buschtawéiert Dir dat?",
+      "fr": "Comment l’épelez-vous ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "M-A-R-T-I-N.",
+      "fr": "M-A-R-T-I-N."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Merci, Här Martin.",
+      "fr": "Merci, Monsieur Martin."
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Gär geschitt.",
+      "fr": "Je vous en prie."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Also, e Freideg um hallwer eelef.",
+      "fr": "Donc, vendredi à dix heures et demie."
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass an der Rei.",
+      "fr": "Oui, c’est d’accord."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Äddi, Här Martin!",
+      "fr": "Au revoir, Monsieur Martin !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Äddi, villmools merci!",
+      "fr": "Au revoir, merci beaucoup !"
+    }
+  ]
+}

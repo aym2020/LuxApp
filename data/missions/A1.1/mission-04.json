@@ -1,0 +1,131 @@
+{
+  "id": 4,
+  "lecon_id": 4,
+  "niveau": "A1.1",
+  "titre": "Choisir les bons objets",
+  "contexte_fr": "Deux personnes comparent des objets avant de les utiliser.",
+  "objectif_fr": "Employer des adjectifs contraires dans des phrases simples.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Ass den Auto nei?",
+      "fr": "La voiture est-elle neuve ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Nee, den Auto ass al.",
+      "fr": "Non, la voiture est vieille."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Haus grouss?",
+      "fr": "La maison est-elle grande ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Nee, d'Haus ass kleng.",
+      "fr": "Non, la maison est petite."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Buch schwéier?",
+      "fr": "Le livre est-il lourd ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Nee, d'Buch ass liicht.",
+      "fr": "Non, le livre est léger."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Bus séier?",
+      "fr": "Le bus est-il rapide ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, de Bus ass séier.",
+      "fr": "Oui, le bus est rapide."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Ass den Zuch och séier?",
+      "fr": "Le train est-il rapide aussi ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, den Zuch ass lues.",
+      "fr": "Non, le train est lent."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Ass den Dësch ronn?",
+      "fr": "La table est-elle ronde ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Nee, den Dësch ass eckeg.",
+      "fr": "Non, la table est anguleuse."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass den Auto deier?",
+      "fr": "La voiture est-elle chère ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, den Auto ass deier.",
+      "fr": "Oui, la voiture est chère."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Haus bëlleg?",
+      "fr": "La maison est-elle bon marché ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Nee, d'Haus ass net bëlleg.",
+      "fr": "Non, la maison n’est pas bon marché."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Glas voll?",
+      "fr": "Le verre est-il plein ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Nee, d'Glas ass eidel.",
+      "fr": "Non, le verre est vide."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat Buch déck?",
+      "fr": "Ce livre est-il épais ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Nee, dat Buch ass dënn.",
+      "fr": "Non, ce livre est mince."
+    }
+  ]
+}

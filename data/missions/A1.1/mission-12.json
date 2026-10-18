@@ -1,0 +1,131 @@
+{
+  "id": 12,
+  "lecon_id": 12,
+  "niveau": "A1.1",
+  "titre": "Où travailles-tu ?",
+  "contexte_fr": "Deux collègues parlent des lieux de travail de leurs proches.",
+  "objectif_fr": "Employer schaffen avec an/op/bei, engem et enger.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wou schaffs du?",
+      "fr": "Où travailles-tu ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech schaffen an engem Büro.",
+      "fr": "Je travaille dans un bureau."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Schaffs du an enger Bank?",
+      "fr": "Travailles-tu dans une banque ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech schaffen net an enger Bank.",
+      "fr": "Non, je ne travaille pas dans une banque."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wou schafft d'Marie?",
+      "fr": "Où travaille Marie ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Si schafft an enger Apdikt.",
+      "fr": "Elle travaille dans une pharmacie."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wou schafft de Tom?",
+      "fr": "Où travaille Tom ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Hie schafft op engem Policebüro.",
+      "fr": "Il travaille au commissariat."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wou schafft d'Anna?",
+      "fr": "Où travaille Anna ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Si schafft an enger Schoul.",
+      "fr": "Elle travaille dans une école."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wou schafft de Jean?",
+      "fr": "Où travaille Jean ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Hie schafft an engem Spidol.",
+      "fr": "Il travaille dans un hôpital."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wou schafft d'Claire?",
+      "fr": "Où travaille Claire ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Si schafft op enger Gare.",
+      "fr": "Elle travaille à la gare."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Schafft de Paul bei engem Dokter?",
+      "fr": "Paul travaille-t-il chez un médecin ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien schafft bei engem Dokter.",
+      "fr": "Oui, il travaille chez un médecin."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Schafft d'Laura an enger Librairie?",
+      "fr": "Laura travaille-t-elle dans une librairie ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, si schafft an enger Librairie.",
+      "fr": "Oui, elle travaille dans une librairie."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Wou schaffs du nach eng Kéier?",
+      "fr": "Où travailles-tu déjà ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Ech schaffen an engem Büro.",
+      "fr": "Je travaille dans un bureau."
+    }
+  ]
+}

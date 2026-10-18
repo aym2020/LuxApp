@@ -1,0 +1,131 @@
+{
+  "id": 15,
+  "lecon_id": 15,
+  "niveau": "A1.1",
+  "titre": "Quelle heure est-il ?",
+  "contexte_fr": "Deux collègues regardent l’heure avant de commencer leur journée.",
+  "objectif_fr": "Lire les heures, la demi-heure et les quarts, et parler des horaires.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill Auer ass et?",
+      "fr": "Quelle heure est-il ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Et ass aacht Auer.",
+      "fr": "Il est huit heures."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Ass et schonn néng Auer?",
+      "fr": "Est-il déjà neuf heures ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Nee, et ass véierel op aacht.",
+      "fr": "Non, il est huit heures et quart."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill Auer ass et elo?",
+      "fr": "Quelle heure est-il maintenant ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Et ass hallwer néng.",
+      "fr": "Il est huit heures et demie."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass et elo néng Auer?",
+      "fr": "Est-il neuf heures maintenant ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Nee, et ass véierel vir néng.",
+      "fr": "Non, il est neuf heures moins le quart."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Um wéi vill Auer fänks du un?",
+      "fr": "À quelle heure commences-tu ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Ech fänken um aacht Auer moies un.",
+      "fr": "Je commence à huit heures du matin."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Um wéi vill Auer häls du op?",
+      "fr": "À quelle heure termines-tu ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Ech halen um fënnef Auer nomëttes op.",
+      "fr": "Je termine à cinq heures de l’après-midi."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill Auer ass et?",
+      "fr": "Quelle heure est-il ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Et ass fënnef op eng.",
+      "fr": "Il est une heure cinq."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "An elo?",
+      "fr": "Et maintenant ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Et ass fënnef vir hallwer zwou.",
+      "fr": "Il est une heure vingt-cinq."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill Auer ass et owes?",
+      "fr": "Quelle heure est-il le soir ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Et ass zwanzeg op aacht owes.",
+      "fr": "Il est vingt heures vingt."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Merci, ech muss elo goen.",
+      "fr": "Merci, je dois partir maintenant."
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Äddi, bis geschwënn!",
+      "fr": "Au revoir, à bientôt !"
+    }
+  ]
+}

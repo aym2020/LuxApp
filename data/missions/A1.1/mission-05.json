@@ -1,0 +1,131 @@
+{
+  "id": 5,
+  "lecon_id": 5,
+  "niveau": "A1.1",
+  "titre": "Compter au marché",
+  "contexte_fr": "Deux amis s’entraînent à compter les produits et à lire des nombres.",
+  "objectif_fr": "Réutiliser les nombres et les formes composées déjà étudiées.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill Äppel sinn dat?",
+      "fr": "Combien y a-t-il de pommes ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Dat si fënnef Äppel.",
+      "fr": "Ce sont cinq pommes."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "An hei, wéi vill Bicher sinn dat?",
+      "fr": "Et ici, combien y a-t-il de livres ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Dat sinn zéng Bicher.",
+      "fr": "Ce sont dix livres."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill Käerze ginn et?",
+      "fr": "Combien de bougies y a-t-il ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Et sinn aacht Käerzen.",
+      "fr": "Il y a huit bougies."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wat kënnt no zwanzeg?",
+      "fr": "Qu’est-ce qui vient après vingt ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Eenanzwanzeg.",
+      "fr": "Vingt et un."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wat kënnt no nénganzwanzeg?",
+      "fr": "Qu’est-ce qui vient après vingt-neuf ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Drësseg.",
+      "fr": "Trente."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill ass véierzeg an dräi?",
+      "fr": "Combien font quarante et trois ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Dräiavéierzeg.",
+      "fr": "Quarante-trois."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill ass siechzeg an aacht?",
+      "fr": "Combien font soixante et huit ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Aachtasiechzeg.",
+      "fr": "Soixante-huit."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill ass aachtzeg an eent?",
+      "fr": "Combien font quatre-vingts et un ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Eenanaachtzeg.",
+      "fr": "Quatre-vingt-un."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wat kënnt virun honnert?",
+      "fr": "Qu’est-ce qui vient avant cent ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Néngannonzeg.",
+      "fr": "Quatre-vingt-dix-neuf."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "A wat kënnt no néngannonzeg?",
+      "fr": "Et qu’est-ce qui vient après quatre-vingt-dix-neuf ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Honnert.",
+      "fr": "Cent."
+    }
+  ]
+}

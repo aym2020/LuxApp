@@ -1,0 +1,131 @@
+{
+  "id": 1,
+  "lecon_id": 1,
+  "niveau": "A1.1",
+  "titre": "Première rencontre",
+  "contexte_fr": "Deux personnes font connaissance et se saluent.",
+  "objectif_fr": "Saluer, prendre des nouvelles, se présenter et prendre congé.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Moien!",
+      "fr": "Bonjour !"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Moien!",
+      "fr": "Bonjour !"
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi geet et dir?",
+      "fr": "Comment vas-tu ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Mir geet et gutt, merci. An dir?",
+      "fr": "Je vais bien, merci. Et toi ?"
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Och gutt, merci!",
+      "fr": "Bien aussi, merci !"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Dat freet mech.",
+      "fr": "Ça me fait plaisir."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi heeschs du?",
+      "fr": "Comment t’appelles-tu ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Ech heesche Marie.",
+      "fr": "Je m’appelle Marie."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Mäin Numm ass Tom.",
+      "fr": "Mon nom est Tom."
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Et freet mech, Tom.",
+      "fr": "Enchantée, Tom."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Mech och, Marie.",
+      "fr": "Moi aussi, Marie."
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Wéi geet et dir haut?",
+      "fr": "Comment vas-tu aujourd’hui ?"
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ganz gutt, merci!",
+      "fr": "Très bien, merci !"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Schéin!",
+      "fr": "Super !"
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ech muss elo goen.",
+      "fr": "Je dois partir maintenant."
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Dat ass an der Rei.",
+      "fr": "D’accord."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Äddi, Marie!",
+      "fr": "Au revoir, Marie !"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Äddi, Tom!",
+      "fr": "Au revoir, Tom !"
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Schéinen Dag nach!",
+      "fr": "Bonne journée !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Merci, gläichfalls!",
+      "fr": "Merci, également !"
+    }
+  ]
+}

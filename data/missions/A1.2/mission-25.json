@@ -1,0 +1,131 @@
+{
+  "id": 25,
+  "lecon_id": 25,
+  "niveau": "A1.2",
+  "titre": "Au marché : faire ses achats",
+  "contexte_fr": "Une cliente et une marchande échangent sur les produits, les quantités et le paiement.",
+  "objectif_fr": "Réutiliser les formules du marché, les quantités et la politesse formelle.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "U wiem ass et, wann ech gelift?",
+      "fr": "À qui le tour, s’il vous plaît ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Et ass u mir!",
+      "fr": "C’est à moi !"
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Wat kritt Dir, wann ech gelift?",
+      "fr": "Que désirez-vous, s’il vous plaît ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Ech hätt gär e Kilo Äppel.",
+      "fr": "Je voudrais un kilo de pommes."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Kritt Dir soss nach eppes?",
+      "fr": "Désirez-vous autre chose ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech huelen och nach Bieren.",
+      "fr": "Oui, je prends aussi des poires."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill hätt Dir der gär?",
+      "fr": "Combien en voulez-vous ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Eng Dosen, wann ech gelift.",
+      "fr": "Une douzaine, s’il vous plaît."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wëllt Dir och nach Tomaten?",
+      "fr": "Voulez-vous aussi des tomates ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, merci.",
+      "fr": "Non, merci."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wëllt Dir eng Tut?",
+      "fr": "Voulez-vous un sachet ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Jo, eng Tut, wann ech gelift.",
+      "fr": "Oui, un sachet, s’il vous plaît."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Soss nach eppes?",
+      "fr": "Autre chose ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Nee, dat wier alles.",
+      "fr": "Non, ce sera tout."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Dat mécht zesummen zwanzeg Euro.",
+      "fr": "Ça fait vingt euros en tout."
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Kann ech mat der Kaart bezuelen?",
+      "fr": "Puis-je payer par carte ?"
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Jo, dat geet.",
+      "fr": "Oui, c’est possible."
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Villmools merci.",
+      "fr": "Merci beaucoup."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Schéinen Dag nach!",
+      "fr": "Bonne journée !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Merci, gläichfalls!",
+      "fr": "Merci, également !"
+    }
+  ]
+}

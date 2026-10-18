@@ -1,0 +1,131 @@
+{
+  "id": 22,
+  "lecon_id": 22,
+  "niveau": "A1.2",
+  "titre": "Nos activités du week-end",
+  "contexte_fr": "Deux amis racontent ce qu’ils aiment faire et préparent leur week-end.",
+  "objectif_fr": "Employer gär, guer net gär et les activités de loisirs de la leçon.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wat méchs du gär an der Fräizäit?",
+      "fr": "Qu’aimes-tu faire pendant ton temps libre ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech liese gär.",
+      "fr": "J’aime lire."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Lauschters du gär Musek?",
+      "fr": "Aimes-tu écouter de la musique ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech lauschtere ganz gär Musek.",
+      "fr": "Oui, j’adore écouter de la musique."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Spills du gär Fussball?",
+      "fr": "Aimes-tu jouer au football ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech spille guer net gär Fussball.",
+      "fr": "Non, je n’aime pas du tout jouer au football."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wat méchs du da gär?",
+      "fr": "Alors, qu’aimes-tu faire ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Ech fuere gär Vëlo.",
+      "fr": "J’aime faire du vélo."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Gees du gär lafen?",
+      "fr": "Aimes-tu aller courir ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech ginn all Dag lafen.",
+      "fr": "Oui, je vais courir tous les jours."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wat méchs du de Weekend?",
+      "fr": "Que fais-tu ce week-end ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "E Samschdeg ginn ech akafen.",
+      "fr": "Samedi, je vais faire les courses."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "An e Sonndeg?",
+      "fr": "Et dimanche ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "E Sonndeg ginn ech an de Bësch.",
+      "fr": "Dimanche, je vais en forêt."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Gees du gär an de Kino?",
+      "fr": "Aimes-tu aller au cinéma ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech ginn ganz gär an de Kino.",
+      "fr": "Oui, j’aime beaucoup aller au cinéma."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wëlls du e Samschdeg an de Kino goen?",
+      "fr": "Veux-tu aller au cinéma samedi ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, gär!",
+      "fr": "Oui, volontiers !"
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Da bis e Samschdeg!",
+      "fr": "Alors, à samedi !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Bis e Samschdeg!",
+      "fr": "À samedi !"
+    }
+  ]
+}

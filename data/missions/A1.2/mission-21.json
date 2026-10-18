@@ -1,0 +1,131 @@
+{
+  "id": 21,
+  "lecon_id": 21,
+  "niveau": "A1.2",
+  "titre": "Retrouver les objets de la maison",
+  "contexte_fr": "Deux colocataires cherchent plusieurs objets entre la cuisine et la salle de bain.",
+  "objectif_fr": "Nommer les objets domestiques et utiliser les articles avec les lieux.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass d'Pan?",
+      "fr": "Où est la poêle ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "D'Pan ass am Kicheschaf.",
+      "fr": "La poêle est dans le placard de cuisine."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "An den Dëppen?",
+      "fr": "Et la casserole ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Den Dëppen ass am Schäffchen.",
+      "fr": "La casserole est dans le four."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wou sinn d'Telleren?",
+      "fr": "Où sont les assiettes ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "D'Telleren sinn am Kicheschaf.",
+      "fr": "Les assiettes sont dans le placard de cuisine."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wou sinn d'Glieser?",
+      "fr": "Où sont les verres ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "D'Glieser sinn nieft dem Frigo.",
+      "fr": "Les verres sont à côté du réfrigérateur."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass d'Spullmaschinn?",
+      "fr": "Où est le lave-vaisselle ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "D'Spullmaschinn ass an der Kichen.",
+      "fr": "Le lave-vaisselle est dans la cuisine."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass de Spullsteen?",
+      "fr": "Où est l’évier ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "De Spullsteen ass an der Kichen.",
+      "fr": "L’évier est dans la cuisine."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass de Becher?",
+      "fr": "Où est le gobelet ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "De Becher ass um Lavabo.",
+      "fr": "Le gobelet est sur le lavabo."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Lavabo am Buedzëmmer?",
+      "fr": "Le lavabo est-il dans la salle de bain ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, de Lavabo ass am Buedzëmmer.",
+      "fr": "Oui, le lavabo est dans la salle de bain."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass d'Bett?",
+      "fr": "Où est le lit ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "D'Bett ass am Schlofzëmmer.",
+      "fr": "Le lit est dans la chambre."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Merci, elo hunn ech alles!",
+      "fr": "Merci, maintenant j’ai tout !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Gär geschitt!",
+      "fr": "Avec plaisir !"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "id": 7,
+  "lecon_id": 7,
+  "niveau": "A1.1",
+  "titre": "D’où viens-tu ?",
+  "contexte_fr": "Deux nouveaux collègues font connaissance et parlent de leur pays d’origine.",
+  "objectif_fr": "Utiliser kommen et les prépositions d’origine.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Vu wou kënns du?",
+      "fr": "D’où viens-tu ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech kommen aus Frankräich.",
+      "fr": "Je viens de France."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Kënns du aus der Belsch?",
+      "fr": "Viens-tu de Belgique ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech kommen aus Frankräich.",
+      "fr": "Non, je viens de France."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Vu wou kënnt de Ronaldo?",
+      "fr": "D’où vient Ronaldo ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "De Ronaldo kënnt aus Portugal.",
+      "fr": "Ronaldo vient du Portugal."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "A vu wou kënnt de Guillaume?",
+      "fr": "Et d’où vient Guillaume ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "De Guillaume kënnt vu Lëtzebuerg.",
+      "fr": "Guillaume vient du Luxembourg."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Kënnt d'Marie aus der Schwäiz?",
+      "fr": "Marie vient-elle de Suisse ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Jo, d'Marie kënnt aus der Schwäiz.",
+      "fr": "Oui, Marie vient de Suisse."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "A vum Cap Vert?",
+      "fr": "Et du Cap-Vert ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "De Paulo kënnt vum Cap Vert.",
+      "fr": "Paulo vient du Cap-Vert."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Kënnt de Karim aus dem Iran?",
+      "fr": "Karim vient-il d’Iran ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, de Karim kënnt aus dem Iran.",
+      "fr": "Oui, Karim vient d’Iran."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Kënnt d'Anna aus Däitschland?",
+      "fr": "Anna vient-elle d’Allemagne ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, d'Anna kënnt aus Däitschland.",
+      "fr": "Oui, Anna vient d’Allemagne."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "An du, kënns du vu Lëtzebuerg?",
+      "fr": "Et toi, viens-tu du Luxembourg ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech kommen aus Frankräich.",
+      "fr": "Non, je viens de France."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Merci fir deng Äntwerten!",
+      "fr": "Merci pour tes réponses !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Gär geschitt!",
+      "fr": "Je t’en prie !"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "id": 10,
+  "lecon_id": 10,
+  "niveau": "A1.1",
+  "titre": "Où habites-tu ?",
+  "contexte_fr": "Deux collègues parlent de leur ville, de leur pays et de leur quartier.",
+  "objectif_fr": "Choisir correctement a, an, an der, zu, um et am.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wou wunns du?",
+      "fr": "Où habites-tu ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech wunnen zu Metz.",
+      "fr": "J’habite à Metz."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Wunns du a Frankräich?",
+      "fr": "Habites-tu en France ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech wunnen a Frankräich.",
+      "fr": "Oui, j’habite en France."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wunnt de Tom zu Lëtzebuerg?",
+      "fr": "Tom habite-t-il au Luxembourg ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien wunnt zu Lëtzebuerg.",
+      "fr": "Oui, il habite au Luxembourg."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wunnt d'Anna an Däitschland?",
+      "fr": "Anna habite-t-elle en Allemagne ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, si wunnt an Däitschland.",
+      "fr": "Oui, elle habite en Allemagne."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wunnt d'Claire an der Belsch?",
+      "fr": "Claire habite-t-elle en Belgique ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Jo, si wunnt an der Belsch.",
+      "fr": "Oui, elle habite en Belgique."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wunnt de Jean an der Schwäiz?",
+      "fr": "Jean habite-t-il en Suisse ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Nee, hien wunnt zu Paräis.",
+      "fr": "Non, il habite à Paris."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wunns du an der Stad?",
+      "fr": "Habites-tu en ville ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech wunnen net an der Stad.",
+      "fr": "Non, je n’habite pas en ville."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Wunnt de Paul um Kirchberg?",
+      "fr": "Paul habite-t-il au Kirchberg ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien wunnt um Kirchberg.",
+      "fr": "Oui, il habite au Kirchberg."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wunnt d'Marie am Gronn?",
+      "fr": "Marie habite-t-elle au Grund ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, si wunnt am Gronn.",
+      "fr": "Oui, elle habite au Grund."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Wou wunnt de Paulo?",
+      "fr": "Où habite Paulo ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Hie wunnt zu Esch.",
+      "fr": "Il habite à Esch."
+    }
+  ]
+}
