@@ -1,0 +1,60 @@
+# LuxApp — Registre des spécifications
+
+Ce répertoire centralise les **28 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+
+> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. Les fiches 23–24 ont été signalées **en cours de codage** ; les fiches 25–28 restent **à faire**. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
+
+## Statuts
+
+- **Implémentée — validation à confirmer** : travail déclaré comme codé ou constaté dans le dépôt, mais conformité à revalider sur la version courante.
+- **En cours** : développement annoncé et susceptible d'évoluer dans d'autres commits.
+- **À faire** : la spec est formalisée mais n'est pas déclarée implémentée.
+- **Validée** : à utiliser uniquement après une vraie recette fonctionnelle et visuelle.
+
+## Registre
+
+| ID | Spécification | Priorité | Statut |
+|---|---|---|---|
+| 01 | [Introduction immersive de la mission](./SPEC-01.md) | P1 | Implémentée — validation à confirmer |
+| 02 | [Mission compacte lors des visites suivantes](./SPEC-02.md) | P1 | Implémentée — validation à confirmer |
+| 03 | [Retour sur l'unité quittée](./SPEC-03.md) | P0 | Implémentée — validation à confirmer |
+| 04 | [Navigation douce entre unités](./SPEC-04.md) | P1 | Implémentée — validation à confirmer |
+| 05 | [Mission interactive : réponse, feedback et clavier](./SPEC-05.md) | P0 | Implémentée — validation à confirmer |
+| 06 | [Harmonisation des exercices d'écriture](./SPEC-06.md) | P0 | Implémentée — validation à confirmer |
+| 07 | [Gestion robuste du clavier mobile](./SPEC-07.md) | P0 | Implémentée — validation à confirmer |
+| 08 | [Clarification du vocabulaire « + »](./SPEC-08.md) | P1 | Implémentée — validation à confirmer |
+| 09 | [Sauvegarde et reprise sans perte](./SPEC-09.md) | P0 | Implémentée — validation à confirmer |
+| 10 | [Recette UX mobile et non-régression](./SPEC-10.md) | P0 | Implémentée — validation à confirmer |
+| 11 | [Mot caché : découverte et lettres mélangées](./SPEC-11.md) | P1 | Implémentée — validation à confirmer |
+| 12 | [Mission en dialogue interactif compact](./SPEC-12.md) | P0 | Implémentée — validation à confirmer |
+| 13 | [Mon chemin : accordéon à leçon unique](./SPEC-13.md) | P0 | Implémentée — validation à confirmer |
+| 14 | [Mon chemin compact et scroll intelligent](./SPEC-14.md) | P0 | Implémentée — validation à confirmer |
+| 15 | [Historique de navigation et retour fixe](./SPEC-15.md) | P0 | Implémentée — validation à confirmer |
+| 16 | [Affordances et microanimations de guidage](./SPEC-16.md) | P1 | Implémentée — validation à confirmer |
+| 17 | [Lisibilité et réduction des troncatures](./SPEC-17.md) | P1 | Implémentée — validation à confirmer |
+| 18 | [Découverte sans engagement et retours préservés](./SPEC-18.md) | P0 | Implémentée — validation à confirmer |
+| 19 | [Design system et harmonisation des écrans](./SPEC-19.md) | P1 | Implémentée — validation à confirmer |
+| 20 | [Résultats d'unité : barres et CTA fixe](./SPEC-20.md) | P1 | Implémentée — validation à confirmer |
+| 21 | [Mot caché : identité des tuiles et CTA de l'introduction](./SPEC-21.md) | P0 | Implémentée — validation à confirmer |
+| 22 | [Progression principale séparée de l'entraînement libre](./SPEC-22.md) | P0 | Implémentée — validation à confirmer |
+| 23 | [Missions de 10 réponses et système de trois vies](./SPEC-23.md) | P1 | En cours |
+| 24 | [Correction algorithmique des coquilles sans IA](./SPEC-24.md) | P1 | En cours |
+| 25 | [Accueil : destination explicite et scroll de retour](./SPEC-25.md) | P0 | À faire |
+| 26 | [Sens de lecture uniforme des traductions du cours](./SPEC-26.md) | P1 | À faire |
+| 27 | [Valorisation visuelle des unités terminées](./SPEC-27.md) | P1 | À faire |
+| 28 | [Résultats d'étape plus gratifiants](./SPEC-28.md) | P1 | À faire |
+
+## Gestion des changements
+
+1. Toute modification de comportement doit citer son numéro de SPEC et, si nécessaire, mettre à jour sa fiche **avant** la livraison.
+2. Après implémentation, documenter dans la fiche les fichiers touchés, tests exécutés et anomalies ouvertes ; n'indiquer « Validée » qu'après vérification.
+3. Le code et les JSON de leçons restent la source du **fonctionnement actuel**, tandis que ces fiches décrivent le **comportement attendu**.
+4. Ne pas refaire intégralement la suite de tests pour une modification cosmétique isolée ; tester d'abord le périmètre puis exécuter une non-régression globale avant livraison.
+5. En cas d'évolution concurrente (Claude, autre branche), se synchroniser sur la dernière révision et éviter d'écraser des fichiers modifiés.
+
+## Liens utiles
+
+- [Playbook](../../PLAYBOOK.md)
+- [Design system](../DESIGN_SYSTEM.md)
+- [Tests du projet](../../tests/README.md)
+- [Code `v2`](https://github.com/aym2020/LuxApp/tree/v2/public)
