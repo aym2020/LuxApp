@@ -3,6 +3,43 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+// ─── MODE RECETTE VISUELLE (spec 43) ────────────────────────────────────────
+// Uniquement sur une instance dédiée lancée avec RECETTE=1 (autre service ou
+// autre port : autre origine, donc stockage local séparé de l'app réelle).
+//   - tout le site est protégé par mot de passe (RECETTE_USER / RECETTE_PASS) ;
+//   - Firebase est coupé côté serveur : aucune écriture cloud possible ;
+//   - le panneau « Outils de test » (dossier recette/) est injecté dans la page.
+// Sans RECETTE=1, rien de tout cela n'existe : le dossier recette/ n'est pas servi.
+const RECETTE = process.env.RECETTE === '1';
+if (RECETTE) {
+  const utilisateur = process.env.RECETTE_USER || '';
+  const motDePasse = process.env.RECETTE_PASS || '';
+  app.use((req, res, next) => {
+    res.set('X-Robots-Tag', 'noindex, nofollow');
+    if (!utilisateur || !motDePasse) return res.status(503).send('Recette non configurée : définir RECETTE_USER et RECETTE_PASS.');
+    const attendu = 'Basic ' + Buffer.from(utilisateur + ':' + motDePasse).toString('base64');
+    if (req.headers.authorization !== attendu) {
+      res.set('WWW-Authenticate', 'Basic realm="LuxApp recette", charset="UTF-8"');
+      return res.status(401).send('Accès réservé à la recette.');
+    }
+    next();
+  });
+  // Pas de configuration Firebase : l'app reste en mode local (cloud.js).
+  app.get('/config.js', (req, res) => {
+    res.type('application/javascript').send('window.APP_CONFIG = { FIREBASE: null, RECETTE: true };');
+  });
+  // La vraie page, sans les scripts Firebase, avec le panneau de recette en plus.
+  const pageRecette = (req, res) => {
+    const html = fs.readFileSync(path.join(__dirname, 'public/index.html'), 'utf8')
+      .replace(/\s*<script src="https:\/\/www\.gstatic\.com\/firebasejs[^"]*"><\/script>/g, '')
+      .replace('</head>', '  <link rel="stylesheet" href="/recette/recette.css" />\n</head>')
+      .replace('</body>', '  <script src="/recette/recette.js"></script>\n</body>');
+    res.type('html').send(html);
+  };
+  app.get(['/', '/index.html'], pageRecette);
+  app.use('/recette', express.static(path.join(__dirname, 'recette')));
+}
+
 app.use(express.static('public'));
 app.use(express.json());
 
@@ -63,4 +100,5 @@ app.get('/api/examens', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+if (RECETTE) console.log('MODE RECETTE actif (progression fictive, sans cloud).');
 app.listen(PORT, () => console.log(`✅  http://localhost:${PORT}`));

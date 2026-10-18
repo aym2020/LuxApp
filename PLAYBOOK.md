@@ -402,6 +402,9 @@ les problèmes secondaires au lieu de bloquer la livraison.
 | `revision.js`, séance | `test_seance`, `test_lot2` |
 | `data/lecons/` | `node tools/valider-lecons.js`, `node tools/audit-prerequis.js` (mots exigés avant d'être enseignés, rapport), `test_missions_10` si `scene` touchée, `test_prerequis` |
 | `style.css` seul | aucun test navigateur ; capture d'écran du point touché |
+| `server.js`, `recette/` (mode recette) | `test_recette_visuelle` |
+
+**Recette visuelle sur téléphone (spec 43)** : voir [docs/RECETTE.md](docs/RECETTE.md). Une instance dédiée `RECETTE=1` (mot de passe, sans Firebase, autre origine) donne « Plus → Outils de test » pour ouvrir en moins d'une seconde le vrai écran de fin de mission, d'étape, d'unité ou de rattrapage. **Jamais `RECETTE=1` sur un service public.**
 
 **Règles de vitesse :**
 

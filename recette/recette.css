@@ -1,0 +1,24 @@
+/* Mode recette (spec 43) : servi seulement par une instance RECETTE=1. */
+
+/* Badge toujours visible, collé au bord droit au milieu de l'écran :
+   il ne masque ni l'en-tête, ni les boutons du bas. */
+.recette-badge {
+  position: fixed; right: 0; top: 50%; transform: translateY(-50%);
+  z-index: 9999; width: 22px; padding: 10px 0; border: 0; border-radius: 8px 0 0 8px;
+  background: #e0457b; color: #fff; font: 700 10px/1 system-ui, sans-serif; letter-spacing: .08em;
+  writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; opacity: .9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+}
+body:has(#panneau) .recette-badge { display: none; } /* jamais sur un panneau ouvert */
+
+.recette-panneau h2 { margin: 0 0 .4rem; }
+.recette-panneau label { display: flex; flex-direction: column; gap: .3rem; margin: .7rem 0; font-size: var(--fs-sec); color: var(--couleur-texte-2); }
+.recette-panneau select {
+  min-height: 44px; padding: 0 .6rem; border-radius: 10px; font-size: 16px;
+  background: rgba(255, 255, 255, .06); color: var(--text); border: 1px solid rgba(255, 255, 255, .15);
+}
+.recette-panneau .pc-btn { margin-top: .5rem; }
+.recette-avertissement { margin: 0; padding: .5rem .7rem; border-radius: 10px; background: rgba(224, 69, 123, .15); color: #f3a6c3; font-size: var(--fs-sec); }
+.recette-note { font-size: .85em; color: var(--couleur-texte-2); margin: .5rem 0 0; }
+.recette-ligne b { color: #f3a6c3; }
+.recette-actif { margin: .6rem 0 0; padding: .45rem .7rem; border-radius: 10px; background: rgba(255, 255, 255, .05); font-size: var(--fs-sec); }

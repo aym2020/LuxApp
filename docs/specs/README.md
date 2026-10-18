@@ -57,7 +57,7 @@ Ce répertoire centralise les **43 spécifications** fonctionnelles et UX du pro
 | 40 | [Correction lisible, rappels des erreurs limités, retour au chemin après « Refaire mes erreurs »](./SPEC-40.md) | P1 | Implémentée — validation à confirmer |
 | 41 | [Coquilles expliquées précisément et retour au véritable Chemin après rattrapage](./SPEC-41.md) | P1 | Implémentée — validation à confirmer |
 | 42 | [Pré-requis A1.2 : sinn/hunn, aide vocabulaire et retours pédagogiques fiables](./SPEC-42.md) | P0 | Implémentée — validation à confirmer |
-| 43 | [Mode recette visuelle : tester les missions et résultats en quelques secondes](./SPEC-43.md) | P1 | À faire |
+| 43 | [Mode recette visuelle : tester les missions et résultats en quelques secondes](./SPEC-43.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

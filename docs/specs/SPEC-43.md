@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire — spécification uniquement** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Branche cible | `v2` |
 | Nature | Outillage de recette **visuelle et fonctionnelle**, indépendant du parcours normal |
@@ -112,25 +112,25 @@ Le mode recette **ne doit jamais** modifier :
 ### Scénarios fonctionnels
 
 - [ ] Depuis la prévisualisation privée Android, ouvrir « Plus → Outils de test », sélectionner **Leçon 25 – Le passé composé**, choisir « Fin de mission → sans faute », puis voir l'écran réel **sans taper 10 réponses**.
-- [ ] Obtenir en quelques clics les variantes mission réussie avec 1 vie, mission perdue, « Tente ta chance » réussie et perdue ; scores, bandeaux, boutons et conséquences cohérents.
-- [ ] Ouvrir une fin d'étape avec des erreurs, cliquer « Refaire mes erreurs », terminer/accélérer le rattrapage, revenir au **Chemin avec la bonne leçon seule ouverte**, centrée visuellement.
-- [ ] Choisir une autre leçon sans mélanger `id` persistant et `numero` affiché (SPEC 42).
-- [ ] Les vrais boutons de résultat naviguent vers les bons écrans ; Retour Android et réouverture du scénario fonctionnent.
-- [ ] Le rendu est celui des composants ordinaires, sans écran de bilan cloné.
+- [x] Obtenir en quelques clics les variantes mission réussie avec 1 vie, mission perdue, « Tente ta chance » réussie et perdue ; scores, bandeaux, boutons et conséquences cohérents.
+- [x] Ouvrir une fin d'étape avec des erreurs, cliquer « Refaire mes erreurs », terminer/accélérer le rattrapage, revenir au **Chemin avec la bonne leçon seule ouverte**, centrée visuellement.
+- [x] Choisir une autre leçon sans mélanger `id` persistant et `numero` affiché (SPEC 42).
+- [x] Les vrais boutons de résultat naviguent vers les bons écrans ; Retour Android et réouverture du scénario fonctionnent.
+- [x] Le rendu est celui des composants ordinaires, sans écran de bilan cloné.
 
 ### Protection des données et sécurité
 
 - [ ] Photographier l'état réel avant/après : **aucun changement** dans les acquis personnels (étoiles, missions, erreurs, sessions, révisions) après succès, échec, fermeture, refresh et reconnexion.
-- [ ] Tester l'absence de requêtes d'écriture cloud et d'appels de synchronisation capables d'écrire pendant la recette, y compris en début/fin de session et sur les CTA « Leçon suivante ».
-- [ ] Vérifier qu'un navigateur public, un utilisateur non autorisé, un paramètre URL modifié ou un simple `localStorage` modifié **ne peuvent pas activer le mode test** sur la production.
-- [ ] Effacer l'état fictif : aucun acquis artificiel n'apparaît au rechargement.
-- [ ] L'application publique continue de fonctionner normalement après la livraison de cet outillage.
+- [x] Tester l'absence de requêtes d'écriture cloud et d'appels de synchronisation capables d'écrire pendant la recette, y compris en début/fin de session et sur les CTA « Leçon suivante ».
+- [x] Vérifier qu'un navigateur public, un utilisateur non autorisé, un paramètre URL modifié ou un simple `localStorage` modifié **ne peuvent pas activer le mode test** sur la production.
+- [x] Effacer l'état fictif : aucun acquis artificiel n'apparaît au rechargement.
+- [x] L'application publique continue de fonctionner normalement après la livraison de cet outillage.
 
 ### Automatisation
 
-- [ ] Ajouter par exemple `tests/test_recette_visuelle.py` avec Playwright : accès autorisé/refusé, tous les scénarios MVP, scores cohérents, écran/CTA attendus et isolation de stockage.
-- [ ] Réutiliser `tests/helpers.py`, `test_missions_10.py`, `test_mission_validation.py` et `test_mission_vies.py` sans dupliquer des fonctions de test.
-- [ ] Exécuter les tests ciblés, puis la suite critique `bash tools/critique.sh` selon le PLAYBOOK ; documenter temps mesurés, fichiers modifiés et résultats.
+- [x] Ajouter par exemple `tests/test_recette_visuelle.py` avec Playwright : accès autorisé/refusé, tous les scénarios MVP, scores cohérents, écran/CTA attendus et isolation de stockage.
+- [x] Réutiliser `tests/helpers.py`, `test_missions_10.py`, `test_mission_validation.py` et `test_mission_vies.py` sans dupliquer des fonctions de test.
+- [x] Exécuter les tests ciblés, puis la suite critique `bash tools/critique.sh` selon le PLAYBOOK ; documenter temps mesurés, fichiers modifiés et résultats.
 - [ ] Tester manuellement sur **Android réel**, notamment la fin de mission et le retour vers le Chemin ; aucune validation « recette Android » sur la seule base de Playwright.
 
 ## 9. Périmètre et ordre d'implémentation recommandé
@@ -142,3 +142,46 @@ Le mode recette **ne doit jamais** modifier :
 Ne pas construire un nouveau moteur d'apprentissage, un framework de mocks générique, un panneau d'administration ou une batterie de scénarios inutiles. Privilégier le meilleur rapport **temps d'implémentation / vitesse de recette / fidélité du rendu / risque pour la progression**.
 
 **Livrable** : mode recette réellement utilisable sur Android depuis une instance de prévisualisation privée, documentation d'accès et de scénarios, tests ciblés et suite critique verte. Mettre le statut à « Implémentée — validation à confirmer » seulement après livraison ; à « Validée » uniquement après recette visuelle réelle.
+
+## Implémentation (18/10/2026)
+
+**Accès et sécurité** — instance dédiée `RECETTE=1` (`server.js`) :
+- **mot de passe serveur** (HTTP Basic, `RECETTE_USER` / `RECETTE_PASS`) sur tout le site ; sans eux, l'instance refuse de servir (503) ;
+- `config.js` est remplacé par une configuration **sans Firebase**, et les scripts Firebase sont retirés de la page : aucune connexion ni écriture cloud n'est possible, au démarrage comme à l'arrêt ;
+- **autre origine** (autre port en local, autre service Render) : stockage local séparé de l'app d'apprentissage ;
+- le panneau est injecté par le serveur (`recette/recette.js`, `recette.css`). Sans `RECETTE=1`, ce dossier n'est pas servi (404) et la page n'en contient aucune trace ; ni `?debug=1` ni le stockage local ne l'activent ;
+- en-tête `X-Robots-Tag: noindex`.
+
+**Accès Android** : `docs/RECETTE.md`.
+- Option A : Termux sur le téléphone, `RECETTE=1 … PORT=3001 node server.js`, puis http://localhost:3001.
+- Option B : service Render privé (HTTPS) sur la branche `v2`, avec les trois variables. À créer dans le tableau de bord Render.
+
+**Interface** :
+- « Plus → **Outils de test** », ou l'onglet vertical rose « MODE TEST » au bord droit (masqué quand un panneau est ouvert : il ne recouvre jamais les boutons).
+- Le panneau rappelle « MODE TEST — progression fictive », liste les leçons avec leur **numéro affiché** et l'écran, puis les scénarios adaptés. Les écrans sans données sont grisés (« pas de mission »).
+- Boutons : « Voir cet écran → », « Quitter le test » (efface tout sauf le dernier choix), scénario en cours, durée mesurée.
+
+**Scénarios** (MVP + extension ciblée, §4) :
+- mission : sans faute · 2 erreurs (1 vie) · perdue (0 vie) · Tente ta chance réussie / perdue · juste avant la dernière réponse ;
+- fin d'étape : sans faute · 2e essai ;
+- fin d'unité : sans faute · 3 erreurs ;
+- rattrapage → Chemin.
+
+**Fidélité** : chaque scénario repart d'une progression fictive vierge, puis joue la leçon avec les **vraies fonctions** (`openMission`, `missionValider`, `startUnite`, `mcValider`, `ecrValiderPc`, `refaireErreurs`…), exactement comme les tests Playwright. Les erreurs sont de vraies erreurs (une vie par réplique, une seule fois). Les bilans sont ceux de `finirMission`, `finirTentative` et `finirRun` : aucun écran recopié, aucun DOM réécrit.
+
+**Écarts assumés** : « Rejouer le scénario » = relancer le même choix depuis le panneau (mémorisé). Les variantes de contexte (§4.3 : leçon en cours, terminée) ne sont pas ajoutées : le choix de la leçon couvre le haut et le bas du Chemin.
+
+**Mesures** : chaque scénario est prêt en **0,3 à 0,5 s** dans Chromium (format 390 px). Le temps réel sur le téléphone est affiché dans le panneau.
+
+**Tests** : `tests/test_recette_visuelle.py` (nouveau, dans la suite critique). Il lance sa propre instance de recette sur le port 3457 et vérifie :
+- l'app normale sans trace, l'instance refusée sans mot de passe (503, 401) ;
+- l'absence de Firebase et de toute requête cloud ;
+- les 9 scénarios et leurs bilans, les vrais boutons (Rejouer, Retour, Mon chemin), le Chemin replié et visible ;
+- « Quitter le test » et le rechargement sans acquis fictifs ;
+- moins de 3 s par scénario.
+
+Les tests de bout en bout sans accélération restent en place (`test_missions_10`, `test_mission_vies`, délai réel dans `test_parcours`). Suite critique verte.
+
+**Reste ouvert** :
+- recette sur Android réel (option A ou B) ;
+- création du service Render privé si l'option B est retenue.
