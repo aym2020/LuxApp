@@ -2184,3 +2184,14 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .chemin-tete .pastille.a { background: rgba(143, 166, 189, .14); color: #b8c6d4; }
 .chemin-tete .pastille.a i { background: #b8c6d4; }
 .acquise.ancienne { color: #b8c6d4; white-space: normal; }
+
+/* Spec 47 : leçon repliée avec « À rafraîchir » — 1re ligne : numéro, titre
+   (2 lignes max), chevron ; la pastille passe sur une 2e ligne, sous le titre.
+   Sans pastille, la carte ne change pas. */
+/* Le titre garde au moins 8 em (suit la taille du texte) : s'il manque de
+   place à côté du numéro (petit écran, texte agrandi), il passe dessous au lieu
+   d'être coupé. Sur un écran courant, rien ne bouge. */
+.carte-lecon.compacte { flex-wrap: wrap; }
+.carte-lecon.compacte .titre { flex: 1 1 8em; }
+.carte-lecon.compacte > .carte-ligne2 { order: 11; flex-basis: 100%; display: flex; min-width: 0; }
+.carte-lecon.compacte > .carte-ligne2 .pastille-fraicheur { flex: none; max-width: 100%; white-space: nowrap; }

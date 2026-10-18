@@ -99,7 +99,8 @@ function leconReplieeHtml(l, dus, conseillee, anim) {
       '<span class="titre">' + escHtml(titreCourt(l)) + '</span>' +
       (fini ? resultatLeconHtml(l) : faites ? '<span class="avance">' + faites + '/' + etapesLecon(l) + '</span>' : '') +
       '<span class="chevron-l">' + ICONES.chevron + '</span>' +
-      rafraichirPastille(dus) +
+      // Spec 47 : la pastille va sur sa propre ligne, sous le titre (jamais à côté).
+      (dus ? '<span class="carte-ligne2">' + rafraichirPastille(dus) + '</span>' : '') +
     '</button></li>';
 }
 
