@@ -83,8 +83,9 @@ with sync_playwright() as p:
     page.evaluate('goDashboard()')
     page.click('.ac-menu')
     tuiles = page.locator('.plus-acquis span').all_inner_texts()
-    assert tuiles == ['unités terminées', 'missions réussies', 'jours de pratique'], tuiles
-    assert page.inner_text('.plus-acquis b >> nth=0') == '1'  # leçon 1 acquise en v1
+    # Spec 46 : les vraies unités d'un côté, la leçon acquise en v1 de l'autre
+    assert tuiles == ['unités terminées', 'leçons acquises · ancienne version', 'missions réussies', 'jours de pratique'], tuiles
+    assert page.inner_text('.plus-acquis b >> nth=0') == '0' and page.inner_text('.plus-acquis b >> nth=1') == '1'
     page.click('.plus-ligne:has-text("Réglages")')
     assert actif(page, 'view-reglages') and visible(page, '#view-reglages .dash-reset')
     page.screenshot(path=OUT + 'lot1-reglages.png', full_page=True)

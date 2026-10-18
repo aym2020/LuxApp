@@ -396,6 +396,7 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   else if (sansFaute) etat = ' · <span class="pc-gold">SANS FAUTE</span>';
   else if (best != null) etat = ' · TERMINÉE';
   else if (!u.bonus && leconAcquiseParMission(l)) etat = ' · <span class="pl-validee">FACULTATIVE · LEÇON VALIDÉE PAR LA MISSION</span>'; // spec 32 : pas faite, pas de coche
+  else if (!u.bonus && acquiseAncienneVersion(l)) etat = ' · <span class="pl-validee">NOUVELLE · LEÇON ACQUISE (ANCIENNE VERSION)</span>'; // spec 46 : à découvrir, pas de coche
 
   const mots = itemsUnite(l, 'flashcards', u.id, 'coeur');
   let apercu = mots.slice(0, 4).map(c => escHtml(c.lu)).join(' · ');

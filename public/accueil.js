@@ -108,7 +108,8 @@ function chiffresHtml() {
   return '<div class="ac-chiffres entre-2">' +
     '<div><b id="serie" class="serie">' + ICONES.flamme + serie + ' j</b><span>Série</span></div>' +
     '<div><b>' + prog.pourcent + ' %</b><span>Progression</span></div>' +
-    '<div><b>' + prog.terminees + ' / ' + prog.nbLecons + '</b><span>Leçons</span></div>' +
+    '<div><b>' + prog.terminees + ' / ' + prog.nbLecons + '</b><span>Leçons' +
+      (prog.anciennes ? ' · +' + prog.anciennes + ' ancienne' + (prog.anciennes > 1 ? 's' : '') : '') + '</span></div>' + // spec 46
   '</div>';
 }
 
@@ -232,6 +233,7 @@ function feterObjectifDuJour() {
 function ouvrirPlus() {
   const tuiles = [
     [compterUnitesTerminees(), 'unités terminées'],
+    ...(compterAcquisesAncienneVersion() ? [[compterAcquisesAncienneVersion(), 'leçons acquises · ancienne version']] : []), // spec 46
     [leconsActives().filter(missionReussie).length, 'missions réussies'],
     [totalJours(), 'jours de pratique']
   ];

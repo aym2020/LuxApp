@@ -20,7 +20,8 @@ function renderLessons() {
   if (!box) return;
 
   const liste = leconsActives();
-  const terminees = liste.filter(leconTerminee);
+  const terminees = liste.filter(l => leconTerminee(l) && !acquiseAncienneVersion(l));
+  const anciennes = liste.filter(acquiseAncienneVersion); // spec 46
   const enCours = leconEnCours();
   const fraicheurs = resumeRevision(liste).parLecon;
   const anim = dernierFini; // étape tout juste finie : animée une seule fois
@@ -38,7 +39,8 @@ function renderLessons() {
   let html = '<div class="chemin-tete' + (pulse ? ' entre' : '') + '">' +
     '<div class="chemin-titre"><h1>Mon chemin</h1><span class="etiquette or">Parcours ' + niveauActif + '</span></div>' +
     '<div class="resume">' +
-      '<span class="pastille v"><i></i>' + terminees.length + ' terminée' + (terminees.length > 1 ? 's' : '') + '</span>' +
+      (terminees.length || !anciennes.length ? '<span class="pastille v"><i></i>' + terminees.length + ' terminée' + (terminees.length > 1 ? 's' : '') + '</span>' : '') +
+      (anciennes.length ? '<span class="pastille a"><i></i>' + anciennes.length + ' acquise' + (anciennes.length > 1 ? 's' : '') + ' · ancienne version</span>' : '') +
       (enCours ? '<span class="pastille o"><i></i>1 en cours</span>' : '') +
     '</div></div><ol class="chemin">';
 
@@ -64,8 +66,12 @@ function renderLessons() {
 
 // Étoiles d'une leçon terminée, ou « Sans faute ».
 function resultatLeconHtml(l) {
-  // Faite dans l'ancienne version, nouvelles unités pas encore jouées.
-  if (acquisV1(l) && resumeLecon(l).done === 0) return '<span class="acquise">Acquise</span>';
+  // Acquise dans l'ancienne version, nouvelles unités pas toutes faites (spec 46) :
+  // ni étoiles ni « Terminée » ; l'avancement réel s'il y en a un.
+  if (acquiseAncienneVersion(l)) {
+    const faites = etapesFaites(l);
+    return '<span class="acquise ancienne">Acquise · ancienne version' + (faites ? ' · ' + faites + '/' + etapesLecon(l) : '') + '</span>';
+  }
   // Validée par la mission avant la fin des unités (spec 32) : pas d'étoiles inventées.
   const r = isParcoursLecon(l) ? resumeLecon(l) : null;
   if (r && leconAcquiseParMission(l) && r.done < r.total) return '<span class="validee">Validée par la mission</span>';
@@ -103,7 +109,8 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   const fini = leconTerminee(l);
   const r = isParcoursLecon(l) ? resumeLecon(l) : null;
   const parMission = fini && r && r.done < r.total && leconAcquiseParMission(l);
-  const etat = parMission ? 'Validée par la mission' : fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
+  const ancienne = acquiseAncienneVersion(l); // spec 46
+  const etat = ancienne ? 'Acquise · ancienne version' : parMission ? 'Validée par la mission' : fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
   const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
   const action = actionLeconChemin(l);
 
@@ -144,6 +151,13 @@ function actionLeconChemin(l) {
   // Rien de commencé (même si l'introduction a été lue) : « Découvrir » ouvre l'introduction.
   if (l.mission && l.scene && !leconCommencee(l)) {
     return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir', fn: () => ouvrirIntroMission(l) };
+  }
+  // Acquise dans l'ancienne version (spec 46) : le nouveau contenu est proposé,
+  // jamais obligatoire (la leçon reste acquise et les suivantes restent ouvertes).
+  if (acquiseAncienneVersion(l)) {
+    const nouvelle = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
+    if (nouvelle) return { etape: nouvelle.id, libelle: 'Faire les nouvelles unités', fn: () => ouvrirUniteDepuisChemin(l.id, nouvelle.id) };
+    if (l.mission && l.scene) return { etape: 'mission', libelle: 'Jouer la nouvelle mission', fn: () => ouvrirMissionDepuisChemin(l.id) };
   }
   const deja = leconTerminee(l); // acquise : plus d'unité obligatoire (spec 32)
   const u = deja ? null : unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);

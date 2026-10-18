@@ -60,6 +60,7 @@ Ce répertoire centralise les **43 spécifications** fonctionnelles et UX du pro
 | 43 | [Mode recette visuelle : tester les missions et résultats en quelques secondes](./SPEC-43.md) | P1 | Implémentée — validation à confirmer |
 | 44 | [Chemin déplié après « Refaire mes erreurs » et écran conservé à l'actualisation](./SPEC-44.md) | P1 | Implémentée — validation à confirmer |
 | 45 | [Tout retour depuis un écran de résultat mène au Chemin, leçon dépliée](./SPEC-45.md) | P1 | Implémentée — validation à confirmer |
+| 46 | [Acquis de l'ancienne version : distincts des unités réellement terminées](./SPEC-46.md) | P0 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

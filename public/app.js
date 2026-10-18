@@ -198,13 +198,18 @@ function compterUnitesTerminees() {
   let total = 0;
   leconsActives().forEach(l => {
     if (isParcoursLecon(l)) {
-      const faites = unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
-      // Leçon migrée, faite dans l'ancienne version : compte au moins 1 (un acquis ne baisse jamais).
-      total += faites || (acquisV1(l) ? 1 : 0);
+      // Seulement les unités réellement terminées (spec 46) : un acquis de
+      // l'ancienne version est compté à part (compterAcquisesAncienneVersion).
+      total += unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
     }
     else if (leconV1Faite(l)) total += 1;
   });
   return total;
+}
+
+// Leçons acquises dans l'ancienne version, nouvelles unités pas toutes faites (spec 46).
+function compterAcquisesAncienneVersion() {
+  return leconsActives().filter(acquiseAncienneVersion).length;
 }
 
 function openReglages() {

@@ -73,9 +73,11 @@ function etapesLecon(l) {
   return unitesCoeur(l).length + (l.mission && l.scene ? 1 : 0);
 }
 
+// Étapes RÉELLEMENT faites dans le nouveau parcours (spec 46) : un acquis de
+// l'ancienne version ne compte plus comme des unités faites. Il garde la leçon
+// acquise (leconTerminee), sans coche ni étoile sur les unités.
 function etapesFaites(l) {
   if (!isParcoursLecon(l)) return leconV1Faite(l) ? 1 : 0;
-  if (acquisV1(l)) return etapesLecon(l); // faite dans l'ancienne version : reste terminée
   // Étapes réellement faites : unités terminées + mission RÉUSSIE (jouée ne suffit pas,
   // spec 32). Une leçon validée par la mission garde son vrai nombre d'unités faites.
   let faites = unitesCoeur(l).filter(u => getUnitBest(l.id, u.id) != null).length;
@@ -87,19 +89,41 @@ function etapesFaites(l) {
 // mission réussie (raccourci, spec 32), ou terminée avant la spec 32.
 function leconTerminee(l) {
   if (isParcoursLecon(l) && l.mission && l.scene && (leconAcquiseParMission(l) || leconTermineeAvantSpec32(l))) return true;
+  if (acquisV1(l)) return true; // acquise dans l'ancienne version : l'accès et le parcours ne régressent jamais
   return etapesFaites(l) >= etapesLecon(l);
 }
 
+// ─── TROIS ÉTATS DISTINCTS (spec 46) ────────────────────────────────────────
+//   1. acquise historiquement : ancienne leçon validée en v1 (acquisV1) ;
+//   2. unités réellement terminées : scores enregistrés (getUnitBest) ;
+//   3. complète dans le nouveau parcours : toutes les unités du fil + mission réussie.
+// « Acquise · ancienne version » = 1 sans 3, et sans validation par la mission
+// ni fin d'avant la spec 32 (ces cas gardent leur propre affichage).
+function leconCompleteV2(l) {
+  return etapesFaites(l) >= etapesLecon(l);
+}
+
+function acquiseAncienneVersion(l) {
+  if (!isParcoursLecon(l) || !acquisV1(l) || leconCompleteV2(l)) return false;
+  if (l.mission && l.scene && (leconAcquiseParMission(l) || leconTermineeAvantSpec32(l))) return false;
+  return true;
+}
+
 // Progression d'un niveau : étapes faites / total, et leçons terminées.
+// terminees : leçons complètes ou validées par la mission ; anciennes : acquises
+// seulement dans l'ancienne version. Le pourcentage ne compte que les étapes
+// vraiment faites pour ces dernières (spec 46 : pas de 100 % artificiel).
 function progressionNiveau(niveau) {
-  let faites = 0, total = 0, terminees = 0;
+  let faites = 0, total = 0, terminees = 0, anciennes = 0;
   const liste = leconsDuNiveau(niveau);
   liste.forEach(l => {
-    faites += leconTerminee(l) ? etapesLecon(l) : etapesFaites(l); // leçon acquise = toutes ses étapes pour le parcours
+    const ancienne = acquiseAncienneVersion(l);
+    faites += leconTerminee(l) && !ancienne ? etapesLecon(l) : etapesFaites(l); // validée par la mission = toutes ses étapes (spec 32)
     total += etapesLecon(l);
-    if (leconTerminee(l)) terminees++;
+    if (ancienne) anciennes++;
+    else if (leconTerminee(l)) terminees++;
   });
-  return { faites, total, terminees, nbLecons: liste.length, pourcent: total ? Math.round(faites / total * 100) : 0 };
+  return { faites, total, terminees, anciennes, nbLecons: liste.length, pourcent: total ? Math.round(faites / total * 100) : 0 };
 }
 
 // Leçon en cours = celle du prochain pas conseillé (partie en cours comprise).
