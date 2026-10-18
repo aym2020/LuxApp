@@ -151,6 +151,19 @@ try:
         pg.click('#pf-suite')
         pg.wait_for_timeout(500)
         lecon_cadree(pg, 24)
+        # Spec 44 dans l'instance de recette : une actualisation garde le Chemin et la leçon dépliée
+        pg.reload()
+        pg.wait_for_function("typeof navigationRestauree !== 'undefined' && navigationRestauree === true")
+        pg.wait_for_timeout(450)
+        lecon_cadree(pg, 24)
+        assert pg.is_visible('#recette-badge')
+        # … et une mission en cours reprend avec ses réponses et ses vies
+        lancer(24, 'mission', 'derniere')
+        avant = pg.evaluate("({ idx: ms.idx, vies: ms.vies, faits: ms.resultats.filter(Boolean).length })")
+        pg.reload()
+        pg.wait_for_function("typeof navigationRestauree !== 'undefined' && navigationRestauree === true")
+        assert vue(pg) == 'view-mission' and pg.evaluate("({ idx: ms.idx, vies: ms.vies, faits: ms.resultats.filter(Boolean).length })") == avant
+        ok('actualisation dans la recette : Chemin (leçon dépliée) et mission en cours conservés (spec 44)')
         ok('rattrapage → « Mon chemin » : chemin principal, Leçon 25 seule dépliée et cadrée')
 
         # Isolation : rien vers le cloud ; « Quitter le test » efface la progression fictive

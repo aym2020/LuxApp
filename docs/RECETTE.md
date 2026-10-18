@@ -40,14 +40,15 @@ Ce service suit la branche `v2` : chaque push met aussi la recette à jour.
 2. Choisir la **leçon** (numéro affiché, ex. « Leçon 25 · Le passé composé »), l'**écran**, puis le **scénario**.
 3. **Voir cet écran →** : l'app vide la progression fictive, joue la leçon en accéléré avec ses vraies fonctions, puis affiche le vrai écran (moins d'une seconde dans les tests).
 4. Utiliser ensuite les vrais boutons (Continuer, Refaire mes erreurs, Mon chemin, Rejouer la mission, Retour Android…).
-5. **Quitter le test** : efface toute la progression fictive (seul le dernier choix du panneau est gardé).
+5. **Tester l'actualisation (spec 44)** : sur n'importe quel écran obtenu (mission en cours, exercice, Chemin), tirer l'écran vers le bas pour actualiser. Le même écran doit revenir, avec les réponses, les vies, la leçon dépliée et la position.
+6. **Quitter le test** : efface toute la progression fictive (seul le dernier choix du panneau est gardé).
 
 | Écran | Scénarios |
 |---|---|
 | Fin de mission | Sans faute (3 vies) · Réussie avec 2 erreurs (1 vie) · Perdue (0 vie) · Tente ta chance réussie / perdue · Juste avant la dernière réponse |
 | Fin d'étape (écriture, unité 1) | Sans faute · 1re réponse juste au 2e essai |
 | Fin d'unité (unité 1) | Sans faute · Avec 3 erreurs (« Refaire mes erreurs ») |
-| Rattrapage des erreurs → Chemin | Erreurs refaites : résultat du rattrapage, puis « Mon chemin » |
+| Rattrapage des erreurs → Chemin | Erreurs refaites : résultat du rattrapage, puis « Mon chemin » (leçon seule dépliée et cadrée, spec 44) |
 
 Les erreurs simulées sont de vraies erreurs (une vie de moins par réplique ratée, réponses ratées une fois puis justes). Rien n'est fabriqué : bilans, étoiles et validations sont calculés par l'app.
 
