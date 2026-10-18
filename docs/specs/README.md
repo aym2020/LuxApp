@@ -51,6 +51,7 @@ Ce répertoire centralise les **35 spécifications** fonctionnelles et UX du pro
 | 34 | [Système de vies lisible et missions à 10 répliques](./SPEC-34.md) | P0 | Implémentée — validation à confirmer |
 | 35 | [Missions : bouton Continuer, ascenseur sombre et retours compréhensibles](./SPEC-35.md) | P1 | Implémentée — validation à confirmer |
 | 36 | [Règles des vies à chaque lancement de mission, avec « Ne plus afficher »](./SPEC-36.md) | P1 | Implémentée — validation à confirmer |
+| 37 | [Boutons « Continuer » verts : plus d'anneau jaune après Entrée](./SPEC-37.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

@@ -202,13 +202,14 @@ with sync_playwright() as p:
     lu = pg.evaluate("pLecon.scene[ms.idx].lu")
     pg.fill('#ms-input', 'Ech weess et net'); pg.press('#ms-input', 'Enter')
     pg.fill('#ms-input', lu); pg.press('#ms-input', 'Enter')  # au clavier
-    assert pg.evaluate("document.activeElement.id") == 'ms-continuer' and pg.evaluate("document.activeElement.matches(':focus-visible')")
+    assert pg.evaluate("document.activeElement.id") == 'ms-continuer'
+    assert pg.evaluate("getComputedStyle(document.activeElement).outlineStyle") == 'none', 'pas d\'anneau jaune (spec 37)'
     retour = pg.inner_text('.ms-retour')
     assert 'Bonne réponse, au 2e essai !' in retour and 'Tu as trouvé après une erreur.' in retour and 'autonome' not in retour, retour
     idx = pg.evaluate("ms.idx")
     pg.keyboard.press('Enter')
     assert pg.evaluate("ms.idx") > idx, 'Entrée continue'
-    ok('« Continuer » : pas de focus après un clic ; après Entrée, focus visible et Entrée continue ; « Bonne réponse, au 2e essai ! »')
+    ok('« Continuer » : pas de focus après un clic ; après Entrée, focus sans anneau et Entrée continue ; « Bonne réponse, au 2e essai ! »')
     pg.evaluate(RESET + "(12)")
     jouer(pg, ['err', 'err'] + ['ok'] * (n - 2))
     assert 'Réponses trouvées sans erreur : 8 / 10' in pg.inner_text('.ms-fin') and 'autonome' not in pg.inner_text('.ms-fin')

@@ -63,8 +63,12 @@ document.addEventListener('keydown', () => { derniereActionClavier = true; }, tr
 document.addEventListener('pointerdown', () => { derniereActionClavier = false; }, true);
 
 // Donne le focus au bouton si on vient du clavier (Entrée = continuer).
+// Le focus est donné par le code, pas par Tab : pas d'anneau jaune (spec 37).
+// Un focus obtenu avec Tab (bouton non marqué) garde son anneau.
 function focusApresClavier(bouton) {
-  if (bouton && derniereActionClavier) bouton.focus({ preventScroll: true });
+  if (!bouton || !derniereActionClavier) return;
+  bouton.classList.add('focus-auto');
+  bouton.focus({ preventScroll: true });
 }
 
 function focusSiClavierPhysique(champ) {
