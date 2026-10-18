@@ -108,7 +108,7 @@ function etatPreparationMission(l) {
 function voirScenario() {
   const l = pLecon;
   const html = '<div class="poignee"></div>' +
-    '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + l.id + '</div>' +
+    '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + numLecon(l) + '</div>' +
     '<h2 class="ms-titre">' + escHtml(l.mission.titre) + '</h2>' +
     '<div class="ms-contexte">' + escHtml(l.mission.contexte) + '</div>' +
     '<div class="ms-objectif"><span>À la fin, tu sauras :</span> ' + escHtml(l.mission.objectif) + '</div>' +
@@ -149,7 +149,7 @@ function renderIntroMission() {
   const l = pLecon;
   document.getElementById('msi-content').innerHTML =
     '<div class="msi-haut">' +
-      '<div class="pc-mini-label pc-gold msi-in">MISSION · LEÇON ' + l.id + '</div>' +
+      '<div class="pc-mini-label pc-gold msi-in">MISSION · LEÇON ' + numLecon(l) + '</div>' +
       '<h1 class="msi-titre msi-in">' + escHtml(l.mission.titre) + '</h1>' +
       '<p class="msi-contexte msi-in">' + escHtml(l.mission.contexte) + '</p>' +
     '</div>' +
@@ -420,6 +420,7 @@ function renderMission() {
     (ms.vies === 0 ? '<div class="ms-apprentissage">Plus de vie : termine la conversation pour t\'entraîner. Le défi ne sera pas validé cette fois.</div>' : '') +
     '<div class="mc-erreur hidden" id="ms-erreur"></div>' +
     '<div class="ms-a-traduire"><span>À traduire en luxembourgeois</span><div class="ms-consigne">' + escHtml(ligne.fr) + '</div></div>' +
+    aideVocabHtml(ligne) + // spec 42 : mots nouveaux hors objectif, sans pénalité
     '<div class="ms-champ">' +
       '<textarea id="ms-input" rows="1" placeholder="Écris ta réponse…" enterkeyhint="send" aria-label="Ta réponse en luxembourgeois"' +
         ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
@@ -451,7 +452,7 @@ function agrandirChamp(input) {
 function voirContexte() {
   const l = pLecon;
   ouvrirPanneau('<div class="poignee"></div>' +
-    '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + l.id + '</div>' +
+    '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + numLecon(l) + '</div>' +
     '<h2 class="ms-titre">' + escHtml(l.mission.titre) + '</h2>' +
     '<div class="ms-contexte">' + escHtml(l.mission.contexte) + '</div>' +
     '<div class="ms-objectif"><span>À la fin, tu sauras :</span> ' + escHtml(l.mission.objectif) + '</div>' +

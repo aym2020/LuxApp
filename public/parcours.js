@@ -335,7 +335,7 @@ function renderParcoursLecon() {
   pLibreIci = libre && libre.leconId === l.id ? libre : null;
   const revision = resumeRevision([l]).parLecon[l.id];
 
-  document.getElementById('pl-num').textContent = 'LEÇON ' + l.id;
+  document.getElementById('pl-num').textContent = 'LEÇON ' + numLecon(l);
   document.getElementById('pl-titre').textContent = l.titre;
   document.getElementById('pl-sous').textContent =
     l.titre_fr + ' · ' + unitesCoeur(l).length + ' unités';
@@ -445,13 +445,13 @@ function retourLecon() {
 function lancerBilan() {
   const pool = itemsRevision(pLecon).filter(i =>
     i.type !== 'motcache' && !i.q.plus && !trouverUnite(pLecon, i.q.unite).bonus);
-  demarrerSession('review', 'BILAN · LEÇON ' + pLecon.id, melanger(pool).slice(0, 10), { actions: retourLecon() });
+  demarrerSession('review', 'BILAN · LEÇON ' + numLecon(pLecon), melanger(pool).slice(0, 10), { actions: retourLecon() });
 }
 
 // Révise tout ce qui est dû dans cette leçon (la fraîcheur remonte).
 function rafraichirLecon() {
   const dus = resumeRevision([pLecon]).dus;
-  demarrerSession('review', 'RAFRAÎCHIR · LEÇON ' + pLecon.id, dus, { actions: retourLecon() });
+  demarrerSession('review', 'RAFRAÎCHIR · LEÇON ' + numLecon(pLecon), dus, { actions: retourLecon() });
 }
 
 // ─── ÉCRAN "AVANT DE COMMENCER" ─────────────────────────────────────────────
@@ -1254,6 +1254,18 @@ function choisirP(btn, ok, bonne, item, type) {
 let ecrEssais = 0;      // essais ratés sur la phrase en cours
 let ecrCoquille = false; // correction gratuite déjà utilisée sur cette phrase (spec 24)
 
+// Aide vocabulaire (spec 42) : les mots nouveaux qui ne sont pas l'objet de
+// l'exercice, déclarés dans la leçon (« aide_vocab »). Fermée par défaut,
+// ouverte d'un appui, sans aucune pénalité. Jamais la réponse entière.
+function aideVocabHtml(item) {
+  const aides = item && item.aide_vocab;
+  if (!aides || !aides.length) return '';
+  return '<details class="aide-vocab"><summary>Aide vocabulaire</summary><ul>' +
+    aides.map(a => '<li><span>' + escHtml(a.fr) + '</span> → <b lang="lb">' + escHtml(a.lu) + '</b>' +
+      (a.precision ? '<em>' + escHtml(a.precision) + '</em>' : '') + '</li>').join('') +
+    '</ul></details>';
+}
+
 function renderEcriturePc(e) {
   ecrEssais = 0;
   ecrCoquille = false;
@@ -1261,7 +1273,7 @@ function renderEcriturePc(e) {
     '<div class="pc-question">' +
       '<div class="pc-mini-label">ÉCRIS EN LUXEMBOURGEOIS</div>' +
       '<div class="pc-question-mot">' + escHtml(e.fr) + '</div>' +
-    '</div>' +
+    '</div>' + aideVocabHtml(e) +
     '<div class="mc-erreur hidden" id="pc-ecr-erreur"></div>' +
     '<label class="pc-input-label" for="pc-ecr-input">Ta réponse</label>' +
     '<textarea id="pc-ecr-input" class="ecr-input" rows="2" placeholder="Tape ta réponse…"' +
@@ -1481,7 +1493,7 @@ function renderFin() {
   const u = r.uniteId === TOUTE_LA_LECON ? null : trouverUnite(pLecon, r.uniteId);
   let titre;
   if (r.mode === 'unite') titre = (u.bonus ? 'BONUS' : 'UNITÉ ' + r.uniteId) + ' TERMINÉE';
-  else if (r.mode === 'lecon') titre = 'LEÇON ' + r.leconId + ' TERMINÉE';
+  else if (r.mode === 'lecon') titre = 'LEÇON ' + numLecon(r.leconId) + ' TERMINÉE';
   else if (r.mode === 'plus') titre = '« + » TERMINÉ';
   else if (r.mode === 'erreurs') titre = 'ERREURS REFAITES';
   else if (r.typeEtape) titre = 'ÉTAPE ' + etapeInfo(r.typeEtape).label.toUpperCase() + ' TERMINÉE';

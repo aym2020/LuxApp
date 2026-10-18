@@ -28,6 +28,11 @@ app.get('/api/lecons', (req, res) => {
     });
   });
 
+  // Ordre du parcours : « numero » (numéro affiché) s'il existe, sinon l'id (spec 42).
+  // L'id ne change jamais : toute la progression y est attachée.
+  const rangNiveau = n => niveaux.indexOf(n);
+  lecons.sort((a, b) => rangNiveau(a.niveau) - rangNiveau(b.niveau) || (a.numero || a.id) - (b.numero || b.id));
+
   res.json(lecons);
 });
 

@@ -89,7 +89,7 @@ function leconReplieeHtml(l, dus, conseillee, anim) {
   return '<li class="pas ' + (fini ? 'fait replie' : conseillee ? 'encours replie' : 'futur') + '" id="chemin-lecon-' + l.id + '">' +
     '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '">' + (fini ? ICONES.coche : conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
     '<button class="carte-lecon compacte chemin-lecon" style="--lc:' + l.couleur + '" aria-expanded="false" onclick="basculerLeconChemin(' + l.id + ')">' +
-      '<span class="num"><b>Leçon ' + l.id + '</b></span>' +
+      '<span class="num"><b>Leçon ' + numLecon(l) + '</b></span>' +
       '<span class="titre">' + escHtml(titreCourt(l)) + '</span>' +
       (fini ? resultatLeconHtml(l) : faites ? '<span class="avance">' + faites + '/' + etapesLecon(l) + '</span>' : '') +
       '<span class="chevron-l">' + ICONES.chevron + '</span>' +
@@ -111,7 +111,7 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
     '<span class="rond">' + (fini ? ICONES.coche : conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
     '<div class="carte-lecon chemin-lecon ouvre' + deplie + '" style="--lc:' + l.couleur + '">' +
       '<button class="carte-tete" aria-expanded="true" onclick="basculerLeconChemin(' + l.id + ')">' +
-        '<span class="num"><b>Leçon ' + l.id + '</b> · <span class="st">' + etat + '</span></span>' +
+        '<span class="num"><b>Leçon ' + numLecon(l) + '</b> · <span class="st">' + etat + '</span></span>' +
         '<span class="chevron-l">' + ICONES.chevron + '</span>' +
         '<h3>' + escHtml(titreCourt(l)) + '</h3>' +
       '</button>' + rafraichirPastille(dus);
@@ -285,14 +285,31 @@ function montrerEtapeChemin(leconId, etape) {
 
 // Chemin ouvert sur une leçon, sa carte centrée dans la zone visible (spec 40).
 // Carte plus haute que l'écran : son début en haut.
-function centrerLeconChemin(leconId) {
+function cadrerLeconChemin(leconId) {
   const el = document.getElementById('chemin-lecon-' + leconId);
-  if (!el) return;
+  const vue = document.getElementById('view-lessons');
+  if (!el || !vue || !vue.classList.contains('active')) return;
   const r = el.getBoundingClientRect();
   const bas = basVisibleChemin();
   const haut = 12;
   const decalage = r.height > bas - haut ? r.top - haut : (r.top + r.bottom) / 2 - (haut + bas) / 2;
   window.scrollTo(0, Math.max(0, window.scrollY + decalage));
+}
+
+// Spec 42 : le cadrage est refait une fois le rendu stabilisé (deux images,
+// polices chargées, fermeture du clavier du téléphone qui agrandit l'écran),
+// sauf si l'utilisateur a lui-même touché ou fait défiler l'écran entre-temps.
+let cadrageInterrompu = false;
+['pointerdown', 'wheel', 'touchmove', 'keydown'].forEach(evt =>
+  window.addEventListener(evt, () => { cadrageInterrompu = true; }, { passive: true, capture: true }));
+
+function centrerLeconChemin(leconId) {
+  cadrageInterrompu = false;
+  const refaire = () => { if (!cadrageInterrompu) cadrerLeconChemin(leconId); };
+  refaire();
+  requestAnimationFrame(() => requestAnimationFrame(refaire));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refaire);
+  setTimeout(refaire, 400); // clavier refermé : la zone visible a changé
 }
 
 // Après « Refaire mes erreurs » : le chemin principal, leçon centrée et

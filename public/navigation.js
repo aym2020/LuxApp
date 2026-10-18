@@ -123,7 +123,7 @@ function nomEcran(e) {
   };
   if (noms[e.vue]) return noms[e.vue];
   if (e.vue === 'view-msintro') return 'Introduction';
-  if (l) return 'Leçon ' + l.id;
+  if (l) return 'Leçon ' + numLecon(l);
   return 'Retour';
 }
 

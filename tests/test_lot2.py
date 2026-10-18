@@ -63,7 +63,7 @@ with sync_playwright() as p:
     assert 'Leçon 20' in page.inner_text('#today')
     page.click('#today .carte-suite')
     assert page.evaluate('niveauChoisi()') == 'A1.2'
-    assert actif(page, 'view-msintro') and page.evaluate('pLecon.id') == 20  # leçon 20 : introduction de la mission
+    assert actif(page, 'view-msintro') and page.evaluate('pLecon.id') == 27  # 1re leçon A1.2 (id 27, affichée « Leçon 20 », spec 42)
     page.evaluate('goDashboard()')
     assert page.get_attribute('.puce-niv:has-text("A1.2")', 'aria-pressed') == 'true'
     assert 'Commencer' in page.inner_text('#today') and 'Leçon 20' in page.inner_text('#today')

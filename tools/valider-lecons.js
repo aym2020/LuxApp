@@ -86,6 +86,19 @@ function verifierV2(f, l) {
   (l.ecriture || []).forEach(e => {
     if (!e.fr || !e.lu) erreur(f, 'écriture id ' + e.id + ' : fr ou lu manquant');
   });
+  // Spec 42 : aide vocabulaire — des groupes de mots de la réponse, jamais la réponse entière.
+  (l.ecriture || []).concat(l.scene || []).forEach(x => {
+    if (x.aide_vocab === undefined) return;
+    const ou = x.id ? 'écriture id ' + x.id : 'réplique « ' + x.lu + ' »';
+    if (!Array.isArray(x.aide_vocab) || !x.aide_vocab.length) { erreur(f, ou + ' : aide_vocab doit être une liste non vide'); return; }
+    const reponse = sansAccents(x.lu).replace(/[.!?,]/g, '');
+    x.aide_vocab.forEach(a => {
+      if (!a || !a.fr || !a.lu) { erreur(f, ou + ' : aide_vocab sans fr ou lu'); return; }
+      const aide = sansAccents(a.lu).replace(/[.!?,]/g, '');
+      if (aide === reponse) erreur(f, ou + ' : aide_vocab donne la réponse entière');
+      else if (!reponse.includes(aide)) attention(f, ou + ' : aide « ' + a.lu + ' » absente de la réponse');
+    });
+  });
 
   // Blocs de cours : unité connue, ou 0 (= seulement « Toute la leçon »).
   (l.cours || []).forEach((b, i) => {

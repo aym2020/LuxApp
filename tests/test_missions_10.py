@@ -1,4 +1,4 @@
-"""Spec 34 : les 24 missions se jouent en entier — 10 réponses à produire,
+"""Spec 34 : les 25 missions (spec 42 : + leçon sinn/hunn) se jouent en entier — 10 réponses à produire,
 chaque réponse attendue acceptée telle quelle, bilan 10 / 10, mission réussie,
 compteur « n / 10 »."""
 import os
@@ -16,7 +16,7 @@ with sync_playwright() as p:
     pg.wait_for_selector('#today')
     pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
     ids = pg.evaluate("lecons.filter(l => isParcoursLecon(l) && l.mission && l.scene).map(l => l.id)")
-    assert len(ids) == 24, ids
+    assert len(ids) == 25, ids
     for lid in ids:
         pg.evaluate("id => { const l = lecons.find(x => x.id === id); choisirNiveau(l.niveau); marquerIntroMissionVue(id); openParcoursLecon(l); openMission(); }", lid)
         k = 0

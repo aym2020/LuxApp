@@ -137,7 +137,7 @@ function carteSuiteHtml(pas, nouveau) {
     '<button class="carte-suite' + (nouveau ? ' plein' : '') + '" onclick="' + (nouveau ? 'commencer()' : 'suivreProchainPas()') + '">' +
       '<span class="cs-ic">' + icone + '</span>' +
       '<span class="cs-txt"><b>' + titre + '</b>' +
-        '<span>Leçon ' + l.id + ' · ' + escHtml(titreCourt(l)) + '</span>' + detail + '</span>' +
+        '<span>Leçon ' + numLecon(l) + ' · ' + escHtml(titreCourt(l)) + '</span>' + detail + '</span>' +
       '<span class="cs-rond">' + ICONES.suite + '</span>' +
     '</button></section>';
 }

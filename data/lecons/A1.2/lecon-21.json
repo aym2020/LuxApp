@@ -1,5 +1,6 @@
 {
   "id": 21,
+  "numero": 22,
   "titre": "An der Wunneng",
   "titre_fr": "Les meubles et objets de la maison",
   "couleur": "#b07ce0",
@@ -2445,7 +2446,7 @@
   "cours": [
     {
       "type": "vocab",
-      "titre": "Les prépositions de lieu (leçon 20)",
+      "titre": "Les prépositions de lieu (leçon 21)",
       "items": [
         [
           "op",

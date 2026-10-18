@@ -42,20 +42,20 @@ function prochainPas() {
     const l = leconsActives().find(x => x.id === saved.leconId);
     // Une partie d'une leçon déjà acquise (validée par la mission) n'est plus le prochain pas (spec 32).
     if (isParcoursLecon(l) && !leconTerminee(l)) {
-      return { titre: 'Reprendre', texte: 'Leçon ' + l.id + ' · ' + nomPartie(saved.uniteId, saved.mode), lecon: l, type: 'reprise', reprise: true, fn: reprendreRun };
+      return { titre: 'Reprendre', texte: 'Leçon ' + numLecon(l) + ' · ' + nomPartie(saved.uniteId, saved.mode), lecon: l, type: 'reprise', reprise: true, fn: reprendreRun };
     }
   }
   for (const l of leconsActives()) {
     if (!isParcoursLecon(l)) {
       if (leconV1Faite(l)) continue;
-      return { titre: 'Prochaine leçon', texte: 'Leçon ' + l.id + ' · ' + l.titre_fr, lecon: l, type: 'v1', fn: () => openLecon(l) };
+      return { titre: 'Prochaine leçon', texte: 'Leçon ' + numLecon(l) + ' · ' + l.titre_fr, lecon: l, type: 'v1', fn: () => openLecon(l) };
     }
     if (leconTerminee(l)) continue; // acquise (unités + mission réussie, raccourci par la mission, ancienne version)
     const u = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (u) {
       return {
         titre: 'Prochaine unité',
-        texte: 'Leçon ' + l.id + ' · ' + u.titre,
+        texte: 'Leçon ' + numLecon(l) + ' · ' + u.titre,
         lecon: l,
         type: 'unite',
         unite: u,
@@ -70,7 +70,7 @@ function prochainPas() {
     if (l.mission && l.scene) { // unités faites, mission pas encore réussie
       return {
         titre: 'Mission',
-        texte: 'Leçon ' + l.id + ' · ' + l.mission.titre,
+        texte: 'Leçon ' + numLecon(l) + ' · ' + l.mission.titre,
         lecon: l,
         type: 'mission',
         fn: () => { openParcoursLecon(l); openMission(); }
@@ -251,7 +251,7 @@ function renderLexique() {
     total += mots.length;
     html += '<div class="lx-groupe">' +
       '<button class="lx-lecon" style="--lc:' + l.couleur + '" onclick="ouvrirLeconDepuisListe(' + l.id + ')">' +
-        'Leçon ' + l.id + ' · ' + escHtml(l.titre) + '</button>' +
+        'Leçon ' + numLecon(l) + ' · ' + escHtml(l.titre) + '</button>' +
       mots.map(m => '<div class="lx-mot"><div><b>' + escHtml(m.lu) + '</b>' +
         (m.noteHtml ? '<em>' + m.noteHtml + '</em>' : '') + '</div><span>' + escHtml(m.fr) + '</span></div>').join('') +
       '</div>';
@@ -322,7 +322,7 @@ function renderPieges() {
       nbQuestions + (nbQuestions > 1 ? ' questions' : ' question') + '</button>' +
     pieges.map(p => '<div class="pg-carte">' +
       '<div class="pg-texte">' + p.texte + '</div>' +
-      '<div class="pg-meta">Leçon ' + p.lecons.join(', ') + ' · ' + p.erreurs +
+      '<div class="pg-meta">Leçon ' + p.lecons.map(numLecon).join(', ') + ' · ' + p.erreurs +
         (p.erreurs > 1 ? ' erreurs' : ' erreur') + '</div>' +
       '<div class="pg-exemples">' + p.items.slice(0, 2).map(i => escHtml(texteItem(i))).join('<br>') + '</div>' +
       '</div>').join('');

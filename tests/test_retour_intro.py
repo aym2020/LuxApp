@@ -77,7 +77,7 @@ with sync_playwright() as p:
     # Voir les unités → lancer une unité → résultats → Retour : leçon puis chemin
     pg.click('#msi-content button:has-text("Voir les unités")')
     pg.evaluate("openIntro(unitesCoeur(pLecon)[0].id)")
-    assert libelle_retour(pg) == 'Leçon %d' % L, libelle_retour(pg)
+    assert libelle_retour(pg) == 'Leçon %d' % pg.evaluate('numLecon(%d)' % L), libelle_retour(pg)
     pg.click('#pi-commencer')
     finir(pg)
     assert actif(pg) == 'view-pfin' and 'view-msintro' not in pile(pg), pile(pg)
@@ -86,7 +86,7 @@ with sync_playwright() as p:
     pg.go_back(); pg.wait_for_timeout(200)
     assert actif(pg) == 'view-lessons', actif(pg)
     assert not pg.evaluate("getIntroMissionVue(%d)" % L), 'lancer une unité ne confirme pas l\'introduction'
-    ok('Voir les unités → unité → résultats → Retour : Leçon 20, puis chemin ; introduction non confirmée')
+    ok('Voir les unités → unité → résultats → Retour : la leçon, puis chemin ; introduction non confirmée')
 
     # ── 3. Tente ta chance abandonnée : Retour = introduction (exploration) ──
     remise_a_zero(pg)

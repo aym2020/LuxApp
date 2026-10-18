@@ -51,7 +51,7 @@ function changerNiveau(niveau) {
 function openLecon(l) {
   currentLecon = l;
 
-  document.getElementById('lecon-num').textContent = `LEÇON ${l.id}`;
+  document.getElementById('lecon-num').textContent = `LEÇON ${numLecon(l)}`;
   document.getElementById('lecon-titre').textContent = l.titre;
   document.getElementById('lecon-header').style.borderBottomColor = l.couleur + '44';
 
@@ -393,7 +393,7 @@ function openReviewSetup(seuleLeconId) {
     const label = document.createElement('label');
     label.className = 'rs-check';
     label.innerHTML =
-      '<input type="checkbox" value="' + l.id + '"' + (coche ? ' checked' : '') + '> Leçon ' + l.id + ' · ' + escHtml(l.titre);
+      '<input type="checkbox" value="' + l.id + '"' + (coche ? ' checked' : '') + '> Leçon ' + numLecon(l) + ' · ' + escHtml(l.titre);
     box.appendChild(label);
   });
 

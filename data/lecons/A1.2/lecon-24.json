@@ -1,5 +1,6 @@
 {
   "id": 24,
+  "numero": 25,
   "titre": "D'Vergaangenheet",
   "titre_fr": "Le passé composé – hunn / sinn + participe passé",
   "couleur": "#f08c46",
@@ -32,7 +33,18 @@
       "lu": "Ech si mam Auto an d'Stad gefuer.",
       "fr": "Je suis allé en ville en voiture.",
       "unite": 1,
-      "aide": "Pour se déplacer en voiture au passé, emploie <b>sinn</b> : ech si … gefuer."
+      "aide": "Pour se déplacer en voiture au passé, emploie <b>sinn</b> : ech si … gefuer.",
+      "aide_vocab": [
+        {
+          "fr": "en voiture",
+          "lu": "mam Auto"
+        },
+        {
+          "fr": "en ville (on y va)",
+          "lu": "an d'Stad",
+          "precision": "Être en ville (lieu) : an der Stad."
+        }
+      ]
     },
     {
       "qui": "Marie",
@@ -58,7 +70,14 @@
       "lu": "Mir sinn an de Kino gaangen.",
       "fr": "Nous sommes allés au cinéma.",
       "unite": 1,
-      "aide": "Aller à pied : <b>sinn … gaangen</b>."
+      "aide": "Aller à pied : <b>sinn … gaangen</b>.",
+      "aide_vocab": [
+        {
+          "fr": "au cinéma (on y va)",
+          "lu": "an de Kino",
+          "precision": "Être au cinéma (lieu) : am Kino."
+        }
+      ]
     },
     {
       "qui": "Marie",
@@ -110,7 +129,13 @@
       "lu": "Ech hu gëschter Owend d'Tëlee gekuckt.",
       "fr": "J'ai regardé la télé hier soir.",
       "unite": 2,
-      "aide": "kucken → <b>gekuckt</b>."
+      "aide": "kucken → <b>gekuckt</b>.",
+      "aide_vocab": [
+        {
+          "fr": "hier soir",
+          "lu": "gëschter Owend"
+        }
+      ]
     },
     {
       "qui": "Marie",
@@ -160,8 +185,8 @@
         "Ech si mam Auto an d'Stad gefuer.",
         "Je suis allé en ville en voiture."
       ],
-      "regle": "Pour les déplacements et certains changements d'état, le passé composé utilise <b>sinn</b> + participe passé à la fin.",
-      "exemple": "Ech si <b>gefuer</b> · Ech si <b>gaangen</b> · Ech sinn <b>erwächt</b>.",
+      "regle": "Pour un <b>changement de lieu</b> (aller, rentrer, courir) ou un <b>changement d'état</b> (tomber, se réveiller, se lever), le passé composé utilise <b>sinn</b> + participe passé à la fin.",
+      "exemple": "fueren → Ech si <b>gefuer</b> · trëppelen → Ech si <b>getrëppelt</b> · lafen → Ech si <b>gelaf</b> · falen → Ech si <b>gefall</b> · erwächen → Ech sinn <b>erwächt</b>.",
       "pieges": [
         "Un auxiliaire <b>sinn</b> ne se traduit pas toujours par « être » en français : j'ai couru = ech si gelaf.",
         "Le participe passé se place en <b>fin de phrase</b>."
@@ -188,7 +213,7 @@
         "Wou waars du gëschter? – Ech war doheem.",
         "Où étais-tu hier ? – J'étais à la maison."
       ],
-      "regle": "Pour « j'étais » et « j'avais », apprends <b>ech war</b> et <b>ech hat</b>. Après un temps en tête de phrase, le verbe conjugué garde la deuxième place.",
+      "regle": "Pour « j'étais » et « j'avais », apprends <b>ech war / mir waren</b> et <b>ech hat / mir haten</b> (devant m : <b>hate mir</b>). Après un temps en tête de phrase, le verbe conjugué garde la deuxième place.",
       "exemple": "<b>Gëschter hunn ech</b> geschafft · <b>Ech war</b> doheem · <b>Ech hat</b> vill Aarbecht.",
       "pieges": [
         "<b>war</b> est le passé de sinn et <b>hat</b> celui de hunn.",
@@ -246,6 +271,12 @@
       "lu": "gefall"
     },
     {
+      "id": 2050,
+      "unite": 1,
+      "fr": "marché",
+      "lu": "getrëppelt"
+    },
+    {
       "id": 2009,
       "unite": 2,
       "fr": "mangé",
@@ -294,6 +325,18 @@
       "lu": "telefonéiert"
     },
     {
+      "id": 2051,
+      "unite": 2,
+      "fr": "habité",
+      "lu": "gewunnt"
+    },
+    {
+      "id": 2052,
+      "unite": 2,
+      "fr": "regardé",
+      "lu": "gekuckt"
+    },
+    {
       "id": 2017,
       "unite": 3,
       "fr": "j'étais",
@@ -340,6 +383,18 @@
       "unite": 3,
       "fr": "week-end dernier",
       "lu": "de leschte Weekend"
+    },
+    {
+      "id": 2053,
+      "unite": 3,
+      "fr": "nous étions",
+      "lu": "mir waren"
+    },
+    {
+      "id": 2054,
+      "unite": 3,
+      "fr": "nous avions",
+      "lu": "mir haten"
     },
     {
       "id": 2025,
@@ -1049,7 +1104,7 @@
         "sinn",
         "hunn"
       ],
-      "note": "falen = déplacement → sinn."
+      "note": "falen (tomber) = changement d'état ou de position → sinn, comme en français."
     },
     {
       "id": 2010,
@@ -1603,7 +1658,18 @@
       "id": 2038,
       "unite": 1,
       "fr": "Je suis allé en ville en voiture.",
-      "lu": "Ech si mam Auto an d'Stad gefuer."
+      "lu": "Ech si mam Auto an d'Stad gefuer.",
+      "aide_vocab": [
+        {
+          "fr": "en voiture",
+          "lu": "mam Auto"
+        },
+        {
+          "fr": "en ville (on y va)",
+          "lu": "an d'Stad",
+          "precision": "Être en ville (lieu) : an der Stad."
+        }
+      ]
     },
     {
       "id": 2039,
@@ -1629,7 +1695,14 @@
       "id": 2042,
       "unite": 1,
       "fr": "Nous sommes allés au cinéma.",
-      "lu": "Mir sinn an de Kino gaangen."
+      "lu": "Mir sinn an de Kino gaangen.",
+      "aide_vocab": [
+        {
+          "fr": "au cinéma (on y va)",
+          "lu": "an de Kino",
+          "precision": "Être au cinéma (lieu) : am Kino."
+        }
+      ]
     },
     {
       "id": 2043,
@@ -1649,7 +1722,13 @@
       "id": 2045,
       "unite": 2,
       "fr": "J'ai regardé la télé hier soir.",
-      "lu": "Ech hu gëschter Owend d'Tëlee gekuckt."
+      "lu": "Ech hu gëschter Owend d'Tëlee gekuckt.",
+      "aide_vocab": [
+        {
+          "fr": "hier soir",
+          "lu": "gëschter Owend"
+        }
+      ]
     },
     {
       "id": 2046,
@@ -1692,8 +1771,8 @@
       "variant": "retenir",
       "titre": "Se déplacer au passé avec sinn",
       "lignes": [
-        "Pour les déplacements et certains changements d'état, le passé composé utilise <b>sinn</b> + participe passé à la fin.",
-        "Ech si <b>gefuer</b> · Ech si <b>gaangen</b> · Ech sinn <b>erwächt</b>."
+        "Pour un <b>changement de lieu</b> (aller, rentrer, courir) ou un <b>changement d'état</b> (tomber, se réveiller, se lever), le passé composé utilise <b>sinn</b> + participe passé à la fin.",
+        "fueren → Ech si <b>gefuer</b> · trëppelen → Ech si <b>getrëppelt</b> · lafen → Ech si <b>gelaf</b> · falen → Ech si <b>gefall</b> · erwächen → Ech sinn <b>erwächt</b>."
       ]
     },
     {
@@ -1732,6 +1811,10 @@
         [
           "gefall",
           "tombé"
+        ],
+        [
+          "getrëppelt",
+          "marché"
         ]
       ]
     },
@@ -1763,6 +1846,37 @@
         [
           "ech si getrëppelt",
           "j'ai marché"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 1,
+      "titre": "Aller quelque part ou y être",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "mam Auto / mam Bus",
+          "en voiture / en bus"
+        ],
+        [
+          "an d'Stad goen / fueren",
+          "aller en ville"
+        ],
+        [
+          "an der Stad sinn",
+          "être en ville"
+        ],
+        [
+          "an de Kino goen",
+          "aller au cinéma"
+        ],
+        [
+          "am Kino sinn",
+          "être au cinéma"
         ]
       ]
     },
@@ -1812,6 +1926,14 @@
         [
           "telefonéiert",
           "téléphoné"
+        ],
+        [
+          "gewunnt",
+          "habité"
+        ],
+        [
+          "gekuckt",
+          "regardé"
         ]
       ]
     },
@@ -1852,7 +1974,7 @@
       "variant": "retenir",
       "titre": "Hier : war, hat et questions",
       "lignes": [
-        "Pour « j'étais » et « j'avais », apprends <b>ech war</b> et <b>ech hat</b>. Après un temps en tête de phrase, le verbe conjugué garde la deuxième place.",
+        "Pour « j'étais » et « j'avais », apprends <b>ech war / mir waren</b> et <b>ech hat / mir haten</b> (devant m : <b>hate mir</b>). Après un temps en tête de phrase, le verbe conjugué garde la deuxième place.",
         "<b>Gëschter hunn ech</b> geschafft · <b>Ech war</b> doheem · <b>Ech hat</b> vill Aarbecht."
       ]
     },
@@ -1892,6 +2014,14 @@
         [
           "de leschte Weekend",
           "week-end dernier"
+        ],
+        [
+          "mir waren",
+          "nous étions"
+        ],
+        [
+          "mir haten",
+          "nous avions"
         ]
       ]
     },
@@ -1928,7 +2058,7 @@
     },
     {
       "type": "texte",
-      "contenu": "Cette leçon apprend à <b>parler du passé</b> : ce qu'on a fait hier, ce matin ou le week-end dernier. Le luxembourgeois utilise presque toujours le <b>passé composé</b> : un auxiliaire (<b>hunn</b> ou <b>sinn</b>) + un <b>participe passé</b>. On reprend les verbes de la journée (leçon 16) et des loisirs (leçon 22).",
+      "contenu": "Cette leçon apprend à <b>parler du passé</b> : ce qu'on a fait hier, ce matin ou le week-end dernier. Le luxembourgeois utilise presque toujours le <b>passé composé</b> : un auxiliaire (<b>hunn</b> ou <b>sinn</b>) + un <b>participe passé</b>. On reprend les verbes de la journée (leçon 16) et des loisirs (leçon 23).",
       "unite": 0
     },
     {
@@ -1944,44 +2074,12 @@
       "unite": 0
     },
     {
-      "type": "tableau",
-      "titre": "Les auxiliaires au présent (rappel)",
-      "entetes": [
-        "Pronom",
-        "hunn",
-        "sinn"
-      ],
+      "type": "callout",
+      "variant": "info",
+      "titre": "sinn et hunn au présent : leçon 20",
       "lignes": [
-        [
-          "ech",
-          "hunn",
-          "sinn"
-        ],
-        [
-          "du",
-          "hues",
-          "bass"
-        ],
-        [
-          "hien / si / hatt",
-          "huet",
-          "ass"
-        ],
-        [
-          "mir",
-          "hunn",
-          "sinn"
-        ],
-        [
-          "dir / Dir",
-          "hutt",
-          "sidd"
-        ],
-        [
-          "si",
-          "hunn",
-          "sinn"
-        ]
+        "Les formes de <b>sinn</b> (ech sinn, du bass, hien ass…) et de <b>hunn</b> (ech hunn, du hues, hien huet…) sont apprises dans la <b>leçon 20</b>.",
+        "Ici, elles servent d'<b>auxiliaires</b> : la forme s'accorde avec le sujet, comme au présent : Du <b>bass</b> heemgaangen · Hien <b>huet</b> geschafft."
       ],
       "unite": 0
     },
@@ -1990,9 +2088,9 @@
       "variant": "retenir",
       "titre": "sinn ou hunn ?",
       "lignes": [
-        "<b>sinn</b> = <b>déplacement</b> (Movement) : fueren, goen, heemgoen, erausgoen, trëppelen, lafen, falen.",
-        "<b>sinn</b> = <b>changement d'état</b> (Changement) : erwächen, opstoen.",
-        "<b>hunn</b> = tous les autres verbes (Positioun, activité) : iessen, drénken, schaffen, wunnen, schlofen…"
+        "<b>sinn</b> : changement de lieu — fueren, goen, heemgoen, erausgoen, trëppelen, lafen.",
+        "<b>sinn</b> aussi : changement d'état ou de position — falen (tomber), erwächen (se réveiller), opstoen (se lever).",
+        "<b>hunn</b> : la plupart des autres verbes — iessen, drénken, schaffen, wunnen, schlofen, duschen… Apprends l'auxiliaire avec le verbe : il n'est pas toujours le même qu'en français."
       ],
       "unite": 0
     },

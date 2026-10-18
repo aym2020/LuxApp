@@ -2166,3 +2166,16 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 #view-mission .ms-body::-webkit-scrollbar-track { background: transparent; }
 #view-mission .ms-body::-webkit-scrollbar-thumb { background: #5a554a; border-radius: 3px; }
 #view-mission .ms-body::-webkit-scrollbar-thumb:hover { background: #5c574c; }
+
+/* Aide vocabulaire (spec 42) : repli discret, fermé par défaut */
+.aide-vocab { margin: 0 0 var(--sp-2); font-size: var(--fs-sec); color: var(--couleur-texte-2); }
+.aide-vocab summary { display: inline-flex; align-items: center; gap: .35rem; min-height: 32px; cursor: pointer; color: var(--accent); font-weight: 600; list-style: none; }
+.aide-vocab summary::-webkit-details-marker { display: none; }
+.aide-vocab summary::after { content: '▾'; font-size: .8em; transition: transform .15s; }
+.aide-vocab[open] summary::after { transform: rotate(180deg); }
+.aide-vocab summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.aide-vocab ul { margin: .25rem 0 0; padding: .5rem .7rem; list-style: none; border-radius: 10px; background: rgba(255,255,255,.05); }
+.aide-vocab li { line-height: 1.5; }
+.aide-vocab li b { color: var(--text); }
+.aide-vocab li em { display: block; font-style: normal; font-size: .85em; opacity: .8; }
+#view-mission .aide-vocab { margin: .3rem 0 .4rem; }

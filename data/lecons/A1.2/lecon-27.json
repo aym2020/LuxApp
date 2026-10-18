@@ -1,0 +1,1407 @@
+{
+  "id": 27,
+  "numero": 20,
+  "titre": "Sinn an hunn",
+  "titre_fr": "Être et avoir au présent – sinn et hunn",
+  "couleur": "#b07ce0",
+  "instructions": {
+    "flashcards": "Mot caché : retrouve les formes de sinn et de hunn avec leur sujet, puis les formes courtes et les débuts de questions.",
+    "quiz": "Lis une forme française et choisis la bonne forme de sinn ou de hunn ; puis reconnais le sens d'une question ou d'une réponse courte.",
+    "trous": "Complète chaque phrase avec la forme de sinn ou de hunn qui va avec le sujet, en appliquant la règle du n (si, hu).",
+    "ecriture": "Traduis les formes de sinn et de hunn, puis des phrases, des questions et des réponses simples ; les formes courtes sont demandées seulement dans l'unité 3."
+  },
+  "mission": {
+    "titre": "Faire connaissance au café",
+    "contexte": "Au café, Lena te pose des questions : ta nationalité, ton âge, ta famille, ta voiture. Tu lui poses aussi des questions.",
+    "objectif": "se présenter et poser des questions simples avec toutes les formes utiles de sinn et de hunn.",
+    "version": 2
+  },
+  "scene": [
+    {
+      "qui": "Lena",
+      "lu": "Moien! Ech sinn d'Lena. Bass du Lëtzebuerger?",
+      "fr": "Bonjour ! Je suis Lena. Es-tu luxembourgeois ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, ech sinn Italiener.",
+      "fr": "Non, je suis italien.",
+      "unite": 1,
+      "aide": "je suis = <b>ech sinn</b> (devant une voyelle, on garde le n)."
+    },
+    {
+      "qui": "Lena",
+      "lu": "Wéi al bass du?",
+      "fr": "Quel âge as-tu ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech sinn drësseg Joer al.",
+      "fr": "J'ai trente ans.",
+      "unite": 1,
+      "aide": "L'âge se dit avec <b>sinn</b> : ech sinn … Joer al."
+    },
+    {
+      "qui": "Lena",
+      "lu": "A wéi al ass den Tom?",
+      "fr": "Et quel âge a Tom ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Hien ass zweeanzwanzeg Joer al.",
+      "fr": "Il a vingt-deux ans.",
+      "unite": 1,
+      "aide": "hien → <b>ass</b>."
+    },
+    {
+      "qui": "Lena",
+      "lu": "Sidd dir zwee Italiener?",
+      "fr": "Êtes-vous deux Italiens ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, mir sinn Italiener.",
+      "fr": "Oui, nous sommes italiens.",
+      "unite": 1,
+      "aide": "nous → <b>mir sinn</b>."
+    },
+    {
+      "qui": "Lena",
+      "lu": "Hutt dir Kanner?",
+      "fr": "Avez-vous des enfants ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, mir hunn zwee Kanner.",
+      "fr": "Oui, nous avons deux enfants.",
+      "unite": 2,
+      "aide": "nous avons = <b>mir hunn</b>."
+    },
+    {
+      "qui": "Lena",
+      "lu": "Huet den Tom en Auto?",
+      "fr": "Tom a-t-il une voiture ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, hien huet en Auto.",
+      "fr": "Oui, il a une voiture.",
+      "unite": 2,
+      "aide": "il a = <b>hien huet</b>."
+    },
+    {
+      "qui": "Lena",
+      "lu": "An du? Hues du och en Auto?",
+      "fr": "Et toi ? As-tu aussi une voiture ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, ech hunn e Vëlo.",
+      "fr": "Non, j'ai un vélo.",
+      "unite": 2,
+      "aide": "j'ai = <b>ech hunn</b> ; devant e, on garde le n."
+    },
+    {
+      "qui": "Lena",
+      "lu": "Bass du bestuet?",
+      "fr": "Es-tu marié ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, ech si bestuet.",
+      "fr": "Oui, je suis marié.",
+      "unite": 3,
+      "aide": "Devant b, <b>sinn → si</b>."
+    },
+    {
+      "qui": "Lena",
+      "lu": "Ech hu keen Auto.",
+      "fr": "Je n'ai pas de voiture.",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Hues du en Handy?",
+      "fr": "As-tu un téléphone portable ?",
+      "unite": 3,
+      "aide": "Question : le verbe d'abord, <b>Hues du</b> … ?"
+    },
+    {
+      "qui": "Lena",
+      "lu": "Jo, ech hunn en Handy.",
+      "fr": "Oui, j'ai un téléphone portable.",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Bass du Lëtzebuergerin?",
+      "fr": "Es-tu luxembourgeoise ?",
+      "unite": 3,
+      "aide": "tu es → <b>Bass du</b> … ? dans une question."
+    },
+    {
+      "qui": "Lena",
+      "lu": "Jo, ech si Lëtzebuergerin.",
+      "fr": "Oui, je suis luxembourgeoise.",
+      "unite": 3
+    }
+  ],
+  "unites": [
+    {
+      "id": 1,
+      "titre": "sinn : être au présent",
+      "phrase": [
+        "Ech sinn Italiener. – Hien ass Lëtzebuerger.",
+        "Je suis italien. – Il est luxembourgeois."
+      ],
+      "regle": "<b>sinn</b> (être) change avec le sujet : ech <b>sinn</b>, du <b>bass</b>, hien / si / hatt <b>ass</b>, mir <b>sinn</b>, dir / Dir <b>sidd</b>, si <b>sinn</b>.",
+      "exemple": "Ech <b>sinn</b> Italiener · Si <b>ass</b> bestuet · Mir <b>sinn</b> zu Lëtzebuerg.",
+      "pieges": [
+        "L'âge se dit avec <b>sinn</b> : ech <b>sinn</b> drësseg Joer al (en français : j'ai trente ans).",
+        "<b>si</b> = elle ou ils : le verbe aide — si <b>ass</b> (elle est) · si <b>sinn</b> (ils sont)."
+      ]
+    },
+    {
+      "id": 2,
+      "titre": "hunn : avoir au présent",
+      "phrase": [
+        "Ech hunn en Auto. – Du hues e Vëlo.",
+        "J'ai une voiture. – Tu as un vélo."
+      ],
+      "regle": "<b>hunn</b> (avoir) : ech <b>hunn</b>, du <b>hues</b>, hien / si / hatt <b>huet</b>, mir <b>hunn</b>, dir / Dir <b>hutt</b>, si <b>hunn</b>.",
+      "exemple": "Ech <b>hunn</b> en Auto · Hien <b>huet</b> en Handy · Mir <b>hunn</b> zwee Kanner.",
+      "pieges": [
+        "<b>hues</b> (du) et <b>huet</b> (hien, si, hatt) se ressemblent : du hu<b>es</b> · hien hu<b>et</b>.",
+        "<b>dir hutt</b> = vous avez (plusieurs personnes) ; <b>Dir hutt</b> = vous avez (poli, une personne)."
+      ]
+    },
+    {
+      "id": 3,
+      "titre": "Questions et formes courtes : si, hu",
+      "phrase": [
+        "Bass du bestuet? – Jo, ech si bestuet.",
+        "Es-tu marié ? – Oui, je suis marié."
+      ],
+      "regle": "Question : le verbe passe <b>avant</b> le sujet : <b>Bass du</b> …? <b>Hues du</b> …? Règle du n : devant une consonne autre que n, d, t, z, h, <b>sinn → si</b> et <b>hunn → hu</b>.",
+      "exemple": "Ech <b>si</b> bestuet · Ech <b>hu</b> keen Auto · mais Ech <b>sinn</b> Italiener · Ech <b>hunn</b> en Auto.",
+      "pieges": [
+        "La forme courte ne change pas le sens : <b>si</b> = sinn, <b>hu</b> = hunn.",
+        "Devant une voyelle ou n, d, t, z, h, on garde le n : ech <b>sinn</b> drësseg Joer al · mir <b>hunn</b> zwee Kanner."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "je suis",
+      "lu": "ech sinn"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "tu es",
+      "lu": "du bass"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "il est",
+      "lu": "hien ass"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "elle est",
+      "lu": "si ass"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "nous sommes",
+      "lu": "mir sinn"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "vous êtes",
+      "lu": "dir sidd"
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "ils sont",
+      "lu": "si sinn"
+    },
+    {
+      "id": 2008,
+      "unite": 2,
+      "fr": "j'ai",
+      "lu": "ech hunn"
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "fr": "tu as",
+      "lu": "du hues"
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "fr": "il a",
+      "lu": "hien huet"
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "fr": "elle a",
+      "lu": "si huet"
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "fr": "nous avons",
+      "lu": "mir hunn"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "vous avez",
+      "lu": "dir hutt"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "ils ont",
+      "lu": "si hunn"
+    },
+    {
+      "id": 2015,
+      "unite": 3,
+      "fr": "je suis (forme courte)",
+      "lu": "ech si"
+    },
+    {
+      "id": 2016,
+      "unite": 3,
+      "fr": "j'ai (forme courte)",
+      "lu": "ech hu"
+    },
+    {
+      "id": 2017,
+      "unite": 3,
+      "fr": "nous sommes (forme courte)",
+      "lu": "mir si"
+    },
+    {
+      "id": 2018,
+      "unite": 3,
+      "fr": "nous avons (forme courte)",
+      "lu": "mir hu"
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "fr": "es-tu ?",
+      "lu": "Bass du?"
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "fr": "as-tu ?",
+      "lu": "Hues du?"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "question": "je suis",
+      "reponse": "ech sinn",
+      "distracteurs": [
+        "ech bass",
+        "ech ass",
+        "ech sidd"
+      ]
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "question": "tu es",
+      "reponse": "du bass",
+      "distracteurs": [
+        "du ass",
+        "du sinn",
+        "du sidd"
+      ]
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "question": "il est",
+      "reponse": "hien ass",
+      "distracteurs": [
+        "hien bass",
+        "hien sinn",
+        "hien sidd"
+      ]
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "question": "elle est",
+      "reponse": "si ass",
+      "distracteurs": [
+        "si sinn",
+        "si bass",
+        "si sidd"
+      ]
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "question": "nous sommes",
+      "reponse": "mir sinn",
+      "distracteurs": [
+        "mir ass",
+        "mir bass",
+        "mir sidd"
+      ]
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "question": "vous êtes",
+      "reponse": "dir sidd",
+      "distracteurs": [
+        "dir sinn",
+        "dir bass",
+        "dir ass"
+      ]
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "question": "ils sont",
+      "reponse": "si sinn",
+      "distracteurs": [
+        "si ass",
+        "si bass",
+        "si sidd"
+      ]
+    },
+    {
+      "id": 2008,
+      "unite": 2,
+      "question": "j'ai",
+      "reponse": "ech hunn",
+      "distracteurs": [
+        "ech hues",
+        "ech huet",
+        "ech hutt"
+      ]
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "question": "tu as",
+      "reponse": "du hues",
+      "distracteurs": [
+        "du huet",
+        "du hunn",
+        "du hutt"
+      ]
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "question": "il a",
+      "reponse": "hien huet",
+      "distracteurs": [
+        "hien hues",
+        "hien hunn",
+        "hien hutt"
+      ]
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "question": "elle a",
+      "reponse": "si huet",
+      "distracteurs": [
+        "si hunn",
+        "si hues",
+        "si hutt"
+      ]
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "question": "nous avons",
+      "reponse": "mir hunn",
+      "distracteurs": [
+        "mir huet",
+        "mir hues",
+        "mir hutt"
+      ]
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "question": "vous avez",
+      "reponse": "dir hutt",
+      "distracteurs": [
+        "dir hunn",
+        "dir huet",
+        "dir hues"
+      ]
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "question": "ils ont",
+      "reponse": "si hunn",
+      "distracteurs": [
+        "si huet",
+        "si hues",
+        "si hutt"
+      ]
+    },
+    {
+      "id": 2015,
+      "unite": 3,
+      "question": "Bass du bestuet?",
+      "reponse": "Es-tu marié ?",
+      "distracteurs": [
+        "Est-il marié ?",
+        "Êtes-vous mariés ?",
+        "Tu n'es pas marié."
+      ]
+    },
+    {
+      "id": 2016,
+      "unite": 3,
+      "question": "Hues du en Auto?",
+      "reponse": "As-tu une voiture ?",
+      "distracteurs": [
+        "Avez-vous une voiture ?",
+        "A-t-il une voiture ?",
+        "Tu n'as pas de voiture."
+      ]
+    },
+    {
+      "id": 2017,
+      "unite": 3,
+      "question": "Sidd Dir Fransous?",
+      "reponse": "Êtes-vous français ?",
+      "distracteurs": [
+        "Es-tu français ?",
+        "Sont-ils français ?",
+        "Est-il français ?"
+      ]
+    },
+    {
+      "id": 2018,
+      "unite": 3,
+      "question": "Hutt Dir e Vëlo?",
+      "reponse": "Avez-vous un vélo ?",
+      "distracteurs": [
+        "As-tu un vélo ?",
+        "Ont-ils un vélo ?",
+        "Est-ce un vélo ?"
+      ]
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "question": "Ech hu keen Auto.",
+      "reponse": "Je n'ai pas de voiture.",
+      "distracteurs": [
+        "Je n'ai pas de vélo.",
+        "Il n'a pas de voiture.",
+        "Je suis en voiture."
+      ]
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "question": "Mir si bestuet.",
+      "reponse": "Nous sommes mariés.",
+      "distracteurs": [
+        "Nous avons des enfants.",
+        "Ils sont mariés.",
+        "Vous êtes mariés."
+      ]
+    }
+  ],
+  "trous": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "Je suis italien.",
+      "avant": "Ech",
+      "trou": "sinn",
+      "apres": "Italiener.",
+      "choix": [
+        "sinn",
+        "bass",
+        "ass",
+        "sidd"
+      ],
+      "note": "ech → sinn."
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "Tu as vingt ans.",
+      "avant": "Du",
+      "trou": "bass",
+      "apres": "zwanzeg Joer al.",
+      "choix": [
+        "bass",
+        "ass",
+        "sinn",
+        "sidd"
+      ],
+      "note": "L'âge se dit avec sinn : du bass … Joer al."
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "Il est luxembourgeois.",
+      "avant": "Hien",
+      "trou": "ass",
+      "apres": "Lëtzebuerger.",
+      "choix": [
+        "ass",
+        "bass",
+        "sinn",
+        "sidd"
+      ],
+      "note": "hien, si (elle), hatt → ass."
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "Elle est mariée.",
+      "avant": "Si",
+      "trou": "ass",
+      "apres": "bestuet.",
+      "choix": [
+        "ass",
+        "sinn",
+        "bass",
+        "sidd"
+      ],
+      "note": "si + ass = elle est ; si + sinn = ils sont."
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "Nous sommes à Luxembourg.",
+      "avant": "Mir",
+      "trou": "sinn",
+      "apres": "zu Lëtzebuerg.",
+      "choix": [
+        "sinn",
+        "ass",
+        "bass",
+        "sidd"
+      ],
+      "note": "mir → sinn."
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "Quel âge avez-vous ? (poli)",
+      "avant": "Wéi al",
+      "trou": "sidd",
+      "apres": "Dir?",
+      "choix": [
+        "sidd",
+        "sinn",
+        "ass",
+        "bass"
+      ],
+      "note": "Dir (poli) → sidd. L'âge se demande avec sinn."
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "Ils ont huit ans.",
+      "avant": "Si",
+      "trou": "sinn",
+      "apres": "aacht Joer al.",
+      "choix": [
+        "sinn",
+        "hunn",
+        "ass",
+        "sidd"
+      ],
+      "note": "L'âge se dit avec sinn, même si le français dit « avoir »."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "L'enfant a trois ans.",
+      "avant": "D'Kand",
+      "trou": "ass",
+      "apres": "dräi Joer al.",
+      "choix": [
+        "ass",
+        "sinn",
+        "bass",
+        "sidd"
+      ],
+      "note": "d'Kand = hatt → ass."
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "fr": "J'ai une voiture.",
+      "avant": "Ech",
+      "trou": "hunn",
+      "apres": "en Auto.",
+      "choix": [
+        "hunn",
+        "hues",
+        "huet",
+        "hutt"
+      ],
+      "note": "ech → hunn."
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "fr": "Tu as un vélo.",
+      "avant": "Du",
+      "trou": "hues",
+      "apres": "e Vëlo.",
+      "choix": [
+        "hues",
+        "huet",
+        "hunn",
+        "hutt"
+      ],
+      "note": "du → hues."
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "fr": "Il a un téléphone.",
+      "avant": "Hien",
+      "trou": "huet",
+      "apres": "en Telefon.",
+      "choix": [
+        "huet",
+        "hues",
+        "hunn",
+        "hutt"
+      ],
+      "note": "hien, si (elle), hatt → huet."
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "fr": "Elle a un livre.",
+      "avant": "Si",
+      "trou": "huet",
+      "apres": "e Buch.",
+      "choix": [
+        "huet",
+        "hunn",
+        "hues",
+        "hutt"
+      ],
+      "note": "si (elle) → huet ; si (ils) → hunn."
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "Nous avons un ordinateur.",
+      "avant": "Mir",
+      "trou": "hunn",
+      "apres": "e Computer.",
+      "choix": [
+        "hunn",
+        "hutt",
+        "huet",
+        "hues"
+      ],
+      "note": "mir → hunn."
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "Vous avez une table.",
+      "avant": "Dir",
+      "trou": "hutt",
+      "apres": "en Dësch.",
+      "choix": [
+        "hutt",
+        "hunn",
+        "huet",
+        "hues"
+      ],
+      "note": "dir / Dir → hutt."
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "fr": "Ils ont deux enfants.",
+      "avant": "Si",
+      "trou": "hunn",
+      "apres": "zwee Kanner.",
+      "choix": [
+        "hunn",
+        "huet",
+        "hues",
+        "hutt"
+      ],
+      "note": "si (ils) → hunn."
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "As-tu un téléphone portable ?",
+      "avant": "",
+      "trou": "Hues",
+      "apres": "du en Handy?",
+      "choix": [
+        "Hues",
+        "Huet",
+        "Hunn",
+        "Hutt"
+      ],
+      "note": "Question : Hues du … ?"
+    },
+    {
+      "id": 2017,
+      "unite": 3,
+      "fr": "Je suis marié.",
+      "avant": "Ech",
+      "trou": "si",
+      "apres": "bestuet.",
+      "choix": [
+        "si",
+        "sinn",
+        "bass",
+        "ass"
+      ],
+      "note": "Devant b, sinn → si."
+    },
+    {
+      "id": 2018,
+      "unite": 3,
+      "fr": "Je n'ai pas de voiture.",
+      "avant": "Ech",
+      "trou": "hu",
+      "apres": "keen Auto.",
+      "choix": [
+        "hu",
+        "hunn",
+        "hues",
+        "huet"
+      ],
+      "note": "Devant k, hunn → hu."
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "fr": "Nous sommes luxembourgeois.",
+      "avant": "Mir",
+      "trou": "si",
+      "apres": "Lëtzebuerger.",
+      "choix": [
+        "si",
+        "sinn",
+        "sidd",
+        "ass"
+      ],
+      "note": "Devant L, sinn → si."
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "fr": "Nous n'avons pas d'enfants.",
+      "avant": "Mir",
+      "trou": "hu",
+      "apres": "keng Kanner.",
+      "choix": [
+        "hu",
+        "hunn",
+        "hutt",
+        "huet"
+      ],
+      "note": "Devant k, hunn → hu."
+    },
+    {
+      "id": 2021,
+      "unite": 3,
+      "fr": "Je suis à Luxembourg.",
+      "avant": "Ech",
+      "trou": "sinn",
+      "apres": "zu Lëtzebuerg.",
+      "choix": [
+        "sinn",
+        "si",
+        "bass",
+        "ass"
+      ],
+      "note": "Devant z, on garde le n : ech sinn zu Lëtzebuerg."
+    },
+    {
+      "id": 2022,
+      "unite": 3,
+      "fr": "Es-tu marié ?",
+      "avant": "",
+      "trou": "Bass",
+      "apres": "du bestuet?",
+      "choix": [
+        "Bass",
+        "Ass",
+        "Sidd",
+        "Sinn"
+      ],
+      "note": "Question : le verbe vient avant le sujet."
+    },
+    {
+      "id": 2023,
+      "unite": 3,
+      "fr": "A-t-il une voiture ?",
+      "avant": "",
+      "trou": "Huet",
+      "apres": "hien en Auto?",
+      "choix": [
+        "Huet",
+        "Hues",
+        "Hutt",
+        "Hunn"
+      ],
+      "note": "Question : Huet hien … ?"
+    }
+  ],
+  "ecriture": [
+    {
+      "id": 2001,
+      "unite": 1,
+      "fr": "je suis",
+      "lu": "ech sinn"
+    },
+    {
+      "id": 2002,
+      "unite": 1,
+      "fr": "tu es",
+      "lu": "du bass"
+    },
+    {
+      "id": 2003,
+      "unite": 1,
+      "fr": "il est (une personne)",
+      "lu": "hien ass"
+    },
+    {
+      "id": 2004,
+      "unite": 1,
+      "fr": "nous sommes",
+      "lu": "mir sinn"
+    },
+    {
+      "id": 2005,
+      "unite": 1,
+      "fr": "vous êtes",
+      "lu": "dir sidd"
+    },
+    {
+      "id": 2006,
+      "unite": 1,
+      "fr": "Je suis italien.",
+      "lu": "Ech sinn Italiener.",
+      "attention": "Devant une voyelle, on garde le n : ech <b>sinn</b> Italiener."
+    },
+    {
+      "id": 2007,
+      "unite": 1,
+      "fr": "Elle est mariée.",
+      "lu": "Si ass bestuet.",
+      "attention": "si (elle) → <b>ass</b>."
+    },
+    {
+      "id": 2008,
+      "unite": 1,
+      "fr": "Ils ont huit ans.",
+      "lu": "Si sinn aacht Joer al.",
+      "attention": "L'âge se dit avec <b>sinn</b> : si <b>sinn</b> … Joer al."
+    },
+    {
+      "id": 2009,
+      "unite": 2,
+      "fr": "j'ai",
+      "lu": "ech hunn"
+    },
+    {
+      "id": 2010,
+      "unite": 2,
+      "fr": "tu as",
+      "lu": "du hues"
+    },
+    {
+      "id": 2011,
+      "unite": 2,
+      "fr": "il a",
+      "lu": "hien huet"
+    },
+    {
+      "id": 2012,
+      "unite": 2,
+      "fr": "nous avons",
+      "lu": "mir hunn"
+    },
+    {
+      "id": 2013,
+      "unite": 2,
+      "fr": "vous avez",
+      "lu": "dir hutt"
+    },
+    {
+      "id": 2014,
+      "unite": 2,
+      "fr": "J'ai une voiture.",
+      "lu": "Ech hunn en Auto.",
+      "attention": "ech → <b>hunn</b> ; devant une voyelle, on garde le n."
+    },
+    {
+      "id": 2015,
+      "unite": 2,
+      "fr": "Tu as un vélo.",
+      "lu": "Du hues e Vëlo.",
+      "attention": "du → <b>hues</b>."
+    },
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "Ils ont deux enfants.",
+      "lu": "Si hunn zwee Kanner.",
+      "attention": "si (ils) → <b>hunn</b>."
+    },
+    {
+      "id": 2017,
+      "unite": 3,
+      "fr": "Je suis marié.",
+      "lu": "Ech si bestuet.",
+      "attention": "Devant b, <b>sinn → si</b>."
+    },
+    {
+      "id": 2018,
+      "unite": 3,
+      "fr": "Je n'ai pas de voiture.",
+      "lu": "Ech hu keen Auto.",
+      "attention": "Devant k, <b>hunn → hu</b>."
+    },
+    {
+      "id": 2019,
+      "unite": 3,
+      "fr": "Es-tu marié ?",
+      "lu": "Bass du bestuet?",
+      "attention": "Question : <b>Bass du</b> … ?"
+    },
+    {
+      "id": 2020,
+      "unite": 3,
+      "fr": "As-tu un vélo ?",
+      "lu": "Hues du e Vëlo?",
+      "attention": "Question : <b>Hues du</b> … ?"
+    },
+    {
+      "id": 2021,
+      "unite": 3,
+      "fr": "Êtes-vous français ? (poli)",
+      "lu": "Sidd Dir Fransous?",
+      "attention": "Dir (poli) → <b>sidd</b>."
+    },
+    {
+      "id": 2022,
+      "unite": 3,
+      "fr": "Avez-vous des enfants ? (poli)",
+      "lu": "Hutt Dir Kanner?",
+      "attention": "Dir (poli) → <b>hutt</b>."
+    }
+  ],
+  "cours": [
+    {
+      "type": "callout",
+      "unite": 1,
+      "variant": "retenir",
+      "titre": "sinn : être au présent",
+      "lignes": [
+        "<b>sinn</b> (être) change avec le sujet : ech <b>sinn</b>, du <b>bass</b>, hien / si / hatt <b>ass</b>, mir <b>sinn</b>, dir / Dir <b>sidd</b>, si <b>sinn</b>.",
+        "Ech <b>sinn</b> Italiener · Si <b>ass</b> bestuet · Mir <b>sinn</b> zu Lëtzebuerg."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 1,
+      "titre": "Mots de l'unité",
+      "items": [
+        [
+          "ech sinn",
+          "je suis"
+        ],
+        [
+          "du bass",
+          "tu es"
+        ],
+        [
+          "hien ass",
+          "il est"
+        ],
+        [
+          "si ass",
+          "elle est"
+        ],
+        [
+          "mir sinn",
+          "nous sommes"
+        ],
+        [
+          "dir sidd",
+          "vous êtes"
+        ],
+        [
+          "si sinn",
+          "ils sont"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 1,
+      "titre": "Phrases à produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech sinn Italiener.",
+          "Je suis italien."
+        ],
+        [
+          "Si ass bestuet.",
+          "Elle est mariée."
+        ],
+        [
+          "Si sinn aacht Joer al.",
+          "Ils ont huit ans."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 2,
+      "variant": "retenir",
+      "titre": "hunn : avoir au présent",
+      "lignes": [
+        "<b>hunn</b> (avoir) : ech <b>hunn</b>, du <b>hues</b>, hien / si / hatt <b>huet</b>, mir <b>hunn</b>, dir / Dir <b>hutt</b>, si <b>hunn</b>.",
+        "Ech <b>hunn</b> en Auto · Hien <b>huet</b> en Handy · Mir <b>hunn</b> zwee Kanner."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 2,
+      "titre": "Mots de l'unité",
+      "items": [
+        [
+          "ech hunn",
+          "j'ai"
+        ],
+        [
+          "du hues",
+          "tu as"
+        ],
+        [
+          "hien huet",
+          "il a"
+        ],
+        [
+          "si huet",
+          "elle a"
+        ],
+        [
+          "mir hunn",
+          "nous avons"
+        ],
+        [
+          "dir hutt",
+          "vous avez"
+        ],
+        [
+          "si hunn",
+          "ils ont"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 2,
+      "titre": "Phrases à produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech hunn en Auto.",
+          "J'ai une voiture."
+        ],
+        [
+          "Du hues e Vëlo.",
+          "Tu as un vélo."
+        ],
+        [
+          "Si hunn zwee Kanner.",
+          "Ils ont deux enfants."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 3,
+      "variant": "retenir",
+      "titre": "Questions et formes courtes : si, hu",
+      "lignes": [
+        "Question : le verbe passe <b>avant</b> le sujet : <b>Bass du</b> …? <b>Hues du</b> …? Règle du n : devant une consonne autre que n, d, t, z, h, <b>sinn → si</b> et <b>hunn → hu</b>.",
+        "Ech <b>si</b> bestuet · Ech <b>hu</b> keen Auto · mais Ech <b>sinn</b> Italiener · Ech <b>hunn</b> en Auto."
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 3,
+      "titre": "Mots de l'unité",
+      "items": [
+        [
+          "ech si",
+          "je suis (forme courte)"
+        ],
+        [
+          "ech hu",
+          "j'ai (forme courte)"
+        ],
+        [
+          "mir si",
+          "nous sommes (forme courte)"
+        ],
+        [
+          "mir hu",
+          "nous avons (forme courte)"
+        ],
+        [
+          "Bass du?",
+          "es-tu ?"
+        ],
+        [
+          "Hues du?",
+          "as-tu ?"
+        ]
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 3,
+      "titre": "Phrases à produire",
+      "entetes": [
+        "Luxembourgeois",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Ech si bestuet.",
+          "Je suis marié."
+        ],
+        [
+          "Ech hu keen Auto.",
+          "Je n'ai pas de voiture."
+        ],
+        [
+          "Bass du bestuet?",
+          "Es-tu marié ?"
+        ],
+        [
+          "Hues du e Vëlo?",
+          "As-tu un vélo ?"
+        ],
+        [
+          "Sidd Dir Fransous?",
+          "Êtes-vous français ? (poli)"
+        ],
+        [
+          "Hutt Dir Kanner?",
+          "Avez-vous des enfants ? (poli)"
+        ]
+      ]
+    },
+    {
+      "type": "texte",
+      "unite": 0,
+      "contenu": "Cette leçon apprend les deux verbes les plus utiles : <b>sinn</b> (être) et <b>hunn</b> (avoir), au présent. Tu les connais déjà dans des phrases (leçons 7 à 14) ; ici, on apprend toutes les personnes. Ils serviront ensuite d'<b>auxiliaires</b> pour parler du passé (leçon 25)."
+    },
+    {
+      "type": "tableau",
+      "unite": 0,
+      "titre": "sinn et hunn au présent",
+      "entetes": [
+        "Sujet",
+        "sinn (être)",
+        "hunn (avoir)"
+      ],
+      "lignes": [
+        [
+          "ech",
+          "sinn",
+          "hunn"
+        ],
+        [
+          "du",
+          "bass",
+          "hues"
+        ],
+        [
+          "hien / si / hatt",
+          "ass",
+          "huet"
+        ],
+        [
+          "mir",
+          "sinn",
+          "hunn"
+        ],
+        [
+          "dir / Dir",
+          "sidd",
+          "hutt"
+        ],
+        [
+          "si (ils, elles)",
+          "sinn",
+          "hunn"
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 0,
+      "variant": "attention",
+      "titre": "Pièges pour les francophones",
+      "lignes": [
+        "L'âge se dit avec <b>sinn</b> : Ech <b>sinn</b> drësseg Joer al = j'ai trente ans · Wéi al <b>bass</b> du? = quel âge as-tu ?",
+        "<b>si</b> = elle ou ils, <b>dir</b> = vous (plusieurs), <b>Dir</b> = vous (poli) : c'est le verbe qui aide (si ass / si sinn).",
+        "<b>hues</b> = tu as · <b>huet</b> = il/elle a."
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 0,
+      "variant": "retenir",
+      "titre": "Formes courtes : si et hu (règle du n)",
+      "lignes": [
+        "Devant une consonne autre que <b>n, d, t, z, h</b>, on dit <b>si</b> au lieu de sinn et <b>hu</b> au lieu de hunn : Ech <b>si</b> bestuet · Ech <b>hu</b> keen Auto.",
+        "Devant une voyelle ou n, d, t, z, h, on garde la forme pleine : Ech <b>sinn</b> Italiener · Mir <b>hunn</b> zwee Kanner.",
+        "Les formes courtes : ech si, mir si, si si · ech hu, mir hu, si hu."
+      ]
+    },
+    {
+      "type": "tableau",
+      "unite": 0,
+      "titre": "Questions et réponses",
+      "entetes": [
+        "Question",
+        "Réponse",
+        "Français"
+      ],
+      "lignes": [
+        [
+          "Bass du bestuet?",
+          "Jo, ech si bestuet.",
+          "Es-tu marié ? – Oui, je suis marié."
+        ],
+        [
+          "Wéi al bass du?",
+          "Ech sinn drësseg Joer al.",
+          "Quel âge as-tu ? – J'ai trente ans."
+        ],
+        [
+          "Hues du en Auto?",
+          "Nee, ech hu keen Auto.",
+          "As-tu une voiture ? – Non, je n'ai pas de voiture."
+        ],
+        [
+          "Hutt Dir Kanner?",
+          "Jo, ech hunn zwee Kanner.",
+          "Avez-vous des enfants ? – Oui, j'ai deux enfants."
+        ],
+        [
+          "Sidd Dir Fransous?",
+          "Nee, ech sinn Italiener.",
+          "Êtes-vous français ? – Non, je suis italien."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 0,
+      "variant": "info",
+      "titre": "Bientôt : sinn et hunn pour parler du passé",
+      "lignes": [
+        "Dans la leçon 25, ces mêmes formes servent d'auxiliaires : Ech <b>hu</b> geschafft (j'ai travaillé) · Du <b>bass</b> heemgaangen (tu es rentré).",
+        "La forme s'accorde toujours avec le sujet, comme ici au présent."
+      ]
+    },
+    {
+      "type": "dialogue",
+      "unite": 0,
+      "titre": "Am Café",
+      "echanges": [
+        [
+          "Moien! Ech sinn d'Lena. Bass du Lëtzebuerger?",
+          "Bonjour ! Je suis Lena. Es-tu luxembourgeois ?"
+        ],
+        [
+          "Nee, ech sinn Italiener.",
+          "Non, je suis italien."
+        ],
+        [
+          "Wéi al bass du?",
+          "Quel âge as-tu ?"
+        ],
+        [
+          "Ech sinn drësseg Joer al.",
+          "J'ai trente ans."
+        ],
+        [
+          "A wéi al ass den Tom?",
+          "Et quel âge a Tom ?"
+        ],
+        [
+          "Hien ass zweeanzwanzeg Joer al.",
+          "Il a vingt-deux ans."
+        ],
+        [
+          "Sidd dir zwee Italiener?",
+          "Êtes-vous deux Italiens ?"
+        ],
+        [
+          "Jo, mir sinn Italiener.",
+          "Oui, nous sommes italiens."
+        ]
+      ]
+    }
+  ]
+}

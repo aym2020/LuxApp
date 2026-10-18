@@ -111,6 +111,43 @@ function diagnosticLettre(reponse, attendu) {
   return 'Presque ! ' + debut + ' « ' + tape + ' ».';
 }
 
+// ─── 1 ter. LE MOT EN ERREUR ET LES CONFUSIONS CONNUES (spec 42) ────────────
+// Le seul mot faux de la réponse (les autres sont justes), ou null.
+function motEnErreur(reponse, attendu) {
+  if (typeof analyserReponse !== 'function') return null;
+  const a = analyserReponse(reponse, attendu);
+  if (a.statut !== 'erreur' || !a.mot || !a.mot.saisi || !a.mot.attendu) return null;
+  if (!['grammaire', 'mot_court', 'autre_mot', 'trop_different'].includes(a.typeErreur)) return null;
+  const tape = String(reponse).replace(/[’`´]/g, "'").split(/[\s.!?,;:()«»"–—-]+/)
+    .find(m => normaliserMot(m) === a.mot.saisi) || a.mot.saisi;
+  return { attendu: a.mot.attendu, saisi: a.mot.saisi, tape };
+}
+
+// La note de la leçon parle-t-elle du mot en erreur (attendu ou tapé) ?
+function noteParleDe(note, cible) {
+  if (!note) return false;
+  const mots = String(note).replace(/<[^>]+>/g, ' ').replace(/…/g, ' ').split(/[\s.!?,;:()«»"/=+→–—-]+/).map(normaliserMot);
+  return mots.includes(cible.attendu) || mots.includes(cible.saisi);
+}
+
+// Confusions fréquentes : une explication dédiée, sans donner toute la réponse.
+const FORMES_SINN = ['sinn', 'si', 'bass', 'ass', 'sidd'];
+const FORMES_HUNN = ['hunn', 'hu', 'hues', 'huet', 'hutt'];
+
+function confusionConnue(cible) {
+  const { attendu, saisi } = cible;
+  if (saisi === 'hien' && attendu === 'en') {
+    return 'Pour reprendre un objet masculin, utilise « en » ; « hien » s\'utilise pour une personne.';
+  }
+  const familleA = FORMES_SINN.includes(attendu) ? 'sinn' : FORMES_HUNN.includes(attendu) ? 'hunn' : null;
+  const familleS = FORMES_SINN.includes(saisi) ? 'sinn' : FORMES_HUNN.includes(saisi) ? 'hunn' : null;
+  if (familleA && familleS && familleA === familleS) {
+    return 'Bon verbe (« ' + familleA + ' »), mais « ' + cible.tape + ' » ne va pas avec ce sujet : vérifie la conjugaison.';
+  }
+  if (familleA && familleS) return 'Vérifie l\'auxiliaire : « sinn » ou « hunn » ? Relis la règle de l\'unité.';
+  return '';
+}
+
 // ─── 2. POINT D'ATTENTION MASQUÉ ────────────────────────────────────────────
 // Les mots qui donneraient la réponse : la réponse entière, le mot avec son
 // article, et chaque mot de 4 lettres ou plus de la réponse.
@@ -156,6 +193,14 @@ function aideErreur(val, item, attention, essai) {
     // règle de grammaire (hors sujet) n'est pas affichée (spec 41).
     const lettre = diagnosticLettre(val, item.lu);
     if (lettre) return { diagnostic: lettre, attention: '' };
+    // Un seul mot faux : la note n'est montrée que si elle parle de ce mot (spec 42).
+    const cible = motEnErreur(val, item.lu);
+    if (cible) {
+      const noteUtile = noteParleDe(attention, cible);
+      const message = confusionConnue(cible) ||
+        (noteUtile ? diagnostic(val, item.lu) : 'Un mot ne va pas : « ' + cible.tape + ' ». Vérifie-le.');
+      return { diagnostic: message, attention: noteUtile ? masquerReponse(attention, item) : '' };
+    }
     return { diagnostic: diagnostic(val, item.lu), attention: masquerReponse(attention, item) };
   }
   return { diagnostic: '', attention: attention || '' };

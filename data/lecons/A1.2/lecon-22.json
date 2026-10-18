@@ -1,5 +1,6 @@
 {
   "id": 22,
+  "numero": 23,
   "titre": "An der Fräizäit",
   "titre_fr": "Les loisirs et le week-end – aimer faire (gär)",
   "couleur": "#8fa6bd",
@@ -2699,7 +2700,7 @@
       "titre": "Wou? ou Wouhin?",
       "lignes": [
         "Pour dire <b>où l'on va</b> (Wouhin?), on utilise <b>de</b> / <b>d'</b> : Ech ginn an de Kino. Ech ginn an d'Schwämm.",
-        "Pour dire <b>où l'on est</b> (Wou?, leçons 20 et 21), on utilise <b>am</b> / <b>an der</b> : Ech sinn am Kino. Ech sinn an der Schwämm.",
+        "Pour dire <b>où l'on est</b> (Wou?, leçons 21 et 22), on utilise <b>am</b> / <b>an der</b> : Ech sinn am Kino. Ech sinn an der Schwämm.",
         "Pour l'instant, retiens les expressions avec goen comme des blocs."
       ],
       "unite": 2,

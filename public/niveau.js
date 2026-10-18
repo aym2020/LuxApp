@@ -46,6 +46,13 @@ function niveauxDisponibles() {
   return listeNiveaux();
 }
 
+// Numéro affiché d'une leçon (« Leçon 20 ») : « numero » s'il existe, sinon l'id.
+// L'id reste la clé de la progression ; seul l'affichage suit l'ordre du parcours (spec 42).
+function numLecon(l) {
+  if (typeof l !== 'object') l = typeof lecons !== 'undefined' ? lecons.find(x => x.id === l) : null;
+  return l ? (l.numero || l.id) : '';
+}
+
 function leconsDuNiveau(niveau) {
   return lecons.filter(l => (l.niveau || 'A1.1') === niveau);
 }

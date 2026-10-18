@@ -316,6 +316,8 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
 - Toute la progression (locale + cloud) est indexée par `l.id`.
 - **Les IDs sont globaux et continus** : A1.2 commence à 20, pas à 1.
 - **Ne jamais renuméroter** une leçon existante (sinon perte ou mélange de progression).
+- **Numéro affiché ≠ id (spec 42)** : le champ facultatif `"numero"` donne le numéro affiché (« Leçon 20 ») et l'ordre du parcours ; sans lui, c'est l'id. Pour insérer une leçon, lui donner un **id libre** (ex. 27) et un `numero`, puis décaler les `numero` des suivantes. Afficher toujours `numLecon(l)`, jamais `l.id`. Les renvois « leçon N » dans les textes utilisent le numéro affiché.
+- Prochain id libre en A1.2 : 28.
 - L'id 17 est libre (non utilisé en A1.1).
 
 ### Front
@@ -396,9 +398,9 @@ les problèmes secondaires au lieu de bloquer la livraison.
 | `parcours.js` (mot caché) | `test_motcache` |
 | `chemin.js`, `niveau.js` | `test_chemin_lignes`, `test_lot3`, `test_decouverte`, `test_rappels` (centrage) |
 | `progress.js`, `cloud.js` | `node tests/test_cloud.js`, `node tests/test_sync.js`, `test_lot1` |
-| `correction.js` / analyse des réponses | `node tests/test_correction.js`, `test_mission_vies` |
+| `correction.js`, `diagnostic.js` (aide après erreur) | `node tests/test_correction.js`, `test_rappels`, `test_prerequis`, `test_mission_vies` |
 | `revision.js`, séance | `test_seance`, `test_lot2` |
-| `data/lecons/` | `node tools/valider-lecons.js`, `test_missions_10` si `scene` touchée |
+| `data/lecons/` | `node tools/valider-lecons.js`, `node tools/audit-prerequis.js` (mots exigés avant d'être enseignés, rapport), `test_missions_10` si `scene` touchée, `test_prerequis` |
 | `style.css` seul | aucun test navigateur ; capture d'écran du point touché |
 
 **Règles de vitesse :**
@@ -661,6 +663,8 @@ Règles du fil :
 - **Cœur** d'une unité : 5 à 10 mots, quiz 6–10, trous 6–10, écriture 5–8, tous au service
   de la phrase. Le cœur d'une unité n'utilise **jamais** un mot du « + ».
 - **« + »** (`"plus": true`) : le reste du vocabulaire testé, **dans la même phrase**.
+- **Aide vocabulaire (spec 42)** : `"aide_vocab": [{ "fr": "en voiture", "lu": "mam Auto", "precision": "…" }]` sur un item d'écriture ou une réplique « toi ». Repli fermé par défaut, sans pénalité. Seulement pour un groupe de mots **nouveau et hors objectif** de l'exercice ; jamais la réponse entière ni la notion évaluée (auxiliaire, conjugaison…). `valider-lecons` refuse l'aide qui donne la réponse entière.
+- **Prérequis (spec 42)** : rien d'obligatoire (quiz, trous, écriture, mission) avant d'être enseigné dans le cœur d'une unité précédente ou égale (mot caché, règle, exemple), dans une leçon précédente, ou via `aide_vocab`. Contrôle : `node tools/audit-prerequis.js` (rapport, faux positifs possibles sur les prénoms et les formes conjuguées).
   Pas de limite de taille. Jamais de nouvelle règle dans le « + ».
 - **Unité bonus** (`"bonus": true`) : une notion testée qui ne prolonge aucune phrase
   (ex. les pluriels). Pas de réplique dans la scène, pas de « + ».

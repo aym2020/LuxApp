@@ -1,5 +1,6 @@
 {
   "id": 25,
+  "numero": 26,
   "titre": "Um Maart",
   "titre_fr": "Faire ses courses au marché – quantités et paiement",
   "couleur": "#8f87f0",
@@ -1535,7 +1536,7 @@
         "<b>kréien</b> : la marchande demande <b>Wat kritt Dir?</b>",
         "<b>huelen</b> : ech huelen, Dir huelt. Ech huelen och nach Bieren.",
         "<b>bezuelen</b> : ech bezuelen, Dir bezuelt. Kann ech mat der Kaart bezuelen?",
-        "Pour commander poliment : <b>Ech hätt gär …</b> (déjà vu avec gär, leçon 22)."
+        "Pour commander poliment : <b>Ech hätt gär …</b> (déjà vu avec gär, leçon 23)."
       ],
       "unite": 0
     },
