@@ -290,7 +290,7 @@ après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
 | Quand | Quoi | Durée |
 | --- | --- | --- |
 | Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
-| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py` | ~6 min |
+| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py`, `test_chemin_lignes.py` | ~6 min |
 | Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
 
 - La suite critique se lance **une seule fois, en fin de lot**.
@@ -417,6 +417,10 @@ rien modifier visuellement : comparer des captures avant / après.
   `actuelle` (anneau, titre et chevron or), `a-venir` (cercle neutre, texte secondaire).
   1re réussite d'une unité (`dernierFini.premiere`) : coche, étoiles une par une, halo vert,
   puis la prochaine unité pulse (`.pulse.apres`). Une seule fois ; coupé en mouvement réduit.
+- **Lignes du chemin (spec 29)** : grille état · `.texte` · `.tag` · chevron ; « Révision en
+  cours » en 2e rangée seulement si elle existe ; mission : « Mission » + statut en 1re rangée,
+  titre dessous ; requêtes de conteneur en `em` (< 18 em : « Facultatif » sous le bilan ;
+  < 13 em : étoiles sous le titre). Jamais de troncature. `aria-label` = titre + état.
 - **Résultats (spec 28)** : `messageResultat(percent)` (Parfait / Excellent / Bien joué /
   Tu progresses / Continue à t'entraîner, purement visuel), score vert dès 75 %,
   « n / N réponses justes du premier coup », « Une réponse à retravailler. ». Étoiles et

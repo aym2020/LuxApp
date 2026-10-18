@@ -203,12 +203,21 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     let classe = fait ? 'ok' : 'a-venir';
     if (actuelle) classe = 'actuelle' + (pulse || premiere ? ' pulse' : '') + (premiere ? ' apres' : '');
     if (anim && anim.leconId === l.id && anim.uniteId === u.id) classe += ' vient-de-finir' + (premiere ? ' premiere' : '');
-    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
+    // Spec 29 : le titre a toute la largeur restante ; « Révision en cours »
+    // passe dessous (seulement s'il y en a une), les étoiles restent à droite.
+    const enRevision = libre && libre.leconId === l.id && libre.uniteId === u.id;
+    const nbEtoiles = fait ? etoiles(getUnitBest(l.id, u.id)) : 0;
+    // Nom lu par les lecteurs d'écran : titre complet + état utile.
+    let nomLu = u.id + ' · ' + u.titre + ', ' + (actuelle ? 'étape recommandée' : fait ? 'terminée' : 'à découvrir');
+    if (fait) nomLu += ', ' + nbEtoiles + ' étoile' + (nbEtoiles > 1 ? 's' : '') + ' sur 3';
+    if (enRevision) nomLu += ', révision en cours';
+    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
       '<span class="etat">' + (fait && !actuelle ? ICONES.coche : '') + '</span>' +
-      '<span class="nom">' + u.id + ' · ' + escHtml(u.titre) + '</span>' +
-      (libre && libre.leconId === l.id && libre.uniteId === u.id ? '<span class="tag revision">Révision en cours</span>' : '') +
-      (fait ? '<span class="tag">' + etoilesHtml(etoiles(getUnitBest(l.id, u.id))) + '</span>' : '') +
-      ICONES.droite + '</button></li>';
+      '<span class="texte"><span class="nom">' + u.id + '&nbsp;·&nbsp;' + escHtml(u.titre) + '</span></span>' +
+      (fait ? '<span class="tag">' + etoilesHtml(nbEtoiles) + '</span>' : '') +
+      ICONES.droite +
+      (enRevision ? '<span class="sous revision">' + ICONES.revision + 'Révision en cours</span>' : '') +
+      '</button></li>';
   });
 
   if (l.mission && l.scene) {
@@ -220,17 +229,27 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     const actuelle = etapeActuelle === 'mission';
     let classe = 'mission' + (statut ? ' ok' : '') + (actuelle ? ' actuelle' + (pulse ? ' pulse' : '') : '');
     if (anim && anim.leconId === l.id && anim.uniteId === 'mission') classe += ' vient-de-finir';
-    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-mission"><button onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
+    // Spec 29 : « Mission » et le statut sur la 1re rangée, le titre en entier dessous.
+    const nomLu = 'Mission : ' + l.mission.titre + ', ' + tag;
+    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-mission"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
       '<span class="etat">' + ICONES.bulle + '</span>' +
-      '<span class="nom">Mission · ' + escHtml(l.mission.titre) + '</span><span class="tag">' + tag + '</span>' +
-      ICONES.droite + '</button></li>';
+      '<span class="sur">Mission</span>' +
+      '<span class="tag pastille-statut">' + tag + '</span>' +
+      ICONES.droite +
+      '<span class="texte"><span class="nom">' + escHtml(l.mission.titre) + '</span></span>' +
+      '</button></li>';
   }
 
-  html += '<li class="bilan"><button onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
+  html += '<li class="bilan"><button aria-label="Bilan, 10 questions, facultatif" onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
     '<span class="etat">' + ICONES.cible + '</span>' +
-    '<span class="nom">Bilan · 10 questions</span><span class="tag">facultatif</span>' +
+    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions</span></span><span class="tag pastille-statut">Facultatif</span>' +
     ICONES.droite + '</button></li>';
   return html;
+}
+
+// Texte sûr dans un attribut HTML (guillemets compris).
+function attrHtml(texte) {
+  return escHtml(String(texte)).replace(/"/g, '&quot;');
 }
 
 function trouverLecon(id) {

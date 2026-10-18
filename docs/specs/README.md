@@ -43,7 +43,7 @@ Ce répertoire centralise les **29 spécifications** fonctionnelles et UX du pro
 | 26 | [Sens de lecture uniforme des traductions du cours](./SPEC-26.md) | P1 | Implémentée — validation à confirmer |
 | 27 | [Valorisation visuelle des unités terminées](./SPEC-27.md) | P1 | Implémentée — validation à confirmer |
 | 28 | [Résultats d'étape plus gratifiants](./SPEC-28.md) | P1 | Implémentée — validation à confirmer |
-| 29 | [Mon chemin : lignes compactes et statuts sans débordement](./SPEC-29.md) | P1 | À faire |
+| 29 | [Mon chemin : lignes compactes et statuts sans débordement](./SPEC-29.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire — non implémentée** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Référence | Branche `v2` |
 | Périmètre prévu | `public/chemin.js`, `public/style.css` ; composants/tokens existants si nécessaire |
@@ -82,12 +82,12 @@ La maquette montre des séparations discrètes autour de Mission et Bilan. Elles
 ## Critères d'acceptation / recette
 
 - [ ] Sur Android, dans la leçon 1 de la capture, `1 · Saluer` se lit d'un bloc sur la première ligne, « Révision en cours » apparaît juste dessous, et les 3 étoiles restent à droite.
-- [ ] Les unités 2 et 3 gardent leurs titres complets, leurs étoiles et leur coche ; l'unité 4 reste clairement l'étape recommandée.
-- [ ] La mission « Premier cours de luxembourgeois » ne se retrouve plus dans une colonne étroite d'un ou deux mots ; `Sans faute` reste visible et lisible.
-- [ ] La ligne Bilan, le bouton « Reprendre » et « Voir toute la leçon » restent visibles, cliquables et sans chevauchement. Les libellés « Sans faute » et « facultatif » ne poussent jamais le titre dans une colonne d'un seul mot.
-- [ ] Tester des largeurs CSS de **320, 360, 393 et 430 px**, ainsi qu'un agrandissement de texte Android ; aucune coupure de titre, aucun défilement horizontal et aucun élément superposé. En largeur extrême, une ligne supplémentaire est acceptable si l'information reste entière.
-- [ ] Contrôler les états **aucune révision**, **révision en cours**, **unité terminée 1/2/3 étoiles**, **unité recommandée**, **mission avec/sans statut** et **bilan** ; vérifier les titres particulièrement longs.
-- [ ] Vérifier que les données `luxParcours` / `luxParcoursLibre`, les scores, la progression, le cloud, la navigation et l'accordéon n'ont pas changé.
+- [x] Les unités 2 et 3 gardent leurs titres complets, leurs étoiles et leur coche ; l'unité 4 reste clairement l'étape recommandée.
+- [x] La mission « Premier cours de luxembourgeois » ne se retrouve plus dans une colonne étroite d'un ou deux mots ; `Sans faute` reste visible et lisible.
+- [x] La ligne Bilan, le bouton « Reprendre » et « Voir toute la leçon » restent visibles, cliquables et sans chevauchement. Les libellés « Sans faute » et « facultatif » ne poussent jamais le titre dans une colonne d'un seul mot.
+- [x] Tester des largeurs CSS de **320, 360, 393 et 430 px**, ainsi qu'un agrandissement de texte Android ; aucune coupure de titre, aucun défilement horizontal et aucun élément superposé. En largeur extrême, une ligne supplémentaire est acceptable si l'information reste entière.
+- [x] Contrôler les états **aucune révision**, **révision en cours**, **unité terminée 1/2/3 étoiles**, **unité recommandée**, **mission avec/sans statut** et **bilan** ; vérifier les titres particulièrement longs.
+- [x] Vérifier que les données `luxParcours` / `luxParcoursLibre`, les scores, la progression, le cloud, la navigation et l'accordéon n'ont pas changé.
 - [ ] Comparer une capture réelle avant/après sur le même téléphone et à police identique ; la carte doit être plus compacte **sans** réduire la taille générale du texte. Vérifier que le gain vient des retours à la ligne supprimés et de la meilleure distribution de la largeur, pas d'une troncature.
 
 ## Hors périmètre
@@ -98,6 +98,10 @@ La maquette montre des séparations discrètes autour de Mission et Bilan. Elles
 
 ## Implémentation et suivi
 
-- **Non implémentée :** mise à jour documentaire de la SPEC 29 uniquement, sans changement du code ni du registre (qui référence déjà cette fiche).
-- À l'implémentation : compléter ici les fichiers modifiés, les tests réalisés, les captures avant/après et les anomalies résiduelles. Passer à « Implémentée — validation à confirmer » seulement après présence du code ; à « Validée » seulement après recette.
+- **Implémentée sur `v2`**, recette sur téléphone réel à faire : critères 1 (Android) et 8 (capture avant/après sur le même téléphone) non cochés.
+- `public/chemin.js` (`etapesLeconHtml`) : chaque ligne = état · texte (`.nom`) · statut (`.tag` : étoiles ou pastille `.pastille-statut`) · chevron, un seul bouton. « ↻ Révision en cours » (`.sous.revision`, icône `aria-hidden`) seulement s'il y a une révision libre. Mission : « Mission » (`.sur`) et son statut sur la 1re rangée, titre complet dessous. Numéro et titre liés par des espaces insécables. Nom accessible complet sur chaque bouton (ex. « 1 · Saluer, terminée, 3 étoiles sur 3, révision en cours » ; « Mission : Premier cours de luxembourgeois, Sans faute »).
+- `public/style.css` : ligne en grille (`24px | 1fr | auto | 16px`), écart `--sp-2` au lieu de 12 px, marges verticales `--sp-1`, hauteur tactile 44 px conservée. 2e rangée sous le titre seulement si un statut existe (`:has(> .sous)`). Requêtes de conteneur en `em` (suivent l'agrandissement du texte Android) : carte < 18 em → pastille « Facultatif » sous le titre du bilan ; < 13 em (320 px, texte agrandi) → étoiles sous le titre. Règles tardives contradictoires supprimées (`.nom` sur une ligne puis rétabli, `.tag` `flex: none`). Séparateurs Mission/Bilan non ajoutés (facultatifs).
+- Hauteur de la liste d'unités, leçon 1 (révision en cours sur l'unité 1, mission sans faute), même taille de texte : 320 px 413 → 324 ; 360 px 336 → 292 ; 360 px texte 130 % 545 → 413 ; 393 px 295 → 292 ; 430 px 273 → 267. Défilement horizontal supprimé à 320 px et en texte 130 %.
+- Tests : `tests/test_chemin_lignes.py` (320/360/393/430 px, texte 130 %, les 24 leçons dépliées à 320 px, noms accessibles) ; suite critique verte.
+- Écart assumé : à 393 px, « Facultatif » passe sous « Bilan · 10 questions » (la ligne ne tient pas à côté de la pastille).
 - Références : [SPEC 17 — Lisibilité](./SPEC-17.md), [SPEC 22 — Révision libre](./SPEC-22.md), [SPEC 27 — États d'unité](./SPEC-27.md), [Design system](../DESIGN_SYSTEM.md).
