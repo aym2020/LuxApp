@@ -17,8 +17,7 @@ for (const id of ids) {
   assert.ok(l.unites.length >= 2 && l.unites.length <= 4, 'nombre d\'unités : ' + id);
   assert.ok(l.scene.length >= 6, 'scène trop courte : ' + id);
   const coeur = l.unites.filter(u => !u.bonus);
-  assert.ok(l.scene.filter(r => r.qui === 'toi').length >= 3, 'mission trop peu active : ' + id);
-  assert.ok(l.scene.filter(r => r.qui === 'toi').length <= 5, 'mission trop longue : ' + id);
+  assert.equal(l.scene.filter(r => r.qui === 'toi').length, 10, 'mission : 10 réponses à produire (spec 34) : ' + id);
   const idsUnites = new Set(l.unites.map(u => u.id));
   let precedent = 0;
   for (const r of l.scene) {

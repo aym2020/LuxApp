@@ -16,74 +16,146 @@
   },
   "mission": {
     "titre": "Où habites-tu ?",
-    "contexte": "Tu rencontres une collègue qui veut savoir dans quel pays et dans quelle ville tu habites. Vous parlez aussi des quartiers de Luxembourg.",
-    "objectif": "dire où tu habites, demander le lieu d'habitation et choisir la préposition adaptée."
+    "contexte": "Tu rencontres Marie, une collègue, qui veut savoir dans quel pays et dans quelle ville tu habites. Vous parlez aussi de vos collègues et des quartiers de Luxembourg, puis tu poses la question à Monsieur Weber.",
+    "objectif": "dire où tu habites, demander le lieu d'habitation et choisir la préposition adaptée.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Moien! Wou wunns du?",
-      "fr": "Bonjour ! Où habites-tu ?"
+      "fr": "Bonjour ! Où habites-tu ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech wunnen a Frankräich.",
       "fr": "J'habite en France.",
+      "unite": 1,
       "aide": "Pour la France, utilise <b>a Frankräich</b>."
     },
     {
-      "unite": 1,
       "qui": "Marie",
-      "lu": "Ech wunnen an der Belsch.",
-      "fr": "Moi, j'habite en Belgique."
+      "lu": "Ech wunnen an der Belsch. An de Paul?",
+      "fr": "Moi, j'habite en Belgique. Et Paul ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
-      "lu": "Mäi Frënd wunnt zu Lëtzebuerg.",
-      "fr": "Mon ami habite au Luxembourg.",
+      "lu": "De Paul wunnt zu Lëtzebuerg.",
+      "fr": "Paul habite au Luxembourg.",
+      "unite": 1,
       "aide": "Pour le Luxembourg (pays), utilise <b>zu</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "A wou wunns du a Frankräich?",
-      "fr": "Et où habites-tu en France ?"
+      "lu": "An d'Anna?",
+      "fr": "Et Anna ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "D'Anna wunnt an Däitschland.",
+      "fr": "Anna habite en Allemagne.",
+      "unite": 1,
+      "aide": "<b>an</b> devant D : an Däitschland."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Greta?",
+      "fr": "Et Greta ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Si wunnt a Schweden.",
+      "fr": "Elle habite en Suède.",
+      "unite": 1,
+      "aide": "<b>a</b> devant S : le n tombe."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An de Marc?",
+      "fr": "Et Marc ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "De Marc wunnt an der Schwäiz.",
+      "fr": "Marc habite en Suisse.",
+      "unite": 1,
+      "aide": "La Suisse est féminin : <b>an der</b> Schwäiz."
+    },
+    {
+      "qui": "Marie",
+      "lu": "A wou wunns du a Frankräich?",
+      "fr": "Et où habites-tu en France ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Ech wunnen zu Metz.",
       "fr": "J'habite à Metz.",
+      "unite": 2,
       "aide": "Une ville se dit avec <b>zu</b> : zu Metz."
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Wou wunns du?",
       "fr": "Où habites-tu ?",
+      "unite": 2,
       "aide": "Question informelle : <b>Wou wunns du?</b>"
     },
     {
-      "unite": 2,
       "qui": "Marie",
       "lu": "Ech wunnen zu Esch.",
-      "fr": "J'habite à Esch."
+      "fr": "J'habite à Esch.",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "Wou wunnt deng Kollegin?",
-      "fr": "Où habite ta collègue ?"
+      "lu": "Wou wunnt d'Julie?",
+      "fr": "Où habite Julie ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Si wunnt um Kirchberg.",
       "fr": "Elle habite au Kirchberg.",
+      "unite": 2,
       "aide": "Pour ce quartier, utilise <b>um</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An de Paul? Wou wunnt hien?",
+      "fr": "Et Paul ? Où habite-t-il ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "De Paul wunnt am Gronn.",
+      "fr": "Paul habite au Grund.",
+      "unite": 2,
+      "aide": "Pour ce quartier, utilise <b>am</b> : am Gronn."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Dat ass den Här Weber.",
+      "fr": "Voici Monsieur Weber.",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Wou wunnt Dir?",
+      "fr": "Où habitez-vous ?",
+      "unite": 2,
+      "aide": "Au vouvoiement : <b>Wou wunnt Dir?</b>"
+    },
+    {
+      "qui": "Här Weber",
+      "lu": "Ech wunnen an der Stad.",
+      "fr": "J'habite en ville.",
+      "unite": 2
     }
   ],
   "unites": [

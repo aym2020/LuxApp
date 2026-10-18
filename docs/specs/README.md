@@ -48,6 +48,7 @@ Ce répertoire centralise les **33 spécifications** fonctionnelles et UX du pro
 | 31 | [Mot caché : premier clic perdu sur PC](./SPEC-31.md) | P0 | Implémentée — validation à confirmer |
 | 32 | [Mission réussie avec trois vies : validation de la leçon sans étoiles fictives](./SPEC-32.md) | P0 | Implémentée — validation à confirmer |
 | 33 | [Mon chemin continu, unités validées par mission et en-tête stable](./SPEC-33.md) | P0 | À faire |
+| 34 | [Système de vies lisible et missions à 10 répliques](./SPEC-34.md) | P0 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

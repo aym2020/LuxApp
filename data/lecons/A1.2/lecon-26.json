@@ -16,8 +16,9 @@
   },
   "mission": {
     "titre": "Comprendre une annonce d'emploi",
-    "contexte": "Marie te montre une offre : « D'Gemeng engagéiert eng Sekretärin fir 20 Stonnen d'Woch. Englesch ass vu Virdeel. Schéckt Är Kandidatur bis spéitstens den 20. August. » Tu dois identifier les faits et éviter les pièges du vrai/faux.",
-    "objectif": "repérer l'employeur, le poste, les horaires, le caractère facultatif d'un atout et la date limite."
+    "contexte": "Marie te montre deux offres. La première : « D'Gemeng engagéiert eng Sekretärin fir 20 Stonnen d'Woch. Englesch ass vu Virdeel. Keng Erfarung néideg. Schéckt Är Kandidatur bis spéitstens den 20. August. » La seconde : « D'Bank sicht eng Sekretärin. » Tu dois identifier les faits et éviter les pièges du vrai/faux.",
+    "objectif": "repérer l'employeur, le poste, les horaires, le caractère facultatif d'un atout et la date limite.",
+    "version": 2
   },
   "unites": [
     {
@@ -65,69 +66,134 @@
   ],
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Wat fir eng Annonce ass dat?",
-      "fr": "Quel type d'annonce est-ce ?"
+      "fr": "Quel type d'annonce est-ce ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Dat ass eng Aarbechtsannonce.",
       "fr": "C'est une offre d'emploi.",
+      "unite": 1,
       "aide": "Cherche le mot <b>Aarbechtsannonce</b>."
     },
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Wien engagéiert eng Sekretärin?",
-      "fr": "Qui recrute une secrétaire ?"
+      "fr": "Qui recrute une secrétaire ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "D'Gemeng engagéiert eng Sekretärin.",
       "fr": "La commune recrute une secrétaire.",
+      "unite": 1,
       "aide": "L'employeur est <b>d'Gemeng</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "Wéi vill Stonnen d'Woch?",
-      "fr": "Combien d'heures par semaine ?"
+      "lu": "Kuck, hei ass nach eng Annonce.",
+      "fr": "Regarde, voici encore une annonce.",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "Wat fir eng Annonce ass dat?",
+      "fr": "Quel type d'annonce est-ce ?",
+      "unite": 1,
+      "aide": "Pour demander : <b>Wat fir eng Annonce</b> ass dat?"
+    },
+    {
+      "qui": "Marie",
+      "lu": "Och eng Aarbechtsannonce. Wien sicht eng Sekretärin?",
+      "fr": "Aussi une offre d'emploi. Qui cherche une secrétaire ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Bank sicht eng Sekretärin.",
+      "fr": "La banque cherche une secrétaire.",
+      "unite": 1,
+      "aide": "chercher = <b>sichen</b> → si <b>sicht</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "A bei der Gemeng? Wéi vill Stonnen d'Woch?",
+      "fr": "Et à la commune ? Combien d'heures par semaine ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Zwanzeg Stonnen d'Woch.",
       "fr": "Vingt heures par semaine.",
+      "unite": 2,
       "aide": "Le texte indique le nombre de <b>Stonnen d'Woch</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "Ass Englesch eng Prioritéit?",
-      "fr": "L'anglais est-il une priorité ?"
+      "lu": "Ass d'Aarbecht ganzdaags?",
+      "fr": "Le travail est-il à temps plein ?",
+      "unite": 2
     },
     {
+      "qui": "toi",
+      "lu": "Nee, si ass hallefdaags.",
+      "fr": "Non, il est à mi-temps.",
       "unite": 2,
+      "aide": "20 heures par semaine : <b>hallefdaags</b> (mi-temps)."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ass Englesch eng Prioritéit?",
+      "fr": "L'anglais est-il une priorité ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Nee, Englesch ass vu Virdeel.",
       "fr": "Non, l'anglais est un avantage.",
+      "unite": 2,
       "aide": "<b>vu Virdeel</b> désigne un atout."
     },
     {
-      "unite": 3,
       "qui": "Marie",
-      "lu": "Bis wéini muss d'Kandidatur geschéckt ginn?",
-      "fr": "Jusqu'à quand faut-il envoyer la candidature ?"
+      "lu": "Brauch ech Erfarung?",
+      "fr": "Ai-je besoin d'expérience ?",
+      "unite": 3
     },
     {
+      "qui": "toi",
+      "lu": "D'Persoun brauch keng Erfarung.",
+      "fr": "La personne n'a pas besoin d'expérience.",
       "unite": 3,
+      "aide": "brauchen → si <b>brauch</b> · pas d'expérience = <b>keng</b> Erfarung."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Bis wéini muss d'Kandidatur geschéckt ginn?",
+      "fr": "Jusqu'à quand faut-il envoyer la candidature ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Schéckt Är Kandidatur bis spéitstens den 20. August.",
       "fr": "Envoyez votre candidature au plus tard le 20 août.",
+      "unite": 3,
       "aide": "Dans l'annonce : <b>bis spéitstens</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Den 30. August, ass dat nach gutt?",
+      "fr": "Le 30 août, ça va encore ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, bis spéitstens den 20. August.",
+      "fr": "Non, au plus tard le 20 août.",
+      "unite": 3,
+      "aide": "au plus tard = <b>spéitstens</b>."
     }
   ],
   "flashcards": [

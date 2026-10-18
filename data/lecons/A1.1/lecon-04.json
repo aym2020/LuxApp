@@ -16,8 +16,9 @@
   },
   "mission": {
     "titre": "À la brocante",
-    "contexte": "Tu cherches un vélo à la brocante. La vendeuse vante un vieux vélo : à chaque qualité, tu réponds par le contraire.",
-    "objectif": "décrire un objet avec un adjectif et répondre par son contraire."
+    "contexte": "Tu cherches un vélo à la brocante. La vendeuse vante un vieux vélo, puis une table et un téléphone : à chaque qualité, tu réponds par le contraire… sauf pour le téléphone.",
+    "objectif": "décrire un objet avec un adjectif et répondre par son contraire.",
+    "version": 2
   },
   "scene": [
     {
@@ -35,8 +36,34 @@
     },
     {
       "qui": "La vendeuse",
-      "lu": "Jo, mee en ass séier a liicht!",
-      "fr": "Oui, mais il est rapide et léger !",
+      "lu": "An en ass grouss!",
+      "fr": "Et il est grand !",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, en ass net grouss. En ass kleng.",
+      "fr": "Non, il n'est pas grand. Il est petit.",
+      "unite": 1,
+      "aide": "grouss ↔ <b>kleng</b>."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Den Dësch hei ass héich!",
+      "fr": "La table ici est haute !",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, den Dësch ass niddereg.",
+      "fr": "Non, la table est basse.",
+      "unite": 1,
+      "aide": "héich ↔ <b>niddereg</b> · <b>den</b> Dësch (d → den)."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Jo, mee de Vëlo ass séier a liicht!",
+      "fr": "Oui, mais le vélo est rapide et léger !",
       "unite": 2
     },
     {
@@ -48,8 +75,34 @@
     },
     {
       "qui": "La vendeuse",
-      "lu": "Mee en ass bëlleg!",
-      "fr": "Mais il n'est pas cher !",
+      "lu": "Den Dësch ass ronn!",
+      "fr": "La table est ronde !",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, en ass net ronn. En ass eckeg.",
+      "fr": "Non, elle n'est pas ronde. Elle est anguleuse.",
+      "unite": 2,
+      "aide": "ronn ↔ <b>eckeg</b> · den Dësch (masculin) → <b>en</b>."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Den Handy hei ass séier!",
+      "fr": "Le smartphone ici est rapide !",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, den Handy ass lues.",
+      "fr": "Non, le smartphone est lent.",
+      "unite": 2,
+      "aide": "séier ↔ <b>lues</b>."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Mee de Vëlo ass bëlleg!",
+      "fr": "Mais le vélo n'est pas cher !",
       "unite": 3
     },
     {
@@ -58,6 +111,45 @@
       "fr": "Non, il est cher. Et il est cassé !",
       "unite": 3,
       "aide": "bëlleg ↔ <b>deier</b> · cassé = <b>futti</b>."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Den Handy ass ganz!",
+      "fr": "Le smartphone est intact !",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, en ass futti.",
+      "fr": "Non, il est cassé.",
+      "unite": 3,
+      "aide": "ganz ↔ <b>futti</b>."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "Mee den Dësch ass schéin!",
+      "fr": "Mais la table est belle !",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, en ass ellen!",
+      "fr": "Non, elle est laide !",
+      "unite": 3,
+      "aide": "schéin ↔ <b>ellen</b>."
+    },
+    {
+      "qui": "La vendeuse",
+      "lu": "An den Telefon? En ass al, mee schéin.",
+      "fr": "Et le téléphone ? Il est vieux, mais beau.",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, en ass schéin an en ass bëlleg!",
+      "fr": "Oui, il est beau et il n'est pas cher !",
+      "unite": 3,
+      "aide": "deier ↔ <b>bëlleg</b> · et = <b>an</b> devant une voyelle."
     }
   ],
   "unites": [

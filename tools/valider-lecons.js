@@ -121,6 +121,13 @@ function verifierV2(f, l) {
       derniere = Math.max(derniere, x.unite);
     });
     if (!l.scene.some(x => x.qui === 'toi')) erreur(f, 'la scène n\'a aucune réplique « toi » à écrire');
+    // Spec 34 : exactement 10 réponses à produire, scène en version 2 ou plus.
+    const nbToi = l.scene.filter(x => x.qui === 'toi').length;
+    if (nbToi !== 10) erreur(f, 'la mission a ' + nbToi + ' réponses à produire (10 attendues)');
+    if (!(l.mission.version >= 2)) erreur(f, 'mission.version doit valoir au moins 2 (scène à 10 réponses)');
+    fil.forEach(id => {
+      if (!l.scene.some(x => x.unite === id && x.qui === 'toi')) erreur(f, 'unité ' + id + ' : aucune réponse à produire dans la mission');
+    });
     fil.forEach(id => {
       if (!l.scene.some(x => x.unite === id)) attention(f, 'unité ' + id + ' : aucune réplique dans la scène');
     });

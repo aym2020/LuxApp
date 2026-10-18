@@ -16,8 +16,9 @@
   },
   "mission": {
     "titre": "Aux objets trouvés",
-    "contexte": "Tu as oublié ton sac et ton stylo dans le bus. Au bureau des objets trouvés, l'employée te demande de les décrire.",
-    "objectif": "demander et dire la couleur d'un objet, relier deux couleurs, dire qu'un objet n'est pas d'une couleur."
+    "contexte": "Tu as oublié plusieurs affaires dans le bus : ton sac, un livre, une bouteille, un cahier, ton smartphone et ton stylo. Au bureau des objets trouvés, l'employée te demande de les décrire.",
+    "objectif": "demander et dire la couleur d'un objet, relier deux couleurs, dire qu'un objet n'est pas d'une couleur.",
+    "version": 2
   },
   "scene": [
     {
@@ -35,6 +36,32 @@
     },
     {
       "qui": "L'employée",
+      "lu": "An d'Buch? Wat fir eng Faarf huet d'Buch?",
+      "fr": "Et le livre ? De quelle couleur est le livre ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Buch ass blo.",
+      "fr": "Le livre est bleu.",
+      "unite": 1,
+      "aide": "<b>D'</b>Buch (neutre) ass <b>blo</b>."
+    },
+    {
+      "qui": "L'employée",
+      "lu": "An d'Fläsch?",
+      "fr": "Et la bouteille ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Fläsch ass gréng.",
+      "fr": "La bouteille est verte.",
+      "unite": 1,
+      "aide": "<b>D'</b>Fläsch ass <b>gréng</b>."
+    },
+    {
+      "qui": "L'employée",
       "lu": "Ass d'Mapp schwaarz a brong?",
       "fr": "Le sac est-il noir et marron ?",
       "unite": 2
@@ -45,6 +72,32 @@
       "fr": "Oui, le sac est noir et marron.",
       "unite": 2,
       "aide": "Et = <b>an</b>, mais <b>a</b> devant b : schwaarz <b>a</b> brong."
+    },
+    {
+      "qui": "L'employée",
+      "lu": "Wat fir eng Faarf huet d'Heft?",
+      "fr": "De quelle couleur est le cahier ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Heft ass gro a rosa.",
+      "fr": "Le cahier est gris et rose.",
+      "unite": 2,
+      "aide": "<b>a</b> devant r : gro <b>a</b> rosa."
+    },
+    {
+      "qui": "L'employée",
+      "lu": "Ass den Handy wäiss?",
+      "fr": "Le smartphone est-il blanc ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, den Handy ass wäiss a gro.",
+      "fr": "Oui, le smartphone est blanc et gris.",
+      "unite": 2,
+      "aide": "<b>den</b> Handy (h → den) · <b>a</b> devant g."
     },
     {
       "qui": "L'employée",
@@ -61,9 +114,42 @@
     },
     {
       "qui": "L'employée",
-      "lu": "Hei ass de Stëft!",
-      "fr": "Voici le stylo !",
+      "lu": "Ass d'Fläsch rout?",
+      "fr": "La bouteille est-elle rouge ?",
       "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, si ass net rout. Si ass gréng.",
+      "fr": "Non, elle n'est pas rouge. Elle est verte.",
+      "unite": 3,
+      "aide": "d'Fläsch (féminin) → <b>si</b>."
+    },
+    {
+      "qui": "L'employée",
+      "lu": "Ass d'Buch schwaarz?",
+      "fr": "Le livre est-il noir ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, et ass net schwaarz. Et ass blo.",
+      "fr": "Non, il n'est pas noir. Il est bleu.",
+      "unite": 3,
+      "aide": "d'Buch (neutre) → <b>et</b>."
+    },
+    {
+      "qui": "L'employée",
+      "lu": "Hei ass de Stëft! Ass en blo?",
+      "fr": "Voici le stylo ! Il est bleu ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, en ass blo! Merci!",
+      "fr": "Oui, il est bleu ! Merci !",
+      "unite": 3,
+      "aide": "de Stëft → <b>en</b> ass blo."
     }
   ],
   "unites": [

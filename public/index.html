@@ -262,13 +262,14 @@
     <!-- En-tête de messagerie : retour, interlocuteur, progression, contexte et cours -->
     <div class="ms-chat-tete">
       <button class="pc-icon-btn" data-retour aria-label="Retour" onclick="quitterMission()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-      <div class="ms-identite">
-        <div class="ms-personne" id="ms-titre"></div>
-        <div class="ms-tete-etat"><span class="ms-vies" id="ms-vies" aria-label="Vies"></span><span class="ms-compteur" id="ms-compteur"></span></div>
-      </div>
+      <div class="ms-identite"><div class="ms-personne" id="ms-titre"></div></div>
       <button class="ms-lien" onclick="voirContexte()">Contexte</button>
       <button class="pc-cours-btn" onclick="ouvrirCours(null)">Cours</button>
     </div>
+    <!-- Spec 34 : les vies, centrées et bien visibles ; un appui rappelle les règles -->
+    <button class="ms-vies-zone" onclick="voirReglesVies()" aria-label="Règles des vies">
+      <span class="ms-vies" id="ms-vies"></span><span class="ms-compteur" id="ms-compteur"></span>
+    </button>
     <div class="ms-piste"><div id="ms-piste"></div></div>
     <!-- La conversation défile seule ; la zone de réponse reste en bas -->
     <div class="ms-body" id="ms-body" aria-live="polite"></div>

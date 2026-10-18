@@ -12,7 +12,8 @@
   "mission": {
     "titre": "Premier jour au bureau",
     "contexte": "C'est ton premier jour au bureau. Ta collègue Sarah te fait visiter et te teste : elle montre des objets, tu dis ce que c'est.",
-    "objectif": "demander ce que c'est, nommer un objet avec e, en ou eng, et répondre non."
+    "objectif": "demander ce que c'est, nommer un objet avec e, en ou eng, et répondre non.",
+    "version": 2
   },
   "scene": [
     {
@@ -44,6 +45,32 @@
     {
       "qui": "Sarah",
       "lu": "An dat?",
+      "fr": "Et ça ? (elle montre un ordinateur)",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass e Computer.",
+      "fr": "C'est un ordinateur.",
+      "unite": 1,
+      "aide": "C n'est pas dans UNITEDZOHA → <b>e</b> Computer."
+    },
+    {
+      "qui": "toi",
+      "lu": "Wat ass dat?",
+      "fr": "Qu'est-ce que c'est ? (tu montres une fenêtre)",
+      "unite": 1,
+      "aide": "Pour demander : <b>Wat ass dat?</b>"
+    },
+    {
+      "qui": "Sarah",
+      "lu": "Dat ass eng Fënster.",
+      "fr": "C'est une fenêtre.",
+      "unite": 1
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
       "fr": "Et ça ? (elle montre un téléphone)",
       "unite": 2
     },
@@ -53,6 +80,32 @@
       "fr": "C'est un téléphone.",
       "unite": 2,
       "aide": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
+      "fr": "Et ça ? (elle montre une imprimante)",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass en Drécker.",
+      "fr": "C'est une imprimante.",
+      "unite": 2,
+      "aide": "D fait partie de UNITEDZOHA → <b>en</b> Drécker."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
+      "fr": "Et ça ? (elle montre une table)",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass en Dësch.",
+      "fr": "C'est une table.",
+      "unite": 2,
+      "aide": "D → <b>en</b> Dësch."
     },
     {
       "qui": "Sarah",
@@ -79,6 +132,19 @@
       "fr": "Oui, c'est une lampe.",
       "unite": 3,
       "aide": "Oui → <b>Jo</b>, dat ass eng Luucht."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "Ass dat e Buch?",
+      "fr": "C'est un livre ? (elle montre un cahier)",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, dat ass kee Buch. Dat ass en Heft.",
+      "fr": "Non, ce n'est pas un livre. C'est un cahier.",
+      "unite": 3,
+      "aide": "e Buch → <b>kee</b> Buch · H → <b>en</b> Heft."
     }
   ],
   "unites": [

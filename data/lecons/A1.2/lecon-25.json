@@ -16,74 +16,146 @@
   },
   "mission": {
     "titre": "Faire ses courses au marché",
-    "contexte": "Tu arrives au marché. La vendeuse prend ta commande de pommes, d'abricots et de pommes de terre, puis annonce le total.",
-    "objectif": "commander, préciser des quantités et demander à payer par carte."
+    "contexte": "Tu arrives au marché. La vendeuse prend ta commande de pommes, de poires, d'abricots et de pommes de terre, puis annonce le total. Sa machine à carte tombe en panne : tu paies en liquide.",
+    "objectif": "commander, préciser des quantités et demander à payer par carte.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Vendeuse",
       "lu": "U wiem ass et?",
-      "fr": "À qui le tour ?"
+      "fr": "À qui le tour ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Et ass u mir!",
       "fr": "C'est à moi !",
+      "unite": 1,
       "aide": "La réponse à « À qui le tour ? » commence par <b>Et ass</b>."
     },
     {
-      "unite": 1,
       "qui": "Vendeuse",
       "lu": "Wat kritt Dir?",
-      "fr": "Que désirez-vous ?"
+      "fr": "Que désirez-vous ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech hätt gär e Kilo Äppel.",
       "fr": "Je voudrais un kilo de pommes.",
+      "unite": 1,
       "aide": "Pour demander poliment : <b>Ech hätt gär</b>."
     },
     {
-      "unite": 2,
       "qui": "Vendeuse",
       "lu": "Soss nach eppes?",
-      "fr": "Autre chose ?"
+      "fr": "Autre chose ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "Ech huelen och nach Bieren.",
+      "fr": "Je prends aussi des poires.",
+      "unite": 1,
+      "aide": "Je prends = <b>Ech huelen</b> · aussi = <b>och nach</b>."
+    },
+    {
+      "qui": "Vendeuse",
+      "lu": "Soss nach eppes?",
+      "fr": "Autre chose ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Ech huelen eng Dosen Aprikosen.",
       "fr": "Je prends une douzaine d'abricots.",
+      "unite": 2,
       "aide": "Douzaine = <b>eng Dosen</b>."
     },
     {
-      "unite": 2,
       "qui": "Vendeuse",
       "lu": "A wat nach?",
-      "fr": "Et quoi d'autre ?"
+      "fr": "Et quoi d'autre ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Ech hätt gär dräi Pond Gromperen.",
       "fr": "Je voudrais trois livres de pommes de terre.",
+      "unite": 2,
       "aide": "Trois livres (500 g chacune) : <b>dräi Pond</b>."
     },
     {
-      "unite": 3,
       "qui": "Vendeuse",
-      "lu": "Dat mécht zesummen aacht Euro.",
-      "fr": "Ça fait huit euros en tout."
+      "lu": "Wëllt Dir eng Tut?",
+      "fr": "Voulez-vous un sachet ?",
+      "unite": 2
     },
     {
+      "qui": "toi",
+      "lu": "Nee merci, ech hunn en Akafskuerf.",
+      "fr": "Non merci, j'ai un panier.",
+      "unite": 2,
+      "aide": "un panier = <b>en Akafskuerf</b>."
+    },
+    {
+      "qui": "Vendeuse",
+      "lu": "Soss nach eppes?",
+      "fr": "Autre chose ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat wier alles.",
+      "fr": "Ce sera tout.",
       "unite": 3,
+      "aide": "Ce sera tout = <b>Dat wier alles</b>."
+    },
+    {
+      "qui": "Vendeuse",
+      "lu": "Dat mécht zesummen aacht Euro.",
+      "fr": "Ça fait huit euros en tout.",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Kann ech mat der Kaart bezuelen?",
       "fr": "Puis-je payer par carte ?",
+      "unite": 3,
       "aide": "Pour payer par carte : <b>mat der Kaart bezuelen</b>."
+    },
+    {
+      "qui": "Vendeuse",
+      "lu": "Jo, dat geet.",
+      "fr": "Oui, c'est possible.",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech bezuele mat der Kaart.",
+      "fr": "Je paie par carte.",
+      "unite": 3,
+      "aide": "ech <b>bezuele</b> (le n tombe devant m) <b>mat der Kaart</b>."
+    },
+    {
+      "qui": "Vendeuse",
+      "lu": "Oh, d'Kaartemaschinn ass futti!",
+      "fr": "Oh, la machine à carte est en panne !",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech bezuelen aacht Euro boer.",
+      "fr": "Je paie huit euros en liquide.",
+      "unite": 3,
+      "aide": "en liquide = <b>boer</b> · ech <b>bezuelen</b> (n gardé devant une voyelle)."
+    },
+    {
+      "qui": "Vendeuse",
+      "lu": "Merci! Äddi!",
+      "fr": "Merci ! Au revoir !",
+      "unite": 3
     }
   ],
   "unites": [

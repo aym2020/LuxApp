@@ -16,74 +16,140 @@
   },
   "mission": {
     "titre": "Raconter sa journée d'hier",
-    "contexte": "Marie te demande comment s'est passée ta journée d'hier : déplacement, réveil, activités et soirée.",
-    "objectif": "raconter cinq actions et situations du passé en distinguant sinn, hunn et war."
+    "contexte": "Marie te demande comment s'est passée ta journée d'hier : réveil, déplacement, repas, travail et soirée. Tu lui poses aussi la question.",
+    "objectif": "raconter cinq actions et situations du passé en distinguant sinn, hunn et war.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Wat hues du gëschter gemaach?",
-      "fr": "Qu'as-tu fait hier ?"
+      "fr": "Qu'as-tu fait hier ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech si mam Auto an d'Stad gefuer.",
       "fr": "Je suis allé en ville en voiture.",
-      "aide": "Pour se déplacer en voiture au passé, emploie <b>sinn</b>."
+      "unite": 1,
+      "aide": "Pour se déplacer en voiture au passé, emploie <b>sinn</b> : ech si … gefuer."
     },
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Bass du fréi opgestanen?",
-      "fr": "Tu t'es levé tôt ?"
+      "fr": "Tu t'es levé tôt ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Jo, ech sinn opgestanen.",
       "fr": "Oui, je me suis levé.",
-      "aide": "Le participe de opstoen est <b>opgestanen</b>."
+      "unite": 1,
+      "aide": "Le participe de opstoen est <b>opgestanen</b>, avec <b>sinn</b>."
     },
     {
-      "unite": 2,
+      "qui": "Marie",
+      "lu": "Bass du owes nach erausgaangen?",
+      "fr": "Es-tu encore sorti le soir ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Mir sinn an de Kino gaangen.",
+      "fr": "Nous sommes allés au cinéma.",
+      "unite": 1,
+      "aide": "Aller à pied : <b>sinn … gaangen</b>."
+    },
+    {
       "qui": "Marie",
       "lu": "A wat hues du gedronk?",
-      "fr": "Et qu'as-tu bu ?"
+      "fr": "Et qu'as-tu bu ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Ech hunn de Moien e Kaffi gedronk.",
       "fr": "J'ai bu un café ce matin.",
+      "unite": 2,
       "aide": "Avec drénken, utilise <b>hunn … gedronk</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
       "lu": "Hues du och geschafft?",
-      "fr": "As-tu aussi travaillé ?"
+      "fr": "As-tu aussi travaillé ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Jo, ech hu geschafft.",
       "fr": "Oui, j'ai travaillé.",
+      "unite": 2,
       "aide": "Avec schaffen : <b>hu … geschafft</b>."
     },
     {
-      "unite": 3,
       "qui": "Marie",
-      "lu": "Wou waars du owes?",
-      "fr": "Où étais-tu le soir ?"
+      "lu": "Hues du mëttes giess?",
+      "fr": "As-tu mangé à midi ?",
+      "unite": 2
     },
     {
-      "unite": 3,
+      "qui": "toi",
+      "lu": "Jo, ech hu giess.",
+      "fr": "Oui, j'ai mangé.",
+      "unite": 2,
+      "aide": "iessen → <b>giess</b> · ech <b>hu</b> (le n tombe devant g)."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An owes?",
+      "fr": "Et le soir ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech hu gëschter Owend d'Tëlee gekuckt.",
+      "fr": "J'ai regardé la télé hier soir.",
+      "unite": 2,
+      "aide": "kucken → <b>gekuckt</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Wou waars du owes?",
+      "fr": "Où étais-tu le soir ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Ech war doheem.",
       "fr": "J'étais à la maison.",
+      "unite": 3,
       "aide": "« J'étais » = <b>Ech war</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "War et e gudden Dag?",
+      "fr": "C'était une bonne journée ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, ech hat e gudden Dag.",
+      "fr": "Oui, j'ai passé une bonne journée.",
+      "unite": 3,
+      "aide": "« J'avais » = <b>ech hat</b>."
+    },
+    {
+      "qui": "toi",
+      "lu": "Wat hues du gëschter gemaach?",
+      "fr": "Et toi, qu'as-tu fait hier ?",
+      "unite": 3,
+      "aide": "Question : <b>Wat hues du</b> … <b>gemaach</b>?"
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ech hu geschafft an ech war doheem.",
+      "fr": "J'ai travaillé et j'étais à la maison.",
+      "unite": 3
     }
   ],
   "unites": [

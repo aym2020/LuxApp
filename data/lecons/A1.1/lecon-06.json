@@ -16,8 +16,9 @@
   },
   "mission": {
     "titre": "Le déménagement du bureau",
-    "contexte": "Ton équipe déménage. Une collègue ouvre les cartons et te demande ce qu'il y a dedans : tu réponds en comptant les objets.",
-    "objectif": "dire « ce sont deux … » avec zwee ou zwou et le bon pluriel."
+    "contexte": "Ton équipe déménage. Une collègue ouvre les cartons un par un et te demande ce qu'il y a dedans : tu réponds en comptant les objets.",
+    "objectif": "dire « ce sont deux … » avec zwee ou zwou et le bon pluriel.",
+    "version": 2
   },
   "scene": [
     {
@@ -37,6 +38,45 @@
       "qui": "La collègue",
       "lu": "An dat hei?",
       "fr": "Et ça ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat sinn zwou Mappen.",
+      "fr": "Ce sont deux sacs.",
+      "unite": 1,
+      "aide": "Mapp (féminin) → <b>zwou</b> Mapp<b>en</b>."
+    },
+    {
+      "qui": "La collègue",
+      "lu": "An dat?",
+      "fr": "Et ça ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat sinn zwee Telefonen.",
+      "fr": "Ce sont deux téléphones.",
+      "unite": 1,
+      "aide": "Telefon (masculin) → <b>zwee</b> Telefon<b>en</b>."
+    },
+    {
+      "qui": "La collègue",
+      "lu": "An dat?",
+      "fr": "Et ça ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat sinn zwou Aueren.",
+      "fr": "Ce sont deux montres.",
+      "unite": 1,
+      "aide": "Auer (féminin) → <b>zwou</b> Auer<b>en</b>."
+    },
+    {
+      "qui": "La collègue",
+      "lu": "An dat hei?",
+      "fr": "Et ça ?",
       "unite": 2
     },
     {
@@ -45,6 +85,32 @@
       "fr": "Ce sont deux livres et deux cahiers.",
       "unite": 2,
       "aide": "Buch → <b>Bicher</b> · Heft → <b>Hefter</b> : pluriel en -er."
+    },
+    {
+      "qui": "La collègue",
+      "lu": "An dat?",
+      "fr": "Et ça ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat sinn zwee Stëfter an zwee Blieder.",
+      "fr": "Ce sont deux stylos et deux feuilles.",
+      "unite": 2,
+      "aide": "Stëft → <b>Stëfter</b> · Blat → <b>Blieder</b>."
+    },
+    {
+      "qui": "La collègue",
+      "lu": "An dat?",
+      "fr": "Et ça ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat sinn zwee Glieser.",
+      "fr": "Ce sont deux verres.",
+      "unite": 2,
+      "aide": "Glas → <b>Glieser</b>."
     },
     {
       "qui": "La collègue",
@@ -58,6 +124,32 @@
       "fr": "Ce sont deux chaises.",
       "unite": 3,
       "aide": "Stull → <b>Still</b> : seule la voyelle change."
+    },
+    {
+      "qui": "La collègue",
+      "lu": "An dat?",
+      "fr": "Et ça ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat sinn zwou Mais.",
+      "fr": "Ce sont deux souris.",
+      "unite": 3,
+      "aide": "Maus (féminin) → <b>zwou Mais</b>."
+    },
+    {
+      "qui": "La collègue",
+      "lu": "An do?",
+      "fr": "Et là-bas ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat sinn zwee Still an zwee Dëscher.",
+      "fr": "Ce sont deux chaises et deux tables.",
+      "unite": 3,
+      "aide": "Stull → <b>Still</b> · Dësch → <b>Dëscher</b>."
     },
     {
       "qui": "La collègue",

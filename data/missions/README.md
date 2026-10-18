@@ -10,3 +10,7 @@
 - Aucune modification du code applicatif ni branchement des missions dans l'interface.
 
 Date du lot : 18 octobre 2026.
+
+## Intégration (spec 34, 18/10/2026)
+
+Les brouillons ont servi de source, relus et corrigés : les scènes des leçons (`data/lecons/*/lecon-NN.json`, champ `scene`, `mission.version: 2`) ont chacune 10 réponses, dans le scénario déjà relu de la leçon. Les missions 18 et 19 attendent leurs leçons ; la mission de la leçon 26 a été écrite sans brouillon. Ces fichiers ne sont pas lus par l'application.

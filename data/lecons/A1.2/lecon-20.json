@@ -16,61 +16,140 @@
   },
   "mission": {
     "titre": "Retrouver le ballon",
-    "contexte": "Tu aides Louise à retrouver un ballon déplacé entre plusieurs boîtes. Elle te demande successivement où il se trouve.",
-    "objectif": "localiser un objet avec les principales prépositions de position et répondre à Wou ass … ?"
+    "contexte": "Tu aides Louise à retrouver un ballon qu'elle déplace sans arrêt autour d'une boîte. Elle te demande à chaque fois où il se trouve.",
+    "objectif": "localiser un objet avec les principales prépositions de position et répondre à Wou ass … ?",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Louise",
       "lu": "Wou ass de Ball?",
-      "fr": "Où est le ballon ?"
+      "fr": "Où est le ballon ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "De Ball ass an der Këscht.",
       "fr": "Le ballon est dans la boîte.",
-      "aide": "Dans = <b>an</b>."
+      "unite": 1,
+      "aide": "Dans = <b>an</b> · eng Këscht → an <b>der</b> Këscht."
     },
     {
-      "unite": 1,
       "qui": "Louise",
       "lu": "An elo? Ass en op der Këscht?",
-      "fr": "Et maintenant ? Est-il sur la boîte ?"
+      "fr": "Et maintenant ? Est-il sur la boîte ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "De Ball ass ënnert der Këscht.",
       "fr": "Le ballon est sous la boîte.",
+      "unite": 1,
       "aide": "Sous = <b>ënnert</b>."
     },
     {
-      "unite": 2,
       "qui": "Louise",
-      "lu": "Wou ass en elo?",
-      "fr": "Où est-il maintenant ?"
+      "lu": "An elo?",
+      "fr": "Et maintenant ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "De Ball ass op der Këscht.",
+      "fr": "Le ballon est sur la boîte.",
+      "unite": 1,
+      "aide": "Sur = <b>op</b>."
+    },
+    {
+      "qui": "Louise",
+      "lu": "An elo?",
+      "fr": "Et maintenant ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "De Ball ass hannert der Këscht.",
+      "fr": "Le ballon est derrière la boîte.",
+      "unite": 1,
+      "aide": "Derrière = <b>hannert</b>."
+    },
+    {
+      "qui": "Louise",
+      "lu": "An elo?",
+      "fr": "Et maintenant ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "De Ball ass virun der Këscht.",
+      "fr": "Le ballon est devant la boîte.",
+      "unite": 1,
+      "aide": "Devant = <b>virun</b>."
+    },
+    {
+      "qui": "Louise",
+      "lu": "An elo?",
+      "fr": "Et maintenant ? (elle tient le ballon en l'air)",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "De Ball ass iwwert der Këscht.",
+      "fr": "Le ballon est au-dessus de la boîte.",
+      "unite": 1,
+      "aide": "Au-dessus de = <b>iwwert</b>."
+    },
+    {
+      "qui": "Louise",
+      "lu": "Wou ass en elo?",
+      "fr": "Où est-il maintenant ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "De Ball ass nieft der Këscht.",
       "fr": "Le ballon est à côté de la boîte.",
+      "unite": 2,
       "aide": "À côté de = <b>nieft</b>."
     },
     {
-      "unite": 2,
       "qui": "Louise",
       "lu": "An elo, wou ass de Ball?",
-      "fr": "Et maintenant, où est le ballon ?"
+      "fr": "Et maintenant, où est le ballon ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "De Ball ass tëschent zwou Këschten.",
       "fr": "Le ballon est entre deux boîtes.",
-      "aide": "Entre = <b>tëschent</b>."
+      "unite": 2,
+      "aide": "Entre = <b>tëschent</b> · zwou Këscht<b>en</b>."
+    },
+    {
+      "qui": "Louise",
+      "lu": "An elo?",
+      "fr": "Et maintenant ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "De Ball ass bei der Këscht.",
+      "fr": "Le ballon est près de la boîte.",
+      "unite": 2,
+      "aide": "Près de = <b>bei</b>."
+    },
+    {
+      "qui": "toi",
+      "lu": "Wou ass d'Këscht?",
+      "fr": "Où est la boîte ?",
+      "unite": 2,
+      "aide": "Où ? = <b>Wou</b> · d'Këscht (féminin)."
+    },
+    {
+      "qui": "Louise",
+      "lu": "D'Këscht ass ënnert dem Dësch!",
+      "fr": "La boîte est sous la table !",
+      "unite": 2
     }
   ],
   "unites": [

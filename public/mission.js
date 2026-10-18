@@ -134,7 +134,7 @@ function voirScenario() {
 // confirment rien. Tant que rien n'est commencé, le chemin propose « Découvrir ».
 function leconCommencee(l) {
   if (l.unites.some(u => getUnitBest(l.id, u.id) != null || getPlusFait(l.id, u.id))) return true;
-  if (getMissionBest(l.id) != null || leconValideeParMission(l.id) || acquisV1(l)) return true;
+  if (getMissionBest(l.id) != null || ancienScoreMission(l.id) != null || leconValideeParMission(l.id) || acquisV1(l)) return true;
   // Au moins une réponse enregistrée dans cette leçon (v2 : ids ≥ 2001).
   const stats = getStatsStore()[l.id] || {};
   if (Object.keys(stats).some(type => Object.keys(stats[type] || {}).some(id => Number(id) >= 1000))) return true;
@@ -214,7 +214,7 @@ function repliquesDebloqueesHtml(l, uniteId) {
 // ─── TENTER SA CHANCE (S10) ─────────────────────────────────────────────────
 // Proposé tant qu'aucune unité du fil n'est terminée (et pas déjà validée).
 function peutTenterSaChance(l) {
-  if (missionReussie(l)) return false;
+  if (leconAcquiseParMission(l)) return false;
   return unitesCoeur(l).every(u => getUnitBest(l.id, u.id) == null);
 }
 
@@ -234,7 +234,49 @@ function openMission(tentative) {
   fermerClavier();
   showView('view-mission');
   ecouterConversation();
+  // Toute 1re mission : les règles des vies d'abord ; la conversation démarre
+  // à la fermeture du panneau (spec 34).
+  if (!reglesViesVues()) {
+    document.getElementById('ms-body').innerHTML = '';
+    document.getElementById('ms-reponse').innerHTML = '';
+    voirReglesVies(true);
+    return;
+  }
   renderMission();
+}
+
+// ─── RÈGLES DES VIES (spec 34) ──────────────────────────────────────────────
+// Montrées d'office à la toute 1re mission (mémorisé dans la progression,
+// donc synchronisé), puis à la demande en touchant les cœurs. Consulter les
+// règles ne change rien à la partie en cours.
+function reglesViesVues() {
+  const p = getProgress();
+  return !!(p.guide && p.guide.vies);
+}
+
+function voirReglesVies(premiereFois) {
+  const coeurs = '<svg class="ms-coeur" viewBox="0 0 24 24" aria-hidden="true"><path d="' + CHEMIN_COEUR + '"/></svg>';
+  ouvrirPanneau('<div class="poignee"></div>' +
+    '<div class="ms-regles">' +
+      '<div class="ms-regles-coeurs">' + coeurs + coeurs + coeurs + '</div>' +
+      '<h2>Tu as 3 vies !</h2>' +
+      '<p>Chaque mauvaise réponse te fait perdre un cœur, un seul par réplique.</p>' +
+      '<p>Garde au moins un cœur jusqu\'à la fin pour valider ta mission.</p>' +
+      '<p>Une simple faute de frappe reconnue ne te fait pas perdre de vie.</p>' +
+    '</div>' +
+    '<div class="ms-panneau-bas"><button class="pc-btn primary wide big" onclick="fermerPanneau()">' +
+      (premiereFois ? 'C\'est parti ! →' : 'Continuer la mission') + '</button></div>',
+    'Règles des vies',
+    premiereFois ? demarrerApresRegles : null);
+}
+
+function demarrerApresRegles() {
+  const p = getProgress();
+  if (!p.guide) p.guide = {};
+  p.guide.vies = 1;
+  saveProgress(p);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+  if (document.getElementById('view-mission').classList.contains('active')) renderMission();
 }
 
 // Retour depuis la mission : l'écran d'où on est parti (chemin ou leçon).
@@ -268,14 +310,16 @@ function majProgressionMission() {
 }
 
 // Les trois cœurs de l'en-tête. perdue = true : le dernier cœur perdu s'anime.
+const CHEMIN_COEUR = 'M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z';
+
 function majVies(perdue) {
   const coeur = plein => '<svg class="ms-coeur' + (plein ? '' : ' vide') + '" viewBox="0 0 24 24" aria-hidden="true">' +
-    '<path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>';
+    '<path d="' + CHEMIN_COEUR + '"/></svg>';
   let html = '';
   for (let i = 0; i < VIES_MISSION; i++) html += coeur(i < ms.vies);
   const zone = document.getElementById('ms-vies');
   zone.innerHTML = html;
-  zone.setAttribute('aria-label', ms.vies + ' vie' + (ms.vies > 1 ? 's' : '') + ' sur ' + VIES_MISSION);
+  zone.parentElement.setAttribute('aria-label', ms.vies + ' vie' + (ms.vies > 1 ? 's' : '') + ' sur ' + VIES_MISSION + ' · règles des vies');
   if (perdue) {
     const c = zone.querySelectorAll('.ms-coeur')[ms.vies];
     if (c) c.classList.add('perdu');
@@ -508,7 +552,10 @@ function finirMission() {
   const premiere = getMissionBest(pLecon.id) == null;
   figerAcquisMission(pLecon); // anciens résultats gardés avant d'appliquer la nouvelle règle
   saveMissionBest(pLecon.id, percent, missionVersion(pLecon));
-  if (reussie) validerLeconParMission(pLecon.id);
+  if (reussie) {
+    validerLeconParMission(pLecon.id);
+    marquerMissionReussie(pLecon.id, missionVersion(pLecon)); // réussite de CETTE version de la scène (spec 34)
+  }
   marquerUniteFaite(); // mission jouée : objectif « unité » du jour (S7)
   dernierFini = { leconId: pLecon.id, uniteId: 'mission' }; // animé sur le chemin
 

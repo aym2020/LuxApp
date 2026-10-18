@@ -97,6 +97,7 @@ with sync_playwright() as p:
     page.on('dialog', lambda d: d.accept())
     page.goto(URL)
     page.wait_for_selector('#today')
+    page.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
 
     # ── 1. Leçon 8 : la mission en haut, la scène floutée ──
     page.evaluate("openParcoursLecon(lecons.find(l => l.id === 8))")

@@ -28,7 +28,7 @@ for (const id of ids) {
   assert.deepEqual(d.unites.map(u => u.id), d.unites.map((_, i) => i + 1), 'Unités séquentielles : ' + id);
 
   const replies = d.scene.filter(x => x.qui === 'toi');
-  assert.ok(replies.length >= 3 && replies.length <= 5, 'Nombre de réponses dans la mission : ' + id);
+  assert.equal(replies.length, 10, 'Nombre de réponses dans la mission (spec 34 : 10) : ' + id);
   let previous = 0;
   for (const x of d.scene) {
     assert.ok(x.lu && x.fr && x.qui && validUnits.has(x.unite), 'Réplique incomplète : ' + id);

@@ -16,74 +16,140 @@
   },
   "mission": {
     "titre": "Lire les horaires du bureau",
-    "contexte": "Marie te montre le planning du bureau. Tu dois lire plusieurs heures, puis préciser à quelle heure tu commences à travailler.",
-    "objectif": "demander et lire l'heure, distinguer op/vir/hallwer et décrire un horaire de travail."
+    "contexte": "Marie te montre le planning du bureau. Tu lis plusieurs heures, puis tu précises à quelle heure tu commences et finis le travail.",
+    "objectif": "demander et lire l'heure, distinguer op/vir/hallwer et décrire un horaire de travail.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Mir kucken de Plang. Hei steet 14:00. Wéi vill Auer ass et?",
-      "fr": "Regardons le planning. Ici, il est écrit 14 h 00. Quelle heure est-il ?"
+      "fr": "Regardons le planning. Ici, il est écrit 14 h 00. Quelle heure est-il ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Et ass zwou Auer.",
       "fr": "Il est deux heures.",
-      "aide": "Pour deux heures, rappelle-toi le féminin de <b>Auer</b>."
+      "unite": 1,
+      "aide": "Pour deux heures, rappelle-toi le féminin de <b>Auer</b> : <b>zwou</b>."
     },
     {
-      "unite": 2,
+      "qui": "Marie",
+      "lu": "An hei steet 12:00.",
+      "fr": "Et ici, il est écrit 12 h 00.",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Et ass zwielef Auer.",
+      "fr": "Il est douze heures.",
+      "unite": 1,
+      "aide": "12 = <b>zwielef</b>."
+    },
+    {
       "qui": "Marie",
       "lu": "Hei steet 13:15. Wéi vill Auer ass dat?",
-      "fr": "Ici, il est écrit 13 h 15. Quelle heure est-ce ?"
+      "fr": "Ici, il est écrit 13 h 15. Quelle heure est-ce ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Et ass véierel op eng.",
       "fr": "Il est une heure et quart.",
+      "unite": 2,
       "aide": "Un quart après l'heure : <b>véierel op</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "An hei steet 13:45.",
-      "fr": "Et ici, il est écrit 13 h 45."
+      "lu": "An 13:10?",
+      "fr": "Et 13 h 10 ?",
+      "unite": 2
     },
     {
+      "qui": "toi",
+      "lu": "Et ass zéng op eng.",
+      "fr": "Il est une heure dix.",
       "unite": 2,
+      "aide": "Dix minutes après : <b>zéng op</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An hei steet 13:45.",
+      "fr": "Et ici, il est écrit 13 h 45.",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Et ass véierel vir zwou.",
       "fr": "Il est deux heures moins le quart.",
+      "unite": 2,
       "aide": "Le quart avant l'heure suivante : <b>véierel vir</b>."
     },
     {
-      "unite": 3,
       "qui": "Marie",
       "lu": "An 13:30?",
-      "fr": "Et 13 h 30 ?"
+      "fr": "Et 13 h 30 ?",
+      "unite": 3
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "Et ass hallwer zwou.",
       "fr": "Il est une heure et demie.",
+      "unite": 3,
       "aide": "La demi-heure se compte vers <b>l'heure suivante</b>."
     },
     {
-      "unite": 4,
       "qui": "Marie",
-      "lu": "Um wéi vill Auer fänks du mat schaffen un?",
-      "fr": "À quelle heure commences-tu à travailler ?"
+      "lu": "An 13:25?",
+      "fr": "Et 13 h 25 ?",
+      "unite": 3
     },
     {
+      "qui": "toi",
+      "lu": "Et ass fënnef vir hallwer zwou.",
+      "fr": "Il est une heure vingt-cinq.",
+      "unite": 3,
+      "aide": "Cinq minutes avant la demi-heure : <b>fënnef vir hallwer</b> zwou."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An 19:00?",
+      "fr": "Et 19 h 00 ?",
+      "unite": 4
+    },
+    {
+      "qui": "toi",
+      "lu": "Et ass siwen Auer owes.",
+      "fr": "Il est sept heures du soir.",
       "unite": 4,
+      "aide": "Le soir = <b>owes</b>, après l'heure."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Um wéi vill Auer fänks du mat schaffen un?",
+      "fr": "À quelle heure commences-tu à travailler ?",
+      "unite": 4
+    },
+    {
       "qui": "toi",
       "lu": "Ech fänken um aacht Auer moies un.",
       "fr": "Je commence à huit heures du matin.",
+      "unite": 4,
       "aide": "Le verbe séparable termine sa phrase par <b>un</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An um wéi vill Auer häls du op?",
+      "fr": "Et à quelle heure finis-tu ?",
+      "unite": 4
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech halen um fënnef Auer nomëttes op.",
+      "fr": "Je finis à cinq heures de l'après-midi.",
+      "unite": 4,
+      "aide": "<b>ophalen</b> : ech halen … <b>op</b>."
     }
   ],
   "unites": [

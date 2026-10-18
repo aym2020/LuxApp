@@ -248,8 +248,13 @@ function ouvrirPlus() {
 }
 
 // ─── PANNEAU QUI MONTE DU BAS (commun) ──────────────────────────────────────
-function ouvrirPanneau(html, titre) {
+// apresFermeture (facultatif) : appelée une fois quand le panneau se ferme,
+// quelle que soit la façon (bouton, voile, Retour du téléphone, Échap).
+let panneauApres = null;
+
+function ouvrirPanneau(html, titre, apresFermeture) {
   fermerPanneau();
+  panneauApres = apresFermeture || null;
   const voile = document.createElement('div');
   voile.className = 'voile';
   voile.id = 'voile';
@@ -269,6 +274,9 @@ function fermerPanneau() {
     if (el) el.remove();
   });
   programmerGarde(); // bouton Retour du téléphone : plus de panneau à fermer
+  const apres = panneauApres;
+  panneauApres = null;
+  if (apres) apres();
 }
 
 document.addEventListener('keydown', e => {

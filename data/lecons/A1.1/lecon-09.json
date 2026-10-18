@@ -16,61 +16,146 @@
   },
   "mission": {
     "titre": "Au café des langues",
-    "contexte": "Lors de la pause, ton collègue Paul te demande quelles langues tu parles et ce que tu aimerais pratiquer. Vous discutez de vos langues.",
-    "objectif": "dire les langues que tu parles, nier et répondre à une question sur les langues."
+    "contexte": "À la pause, ton collègue Paul te demande quelles langues tu parles. Vous parlez aussi des langues de personnes célèbres, puis tu poses la question à Madame Klein, une nouvelle collègue.",
+    "objectif": "dire les langues que tu parles, nier et répondre à une question sur les langues.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Paul",
       "lu": "Moien! Schwätz du Franséisch?",
-      "fr": "Bonjour ! Parles-tu français ?"
+      "fr": "Bonjour ! Parles-tu français ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech schwätze Franséisch.",
       "fr": "Je parle français.",
-      "aide": "Le verbe est <b>schwätzen</b> à la première personne."
+      "unite": 1,
+      "aide": "Ech <b>schwätze</b> : le n tombe devant F."
     },
     {
-      "unite": 1,
       "qui": "Paul",
       "lu": "An Englesch?",
-      "fr": "Et anglais ?"
+      "fr": "Et anglais ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
-      "lu": "Ech schwätzen Englesch an Franséisch.",
+      "lu": "Ech schwätzen Englesch a Franséisch.",
       "fr": "Je parle anglais et français.",
-      "aide": "Deux langues sont reliées par <b>an</b>."
+      "unite": 1,
+      "aide": "Ech schwätz<b>en</b> Englesch (voyelle) · et = an, mais <b>a</b> devant F."
     },
     {
-      "unite": 2,
       "qui": "Paul",
-      "lu": "Wat fir eng Sprooch schwätzt du nach?",
-      "fr": "Quelle autre langue parles-tu ?"
+      "lu": "De Ronaldo schwätzt Portugisesch. An de Messi?",
+      "fr": "Ronaldo parle portugais. Et Messi ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "De Messi schwätzt Spuenesch.",
+      "fr": "Messi parle espagnol.",
+      "unite": 1,
+      "aide": "Il / elle : <b>schwätzt</b>."
+    },
+    {
+      "qui": "Paul",
+      "lu": "An d'Yoko?",
+      "fr": "Et Yoko ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Yoko schwätzt Japanesch.",
+      "fr": "Yoko parle japonais.",
+      "unite": 1,
+      "aide": "Japon → <b>Japanesch</b>."
+    },
+    {
+      "qui": "Paul",
+      "lu": "An d'Angela Merkel?",
+      "fr": "Et Angela Merkel ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Angela Merkel schwätzt Däitsch.",
+      "fr": "Angela Merkel parle allemand.",
+      "unite": 1,
+      "aide": "Allemand = <b>Däitsch</b>."
+    },
+    {
+      "qui": "Paul",
+      "lu": "Wat fir eng Sprooch schwätz du nach?",
+      "fr": "Quelle autre langue parles-tu ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Ech schwätzen e bësse Lëtzebuergesch.",
       "fr": "Je parle un peu luxembourgeois.",
+      "unite": 2,
       "aide": "Un peu se dit <b>e bësse</b>."
     },
     {
-      "unite": 2,
       "qui": "Paul",
       "lu": "Schwätz du och Däitsch?",
-      "fr": "Parles-tu aussi allemand ?"
+      "fr": "Parles-tu aussi allemand ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Nee, ech schwätzen net Däitsch.",
       "fr": "Non, je ne parle pas allemand.",
+      "unite": 2,
       "aide": "Pour nier, utilise <b>net</b> devant la langue."
+    },
+    {
+      "qui": "Paul",
+      "lu": "Schwätzt de Jackie Chan Japanesch?",
+      "fr": "Jackie Chan parle-t-il japonais ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, de Jackie Chan schwätzt net Japanesch.",
+      "fr": "Non, Jackie Chan ne parle pas japonais.",
+      "unite": 2,
+      "aide": "<b>net</b> devant la langue."
+    },
+    {
+      "qui": "Paul",
+      "lu": "Schwätzt d'Greta Hollännesch?",
+      "fr": "Greta parle-t-elle néerlandais ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, si schwätzt net Hollännesch. Si schwätzt Schweedesch.",
+      "fr": "Non, elle ne parle pas néerlandais. Elle parle suédois.",
+      "unite": 2,
+      "aide": "Suède → <b>Schweedesch</b>."
+    },
+    {
+      "qui": "Paul",
+      "lu": "Dat ass d'Madamm Klein.",
+      "fr": "Voici Madame Klein.",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Wat fir eng Sprooch schwätzt Dir?",
+      "fr": "Quelle langue parlez-vous ?",
+      "unite": 2,
+      "aide": "Au vouvoiement : <b>schwätzt Dir</b>?"
+    },
+    {
+      "qui": "Madamm Klein",
+      "lu": "Ech schwätzen Hollännesch an Englesch.",
+      "fr": "Je parle néerlandais et anglais.",
+      "unite": 2
     }
   ],
   "unites": [

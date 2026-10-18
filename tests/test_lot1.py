@@ -94,18 +94,19 @@ with sync_playwright() as p:
     page.evaluate('openParcoursLecon(lecons.find(l => l.id === 2))')
     assert page.locator('.ms-carte.compacte .ms-bulle').count() == 0, 'carte compacte : pas de scène'
     assert page.inner_text('.ms-carte .ms-etat') == 'À découvrir'
-    assert page.inner_text('.ms-bas') == 'Tu sais dire 0 réplique sur 10'
+    nb_scene = page.evaluate('pLecon.scene.length')
+    assert page.inner_text('.ms-bas') == 'Tu sais dire 0 réplique sur %d' % nb_scene, page.inner_text('.ms-bas')
     page.click('.ms-carte button:has-text("Voir le scénario")')
-    assert page.locator('.panneau .ms-bulle').count() == 10
+    assert page.locator('.panneau .ms-bulle').count() == nb_scene
     page.evaluate('fermerPanneau()')
     page.evaluate('saveUnitBest(2, 1, 100); renderParcoursLecon(); voirScenario()')
     assert page.locator('.panneau .ms-pastille.apprise').count() >= 1
     page.evaluate('fermerPanneau()')
     assert page.inner_text('.ms-carte .ms-etat') == 'En préparation'
-    page.evaluate('saveMissionBest(2, 60); renderParcoursLecon()')
+    page.evaluate('saveMissionBest(2, 60, 2); renderParcoursLecon()')  # scène version 2 (spec 34)
     assert 'JOUÉE 60 % · À REJOUER' in page.inner_text('.ms-carte .pc-mini-label')
     assert not page.evaluate('missionReussie(lecons.find(l => l.id === 2))')
-    page.evaluate('saveMissionBest(2, 85); renderParcoursLecon()')
+    page.evaluate('saveMissionBest(2, 85, 2); marquerMissionReussie(2, 2); renderParcoursLecon()')  # réussie = au moins une vie (spec 32)
     assert 'RÉUSSIE 85 %' in page.inner_text('.ms-carte .pc-mini-label')
     page.evaluate('goDashboard(); ouvrirPlus()')
     assert page.inner_text('.plus-acquis b >> nth=1') == '1'

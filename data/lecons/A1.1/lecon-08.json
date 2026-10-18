@@ -12,7 +12,8 @@
   "mission": {
     "titre": "La fête des voisins",
     "contexte": "C'est la fête des voisins dans ton immeuble. Marie, ta voisine, vient se présenter. Tu joues Paul, qui est français.",
-    "objectif": "dire ta nationalité, présenter quelqu'un, poser la question et répondre non."
+    "objectif": "dire ta nationalité, présenter quelqu'un, poser la question et répondre non.",
+    "version": 2
   },
   "scene": [
     {
@@ -30,6 +31,32 @@
     },
     {
       "qui": "Marie",
+      "lu": "An de Marc?",
+      "fr": "Et Marc ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "De Marc ass Portugis.",
+      "fr": "Marc est portugais.",
+      "unite": 1,
+      "aide": "Pas d'article devant la nationalité : ass <b>Portugis</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An de Luca?",
+      "fr": "Et Luca ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Hien ass Italiener.",
+      "fr": "Il est italien.",
+      "unite": 1,
+      "aide": "<b>Hien ass</b> (n gardé devant une voyelle) Italiener."
+    },
+    {
+      "qui": "Marie",
       "lu": "Ech si Lëtzebuergerin.",
       "fr": "Moi, je suis luxembourgeoise.",
       "unite": 2
@@ -40,6 +67,45 @@
       "fr": "Voici Julie. Elle est belge.",
       "unite": 2,
       "aide": "<b>Belsch</b> ne change pas au féminin : pas de -in."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Maria?",
+      "fr": "Et Maria ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Maria ass Portugisin.",
+      "fr": "Maria est portugaise.",
+      "unite": 2,
+      "aide": "Au féminin : Portugis + <b>in</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Anna?",
+      "fr": "Et Anna ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Si ass Däitsch.",
+      "fr": "Elle est allemande.",
+      "unite": 2,
+      "aide": "Däitschen → <b>Däitsch</b> au féminin."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Giulia?",
+      "fr": "Et Giulia ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Si ass Italienerin.",
+      "fr": "Elle est italienne.",
+      "unite": 2,
+      "aide": "Italiener + <b>in</b>."
     },
     {
       "qui": "Marie",
@@ -72,6 +138,19 @@
       "fr": "Non, elle n'est pas française. Elle est belge.",
       "unite": 3,
       "aide": "Féminin → <b>keng</b> Fransousin."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Bass du Lëtzebuerger?",
+      "fr": "Tu es luxembourgeois ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, ech si kee Lëtzebuerger. Ech si Fransous.",
+      "fr": "Non, je ne suis pas luxembourgeois. Je suis français.",
+      "unite": 3,
+      "aide": "Masculin → <b>kee</b> Lëtzebuerger (keen seulement devant voyelle, n, d, t, z, h)."
     }
   ],
   "unites": [

@@ -17,73 +17,139 @@
   "mission": {
     "titre": "Raconter la journée de Carla",
     "contexte": "Tu expliques à ta collègue Marie comment se déroule la journée de Carla, du lever jusqu'au retour chez elle.",
-    "objectif": "raconter les activités du matin, les tâches au travail et le déroulement de la soirée."
+    "objectif": "raconter les activités du matin, les tâches au travail et le déroulement de la soirée.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "D'Carla schafft hei. Wat mécht si moies?",
-      "fr": "Carla travaille ici. Que fait-elle le matin ?"
+      "fr": "Carla travaille ici. Que fait-elle le matin ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "D'Carla erwächt um sechs Auer.",
       "fr": "Carla se réveille à six heures.",
-      "aide": "Avec Carla, conjugue le verbe à la <b>troisième personne</b>."
+      "unite": 1,
+      "aide": "Avec Carla, conjugue le verbe à la <b>troisième personne</b> : erwächt."
     },
     {
+      "qui": "Marie",
+      "lu": "An dann?",
+      "fr": "Et ensuite ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Carla duscht um zéng op sechs.",
+      "fr": "Carla se douche à six heures dix.",
       "unite": 1,
+      "aide": "duschen → si <b>duscht</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An dann?",
+      "fr": "Et ensuite ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Carla drénkt Kaffi um véierel vir siwen.",
+      "fr": "Carla boit du café à sept heures moins le quart.",
+      "unite": 1,
+      "aide": "Kaffi drénken → si <b>drénkt</b> Kaffi."
+    },
+    {
       "qui": "Marie",
       "lu": "A wéi geet si op d'Aarbecht?",
-      "fr": "Et comment va-t-elle au travail ?"
+      "fr": "Et comment va-t-elle au travail ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "D'Carla fiert um fënnef vir hallwer aacht mam Bus.",
       "fr": "Carla prend le bus à sept heures vingt-cinq.",
-      "aide": "Pour prendre le bus : <b>mam Bus fueren</b>."
+      "unite": 1,
+      "aide": "Pour prendre le bus : <b>mam Bus fueren</b> → si fiert."
     },
     {
-      "unite": 2,
       "qui": "Marie",
       "lu": "Wat mécht si op der Aarbecht?",
-      "fr": "Que fait-elle au travail ?"
+      "fr": "Que fait-elle au travail ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "D'Carla telefonéiert a schreift E-Mailen.",
       "fr": "Carla téléphone et écrit des e-mails.",
+      "unite": 2,
       "aide": "La troisième personne de <b>schreiwen</b> est <b>schreift</b>."
     },
     {
-      "unite": 3,
       "qui": "Marie",
-      "lu": "Wéini geet d'Carla heem?",
-      "fr": "Quand Carla rentre-t-elle chez elle ?"
+      "lu": "A mëttes?",
+      "fr": "Et à midi ?",
+      "unite": 2
     },
     {
-      "unite": 3,
+      "qui": "toi",
+      "lu": "D'Carla ësst um hallwer eng am Restaurant.",
+      "fr": "Carla mange au restaurant à une heure et demie.",
+      "unite": 2,
+      "aide": "iessen → si <b>ësst</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An nomëttes?",
+      "fr": "Et l'après-midi ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Carla schreift um véierel vir zwou nomëttes e Rapport.",
+      "fr": "Carla écrit un rapport à deux heures moins le quart de l'après-midi.",
+      "unite": 2,
+      "aide": "e Rapport schreiwen → si <b>schreift</b> e Rapport."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Wéini geet d'Carla heem?",
+      "fr": "Quand Carla rentre-t-elle chez elle ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "D'Carla geet um hallwer siwen owes heem.",
       "fr": "Carla rentre chez elle à dix-huit heures trente.",
-      "aide": "Pour rentrer chez soi, utilise <b>heemgoen</b>."
+      "unite": 3,
+      "aide": "Pour rentrer chez soi, utilise <b>heemgoen</b> : si geet … heem."
     },
     {
-      "unite": 3,
       "qui": "Marie",
       "lu": "Wat mécht si owes?",
-      "fr": "Que fait-elle le soir ?"
+      "fr": "Que fait-elle le soir ?",
+      "unite": 3
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "D'Carla kuckt um zwanzeg op aacht owes d'Tëlee.",
       "fr": "Carla regarde la télé à vingt heures vingt.",
+      "unite": 3,
       "aide": "L'activité est <b>d'Tëlee kucken</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "A wéini geet si schlofen?",
+      "fr": "Et quand va-t-elle dormir ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Carla geet um zéng vir Mëtternuecht schlofen.",
+      "fr": "Carla va dormir à minuit moins dix.",
+      "unite": 3,
+      "aide": "minuit = <b>Mëtternuecht</b> · <b>schlofe goen</b> : si geet … schlofen."
     }
   ],
   "unites": [

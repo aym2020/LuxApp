@@ -33,6 +33,7 @@ with sync_playwright() as p:
     pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL)
     pg.wait_for_selector('#today')
+    pg.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
     pg.evaluate("choisirNiveau('A1.1'); lecons.forEach(l => marquerIntroMissionVue(l.id))")
 
     # 1. Leçon 1 : unités 1 à 3 faites, unité 4 interrompue (partie principale), mission réussie avec 1 vie
@@ -68,18 +69,21 @@ with sync_playwright() as p:
       unitesCoeur(lecons.find(l => l.id === 3)).forEach(u => saveUnitBest(3, u.id, 95)); saveMissionBest(3, 50);
       saveMissionBest(4, 100)""")
     assert pg.evaluate("leconTerminee(lecons.find(l => l.id === 3))"), 'terminée avant la mise à jour : reste terminée'
-    assert pg.evaluate("missionReussie(lecons.find(l => l.id === 4)) && leconTerminee(lecons.find(l => l.id === 4))")
+    assert pg.evaluate("leconAcquiseParMission(lecons.find(l => l.id === 4)) && leconTerminee(lecons.find(l => l.id === 4))")
+    # Spec 34 : l'ancien « Sans faute » (scène version 1) ne valide pas la nouvelle scène à 10 réponses
+    assert not pg.evaluate("missionReussie(lecons.find(l => l.id === 4))") and pg.evaluate("getMissionBest(4)") is None
     assert pg.evaluate("getUnitBest(4, 1)") is None
     etoiles3 = pg.evaluate("resumeLecon(lecons.find(l => l.id === 3)).stars")
     pg.evaluate("openParcoursLecon(lecons.find(l => l.id === 3))")
     jouer(pg, 3)  # nouvelle partie perdue
     assert pg.evaluate("leconTerminee(lecons.find(l => l.id === 3))"), 'acquis historique figé'
     assert pg.evaluate("resumeLecon(lecons.find(l => l.id === 3)).stars") == etoiles3
-    ok('historique : leçon terminée avec mission à 50 % reste terminée (même après une partie perdue) ; ancien « Sans faute » valide sans rejouer')
+    ok('historique : leçon terminée avec mission à 50 % reste terminée (même après une partie perdue) ; ancien « Sans faute » garde la leçon acquise sans rejouer, sans valider la nouvelle scène')
 
     # 4. Rechargement : tout est gardé
     pg.reload()
     pg.wait_for_selector('#today')
+    pg.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
     assert pg.evaluate("leconTerminee(" + L1 + ") && getUnitBest(1, 4) == null && loadRun(true).uniteId === 4")
     ok('après rechargement : validation, unité 4 non faite et partie libre conservées')
 

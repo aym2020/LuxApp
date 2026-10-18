@@ -16,8 +16,9 @@
   },
   "mission": {
     "titre": "L'inventaire du bureau",
-    "contexte": "Ton chef prépare l'inventaire du bureau. Il te demande combien il y a d'ordinateurs, de chaises, de livres et de feuilles : tu comptes et tu réponds.",
-    "objectif": "répondre à « Wéi vill … ? » avec « Et sinn … » et dire un nombre de 0 à 1000."
+    "contexte": "Ton chef prépare l'inventaire du bureau et de la salle des fêtes. Il te demande combien il y a d'ordinateurs, de bougies, de chaises, de livres et de feuilles : tu comptes et tu réponds.",
+    "objectif": "répondre à « Wéi vill … ? » avec « Et sinn … » et dire un nombre de 0 à 1000.",
+    "version": 2
   },
   "scene": [
     {
@@ -35,6 +36,32 @@
     },
     {
       "qui": "Le chef",
+      "lu": "An hei?",
+      "fr": "Et ici ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Et sinn dräi.",
+      "fr": "Il y en a trois.",
+      "unite": 1,
+      "aide": "3 = <b>dräi</b>."
+    },
+    {
+      "qui": "Le chef",
+      "lu": "A wéi vill Käerzen?",
+      "fr": "Et combien de bougies ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Et sinn aacht.",
+      "fr": "Il y en a huit.",
+      "unite": 1,
+      "aide": "8 = <b>aacht</b>."
+    },
+    {
+      "qui": "Le chef",
       "lu": "A wéi vill Still?",
       "fr": "Et combien de chaises ?",
       "unite": 2
@@ -45,6 +72,32 @@
       "fr": "Il y en a dix-huit.",
       "unite": 2,
       "aide": "18 = <b>uechtzéng</b> (pas aachtzéng)."
+    },
+    {
+      "qui": "Le chef",
+      "lu": "An hei?",
+      "fr": "Et ici ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Et sinn dräizéng.",
+      "fr": "Il y en a treize.",
+      "unite": 2,
+      "aide": "13 = <b>dräizéng</b>."
+    },
+    {
+      "qui": "Le chef",
+      "lu": "A wéi vill Käerzen hei?",
+      "fr": "Et combien de bougies ici ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Et sinn nonzéng.",
+      "fr": "Il y en a dix-neuf.",
+      "unite": 2,
+      "aide": "19 = <b>nonzéng</b> (pas néngzéng)."
     },
     {
       "qui": "Le chef",
@@ -61,6 +114,19 @@
     },
     {
       "qui": "Le chef",
+      "lu": "An hei?",
+      "fr": "Et ici ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Et sinn dräianzwanzeg.",
+      "fr": "Il y en a vingt-trois.",
+      "unite": 3,
+      "aide": "23 = <b>dräi</b> + <b>an</b> + zwanzeg : l'unité d'abord."
+    },
+    {
+      "qui": "Le chef",
       "lu": "A wéi vill Blieder?",
       "fr": "Et combien de feuilles ?",
       "unite": 4
@@ -71,6 +137,19 @@
       "fr": "Il y en a deux cent cinquante.",
       "unite": 4,
       "aide": "250 = zwee<b>honnert</b>fofzeg, tout soudé."
+    },
+    {
+      "qui": "Le chef",
+      "lu": "An hei?",
+      "fr": "Et ici ?",
+      "unite": 4
+    },
+    {
+      "qui": "toi",
+      "lu": "Et sinn dausend!",
+      "fr": "Il y en a mille !",
+      "unite": 4,
+      "aide": "1000 = <b>dausend</b>."
     },
     {
       "qui": "Le chef",

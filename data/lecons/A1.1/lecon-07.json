@@ -16,61 +16,140 @@
   },
   "mission": {
     "titre": "Faire connaissance au centre de langues",
-    "contexte": "Tu rencontres Marie à la pause d'un cours de luxembourgeois. Vous parlez de vos pays d'origine, puis Marie te demande d'où vient un collègue.",
-    "objectif": "dire d'où tu viens, choisir la préposition devant le pays et demander l'origine d'une personne."
+    "contexte": "Tu rencontres Marie à la pause d'un cours de luxembourgeois. Vous parlez de vos pays d'origine et de ceux des autres élèves.",
+    "objectif": "dire d'où tu viens, choisir la préposition devant le pays et demander l'origine d'une personne.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Moien! Vu wou kënns du?",
-      "fr": "Bonjour ! D'où viens-tu ?"
+      "fr": "Bonjour ! D'où viens-tu ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech kommen aus Frankräich.",
       "fr": "Je viens de France.",
+      "unite": 1,
       "aide": "Pour la France, utilise <b>aus</b>."
     },
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "De Paul kënnt aus Portugal.",
-      "fr": "Paul vient du Portugal."
+      "fr": "Paul vient du Portugal.",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "An d'Anna kënnt aus Däitschland.",
       "fr": "Et Anna vient d'Allemagne.",
+      "unite": 1,
       "aide": "Pour l'Allemagne, on utilise <b>aus</b>."
     },
     {
-      "unite": 2,
+      "qui": "Marie",
+      "lu": "An d'Greta?",
+      "fr": "Et Greta ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Greta kënnt aus Schweden.",
+      "fr": "Greta vient de Suède.",
+      "unite": 1,
+      "aide": "<b>kënnt aus</b> + pays : aus Schweden."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An den Emmanuel?",
+      "fr": "Et Emmanuel ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Den Emmanuel kënnt aus Frankräich.",
+      "fr": "Emmanuel vient de France.",
+      "unite": 1,
+      "aide": "<b>Den</b> devant une voyelle : den Emmanuel."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Kënns du aus Spuenien?",
+      "fr": "Tu viens d'Espagne ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, ech kommen aus Frankräich.",
+      "fr": "Non, je viens de France.",
+      "unite": 1,
+      "aide": "Non = <b>Nee</b> · ech <b>kommen</b>, hien <b>kënnt</b>."
+    },
+    {
       "qui": "toi",
       "lu": "Vu wou kënnt de Guillaume?",
       "fr": "D'où vient Guillaume ?",
+      "unite": 2,
       "aide": "Pour demander l'origine d'un homme : <b>Vu wou kënnt</b> … ?"
     },
     {
-      "unite": 2,
       "qui": "Marie",
       "lu": "De Guillaume kënnt vu Lëtzebuerg.",
-      "fr": "Guillaume vient du Luxembourg."
+      "fr": "Guillaume vient du Luxembourg.",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "Marie",
       "lu": "A vu wou kënnt d'Julie?",
-      "fr": "Et d'où vient Julie ?"
+      "fr": "Et d'où vient Julie ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "D'Julie kënnt aus der Belsch.",
       "fr": "Julie vient de Belgique.",
+      "unite": 2,
       "aide": "Avec la Belgique, <b>aus der</b> Belsch."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Shirin?",
+      "fr": "Et Shirin ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Si kënnt aus dem Iran.",
+      "fr": "Elle vient d'Iran.",
+      "unite": 2,
+      "aide": "L'Iran est masculin : <b>aus dem</b> Iran."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Olena?",
+      "fr": "Et Olena ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Si kënnt aus der Ukrain.",
+      "fr": "Elle vient d'Ukraine.",
+      "unite": 2,
+      "aide": "L'Ukraine est féminin : <b>aus der</b> Ukrain."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An de Paulo?",
+      "fr": "Et Paulo ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Hie kënnt vum Cap Vert.",
+      "fr": "Il vient du Cap-Vert.",
+      "unite": 2,
+      "aide": "Une île : <b>vum</b> Cap Vert · <b>hie</b> (le n tombe devant k)."
     }
   ],
   "unites": [

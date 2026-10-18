@@ -41,6 +41,7 @@ with sync_playwright() as p:
     page.on('dialog', lambda d: d.accept())
     page.goto(URL)
     page.wait_for_selector('#today')
+    page.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
     page.evaluate("choisirNiveau('A1.1')")
     page.evaluate("[2, 3, 8].forEach(id => marquerIntroMissionVue(id))")  # introduction de mission : testée ailleurs
 
@@ -64,7 +65,7 @@ with sync_playwright() as p:
     # ── S10 : Tente ta chance, réussite à 100 % ──
     page.evaluate("openParcoursLecon(lecons.find(l => l.id === 2))")
     bouton = page.inner_text('.ms-carte .ms-tenter')
-    assert 'Tente ta chance' in bouton and '5 répliques' in bouton, bouton
+    assert 'Tente ta chance' in bouton and '10 répliques' in bouton, bouton
     assert 'primary' not in page.get_attribute('.ms-carte .ms-tenter', 'class')
     page.screenshot(path=OUT + 'lot3-tenter.png', full_page=True)
     page.click('.ms-carte .ms-tenter')

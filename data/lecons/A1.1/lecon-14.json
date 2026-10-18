@@ -16,74 +16,134 @@
   },
   "mission": {
     "titre": "Faire connaissance : âge et anniversaire",
-    "contexte": "Pendant une pause du cours, Marie te demande ton âge, ton anniversaire et ta date de naissance. Vous parlez aussi de Barbara.",
-    "objectif": "dire son âge, parler de son anniversaire et donner sa date de naissance complète."
+    "contexte": "Pendant une pause du cours, Marie te demande ton âge, ton anniversaire et ta date de naissance. Vous parlez aussi de Barbara et de Marc.",
+    "objectif": "dire son âge, parler de son anniversaire et donner sa date de naissance complète.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Moien! Wéi al bass du?",
-      "fr": "Bonjour ! Quel âge as-tu ?"
+      "fr": "Bonjour ! Quel âge as-tu ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
-      "lu": "Ech sinn drësseg Joer al.",
-      "fr": "J'ai trente ans.",
-      "aide": "L'âge utilise <b>sinn</b> et finit par <b>Joer al</b>."
+      "lu": "Ech si siwenanzwanzeg Joer al.",
+      "fr": "J'ai vingt-sept ans.",
+      "unite": 1,
+      "aide": "L'âge : <b>Ech si</b> (le n tombe devant s) … <b>Joer al</b> · 27 = siwen + an + zwanzeg."
     },
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "A wéi al ass d'Barbara?",
-      "fr": "Et quel âge a Barbara ?"
+      "fr": "Et quel âge a Barbara ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Si ass drësseg Joer al.",
       "fr": "Elle a trente ans.",
+      "unite": 1,
       "aide": "Avec si, le verbe être est <b>ass</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "Wéini hues du Gebuertsdag?",
-      "fr": "Quand est ton anniversaire ?"
+      "lu": "An de Marc?",
+      "fr": "Et Marc ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "De Marc ass zweeanzwanzeg Joer al.",
+      "fr": "Marc a vingt-deux ans.",
+      "unite": 1,
+      "aide": "22 = <b>zwee</b> + <b>an</b> + zwanzeg."
+    },
+    {
+      "qui": "toi",
+      "lu": "Wéi al bass du?",
+      "fr": "Et toi, quel âge as-tu ?",
+      "unite": 1,
+      "aide": "Question : <b>Wéi al bass du?</b>"
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ech sinn uechtzéng Joer al.",
+      "fr": "J'ai dix-huit ans.",
+      "unite": 1
+    },
+    {
+      "qui": "Marie",
+      "lu": "Wéini hues du Gebuertsdag?",
+      "fr": "Quand est ton anniversaire ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Ech hunn den dräizéngte Juni Gebuertsdag.",
       "fr": "Mon anniversaire est le 13 juin.",
+      "unite": 2,
       "aide": "Pour l'anniversaire, utilise <b>hunn … Gebuertsdag</b>."
     },
     {
-      "unite": 3,
-      "qui": "Marie",
-      "lu": "Wéini bass du gebuer?",
-      "fr": "Quand es-tu né(e) ?"
+      "qui": "toi",
+      "lu": "Wéini hues du Gebuertsdag?",
+      "fr": "Et toi, quand est ton anniversaire ?",
+      "unite": 2,
+      "aide": "Quand ? = <b>Wéini</b>."
     },
     {
-      "unite": 3,
+      "qui": "Marie",
+      "lu": "Ech hunn den éischte Mee Gebuertsdag. An d'Barbara?",
+      "fr": "Mon anniversaire est le 1er mai. Et Barbara ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Barbara huet den uechtzéngte Januar Gebuertsdag.",
+      "fr": "L'anniversaire de Barbara est le 18 janvier.",
+      "unite": 2,
+      "aide": "Avec Barbara : <b>huet</b> … Gebuertsdag."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Wéini bass du gebuer?",
+      "fr": "Quand es-tu né(e) ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
       "fr": "Je suis né(e) le 13 juin 1999.",
+      "unite": 3,
       "aide": "Pour une date de naissance, place <b>gebuer</b> à la fin."
     },
     {
-      "unite": 3,
       "qui": "Marie",
       "lu": "A wéini ass d'Barbara gebuer?",
-      "fr": "Et quand Barbara est-elle née ?"
+      "fr": "Et quand Barbara est-elle née ?",
+      "unite": 3
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "D'Barbara ass den uechtzéngte Januar nonzénghonnertsechsannonzeg gebuer.",
       "fr": "Barbara est née le 18 janvier 1996.",
+      "unite": 3,
       "aide": "Avec Barbara, utilise <b>ass … gebuer</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "A wéini ass de Marc gebuer?",
+      "fr": "Et quand Marc est-il né ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "De Marc ass de véieranzwanzegste Abrëll zweedausendvéier gebuer.",
+      "fr": "Marc est né le 24 avril 2004.",
+      "unite": 3,
+      "aide": "<b>de</b> véieranzwanzegste (v → de, pas den)."
     }
   ],
   "unites": [

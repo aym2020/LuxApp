@@ -16,74 +16,140 @@
   },
   "mission": {
     "titre": "Rencontre au forum des métiers",
-    "contexte": "Au forum des métiers, tu parles de ta profession et de celle de tes proches avec Marie.",
-    "objectif": "dire son métier, parler d'une profession au féminin et utiliser travailler comme ou la négation."
+    "contexte": "Au forum des métiers, tu parles de ta profession et de celle de tes proches avec Marie. Tu joues un banquier.",
+    "objectif": "dire son métier, parler d'une profession au féminin et utiliser travailler comme ou la négation.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Wat bass du vu Beruff?",
-      "fr": "Quel métier fais-tu ?"
+      "fr": "Quel métier fais-tu ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech sinn e Banker.",
       "fr": "Je suis banquier.",
+      "unite": 1,
       "aide": "Pour un métier masculin, choisis <b>e</b> ou <b>en</b> selon le mot."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "A wat mécht deng Frëndin?",
-      "fr": "Et que fait ton amie ?"
+      "lu": "An de Paul?",
+      "fr": "Et Paul ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "De Paul ass e Polizist.",
+      "fr": "Paul est policier.",
+      "unite": 1,
+      "aide": "P n'est pas dans UNITEDZOHA → <b>e</b> Polizist."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An de Marc?",
+      "fr": "Et Marc ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "De Marc ass en Affekot.",
+      "fr": "Marc est avocat.",
+      "unite": 1,
+      "aide": "Devant une voyelle → <b>en</b> Affekot."
+    },
+    {
+      "qui": "Marie",
+      "lu": "A wat mécht deng Frëndin?",
+      "fr": "Et que fait ton amie ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Si ass eng Bankerin.",
       "fr": "Elle est banquière.",
+      "unite": 2,
       "aide": "Devant un métier féminin, utilise <b>eng</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
       "lu": "Meng Schwëster ass eng Doktesch.",
-      "fr": "Ma sœur est médecin."
+      "fr": "Ma sœur est médecin.",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Si ass eng Doktesch.",
       "fr": "Elle est médecin (femme).",
+      "unite": 2,
       "aide": "Le nom féminin peut changer autrement qu'en ajoutant -in."
     },
     {
-      "unite": 3,
       "qui": "Marie",
-      "lu": "Schaffs du als Coiffer?",
-      "fr": "Tu travailles comme coiffeur ?"
+      "lu": "An d'Anna?",
+      "fr": "Et Anna ?",
+      "unite": 2
     },
     {
-      "unite": 3,
+      "qui": "toi",
+      "lu": "D'Anna ass eng Apdiktesch.",
+      "fr": "Anna est pharmacienne.",
+      "unite": 2,
+      "aide": "Apdikter → <b>Apdiktesch</b> au féminin."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Schaffs du als Coiffer?",
+      "fr": "Tu travailles comme coiffeur ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Nee, ech si kee Coiffer.",
       "fr": "Non, je ne suis pas coiffeur.",
+      "unite": 3,
       "aide": "Pour nier une profession masculine, utilise <b>kee</b>."
     },
     {
-      "unite": 3,
       "qui": "Marie",
       "lu": "A wat méchs du?",
-      "fr": "Et que fais-tu ?"
+      "fr": "Et que fais-tu ?",
+      "unite": 3
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "Ech schaffen als Banker.",
       "fr": "Je travaille comme banquier.",
+      "unite": 3,
       "aide": "Après <b>als</b>, ne mets pas d'article."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ass d'Julie eng Polizistin?",
+      "fr": "Julie est-elle policière ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, si ass keng Polizistin. Si ass eng Bréifdréiesch.",
+      "fr": "Non, elle n'est pas policière. Elle est factrice.",
+      "unite": 3,
+      "aide": "Féminin → <b>keng</b> · factrice = <b>Bréifdréiesch</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ass de Paul en Dokter?",
+      "fr": "Paul est-il médecin ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, hien ass keen Dokter. Hien ass e Polizist.",
+      "fr": "Non, il n'est pas médecin. Il est policier.",
+      "unite": 3,
+      "aide": "en Dokter → <b>keen</b> Dokter."
     }
   ],
   "unites": [

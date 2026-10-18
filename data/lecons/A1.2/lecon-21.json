@@ -12,7 +12,8 @@
   "mission": {
     "titre": "Le déménagement",
     "contexte": "Tu emménages avec ton ami Max. Les cartons sont déballés, et Max cherche ses affaires : tu lui dis où elles sont.",
-    "objectif": "demander où est un objet et dire où il est : dans une pièce, sur, à côté de…"
+    "objectif": "demander où est un objet et dire où il est : dans une pièce, sur, à côté de…",
+    "version": 2
   },
   "scene": [
     {
@@ -43,6 +44,32 @@
     },
     {
       "qui": "Max",
+      "lu": "Wou ass d'Dusch?",
+      "fr": "Où est la douche ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Dusch ass am Buedzëmmer.",
+      "fr": "La douche est dans la salle de bain.",
+      "unite": 1,
+      "aide": "d'Buedzëmmer est neutre → <b>am</b> Buedzëmmer."
+    },
+    {
+      "qui": "Max",
+      "lu": "An d'Kaffismaschinn?",
+      "fr": "Et la machine à café ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "An der Kichen.",
+      "fr": "Dans la cuisine.",
+      "unite": 1,
+      "aide": "d'Kichen → <b>an der</b> Kichen."
+    },
+    {
+      "qui": "Max",
       "lu": "Wou ass d'Planz?",
       "fr": "Où est la plante ?",
       "unite": 2
@@ -69,6 +96,19 @@
     },
     {
       "qui": "Max",
+      "lu": "Wou ass d'Pan?",
+      "fr": "Où est la poêle ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Pan ass nieft der Kaffismaschinn.",
+      "fr": "La poêle est à côté de la machine à café.",
+      "unite": 2,
+      "aide": "Kaffismaschinn est féminin → nieft <b>der</b>."
+    },
+    {
+      "qui": "Max",
       "lu": "Wou ass den Teller?",
       "fr": "Où est l'assiette ?",
       "unite": 3
@@ -92,6 +132,19 @@
       "fr": "Dans l'armoire.",
       "unite": 3,
       "aide": "Schaf est neutre → an + dem = <b>am</b> Schaf."
+    },
+    {
+      "qui": "Max",
+      "lu": "An de Spigel?",
+      "fr": "Et le miroir ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "De Spigel ass nieft dem Schaf.",
+      "fr": "Le miroir est à côté de l'armoire.",
+      "unite": 3,
+      "aide": "Schaf est neutre → nieft <b>dem</b> Schaf."
     }
   ],
   "unites": [

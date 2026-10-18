@@ -12,7 +12,8 @@
   "mission": {
     "titre": "La pause café du vendredi",
     "contexte": "Vendredi, à la pause café, ta collègue Sarah te demande ce que tu aimes faire et ce que tu fais ce week-end.",
-    "objectif": "dire ce que tu aimes faire, où tu vas le week-end et à quelle fréquence."
+    "objectif": "dire ce que tu aimes faire, où tu vas le week-end et à quelle fréquence.",
+    "version": 2
   },
   "scene": [
     {
@@ -43,6 +44,32 @@
     },
     {
       "qui": "Sarah",
+      "lu": "Kachs du gär?",
+      "fr": "Tu aimes faire la cuisine ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, ech kache ganz gär!",
+      "fr": "Oui, j'adore faire la cuisine !",
+      "unite": 1,
+      "aide": "J'adore = <b>ganz gär</b>."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "Fiers du gär Vëlo?",
+      "fr": "Tu aimes faire du vélo ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, ech fuere guer net gär Vëlo.",
+      "fr": "Non, je n'aime pas du tout faire du vélo.",
+      "unite": 1,
+      "aide": "Pas du tout = <b>guer net gär</b>."
+    },
+    {
+      "qui": "Sarah",
       "lu": "E Samschdeg ginn ech an de Kino.",
       "fr": "Samedi, je vais au cinéma.",
       "unite": 2
@@ -53,6 +80,32 @@
       "fr": "Moi, je vais à un concert.",
       "unite": 2,
       "aide": "Concert = événement → <b>op</b> e Concert."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An e Sonndeg?",
+      "fr": "Et dimanche ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech gi spadséieren.",
+      "fr": "Je vais me promener.",
+      "unite": 2,
+      "aide": "<b>spadséiere goen</b> · ech <b>gi</b> (le n tombe devant s)."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "Gees du och bei de Coiffer?",
+      "fr": "Tu vas aussi chez le coiffeur ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Jo, ech gi bei de Coiffer.",
+      "fr": "Oui, je vais chez le coiffeur.",
+      "unite": 2,
+      "aide": "Chez une personne : <b>bei</b> de Coiffer."
     },
     {
       "qui": "Sarah",
@@ -79,6 +132,19 @@
       "fr": "Non, je ne vais jamais au cinéma.",
       "unite": 3,
       "aide": "jamais = <b>ni</b> (≠ net), juste après le verbe."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "Wéi oft kachs du?",
+      "fr": "Tu cuisines à quelle fréquence ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech kachen eemol d'Woch.",
+      "fr": "Je cuisine une fois par semaine.",
+      "unite": 3,
+      "aide": "une fois par semaine = <b>eemol d'Woch</b>."
     }
   ],
   "unites": [

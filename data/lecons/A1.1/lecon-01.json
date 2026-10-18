@@ -16,10 +16,24 @@
   },
   "mission": {
     "titre": "Premier cours de luxembourgeois",
-    "contexte": "C'est ton premier cours au centre de langues. Tu salues Léa, une autre élève, puis Madame Weber, la professeure, qui te demande ton nom. Tu joues Paul. À la fin du cours, tu prends congé.",
-    "objectif": "saluer, demander et dire comment ça va, dire ton nom poliment, prendre congé."
+    "contexte": "C'est ton premier cours au centre de langues. Tu salues Monsieur Kremer à l'accueil, puis Léa, une autre élève, et Madame Weber, la professeure, qui te demande ton nom. Tu joues Paul. À la fin du cours, tu prends congé.",
+    "objectif": "saluer, demander et dire comment ça va, dire ton nom poliment, prendre congé.",
+    "version": 2
   },
   "scene": [
+    {
+      "qui": "Här Kremer",
+      "lu": "Gudde Moien!",
+      "fr": "Bonjour !",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Gudde Moien, Här Kremer!",
+      "fr": "Bonjour, Monsieur Kremer ! (le matin)",
+      "unite": 1,
+      "aide": "Le matin : <b>Gudde</b> Moien · un homme : <b>Här</b> + nom."
+    },
     {
       "qui": "Léa",
       "lu": "Moien!",
@@ -32,6 +46,19 @@
       "fr": "Bonjour ! (le matin)",
       "unite": 1,
       "aide": "Le matin : <b>Gudde</b> Moien! (sans n devant M)."
+    },
+    {
+      "qui": "Madamm Weber",
+      "lu": "Gudde Moien!",
+      "fr": "Bonjour !",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Gudde Moien, Madamm Weber!",
+      "fr": "Bonjour, Madame Weber !",
+      "unite": 1,
+      "aide": "Une femme : <b>Madamm</b> + nom."
     },
     {
       "qui": "Léa",
@@ -48,14 +75,33 @@
     },
     {
       "qui": "Léa",
-      "lu": "Ganz gutt, merci!",
-      "fr": "Très bien, merci !",
+      "lu": "Et geet.",
+      "fr": "Ça va.",
       "unite": 2
     },
     {
       "qui": "Madamm Weber",
-      "lu": "Gudde Moien! Wéi heescht Dir?",
-      "fr": "Bonjour ! Comment vous appelez-vous ?",
+      "lu": "Wéi geet et Iech?",
+      "fr": "Comment allez-vous ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Ganz gutt, merci! An Iech?",
+      "fr": "Très bien, merci ! Et vous ?",
+      "unite": 2,
+      "aide": "À la professeure, on vouvoie : An <b>Iech</b>?"
+    },
+    {
+      "qui": "Madamm Weber",
+      "lu": "Mir geet et gutt, merci.",
+      "fr": "Je vais bien, merci.",
+      "unite": 2
+    },
+    {
+      "qui": "Madamm Weber",
+      "lu": "Wéi heescht Dir?",
+      "fr": "Comment vous appelez-vous ?",
       "unite": 3
     },
     {
@@ -72,9 +118,35 @@
       "unite": 3
     },
     {
+      "qui": "toi",
+      "lu": "Wéi heeschs du?",
+      "fr": "Comment t'appelles-tu ? (à Léa)",
+      "unite": 3,
+      "aide": "Entre élèves, on tutoie : Wéi <b>heeschs du</b>?"
+    },
+    {
+      "qui": "Léa",
+      "lu": "Ech heesche Léa.",
+      "fr": "Je m'appelle Léa.",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Et freet mech, Léa.",
+      "fr": "Enchanté, Léa.",
+      "unite": 3,
+      "aide": "Enchanté = <b>Et freet mech</b>."
+    },
+    {
+      "qui": "Léa",
+      "lu": "Mech och!",
+      "fr": "Moi aussi !",
+      "unite": 3
+    },
+    {
       "qui": "Madamm Weber",
-      "lu": "Äddi, schéinen Owend!",
-      "fr": "Au revoir, bonne soirée !",
+      "lu": "Äddi, schéinen Dag!",
+      "fr": "Au revoir, bonne journée !",
       "unite": 4
     },
     {
@@ -83,6 +155,19 @@
       "fr": "Merci, pareillement ! Au revoir !",
       "unite": 4,
       "aide": "À un souhait, on répond <b>Merci, gläichfalls!</b>"
+    },
+    {
+      "qui": "Léa",
+      "lu": "Awar, Paul!",
+      "fr": "Salut, Paul !",
+      "unite": 4
+    },
+    {
+      "qui": "toi",
+      "lu": "Awar, Léa! Schéinen Dag!",
+      "fr": "Salut, Léa ! Bonne journée !",
+      "unite": 4,
+      "aide": "Entre amis : <b>Awar</b> · bonne journée = <b>Schéinen Dag</b>."
     }
   ],
   "unites": [

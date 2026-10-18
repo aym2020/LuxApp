@@ -16,74 +16,146 @@
   },
   "mission": {
     "titre": "Présenter sa famille à Anne",
-    "contexte": "Pendant un échange de classe, Anne te demande qui fait partie de ta famille. Tu parles de tes proches et expliques le lien entre Susy et ton père.",
-    "objectif": "nommer ses proches, employer les possessifs et expliquer un lien familial plus précis."
+    "contexte": "Pendant un échange de classe, Anne te demande qui fait partie de ta famille. Tu parles de tes proches et expliques les liens entre Susy, Hilaire, Max et tes parents.",
+    "objectif": "nommer ses proches, employer les possessifs et expliquer un lien familial plus précis.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Anne",
       "lu": "Hues du Geschwëster?",
-      "fr": "As-tu des frères ou sœurs ?"
+      "fr": "As-tu des frères ou sœurs ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech hunn e Brudder an eng Schwëster.",
       "fr": "J'ai un frère et une sœur.",
+      "unite": 1,
       "aide": "Pour frère et sœur : <b>e Brudder</b> et <b>eng Schwëster</b>."
     },
     {
-      "unite": 1,
       "qui": "Anne",
       "lu": "An eng Duechter?",
-      "fr": "Et une fille ?"
+      "fr": "Et une fille ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech hunn eng Duechter.",
       "fr": "J'ai une fille.",
+      "unite": 1,
       "aide": "La fille au sens de descendante : <b>eng Duechter</b>."
     },
     {
-      "unite": 2,
       "qui": "Anne",
-      "lu": "Wéi heescht däi Papp?",
-      "fr": "Comment s'appelle ton père ?"
+      "lu": "Wien ass dat op der Foto?",
+      "fr": "Qui est-ce sur la photo ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "Dat ass de Monni an dat ass d'Tatta.",
+      "fr": "C'est mon oncle et ça, c'est ma tante.",
+      "unite": 1,
+      "aide": "l'oncle = <b>de Monni</b> · la tante = <b>d'Tatta</b>."
+    },
+    {
+      "qui": "Anne",
+      "lu": "Wéi heescht däi Papp?",
+      "fr": "Comment s'appelle ton père ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Mäi Papp heescht Marc.",
       "fr": "Mon père s'appelle Marc.",
+      "unite": 2,
       "aide": "Le masculin Papp prend <b>mäi</b>."
     },
     {
-      "unite": 2,
       "qui": "Anne",
       "lu": "A wou wunnt deng Mamm?",
-      "fr": "Et où habite ta mère ?"
+      "fr": "Et où habite ta mère ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Meng Mamm wunnt zu Esch.",
       "fr": "Ma mère habite à Esch.",
+      "unite": 2,
       "aide": "Le féminin Mamm prend <b>meng</b>."
     },
     {
-      "unite": 3,
       "qui": "Anne",
-      "lu": "A wien ass d'Susy?",
-      "fr": "Et qui est Susy ?"
+      "lu": "Heescht däi Brudder Paul?",
+      "fr": "Ton frère s'appelle Paul ?",
+      "unite": 2
     },
     {
-      "unite": 3,
+      "qui": "toi",
+      "lu": "Jo, mäi Brudder heescht Paul.",
+      "fr": "Oui, mon frère s'appelle Paul.",
+      "unite": 2,
+      "aide": "de Brudder (masculin) → <b>mäi</b> Brudder."
+    },
+    {
+      "qui": "Anne",
+      "lu": "Ech hunn och eng Schwëster.",
+      "fr": "Moi aussi, j'ai une sœur.",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Wou wunnt deng Schwëster?",
+      "fr": "Où habite ta sœur ?",
+      "unite": 2,
+      "aide": "ta sœur = <b>deng</b> Schwëster (féminin)."
+    },
+    {
+      "qui": "Anne",
+      "lu": "Meng Schwëster wunnt zu Metz.",
+      "fr": "Ma sœur habite à Metz.",
+      "unite": 2
+    },
+    {
+      "qui": "Anne",
+      "lu": "A wien ass d'Susy?",
+      "fr": "Et qui est Susy ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "D'Susy ass mengem Papp seng Schwëster.",
       "fr": "Susy est la sœur de mon père.",
-      "aide": "Avec le père au datif : <b>mengem Papp</b>."
+      "unite": 3,
+      "aide": "Avec le père au datif : <b>mengem Papp</b> seng Schwëster."
+    },
+    {
+      "qui": "Anne",
+      "lu": "An den Hilaire?",
+      "fr": "Et Hilaire ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Den Hilaire ass menger Mamm hire Schwoer.",
+      "fr": "Hilaire est le beau-frère de ma mère.",
+      "unite": 3,
+      "aide": "La mère au datif : <b>menger Mamm</b> hire Schwoer."
+    },
+    {
+      "qui": "Anne",
+      "lu": "An de Max?",
+      "fr": "Et Max ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "De Max ass der Tatta Susy hire Jong.",
+      "fr": "Max est le fils de tante Susy.",
+      "unite": 3,
+      "aide": "<b>der Tatta Susy hire</b> Jong : le fils de tante Susy."
     }
   ],
   "unites": [

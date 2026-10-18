@@ -16,74 +16,140 @@
   },
   "mission": {
     "titre": "Parler de son lieu de travail",
-    "contexte": "À la pause, Marie veut savoir où tu travailles et où travaillent tes collègues.",
-    "objectif": "indiquer son lieu de travail avec an, op ou bei, et poser la question Wou schaffs du?"
+    "contexte": "À la pause, Marie veut savoir où tu travailles et où travaillent tes collègues et tes amis.",
+    "objectif": "indiquer son lieu de travail avec an, op ou bei, et poser la question Wou schaffs du?",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Wou schaffs du?",
-      "fr": "Où travailles-tu ?"
+      "fr": "Où travailles-tu ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Ech schaffen an engem Büro.",
       "fr": "Je travaille dans un bureau.",
+      "unite": 1,
       "aide": "Pour un bureau : <b>an engem</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "Wou schafft d'Bankerin?",
-      "fr": "Où travaille la banquière ?"
+      "lu": "An de Kach?",
+      "fr": "Et le cuisinier ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "De Kach schafft an engem Restaurant.",
+      "fr": "Le cuisinier travaille dans un restaurant.",
+      "unite": 1,
+      "aide": "e Restaurant → <b>an engem</b> Restaurant."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Doktesch?",
+      "fr": "Et la médecin ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "D'Doktesch schafft an engem Spidol.",
+      "fr": "La médecin travaille dans un hôpital.",
+      "unite": 1,
+      "aide": "e Spidol → <b>an engem</b> Spidol."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An d'Apdiktesch?",
+      "fr": "Et la pharmacienne ?",
+      "unite": 1
+    },
+    {
+      "qui": "toi",
+      "lu": "Si schafft an enger Apdikt.",
+      "fr": "Elle travaille dans une pharmacie.",
+      "unite": 1,
+      "aide": "eng Apdikt (féminin) → <b>an enger</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Wou schafft d'Bankerin?",
+      "fr": "Où travaille la banquière ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "D'Bankerin schafft op enger Bank.",
       "fr": "La banquière travaille à la banque.",
+      "unite": 2,
       "aide": "Pour une banque : <b>op enger</b>."
     },
     {
-      "unite": 3,
       "qui": "Marie",
-      "lu": "Schaffs du nach bei engem Dokter?",
-      "fr": "Travailles-tu aussi chez un médecin ?"
+      "lu": "An de Polizist?",
+      "fr": "Et le policier ?",
+      "unite": 2
     },
     {
-      "unite": 3,
+      "qui": "toi",
+      "lu": "De Polizist schafft op engem Policebüro.",
+      "fr": "Le policier travaille au commissariat.",
+      "unite": 2,
+      "aide": "e Policebüro → <b>op engem</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An de Bréifdréier?",
+      "fr": "Et le facteur ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "De Bréifdréier schafft op enger Post.",
+      "fr": "Le facteur travaille à la poste.",
+      "unite": 2,
+      "aide": "eng Post → <b>op enger</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Schaffs du nach bei engem Dokter?",
+      "fr": "Travailles-tu aussi chez un médecin ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Ech schaffe bei engem Dokter.",
       "fr": "Je travaille chez un médecin.",
-      "aide": "Pour travailler chez quelqu'un : <b>bei</b>."
+      "unite": 3,
+      "aide": "Pour travailler chez quelqu'un : <b>bei</b> · ech <b>schaffe</b> (le n tombe devant b)."
     },
     {
-      "unite": 3,
       "qui": "Marie",
       "lu": "An deng Frëndin?",
-      "fr": "Et ton amie ?"
+      "fr": "Et ton amie ?",
+      "unite": 3
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "Si schafft bei enger Coiffeuse.",
       "fr": "Elle travaille chez une coiffeuse.",
+      "unite": 3,
       "aide": "Avec une coiffeuse : <b>bei enger</b>."
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "Wou schaffs du?",
       "fr": "Où travailles-tu ?",
+      "unite": 3,
       "aide": "Question informelle : <b>Wou schaffs du?</b>"
     },
     {
-      "unite": 3,
       "qui": "Marie",
       "lu": "Ech schaffen an enger Klinik.",
-      "fr": "Je travaille dans une clinique."
+      "fr": "Je travaille dans une clinique.",
+      "unite": 3
     }
   ],
   "unites": [

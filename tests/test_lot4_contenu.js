@@ -26,7 +26,7 @@ for(const id of ids){
   assert.deepEqual(d.unites.map(u=>u.id),d.unites.map((u,i)=>i+1),id+' sequential units');
   let previous=0;
   const replies=d.scene.filter(r=>r.qui==='toi');
-  assert.ok(replies.length>=3&&replies.length<=5,id+' learner replies');
+  assert.equal(replies.length,10,id+' learner replies (spec 34 : 10)');
   for(const line of d.scene){
     assert.ok(line.lu&&line.fr&&line.qui&&d.unites.some(u=>u.id===line.unite),id+' dialogue line');
     assert.ok(line.unite>=previous,id+' dialogue order');

@@ -232,8 +232,14 @@ chance » (plus de seuil 80 / 90 %). Une mission réussie valide la leçon
 faites ; jouée sans réussir, elle ne termine pas la leçon. Acquis d'avant la spec 32 gardés :
 ancien score ≥ 80 % = réussite, leçon terminée avec mission jouée = reste terminée, figés au 1er
 essai avec la nouvelle règle (`figerAcquisMission`, `mission.regle32`, `historique.terminee`).
-Score de mission = indicateur, enregistré avec `version` (1 par défaut). Les scènes à 10
-répliques restent à écrire (contenu, lots suivants).
+Score de mission = indicateur. **Spec 34** : toutes les scènes ont exactement 10 réponses
+(`mission.version: 2`, vérifié par `valider-lecons`) ; chaque version de scène a son score
+et sa réussite (`mission.score` v1, `mission.scoreV2` / `mission.reussieV2`) : un ancien
+résultat ne valide pas la nouvelle scène (`missionReussie`), la leçon reste acquise
+(`leconAcquiseParMission`). Rappel des règles des vies à la 1re mission
+(`progress.guide.vies`) et en touchant les cœurs. Écrire une scène : chaque réplique « toi »
+n'utilise que des mots de la leçon ou des précédentes, rattachée à une unité du fil, dans
+l'ordre des unités ; règle du n final (Eifeler Regel) partout.
 
 ### Révision espacée (aucune donnée en plus)
 
@@ -375,7 +381,7 @@ après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
 | Quand | Quoi | Durée |
 | --- | --- | --- |
 | Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
-| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py`, `test_chemin_lignes.py`, `test_mission_validation.py` | ~6 min |
+| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py`, `test_chemin_lignes.py`, `test_mission_validation.py`, `test_missions_10.py` | ~7 min |
 | Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
 
 - La suite critique se lance **une seule fois, en fin de lot**.

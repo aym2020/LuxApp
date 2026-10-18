@@ -70,6 +70,7 @@ with sync_playwright() as p:
     page.on('dialog', lambda d: d.accept())
     page.goto(URL)
     page.wait_for_selector('#today')
+    page.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
     page.evaluate("choisirNiveau('A1.1')")
     page.evaluate("lecons.forEach(l => marquerIntroMissionVue(l.id))")  # introduction de mission : testée ailleurs
 

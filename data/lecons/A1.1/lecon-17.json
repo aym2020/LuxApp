@@ -16,73 +16,133 @@
   },
   "mission": {
     "titre": "Téléphoner pour un rendez-vous",
-    "contexte": "Tu téléphones à Madame Molitor pour prendre un rendez-vous. Tu joues Paul et tu dois proposer vendredi, confirmer l'horaire et donner ton nom.",
-    "objectif": "demander un rendez-vous, proposer un jour, confirmer et terminer poliment l'appel."
+    "contexte": "Tu téléphones à Madame Molitor pour prendre un rendez-vous. Tu joues Paul : tu travailles en semaine jusqu'à 16 h, tu proposes vendredi après-midi, tu donnes ton nom et tu termines poliment l'appel.",
+    "objectif": "demander un rendez-vous, proposer un jour, confirmer et terminer poliment l'appel.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Madamm Molitor",
       "lu": "Gudde Moien, hei ass Molitor.",
-      "fr": "Bonjour, ici Molitor."
+      "fr": "Bonjour, ici Molitor.",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
-      "lu": "Gudde Moien, ech hätt gär e Rendez-vous.",
-      "fr": "Bonjour, je voudrais un rendez-vous.",
+      "lu": "Gudde Moien, Madamm Molitor!",
+      "fr": "Bonjour, Madame Molitor !",
+      "unite": 1,
+      "aide": "Rappel : <b>Gudde Moien</b> + <b>Madamm</b> + nom."
+    },
+    {
+      "qui": "toi",
+      "lu": "Ech hätt gär e Rendez-vous.",
+      "fr": "Je voudrais un rendez-vous.",
+      "unite": 1,
       "aide": "Pour demander poliment, utilise la formule avec <b>hätt gär</b>."
     },
     {
-      "unite": 2,
       "qui": "Madamm Molitor",
-      "lu": "Fir wéini?",
-      "fr": "Pour quand ?"
+      "lu": "Wéini schafft Dir?",
+      "fr": "Quand travaillez-vous ?",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "Ech schaffe Méindeg bis Freideg.",
+      "fr": "Je travaille du lundi au vendredi.",
+      "unite": 1,
+      "aide": "lundi = <b>Méindeg</b> · jusqu'à = <b>bis</b> · ech <b>schaffe</b> (le n tombe devant M)."
+    },
+    {
+      "qui": "Madamm Molitor",
+      "lu": "Fir wéini?",
+      "fr": "Pour quand ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Fir e Freideg, geet dat?",
       "fr": "Pour vendredi, est-ce que ça va ?",
+      "unite": 2,
       "aide": "Pour proposer une date, ajoute <b>geet dat?</b>."
     },
     {
-      "unite": 2,
       "qui": "Madamm Molitor",
-      "lu": "Um 10:30 ass nach e Rendez-vous fräi.",
-      "fr": "À 10 h 30, il reste un rendez-vous libre."
+      "lu": "Jo. Um 10:30?",
+      "fr": "Oui. À 10 h 30 ?",
+      "unite": 2
     },
     {
+      "qui": "toi",
+      "lu": "Dat geet leider net. Ech schaffe bis 16:00 Auer.",
+      "fr": "Ce n'est malheureusement pas possible. Je travaille jusqu'à 16 h.",
       "unite": 2,
+      "aide": "Pour refuser : <b>Dat geet leider net</b>."
+    },
+    {
+      "qui": "Madamm Molitor",
+      "lu": "Um 16:30 ass nach e Rendez-vous fräi.",
+      "fr": "À 16 h 30, il reste un rendez-vous libre.",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Jo, dat ass an der Rei.",
       "fr": "Oui, c'est d'accord.",
+      "unite": 2,
       "aide": "Pour accepter, utilise <b>an der Rei</b>."
     },
     {
-      "unite": 3,
       "qui": "Madamm Molitor",
-      "lu": "Wéi ass Ären Numm?",
-      "fr": "Quel est votre nom ?"
+      "lu": "Also e Freideg um 16:30.",
+      "fr": "Donc vendredi à 16 h 30.",
+      "unite": 2
     },
     {
-      "unite": 3,
+      "qui": "toi",
+      "lu": "Jo, e Freideg den Nomëtteg.",
+      "fr": "Oui, vendredi après-midi.",
+      "unite": 2,
+      "aide": "l'après-midi = <b>den Nomëtteg</b>."
+    },
+    {
+      "qui": "Madamm Molitor",
+      "lu": "Wéi ass Ären Numm?",
+      "fr": "Quel est votre nom ?",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Mäin Numm ass Paul.",
       "fr": "Mon nom est Paul.",
+      "unite": 3,
       "aide": "Pour « mon nom est », commence par <b>Mäin Numm</b>."
     },
     {
-      "unite": 3,
       "qui": "Madamm Molitor",
-      "lu": "Bis d'nächst Woch! An nach e schéinen Dag!",
-      "fr": "À la semaine prochaine ! Et bonne journée !"
+      "lu": "Merci, dat ass notéiert.",
+      "fr": "Merci, c'est noté.",
+      "unite": 3
     },
     {
+      "qui": "toi",
+      "lu": "Villmools Merci! Bis d'nächst Woch.",
+      "fr": "Merci beaucoup ! À la semaine prochaine.",
       "unite": 3,
+      "aide": "Merci beaucoup = <b>Villmools Merci</b>."
+    },
+    {
+      "qui": "Madamm Molitor",
+      "lu": "An nach e schéinen Dag!",
+      "fr": "Et bonne journée !",
+      "unite": 3
+    },
+    {
       "qui": "toi",
       "lu": "Merci gläichfalls!",
       "fr": "Merci, de même !",
+      "unite": 3,
       "aide": "Pour répondre « de même », utilise <b>gläichfalls</b>."
     }
   ],

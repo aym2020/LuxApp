@@ -494,10 +494,60 @@ function missionJoueeRegle32(leconId) {
   return !!(byLecon && byLecon.mission && byLecon.mission.regle32);
 }
 
+// ─── VERSIONS DE LA SCÈNE (spec 34) ─────────────────────────────────────────
+// Une scène réécrite (champ mission.version des JSON) est une nouvelle épreuve :
+// chaque version a son score et sa réussite, à part (toutes les clés restent à
+// 3 niveaux, la fusion cloud garde le max) :
+//   version 1     : mission.score, réussite = valideeMission ou ancien score ≥ 80 %
+//   version v ≥ 2 : mission.scoreV<v>, mission.reussieV<v>
+// Un ancien résultat ne compte donc jamais pour la nouvelle scène, mais la
+// leçon déjà acquise grâce à lui le reste (leconAcquiseParMission).
+function versionMission(leconId) {
+  const l = typeof lecons !== 'undefined' ? lecons.find(x => x.id === leconId) : null;
+  return (l && l.mission && l.mission.version) || 1;
+}
+
+function cleScoreMission(version) {
+  return version > 1 ? 'scoreV' + version : 'score';
+}
+
+function missionDeLecon(leconId) {
+  const byLecon = getProgress()[leconId];
+  return (byLecon && byLecon.mission) || {};
+}
+
+// Score de la 1re version de la scène (résultats d'avant la spec 34), ou null.
+function ancienScoreMission(leconId) {
+  const score = missionDeLecon(leconId).score;
+  return score == null ? null : score;
+}
+
+// Ancien résultat (avant la spec 32) d'au moins 80 % : il vaut réussite.
+function missionReussieAvant32(leconId) {
+  const score = ancienScoreMission(leconId);
+  return !missionJoueeRegle32(leconId) && score != null && score >= SEUIL_MISSION_HISTORIQUE;
+}
+
+// Mission réussie dans la version ACTUELLE de la scène.
 function missionReussie(l) {
-  if (leconValideeParMission(l.id)) return true;
-  const best = getMissionBest(l.id);
-  return !missionJoueeRegle32(l.id) && best != null && best >= SEUIL_MISSION_HISTORIQUE; // ancien résultat
+  const v = versionMission(l.id);
+  if (v > 1) return !!missionDeLecon(l.id)['reussieV' + v];
+  return leconValideeParMission(l.id) || missionReussieAvant32(l.id);
+}
+
+// Leçon acquise grâce à une mission réussie, quelle que soit la version jouée.
+function leconAcquiseParMission(l) {
+  return leconValideeParMission(l.id) || missionReussie(l) || missionReussieAvant32(l.id);
+}
+
+function marquerMissionReussie(leconId, version) {
+  if (!(version > 1)) return; // version 1 : valideeMission suffit
+  const progress = getProgress();
+  if (!progress[leconId]) progress[leconId] = {};
+  if (!progress[leconId].mission) progress[leconId].mission = {};
+  progress[leconId].mission['reussieV' + version] = 1;
+  saveProgress(progress);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
 // Leçon terminée avant la spec 32 : toutes les unités faites et la mission
@@ -505,7 +555,7 @@ function missionReussie(l) {
 function leconTermineeAvantSpec32(l) {
   const byLecon = getProgress()[l.id];
   if (byLecon && byLecon.historique && byLecon.historique.terminee) return true;
-  return !missionJoueeRegle32(l.id) && getMissionBest(l.id) != null &&
+  return !missionJoueeRegle32(l.id) && ancienScoreMission(l.id) != null &&
     unitesCoeur(l).every(u => getUnitBest(l.id, u.id) != null);
 }
 
@@ -513,7 +563,7 @@ function leconTermineeAvantSpec32(l) {
 // historiques (réussite, leçon terminée), puis on marque la règle 32.
 function figerAcquisMission(l) {
   if (missionJoueeRegle32(l.id)) return;
-  const reussie = missionReussie(l);
+  const reussie = leconValideeParMission(l.id) || missionReussieAvant32(l.id);
   const terminee = leconTermineeAvantSpec32(l);
   const progress = getProgress();
   if (!progress[l.id]) progress[l.id] = {};
@@ -525,22 +575,23 @@ function figerAcquisMission(l) {
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
-// Meilleur score de la mission (0-100), ou null si jamais jouée.
+// Meilleur score de la version actuelle de la scène (0-100), ou null si pas jouée.
 function getMissionBest(leconId) {
-  const byLecon = getProgress()[leconId];
-  if (byLecon && byLecon.mission && byLecon.mission.score != null) return byLecon.mission.score;
-  return null;
+  const score = missionDeLecon(leconId)[cleScoreMission(versionMission(leconId))];
+  return score == null ? null : score;
 }
 
-// version : version de la scène jouée (spec 23) ; gardée au maximum, comme le score,
-// pour distinguer plus tard les anciens résultats des nouvelles épreuves.
+// version : version de la scène jouée (1 par défaut) ; chaque version garde son
+// meilleur score à part (spec 34). mission.version = plus haute version jouée.
 function saveMissionBest(leconId, percent, version) {
+  const v = version || 1;
   const progress = getProgress();
   if (!progress[leconId]) progress[leconId] = {};
   if (!progress[leconId].mission) progress[leconId].mission = {};
-  const old = progress[leconId].mission.score;
-  progress[leconId].mission.score = old == null ? percent : Math.max(old, percent);
-  if (version) progress[leconId].mission.version = Math.max(progress[leconId].mission.version || 1, version);
+  const m = progress[leconId].mission;
+  const cle = cleScoreMission(v);
+  m[cle] = m[cle] == null ? percent : Math.max(m[cle], percent);
+  m.version = Math.max(m.version || 1, v);
   saveProgress(progress);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }

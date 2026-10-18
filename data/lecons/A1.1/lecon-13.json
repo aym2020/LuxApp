@@ -16,74 +16,140 @@
   },
   "mission": {
     "titre": "Faire connaissance avec Marie",
-    "contexte": "Après le cours, Marie te demande si tu es marié, si tu as des enfants et te parle de ta famille.",
-    "objectif": "décrire sa situation familiale, parler des enfants et nommer ses proches."
+    "contexte": "Après le cours, Marie te demande si tu es marié, si tu as des enfants et te parle de ses proches.",
+    "objectif": "décrire sa situation familiale, parler des enfants et nommer ses proches.",
+    "version": 2
   },
   "scene": [
     {
-      "unite": 1,
       "qui": "Marie",
       "lu": "Bass du bestuet?",
-      "fr": "Es-tu marié ?"
+      "fr": "Es-tu marié ?",
+      "unite": 1
     },
     {
-      "unite": 1,
       "qui": "toi",
       "lu": "Nee, ech sinn net bestuet.",
       "fr": "Non, je ne suis pas marié.",
+      "unite": 1,
       "aide": "Pour nier un état, utilise <b>net</b>."
     },
     {
-      "unite": 2,
       "qui": "Marie",
-      "lu": "Hues du Kanner?",
-      "fr": "As-tu des enfants ?"
+      "lu": "De Paul ass bestuet.",
+      "fr": "Paul est marié.",
+      "unite": 1
     },
     {
-      "unite": 2,
+      "qui": "toi",
+      "lu": "Nee, de Paul ass gescheet.",
+      "fr": "Non, Paul est divorcé.",
+      "unite": 1,
+      "aide": "divorcé = <b>gescheet</b>."
+    },
+    {
+      "qui": "toi",
+      "lu": "Bass du bestuet?",
+      "fr": "Et toi, es-tu mariée ?",
+      "unite": 1,
+      "aide": "Question : le verbe en premier → <b>Bass du</b> bestuet?"
+    },
+    {
+      "qui": "Marie",
+      "lu": "Nee, ech si verlobt.",
+      "fr": "Non, je suis fiancée.",
+      "unite": 1
+    },
+    {
+      "qui": "Marie",
+      "lu": "Hues du Kanner?",
+      "fr": "As-tu des enfants ?",
+      "unite": 2
+    },
+    {
       "qui": "toi",
       "lu": "Jo, ech hunn zwee Kanner.",
       "fr": "Oui, j'ai deux enfants.",
-      "aide": "Pour décrire une situation : <b>ass</b> + état."
+      "unite": 2,
+      "aide": "e Kand → <b>Kanner</b> au pluriel · <b>ech hunn</b> = j'ai."
     },
     {
-      "unite": 2,
       "qui": "Marie",
       "lu": "E Jong an e Meedchen?",
-      "fr": "Un garçon et une fille ?"
+      "fr": "Un garçon et une fille ?",
+      "unite": 2
     },
     {
-      "unite": 2,
       "qui": "toi",
       "lu": "Jo, e Meedchen an e Jong.",
       "fr": "Oui, une fille et un garçon.",
-      "aide": "Deux enfants : <b>zwee Kanner</b>."
+      "unite": 2,
+      "aide": "Une fille = <b>e Meedchen</b> · un garçon = <b>e Jong</b>."
     },
     {
-      "unite": 3,
+      "qui": "Marie",
+      "lu": "Huet de Paul Kanner?",
+      "fr": "Paul a-t-il des enfants ?",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, de Paul huet keng Kanner.",
+      "fr": "Non, Paul n'a pas d'enfants.",
+      "unite": 2,
+      "aide": "Pas d'enfants = <b>keng</b> Kanner."
+    },
+    {
       "qui": "Marie",
       "lu": "Hues du eng Frëndin?",
-      "fr": "As-tu une petite amie ?"
+      "fr": "As-tu une petite amie ?",
+      "unite": 3
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "Jo, ech hunn eng Frëndin.",
       "fr": "Oui, j'ai une petite amie.",
-      "aide": "Une fille et un garçon : <b>e Meedchen</b> et <b>e Jong</b>."
+      "unite": 3,
+      "aide": "Une petite amie : <b>eng Frëndin</b>."
     },
     {
-      "unite": 3,
       "qui": "Marie",
       "lu": "Huet si e Mupp?",
-      "fr": "A-t-elle un chien ?"
+      "fr": "A-t-elle un chien ?",
+      "unite": 3
     },
     {
-      "unite": 3,
       "qui": "toi",
       "lu": "Nee, si huet eng Kaz.",
       "fr": "Non, elle a un chat.",
-      "aide": "Une petite amie : <b>eng Frëndin</b>."
+      "unite": 3,
+      "aide": "Un chat = <b>eng Kaz</b> (féminin)."
+    },
+    {
+      "qui": "Marie",
+      "lu": "An de Paul? Huet hien eng Frëndin?",
+      "fr": "Et Paul ? A-t-il une petite amie ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, hien huet e Frënd.",
+      "fr": "Non, il a un petit ami.",
+      "unite": 3,
+      "aide": "Un petit ami = <b>e Frënd</b>."
+    },
+    {
+      "qui": "Marie",
+      "lu": "Ass d'Madamm Weber bestuet?",
+      "fr": "Madame Weber est-elle mariée ?",
+      "unite": 3
+    },
+    {
+      "qui": "toi",
+      "lu": "Nee, si ass Wittfra.",
+      "fr": "Non, elle est veuve.",
+      "unite": 3,
+      "aide": "veuve = <b>Wittfra</b> (veuf = Wittmann)."
     }
   ],
   "unites": [

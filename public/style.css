@@ -1917,7 +1917,6 @@ body.clavier-actif #view-mission.active .ms-histoire { display: none; }
   font-weight: 700; font-size: .95rem; line-height: 1.2;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
 }
-.ms-tete-etat { display: flex; align-items: center; gap: var(--sp-2); margin-top: 2px; }
 .ms-compteur {
   flex: none; padding: 1px var(--sp-2); border-radius: var(--rayon-pilule); background: #2f281b; color: #f9d778;
   font-size: var(--fs-micro); font-weight: 700; font-variant-numeric: tabular-nums;
@@ -2020,10 +2019,31 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 
 /* Spec 23 : les trois vies de la mission */
 .ms-vies { flex: none; display: flex; gap: 2px; }
-.ms-coeur { width: 16px; height: 16px; fill: var(--couleur-erreur); }
-.ms-coeur.vide { fill: none; stroke: var(--couleur-bord-2); stroke-width: 2; }
-.ms-coeur.perdu { animation: coeur-perdu .5s ease-out; }
-@keyframes coeur-perdu { 0% { transform: scale(1.5); fill: var(--couleur-erreur); } 100% { transform: scale(1); } }
+/* Spec 34 : cœurs de 24 px sur une ligne dédiée, centrés, compteur dessous ;
+   toute la zone ouvre le rappel des règles. */
+.ms-vies-zone {
+  flex: none; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  width: 100%; padding: var(--sp-1) 0 6px; background: var(--bg); border: 0; border-bottom: 1px solid #26262a; cursor: pointer;
+}
+.ms-vies-zone .ms-vies { gap: 6px; }
+.ms-vies-zone .ms-compteur { background: none; padding: 0; color: var(--couleur-texte-3); }
+.ms-coeur { width: 24px; height: 24px; fill: var(--couleur-erreur); stroke: transparent; stroke-width: 2; transition: fill .4s, stroke .4s; }
+.ms-coeur.vide { fill: transparent; stroke: var(--couleur-texte-3); }
+/* Vie perdue : le cœur bat une fois, puis se vide (rouge → contour gris) */
+.ms-coeur.perdu { animation: coeur-perdu .7s ease-out; }
+@keyframes coeur-perdu {
+  0% { transform: scale(1); fill: var(--couleur-erreur); stroke: transparent; }
+  35% { transform: scale(1.3); fill: var(--couleur-erreur); stroke: transparent; }
+  100% { transform: scale(1); fill: transparent; stroke: var(--couleur-texte-3); }
+}
+/* Panneau des règles */
+.ms-regles { text-align: center; padding: var(--sp-2) var(--sp-2) 0; }
+.ms-regles-coeurs { display: flex; justify-content: center; gap: var(--sp-2); }
+.ms-regles-coeurs .ms-coeur { width: 32px; height: 32px; animation: pop .4s cubic-bezier(.3, 1.6, .5, 1) both; }
+.ms-regles-coeurs .ms-coeur:nth-child(2) { animation-delay: .1s; }
+.ms-regles-coeurs .ms-coeur:nth-child(3) { animation-delay: .2s; }
+.ms-regles h2 { font-size: var(--fs-titre); margin: var(--sp-3) 0 var(--sp-2); }
+.ms-regles p { color: var(--couleur-texte-2); font-size: var(--fs-sec); margin: 0 0 var(--sp-2); line-height: 1.4; }
 .ms-apprentissage { font-size: var(--fs-micro); color: var(--couleur-texte-3); padding: .35rem .6rem; border-radius: var(--rayon-bouton); background: var(--couleur-surface-1); }
 
 /* ══ MON CHEMIN : TROIS ÉTATS D'UNITÉ (spec 27) ═══════════════════════════════

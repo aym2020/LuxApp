@@ -37,6 +37,7 @@ with sync_playwright() as p:
     pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL)
     pg.wait_for_selector('#today')
+    pg.evaluate("(p => { p.guide = { vies: 1 }; saveProgress(p); })(getProgress())")  # règles des vies déjà vues (spec 34)
     pg.evaluate("choisirNiveau('A1.1'); marquerIntroMissionVue(1); saveUnitBest(1, 1, 100); saveUnitBest(1, 2, 100); goLessons()")
 
     # Unités 1 et 2 terminées → unité 3 recommandée

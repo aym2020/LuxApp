@@ -79,7 +79,7 @@ function etapesFaites(l) {
 // Leçon terminée (acquise pour le parcours) : toutes ses étapes faites, ou
 // mission réussie (raccourci, spec 32), ou terminée avant la spec 32.
 function leconTerminee(l) {
-  if (isParcoursLecon(l) && l.mission && l.scene && (missionReussie(l) || leconTermineeAvantSpec32(l))) return true;
+  if (isParcoursLecon(l) && l.mission && l.scene && (leconAcquiseParMission(l) || leconTermineeAvantSpec32(l))) return true;
   return etapesFaites(l) >= etapesLecon(l);
 }
 

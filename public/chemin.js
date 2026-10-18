@@ -101,7 +101,7 @@ function resultatLeconHtml(l) {
   if (acquisV1(l) && resumeLecon(l).done === 0) return '<span class="acquise">Acquise</span>';
   // Validée par la mission avant la fin des unités (spec 32) : pas d'étoiles inventées.
   const r = isParcoursLecon(l) ? resumeLecon(l) : null;
-  if (r && missionReussie(l) && r.done < r.total) return '<span class="validee">Validée par la mission</span>';
+  if (r && leconAcquiseParMission(l) && r.done < r.total) return '<span class="validee">Validée par la mission</span>';
   if (isParcoursLecon(l)) {
     if (leconSansFaute(l)) return '<span class="sans-faute">Sans faute</span>';
     return '<span class="etoiles">' + etoilesHtml(resumeLecon(l).stars) + '</span>';
