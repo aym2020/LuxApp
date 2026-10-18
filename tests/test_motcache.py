@@ -99,6 +99,46 @@ with sync_playwright() as p:
         assert pg.locator('#mc-btn-reconstruire').count() == 0
         ok('mot déjà vu : pas de découverte, reconstruction directe')
 
+    # 7. Spec 21 : chaque tuile a son identité (mot de test « Eet ëtt » : E/e, ë, trois t)
+    pg.evaluate("""() => {
+        const carte = { id: 990001, fr: 'Test', lu: 'Eet ëtt', unite: 1 };
+        startUnite(1, 'unite');
+        renderMotCache(carte);
+        if (document.getElementById('mc-btn-reconstruire')) renderReconstruction();
+        // Tuiles fixées pour le test (pas d'intruse, ordre connu)
+        mc.tuiles = ['t', 'E', 'ë', 't', 'e', 't'].map(ch => ({ ch })); mc.choix = []; renderCases();
+    }""")
+    def tuiles_utilisees():
+        return pg.evaluate("[...document.querySelectorAll('#mc-lettres .mc-tuile')].map(b => b.classList.contains('utilisee'))")
+    def cases():
+        return pg.evaluate("[...document.querySelectorAll('#mc-cases .mc-case')].map(c => c.textContent)")
+    pg.tap('[data-tuile="1"]')            # E
+    pg.tap('[data-tuile="4"]')            # e
+    assert tuiles_utilisees() == [False, True, False, False, True, False], tuiles_utilisees()
+    assert cases()[:2] == ['E', 'e'], cases()
+    ok('E puis e : exactement ces deux tuiles, casse conservée')
+    pg.tap('[data-tuile="3"]')            # le 2e « t », pas le 1er
+    assert tuiles_utilisees() == [False, True, False, True, True, False], tuiles_utilisees()
+    ok('2e « t » touché : seule cette tuile est prise, les autres « t » restent libres')
+    pg.tap('[data-tuile="2"]')            # ë
+    assert cases()[3] == 'ë', cases()
+    ok('lettre accentuée : « ë » posé tel quel')
+    pg.tap('#mc-btn-effacer')
+    assert tuiles_utilisees() == [False, True, False, True, True, False] and cases()[3] == '', (tuiles_utilisees(), cases())
+    ok('⌫ libère exactement la dernière tuile touchée (ë)')
+    pg.evaluate("Math.random = () => 0.99")  # l'indice révèle la dernière case libre (un « t »)
+    pg.tap('#mc-btn-indice')
+    assert pg.locator('#mc-lettres .mc-tuile').count() == 5 and cases()[:3] == ['E', 'e', 't'], cases()
+    ok('indice : une tuile « t » libre disparaît, les lettres posées restent')
+    # Nouvelle tentative : réponse fausse → lettres vertes gardées, nouvelles tuiles, aucune tuile prise
+    for k in reversed(pg.evaluate("[...document.querySelectorAll('#mc-lettres .mc-tuile:not(.utilisee)')].map(b => b.dataset.tuile)")):  # ordre inversé = faux
+        pg.tap('[data-tuile="%s"]' % k)
+    pg.tap('#mc-btn-valider')
+    assert not pg.evaluate('pAttente'), 'la réponse dans le désordre devait être fausse'
+    assert pg.evaluate('mc.choix.length') == 0 and not any(tuiles_utilisees())
+    assert pg.locator('.mc-case.vert').count() >= 3
+    ok('nouvelle tentative : lettres justes en vert, tuiles renouvelées, aucune déjà prise')
+
     print('\nErreurs JavaScript :', errs or 'aucune')
     assert not errs
     b.close()

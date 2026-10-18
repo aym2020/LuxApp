@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 1.1 | 2026-10-18 | Police des lettres isolées `--police-lettres` (Atkinson Hyperlegible, hébergée dans `public/fonts/`), composant `.cta-fixe` (résultats, introduction d'unité) — spec 21 |
 | 1.0 | 2026-10-18 | Tokens centralisés (`design-tokens.css`), composants partagés (`components.css`), catalogue, écran de leçon aligné sur « Mon chemin » (spec 19) |
 
 ## 1. Trois niveaux
@@ -24,7 +25,7 @@ Ordre de chargement : `design-tokens.css` → `components.css` → `style.css`. 
 - **Or = l'action.** Le jaune `--couleur-action` désigne l'action principale de l'écran et la prochaine étape. Une seule action principale visible à la fois.
 - **Couleur de la leçon (`--lc`, dans les JSON) = l'appartenance.** Étiquettes « LEÇON 3 », « UNITÉ 2 », liseré ou teinte légère. Jamais pour une action.
 - États : vert = réussi / terminé ; rouge = erreur ; turquoise = révision ; bleu = examens, information, mission.
-- Polices : **Inter** pour l'interface ; **Instrument Serif** pour les mots et phrases luxembourgeoises courtes et les titres narratifs (au-delà de 40 caractères, Inter : classe `.texte-long`).
+- Polices : **Inter** pour l'interface ; **Instrument Serif** pour les mots et phrases luxembourgeoises courtes et les titres narratifs (au-delà de 40 caractères, Inter : classe `.texte-long`) ; **Atkinson Hyperlegible** (`--police-lettres`) pour les lettres isolées du mot caché (tuiles, cases), où I, l, i, 1, O et 0 doivent se distinguer d'un coup d'œil.
 - Cartes arrondies (`--rayon-carte` 20 px), bordures discrètes (`--couleur-bord-1`), animations courtes, coupées par `prefers-reduced-motion`.
 
 ## 3. Tokens principaux
@@ -59,6 +60,7 @@ Les anciens noms (`--accent`, `--bg`, `--muted`…) restent comme **alias** dans
 | Étiquettes | `.pc-mini-label`, `.etiquette(.or)` | |
 | Badges et pastilles | `.badge(.fait)`, `.pastille(.v/.o)`, `.lecon-pill` | |
 | Retour d'exercice | `.pc-feedback(.ok/.ko)` | une seule action : « Continuer » |
+| Bandeau d'action fixe | `.cta-fixe` | porte l'action principale en bas de l'écran (zone de sécurité comprise) ; le contenu garde 96 px de marge en bas |
 
 ## 5. Règles d'interface
 

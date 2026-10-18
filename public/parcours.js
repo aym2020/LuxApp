@@ -456,10 +456,12 @@ function openIntro(uniteId) {
       '</div>';
   }
 
-  html += '<div class="pi-bas"><div class="pi-duree">4 étapes · environ ' + minutes + ' min</div>' +
-    '<button class="pc-btn primary wide big" onclick="startUnite(' + u.id + ')">Commencer</button></div>';
+  html += '<div class="pi-bas"><div class="pi-duree">4 étapes · environ ' + minutes + ' min</div></div>';
 
   document.getElementById('pi-content').innerHTML = html;
+  // L'action principale, toujours visible en bas (spec 21).
+  document.getElementById('pi-cta').innerHTML =
+    '<button class="pc-btn primary wide big" id="pi-commencer" onclick="startUnite(' + u.id + ')">Commencer →</button>';
   showView('view-pintro');
 }
 
@@ -743,6 +745,7 @@ function renderReconstruction() {
   const card = mc.card;
   const nbLettres = mc.cases.filter(c => c.lettre).length;
   mc.tuiles = nouvellesTuiles();
+  mc.choix = [];
 
   // Une zone de saisie invisible est posée sur les cases. inputmode="none" :
   // le clavier du téléphone ne s'ouvre pas, on touche les lettres proposées.
@@ -809,15 +812,31 @@ function nouvellesTuiles() {
   return melanger(tuiles);
 }
 
-// Quelles lettres proposées sont déjà posées dans les cases ?
-// Chaque lettre tapée « utilise » la première lettre proposée identique.
+// ─── TUILES : CHAQUE TUILE A SON IDENTITÉ (spec 21) ──────────────────────────
+// mc.choix = les numéros des tuiles touchées, dans l'ordre. Toucher une tuile
+// utilise exactement CETTE tuile (deux « t » restent deux tuiles distinctes ;
+// « E » et « e » aussi). ⌫ libère la dernière tuile touchée.
+// mc.tuiles[k].retiree = true : tuile retirée par un indice (plus affichée).
 function tuilesUtilisees() {
-  const utilisees = mc.tuiles.map(() => false);
-  mcLettresTapees().forEach(lettre => {
-    const k = mc.tuiles.findIndex((t, i) => !utilisees[i] && normalize(t.ch) === normalize(lettre));
-    if (k !== -1) utilisees[k] = true;
-  });
+  const utilisees = mc.tuiles.map(t => !!t.retiree);
+  mc.choix.forEach(k => { utilisees[k] = true; });
   return utilisees;
+}
+
+// Le champ invisible reflète les lettres posées (pour un clavier physique).
+function mcSynchroniserChamp() {
+  const input = document.getElementById('mc-input');
+  const valeur = mcLettresTapees().join('');
+  if (input && input.value !== valeur) input.value = valeur;
+}
+
+// Clavier physique : une lettre tapée prend une tuile libre de la même lettre
+// (exactement la même d'abord, sinon sans tenir compte de la casse et des accents).
+function tuilePourLettre(lettre) {
+  const libres = tuilesUtilisees();
+  let k = mc.tuiles.findIndex((t, i) => !libres[i] && t.ch === lettre);
+  if (k === -1) k = mc.tuiles.findIndex((t, i) => !libres[i] && normalize(t.ch) === normalize(lettre));
+  return k;
 }
 
 function renderTuiles() {
@@ -827,30 +846,34 @@ function renderTuiles() {
   const fini = !input || input.disabled;
   const utilisees = tuilesUtilisees();
   box.innerHTML = fini ? '' : mc.tuiles.map((t, i) =>
-    '<button class="mc-tuile' + (utilisees[i] ? ' utilisee' : '') + '"' + (utilisees[i] ? ' disabled' : '') +
+    t.retiree ? '' :
+    '<button class="mc-tuile' + (utilisees[i] ? ' utilisee' : '') + '" data-tuile="' + i + '"' + (utilisees[i] ? ' disabled' : '') +
       ' onclick="mcPoserLettre(' + i + ')">' + escHtml(t.ch) + '</button>').join('');
 }
 
-// Toucher une lettre : elle va dans la première case vide.
+// Toucher une tuile : cette tuile-là va dans la première case vide.
 function mcPoserLettre(i) {
   if (pAttente) return;
   const input = document.getElementById('mc-input');
   if (!input || input.disabled || tuilesUtilisees()[i]) return;
-  input.value = mcLettresTapees().join('') + mc.tuiles[i].ch;
-  mcSaisie();
-}
-
-// ⌫ : retire la dernière lettre posée.
-function mcEffacer() {
-  const input = document.getElementById('mc-input');
-  if (!input || input.disabled) return;
-  input.value = mcLettresTapees().slice(0, -1).join('');
+  if (mc.choix.length >= mcCasesLettres().libres.length) return; // toutes les cases sont remplies
+  mc.choix.push(i);
+  mcSynchroniserChamp();
   renderCases();
 }
 
-// Les lettres tapées (espaces et ponctuation retirés : ils sont déjà affichés).
+// ⌫ : libère la dernière tuile touchée.
+function mcEffacer() {
+  const input = document.getElementById('mc-input');
+  if (!input || input.disabled) return;
+  mc.choix.pop();
+  mcSynchroniserChamp();
+  renderCases();
+}
+
+// Les lettres posées, dans l'ordre (avec leur casse et leurs accents).
 function mcLettresTapees() {
-  return document.getElementById('mc-input').value.split('').filter(estLettre);
+  return (mc.choix || []).map(k => mc.tuiles[k].ch);
 }
 
 // Index des cases-lettres, et de celles encore à remplir (ni vertes, ni indices).
@@ -886,10 +909,26 @@ function mcSaisie() {
     else mcValider();
     return;
   }
-  const max = mcCasesLettres().toutes.length;
-  const propre = mcLettresTapees().slice(0, max).join('');
-  // On ne réécrit le champ que si besoin (sinon le clavier perd sa saisie en cours).
-  if (input.value !== propre) input.value = propre;
+  // Clavier physique : lettres effacées → tuiles libérées ; lettres ajoutées →
+  // une tuile libre correspondante chacune (sinon la lettre est ignorée).
+  let tapees = input.value.split('').filter(estLettre);
+  // Mot entier tapé ou collé (ordinateur) alors que des cases sont déjà vertes :
+  // on garde seulement les lettres des cases encore vides.
+  const { toutes, libres } = mcCasesLettres();
+  if (tapees.length === toutes.length && toutes.length > libres.length) {
+    tapees = libres.map(i => tapees[toutes.indexOf(i)]);
+  }
+  const avant = mcLettresTapees();
+  let commun = 0;
+  while (commun < tapees.length && commun < avant.length && tapees[commun] === avant[commun]) commun++;
+  mc.choix = mc.choix.slice(0, commun);
+  const max = libres.length;
+  tapees.slice(commun).forEach(lettre => {
+    if (mc.choix.length >= max) return;
+    const k = tuilePourLettre(lettre);
+    if (k !== -1) mc.choix.push(k);
+  });
+  mcSynchroniserChamp();
   renderCases();
 }
 
@@ -954,17 +993,18 @@ function mcIndice() {
   if (!libres.length) return;
 
   const i = libres[Math.floor(Math.random() * libres.length)];
-  // Si une lettre était déjà tapée dans cette case, on la retire du champ :
-  // les autres lettres tapées restent dans leur case.
-  const lettres = mcLettresTapees();
-  if (lettres.length <= libres.length) {
-    const position = libres.indexOf(i);
-    if (position < lettres.length) lettres.splice(position, 1);
-    input.value = lettres.join('');
-  }
+  // La tuile posée dans cette case (s'il y en a une) est libérée ; les autres
+  // lettres posées restent dans leur case.
+  const position = libres.indexOf(i);
+  if (position < mc.choix.length) mc.choix.splice(position, 1);
   mc.cases[i].etat = 'indice';
   mc.indices++;
-  mc.tuiles = nouvellesTuiles();
+  // La lettre révélée n'est plus à poser : une tuile libre de cette lettre disparaît.
+  const utilisees = tuilesUtilisees();
+  let k = mc.tuiles.findIndex((t, j) => !utilisees[j] && t.ch === mc.cases[i].ch);
+  if (k === -1) k = mc.tuiles.findIndex((t, j) => !utilisees[j] && normalize(t.ch) === normalize(mc.cases[i].ch));
+  if (k !== -1) mc.tuiles[k].retiree = true;
+  mcSynchroniserChamp();
   renderCases();
   mcMajScore();
   document.getElementById('mc-legende').classList.remove('hidden');
@@ -992,6 +1032,7 @@ function mcValider() {
   if (normalize(val) === normalize(motATaper(pLecon, card))) {
     mc.cases.forEach(c => { if (c.lettre) c.etat = 'vert'; });
     input.value = '';
+    mc.choix = []; // les lettres sont maintenant dans les cases vertes
     input.disabled = true;
     renderCases();
     mcMajFocus();
@@ -1013,6 +1054,7 @@ function mcValider() {
     }
   });
   input.value = '';
+  mc.choix = [];
   mc.tuiles = nouvellesTuiles();
   renderCases();
   document.getElementById('mc-legende').classList.remove('hidden');
@@ -1046,6 +1088,7 @@ function mcVoirReponse() {
   mc.cases.forEach(c => { if (c.lettre && c.etat === '') c.etat = 'indice'; });
   const input = document.getElementById('mc-input');
   input.value = '';
+  mc.choix = [];
   input.disabled = true;
   renderCases();
   mcMajFocus();

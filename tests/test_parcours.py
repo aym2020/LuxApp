@@ -103,7 +103,7 @@ with sync_playwright() as p:
     page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')
     assert actif(page, 'view-pintro')
     page.screenshot(path=OUT + '03-intro.png')
-    page.click('#pi-content button:has-text("Commencer")')
+    page.click('#pi-commencer')
     assert actif(page, 'view-parcours')
     ok('leçon 2 : liste des unités puis écran « Avant de commencer »')
 
@@ -132,9 +132,11 @@ with sync_playwright() as p:
 
     # Barre d'espace dans le champ (bug corrigé des raccourcis cartes)
     page.click('#mc-mot')
-    page.keyboard.type('a b')
-    # On tape dans les cases : l'espace est accepté sans déclencher de raccourci, puis retiré.
-    assert page.input_value('#mc-input') == 'ab', page.input_value('#mc-input')
+    # Clavier physique : deux lettres présentes dans les tuiles, séparées d'un espace (spec 21).
+    l1, l2 = page.evaluate("mc.tuiles.filter((t, i) => !tuilesUtilisees()[i]).slice(0, 2).map(t => t.ch)")
+    page.keyboard.type(l1 + ' ' + l2)
+    # L'espace est accepté sans déclencher de raccourci, puis retiré.
+    assert page.input_value('#mc-input') == l1 + l2, page.input_value('#mc-input')
     assert page.locator('.mc-case.tapee').count() == 2
     page.keyboard.press('Backspace')
     assert page.locator('.mc-case.tapee').count() == 1
@@ -162,7 +164,12 @@ with sync_playwright() as p:
     it2 = item_courant(page)['item']
     for _ in range(3):
         page.locator('#mc-btn-reconstruire').count() and page.click('#mc-btn-reconstruire')  # mot nouveau : découverte d'abord
-        page.fill('#mc-input', 'zzz')
+        # Réponse fausse avec les vraies tuiles : intruses d'abord, dans le désordre (spec 21)
+        page.evaluate("""() => {
+            const n = mcCasesLettres().libres.length;
+            const ordre = mc.tuiles.map((t, i) => i).filter(i => !mc.tuiles[i].retiree).reverse();
+            mc.choix = ordre.slice(0, n); mcSynchroniserChamp(); renderCases();
+        }""")
         page.click('#mc-btn-valider')
     assert page.is_visible('#mc-btn-voir')
     page.click('#mc-btn-voir')
@@ -203,7 +210,7 @@ with sync_playwright() as p:
     # 8. Unité 2 : 3 réponses, quitter, reprendre après rechargement
     page.click('text=Retour à la leçon')
     page.click('.pl-unit:has-text("UNITÉ 2") button:has-text("Commencer")')
-    page.click('#pi-content button:has-text("Commencer")')
+    page.click('#pi-commencer')
     for _ in range(3):
         repondre(page, True)
     avant = page.evaluate('[run.stepIdx, run.steps[run.stepIdx].queue.length]')
@@ -243,7 +250,7 @@ with sync_playwright() as p:
         page.evaluate("t => ouvrirLeconDepuisListe(lecons.find(l => l.titre === t).id)", titre)
         # 1re découverte : « J'ai compris · Commencer » mène à l'unité 1
         page.click('#msi-content button:has-text("J\'ai compris")')
-        page.click('#pi-content button:has-text("Commencer")')
+        page.click('#pi-commencer')
         repondre(page, True)
         page.click('#view-parcours .pc-icon-btn')
         page.evaluate('clearRun()')

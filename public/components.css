@@ -14,6 +14,8 @@
      .pc-icon-btn       bouton icône 44 × 44
      .pc-cours-btn      pilule « Cours » des barres du haut
      .back-btn          « ← écran précédent »
+     .cta-fixe          bandeau fixe en bas portant L'action principale (résultats,
+                        introduction d'unité) ; le contenu garde 96 px de marge en bas
    Étiquettes et badges
      .pc-mini-label .etiquette(.or) .badge(.fait) .pastille(.v/.o) .lecon-pill
    ═════════════════════════════════════════════════════════════════════════════ */
@@ -86,3 +88,13 @@
 .pastille i { width: 8px; height: 8px; border-radius: 50%; }
 .pastille.v { background: var(--vert-fond); color: var(--correct); } .pastille.v i { background: var(--correct); }
 .pastille.o { background: var(--or-fond); color: var(--accent); } .pastille.o i { background: var(--accent); }
+
+/* Bandeau fixe en bas : l'action principale toujours visible (zone de sécurité comprise) */
+.cta-fixe {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  max-width: 720px; margin: 0 auto;
+  padding: .7rem 1.25rem calc(.8rem + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--couleur-fond) 70%, transparent);
+}
+.cta-fixe:empty { display: none; }
+.view:not(.active) .cta-fixe { display: none; }

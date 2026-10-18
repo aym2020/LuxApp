@@ -868,7 +868,7 @@ body.no-scroll { overflow: hidden; }
 .pl-bilan.locked { opacity: .65; }
 
 /* Écran "Avant de commencer" */
-.pi-content { padding: .25rem 1.25rem 1.75rem; display: flex; flex-direction: column; gap: .5rem; min-height: calc(100dvh - 60px); }
+.pi-content { padding: .25rem 1.25rem calc(96px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: .5rem; }
 .pi-titre { font-family: var(--serif); font-weight: 400; font-size: 2.1rem; line-height: 1.1; margin-bottom: .6rem; }
 .pi-regle { background: rgba(245,207,77,.08); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; gap: .35rem; margin-bottom: .6rem; }
 .pi-regle-txt { font-size: 1.1rem; font-weight: 600; }
@@ -880,7 +880,7 @@ body.no-scroll { overflow: hidden; }
 .pi-mot span { font-size: var(--fs-sec); color: var(--muted); text-align: right; }
 .pi-phrases { display: flex; flex-direction: column; gap: .35rem; font-size: 1rem; }
 .pi-phrases span { color: var(--muted); }
-.pi-bas { margin-top: auto; padding-top: 1.5rem; display: flex; flex-direction: column; gap: .6rem; }
+.pi-bas { padding-top: 1rem; display: flex; flex-direction: column; gap: .6rem; }
 .pi-duree { font-size: var(--fs-sec); color: var(--muted); text-align: center; }
 
 /* Exercice */
@@ -1996,14 +1996,6 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .pf-score { font-family: var(--police); font-weight: 800; font-size: 3rem; letter-spacing: -.02em; }
 .pf-boutons { margin-top: .2rem; }
 .pf-bar > div { transform-origin: left; animation: remplit .6s ease-out .25s both; } /* les barres se remplissent */
-.pf-cta {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
-  max-width: 720px; margin: 0 auto;
-  padding: .7rem 1.25rem calc(.8rem + env(safe-area-inset-bottom));
-  background: linear-gradient(to top, var(--couleur-fond) 70%, transparent);
-}
-.pf-cta:empty { display: none; }
-#view-pfin:not(.active) .pf-cta { display: none; }
 /* « Ta mission avance » : les bulles de la messagerie, avec le nom de qui parle */
 .ms-debloque { background: var(--couleur-surface-1); border-color: var(--couleur-bord-1); gap: .5rem; }
 .ms-debloque .ms-bulle b {
@@ -2012,3 +2004,8 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 }
 .ms-debloque .ms-bulle.toi b { color: #5c4620; }
 .ms-debloque .ms-bulle b .ic { width: 13px; height: 13px; stroke: currentColor; stroke-width: 3; }
+
+/* ══ MOT CACHÉ : LETTRES LISIBLES (spec 21) ══════════════════════════════════
+   Tuiles et cases : police où I, l, i, 1, O et 0 se distinguent au premier coup d'œil. */
+.mc-case, .mc-tuile { font-family: var(--police-lettres); }
+.mc-tuile { font-weight: 700; font-size: 1.4rem; }

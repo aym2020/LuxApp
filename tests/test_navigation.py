@@ -43,7 +43,7 @@ with sync_playwright() as p:
     pg.click('#chemin-lecon-1 .carte-lecon'); pg.wait_for_timeout(400)
     pg.click('#chemin-u-1-2 button')
     assert actif(pg, 'view-pintro') and 'Mon chemin' in pg.inner_text('#view-pintro [data-retour]')
-    pg.click('#pi-content .pc-btn.primary')
+    pg.click('#pi-commencer')
     assert actif(pg, 'view-parcours')
     cible = pg.evaluate("motATaper(pLecon, trouverItem(pLecon,'flashcards', run.steps[run.stepIdx].queue[0]))")
     pg.locator('#mc-btn-reconstruire').count() and pg.click('#mc-btn-reconstruire')
@@ -62,7 +62,7 @@ with sync_playwright() as p:
     # 6. Depuis la liste des unités
     pg.click('#chemin-lecon-1 .lien-or')
     assert actif(pg, 'view-plecon') and 'Mon chemin' in pg.inner_text('#view-plecon [data-retour]')
-    pg.evaluate("openIntro(3)"); pg.click('#pi-content .pc-btn.primary')
+    pg.evaluate("openIntro(3)"); pg.click('#pi-commencer')
     pg.go_back(); pg.wait_for_timeout(300)
     assert actif(pg, 'view-plecon'), 'retour Android depuis l\'exercice'
     top = rect(pg, '#pl-unite-3')['top']

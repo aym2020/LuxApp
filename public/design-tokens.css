@@ -13,6 +13,10 @@
      bleu          = examens, information, mission
      couleur de la leçon (--lc, dans les JSON) = appartenance à une leçon
    ═════════════════════════════════════════════════════════════════════════════ */
+/* Police des lettres isolées (mot caché), hébergée avec l'app (licence SIL OFL 1.1) */
+@font-face { font-family: 'Atkinson Hyperlegible'; font-weight: 400; font-display: swap; src: url('fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Atkinson Hyperlegible'; font-weight: 700; font-display: swap; src: url('fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2'); }
+
 :root {
   /* ── Fonds et surfaces (du plus sombre au plus clair) ── */
   --couleur-fond: #0f0e0c;
@@ -59,6 +63,7 @@
   --police: 'Inter', system-ui, sans-serif;              /* interface et lecture */
   --police-titre: 'Inter', system-ui, sans-serif;
   --police-serif: 'Instrument Serif', serif;             /* mots, phrases courtes, titres narratifs */
+  --police-lettres: 'Atkinson Hyperlegible', 'Inter', sans-serif; /* lettres isolées : I l i 1 O 0 bien distincts */
 
   /* ── Tailles de texte : une par rôle ── */
   --fs-micro: .75rem;      /* 12 px : information très secondaire (compteur, étiquette) */

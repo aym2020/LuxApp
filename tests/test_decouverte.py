@@ -80,7 +80,7 @@ with sync_playwright() as p:
     ok('Chemin → unité 2 → Retour : chemin')
 
     # Apprentissage réel : une réponse → « Commencer » / « Reprendre »
-    pg.click('#chemin-u-1-1 button'); pg.click('#pi-content .pc-btn.primary')
+    pg.click('#chemin-u-1-1 button'); pg.click('#pi-commencer')
     pg.locator('#mc-btn-reconstruire').count() and pg.click('#mc-btn-reconstruire')
     pg.fill('#mc-input', pg.evaluate("motATaper(pLecon, trouverItem(pLecon,'flashcards', run.steps[run.stepIdx].queue[0]))"))
     pg.click('#mc-btn-valider'); pg.click('#pc-continuer')

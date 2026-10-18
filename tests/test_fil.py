@@ -123,7 +123,7 @@ with sync_playwright() as p:
     ok('intro : la phrase de l\'unité, puis « Voir les 14 mots supplémentaires » replié')
 
     # ── 3. Unité 1 : seulement le cœur ──
-    page.click('#pi-content button:has-text("Commencer")')
+    page.click('#pi-commencer')
     total = page.evaluate('run.steps.reduce((a, s) => a + s.total, 0)')
     attendu = page.evaluate("nbItems(pLecon, 1, 'coeur')")
     assert total == attendu and total < 40, (total, attendu)
@@ -155,7 +155,7 @@ with sync_playwright() as p:
     # ── 5. Unités 2 et 3, puis la mission conseillée ──
     for u in (2, 3):
         page.click('.pl-unit:has-text("UNITÉ %d") button:has-text("Commencer")' % u)
-        page.click('#pi-content button:has-text("Commencer")')
+        page.click('#pi-commencer')
         finir_partie(page)
         if u == 2:
             page.click('#view-pfin button:has-text("Retour à la leçon")')
@@ -237,7 +237,7 @@ with sync_playwright() as p:
         page.screenshot(path=OUT + 'c11-lecon%d.png' % lid, full_page=True)
         page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')
         page.screenshot(path=OUT + 'c12-intro%d.png' % lid, full_page=True)
-        page.click('#pi-content button:has-text("Commencer")')
+        page.click('#pi-commencer')
         finir_partie(page)
         assert actif(page, 'view-pfin')
     ok('leçons 2 et 22 : unité 1 jouée de bout en bout')
