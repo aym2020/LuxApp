@@ -1,8 +1,8 @@
 # LuxApp — Registre des spécifications
 
-Ce répertoire centralise les **35 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+Ce répertoire centralise les **38 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
-> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; la fiche 35 formalise la cohérence du bouton « Continuer », la barre de défilement et les messages de mission. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
+> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; les fiches 35 à 37 sont implémentées (recette à confirmer) ; la fiche 38 décrit le correctif d'historique après confirmation de l'introduction et rattrapage des erreurs. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
 ## Statuts
 
@@ -52,6 +52,7 @@ Ce répertoire centralise les **35 spécifications** fonctionnelles et UX du pro
 | 35 | [Missions : bouton Continuer, ascenseur sombre et retours compréhensibles](./SPEC-35.md) | P1 | Implémentée — validation à confirmer |
 | 36 | [Règles des vies à chaque lancement de mission, avec « Ne plus afficher »](./SPEC-36.md) | P1 | Implémentée — validation à confirmer |
 | 37 | [Boutons « Continuer » verts : plus d'anneau jaune après Entrée](./SPEC-37.md) | P1 | Implémentée — validation à confirmer |
+| 38 | [Retour après une leçon commencée : ne pas rouvrir l'introduction](./SPEC-38.md) | P0 | À faire |
 
 ## Gestion des changements
 

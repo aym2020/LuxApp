@@ -10,6 +10,8 @@
 > **Traçabilité :** Synthèse structurée des specs validées en conversation, rapprochée des modules existants.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
+> **Correctif à implémenter :** la [SPEC 38](./SPEC-38.md) précise que l'introduction initiale d'une leçon déjà confirmée ne doit plus figurer comme destination de Retour, notamment après « Refaire mes erreurs ».
+
 ## Exigences
 
 - Le Retour (interface et bouton Android) restaure l'écran réellement précédent, la leçon ouverte et le scroll.

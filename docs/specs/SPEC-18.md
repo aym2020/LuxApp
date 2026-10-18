@@ -10,6 +10,8 @@
 > **Traçabilité :** Synthèse structurée des specs validées en conversation, rapprochée des modules existants.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
+> **Précision de navigation :** la [SPEC 38](./SPEC-38.md) conserve le retour à l'introduction tant que l'utilisateur ne fait qu'explorer, mais supprime cette destination périmée après confirmation ou lancement effectif des exercices.
+
 ## Exigences
 
 - « Voir les unités » et « Tente ta chance » depuis l'introduction n'enregistrent pas à eux seuls un apprentissage commencé.
