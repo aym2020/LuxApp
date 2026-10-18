@@ -103,7 +103,7 @@
   <script>
     // Nuancier : lu directement dans design-tokens.css (toujours à jour).
     const noms = ['fond', 'surface-1', 'surface-2', 'bord-1', 'bord-2', 'bord-3', 'texte', 'texte-2', 'texte-3',
-      'action', 'action-2', 'reussi', 'erreur', 'info', 'violet', 'orange', 'turquoise', 'vert-plein', 'or-fond', 'bleu-fond'];
+      'action', 'action-2', 'reussi', 'erreur', 'info', 'violet', 'orange', 'turquoise', 'acquis', 'acquis-fond', 'vert-plein', 'or-fond', 'bleu-fond'];
     const style = getComputedStyle(document.documentElement);
     document.getElementById('nuancier').innerHTML = noms.map(n => {
       const v = style.getPropertyValue('--couleur-' + n).trim();

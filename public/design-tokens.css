@@ -5,13 +5,15 @@
    documente dans docs/DESIGN_SYSTEM.md.
    Ordre de chargement : design-tokens.css → components.css → style.css.
 
-   Rôle des couleurs :
-     or (action)   = l'action principale de l'écran, la prochaine étape
-     vert          = réussi, terminé
-     rouge         = erreur
-     turquoise     = révision, progression
-     bleu          = examens, information, mission
-     couleur de la leçon (--lc, dans les JSON) = appartenance à une leçon
+   Rôle des couleurs (spec 48, valable sur tous les écrans) :
+     or (action)   = action principale, étape recommandée, activité en cours
+     vert          = réussite ou validation effectivement obtenue
+     gris neutre   = non commencé, secondaire, informatif
+     gris bleuté   = acquis historique (« Acquise précédemment »)
+     turquoise     = révision, répétition espacée
+     rouge         = erreur, échec, alerte
+     bleu          = information, examens (jamais un état de progression)
+     La couleur propre à une leçon (--lc, dans les JSON) ne colore plus l'interface.
    ═════════════════════════════════════════════════════════════════════════════ */
 /* Police des lettres isolées (mot caché), hébergée avec l'app (licence SIL OFL 1.1) */
 @font-face { font-family: 'Atkinson Hyperlegible'; font-weight: 400; font-display: swap; src: url('fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2'); }
@@ -58,6 +60,9 @@
   --couleur-or-bord: #6b5a22;
   --couleur-bleu-fond: #172235;
   --couleur-bleu-bord: #34507d;
+  --couleur-acquis: #9aabbd;      /* gris bleuté : acquis historique (spec 48) */
+  --couleur-acquis-fond: #1b2027;
+  --couleur-acquis-bord: #3b4756;
 
   /* ── Polices ── */
   --police: 'Inter', system-ui, sans-serif;              /* interface et lecture */
