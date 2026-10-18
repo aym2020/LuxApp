@@ -9,7 +9,7 @@ import time
 import urllib.error
 import urllib.request
 from playwright.sync_api import sync_playwright
-from helpers import ok, vue, URL
+from helpers import ok, vue, URL, lecon_cadree
 
 RACINE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 PORT = 3457
@@ -150,11 +150,8 @@ try:
         assert vue(pg) == 'view-pfin' and pg.evaluate("pResultat.mode") == 'erreurs'
         pg.click('#pf-suite')
         pg.wait_for_timeout(500)
-        c = pg.evaluate("""() => { const e = document.getElementById('chemin-lecon-24').getBoundingClientRect();
-            return { vue: document.querySelector('.view.active').id, haut: e.top, bas: e.bottom, zone: basVisibleChemin(),
-                     ouvertes: document.querySelectorAll('#lecon-list .ouverte').length }; }""")
-        assert c['vue'] == 'view-lessons' and c['haut'] >= 0 and c['bas'] <= c['zone'] + 1 and c['ouvertes'] == 0, c
-        ok('rattrapage → « Mon chemin » : chemin principal, Leçon 25 visible et repliée')
+        lecon_cadree(pg, 24)
+        ok('rattrapage → « Mon chemin » : chemin principal, Leçon 25 seule dépliée et cadrée')
 
         # Isolation : rien vers le cloud ; « Quitter le test » efface la progression fictive
         assert not cloud, cloud

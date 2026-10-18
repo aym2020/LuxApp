@@ -2,6 +2,7 @@ import os
 """Test de bout en bout du parcours v2, en format mobile (390x844)."""
 import json, sys
 from playwright.sync_api import sync_playwright
+from helpers import relancer
 from helpers import passer_delai
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
@@ -233,8 +234,7 @@ with sync_playwright() as p:
     page.click('#view-parcours .pc-icon-btn')
     assert page.locator('.pl-unit.en-cours').count() == 1
     page.screenshot(path=OUT + '10-lecon-en-cours.png')
-    page.reload()
-    page.wait_for_function('lecons.length > 0')
+    relancer(page)
     page.evaluate('goLessons()')
     assert page.inner_text('.pas.encours .btn-jaune').startswith('Reprendre'), page.inner_text('.pas.encours .btn-jaune')
     page.screenshot(path=OUT + '11-reprendre.png')

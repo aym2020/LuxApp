@@ -2,6 +2,7 @@
 et revenir à l'introduction. Bouton Retour de l'app et du téléphone. Téléphone simulé."""
 import os
 from playwright.sync_api import sync_playwright
+from helpers import relancer
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
 
@@ -58,7 +59,7 @@ with sync_playwright() as p:
     ok('Tente ta chance abandonnée → Retour : introduction, puis chemin ; toujours « Découvrir »')
 
     # Après rechargement : toujours « Découvrir »
-    pg.reload(); pg.wait_for_selector('#today'); pg.evaluate('goLessons()')
+    relancer(pg); pg.evaluate('goLessons()')
     assert cta(pg, 1) == 'Découvrir'
     ok('après rechargement : leçon seulement consultée → « Découvrir »')
 

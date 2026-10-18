@@ -3,7 +3,7 @@ revient au plus 2 fois dans l'étape puis part en révision ; réussie du premie
 coup à son rappel, elle sort tout de suite ; après « Refaire mes erreurs », le
 chemin s'ouvre centré sur la leçon."""
 from playwright.sync_api import sync_playwright
-from helpers import ok, vue, ouvrir, masquer_regles_vies, finir
+from helpers import ok, vue, ouvrir, masquer_regles_vies, finir, lecon_cadree
 
 L = 8
 
@@ -146,11 +146,9 @@ with sync_playwright() as p:
             pg.go_back()
         pg.wait_for_timeout(150)
         assert vue(pg) == 'view-lessons', vue(pg)
-        c = centree(pg, L)
-        assert c['y'] > 0 and abs(c['milieu'] - c['zone']) < 4 if c['bas'] - c['haut'] < 2 * c['zone'] - 24 else c['haut'] > 0, c
-        assert pg.locator('#chemin-lecon-%d.ouverte' % L).count() == 0 and pg.locator('#chemin-lecon-%d' % L).count() == 1
+        c = lecon_cadree(pg, L)  # spec 44 : leçon dépliée seule et cadrée
         ok('Refaire mes erreurs → ' + ('« Mon chemin »' if sortie == 'bouton' else 'Retour') +
-           ' : chemin principal, leçon %d repliée et centrée (défilement %d px)' % (L, c['y']))
+           ' : chemin principal, leçon %d seule dépliée et cadrée (défilement %d px)' % (L, c['y']))
 
     # Spec 41 : entrée par la fiche de leçon (liste des unités dans l'historique) → Retour : chemin quand même
     pg.evaluate("goLessons()")
@@ -162,8 +160,7 @@ with sync_playwright() as p:
     finir(pg)
     assert 'view-plecon' in pg.evaluate("pileNav.map(e => e.vue)")
     pg.go_back(); pg.wait_for_timeout(150)
-    assert vue(pg) == 'view-lessons' and pg.locator('#chemin-lecon-%d.ouverte' % L).count() == 0, vue(pg)
-    assert centree(pg, L)['visible']
+    lecon_cadree(pg, L)
     pg.go_back(); pg.wait_for_timeout(150)
     assert vue(pg) == 'view-dashboard', 'pas de rebond vers la liste des unités'
     ok('entrée par la fiche de leçon → Refaire mes erreurs → Retour : chemin principal (pas la liste des unités), puis accueil')

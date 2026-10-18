@@ -392,7 +392,7 @@ les problèmes secondaires au lieu de bloquer la livraison.
 
 | Fichier modifié | Tests à lancer |
 | --- | --- |
-| `navigation.js`, `accueil.js` (panneaux, retour) | `test_navigation`, `test_retours`, `test_retour_intro`, `test_decouverte` |
+| `navigation.js`, `accueil.js` (panneaux, retour) | `test_navigation`, `test_retours`, `test_retour_intro`, `test_decouverte`, `test_actualisation` |
 | `mission.js` | `test_mission_vies`, `test_mission_validation`, `test_retour_intro` (+ `test_missions_10` si scènes ou correction) |
 | `parcours.js` (unités, fin de partie, rappels des erreurs) | `test_parcours`, `test_rappels`, `test_libre`, `test_lot2` |
 | `parcours.js` (mot caché) | `test_motcache` |

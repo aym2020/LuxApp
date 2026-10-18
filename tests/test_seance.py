@@ -2,6 +2,7 @@
 import os
 import sys
 from playwright.sync_api import sync_playwright
+from helpers import relancer
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'captures') + '/'
@@ -92,8 +93,7 @@ with sync_playwright() as p:
     print('  ok   accueil : « Réviser · 7 / 20 à finir » · point = commencé')
 
     # Rechargement de la page (fermer l'appli) : toujours reprenable
-    page.reload()
-    page.wait_for_selector('#today')
+    relancer(page)
     assert '7 / 20' in tuile(page)
 
     page.click('.ac-btn.rev')

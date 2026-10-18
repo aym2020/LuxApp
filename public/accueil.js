@@ -268,6 +268,12 @@ function ouvrirPanneau(html, titre, apresFermeture) {
   document.body.append(voile, panneau);
 }
 
+// Ferme le panneau sans lancer sa suite (reprise après actualisation, spec 44).
+function fermerPanneauSansSuite() {
+  panneauApres = null;
+  fermerPanneau();
+}
+
 function fermerPanneau() {
   ['voile', 'panneau'].forEach(id => {
     const el = document.getElementById(id);

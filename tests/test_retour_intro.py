@@ -3,7 +3,7 @@ unité lancée, leçon validée par la mission), Retour n'y ramène plus.
 Régression exacte : leçon 20, unité avec une erreur, « Refaire mes erreurs »,
 puis Retour. Exploration (« Voir les unités », « Tente ta chance ») préservée."""
 from playwright.sync_api import sync_playwright
-from helpers import ok, vue as actif, item_courant, repondre, finir, masquer_regles_vies, ouvrir
+from helpers import relancer, ok, vue as actif, item_courant, repondre, finir, masquer_regles_vies, ouvrir
 
 L = 20
 
@@ -18,7 +18,7 @@ def libelle_retour(pg):
 
 def remise_a_zero(pg):
     pg.evaluate("localStorage.clear()")
-    pg.reload(); pg.wait_for_selector('#today')
+    relancer(pg)
     masquer_regles_vies(pg)
     pg.evaluate("choisirNiveau('A1.2'); goLessons()")
 

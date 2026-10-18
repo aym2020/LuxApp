@@ -102,3 +102,29 @@ def finir(pg, erreurs=0):
         else:
             repondre(pg, juste=True)
     return n
+
+
+def lecon_cadree(pg, lecon_id):
+    """Spec 44 : après « Refaire mes erreurs », la leçon est seule dépliée et
+    cadrée (entière si elle tient, sinon son début sous le haut de l'écran ;
+    en bas de page, elle peut être plus bas). Renvoie les mesures."""
+    r = pg.evaluate("""id => { const c = document.getElementById('chemin-lecon-' + id).getBoundingClientRect();
+        return { vue: document.querySelector('.view.active').id, haut: c.top, bas: c.bottom, zone: basVisibleChemin(), y: scrollY,
+                 max: document.documentElement.scrollHeight - innerHeight,
+                 ouvertes: [...document.querySelectorAll('#lecon-list .ouverte')].map(e => e.id) }; }""", lecon_id)
+    assert r['vue'] == 'view-lessons' and r['ouvertes'] == ['chemin-lecon-%d' % lecon_id], r
+    tient = r['bas'] - r['haut'] <= r['zone'] - 12
+    if tient:
+        assert r['haut'] >= 11 and r['bas'] <= r['zone'] + 1, r
+    else:
+        assert abs(r['haut'] - 12) < 2 or (r['y'] >= r['max'] - 1 and r['haut'] >= 11), r
+    return r
+
+
+def relancer(pg):
+    """Fermer puis rouvrir l'app (pas une simple actualisation, qui garde
+    l'écran depuis la spec 44) : on repart de l'accueil."""
+    pg.evaluate("""() => { window.removeEventListener('pagehide', sauverNavigation);
+        sauverNavigation = function () {}; sessionStorage.removeItem('luxNavigation'); }""")
+    pg.reload()
+    pg.wait_for_function("typeof navigationRestauree !== 'undefined' && navigationRestauree === true")

@@ -36,6 +36,7 @@ async function init() {
   setupTabs();
   setupCardInteraction(); // BUG 1 fix : remplace setupSwipe()
   setupKeyboard();
+  await restaurerNavigation(); // spec 44 : après une actualisation, le même écran
 }
 
 // ─── NIVEAU ─────────────────────────────────────────────────────────────────

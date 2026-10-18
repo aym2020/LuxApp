@@ -244,6 +244,23 @@ function openMission(tentative) {
   renderMission();
 }
 
+// Après une actualisation (spec 44) : la mission reprend où elle en était —
+// mêmes réponses validées, mêmes vies, essais en cours gardés (pas de vie en
+// moins pour une erreur déjà comptée). Pas de rappel des règles au retour.
+function reprendreMission(note) {
+  openMission(note.tentative);
+  fermerPanneauSansSuite();
+  Object.assign(ms, {
+    idx: note.idx || 0, essais: note.essais || 0, dernierEssai: note.dernierEssai || '',
+    resultats: Array.isArray(note.resultats) ? note.resultats : [],
+    vies: typeof note.vies === 'number' ? note.vies : VIES_MISSION, coquille: !!note.coquille
+  });
+  // Réplique déjà validée (on attendait « Continuer ») : on passe à la suivante.
+  if (ms.resultats[ms.idx]) { ms.idx++; ms.essais = 0; ms.dernierEssai = ''; ms.coquille = false; }
+  majVies(false);
+  renderMission();
+}
+
 // ─── RÈGLES DES VIES (specs 34 et 36) ───────────────────────────────────────
 // Montrées à chaque lancement de mission, sauf si l'utilisateur a coché
 // « Ne plus afficher » (mémorisé dans la progression, donc synchronisé).

@@ -3,6 +3,7 @@ inventer d'étoile ni de coche ; une mission seulement jouée ne suffit pas ;
 les acquis d'avant la mise à jour sont gardés."""
 import os
 from playwright.sync_api import sync_playwright
+from helpers import relancer
 
 URL = os.environ.get('LUX_URL', 'http://localhost:3456/')
 
@@ -99,8 +100,7 @@ with sync_playwright() as p:
     ok('historique : leçon terminée avec mission à 50 % reste terminée (même après une partie perdue) ; ancien « Sans faute » garde la leçon acquise sans rejouer, sans valider la nouvelle scène')
 
     # 4. Rechargement : tout est gardé
-    pg.reload()
-    pg.wait_for_selector('#today')
+    relancer(pg)
     pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
     assert pg.evaluate("leconTerminee(" + L1 + ") && getUnitBest(1, 4) == null && loadRun(true).uniteId === 4")
     ok('après rechargement : validation, unité 4 non faite et partie libre conservées')

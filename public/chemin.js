@@ -284,7 +284,7 @@ function montrerEtapeChemin(leconId, etape) {
 }
 
 // Chemin ouvert sur une leçon, sa carte centrée dans la zone visible (spec 40).
-// Carte plus haute que l'écran : son début en haut.
+// Carte plus haute que l'écran (leçon dépliée) : son début en haut, sous l'en-tête.
 function cadrerLeconChemin(leconId) {
   const el = document.getElementById('chemin-lecon-' + leconId);
   const vue = document.getElementById('view-lessons');
@@ -312,10 +312,11 @@ function centrerLeconChemin(leconId) {
   setTimeout(refaire, 400); // clavier refermé : la zone visible a changé
 }
 
-// Après « Refaire mes erreurs » : le chemin principal, leçon centrée et
-// repliée — sans liste des unités (spec 41, précise la spec 40).
+// Après « Refaire mes erreurs » : le chemin principal, avec la leçon travaillée
+// dépliée (seule) comme après un appui sur sa carte — unités, étoiles,
+// « Continuer » — puis cadrée (spec 44, remplace le repli des specs 40-41).
 function cheminSurLecon(leconId) {
-  cheminLeconOuverte = null;
+  cheminLeconOuverte = leconId;
   goLessons();
   centrerLeconChemin(leconId);
 }

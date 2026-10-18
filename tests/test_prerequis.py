@@ -2,7 +2,7 @@
 migration ; retours ciblés sur le mot en erreur ; aide vocabulaire fermée par
 défaut et sans pénalité ; chemin cadré sur la leçon après « Refaire mes erreurs »."""
 from playwright.sync_api import sync_playwright
-from helpers import ok, vue, ouvrir, masquer_regles_vies, finir
+from helpers import ok, vue, ouvrir, masquer_regles_vies, finir, lecon_cadree
 
 
 def ecrire(pg, texte):
@@ -97,14 +97,10 @@ with sync_playwright() as p:
     finir(pg)
     pg.click('#pf-suite')
     pg.wait_for_timeout(800)  # après rendu, polices et fermeture éventuelle du clavier
-    r = pg.evaluate("""() => { const c = document.getElementById('chemin-lecon-24').getBoundingClientRect();
-        return { haut: c.top, bas: c.bottom, zoneBas: basVisibleChemin(), y: scrollY,
-                 max: document.documentElement.scrollHeight - innerHeight, ouverte: document.getElementById('chemin-lecon-24').classList.contains('ouverte') }; }""")
-    assert vue(pg) == 'view-lessons' and not r['ouverte'], r
-    assert r['haut'] >= 0 and r['bas'] <= r['zoneBas'] + 1, r
-    milieu, centre = (r['haut'] + r['bas']) / 2, (12 + r['zoneBas']) / 2
-    assert abs(milieu - centre) < 4 or r['y'] in (0, r['max']), r
-    ok('Refaire mes erreurs (Leçon 25) → chemin principal, leçon repliée et centrée, toujours en place après 800 ms')
+    r = lecon_cadree(pg, 24)
+    pg.wait_for_timeout(400)
+    assert pg.evaluate('scrollY') == r['y'], 'pas de déplacement ultérieur'
+    ok('Refaire mes erreurs (Leçon 25) → chemin principal, leçon seule dépliée et cadrée, stable (spec 44)')
 
     b.close()
 
