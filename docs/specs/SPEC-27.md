@@ -2,12 +2,12 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Référence | Branche `v2` |
 | Périmètre | `chemin.js, style.css, design-tokens.css` |
 
-> **Traçabilité :** Spécification définie dans la conversation ; non implémentée au moment de la rédaction.
+> **Traçabilité :** Implémentée sur `v2` ; recette sur smartphone réel à faire.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
 ## Exigences
@@ -20,7 +20,7 @@
 ## Critères d'acceptation
 
 - [ ] Les acquis et la prochaine action sont visibles d'un coup d'œil.
-- [ ] Les animations ne se rejouent pas à chaque consultation.
+- [x] Les animations ne se rejouent pas à chaque consultation.
 
 ## Non-régression
 
@@ -28,6 +28,12 @@
 - Ne pas modifier les JSON pédagogiques, les scores ou l'orthographe sans exigence explicite ci-dessus.
 - Tester les parcours concernés sur smartphone Android, et les interactions clavier/Retour lorsqu'elles sont pertinentes.
 - Vérifier les évolutions concurrentes de la branche `v2` avant implémentation.
+
+## Implémentation
+
+- Fichiers : `public/chemin.js` (classes `ok` / `actuelle` / `a-venir`, `premiere`), `public/parcours.js` (`dernierFini.premiere`), `public/style.css`.
+- 1re réussite : coche, étoiles une par une, halo vert, puis la prochaine unité pulse. Une seule fois, coupé en mouvement réduit.
+- Tests : `tests/test_lot2.py`.
 
 ## Suivi
 

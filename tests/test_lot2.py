@@ -152,6 +152,18 @@ with sync_playwright() as p:
     assert page.locator('.vient-de-finir').count() == 0
     ok('unité finie : animée une fois sur le chemin, plus au réaffichage')
 
+    # ── Spec 27 : trois états lisibles, animation complète à la 1re réussite seulement ──
+    page.evaluate("dernierFini = { leconId: 8, uniteId: 1, premiere: true }; goLessons()")
+    assert page.locator('#chemin-u-8-1.ok.vient-de-finir.premiere').count() == 1
+    assert page.locator('.pas.encours .unites li.actuelle.pulse.apres').count() == 1
+    assert page.locator('.pas.encours .unites li.a-venir').count() >= 1
+    couleurs = page.evaluate("""() => ['ok', 'actuelle', 'a-venir'].map(c =>
+        getComputedStyle(document.querySelector('.pas.encours .unites li.' + c + ' button')).color)""")
+    assert len(set(couleurs)) == 3, couleurs
+    page.evaluate('renderLessons()')
+    assert page.locator('.premiere, .apres').count() == 0
+    ok('chemin : terminée (blanc, coche verte), recommandée (or), à découvrir (neutre) ; 1re réussite animée une fois')
+
     # ── S7 : fin d'unité → bouton « Accueil » en dernier ; objectif à deux conditions ──
     page.evaluate("openParcoursLecon(lecons.find(l => l.id === 8)); startEtapeSeule(1, 'quiz')")
     page.evaluate("run.steps[0].queue = []; finirRun()")

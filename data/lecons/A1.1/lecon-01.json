@@ -1786,25 +1786,25 @@
       "type": "tableau",
       "titre": "Saluer selon le moment",
       "entetes": [
-        "Moment",
-        "Salutation"
+        "Salutation",
+        "Moment"
       ],
       "lignes": [
         [
-          "À toute heure",
-          "Moien!"
+          "Moien!",
+          "À toute heure"
         ],
         [
-          "Le matin",
-          "Gudde Moien!"
+          "Gudde Moien!",
+          "Le matin"
         ],
         [
-          "Midi et après-midi",
-          "Gudde Mëtteg!"
+          "Gudde Mëtteg!",
+          "Midi et après-midi"
         ],
         [
-          "Le soir",
-          "Gudden Owend!"
+          "Gudden Owend!",
+          "Le soir"
         ]
       ],
       "unite": 1
@@ -1876,33 +1876,33 @@
       "type": "tableau",
       "titre": "Comment ça va ? L'échelle",
       "entetes": [
-        "Sens",
-        "Luxembourgeois"
+        "Luxembourgeois",
+        "Français"
       ],
       "lignes": [
         [
-          "Très bien",
-          "Ganz gutt! · Tipptopp!"
+          "Ganz gutt! · Tipptopp!",
+          "Très bien"
         ],
         [
-          "Bien",
-          "Mir geet et gutt."
+          "Mir geet et gutt.",
+          "Bien"
         ],
         [
-          "Ça va",
-          "Et geet."
+          "Et geet.",
+          "Ça va"
         ],
         [
-          "Pas terrible",
-          "Net immens."
+          "Net immens.",
+          "Pas terrible"
         ],
         [
-          "Mal",
-          "Schlecht."
+          "Schlecht.",
+          "Mal"
         ],
         [
-          "Très mal",
-          "Ganz schlecht. · Guer net gutt."
+          "Ganz schlecht. · Guer net gutt.",
+          "Très mal"
         ]
       ],
       "unite": 2

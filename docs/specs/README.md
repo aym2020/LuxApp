@@ -2,7 +2,7 @@
 
 Ce répertoire centralise les **28 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
-> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. Les fiches 23–24 ont été signalées **en cours de codage** ; les fiches 25–28 restent **à faire**. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
+> **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
 ## Statuts
 
@@ -38,11 +38,11 @@ Ce répertoire centralise les **28 spécifications** fonctionnelles et UX du pro
 | 21 | [Mot caché : identité des tuiles et CTA de l'introduction](./SPEC-21.md) | P0 | Implémentée — validation à confirmer |
 | 22 | [Progression principale séparée de l'entraînement libre](./SPEC-22.md) | P0 | Implémentée — validation à confirmer |
 | 23 | [Missions de 10 réponses et système de trois vies](./SPEC-23.md) | P1 | En cours |
-| 24 | [Correction algorithmique des coquilles sans IA](./SPEC-24.md) | P1 | En cours |
-| 25 | [Accueil : destination explicite et scroll de retour](./SPEC-25.md) | P0 | À faire |
-| 26 | [Sens de lecture uniforme des traductions du cours](./SPEC-26.md) | P1 | À faire |
-| 27 | [Valorisation visuelle des unités terminées](./SPEC-27.md) | P1 | À faire |
-| 28 | [Résultats d'étape plus gratifiants](./SPEC-28.md) | P1 | À faire |
+| 24 | [Correction algorithmique des coquilles sans IA](./SPEC-24.md) | P1 | Implémentée — validation à confirmer |
+| 25 | [Accueil : destination explicite et scroll de retour](./SPEC-25.md) | P0 | Implémentée — validation à confirmer |
+| 26 | [Sens de lecture uniforme des traductions du cours](./SPEC-26.md) | P1 | Implémentée — validation à confirmer |
+| 27 | [Valorisation visuelle des unités terminées](./SPEC-27.md) | P1 | Implémentée — validation à confirmer |
+| 28 | [Résultats d'étape plus gratifiants](./SPEC-28.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

@@ -92,6 +92,16 @@ function verifierV2(f, l) {
     if (b.unite != null && b.unite !== 0 && !idsUnites.includes(b.unite)) {
       erreur(f, 'bloc de cours n°' + (i + 1) + ' : unité « ' + b.unite + ' » inconnue');
     }
+    // Spec 26 : un tableau de traduction se lit luxembourgeois à gauche, français à droite.
+    if (b.type === 'tableau' && b.entetes) {
+      const iFr = b.entetes.indexOf('Français'), iLu = b.entetes.indexOf('Luxembourgeois');
+      if (iFr !== -1 && iLu !== -1 && iFr < iLu) {
+        erreur(f, 'tableau « ' + b.titre + ' » : la colonne Luxembourgeois doit être avant Français');
+      }
+      if (b.lignes && b.lignes.some(r => r.length !== b.entetes.length)) {
+        erreur(f, 'tableau « ' + b.titre + ' » : une ligne n\'a pas autant de cellules que d\'en-têtes');
+      }
+    }
     if (b.type === 'callout' && b.lignes && b.lignes.length > 3) {
       attention(f, 'bloc « ' + b.titre + ' » : ' + b.lignes.length + ' lignes (3 max conseillé)');
     }

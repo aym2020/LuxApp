@@ -1012,34 +1012,34 @@
       "type": "tableau",
       "titre": "Les pays de la leçon",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Phrase modèle"
       ],
       "lignes": [
         [
-          "Luxembourg",
           "Lëtzebuerg",
+          "Luxembourg",
           "Ech wunnen zu Lëtzebuerg."
         ],
         [
-          "France",
           "Frankräich",
+          "France",
           "Ech wunnen a Frankräich."
         ],
         [
-          "Allemagne",
           "Däitschland",
+          "Allemagne",
           "Ech wunnen an Däitschland."
         ],
         [
-          "Belgique",
           "Belsch",
+          "Belgique",
           "Ech wunnen an der Belsch."
         ],
         [
-          "Suisse",
           "Schwäiz",
+          "Suisse",
           "Ech wunnen an der Schwäiz."
         ]
       ],
@@ -1049,8 +1049,8 @@
       "type": "tableau",
       "titre": "Villes, ville et quartiers",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Phrase modèle"
       ],
       "lignes": [
@@ -1060,8 +1060,8 @@
           "Ech wunnen zu Metz."
         ],
         [
-          "Paris",
           "Paräis",
+          "Paris",
           "Ech wunnen zu Paräis."
         ],
         [
@@ -1070,18 +1070,18 @@
           "Ech wunnen zu Esch."
         ],
         [
-          "en ville",
           "an der Stad",
+          "en ville",
           "Ech wunnen an der Stad."
         ],
         [
-          "au Kirchberg",
           "um Kirchberg",
+          "au Kirchberg",
           "Ech wunnen um Kirchberg."
         ],
         [
-          "au Grund",
           "am Gronn",
+          "au Grund",
           "Ech wunnen am Gronn."
         ]
       ],

@@ -7,7 +7,7 @@
 | Référence | Branche `v2` |
 | Périmètre | `mission.js, progress.js, chemin.js, données data/lecons/` |
 
-> **Traçabilité :** Demande validée en conversation ; développement en cours signalé par l'utilisateur.
+> **Traçabilité :** Moteur implémenté (commit `31871d9`) ; scènes à 10 réponses à écrire.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
 ## Exigences
@@ -21,7 +21,7 @@
 
 ## Critères d'acceptation
 
-- [ ] Une mission ne confond pas les 10 réponses de l'utilisateur avec le nombre total de bulles.
+- [x] Une mission ne confond pas les 10 réponses de l'utilisateur avec le nombre total de bulles.
 - [ ] Le score et le saut de leçon reflètent les nouveaux seuils sans réinitialiser les anciennes réussites.
 - [ ] Tester 10/10, 9/10, 8/10, trois erreurs, coquille et aide révélatrice.
 
@@ -31,6 +31,13 @@
 - Ne pas modifier les JSON pédagogiques, les scores ou l'orthographe sans exigence explicite ci-dessus.
 - Tester les parcours concernés sur smartphone Android, et les interactions clavier/Retour lorsqu'elles sont pertinentes.
 - Vérifier les évolutions concurrentes de la branche `v2` avant implémentation.
+
+## Implémentation
+
+- Commit `31871d9`. Fichiers : `public/mission.js`, `public/progress.js`, `public/style.css`.
+- Moteur : 3 vies (une au plus par réplique), résultats `ok` / `coquille` / `essais` / `revele`, réussite ≥ 80 % de réponses autonomes avec au moins une vie, « Tente ta chance » ≥ 90 % sans réponse révélée, score enregistré avec `mission.version` (1 par défaut).
+- Tests : `tests/test_mission_vies.py`.
+- Reste à faire : réécrire les 24 scènes à 10 répliques « toi », puis `mission.version: 2`.
 
 ## Suivi
 

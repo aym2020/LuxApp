@@ -1328,39 +1328,39 @@
       "type": "tableau",
       "titre": "Être célibataire ou être un célibataire",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Explication"
       ],
       "lignes": [
         [
-          "Il est célibataire.",
           "Hien ass leedeg.",
+          "Il est célibataire.",
           "On décrit son statut familial."
         ],
         [
-          "Elle est célibataire.",
           "Si ass leedeg.",
+          "Elle est célibataire.",
           "On décrit son statut familial."
         ],
         [
-          "C'est un célibataire.",
           "Hien ass e Jonggesell.",
+          "C'est un célibataire.",
           "On utilise un nom masculin avec article."
         ],
         [
-          "C'est une célibataire.",
           "Si ass eng Jonggesellin.",
+          "C'est une célibataire.",
           "On utilise un nom féminin avec article."
         ],
         [
-          "Jennifer est célibataire.",
           "D'Jennifer ass leedeg.",
+          "Jennifer est célibataire.",
           "Statut : on attend leedeg."
         ],
         [
-          "Jennifer est une célibataire.",
           "D'Jennifer ass eng Jonggesellin.",
+          "Jennifer est une célibataire.",
           "Nom : on attend eng Jonggesellin."
         ]
       ],
@@ -1397,64 +1397,64 @@
       "type": "tableau",
       "titre": "Les statuts familiaux",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Phrase modèle"
       ],
       "lignes": [
         [
-          "marié(e)",
           "bestuet",
+          "marié(e)",
           "Ech si bestuet."
         ],
         [
-          "non marié(e)",
           "net bestuet",
+          "non marié(e)",
           "Ech sinn net bestuet."
         ],
         [
-          "divorcé(e)",
           "gescheet",
+          "divorcé(e)",
           "Hien ass gescheet."
         ],
         [
-          "séparé(e)",
           "getrennt",
+          "séparé(e)",
           "Si ass getrennt."
         ],
         [
-          "pacsé(e)",
           "gepacst",
+          "pacsé(e)",
           "Si si gepacst."
         ],
         [
-          "fiancé(e)",
           "verlobt",
+          "fiancé(e)",
           "Hien ass verlobt."
         ],
         [
-          "célibataire, statut",
           "leedeg",
+          "célibataire, statut",
           "Si ass leedeg."
         ],
         [
-          "un célibataire",
           "e Jonggesell",
+          "un célibataire",
           "Hien ass e Jonggesell."
         ],
         [
-          "une célibataire",
           "eng Jonggesellin",
+          "une célibataire",
           "Si ass eng Jonggesellin."
         ],
         [
-          "veuf",
           "Wittmann",
+          "veuf",
           "Hien ass Wittmann."
         ],
         [
-          "veuve",
           "Wittfra",
+          "veuve",
           "Si ass Wittfra."
         ]
       ],
@@ -1479,59 +1479,59 @@
       "type": "tableau",
       "titre": "Relations, enfants et animaux",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Phrase modèle"
       ],
       "lignes": [
         [
-          "un petit ami",
           "e Frënd",
+          "un petit ami",
           "Ech hunn e Frënd."
         ],
         [
-          "une petite amie",
           "eng Frëndin",
+          "une petite amie",
           "Ech hunn eng Frëndin."
         ],
         [
-          "un enfant",
           "e Kand",
+          "un enfant",
           "Ech hunn e Kand."
         ],
         [
-          "des enfants",
           "Kanner",
+          "des enfants",
           "Ech hunn zwee Kanner."
         ],
         [
-          "un garçon",
           "e Jong",
+          "un garçon",
           "Ech hunn e Kand, e Jong."
         ],
         [
-          "des garçons",
           "Jongen",
+          "des garçons",
           "Si hunn zwee Jongen."
         ],
         [
-          "une fille",
           "e Meedchen",
+          "une fille",
           "Ech hunn e Kand, e Meedchen."
         ],
         [
-          "des filles",
           "Meedercher",
+          "des filles",
           "Si hunn zwou Meedercher."
         ],
         [
-          "un chien",
           "e Mupp",
+          "un chien",
           "Si hunn e Mupp."
         ],
         [
-          "un chat",
           "eng Kaz",
+          "un chat",
           "Si hunn eng Kaz."
         ]
       ],

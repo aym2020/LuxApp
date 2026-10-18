@@ -1907,89 +1907,89 @@
       "type": "tableau",
       "titre": "Les lieux avec an",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Phrase modèle"
       ],
       "lignes": [
         [
-          "hôpital",
           "e Spidol",
+          "hôpital",
           "Den Dokter schafft an engem Spidol."
         ],
         [
-          "salon de coiffure",
           "e Coiffersalon",
+          "salon de coiffure",
           "De Coiffer schafft an engem Coiffersalon."
         ],
         [
-          "pharmacie",
           "eng Apdikt",
+          "pharmacie",
           "Den Apdikter schafft an enger Apdikt."
         ],
         [
-          "boucherie",
           "eng Metzlerei",
+          "boucherie",
           "De Metzler schafft an enger Metzlerei."
         ],
         [
-          "boulangerie",
           "eng Bäckerei",
+          "boulangerie",
           "De Bäcker schafft an enger Bäckerei."
         ],
         [
-          "supermarché",
           "e Supermarché",
+          "supermarché",
           "De Caissier schafft an engem Supermarché."
         ],
         [
-          "école",
           "eng Schoul",
+          "école",
           "De Schoulmeeschter schafft an enger Schoul."
         ],
         [
-          "restaurant",
           "e Restaurant",
+          "restaurant",
           "De Kach schafft an engem Restaurant."
         ],
         [
-          "bureau",
           "e Büro",
+          "bureau",
           "Den Employé schafft an engem Büro."
         ],
         [
-          "cabinet médical",
           "e Cabinet",
+          "cabinet médical",
           "D'Infirmière schafft an engem Cabinet."
         ],
         [
-          "clinique",
           "eng Klinik",
+          "clinique",
           "Den Dokter schafft an enger Klinik."
         ],
         [
-          "station-service",
           "eng Tankstell",
+          "station-service",
           "De Verkeefer schafft an enger Tankstell."
         ],
         [
-          "magasin",
           "e Buttek",
+          "magasin",
           "De Verkeefer schafft an engem Buttek."
         ],
         [
-          "salle de sport",
           "eng Sportshal",
+          "salle de sport",
           "De Sportler schafft an enger Sportshal."
         ],
         [
-          "librairie",
           "eng Librairie",
+          "librairie",
           "De Libraire schafft an enger Librairie."
         ],
         [
-          "studio",
           "e Studio",
+          "studio",
           "De Fotograf schafft an engem Studio."
         ]
       ],
@@ -1999,54 +1999,54 @@
       "type": "tableau",
       "titre": "Les lieux avec op",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Phrase modèle"
       ],
       "lignes": [
         [
-          "commissariat",
           "e Policebüro",
+          "commissariat",
           "De Polizist schafft op engem Policebüro."
         ],
         [
-          "banque",
           "eng Bank",
+          "banque",
           "D'Bankerin schafft op enger Bank."
         ],
         [
-          "poste",
           "eng Post",
+          "poste",
           "De Bréifdréier schafft op enger Post."
         ],
         [
-          "tribunal",
           "e Geriicht",
+          "tribunal",
           "Den Affekot schafft op engem Geriicht."
         ],
         [
-          "aéroport",
           "e Fluchhafen",
+          "aéroport",
           "De Pilot schafft op engem Fluchhafen."
         ],
         [
-          "marché",
           "e Maart",
+          "marché",
           "De Verkeefer schafft op engem Maart."
         ],
         [
-          "université",
           "eng Universitéit",
+          "université",
           "De Student schafft op enger Universitéit."
         ],
         [
-          "lycée",
           "e Lycée",
+          "lycée",
           "De Professer schafft op engem Lycée."
         ],
         [
-          "gare",
           "eng Gare",
+          "gare",
           "Den Employé schafft op enger Gare."
         ]
       ],

@@ -1916,95 +1916,95 @@
       "type": "tableau",
       "titre": "Les métiers de la leçon",
       "entetes": [
-        "Français",
         "Masculin",
-        "Féminin"
+        "Féminin",
+        "Français"
       ],
       "lignes": [
         [
-          "policier / policière",
           "e Polizist",
-          "eng Polizistin"
+          "eng Polizistin",
+          "policier / policière"
         ],
         [
-          "médecin",
           "en Dokter",
-          "eng Doktesch"
+          "eng Doktesch",
+          "médecin"
         ],
         [
-          "coiffeur / coiffeuse",
           "e Coiffer",
-          "eng Coiffeuse"
+          "eng Coiffeuse",
+          "coiffeur / coiffeuse"
         ],
         [
-          "banquier / banquière",
           "e Banker",
-          "eng Bankerin"
+          "eng Bankerin",
+          "banquier / banquière"
         ],
         [
-          "pharmacien / pharmacienne",
           "en Apdikter",
-          "eng Apdiktesch"
+          "eng Apdiktesch",
+          "pharmacien / pharmacienne"
         ],
         [
-          "facteur / factrice",
           "e Bréifdréier",
-          "eng Bréifdréiesch"
+          "eng Bréifdréiesch",
+          "facteur / factrice"
         ],
         [
-          "avocat / avocate",
           "en Affekot",
-          "eng Affekotin"
+          "eng Affekotin",
+          "avocat / avocate"
         ],
         [
-          "boucher / bouchère",
           "e Metzler",
-          "eng Metzlesch"
+          "eng Metzlesch",
+          "boucher / bouchère"
         ],
         [
-          "boulanger / boulangère",
           "e Bäcker",
-          "eng Bäckesch"
+          "eng Bäckesch",
+          "boulanger / boulangère"
         ],
         [
-          "infirmier / infirmière",
           "en Infirmier",
-          "eng Infirmière"
+          "eng Infirmière",
+          "infirmier / infirmière"
         ],
         [
-          "caissier / caissière",
           "e Caissier",
-          "eng Caissière"
+          "eng Caissière",
+          "caissier / caissière"
         ],
         [
-          "instituteur / institutrice",
           "e Schoulmeeschter",
-          "eng Léierin"
+          "eng Léierin",
+          "instituteur / institutrice"
         ],
         [
-          "pilote",
           "e Pilot",
-          "eng Pilotin"
+          "eng Pilotin",
+          "pilote"
         ],
         [
-          "cuisinier / cuisinière",
           "e Kach",
-          "eng Kächin"
+          "eng Kächin",
+          "cuisinier / cuisinière"
         ],
         [
-          "journaliste",
           "e Journalist",
-          "eng Journalistin"
+          "eng Journalistin",
+          "journaliste"
         ],
         [
-          "sportif / sportive",
           "e Sportler",
-          "eng Sportlerin"
+          "eng Sportlerin",
+          "sportif / sportive"
         ],
         [
-          "acteur / actrice",
           "e Schauspiller",
-          "eng Schauspillerin"
+          "eng Schauspillerin",
+          "acteur / actrice"
         ]
       ],
       "unite": 0
@@ -2024,39 +2024,39 @@
       "type": "tableau",
       "titre": "Dire son métier",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Structure"
       ],
       "lignes": [
         [
-          "Je suis policier.",
           "Ech sinn e Polizist.",
+          "Je suis policier.",
           "sinn + article + métier"
         ],
         [
-          "Je suis médecin.",
           "Ech sinn en Dokter.",
+          "Je suis médecin.",
           "sinn + article + métier"
         ],
         [
-          "Je suis pharmacienne.",
           "Ech sinn eng Apdiktesch.",
+          "Je suis pharmacienne.",
           "sinn + article + métier"
         ],
         [
-          "Je travaille comme avocat.",
           "Ech schaffen als Affekot.",
+          "Je travaille comme avocat.",
           "schaffen als + métier"
         ],
         [
-          "Je travaille comme bouchère.",
           "Ech schaffen als Metzlesch.",
+          "Je travaille comme bouchère.",
           "schaffen als + métier"
         ],
         [
-          "Je travaille comme institutrice.",
           "Ech schaffen als Léierin.",
+          "Je travaille comme institutrice.",
           "schaffen als + métier"
         ]
       ],

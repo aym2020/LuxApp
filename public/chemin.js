@@ -193,12 +193,16 @@ function lancerActionLecon(leconId) {
 function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
   let html = '';
   const libre = loadRun(true); // révision interrompue : signalée, sans déplacer l'anneau doré
+  // 1re réussite d'une unité dans cette leçon (spec 27) : coche, étoiles et halo
+  // vert, puis la prochaine unité s'allume. Joué une seule fois (dernierFini est vidé).
+  const premiere = !!(anim && anim.premiere && anim.leconId === l.id);
   unitesCoeur(l).forEach(u => {
     const fait = getUnitBest(l.id, u.id) != null;
     const actuelle = etapeActuelle === u.id;
-    let classe = fait ? 'ok' : '';
-    if (actuelle) classe = 'actuelle' + (pulse ? ' pulse' : '');
-    if (anim && anim.leconId === l.id && anim.uniteId === u.id) classe += ' vient-de-finir';
+    // Trois états : terminée (ok), recommandée (actuelle), à découvrir (a-venir).
+    let classe = fait ? 'ok' : 'a-venir';
+    if (actuelle) classe = 'actuelle' + (pulse || premiere ? ' pulse' : '') + (premiere ? ' apres' : '');
+    if (anim && anim.leconId === l.id && anim.uniteId === u.id) classe += ' vient-de-finir' + (premiere ? ' premiere' : '');
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
       '<span class="etat">' + (fait && !actuelle ? ICONES.coche : '') + '</span>' +
       '<span class="nom">' + u.id + ' · ' + escHtml(u.titre) + '</span>' +

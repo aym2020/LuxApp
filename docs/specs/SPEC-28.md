@@ -2,12 +2,12 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Référence | Branche `v2` |
 | Périmètre | `parcours.js (renderFin), style.css` |
 
-> **Traçabilité :** Spécification définie dans la conversation ; non implémentée au moment de la rédaction.
+> **Traçabilité :** Implémentée sur `v2` ; recette sur smartphone réel à faire.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
 ## Exigences
@@ -20,8 +20,8 @@
 
 ## Critères d'acceptation
 
-- [ ] Un 86 % se présente positivement avec le nombre réel de réponses à retravailler.
-- [ ] Les écrans étape/unité restent distincts et les scores historiques restent identiques.
+- [x] Un 86 % se présente positivement avec le nombre réel de réponses à retravailler.
+- [x] Les écrans étape/unité restent distincts et les scores historiques restent identiques.
 
 ## Non-régression
 
@@ -29,6 +29,12 @@
 - Ne pas modifier les JSON pédagogiques, les scores ou l'orthographe sans exigence explicite ci-dessus.
 - Tester les parcours concernés sur smartphone Android, et les interactions clavier/Retour lorsqu'elles sont pertinentes.
 - Vérifier les évolutions concurrentes de la branche `v2` avant implémentation.
+
+## Implémentation
+
+- Fichiers : `public/parcours.js` (`messageResultat`, `texteARetravailler`, `renderFin`), `public/style.css`.
+- Phrase « Ce passage ne change pas les étoiles » supprimée ; étoiles et barres seulement quand il y a lieu ; « À retravailler » repliable.
+- Tests : `tests/test_retours.py`.
 
 ## Suivi
 

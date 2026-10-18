@@ -290,7 +290,7 @@ après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
 | Quand | Quoi | Durée |
 | --- | --- | --- |
 | Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
-| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py` | ~5 min |
+| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py`, `test_retours.py` | ~6 min |
 | Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
 
 - La suite critique se lance **une seule fois, en fin de lot**.
@@ -406,6 +406,23 @@ rien modifier visuellement : comparer des captures avant / après.
 - Les raccourcis clavier des cartes (espace, flèches) ne marchent que sur l'écran à onglets
   et jamais dans un champ de saisie (sinon la barre d'espace était bloquée).
 
+- **Navigation (spec 25)** : « Accueil » = `goDashboard()`, toujours l'accueil ; « Retour » =
+  écran précédent (pile de `navigation.js`) ; « Retour à la leçon » = liste des unités.
+  `history.scrollRestoration = 'manual'` (sinon le navigateur replace la page après notre
+  propre placement). `allerALaCarte()` place la carte sous l'en-tête fixe, en un seul scroll
+  immédiat. `cibleDeRetour()` décide d'après l'écran réellement quitté. `.cta-fixe` : fondu
+  limité à la marge haute et `pointer-events: none` hors du bouton (un bouton à moitié caché
+  derrière reste appuyable).
+- **Chemin (spec 27)** : unités `ok` (titre clair, coche verte cerclée, étoiles or),
+  `actuelle` (anneau, titre et chevron or), `a-venir` (cercle neutre, texte secondaire).
+  1re réussite d'une unité (`dernierFini.premiere`) : coche, étoiles une par une, halo vert,
+  puis la prochaine unité pulse (`.pulse.apres`). Une seule fois ; coupé en mouvement réduit.
+- **Résultats (spec 28)** : `messageResultat(percent)` (Parfait / Excellent / Bien joué /
+  Tu progresses / Continue à t'entraîner, purement visuel), score vert dès 75 %,
+  « n / N réponses justes du premier coup », « Une réponse à retravailler. ». Étoiles et
+  barres seulement quand il y a lieu (unité ou leçon complète ; barres si plusieurs étapes).
+  « À retravailler » repliable (ouvert d'office jusqu'à 3 lignes).
+
 ### Accueil, lexique, mes pièges — `public/revision.js`
 
 - Accueil : bloc « Aujourd'hui » (série, semaine, « Ta séance : 20 questions · x min » +
@@ -453,7 +470,13 @@ Règles à vérifier à chaque leçon :
 { "type": "vocab",    "titre": "...", "items": [["lu", "fr"]] }
 { "type": "regle",    "titre": "...", "lignes": [...] }   // courtes, précises, applicables
 { "type": "dialogue", "titre": "...", "echanges": [["lu", "fr"]] }
+{ "type": "tableau",  "titre": "...", "entetes": [...], "lignes": [[...]] }
 ```
+
+**Tableaux de traduction (spec 26) : luxembourgeois à gauche, français à droite**, colonnes
+de contexte ensuite (Phrase modèle, Structure, Remarque…). Les tableaux grammaticaux
+(Genre / Article / Négation, conjugaisons, Singulier / Pluriel…) gardent leur ordre.
+`valider-lecons` refuse un tableau où « Français » précède « Luxembourgeois ».
 
 ### Format v2 : une leçon avec un fil
 

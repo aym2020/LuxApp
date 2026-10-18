@@ -795,7 +795,9 @@ function showView(id) {
   document.getElementById(id).classList.add('active');
   majNavigation(id);
   majBoutonsRetour(id);
-  window.scrollTo(0, 0);
+  // Arrêt net : un défilement doux encore en cours sur l'écran quitté ne
+  // continue pas sur le nouvel écran (spec 25).
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 }
 
 // ─── BARRE DU BAS (S9) ──────────────────────────────────────────────────────

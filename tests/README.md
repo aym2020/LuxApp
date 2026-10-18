@@ -24,6 +24,7 @@ PORT=3456 node server.js &       # serveur de test
 | `python3 tests/test_libre.py` | Spec 22 : refaire une unité ne change pas la prochaine étape, parties principale et libre gardées, migration | ~15 s |
 | `node tests/test_correction.js` | Spec 24 : coquille ou erreur (inversions, touches voisines, articles, négations…) | 1 s |
 | `python3 tests/test_mission_vies.py` | Spec 23 : 3 vies, réponses autonomes, Tente ta chance, coquille en écriture | ~20 s |
+| `python3 tests/test_retours.py` | Specs 25 et 28 : Accueil, Retour, Retour à la leçon (cadrage sous l'en-tête), écran de résultats | ~40 s |
 | `python3 tests/test_seance.py` | Séance du jour : quitter puis reprendre | ~30 s |
 | `python3 tests/test_etalement.py` | Étalement de l'historique v1 | ~10 s |
 | `node tests/test_lot2_contenu.js` | Lot 2 : six JSON, unités, scènes, distracteurs, IDs et cours | ~1 s |

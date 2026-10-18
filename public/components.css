@@ -94,7 +94,12 @@
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
   max-width: 720px; margin: 0 auto;
   padding: .7rem 1.25rem calc(.8rem + env(safe-area-inset-bottom));
-  background: linear-gradient(to top, var(--couleur-fond) 70%, transparent);
+  /* Fondu limité à la marge du haut : le bouton principal reste sur un fond
+     plein, et ce qu'on voit à travers le fondu reste appuyable (spec 25 :
+     « Accueil », à moitié caché, ouvrait l'action principale). */
+  background: linear-gradient(to top, var(--couleur-fond) calc(100% - .7rem), transparent);
+  pointer-events: none;
 }
+.cta-fixe > * { pointer-events: auto; }
 .cta-fixe:empty { display: none; }
 .view:not(.active) .cta-fixe { display: none; }

@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 1.3 | 2026-10-18 | `.cta-fixe` : fondu limité à la marge haute, ne capte plus les appuis hors de son bouton (spec 25). États d'unité du chemin `ok` / `actuelle` / `a-venir` (spec 27) |
 | 1.2 | 2026-10-18 | Tout l'exercice mot caché en `--police-lettres` (Nouveau mot, consigne, article, cases, tuiles, correction) |
 | 1.1 | 2026-10-18 | Police des lettres isolées `--police-lettres` (Atkinson Hyperlegible, hébergée dans `public/fonts/`), composant `.cta-fixe` (résultats, introduction d'unité) — spec 21 |
 | 1.0 | 2026-10-18 | Tokens centralisés (`design-tokens.css`), composants partagés (`components.css`), catalogue, écran de leçon aligné sur « Mon chemin » (spec 19) |
@@ -61,7 +62,7 @@ Les anciens noms (`--accent`, `--bg`, `--muted`…) restent comme **alias** dans
 | Étiquettes | `.pc-mini-label`, `.etiquette(.or)` | |
 | Badges et pastilles | `.badge(.fait)`, `.pastille(.v/.o)`, `.lecon-pill` | |
 | Retour d'exercice | `.pc-feedback(.ok/.ko)` | une seule action : « Continuer » |
-| Bandeau d'action fixe | `.cta-fixe` | porte l'action principale en bas de l'écran (zone de sécurité comprise) ; le contenu garde 96 px de marge en bas |
+| Bandeau d'action fixe | `.cta-fixe` | porte l'action principale en bas de l'écran (zone de sécurité comprise) ; le contenu garde 96 px de marge en bas ; fondu seulement dans la marge haute, `pointer-events` limité au bouton |
 
 ## 5. Règles d'interface
 

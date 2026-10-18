@@ -267,8 +267,6 @@ function carteLeconV2Html(l) {
 // cible (facultatif) : la carte sur laquelle revenir, quand on quitte un
 // exercice, une introduction ou la mission. Numéro d'unité, 'all' (toute la
 // leçon) ou 'mission'. Sans cible, on arrive en haut de la leçon.
-let pRetourScroll = null; // une seule restauration de position à la fois
-
 function openParcoursLecon(l, cible) {
   pLecon = l;
   currentLecon = l;
@@ -297,16 +295,16 @@ function cibleJs(cible) {
   return typeof cible === 'number' ? String(cible) : '\'' + cible + '\'';
 }
 
-// Fait défiler la page jusqu'à la carte, une fois l'écran dessiné.
+// Place le haut de la carte juste sous l'en-tête fixe, avec une petite marge
+// (spec 25). Fait tout de suite, en un seul scroll : rien ne reste en attente
+// qui pourrait défiler plus tard, sur un autre écran.
 function allerALaCarte(cible) {
-  if (pRetourScroll) cancelAnimationFrame(pRetourScroll);
-  pRetourScroll = requestAnimationFrame(() => {
-    pRetourScroll = null;
-    const carte = document.getElementById(idCarte(cible));
-    if (!carte) return;
-    const haut = carte.getBoundingClientRect().top + window.scrollY - 12;
-    window.scrollTo(0, Math.max(0, haut));
-  });
+  const carte = document.getElementById(idCarte(cible));
+  if (!carte) return;
+  const entete = document.querySelector('#view-plecon > .pc-topbar');
+  const marge = (entete ? entete.offsetHeight : 0) + 12;
+  const haut = carte.getBoundingClientRect().top + window.scrollY - marge;
+  window.scrollTo(0, Math.max(0, haut));
 }
 
 // Partie jouée par « une étape seule » : le cœur pour une unité, tout pour la leçon.
@@ -1374,6 +1372,8 @@ function finirRun() {
   const total = Math.round(etapes.reduce((a, e) => a + e.percent, 0) / etapes.length);
   const global = bilanUnite(run.steps, null);
   const etaitComplete = leconComplete(pLecon);
+  // 1re fois que cette unité est terminée : animation complète sur le chemin (spec 27).
+  const premiereReussite = run.mode === 'unite' && getUnitBest(run.leconId, run.uniteId) == null;
 
   // Étoiles et « Sans faute » : seulement pour une unité complète ou la leçon complète.
   // Le « Sans faute » se gagne une fois et ne se perd jamais.
@@ -1396,7 +1396,7 @@ function finirRun() {
   }
   if (run.mode === 'unite' || run.mode === 'lecon' || run.mode === 'plus') {
     marquerUniteFaite(); // une partie complète finie : objectif « unité » du jour (S7)
-    dernierFini = { leconId: run.leconId, uniteId: run.uniteId }; // animé sur le chemin
+    dernierFini = { leconId: run.leconId, uniteId: run.uniteId, premiere: premiereReussite }; // animé sur le chemin
   }
 
   const erreurs = [];  // clés "type:id" pour "Refaire mes erreurs"
@@ -1412,8 +1412,12 @@ function finirRun() {
     });
   });
 
+  // Nombre de questions de la partie (pour « 6 / 7 réponses justes »).
+  const nbQuestions = run.steps.reduce((n, s) => n + Object.keys(s.details).length, 0);
+
   pResultat = {
-    leconId: run.leconId, uniteId: run.uniteId, mode: run.mode, total, etapes, erreurs, lignes,
+    leconId: run.leconId, uniteId: run.uniteId, mode: run.mode, total, etapes, erreurs, lignes, nbQuestions,
+    typeEtape: run.mode === 'etape' && run.steps.length === 1 ? run.steps[0].type : null,
     sansFaute: global.sansFaute && (run.mode === 'unite' || run.mode === 'lecon'),
     nouveauSansFaute,
     nouvelleComplete: !etaitComplete && leconComplete(pLecon)
@@ -1426,6 +1430,22 @@ function finirRun() {
   animerFin(pResultat.sansFaute); // score qui compte, étoiles, confettis (S12)
 }
 
+// Message de félicitations selon le score (spec 28). Purement visuel :
+// aucun seuil pédagogique n'en dépend.
+function messageResultat(percent) {
+  if (percent >= 100) return 'Parfait !';
+  if (percent >= 90) return 'Excellent !';
+  if (percent >= 75) return 'Bien joué !';
+  if (percent >= 50) return 'Tu progresses !';
+  return 'Continue à t\'entraîner';
+}
+
+// « Une réponse à retravailler. », « 3 réponses à retravailler. »
+function texteARetravailler(n) {
+  if (!n) return '';
+  return (n === 1 ? 'Une réponse' : n + ' réponses') + ' à retravailler.';
+}
+
 function renderFin() {
   const r = pResultat;
   const complete = r.mode === 'unite' || r.mode === 'lecon';
@@ -1435,15 +1455,22 @@ function renderFin() {
   else if (r.mode === 'lecon') titre = 'LEÇON ' + r.leconId + ' TERMINÉE';
   else if (r.mode === 'plus') titre = '« + » TERMINÉ';
   else if (r.mode === 'erreurs') titre = 'ERREURS REFAITES';
+  else if (r.typeEtape) titre = 'ÉTAPE ' + etapeInfo(r.typeEtape).label.toUpperCase() + ' TERMINÉE';
   else titre = 'ÉTAPE TERMINÉE';
 
+  // Le message d'abord, puis le score ; les réponses justes mises en avant.
+  // Les étoiles restent réservées à une unité (ou une leçon) complète.
+  const justes = Math.max(0, (r.nbQuestions || 0) - r.erreurs.length);
+  const encourageant = r.total >= 75;
   let html = '<div class="pf-haut">' +
     '<div class="pc-mini-label pc-accent">' + titre + '</div>' +
     (complete ? '<div class="pf-stars">' + etoilesHtml(etoiles(r.total)) + '</div>' : '') +
-    '<div class="pf-score">' + r.total + ' %</div>' +
+    '<div class="pf-bravo">' + messageResultat(r.total) + '</div>' +
+    '<div class="pf-score' + (encourageant ? ' encourageant' : '') + '">' + r.total + ' %</div>' +
+    (r.nbQuestions ? '<div class="pf-justes"><b>' + justes + '</b> / ' + r.nbQuestions + ' réponses justes du premier coup</div>' : '') +
+    (r.erreurs.length ? '<div class="pf-sous">' + texteARetravailler(r.erreurs.length) + '</div>' : '') +
     (complete ? '<div class="pf-sous">3 étoiles à partir de 90 %</div>'
-              : r.mode === 'plus' ? '<div class="pf-sous">Les nouveaux mots rejoignent tes révisions</div>'
-              : '<div class="pf-sous">Ce passage ne change pas les étoiles</div>') +
+              : r.mode === 'plus' ? '<div class="pf-sous">Les nouveaux mots rejoignent tes révisions</div>' : '') +
     '</div>';
 
   // Moments acquis pour toujours : « sans faute », leçon « complète ».
@@ -1466,12 +1493,14 @@ function renderFin() {
       '<b>' + e.percent + ' %</b></div>').join('') + '</div>';
   }
 
+  // À retravailler : repliable, ouvert d'office s'il y a peu de lignes.
   if (r.lignes.length) {
-    html += '<div class="pf-titre-liste"><span class="pc-mini-label">À RETRAVAILLER</span>' +
-      '<span class="pf-note">reviendront dans tes révisions</span></div><div class="pf-liste">' +
+    html += '<details class="pf-details"' + (r.lignes.length <= 3 ? ' open' : '') + '>' +
+      '<summary class="pf-titre-liste"><span class="pc-mini-label">À RETRAVAILLER · ' + r.lignes.length + '</span>' +
+      '<span class="pf-note">reviendront dans tes révisions</span></summary><div class="pf-liste">' +
       r.lignes.map(l => '<div class="pf-ligne"><div><b>' + escHtml(l.lu) + '</b><span>' + escHtml(l.fr) + '</span>' +
         (l.attention ? '<span class="pf-attention">' + l.attention + '</span>' : '') +
-        '</div><em>' + escHtml(l.raison) + '</em></div>').join('') + '</div>';
+        '</div><em>' + escHtml(l.raison) + '</em></div>').join('') + '</div></details>';
   } else if (!r.sansFaute) {
     html += '<div class="pf-parfait">Aucune erreur, tout était juste du premier coup.</div>';
   }

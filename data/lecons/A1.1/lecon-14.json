@@ -1487,29 +1487,29 @@
       "type": "tableau",
       "titre": "Dire son âge",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Structure"
       ],
       "lignes": [
         [
-          "J'ai 18 ans.",
           "Ech sinn uechtzéng Joer al.",
+          "J'ai 18 ans.",
           "Ech sinn + âge + Joer al"
         ],
         [
-          "J'ai 20 ans.",
           "Ech sinn zwanzeg Joer al.",
+          "J'ai 20 ans.",
           "Ech sinn + âge + Joer al"
         ],
         [
-          "J'ai 24 ans.",
           "Ech si véieranzwanzeg Joer al.",
+          "J'ai 24 ans.",
           "Ech si + âge + Joer al"
         ],
         [
-          "J'ai 30 ans.",
           "Ech sinn drësseg Joer al.",
+          "J'ai 30 ans.",
           "Ech sinn + âge + Joer al"
         ]
       ],
@@ -1531,69 +1531,69 @@
       "type": "tableau",
       "titre": "Les mois",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Exemple"
       ],
       "lignes": [
         [
-          "janvier",
           "Januar",
+          "janvier",
           "den uechtzéngte Januar"
         ],
         [
-          "février",
           "Februar",
+          "février",
           "den zweeten Februar"
         ],
         [
-          "mars",
           "Mäerz",
+          "mars",
           "den drëtte Mäerz"
         ],
         [
-          "avril",
           "Abrëll",
+          "avril",
           "de véieranzwanzegste Abrëll"
         ],
         [
-          "mai",
           "Mee",
+          "mai",
           "den éischte Mee"
         ],
         [
-          "juin",
           "Juni",
+          "juin",
           "den dräizéngte Juni"
         ],
         [
-          "juillet",
           "Juli",
+          "juillet",
           "den zéngte Juli"
         ],
         [
-          "août",
           "August",
+          "août",
           "den éischten August"
         ],
         [
-          "septembre",
           "September",
+          "septembre",
           "de fënnefte September"
         ],
         [
-          "octobre",
           "Oktober",
+          "octobre",
           "den néngten Oktober"
         ],
         [
-          "novembre",
           "November",
+          "novembre",
           "den zwieleften November"
         ],
         [
-          "décembre",
           "Dezember",
+          "décembre",
           "den zwanzegsten Dezember"
         ]
       ],
@@ -1706,24 +1706,24 @@
       "type": "tableau",
       "titre": "Dire sa date de naissance",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Structure"
       ],
       "lignes": [
         [
-          "Je suis né(e) le 13 juin 1999.",
           "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+          "Je suis né(e) le 13 juin 1999.",
           "Ech sinn + date + année + gebuer"
         ],
         [
-          "Barbara est née le 18 janvier 1996.",
           "D'Barbara ass den uechtzéngte Januar nonzénghonnertsechsannonzeg gebuer.",
+          "Barbara est née le 18 janvier 1996.",
           "Nom + ass + date + année + gebuer"
         ],
         [
-          "Je suis né(e) le 24 avril 2004.",
           "Ech sinn de véieranzwanzegste Abrëll zweedausendvéier gebuer.",
+          "Je suis né(e) le 24 avril 2004.",
           "de + jour ordinal + mois + année"
         ]
       ],
@@ -1760,29 +1760,29 @@
       "type": "tableau",
       "titre": "Dire son anniversaire",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Structure"
       ],
       "lignes": [
         [
-          "Quand est ton anniversaire ?",
           "Wéini hues du Gebuertsdag?",
+          "Quand est ton anniversaire ?",
           "Wéini + hues du + Gebuertsdag?"
         ],
         [
-          "Quand est votre anniversaire ?",
           "Wéini hutt Dir Gebuertsdag?",
+          "Quand est votre anniversaire ?",
           "Wéini + hutt Dir + Gebuertsdag?"
         ],
         [
-          "Mon anniversaire est le 13 juin.",
           "Ech hunn den dräizéngte Juni Gebuertsdag.",
+          "Mon anniversaire est le 13 juin.",
           "Ech hunn + date + Gebuertsdag"
         ],
         [
-          "Barbara a son anniversaire le 18 janvier.",
           "D'Barbara huet den uechtzéngte Januar Gebuertsdag.",
+          "Barbara a son anniversaire le 18 janvier.",
           "Nom + huet + date + Gebuertsdag"
         ]
       ],

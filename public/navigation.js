@@ -29,6 +29,10 @@ const NIVEAU_VUE = {
   'view-msintro': 3
 };
 
+// Le navigateur ne replace pas lui-même la page après un Retour : il
+// appliquerait, après notre propre placement, la position d'un autre écran (spec 25).
+if (window.history && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 let pileNav = [];          // [{ vue, scroll, lecon }]
 let pileAvantAppui = null; // la pile au début de l'appui en cours (écrans intermédiaires)
 let enRestauration = false;
@@ -128,12 +132,16 @@ function majBoutonsRetour(vue) {
 // Où se placer en revenant d'une activité : l'unité, la mission ou « toute la leçon ».
 function cibleDeRetour(quitte) {
   if (!quitte || !estActivite(quitte.vue)) return null;
-  // La partie qu'on vient de quitter (principale ou libre), sinon la principale enregistrée.
-  const saved = (typeof run !== 'undefined' && run) || (typeof loadRun === 'function' ? loadRun() : null);
-  if (saved && pLecon && saved.leconId === pLecon.id) return saved.uniteId;
-  if (quitte.vue === 'view-pintro' && pIntroUnite != null) return pIntroUnite;
+  // On regarde l'écran réellement quitté (spec 25) : une ancienne partie
+  // encore en mémoire ne doit pas décider de la carte.
   if (quitte.vue === 'view-mission') return 'mission';
-  if (quitte.vue === 'view-pfin' && pResultat) return pResultat.uniteId;
+  if (quitte.vue === 'view-pintro') return pIntroUnite;
+  if (quitte.vue === 'view-pfin') return pResultat ? pResultat.uniteId : null;
+  if (quitte.vue === 'view-parcours') {
+    // La partie qu'on vient de quitter (principale ou libre).
+    const saved = (typeof run !== 'undefined' && run) || (typeof loadRun === 'function' ? loadRun() : null);
+    if (saved && pLecon && saved.leconId === pLecon.id) return saved.uniteId;
+  }
   return null;
 }
 
@@ -164,9 +172,12 @@ function restaurerEcran(e, cible) {
   showView(e.vue);
   enRestauration = false;
 
-  window.scrollTo(0, e.scroll || 0);
+  // Un seul placement : sur la carte quittée, sinon à la position retenue.
   if (e.vue === 'view-plecon' && cible != null) allerALaCarte(cible);
-  if (e.vue === 'view-lessons' && cible != null && pLecon) montrerEtapeChemin(pLecon.id, cible);
+  else {
+    window.scrollTo(0, e.scroll || 0);
+    if (e.vue === 'view-lessons' && cible != null && pLecon) montrerEtapeChemin(pLecon.id, cible);
+  }
 }
 
 // ─── BOUTON RETOUR DU TÉLÉPHONE (API History) ───────────────────────────────

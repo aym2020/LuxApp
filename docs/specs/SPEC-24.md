@@ -2,12 +2,12 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **En cours** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Référence | Branche `v2` |
 | Périmètre | `correction.js, mission.js, parcours.js, progress.js, tests/test_correction.js` |
 
-> **Traçabilité :** Demande validée en conversation ; développement en cours signalé par l'utilisateur.
+> **Traçabilité :** Implémentée sur `v2` (commit `31871d9`) ; accents et majuscules restent tolérés (choix produit).
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
 ## Exigences
@@ -22,9 +22,9 @@
 
 ## Critères d'acceptation
 
-- [ ] `Gudde Mioen` peut ouvrir une correction gratuite ; `Dat ass en Mapp` ne doit pas être pardonné comme coquille.
-- [ ] Aucune réponse approximative n'est auto-validée.
-- [ ] Des tests couvrent formes courtes, accents, mots manquants, négations et doublons.
+- [x] `Gudde Mioen` peut ouvrir une correction gratuite ; `Dat ass en Mapp` ne doit pas être pardonné comme coquille.
+- [x] Aucune réponse approximative n'est auto-validée.
+- [x] Des tests couvrent formes courtes, accents, mots manquants, négations et doublons.
 
 ## Non-régression
 
@@ -32,6 +32,12 @@
 - Ne pas modifier les JSON pédagogiques, les scores ou l'orthographe sans exigence explicite ci-dessus.
 - Tester les parcours concernés sur smartphone Android, et les interactions clavier/Retour lorsqu'elles sont pertinentes.
 - Vérifier les évolutions concurrentes de la branche `v2` avant implémentation.
+
+## Implémentation
+
+- Commit `31871d9`. Fichiers : `public/correction.js` (nouveau), `public/mission.js`, `public/parcours.js`.
+- Tests : `tests/test_correction.js` (23 cas), `tests/test_mission_vies.py` (coquille en écriture).
+- Non couvert : l'écriture de la séance de révision (`app.js`), hors périmètre.
 
 ## Suivi
 

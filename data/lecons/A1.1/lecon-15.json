@@ -1697,29 +1697,29 @@
       "type": "tableau",
       "titre": "Heures pleines",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Remarque"
       ],
       "lignes": [
         [
-          "Il est une heure.",
           "Et ass eng Auer.",
+          "Il est une heure.",
           "eng Auer = une heure"
         ],
         [
-          "Il est deux heures.",
           "Et ass zwou Auer.",
+          "Il est deux heures.",
           "zwou Auer = deux heures"
         ],
         [
-          "Il est huit heures.",
           "Et ass aacht Auer.",
+          "Il est huit heures.",
           "heure pleine"
         ],
         [
-          "Il est douze heures.",
           "Et ass zwielef Auer.",
+          "Il est douze heures.",
           "midi ou minuit selon le contexte"
         ]
       ],
@@ -1943,34 +1943,34 @@
       "type": "tableau",
       "titre": "Horaires de travail",
       "entetes": [
-        "Français",
         "Luxembourgeois",
+        "Français",
         "Structure"
       ],
       "lignes": [
         [
-          "Je travaille de huit heures du matin à cinq heures de l'après-midi.",
           "Ech schaffe vun aacht Auer moies bis fënnef Auer nomëttes.",
+          "Je travaille de huit heures du matin à cinq heures de l'après-midi.",
           "vun ... bis ..."
         ],
         [
-          "Je commence à huit heures du matin.",
           "Ech fänken um aacht Auer moies un.",
+          "Je commence à huit heures du matin.",
           "um ... Auer + un"
         ],
         [
-          "Je termine à cinq heures de l'après-midi.",
           "Ech halen um fënnef Auer nomëttes op.",
+          "Je termine à cinq heures de l'après-midi.",
           "um ... Auer + op"
         ],
         [
-          "À quelle heure commences-tu ?",
           "Um wéi vill Auer fänks du un?",
+          "À quelle heure commences-tu ?",
           "question avec ufänken"
         ],
         [
-          "À quelle heure termines-tu ?",
           "Um wéi vill Auer häls du op?",
+          "À quelle heure termines-tu ?",
           "question avec ophalen"
         ]
       ],

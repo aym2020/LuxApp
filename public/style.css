@@ -2031,3 +2031,62 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .ms-coeur.perdu { animation: coeur-perdu .5s ease-out; }
 @keyframes coeur-perdu { 0% { transform: scale(1.5); fill: var(--couleur-erreur); } 100% { transform: scale(1); } }
 .ms-apprentissage { font-size: var(--fs-micro); color: var(--couleur-texte-3); padding: .35rem .6rem; border-radius: var(--rayon-bouton); background: var(--couleur-surface-1); }
+
+/* ══ MON CHEMIN : TROIS ÉTATS D'UNITÉ (spec 27) ═══════════════════════════════
+   Vert = acquis, or = à faire maintenant, neutre = à découvrir. Pas d'aplat :
+   des indicateurs colorés et des variations de contraste. */
+.unites li.ok:not(.mission) button { color: var(--couleur-texte); }
+.unites li.ok .etat { box-shadow: 0 0 0 3px var(--couleur-vert-fond); }
+.unites li.ok .tag .pc-star { font-size: var(--fs-sec); }
+.unites li.ok .tag .pc-star.on { color: var(--couleur-action); }
+.unites li.a-venir .etat { background: transparent; border: 2px solid var(--couleur-bord-2); }
+.unites li.a-venir button { color: var(--couleur-texte-2); }
+.unites li.a-venir .ic.droite { color: var(--couleur-texte-3); }
+/* Après une 1re réussite, la prochaine unité s'allume une fois la coche posée. */
+.unites li.pulse.apres .etat { animation-delay: 1.3s; }
+
+/* 1re réussite : la coche apparaît, les étoiles se révèlent, un halo vert. */
+.unites li.premiere .etat { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) .3s both, halo-vert 1s ease-out .6s; }
+.unites li.premiere .tag .pc-star { animation: pop .35s cubic-bezier(.3, 1.6, .5, 1) both; display: inline-block; }
+.unites li.premiere .tag .pc-star:nth-child(1) { animation-delay: .7s; }
+.unites li.premiere .tag .pc-star:nth-child(2) { animation-delay: .85s; }
+.unites li.premiere .tag .pc-star:nth-child(3) { animation-delay: 1s; }
+@keyframes halo-vert {
+  0% { box-shadow: 0 0 0 3px var(--couleur-vert-fond), 0 0 0 0 color-mix(in srgb, var(--couleur-reussi) 55%, transparent); }
+  100% { box-shadow: 0 0 0 3px var(--couleur-vert-fond), 0 0 0 12px transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .unites li.premiere .etat, .unites li.premiere .tag .pc-star,
+  .unites li.pulse .etat { animation: none !important; }
+}
+
+/* ══ RÉSULTATS D'ÉTAPE : UNE RÉCOMPENSE, PAS UN RELEVÉ (spec 28) ═════════════
+   Le message d'abord, le score ensuite (vert s'il est encourageant), les
+   réponses justes mises en avant ; les erreurs repliables, compactes. */
+.pf-bravo {
+  font-family: var(--police); font-weight: 800; font-size: 1.9rem; line-height: 1.15;
+  color: var(--couleur-texte); margin-top: .2rem;
+  animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) .1s both;
+}
+.pf-score { font-size: 2.6rem; color: var(--couleur-texte-2); }
+.pf-score.encourageant { color: var(--couleur-reussi); animation: lueur-verte 1.4s ease-out .7s; }
+@keyframes lueur-verte {
+  0% { text-shadow: 0 0 0 transparent; }
+  40% { text-shadow: 0 0 18px color-mix(in srgb, var(--couleur-reussi) 55%, transparent); }
+  100% { text-shadow: 0 0 0 transparent; }
+}
+.pf-justes {
+  margin-top: .35rem; padding: .3rem .8rem; border-radius: var(--rayon-pilule);
+  background: var(--couleur-vert-fond); border: 1px solid var(--couleur-vert-bord);
+  font-size: var(--fs-sec); color: var(--couleur-texte-2);
+  animation: pop .35s ease-out .5s both;
+}
+.pf-justes b { color: var(--couleur-reussi); font-weight: 800; }
+.pf-details > summary { list-style: none; cursor: pointer; min-height: var(--toucher); align-items: center; }
+.pf-details > summary::-webkit-details-marker { display: none; }
+.pf-details > summary .pc-mini-label::after { content: " ▾"; }
+.pf-details:not([open]) > summary .pc-mini-label::after { content: " ▸"; }
+.pf-details .pf-liste { margin-top: 0; }
+.pf-details .pf-ligne { padding: .5rem 0; }
+.pf-details > summary .pc-mini-label { white-space: nowrap; }
+.pf-details > summary .pf-note { text-align: right; }

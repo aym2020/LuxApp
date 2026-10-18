@@ -2,12 +2,12 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire** |
+| Statut | **Implémentée — validation à confirmer** |
 | Priorité | **P1** |
 | Référence | Branche `v2` |
 | Périmètre | `data/lecons/A1.1/, data/lecons/A1.2/, app.js (coursBlocsHtml)` |
 
-> **Traçabilité :** Spécification définie dans la conversation ; non implémentée au moment de la rédaction.
+> **Traçabilité :** Implémentée sur `v2` ; recette sur smartphone réel à faire.
 > Le statut « implémentée » atteste l'existence de travaux dans le projet ou leur confirmation conversationnelle, **pas** une recette exhaustive sur le commit courant.
 
 ## Exigences
@@ -20,7 +20,7 @@
 
 ## Critères d'acceptation
 
-- [ ] Les tableaux de traduction suivent une convention stable sans casser les exceptions grammaticales.
+- [x] Les tableaux de traduction suivent une convention stable sans casser les exceptions grammaticales.
 - [ ] Les paires de traduction restent exactes et lisibles sur mobile.
 
 ## Non-régression
@@ -29,6 +29,11 @@
 - Ne pas modifier les JSON pédagogiques, les scores ou l'orthographe sans exigence explicite ci-dessus.
 - Tester les parcours concernés sur smartphone Android, et les interactions clavier/Retour lorsqu'elles sont pertinentes.
 - Vérifier les évolutions concurrentes de la branche `v2` avant implémentation.
+
+## Implémentation
+
+- 17 tableaux réordonnés (liste explicite, pas de détection automatique) : leçons 1, 10, 11, 12, 13, 14, 15. A1.2 déjà conforme. Tableaux grammaticaux inchangés.
+- Garde-fou : `tools/valider-lecons.js` refuse un tableau où « Français » précède « Luxembourgeois ».
 
 ## Suivi
 
