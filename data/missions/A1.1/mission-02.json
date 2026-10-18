@@ -1,0 +1,131 @@
+{
+  "id": 2,
+  "lecon_id": 2,
+  "niveau": "A1.1",
+  "titre": "Dans une salle de classe",
+  "contexte_fr": "Deux apprenants identifient les objets disposés sur une table.",
+  "objectif_fr": "Utiliser e, en, eng et la négation correcte.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat eng Dier?",
+      "fr": "Est-ce que c’est une porte ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Nee, dat ass keng Dier.",
+      "fr": "Non, ce n’est pas une porte."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat en Dësch?",
+      "fr": "Est-ce que c’est une table ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass en Dësch.",
+      "fr": "Oui, c’est une table."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat eng Luucht?",
+      "fr": "Est-ce que c’est une lampe ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass eng Luucht.",
+      "fr": "Oui, c’est une lampe."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat e Buch?",
+      "fr": "Est-ce que c’est un livre ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass e Buch.",
+      "fr": "Oui, c’est un livre."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat en Telefon?",
+      "fr": "Est-ce que c’est un téléphone ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, dat ass keen Telefon.",
+      "fr": "Non, ce n’est pas un téléphone."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat eng Fënster?",
+      "fr": "Est-ce que c’est une fenêtre ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass eng Fënster.",
+      "fr": "Oui, c’est une fenêtre."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat e Stull?",
+      "fr": "Est-ce que c’est une chaise ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass e Stull.",
+      "fr": "Oui, c’est une chaise."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat eng Taass?",
+      "fr": "Est-ce que c’est une tasse ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass eng Taass.",
+      "fr": "Oui, c’est une tasse."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat en Auto?",
+      "fr": "Est-ce que c’est une voiture ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Nee, dat ass keen Auto.",
+      "fr": "Non, ce n’est pas une voiture."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat e Glas?",
+      "fr": "Est-ce que c’est un verre ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass e Glas.",
+      "fr": "Oui, c’est un verre."
+    }
+  ]
+}

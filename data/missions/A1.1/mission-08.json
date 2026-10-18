@@ -1,0 +1,131 @@
+{
+  "id": 8,
+  "lecon_id": 8,
+  "niveau": "A1.1",
+  "titre": "Qui est de quelle nationalité ?",
+  "contexte_fr": "Deux personnes présentent des collègues de différents pays.",
+  "objectif_fr": "Utiliser les nationalités au masculin et au féminin sans les confondre avec les langues.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wat ass dem Paulo seng Nationalitéit?",
+      "fr": "Quelle est la nationalité de Paulo ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Hien ass Portugis.",
+      "fr": "Il est portugais."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Anna och Portugisin?",
+      "fr": "Anna est-elle aussi portugaise ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Nee, si ass Däitsch.",
+      "fr": "Non, elle est allemande."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wat ass dem Jean seng Nationalitéit?",
+      "fr": "Quelle est la nationalité de Jean ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Hien ass Fransous.",
+      "fr": "Il est français."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Claire Fransousin?",
+      "fr": "Claire est-elle française ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, si ass Fransousin.",
+      "fr": "Oui, elle est française."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wat ass dem Carlos seng Nationalitéit?",
+      "fr": "Quelle est la nationalité de Carlos ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Hien ass Spuenier.",
+      "fr": "Il est espagnol."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "An d'Lucia?",
+      "fr": "Et Lucia ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Si ass Spuenierin.",
+      "fr": "Elle est espagnole."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Tom Lëtzebuerger?",
+      "fr": "Tom est-il luxembourgeois ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien ass Lëtzebuerger.",
+      "fr": "Oui, il est luxembourgeois."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Marie Lëtzebuergerin?",
+      "fr": "Marie est-elle luxembourgeoise ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, si ass Lëtzebuergerin.",
+      "fr": "Oui, elle est luxembourgeoise."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wat ass dem Marco seng Nationalitéit?",
+      "fr": "Quelle est la nationalité de Marco ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Hien ass Italiener.",
+      "fr": "Il est italien."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "An d'Giulia?",
+      "fr": "Et Giulia ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Si ass Italienerin.",
+      "fr": "Elle est italienne."
+    }
+  ]
+}

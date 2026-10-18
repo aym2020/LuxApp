@@ -1,0 +1,131 @@
+{
+  "id": 3,
+  "lecon_id": 3,
+  "niveau": "A1.1",
+  "titre": "Quelles couleurs ?",
+  "contexte_fr": "Deux personnes décrivent la couleur de plusieurs objets.",
+  "objectif_fr": "Nommer les couleurs, questionner et nier avec net.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wat fir eng Faarf huet den Auto?",
+      "fr": "De quelle couleur est la voiture ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Den Auto ass rout.",
+      "fr": "La voiture est rouge."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Bus och rout?",
+      "fr": "Le bus est-il rouge aussi ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Nee, de Bus ass gréng.",
+      "fr": "Non, le bus est vert."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wat fir eng Faarf huet d'Dier?",
+      "fr": "De quelle couleur est la porte ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "D'Dier ass wäiss.",
+      "fr": "La porte est blanche."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Fënster schwaarz?",
+      "fr": "La fenêtre est-elle noire ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Nee, d'Fënster ass net schwaarz.",
+      "fr": "Non, la fenêtre n’est pas noire."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi ass d'Buch?",
+      "fr": "Comment est le livre ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "D'Buch ass blo.",
+      "fr": "Le livre est bleu."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wat fir eng Faarf huet d'Taass?",
+      "fr": "De quelle couleur est la tasse ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "D'Taass ass giel.",
+      "fr": "La tasse est jaune."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Luucht rosa?",
+      "fr": "La lampe est-elle rose ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, d'Luucht ass rosa.",
+      "fr": "Oui, la lampe est rose."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Wat fir eng Faarf huet den Dësch?",
+      "fr": "De quelle couleur est la table ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Den Dësch ass brong.",
+      "fr": "La table est marron."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Stull och brong?",
+      "fr": "La chaise est-elle marron aussi ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Nee, de Stull ass gro.",
+      "fr": "Non, la chaise est grise."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "An d'Bild?",
+      "fr": "Et le tableau ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "D'Bild ass orange.",
+      "fr": "Le tableau est orange."
+    }
+  ]
+}

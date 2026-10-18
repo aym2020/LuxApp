@@ -1,0 +1,131 @@
+{
+  "id": 13,
+  "lecon_id": 13,
+  "niveau": "A1.1",
+  "titre": "Faire connaissance avec la famille",
+  "contexte_fr": "Deux personnes parlent de leur situation familiale et de leurs enfants.",
+  "objectif_fr": "Utiliser les statuts familiaux, hunn, net et kee/keng.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Bass du bestuet?",
+      "fr": "Es-tu marié(e) ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech si bestuet.",
+      "fr": "Oui, je suis marié(e)."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du Kanner?",
+      "fr": "As-tu des enfants ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn zwee Kanner.",
+      "fr": "Oui, j’ai deux enfants."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du e Jong?",
+      "fr": "As-tu un fils ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn e Jong.",
+      "fr": "Oui, j’ai un fils."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du och e Meedchen?",
+      "fr": "As-tu aussi une fille ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn och e Meedchen.",
+      "fr": "Oui, j’ai aussi une fille."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Tom bestuet?",
+      "fr": "Tom est-il marié ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, hien ass net bestuet.",
+      "fr": "Non, il n’est pas marié."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Ass hie leedeg?",
+      "fr": "Est-il célibataire ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien ass leedeg.",
+      "fr": "Oui, il est célibataire."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Anna gescheet?",
+      "fr": "Anna est-elle divorcée ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, si ass gescheet.",
+      "fr": "Oui, elle est divorcée."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du e Mupp?",
+      "fr": "As-tu un chien ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech hunn kee Mupp.",
+      "fr": "Non, je n’ai pas de chien."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du eng Kaz?",
+      "fr": "As-tu un chat ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn eng Kaz.",
+      "fr": "Oui, j’ai un chat."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Merci fir d'Gespréich!",
+      "fr": "Merci pour cette conversation !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Gär geschitt!",
+      "fr": "Avec plaisir !"
+    }
+  ]
+}

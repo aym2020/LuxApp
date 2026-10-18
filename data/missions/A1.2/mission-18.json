@@ -1,0 +1,131 @@
+{
+  "id": 18,
+  "lecon_id": 18,
+  "niveau": "A1.2",
+  "titre": "Révision : organiser une rencontre",
+  "contexte_fr": "Deux collègues organisent une rencontre et vérifient le jour et l’heure.",
+  "objectif_fr": "Réinvestir les jours et horaires étudiés en leçon 17.",
+  "statut_source": "provisoire_source_absente",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Moien! Hues du e Freideg Zäit?",
+      "fr": "Salut ! As-tu du temps vendredi ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Moien! Jo, e Freideg hunn ech Zäit.",
+      "fr": "Salut ! Oui, j’ai du temps vendredi."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Geet et moies?",
+      "fr": "Est-ce que ça va le matin ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, moies ass gutt.",
+      "fr": "Oui, le matin, c’est bien."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Um néng Auer?",
+      "fr": "À neuf heures ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Nee, um néng Auer kann ech net.",
+      "fr": "Non, je ne peux pas à neuf heures."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "An um zéng Auer?",
+      "fr": "Et à dix heures ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, um zéng Auer ass gutt.",
+      "fr": "Oui, à dix heures, c’est bien."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Treffe mir eis zu Lëtzebuerg?",
+      "fr": "On se retrouve à Luxembourg ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Jo, mir treffen eis zu Lëtzebuerg.",
+      "fr": "Oui, on se retrouve à Luxembourg."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Kënns du mam Bus?",
+      "fr": "Tu viens en bus ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech fuere mam Bus.",
+      "fr": "Oui, je viens en bus."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wéini gees du eraus?",
+      "fr": "Quand sors-tu ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Ech ginn um hallwer néng eraus.",
+      "fr": "Je sors à huit heures et demie."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat an der Rei?",
+      "fr": "Est-ce que ça va ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass an der Rei.",
+      "fr": "Oui, c’est d’accord."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Bis e Freideg!",
+      "fr": "À vendredi !"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Bis e Freideg!",
+      "fr": "À vendredi !"
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Äddi!",
+      "fr": "Au revoir !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Äddi!",
+      "fr": "Au revoir !"
+    }
+  ]
+}

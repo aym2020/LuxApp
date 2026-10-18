@@ -1,0 +1,131 @@
+{
+  "id": 23,
+  "lecon_id": 23,
+  "niveau": "A1.2",
+  "titre": "Présenter sa famille",
+  "contexte_fr": "Deux amis regardent des photos de famille et expliquent qui est qui.",
+  "objectif_fr": "Utiliser le vocabulaire familial et les possessifs selon le genre.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wien ass dat op der Foto?",
+      "fr": "Qui est-ce sur la photo ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Dat ass mäi Papp.",
+      "fr": "C’est mon père."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "An dat?",
+      "fr": "Et ça ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Dat ass meng Mamm.",
+      "fr": "C’est ma mère."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du e Brudder?",
+      "fr": "As-tu un frère ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Jo, mäi Brudder heescht Tom.",
+      "fr": "Oui, mon frère s’appelle Tom."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du och eng Schwëster?",
+      "fr": "As-tu aussi une sœur ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, meng Schwëster heescht Anna.",
+      "fr": "Oui, ma sœur s’appelle Anna."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi vill Leit sidd der an der Famill?",
+      "fr": "Vous êtes combien dans la famille ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Mir sinn zu fënnef.",
+      "fr": "Nous sommes cinq."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wien ass dat hei?",
+      "fr": "Qui est-ce ici ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Dat ass meng Tatta.",
+      "fr": "C’est ma tante."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "An hire Mann?",
+      "fr": "Et son mari ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Hire Mann heescht Paul.",
+      "fr": "Son mari s’appelle Paul."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass dat däi Monni?",
+      "fr": "C’est ton oncle ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, dat ass mäi Monni.",
+      "fr": "Oui, c’est mon oncle."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Huet däi Brudder Kanner?",
+      "fr": "Ton frère a-t-il des enfants ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, säi Jong heescht Liam.",
+      "fr": "Oui, son fils s’appelle Liam."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "An seng Duechter?",
+      "fr": "Et sa fille ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Seng Duechter heescht Mia.",
+      "fr": "Sa fille s’appelle Mia."
+    }
+  ]
+}

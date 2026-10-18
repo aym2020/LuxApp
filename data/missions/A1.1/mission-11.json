@@ -1,0 +1,131 @@
+{
+  "id": 11,
+  "lecon_id": 11,
+  "niveau": "A1.1",
+  "titre": "Parlons de nos métiers",
+  "contexte_fr": "À une rencontre professionnelle, deux personnes présentent leurs métiers et ceux de leurs proches.",
+  "objectif_fr": "Employer sinn, schaffen als, les articles des métiers et la négation.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wat bass du vu Beruff?",
+      "fr": "Quel est ton métier ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech sinn e Polizist.",
+      "fr": "Je suis policier."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Schaffs du als Dokter?",
+      "fr": "Travailles-tu comme médecin ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech schaffen als Polizist.",
+      "fr": "Non, je travaille comme policier."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wat ass d'Marie vu Beruff?",
+      "fr": "Quel est le métier de Marie ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Si ass eng Doktesch.",
+      "fr": "Elle est médecin."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Paulo e Bäcker?",
+      "fr": "Paulo est-il boulanger ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien ass e Bäcker.",
+      "fr": "Oui, il est boulanger."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Anna eng Bäckesch?",
+      "fr": "Anna est-elle boulangère ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, si ass keng Bäckesch.",
+      "fr": "Non, elle n’est pas boulangère."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wat schafft si?",
+      "fr": "Que fait-elle comme travail ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Si schafft als Coiffeuse.",
+      "fr": "Elle travaille comme coiffeuse."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Jean e Coiffer?",
+      "fr": "Jean est-il coiffeur ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien ass e Coiffer.",
+      "fr": "Oui, il est coiffeur."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Wat ass d'Claire vu Beruff?",
+      "fr": "Quel est le métier de Claire ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Si ass eng Polizistin.",
+      "fr": "Elle est policière."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Schafft de Tom als Metzler?",
+      "fr": "Tom travaille-t-il comme boucher ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien schafft als Metzler.",
+      "fr": "Oui, il travaille comme boucher."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "A wat bass du vu Beruff?",
+      "fr": "Et quel est ton métier ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Ech sinn e Polizist.",
+      "fr": "Je suis policier."
+    }
+  ]
+}

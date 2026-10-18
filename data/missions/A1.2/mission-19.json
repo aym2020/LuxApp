@@ -1,0 +1,131 @@
+{
+  "id": 19,
+  "lecon_id": 19,
+  "niveau": "A1.2",
+  "titre": "Révision : décrire une pièce",
+  "contexte_fr": "Deux amis décrivent des objets et indiquent où ils se trouvent.",
+  "objectif_fr": "Réinvestir les objets, couleurs et prépositions de lieu déjà enseignés.",
+  "statut_source": "provisoire_source_absente",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass de Ball?",
+      "fr": "Où est le ballon ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "De Ball ass op der Këscht.",
+      "fr": "Le ballon est sur la boîte."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Ball rout?",
+      "fr": "Le ballon est-il rouge ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, de Ball ass rout.",
+      "fr": "Oui, le ballon est rouge."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass d'Taass?",
+      "fr": "Où est la tasse ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "D'Taass ass op dem Dësch.",
+      "fr": "La tasse est sur la table."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Taass blo?",
+      "fr": "La tasse est-elle bleue ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Nee, d'Taass ass wäiss.",
+      "fr": "Non, la tasse est blanche."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass d'Buch?",
+      "fr": "Où est le livre ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "D'Buch ass op dem Stull.",
+      "fr": "Le livre est sur la chaise."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Buch schwéier?",
+      "fr": "Le livre est-il lourd ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Nee, d'Buch ass liicht.",
+      "fr": "Non, le livre est léger."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass d'Luucht?",
+      "fr": "Où est la lampe ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "D'Luucht ass nieft dem Bett.",
+      "fr": "La lampe est à côté du lit."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Luucht nei?",
+      "fr": "La lampe est-elle neuve ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, d'Luucht ass nei.",
+      "fr": "Oui, la lampe est neuve."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass d'Fënster?",
+      "fr": "Où est la fenêtre ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "D'Fënster ass hannert dem Dësch.",
+      "fr": "La fenêtre est derrière la table."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Merci fir deng Hëllef!",
+      "fr": "Merci pour ton aide !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Gär geschitt!",
+      "fr": "Avec plaisir !"
+    }
+  ]
+}

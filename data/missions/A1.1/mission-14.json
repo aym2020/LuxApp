@@ -1,0 +1,131 @@
+{
+  "id": 14,
+  "lecon_id": 14,
+  "niveau": "A1.1",
+  "titre": "Date de naissance et anniversaire",
+  "contexte_fr": "Deux collègues se présentent et parlent de leur âge et de leur anniversaire.",
+  "objectif_fr": "Demander l’âge, lire les mois et exprimer des dates.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi al bass du?",
+      "fr": "Quel âge as-tu ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech sinn zwanzeg Joer al.",
+      "fr": "J’ai vingt ans."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "An de Tom, wéi al ass hien?",
+      "fr": "Et Tom, quel âge a-t-il ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Hien ass drësseg Joer al.",
+      "fr": "Il a trente ans."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wéi al ass d'Anna?",
+      "fr": "Quel âge a Anna ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Si ass véierzeg Joer al.",
+      "fr": "Elle a quarante ans."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wéini hues du Gebuertsdag?",
+      "fr": "Quand est ton anniversaire ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Ech hunn den dräizéngte Juni Gebuertsdag.",
+      "fr": "Mon anniversaire est le 13 juin."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Ass däi Gebuertsdag am Januar?",
+      "fr": "Ton anniversaire est-il en janvier ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech hunn den dräizéngte Juni Gebuertsdag.",
+      "fr": "Non, mon anniversaire est le 13 juin."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wéini bass du gebuer?",
+      "fr": "Quand es-tu né(e) ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
+      "fr": "Je suis né(e) le 13 juin 1999."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass den Tom am Mäerz gebuer?",
+      "fr": "Tom est-il né en mars ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, den Tom ass am Mäerz gebuer.",
+      "fr": "Oui, Tom est né en mars."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass d'Anna am Abrëll gebuer?",
+      "fr": "Anna est-elle née en avril ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Nee, si ass am Mee gebuer.",
+      "fr": "Non, elle est née en mai."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Wéini huet de Jean Gebuertsdag?",
+      "fr": "Quand est l’anniversaire de Jean ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Hien huet am Dezember Gebuertsdag.",
+      "fr": "Son anniversaire est en décembre."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Schéine Gebuertsdag!",
+      "fr": "Joyeux anniversaire !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Villmools merci!",
+      "fr": "Merci beaucoup !"
+    }
+  ]
+}

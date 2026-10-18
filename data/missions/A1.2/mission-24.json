@@ -1,0 +1,131 @@
+{
+  "id": 24,
+  "lecon_id": 24,
+  "niveau": "A1.2",
+  "titre": "Raconter sa journée d’hier",
+  "contexte_fr": "Deux collègues racontent ce qu’ils ont fait la veille.",
+  "objectif_fr": "Construire le passé composé avec hunn et sinn, et réutiliser war/hat.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Moien! Wat hues du gëschter gemaach?",
+      "fr": "Bonjour ! Qu’as-tu fait hier ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech hu geschafft.",
+      "fr": "J’ai travaillé."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Bass du duerno heemgaangen?",
+      "fr": "Es-tu ensuite rentré chez toi ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech sinn heemgaangen.",
+      "fr": "Oui, je suis rentré chez moi."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du doheem gekacht?",
+      "fr": "As-tu cuisiné à la maison ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hu gekacht.",
+      "fr": "Oui, j’ai cuisiné."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Wat hues du giess?",
+      "fr": "Qu’as-tu mangé ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Ech hu gutt giess.",
+      "fr": "J’ai bien mangé."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du e Buch gelies?",
+      "fr": "As-tu lu un livre ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hunn e Buch gelies.",
+      "fr": "Oui, j’ai lu un livre."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Bass du och erausgaangen?",
+      "fr": "Es-tu aussi sorti ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech sinn erausgaangen.",
+      "fr": "Oui, je suis sorti."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Wou bass du higefuer?",
+      "fr": "Où es-tu allé en véhicule ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Ech sinn an de Kino gefuer.",
+      "fr": "Je suis allé au cinéma en voiture."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Wou waars du gëschter Owend?",
+      "fr": "Où étais-tu hier soir ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Ech war doheem.",
+      "fr": "J’étais à la maison."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "Hues du Zäit gehat?",
+      "fr": "As-tu eu le temps ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech hat Zäit.",
+      "fr": "Oui, j’avais du temps."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "War et e gudden Dag?",
+      "fr": "C’était une bonne journée ?"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Jo, et war e gudden Dag.",
+      "fr": "Oui, c’était une bonne journée."
+    }
+  ]
+}

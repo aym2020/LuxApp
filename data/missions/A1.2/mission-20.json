@@ -1,0 +1,131 @@
+{
+  "id": 20,
+  "lecon_id": 20,
+  "niveau": "A1.2",
+  "titre": "Où est le ballon ?",
+  "contexte_fr": "Un enfant déplace un ballon autour d’une boîte et demande où il est.",
+  "objectif_fr": "Employer les prépositions de lieu de la leçon dans des phrases complètes.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass de Ball?",
+      "fr": "Où est le ballon ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "De Ball ass op der Këscht.",
+      "fr": "Le ballon est sur la boîte."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "An elo, wou ass de Ball?",
+      "fr": "Et maintenant, où est le ballon ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "De Ball ass ënnert der Këscht.",
+      "fr": "Le ballon est sous la boîte."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass de Ball elo?",
+      "fr": "Où est le ballon maintenant ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "De Ball ass an der Këscht.",
+      "fr": "Le ballon est dans la boîte."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Ball virun der Këscht?",
+      "fr": "Le ballon est-il devant la boîte ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, de Ball ass virun der Këscht.",
+      "fr": "Oui, le ballon est devant la boîte."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Ball hannert der Këscht?",
+      "fr": "Le ballon est-il derrière la boîte ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Nee, de Ball ass net hannert der Këscht.",
+      "fr": "Non, le ballon n’est pas derrière la boîte."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Wou ass de Ball dann?",
+      "fr": "Où est donc le ballon ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "De Ball ass nieft der Këscht.",
+      "fr": "Le ballon est à côté de la boîte."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Ball iwwert der Këscht?",
+      "fr": "Le ballon est-il au-dessus de la boîte ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Nee, de Ball ass ënnert der Këscht.",
+      "fr": "Non, le ballon est sous la boîte."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Ass de Ball tëschent zwou Këschten?",
+      "fr": "Le ballon est-il entre deux boîtes ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Jo, de Ball ass tëschent zwou Këschten.",
+      "fr": "Oui, le ballon est entre deux boîtes."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "An elo, wou ass en?",
+      "fr": "Et maintenant, où est-il ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Elo ass en op der Këscht.",
+      "fr": "Maintenant, il est sur la boîte."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Gutt gemaach!",
+      "fr": "Bien joué !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Merci!",
+      "fr": "Merci !"
+    }
+  ]
+}

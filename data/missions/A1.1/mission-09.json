@@ -1,0 +1,131 @@
+{
+  "id": 9,
+  "lecon_id": 9,
+  "niveau": "A1.1",
+  "titre": "Quelles langues parles-tu ?",
+  "contexte_fr": "Des collègues découvrent les langues qu’ils parlent.",
+  "objectif_fr": "Utiliser schwätzen, les noms de langues et la négation.",
+  "statut_source": "ancree",
+  "repliques": [
+    {
+      "ordre": 1,
+      "locuteur": "interlocuteur",
+      "lu": "Wat fir eng Sprooch schwätz du?",
+      "fr": "Quelle langue parles-tu ?"
+    },
+    {
+      "ordre": 2,
+      "locuteur": "apprenant",
+      "lu": "Ech schwätzen Franséisch.",
+      "fr": "Je parle français."
+    },
+    {
+      "ordre": 3,
+      "locuteur": "interlocuteur",
+      "lu": "Schwätz du Lëtzebuergesch?",
+      "fr": "Parles-tu luxembourgeois ?"
+    },
+    {
+      "ordre": 4,
+      "locuteur": "apprenant",
+      "lu": "Jo, ech schwätzen e bëssen Lëtzebuergesch.",
+      "fr": "Oui, je parle un peu luxembourgeois."
+    },
+    {
+      "ordre": 5,
+      "locuteur": "interlocuteur",
+      "lu": "Schwätz du och Däitsch?",
+      "fr": "Parles-tu aussi allemand ?"
+    },
+    {
+      "ordre": 6,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech schwätzen net Däitsch.",
+      "fr": "Non, je ne parle pas allemand."
+    },
+    {
+      "ordre": 7,
+      "locuteur": "interlocuteur",
+      "lu": "Schwätzt de Paulo Portugisesch?",
+      "fr": "Paulo parle-t-il portugais ?"
+    },
+    {
+      "ordre": 8,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien schwätzt Portugisesch.",
+      "fr": "Oui, il parle portugais."
+    },
+    {
+      "ordre": 9,
+      "locuteur": "interlocuteur",
+      "lu": "Schwätzt d'Lucia Spuenesch?",
+      "fr": "Lucia parle-t-elle espagnol ?"
+    },
+    {
+      "ordre": 10,
+      "locuteur": "apprenant",
+      "lu": "Jo, si schwätzt Spuenesch.",
+      "fr": "Oui, elle parle espagnol."
+    },
+    {
+      "ordre": 11,
+      "locuteur": "interlocuteur",
+      "lu": "Schwätzt de Tom Englesch?",
+      "fr": "Tom parle-t-il anglais ?"
+    },
+    {
+      "ordre": 12,
+      "locuteur": "apprenant",
+      "lu": "Jo, hien schwätzt Englesch.",
+      "fr": "Oui, il parle anglais."
+    },
+    {
+      "ordre": 13,
+      "locuteur": "interlocuteur",
+      "lu": "Schwätzt d'Giulia Italienesch?",
+      "fr": "Giulia parle-t-elle italien ?"
+    },
+    {
+      "ordre": 14,
+      "locuteur": "apprenant",
+      "lu": "Jo, si schwätzt Italienesch.",
+      "fr": "Oui, elle parle italien."
+    },
+    {
+      "ordre": 15,
+      "locuteur": "interlocuteur",
+      "lu": "Schwätz du Japanesch?",
+      "fr": "Parles-tu japonais ?"
+    },
+    {
+      "ordre": 16,
+      "locuteur": "apprenant",
+      "lu": "Nee, ech schwätzen net Japanesch.",
+      "fr": "Non, je ne parle pas japonais."
+    },
+    {
+      "ordre": 17,
+      "locuteur": "interlocuteur",
+      "lu": "A wéi eng Sprooch léiers du?",
+      "fr": "Et quelle langue apprends-tu ?"
+    },
+    {
+      "ordre": 18,
+      "locuteur": "apprenant",
+      "lu": "Ech léieren Lëtzebuergesch.",
+      "fr": "J’apprends le luxembourgeois."
+    },
+    {
+      "ordre": 19,
+      "locuteur": "interlocuteur",
+      "lu": "Dat ass flott!",
+      "fr": "C’est chouette !"
+    },
+    {
+      "ordre": 20,
+      "locuteur": "apprenant",
+      "lu": "Merci!",
+      "fr": "Merci !"
+    }
+  ]
+}
