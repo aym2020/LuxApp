@@ -16,6 +16,86 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## 0 bis. Instruction permanente — Efficacité, rigueur et rapidité de développement
+
+Tu travailles sur LuxApp, principalement sur la branche `v2`.
+
+Objectif : produire du code fiable, maintenable et conforme aux spécifications, avec le minimum d'opérations nécessaires.
+
+### 1. Comprendre avant d'agir
+
+- Vérifie d'abord la branche active, le dernier commit et les modifications existantes.
+- Lis uniquement les fichiers et sections pertinents pour la tâche.
+- Identifie la cause réelle du problème avant de modifier le code.
+- Établis mentalement la solution la plus simple et les tests nécessaires. Évite les longues phases de planification pour les tâches simples.
+- En cas de doute sur une décision fonctionnelle ou un changement de périmètre, demande confirmation plutôt que de deviner.
+
+### 2. Privilégier les corrections structurelles
+
+- Corrige la cause racine, pas uniquement les symptômes.
+- Évite d'empiler des correctifs CSS successifs qui se contredisent.
+- Réutilise les fonctions, composants, tokens et conventions existants.
+- Ne refactorise pas du code sans rapport avec la demande.
+- Une solution courte, claire et robuste est préférable à une solution sophistiquée sans bénéfice concret.
+
+### 3. Réduire les itérations inutiles
+
+- Regroupe les modifications cohérentes avant de lancer une validation.
+- Évite de relire plusieurs fois les mêmes fichiers ou de relancer des commandes identiques sans nouvelle raison.
+- Pour l'interface, commence par une capture représentative, corrige les problèmes identifiés, puis vérifie le résultat.
+- Ne multiplie pas les captures, les mesures pixel par pixel et les ajustements de quelques pixels si l'interface est déjà lisible, responsive et conforme.
+- Si plusieurs tentatives échouent, réévalue l'approche plutôt que d'accumuler les correctifs.
+
+### 4. Tester intelligemment, sans sacrifier la qualité
+
+Applique une validation proportionnée au risque :
+
+- Correction isolée : test ciblé, puis contrôle des comportements voisins susceptibles d'être affectés.
+- Modification d'interface : vérifier la lisibilité, les débordements, les interactions et quelques largeurs représentatives.
+- Modification de logique métier ou de progression : tester les cas normaux, les cas limites, la persistance et la non-régression.
+- Modification structurante : élargir les tests à tous les composants concernés.
+
+Utilise de préférence les tests automatisés existants.
+
+Ne supprime jamais un test indispensable pour gagner du temps. En revanche, ne répète pas une batterie complète de tests quand rien n'a changé dans son périmètre.
+
+### 5. Définir un critère d'arrêt
+
+Considère une tâche terminée lorsque :
+
+1. Les exigences fonctionnelles sont satisfaites.
+2. Les tests pertinents passent.
+3. Aucun bug ou défaut visuel significatif n'est identifié.
+4. Le code reste lisible et maintenable.
+5. Aucun fichier hors périmètre n'a été modifié inutilement.
+
+Ne poursuis pas les optimisations cosmétiques sans bénéfice perceptible ou exigence explicite.
+
+Si un défaut réel subsiste, corrige-le. Si tu ne peux pas le résoudre de façon fiable, explique précisément le blocage.
+
+### 6. Respecter le dépôt et le travail parallèle
+
+- Branche de travail par défaut : `v2`. Ne pousse jamais sur `main` sans autorisation explicite.
+- Vérifie les dernières modifications distantes avant toute écriture.
+- Préserve les changements effectués par d'autres intervenants.
+- Limite les commits aux fichiers concernés.
+- Respecte les instructions explicites concernant les commits et les pushs.
+- Ne modifie pas les contenus pédagogiques sans demande spécifique.
+
+### 7. Communication concise
+
+- Évite les comptes rendus détaillés de chaque micro-opération.
+- Signale les vrais blocages et les décisions nécessitant une validation.
+- À la fin, résume : ce qui a changé, les tests effectués, les limites éventuelles et le commit si applicable.
+
+### Principe fondamental
+
+La rigueur ne se mesure pas au nombre de commandes, de captures ou d'itérations. Elle se mesure à la justesse du résultat.
+
+Travaille comme un développeur expérimenté : identifie rapidement le problème, choisis une solution simple, implémente proprement, teste ce qui compte et arrête-toi lorsque les critères de qualité sont atteints.
+
+---
+
 ## 1. RÈGLE N°1 — Source de vérité
 
 **`/mnt/project` est TOUJOURS périmé. Ne jamais l'utiliser comme source de vérité.**
