@@ -16,6 +16,37 @@ La ligne « Mission · Premier cours de luxembourgeois » est également trop ha
 
 **Objectif :** mieux distribuer l'espace horizontal pour réduire la hauteur des lignes et garder les libellés lisibles, sans réduire globalement les caractères ni masquer des informations pédagogiques.
 
+## Maquette fonctionnelle de référence
+
+L'objectif est de conserver toutes les informations de la capture dans une carte **moins haute**, sans comprimer le nom des activités. Exemples de disposition à largeur mobile courante (schéma de structure, non spécification pixel-perfect) :
+
+\`\`\`text
+[✓]  1 · Saluer                    ★★★  ›
+     ↻ Révision en cours
+
+[✓]  2 · Demander comment ça va    ★★★  ›
+[✓]  3 · Se présenter              ★★☆  ›
+[◉]  4 · Prendre congé                  ›
+
+[▣]  Mission                  Sans faute  ›
+     Premier cours de luxembourgeois
+
+[◎]  Bilan · 10 questions    facultatif  ›
+
+[              Reprendre →              ]
+          Voir toute la leçon →
+\`\`\`
+
+À largeur plus étroite, avec un titre long ou avec le texte agrandi, la colonne textuelle prend la priorité. L'information secondaire (notamment \`Sans faute\` ou \`facultatif\`) **descend sous le titre**, au lieu de lui laisser une colonne illisible ; les étoiles des unités restent visibles. Il ne faut pas imposer artificiellement une hauteur fixe.
+
+**Ordre de priorité visuelle :**
+1. Identifier l'activité sans effort (numéro + titre complet).
+2. Reconnaître l'état (coche, anneau recommandé, étoiles, statut de mission).
+3. Signaler une révision interrompue comme information **secondaire** turquoise, sur une ligne dédiée seulement lorsqu'elle existe.
+4. Garder le chevron et toute la ligne cliquable. Ne pas ajouter de commandes supplémentaires.
+
+La maquette montre des séparations discrètes autour de Mission et Bilan. Elles sont facultatives si elles alourdissent la carte à 320 px : la lisibilité et la compacité passent avant le décor.
+
 ## Comportement attendu
 
 ### 1. Unités du fil
@@ -37,27 +68,27 @@ La ligne « Mission · Premier cours de luxembourgeois » est également trop ha
 
 - Préserver `Bilan · 10 questions` et `facultatif` avec le même principe : titre prioritaire, mention secondaire qui s'adapte si nécessaire.
 - Conserver le bouton principal **« Reprendre »** et le lien **« Voir toute la leçon »**. Ne pas introduire un nouveau CTA ni changer leur destination.
-- Compacter raisonnablement les espacements horizontaux (par exemple utiliser le token `--sp-2`, 8 px, au lieu de 12 px dans les lignes concernées), sans toucher aux zones tactiles ni supprimer les marges de lisibilité.
+- Compacter raisonnablement les espacements horizontaux : privilégier le token `--sp-2` (8 px) au lieu de 12 px **entre éléments d'une ligne**, sans réduire la zone cliquable ni supprimer les marges de lisibilité. Les lignes restent à hauteur naturelle avec **minimum 44 px**. Une unité sans statut et au titre court doit tenir sur une seule ligne.
 - Ne pas changer inutilement le haut de page, la frise verticale, les cartes repliées ou la navigation inférieure : **périmètre ciblé sur le contenu d'une carte ouverte**.
 
 ## Règles d'implémentation
 
-- Séparer dans `etapesLeconHtml()` (fichier `public/chemin.js`) le bloc **titre + statut éventuel** de la zone **étoiles/statut secondaire + chevron**, afin que le titre ne se retrouve plus en concurrence horizontale avec « Révision en cours ». Une structure interne dédiée (par exemple conteneur de texte à `min-width: 0`) est préférable à un correctif uniquement par `font-size`.
+- Séparer dans `etapesLeconHtml()` (fichier `public/chemin.js`) le bloc **titre + statut éventuel** de la zone **étoiles/statut secondaire + chevron**, afin que le titre ne se retrouve plus en concurrence horizontale avec « Révision en cours ». Utiliser une structure interne claire, de type **icône | contenu textuel flexible | récompense/statut | chevron**. Le contenu textuel doit pouvoir se rétracter (`min-width: 0`) et passer à la ligne ; les éléments secondaires ne doivent pas imposer de retours absurdes au titre. Préférer une adaptation responsive ciblée à un correctif uniquement par `font-size`.
 - Adapter les règles CSS spécifiques à `.unites` dans `public/style.css`. Examiner leur ordre de cascade : des règles tardives rétablissent actuellement le retour à la ligne de `.nom` et `flex: none` sur les `.tag` ; ne pas ajouter un correctif contradictoire non documenté.
 - Réutiliser **les tokens du design system** (Inter, or pour l'action, vert pour acquis, turquoise pour révision). Si une nouvelle règle globale est introduite, documenter son effet dans `docs/DESIGN_SYSTEM.md` lors de l'implémentation.
 - Les étoiles continuent à refléter le **meilleur score acquis**. Les états de la SPEC 27 et la séparation partie principale/révision libre de la SPEC 22 restent inchangés.
-- Conserver un seul bouton interactif par ligne, une zone tactile d'au moins **44 px**, une lecture cohérente par technologies d'assistance et aucune dépendance exclusive à la couleur.
+- Conserver un seul bouton interactif par ligne, une zone tactile d'au moins **44 px**, une lecture cohérente par technologies d'assistance et aucune dépendance exclusive à la couleur. Le nom accessible du bouton doit inclure **titre complet + état utile**. Si le symbole `↻` est décoratif, le masquer aux lecteurs d'écran (`aria-hidden`) : la mention textuelle « Révision en cours » reste lisible.
 
 ## Critères d'acceptation / recette
 
 - [ ] Sur Android, dans la leçon 1 de la capture, `1 · Saluer` se lit d'un bloc sur la première ligne, « Révision en cours » apparaît juste dessous, et les 3 étoiles restent à droite.
 - [ ] Les unités 2 et 3 gardent leurs titres complets, leurs étoiles et leur coche ; l'unité 4 reste clairement l'étape recommandée.
 - [ ] La mission « Premier cours de luxembourgeois » ne se retrouve plus dans une colonne étroite d'un ou deux mots ; `Sans faute` reste visible et lisible.
-- [ ] La ligne Bilan, le bouton « Reprendre » et « Voir toute la leçon » restent visibles, cliquables et sans chevauchement.
+- [ ] La ligne Bilan, le bouton « Reprendre » et « Voir toute la leçon » restent visibles, cliquables et sans chevauchement. Les libellés « Sans faute » et « facultatif » ne poussent jamais le titre dans une colonne d'un seul mot.
 - [ ] Tester des largeurs CSS de **320, 360, 393 et 430 px**, ainsi qu'un agrandissement de texte Android ; aucune coupure de titre, aucun défilement horizontal et aucun élément superposé. En largeur extrême, une ligne supplémentaire est acceptable si l'information reste entière.
 - [ ] Contrôler les états **aucune révision**, **révision en cours**, **unité terminée 1/2/3 étoiles**, **unité recommandée**, **mission avec/sans statut** et **bilan** ; vérifier les titres particulièrement longs.
 - [ ] Vérifier que les données `luxParcours` / `luxParcoursLibre`, les scores, la progression, le cloud, la navigation et l'accordéon n'ont pas changé.
-- [ ] Comparer une capture réelle avant/après sur le même téléphone ; la carte doit être plus compacte **sans** réduire la taille générale du texte.
+- [ ] Comparer une capture réelle avant/après sur le même téléphone et à police identique ; la carte doit être plus compacte **sans** réduire la taille générale du texte. Vérifier que le gain vient des retours à la ligne supprimés et de la meilleure distribution de la largeur, pas d'une troncature.
 
 ## Hors périmètre
 
@@ -67,6 +98,6 @@ La ligne « Mission · Premier cours de luxembourgeois » est également trop ha
 
 ## Implémentation et suivi
 
-- **Non implémentée à la création de cette fiche.** Cette livraison concerne exclusivement la spécification et le registre.
+- **Non implémentée :** mise à jour documentaire de la SPEC 29 uniquement, sans changement du code ni du registre (qui référence déjà cette fiche).
 - À l'implémentation : compléter ici les fichiers modifiés, les tests réalisés, les captures avant/après et les anomalies résiduelles. Passer à « Implémentée — validation à confirmer » seulement après présence du code ; à « Validée » seulement après recette.
 - Références : [SPEC 17 — Lisibilité](./SPEC-17.md), [SPEC 22 — Révision libre](./SPEC-22.md), [SPEC 27 — États d'unité](./SPEC-27.md), [Design system](../DESIGN_SYSTEM.md).
