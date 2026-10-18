@@ -495,12 +495,15 @@ function getMissionBest(leconId) {
   return null;
 }
 
-function saveMissionBest(leconId, percent) {
+// version : version de la scène jouée (spec 23) ; gardée au maximum, comme le score,
+// pour distinguer plus tard les anciens résultats des nouvelles épreuves.
+function saveMissionBest(leconId, percent, version) {
   const progress = getProgress();
   if (!progress[leconId]) progress[leconId] = {};
   if (!progress[leconId].mission) progress[leconId].mission = {};
   const old = progress[leconId].mission.score;
   progress[leconId].mission.score = old == null ? percent : Math.max(old, percent);
+  if (version) progress[leconId].mission.version = Math.max(progress[leconId].mission.version || 1, version);
   saveProgress(progress);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }

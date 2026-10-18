@@ -1225,10 +1225,12 @@ function choisirP(btn, ok, bonne, item, type) {
 }
 
 // ─── ÉTAPE 4 : ÉCRITURE ─────────────────────────────────────────────────────
-let ecrEssais = 0; // essais ratés sur la phrase en cours
+let ecrEssais = 0;      // essais ratés sur la phrase en cours
+let ecrCoquille = false; // correction gratuite déjà utilisée sur cette phrase (spec 24)
 
 function renderEcriturePc(e) {
   ecrEssais = 0;
+  ecrCoquille = false;
   document.getElementById('pc-body').innerHTML =
     '<div class="pc-question">' +
       '<div class="pc-mini-label">ÉCRIS EN LUXEMBOURGEOIS</div>' +
@@ -1281,11 +1283,25 @@ function ecrValiderPc() {
     return;
   }
 
+  // Spec 24 : une coquille probable se corrige gratuitement, une fois par phrase.
+  // Rien n'est enregistré tant que la décision n'est pas prise.
+  if (ecrEssais === 0 && !ecrCoquille) {
+    const analyse = analyserReponse(val, e.lu);
+    if (analyse.correctionGratuiteAutorisee) {
+      ecrCoquille = true;
+      afficherCoquille(document.getElementById('pc-ecr-erreur'), analyse);
+      document.getElementById('pc-ecr-valider').textContent = 'Corriger ma saisie';
+      fermerClavier();
+      focusSiClavierPhysique(input);
+      return;
+    }
+  }
+
   ecrEssais++;
   if (ecrEssais === 1) {
-    enregistrer(e, 0, false); // l'erreur compte dès le 1er essai
+    enregistrer(e, 0, false); // une vraie erreur compte dès le 1er essai
     const err = document.getElementById('pc-ecr-erreur');
-    err.classList.remove('hidden');
+    err.classList.remove('hidden', 'coquille');
     err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · corrige ta réponse' +
       aideErreurHtml(val, e, attention, 1);
     // La réponse reste dans le champ pour la corriger ; le clavier se ferme
@@ -1302,6 +1318,14 @@ function ecrValiderPc() {
   showFeedback(false, 'Pas encore',
     'Réponse attendue : <b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention) +
     'Cette phrase reviendra à la fin de l\'étape.', echouer);
+}
+
+// « Possible faute de frappe » : sans révéler la réponse, on montre le mot à vérifier.
+function afficherCoquille(zone, analyse) {
+  zone.classList.remove('hidden');
+  zone.classList.add('coquille');
+  zone.innerHTML = '<b>Possible faute de frappe</b> · Tu peux corriger ta saisie sans pénalité.' +
+    (analyse.mot && analyse.mot.saisi ? '<div class="pc-attention">Vérifie « ' + escHtml(analyse.mot.saisi) + ' ».</div>' : '');
 }
 
 // ─── FIN DE PARTIE ──────────────────────────────────────────────────────────

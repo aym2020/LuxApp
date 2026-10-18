@@ -12,9 +12,15 @@
 //     son unité est terminée (les autres restent floutées, rien n'est bloqué).
 //   - « Jouer la mission » rejoue la scène : l'utilisateur écrit les répliques
 //     « toi », les autres s'affichent toutes seules.
-//   - Score = répliques justes du premier coup. Meilleur score gardé (acquis).
+//   - Score = réponses autonomes (justes du premier coup, ou après une faute de
+//     frappe corrigée), 3 vies (spec 23). Meilleur score gardé (acquis).
 
 const ESSAIS_MISSION = 2; // « Voir la réponse » apparaît après 2 essais ratés
+const VIES_MISSION = 3;   // spec 23 : une vraie erreur coûte une vie (une seule par réplique)
+// Réussite (spec 23), adaptée au nombre de répliques de la scène :
+//   mission : au moins 80 % de réponses autonomes (8 sur 10) et au moins une vie ;
+//   « Tente ta chance » : au moins 90 % (9 sur 10), aucune réponse révélée, au moins une vie.
+// Réponse autonome = juste du premier coup, ou juste après une faute de frappe corrigée.
 
 let ms = null; // mission en cours : { idx, essais, revele, resultats: [] }
 
@@ -220,8 +226,10 @@ function peutTenterSaChance(l) {
 // Après chaque réponse, la correction reste affichée jusqu'à « Continuer ».
 // tentative = true : « Tente ta chance », avant les unités (S10).
 function openMission(tentative) {
-  ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0, enBas: true };
+  ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0, enBas: true,
+    vies: VIES_MISSION, coquille: false };
   renderEnteteMission();
+  majVies(false);
   fermerClavier();
   showView('view-mission');
   ecouterConversation();
@@ -260,6 +268,28 @@ function majProgressionMission() {
   const enCours = Math.min(fait + 1, total);
   document.getElementById('ms-compteur').textContent = ms.idx >= pLecon.scene.length ? total + ' / ' + total : enCours + ' / ' + total;
   document.getElementById('ms-piste').style.width = Math.round(fait / total * 100) + '%';
+}
+
+// Les trois cœurs de l'en-tête. perdue = true : le dernier cœur perdu s'anime.
+function majVies(perdue) {
+  const coeur = plein => '<svg class="ms-coeur' + (plein ? '' : ' vide') + '" viewBox="0 0 24 24" aria-hidden="true">' +
+    '<path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>';
+  let html = '';
+  for (let i = 0; i < VIES_MISSION; i++) html += coeur(i < ms.vies);
+  const zone = document.getElementById('ms-vies');
+  zone.innerHTML = html;
+  zone.setAttribute('aria-label', ms.vies + ' vie' + (ms.vies > 1 ? 's' : '') + ' sur ' + VIES_MISSION);
+  if (perdue) {
+    const c = zone.querySelectorAll('.ms-coeur')[ms.vies];
+    if (c) c.classList.add('perdu');
+  }
+}
+
+// Une vraie erreur sur cette réplique : une vie de moins (une seule par réplique).
+function perdreVie() {
+  if (ms.vies <= 0) return;
+  ms.vies--;
+  majVies(true);
 }
 
 // Position de la réplique « toi » en cours : 1re, 2e… sur le total à dire.
@@ -338,6 +368,7 @@ function renderMission() {
   const zone = document.getElementById('ms-reponse');
   zone.classList.remove('hidden');
   zone.innerHTML =
+    (ms.vies === 0 ? '<div class="ms-apprentissage">Plus de vie : termine la conversation pour t\'entraîner. Le défi ne sera pas validé cette fois.</div>' : '') +
     '<div class="mc-erreur hidden" id="ms-erreur"></div>' +
     '<div class="ms-a-traduire"><span>À traduire en luxembourgeois</span><div class="ms-consigne">' + escHtml(ligne.fr) + '</div></div>' +
     '<div class="ms-champ">' +
@@ -391,22 +422,39 @@ function missionValider() {
   const ligne = pLecon.scene[ms.idx];
 
   // Juste : la réplique part dans la conversation, la correction s'affiche en bas.
+  // Résultat : 'ok' (direct), 'coquille' (après une faute de frappe corrigée),
+  // 'essais' (après une vraie erreur), 'revele' (réponse montrée).
   if (normalize(val) === normalize(ligne.lu)) {
-    ms.resultats[ms.idx] = ms.essais === 0 ? 'ok' : 'essais';
+    ms.resultats[ms.idx] = ms.essais > 0 ? 'essais' : (ms.coquille ? 'coquille' : 'ok');
     const titre = ms.essais === 0 ? 'Bonne réponse !' : 'Juste, au ' + (ms.essais + 1) + 'e essai';
-    const sous = ms.essais === 0
-      ? 'Réplique ' + numeroReplique(ms.idx) + ' sur ' + nbRepliquesToi(pLecon) + ' validée.'
-      : 'Elle ne compte pas comme juste du premier coup.';
+    let sous = 'Réplique ' + numeroReplique(ms.idx) + ' sur ' + nbRepliquesToi(pLecon) + ' validée.';
+    if (ms.resultats[ms.idx] === 'coquille') sous = 'Faute de frappe corrigée : aucune vie perdue.';
+    if (ms.essais > 0) sous = 'Elle ne compte pas comme réponse autonome.';
     retourMission('ok', titre, sous);
     return;
   }
 
+  // Spec 24 : une coquille probable se corrige gratuitement, une fois par réplique.
+  const err = document.getElementById('ms-erreur');
+  if (ms.essais === 0 && !ms.coquille) {
+    const analyse = analyserReponse(val, ligne.lu);
+    if (analyse.correctionGratuiteAutorisee) {
+      ms.coquille = true;
+      ms.dernierEssai = '';
+      afficherCoquille(err, analyse);
+      document.getElementById('ms-btn-valider').setAttribute('aria-label', 'Corriger ma saisie');
+      fermerClavier();
+      return;
+    }
+  }
+
   // Faux : on réessaie (jamais bloqué). 1er essai : diagnostic + aide sans la réponse (S6).
+  // La 1re vraie erreur de la réplique coûte une vie.
   // La réponse reste dans le champ pour la corriger ; le clavier se ferme pour laisser lire l'aide.
   ms.essais++;
   ms.dernierEssai = val;
-  const err = document.getElementById('ms-erreur');
-  err.classList.remove('hidden');
+  if (ms.essais === 1) perdreVie();
+  err.classList.remove('hidden', 'coquille');
   err.innerHTML = '<b>Pas encore</b> · Essai ' + ms.essais +
     aideErreurHtml(val, ligne, ligne.aide || '', ms.essais);
   document.getElementById('ms-btn-valider').setAttribute('aria-label', 'Réessayer');
@@ -441,18 +489,26 @@ function retourMission(etat, titre, sous) {
 function suiteMission() {
   ms.idx++;
   ms.essais = 0;
+  ms.coquille = false;
   ms.dernierEssai = '';
   renderMission();
 }
 
-// Score = répliques justes du premier coup / répliques à dire.
+// Score = réponses autonomes / répliques à dire.
 function finirMission() {
   const total = nbRepliquesToi(pLecon);
-  let ok = 0;
-  pLecon.scene.forEach((x, i) => { if (x.qui === 'toi' && ms.resultats[i] === 'ok') ok++; });
-  const percent = Math.round(ok / total * 100);
+  let ok = 0, reveles = 0;
+  pLecon.scene.forEach((x, i) => {
+    if (x.qui !== 'toi') return;
+    if (ms.resultats[i] === 'ok' || ms.resultats[i] === 'coquille') ok++; // réponses autonomes
+    if (ms.resultats[i] === 'revele') reveles++;
+  });
+  let percent = Math.round(ok / total * 100);
+  // Plus de vie : le défi n'est pas validé cette fois (le score reste sous le seuil).
+  if (ms.vies === 0) percent = Math.min(percent, SEUIL_MISSION - 1);
+  ms.bilan = { ok, total, erreurs: total - ok, reveles, vies: ms.vies };
   const premiere = getMissionBest(pLecon.id) == null;
-  saveMissionBest(pLecon.id, percent);
+  saveMissionBest(pLecon.id, percent, missionVersion(pLecon));
   marquerUniteFaite(); // mission jouée : objectif « unité » du jour (S7)
   dernierFini = { leconId: pLecon.id, uniteId: 'mission' }; // animé sur le chemin
 
@@ -468,8 +524,7 @@ function finirMission() {
   const fin = document.createElement('div');
   fin.className = 'ms-fin';
   fin.innerHTML =
-    '<div class="pf-sansfaute ms-bandeau">' + titre + '<span>' + ok + ' / ' + total +
-      ' répliques justes du premier coup · ' + percent + ' %</span></div>' +
+    '<div class="pf-sansfaute ms-bandeau">' + titre + '<span>' + bilanMissionTexte() + '</span></div>' +
     '<div class="pf-boutons">' +
       '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">Continuer le parcours</button>' +
       '<button class="pc-btn ghost wide" onclick="openMission()">Rejouer la mission</button>' +
@@ -477,6 +532,19 @@ function finirMission() {
     '</div>';
   afficherBilanMission(fin);
   if (percent >= SEUIL_MISSION) confettis(); // mission réussie : célébration (S12)
+}
+
+// « 8 / 10 réponses autonomes · 2 erreurs · 1 vie restante »
+function bilanMissionTexte() {
+  const b = ms.bilan;
+  return b.ok + ' / ' + b.total + ' réponses autonomes · ' + b.erreurs + ' erreur' + (b.erreurs > 1 ? 's' : '') +
+    ' · ' + b.vies + ' vie' + (b.vies > 1 ? 's' : '') + ' restante' + (b.vies > 1 ? 's' : '');
+}
+
+// Version de la scène (champ « version » de la mission, 1 par défaut) : pour
+// distinguer plus tard les anciens résultats des épreuves à 10 répliques.
+function missionVersion(l) {
+  return (l.mission && l.mission.version) || 1;
 }
 
 // Bilan en haut de la conversation, la scène complète (traduite) en dessous.
@@ -499,11 +567,12 @@ function finirTentative(percent, ok, total) {
   const fin = document.createElement('div');
   fin.className = 'ms-fin';
   const premiere = unitesCoeur(pLecon)[0];
-  if (percent === 100) {
+  // Spec 23 : 90 % de réponses autonomes (9 sur 10), aucune réponse révélée, au moins une vie.
+  if (ok >= Math.ceil(total * 0.9) && ms.bilan.reveles === 0 && ms.vies > 0) {
     saveValideeMission(pLecon.id);
     fin.innerHTML =
       '<div class="pf-sansfaute ms-bandeau">Tu connais déjà cette leçon<span>' + ok + ' / ' + total +
-        ' répliques justes du premier coup. Les unités sont validées par la mission.</span></div>' +
+        ' réponses autonomes. Les unités sont validées par la mission.</span></div>' +
       '<div class="pf-boutons">' +
         '<button class="pc-btn primary wide big" onclick="suivreProchainPas()">Leçon suivante</button>' +
         '<button class="pc-btn ghost wide" onclick="openIntro(' + premiere.id + ')">Faire quand même les unités</button>' +
@@ -511,10 +580,10 @@ function finirTentative(percent, ok, total) {
       '</div>';
     confettis();
   } else {
-    const justes = pLecon.scene.filter((x, i) => x.qui === 'toi' && ms.resultats[i] === 'ok');
+    const justes = pLecon.scene.filter((x, i) => x.qui === 'toi' && (ms.resultats[i] === 'ok' || ms.resultats[i] === 'coquille'));
     fin.innerHTML =
       '<div class="ms-aide-unites"><b>Les unités vont t\'aider</b><span>' + ok + ' / ' + total +
-        ' répliques justes du premier coup. Rien n\'est perdu : ton meilleur score est gardé.</span></div>' +
+        ' réponses autonomes · ' + ms.bilan.vies + ' vie' + (ms.bilan.vies > 1 ? 's' : '') + ' restante' + (ms.bilan.vies > 1 ? 's' : '') + '. Rien n\'est perdu : ton meilleur score est gardé.</span></div>' +
       (justes.length ? '<div class="pc-mini-label">TU SAIS DÉJÀ DIRE</div><div class="ms-scene">' +
         justes.map(x => '<div class="ms-bulle toi"><b>Toi</b>' + escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>').join('') + '</div>' : '') +
       '<div class="pf-boutons">' +

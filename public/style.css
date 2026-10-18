@@ -2019,3 +2019,15 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 /* Spec 22 : révision libre interrompue (chemin, écran de la leçon) */
 .unites .tag.revision { color: var(--couleur-turquoise); }
 .pl-reprendre-revision { color: var(--couleur-turquoise); }
+
+/* Spec 24 : « Possible faute de frappe » — un avertissement, pas une erreur */
+.mc-erreur.coquille { background: var(--couleur-or-fond); color: var(--couleur-texte-2); }
+.mc-erreur.coquille b { color: var(--couleur-action); }
+
+/* Spec 23 : les trois vies de la mission */
+.ms-vies { flex: none; display: flex; gap: 2px; }
+.ms-coeur { width: 16px; height: 16px; fill: var(--couleur-erreur); }
+.ms-coeur.vide { fill: none; stroke: var(--couleur-bord-2); stroke-width: 2; }
+.ms-coeur.perdu { animation: coeur-perdu .5s ease-out; }
+@keyframes coeur-perdu { 0% { transform: scale(1.5); fill: var(--couleur-erreur); } 100% { transform: scale(1); } }
+.ms-apprentissage { font-size: var(--fs-micro); color: var(--couleur-texte-3); padding: .35rem .6rem; border-radius: var(--rayon-bouton); background: var(--couleur-surface-1); }

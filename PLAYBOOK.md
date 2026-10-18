@@ -138,6 +138,18 @@ principale ; la libre est signalée (« Révision en cours », « Reprendre la r
 déplacer l'anneau doré. Synchronisées séparément (`enCours.partie` / `enCours.partieLibre`).
 `migrerParties()` range une ancienne répétition dans l'emplacement libre.
 
+### Correction : coquille ou erreur (spec 24) et missions à 3 vies (spec 23)
+
+`public/correction.js` : `analyserReponse(saisie, attendu)` — local, déterministe, sans IA.
+Accents, majuscules et ponctuation **ignorés** (décision de Clayton). Une seule différence sur un
+mot de 5 lettres ou plus, sans article/pronom/négation/forme connue en jeu → « Possible faute de
+frappe » : une correction gratuite par réplique / phrase, rien n'est enregistré avant la décision.
+Mot manquant, en trop, ordre, mot court, autre mot connu, plusieurs erreurs → erreur.
+Missions : 3 vies (une seule perdue par réplique) ; réponse autonome = juste du 1er coup ou après
+coquille ; réussite ≥ 80 % autonomes avec ≥ 1 vie ; « Tente ta chance » ≥ 90 %, aucune réponse
+révélée, ≥ 1 vie. Score de mission enregistré avec `version` (champ `mission.version` des JSON,
+1 par défaut). Les scènes à 10 répliques restent à écrire (contenu, lots suivants).
+
 ### Révision espacée (aucune donnée en plus)
 
 - Date de révision **calculée** depuis `luxQuestionStats` : `lastSeenAt` + intervalle selon
@@ -278,7 +290,7 @@ après chaque correction (surtout CSS) ; limiter le perfectionnement visuel et
 | Quand | Quoi | Durée |
 | --- | --- | --- |
 | Pendant le travail | `node --check` des fichiers touchés + le test du sujet touché (ex. `tests/test_motcache.py` pour le mot caché) | < 1 min |
-| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_seance.py` | ~5 min |
+| Avant chaque push (**tests critiques**) | `node --check public/*.js`, `node tools/valider-lecons.js`, `node tests/test_cloud.js`, `node tests/test_sync.js`, `node tests/test_correction.js`, `python3 tests/test_lot1.py`, `test_lot2.py`, `test_lot3.py`, `test_parcours.py`, `test_navigation.py`, `test_motcache.py`, `test_decouverte.py`, `test_libre.py`, `test_mission_vies.py`, `test_seance.py` | ~5 min |
 | Avant de fusionner `v2` dans `main` | `python3 tests/test_fil.py` et `python3 tests/test_migration.py` complets | ~50 min |
 
 - La suite critique se lance **une seule fois, en fin de lot**.
