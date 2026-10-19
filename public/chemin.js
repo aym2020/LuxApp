@@ -130,6 +130,18 @@ function ligne2LeconHtml(l, statut, dus) {
   return morceaux.length ? '<span class="carte-ligne2">' + morceaux.join(' ') + '</span>' : '';
 }
 
+// SPEC 54 — affichage seulement, sans changer le titre pédagogique de la leçon.
+// Le titre source protège contre une abréviation périmée après une mise à jour.
+const CHEMIN_TITRES_LECONS_COURTS = {
+  5: ['Les nombres et la façon de compter en luxembourgeois', 'Les nombres et le comptage']
+};
+
+function titreLeconChemin(lecon) {
+  const original = titreCourt(lecon);
+  const regle = CHEMIN_TITRES_LECONS_COURTS[lecon.id];
+  return regle && regle[0] === original ? regle[1] : original;
+}
+
 // Leçon repliée (spec 48) : grille commune.
 //   ligne 1 : numéro et titre (plusieurs lignes possibles) · chevron en haut à droite ;
 //   ligne 2 : statut et révisions, seulement si utile (sinon la carte reste compacte).
@@ -141,9 +153,11 @@ function leconReplieeHtml(l, dus, conseillee, anim) {
     (conseillee ? ', leçon conseillée' : '') + (dus ? ', ' + texteAReviser(dus) : '');
   return '<li class="pas ' + classe + (classe === 'futur' ? '' : ' replie') + '" id="chemin-lecon-' + l.id + '">' +
     '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '">' + iconePas(classe) + '</span>' +
-    '<button class="carte-lecon compacte chemin-lecon" aria-expanded="false" aria-label="' + attrHtml(nomLu) + '" onclick="basculerLeconChemin(' + l.id + ')">' +
+    '<button class="carte-lecon compacte chemin-lecon" aria-expanded="false" aria-label="' + attrHtml(nomLu) +
+      '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + titreCourt(l)) +
+      '" onclick="basculerLeconChemin(' + l.id + ')">' +
       '<span class="carte-haut"><span class="num">Leçon ' + numLecon(l) + '</span>' +
-      '<span class="titre">' + escHtml(titreCourt(l)) + '</span></span>' +
+      '<span class="titre">' + escHtml(titreLeconChemin(l)) + '</span></span>' +
       '<span class="chevron-l">' + ICONES.chevron + '</span>' +
       ligne2LeconHtml(l, statut, dus) +
     '</button></li>';
@@ -157,13 +171,16 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   const classe = classePas(statut, conseillee);
   const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
   const action = actionLeconChemin(l);
+  const nomLu = 'Leçon ' + numLecon(l) + ', ' + titreCourt(l) + ', ' + statut.libelle;
 
   let html = '<li class="pas ' + classe + ' ouverte" id="chemin-lecon-' + l.id + '">' +
     '<span class="rond">' + iconePas(classe) + '</span>' +
     '<div class="carte-lecon chemin-lecon ouvre' + deplie + '">' +
-      '<button class="carte-tete" aria-expanded="true" onclick="basculerLeconChemin(' + l.id + ')">' +
+      '<button class="carte-tete" aria-expanded="true" aria-label="' + attrHtml(nomLu) +
+        '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + titreCourt(l)) +
+        '" onclick="basculerLeconChemin(' + l.id + ')">' +
         '<span class="carte-haut"><span class="num">Leçon ' + numLecon(l) + ' · <span class="st st-' + statut.code + '">' + statut.libelle + '</span></span>' +
-        '<h3>' + escHtml(titreCourt(l)) + '</h3></span>' +
+        '<h3>' + escHtml(titreLeconChemin(l)) + '</h3></span>' +
         '<span class="chevron-l">' + ICONES.chevron + '</span>' +
       '</button>' + (dus ? '<p class="a-reviser">' + texteAReviser(dus) + '</p>' : '');
 
