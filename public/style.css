@@ -675,6 +675,32 @@ header {
 .ex-opts.stack .ex-opt { text-align: left; }
 .ex-opt.selected { border-color: var(--accent); background: var(--couleur-or-fond); color: var(--accent); }
 
+
+/* Réponses illustrées des annales : deux images SVG à choisir, sans libellé visible. */
+.ex-opts.pictures { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem; width: 100%; }
+.ex-opts.pictures .ex-image-choice {
+  position: relative; min-width: 0; width: 100%; padding: .35rem;
+  overflow: hidden; border-radius: var(--r); background: var(--surface); text-align: center;
+}
+.ex-image-svg { display: block; width: 100%; aspect-ratio: 13 / 9; height: auto; border-radius: 9px; }
+.ex-image-num {
+  position: absolute; left: .65rem; top: .65rem; z-index: 1;
+  display: grid; place-items: center; width: 25px; height: 25px; border-radius: 7px;
+  font-size: .75rem; font-weight: 800; background: rgba(28,31,34,.89); color: #fff;
+}
+.ex-opt.ex-image-choice.selected { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.ex-opt.ex-image-choice:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.ex-opts.pictures .ex-image-choice.fixed { flex: none; cursor: default; }
+.ex-opts.pictures .ex-image-choice.fixed .ex-opt-txt {
+  display: flex; flex-direction: column; align-items: stretch; gap: .35rem;
+}
+.ex-image-answer { font-size: .76rem; font-weight: 600; line-height: 1.4; padding: .2rem; }
+.ex-opts.pictures .ex-image-choice.fixed small { display: block; margin-top: .3rem; }
+@media(max-width:360px) {
+  .ex-opts.pictures { gap: .4rem; }
+  .ex-opts.pictures .ex-image-choice { padding: .2rem; }
+}
+
 /* Barre collée en bas : mots à placer + navigation */
 .ex-bottom {
   position: sticky; bottom: 0; margin-top: auto;
