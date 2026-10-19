@@ -594,6 +594,7 @@ function renderSessionQ() {
   inputWrap.classList.add('hidden');
   sentenceEl.classList.add('hidden');
   feedback.className = 'ecr-feedback hidden';
+  feedback.innerHTML = ''; // SPEC 59 : ne jamais garder un ancien diagnostic
   document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
 
   document.getElementById('session-label').textContent = typeLabel(type);
@@ -694,6 +695,26 @@ function ajouterBoutonSuivante(feedback) {
   feedback.after(nextBtn);
 }
 
+// SPEC 59 : garantir que la correction est perceptible même avec le clavier
+// Android ouvert. Une saisie validée n'a pas besoin de garder le focus.
+// La région ARIA est placée au-dessus du champ de saisie dans index.html.
+function montrerFeedbackSession(feedback, input) {
+  if (input && typeof input.blur === 'function') input.blur();
+  feedback.classList.remove('hidden');
+  const amener = () => {
+    if (feedback.classList.contains('hidden') ||
+        typeof feedback.scrollIntoView !== 'function') return;
+    feedback.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+  // Deux frames : laisser le clavier commencer à se fermer et le DOM
+  // recalculer la hauteur après la disparition du bouton Valider.
+  if (typeof requestAnimationFrame === 'function') {
+    requestAnimationFrame(() => requestAnimationFrame(amener));
+  } else {
+    amener(); // navigateurs anciens et environnement de test
+  }
+}
+
 // Réponse écrite (mot caché, écriture). Deux essais hors examen (S6) :
 //   1er essai raté : l'erreur est comptée, aide sans la réponse, on réessaie ;
 //   2e essai : juste ou faux, on passe à la suite (la réponse s'affiche si faux).
@@ -709,33 +730,30 @@ function validateSessionInput() {
   const corrige = item.type === 'motcache' ? carteACorriger(leconItem, item.q) : item.q;
   const target = corrige.lu;
   // SPEC 50 : les variantes d'écriture restent valables aussi en révision.
-  // Le mot caché conserve sa comparaison habituelle.
   const reconnue = item.type === 'ecriture' ? reponseReconnue(val, corrige) : null;
   const ok = item.type === 'ecriture' ? !!reconnue : normalize(val) === normalize(target);
   const attention = attentionDe(item);
   const feedback = document.getElementById('session-feedback');
-  feedback.classList.remove('hidden');
+  const premiereTentative = session.essais === 0;
 
-  // L'essai qui compte pour la progression : le premier.
-  if (session.essais === 0) recordSessionAnswer(ok);
-
-  // 1er essai raté (hors examen) : on aide sans donner la réponse.
-  if (!ok && session.essais === 0 && session.mode !== 'exam') {
-    session.essais = 1;
+  // Premier essai raté : le diagnostic est montré AVANT d'enregistrer
+  // la réponse, sinon une erreur de sauvegarde masque tout le feedback.
+  if (!ok && premiereTentative && session.mode !== 'exam') {
     const aide = aideErreur(val, corrige, attention, 1);
+    session.essais = 1;
     feedback.className = 'ecr-feedback ko';
     feedback.innerHTML = '❌ Pas encore · réessaie' +
       (aide.diagnostic ? '<span class="session-diagnostic">' + escHtml(aide.diagnostic) + '</span>' : '') +
       (aide.attention ? '<span class="session-attention">Attention : ' + aide.attention + '</span>' : '');
     input.value = '';
-    input.focus();
+    montrerFeedbackSession(feedback, input);
+    // Un seul comptage, sur la première tentative seulement.
+    recordSessionAnswer(false);
     return;
   }
 
   session.answered = true;
-  // Réponse affichée : avec l'article pour un mot caché.
   const affiche = item.type === 'motcache' && corrige.article ? corrige.article + ' ' + target : target;
-
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
   document.getElementById('session-input-btn').disabled = true;
@@ -753,7 +771,11 @@ function validateSessionInput() {
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   }
 
+  // Le bouton Valider n'occupe plus inutilement l'écran après une correction.
+  document.getElementById('session-input-wrap').classList.add('hidden');
   ajouterBoutonSuivante(feedback);
+  montrerFeedbackSession(feedback, input);
+  if (premiereTentative) recordSessionAnswer(ok);
 }
 
 function recordSessionAnswer(ok) {
