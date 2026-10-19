@@ -445,7 +445,7 @@
     {
       "section": "Liesverstoen",
       "titre": "Wou ass wat?",
-      "consigne": "Lis chaque phrase, puis choisis la photo qui correspond. (Les photos du sujet papier sont décrites en français.)",
+      "consigne": "Lis chaque phrase en luxembourgeois, puis choisis l'illustration correspondante.",
       "type": "qcm",
       "lignes": [],
       "questions": [
@@ -457,7 +457,11 @@
           ],
           "reponse": "Le sac est à droite du canapé",
           "note": "Riets = à droite (lénks = à gauche). Nieft dem Kannapee = à côté du canapé.",
-          "question_fr": "Je cherche mon sac. – Regarde, il est à droite, à côté du canapé !"
+          "question_fr": "Je cherche mon sac. – Regarde, il est à droite, à côté du canapé !",
+          "illustrations": [
+            "sac-gauche",
+            "sac-droite"
+          ]
         },
         {
           "question": "Ech siche mäi Brëll. – Kuck, en ass op der Zeitung!",
@@ -467,7 +471,11 @@
           ],
           "reponse": "Les lunettes sont sur le journal",
           "note": "Op der Zeitung = sur le journal. À côté = nieft der Zeitung.",
-          "question_fr": "Je cherche mes lunettes. – Regarde, elles sont sur le journal !"
+          "question_fr": "Je cherche mes lunettes. – Regarde, elles sont sur le journal !",
+          "illustrations": [
+            "lunettes-sur",
+            "lunettes-cote"
+          ]
         },
         {
           "question": "Wou ass meng Kaz? – Ah, um Schaf!",
@@ -477,7 +485,11 @@
           ],
           "reponse": "Le chat est sur l'armoire",
           "note": "Um = op + dem : um Schaf = sur l'armoire. Devant = virum Schaf.",
-          "question_fr": "Où est mon chat ? – Ah, sur l'armoire !"
+          "question_fr": "Où est mon chat ? – Ah, sur l'armoire !",
+          "illustrations": [
+            "chat-devant",
+            "chat-dessus"
+          ]
         },
         {
           "question": "Ech siche mäi Bic. – Kuck, en ass am Nuetsdësch!",
@@ -487,7 +499,11 @@
           ],
           "reponse": "Le stylo est dans la table de nuit",
           "note": "Am = an + dem : am Nuetsdësch = dans la table de nuit.",
-          "question_fr": "Je cherche mon stylo. – Regarde, il est dans la table de nuit !"
+          "question_fr": "Je cherche mon stylo. – Regarde, il est dans la table de nuit !",
+          "illustrations": [
+            "stylo-dessus",
+            "stylo-dans"
+          ]
         },
         {
           "question": "Wou parken ech? – De Parking ass nieft dem Gebai!",
@@ -497,7 +513,11 @@
           ],
           "reponse": "Le parking est à côté du bâtiment",
           "note": "Nieft dem Gebai = à côté du bâtiment. Devant = virum Gebai.",
-          "question_fr": "Où est-ce que je me gare ? – Le parking est à côté du bâtiment !"
+          "question_fr": "Où est-ce que je me gare ? – Le parking est à côté du bâtiment !",
+          "illustrations": [
+            "parking-devant",
+            "parking-cote"
+          ]
         }
       ]
     },
