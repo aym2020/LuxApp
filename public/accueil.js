@@ -177,7 +177,7 @@ function detailPas(pas) {
 function detailPasCourt(pas) {
   if (pas.type === 'unite' && pas.unite) {
     // Ex. « sinn : être au présent » -> « Unité 1 · sinn ».
-    const chapitre = pas.unite.titre.split(/\\s*[:·]\\s*/)[0].trim();
+    const chapitre = pas.unite.titre.split(/\s*[:·]\s*/)[0].trim();
     return 'Unité ' + pas.unite.id + ' · ' + chapitre;
   }
   return detailPas(pas);
