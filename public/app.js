@@ -582,9 +582,8 @@ function renderSessionQ() {
   const { type, q, leconId, qid } = item;
 
   setProgress('session', session.index, session.questions.length);
-  renderLevelDots(document.getElementById('session-level'),
-    getQuestionLevel(leconId, type, qid));
-
+  // SPEC 58 : les trois points de maîtrise V1 ne sont pas affichés
+  // dans les sessions transversales (erreurs, révision, examen).
   // Réinitialise les zones d'affichage
   const choicesEl = document.getElementById('session-choices');
   const inputWrap = document.getElementById('session-input-wrap');
