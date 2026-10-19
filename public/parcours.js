@@ -846,6 +846,8 @@ function renderReconstruction() {
     '</div>' +
     '<div class="mc-lettres" id="mc-lettres"></div>' +
     '<div class="mc-info" id="mc-info">' + nbLettres + ' lettres</div>' +
+    (mc.cases.some(c => c.lettre && mcSansAccent(c.ch) !== c.ch)
+      ? '<div class="mc-info">Accents ajoutés automatiquement</div>' : '') +
     '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
     '</div>' +
     '<div class="mc-saisie">' +
@@ -876,11 +878,23 @@ function renderReconstruction() {
   mcMajFocus();
 }
 
+// SPEC 51 : les tuiles ne portent pas d'accent ; les cases rétablissent
+// l'orthographe uniquement si la lettre de base correspond à la cible.
+function mcSansAccent(ch) {
+  return ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function mcLettreDansCase(lettre, cible) {
+  // Ne jamais transformer une mauvaise lettre en indice de la bonne réponse.
+  if (mcSansAccent(cible) !== cible && normalize(lettre) === normalize(cible)) return cible;
+  return lettre;
+}
+
 // Lettres proposées : celles des cases encore à remplir, plus 2 intruses
 // (3 pour un mot de 6 lettres ou plus), dans le désordre.
 const LETTRES_INTRUSES = 'aeinrstuldghm';
 function nouvellesTuiles() {
-  const tuiles = mcCasesLettres().libres.map(i => ({ ch: mc.cases[i].ch }));
+  const tuiles = mcCasesLettres().libres.map(i => ({ ch: mcSansAccent(mc.cases[i].ch) }));
   const nbIntruses = tuiles.length >= 6 ? 3 : 2;
   for (let k = 0; k < nbIntruses && tuiles.length; k++) {
     tuiles.push({ ch: LETTRES_INTRUSES[Math.floor(Math.random() * LETTRES_INTRUSES.length)] });
@@ -947,7 +961,7 @@ function mcEffacer() {
   renderCases();
 }
 
-// Les lettres posées, dans l'ordre (avec leur casse et leurs accents).
+// Les lettres posées, dans l'ordre (casse conservée, accents absents des tuiles).
 function mcLettresTapees() {
   return (mc.choix || []).map(k => mc.tuiles[k].ch);
 }
@@ -1045,7 +1059,10 @@ function renderCases(avecTuiles = true) {
     }
     let texte = '';
     let classe = 'mc-case ' + c.etat + taille;
-    if (parCase[i] !== undefined) { texte = parCase[i]; classe += ' tapee'; }
+    if (parCase[i] !== undefined) {
+      texte = mcLettreDansCase(parCase[i], c.ch);
+      classe += ' tapee';
+    }
     else if (c.etat !== '') texte = c.ch;
     if (i === curseur) classe += ' curseur';
     html += '<span class="' + classe + '">' + escHtml(texte) + '</span>';
@@ -1108,7 +1125,8 @@ function mcValider() {
     essaiAffiche += lettre || '_';
   });
 
-  // Juste (même comparaison que l'écriture : accents et ponctuation ignorés).
+  // SPEC 51 : seules les lettres de base et leur ordre sont évalués.
+  // Les accents corrects apparaissent déjà dans les cases, sans être notés.
   if (normalize(val) === normalize(motATaper(pLecon, card))) {
     mc.cases.forEach(c => { if (c.lettre) c.etat = 'vert'; });
     input.value = '';
