@@ -187,6 +187,10 @@ function confirmerIntroMission() {
       openIntro(action.uniteId);
       return;
     }
+    if (action.type === 'mission') { openMission(); return; }
+    if (action.type === 'bilan') { lancerBilan(); return; }
+    if (action.type === 'revoir') { toutRevoir(); return; }
+    if (action.type === 'rafraichir') { rafraichirLecon(); return; }
   }
   const fil = unitesCoeur(pLecon);
   const u = fil.find(x => getUnitBest(pLecon.id, x.id) == null) || fil[0];
@@ -246,6 +250,12 @@ function peutTenterSaChance(l) {
 // Après chaque réponse, la correction reste affichée jusqu'à « Continuer ».
 // tentative = true : « Tente ta chance », avant les unités (S10).
 function openMission(tentative) {
+  // L'aperçu d'une leçon ne contourne pas le scénario de découverte.
+  // « Tente ta chance » est l'exception explicite, proposée DANS l'intro.
+  if (!tentative && introMissionAVoir(pLecon)) {
+    ouvrirIntroMission(pLecon, { type: 'mission' });
+    return;
+  }
   ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], formesValidees: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0, enBas: true,
     vies: VIES_MISSION, coquille: false };
   renderEnteteMission();
