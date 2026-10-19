@@ -379,7 +379,7 @@ function startSession(mode) {
     return;
   }
 
-  session = { mode, questions, index: 0, score: 0, answered: false };
+  session = { mode, questions, index: 0, score: 0, answered: false, options: {} }; // SPEC 56
   document.getElementById('session-num').textContent = titre.toUpperCase();
   document.getElementById('session-titre').textContent = questions.length + ' questions';
   document.getElementById('session-result').classList.add('hidden');
@@ -763,7 +763,9 @@ function recordSessionAnswer(ok) {
   // En mode examen, on ne modifie pas les niveaux (changeLevel = false).
   const changeLevel = session.mode !== 'exam';
   updateQuestionProgress(item.leconId, item.type, item.qid, ok, changeLevel);
-  if (session.options.apresReponse) session.options.apresReponse();
+  // SPEC 56 : les sessions historiques peuvent ne pas fournir de callback.
+  const apresReponse = session.options && session.options.apresReponse;
+  if (typeof apresReponse === 'function') apresReponse();
 }
 
 function nextSessionQ() {
