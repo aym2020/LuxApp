@@ -70,7 +70,7 @@ function portailAlerteHtml() {
     '<p>Tu peux découvrir LuxApp librement et commencer les leçons tout de suite.</p>'+
     '<div class="pa-risque"><span aria-hidden="true">ⓘ</span><span>Sans compte, ta progression reste <strong>sur cet appareil uniquement</strong>. Tu risques de la perdre si tu changes de téléphone ou effaces les données.</span></div>'+
     '<div class="pa-actions">'+
-    portailBouton('Créer un compte pour sauvegarder','signup','or')+
+    (isCloudEnabled()?portailBouton('Créer un compte pour sauvegarder','signup','or'):'')+
     portailBouton('Continuer en invité','guest-confirm','sombre')+
     portailBouton('Retour','guest-back','texte')+'</div></section></div>';
 }
@@ -101,6 +101,7 @@ function portailContenu(mode) {
       '<label for="pa-email">Adresse e-mail</label><input id="pa-email" type="email" autocomplete="email" placeholder="tonadresse@exemple.com" required>'+
       '<label for="pa-password">Mot de passe</label><input id="pa-password" type="password" autocomplete="'+
       (creation?'new-password':'current-password')+'" placeholder="'+(creation?'6 caractères minimum':'Ton mot de passe')+'" required minlength="6">'+
+      (!creation ? '<button class="pa-reset" type="button" onclick="portailReinitialiserMotDePasse()">Mot de passe oublié ?</button>' : '')+
       (importable?'<label class="pa-import"><input type="checkbox" id="pa-import"> Ajouter mes progrès de cet appareil à mon compte</label>':'')+
       '<button class="pa-bouton or" type="submit">'+(creation?'Créer mon compte':'Me connecter')+'</button>'+
       '<p id="pa-message" class="pa-message" role="status" aria-live="polite"></p></form>':
@@ -142,6 +143,21 @@ function portailAction(action) {
     return;
   }
   if(action==='signup'||action==='signin')portailOuvrir(action);
+}
+async function portailReinitialiserMotDePasse() {
+  const emailEl=document.getElementById('pa-email');
+  const msg=document.getElementById('pa-message');
+  if(!emailEl||!msg)return;
+  const email=emailEl.value.trim();
+  if(!email){msg.textContent='Saisis ton adresse e-mail pour réinitialiser le mot de passe.';return;}
+  if(!fbAuth){msg.textContent='Connexion momentanément indisponible.';return;}
+  try {
+    await fbAuth.sendPasswordResetEmail(email);
+    msg.textContent='Si cette adresse correspond à un compte, un e-mail de réinitialisation a été envoyé.';
+  } catch(err) {
+    msg.textContent=typeof friendlyAuthError==='function' ? friendlyAuthError(err) :
+      'Impossible d’envoyer l’e-mail pour le moment.';
+  }
 }
 function portailSoumettre(event) {
   event.preventDefault();
