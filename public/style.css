@@ -511,7 +511,7 @@ header {
   letter-spacing: -.01em;
   cursor: pointer; text-align: center; transition: all .15s;
 }
-.dash-btn:active { background: var(--surface2); }
+.dash-btn:not(:disabled):not(.primary):active { background: var(--surface2); }
 .dash-btn.primary { /* spec 48 : l'action principale est or uni, comme .pc-btn.primary */
   background: var(--couleur-action); color: var(--couleur-sur-or); border: none; font-weight: 800; font-size: 1rem;
 }
@@ -1386,7 +1386,8 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 .ac-info b { font-size: var(--fs-corps); font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
 .ac-info.fait { flex-direction: row; align-items: center; gap: 4px; font-size: var(--fs-sec); font-weight: 700; color: var(--correct); }
 .ac-info.fait .ic { width: 16px; height: 16px; stroke-width: 3; }
-.carte-suite:active, .ac-btn:active, .puce-niv:active { transform: scale(.97); }
+/* SPEC 57 : .carte-suite et .ac-btn utilisent désormais l'effet CTA partagé. */
+.puce-niv:active { transform: scale(.97); }
 
 @media (max-width: 360px) {
   .accueil { gap: 16px; }
@@ -1494,7 +1495,8 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 .etape .pt { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); flex: none; }
 .etape.mission .pt { border-color: var(--info); border-radius: 3px; }
 .etape b { color: var(--text); font-weight: 600; }
-.btn-jaune:active, .carte-lecon:active, .plus-ligne:active { transform: scale(.97); }
+/* SPEC 57 : .btn-jaune utilise l'effet CTA partagé. */
+.carte-lecon:active, .plus-ligne:active { transform: scale(.97); }
 .point-synchro { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-micro); color: var(--muted); }
 .point-synchro i { width: 7px; height: 7px; border-radius: 50%; background: var(--correct); }
 .point-synchro.attente i { background: var(--accent-2); }
@@ -1908,7 +1910,7 @@ body.clavier-actif #view-mission.active .ms-body {
   display: grid; place-items: center; background: var(--accent); color: #1a1406;
 }
 .ms-envoyer .ic { width: 22px; height: 22px; stroke-width: 2.5; }
-.ms-envoyer:active { transform: scale(.94); }
+/* SPEC 57 : l'envoi en mission utilise l'effet CTA commun. */
 #view-mission .ms-saisie .mc-erreur { font-size: .85rem; padding: .55rem .7rem; }
 #view-mission .ms-saisie .ms-lien { align-self: flex-start; min-height: 36px; }
 
