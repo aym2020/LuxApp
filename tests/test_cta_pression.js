@@ -74,6 +74,24 @@ assert.ok(!style.includes('.btn-jaune:active, .carte-lecon:active, .plus-ligne:a
 assert.ok(!style.includes('.ms-envoyer:active { transform: scale(.94); }'));
 assert.ok(style.includes('.puce-niv:active'), 'les puces gardent leur feedback');
 assert.ok(style.includes('.carte-lecon:active'), 'les cartes gardent leur feedback');
+  
+// Régression constatée sur Android : le bouton « Reprendre » est l'enfant
+// direct d'une carte .ouvre ; l'animation `entre` contrôle transform avec
+// animation-fill-mode: both et masquait l'échelle du :active après l'entrée.
+// Il doit utiliser une animation qui ne touche PAS transform.
+const btnEntrance = style.match(/\.carte-lecon\.ouvre\s*>\s*\.btn-jaune\s*\{([^}]+)\}/);
+assert.ok(btnEntrance, 'règle d’entrée spécifique du CTA Chemin');
+assert.ok(/animation:\s*fondu\b/.test(btnEntrance[1]),
+  'le CTA Chemin doit apparaître avec fondu, sans transformer le bouton');
+assert.ok(!/animation:\s*entre\b/.test(btnEntrance[1]),
+  'animation entre incompatible avec un :active transform');
+const fondu = style.match(/@keyframes\s+fondu\s*\{\s*from\s*\{([^}]+)\}\s*to\s*\{([^}]+)\}\s*\}/);
+assert.ok(fondu, 'keyframes fondu disponibles');
+assert.ok(!/transform\s*:/.test(fondu[1] + fondu[2]),
+  'le fondu ne doit jamais contrôler transform pendant ou après l’apparition');
+assert.ok(style.includes('.carte-lecon.ouvre > :not(.carte-tete) { animation: entre'),
+  'l’animation des autres parties de la carte est préservée');
+
 assert.ok(style.includes('.dash-btn:not(:disabled):not(.primary):active'),
   'bouton dashboard secondaire inchangé');
 
