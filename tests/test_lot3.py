@@ -104,7 +104,7 @@ with sync_playwright() as p:
     ok('leçon 3 : une unité terminée → plus de « Tente ta chance », bouton « Jouer la mission »')
 
     # ── S12 : animations des exercices ──
-    page.evaluate("openParcoursLecon(lecons.find(l => l.id === 4)); startUnite(1, 'unite')")
+    page.evaluate("marquerIntroMissionVue(4); openParcoursLecon(lecons.find(l => l.id === 4)); startUnite(1, 'unite')")  # SPEC 55 : intro déjà vue
     assert 'glisse' in page.get_attribute('#pc-body', 'class')
     avant = page.evaluate("document.querySelector('#pc-steps .pc-seg')")
     page.evaluate("window._seg = document.querySelector('#pc-steps .pc-seg')")

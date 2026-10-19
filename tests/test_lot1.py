@@ -36,7 +36,7 @@ with sync_playwright() as p:
     assert 'Prêt à commencer' in page.inner_text('#view-dashboard')
     assert page.locator('.puce-niv').count() == len(page.evaluate('niveauxDisponibles()'))
     assert page.get_attribute('.puce-niv >> nth=0', 'aria-pressed') == 'true'
-    assert 'Commencer' in page.inner_text('#today') and 'Leçon 1' in page.inner_text('#today')
+    assert 'commencer' in page.inner_text('#today').lower() and 'leçon 1' in page.inner_text('#today').lower()
     assert page.locator('.ac-btn').all_inner_texts() == ['Leçons', 'Réviser', 'Examens', 'Erreurs fréquentes']
     assert not visible(page, '.ac-chiffres'), 'pas de chiffres au premier lancement'
     assert not visible(page, '#nav-bas'), 'pas de barre du bas sur l\'accueil'

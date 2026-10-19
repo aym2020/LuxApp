@@ -64,8 +64,9 @@ with sync_playwright() as p:
         mission = next(l for l in lignes if 'mission' in l['id'])
         assert mission['lignes'] <= 2 + (texte > 100), mission  # plus de colonne d'un mot par ligne
         bilan = lignes[-1]
-        # Spec 48 : « Bilan · 10 questions · Optionnel » en texte, sans badge
-        assert bilan['lignes'] <= 2 + (texte > 100) and bilan['tag'] is None and bilan['mots'].endswith('Optionnel'), bilan
+        # Spec 53 : « Bilan · 10 questions » sur une ligne, sans badge ; « optionnel » reste dans le nom accessible
+        assert bilan['lignes'] <= 1 + (texte > 100) and bilan['tag'] is None and bilan['mots'].replace('\xa0', ' ') == 'Bilan · 10 questions', bilan
+        assert 'optionnel' in bilan['aria'], bilan
         # Spec 48 : pas de compteur « n/20 » ; un résultat seulement après une partie jouée
         assert '/' not in pg.inner_text('#chemin-u-1-mission'), pg.inner_text('#chemin-u-1-mission')
         if mission['tag'] and largeur >= 393 and texte == 100:

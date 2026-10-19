@@ -62,7 +62,8 @@ with sync_playwright() as p:
     assert 'Acquise précédemment' in pg.inner_text('#chemin-lecon-%d' % L) and 'v1' not in pg.inner_text('#lecon-list')
     assert pg.evaluate("JSON.stringify(getProgress()[%d])" % L) == avant, 'acquis v1 intacts'
     chiffres = pg.evaluate("chiffresHtml()")
-    assert '+1 acquise précédemment' in chiffres and '<b>0 %</b>' in chiffres and '<b>0 / 8</b>' in chiffres, chiffres
+    # Accueil compact : « +1 acquise » à l'écran, détail complet dans aria-label et title.
+    assert '+1 acquise<' in chiffres and '1 acquises précédemment' in chiffres and '<b>0 %</b>' in chiffres and '<b>0 / 8</b>' in chiffres, chiffres
     pg.evaluate("ouvrirPlus()")
     tuiles = pg.locator('.plus-acquis span').all_inner_texts()
     assert 'leçons acquises précédemment' in tuiles, tuiles

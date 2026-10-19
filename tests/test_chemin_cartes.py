@@ -1,4 +1,4 @@
-"""Specs 47 et 48 : leçon repliée en grille commune. Ligne 1 : numéro, titre
+"""Specs 47, 48 et 54 : leçon repliée en grille commune. En haut : numéro au-dessus du titre
 (plusieurs lignes possibles, jamais écrasé ni coupé), chevron en haut à droite ;
 ligne 2 (statut, « N questions à réviser ») seulement si utile, sous le titre et
 dans la carte. Sans 2e ligne, la carte reste compacte. Surfaces neutres (pas de
@@ -30,7 +30,7 @@ MESURES = """() => [...document.querySelectorAll('#lecon-list li.replie, #lecon-
     const ct = carte.getBoundingClientRect(), rt = t.getBoundingClientRect();
     const lh = parseFloat(getComputedStyle(t).lineHeight);
     const rn = carte.querySelector('.num').getBoundingClientRect();
-    const r = { id: li.id, titre: t.textContent, largeurTitre: rt.width, largeurCarte: ct.width, memeLigne: Math.abs((rn.top + rn.bottom) / 2 - (rt.top + rt.bottom) / 2) < lh,
+    const r = { id: li.id, titre: t.textContent, largeurTitre: rt.width, largeurCarte: ct.width, memeLigne: Math.abs((rn.top + rn.bottom) / 2 - (rt.top + rt.bottom) / 2) < lh, numDessus: rn.bottom <= rt.top + 1,
         lignes: Math.round(rt.height / lh), hauteur: ct.height, deborde: t.scrollWidth > t.clientWidth + 1,
         fond: getComputedStyle(carte).backgroundImage, couleur: getComputedStyle(carte).backgroundColor };
     const rc = ch.getBoundingClientRect();
@@ -85,8 +85,8 @@ with sync_playwright() as p:
                 # Toutes les cartes : même surface neutre
                 assert len({m['couleur'] for m in avec}) == 1, {m['couleur'] for m in avec}
                 if zoom == 1.0 and largeur >= 390:
-                    # Écran courant : la carte reste compacte (numéro et titre sur la même ligne)
-                    assert all(m['memeLigne'] for m in avec), [m for m in avec if not m['memeLigne']]
+                    # SPEC 54 : numéro au-dessus du titre (plus sur la même ligne)
+                    assert all(m['numDessus'] for m in avec), [m for m in avec if not m['numDessus']]
                 assert pg.evaluate('document.documentElement.scrollWidth') <= largeur, ('défilement horizontal', largeur, zoom)
                 textes = pg.inner_text('#lecon-list')
                 assert 'À rafraîchir' not in textes and 'v1' not in textes and 'questions à réviser' in textes, textes[:300]

@@ -60,13 +60,13 @@ with sync_playwright() as p:
     page.screenshot(path=OUT + 'lot2-01-nouveau.png', full_page=True)
     page.click('.puce-niv:has-text("A1.2")')
     assert page.get_attribute('.puce-niv:has-text("A1.2")', 'aria-pressed') == 'true'
-    assert 'Leçon 20' in page.inner_text('#today')
+    assert 'leçon 20' in page.inner_text('#today').lower()
     page.click('#today .carte-suite')
     assert page.evaluate('niveauChoisi()') == 'A1.2'
     assert actif(page, 'view-msintro') and page.evaluate('pLecon.id') == 27  # 1re leçon A1.2 (id 27, affichée « Leçon 20 », spec 42)
     page.evaluate('goDashboard()')
     assert page.get_attribute('.puce-niv:has-text("A1.2")', 'aria-pressed') == 'true'
-    assert 'Commencer' in page.inner_text('#today') and 'Leçon 20' in page.inner_text('#today')
+    assert 'commencer' in page.inner_text('#today').lower() and 'leçon 20' in page.inner_text('#today').lower()
     ok('puce A1.2 → « Commencer » → leçon 20 (en unités) ; pas encore pratiqué : toujours « Commencer · Leçon 20 »')
 
     # ── S13 : changer de niveau depuis l'accueil ; révision tous niveaux ──
@@ -88,7 +88,7 @@ with sync_playwright() as p:
     }""")
     chiffres = page.inner_text('.ac-chiffres')
     assert '/ 17' in chiffres and 'Progression' in chiffres and 'Série' in chiffres, chiffres
-    assert 'Continuer' in page.inner_text('#today')
+    assert 'continuer' in page.inner_text('#today').lower()
     assert '5' in page.inner_text('.ac-btn.rev') and 'à revoir' in page.inner_text('.ac-btn.rev'), page.inner_text('.ac-btn.rev')
     page.click('.ac-btn.rev')
     assert actif(page, 'view-session')
@@ -107,12 +107,13 @@ with sync_playwright() as p:
     page.click('.plus-ligne:has-text("Lexique")')
     assert actif(page, 'view-lexique') and visible(page, '#nav-bas')
     assert not visible(page, '#view-lexique .back-btn'), '« ← Accueil » remplacé par la barre'
-    page.evaluate("openParcoursLecon(lecons.find(l => l.id === 2)); startUnite(1, 'unite')")
+    # SPEC 55 : sans introduction vue, startUnite montre d'abord la mission.
+    page.evaluate("marquerIntroMissionVue(2); openParcoursLecon(lecons.find(l => l.id === 2)); startUnite(1, 'unite')")
     assert actif(page, 'view-parcours') and not visible(page, '#nav-bas')
     page.click('#view-parcours .maison')
     assert actif(page, 'view-dashboard')
-    carte = page.inner_text('#today')
-    assert 'Continuer' in carte and 'Leçon 2' in carte and 'restante' in carte, carte
+    carte = page.inner_text('#today').lower()
+    assert 'continuer' in carte and 'leçon 2' in carte and 'restante' in carte, carte
     ok('barre : Accueil, Chemin, Réviser, Plus ; masquée sur l\'accueil, en séance et en exercice ; maison → accueil « Continuer · questions restantes »')
 
     # ── S13 : chemin avec 7 leçons terminées ──
@@ -131,6 +132,9 @@ with sync_playwright() as p:
     assert page.locator('.pas.futur').count() == 9
     page.screenshot(path=OUT + 'lot2-03-chemin.png', full_page=True)
     page.click('#chemin-u-8-2 button')
+    # SPEC 55 : leçon 8 jamais commencée → la mission s'affiche d'abord, puis l'unité choisie.
+    assert actif(page, 'view-msintro')
+    page.click('#msi-content .pc-btn.primary')
     assert actif(page, 'view-pintro')
     page.evaluate('goLessons()')
     # Accordéon : un appui sur une leçon future la déplie (une seule dépliée à la fois)

@@ -99,33 +99,34 @@ with sync_playwright() as p:
         assert pg.locator('#mc-btn-reconstruire').count() == 0
         ok('mot déjà vu : pas de découverte, reconstruction directe')
 
-    # 7. Spec 21 : chaque tuile a son identité (mot de test « Eet ëtt » : E/e, ë, trois t)
+    # 7. Spec 21 : chaque tuile a son identité (mot de test « Eet ëtt »).
+    #    Spec 61 : tuiles en minuscules sans accents (E et ë deviennent e).
     pg.evaluate("""() => {
         const carte = { id: 990001, fr: 'Test', lu: 'Eet ëtt', unite: 1 };
         startUnite(1, 'unite');
         renderMotCache(carte);
         if (document.getElementById('mc-btn-reconstruire')) renderReconstruction();
         // Tuiles fixées pour le test (pas d'intruse, ordre connu)
-        mc.tuiles = ['t', 'E', 'ë', 't', 'e', 't'].map(ch => ({ ch })); mc.choix = []; renderCases();
+        mc.tuiles = ['t', 'e', 'e', 't', 'e', 't'].map(ch => ({ ch })); mc.choix = []; renderCases();
     }""")
     def tuiles_utilisees():
         return pg.evaluate("[...document.querySelectorAll('#mc-lettres .mc-tuile')].map(b => b.classList.contains('utilisee'))")
     def cases():
         return pg.evaluate("[...document.querySelectorAll('#mc-cases .mc-case')].map(c => c.textContent)")
-    pg.tap('[data-tuile="1"]')            # E
+    pg.tap('[data-tuile="1"]')            # e, posé en 1re case → E (spec 61)
     pg.tap('[data-tuile="4"]')            # e
     assert tuiles_utilisees() == [False, True, False, False, True, False], tuiles_utilisees()
     assert cases()[:2] == ['E', 'e'], cases()
-    ok('E puis e : exactement ces deux tuiles, casse conservée')
+    ok('e puis e : exactement ces deux tuiles, majuscule automatique en 1re case')
     pg.tap('[data-tuile="3"]')            # le 2e « t », pas le 1er
     assert tuiles_utilisees() == [False, True, False, True, True, False], tuiles_utilisees()
     ok('2e « t » touché : seule cette tuile est prise, les autres « t » restent libres')
-    pg.tap('[data-tuile="2"]')            # ë
-    assert cases()[3] == 'ë', cases()
-    ok('lettre accentuée : « ë » posé tel quel')
+    pg.tap('[data-tuile="2"]')            # e à la place du ë
+    assert cases()[3] == 'e', cases()
+    ok('accent caché avant validation : « e » posé à la place du « ë » (spec 51/61)')
     pg.tap('#mc-btn-effacer')
     assert tuiles_utilisees() == [False, True, False, True, True, False] and cases()[3] == '', (tuiles_utilisees(), cases())
-    ok('⌫ libère exactement la dernière tuile touchée (ë)')
+    ok('⌫ libère exactement la dernière tuile touchée')
     pg.evaluate("Math.random = () => 0.99")  # l'indice révèle la dernière case libre (un « t »)
     pg.tap('#mc-btn-indice')
     assert pg.locator('#mc-lettres .mc-tuile').count() == 5 and cases()[:3] == ['E', 'e', 't'], cases()
@@ -154,14 +155,15 @@ with sync_playwright() as p:
     assert pp.evaluate("document.activeElement.id") == 'mc-input', 'focus automatique sur PC'
     attendu = pp.evaluate("mcCasesLettres().libres.map(i => mc.cases[i].ch)")
     for n, lettre in enumerate(attendu[:2]):
-        i = pp.evaluate("""l => mc.tuiles.findIndex((t, i) => !tuilesUtilisees()[i] && t.ch === l)""", lettre)
+        # SPEC 61 : les tuiles sont en minuscules sans accents (« M » ou « ë » de la solution → « m », « e »)
+        i = pp.evaluate("""l => mc.tuiles.findIndex((t, i) => !tuilesUtilisees()[i] && t.ch === mcLettreTuile(l))""", lettre)
         pp.click('[data-tuile="%d"]' % i)  # vrai clic souris : mousedown, perte du focus, click
         assert pp.evaluate('mc.choix.length') == n + 1, 'clic n°%d perdu' % (n + 1)
     ok('PC : 1er clic sur une tuile pris en compte, 2e aussi')
     pp.click('#mc-btn-effacer')
     assert pp.evaluate('mc.choix.length') == 1
     pp.focus('#mc-input')
-    pp.keyboard.type(attendu[1])
+    pp.keyboard.type(pp.evaluate('l => mcLettreTuile(l)', attendu[1]))
     assert pp.evaluate('mc.choix.length') == 2
     ok('PC : ⌫ puis clavier physique fonctionnent après les clics')
     pc.close()

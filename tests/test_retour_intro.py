@@ -74,17 +74,20 @@ with sync_playwright() as p:
     assert actif(pg) == 'view-msintro' and not pg.evaluate("getIntroMissionVue(%d)" % L)
     ok('Voir les unités → Retour : introduction, rien de confirmé')
 
-    # Voir les unités → lancer une unité → résultats → Retour : leçon puis chemin
+    # SPEC 55 : Voir les unités → Commencer une unité → introduction d'abord (rien de confirmé),
+    # puis « J'ai compris » → l'unité choisie → résultats → Retour : chemin, leçon dépliée
     pg.click('#msi-content button:has-text("Voir les unités")')
-    pg.evaluate("openIntro(unitesCoeur(pLecon)[0].id)")
-    assert libelle_retour(pg) == 'Leçon %d' % pg.evaluate('numLecon(%d)' % L), libelle_retour(pg)
+    pg.locator('.pl-unit button').first.click()
+    assert actif(pg) == 'view-msintro' and not pg.evaluate("getIntroMissionVue(%d)" % L)
+    pg.click('#msi-content button.primary')  # J'ai compris
+    assert actif(pg) == 'view-pintro' and pg.evaluate("getIntroMissionVue(%d)" % L)
+    assert libelle_retour(pg) == 'Mon chemin', (pile(pg), libelle_retour(pg))
     pg.click('#pi-commencer')
     finir(pg)
     assert actif(pg) == 'view-pfin' and 'view-msintro' not in pile(pg), pile(pg)
     pg.go_back(); pg.wait_for_timeout(500)
     lecon_cadree(pg, L)  # spec 45 : résultat → chemin, leçon dépliée
-    assert not pg.evaluate("getIntroMissionVue(%d)" % L), 'lancer une unité ne confirme pas l\'introduction'
-    ok('Voir les unités → unité → résultats → Retour : chemin, leçon dépliée (spec 45) ; introduction non confirmée')
+    ok('Voir les unités → unité : introduction d\'abord (spec 55), J\'ai compris → unité → résultats → Retour : chemin, leçon dépliée')
 
     # ── 3. Tente ta chance abandonnée : Retour = introduction (exploration) ──
     remise_a_zero(pg)

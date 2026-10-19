@@ -97,11 +97,11 @@ with sync_playwright() as p:
     # 3. Leçon 2 -> unités -> intro
     page.click('.chemin-lecon:has-text("Identifier des objets")')  # accordéon : la leçon se déplie
     page.click('.pas.ouverte .lien-or')  # « Voir toute la leçon »
-    assert actif(page, 'view-msintro')  # 1re découverte : introduction de la mission
-    page.click('#msi-content button:has-text("Voir les unités")')
-    assert actif(page, 'view-plecon')
+    assert actif(page, 'view-plecon')  # SPEC 55 : liste des unités, sans introduction
     page.screenshot(path=OUT + '02-lecon.png')
     page.click('.pl-unit:has-text("UNITÉ 1") button:has-text("Commencer")')
+    assert actif(page, 'view-msintro')  # SPEC 55 : 1er démarrage → introduction de la mission d'abord
+    page.click('#msi-content .pc-btn.primary')  # « J'ai compris » → reprend l'unité choisie
     assert actif(page, 'view-pintro')
     page.screenshot(path=OUT + '03-intro.png')
     page.click('#pi-commencer')
@@ -148,7 +148,7 @@ with sync_playwright() as p:
     page.click('#view-parcours .pc-cours-btn')
     assert page.is_visible('#cours-panel')
     page.screenshot(path=OUT + '06-cours.png')
-    page.click('.cp-bas button')
+    page.click('#cours-panel .cp-bas button')  # SPEC 60 : un autre .cp-bas existe
     assert not page.is_visible('#cours-panel')
     ok('panneau Cours : ouverture sur l\'unité, fermeture')
 
