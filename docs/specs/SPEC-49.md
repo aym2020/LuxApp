@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire — spécification uniquement** |
+| Statut | **Implémentée — validation à confirmer** (recette Android à faire) |
 | Priorité | **P1 — navigation incohérente** |
 | Branche cible | `v2` |
 | Périmètre probable | `public/examens.js`, `public/index.html`, `public/navigation.js`, `recette/recette.js`, `tests/test_examens.py`, `tests/test_recette_visuelle.py` |
@@ -79,15 +79,15 @@ En mode recette, vérifier que la création accélérée du résultat ne fausse 
 
 Mettre à jour les tests existants, notamment `tests/test_examens.py` et `tests/test_recette_visuelle.py`.
 
-- [ ] Passer une annale normalement jusqu'au résultat : bouton supérieur **« Sujets »**, clic → `view-examens`.
-- [ ] Repasser une annale : clic sur **« Autres sujets »** → `view-examens`, meilleur score affiché.
-- [ ] En **recette visuelle**, lancer « Fin d'examen → Annale 1 → 100 % » : le retour supérieur porte le bon libellé et mène aux sujets.
-- [ ] En recette, lancer « Fin d'examen → Annale 1 → ≈ 70 % » : « Autres sujets » mène aux sujets.
-- [ ] Vérifier les mêmes deux actions après avoir sélectionné « Mes erreurs », puis « Toute la correction ».
-- [ ] Tester le Retour Android sur le résultat : destination « Sujets », puis Retour depuis les sujets : pas de boucle.
-- [ ] Tester une annale A1.2 différente ; le niveau et le score restent cohérents.
-- [ ] Ne pas casser le bouton **« Refaire ce sujet »** (même annale, réponses vierges) ni la confirmation d'abandon pendant un examen inachevé.
-- [ ] Vérifier l'isolation du mode recette (aucune écriture cloud, aucune progression personnelle modifiée).
+- [x] Passer une annale normalement jusqu'au résultat : bouton supérieur **« Sujets »**, clic → `view-examens`.
+- [x] Repasser une annale : clic sur **« Autres sujets »** → `view-examens`, meilleur score affiché.
+- [x] En **recette visuelle**, lancer « Fin d'examen → Annale 1 → 100 % » : le retour supérieur porte le bon libellé et mène aux sujets.
+- [x] En recette, lancer « Fin d'examen → Annale 1 → ≈ 70 % » : « Autres sujets » mène aux sujets.
+- [x] Vérifier les mêmes deux actions après avoir sélectionné « Mes erreurs », puis « Toute la correction ».
+- [x] Tester le Retour Android sur le résultat : destination « Sujets », puis Retour depuis les sujets : pas de boucle.
+- [x] Tester une annale A1.2 différente ; le niveau et le score restent cohérents.
+- [x] Ne pas casser le bouton **« Refaire ce sujet »** (même annale, réponses vierges) ni la confirmation d'abandon pendant un examen inachevé.
+- [x] Vérifier l'isolation du mode recette (aucune écriture cloud, aucune progression personnelle modifiée).
 - [ ] Faire une recette visuelle sur Android ; les tests Playwright seuls ne suffisent pas à déclarer la fiche validée.
 
 ## 5. Implémentation et livraison
@@ -97,3 +97,17 @@ Chercher la cause réelle de la pile de navigation et créer **une seule destina
 Exécuter d'abord les tests ciblés, puis la suite critique conformément au PLAYBOOK, en évitant les itérations inutiles. Documenter les fichiers modifiés, les tests passés et les éventuels écarts.
 
 **Critère d'acceptation : depuis le résultat de n'importe quelle annale, le retour du haut, « Autres sujets » et le Retour Android affichent bien la liste des examens, avec les bons scores et sans altérer les autres parcours de navigation.**
+
+## 6. Implémentation (19/10/2026)
+
+**Cause confirmée par test.** `recJouerExamen()` affiche trois écrans dans le même appel (`openExamens()`, `startExamen()`, `examFinish()`). `noterNavigation()` regroupe les écrans d'un même appui (`pileAvantAppui`) : seul le dernier est noté, la liste des sujets disparaît de l'historique. Lancée depuis le Chemin, la pile devenait `Accueil > Mon chemin > Résultat` : le bouton du haut affichait « Mon chemin » et `retour()` y menait, comme « Autres sujets ». Avec la correction : `Accueil > Sujets > Résultat`.
+
+**Correction**
+- `examens.js` : `retourSujets()`, destination unique « liste des sujets » (niveau de l'annale conservé, liste recalculée avec les meilleurs scores, sans confirmation). Utilisée par « ← Sujets », « Autres sujets » (`#exr-autres`) et le Retour du téléphone.
+- `index.html` : bouton du haut `#exr-retour` « ← Sujets », libellé accessible « Retour aux sujets d'examen », sans `data-retour` (libellé jamais réécrit par l'historique).
+- `navigation.js` : `retour()` envoie vers `retourSujets()` quand l'écran affiché est le résultat d'un examen, même avec un historique incomplet ; `openExamens()` retire le résultat de la pile (pas de boucle). Nouvelle fonction `finAppuiNavigation()`. Résultats d'unité et de mission inchangés (Chemin, spec 45) ; confirmation d'abandon pendant un examen inachevé inchangée.
+- `recette/recette.js` : `finAppuiNavigation()` après `openExamens()` : historique identique à un vrai passage. Isolation inchangée (pas de cloud, scores fictifs effacés par « Quitter le test »).
+
+**Tests** : `test_examens.py` (« ← Sujets » après « Mes erreurs », 2e annale A1.2 via « Autres sujets », Retour du téléphone résultat → sujets → accueil, historique incomplet, confirmation d'abandon) ; `test_recette_visuelle.py` (100 % : libellé, historique et destination ; 70 % : « Autres sujets » après les filtres ; Retour du téléphone sans boucle ; isolation). Correction de l'aide `lancer()` du test : le champ Leçon est masqué pour « Fin d'examen ». Suite critique : verte.
+
+**Reste à faire** : recette Android.

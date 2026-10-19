@@ -466,7 +466,8 @@
   <!-- ══ EXAMEN : SCORE + CORRECTION ══════════════════════════════════════════ -->
   <div id="view-examen-result" class="view">
     <div class="lecon-header">
-      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Sujets</span></button>
+      <!-- Spec 49 : destination fixe (liste des sujets), pas data-retour : le libellé n'est pas réécrit -->
+      <button class="back-btn" id="exr-retour" aria-label="Retour aux sujets d'examen" onclick="retourSujets()">← Sujets</button>
       <div class="lecon-header-info">
         <span class="lecon-num">RÉSULTAT</span>
         <span class="lecon-titre" id="exr-titre"></span>

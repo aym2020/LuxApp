@@ -106,6 +106,13 @@ function noterNavigation(vue) {
   pileNav.push(entree);
 }
 
+// Termine l'appui en cours : le prochain écran affiché est noté comme un
+// nouvel écran, pas comme un écran intermédiaire. Pour enchaîner plusieurs
+// écrans d'un coup en gardant un historique réel (mode recette, spec 49).
+function finAppuiNavigation() {
+  pileAvantAppui = null;
+}
+
 // Retire de l'historique l'introduction de mission de cette leçon (spec 38) :
 // elle est consommée (unité lancée ou leçon validée par la mission). Les
 // autres écrans (accueil, chemin, leçon) restent en place.
@@ -162,6 +169,14 @@ function cibleDeRetour(quitte) {
 
 function retour() {
   fermerClavier();
+  // Depuis le résultat d'un examen : toujours la liste des sujets (spec 49),
+  // même si l'historique est incomplet.
+  const vueActive = document.querySelector('.view.active');
+  if (vueActive && vueActive.id === 'view-examen-result') {
+    retourSujets();
+    majGarde();
+    return;
+  }
   if (pileNav.length <= 1) {
     goDashboard();
     return;

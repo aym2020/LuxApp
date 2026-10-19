@@ -56,13 +56,53 @@ with sync_playwright() as p:
     assert pg.locator('#exr-body .pc-btn.primary').count() == 1  # une seule action principale
     ok('résultat : anneau et mention « %s » par classe, une seule action principale, pas de couleur inline' % classe)
 
-    # ── « Autres sujets » : retour à la liste, meilleur score affiché ──
-    pg.click('#exr-body .lien-or')
+    # ── Spec 49 : « ← Sujets » en haut, destination fixe ──
+    assert pg.inner_text('#exr-retour').strip() == '← Sujets'
+    assert pg.get_attribute('#exr-retour', 'aria-label') == "Retour aux sujets d'examen"
+    pg.click('#exr-body .exr-filter button >> nth=1')  # Mes erreurs
+    pg.click('#exr-retour')
     assert pg.evaluate("document.querySelector('.view.active').id") == 'view-examens'
     assert pg.locator('#examens-list .ex-carte >> nth=0').locator('.ex-carte-score.' + classe).count() == 1
-    pg.click('#view-examens .back-btn')
+    ok('« ← Sujets » (après « Mes erreurs ») → liste avec le meilleur score à jour')
+
+    # ── Autre annale A1.2 : « Autres sujets » ──
+    pg.click('#examens-list .ex-carte >> nth=1')
+    pg.evaluate("""() => { exam.parties.forEach((part, k) => { examItems(part).forEach((it, i) => { examAnswers[k][i] = it.reponse; }); examChecked[k] = true; });
+        examPart = exam.parties.length - 1; renderExamPart(); examNext(); }""")
+    assert pg.evaluate("exam.niveau") == 'A1.2' and pg.inner_text('#exr-retour').strip() == '← Sujets'
+    pg.click('#exr-autres')
+    assert pg.evaluate("document.querySelector('.view.active').id") == 'view-examens' and pg.evaluate("niveauActif") == 'A1.2'
+    assert pg.locator('#examens-list .ex-carte-score').count() == 2
+    ok('2e annale A1.2 : « Autres sujets » → sujets A1.2, deux meilleurs scores')
+
+    # ── Retour du téléphone depuis le résultat : sujets, puis accueil (pas de boucle) ──
+    pg.click('#examens-list .ex-carte >> nth=0')
+    pg.evaluate("""() => { exam.parties.forEach((part, k) => { examItems(part).forEach((it, i) => { examAnswers[k][i] = it.reponse; }); examChecked[k] = true; });
+        examPart = exam.parties.length - 1; renderExamPart(); examNext(); }""")
+    pg.go_back(); pg.wait_for_timeout(200)
+    assert pg.evaluate("document.querySelector('.view.active').id") == 'view-examens'
+    pg.go_back(); pg.wait_for_timeout(200)
     assert pg.evaluate("document.querySelector('.view.active').id") == 'view-dashboard'
-    ok('« Autres sujets » → liste avec le meilleur score à jour ; Retour → accueil')
+    ok('Retour du téléphone : résultat → sujets → accueil, sans boucle')
+
+    # ── Historique incomplet (résultat seul dans la pile) : toujours les sujets ──
+    pg.click('#view-dashboard .ac-btn.exa'); pg.click('#examens-list .ex-carte >> nth=0')
+    pg.evaluate("""() => { exam.parties.forEach((part, k) => { examItems(part).forEach((it, i) => { examAnswers[k][i] = it.reponse; }); examChecked[k] = true; });
+        examPart = exam.parties.length - 1; renderExamPart(); examNext(); pileNav = pileNav.slice(-1); }""")
+    pg.evaluate("retour()")
+    assert pg.evaluate("document.querySelector('.view.active').id") == 'view-examens'
+    ok('historique incomplet : Retour depuis le résultat → sujets')
+
+    # ── Examen inachevé : la confirmation d'abandon reste ──
+    pg.click('#examens-list .ex-carte >> nth=0')
+    pg.evaluate(REMPLIR, [0, 0])
+    messages = []
+    pg.once('dialog', lambda d: (messages.append(d.message), d.dismiss()))
+    pg.click('#view-examen .back-btn')
+    assert messages and pg.evaluate("document.querySelector('.view.active').id") == 'view-examen'
+    ok('examen inachevé : confirmation d\'abandon conservée')
+    pg.evaluate("examAnswers = examAnswers.map(p => p.map(() => null)); quitExamen()")
+    pg.evaluate("goDashboard()")
 
     # ── Questions aléatoires : Retour vers les sujets ──
     pg.click('#view-dashboard .ac-btn.exa')

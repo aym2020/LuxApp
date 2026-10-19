@@ -107,6 +107,16 @@ function openExamens() {
   showView('view-examens');
 }
 
+// Fin d'examen → liste des sujets (spec 49). Destination unique, partagée par
+// « ← Sujets », « Autres sujets » et le Retour du téléphone : elle ne dépend pas
+// de l'historique (qui peut être incomplet, ex. mode recette). Le niveau de
+// l'annale est conservé et la liste recalculée (meilleurs scores à jour).
+// openExamens() retire le résultat de l'historique : pas de boucle au Retour.
+function retourSujets() {
+  if (exam && exam.niveau && exam.niveau !== niveauActif) choisirNiveau(exam.niveau);
+  openExamens();
+}
+
 // Liste des sujets (aussi réaffichée au Retour : le meilleur score est à jour).
 function renderExamens() {
   document.getElementById('examens-niveau').textContent = niveauActif;
@@ -587,7 +597,7 @@ function renderExamResult() {
   html +=
     '<div class="exr-actions">' +
       '<button class="pc-btn primary wide" onclick="startExamen(\'' + exam.id + '\')">Refaire ce sujet</button>' +
-      '<button class="lien-or" onclick="retour()">Autres sujets</button>' +
+      '<button class="lien-or" id="exr-autres" onclick="retourSujets()">Autres sujets</button>' +
     '</div>';
 
   document.getElementById('exr-body').innerHTML = html;

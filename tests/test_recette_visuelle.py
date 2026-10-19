@@ -92,8 +92,11 @@ try:
 
         def lancer(lecon, ecran, scenario, sujet=None):
             pg.evaluate("fermerPanneau(); ouvrirRecette()")
-            pg.select_option('#rec-lecon', str(lecon))
+            # La leçon n'est proposée que hors examen (champ masqué pour « Fin d'examen »)
             pg.select_option('#rec-ecran', ecran)
+            if pg.is_visible('#rec-lecon'):
+                pg.select_option('#rec-lecon', str(lecon))
+                pg.select_option('#rec-ecran', ecran)
             if sujet:
                 pg.select_option('#rec-examen', sujet)
             pg.select_option('#rec-scenario', scenario)
@@ -181,6 +184,14 @@ try:
         assert pg.evaluate("examRes.sections.reduce((s, x) => s + x.score, 0) === examRes.score")
         assert pg.evaluate("Object.keys(getExamScores()).length") == 1
         ok('annale 1 · 100 % : vrai résultat et sections, meilleur score enregistré uniquement dans la recette')
+        # Spec 49 : retour du haut = « ← Sujets » (lancé depuis le Chemin), historique réel
+        assert pg.inner_text('#exr-retour').strip() == '← Sujets'
+        assert pg.get_attribute('#exr-retour', 'aria-label') == "Retour aux sujets d'examen"
+        assert pg.evaluate("pileNav.map(e => e.vue).slice(-2)") == ['view-examens', 'view-examen-result']
+        pg.click('#exr-retour')
+        assert vue(pg) == 'view-examens' and pg.evaluate("niveauActif") == 'A1.2'
+        assert pg.locator('#examens-list .ex-carte-score').count() >= 1
+        ok('annale 1 · 100 % : « ← Sujets » (et non « Mon chemin ») → liste des sujets A1.2, score visible')
 
         durees['examen-tres-bien'] = lancer(24, 'examen', 'tres-bien', 'a12-01')
         assert 80 <= pg.evaluate("Math.round(examRes.score / examRes.total * 100)") < 100
@@ -197,6 +208,18 @@ try:
         pg.click('#exr-body .exr-filter button:has-text("Toute la correction")')
         assert not pg.evaluate("examOnlyErrors")
         ok('annale 1 · 70 % : vraies réponses/options, correction filtrable et scores cohérents')
+        # Spec 49 : après les filtres, les deux retours mènent toujours aux sujets
+        assert pg.inner_text('#exr-retour').strip() == '← Sujets'
+        pg.click('#exr-autres')
+        assert vue(pg) == 'view-examens'
+        ok('annale 1 · 70 % : après « Mes erreurs » / « Toute la correction », « Autres sujets » → sujets')
+        # Retour du téléphone : sujets, puis l'écran d'avant, sans reboucler sur le résultat
+        lancer(24, 'examen', 'reussi', 'a12-01')
+        pg.go_back(); pg.wait_for_timeout(200)
+        assert vue(pg) == 'view-examens'
+        pg.go_back(); pg.wait_for_timeout(200)
+        assert vue(pg) not in ('view-examen-result', 'view-examen', 'view-examens'), vue(pg)
+        ok('Retour du téléphone : résultat → sujets → %s, sans boucle' % vue(pg))
 
         durees['examen-echec'] = lancer(24, 'examen', 'echec', 'a12-01')
         assert pg.evaluate("Math.round(examRes.score / examRes.total * 100)") < 60

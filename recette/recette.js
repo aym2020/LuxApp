@@ -327,7 +327,10 @@ function recMauvaiseReponse(part, item) {
 
 function recJouerExamen(sujet, def) {
   choisirNiveau(sujet.niveau);
+  // Historique identique à un vrai passage (spec 49) : sujets, puis examen,
+  // puis résultat — sans que les écrans enchaînés d'un coup se remplacent.
   openExamens();
+  finAppuiNavigation();
   startExamen(sujet.id);
   const total = examTotal(sujet);
   const bonnes = Math.floor(total * def.taux);
