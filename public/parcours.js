@@ -1088,12 +1088,18 @@ function renderReconstruction() {
 function mcSansAccent(ch) {
   return ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
+// SPEC 61 : tuiles en minuscules, majuscule automatique à la position attendue.
+function mcLettreTuile(ch) { return mcSansAccent(ch).toLowerCase(); }
+function mcLettreDansCase(ch, attendu) {
+  const base = mcLettreTuile(ch);
+  return attendu !== attendu.toLowerCase() ? base.toUpperCase() : base;
+}
 
 // Lettres proposées : celles des cases encore à remplir, plus 2 intruses
 // (3 pour un mot de 6 lettres ou plus), dans le désordre.
 const LETTRES_INTRUSES = 'aeinrstuldghm';
 function nouvellesTuiles() {
-  const tuiles = mcCasesLettres().libres.map(i => ({ ch: mcSansAccent(mc.cases[i].ch) }));
+  const tuiles = mcCasesLettres().libres.map(i => ({ ch: mcLettreTuile(mc.cases[i].ch) }));
   const nbIntruses = tuiles.length >= 6 ? 3 : 2;
   for (let k = 0; k < nbIntruses && tuiles.length; k++) {
     tuiles.push({ ch: LETTRES_INTRUSES[Math.floor(Math.random() * LETTRES_INTRUSES.length)] });
@@ -1104,7 +1110,7 @@ function nouvellesTuiles() {
 // ─── TUILES : CHAQUE TUILE A SON IDENTITÉ (spec 21) ──────────────────────────
 // mc.choix = les numéros des tuiles touchées, dans l'ordre. Toucher une tuile
 // utilise exactement CETTE tuile (deux « t » restent deux tuiles distinctes ;
-// « E » et « e » aussi). ⌫ libère la dernière tuile touchée.
+// leur casse d'affichage est toujours minuscule). ⌫ libère la dernière tuile.
 // mc.tuiles[k].retiree = true : tuile retirée par un indice (plus affichée).
 function tuilesUtilisees() {
   const utilisees = mc.tuiles.map(t => !!t.retiree);
@@ -1137,7 +1143,7 @@ function renderTuiles() {
   box.innerHTML = fini ? '' : mc.tuiles.map((t, i) =>
     t.retiree ? '' :
     '<button class="mc-tuile' + (utilisees[i] ? ' utilisee' : '') + '" data-tuile="' + i + '"' + (utilisees[i] ? ' disabled' : '') +
-      ' onclick="mcPoserLettre(' + i + ')">' + escHtml(t.ch) + '</button>').join('');
+      ' onclick="mcPoserLettre(' + i + ')">' + escHtml(mcLettreTuile(t.ch)) + '</button>').join('');
 }
 
 // Toucher une tuile : cette tuile-là va dans la première case vide.
@@ -1260,7 +1266,7 @@ function renderCases(avecTuiles = true) {
     let classe = 'mc-case ' + c.etat + taille;
     if (parCase[i] !== undefined) {
       // Avant validation, ne pas révéler les positions correctes via un accent.
-      texte = mcSansAccent(parCase[i]);
+      texte = mcLettreDansCase(parCase[i], c.ch);
       classe += ' tapee';
     }
     else if (c.etat !== '') texte = c.ch;
@@ -1323,7 +1329,7 @@ function mcValider() {
     const lettre = parCase[i] !== undefined ? parCase[i] : (c.etat !== '' ? c.ch : '');
     val += lettre;
     // Le rappel de l'essai reflète la saisie, sans révélation d'accents.
-    essaiAffiche += lettre ? mcSansAccent(lettre) : '_';
+    essaiAffiche += lettre ? mcLettreDansCase(lettre, c.ch) : '_';
   });
 
   // SPEC 51 : seules les lettres de base et leur ordre sont évalués.
