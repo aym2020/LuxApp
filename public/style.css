@@ -2232,7 +2232,7 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .chemin .pas.ouverte > .carte-lecon { padding: 10px 11px 8px; }
 .chemin .pas .unites button {
   min-height: 44px;
-  grid-template-columns: 22px minmax(0, 1fr) auto 16px;
+  /* Conserver les grilles adaptatives des specs 29/30 sur petits écrans. */
   column-gap: 6px;
   padding-inline: 0 2px;
 }
