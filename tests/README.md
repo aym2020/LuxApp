@@ -46,4 +46,4 @@ Texte agrandi : `LUX_TEXTE=130 python3 tests/captures_ecrans.py apres`.
 
 - `node tests/test_specs_61_62.js` — tuiles et cases (SPEC 61), bannière invité et fusion volontaire (SPEC 62).
 
-- `node tests/test_spec_63_portail.js` — états portail et pop-up invité, marquage des sessions, textes centrés, navigation de retour.
+- `node tests/test_spec_63_portail.js` — états portail et pop-up invité, réouverture du mode invité, reconnexion, style compact et navigation de retour (SPEC 63-64).

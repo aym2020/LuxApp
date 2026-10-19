@@ -30,3 +30,7 @@
 - [ ] Test Firebase réel : création, déconnexion, reconnexion, échec, second appareil.
 
 Ne pas déclarer « Validée » avant recette Firebase et Android.
+
+## Rectificatif — SPEC 64
+
+L'affichage trop long et trop jaune et l'enregistrement permanent de l'accès invité ont été corrigés. Désormais, la confirmation « invité » ne masque pas l'accueil de bienvenue aux prochains démarrages de la page, et ne touche pas aux données de progression. Voir la SPEC 64, qui prévaut sur l'ancienne règle 4 de cette SPEC.
