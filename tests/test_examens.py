@@ -53,7 +53,15 @@ with sync_playwright() as p:
     classe = pg.evaluate("examClasse(Math.round(examRes.score / examRes.total * 100))")
     assert pg.locator('.exr-ring.' + classe).count() == 1 and pg.locator('.exr-mention.' + classe).count() == 1
     assert pg.evaluate(COULEURS_INLINE, '#exr-body') == []
-    assert pg.locator('#exr-body .pc-btn.primary').count() == 1  # une seule action principale
+    assert pg.locator('#view-examen-result .pc-btn.primary').count() == 1  # une seule action principale
+    # « Refaire ce sujet » visible dès le haut de l'écran, au-dessus du bas de page
+    assert pg.evaluate("window.scrollY") == 0 and pg.is_visible('#exr-cta #exr-refaire')
+    r = pg.evaluate("(() => { const b = document.getElementById('exr-refaire').getBoundingClientRect(); return [b.top, b.bottom, innerHeight]; })()")
+    assert 0 < r[0] and r[1] <= r[2], r
+    pg.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+    lien = pg.evaluate("(() => { const a = document.getElementById('exr-autres').getBoundingClientRect(), c = document.getElementById('exr-cta').getBoundingClientRect(); return [a.bottom, c.top]; })()")
+    assert lien[0] <= lien[1] + 1, ('« Autres sujets » caché sous le bandeau', lien)
+    pg.evaluate("window.scrollTo(0, 0)")
     ok('résultat : anneau et mention « %s » par classe, une seule action principale, pas de couleur inline' % classe)
 
     # ── Spec 49 : « ← Sujets » en haut, destination fixe ──

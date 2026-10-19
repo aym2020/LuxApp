@@ -86,7 +86,7 @@ Les anciens noms (`--accent`, `--bg`, `--muted`…) restent comme **alias** dans
 | Étiquettes | `.pc-mini-label`, `.etiquette(.or)` | |
 | Badges et pastilles | `.badge(.fait)`, `.pastille(.v/.o)`, `.lecon-pill` | |
 | Retour d'exercice | `.pc-feedback(.ok/.ko)` | une seule action : « Continuer » |
-| Bandeau d'action fixe | `.cta-fixe` | porte l'action principale en bas de l'écran (zone de sécurité comprise) ; le contenu garde 96 px de marge en bas ; fondu seulement dans la marge haute, `pointer-events` limité au bouton |
+| Bandeau d'action fixe | `.cta-fixe` (résultats d'unité, introduction d'unité, résultat d'examen) | porte l'action principale en bas de l'écran (zone de sécurité comprise) ; le contenu garde 96 px de marge en bas ; fondu seulement dans la marge haute, `pointer-events` limité au bouton |
 
 ## 5. Règles d'interface
 

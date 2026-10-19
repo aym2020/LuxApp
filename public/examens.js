@@ -596,11 +596,13 @@ function renderExamResult() {
 
   html +=
     '<div class="exr-actions">' +
-      '<button class="pc-btn primary wide" onclick="startExamen(\'' + exam.id + '\')">Refaire ce sujet</button>' +
       '<button class="lien-or" id="exr-autres" onclick="retourSujets()">Autres sujets</button>' +
     '</div>';
 
   document.getElementById('exr-body').innerHTML = html;
+  // Action principale toujours visible en bas, dès le haut de l'écran (.cta-fixe)
+  document.getElementById('exr-cta').innerHTML =
+    '<button class="pc-btn primary wide big" id="exr-refaire" onclick="startExamen(\'' + exam.id + '\')">Refaire ce sujet</button>';
 }
 
 function examSetFilter(onlyErrors) {

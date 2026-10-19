@@ -227,7 +227,7 @@ try:
         durees['examen-erreurs'] = lancer(24, 'examen', 'mes-erreurs', 'a12-02')
         assert pg.evaluate("exam.id") == 'a12-02' and pg.evaluate("examOnlyErrors")
         assert vue(pg) == 'view-examen-result' and pg.locator('#exr-body .exr-item.ok').count() == 0
-        pg.click('#exr-body button:has-text("Refaire ce sujet")')
+        pg.click('#exr-refaire')
         assert vue(pg) == 'view-examen' and pg.evaluate("examAnswers.every(p => p.every(a => a === null))")
         ok('annale 1 · échec ; annale 2 · filtre erreurs ; Refaire ce sujet repart de zéro')
         durees['examen-retour'] = lancer(24, 'examen', 'reussi', 'a12-02')

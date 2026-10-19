@@ -110,4 +110,6 @@ Exécuter d'abord les tests ciblés, puis la suite critique conformément au PLA
 
 **Tests** : `test_examens.py` (« ← Sujets » après « Mes erreurs », 2e annale A1.2 via « Autres sujets », Retour du téléphone résultat → sujets → accueil, historique incomplet, confirmation d'abandon) ; `test_recette_visuelle.py` (100 % : libellé, historique et destination ; 70 % : « Autres sujets » après les filtres ; Retour du téléphone sans boucle ; isolation). Correction de l'aide `lancer()` du test : le champ Leçon est masqué pour « Fin d'examen ». Suite critique : verte.
 
+**Complément (19/10/2026, retour de recette Android)** : « Refaire ce sujet » passe dans le bandeau fixe `.cta-fixe` (`#exr-cta`, `#exr-refaire`), visible dès le haut du résultat comme sur les résultats d'unité ; « Autres sujets » reste en bas du contenu (marge de 96 px pour ne pas passer sous le bandeau). Testé dans `test_examens.py` et `test_recette_visuelle.py`.
+
 **Reste à faire** : recette Android.
