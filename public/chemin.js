@@ -149,12 +149,12 @@ function leconReplieeHtml(l, dus, conseillee, anim) {
   const statut = statutLecon48(l);
   const classe = classePas(statut, conseillee);
   const vientDeFinir = classe === 'fait' && anim && anim.leconId === l.id && anim.uniteId === 'mission';
-  const nomLu = 'Leçon ' + numLecon(l) + ', ' + titreCourt(l) + ', ' + statut.libelle +
+  const nomLu = 'Leçon ' + numLecon(l) + ', ' + (l.titre_fr || titreCourt(l)) + ', ' + statut.libelle +
     (conseillee ? ', leçon conseillée' : '') + (dus ? ', ' + texteAReviser(dus) : '');
   return '<li class="pas ' + classe + (classe === 'futur' ? '' : ' replie') + '" id="chemin-lecon-' + l.id + '">' +
     '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '">' + iconePas(classe) + '</span>' +
     '<button class="carte-lecon compacte chemin-lecon" aria-expanded="false" aria-label="' + attrHtml(nomLu) +
-      '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + titreCourt(l)) +
+      '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + (l.titre_fr || titreCourt(l))) +
       '" onclick="basculerLeconChemin(' + l.id + ')">' +
       '<span class="carte-haut"><span class="num">Leçon ' + numLecon(l) + '</span>' +
       '<span class="titre">' + escHtml(titreLeconChemin(l)) + '</span></span>' +
@@ -171,13 +171,13 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   const classe = classePas(statut, conseillee);
   const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
   const action = actionLeconChemin(l);
-  const nomLu = 'Leçon ' + numLecon(l) + ', ' + titreCourt(l) + ', ' + statut.libelle;
+  const nomLu = 'Leçon ' + numLecon(l) + ', ' + (l.titre_fr || titreCourt(l)) + ', ' + statut.libelle;
 
   let html = '<li class="pas ' + classe + ' ouverte" id="chemin-lecon-' + l.id + '">' +
     '<span class="rond">' + iconePas(classe) + '</span>' +
     '<div class="carte-lecon chemin-lecon ouvre' + deplie + '">' +
       '<button class="carte-tete" aria-expanded="true" aria-label="' + attrHtml(nomLu) +
-        '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + titreCourt(l)) +
+        '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + (l.titre_fr || titreCourt(l))) +
         '" onclick="basculerLeconChemin(' + l.id + ')">' +
         '<span class="carte-haut"><span class="num">Leçon ' + numLecon(l) + ' · <span class="st st-' + statut.code + '">' + statut.libelle + '</span></span>' +
         '<h3>' + escHtml(titreLeconChemin(l)) + '</h3></span>' +
