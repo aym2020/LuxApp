@@ -100,6 +100,31 @@ for (const [i, formule] of [
   assert.ok(x.retours[0][2].includes('Autre formulation correcte'));
 }
 
+// SPEC 44/50 : après rafraîchissement, la réponse validée reste dans le dialogue.
+const repriseHarness = [
+  "return note => {",
+  "  openMission = () => { ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], formesValidees: [], vies: 3, coquille: false, vues: 0 }; };",
+  "  fermerPanneauSansSuite = () => {}; majVies = () => {}; renderMission = () => {};",
+  "  reprendreMission(note);",
+  "  return { idx: ms.idx, reponses: ms.formesValidees, bulle: bulleJeuHtml(pLecon.scene[3], 3, true) };",
+  "};"
+].join('\n');
+const reprise = new Function(
+  'pLecon', 'document', 'ICONES', 'escHtml',
+  read('public/mission.js') + '\n' + repriseHarness
+)(lesson, {}, { coche: '✓' }, String);
+const formesValidees = [];
+formesValidees[3] = 'Moien!';
+const resultats = [];
+resultats[3] = 'ok';
+const restaure = reprise({ idx: 3, resultats, formesValidees, vies: 3, essais: 0 });
+assert.equal(restaure.idx, 4, 'reprend après la réplique déjà validée');
+assert.equal(restaure.reponses[3], 'Moien!');
+assert.ok(restaure.bulle.includes('Moien!'), 'montre la formulation acceptée');
+assert.ok(!restaure.bulle.includes('Gudde Moien!'), 'ne remplace pas la réponse par la principale');
+assert.ok(read('public/navigation.js').includes('formesValidees: ms.formesValidees'),
+  'sauvegarde de la forme retenue dans la navigation');
+
 // Les alternatives sont déclarées sur des cas explicites, sans doublons.
 for (const item of lesson.ecriture.concat(lesson.scene.filter(x => x.qui === 'toi'))) {
   if (!item.alternatives) continue;
