@@ -167,16 +167,36 @@ function renderIntroMission() {
     '</div>';
 }
 
-// « J'ai compris » : l'introduction est confirmée, on ouvre la 1re unité à faire.
+// SPEC 55 : si une activité est choisie depuis « Voir toute la leçon », 
+// afficher d'abord la mission, puis reprendre EXACTEMENT ce choix au clic
+// « J'ai compris ». Aucune activité ni score ne démarre avant confirmation.
+let actionApresIntroMission = null; // { leconId, type: 'unite'|'demarrer', uniteId, mode?, filtre? }
+
+// « J'ai compris » : l'introduction est confirmée, puis l'action demandée
+// reprend. En entrée « Découvrir » classique, la première unité reste proposée.
 function confirmerIntroMission() {
+  const action = actionApresIntroMission;
+  actionApresIntroMission = null;
   marquerIntroMissionVue(pLecon.id);
+  if (action && action.leconId === pLecon.id) {
+    if (action.type === 'demarrer') {
+      startUnite(action.uniteId, action.mode, action.filtre);
+      return;
+    }
+    if (action.type === 'unite') {
+      openIntro(action.uniteId);
+      return;
+    }
+  }
   const fil = unitesCoeur(pLecon);
   const u = fil.find(x => getUnitBest(pLecon.id, x.id) == null) || fil[0];
   openIntro(u.id);
 }
 
-// Ouvre l'introduction de la mission (« Découvrir » sur le chemin).
-function ouvrirIntroMission(l) {
+// Ouvre l'introduction de mission avec un choix d'unité facultatif.
+// Un appel sans choix (Découvrir) abandonne un choix antérieur.
+function ouvrirIntroMission(l, action = null) {
+  actionApresIntroMission = action ? { ...action, leconId: l.id } : null;
   pLecon = l;
   currentLecon = l;
   marquerLeconVue(l.id);
