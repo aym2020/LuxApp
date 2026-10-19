@@ -19,8 +19,9 @@ const mocks = [
   "return { titreLeconChemin, CHEMIN_TITRES_LECONS_COURTS, leconReplieeHtml, leconDeplieeHtml };"
 ].join('\n');
 // Le vrai code construit les cartes ; seules ses dépendances métier sont simulées.
-const runtime = new Function('titreCourt', 'numLecon', 'escHtml', 'ICONES',
+const runtime = new Function('window', 'titreCourt', 'numLecon', 'escHtml', 'ICONES',
   'isParcoursLecon', 'leconTerminee', code + '\n' + mocks)(
+    { addEventListener() {} },
     l => l.titre_fr, l => l.id, escape, { chevron: '⌄', fleche: '→' },
     () => true, () => false
   );
