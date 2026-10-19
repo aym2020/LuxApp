@@ -367,17 +367,26 @@ function examBlankHtml(i) {
 // Question à choix pendant l'examen.
 function examQuestionHtml(q, i) {
   const val = examAnswers[examPart][i];
-  // Réponses longues : une par ligne. Réponses courtes : côte à côte.
-  const longues = q.choix.some(c => c.length > 20);
+  // Deux images cliquables lorsqu'une illustration SVG est fournie.
+  const illustrees = examHasIllustrations(q);
+  const longues = !illustrees && q.choix.some(c => c.length > 20);
 
   let html =
     '<div class="ex-q">' +
       (q.horloge ? examClockHtml(q.horloge) : '') +
       '<div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' + escHtml(q.question) + '</div>' +
-      '<div class="ex-opts' + (longues ? ' stack' : '') + '">';
+      '<div class="ex-opts' + (illustrees ? ' pictures' : longues ? ' stack' : '') + '">';
   q.choix.forEach((c, k) => {
-    html += '<button class="ex-opt' + (val === c ? ' selected' : '') + '" ' +
-      'onclick="examAnswer(' + i + ',' + k + ')">' + escHtml(c) + '</button>';
+    if (illustrees) {
+      html += '<button type="button" class="ex-opt ex-image-choice' + (val === c ? ' selected' : '') + '" ' +
+        'aria-label="Image ' + (k + 1) + ' : ' + escHtml(c) + '" aria-pressed="' + (val === c) + '" ' +
+        'onclick="examAnswer(' + i + ',' + k + ')">' +
+        '<span class="ex-image-num" aria-hidden="true">' + (k + 1) + '</span>' +
+        examIllustrationSvg(q.illustrations[k]) + '</button>';
+    } else {
+      html += '<button class="ex-opt' + (val === c ? ' selected' : '') + '" ' +
+        'onclick="examAnswer(' + i + ',' + k + ')">' + escHtml(c) + '</button>';
+    }
   });
   return html + '</div></div>';
 }
@@ -405,6 +414,75 @@ function examClockHtml(time) {
     '" stroke="#f6f1e9" stroke-width="2.5" stroke-linecap="round"/>' +
     '<circle cx="60" cy="60" r="3" fill="#f5cf4d"/></svg>';
   return svg;
+}
+
+
+// Illustrations SVG natives des propositions (sans images externes).
+// Les identifiants autorisés sont fixes ; les textes du JSON ne deviennent pas du HTML.
+function examIllustrationSvg(id) {
+  const box = (x,y,w,h,c,rx=3) => '<rect x="' + x + '" y="' + y + '" width="' + w +
+    '" height="' + h + '" rx="' + rx + '" fill="' + c + '" stroke="#6f726c" stroke-width="1.6"/>';
+  const line = (d,c='#77818a',w=2) => '<path d="' + d + '" fill="none" stroke="' + c + '" stroke-width="' + w + '" stroke-linecap="round"/>';
+  const bag = x => box(x,108,30,42,'#b9734d',6) +
+    line('M'+(x+7)+' 110v-7q8-15 16 0v7','#79533e',4);
+  const sofa = box(64,74,136,68,'#9bb7c5',12) +
+    box(77,94,110,42,'#c1d2d7',9) + box(58,101,27,42,'#8ba7b8',9) +
+    box(180,101,27,42,'#8ba7b8',9) +
+    line('M130 95v40M77 144v8M184 144v8','#657e8b',4);
+  const paper = '<g transform="rotate(-5 111 103)">' +
+    box(42,62,139,82,'#fffdf8',3) + box(50,71,62,8,'#a4b1b8',1) +
+    line('M50 87h119M50 96h119M50 105h119M50 114h52M50 123h52M115 114h55M115 123h55','#b2bdc4') + '</g>';
+  const glasses = (x,y) => '<g transform="translate('+x+' '+y+')" stroke="#43515c" stroke-width="3.5" fill="none">' +
+    '<rect x="0" y="0" width="25" height="22" rx="10"/><rect x="35" y="0" width="25" height="22" rx="10"/>' +
+    '<path d="M25 7q5-7 10 0M0 5l-8-4M60 5l8-4"/></g>';
+  const closet = box(79,44,111,120,'#c88f59',1) + box(74,39,122,9,'#ad7443',1) +
+    box(86,52,46,103,'#dfac78',2) + box(137,52,46,103,'#dfac78',2) +
+    '<circle cx="128" cy="103" r="2.8" fill="#81573f"/><circle cx="141" cy="103" r="2.8" fill="#81573f"/>';
+  const cat = (x,y,s) => '<g transform="translate('+x+' '+y+') scale('+s+')">' +
+    line('M-15 71C-53 94-48 47-27 48','#798890',11) +
+    '<ellipse cx="0" cy="54" rx="23" ry="27" fill="#8c9ca4"/>' +
+    '<path d="M-22 19L-18 0L-5 13L6 13L19 0L23 19" fill="#8c9ca4" stroke="#5f727c" stroke-width="2"/>' +
+    '<ellipse cx="0" cy="25" rx="24" ry="20" fill="#a5b1b6"/>' +
+    line('M-12 54v26M12 54v26','#637783',5) +
+    '<circle cx="-9" cy="24" r="4" fill="#f0c660"/><circle cx="9" cy="24" r="4" fill="#f0c660"/>' +
+    '<path d="M-4 35l4 4l4-4z" fill="#d4928b"/></g>';
+  const night = box(84,72,94,89,'#c48c60',3) +
+    box(78,67,106,9,'#ae7346',2) + box(92,86,78,38,'#e4b98e',3) +
+    '<circle cx="131" cy="108" r="3" fill="#875d3b"/>' + line('M92 131h78','#a97750');
+  const pen = (x,y) => '<g transform="translate('+x+' '+y+') rotate(-15)">' +
+    box(0,0,48,9,'#458fa8',2) + '<path d="M48 1l13 3.5L48 8z" fill="#c69c71"/>' + '</g>';
+  const building = x => box(x,31,105,127,'#b4c5cb',1) + box(x-5,26,115,9,'#8ba5ae',1) +
+    box(x+41,115,23,43,'#78949c',1) +
+    [12,71].map(a=>[45,82].map(b=>box(x+a,b,21,25,'#e6f2f2',1)).join('')).join('');
+  const car = (x,y) => '<g transform="translate('+x+' '+y+')">' +
+    box(0,17,65,23,'#63a8bc',8) +
+    '<path d="M10 18l13-16h26l12 16z" fill="#7bb9c9" stroke="#496773" stroke-width="2"/>' +
+    box(25,4,16,12,'#e6f5f5',1) +
+    '<circle cx="15" cy="40" r="7" fill="#364d58"/><circle cx="52" cy="40" r="7" fill="#364d58"/>' +
+    '</g>';
+  const sign = x => line('M'+x+' 108v50','#657882',3) + box(x-13,82,27,30,'#408db7',3) +
+    '<text x="'+x+'" y="104" font-size="22" font-family="Arial,sans-serif" fill="#fff" font-weight="bold" text-anchor="middle">P</text>';
+  let art;
+  switch(id) {
+    case 'sac-gauche': art=sofa+bag(21); break;
+    case 'sac-droite': art=sofa+bag(211); break;
+    case 'lunettes-sur': art=paper+glasses(80,93); break;
+    case 'lunettes-cote': art=paper+glasses(192,99); break;
+    case 'chat-devant': art=closet+cat(131,110,.67); break;
+    case 'chat-dessus': art=closet+cat(131,-12,.64); break;
+    case 'stylo-dessus': art=night+pen(107,33); break;
+    case 'stylo-dans': art=night+box(91,88,80,43,'#af7953',2)+box(96,93,70,31,'#ebcda8',2)+pen(107,104); break;
+    case 'parking-devant': art=building(79)+car(99,121)+sign(226); break;
+    case 'parking-cote': art=building(48)+car(176,121)+sign(239); break;
+    default: return '';
+  }
+  return '<svg viewBox="0 0 260 180" class="ex-image-svg" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect width="260" height="180" rx="12" fill="#f2efe7"/>' +
+    box(0,159,260,22,'#e8e0d2',0) + art + '</svg>';
+}
+function examHasIllustrations(q) {
+  return Array.isArray(q.illustrations) && q.illustrations.length === q.choix.length &&
+    q.illustrations.every(id => !!examIllustrationSvg(id));
 }
 
 // ─── BARRE DU BAS : MOTS À PLACER ───────────────────────────────────────────
@@ -726,10 +804,11 @@ function examCorrectionHtml(part, p, r) {
       const juste = answers[i] === q.reponse;
       if (examOnlyErrors && juste) return;
 
+      const illustrees = examHasIllustrations(q);
       html += '<div class="ex-q">' + (q.horloge ? examClockHtml(q.horloge) : '') +
         '<div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' +
         '<div>' + escHtml(q.question) + examFrBtn(q.question_fr) +
-        examFrHtml(q.question_fr) + '</div></div><div class="ex-opts stack">';
+        examFrHtml(q.question_fr) + '</div></div><div class="ex-opts' + (illustrees ? ' pictures' : ' stack') + '">';
       q.choix.forEach((c, k) => {
         let cls = 'ex-opt fixed';
         let marque = '';
@@ -737,8 +816,10 @@ function examCorrectionHtml(part, p, r) {
         else if (c === answers[i]) { cls += ' ko'; marque = 'Ta réponse'; }
         if (c === q.reponse && juste) marque = 'Ta réponse, correcte';
         const fr = q.choix_fr ? examFrHtml(q.choix_fr[k]) : '';
-        html += '<div class="' + cls + '"><div class="ex-opt-txt"><span>' + escHtml(c) + '</span>' + fr + '</div>' +
-          '<small>' + marque + '</small></div>';
+        if (illustrees) cls += ' ex-image-choice';
+        html += '<div class="' + cls + '"><div class="ex-opt-txt">' +
+          (illustrees ? examIllustrationSvg(q.illustrations[k]) + '<span class="ex-image-answer">' + escHtml(c) + '</span>' : '<span>' + escHtml(c) + '</span>') +
+          fr + '</div><small>' + marque + '</small></div>';
       });
       html += '</div>';
       if (answers[i] === null) html += '<div class="exr-note exr-ko">Pas de réponse</div>';
