@@ -214,6 +214,8 @@ function compterAcquisesAncienneVersion() {
 
 function openReglages() {
   showView('view-reglages');
+  // SPEC 52 : afficher le dernier état sans attendre un nouvel événement cloud.
+  if (typeof actualiserStatutSynchro === 'function') actualiserStatutSynchro();
 }
 
 // Réinitialise TOUTE la progression, après confirmation.
