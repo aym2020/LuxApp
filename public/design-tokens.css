@@ -93,6 +93,13 @@
   --hauteur-bouton: 48px;
   --hauteur-bouton-grand: 52px;
   --hauteur-cta: 56px;      /* le grand bouton jaune */
+  
+  /* SPEC 57 : micro-feedback tactile partagé des CTA (aucun mouvement du layout). */
+  --cta-pression-echelle: .975;
+  --cta-pression-decalage: 1px;
+  --cta-pression-duree: 140ms;
+  --cta-pression-luminosite: .92;
+  --cta-pression-ombre: inset 0 2px 7px rgba(0, 0, 0, .18);
 
   /* ══ ALIAS (anciens noms, gardés pour compatibilité ; ne plus en créer) ══ */
   --bg: var(--couleur-fond);
