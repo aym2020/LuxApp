@@ -41,3 +41,40 @@ for (const [phrase, fichier] of Object.entries(phrases)) {
   assert.equal(debut, 'ftyp', fichier + ' : M4A valide');
 }
 console.log('Audio LOD : OK — ' + Object.keys(sons).length + ' mots, fichiers MP3 valides, tous rattachés à une carte.');
+
+// SPEC 70 — audio contextuel : choix relus valides, règles de recherche, bouton vert menthe.
+const commun = require('../tools/lod/commun');
+const index = commun.lireIndex();
+const choix = JSON.parse(fs.readFileSync(path.join(racine, 'tools/lod/contextes.json'), 'utf8'));
+for (const [lu, c] of Object.entries(choix)) {
+  if (lu.startsWith('_')) continue;
+  assert.ok(commun.contientExpression(index, lu, c.id), lu + ' : l\'exemple ' + c.id + ' contient l\'expression');
+  assert.ok(c.fr && c.fr.trim(), lu + ' : traduction française');
+  assert.equal(commun.majuscule(index.utilisables.find(e => e.id === c.id).texte), c.lod, lu + ' : texte LOD à jour');
+}
+const ids = l => commun.chercherContextes(index, l).map(e => e.id);
+assert.ok(ids('Gudde Moien!').includes('ee04cddd4072d1d7a63aef7f1c667f6f'), 'énoncé en tête de phrase LOD');
+assert.deepEqual(ids('An dir?'), [], '« An dir? » ≠ « Dir Dammen an Dir Hären » (énoncé coupé au milieu)');
+assert.deepEqual(ids('Ganz gutt!'), [], 'pas d\'exemple hors A1/A2');
+assert.deepEqual(ids('Moien'), [], 'un mot seul : jamais de contexte');
+assert.deepEqual(ids('Wéi geet et (Iech)?'), [], 'parties facultatives exclues');
+const contexte = JSON.parse(fs.readFileSync(path.join(racine, 'public/audio/lod-contexte.json'), 'utf8'));
+for (const [lu, c] of Object.entries(contexte)) {
+  assert.match(c.son, /^lod-phrases\/[0-9a-f]{32}\.m4a$/, lu);
+  assert.equal(fs.readFileSync(path.join(racine, 'public/audio', c.son)).subarray(4, 8).toString('latin1'), 'ftyp', c.son + ' : M4A valide');
+  assert.ok(choix[lu] && c.phrase && c.fr, lu + ' : phrase et traduction affichées');
+}
+// Bouton : or pour le son exact, menthe pour la phrase, la phrase dévoilée au clic.
+const srcDialogue = fs.readFileSync(path.join(racine, 'public/dialogue.js'), 'utf8');
+const doc = { addEventListener() {}, createElement: () => ({ classList: { contains: () => false } }) };
+const d = new Function('document', 'escHtml', srcDialogue +
+  '; return { boutonEcouterHtml, definir(m, c) { sonsLod = m; sonsContexte = c; } };')(doc,
+  t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'));
+d.definir({ 'Moien!': 'lod/MOIEN2.mp3' }, { 'gudde moien': { son: 'lod-phrases/ee04cddd4072d1d7a63aef7f1c667f6f.m4a', phrase: 'Gudde Moien, Madamm!', fr: 'Bonjour Madame !' } });
+assert.ok(!d.boutonEcouterHtml('Moien!').includes('contexte'), 'son direct : bouton or');
+const b = d.boutonEcouterHtml('Gudde Moien!');
+assert.ok(b.includes('bouton-ecouter contexte') && b.includes('ecouterContexte(this)'), 'son contextuel : bouton menthe');
+assert.ok(b.includes('dans une phrase : « Gudde Moien, Madamm! »') && b.includes('Dans une phrase'), 'la phrase entière est annoncée');
+assert.equal(d.boutonEcouterHtml('Bis muer!'), '', 'rien sans son');
+assert.ok(/\.bouton-ecouter\.contexte\s*\{[^}]*--couleur-audio-contexte/.test(fs.readFileSync(path.join(racine, 'public/style.css'), 'utf8')), 'couleur menthe');
+console.log('Audio contextuel : OK — ' + Object.keys(choix).filter(k => !k.startsWith('_')).length + ' choix relus, ' + Object.keys(contexte).length + ' avec son.');

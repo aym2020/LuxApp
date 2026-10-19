@@ -44,6 +44,7 @@
   --couleur-sur-action: #0f0e0c;  /* texte sur un bouton or, vert ou rouge */
   --couleur-sur-or: #1a1505;      /* texte sur le grand bouton jaune et les badges */
   --couleur-reussi: #54e0ad;
+  --couleur-audio-contexte: #54e0ad; /* vert menthe : son LOD dit dans une phrase (SPEC 70) */
   --couleur-erreur: #ef7a73;
   --couleur-info: #6fb0f2;
   --couleur-violet: #b18cf0;

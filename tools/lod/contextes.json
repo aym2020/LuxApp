@@ -1,0 +1,323 @@
+{
+  "_lisez-moi": "SPEC 70 — audio contextuel relu à la main. Pour chaque mot ou expression des leçons sans son direct : l'exemple LOD choisi (id), le texte LOD (contrôle) et sa traduction française (le LOD n'en donne pas : traduction rédigée par Claude, relue). Le script vérifie que l'exemple contient bien l'expression. « _refusés » : propositions écartées et pourquoi.",
+  "Gudde Moien!": {
+    "id": "ee04cddd4072d1d7a63aef7f1c667f6f",
+    "lod": "Gudde Moien, Madamm, wat kann ech fir Iech maachen?",
+    "fr": "Bonjour Madame, que puis-je faire pour vous ?"
+  },
+  "Gudden Owend!": {
+    "id": "9a4981c8b5b541ca3318b9a165f6c700",
+    "lod": "Gudden Owend, wéi geet et Iech?",
+    "fr": "Bonsoir, comment allez-vous ?"
+  },
+  "Wéi geet et Iech?": {
+    "id": "e4ca7a3d748974202d349e731a183ea3",
+    "lod": "Bonjour, wéi geet et Iech?",
+    "fr": "Bonjour, comment allez-vous ?"
+  },
+  "Ass dat": {
+    "id": "0ff40e8cfb03bc7d426e4fcb966c81ed",
+    "lod": "Ass dat säi richtegen Numm?",
+    "fr": "Est-ce que c'est son vrai nom ?"
+  },
+  "zwee Glieser": {
+    "id": "316ab5e6c6a0951fa3e7f3c8c8c0d003",
+    "lod": "Beim Spullen hunn ech zwee Glieser gebrach",
+    "fr": "En faisant la vaisselle, j'ai cassé deux verres."
+  },
+  "Wat fir eng": {
+    "id": "5c6ef87256d2d5bcaee2e43514f24aeb",
+    "lod": "Wat fir eng Musek lauschters du am Auto?",
+    "fr": "Quelle musique écoutes-tu en voiture ?"
+  },
+  "du bass": {
+    "id": "df6b91d9021c3d50adeb3a6cee6fbc99",
+    "lod": "Du bass ewéi e Brudder fir mech",
+    "fr": "Tu es comme un frère pour moi."
+  },
+  "hien ass": {
+    "id": "9c24d00dd7653fcb0363b609af52ed30",
+    "lod": "Hien ass seriö krank",
+    "fr": "Il est gravement malade."
+  },
+  "si ass": {
+    "id": "99cfba697bd5bb9535f3e107ef12b85d",
+    "lod": "Si ass Mamm vun dräi Kanner",
+    "fr": "Elle est mère de trois enfants."
+  },
+  "e bësse": {
+    "id": "6f2717ac95ade9ba20e6b89552269977",
+    "lod": "Hief e bësse Gedold!",
+    "fr": "Aie un peu de patience !"
+  },
+  "Joer al": {
+    "id": "05d730015f1b75b520369738114c093d",
+    "lod": "Hatt ass drësseg Joer al",
+    "fr": "Elle a trente ans."
+  },
+  "Wéi vill": {
+    "id": "fb5fed5032d1288bbf9bb816f0cbd1b6",
+    "lod": "Wéi vill Auer ass et?",
+    "fr": "Quelle heure est-il ?"
+  },
+  "véierel op": {
+    "id": "491f9ed1164e496377ef2030d19f7378",
+    "lod": "Et ass Véierel op néng",
+    "fr": "Il est neuf heures et quart."
+  },
+  "véierel vir": {
+    "id": "fea44740b6cb437c0f3e083bf1675459",
+    "lod": "Et ass Véierel vir néng",
+    "fr": "Il est neuf heures moins le quart."
+  },
+  "vir hallwer": {
+    "id": "ac71cd7c62ba4abd72b9707e24703ec2",
+    "lod": "Et ass fënnef vir hallwer",
+    "fr": "Il est cinq minutes avant la demie (… h 25)."
+  },
+  "op hallwer": {
+    "id": "4be3ced07e07854262a097252f1ccb9f",
+    "lod": "Et ass fënnef op hallwer",
+    "fr": "Il est cinq minutes après la demie (… h 35)."
+  },
+  "hallwer dräi": {
+    "id": "170b7717128d74e89ad00298a2bd2ced",
+    "lod": "O vreck, ass et schonn hallwer dräi!",
+    "fr": "Oh mince, il est déjà deux heures et demie !"
+  },
+  "Kaffi drénken": {
+    "id": "8fb5643ec29a2ad9b52d238a25b7211b",
+    "lod": "Ech kéint nach eng Tiessche Kaffi drénken",
+    "fr": "Je boirais bien encore une tasse de café."
+  },
+  "schlofe goen": {
+    "id": "8e812cecf7712a9a4f412970e4f3a622",
+    "lod": "Solle mer haut emol méi fréi schlofe goen?",
+    "fr": "Et si on allait se coucher plus tôt aujourd'hui ?"
+  },
+  "Wou ass": {
+    "id": "0932405e921fe178d04e6082e936230d",
+    "lod": "De Buedem läit voller Grimmelen, wou ass d'Biischt?",
+    "fr": "Le sol est plein de miettes, où est la brosse ?"
+  },
+  "an der Kichen": {
+    "id": "fff7a50040364f32b8ba538c372ca829",
+    "lod": "Mir iessen all Dag an der Kichen",
+    "fr": "Nous mangeons tous les jours dans la cuisine."
+  },
+  "an der Stuff": {
+    "id": "86adca313ba8d38f460eac4334319952",
+    "lod": "Däi Papp sëtzt an der Stuff",
+    "fr": "Ton père est assis dans le salon."
+  },
+  "am Buedzëmmer": {
+    "id": "97c517285b57da73125265bd9febe7b8",
+    "lod": "Mir mussen am Buedzëmmer nei Plättercher leeën",
+    "fr": "Nous devons poser un nouveau carrelage dans la salle de bain."
+  },
+  "net gär": {
+    "id": "8af23c0ec7b34388afd2684fb2e8acb3",
+    "lod": "Hatt huet d'Glace net gär",
+    "fr": "Elle n'aime pas la glace."
+  },
+  "Vëlo fueren": {
+    "id": "871b66865ba7b5c0743e5b71fd18169e",
+    "lod": "Ech ginn heiansdo sonndes Vëlo fueren",
+    "fr": "Je vais parfois faire du vélo le dimanche."
+  },
+  "Schi fueren": {
+    "id": "d6dfd8a0d93fcddb49c2dac64dba52c1",
+    "lod": "D'Kanner léieren ouni Bengele Schi fueren",
+    "fr": "Les enfants apprennent à skier sans bâtons."
+  },
+  "akafe goen": {
+    "id": "5c0c86aa5ecc468518e2dc1444a6bda1",
+    "lod": "Ech muss den Owend nach akafe goen",
+    "fr": "Je dois encore aller faire les courses ce soir."
+  },
+  "all Dag": {
+    "id": "e5a89b5285c3072ade5b50ac2a6280da",
+    "lod": "Ech drénken all Dag zwee Liter Waasser",
+    "fr": "Je bois deux litres d'eau tous les jours."
+  },
+  "eemol d'Woch": {
+    "id": "4e327c8bbdb5b81671e226d86f35cc9a",
+    "lod": "Ech fueren eemol d'Woch op de Recycling",
+    "fr": "Je vais au centre de recyclage une fois par semaine."
+  },
+  "mäi Papp": {
+    "id": "410fa51ea0b118909cc103ec5f48fcb3",
+    "lod": "Mäi Papp huet dräi Geschwëster",
+    "fr": "Mon père a trois frères et sœurs."
+  },
+  "meng Mamm": {
+    "id": "b9f3b32ce4e218c957fde78ed344c2ed",
+    "lod": "Meng Mamm baakt all Sonndeg",
+    "fr": "Ma mère fait de la pâtisserie tous les dimanches."
+  },
+  "mäi Brudder": {
+    "id": "01a261e34c52c850d23489d051221380",
+    "lod": "Mäi Brudder sammelt Postkaarten aus der ganzer Welt",
+    "fr": "Mon frère collectionne des cartes postales du monde entier."
+  },
+  "deng Schwëster": {
+    "id": "455c4604be1a118205e9545dcadcec32",
+    "lod": "Deng Schwëster ass e couragéiert Framënsch!",
+    "fr": "Ta sœur est une femme courageuse !"
+  },
+  "menger Mamm": {
+    "id": "421026dfd6cb01d64d092351f0ae16a6",
+    "lod": "Menger Mamm geet et gutt, an denger?",
+    "fr": "Ma mère va bien, et la tienne ?"
+  },
+  "mengen Elteren": {
+    "id": "96954033ef0bbf2d9cbf2c0b456d1621",
+    "lod": "Ech fuere mat mengen Elteren an d'Vakanz",
+    "fr": "Je pars en vacances avec mes parents."
+  },
+  "säi Meedchen": {
+    "id": "615c891b4d80bdd41eb9c8be14201440",
+    "lod": "De Papp suergt gutt fir säi Meedchen",
+    "fr": "Le père prend bien soin de sa fille."
+  },
+  "ech war": {
+    "id": "2a93a5f434229bd69f31efc6a45a0bd3",
+    "lod": "Ech war an e Concert vum Symphonieorchester",
+    "fr": "Je suis allé à un concert de l'orchestre symphonique."
+  },
+  "ech hat": {
+    "id": "0ea369d71d16fb0431268066118f221c",
+    "lod": "Ech hat scho laang net méi fräi",
+    "fr": "Je n'avais plus eu de congé depuis longtemps."
+  },
+  "gëschter Owend": {
+    "id": "a63d045b067859bd43dc3d1c8c2cb49e",
+    "lod": "Gëschter Owend hu mer flott gedanzt",
+    "fr": "Hier soir, nous avons bien dansé."
+  },
+  "d'lescht Woch": {
+    "id": "7269bd3c40a6221672c8e1e1d32ba8b4",
+    "lod": "Eis Kaz krut d'lescht Woch véier Jonger",
+    "fr": "Notre chatte a eu quatre petits la semaine dernière."
+  },
+  "mir waren": {
+    "id": "9fb24f03fea8fd6322dd35f057e375ab",
+    "lod": "Mir waren an d'Stad d'Fënstere kucken",
+    "fr": "Nous sommes allés en ville faire du lèche-vitrines."
+  },
+  "mir haten": {
+    "id": "2f81a218f6d25cc5ca911380cfbff5f9",
+    "lod": "Mir haten e richteg relaxe Weekend",
+    "fr": "Nous avons eu un week-end vraiment relaxant."
+  },
+  "ech hu geschlof": {
+    "id": "47a5d45f1a7ef5a1ca151e8c1ec9bcaa",
+    "lod": "Ech hu geschlof ewéi eng Rat!",
+    "fr": "J'ai dormi comme un loir !"
+  },
+  "mam Auto": {
+    "id": "a2aa3d66399f0c6386d74e6512567618",
+    "lod": "Ech kommen haut mam Auto op d'Aarbecht",
+    "fr": "Aujourd'hui, je viens au travail en voiture."
+  },
+  "an d'Stad": {
+    "id": "642f59559d2a1ebe6ca849dfce81ad8b",
+    "lod": "Den Zuch fiert bis an d'Stad",
+    "fr": "Le train va jusqu'en ville."
+  },
+  "an de Kino": {
+    "id": "a9c8e3ec53c0b8daa651f4cab3db8515",
+    "lod": "Gees du och mat an de Kino?",
+    "fr": "Tu viens aussi au cinéma ?"
+  },
+  "Ech hätt gär": {
+    "id": "4f1a89c2095b1b296b9bb4951ffb2264",
+    "lod": "Ech hätt gär eng hallef Dose Mëtschen",
+    "fr": "Je voudrais une demi-douzaine de petits pains."
+  },
+  "Ech huelen": {
+    "id": "4b8c1c79c1aab64efaabbfd240909104",
+    "lod": "Ech huelen de Bus fir op d'Gare",
+    "fr": "Je prends le bus pour aller à la gare."
+  },
+  "mat der Kaart": {
+    "id": "6c7749215d6f444d80fe19b646715938",
+    "lod": "Bezuelt Der boer oder mat der Kaart?",
+    "fr": "Vous payez en espèces ou par carte ?"
+  },
+  "ech sinn": {
+    "id": "65a085f91b5a4ddf92d201d6bca1bfc6",
+    "lod": "Ech sinn net vun hei",
+    "fr": "Je ne suis pas d'ici."
+  },
+  "mir sinn": {
+    "id": "c658bd0241f7a6ab78b04c90120687c5",
+    "lod": "Mir sinn ewéi Brudder a Schwëster",
+    "fr": "Nous sommes comme frère et sœur."
+  },
+  "ech hunn": {
+    "id": "664f9e6cdb071ea114f39a505ff60f3f",
+    "lod": "Ech hunn zwee Bridder",
+    "fr": "J'ai deux frères."
+  },
+  "du hues": {
+    "id": "2ef169348f96edc3fac051881b879e87",
+    "lod": "Du hues e schwéiere Beruff",
+    "fr": "Tu as un métier difficile."
+  },
+  "hien huet": {
+    "id": "5264d62116d7da94c6379c0a2f941143",
+    "lod": "Hien huet ëmmer gutt Iddien",
+    "fr": "Il a toujours de bonnes idées."
+  },
+  "si huet": {
+    "id": "8c1a8e9f72dbfb8bbe03302178e23d77",
+    "lod": "Si huet hir Fangerneel rout gefierft",
+    "fr": "Elle s'est verni les ongles en rouge."
+  },
+  "mir hunn": {
+    "id": "1d6de9e7a911213cb1ce97e6a6898aae",
+    "lod": "Mir hunn d'nächst Woch keng Zäit",
+    "fr": "Nous n'avons pas le temps la semaine prochaine."
+  },
+  "dir hutt": {
+    "id": "76d7e856a115870b4d0c6a617aef5425",
+    "lod": "Dir hutt villes gemeinsam",
+    "fr": "Vous avez beaucoup de choses en commun."
+  },
+  "si hunn": {
+    "id": "7e7977abcfb7394a33773f9df9d93fc7",
+    "lod": "Si hunn an aller Rou Kaffi gedronk",
+    "fr": "Ils ont bu un café en toute tranquillité."
+  },
+  "ech si": {
+    "id": "2f3864b19df9dffa83562f221258c5d0",
+    "lod": "Ech ginn elo, ech si midd!",
+    "fr": "J'y vais, je suis fatigué !"
+  },
+  "ech hu": {
+    "id": "8f7cd445d5ee2b9e3d32f770d13e16ae",
+    "lod": "Ech hu Fra a Kanner",
+    "fr": "J'ai une femme et des enfants."
+  },
+  "mir si": {
+    "id": "84017fc6a89aa43451a9d4fcdac1a520",
+    "lod": "Mir si meeschtens iwwer Chrëschtdag an der Vakanz",
+    "fr": "Nous sommes généralement en vacances à Noël."
+  },
+  "mir hu": {
+    "id": "2ed6ead8ea7b00b0bf70334466d65c46",
+    "lod": "Mir hu just zwee Jongen an der Klass",
+    "fr": "Nous n'avons que deux garçons dans la classe."
+  },
+  "_refusés": {
+    "zwee Still": "seul exemple : « Ech sëtzen tëschent zwee Still » (expression : être assis entre deux chaises)",
+    "Gei spillen": "seul exemple : « déi éischt Gei spillen » (expression : jouer les premiers violons)",
+    "du gees": "exemples uniquement idiomatiques (« Du gees mer op de Su! »)",
+    "hire Mann": "seul exemple trop complexe (subjonctif, ragots)",
+    "mengem Papp": "seul exemple idiomatique (« géint eng Mauer schwätzen »)",
+    "hire Jong": "seul exemple peu utile pour un débutant (« sech räich bestueden »)",
+    "ech hu gekacht": "seul exemple trompeur : « Ech hu gekacht vu Roserei » = je bouillais de rage",
+    "si sinn": "exemples au passé composé (« Si sinn … geplënnert ») : sens « ils ont », trompeur pour « ils sont »"
+  }
+}

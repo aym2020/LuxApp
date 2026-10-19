@@ -84,6 +84,7 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 | 67 | [Ligne de compte sur l'accueil invité](./SPEC-67.md) | P1 | Implémentée — validation à confirmer |
 | 68 | [Bouton « Écouter » partout où un mot isolé est présenté](./SPEC-68.md) | P1 | Implémentée — validation à confirmer |
 | 69 | [Sons LOD : correspondances vérifiées, relance autonome, phrases enregistrées](./SPEC-69.md) | P1 | Implémentée — phrases en attente d'accès à lod.lu |
+| 70 | [Stratégie audio LOD prioritaire : audit, audio contextuel, leçons construites sur les exemples LOD](./SPEC-70.md) | P1 | Implémentée — audit à valider ; phrases en attente d'accès à lod.lu |
 
 ## Gestion des changements
 

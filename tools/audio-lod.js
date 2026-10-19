@@ -18,13 +18,17 @@
 //   Une phrase n'est gardée que si son texte est identique à un exemple enregistré du LOD
 //   (seuls la casse, les espaces et la ponctuation sont ignorés) et si le fichier est un M4A valide.
 //   Jamais d'enregistrement d'une phrase différente.
+// CONTEXTE (SPEC 70) → public/audio/lod-phrases/<ID>.m4a + public/audio/lod-contexte.json
+//   Mot ou expression sans son direct : phrase d'exemple LOD qui le contient, choisie et traduite
+//   à la main dans tools/lod/contextes.json. La phrase complète est toujours affichée avec sa traduction.
+//   Le script propose aussi les nouveaux candidats (à relire avant de les ajouter).
+// Rapport de couverture par leçon : node tools/lod/audit-audio.js
 const fs = require('fs');
 const path = require('path');
-const zlib = require('zlib');
 const { execFileSync } = require('child_process');
+const { RACINE, motCarte, phraseCle, rangSens, majuscule, lireIndex, chercherContextes, contientExpression,
+  tableDirecte, elementsLecon, lecons } = require('./lod/commun');
 
-const RACINE = path.join(__dirname, '..');
-const INDEX = path.join(__dirname, 'lod/lod-index.json.gz');
 const CORRESPONDANCES = path.join(__dirname, 'lod/correspondances.json');
 const MIROIR_MOTS = 'https://raw.githubusercontent.com/robertoentringer/lod-mp3-mirror/master/2020-12-18-lod-opendata/';
 const SOURCE_PHRASES = 'https://lod.lu/uploads/examples/AAC/'; // {2 premiers caractères}/{ID}.m4a
@@ -32,81 +36,16 @@ const DOSSIER_MOTS = path.join(RACINE, 'public/audio/lod');
 const DOSSIER_PHRASES = path.join(RACINE, 'public/audio/lod-phrases');
 const TABLE_MOTS = path.join(RACINE, 'public/audio/lod.json');
 const TABLE_PHRASES = path.join(RACINE, 'public/audio/lod-phrases.json');
-
-// ─── Normalisation ──────────────────────────────────────────────────────────
-const ARTICLES_LU = ['den', 'de', 'déi', 'dat', "d'", 'en', 'eng', 'e', 'ee'];
-const ARTICLES_FR = ['le', 'la', 'les', "l'", 'un', 'une', 'des', 'du', 'se', "s'"];
-
-function sansAccent(t) {
-  return t.normalize('NFD').replace(/[̀-ͯ]/g, '');
-}
-// Mot luxembourgeois d'une carte : sans article, ni ponctuation, ni parenthèses ; null si plusieurs mots.
-function motCarte(lu) {
-  let t = lu.replace(/\(.*?\)/g, ' ').replace(/[!?.,;:«»"]/g, ' ').replace(/’/g, "'").trim().toLowerCase();
-  for (const a of ARTICLES_LU) {
-    if (a.endsWith("'") ? t.startsWith(a) : t.startsWith(a + ' ')) { t = t.slice(a.length).trim(); break; }
-  }
-  return t.split(/\s+/).length === 1 ? t : null;
-}
-// Phrase comparable : minuscules, apostrophes unifiées, sans ponctuation, espaces simples.
-function phraseCle(texte) {
-  return String(texte).replace(/<[^>]*>/g, ' ').toLowerCase().replace(/[’`]/g, "'")
-    .replace(/[.,!?;:«»"…()–—]/g, ' ').replace(/\s+/g, ' ').trim();
-}
-// Mots français porteurs de sens.
-function motsFr(texte) {
-  const t = sansAccent(texte.toLowerCase()).replace(/\(.*?\)/g, ' ').replace(/’/g, "'");
-  return t.split(/[^a-z']+/).map(m => m.replace(/^(l|d|s|qu|j|n|m|t)'/, ''))
-    .filter(m => m.length > 1 && !ARTICLES_FR.includes(m) && !['de', 'et', 'ou', 'a', 'au', 'aux', 'en'].includes(m));
-}
-// Rang de la 1re traduction LOD qui correspond (0 = sens principal), ou -1.
-function rangSens(frCarte, traductionsLod) {
-  const carte = motsFr(frCarte);
-  return traductionsLod.findIndex(tr => {
-    const lod = motsFr(tr);
-    return lod.length > 0 && lod.every(m => carte.includes(m));
-  });
-}
-
-// ─── Données ────────────────────────────────────────────────────────────────
-function lireIndex() {
-  const { mots, exemples } = JSON.parse(zlib.gunzipSync(fs.readFileSync(INDEX)));
-  const parMot = {};
-  const parId = {};
-  for (const m of mots) {
-    const cle = m.lemme.toLowerCase();
-    (parMot[cle] = parMot[cle] || []).push(m);
-    parId[m.id] = m;
-  }
-  const parPhrase = {};
-  for (const e of exemples) {
-    // Une partie entre parenthèses est facultative : on ne sait pas si elle est prononcée.
-    if (e.texte.includes('(')) continue;
-    const cle = phraseCle(e.texte);
-    (parPhrase[cle] = parPhrase[cle] || []).push(e);
-  }
-  return { parMot, parId, parPhrase };
-}
+const CONTEXTES = path.join(__dirname, 'lod/contextes.json');
+const TABLE_CONTEXTE = path.join(RACINE, 'public/audio/lod-contexte.json');
 
 // Cartes « mot caché » et phrases (au moins deux mots) des leçons.
 function contenuLecons() {
   const cartes = [];
   const phrases = new Set();
-  const ajouter = t => { if (typeof t === 'string' && t.trim().split(/\s+/).length >= 2) phrases.add(t.trim()); };
-  const base = path.join(RACINE, 'data/lecons');
-  for (const niveau of fs.readdirSync(base)) {
-    const dossier = path.join(base, niveau);
-    if (!fs.statSync(dossier).isDirectory()) continue;
-    for (const f of fs.readdirSync(dossier).filter(n => n.endsWith('.json'))) {
-      const l = JSON.parse(fs.readFileSync(path.join(dossier, f), 'utf8'));
-      for (const c of l.flashcards || []) { cartes.push({ lu: c.lu, fr: c.fr }); ajouter(c.lu); }
-      for (const e of l.ecriture || []) { ajouter(e.lu); (e.aide_vocab || []).forEach(a => ajouter(a.lu)); }
-      for (const s of l.scene || []) { ajouter(s.lu); (s.aide_vocab || []).forEach(a => ajouter(a.lu)); }
-      for (const b of l.cours || []) {
-        if (b.type === 'dialogue') (b.echanges || []).forEach(e => ajouter(e[0]));
-        if (b.type === 'vocab') (b.items || []).forEach(i => ajouter(i[0]));
-      }
-    }
+  for (const l of lecons()) {
+    for (const c of l.lecon.flashcards || []) cartes.push({ lu: c.lu, fr: c.fr });
+    for (const e of elementsLecon(l.lecon)) if (e.lu.split(/\s+/).length >= 2) phrases.add(e.lu);
   }
   return { cartes, phrases: [...phrases] };
 }
@@ -215,6 +154,44 @@ function traiterPhrases(index, phrases, essai) {
   rapport('Phrases', refus);
 }
 
+// ─── Contexte ───────────────────────────────────────────────────────────────
+function traiterContextes(index, essai) {
+  const choix = JSON.parse(fs.readFileSync(CONTEXTES, 'utf8'));
+  const refuses = choix['_refusés'] || {};
+  const direct = tableDirecte(lireTable(TABLE_MOTS));
+  const phrases = lireTable(TABLE_PHRASES);
+  const table = {};
+  const refus = { 'choix invalide (exemple absent ou ne contenant pas l\'expression)': [], 'traduction manquante': [],
+    'téléchargement impossible': [], 'nouveaux candidats à relire': [] };
+  const elements = new Set();
+  for (const l of lecons()) for (const e of elementsLecon(l.lecon)) elements.add(e.lu);
+  for (const lu of elements) {
+    if (direct(lu) || phrases[lu]) continue; // le son exact passe toujours avant
+    const c = choix[lu];
+    if (!c) {
+      if (!refuses[lu] && !index.parPhrase[phraseCle(lu)]) {
+        const p = chercherContextes(index, lu)[0];
+        if (p) refus['nouveaux candidats à relire'].push(lu + ' → ' + p.id + ' « ' + majuscule(p.texte) + ' »');
+      }
+      continue;
+    }
+    if (!contientExpression(index, lu, c.id)) { refus['choix invalide (exemple absent ou ne contenant pas l\'expression)'].push(lu + ' → ' + c.id); continue; }
+    if (!c.fr) { refus['traduction manquante'].push(lu); continue; }
+    const ex = index.utilisables.find(e => e.id === c.id);
+    const entree = { son: 'lod-phrases/' + c.id + '.m4a', phrase: majuscule(ex.texte), fr: c.fr };
+    if (essai) { table[lu] = entree; continue; }
+    if (!telecharger(SOURCE_PHRASES + c.id.slice(0, 2) + '/' + c.id + '.m4a', path.join(DOSSIER_PHRASES, c.id + '.m4a'), estM4a)) {
+      refus['téléchargement impossible'].push(lu + ' → ' + c.id);
+      continue;
+    }
+    table[lu] = entree;
+  }
+  if (!essai) ecrireTable(TABLE_CONTEXTE, table);
+  console.log('\nCONTEXTE : ' + Object.keys(choix).filter(k => !k.startsWith('_')).length + ' choix relus, ' +
+    Object.keys(table).length + ' avec son' + (essai ? ' (essai)' : ''));
+  rapport('Contexte', refus);
+}
+
 function main() {
   const essai = process.argv.includes('--essai');
   const index = lireIndex();
@@ -225,6 +202,7 @@ function main() {
   }
   traiterMots(index, cartes, essai);
   traiterPhrases(index, phrases, essai);
+  traiterContextes(index, essai);
 }
 
 main();

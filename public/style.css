@@ -2607,6 +2607,15 @@ body.portail-bloque { overflow:hidden; }
 .pc-fb-txt .bouton-ecouter, .ecr-feedback .bouton-ecouter { display:flex; margin:4px 0 0 -10px; }
 .lx-mot > div { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; column-gap:2px; }
 .lx-mot > div > em { flex-basis:100%; }
+/* SPEC 70 : prononciation dans une phrase LOD (vert menthe) et la phrase dévoilée au clic. */
+.bouton-ecouter.contexte { color:var(--couleur-audio-contexte); }
+.bouton-ecouter.contexte:focus-visible { outline-color:var(--couleur-audio-contexte); }
+.ecoute-phrase { display:flex; flex-direction:column; gap:2px; flex-basis:100%; width:100%; margin:4px 0 6px;
+  padding:6px 0 6px 10px; border-left:2px solid var(--couleur-audio-contexte); text-align:left;
+  font-size:var(--fs-sec); line-height:1.35; animation:ecoute-phrase .2s ease-out; }
+.ecoute-phrase b { font-weight:650; color:var(--couleur-texte); }
+.ecoute-phrase em { font-style:normal; color:var(--couleur-texte-3); }
+@keyframes ecoute-phrase { from { opacity:0; transform:translateY(-3px); } }
 .bouton-ecouter:focus-visible { outline:2px solid var(--couleur-action); outline-offset:2px; border-radius:10px; }
 
 .pa-atouts { list-style:none; display:flex; justify-content:center; gap:var(--sp-4); padding:0; margin:0;
@@ -2758,6 +2767,7 @@ body.sans-transitions .view { animation:none!important; }
   .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere { animation:none!important; }
   .pa-carte-in, .dlg-voile, .dlg-carte, .notif { transition:none!important; }
   .bouton-ecouter.joue .onde1, .bouton-ecouter.joue .onde2 { animation:none; }
+  .ecoute-phrase { animation:none; }
 }
 @media(max-height:700px) {
   .pa-page { padding-top:var(--sp-4); padding-bottom:var(--sp-3); }

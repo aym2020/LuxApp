@@ -100,11 +100,16 @@ function jouerAudio(fichier, bouton) {
 let sonsLod = {};
 let sonsLodSimples = {}; // SPEC 68 : même table, clés simplifiées (sans article ni ponctuation)
 let sonsPhrases = {}; // SPEC 69 : phrases enregistrées par le LOD, clé = phrase simplifiée
+let sonsContexte = {}; // SPEC 70 : { phrase simplifiée: { son, phrase, fr } } — l'expression dite dans une phrase LOD
 function cleePhrase(texte) {
   return String(texte).replace(/<[^>]*>/g, ' ').toLowerCase().replace(/[’`]/g, "'")
     .replace(/[.,!?;:«»"…()\u2013\u2014]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 function chargerSonsLod() {
+  fetch('audio/lod-contexte.json').then(r => (r.ok ? r.json() : {})).then(d => {
+    sonsContexte = {};
+    Object.keys(d || {}).forEach(p => { sonsContexte[cleePhrase(p)] = d[p]; });
+  }, () => {});
   fetch('audio/lod-phrases.json').then(r => (r.ok ? r.json() : {})).then(d => {
     sonsPhrases = {};
     Object.keys(d || {}).forEach(p => { sonsPhrases[cleePhrase(p)] = d[p]; });
@@ -131,17 +136,39 @@ function sonDuMot(lu) {
   if (!lu) return null;
   return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || sonsPhrases[cleePhrase(lu)] || null;
 }
-// Bouton « Écouter » d'un mot isolé, ou rien si LOD n'a pas de son validé pour ce mot.
-// compact : icône seule (listes, tableaux), le nom accessible cite le mot.
+// Bouton « Écouter » : prononciation exacte (or), sinon prononciation dans une phrase LOD (vert menthe).
+// Rien si le LOD n'a aucun son validé. compact : icône seule (listes, tableaux), le nom accessible cite le mot.
+const ICONE_ECOUTER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<path d="M11 5 6 9H3v6h3l5 4z"/><path class="onde1" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="onde2" d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const FICHIER_SON = /^[A-Za-z0-9/._-]+\.(mp3|m4a)$/;
 function boutonEcouterHtml(lu, compact) {
-  const fichier = sonDuMot(lu);
-  if (!fichier || !/^[A-Za-z0-9/._-]+\.(mp3|m4a)$/.test(fichier)) return '';
+  if (!lu) return '';
   const mot = escHtml(String(lu).replace(/<[^>]*>/g, ''));
-  return '<button type="button" class="bouton-ecouter' + (compact ? ' compact' : '') + '" ' +
-    'onclick="event.stopPropagation(); jouerAudio(\'' + fichier + '\', this)" aria-label="Écouter « ' + mot + ' »">' +
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    '<path d="M11 5 6 9H3v6h3l5 4z"/><path class="onde1" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="onde2" d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>' +
-    (compact ? '' : '<span>Écouter</span>') + '</button>';
+  const fichier = sonDuMot(lu);
+  if (fichier && FICHIER_SON.test(fichier)) {
+    return '<button type="button" class="bouton-ecouter' + (compact ? ' compact' : '') + '" ' +
+      'onclick="event.stopPropagation(); jouerAudio(\'' + fichier + '\', this)" aria-label="Écouter « ' + mot + ' »">' +
+      ICONE_ECOUTER + (compact ? '' : '<span>Écouter</span>') + '</button>';
+  }
+  const c = sonsContexte[cleePhrase(lu)];
+  if (!c || !FICHIER_SON.test(c.son)) return '';
+  return '<button type="button" class="bouton-ecouter contexte' + (compact ? ' compact' : '') + '" data-cle="' + escHtml(cleePhrase(lu)) + '" ' +
+    'onclick="event.stopPropagation(); ecouterContexte(this)" aria-label="Écouter « ' + mot + ' » dans une phrase : « ' + escHtml(c.phrase) + ' »">' +
+    ICONE_ECOUTER + (compact ? '' : '<span>Dans une phrase</span>') + '</button>';
+}
+// SPEC 70 : la phrase réellement prononcée s'affiche sous le bouton, avec sa traduction.
+// Jamais l'impression que seul le mot est dit.
+function ecouterContexte(bouton) {
+  const c = sonsContexte[bouton.dataset.cle];
+  if (!c) return;
+  const suivant = bouton.nextElementSibling;
+  if (!suivant || !suivant.classList.contains('ecoute-phrase')) {
+    const el = document.createElement('span');
+    el.className = 'ecoute-phrase';
+    el.innerHTML = '<b lang="lb">' + escHtml(c.phrase) + '</b><em>' + escHtml(c.fr) + '</em>';
+    bouton.insertAdjacentElement('afterend', el);
+  }
+  jouerAudio(c.son, bouton);
 }
 
 function arreterAudio() {

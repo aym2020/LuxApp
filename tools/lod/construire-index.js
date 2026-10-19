@@ -5,7 +5,7 @@
 // À lancer seulement quand une nouvelle version du LOD est publiée
 // (export « articles » de data.public.lu, ≈ 100 Mo, non versionné).
 // Sortie : tools/lod/lod-index.json.gz (versionné), qui contient :
-//   mots     : [{ id, lemme, categorie, ipa, fr: [traductions] }]
+//   mots     : [{ id, lemme, categorie, ipa, fr: [traductions], niveau: 'A1' | 'A2' | '' }]
 //   exemples : [{ id, texte, entree }]  (phrases d'exemple enregistrées par le LOD)
 const fs = require('fs');
 const path = require('path');
@@ -39,7 +39,10 @@ function main() {
     for (const bloc of morceau.match(/<targetLanguage lang="fr">[\s\S]*?<\/targetLanguage>/g) || []) {
       for (const t of bloc.match(/<translation>([^<]*)<\/translation>/g) || []) fr.push(t.replace(/<\/?translation>/g, ''));
     }
-    mots.push({ id, lemme, categorie, ipa, fr });
+    // Niveau LOD du mot (catégories « A1 », « GWS A1 », « A2 »…) : sert à choisir des exemples simples.
+    const cats = (morceau.match(/<category>([^<]*)<\/category>/g) || []).map(c => c.replace(/<\/?category>/g, ''));
+    const niveau = cats.some(c => /(^| )A1$/.test(c)) ? 'A1' : cats.some(c => /(^| )A2$/.test(c)) ? 'A2' : '';
+    mots.push({ id, lemme, categorie, ipa, fr, niveau });
     for (const ex of morceau.match(/<example id="[^"]+">[\s\S]*?<\/example>/g) || []) {
       const exId = ex.match(/<example id="([^"]+)"/)[1];
       const bloc = ex.match(/<text>[\s\S]*?<\/text>/); // la phrase seule, sans sa paraphrase

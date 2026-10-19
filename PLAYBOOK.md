@@ -417,7 +417,7 @@ les problèmes secondaires au lieu de bloquer la livraison.
 | `progress.js`, `cloud.js` | `node tests/test_cloud.js`, `node tests/test_sync.js`, `test_lot1` |
 | `correction.js`, `diagnostic.js` (aide après erreur) | `node tests/test_correction.js`, `test_rappels`, `test_prerequis`, `test_mission_vies` |
 | `revision.js`, séance | `test_seance`, `test_lot2` |
-| `data/lecons/` | `node tools/valider-lecons.js`, `node tools/audit-prerequis.js` (mots exigés avant d'être enseignés, rapport), `test_missions_10` si `scene` touchée, `test_prerequis` ; **puis `node tools/audio-lod.js`** (sons LOD des nouveaux mots et phrases, rapport des refus ; voir SPEC 69) et `node tests/test_audio_lod.js` |
+| `data/lecons/` | `node tools/valider-lecons.js`, `node tools/audit-prerequis.js` (mots exigés avant d'être enseignés, rapport), `test_missions_10` si `scene` touchée, `test_prerequis` ; **puis `node tools/audio-lod.js`** (sons LOD des nouveaux mots et phrases, rapport des refus ; voir SPEC 69), relire les « nouveaux candidats » contextuels (SPEC 70 : les ajouter à `tools/lod/contextes.json` avec leur traduction, ou à `_refusés`), `node tools/lod/audit-audio.js` (couverture par leçon) et `node tests/test_audio_lod.js` |
 | `style.css` seul | aucun test navigateur ; capture d'écran du point touché |
 | `server.js`, `recette/` (mode recette) | `test_recette_visuelle` |
 
@@ -609,6 +609,24 @@ Règles à vérifier à chaque leçon :
 - Cohérence orthographique sur toute la leçon.
 - **JSON toujours valide.**
 - `id` = numéro suivant la dernière leçon existante, tous niveaux confondus.
+
+### Audio LOD d'abord — création des nouvelles leçons (SPEC 70)
+
+Pour les **nouvelles** leçons, partir des phrases que le LOD a enregistrées :
+1. Lister les notions à enseigner (niveau, vocabulaire déjà vu, objectifs).
+2. Pour chaque notion, chercher des exemples : `node tools/lod/exemples.js "ech wunnen"`
+   (A1 puis A2, les plus courts d'abord, avec l'identifiant de l'enregistrement).
+3. Retenir ceux qui conviennent à un débutant : sens littéral, vocabulaire connu ou enseigné dans la leçon,
+   pas d'expression idiomatique. Les reprendre **mot pour mot** (sinon l'audio ne correspond plus).
+4. Écrire les sections avec ces phrases, en gardant toutes les règles ci-dessus (flashcards, quiz, trous, écriture, cours).
+5. Une phrase pédagogiquement nécessaire sans enregistrement reste dans la leçon : **jamais** une phrase
+   compliquée à la place d'une phrase simple pour gagner un audio. Les exemples interchangeables, eux, viennent du LOD.
+6. Relancer `node tools/audio-lod.js` puis `node tools/lod/audit-audio.js` ; viser ~99 % d'audio sur les nouveaux contenus.
+
+Ne jamais réécrire une leçon existante pour augmenter la couverture audio sans validation de Clayton (audit : `docs/audit-audio-lod.md`).
+
+Audio dans l'application : **or** = prononciation exacte du mot ou de la phrase ; **vert menthe** = l'expression
+dite dans une phrase LOD (la phrase et sa traduction s'affichent au clic). Un seul bouton, le son exact en priorité.
 
 ### Blocs `cours`
 
