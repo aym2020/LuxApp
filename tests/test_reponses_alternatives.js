@@ -125,6 +125,52 @@ assert.ok(!restaure.bulle.includes('Gudde Moien!'), 'ne remplace pas la réponse
 assert.ok(read('public/navigation.js').includes('formesValidees: ms.formesValidees'),
   'sauvegarde de la forme retenue dans la navigation');
 
+// Révision et ancien onglet d'écriture : même justesse, mêmes points.
+const elements = new Map();
+function fakeElt(id) {
+  if (!elements.has(id)) elements.set(id, {
+    value: '', disabled: false, className: '', style: {},
+    classList: { remove() {}, add() {} },
+    addEventListener() {}, after() {}, focus() {}
+  });
+  return elements.get(id);
+}
+const appHarness = [
+  "return (mode, item, texte) => {",
+  "  lecons = [lesson];",
+  "  const progres = [];",
+  "  updateQuestionProgress = (...a) => progres.push(a);",
+  "  attentionDe = () => '';",
+  "  const entree = document.getElementById(mode === 'legacy' ? 'ecr-input' : 'session-input');",
+  "  entree.value = texte; entree.disabled = false; entree.className = '';",
+  "  if (mode === 'legacy') {",
+  "    ecrCards = [{ ...item, _qid: item.id }]; ecrIndex = 0; ecrScore = 0;",
+  "    ecrAnswered = false; ecrDirLuFr = false; currentLecon = lesson;",
+  "    validateEcriture();",
+  "    return { score: ecrScore, progres };",
+  "  }",
+  "  session = { answered: false, questions: [{ q: item, type: 'ecriture', qid: item.id, leconId: lesson.id }],",
+  "    index: 0, mode: 'review', essais: 0, score: 0, options: {} };",
+  "  validateSessionInput();",
+  "  return { score: session.score, progres };",
+  "};"
+].join('\n');
+const ancienEtRevision = new Function(
+  'reponseReconnue', 'autresReponsesAcceptees', 'lesson', 'document', 'escHtml',
+  read('public/app.js') + '\n' + appHarness
+)(
+  matcher.reponseReconnue, matcher.autresReponsesAcceptees, lesson,
+  { getElementById: fakeElt, createElement: fakeElt }, String
+);
+for (const mode of ['legacy', 'review']) {
+  for (const texte of ['Moien!', 'Gudde Moien!']) {
+    const x = ancienEtRevision(mode, ecriture(2002), texte);
+    assert.equal(x.score, 1, 'un point pour ' + mode + ' / ' + texte);
+    assert.equal(x.progres.length, 1);
+    assert.equal(x.progres[0][3], true, 'première tentative notée correcte');
+  }
+}
+
 // Les alternatives sont déclarées sur des cas explicites, sans doublons.
 for (const item of lesson.ecriture.concat(lesson.scene.filter(x => x.qui === 'toi'))) {
   if (!item.alternatives) continue;
