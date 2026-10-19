@@ -180,7 +180,7 @@ function confirmerIntroMission() {
   marquerIntroMissionVue(pLecon.id);
   if (action && action.leconId === pLecon.id) {
     if (action.type === 'demarrer') {
-      startUnite(action.uniteId, action.mode, action.filtre);
+      startUnite(action.uniteId, action.mode, action.filtre, action.metaRattrapage);
       return;
     }
     if (action.type === 'unite') {
