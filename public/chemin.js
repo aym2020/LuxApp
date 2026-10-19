@@ -193,7 +193,7 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   }
 
   html += '<button class="btn-jaune" onclick="lancerActionLecon(' + l.id + ')"><span>' + escHtml(action.libelle) + '</span>' + ICONES.fleche + '</button>' +
-    '<button class="lien-or" onclick="ouvrirLeconDepuisListe(' + l.id + ')">Voir toute la leçon' + ICONES.fleche + '</button>' +
+    '<button class="lien-or" onclick="ouvrirTouteLaLeconDepuisChemin(' + l.id + ')">Voir toute la leçon' + ICONES.fleche + '</button>' +
     '</div></li>';
   return html;
 }
@@ -479,6 +479,16 @@ function cheminSurLecon(leconId) {
   cheminLeconOuverte = leconId;
   goLessons();
   centrerLeconChemin(leconId);
+}
+
+// SPEC 55 : « Voir toute la leçon » doit montrer la liste des unités,
+// même lors de la première découverte. Ne valide pas l'introduction ; le
+// bouton « Découvrir » garde son parcours initial et ses règles de progression.
+function ouvrirTouteLaLeconDepuisChemin(leconId) {
+  const l = trouverLecon(leconId);
+  cheminLeconOuverte = leconId;
+  if (isParcoursLecon(l)) openParcoursLecon(l, null, true);
+  else openLecon(l); // anciennes leçons hors parcours : comportement inchangé
 }
 
 // ─── OUVRIR UNE ÉTAPE DEPUIS LE CHEMIN ──────────────────────────────────────
