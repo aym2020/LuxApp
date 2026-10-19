@@ -2381,6 +2381,9 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 /* SPEC 58 — Rattrapage des étoiles, action secondaire claire et compacte. */
 .pl-rattrapage {
   margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
   border-color: rgba(245, 207, 77, .45);
   color: var(--accent);
   white-space: normal;
