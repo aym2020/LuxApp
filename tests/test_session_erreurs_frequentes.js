@@ -10,11 +10,16 @@ function domElement(id) {
   if (!elements.has(id)) elements.set(id, {
     id, value: '', textContent: '', innerHTML: '', className: '',
     disabled: false, style: {}, children: [],
-    classList: { add() {}, remove() {}, toggle() {} },
+    classList: {
+      add(c) { const el = elements.get(id); if (!el.className.split(/\s+/).includes(c)) el.className += ' ' + c; },
+      remove(c) { const el = elements.get(id); el.className = el.className.split(/\s+/).filter(x => x !== c).join(' '); },
+      contains(c) { return elements.get(id).className.split(/\s+/).includes(c); },
+      toggle() {}
+    },
     addEventListener(ev, handler) { this['on' + ev] = handler; },
     appendChild(child) { this.children.push(child); },
     after(child) { this.nextButton = child; },
-    focus() {}, remove() {}, click() { if (this.onclick) this.onclick(); }
+    focus() {}, blur() {}, scrollIntoView() {}, remove() {}, click() { if (this.onclick) this.onclick(); }
   });
   return elements.get(id);
 }
