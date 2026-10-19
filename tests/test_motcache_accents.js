@@ -74,7 +74,8 @@ for (const word of ['Lëtzebuerg', 'Mëllech', 'Äddi', 'Éislek', 'Schéi', 'Mo
 
 jeu.init('Lëtzebuerg');
 jeu.poser('L'); jeu.poser('e');
-assert.ok(jeu.inspect().html.includes('>ë</span>'), 'e devient ë');
+assert.ok(jeu.inspect().html.includes('>e</span>'), 'e reste e avant validation');
+assert.ok(!jeu.inspect().html.includes('>ë</span>'), 'pas de tréma révélateur avant validation');
 jeu.poser('t'); jeu.poser('z'); jeu.poser('e');
 assert.ok(jeu.inspect().html.includes('>e</span>'), 'e reste e à sa place');
 assert.equal(new Set(jeu.inspect().choix).size, 5, 'doublons distincts');
@@ -82,9 +83,11 @@ jeu.effacer();
 assert.equal(jeu.inspect().choix.length, 4, 'effacement');
 
 jeu.init('Äddi'); jeu.poser('A');
-assert.ok(jeu.inspect().html.includes('>Ä</span>'));
+assert.ok(jeu.inspect().html.includes('>A</span>'), 'A sans tréma avant validation');
+assert.ok(!jeu.inspect().html.includes('>Ä</span>'));
 jeu.init('Éislek'); jeu.poser('E');
-assert.ok(jeu.inspect().html.includes('>É</span>'));
+assert.ok(jeu.inspect().html.includes('>E</span>'), 'E sans accent avant validation');
+assert.ok(!jeu.inspect().html.includes('>É</span>'));
 
 jeu.init('Mëllech');
 jeu.poser('M'); jeu.poser('l');
@@ -93,10 +96,12 @@ assert.ok(!jeu.inspect().html.includes('>ë</span>'), 'mauvaise lettre non trans
 
 jeu.init('Lëtzebuerg');
 jeu.clavier('Le');
-assert.ok(jeu.inspect().html.includes('>ë</span>'));
+assert.ok(jeu.inspect().html.includes('>e</span>'));
+assert.ok(!jeu.inspect().html.includes('>ë</span>'));
 jeu.clavier('Lë');
 assert.equal(jeu.inspect().input, 'Le');
-assert.ok(jeu.inspect().html.includes('>ë</span>'));
+assert.ok(jeu.inspect().html.includes('>e</span>'), 'taper ë reste sans accent avant validation');
+assert.ok(!jeu.inspect().html.includes('>ë</span>'));
 
 jeu.init('Mëllech');
 jeu.indiceSeul(1);
@@ -109,14 +114,29 @@ assert.equal(s.score, 6 / 7); // Mëllech comporte sept lettres
 
 jeu.init('Mëllech');
 for (const c of 'Mellech') jeu.poser(c);
+assert.ok(!jeu.inspect().html.includes('>ë</span>'), 'mot entier non accentué avant validation');
 jeu.valider();
 s = jeu.inspect();
 assert.equal(s.essais, 0);
 assert.equal(s.sauvegardes.length, 1);
 assert.equal(s.sauvegardes[0][1], 1);
 assert.equal(s.sauvegardes[0][2], true);
-assert.ok(s.html.includes('>ë</span>'));
+assert.ok(s.html.includes('>ë</span>'), 'tréma restitué après validation réussie');
+assert.ok(s.cases.every(c => !c.lettre || c.etat === 'vert'), 'mot réussi entièrement vert');
 
+// Un essai faux révèle les accents UNIQUEMENT sur les positions figées en vert.
+jeu.init('Mëllech');
+for (const c of 'Mele') jeu.poser(c); // 3 premières positions correctes, quatrième fausse
+assert.ok(!jeu.inspect().html.includes('>ë</span>'), 'pas d’indice gratuit avant Valider');
+jeu.valider();
+s = jeu.inspect();
+assert.equal(s.essais, 1);
+assert.equal(s.cases[1].etat, 'vert', 'bonne lettre accentuée figée');
+assert.equal(s.cases[3].etat, '', 'mauvaise lettre non figée');
+assert.ok(s.html.includes('>ë</span>'), 'accent révélé seulement sur la position juste');
+assert.equal(s.sauvegardes.length, 0);
+
+// Les mauvais placements restent pénalisés normalement.
 jeu.init('Mëllech');
 jeu.poser('M'); jeu.poser('l'); jeu.poser('e');
 jeu.valider();
@@ -134,4 +154,4 @@ assert.equal(s.sauvegardes[0][1], 1);
 assert.ok(s.html.includes('mc-espace'));
 assert.ok(s.html.includes('>!</span>'));
 
-console.log('SPEC 51 : OK — tuiles, accents, clavier, indices, doublons, erreurs et score.');
+console.log('SPEC 51 : OK — aucune fuite avant validation, accents après correction, tuiles, clavier, indices et score.');
