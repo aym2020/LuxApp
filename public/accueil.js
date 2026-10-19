@@ -68,9 +68,10 @@ function renderAccueil(animer) {
   else html += chiffresHtml();
   html += carteSuiteHtml(plan.pas, nouveau);
   if (nouveau) html += '<div class="ou-choisir entre-3">Ou choisir une autre leçon</div>';
-  html += accesHtml(plan.revision) + synchroHtml();
+  html += accesHtml(plan.revision); // SPEC 52 : pas de statut cloud sous les boutons
 
   box.innerHTML = html;
+  actualiserStatutSynchro(); // aussi dans la section Réglages
   feterObjectifDuJour();
 }
 
@@ -79,9 +80,12 @@ function enteteAccueilHtml() {
   const puces = niveauxDisponibles().map(n =>
     '<button class="puce-niv" aria-pressed="' + (n === niveauActif) + '" onclick="changerNiveauAccueil(\'' + n + '\')">' + n + '</button>'
   ).join('');
+  const etat = etatSynchro();
   return '<div class="ac-ent entre">' +
       '<h1 class="ac-titre">Lëtzebuergesch</h1>' +
-      '<button class="ac-menu" aria-label="Menu" onclick="ouvrirPlus()">' + ICONES.reglages + '</button>' +
+      '<button class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(etat)) +
+        '" onclick="ouvrirPlus()">' + ICONES.reglages +
+        '<span class="ac-sync-slot" aria-hidden="true">' + pastilleSynchroHtml(etat) + '</span></button>' +
     '</div>' +
     '<div class="puces-niveau entre" role="group" aria-label="Niveau">' + puces + '</div>';
 }
@@ -106,10 +110,14 @@ function chiffresHtml() {
   const prog = progressionNiveau(niveauActif);
   const serie = serieActuelle();
   return '<div class="ac-chiffres entre-2">' +
-    '<div><b id="serie" class="serie">' + ICONES.flamme + serie + ' j</b><span>Série</span></div>' +
-    '<div><b>' + prog.pourcent + ' %</b><span>Progression</span></div>' +
-    '<div><b>' + prog.terminees + ' / ' + prog.nbLecons + '</b><span>Leçons terminées' +
-      (prog.anciennes ? '<small class="ac-acquis">+' + prog.anciennes + ' acquise' + (prog.anciennes > 1 ? 's' : '') + ' précédemment</small>' : '') + '</span></div>' + // specs 46 et 48
+    '<div class="ac-stat"><b id="serie" class="serie">' + ICONES.flamme + serie + ' j</b><span>Série</span></div>' +
+    '<div class="ac-stat"><b>' + prog.pourcent + ' %</b><span>Progression</span></div>' +
+    '<div class="ac-stat" aria-label="' + prog.terminees + ' leçons terminées sur ' + prog.nbLecons +
+      (prog.anciennes ? ', ' + prog.anciennes + ' acquises précédemment' : '') + '">' +
+      '<b>' + prog.terminees + ' / ' + prog.nbLecons + '</b><span>Terminées</span>' +
+      (prog.anciennes ? '<small class="ac-acquis" title="' + prog.anciennes +
+        ' leçons acquises précédemment">+' + prog.anciennes + ' acquise' +
+        (prog.anciennes > 1 ? 's' : '') + '</small>' : '') + '</div>' +
   '</div>';
 }
 
@@ -132,13 +140,19 @@ function carteSuiteHtml(pas, nouveau) {
 
   const l = pas.lecon;
   const titre = nouveau ? 'Commencer' : 'Continuer';
-  const icone = nouveau ? ICONES.jouer : ICONES.etincelle;
-  const detail = nouveau ? '' : '<small>' + escHtml(detailPas(pas)) + '</small>';
+  const detailComplet = detailPas(pas);
+  const label = titre + ' · Leçon ' + numLecon(l) + ' · ' + titreCourt(l) + ' · ' + detailComplet;
   return '<section id="today" class="entre-2">' +
-    '<button class="carte-suite' + (nouveau ? ' plein' : '') + '" onclick="' + (nouveau ? 'commencer()' : 'suivreProchainPas()') + '">' +
-      '<span class="cs-ic">' + icone + '</span>' +
-      '<span class="cs-txt"><b>' + titre + '</b>' +
-        '<span>Leçon ' + numLecon(l) + ' · ' + escHtml(titreCourt(l)) + '</span>' + detail + '</span>' +
+    '<button class="carte-suite compacte' + (nouveau ? ' plein' : '') + '"' +
+      ' aria-label="' + escHtml(label) + '"' +
+      ' onclick="' + (nouveau ? 'commencer()' : 'suivreProchainPas()') + '">' +
+      '<span class="cs-txt">' +
+        '<span class="cs-kicker">' + titre + '</span>' +
+        '<span class="cs-lecon">LEÇON ' + numLecon(l) + '</span>' +
+        '<span class="cs-titre">' + escHtml(titreCourt(l)) + '</span>' +
+        '<small class="cs-etape" title="' + escHtml(detailComplet) + '">' +
+          escHtml(detailPasCourt(pas)) + '</small>' +
+      '</span>' +
       '<span class="cs-rond">' + ICONES.suite + '</span>' +
     '</button></section>';
 }
@@ -157,6 +171,16 @@ function detailPas(pas) {
   if (pas.type === 'unite') return 'Unité ' + pas.unite.id + ' · ' + pas.unite.titre;
   if (pas.type === 'mission') return 'Mission · ' + pas.lecon.mission.titre;
   return 'Cours, cartes, quiz, trous et écriture';
+}
+
+// Résumé de l'étape sur une seule ligne dans la carte (texte complet dans aria-label).
+function detailPasCourt(pas) {
+  if (pas.type === 'unite' && pas.unite) {
+    // Ex. « sinn : être au présent » -> « Unité 1 · sinn ».
+    const chapitre = pas.unite.titre.split(/\\s*[:·]\\s*/)[0].trim();
+    return 'Unité ' + pas.unite.id + ' · ' + chapitre;
+  }
+  return detailPas(pas);
 }
 
 // Les quatre accès directs, toujours visibles.
@@ -211,10 +235,37 @@ function passerAuNiveau(niveau) {
   goDashboard();
 }
 
-function synchroHtml() {
-  const etat = etatSynchro();
+// SPEC 52 : statut cloud uniquement dans la roue dentée, le menu et les réglages.
+// La couleur du point suit l'état réel ; pas de point hors connexion.
+function libelleMenuSynchro(etat) {
+  return etat ? 'Menu · ' + etat.texte : 'Menu';
+}
+
+function pastilleSynchroHtml(etat) {
   if (!etat) return '';
-  return '<div class="point-synchro entre-3' + (etat.ok ? '' : ' attente') + '"><i></i>' + escHtml(etat.texte) + '</div>';
+  return '<i class="ac-sync-point' + (etat.ok ? '' : ' attente') + '"></i>';
+}
+
+function detailSynchroHtml(etat) {
+  if (!etat) return ''; // La carte auth explique déjà le mode local.
+  return '<span class="point-synchro' + (etat.ok ? '' : ' attente') + '"><i></i>' +
+    escHtml(etat.texte) + '</span>';
+}
+
+// Appel léger après connexion, sauvegarde ou retour en ligne : ne déplace
+// ni l'écran, ni le focus, ni les boutons du tableau de bord.
+function actualiserStatutSynchro() {
+  const etat = etatSynchro();
+  const menu = document.querySelector('#accueil .ac-menu');
+  if (menu) {
+    menu.setAttribute('aria-label', libelleMenuSynchro(etat));
+    const slot = menu.querySelector('.ac-sync-slot');
+    if (slot) slot.innerHTML = pastilleSynchroHtml(etat);
+  }
+  const zone = document.getElementById('reglages-synchro');
+  if (zone) zone.innerHTML = detailSynchroHtml(etat);
+  const sousTitre = document.querySelector('#panneau [data-synchro-menu]');
+  if (sousTitre) sousTitre.textContent = etat ? etat.texte : 'Compte, synchronisation, remise à zéro';
 }
 
 // Objectif du jour atteint : la flamme rebondit, une seule fois par jour.
@@ -237,15 +288,17 @@ function ouvrirPlus() {
     [leconsActives().filter(missionReussie).length, 'missions réussies'],
     [totalJours(), 'jours de pratique']
   ];
+  const etat = etatSynchro();
   const lignes = [
     [ICONES.loupe, 'Lexique', 'Tous les mots du niveau', 'openLexique()'],
     [ICONES.alerte, 'Mes pièges', 'Les points où tu t\'es trompé', 'openPieges()'],
-    [ICONES.reglages, 'Réglages', 'Compte, synchronisation, remise à zéro', 'openReglages()']
+    [ICONES.reglages, 'Réglages', etat ? etat.texte : 'Compte, synchronisation, remise à zéro', 'openReglages()']
   ];
   const html = '<div class="poignee"></div><h2>Plus</h2>' +
     '<div class="plus-acquis">' + tuiles.map(t => '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('') + '</div>' +
     lignes.map(x => '<button class="plus-ligne" onclick="fermerPanneau(); ' + x[3] + '">' + x[0] +
-      '<span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></button>').join('');
+      '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
+      '>' + escHtml(x[2]) + '</small></span></button>').join('');
   ouvrirPanneau(html, 'Plus');
 }
 
