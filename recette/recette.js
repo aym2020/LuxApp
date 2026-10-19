@@ -46,6 +46,17 @@ const REC_ECRANS = {
     scenarios: {
       'termine': { titre: 'Erreurs refaites, résultat du rattrapage', erreurs: [0] }
     }
+  },
+  examen: {
+    titre: 'Fin d’examen (annales A1.2)',
+    besoin: () => examens.length > 0,
+    scenarios: {
+      'sans-faute': { titre: '100 % · Très bien', taux: 1 },
+      'tres-bien': { titre: '≈ 85 % · Très bien', taux: 0.85 },
+      'reussi': { titre: '≈ 70 % · Réussi', taux: 0.70 },
+      'echec': { titre: '≈ 40 % · À retravailler', taux: 0.40 },
+      'mes-erreurs': { titre: '≈ 70 % · Mes erreurs affichées', taux: 0.70, filtre: true }
+    }
   }
 };
 
@@ -64,14 +75,19 @@ function ouvrirRecette() {
   const leconId = liste.some(l => l.id === choix.lecon) ? choix.lecon : (liste[0] && liste[0].id);
   const options = liste.map(l => '<option value="' + l.id + '"' + (l.id === leconId ? ' selected' : '') + '>' +
     (l.niveau || 'A1.1') + ' · Leçon ' + numLecon(l) + ' · ' + escHtml(l.titre_fr) + '</option>').join('');
+  const sujetId = examens.some(e => e.id === choix.examen) ? choix.examen : (examens[0] && examens[0].id);
+  const sujets = examens.map(e => '<option value="' + escHtml(e.id) + '"' + (e.id === sujetId ? ' selected' : '') + '>' +
+    escHtml(e.niveau + ' · ' + e.titre + ' · ' + e.titre_fr) + '</option>').join('');
   ouvrirPanneau('<div class="poignee"></div>' +
     '<div class="recette-panneau">' +
       '<h2>Outils de test</h2>' +
       '<p class="recette-avertissement">MODE TEST — progression fictive. Rien n\'est enregistré dans ton compte ni dans le cloud.</p>' +
-      (recScenarioActif ? '<p class="recette-actif">En cours : Leçon ' + numLecon(recScenarioActif.lecon) + ' · ' +
+      (recScenarioActif ? '<p class="recette-actif">En cours : ' +
+        (recScenarioActif.sujet ? escHtml(recScenarioActif.sujet.titre) : 'Leçon ' + numLecon(recScenarioActif.lecon)) + ' · ' +
         escHtml(REC_ECRANS[recScenarioActif.ecran].titre) + ' · ' + escHtml(recScenarioActif.titre) + '</p>' : '') +
-      '<label>Leçon<select id="rec-lecon" onchange="recMajEcrans()">' + options + '</select></label>' +
+      '<label id="rec-lecon-label">Leçon<select id="rec-lecon" onchange="recMajEcrans()">' + options + '</select></label>' +
       '<label>Écran à tester<select id="rec-ecran" onchange="recMajScenarios()"></select></label>' +
+      '<label id="rec-examen-label">Sujet d’examen<select id="rec-examen">' + sujets + '</select></label>' +
       '<p class="recette-note hidden" id="rec-indispo"></p>' +
       '<label>Scénario<select id="rec-scenario"></select></label>' +
       '<button class="pc-btn primary wide big" id="rec-voir" onclick="recVoir()">Voir cet écran →</button>' +
@@ -91,7 +107,7 @@ function recMajEcrans(ecran, scenario) {
   select.innerHTML = Object.keys(REC_ECRANS).map(cle => {
     const ok = REC_ECRANS[cle].besoin(l);
     return '<option value="' + cle + '"' + (ok ? '' : ' disabled') + (cle === ecran && ok ? ' selected' : '') + '>' +
-      REC_ECRANS[cle].titre + (ok ? '' : ' (pas de mission)') + '</option>';
+      REC_ECRANS[cle].titre + (ok ? '' : ' (indisponible)') + '</option>';
   }).join('');
   if (select.selectedOptions[0] && select.selectedOptions[0].disabled) {
     const premier = Array.from(select.options).find(o => !o.disabled);
@@ -105,6 +121,9 @@ function recMajScenarios(scenario) {
   const select = document.getElementById('rec-scenario');
   select.innerHTML = Object.keys(ecran.scenarios).map(cle =>
     '<option value="' + cle + '"' + (cle === scenario ? ' selected' : '') + '>' + ecran.scenarios[cle].titre + '</option>').join('');
+  const estExamen = document.getElementById('rec-ecran').value === 'examen';
+  document.getElementById('rec-lecon-label').style.display = estExamen ? 'none' : 'flex';
+  document.getElementById('rec-examen-label').style.display = estExamen ? 'flex' : 'none';
 }
 
 // ─── LANCER UN SCÉNARIO ─────────────────────────────────────────────────────
@@ -112,7 +131,7 @@ async function recVoir() {
   const l = recLeconChoisie();
   const ecran = document.getElementById('rec-ecran').value;
   const scenario = document.getElementById('rec-scenario').value;
-  const choix = { lecon: l.id, ecran, scenario };
+  const choix = { lecon: l.id, ecran, scenario, examen: document.getElementById('rec-examen').value };
   recEcrireChoix(choix);
   fermerPanneau();
   recDerniereDuree = null;
@@ -129,9 +148,12 @@ let recScenarioActif = null;
 async function recLancer(choix) {
   const l = lecons.find(x => x.id === choix.lecon);
   const def = REC_ECRANS[choix.ecran].scenarios[choix.scenario];
-  recScenarioActif = { lecon: l, ecran: choix.ecran, titre: def.titre };
+  const sujet = choix.ecran === 'examen' ? examens.find(e => e.id === choix.examen) : null;
+  if (choix.ecran === 'examen' && !sujet) throw new Error('Sujet d’examen introuvable.');
+  recScenarioActif = { lecon: l, sujet, ecran: choix.ecran, titre: def.titre };
   await recRepartirDeZero(l);
-  if (choix.ecran === 'mission') await recJouerMission(l, def);
+  if (choix.ecran === 'examen') recJouerExamen(sujet, def);
+  else if (choix.ecran === 'mission') await recJouerMission(l, def);
   else if (choix.ecran === 'etape') await recJouerEtape(l, def);
   else if (choix.ecran === 'unite') await recJouerUnite(l, def);
   else if (choix.ecran === 'rattrapage') await recJouerRattrapage(l, def);
@@ -292,6 +314,35 @@ async function recJouerRattrapage(l, def) {
   if (!pResultat || !pResultat.erreurs.length) return;
   refaireErreurs();
   await recFinirPartie([]);
+}
+
+// ─── EXAMENS : résultats réels, sans passer les parties à la main ──────────
+// Les réponses choisies appartiennent toujours aux options du sujet.
+// On passe par startExamen() puis examFinish() : score, sections, filtres et CTA
+// restent entièrement ceux de l'application (pas de faux HTML de résultat).
+function recMauvaiseReponse(part, item) {
+  const options = item.choix || part.banque || [];
+  return options.find(choix => choix !== item.reponse) || null;
+}
+
+function recJouerExamen(sujet, def) {
+  choisirNiveau(sujet.niveau);
+  openExamens();
+  startExamen(sujet.id);
+  const total = examTotal(sujet);
+  const bonnes = Math.floor(total * def.taux);
+  let index = 0;
+  exam.parties.forEach((part, p) => {
+    examItems(part).forEach((item, i) => {
+      const reussi = Math.floor((index + 1) * bonnes / total) > Math.floor(index * bonnes / total);
+      examAnswers[p][i] = reussi ? item.reponse : recMauvaiseReponse(part, item);
+      index++;
+    });
+    examChecked[p] = true;
+  });
+  examPart = exam.parties.length - 1;
+  examFinish();
+  if (def.filtre) examSetFilter(true);
 }
 
 // ─── SORTIE ─────────────────────────────────────────────────────────────────
