@@ -23,4 +23,9 @@ for (const [mot, fichier] of Object.entries(sons)) {
 assert.equal(sons['Moien!'], 'lod/MOIEN2.mp3', 'Moien! = interjection « bonjour » (MOIEN2)');
 const parcours = fs.readFileSync(path.join(racine, 'public/parcours.js'), 'utf8');
 assert.ok(parcours.includes('boutonEcouterHtml(card.lu)'), 'bouton Écouter sur la découverte du mot');
+// SPEC 68 : bouton aussi sur la correction, en révision, dans le lexique et le cours.
+assert.equal((parcours.match(/boutonEcouterHtml\(/g) || []).length, 3, 'mot caché : découverte, réussite, réponse révélée');
+const app = fs.readFileSync(path.join(racine, 'public/app.js'), 'utf8');
+assert.ok((app.match(/boutonEcouterHtml\(/g) || []).length >= 3, 'révision (juste, faux) et tableaux de vocabulaire');
+assert.ok(fs.readFileSync(path.join(racine, 'public/revision.js'), 'utf8').includes('boutonEcouterHtml(m.motSeul, true)'), 'lexique');
 console.log('Audio LOD : OK — ' + Object.keys(sons).length + ' mots, fichiers MP3 valides, tous rattachés à une carte.');

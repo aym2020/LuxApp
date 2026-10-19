@@ -98,20 +98,41 @@ function jouerAudio(fichier, bouton) {
 
 // Sons LOD des mots des leçons (tools/audio-lod.js) : { "mot de la carte": "lod/ID.mp3" }.
 let sonsLod = {};
+let sonsLodSimples = {}; // SPEC 68 : même table, clés simplifiées (sans article ni ponctuation)
 function chargerSonsLod() {
-  return fetch('audio/lod.json').then(r => (r.ok ? r.json() : {})).then(d => { sonsLod = d || {}; }, () => {});
+  return fetch('audio/lod.json').then(r => (r.ok ? r.json() : {})).then(d => {
+    sonsLod = d || {};
+    sonsLodSimples = {};
+    Object.keys(sonsLod).forEach(mot => {
+      const cle = cleSon(mot);
+      // Deux mots différents pour la même clé : on ne devine pas.
+      sonsLodSimples[cle] = (cle in sonsLodSimples && sonsLodSimples[cle] !== sonsLod[mot]) ? null : sonsLod[mot];
+    });
+  }, () => {});
+}
+// « de Stull », « Stull », « Moien! » → « stull », « moien »
+function cleSon(texte) {
+  let t = String(texte).replace(/<[^>]*>/g, '').replace(/[!?.,;:«»"]/g, ' ').replace(/’/g, "'").trim().toLowerCase();
+  for (const article of ['den ', 'de ', 'déi ', 'dat ', 'en ', 'eng ', 'e ', "d'"]) {
+    if (t.startsWith(article)) { t = t.slice(article.length); break; }
+  }
+  return t.trim().replace(/\s+/g, ' ');
 }
 function sonDuMot(lu) {
-  return sonsLod[lu] || null;
+  if (!lu) return null;
+  return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || null;
 }
-// Bouton « Écouter » d'un mot, ou rien si LOD n'a pas de son validé pour ce mot.
-function boutonEcouterHtml(lu) {
+// Bouton « Écouter » d'un mot isolé, ou rien si LOD n'a pas de son validé pour ce mot.
+// compact : icône seule (listes, tableaux), le nom accessible cite le mot.
+function boutonEcouterHtml(lu, compact) {
   const fichier = sonDuMot(lu);
   if (!fichier || !/^[A-Za-z0-9/._-]+$/.test(fichier)) return '';
-  return '<button type="button" class="bouton-ecouter" onclick="jouerAudio(\'' + fichier + '\', this)" aria-label="Écouter la prononciation">' +
+  const mot = escHtml(String(lu).replace(/<[^>]*>/g, ''));
+  return '<button type="button" class="bouton-ecouter' + (compact ? ' compact' : '') + '" ' +
+    'onclick="event.stopPropagation(); jouerAudio(\'' + fichier + '\', this)" aria-label="Écouter « ' + mot + ' »">' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
     '<path d="M11 5 6 9H3v6h3l5 4z"/><path class="onde1" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="onde2" d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>' +
-    '<span>Écouter</span></button>';
+    (compact ? '' : '<span>Écouter</span>') + '</button>';
 }
 
 function arreterAudio() {

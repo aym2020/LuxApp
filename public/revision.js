@@ -235,6 +235,7 @@ function motsLexique(l) {
   // la note d'une ancienne carte est du texte simple (échappé).
   return (l.flashcards || []).map(c => ({
     lu: isParcoursLecon(l) ? motComplet(c) : c.lu,
+    motSeul: c.lu, // SPEC 68 : pour retrouver le son LOD
     fr: c.fr,
     noteHtml: c.attention ? c.attention : escHtml(c.note || '')
   }));
@@ -252,7 +253,7 @@ function renderLexique() {
     html += '<div class="lx-groupe">' +
       '<button class="lx-lecon" style="--lc:' + l.couleur + '" onclick="ouvrirLeconDepuisListe(' + l.id + ')">' +
         'Leçon ' + numLecon(l) + ' · ' + escHtml(l.titre) + '</button>' +
-      mots.map(m => '<div class="lx-mot"><div><b>' + escHtml(m.lu) + '</b>' +
+      mots.map(m => '<div class="lx-mot"><div><b>' + escHtml(m.lu) + '</b>' + boutonEcouterHtml(m.motSeul, true) +
         (m.noteHtml ? '<em>' + m.noteHtml + '</em>' : '') + '</div><span>' + escHtml(m.fr) + '</span></div>').join('') +
       '</div>';
   });

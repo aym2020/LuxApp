@@ -115,7 +115,7 @@ function coursBlocsHtml(blocs, accent) {
         <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>
         <table class="cours-vocab">${
           sec.items.map(([lu, fr]) =>
-            `<tr><td class="cours-lu">${lu}</td><td class="cours-fr">${fr}</td></tr>`
+            `<tr><td class="cours-lu">${lu}${boutonEcouterHtml(lu, true)}</td><td class="cours-fr">${fr}</td></tr>`
           ).join('')
         }</table>
       </div>`;
@@ -793,12 +793,14 @@ function validateSessionInput() {
     feedback.className = 'ecr-feedback ok';
     const autres = item.type === 'ecriture' ? autresReponsesAcceptees(corrige, reconnue) : [];
     feedback.innerHTML = (session.essais ? '✅ Correct, au 2e essai' : '✅ Correct !') +
+      (item.type === 'motcache' ? boutonEcouterHtml(corrige.lu) : '') + // SPEC 68
       (autres.length ? '<span class="session-attention">Autre formulation correcte : ' +
         autres.map(escHtml).join(' · ') + '</span>' : '') +
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   } else {
     feedback.className = 'ecr-feedback ko';
     feedback.innerHTML = '❌ Réponse :<span class="ecr-correct-answer">' + escHtml(affiche) + '</span>' +
+      (item.type === 'motcache' ? boutonEcouterHtml(corrige.lu) : '') + // SPEC 68
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   }
 

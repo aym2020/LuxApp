@@ -2602,6 +2602,11 @@ body.portail-bloque { overflow:hidden; }
 .bouton-ecouter.joue .onde1 { animation:pa-onde .8s ease-in-out infinite; }
 .bouton-ecouter.joue .onde2 { animation:pa-onde .8s ease-in-out .2s infinite; }
 @keyframes pa-onde { 50% { opacity:.25; } }
+/* SPEC 68 : icône seule dans les listes et tableaux ; cible tactile de 40 px. */
+.bouton-ecouter.compact { min-height:40px; min-width:40px; padding:0; justify-content:center; margin-left:4px; vertical-align:middle; }
+.pc-fb-txt .bouton-ecouter, .ecr-feedback .bouton-ecouter { display:flex; margin:4px 0 0 -10px; }
+.lx-mot > div { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; column-gap:2px; }
+.lx-mot > div > em { flex-basis:100%; }
 .bouton-ecouter:focus-visible { outline:2px solid var(--couleur-action); outline-offset:2px; border-radius:10px; }
 
 .pa-atouts { list-style:none; display:flex; justify-content:center; gap:var(--sp-4); padding:0; margin:0;

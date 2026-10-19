@@ -1347,6 +1347,7 @@ function mcValider() {
     enregistrer(card, mcScore(), ok, { indices: mc.indices, essais: mc.essais, revele: mc.revele });
     // Juste : le point d'attention complet, pour retenir le piège (S6).
     showFeedback(true, 'Bien joué !', '<b>' + escHtml(motComplet(card)) + '</b> = ' + escHtml(card.fr) +
+      boutonEcouterHtml(card.lu) + // SPEC 68 : aussi pour un mot déjà étudié
       '<div class="pc-fb-score">Score du mot : <b>' + Math.round(mcScore() * 100) + ' %</b></div>' +
       (card.note ? '<br>' + escHtml(card.note) : '') + attentionHtml(attentionItem(card, 'flashcards')), reussir);
     return;
@@ -1401,7 +1402,7 @@ function mcVoirReponse() {
   mcMajScore();
   enregistrer(mc.card, 0, false, { indices: mc.indices, essais: mc.essais, revele: true });
   showFeedback(false, 'La réponse : ' + escHtml(motComplet(mc.card)),
-    attentionHtml(attentionItem(mc.card, 'flashcards')) +
+    boutonEcouterHtml(mc.card.lu) + attentionHtml(attentionItem(mc.card, 'flashcards')) +
     rappelHtml('Ce mot reviendra à la fin de l\'étape.', 'Tu le retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
 }
 
