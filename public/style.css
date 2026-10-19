@@ -2464,3 +2464,25 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 @media (max-width: 360px) {
   .chemin .carte-lecon.compacte .titre { font-size: .98em; }
 }
+
+/* SPEC 60 : bouton de rattrapage sur Mon chemin, distinct de la ligne d'unité. */
+.chemin .pas .unites li > button.chemin-unite-action {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  width: calc(100% - 28px); min-height: 44px; margin: 0 0 7px 28px;
+  padding: 7px 10px; gap: 2px; background: var(--surface-2);
+  border: 1px solid var(--couleur-or-bord); border-radius: 10px;
+  color: var(--couleur-action); font-size: var(--fs-sec); font-weight: 700;
+  line-height: 1.35; text-align: left; white-space: normal; cursor: pointer;
+}
+.chemin .pas .unites li > button.chemin-unite-action.erreurs {
+  background: var(--surface-1); border-color: var(--couleur-bord-2);
+  color: var(--couleur-texte-2);
+}
+.chemin .pas .unites li > button.chemin-unite-action small {
+  font-size: var(--fs-micro); color: var(--couleur-texte-3); font-weight: 500;
+}
+.chemin .pas .unites li > button.chemin-unite-action:active { background: var(--couleur-or-fond); }
+.chemin .pas .unites li > button.chemin-unite-action:focus-visible {
+  outline: 2px solid var(--couleur-action); outline-offset: 2px;
+}
+.pl-revoir-erreurs { border-color: var(--couleur-bord-2); color: var(--couleur-texte-2); }
