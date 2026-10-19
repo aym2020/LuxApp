@@ -2378,6 +2378,35 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .ac-acquis { display: block; font-size: var(--fs-micro); color: var(--couleur-acquis); }
 
 
+/* SPEC 58 — Rattrapage des étoiles, action secondaire claire et compacte. */
+.pl-rattrapage {
+  margin-top: .5rem;
+  border-color: rgba(245, 207, 77, .45);
+  color: var(--accent);
+  white-space: normal;
+  line-height: 1.4;
+}
+.pl-rattrapage small {
+  display: block;
+  color: var(--muted-strong);
+  font-size: var(--fs-micro);
+  margin-top: .15rem;
+  font-weight: 500;
+}
+.pf-rattrapage {
+  margin: .85rem 0;
+  padding: .9rem 1rem;
+  border: 1px solid var(--couleur-bord-2);
+  border-radius: var(--r);
+  background: var(--surface);
+}
+.pf-rattrapage b { display: block; color: var(--accent); }
+.pf-rattrapage span, .pf-rattrapage small {
+  display: block;
+  color: var(--muted-strong);
+  margin-top: .35rem;
+}
+
 /* SPEC 54 — Numéro au-dessus du titre sur les cartes du Chemin.
    La première colonne de la grille reste réservée au titre ; le chevron à droite.
    Pas de hauteur forcée : les longs titres et le zoom texte restent accessibles. */
