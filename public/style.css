@@ -2371,3 +2371,50 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .pl-acquis { color: var(--couleur-acquis); }
 .pl-fraicheur, .pc-pill-fraicheur { color: var(--couleur-turquoise); }
 .ac-acquis { display: block; font-size: var(--fs-micro); color: var(--couleur-acquis); }
+
+
+/* SPEC 54 — Numéro au-dessus du titre sur les cartes du Chemin.
+   La première colonne de la grille reste réservée au titre ; le chevron à droite.
+   Pas de hauteur forcée : les longs titres et le zoom texte restent accessibles. */
+.chemin .carte-haut,
+.chemin .carte-tete .carte-haut {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 3px;
+  min-width: 0;
+}
+.chemin .carte-lecon.compacte .num,
+.chemin .carte-tete .num {
+  display: block;
+  flex: none;
+  line-height: 1.2;
+  font-size: var(--fs-micro);
+}
+.chemin .carte-lecon.compacte .titre {
+  display: block;
+  flex: none; /* annule le flex 1 1 8em qui repoussait le texte */
+  min-width: 0;
+  color: var(--couleur-texte);
+  font-weight: 700;
+  line-height: 1.22;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+.chemin .carte-tete h3 {
+  line-height: 1.23;
+  margin: 0;
+}
+.chemin .carte-lecon.compacte {
+  padding-block: 9px;
+  row-gap: 4px;
+}
+.chemin .carte-lecon.compacte > .chevron-l,
+.chemin .carte-tete > .chevron-l {
+  align-self: start;
+  margin-top: 3px;
+}
+@media (max-width: 360px) {
+  .chemin .carte-lecon.compacte .titre { font-size: .98em; }
+}
