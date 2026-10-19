@@ -36,7 +36,7 @@ function verifierAlternatives(f, item, emplacement) {
     return;
   }
   // Même normalisation que public/app.js (casse, accents, ponctuation, espaces).
-  const norm = t => sansAccents(t).replace(/[.!?,;:]+/g, '').replace(/\\s+/g, ' ').trim();
+  const norm = t => sansAccents(t).replace(/[.!?,;:]+/g, '').replace(/\s+/g, ' ').trim();
   const dejaVues = new Set([norm(item.lu)]);
   alt.forEach((v, i) => {
     if (typeof v !== 'string' || !v.trim()) {
