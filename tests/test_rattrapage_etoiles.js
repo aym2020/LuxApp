@@ -138,6 +138,8 @@ assert.ok(index.includes('id="quiz-level"'));
 assert.ok(index.includes('id="trou-level"'));
 assert.ok(app.includes('recordSessionAnswer('));
 assert.ok(css.includes('.pl-rattrapage'));
+assert.ok(/\.pl-rattrapage\s*\{[^}]*flex-direction:\s*column/.test(css),
+  'titre et sous-titre du CTA doivent rester empilés sur mobile');
 assert.ok(css.includes('.pf-rattrapage'));
 assert.ok(parcours.includes("run.mode === 'rattrapage' ? appliquerResultatRattrapage"));
 assert.ok(parcours.includes("if (run.mode === 'unite' || run.mode === 'lecon')"));
