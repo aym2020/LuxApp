@@ -267,13 +267,15 @@ function carteLeconV2Html(l) {
 // cible (facultatif) : la carte sur laquelle revenir, quand on quitte un
 // exercice, une introduction ou la mission. Numéro d'unité, 'all' (toute la
 // leçon) ou 'mission'. Sans cible, on arrive en haut de la leçon.
-function openParcoursLecon(l, cible) {
+// afficherUnitesDirectement : lien « Voir toute la leçon » du Chemin seulement.
+// Ne confirme pas l'introduction de mission et ne modifie pas la progression.
+function openParcoursLecon(l, cible, afficherUnitesDirectement = false) {
   pLecon = l;
   currentLecon = l;
   marquerLeconVue(l.id); // la 1re visite passe par cet écran (S2)
   fermerClavier();
   // 1re découverte d'une leçon avec mission : l'introduction, jusqu'à confirmation.
-  if (cible == null && introMissionAVoir(l)) {
+  if (!afficherUnitesDirectement && cible == null && introMissionAVoir(l)) {
     renderIntroMission();
     showView('view-msintro');
     return;
