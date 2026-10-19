@@ -105,6 +105,7 @@ async function signOut() {
 function getProgressPayload() {
   return {
     progress: { levels: getProgress(), wrong: getWrongStore(), stats: getStatsStore() },
+    rattrapage: getRattrapageStore(), // SPEC 58 : derniers scores détaillés
     streak: getStreak(),
     // S8, S13 : le choix du niveau et ce qui est en cours (séance du jour,
     // partie d'unité). Fusionnés par « le plus récent gagne » (mergeDernier).
@@ -137,6 +138,7 @@ function applyProgressPayload(payload) {
     if (payload.progress.wrong) saveWrongStore(payload.progress.wrong);
     if (payload.progress.stats) saveStatsStore(payload.progress.stats);
   }
+  if (payload.rattrapage) saveRattrapageStore(payload.rattrapage);
   if (payload.streak) saveStreak(payload.streak);
   if (payload.choix) saveChoix(payload.choix);
   if (payload.enCours) {
@@ -217,6 +219,31 @@ async function deleteCloudProgress() {
   const user = await getCurrentUser();
   if (!fbDb || !user) return;
   try { await withTimeout(cloudDoc(user).delete()); } catch (e) { /* ignore */ }
+}
+
+// SPEC 58 : chaque unité a un seul meilleur passage de référence.
+// On privilégie un meilleur score ; à égalité le détail le plus récent gagne.
+// Cette fusion est séparée des valeurs numériques de luxProgress.
+function mergeRattrapage(local, cloud) {
+  const out = {};
+  const lids = new Set(Object.keys(local || {}).concat(Object.keys(cloud || {})));
+  lids.forEach(lid => {
+    out[lid] = {};
+    const a = local && local[lid] || {};
+    const b = cloud && cloud[lid] || {};
+    const units = new Set(Object.keys(a).concat(Object.keys(b)));
+    units.forEach(uid => {
+      const left = a[uid], right = b[uid];
+      if (!left) { out[lid][uid] = right; return; }
+      if (!right) { out[lid][uid] = left; return; }
+      if (left.basePercent !== right.basePercent) {
+        out[lid][uid] = left.basePercent > right.basePercent ? left : right;
+      } else {
+        out[lid][uid] = (left.maj || 0) >= (right.maj || 0) ? left : right;
+      }
+    });
+  });
+  return out;
 }
 
 // ─── FUSION OPTIMISTE (ne perd jamais de progression) ───────────────────────
@@ -312,6 +339,7 @@ function mergeLocalAndCloudProgress(localData, cloudData) {
       wrong: mergeMaxNested(lp.wrong || {}, cp.wrong || {}),
       stats: mergeStatsNested(lp.stats || {}, cp.stats || {})
     },
+    rattrapage: mergeRattrapage(l.rattrapage || {}, c.rattrapage || {}),
     streak: mergeStreak(l.streak, c.streak),
     choix: mergeDernier(l.choix, c.choix),
     enCours: mergeDernier(l.enCours, c.enCours)
@@ -336,6 +364,7 @@ function readLegacyPayload(profileId) {
       wrong: read(WRONG_KEY) || {},
       stats: read(STATS_KEY) || {}
     },
+    rattrapage: read(RATTRAPAGE_KEY) || {},
     streak: read(STREAK_KEY)
   };
 }
