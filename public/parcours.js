@@ -339,7 +339,6 @@ function renderParcoursLecon() {
   document.getElementById('pl-titre').textContent = l.titre;
   document.getElementById('pl-sous').textContent =
     l.titre_fr + ' · ' + unitesCoeur(l).length + ' unités';
-  document.getElementById('view-plecon').style.setProperty('--lc', l.couleur);
 
   // Seule la prochaine unité du fil à faire a le bouton principal (jaune).
   const prochaine = runIci ? null : unitesCoeur(l).find(u => getUnitBest(l.id, u.id) == null);
@@ -357,7 +356,7 @@ function renderParcoursLecon() {
   html += '<div class="pl-unit pl-toute" id="pl-toute">';
   html += '<div class="pl-unit-top"><div>' +
     '<div class="pc-mini-label">TOUTE LA LEÇON' +
-      (leconComplete(l) ? ' · <span class="pc-gold">COMPLÈTE</span>' : '') + '</div>' +
+      (leconComplete(l) ? ' · <span class="pc-vert">COMPLÈTE</span>' : '') + '</div>' +
     '<div class="pl-unit-titre">Tout le contenu d\'un coup</div></div></div>' +
     '<div class="pl-unit-mots">Le fil et tous les « + »' + (l.unites.some(u => u.bonus) ? ', bonus compris' : '') + ' · ' + nbTout +
       ' questions · environ ' + minutesPour(nbTout) + ' min</div>';
@@ -370,7 +369,7 @@ function renderParcoursLecon() {
   }
   html += '<div class="pl-unit-actions">' + chipsEtapes(TOUTE_LA_LECON) +
     '<button class="pc-chip" onclick="toutRevoir()">Tout revoir</button>' +
-    (revision.dus ? '<button class="pc-chip fraicheur" onclick="rafraichirLecon()">Rafraîchir · ' + revision.dus + '</button>' : '') +
+    (revision.dus ? '<button class="pc-chip fraicheur" onclick="rafraichirLecon()">Réviser · ' + revision.dus + '</button>' : '') +
     '</div></div>';
 
   // Bilan : toujours ouvert.
@@ -392,11 +391,11 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   const nbDus = revision.dusParUnite[u.id] || 0;
 
   let etat = '';
-  if (enCours) etat = ' · EN COURS';
-  else if (sansFaute) etat = ' · <span class="pc-gold">SANS FAUTE</span>';
-  else if (best != null) etat = ' · TERMINÉE';
+  if (enCours) etat = ' · <span class="pc-gold">EN COURS</span>';
+  else if (sansFaute) etat = ' · <span class="pc-vert">SANS FAUTE</span>';
+  else if (best != null) etat = ' · <span class="pc-vert">TERMINÉE</span>';
   else if (!u.bonus && leconAcquiseParMission(l)) etat = ' · <span class="pl-validee">FACULTATIVE · LEÇON VALIDÉE PAR LA MISSION</span>'; // spec 32 : pas faite, pas de coche
-  else if (!u.bonus && acquiseAncienneVersion(l)) etat = ' · <span class="pl-validee">NOUVELLE · LEÇON ACQUISE (V1)</span>'; // spec 46 : à découvrir, pas de coche
+  else if (!u.bonus && acquiseAncienneVersion(l)) etat = ' · <span class="pl-acquis">NOUVELLE · LEÇON ACQUISE PRÉCÉDEMMENT</span>'; // specs 46 et 48 : à découvrir, pas de coche
 
   const mots = itemsUnite(l, 'flashcards', u.id, 'coeur');
   let apercu = mots.slice(0, 4).map(c => escHtml(c.lu)).join(' · ');
@@ -412,7 +411,7 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
     '</div>';
   if (u.phrase) html += '<div class="pl-unit-phrase">' + escHtml(u.phrase[0]) + '</div>';
   html += '<div class="pl-unit-mots">' + apercu + '</div>';
-  if (nbDus) html += '<div class="pl-fraicheur">À rafraîchir · ' + nbDus + '</div>';
+  if (nbDus) html += '<div class="pl-fraicheur">' + texteAReviser(nbDus) + '</div>'; // spec 48
 
   if (enCours) {
     html += '<div class="pc-steps">' + segmentsHtml(runIci) + '</div>';

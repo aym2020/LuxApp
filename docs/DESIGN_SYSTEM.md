@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 1.9 | 2026-10-19 | Spec 48 appliquée : grille commune des cartes du Chemin, surfaces neutres, libellés canoniques (Chemin, leçon, accueil, examens), cartes de sujets `.ex-carte`, score d'examen vert / rouge, `.pastille.a` ; `.lecon-card` supprimé |
 | 1.8 | 2026-10-19 | Code couleur unique pour toute l'app, couleurs de leçon retirées de l'interface, libellés de statut canoniques (« Acquise précédemment »…), structure commune des cartes, règles des indicateurs et des actions, token gris bleuté `--couleur-acquis` (spec 48) |
 | 1.7 | 2026-10-18 | Chemin continu : bloc « Terminées » supprimé, carte de leçon acquise verte, unité `par-mission` (cercle vert non rempli) (spec 33) |
 | 1.6 | 2026-10-18 | Mission : ligne des vies `.ms-vies-zone` (cœurs 24 px centrés, compteur dessous), animation de vie perdue, panneau `.ms-regles` (spec 34) |
@@ -73,6 +74,7 @@ Les anciens noms (`--accent`, `--bg`, `--muted`…) restent comme **alias** dans
 
 | Composant | Classe | Variantes / états |
 | --- | --- | --- |
+| Carte de liste (sujet d'examen) | `.ex-carte` | grille : texte \| chevron en haut à droite ; infos en une ligne de texte, score vert / rouge |
 | Bouton | `.pc-btn` (48 px) | `.primary` (or), `.ok` (vert, continuer après réussite), `.ko` (rouge, après erreur), `.ghost`, `.plus`, `.wide`, `.big`, `:disabled`, `:active` |
 | Grand bouton d'action | `.btn-jaune` (56 px) | un seul libellé, selon l'état réel (section 5 bis) : Découvrir, Commencer, Continuer, Reprendre, Faire les nouvelles unités, Revoir |
 | Puce | `.pc-chip` | `.active`, `.plus`, `.plus.fait` |
@@ -177,6 +179,6 @@ Toute nouvelle fonctionnalité ou refonte :
 - **Mission (messagerie)** : bulles et zone de réponse propres à la conversation (`#view-mission`) ; couleurs issues des tokens sauf le fond des bulles (#26272b, #e8b95c) et l'avatar (dégradé chaud).
 - **Introduction de mission** : composition plus immersive (titre serif, objectifs en orange).
 - **Cartes recto / verso (flashcards)** : face française en bleu, face luxembourgeoise en or. L'or y désigne la langue cible, pas une action : exception tolérée tant que l'écran existe.
-- **Couleur de leçon `--lc` encore utilisée** (à retirer au fil des modifications, spec 48) : `chemin.js` (cartes du Chemin), `parcours.js` (écran de leçon), `revision.js` (anneaux, liste des leçons), `examens.js` (cartes d'examen), `.pc-lc` dans `style.css`.
-- **Libellés à aligner sur la section 5 bis** (spec 48) : « Acquise · v1 » (`chemin.js`), « leçons acquises · v1 » (`accueil.js`), « À rafraîchir · N » (`chemin.js`, `parcours.js`, `revision.js`), badge « Facultatif » du bilan, « FACULTATIVE · LEÇON VALIDÉE PAR LA MISSION » (`parcours.js`), « En cours » attribué à une leçon seulement conseillée (`chemin.js`).
+- **Couleur de leçon `--lc` encore utilisée** (à retirer au fil des modifications) : écran Réviser et lexique (`revision.js` : anneaux, titres de leçon de la liste), `.pc-lc` dans `style.css`.
+- **Sélection pendant un examen** (case de trou active, réponse choisie, partie entamée) : en or, comme l'activité en cours.
 - **Valeurs codées en dur restantes dans `style.css`** (gris proches de `--couleur-bord-3` : #3a3935, #34322d, #2a2823…) : à remplacer par des tokens au fil des modifications des écrans concernés.

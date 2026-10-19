@@ -95,11 +95,10 @@ function resetExamScores() {
   localStorage.removeItem(storageKey(EXAM_KEY));
 }
 
-// Couleur selon le pourcentage : vert, or ou rouge.
+// Couleur selon le pourcentage (spec 48) : vert = réussi (60 % et plus),
+// rouge = à retravailler. L'or reste réservé à l'action.
 function examColor(pct) {
-  if (pct >= 80) return 'var(--correct)';
-  if (pct >= 60) return 'var(--accent)';
-  return 'var(--wrong)';
+  return pct >= 60 ? 'var(--couleur-reussi)' : 'var(--couleur-erreur)';
 }
 
 // ─── ÉCRAN 1 : LISTE DES SUJETS ─────────────────────────────────────────────
@@ -118,40 +117,36 @@ function openExamens() {
   sujets.forEach(ex => {
     const total = examTotal(ex);
     const best = scores[ex.id];
-    let bestHtml = '<span class="lecon-pill">Pas encore fait</span>';
+    // Spec 48 : surface neutre, informations sur une ligne de texte (pas de
+    // pastilles) ; le meilleur score seulement si le sujet a été fait.
+    let scoreHtml = '';
     if (best) {
-      const color = examColor(Math.round(best.best / best.total * 100));
-      bestHtml = '<span class="lecon-pill" style="color:' + color + ';border-color:' + color + '">' +
-        'Meilleur score ' + best.best + ' / ' + best.total + '</span>';
+      const reussi = Math.round(best.best / best.total * 100) >= 60;
+      scoreHtml = '<div class="ex-carte-score ' + (reussi ? 'ok' : 'ko') + '">Meilleur score ' + best.best + ' / ' + best.total + '</div>';
     }
 
     html +=
-      '<div class="lecon-card" style="--lc:' + ex.couleur + '" onclick="startExamen(\'' + ex.id + '\')">' +
-        '<div class="lecon-card-accent" style="background:' + ex.couleur + '"></div>' +
-        '<div class="lecon-card-body">' +
-          '<div class="lecon-card-num">' + escHtml(ex.titre.toUpperCase()) + '</div>' +
-          '<div class="lecon-card-titre">' + escHtml(ex.titre_fr) + '</div>' +
-          '<div class="lecon-card-counts">' +
-            '<span class="lecon-pill">' + ex.parties.length + ' parties</span>' +
-            '<span class="lecon-pill">' + total + ' points</span>' +
-            bestHtml +
-          '</div>' +
-        '</div>' +
-        '<div class="lecon-arrow">›</div>' +
-      '</div>';
+      '<button class="ex-carte" onclick="startExamen(\'' + ex.id + '\')">' +
+        '<span class="ex-carte-texte">' +
+          '<span class="ex-carte-num">' + escHtml(ex.titre) + '</span>' +
+          '<span class="ex-carte-titre">' + escHtml(ex.titre_fr) + '</span>' +
+          '<span class="ex-carte-info">' + ex.parties.length + ' parties · ' + total + ' points' + (best ? '' : ' · Pas encore fait') + '</span>' +
+          scoreHtml +
+        '</span>' +
+        '<span class="chevron-l">' + ICONES.droite + '</span>' +
+      '</button>';
   });
 
   // L'ancien examen (questions tirées au hasard dans les leçons) reste disponible.
   html +=
-    '<div class="lecon-card" onclick="startSession(\'exam\')">' +
-      '<div class="lecon-card-accent" style="background:var(--muted)"></div>' +
-      '<div class="lecon-card-body">' +
-        '<div class="lecon-card-num">ENTRAÎNEMENT</div>' +
-        '<div class="lecon-card-titre">Questions aléatoires</div>' +
-        '<div class="lecon-card-sous">50 questions tirées des leçons du niveau</div>' +
-      '</div>' +
-      '<div class="lecon-arrow">›</div>' +
-    '</div>';
+    '<button class="ex-carte" onclick="startSession(\'exam\')">' +
+      '<span class="ex-carte-texte">' +
+        '<span class="ex-carte-num">Entraînement</span>' +
+        '<span class="ex-carte-titre">Questions aléatoires</span>' +
+        '<span class="ex-carte-info">50 questions tirées des leçons du niveau</span>' +
+      '</span>' +
+      '<span class="chevron-l">' + ICONES.droite + '</span>' +
+    '</button>';
 
   document.getElementById('examens-list').innerHTML = html;
   showView('view-examens');

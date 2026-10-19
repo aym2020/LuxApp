@@ -21,10 +21,10 @@ function anneauHtml(numero, f, couleur) {
     '</svg><span>' + numero + '</span></div>';
 }
 
-// Texte « À rafraîchir · 6 » (vide si rien à réviser).
+// Texte « 6 questions à réviser » (vide si rien à réviser, spec 48).
 function rafraichirHtml(nbDus) {
   if (!nbDus) return '';
-  return '<span class="lecon-pill pc-pill-fraicheur">À rafraîchir · ' + nbDus + '</span>';
+  return '<span class="lecon-pill pc-pill-fraicheur">' + texteAReviser(nbDus) + '</span>';
 }
 
 // ─── PROCHAIN PAS (S1, S2) ──────────────────────────────────────────────────

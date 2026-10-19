@@ -45,28 +45,23 @@ header {
 
 .lecon-list { padding: 1rem 1rem 3rem 1rem; display: flex; flex-direction: column; gap: .7rem; }
 
-.lecon-card {
-  display: flex; align-items: center; gap: 1rem;
-  background: var(--surface); border: 1px solid var(--couleur-bord-1);
-  border-radius: var(--r); padding: 1rem 1.1rem;
-  cursor: pointer; transition: border-color .2s, background .2s, box-shadow .2s;
-  /* min tap target */
-  min-height: 64px;
+/* Sujets d'examen (spec 48) : surface neutre, texte secondaire sur une ligne,
+   chevron en haut à droite ; le meilleur score en vert (réussi) ou rouge. */
+.ex-carte {
+  display: grid; grid-template-columns: minmax(0, 1fr) 28px; column-gap: var(--sp-2); align-items: start;
+  width: 100%; min-height: var(--toucher); padding: var(--sp-3) var(--sp-3) var(--sp-3) var(--sp-4);
+  background: var(--couleur-surface-1); border: 1px solid var(--couleur-bord-1); border-radius: var(--rayon-carte);
+  color: var(--couleur-texte); font-family: var(--police); text-align: left; cursor: pointer; transition: transform .1s ease;
 }
-.lecon-card:active { background: var(--surface2); }
-@media (hover: hover) {
-  .lecon-card:hover {
-    border-color: var(--lc, #3a3935);
-    box-shadow: 0 0 0 1px var(--lc, transparent), 0 6px 20px rgba(0,0,0,.3);
-  }
-}
-.lecon-card-accent { width: 6px; border-radius: 999px; align-self: stretch; flex-shrink: 0; box-shadow: 0 0 12px -2px var(--lc, transparent); }
-.lecon-card-body { flex: 1; min-width: 0; }
-.lecon-card-num   { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .12em; color: var(--lc, var(--muted)); margin-bottom: .2rem; }
-.lecon-card-titre { font-size: 1.05rem; font-weight: 700; letter-spacing: -.01em; }
-.lecon-card-sous  { font-size: var(--fs-sec); color: var(--muted-strong); margin-top: .2rem; }
-.lecon-card-counts { display: flex; gap: .4rem; margin-top: .55rem; flex-wrap: wrap; }
-.lecon-arrow { font-size: 1.5rem; color: var(--lc, var(--muted)); flex-shrink: 0; opacity: .85; }
+.ex-carte:active { transform: scale(.98); }
+.ex-carte-texte { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ex-carte-num { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--couleur-texte-3); }
+.ex-carte-titre { font-size: var(--fs-corps); font-weight: 700; line-height: 1.3; overflow-wrap: break-word; }
+.ex-carte-info { font-size: var(--fs-sec); color: var(--couleur-texte-2); }
+.ex-carte-score { font-size: var(--fs-sec); font-weight: 700; }
+.ex-carte-score.ok { color: var(--couleur-reussi); }
+.ex-carte-score.ko { color: var(--couleur-erreur); }
+.ex-carte .chevron-l { color: var(--couleur-texte-3); }
 
 /* ── LEÇON HEADER ────────────────────────────────────────────────────────── */
 .lecon-header {
@@ -1433,26 +1428,19 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
   border-radius: 18px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--bord-1);
   text-align: left; width: 100%; min-width: 0; display: flex; flex-direction: column; gap: 4px;
   font-family: var(--font); color: var(--text); cursor: pointer; transition: transform .1s ease;
-  background-image: linear-gradient(135deg, color-mix(in srgb, var(--lc, #888) 13%, transparent), transparent 60%);
 }
 div.carte-lecon { cursor: default; }
 div.carte-lecon:active { transform: none; }
 .carte-lecon .num { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.carte-lecon .num b { color: var(--lc, var(--muted)); }
 .carte-lecon h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.25; overflow-wrap: anywhere; }
 .carte-lecon .lux { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 1rem; }
 .st { color: var(--muted); }
-.pas.encours .carte-lecon { background-color: var(--or-fond); border-color: var(--or-bord); padding: 16px; gap: 6px; }
-.pas.encours .st { color: var(--accent); }
-.pas.exam .carte-lecon { background: var(--bleu-fond); border-color: var(--bleu-bord); }
-.pas.exam .st { color: var(--info); }
 .pas.exam h3 { font-size: 1.1rem; }
 .exam-txt { color: #b7d3fb; font-size: var(--fs-sec); }
 .lien-bleu, .lien-or { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: var(--fs-sec); margin-top: 6px; }
 .lien-bleu { color: var(--info); }
 .lien-or { color: var(--accent); background: none; border: 0; font-family: var(--font); cursor: pointer; min-height: var(--toucher); align-self: center; }
 .lien-bleu .ic, .lien-or .ic { width: 16px; height: 16px; }
-.pastille-fraicheur { align-self: flex-start; font-size: var(--fs-micro); font-weight: 700; color: var(--turquoise); background: var(--turq-fond); padding: 3px 9px; border-radius: 999px; }
 .v1-txt { color: var(--muted-strong); font-size: var(--fs-sec); margin: 6px 0 10px; }
 
 .etoiles { white-space: nowrap; font-size: var(--fs-sec); }
@@ -1465,15 +1453,6 @@ div.carte-lecon:active { transform: none; }
   background: var(--surface-2); border: 1px solid var(--bord-2); font-size: var(--fs-sec); color: var(--muted-strong); }
 .ms-aide-unites b { color: var(--text); font-size: var(--fs-corps); }
 .pl-validee { color: var(--muted-strong); }
-.validee { font-size: var(--fs-micro); font-weight: 600; color: var(--correct); white-space: nowrap; }
-.acquise { font-size: var(--fs-micro); font-weight: 700; color: var(--correct); white-space: nowrap; }
-.sans-faute { font-size: var(--fs-micro); font-weight: 800; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
-
-/* Leçons à venir : une ligne */
-.carte-lecon.compacte { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 4px 10px; padding: 12px 14px; min-height: 48px; }
-.carte-lecon.compacte .num { flex: none; }
-.carte-lecon.compacte .titre { flex: 1; min-width: 0; font-size: var(--fs-corps); font-weight: 600; color: var(--muted-strong); }
-.carte-lecon .avance { font-size: var(--fs-micro); font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* Étapes de la leçon en cours */
 .unites { list-style: none; margin: 8px 0 10px; display: flex; flex-direction: column; }
@@ -1490,10 +1469,10 @@ div.carte-lecon:active { transform: none; }
 .unites li.actuelle .etat::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
 .unites li.actuelle .etat .ic { display: none; }
 .unites li.mission .etat, .unites li.bilan .etat { border-radius: 7px; }
-.unites li.mission .etat { background: var(--bleu-fond); color: var(--info); }
-.unites li.mission.ok .etat { background: var(--vert-plein); color: #eafff6; }
+.unites li.mission .etat { background: transparent; border: 2px solid var(--couleur-bord-2); color: var(--couleur-texte-3); }
+.unites li.mission.ok .etat { background: var(--vert-plein); border-color: var(--vert-plein); color: #eafff6; }
 .unites li.mission .etat .ic, .unites li.bilan .etat .ic { stroke-width: 2; }
-.unites li.bilan .etat { background: var(--turq-fond); color: var(--turquoise); }
+.unites li.bilan .etat { background: transparent; border: 2px solid var(--couleur-bord-2); color: var(--couleur-texte-3); }
 .unites li.bilan button { color: var(--muted); }
 .unites .tag { font-size: var(--fs-micro); color: var(--muted); font-weight: 600; white-space: nowrap; }
 .unites .tag .pc-star { font-size: var(--fs-micro); }
@@ -1529,7 +1508,7 @@ div.carte-lecon:active { transform: none; }
 /* En-têtes des écrans secondaires (lexique, pièges, examens, réviser, réglages,
    séance, leçon classique) : même style que « Mon chemin ». */
 .lecon-header { border-bottom: 0; padding: 1rem max(16px, 1.25rem) .5rem; align-items: flex-start; }
-.lecon-header .lecon-num { color: var(--accent); font-weight: 700; letter-spacing: .09em; }
+.lecon-header .lecon-num { color: var(--couleur-texte-3); font-weight: 700; letter-spacing: .09em; } /* spec 48 : l'or = l'action */
 .lecon-header .lecon-titre { font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.2;
   white-space: normal; overflow: visible; text-wrap: balance; margin-top: 2px; }
 body.avec-nav .lecon-header { padding-top: 1.25rem; }
@@ -1538,16 +1517,16 @@ body.avec-nav .lecon-header { padding-top: 1.25rem; }
    En-tête directement sur le fond ; la couleur de la leçon marque l'appartenance
    (étiquettes), l'or marque la prochaine action ; le reste est neutre. */
 #view-plecon .pl-head { margin: .1rem max(16px, 1.25rem) .9rem; padding: 0; gap: .25rem; }
-#view-plecon .pl-head .pc-mini-label { color: var(--lc); }
+#view-plecon .pl-head .pc-mini-label { color: var(--couleur-texte-3); }
 #view-plecon .pl-titre { color: var(--couleur-texte); }
 #view-plecon .pl-sous { margin-bottom: 0; }
 #view-plecon .ms-carte {
   background: var(--couleur-surface-1); border-color: var(--couleur-bord-1); border-radius: var(--rayon-carte);
 }
-#view-plecon .ms-carte .ms-carte-haut > .pc-mini-label { color: var(--couleur-info); } /* mission = bleu, comme sur le chemin */
+#view-plecon .ms-carte .ms-carte-haut > .pc-mini-label { color: var(--couleur-texte-3); } /* spec 48 : le bleu n'est pas un état */
 #view-plecon .ms-carte .ms-titre { font-family: var(--police); font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
 .pl-unit { background: var(--couleur-surface-1); border-color: var(--couleur-bord-1); border-radius: var(--rayon-carte); }
-#view-plecon .pl-unit > .pl-unit-top .pc-mini-label { color: var(--lc, var(--couleur-texte-3)); }
+#view-plecon .pl-unit > .pl-unit-top .pc-mini-label { color: var(--couleur-texte-3); }
 #view-plecon .pl-unit.prochaine, #view-plecon .pl-unit.en-cours { background: var(--couleur-or-fond); border-color: var(--couleur-or-bord); }
 #view-plecon .pl-unit.prochaine > .pl-unit-top .pc-mini-label,
 #view-plecon .pl-unit.en-cours > .pl-unit-top .pc-mini-label { color: var(--couleur-action); }
@@ -1749,31 +1728,17 @@ body.clavier-actif #view-mission.active .ms-body {
 .pas.futur { padding-bottom: 6px; }
 .pas.ouverte .rond, .pas.encours .rond { box-shadow: 0 0 0 4px var(--bg); }
 
-/* En-tête d'une leçon dépliée : un appui la replie */
-.carte-tete {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: .5rem;
-  width: 100%; min-height: 44px; padding: 0; background: none; border: 0; text-align: left;
-  font-family: var(--font); color: var(--text); cursor: pointer;
-}
-.carte-tete .num { grid-column: 1; }
-.carte-tete h3 { grid-column: 1; font-size: 1.12rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.carte-tete .chevron-l { grid-column: 2; grid-row: 1 / span 2; }
 .chevron-l { display: grid; place-items: center; width: 28px; height: 28px; color: var(--muted); flex: none; }
 .chevron-l .ic { width: 18px; height: 18px; }
 .carte-tete .chevron-l .ic { transform: rotate(180deg); }
-.carte-lecon.compacte .chevron-l { margin-left: auto; }
-.carte-lecon.compacte .titre { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* Carte dépliée : plus serrée ; elle s'ouvre en douceur (≈ 250 ms) */
 .pas.ouverte .carte-lecon { padding: 10px 14px 8px; gap: 2px; }
-.pas.ouverte.futur .carte-lecon { border-color: color-mix(in srgb, var(--lc) 55%, var(--bord-1)); } /* leçon acquise : bordure verte (spec 33) */
 .carte-lecon.ouvre .carte-tete .chevron-l .ic { animation: chevron-tourne .25s ease-out both; }
 .carte-lecon.ouvre > :not(.carte-tete) { animation: entre .25s ease-out both; }
 .carte-lecon.ouvre > .unites { animation-delay: .03s; }
 .carte-lecon.ouvre > .btn-jaune { animation-delay: .06s; }
 @keyframes chevron-tourne { from { transform: rotate(0deg); } to { transform: rotate(180deg); } }
-.pas.encours.replie .carte-lecon { border-color: var(--or-bord); }
-.pas.encours.replie .carte-lecon .num b { color: var(--accent); }
 
 /* Étapes : une ligne chacune, un chevron = « on peut appuyer » */
 .unites button { min-height: 44px; padding: 3px 6px 3px 0; border-radius: 10px; transition: background-color .12s ease; }
@@ -1867,15 +1832,6 @@ body.clavier-actif #view-mission.active .ms-histoire { display: none; }
 .mc-effacer svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ══ MON CHEMIN : LISIBILITÉ (spec 17) — compacter l'interface, jamais l'information ══ */
-/* Leçon repliée : titre sur deux lignes au plus */
-.carte-lecon.compacte { flex-wrap: nowrap; align-items: center; }
-.carte-lecon.compacte .titre {
-  white-space: normal; overflow: hidden; text-overflow: clip; line-height: 1.3;
-  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
-}
-.carte-lecon.compacte .pastille-fraicheur { flex: none; }
-/* Leçon dépliée : titre et étapes en entier, la carte grandit */
-.carte-tete h3 { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.25; text-wrap: balance; }
 /* Bouton jaune : un seul verbe, un peu moins haut */
 .pas.ouverte .btn-jaune { min-height: 48px; padding-top: 10px; padding-bottom: 10px; }
 
@@ -2119,7 +2075,8 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
   font-size: var(--fs-micro); font-weight: 600; color: var(--couleur-texte-3);
   padding: 1px var(--sp-2); border-radius: var(--rayon-pilule); background: rgba(255, 255, 255, .05);
 }
-.unites .sur { font-size: var(--fs-micro); font-weight: 700; color: var(--couleur-action); line-height: 1.2; }
+.unites .sur { font-size: var(--fs-micro); font-weight: 700; color: var(--couleur-texte-3); line-height: 1.2; }
+.unites li.actuelle .sur { color: var(--couleur-action); }
 .unites li.mission .nom { font-size: var(--fs-micro); color: var(--couleur-texte-2); }
 .unites li.bilan .nom { color: var(--couleur-texte-2); }
 .pas.ouverte .unites { margin: 0 0 4px; }
@@ -2149,13 +2106,6 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
    dépliée. Une unité couverte par la mission (pas jouée) : cercle vert coché
    non rempli et « Validée par la mission », sans étoiles. */
 .pas.fait.replie { padding-bottom: 8px; }
-.pas.fait .carte-lecon { background-color: var(--couleur-vert-fond); border-color: var(--couleur-vert-bord); }
-.pas.fait .st { color: var(--couleur-reussi); }
-.pas.fait .carte-lecon.compacte .titre { color: var(--couleur-texte); }
-/* Repliée : le résultat (étoiles, « Validée par la mission »…) passe sous le titre */
-.pas.fait .carte-lecon.compacte { flex-wrap: wrap; }
-.pas.fait .carte-lecon.compacte > .etoiles, .pas.fait .carte-lecon.compacte > .validee,
-.pas.fait .carte-lecon.compacte > .sans-faute, .pas.fait .carte-lecon.compacte > .acquise { order: 10; flex-basis: 100%; }
 .unites li.par-mission .etat { background: transparent; border: 2px solid var(--couleur-vert-plein); color: var(--couleur-reussi); box-shadow: none; }
 .unites .sous.par-mission { color: var(--couleur-reussi); font-weight: 600; }
 
@@ -2180,18 +2130,71 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .aide-vocab li em { display: block; font-style: normal; font-size: .85em; opacity: .8; }
 #view-mission .aide-vocab { margin: .3rem 0 .4rem; }
 
-/* Spec 46 : leçon acquise dans l'ancienne version, nouvelles unités à découvrir */
-.chemin-tete .pastille.a { background: rgba(143, 166, 189, .14); color: #b8c6d4; }
-.chemin-tete .pastille.a i { background: #b8c6d4; }
-.acquise.ancienne { color: #b8c6d4; white-space: normal; }
 
-/* Spec 47 : leçon repliée avec « À rafraîchir » — 1re ligne : numéro, titre
-   (2 lignes max), chevron ; la pastille passe sur une 2e ligne, sous le titre.
-   Sans pastille, la carte ne change pas. */
-/* Le titre garde au moins 8 em (suit la taille du texte) : s'il manque de
-   place à côté du numéro (petit écran, texte agrandi), il passe dessous au lieu
-   d'être coupé. Sur un écran courant, rien ne bouge. */
-.carte-lecon.compacte { flex-wrap: wrap; }
-.carte-lecon.compacte .titre { flex: 1 1 8em; }
-.carte-lecon.compacte > .carte-ligne2 { order: 11; flex-basis: 100%; display: flex; min-width: 0; }
-.carte-lecon.compacte > .carte-ligne2 .pastille-fraicheur { flex: none; max-width: 100%; white-space: nowrap; }
+/* ══ SPEC 48 : CARTES DU CHEMIN, UNE GRILLE COMMUNE ══════════════════════════
+   Remplace les règles empilées des specs 17, 29 (cartes), 33, 46 et 47.
+   Surfaces neutres pour toutes les cartes ; la couleur dit l'état, jamais la
+   leçon (docs/DESIGN_SYSTEM.md § 2) :
+     vert = terminée / validée par la mission · gris bleuté = acquise précédemment
+     or = conseillée, en cours · turquoise = à réviser · neutre = à découvrir.
+   Carte repliée ET en-tête de carte dépliée :
+     colonne 1 : numéro et titre (plusieurs lignes, jamais coupé) ;
+     colonne 2 : chevron, toujours en haut à droite ;
+     2e rangée facultative : statut et révisions (carte repliée). */
+.carte-lecon.compacte, .carte-tete {
+  display: grid; grid-template-columns: minmax(0, 1fr) 28px; align-items: start;
+  column-gap: var(--sp-2); row-gap: 2px;
+}
+.carte-lecon.compacte { padding: 10px 10px 10px 14px; min-height: 48px; font-size: var(--fs-corps); line-height: 1.3; }
+.carte-tete {
+  width: 100%; min-height: var(--toucher); padding: 0; background: none; border: 0; text-align: left;
+  font-family: var(--font); color: var(--text); cursor: pointer;
+}
+/* Chevron aligné sur la 1re ligne du titre, quelle que soit sa longueur */
+.carte-lecon.compacte > .chevron-l { grid-column: 2; grid-row: 1; height: 1lh; }
+.carte-tete > .chevron-l { grid-column: 2; grid-row: 1; }
+/* Numéro et titre : le titre garde au moins 8 em ; s'il manque de place à côté
+   du numéro (petit écran, texte agrandi), il passe dessous, jamais écrasé. */
+.carte-haut { grid-column: 1; grid-row: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 10px; }
+.carte-lecon.compacte .num { flex: none; }
+.carte-lecon.compacte .titre { flex: 1 1 8em; min-width: 0; font-weight: 600; color: var(--couleur-texte); overflow-wrap: break-word; }
+.carte-tete .carte-haut { flex-direction: column; align-items: stretch; gap: 2px; }
+.carte-tete h3 { font-size: 1.12rem; line-height: 1.25; overflow-wrap: break-word; text-wrap: balance; }
+.carte-ligne2 {
+  grid-column: 1 / -1; grid-row: 2; display: block;
+  font-size: var(--fs-micro); font-weight: 600; line-height: 1.4; color: var(--couleur-texte-3);
+  overflow-wrap: break-word;
+}
+/* Éléments de la 2e ligne séparés par « · » (texte en ligne : coupure propre) */
+.carte-ligne2 > :not(:last-child)::after { content: "\00a0·"; color: var(--couleur-texte-3); font-weight: 400; }
+.carte-ligne2 .etoiles .pc-star { font-size: var(--fs-micro); }
+
+/* Statuts : même mot, même couleur partout (§ 5 bis) */
+.st-termine, .st-mission { color: var(--couleur-reussi); }
+.st-acquis { color: var(--couleur-acquis); }
+.st-encours { color: var(--couleur-action); }
+.st-nouveau { color: var(--couleur-texte-3); }
+.sans-faute { font-size: var(--fs-micro); font-weight: 800; color: var(--couleur-reussi); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.a-reviser { color: var(--couleur-turquoise); font-size: var(--fs-micro); font-weight: 700; }
+.carte-lecon > p.a-reviser { margin: 0 0 2px; }
+
+/* Surfaces neutres ; l'état passe par le rond, le trait et une bordure discrète */
+.pas .carte-lecon { background-color: var(--couleur-surface-1); border-color: var(--couleur-bord-1); }
+.pas.encours .carte-lecon { border-color: var(--couleur-or-bord); }
+.pas.exam .carte-lecon { background-color: var(--couleur-surface-1); border-color: var(--couleur-bord-1); }
+.pas.exam .num { color: var(--couleur-texte-3); }
+.exam-txt { color: var(--couleur-texte-2); }
+.pas.acquis::before { background: var(--couleur-acquis-bord); }
+.pas.acquis .rond { background: var(--couleur-acquis-fond); border-color: var(--couleur-acquis-bord); color: var(--couleur-acquis); }
+.pas.acquis.replie, .pas.fait.replie { padding-bottom: 8px; }
+
+/* Unités : partie interrompue (or), résultat de mission (vert / rouge) */
+.unites .sous.en-cours { color: var(--couleur-action); font-weight: 600; }
+.unites .statut.ok { color: var(--couleur-reussi); }
+.unites .statut.ko { color: var(--couleur-erreur); }
+
+/* Écran de leçon et accueil (spec 48) */
+.pc-vert { color: var(--couleur-reussi); }
+.pl-acquis { color: var(--couleur-acquis); }
+.pl-fraicheur, .pc-pill-fraicheur { color: var(--couleur-turquoise); }
+.ac-acquis { display: block; font-size: var(--fs-micro); color: var(--couleur-acquis); }

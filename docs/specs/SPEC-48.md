@@ -2,10 +2,10 @@
 
 | Champ | Valeur |
 |---|---|
-| Statut | **À faire** |
+| Statut | **Implémentée — validation à confirmer** (recette Android à faire) |
 | Priorité | **P1** — UX / Design system |
 | Branche | `v2` |
-| Périmètre | `public/chemin.js`, `public/niveau.js`, `public/parcours.js`, `public/accueil.js`, `public/design-tokens.css`, `public/components.css`, `public/style.css`, tests du Chemin |
+| Périmètre | `public/chemin.js`, `public/parcours.js`, `public/accueil.js`, `public/revision.js`, `public/examens.js`, `public/design-tokens.css`, `public/components.css`, `public/style.css`, `public/catalogue.html`, tests du Chemin. Étendu à l'écran de sélection des examens et aux examens (demande de Clayton du 19/10/2026) |
 | Références | SPEC 19, 29, 33, 39, 43, 46 et 47 |
 | Design system | Règles communes reportées dans [DESIGN_SYSTEM.md](../DESIGN_SYSTEM.md) v1.8 (§ 2, 5 bis, 5 ter) : elles s'appliquent à **toute l'application**, pas seulement au Chemin |
 
@@ -330,37 +330,37 @@ Tester les titres courts, longs et les cartes présentant plusieurs informations
 
 ### Présentation
 
-- [ ] Toutes les cartes du Chemin utilisent des surfaces neutres cohérentes.
-- [ ] Les couleurs individuelles des leçons ne perturbent plus le parcours.
-- [ ] Les chevrons sont alignés de manière identique.
-- [ ] Aucun titre ne devient illisible à cause d'un badge.
-- [ ] Les cartes sans information secondaire restent compactes.
-- [ ] Les cartes dépliées respectent une hiérarchie visuelle identique.
+- [x] Toutes les cartes du Chemin utilisent des surfaces neutres cohérentes.
+- [x] Les couleurs individuelles des leçons ne perturbent plus le parcours.
+- [x] Les chevrons sont alignés de manière identique.
+- [x] Aucun titre ne devient illisible à cause d'un badge.
+- [x] Les cartes sans information secondaire restent compactes.
+- [x] Les cartes dépliées respectent une hiérarchie visuelle identique.
 
 ### Statuts
 
-- [ ] Une leçon historiquement acquise affiche « Acquise précédemment ».
-- [ ] Une leçon terminée dans le nouveau parcours est clairement identifiable.
-- [ ] Une leçon validée par mission conserve son statut distinct.
-- [ ] Les unités non réalisées ne reçoivent aucune coche ou étoile fictive.
-- [ ] Une leçon recommandée mais non commencée n'est pas présentée à tort comme déjà commencée.
+- [x] Une leçon historiquement acquise affiche « Acquise précédemment ».
+- [x] Une leçon terminée dans le nouveau parcours est clairement identifiable.
+- [x] Une leçon validée par mission conserve son statut distinct.
+- [x] Les unités non réalisées ne reçoivent aucune coche ou étoile fictive.
+- [x] Une leçon recommandée mais non commencée n'est pas présentée à tort comme déjà commencée.
 
 ### Informations
 
-- [ ] « 0/20 » n'apparaît plus sous Mission dans le Chemin.
-- [ ] Le bilan affiche « 10 questions · Optionnel » sans badge supplémentaire.
-- [ ] Les révisions affichent « N questions à réviser » avec un nombre exact.
-- [ ] Les scores réellement utiles restent visibles.
-- [ ] Les libellés sont cohérents entre le Chemin et les écrans associés.
+- [x] « 0/20 » n'apparaît plus sous Mission dans le Chemin.
+- [x] Le bilan affiche « 10 questions · Optionnel » sans badge supplémentaire.
+- [x] Les révisions affichent « N questions à réviser » avec un nombre exact.
+- [x] Les scores réellement utiles restent visibles.
+- [x] Les libellés sont cohérents entre le Chemin et les écrans associés.
 
 ### Navigation et stabilité
 
-- [ ] L'ouverture et la fermeture des cartes fonctionnent.
-- [ ] Une seule leçon reste dépliée.
-- [ ] Le retour depuis les résultats conserve la bonne leçon ouverte.
-- [ ] Le scroll reste correctement positionné.
-- [ ] La progression locale et cloud reste inchangée.
-- [ ] Aucun changement de score, d'étoiles, d'erreurs ou d'acquis n'est provoqué par ce travail d'interface.
+- [x] L'ouverture et la fermeture des cartes fonctionnent.
+- [x] Une seule leçon reste dépliée.
+- [x] Le retour depuis les résultats conserve la bonne leçon ouverte.
+- [x] Le scroll reste correctement positionné.
+- [x] La progression locale et cloud reste inchangée.
+- [x] Aucun changement de score, d'étoiles, d'erreurs ou d'acquis n'est provoqué par ce travail d'interface.
 
 ## 12. Validation et livraison
 
@@ -389,6 +389,31 @@ Exécuter les tests ciblés, puis la suite critique conformément au PLAYBOOK.
 La SPEC est terminée lorsque toutes les cartes suivent une structure cohérente, que chaque couleur et indicateur possède un sens explicite, que les tests pertinents passent et que les captures Android ne présentent plus de défaut visuel majeur.
 
 Ne pas prolonger le chantier par des ajustements purement décoratifs sans bénéfice concret.
+
+## Implémentation (19/10/2026)
+
+**Statuts et libellés** (`chemin.js`, `parcours.js`, `accueil.js`, `revision.js`)
+- `statutLecon48()` : un seul calcul pour les cinq statuts (À découvrir, En cours, Acquise précédemment, Terminée, Validée par la mission). « En cours » = activité réellement faite (`leconCommencee`), plus la simple recommandation.
+- Synthèse sous « Mon chemin » : N terminées, N acquises précédemment, N en cours (leçons réellement commencées).
+- Accueil : « Leçons terminées » + « +N acquises précédemment » ; tuile « leçons acquises précédemment ». Plus aucun « v1 » visible.
+- « N questions à réviser » partout (`texteAReviser`, compte réel du moteur) ; puce de l'écran de leçon : « Réviser · N ».
+- Bouton principal : Découvrir, **Commencer** (introduction déjà confirmée, rien de fait — remplace « Découvrir » attendu par la spec 18), Continuer, Reprendre, Faire les nouvelles unités, Revoir. Leçons classiques : plus d'« Ouvrir ». « Jouer la nouvelle mission » devient « Continuer ».
+- Unités : « En cours » (or) sous l'unité d'une partie interrompue ; « Validée par la mission » inchangé (cercle vert non rempli, sans étoile).
+- Mission : plus de compteur « n/20 » ; « Réussie » / « Sans faute » (vert) ou « À rejouer » (rouge) seulement après une partie. Icônes de mission et de bilan neutres.
+- Bilan : « Bilan · 10 questions · Optionnel », sans badge.
+
+**Couleurs**
+- `--lc` ne colore plus le Chemin ni l'écran de leçon ; surfaces neutres pour toutes les cartes (y compris Examens) ; bordure or pour la leçon conseillée.
+- Rond et trait gris bleuté (`--couleur-acquis`) pour « Acquise précédemment » ; « Sans faute » et « TERMINÉE / COMPLÈTE » en vert ; étiquettes d'en-tête des écrans secondaires en gris (plus en or).
+- Examens : cartes de sujets neutres (`.ex-carte`), infos sur une ligne de texte, meilleur score vert (≥ 60 %) ou rouge ; `examColor` à deux niveaux (vert / rouge, plus d'or) pour la liste, les cases de parties et le résultat.
+
+**CSS** : un seul bloc « SPEC 48 » en fin de `style.css` (grille commune carte repliée / en-tête dépliée : numéro et titre | chevron en haut à droite, 2e rangée facultative) ; suppression des règles contradictoires des specs 17, 33, 46 et 47 et du composant `.lecon-card`, devenu inutilisé. `.pastille.a` dans `components.css`.
+
+**Tests** : `test_chemin_cartes.py` étendu (texte 100/130/200 %, chevron, surfaces neutres, absence de « v1 » et « À rafraîchir », sujets d'examen, progression intacte après navigation) ; libellés mis à jour dans `test_acquis_v1`, `test_chemin_lignes`, `test_decouverte`, `test_lot1`. Suite critique : verte.
+
+**Données** : aucune écriture de progression ajoutée ou modifiée ; vérifié par le test (progression, statistiques et erreurs identiques avant / après navigation).
+
+**Reste à faire** : recette Android avant / après. Hors périmètre, signalé : anneaux et liste du lexique encore colorés par leçon (`revision.js`), voir DESIGN_SYSTEM § 7.
 
 ---
 

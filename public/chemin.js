@@ -20,9 +20,12 @@ function renderLessons() {
   if (!box) return;
 
   const liste = leconsActives();
-  const terminees = liste.filter(l => leconTerminee(l) && !acquiseAncienneVersion(l));
-  const anciennes = liste.filter(acquiseAncienneVersion); // spec 46
-  const enCours = leconEnCours();
+  // Synthèse (spec 48) : leçons terminées, acquises précédemment, réellement commencées.
+  const statuts = liste.map(l => statutLecon48(l).code);
+  const terminees = statuts.filter(c => c === 'termine' || c === 'mission').length;
+  const anciennes = statuts.filter(c => c === 'acquis').length;
+  const commencees = statuts.filter(c => c === 'encours').length;
+  const enCours = leconEnCours(); // leçon conseillée (≠ commencée)
   const fraicheurs = resumeRevision(liste).parLecon;
   const anim = dernierFini; // étape tout juste finie : animée une seule fois
   dernierFini = null;
@@ -39,9 +42,9 @@ function renderLessons() {
   let html = '<div class="chemin-tete' + (pulse ? ' entre' : '') + '">' +
     '<div class="chemin-titre"><h1>Mon chemin</h1><span class="etiquette or">Parcours ' + niveauActif + '</span></div>' +
     '<div class="resume">' +
-      (terminees.length || !anciennes.length ? '<span class="pastille v"><i></i>' + terminees.length + ' terminée' + (terminees.length > 1 ? 's' : '') + '</span>' : '') +
-      (anciennes.length ? '<span class="pastille a"><i></i>' + anciennes.length + ' acquise' + (anciennes.length > 1 ? 's' : '') + ' · v1</span>' : '') +
-      (enCours ? '<span class="pastille o"><i></i>1 en cours</span>' : '') +
+      (terminees || !anciennes ? '<span class="pastille v"><i></i>' + terminees + ' terminée' + (terminees > 1 ? 's' : '') + '</span>' : '') +
+      (anciennes ? '<span class="pastille a"><i></i>' + anciennes + ' acquise' + (anciennes > 1 ? 's' : '') + ' précédemment</span>' : '') +
+      (commencees ? '<span class="pastille o"><i></i>' + commencees + ' en cours</span>' : '') +
     '</div></div><ol class="chemin">';
 
   // Les leçons dans leur ordre : une seule carte chacune, dépliée sur place.
@@ -53,8 +56,8 @@ function renderLessons() {
 
   // 3. Examens, en fin de chemin.
   html += '<li class="pas exam"><span class="rond">' + ICONES.toque + '</span>' +
-    '<button class="carte-lecon" onclick="openExamens()">' +
-      '<span class="num st">Fin du parcours</span>' +
+    '<button class="carte-lecon carte-exam" onclick="openExamens()">' +
+      '<span class="num">Fin du parcours</span>' +
       '<h3>Examens ' + niveauActif + '</h3>' +
       '<span class="exam-txt">Entraîne-toi quand tu veux, même avant d\'avoir fini les leçons.</span>' +
       '<span class="lien-bleu">Voir les examens' + ICONES.fleche + '</span>' +
@@ -64,17 +67,48 @@ function renderLessons() {
   if (typeof renderLessonsProgress === 'function') renderLessonsProgress();
 }
 
-// Étoiles d'une leçon terminée, ou « Sans faute ».
-function resultatLeconHtml(l) {
-  // Acquise dans l'ancienne version, nouvelles unités pas toutes faites (spec 46) :
-  // ni étoiles ni « Terminée » ; l'avancement réel s'il y en a un.
-  if (acquiseAncienneVersion(l)) {
-    const faites = etapesFaites(l);
-    return '<span class="acquise ancienne">Acquise · v1' + (faites ? ' · ' + faites + '/' + etapesLecon(l) : '') + '</span>';
+// ─── STATUT D'UNE LEÇON (spec 48) ───────────────────────────────────────────
+// Libellés identiques sur tous les écrans (docs/DESIGN_SYSTEM.md § 5 bis).
+// code : termine | mission | acquis | encours | nouveau.
+// « Recommandée » n'est pas un statut : une leçon conseillée jamais commencée
+// reste « À découvrir » (la recommandation, c'est le bouton jaune).
+function statutLecon48(l) {
+  if (acquiseAncienneVersion(l)) return { code: 'acquis', libelle: 'Acquise précédemment' };
+  if (leconTerminee(l)) {
+    const r = isParcoursLecon(l) ? resumeLecon(l) : null;
+    if (r && r.done < r.total && leconAcquiseParMission(l)) return { code: 'mission', libelle: 'Validée par la mission' };
+    return { code: 'termine', libelle: 'Terminée' };
   }
-  // Validée par la mission avant la fin des unités (spec 32) : pas d'étoiles inventées.
-  const r = isParcoursLecon(l) ? resumeLecon(l) : null;
-  if (r && leconAcquiseParMission(l) && r.done < r.total) return '<span class="validee">Validée par la mission</span>';
+  if (leconVraimentCommencee(l)) return { code: 'encours', libelle: 'En cours' };
+  return { code: 'nouveau', libelle: 'À découvrir' };
+}
+
+// Une activité a vraiment été faite (réponse, unité, mission, partie en cours).
+function leconVraimentCommencee(l) {
+  if (isParcoursLecon(l)) return leconCommencee(l);
+  return calculateLessonStats(l.id).percent > 0;
+}
+
+// Classe de l'étape du chemin (rond, trait) : vert, gris bleuté, or ou neutre.
+function classePas(statut, conseillee) {
+  if (statut.code === 'termine' || statut.code === 'mission') return 'fait';
+  if (statut.code === 'acquis') return 'acquis';
+  return conseillee ? 'encours' : 'futur';
+}
+
+function iconePas(classe) {
+  if (classe === 'fait' || classe === 'acquis') return ICONES.coche;
+  return classe === 'encours' ? ICONES.lecture : ICONES.livre;
+}
+
+// « 11 questions à réviser » (vide si rien à réviser). Compte réel du moteur.
+function texteAReviser(dus) {
+  if (!dus) return '';
+  return dus + '\u00a0question' + (dus > 1 ? 's' : '') + ' à réviser'; // insécable : « 4 » reste avec « questions »
+}
+
+// Résultat d'une leçon terminée : étoiles réellement obtenues, ou « Sans faute ».
+function resultatLeconHtml(l) {
   if (isParcoursLecon(l)) {
     if (leconSansFaute(l)) return '<span class="sans-faute">Sans faute</span>';
     return '<span class="etoiles">' + etoilesHtml(resumeLecon(l).stars) + '</span>';
@@ -82,25 +116,36 @@ function resultatLeconHtml(l) {
   return '<span class="etoiles">' + etoilesHtml(etoiles(calculateLessonStats(l.id).percent)) + '</span>';
 }
 
-function rafraichirPastille(dus) {
-  return dus ? '<span class="pastille-fraicheur">À rafraîchir · ' + dus + '</span>' : '';
+// 2e ligne d'une leçon repliée : statut utile et révisions, seulement s'il y en a.
+function ligne2LeconHtml(l, statut, dus) {
+  const morceaux = [];
+  const faites = etapesFaites(l);
+  const avance = isParcoursLecon(l) && faites ? ' · ' + faites + '/' + etapesLecon(l) + ' étapes' : '';
+  if (statut.code === 'termine') morceaux.push('<span class="statut-lecon st-termine">Terminée ' + resultatLeconHtml(l) + '</span>');
+  else if (statut.code === 'mission') morceaux.push('<span class="statut-lecon st-mission">Validée par la mission</span>');
+  else if (statut.code === 'acquis') morceaux.push('<span class="statut-lecon st-acquis">Acquise précédemment' + avance + '</span>');
+  else if (statut.code === 'encours') morceaux.push('<span class="statut-lecon st-encours">En cours' + avance + '</span>');
+  if (dus) morceaux.push('<span class="a-reviser">' + texteAReviser(dus) + '</span>');
+  // Séparés par une espace : la ligne se coupe après « · », jamais avant.
+  return morceaux.length ? '<span class="carte-ligne2">' + morceaux.join(' ') + '</span>' : '';
 }
 
-// Leçon repliée : une ligne, avec un chevron. Un appui la déplie.
-// Terminée : rond vert coché et son résultat (étoiles, « Sans faute » ou « Validée par la mission »).
+// Leçon repliée (spec 48) : grille commune.
+//   ligne 1 : numéro et titre (plusieurs lignes possibles) · chevron en haut à droite ;
+//   ligne 2 : statut et révisions, seulement si utile (sinon la carte reste compacte).
 function leconReplieeHtml(l, dus, conseillee, anim) {
-  const fini = leconTerminee(l);
-  const faites = etapesFaites(l);
-  const vientDeFinir = fini && anim && anim.leconId === l.id && anim.uniteId === 'mission';
-  return '<li class="pas ' + (fini ? 'fait replie' : conseillee ? 'encours replie' : 'futur') + '" id="chemin-lecon-' + l.id + '">' +
-    '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '">' + (fini ? ICONES.coche : conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
-    '<button class="carte-lecon compacte chemin-lecon" style="--lc:' + l.couleur + '" aria-expanded="false" onclick="basculerLeconChemin(' + l.id + ')">' +
-      '<span class="num"><b>Leçon ' + numLecon(l) + '</b></span>' +
-      '<span class="titre">' + escHtml(titreCourt(l)) + '</span>' +
-      (fini ? resultatLeconHtml(l) : faites ? '<span class="avance">' + faites + '/' + etapesLecon(l) + '</span>' : '') +
+  const statut = statutLecon48(l);
+  const classe = classePas(statut, conseillee);
+  const vientDeFinir = classe === 'fait' && anim && anim.leconId === l.id && anim.uniteId === 'mission';
+  const nomLu = 'Leçon ' + numLecon(l) + ', ' + titreCourt(l) + ', ' + statut.libelle +
+    (conseillee ? ', leçon conseillée' : '') + (dus ? ', ' + texteAReviser(dus) : '');
+  return '<li class="pas ' + classe + (classe === 'futur' ? '' : ' replie') + '" id="chemin-lecon-' + l.id + '">' +
+    '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '">' + iconePas(classe) + '</span>' +
+    '<button class="carte-lecon compacte chemin-lecon" aria-expanded="false" aria-label="' + attrHtml(nomLu) + '" onclick="basculerLeconChemin(' + l.id + ')">' +
+      '<span class="carte-haut"><span class="num">Leçon ' + numLecon(l) + '</span>' +
+      '<span class="titre">' + escHtml(titreCourt(l)) + '</span></span>' +
       '<span class="chevron-l">' + ICONES.chevron + '</span>' +
-      // Spec 47 : la pastille va sur sa propre ligne, sous le titre (jamais à côté).
-      (dus ? '<span class="carte-ligne2">' + rafraichirPastille(dus) + '</span>' : '') +
+      ligne2LeconHtml(l, statut, dus) +
     '</button></li>';
 }
 
@@ -108,21 +153,19 @@ function leconReplieeHtml(l, dus, conseillee, anim) {
 // qui agit sur CETTE leçon.
 function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   const fini = leconTerminee(l);
-  const r = isParcoursLecon(l) ? resumeLecon(l) : null;
-  const parMission = fini && r && r.done < r.total && leconAcquiseParMission(l);
-  const ancienne = acquiseAncienneVersion(l); // spec 46
-  const etat = ancienne ? 'Acquise · v1' : parMission ? 'Validée par la mission' : fini ? 'Terminée' : conseillee ? 'En cours' : etapesFaites(l) ? 'Commencée' : 'À découvrir';
+  const statut = statutLecon48(l);
+  const classe = classePas(statut, conseillee);
   const deplie = anim && anim.uniteId === 'mission' && anim.leconId !== l.id ? ' deplie' : '';
   const action = actionLeconChemin(l);
 
-  let html = '<li class="pas ' + (fini ? 'fait' : conseillee ? 'encours' : 'futur') + ' ouverte" id="chemin-lecon-' + l.id + '">' +
-    '<span class="rond">' + (fini ? ICONES.coche : conseillee ? ICONES.lecture : ICONES.livre) + '</span>' +
-    '<div class="carte-lecon chemin-lecon ouvre' + deplie + '" style="--lc:' + l.couleur + '">' +
+  let html = '<li class="pas ' + classe + ' ouverte" id="chemin-lecon-' + l.id + '">' +
+    '<span class="rond">' + iconePas(classe) + '</span>' +
+    '<div class="carte-lecon chemin-lecon ouvre' + deplie + '">' +
       '<button class="carte-tete" aria-expanded="true" onclick="basculerLeconChemin(' + l.id + ')">' +
-        '<span class="num"><b>Leçon ' + numLecon(l) + '</b> · <span class="st">' + etat + '</span></span>' +
+        '<span class="carte-haut"><span class="num">Leçon ' + numLecon(l) + ' · <span class="st st-' + statut.code + '">' + statut.libelle + '</span></span>' +
+        '<h3>' + escHtml(titreCourt(l)) + '</h3></span>' +
         '<span class="chevron-l">' + ICONES.chevron + '</span>' +
-        '<h3>' + escHtml(titreCourt(l)) + '</h3>' +
-      '</button>' + rafraichirPastille(dus);
+      '</button>' + (dus ? '<p class="a-reviser">' + texteAReviser(dus) + '</p>' : '');
 
   if (isParcoursLecon(l)) {
     html += '<ul class="unites">' + etapesLeconHtml(l, action.etape, anim, pulse && !fini) + '</ul>';
@@ -142,23 +185,30 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
 //   etape   : l'étape mise en avant (numéro d'unité, 'mission' ou null) ;
 //   libelle : le texte du bouton ;   fn : ce qu'il lance.
 function actionLeconChemin(l) {
-  // Un seul verbe : l'étape visée est déjà mise en avant dans la liste (spec 17).
-  if (!isParcoursLecon(l)) return { etape: null, libelle: 'Ouvrir', fn: () => openLecon(l) };
+  // Un seul libellé, selon l'état réel (spec 48) : Découvrir, Commencer, Continuer,
+  // Reprendre, Faire les nouvelles unités, Revoir.
+  if (!isParcoursLecon(l)) {
+    const libelle = leconTerminee(l) ? 'Revoir' : leconVraimentCommencee(l) ? 'Continuer' : 'Découvrir';
+    return { etape: null, libelle, fn: () => openLecon(l) };
+  }
 
   const saved = loadRun();
   if (saved && saved.leconId === l.id) {
     return { etape: saved.uniteId, libelle: 'Reprendre', fn: () => ouvrirLeconEtReprendre(l) };
   }
-  // Rien de commencé (même si l'introduction a été lue) : « Découvrir » ouvre l'introduction.
+  // Rien de commencé : « Découvrir » ouvre l'introduction ; introduction déjà
+  // confirmée (« J'ai compris ») : « Commencer » ouvre la 1re unité.
   if (l.mission && l.scene && !leconCommencee(l)) {
-    return { etape: unitesCoeur(l)[0].id, libelle: 'Découvrir', fn: () => ouvrirIntroMission(l) };
+    const premiere = unitesCoeur(l)[0];
+    if (getIntroMissionVue(l.id)) return { etape: premiere.id, libelle: 'Commencer', fn: () => ouvrirUniteDepuisChemin(l.id, premiere.id) };
+    return { etape: premiere.id, libelle: 'Découvrir', fn: () => ouvrirIntroMission(l) };
   }
   // Acquise dans l'ancienne version (spec 46) : le nouveau contenu est proposé,
   // jamais obligatoire (la leçon reste acquise et les suivantes restent ouvertes).
   if (acquiseAncienneVersion(l)) {
     const nouvelle = unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
     if (nouvelle) return { etape: nouvelle.id, libelle: 'Faire les nouvelles unités', fn: () => ouvrirUniteDepuisChemin(l.id, nouvelle.id) };
-    if (l.mission && l.scene) return { etape: 'mission', libelle: 'Jouer la nouvelle mission', fn: () => ouvrirMissionDepuisChemin(l.id) };
+    if (l.mission && l.scene) return { etape: 'mission', libelle: 'Continuer', fn: () => ouvrirMissionDepuisChemin(l.id) };
   }
   const deja = leconTerminee(l); // acquise : plus d'unité obligatoire (spec 32)
   const u = deja ? null : unitesCoeur(l).find(x => getUnitBest(l.id, x.id) == null);
@@ -181,6 +231,7 @@ function lancerActionLecon(leconId) {
 function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
   let html = '';
   const libre = loadRun(true); // révision interrompue : signalée, sans déplacer l'anneau doré
+  const principal = loadRun(); // partie interrompue : l'unité est « En cours »
   // 1re réussite d'une unité dans cette leçon (spec 27) : coche, étoiles et halo
   // vert, puis la prochaine unité s'allume. Joué une seule fois (dernierFini est vidé).
   const premiere = !!(anim && anim.premiere && anim.leconId === l.id);
@@ -196,42 +247,44 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     // Spec 29 : le titre a toute la largeur restante ; « Révision en cours »
     // passe dessous (seulement s'il y en a une), les étoiles restent à droite.
     const enRevision = libre && libre.leconId === l.id && libre.uniteId === u.id;
+    const interrompue = !fait && principal && principal.leconId === l.id && principal.uniteId === u.id;
     const nbEtoiles = fait ? etoiles(getUnitBest(l.id, u.id)) : 0;
     // Nom lu par les lecteurs d'écran : titre complet + état utile.
-    let nomLu = u.id + ' · ' + u.titre + ', ' + (actuelle ? 'étape recommandée' : fait ? 'terminée' : parMission ? 'validée par la mission, non réalisée' : 'à découvrir');
+    let nomLu = u.id + ' · ' + u.titre + ', ' + (interrompue ? 'en cours' : actuelle ? 'étape recommandée' : fait ? 'terminée' : parMission ? 'facultative, leçon validée par la mission, non réalisée' : 'à découvrir');
     if (fait) nomLu += ', ' + nbEtoiles + ' étoile' + (nbEtoiles > 1 ? 's' : '') + ' sur 3';
     if (enRevision) nomLu += ', révision en cours';
+    let sous = '';
+    if (enRevision) sous = '<span class="sous revision">' + ICONES.revision + 'Révision en cours' + (parMission ? ' · validée par la mission' : '') + '</span>';
+    else if (interrompue) sous = '<span class="sous en-cours">En cours</span>';
+    else if (parMission) sous = '<span class="sous par-mission">Validée par la mission</span>';
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
       '<span class="etat">' + ((fait || parMission) && !actuelle ? ICONES.coche : '') + '</span>' +
       '<span class="texte"><span class="nom">' + u.id + '&nbsp;·&nbsp;' + escHtml(u.titre) + '</span></span>' +
       (fait ? '<span class="tag">' + etoilesHtml(nbEtoiles) + '</span>' : '') +
-      ICONES.droite +
-      (enRevision ? '<span class="sous revision">' + ICONES.revision + 'Révision en cours' + (parMission ? ' · validée par la mission' : '') + '</span>'
-        : parMission ? '<span class="sous par-mission">Validée par la mission</span>' : '') +
+      ICONES.droite + sous +
       '</button></li>';
   });
 
   if (l.mission && l.scene) {
+    // Spec 48 : pas de compteur de découverte (« 0/20 ») ; un résultat seulement
+    // après une partie jouée.
     const statut = statutMission(l);
-    let tag = l.scene.filter(x => repliqueApprise(l, x)).length + '/' + l.scene.length;
-    if (statut === 'sansfaute') tag = 'Sans faute';
-    else if (statut === 'reussie') tag = 'Réussie';
-    else if (statut === 'jouee') tag = 'À rejouer';
+    const resultat = { sansfaute: 'Sans faute', reussie: 'Réussie', jouee: 'À rejouer' }[statut] || '';
     const actuelle = etapeActuelle === 'mission';
-    let classe = 'mission' + (statut ? ' ok' : '') + (actuelle ? ' actuelle' + (pulse ? ' pulse' : '') : '');
+    let classe = 'mission' + (statut === 'sansfaute' || statut === 'reussie' ? ' ok' : '') + (actuelle ? ' actuelle' + (pulse ? ' pulse' : '') : '');
     if (anim && anim.leconId === l.id && anim.uniteId === 'mission') classe += ' vient-de-finir';
-    // Mission et bilan : même structure (spec 30) — texte à gauche, statut discret à droite.
-    const nomLu = 'Mission : ' + l.mission.titre + ', ' + tag;
+    const nomLu = 'Mission : ' + l.mission.titre + (resultat ? ', ' + resultat : '');
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-mission"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
       '<span class="etat">' + ICONES.bulle + '</span>' +
       '<span class="texte"><span class="sur">Mission</span><span class="nom">' + escHtml(l.mission.titre) + '</span></span>' +
-      '<span class="tag statut">' + tag + '</span>' +
+      (resultat ? '<span class="tag statut' + (statut === 'jouee' ? ' ko' : ' ok') + '">' + resultat + '</span>' : '') +
       ICONES.droite + '</button></li>';
   }
 
-  html += '<li class="bilan"><button aria-label="Bilan, 10 questions, facultatif" onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
+  // Bilan : une ligne, le caractère optionnel dans le texte (pas de badge).
+  html += '<li class="bilan"><button aria-label="Bilan, 10 questions, Optionnel" onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
     '<span class="etat">' + ICONES.cible + '</span>' +
-    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions</span></span><span class="tag statut">Facultatif</span>' +
+    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions · Optionnel</span></span>' +
     ICONES.droite + '</button></li>';
   return html;
 }

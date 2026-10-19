@@ -62,7 +62,7 @@ Ce répertoire centralise les **48 spécifications** fonctionnelles et UX du pro
 | 45 | [Tout retour depuis un écran de résultat mène au Chemin, leçon dépliée](./SPEC-45.md) | P1 | Implémentée — validation à confirmer |
 | 46 | [Acquis de l'ancienne version : distincts des unités réellement terminées](./SPEC-46.md) | P0 | Implémentée — validation à confirmer |
 | 47 | [Leçon repliée : titre lisible, pastille « À rafraîchir » sous le titre](./SPEC-47.md) | P1 | Implémentée — validation à confirmer |
-| 48 | [Harmonisation visuelle et sémantique du Chemin](./SPEC-48.md) | P1 | À faire |
+| 48 | [Harmonisation visuelle et sémantique du Chemin](./SPEC-48.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

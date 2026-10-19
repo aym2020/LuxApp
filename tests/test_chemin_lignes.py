@@ -64,13 +64,12 @@ with sync_playwright() as p:
         mission = next(l for l in lignes if 'mission' in l['id'])
         assert mission['lignes'] <= 2 + (texte > 100), mission  # plus de colonne d'un mot par ligne
         bilan = lignes[-1]
-        assert bilan['lignes'] <= 2, bilan
-        # Spec 30 : mission et bilan ont la même structure — statut à droite du
-        # texte (393 px et plus), ou sous le titre pour les deux (carte étroite)
-        a_droite = [l['tag']['left'] >= l['nom']['right'] - 1 for l in (mission, bilan)]
-        assert a_droite[0] == a_droite[1], (mission, bilan)
-        if largeur >= 393 and texte == 100:
-            assert a_droite[0], mission
+        # Spec 48 : « Bilan · 10 questions · Optionnel » en texte, sans badge
+        assert bilan['lignes'] <= 2 + (texte > 100) and bilan['tag'] is None and bilan['mots'].endswith('Optionnel'), bilan
+        # Spec 48 : pas de compteur « n/20 » ; un résultat seulement après une partie jouée
+        assert '/' not in pg.inner_text('#chemin-u-1-mission'), pg.inner_text('#chemin-u-1-mission')
+        if mission['tag'] and largeur >= 393 and texte == 100:
+            assert mission['tag']['left'] >= mission['nom']['right'] - 1, mission
         if largeur >= 393 and texte == 100:
             assert u1['tag']['left'] > u1['nom']['right'] and u1['tag']['top'] < u1['nom']['bottom'], 'étoiles à droite du titre'
         ok('%d px, texte %d %% : titres entiers, rien ne se recouvre, révision sous « 1 · Saluer », mission sur %d ligne(s)'
@@ -93,9 +92,9 @@ with sync_playwright() as p:
             assert pg.locator('#chemin-u-1-1 button').count() == 1  # un seul bouton par ligne
             assert pg.get_attribute('#chemin-u-1-1 button', 'aria-label') == '1 · Saluer, terminée, 3 étoiles sur 3, révision en cours'
             assert pg.locator('#chemin-u-1-1 .sous svg[aria-hidden="true"]').count() == 1  # ↻ décoratif
-            pg.click('#chemin-u-1-mission .tag')
+            pg.click('#chemin-u-1-mission .nom')
             assert pg.evaluate("document.querySelector('.view.active').id") in ('view-mission', 'view-msintro', 'view-plecon')
-            ok('unité 4 toujours recommandée ; toute la ligne de la mission s\'ouvre, statut compris')
+            ok('unité 4 toujours recommandée ; toute la ligne de la mission s\'ouvre')
             # Spec 30 : en-tête de mission — titre de la mission en entier, vies et compteur dessous
             pg.evaluate("openParcoursLecon(lecons.find(l => l.id === 1)); openMission()")
             t = pg.evaluate("""() => { const e = document.getElementById('ms-titre'), v = document.getElementById('ms-vies').getBoundingClientRect();

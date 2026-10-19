@@ -51,24 +51,24 @@ with sync_playwright() as p:
     avant = pg.evaluate("JSON.stringify(getProgress()[%d])" % L)
     s = etat_chemin(pg)
     assert s['v1'] and s['acquise'] and s['ancienne'] and not s['complete'], s
-    assert s['statut'] == 'Acquise · v1' and s['bouton'] == 'Faire les nouvelles unités', s
+    assert s['statut'] == 'Acquise précédemment' and s['bouton'] == 'Faire les nouvelles unités', s
     assert s['unitesFaites'] == 0 and s['etapes'][0] == 0, 'aucune unité ni étoile inventée'
     assert pg.locator('#chemin-lecon-%d .pastille-ok, #chemin-lecon-%d .etoiles' % (L, L)).count() == 0
-    assert '1 acquise · v1' in s['entete'] and 'terminée' not in s['entete'], s['entete']
+    assert '1 acquise précédemment' in s['entete'] and 'terminée' not in s['entete'], s['entete']
     assert s['prog']['anciennes'] == 1 and s['prog']['terminees'] == 0 and s['prog']['pourcent'] == 0, s['prog']
     assert s['unitesTotal'] == 0, 'unités terminées : seulement les vraies'
     assert s['suivante'] != L, 'la leçon reste acquise : le parcours continue sans la refaire'
     pg.evaluate("id => basculerLeconChemin(id)", L)  # repliée
-    assert 'Acquise · v1' in pg.inner_text('#chemin-lecon-%d' % L)
+    assert 'Acquise précédemment' in pg.inner_text('#chemin-lecon-%d' % L) and 'v1' not in pg.inner_text('#lecon-list')
     assert pg.evaluate("JSON.stringify(getProgress()[%d])" % L) == avant, 'acquis v1 intacts'
     chiffres = pg.evaluate("chiffresHtml()")
-    assert '+1 v1' in chiffres and '<b>0 %</b>' in chiffres and '<b>0 / 8</b>' in chiffres, chiffres
+    assert '+1 acquise précédemment' in chiffres and '<b>0 %</b>' in chiffres and '<b>0 / 8</b>' in chiffres, chiffres
     pg.evaluate("ouvrirPlus()")
     tuiles = pg.locator('.plus-acquis span').all_inner_texts()
-    assert 'leçons acquises · v1' in tuiles, tuiles
+    assert 'leçons acquises précédemment' in tuiles, tuiles
     pg.evaluate("fermerPanneau(); openParcoursLecon(lecons.find(l => l.id === %d))" % L)
-    assert 'LEÇON ACQUISE (V1)' in pg.inner_text('#view-plecon')
-    ok('v1 acquise sans unité : « Acquise · v1 », « Faire les nouvelles unités », 0 unité / 0 %, '
+    assert 'LEÇON ACQUISE PRÉCÉDEMMENT' in pg.inner_text('#view-plecon')
+    ok('v1 acquise sans unité : « Acquise précédemment », « Faire les nouvelles unités », 0 unité / 0 %, '
        'pastille et tuile dédiées, leçon toujours acquise (parcours ouvert), données intactes')
 
     # Le bouton ouvre bien la 1re nouvelle unité
@@ -80,12 +80,12 @@ with sync_playwright() as p:
     compte(pg, 'partiel')
     s = etat_chemin(pg)
     assert s['ancienne'] and s['unitesFaites'] == 1 and s['etapes'] == [1, 3], s
-    assert s['statut'] == 'Acquise · v1' and s['bouton'] == 'Faire les nouvelles unités', s
+    assert s['statut'] == 'Acquise précédemment' and s['bouton'] == 'Faire les nouvelles unités', s
     assert s['prog']['pourcent'] == round(1 / s['prog']['total'] * 100) and s['unitesTotal'] == 1, s
     assert pg.locator('#chemin-u-%d-1 .ok, #chemin-u-%d-1.ok' % (L, L)).count() + pg.locator('#chemin-u-%d-2.ok' % L).count() <= 1
     pg.evaluate("id => basculerLeconChemin(id)", L)
-    assert 'Acquise · v1 · 1/3' in pg.inner_text('#chemin-lecon-%d' % L)
-    ok('partiellement avancé : toujours « v1 », 1/3 réel affiché, 1 unité comptée, pas 100 %')
+    assert 'Acquise précédemment · 1/3 étapes' in pg.inner_text('#chemin-lecon-%d' % L)
+    ok('partiellement avancé : toujours « Acquise précédemment », 1/3 réel affiché, 1 unité comptée, pas 100 %')
 
     # ── 3. Compte ayant tout terminé en v2 ──
     compte(pg, 'complet')

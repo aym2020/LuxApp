@@ -70,8 +70,8 @@ with sync_playwright() as p:
     pg.click('#view-pintro [data-retour]'); pg.wait_for_timeout(200)
     assert actif(pg, 'view-lessons')
     ok('J\'ai compris → 1re unité → Retour : chemin, plus l\'introduction (spec 38)')
-    assert cta(pg, 1) == 'Découvrir'
-    ok('introduction confirmée mais rien commencé : toujours « Découvrir »')
+    assert cta(pg, 1) == 'Commencer'
+    ok('introduction confirmée mais rien commencé : « Commencer » (spec 48)')
 
     # Chemin → unité 2 directement → Retour : chemin, unité 2 visible
     pg.click('#chemin-u-1-2 button')

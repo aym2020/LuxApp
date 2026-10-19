@@ -17,7 +17,7 @@
      .cta-fixe          bandeau fixe en bas portant L'action principale (résultats,
                         introduction d'unité) ; le contenu garde 96 px de marge en bas
    Étiquettes et badges
-     .pc-mini-label .etiquette(.or) .badge(.fait) .pastille(.v/.o) .lecon-pill
+     .pc-mini-label .etiquette(.or) .badge(.fait) .pastille(.v/.o/.a) .lecon-pill
    ═════════════════════════════════════════════════════════════════════════════ */
 
 .back-btn {
@@ -88,6 +88,7 @@
 .pastille i { width: 8px; height: 8px; border-radius: 50%; }
 .pastille.v { background: var(--vert-fond); color: var(--correct); } .pastille.v i { background: var(--correct); }
 .pastille.o { background: var(--or-fond); color: var(--accent); } .pastille.o i { background: var(--accent); }
+.pastille.a { background: var(--couleur-acquis-fond); color: var(--couleur-acquis); } .pastille.a i { background: var(--couleur-acquis); } /* acquise précédemment (spec 48) */
 
 /* Bandeau fixe en bas : l'action principale toujours visible (zone de sécurité comprise) */
 .cta-fixe {
