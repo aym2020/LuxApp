@@ -2505,3 +2505,30 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
   outline:2px solid var(--couleur-action); outline-offset:2px;
 }
 @media(max-width:360px) { .chemin .pas .chemin-ameliorer { flex-wrap:wrap; } }
+
+/* SPEC 62 — Invité : rappel compact et accès immédiat au compte. */
+.ac-invitation-compte {
+  display:flex; flex-direction:column; gap:10px; padding:14px 15px;
+  border:1px solid var(--couleur-or-bord); border-radius:16px;
+  background:var(--couleur-or-fond);
+}
+.ac-invitation-entete { display:flex; align-items:center; gap:9px; }
+.ac-invitation-entete strong { font-size:1rem; font-weight:800; color:var(--couleur-texte); }
+.ac-invitation-entete > span { color:var(--couleur-action); font-size:1.2rem; }
+.ac-invitation-compte p { color:var(--couleur-texte-2); font-size:var(--fs-sec); line-height:1.5; }
+.ac-invitation-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.ac-invitation-actions button {
+  min-height:44px; padding:9px 12px; font-family:var(--font);
+  font-size:var(--fs-sec); font-weight:700; border-radius:10px;
+  cursor:pointer; flex:1 1 140px;
+}
+.ac-invitation-creer { background:var(--couleur-action); border:1px solid var(--couleur-action); color:var(--couleur-sur-or); }
+.ac-invitation-connexion { background:transparent; border:1px solid var(--couleur-bord-2); color:var(--couleur-texte); }
+.auth-import {
+  display:flex; align-items:flex-start; gap:10px; width:100%;
+  color:var(--couleur-texte-2); font-size:var(--fs-sec);
+  line-height:1.4; cursor:pointer; padding:5px 0;
+}
+.auth-import input { width:19px; height:19px; flex:none; accent-color:var(--couleur-action); }
+.ac-invitation-actions button:focus-visible,.auth-import:focus-within { outline:2px solid var(--couleur-action); outline-offset:2px; }
+@media(max-width:360px) { .ac-invitation-compte { padding:12px; } }
