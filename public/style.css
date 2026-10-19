@@ -297,6 +297,15 @@ header {
 }
 .ecr-btn-validate:disabled { opacity: .35; cursor: default; }
 
+/* SPEC 59 : le résultat de la validation reste visible au-dessus du clavier. */
+#view-session #session-feedback {
+  scroll-margin-top: 5.5rem;
+  scroll-margin-bottom: 4.5rem;
+}
+#view-session .session-body {
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+
 .ecr-feedback {
   width: 100%; margin-top: .6rem; padding: 1rem 1.1rem;
   border-radius: var(--r); font-size: var(--fs-sec); line-height: 1.6;
