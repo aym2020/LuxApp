@@ -27,6 +27,8 @@ PORT=3456 node server.js &       # serveur de test
 | `node tests/test_correction.js` | Spec 24 : coquille ou erreur (inversions, touches voisines, articles, négations…) | 1 s |
 | `python3 tests/test_mission_vies.py` | Spec 23 : 3 vies, réponses autonomes, Tente ta chance, coquille en écriture | ~20 s |
 | `python3 tests/test_retours.py` | Specs 25 et 28 : Accueil, Retour, Retour à la leçon (cadrage sous l'en-tête), écran de résultats | ~40 s |
+| `python3 tests/test_chemin_cartes.py` | Specs 47-48 : cartes du chemin (grille commune, chevron, surfaces neutres), texte 100 / 130 / 200 %, progression intacte | ~15 s |
+| `python3 tests/test_examens.py` | Spec 48 : sujets, passage et résultat d'examen harmonisés (pas de couleur inline, or = action, score vert / rouge, Retour) | ~5 s |
 | `python3 tests/test_chemin_lignes.py` | Spec 29 : lignes du chemin compactes, rien ne se recouvre de 320 à 430 px et en texte agrandi | ~20 s |
 | `python3 tests/test_mission_validation.py` | Spec 32 : mission réussie (≥ 1 vie) = leçon validée, sans étoile inventée ; mission perdue = pas de raccourci ; acquis historiques gardés | ~20 s |
 | `python3 tests/test_missions_10.py` | Spec 34 : les 24 missions jouées en entier, 10 réponses chacune, toutes acceptées | ~1 min |

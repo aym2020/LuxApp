@@ -194,6 +194,7 @@ function restaurerEcran(e, cible) {
     renderLessons();
   } else if (e.vue === 'view-plecon') renderParcoursLecon();
   else if (e.vue === 'view-msintro') renderIntroMission();
+  else if (e.vue === 'view-examens') renderExamens(); // meilleur score à jour après un sujet
   showView(e.vue);
   enRestauration = false;
 

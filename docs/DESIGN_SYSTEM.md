@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 1.10 | 2026-10-19 | Examens (passage, résultat, questions aléatoires) : `.pc-btn` pour la navigation, or uni partout (plus de dégradé or → ambre sur les boutons), score vert / rouge par classes (`examClasse`), étiquettes neutres, lettres de choix neutres, token `--couleur-bord-fort` |
 | 1.9 | 2026-10-19 | Spec 48 appliquée : grille commune des cartes du Chemin, surfaces neutres, libellés canoniques (Chemin, leçon, accueil, examens), cartes de sujets `.ex-carte`, score d'examen vert / rouge, `.pastille.a` ; `.lecon-card` supprimé |
 | 1.8 | 2026-10-19 | Code couleur unique pour toute l'app, couleurs de leçon retirées de l'interface, libellés de statut canoniques (« Acquise précédemment »…), structure commune des cartes, règles des indicateurs et des actions, token gris bleuté `--couleur-acquis` (spec 48) |
 | 1.7 | 2026-10-18 | Chemin continu : bloc « Terminées » supprimé, carte de leçon acquise verte, unité `par-mission` (cercle vert non rempli) (spec 33) |
@@ -56,6 +57,7 @@ Ordre de chargement : `design-tokens.css` → `components.css` → `style.css`. 
 | Carte | `--couleur-surface-1` / `--couleur-bord-1` | #1a1916 / #2a2926 |
 | Carte principale | `--couleur-surface-2` / `--couleur-bord-2` | #26241f / #3d3a31 |
 | Bouton secondaire, puce, champ | `--couleur-bord-3` | #3a3730 |
+| Contour d'un champ à remplir (trou d'examen, mot) | `--couleur-bord-fort` | #5a5750 |
 | Texte / secondaire / discret | `--couleur-texte` / `-2` / `-3` | #f6f1e9 / #c8bda8 / #aaa090 |
 | Action | `--couleur-action` | #f5cf4d |
 | Texte sur action | `--couleur-sur-action`, `--couleur-sur-or` | #0f0e0c, #1a1505 |
@@ -75,6 +77,7 @@ Les anciens noms (`--accent`, `--bg`, `--muted`…) restent comme **alias** dans
 | Composant | Classe | Variantes / états |
 | --- | --- | --- |
 | Carte de liste (sujet d'examen) | `.ex-carte` | grille : texte \| chevron en haut à droite ; infos en une ligne de texte, score vert / rouge |
+| Navigation d'examen | `.ex-nav` + `.pc-btn` / `.pc-btn.primary` | « Précédent » secondaire, « Corriger / Suivant » principal |
 | Bouton | `.pc-btn` (48 px) | `.primary` (or), `.ok` (vert, continuer après réussite), `.ko` (rouge, après erreur), `.ghost`, `.plus`, `.wide`, `.big`, `:disabled`, `:active` |
 | Grand bouton d'action | `.btn-jaune` (56 px) | un seul libellé, selon l'état réel (section 5 bis) : Découvrir, Commencer, Continuer, Reprendre, Faire les nouvelles unités, Revoir |
 | Puce | `.pc-chip` | `.active`, `.plus`, `.plus.fait` |
@@ -180,5 +183,6 @@ Toute nouvelle fonctionnalité ou refonte :
 - **Introduction de mission** : composition plus immersive (titre serif, objectifs en orange).
 - **Cartes recto / verso (flashcards)** : face française en bleu, face luxembourgeoise en or. L'or y désigne la langue cible, pas une action : exception tolérée tant que l'écran existe.
 - **Couleur de leçon `--lc` encore utilisée** (à retirer au fil des modifications) : écran Réviser et lexique (`revision.js` : anneaux, titres de leçon de la liste), `.pc-lc` dans `style.css`.
-- **Sélection pendant un examen** (case de trou active, réponse choisie, partie entamée) : en or, comme l'activité en cours.
+- **Sélection pendant un examen** (case de trou active, réponse choisie, mot sélectionné, partie entamée) : en or, comme l'activité en cours.
+- **Bouton FR des corrections d'examen** : bleu (information : traduction).
 - **Valeurs codées en dur restantes dans `style.css`** (gris proches de `--couleur-bord-3` : #3a3935, #34322d, #2a2823…) : à remplacer par des tokens au fil des modifications des écrans concernés.

@@ -101,7 +101,7 @@ with sync_playwright() as p:
                     pg.evaluate("openExamens()")
                     assert pg.locator('#examens-list .ex-carte').count() >= 1
                     assert pg.locator('#examens-list [style], #examens-list .lecon-pill').count() == 0
-                    assert pg.evaluate("examColor(70) === examColor(100) && examColor(59) !== examColor(60)")  # vert dès 60 %, rouge en dessous
+                    assert pg.evaluate("examClasse(60) === 'ok' && examClasse(100) === 'ok' && examClasse(59) === 'ko'")  # vert dès 60 %, rouge en dessous
                     pg.evaluate("goLessons()")
                     assert pg.evaluate("JSON.stringify([getProgress(), getStatsStore(), getWrongStore()])") == avant, 'progression modifiée'
                 ctx.close()

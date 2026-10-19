@@ -429,7 +429,7 @@
   <!-- ══ EXAMENS : LISTE DES SUJETS ═══════════════════════════════════════════ -->
   <div id="view-examens" class="view">
     <div class="lecon-header">
-      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Accueil</span></button>
       <div class="lecon-header-info">
         <span class="lecon-num">EXAMENS · <span id="examens-niveau"></span></span>
         <span class="lecon-titre">Choisis un sujet</span>
@@ -441,7 +441,7 @@
   <!-- ══ EXAMEN : PASSAGE D'UN SUJET ══════════════════════════════════════════ -->
   <div id="view-examen" class="view">
     <div class="lecon-header">
-      <button class="back-btn" onclick="quitExamen()">← Sujets</button>
+      <button class="back-btn" data-retour onclick="quitExamen()">← <span class="retour-txt">Sujets</span></button>
       <div class="lecon-header-info">
         <span class="lecon-num" id="ex-num"></span>
         <span class="lecon-titre" id="ex-titre"></span>
@@ -457,8 +457,8 @@
     <div class="ex-bottom">
       <div class="ex-tray hidden" id="ex-tray"></div>
       <div class="ex-nav">
-        <button class="ex-nav-btn" id="ex-prev" onclick="examPrev()">Précédent</button>
-        <button class="ex-nav-btn primary" id="ex-next" onclick="examNext()">Suivant</button>
+        <button class="pc-btn ex-nav-btn" id="ex-prev" onclick="examPrev()">Précédent</button>
+        <button class="pc-btn primary ex-nav-btn" id="ex-next" onclick="examNext()">Suivant</button>
       </div>
     </div>
   </div>
@@ -466,7 +466,7 @@
   <!-- ══ EXAMEN : SCORE + CORRECTION ══════════════════════════════════════════ -->
   <div id="view-examen-result" class="view">
     <div class="lecon-header">
-      <button class="back-btn" onclick="openExamens()">← Sujets</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Sujets</span></button>
       <div class="lecon-header-info">
         <span class="lecon-num">RÉSULTAT</span>
         <span class="lecon-titre" id="exr-titre"></span>

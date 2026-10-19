@@ -31,6 +31,7 @@
   --couleur-bord-1: #2a2926;      /* carte */
   --couleur-bord-2: #3d3a31;      /* carte principale */
   --couleur-bord-3: #3a3730;      /* bouton secondaire, puce, champ */
+  --couleur-bord-fort: #5a5750;   /* contour d'un champ à remplir (trou d'examen, puce de mot) */
 
   /* ── Textes ── */
   --couleur-texte: #f6f1e9;

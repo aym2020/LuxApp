@@ -91,7 +91,7 @@ header {
 .progress-wrap { flex: 1; display: flex; align-items: center; gap: .6rem; width: 100%; }
 .progress-wrap span { font-size: var(--fs-micro); color: var(--muted); font-weight: 700; white-space: nowrap; }
 .progress-bar { flex: 1; height: 3px; background: var(--couleur-bord-1); border-radius: 999px; overflow: hidden; }
-.progress-bar div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 999px; transition: width .35s ease; }
+.progress-bar div { height: 100%; background: var(--couleur-action); border-radius: 999px; transition: width .35s ease; }
 
 .dir-btn {
   font-size: var(--fs-micro); font-weight: 700; font-family: var(--title);
@@ -187,7 +187,7 @@ header {
 }
 .question-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: var(--couleur-bord-2); /* spec 48 : liseré neutre, l'or reste à l'action */
 }
 .question-label { font-size: var(--fs-micro); color: var(--muted-strong); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .6rem; }
 .question-word  {
@@ -217,7 +217,7 @@ header {
   width: 26px; height: 26px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 8px;
-  background: rgba(245,207,77,.14); color: var(--accent);
+  background: var(--couleur-bord-3); color: var(--couleur-texte-2); /* spec 48 : neutre tant que rien n'est choisi */
   font-size: var(--fs-sec); font-weight: 800;
   transition: all .12s;
 }
@@ -237,7 +237,7 @@ header {
 .result-card > div { font-size: 1.4rem; font-weight: 800; color: var(--accent); margin-bottom: .9rem; }
 .result-card button {
   padding: .75rem 2rem;
-  background: linear-gradient(100deg, var(--accent), var(--accent-2)); color: #1a1408;
+  background: var(--couleur-action); color: var(--couleur-sur-or);
   border: none; border-radius: 999px;
   font-family: var(--font); font-weight: 800; font-size: .9rem; cursor: pointer;
   min-height: 44px;
@@ -290,7 +290,7 @@ header {
 
 .ecr-btn-validate {
   width: 100%; padding: .85rem;
-  background: linear-gradient(100deg, var(--accent), var(--accent-2)); color: #1a1408;
+  background: var(--couleur-action); color: var(--couleur-sur-or);
   border: none; border-radius: var(--r);
   font-family: var(--font); font-weight: 800; font-size: .95rem;
   cursor: pointer; min-height: 48px; transition: opacity .15s;
@@ -512,10 +512,8 @@ header {
   cursor: pointer; text-align: center; transition: all .15s;
 }
 .dash-btn:active { background: var(--surface2); }
-.dash-btn.primary {
-  background: linear-gradient(100deg, var(--accent), var(--accent-2));
-  color: #1a1408; border: none; font-weight: 800; font-size: 1rem;
-  box-shadow: 0 6px 22px rgba(245,207,77,.22);
+.dash-btn.primary { /* spec 48 : l'action principale est or uni, comme .pc-btn.primary */
+  background: var(--couleur-action); color: var(--couleur-sur-or); border: none; font-weight: 800; font-size: 1rem;
 }
 
 /* Boutons d'action colorés par sens : barre de couleur à gauche */
@@ -599,7 +597,7 @@ header {
 /* ── EXAMENS : SUJETS COMPLETS (voir examens.js) ────────────────────────── */
 .ex-empty {
   text-align: center; font-size: var(--fs-sec); color: var(--muted-strong);
-  padding: 1rem; border: 1px dashed #3a3935; border-radius: var(--r);
+  padding: 1rem; border: 1px dashed var(--couleur-bord-3); border-radius: var(--r);
 }
 
 /* La vue occupe tout l'écran pour que la barre du bas reste en bas. */
@@ -609,20 +607,22 @@ header {
 .ex-steps { display: flex; gap: .4rem; padding: .7rem 1rem 0; }
 .ex-step {
   flex: 1; min-height: 36px; border-radius: 10px; cursor: pointer;
-  background: var(--surface); border: 1px solid #34322d; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--couleur-bord-3); color: var(--muted);
   font-family: var(--font); font-size: var(--fs-sec); font-weight: 800;
 }
+/* Or = en cours (entamée, remplie) ; corrigée : vert (réussie) ou rouge */
 .ex-step.started { border-color: var(--accent); color: var(--accent); }
-.ex-step.done    { background: rgba(245,207,77,.16); border-color: var(--accent); color: var(--accent); }
-.ex-step.current { box-shadow: 0 0 0 2px var(--text); color: var(--text); }
-/* Partie corrigée : la couleur (vert, or, rouge) est posée par examens.js. */
+.ex-step.done    { background: var(--couleur-or-fond); border-color: var(--accent); color: var(--accent); }
 .ex-step.checked { background: var(--surface); }
+.ex-step.checked.ok { border-color: var(--couleur-reussi); color: var(--couleur-reussi); }
+.ex-step.checked.ko { border-color: var(--couleur-erreur); color: var(--couleur-erreur); }
+.ex-step.current { box-shadow: 0 0 0 2px var(--text); }
 /* Correction affichée pendant le sujet : pas de trait de séparation au-dessus. */
 .ex-body .exr-part { border-top: 0; padding-top: 0; }
 
 .ex-body { padding: 1rem 1rem 1.5rem; display: flex; flex-direction: column; gap: .9rem; }
 
-.ex-section { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--info); }
+.ex-section { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--couleur-texte-3); }
 .ex-part-titre { font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; margin-top: .15rem; }
 .ex-consigne { font-size: .88rem; color: var(--muted-strong); margin-top: .25rem; }
 
@@ -635,27 +635,27 @@ header {
 /* Texte seulement à lire (pas de trous) : interligne normal. */
 .ex-text.read { line-height: 1.65; }
 /* Étiquette devant une ligne : personnage du dialogue, heure, jour… */
-.ex-label { font-size: var(--fs-sec); font-weight: 800; color: var(--info); margin-right: .45rem; }
+.ex-label { font-size: var(--fs-sec); font-weight: 800; color: var(--couleur-texte-2); margin-right: .45rem; }
 .ex-bullet { padding-left: 1.1rem; position: relative; line-height: 1.6; }
-.ex-bullet::before { content: '•'; position: absolute; left: .2rem; color: var(--info); }
+.ex-bullet::before { content: '•'; position: absolute; left: .2rem; color: var(--couleur-texte-3); }
 .ex-chapeau { font-weight: 800; line-height: 1.45; margin-bottom: .7rem; padding-bottom: .7rem; border-bottom: 1px solid var(--couleur-bord-1); }
 
 /* Trou à remplir */
 .ex-blank {
   display: inline-flex; align-items: center; gap: .35rem; vertical-align: middle;
   min-width: 72px; min-height: 34px; margin: 2px 2px; padding: .1rem .55rem .1rem .3rem;
-  background: rgba(255,255,255,.04); border: 1px dashed #5a5750; border-radius: 9px;
+  background: rgba(255,255,255,.04); border: 1px dashed var(--couleur-bord-fort); border-radius: 9px;
   color: var(--text); font-family: var(--font); font-size: .95rem; font-weight: 700;
   line-height: 1.3; cursor: pointer; text-align: left;
 }
-.ex-blank.filled { border-style: solid; border-color: #5a5750; color: var(--accent); }
-.ex-blank.active { border-style: solid; border-color: var(--accent); background: rgba(245,207,77,.12); box-shadow: 0 0 0 2px rgba(245,207,77,.25); }
+.ex-blank.filled { border-style: solid; border-color: var(--couleur-bord-fort); color: var(--couleur-texte); }
+.ex-blank.active { border-style: solid; border-color: var(--accent); background: var(--couleur-or-fond); box-shadow: 0 0 0 2px var(--couleur-or-bord); }
 .ex-blank-num, .ex-q-num {
   flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
   width: 20px; height: 20px; border-radius: 999px;
-  background: #34322d; color: var(--muted-strong); font-size: var(--fs-micro); font-weight: 800;
+  background: var(--couleur-bord-3); color: var(--muted-strong); font-size: var(--fs-micro); font-weight: 800;
 }
-.ex-blank.active .ex-blank-num { background: var(--accent); color: #1a1408; }
+.ex-blank.active .ex-blank-num { background: var(--accent); color: var(--couleur-sur-or); }
 
 /* Question à choix (vrai / faux, 3 réponses) */
 .ex-q {
@@ -668,12 +668,12 @@ header {
 .ex-opts.stack { flex-direction: column; }
 .ex-opt {
   flex: 1 1 auto; min-height: 46px; padding: .55rem .9rem;
-  background: var(--bg); border: 1px solid #3a3935; border-radius: 12px;
+  background: var(--bg); border: 1px solid var(--couleur-bord-3); border-radius: var(--rayon-bouton);
   color: var(--text); font-family: var(--font); font-size: .92rem; font-weight: 700;
   cursor: pointer; text-align: center;
 }
 .ex-opts.stack .ex-opt { text-align: left; }
-.ex-opt.selected { border-color: var(--accent); background: rgba(245,207,77,.14); color: var(--accent); }
+.ex-opt.selected { border-color: var(--accent); background: var(--couleur-or-fond); color: var(--accent); }
 
 /* Barre collée en bas : mots à placer + navigation */
 .ex-bottom {
@@ -682,27 +682,20 @@ header {
   padding: .7rem 1rem .8rem;
 }
 .ex-tray { margin-bottom: .7rem; }
-.ex-tray-titre { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: .45rem; }
+.ex-tray-titre { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--couleur-texte-3); margin-bottom: .45rem; }
 .ex-chips { display: flex; flex-wrap: wrap; gap: .45rem; }
 .ex-chip {
   min-height: 42px; padding: .45rem .85rem;
-  background: var(--surface); border: 1px solid #45423c; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--couleur-bord-fort); border-radius: var(--rayon-pilule);
   color: var(--text); font-family: var(--font); font-size: .92rem; font-weight: 700; cursor: pointer;
 }
-.ex-chip.selected { background: var(--accent); border-color: var(--accent); color: #1a1408; }
+.ex-chip.selected { background: var(--accent); border-color: var(--accent); color: var(--couleur-sur-or); }
 .ex-chip.used { opacity: .4; text-decoration: line-through; }
 
 .ex-nav { display: flex; gap: .6rem; }
-.ex-nav-btn {
-  flex: 1; min-height: 48px; border-radius: var(--r); cursor: pointer;
-  background: var(--surface); border: 1px solid #34322d; color: var(--text);
-  font-family: var(--font); font-size: .92rem; font-weight: 700;
-}
-.ex-nav-btn.primary {
-  flex: 2; border: none; color: #1a1408; font-weight: 800;
-  background: linear-gradient(100deg, var(--accent), var(--accent-2));
-}
-.ex-nav-btn:disabled { opacity: .3; cursor: default; }
+/* Boutons : composant .pc-btn (spec 48) ; ici seulement la répartition */
+.ex-nav-btn { flex: 1; }
+.ex-nav-btn.primary { flex: 2; }
 
 /* ── EXAMENS : RÉSULTAT + CORRECTION ────────────────────────────────────── */
 .exr-hero { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .6rem 0 .2rem; }
@@ -710,6 +703,14 @@ header {
   width: 150px; height: 150px; border-radius: 999px; padding: 11px;
   background: conic-gradient(var(--ring) calc(var(--pct) * 1%), var(--couleur-bord-1) 0);
 }
+/* Score : vert si réussi (60 % et plus), rouge sinon (spec 48) */
+.exr-ring.ok { --ring: var(--couleur-reussi); }
+.exr-ring.ko { --ring: var(--couleur-erreur); }
+.exr-mention.ok, .exr-badge.ok { color: var(--couleur-reussi); }
+.exr-mention.ko, .exr-badge.ko { color: var(--couleur-erreur); }
+.exr-bar.ok div { background: var(--couleur-reussi); }
+.exr-bar.ko div { background: var(--couleur-erreur); }
+.exr-actions { display: flex; flex-direction: column; align-items: stretch; gap: var(--sp-1); margin-top: var(--sp-2); }
 .exr-ring-in {
   width: 100%; height: 100%; border-radius: 999px; background: var(--bg);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -733,21 +734,21 @@ header {
   flex: 1; min-height: 40px; border: none; border-radius: 999px; cursor: pointer;
   background: none; color: var(--muted-strong); font-family: var(--font); font-size: var(--fs-sec); font-weight: 700;
 }
-.exr-filter button.active { background: var(--accent); color: #1a1408; }
+.exr-filter button.active { background: var(--accent); color: var(--couleur-sur-or); }
 
 .exr-part { display: flex; flex-direction: column; gap: .6rem; padding-top: .9rem; border-top: 1px solid var(--couleur-bord-1); }
 .exr-part-head { display: flex; justify-content: space-between; align-items: center; gap: .8rem; font-size: 1.1rem; font-weight: 800; }
-.exr-part-head small { display: block; font-size: var(--fs-micro); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--info); }
+.exr-part-head small { display: block; font-size: var(--fs-micro); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--couleur-texte-3); }
 .exr-badge { flex-shrink: 0; font-size: var(--fs-sec); font-weight: 800; padding: .25rem .7rem; border: 1px solid; border-radius: 999px; }
 
 /* Bouton FR : affiche la traduction de la partie corrigée */
 .exr-head-right { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
 .exr-fr-btn {
   min-height: 32px; padding: .2rem .7rem; border-radius: 999px; cursor: pointer;
-  background: none; border: 1px solid #45423c; color: var(--muted-strong);
+  background: none; border: 1px solid var(--couleur-bord-fort); color: var(--muted-strong);
   font-family: var(--font); font-size: var(--fs-sec); font-weight: 800; letter-spacing: .06em;
 }
-.exr-fr-btn.active { background: var(--info); border-color: var(--info); color: #10161c; }
+.exr-fr-btn.active { background: var(--info); border-color: var(--info); color: var(--couleur-fond); }
 /* Traduction cachée par défaut, visible quand la partie a la classe show-fr */
 .ex-fr {
   display: none; margin-top: .2rem; font-size: var(--fs-sec); font-weight: 500; font-style: italic;
@@ -761,7 +762,7 @@ header {
 .ex-fr-mini {
   display: inline-flex; align-items: center; vertical-align: middle;
   margin-left: .4rem; padding: .1rem .4rem; min-height: 22px;
-  background: none; border: 1px solid #45423c; border-radius: 6px; cursor: pointer;
+  background: none; border: 1px solid var(--couleur-bord-fort); border-radius: 6px; cursor: pointer;
   color: var(--muted); font-family: var(--font); font-size: var(--fs-micro); font-weight: 800; letter-spacing: .05em;
   line-height: 1;
 }

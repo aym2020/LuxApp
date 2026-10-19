@@ -407,6 +407,15 @@ Ne pas prolonger le chantier par des ajustements purement décoratifs sans bén�
 - Rond et trait gris bleuté (`--couleur-acquis`) pour « Acquise précédemment » ; « Sans faute » et « TERMINÉE / COMPLÈTE » en vert ; étiquettes d'en-tête des écrans secondaires en gris (plus en or).
 - Examens : cartes de sujets neutres (`.ex-carte`), infos sur une ligne de texte, meilleur score vert (≥ 60 %) ou rouge ; `examColor` à deux niveaux (vert / rouge, plus d'or) pour la liste, les cases de parties et le résultat.
 
+**Examens : passage et résultat** (2e lot, même jour)
+- Boutons : « Précédent » / « Corriger » / « Suivant » en `.pc-btn` (or uni, plus de dégradé) ; « Refaire ce sujet » `.pc-btn.primary` + lien « Autres sujets » (une seule action principale).
+- Couleurs par classes, plus de style inline : `examClasse()` (ok / ko) pour les cases de parties, l'anneau, la mention, les barres de sections et les pastilles de score. Parties entamées ou remplies : or (activité en cours).
+- Étiquettes neutres (section, personnages du dialogue, « TROU 2 SUR 8 », « PARTIE 1 · … ») ; mot placé dans un trou en texte normal (l'or seulement sur le trou actif) ; gris codés en dur remplacés par des tokens (nouveau `--couleur-bord-fort`).
+- Retour : boutons `data-retour` + `retour()` sur les trois écrans (l'écran réellement précédent, spec 15) ; la liste des sujets est réaffichée au retour (meilleur score à jour).
+- Questions aléatoires (écran de séance) : barre de progression et boutons or uni, liseré neutre, lettres A/B/C/D neutres. Également appliqué aux révisions, qui partagent cet écran ; `.dash-btn.primary` passe aussi en or uni.
+- Cases de parties : noms accessibles (« Partie 1, corrigée, 7 sur 8 »).
+- Test `tests/test_examens.py`, ajouté à la suite critique.
+
 **CSS** : un seul bloc « SPEC 48 » en fin de `style.css` (grille commune carte repliée / en-tête dépliée : numéro et titre | chevron en haut à droite, 2e rangée facultative) ; suppression des règles contradictoires des specs 17, 33, 46 et 47 et du composant `.lecon-card`, devenu inutilisé. `.pastille.a` dans `components.css`.
 
 **Tests** : `test_chemin_cartes.py` étendu (texte 100/130/200 %, chevron, surfaces neutres, absence de « v1 » et « À rafraîchir », sujets d'examen, progression intacte après navigation) ; libellés mis à jour dans `test_acquis_v1`, `test_chemin_lignes`, `test_decouverte`, `test_lot1`. Suite critique : verte.

@@ -95,14 +95,20 @@ function resetExamScores() {
   localStorage.removeItem(storageKey(EXAM_KEY));
 }
 
-// Couleur selon le pourcentage (spec 48) : vert = réussi (60 % et plus),
-// rouge = à retravailler. L'or reste réservé à l'action.
-function examColor(pct) {
-  return pct >= 60 ? 'var(--couleur-reussi)' : 'var(--couleur-erreur)';
+// État d'un score (spec 48) : 'ok' = réussi (60 % et plus, vert), 'ko' = à
+// retravailler (rouge). L'or reste réservé à l'action. La couleur vient du CSS.
+function examClasse(pct) {
+  return pct >= 60 ? 'ok' : 'ko';
 }
 
 // ─── ÉCRAN 1 : LISTE DES SUJETS ─────────────────────────────────────────────
 function openExamens() {
+  renderExamens();
+  showView('view-examens');
+}
+
+// Liste des sujets (aussi réaffichée au Retour : le meilleur score est à jour).
+function renderExamens() {
   document.getElementById('examens-niveau').textContent = niveauActif;
 
   const sujets = examensActifs();
@@ -121,8 +127,8 @@ function openExamens() {
     // pastilles) ; le meilleur score seulement si le sujet a été fait.
     let scoreHtml = '';
     if (best) {
-      const reussi = Math.round(best.best / best.total * 100) >= 60;
-      scoreHtml = '<div class="ex-carte-score ' + (reussi ? 'ok' : 'ko') + '">Meilleur score ' + best.best + ' / ' + best.total + '</div>';
+      const classe = examClasse(Math.round(best.best / best.total * 100));
+      scoreHtml = '<span class="ex-carte-score ' + classe + '">Meilleur score ' + best.best + ' / ' + best.total + '</span>';
     }
 
     html +=
@@ -149,7 +155,6 @@ function openExamens() {
     '</button>';
 
   document.getElementById('examens-list').innerHTML = html;
-  showView('view-examens');
 }
 
 // ─── ÉCRAN 2 : PASSAGE DU SUJET ─────────────────────────────────────────────
@@ -173,7 +178,7 @@ function startExamen(examId) {
 function quitExamen() {
   const started = examAnswers.some(part => part.some(a => a !== null));
   if (started && !confirm('Quitter ce sujet ? Tes réponses seront perdues.')) return;
-  openExamens();
+  retour(); // l'écran réellement précédent (spec 15), en général la liste des sujets
 }
 
 // Affiche la partie courante. Chaque partie se corrige avant de passer à la
@@ -237,25 +242,28 @@ function examPartScore(p) {
 }
 
 // Une case par partie : montre où on en est et permet de sauter à une partie.
-// Une partie corrigée prend la couleur de son score (vert, or ou rouge).
+// Partie corrigée : verte si réussie, rouge sinon ; entamée ou remplie : or
+// (activité en cours) ; partie affichée : entourée.
 function renderExamSteps() {
   let html = '';
   exam.parties.forEach((p, i) => {
     const answers = examAnswers[i];
     let cls = 'ex-step';
-    let style = '';
+    let etat = 'à faire';
     if (examChecked[i]) {
       const r = examPartScore(i);
-      const color = examColor(Math.round(r.score / r.total * 100));
-      cls += ' checked';
-      style = ' style="color:' + color + ';border-color:' + color + '"';
+      cls += ' checked ' + examClasse(Math.round(r.score / r.total * 100));
+      etat = 'corrigée, ' + r.score + ' sur ' + r.total;
     } else if (answers.every(a => a !== null)) {
       cls += ' done';
     } else if (answers.some(a => a !== null)) {
       cls += ' started';
     }
     if (i === examPart) cls += ' current';
-    html += '<button class="' + cls + '"' + style + ' onclick="examGoTo(' + i + ')">' + (i + 1) + '</button>';
+    if (!examChecked[i] && answers.every(a => a !== null)) etat = 'remplie';
+    else if (!examChecked[i] && answers.some(a => a !== null)) etat = 'commencée';
+    html += '<button class="' + cls + '" aria-label="Partie ' + (i + 1) + ', ' + etat + '"' +
+      (i === examPart ? ' aria-current="step"' : '') + ' onclick="examGoTo(' + i + ')">' + (i + 1) + '</button>';
   });
   document.getElementById('ex-steps').innerHTML = html;
 }
@@ -531,16 +539,16 @@ function examComputeResult() {
 function renderExamResult() {
   const pct = Math.round(examRes.score / examRes.total * 100);
   const erreurs = examRes.total - examRes.score;
-  const color = examColor(pct);
+  const classe = examClasse(pct);
   const mention = pct >= 80 ? 'Très bien' : pct >= 60 ? 'Réussi' : 'À retravailler';
 
   // Score global : anneau qui se remplit selon le pourcentage.
   let html =
     '<div class="exr-hero">' +
-      '<div class="exr-ring" style="--pct:' + pct + ';--ring:' + color + '">' +
+      '<div class="exr-ring ' + classe + '" style="--pct:' + pct + '">' +
         '<div class="exr-ring-in"><b>' + examRes.score + '</b><span>sur ' + examRes.total + '</span></div>' +
       '</div>' +
-      '<div class="exr-mention" style="color:' + color + '">' + mention + ' · ' + pct + ' %</div>' +
+      '<div class="exr-mention ' + classe + '">' + mention + ' · ' + pct + ' %</div>' +
       '<div class="exr-sub">Score sans l\'expression écrite ni l\'oral</div>' +
     '</div>';
 
@@ -554,7 +562,7 @@ function renderExamResult() {
           '<span>' + escHtml(s.nom) + '<small>' + escHtml(EXAM_SECTIONS_FR[s.nom] || '') + '</small></span>' +
           '<b>' + s.score + ' / ' + s.total + '</b>' +
         '</div>' +
-        '<div class="exr-bar"><div style="width:' + p + '%;background:' + examColor(p) + '"></div></div>' +
+        '<div class="exr-bar ' + examClasse(p) + '"><div style="width:' + p + '%"></div></div>' +
       '</div>';
   });
   html += '</div>';
@@ -577,8 +585,10 @@ function renderExamResult() {
   });
 
   html +=
-    '<button class="dash-btn primary" onclick="startExamen(\'' + exam.id + '\')">Refaire ce sujet</button>' +
-    '<button class="dash-btn" onclick="openExamens()">Autres sujets</button>';
+    '<div class="exr-actions">' +
+      '<button class="pc-btn primary wide" onclick="startExamen(\'' + exam.id + '\')">Refaire ce sujet</button>' +
+      '<button class="lien-or" onclick="retour()">Autres sujets</button>' +
+    '</div>';
 
   document.getElementById('exr-body').innerHTML = html;
 }
@@ -599,7 +609,7 @@ function examCorrectionHtml(part, p, r) {
         '<div><small>Partie ' + (p + 1) + ' · ' + escHtml(part.section) + '</small>' + escHtml(part.titre) + '</div>' +
         '<div class="exr-head-right">' +
           (examHasFr(part) ? '<button class="exr-fr-btn" onclick="examToggleFr(this)">FR</button>' : '') +
-          '<span class="exr-badge" style="color:' + examColor(pct) + ';border-color:' + examColor(pct) + '">' +
+          '<span class="exr-badge ' + examClasse(pct) + '">' +
             r.score + ' / ' + r.total + '</span>' +
         '</div>' +
       '</div>';
