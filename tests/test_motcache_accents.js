@@ -105,7 +105,7 @@ assert.equal(s.indices, 1);
 assert.equal(s.tuilesRetirees, 1);
 assert.equal(s.cases[1].etat, 'indice');
 assert.ok(s.html.includes('>ë</span>'));
-assert.equal(s.score, 5 / 6);
+assert.equal(s.score, 6 / 7); // Mëllech comporte sept lettres
 
 jeu.init('Mëllech');
 for (const c of 'Mellech') jeu.poser(c);
