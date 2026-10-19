@@ -255,10 +255,10 @@ async function updateAuthUI() {
       '</div>';
   } else {
     zone.innerHTML =
-      '<div class="auth-state">Progression locale uniquement</div>' +
+      '<div class="auth-state">Mode invité · progression locale uniquement</div>' +
       '<div class="auth-actions">' +
-        '<button class="auth-btn" onclick="showAuthForm(\'signin\')">Connexion</button>' +
-        '<button class="auth-btn" onclick="showAuthForm(\'signup\')">Créer un compte</button>' +
+        '<button class="auth-btn" onclick="showAuthForm(\'signin\')">J\'ai déjà un compte</button>' +
+        '<button class="auth-btn primary" onclick="showAuthForm(\'signup\')">Créer un compte</button>' +
       '</div>' +
       '<div id="auth-form" class="auth-form hidden"></div>';
   }
@@ -270,7 +270,11 @@ function showAuthForm(mode) {
   f.classList.remove('hidden');
   f.innerHTML =
     '<input id="auth-email" type="email" class="auth-input" placeholder="Email" autocomplete="email">' +
-    '<input id="auth-pass" type="password" class="auth-input" placeholder="Mot de passe" autocomplete="current-password">' +
+    '<input id="auth-pass" type="password" class="auth-input" placeholder="Mot de passe" autocomplete="' +
+      (mode === 'signup' ? 'new-password' : 'current-password') + '">' +
+    (mode === 'signin' && (aDejaPratique() || Object.keys(getProgress()).length)
+      ? '<label class="auth-import"><input type="checkbox" id="auth-import-local"> Ajouter mes progrès de cet appareil à ce compte</label>'
+      : '') +
     '<button class="auth-btn primary" onclick="handleAuth(\'' + mode + '\')">' +
       (mode === 'signup' ? 'Créer le compte' : 'Se connecter') +
     '</button>' +
@@ -297,6 +301,11 @@ async function handleAuth(mode) {
   if (!email || !pass) { msg.textContent = 'Email et mot de passe requis.'; return; }
   msg.textContent = '…';
 
+  // SPEC 62 : conserver la progression invitée avant l'authentification.
+  // Inscription = import ; compte existant = case à cocher explicitement.
+  const invite = currentStorageProfile === 'anonymous' ? getProgressPayload() : null;
+  const importer = mode === 'signup' ||
+    !!(document.getElementById('auth-import-local') && document.getElementById('auth-import-local').checked);
   const fn = mode === 'signup' ? signUp : signIn;
   const { data, error } = await fn(email, pass);
   if (error) { msg.textContent = friendlyAuthError(error); return; }
@@ -304,7 +313,14 @@ async function handleAuth(mode) {
   // Firebase ouvre la session directement (inscription comprise).
   // Connecté : profil isolé pour ce compte, puis fusion local + cloud.
   const user = await getCurrentUser();
-  if (user) setStorageProfile('user:' + user.uid);
+  if (user) {
+    setStorageProfile('user:' + user.uid);
+    // La fusion dans le profil du compte est effectuée sans effacer le profil
+    // invité. La synchronisation Firebase fusionnera ensuite le cloud existant.
+    if (invite && importer) {
+      applyProgressPayload(mergeLocalAndCloudProgress(getProgressPayload(), invite));
+    }
+  }
   await syncProgress();
   await updateAuthUI();
   renderDashboard();
