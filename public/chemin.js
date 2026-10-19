@@ -316,6 +316,26 @@ function libelleMissionChemin(lecon) {
   return regle && regle[0] === lecon.mission.titre ? regle[1] : lecon.mission.titre;
 }
 
+// SPEC 60 : action distincte de la ligne de navigation, sur « Mon chemin ».
+function actionCorrectionCheminHtml(l, u) {
+  const best = getUnitBest(l.id, u.id);
+  const onclick = mode => 'onclick="ouvrirCorrectionUniteDepuisChemin(' +
+    l.id + ', ' + u.id + ', &quot;' + mode + '&quot;)"';
+  if (peutRattraperEtoile(l, u)) {
+    return '<button type="button" class="chemin-unite-action rattrapage" ' + onclick('rattrapage') +
+      ' aria-label="Rattraper ma troisième étoile, unité ' + u.id + ', ' + best + ' pour cent vers 90 pour cent">' +
+      '<span>★ Rattraper ma 3e étoile</span><small>' + best + ' % → 90 %</small></button>';
+  }
+  if (peutRevoirErreursUnite(l, u)) {
+    const detail = detailRattrapageValide(l, u.id);
+    return '<button type="button" class="chemin-unite-action erreurs" ' + onclick('erreurs') +
+      ' aria-label="Revoir mes erreurs, unité ' + u.id + '">' +
+      '<span>↻ Revoir mes erreurs</span><small>' +
+      (detail ? 'Questions à retravailler' : 'Difficultés déjà rencontrées') + '</small></button>';
+  }
+  return '';
+}
+
 // Unités du fil, mission, bilan : chacune ouvrable d'un appui (chevron à droite).
 // etapeActuelle : l'étape mise en avant (anneau doré).
 function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
@@ -353,7 +373,7 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
         u.id + '&nbsp;·&nbsp;' + escHtml(libelleUniteChemin(l, u)) + '</span></span>' +
       (fait ? '<span class="tag">' + etoilesHtml(nbEtoiles) + '</span>' : '') +
       ICONES.droite + sous +
-      '</button></li>';
+      '</button>' + actionCorrectionCheminHtml(l, u) + '</li>';
   });
 
   if (l.mission && l.scene) {
@@ -503,6 +523,26 @@ function ouvrirUniteDepuisChemin(leconId, uniteId) {
   if (run && run.leconId === leconId && run.uniteId === uniteId) reprendreRun();
   else if (libre && libre.leconId === leconId && libre.uniteId === uniteId) reprendreRun(true); // révision interrompue
   else openIntro(uniteId);
+}
+
+// SPEC 60 : accéder directement au défi/révision depuis Mon chemin.
+function ouvrirCorrectionUniteDepuisChemin(leconId, uniteId, mode) {
+  const l = trouverLecon(leconId);
+  const u = l && isParcoursLecon(l) && trouverUnite(l, uniteId);
+  if (!u || (mode !== 'rattrapage' && mode !== 'erreurs')) return;
+  if (mode === 'rattrapage' && !peutRattraperEtoile(l, u)) return;
+  if (mode === 'erreurs' && !peutRevoirErreursUnite(l, u)) return;
+  cheminLeconOuverte = leconId;
+  pLecon = l;
+  currentLecon = l;
+  const libre = loadRun(true);
+  if (libre && libre.leconId === leconId && libre.uniteId === uniteId &&
+      libre.mode === mode) {
+    reprendreRun(true);
+    return;
+  }
+  if (mode === 'rattrapage') lancerRattrapageEtoile(uniteId);
+  else lancerRevisionErreursUnite(uniteId);
 }
 
 function ouvrirLeconEtReprendre(l) {
