@@ -90,10 +90,12 @@ try:
         assert 'Leçon 25' in libelle and 'passé composé' in libelle, libelle
         ok('Plus → Outils de test : leçons avec leur numéro affiché (id 24 → « Leçon 25 · Le passé composé »), badge MODE TEST')
 
-        def lancer(lecon, ecran, scenario):
+        def lancer(lecon, ecran, scenario, sujet=None):
             pg.evaluate("fermerPanneau(); ouvrirRecette()")
             pg.select_option('#rec-lecon', str(lecon))
             pg.select_option('#rec-ecran', ecran)
+            if sujet:
+                pg.select_option('#rec-examen', sujet)
             pg.select_option('#rec-scenario', scenario)
             t = time.time()
             pg.click('#rec-voir')
@@ -166,13 +168,59 @@ try:
         ok('actualisation dans la recette : Chemin (leçon dépliée) et mission en cours conservés (spec 44)')
         ok('rattrapage → « Mon chemin » : chemin principal, Leçon 25 seule dépliée et cadrée')
 
+        # Résultats d'examens : vraies annales, mêmes calculs et mêmes boutons.
+        pg.evaluate("fermerPanneau(); ouvrirRecette()")
+        pg.select_option('#rec-ecran', 'examen')
+        assert pg.is_visible('#rec-examen') and not pg.is_visible('#rec-lecon')
+        assert pg.locator('#rec-examen option').count() >= 2
+        pg.evaluate("fermerPanneau()")
+        durees['examen-sans-faute'] = lancer(24, 'examen', 'sans-faute', 'a12-01')
+        assert vue(pg) == 'view-examen-result' and pg.evaluate("exam.id") == 'a12-01'
+        assert pg.evaluate("examRes.score === examRes.total")
+        assert 'Très bien' in pg.inner_text('#exr-body') and pg.evaluate("examRes.sections.length") > 1
+        assert pg.evaluate("examRes.sections.reduce((s, x) => s + x.score, 0) === examRes.score")
+        assert pg.evaluate("Object.keys(getExamScores()).length") == 1
+        ok('annale 1 · 100 % : vrai résultat et sections, meilleur score enregistré uniquement dans la recette')
+
+        durees['examen-tres-bien'] = lancer(24, 'examen', 'tres-bien', 'a12-01')
+        assert 80 <= pg.evaluate("Math.round(examRes.score / examRes.total * 100)") < 100
+        assert 'Très bien' in pg.inner_text('#exr-body')
+        durees['examen-reussi'] = lancer(24, 'examen', 'reussi', 'a12-01')
+        assert 60 <= pg.evaluate("Math.round(examRes.score / examRes.total * 100)") < 80
+        assert pg.locator('#exr-body .exr-ring.ok').count() == 1
+        assert pg.evaluate("examRes.score < examRes.total")
+        assert pg.evaluate("""() => exam.parties.every((p, i) => examItems(p).every((item, j) =>
+            examAnswers[i][j] === item.reponse || examAnswers[i][j] === null ||
+            (item.choix || p.banque || []).includes(examAnswers[i][j])))""")
+        pg.click('#exr-body .exr-filter button:has-text("Mes erreurs")')
+        assert pg.evaluate("examOnlyErrors") and pg.locator('#exr-body .exr-item.ok').count() == 0
+        pg.click('#exr-body .exr-filter button:has-text("Toute la correction")')
+        assert not pg.evaluate("examOnlyErrors")
+        ok('annale 1 · 70 % : vraies réponses/options, correction filtrable et scores cohérents')
+
+        durees['examen-echec'] = lancer(24, 'examen', 'echec', 'a12-01')
+        assert pg.evaluate("Math.round(examRes.score / examRes.total * 100)") < 60
+        assert pg.locator('#exr-body .exr-ring.ko').count() == 1
+        durees['examen-erreurs'] = lancer(24, 'examen', 'mes-erreurs', 'a12-02')
+        assert pg.evaluate("exam.id") == 'a12-02' and pg.evaluate("examOnlyErrors")
+        assert vue(pg) == 'view-examen-result' and pg.locator('#exr-body .exr-item.ok').count() == 0
+        pg.click('#exr-body button:has-text("Refaire ce sujet")')
+        assert vue(pg) == 'view-examen' and pg.evaluate("examAnswers.every(p => p.every(a => a === null))")
+        ok('annale 1 · échec ; annale 2 · filtre erreurs ; Refaire ce sujet repart de zéro')
+        durees['examen-retour'] = lancer(24, 'examen', 'reussi', 'a12-02')
+        pg.click('#exr-body .lien-or')
+        assert vue(pg) == 'view-examens' and pg.locator('#examens-list .ex-carte-score').count() >= 1
+        ok('Autres sujets : vrai retour à la liste et meilleur score fictif visible')
+
         # Isolation : rien vers le cloud ; « Quitter le test » efface la progression fictive
         assert not cloud, cloud
         pg.evaluate("recQuitter()")
         reste = pg.evaluate("Object.keys(localStorage).filter(k => k !== 'recette:choix')")
         assert pg.evaluate("getUnitBest(24, 1)") is None and pg.evaluate("getMissionBest(24)") is None, reste
+        assert pg.evaluate("Object.keys(getExamScores()).length") == 0
         pg.reload(); pg.wait_for_selector('#today')
         assert pg.evaluate("getMissionBest(24)") is None and pg.evaluate("recLireChoix().lecon") == 24
+        assert pg.evaluate("recLireChoix().examen") == 'a12-02' and not pg.evaluate("Object.keys(getExamScores()).length")
         ok('isolation : aucune requête cloud ; « Quitter le test » efface tout, rien ne revient au rechargement ; dernier choix gardé')
 
         lente = max(durees.values())
