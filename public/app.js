@@ -707,7 +707,10 @@ function validateSessionInput() {
   // Mot caché d'une unité « article à écrire » : la réponse est « eng Mapp » (S5).
   const corrige = item.type === 'motcache' ? carteACorriger(leconItem, item.q) : item.q;
   const target = corrige.lu;
-  const ok = normalize(val) === normalize(target);
+  // SPEC 50 : les variantes d'écriture restent valables aussi en révision.
+  // Le mot caché conserve sa comparaison habituelle.
+  const reconnue = item.type === 'ecriture' ? reponseReconnue(val, corrige) : null;
+  const ok = item.type === 'ecriture' ? !!reconnue : normalize(val) === normalize(target);
   const attention = attentionDe(item);
   const feedback = document.getElementById('session-feedback');
   feedback.classList.remove('hidden');
@@ -738,7 +741,10 @@ function validateSessionInput() {
 
   if (ok) {
     feedback.className = 'ecr-feedback ok';
+    const autres = item.type === 'ecriture' ? autresReponsesAcceptees(corrige, reconnue) : [];
     feedback.innerHTML = (session.essais ? '✅ Correct, au 2e essai' : '✅ Correct !') +
+      (autres.length ? '<span class="session-attention">Autre formulation correcte : ' +
+        autres.map(escHtml).join(' · ') + '</span>' : '') +
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   } else {
     feedback.className = 'ecr-feedback ko';
@@ -1191,7 +1197,9 @@ function validateEcriture() {
   ecrAnswered = true;
   const q = ecrCards[ecrIndex];
   const target = ecrDirLuFr ? q.fr : q.lu;
-  const ok = normalize(userVal) === normalize(target);
+  // SPEC 50 : variantes côté luxembourgeois seulement (français inchangé).
+  const reconnue = ecrDirLuFr ? null : reponseReconnue(userVal, q);
+  const ok = ecrDirLuFr ? normalize(userVal) === normalize(target) : !!reconnue;
   updateQuestionProgress(currentLecon.id, 'ecriture', q._qid, ok);
 
   input.disabled = true;
@@ -1203,7 +1211,10 @@ function validateEcriture() {
   if (ok) {
     ecrScore++;
     feedback.className = 'ecr-feedback ok';
-    feedback.innerHTML = '✅ Correct !';
+    const autres = ecrDirLuFr ? [] : autresReponsesAcceptees(q, reconnue);
+    feedback.innerHTML = '✅ Correct !' +
+      (autres.length ? '<span class="ecr-correct-answer">Autre formulation correcte : ' +
+        autres.map(escHtml).join(' · ') + '</span>' : '');
   } else {
     feedback.className = 'ecr-feedback ko';
     feedback.innerHTML = '❌ Pas tout à fait…<span class="ecr-correct-answer">' +
