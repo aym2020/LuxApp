@@ -93,6 +93,8 @@ function saveExamScore(examId, score, total) {
 
 function resetExamScores() {
   localStorage.removeItem(storageKey(EXAM_KEY));
+  // La réinitialisation générale supprime aussi les brouillons de rédaction.
+  examens.forEach(ex => localStorage.removeItem(storageKey('luxExamRedaction:' + ex.id)));
 }
 
 // Couleur selon le pourcentage : vert, or ou rouge.
