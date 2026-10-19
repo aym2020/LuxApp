@@ -193,6 +193,7 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   }
 
   html += '<button class="btn-jaune" onclick="lancerActionLecon(' + l.id + ')"><span>' + escHtml(action.libelle) + '</span>' + ICONES.fleche + '</button>' +
+    boutonAmeliorationChemin(l) +
     '<button class="lien-or" onclick="ouvrirTouteLaLeconDepuisChemin(' + l.id + ')">Voir toute la leçon' + ICONES.fleche + '</button>' +
     '</div></li>';
   return html;
@@ -316,25 +317,105 @@ function libelleMissionChemin(lecon) {
   return regle && regle[0] === lecon.mission.titre ? regle[1] : lecon.mission.titre;
 }
 
-// SPEC 60 : action distincte de la ligne de navigation, sur « Mon chemin ».
-function actionCorrectionCheminHtml(l, u) {
-  const best = getUnitBest(l.id, u.id);
-  const onclick = mode => 'onclick="ouvrirCorrectionUniteDepuisChemin(' +
-    l.id + ', ' + u.id + ', &quot;' + mode + '&quot;)"';
-  if (peutRattraperEtoile(l, u)) {
-    return '<button type="button" class="chemin-unite-action rattrapage" ' + onclick('rattrapage') +
-      ' aria-label="Rattraper ma troisième étoile, unité ' + u.id + ', ' + best + ' pour cent vers 90 pour cent">' +
-      '<span>★ Rattraper ma 3e étoile</span><small>' + best + ' % → 90 %</small></button>';
-  }
-  if (peutRevoirErreursUnite(l, u)) {
-    const detail = detailRattrapageValide(l, u.id);
-    return '<button type="button" class="chemin-unite-action erreurs" ' + onclick('erreurs') +
-      ' aria-label="Revoir mes erreurs, unité ' + u.id + '">' +
-      '<span>↻ Revoir mes erreurs</span><small>' +
-      (detail ? 'Questions à retravailler' : 'Difficultés déjà rencontrées') + '</small></button>';
-  }
-  return '';
+// SPEC 60 — un seul accès au bas de la leçon, pour les difficultés réelles.
+function actionsAmeliorationChemin(l) {
+  if (!isParcoursLecon(l)) return [];
+  const resultat = [];
+  unitesCoeur(l).forEach(u => {
+    const score = getUnitBest(l.id, u.id);
+    if (peutRattraperEtoile(l, u)) {
+      const snap = detailRattrapageValide(l, u.id);
+      const ids = snap ? questionsPerduesRattrapage(snap) : questionsDefiHistorique(l, u.id);
+      resultat.push({ unite: u, mode: 'rattrapage', score, nb: ids.length,
+        historique: !snap });
+    } else if (peutRevoirErreursUnite(l, u)) {
+      resultat.push({ unite: u, mode: 'erreurs', score,
+        nb: questionsRevisionErreursUnite(l, u.id).length,
+        historique: !detailRattrapageValide(l, u.id) });
+    }
+  });
+  return resultat;
 }
+function boutonAmeliorationChemin(l) {
+  const actions = actionsAmeliorationChemin(l);
+  if (!actions.length) return '';
+  const n = actions.length;
+  return '<button class="chemin-ameliorer" type="button" ' +
+    'onclick="ouvrirAmeliorationChemin(' + l.id + ')" ' +
+    'aria-label="Améliorer mes résultats, ' + n + ' unité' + (n > 1 ? 's' : '') +
+    ' à retravailler"><span>↗ Améliorer mes résultats</span><small>' +
+    n + ' unité' + (n > 1 ? 's' : '') + ' à retravailler</small></button>';
+}
+let cheminAmeliorationFocus = null;
+function ouvrirAmeliorationChemin(leconId) {
+  const l = trouverLecon(leconId);
+  if (!l) return;
+  const actions = actionsAmeliorationChemin(l);
+  if (!actions.length) return;
+  const panel = document.getElementById('chemin-amelioration-panel');
+  const liste = document.getElementById('chemin-amelioration-liste');
+  if (!panel || !liste) return;
+  cheminAmeliorationFocus = document.activeElement;
+  liste.innerHTML = actions.map(action => {
+    const rat = action.mode === 'rattrapage';
+    const nom = rat ? (action.historique ? 'Défi pour la 3e étoile' :
+      'Rattraper ma 3e étoile') : 'Revoir mes erreurs';
+    const aide = rat ? (action.historique ? 'Défi ciblé · 90 % requis' :
+      action.nb + ' question' + (action.nb > 1 ? 's' : '') +
+      ' perdue' + (action.nb > 1 ? 's' : '') + ' · ' + action.score + ' % → 90 %') :
+      action.nb + ' difficulté' + (action.nb > 1 ? 's' : '') +
+      ' · étoiles conservées';
+    return '<button type="button" class="chemin-amelioration-choix' +
+      (rat ? ' etoile' : '') + '" onclick="choisirAmeliorationChemin(' +
+      l.id + ', ' + action.unite.id + ', &quot;' + action.mode + '&quot;)">' +
+      '<span class="chemin-amelioration-unite">UNITÉ ' + action.unite.id +
+      ' · ' + escHtml(libelleUniteChemin(l, action.unite)) + '</span>' +
+      '<span class="chemin-amelioration-titre">' + nom + '</span><small>' +
+      aide + '</small></button>';
+  }).join('') + (actions.some(x => x.mode === 'rattrapage' && x.historique) ?
+    '<p class="chemin-amelioration-note">Ancienne partie : les erreurs exactes ne sont plus disponibles. Ce défi peut aussi contenir d’autres questions.</p>' : '');
+  document.getElementById('chemin-amelioration-titre').textContent =
+    'Leçon ' + numLecon(l) + ' · ' + actions.length +
+    ' unité' + (actions.length > 1 ? 's' : '') + ' à retravailler';
+  panel.classList.remove('hidden');
+  panel.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('no-scroll');
+  panel.querySelector('.chemin-amelioration-fermer').focus();
+  if (typeof programmerGarde === 'function') programmerGarde();
+}
+function fermerAmeliorationChemin(restaurer = true) {
+  const p = document.getElementById('chemin-amelioration-panel');
+  if (!p || p.classList.contains('hidden')) return;
+  p.classList.add('hidden');
+  p.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('no-scroll');
+  if (restaurer && cheminAmeliorationFocus && cheminAmeliorationFocus.focus)
+    cheminAmeliorationFocus.focus();
+  cheminAmeliorationFocus = null;
+  if (typeof programmerGarde === 'function') programmerGarde();
+}
+function choisirAmeliorationChemin(leconId, uniteId, mode) {
+  const l = trouverLecon(leconId);
+  if (!l || !actionsAmeliorationChemin(l).some(a =>
+      a.unite.id === uniteId && a.mode === mode)) return;
+  fermerAmeliorationChemin(false);
+  ouvrirCorrectionUniteDepuisChemin(leconId, uniteId, mode);
+}
+document.addEventListener('keydown', e => {
+  const p = document.getElementById('chemin-amelioration-panel');
+  if (!p || p.classList.contains('hidden')) return;
+  if (e.key === 'Escape') { e.preventDefault(); fermerAmeliorationChemin(); }
+  if (e.key === 'Tab') {
+    const boutons = [...p.querySelectorAll('button:not([disabled])')];
+    if (!boutons.length) return;
+    const debut = boutons[0], fin = boutons[boutons.length - 1];
+    if (e.shiftKey && document.activeElement === debut) {
+      e.preventDefault(); fin.focus();
+    } else if (!e.shiftKey && document.activeElement === fin) {
+      e.preventDefault(); debut.focus();
+    }
+  }
+});
 
 // Unités du fil, mission, bilan : chacune ouvrable d'un appui (chevron à droite).
 // etapeActuelle : l'étape mise en avant (anneau doré).
@@ -373,7 +454,7 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
         u.id + '&nbsp;·&nbsp;' + escHtml(libelleUniteChemin(l, u)) + '</span></span>' +
       (fait ? '<span class="tag">' + etoilesHtml(nbEtoiles) + '</span>' : '') +
       ICONES.droite + sous +
-      '</button>' + actionCorrectionCheminHtml(l, u) + '</li>';
+      '</button></li>';
   });
 
   if (l.mission && l.scene) {

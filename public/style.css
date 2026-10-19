@@ -2465,24 +2465,43 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
   .chemin .carte-lecon.compacte .titre { font-size: .98em; }
 }
 
-/* SPEC 60 : bouton de rattrapage sur Mon chemin, distinct de la ligne d'unité. */
-.chemin .pas .unites li > button.chemin-unite-action {
-  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
-  width: calc(100% - 28px); min-height: 44px; margin: 0 0 7px 28px;
-  padding: 7px 10px; gap: 2px; background: var(--surface-2);
-  border: 1px solid var(--couleur-or-bord); border-radius: 10px;
-  color: var(--couleur-action); font-size: var(--fs-sec); font-weight: 700;
-  line-height: 1.35; text-align: left; white-space: normal; cursor: pointer;
+
+/* SPEC 60 : un lien compact par leçon, plutôt qu'un bouton par unité. */
+.chemin .pas .chemin-ameliorer {
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  width:100%; min-height:44px; padding:8px 11px; margin:5px 0 0;
+  border:1px solid var(--couleur-bord-2); border-radius:12px;
+  background:transparent; color:var(--couleur-texte-2);
+  font-family:var(--font); font-size:var(--fs-sec); font-weight:700;
+  text-align:left; cursor:pointer;
 }
-.chemin .pas .unites li > button.chemin-unite-action.erreurs {
-  background: var(--surface-1); border-color: var(--couleur-bord-2);
-  color: var(--couleur-texte-2);
+.chemin .pas .chemin-ameliorer small {
+  color:var(--couleur-texte-3); font-size:var(--fs-micro);
+  font-weight:500; white-space:nowrap;
 }
-.chemin .pas .unites li > button.chemin-unite-action small {
-  font-size: var(--fs-micro); color: var(--couleur-texte-3); font-weight: 500;
+.chemin .pas .chemin-ameliorer:active { background:var(--surface-2); }
+.chemin-amelioration-panel .cp-feuille { max-height:min(85dvh,620px); }
+.chemin-amelioration-panel .cp-head { gap:12px; }
+.chemin-amelioration-panel .cp-titre { font-size:1rem; margin:.2rem 0; }
+.chemin-amelioration-fermer { min-width:44px; min-height:44px; flex:none; }
+.chemin-amelioration-liste { display:flex; flex-direction:column; gap:.65rem; padding:1rem 1.25rem; }
+.chemin-amelioration-choix {
+  display:flex; flex-direction:column; gap:5px; min-height:76px; width:100%;
+  padding:12px 14px; border:1px solid var(--couleur-bord-2);
+  border-radius:14px; background:var(--couleur-surface-1);
+  font-family:var(--font); color:var(--couleur-texte); text-align:left; cursor:pointer;
 }
-.chemin .pas .unites li > button.chemin-unite-action:active { background: var(--couleur-or-fond); }
-.chemin .pas .unites li > button.chemin-unite-action:focus-visible {
-  outline: 2px solid var(--couleur-action); outline-offset: 2px;
+.chemin-amelioration-choix.etoile { border-color:var(--couleur-or-bord); }
+.chemin-amelioration-unite {
+  color:var(--couleur-texte-3); font-size:var(--fs-micro);
+  font-weight:700; letter-spacing:.04em;
 }
-.pl-revoir-erreurs { border-color: var(--couleur-bord-2); color: var(--couleur-texte-2); }
+.chemin-amelioration-titre { font-size:1rem; font-weight:800; line-height:1.25; }
+.chemin-amelioration-choix.etoile .chemin-amelioration-titre { color:var(--couleur-action); }
+.chemin-amelioration-choix small { font-size:var(--fs-sec); color:var(--couleur-texte-2); font-weight:500; }
+.chemin-amelioration-note { color:var(--couleur-texte-3); font-size:var(--fs-sec); line-height:1.5; }
+.chemin-amelioration-choix:active { background:var(--couleur-or-fond); }
+.chemin-amelioration-choix:focus-visible,.chemin-ameliorer:focus-visible {
+  outline:2px solid var(--couleur-action); outline-offset:2px;
+}
+@media(max-width:360px) { .chemin .pas .chemin-ameliorer { flex-wrap:wrap; } }

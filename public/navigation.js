@@ -375,12 +375,16 @@ function remettreScroll(y) {
 
 // ─── BOUTON RETOUR DU TÉLÉPHONE (API History) ───────────────────────────────
 function superpositionOuverte() {
+  const amelioration = document.getElementById('chemin-amelioration-panel');
+  if (amelioration && !amelioration.classList.contains('hidden')) return true;
   const cours = document.getElementById('cours-panel');
   return !!document.querySelector('.panneau') || !!(cours && !cours.classList.contains('hidden'));
 }
 
 // Ferme le panneau ouvert, s'il y en a un. Renvoie true si quelque chose a été fermé.
 function fermerSuperposition() {
+  const amelioration = document.getElementById('chemin-amelioration-panel');
+  if (amelioration && !amelioration.classList.contains('hidden')) { fermerAmeliorationChemin(); return true; }
   if (document.querySelector('.panneau')) { fermerPanneau(); return true; }
   const cours = document.getElementById('cours-panel');
   if (cours && !cours.classList.contains('hidden')) { fermerCours(); return true; }

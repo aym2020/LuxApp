@@ -43,3 +43,7 @@
 - [ ] Vérification de la synchronisation réelle sur deux appareils.
 
 **Ne pas déclarer « Validée » sans ces deux dernières recettes.**
+
+## Complément — SPEC 60
+
+Le Chemin centralise ses options de correction dans la feuille « Améliorer mes résultats », au lieu de trois boutons par unité. **Seuls les items dont le score a baissé** sont repris quand le meilleur passage est disponible. Le défi d'anciennes parties sans snapshot est distinct : il peut également inclure d'autres questions et est présenté comme tel. Tous les seuils, étoiles et règles « Sans faute » de la SPEC 58 restent inchangés.

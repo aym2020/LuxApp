@@ -50,6 +50,22 @@
     <div class="chemin-page" id="lecon-list"></div>
   </div>
 
+  <!-- SPEC 60 — panneau compact de correction du Chemin. -->
+  <div id="chemin-amelioration-panel" class="cp chemin-amelioration-panel hidden" aria-hidden="true">
+    <div class="cp-fond" onclick="fermerAmeliorationChemin()"></div>
+    <div class="cp-feuille" role="dialog" aria-modal="true" aria-labelledby="chemin-amelioration-titre">
+      <div class="cp-poignee" aria-hidden="true"></div>
+      <div class="cp-head">
+        <div><div class="pc-mini-label pc-gold">AMÉLIORER MES RÉSULTATS</div>
+          <h2 class="cp-titre" id="chemin-amelioration-titre"></h2></div>
+        <button class="pc-icon-btn chemin-amelioration-fermer"
+          onclick="fermerAmeliorationChemin()" aria-label="Fermer">✕</button>
+      </div>
+      <div class="cp-content chemin-amelioration-liste" id="chemin-amelioration-liste"></div>
+      <div class="cp-bas"><button class="pc-btn wide" onclick="fermerAmeliorationChemin()">Retour au chemin</button></div>
+    </div>
+  </div>
+
   <!-- ══ LEÇON ════════════════════════════════════════════════════════════════ -->
   <div id="view-lecon" class="view">
 
