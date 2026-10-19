@@ -358,6 +358,7 @@ function examQuestionHtml(q, i) {
 
   let html =
     '<div class="ex-q">' +
+      (q.horloge ? examClockHtml(q.horloge) : '') +
       '<div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' + escHtml(q.question) + '</div>' +
       '<div class="ex-opts' + (longues ? ' stack' : '') + '">';
   q.choix.forEach((c, k) => {
@@ -365,6 +366,31 @@ function examQuestionHtml(q, i) {
       'onclick="examAnswer(' + i + ',' + k + ')">' + escHtml(c) + '</button>';
   });
   return html + '</div></div>';
+}
+
+// Horloges SVG optionnelles (annales contenant "horloge": "09:45").
+function examClockHtml(time) {
+  const m = /^(\\d{2}):(\\d{2})$/.exec(time || '');
+  if (!m || Number(m[1]) > 23 || Number(m[2]) > 59) return '';
+  const h = Number(m[1]), min = Number(m[2]);
+  const x = (deg, r) => (60 + r * Math.sin(deg * Math.PI / 180)).toFixed(2);
+  const y = (deg, r) => (60 - r * Math.cos(deg * Math.PI / 180)).toFixed(2);
+  let svg = '<svg viewBox="0 0 120 120" role="img" aria-label="Horloge à lire" ' +
+    'style="display:block;width:160px;max-width:100%;margin:0 auto 1rem" ' +
+    'xmlns="http://www.w3.org/2000/svg">' +
+    '<circle cx="60" cy="60" r="56" fill="#222120" stroke="#f5cf4d" stroke-width="2"/>';
+  for (let i = 1; i <= 12; i++) {
+    const a = i * 30;
+    svg += '<text x="' + x(a, 43) + '" y="' + (Number(y(a, 43)) + 3) +
+      '" fill="#f6f1e9" font-size="10" font-family="sans-serif" text-anchor="middle">' + i + '</text>';
+  }
+  const hAngle = ((h % 12) + min / 60) * 30, mAngle = min * 6;
+  svg += '<line x1="60" y1="60" x2="' + x(hAngle, 26) + '" y2="' + y(hAngle, 26) +
+    '" stroke="#f6f1e9" stroke-width="3.6" stroke-linecap="round"/>' +
+    '<line x1="60" y1="60" x2="' + x(mAngle, 36) + '" y2="' + y(mAngle, 36) +
+    '" stroke="#f6f1e9" stroke-width="2.5" stroke-linecap="round"/>' +
+    '<circle cx="60" cy="60" r="3" fill="#f5cf4d"/></svg>';
+  return svg;
 }
 
 // ─── BARRE DU BAS : MOTS À PLACER ───────────────────────────────────────────
@@ -532,6 +558,37 @@ function examComputeResult() {
   return res;
 }
 
+// Exercice de rédaction conservé hors du score automatique (correction humaine).
+// Brouillon local et isolé par profil, comme les meilleurs scores.
+function examRedactionHtml() {
+  if (!exam.redaction) return '';
+  const r = exam.redaction;
+  const texte = localStorage.getItem(storageKey('luxExamRedaction:' + exam.id)) || '';
+  const mots = texte.trim() ? texte.trim().split(/\\s+/).length : 0;
+  const bareme = (r.bareme || []).map(x => escHtml(x[0]) + ' (' + x[1] + ')').join(' · ');
+  return '<section class="exr-part">' +
+    '<div class="exr-part-head"><div><small>Schrëftlechen Ausdrock · ' + (r.points || 10) +
+    ' points (correction humaine)</small>' + escHtml(r.titre) + '</div></div>' +
+    '<div style="padding:1rem">' +
+    '<p class="ex-consigne">' + escHtml(r.consigne) + '</p>' +
+    '<p class="exr-note">' + escHtml(r.consigne_fr || '') + '</p>' +
+    '<textarea class="ecr-input" style="width:100%;min-height:175px;margin-top:1rem" ' +
+    'oninput="examSaveRedaction(this)" placeholder="Votre rédaction en luxembourgeois…">' +
+    escHtml(texte) + '</textarea>' +
+    '<div class="exr-note" id="exr-redaction-count">' + mots + ' / ' + (r.min_mots || 70) +
+    ' mots · Brouillon enregistré sur cet appareil</div>' +
+    '<div class="exr-note">Barème : ' + bareme + '</div>' +
+    '<div class="exr-note">Les 10 points de rédaction ne sont pas attribués automatiquement.</div>' +
+    '</div></section>';
+}
+function examSaveRedaction(el) {
+  const texte = el.value;
+  localStorage.setItem(storageKey('luxExamRedaction:' + exam.id), texte);
+  const mots = texte.trim() ? texte.trim().split(/\\s+/).length : 0;
+  document.getElementById('exr-redaction-count').textContent =
+    mots + ' / ' + (exam.redaction.min_mots || 70) + ' mots · Brouillon enregistré sur cet appareil';
+}
+
 // ─── ÉCRAN 3 : SCORE + CORRECTION ───────────────────────────────────────────
 function renderExamResult() {
   const pct = Math.round(examRes.score / examRes.total * 100);
@@ -563,6 +620,8 @@ function renderExamResult() {
       '</div>';
   });
   html += '</div>';
+
+  html += examRedactionHtml();
 
   // Filtre de la correction.
   html +=
@@ -649,7 +708,8 @@ function examCorrectionHtml(part, p, r) {
       const juste = answers[i] === q.reponse;
       if (examOnlyErrors && juste) return;
 
-      html += '<div class="ex-q"><div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' +
+      html += '<div class="ex-q">' + (q.horloge ? examClockHtml(q.horloge) : '') +
+        '<div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' +
         '<div>' + escHtml(q.question) + examFrBtn(q.question_fr) +
         examFrHtml(q.question_fr) + '</div></div><div class="ex-opts stack">';
       q.choix.forEach((c, k) => {
