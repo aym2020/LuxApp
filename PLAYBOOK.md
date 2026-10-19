@@ -7,12 +7,28 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ## 0. Contexte projet (rappel rapide)
 
-- **Repo** : `aym2020/LuxembourgishApp` (GitHub), déployé sur **Render**.
+- **Repo** : `aym2020/LuxApp` (GitHub), déployé sur **Render**.
 - **Stack** : frontend vanilla JS/HTML/CSS, backend Node.js/Express.
 - **Contenu des leçons** : `data/lecons/<niveau>/lecon-NN.json` (ex : `data/lecons/A1.2/lecon-20.json`).
 - **Fichiers front clés** : `public/index.html`, `public/app.js`, `public/style.css`, `public/progress.js`, `public/cloud.js`.
 - **Niveaux** : A1.1 (leçons 1 à 19) et A1.2 (à partir de la leçon 20), public francophone débutant.
 - **Langue de travail** : français.
+
+---
+
+## Règle prioritaire — Toujours suivre le vrai dépôt et la branche v2
+
+**Incident du 19 octobre 2026 :** un examen A1.1 a été créé dans un HTML autonome et proposé sur une branche basée sur `main`, alors que LuxApp avait déjà un moteur d'examens et que la branche de travail était `v2`. Ne jamais reproduire cette erreur.
+
+Pour toute demande de code, de leçon ou d'examen :
+
+1. **Lire d'abord le dépôt GitHub `aym2020/LuxApp` sur `v2`**, son `PLAYBOOK.md`, les fichiers pertinents et le dernier état distant. Les pièces jointes anciennes servent de contexte, jamais de source de vérité face à la branche actuelle.
+2. **Reprendre impérativement les modèles et fonctionnalités déjà présents**, notamment `public/examens.js` et `data/examens/<niveau>/examen-XX.json` pour les annales, `data/lecons/<niveau>/` pour les leçons. Pas de moteur parallèle, pas d'HTML isolé si une fonctionnalité native existe.
+3. Faire des modifications ciblées, contrôler le contenu et le comportement (barème, grammaire, JSON, JS, tests de non-régression), comparer avec l'état distant.
+4. **Pousser sur `v2` lorsque l'utilisateur demande un push**, sauf branche explicitement différente. Ne jamais travailler depuis `main`, y ouvrir une PR ou y pousser sans instruction explicite.
+5. Toujours annoncer la branche, le commit et la limite des tests. Ne jamais présenter un code en PR ou seulement local comme déjà livré sur `v2`.
+
+Cette règle prime sur tout exemple d'architecture plus ancien qui contredirait le dépôt réel.
 
 ---
 
