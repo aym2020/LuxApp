@@ -41,7 +41,6 @@
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
   transition: background .15s, transform .1s;
 }
-.pc-btn:active { transform: scale(.98); }
 .pc-btn:disabled { opacity: .35; cursor: default; }
 .pc-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--couleur-sur-action); }
 .pc-btn.ok      { background: var(--correct); border-color: var(--correct); color: var(--couleur-sur-action); }
@@ -104,3 +103,55 @@
 .cta-fixe > * { pointer-events: auto; }
 .cta-fixe:empty { display: none; }
 .view:not(.active) .cta-fixe { display: none; }
+
+/* ══ SPEC 57 : PRESSION TACTILE UNIFIÉE SUR LES CTA ═════════════════════════
+   CSS natif (:active) : effet immédiat dès le toucher, maintenu jusqu'au
+   relâchement. Aucune temporisation JS, aucun évènement capturé.
+   Les composants propres aux écrans utilisent les mêmes tokens que .pc-btn. */
+:where(
+  .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer
+):not(:disabled):not([aria-disabled="true"]) {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transform-origin: center;
+  transition:
+    transform var(--cta-pression-duree) ease-out,
+    filter var(--cta-pression-duree) ease-out,
+    box-shadow var(--cta-pression-duree) ease-out,
+    background-color 150ms ease-out;
+}
+:where(
+  .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer
+):not(:disabled):not([aria-disabled="true"]):active {
+  transform: translateY(var(--cta-pression-decalage)) scale(var(--cta-pression-echelle));
+  filter: brightness(var(--cta-pression-luminosite));
+  box-shadow: var(--cta-pression-ombre);
+}
+
+/* Empêche les anciennes règles :active de presser un bouton désactivé. */
+:where(
+  .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer
+):is(:disabled, [aria-disabled="true"]):active {
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(
+    .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
+    .ecr-btn-validate, .session-action.primary, .ms-envoyer
+  ):not(:disabled):not([aria-disabled="true"]) {
+    transition: none;
+  }
+  :where(
+    .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
+    .ecr-btn-validate, .session-action.primary, .ms-envoyer
+  ):not(:disabled):not([aria-disabled="true"]):active {
+    transform: none;
+    filter: brightness(var(--cta-pression-luminosite));
+    box-shadow: none;
+  }
+}
