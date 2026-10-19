@@ -24,7 +24,7 @@
     {
       "qui": "Här Kremer",
       "lu": "Gudde Moien!",
-      "fr": "Bonjour !",
+      "fr": "Bonjour ! (le matin)",
       "unite": 1
     },
     {
@@ -56,7 +56,7 @@
     {
       "qui": "Madamm Weber",
       "lu": "Gudde Moien!",
-      "fr": "Bonjour !",
+      "fr": "Bonjour ! (le matin)",
       "unite": 1
     },
     {
@@ -187,7 +187,7 @@
         "Gudde Moien!",
         "Bonjour ! (le matin)"
       ],
-      "regle": "<b>Moien!</b> à toute heure (même le matin) · <b>Gudde Moien!</b> le matin : les deux sont corrects · <b>Gudde Mëtteg!</b> à midi · <b>Gudden Owend!</b> le soir",
+      "regle": "<b>Moien!</b> = bonjour · <b>Gudde Moien!</b> = bonjour (le matin). Le matin, les deux conviennent · <b>Gudde Mëtteg!</b> à midi · <b>Gudden Owend!</b> le soir",
       "exemple": "Moien Anna! · Gudde Moien, Madamm! · Gudden Owend, Här Michels!",
       "phrases": [
         [
@@ -200,7 +200,7 @@
         ]
       ],
       "pieges": [
-        "Le matin, <b>Moien!</b> et <b>Gudde Moien!</b> conviennent. En cas de doute, <b>Moien!</b> marche à toute heure.",
+        "Le matin, <b>Moien!</b> et <b>Gudde Moien!</b> conviennent. <b>Moien!</b> est la formule simple.",
         "Le soir : <b>Gudden</b> Owend (le n reste devant une voyelle), mais <b>Gudde</b> Moien."
       ]
     },
@@ -281,9 +281,9 @@
     {
       "id": 2001,
       "unite": 1,
-      "fr": "Bonjour ! (à toute heure)",
+      "fr": "Bonjour !",
       "lu": "Moien!",
-      "note": "Le plus courant, à toute heure"
+      "note": "Salutation simple et courante"
     },
     {
       "id": 2002,
@@ -568,7 +568,7 @@
       "id": 2001,
       "unite": 1,
       "question": "Moien!",
-      "reponse": "Bonjour ! (à toute heure)",
+      "reponse": "Bonjour !",
       "distracteurs": [
         "Au revoir !",
         "Bonne nuit !",
@@ -1052,7 +1052,7 @@
         "Salut",
         "Schlecht"
       ],
-      "note": "Moien = Bonjour, à toute heure"
+      "note": "Moien = Bonjour"
     },
     {
       "id": 2002,
@@ -1567,7 +1567,7 @@
     {
       "id": 2001,
       "unite": 1,
-      "fr": "Bonjour ! (à toute heure)",
+      "fr": "Bonjour !",
       "lu": "Moien!"
     },
     {
@@ -1892,11 +1892,11 @@
       "lignes": [
         [
           "Moien!",
-          "À toute heure, y compris le matin"
+          "Bonjour (formule générale)"
         ],
         [
           "Gudde Moien!",
-          "Le matin (Moien! convient aussi)"
+          "Bonjour (le matin)"
         ],
         [
           "Gudde Mëtteg!",
@@ -2255,7 +2255,7 @@
         ],
         [
           "Gudde Moien! Wéi heescht Dir?",
-          "Bonjour ! Comment vous appelez-vous ?"
+          "Bonjour (le matin) ! Comment vous appelez-vous ?"
         ],
         [
           "Ech heesche Paul. Et freet mech.",
