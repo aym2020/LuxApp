@@ -558,6 +558,14 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
     html += '<button class="' + classe + '" onclick="openIntro(' + u.id + ')">' +
       (best == null ? 'Commencer' : 'Refaire l\'unité') + '</button>';
   }
+  // SPEC 58 : rattrapage permanent pour une unité à 2 étoiles.
+  // L'unité complète reste disponible, le mini-défi est facultatif.
+  if (peutRattraperEtoile(l, u)) {
+    const detail = detailRattrapageValide(l, u.id);
+    html += '<button class="pc-btn wide pl-rattrapage" onclick="lancerRattrapageEtoile(' + u.id + ')">' +
+      '★ Rattraper ma 3e étoile <small>' + best + ' % → 90 % · ' +
+      (detail ? 'questions à retravailler' : 'défi ciblé') + '</small></button>';
+  }
   // Révision libre interrompue sur cette unité : reprenable, sans être la prochaine étape.
   if (pLibreIci && pLibreIci.uniteId === u.id) {
     html += '<button class="pc-btn ghost wide pl-reprendre-revision" onclick="reprendreRun(true)">Reprendre la révision · ' +
@@ -688,16 +696,16 @@ function motsHtml(mots) {
 //           'lecon'   (tout le contenu d'un coup : étoiles, sans faute et « + » de chaque unité)
 //           'erreurs' (refaire ses erreurs) · 'etape' (une seule étape)
 // filtre  : liste de clés "type:id" à garder (null = tout)
-function startUnite(uniteId, mode, filtre) {
+function startUnite(uniteId, mode, filtre, metaRattrapage) {
   mode = mode || 'unite';
   // SPEC 55 : protège aussi les raccourcis Quiz/Trous/Écriture et « Leçon
   // complète », accessibles depuis l'aperçu. Aucune progression avant accord.
   if (introMissionAVoir(pLecon)) {
-    ouvrirIntroMission(pLecon, { type: 'demarrer', uniteId, mode, filtre });
+    ouvrirIntroMission(pLecon, { type: 'demarrer', uniteId, mode, filtre, metaRattrapage });
     return;
   }
   let quoi = 'tout';
-  if (mode === 'unite') quoi = 'coeur';
+  if (mode === 'unite' || mode === 'rattrapage') quoi = 'coeur';
   if (mode === 'plus') quoi = 'plus';
   const steps = [];
   ETAPES.forEach(e => {
@@ -714,7 +722,9 @@ function startUnite(uniteId, mode, filtre) {
   });
   if (!steps.length) return;
 
-  run = { leconId: pLecon.id, uniteId, mode, steps, stepIdx: 0, libre: partieLibre(pLecon.id, uniteId, mode) };
+  run = { leconId: pLecon.id, uniteId, mode, steps, stepIdx: 0,
+    libre: partieLibre(pLecon.id, uniteId, mode) };
+  if (mode === 'rattrapage') run.rattrapage = metaRattrapage;
   saveRun();
   showView('view-parcours');
   renderItem();
@@ -1607,6 +1617,14 @@ function finirRun() {
     const unites = run.mode === 'unite' ? [trouverUnite(pLecon, run.uniteId)] : pLecon.unites;
     unites.forEach(u => {
       const b = run.mode === 'unite' ? { percent: total, sansFaute: global.sansFaute } : bilanUnite(run.steps, u.id);
+      const ancien = getUnitBest(run.leconId, u.id);
+      // Le détail accompagne uniquement le meilleur score réellement obtenu.
+      // Les items « + » sont exclus même depuis une leçon complète.
+      if (b.percent < 90 && (ancien == null || b.percent >= ancien)) {
+        const snapshot = capturerDetailRattrapage(pLecon, u.id, run.steps);
+        if (snapshot && snapshot.basePercent === b.percent)
+          saveRattrapageSnapshot(run.leconId, u.id, snapshot);
+      }
       saveUnitBest(run.leconId, u.id, b.percent);
       if (b.sansFaute && !getSansFaute(run.leconId, u.id)) {
         saveSansFaute(run.leconId, u.id);
@@ -1614,6 +1632,9 @@ function finirRun() {
       }
     });
   }
+  // Le rattrapage n'est jamais une unité complète : ni badge « Sans faute »,
+  // ni progression de mission, même en cas de réussite parfaite.
+  const resultatRattrapage = run.mode === 'rattrapage' ? appliquerResultatRattrapage(run) : null;
   // Le « + » est fait dès qu'on l'a joué en entier (les erreurs reviennent en révision).
   if (run.mode === 'plus' || run.mode === 'lecon') {
     const unites = run.uniteId === TOUTE_LA_LECON ? pLecon.unites : [trouverUnite(pLecon, run.uniteId)];
@@ -1645,7 +1666,8 @@ function finirRun() {
     typeEtape: run.mode === 'etape' && run.steps.length === 1 ? run.steps[0].type : null,
     sansFaute: global.sansFaute && (run.mode === 'unite' || run.mode === 'lecon'),
     nouveauSansFaute,
-    nouvelleComplete: !etaitComplete && leconComplete(pLecon)
+    nouvelleComplete: !etaitComplete && leconComplete(pLecon),
+    rattrapage: resultatRattrapage
   };
   const etaitLibre = !!run.libre;
   run = null;
@@ -1680,6 +1702,7 @@ function renderFin() {
   else if (r.mode === 'lecon') titre = 'LEÇON ' + numLecon(r.leconId) + ' TERMINÉE';
   else if (r.mode === 'plus') titre = '« + » TERMINÉ';
   else if (r.mode === 'erreurs') titre = 'ERREURS REFAITES';
+  else if (r.mode === 'rattrapage') titre = 'DÉFI DE RATTRAPAGE';
   else if (r.typeEtape) titre = 'ÉTAPE ' + etapeInfo(r.typeEtape).label.toUpperCase() + ' TERMINÉE';
   else titre = 'ÉTAPE TERMINÉE';
 
@@ -1698,6 +1721,16 @@ function renderFin() {
               : r.mode === 'plus' ? '<div class="pf-sous">Les nouveaux mots rejoignent tes révisions</div>' : '') +
     '</div>';
 
+  if (r.rattrapage) {
+    const rr = r.rattrapage;
+    html += '<div class="pf-rattrapage"><b>' +
+      (rr.ameliore ? 'Étoile récupérée !' : 'Continue à t’entraîner !') + '</b>' +
+      '<span>Meilleur score de l’unité : ' + rr.avant + ' % → ' + rr.apres + ' %.</span>' +
+      (rr.source === 'historique' ?
+        '<small>Défi ciblé sur une ancienne partie · 90 % requis, sans badge « Sans faute ».</small>' :
+        '<small>Score recalculé à partir de tes questions retravaillées.</small>') +
+      '</div>';
+  }
   // Moments acquis pour toujours : « sans faute », leçon « complète ».
   if (r.sansFaute) {
     html += '<div class="pf-sansfaute">' +
@@ -1778,6 +1811,14 @@ function boutonsFinHtml(r, u, suite) {
 }
 
 function refaireErreurs() {
+  // Si l'on vient de terminer une unité à 2 étoiles avec détail disponible,
+  // ce lien ne doit plus faire rater la possibilité de gagner la 3e étoile.
+  const u = trouverUnite(pLecon, pResultat.uniteId);
+  if (pResultat.mode === 'unite' && u && detailRattrapageValide(pLecon, u.id) &&
+      peutRattraperEtoile(pLecon, u)) {
+    lancerRattrapageEtoile(u.id);
+    return;
+  }
   startUnite(pResultat.uniteId, 'erreurs', pResultat.erreurs);
 }
 
