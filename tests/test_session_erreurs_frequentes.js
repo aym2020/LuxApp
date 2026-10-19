@@ -32,7 +32,7 @@ const harness = [
   'getReviewQuestions = () => [];',
   'getExamQuestions = () => [];',
   'showView = () => {};',
-  'renderSessionQ = () => { rendered++; };',
+  'renderSessionQ = () => { rendered++; session.answered = false; session.essais = 0; };',
   'updateQuestionProgress = (...args) => updates.push(args);',
   'aideErreur = () => ({ diagnostic: "", attention: "" });',
   'const matcher = s => normalize(s);',
