@@ -370,7 +370,7 @@ function examQuestionHtml(q, i) {
 
 // Horloges SVG optionnelles (annales contenant "horloge": "09:45").
 function examClockHtml(time) {
-  const m = /^(\\d{2}):(\\d{2})$/.exec(time || '');
+  const m = /^(\d{2}):(\d{2})$/.exec(time || '');
   if (!m || Number(m[1]) > 23 || Number(m[2]) > 59) return '';
   const h = Number(m[1]), min = Number(m[2]);
   const x = (deg, r) => (60 + r * Math.sin(deg * Math.PI / 180)).toFixed(2);
@@ -564,7 +564,7 @@ function examRedactionHtml() {
   if (!exam.redaction) return '';
   const r = exam.redaction;
   const texte = localStorage.getItem(storageKey('luxExamRedaction:' + exam.id)) || '';
-  const mots = texte.trim() ? texte.trim().split(/\\s+/).length : 0;
+  const mots = texte.trim() ? texte.trim().split(/\s+/).length : 0;
   const bareme = (r.bareme || []).map(x => escHtml(x[0]) + ' (' + x[1] + ')').join(' · ');
   return '<section class="exr-part">' +
     '<div class="exr-part-head"><div><small>Schrëftlechen Ausdrock · ' + (r.points || 10) +
@@ -584,7 +584,7 @@ function examRedactionHtml() {
 function examSaveRedaction(el) {
   const texte = el.value;
   localStorage.setItem(storageKey('luxExamRedaction:' + exam.id), texte);
-  const mots = texte.trim() ? texte.trim().split(/\\s+/).length : 0;
+  const mots = texte.trim() ? texte.trim().split(/\s+/).length : 0;
   document.getElementById('exr-redaction-count').textContent =
     mots + ' / ' + (exam.redaction.min_mots || 70) + ' mots · Brouillon enregistré sur cet appareil';
 }
