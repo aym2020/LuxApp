@@ -1394,6 +1394,99 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
   .carte-suite { padding: 16px 12px 16px 14px; gap: 10px; }
 }
 
+/* SPEC 52 — Accueil compact, sans sacrifier les grandes cibles tactiles. */
+.accueil {
+  gap: 14px;
+  padding-top: 16px;
+  padding-bottom: 14px;
+}
+.puces-niveau { margin-top: -6px; }
+
+/* Trois chiffres lisibles, mais le 3e ne crée plus 4 lignes de hauteur. */
+.ac-chiffres { align-items: start; }
+.ac-chiffres > div { gap: 2px; padding-inline: 3px; }
+.ac-chiffres b { font-size: clamp(1.15rem, 5.5vw, 1.38rem); line-height: 1.2; }
+.ac-chiffres span { font-size: .78rem; line-height: 1.25; white-space: nowrap; }
+.ac-chiffres .ac-acquis {
+  display: block; font-size: .68rem; line-height: 1.25;
+  color: var(--couleur-acquis, var(--muted-strong)); white-space: nowrap;
+}
+.ac-chiffres .serie .ic { width: 19px; height: 19px; }
+
+/* La carte conserve toute sa surface cliquable. Une seule information dominante :
+   le vrai titre de la leçon, non le mot « Continuer ». */
+.carte-suite.compacte {
+  align-items: center;
+  gap: 12px;
+  min-height: 116px;
+  padding: 14px 16px 14px 18px;
+}
+.carte-suite.compacte .cs-txt { gap: 4px; }
+.carte-suite.compacte .cs-kicker {
+  font-size: .7rem; line-height: 1.15; text-transform: uppercase;
+  letter-spacing: .09em; font-weight: 800; color: var(--accent);
+}
+.carte-suite.compacte .cs-lecon {
+  display: inline-flex; align-self: flex-start; width: fit-content;
+  font-size: .67rem; line-height: 1.2; font-weight: 800; letter-spacing: .04em;
+  border: 1px solid rgba(245,207,77,.3); background: rgba(245,207,77,.08);
+  color: var(--accent); border-radius: 7px; padding: 3px 7px;
+}
+.carte-suite.compacte .cs-titre {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  line-clamp: 2; overflow: hidden; overflow-wrap: normal;
+  font-size: 1.13rem; line-height: 1.22; font-weight: 750; color: var(--text);
+}
+.carte-suite.compacte .cs-etape {
+  display: block; width: 100%; max-width: 100%; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; overflow-wrap: normal;
+  font-size: .79rem; line-height: 1.35; color: var(--muted-strong);
+}
+.carte-suite.compacte .cs-rond { width: 40px; height: 40px; }
+.carte-suite.compacte.plein .cs-kicker,
+.carte-suite.compacte.plein .cs-lecon,
+.carte-suite.compacte.plein .cs-titre,
+.carte-suite.compacte.plein .cs-etape { color: #1a1505; }
+.carte-suite.compacte.plein .cs-lecon {
+  border-color: rgba(26,21,5,.25); background: rgba(26,21,5,.07);
+}
+.carte-suite:focus-visible, .ac-btn:focus-visible, .ac-menu:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 3px;
+}
+
+/* Les 4 gros raccourcis restent >=60px. On récupère l'espace entre eux. */
+.ac-acces { gap: 8px; }
+.ac-btn { min-height: 60px; }
+
+/* Le point est une information d'état, pas une cible cliquable. */
+.ac-menu { position: relative; }
+.ac-sync-slot {
+  position: absolute; right: 5px; bottom: 4px;
+  pointer-events: none;
+}
+.ac-sync-point {
+  display: block; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--correct);
+  box-shadow: 0 0 0 2px var(--bg, #0f0e0c);
+}
+.ac-sync-point.attente { background: var(--accent-2); }
+#reglages-synchro { min-height: 0; }
+#reglages-synchro:empty { display: none; }
+#reglages-synchro .point-synchro { font-size: var(--fs-sec); }
+
+/* Petites largeurs, sans overflow ni perte de boutons. */
+@media (max-width: 360px) {
+  .accueil { gap: 12px; padding-inline: 16px; }
+  .ac-chiffres b { font-size: 1.12rem; }
+  .ac-chiffres span { font-size: .73rem; }
+  .ac-chiffres .ac-acquis { font-size: .64rem; }
+  .carte-suite.compacte { padding: 12px 13px 12px 15px; gap: 10px; }
+  .carte-suite.compacte .cs-titre { font-size: 1.04rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .carte-suite.compacte, .ac-btn { transition: none; }
+}
+
 /* ── Éléments communs (chemin, séance) ──────────────────────────────────── */
 .barre { height: 8px; border-radius: 999px; background: #3a362e; overflow: hidden; }
 .barre > i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--turquoise), #7be3c9); transform-origin: left; }
