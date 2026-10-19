@@ -495,7 +495,9 @@ function ouvrirTouteLaLeconDepuisChemin(leconId) {
 function ouvrirUniteDepuisChemin(leconId, uniteId) {
   const l = trouverLecon(leconId);
   cheminLeconOuverte = leconId;
-  openParcoursLecon(l);
+  // La sélection explicite ne doit pas ouvrir deux fois l'introduction :
+  // openIntro() la déclenche lui-même si elle est encore nécessaire.
+  openParcoursLecon(l, null, true);
   const run = loadRun();
   const libre = loadRun(true);
   if (run && run.leconId === leconId && run.uniteId === uniteId) reprendreRun();
@@ -511,7 +513,14 @@ function ouvrirLeconEtReprendre(l) {
 
 function ouvrirMissionDepuisChemin(leconId) {
   cheminLeconOuverte = leconId;
-  openParcoursLecon(trouverLecon(leconId));
+  const l = trouverLecon(leconId);
+  // Première découverte : passer par le scénario avant de proposer
+  // « Tu connais déjà ? Tente ta chance », jamais directement en mission.
+  if (introMissionAVoir(l)) {
+    ouvrirIntroMission(l);
+    return;
+  }
+  openParcoursLecon(l);
   openMission();
 }
 
