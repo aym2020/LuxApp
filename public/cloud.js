@@ -192,6 +192,9 @@ function noterSynchro(ok) {
   if (ok) {
     try { localStorage.setItem('luxDerniereSynchro', String(Date.now())); } catch (e) { /* ignore */ }
   }
+  // SPEC 52 : rafraîchir le point de l'accueil et le statut des réglages
+  // sans reconstruire l'écran ni perturber le focus.
+  if (typeof actualiserStatutSynchro === 'function') actualiserStatutSynchro();
 }
 
 // Texte de l'indicateur, ou null si l'utilisateur n'est pas connecté.
@@ -393,6 +396,12 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') resynchroniser();
 });
 window.addEventListener('online', resynchroniser);
+window.addEventListener('online', () => {
+  if (typeof actualiserStatutSynchro === 'function') actualiserStatutSynchro();
+});
+window.addEventListener('offline', () => {
+  if (typeof actualiserStatutSynchro === 'function') actualiserStatutSynchro();
+});
 
 // ─── BOOT : appelé au démarrage de l'application ────────────────────────────
 async function bootAuthAndSync() {
