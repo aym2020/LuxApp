@@ -435,6 +435,10 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
 
 // "Tout revoir" : l'écran Réviser, avec seulement cette leçon cochée.
 function toutRevoir() {
+  if (introMissionAVoir(pLecon)) {
+    ouvrirIntroMission(pLecon, { type: 'revoir' });
+    return;
+  }
   openReviewSetup(pLecon.id);
 }
 
@@ -444,6 +448,10 @@ function retourLecon() {
 }
 
 function lancerBilan() {
+  if (introMissionAVoir(pLecon)) {
+    ouvrirIntroMission(pLecon, { type: 'bilan' });
+    return;
+  }
   const pool = itemsRevision(pLecon).filter(i =>
     i.type !== 'motcache' && !i.q.plus && !trouverUnite(pLecon, i.q.unite).bonus);
   demarrerSession('review', 'BILAN · LEÇON ' + numLecon(pLecon), melanger(pool).slice(0, 10), { actions: retourLecon() });
@@ -451,6 +459,10 @@ function lancerBilan() {
 
 // Révise tout ce qui est dû dans cette leçon (la fraîcheur remonte).
 function rafraichirLecon() {
+  if (introMissionAVoir(pLecon)) {
+    ouvrirIntroMission(pLecon, { type: 'rafraichir' });
+    return;
+  }
   const dus = resumeRevision([pLecon]).dus;
   demarrerSession('review', 'RAFRAÎCHIR · LEÇON ' + numLecon(pLecon), dus, { actions: retourLecon() });
 }
