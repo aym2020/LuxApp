@@ -26,10 +26,10 @@ const suffix = [
   'detailRattrapageValide, questionsPerduesRattrapage, questionsDefiHistorique,',
   'peutRattraperEtoile, lancerRattrapageEtoile, appliquerResultatRattrapage };'
 ].join('\n');
-const engine = new Function('window','getUnitBest','getRattrapageSnapshot',
+const engine = new Function('window','document','getUnitBest','getRattrapageSnapshot',
   'saveUnitBest','saveRattrapageSnapshot','getQuestionStats','getWrongCount',
   'lesson','started',parcours + '\n' + suffix)(
-    {addEventListener(){}},
+    {addEventListener(){}}, {addEventListener(){}},
     (lid,uid) => best[uid] == null ? null : best[uid],
     (lid,uid) => stored[uid] || null,
     (lid,uid,score) => { best[uid] = Math.max(best[uid] || 0, score); writes.push(score); },
