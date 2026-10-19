@@ -517,7 +517,7 @@ function ouvrirMissionDepuisChemin(leconId) {
   // Première découverte : passer par le scénario avant de proposer
   // « Tu connais déjà ? Tente ta chance », jamais directement en mission.
   if (introMissionAVoir(l)) {
-    ouvrirIntroMission(l);
+    ouvrirIntroMission(l, { type: 'mission' });
     return;
   }
   openParcoursLecon(l);
