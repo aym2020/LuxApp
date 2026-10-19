@@ -26,14 +26,14 @@ const inputs={'auth-email':{value:'test@example.com'},'auth-pass':{value:'secret
 const auth=new Function('document','getProgressPayload','getCurrentUser','setStorageProfile',
  'mergeLocalAndCloudProgress','applyProgressPayload','syncProgress','updateAuthUI',
  'renderDashboard','renderLessonsProgress','signUp','signIn','currentStorageProfile',
- 'friendlyAuthError',extract(app,'handleAuth')+'return handleAuth;')(
+ 'friendlyAuthError','portailCompteConnecte','goDashboard',extract(app,'handleAuth')+'return handleAuth;')(
  {getElementById:k=>inputs[k]||null},
  ()=>profile==='anonymous'?guest:existing,async()=>({uid:'u'}),v=>profile=v,
  (x,y)=>({joined:[x,y]}),v=>imported.push(v),async()=>{synced++},
  async()=>{},()=>{},()=>{},
  async()=>success?{error:null}:{error:{code:'auth/invalid-credential'}},
  async()=>success?{error:null}:{error:{code:'auth/invalid-credential'}},
- 'anonymous',()=> 'Identifiants incorrects');
+ 'anonymous',()=> 'Identifiants incorrects',()=>{},()=>{});
 await auth('signup');assert.equal(profile,'user:u');assert.equal(imported.length,1);
 assert.equal(imported[0].joined[1],guest);
 profile='anonymous';imported=[];optin=false;
