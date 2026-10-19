@@ -1,5 +1,5 @@
 // SPEC 63 — portail de bienvenue et de reconnexion. Pas de données utilisateurs envoyées ici.
-const PORTAIL_INVITE = 'luxPortailInviteV1';
+const PORTAIL_INVITE = 'luxPortailInviteV1'; // ancien choix persistant : nettoyé, jamais utilisé pour masquer l'accueil
 const PORTAIL_COMPTE = 'luxPortailCompteConnuV1';
 let portailMode = 'welcome';
 let portailSurveille = false;
@@ -26,8 +26,15 @@ function portailCompteDeconnecte() {
 function portailInitialiser(user) {
   if (window.APP_CONFIG && window.APP_CONFIG.RECETTE) return;
   if (user) portailCompteConnecte(user);
-  else if (portailLire(PORTAIL_INVITE) === 'oui') portailFermer();
-  else portailOuvrir(portailLire(PORTAIL_COMPTE) === 'oui' ? 'signin' : 'welcome');
+  else {
+    // SPEC 64 : le choix « invité » ne masque plus l'accueil aux prochains lancements.
+    // Ne jamais effacer la progression : seul l'ancien drapeau d'UI est nettoyé.
+    portailStocker(PORTAIL_INVITE, null);
+    if (typeof currentStorageProfile === 'string' &&
+        currentStorageProfile.startsWith('user:') && typeof setStorageProfile === 'function')
+      setStorageProfile('anonymous');
+    portailOuvrir(portailLire(PORTAIL_COMPTE) === 'oui' ? 'signin' : 'welcome');
+  }
   if (!portailSurveille && fbAuth && typeof fbAuth.onAuthStateChanged === 'function') {
     portailSurveille = true;
     fbAuth.onAuthStateChanged(u => {
@@ -80,10 +87,10 @@ function portailContenu(mode) {
     return '<main class="pa-page pa-bienvenue">'+portailMarque()+
       '<div class="pa-heading"><span class="pa-kicker">WËLLKOMM · BIENVENUE</span>'+
       '<h1>Le luxembourgeois,<br><em>à ta portée.</em></h1>'+
-      '<p>Un peu chaque jour, beaucoup de progrès. Découvre la langue à travers des leçons simples et des situations de la vie quotidienne.</p></div>'+
-      portailFleur()+'<p class="pa-promise">✓ À ton rythme · Même si tu débutes de zéro</p>'+
+      '<p>Des leçons simples pour progresser à ton rythme, du premier « Moien » aux conversations du quotidien.</p></div>'+
+      portailFleur()+
       (!cloud?'<p class="pa-indispo" role="status">Connexion momentanément indisponible. Tu peux continuer en invité.</p>':'')+
-      '<div class="pa-actions">'+(cloud?portailBouton('Créer mon compte','signup','or')+
+      '<div class="pa-actions">'+(cloud?portailBouton('Créer un compte','signup','or')+
         portailBouton('J’ai déjà un compte','signin','sombre'):'')+
         portailBouton('Continuer sans compte','guest','texte')+'</div></main>'+portailAlerteHtml();
   }
@@ -92,11 +99,10 @@ function portailContenu(mode) {
     (aDejaPratique() || Object.keys(getProgress()).length > 0);
   return '<main class="pa-page pa-reconnexion">'+portailMarque()+
     '<div class="pa-heading"><span class="pa-kicker">'+
-    (creation?'BIENVENUE DANS L’AVENTURE':'TON PARCOURS T’ATTEND')+'</span>'+
-    '<h1>'+(creation?'Ton parcours<br><em>commence ici.</em>':'Bon retour <em>!</em>')+'</h1>'+
-    '<p>'+(creation?'Crée un compte pour retrouver tes leçons et tes progrès sur tes appareils.':
-    'Reconnecte-toi pour retrouver tes leçons, tes étoiles et ta progression.')+'</p></div>'+
-    '<div class="pa-compte-icone" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="32" cy="24" r="14"/><path d="M7 57c2-12 12-19 25-19s23 7 25 19"/></svg></div>'+
+    (creation?'CRÉER UN COMPTE':'HEUREUX DE TE REVOIR')+'</span>'+
+    '<h1>'+(creation?'Un compte pour<br><em>tes progrès.</em>':'Bon retour !')+'</h1>'+
+    '<p>'+(creation?'Sauvegarde tes progrès et retrouve tes leçons sur tes appareils.':
+    'Connecte-toi pour retrouver tes leçons et ta progression.')+'</p></div>'+
     (cloud?'<form id="pa-form" onsubmit="portailSoumettre(event)">'+
       '<label for="pa-email">Adresse e-mail</label><input id="pa-email" type="email" autocomplete="email" placeholder="tonadresse@exemple.com" required>'+
       '<label for="pa-password">Mot de passe</label><input id="pa-password" type="password" autocomplete="'+
@@ -107,7 +113,10 @@ function portailContenu(mode) {
       '<p id="pa-message" class="pa-message" role="status" aria-live="polite"></p></form>':
       '<p class="pa-indispo" role="status">Connexion momentanément indisponible. Tu peux continuer en invité.</p>')+
     '<div class="pa-actions pa-autres">'+
-      portailBouton(creation?'J’ai déjà un compte':'Créer un compte',creation?'signin':'signup','sombre')+
+      '<p class="pa-switch">'+(creation?'Déjà un compte ?':'Pas encore de compte ?')+
+      ' <button type="button" onclick="portailAction(&quot;'+
+        (creation?'signin':'signup')+'&quot;)">'+
+        (creation?'Se connecter':'Créer un compte')+'</button></p>'+
       portailBouton('Continuer sans compte','guest','texte')+
     '</div></main>'+portailAlerteHtml();
 }
@@ -137,7 +146,10 @@ function portailAction(action) {
   if(action==='guest'){portailAfficherAlerte();return;}
   if(action==='guest-back'){portailFermerAlerte();return;}
   if(action==='guest-confirm'){
-    portailStocker(PORTAIL_INVITE,'oui');
+    // Il ne s'agit que d'une acceptation pour CETTE ouverture. L'accueil
+    // « Moien / Bonjour » revient au prochain boot, sans toucher à la progression.
+    portailStocker(PORTAIL_INVITE, null);
+    portailStocker(PORTAIL_COMPTE, null); // dernier mode choisi = invité
     portailFermer();
     if(typeof goDashboard==='function')goDashboard();
     return;
