@@ -847,7 +847,7 @@ function renderReconstruction() {
     '<div class="mc-lettres" id="mc-lettres"></div>' +
     '<div class="mc-info" id="mc-info">' + nbLettres + ' lettres</div>' +
     (mc.cases.some(c => c.lettre && mcSansAccent(c.ch) !== c.ch)
-      ? '<div class="mc-info">Accents ajoutés automatiquement</div>' : '') +
+      ? '<div class="mc-info">Les accents apparaissent après validation</div>' : '') +
     '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
     '</div>' +
     '<div class="mc-saisie">' +
@@ -878,16 +878,11 @@ function renderReconstruction() {
   mcMajFocus();
 }
 
-// SPEC 51 : les tuiles ne portent pas d'accent ; les cases rétablissent
-// l'orthographe uniquement si la lettre de base correspond à la cible.
+// SPEC 51 : les tuiles n'ont pas d'accent ; le mot les récupère
+// uniquement après validation (ou lors de l'utilisation d'un indice payant).
+// Les lettres posées ne trahissent donc jamais leur bonne position.
 function mcSansAccent(ch) {
   return ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
-function mcLettreDansCase(lettre, cible) {
-  // Ne jamais transformer une mauvaise lettre en indice de la bonne réponse.
-  if (mcSansAccent(cible) !== cible && normalize(lettre) === normalize(cible)) return cible;
-  return lettre;
 }
 
 // Lettres proposées : celles des cases encore à remplir, plus 2 intruses
@@ -1060,7 +1055,8 @@ function renderCases(avecTuiles = true) {
     let texte = '';
     let classe = 'mc-case ' + c.etat + taille;
     if (parCase[i] !== undefined) {
-      texte = mcLettreDansCase(parCase[i], c.ch);
+      // Avant validation, ne pas révéler les positions correctes via un accent.
+      texte = mcSansAccent(parCase[i]);
       classe += ' tapee';
     }
     else if (c.etat !== '') texte = c.ch;
@@ -1122,8 +1118,8 @@ function mcValider() {
     if (!c.lettre) { val += c.ch; essaiAffiche += c.ch; return; }
     const lettre = parCase[i] !== undefined ? parCase[i] : (c.etat !== '' ? c.ch : '');
     val += lettre;
-    // Le rappel de l'essai doit montrer les mêmes accents que les cases.
-    essaiAffiche += lettre ? mcLettreDansCase(lettre, c.ch) : '_';
+    // Le rappel de l'essai reflète la saisie, sans révélation d'accents.
+    essaiAffiche += lettre ? mcSansAccent(lettre) : '_';
   });
 
   // SPEC 51 : seules les lettres de base et leur ordre sont évalués.
