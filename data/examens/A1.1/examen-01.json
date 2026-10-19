@@ -1,0 +1,661 @@
+{
+  "id": "a11-2023-01",
+  "titre": "Annale 1",
+  "titre_fr": "2023 · Prolingua (27 avril)",
+  "couleur": "#6fb0f2",
+  "source": "Test de fin de formation Prolingua LU A1.1, cours 23011110, 27/04/2023 (corrigé fourni).",
+  "notice": "Transcription anonymisée. Les questions ouvertes de conjugaison, d'horloges et de formulaire ont été adaptées aux choix proposés par le moteur d'examens. Le score automatique porte sur 40 points; l'expression écrite sur 10 points reste une évaluation distincte.",
+  "redaction": {
+    "titre": "Presentéiert Iech an Är Famill",
+    "consigne": "Presentéiert Iech an Är Famill (minimum nach 1 Familljemember)!",
+    "consigne_fr": "Présentez-vous et présentez au moins un membre de votre famille.",
+    "min_mots": 70,
+    "points": 10,
+    "bareme": [
+      [
+        "Respect des consignes",
+        2
+      ],
+      [
+        "Correction linguistique",
+        3
+      ],
+      [
+        "Variété du vocabulaire et des structures",
+        2
+      ],
+      [
+        "Cohérence",
+        2
+      ],
+      [
+        "Pertinence et intelligibilité",
+        1
+      ]
+    ]
+  },
+  "parties": [
+    {
+      "section": "Sproochgebrauch",
+      "titre": "E Rendez-vous",
+      "type": "trous",
+      "consigne": "Komplettéiert den Dialog mat de richtegen Expressiounen!",
+      "banque": [
+        "Merci gläichfalls",
+        "Villmools Merci",
+        "dat ass an der Rei",
+        "geet dat",
+        "e schéinen Dag",
+        "gudde Moien",
+        "Ech hunn nach",
+        "Ech hätt gär",
+        "Dat geet leider net",
+        "Et ass gär geschitt"
+      ],
+      "lignes": [
+        [
+          "S.",
+          "Praxis Dr Fischer, {1}.",
+          "Cabinet du docteur Fischer, bonjour."
+        ],
+        [
+          "P.",
+          "Gudde Moien, hei ass Molitor. {2} e Rendez-vous.",
+          "Bonjour, ici Molitor. Je voudrais un rendez-vous."
+        ],
+        [
+          "S.",
+          "Fir wéini, wgl.?",
+          "Pour quand, s'il vous plaît ?"
+        ],
+        [
+          "P.",
+          "Fir e Freideg, {3}?",
+          "Pour vendredi, est-ce possible ?"
+        ],
+        [
+          "S.",
+          "{4} e Rendez-vous fir e Freideg den Nomëtteg um 15:00 Auer.",
+          "J'ai encore un rendez-vous vendredi après-midi à 15 h."
+        ],
+        [
+          "P.",
+          "{5}. Ech schaffe bis 16:00 Auer, mee freides moies schaffen ech net.",
+          "Ce n'est malheureusement pas possible. Je travaille jusqu'à 16 h, mais je ne travaille pas le vendredi matin."
+        ],
+        [
+          "S.",
+          "Den nächste Freideg, um 10:30 Auer ass nach e Rendez-vous fräi.",
+          "Vendredi prochain, il reste un rendez-vous libre à 10 h 30."
+        ],
+        [
+          "P.",
+          "Jo, {6}.",
+          "Oui, cela me convient."
+        ],
+        [
+          "S.",
+          "Wéi ass Ären Numm nach eng Kéier, wgl.?",
+          "Quel est encore votre nom, s'il vous plaît ?"
+        ],
+        [
+          "P.",
+          "Molitor Josée."
+        ],
+        [
+          "S.",
+          "Wéi buschtawéiert Dir dat?",
+          "Comment épelez-vous cela ?"
+        ],
+        [
+          "P.",
+          "M-O-L-I-T-O-R."
+        ],
+        [
+          "S.",
+          "{7}!",
+          "Merci beaucoup !"
+        ],
+        [
+          "P.",
+          "{8}! Bis d’nächst Woch.",
+          "Je vous en prie ! À la semaine prochaine."
+        ],
+        [
+          "S.",
+          "Jo, bis d’nächst Woch an nach {9}.",
+          "Oui, à la semaine prochaine et bonne journée."
+        ],
+        [
+          "P.",
+          "{10}!",
+          "Merci, à vous aussi !"
+        ]
+      ],
+      "trous": [
+        {
+          "reponse": "gudde Moien",
+          "note": "Salutation au téléphone."
+        },
+        {
+          "reponse": "Ech hätt gär",
+          "note": "Ech hätt gär e Rendez-vous = Je voudrais un rendez-vous."
+        },
+        {
+          "reponse": "geet dat",
+          "note": "Geet dat? = Est-ce possible ?"
+        },
+        {
+          "reponse": "Ech hunn nach",
+          "note": "Ech hunn nach = Il me reste / j'ai encore."
+        },
+        {
+          "reponse": "Dat geet leider net",
+          "note": "Refus poli : ce n'est malheureusement pas possible."
+        },
+        {
+          "reponse": "dat ass an der Rei",
+          "note": "Dat ass an der Rei = Cela convient."
+        },
+        {
+          "reponse": "Villmools Merci",
+          "note": "Remerciement appuyé."
+        },
+        {
+          "reponse": "Et ass gär geschitt",
+          "note": "Réponse à un remerciement."
+        },
+        {
+          "reponse": "e schéinen Dag",
+          "note": "E schéinen Dag = Une bonne journée."
+        },
+        {
+          "reponse": "Merci gläichfalls",
+          "note": "Merci, pareillement."
+        }
+      ]
+    },
+    {
+      "section": "Sproochgebrauch",
+      "titre": "An der Kantin",
+      "type": "trous",
+      "consigne": "Setzt déi richteg Verben an a konjugéiert se! (Wielt déi richteg konjugéiert Form.)",
+      "banque": [
+        "heeschen",
+        "kommen",
+        "wunnt",
+        "hunn",
+        "schaffen",
+        "maacht",
+        "schwätzt",
+        "léieren"
+      ],
+      "lignes": [
+        [
+          "Matthias",
+          "Gudde Mëtteg! Ech {1} Matthias Schmidt. Ass dee Stull fräi wannechgelift?",
+          "Bonjour ! Je m'appelle Matthias Schmidt. Cette chaise est-elle libre ?"
+        ],
+        [
+          "David",
+          "Gudde Mëtteg, Här Schmidt! Jo, huelt Iech Plaz! Ech sinn den David Zenner.",
+          "Bonjour, monsieur Schmidt ! Oui, installez-vous ! Je suis David Zenner."
+        ],
+        [
+          "Matthias",
+          "Ech {2} aus Däitschland, vu Berlin.",
+          "Je viens d'Allemagne, de Berlin."
+        ],
+        [
+          "David",
+          "An Dir {3} elo hei zu Lëtzebuerg?",
+          "Et vous habitez maintenant ici au Luxembourg ?"
+        ],
+        [
+          "Matthias",
+          "Jo, ech {4} en Appartement um Kierchbierg.",
+          "Oui, j'ai un appartement au Kirchberg."
+        ],
+        [
+          "David",
+          "Ech {5} hei am Informatikservice, an Dir, wat {6} Dir?",
+          "Je travaille ici au service informatique, et vous, que faites-vous ?"
+        ],
+        [
+          "Matthias",
+          "Ech si Jurist vu Beruff.",
+          "Je suis juriste."
+        ],
+        [
+          "David",
+          "Dir {7} awer scho gutt Lëtzebuergesch!",
+          "Mais vous parlez déjà bien luxembourgeois !"
+        ],
+        [
+          "Matthias",
+          "Merci villmools! Ech {8} zënter sechs Méint.",
+          "Merci beaucoup ! J'apprends depuis six mois."
+        ],
+        [
+          "David",
+          "Tipptopp! Entschëllegt, mee ech muss elo goen. Gudden Appetit an all Guddes hei.",
+          "Très bien ! Excusez-moi, je dois partir. Bon appétit et bonne continuation ici."
+        ],
+        [
+          "Matthias",
+          "Merci! Bis geschwënn!",
+          "Merci ! À bientôt !"
+        ],
+        [
+          "David",
+          "Äddi a bis geschwënn!",
+          "Au revoir et à bientôt !"
+        ]
+      ],
+      "trous": [
+        {
+          "reponse": "heeschen",
+          "note": "ech heeschen — se présenter, selon le corrigé de 2023."
+        },
+        {
+          "reponse": "kommen",
+          "note": "ech kommen — venir."
+        },
+        {
+          "reponse": "wunnt",
+          "note": "Dir wunnt — vous habitez."
+        },
+        {
+          "reponse": "hunn",
+          "note": "ech hunn — j'ai."
+        },
+        {
+          "reponse": "schaffen",
+          "note": "ech schaffen — je travaille."
+        },
+        {
+          "reponse": "maacht",
+          "note": "Dir maacht — vous faites."
+        },
+        {
+          "reponse": "schwätzt",
+          "note": "Dir schwätzt — vous parlez."
+        },
+        {
+          "reponse": "léieren",
+          "note": "ech léieren — j'apprends."
+        }
+      ]
+    },
+    {
+      "section": "Sproochgebrauch",
+      "titre": "En Dag",
+      "type": "trous",
+      "consigne": "Kräizt dat richtegt Wuert un!",
+      "lignes": [
+        [
+          "",
+          "Moies um 7.00 Auer stinn ech {1}. Géint 7.15 Auer duschen ech an um 08.00 Auer {2} ech Kaffi. Ech iessen eng Schmier mat Gebeess an drénken zwou Tase Kaffi mat {3} ouni Zocker. Um 08.30 Auer ginn ech op de Bus a fuere schaffen. Vun 09.00 {4} 12.00 Auer liesen ech d’Mailen a schreiwen Texter um Computer. Um 12.00 Auer ginn ech an d’Mëttespaus bis 13.00 Auer. Nomëttes hunn ech eng Reunioun. Géint 17.00 Auer {5} ech heem. Ech preparéieren d’Owesiessen an iesse {6} 18.30 Auer. Duerno {7} ech d’Tëlee an um 23.00 Auer ginn ech schlofen."
+        ]
+      ],
+      "trous": [
+        {
+          "reponse": "op",
+          "note": "Opstoen = se lever.",
+          "choix": [
+            "op",
+            "zou",
+            "um"
+          ]
+        },
+        {
+          "reponse": "drénken",
+          "note": "Ech drénken Kaffi = Je bois du café.",
+          "choix": [
+            "drénken",
+            "iessen",
+            "schlofen"
+          ]
+        },
+        {
+          "reponse": "Mëllech",
+          "note": "Mëllech = lait.",
+          "choix": [
+            "Mëllech",
+            "Zitroun",
+            "Esseg"
+          ]
+        },
+        {
+          "reponse": "bis",
+          "note": "Vun ... bis ... = de ... à ...",
+          "choix": [
+            "no",
+            "bis",
+            "op"
+          ]
+        },
+        {
+          "reponse": "fueren",
+          "note": "Fueren = se déplacer en véhicule / rentrer.",
+          "choix": [
+            "fléien",
+            "fueren",
+            "kucken"
+          ]
+        },
+        {
+          "reponse": "géint",
+          "note": "Géint 18.30 Auer = vers 18 h 30.",
+          "choix": [
+            "géint",
+            "tëscht",
+            "vun"
+          ]
+        },
+        {
+          "reponse": "kucken",
+          "note": "D'Tëlee kucken = regarder la télévision.",
+          "choix": [
+            "liesen",
+            "maachen",
+            "kucken"
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Liesverstoen",
+      "titre": "D'Famill an de Restaurant",
+      "type": "qcm",
+      "consigne": "Liest wgl. den Text a kräizt duerno un: richteg oder falsch?",
+      "lignes": [
+        [
+          "Sandra",
+          "So Marc, ech géif gär e Sonndeg de Mëtteg mat der Famill an de Restaurant goen."
+        ],
+        [
+          "Marc",
+          "Deng Famill oder meng Famill?"
+        ],
+        [
+          "Sandra",
+          "Majo… mäi Brudder Tom, meng Cousine Karin an deng Schwëster Mireille mat hirem Mann, dem Guy."
+        ],
+        [
+          "Marc",
+          "Jo, dat ass eng gutt Iddi. Ech schwätze gär mat dengem Brudder. Gi mir mat de Kanner?"
+        ],
+        [
+          "Sandra",
+          "Neen, si gi bei d’Bomi an de Bopi. Dat ass besser."
+        ],
+        [
+          "Marc",
+          "A wat maache mir duerno?"
+        ],
+        [
+          "Sandra",
+          "Mir iessen an da gi mir spadséieren."
+        ],
+        [
+          "Marc",
+          "Op Réimech, laanscht d’Musel?"
+        ],
+        [
+          "Sandra",
+          "Neen, net ëmmer op Réimech! Ech soen, mir ginn op de Stauséi."
+        ],
+        [
+          "Marc",
+          "Jo, an der Rei. Reservéiers du oder reservéieren ech?"
+        ],
+        [
+          "Sandra",
+          "Telefonéier du! De Garçon schwätzt meeschtens ganz séier an ech hunn heiansdo Problemer fir hien ze verstoen."
+        ],
+        [
+          "Marc",
+          "Dat geet, ech hunn Zäit, mee informéier du fir d’éischt d’Famill."
+        ],
+        [
+          "Sandra",
+          "OK, dat maachen ech elo gläich."
+        ]
+      ],
+      "questions": [
+        {
+          "question": "D’Sandra invitéiert net nëmme seng Famill.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "La liste contient son frère, sa cousine et la sœur de Marc.",
+          "question_fr": "Sandra n'invite pas seulement sa famille.",
+          "preuve": [
+            "mäi Brudder Tom, meng Cousine Karin an deng Schwëster Mireille",
+            "mon frère Tom, ma cousine Karin et ta sœur Mireille"
+          ]
+        },
+        {
+          "question": "De Marc huet keng Schwëster.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Mireille est la sœur de Marc.",
+          "question_fr": "Marc n'a pas de sœur.",
+          "preuve": [
+            "deng Schwëster Mireille",
+            "ta sœur Mireille"
+          ]
+        },
+        {
+          "question": "D’Kanner gi bei d’Grousselteren.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "richteg",
+          "note": "Bomi a Bopi = grand-mère et grand-père.",
+          "question_fr": "Les enfants vont chez leurs grands-parents.",
+          "preuve": [
+            "si gi bei d’Bomi an de Bopi",
+            "ils vont chez mamie et papi"
+          ]
+        },
+        {
+          "question": "De Garçon schwätzt ze lues fir d’Sandra.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Il parle très vite, et non trop lentement.",
+          "question_fr": "Le serveur parle trop lentement pour Sandra.",
+          "preuve": [
+            "De Garçon schwätzt meeschtens ganz séier",
+            "Le serveur parle généralement très vite"
+          ]
+        },
+        {
+          "question": "De Marc informéiert d’Famill an duerno reservéiert hien am Restaurant.",
+          "choix": [
+            "richteg",
+            "falsch"
+          ],
+          "reponse": "falsch",
+          "note": "Marc demande à Sandra de prévenir la famille; lui téléphonera au restaurant.",
+          "question_fr": "Marc prévient la famille puis réserve au restaurant.",
+          "preuve": [
+            "mee informéier du fir d’éischt d’Famill",
+            "mais préviens d'abord la famille, toi"
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Liesverstoen",
+      "titre": "Wéi vill Auer ass et?",
+      "type": "qcm",
+      "consigne": "Wat ass richteg? Kräizt un! (Déi zwou Schreifäntwerten aus dem Original sinn hei als QCM ugebueden.)",
+      "lignes": [],
+      "questions": [
+        {
+          "question": "Wéi vill Auer ass et?",
+          "choix": [
+            "Et ass Véirel vir néng.",
+            "Et ass Véirel op néng.",
+            "Et ass Véirel vir zéng.",
+            "Et ass Véirel op zéng."
+          ],
+          "reponse": "Et ass Véirel vir zéng.",
+          "note": "Un quart d'heure avant dix heures = 9 h 45.",
+          "horloge": "09:45",
+          "question_fr": "Quelle heure est-il ?"
+        },
+        {
+          "question": "Wéi vill Auer ass et?",
+          "choix": [
+            "Et ass Véirel vir dräi.",
+            "Et ass Véirel op dräi.",
+            "Et ass Véirel vir véier.",
+            "Et ass Véirel op véier."
+          ],
+          "reponse": "Et ass Véirel op dräi.",
+          "note": "Véierel op dräi = 2 h 15.",
+          "horloge": "02:15",
+          "question_fr": "Quelle heure est-il ?"
+        },
+        {
+          "question": "Wéi vill Auer ass et?",
+          "choix": [
+            "Et ass hallwer aacht.",
+            "Et ass hallwer néng."
+          ],
+          "reponse": "Et ass hallwer néng.",
+          "note": "Hallwer néng = 8 h 30.",
+          "horloge": "08:30",
+          "question_fr": "Quelle heure est-il ?"
+        },
+        {
+          "question": "Wéi vill Auer ass et?",
+          "choix": [
+            "Et ass fënnef vir hallwer eng.",
+            "Et ass fënnef op hallwer eng.",
+            "Et ass Véirel vir eng.",
+            "Et ass hallwer eng."
+          ],
+          "reponse": "Et ass fënnef vir hallwer eng.",
+          "note": "12 h 25 = cinq minutes avant la demi-heure vers une heure.",
+          "horloge": "12:25",
+          "question_fr": "Quelle heure est-il ?"
+        },
+        {
+          "question": "Wéi vill Auer ass et?",
+          "choix": [
+            "Et ass zwou Auer.",
+            "Et ass hallwer zwou.",
+            "Et ass zwou Auer an zéng.",
+            "Et ass eng Auer."
+          ],
+          "reponse": "Et ass zwou Auer.",
+          "note": "Zwou Auer = 2 h.",
+          "horloge": "02:00",
+          "question_fr": "Quelle heure est-il ?"
+        }
+      ]
+    },
+    {
+      "section": "Liesverstoen",
+      "titre": "D’Léa Linster",
+      "type": "qcm",
+      "consigne": "Liest den Text a fëllt de Formulaire aus! (Wielt déi richteg Äntwert.)",
+      "lignes": [
+        [
+          "",
+          "Dat ass d’Léa Linster. Si ass de 27. Abrëll 1955 zu Déifferdeng gebuer. Si ass Lëtzebuergerin a wunnt zu Lëtzebuerg, op der Musel. Si ass net bestuet an huet e Jong. Hien heescht Louis. Si ass Kächin an huet ee Restaurant zu Fréiseng. 1989 huet si de Bocuse d’Or gewonnen. De Restaurant zu Fréiseng huet e Michelinsstär. Si kacht oft a Kachsendungen a schreift Kachbicher."
+        ]
+      ],
+      "questions": [
+        {
+          "question": "Familljestand:",
+          "choix": [
+            "Jonggesellin (net bestuet)",
+            "bestuet",
+            "gescheet"
+          ],
+          "reponse": "Jonggesellin (net bestuet)",
+          "note": "Net bestuet = pas mariée.",
+          "question_fr": "Situation familiale :",
+          "preuve": [
+            "Si ass net bestuet",
+            "Elle n'est pas mariée"
+          ]
+        },
+        {
+          "question": "Gebuertsuert:",
+          "choix": [
+            "Déifferdeng",
+            "Fréiseng",
+            "Lëtzebuerg"
+          ],
+          "reponse": "Déifferdeng",
+          "note": "Zu Déifferdeng gebuer = née à Differdange.",
+          "question_fr": "Lieu de naissance :",
+          "preuve": [
+            "zu Déifferdeng gebuer",
+            "née à Differdange"
+          ]
+        },
+        {
+          "question": "Gebuertsdatum:",
+          "choix": [
+            "de 27. Abrëll 1955",
+            "de 27. Mee 1955",
+            "de 17. Abrëll 1955"
+          ],
+          "reponse": "de 27. Abrëll 1955",
+          "note": "Abrëll = avril.",
+          "question_fr": "Date de naissance :",
+          "preuve": [
+            "de 27. Abrëll 1955",
+            "le 27 avril 1955"
+          ]
+        },
+        {
+          "question": "Beruff:",
+          "choix": [
+            "Kächin",
+            "Enseignante",
+            "Sekretärin"
+          ],
+          "reponse": "Kächin",
+          "note": "Kächin = cuisinière.",
+          "question_fr": "Profession :",
+          "preuve": [
+            "Si ass Kächin",
+            "Elle est cuisinière"
+          ]
+        },
+        {
+          "question": "Wunnuert:",
+          "choix": [
+            "Lëtzebuerg, op der Musel",
+            "Fréiseng",
+            "Déifferdeng"
+          ],
+          "reponse": "Lëtzebuerg, op der Musel",
+          "note": "On demande le domicile, pas le lieu de naissance ni celui du restaurant.",
+          "question_fr": "Lieu de résidence :",
+          "preuve": [
+            "wunnt zu Lëtzebuerg, op der Musel",
+            "habite au Luxembourg, sur la Moselle"
+          ]
+        }
+      ]
+    }
+  ]
+}
