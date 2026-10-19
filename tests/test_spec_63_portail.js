@@ -46,7 +46,7 @@ ctx.portailInitialiser(null);
 assert.match(node('portail-auth').innerHTML,/Bon retour/);
 assert.ok(!node('portail-auth').innerHTML.includes('pa-compte-icone'),'pas de décor de profil sur le formulaire');
 ctx.portailOuvrir('signup');
-assert.match(node('portail-auth').innerHTML,/Ton parcours/);
+assert.match(node('portail-auth').innerHTML,/Un compte pour/);
 ctx.portailCompteConnecte({uid:'xyz'});
 assert.ok(!ctx.portailVisible());
 ctx.portailCompteDeconnecte();cloud=false;ctx.portailOuvrir('signin');
