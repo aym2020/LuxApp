@@ -1012,6 +1012,7 @@ function renderDecouverte() {
     '</div>' +
     '<div class="mc-decouverte">' +
       '<div class="mc-decouverte-lu">' + escHtml(motComplet(card)) + '</div>' +
+      boutonEcouterHtml(card.lu) + // prononciation LOD, seulement sur demande
       (card.note ? '<div class="mc-decouverte-note">' + escHtml(card.note) + '</div>' : '') +
     '</div>' +
     '<div class="mc-saisie">' +

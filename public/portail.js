@@ -88,7 +88,7 @@ function portailCarte() {
         '<span class="pa-face verso" aria-hidden="true"><span class="pa-carte-kicker">EN FRANÇAIS</span>'+
           '<b>Bonjour !</b><small>Appuie pour revenir</small></span>'+
       '</span></button>'+
-    '<button type="button" class="pa-ecouter" onclick="portailEcouter(this)" aria-label="Écouter la prononciation de « Moien! »">'+
+    '<button type="button" class="bouton-ecouter" onclick="portailEcouter(this)" aria-label="Écouter la prononciation de « Moien! »">'+
       portailIcone('son')+'<span>Écouter la prononciation</span></button>'+
   '</div>';
 }

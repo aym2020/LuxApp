@@ -96,6 +96,24 @@ function jouerAudio(fichier, bouton) {
   if (lecture && lecture.catch) lecture.catch(() => { arreterAudio(); notifier('Audio indisponible pour le moment.'); });
 }
 
+// Sons LOD des mots des leçons (tools/audio-lod.js) : { "mot de la carte": "lod/ID.mp3" }.
+let sonsLod = {};
+function chargerSonsLod() {
+  return fetch('audio/lod.json').then(r => (r.ok ? r.json() : {})).then(d => { sonsLod = d || {}; }, () => {});
+}
+function sonDuMot(lu) {
+  return sonsLod[lu] || null;
+}
+// Bouton « Écouter » d'un mot, ou rien si LOD n'a pas de son validé pour ce mot.
+function boutonEcouterHtml(lu) {
+  const fichier = sonDuMot(lu);
+  if (!fichier || !/^[A-Za-z0-9/._-]+$/.test(fichier)) return '';
+  return '<button type="button" class="bouton-ecouter" onclick="jouerAudio(\'' + fichier + '\', this)" aria-label="Écouter la prononciation">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M11 5 6 9H3v6h3l5 4z"/><path class="onde1" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="onde2" d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>' +
+    '<span>Écouter</span></button>';
+}
+
 function arreterAudio() {
   if (lecteurAudio) {
     lecteurAudio.onended = null;

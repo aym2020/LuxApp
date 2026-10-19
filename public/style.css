@@ -2595,14 +2595,14 @@ body.portail-bloque { overflow:hidden; }
 .pa-face b { font-size:40px; line-height:1.1; font-weight:800; letter-spacing:-.02em; }
 .pa-face small { font-size:var(--fs-sec); color:var(--couleur-texte-3); }
 .pa-carte:focus-visible { outline:2px solid var(--couleur-action); outline-offset:3px; border-radius:20px; }
-.pa-ecouter { display:inline-flex; align-items:center; gap:8px; min-height:var(--toucher); padding:0 var(--sp-3);
+.bouton-ecouter { display:inline-flex; align-items:center; gap:8px; min-height:var(--toucher); padding:0 var(--sp-3);
   border:0; background:none; cursor:pointer; color:var(--couleur-action);
   font-family:var(--police); font-size:var(--fs-sec); font-weight:650; }
-.pa-ecouter svg { width:20px; height:20px; }
-.pa-ecouter.joue .onde1 { animation:pa-onde .8s ease-in-out infinite; }
-.pa-ecouter.joue .onde2 { animation:pa-onde .8s ease-in-out .2s infinite; }
+.bouton-ecouter svg { width:20px; height:20px; }
+.bouton-ecouter.joue .onde1 { animation:pa-onde .8s ease-in-out infinite; }
+.bouton-ecouter.joue .onde2 { animation:pa-onde .8s ease-in-out .2s infinite; }
 @keyframes pa-onde { 50% { opacity:.25; } }
-.pa-ecouter:focus-visible { outline:2px solid var(--couleur-action); outline-offset:2px; border-radius:10px; }
+.bouton-ecouter:focus-visible { outline:2px solid var(--couleur-action); outline-offset:2px; border-radius:10px; }
 
 .pa-atouts { list-style:none; display:flex; justify-content:center; gap:var(--sp-4); padding:0; margin:0;
   width:100%; max-width:380px; }
@@ -2739,7 +2739,7 @@ body.sans-transitions .view { animation:none!important; }
 @media (prefers-reduced-motion: reduce) {
   .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere { animation:none!important; }
   .pa-carte-in, .dlg-voile, .dlg-carte, .notif { transition:none!important; }
-  .pa-ecouter.joue .onde1, .pa-ecouter.joue .onde2 { animation:none; }
+  .bouton-ecouter.joue .onde1, .bouton-ecouter.joue .onde2 { animation:none; }
 }
 @media(max-height:700px) {
   .pa-page { padding-top:var(--sp-4); padding-bottom:var(--sp-3); }

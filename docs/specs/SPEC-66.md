@@ -26,9 +26,13 @@
 8. **Transitions d'écran** : arrivée du nouvel écran en 260 ms (glissement + fondu), sens inverse quand on revient en arrière. Animations `transform`/`opacity` uniquement, sans `fill forwards` (un `transform` maintenu décalerait les barres fixes des écrans). Coupées si `prefers-reduced-motion` et en mode test (`LUX_TESTS=1`).
 9. Aucune donnée de progression, leçon ou algorithme modifié.
 
-## Hors périmètre (à faire ensuite)
+## Complément — prononciation des mots des leçons
 
-- **Audio des autres mots** : le miroir LOD ne contient que des fichiers nommés par identifiant LOD (`MOIEN1`, `MOIEN2`…), sans sens associé. Vérifier le sens de chaque fichier demande les métadonnées LOD (inaccessibles depuis l'environnement de Claude) : à automatiser avec l'export XML LOD ou une vérification manuelle par mot.
+- `tools/audio-lod.js new_lod-art.xml [--essai]` rapproche les cartes « mot caché » des articles LOD (export XML des articles, data.public.lu ; le fichier de 100 Mo n'est pas versionné) et télécharge les MP3 du miroir LOD.
+- Un son n'est gardé que si le mot de la carte (sans article ni ponctuation) est exactement le mot LOD, si la traduction française de la carte correspond à un sens LOD, et si un seul article convient — ou plusieurs homographes de même prononciation (même API), en privilégiant le sens principal (ex. « Moien! » → `MOIEN2`, interjection « bonjour »).
+- Résultat au 20/10/2026 : **372 mots** sur 782 cartes (`public/audio/lod/*.mp3`, ≈ 14 Mo ; table `public/audio/lod.json`). Non couverts : expressions de plusieurs mots (211), mots absents de LOD (63, ex. formes féminines, grands nombres), sens non reconnu automatiquement (68, ex. nombres écrits en chiffres), homographes de prononciations différentes (6).
+- Écran « Nouveau mot » du mot caché : bouton « Écouter » quand un son validé existe, jamais de lecture automatique.
+- Test : `tests/test_audio_lod.js`.
 
 ## Recette
 
