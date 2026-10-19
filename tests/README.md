@@ -43,3 +43,5 @@ PORT=3456 node server.js &       # serveur de test
 Les captures vont dans `tests/captures/` (ignoré par git).
 Autre adresse de serveur : `LUX_URL=http://localhost:8080/ python3 tests/...`.
 Texte agrandi : `LUX_TEXTE=130 python3 tests/captures_ecrans.py apres`.
+
+- `node tests/test_specs_61_62.js` — tuiles et cases (SPEC 61), bannière invité et fusion volontaire (SPEC 62).

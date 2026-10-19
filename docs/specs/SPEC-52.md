@@ -58,3 +58,6 @@
 - [ ] Confirmation qu'à la hauteur de l'appareil de référence, le léger défilement a disparu.
 
 **Ne pas déclarer « Validée » avant vérification sur téléphone.**
+
+## Complément — SPEC 62
+Le statut technique de synchronisation reste dans Plus et Réglages. L'accueil **invité** reçoit cependant un bandeau dédié à la création/connexion de compte et au risque de perte de progression locale, sans se prétendre statut de synchronisation cloud.

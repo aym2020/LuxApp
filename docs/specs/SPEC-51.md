@@ -51,3 +51,6 @@ La correction orthographique stricte des accents relève d'un éventuel exercice
 - [ ] Validation tactile/visuelle sur Android et sur le site déployé.
 
 **À ne pas déclarer « Validée » avant la recette sur téléphone.**
+
+## Complément — SPEC 61
+Les tuiles qui conservaient leur casse sont désormais toutes en minuscules sans accent. Le placement dans les cases rétablit la majuscule de position, tout en conservant la révélation différée des accents et le score de SPEC 51.
