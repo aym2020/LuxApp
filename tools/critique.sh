@@ -13,9 +13,15 @@ echec=0
 
 # Serveur de test (démarré s'il ne tourne pas déjà)
 if ! curl -s "localhost:$PORT_TEST" >/dev/null; then
-  PORT=$PORT_TEST node server.js >"$LOGS/serveur.log" 2>&1 &
+  LUX_TESTS=1 PORT=$PORT_TEST node server.js >"$LOGS/serveur.log" 2>&1 &
   SERVEUR=$!
   for _ in $(seq 1 40); do curl -s "localhost:$PORT_TEST" >/dev/null && break; sleep 0.25; done
+fi
+
+# Le serveur doit tourner avec LUX_TESTS=1 (sinon le portail d'entrée bloque les tests)
+if ! curl -s "localhost:$PORT_TEST/config.js" | grep -q "APP_CONFIG.TESTS = true"; then
+  echo "ECHEC   serveur $PORT_TEST lancé sans LUX_TESTS=1 : l'arrêter, puis relancer ce script"
+  exit 1
 fi
 
 # test_cloud lit la branche main (leçons v1) : la récupérer si le clone est partiel

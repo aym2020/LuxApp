@@ -40,6 +40,15 @@ if (RECETTE) {
   app.use('/recette', express.static(path.join(__dirname, 'recette')));
 }
 
+// Tests navigateur (tools/critique.sh) : LUX_TESTS=1 ajoute TESTS à la config pour
+// masquer le portail d'entrée (SPEC 63), qui couvrirait sinon tous les écrans testés.
+if (process.env.LUX_TESTS === '1' && !RECETTE) {
+  app.get('/config.js', (req, res) => {
+    const config = fs.readFileSync(path.join(__dirname, 'public/config.js'), 'utf8');
+    res.type('application/javascript').send(config + '\nwindow.APP_CONFIG.TESTS = true;\n');
+  });
+}
+
 app.use(express.static('public'));
 app.use(express.json());
 

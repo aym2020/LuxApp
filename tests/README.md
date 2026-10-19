@@ -5,7 +5,7 @@ Tous les tests tournent contre un serveur local. Helpers communs (ouvrir, répon
 ```bash
 npm install                      # une fois
 pip install playwright           # une fois (Chromium déjà installé ou : playwright install chromium)
-PORT=3456 node server.js &       # serveur de test
+LUX_TESTS=1 PORT=3456 node server.js &   # serveur de test (sans portail d’entrée)
 ```
 
 | Commande | Ce qu'elle vérifie | Durée |

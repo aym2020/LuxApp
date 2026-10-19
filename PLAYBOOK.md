@@ -433,7 +433,7 @@ les problèmes secondaires au lieu de bloquer la livraison.
 - **Échec connu (oct. 2026)** : `test_fil.py` s'arrête à l'étape 10 (séance de révision,
   attente de `#view-session .ecr-next-btn`). L'échec existe sans les changements récents :
   ne pas le re-diagnostiquer à chaque livraison ; le corriger dans une tâche dédiée.
-- `tools/critique.sh` démarre lui-même le serveur local (`PORT=3456`) s'il ne tourne pas, et récupère `main` si le clone est partiel (nécessaire à `test_cloud.js`).
+- `tools/critique.sh` démarre lui-même le serveur local (`LUX_TESTS=1 PORT=3456`, sans portail d’entrée) s'il ne tourne pas, et récupère `main` si le clone est partiel (nécessaire à `test_cloud.js`). Un serveur déjà lancé sans `LUX_TESTS=1` fait échouer la suite : sinon le portail d'entrée (SPEC 63) couvre les écrans testés.
 
 ### Test de logique → script Node autonome dans `/tmp/`
 
