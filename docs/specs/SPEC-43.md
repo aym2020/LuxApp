@@ -185,3 +185,22 @@ Les tests de bout en bout sans accélération restent en place (`test_missions_1
 **Reste ouvert** :
 - recette sur Android réel (option A ou B) ;
 - création du service Render privé si l'option B est retenue.
+
+
+## Extension — Fin d'examen (19/10/2026)
+
+Ajout au mode recette existant (même instance protégée, sans Firebase et avec stockage local fictif) du scénario **« Fin d’examen (annales A1.2) »**.
+
+**Parcours :** « Plus → Outils de test » → sélectionner « Fin d’examen » → sélectionner une annale depuis `examens` chargés par `/api/examens` → choisir « 100 % », « ≈ 85 % », « ≈ 70 % », « ≈ 40 % » ou « ≈ 70 % · Mes erreurs affichées » → « Voir cet écran ».
+
+**Exigences réalisées dans le code :**
+- Sélecteur de **sujet d'examen**, indépendant de la leçon choisie ; seuls les sujets actuellement chargés sont proposés.
+- Accès direct à l'écran réel `view-examen-result` **sans dérouler chaque partie**.
+- Initialisation par `startExamen()`, réponses valides prises dans les choix/banques du sujet, calcul et rendu par `examFinish()` / `examComputeResult()` / `renderExamResult()`, sans duplication de l'écran.
+- Scores globaux, barres par section, filtres « Toute la correction » et « Mes erreurs », boutons « Refaire ce sujet » et « Autres sujets » identiques à ceux de l'application normale.
+- Pourcentages cibles approximatifs selon le nombre de points ; mauvaises réponses réparties entre les parties et sections.
+- Scores et sélection de sujet isolés de la production, effacés par « Quitter le test » (seul le choix du panneau est conservé).
+
+**Fichiers :** `recette/recette.js`, `tests/test_recette_visuelle.py`, `docs/RECETTE.md`.
+
+**Validation à effectuer dans le dépôt :** exécuter les tests Playwright existants et les nouveaux cas (sujets différents, scores, filtres, navigation, absence d'écriture cloud, nettoyage), puis la suite critique. Vérifier visuellement la recette sur Android réel. Cette extension n'est **pas validée** avant exécution effective des tests.
