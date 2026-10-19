@@ -37,7 +37,7 @@ Ce service suit la branche `v2` : chaque push met aussi la recette à jour.
 ## Utilisation
 
 1. **Plus → Outils de test** (ou toucher l'onglet rose « MODE TEST » au bord droit de l'écran).
-2. Choisir la **leçon** (numéro affiché, ex. « Leçon 25 · Le passé composé »), l'**écran**, puis le **scénario**.
+2. Choisir l'**écran** à tester : pour les leçons, sélectionner la leçon ; pour **Fin d'examen**, sélectionner le sujet (annale A1.2). Choisir ensuite le **scénario**.
 3. **Voir cet écran →** : l'app vide la progression fictive, joue la leçon en accéléré avec ses vraies fonctions, puis affiche le vrai écran (moins d'une seconde dans les tests).
 4. Utiliser ensuite les vrais boutons (Continuer, Refaire mes erreurs, Mon chemin, Rejouer la mission, Retour Android…). Depuis tout résultat, « Mon chemin » et Retour mènent au Chemin, la leçon seule dépliée et cadrée (spec 45).
 5. **Tester l'actualisation (spec 44)** : sur n'importe quel écran obtenu (mission en cours, exercice, Chemin), tirer l'écran vers le bas pour actualiser. Le même écran doit revenir, avec les réponses, les vies, la leçon dépliée et la position.
@@ -49,8 +49,13 @@ Ce service suit la branche `v2` : chaque push met aussi la recette à jour.
 | Fin d'étape (écriture, unité 1) | Sans faute · 1re réponse juste au 2e essai |
 | Fin d'unité (unité 1) | Sans faute · Avec 3 erreurs (« Refaire mes erreurs ») |
 | Rattrapage des erreurs → Chemin | Erreurs refaites : résultat du rattrapage, puis « Mon chemin » (leçon seule dépliée et cadrée, spec 44) |
+| **Fin d’examen (annales)** | **100 %** · **≈ 85 %** (Très bien) · **≈ 70 %** (Réussi) · **≈ 40 %** (À retravailler) · **≈ 70 % avec « Mes erreurs » affiché** |
 
-Les erreurs simulées sont de vraies erreurs (une vie de moins par réplique ratée, réponses ratées une fois puis justes). Rien n'est fabriqué : bilans, étoiles et validations sont calculés par l'app.
+Les erreurs simulées dans les missions et les leçons sont de vraies erreurs (une vie de moins par réplique ratée, réponses ratées une fois puis justes). Les bilans et validations utilisent les fonctions de l'app.
+
+Pour la **fin d’examen**, le mode test choisit des réponses présentes dans les options du sujet, répartit automatiquement les bonnes et mauvaises réponses selon le scénario, puis appelle les **véritables fonctions** de calcul du score, d'affichage des sections et de correction. Le résultat n'est pas une maquette. Les pourcentages sont **approximatifs**, arrondis selon le nombre total de points. Tester ensuite les vrais boutons **« Toute la correction »**, **« Mes erreurs »**, **« Refaire ce sujet »** et **« Autres sujets »**.
+
+**Isolation :** tous les scores et meilleurs résultats obtenus dans ce mode restent sur l'origine de recette sans Firebase. « Quitter le test » les efface ; ils ne sont jamais synchronisés avec ton compte.
 
 ## Fichiers
 
