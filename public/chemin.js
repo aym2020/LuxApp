@@ -226,6 +226,79 @@ function lancerActionLecon(leconId) {
   actionLeconChemin(trouverLecon(leconId)).fn();
 }
 
+// SPEC 53 — titres courts réservés à l'affichage du Chemin.
+// Chaque entrée contient [titre source attendu, texte raccourci] : si une leçon
+// évolue, on ne risque pas d'afficher un raccourci obsolète.
+// Les leçons, les cours, les questions et les missions gardent leurs vrais titres.
+const CHEMIN_UNITES_COURTES = {
+  6: {
+    1: ['zwee ou zwou, pluriel en -(e)n', 'zwee / zwou · pluriel -(e)n']
+  },
+  15: {
+    1: ["Demander l'heure, lire les heures pleines", "Demander l'heure · heures pleines"]
+  },
+  20: {
+    1: ['Dans, sur, sous : situer un objet', 'Dans, sur, sous']
+  },
+  21: {
+    2: ['Sur, à côté… au féminin : der', 'Au féminin · der'],
+    3: ['Au masculin et au neutre : dem, am, um', 'Masculin/neutre · dem, am, um']
+  },
+  23: {
+    1: ['Présenter les membres de sa famille', 'Présenter sa famille'],
+    3: ['La sœur de mon père : désigner un lien familial', 'Les liens familiaux']
+  },
+  24: {
+    2: ["Ce que j'ai fait : passé avec hunn", 'Passé avec hunn']
+  },
+  27: {
+    1: ['sinn : être au présent', 'sinn · être'],
+    2: ['hunn : avoir au présent', 'hunn · avoir'],
+    3: ['Questions et formes courtes : si, hu', 'Questions et formes courtes']
+  }
+};
+
+// Toutes les missions A1.1/A1.2 actuellement publiées ont été relues.
+// Le libellé complet reste disponible dans aria-label / title et dans la mission.
+const CHEMIN_MISSIONS_COURTES = {
+  1: ['Premier cours de luxembourgeois', 'Premier cours'],
+  2: ['Premier jour au bureau', 'Au bureau'],
+  3: ['Aux objets trouvés', 'Objets trouvés'],
+  4: ['À la brocante', 'À la brocante'],
+  5: ["L'inventaire du bureau", 'Inventaire'],
+  6: ['Le déménagement du bureau', 'Déménagement du bureau'],
+  7: ['Faire connaissance au centre de langues', 'Au centre de langues'],
+  8: ['La fête des voisins', 'Fête des voisins'],
+  9: ['Au café des langues', 'Café des langues'],
+  10: ['Où habites-tu ?', 'Où habites-tu ?'],
+  11: ['Rencontre au forum des métiers', 'Forum des métiers'],
+  12: ['Parler de son lieu de travail', 'Lieu de travail'],
+  13: ['Faire connaissance avec Marie', 'Rencontre avec Marie'],
+  14: ['Faire connaissance : âge et anniversaire', 'Âge et anniversaire'],
+  15: ['Lire les horaires du bureau', 'Horaires du bureau'],
+  16: ['Raconter la journée de Carla', 'Journée de Carla'],
+  17: ['Téléphoner pour un rendez-vous', 'Rendez-vous téléphonique'],
+  20: ['Retrouver le ballon', 'Retrouver le ballon'],
+  21: ['Le déménagement', 'Déménagement'],
+  22: ['La pause café du vendredi', 'Pause café'],
+  23: ['Présenter sa famille à Anne', 'Présenter sa famille'],
+  24: ["Raconter sa journée d'hier", "Journée d'hier"],
+  25: ['Faire ses courses au marché', 'Au marché'],
+  26: ["Comprendre une annonce d'emploi", "Offre d'emploi"],
+  27: ['Faire connaissance au café', 'Au café']
+};
+
+function libelleUniteChemin(lecon, unite) {
+  const regle = CHEMIN_UNITES_COURTES[lecon.id] && CHEMIN_UNITES_COURTES[lecon.id][unite.id];
+  return regle && regle[0] === unite.titre ? regle[1] : unite.titre;
+}
+
+function libelleMissionChemin(lecon) {
+  if (!lecon.mission) return '';
+  const regle = CHEMIN_MISSIONS_COURTES[lecon.id];
+  return regle && regle[0] === lecon.mission.titre ? regle[1] : lecon.mission.titre;
+}
+
 // Unités du fil, mission, bilan : chacune ouvrable d'un appui (chevron à droite).
 // etapeActuelle : l'étape mise en avant (anneau doré).
 function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
@@ -259,7 +332,8 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     else if (parMission) sous = '<span class="sous par-mission">Validée par la mission</span>';
     html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-' + u.id + '"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirUniteDepuisChemin(' + l.id + ', ' + u.id + ')">' +
       '<span class="etat">' + ((fait || parMission) && !actuelle ? ICONES.coche : '') + '</span>' +
-      '<span class="texte"><span class="nom">' + u.id + '&nbsp;·&nbsp;' + escHtml(u.titre) + '</span></span>' +
+      '<span class="texte"><span class="nom" title="' + attrHtml(u.titre) + '">' +
+        u.id + '&nbsp;·&nbsp;' + escHtml(libelleUniteChemin(l, u)) + '</span></span>' +
       (fait ? '<span class="tag">' + etoilesHtml(nbEtoiles) + '</span>' : '') +
       ICONES.droite + sous +
       '</button></li>';
@@ -274,17 +348,18 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
     let classe = 'mission' + (statut === 'sansfaute' || statut === 'reussie' ? ' ok' : '') + (actuelle ? ' actuelle' + (pulse ? ' pulse' : '') : '');
     if (anim && anim.leconId === l.id && anim.uniteId === 'mission') classe += ' vient-de-finir';
     const nomLu = 'Mission : ' + l.mission.titre + (resultat ? ', ' + resultat : '');
-    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-mission"><button aria-label="' + attrHtml(nomLu) + '" onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
+    html += '<li class="' + classe + '" id="chemin-u-' + l.id + '-mission"><button aria-label="' + attrHtml(nomLu) + '" title="' + attrHtml(nomLu) + '" onclick="ouvrirMissionDepuisChemin(' + l.id + ')">' +
       '<span class="etat">' + ICONES.bulle + '</span>' +
-      '<span class="texte"><span class="sur">Mission</span><span class="nom">' + escHtml(l.mission.titre) + '</span></span>' +
+      '<span class="texte"><span class="nom chemin-mission-nom"><strong>Mission</strong>' +
+        '<span aria-hidden="true">&nbsp;·&nbsp;</span>' + escHtml(libelleMissionChemin(l)) + '</span></span>' +
       (resultat ? '<span class="tag statut' + (statut === 'jouee' ? ' ko' : ' ok') + '">' + resultat + '</span>' : '') +
       ICONES.droite + '</button></li>';
   }
 
   // Bilan : une ligne, le caractère optionnel dans le texte (pas de badge).
-  html += '<li class="bilan"><button aria-label="Bilan, 10 questions, Optionnel" onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
+  html += '<li class="bilan"><button aria-label="Bilan, 10 questions, optionnel" title="Bilan facultatif · 10 questions" onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
     '<span class="etat">' + ICONES.cible + '</span>' +
-    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions · Optionnel</span></span>' +
+    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions</span></span>' +
     ICONES.droite + '</button></li>';
   return html;
 }
