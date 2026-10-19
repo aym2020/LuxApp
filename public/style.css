@@ -2565,34 +2565,29 @@ body.portail-bloque { overflow:hidden; }
 .pa-heading p {
   max-width:38ch; font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2);
 }
-.pa-scene {
-  position:relative; width:min(100%,245px); height:clamp(120px,19dvh,154px);
-  margin:var(--sp-4) auto var(--sp-3); display:grid; place-items:center;
+/* SPEC 65 : bienvenue chaleureuse (halo doré) et contenu centré, sans vide au milieu. */
+.pa-bienvenue {
+  background:radial-gradient(ellipse 120% 42% at 50% 0%, rgba(245,207,77,.13), transparent 72%);
 }
-.pa-scene:before {
-  content:""; position:absolute; width:135px; height:135px; border-radius:50%;
-  background:radial-gradient(circle,var(--couleur-or-fond),transparent 72%);
-}
-.pa-scene svg { position:relative; width:95px; height:115px; }
-.pa-bulle {
-  position:absolute; z-index:1; font-size:var(--fs-sec); font-weight:700;
-  padding:5px 10px; border-radius:var(--rayon-bouton);
-}
-.pa-bulle-g {
-  top:5px; left:0; transform:rotate(-4deg);
-  color:var(--couleur-sur-or); background:var(--couleur-action);
-}
-.pa-bulle-d {
-  bottom:7px; right:0; transform:rotate(3deg);
-  color:var(--couleur-texte); background:var(--couleur-surface-2);
-  border:1px solid var(--couleur-bord-2);
-}
+.pa-centre { flex:1; display:flex; flex-direction:column; justify-content:center; }
+.pa-bienvenue .pa-marque { margin-bottom:var(--sp-4); }
+.pa-atouts { list-style:none; display:flex; flex-direction:column; gap:var(--sp-4);
+  margin:var(--sp-6) 0 var(--sp-6); padding:0; }
+.pa-atout { display:flex; align-items:center; gap:14px; }
+.pa-atout-ic { flex:none; display:grid; place-items:center; width:46px; height:46px; border-radius:14px; }
+.pa-atout-ic svg { width:22px; height:22px; }
+.pa-atout-ic.or { color:var(--couleur-action); background:rgba(245,207,77,.12); }
+.pa-atout-ic.vert { color:var(--couleur-reussi); background:rgba(84,224,173,.12); }
+.pa-atout-ic.bleu { color:var(--couleur-info); background:rgba(111,176,242,.12); }
+.pa-atout b { display:block; font-size:var(--fs-corps); font-weight:700; color:var(--couleur-texte); }
+.pa-atout b + span { display:block; margin-top:2px; font-size:var(--fs-sec); color:var(--couleur-texte-3); }
+.pa-bienvenue .pa-actions { margin-top:0; }
 .pa-actions { display:flex; flex-direction:column; gap:var(--sp-2); margin-top:auto; width:100%; }
 .pa-bouton {
   display:flex; justify-content:center; align-items:center; text-align:center;
-  width:100%; min-height:var(--hauteur-bouton); padding:9px var(--sp-3);
-  font-family:var(--police); font-size:var(--fs-sec); font-weight:750; line-height:1.3;
-  border-radius:var(--rayon-bouton); cursor:pointer;
+  width:100%; min-height:60px; padding:9px var(--sp-3);
+  font-family:var(--police); font-size:1.05rem; font-weight:700; line-height:1.3;
+  border-radius:16px; cursor:pointer;
 }
 .pa-bouton.or {
   color:var(--couleur-sur-or); background:var(--couleur-action);
@@ -2604,7 +2599,7 @@ body.portail-bloque { overflow:hidden; }
 }
 .pa-bouton.texte {
   min-height:var(--toucher); border:0; background:transparent;
-  color:var(--couleur-texte-3); font-size:var(--fs-sec); font-weight:600;
+  color:var(--couleur-texte-2); font-size:var(--fs-sec); font-weight:600;
 }
 .pa-bouton:active { transform:scale(.985); }
 .pa-bouton:focus-visible, .pa-switch button:focus-visible,
@@ -2657,32 +2652,30 @@ body.portail-bloque { overflow:hidden; }
   text-align:center; line-height:1.5; margin:var(--sp-4) 0; }
 /* Confirmation invité : information rassurante, discrète, action unique en or. */
 .pa-alerte { position:fixed; inset:0; z-index:270; display:flex;
-  align-items:flex-end; justify-content:center; }
+  align-items:center; justify-content:center; padding:var(--sp-5); }
 .pa-voile { position:absolute; inset:0; background:rgba(0,0,0,.72); }
 .pa-feuille {
-  position:relative; max-height:94dvh; width:min(100%,540px); overflow-y:auto;
-  padding:var(--sp-3) var(--sp-5) max(20px,env(safe-area-inset-bottom));
-  border:1px solid var(--couleur-bord-2); border-bottom:0;
-  border-radius:var(--rayon-carte) var(--rayon-carte) 0 0;
-  background:var(--couleur-surface-1);
+  position:relative; max-height:90dvh; width:min(100%,420px); overflow-y:auto;
+  padding:26px var(--sp-5) 14px; text-align:center;
+  border:1px solid var(--couleur-bord-2); border-radius:24px;
+  background:linear-gradient(180deg, #2a2415 0%, var(--couleur-surface-1) 45%);
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
 }
-.pa-poignee { width:40px; height:4px; margin:0 auto var(--sp-4);
-  border-radius:var(--rayon-pilule); background:var(--couleur-bord-fort); }
 .pa-symbole {
   display:grid; place-items:center; width:62px; height:62px;
-  border:1px solid var(--couleur-or-bord); border-radius:50%;
-  margin:0 auto var(--sp-4); background:var(--couleur-or-fond);
-  color:var(--couleur-action);
+  border-radius:50%;
+  margin:0 auto var(--sp-4); background:rgba(84,224,173,.14);
+  color:var(--couleur-reussi);
 }
-.pa-symbole svg { display:block; width:34px; height:34px; stroke-width:2.6; }
+.pa-symbole svg { display:block; width:32px; height:32px; stroke-width:2; }
 .pa-feuille h2 { text-align:center; font-size:var(--fs-titre);
   line-height:1.25; letter-spacing:-.02em; margin:0 0 var(--sp-2); }
 .pa-feuille > p { max-width:38ch; text-align:center; margin:0 auto var(--sp-4);
   font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2); }
 .pa-risque {
   display:flex; align-items:flex-start; gap:var(--sp-2);
-  padding:var(--sp-3); border:1px solid var(--couleur-bord-2);
-  border-radius:var(--rayon-moyen); background:var(--couleur-surface-2);
+  padding:var(--sp-3) 14px; text-align:left;
+  border-radius:var(--rayon-moyen); background:rgba(255,255,255,.04);
   color:var(--couleur-texte-2); font-size:var(--fs-sec); line-height:1.5;
 }
 .pa-risque > span:first-child {
@@ -2692,8 +2685,7 @@ body.portail-bloque { overflow:hidden; }
 @media(max-height:700px) {
   .pa-page { padding-top:var(--sp-4); padding-bottom:var(--sp-3); }
   .pa-marque { margin-bottom:var(--sp-4); }
-  .pa-scene { height:105px; margin:var(--sp-2) auto; }
-  .pa-scene svg { height:100px; }
+  .pa-atouts { gap:var(--sp-3); margin:var(--sp-4) 0; }
   .pa-heading p { line-height:1.4; }
   .pa-reconnexion .pa-marque { margin-bottom:var(--sp-4); }
   .pa-reconnexion .pa-heading { margin-bottom:var(--sp-3); }
@@ -2703,4 +2695,5 @@ body.portail-bloque { overflow:hidden; }
 @media(max-width:350px) {
   .pa-page { padding-left:var(--sp-4); padding-right:var(--sp-4); }
   .pa-feuille { padding-left:var(--sp-4); padding-right:var(--sp-4); }
+  .pa-alerte { padding:var(--sp-3); }
 }

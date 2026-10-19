@@ -24,7 +24,8 @@ function portailCompteDeconnecte() {
   portailStocker(PORTAIL_INVITE, null);
 }
 function portailInitialiser(user) {
-  if (window.APP_CONFIG && window.APP_CONFIG.RECETTE) return;
+  // Recette visuelle et tests navigateur : pas de portail.
+  if (window.APP_CONFIG && (window.APP_CONFIG.RECETTE || window.APP_CONFIG.TESTS)) return;
   if (user) portailCompteConnecte(user);
   else {
     // SPEC 64 : le choix « invité » ne masque plus l'accueil aux prochains lancements.
@@ -58,41 +59,48 @@ function portailBouton(texte,action,style) {
   return '<button type="button" class="pa-bouton '+style+'" onclick="portailAction(&quot;'+action+'&quot;)">'+texte+'</button>';
 }
 function portailMarque() { return '<div class="pa-marque">Lëtzebuergesch<span class="pa-point"></span></div>'; }
-function portailFleur() {
-  return '<div class="pa-scene" aria-hidden="true"><span class="pa-bulle pa-bulle-g">Moien !</span>'+
-    '<svg viewBox="0 0 120 150" fill="none"><path d="M60 130V75" stroke="#51D5A9" stroke-width="8" stroke-linecap="round"/>'+
-    '<path d="M60 88C33 78 21 53 25 27c25 0 43 17 37 51" stroke="#51D5A9" stroke-width="7"/>'+
-    '<path d="M60 70c0-31 15-45 42-44 0 26-10 45-42 49" stroke="#51D5A9" stroke-width="7"/></svg>'+
-    '<span class="pa-bulle pa-bulle-d">Bonjour !</span></div>';
+// SPEC 65 : trois atouts de l'app, mêmes icônes et couleurs que les accès de l'accueil.
+function portailAtout(couleur,icone,titre,detail) {
+  return '<li class="pa-atout"><span class="pa-atout-ic '+couleur+'" aria-hidden="true">'+icone+'</span>'+
+    '<span><b>'+titre+'</b><span>'+detail+'</span></span></li>';
+}
+function portailAtouts() {
+  const svg = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>';
+  return '<ul class="pa-atouts">'+
+    portailAtout('or',svg('<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>'),
+      'Leçons courtes','Une notion à la fois, à ton rythme')+
+    portailAtout('vert',svg('<path d="M21 12a9 9 0 0 0-15-6.7L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"/><path d="M21 21v-5h-5"/>'),
+      'Révisions au bon moment','Pour ne rien oublier')+
+    portailAtout('bleu',svg('<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>'),
+      'Examens blancs','Pour te préparer aux tests officiels')+
+    '</ul>';
 }
 function portailAlerteHtml() {
   return '<div id="pa-alerte" class="pa-alerte hidden" role="dialog" aria-modal="true" aria-labelledby="pa-titre-alerte">'+
     '<div class="pa-voile" onclick="portailFermerAlerte()"></div><section class="pa-feuille">'+
-    '<div class="pa-poignee" aria-hidden="true"></div>'+
-    '<div class="pa-symbole" role="img" aria-label="Sauvegarde en ligne non activée">'+
-    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">'+
-    '<path d="M15 17a14 14 0 0 1 25 9 8 8 0 0 1-2 15"/>'+
-    '<path d="M11 23a10 10 0 0 0 2 18h19"/><path d="M6 6 42 42" stroke-width="3.5"/></svg></div>'+
-    '<h2 id="pa-titre-alerte">Continuer sans compte ?</h2>'+
-    '<p>Tu peux découvrir LuxApp librement et commencer les leçons tout de suite.</p>'+
-    '<div class="pa-risque"><span aria-hidden="true">ⓘ</span><span>Sans compte, ta progression reste <strong>sur cet appareil uniquement</strong>. Tu risques de la perdre si tu changes de téléphone ou effaces les données.</span></div>'+
+    '<div class="pa-symbole" aria-hidden="true">'+
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">'+
+    '<path d="M12 21v-9"/><path d="M12 13C7 13 4 10 4 5c5 0 8 3 8 8z"/><path d="M12 11c0-4 3-7 8-7 0 5-3 7-8 7z"/></svg></div>'+
+    '<h2 id="pa-titre-alerte">C’est parti !</h2>'+
+    '<p>Tu peux commencer les leçons tout de suite, sans compte.</p>'+
+    '<div class="pa-risque"><span aria-hidden="true">ⓘ</span><span><strong>Bon à savoir :</strong> ta progression reste sur ce téléphone. Crée un compte quand tu veux pour la garder en sécurité et la retrouver partout.</span></div>'+
     '<div class="pa-actions">'+
-    (isCloudEnabled()?portailBouton('Créer un compte pour sauvegarder','signup','or'):'')+
-    portailBouton('Continuer en invité','guest-confirm','sombre')+
+    portailBouton('Commencer sans compte','guest-confirm','or')+
+    (isCloudEnabled()?portailBouton('Créer un compte','signup','sombre'):'')+
     portailBouton('Retour','guest-back','texte')+'</div></section></div>';
 }
 function portailContenu(mode) {
   const cloud = isCloudEnabled();
   if (mode === 'welcome') {
-    return '<main class="pa-page pa-bienvenue">'+portailMarque()+
+    return '<main class="pa-page pa-bienvenue">'+portailMarque()+'<div class="pa-centre">'+
       '<div class="pa-heading"><span class="pa-kicker">WËLLKOMM · BIENVENUE</span>'+
       '<h1>Le luxembourgeois,<br><em>à ta portée.</em></h1>'+
       '<p>Des leçons simples pour progresser à ton rythme, du premier « Moien » aux conversations du quotidien.</p></div>'+
-      portailFleur()+
+      portailAtouts()+
       (!cloud?'<p class="pa-indispo" role="status">Connexion momentanément indisponible. Tu peux continuer en invité.</p>':'')+
       '<div class="pa-actions">'+(cloud?portailBouton('Créer un compte','signup','or')+
         portailBouton('J’ai déjà un compte','signin','sombre'):'')+
-        portailBouton('Continuer sans compte','guest','texte')+'</div></main>'+portailAlerteHtml();
+        portailBouton('Continuer sans compte','guest','texte')+'</div></div></main>'+portailAlerteHtml();
   }
   const creation = mode === 'signup';
   const importable = !creation && typeof aDejaPratique === 'function' &&
