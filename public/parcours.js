@@ -1122,7 +1122,8 @@ function mcValider() {
     if (!c.lettre) { val += c.ch; essaiAffiche += c.ch; return; }
     const lettre = parCase[i] !== undefined ? parCase[i] : (c.etat !== '' ? c.ch : '');
     val += lettre;
-    essaiAffiche += lettre || '_';
+    // Le rappel de l'essai doit montrer les mêmes accents que les cases.
+    essaiAffiche += lettre ? mcLettreDansCase(lettre, c.ch) : '_';
   });
 
   // SPEC 51 : seules les lettres de base et leur ordre sont évalués.
