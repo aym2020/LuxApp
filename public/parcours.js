@@ -49,6 +49,142 @@ let pCoursUnite = null; // unité affichée dans le panneau Cours (null = toute 
 let pResultat = null;   // résultat de la dernière partie terminée
 let dernierFini = null; // { leconId, uniteId } : étape tout juste finie, animée une fois sur le chemin
 
+// ─── SPEC 58 : RATTRAPAGE PÉDAGOGIQUE DES ÉTOILES ─────────────────────────────
+// Le détail d'un meilleur passage est enregistré uniquement s'il correspond
+// à une partie complète et aux questions du cœur actuelles. Les anciens
+// utilisateurs passent un petit défi, jamais un faux recalcul rétroactif.
+function signatureRattrapage(l, uniteId) {
+  return ETAPES.map(e => e.type + ':' + itemsUnite(l, e.type, uniteId, 'coeur')
+    .map(x => x.id).sort((a, b) => a - b).join(',')).join('|');
+}
+
+function scoreDetailRattrapage(steps) {
+  const valeurs = steps.filter(s => Object.keys(s.scores).length).map(s => {
+    const scores = Object.values(s.scores);
+    return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length * 100);
+  });
+  return valeurs.length ? Math.round(valeurs.reduce((a, b) => a + b, 0) / valeurs.length) : 0;
+}
+
+function capturerDetailRattrapage(l, uniteId, steps) {
+  const detail = [];
+  for (const e of ETAPES) {
+    const ids = itemsUnite(l, e.type, uniteId, 'coeur').map(x => String(x.id));
+    if (!ids.length) continue;
+    const etape = steps.find(s => s.type === e.type);
+    if (!etape || ids.some(id => !Object.prototype.hasOwnProperty.call(etape.scores, id))) return null;
+    const scores = {};
+    ids.forEach(id => { scores[id] = etape.scores[id]; });
+    detail.push({ type: e.type, scores });
+  }
+  return detail.length ? { signature: signatureRattrapage(l, uniteId),
+    basePercent: scoreDetailRattrapage(detail), steps: detail } : null;
+}
+
+function detailRattrapageValide(l, uniteId) {
+  const snapshot = getRattrapageSnapshot(l.id, uniteId);
+  const best = getUnitBest(l.id, uniteId);
+  if (!snapshot || snapshot.basePercent !== best ||
+      snapshot.signature !== signatureRattrapage(l, uniteId) ||
+      !Array.isArray(snapshot.steps)) return null;
+  const reference = capturerDetailRattrapage(l, uniteId, snapshot.steps);
+  return reference && reference.basePercent === snapshot.basePercent ? snapshot : null;
+}
+
+function questionsPerduesRattrapage(snapshot) {
+  const keys = [];
+  snapshot.steps.forEach(s => Object.entries(s.scores).forEach(([id, score]) => {
+    if (score < 1) keys.push(s.type + ':' + id);
+  }));
+  return keys;
+}
+
+// Défi de l'ancien catalogue : privilégie les difficultés effectivement
+// observées, complète avec plusieurs types d'exercices, sans reproduire
+// artificiellement une partie passée dont nous ignorons le score détaillé.
+function questionsDefiHistorique(l, uniteId) {
+  const candidats = [];
+  ETAPES.forEach(e => itemsUnite(l, e.type, uniteId, 'coeur').forEach(q => {
+    const st = getQuestionStats(l.id, e.stat, q.id);
+    candidats.push({ cle: e.type + ':' + q.id,
+      poids: (st.wrongTotal || 0) * 3 + getWrongCount(l.id, e.stat, q.id),
+      type: e.type });
+  }));
+  if (candidats.length < 5) return [];
+  const groupes = {};
+  candidats.forEach(x => { (groupes[x.type] ||= []).push(x); });
+  const retenus = [];
+  // D'abord une question par type pour conserver un défi transversal.
+  ETAPES.forEach(e => {
+    const liste = groupes[e.type] || [];
+    liste.sort((a, b) => b.poids - a.poids);
+    if (liste.length) retenus.push(liste.shift());
+  });
+  const deja = new Set(retenus.map(x => x.cle));
+  candidats.sort((a, b) => b.poids - a.poids);
+  for (const x of candidats) {
+    if (retenus.length >= 8) break;
+    if (!deja.has(x.cle)) { retenus.push(x); deja.add(x.cle); }
+  }
+  return retenus.map(x => x.cle);
+}
+
+function peutRattraperEtoile(l, u) {
+  const score = getUnitBest(l.id, u.id);
+  if (score == null || score < 70 || score >= 90) return false;
+  const detail = detailRattrapageValide(l, u.id);
+  return detail ? questionsPerduesRattrapage(detail).length > 0
+                : questionsDefiHistorique(l, u.id).length >= 5;
+}
+
+function lancerRattrapageEtoile(uniteId) {
+  const u = trouverUnite(pLecon, uniteId);
+  if (!u || !peutRattraperEtoile(pLecon, u)) return;
+  const detail = detailRattrapageValide(pLecon, uniteId);
+  const cles = detail ? questionsPerduesRattrapage(detail) : questionsDefiHistorique(pLecon, uniteId);
+  if (!cles.length) return;
+  const meta = { source: detail ? 'detail' : 'historique', referenceMaj: detail ? detail.maj : null };
+  startUnite(uniteId, 'rattrapage', cles, meta);
+}
+
+function appliquerResultatRattrapage(r) {
+  const avant = getUnitBest(r.leconId, r.uniteId);
+  const meta = r.rattrapage || {};
+  let apres = avant;
+  if (meta.source === 'detail') {
+    const snap = detailRattrapageValide(pLecon, r.uniteId);
+    if (snap && snap.maj === meta.referenceMaj) {
+      const nouvelles = snap.steps.map(s => ({ type: s.type, scores: Object.assign({}, s.scores) }));
+      r.steps.forEach(s => Object.entries(s.scores).forEach(([id, score]) => {
+        const cible = nouvelles.find(t => t.type === s.type);
+        if (cible && Object.prototype.hasOwnProperty.call(cible.scores, id)) {
+          cible.scores[id] = Math.max(cible.scores[id], score);
+        }
+      }));
+      apres = Math.max(avant, scoreDetailRattrapage(nouvelles));
+      if (apres > avant) {
+        saveUnitBest(r.leconId, r.uniteId, apres);
+        saveRattrapageSnapshot(r.leconId, r.uniteId, {
+          signature: snap.signature, basePercent: apres, steps: nouvelles
+        });
+      }
+    }
+  } else if (meta.source === 'historique') {
+    // Le défi remplace la preuve manquante, pas le score d'origine.
+    // Au moins 5 items et 90 % de réussite ; 90 attribué, jamais 100.
+    const nb = r.steps.reduce((n, s) => n + Object.keys(s.scores).length, 0);
+    const total = Math.round(r.steps.reduce((n, s) => n +
+      (Object.keys(s.scores).length ? Object.values(s.scores).reduce((a, b) => a + b, 0) /
+       Object.keys(s.scores).length : 0), 0) /
+      r.steps.filter(s => Object.keys(s.scores).length).length * 100);
+    if (nb >= 5 && total >= 90) {
+      apres = Math.max(avant, 90);
+      if (apres > avant) saveUnitBest(r.leconId, r.uniteId, apres);
+    }
+  }
+  return { source: meta.source, avant, apres, ameliore: apres > avant };
+}
+
 // ─── OUTILS ─────────────────────────────────────────────────────────────────
 function isParcoursLecon(l) {
   return !!(l && Array.isArray(l.unites) && l.unites.length > 0);
