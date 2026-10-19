@@ -27,6 +27,28 @@ function texteDuBloc(bloc) {
   return JSON.stringify(bloc).replace(/<[^>]+>/g, '').toLowerCase();
 }
 
+// SPEC 50 : variantes exactes autorisées pour une réponse écrite contextualisée.
+function verifierAlternatives(f, item, emplacement) {
+  if (item.alternatives === undefined) return;
+  const alt = item.alternatives;
+  if (!Array.isArray(alt) || alt.length === 0) {
+    erreur(f, emplacement + ' : alternatives doit être un tableau non vide');
+    return;
+  }
+  // Même normalisation que public/app.js (casse, accents, ponctuation, espaces).
+  const norm = t => sansAccents(t).replace(/[.!?,;:]+/g, '').replace(/\\s+/g, ' ').trim();
+  const dejaVues = new Set([norm(item.lu)]);
+  alt.forEach((v, i) => {
+    if (typeof v !== 'string' || !v.trim()) {
+      erreur(f, emplacement + ' : alternative ' + (i + 1) + ' vide ou invalide');
+      return;
+    }
+    const n = norm(v);
+    if (dejaVues.has(n)) erreur(f, emplacement + ' : alternative identique ou répétée : ' + v);
+    dejaVues.add(n);
+  });
+}
+
 function verifierV2(f, l) {
   const idsUnites = l.unites.map(u => u.id);
   if (new Set(idsUnites).size !== idsUnites.length) erreur(f, 'deux unités ont le même id');
@@ -35,6 +57,15 @@ function verifierV2(f, l) {
     if (!u.regle) attention(f, 'unité ' + u.id + ' sans règle (écran « Avant de commencer »)');
     if (!u.pieges || !u.pieges.length) attention(f, 'unité ' + u.id + ' sans point d\'attention (« pieges »)');
     else if (u.pieges.length > 2) attention(f, 'unité ' + u.id + ' : ' + u.pieges.length + ' pièges (2 max conseillé)');
+  });
+
+  (l.ecriture || []).forEach(x =>
+    verifierAlternatives(f, x, 'écriture id ' + x.id));
+  (l.scene || []).forEach((x, i) => {
+    if (x.alternatives !== undefined && x.qui !== 'toi') {
+      erreur(f, 'réplique ' + (i + 1) + ' : alternatives réservé aux réponses « toi »');
+    }
+    verifierAlternatives(f, x, 'réplique ' + (i + 1));
   });
 
   TYPES.forEach(type => {
