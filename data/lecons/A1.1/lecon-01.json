@@ -1887,12 +1887,12 @@
       "titre": "Saluer selon le moment",
       "entetes": [
         "Salutation",
-        "Moment"
+        "Sens et emploi"
       ],
       "lignes": [
         [
           "Moien!",
-          "Bonjour (formule générale)"
+          "Bonjour"
         ],
         [
           "Gudde Moien!",
@@ -1900,11 +1900,11 @@
         ],
         [
           "Gudde Mëtteg!",
-          "Midi et après-midi"
+          "Bonjour (à midi et l'après-midi)"
         ],
         [
           "Gudden Owend!",
-          "Le soir"
+          "Bonsoir"
         ]
       ],
       "unite": 1
@@ -2255,7 +2255,7 @@
         ],
         [
           "Gudde Moien! Wéi heescht Dir?",
-          "Bonjour (le matin) ! Comment vous appelez-vous ?"
+          "Bonjour ! Comment vous appelez-vous ? (Le matin.)"
         ],
         [
           "Ech heesche Paul. Et freet mech.",
