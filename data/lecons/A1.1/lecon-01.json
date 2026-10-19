@@ -12,7 +12,7 @@
     "flashcards": "Mot caché : retrouve la formule luxembourgeoise à partir du français : saluer, demander comment ça va, se présenter, prendre congé.",
     "quiz": "Lis la formule luxembourgeoise et choisis sa traduction française exacte, en respectant le registre (dir = tu, Iech = vous).",
     "trous": "Complète la salutation ou la formule avec le mot exact (Moien, geet, Iech, heesche, gläichfalls…).",
-    "ecriture": "Écris en luxembourgeois les formules de la mission : saluer, demander et dire comment ça va, dire ton nom, prendre congé."
+    "ecriture": "Écris en luxembourgeois les formules de la mission : saluer, demander et dire comment ça va, dire ton nom, prendre congé. Le matin, Moien! et Gudde Moien! sont tous deux acceptés pour saluer."
   },
   "mission": {
     "titre": "Premier cours de luxembourgeois",
@@ -32,7 +32,10 @@
       "lu": "Gudde Moien, Här Kremer!",
       "fr": "Bonjour, Monsieur Kremer ! (le matin)",
       "unite": 1,
-      "aide": "Le matin : <b>Gudde</b> Moien · un homme : <b>Här</b> + nom."
+      "aide": "Le matin, <b>Moien!</b> ou <b>Gudde Moien!</b> · un homme : <b>Här</b> + nom.",
+      "alternatives": [
+        "Moien, Här Kremer!"
+      ]
     },
     {
       "qui": "Léa",
@@ -45,7 +48,10 @@
       "lu": "Gudde Moien!",
       "fr": "Bonjour ! (le matin)",
       "unite": 1,
-      "aide": "Le matin : <b>Gudde</b> Moien! (sans n devant M)."
+      "aide": "Le matin, <b>Moien!</b> et <b>Gudde Moien!</b> sont corrects. <b>Gudde</b> est sans n devant M.",
+      "alternatives": [
+        "Moien!"
+      ]
     },
     {
       "qui": "Madamm Weber",
@@ -56,9 +62,12 @@
     {
       "qui": "toi",
       "lu": "Gudde Moien, Madamm Weber!",
-      "fr": "Bonjour, Madame Weber !",
+      "fr": "Bonjour, Madame Weber ! (le matin)",
       "unite": 1,
-      "aide": "Une femme : <b>Madamm</b> + nom."
+      "aide": "Le matin, <b>Moien!</b> et <b>Gudde Moien!</b> conviennent. Une femme : <b>Madamm</b> + nom.",
+      "alternatives": [
+        "Moien, Madamm Weber!"
+      ]
     },
     {
       "qui": "Léa",
@@ -178,7 +187,7 @@
         "Gudde Moien!",
         "Bonjour ! (le matin)"
       ],
-      "regle": "<b>Moien!</b> à toute heure · <b>Gudde Moien!</b> le matin · <b>Gudde Mëtteg!</b> à midi · <b>Gudden Owend!</b> le soir",
+      "regle": "<b>Moien!</b> à toute heure (même le matin) · <b>Gudde Moien!</b> le matin : les deux sont corrects · <b>Gudde Mëtteg!</b> à midi · <b>Gudden Owend!</b> le soir",
       "exemple": "Moien Anna! · Gudde Moien, Madamm! · Gudden Owend, Här Michels!",
       "phrases": [
         [
@@ -191,7 +200,7 @@
         ]
       ],
       "pieges": [
-        "<b>Moien!</b> marche à toute heure : en cas de doute, dis Moien!",
+        "Le matin, <b>Moien!</b> et <b>Gudde Moien!</b> conviennent. En cas de doute, <b>Moien!</b> marche à toute heure.",
         "Le soir : <b>Gudden</b> Owend (le n reste devant une voyelle), mais <b>Gudde</b> Moien."
       ]
     },
@@ -281,7 +290,7 @@
       "unite": 1,
       "fr": "Bonjour ! (le matin)",
       "lu": "Gudde Moien!",
-      "note": "Gudde = bon"
+      "note": "Le matin ; Moien! est aussi correct"
     },
     {
       "id": 2003,
@@ -1565,7 +1574,10 @@
       "id": 2002,
       "unite": 1,
       "fr": "Bonjour ! (le matin)",
-      "lu": "Gudde Moien!"
+      "lu": "Gudde Moien!",
+      "alternatives": [
+        "Moien!"
+      ]
     },
     {
       "id": 2003,
@@ -1584,7 +1596,10 @@
       "id": 2005,
       "unite": 1,
       "fr": "Bonjour Anna !",
-      "lu": "Moien Anna!"
+      "lu": "Moien Anna!",
+      "alternatives": [
+        "Gudde Moien, Anna!"
+      ]
     },
     {
       "id": 2006,
@@ -1877,11 +1892,11 @@
       "lignes": [
         [
           "Moien!",
-          "À toute heure"
+          "À toute heure, y compris le matin"
         ],
         [
           "Gudde Moien!",
-          "Le matin"
+          "Le matin (Moien! convient aussi)"
         ],
         [
           "Gudde Mëtteg!",
