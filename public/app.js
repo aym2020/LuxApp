@@ -702,7 +702,7 @@ function montrerFeedbackSession(feedback, input) {
   if (input && typeof input.blur === 'function') input.blur();
   feedback.classList.remove('hidden');
   const amener = () => {
-    if (feedback.classList.contains('hidden') ||
+    if (feedback.className.split(/\s+/).includes('hidden') ||
         typeof feedback.scrollIntoView !== 'function') return;
     feedback.scrollIntoView({ block: 'center', behavior: 'smooth' });
   };
