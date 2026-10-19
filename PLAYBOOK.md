@@ -417,7 +417,7 @@ les problèmes secondaires au lieu de bloquer la livraison.
 | `progress.js`, `cloud.js` | `node tests/test_cloud.js`, `node tests/test_sync.js`, `test_lot1` |
 | `correction.js`, `diagnostic.js` (aide après erreur) | `node tests/test_correction.js`, `test_rappels`, `test_prerequis`, `test_mission_vies` |
 | `revision.js`, séance | `test_seance`, `test_lot2` |
-| `data/lecons/` | `node tools/valider-lecons.js`, `node tools/audit-prerequis.js` (mots exigés avant d'être enseignés, rapport), `test_missions_10` si `scene` touchée, `test_prerequis` |
+| `data/lecons/` | `node tools/valider-lecons.js`, `node tools/audit-prerequis.js` (mots exigés avant d'être enseignés, rapport), `test_missions_10` si `scene` touchée, `test_prerequis` ; **puis `node tools/audio-lod.js`** (sons LOD des nouveaux mots et phrases, rapport des refus ; voir SPEC 69) et `node tests/test_audio_lod.js` |
 | `style.css` seul | aucun test navigateur ; capture d'écran du point touché |
 | `server.js`, `recette/` (mode recette) | `test_recette_visuelle` |
 

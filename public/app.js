@@ -125,7 +125,7 @@ function coursBlocsHtml(blocs, accent) {
         <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>${
           sec.echanges.map(([lu, fr]) =>
             `<div class="cours-dialogue">
-              <div class="cours-dialogue-lu" style="color:${accent}">${lu}</div>
+              <div class="cours-dialogue-lu" style="color:${accent}">${lu}${boutonEcouterHtml(lu, true)}</div>
               <div class="cours-dialogue-fr">${fr}</div>
             </div>`
           ).join('')
@@ -793,14 +793,14 @@ function validateSessionInput() {
     feedback.className = 'ecr-feedback ok';
     const autres = item.type === 'ecriture' ? autresReponsesAcceptees(corrige, reconnue) : [];
     feedback.innerHTML = (session.essais ? '✅ Correct, au 2e essai' : '✅ Correct !') +
-      (item.type === 'motcache' ? boutonEcouterHtml(corrige.lu) : '') + // SPEC 68
+      boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
       (autres.length ? '<span class="session-attention">Autre formulation correcte : ' +
         autres.map(escHtml).join(' · ') + '</span>' : '') +
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   } else {
     feedback.className = 'ecr-feedback ko';
     feedback.innerHTML = '❌ Réponse :<span class="ecr-correct-answer">' + escHtml(affiche) + '</span>' +
-      (item.type === 'motcache' ? boutonEcouterHtml(corrige.lu) : '') + // SPEC 68
+      boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   }
 

@@ -83,6 +83,7 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 | 66 | [Accueil interactif, audio, transitions, dialogues LuxApp et Retour Android](./SPEC-66.md) | P1 | Implémentée — validation à confirmer |
 | 67 | [Ligne de compte sur l'accueil invité](./SPEC-67.md) | P1 | Implémentée — validation à confirmer |
 | 68 | [Bouton « Écouter » partout où un mot isolé est présenté](./SPEC-68.md) | P1 | Implémentée — validation à confirmer |
+| 69 | [Sons LOD : correspondances vérifiées, relance autonome, phrases enregistrées](./SPEC-69.md) | P1 | Implémentée — phrases en attente d'accès à lod.lu |
 
 ## Gestion des changements
 

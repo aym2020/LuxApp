@@ -30,7 +30,7 @@
 
 - `tools/audio-lod.js new_lod-art.xml [--essai]` rapproche les cartes « mot caché » des articles LOD (export XML des articles, data.public.lu ; le fichier de 100 Mo n'est pas versionné) et télécharge les MP3 du miroir LOD.
 - Un son n'est gardé que si le mot de la carte (sans article ni ponctuation) est exactement le mot LOD, si la traduction française de la carte correspond à un sens LOD, et si un seul article convient — ou plusieurs homographes de même prononciation (même API), en privilégiant le sens principal (ex. « Moien! » → `MOIEN2`, interjection « bonjour »).
-- Résultat au 20/10/2026 : **372 mots** sur 782 cartes (`public/audio/lod/*.mp3`, ≈ 14 Mo ; table `public/audio/lod.json`). Non couverts : expressions de plusieurs mots (211), mots absents de LOD (63, ex. formes féminines, grands nombres), sens non reconnu automatiquement (68, ex. nombres écrits en chiffres), homographes de prononciations différentes (6).
+- Résultat au 20/10/2026 : **372 mots** (442 depuis la SPEC 69) sur 782 cartes (`public/audio/lod/*.mp3`, ≈ 14 Mo ; table `public/audio/lod.json`). Non couverts : expressions de plusieurs mots (211), mots absents de LOD (63, ex. formes féminines, grands nombres), sens non reconnu automatiquement (68, ex. nombres écrits en chiffres), homographes de prononciations différentes (6).
 - Écran « Nouveau mot » du mot caché : bouton « Écouter » quand un son validé existe, jamais de lecture automatique.
 - Test : `tests/test_audio_lod.js`.
 

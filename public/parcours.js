@@ -1543,14 +1543,14 @@ function ecrValiderPc() {
     enregistrer(e, 1, true);
     input.disabled = true;
     input.className = 'ecr-input correct';
-    showFeedback(true, 'Juste !', '<b>' + escHtml(reconnue) + '</b>' +
+    showFeedback(true, 'Juste !', '<b>' + escHtml(reconnue) + '</b>' + boutonEcouterHtml(e.lu) +
       variantesHtml + attentionHtml(attention), reussir);
     return;
   }
   if (ok) {
     input.disabled = true;
     input.className = 'ecr-input correct';
-    showFeedback(true, 'Juste, au 2e essai', '<b>' + escHtml(reconnue) + '</b>' +
+    showFeedback(true, 'Juste, au 2e essai', '<b>' + escHtml(reconnue) + '</b>' + boutonEcouterHtml(e.lu) +
       variantesHtml + attentionHtml(attention) +
       rappelHtml('Pour la valider, trouve-la du premier coup : elle reviendra à la fin de l\'étape.',
         'Elle est notée à revoir : tu la retrouveras dans tes révisions.'), echouer);
@@ -1590,7 +1590,7 @@ function ecrValiderPc() {
   input.className = 'ecr-input wrong';
   document.getElementById('pc-ecr-erreur').classList.add('hidden');
   showFeedback(false, 'Pas encore',
-    'Réponse attendue : <b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention) +
+    'Réponse attendue : <b>' + escHtml(e.lu) + '</b>' + boutonEcouterHtml(e.lu) + attentionHtml(attention) +
     rappelHtml('Cette phrase reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
 }
 

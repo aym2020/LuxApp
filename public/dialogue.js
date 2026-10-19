@@ -99,7 +99,16 @@ function jouerAudio(fichier, bouton) {
 // Sons LOD des mots des leçons (tools/audio-lod.js) : { "mot de la carte": "lod/ID.mp3" }.
 let sonsLod = {};
 let sonsLodSimples = {}; // SPEC 68 : même table, clés simplifiées (sans article ni ponctuation)
+let sonsPhrases = {}; // SPEC 69 : phrases enregistrées par le LOD, clé = phrase simplifiée
+function cleePhrase(texte) {
+  return String(texte).replace(/<[^>]*>/g, ' ').toLowerCase().replace(/[’`]/g, "'")
+    .replace(/[.,!?;:«»"…()\u2013\u2014]/g, ' ').replace(/\s+/g, ' ').trim();
+}
 function chargerSonsLod() {
+  fetch('audio/lod-phrases.json').then(r => (r.ok ? r.json() : {})).then(d => {
+    sonsPhrases = {};
+    Object.keys(d || {}).forEach(p => { sonsPhrases[cleePhrase(p)] = d[p]; });
+  }, () => {});
   return fetch('audio/lod.json').then(r => (r.ok ? r.json() : {})).then(d => {
     sonsLod = d || {};
     sonsLodSimples = {};
@@ -120,13 +129,13 @@ function cleSon(texte) {
 }
 function sonDuMot(lu) {
   if (!lu) return null;
-  return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || null;
+  return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || sonsPhrases[cleePhrase(lu)] || null;
 }
 // Bouton « Écouter » d'un mot isolé, ou rien si LOD n'a pas de son validé pour ce mot.
 // compact : icône seule (listes, tableaux), le nom accessible cite le mot.
 function boutonEcouterHtml(lu, compact) {
   const fichier = sonDuMot(lu);
-  if (!fichier || !/^[A-Za-z0-9/._-]+$/.test(fichier)) return '';
+  if (!fichier || !/^[A-Za-z0-9/._-]+\.(mp3|m4a)$/.test(fichier)) return '';
   const mot = escHtml(String(lu).replace(/<[^>]*>/g, ''));
   return '<button type="button" class="bouton-ecouter' + (compact ? ' compact' : '') + '" ' +
     'onclick="event.stopPropagation(); jouerAudio(\'' + fichier + '\', this)" aria-label="Écouter « ' + mot + ' »">' +

@@ -59,7 +59,7 @@ function bulleSceneHtml(l, x) {
   return '<div class="ms-bulle' + (toi ? ' toi' : '') + '">' +
     '<div class="ms-bulle-tete"><b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
       '<span class="ms-pastille' + (apprise ? ' apprise' : '') + '">' + (apprise ? '✓ ' : '') + 'Unité ' + x.unite + '</span></div>' +
-    escHtml(x.lu) + '<em>' + escHtml(x.fr) + '</em></div>';
+    escHtml(x.lu) + boutonEcouterHtml(x.lu, true) + '<em>' + escHtml(x.fr) + '</em></div>'; // SPEC 69
 }
 
 // ─── CARTE MISSION (en haut de l'écran de la leçon) ─────────────────────────
