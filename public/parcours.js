@@ -276,8 +276,7 @@ function openParcoursLecon(l, cible, afficherUnitesDirectement = false) {
   fermerClavier();
   // 1re découverte d'une leçon avec mission : l'introduction, jusqu'à confirmation.
   if (!afficherUnitesDirectement && cible == null && introMissionAVoir(l)) {
-    renderIntroMission();
-    showView('view-msintro');
+    ouvrirIntroMission(l); // Découvrir : aucune unité présélectionnée
     return;
   }
   renderParcoursLecon();
@@ -462,6 +461,12 @@ function rafraichirLecon() {
 let pIntroUnite = null; // unité de l'écran « Avant de commencer » (pour la croix)
 
 function openIntro(uniteId) {
+  // SPEC 55 : consulter la liste est libre, commencer une unité ne saute
+  // jamais la première introduction immersive, bonus compris.
+  if (introMissionAVoir(pLecon)) {
+    ouvrirIntroMission(pLecon, { type: 'unite', uniteId });
+    return;
+  }
   pIntroUnite = uniteId;
   fermerClavier();
   const u = trouverUnite(pLecon, uniteId);
@@ -537,6 +542,12 @@ function motsHtml(mots) {
 // filtre  : liste de clés "type:id" à garder (null = tout)
 function startUnite(uniteId, mode, filtre) {
   mode = mode || 'unite';
+  // SPEC 55 : protège aussi les raccourcis Quiz/Trous/Écriture et « Leçon
+  // complète », accessibles depuis l'aperçu. Aucune progression avant accord.
+  if (introMissionAVoir(pLecon)) {
+    ouvrirIntroMission(pLecon, { type: 'demarrer', uniteId, mode, filtre });
+    return;
+  }
   let quoi = 'tout';
   if (mode === 'unite') quoi = 'coeur';
   if (mode === 'plus') quoi = 'plus';
