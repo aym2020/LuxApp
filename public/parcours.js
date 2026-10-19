@@ -147,6 +147,31 @@ function lancerRattrapageEtoile(uniteId) {
   startUnite(uniteId, 'rattrapage', cles, meta);
 }
 
+// SPEC 60 : révision après 3 étoiles, distincte du rattrapage noté.
+function questionsRevisionErreursUnite(l, uniteId) {
+  const u = l && trouverUnite(l, uniteId);
+  const best = l && getUnitBest(l.id, uniteId);
+  if (!u || u.bonus || best == null || best < 90 || getSansFaute(l.id, uniteId)) return [];
+  const detail = detailRattrapageValide(l, uniteId);
+  if (detail) return questionsPerduesRattrapage(detail);
+  const candidats = [];
+  ETAPES.forEach(e => itemsUnite(l, e.type, uniteId, 'coeur').forEach(q => {
+    const s = getQuestionStats(l.id, e.stat, q.id);
+    const n = getWrongCount(l.id, e.stat, q.id);
+    if (n > 0 || (s.wrongTotal || 0) > 0)
+      candidats.push({ cle: e.type + ':' + q.id, poids: n * 5 + (s.wrongTotal || 0) });
+  }));
+  candidats.sort((a, b) => b.poids - a.poids);
+  return candidats.slice(0, 8).map(x => x.cle);
+}
+function peutRevoirErreursUnite(l, u) {
+  return !!(l && u && questionsRevisionErreursUnite(l, u.id).length);
+}
+function lancerRevisionErreursUnite(uniteId) {
+  const cles = questionsRevisionErreursUnite(pLecon, uniteId);
+  if (cles.length) startUnite(uniteId, 'erreurs', cles);
+}
+
 function appliquerResultatRattrapage(r) {
   const avant = getUnitBest(r.leconId, r.uniteId);
   const meta = r.rattrapage || {};
@@ -565,6 +590,14 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
     html += '<button class="pc-btn wide pl-rattrapage" onclick="lancerRattrapageEtoile(' + u.id + ')">' +
       '★ Rattraper ma 3e étoile <small>' + best + ' % → 90 % · ' +
       (detail ? 'questions à retravailler' : 'défi ciblé') + '</small></button>';
+  }
+  // SPEC 60 : l'unité à 3 étoiles conserve un accès direct à ses fautes.
+  if (peutRevoirErreursUnite(l, u)) {
+    const detail = detailRattrapageValide(l, u.id);
+    html += '<button class="pc-btn wide pl-rattrapage pl-revoir-erreurs" onclick="lancerRevisionErreursUnite(' + u.id + ')">' +
+      '↻ Revoir mes erreurs <small>' +
+      (detail ? 'Questions à retravailler' : 'Difficultés déjà rencontrées') +
+      ' · sans changement des étoiles</small></button>';
   }
   // Révision libre interrompue sur cette unité : reprenable, sans être la prochaine étape.
   if (pLibreIci && pLibreIci.uniteId === u.id) {
