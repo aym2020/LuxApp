@@ -1,6 +1,6 @@
 # LuxApp — Registre des spécifications
 
-Ce répertoire centralise les **51 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+Ce répertoire centralise les **52 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
 > **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; les fiches 35 à 37 sont implémentées (recette à confirmer) ; la fiche 38 décrit le correctif d'historique après confirmation de l'introduction et rattrapage des erreurs. La fiche 39 optimise l'outillage de tests ; la fiche 40 est implémentée (recette Android à confirmer) ; la fiche 41 est implémentée (recette Android à confirmer) ; la fiche 42 est implémentée (validation Android à confirmer) ; la fiche 43 décrit le mode de recette visuelle rapide à développer. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
@@ -66,6 +66,7 @@ Ce répertoire centralise les **51 spécifications** fonctionnelles et UX du pro
 | 49 | [Résultat d'examen : retours fiables vers la liste des sujets](./SPEC-49.md) | P1 | Implémentée — validation à confirmer |
 | 50 | [Salut du matin : accepter Moien et Gudde Moien sans pénalité](./SPEC-50.md) | P1 | Implémentée — validation à confirmer |
 | 51 | [Lettres mélangées : accents automatiques dans les cases](./SPEC-51.md) | P1 | Implémentée — validation à confirmer |
+| 52 | [Accueil mobile compact et synchronisation dans les réglages](./SPEC-52.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 
