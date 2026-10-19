@@ -37,6 +37,7 @@ async function init() {
   setupCardInteraction(); // BUG 1 fix : remplace setupSwipe()
   setupKeyboard();
   await restaurerNavigation(); // spec 44 : après une actualisation, le même écran
+  portailInitialiser(await getCurrentUser()); // SPEC 63 : session, invité, ou « Bon retour »
 }
 
 // ─── NIVEAU ─────────────────────────────────────────────────────────────────
@@ -291,13 +292,18 @@ function friendlyAuthError(error) {
   if (code === 'auth/invalid-email') return 'Email invalide.';
   if (code === 'auth/too-many-requests') return 'Trop de tentatives. Réessaie dans quelques minutes.';
   if (code === 'auth/network-request-failed') return 'Pas de connexion internet.';
+  if (code === 'cloud-disabled') return 'Connexion indisponible. Continue en invité pour le moment.';
   return 'Une erreur est survenue. Réessaie.';
 }
 
-async function handleAuth(mode) {
-  const email = document.getElementById('auth-email').value.trim();
-  const pass = document.getElementById('auth-pass').value;
-  const msg = document.getElementById('auth-msg');
+async function handleAuth(mode, source = 'settings') {
+  const prefix = source === 'portail' ? 'pa-' : 'auth-';
+  const emailInput = document.getElementById(prefix + 'email');
+  const passInput = document.getElementById(source === 'portail' ? 'pa-password' : 'auth-pass');
+  const msg = document.getElementById(source === 'portail' ? 'pa-message' : 'auth-msg');
+  if (!emailInput || !passInput || !msg) return;
+  const email = emailInput.value.trim();
+  const pass = passInput.value;
   if (!email || !pass) { msg.textContent = 'Email et mot de passe requis.'; return; }
   msg.textContent = '…';
 
@@ -305,7 +311,8 @@ async function handleAuth(mode) {
   // Inscription = import ; compte existant = case à cocher explicitement.
   const invite = currentStorageProfile === 'anonymous' ? getProgressPayload() : null;
   const importer = mode === 'signup' ||
-    !!(document.getElementById('auth-import-local') && document.getElementById('auth-import-local').checked);
+    !!(document.getElementById(source === 'portail' ? 'pa-import' : 'auth-import-local') &&
+       document.getElementById(source === 'portail' ? 'pa-import' : 'auth-import-local').checked);
   const fn = mode === 'signup' ? signUp : signIn;
   const { data, error } = await fn(email, pass);
   if (error) { msg.textContent = friendlyAuthError(error); return; }
@@ -322,12 +329,15 @@ async function handleAuth(mode) {
     }
   }
   await syncProgress();
+  portailCompteConnecte(user);
   await updateAuthUI();
   renderDashboard();
   renderLessonsProgress();
+  if (source === 'portail') goDashboard();
 }
 
 function handleSignOut() {
+  portailCompteDeconnecte(); // SPEC 63 : proposer « Bon retour » lors de la prochaine ouverture
   // Firebase garde la session dans IndexedDB : on attend la déconnexion
   // (locale, rapide) puis on recharge. Sécurité : reload forcé après 2 s.
   const reload = () => window.location.reload();

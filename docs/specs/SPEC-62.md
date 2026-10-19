@@ -15,3 +15,6 @@ Fichiers : `public/accueil.js`, `public/app.js`, `public/style.css`. Complète l
 **Tests :** bannière invité / connecté / cloud indisponible, entrée directe, fusion automatique après inscription, absence d'import à la connexion, import explicite, échec sans perte — `tests/test_specs_61_62.js`.
 
 **Reste à contrôler :** tests Firebase réels (nouveau compte, fusion à distance, second téléphone, perte réseau), affichage Android et accessibilité. Ne pas marquer « Validée » auparavant.
+
+## Modification SPEC 63
+Le bandeau de l'accueil est remplacé par le portail de bienvenue, l'avertissement avant mode invité et l'écran de reconnexion. La fusion invitée et l'option d'import explicite restent celles de la SPEC 62.

@@ -64,7 +64,6 @@ function renderAccueil(animer) {
   const nouveau = !aDejaPratique();
 
   let html = enteteAccueilHtml();
-  html += invitationCompteHtml(); // SPEC 62 : avertir un invité de la sauvegarde locale
   if (nouveau) html += accrocheHtml();
   else html += chiffresHtml();
   html += carteSuiteHtml(plan.pas, nouveau);
@@ -97,23 +96,6 @@ function changerNiveauAccueil(niveau) {
   choisirNiveau(niveau);
   renderLessons();
   renderAccueil(false);
-}
-
-// SPEC 62 : accès évident au compte, sans dépendre du menu « Plus ».
-function invitationCompteHtml() {
-  if (!isCloudEnabled() || (fbAuth && fbAuth.currentUser)) return '';
-  return '<section class="ac-invitation-compte entre-2" aria-label="Protection de ta progression">' +
-    '<div class="ac-invitation-entete"><span aria-hidden="true">◈</span><strong>Protège ta progression</strong></div>' +
-    '<p>Sans compte, tes progrès restent sur cet appareil. Ils peuvent être perdus si tu changes de téléphone ou effaces les données.</p>' +
-    '<div class="ac-invitation-actions">' +
-      '<button class="ac-invitation-creer" onclick="ouvrirCompteDepuisAccueil(&quot;signup&quot;)">Créer un compte</button>' +
-      '<button class="ac-invitation-connexion" onclick="ouvrirCompteDepuisAccueil(&quot;signin&quot;)">J&#39;ai déjà un compte</button>' +
-    '</div></section>';
-}
-function ouvrirCompteDepuisAccueil(mode) {
-  if (!isCloudEnabled() || (mode !== 'signup' && mode !== 'signin')) return;
-  openReglages();
-  showAuthForm(mode);
 }
 
 // Nouvel utilisateur : une phrase d'accueil à la place des chiffres.

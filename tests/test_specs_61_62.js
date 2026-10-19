@@ -18,16 +18,6 @@ assert.equal(tiles.mcLettreDansCase('a','Ä'),'A');
 assert.equal(tiles.mcLettreDansCase('e','ë'),'e');
 assert.ok(tiles.nouvellesTuiles().every(x=>x.ch===x.ch.toLowerCase()));
 assert.ok(p.includes('texte = mcLettreDansCase(parCase[i], c.ch)'));
-let cloud=true,user=null,opened=[];
-const banner=new Function('isCloudEnabled','fbAuth','openReglages','showAuthForm',
- extract(a,'invitationCompteHtml')+extract(a,'ouvrirCompteDepuisAccueil')+
- 'return {invitationCompteHtml,ouvrirCompteDepuisAccueil};')(
- ()=>cloud,{get currentUser(){return user}},()=>opened.push('settings'),m=>opened.push(m));
-assert.match(banner.invitationCompteHtml(),/Protège ta progression/);
-assert.match(banner.invitationCompteHtml(),/perdus/);
-banner.ouvrirCompteDepuisAccueil('signin');assert.deepEqual(opened,['settings','signin']);
-user={uid:'u'};assert.equal(banner.invitationCompteHtml(),'');
-user=null;cloud=false;assert.equal(banner.invitationCompteHtml(),'');
 const guest={progress:{levels:{20:{quiz:{1:3}}}}};
 const existing={progress:{levels:{21:{quiz:{2:2}}}}};
 let profile='anonymous',imported=[],synced=0,success=true,optin=false;
