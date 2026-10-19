@@ -24,6 +24,22 @@
 //      autre forme connue (ex. heescht au lieu de heesche) n'est jamais une coquille.
 // En cas de doute : erreur.
 
+// SPEC 50 : une variante est acceptée uniquement si l'exercice la déclare.
+// La même normalisation que celle de l'écriture et de la mission s'applique.
+// Renvoie la forme CANONIQUE effectivement reconnue, ou null en cas d'erreur.
+function reponseReconnue(saisie, item) {
+  if (!item || typeof item.lu !== 'string') return null;
+  const candidates = [item.lu].concat(Array.isArray(item.alternatives) ? item.alternatives : []);
+  const saisieNormale = normalize(String(saisie || ''));
+  return candidates.find(rep => typeof rep === 'string' && normalize(rep) === saisieNormale) || null;
+}
+
+// Formes correctes autres que celle qui vient d'être reconnue, pour le feedback.
+function autresReponsesAcceptees(item, reconnue) {
+  if (!item || !reconnue || !Array.isArray(item.alternatives)) return [];
+  return [item.lu, ...item.alternatives].filter(rep => normalize(rep) !== normalize(reconnue));
+}
+
 // ── A. Normalisation ────────────────────────────────────────────────────────
 function normaliserMot(mot) {
   return mot
@@ -228,4 +244,4 @@ function analyserReponse(saisie, attendu, contexte) {
 }
 
 // Node (tests) : export ; navigateur : fonctions globales.
-if (typeof module !== 'undefined') module.exports = { analyserReponse, distanceEdition, alignerMots, normaliserMot, touchesVoisines };
+if (typeof module !== 'undefined') module.exports = { analyserReponse, distanceEdition, alignerMots, normaliserMot, touchesVoisines, reponseReconnue, autresReponsesAcceptees };
