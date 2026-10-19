@@ -23,18 +23,18 @@ Dans la leçon 1, les formes **Moien!** et **Gudde Moien!** sont toutes deux ens
 5. Après réussite, afficher **la forme effectivement reconnue** et préciser les autres réponses acceptées ; dans la mission, la bulle de dialogue reprend la formulation reconnue, y compris après la reprise de session ou au bilan.
 6. Sans `alternatives`, le comportement antérieur est **strictement inchangé**. Les quiz, textes à trous, flashcards et autres leçons ne sont pas assouplis.
 7. La mission n'accorde pas automatiquement d'erreur de typographie au mauvais mot `Gudden`. Les coquilles continuent d'être traitées par SPEC 24.
-8. Une expression dépendante du contexte (ex. le matin) n'est pas déclarée alternative d'un exercice qui exige explicitement une formule valable *à toute heure*.
+8. Les libellés sont sobres : **`Moien!` → `Bonjour !`**, sans ajouter « à toute heure » ; **`Gudde Moien!` → `Bonjour ! (le matin)`**. La présence de variantes dépend du contexte de la consigne et non d'une équivalence globale.
 
 ## 3. Leçon 1 : données
 
 - Écriture **2002** : `Gudde Moien!` ; accepte `Moien!` (consigne du matin).
 - Écriture **2005** : `Moien Anna!` ; accepte `Gudde Moien, Anna!` (salutation du matin également valable). Prénom **Anna** inchangé.
-- Écriture **2001** : `Moien!` **seul** reste exigé, car la consigne précise « à toute heure ».
+- Écriture **2001** : `Moien!` **seul** reste exigé avec la consigne simple « Bonjour ! » ; la variante plus spécifique est enseignée avec « (le matin) » dans l'exercice 2002.
 - Mission : les trois répliques `toi` de l'unité 1 acceptent les salutations équivalentes :
   - `Gudde Moien, Här Kremer!` ou `Moien, Här Kremer!`.
   - `Gudde Moien!` ou `Moien!`.
   - `Gudde Moien, Madamm Weber!` ou `Moien, Madamm Weber!`.
-- La consigne concernant Madamm Weber est précisée « le matin ».
+- Toutes les répliques `Gudde Moien!` sont traduites « Bonjour ! (le matin) » ; celles avec une personne nommée conservent son nom et le contexte du matin.
 - Le cours, les notes et la règle de l'unité expliquent explicitement l'équivalence **le matin**, sans masquer les deux structures.
 
 ## 4. Structure et validation
