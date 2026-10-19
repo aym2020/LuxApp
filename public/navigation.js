@@ -249,7 +249,7 @@ function sauverNavigation() {
     unite: typeof pIntroUnite !== 'undefined' ? pIntroUnite : null,
     libre: !!(typeof run !== 'undefined' && run && run.libre),
     mission: enMission ? { idx: ms.idx, essais: ms.essais, dernierEssai: ms.dernierEssai, resultats: ms.resultats,
-      tentative: ms.tentative, vies: ms.vies, coquille: ms.coquille } : null,
+      formesValidees: ms.formesValidees, tentative: ms.tentative, vies: ms.vies, coquille: ms.coquille } : null,
     pile: pileNav
   };
   try { sessionStorage.setItem(CLE_NAVIGATION, JSON.stringify(etat)); } catch (e) { /* stockage indisponible */ }
