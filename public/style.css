@@ -2604,3 +2604,9 @@ body.portail-bloque { overflow:hidden; }
 .pa-feuille .pa-actions { margin-top:22px; }
 @media(max-height:690px) { .pa-page { min-height:auto; } .pa-scene { height:135px; } .pa-scene svg { height:125px; } }
 @media(max-width:340px) { .pa-page { padding:22px 17px; } .pa-feuille { padding-inline:17px; } }
+
+/* SPEC 63 : action de récupération centrée et accessible au toucher. */
+.pa-reset { align-self:center; min-height:44px; padding:6px 12px; border:0;
+  background:transparent; color:#f7d053; font-family:var(--font);
+  font-size:13px; font-weight:700; text-align:center; cursor:pointer; }
+.pa-reset:focus-visible { outline:2px solid #f7d053; outline-offset:2px; }
