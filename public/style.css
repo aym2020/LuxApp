@@ -1861,7 +1861,10 @@ body.clavier-actif #view-mission.active .ms-body {
 .carte-lecon.ouvre .carte-tete .chevron-l .ic { animation: chevron-tourne .25s ease-out both; }
 .carte-lecon.ouvre > :not(.carte-tete) { animation: entre .25s ease-out both; }
 .carte-lecon.ouvre > .unites { animation-delay: .03s; }
-.carte-lecon.ouvre > .btn-jaune { animation-delay: .06s; }
+/* SPEC 57 : l'animation d'entrée avec transform (entre) gardait le contrôle
+   du transform du CTA via animation-fill-mode: both, et bloquait :active.
+   Un simple fondu conserve l'apparition sans neutraliser l'enfoncement. */
+.carte-lecon.ouvre > .btn-jaune { animation: fondu .25s ease-out .06s both; }
 @keyframes chevron-tourne { from { transform: rotate(0deg); } to { transform: rotate(180deg); } }
 
 /* Étapes : une ligne chacune, un chevron = « on peut appuyer » */
