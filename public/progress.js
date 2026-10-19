@@ -353,6 +353,35 @@ function saveUnitBest(leconId, uniteId, percent) {
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
 
+// ─── SPEC 58 : SCORE DÉTAILLÉ POUR RATTRAPAGE DES ÉTOILES ────────────────────
+// Stockage séparé des niveaux : leur fusion cloud prend un MAX numérique et
+// ne doit jamais transformer les scores par item en NaN.
+// Profil isolé, synchronisé avec une fusion par enregistrement le plus récent.
+const RATTRAPAGE_KEY = 'luxRattrapage';
+
+function getRattrapageStore() {
+  try { return JSON.parse(localStorage.getItem(storageKey(RATTRAPAGE_KEY))) || {}; }
+  catch (e) { return {}; }
+}
+function saveRattrapageStore(store) {
+  localStorage.setItem(storageKey(RATTRAPAGE_KEY), JSON.stringify(store));
+}
+function getRattrapageSnapshot(leconId, uniteId) {
+  const byLecon = getRattrapageStore()[leconId];
+  return byLecon && byLecon[uniteId] || null;
+}
+function saveRattrapageSnapshot(leconId, uniteId, snapshot) {
+  if (!snapshot || !Number.isFinite(snapshot.basePercent)) return;
+  const store = getRattrapageStore();
+  if (!store[leconId]) store[leconId] = {};
+  const existing = store[leconId][uniteId];
+  // Un résultat moins bon ne remplace jamais un meilleur passage enregistré.
+  if (existing && existing.basePercent > snapshot.basePercent) return;
+  store[leconId][uniteId] = Object.assign({}, snapshot, { maj: Date.now() });
+  saveRattrapageStore(store);
+  if (typeof debounceCloudSave === 'function') debounceCloudSave();
+}
+
 // ─── SANS FAUTE (leçons en unités) ──────────────────────────────────────────
 // Unité réussie au moins une fois en entier, tout juste du premier coup.
 // Rangé comme les meilleurs scores : progress["8"].sansfaute = { "1": 1 }.
