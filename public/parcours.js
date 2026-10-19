@@ -1304,19 +1304,27 @@ function ecrValiderPc() {
 
   const e = trouverItem(pLecon, 'ecriture', etapeCourante().queue[0]);
   const attention = attentionItem(e, 'ecriture');
-  const ok = normalize(val) === normalize(e.lu);
+  const reconnue = reponseReconnue(val, e); // SPEC 50 : réponse principale ou variante déclarée
+  const ok = !!reconnue;
+  const autres = autresReponsesAcceptees(e, reconnue);
+  const variantesHtml = autres.length
+    ? '<div class="pc-fb-variante">Autre formulation correcte : <b>' +
+      autres.map(escHtml).join('</b> · <b>') + '</b></div>'
+    : '';
 
   if (ok && ecrEssais === 0) {
     enregistrer(e, 1, true);
     input.disabled = true;
     input.className = 'ecr-input correct';
-    showFeedback(true, 'Juste !', '<b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention), reussir);
+    showFeedback(true, 'Juste !', '<b>' + escHtml(reconnue) + '</b>' +
+      variantesHtml + attentionHtml(attention), reussir);
     return;
   }
   if (ok) {
     input.disabled = true;
     input.className = 'ecr-input correct';
-    showFeedback(true, 'Juste, au 2e essai', '<b>' + escHtml(e.lu) + '</b>' + attentionHtml(attention) +
+    showFeedback(true, 'Juste, au 2e essai', '<b>' + escHtml(reconnue) + '</b>' +
+      variantesHtml + attentionHtml(attention) +
       rappelHtml('Pour la valider, trouve-la du premier coup : elle reviendra à la fin de l\'étape.',
         'Elle est notée à revoir : tu la retrouveras dans tes révisions.'), echouer);
     return;
