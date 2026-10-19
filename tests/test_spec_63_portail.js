@@ -14,17 +14,17 @@ function node(id){return nodes[id] ||= {
  querySelector(){return {focus(){},classList:{add(){}}}}
 };}
 const body={classList:{states:new Set,contains(k){return this.states.has(k)},add(k){this.states.add(k)},remove(k){this.states.delete(k)}}};
-const document={body,addEventListener(){},getElementById:node};
+const document={body,addEventListener(){},getElementById:node,querySelector(){return null}};
 let cloud=true,signed=false,profile='anonymous',opened=0,notes=[];
 let snapshot=()=>null;
 const escHtml=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const ctx=new Function('document','window','localStorage','fbAuth','currentStorageProfile',
  'setStorageProfile','isCloudEnabled','aDejaPratique','getProgress','goDashboard',
- 'programmerGarde','notifier','arreterAudio','escHtml',code+
+ 'programmerGarde','notifier','arreterAudio','escHtml','animationsReduites',code+
  '\nreturn {portailInitialiser,portailAction,portailOuvrir,portailCompteConnecte,portailCompteDeconnecte,'+
- 'portailVisible,portailFormulaireOuvert,portailRetourBienvenue,portailContenu,get mode(){return portailMode}};')(
+ 'portailVisible,portailFormulaireOuvert,portailRetourBienvenue,ouvrirCompteDepuisAccueil,portailContenu,get mode(){return portailMode}};')(
  document,{APP_CONFIG:{}},localStorage,{onAuthStateChanged(cb){snapshot=cb;}},
- profile,v=>{profile=v},()=>cloud,()=>false,()=>({}),()=>{opened++},()=>{},t=>notes.push(t),()=>{},escHtml);
+ profile,v=>{profile=v},()=>cloud,()=>false,()=>({}),()=>{opened++},()=>{},t=>notes.push(t),()=>{},escHtml,()=>true);
 ctx.portailInitialiser(null);
 assert.ok(ctx.portailVisible());
 const accueil=node('portail-auth').innerHTML;
@@ -55,6 +55,17 @@ assert.match(node('portail-auth').innerHTML,/pa-erreur-email/);
 assert.match(node('portail-auth').innerHTML,/pa-entre-avant|Un compte pour/);
 ctx.portailRetourBienvenue();
 assert.equal(ctx.mode,'welcome');
+// SPEC 67 : depuis l'accueil invité, Retour ferme le portail (retour à l'accueil).
+ctx.ouvrirCompteDepuisAccueil('signin');
+assert.ok(ctx.portailFormulaireOuvert());
+assert.ok(!node('portail-auth').innerHTML.includes('Continuer sans compte'),'déjà invité : pas de « Continuer sans compte »');
+ctx.portailAction('signup');
+assert.ok(!node('portail-auth').innerHTML.includes('Continuer sans compte'));
+ctx.portailRetourBienvenue();
+assert.ok(!ctx.portailVisible(),'Retour depuis l’accueil : portail fermé');
+ctx.portailOuvrir('signin');
+assert.match(node('portail-auth').innerHTML,/Continuer sans compte/,'origine remise à zéro après fermeture');
+ctx.portailInitialiser(null);
 ctx.portailCompteConnecte({uid:'xyz'});
 assert.equal(store.luxPortailCompteConnuV1,'oui');assert.equal(store.luxPortailInviteV1,undefined);
 ctx.portailCompteDeconnecte();
@@ -89,6 +100,7 @@ assert.ok(!code.includes("portailStocker(PORTAIL_INVITE,'oui')"),'ne plus persis
 assert.match(html,/id="portail-auth"/);
 assert.match(html,/src="portail.js"/);
 assert.ok(!read('public/accueil.js').includes('html += invitationCompteHtml()'));
+assert.ok(read('public/accueil.js').includes('ligneCompteHtml()'),'SPEC 67 : ligne de compte sous les niveaux');
 assert.ok(read('public/navigation.js').includes('portailRetourBienvenue()'));
 assert.ok(read('public/navigation.js').includes('fermerDialogue(false)'));
 assert.match(html,/src="dialogue.js"/);

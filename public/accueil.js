@@ -87,7 +87,20 @@ function enteteAccueilHtml() {
         '" onclick="ouvrirPlus()">' + ICONES.reglages +
         '<span class="ac-sync-slot" aria-hidden="true">' + pastilleSynchroHtml(etat) + '</span></button>' +
     '</div>' +
-    '<div class="puces-niveau entre" role="group" aria-label="Niveau">' + puces + '</div>';
+    '<div class="puces-niveau entre" role="group" aria-label="Niveau">' + puces + '</div>' +
+    ligneCompteHtml();
+}
+
+// SPEC 67 : invité → ligne discrète sous les niveaux, vers les écrans de compte du portail.
+function ligneCompteHtml() {
+  if (!isCloudEnabled() || (fbAuth && fbAuth.currentUser)) return '';
+  return '<div class="ac-compte entre">' +
+    '<span class="ac-compte-mode">Mode invité</span>' +
+    '<span class="ac-compte-liens">' +
+      '<button type="button" onclick="ouvrirCompteDepuisAccueil(\'signin\')">Se connecter</button>' +
+      '<span aria-hidden="true">·</span>' +
+      '<button type="button" class="or" onclick="ouvrirCompteDepuisAccueil(\'signup\')">Créer un compte</button>' +
+    '</span></div>';
 }
 
 // Le niveau se change librement, jamais automatiquement.

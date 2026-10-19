@@ -7,6 +7,7 @@ let portailSurveille = false;
 let portailEmail = '';          // SPEC 66 : l'e-mail saisi est gardé entre connexion et inscription
 let portailEnvoi = false;       // SPEC 66 : pas de double envoi du formulaire
 let portailCarteBloquee = false; // SPEC 66 : pas de retournement pendant l'animation
+let portailOrigine = 'bienvenue'; // SPEC 67 : 'accueil' si le formulaire est ouvert depuis l'accueil invité
 
 function portailStocker(k,v) { try { if(v==null) localStorage.removeItem(k); else localStorage.setItem(k,v); } catch (_) {} }
 function portailLire(k) { try { return localStorage.getItem(k); } catch (_) { return null; } }
@@ -57,6 +58,7 @@ function portailFermer() {
   const el = document.getElementById('portail-auth');
   if (!el) return;
   arreterAudio();
+  portailOrigine = 'bienvenue';
   el.classList.add('hidden');
   el.setAttribute('aria-hidden','true');
   document.body.classList.remove('portail-bloque');
@@ -142,7 +144,7 @@ function portailContenu(mode) {
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button>'+
       portailMarque()+'</div>'+
     '<div class="pa-heading"><span class="pa-kicker">'+
-    (creation?'CRÉER UN COMPTE':'HEUREUX DE TE REVOIR')+'</span>'+
+    (creation?'CRÉER UN COMPTE':(portailOrigine === 'accueil'?'SE CONNECTER':'HEUREUX DE TE REVOIR'))+'</span>'+
     '<h1>'+(creation?'Un compte pour<br><em>tes progrès.</em>':'Bon retour !')+'</h1>'+
     '<p>'+(creation?'Sauvegarde tes progrès et retrouve tes leçons sur tes appareils.':
     'Connecte-toi pour retrouver tes leçons et ta progression.')+'</p></div>'+
@@ -162,7 +164,7 @@ function portailContenu(mode) {
       ' <button type="button" onclick="portailAction(&quot;'+
         (creation?'signin':'signup')+'&quot;)">'+
         (creation?'Se connecter':'S’inscrire')+'</button></p>'+
-      portailBouton('Continuer sans compte','guest','texte')+
+      (portailOrigine === 'accueil' ? '' : portailBouton('Continuer sans compte','guest','texte'))+
     '</div></main>';
 }
 
@@ -173,6 +175,7 @@ function portailOuvrir(mode, sens) {
   const champ = document.getElementById('pa-email');
   if (champ) portailEmail = champ.value.trim();
   portailMode = mode==='signin'||mode==='signup'?mode:'welcome';
+  if (portailMode === 'welcome') portailOrigine = 'bienvenue';
   portailEnvoi = false;
   el.innerHTML = portailContenu(portailMode);
   const page = el.querySelector('.pa-page');
@@ -184,7 +187,21 @@ function portailOuvrir(mode, sens) {
   if (typeof programmerGarde === 'function') programmerGarde();
 }
 function portailRetourBienvenue() {
+  if (portailOrigine === 'accueil') { portailFermerVersAccueil(); return; }
   portailOuvrir('welcome', 'arriere');
+}
+// SPEC 67 : depuis l'accueil invité (« Se connecter » / « Créer un compte »).
+function ouvrirCompteDepuisAccueil(mode) {
+  if (!isCloudEnabled()) return;
+  portailOrigine = 'accueil';
+  portailOuvrir(mode, 'avant');
+}
+// Retour vers l'accueil : le formulaire glisse vers la droite puis disparaît.
+function portailFermerVersAccueil() {
+  const page = document.querySelector('#portail-auth .pa-page');
+  if (!page || animationsReduites()) { portailFermer(); return; }
+  page.classList.add('pa-sortie');
+  setTimeout(portailFermer, 200);
 }
 function portailAction(action) {
   if(action==='guest'){

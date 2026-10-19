@@ -81,6 +81,7 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 | 64 | [Portail compact, cohérence graphique et bienvenue à chaque nouveau lancement invité](./SPEC-64.md) | P1 | Implémentée — validation à confirmer |
 | 65 | [Bienvenue chaleureuse et popup invité centrée](./SPEC-65.md) | P1 | Remplacée par SPEC 66 |
 | 66 | [Accueil interactif, audio, transitions, dialogues LuxApp et Retour Android](./SPEC-66.md) | P1 | Implémentée — validation à confirmer |
+| 67 | [Ligne de compte sur l'accueil invité](./SPEC-67.md) | P1 | Implémentée — validation à confirmer |
 
 ## Gestion des changements
 

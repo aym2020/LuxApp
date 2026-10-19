@@ -2621,6 +2621,19 @@ body.portail-bloque { overflow:hidden; }
 .pa-entre-arriere { animation:pa-glisse-arriere .28s cubic-bezier(.2,.8,.2,1) backwards; }
 @keyframes pa-glisse-avant { from { opacity:0; transform:translateX(24px); } }
 @keyframes pa-glisse-arriere { from { opacity:0; transform:translateX(-24px); } }
+/* SPEC 67 : fermeture vers l'accueil invité. */
+.pa-sortie { animation:pa-sortie .2s ease-in forwards; }
+@keyframes pa-sortie { to { opacity:0; transform:translateX(24px); } }
+/* SPEC 67 : ligne de compte de l'accueil invité, sans contour ni fond. */
+.ac-compte { display:flex; align-items:center; justify-content:space-between; gap:var(--sp-2);
+  flex-wrap:wrap; font-size:var(--fs-sec); }
+.ac-compte-mode { color:var(--couleur-texte-3); }
+.ac-compte-liens { display:flex; align-items:center; gap:4px; white-space:nowrap; color:var(--couleur-texte-3); }
+.ac-compte-liens button { min-height:var(--toucher); padding:0 2px; border:0; background:none; cursor:pointer;
+  font-family:var(--police); font-size:var(--fs-sec); font-weight:650; color:var(--couleur-texte); }
+.ac-compte-liens button.or { color:var(--couleur-action); }
+@media (max-width:350px) { .ac-compte-mode { font-size:var(--fs-micro); } .ac-compte { gap:4px; } }
+.ac-compte-liens button:focus-visible { outline:2px solid var(--couleur-action); outline-offset:2px; border-radius:8px; }
 .pa-haut { display:flex; align-items:center; gap:var(--sp-2); }
 .pa-haut .pa-marque { margin:0; }
 .pa-retour { flex:none; display:grid; place-items:center; width:var(--toucher); height:var(--toucher); margin-left:-10px;
