@@ -226,7 +226,7 @@ function peutTenterSaChance(l) {
 // Après chaque réponse, la correction reste affichée jusqu'à « Continuer ».
 // tentative = true : « Tente ta chance », avant les unités (S10).
 function openMission(tentative) {
-  ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0, enBas: true,
+  ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], formesValidees: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0, enBas: true,
     vies: VIES_MISSION, coquille: false };
   renderEnteteMission();
   majVies(false);
@@ -253,6 +253,7 @@ function reprendreMission(note) {
   Object.assign(ms, {
     idx: note.idx || 0, essais: note.essais || 0, dernierEssai: note.dernierEssai || '',
     resultats: Array.isArray(note.resultats) ? note.resultats : [],
+    formesValidees: Array.isArray(note.formesValidees) ? note.formesValidees : [],
     vies: typeof note.vies === 'number' ? note.vies : VIES_MISSION, coquille: !!note.coquille
   });
   // Réplique déjà validée (on attendait « Continuer ») : on passe à la suivante.
@@ -387,7 +388,8 @@ function bulleJeuHtml(x, i, traduite) {
   }
   const coche = toi && ms.resultats[i] && ms.resultats[i] !== 'revele' ? '<span class="ms-etat-envoi">' + ICONES.coche + '</span>' : '';
   return avatar + '<div class="' + classe + '"' + delai + ' onclick="this.classList.toggle(\'traduite\')">' +
-    escHtml(x.lu) + coche + '<em>' + escHtml(x.fr) + '</em></div>';
+    escHtml(toi && ms.formesValidees && ms.formesValidees[i] || x.lu) + coche +
+    '<em>' + escHtml(x.fr) + '</em></div>';
 }
 
 // La conversation reste collée en bas, sauf si on remonte lire d'anciens messages.
@@ -491,7 +493,9 @@ function missionValider() {
   // Juste : la réplique part dans la conversation, la correction s'affiche en bas.
   // Résultat : 'ok' (direct), 'coquille' (après une faute de frappe corrigée),
   // 'essais' (après une vraie erreur), 'revele' (réponse montrée).
-  if (normalize(val) === normalize(ligne.lu)) {
+  const reconnue = reponseReconnue(val, ligne); // SPEC 50 : variante correcte dans ce contexte
+  if (reconnue) {
+    ms.formesValidees[ms.idx] = reconnue;
     ms.resultats[ms.idx] = ms.essais > 0 ? 'essais' : (ms.coquille ? 'coquille' : 'ok');
     // Retours en mots simples (spec 35) : la vie perdue est déjà montrée par les cœurs.
     const titre = ms.essais === 0 ? 'Bonne réponse !' : 'Bonne réponse, au ' + (ms.essais + 1) + 'e essai !';
@@ -499,6 +503,8 @@ function missionValider() {
     if (ms.resultats[ms.idx] === 'coquille') sous = 'Petite faute de frappe corrigée : aucune vie perdue.';
     if (ms.essais === 1) sous = 'Tu as trouvé après une erreur.';
     if (ms.essais > 1) sous = 'Tu as trouvé après plusieurs essais.';
+    const autres = autresReponsesAcceptees(ligne, reconnue);
+    if (autres.length) sous += ' Autre formulation correcte : ' + autres.map(escHtml).join(' · ') + '.';
     retourMission('ok', titre, sous);
     return;
   }
