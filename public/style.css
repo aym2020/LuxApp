@@ -2532,3 +2532,75 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .auth-import input { width:19px; height:19px; flex:none; accent-color:var(--couleur-action); }
 .ac-invitation-actions button:focus-visible,.auth-import:focus-within { outline:2px solid var(--couleur-action); outline-offset:2px; }
 @media(max-width:360px) { .ac-invitation-compte { padding:12px; } }
+
+/* SPEC 63 — Authentification à l'entrée, maquette validée avec contrôles centrés. */
+body.portail-bloque { overflow:hidden; }
+.portail-auth { position:fixed; inset:0; z-index:260; display:flex; justify-content:center;
+  overflow-y:auto; overscroll-behavior:contain; background:#0f0e0c; color:#f7f2e8;
+  width:100%; padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+.portail-auth.hidden,.portail-auth .hidden { display:none!important; }
+.pa-page { width:min(100%,500px); min-height:100dvh; display:flex; flex-direction:column;
+  padding:30px 25px 28px; gap:18px; }
+.pa-marque { color:#f7d053; font-size:clamp(26px,7.5vw,35px); font-weight:850; line-height:1.2; letter-spacing:-.045em; }
+.pa-point { display:inline-block; width:7px; height:7px; border-radius:50%; background:#4bd3a8; vertical-align:top; margin:5px 0 0 2px; }
+.pa-heading { margin-top:clamp(16px,4vh,34px); }
+.pa-kicker { color:#f7d053; font-size:12px; letter-spacing:.13em; font-weight:800; }
+.pa-heading h1 { margin:12px 0 14px; font-size:clamp(32px,8.2vw,43px);
+  font-weight:850; line-height:1.12; letter-spacing:-.04em; }
+.pa-heading h1 em { color:#f7d053; font-style:normal; }
+.pa-heading p { color:#bfb8ad; font-size:15px; line-height:1.6; max-width:39ch; }
+.pa-scene { position:relative; display:grid; place-items:center; width:min(100%,315px);
+  height:220px; margin:3px auto 0; isolation:isolate; }
+.pa-scene:before { content:""; position:absolute; width:220px; height:220px; border-radius:50%;
+  background:radial-gradient(circle,#5c4a287b,transparent 75%); z-index:-1; }
+.pa-scene svg { width:154px; height:177px; }
+.pa-bulle { position:absolute; padding:9px 15px; font-size:20px; font-weight:800; border-radius:14px; box-shadow:0 8px 25px #0006; }
+.pa-bulle-g { top:12px; left:0; transform:rotate(-5deg); color:#201a0c; background:#f7d053; }
+.pa-bulle-d { bottom:17px; right:0; transform:rotate(5deg); background:#292923; color:#fff6e8; border:1px solid #665b43; }
+.pa-promise { color:#bcb5a8; text-align:center; font-size:13px; }
+.pa-actions { display:flex; flex-direction:column; gap:10px; width:100%; margin-top:auto; }
+.pa-bouton { width:100%; min-height:55px; display:flex; align-items:center; justify-content:center;
+  padding:12px 17px; border-radius:15px; font-family:var(--font); font-size:16px;
+  font-weight:800; line-height:1.35; text-align:center; cursor:pointer; }
+.pa-bouton.or { background:#f7d053; color:#211b0b; border:1px solid #f7d053; }
+.pa-bouton.sombre { background:#211f1a; color:#f8f4eb; border:1px solid #504c41; }
+.pa-bouton.texte { background:transparent; color:#c5bfb2; border:1px solid transparent; }
+.pa-bouton:focus-visible { outline:2px solid #f7d053; outline-offset:3px; }
+.pa-compte-icone { display:grid; place-items:center; width:108px; height:108px;
+  margin:10px auto 5px; border:1px solid #806a40; border-radius:50%;
+  background:radial-gradient(circle at 35% 20%,#5c4c2a,#25231c 78%); color:#f7d053; }
+.pa-compte-icone svg { width:62px; height:62px; }
+#pa-form { display:flex; flex-direction:column; gap:9px; }
+#pa-form label { font-size:13px; font-weight:750; color:#beb8ab; }
+#pa-form input:not([type=checkbox]) { min-height:53px; width:100%; border:1px solid #504b41;
+  border-radius:12px; padding:12px 14px; background:#24221e; color:#fff9ea;
+  font-family:var(--font); font-size:16px; margin-bottom:9px; }
+#pa-form input:focus-visible { outline:2px solid #f7d053; outline-offset:3px; }
+#pa-form .pa-import { display:flex; align-items:center; gap:10px; line-height:1.4; font-weight:500; }
+.pa-import input { width:20px; height:20px; flex:none; accent-color:#f7d053; }
+.pa-message { min-height:22px; text-align:center; font-size:13px; color:#f0be86; }
+.pa-indispo { color:#efd086; font-size:13px; line-height:1.5; text-align:center; }
+.pa-autres { margin-top:auto; }
+.pa-alerte { position:fixed; inset:0; z-index:270; display:flex; justify-content:center; align-items:flex-end; }
+.pa-voile { position:absolute; inset:0; background:#080807cb; }
+.pa-feuille { position:relative; width:min(100%,540px); max-height:94dvh; overflow-y:auto;
+  border:1px solid #514935; border-bottom:0; border-radius:26px 26px 0 0;
+  background:#201f1a; padding:14px 23px max(27px,env(safe-area-inset-bottom));
+  box-shadow:0 -20px 65px #0009; }
+.pa-poignee { width:44px; height:5px; border-radius:10px; background:#6b665b; margin:0 auto 22px; }
+/* Centre géométriquement le pictogramme et non uniquement son bloc. */
+.pa-symbole { width:88px; height:88px; display:grid; place-items:center; 
+  margin:0 auto 21px; border-radius:50%; border:1px solid #847140; color:#f7d053;
+  background:radial-gradient(circle at 35% 22%,#574a2a,#302a1c 80%); }
+.pa-symbole svg { display:block; width:48px; height:48px; stroke-width:2.7; }
+.pa-feuille h2 { text-align:center; font-size:clamp(24px,7vw,32px);
+  line-height:1.2; letter-spacing:-.025em; margin:0 0 15px; }
+.pa-feuille > p { max-width:39ch; margin:0 auto 20px; color:#c8c0b4;
+  font-size:16px; line-height:1.55; text-align:center; }
+.pa-risque { padding:16px; display:flex; align-items:flex-start; gap:12px;
+  border:1px solid #76633e; border-radius:16px; background:#322a1b;
+  color:#e5d8bd; font-size:15px; line-height:1.55; }
+.pa-risque>span:first-child { color:#f7d053; font-size:24px; line-height:1; }
+.pa-feuille .pa-actions { margin-top:22px; }
+@media(max-height:690px) { .pa-page { min-height:auto; } .pa-scene { height:135px; } .pa-scene svg { height:125px; } }
+@media(max-width:340px) { .pa-page { padding:22px 17px; } .pa-feuille { padding-inline:17px; } }
