@@ -2533,80 +2533,174 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .ac-invitation-actions button:focus-visible,.auth-import:focus-within { outline:2px solid var(--couleur-action); outline-offset:2px; }
 @media(max-width:360px) { .ac-invitation-compte { padding:12px; } }
 
-/* SPEC 63 — Authentification à l'entrée, maquette validée avec contrôles centrés. */
-body.portail-bloque { overflow:hidden; }
-.portail-auth { position:fixed; inset:0; z-index:260; display:flex; justify-content:center;
-  overflow-y:auto; overscroll-behavior:contain; background:#0f0e0c; color:#f7f2e8;
-  width:100%; padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
-.portail-auth.hidden,.portail-auth .hidden { display:none!important; }
-.pa-page { width:min(100%,500px); min-height:100dvh; display:flex; flex-direction:column;
-  padding:30px 25px 28px; gap:18px; }
-.pa-marque { color:#f7d053; font-size:clamp(26px,7.5vw,35px); font-weight:850; line-height:1.2; letter-spacing:-.045em; }
-.pa-point { display:inline-block; width:7px; height:7px; border-radius:50%; background:#4bd3a8; vertical-align:top; margin:5px 0 0 2px; }
-.pa-heading { margin-top:clamp(16px,4vh,34px); }
-.pa-kicker { color:#f7d053; font-size:12px; letter-spacing:.13em; font-weight:800; }
-.pa-heading h1 { margin:12px 0 14px; font-size:clamp(32px,8.2vw,43px);
-  font-weight:850; line-height:1.12; letter-spacing:-.04em; }
-.pa-heading h1 em { color:#f7d053; font-style:normal; }
-.pa-heading p { color:#bfb8ad; font-size:15px; line-height:1.6; max-width:39ch; }
-.pa-scene { position:relative; display:grid; place-items:center; width:min(100%,315px);
-  height:220px; margin:3px auto 0; isolation:isolate; }
-.pa-scene:before { content:""; position:absolute; width:220px; height:220px; border-radius:50%;
-  background:radial-gradient(circle,#5c4a287b,transparent 75%); z-index:-1; }
-.pa-scene svg { width:154px; height:177px; }
-.pa-bulle { position:absolute; padding:9px 15px; font-size:20px; font-weight:800; border-radius:14px; box-shadow:0 8px 25px #0006; }
-.pa-bulle-g { top:12px; left:0; transform:rotate(-5deg); color:#201a0c; background:#f7d053; }
-.pa-bulle-d { bottom:17px; right:0; transform:rotate(5deg); background:#292923; color:#fff6e8; border:1px solid #665b43; }
-.pa-promise { color:#bcb5a8; text-align:center; font-size:13px; }
-.pa-actions { display:flex; flex-direction:column; gap:10px; width:100%; margin-top:auto; }
-.pa-bouton { width:100%; min-height:55px; display:flex; align-items:center; justify-content:center;
-  padding:12px 17px; border-radius:15px; font-family:var(--font); font-size:16px;
-  font-weight:800; line-height:1.35; text-align:center; cursor:pointer; }
-.pa-bouton.or { background:#f7d053; color:#211b0b; border:1px solid #f7d053; }
-.pa-bouton.sombre { background:#211f1a; color:#f8f4eb; border:1px solid #504c41; }
-.pa-bouton.texte { background:transparent; color:#c5bfb2; border:1px solid transparent; }
-.pa-bouton:focus-visible { outline:2px solid #f7d053; outline-offset:3px; }
-.pa-compte-icone { display:grid; place-items:center; width:108px; height:108px;
-  margin:10px auto 5px; border:1px solid #806a40; border-radius:50%;
-  background:radial-gradient(circle at 35% 20%,#5c4c2a,#25231c 78%); color:#f7d053; }
-.pa-compte-icone svg { width:62px; height:62px; }
-#pa-form { display:flex; flex-direction:column; gap:9px; }
-#pa-form label { font-size:13px; font-weight:750; color:#beb8ab; }
-#pa-form input:not([type=checkbox]) { min-height:53px; width:100%; border:1px solid #504b41;
-  border-radius:12px; padding:12px 14px; background:#24221e; color:#fff9ea;
-  font-family:var(--font); font-size:16px; margin-bottom:9px; }
-#pa-form input:focus-visible { outline:2px solid #f7d053; outline-offset:3px; }
-#pa-form .pa-import { display:flex; align-items:center; gap:10px; line-height:1.4; font-weight:500; }
-.pa-import input { width:20px; height:20px; flex:none; accent-color:#f7d053; }
-.pa-message { min-height:22px; text-align:center; font-size:13px; color:#f0be86; }
-.pa-indispo { color:#efd086; font-size:13px; line-height:1.5; text-align:center; }
-.pa-autres { margin-top:auto; }
-.pa-alerte { position:fixed; inset:0; z-index:270; display:flex; justify-content:center; align-items:flex-end; }
-.pa-voile { position:absolute; inset:0; background:#080807cb; }
-.pa-feuille { position:relative; width:min(100%,540px); max-height:94dvh; overflow-y:auto;
-  border:1px solid #514935; border-bottom:0; border-radius:26px 26px 0 0;
-  background:#201f1a; padding:14px 23px max(27px,env(safe-area-inset-bottom));
-  box-shadow:0 -20px 65px #0009; }
-.pa-poignee { width:44px; height:5px; border-radius:10px; background:#6b665b; margin:0 auto 22px; }
-/* Centre géométriquement le pictogramme et non uniquement son bloc. */
-.pa-symbole { width:88px; height:88px; display:grid; place-items:center; 
-  margin:0 auto 21px; border-radius:50%; border:1px solid #847140; color:#f7d053;
-  background:radial-gradient(circle at 35% 22%,#574a2a,#302a1c 80%); }
-.pa-symbole svg { display:block; width:48px; height:48px; stroke-width:2.7; }
-.pa-feuille h2 { text-align:center; font-size:clamp(24px,7vw,32px);
-  line-height:1.2; letter-spacing:-.025em; margin:0 0 15px; }
-.pa-feuille > p { max-width:39ch; margin:0 auto 20px; color:#c8c0b4;
-  font-size:16px; line-height:1.55; text-align:center; }
-.pa-risque { padding:16px; display:flex; align-items:flex-start; gap:12px;
-  border:1px solid #76633e; border-radius:16px; background:#322a1b;
-  color:#e5d8bd; font-size:15px; line-height:1.55; }
-.pa-risque>span:first-child { color:#f7d053; font-size:24px; line-height:1; }
-.pa-feuille .pa-actions { margin-top:22px; }
-@media(max-height:690px) { .pa-page { min-height:auto; } .pa-scene { height:135px; } .pa-scene svg { height:125px; } }
-@media(max-width:340px) { .pa-page { padding:22px 17px; } .pa-feuille { padding-inline:17px; } }
 
-/* SPEC 63 : action de récupération centrée et accessible au toucher. */
-.pa-reset { align-self:center; min-height:44px; padding:6px 12px; border:0;
-  background:transparent; color:#f7d053; font-family:var(--font);
-  font-size:13px; font-weight:700; text-align:center; cursor:pointer; }
-.pa-reset:focus-visible { outline:2px solid #f7d053; outline-offset:2px; }
+/* SPEC 64 — Portail sobre et compact, tokens communs à l'app LuxApp.
+   Une seule action en or : les formulaires et l'accueil tiennent sur un mobile. */
+body.portail-bloque { overflow:hidden; }
+.portail-auth {
+  position:fixed; inset:0; z-index:260; display:flex; justify-content:center;
+  overflow-y:auto; overscroll-behavior:contain; width:100%;
+  padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background:var(--couleur-fond); color:var(--couleur-texte);
+}
+.portail-auth.hidden, .portail-auth .hidden { display:none!important; }
+.pa-page {
+  display:flex; flex-direction:column; width:min(100%,500px); min-height:100dvh;
+  padding:22px var(--sp-5) max(18px,env(safe-area-inset-bottom)); gap:0;
+}
+.pa-marque {
+  color:var(--couleur-action); font-size:clamp(22px,6vw,27px); font-weight:800;
+  line-height:1.2; letter-spacing:-.035em; margin-bottom:clamp(22px,5dvh,42px);
+}
+.pa-point { display:inline-block; width:6px; height:6px; margin:3px 0 0 3px;
+  background:var(--couleur-reussi); border-radius:50%; vertical-align:top; }
+.pa-heading { margin:0; }
+.pa-kicker { color:var(--couleur-texte-3); font-size:var(--fs-micro);
+  letter-spacing:.09em; font-weight:700; }
+.pa-heading h1 {
+  margin:var(--sp-2) 0 var(--sp-3); font-size:clamp(25px,6.9vw,31px);
+  line-height:1.17; letter-spacing:-.03em; font-weight:800; color:var(--couleur-texte);
+}
+.pa-heading h1 em { font-style:normal; color:inherit; }
+.pa-heading p {
+  max-width:38ch; font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2);
+}
+.pa-scene {
+  position:relative; width:min(100%,245px); height:clamp(120px,19dvh,154px);
+  margin:var(--sp-4) auto var(--sp-3); display:grid; place-items:center;
+}
+.pa-scene:before {
+  content:""; position:absolute; width:135px; height:135px; border-radius:50%;
+  background:radial-gradient(circle,var(--couleur-or-fond),transparent 72%);
+}
+.pa-scene svg { position:relative; width:95px; height:115px; }
+.pa-bulle {
+  position:absolute; z-index:1; font-size:var(--fs-sec); font-weight:700;
+  padding:5px 10px; border-radius:var(--rayon-bouton);
+}
+.pa-bulle-g {
+  top:5px; left:0; transform:rotate(-4deg);
+  color:var(--couleur-sur-or); background:var(--couleur-action);
+}
+.pa-bulle-d {
+  bottom:7px; right:0; transform:rotate(3deg);
+  color:var(--couleur-texte); background:var(--couleur-surface-2);
+  border:1px solid var(--couleur-bord-2);
+}
+.pa-actions { display:flex; flex-direction:column; gap:var(--sp-2); margin-top:auto; width:100%; }
+.pa-bouton {
+  display:flex; justify-content:center; align-items:center; text-align:center;
+  width:100%; min-height:var(--hauteur-bouton); padding:9px var(--sp-3);
+  font-family:var(--police); font-size:var(--fs-sec); font-weight:750; line-height:1.3;
+  border-radius:var(--rayon-bouton); cursor:pointer;
+}
+.pa-bouton.or {
+  color:var(--couleur-sur-or); background:var(--couleur-action);
+  border:1px solid var(--couleur-action);
+}
+.pa-bouton.sombre {
+  color:var(--couleur-texte); background:var(--couleur-surface-1);
+  border:1px solid var(--couleur-bord-3);
+}
+.pa-bouton.texte {
+  min-height:var(--toucher); border:0; background:transparent;
+  color:var(--couleur-texte-3); font-size:var(--fs-sec); font-weight:600;
+}
+.pa-bouton:active { transform:scale(.985); }
+.pa-bouton:focus-visible, .pa-switch button:focus-visible,
+.pa-reset:focus-visible, #pa-form input:focus-visible {
+  outline:2px solid var(--couleur-action); outline-offset:2px;
+}
+/* Écrans de compte : priorité au formulaire, pas à l'illustration. */
+.pa-reconnexion .pa-marque { margin-bottom:var(--sp-6); }
+.pa-reconnexion .pa-heading { margin-bottom:var(--sp-5); }
+.pa-reconnexion .pa-heading h1 { font-size:var(--fs-grand); margin:6px 0 var(--sp-2); }
+#pa-form { display:flex; flex-direction:column; gap:0; width:100%; }
+#pa-form label {
+  display:block; color:var(--couleur-texte-2);
+  font-size:var(--fs-sec); font-weight:650; margin-bottom:var(--sp-2);
+}
+#pa-form input:not([type=checkbox]) {
+  display:block; width:100%; min-height:var(--hauteur-bouton);
+  margin-bottom:var(--sp-4); padding:var(--sp-3);
+  border:1px solid var(--couleur-bord-3); border-radius:var(--rayon-bouton);
+  background:var(--couleur-surface-1); color:var(--couleur-texte);
+  font-family:var(--police); font-size:var(--fs-corps);
+}
+#pa-form input::placeholder { color:var(--couleur-texte-3); }
+#pa-form .pa-import {
+  display:flex; align-items:center; gap:var(--sp-2); line-height:1.4;
+  margin:0 0 var(--sp-3); font-weight:500;
+}
+.pa-import input { flex:none; width:18px; height:18px; accent-color:var(--couleur-action); }
+#pa-form > .pa-bouton.or { margin-top:var(--sp-2); }
+.pa-reset {
+  align-self:flex-end; min-height:var(--toucher); padding:6px 0;
+  border:0; background:transparent; color:var(--couleur-texte-2);
+  font-family:var(--police); font-size:var(--fs-sec); font-weight:600;
+  cursor:pointer; margin-top:-8px; margin-bottom:var(--sp-2);
+}
+.pa-message {
+  min-height:0; text-align:center; color:var(--couleur-erreur);
+  font-size:var(--fs-sec); line-height:1.45; margin-top:var(--sp-2);
+}
+.pa-message:empty { display:none; }
+.pa-autres { margin-top:var(--sp-5); gap:4px; }
+.pa-switch { text-align:center; color:var(--couleur-texte-3);
+  font-size:var(--fs-sec); line-height:1.4; }
+.pa-switch button {
+  min-height:var(--toucher); background:none; border:0;
+  padding:6px 3px; color:var(--couleur-texte);
+  font-family:var(--police); font-size:inherit; font-weight:700; cursor:pointer;
+}
+.pa-indispo { font-size:var(--fs-sec); color:var(--couleur-texte-2);
+  text-align:center; line-height:1.5; margin:var(--sp-4) 0; }
+/* Confirmation invité : information rassurante, discrète, action unique en or. */
+.pa-alerte { position:fixed; inset:0; z-index:270; display:flex;
+  align-items:flex-end; justify-content:center; }
+.pa-voile { position:absolute; inset:0; background:rgba(0,0,0,.72); }
+.pa-feuille {
+  position:relative; max-height:94dvh; width:min(100%,540px); overflow-y:auto;
+  padding:var(--sp-3) var(--sp-5) max(20px,env(safe-area-inset-bottom));
+  border:1px solid var(--couleur-bord-2); border-bottom:0;
+  border-radius:var(--rayon-carte) var(--rayon-carte) 0 0;
+  background:var(--couleur-surface-1);
+}
+.pa-poignee { width:40px; height:4px; margin:0 auto var(--sp-4);
+  border-radius:var(--rayon-pilule); background:var(--couleur-bord-fort); }
+.pa-symbole {
+  display:grid; place-items:center; width:62px; height:62px;
+  border:1px solid var(--couleur-or-bord); border-radius:50%;
+  margin:0 auto var(--sp-4); background:var(--couleur-or-fond);
+  color:var(--couleur-action);
+}
+.pa-symbole svg { display:block; width:34px; height:34px; stroke-width:2.6; }
+.pa-feuille h2 { text-align:center; font-size:var(--fs-titre);
+  line-height:1.25; letter-spacing:-.02em; margin:0 0 var(--sp-2); }
+.pa-feuille > p { max-width:38ch; text-align:center; margin:0 auto var(--sp-4);
+  font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2); }
+.pa-risque {
+  display:flex; align-items:flex-start; gap:var(--sp-2);
+  padding:var(--sp-3); border:1px solid var(--couleur-bord-2);
+  border-radius:var(--rayon-moyen); background:var(--couleur-surface-2);
+  color:var(--couleur-texte-2); font-size:var(--fs-sec); line-height:1.5;
+}
+.pa-risque > span:first-child {
+  color:var(--couleur-texte-3); font-size:20px; line-height:1.2;
+}
+.pa-feuille .pa-actions { margin-top:var(--sp-4); }
+@media(max-height:700px) {
+  .pa-page { padding-top:var(--sp-4); padding-bottom:var(--sp-3); }
+  .pa-marque { margin-bottom:var(--sp-4); }
+  .pa-scene { height:105px; margin:var(--sp-2) auto; }
+  .pa-scene svg { height:100px; }
+  .pa-heading p { line-height:1.4; }
+  .pa-reconnexion .pa-marque { margin-bottom:var(--sp-4); }
+  .pa-reconnexion .pa-heading { margin-bottom:var(--sp-3); }
+  #pa-form input:not([type=checkbox]) { margin-bottom:var(--sp-3); }
+  .pa-autres { margin-top:var(--sp-3); }
+}
+@media(max-width:350px) {
+  .pa-page { padding-left:var(--sp-4); padding-right:var(--sp-4); }
+  .pa-feuille { padding-left:var(--sp-4); padding-right:var(--sp-4); }
+}
