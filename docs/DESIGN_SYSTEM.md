@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 1.11 | 2026-10-19 | SPEC 57 : pression tactile uniforme des CTA (enfoncement CSS pendant l'appui, désactivés inertes, mouvement réduit) ; tokens de pression |
 | 1.10 | 2026-10-19 | Examens (passage, résultat, questions aléatoires) : `.pc-btn` pour la navigation, or uni partout (plus de dégradé or → ambre sur les boutons), score vert / rouge par classes (`examClasse`), étiquettes neutres, lettres de choix neutres, token `--couleur-bord-fort` |
 | 1.9 | 2026-10-19 | Spec 48 appliquée : grille commune des cartes du Chemin, surfaces neutres, libellés canoniques (Chemin, leçon, accueil, examens), cartes de sujets `.ex-carte`, score d'examen vert / rouge, `.pastille.a` ; `.lecon-card` supprimé |
 | 1.8 | 2026-10-19 | Code couleur unique pour toute l'app, couleurs de leçon retirées de l'interface, libellés de statut canoniques (« Acquise précédemment »…), structure commune des cartes, règles des indicateurs et des actions, token gris bleuté `--couleur-acquis` (spec 48) |
@@ -71,6 +72,16 @@ Ordre de chargement : `design-tokens.css` → `components.css` → `style.css`. 
 | Dimensions | `--toucher` 44, `--hauteur-bouton` 48, `--hauteur-bouton-grand` 52, `--hauteur-cta` 56 px | |
 
 Les anciens noms (`--accent`, `--bg`, `--muted`…) restent comme **alias** dans `design-tokens.css`. Ne plus en créer ; les remplacer au fil des modifications.
+
+### Feedback de pression CTA (SPEC 57)
+
+Les boutons d'action utilisent `--cta-pression-echelle` (0,975), `--cta-pression-decalage` (1 px), `--cta-pression-duree` (140 ms), `--cta-pression-luminosite` (0,92) et `--cta-pression-ombre`. Ces tokens sont définis dans `design-tokens.css`.
+
+- Déclenchement natif `:active`, dès le toucher et pendant un appui prolongé ; enfoncement discret et retour fluide au relâchement.
+- Périmètre : `.pc-btn`, `.btn-jaune`, CTA accueil `.carte-suite` / `.ac-btn`, `.dash-btn.primary`, `.ecr-btn-validate`, `.session-action.primary`, `.ms-envoyer`. Les boutons de mission, de résultat, d'exercice et d'examen héritent des styles communs.
+- Désactivés (`:disabled`, `aria-disabled="true"`) : aucun effet. `prefers-reduced-motion: reduce` : feedback statique sans échelle, translation ni transition.
+- Les simples liens, réponses, tuiles, cartes descriptives et boutons de navigation ne reçoivent pas cette animation ; les autres feedbacks existants sont conservés.
+- Aucun JS supplémentaire, aucun retard du clic, aucune modification de la zone tactile ou des `pointer-events`.
 
 ## 4. Composants
 
