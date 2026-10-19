@@ -69,6 +69,7 @@ for (const word of ['Lëtzebuerg', 'Mëllech', 'Äddi', 'Éislek', 'Schéi', 'Mo
   jeu.init(word);
   const tiles = jeu.inspect().tuiles;
   assert.ok(tiles.length > 0);
+  assert.ok(tiles.every(ch => ch === ch.toLowerCase()), 'SPEC 61 : tuile non minuscule ' + word);
   assert.ok(tiles.every(ch => ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '') === ch),
     'Une tuile est accentuée : ' + word);
 }
@@ -83,10 +84,10 @@ assert.equal(new Set(jeu.inspect().choix).size, 5, 'doublons distincts');
 jeu.effacer();
 assert.equal(jeu.inspect().choix.length, 4, 'effacement');
 
-jeu.init('Äddi'); jeu.poser('A');
+jeu.init('Äddi'); jeu.poser('a'); // minuscule dans la tuile, majuscule dans la case
 assert.ok(jeu.inspect().html.includes('>A</span>'), 'A sans tréma avant validation');
 assert.ok(!jeu.inspect().html.includes('>Ä</span>'));
-jeu.init('Éislek'); jeu.poser('E');
+jeu.init('Éislek'); jeu.poser('e');
 assert.ok(jeu.inspect().html.includes('>E</span>'), 'E sans accent avant validation');
 assert.ok(!jeu.inspect().html.includes('>É</span>'));
 
@@ -100,7 +101,7 @@ jeu.clavier('Le');
 assert.ok(jeu.inspect().html.includes('>e</span>'));
 assert.ok(!jeu.inspect().html.includes('>ë</span>'));
 jeu.clavier('Lë');
-assert.equal(jeu.inspect().input, 'Le');
+assert.equal(jeu.inspect().input, 'le'); // SPEC 61 : seules des tuiles minuscules sont utilisées
 assert.ok(jeu.inspect().html.includes('>e</span>'), 'taper ë reste sans accent avant validation');
 assert.ok(!jeu.inspect().html.includes('>ë</span>'));
 

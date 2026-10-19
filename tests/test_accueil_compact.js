@@ -45,12 +45,14 @@ const dependances = [
   'document', 'lecons', 'niveauActif', 'niveauxDisponibles', 'etatSynchro', 'escHtml',
   'progressionNiveau', 'serieActuelle', 'numLecon', 'titreCourt', 'aDejaPratique',
   'resumeRevision', 'noterQuestionsDues', 'loadSeance', 'revisionFaiteAujourdhui',
+  'isCloudEnabled', 'fbAuth',
   'prochainPas', 'getJours', 'dayString', 'niveauSuivant'
 ];
 const args = [
   document, [], niveau, () => ['A1.1', 'A1.2'], () => etat, echapper,
   () => data, () => 0, l => l.id, l => l.titre_fr, () => nouveau,
   () => ({ dus: [] }), () => {}, () => null, () => false,
+  () => false, { currentUser: null },
   () => pas, () => ({ today: 0 }), () => 'today', () => null
 ];
 const factory = new Function(...dependances,
