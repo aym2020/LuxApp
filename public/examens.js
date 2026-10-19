@@ -186,9 +186,9 @@ function startExamen(examId) {
 }
 
 // Quitter en cours de route : on prévient si des réponses seraient perdues.
-function quitExamen() {
+async function quitExamen() {
   const started = examAnswers.some(part => part.some(a => a !== null));
-  if (started && !confirm('Quitter ce sujet ? Tes réponses seront perdues.')) return;
+  if (started && !(await confirmer({ titre: 'Quitter ce sujet ?', texte: 'Tes réponses seront perdues.', ok: 'Quitter', annuler: 'Rester', danger: true }))) return;
   retour(); // l'écran réellement précédent (spec 15), en général la liste des sujets
 }
 
@@ -599,14 +599,14 @@ function examNext() {
 }
 
 // Corrige la partie courante. Ensuite ses réponses ne peuvent plus changer.
-function examCheck() {
+async function examCheck() {
   let vides = 0;
   examAnswers[examPart].forEach(a => { if (a === null) vides++; });
   if (vides > 0) {
     const msg = vides === 1
       ? 'Il reste 1 réponse vide. Corriger quand même ?'
       : 'Il reste ' + vides + ' réponses vides. Corriger quand même ?';
-    if (!confirm(msg)) return;
+    if (!(await confirmer({ titre: msg, ok: 'Corriger', annuler: 'Compléter' }))) return;
   }
 
   examChecked[examPart] = true;

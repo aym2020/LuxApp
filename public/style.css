@@ -2565,23 +2565,72 @@ body.portail-bloque { overflow:hidden; }
 .pa-heading p {
   max-width:38ch; font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2);
 }
-/* SPEC 65 : bienvenue chaleureuse (halo doré) et contenu centré, sans vide au milieu. */
+/* SPEC 66 : bienvenue centrée, carte « Moien! » à retourner, entrée séquencée. */
 .pa-bienvenue {
+  text-align:center;
   background:radial-gradient(ellipse 120% 42% at 50% 0%, rgba(245,207,77,.13), transparent 72%);
 }
-.pa-centre { flex:1; display:flex; flex-direction:column; justify-content:center; }
-.pa-bienvenue .pa-marque { margin-bottom:var(--sp-4); }
-.pa-atouts { list-style:none; display:flex; flex-direction:column; gap:var(--sp-4);
-  margin:var(--sp-6) 0 var(--sp-6); padding:0; }
-.pa-atout { display:flex; align-items:center; gap:14px; }
-.pa-atout-ic { flex:none; display:grid; place-items:center; width:46px; height:46px; border-radius:14px; }
-.pa-atout-ic svg { width:22px; height:22px; }
+.pa-centre { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:var(--sp-4); }
+.pa-bienvenue .pa-marque { margin:0; font-size:clamp(20px,5.4vw,24px); }
+.pa-bienvenue h1 { font-size:clamp(26px,7.4vw,33px); line-height:1.15; letter-spacing:-.03em;
+  font-weight:800; color:var(--couleur-texte); max-width:15ch; }
+.pa-intro { max-width:32ch; font-size:var(--fs-corps); line-height:1.45; color:var(--couleur-texte-2); }
+.pa-anim { animation:pa-entree .32s cubic-bezier(.2,.8,.2,1) backwards; animation-delay:calc(var(--d, 0) * 70ms); }
+@keyframes pa-entree { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+.pa-carte-zone { width:100%; max-width:360px; display:flex; flex-direction:column; align-items:center; gap:var(--sp-2); }
+.pa-carte { width:100%; height:150px; padding:0; border:0; background:none; cursor:pointer;
+  perspective:900px; font-family:var(--police); color:var(--couleur-texte); }
+.pa-carte-in { position:relative; display:block; width:100%; height:100%;
+  transform-style:preserve-3d; transition:transform .4s cubic-bezier(.3,.7,.2,1); }
+.pa-carte.retournee .pa-carte-in { transform:rotateY(180deg); }
+.pa-face { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  border-radius:20px; border:1px solid rgba(245,207,77,.32);
+  background:linear-gradient(180deg, #2a2415, var(--couleur-surface-1));
+  backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+.pa-face.verso { transform:rotateY(180deg); border-color:rgba(84,224,173,.35);
+  background:linear-gradient(180deg, #16261f, var(--couleur-surface-1)); }
+.pa-carte-kicker { font-size:var(--fs-micro); font-weight:700; letter-spacing:.09em; color:var(--couleur-action); }
+.pa-face.verso .pa-carte-kicker { color:var(--couleur-reussi); }
+.pa-face b { font-size:40px; line-height:1.1; font-weight:800; letter-spacing:-.02em; }
+.pa-face small { font-size:var(--fs-sec); color:var(--couleur-texte-3); }
+.pa-carte:focus-visible { outline:2px solid var(--couleur-action); outline-offset:3px; border-radius:20px; }
+.pa-ecouter { display:inline-flex; align-items:center; gap:8px; min-height:var(--toucher); padding:0 var(--sp-3);
+  border:0; background:none; cursor:pointer; color:var(--couleur-action);
+  font-family:var(--police); font-size:var(--fs-sec); font-weight:650; }
+.pa-ecouter svg { width:20px; height:20px; }
+.pa-ecouter.joue .onde1 { animation:pa-onde .8s ease-in-out infinite; }
+.pa-ecouter.joue .onde2 { animation:pa-onde .8s ease-in-out .2s infinite; }
+@keyframes pa-onde { 50% { opacity:.25; } }
+.pa-ecouter:focus-visible { outline:2px solid var(--couleur-action); outline-offset:2px; border-radius:10px; }
+
+.pa-atouts { list-style:none; display:flex; justify-content:center; gap:var(--sp-4); padding:0; margin:0;
+  width:100%; max-width:380px; }
+.pa-atouts li { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;
+  font-size:var(--fs-micro); font-weight:650; line-height:1.25; color:var(--couleur-texte-2); }
+.pa-atout-ic { display:grid; place-items:center; width:42px; height:42px; border-radius:13px; }
+.pa-atout-ic svg { width:21px; height:21px; }
 .pa-atout-ic.or { color:var(--couleur-action); background:rgba(245,207,77,.12); }
 .pa-atout-ic.vert { color:var(--couleur-reussi); background:rgba(84,224,173,.12); }
 .pa-atout-ic.bleu { color:var(--couleur-info); background:rgba(111,176,242,.12); }
-.pa-atout b { display:block; font-size:var(--fs-corps); font-weight:700; color:var(--couleur-texte); }
-.pa-atout b + span { display:block; margin-top:2px; font-size:var(--fs-sec); color:var(--couleur-texte-3); }
-.pa-bienvenue .pa-actions { margin-top:0; }
+.pa-bienvenue .pa-actions { margin-top:var(--sp-2); max-width:420px; }
+.pa-bienvenue .pa-bouton.or { gap:8px; }
+
+/* Changement d'écran du portail : court glissement, sens selon la navigation. */
+.pa-entre-avant { animation:pa-glisse-avant .28s cubic-bezier(.2,.8,.2,1) backwards; }
+.pa-entre-arriere { animation:pa-glisse-arriere .28s cubic-bezier(.2,.8,.2,1) backwards; }
+@keyframes pa-glisse-avant { from { opacity:0; transform:translateX(24px); } }
+@keyframes pa-glisse-arriere { from { opacity:0; transform:translateX(-24px); } }
+.pa-haut { display:flex; align-items:center; gap:var(--sp-2); }
+.pa-haut .pa-marque { margin:0; }
+.pa-retour { flex:none; display:grid; place-items:center; width:var(--toucher); height:var(--toucher); margin-left:-10px;
+  border:0; border-radius:50%; background:none; color:var(--couleur-texte); cursor:pointer; }
+.pa-retour svg { width:24px; height:24px; }
+.pa-retour:focus-visible { outline:2px solid var(--couleur-action); }
+.pa-erreur { margin:-10px 0 var(--sp-3); font-size:var(--fs-sec); color:var(--couleur-erreur, #f08a7e); }
+.pa-erreur:empty { display:none; }
+#pa-form input[aria-invalid=true] { border-color:var(--couleur-erreur, #f08a7e); }
+.pa-bouton.charge { opacity:.75; cursor:progress; }
 .pa-actions { display:flex; flex-direction:column; gap:var(--sp-2); margin-top:auto; width:100%; }
 .pa-bouton {
   display:flex; justify-content:center; align-items:center; text-align:center;
@@ -2650,42 +2699,54 @@ body.portail-bloque { overflow:hidden; }
 }
 .pa-indispo { font-size:var(--fs-sec); color:var(--couleur-texte-2);
   text-align:center; line-height:1.5; margin:var(--sp-4) 0; }
-/* Confirmation invité : information rassurante, discrète, action unique en or. */
-.pa-alerte { position:fixed; inset:0; z-index:270; display:flex;
-  align-items:center; justify-content:center; padding:var(--sp-5); }
-.pa-voile { position:absolute; inset:0; background:rgba(0,0,0,.72); }
-.pa-feuille {
-  position:relative; max-height:90dvh; width:min(100%,420px); overflow-y:auto;
-  padding:26px var(--sp-5) 14px; text-align:center;
-  border:1px solid var(--couleur-bord-2); border-radius:24px;
-  background:linear-gradient(180deg, #2a2415 0%, var(--couleur-surface-1) 45%);
-  box-shadow:0 24px 60px rgba(0,0,0,.55);
+/* SPEC 66 — Dialogue LuxApp (remplace confirm) : carte centrée, fondu et léger zoom. */
+.dlg { position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; padding:var(--sp-5); }
+.dlg-voile { position:absolute; inset:0; background:rgba(0,0,0,.6); opacity:0;
+  backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); transition:opacity .25s ease; }
+.dlg-carte { position:relative; width:min(100%,400px); padding:28px var(--sp-5) var(--sp-3); text-align:center;
+  border:1px solid var(--couleur-bord-2); border-radius:24px; background:var(--couleur-surface-1);
+  box-shadow:0 24px 60px rgba(0,0,0,.55); opacity:0; transform:scale(.94);
+  transition:opacity .25s ease, transform .25s cubic-bezier(.2,.8,.2,1); }
+.dlg.ouvert .dlg-voile { opacity:1; }
+.dlg.ouvert .dlg-carte { opacity:1; transform:none; }
+.dlg-carte h2 { font-size:var(--fs-titre); line-height:1.25; letter-spacing:-.02em; margin:0 var(--sp-4) var(--sp-2); color:var(--couleur-texte); }
+.dlg-carte p { font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2); margin:0 0 var(--sp-2); }
+.dlg-fermer { position:absolute; top:8px; right:8px; display:grid; place-items:center; width:var(--toucher); height:var(--toucher);
+  border:0; border-radius:50%; background:none; color:var(--couleur-texte-3); cursor:pointer; }
+.dlg-fermer svg { width:20px; height:20px; }
+.dlg-actions { display:flex; flex-direction:column; gap:var(--sp-2); margin-top:var(--sp-4); }
+.dlg-actions button { min-height:var(--toucher); border-radius:16px; font-family:var(--police); cursor:pointer; }
+.dlg-ok { min-height:56px!important; border:1px solid var(--couleur-action); background:var(--couleur-action);
+  color:var(--couleur-sur-or); font-size:1.05rem; font-weight:700; }
+.dlg-ok.danger { border-color:var(--couleur-erreur, #f08a7e); background:var(--couleur-erreur, #f08a7e); color:#1a0d0b; }
+.dlg-annuler { border:0; background:none; color:var(--couleur-texte-2); font-size:var(--fs-sec); font-weight:600; }
+.dlg button:focus-visible { outline:2px solid var(--couleur-action); outline-offset:2px; }
+
+/* Message bref (remplace alert) : en bas, disparaît seul. */
+.notif { position:fixed; left:50%; bottom:calc(84px + env(safe-area-inset-bottom)); z-index:310;
+  width:max-content; max-width:min(92vw,420px); padding:12px 18px; border-radius:14px;
+  background:var(--couleur-surface-2); border:1px solid var(--couleur-bord-2); color:var(--couleur-texte);
+  font-size:var(--fs-sec); line-height:1.4; text-align:center; box-shadow:0 12px 30px rgba(0,0,0,.45);
+  opacity:0; transform:translate(-50%,12px); pointer-events:none; transition:opacity .25s ease, transform .25s ease; }
+.notif.visible { opacity:1; transform:translate(-50%,0); }
+
+/* Changement d'écran de l'app : arrivée courte, sens selon la navigation. */
+/* Pas de « fill forwards » : un transform maintenu ferait des éléments fixes de l'écran
+   (barres d'action en bas) des enfants positionnés par rapport à la vue. */
+.view.entre-avant { animation:pa-glisse-avant .26s cubic-bezier(.2,.8,.2,1); }
+.view.entre-arriere { animation:pa-glisse-arriere .26s cubic-bezier(.2,.8,.2,1); }
+body.sans-transitions .view { animation:none!important; }
+@media (prefers-reduced-motion: reduce) {
+  .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere { animation:none!important; }
+  .pa-carte-in, .dlg-voile, .dlg-carte, .notif { transition:none!important; }
+  .pa-ecouter.joue .onde1, .pa-ecouter.joue .onde2 { animation:none; }
 }
-.pa-symbole {
-  display:grid; place-items:center; width:62px; height:62px;
-  border-radius:50%;
-  margin:0 auto var(--sp-4); background:rgba(84,224,173,.14);
-  color:var(--couleur-reussi);
-}
-.pa-symbole svg { display:block; width:32px; height:32px; stroke-width:2; }
-.pa-feuille h2 { text-align:center; font-size:var(--fs-titre);
-  line-height:1.25; letter-spacing:-.02em; margin:0 0 var(--sp-2); }
-.pa-feuille > p { max-width:38ch; text-align:center; margin:0 auto var(--sp-4);
-  font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2); }
-.pa-risque {
-  display:flex; align-items:flex-start; gap:var(--sp-2);
-  padding:var(--sp-3) 14px; text-align:left;
-  border-radius:var(--rayon-moyen); background:rgba(255,255,255,.04);
-  color:var(--couleur-texte-2); font-size:var(--fs-sec); line-height:1.5;
-}
-.pa-risque > span:first-child {
-  color:var(--couleur-texte-3); font-size:20px; line-height:1.2;
-}
-.pa-feuille .pa-actions { margin-top:var(--sp-4); }
 @media(max-height:700px) {
   .pa-page { padding-top:var(--sp-4); padding-bottom:var(--sp-3); }
   .pa-marque { margin-bottom:var(--sp-4); }
-  .pa-atouts { gap:var(--sp-3); margin:var(--sp-4) 0; }
+  .pa-centre { gap:var(--sp-3); }
+  .pa-carte { height:120px; }
+  .pa-face b { font-size:34px; }
   .pa-heading p { line-height:1.4; }
   .pa-reconnexion .pa-marque { margin-bottom:var(--sp-4); }
   .pa-reconnexion .pa-heading { margin-bottom:var(--sp-3); }
@@ -2694,6 +2755,6 @@ body.portail-bloque { overflow:hidden; }
 }
 @media(max-width:350px) {
   .pa-page { padding-left:var(--sp-4); padding-right:var(--sp-4); }
-  .pa-feuille { padding-left:var(--sp-4); padding-right:var(--sp-4); }
-  .pa-alerte { padding:var(--sp-3); }
+  .dlg { padding:var(--sp-3); }
+  .pa-atouts { gap:var(--sp-2); }
 }

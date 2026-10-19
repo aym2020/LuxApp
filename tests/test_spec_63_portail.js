@@ -7,51 +7,60 @@ const store={}; const localStorage={
 };
 const nodes={};
 function node(id){return nodes[id] ||= {
- id,innerHTML:'',attrs:{},scrollTop:5,
+ id,innerHTML:'',attrs:{},scrollTop:5,value:'',
  classList:{states:new Set(['hidden']),contains(k){return this.states.has(k)},
  add(k){this.states.add(k)},remove(k){this.states.delete(k)}},
  setAttribute(k,v){this.attrs[k]=v},
- querySelector(){return {focus(){}}}
+ querySelector(){return {focus(){},classList:{add(){}}}}
 };}
 const body={classList:{states:new Set,contains(k){return this.states.has(k)},add(k){this.states.add(k)},remove(k){this.states.delete(k)}}};
 const document={body,addEventListener(){},getElementById:node};
-let cloud=true,signed=false,profile='anonymous',opened=0;
+let cloud=true,signed=false,profile='anonymous',opened=0,notes=[];
 let snapshot=()=>null;
+const escHtml=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const ctx=new Function('document','window','localStorage','fbAuth','currentStorageProfile',
  'setStorageProfile','isCloudEnabled','aDejaPratique','getProgress','goDashboard',
- 'programmerGarde',code+
+ 'programmerGarde','notifier','arreterAudio','escHtml',code+
  '\nreturn {portailInitialiser,portailAction,portailOuvrir,portailCompteConnecte,portailCompteDeconnecte,'+
- 'portailVisible,portailAlerteOuverte,portailAfficherAlerte,portailFermerAlerte,portailContenu};')(
+ 'portailVisible,portailFormulaireOuvert,portailRetourBienvenue,portailContenu,get mode(){return portailMode}};')(
  document,{APP_CONFIG:{}},localStorage,{onAuthStateChanged(cb){snapshot=cb;}},
- profile,v=>{profile=v},()=>cloud,()=>false,()=>({}),()=>{opened++},()=>{});
+ profile,v=>{profile=v},()=>cloud,()=>false,()=>({}),()=>{opened++},()=>{},t=>notes.push(t),()=>{},escHtml);
 ctx.portailInitialiser(null);
 assert.ok(ctx.portailVisible());
-assert.match(node('portail-auth').innerHTML,/WËLLKOMM/);
-assert.match(node('portail-auth').innerHTML,/Continuer sans compte/);
+const accueil=node('portail-auth').innerHTML;
+// SPEC 66 : bienvenue centrée, carte Moien!/Bonjour !, audio sur demande, 3 actions sans doublon.
+assert.match(accueil,/Le luxembourgeois, à ta portée\./);
+assert.match(accueil,/Quelques minutes par jour/);
+assert.match(accueil,/class="pa-carte"[^>]*aria-pressed="false"/);
+assert.match(accueil,/Moien!/);assert.match(accueil,/Bonjour !/);assert.match(accueil,/Appuie pour découvrir/);
+assert.match(accueil,/portailEcouter\(this\)/);
+assert.match(accueil,/Révisions intelligentes/);
+assert.match(accueil,/Commencer à apprendre/);
+assert.match(accueil,/J’ai déjà un compte/);
+assert.ok(!accueil.includes('Continuer sans compte'),'fusionné avec « Commencer à apprendre »');
+assert.ok(!/test A1/.test(accueil));
+assert.ok(!ctx.portailFormulaireOuvert());
+// Invité : pas de confirmation, message discret, progression intacte.
 ctx.portailAction('guest');
-assert.ok(ctx.portailAlerteOuverte());
-// SPEC 65 : ton accueillant, le choix invité est l'action principale.
-assert.match(node('portail-auth').innerHTML,/C’est parti/);
-assert.match(node('portail-auth').innerHTML,/pa-bouton or" onclick="portailAction\(&quot;guest-confirm/);
-assert.ok(!store.luxPortailInviteV1);
-ctx.portailAction('guest-back');
-assert.ok(!ctx.portailAlerteOuverte());
-ctx.portailAction('guest');ctx.portailAction('guest-confirm');
-assert.equal(store.luxPortailInviteV1,undefined);assert.equal(opened,1);
-assert.ok(!ctx.portailVisible());
+assert.ok(!ctx.portailVisible());assert.equal(opened,1);
+assert.deepEqual(notes,['Ta progression est enregistrée sur cet appareil.']);
+assert.equal(store.luxPortailInviteV1,undefined);
 ctx.portailInitialiser(null);
-assert.ok(ctx.portailVisible(),'invité : écran Moien/Bonjour à chaque nouveau démarrage');
-assert.match(node('portail-auth').innerHTML,/WËLLKOMM/);
-// SPEC 65 : trois atouts à la place de l'illustration, examens non limités à A1.
-assert.match(node('portail-auth').innerHTML,/pa-atouts/);
-assert.ok(!node('portail-auth').innerHTML.includes('pa-scene'),'illustration Moien/Bonjour retirée');
-assert.ok(!/test A1/.test(node('portail-auth').innerHTML));
+assert.ok(ctx.portailVisible(),'invité : écran de bienvenue à chaque nouveau démarrage');
+// Formulaire : Retour ramène à la bienvenue.
+ctx.portailAction('signup');
+assert.ok(ctx.portailFormulaireOuvert());
+assert.match(node('portail-auth').innerHTML,/pa-retour/);
+assert.match(node('portail-auth').innerHTML,/pa-erreur-email/);
+assert.match(node('portail-auth').innerHTML,/pa-entre-avant|Un compte pour/);
+ctx.portailRetourBienvenue();
+assert.equal(ctx.mode,'welcome');
 ctx.portailCompteConnecte({uid:'xyz'});
 assert.equal(store.luxPortailCompteConnuV1,'oui');assert.equal(store.luxPortailInviteV1,undefined);
 ctx.portailCompteDeconnecte();
 ctx.portailInitialiser(null);
 assert.match(node('portail-auth').innerHTML,/Bon retour/);
-assert.ok(!node('portail-auth').innerHTML.includes('pa-compte-icone'),'pas de décor de profil sur le formulaire');
+assert.match(node('portail-auth').innerHTML,/S’inscrire/);
 ctx.portailOuvrir('signup');
 assert.match(node('portail-auth').innerHTML,/Un compte pour/);
 ctx.portailCompteConnecte({uid:'xyz'});
@@ -59,14 +68,17 @@ assert.ok(!ctx.portailVisible());
 ctx.portailCompteDeconnecte();cloud=false;ctx.portailOuvrir('signin');
 assert.match(node('portail-auth').innerHTML,/Connexion momentanément indisponible/);
 assert.ok(!node('portail-auth').innerHTML.includes('id="pa-form"'));
-assert.match(css,/\.pa-symbole\s*\{[^}]*place-items:center/);
+ctx.portailOuvrir('welcome');
+assert.ok(!node('portail-auth').innerHTML.includes('J’ai déjà un compte'),'sans cloud : seulement Commencer');
 assert.match(css,/\.pa-bouton\s*\{[^}]*justify-content:center/);
 assert.match(css,/\.pa-bouton\s*\{[^}]*text-align:center/);
-assert.match(css,/\.pa-symbole\s*\{[^}]*margin:0 auto/);
 assert.match(css,/\.pa-bouton\s*\{[^}]*min-height:60px/,'SPEC 65 : même hauteur que les accès de l’accueil');
 assert.match(css,/\.pa-bouton\s*\{[^}]*border-radius:16px/);
-assert.match(css,/\.pa-alerte\s*\{[^}]*align-items:center/,'SPEC 65 : popup invité centrée');
-assert.match(css,/\.pa-feuille\s*\{[^}]*border-radius:24px/);
+assert.match(css,/\.dlg\s*\{[^}]*align-items:center/,'SPEC 66 : dialogue centré');
+assert.match(css,/\.dlg-carte\s*\{[^}]*border-radius:24px/);
+assert.match(css,/backdrop-filter:blur/);
+assert.match(css,/\.pa-carte\.retournee \.pa-carte-in\s*\{[^}]*rotateY\(180deg\)/);
+assert.match(css,/prefers-reduced-motion: reduce\)\s*\{[^}]*\.view\.entre-avant/);
 assert.ok(!css.includes('.pa-poignee'));
 assert.match(css,/\.pa-heading h1 em\s*\{[^}]*color:inherit/);
 assert.match(css,/\.pa-bouton\.texte\s*\{[^}]*min-height:var\(--toucher\)/);
@@ -77,5 +89,9 @@ assert.ok(!code.includes("portailStocker(PORTAIL_INVITE,'oui')"),'ne plus persis
 assert.match(html,/id="portail-auth"/);
 assert.match(html,/src="portail.js"/);
 assert.ok(!read('public/accueil.js').includes('html += invitationCompteHtml()'));
-assert.ok(read('public/navigation.js').includes('portailFermerAlerte()'));
-console.log('SPEC 63-64 : OK — bienvenue renouvelée pour invités, UI compacte, authentification et styles cohérents.');
+assert.ok(read('public/navigation.js').includes('portailRetourBienvenue()'));
+assert.ok(read('public/navigation.js').includes('fermerDialogue(false)'));
+assert.match(html,/src="dialogue.js"/);
+for (const f of ['app.js','examens.js','revision.js']) assert.ok(!/\b(confirm|alert)\(/.test(read('public/'+f)), f+' : plus de fenêtre native');
+assert.ok(fs.statSync(path.join(__dirname,'..','public/audio/moien.mp3')).size > 5000,'audio Moien présent');
+console.log('SPEC 63-66 : OK — bienvenue avec carte Moien!, invité sans confirmation, formulaires avec Retour, dialogues LuxApp.');

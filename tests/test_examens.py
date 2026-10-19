@@ -104,11 +104,15 @@ with sync_playwright() as p:
     # ── Examen inachevé : la confirmation d'abandon reste ──
     pg.click('#examens-list .ex-carte >> nth=0')
     pg.evaluate(REMPLIR, [0, 0])
-    messages = []
-    pg.once('dialog', lambda d: (messages.append(d.message), d.dismiss()))
+    # SPEC 66 : dialogue LuxApp (plus de fenêtre native). « Rester » et Retour gardent l'examen.
     pg.click('#view-examen .back-btn')
-    assert messages and pg.evaluate("document.querySelector('.view.active').id") == 'view-examen'
-    ok('examen inachevé : confirmation d\'abandon conservée')
+    assert 'Quitter ce sujet' in pg.inner_text('.dlg h2')
+    pg.click('.dlg-annuler')
+    assert not pg.evaluate('dialogueEstOuvert()') and pg.evaluate("document.querySelector('.view.active').id") == 'view-examen'
+    pg.click('#view-examen .back-btn')
+    pg.go_back(); pg.wait_for_timeout(300)  # Retour du téléphone : ferme seulement le dialogue
+    assert not pg.evaluate('dialogueEstOuvert()') and pg.evaluate("document.querySelector('.view.active').id") == 'view-examen'
+    ok('examen inachevé : confirmation d\'abandon dans un dialogue LuxApp ; Rester et Retour gardent l\'examen')
     pg.evaluate("examAnswers = examAnswers.map(p => p.map(() => null)); quitExamen()")
     pg.evaluate("goDashboard()")
 

@@ -210,7 +210,7 @@ function plusFragiles(listeLecons) {
 function lancerPlusFragiles() {
   const items = plusFragiles(lecons);
   if (!items.length) {
-    alert('Rien de fragile pour l\'instant : tout ce que tu as vu est solide.');
+    notifier('Rien de fragile pour l\'instant : tout ce que tu as vu est solide.');
     goDashboard();
     return;
   }

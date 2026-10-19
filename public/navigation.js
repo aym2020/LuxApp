@@ -375,7 +375,8 @@ function remettreScroll(y) {
 
 // ─── BOUTON RETOUR DU TÉLÉPHONE (API History) ───────────────────────────────
 function superpositionOuverte() {
-  if (typeof portailAlerteOuverte === 'function' && portailAlerteOuverte()) return true;
+  if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) return true; // SPEC 66
+  if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) return true; // SPEC 66
   const amelioration = document.getElementById('chemin-amelioration-panel');
   if (amelioration && !amelioration.classList.contains('hidden')) return true;
   const cours = document.getElementById('cours-panel');
@@ -384,7 +385,9 @@ function superpositionOuverte() {
 
 // Ferme le panneau ouvert, s'il y en a un. Renvoie true si quelque chose a été fermé.
 function fermerSuperposition() {
-  if (typeof portailAlerteOuverte === 'function' && portailAlerteOuverte()) { portailFermerAlerte(); return true; }
+  if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) { fermerDialogue(false); return true; }
+  // SPEC 66 : inscription ou connexion → retour à la bienvenue.
+  if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) { portailRetourBienvenue(); return true; }
   const amelioration = document.getElementById('chemin-amelioration-panel');
   if (amelioration && !amelioration.classList.contains('hidden')) { fermerAmeliorationChemin(); return true; }
   if (document.querySelector('.panneau')) { fermerPanneau(); return true; }

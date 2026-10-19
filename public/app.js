@@ -38,6 +38,8 @@ async function init() {
   setupKeyboard();
   await restaurerNavigation(); // spec 44 : après une actualisation, le même écran
   portailInitialiser(await getCurrentUser()); // SPEC 63 : session, invité, ou « Bon retour »
+  // Tests navigateur : pas d'animation d'écran (mesures de position stables).
+  if (window.APP_CONFIG && window.APP_CONFIG.TESTS) document.body.classList.add('sans-transitions');
 }
 
 // ─── NIVEAU ─────────────────────────────────────────────────────────────────
@@ -225,7 +227,8 @@ async function confirmResetAll() {
   const message = user
     ? 'Effacer TOUTE ta progression, en local ET dans le cloud ? Cette action est irréversible.'
     : 'Effacer toute la progression locale ? Cette action est irréversible.';
-  if (!confirm(message)) return;
+  const ok = await confirmer({ titre: 'Réinitialiser la progression ?', texte: message, ok: 'Tout effacer', danger: true });
+  if (!ok) return;
 
   resetProgress();                 // local
   resetExamScores();               // meilleurs scores des sujets d'examen
@@ -368,8 +371,9 @@ async function handleSync(btn) {
 }
 
 // Réinitialise la progression de la leçon affichée, après confirmation.
-function confirmResetLesson() {
-  if (confirm('Réinitialiser toute la progression de cette leçon ?')) {
+async function confirmResetLesson() {
+  const ok = await confirmer({ titre: 'Réinitialiser cette leçon ?', texte: 'Toute la progression de cette leçon sera effacée.', ok: 'Réinitialiser', danger: true });
+  if (ok) {
     resetLessonProgress(currentLecon.id);
     renderCours();
   }
@@ -399,7 +403,7 @@ function startSession(mode) {
   else { questions = getFrequentErrors(10); titre = 'Erreurs fréquentes'; }
 
   if (!questions.length) {
-    alert(mode === 'errors'
+    notifier(mode === 'errors'
       ? 'Aucune erreur enregistrée pour le moment.'
       : 'Aucune question disponible.');
     return;
@@ -523,9 +527,9 @@ function startConfiguredReview() {
   let count = countInput ? parseInt(countInput.value, 10) : 20;
   if (!count || count < 0) count = 0;
 
-  if (!leconIds.length) { alert('Choisis au moins une leçon.'); return; }
-  if (!types.length) { alert('Choisis au moins un type d\'exercice.'); return; }
-  if (!niveaux.length) { alert('Choisis au moins un niveau.'); return; }
+  if (!leconIds.length) { notifier('Choisis au moins une leçon.'); return; }
+  if (!types.length) { notifier('Choisis au moins un type d\'exercice.'); return; }
+  if (!niveaux.length) { notifier('Choisis au moins un niveau.'); return; }
 
   // Feedback immédiat : le bouton confirme l'appui et indique que ça arrive.
   const btn = document.querySelector('#view-review-setup .dash-btn.primary');
@@ -553,11 +557,11 @@ function startConfiguredReview() {
     if (!questions.length) {
       // Message adapté au focus choisi (jamais de session vide ni de remplissage).
       if (focus === 'connu') {
-        alert('Aucune question à consolider pour le moment.\nFais d\'abord une révision aléatoire ou une leçon pour créer ton historique.');
+        notifier('Aucune question à consolider pour le moment. Fais d\'abord une révision ou une leçon.');
       } else if (focus === 'difficile') {
-        alert('Aucune question difficile pour le moment.\nLes questions difficiles apparaîtront après tes premières erreurs.');
+        notifier('Aucune question difficile pour le moment : elles apparaîtront après tes premières erreurs.');
       } else {
-        alert('Aucune question disponible pour ces critères.');
+        notifier('Aucune question disponible pour ces critères.');
       }
       return;
     }
@@ -586,7 +590,7 @@ function startConfiguredReview() {
 //   apresReponse : fonction lancée après chaque réponse (ex. sauver la séance)
 //   depart   : { index, score } pour reprendre une session commencée
 function demarrerSession(mode, titre, questions, options) {
-  if (!questions.length) { alert('Aucune question disponible.'); return; }
+  if (!questions.length) { notifier('Aucune question disponible.'); return; }
   const opts = options || {};
   const depart = opts.depart || { index: 0, score: 0 };
   session = { mode, questions, index: depart.index, score: depart.score, answered: false, options: opts };
@@ -853,9 +857,22 @@ function showSessionResult() {
 }
 
 function showView(id) {
+  const avant = document.querySelector('.view.active');
+  const profondeur = pileNav.length;
   noterNavigation(id); // historique : le bouton Retour ramène à l'écran précédent
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active', 'entre-avant', 'entre-arriere'));
+  const vue = document.getElementById(id);
+  vue.classList.add('active');
+  // SPEC 66 : courte arrivée du nouvel écran ; sens inverse quand on revient en arrière.
+  if (avant && avant !== vue) {
+    vue.classList.add(pileNav.length < profondeur ? 'entre-arriere' : 'entre-avant');
+    const fin = e => {
+      if (e.target !== vue) return; // animations des éléments de l'écran : ignorées
+      vue.classList.remove('entre-avant', 'entre-arriere');
+      vue.removeEventListener('animationend', fin);
+    };
+    vue.addEventListener('animationend', fin);
+  }
   majNavigation(id);
   majBoutonsRetour(id);
   // Arrêt net : un défilement doux encore en cours sur l'écran quitté ne

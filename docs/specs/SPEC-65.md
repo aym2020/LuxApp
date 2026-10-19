@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | Priorité | P1 — première impression et cohérence graphique |
-| Statut | **Implémentée sur `v2` — recette Android à confirmer** |
+| Statut | **Remplacée par SPEC 66** (popup invité supprimée, nouvelle bienvenue) |
 | Complète | SPEC 63 et 64 |
 | Fichiers | `public/portail.js`, `public/style.css`, `tests/test_spec_63_portail.js` |
 
