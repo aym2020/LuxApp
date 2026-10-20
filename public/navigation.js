@@ -254,6 +254,8 @@ function sauverNavigation() {
     libre: !!(typeof run !== 'undefined' && run && run.libre),
     mission: enMission ? { idx: ms.idx, essais: ms.essais, dernierEssai: ms.dernierEssai, resultats: ms.resultats,
       formesValidees: ms.formesValidees, tentative: ms.tentative, vies: ms.vies, coquille: ms.coquille } : null,
+    decouverte: vue.id === 'view-decouverte' && typeof decouverteActive !== 'undefined' && decouverteActive
+      ? { uniteId: decouverteActive.uniteId, index: decouverteActive.index } : null,
     pile: pileNav
   };
   try { sessionStorage.setItem(CLE_NAVIGATION, JSON.stringify(etat)); } catch (e) { /* stockage indisponible */ }
@@ -344,6 +346,14 @@ async function rouvrirEcran(etat, l) {
       await pause();
       if (etat.unite != null && trouverUnite(l, etat.unite)) openIntro(etat.unite);
       return true;
+    case 'view-decouverte': {
+      if (!parcours || l.id !== 0 || !etat.decouverte ||
+          !decouvertePour(l, etat.decouverte.uniteId).length) return false;
+      openParcoursLecon(l);
+      await pause();
+      demarrerDecouverte(etat.decouverte.uniteId, etat.decouverte.index);
+      return true;
+    }
     case 'view-parcours': {
       if (!parcours) return false;
       openParcoursLecon(l);
