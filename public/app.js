@@ -23,7 +23,7 @@ let tAnswered = false;
 async function init() {
   lecons = await fetch('/api/lecons').then(r => r.json()); // 1. leçons
   await loadExamens();     // 1 bis. sujets d'examen (voir examens.js)
-  chargerSonsLod();        // 1 ter. sons LOD des mots (sans attendre : facultatif)
+  await chargerSonsLod();  // 1 ter. index LOD et MIA prêts avant les premières corrections
   // 2. la progression locale est déjà lue à la demande depuis localStorage
   initFirebase();          // 3. init Firebase (sans effet si non configuré)
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
