@@ -23,15 +23,15 @@ Dans les cours actuels, règles, tableaux grammaticaux, longues listes de vocabu
 Dans la rubrique **Cours** déjà existante, afficher :
 
 **Sélection de portée** (première rangée) :
-- En contexte d'exercice : conserver **« Unité N »** (unité courante) et **« Toute la leçon »** ; le panneau s'ouvre par défaut sur l'unité de l'exercice.
-- Pour consulter librement une leçon (onglet Cours principal ou panneau ouvert depuis l'introduction) : rendre accessibles les **unités 1, 2, 3…** et **« Toute la leçon »**, dans cet ordre, comme la maquette. Ne pas enfermer l'utilisateur dans une unité.
+- En contexte d'exercice : ouvrir sur l'unité courante, mais afficher directement **toutes les unités** et « Tout », sans défilement horizontal.
+- Pour toute consultation : une seule rangée de boutons compacts **1 | 2 | 3 | 4 | Tout** (ou 1 | 2 | 3 | Tout). Chaque bouton est immédiatement visible ; « Tout » affiche toute la leçon. Labels accessibles « Unité N » et « Toute la leçon ».
 - La portée agit sur **les trois rubriques** et reste sélectionnée quand on change de rubrique ; changer de leçon réinitialise l'état.
 
 **Rubrique pédagogique** (seconde rangée) : trois onglets internes **Règles | Lexique | Phrases**.
 - Onglet initial : **Règles** (une nouvelle entrée dans le cours commence par l'explication).
 - Changer de rubrique ne ferme pas le cours, ne modifie pas la progression ni l'exercice et ne transforme pas ces trois vues en onglets principaux au même niveau que Cartes/Quiz/Écrire.
 - « Toute la leçon » regroupe par unités successives avec sous-titres, puis contenu transversal. Éviter les doublons.
-- Les filtres et onglets restent visibles quand le contenu défile, si possible sans sacrifier la hauteur disponible sur petit téléphone.
+- Dans le panneau d'exercice, fixer la hauteur à **88dvh** quel que soit le volume de contenu ; l'en-tête, les unités, les onglets et « Revenir à l'exercice » restent stables. Seul le contenu central défile.
 - L'interface doit fonctionner aussi bien dans `#tab-cours / #cours-content` que dans `#cours-panel / #cp-content`, idéalement à partir d'un composant/rendu partagé. Conserver l'en-tête, la progression éventuelle et le bouton « Revenir à l'exercice » existants.
 
 ### Les trois fonctions
@@ -43,7 +43,7 @@ Dans la rubrique **Cours** déjà existante, afficher :
 
 **Lexique — mémoriser / retrouver**
 - Termes et **expressions courtes** utiles de l'unité, luxembourgeois et traduction française ; article affiché avec le nom.
-- Recherche simple (luxembourgeois ou français) **dans la portée sélectionnée**, comme la maquette.
+- **Aucune barre de recherche** dans le cours pilote pour l'instant ; conserver le Lexique global inchangé.
 - Essentiel immédiatement visible ; éléments marqués `plus` regroupés sous **« Voir les mots supplémentaires (N) »**, repliés par défaut.
 - Les entrées avec indications annexes dans des parenthèses conservent ces indications à l'écran, mais le bouton doit cibler uniquement l'expression effectivement prononcée (conforme SPEC 73).
 - Pas de duplication de l'onglet **Lexique global** de LuxApp : il reste inchangé et agrège toujours les leçons. Ici, c'est un lexique **local au cours/unité**.
@@ -100,7 +100,7 @@ Ceci est un **exemple de structure**, pas un remplacement complet des contenus. 
 - `unite: 0` : uniquement pour « Toute la leçon » (notamment dialogues transversaux).
 - `unite` absent : règle/référence générale ; visible quand elle est utile, au maximum **une fois** dans Toute la leçon. Pour les nouveaux blocs, privilégier un rattachement explicite, ou un affichage transversal clairement défini.
 - `rubrique` est une décision **pédagogique explicite**, jamais une déduction automatique de `type` (un `tableau` peut être grammatical ou lexical). Si un bloc mélange des fonctions, le séparer en blocs cohérents, sans perdre d'information.
-- Réutiliser `plus: true` pour le vocabulaire complémentaire. Dans Lexique, montrer les mots essentiels d'abord, puis les blocs `plus` repliés ; une recherche peut ouvrir temporairement un bloc `plus` avec correspondances, sans le rendre visible en permanence.
+- Réutiliser `plus: true` pour le vocabulaire complémentaire. Dans Lexique, montrer les mots essentiels d'abord, puis les blocs `plus` repliés par défaut.
 - Les dialogues, tableaux et phrases dont la traduction inclut une précision de contexte doivent conserver ces nuances dans la nouvelle présentation.
 - Pour les autres leçons non migrées, **garder l'affichage Cours existant** ; absence de `rubrique` ne doit pas entraîner de disparition de contenu ni de bloc blanc.
 - Ajuster le validateur de leçons pour `rubrique` seulement, sans migration des identifiants, de la progression ou des exercices.
@@ -109,10 +109,10 @@ Ceci est un **exemple de structure**, pas un remplacement complet des contenus. 
 
 - Surface **Cours principal** : filtre d'unités + trois rubriques sous le titre/progression. Pas de sixième onglet principal.
 - **Panneau Cours** pendant un exercice : même structure, ouverture par défaut sur l'unité de l'exercice, retour à l'exercice sans perdre le texte saisi ni le focus (garder le comportement actuel).
-- État conservé entre Règles/Lexique/Phrases tant que l'on reste sur une même leçon, et reset de la recherche en changeant de portée ou leçon.
+- Conserver l'unité sélectionnée lors du changement Règles/Lexique/Phrases. Changer de leçon réinitialise la rubrique sur Règles.
 - Retour Android / Échap : fermer en priorité la **bulle** contextuelle, puis un éventuel écran secondaire d'exemples, puis le panneau Cours, sans fermer toute la leçon par accident ; revenir à l'exercice au même endroit.
 - Taper en dehors ferme la bulle, jamais le cours complet. Défilement ou changement de rubrique ferme/repositionne proprement la bulle sans référence DOM obsolète.
-- Recherche accessible au clavier, commandes de portée et d'onglets identifiables aux lecteurs d'écran (`aria-selected` / `aria-pressed`, état et focus cohérents).
+- Boutons de portée et onglets accessibles aux lecteurs d'écran (`aria-label`, `aria-selected` / `aria-pressed`), avec cibles tactiles d'au moins 44 px.
 - Sur mobile : onglets compacts, titres et traductions lisibles, cibles tactiles confortables, aucun saut de mise en page à l'ouverture audio, aucune carte surdimensionnée ni doubles listes interminables.
 - Utiliser le design system de LuxApp : fond sombre, surfaces neutres, or pour l'action exacte, sable pour le contexte. Pas de retour au vert menthe pour l'audio.
 
@@ -130,7 +130,7 @@ Ceci est un **exemple de structure**, pas un remplacement complet des contenus. 
 
 **Lot 1 — leçon 2, maquette de référence :**
 - Mettre en place le composant Cours partagé et migrer **uniquement la leçon 2**.
-- Vérifier unités 1/2/3/toute, Règles/Lexique/Phrases, tableaux grammaticaux, 14 mots essentiels des blocs vocabulaire, **36 mots complémentaires** repliés, recherche et phrases modèles.
+- Vérifier toutes les unités et « Tout » visibles simultanément, Règles/Lexique/Phrases, tableaux grammaticaux, 14 mots essentiels, **36 mots complémentaires** repliés et phrases modèles.
 - Vérifier la vraie interface et les boutons sur Android, y compris le panneau ouvert depuis un exercice.
 
 **Lot 2 — leçons 1 et 3 :**
@@ -144,7 +144,7 @@ Ceci est un **exemple de structure**, pas un remplacement complet des contenus. 
 3. Une unité sélectionnée filtre correctement chaque onglet ; « Toute la leçon » restitue tout dans l'ordre sans répétition injustifiée.
 4. Le lien local « Voir les phrases » conserve l'unité et affiche le bon contenu ; le Lexique global demeure inchangé.
 5. Audios : fichiers valides uniquement, type or/sable juste, lecture de la bonne forme, bulle sans layout shift, aucun bouton trompeur.
-6. Changement d'onglet, scroll, recherche, Retour Android et Échap ; le panneau refermé reprend l'exercice **sans perte d'état**.
+6. Changement d'unité et d'onglet, défilement uniquement dans le contenu, hauteur du panneau constante, Retour Android et Échap ; le panneau refermé reprend l'exercice **sans perte d'état**.
 7. Les autres leçons continuent à afficher leurs cours comme avant ; aucune régression SPEC 71–74.
 8. Diff automatique des JSON : **flashcards, quiz, trous, ecriture, mission, scene, unites, IDs et progression inchangés**.
 9. Exécuter les tests ciblés puis la suite critique (`tools/critique.sh`), vérifier visuellement téléphone étroit + grand écran.
@@ -161,17 +161,26 @@ L'implémentation doit reprendre l'organisation et le ton visuel, mais intégrer
 
 - Rendu partagé `public/cours75.js` dans Cours principal et panneau d'exercice (2 rangées : portée puis rubrique).
 - Classement `rubrique` explicite dans les seuls champs `cours` des leçons A1.1 1–3. Les phrases modèles sont reprises des unités et scènes validées ; dialogues transversaux inchangés et réservés à « Toute la leçon ».
-- Recherche bilingue, 36 objets complémentaires repliés, reprise de l'audio LOD existant sans URL inventée.
+- Aucun champ de recherche locale, 36 objets complémentaires repliés, reprise de l'audio LOD existant sans URL inventée.
 - Aucun changement aux exercices, aux identifiants, à la progression ou aux leçons 4+.
 - Tests de données et de rendu sans navigateur : `node tests/test_spec75.js`. Contrôles complémentaires : `node tools/valider-lecons.js` et `bash tools/critique.sh`.
-- Recette Android réelle à réaliser avant statut « validé » : recherche/focus, scroll, audio exact/contextuel, retour, et vue libre vs exercice.
+- Recette Android réelle à réaliser avant statut « validé » : rangée complète visible sur écran étroit, hauteur stable, défilement du contenu, audio exact/contextuel, retour et vue libre vs exercice.
 
 ## Correctifs de recette Android (20/10/2026)
 
-- « Toute la leçon » reste en permanence visible à droite de la liste défilante des unités.
-- Recherche bilingue réduite à un seul champ compact avec intitulé accessible ; la ligne de libellé visible est supprimée.
+- **Décision finale** : toutes les unités numérotées et « Tout » sont visibles côte à côte, sans zone défilante, dans les deux surfaces.
+- **Décision finale** : suppression complète de la recherche locale dans le cours pilote. Son éventuel retour sera une SPEC distincte.
 - Mot/phrase et haut-parleur regroupés dans une même zone flex ; sur téléphone, traduction sous le luxembourgeois pour éviter les icônes rejetées à la ligne.
 - Les expressions composées de l'échelle des réponses (Ganz gutt!/Tipptopp!, Ganz schlecht./Guer net gutt.) et Awar!/Awuer! sont divisées en entrées distinctes. Aucun exercice ou audio n'est modifié.
 - Son exact LOD TIPPTOPP1 déjà présent : il devient découvrable dans le cours grâce à la séparation de la cellule.
 - Pour « Et geet. » et « Net immens. », l'absence de correspondance audio dans les tables locales ne démontre pas une absence sur LOD ; ne pas attribuer de phrase d'un autre sens.
 - Validation du design et des retours au clavier réel sur Android toujours nécessaire.
+
+## SPEC 75 — Ajustement définitif de navigation mobile (20/10/2026)
+
+- Panneau Cours d'exercice à hauteur **constante : 88 % du viewport dynamique (`88dvh`)**, quelle que soit la taille du contenu d'une unité. Seul `#cp-content` défile. Ne pas modifier le comportement des autres panneaux.
+- Rangée d'unités **entièrement visible** : boutons `1 | 2 | 3 | 4 | Tout` pour la leçon 1 et `1 | 2 | 3 | Tout` pour les leçons 2 et 3. Une grille à colonnes égales remplace le défilement horizontal, y compris depuis un exercice. Labels `aria-label` détaillés conservés.
+- Le panneau ouvert pendant un exercice démarre sur l'unité travaillée, mais ne masque pas les autres unités. Le passage à une autre unité ne modifie aucun état d'exercice.
+- Recherche locale **supprimée** (input, JS et CSS). Le lexique global n'est pas concerné ; les mots complémentaires restent dans des `details` repliés.
+- Les anciennes exigences de la maquette sur défilement horizontal, recherche et portée limitée en exercice sont remplacées par ces décisions ; elles ne doivent plus être réintroduites.
+- Recette encore nécessaire sur Android, notamment hauteur constante entre unités courtes/longues, position du bouton de retour, tailles tactiles et absence de débordement sur écran étroit.

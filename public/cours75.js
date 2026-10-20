@@ -10,7 +10,7 @@ function cours75Initialiser(l, surface, unite, exercice) {
   const avant = cours75Etats[surface];
   if (surface === 'principal' && avant && avant.leconId === l.id) return avant;
   const e = { leconId:l.id, unite:unite == null ? null : Number(unite), rubrique:'regles',
-    recherche:'', exercice:!!exercice };
+    exercice:!!exercice };
   cours75Etats[surface] = e;
   return e;
 }
@@ -22,27 +22,26 @@ function cours75Html(l, surface, unite, exercice) {
 }
 function cours75Navigation(l, surface) {
   const e = cours75Etats[surface];
-  const unites = e.exercice ? (l.unites || []).filter(u => u.id === e.unite) : (l.unites || []);
+  // Toutes les unités et « Tout » sont accessibles en un geste, y compris pendant un exercice.
+  const unites = l.unites || [];
   const choix = unites.map(u =>
     '<button type="button" class="cours75-chip' + (e.unite === u.id ? ' active' : '') +
-    '" aria-pressed="' + (e.unite === u.id) + '" onclick="cours75Choisir(\'' + surface +
-    '\',\'unite\',' + u.id + ')">Unité ' + u.id + '</button>').join('');
-  const tout = '<button type="button" class="cours75-chip cours75-chip-tout' +
+    '" aria-pressed="' + (e.unite === u.id) + '" aria-label="Unité ' + u.id +
+    '" onclick="cours75Choisir(\'' + surface + '\',\'unite\',' + u.id + ')">' +
+    u.id + '</button>').join('') +
+    '<button type="button" class="cours75-chip cours75-chip-tout' +
     (e.unite == null ? ' active' : '') + '" aria-pressed="' + (e.unite == null) +
-    '" onclick="cours75Choisir(\'' + surface + '\',\'unite\',null)">Toute la leçon</button>';
+    '" aria-label="Toute la leçon" onclick="cours75Choisir(\'' + surface +
+    '\',\'unite\',null)">Tout</button>';
   const onglets = [['regles','Règles'],['lexique','Lexique'],['phrases','Phrases']].map(([k, label]) =>
     '<button type="button" class="cours75-onglet' + (e.rubrique === k ? ' active' : '') +
     '" role="tab" aria-selected="' + (e.rubrique === k) + '" onclick="cours75Choisir(\'' +
     surface + '\',\'rubrique\',\'' + k + '\')">' + label + '</button>').join('');
-  return '<div class="cours75-navigation"><div class="cours75-portee-ligne">' +
-    '<div class="cours75-portee" aria-label="Unités du cours">' + choix + '</div>' +
-    '<div class="cours75-portee-fixe">' + tout + '</div></div>' +
+  return '<div class="cours75-navigation">' +
+    '<div class="cours75-portee" role="group" aria-label="Unités du cours" style="--cours75-colonnes:' +
+    (unites.length + 1) + '">' + choix + '</div>' +
     '<div class="cours75-onglets" role="tablist" aria-label="Rubriques du cours">' +
-    onglets + '</div>' +
-    (e.rubrique === 'lexique' ?
-      '<input class="cours75-recherche" type="search" aria-label="Rechercher en luxembourgeois ou en français" ' +
-      'id="cours75-recherche-' + surface + '" autocomplete="off" placeholder="Rechercher un mot…" value="' +
-      escHtml(e.recherche) + '" oninput="cours75Rechercher(\'' + surface + '\',this.value)">' : '') + '</div>';
+    onglets + '</div></div>';
 }
 function cours75Choisir(surface, champ, valeur) {
   const e = cours75Etats[surface], l = cours75Lecon(surface);
@@ -50,7 +49,7 @@ function cours75Choisir(surface, champ, valeur) {
   if (typeof fermerBulleContexte === 'function') fermerBulleContexte();
   if (champ === 'unite') {
     if (e.unite === valeur) return;
-    e.unite = valeur; e.recherche = '';
+    e.unite = valeur;
     if (surface === 'panneau') pCoursUnite = valeur;
   } else if (champ === 'rubrique') {
     if (!['regles','lexique','phrases'].includes(valeur) || e.rubrique === valeur) return;
@@ -63,31 +62,13 @@ function cours75Choisir(surface, champ, valeur) {
     cours75Contenu(l, surface) + '</div>';
   if (surface === 'panneau') document.getElementById('cp-content').scrollTop = 0;
 }
-function cours75Rechercher(surface, valeur) {
-  const e = cours75Etats[surface], l = cours75Lecon(surface);
-  if (!e || !l || e.rubrique !== 'lexique') return;
-  e.recherche = valeur;
-  // Ne jamais remplacer l'input : focus, curseur et clavier Android préservés.
-  const zone = document.getElementById('cours75-resultats-' + surface);
-  if (zone) zone.innerHTML = cours75Contenu(l, surface);
-}
 function cours75VersPhrases(surface) { cours75Choisir(surface, 'rubrique', 'phrases'); }
-function cours75Filtrer(blocs, rubrique, recherche) {
-  const q = String(recherche || '').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
-  const normaliser = t => String(t || '').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  return blocs.filter(b => b.rubrique === rubrique).map(b => {
-    if (rubrique !== 'lexique' || !q) return b;
-    if (b.type === 'vocab' || b.type === 'tableau') {
-      const champ = b.type === 'vocab' ? 'items' : 'lignes';
-      const lignes = b[champ].filter(row => row.some(c => normaliser(c).includes(q)));
-      return lignes.length ? Object.assign({}, b, { [champ]: lignes }) : null;
-    }
-    return normaliser(b.titre).includes(q) ? b : null;
-  }).filter(Boolean);
+function cours75Filtrer(blocs, rubrique) {
+  return blocs.filter(b => b.rubrique === rubrique);
 }
 function cours75Contenu(l, surface) {
   const e = cours75Etats[surface];
-  const afficher = blocs => cours75Groupe(cours75Filtrer(blocs, e.rubrique, e.recherche), l, surface);
+  const afficher = blocs => cours75Groupe(cours75Filtrer(blocs, e.rubrique), l, surface);
   let html = '';
   if (e.unite != null) html = afficher(l.cours.filter(b => b.unite === e.unite || b.unite == null));
   else {
@@ -111,7 +92,7 @@ function cours75Groupe(blocs, l, surface) {
   let html = blocs.filter(b => !lexique || !b.plus).map(b => cours75Bloc(b, l)).join('');
   if (bonus.length) {
     const n = bonus.reduce((acc,b) => acc + ((b.items || b.lignes || []).length || 1), 0);
-    html += '<details class="cours75-plus"' + (cours75Etats[surface].recherche.trim() ? ' open' : '') +
+    html += '<details class="cours75-plus"' +
       '><summary>Voir les mots supplémentaires (' + n + ')</summary>' +
       bonus.map(b => cours75Bloc(b, l)).join('') + '</details>';
   }
