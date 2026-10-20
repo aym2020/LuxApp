@@ -17,7 +17,7 @@
   "sonSansFichier": 1,
   "sansSon": 90,
   "contexte": 74,
-  "contexteTelecharge": 4,
+  "contexteTelecharge": 32,
   "contexteRetenu": 37,
   "contexteRefuse": 8,
   "contexteTableau": 29
@@ -94,7 +94,7 @@
      "phrase": "Entschëllegt, ass dee Stull nach fräi?",
      "mots": 6,
      "niveau": "A2",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "13e17936c8e8e081522bd069b1760113",
@@ -449,7 +449,7 @@
      "phrase": "Fir déi Distanz brauchs de ongeféier zwou Stonnen",
      "mots": 8,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de ZWEE2 prononce « zwee ») ; audio contextuel si un exemple prononce « zwou »",
@@ -1834,7 +1834,7 @@
      "phrase": "D'Koppel huet sech am Gudde getrennt",
      "mots": 6,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "864804cae738d337ce840ffd5148cf92",
@@ -2027,7 +2027,7 @@
      "phrase": "D'Kanner hu sech iwwer d'Kaddoe gefreet",
      "mots": 6,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "a3961445e7315f7a9c657fb1397e3237",
@@ -2212,7 +2212,7 @@
      "phrase": "Hie gouf op Niklosdag gebuer",
      "mots": 5,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de GEBIEREN1 prononce « gebieren ») ; audio contextuel si un exemple prononce « gebuer »",
@@ -2328,7 +2328,7 @@
      "phrase": "Mäi Büro ass um dräizéngte Stack",
      "mots": 6,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de DRAIZENGT1 prononce « dräizéngt ») ; audio contextuel si un exemple prononce « dräizéngte »",
@@ -2383,7 +2383,7 @@
      "phrase": "Eist Appartement ass um uechtzéngte Stack",
      "mots": 6,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de UECHTZENGT1 prononce « uechtzéngt ») ; audio contextuel si un exemple prononce « uechtzéngte »",
@@ -2913,7 +2913,7 @@
      "phrase": "Mir mussen nach d'Këschten ausraumen",
      "mots": 5,
      "niveau": "A2",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de KESCHT1 prononce « Këscht ») ; audio contextuel si un exemple prononce « këschten »",
@@ -3090,7 +3090,7 @@
      "phrase": "An deem klengen Zëmmer ass just Plaz fir en Dësch an e puer Still",
      "mots": 14,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "bb1512d5dda86bfab39e60f608adfe39",
@@ -3151,7 +3151,7 @@
      "phrase": "Hëllefs de mer, d'Handdicher falen?",
      "mots": 5,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de HANDDUCH1 prononce « Handduch ») ; audio contextuel si un exemple prononce « handdicher »",
@@ -3273,7 +3273,7 @@
      "phrase": "Huel der e Kichenduch an dréchen d'Telleren of!",
      "mots": 8,
      "niveau": "A2",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "f4100f2f04a50714668d369a8f163c99",
@@ -3334,7 +3334,7 @@
      "phrase": "Um Camping drénke mir aus plastiks Becheren",
      "mots": 7,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de BECHER1 prononce « Becher ») ; audio contextuel si un exemple prononce « becheren »",
@@ -4637,7 +4637,7 @@
      "phrase": "D'Kanner hu sech iwwer d'Kaddoe gefreet",
      "mots": 6,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "a3961445e7315f7a9c657fb1397e3237",
@@ -4697,7 +4697,7 @@
      "phrase": "D'Enkelkanner hunn hirem Grousspapp gehollef, d'Gromperen erauszehuelen",
      "mots": 7,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de ENKELKAND1 prononce « Enkelkand ») ; audio contextuel si un exemple prononce « enkelkanner »",
@@ -5601,7 +5601,7 @@
      "phrase": "Meng Kolleegin ass fréi heemgaangen, well se de Kapp wéi hat",
      "mots": 11,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de HEEMGOEN1 prononce « heemgoen ») ; audio contextuel si un exemple prononce « heemgaangen »",
@@ -5671,7 +5671,7 @@
      "phrase": "Ech sinn de ganzen Dag nach net aus dem Haus erausgaangen",
      "mots": 11,
      "niveau": "A2",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de ERAUSGOEN1 prononce « erausgoen ») ; audio contextuel si un exemple prononce « erausgaangen »",
@@ -5727,7 +5727,7 @@
      "phrase": "Ech sinn hënt zweemol erwächt",
      "mots": 5,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "bcd226353bf7060b7d2a7db72da7b38a",
@@ -5868,7 +5868,7 @@
      "phrase": "Bass du schonn eng Kéier e Marathon gelaf?",
      "mots": 8,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de LAFEN1 prononce « lafen ») ; audio contextuel si un exemple prononce « gelaf »",
@@ -5933,7 +5933,7 @@
      "phrase": "Hënt ass Schnéi gefall",
      "mots": 4,
      "niveau": "A2",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "54e026f1668cfd66ec68684c648bcf23",
@@ -6114,7 +6114,7 @@
      "phrase": "Ech hunn nach kee Kaffi gedronk",
      "mots": 6,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de DRENKEN1 prononce « drénken ») ; audio contextuel si un exemple prononce « gedronk »",
@@ -6240,7 +6240,7 @@
      "phrase": "Deen huet net gutt geschlof",
      "mots": 5,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "4e22cb114d88ab3d24e7986305f642bd",
@@ -6317,7 +6317,7 @@
      "phrase": "Du hues mer scho laang net méi geschriwwen",
      "mots": 8,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "b4bf14ea3e35f133d193ca4dc0a760f5",
@@ -6380,7 +6380,7 @@
      "phrase": "Ech hunn näischt gemaach!",
      "mots": 4,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "cd11674f587d956f4fa725f6be8eca31",
@@ -6492,7 +6492,7 @@
      "phrase": "De Monni huet sengem Neveu telefonéiert, fir him ze gratuléieren",
      "mots": 10,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de TELEFONEIEREN1 prononce « telefonéieren ») ; audio contextuel si un exemple prononce « telefonéiert »",
@@ -6599,7 +6599,7 @@
      "phrase": "Mir hunn de ganzen Owend Fotoe gekuckt",
      "mots": 7,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "988c588e4f960a1e04959f446cb9b107",
@@ -7819,7 +7819,7 @@
      "phrase": "De Bop ass amgaang, Gromperen ze schielen",
      "mots": 7,
      "niveau": "A1",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de GROMPER1 prononce « Gromper ») ; audio contextuel si un exemple prononce « gromperen »",
@@ -8231,7 +8231,7 @@
      "phrase": "Meng Hausdoktesch schafft méindes an dënschdes ganzdaags",
      "mots": 7,
      "niveau": "—",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     },
     {
      "id": "8512d99dcbd9424c69e6303a0660ee24",
@@ -8309,7 +8309,7 @@
      "phrase": "Viru laanger, laanger Zäit huet an deem Schlass eng Prinzessin gewunnt",
      "mots": 11,
      "niveau": "A2",
-     "enregistrement": "à vérifier (Termux)"
+     "enregistrement": "téléchargé"
     }
    ],
    "decision": "Pas de son direct (le MP3 de VIRUN1 prononce « virun ») ; audio contextuel si un exemple prononce « viru »",

@@ -9,6 +9,11 @@
     "phrase": "Ech drénken all Dag zwee Liter Waasser",
     "fr": "Je bois deux litres d'eau tous les jours."
   },
+  "am Buedzëmmer": {
+    "son": "lod-phrases/858070fc3563e5b219a5bd27614a9ce2.m4a",
+    "phrase": "Mir hunn doheem d'Plättercher am Buedzëmmer nei gemaach",
+    "fr": "Chez nous, nous avons refait le carrelage de la salle de bain."
+  },
   "an d'Stad": {
     "son": "lod-phrases/642f59559d2a1ebe6ca849dfce81ad8b.m4a",
     "phrase": "Den Zuch fiert bis an d'Stad",
@@ -34,6 +39,21 @@
     "phrase": "Ass dat säi richtegen Numm?",
     "fr": "Est-ce que c'est son vrai nom ?"
   },
+  "Becheren": {
+    "son": "lod-phrases/51b36fcd28f253de16c4fda11769ce6f.m4a",
+    "phrase": "Um Camping drénke mir aus plastiks Becheren",
+    "fr": "Au camping, nous buvons dans des gobelets en plastique."
+  },
+  "d'Enkelkanner": {
+    "son": "lod-phrases/b47bb66364386e93acfe2bc5d3ef7304.m4a",
+    "phrase": "D'Enkelkanner hunn hirem Grousspapp gehollef, d'Gromperen erauszehuelen",
+    "fr": "Les petits-enfants ont aidé leur grand-père à arracher les pommes de terre."
+  },
+  "d'Kanner": {
+    "son": "lod-phrases/af04ccf737ca4bf5a998117d47b3f494.m4a",
+    "phrase": "D'Kanner hu sech iwwer d'Kaddoe gefreet",
+    "fr": "Les enfants se sont réjouis des cadeaux."
+  },
   "d'lescht Woch": {
     "son": "lod-phrases/7269bd3c40a6221672c8e1e1d32ba8b4.m4a",
     "phrase": "Eis Kaz krut d'lescht Woch véier Jonger",
@@ -48,6 +68,11 @@
     "son": "lod-phrases/76d7e856a115870b4d0c6a617aef5425.m4a",
     "phrase": "Dir hutt villes gemeinsam",
     "fr": "Vous avez beaucoup de choses en commun."
+  },
+  "dräizéngte": {
+    "son": "lod-phrases/1f024cee976c57cb1109834219d2bec7.m4a",
+    "phrase": "Mäi Büro ass um dräizéngte Stack",
+    "fr": "Mon bureau est au treizième étage."
   },
   "du bass": {
     "son": "lod-phrases/df6b91d9021c3d50adeb3a6cee6fbc99.m4a",
@@ -99,6 +124,11 @@
     "phrase": "Ech ginn elo, ech si midd!",
     "fr": "J'y vais, je suis fatigué !"
   },
+  "ech sinn": {
+    "son": "lod-phrases/abd24a9446fdb9ca230da59609df3421.m4a",
+    "phrase": "Ech sinn am siwenten Himmel!",
+    "fr": "Je suis au septième ciel !"
+  },
   "ech war": {
     "son": "lod-phrases/2a93a5f434229bd69f31efc6a45a0bd3.m4a",
     "phrase": "Ech war an e Concert vum Symphonieorchester",
@@ -109,15 +139,95 @@
     "phrase": "Ech fueren eemol d'Woch op de Recycling",
     "fr": "Je vais au centre de recyclage une fois par semaine."
   },
+  "Entschëllegt!": {
+    "son": "lod-phrases/fb91567da132e4a17533c4ccf70962b9.m4a",
+    "phrase": "Entschëllegt, ass dee Stull nach fräi?",
+    "fr": "Excusez-moi, cette chaise est-elle encore libre ?"
+  },
+  "erausgaangen": {
+    "son": "lod-phrases/6ddf20ec96f5b1835a292f0d6ea080c0.m4a",
+    "phrase": "Ech sinn de ganzen Dag nach net aus dem Haus erausgaangen",
+    "fr": "Je ne suis pas encore sorti de la maison de toute la journée."
+  },
+  "erwächt": {
+    "son": "lod-phrases/49056e606710febfd926c71ff3d8b777.m4a",
+    "phrase": "Ech sinn hënt zweemol erwächt",
+    "fr": "Je me suis réveillé deux fois cette nuit."
+  },
+  "ganzdaags": {
+    "son": "lod-phrases/32190b5dff92fcf12e14570a325a29c7.m4a",
+    "phrase": "Meng Hausdoktesch schafft méindes an dënschdes ganzdaags",
+    "fr": "Ma médecin de famille travaille toute la journée le lundi et le mardi."
+  },
+  "gebuer": {
+    "son": "lod-phrases/01b6d34cd35336fb5f284aa6cf9926ab.m4a",
+    "phrase": "Hie gouf op Niklosdag gebuer",
+    "fr": "Il est né le jour de la Saint-Nicolas."
+  },
+  "gedronk": {
+    "son": "lod-phrases/45c820f9a2324892c0a371c82c2e9def.m4a",
+    "phrase": "Ech hunn nach kee Kaffi gedronk",
+    "fr": "Je n'ai pas encore bu de café."
+  },
+  "gefall": {
+    "son": "lod-phrases/96fd453070af28d476a5eeab5aaced9f.m4a",
+    "phrase": "Hënt ass Schnéi gefall",
+    "fr": "Cette nuit, il est tombé de la neige."
+  },
+  "gefuer": {
+    "son": "lod-phrases/4b8fc7cbe339fe8e5e981c3209271801.m4a",
+    "phrase": "Meng Eltere sinn de Moien op de Flughafe gefuer",
+    "fr": "Mes parents sont allés à l'aéroport ce matin."
+  },
+  "gekuckt": {
+    "son": "lod-phrases/9b6a5d8e57b1bc52d9d3f967e5c30734.m4a",
+    "phrase": "Mir hunn de ganzen Owend Fotoe gekuckt",
+    "fr": "Nous avons regardé des photos toute la soirée."
+  },
+  "gelaf": {
+    "son": "lod-phrases/8182a3a3b83ba67f0e4bbe5a1c99f278.m4a",
+    "phrase": "Bass du schonn eng Kéier e Marathon gelaf?",
+    "fr": "As-tu déjà couru un marathon ?"
+  },
+  "gemaach": {
+    "son": "lod-phrases/e122886284dcac05fd42cd7464249773.m4a",
+    "phrase": "Ech hunn näischt gemaach!",
+    "fr": "Je n'ai rien fait !"
+  },
+  "geschafft": {
+    "son": "lod-phrases/44ac428772b65e35861596863c3b5b31.m4a",
+    "phrase": "Ech hunn de ganzen Dag am Gaart geschafft",
+    "fr": "J'ai travaillé toute la journée dans le jardin."
+  },
+  "geschlof": {
+    "son": "lod-phrases/c3902b82c42de9e7832217b1ea1eca81.m4a",
+    "phrase": "Deen huet net gutt geschlof",
+    "fr": "Celui-là n'a pas bien dormi."
+  },
+  "geschriwwen": {
+    "son": "lod-phrases/c615e551afd4bd2f3529867f18dbde63.m4a",
+    "phrase": "Du hues mer scho laang net méi geschriwwen",
+    "fr": "Tu ne m'as plus écrit depuis longtemps."
+  },
   "gëschter Owend": {
     "son": "lod-phrases/a63d045b067859bd43dc3d1c8c2cb49e.m4a",
     "phrase": "Gëschter Owend hu mer flott gedanzt",
     "fr": "Hier soir, nous avons bien dansé."
   },
+  "getrennt": {
+    "son": "lod-phrases/f901ea9ba435f3d867c47f80d593b847.m4a",
+    "phrase": "D'Koppel huet sech am Gudde getrennt",
+    "fr": "Le couple s'est séparé à l'amiable."
+  },
   "Glieser": {
     "son": "lod-phrases/316ab5e6c6a0951fa3e7f3c8c8c0d003.m4a",
     "phrase": "Beim Spullen hunn ech zwee Glieser gebrach",
     "fr": "En faisant la vaisselle, j'ai cassé deux verres."
+  },
+  "Gromperen": {
+    "son": "lod-phrases/a0d239d24a154387fb4be07c774f5d7e.m4a",
+    "phrase": "De Bop ass amgaang, Gromperen ze schielen",
+    "fr": "Grand-père est en train d'éplucher des pommes de terre."
   },
   "Gudden Owend!": {
     "son": "lod-phrases/9a4981c8b5b541ca3318b9a165f6c700.m4a",
@@ -134,10 +244,25 @@
     "phrase": "O vreck, ass et schonn hallwer dräi!",
     "fr": "Oh mince, il est déjà deux heures et demie !"
   },
+  "Handdicher": {
+    "son": "lod-phrases/5b4257b128dd2c68855f03c9148cfbfc.m4a",
+    "phrase": "Hëllefs de mer, d'Handdicher falen?",
+    "fr": "Tu m'aides à plier les serviettes ?"
+  },
+  "heemgaangen": {
+    "son": "lod-phrases/823e4cbff3ec694c3f6039292dfdd6cb.m4a",
+    "phrase": "Meng Kolleegin ass fréi heemgaangen, well se de Kapp wéi hat",
+    "fr": "Ma collègue est rentrée tôt parce qu'elle avait mal à la tête."
+  },
   "hien ass": {
     "son": "lod-phrases/9c24d00dd7653fcb0363b609af52ed30.m4a",
     "phrase": "Hien ass seriö krank",
     "fr": "Il est gravement malade."
+  },
+  "hien huet": {
+    "son": "lod-phrases/3a0465d43b18caca62649ba6b85a2cd7.m4a",
+    "phrase": "Hien huet eng sportlech Figur",
+    "fr": "Il a une silhouette sportive."
   },
   "Joer al": {
     "son": "lod-phrases/05d730015f1b75b520369738114c093d.m4a",
@@ -148,6 +273,16 @@
     "son": "lod-phrases/8fb5643ec29a2ad9b52d238a25b7211b.m4a",
     "phrase": "Ech kéint nach eng Tiessche Kaffi drénken",
     "fr": "Je boirais bien encore une tasse de café."
+  },
+  "Këschten": {
+    "son": "lod-phrases/28db61f2e5afae2d149b22a878afbeeb.m4a",
+    "phrase": "Mir mussen nach d'Këschten ausraumen",
+    "fr": "Nous devons encore vider les cartons."
+  },
+  "mäi Brudder": {
+    "son": "lod-phrases/7549abafd6b5ca8a839e3da7dfe04457.m4a",
+    "phrase": "Mäi Brudder ass Kommissär bei der Police",
+    "fr": "Mon frère est commissaire de police."
   },
   "mäi Papp": {
     "son": "lod-phrases/410fa51ea0b118909cc103ec5f48fcb3.m4a",
@@ -168,6 +303,11 @@
     "son": "lod-phrases/b9f3b32ce4e218c957fde78ed344c2ed.m4a",
     "phrase": "Meng Mamm baakt all Sonndeg",
     "fr": "Ma mère fait de la pâtisserie tous les dimanches."
+  },
+  "mengen Elteren": {
+    "son": "lod-phrases/87b37c2769e3981703417351bf58f2bd.m4a",
+    "phrase": "Ech hunn eng gutt Relatioun mat mengen Elteren",
+    "fr": "J'ai une bonne relation avec mes parents."
   },
   "menger Mamm": {
     "son": "lod-phrases/421026dfd6cb01d64d092351f0ae16a6.m4a",
@@ -239,6 +379,26 @@
     "phrase": "Si hunn an aller Rou Kaffi gedronk",
     "fr": "Ils ont bu un café en toute tranquillité."
   },
+  "Still": {
+    "son": "lod-phrases/197d199a3e2dd2070918eb5c6c9bacf1.m4a",
+    "phrase": "An deem klengen Zëmmer ass just Plaz fir en Dësch an e puer Still",
+    "fr": "Dans cette petite pièce, il n'y a de la place que pour une table et quelques chaises."
+  },
+  "telefonéiert": {
+    "son": "lod-phrases/51d8fdbd54ff06bd10abecd34db315c8.m4a",
+    "phrase": "De Monni huet sengem Neveu telefonéiert, fir him ze gratuléieren",
+    "fr": "L'oncle a téléphoné à son neveu pour le féliciter."
+  },
+  "Telleren": {
+    "son": "lod-phrases/a0155b4631365868b0ca3316bc2cc378.m4a",
+    "phrase": "Huel der e Kichenduch an dréchen d'Telleren of!",
+    "fr": "Prends un torchon et essuie les assiettes !"
+  },
+  "uechtzéngte": {
+    "son": "lod-phrases/c3c8005c68f6e8265c1935d2a5fd0aff.m4a",
+    "phrase": "Eist Appartement ass um uechtzéngte Stack",
+    "fr": "Notre appartement est au dix-huitième étage."
+  },
   "véierel op": {
     "son": "lod-phrases/491f9ed1164e496377ef2030d19f7378.m4a",
     "phrase": "Et ass Véierel op néng",
@@ -258,6 +418,11 @@
     "son": "lod-phrases/ac71cd7c62ba4abd72b9707e24703ec2.m4a",
     "phrase": "Et ass fënnef vir hallwer",
     "fr": "Il est cinq minutes avant la demie (… h 25)."
+  },
+  "viru": {
+    "son": "lod-phrases/624ca886166df1a1e734cc21c2b865cb.m4a",
+    "phrase": "Viru laanger, laanger Zäit huet an deem Schlass eng Prinzessin gewunnt",
+    "fr": "Il y a très, très longtemps, une princesse vivait dans ce château."
   },
   "Wat fir eng": {
     "son": "lod-phrases/5c6ef87256d2d5bcaee2e43514f24aeb.m4a",
@@ -283,5 +448,10 @@
     "son": "lod-phrases/316ab5e6c6a0951fa3e7f3c8c8c0d003.m4a",
     "phrase": "Beim Spullen hunn ech zwee Glieser gebrach",
     "fr": "En faisant la vaisselle, j'ai cassé deux verres."
+  },
+  "zwou": {
+    "son": "lod-phrases/292970fd94f90f6bb1b6d9cc4fd6ad79.m4a",
+    "phrase": "Fir déi Distanz brauchs de ongeféier zwou Stonnen",
+    "fr": "Pour cette distance, il te faut environ deux heures."
   }
 }

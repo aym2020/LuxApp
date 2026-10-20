@@ -66,6 +66,8 @@ for (const [lu, c] of Object.entries(contexte)) {
   assert.match(c.son, /^lod-phrases\/[0-9a-f]{32}\.m4a$/, lu);
   assert.equal(fs.readFileSync(path.join(racine, 'public/audio', c.son)).subarray(4, 8).toString('latin1'), 'ftyp', c.son + ' : M4A valide');
   assert.ok(choix[lu] && c.phrase && c.fr, lu + ' : phrase et traduction affichées');
+  assert.equal(c.son, 'lod-phrases/' + choix[lu].id + '.m4a', lu + ' : le fichier est celui de la phrase relue (aucune substitution)');
+  assert.equal(c.phrase, choix[lu].lod, lu + ' : la phrase affichée est celle de l\'enregistrement');
 }
 // Bouton : or pour le son exact, menthe pour la phrase, la phrase dévoilée au clic.
 const srcDialogue = fs.readFileSync(path.join(racine, 'public/dialogue.js'), 'utf8');

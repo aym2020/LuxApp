@@ -167,3 +167,19 @@ Progression : enregistrée par identifiant, aucune perte en cas de correction.
 | Mots seuls avec audio exact ou contextuel relu (623) | 81,5 % | — | **88,6 %** |
 | Associations directes (`lod.json`) | 442 | 448 (+6 par la clé sans parenthèses) | 448 |
 | Phrases contextuelles relues | 62 | 98 | 98 |
+
+## Intégration des audios Termux (20/10/2026)
+
+Branche `audio-phrases` (commit `10a73e1`, reconstruite depuis `ebf028b`) : **seuls** les fichiers `public/audio/lod-phrases/*.m4a`
+et la table `public/audio/lod-contexte.json` ont été repris dans `v2` ; `v2` conserve ses évolutions (SPEC 74, `b2096ae`). Aucun fichier en commun.
+
+- 107 fichiers M4A (73 existants + 34 nouveaux) : conteneur valide, **décodage complet sans erreur** (ffmpeg), tous référencés, aucune référence sans fichier.
+- Durées 1,05 à 4,39 s, soit 231 à 693 ms par mot : aucune anomalie ; chaque fichier porte l'identifiant de l'exemple LOD relu (contrôlé par test).
+- Table contextuelle régénérée localement : **identique** à celle produite sur le téléphone.
+- Téléchargements impossibles (fichier absent sur lod.lu) — aucune correspondance de remplacement créée :
+  - phrases exactes : « Villmools Merci » / « Villmools Merci! » (`9d16b757…`) ;
+  - contextes : « Gudde Moien! » (`ee04cddd…`), « gepacst » (`db0f0183…`), « Kanner », « Jongen », « Meedercher » (même phrase `a3961445…`),
+    « Biller » (`67a0d51c…`), « net gär » (`46df023a…`) — 5 enregistrements distincts ;
+  - mot : « ganzdaags » (`GANZDAAGS1`, absent du miroir MP3 2020).
+- **Couverture réelle : 39,6 %** (audit `node tools/lod/audit-audio.js`, fichiers présents ; 40,1 % si les 9 éléments manquants existaient).
+  Mots seuls avec audio exact ou contextuel disponible : 87,8 %.
