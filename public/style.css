@@ -3175,3 +3175,11 @@ body.pi-bloque { overflow:hidden; }
   #view-decouverte .dc-scene { min-height:290px; }
   #view-decouverte .dc-formule { font-size:27px; }
 }
+
+/* SPEC 84 — Introduction d'unité : CTA « Commencer » ancré au vrai bas d'écran.
+   L'animation .view.entre-* utilise transform, ce qui crée un bloc de référence
+   pour les enfants position:fixed : le CTA se décale/jumpe pendant la transition.
+   Les autres écrans gardent leur animation ; l'introduction garde son CTA fixe. */
+#view-pintro.active { min-height: 100dvh; }
+#view-pintro.entre-avant,
+#view-pintro.entre-arriere { animation: none; }
