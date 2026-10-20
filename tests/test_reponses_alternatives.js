@@ -15,6 +15,25 @@ const matcher = new Function('normalize', read('public/correction.js') +
   '\nreturn { reponseReconnue, autresReponsesAcceptees };')(normalize);
 const ecriture = id => lesson.ecriture.find(x => x.id === id);
 
+// Régression leçon 3 : claviers Android/iOS qui insèrent une apostrophe courbe.
+// La ponctuation finale et la casse restent facultatives ; l'apostrophe elle-même reste requise.
+const couleurs = JSON.parse(read('data/lecons/A1.1/lecon-03.json'));
+const faarf = couleurs.ecriture.find(x => x.lu === "D'Faarf");
+const porte = couleurs.ecriture.find(x => x.lu === "D'Dier ass wäiss.");
+assert.ok(faarf && porte, 'les deux réponses de la leçon 3 doivent exister');
+for (const [saisie, item] of [
+  ['d’Faarf', faarf],
+  ['D’Dier ass wäiss', porte],
+  ['D‘Dier ass wäiss.', porte],
+  ['DʼDier ass wäiss', porte],
+  ['D＇Dier ass wäiss', porte],
+  ["D'Dier ass wäiss.", porte]
+]) {
+  assert.equal(matcher.reponseReconnue(saisie, item), item.lu, 'apostrophe acceptée : ' + saisie);
+}
+assert.equal(matcher.reponseReconnue('DFaarf', faarf), null,
+  'sans apostrophe, la réponse doit rester incorrecte');
+
 for (const [saisie, item, attendu] of [
   ['Moien!', ecriture(2002), 'Moien!'],
   ['GUDDE  MOIEN', ecriture(2002), 'Gudde Moien!'],
