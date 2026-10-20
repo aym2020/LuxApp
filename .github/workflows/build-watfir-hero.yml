@@ -1,15 +1,19 @@
-name: Watfir hero assets (dev)
+name: Validate Watfir hero (dev)
 
 on:
   push:
     branches: [dev]
     paths:
-      - scripts/build_watfir_hero.py
-      - .github/workflows/build-watfir-hero.yml
+      - 'public/art/watfir-hero-background-*.webp'
+      - 'docs/brand/watfir-hero-reference-fhd.webp'
+      - 'public/watfir-dev.css'
+      - 'public/watfir-dev.js'
+      - '.github/workflows/build-watfir-hero.yml'
+      - 'test/watfir-dev.test.cjs'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   hero:
@@ -17,18 +21,13 @@ jobs:
     steps:
       - name: Checkout dev
         uses: actions/checkout@v4
-        with:
-          ref: dev
-          persist-credentials: true
       - name: Configure Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Image dependencies
-        run: python -m pip install pillow numpy
-      - name: Render FHD and mobile hero assets
-        run: python scripts/build_watfir_hero.py
-      - name: Validate actual image dimensions and sizes
+      - name: Image dependency
+        run: python -m pip install pillow
+      - name: Verify checked-in illustrated assets without changing them
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -40,7 +39,7 @@ jobs:
           }
           for name, (size, maximum) in expected.items():
               file = Path(name)
-              assert file.exists(), name
+              assert file.is_file(), name
               assert file.stat().st_size < maximum, (name, file.stat().st_size)
               with Image.open(file) as img:
                   assert img.size == size, (name, img.size)
@@ -49,14 +48,3 @@ jobs:
           PY
       - name: Test Watfir integration and existing home UI
         run: node --test test/accueil-v21.test.cjs test/watfir-dev.test.cjs
-      - name: Commit only generated assets to dev
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/art/watfir-hero-background-fhd.webp public/art/watfir-hero-background-mobile.webp docs/brand/watfir-hero-reference-fhd.webp
-          if ! git diff --cached --quiet; then
-            git commit -m "assets(watfir): FHD and mobile hero backgrounds plus approved visual reference"
-            git push origin HEAD:dev
-          else
-            echo "Assets unchanged."
-          fi
