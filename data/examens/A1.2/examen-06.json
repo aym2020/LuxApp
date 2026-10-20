@@ -438,8 +438,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Sa plante est une petite fleur (Blimmche), près de la fenêtre : ce n'est pas un cactus et elle n'est pas sur la table de travail.",
-          "question_fr": "Il a un cactus sur sa table de travail.",
+          "note": "Le texte parle d'une petite fleur (Blimmche) près de la fenêtre. Il ne mentionne ni cactus ni plante posée sur le bureau (um Schreifdësch). La position sur le bureau n'est pas établie par ce passage.",
+          "question_fr": "Il a un cactus sur son bureau.",
           "preuve": [
             "De Buedem vu senger Planz bei der Fënster ass ganz dréchen: Dat aarmt Blimmche kritt e bësse Waasser.",
             "La terre de sa plante, près de la fenêtre, est très sèche : la pauvre petite fleur reçoit un peu d'eau."
