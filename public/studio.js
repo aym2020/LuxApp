@@ -108,7 +108,7 @@ function studioEcouter(bouton) {
   if (!ms || !ms.radio || ms.resultats[ms.idx]) return;
   const q = studioDefis(pLecon)[ms.idx];
   if (!q || q.type !== 'audio') return;
-  const fichier = sonsLod[q.audioMot];
+  const fichier = q.audioFichier || sonsLod[q.audioMot];
   // Pas de TTS de substitution. Signaler une entrée manquante sans dévoiler la solution.
   if (!fichier) { notifier('Enregistrement LOD indisponible.'); return; }
   jouerAudio(fichier, bouton);
