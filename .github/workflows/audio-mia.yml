@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/audio-mia.js'
       - 'tools/audit-audio-complet.js'
+      - 'tests/test_audio_mia.js'
       - 'data/lecons/**/*.json'
       - 'data/examens/**/*.json'
       - 'public/audio/lod.json'
