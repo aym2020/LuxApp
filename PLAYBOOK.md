@@ -837,3 +837,16 @@ Sur PC, « Écouter la prononciation » ne faisait rien : `portailEcouter()` app
 - **Validation :** node tests/test_spec79.js && node tests/test_spec80.js && node tests/test_spec82_studio.js && node tools/valider-lecons.js ; recette PC/Android et bash tools/critique.sh avant publication générale.
 
 **Choix conservé :** en unité, une erreur peut revenir dans le parcours selon le mécanisme existant ; dans la mission radio, ce sont huit défis distincts avec trois vies. Les autres leçons et leurs dialogues ne changent pas.
+
+### SPEC 83 — Découverte guidée avant les exercices de la leçon 0 (20/10/2026)
+
+**Besoin :** l'apprenant ne doit pas découvrir un son ou la règle United Zoha en répondant directement à une question notée. Chaque unité commence par une séquence d'observation libre, au rythme de l'utilisateur, telle que validée dans la maquette.
+
+- **Unité 1 / Prononciation :** 9 cartes de découverte, chacune montre en grand la graphie du son (W, J, Z, SCH, ST, CH, Ë, Ä, ÉI), un mot exemplaire (wäiss, Jo, zéng, Schoul, Stull, Buch, Fënster, Äddi!, schéin) et un bouton pour rejouer le **vrai MP3 LOD local**. Les chemins sont explicitement fournis dans `unites[0].decouverte[].audioFichier`. Aucun vocabulaire à traduire, aucune réponse à saisir.
+- **Unité 2 / United Zoha :** 6 cartes d'exemples contrastés, dans cet ordre : Gudde Moien! / Gudden Owend!, e Stull / en Auto, de Bus / den Auto. Le N éventuel et l'initiale suivante sont mis en valeur, ainsi que la raison de sa présence ou de son absence. Les genres servent uniquement à expliquer les articles ; ils ne sont pas à deviner.
+- **Interaction :** aucun son automatique, aucun délai de transition, aucune note, aucune vie perdue durant la découverte. « Précédent » revient sur un exemple ; « Continuer » avance uniquement après un appui. Sur la dernière carte, le bouton devient « Passer aux 20 écoutes » ou « Passer aux 15 exercices » et **ce clic lance seulement alors** la vraie activité. Les 20 quiz LOD et les 15 choix N de la SPEC 82 restent inchangés.
+- **Intégration :** `public/decouverte.js` gère les cartes, le son via `jouerAudio()` et le démarrage explicite des exercices. `public/index.html` déclare le nouvel écran `view-decouverte`, `public/style.css` le présente dans une mise en page sobre et cohérente avec LuxApp, `public/parcours.js` intercepte le démarrage normal `mode='unite'` de la leçon 0. Les révisions, les raccourcis de types et les parties déjà commencées restent directs, sans redémarrer la découverte. Le cours et la navigation standard restent accessibles.
+- **Reprise :** `public/navigation.js` mémorise l'unité et la carte en cours dans la sauvegarde de navigation déjà isolée par profil et par onglet ; après actualisation, l'apprenant retrouve sa carte. L'état de découverte n'est **pas** enregistré comme score ou exercice terminé.
+- **Vérification ciblée :** `node tests/test_spec82_studio.js` et contrôle syntaxique. Sur PC/téléphone, vérifier le premier son W, l'écoute répétée, Précédent, le sixième exemple, les deux derniers boutons vers les vrais exercices et le retour/rechargement.
+
+**Périmètre :** exclusivement la leçon 0 ; aucune modification des autres leçons ni des règles de score.
