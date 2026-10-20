@@ -20,6 +20,8 @@
 
   // La même accroche humaine pour débuter ou reprendre, sans prétendre connaître le prénom.
   accrocheHtml = function (nouveau) {
+    // accueil.js appelle cette fonction sans argument pour une première visite.
+    if (typeof nouveau !== 'boolean') nouveau = !aDejaPratique();
     const message = nouveau
       ? 'Prêt à découvrir le luxembourgeois ?'
       : 'Prêt pour quelques minutes de Lëtzebuergesch ?';
