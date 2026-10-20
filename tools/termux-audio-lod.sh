@@ -3,7 +3,7 @@
 # sur la branche « audio-phrases », sans toucher à v2. Claude vérifie puis fusionne dans v2.
 #
 # Première fois seulement (dans Termux) :
-#   pkg install -y git nodejs gh && gh auth login
+#   pkg install -y git nodejs gh ffmpeg && gh auth login
 #
 # Ensuite, à chaque fois, une seule commande :
 #   curl -sSfL https://raw.githubusercontent.com/aym2020/LuxApp/v2/tools/termux-audio-lod.sh | bash
@@ -30,7 +30,7 @@ etape() { printf '\n\033[1;33m▶ %s\033[0m\n' "$1"; }
 stop() { printf '\n\033[1;31m✖ %s\033[0m\n' "$1"; exit 1; }
 
 etape "Outils"
-for outil in git node curl; do
+for outil in git node curl ffmpeg; do
   command -v "$outil" >/dev/null || { echo "Installation : $outil"; pkg install -y "$( [ "$outil" = node ] && echo nodejs || echo "$outil")"; }
 done
 

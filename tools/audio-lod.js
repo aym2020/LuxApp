@@ -63,13 +63,42 @@ function estMp3(debut) {
 function estM4a(debut) {
   return debut.subarray(4, 8).toString('latin1') === 'ftyp';
 }
-// Renvoie true si le fichier est présent et valide ; supprime tout fichier invalide.
+// LOD sert parfois un flux AAC ADTS brut derrière une URL .m4a (sans boîte ftyp).
+// FFmpeg peut le remettre dans un conteneur M4A sans réencoder la voix.
+function estAacAdts(debut) {
+  return debut.length >= 2 && debut[0] === 0xff && (debut[1] & 0xf6) === 0xf0;
+}
+// Renvoie true uniquement pour un fichier audio exploitable ; trace les raisons d'échec.
 function telecharger(url, cible, valide) {
   if (fs.existsSync(cible) && valide(fs.readFileSync(cible).subarray(0, 12))) return true;
+  const temporaire = cible + '.remux.m4a';
   try {
-    execFileSync('curl', ['-sSfL', '--max-time', '30', '-o', cible, url], { stdio: 'ignore' });
-    if (valide(fs.readFileSync(cible).subarray(0, 12))) return true;
-  } catch (e) { /* accès refusé ou fichier introuvable */ }
+    execFileSync('curl', ['-fsSL', '--retry', '2', '--connect-timeout', '10', '--max-time', '30', '-o', cible, url],
+      { stdio: ['ignore', 'ignore', 'pipe'] });
+    const debut = fs.readFileSync(cible).subarray(0, 12);
+    if (valide(debut)) return true;
+    if (valide === estM4a && estAacAdts(debut)) {
+      // AAC ADTS dans un .m4a : on change uniquement le conteneur, pas le codec.
+      execFileSync('ffmpeg', ['-nostdin', '-hide_banner', '-loglevel', 'error', '-y',
+        '-f', 'aac', '-i', cible, '-c:a', 'copy', '-movflags', '+faststart', temporaire],
+        { stdio: ['ignore', 'ignore', 'pipe'] });
+      if (!estM4a(fs.readFileSync(temporaire).subarray(0, 12))) {
+        throw new Error('FFmpeg n\'a pas produit un vrai M4A');
+      }
+      // Refuser aussi un conteneur correct dont les trames ne se décodent pas.
+      execFileSync('ffmpeg', ['-nostdin', '-hide_banner', '-loglevel', 'error',
+        '-i', temporaire, '-f', 'null', '-'], { stdio: ['ignore', 'ignore', 'pipe'] });
+      fs.renameSync(temporaire, cible);
+      return true;
+    }
+    console.warn('Format audio non reconnu : ' + url);
+  } catch (e) {
+    const detail = e.stderr && String(e.stderr).trim();
+    console.warn('Téléchargement ou conversion impossible : ' + url + ' — ' +
+      (detail || e.message || String(e)).slice(0, 350));
+  } finally {
+    if (fs.existsSync(temporaire)) fs.unlinkSync(temporaire);
+  }
   if (fs.existsSync(cible)) fs.unlinkSync(cible);
   return false;
 }
