@@ -120,4 +120,17 @@ assert.ok(html.includes('id="reglages-synchro"'));
 assert.ok(cloud.includes("typeof actualiserStatutSynchro === 'function'"));
 assert.ok(app.includes("if (typeof actualiserStatutSynchro === 'function') actualiserStatutSynchro();"));
 
-console.log('SPEC 52 : OK — carte compacte, stats, actions, états cloud et CSS mobile.');
+// Régression mobile : le titre ne doit plus partir hors écran quand les cartes tiennent.
+assert.match(css, /body:has\(#view-dashboard\.active\)\s*\{[^}]*height:100dvh;[^}]*overflow:hidden/s,
+  'Seul l’accueil verrouille le scroll du document');
+assert.match(css, /#view-dashboard\.active\s*\{[^}]*overflow-y:auto/s,
+  'Sur les petits écrans, les cartes restent accessibles via la vue Accueil');
+assert.match(css, /#view-dashboard\.active\s*\{[^}]*overscroll-behavior-y:contain/s,
+  'Pas de rebond du document parent');
+assert.match(app, /if \(id === 'view-dashboard'\) vue\.scrollTop = 0;/,
+  'Revenir à l’accueil remet seulement son scroll à zéro');
+// Ne pas bloquer le scroll des autres vues : la condition CSS exige explicitement l'accueil actif.
+assert.ok(!css.includes('body { overflow: hidden; }') && !css.includes('#view-dashboard.active { overflow:hidden; }'),
+  'Le contenu long et les autres écrans restent consultables');
+
+console.log('SPEC 52 : OK — carte compacte, stats, actions, états cloud et CSS mobile et scroll accueil.');

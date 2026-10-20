@@ -869,6 +869,9 @@ function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active', 'entre-avant', 'entre-arriere'));
   const vue = document.getElementById(id);
   vue.classList.add('active');
+  // L'accueil est une zone de scroll indépendante : repartir en haut à chaque entrée.
+  // Les autres vues gardent leur logique de restauration historique.
+  if (id === 'view-dashboard') vue.scrollTop = 0;
   // SPEC 66 : courte arrivée du nouvel écran ; sens inverse quand on revient en arrière.
   if (avant && avant !== vue) {
     vue.classList.add(pileNav.length < profondeur ? 'entre-arriere' : 'entre-avant');

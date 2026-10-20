@@ -2939,3 +2939,23 @@ body.sans-transitions .view { animation:none!important; }
   .cours75-chip { padding:.45rem .08rem; }
   .cours75-bloc { padding:.85rem .9rem; }
 }
+
+
+/* SPEC accueil — une seule zone de scroll, seulement si le contenu dépasse.
+   Le scroll du document pouvait garder un décalage de la vue précédente
+   ou déplacer le titre malgré l'espace libre sous les cartes. */
+body:has(#view-dashboard.active) {
+  height:100vh; height:100dvh;
+  min-height:0;
+  overflow:hidden;
+}
+#view-dashboard.active {
+  flex:1 1 auto;
+  height:100%;
+  min-height:0;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior-y:contain;
+  overflow-anchor:none;
+  -webkit-overflow-scrolling:touch;
+}
