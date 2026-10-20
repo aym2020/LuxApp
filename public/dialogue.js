@@ -191,7 +191,16 @@ function cleSon(texte) {
 }
 function sonDuMot(lu) {
   if (!lu) return null;
-  return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || sonsPhrases[cleePhrase(lu)] || sonsMia[cleePhrase(lu)] || null;
+  const texte = sansParentheses(String(lu).replace(/<[^>]*>/g, '')).trim();
+  const cle = cleePhrase(texte);
+  // SPEC 87 : un MP3 LOD de « Stull » ne prononce pas « de Stull ».
+  // La priorité revient à un LOD qui prononce l'énoncé EXACT, puis au MIA
+  // intégral, et seulement en dernier recours au son LOD du nom isolé.
+  if (cle.split(/\s+/).length > 1)
+    return sonsPhrases[cle] || sonsMia[cle] ||
+      sonsLod[texte] || sonsLodSimples[cleSon(texte)] || null;
+  return sonsLod[texte] || sonsLodSimples[cleSon(texte)] ||
+    sonsPhrases[cle] || sonsMia[cle] || null;
 }
 // Bouton « Écouter » : prononciation exacte (or), sinon prononciation dans une phrase LOD (gris sable, SPEC 72).
 // Rien si le LOD n'a aucun son validé. compact : icône seule (listes, tableaux), le nom accessible cite le mot.
