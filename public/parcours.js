@@ -361,8 +361,8 @@ function loadRun(libre) {
   // SPEC 79 : une session déjà commencée sur l'ancienne unité 2 contient
   // des IDs qui n'existent plus. Ne jamais afficher un exercice introuvable.
   // Archiver la session historique avant de libérer la place ; scores conservés.
-  if (Number(data.leconId) === 2 && typeof lecons !== 'undefined') {
-    const l = lecons.find(x => x.id === 2);
+  if ((Number(data.leconId) === 2 || Number(data.leconId) === 0) && typeof lecons !== 'undefined') {
+    const l = lecons.find(x => x.id === Number(data.leconId));
     const obsolete = l && data.steps.some(etape => {
       const presents = new Set((l[etape.type] || []).map(x => Number(x.id)));
       return (etape.queue || []).concat(Object.keys(etape.scores || {}))
@@ -370,7 +370,7 @@ function loadRun(libre) {
     });
     if (obsolete) {
       try {
-        localStorage.setItem(cleRun(libre) + ':archive79', JSON.stringify(data));
+        localStorage.setItem(cleRun(libre) + (Number(data.leconId) === 0 ? ':archive82' : ':archive79'), JSON.stringify(data));
         localStorage.setItem(cleRun(libre), JSON.stringify({ fini:true, maj:Date.now() }));
       } catch (e) { /* session obsolète ignorée, sans supprimer les résultats */ }
       return null;
@@ -721,7 +721,10 @@ function openIntro(uniteId) {
       '</div>';
   }
 
-  html += '<div class="pi-bas"><div class="pi-duree">4 étapes · environ ' + minutes + ' min</div></div>';
+  const activiteUnique = studioActif(pLecon) && u.activiteUnique;
+  html += '<div class="pi-bas"><div class="pi-duree">' +
+    (activiteUnique ? '1 activité · ' + nbItems(pLecon, uniteId, 'coeur') + ' défis' : '4 étapes') +
+    ' · environ ' + minutes + ' min</div></div>';
 
   document.getElementById('pi-content').innerHTML = html;
   // L'action principale, toujours visible en bas (spec 21).
@@ -870,7 +873,9 @@ function renderItem() {
   const resolus = step.total - step.queue.length;
   const aRefaire = step.queue.filter(id => step.scores[id] !== undefined).length;
   document.getElementById('pc-etape').textContent =
-    'Étape ' + (run.stepIdx + 1) + ' · ' + etapeInfo(step.type).label;
+    (studioActif(pLecon) && run.steps.length === 1 ? 'Activité · ' : 'Étape ' + (run.stepIdx + 1) + ' · ') +
+    (studioActif(pLecon) && step.type === 'quiz' ? 'Écoute LOD' :
+      studioActif(pLecon) && step.type === 'trous' ? 'Avec ou sans N' : etapeInfo(step.type).label);
   document.getElementById('pc-compteur').innerHTML =
     Math.min(resolus + 1, step.total) + ' / ' + step.total +
     (aRefaire ? ' <span class="pc-refaire">· +' + aRefaire + ' à refaire</span>' : '');
