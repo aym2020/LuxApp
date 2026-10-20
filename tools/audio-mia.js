@@ -81,7 +81,7 @@ function plan(voice='mia') {
   for (const t of textList()) {
     // Le LOD est exact pour un mot isolé ; un article + nom nécessite le
     // vrai son de la locution, pas uniquement le nom du dictionnaire.
-    const groupe = phraseCle(t).split(/\s+/).length > 1;
+    const groupe = phraseCle(t).split(/\s+/).length > 1 || /^d'/.test(phraseCle(t));
     if ((!groupe && lod(t)) || phrases.has(phraseCle(t))) {original++; continue;}
     const file = outputFile(t, voice), abs = path.join(audioDir, file);
     if (fs.existsSync(abs) && fs.statSync(abs).size > 500) {index[t] = file; generated++;}
