@@ -2846,30 +2846,27 @@ body.sans-transitions .view { animation:none!important; }
 }
 
 
-/* SPEC 75 — Cours pilotes : navigation entièrement visible, panneau stable. */
+/* SPEC 75 — Cours pilotes : navigation visible, panneau stable, listes unifiées. */
 .cours75 { width:100%; }
 .cours75-navigation {
-  position:sticky; top:0; z-index:5;
-  background:var(--surface,#181714);
+  position:sticky; top:0; z-index:5; background:var(--surface,#181714);
   padding:.35rem 0 .45rem; margin-bottom:.4rem;
   border-bottom:1px solid var(--couleur-bord-1);
 }
-/* 1, 2, 3, 4, Tout : tous visibles en une rangée, jamais de scroll horizontal. */
+/* Toutes les unités et « Tout » restent accessibles sans défilement horizontal. */
 .cours75-portee {
   width:100%; display:grid; min-width:0;
   grid-template-columns:repeat(var(--cours75-colonnes,5),minmax(0,1fr));
-  gap:.35rem; padding:.1rem 0 .45rem; overflow:visible;
+  gap:.35rem; padding:.1rem 0 .45rem;
 }
 .cours75-chip {
   box-sizing:border-box; width:100%; min-width:0; min-height:44px;
   border-radius:12px; border:1px solid var(--couleur-bord-1);
-  padding:.45rem .12rem; background:var(--surface);
-  color:var(--text); font-size:clamp(.86rem,3.3vw,1rem);
-  font-weight:750; white-space:nowrap; text-align:center; cursor:pointer;
+  padding:.45rem .12rem; background:var(--surface); color:var(--text);
+  font-size:clamp(.86rem,3.3vw,1rem); font-weight:750; white-space:nowrap;
+  text-align:center; cursor:pointer;
 }
-.cours75-chip.active {
-  color:#17140a; background:var(--accent); border-color:var(--accent);
-}
+.cours75-chip.active { color:#17140a; background:var(--accent); border-color:var(--accent); }
 .cours75-chip-tout:not(.active) { border-color:var(--accent); }
 .cours75-onglets { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.35rem; }
 .cours75-onglet {
@@ -2880,7 +2877,7 @@ body.sans-transitions .view { animation:none!important; }
 .cours75-onglet.active {
   color:var(--text); background:var(--couleur-bord-1); border-bottom-color:var(--accent);
 }
-.cours75-chip:focus-visible,.cours75-onglet:focus-visible {
+.cours75-chip:focus-visible, .cours75-onglet:focus-visible {
   outline:2px solid var(--accent); outline-offset:2px;
 }
 .cours75-unite { margin:1.3rem 0 .65rem; font-size:.95rem; font-weight:750; color:var(--accent); }
@@ -2897,38 +2894,48 @@ body.sans-transitions .view { animation:none!important; }
   color:var(--accent); font-size:.88rem; font-weight:700; background:transparent;
   border:0; cursor:pointer; text-align:left;
 }
-.cours75-table-wrap { width:100%; overflow-x:auto; }
-.cours75-lexbloc .cours-vocab td { vertical-align:top; }
-.cours75-lexbloc .cours-lu { font-size:.95rem; width:45%; }
-.cours75-lexbloc .cours-fr { text-align:left; width:40%; }
-.cours75-colonne-annexe { font-size:.82rem; color:var(--muted-strong); min-width:68px; }
-.cours75-phrases .cours-dialogue-lu { color:var(--text); }
-.cours75-ligne-lu { display:flex; align-items:center; gap:.35rem; min-width:0; }
-.cours75-mottexte { min-width:0; overflow-wrap:break-word; }
-.cours75-ligne-lu .bouton-ecouter { flex:0 0 auto; margin:0; }
-/* Fixer la hauteur : seule la partie centrale défile, même avec peu de phrases. */
+
+/* Unique composant d'entrée : vocabulaire, expression, phrase, dialogue.
+   La présence d'un audio ne change jamais la hauteur de la ligne luxembourgeoise. */
+.cours75-bloc .cours-bloc-titre { margin-bottom:.65rem; }
+.cours75-entrees { display:flex; flex-direction:column; }
+.cours75-entree {
+  padding:.55rem 0; border-bottom:1px solid var(--couleur-bord-1);
+}
+.cours75-entree:first-child { padding-top:0; }
+.cours75-entree:last-child { padding-bottom:0; border-bottom:0; }
+.cours75-entree-tete {
+  display:flex; align-items:center; min-height:40px; gap:.3rem;
+  line-height:1.35; min-width:0;
+}
+.cours75-entree-lu {
+  flex:0 1 auto; min-width:0; font-size:var(--fs-corps, 1rem);
+  font-weight:700; color:var(--text); line-height:1.35;
+  overflow-wrap:break-word;
+}
+/* Bouton réel à 40 px pour toucher ; même réservation de hauteur sans bouton. */
+.cours75-entree-tete .bouton-ecouter.compact {
+  display:inline-flex; flex:0 0 40px; width:40px; height:40px;
+  min-height:40px; min-width:40px; margin:0; padding:0;
+  align-items:center; justify-content:center;
+}
+.cours75-entree-fr {
+  margin-top:2px; font-size:var(--fs-sec, .88rem);
+  color:var(--muted-strong); line-height:1.45;
+}
+.cours75-entree-note {
+  margin-top:3px; font-size:var(--fs-micro, .8rem);
+  color:var(--muted); line-height:1.45;
+}
+/* Uniquement le panneau Cours : hauteur identique sur unité courte ou longue. */
 #cours-panel .cp-feuille {
-  height:88vh; height:88dvh;
-  max-height:88vh; max-height:88dvh;
+  height:88vh; height:88dvh; max-height:88vh; max-height:88dvh;
 }
 #cours-panel .cp-content { min-height:0; overflow-y:auto; }
 #cp-content:has(.cours75) { padding-top:0; }
 #cp-onglets:empty { display:none; }
-@media (max-width:560px) {
-  .cours75-lexbloc .cours-vocab tr {
-    display:flex; flex-direction:column; align-items:stretch;
-    padding:.5rem 0; gap:.12rem;
-  }
-  .cours75-lexbloc .cours-vocab td {
-    display:block; width:100%; padding:.05rem .22rem; text-align:left;
-  }
-  .cours75-lexbloc .cours-vocab .cours-lu { width:100%; }
-  .cours75-lexbloc .cours-vocab .cours-fr { width:100%; font-size:.84rem; }
-  .cours75-colonne-annexe { font-size:.77rem; }
-}
-@media (max-width:400px) {
+@media(max-width:400px) {
   .cours75-portee { gap:.25rem; }
   .cours75-chip { padding:.45rem .08rem; }
-  .cours75-lexbloc { padding:.8rem .7rem; }
-  .cours75-lexbloc .cours-vocab td { padding:.5rem .25rem; }
+  .cours75-bloc { padding:.85rem .9rem; }
 }

@@ -184,3 +184,16 @@ L'implémentation doit reprendre l'organisation et le ton visuel, mais intégrer
 - Recherche locale **supprimée** (input, JS et CSS). Le lexique global n'est pas concerné ; les mots complémentaires restent dans des `details` repliés.
 - Les anciennes exigences de la maquette sur défilement horizontal, recherche et portée limitée en exercice sont remplacées par ces décisions ; elles ne doivent plus être réintroduites.
 - Recette encore nécessaire sur Android, notamment hauteur constante entre unités courtes/longues, position du bouton de retour, tailles tactiles et absence de débordement sur écran étroit.
+
+## SPEC 75 — Harmonisation des lignes de cours (20/10/2026)
+
+**Constat de recette Android :** Lexique et Phrases utilisaient deux structures HTML différentes (tableau et blocs de dialogue). Le bouton audio de 40 px augmentait seulement les lignes ayant un son ; les autres entrées devenaient artificiellement serrées.
+
+**Décision :**
+- Lexique (vocab et tableaux lexicaux), Phrases et dialogues utilisent un unique rendu cours75EntreeHtml() / cours75ListeHtml() dans public/cours75.js. Même DOM, même typographie et rythme vertical.
+- Structure : cours75-entree → cours75-entree-tete (expression + audio facultatif) → cours75-entree-fr → éventuelle cours75-entree-note.
+- Première ligne de hauteur minimale 40 px avec ou sans son, bouton audio 40 px uniquement lorsqu'un audio existe. Aucun bouton factice.
+- Même espacement LU/FR, séparateur et padding des entrées ; les textes longs peuvent déborder naturellement sur plusieurs lignes.
+- Ne plus employer les anciennes structures de tableaux et cours-dialogue dans le pilote. Elles restent disponibles pour les leçons 4+.
+- L'ordre, les notes annexes de la troisième colonne et les catalogues LOD existants sont conservés ; aucun JSON de leçon, exercice, unité ou progression modifié.
+- Test automatique sur un terme avec son et un terme sans son, puis recette visuelle Android à confirmer.

@@ -13,7 +13,7 @@ const ecran={
 };
 const ctx={currentLecon:lecons[1],pLecon:lecons[1],
   escHtml:s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'),
-  boutonEcouterHtml:()=>'',coursBlocsHtml:bs=>bs.map(b=>b.titre||b.contenu||'').join(' '),
+  boutonEcouterHtml:lu=>lu==='Tipptopp!'?'<button class="bouton-ecouter compact" type="button">Écouter</button>':'',coursBlocsHtml:bs=>bs.map(b=>b.titre||b.contenu||'').join(' '),
   fermerBulleContexte:()=>{},document:{getElementById:id=>ecran[id]||null}};
 const api=vm.runInNewContext(fs.readFileSync(path.join(racine,'public/cours75.js'),'utf8')+
   ';({cours75Actif,cours75Html,cours75Contenu,cours75Choisir,cours75Filtrer,cours75Etats})',ctx);
@@ -42,9 +42,33 @@ api.cours75Html(l2,'principal',null,false);
 api.cours75Etats.principal.rubrique='lexique';
 const lex=api.cours75Contenu(l2,'principal');
 assert.ok(lex.includes('Voir les mots supplémentaires (31)')&&lex.includes('Voir les mots supplémentaires (5)'));
-assert.ok(lex.includes('cours75-ligne-lu'),'icône liée au mot');
+assert.ok(lex.includes('cours75-entree-tete'),'lexique utilise le composant commun');
+assert.ok(!lex.includes('<table class="cours-vocab">'),'plus de tableau de mise en page dans le lexique pilote');
 assert.ok(lex.includes('<details class="cours75-plus"')&&!lex.includes('<details class="cours75-plus" open'));
 assert.ok(lex.includes('Voir les phrases de cette leçon'));
+// Même HTML pour le lexique et les phrases, indépendamment de la présence d'un audio.
+api.cours75Html(lecons[0],'principal',null,false);
+api.cours75Etats.principal.rubrique='lexique';
+const lex1=api.cours75Contenu(lecons[0],'principal');
+const expressionAvecSon='<span class="cours75-entree-lu">Tipptopp!</span><button class="bouton-ecouter compact"';
+assert.ok(lex1.includes(expressionAvecSon),'bouton audio dans la ligne du mot');
+const sansSon='<span class="cours75-entree-lu">Net immens.</span></div>' +
+  '<div class="cours75-entree-fr">Pas terrible</div>';
+assert.ok(lex1.includes(sansSon),'ligne identique sans audio, sans emplacement fictif');
+const phrase1=api.cours75Html(lecons[0],'principal',1,false);
+api.cours75Etats.principal.rubrique='phrases';
+const textePhrases=api.cours75Contenu(lecons[0],'principal');
+assert.ok(textePhrases.includes('cours75-entree-tete'),'phrases utilisent la même ligne que le lexique');
+assert.ok(textePhrases.includes('cours75-entree-fr'),'même emplacement de traduction');
+assert.ok(!textePhrases.includes('cours-dialogue'),'pas de double structure héritée');
+const css=fs.readFileSync(path.join(racine,'public/style.css'),'utf8');
+assert.match(css,/\.cours75-entree-tete\s*\{[^}]*min-height:40px/,
+  'hauteur de base de 40 px même sans son');
+assert.match(css,/\.cours75-entree-tete \.bouton-ecouter\.compact\s*\{[^}]*min-height:40px/,
+  'audio de 40 px, sans pousser la traduction');
+assert.match(css,/\.cours75-entree-fr\s*\{[^}]*margin-top:2px/,
+  'traduction avec espacement constant');
+
 const echelle=lecons[0].cours.find(b=>b.titre==="Comment ça va ? L'échelle");
 assert.ok(echelle.lignes.some(r=>r[0]==="Tipptopp!"));
 assert.equal(echelle.lignes.filter(r=>r[0].includes(' · ')).length,0,'variantes séparées');
@@ -63,7 +87,7 @@ api.cours75Choisir('panneau','rubrique','phrases');
 assert.equal(api.cours75Etats.panneau.unite,1,'changer de rubrique garde l’unité');
 api.cours75Choisir('panneau','unite',null);
 assert.equal(api.cours75Etats.panneau.unite,null,'Toute la leçon disponible');
-const css=fs.readFileSync(path.join(racine,'public/style.css'),'utf8');
+
 assert.match(css,/#cours-panel \.cp-feuille\s*\{[^}]*height:88dvh/,'hauteur fixe du panneau');
 assert.match(css,/grid-template-columns:repeat\(var\(--cours75-colonnes,5\),minmax\(0,1fr\)\)/,
   'toutes les unités accessibles sans défilement horizontal');

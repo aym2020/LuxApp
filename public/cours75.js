@@ -98,25 +98,35 @@ function cours75Groupe(blocs, l, surface) {
   }
   return html;
 }
+// Une seule structure pour une entrée du lexique, une phrase ou une réplique.
+// La ligne luxembourgeoise a la même hauteur avec ou sans bouton audio LOD.
+function cours75EntreeHtml(row) {
+  const [lu, fr, ...notes] = row;
+  return '<div class="cours75-entree">' +
+    '<div class="cours75-entree-tete" lang="lb">' +
+      '<span class="cours75-entree-lu">' + lu + '</span>' +
+      boutonEcouterHtml(lu, true) +
+    '</div>' +
+    '<div class="cours75-entree-fr">' + fr + '</div>' +
+    (notes.length ? '<div class="cours75-entree-note">' + notes.join(' · ') + '</div>' : '') +
+  '</div>';
+}
+
 function cours75Bloc(b, l) {
   if (b.rubrique === 'lexique' && (b.type === 'vocab' || b.type === 'tableau')) {
     const items = b.type === 'vocab' ? b.items : b.lignes;
-    const lignes = items.map(row => '<tr><td class="cours-lu" lang="lb">' +
-      '<span class="cours75-ligne-lu"><span class="cours75-mottexte">' + row[0] +
-      '</span>' + boutonEcouterHtml(row[0],true) + '</span></td><td class="cours-fr">' + row[1] + '</td>' +
-      (row.length > 2 ? '<td class="cours75-colonne-annexe">' +
-      row.slice(2).join(' · ') + '</td>' : '') + '</tr>').join('');
-    return '<div class="cours-bloc cours75-lexbloc" style="border-left:3px solid ' + l.couleur +
-      '"><div class="cours-bloc-titre">' + b.titre + '</div>' +
-      '<div class="cours75-table-wrap"><table class="cours-vocab">' + lignes + '</table></div></div>';
+    return cours75ListeHtml(b, l, items);
   }
   if (b.type === 'phrases' || b.type === 'dialogue') {
-    const items = b.type === 'phrases' ? b.items : b.echanges;
-    return '<div class="cours-bloc cours75-phrases" style="border-left:3px solid ' + l.couleur +
-      '"><div class="cours-bloc-titre">' + b.titre + '</div>' +
-      items.map(([lu,fr]) => '<div class="cours-dialogue"><div class="cours-dialogue-lu" lang="lb">' +
-        lu + boutonEcouterHtml(lu,true) + '</div><div class="cours-dialogue-fr">' + fr +
-        '</div></div>').join('') + '</div>';
+    return cours75ListeHtml(b, l, b.type === 'phrases' ? b.items : b.echanges);
   }
-  return coursBlocsHtml([b],l.couleur);
+  return coursBlocsHtml([b], l.couleur);
+}
+
+// Même titre, même ligne et même espacement quel que soit le type de contenu.
+function cours75ListeHtml(b, l, items) {
+  return '<div class="cours-bloc cours75-bloc" style="border-left:3px solid ' + l.couleur + '">' +
+    '<div class="cours-bloc-titre">' + b.titre + '</div>' +
+    '<div class="cours75-entrees">' + items.map(cours75EntreeHtml).join('') + '</div>' +
+  '</div>';
 }
