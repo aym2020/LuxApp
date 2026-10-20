@@ -27,6 +27,8 @@ Sur un viewport de **810 CSS px ou moins en hauteur**, sous cette classe exclusi
 - rapprocher l'accroche « Prêt à commencer ? » (icône 28 px au lieu de 36, espaces intérieurs réduits) ;
 - garder la carte « Commencer » entièrement interactive, min-height 108 px ;
 - réduire les interstices entre les accès, dont la cible tactile reste **au moins 60 px**.
+- corriger le séparateur **« Ou choisir une autre leçon »** : l'ancien `margin:-6px 0` combiné à l'espacement de 7 px de la colonne le collait à la carte et aux accès ; dans le seul état `.ac-nouveau-invite`, utiliser `margin:6px 0 7px`, `min-height:22px` et `line-height:1.3` pour conserver une séparation visuelle confortable ;
+- récupérer 4 px au-dessus de la ligne « Mode invité / Se connecter / Créer un compte » via `.ac-compte { margin-top:-4px }` **sans réduire les zones tactiles**.
 
 Ne pas fixer artificiellement une hauteur de contenu ni interdire le défilement de `#view-dashboard` : un écran plus petit, la police agrandie ou une traduction sur plusieurs lignes doivent toujours rester consultables. L'accueil ne bouge pas **si tout tient** ; sinon il reste défilable.
 
@@ -38,3 +40,7 @@ Ne pas fixer artificiellement une hauteur de contenu ni interdire le défilement
 - Aucune modification de `public/navigation.js`, du portail d'authentification, des exercices, ni des données de progression.
 - Test statique : `node tests/test_accueil_compact.js`, avec états invité/débutant, connecté, actif et hors-ligne ; CSS et 4 accès contrôlés.
 - À vérifier sur Android réel : première arrivée invitée A1.2, écran standard et petit écran, puis défilement et retour à l'accueil.
+
+## Ajustement de recette Android — séparateur (20/10/2026)
+
+La capture montre un espace libre au-dessus de la ligne de compte et sous la quatrième carte, mais un séparateur trop comprimé. L'ajustement utilise cet espace pour rendre lisibles les traits et la légende « Ou choisir une autre leçon ». Le changement est strictement CSS et n'affecte pas les autres états d'accueil. Validation statique passée ; confirmation Android requise.

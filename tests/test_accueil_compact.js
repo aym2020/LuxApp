@@ -169,7 +169,12 @@ assert.match(css, /#view-dashboard \.ac-nouveau-invite \.ac-accroche \.ic\s*\{[^
   'illustration raccourcie, texte conservé');
 assert.match(css, /#view-dashboard \.ac-nouveau-invite \.ac-btn\s*\{[^}]*min-height:\s*60px/s,
   'cibles tactiles préservées');
+assert.match(css, /#view-dashboard \.ac-nouveau-invite \.ac-compte\s*\{[^}]*margin-top:\s*-4px/s,
+  'espace superflu au-dessus de la ligne invité récupéré');
+assert.match(css, /#view-dashboard \.ac-nouveau-invite \.ou-choisir\s*\{[^}]*margin:\s*6px 0 7px;[^}]*min-height:\s*22px/s,
+  'séparateur de la première visite avec respiration verticale');
+assert.ok(css.includes('.ou-choisir {'),'séparateur général conservé pour les autres profils');
 assert.match(css, /#view-dashboard\.active\s*\{[^}]*overflow-y:auto/s,
   'petits écrans : aucun contenu rogné');
 
-console.log('SPEC 52 + 77 : OK — accueil invité compact sur écran standard, navigation et retour préservés.');
+console.log('SPEC 52 + 77 : OK — accueil invité compact, séparateur aéré, navigation préservée.');

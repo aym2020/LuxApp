@@ -791,3 +791,7 @@ Après validation UX Android, remplacement de l'en-tête trop haut par une carte
 
 ### SPEC 77 — Accueil débutant invité compact, hauteur Android standard (20/10/2026)
 La ligne de compte SPEC 67 fait dépasser l'accueil « Prêt à commencer ? » sur Android : au lieu de couper le scroll ou de réduire les zones tactiles, `renderAccueil` pose `.ac-nouveau-invite` seulement si `!aDejaPratique() && isCloudEnabled() && !fbAuth.currentUser`. Sous `@media(max-height:810px)`, réduire les espacements de l'accueil et la hauteur de l'accroche, garder carte Commencer ≥108 px et quatre raccourcis ≥60 px. `#view-dashboard` continue de scroller sur les écrans réellement petits ; les utilisateurs connectés/actifs restent inchangés. Test : `node tests/test_accueil_compact.js` ; valider aussi sur Android.
+
+
+### SPEC 77 — Ajustement séparateur invité (20/10/2026)
+Sur la première visite invitée en viewport ≤810 px, le `margin:-6px 0` global de `.ou-choisir` écrasait la séparation « Ou choisir une autre leçon ». Le CSS scoped `#view-dashboard .ac-nouveau-invite .ou-choisir` impose `margin:6px 0 7px; min-height:22px` et récupère 4 px au-dessus de `.ac-compte`. Les quatre accès et leurs cibles ≥60 px restent inchangés. Test : `node tests/test_accueil_compact.js`.
