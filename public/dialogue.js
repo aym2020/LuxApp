@@ -136,7 +136,7 @@ function sonDuMot(lu) {
   if (!lu) return null;
   return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || sonsPhrases[cleePhrase(lu)] || null;
 }
-// Bouton « Écouter » : prononciation exacte (or), sinon prononciation dans une phrase LOD (vert menthe).
+// Bouton « Écouter » : prononciation exacte (or), sinon prononciation dans une phrase LOD (gris sable, SPEC 72).
 // Rien si le LOD n'a aucun son validé. compact : icône seule (listes, tableaux), le nom accessible cite le mot.
 const ICONE_ECOUTER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
   '<path d="M11 5 6 9H3v6h3l5 4z"/><path class="onde1" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="onde2" d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
@@ -156,7 +156,7 @@ function boutonEcouterHtml(lu, compact) {
     'onclick="event.stopPropagation(); ecouterContexte(this)" aria-label="Écouter « ' + mot + ' » dans une phrase : « ' + escHtml(c.phrase) + ' »">' +
     ICONE_ECOUTER + (compact ? '' : '<span>Dans une phrase</span>') + '</button>';
 }
-// Au clic sur le bouton menthe : ecouterContexte (contexte.js, SPEC 71) joue la phrase et ouvre la bulle.
+// Au clic sur le bouton gris sable : ecouterContexte (contexte.js, SPEC 71) joue la phrase et ouvre la bulle.
 
 function arreterAudio() {
   if (lecteurAudio) {

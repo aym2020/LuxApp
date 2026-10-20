@@ -623,10 +623,15 @@ Pour les **nouvelles** leçons, partir des phrases que le LOD a enregistrées :
    compliquée à la place d'une phrase simple pour gagner un audio. Les exemples interchangeables, eux, viennent du LOD.
 6. Relancer `node tools/audio-lod.js` puis `node tools/lod/audit-audio.js` ; viser ~99 % d'audio sur les nouveaux contenus.
 
-Ne jamais réécrire une leçon existante pour augmenter la couverture audio sans validation de Clayton (audit : `docs/audit-audio-lod.md`).
+Ne jamais réécrire une leçon existante pour augmenter la couverture audio sans validation de Clayton (audit : `docs/audit-audio-lod.md`,
+enrichissement : `docs/audit-enrichissement-lecons-1-3.md`).
 
-Audio dans l'application : **or** = prononciation exacte du mot ou de la phrase ; **vert menthe** = l'expression
-dite dans une phrase LOD (bulle flottante au clic : phrase, expression en menthe, traduction — SPEC 71). Un seul bouton,
+**Téléchargement des phrases LOD (SPEC 72)** : `lod.lu` est bloqué pour Claude. Clayton lance sur son téléphone (Termux)
+`curl -sSfL https://raw.githubusercontent.com/aym2020/LuxApp/v2/tools/termux-audio-lod.sh | bash` ; le script pousse
+les sons sur la branche `audio-phrases` ; Claude vérifie (`node tests/test_audio_lod.js`) puis fusionne `public/audio` dans `v2`.
+
+Audio dans l'application : **or** = prononciation exacte du mot ou de la phrase ; **gris sable** = l'expression
+dite dans une phrase LOD (bulle flottante au clic : phrase en blanc cassé, expression en doré, traduction — SPEC 71/72). Un seul bouton,
 le son exact en priorité. Sous un bloc de vocabulaire, « N exemples en contexte » ouvre l'écran d'exemples (`public/contexte.js`).
 
 ### Blocs `cours`

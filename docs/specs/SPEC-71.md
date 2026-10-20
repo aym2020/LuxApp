@@ -4,7 +4,7 @@
 |---|---|
 | Priorité | P1 — audio |
 | Statut | **Implémentée sur `v2`** — s'active quand les phrases LOD sont téléchargées (accès à `lod.lu`) |
-| Complète | SPEC 70 (remplace l'affichage en ligne de la phrase) |
+| Complète | SPEC 70 (remplace l'affichage en ligne de la phrase) — couleurs mises à jour par la SPEC 72 (gris sable, expression en doré) |
 | Référence | maquettes `LuxApp_SPEC71_maquettes.html` (Cours, Lexique, Exemples) |
 | Fichiers | `public/contexte.js` (nouveau), `public/dialogue.js`, `public/app.js`, `public/navigation.js`, `public/index.html`, `public/style.css`, `tests/test_contexte_audio.py`, `tests/test_audio_lod.js`, `tools/critique.sh` |
 

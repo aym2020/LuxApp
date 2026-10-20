@@ -44,7 +44,10 @@
   --couleur-sur-action: #0f0e0c;  /* texte sur un bouton or, vert ou rouge */
   --couleur-sur-or: #1a1505;      /* texte sur le grand bouton jaune et les badges */
   --couleur-reussi: #54e0ad;
-  --couleur-audio-contexte: #54e0ad; /* vert menthe : son LOD dit dans une phrase (SPEC 70) */
+  --couleur-audio-contexte: #c9bc9f;       /* gris sable : son LOD dit dans une phrase (SPEC 72, remplace le vert menthe) */
+  --couleur-audio-contexte-fond: #24221e;  /* bulle, cartes et boutons du contexte */
+  --couleur-audio-contexte-bord: #4a4436;
+  --couleur-audio-contexte-voile: rgba(201,188,159,.12);
   --couleur-erreur: #ef7a73;
   --couleur-info: #6fb0f2;
   --couleur-violet: #b18cf0;

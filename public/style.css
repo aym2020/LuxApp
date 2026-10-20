@@ -2607,40 +2607,41 @@ body.portail-bloque { overflow:hidden; }
 .pc-fb-txt .bouton-ecouter, .ecr-feedback .bouton-ecouter { display:flex; margin:4px 0 0 -10px; }
 .lx-mot > div { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; column-gap:2px; }
 .lx-mot > div > em { flex-basis:100%; }
-/* SPEC 70 : prononciation dans une phrase LOD (vert menthe). */
+/* SPEC 70 / 72 : prononciation dans une phrase LOD (gris sable ; or = son exact). */
 .bouton-ecouter.contexte { color:var(--couleur-audio-contexte); }
 .bouton-ecouter.contexte:focus-visible { outline-color:var(--couleur-audio-contexte); }
-.bouton-ecouter.contexte[aria-expanded="true"] { background:rgba(84,224,173,.12); border-radius:11px; }
+.bouton-ecouter.contexte[aria-expanded="true"] { background:var(--couleur-audio-contexte-voile); border-radius:11px; }
 
 /* SPEC 71 : bulle flottante — ne décale jamais les lignes du cours. */
 .bulle-voile { position:fixed; inset:0; z-index:289; }
 .bulle-contexte { position:fixed; z-index:290; width:min(306px, calc(100vw - 24px)); padding:14px 14px 10px;
-  border-radius:15px; background:#252723; border:1px solid #4a5e50; box-shadow:0 12px 30px rgba(0,0,0,.7);
+  border-radius:15px; background:var(--couleur-audio-contexte-fond); border:1px solid var(--couleur-audio-contexte-bord); box-shadow:0 12px 30px rgba(0,0,0,.7);
   text-align:left; animation:bulle-entre .17s ease-out; transform-origin:top right; }
 .bulle-contexte::before { content:""; position:absolute; top:-6px; left:var(--fleche, 70%); width:10px; height:10px;
-  background:#252723; border-left:1px solid #4a5e50; border-top:1px solid #4a5e50; transform:rotate(45deg); }
+  background:var(--couleur-audio-contexte-fond); border-left:1px solid var(--couleur-audio-contexte-bord); border-top:1px solid var(--couleur-audio-contexte-bord); transform:rotate(45deg); }
 .bulle-contexte.dessus { transform-origin:bottom right; }
 .bulle-contexte.dessus::before { top:auto; bottom:-6px; transform:rotate(225deg); }
 .bulle-titre { display:flex; align-items:center; gap:7px; color:var(--couleur-audio-contexte);
   font-size:var(--fs-micro); font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
 .bulle-titre svg { width:15px; height:15px; }
 .bulle-lu { margin:10px 0 6px; font-size:var(--fs-sec); font-weight:700; line-height:1.48; color:var(--couleur-texte); }
-.bulle-lu strong, .exv-lu strong { color:var(--couleur-audio-contexte); font-weight:inherit; }
+/* SPEC 72 : l'expression étudiée en doré, le reste de la phrase en blanc cassé. */
+.bulle-lu strong, .exv-lu strong { color:var(--couleur-action); font-weight:inherit; }
 .bulle-fr { margin:0; font-size:var(--fs-micro); line-height:1.5; color:var(--couleur-texte-2); }
 .bulle-pied { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:10px; padding-top:4px;
-  border-top:1px solid #384138; }
-.bulle-pied small { font-size:var(--fs-micro); color:#93a696; }
+  border-top:1px solid var(--couleur-audio-contexte-bord); }
+.bulle-pied small { font-size:var(--fs-micro); color:var(--couleur-texte-3); }
 .bulle-fermer { min-height:40px; padding:0 2px; border:0; background:none; color:var(--couleur-texte-2);
   font-family:var(--police); font-size:var(--fs-micro); font-weight:650; cursor:pointer; }
 @keyframes bulle-entre { from { opacity:0; transform:translateY(5px) scale(.97); } }
 
 /* SPEC 71 : lien vers les exemples, en bas d'un bloc de vocabulaire. */
 .lien-exemples { display:flex; align-items:center; gap:10px; width:100%; min-height:var(--toucher); margin:10px 0 0;
-  padding:12px; border:1px solid #30342f; border-radius:12px; background:#1c211e; color:var(--couleur-audio-contexte);
+  padding:12px; border:1px solid var(--couleur-audio-contexte-bord); border-radius:12px; background:var(--couleur-audio-contexte-fond); color:var(--couleur-audio-contexte);
   font-family:var(--police); font-size:var(--fs-sec); font-weight:700; text-align:left; cursor:pointer; }
 .lien-exemples > svg { width:18px; height:18px; flex:none; }
 .lien-exemples span { flex:1; }
-.lien-exemples small { display:block; margin-top:2px; font-size:var(--fs-micro); font-weight:500; color:#94c8b0; }
+.lien-exemples small { display:block; margin-top:2px; font-size:var(--fs-micro); font-weight:500; color:var(--couleur-texte-3); }
 
 /* SPEC 71 : écran d'exemples (plein écran, au-dessus du cours). */
 .exv { position:fixed; inset:0; z-index:270; display:flex; flex-direction:column; background:var(--couleur-fond);
@@ -2659,14 +2660,14 @@ body.portail-bloque { overflow:hidden; }
 .exv-carte { margin:11px 0; padding:15px 15px 12px; border:1px solid var(--couleur-bord-1); border-radius:15px; background:var(--couleur-surface-1); }
 .exv-haut { display:flex; justify-content:space-between; align-items:center; gap:5px; margin-bottom:11px; }
 .exv-num { font-size:var(--fs-micro); font-weight:850; letter-spacing:.08em; text-transform:uppercase; color:var(--couleur-audio-contexte); }
-.exv-pastille { padding:4px 7px; border-radius:7px; background:#173026; color:var(--couleur-audio-contexte);
+.exv-pastille { padding:4px 7px; border-radius:7px; background:var(--couleur-audio-contexte-voile); color:var(--couleur-audio-contexte);
   font-size:var(--fs-micro); font-weight:750; }
 .exv-pastille.exacte { background:var(--couleur-or-fond); color:var(--couleur-action); }
 .exv-lu { margin:0; font-size:var(--fs-corps); line-height:1.5; font-weight:680; }
 .exv-fr { margin:8px 0 0; font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2); }
 .exv-actions { display:flex; justify-content:flex-end; margin-top:10px; }
-.exv-ecouter { display:flex; align-items:center; gap:8px; min-height:var(--toucher); padding:0 12px; border:1px solid #3b463d;
-  border-radius:10px; background:#1c2b22; color:var(--couleur-audio-contexte); font-family:var(--police);
+.exv-ecouter { display:flex; align-items:center; gap:8px; min-height:var(--toucher); padding:0 12px; border:1px solid var(--couleur-audio-contexte-bord);
+  border-radius:10px; background:var(--couleur-audio-contexte-fond); color:var(--couleur-audio-contexte); font-family:var(--police);
   font-size:var(--fs-micro); font-weight:750; cursor:pointer; }
 .exv-ecouter svg { width:16px; height:16px; }
 .exv-ecouter.joue .onde1 { animation:pa-onde .8s ease-in-out infinite; }

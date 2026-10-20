@@ -86,6 +86,7 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 | 69 | [Sons LOD : correspondances vérifiées, relance autonome, phrases enregistrées](./SPEC-69.md) | P1 | Implémentée — phrases en attente d'accès à lod.lu |
 | 70 | [Stratégie audio LOD prioritaire : audit, audio contextuel, leçons construites sur les exemples LOD](./SPEC-70.md) | P1 | Implémentée — audit à valider ; phrases en attente d'accès à lod.lu |
 | 71 | [Prononciation en contexte : bulle flottante et écran d'exemples](./SPEC-71.md) | P1 | Implémentée — s'active avec les phrases LOD |
+| 72 | [Finaliser la SPEC 71 : procédure Termux, couleurs gris sable / doré, audit d'enrichissement leçons 1–3](./SPEC-72.md) | P1 | Implémentée — audios et audit en attente |
 
 ## Gestion des changements
 

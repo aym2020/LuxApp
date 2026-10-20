@@ -100,4 +100,10 @@ assert.ok(indexHtml.indexOf('dialogue.js') < indexHtml.indexOf('contexte.js') &&
 assert.ok(app.includes('lienExemplesHtml(sec.titre, sec.items)'), 'lien sous les blocs de vocabulaire du cours');
 const nav = fs.readFileSync(path.join(racine, 'public/navigation.js'), 'utf8');
 assert.ok(nav.includes('fermerBulleContexte()') && nav.includes('exemplesOuverts()'), 'Retour du téléphone : bulle puis exemples');
+// SPEC 72 : or = son exact, gris sable = contexte, expression en doré, reste de la phrase en blanc cassé.
+const css = fs.readFileSync(path.join(racine, 'public/style.css'), 'utf8');
+assert.match(fs.readFileSync(path.join(racine, 'public/design-tokens.css'), 'utf8'), /--couleur-audio-contexte:\s*#c9bc9f/, 'gris sable');
+assert.match(css, /\.bulle-lu strong, \.exv-lu strong \{ color:var\(--couleur-action\)/, 'expression surlignée en doré');
+assert.match(css, /\.bulle-lu \{[^}]*color:var\(--couleur-texte\)/, 'phrase en blanc cassé');
+assert.ok(!/#54e0ad|84,224,173/.test(css.slice(css.indexOf('SPEC 70 / 72'), css.indexOf('@keyframes exv-entre'))), 'plus de vert menthe dans les composants audio');
 console.log('Contexte (SPEC 71) : OK — bulle, surlignage, exemples par bloc.');

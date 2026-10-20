@@ -1,6 +1,6 @@
 // ─── SPEC 71 : PRONONCIATION EN CONTEXTE ET EXEMPLES ────────────────────────
-// 1. Bulle : le bouton vert menthe joue la phrase LOD et affiche, dans une bulle
-//    flottante, la phrase entière (expression en menthe) et sa traduction.
+// 1. Bulle : le bouton gris sable joue la phrase LOD et affiche, dans une bulle
+//    flottante, la phrase entière (expression en doré) et sa traduction.
 //    La bulle flotte au-dessus de la page : aucune ligne ne change de hauteur.
 // 2. Exemples : un lien « N exemples en contexte » en bas d'un bloc de vocabulaire
 //    ouvre un écran dédié avec les phrases LOD validées de ce bloc.
