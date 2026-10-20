@@ -59,7 +59,7 @@ test('La progression affiche les vraies données et un indicateur accessible', (
 });
 test('Le bouton principal conserve la reprise et le démarrage', () => {
   const c = contexte();
-  const p = {lecon:{id:6},type:'unite'};
+  const p = {lecon:{id:6},type:'unite',unite:{id:2,titre:'Présenter'}};
   assert.match(c.carteSuiteHtml(p,false), /suivreProchainPas\(\)/);
   assert.match(c.carteSuiteHtml(p,false), /ac-v21-cta/);
   assert.match(c.carteSuiteHtml(p,true), /onclick="commencer\(\)"/);
