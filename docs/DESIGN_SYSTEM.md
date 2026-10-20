@@ -2,11 +2,13 @@
 
 Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feuilles CSS que l'application).
 
+> **Direction visuelle validée V2.1 (21/10/2026) :** [`docs/CHARTE_UI_2.1.md`](CHARTE_UI_2.1.md) définit l'accueil de référence, les règles de composition applicables aux autres écrans, le plan de migration et les critères de validation. Le présent document reste la source de vérité pour les tokens, les états de progression et le comportement des composants. Les modifications V2.1 sont réalisées sur la branche `2.1`.
+
 ## Historique des versions
 
 | Version | Date | Changements |
 | --- | --- | --- |
-| 2.1 (accueil) | 2026-10-20 | Première étape de personnalisation : Moien en grand, photographie originale WebP optimisée, CTA principal or et statistiques allégées. Voir docs/ACCUEIL-2.1.md |
+| 2.1 (accueil validé) | 2026-10-20 | Première étape de personnalisation : Moien en grand, photographie originale WebP optimisée, CTA principal or et statistiques allégées. Voir docs/ACCUEIL-2.1.md |
 | 1.11 | 2026-10-19 | SPEC 57 : pression tactile uniforme des CTA (enfoncement CSS pendant l'appui, désactivés inertes, mouvement réduit) ; tokens de pression |
 | 1.10 | 2026-10-19 | Examens (passage, résultat, questions aléatoires) : `.pc-btn` pour la navigation, or uni partout (plus de dégradé or → ambre sur les boutons), score vert / rouge par classes (`examClasse`), étiquettes neutres, lettres de choix neutres, token `--couleur-bord-fort` |
 | 1.9 | 2026-10-19 | Spec 48 appliquée : grille commune des cartes du Chemin, surfaces neutres, libellés canoniques (Chemin, leçon, accueil, examens), cartes de sujets `.ex-carte`, score d'examen vert / rouge, `.pastille.a` ; `.lecon-card` supprimé |
