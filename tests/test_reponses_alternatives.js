@@ -1,6 +1,8 @@
 // SPEC 50 — tests unitaires + intégration ciblée, sans navigateur.
 // Usage : node tests/test_reponses_alternatives.js
 const assert = require('node:assert/strict');
+// Le code de l'app chargé ici lance des fetch sans serveur : on ignore ce bruit (PLAYBOOK).
+process.on('unhandledRejection', () => {});
 const fs = require('node:fs');
 const path = require('node:path');
 
