@@ -19,6 +19,62 @@
       "pieges": [
         "20 sons, un seul exercice : aucune traduction ni mémorisation de vocabulaire.",
         "Toutes les lectures utilisent les enregistrements LOD, réécoutables à volonté."
+      ],
+      "decouverte": [
+        {
+          "son": "W",
+          "mot": "wäiss",
+          "indication": "W se prononce comme V.",
+          "audioFichier": "lod/WAISS1.mp3"
+        },
+        {
+          "son": "J",
+          "mot": "Jo",
+          "indication": "J se prononce comme Y.",
+          "audioFichier": "lod/JO1.mp3"
+        },
+        {
+          "son": "Z",
+          "mot": "zéng",
+          "indication": "Z se prononce TS.",
+          "audioFichier": "lod/ZENG1.mp3"
+        },
+        {
+          "son": "SCH",
+          "mot": "Schoul",
+          "indication": "SCH se prononce comme CH en français.",
+          "audioFichier": "lod/SCHOUL1.mp3"
+        },
+        {
+          "son": "ST",
+          "mot": "Stull",
+          "indication": "En début de mot, ST se prononce CHT.",
+          "audioFichier": "lod/STULL1.mp3"
+        },
+        {
+          "son": "CH",
+          "mot": "Buch",
+          "indication": "CH se distingue du CH français : écoute bien.",
+          "audioFichier": "lod/BUCH1.mp3"
+        },
+        {
+          "son": "Ë",
+          "mot": "Fënster",
+          "indication": "Ë est une voyelle neutre.",
+          "audioFichier": "lod/FENSTER1.mp3"
+        },
+        {
+          "son": "Ä",
+          "mot": "Äddi!",
+          "indication": "Écoute la voyelle Ä.",
+          "audioFichier": "lod/ADDI2.mp3"
+        },
+        {
+          "son": "ÉI",
+          "mot": "schéin",
+          "indication": "ÉI forme une diphtongue.",
+          "audioFichier": "lod/SCHEIN1.mp3"
+        }
       ]
     },
     {
@@ -30,6 +86,50 @@
       "pieges": [
         "On indique déjà l'article et la lettre suivante : l'objectif est seulement de choisir avec ou sans N.",
         "Auto et Dësch sont masculins en luxembourgeois ; les genres et articles seront appris dans la leçon 2."
+      ],
+      "decouverte": [
+        {
+          "forme": "Gudde Moien!",
+          "suivant": "M",
+          "type": "Salutation",
+          "garderN": false,
+          "explication": "M ne fait pas partie de United Zoha : le N tombe."
+        },
+        {
+          "forme": "Gudden Owend!",
+          "suivant": "O",
+          "type": "Salutation",
+          "garderN": true,
+          "explication": "O est une voyelle : le N reste."
+        },
+        {
+          "forme": "e Stull",
+          "suivant": "S",
+          "type": "Article indéfini masculin",
+          "garderN": false,
+          "explication": "S ne fait pas partie de United Zoha : le N tombe."
+        },
+        {
+          "forme": "en Auto",
+          "suivant": "A",
+          "type": "Article indéfini masculin",
+          "garderN": true,
+          "explication": "A est une voyelle : le N reste."
+        },
+        {
+          "forme": "de Bus",
+          "suivant": "B",
+          "type": "Article défini masculin",
+          "garderN": false,
+          "explication": "B ne fait pas partie de United Zoha : le N tombe."
+        },
+        {
+          "forme": "den Auto",
+          "suivant": "A",
+          "type": "Article défini masculin",
+          "garderN": true,
+          "explication": "A est une voyelle : le N reste."
+        }
       ]
     }
   ],
