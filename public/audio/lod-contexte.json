@@ -269,10 +269,20 @@
     "phrase": "Hatt ass drësseg Joer al",
     "fr": "Elle a trente ans."
   },
+  "Jongen": {
+    "son": "lod-phrases/2ed6ead8ea7b00b0bf70334466d65c46.m4a",
+    "phrase": "Mir hu just zwee Jongen an der Klass",
+    "fr": "Nous n'avons que deux garçons dans la classe."
+  },
   "Kaffi drénken": {
     "son": "lod-phrases/8fb5643ec29a2ad9b52d238a25b7211b.m4a",
     "phrase": "Ech kéint nach eng Tiessche Kaffi drénken",
     "fr": "Je boirais bien encore une tasse de café."
+  },
+  "Kanner": {
+    "son": "lod-phrases/8f7cd445d5ee2b9e3d32f770d13e16ae.m4a",
+    "phrase": "Ech hu Fra a Kanner",
+    "fr": "J'ai une femme et des enfants."
   },
   "Këschten": {
     "son": "lod-phrases/28db61f2e5afae2d149b22a878afbeeb.m4a",

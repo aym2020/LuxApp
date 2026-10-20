@@ -335,15 +335,15 @@
     "lot": "SPEC 73 lot 3"
   },
   "Kanner": {
-    "id": "a3961445e7315f7a9c657fb1397e3237",
-    "lod": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher",
-    "fr": "Nos voisins ont quatre enfants, deux garçons et deux filles.",
+    "id": "8f7cd445d5ee2b9e3d32f770d13e16ae",
+    "lod": "Ech hu Fra a Kanner",
+    "fr": "J'ai une femme et des enfants.",
     "lot": "SPEC 73 lot 3"
   },
   "Jongen": {
-    "id": "a3961445e7315f7a9c657fb1397e3237",
-    "lod": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher",
-    "fr": "Nos voisins ont quatre enfants, deux garçons et deux filles.",
+    "id": "2ed6ead8ea7b00b0bf70334466d65c46",
+    "lod": "Mir hu just zwee Jongen an der Klass",
+    "fr": "Nous n'avons que deux garçons dans la classe.",
     "lot": "SPEC 73 lot 3"
   },
   "Meedercher": {
