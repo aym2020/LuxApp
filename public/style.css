@@ -2819,9 +2819,11 @@ body.portail-bloque { overflow:hidden; }
    (barres d'action en bas) des enfants positionnés par rapport à la vue. */
 .view.entre-avant { animation:pa-glisse-avant .26s cubic-bezier(.2,.8,.2,1); }
 .view.entre-arriere { animation:pa-glisse-arriere .26s cubic-bezier(.2,.8,.2,1); }
+/* Accueil : opacité uniquement ; pas de débordement horizontal ni saut des éléments fixes. */
+.view.entre-fondu { animation:fondu .18s ease-out; }
 body.sans-transitions .view { animation:none!important; }
 @media (prefers-reduced-motion: reduce) {
-  .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere { animation:none!important; }
+  .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere, .view.entre-fondu { animation:none!important; }
   .pa-carte-in, .dlg-voile, .dlg-carte, .notif { transition:none!important; }
   .bouton-ecouter.joue .onde1, .bouton-ecouter.joue .onde2 { animation:none; }
   .bulle-contexte, .exv { animation:none; }
