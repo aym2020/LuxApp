@@ -87,7 +87,7 @@ with sync_playwright() as p:
         goDashboard();
     }""")
     chiffres = page.inner_text('.ac-chiffres')
-    assert '/ 17' in chiffres and 'Progression' in chiffres and 'Série' in chiffres, chiffres
+    assert '/ 18' in chiffres and 'Progression' in chiffres and 'Série' in chiffres, chiffres
     assert 'continuer' in page.inner_text('#today').lower()
     assert '5' in page.inner_text('.ac-btn.rev') and 'à revoir' in page.inner_text('.ac-btn.rev'), page.inner_text('.ac-btn.rev')
     page.click('.ac-btn.rev')
@@ -116,17 +116,17 @@ with sync_playwright() as p:
     assert 'continuer' in carte and 'leçon 2' in carte and 'restante' in carte, carte
     ok('barre : Accueil, Chemin, Réviser, Plus ; masquée sur l\'accueil, en séance et en exercice ; maison → accueil « Continuer · questions restantes »')
 
-    # ── S13 : chemin avec 7 leçons terminées ──
+    # ── S13 : chemin avec 8 leçons terminées (0 à 7) ──
     page.evaluate('clearRun()')
-    for lid in range(1, 8):
+    for lid in range(0, 8):
         page.evaluate(FINIR_LECON, lid)
     page.evaluate('goLessons()')
     page.wait_for_timeout(400)
     # Spec 33 : un chemin continu, chaque leçon à sa place (plus de bloc « Terminées »)
     ordre = page.evaluate("[...document.querySelectorAll('.chemin > li[id^=chemin-lecon-]')].map(li => Number(li.id.split('-').pop()))")
-    assert ordre == sorted(ordre) and ordre[:8] == list(range(1, 9)), ordre
-    assert page.locator('.pas.fait.replie').count() == 7
-    assert '7 terminées' in page.inner_text('.resume').lower()
+    assert ordre == sorted(ordre) and ordre[:9] == list(range(0, 9)), ordre
+    assert page.locator('.pas.fait.replie').count() == 8
+    assert '8 terminées' in page.inner_text('.resume').lower()
     encours = page.inner_text('.pas.encours')
     assert 'leçon 8' in encours.lower() and 'mission' in encours.lower() and 'bilan' in encours.lower(), encours
     assert page.locator('.pas.futur').count() == 9
@@ -147,7 +147,7 @@ with sync_playwright() as p:
     page.click('.pas.encours .carte-lecon')  # on redéplie la leçon conseillée
     page.click('.pas.encours .unites li.bilan button')
     assert actif(page, 'view-session') and page.evaluate('session.questions.length') > 0
-    ok('chemin : leçons 1 à 7 vertes à leur place, leçon 8 dépliée (unités, mission, bilan) ; tout s\'ouvre')
+    ok('chemin : leçons 0 à 7 vertes à leur place, leçon 8 dépliée (unités, mission, bilan) ; tout s\'ouvre')
 
     # ── S12 : animation de l'étape tout juste finie, une seule fois ──
     page.evaluate("saveUnitBest(8, 1, 90); dernierFini = { leconId: 8, uniteId: 1 }; goLessons()")

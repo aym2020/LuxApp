@@ -10,7 +10,7 @@ U = os.environ.get('LUX_URL', 'http://localhost:3456/')
 def ok(m): print('  ok  ', m, flush=True)
 
 
-PREPARER = """choisirNiveau('A1.1'); marquerJour(1); [1, 2].forEach(u => saveUnitBest(1, u, 95)); saveUnitBest(1, 3, 80);
+PREPARER = """choisirNiveau('A1.1'); marquerJour(1); saveUnitBest(0, 1, 90); saveUnitBest(0, 2, 90); [1, 2].forEach(u => saveUnitBest(1, u, 95)); saveUnitBest(1, 3, 80);
   marquerIntroMissionVue(1); figerAcquisMission(lecons.find(l => l.id === 1)); saveMissionBest(1, 60, 1);
   localStorage.setItem(cleRun(true), JSON.stringify({ leconId: 1, uniteId: 1, mode: 'unite', libre: true, steps: [], stepIdx: 0 }));
   goLessons()"""

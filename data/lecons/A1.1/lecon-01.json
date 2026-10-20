@@ -2333,8 +2333,11 @@
         ],
         [
           "Salut Pierre!",
-          "Salut Pierre ! (entre amis)",
-          "Variante : Hallo Pierre!"
+          "Salut Pierre ! (entre amis)"
+        ],
+        [
+          "Hallo Pierre!",
+          "Salut Pierre ! (variante, entre amis)"
         ]
       ]
     },

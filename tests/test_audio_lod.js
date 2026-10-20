@@ -16,6 +16,14 @@ for (const niveau of fs.readdirSync(path.join(racine, 'data/lecons'))) {
     lecon.cours?.forEach(b => (b.type === 'vocab' || b.type === 'exemple') && b.items.forEach(([lu]) => mots.add(lu)));
   }
 }
+// SPEC 79 : les mots d'une unité archivée gardent leurs sons vérifiés (associations conservées).
+const archives = path.join(racine, 'data/archives');
+if (fs.existsSync(archives)) {
+  for (const f of fs.readdirSync(archives).filter(n => n.endsWith('.json'))) {
+    const archive = JSON.parse(fs.readFileSync(path.join(archives, f), 'utf8'));
+    archive.flashcards?.forEach(c => mots.add(c.lu));
+  }
+}
 assert.ok(Object.keys(sons).length > 430, 'sons LOD présents (SPEC 69 : table de correspondance)');
 for (const [mot, fichier] of Object.entries(sons)) {
   assert.match(fichier, /^lod\/[A-Z0-9]+\.mp3$/, fichier);

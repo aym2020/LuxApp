@@ -59,8 +59,8 @@ with sync_playwright() as p:
     page.click('#session-input-btn')
     assert 'Correct' in page.inner_text('#session-feedback')
     autre = page.evaluate("articleAEcrire(lecons.find(x => x.id === 2), lecons.find(x => x.id === 2).flashcards.find(c => c.unite === 2 && c.article))")
-    assert autre is False
-    ok('révision : mot caché de l\'unité 1 de la leçon 2 → « écris l\'article et le mot », « Mapp » refusé, « eng Mapp » juste ; unité 2 inchangée')
+    assert autre is True  # SPEC 79 : l'unité 2 porte sur les articles définis (de, den, d')
+    ok('révision : mot caché de l\'unité 1 de la leçon 2 → « écris l\'article et le mot », « Mapp » refusé, « eng Mapp » juste ; unité 2 (articles définis) aussi avec article')
 
     # ── S10 : Tente ta chance, réussite à 100 % ──
     page.evaluate("openParcoursLecon(lecons.find(l => l.id === 2))")

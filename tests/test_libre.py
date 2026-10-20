@@ -38,7 +38,8 @@ with sync_playwright() as p:
     pg.goto(URL)
     pg.wait_for_selector('#today')
     pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
-    pg.evaluate("choisirNiveau('A1.1'); marquerIntroMissionVue(1); saveUnitBest(1, 1, 100); saveUnitBest(1, 2, 100); goLessons()")
+    pg.evaluate("choisirNiveau('A1.1'); saveUnitBest(0, 1, 90); saveUnitBest(0, 2, 90)")  # leçon 0 faite : la leçon 1 est la suivante
+    pg.evaluate("marquerIntroMissionVue(1); saveUnitBest(1, 1, 100); saveUnitBest(1, 2, 100); goLessons()")
 
     # Unités 1 et 2 terminées → unité 3 recommandée
     assert pg.evaluate("prochainPas().unite.id") == 3

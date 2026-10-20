@@ -17,12 +17,15 @@ with sync_playwright() as p:
     pg.on('pageerror', lambda e: erreurs.append(str(e)))
     pg.route('**/audio/lod-contexte.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(CONTEXTE)))
     pg.route('**/audio/lod-phrases.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(PHRASES)))
+    # Sons Mia (exacts, prioritaires) désactivés : on teste ici le son en contexte.
+    pg.route('**/audio/mia.json', lambda r: r.fulfill(status=200, content_type='application/json', body='{}'))
     pg.route('**/*gstatic*/**', lambda r: r.abort())
     pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL)
     pg.wait_for_selector('#today')
     pg.wait_for_function("lecons.length > 0 && Object.keys(sonsContexte).length > 0 && Object.keys(sonsPhrases).length > 0")
     pg.evaluate("() => { openParcoursLecon(lecons.find(l => l.id === 1)); ouvrirCours(null); }")
+    pg.click('#cours-panel .cours75-onglet:has-text("Lexique")')  # SPEC 75 : le vocabulaire est dans l'onglet Lexique
 
     bouton = '#cours-panel .bouton-ecouter.contexte'
     pg.wait_for_selector(bouton)
@@ -48,7 +51,19 @@ with sync_playwright() as p:
     assert pg.evaluate("!document.getElementById('cours-panel').classList.contains('hidden')")
     ok('bulle fermée par « Fermer » et par Retour ; le cours reste ouvert')
 
-    liens = pg.locator('#cours-panel .lien-exemples')
+    # SPEC 75 : leçon migrée → pas de lien « N exemples » sous les blocs Lexique, un raccourci vers Phrases à la place.
+    assert pg.locator('#cours-panel .lien-exemples').count() == 0
+    assert pg.locator('#cours-panel .cours75-voir-phrases').count() == 1
+    ok('cours migré (SPEC 75) : pas de lien d\'exemples dupliqué dans Lexique, raccourci « Voir les phrases »')
+
+    # Écran d'exemples SPEC 71 (gardé pour les leçons non migrées) : rendu ancien des blocs de vocabulaire.
+    pg.evaluate("""() => {
+        const l = lecons.find(x => x.id === 1);
+        const blocs = l.cours.filter(b => b.type === 'vocab').map(b => ({ type: 'vocab', titre: b.titre, items: b.items }));
+        document.querySelector('#cours-panel .cp-content').insertAdjacentHTML('beforeend',
+            '<div id="test-ancien">' + coursBlocsHtml(blocs, l.couleur) + '</div>');
+    }""")
+    liens = pg.locator('#test-ancien .lien-exemples')
     assert liens.count() == 2  # « Demander et répondre » (contexte) et « Se présenter » (2 phrases exactes)
     assert '2 exemples en contexte' in liens.nth(1).inner_text()
     liens.nth(1).click()

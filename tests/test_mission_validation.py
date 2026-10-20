@@ -35,7 +35,7 @@ with sync_playwright() as p:
     pg.goto(URL)
     pg.wait_for_selector('#today')
     pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
-    pg.evaluate("choisirNiveau('A1.1'); lecons.forEach(l => marquerIntroMissionVue(l.id))")
+    pg.evaluate("choisirNiveau('A1.1'); lecons.forEach(l => marquerIntroMissionVue(l.id)); saveUnitBest(0, 1, 90); saveUnitBest(0, 2, 90)")  # leçon 0 faite
 
     # 1. Leçon 1 : unités 1 à 3 faites, unité 4 interrompue (partie principale), mission réussie avec 1 vie
     pg.evaluate("[1, 2, 3].forEach(u => saveUnitBest(1, u, 90)); openParcoursLecon(" + L1 + "); startUnite(4, 'unite')")
@@ -53,7 +53,7 @@ with sync_playwright() as p:
 
     pg.evaluate("goLessons()")
     assert pg.locator('#chemin-lecon-1.pas.fait').count() == 1 and 'Validée par la mission' in pg.inner_text('#chemin-lecon-1')
-    assert pg.evaluate("progressionNiveau('A1.1').terminees") == 1
+    assert pg.evaluate("progressionNiveau('A1.1').terminees") == 2  # leçons 0 et 1
     ok('chemin : leçon 1 verte à sa place, « Validée par la mission » (pas d\'étoiles de leçon)')
     # Spec 33 : leçon 1 dépliée — unités 1 à 3 avec leurs vraies étoiles, unité 4 verte sans étoiles
     pg.click('#chemin-lecon-1 .carte-lecon')

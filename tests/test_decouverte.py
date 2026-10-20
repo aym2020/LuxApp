@@ -30,7 +30,7 @@ with sync_playwright() as p:
     pg.goto(URL)
     pg.wait_for_selector('#today')
     pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
-    pg.evaluate("choisirNiveau('A1.1'); goLessons()")
+    pg.evaluate("choisirNiveau('A1.1'); saveUnitBest(0, 1, 90); saveUnitBest(0, 2, 90); goLessons()")  # leçon 0 faite : la leçon 1 est à découvrir
 
     # Chemin → Découvrir → Retour : chemin, leçon 1 dépliée
     assert cta(pg, 1) == 'Découvrir'

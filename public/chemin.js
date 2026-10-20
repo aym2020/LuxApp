@@ -507,7 +507,8 @@ function basculerLeconChemin(leconId) {
   // hauteur. La page ne bouge pas tant que la 1re étape de la leçon ouverte
   // est visible ; sinon (carte tout en bas de l'écran) on la cadre.
   const r = apres.getBoundingClientRect();
-  const compense = hautAvant != null ? r.top - hautAvant : 0;
+  // En haut de page, on ne peut pas remonter plus haut que 0.
+  const compense = hautAvant != null ? Math.max(r.top - hautAvant, -window.scrollY) : 0;
   let cadre = 0;
   if (!dejaOuverte && !premiereEtapeVisible(apres, compense)) {
     cadre = decalageCadrage(r.top - compense, r.bottom - compense);

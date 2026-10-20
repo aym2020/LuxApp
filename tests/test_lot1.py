@@ -36,13 +36,16 @@ with sync_playwright() as p:
     assert 'Prêt à commencer' in page.inner_text('#view-dashboard')
     assert page.locator('.puce-niv').count() == len(page.evaluate('niveauxDisponibles()'))
     assert page.get_attribute('.puce-niv >> nth=0', 'aria-pressed') == 'true'
-    assert 'commencer' in page.inner_text('#today').lower() and 'leçon 1' in page.inner_text('#today').lower()
+    assert 'commencer' in page.inner_text('#today').lower() and 'leçon 0' in page.inner_text('#today').lower()
     assert page.locator('.ac-btn').all_inner_texts() == ['Leçons', 'Réviser', 'Examens', 'Erreurs fréquentes']
     assert not visible(page, '.ac-chiffres'), 'pas de chiffres au premier lancement'
     assert not visible(page, '#nav-bas'), 'pas de barre du bas sur l\'accueil'
     assert page.locator('#view-dashboard >> text=Réinitialiser').count() == 0
     assert '1592' not in page.inner_text('#view-dashboard')
-    ok('profil neuf : « Commencer · Leçon 1 », A1.1 présélectionné, 4 accès visibles, ni chiffres, ni barre, ni « Réinitialiser »')
+    ok('profil neuf : « Commencer · Leçon 0 », A1.1 présélectionné, 4 accès visibles, ni chiffres, ni barre, ni « Réinitialiser »')
+
+    # Leçon 0 (les bases, sans mission) faite : la suite du test part de la leçon 1.
+    page.evaluate("saveUnitBest(0, 1, 90); saveUnitBest(0, 2, 90); goDashboard()")
 
     page.click('#today .carte-suite')
     assert page.evaluate('niveauChoisi()') == 'A1.1'
@@ -83,9 +86,9 @@ with sync_playwright() as p:
     page.evaluate('goDashboard()')
     page.click('.ac-menu')
     tuiles = page.locator('.plus-acquis span').all_inner_texts()
-    # Spec 46 : les vraies unités d'un côté, la leçon acquise en v1 de l'autre
+    # Spec 46 : les vraies unités d'un côté (les 2 de la leçon 0), la leçon acquise en v1 de l'autre
     assert tuiles == ['unités terminées', 'leçons acquises précédemment', 'missions réussies', 'jours de pratique'], tuiles
-    assert page.inner_text('.plus-acquis b >> nth=0') == '0' and page.inner_text('.plus-acquis b >> nth=1') == '1'
+    assert page.inner_text('.plus-acquis b >> nth=0') == '2' and page.inner_text('.plus-acquis b >> nth=1') == '1'
     page.click('.plus-ligne:has-text("Réglages")')
     assert actif(page, 'view-reglages') and visible(page, '#view-reglages .dash-reset')
     page.screenshot(path=OUT + 'lot1-reglages.png', full_page=True)
@@ -104,10 +107,10 @@ with sync_playwright() as p:
     assert page.locator('.panneau .ms-pastille.apprise').count() >= 1
     page.evaluate('fermerPanneau()')
     assert page.inner_text('.ms-carte .ms-etat') == 'En préparation'
-    page.evaluate('saveMissionBest(2, 60, 2); renderParcoursLecon()')  # scène version 2 (spec 34)
+    page.evaluate('saveMissionBest(2, 60, versionMission(2)); renderParcoursLecon()')  # version de scène courante (spec 34)
     assert 'JOUÉE 60 % · À REJOUER' in page.inner_text('.ms-carte .pc-mini-label')
     assert not page.evaluate('missionReussie(lecons.find(l => l.id === 2))')
-    page.evaluate('saveMissionBest(2, 85, 2); marquerMissionReussie(2, 2); renderParcoursLecon()')  # réussie = au moins une vie (spec 32)
+    page.evaluate('saveMissionBest(2, 85, versionMission(2)); marquerMissionReussie(2, versionMission(2)); renderParcoursLecon()')  # réussie = au moins une vie (spec 32)
     assert 'RÉUSSIE 85 %' in page.inner_text('.ms-carte .pc-mini-label')
     page.evaluate('goDashboard(); ouvrirPlus()')
     assert page.inner_text('.plus-acquis b >> nth=1') == '1'

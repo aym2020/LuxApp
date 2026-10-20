@@ -18,7 +18,7 @@ with sync_playwright() as p:
     pg.route('**/*gstatic*/**', lambda r: r.abort()); pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(U); pg.wait_for_selector('#today')
     pg.evaluate("(p => { p.guide = { viesMasquees: 1 }; saveProgress(p); })(getProgress())")  # rappel des vies masqué (spec 36)
-    pg.evaluate("choisirNiveau('A1.1'); marquerJour(1); saveUnitBest(1,1,90); marquerIntroMissionVue(1); goDashboard()")
+    pg.evaluate("choisirNiveau('A1.1'); marquerJour(1); saveUnitBest(0,1,90); saveUnitBest(0,2,90); saveUnitBest(1,1,90); marquerIntroMissionVue(1); goDashboard()")  # leçon 0 faite
     # 1. Chemin depuis l'accueil
     pg.click('.ac-btn:has-text("Leçons")'); pg.wait_for_timeout(700)
     h1 = rect(pg, '.chemin-tete h1'); cta = rect(pg, '.pas.ouverte .btn-jaune')
@@ -29,11 +29,15 @@ with sync_playwright() as p:
     pg.screenshot(path=S+'01-chemin.png')
     ok('chemin depuis l\'accueil : titre visible, leçon 1 dépliée, CTA « %s » au-dessus de la barre, étape conseillée qui pulse, chevrons' % pg.inner_text('.pas.ouverte .btn-jaune'))
     # 2. Leçon 4
+    pg.evaluate("document.getElementById('chemin-lecon-4').scrollIntoView({ block: 'center' })")
+    avant = rect(pg, '#chemin-lecon-4')
     pg.click('#chemin-lecon-4 .carte-lecon'); pg.wait_for_timeout(500)
     assert pg.locator('.pas.ouverte').count() == 1 and pg.locator('#chemin-lecon-4.ouverte').count() == 1
-    r = rect(pg, '#chemin-lecon-4'); assert r['top'] >= 0 and r['bottom'] <= nav_haut(pg) + 1, r
+    # La carte touchée reste à sa place ; sa 1re étape est visible, la page ne défile pas pour la cadrer.
+    r = rect(pg, '#chemin-lecon-4'); assert abs(r['top'] - avant['top']) < 1, (avant, r)
+    e = rect(pg, '#chemin-lecon-4 .unites li'); assert e['bottom'] <= nav_haut(pg) + 1, e
     pg.screenshot(path=S+'02-lecon4.png')
-    ok('leçon 4 : leçon 1 repliée, leçon 4 dépliée et cadrée · CTA « %s » (pour cette leçon)' % pg.inner_text('#chemin-lecon-4 .btn-jaune'))
+    ok('leçon 4 : leçon 1 repliée, leçon 4 dépliée à sa place (1re étape visible) · CTA « %s » (pour cette leçon)' % pg.inner_text('#chemin-lecon-4 .btn-jaune'))
     assert pg.evaluate('prochainPas().lecon.id') == 1
     ok('déplier la leçon 4 ne change pas la leçon conseillée (toujours la 1)')
     # 3. Replier
