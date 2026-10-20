@@ -22,7 +22,8 @@ assert.equal(lesson.trous.filter(x=>x.unite===2).length,15);
 for(const q of questions){
   assert.equal(q.audioMot,q.reponse);
   assert.ok(audio[q.audioMot],q.audioMot+' possède un son LOD');
-  assert.ok(fs.existsSync(path.join(root,'public/audio',audio[q.audioMot])),q.audioMot+' possède un MP3 local');
+  assert.equal(q.audioFichier,audio[q.audioMot],'chemin MP3 direct pour le quiz');
+  assert.ok(fs.existsSync(path.join(root,'public/audio',q.audioFichier)),q.audioMot+' possède un MP3 local');
   assert.equal(q.distracteurs.length,3);
   assert.equal(new Set(q.distracteurs).size,3);
   assert.ok(q.distracteurs.every(d=>words.has(d)&&d!==q.reponse),'distracteurs = vrais mots entendus');
