@@ -338,6 +338,10 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
 // e/en pour valider de/den/d'. L'ancienne clé "2" est conservée, en lecture
 // par les anciennes versions / audit, sans être effacée ni écrasée.
 function cleUniteVersionnee(leconId, uniteId) {
+  // SPEC 82 : la nouvelle leçon 0 change les exercices des deux unités.
+  // Conserver sans écraser les anciens scores sous leurs clés numériques.
+  if (Number(leconId) === 0 && Number(uniteId) === 1) return '0-ecoute-v2';
+  if (Number(leconId) === 0 && Number(uniteId) === 2) return '0-n-v2';
   return Number(leconId) === 2 && Number(uniteId) === 2 ? '2-definis-v1' : uniteId;
 }
 function getUnitBest(leconId, uniteId) {
