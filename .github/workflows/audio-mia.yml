@@ -1,0 +1,54 @@
+name: Creation des MP3 Mia
+on:
+  push:
+    branches: [v2]
+    paths:
+      - 'tools/audio-mia.js'
+      - '.github/workflows/audio-mia.yml'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Nouveaux MP3 par lot (0 pour tous)'
+        required: false
+        default: '0'
+permissions:
+  contents: write
+concurrency:
+  group: audio-mia-v2
+  cancel-in-progress: false
+jobs:
+  voix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v2
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifier le code
+        run: |
+          node tests/test_audio_mia.js
+          node tests/test_spec81_audio.js
+      - name: Installer les dependances
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+      - name: Produire les MP3
+        run: node tools/audio-mia.js --voice=mia --limit=${{ github.event.inputs.limit || '0' }}
+      - name: Versionner les MP3 valides
+        if: always()
+        run: |
+          node tests/test_audio_mia.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/audio/mia.json public/audio/mia/ 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "audio: ajout des sons generes par Mia"
+            git pull --rebase origin v2
+            git push origin HEAD:v2
+          fi

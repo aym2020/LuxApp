@@ -91,7 +91,7 @@ let boutonAudio = null;
 const MIROIR_AUDIO_LOD = 'https://raw.githubusercontent.com/robertoentringer/lod-mp3-mirror/master/2020-12-18-lod-opendata/';
 function sourcesAudio(fichier) {
   // N'accepte que les chemins audio issus de nos index LOD, sans ../.
-  if (!/^(?:lod\/[A-Za-z0-9_-]+\.mp3|lod-phrases\/[A-Za-z0-9_-]+\.m4a)$/.test(fichier)) return [];
+  if (!/^(?:lod\/[A-Za-z0-9_-]+\.mp3|lod-phrases\/[A-Za-z0-9_-]+\.m4a|mia\/[a-f0-9]{24}\.mp3)$/.test(fichier)) return [];
   const sources = ['/audio/' + fichier];
   const lod = /^lod\/([A-Za-z0-9_-]+)\.mp3$/.exec(fichier);
   if (lod) sources.push(MIROIR_AUDIO_LOD + lod[1] + '.mp3');
@@ -148,12 +148,17 @@ function jouerAudio(fichier, bouton) {
 let sonsLod = {};
 let sonsLodSimples = {}; // SPEC 68 : même table, clés simplifiées (sans article ni ponctuation)
 let sonsPhrases = {}; // SPEC 69 : phrases enregistrées par le LOD, clé = phrase simplifiée
+let sonsMia = {}; // Synthèse exacte pour les entrées manquantes
 let sonsContexte = {}; // SPEC 70 : { phrase simplifiée: { son, phrase, fr } } — l'expression dite dans une phrase LOD
 function cleePhrase(texte) {
   return String(texte).replace(/<[^>]*>/g, ' ').toLowerCase().replace(/[’`]/g, "'")
     .replace(/[.,!?;:«»"…()\u2013\u2014]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 function chargerSonsLod() {
+  fetch('audio/mia.json').then(r => (r.ok ? r.json() : {})).then(data => {
+    sonsMia = {};
+    Object.keys(data || {}).forEach(t => { sonsMia[cleePhrase(t)] = data[t]; });
+  }, () => {});
   fetch('audio/lod-contexte.json').then(r => (r.ok ? r.json() : {})).then(d => {
     sonsContexte = {};
     Object.keys(d || {}).forEach(p => { sonsContexte[cleePhrase(p)] = d[p]; });
@@ -186,7 +191,7 @@ function cleSon(texte) {
 }
 function sonDuMot(lu) {
   if (!lu) return null;
-  return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || sonsPhrases[cleePhrase(lu)] || null;
+  return sonsLod[lu] || sonsLodSimples[cleSon(lu)] || sonsPhrases[cleePhrase(lu)] || sonsMia[cleePhrase(lu)] || null;
 }
 // Bouton « Écouter » : prononciation exacte (or), sinon prononciation dans une phrase LOD (gris sable, SPEC 72).
 // Rien si le LOD n'a aucun son validé. compact : icône seule (listes, tableaux), le nom accessible cite le mot.
