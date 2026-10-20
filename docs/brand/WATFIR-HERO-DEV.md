@@ -14,7 +14,7 @@ L'accueil historique (`accueil.js`, `accueil-v21.js`) conserve le calcul des le�
 | `public/art/watfir-hero-background-mobile.webp` | 960×540 | Fond mobile optimisé |
 | `docs/brand/watfir-hero-reference-fhd.webp` | 1920×1080 | Référence aplatie avec « MOIEN » et « Le luxembourgeois autrement. » |
 
-Les images sont générées de manière déterministe par `scripts/build_watfir_hero.py`, à partir du visuel texte-libre déjà conservé dans `public/art/hero-luxapp-fhd.webp`. La transformation associe turquoise `#08D9BD`, noir encre `#101110` et orange `#FF6924` dans un traitement d'affiche à aplats. Il s'agit d'une image créative stylisée, pas d'une photographie documentaire.
+Les images proviennent d'une illustration originale validée visuellement (turquoise, noir et orange). **Le précédent traitement automatique de l'ancienne photographie a été abandonné.** La version de production est le fond sans texte ; la référence avec typographie est uniquement un document graphique. Il s'agit d'une illustration d'ambiance, pas d'une photographie documentaire.
 
 La référence aplatie sert uniquement à valider la direction graphique. **En production, aucune lettre du titre n'est incrustée dans le fond** : `MOIEN.` et le sous-titre sont générés par `public/watfir-dev.js`, stylisés par `public/watfir-dev.css`. Ils restent sélectionnables, accessibles et adaptatifs.
 
@@ -24,15 +24,15 @@ Le fichier `public/index.html` charge `watfir-dev.css` après les styles 2.1, et
 
 Les couleurs sont des choix de **marque** ; les couleurs d'état pédagogiques (correct/incorrect) ne sont pas redéfinies à ce stade. Le nom Watfir reste un nom de travail en attendant la vérification de disponibilité juridique et commerciale.
 
-## Générer ou modifier les assets
+## Validation des assets
 
 ```bash
-python -m pip install pillow numpy
+python -m pip install pillow
 python scripts/build_watfir_hero.py
 node --test test/accueil-v21.test.cjs test/watfir-dev.test.cjs
 ```
 
-Le workflow `.github/workflows/build-watfir-hero.yml` exécute ces étapes puis commit automatiquement les trois WebP **sur dev seulement**. Il vérifie les résolutions, le format et les plafonds de poids avant publication.
+Le script conservé sous ce nom **ne génère plus d'image** : il valide uniquement les WebP livrés. Le workflow `.github/workflows/build-watfir-hero.yml` exécute les tests sans jamais réécrire ni publier des images. Toute nouvelle illustration devra faire l'objet d'une revue visuelle avant remplacement.
 
 ## Vérifications encore nécessaires sur téléphone
 
