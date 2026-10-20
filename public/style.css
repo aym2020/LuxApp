@@ -3217,3 +3217,45 @@ body.pi-bloque { overflow:hidden; }
   #view-msintro .msi-objectif { padding: .55rem .75rem; }
   #view-msintro .msi-contexte { font-size: .93rem; }
 }
+
+
+/* SPEC 86 — Découverte mobile : supprimer le saut du CTA pendant le chargement.
+   Un bandeau fixed dans une vue animée avec transform change de repère sur Android.
+   La vue occupe exactement le viewport ; son contenu défile, pas son pied de page. */
+#view-decouverte.active {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+#view-decouverte.entre-avant,
+#view-decouverte.entre-arriere {
+  animation: none;
+}
+#view-decouverte .dc-contenant {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 1rem;
+}
+#view-decouverte .dc-scene {
+  flex: 1 0 auto;
+  min-height: 290px;
+  padding: 12px 0;
+}
+#view-decouverte .dc-bas {
+  position: static; /* Ne plus hériter du fixed global de .cta-fixe */
+  inset: auto;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: .65rem 1.25rem calc(.75rem + env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid var(--couleur-bord-1);
+  pointer-events: auto;
+}
+#view-decouverte .dc-ligne { margin-top: 16px; }
+@media (max-height: 700px) {
+  #view-decouverte .dc-scene { min-height: 260px; }
+}
