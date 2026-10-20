@@ -1,0 +1,131 @@
+/* Watfir — nouveau territoire pop-éditorial, isolé sur la branche dev.
+   Fond turquoise/noir/orange, texte de production toujours HTML.
+   Le parcours, les cours, les évaluations et la sauvegarde ne sont pas modifiés. */
+#view-dashboard .accueil {
+  --wf-ink:#101110;
+  --wf-teal:#08d9bd;
+  --wf-orange:#ff6924;
+  --wf-cream:#f2eee5;
+  background:#f2eee5;
+  color:#101110;
+  max-width:470px;
+  padding-top:18px;
+}
+#view-dashboard .ac-ent { color:#101110; }
+#view-dashboard .ac-marque-symbole,
+#view-dashboard .ac-marque-sous { display:none; }
+#view-dashboard .ac-titre.watfir-wordmark {
+  font:900 clamp(28px,8vw,36px)/1 "Inter",sans-serif;
+  color:#101110;
+  letter-spacing:-.09em;
+}
+#view-dashboard .watfir-wordmark span { color:var(--wf-orange); }
+#view-dashboard .ac-menu { color:#101110; }
+#view-dashboard .ac-v21-controls { margin-top:13px; }
+#view-dashboard .puce-niv { border-color:#c9c5ba; color:#222; }
+#view-dashboard .puce-niv[aria-pressed="true"] {
+  background:#101110; border-color:#101110; color:#08d9bd;
+}
+#view-dashboard .ac-v21-guest,
+#view-dashboard .ac-v21-guest b { color:#57584f; }
+#view-dashboard .watfir-hero {
+  height:310px; min-height:310px;
+  overflow:hidden; position:relative;
+  margin:15px -22px 15px;
+  border:0; border-radius:0;
+  background:#08d9bd;
+}
+#view-dashboard .watfir-hero .ac-hero-image {
+  position:absolute; inset:0; opacity:1;
+  background-image:url("art/watfir-hero-background-mobile.webp");
+  background-size:cover; background-position:61% center;
+  background-repeat:no-repeat;
+  mask-image:none; -webkit-mask-image:none;
+}
+@supports (background-image:image-set(url("art/watfir-hero-background-mobile.webp") 1x)) {
+  #view-dashboard .watfir-hero .ac-hero-image {
+    background-image:image-set(
+      url("art/watfir-hero-background-mobile.webp") 1x,
+      url("art/watfir-hero-background-fhd.webp") 2x
+    );
+  }
+}
+#view-dashboard .watfir-hero .ac-hero-texte {
+  position:absolute; z-index:1; inset:0;
+  padding:26px 14px 0;
+  max-width:none; color:#101110;
+}
+#view-dashboard .watfir-hero .ac-hero-surtitre {
+  color:#101110; margin:0 0 8px;
+  font:800 10px/1.2 "Inter",sans-serif;
+  letter-spacing:.21em;
+}
+#view-dashboard .watfir-hero h2 {
+  color:#101110; margin:0;
+  font-family:"Barlow Condensed","Roboto Condensed","Arial Narrow",Impact,sans-serif;
+  font-size:clamp(100px,32vw,168px);
+  font-weight:900; line-height:.79;
+  letter-spacing:-.045em;
+  white-space:nowrap;
+}
+#view-dashboard .watfir-hero .watfir-punctuation { color:#ff6924; }
+#view-dashboard .watfir-hero p {
+  max-width:275px; margin:19px 0 0; color:#101110;
+  font:800 clamp(17px,4.6vw,23px)/1.08 "Inter",sans-serif;
+  letter-spacing:-.035em;
+  text-wrap:balance;
+}
+/* Carte de progression réelle, traitée comme de la typographie éditoriale. */
+#view-dashboard .ac-chiffres { margin:0 0 17px; color:#101110; }
+#view-dashboard .ac-stat-valeur,
+#view-dashboard .ac-serie-mesure b { color:#101110; font-weight:900; }
+#view-dashboard .ac-serie-mesure .ic { color:#ff6924; }
+#view-dashboard .ac-stat-description { color:#55554f; }
+#view-dashboard .ac-piste { background:#cbc7bc; }
+#view-dashboard .ac-piste i { background:#08d9bd; }
+/* CTA principal conservé, mais en orange de marque. */
+#view-dashboard .carte-suite.ac-v21-cta {
+  background:#ff6924; color:#101110; border-color:#ff6924;
+  border-radius:14px; box-shadow:none; min-height:82px;
+}
+#view-dashboard .ac-v21-cta .cs-ic,
+#view-dashboard .ac-v21-cta .cs-kicker,
+#view-dashboard .ac-v21-cta .cs-titre,
+#view-dashboard .ac-v21-cta .cs-rond { color:#101110; }
+/* La marque est expressive dans le hero, sobre dans les actions secondaires. */
+#view-dashboard .ac-acces {
+  background:#101110; border-color:#101110;
+  border-radius:11px;
+}
+#view-dashboard .ac-acces .ac-btn { color:#f2eee5; }
+#view-dashboard .ac-acces .ac-btn > .ic:first-child { color:#08d9bd; }
+#view-dashboard .ac-acces .ac-btn:nth-child(2) > .ic:first-child { color:#ff6924; }
+#view-dashboard .ac-acces .ac-btn:nth-child(3) > .ic:first-child { color:#ff619b; }
+#view-dashboard .ac-acces .ac-btn > b { color:#f2eee5; }
+#view-dashboard .ac-btn.ac-v21-journey { color:#393932; }
+#view-dashboard .ac-v21-cta:focus-visible { outline:3px solid #101110; }
+#view-dashboard .ac-btn:focus-visible,
+#view-dashboard .puce-niv:focus-visible,
+#view-dashboard .ac-v21-guest:focus-visible { outline:3px solid #ff6924; outline-offset:2px; }
+@media (max-width:380px) {
+  #view-dashboard .watfir-hero {
+    margin-left:-17px; margin-right:-17px;
+    height:278px; min-height:278px;
+  }
+  #view-dashboard .watfir-hero .ac-hero-texte { padding:22px 12px 0; }
+  #view-dashboard .watfir-hero h2 { font-size:clamp(88px,31vw,120px); }
+}
+@media (max-width:330px) {
+  #view-dashboard .watfir-hero { height:265px; min-height:265px; }
+  #view-dashboard .watfir-hero h2 { font-size:88px; }
+  #view-dashboard .watfir-hero p { max-width:215px; font-size:17px; }
+}
+@media (max-height:810px) {
+  #view-dashboard .accueil.ac-nouveau-invite .watfir-hero {
+    height:265px; min-height:265px; padding:0; margin-top:10px;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  #view-dashboard .watfir-hero,
+  #view-dashboard .watfir-hero * { transition:none; animation:none; }
+}
