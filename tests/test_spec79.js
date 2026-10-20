@@ -130,4 +130,22 @@ const rendu=new Function('lecon','card',
 )(l2,u2article);
 assert.equal(rendu,"d'Mapp",'article élidé sans espace');
 
+// SPEC 82 : anciennes unités 0 conservées dans les stores historiques, sans reprendre
+// une partie qui référencerait les anciens IDs 3001 à 3017.
+const versionner = new Function('return '+fonction('cleUniteVersionnee')+';')();
+assert.equal(versionner(0,1),'0-ecoute-v2');
+assert.equal(versionner(0,2),'0-n-v2');
+assert.equal(versionner(2,2),'2-definis-v1');
+const ouvrir0 = new Function('localStorage','cleRun','lecons',
+  parcoursSource.slice(runStart,runEnd+1)+';return loadRun;'
+)(localStorage,()=> 'luxRunPrincipal',[l0]);
+const ancien0={leconId:0,uniteId:1,steps:[{type:'quiz',queue:[3001],scores:{},total:1}]};
+memory.set('luxRunPrincipal',JSON.stringify(ancien0));
+assert.equal(ouvrir0(false),null,'ancienne partie leçon 0 non reprenable');
+assert.deepEqual(JSON.parse(memory.get('luxRunPrincipal:archive82')),ancien0,'ancienne partie 0 archivée');
+const actuel0={leconId:0,uniteId:1,steps:[{type:'quiz',queue:[3201],scores:{},total:1}]};
+memory.set('luxRunPrincipal',JSON.stringify(actuel0));
+assert.deepEqual(ouvrir0(false),actuel0,'nouvelle partie audio reprenable');
+
+
 console.log('SPEC 79 : OK — 26 leçons, 20 audios LOD dans la leçon 0, UNIT2 définis, historique préservé.');
