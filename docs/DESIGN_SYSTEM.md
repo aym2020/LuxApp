@@ -6,6 +6,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 2.1 (accueil) | 2026-10-20 | Première étape de personnalisation : Moien en grand, architecture locale en SVG, CTA principal or et statistiques allégées. Voir docs/ACCUEIL-2.1.md |
 | 1.11 | 2026-10-19 | SPEC 57 : pression tactile uniforme des CTA (enfoncement CSS pendant l'appui, désactivés inertes, mouvement réduit) ; tokens de pression |
 | 1.10 | 2026-10-19 | Examens (passage, résultat, questions aléatoires) : `.pc-btn` pour la navigation, or uni partout (plus de dégradé or → ambre sur les boutons), score vert / rouge par classes (`examClasse`), étiquettes neutres, lettres de choix neutres, token `--couleur-bord-fort` |
 | 1.9 | 2026-10-19 | Spec 48 appliquée : grille commune des cartes du Chemin, surfaces neutres, libellés canoniques (Chemin, leçon, accueil, examens), cartes de sujets `.ex-carte`, score d'examen vert / rouge, `.pastille.a` ; `.lecon-card` supprimé |
