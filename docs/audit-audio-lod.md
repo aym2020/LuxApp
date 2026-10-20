@@ -8,12 +8,12 @@ Généré par `node tools/lod/audit-audio.js` (SPEC 70). Ne pas modifier à la m
 |---|---:|---:|
 | Éléments luxembourgeois des leçons (sans doublon par leçon) | 1980 | 100 % |
 | Audio direct du mot, **validé et disponible** | 653 | 33 % |
-| Phrase enregistrée à l'identique dans le LOD | 26 (dont 0 disponibles) | 1,3 % |
-| Audio contextuel relu et traduit | 65 (dont 0 disponibles) | 3,3 % |
+| Phrase enregistrée à l'identique dans le LOD | 26 (dont 24 disponibles) | 1,3 % |
+| Audio contextuel relu et traduit | 65 (dont 58 disponibles) | 3,3 % |
 | Candidats contextuels pas encore relus | 0 | 0 % |
 | Sans audio LOD (dont 8 propositions refusées à la relecture) | 1236 | 62,4 % |
 
-**Couverture actuelle (fichiers disponibles)** : 33 %
+**Couverture actuelle (fichiers disponibles)** : 37,1 %
 **Couverture après téléchargement des phrases identifiées** : 37,6 %
 
 Les phrases (exactes et contextuelles) viennent de `lod.lu`. Tant que ce site est inaccessible depuis l'environnement de Claude,
@@ -36,31 +36,31 @@ de niveau A1 ou A2) : **2 961 en A1** et **2 908 en A2**.
 
 | Leçon | Éléments | Direct | Phrase exacte | Contexte | Sans audio | Disponible | Après téléchargement |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| A1.1 · 1 Salutations et comment ça va | 70 | 11 | 3 | 3 | 53 | 15,7 % | 24,3 % |
-| A1.1 · 2 Identifier des objets – articles indéfinis | 119 | 67 | 0 | 1 | 51 | 56,3 % | 57,1 % |
+| A1.1 · 1 Salutations et comment ça va | 70 | 11 | 3 | 3 | 53 | 22,9 % | 24,3 % |
+| A1.1 · 2 Identifier des objets – articles indéfinis | 119 | 67 | 0 | 1 | 51 | 57,1 % | 57,1 % |
 | A1.1 · 3 Décrire des objets – les couleurs | 64 | 23 | 0 | 0 | 41 | 35,9 % | 35,9 % |
 | A1.1 · 4 Les contraires – adjectifs opposés | 85 | 45 | 0 | 0 | 40 | 52,9 % | 52,9 % |
 | A1.1 · 5 Les nombres et la façon de compter en luxembourgeois | 86 | 32 | 0 | 0 | 54 | 37,2 % | 37,2 % |
-| A1.1 · 6 Le pluriel des objets | 56 | 0 | 0 | 1 | 55 | 0 % | 1,8 % |
-| A1.1 · 7 Présenter des personnes – l'origine | 59 | 19 | 9 | 0 | 31 | 32,2 % | 47,5 % |
-| A1.1 · 8 Les nationalités | 107 | 42 | 0 | 4 | 61 | 39,3 % | 43 % |
-| A1.1 · 9 Les langues | 64 | 16 | 0 | 1 | 47 | 25 % | 26,6 % |
-| A1.1 · 10 L'habitation – où j'habite | 64 | 15 | 5 | 0 | 44 | 23,4 % | 31,3 % |
+| A1.1 · 6 Le pluriel des objets | 56 | 0 | 0 | 1 | 55 | 1,8 % | 1,8 % |
+| A1.1 · 7 Présenter des personnes – l'origine | 59 | 19 | 9 | 0 | 31 | 47,5 % | 47,5 % |
+| A1.1 · 8 Les nationalités | 107 | 42 | 0 | 4 | 61 | 43 % | 43 % |
+| A1.1 · 9 Les langues | 64 | 16 | 0 | 1 | 47 | 26,6 % | 26,6 % |
+| A1.1 · 10 L'habitation – où j'habite | 64 | 15 | 5 | 0 | 44 | 31,3 % | 31,3 % |
 | A1.1 · 11 Les métiers | 134 | 72 | 0 | 0 | 62 | 53,7 % | 53,7 % |
 | A1.1 · 12 Les lieux de travail | 100 | 57 | 0 | 0 | 43 | 57 % | 57 % |
 | A1.1 · 13 La situation familiale | 90 | 21 | 0 | 0 | 69 | 23,3 % | 23,3 % |
-| A1.1 · 14 L'âge et la date de naissance | 65 | 21 | 0 | 1 | 43 | 32,3 % | 33,8 % |
-| A1.1 · 15 Lire et dire l'heure | 80 | 19 | 4 | 6 | 51 | 23,8 % | 36,3 % |
-| A1.1 · 16 Le déroulement de la journée | 68 | 16 | 0 | 2 | 50 | 23,5 % | 26,5 % |
-| A1.1 · 17 Prendre un rendez-vous | 67 | 19 | 4 | 0 | 44 | 28,4 % | 34,3 % |
+| A1.1 · 14 L'âge et la date de naissance | 65 | 21 | 0 | 1 | 43 | 33,8 % | 33,8 % |
+| A1.1 · 15 Lire et dire l'heure | 80 | 19 | 4 | 6 | 51 | 36,3 % | 36,3 % |
+| A1.1 · 16 Le déroulement de la journée | 68 | 16 | 0 | 2 | 50 | 26,5 % | 26,5 % |
+| A1.1 · 17 Prendre un rendez-vous | 67 | 19 | 4 | 0 | 44 | 31,3 % | 34,3 % |
 | A1.2 · 20 Les prépositions de lieu – Wou ass de Ball ? | 37 | 14 | 0 | 0 | 23 | 37,8 % | 37,8 % |
-| A1.2 · 21 Les meubles et objets de la maison | 121 | 70 | 0 | 4 | 47 | 57,9 % | 61,2 % |
-| A1.2 · 22 Les loisirs et le week-end – aimer faire (gär) | 98 | 14 | 0 | 6 | 78 | 14,3 % | 20,4 % |
-| A1.2 · 23 Les membres de la famille et les possessifs | 93 | 27 | 0 | 7 | 59 | 29 % | 36,6 % |
-| A1.2 · 24 Le passé composé – hunn / sinn + participe passé | 94 | 4 | 0 | 10 | 80 | 4,3 % | 14,9 % |
-| A1.2 · 25 Faire ses courses au marché – quantités et paiement | 53 | 10 | 1 | 3 | 39 | 18,9 % | 26,4 % |
+| A1.2 · 21 Les meubles et objets de la maison | 121 | 70 | 0 | 4 | 47 | 60,3 % | 61,2 % |
+| A1.2 · 22 Les loisirs et le week-end – aimer faire (gär) | 98 | 14 | 0 | 6 | 78 | 19,4 % | 20,4 % |
+| A1.2 · 23 Les membres de la famille et les possessifs | 93 | 27 | 0 | 7 | 59 | 34,4 % | 36,6 % |
+| A1.2 · 24 Le passé composé – hunn / sinn + participe passé | 94 | 4 | 0 | 10 | 80 | 14,9 % | 14,9 % |
+| A1.2 · 25 Faire ses courses au marché – quantités et paiement | 53 | 10 | 1 | 3 | 39 | 26,4 % | 26,4 % |
 | A1.2 · 26 Lire une offre d'emploi – vrai ou faux | 55 | 19 | 0 | 0 | 36 | 34,5 % | 34,5 % |
-| A1.2 · 27 Être et avoir au présent – sinn et hunn | 51 | 0 | 0 | 16 | 35 | 0 % | 31,4 % |
+| A1.2 · 27 Être et avoir au présent – sinn et hunn | 51 | 0 | 0 | 16 | 35 | 27,5 % | 31,4 % |
 
 ## Détail
 
