@@ -125,8 +125,12 @@ function chargerSonsLod() {
   }, () => {});
 }
 // « de Stull », « Stull », « Moien! » → « stull », « moien »
+// SPEC 73 : une note entre parenthèses (« de Brudder (pl. d'Bridder) », « d'Meedchen (neutre) ») n'est pas prononcée.
+function sansParentheses(texte) {
+  return String(texte).replace(/\s*\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+}
 function cleSon(texte) {
-  let t = String(texte).replace(/<[^>]*>/g, '').replace(/[!?.,;:«»"]/g, ' ').replace(/’/g, "'").trim().toLowerCase();
+  let t = sansParentheses(String(texte).replace(/<[^>]*>/g, '')).replace(/[!?.,;:«»"]/g, ' ').replace(/’/g, "'").trim().toLowerCase();
   for (const article of ['den ', 'de ', 'déi ', 'dat ', 'en ', 'eng ', 'e ', "d'"]) {
     if (t.startsWith(article)) { t = t.slice(article.length); break; }
   }
@@ -143,7 +147,8 @@ const ICONE_ECOUTER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor
 const FICHIER_SON = /^[A-Za-z0-9/._-]+\.(mp3|m4a)$/;
 function boutonEcouterHtml(lu, compact) {
   if (!lu) return '';
-  const mot = escHtml(String(lu).replace(/<[^>]*>/g, ''));
+  // Nom accessible : seulement ce qui est prononcé (sans la note entre parenthèses).
+  const mot = escHtml(sansParentheses(String(lu).replace(/<[^>]*>/g, '')));
   const fichier = sonDuMot(lu);
   if (fichier && FICHIER_SON.test(fichier)) {
     return '<button type="button" class="bouton-ecouter' + (compact ? ' compact' : '') + '" ' +

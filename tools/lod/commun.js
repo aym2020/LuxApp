@@ -107,7 +107,8 @@ function contientExpression(index, texte, idExemple) {
 // Son direct tel que l'application le trouve (public/dialogue.js : sonDuMot) :
 // le texte exact, ou le mot sans article ni ponctuation s'il ne désigne qu'un seul son.
 function cleSon(texte) {
-  let t = String(texte).replace(/<[^>]*>/g, '').replace(/[!?.,;:«»"]/g, ' ').replace(/’/g, "'").trim().toLowerCase();
+  // Note entre parenthèses non prononcée (« de Brudder (pl. d'Bridder) ») : ignorée, comme dans public/dialogue.js.
+  let t = String(texte).replace(/<[^>]*>/g, '').replace(/\s*\([^)]*\)/g, ' ').replace(/[!?.,;:«»"]/g, ' ').replace(/’/g, "'").trim().toLowerCase();
   for (const article of ['den ', 'de ', 'déi ', 'dat ', 'en ', 'eng ', 'e ', "d'"]) {
     if (t.startsWith(article)) { t = t.slice(article.length); break; }
   }

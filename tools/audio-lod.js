@@ -39,12 +39,18 @@ const TABLE_PHRASES = path.join(RACINE, 'public/audio/lod-phrases.json');
 const CONTEXTES = path.join(__dirname, 'lod/contextes.json');
 const TABLE_CONTEXTE = path.join(RACINE, 'public/audio/lod-contexte.json');
 
-// Cartes « mot caché » et phrases (au moins deux mots) des leçons.
+// Cartes « mot caché », mots isolés du cours et phrases (au moins deux mots) des leçons.
+// Les mots du cours (vocabulaire, exemples) ne reçoivent un son que par la table vérifiée à la main
+// (tools/lod/correspondances.json, SPEC 73) : jamais par rapprochement automatique.
 function contenuLecons() {
   const cartes = [];
   const phrases = new Set();
   for (const l of lecons()) {
     for (const c of l.lecon.flashcards || []) cartes.push({ lu: c.lu, fr: c.fr });
+    for (const b of l.lecon.cours || []) {
+      if (b.type !== 'vocab' && b.type !== 'exemple') continue;
+      for (const [lu, fr] of b.items || []) if (motCarte(lu)) cartes.push({ lu, fr, manuelSeulement: true });
+    }
     for (const e of elementsLecon(l.lecon)) if (e.lu.split(/\s+/).length >= 2) phrases.add(e.lu);
   }
   return { cartes, phrases: [...phrases] };
@@ -92,6 +98,7 @@ function traiterMots(index, cartes, essai) {
   let nouveaux = 0;
   for (const c of cartes) {
     if (vus.has(c.lu)) continue;
+    if (c.manuelSeulement && !manuels[c.lu]) continue; // mot du cours non vérifié : pas de son
     vus.add(c.lu);
     const mot = motCarte(c.lu);
     let id = null;

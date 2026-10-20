@@ -7,14 +7,14 @@ Généré par `node tools/lod/audit-audio.js` (SPEC 70). Ne pas modifier à la m
 | | Éléments | Part |
 |---|---:|---:|
 | Éléments luxembourgeois des leçons (sans doublon par leçon) | 1980 | 100 % |
-| Audio direct du mot, **validé et disponible** | 653 | 33 % |
+| Audio direct du mot, **validé et disponible** | 665 | 33,6 % |
 | Phrase enregistrée à l'identique dans le LOD | 26 (dont 24 disponibles) | 1,3 % |
 | Audio contextuel relu et traduit | 65 (dont 58 disponibles) | 3,3 % |
 | Candidats contextuels pas encore relus | 0 | 0 % |
-| Sans audio LOD (dont 8 propositions refusées à la relecture) | 1236 | 62,4 % |
+| Sans audio LOD (dont 8 propositions refusées à la relecture) | 1224 | 61,8 % |
 
-**Couverture actuelle (fichiers disponibles)** : 37,1 %
-**Couverture après téléchargement des phrases identifiées** : 37,6 %
+**Couverture actuelle (fichiers disponibles)** : 37,7 %
+**Couverture après téléchargement des phrases identifiées** : 38,2 %
 
 Les phrases (exactes et contextuelles) viennent de `lod.lu`. Tant que ce site est inaccessible depuis l'environnement de Claude,
 elles sont identifiées mais pas téléchargées : l'existence réelle de chaque enregistrement est vérifiée au téléchargement.
@@ -23,9 +23,9 @@ elles sont identifiées mais pas téléchargées : l'existence réelle de chaque
 
 | Nature | Éléments | Avec audio (direct, exact ou contextuel) | Part |
 |---|---:|---:|---:|
-| Mot seul (avec ou sans article) | 623 | 508 | 81,5 % |
-| Expression (2 à 3 mots) | 580 | 216 | 37,2 % |
-| Phrase (4 mots ou plus) | 777 | 20 | 2,6 % |
+| Mot seul (avec ou sans article) | 623 | 514 | 82,5 % |
+| Expression (2 à 3 mots) | 580 | 220 | 37,9 % |
+| Phrase (4 mots ou plus) | 777 | 22 | 2,8 % |
 
 ### Réservoir pour les prochaines leçons
 
@@ -53,11 +53,11 @@ de niveau A1 ou A2) : **2 961 en A1** et **2 908 en A2**.
 | A1.1 · 15 Lire et dire l'heure | 80 | 19 | 4 | 6 | 51 | 36,3 % | 36,3 % |
 | A1.1 · 16 Le déroulement de la journée | 68 | 16 | 0 | 2 | 50 | 26,5 % | 26,5 % |
 | A1.1 · 17 Prendre un rendez-vous | 67 | 19 | 4 | 0 | 44 | 31,3 % | 34,3 % |
-| A1.2 · 20 Les prépositions de lieu – Wou ass de Ball ? | 37 | 14 | 0 | 0 | 23 | 37,8 % | 37,8 % |
+| A1.2 · 20 Les prépositions de lieu – Wou ass de Ball ? | 37 | 16 | 0 | 0 | 21 | 43,2 % | 43,2 % |
 | A1.2 · 21 Les meubles et objets de la maison | 121 | 70 | 0 | 4 | 47 | 60,3 % | 61,2 % |
 | A1.2 · 22 Les loisirs et le week-end – aimer faire (gär) | 98 | 14 | 0 | 6 | 78 | 19,4 % | 20,4 % |
-| A1.2 · 23 Les membres de la famille et les possessifs | 93 | 27 | 0 | 7 | 59 | 34,4 % | 36,6 % |
-| A1.2 · 24 Le passé composé – hunn / sinn + participe passé | 94 | 4 | 0 | 10 | 80 | 14,9 % | 14,9 % |
+| A1.2 · 23 Les membres de la famille et les possessifs | 93 | 36 | 0 | 7 | 50 | 44,1 % | 46,2 % |
+| A1.2 · 24 Le passé composé – hunn / sinn + participe passé | 94 | 5 | 0 | 10 | 79 | 16 % | 16 % |
 | A1.2 · 25 Faire ses courses au marché – quantités et paiement | 53 | 10 | 1 | 3 | 39 | 26,4 % | 26,4 % |
 | A1.2 · 26 Lire une offre d'emploi – vrai ou faux | 55 | 19 | 0 | 0 | 36 | 34,5 % | 34,5 % |
 | A1.2 · 27 Être et avoir au présent – sinn et hunn | 51 | 0 | 0 | 16 | 35 | 27,5 % | 31,4 % |
@@ -185,10 +185,10 @@ de niveau A1 ou A2) : **2 961 en A1** et **2 908 en A2**.
 
 ### A1.2 · Leçon 20 — D'Wiesselprepositiounen (Les prépositions de lieu – Wou ass de Ball ?)
 
-- **Audio direct (14)** : an, op, ënnert, iwwert, virun, hannert, Këscht, nieft, bei, tëschent, wou, Ball, eng Këscht, de Ball
+- **Audio direct (16)** : an, op, ënnert, iwwert, virun, hannert, Këscht, nieft, bei, tëschent, wou, Ball, eng Këscht, de Ball, un, widdert
 - **Phrases enregistrées à l'identique (0)** : —
 - **Audio contextuel relu (0)** : —
-- **Sans audio (23)** : zwou · Këschten · Wou ass de Ball? · De Ball ass an der Këscht. · An elo? Ass en op der Këscht? · De Ball ass ënnert der Këscht. · An elo? · De Ball ass op der Këscht. · De Ball ass hannert der Këscht. · De Ball ass virun der Këscht. · De Ball ass iwwert der Këscht. · Wou ass en elo? · De Ball ass nieft der Këscht. · An elo, wou ass de Ball? · De Ball ass tëschent zwou Këschten. · De Ball ass bei der Këscht. · Wou ass d'Këscht? · D'Këscht ass ënnert dem Dësch! · bei / niewent / nieft · un · tëschent / tëscht · widdert · An elo? Wou ass de Ball?
+- **Sans audio (21)** : zwou · Këschten · Wou ass de Ball? · De Ball ass an der Këscht. · An elo? Ass en op der Këscht? · De Ball ass ënnert der Këscht. · An elo? · De Ball ass op der Këscht. · De Ball ass hannert der Këscht. · De Ball ass virun der Këscht. · De Ball ass iwwert der Këscht. · Wou ass en elo? · De Ball ass nieft der Këscht. · An elo, wou ass de Ball? · De Ball ass tëschent zwou Këschten. · De Ball ass bei der Këscht. · Wou ass d'Këscht? · D'Këscht ass ënnert dem Dësch! · bei / niewent / nieft · tëschent / tëscht · An elo? Wou ass de Ball?
 
 ### A1.2 · Leçon 21 — An der Wunneng (Les meubles et objets de la maison)
 
@@ -206,17 +206,17 @@ de niveau A1 ou A2) : **2 961 en A1** et **2 908 en A2**.
 
 ### A1.2 · Leçon 23 — Familljememberen a Possessiv (Les membres de la famille et les possessifs)
 
-- **Audio direct (27)** : de Papp, d'Mamm, de Brudder, d'Schwëster, de Jong, d'Duechter, d'Meedchen, de Mann, de Monni, d'Tatta, de Grousspapp, d'Groussmamm, Pätter, Enkelkand, d'Fra, de Cousin, d'Cousine, den Neveu, d'Niess, den Enkel, d'Enkelin, de Schwoer, d'Schwéiesch, den Eedem, d'Schnauer, de Pätter, d'Enkelkand
+- **Audio direct (36)** : de Papp, d'Mamm, de Brudder, d'Schwëster, de Jong, d'Duechter, d'Meedchen, de Mann, de Monni, d'Tatta, de Grousspapp, d'Groussmamm, Pätter, Enkelkand, d'Fra, de Cousin, d'Cousine, den Neveu, d'Niess, den Enkel, d'Enkelin, de Schwoer, d'Schwéiesch, den Eedem, d'Schnauer, de Pätter, d'Enkelkand, d'Elteren, d'Grousselteren, de Brudder (pl. d'Bridder), d'Geschwëster, d'Meedchen (neutre), de Grousspapp (fam. de Bopa/Bopi), d'Groussmamm (fam. d'Boma/Bomi), d'Niess (pl. d'Niessen), d'Enkelkand (neutre)
 - **Phrases enregistrées à l'identique (0)** : —
 - **Audio contextuel relu (7)** : mäi Papp → « Mäi Papp huet dräi Geschwëster » · meng Mamm → « Meng Mamm baakt all Sonndeg » · mäi Brudder → « Mäi Brudder ass Kommissär bei der Police » · deng Schwëster → « Deng Schwëster ass e couragéiert Framënsch! » · menger Mamm → « Menger Mamm geet et gutt, an denger? » · mengen Elteren → « Ech hunn eng gutt Relatioun mat mengen Elteren » · säi Meedchen → « De Papp suergt gutt fir säi Meedchen »
-- **Sans audio (59)** : säi Brudder · seng Schwëster · hire Mann · hir Mamm · mengem Papp · hire Schwoer · hire Jong · menger Mamm hire Schwoer · mengen Elteren hire Jong · Hues du Geschwëster? · Ech hunn e Brudder an eng Schwëster. · An eng Duechter? · Ech hunn eng Duechter. · Wien ass dat op der Foto? · Dat ass de Monni an dat ass d'Tatta. · Wéi heescht däi Papp? · Mäi Papp heescht Marc. · A wou wunnt deng Mamm? · Meng Mamm wunnt zu Esch. · Heescht däi Brudder Paul? · Jo, mäi Brudder heescht Paul. · Ech hunn och eng Schwëster. · Wou wunnt deng Schwëster? · Meng Schwëster wunnt zu Metz. · A wien ass d'Susy? · D'Susy ass mengem Papp seng Schwëster. · An den Hilaire? · Den Hilaire ass menger Mamm hire Schwoer. · An de Max? · De Max ass der Tatta Susy hire Jong. · d'Elteren · d'Grousselteren · Säi Brudder schafft zu Lëtzebuerg. · Hir Mamm ass léif. · Dem Christian seng Schwëster heescht Anne. · d'Enkelkanner · d'Niessen · mengem Papp seng Schwëster · menger Mamm hir Schwéiesch · Mäi Monni ass och mäi Pätter. · Ech sinn hiren Neveu. · Ech si mengen Elteren hire Jong. · Meng Grousselteren hu sechs Enkelkanner. · menger Mamm hire Brudder · de Brudder (pl. d'Bridder) · d'Geschwëster · de Jong / de Bouf · d'Meedchen (neutre) · d'Kanner · de Grousspapp (fam. de Bopa/Bopi) · d'Groussmamm (fam. d'Boma/Bomi) · d'Niess (pl. d'Niessen) · d'Enkelkand (neutre) · Wéi vill Leit sidd der an der Famill? · Mir sinn zu fënnef: meng Elteren, meng zwou Schwësteren an ech. · Huet däi Brudder Kanner? · Jo, säi Jong heescht Liam a seng Duechter heescht Mia. · A wien ass dat? · Dat ass meng Tatta. Hire Mann, mäi Monni, schafft zu Lëtzebuerg.
+- **Sans audio (50)** : säi Brudder · seng Schwëster · hire Mann · hir Mamm · mengem Papp · hire Schwoer · hire Jong · menger Mamm hire Schwoer · mengen Elteren hire Jong · Hues du Geschwëster? · Ech hunn e Brudder an eng Schwëster. · An eng Duechter? · Ech hunn eng Duechter. · Wien ass dat op der Foto? · Dat ass de Monni an dat ass d'Tatta. · Wéi heescht däi Papp? · Mäi Papp heescht Marc. · A wou wunnt deng Mamm? · Meng Mamm wunnt zu Esch. · Heescht däi Brudder Paul? · Jo, mäi Brudder heescht Paul. · Ech hunn och eng Schwëster. · Wou wunnt deng Schwëster? · Meng Schwëster wunnt zu Metz. · A wien ass d'Susy? · D'Susy ass mengem Papp seng Schwëster. · An den Hilaire? · Den Hilaire ass menger Mamm hire Schwoer. · An de Max? · De Max ass der Tatta Susy hire Jong. · Säi Brudder schafft zu Lëtzebuerg. · Hir Mamm ass léif. · Dem Christian seng Schwëster heescht Anne. · d'Enkelkanner · d'Niessen · mengem Papp seng Schwëster · menger Mamm hir Schwéiesch · Mäi Monni ass och mäi Pätter. · Ech sinn hiren Neveu. · Ech si mengen Elteren hire Jong. · Meng Grousselteren hu sechs Enkelkanner. · menger Mamm hire Brudder · de Jong / de Bouf · d'Kanner · Wéi vill Leit sidd der an der Famill? · Mir sinn zu fënnef: meng Elteren, meng zwou Schwësteren an ech. · Huet däi Brudder Kanner? · Jo, säi Jong heescht Liam a seng Duechter heescht Mia. · A wien ass dat? · Dat ass meng Tatta. Hire Mann, mäi Monni, schafft zu Lëtzebuerg.
 
 ### A1.2 · Leçon 24 — D'Vergaangenheet (Le passé composé – hunn / sinn + participe passé)
 
-- **Audio direct (4)** : gëschter, de Moien, doheem, krank
+- **Audio direct (5)** : gëschter, de Moien, doheem, krank, d'Reunioun
 - **Phrases enregistrées à l'identique (0)** : —
 - **Audio contextuel relu (10)** : ech war → « Ech war an e Concert vum Symphonieorchester » · ech hat → « Ech hat scho laang net méi fräi » · gëschter Owend → « Gëschter Owend hu mer flott gedanzt » · d'lescht Woch → « Eis Kaz krut d'lescht Woch véier Jonger » · mir waren → « Mir waren an d'Stad d'Fënstere kucken » · mir haten → « Mir haten e richteg relaxe Weekend » · ech hu geschlof → « Ech hu geschlof ewéi eng Rat! » · mam Auto → « Ech kommen haut mam Auto op d'Aarbecht » · an d'Stad → « Den Zuch fiert bis an d'Stad » · an de Kino → « Gees du och mat an de Kino? »
-- **Sans audio (80)** : gefuer · gaangen · heemgaangen · erausgaangen · erwächt · opgestanen · gelaf · gefall · getrëppelt · giess · gedronk · geschafft · geschlof · geschriwwen · gemaach · geduscht · telefonéiert · gewunnt · gekuckt · de leschte Weekend · ech si gefuer · ech si gaangen · ech sinn heemgaangen · ech sinn erausgaangen · ech si getrëppelt · ech si gelaf · ech si gefall · ech sinn erwächt · ech sinn opgestanen · ech hu giess · ech hu gedronk · ech hu geschafft · ech hu gewunnt · ech hu gekuckt · ech hu geschriwwen · ech hu gemaach · ech hu geduscht · ech hunn telefonéiert · ech hu gespillt · ech hu gekacht · ech hu gelies · ech hu gelauschtert · Wou waars du gëschter? · Wat hues du gëschter gemaach? · Ech si mam Auto an d'Stad gefuer. · Bass du fréi opgestanen? · Jo, ech sinn opgestanen. · Bass du owes nach erausgaangen? · Mir sinn an de Kino gaangen. · A wat hues du gedronk? · Ech hunn de Moien e Kaffi gedronk. · Hues du och geschafft? · Jo, ech hu geschafft. · Hues du mëttes giess? · Jo, ech hu giess. · An owes? · Ech hu gëschter Owend d'Tëlee gekuckt. · Wou waars du owes? · Ech war doheem. · War et e gudden Dag? · Jo, ech hat e gudden Dag. · Ech hu geschafft an ech war doheem. · Wat hutt Dir de leschte Weekend gemaach? · Gëschter hunn ech geschafft. · Ech hunn net geschafft. · Si huet am Restaurant giess. · Hien ass um sechs Auer heemgaangen. · Hues du gutt geschlof? · Ech si schlofe gaangen. · Gëschter war ech krank. · Ech hat vill Aarbecht. · gëschter Moien · gëschter Nomëtteg · d'Reunioun · Moien Tom! Wat hues du gëschter gemaach? · Ech hu geschafft an owes sinn ech an de Kino gaangen. · A wat hues du de leschte Weekend gemaach? · Ech war doheem. Ech hu gekacht an e Buch gelies. · An du? Wou waars du gëschter Owend? · Ech war am Restaurant. Mir hu gutt giess.
+- **Sans audio (79)** : gefuer · gaangen · heemgaangen · erausgaangen · erwächt · opgestanen · gelaf · gefall · getrëppelt · giess · gedronk · geschafft · geschlof · geschriwwen · gemaach · geduscht · telefonéiert · gewunnt · gekuckt · de leschte Weekend · ech si gefuer · ech si gaangen · ech sinn heemgaangen · ech sinn erausgaangen · ech si getrëppelt · ech si gelaf · ech si gefall · ech sinn erwächt · ech sinn opgestanen · ech hu giess · ech hu gedronk · ech hu geschafft · ech hu gewunnt · ech hu gekuckt · ech hu geschriwwen · ech hu gemaach · ech hu geduscht · ech hunn telefonéiert · ech hu gespillt · ech hu gekacht · ech hu gelies · ech hu gelauschtert · Wou waars du gëschter? · Wat hues du gëschter gemaach? · Ech si mam Auto an d'Stad gefuer. · Bass du fréi opgestanen? · Jo, ech sinn opgestanen. · Bass du owes nach erausgaangen? · Mir sinn an de Kino gaangen. · A wat hues du gedronk? · Ech hunn de Moien e Kaffi gedronk. · Hues du och geschafft? · Jo, ech hu geschafft. · Hues du mëttes giess? · Jo, ech hu giess. · An owes? · Ech hu gëschter Owend d'Tëlee gekuckt. · Wou waars du owes? · Ech war doheem. · War et e gudden Dag? · Jo, ech hat e gudden Dag. · Ech hu geschafft an ech war doheem. · Wat hutt Dir de leschte Weekend gemaach? · Gëschter hunn ech geschafft. · Ech hunn net geschafft. · Si huet am Restaurant giess. · Hien ass um sechs Auer heemgaangen. · Hues du gutt geschlof? · Ech si schlofe gaangen. · Gëschter war ech krank. · Ech hat vill Aarbecht. · gëschter Moien · gëschter Nomëtteg · Moien Tom! Wat hues du gëschter gemaach? · Ech hu geschafft an owes sinn ech an de Kino gaangen. · A wat hues du de leschte Weekend gemaach? · Ech war doheem. Ech hu gekacht an e Buch gelies. · An du? Wou waars du gëschter Owend? · Ech war am Restaurant. Mir hu gutt giess.
 
 ### A1.2 · Leçon 25 — Um Maart (Faire ses courses au marché – quantités et paiement)
 

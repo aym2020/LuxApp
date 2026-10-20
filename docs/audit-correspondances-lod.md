@@ -18,14 +18,14 @@ Seuls les fichiers réellement présents (miroir ou téléchargés) comptent com
 
 ## Synthèse
 
-183 mots isolés des leçons (cartes, vocabulaire et exemples du cours, cellules luxembourgeoises des tableaux) n'ont pas de son aujourd'hui.
+171 mots isolés des leçons (cartes, vocabulaire et exemples du cours, cellules luxembourgeoises des tableaux) n'ont pas de son aujourd'hui.
 
 ### Sons exacts (la forme affichée elle-même)
 
 | | Nombre |
 |---|---:|
-| **Sûrs** : lemme identique, graphie contrôlée, sens lu dans la traduction LuxApp, aucun homographe, MP3 présent | **10** |
-| **À valider** : MP3 présent, mais homographe, variante, sens non vérifiable (tableau) ou déduit | 42 |
+| **Sûrs** : lemme identique, graphie contrôlée, sens lu dans la traduction LuxApp, aucun homographe, MP3 présent | **0** |
+| **À valider** : MP3 présent, mais homographe, variante, sens non vérifiable (tableau) ou déduit | 40 |
 | Lemme identique sans fichier disponible | 1 |
 
 ### Sans son exact
@@ -50,7 +50,7 @@ Seuls les fichiers réellement présents (miroir ou téléchargés) comptent com
 
 ### Gain estimé
 
-- Sons exacts : **+10 sûrs**, jusqu'à +52 après relecture des 42 cas à valider.
+- Sons exacts : **+0 sûrs**, jusqu'à +40 après relecture des 40 cas à valider.
 - Audio contextuel : jusqu'à +74 après relecture (≈ +67 si 1 enregistrement d'exemple sur 10 manque, comme lors de la SPEC 72).
 - Graphies : les corrections validées donneraient un son exact supplémentaire par mot corrigé (voir la section dédiée).
 
@@ -72,19 +72,19 @@ Seuls les fichiers réellement présents (miroir ou téléchargés) comptent com
 | A1.1 L14 | 13 | 0 | 0 | 6 | 0 | 7 |
 | A1.1 L15 | 2 | 0 | 0 | 2 | 0 | 0 |
 | A1.1 L16 | 1 | 0 | 1 | 0 | 0 | 0 |
-| A1.2 L20 | 4 | 0 | 2 | 2 | 0 | 0 |
+| A1.2 L20 | 2 | 0 | 0 | 2 | 0 | 0 |
 | A1.2 L21 | 8 | 0 | 0 | 6 | 2 | 0 |
 | A1.2 L22 | 22 | 0 | 9 | 8 | 0 | 5 |
-| A1.2 L23 | 24 | 9 | 6 | 7 | 0 | 2 |
-| A1.2 L24 | 50 | 1 | 18 | 22 | 0 | 9 |
+| A1.2 L23 | 15 | 0 | 6 | 7 | 0 | 2 |
+| A1.2 L24 | 49 | 0 | 18 | 22 | 0 | 9 |
 | A1.2 L25 | 9 | 0 | 4 | 3 | 0 | 2 |
 | A1.2 L26 | 8 | 0 | 1 | 3 | 0 | 4 |
 | A1.2 L27 | 15 | 0 | 8 | 6 | 0 | 1 |
 
 ## Catalogue existant
 
-- **442 mots** avec son direct (`public/audio/lod.json`) : 442 contrôlés, lemme LOD identique au mot affiché ; aucune incohérence.
-- Les 442 associations sont conservées telles quelles pendant cette phase.
+- **448 mots** avec son direct (`public/audio/lod.json`) : 448 contrôlés, lemme LOD identique au mot affiché ; aucune incohérence.
+- Les 448 associations sont conservées telles quelles pendant cette phase.
 
 ## Expressions de plusieurs mots (analyse séparée)
 
@@ -94,22 +94,13 @@ Les 4 refus « sens différent » du rapport précédent (Dat sinn (ce sont) ; S
 
 ---
 
-## 1. Sons exacts sûrs (10)
+## 1. Sons exacts sûrs (0)
 
 | Texte LuxApp | Traduction | Leçons · sections | Entrée LOD | Graphie | Fichier |
 |---|---|---|---|---|---|
-| d'Elteren | les parents | A1.2 L23 · cours | Elteren (`ELTEREN1`, SUBST) | contrôlée | ELTEREN1.mp3 |
-| de Brudder (pl. d'Bridder) | le frère | A1.2 L23 · cours | Brudder (`BRUDDER1`, SUBST) | contrôlée | BRUDDER1.mp3 (déjà dans le dépôt) |
-| d'Geschwëster | les frères et sœurs | A1.2 L23 · cours | Geschwëster (`GESCHWESTER1`, SUBST) | contrôlée | GESCHWESTER1.mp3 |
-| d'Meedchen (neutre) | la (jeune) fille | A1.2 L23 · cours | Meedchen (`MEEDCHEN1`, SUBST) | contrôlée | MEEDCHEN1.mp3 (déjà dans le dépôt) |
-| de Grousspapp (fam. de Bopa/Bopi) | le grand-père | A1.2 L23 · cours | Grousspapp (`GROUSSPAPP1`, SUBST) | contrôlée | GROUSSPAPP1.mp3 (déjà dans le dépôt) |
-| d'Groussmamm (fam. d'Boma/Bomi) | la grand-mère | A1.2 L23 · cours | Groussmamm (`GROUSSMAMM1`, SUBST) | contrôlée | GROUSSMAMM1.mp3 (déjà dans le dépôt) |
-| d'Grousselteren | les grands-parents | A1.2 L23 · cours | Grousselteren (`GROUSSELTEREN1`, SUBST) | contrôlée | GROUSSELTEREN1.mp3 |
-| d'Niess (pl. d'Niessen) | la nièce | A1.2 L23 · cours | Niess (`NIESS1`, SUBST) | contrôlée | NIESS1.mp3 (déjà dans le dépôt) |
-| d'Enkelkand (neutre) | le petit-enfant | A1.2 L23 · cours | Enkelkand (`ENKELKAND1`, SUBST) | contrôlée | ENKELKAND1.mp3 (déjà dans le dépôt) |
-| d'Reunioun | la réunion | A1.2 L24 · cours | Reunioun (`REUNIOUN1`, SUBST) | contrôlée | REUNIOUN1.mp3 |
 
-## 2. Sons exacts à valider (42)
+
+## 2. Sons exacts à valider (40)
 
 | Texte LuxApp | Traduction | Leçons · sections | Entrée LOD | Pourquoi relire |
 |---|---|---|---|---|
@@ -123,8 +114,6 @@ Les 4 refus « sens différent » du rapport précédent (Dat sinn (ce sont) ; S
 | eng Posch | — | A1.1 L6 · tableau | Posch (`POSCH1`, SUBST) | sens non vérifiable (cellule de tableau sans traduction) |
 | eng Mauer | — | A1.1 L6 · tableau | Mauer (`MAUER1`, SUBST) | sens non vérifiable (cellule de tableau sans traduction) |
 | iessen | — | A1.1 L16, A1.2 L24 · tableau | iessen (`IESSEN3`, VRB) | sens non vérifiable (cellule de tableau sans traduction) ; homographes : IESSEN1 |
-| un | à / contre (en contact avec) | A1.2 L20 · cours | un (`UN1`, PREP) | homographes : UN2 |
-| widdert | contre (appuyé contre) | A1.2 L20 · cours | widdert (`WIDDERT1`, PREP) | variante de « widder » |
 | ech | — | A1.2 L22, A1.2 L24, A1.2 L27 · tableau | ech (`ECH1`, PRON) | sens non vérifiable (cellule de tableau sans traduction) |
 | maachen | — | A1.2 L22, A1.2 L24 · tableau | maachen (`MAACHEN1`, VRB) | sens non vérifiable (cellule de tableau sans traduction) |
 | spillen | — | A1.2 L22, A1.2 L24 · tableau | spillen (`SPILLEN1`, VRB) | sens non vérifiable (cellule de tableau sans traduction) |
@@ -160,7 +149,7 @@ Les 4 refus « sens différent » du rapport précédent (Dat sinn (ce sont) ; S
 
 | Texte LuxApp | Entrée LOD | Fichier |
 |---|---|---|
-| ganzdaags | ganzdaags (`GANZDAAGS1`, ADV) | absent du miroir (404) ; enregistrement annoncé par l'index de recherche (audio="true") : à récupérer sur lod.lu |
+| ganzdaags | ganzdaags (`GANZDAAGS1`, ADV) | absent du miroir (404) |
 
 ## 3. Formes fléchies : pas de son exact, audio contextuel possible (90)
 

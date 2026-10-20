@@ -1,6 +1,8 @@
 // SPEC 73 — Phase A : audit des mots isolés sans son et des « faux absents » du LOD.
 //
-//   node tools/lod/audit-correspondances.js --articles new_lod-art.xml --tables new_lod-tab.xml [--recherche new_lod-search.xml] [--hors-ligne]
+//   node tools/lod/audit-correspondances.js                       → index compact versionné (tools/lod/lod-formes.json.gz)
+//   node tools/lod/audit-correspondances.js --articles new_lod-art.xml --tables new_lod-tab.xml --recherche new_lod-search.xml
+//   option --hors-ligne : aucune requête vers le miroir MP3 (sons « non vérifiés »)
 //
 // Lit les exports officiels LOD (non versionnés) et écrit, sans rien modifier d'autre :
 //   docs/audit-correspondances-lod.md    rapport lisible
@@ -151,6 +153,22 @@ function lireRecherche(fichier) {
     }
   }
   return { graphies, entrees };
+}
+
+// Index compact versionné (tools/lod/construire-formes.js) : mêmes structures que la lecture des exports XML.
+const FORMES = path.join(__dirname, 'lod-formes.json.gz');
+function chargerFormes(fichier) {
+  const d = JSON.parse(require('zlib').gunzipSync(fs.readFileSync(fichier || FORMES)));
+  const entrees = {};
+  for (const [id, lemme, categorie, ipa, fr, formes, varianteDe, niveau, exemples] of d.entrees) {
+    entrees[id] = { id, lemme, categorie, ipa, fr, formes: formes.map(([forme, type]) => ({ forme, type })), varianteDe: varianteDe || undefined,
+      niveau, locutions: [], exemples: exemples.map(([xid, f]) => ({ id: xid, formes: f })) };
+  }
+  const tables = {};
+  for (const [id, l] of Object.entries(d.tables)) tables[id] = l.map(([forme, type]) => ({ forme, type }));
+  const graphies = {};
+  for (const [graphie, id, statut] of d.graphies) (graphies[norm(graphie)] = graphies[norm(graphie)] || []).push({ id, graphie, statut });
+  return { entrees, tables, recherche: { graphies, entrees: {} }, source: d.source };
 }
 
 function indexFormes(entrees, tables, recherche) {
@@ -423,9 +441,7 @@ function classer(it, ctx) {
     const homographes = Object.values(entrees).filter(x => norm(x.lemme) === norm(c.lemme) && x.id !== c.id).map(x => x.id);
     if (c.type === 'lemme' && r.correspondance === 'LEMME_EXACT') {
       r.son = miroir(c.id, opts.horsLigne);
-      if (r.son !== 'disponible' && recherche && recherche.entrees[c.id] && recherche.entrees[c.id].audio === 'true') {
-        r.son += ' ; enregistrement annoncé par l\'index de recherche (audio="true") : à récupérer sur lod.lu';
-      }
+      // audio="true" figure sur toutes les entrées de l'index de recherche : ce n'est pas une preuve de fichier.
       r.audio = r.son === 'disponible' ? 'SON_EXACT_DISPONIBLE' : 'AUDIO_INDISPONIBLE';
       r.local = fs.existsSync(path.join(RACINE, 'public/audio/lod', c.id + '.mp3'));
       // Confiance : « sûr » seulement si rien n'est à interpréter.
@@ -463,9 +479,11 @@ function classer(it, ctx) {
 }
 
 function auditer(opts) {
-  const entrees = lireArticles(opts.articles);
-  const tables = lireTables(opts.tables);
-  const recherche = lireRecherche(opts.recherche);
+  // Exports XML si fournis, sinon l'index compact versionné (aucun fichier externe nécessaire).
+  const compact = opts.articles ? null : chargerFormes(opts.formes);
+  const entrees = compact ? compact.entrees : lireArticles(opts.articles);
+  const tables = compact ? compact.tables : lireTables(opts.tables);
+  const recherche = compact ? compact.recherche : lireRecherche(opts.recherche);
   const formes = indexFormes(entrees, tables, recherche);
   const lodIndex = lireIndex();
   const sons = JSON.parse(fs.readFileSync(path.join(RACINE, 'public/audio/lod.json'), 'utf8'));
@@ -631,12 +649,12 @@ ${table(['Texte LuxApp', 'Traduction', 'Leçons · sections', 'Constat'], absent
   return nb;
 }
 
-module.exports = { lireArticles, lireTables, lireRecherche, statutGraphie, indexFormes, elementsIsoles, sensCorrespond, norm, classer, auditer, ecrire };
+module.exports = { chargerFormes, lireArticles, lireTables, lireRecherche, statutGraphie, indexFormes, elementsIsoles, sensCorrespond, norm, classer, auditer, ecrire };
 
 if (require.main === module) {
   const opts = { articles: arg('articles'), tables: arg('tables'), recherche: arg('recherche'), horsLigne: process.argv.includes('--hors-ligne') };
-  if (!opts.articles || !opts.tables) {
-    console.error('Usage : node tools/lod/audit-correspondances.js --articles new_lod-art.xml --tables new_lod-tab.xml [--recherche fichier] [--hors-ligne]');
+  if (opts.articles && !opts.tables) {
+    console.error('Usage : node tools/lod/audit-correspondances.js [--articles new_lod-art.xml --tables new_lod-tab.xml --recherche new_lod-search.xml] [--hors-ligne]');
     process.exit(1);
   }
   const resultat = auditer(opts);
@@ -645,7 +663,7 @@ if (require.main === module) {
   const bloc = titre => { const i = essai.indexOf(titre); if (i < 0) return []; const fin = essai.indexOf('\n\n', i + titre.length + 5);
     return essai.slice(i, fin < 0 ? undefined : fin).split('\n').filter(x => x.startsWith('  - ')).map(x => x.slice(4)); };
   const sons = JSON.parse(fs.readFileSync(path.join(RACINE, 'public/audio/lod.json'), 'utf8'));
-  const entrees = lireArticles(opts.articles);
+  const entrees = opts.articles ? lireArticles(opts.articles) : chargerFormes().entrees;
   const incoherents = Object.entries(sons).filter(([lu, f]) => { const e = entrees[f.replace(/^lod\/|\.mp3$/g, '')]; return !e || norm(e.lemme) !== norm(motCarte(lu) || ''); });
   const nbPlusieurs = bloc('Mots — expression de plusieurs mots').length;
   const ctx = JSON.parse(fs.readFileSync(path.join(RACINE, 'public/audio/lod-contexte.json'), 'utf8'));

@@ -6,14 +6,14 @@
   "miroir": "2020-12-18"
  },
  "chiffres": {
-  "total": 183,
-  "lemme": 53,
+  "total": 171,
+  "lemme": 41,
   "flechie": 90,
   "graphie": 10,
   "ambigu": 15,
   "absent": 15,
-  "sonSur": 10,
-  "sonAValider": 42,
+  "sonSur": 0,
+  "sonAValider": 40,
   "sonSansFichier": 1,
   "sansSon": 90,
   "contexte": 74,
@@ -2796,103 +2796,6 @@
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
-   "lu": "un",
-   "fr": "à / contre (en contact avec)",
-   "forme": "un",
-   "lecons": [
-    "A1.2 L20"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "UN1",
-     "lemme": "un",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "PREP",
-     "sens_lod": "sur, à, contre, à",
-     "sens_correspond": true
-    },
-    {
-     "id": "UN2",
-     "lemme": "un",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "ADV",
-     "sens_lod": "être allumé, être en marche, être allumé, brûler",
-     "sens_correspond": false
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "UN1",
-   "lemme": "un",
-   "type": "lemme",
-   "categorie": "PREP",
-   "sens": "sur, à, contre, à",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Relire puis associer UN1.mp3",
-   "justification": "Lemme identique, sens « sur, à, contre, à » ; à valider : homographes : UN2.",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": false,
-   "confiance": "à valider",
-   "raisons": [
-    "homographes : UN2"
-   ]
-  },
-  {
-   "lu": "widdert",
-   "fr": "contre (appuyé contre)",
-   "forme": "widdert",
-   "lecons": [
-    "A1.2 L20"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "WIDDERT1",
-     "lemme": "widdert",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "PREP",
-     "sens_lod": "contre",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "WIDDERT1",
-   "lemme": "widdert",
-   "type": "lemme",
-   "categorie": "PREP",
-   "sens": "contre",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Relire puis associer WIDDERT1.mp3",
-   "justification": "Lemme identique (variante de « widder »), sens « contre » ; à valider : variante de « widder ».",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": false,
-   "confiance": "à valider",
-   "raisons": [
-    "variante de « widder »"
-   ]
-  },
-  {
    "lu": "Kommod",
    "fr": "une commode",
    "forme": "kommod",
@@ -4470,174 +4373,6 @@
    "statut_graphie": "contrôlée"
   },
   {
-   "lu": "d'Elteren",
-   "fr": "les parents",
-   "forme": "elteren",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "ELTEREN1",
-     "lemme": "Elteren",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "parents",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "ELTEREN1",
-   "lemme": "Elteren",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "parents",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer ELTEREN1.mp3",
-   "justification": "Lemme identique, sens « parents ».",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": false,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
-   "lu": "de Brudder (pl. d'Bridder)",
-   "fr": "le frère",
-   "forme": "brudder",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "BRUDDER1",
-     "lemme": "Brudder",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "frère, frère, type",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "BRUDDER1",
-   "lemme": "Brudder",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "frère, frère, type",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer BRUDDER1.mp3",
-   "justification": "Lemme identique, sens « frère, frère, type » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": true,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
-   "lu": "d'Geschwëster",
-   "fr": "les frères et sœurs",
-   "forme": "geschwëster",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "GESCHWESTER1",
-     "lemme": "Geschwëster",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "frères et sœurs",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "GESCHWESTER1",
-   "lemme": "Geschwëster",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "frères et sœurs",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer GESCHWESTER1.mp3",
-   "justification": "Lemme identique, sens « frères et sœurs ».",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": false,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
-   "lu": "d'Meedchen (neutre)",
-   "fr": "la (jeune) fille",
-   "forme": "meedchen",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "MEEDCHEN1",
-     "lemme": "Meedchen",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "fille, fille, filles (légères)",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "MEEDCHEN1",
-   "lemme": "Meedchen",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "fille, fille, filles (légères)",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer MEEDCHEN1.mp3",
-   "justification": "Lemme identique, sens « fille, fille, filles (légères) » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": true,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
    "lu": "d'Kanner",
    "fr": "les enfants",
    "forme": "kanner",
@@ -4698,216 +4433,6 @@
    ],
    "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
-  },
-  {
-   "lu": "de Grousspapp (fam. de Bopa/Bopi)",
-   "fr": "le grand-père",
-   "forme": "grousspapp",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "GROUSSPAPP1",
-     "lemme": "Grousspapp",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "grand-père",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "GROUSSPAPP1",
-   "lemme": "Grousspapp",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "grand-père",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer GROUSSPAPP1.mp3",
-   "justification": "Lemme identique, sens « grand-père » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": true,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
-   "lu": "d'Groussmamm (fam. d'Boma/Bomi)",
-   "fr": "la grand-mère",
-   "forme": "groussmamm",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "GROUSSMAMM1",
-     "lemme": "Groussmamm",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "grand-mère",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "GROUSSMAMM1",
-   "lemme": "Groussmamm",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "grand-mère",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer GROUSSMAMM1.mp3",
-   "justification": "Lemme identique, sens « grand-mère » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": true,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
-   "lu": "d'Grousselteren",
-   "fr": "les grands-parents",
-   "forme": "grousselteren",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "GROUSSELTEREN1",
-     "lemme": "Grousselteren",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "grands-parents",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "GROUSSELTEREN1",
-   "lemme": "Grousselteren",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "grands-parents",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer GROUSSELTEREN1.mp3",
-   "justification": "Lemme identique, sens « grands-parents ».",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": false,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
-   "lu": "d'Niess (pl. d'Niessen)",
-   "fr": "la nièce",
-   "forme": "niess",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "NIESS1",
-     "lemme": "Niess",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "nièce",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "NIESS1",
-   "lemme": "Niess",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "nièce",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer NIESS1.mp3",
-   "justification": "Lemme identique, sens « nièce » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": true,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
-   "lu": "d'Enkelkand (neutre)",
-   "fr": "le petit-enfant",
-   "forme": "enkelkand",
-   "lecons": [
-    "A1.2 L23"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "ENKELKAND1",
-     "lemme": "Enkelkand",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "petit-fils, petite-fille, petit-enfant",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "ENKELKAND1",
-   "lemme": "Enkelkand",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "petit-fils, petite-fille, petit-enfant",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer ENKELKAND1.mp3",
-   "justification": "Lemme identique, sens « petit-fils, petite-fille, petit-enfant » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": true,
-   "confiance": "sûr",
-   "raisons": []
   },
   {
    "lu": "d'Enkelkanner",
@@ -7717,48 +7242,6 @@
    "justification": "Pas de traduction dans le tableau pour départager 3 entrées."
   },
   {
-   "lu": "d'Reunioun",
-   "fr": "la réunion",
-   "forme": "reunioun",
-   "lecons": [
-    "A1.2 L24"
-   ],
-   "sections": [
-    "cours"
-   ],
-   "candidats": [
-    {
-     "id": "REUNIOUN1",
-     "lemme": "Reunioun",
-     "type": "lemme",
-     "source": "articles",
-     "categorie": "SUBST",
-     "sens_lod": "réunion",
-     "sens_correspond": true
-    }
-   ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "REUNIOUN1",
-   "lemme": "Reunioun",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "réunion",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "contrôlée (index de recherche)",
-   "son": "disponible",
-   "contexte": [],
-   "decision": "Associer REUNIOUN1.mp3",
-   "justification": "Lemme identique, sens « réunion ».",
-   "analyses": [
-    "lemme"
-   ],
-   "statut_graphie": "contrôlée",
-   "local": false,
-   "confiance": "sûr",
-   "raisons": []
-  },
-  {
    "lu": "Äppel",
    "fr": "des pommes",
    "forme": "äppel",
@@ -8324,7 +7807,7 @@
    "sens": "toute la journée, à temps plein, à temps complet",
    "source": "articles LOD 2026-07-27",
    "graphie": "contrôlée (index de recherche)",
-   "son": "absent du miroir (404) ; enregistrement annoncé par l'index de recherche (audio=\"true\") : à récupérer sur lod.lu",
+   "son": "absent du miroir (404)",
    "contexte": [
     {
      "id": "32190b5dff92fcf12e14570a325a29c7",
@@ -8342,7 +7825,7 @@
     }
    ],
    "decision": "Chercher le fichier officiel (lod.lu, via Termux) ou un contexte",
-   "justification": "Lemme identique, sens « toute la journée, à temps plein, à temps complet » ; MP3 : absent du miroir (404) ; enregistrement annoncé par l'index de recherche (audio=\"true\") : à récupérer sur lod.lu.",
+   "justification": "Lemme identique, sens « toute la journée, à temps plein, à temps complet » ; MP3 : absent du miroir (404).",
    "analyses": [
     "lemme"
    ],

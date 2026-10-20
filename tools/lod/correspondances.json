@@ -1,73 +1,307 @@
 {
   "_lisez-moi": "Mots dont le sens a été vérifié à la main dans le LOD (le rapprochement automatique ne le trouve pas). Le script contrôle toujours : identifiant présent dans l'index, mot LOD identique au mot de la carte, MP3 valide.",
-  "Tipptopp!": { "id": "TIPPTOPP1", "verifie": "adj. impec, nickel" },
-  "Stëft": { "id": "STEFT1", "verifie": "nom : stylo-feutre, (crayon) feutre" },
-  "Mapp": { "id": "MAPP1", "verifie": "nom : serviette, chemise (cartable)" },
-  "Bichelchen": { "id": "BICHELCHEN1", "verifie": "nom : carnet, calepin" },
-  "Handy": { "id": "HANDY1", "verifie": "nom : portable" },
-  "Drécker": { "id": "DRECKER1", "verifie": "nom : Drucker (de) ; seul article prononcé" },
-  "an": { "id": "AN2", "verifie": "conjonction : et" },
-  "null": { "id": "NULL2", "verifie": "nombre : zéro" },
-  "eent": { "id": "EENT2", "verifie": "nombre : un" },
-  "zwee": { "id": "ZWEE2", "verifie": "nombre : deux" },
-  "dräi": { "id": "DRAI1", "verifie": "nombre : trois" },
-  "véier": { "id": "VEIER1", "verifie": "nombre : quatre" },
-  "fënnef": { "id": "FENNEF1", "verifie": "nombre : cinq" },
-  "sechs": { "id": "SECHS1", "verifie": "nombre : six" },
-  "siwen": { "id": "SIWEN1", "verifie": "nombre : sept" },
-  "aacht": { "id": "AACHT1", "verifie": "nombre : huit" },
-  "néng": { "id": "NENG1", "verifie": "nombre : neuf" },
-  "zéng": { "id": "ZENG1", "verifie": "nombre : dix" },
-  "eelef": { "id": "EELEF1", "verifie": "nombre : onze" },
-  "zwielef": { "id": "ZWIELEF1", "verifie": "nombre : douze" },
-  "dräizéng": { "id": "DRAIZENG1", "verifie": "nombre : treize" },
-  "véierzéng": { "id": "VEIERZENG1", "verifie": "nombre : quatorze" },
-  "fofzéng": { "id": "FOFZENG1", "verifie": "nombre : quinze" },
-  "siechzéng": { "id": "SIECHZENG1", "verifie": "nombre : seize" },
-  "siwwenzéng": { "id": "SIWWENZENG1", "verifie": "nombre : dix-sept" },
-  "uechtzéng": { "id": "UECHTZENG1", "verifie": "nombre : dix-huit" },
-  "nonzéng": { "id": "NONZENG1", "verifie": "nombre : dix-neuf" },
-  "zwanzeg": { "id": "ZWANZEG1", "verifie": "nombre : vingt" },
-  "eenanzwanzeg": { "id": "EENANZWANZEG1", "verifie": "nombre : vingt et un" },
-  "véieranzwanzeg": { "id": "VEIERANZWANZEG1", "verifie": "nombre : vingt-quatre" },
-  "drësseg": { "id": "DRESSEG1", "verifie": "nombre : trente" },
-  "véierzeg": { "id": "VEIERZEG1", "verifie": "nombre : quarante" },
-  "siwenavéierzeg": { "id": "SIWENAVEIERZEG1", "verifie": "nombre : quarante-sept" },
-  "fofzeg": { "id": "FOFZEG1", "verifie": "nombre : cinquante" },
-  "siechzeg": { "id": "SIECHZEG1", "verifie": "nombre : soixante (seul article, sans traduction)" },
-  "siwwenzeg": { "id": "SIWWENZEG1", "verifie": "nombre : soixante-dix" },
-  "nonzeg": { "id": "NONZEG1", "verifie": "nombre : quatre-vingt-dix" },
-  "honnert": { "id": "HONNERT1", "verifie": "nombre : cent" },
-  "dausend": { "id": "DAUSEND1", "verifie": "nombre : mille" },
-  "Flammännesch": { "id": "FLAMMANNESCH1", "verifie": "adj. flamand (seul article)" },
-  "Esch": { "id": "ESCH1", "verifie": "nom propre (seul article)" },
-  "Caissier": { "id": "CAISSIER1", "verifie": "nom : caissier (seul article)" },
-  "Kächin": { "id": "KACHIN1", "verifie": "nom : cuisinière (seul article)" },
-  "Klinik": { "id": "KLINIK1", "verifie": "nom : clinique (seul article)" },
-  "Sportshal": { "id": "SPORTSHAL1", "verifie": "nom : gymnase, salle des sports" },
-  "Fluchhafen": { "id": "FLUCHHAFEN1", "verifie": "nom : aéroport (seul article)" },
-  "Führerschäin": { "id": "FUHRERSCHAIN1", "verifie": "nom : permis de conduire (seul article)" },
-  "wou": { "id": "WOU1", "verifie": "adv. : où" },
-  "eng": { "id": "ENG1", "verifie": "article / numéral : une" },
-  "op": { "id": "OP2", "verifie": "prép. : (heure) après, « véierel op »" },
-  "ophalen": { "id": "OPHALEN1", "verifie": "verbe : arrêter, cesser" },
-  "ënnert": { "id": "ENNERT1", "verifie": "prép. : sous (seul article)" },
-  "iwwert": { "id": "IWWERT1", "verifie": "prép. : au-dessus de (seul article)" },
-  "hannert": { "id": "HANNERT1", "verifie": "prép. : derrière (seul article)" },
-  "nieft": { "id": "NIEFT1", "verifie": "prép. : à côté de (seul article)" },
-  "Kleederschaf": { "id": "KLEEDERSCHAF1", "verifie": "nom : armoire" },
-  "Kicheschaf": { "id": "KICHESCHAF1", "verifie": "nom : meuble de cuisine" },
-  "Kaffismaschinn": { "id": "KAFFISMASCHINN1", "verifie": "nom : cafetière électrique" },
-  "gär": { "id": "GAR1", "verifie": "adv. : volontiers, aimer" },
-  "ni": { "id": "NI1", "verifie": "adv. : ne ... jamais" },
-  "d'Cousine": { "id": "COUSINE1", "verifie": "nom : cousine" },
-  "e Pond": { "id": "POND1", "verifie": "nom : livre (500 g)" },
-  "Euro": { "id": "EURO1", "verifie": "nom : euro" },
-  "engagéieren": { "id": "ENGAGEIEREN1", "verifie": "verbe : engager" },
-  "Schlecht.": { "id": "SCHLECHT2", "verifie": "adv. : mal (réponse à « Wéi geet et? »)" },
-  "Jo": { "id": "JO1", "verifie": "particule : oui" },
-  "Lëtzebuerger": { "id": "LETZEBUERGER1", "verifie": "nom : Luxembourgeois (nationalité)" },
-  "Schwäizer": { "id": "SCHWAIZER2", "verifie": "nom : Suisse (nationalité)" },
-  "Franséisch": { "id": "FRANSEISCH2", "verifie": "nom : le français (langue) — accent tonique différent de l'adjectif" },
-  "Gare": { "id": "GARE1", "verifie": "nom : gare" }
+  "Tipptopp!": {
+    "id": "TIPPTOPP1",
+    "verifie": "adj. impec, nickel"
+  },
+  "Stëft": {
+    "id": "STEFT1",
+    "verifie": "nom : stylo-feutre, (crayon) feutre"
+  },
+  "Mapp": {
+    "id": "MAPP1",
+    "verifie": "nom : serviette, chemise (cartable)"
+  },
+  "Bichelchen": {
+    "id": "BICHELCHEN1",
+    "verifie": "nom : carnet, calepin"
+  },
+  "Handy": {
+    "id": "HANDY1",
+    "verifie": "nom : portable"
+  },
+  "Drécker": {
+    "id": "DRECKER1",
+    "verifie": "nom : Drucker (de) ; seul article prononcé"
+  },
+  "an": {
+    "id": "AN2",
+    "verifie": "conjonction : et"
+  },
+  "null": {
+    "id": "NULL2",
+    "verifie": "nombre : zéro"
+  },
+  "eent": {
+    "id": "EENT2",
+    "verifie": "nombre : un"
+  },
+  "zwee": {
+    "id": "ZWEE2",
+    "verifie": "nombre : deux"
+  },
+  "dräi": {
+    "id": "DRAI1",
+    "verifie": "nombre : trois"
+  },
+  "véier": {
+    "id": "VEIER1",
+    "verifie": "nombre : quatre"
+  },
+  "fënnef": {
+    "id": "FENNEF1",
+    "verifie": "nombre : cinq"
+  },
+  "sechs": {
+    "id": "SECHS1",
+    "verifie": "nombre : six"
+  },
+  "siwen": {
+    "id": "SIWEN1",
+    "verifie": "nombre : sept"
+  },
+  "aacht": {
+    "id": "AACHT1",
+    "verifie": "nombre : huit"
+  },
+  "néng": {
+    "id": "NENG1",
+    "verifie": "nombre : neuf"
+  },
+  "zéng": {
+    "id": "ZENG1",
+    "verifie": "nombre : dix"
+  },
+  "eelef": {
+    "id": "EELEF1",
+    "verifie": "nombre : onze"
+  },
+  "zwielef": {
+    "id": "ZWIELEF1",
+    "verifie": "nombre : douze"
+  },
+  "dräizéng": {
+    "id": "DRAIZENG1",
+    "verifie": "nombre : treize"
+  },
+  "véierzéng": {
+    "id": "VEIERZENG1",
+    "verifie": "nombre : quatorze"
+  },
+  "fofzéng": {
+    "id": "FOFZENG1",
+    "verifie": "nombre : quinze"
+  },
+  "siechzéng": {
+    "id": "SIECHZENG1",
+    "verifie": "nombre : seize"
+  },
+  "siwwenzéng": {
+    "id": "SIWWENZENG1",
+    "verifie": "nombre : dix-sept"
+  },
+  "uechtzéng": {
+    "id": "UECHTZENG1",
+    "verifie": "nombre : dix-huit"
+  },
+  "nonzéng": {
+    "id": "NONZENG1",
+    "verifie": "nombre : dix-neuf"
+  },
+  "zwanzeg": {
+    "id": "ZWANZEG1",
+    "verifie": "nombre : vingt"
+  },
+  "eenanzwanzeg": {
+    "id": "EENANZWANZEG1",
+    "verifie": "nombre : vingt et un"
+  },
+  "véieranzwanzeg": {
+    "id": "VEIERANZWANZEG1",
+    "verifie": "nombre : vingt-quatre"
+  },
+  "drësseg": {
+    "id": "DRESSEG1",
+    "verifie": "nombre : trente"
+  },
+  "véierzeg": {
+    "id": "VEIERZEG1",
+    "verifie": "nombre : quarante"
+  },
+  "siwenavéierzeg": {
+    "id": "SIWENAVEIERZEG1",
+    "verifie": "nombre : quarante-sept"
+  },
+  "fofzeg": {
+    "id": "FOFZEG1",
+    "verifie": "nombre : cinquante"
+  },
+  "siechzeg": {
+    "id": "SIECHZEG1",
+    "verifie": "nombre : soixante (seul article, sans traduction)"
+  },
+  "siwwenzeg": {
+    "id": "SIWWENZEG1",
+    "verifie": "nombre : soixante-dix"
+  },
+  "nonzeg": {
+    "id": "NONZEG1",
+    "verifie": "nombre : quatre-vingt-dix"
+  },
+  "honnert": {
+    "id": "HONNERT1",
+    "verifie": "nombre : cent"
+  },
+  "dausend": {
+    "id": "DAUSEND1",
+    "verifie": "nombre : mille"
+  },
+  "Flammännesch": {
+    "id": "FLAMMANNESCH1",
+    "verifie": "adj. flamand (seul article)"
+  },
+  "Esch": {
+    "id": "ESCH1",
+    "verifie": "nom propre (seul article)"
+  },
+  "Caissier": {
+    "id": "CAISSIER1",
+    "verifie": "nom : caissier (seul article)"
+  },
+  "Kächin": {
+    "id": "KACHIN1",
+    "verifie": "nom : cuisinière (seul article)"
+  },
+  "Klinik": {
+    "id": "KLINIK1",
+    "verifie": "nom : clinique (seul article)"
+  },
+  "Sportshal": {
+    "id": "SPORTSHAL1",
+    "verifie": "nom : gymnase, salle des sports"
+  },
+  "Fluchhafen": {
+    "id": "FLUCHHAFEN1",
+    "verifie": "nom : aéroport (seul article)"
+  },
+  "Führerschäin": {
+    "id": "FUHRERSCHAIN1",
+    "verifie": "nom : permis de conduire (seul article)"
+  },
+  "wou": {
+    "id": "WOU1",
+    "verifie": "adv. : où"
+  },
+  "eng": {
+    "id": "ENG1",
+    "verifie": "article / numéral : une"
+  },
+  "op": {
+    "id": "OP2",
+    "verifie": "prép. : (heure) après, « véierel op »"
+  },
+  "ophalen": {
+    "id": "OPHALEN1",
+    "verifie": "verbe : arrêter, cesser"
+  },
+  "ënnert": {
+    "id": "ENNERT1",
+    "verifie": "prép. : sous (seul article)"
+  },
+  "iwwert": {
+    "id": "IWWERT1",
+    "verifie": "prép. : au-dessus de (seul article)"
+  },
+  "hannert": {
+    "id": "HANNERT1",
+    "verifie": "prép. : derrière (seul article)"
+  },
+  "nieft": {
+    "id": "NIEFT1",
+    "verifie": "prép. : à côté de (seul article)"
+  },
+  "Kleederschaf": {
+    "id": "KLEEDERSCHAF1",
+    "verifie": "nom : armoire"
+  },
+  "Kicheschaf": {
+    "id": "KICHESCHAF1",
+    "verifie": "nom : meuble de cuisine"
+  },
+  "Kaffismaschinn": {
+    "id": "KAFFISMASCHINN1",
+    "verifie": "nom : cafetière électrique"
+  },
+  "gär": {
+    "id": "GAR1",
+    "verifie": "adv. : volontiers, aimer"
+  },
+  "ni": {
+    "id": "NI1",
+    "verifie": "adv. : ne ... jamais"
+  },
+  "d'Cousine": {
+    "id": "COUSINE1",
+    "verifie": "nom : cousine"
+  },
+  "e Pond": {
+    "id": "POND1",
+    "verifie": "nom : livre (500 g)"
+  },
+  "Euro": {
+    "id": "EURO1",
+    "verifie": "nom : euro"
+  },
+  "engagéieren": {
+    "id": "ENGAGEIEREN1",
+    "verifie": "verbe : engager"
+  },
+  "Schlecht.": {
+    "id": "SCHLECHT2",
+    "verifie": "adv. : mal (réponse à « Wéi geet et? »)"
+  },
+  "Jo": {
+    "id": "JO1",
+    "verifie": "particule : oui"
+  },
+  "Lëtzebuerger": {
+    "id": "LETZEBUERGER1",
+    "verifie": "nom : Luxembourgeois (nationalité)"
+  },
+  "Schwäizer": {
+    "id": "SCHWAIZER2",
+    "verifie": "nom : Suisse (nationalité)"
+  },
+  "Franséisch": {
+    "id": "FRANSEISCH2",
+    "verifie": "nom : le français (langue) — accent tonique différent de l'adjectif"
+  },
+  "Gare": {
+    "id": "GARE1",
+    "verifie": "nom : gare"
+  },
+  "d'Elteren": {
+    "id": "ELTEREN1",
+    "verifie": "nom pluriel : parents (SPEC 73, son sûr : lemme identique, graphie contrôlée, sans homographe)"
+  },
+  "d'Geschwëster": {
+    "id": "GESCHWESTER1",
+    "verifie": "nom pluriel : frères et sœurs (SPEC 73, son sûr)"
+  },
+  "d'Grousselteren": {
+    "id": "GROUSSELTEREN1",
+    "verifie": "nom pluriel : grands-parents (SPEC 73, son sûr)"
+  },
+  "d'Reunioun": {
+    "id": "REUNIOUN1",
+    "verifie": "nom : réunion (SPEC 73, son sûr)"
+  },
+  "un": {
+    "id": "UN1",
+    "verifie": "prép. : contre, à (« un der Mauer ») ; homographe UN2 = adverbe « allumé », même prononciation (SPEC 73, vérifié)"
+  },
+  "widdert": {
+    "id": "WIDDERT1",
+    "verifie": "prép. : contre ; variante de « widder », enregistrement propre de « widdert » (SPEC 73, vérifié)"
+  }
 }

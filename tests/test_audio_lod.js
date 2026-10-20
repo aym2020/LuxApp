@@ -10,7 +10,10 @@ for (const niveau of fs.readdirSync(path.join(racine, 'data/lecons'))) {
   const dossier = path.join(racine, 'data/lecons', niveau);
   if (!fs.statSync(dossier).isDirectory()) continue;
   for (const f of fs.readdirSync(dossier).filter(n => n.endsWith('.json'))) {
-    JSON.parse(fs.readFileSync(path.join(dossier, f), 'utf8')).flashcards?.forEach(c => mots.add(c.lu));
+    const lecon = JSON.parse(fs.readFileSync(path.join(dossier, f), 'utf8'));
+    lecon.flashcards?.forEach(c => mots.add(c.lu));
+    // SPEC 73 : mots isolés du cours (vocabulaire, exemples), sonorisés seulement par la table vérifiée.
+    lecon.cours?.forEach(b => (b.type === 'vocab' || b.type === 'exemple') && b.items.forEach(([lu]) => mots.add(lu)));
   }
 }
 assert.ok(Object.keys(sons).length > 430, 'sons LOD présents (SPEC 69 : table de correspondance)');
@@ -18,7 +21,7 @@ for (const [mot, fichier] of Object.entries(sons)) {
   assert.match(fichier, /^lod\/[A-Z0-9]+\.mp3$/, fichier);
   const debut = fs.readFileSync(path.join(racine, 'public/audio', fichier)).subarray(0, 3);
   assert.ok(debut.toString('latin1') === 'ID3' || (debut[0] === 0xff && (debut[1] & 0xe0) === 0xe0), fichier + ' : MP3 valide');
-  assert.ok(mots.has(mot), mot + ' : carte introuvable dans les leçons');
+  assert.ok(mots.has(mot), mot + ' : carte ou mot du cours introuvable dans les leçons');
 }
 assert.equal(sons['Moien!'], 'lod/MOIEN2.mp3', 'Moien! = interjection « bonjour » (MOIEN2)');
 const parcours = fs.readFileSync(path.join(racine, 'public/parcours.js'), 'utf8');
@@ -107,3 +110,19 @@ assert.match(css, /\.bulle-lu strong, \.exv-lu strong \{ color:var\(--couleur-ac
 assert.match(css, /\.bulle-lu \{[^}]*color:var\(--couleur-texte\)/, 'phrase en blanc cassé');
 assert.ok(!/#54e0ad|84,224,173/.test(css.slice(css.indexOf('SPEC 70 / 72'), css.indexOf('@keyframes exv-entre'))), 'plus de vert menthe dans les composants audio');
 console.log('Contexte (SPEC 71) : OK — bulle, surlignage, exemples par bloc.');
+
+// SPEC 73 : la note entre parenthèses n'est pas prononcée ; le bouton ne cite que le mot.
+const sonsReels = JSON.parse(fs.readFileSync(path.join(racine, 'public/audio/lod.json'), 'utf8'));
+const d73 = new Function('document', 'escHtml', srcDialogue + '; return { sonDuMot, boutonEcouterHtml, cleSon, definir(m) { sonsLod = m; sonsLodSimples = {};' +
+  ' Object.keys(m).forEach(k => { const c = cleSon(k); sonsLodSimples[c] = (c in sonsLodSimples && sonsLodSimples[c] !== m[k]) ? null : m[k]; }); } };')(doc,
+  t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'));
+d73.definir(sonsReels);
+assert.equal(d73.cleSon("de Brudder (pl. d'Bridder)"), 'brudder');
+for (const [lu, id] of [["de Brudder (pl. d'Bridder)", 'BRUDDER1'], ["d'Meedchen (neutre)", 'MEEDCHEN1'], ["d'Niess (pl. d'Niessen)", 'NIESS1'],
+  ['de Grousspapp (fam. de Bopa/Bopi)', 'GROUSSPAPP1'], ["d'Groussmamm (fam. d'Boma/Bomi)", 'GROUSSMAMM1'], ["d'Enkelkand (neutre)", 'ENKELKAND1']]) {
+  assert.equal(d73.sonDuMot(lu), 'lod/' + id + '.mp3', lu);
+}
+const b73 = d73.boutonEcouterHtml("de Brudder (pl. d'Bridder)", true);
+assert.ok(b73.includes('Écouter « de Brudder »') && !b73.includes('Bridder'), 'nom accessible sans la note');
+for (const [lu, id] of [["d'Elteren", 'ELTEREN1'], ["d'Reunioun", 'REUNIOUN1'], ['un', 'UN1'], ['widdert', 'WIDDERT1']]) assert.equal(sonsReels[lu], 'lod/' + id + '.mp3', lu);
+console.log('SPEC 73 : OK — notes entre parenthèses ignorées, 10 sons sûrs et 2 sons vérifiés en place.');
