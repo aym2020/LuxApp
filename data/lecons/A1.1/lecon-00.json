@@ -4,10 +4,10 @@
   "titre_fr": "Les bases",
   "couleur": "#a3cc52",
   "instructions": {
-    "flashcards": "Cette leçon d'initiation n'impose aucune mémorisation de vocabulaire. Écoute les 20 sons du dictionnaire LOD.",
-    "quiz": "Unité 1 : 20 écoutes LOD dans une seule activité. Choisis l'orthographe entendue parmi quatre mots, sans traduction.",
-    "trous": "Unité 2 : 15 décisions. Choisis uniquement la forme avec ou sans N en t'aidant de la lettre suivante et de l'article déjà indiqué.",
-    "ecriture": "Aucune traduction ni dictée exigée dans la leçon 0 : la production écrite commence dans les leçons suivantes."
+    "flashcards": "Cette leçon ne comporte pas de flashcards à mémoriser. Commence par la découverte guidée : 9 sons enregistrés LOD, sans score, à ton rythme.",
+    "quiz": "Unité 1 : observe et écoute 9 exemples LOD, puis reconnais 20 mots entendus. Aucun mot à traduire ou mémoriser.",
+    "trous": "Unité 2 : découvre librement 6 exemples avec ou sans N, puis choisis la bonne forme dans 15 phrases. L'article et la lettre suivante sont indiqués.",
+    "ecriture": "Aucune traduction ni écriture exigée dans la leçon 0. Les découvertes sont libres, les activités suivantes sont des choix multiples."
   },
   "unites": [
     {
