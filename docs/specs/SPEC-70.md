@@ -33,7 +33,7 @@ ex. « Ech hu gekacht vu Roserei » = « je bouillais de rage », proposé pour 
 
 - Un seul bouton par élément, le son exact en priorité.
 - **Or** : prononciation exacte. **Vert menthe** (`--couleur-audio-contexte`) : prononciation dans une phrase, libellé « Dans une phrase ».
-- Au clic sur le bouton menthe, la phrase LOD et sa traduction apparaissent discrètement sous le bouton, puis le son est joué.
+- Au clic sur le bouton menthe, la phrase LOD et sa traduction apparaissent, puis le son est joué (dans une bulle flottante depuis la SPEC 71).
   Le nom accessible annonce la phrase entière. Pas de lecture automatique.
 - Table : `public/audio/lod-contexte.json` `{ "expression": { son, phrase, fr } }`, remplie par `node tools/audio-lod.js`
   (seulement si le fichier M4A est téléchargé et valide).

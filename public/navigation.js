@@ -377,6 +377,7 @@ function remettreScroll(y) {
 function superpositionOuverte() {
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) return true; // SPEC 66
   if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) return true; // SPEC 66
+  if (typeof bulleContexteOuverte === 'function' && (bulleContexteOuverte() || exemplesOuverts())) return true; // SPEC 71
   const amelioration = document.getElementById('chemin-amelioration-panel');
   if (amelioration && !amelioration.classList.contains('hidden')) return true;
   const cours = document.getElementById('cours-panel');
@@ -388,6 +389,8 @@ function fermerSuperposition() {
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) { fermerDialogue(false); return true; }
   // SPEC 66 : inscription ou connexion → retour à la bienvenue.
   if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) { portailRetourBienvenue(); return true; }
+  // SPEC 71 : la bulle de contexte, puis l'écran d'exemples (au-dessus du panneau Cours).
+  if (typeof fermerBulleContexte === 'function' && (fermerBulleContexte() || fermerExemples())) return true;
   const amelioration = document.getElementById('chemin-amelioration-panel');
   if (amelioration && !amelioration.classList.contains('hidden')) { fermerAmeliorationChemin(); return true; }
   if (document.querySelector('.panneau')) { fermerPanneau(); return true; }

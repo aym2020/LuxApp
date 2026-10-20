@@ -117,7 +117,7 @@ function coursBlocsHtml(blocs, accent) {
           sec.items.map(([lu, fr]) =>
             `<tr><td class="cours-lu">${lu}${boutonEcouterHtml(lu, true)}</td><td class="cours-fr">${fr}</td></tr>`
           ).join('')
-        }</table>
+        }</table>${lienExemplesHtml(sec.titre, sec.items)}
       </div>`;
     }
     else if (sec.type === 'dialogue') {

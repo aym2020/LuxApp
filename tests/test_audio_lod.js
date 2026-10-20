@@ -73,8 +73,31 @@ const d = new Function('document', 'escHtml', srcDialogue +
 d.definir({ 'Moien!': 'lod/MOIEN2.mp3' }, { 'gudde moien': { son: 'lod-phrases/ee04cddd4072d1d7a63aef7f1c667f6f.m4a', phrase: 'Gudde Moien, Madamm!', fr: 'Bonjour Madame !' } });
 assert.ok(!d.boutonEcouterHtml('Moien!').includes('contexte'), 'son direct : bouton or');
 const b = d.boutonEcouterHtml('Gudde Moien!');
-assert.ok(b.includes('bouton-ecouter contexte') && b.includes('ecouterContexte(this)'), 'son contextuel : bouton menthe');
+assert.ok(b.includes('bouton-ecouter contexte') && b.includes('ecouterContexte(this)') && b.includes('aria-expanded="false"'), 'son contextuel : bouton menthe');
 assert.ok(b.includes('dans une phrase : « Gudde Moien, Madamm! »') && b.includes('Dans une phrase'), 'la phrase entière est annoncée');
 assert.equal(d.boutonEcouterHtml('Bis muer!'), '', 'rien sans son');
 assert.ok(/\.bouton-ecouter\.contexte\s*\{[^}]*--couleur-audio-contexte/.test(fs.readFileSync(path.join(racine, 'public/style.css'), 'utf8')), 'couleur menthe');
 console.log('Audio contextuel : OK — ' + Object.keys(choix).filter(k => !k.startsWith('_')).length + ' choix relus, ' + Object.keys(contexte).length + ' avec son.');
+
+// SPEC 71 — bulle et écran d'exemples (contexte.js).
+const srcContexte = fs.readFileSync(path.join(racine, 'public/contexte.js'), 'utf8');
+const docC = Object.assign({}, doc, { activeElement: null });
+const fen = { addEventListener() {}, innerWidth: 390, innerHeight: 844 };
+const x = new Function('document', 'window', 'escHtml', srcDialogue + ';' + srcContexte +
+  '; return { phraseSurlignee, exemplesDuBloc, lienExemplesHtml, definir(c, p) { sonsContexte = c; sonsPhrases = p; } };')(docC, fen,
+  t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'));
+assert.equal(x.phraseSurlignee('Gudde Moien, Madamm!', 'Gudde Moien!'), '<strong>Gudde Moien</strong>, Madamm!', 'expression surlignée');
+assert.equal(x.phraseSurlignee('Bonjour, wéi geet et Iech?', 'Wéi geet et Iech?'), 'Bonjour, <strong>wéi geet et Iech</strong>?', 'insensible à la casse');
+assert.equal(x.phraseSurlignee('A <b>', 'zzz'), 'A &lt;b&gt;', 'texte échappé, rien à surligner');
+x.definir({ 'gudde moien': { son: 'lod-phrases/ee04cddd4072d1d7a63aef7f1c667f6f.m4a', phrase: 'Gudde Moien, Madamm!', fr: 'Bonjour Madame !' } },
+  { 'merci gläichfalls': 'lod-phrases/0123456789abcdef0123456789abcdef.m4a' });
+const ex = x.exemplesDuBloc([['Gudde Moien!', 'Bonjour !'], ['Merci gläichfalls!', 'Merci, pareillement !'], ['Äddi!', 'Au revoir !']]);
+assert.deepEqual(ex.map(e => e.contexte), [true, false], 'phrase contextuelle puis phrase exacte ; rien sans son');
+assert.ok(x.lienExemplesHtml('Saluer', [['Gudde Moien!', 'Bonjour !'], ['Merci gläichfalls!', 'Merci']]).includes('2 exemples en contexte'), 'lien avec le nombre');
+assert.equal(x.lienExemplesHtml('Rien', [['Äddi!', 'Au revoir !']]), '', 'pas de lien sans exemple validé');
+const indexHtml = fs.readFileSync(path.join(racine, 'public/index.html'), 'utf8');
+assert.ok(indexHtml.indexOf('dialogue.js') < indexHtml.indexOf('contexte.js') && indexHtml.indexOf('contexte.js') < indexHtml.indexOf('app.js'), 'ordre des scripts');
+assert.ok(app.includes('lienExemplesHtml(sec.titre, sec.items)'), 'lien sous les blocs de vocabulaire du cours');
+const nav = fs.readFileSync(path.join(racine, 'public/navigation.js'), 'utf8');
+assert.ok(nav.includes('fermerBulleContexte()') && nav.includes('exemplesOuverts()'), 'Retour du téléphone : bulle puis exemples');
+console.log('Contexte (SPEC 71) : OK — bulle, surlignage, exemples par bloc.');

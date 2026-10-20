@@ -152,24 +152,11 @@ function boutonEcouterHtml(lu, compact) {
   }
   const c = sonsContexte[cleePhrase(lu)];
   if (!c || !FICHIER_SON.test(c.son)) return '';
-  return '<button type="button" class="bouton-ecouter contexte' + (compact ? ' compact' : '') + '" data-cle="' + escHtml(cleePhrase(lu)) + '" ' +
+  return '<button type="button" class="bouton-ecouter contexte' + (compact ? ' compact' : '') + '" data-cle="' + escHtml(cleePhrase(lu)) + '" data-lu="' + mot + '" aria-expanded="false" ' +
     'onclick="event.stopPropagation(); ecouterContexte(this)" aria-label="Écouter « ' + mot + ' » dans une phrase : « ' + escHtml(c.phrase) + ' »">' +
     ICONE_ECOUTER + (compact ? '' : '<span>Dans une phrase</span>') + '</button>';
 }
-// SPEC 70 : la phrase réellement prononcée s'affiche sous le bouton, avec sa traduction.
-// Jamais l'impression que seul le mot est dit.
-function ecouterContexte(bouton) {
-  const c = sonsContexte[bouton.dataset.cle];
-  if (!c) return;
-  const suivant = bouton.nextElementSibling;
-  if (!suivant || !suivant.classList.contains('ecoute-phrase')) {
-    const el = document.createElement('span');
-    el.className = 'ecoute-phrase';
-    el.innerHTML = '<b lang="lb">' + escHtml(c.phrase) + '</b><em>' + escHtml(c.fr) + '</em>';
-    bouton.insertAdjacentElement('afterend', el);
-  }
-  jouerAudio(c.son, bouton);
-}
+// Au clic sur le bouton menthe : ecouterContexte (contexte.js, SPEC 71) joue la phrase et ouvre la bulle.
 
 function arreterAudio() {
   if (lecteurAudio) {

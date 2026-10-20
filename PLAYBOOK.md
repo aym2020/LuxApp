@@ -626,7 +626,8 @@ Pour les **nouvelles** leçons, partir des phrases que le LOD a enregistrées :
 Ne jamais réécrire une leçon existante pour augmenter la couverture audio sans validation de Clayton (audit : `docs/audit-audio-lod.md`).
 
 Audio dans l'application : **or** = prononciation exacte du mot ou de la phrase ; **vert menthe** = l'expression
-dite dans une phrase LOD (la phrase et sa traduction s'affichent au clic). Un seul bouton, le son exact en priorité.
+dite dans une phrase LOD (bulle flottante au clic : phrase, expression en menthe, traduction — SPEC 71). Un seul bouton,
+le son exact en priorité. Sous un bloc de vocabulaire, « N exemples en contexte » ouvre l'écran d'exemples (`public/contexte.js`).
 
 ### Blocs `cours`
 
