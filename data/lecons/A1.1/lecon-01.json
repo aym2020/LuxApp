@@ -312,7 +312,7 @@
       "unite": 1,
       "fr": "Salut ! (entre amis)",
       "lu": "Salut!",
-      "note": "Informel"
+      "note": "Salutation informelle ; Hallo! est aussi correct"
     },
     {
       "id": 2006,
@@ -336,7 +336,7 @@
       "plus": true,
       "fr": "Salut ! (familier)",
       "lu": "Hallo!",
-      "note": "Informel, comme Salut!"
+      "note": "Variante de Salut! pour saluer quelqu’un"
     },
     {
       "id": 2009,
@@ -1618,21 +1618,30 @@
       "unite": 1,
       "plus": true,
       "fr": "Salut !",
-      "lu": "Salut!"
+      "lu": "Salut!",
+      "alternatives": [
+        "Hallo!"
+      ]
     },
     {
       "id": 2009,
       "unite": 1,
       "plus": true,
       "fr": "Salut Pierre !",
-      "lu": "Salut Pierre!"
+      "lu": "Salut Pierre!",
+      "alternatives": [
+        "Hallo Pierre!"
+      ]
     },
     {
       "id": 2010,
       "unite": 1,
       "plus": true,
       "fr": "Salut Jean !",
-      "lu": "Salut Jean!"
+      "lu": "Salut Jean!",
+      "alternatives": [
+        "Hallo Jean!"
+      ]
     },
     {
       "id": 2011,
@@ -1928,11 +1937,8 @@
       "items": [
         [
           "Salut!",
-          "Salut ! (entre amis)"
-        ],
-        [
-          "Hallo!",
-          "Salut !"
+          "Salut ! (entre amis)",
+          "Variante : Hallo!"
         ],
         [
           "Madamm",
@@ -2324,6 +2330,11 @@
         [
           "Moien!",
           "Bonjour !"
+        ],
+        [
+          "Salut Pierre!",
+          "Salut Pierre ! (entre amis)",
+          "Variante : Hallo Pierre!"
         ]
       ]
     },

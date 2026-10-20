@@ -217,3 +217,7 @@ L'implémentation doit reprendre l'organisation et le ton visuel, mais intégrer
 - Seuls les champs `cours` des leçons 4–17 et 20–27 ont été modifiés. `flashcards`, `quiz`, `trous`, `ecriture`, `unites`, `scene`, `mission` et les informations de leçon ne sont pas modifiés.
 - Validation : `node tests/test_spec75.js && node tools/spec75-migration.js && node tools/valider-lecons.js && bash tools/critique.sh`.
 - Les tests statiques vérifient les 25 leçons, l'accès aux trois rubriques, l'absence de règle/phrase manquante par unité, les principaux tableaux riches, la navigation et les 36 mots complémentaires de la leçon 2. La **recette visuelle Android sur les leçons 4+ et A1.2 reste à faire**.
+
+## SPEC 78 — Variante explicite dans le Lexique (20/10/2026)
+
+La leçon 1 affiche **Salut!** comme entrée de salutation informelle et **Hallo!** comme variante, plutôt que deux lignes avec une traduction identique. Le rendu partagé `cours75EntreeHtml` prend déjà en charge les notes (troisième colonne) ; aucun changement du moteur audio ni du composant nécessaire. Une phrase modèle montre Salut Pierre! et sa variante Hallo Pierre!. Les variantes de réponse sont déclarées exclusivement en `ecriture[].alternatives`, conformément à SPEC 50.

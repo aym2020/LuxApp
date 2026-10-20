@@ -30,6 +30,27 @@ for (const [saisie, item, attendu] of [
   assert.equal(matcher.reponseReconnue(saisie, item), attendu, saisie);
 }
 assert.deepEqual(matcher.autresReponsesAcceptees(ecriture(2002), 'Moien!'), ['Gudde Moien!']);
+ 
+// SPEC 78 : « Salut ! » en salutation accepte Salut! ou Hallo!
+// y compris devant un prénom inchangé. Ne pas appliquer cette variante à l'au revoir.
+for (const [id, principale, alternative, fausse] of [
+  [2008, 'Salut!', 'Hallo!', 'Äddi!'],
+  [2009, 'Salut Pierre!', 'Hallo Pierre!', 'Hallo Jean!'],
+  [2010, 'Salut Jean!', 'Hallo Jean!', 'Hallo Pierre!']
+]) {
+  const q=ecriture(id);
+  assert.equal(q.lu, principale);
+  assert.deepEqual(q.alternatives, [alternative], 'alternative exacte '+id);
+  assert.equal(matcher.reponseReconnue(alternative, q), alternative, 'reconnue '+id);
+  assert.equal(matcher.reponseReconnue(principale, q), principale, 'principale '+id);
+  assert.equal(matcher.reponseReconnue(fausse, q), null, 'autre sens/prénom refusé '+id);
+  assert.deepEqual(matcher.autresReponsesAcceptees(q, alternative), [principale]);
+}
+assert.equal(matcher.reponseReconnue('Hallo!', ecriture(2001)),null,
+  '« Bonjour ! » reste Moien! — aucune équivalence globale');
+assert.equal(matcher.reponseReconnue('Hallo!', ecriture(2028)),null,
+  'Hallo! ne remplace pas Äddi! pour prendre congé');
+
 
 // Exécute la véritable validation d'écriture avec seulement ses dépendances DOM simulées.
 const champ = { value: '', disabled: false, className: '' };
@@ -53,10 +74,10 @@ const ecrHarness = [
   "};"
 ].join('\n');
 const ecr = new Function('normalize', 'reponseReconnue', 'autresReponsesAcceptees',
-  'lesson', 'document', 'escHtml',
+  'lesson', 'document', 'escHtml', 'boutonEcouterHtml',
   read('public/parcours.js') + '\n' + ecrHarness)(
     normalize, matcher.reponseReconnue, matcher.autresReponsesAcceptees,
-    lesson, documentEcriture, String
+    lesson, documentEcriture, String, () => ''
   );
 for (const formule of ['Moien!', 'Gudde Moien!']) {
   const x = ecr(ecriture(2002), formule);
@@ -66,6 +87,17 @@ for (const formule of ['Moien!', 'Gudde Moien!']) {
   assert.equal(x.appels.feedback[0][0], true, 'feedback de succès');
   assert.ok(x.appels.feedback[0][2].includes('Autre formulation correcte'));
   assert.equal(x.input.className, 'ecr-input correct');
+}
+
+// Vérifier la vraie écriture de l'unité : aucune perte de vie ou de points.
+for (const [id, forme] of [[2008,'Hallo!'],[2009,'Hallo Pierre!'],[2010,'Hallo Jean!']]) {
+  const x=ecr(ecriture(id),forme);
+  assert.equal(x.appels.progression.length,1,'une progression enregistrée '+id);
+  assert.equal(x.appels.progression[0][1],1,'score maximal '+id);
+  assert.equal(x.appels.progression[0][2],true,'bonne réponse du premier coup '+id);
+  assert.equal(x.appels.feedback[0][0],true,'succès pour '+id);
+  assert.ok(x.appels.feedback[0][2].includes('Autre formulation correcte'),
+    'afficher Salut comme autre forme');
 }
 
 // Exécute la vraie mission et vérifie les vies, l'enregistrement et le dialogue.
@@ -156,11 +188,11 @@ const appHarness = [
   "};"
 ].join('\n');
 const ancienEtRevision = new Function(
-  'reponseReconnue', 'autresReponsesAcceptees', 'lesson', 'document', 'escHtml',
+  'reponseReconnue', 'autresReponsesAcceptees', 'lesson', 'document', 'escHtml', 'boutonEcouterHtml',
   read('public/app.js') + '\n' + appHarness
 )(
   matcher.reponseReconnue, matcher.autresReponsesAcceptees, lesson,
-  { getElementById: fakeElt, createElement: fakeElt }, String
+  { getElementById: fakeElt, createElement: fakeElt }, String, () => ''
 );
 for (const mode of ['legacy', 'review']) {
   for (const texte of ['Moien!', 'Gudde Moien!']) {
@@ -181,4 +213,4 @@ for (const item of lesson.ecriture.concat(lesson.scene.filter(x => x.qui === 'to
 assert.equal(ecriture(2001).alternatives, undefined);
 assert.equal(lesson.mission.version, 2);
 assert.equal(lesson.scene.filter(x => x.qui === 'toi').length, 10);
-console.log('SPEC 50 : OK — alternatives, écriture, mission, score et vies.');
+console.log('SPEC 50 + 78 : OK — Salut!/Hallo! équivalents en salutation, score, prénoms et mission.');

@@ -795,3 +795,7 @@ La ligne de compte SPEC 67 fait dépasser l'accueil « Prêt à commencer ? » s
 
 ### SPEC 77 — Ajustement séparateur invité (20/10/2026)
 Sur la première visite invitée en viewport ≤810 px, le `margin:-6px 0` global de `.ou-choisir` écrasait la séparation « Ou choisir une autre leçon ». Le CSS scoped `#view-dashboard .ac-nouveau-invite .ou-choisir` impose `margin:6px 0 7px; min-height:22px` et récupère 4 px au-dessus de `.ac-compte`. Les quatre accès et leurs cibles ≥60 px restent inchangés. Test : `node tests/test_accueil_compact.js`.
+
+
+### SPEC 78 — Salut! / Hallo! (20/10/2026)
+Si deux salutations ont réellement le même sens dans la consigne (« Salut ! » entre amis, pour dire bonjour), préférer **une entrée principale et une variante explicite** dans le Lexique, et des `ecriture[].alternatives` contextualisées. Leçon 1 : ID 2008 Salut! accepte Hallo!, ID 2009 Salut Pierre! accepte Hallo Pierre!, ID 2010 Salut Jean! accepte Hallo Jean!. Aucun prénom adapté, aucune équivalence globale pour Bonjour/Au revoir ; Salut peut aussi dire au revoir, **Hallo ne doit pas être accepté pour le départ**. Conserver les flashcards et quiz de reconnaissance, les audios LOD existants. Tests : `node tests/test_reponses_alternatives.js && node tests/test_spec75.js`.

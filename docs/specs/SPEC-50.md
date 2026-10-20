@@ -69,3 +69,13 @@ Ne pas changer les IDs : ils indexent la progression des utilisateurs. Ne pas to
 - [ ] Vérification visuelle et tactile Android sur le déploiement `v2`.
 
 **Limite :** les contrôles automatisés ne remplacent pas la recette Android. Conserver ce statut jusqu'à cette vérification.
+
+## Extension SPEC 78 — Salutations équivalentes (20/10/2026)
+
+Dans l'unité **Saluer** de la leçon 1, la consigne française « Salut ! » accepte les deux salutations informelles **Salut!** (principale) et **Hallo!** (alternative). Même principe lorsque la salutation est suivie d'un prénom : **Salut Pierre! / Hallo Pierre!** et **Salut Jean! / Hallo Jean!**, sans adapter les prénoms. Cette équivalence n'est **pas globale** : `Moien!` pour « Bonjour ! », `Äddi!` pour « Au revoir ! » et les exercices de prise de congé demeurent inchangés.
+
+- `ecriture` IDs **2008, 2009, 2010** : `alternatives` explicites et contextualisées. Le moteur SPEC 50 reconnaît les deux dès le premier essai avec score intégral, également dans l'ancienne écriture et la révision.
+- `cours` : une seule entrée lexicale **Salut!** avec **« Variante : Hallo! »** ; exemple accompagné d'un prénom dans les Phrases. L'audio exact de Salut! reste associé à la forme originale, aucun enregistrement simulé.
+- `flashcards` : les notes de Salut! et Hallo! expliquent l'équivalence ; les deux cartes restent consultables (Hallo est déjà facultatif). Les quiz LU→FR ne sont pas modifiés : les deux formes peuvent être reconnues indépendamment.
+- Justification : [LOD, article « salut »](https://lod.lu/artikel/SALUT2) atteste la salutation informelle ainsi que l'usage pour prendre congé. L'usage de Hallo comme salutation est décrit dans les supports d'apprentissage ; le sens « au revoir » de Salut **n'autorise pas** Hallo comme traduction de « Au revoir ».
+- Tests : `node tests/test_reponses_alternatives.js` et `node tests/test_spec75.js`. Aucun identifiant d'exercice, prénom ou état de progression modifié.

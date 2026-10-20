@@ -4,7 +4,7 @@ const fs=require('node:fs'), path=require('node:path'), assert=require('node:ass
 const racine=path.join(__dirname,'..');
 const lecon=n=>JSON.parse(fs.readFileSync(path.join(racine,'data/lecons/A1.1/lecon-'+String(n).padStart(2,'0')+'.json')));
 const empreinte=t=>{let x=2166136261>>>0;for(let i=0;i<t.length;i++)x=Math.imul(x^t.charCodeAt(i),16777619)>>>0;return x.toString(16);};
-const origine={1:{autres:'4620339c',cours:18},2:{autres:'7c469ef',cours:11},3:{autres:'259c0cf9',cours:12}};
+const origine={1:{autres:'b37b633b',cours:18},2:{autres:'7c469ef',cours:11},3:{autres:'259c0cf9',cours:12}};
 const lecons=[lecon(1),lecon(2),lecon(3)];
 const ecran={
   'cours75-panneau': {innerHTML:''},
@@ -141,4 +141,15 @@ assert.ok(lecon21.cours.some(b=>b.unite===4&&b.rubrique==='phrases'&&b.items.som
 assert.ok(lecon21.cours.some(b=>b.unite===4&&b.rubrique==='regles'&&b.titre==='Les pluriels'),
   'règle de l’unité bonus reprise des supports');
 
-console.log('SPEC 75 : OK — 25 leçons, règles nommées, phrases, tableaux complets, "+compte+" cours.');
+// Les salutations équivalentes ne doivent pas apparaître en doublon dans le Lexique.
+const salutations=lecons[0].cours.find(b=>b.unite===1&&b.type==='vocab'&&b.titre==="Saluer quelqu'un");
+const salut=salutations.items.filter(row=>row[0]==='Salut!');
+assert.equal(salut.length,1,'une seule notion de salutation informelle');
+assert.ok(salut[0].slice(2).join(' ').includes('Hallo!'),'variante explicite dans le lexique');
+assert.ok(!salutations.items.some(row=>row[0]==='Hallo!'),'plus de deuxième ligne de même traduction');
+api.cours75Html(lecons[0],'principal',1,false);
+api.cours75Etats.principal.rubrique='lexique';
+const greetings=api.cours75Contenu(lecons[0],'principal');
+assert.ok(greetings.includes('Variante : Hallo!'),'variante visible dans le cours');
+
+console.log('SPEC 75 : OK — 25 leçons et Salut!/Hallo! réunis en une seule notion.');
