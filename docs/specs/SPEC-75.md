@@ -165,3 +165,13 @@ L'implémentation doit reprendre l'organisation et le ton visuel, mais intégrer
 - Aucun changement aux exercices, aux identifiants, à la progression ou aux leçons 4+.
 - Tests de données et de rendu sans navigateur : `node tests/test_spec75.js`. Contrôles complémentaires : `node tools/valider-lecons.js` et `bash tools/critique.sh`.
 - Recette Android réelle à réaliser avant statut « validé » : recherche/focus, scroll, audio exact/contextuel, retour, et vue libre vs exercice.
+
+## Correctifs de recette Android (20/10/2026)
+
+- « Toute la leçon » reste en permanence visible à droite de la liste défilante des unités.
+- Recherche bilingue réduite à un seul champ compact avec intitulé accessible ; la ligne de libellé visible est supprimée.
+- Mot/phrase et haut-parleur regroupés dans une même zone flex ; sur téléphone, traduction sous le luxembourgeois pour éviter les icônes rejetées à la ligne.
+- Les expressions composées de l'échelle des réponses (Ganz gutt!/Tipptopp!, Ganz schlecht./Guer net gutt.) et Awar!/Awuer! sont divisées en entrées distinctes. Aucun exercice ou audio n'est modifié.
+- Son exact LOD TIPPTOPP1 déjà présent : il devient découvrable dans le cours grâce à la séparation de la cellule.
+- Pour « Et geet. » et « Net immens. », l'absence de correspondance audio dans les tables locales ne démontre pas une absence sur LOD ; ne pas attribuer de phrase d'un autre sens.
+- Validation du design et des retours au clavier réel sur Android toujours nécessaire.

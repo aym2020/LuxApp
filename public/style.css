@@ -2901,3 +2901,30 @@ body.sans-transitions .view { animation:none!important; }
  .cours75-lexbloc .cours-vocab td {padding:.5rem .25rem;}
  .cours75-colonne-annexe {font-size:.76rem;}
 }
+
+
+/* SPEC 75 — correctifs Android : portée épinglée, recherche compacte, audio aligné. */
+.cours75-portee-ligne { display:flex; align-items:stretch; gap:.4rem; min-width:0; }
+.cours75-portee { flex:1 1 auto; min-width:0; padding:.1rem 0 .3rem; }
+.cours75-portee-fixe { flex:0 0 auto; padding:.1rem 0 .3rem; }
+.cours75-chip-tout { border-color:var(--accent); font-weight:750; }
+.cours75-navigation { padding:.3rem 0 .38rem; margin-bottom:.4rem; }
+.cours75-recherche {
+  display:block; min-height:40px; height:40px; margin-top:.25rem;
+  padding:.38rem .7rem; font-size:.88rem;
+}
+.cours75-ligne-lu { display:flex; align-items:center; gap:.35rem; min-width:0; }
+.cours75-mottexte { min-width:0; overflow-wrap:break-word; }
+.cours75-ligne-lu .bouton-ecouter { flex:0 0 auto; margin:0; }
+@media (max-width:560px) {
+  .cours75-lexbloc .cours-vocab tr {
+    display:flex; flex-direction:column; align-items:stretch;
+    padding:.5rem 0; gap:.12rem;
+  }
+  .cours75-lexbloc .cours-vocab td {
+    display:block; width:100%; padding:.05rem .22rem; text-align:left;
+  }
+  .cours75-lexbloc .cours-vocab .cours-lu { width:100%; }
+  .cours75-lexbloc .cours-vocab .cours-fr { width:100%; font-size:.84rem; }
+  .cours75-colonne-annexe {font-size:.77rem;}
+}

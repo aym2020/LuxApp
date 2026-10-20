@@ -1987,7 +1987,11 @@
       ],
       "lignes": [
         [
-          "Ganz gutt! · Tipptopp!",
+          "Ganz gutt!",
+          "Très bien"
+        ],
+        [
+          "Tipptopp!",
           "Très bien"
         ],
         [
@@ -2007,7 +2011,11 @@
           "Mal"
         ],
         [
-          "Ganz schlecht. · Guer net gutt.",
+          "Ganz schlecht.",
+          "Très mal"
+        ],
+        [
+          "Guer net gutt.",
           "Très mal"
         ]
       ],
@@ -2174,7 +2182,12 @@
           "Le plus courant"
         ],
         [
-          "Awar! / Awuer!",
+          "Awar!",
+          "Au revoir",
+          "Familier"
+        ],
+        [
+          "Awuer!",
           "Au revoir",
           "Familier"
         ],

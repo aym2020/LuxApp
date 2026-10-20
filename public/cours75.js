@@ -26,21 +26,22 @@ function cours75Navigation(l, surface) {
   const choix = unites.map(u =>
     '<button type="button" class="cours75-chip' + (e.unite === u.id ? ' active' : '') +
     '" aria-pressed="' + (e.unite === u.id) + '" onclick="cours75Choisir(\'' + surface +
-    '\',\'unite\',' + u.id + ')">Unité ' + u.id + '</button>').join('') +
-    '<button type="button" class="cours75-chip' + (e.unite == null ? ' active' : '') +
-    '" aria-pressed="' + (e.unite == null) + '" onclick="cours75Choisir(\'' + surface +
-    '\',\'unite\',null)">Toute la leçon</button>';
+    '\',\'unite\',' + u.id + ')">Unité ' + u.id + '</button>').join('');
+  const tout = '<button type="button" class="cours75-chip cours75-chip-tout' +
+    (e.unite == null ? ' active' : '') + '" aria-pressed="' + (e.unite == null) +
+    '" onclick="cours75Choisir(\'' + surface + '\',\'unite\',null)">Toute la leçon</button>';
   const onglets = [['regles','Règles'],['lexique','Lexique'],['phrases','Phrases']].map(([k, label]) =>
     '<button type="button" class="cours75-onglet' + (e.rubrique === k ? ' active' : '') +
     '" role="tab" aria-selected="' + (e.rubrique === k) + '" onclick="cours75Choisir(\'' +
     surface + '\',\'rubrique\',\'' + k + '\')">' + label + '</button>').join('');
-  return '<div class="cours75-navigation"><div class="cours75-portee" aria-label="Portée du cours">' +
-    choix + '</div><div class="cours75-onglets" role="tablist" aria-label="Rubriques du cours">' +
+  return '<div class="cours75-navigation"><div class="cours75-portee-ligne">' +
+    '<div class="cours75-portee" aria-label="Unités du cours">' + choix + '</div>' +
+    '<div class="cours75-portee-fixe">' + tout + '</div></div>' +
+    '<div class="cours75-onglets" role="tablist" aria-label="Rubriques du cours">' +
     onglets + '</div>' +
     (e.rubrique === 'lexique' ?
-      '<label class="cours75-recherche-label" for="cours75-recherche-' + surface +
-      '">Rechercher un mot ou sa traduction</label><input class="cours75-recherche" type="search" ' +
-      'id="cours75-recherche-' + surface + '" autocomplete="off" placeholder="Rechercher…" value="' +
+      '<input class="cours75-recherche" type="search" aria-label="Rechercher en luxembourgeois ou en français" ' +
+      'id="cours75-recherche-' + surface + '" autocomplete="off" placeholder="Rechercher un mot…" value="' +
       escHtml(e.recherche) + '" oninput="cours75Rechercher(\'' + surface + '\',this.value)">' : '') + '</div>';
 }
 function cours75Choisir(surface, champ, valeur) {
@@ -119,8 +120,9 @@ function cours75Groupe(blocs, l, surface) {
 function cours75Bloc(b, l) {
   if (b.rubrique === 'lexique' && (b.type === 'vocab' || b.type === 'tableau')) {
     const items = b.type === 'vocab' ? b.items : b.lignes;
-    const lignes = items.map(row => '<tr><td class="cours-lu" lang="lb">' + row[0] +
-      boutonEcouterHtml(row[0],true) + '</td><td class="cours-fr">' + row[1] + '</td>' +
+    const lignes = items.map(row => '<tr><td class="cours-lu" lang="lb">' +
+      '<span class="cours75-ligne-lu"><span class="cours75-mottexte">' + row[0] +
+      '</span>' + boutonEcouterHtml(row[0],true) + '</span></td><td class="cours-fr">' + row[1] + '</td>' +
       (row.length > 2 ? '<td class="cours75-colonne-annexe">' +
       row.slice(2).join(' · ') + '</td>' : '') + '</tr>').join('');
     return '<div class="cours-bloc cours75-lexbloc" style="border-left:3px solid ' + l.couleur +

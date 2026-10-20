@@ -36,6 +36,18 @@ assert.ok(lex.includes('Voir les mots supplémentaires (31)'));
 assert.ok(lex.includes('Voir les mots supplémentaires (5)'));
 assert.ok(lex.includes('<details class="cours75-plus"')&&!lex.includes('<details class="cours75-plus" open'));
 assert.ok(lex.includes('Voir les phrases de cette leçon'));
+
+assert.ok(lex.includes('cours75-ligne-lu'), 'texte et haut-parleur restent liés');
+const nav75=api.cours75Html(l2,'principal',null,false);
+assert.ok(nav75.includes('cours75-portee-fixe'), 'Toute la leçon doit rester visible à droite');
+assert.ok(nav75.includes('aria-label="Rechercher en luxembourgeois ou en français"'),
+  'recherche accessible sans libellé occupant une ligne');
+const echelle=lecons[0].cours.find(b=>b.titre==="Comment ça va ? L'échelle");
+assert.ok(echelle.lignes.some(r=>r[0]==="Tipptopp!"), 'Tipptopp doit avoir son audio propre');
+assert.ok(echelle.lignes.some(r=>r[0]==="Ganz gutt!"), 'Ganz gutt reste présent');
+assert.equal(echelle.lignes.filter(r=>r[0].includes(' · ')).length,0,
+  'les variantes ne doivent pas partager une cellule');
+
 api.cours75Etats.principal.recherche='ordinateur';
 const filtre=api.cours75Contenu(l2,'principal');
 assert.ok(filtre.includes('Computer')&&!filtre.includes('e Bus'),'recherche FR');
