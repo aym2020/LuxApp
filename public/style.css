@@ -3128,3 +3128,50 @@ body.pi-bloque { overflow:hidden; }
 .studio-apercu { display: grid; gap: 9px; margin: 20px 0; }
 .studio-apercu b { background: var(--couleur-fond-carte,#272621); border-radius: 12px; padding: 12px; }
 .studio-explication { font-size: 14px; line-height: 1.5; }
+
+
+/* SPEC 83 : découverte guidée avant les activités de la leçon 0.
+   Une seule notion centrale, aucune réponse, aucun score, aucun autoplay. */
+#view-decouverte { min-height: 100dvh; }
+#view-decouverte .dc-contenant { width:100%; flex:1; padding:22px 21px 116px;
+  display:flex; flex-direction:column; color:#f4f1e9; }
+#view-decouverte .dc-titre { font-size:clamp(23px,5vw,29px); font-weight:800; letter-spacing:-.7px; margin:9px 0 4px; }
+#view-decouverte .dc-soustitre { font-size:13px; color:#a8a8ae; line-height:1.55; min-height:38px; margin:0; }
+#view-decouverte .dc-ligne { display:flex; justify-content:space-between; align-items:center; margin-top:24px;
+  color:#b6b1a8; letter-spacing:.03em; font-size:12px; font-weight:700; }
+#view-decouverte .dc-piste { margin-top:9px; width:100%; height:5px; background:#34343a; border-radius:10px; overflow:hidden; }
+#view-decouverte #dc-progression { width:0; height:100%; background:#e7c565; border-radius:10px; transition:width .2s ease; }
+#view-decouverte .dc-scene { flex:1; min-height:330px; padding:20px 0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; gap:0; }
+#view-decouverte .dc-mini { text-transform:uppercase; letter-spacing:1.4px; font-size:11px;
+  font-weight:800; color:#a9a8a4; margin-bottom:13px; }
+#view-decouverte .dc-son { font-size:clamp(72px,18vw,100px); line-height:1.12; font-weight:850;
+  letter-spacing:-4px; color:#ecc55e; }
+#view-decouverte .dc-indice { font-size:14px; line-height:1.4; color:#d5c8a9; margin:11px 0 28px; }
+#view-decouverte .dc-mot { font-size:29px; font-weight:800; letter-spacing:-.6px; color:#f5f3eb; margin:0 0 19px; }
+#view-decouverte .dc-ecouter { border:1px solid #7b6635; color:#f2d278; background:#302a1c;
+  border-radius:30px; min-height:49px; min-width:180px; padding:10px 22px; display:inline-flex;
+  gap:12px; align-items:center; justify-content:center; font:inherit; font-size:14px; font-weight:800; cursor:pointer; }
+#view-decouverte .dc-ecouter span { font-size:24px; line-height:1; }
+#view-decouverte .dc-note { font-size:11px; line-height:1.5; color:#a3a3a9; margin:12px 0 0; }
+#view-decouverte .dc-formule { color:#f5f3ed; font-size:clamp(29px,7vw,40px); font-weight:800;
+  letter-spacing:-.9px; line-height:1.3; margin:20px 0 19px; }
+#view-decouverte .dc-n { color:#f1cb69; text-decoration:underline; text-underline-offset:7px; text-decoration-thickness:2px; }
+#view-decouverte .dc-initiale { color:#f1cb69; }
+#view-decouverte .dc-statut { display:inline-block; border-radius:8px; padding:8px 13px;
+  background:#2b2c2e; color:#e0ddd7; font-size:12px; font-weight:750; }
+#view-decouverte .dc-statut.garde { background:#253a2e; color:#9be0b1; }
+#view-decouverte .dc-explication { border-top:1px solid #3b3b3d; margin:24px 0 0; padding:17px 10px 0;
+  font-size:14px; line-height:1.55; max-width:385px; color:#d4d2c9; }
+#view-decouverte .dc-rappel { background:#24252a; border-radius:9px; padding:10px 13px;
+  font-size:12px; line-height:1.5; color:#bec0c6; margin:15px 0 0; }
+#view-decouverte .dc-bas { display:flex; align-items:stretch; gap:9px; }
+#view-decouverte .dc-precedent { width:56px; flex:none; min-height:54px; background:#222327;
+  border:1px solid #484951; border-radius:13px; color:#f3efe5; font-size:28px; cursor:pointer; }
+#view-decouverte .dc-precedent:disabled { opacity:.3; cursor:default; }
+#view-decouverte .dc-continuer { flex:1; min-width:0; min-height:54px; white-space:normal; }
+@media(max-width:380px) {
+  #view-decouverte .dc-contenant { padding:15px 15px 115px; }
+  #view-decouverte .dc-scene { min-height:290px; }
+  #view-decouverte .dc-formule { font-size:27px; }
+}
