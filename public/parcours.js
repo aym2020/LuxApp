@@ -1434,9 +1434,16 @@ function renderQuizP(q) {
   // SPEC 79 : quiz d'écoute pour la leçon 0. Audio LOD déjà présent : jamais de
   // synthèse, ni de fallback silencieux. Son libellé accessible ne dévoile pas
   // le mot attendu avant que l'apprenant ait répondu.
-  const audioEcoute = q.audioMot
-    ? boutonEcouterHtml(q.audioMot, true).replace(/aria-label="[^"]*"/, 'aria-label="Écouter le mot à reconnaître"')
+  // SPEC 82 : les 20 audios de la leçon 0 ont un chemin LOD vérifié dans le JSON :
+  // le bouton apparaît immédiatement, même si l'index général se charge encore.
+  const audioDirect = q.audioFichier && /^lod\/[A-Za-z0-9_-]+\.mp3$/.test(q.audioFichier)
+    ? '<button type="button" class="bouton-ecouter compact" ' +
+      'onclick="event.stopPropagation();jouerAudio(\'' + q.audioFichier + '\',this)" ' +
+      'aria-label="Écouter le mot à reconnaître">' + ICONE_ECOUTER + '</button>'
     : '';
+  const audioEcoute = audioDirect || (q.audioMot
+    ? boutonEcouterHtml(q.audioMot, true).replace(/aria-label="[^"]*"/, 'aria-label="Écouter le mot à reconnaître"')
+    : '');
   // Si un distracteur est identique à la réponse, on le remplace (comme le quiz v1).
   const choix = melanger(q.distracteurs.map(d => d === q.reponse ? '—' : d).concat([q.reponse]));
   document.getElementById('pc-body').innerHTML =
