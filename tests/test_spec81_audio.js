@@ -6,6 +6,7 @@ const fs=require('node:fs'),path=require('node:path');
 const base=path.join(__dirname,'..');
 const src=fs.readFileSync(path.join(base,'public/dialogue.js'),'utf8');
 const chemins=JSON.parse(fs.readFileSync(path.join(base,'public/audio/lod.json'),'utf8'));
+const portail=fs.readFileSync(path.join(base,'public/portail.js'),'utf8');
 const lecon=JSON.parse(fs.readFileSync(path.join(base,'data/lecons/A1.1/lecon-00.json'),'utf8'));
 const creees=[],messages=[],avertissements=[];
 class AudioFictif {
@@ -26,11 +27,25 @@ const reset=()=>{player.arreterAudio();creees.length=0;messages.length=0;avertis
 const dossier='https://raw.githubusercontent.com/robertoentringer/lod-mp3-mirror/master/2020-12-18-lod-opendata/';
 assert.deepEqual(player.sourcesAudio('lod/WAISS1.mp3'),['/audio/lod/WAISS1.mp3',dossier+'WAISS1.mp3']);
 assert.deepEqual(player.sourcesAudio('lod-phrases/abc.m4a'),['/audio/lod-phrases/abc.m4a']);
+assert.deepEqual(player.sourcesAudio('moien.mp3'),['/audio/moien.mp3'], 'son de la bienvenue explicitement autorisé');
+assert.deepEqual(player.sourcesAudio('autre.mp3'),[], 'seul le MP3 de bienvenue est autorisé à la racine');
+assert.ok(fs.statSync(path.join(base,'public/audio/moien.mp3')).size > 5000, 'le fichier de bienvenue existe');
+assert.match(portail,/function portailEcouter\(bouton\)\s*\{\s*jouerAudio\('moien\.mp3', bouton\)/,
+  'le bouton du portail utilise le lecteur commun');
 assert.deepEqual(player.sourcesAudio('../evil.mp3'),[]);
 for(const q of lecon.quiz.filter(q=>q.unite===1)){
  const file=chemins[q.audioMot];assert.ok(file,'MP3 LOD indexé pour '+q.audioMot);
  assert.equal(player.sourcesAudio(file).length,2,'second chemin LOD prêt pour '+q.audioMot);
 }
+reset();
+const boutonPortail=bouton();
+player.jouerAudio('moien.mp3',boutonPortail);
+assert.equal(creees.length,1,'clic du portail : un lecteur créé');
+assert.equal(creees[0].url,'/audio/moien.mp3','MP3 du portail servi depuis la racine du site');
+assert.ok(boutonPortail.etat.has('joue'),'bouton actif pendant la lecture');
+creees[0].onended();
+assert.ok(!boutonPortail.etat.has('joue'),'bouton réinitialisé après la lecture');
+assert.deepEqual(messages,[]);
 reset();
 const premier=bouton();player.jouerAudio('lod/WAISS1.mp3',premier);
 assert.equal(creees.length,1);
@@ -71,4 +86,4 @@ creees[0].onerror();
 assert.equal(creees.length,1,'pas de miroir MP3 inventé pour les phrases');
 assert.equal(messages.length,1);
 reset();
-console.log('SPEC 81 : OK — 9 sons, URL absolue, miroir, erreurs, annulation et nettoyage.');
+console.log('SPEC 81 : OK — audio Moien du portail, URL absolue, miroir, erreurs, annulation et nettoyage.');
