@@ -3082,3 +3082,10 @@ body.pi-bloque { overflow:hidden; }
   #view-dashboard .ac-nouveau-invite .ac-acces { gap: 6px; }
   #view-dashboard .ac-nouveau-invite .ac-btn { min-height: 60px; }
 }
+
+/* SPEC 79 — exercice d'écoute LOD, leçon 0 : bouton audible central et accessible. */
+.pc-quiz-audio { display:flex; justify-content:center; padding:9px 0 5px; }
+.pc-quiz-audio .bouton-ecouter.compact {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:56px; min-height:56px; border-radius:15px; margin:0;
+}

@@ -1,19 +1,19 @@
 {
   "id": 2,
   "titre": "Objeten identifizéieren",
-  "titre_fr": "Identifier des objets – articles indéfinis",
+  "titre_fr": "Identifier des objets – les articles et la négation",
   "couleur": "#8f87f0",
   "instructions": {
-    "flashcards": "Mot caché : retrouve l'objet luxembourgeois à partir du français. Unité 1 : écris l'article et le mot (e, eng). Unités 2 et 3 : l'article est affiché pour le mémoriser avec le mot. Unité 3 : les mots pour demander et dire non.",
-    "quiz": "Lis l'objet en français et choisis la bonne forme luxembourgeoise (bon article + nom). Unité 3 : choisis la bonne phrase (kee, keen, keng).",
-    "trous": "Complète avec l'article (e, en, eng) ou la négation (kee, keen, keng) selon le genre du nom.",
-    "ecriture": "Écris en luxembourgeois les phrases de la mission : Wat ass dat?, Dat ass …, Ass dat …?, Jo / Nee, dat ass kee / keen / keng …"
+    "flashcards": "Mot caché : retrouve le nom et son article. Unité 1 : e / eng ; unité 2 : de / den / d' (article défini complet à écrire) ; unité 3 : questions et négation.",
+    "quiz": "À partir du français, choisis l'article et le nom luxembourgeois corrects. Distingue indéfini, défini et négation selon l'unité.",
+    "trous": "Complète une phrase luxembourgeoise avec le bon article ou la bonne négation, en respectant les genres et UNITEDZOHA enseignés dans la leçon 0.",
+    "ecriture": "Traduis les phrases françaises en luxembourgeois. L'unité 2 exige la structure définie (« le/la/l' »), distincte de « un/une »."
   },
   "mission": {
     "titre": "Premier jour au bureau",
     "contexte": "C'est ton premier jour au bureau. Ta collègue Sarah te fait visiter et te teste : elle montre des objets, tu dis ce que c'est.",
-    "objectif": "demander ce que c'est, nommer un objet avec e, en ou eng, et répondre non.",
-    "version": 2
+    "objectif": "demander ce que c'est, nommer un objet avec un article indéfini ou défini, puis répondre non.",
+    "version": 3
   },
   "scene": [
     {
@@ -76,10 +76,10 @@
     },
     {
       "qui": "toi",
-      "lu": "Dat ass en Telefon.",
-      "fr": "C'est un téléphone.",
+      "lu": "Dat ass den Telefon.",
+      "fr": "C'est le téléphone.",
       "unite": 2,
-      "aide": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
+      "aide": "Article défini masculin : <b>den</b> devant T ou D (UNITEDZOHA)."
     },
     {
       "qui": "Sarah",
@@ -89,10 +89,10 @@
     },
     {
       "qui": "toi",
-      "lu": "Dat ass en Drécker.",
-      "fr": "C'est une imprimante.",
+      "lu": "Dat ass den Drécker.",
+      "fr": "C'est l'imprimante.",
       "unite": 2,
-      "aide": "D fait partie de UNITEDZOHA → <b>en</b> Drécker."
+      "aide": "Article défini masculin : <b>den</b> devant T ou D (UNITEDZOHA)."
     },
     {
       "qui": "Sarah",
@@ -102,10 +102,10 @@
     },
     {
       "qui": "toi",
-      "lu": "Dat ass en Dësch.",
-      "fr": "C'est une table.",
+      "lu": "Dat ass den Dësch.",
+      "fr": "C'est la table.",
       "unite": 2,
-      "aide": "D → <b>en</b> Dësch."
+      "aide": "Article défini masculin : <b>den</b> devant T ou D (UNITEDZOHA)."
     },
     {
       "qui": "Sarah",
@@ -156,7 +156,7 @@
         "Wat ass dat? – Dat ass e Stull.",
         "Qu'est-ce que c'est ? – C'est une chaise."
       ],
-      "regle": "Masculin et neutre → <b>e</b> · Féminin → <b>eng</b>",
+      "regle": "Masculin et neutre → <b>e</b> ou <b>en</b> selon UNITEDZOHA (leçon 0) · Féminin → <b>eng</b>.",
       "exemple": "<b>e</b> Stull · <b>e</b> Buch · <b>eng</b> Dier · <b>eng</b> Mapp",
       "phrases": [
         [
@@ -170,31 +170,37 @@
       ],
       "pieges": [
         "Le genre ne se devine pas : « une chaise » = <b>e Stull</b> (masculin).",
-        "« un sac » = <b>eng Mapp</b> : féminin en luxembourgeois."
+        "« un sac » = <b>eng Mapp</b> : féminin en luxembourgeois.",
+        "Devant A, D, T, Z ou H : on écrit <b>en</b> pour les noms masculins ou neutres concernés (voir leçon 0)."
       ]
     },
     {
       "id": 2,
-      "titre": "e ou en ?",
+      "titre": "Articles définis : de, den, d'",
+      "articleAEcrire": true,
       "phrase": [
-        "Dat ass en Telefon.",
-        "C'est un téléphone."
+        "Dat ass den Auto.",
+        "C'est la voiture."
       ],
-      "regle": "<b>en</b> devant une voyelle ou n, d, t, z, h · sinon <b>e</b>",
-      "exemple": "<b>en</b> Telefon · <b>en</b> Dësch · <b>en</b> Auto · mais <b>e</b> Stull",
+      "regle": "Devant un nom <b>masculin</b> : <b>de</b> ou <b>den</b> selon UNITEDZOHA. Devant un nom <b>féminin ou neutre</b> : <b>d'</b> attaché au nom.",
+      "exemple": "<b>de</b> Stull · <b>den</b> Auto · <b>d'</b>Mapp · <b>d'</b>Buch",
       "phrases": [
         [
-          "Dat ass en Dësch.",
-          "C'est une table."
+          "Dat ass de Stull.",
+          "C'est la chaise."
         ],
         [
-          "Dat ass en Auto.",
-          "C'est une voiture."
+          "Dat ass den Dësch.",
+          "C'est la table."
+        ],
+        [
+          "Dat ass d'Mapp.",
+          "C'est le sac."
         ]
       ],
       "pieges": [
-        "Moyen mnémotechnique : <b>U·N·I·T·E·D·Z·O·H·A</b> (voyelles + n, d, t, z, h).",
-        "Au féminin, jamais en : toujours <b>eng</b> (eng Dier)."
+        "Masculin : <b>de</b> avant S, B, C… mais <b>den</b> avant A, D, T… (règle du N, leçon 0).",
+        "Féminin et neutre : <b>d'</b> s'écrit collé au mot, jamais « d' Mapp »."
       ]
     },
     {
@@ -614,108 +620,68 @@
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 2041,
+      "id": 2701,
       "unite": 2,
-      "fr": "un téléphone",
-      "lu": "Telefon",
-      "article": "en",
-      "note": "Masculin · en devant T (UNITEDZOHA) · non : keen Telefon",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+      "fr": "la chaise",
+      "lu": "Stull",
+      "article": "de",
+      "note": "masculin · S : pas de n"
     },
     {
-      "id": 2042,
+      "id": 2702,
       "unite": 2,
-      "fr": "une table",
-      "lu": "Dësch",
-      "article": "en",
-      "note": "Masculin · en devant D (UNITEDZOHA) · non : keen Dësch",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
-    },
-    {
-      "id": 2043,
-      "unite": 2,
-      "fr": "un smartphone",
-      "lu": "Handy",
-      "article": "en",
-      "note": "Masculin · en devant H (UNITEDZOHA) · non : keen Handy",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
-    },
-    {
-      "id": 2044,
-      "unite": 2,
-      "fr": "un cahier",
-      "lu": "Heft",
-      "article": "en",
-      "note": "Neutre · en devant H (UNITEDZOHA) · non : keen Heft",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
-    },
-    {
-      "id": 2045,
-      "unite": 2,
-      "fr": "une voiture",
+      "fr": "la voiture",
       "lu": "Auto",
-      "article": "en",
-      "note": "Masculin · en devant A (UNITEDZOHA) · non : keen Auto",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "article": "den",
+      "note": "masculin · A : n conservé"
     },
     {
-      "id": 2046,
+      "id": 2703,
       "unite": 2,
-      "fr": "une imprimante",
-      "lu": "Drécker",
-      "article": "en",
-      "note": "Masculin · en devant D (UNITEDZOHA) · non : keen Drécker",
-      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+      "fr": "le bus",
+      "lu": "Bus",
+      "article": "de",
+      "note": "masculin · B : pas de n"
     },
     {
-      "id": 2047,
+      "id": 2704,
       "unite": 2,
-      "plus": true,
-      "fr": "un train",
-      "lu": "Zuch",
-      "article": "en",
-      "note": "Masculin · en devant Z (UNITEDZOHA) · non : keen Zuch",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+      "fr": "la table",
+      "lu": "Dësch",
+      "article": "den",
+      "note": "masculin · D : n conservé"
     },
     {
-      "id": 2048,
+      "id": 2705,
       "unite": 2,
-      "plus": true,
-      "fr": "une maison",
-      "lu": "Haus",
-      "article": "en",
-      "note": "Neutre · en devant H (UNITEDZOHA) · non : keen Haus",
-      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+      "fr": "l'ordinateur",
+      "lu": "Computer",
+      "article": "de",
+      "note": "masculin · C : pas de n"
     },
     {
-      "id": 2049,
+      "id": 2706,
       "unite": 2,
-      "plus": true,
-      "fr": "un éléphant",
-      "lu": "Elefant",
-      "article": "en",
-      "note": "Masculin · en devant E (UNITEDZOHA) · non : keen Elefant",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "fr": "le téléphone",
+      "lu": "Telefon",
+      "article": "den",
+      "note": "masculin · T : n conservé"
     },
     {
-      "id": 2050,
+      "id": 2707,
       "unite": 2,
-      "plus": true,
-      "fr": "une enclume",
-      "lu": "Amboss",
-      "article": "en",
-      "note": "Masculin · en devant A (UNITEDZOHA) · non : keen Amboss",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "fr": "le sac",
+      "lu": "Mapp",
+      "article": "d'",
+      "note": "féminin · d' collé au nom"
     },
     {
-      "id": 2051,
+      "id": 2708,
       "unite": 2,
-      "plus": true,
-      "fr": "un seau",
-      "lu": "Eemer",
-      "article": "en",
-      "note": "Masculin · en devant E (UNITEDZOHA) · non : keen Eemer",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "fr": "le livre",
+      "lu": "Buch",
+      "article": "d'",
+      "note": "neutre · d' collé au nom"
     },
     {
       "id": 2052,
@@ -1306,178 +1272,100 @@
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 2040,
+      "id": 2701,
       "unite": 2,
-      "question": "un téléphone",
-      "reponse": "en Telefon",
+      "question": "la chaise (article défini)",
+      "reponse": "de Stull",
       "distracteurs": [
-        "e Telefon",
-        "eng Telefon",
-        "en Drécker"
+        "den Stull",
+        "d'Stull",
+        "e Stull"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
-      "id": 2041,
+      "id": 2702,
       "unite": 2,
-      "question": "une table",
-      "reponse": "en Dësch",
+      "question": "la voiture (article défini)",
+      "reponse": "den Auto",
       "distracteurs": [
-        "e Dësch",
-        "eng Dësch",
-        "en Telefon"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
-    },
-    {
-      "id": 2042,
-      "unite": 2,
-      "question": "un smartphone",
-      "reponse": "en Handy",
-      "distracteurs": [
-        "e Handy",
-        "eng Handy",
-        "en Telefon"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
-    },
-    {
-      "id": 2043,
-      "unite": 2,
-      "question": "un cahier",
-      "reponse": "en Heft",
-      "distracteurs": [
-        "e Heft",
-        "eng Heft",
+        "de Auto",
+        "d'Auto",
         "en Auto"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
-      "id": 2044,
+      "id": 2703,
       "unite": 2,
-      "question": "une voiture",
-      "reponse": "en Auto",
+      "question": "le bus (article défini)",
+      "reponse": "de Bus",
       "distracteurs": [
-        "e Auto",
-        "eng Auto",
-        "en Heft"
+        "den Bus",
+        "d'Bus",
+        "e Bus"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
-      "id": 2045,
+      "id": 2704,
       "unite": 2,
-      "question": "une imprimante",
-      "reponse": "en Drécker",
+      "question": "la table (article défini)",
+      "reponse": "den Dësch",
       "distracteurs": [
-        "e Drécker",
-        "eng Drécker",
-        "en Auto"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
-    },
-    {
-      "id": 2046,
-      "unite": 2,
-      "question": "un stylo",
-      "reponse": "e Stëft",
-      "distracteurs": [
-        "en Stëft",
-        "eng Stëft",
-        "en Telefon"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
-    },
-    {
-      "id": 2047,
-      "unite": 2,
-      "question": "une chaise",
-      "reponse": "e Stull",
-      "distracteurs": [
-        "en Stull",
-        "eng Stull",
+        "de Dësch",
+        "d'Dësch",
         "en Dësch"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
-      "id": 2048,
+      "id": 2705,
       "unite": 2,
-      "plus": true,
-      "question": "un train",
-      "reponse": "en Zuch",
+      "question": "l'ordinateur (article défini)",
+      "reponse": "de Computer",
       "distracteurs": [
-        "e Zuch",
-        "eng Zuch",
-        "en Auto"
+        "den Computer",
+        "d'Computer",
+        "e Computer"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
-      "id": 2049,
+      "id": 2706,
       "unite": 2,
-      "plus": true,
-      "question": "une maison",
-      "reponse": "en Haus",
+      "question": "le téléphone (article défini)",
+      "reponse": "den Telefon",
       "distracteurs": [
-        "e Haus",
-        "eng Haus",
-        "en Auto"
+        "de Telefon",
+        "d'Telefon",
+        "en Telefon"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
-      "id": 2050,
+      "id": 2707,
       "unite": 2,
-      "plus": true,
-      "question": "un éléphant",
-      "reponse": "en Elefant",
+      "question": "le sac (article défini)",
+      "reponse": "d'Mapp",
       "distracteurs": [
-        "e Elefant",
-        "eng Elefant",
-        "en Drécker"
+        "de Mapp",
+        "den Mapp",
+        "eng Mapp"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
-      "id": 2051,
+      "id": 2708,
       "unite": 2,
-      "plus": true,
-      "question": "une enclume",
-      "reponse": "en Amboss",
+      "question": "le livre (article défini)",
+      "reponse": "d'Buch",
       "distracteurs": [
-        "e Amboss",
-        "eng Amboss",
-        "en Elefant"
+        "de Buch",
+        "den Buch",
+        "eng Buch"
       ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
-    },
-    {
-      "id": 2052,
-      "unite": 2,
-      "plus": true,
-      "question": "un seau",
-      "reponse": "en Eemer",
-      "distracteurs": [
-        "e Eemer",
-        "eng Eemer",
-        "en Dësch"
-      ],
-      "label": "CHOISIS LA BONNE FORME",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "label": "LE / LA / L' — ARTICLE DÉFINI"
     },
     {
       "id": 2053,
@@ -2258,204 +2146,116 @@
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 2040,
+      "id": 2701,
       "unite": 2,
-      "fr": "C'est un téléphone.",
+      "fr": "C'est la chaise.",
       "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Telefon.",
+      "trou": "de",
+      "apres": "Stull.",
       "choix": [
-        "e",
-        "en",
-        "eng"
+        "de",
+        "den",
+        "d'"
       ],
-      "note": "T fait partie de UNITEDZOHA → en Telefon",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+      "note": "Articles définis : de/den selon UNITEDZOHA"
     },
     {
-      "id": 2041,
+      "id": 2702,
       "unite": 2,
-      "fr": "C'est une table.",
+      "fr": "C'est la voiture.",
       "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Dësch.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "D fait partie de UNITEDZOHA → en Dësch",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
-    },
-    {
-      "id": 2042,
-      "unite": 2,
-      "fr": "C'est un smartphone.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Handy.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "H fait partie de UNITEDZOHA → en Handy",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
-    },
-    {
-      "id": 2043,
-      "unite": 2,
-      "fr": "C'est un cahier.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Heft.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "H fait partie de UNITEDZOHA → en Heft",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
-    },
-    {
-      "id": 2044,
-      "unite": 2,
-      "fr": "C'est une voiture.",
-      "avant": "Dat ass",
-      "trou": "en",
+      "trou": "den",
       "apres": "Auto.",
       "choix": [
-        "e",
-        "en",
-        "eng"
+        "de",
+        "den",
+        "d'"
       ],
-      "note": "A fait partie de UNITEDZOHA → en Auto",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "note": "Articles définis : de/den selon UNITEDZOHA"
     },
     {
-      "id": 2045,
+      "id": 2703,
       "unite": 2,
-      "fr": "C'est une imprimante.",
+      "fr": "C'est le bus.",
       "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Drécker.",
+      "trou": "de",
+      "apres": "Bus.",
       "choix": [
-        "e",
-        "en",
-        "eng"
+        "de",
+        "den",
+        "d'"
       ],
-      "note": "D fait partie de UNITEDZOHA → en Drécker",
-      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+      "note": "Articles définis : de/den selon UNITEDZOHA"
     },
     {
-      "id": 2046,
+      "id": 2704,
       "unite": 2,
-      "fr": "C'est un ordinateur.",
+      "fr": "C'est la table.",
       "avant": "Dat ass",
-      "trou": "e",
+      "trou": "den",
+      "apres": "Dësch.",
+      "choix": [
+        "de",
+        "den",
+        "d'"
+      ],
+      "note": "Articles définis : de/den selon UNITEDZOHA"
+    },
+    {
+      "id": 2705,
+      "unite": 2,
+      "fr": "C'est l'ordinateur.",
+      "avant": "Dat ass",
+      "trou": "de",
       "apres": "Computer.",
       "choix": [
-        "e",
-        "en",
-        "eng"
+        "de",
+        "den",
+        "d'"
       ],
-      "note": "C ne fait pas partie de UNITEDZOHA → e Computer",
-      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+      "note": "Articles définis : de/den selon UNITEDZOHA"
     },
     {
-      "id": 2047,
+      "id": 2706,
       "unite": 2,
-      "fr": "C'est une porte.",
+      "fr": "C'est le téléphone.",
       "avant": "Dat ass",
-      "trou": "eng",
-      "apres": "Dier.",
+      "trou": "den",
+      "apres": "Telefon.",
       "choix": [
-        "e",
-        "en",
-        "eng"
+        "de",
+        "den",
+        "d'"
       ],
-      "note": "Féminin → toujours eng, même devant D",
-      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+      "note": "Articles définis : de/den selon UNITEDZOHA"
     },
     {
-      "id": 2048,
+      "id": 2707,
       "unite": 2,
-      "plus": true,
-      "fr": "C'est un train.",
+      "fr": "C'est le sac.",
       "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Zuch.",
+      "trou": "d'Mapp.",
+      "apres": "",
       "choix": [
-        "e",
-        "en",
-        "eng"
+        "d'Mapp.",
+        "de Mapp.",
+        "den Mapp."
       ],
-      "note": "Z fait partie de UNITEDZOHA → en Zuch",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+      "note": "Articles définis : d' collé au nom"
     },
     {
-      "id": 2049,
+      "id": 2708,
       "unite": 2,
-      "plus": true,
-      "fr": "C'est une maison.",
+      "fr": "C'est le livre.",
       "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Haus.",
+      "trou": "d'Buch.",
+      "apres": "",
       "choix": [
-        "e",
-        "en",
-        "eng"
+        "d'Buch.",
+        "de Buch.",
+        "den Buch."
       ],
-      "note": "H fait partie de UNITEDZOHA → en Haus",
-      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
-    },
-    {
-      "id": 2050,
-      "unite": 2,
-      "plus": true,
-      "fr": "C'est un éléphant.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Elefant.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "E fait partie de UNITEDZOHA → en Elefant",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
-    },
-    {
-      "id": 2051,
-      "unite": 2,
-      "plus": true,
-      "fr": "C'est une enclume.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Amboss.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "A fait partie de UNITEDZOHA → en Amboss",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
-    },
-    {
-      "id": 2052,
-      "unite": 2,
-      "plus": true,
-      "fr": "C'est un seau.",
-      "avant": "Dat ass",
-      "trou": "en",
-      "apres": "Eemer.",
-      "choix": [
-        "e",
-        "en",
-        "eng"
-      ],
-      "note": "E fait partie de UNITEDZOHA → en Eemer",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "note": "Articles définis : d' collé au nom"
     },
     {
       "id": 2053,
@@ -2917,86 +2717,46 @@
       "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
     },
     {
-      "id": 2016,
+      "id": 2701,
       "unite": 2,
-      "fr": "C'est un téléphone.",
-      "lu": "Dat ass en Telefon.",
-      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+      "fr": "C'est la chaise (article défini).",
+      "lu": "Dat ass de Stull."
     },
     {
-      "id": 2017,
+      "id": 2702,
       "unite": 2,
-      "fr": "C'est une table.",
-      "lu": "Dat ass en Dësch.",
-      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
+      "fr": "C'est la voiture (article défini).",
+      "lu": "Dat ass den Auto."
     },
     {
-      "id": 2018,
+      "id": 2703,
       "unite": 2,
-      "fr": "C'est un smartphone.",
-      "lu": "Dat ass en Handy.",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+      "fr": "C'est le bus (article défini).",
+      "lu": "Dat ass de Bus."
     },
     {
-      "id": 2019,
+      "id": 2704,
       "unite": 2,
-      "fr": "C'est un cahier.",
-      "lu": "Dat ass en Heft.",
-      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+      "fr": "C'est la table (article défini).",
+      "lu": "Dat ass den Dësch."
     },
     {
-      "id": 2020,
+      "id": 2705,
       "unite": 2,
-      "fr": "C'est une voiture.",
-      "lu": "Dat ass en Auto.",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "fr": "C'est l'ordinateur (article défini).",
+      "lu": "Dat ass de Computer."
     },
     {
-      "id": 2021,
+      "id": 2706,
       "unite": 2,
-      "fr": "C'est une imprimante.",
-      "lu": "Dat ass en Drécker.",
-      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+      "fr": "C'est le téléphone (article défini).",
+      "lu": "Dat ass den Telefon."
     },
     {
-      "id": 2022,
+      "id": 2707,
       "unite": 2,
-      "plus": true,
-      "fr": "C'est un train.",
-      "lu": "Dat ass en Zuch.",
-      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
-    },
-    {
-      "id": 2023,
-      "unite": 2,
-      "plus": true,
-      "fr": "C'est une maison.",
-      "lu": "Dat ass en Haus.",
-      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
-    },
-    {
-      "id": 2024,
-      "unite": 2,
-      "plus": true,
-      "fr": "C'est un éléphant.",
-      "lu": "Dat ass en Elefant.",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
-    },
-    {
-      "id": 2025,
-      "unite": 2,
-      "plus": true,
-      "fr": "C'est une enclume.",
-      "lu": "Dat ass en Amboss.",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
-    },
-    {
-      "id": 2026,
-      "unite": 2,
-      "plus": true,
-      "fr": "C'est un seau.",
-      "lu": "Dat ass en Eemer.",
-      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+      "fr": "C'est le sac (article défini).",
+      "lu": "Dat ass d'Mapp."
     },
     {
       "id": 2027,
@@ -3220,50 +2980,6 @@
     },
     {
       "type": "callout",
-      "variant": "astuce",
-      "titre": "UNITEDZOHA : la règle du -n",
-      "lignes": [
-        "On garde le <b>-n</b> (<b>en</b>) devant une <b>voyelle</b> ou <b>n, d, t, z, h</b> : moyen mnémotechnique <b>U·N·I·T·E·D·Z·O·H·A</b>.",
-        "Avec -n : <b>en</b> Telefon, <b>en</b> Dësch, <b>en</b> Handy, <b>en</b> Auto. · Sans -n : <b>e</b> Stull, <b>e</b> Computer.",
-        "Au féminin, jamais en : toujours <b>eng</b>."
-      ],
-      "unite": 2,
-      "rubrique": "regles"
-    },
-    {
-      "type": "vocab",
-      "titre": "Avec en",
-      "items": [
-        [
-          "en Telefon",
-          "un téléphone"
-        ],
-        [
-          "en Dësch",
-          "une table"
-        ],
-        [
-          "en Handy",
-          "un smartphone"
-        ],
-        [
-          "en Heft",
-          "un cahier"
-        ],
-        [
-          "en Auto",
-          "une voiture"
-        ],
-        [
-          "en Drécker",
-          "une imprimante"
-        ]
-      ],
-      "unite": 2,
-      "rubrique": "lexique"
-    },
-    {
-      "type": "callout",
       "variant": "retenir",
       "titre": "Demander et répondre",
       "lignes": [
@@ -3458,45 +3174,6 @@
       "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Plus d'objets avec en",
-      "entetes": [
-        "Luxembourgeois",
-        "Français",
-        "Non"
-      ],
-      "lignes": [
-        [
-          "en Zuch",
-          "un train",
-          "keen Zuch"
-        ],
-        [
-          "en Haus",
-          "une maison",
-          "keen Haus"
-        ],
-        [
-          "en Elefant",
-          "un éléphant",
-          "keen Elefant"
-        ],
-        [
-          "en Amboss",
-          "une enclume",
-          "keen Amboss"
-        ],
-        [
-          "en Eemer",
-          "un seau",
-          "keen Eemer"
-        ]
-      ],
-      "unite": 2,
-      "plus": true,
-      "rubrique": "lexique"
-    },
-    {
       "type": "dialogue",
       "titre": "Premier jour au bureau",
       "echanges": [
@@ -3571,30 +3248,6 @@
     {
       "type": "phrases",
       "rubrique": "phrases",
-      "unite": 2,
-      "titre": "Phrases à connaître",
-      "items": [
-        [
-          "Dat ass en Dësch.",
-          "C'est une table."
-        ],
-        [
-          "Dat ass en Auto.",
-          "C'est une voiture."
-        ],
-        [
-          "Dat ass en Telefon.",
-          "C'est un téléphone."
-        ],
-        [
-          "Dat ass en Drécker.",
-          "C'est une imprimante."
-        ]
-      ]
-    },
-    {
-      "type": "phrases",
-      "rubrique": "phrases",
       "unite": 3,
       "titre": "Phrases à connaître",
       "items": [
@@ -3613,6 +3266,85 @@
         [
           "Nee, dat ass keen Handy.",
           "Non, ce n'est pas un smartphone."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "titre": "Article défini : de, den, d'",
+      "rubrique": "regles",
+      "unite": 2,
+      "lignes": [
+        "Masculin : <b>de</b> devant B, C, M, S… et <b>den</b> devant une voyelle ou N, D, T, Z, H.",
+        "Féminin et neutre : toujours <b>d'</b>, collé au mot. Ces articles indiquent une chose connue : « le / la / l' ».",
+        "Compare : <b>e Stull</b> (une chaise) → <b>de Stull</b> (la chaise). Rappel UNITEDZOHA : leçon 0, unité 2."
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Objets avec leur article défini",
+      "rubrique": "lexique",
+      "unite": 2,
+      "items": [
+        [
+          "de Stull",
+          "la chaise"
+        ],
+        [
+          "den Auto",
+          "la voiture"
+        ],
+        [
+          "de Bus",
+          "le bus"
+        ],
+        [
+          "den Dësch",
+          "la table"
+        ],
+        [
+          "de Computer",
+          "l'ordinateur"
+        ],
+        [
+          "den Telefon",
+          "le téléphone"
+        ],
+        [
+          "d'Mapp",
+          "le sac"
+        ],
+        [
+          "d'Buch",
+          "le livre"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "titre": "Identifier un objet connu",
+      "rubrique": "phrases",
+      "unite": 2,
+      "items": [
+        [
+          "Dat ass de Stull.",
+          "C'est la chaise."
+        ],
+        [
+          "Dat ass den Auto.",
+          "C'est la voiture."
+        ],
+        [
+          "Dat ass den Dësch.",
+          "C'est la table."
+        ],
+        [
+          "Dat ass d'Mapp.",
+          "C'est le sac."
+        ],
+        [
+          "Dat ass d'Buch.",
+          "C'est le livre."
         ]
       ]
     }

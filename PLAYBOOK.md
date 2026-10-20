@@ -799,3 +799,9 @@ Sur la première visite invitée en viewport ≤810 px, le `margin:-6px 0` globa
 
 ### SPEC 78 — Salut! / Hallo! (20/10/2026)
 Si deux salutations ont réellement le même sens dans la consigne (« Salut ! » entre amis, pour dire bonjour), préférer **une entrée principale et une variante explicite** dans le Lexique, et des `ecriture[].alternatives` contextualisées. Leçon 1 : ID 2008 Salut! accepte Hallo!, ID 2009 Salut Pierre! accepte Hallo Pierre!, ID 2010 Salut Jean! accepte Hallo Jean!. Aucun prénom adapté, aucune équivalence globale pour Bonjour/Au revoir ; Salut peut aussi dire au revoir, **Hallo ne doit pas être accepté pour le départ**. Conserver les flashcards et quiz de reconnaissance, les audios LOD existants. Tests : `node tests/test_reponses_alternatives.js && node tests/test_spec75.js`.
+
+
+### SPEC 79 — Leçon 0 + articles définis (20/10/2026)
+Leçon 0 A1.1 en deux unités (neuf graphies avec MP3 LOD officiels, quiz `audioMot` joués manuellement ; UNITEDZOHA avec quatre paires sans/avec N). La leçon 2 unité 2 devient **articles définis de/den/d'**, tous les exercices renouvelés, mission v3. L'ancienne unité 2 est archivée dans `data/archives/`; aucune suppression de résultats : `public/progress.js` sépare `2-definis-v1` de la clé historique `2` (score, Sans faute, rattrapage). Les mots avec `d'` sont collés dans `motATaper` et `motComplet`. `server.js` charge naturellement `lecon-00.json` avant 01 ; ne jamais utiliser `if (!id)` sur id0. Mettre à jour les compteurs/test SPEC75 de 25 à 26. Tests `node tests/test_spec79.js && node tests/test_spec75.js && node tools/valider-lecons.js && bash tools/critique.sh`, puis recette Android.
+
+SPEC 79 : `loadRun()` archive également les reprises d'exercice de l'ancienne unité 2 en `:archive79` lorsqu'un identifiant n'existe plus dans la nouvelle banque de questions. Ne pas réutiliser la queue obsolète.

@@ -290,7 +290,7 @@ function articleAEcrire(lecon, card) {
 
 // Ce qu'on doit taper dans le mot caché.
 function motATaper(lecon, card) {
-  return articleAEcrire(lecon, card) ? card.article + ' ' + card.lu : card.lu;
+  return articleAEcrire(lecon, card) ? card.article + (card.article.endsWith("'") ? '' : ' ') + card.lu : card.lu;
 }
 
 // La carte telle qu'on la corrige : réponse complète, sans article à part
@@ -302,7 +302,7 @@ function carteACorriger(lecon, card) {
 
 // Texte luxembourgeois d'un mot caché, avec son article s'il en a un.
 function motComplet(card) {
-  return (card.article ? card.article + ' ' : '') + card.lu;
+  return (card.article ? card.article + (card.article.endsWith("'") ? '' : ' ') : '') + card.lu;
 }
 
 // Leçon « Sans faute » = toutes les unités du fil réussies sans faute au moins une fois.
@@ -358,6 +358,24 @@ function loadRun(libre) {
   let data = null;
   try { data = JSON.parse(localStorage.getItem(cleRun(libre))); } catch (e) { data = null; }
   if (!data || data.fini || !data.steps) return null;
+  // SPEC 79 : une session déjà commencée sur l'ancienne unité 2 contient
+  // des IDs qui n'existent plus. Ne jamais afficher un exercice introuvable.
+  // Archiver la session historique avant de libérer la place ; scores conservés.
+  if (Number(data.leconId) === 2 && typeof lecons !== 'undefined') {
+    const l = lecons.find(x => x.id === 2);
+    const obsolete = l && data.steps.some(etape => {
+      const presents = new Set((l[etape.type] || []).map(x => Number(x.id)));
+      return (etape.queue || []).concat(Object.keys(etape.scores || {}))
+        .some(id => !presents.has(Number(id)));
+    });
+    if (obsolete) {
+      try {
+        localStorage.setItem(cleRun(libre) + ':archive79', JSON.stringify(data));
+        localStorage.setItem(cleRun(libre), JSON.stringify({ fini:true, maj:Date.now() }));
+      } catch (e) { /* session obsolète ignorée, sans supprimer les résultats */ }
+      return null;
+    }
+  }
   return data;
 }
 
@@ -1408,12 +1426,19 @@ function mcVoirReponse() {
 
 // ─── ÉTAPES 2 ET 3 : QUIZ ET TROUS (choix multiples) ────────────────────────
 function renderQuizP(q) {
+  // SPEC 79 : quiz d'écoute pour la leçon 0. Audio LOD déjà présent : jamais de
+  // synthèse, ni de fallback silencieux. Son libellé accessible ne dévoile pas
+  // le mot attendu avant que l'apprenant ait répondu.
+  const audioEcoute = q.audioMot
+    ? boutonEcouterHtml(q.audioMot, true).replace(/aria-label="[^"]*"/, 'aria-label="Écouter le mot à reconnaître"')
+    : '';
   // Si un distracteur est identique à la réponse, on le remplace (comme le quiz v1).
   const choix = melanger(q.distracteurs.map(d => d === q.reponse ? '—' : d).concat([q.reponse]));
   document.getElementById('pc-body').innerHTML =
     '<div class="pc-question">' +
       '<div class="pc-mini-label">' + escHtml(q.label || 'CHOISIS') + '</div>' +
       '<div class="pc-question-mot">' + escHtml(q.question) + '</div>' +
+      (audioEcoute ? '<div class="pc-quiz-audio">' + audioEcoute + '</div>' : '') +
     '</div>' +
     '<div class="choices" id="pc-choix"></div>';
   construireChoix(choix, q.reponse, q, 'quiz');

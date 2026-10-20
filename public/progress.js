@@ -334,11 +334,17 @@ function updateQuestionProgress(leconId, type, questionId, correct, changeLevel)
 // Pourquoi ici : la fusion cloud garde déjà la valeur MAX de chaque clé.
 // Le meilleur score ne peut donc jamais baisser, et l'ancienne version de
 // l'app conserve ces valeurs sans les lire.
+// SPEC 79 — Nouvelle unité 2 de la leçon 2 : ne jamais reprendre l'ancien score
+// e/en pour valider de/den/d'. L'ancienne clé "2" est conservée, en lecture
+// par les anciennes versions / audit, sans être effacée ni écrasée.
+function cleUniteVersionnee(leconId, uniteId) {
+  return Number(leconId) === 2 && Number(uniteId) === 2 ? '2-definis-v1' : uniteId;
+}
 function getUnitBest(leconId, uniteId) {
   const progress = getProgress();
   const byLecon = progress[leconId];
-  if (byLecon && byLecon.unites && byLecon.unites[uniteId] != null) {
-    return byLecon.unites[uniteId];
+  if (byLecon && byLecon.unites && byLecon.unites[cleUniteVersionnee(leconId, uniteId)] != null) {
+    return byLecon.unites[cleUniteVersionnee(leconId, uniteId)];
   }
   return null; // unité jamais terminée
 }
@@ -347,8 +353,8 @@ function saveUnitBest(leconId, uniteId, percent) {
   const progress = getProgress();
   if (!progress[leconId]) progress[leconId] = {};
   if (!progress[leconId].unites) progress[leconId].unites = {};
-  const old = progress[leconId].unites[uniteId];
-  progress[leconId].unites[uniteId] = old == null ? percent : Math.max(old, percent);
+  const old = progress[leconId].unites[cleUniteVersionnee(leconId, uniteId)];
+  progress[leconId].unites[cleUniteVersionnee(leconId, uniteId)] = old == null ? percent : Math.max(old, percent);
   saveProgress(progress);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
@@ -368,16 +374,16 @@ function saveRattrapageStore(store) {
 }
 function getRattrapageSnapshot(leconId, uniteId) {
   const byLecon = getRattrapageStore()[leconId];
-  return byLecon && byLecon[uniteId] || null;
+  return byLecon && byLecon[cleUniteVersionnee(leconId, uniteId)] || null;
 }
 function saveRattrapageSnapshot(leconId, uniteId, snapshot) {
   if (!snapshot || !Number.isFinite(snapshot.basePercent)) return;
   const store = getRattrapageStore();
   if (!store[leconId]) store[leconId] = {};
-  const existing = store[leconId][uniteId];
+  const existing = store[leconId][cleUniteVersionnee(leconId, uniteId)];
   // Un résultat moins bon ne remplace jamais un meilleur passage enregistré.
   if (existing && existing.basePercent > snapshot.basePercent) return;
-  store[leconId][uniteId] = Object.assign({}, snapshot, { maj: Date.now() });
+  store[leconId][cleUniteVersionnee(leconId, uniteId)] = Object.assign({}, snapshot, { maj: Date.now() });
   saveRattrapageStore(store);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }
@@ -388,14 +394,14 @@ function saveRattrapageSnapshot(leconId, uniteId, snapshot) {
 // Une fois gagné, ne se perd jamais (la fusion cloud garde le max).
 function getSansFaute(leconId, uniteId) {
   const byLecon = getProgress()[leconId];
-  return !!(byLecon && byLecon.sansfaute && byLecon.sansfaute[uniteId]);
+  return !!(byLecon && byLecon.sansfaute && byLecon.sansfaute[cleUniteVersionnee(leconId, uniteId)]);
 }
 
 function saveSansFaute(leconId, uniteId) {
   const progress = getProgress();
   if (!progress[leconId]) progress[leconId] = {};
   if (!progress[leconId].sansfaute) progress[leconId].sansfaute = {};
-  progress[leconId].sansfaute[uniteId] = 1;
+  progress[leconId].sansfaute[cleUniteVersionnee(leconId, uniteId)] = 1;
   saveProgress(progress);
   if (typeof debounceCloudSave === 'function') debounceCloudSave();
 }

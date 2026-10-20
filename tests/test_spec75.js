@@ -4,7 +4,7 @@ const fs=require('node:fs'), path=require('node:path'), assert=require('node:ass
 const racine=path.join(__dirname,'..');
 const lecon=n=>JSON.parse(fs.readFileSync(path.join(racine,'data/lecons/A1.1/lecon-'+String(n).padStart(2,'0')+'.json')));
 const empreinte=t=>{let x=2166136261>>>0;for(let i=0;i<t.length;i++)x=Math.imul(x^t.charCodeAt(i),16777619)>>>0;return x.toString(16);};
-const origine={1:{autres:'b37b633b',cours:18},2:{autres:'7c469ef',cours:11},3:{autres:'259c0cf9',cours:12}};
+const origine={1:{autres:'b37b633b',cours:18},2:{autres:'c6c45ad5',cours:10},3:{autres:'259c0cf9',cours:12}};
 const lecons=[lecon(1),lecon(2),lecon(3)];
 const ecran={
   'cours75-panneau': {innerHTML:''},
@@ -35,13 +35,13 @@ for(const l of lecons) {
 }
 const l2=lecons[1];
 const supplements=l2.cours.filter(b=>b.plus&&b.rubrique==='lexique'&&b.type==='tableau');
-assert.equal(supplements.length,3);
-assert.equal(supplements.reduce((s,b)=>s+b.lignes.length,0),36);
+assert.equal(supplements.length,2);
+assert.equal(supplements.reduce((s,b)=>s+b.lignes.length,0),31);
 assert.equal(l2.cours.find(b=>b.titre==='Article et négation selon le genre').rubrique,'regles');
 api.cours75Html(l2,'principal',null,false);
 api.cours75Etats.principal.rubrique='lexique';
 const lex=api.cours75Contenu(l2,'principal');
-assert.ok(lex.includes('Voir les mots supplémentaires (31)')&&lex.includes('Voir les mots supplémentaires (5)'));
+assert.ok(lex.includes('Voir les mots supplémentaires (31)'));
 assert.ok(lex.includes('cours75-entree-tete'),'lexique utilise le composant commun');
 assert.ok(!lex.includes('<table class="cours-vocab">'),'plus de tableau de mise en page dans le lexique pilote');
 assert.ok(lex.includes('<details class="cours75-plus"')&&!lex.includes('<details class="cours75-plus" open'));
@@ -124,7 +124,7 @@ for (const niveau of ['A1.1','A1.2']) {
       !(b.entetes[0]==='Luxembourgeois'&&b.entetes[1]==='Français')).length;
   }
 }
-assert.equal(compte,25,'17 leçons A1.1 + 8 leçons A1.2');
+assert.equal(compte,26,'18 leçons A1.1 + 8 leçons A1.2');
 assert.ok(tableauxComplexes>=10,'tableaux complexes préservés avec leurs colonnes');
 const lecon4=lecon(4);
 assert.ok(lecon4.cours.some(b=>b.rubrique==='lexique'&&b.type==='tableau'&&
@@ -152,4 +152,4 @@ api.cours75Etats.principal.rubrique='lexique';
 const greetings=api.cours75Contenu(lecons[0],'principal');
 assert.ok(greetings.includes('Variante : Hallo!'),'variante visible dans le cours');
 
-console.log('SPEC 75 : OK — 25 leçons et Salut!/Hallo! réunis en une seule notion.');
+console.log('SPEC 75 + 79 : OK — 26 leçons, lexique et règle du N cohérents.');

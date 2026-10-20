@@ -1,0 +1,885 @@
+{
+  "id": 0,
+  "titre": "Déi éischt Schrëtt",
+  "titre_fr": "Bien démarrer : les sons et la règle du N",
+  "couleur": "#4acfa6",
+  "instructions": {
+    "flashcards": "Écoute les mots luxembourgeois enregistrés, puis retrouve leur orthographe. Unité 2 : mémorise quelques exemples courts de la règle du N.",
+    "quiz": "Unité 1 : appuie sur le haut-parleur et retrouve l'écriture entendue ; unité 2 : reconnais la bonne forme avec ou sans N.",
+    "trous": "Complète les petites phrases avec le mot appris ou la forme correcte du N ; les lettres et mots nécessaires sont dans le cours.",
+    "ecriture": "À partir du français, écris les mots appris puis les courtes expressions et groupes nominaux enseignés dans le cours. La consigne distingue les articles indéfinis et définis."
+  },
+  "unites": [
+    {
+      "id": 1,
+      "titre": "Les sons différents du français",
+      "phrase": [
+        "Jo!",
+        "Oui !"
+      ],
+      "regle": "Écoute avant de lire : <b>w</b> se prononce comme v, <b>j</b> comme y, <b>z</b> comme ts, <b>sch</b> comme ch ; <b>st</b> en début de mot se prononce cht. <b>ch</b>, <b>ë</b>, <b>ä</b> et <b>éi</b> demandent aussi de l'écoute.",
+      "exemple": "wäiss · Jo · zéng · Schoul · Stull · Buch · Fënster · Äddi! · schéin",
+      "pieges": [
+        "Appuie sur le haut-parleur : tous les mots proposés possèdent déjà un enregistrement LOD.",
+        "Les indications françaises sont des repères, pas des transcriptions exactes."
+      ]
+    },
+    {
+      "id": 2,
+      "titre": "UNITEDZOHA : la règle du N",
+      "phrase": [
+        "Gudde Moien!",
+        "Bonjour ! (formule du matin)"
+      ],
+      "regle": "Dans les mots concernés, le <b>n final</b> reste devant une voyelle ou <b>N, D, T, Z, H</b> (UNITEDZOHA) et tombe devant les autres consonnes. En fin de phrase, on le conserve.",
+      "exemple": "Gudde Moien! / Gudden Owend! · e Stull / en Auto · de Bus / den Auto",
+      "pieges": [
+        "La règle concerne des terminaisons qui alternent : on ne retire pas le N de tous les mots.",
+        "Le féminin utilise <b>eng</b> (indéfini) ou <b>d'</b> (défini) : la règle e/en ou de/den concerne ici le masculin et le neutre ou le masculin selon l'article."
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 3001,
+      "unite": 1,
+      "lu": "wäiss",
+      "fr": "blanc",
+      "note": "Audio officiel LOD · W se prononce comme V"
+    },
+    {
+      "id": 3002,
+      "unite": 1,
+      "lu": "Jo",
+      "fr": "oui",
+      "note": "Audio officiel LOD · J se prononce comme Y"
+    },
+    {
+      "id": 3003,
+      "unite": 1,
+      "lu": "zéng",
+      "fr": "dix",
+      "note": "Audio officiel LOD · Z se prononce TS"
+    },
+    {
+      "id": 3004,
+      "unite": 1,
+      "lu": "Schoul",
+      "fr": "une école",
+      "note": "Audio officiel LOD · SCH se prononce CH"
+    },
+    {
+      "id": 3005,
+      "unite": 1,
+      "lu": "Stull",
+      "fr": "une chaise",
+      "note": "Audio officiel LOD · ST initial se prononce CHT"
+    },
+    {
+      "id": 3006,
+      "unite": 1,
+      "lu": "Buch",
+      "fr": "un livre",
+      "note": "Audio officiel LOD · CH n'est pas le CH français"
+    },
+    {
+      "id": 3007,
+      "unite": 1,
+      "lu": "Fënster",
+      "fr": "une fenêtre",
+      "note": "Audio officiel LOD · Ë est une voyelle neutre"
+    },
+    {
+      "id": 3008,
+      "unite": 1,
+      "lu": "Äddi!",
+      "fr": "au revoir",
+      "note": "Audio officiel LOD · Écoute le Ä"
+    },
+    {
+      "id": 3009,
+      "unite": 1,
+      "lu": "schéin",
+      "fr": "beau",
+      "note": "Audio officiel LOD · ÉI forme une diphtongue"
+    },
+    {
+      "id": 3010,
+      "unite": 2,
+      "lu": "Gudde Moien!",
+      "fr": "Bonjour ! (formule du matin)",
+      "note": "M : le N disparaît"
+    },
+    {
+      "id": 3011,
+      "unite": 2,
+      "lu": "Gudden Owend!",
+      "fr": "Bonsoir !",
+      "note": "O : le N reste"
+    },
+    {
+      "id": 3012,
+      "unite": 2,
+      "lu": "e Stull",
+      "fr": "une chaise (article indéfini)",
+      "note": "S : N supprimé"
+    },
+    {
+      "id": 3013,
+      "unite": 2,
+      "lu": "en Auto",
+      "fr": "une voiture (article indéfini)",
+      "note": "A : N conservé"
+    },
+    {
+      "id": 3014,
+      "unite": 2,
+      "lu": "de Bus",
+      "fr": "le bus",
+      "note": "B : N supprimé"
+    },
+    {
+      "id": 3015,
+      "unite": 2,
+      "lu": "den Auto",
+      "fr": "la voiture (article défini)",
+      "note": "A : N conservé"
+    },
+    {
+      "id": 3016,
+      "unite": 2,
+      "lu": "en Dësch",
+      "fr": "une table (article indéfini)",
+      "note": "D : N conservé"
+    },
+    {
+      "id": 3017,
+      "unite": 2,
+      "lu": "de Computer",
+      "fr": "l'ordinateur (article défini)",
+      "note": "C : N supprimé"
+    }
+  ],
+  "quiz": [
+    {
+      "id": 3001,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "wäiss",
+      "reponse": "wäiss",
+      "distracteurs": [
+        "waiss",
+        "weiss",
+        "wäis"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3002,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "Jo",
+      "reponse": "Jo",
+      "distracteurs": [
+        "Yo",
+        "Jou",
+        "Zo"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3003,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "zéng",
+      "reponse": "zéng",
+      "distracteurs": [
+        "zeng",
+        "zéing",
+        "seng"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3004,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "Schoul",
+      "reponse": "Schoul",
+      "distracteurs": [
+        "Choul",
+        "Shoul",
+        "Schohl"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3005,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "Stull",
+      "reponse": "Stull",
+      "distracteurs": [
+        "Schtull",
+        "Stul",
+        "Stuhl"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3006,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "Buch",
+      "reponse": "Buch",
+      "distracteurs": [
+        "Bouch",
+        "Buck",
+        "Buche"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3007,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "Fënster",
+      "reponse": "Fënster",
+      "distracteurs": [
+        "Fenster",
+        "Fénster",
+        "Fönster"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3008,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "Äddi!",
+      "reponse": "Äddi!",
+      "distracteurs": [
+        "Eddi!",
+        "Addi!",
+        "Ädi!"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3009,
+      "unite": 1,
+      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "audioMot": "schéin",
+      "reponse": "schéin",
+      "distracteurs": [
+        "schén",
+        "schein",
+        "schëin"
+      ],
+      "label": "ÉCOUTE ET RECONNAIS"
+    },
+    {
+      "id": 3010,
+      "unite": 2,
+      "question": "Bonjour ! (formule avec Gudde, le matin)",
+      "reponse": "Gudde Moien!",
+      "distracteurs": [
+        "Gudden Moien!",
+        "Gudd Moien!",
+        "Gudde Owend!"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    },
+    {
+      "id": 3011,
+      "unite": 2,
+      "question": "Bonsoir ! (formule Gudden Owend)",
+      "reponse": "Gudden Owend!",
+      "distracteurs": [
+        "Gudde Owend!",
+        "Gudden Moien!",
+        "Gutt Owend!"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    },
+    {
+      "id": 3012,
+      "unite": 2,
+      "question": "une chaise (avec l'article indéfini)",
+      "reponse": "e Stull",
+      "distracteurs": [
+        "en Stull",
+        "eng Stull",
+        "e Bus"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    },
+    {
+      "id": 3013,
+      "unite": 2,
+      "question": "une voiture (avec l'article indéfini)",
+      "reponse": "en Auto",
+      "distracteurs": [
+        "e Auto",
+        "eng Auto",
+        "en Bus"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    },
+    {
+      "id": 3014,
+      "unite": 2,
+      "question": "le bus (article défini)",
+      "reponse": "de Bus",
+      "distracteurs": [
+        "den Bus",
+        "d'Bus",
+        "de Stull"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    },
+    {
+      "id": 3015,
+      "unite": 2,
+      "question": "la voiture (article défini)",
+      "reponse": "den Auto",
+      "distracteurs": [
+        "de Auto",
+        "d'Auto",
+        "den Bus"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    },
+    {
+      "id": 3016,
+      "unite": 2,
+      "question": "une table (avec l'article indéfini)",
+      "reponse": "en Dësch",
+      "distracteurs": [
+        "e Dësch",
+        "eng Dësch",
+        "en Stull"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    },
+    {
+      "id": 3017,
+      "unite": 2,
+      "question": "l'ordinateur (article défini)",
+      "reponse": "de Computer",
+      "distracteurs": [
+        "den Computer",
+        "d'Computer",
+        "de Stull"
+      ],
+      "label": "GARDE OU ENLÈVE LE N"
+    }
+  ],
+  "trous": [
+    {
+      "id": 3001,
+      "unite": 1,
+      "fr": "Anna répond oui.",
+      "avant": "Anna:",
+      "trou": "Jo!",
+      "apres": "",
+      "choix": [
+        "Jo!",
+        "Yo!",
+        "Zo!"
+      ]
+    },
+    {
+      "id": 3002,
+      "unite": 1,
+      "fr": "Anna dit au revoir.",
+      "avant": "Anna:",
+      "trou": "Äddi!",
+      "apres": "",
+      "choix": [
+        "Äddi!",
+        "Eddi!",
+        "Ädi!"
+      ]
+    },
+    {
+      "id": 3003,
+      "unite": 1,
+      "fr": "C'est une école.",
+      "avant": "Dat ass eng",
+      "trou": "Schoul.",
+      "apres": "",
+      "choix": [
+        "Schoul.",
+        "Choul.",
+        "Shoul."
+      ]
+    },
+    {
+      "id": 3004,
+      "unite": 1,
+      "fr": "C'est un livre.",
+      "avant": "Dat ass e",
+      "trou": "Buch.",
+      "apres": "",
+      "choix": [
+        "Buch.",
+        "Bouch.",
+        "Buck."
+      ]
+    },
+    {
+      "id": 3005,
+      "unite": 1,
+      "fr": "C'est une fenêtre.",
+      "avant": "Dat ass eng",
+      "trou": "Fënster.",
+      "apres": "",
+      "choix": [
+        "Fënster.",
+        "Fenster.",
+        "Fönster."
+      ]
+    },
+    {
+      "id": 3006,
+      "unite": 1,
+      "fr": "Anna répond dix.",
+      "avant": "Anna:",
+      "trou": "Zéng.",
+      "apres": "",
+      "choix": [
+        "Zéng.",
+        "Zeng.",
+        "Seng."
+      ]
+    },
+    {
+      "id": 3007,
+      "unite": 1,
+      "fr": "La fenêtre est blanche.",
+      "avant": "D'Fënster ass",
+      "trou": "wäiss.",
+      "apres": "",
+      "choix": [
+        "wäiss.",
+        "weiss.",
+        "waiss."
+      ]
+    },
+    {
+      "id": 3008,
+      "unite": 1,
+      "fr": "L'école est belle.",
+      "avant": "D'Schoul ass",
+      "trou": "schéin.",
+      "apres": "",
+      "choix": [
+        "schéin.",
+        "schein.",
+        "schën."
+      ]
+    },
+    {
+      "id": 3009,
+      "unite": 2,
+      "fr": "Bonjour ! (formule du matin)",
+      "avant": "",
+      "trou": "Gudde",
+      "apres": "Moien!",
+      "choix": [
+        "Gudde",
+        "Gudden",
+        "Gutt"
+      ]
+    },
+    {
+      "id": 3010,
+      "unite": 2,
+      "fr": "Bonsoir !",
+      "avant": "",
+      "trou": "Gudden",
+      "apres": "Owend!",
+      "choix": [
+        "Gudde",
+        "Gudden",
+        "Gutt"
+      ]
+    },
+    {
+      "id": 3011,
+      "unite": 2,
+      "fr": "C'est une chaise.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Stull.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ]
+    },
+    {
+      "id": 3012,
+      "unite": 2,
+      "fr": "C'est une voiture.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Auto.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ]
+    },
+    {
+      "id": 3013,
+      "unite": 2,
+      "fr": "C'est le bus.",
+      "avant": "Dat ass",
+      "trou": "de",
+      "apres": "Bus.",
+      "choix": [
+        "de",
+        "den",
+        "d'"
+      ]
+    },
+    {
+      "id": 3014,
+      "unite": 2,
+      "fr": "C'est la voiture.",
+      "avant": "Dat ass",
+      "trou": "den",
+      "apres": "Auto.",
+      "choix": [
+        "de",
+        "den",
+        "d'"
+      ]
+    },
+    {
+      "id": 3015,
+      "unite": 2,
+      "fr": "C'est une table.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Dësch.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ]
+    },
+    {
+      "id": 3016,
+      "unite": 2,
+      "fr": "C'est l'ordinateur.",
+      "avant": "Dat ass",
+      "trou": "de",
+      "apres": "Computer.",
+      "choix": [
+        "de",
+        "den",
+        "d'"
+      ]
+    }
+  ],
+  "ecriture": [
+    {
+      "id": 3001,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « blanc ».",
+      "lu": "wäiss"
+    },
+    {
+      "id": 3002,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « oui ».",
+      "lu": "Jo"
+    },
+    {
+      "id": 3003,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « dix ».",
+      "lu": "zéng"
+    },
+    {
+      "id": 3004,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « école ».",
+      "lu": "Schoul"
+    },
+    {
+      "id": 3005,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « chaise ».",
+      "lu": "Stull"
+    },
+    {
+      "id": 3006,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « livre ».",
+      "lu": "Buch"
+    },
+    {
+      "id": 3007,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « fenêtre ».",
+      "lu": "Fënster"
+    },
+    {
+      "id": 3008,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « au revoir ».",
+      "lu": "Äddi!"
+    },
+    {
+      "id": 3009,
+      "unite": 1,
+      "fr": "Le mot luxembourgeois pour « beau ».",
+      "lu": "schéin"
+    },
+    {
+      "id": 3010,
+      "unite": 2,
+      "fr": "une chaise (avec l'article indéfini)",
+      "lu": "e Stull"
+    },
+    {
+      "id": 3011,
+      "unite": 2,
+      "fr": "une voiture (avec l'article indéfini)",
+      "lu": "en Auto"
+    },
+    {
+      "id": 3012,
+      "unite": 2,
+      "fr": "une table (avec l'article indéfini)",
+      "lu": "en Dësch"
+    },
+    {
+      "id": 3013,
+      "unite": 2,
+      "fr": "le bus (article défini)",
+      "lu": "de Bus"
+    },
+    {
+      "id": 3014,
+      "unite": 2,
+      "fr": "la voiture (article défini)",
+      "lu": "den Auto"
+    },
+    {
+      "id": 3015,
+      "unite": 2,
+      "fr": "l'ordinateur (article défini)",
+      "lu": "de Computer"
+    }
+  ],
+  "cours": [
+    {
+      "type": "callout",
+      "titre": "Écoute les graphies différentes",
+      "rubrique": "regles",
+      "unite": 1,
+      "lignes": [
+        "<b>W</b> = v, <b>J</b> = y, <b>Z</b> = ts, <b>SCH</b> = ch français, <b>ST</b> initial = cht. Les repères sont approximatifs : écoute l'audio LOD.",
+        "Le <b>CH</b> de Buch, les voyelles <b>Ë</b> et <b>Ä</b>, et le groupe <b>ÉI</b> ne se lisent pas comme en français.",
+        "Dans les exemples : <b>Dat ass…</b> = « C'est… », <b>ass</b> = « est ». Écoute les mots dans le lexique."
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "9 sons à écouter",
+      "rubrique": "lexique",
+      "unite": 1,
+      "items": [
+        [
+          "wäiss",
+          "blanc",
+          "W se prononce comme V"
+        ],
+        [
+          "Jo",
+          "oui",
+          "J se prononce comme Y"
+        ],
+        [
+          "zéng",
+          "dix",
+          "Z se prononce TS"
+        ],
+        [
+          "Schoul",
+          "une école",
+          "SCH se prononce CH"
+        ],
+        [
+          "Stull",
+          "une chaise",
+          "ST initial se prononce CHT"
+        ],
+        [
+          "Buch",
+          "un livre",
+          "CH n'est pas le CH français"
+        ],
+        [
+          "Fënster",
+          "une fenêtre",
+          "Ë est une voyelle neutre"
+        ],
+        [
+          "Äddi!",
+          "au revoir",
+          "Écoute le Ä"
+        ],
+        [
+          "schéin",
+          "beau",
+          "ÉI forme une diphtongue"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "titre": "Petites expressions à reconnaître",
+      "rubrique": "phrases",
+      "unite": 1,
+      "items": [
+        [
+          "Jo!",
+          "Oui !"
+        ],
+        [
+          "Äddi!",
+          "Au revoir !"
+        ],
+        [
+          "Moien!",
+          "Bonjour !"
+        ],
+        [
+          "D'Fënster ass wäiss.",
+          "La fenêtre est blanche."
+        ],
+        [
+          "D'Schoul ass schéin.",
+          "L'école est belle."
+        ],
+        [
+          "Dat ass eng Schoul.",
+          "C'est une école."
+        ],
+        [
+          "Dat ass e Buch.",
+          "C'est un livre."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "titre": "UNITEDZOHA : garder ou enlever le N",
+      "rubrique": "regles",
+      "unite": 2,
+      "lignes": [
+        "Le <b>N final</b> se conserve devant une voyelle ou <b>N · D · T · Z · H</b> ; devant la plupart des autres consonnes, il disparaît.",
+        "Ce mécanisme se retrouve dans <b>e/en</b>, <b>de/den</b>, <b>kee/keen</b> et des formes verbales. On conserve normalement le N à la fin d'un énoncé.",
+        "Ne supprime pas le N qui appartient au radical d'un mot : les exemples travaillent les terminaisons qui alternent."
+      ]
+    },
+    {
+      "type": "tableau",
+      "titre": "La même règle, plusieurs familles",
+      "rubrique": "regles",
+      "unite": 2,
+      "entetes": [
+        "Sans N (avant B, C, M, S…)",
+        "Avec N (avant A, D, O, T…)"
+      ],
+      "lignes": [
+        [
+          "Gudde Moien!",
+          "Gudden Owend!"
+        ],
+        [
+          "e Stull",
+          "en Auto"
+        ],
+        [
+          "de Bus",
+          "den Auto"
+        ],
+        [
+          "kee Bus",
+          "keen Auto"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
+      "titre": "Les premières formes",
+      "rubrique": "lexique",
+      "unite": 2,
+      "items": [
+        [
+          "Gudde Moien!",
+          "Bonjour ! (formule du matin)"
+        ],
+        [
+          "Gudden Owend!",
+          "Bonsoir !"
+        ],
+        [
+          "e Stull",
+          "une chaise (article indéfini)"
+        ],
+        [
+          "en Auto",
+          "une voiture (article indéfini)"
+        ],
+        [
+          "de Bus",
+          "le bus"
+        ],
+        [
+          "den Auto",
+          "la voiture (article défini)"
+        ],
+        [
+          "en Dësch",
+          "une table (article indéfini)"
+        ],
+        [
+          "de Computer",
+          "l'ordinateur (article défini)"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "titre": "Réutilise la règle",
+      "rubrique": "phrases",
+      "unite": 2,
+      "items": [
+        [
+          "Dat ass e Stull.",
+          "C'est une chaise."
+        ],
+        [
+          "Dat ass en Auto.",
+          "C'est une voiture."
+        ],
+        [
+          "Dat ass de Bus.",
+          "C'est le bus."
+        ],
+        [
+          "Dat ass den Auto.",
+          "C'est la voiture."
+        ]
+      ]
+    }
+  ]
+}

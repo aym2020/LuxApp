@@ -1,0 +1,747 @@
+{
+  "source": "data/lecons/A1.1/lecon-02.json",
+  "versionAvant": "SPEC 79",
+  "description": "Ancienne unité 2 : e ou en ? Conservée pour l'audit ; scores historiques conservés par le moteur.",
+  "unite": {
+    "id": 2,
+    "titre": "e ou en ?",
+    "phrase": [
+      "Dat ass en Telefon.",
+      "C'est un téléphone."
+    ],
+    "regle": "<b>en</b> devant une voyelle ou n, d, t, z, h · sinon <b>e</b>",
+    "exemple": "<b>en</b> Telefon · <b>en</b> Dësch · <b>en</b> Auto · mais <b>e</b> Stull",
+    "phrases": [
+      [
+        "Dat ass en Dësch.",
+        "C'est une table."
+      ],
+      [
+        "Dat ass en Auto.",
+        "C'est une voiture."
+      ]
+    ],
+    "pieges": [
+      "Moyen mnémotechnique : <b>U·N·I·T·E·D·Z·O·H·A</b> (voyelles + n, d, t, z, h).",
+      "Au féminin, jamais en : toujours <b>eng</b> (eng Dier)."
+    ]
+  },
+  "flashcards": [
+    {
+      "id": 2041,
+      "unite": 2,
+      "fr": "un téléphone",
+      "lu": "Telefon",
+      "article": "en",
+      "note": "Masculin · en devant T (UNITEDZOHA) · non : keen Telefon",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2042,
+      "unite": 2,
+      "fr": "une table",
+      "lu": "Dësch",
+      "article": "en",
+      "note": "Masculin · en devant D (UNITEDZOHA) · non : keen Dësch",
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "fr": "un smartphone",
+      "lu": "Handy",
+      "article": "en",
+      "note": "Masculin · en devant H (UNITEDZOHA) · non : keen Handy",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2044,
+      "unite": 2,
+      "fr": "un cahier",
+      "lu": "Heft",
+      "article": "en",
+      "note": "Neutre · en devant H (UNITEDZOHA) · non : keen Heft",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2045,
+      "unite": 2,
+      "fr": "une voiture",
+      "lu": "Auto",
+      "article": "en",
+      "note": "Masculin · en devant A (UNITEDZOHA) · non : keen Auto",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2046,
+      "unite": 2,
+      "fr": "une imprimante",
+      "lu": "Drécker",
+      "article": "en",
+      "note": "Masculin · en devant D (UNITEDZOHA) · non : keen Drécker",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2047,
+      "unite": 2,
+      "plus": true,
+      "fr": "un train",
+      "lu": "Zuch",
+      "article": "en",
+      "note": "Masculin · en devant Z (UNITEDZOHA) · non : keen Zuch",
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2048,
+      "unite": 2,
+      "plus": true,
+      "fr": "une maison",
+      "lu": "Haus",
+      "article": "en",
+      "note": "Neutre · en devant H (UNITEDZOHA) · non : keen Haus",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2049,
+      "unite": 2,
+      "plus": true,
+      "fr": "un éléphant",
+      "lu": "Elefant",
+      "article": "en",
+      "note": "Masculin · en devant E (UNITEDZOHA) · non : keen Elefant",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2050,
+      "unite": 2,
+      "plus": true,
+      "fr": "une enclume",
+      "lu": "Amboss",
+      "article": "en",
+      "note": "Masculin · en devant A (UNITEDZOHA) · non : keen Amboss",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2051,
+      "unite": 2,
+      "plus": true,
+      "fr": "un seau",
+      "lu": "Eemer",
+      "article": "en",
+      "note": "Masculin · en devant E (UNITEDZOHA) · non : keen Eemer",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    }
+  ],
+  "quiz": [
+    {
+      "id": 2040,
+      "unite": 2,
+      "question": "un téléphone",
+      "reponse": "en Telefon",
+      "distracteurs": [
+        "e Telefon",
+        "eng Telefon",
+        "en Drécker"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2041,
+      "unite": 2,
+      "question": "une table",
+      "reponse": "en Dësch",
+      "distracteurs": [
+        "e Dësch",
+        "eng Dësch",
+        "en Telefon"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
+    },
+    {
+      "id": 2042,
+      "unite": 2,
+      "question": "un smartphone",
+      "reponse": "en Handy",
+      "distracteurs": [
+        "e Handy",
+        "eng Handy",
+        "en Telefon"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "question": "un cahier",
+      "reponse": "en Heft",
+      "distracteurs": [
+        "e Heft",
+        "eng Heft",
+        "en Auto"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2044,
+      "unite": 2,
+      "question": "une voiture",
+      "reponse": "en Auto",
+      "distracteurs": [
+        "e Auto",
+        "eng Auto",
+        "en Heft"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2045,
+      "unite": 2,
+      "question": "une imprimante",
+      "reponse": "en Drécker",
+      "distracteurs": [
+        "e Drécker",
+        "eng Drécker",
+        "en Auto"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2046,
+      "unite": 2,
+      "question": "un stylo",
+      "reponse": "e Stëft",
+      "distracteurs": [
+        "en Stëft",
+        "eng Stëft",
+        "en Telefon"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2047,
+      "unite": 2,
+      "question": "une chaise",
+      "reponse": "e Stull",
+      "distracteurs": [
+        "en Stull",
+        "eng Stull",
+        "en Dësch"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "« une chaise » = <b>e</b> Stull : masculin en luxembourgeois."
+    },
+    {
+      "id": 2048,
+      "unite": 2,
+      "plus": true,
+      "question": "un train",
+      "reponse": "en Zuch",
+      "distracteurs": [
+        "e Zuch",
+        "eng Zuch",
+        "en Auto"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2049,
+      "unite": 2,
+      "plus": true,
+      "question": "une maison",
+      "reponse": "en Haus",
+      "distracteurs": [
+        "e Haus",
+        "eng Haus",
+        "en Auto"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2050,
+      "unite": 2,
+      "plus": true,
+      "question": "un éléphant",
+      "reponse": "en Elefant",
+      "distracteurs": [
+        "e Elefant",
+        "eng Elefant",
+        "en Drécker"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2051,
+      "unite": 2,
+      "plus": true,
+      "question": "une enclume",
+      "reponse": "en Amboss",
+      "distracteurs": [
+        "e Amboss",
+        "eng Amboss",
+        "en Elefant"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2052,
+      "unite": 2,
+      "plus": true,
+      "question": "un seau",
+      "reponse": "en Eemer",
+      "distracteurs": [
+        "e Eemer",
+        "eng Eemer",
+        "en Dësch"
+      ],
+      "label": "CHOISIS LA BONNE FORME",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    }
+  ],
+  "trous": [
+    {
+      "id": 2040,
+      "unite": 2,
+      "fr": "C'est un téléphone.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Telefon.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "T fait partie de UNITEDZOHA → en Telefon",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2041,
+      "unite": 2,
+      "fr": "C'est une table.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Dësch.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "D fait partie de UNITEDZOHA → en Dësch",
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
+    },
+    {
+      "id": 2042,
+      "unite": 2,
+      "fr": "C'est un smartphone.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Handy.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "H fait partie de UNITEDZOHA → en Handy",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2043,
+      "unite": 2,
+      "fr": "C'est un cahier.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Heft.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "H fait partie de UNITEDZOHA → en Heft",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2044,
+      "unite": 2,
+      "fr": "C'est une voiture.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Auto.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "A fait partie de UNITEDZOHA → en Auto",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2045,
+      "unite": 2,
+      "fr": "C'est une imprimante.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Drécker.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "D fait partie de UNITEDZOHA → en Drécker",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2046,
+      "unite": 2,
+      "fr": "C'est un ordinateur.",
+      "avant": "Dat ass",
+      "trou": "e",
+      "apres": "Computer.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "C ne fait pas partie de UNITEDZOHA → e Computer",
+      "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
+    },
+    {
+      "id": 2047,
+      "unite": 2,
+      "fr": "C'est une porte.",
+      "avant": "Dat ass",
+      "trou": "eng",
+      "apres": "Dier.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Féminin → toujours eng, même devant D",
+      "attention": "Féminin → toujours <b>eng</b> (jamais e ni en)."
+    },
+    {
+      "id": 2048,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un train.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Zuch.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "Z fait partie de UNITEDZOHA → en Zuch",
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2049,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est une maison.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Haus.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "H fait partie de UNITEDZOHA → en Haus",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2050,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un éléphant.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Elefant.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "E fait partie de UNITEDZOHA → en Elefant",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2051,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est une enclume.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Amboss.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "A fait partie de UNITEDZOHA → en Amboss",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2052,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un seau.",
+      "avant": "Dat ass",
+      "trou": "en",
+      "apres": "Eemer.",
+      "choix": [
+        "e",
+        "en",
+        "eng"
+      ],
+      "note": "E fait partie de UNITEDZOHA → en Eemer",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    }
+  ],
+  "ecriture": [
+    {
+      "id": 2016,
+      "unite": 2,
+      "fr": "C'est un téléphone.",
+      "lu": "Dat ass en Telefon.",
+      "attention": "T fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2017,
+      "unite": 2,
+      "fr": "C'est une table.",
+      "lu": "Dat ass en Dësch.",
+      "attention": "Dësch est <b>masculin</b> (≠ une table) et commence par D → <b>en</b> Dësch."
+    },
+    {
+      "id": 2018,
+      "unite": 2,
+      "fr": "C'est un smartphone.",
+      "lu": "Dat ass en Handy.",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2019,
+      "unite": 2,
+      "fr": "C'est un cahier.",
+      "lu": "Dat ass en Heft.",
+      "attention": "H fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2020,
+      "unite": 2,
+      "fr": "C'est une voiture.",
+      "lu": "Dat ass en Auto.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2021,
+      "unite": 2,
+      "fr": "C'est une imprimante.",
+      "lu": "Dat ass en Drécker.",
+      "attention": "D fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2022,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un train.",
+      "lu": "Dat ass en Zuch.",
+      "attention": "Z fait partie de UNITEDZOHA → <b>en</b>."
+    },
+    {
+      "id": 2023,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est une maison.",
+      "lu": "Dat ass en Haus.",
+      "attention": "Haus est neutre et commence par <b>H</b> → <b>en</b> Haus · <b>keen</b> Haus."
+    },
+    {
+      "id": 2024,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un éléphant.",
+      "lu": "Dat ass en Elefant.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2025,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est une enclume.",
+      "lu": "Dat ass en Amboss.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    },
+    {
+      "id": 2026,
+      "unite": 2,
+      "plus": true,
+      "fr": "C'est un seau.",
+      "lu": "Dat ass en Eemer.",
+      "attention": "Voyelle → <b>en</b> (UNITEDZOHA)."
+    }
+  ],
+  "cours": [
+    {
+      "type": "callout",
+      "variant": "astuce",
+      "titre": "UNITEDZOHA : la règle du -n",
+      "lignes": [
+        "On garde le <b>-n</b> (<b>en</b>) devant une <b>voyelle</b> ou <b>n, d, t, z, h</b> : moyen mnémotechnique <b>U·N·I·T·E·D·Z·O·H·A</b>.",
+        "Avec -n : <b>en</b> Telefon, <b>en</b> Dësch, <b>en</b> Handy, <b>en</b> Auto. · Sans -n : <b>e</b> Stull, <b>e</b> Computer.",
+        "Au féminin, jamais en : toujours <b>eng</b>."
+      ],
+      "unite": 2,
+      "rubrique": "regles"
+    },
+    {
+      "type": "vocab",
+      "titre": "Avec en",
+      "items": [
+        [
+          "en Telefon",
+          "un téléphone"
+        ],
+        [
+          "en Dësch",
+          "une table"
+        ],
+        [
+          "en Handy",
+          "un smartphone"
+        ],
+        [
+          "en Heft",
+          "un cahier"
+        ],
+        [
+          "en Auto",
+          "une voiture"
+        ],
+        [
+          "en Drécker",
+          "une imprimante"
+        ]
+      ],
+      "unite": 2,
+      "rubrique": "lexique"
+    },
+    {
+      "type": "tableau",
+      "titre": "Plus d'objets avec en",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Non"
+      ],
+      "lignes": [
+        [
+          "en Zuch",
+          "un train",
+          "keen Zuch"
+        ],
+        [
+          "en Haus",
+          "une maison",
+          "keen Haus"
+        ],
+        [
+          "en Elefant",
+          "un éléphant",
+          "keen Elefant"
+        ],
+        [
+          "en Amboss",
+          "une enclume",
+          "keen Amboss"
+        ],
+        [
+          "en Eemer",
+          "un seau",
+          "keen Eemer"
+        ]
+      ],
+      "unite": 2,
+      "plus": true,
+      "rubrique": "lexique"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Dat ass en Dësch.",
+          "C'est une table."
+        ],
+        [
+          "Dat ass en Auto.",
+          "C'est une voiture."
+        ],
+        [
+          "Dat ass en Telefon.",
+          "C'est un téléphone."
+        ],
+        [
+          "Dat ass en Drécker.",
+          "C'est une imprimante."
+        ]
+      ]
+    }
+  ],
+  "scene": [
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
+      "fr": "Et ça ? (elle montre un téléphone)",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass en Telefon.",
+      "fr": "C'est un téléphone.",
+      "unite": 2,
+      "aide": "T fait partie de UNITEDZOHA → <b>en</b> Telefon."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
+      "fr": "Et ça ? (elle montre une imprimante)",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass en Drécker.",
+      "fr": "C'est une imprimante.",
+      "unite": 2,
+      "aide": "D fait partie de UNITEDZOHA → <b>en</b> Drécker."
+    },
+    {
+      "qui": "Sarah",
+      "lu": "An dat?",
+      "fr": "Et ça ? (elle montre une table)",
+      "unite": 2
+    },
+    {
+      "qui": "toi",
+      "lu": "Dat ass en Dësch.",
+      "fr": "C'est une table.",
+      "unite": 2,
+      "aide": "D → <b>en</b> Dësch."
+    }
+  ]
+}
