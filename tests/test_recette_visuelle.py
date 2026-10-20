@@ -208,11 +208,11 @@ try:
         pg.click('#exr-body .exr-filter button:has-text("Toute la correction")')
         assert not pg.evaluate("examOnlyErrors")
         ok('annale 1 · 70 % : vraies réponses/options, correction filtrable et scores cohérents')
-        # Spec 49 : après les filtres, les deux retours mènent toujours aux sujets
+        # Specs 49 et 74 : après les filtres, Retour et Terminer mènent aux sujets
         assert pg.inner_text('#exr-retour').strip() == '← Sujets'
-        pg.click('#exr-autres')
+        pg.click('#exr-terminer')
         assert vue(pg) == 'view-examens'
-        ok('annale 1 · 70 % : après « Mes erreurs » / « Toute la correction », « Autres sujets » → sujets')
+        ok('annale 1 · 70 % : après « Mes erreurs » / « Toute la correction », « Terminer » → sujets')
         # Retour du téléphone : sujets, puis l'écran d'avant, sans reboucler sur le résultat
         lancer(24, 'examen', 'reussi', 'a12-01')
         pg.go_back(); pg.wait_for_timeout(200)
@@ -231,9 +231,9 @@ try:
         assert vue(pg) == 'view-examen' and pg.evaluate("examAnswers.every(p => p.every(a => a === null))")
         ok('annale 1 · échec ; annale 2 · filtre erreurs ; Refaire ce sujet repart de zéro')
         durees['examen-retour'] = lancer(24, 'examen', 'reussi', 'a12-02')
-        pg.click('#exr-body .lien-or')
+        pg.click('#exr-terminer')
         assert vue(pg) == 'view-examens' and pg.locator('#examens-list .ex-carte-score').count() >= 1
-        ok('Autres sujets : vrai retour à la liste et meilleur score fictif visible')
+        ok('Terminer : vrai retour à la liste et meilleur score fictif visible')
 
         # Isolation : rien vers le cloud ; « Quitter le test » efface la progression fictive
         assert not cloud, cloud

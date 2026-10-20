@@ -734,13 +734,13 @@ function renderExamResult() {
 
   html +=
     '<div class="exr-actions">' +
-      '<button class="lien-or" id="exr-autres" onclick="retourSujets()">Autres sujets</button>' +
+      '<button class="lien-or" id="exr-refaire" onclick="startExamen(\'' + exam.id + '\')">Refaire ce sujet</button>' +
     '</div>';
 
   document.getElementById('exr-body').innerHTML = html;
-  // Action principale toujours visible en bas, dès le haut de l'écran (.cta-fixe)
+  // Action principale de fin de sujet, toujours visible en bas (.cta-fixe)
   document.getElementById('exr-cta').innerHTML =
-    '<button class="pc-btn primary wide big" id="exr-refaire" onclick="startExamen(\'' + exam.id + '\')">Refaire ce sujet</button>';
+    '<button class="pc-btn primary wide big" id="exr-terminer" onclick="retourSujets()">Terminer</button>';
 }
 
 function examSetFilter(onlyErrors) {

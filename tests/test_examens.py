@@ -54,13 +54,16 @@ with sync_playwright() as p:
     assert pg.locator('.exr-ring.' + classe).count() == 1 and pg.locator('.exr-mention.' + classe).count() == 1
     assert pg.evaluate(COULEURS_INLINE, '#exr-body') == []
     assert pg.locator('#view-examen-result .pc-btn.primary').count() == 1  # une seule action principale
-    # « Refaire ce sujet » visible dès le haut de l'écran, au-dessus du bas de page
-    assert pg.evaluate("window.scrollY") == 0 and pg.is_visible('#exr-cta #exr-refaire')
+    assert pg.inner_text('#exr-terminer') == 'Terminer'
+    assert pg.inner_text('#exr-refaire') == 'Refaire ce sujet'
+    assert pg.locator('#exr-cta #exr-refaire').count() == 0  # refaire reste sous la correction
+    # « Terminer » visible dès le haut de l'écran, au-dessus du bas de page
+    assert pg.evaluate("window.scrollY") == 0 and pg.is_visible('#exr-cta #exr-terminer')
     r = pg.evaluate("(() => { const b = document.getElementById('exr-refaire').getBoundingClientRect(); return [b.top, b.bottom, innerHeight]; })()")
     assert 0 < r[0] and r[1] <= r[2], r
     pg.evaluate("window.scrollTo(0, document.body.scrollHeight)")
     lien = pg.evaluate("(() => { const a = document.getElementById('exr-autres').getBoundingClientRect(), c = document.getElementById('exr-cta').getBoundingClientRect(); return [a.bottom, c.top]; })()")
-    assert lien[0] <= lien[1] + 1, ('« Autres sujets » caché sous le bandeau', lien)
+    assert lien[0] <= lien[1] + 1, ('« Refaire ce sujet » caché sous le bandeau', lien)
     pg.evaluate("window.scrollTo(0, 0)")
     ok('résultat : anneau et mention « %s » par classe, une seule action principale, pas de couleur inline' % classe)
 
@@ -73,15 +76,15 @@ with sync_playwright() as p:
     assert pg.locator('#examens-list .ex-carte >> nth=0').locator('.ex-carte-score.' + classe).count() == 1
     ok('« ← Sujets » (après « Mes erreurs ») → liste avec le meilleur score à jour')
 
-    # ── Autre annale A1.2 : « Autres sujets » ──
+    # ── Autre annale A1.2 : « Terminer » ──
     pg.click('#examens-list .ex-carte >> nth=1')
     pg.evaluate("""() => { exam.parties.forEach((part, k) => { examItems(part).forEach((it, i) => { examAnswers[k][i] = it.reponse; }); examChecked[k] = true; });
         examPart = exam.parties.length - 1; renderExamPart(); examNext(); }""")
     assert pg.evaluate("exam.niveau") == 'A1.2' and pg.inner_text('#exr-retour').strip() == '← Sujets'
-    pg.click('#exr-autres')
+    pg.click('#exr-terminer')
     assert pg.evaluate("document.querySelector('.view.active').id") == 'view-examens' and pg.evaluate("niveauActif") == 'A1.2'
     assert pg.locator('#examens-list .ex-carte-score').count() == 2
-    ok('2e annale A1.2 : « Autres sujets » → sujets A1.2, deux meilleurs scores')
+    ok('2e annale A1.2 : « Terminer » → sujets A1.2, deux meilleurs scores')
 
     # ── Retour du téléphone depuis le résultat : sujets, puis accueil (pas de boucle) ──
     pg.click('#examens-list .ex-carte >> nth=0')
