@@ -111,14 +111,14 @@
     "fr": "Ton père est assis dans le salon."
   },
   "am Buedzëmmer": {
-    "id": "97c517285b57da73125265bd9febe7b8",
-    "lod": "Mir mussen am Buedzëmmer nei Plättercher leeën",
-    "fr": "Nous devons poser un nouveau carrelage dans la salle de bain."
+    "id": "858070fc3563e5b219a5bd27614a9ce2",
+    "lod": "Mir hunn doheem d'Plättercher am Buedzëmmer nei gemaach",
+    "fr": "Chez nous, nous avons refait le carrelage de la salle de bain."
   },
   "net gär": {
-    "id": "8af23c0ec7b34388afd2684fb2e8acb3",
-    "lod": "Hatt huet d'Glace net gär",
-    "fr": "Elle n'aime pas la glace."
+    "id": "46df023aacf1a4737278a025b1ef4289",
+    "lod": "Ech hunn d'Porretten net gär",
+    "fr": "Je n'aime pas les poireaux."
   },
   "Vëlo fueren": {
     "id": "871b66865ba7b5c0743e5b71fd18169e",
@@ -156,9 +156,9 @@
     "fr": "Ma mère fait de la pâtisserie tous les dimanches."
   },
   "mäi Brudder": {
-    "id": "01a261e34c52c850d23489d051221380",
-    "lod": "Mäi Brudder sammelt Postkaarten aus der ganzer Welt",
-    "fr": "Mon frère collectionne des cartes postales du monde entier."
+    "id": "7549abafd6b5ca8a839e3da7dfe04457",
+    "lod": "Mäi Brudder ass Kommissär bei der Police",
+    "fr": "Mon frère est commissaire de police."
   },
   "deng Schwëster": {
     "id": "455c4604be1a118205e9545dcadcec32",
@@ -171,9 +171,9 @@
     "fr": "Ma mère va bien, et la tienne ?"
   },
   "mengen Elteren": {
-    "id": "96954033ef0bbf2d9cbf2c0b456d1621",
-    "lod": "Ech fuere mat mengen Elteren an d'Vakanz",
-    "fr": "Je pars en vacances avec mes parents."
+    "id": "87b37c2769e3981703417351bf58f2bd",
+    "lod": "Ech hunn eng gutt Relatioun mat mengen Elteren",
+    "fr": "J'ai une bonne relation avec mes parents."
   },
   "säi Meedchen": {
     "id": "615c891b4d80bdd41eb9c8be14201440",
@@ -246,9 +246,9 @@
     "fr": "Vous payez en espèces ou par carte ?"
   },
   "ech sinn": {
-    "id": "65a085f91b5a4ddf92d201d6bca1bfc6",
-    "lod": "Ech sinn net vun hei",
-    "fr": "Je ne suis pas d'ici."
+    "id": "abd24a9446fdb9ca230da59609df3421",
+    "lod": "Ech sinn am siwenten Himmel!",
+    "fr": "Je suis au septième ciel !"
   },
   "mir sinn": {
     "id": "c658bd0241f7a6ab78b04c90120687c5",
@@ -266,9 +266,9 @@
     "fr": "Tu as un métier difficile."
   },
   "hien huet": {
-    "id": "5264d62116d7da94c6379c0a2f941143",
-    "lod": "Hien huet ëmmer gutt Iddien",
-    "fr": "Il a toujours de bonnes idées."
+    "id": "3a0465d43b18caca62649ba6b85a2cd7",
+    "lod": "Hien huet eng sportlech Figur",
+    "fr": "Il a une silhouette sportive."
   },
   "si huet": {
     "id": "8c1a8e9f72dbfb8bbe03302178e23d77",
@@ -319,5 +319,15 @@
     "hire Jong": "seul exemple peu utile pour un débutant (« sech räich bestueden »)",
     "ech hu gekacht": "seul exemple trompeur : « Ech hu gekacht vu Roserei » = je bouillais de rage",
     "si sinn": "exemples au passé composé (« Si sinn … geplënnert ») : sens « ils ont », trompeur pour « ils sont »"
+  },
+  "_sans enregistrement LOD": {
+    "note": "Exemples choisis dont lod.lu n'a pas d'enregistrement (passage Termux du 20/10/2026), remplacés ci-dessus.",
+    "Gudde Moien!": "ee04cddd4072d1d7a63aef7f1c667f6f (seul exemple : reste sans son)",
+    "am Buedzëmmer": "97c517285b57da73125265bd9febe7b8",
+    "net gär": "8af23c0ec7b34388afd2684fb2e8acb3",
+    "mäi Brudder": "01a261e34c52c850d23489d051221380",
+    "mengen Elteren": "96954033ef0bbf2d9cbf2c0b456d1621",
+    "ech sinn": "65a085f91b5a4ddf92d201d6bca1bfc6",
+    "hien huet": "5264d62116d7da94c6379c0a2f941143"
   }
 }

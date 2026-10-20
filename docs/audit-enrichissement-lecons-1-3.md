@@ -4,7 +4,8 @@ Propositions seulement : **aucune leçon n'est modifiée** avant ta validation.
 Sources : index LOD (57 360 exemples), recherche `node tools/lod/exemples.js`, sélection à la main
 (niveau A1/A2, sens littéral, vocabulaire de la leçon, pas d'expression idiomatique).
 Traductions françaises rédigées par Claude (le LOD ne traduit pas ses exemples).
-Chaque phrase proposée est un **enregistrement LOD exact** : son audio arrivera avec le script Termux.
+Chaque phrase proposée est un exemple LOD exact ; son enregistrement est confirmé au passage Termux
+(au premier passage, environ 1 exemple sur 10 n'avait pas d'enregistrement sur lod.lu : il est alors remplacé ou retiré).
 
 ## Constat principal
 
@@ -17,7 +18,7 @@ et gagner l'audio par l'enrichissement du cours et du lexique (exemples LOD), pl
 
 | Leçon | Éléments | Avec audio aujourd'hui* | Exemples LOD ajoutés | Remplacements | Avec audio après | Gain |
 |---|---:|---:|---:|---:|---:|---:|
-| 1 · Salutations | 70 | 17 (24,3 %) | 8 | 2 | 27 / 78 (34,6 %) | +10,3 pts |
+| 1 · Salutations | 70 | 17 (24,3 %) | 7 | 2 | 26 / 77 (33,8 %) | +9,5 pts |
 | 2 · Objets, articles indéfinis | 119 | 68 (57,1 %) | 6 | 0 | 74 / 125 (59,2 %) | +2,1 pts |
 | 3 · Couleurs | 64 | 23 (35,9 %) | 6 | 0 | 29 / 70 (41,4 %) | +5,5 pts |
 
@@ -35,12 +36,11 @@ et gagner l'audio par l'enrichissement du cours et du lexique (exemples LOD), pl
 | 2 | Moien, Madamm, wat kann ech fir Iech maachen? | Bonjour Madame, que puis-je faire pour vous ? | saluer (poli) | `9bb3ff56…` |
 | 3 | Gudden Owend, wéi geet et Iech? | Bonsoir, comment allez-vous ? | saluer le soir | `9a4981c8…` |
 | 4 | Dann ass jo alles an der Rei! | Alors tout va bien ! | répondre | `4b2d329a…` |
-| 5 | Villmools merci! | Merci beaucoup ! | remercier (nouveau : *villmools*) | `9d16b757…` |
-| 6 | Bis geschwënn! | À bientôt ! | prendre congé (nouveau) | `5d1b3d3f…` |
-| 7 | Äddi a schéine Weekend! | Au revoir et bon week-end ! | prendre congé (règle du n : *schéine Weekend*) | `711056cf…` |
-| 8 | Schlof gutt an dreem schéin! | Dors bien et fais de beaux rêves ! | entre proches | `3795f045…` |
+| 5 | Bis geschwënn! | À bientôt ! | prendre congé (nouveau) | `5d1b3d3f…` |
+| 6 | Äddi a schéine Weekend! | Au revoir et bon week-end ! | prendre congé (règle du n : *schéine Weekend*) | `711056cf…` |
+| 7 | Schlof gutt an dreem schéin! | Dors bien et fais de beaux rêves ! | entre proches | `3795f045…` |
 
-Écartés : « Äddi a bis muer den Owend! » (structure *muer den Owend* hors leçon), « Menger Mamm geet et gutt, an denger? » (datif, leçon 23),
+Écartés : « Villmools merci! » (pas d'enregistrement sur lod.lu, vérifié le 20/10), « Äddi a bis muer den Owend! » (structure *muer den Owend* hors leçon), « Menger Mamm geet et gutt, an denger? » (datif, leçon 23),
 « Entschëllegt, ech hunn déi falsch Nummer gewielt! » (passé composé).
 
 ### B. Remplacements possibles (exercices et missions)

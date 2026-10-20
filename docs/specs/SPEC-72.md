@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | Priorité | P1 — audio et contenu |
-| Statut | **Implémentée sur `v2`** — audios en attente du passage Termux ; enrichissement en attente de validation |
+| Statut | **Implémentée sur `v2`** — 73 phrases LOD en ligne ; enrichissement en attente de validation |
 | Complète | SPEC 69, 70, 71 |
 | Fichiers | `tools/termux-audio-lod.sh` (nouveau), `public/design-tokens.css`, `public/style.css`, `public/contexte.js`, `public/dialogue.js`, `tests/test_audio_lod.js`, `docs/audit-enrichissement-lecons-1-3.md` (nouveau), `PLAYBOOK.md` |
 
@@ -49,6 +49,11 @@ pour le cours et le lexique ; remplacements possibles dans les exercices et miss
 - [x] `tests/test_audio_lod.js` : gris sable, doré, blanc cassé, plus de vert menthe dans les composants audio.
 - [x] Rendu vérifié au format téléphone (bulle, écran d'exemples).
 - [x] Script Termux testé sur un clone local (sans envoi).
-- [ ] Passage Termux de Clayton → branche `audio-phrases` → fusion dans `v2` par Claude.
+- [x] Passage Termux de Clayton → branche `audio-phrases` → fusion dans `v2` (20/10/2026) : **73 fichiers M4A**, tous valides et référencés ;
+  23 phrases exactes sur 25 et 55 phrases en contexte sur 62. Durées cohérentes (231 à 693 ms par mot).
+  Sans enregistrement sur lod.lu : « Villmools Merci(!) » (exacte) et 7 exemples contextuels ; 6 remplacés par un autre exemple relu
+  (`tools/lod/contextes.json`, récupérés au prochain passage Termux), « Gudde Moien! » reste sans son (seul exemple).
+- [x] Correctif du script : Termux n'a pas de `/tmp` (le premier passage s'arrêtait après les téléchargements) ; les sons déjà téléchargés sont gardés à la relance.
+- [x] Contrôle dans l'application avec les vrais fichiers : leçons 1, 15 et 27, boutons or et sable, liens d'exemples, fichiers servis.
 - [ ] Écoute sur Android : bulle, exemples, Retour.
 - [ ] Validation de l'audit des leçons 1 à 3 (et de « wannechgelift »).
