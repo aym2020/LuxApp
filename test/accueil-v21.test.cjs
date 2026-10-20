@@ -43,7 +43,7 @@ test('L’accueil conserve les puces, le menu et le titre de marque', () => {
 test('Moien affiche un message adapté au premier lancement', () => {
   const c = contexte();
   c.aDejaPratique = () => false;
-  assert.match(c.accrocheHtml(), /Prêt à découvrir/);
+  assert.match(c.accrocheHtml(), /Une nouvelle langue commence ici/);
   c.aDejaPratique = () => true;
   assert.match(c.accrocheHtml(false), /quelques minutes/);
   assert.doesNotMatch(c.accrocheHtml(false), /42\s*%/);
@@ -62,6 +62,8 @@ test('Le bouton principal conserve la reprise et le démarrage', () => {
   const p = {lecon:{id:6},type:'unite',unite:{id:2,titre:'Présenter'}};
   assert.match(c.carteSuiteHtml(p,false), /suivreProchainPas\(\)/);
   assert.match(c.carteSuiteHtml(p,false), /ac-v21-cta/);
+  assert.match(c.carteSuiteHtml(p,false), /Leçon 6 · Les nationalités/);
+  assert.match(c.carteSuiteHtml(p,false), /Unité 2/);
   assert.match(c.carteSuiteHtml(p,true), /onclick="commencer\(\)"/);
 });
 test('Le niveau terminé laisse explicitement le choix', () => {
@@ -75,7 +77,9 @@ test('Les quatre actions et la navigation existante restent disponibles', () => 
   for(const action of ['lancerRevision()', 'openExamens()', "startSession('errors')", 'goLessons()']) {
     assert.ok(h.includes(action), action);
   }
-  assert.ok(h.indexOf('Réviser') < h.indexOf('Mon chemin'));
+  assert.ok(h.indexOf('Réviser') < h.indexOf('Voir mon chemin'));
+  assert.match(h, /ac-v21-actions/);
+  assert.match(h, /ac-v21-journey/);
 });
 
 test('Les deux photos du hero sont des WebP compacts, bien branchés dans le CSS', () => {
@@ -91,4 +95,37 @@ test('Les deux photos du hero sont des WebP compacts, bien branchés dans le CSS
     assert.ok(style.includes(filename), filename + ' doit être chargé dans le hero');
   }
   assert.doesNotMatch(style, /lux-city\.svg/);
+});
+
+test('Mode invité compact : accès connexion conservé, inscription toujours proposée dans le portail', () => {
+  const c = contexte();
+  c.isCloudEnabled = () => true;
+  c.fbAuth = { currentUser: null };
+  const h = c.enteteAccueilHtml();
+  assert.match(h, /ac-v21-controls/);
+  assert.match(h, /ac-v21-guest/);
+  assert.match(h, /Mode invité/);
+  assert.match(h, /Connexion/);
+  assert.match(h, /ouvrirCompteDepuisAccueil\(\\?'signin\\?'\)/);
+  assert.match(c.ligneCompteHtml(), /signup/);
+});
+test('Mode connecté : aucun appel à la connexion dans l’en-tête', () => {
+  const c = contexte();
+  c.isCloudEnabled = () => true;
+  c.fbAuth = { currentUser: {uid:'test'} };
+  const h = c.enteteAccueilHtml();
+  assert.doesNotMatch(h, /ac-v21-guest/);
+  assert.match(h, /puces-niveau/);
+});
+test('Le hero est un élément décoratif, pas un fond photographique derrière toute la page', () => {
+  const h = contexte().accrocheHtml(true);
+  assert.match(h, /ac-hero-image" aria-hidden="true"/);
+  assert.match(h, /ac-hero-overlay" aria-hidden="true"/);
+  assert.match(h, /Moien/);
+  const css = fs.readFileSync(path.join(__dirname, '..', 'public', 'accueil-v21.css'), 'utf8');
+  assert.match(css, /-webkit-mask-image/);
+  assert.match(css, /#view-dashboard \.ac-hero-image/);
+  assert.match(css, /#view-dashboard \.ac-v21-controls/);
+  assert.match(css, /#view-dashboard \.ac-v21-cta/);
+  assert.match(css, /#view-dashboard \.ac-acces/);
 });
