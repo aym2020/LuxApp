@@ -1,0 +1,18 @@
+name: LuxApp 2.1 — test accueil
+
+on:
+  push:
+    branches: ['2.1']
+  pull_request:
+    branches: ['2.1']
+
+jobs:
+  accueil:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test du rendu et des liens de l'accueil
+        run: node --test test/accueil-v21.test.cjs
