@@ -32,6 +32,8 @@ assert.match(html,/src="studio\.js"/);
 assert.ok(html.indexOf('src="mission.js"')<html.indexOf('src="studio.js"'));
 assert.match(mission,/if \(studioActif\(pLecon\)\) return studioOpenMission\(tentative\)/);
 assert.match(parcours,/activiteUnique/);
+assert.match(parcours,/const audioDirect = q\.audioFichier/,'le bouton audio est visible sans attendre le lexique');
+assert.match(parcours,/aria-label="Écouter le mot à reconnaître"/,'le bouton ne révèle pas la réponse');
 assert.match(parcours,/archive82/);
 assert.match(read('public/progress.js'),/0-ecoute-v2/);
 assert.match(read('public/progress.js'),/0-n-v2/);
