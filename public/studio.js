@@ -13,7 +13,7 @@ function studioMissionHtml(l, conseillee) {
   return '<div class="ms-carte compacte" id="pl-mission">' +
     '<div class="ms-carte-haut"><div class="pc-mini-label pc-gold">' + etiquetteMission(l) +
     '</div><span class="ms-etat">' + escHtml(etatPreparationMission(l)) + '</span></div>' +
-    '<div class="ms-titre">📻 ' + escHtml(l.mission.titre) + '</div>' +
+    '<div class="ms-titre">' + escHtml(l.mission.titre) + '</div>' +
     '<div class="ms-bas">' + faites + ' / 2 unités préparées · 8 défis : 3 sons, 3 scripts, 2 formes à compléter</div>' +
     '<div class="ms-actions"><button class="pc-chip" onclick="voirScenario()">Voir les défis</button>' +
     '<button class="pc-chip ms-jouer' + (conseillee && best == null ? ' conseille' : '') +
@@ -24,7 +24,7 @@ function studioMissionHtml(l, conseillee) {
 function studioVoirScenario() {
   const l = pLecon;
   const html = '<div class="poignee"></div><div class="pc-mini-label pc-gold">MISSION · LES BASES</div>' +
-    '<h2 class="ms-titre">📻 Le studio radio</h2>' +
+    '<h2 class="ms-titre">Le studio radio</h2>' +
     '<div class="ms-contexte">' + escHtml(l.mission.contexte) + '</div>' +
     '<div class="ms-objectif"><span>Objectif :</span> ' + escHtml(l.mission.objectif) + '</div>' +
     '<div class="studio-apercu"><b>3 écoutes LOD</b><b>3 vérifications de script</b><b>2 corrections de forme</b></div>' +
@@ -38,7 +38,7 @@ function studioRenderIntroMission() {
   const l = pLecon;
   document.getElementById('msi-content').innerHTML =
     '<div class="msi-haut"><div class="pc-mini-label pc-gold msi-in">MISSION · LEÇON 0</div>' +
-    '<h1 class="msi-titre msi-in">📻 Le studio radio</h1>' +
+    '<h1 class="msi-titre msi-in">Le studio radio</h1>' +
     '<p class="msi-contexte msi-in">' + escHtml(l.mission.contexte) + '</p></div>' +
     '<div class="msi-objectif msi-in"><div class="msi-objectif-titre">À la fin, tu sauras :</div>' +
     '<div class="msi-objectif-txt">' + ICONES.coche + '<span>' + escHtml(l.mission.objectif) + '</span></div></div>' +
