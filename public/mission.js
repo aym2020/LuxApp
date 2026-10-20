@@ -154,19 +154,19 @@ function renderIntroMission() {
     '<div class="msi-haut">' +
       '<div class="pc-mini-label pc-gold msi-in">MISSION · LEÇON ' + numLecon(l) + '</div>' +
       '<h1 class="msi-titre msi-in">' + escHtml(l.mission.titre) + '</h1>' +
-      '<p class="msi-contexte msi-in">' + escHtml(l.mission.contexte) + '</p>' +
+      '<p class="msi-contexte msi-in">' + escHtml(l.mission.contexte_intro || l.mission.contexte) + '</p>' +
     '</div>' +
     '<div class="msi-objectif msi-in">' +
       '<div class="msi-objectif-titre">À la fin, tu sauras :</div>' +
-      '<div class="msi-objectif-txt">' + ICONES.coche + '<span>' + escHtml(l.mission.objectif) + '</span></div>' +
+      '<div class="msi-objectif-txt">' + ICONES.coche + '<span>' + escHtml(l.mission.objectif_intro || l.mission.objectif) + '</span></div>' +
     '</div>' +
     '<div class="msi-bas msi-in">' +
       '<div class="msi-info">' + unitesCoeur(l).length + ' unités pour t\'y préparer, puis la scène à jouer · ' +
         nbRepliquesToi(l) + ' répliques à dire</div>' +
-      '<button class="pc-btn primary wide big" onclick="confirmerIntroMission()">J\'ai compris · Commencer →</button>' +
+      '<button class="pc-btn primary wide big" onclick="confirmerIntroMission()">Commencer →</button>' +
       '<button class="pc-btn ghost wide" onclick="voirUnitesDepuisIntro()">Voir les unités</button>' +
       // S10 : on peut aussi tenter la scène tout de suite, sans passer par les unités.
-      (peutTenterSaChance(l) ? '<button class="pc-btn ghost wide msi-tenter" onclick="tenterDepuisIntro()">Tu connais déjà ? Tente ta chance</button>' : '') +
+      (peutTenterSaChance(l) ? '<button class="pc-btn ghost wide msi-tenter" onclick="tenterDepuisIntro()">Tenter la mission directement</button>' : '') +
     '</div>';
 }
 
