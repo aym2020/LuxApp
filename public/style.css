@@ -3184,3 +3184,36 @@ body.pi-bloque { overflow:hidden; }
 #view-pintro.active { min-height: 100dvh; }
 #view-pintro.entre-avant,
 #view-pintro.entre-arriere { animation: none; }
+
+
+/* SPEC 85 — Intros lisibles sur smartphone : actions atteignables sans texte masqué.
+   Les scénarios complets restent consultables ; seule leur introduction est raccourcie. */
+#view-msintro.active { min-height: 100dvh; }
+#view-msintro .msi-content {
+  flex: 1 0 auto;
+  min-height: 0;
+  padding: .7rem 1.1rem calc(1rem + env(safe-area-inset-bottom));
+  gap: .8rem;
+}
+#view-msintro .msi-haut { gap: .45rem; }
+#view-msintro .msi-titre { font-size: clamp(2rem, 8vw, 2.45rem); line-height: 1.07; }
+#view-msintro .msi-contexte { font-size: .96rem; line-height: 1.42; }
+#view-msintro .msi-objectif { padding: .7rem .85rem; gap: .3rem; }
+#view-msintro .msi-objectif-txt { line-height: 1.35; font-size: .95rem; }
+#view-msintro .msi-bas { gap: .3rem; }
+#view-msintro .msi-info { line-height: 1.35; }
+#view-msintro .msi-bas .pc-btn { min-height: 44px; }
+#view-msintro .msi-bas .pc-btn.big { min-height: 52px; }
+#view-pintro .pi-content { padding-bottom: calc(118px + env(safe-area-inset-bottom)); }
+#view-pintro .pi-titre { margin-bottom: .3rem; }
+#view-pintro .pi-regle { padding: .85rem .95rem; gap: .3rem; margin-bottom: .35rem; }
+#view-pintro .pi-regle-txt { font-size: 1rem; line-height: 1.4; }
+#view-pintro .pi-regle-ex { font-size: .9rem; }
+#view-pintro .pi-bas { padding-top: .25rem; }
+@media (max-height: 700px) {
+  #view-msintro .msi-content { padding-top: .35rem; gap: .55rem; }
+  #view-msintro .msi-haut { gap: .3rem; }
+  #view-msintro .msi-titre { font-size: 1.9rem; }
+  #view-msintro .msi-objectif { padding: .55rem .75rem; }
+  #view-msintro .msi-contexte { font-size: .93rem; }
+}
