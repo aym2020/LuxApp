@@ -773,7 +773,8 @@
           "schéin"
         ],
         "explication": "Schoul : SCH se prononce comme le CH français.",
-        "unite": 1
+        "unite": 1,
+        "audioFichier": "lod/SCHOUL1.mp3"
       },
       {
         "id": 2,
@@ -787,7 +788,8 @@
           "Buch"
         ],
         "explication": "wäiss : W se prononce comme V.",
-        "unite": 1
+        "unite": 1,
+        "audioFichier": "lod/WAISS1.mp3"
       },
       {
         "id": 3,
@@ -801,7 +803,8 @@
           "Lëtzebuerg"
         ],
         "explication": "Fënster : écoute la voyelle Ë.",
-        "unite": 1
+        "unite": 1,
+        "audioFichier": "lod/FENSTER1.mp3"
       },
       {
         "id": 4,
