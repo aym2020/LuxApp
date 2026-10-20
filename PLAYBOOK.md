@@ -814,3 +814,8 @@ Sur téléphone, garder les noms du parcours très courts : leçon 0 **« Les ba
 
 ### SPEC 81 — Dépannage des sons LOD dans la PWA (20/10/2026)
 Si le haut-parleur existe mais indique « Audio indisponible », distinguer la **présence du fichier Git** de son accessibilité sur le déploiement réel. Résoudre depuis `/audio/` (pas une route relative) ; en secours seulement pour `lod/<ID>.mp3`, essayer l'enregistrement du miroir LOD déjà utilisé par le projet. Ne pas confondre une erreur de lecture avec le manque d'audio dans l'index. Journaliser les échecs sans révéler la réponse du quiz ; un seul toast après échec des deux sources. Ne jamais laisser une ancienne erreur déclencher un son après une navigation. Validation : `node tests/test_spec81_audio.js`, puis test Android effectif sur l'app déployée.
+
+
+### Correctif — Apostrophes typographiques dans l'écriture (20/10/2026)
+
+Bug signalé dans la leçon 3 (couleurs) : l'app rejetait `d’Faarf` et `D’Dier ass wäiss` alors que les réponses attendues étaient `D'Faarf` et `D'Dier ass wäiss.`. Les claviers mobiles peuvent saisir une apostrophe courbe (`’`) au lieu de l'apostrophe droite (`'`). `normalize()` dans `public/app.js` convertit désormais les apostrophes courbes `‘`, `’`, `ʼ` et `＇` en `'` avant de comparer. La casse et la ponctuation de fin de phrase restent ignorées, mais **une apostrophe absente n'est pas acceptée**. Comme `reponseReconnue()` utilise la même normalisation, la correction couvre l'écriture du parcours, les missions, les révisions et l'écriture classique sans modifier les JSON des leçons ni leurs réponses attendues. Régression : `node tests/test_reponses_alternatives.js` ; vérifier aussi sur téléphone la saisie des deux exemples ci-dessus.
