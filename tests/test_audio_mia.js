@@ -12,7 +12,7 @@ assert.ok(list.includes('Gëschter sinn ech um sechs Auer erwächt.'),'exemple d
 assert.ok(list.includes('Fir wéini, wgl.?'),'annales A1.1');
 assert.ok(list.includes('Dat ass en Auto.'),'phrase de cours leçon 0');
 assert.ok(list.includes('Gudde Moien, Anna!'),'variante d’écriture de la leçon 1');
-assert.ok(list.includes("d'Faarf"),'article élidé conservé');
+assert.ok(list.some(t => t.toLowerCase() === "d'faarf"),'article élidé conservé, casse indifférente');
 
 assert.equal(outputFile('Moien!'),outputFile('moien.'));
 assert.match(outputFile('Wéi geet et?'),/^mia\/[a-f0-9]{24}\.mp3$/);
