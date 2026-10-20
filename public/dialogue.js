@@ -196,7 +196,7 @@ function sonDuMot(lu) {
   // SPEC 87 : un MP3 LOD de « Stull » ne prononce pas « de Stull ».
   // La priorité revient à un LOD qui prononce l'énoncé EXACT, puis au MIA
   // intégral, et seulement en dernier recours au son LOD du nom isolé.
-  if (cle.split(/\s+/).length > 1)
+  if (cle.split(/\s+/).length > 1 || /^d'/.test(cle))
     return sonsPhrases[cle] || sonsMia[cle] ||
       sonsLod[texte] || sonsLodSimples[cleSon(texte)] || null;
   return sonsLod[texte] || sonsLodSimples[cleSon(texte)] ||
