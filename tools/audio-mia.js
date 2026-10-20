@@ -16,18 +16,53 @@ function textList() {
   const found = new Map();
   function add(t) {
     if (typeof t !== 'string') return;
-    const cleaned = t.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    const cleaned = t.replace(/<[^>]*>/g, ' ').replace(/\s*\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
     const key = phraseCle(cleaned);
-    if (key && /[a-zà-ÿ]/i.test(cleaned) && !found.has(key)) found.set(key, cleaned);
+    if (key && /[\p{L}\d]/u.test(cleaned) && !found.has(key)) found.set(key, cleaned);
   }
   for (const {lecon:l} of lecons()) {
     for (const x of elementsLecon(l)) add(x.lu);
+    for (const x of [...(l.ecriture || []), ...(l.scene || [])])
+      for (const alt of x.alternatives || []) add(alt);
     for (const u of l.unites || []) {
       if (Array.isArray(u.phrase)) add(u.phrase[0]);
       for (const pair of u.phrases || []) if (Array.isArray(pair)) add(pair[0]);
+      for (const d of u.decouverte || []) add(d.mot || d.forme);
     }
-    for (const c of l.cours || []) if (c.type === 'tableau') {
-      for (const pair of c.lignes || []) if (Array.isArray(pair)) add(pair[0]);
+    for (const c of l.cours || []) {
+      if (['tableau','phrases','exemple','vocab'].includes(c.type)) {
+        for (const pair of c.lignes || c.items || []) if (Array.isArray(pair)) add(pair[0]);
+      }
+    }
+    for (const x of l.trous || []) {
+      if (typeof x.avant === 'string' && typeof x.trou === 'string' && typeof x.apres === 'string')
+        add([x.avant, x.trou, x.apres].join(' ').replace(/\s+([.,!?;:])/g, '$1'));
+    }
+  }
+  // Examens publiés : génération du son des phrases corrigées.
+  // Pas de synthèse des brouillons de missions indépendants.
+  const dirExamens = path.join(root, 'data/examens');
+  for (const niveau of fs.readdirSync(dirExamens).sort()) {
+    const dir = path.join(dirExamens, niveau);
+    if (!fs.statSync(dir).isDirectory()) continue;
+    for (const nom of fs.readdirSync(dir).filter(x => x.endsWith('.json')).sort()) {
+      const ex = read(path.join(dir, nom));
+      if (ex.redaction) add(ex.redaction.consigne);
+      for (const p of ex.parties || []) {
+        add(p.chapeau);
+        for (const ligne of p.lignes || []) {
+          if (!Array.isArray(ligne)) continue;
+          const full = String(ligne[1] || '').replace(/\{(\d+)\}/g, (_, n) =>
+            p.trous && p.trous[Number(n) - 1] ? p.trous[Number(n) - 1].reponse : '{' + n + '}');
+          if (!/\{\d+\}/.test(full)) add(full);
+        }
+        for (const q of p.questions || []) {
+          add(q.question);
+          if (Array.isArray(q.preuve)) add(q.preuve[0]);
+          for (const c of q.choix || []) add(c);
+        }
+        for (const c of p.banque || []) add(c);
+      }
     }
   }
   return [...found.values()];
@@ -44,7 +79,10 @@ function plan(voice='mia') {
   const items = [], index = {};
   let original = 0, generated = 0;
   for (const t of textList()) {
-    if (lod(t) || phrases.has(phraseCle(t))) {original++; continue;}
+    // Le LOD est exact pour un mot isolé ; un article + nom nécessite le
+    // vrai son de la locution, pas uniquement le nom du dictionnaire.
+    const groupe = phraseCle(t).split(/\s+/).length > 1;
+    if ((!groupe && lod(t)) || phrases.has(phraseCle(t))) {original++; continue;}
     const file = outputFile(t, voice), abs = path.join(audioDir, file);
     if (fs.existsSync(abs) && fs.statSync(abs).size > 500) {index[t] = file; generated++;}
     else items.push({t,file});
