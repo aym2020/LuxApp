@@ -14,12 +14,9 @@
       "id": 1,
       "titre": "Prononciation",
       "activiteUnique": "quiz",
-      "regle": "Écoute les enregistrements LOD et associe le son à son écriture. <b>W</b> ≈ V, <b>J</b> ≈ Y, <b>Z</b> ≈ TS, <b>SCH</b> ≈ CH, <b>ST</b> initial ≈ CHT. Pour <b>CH, Ë, Ä, ÉI</b>, fie-toi surtout au son.",
-      "exemple": "wäiss · Jo · zéng · Schoul · Stull · Buch · Fënster · Äddi! · schéin",
-      "pieges": [
-        "20 sons, un seul exercice : aucune traduction ni mémorisation de vocabulaire.",
-        "Toutes les lectures utilisent les enregistrements LOD, réécoutables à volonté."
-      ],
+      "regle": "Découvre 9 sons du luxembourgeois en écoutant des mots enregistrés. Puis reconnais les mots entendus dans 20 questions.",
+      "exemple": "W ≈ V · J ≈ Y · SCH ≈ CH",
+      "pieges": [],
       "decouverte": [
         {
           "son": "W",
@@ -81,12 +78,9 @@
       "id": 2,
       "titre": "United Zoha",
       "activiteUnique": "trous",
-      "regle": "Dans les <b>terminaisons concernées</b>, le N reste devant une voyelle ou <b>N, D, T, Z, H</b> ; il tombe devant la plupart des autres consonnes. La règle ne s'applique pas à tous les N d'un mot.",
-      "exemple": "Gudde Moien! / Gudden Owend! · e Stull / en Auto · de Bus / den Auto",
-      "pieges": [
-        "On indique déjà l'article et la lettre suivante : l'objectif est seulement de choisir avec ou sans N.",
-        "Auto et Dësch sont masculins en luxembourgeois ; les genres et articles seront appris dans la leçon 2."
-      ],
+      "regle": "Devant une voyelle ou <b>N, D, T, Z, H</b>, le N final de certaines formes se conserve. Devant les autres consonnes, il tombe.",
+      "exemple": "Gudde Moien! · Gudden Owend!",
+      "pieges": [],
       "decouverte": [
         {
           "forme": "Gudde Moien!",
