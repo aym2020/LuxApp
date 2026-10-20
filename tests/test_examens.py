@@ -59,10 +59,11 @@ with sync_playwright() as p:
     assert pg.locator('#exr-cta #exr-refaire').count() == 0  # refaire reste sous la correction
     # « Terminer » visible dès le haut de l'écran, au-dessus du bas de page
     assert pg.evaluate("window.scrollY") == 0 and pg.is_visible('#exr-cta #exr-terminer')
-    r = pg.evaluate("(() => { const b = document.getElementById('exr-refaire').getBoundingClientRect(); return [b.top, b.bottom, innerHeight]; })()")
+    # SPEC 74 : c'est « Terminer » (bandeau fixe) qui est dans l'écran dès le haut ; « Refaire ce sujet » est en fin de correction.
+    r = pg.evaluate("(() => { const b = document.getElementById('exr-terminer').getBoundingClientRect(); return [b.top, b.bottom, innerHeight]; })()")
     assert 0 < r[0] and r[1] <= r[2], r
     pg.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-    lien = pg.evaluate("(() => { const a = document.getElementById('exr-autres').getBoundingClientRect(), c = document.getElementById('exr-cta').getBoundingClientRect(); return [a.bottom, c.top]; })()")
+    lien = pg.evaluate("(() => { const a = document.getElementById('exr-refaire').getBoundingClientRect(), c = document.getElementById('exr-cta').getBoundingClientRect(); return [a.bottom, c.top]; })()")
     assert lien[0] <= lien[1] + 1, ('« Refaire ce sujet » caché sous le bandeau', lien)
     pg.evaluate("window.scrollTo(0, 0)")
     ok('résultat : anneau et mention « %s » par classe, une seule action principale, pas de couleur inline' % classe)
