@@ -14,6 +14,8 @@ const app = lire('public/app.js');
 let etat = { ok: true, texte: "Synchronisé à l'instant" };
 let niveau = 'A1.2';
 let nouveau = false;
+let cloudEnabled = false;
+const auth = { currentUser: null };
 let pas = {
   type: 'unite',
   lecon: { id: 20, titre_fr: 'Être et avoir au présent' },
@@ -24,7 +26,12 @@ const noeuds = {};
 function noeud(id) {
   if (!noeuds[id]) noeuds[id] = {
     id, innerHTML: '', textContent: '', attrs: {},
-    classList: { toggle() {}, add() {} },
+    classList: {
+      states: new Set(),
+      toggle(c, on) { if (on) this.states.add(c); else this.states.delete(c); },
+      add(c) { this.states.add(c); },
+      contains(c) { return this.states.has(c); }
+    },
     setAttribute(k, v) { this.attrs[k] = v; },
     querySelector(selector) { return selector === '.ac-sync-slot' ? noeud('slot') : null; }
   };
@@ -50,9 +57,9 @@ const dependances = [
 ];
 const args = [
   document, [], niveau, () => ['A1.1', 'A1.2'], () => etat, echapper,
-  () => data, () => 0, l => l.id, l => l.titre_fr, () => nouveau,
+  () => data, () => 0, l => l.id, l => l.titre_fr, () => !nouveau,
   () => ({ dus: [] }), () => {}, () => null, () => false,
-  () => false, { currentUser: null },
+  () => cloudEnabled, auth,
   () => pas, () => ({ today: 0 }), () => 'today', () => null
 ];
 const factory = new Function(...dependances,
@@ -133,4 +140,36 @@ assert.match(app, /if \(id === 'view-dashboard'\) vue\.scrollTop = 0;/,
 assert.ok(!css.includes('body { overflow: hidden; }') && !css.includes('#view-dashboard.active { overflow:hidden; }'),
   'Le contenu long et les autres écrans restent consultables');
 
-console.log('SPEC 52 : OK — carte compacte, stats, actions, états cloud et CSS mobile et scroll accueil.');
+// SPEC 77 : accueil de première visite en invité, trop haut sur Android standard.
+assert.ok(!noeud('accueil').classList.contains('ac-nouveau-invite'), 'accueil suivi non compacté');
+nouveau = true; cloudEnabled = true;
+ui.renderAccueil(false);
+assert.ok(noeud('accueil').classList.contains('ac-nouveau-invite'),
+  'compacter seulement le nouvel invité avec sa barre de compte');
+assert.match(noeud('accueil').innerHTML, /Mode invité/);
+assert.match(noeud('accueil').innerHTML, /Prêt à commencer/);
+assert.equal((noeud('accueil').innerHTML.match(/class="ac-btn /g)||[]).length,4,
+  'les quatre accès restent visibles');
+auth.currentUser = { uid:'logged-in' };
+ui.renderAccueil(false);
+assert.ok(!noeud('accueil').classList.contains('ac-nouveau-invite'),
+  'le compte connecté garde sa disposition');
+auth.currentUser = null; nouveau = false;
+ui.renderAccueil(false);
+assert.ok(!noeud('accueil').classList.contains('ac-nouveau-invite'),
+  'la page avec progression conserve ses stats et son espacement');
+nouveau = true; cloudEnabled = false;
+ui.renderAccueil(false);
+assert.ok(!noeud('accueil').classList.contains('ac-nouveau-invite'),
+  'sans barre de compte, ne pas compacter');
+assert.match(css, /@media\s*\(max-height:\s*810px\)/);
+assert.match(css, /#view-dashboard \.accueil\.ac-nouveau-invite\s*\{[^}]*gap:\s*7px/s,
+  'espacements réduits uniquement au bon niveau');
+assert.match(css, /#view-dashboard \.ac-nouveau-invite \.ac-accroche \.ic\s*\{[^}]*width:\s*28px/s,
+  'illustration raccourcie, texte conservé');
+assert.match(css, /#view-dashboard \.ac-nouveau-invite \.ac-btn\s*\{[^}]*min-height:\s*60px/s,
+  'cibles tactiles préservées');
+assert.match(css, /#view-dashboard\.active\s*\{[^}]*overflow-y:auto/s,
+  'petits écrans : aucun contenu rogné');
+
+console.log('SPEC 52 + 77 : OK — accueil invité compact sur écran standard, navigation et retour préservés.');

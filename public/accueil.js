@@ -62,6 +62,10 @@ function renderAccueil(animer) {
 
   const plan = planDuJour();
   const nouveau = !aDejaPratique();
+  // SPEC 77 : seule la première visite en invité nécessite la disposition
+  // resserrée sur un écran Android standard. Les autres accueils sont inchangés.
+  box.classList.toggle('ac-nouveau-invite',
+    nouveau && isCloudEnabled() && !(fbAuth && fbAuth.currentUser));
 
   let html = enteteAccueilHtml();
   if (nouveau) html += accrocheHtml();

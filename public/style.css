@@ -3045,3 +3045,31 @@ body.pi-bloque { overflow:hidden; }
   .pi-carte, .pi-hero::before, .pi-coche { animation:none!important; }
   .pi-compris:active { transform:none; }
 }
+
+/* SPEC 77 — Première visite invitée : un écran standard, sans faux scroll.
+   La ligne de compte SPEC 67 prend une rangée de plus ; on récupère de l'espace
+   sur les interblocs et l'accroche, jamais sur les cibles tactiles des raccourcis.
+   Sur un écran réellement petit, #view-dashboard garde son scroll natif. */
+@media (max-height: 810px) {
+  #view-dashboard .accueil.ac-nouveau-invite {
+    gap: 7px;
+    padding-top: 11px;
+    padding-bottom: 8px;
+  }
+  #view-dashboard .ac-nouveau-invite .puces-niveau { margin-top: -4px; }
+  #view-dashboard .ac-nouveau-invite .ac-accroche {
+    padding-top: 0;
+    gap: 2px;
+  }
+  #view-dashboard .ac-nouveau-invite .ac-accroche .ic {
+    width: 28px; height: 28px; margin-bottom: 1px;
+  }
+  #view-dashboard .ac-nouveau-invite .ac-accroche p { line-height: 1.35; }
+  #view-dashboard .ac-nouveau-invite .carte-suite.compacte {
+    min-height: 108px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  #view-dashboard .ac-nouveau-invite .ac-acces { gap: 6px; }
+  #view-dashboard .ac-nouveau-invite .ac-btn { min-height: 60px; }
+}
