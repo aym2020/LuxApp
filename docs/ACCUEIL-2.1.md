@@ -21,7 +21,7 @@ Rendre l'accueil plus reconnaissable, plus humain et plus facile à parcourir, s
 ## Comportement conservé
 
 - Les niveaux sont sélectionnés manuellement et le changement de niveau après complétion reste explicite.
-- Le mode invité garde ses liens de compte ; le menu garde l'information de synchronisation.
+- Le mode invité conserve un accès « Connexion » discret dans la ligne des niveaux. La création de compte reste disponible dans le portail d'authentification ; le menu conserve l'état de synchronisation.
 - Les chiffres proviennent exclusivement de progressionNiveau() et serieActuelle().
 - Les identifiants today et serie et les appels commencer(), suivreProchainPas(), lancerRevision(), openExamens(), startSession('errors'), goLessons(), passerAuNiveau() sont conservés.
 - Scroll interne de l'accueil, adaptations mobiles, interaction clavier et réduction des animations maintenus.
@@ -32,7 +32,8 @@ Rendre l'accueil plus reconnaissable, plus humain et plus facile à parcourir, s
 | --- | --- |
 | public/accueil-v21.js | Surcouche de présentation |
 | public/accueil-v21.css | Styles limités à #view-dashboard |
-| public/art/hero-luxapp-mobile.webp | Image optimisée mobile (960 × 540) |\n| public/art/hero-luxapp-fhd.webp | Image haute définition (1920 × 1080) |
+| public/art/hero-luxapp-mobile.webp | Image optimisée mobile (960 × 540) |
+| public/art/hero-luxapp-fhd.webp | Image haute définition (1920 × 1080) |
 | public/index.html | Chargement après les fichiers v2 |
 | test/accueil-v21.test.cjs | Tests automatiques des états et destinations |
 
@@ -55,3 +56,19 @@ Le visuel généré précédemment est une **maquette d'intention** : ses chiffr
 ## Étapes suivantes
 
 Le chemin des leçons et les exercices seront traités par des changements séparés après validation de cet accueil.
+
+## Accueil V2 — mise en œuvre du mockup approuvé (20 octobre 2026)
+
+La seconde maquette HTML, validée après comparaison avec la capture Android, remplace les choix de composition de la première tentative **uniquement sur la branche `2.1`**.
+
+- **En-tête** : symbole architectural conservé et niveaux A1.1/A1.2 sur la même ligne que « Mode invité · Connexion » ; la connexion est volontairement secondaire.
+- **Hero** : photographie WebP du dépôt existant, panoramique sur environ 250 px, fondue en haut et en bas et assombrie latéralement pour préserver le contraste du texte HTML.
+- **Microcopy** : « Le luxembourgeois, pas à pas », « Moien ! », « Une nouvelle langue commence ici. » sur la première visite ; message de reprise sur les visites suivantes.
+- **Progression** : deux blocs textuels sans cartes, pourcentage et série issus exclusivement de la progression réelle. Les leçons terminées restent disponibles aux technologies d'assistance.
+- **Action principale** : bouton or compact d'environ 85 px, libellé Commencer/Continuer, leçon et unité sur deux lignes secondaires, icône livre.
+- **Navigation** : Réviser, Examens et Erreurs dans un bandeau commun à séparateurs fins ; « Voir mon chemin » isolé en lien discret.
+- **Adaptation** : règles à 380 px, 330 px et faible hauteur ; conservation du scroll et des états clavier ; aucune modification des exercices.
+
+**Données et comportements conservés :** aucune valeur 42 %, 7 jours ou Leçon 6 n'est codée en production ; elles n'apparaissaient que dans la maquette. Toutes les fonctions `commencer`, `suivreProchainPas`, `goLessons`, `lancerRevision` et `openExamens` sont celles de `v2`.
+
+**Contrôle automatique :** `node --test test/accueil-v21.test.cjs` doit réussir pour les états invité, connecté, débutant, progression, fin de niveau et présence des assets WebP. Les tests automatisés ne remplacent pas une revue sur téléphone réel.
