@@ -85,15 +85,63 @@ function notifier(texte) {
 let lecteurAudio = null;
 let boutonAudio = null;
 
+// SPEC 81 : chemin absolu, indépendant de l'URL de la PWA. Si un MP3
+// local LOD est inaccessible, le miroir d'origine du téléchargement est
+// une seconde source du MÊME enregistrement (pas de voix artificielle).
+const MIROIR_AUDIO_LOD = 'https://raw.githubusercontent.com/robertoentringer/lod-mp3-mirror/master/2020-12-18-lod-opendata/';
+function sourcesAudio(fichier) {
+  // N'accepte que les chemins audio issus de nos index LOD, sans ../.
+  if (!/^(?:lod\/[A-Za-z0-9_-]+\.mp3|lod-phrases\/[A-Za-z0-9_-]+\.m4a)$/.test(fichier)) return [];
+  const sources = ['/audio/' + fichier];
+  const lod = /^lod\/([A-Za-z0-9_-]+)\.mp3$/.exec(fichier);
+  if (lod) sources.push(MIROIR_AUDIO_LOD + lod[1] + '.mp3');
+  return sources;
+}
+
 function jouerAudio(fichier, bouton) {
   arreterAudio();
-  lecteurAudio = new Audio('audio/' + fichier);
+  const sources = sourcesAudio(fichier);
+  if (!sources.length) return;
   boutonAudio = bouton || null;
   if (boutonAudio) boutonAudio.classList.add('joue');
-  lecteurAudio.onended = arreterAudio;
-  lecteurAudio.onerror = () => { arreterAudio(); notifier('Audio indisponible pour le moment.'); };
-  const lecture = lecteurAudio.play();
-  if (lecture && lecture.catch) lecture.catch(() => { arreterAudio(); notifier('Audio indisponible pour le moment.'); });
+
+  let tentative = 0;
+  function essayer() {
+    const url = sources[tentative++];
+    const audio = new Audio(url);
+    lecteurAudio = audio;
+    let dejaEchoue = false;
+
+    function erreur(cause, autorisation) {
+      // Sur un changement d'écran, une annulation ou un deuxième clic,
+      // les erreurs de l'ancien lecteur ne doivent jamais déclencher un toast.
+      if (lecteurAudio !== audio || dejaEchoue) return;
+      dejaEchoue = true;
+      console.warn('[LuxApp audio]', { fichier, source: tentative, cause });
+      audio.onerror = null;
+      audio.onended = null;
+      if (autorisation) {
+        arreterAudio();
+        notifier('Lecture bloquée par le navigateur. Appuie à nouveau sur le son.');
+      } else if (tentative < sources.length) {
+        essayer();
+      } else {
+        arreterAudio();
+        notifier('Audio indisponible. Vérifie ta connexion et réessaie.');
+      }
+    }
+    audio.onended = () => { if (lecteurAudio === audio) arreterAudio(); };
+    audio.onerror = () => erreur('media:' + (audio.error ? audio.error.code : 'inconnu'), false);
+    try {
+      const lecture = audio.play();
+      if (lecture && typeof lecture.catch === 'function') {
+        lecture.catch(e => erreur(e && e.name || 'play', !!(e && e.name === 'NotAllowedError')));
+      }
+    } catch (e) {
+      erreur(e && e.name || 'play', !!(e && e.name === 'NotAllowedError'));
+    }
+  }
+  essayer();
 }
 
 // Sons LOD des mots des leçons (tools/audio-lod.js) : { "mot de la carte": "lod/ID.mp3" }.

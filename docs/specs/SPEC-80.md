@@ -27,3 +27,7 @@ Date : 20 octobre 2026. Statut : implémenté sur `v2`, recette visuelle Android
 6. Ne modifier aucun ancien identifiant de question : la progression actuelle demeure valable.
 
 Source grammaticale : `grammaire_luxembourg.md` (genres de `den Auto`, `den Dësch`) et [étude linguistique de la n-Reegel](https://orbilu.uni.lu/bitstream/10993/34559/1/LIN-00943_PG.pdf).
+
+## Incident audio du quiz — SPEC 81
+
+Le contrôle audio de la leçon 0 affichait « Audio indisponible » sur Android bien que les MP3 existent dans le dépôt. Le lecteur tente désormais le chemin absolu puis, pour les MP3 LOD, le miroir d'origine sur échec. Aucun identifiant de question ou réponse n'a changé. Voir `docs/specs/SPEC-81.md`.

@@ -810,3 +810,7 @@ SPEC 79 : `loadRun()` archive également les reprises d'exercice de l'ancienne u
 ### SPEC 80 — Audit du premier cours : lisibilité et reconnaissance audio (20/10/2026)
 
 Sur téléphone, garder les noms du parcours très courts : leçon 0 **« Les bases »**, unité 1 **« Prononciation »**, unité 2 **« United Zoha »**. Quand une question utilise un enregistrement LOD pour une reconnaissance orale, les distracteurs doivent être d'autres **mots réels appris**, jamais trois orthographes indiscernables à l'oreille. Conserver les MP3, les IDs et les réponses validées des exercices lors d'une correction de distracteurs. Ne pas généraliser la n-Reegel à tous les N d'un radical ; expliquer les genres luxembourgeois dans les exemples qui ont un genre français différent. Vérifier `tests/test_spec79.js` et `tests/test_spec75.js` ; Android en recette.
+
+
+### SPEC 81 — Dépannage des sons LOD dans la PWA (20/10/2026)
+Si le haut-parleur existe mais indique « Audio indisponible », distinguer la **présence du fichier Git** de son accessibilité sur le déploiement réel. Résoudre depuis `/audio/` (pas une route relative) ; en secours seulement pour `lod/<ID>.mp3`, essayer l'enregistrement du miroir LOD déjà utilisé par le projet. Ne pas confondre une erreur de lecture avec le manque d'audio dans l'index. Journaliser les échecs sans révéler la réponse du quiz ; un seul toast après échec des deux sources. Ne jamais laisser une ancienne erreur déclencher un son après une navigation. Validation : `node tests/test_spec81_audio.js`, puis test Android effectif sur l'app déployée.
