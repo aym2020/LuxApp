@@ -438,8 +438,8 @@
             "falsch"
           ],
           "reponse": "falsch",
-          "note": "Il a bien une plante, mais elle est près de la fenêtre (bei der Fënster), pas sur la table de travail (um Schreifdësch).",
-          "question_fr": "Il a une plante sur sa table de travail.",
+          "note": "Le texte situe la plante près de la fenêtre (bei der Fënster), sans préciser qu'elle est posée sur le bureau (um Schreifdësch). Ce détail n'est donc pas confirmé par le passage ; les deux emplacements ne sont pas incompatibles.",
+          "question_fr": "Il a une plante sur son bureau.",
           "preuve": [
             "De Buedem vu senger Planz bei der Fënster ass ganz dréchen",
             "La terre de sa plante, près de la fenêtre, est très sèche"
