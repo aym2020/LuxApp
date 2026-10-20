@@ -29,7 +29,7 @@ git rev-parse -q --verify main >/dev/null || git fetch -q --depth 1 origin main:
 
 # 1. Syntaxe, contenu, tests Node : rapides, en série
 for f in public/*.js; do node --check "$f" || echec=1; done
-for t in "tools/valider-lecons.js" "tests/test_cloud.js" "tests/test_sync.js" "tests/test_correction.js"; do
+for t in "tools/valider-lecons.js" "tests/test_cloud.js" "tests/test_sync.js" "tests/test_correction.js" "tests/test_audio_lod.js" "tests/test_audit_correspondances.js"; do
   if node "$t" >"$LOGS/node.log" 2>&1; then echo "OK      $t"; else echo "ECHEC   $t"; tail -8 "$LOGS/node.log"; echec=1; fi
 done
 

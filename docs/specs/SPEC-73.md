@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | Priorité | P1 — fiabilité linguistique et couverture audio |
-| Statut | **À implémenter — audit préalable obligatoire** |
+| Statut | **Phase A livrée (audit) — phase B en attente de validation** |
 | Complète | SPEC 68, 69, 70, 71 et 72 |
 | Périmètre | Index LOD, formes fléchies, validation du sens, audio direct/contextuel, audit |
 | Hors périmètre initial | Réécriture des leçons, refonte visuelle, TTS, téléchargement massif |
@@ -153,3 +153,53 @@ La SPEC 73 ne peut être déclarée implémentée que si :
 6. Les décisions, tests et rapports sont reproductibles.
 
 **Instruction finale : livrer l'audit, puis attendre validation avant toute association massive ou téléchargement complémentaire.**
+
+
+---
+
+## Résultats de la phase A (20/10/2026)
+
+Outil : `node tools/lod/audit-correspondances.js --articles new_lod-art.xml --tables new_lod-tab.xml [--recherche …] [--hors-ligne]`
+(exports LOD gardés hors dépôt). Rapport : `docs/audit-correspondances-lod.md` ; inventaire : `docs/audit-correspondances-lod.json`.
+Tests ciblés : `node tests/test_audit_correspondances.js` (ajouté à la suite critique avec `tests/test_audio_lod.js`).
+**Aucune leçon, association audio ni fichier son modifié.**
+
+### Sources et schémas réellement lus
+
+- Articles (export 2026-07-27, 33 941 entrées) : `lemma` (+ attribut `nRuleForm`), `inflection type="plural"` / `form` (attributs `nRuleForm`, `rare`),
+  `pastParticiple`, `internalLink relation="Variant"` (entrée sans traduction → sens de l'entrée liée), exemples avec `inflectedHeadword`.
+- Tables (2026-07-27, 9 851 tables) : `verbConjugation` et `adjDeclension`. Temps composés et auxiliaire exclus (« si », « war » ne sont pas des formes du verbe),
+  pronoms réfléchis entre parenthèses retirés (« mécht (sech) » → « mécht »).
+- **Index de recherche : non consulté** — `download.data.public.lu` est refusé par le proxy de l'environnement de Claude.
+  Les « sans entrée » sont donc provisoires ; les graphies générées (`suggest` absent) n'ont pas pu être distinguées.
+- Casse conservée (« Still » pluriel de Stull ≠ « still » calme ; « Sproochen » ≠ « sproochen »), normalisation Unicode NFC, aucun accent retiré côté luxembourgeois.
+
+### Chiffres (183 mots isolés sans son : cartes, vocabulaire et exemples du cours, cellules de tableaux)
+
+| | |
+|---|---:|
+| LEMME_EXACT (dont 53 MP3 disponibles sur le miroir, 1 absent : ganzdaags) | 54 |
+| FORME_FLECHIE_VALIDEE (pluriels, participes, formes conjuguées / déclinées) — **sans son direct** | 83 |
+| GRAPHIE_A_VERIFIER (10 graphies LuxApp ≠ LOD, 7 variantes règle du n dérivées) | 17 |
+| SENS_AMBIGU (surtout cellules de tableaux grammaticaux sans traduction) | 14 |
+| PAS_D_ENTREE (provisoire) | 15 |
+| CONTEXTE_CANDIDAT (exemple de la même entrée prononçant la forme exacte, relecture requise) | 74 |
+
+- Les 63 « absents » : **53 faux absents** (41 formes fléchies, 12 graphies à vérifier), 10 sans entrée
+  (Hallo, Wollekekrazer, nombres composés, Koreanesch, leedeg, Aarbechtsannonce).
+- Les 4 « sens différent » : Still → pluriel de Stull, Becheren → pluriel de Becher, gemaach → participe de maachen (résolus par la casse) ;
+  « Dat sinn » reste ambigu (« Dat » n'est pas un article ici).
+- Catalogue : les 442 associations existantes sont toutes cohérentes (lemme LOD identique) et conservées.
+- 6 mots du cours ont déjà leur MP3 dans le dépôt mais pas de bouton à cause d'une parenthèse dans le texte affiché
+  (« de Brudder (pl. d'Bridder) ») : correction de clé d'affichage seulement.
+
+### Orthographes LuxApp à valider (graphie LOD, MP3 vérifié sur le miroir)
+
+aachtzeg → **achtzeg** (`ACHTZEG1`) · eenanaachtzeg → **eenanachtzeg** · Italiener → **Italieener** (ou Italiéiner) · Italienerin → **Italieenerin** ·
+Italienesch → **italieenesch** · Fransousin → **Franséisin** · Kirchberg → **Kierchbierg** · verlobt → **verloobt** · Kommod → **Komoud** ·
+éischte, dräizéngte, uechtzéngte, véieranzwanzegste, drëtte, fënnefte, zéngte : variantes règle du n de formes officielles (à confirmer avec l'index de recherche).
+
+### Gain estimé (mots isolés)
+
++53 sons directs (forme exacte, MP3 du miroir) ; +74 audios contextuels possibles (≈ +67 réellement disponibles, 1 enregistrement sur 10 manquant lors du passage SPEC 72) ;
++9 sons supplémentaires si les orthographes ci-dessus sont corrigées. Les 83 formes fléchies n'ont pas de son direct (règle centrale).
