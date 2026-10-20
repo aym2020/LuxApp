@@ -857,3 +857,17 @@ Sur PC, « Écouter la prononciation » ne faisait rien : `portailEcouter()` app
 - **Leçon 0 :** avant les 9 sons guidés et les 6 exemples United Zoha, les introductions d'unité montrent uniquement le principe et un exemple bref. Les anciennes cartes « Attention » redondantes ont été retirées de cet écran ; les notions complètes restent dans le cours et les activités. Les résumés et CTA sont raccourcis.
 - **Responsive :** public/style.css réduit l'espacement, le titre et la hauteur des boutons de l'introduction de mission, conserve un déroulement naturel si l'écran est très court et prévoit l'espace nécessaire au CTA fixe de l'introduction d'unité. Aucun CTA supprimé ni mission modifiée dans sa logique.
 - **Recette ciblée :** sur un téléphone Android, vérifier mission 1 avec ses trois CTA et le titre complet dans le scénario ; vérifier leçon 0 unités 1/2 avec les résumés et leurs boutons fixes, puis le lancement des découvertes.
+
+### SPEC 87 — Audio complet : priorité LOD exact, MIA pour les contenus actifs (20/10/2026)
+
+**Objectif :** proposer une prononciation à la demande pour chaque élément luxembourgeois actif. Le dictionnaire LOD prime lorsqu'il contient le texte exact, puis MIA prononce la totalité de l'expression. Un enregistrement LOD qui ne prononce que le nom ne remplace pas un enregistrement complet de l'article + nom.
+
+**Inventaire :** tools/audio-mia.js collecte les 26 leçons (flashcards, écriture et variantes, scènes des missions intégrées, vocabulaire, dialogues, exemples du cours, tableaux, découvertes et phrases à trous corrigées) ainsi que les 8 examens publiés (consignes, lignes corrigées, questions et preuves). Les 25 missions de brouillon data/missions/missions-25.json sont exclues car non utilisées par l'application.
+
+**UI :** les exercices d'écriture et les cours montrent le bouton sonore si un fichier valide existe. Dans les examens, les audios du texte et des questions apparaissent uniquement après la remise de l'épreuve, dans la correction : ils ne doivent jamais aider pendant une épreuve de lecture. L'écoute n'est jamais automatique.
+
+**Infrastructure :** public/dialogue.js charge complètement les index LOD et MIA avant l'entrée dans les exercices, puis résout l'audio exact. Le générateur existant produit les MP3 manquants par RHVoice Mia, sans remplacer les fichiers LOD. Le workflow .github/workflows/audio-mia.yml relance la génération après une modification du contenu et versionne les nouveaux MP3.
+
+**Audit bloquant :** node tools/audit-audio-complet.js --write et node tests/test_audio_mia.js --strict. Le workflow reste en erreur si un texte actif ne dispose pas encore d'un enregistrement LOD exact ou MIA. Ne pas déclarer 100 % tant que la génération, le rapport et le contrôle ne sont pas terminés avec succès.
+
+**Qualité :** réécouter les noms propres, nombres et phrases longues ; la présence d'un MP3 ne prouve pas sa qualité phonétique. Lors de la correction d'une entrée, ne pas modifier silencieusement le texte luxembourgeois source.
