@@ -9,8 +9,14 @@
 
 // Phrase avec l'expression mise en valeur (texte échappé).
 function phraseSurlignee(phrase, lu) {
-  const cible = String(lu).replace(/<[^>]*>/g, '').replace(/[!?.,;:]+\s*$/, '').trim();
-  const i = cible ? phrase.toLowerCase().replace(/’/g, "'").indexOf(cible.toLowerCase().replace(/’/g, "'")) : -1;
+  const cible = String(lu).replace(/<[^>]*>/g, '').replace(/\s*\([^)]*\)/g, '').replace(/[!?.,;:]+\s*$/, '').trim();
+  const bas = t => t.toLowerCase().replace(/’/g, "'");
+  // Mot entier seulement (SPEC 73) : « ass » ne s'allume pas dans « Klass ».
+  const lettre = ch => !!ch && /[\p{L}]/u.test(ch);
+  let i = -1;
+  for (let k = bas(phrase).indexOf(bas(cible)); cible && k >= 0; k = bas(phrase).indexOf(bas(cible), k + 1)) {
+    if (!lettre(phrase[k - 1]) && !lettre(phrase[k + cible.length])) { i = k; break; }
+  }
   if (i < 0) return escHtml(phrase);
   return escHtml(phrase.slice(0, i)) + '<strong>' + escHtml(phrase.slice(i, i + cible.length)) + '</strong>' +
     escHtml(phrase.slice(i + cible.length));

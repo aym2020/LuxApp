@@ -92,6 +92,8 @@ const x = new Function('document', 'window', 'escHtml', srcDialogue + ';' + srcC
 assert.equal(x.phraseSurlignee('Gudde Moien, Madamm!', 'Gudde Moien!'), '<strong>Gudde Moien</strong>, Madamm!', 'expression surlignée');
 assert.equal(x.phraseSurlignee('Bonjour, wéi geet et Iech?', 'Wéi geet et Iech?'), 'Bonjour, <strong>wéi geet et Iech</strong>?', 'insensible à la casse');
 assert.equal(x.phraseSurlignee('A <b>', 'zzz'), 'A &lt;b&gt;', 'texte échappé, rien à surligner');
+assert.equal(x.phraseSurlignee("D'Klass ass do", 'ass'), "D'Klass <strong>ass</strong> do", 'SPEC 73 : mot entier seulement');
+assert.equal(x.phraseSurlignee("Mir mussen nach d'Këschten ausraumen", 'Këschten'), "Mir mussen nach d'<strong>Këschten</strong> ausraumen", 'après l\'article élidé');
 x.definir({ 'gudde moien': { son: 'lod-phrases/ee04cddd4072d1d7a63aef7f1c667f6f.m4a', phrase: 'Gudde Moien, Madamm!', fr: 'Bonjour Madame !' } },
   { 'merci gläichfalls': 'lod-phrases/0123456789abcdef0123456789abcdef.m4a' });
 const ex = x.exemplesDuBloc([['Gudde Moien!', 'Bonjour !'], ['Merci gläichfalls!', 'Merci, pareillement !'], ['Äddi!', 'Au revoir !']]);

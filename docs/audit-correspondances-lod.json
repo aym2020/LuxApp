@@ -17,7 +17,10 @@
   "sonSansFichier": 1,
   "sansSon": 90,
   "contexte": 74,
-  "contexteTelecharge": 4
+  "contexteTelecharge": 4,
+  "contexteRetenu": 37,
+  "contexteRefuse": 8,
+  "contexteTableau": 29
  },
  "inventaire": [
   {
@@ -110,7 +113,12 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "fb91567da132e4a17533c4ccf70962b9",
+    "phrase": "Entschëllegt, ass dee Stull nach fräi?"
+   }
   },
   {
    "lu": "Awuer!",
@@ -155,7 +163,10 @@
    "raisons": [
     "variante de « Awar »",
     "traduction lue dans un tableau"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Wollekekrazer",
@@ -232,7 +243,11 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "seul exemple : « Kee vun hire Bouwen daacht eppes » (pronom « aucun », tournure ancienne ; la leçon enseigne l'article)"
+   }
   },
   {
    "lu": "e",
@@ -389,7 +404,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "zwou",
@@ -440,7 +458,12 @@
     "forme déclinée (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "292970fd94f90f6bb1b6d9cc4fd6ad79",
+    "phrase": "Fir déi Distanz brauchs de ongeféier zwou Stonnen"
+   }
   },
   {
    "lu": "aachtzeg",
@@ -639,7 +662,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "a",
@@ -755,7 +781,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eenasiechzeg",
@@ -800,7 +829,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "variante de « eenasechzeg »"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eenasiwwenzeg",
@@ -844,7 +876,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eenanaachtzeg",
@@ -931,7 +966,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "honnerteenanzwanzeg",
@@ -1069,7 +1107,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eng Mauer",
@@ -1113,7 +1154,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Italiener",
@@ -1372,7 +1416,12 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "6f2717ac95ade9ba20e6b89552269977",
+    "phrase": "Hief e bësse Gedold!"
+   }
   },
   {
    "lu": "schwätz",
@@ -1435,7 +1484,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "schwätzt",
@@ -1491,7 +1543,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Kirchberg",
@@ -1796,7 +1851,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "f901ea9ba435f3d867c47f80d593b847",
+    "phrase": "D'Koppel huet sech am Gudde getrennt"
+   }
   },
   {
    "lu": "gepacst",
@@ -1847,7 +1907,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "db0f01835e9e06980d117ac4346c1c54",
+    "phrase": "De Buergermeeschter huet d'Koppel gepacst"
+   }
   },
   {
    "lu": "verlobt",
@@ -1978,7 +2043,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "a3961445e7315f7a9c657fb1397e3237",
+    "phrase": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher"
+   }
   },
   {
    "lu": "Jongen",
@@ -2042,7 +2112,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "a3961445e7315f7a9c657fb1397e3237",
+    "phrase": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher"
+   }
   },
   {
    "lu": "Meedercher",
@@ -2092,7 +2167,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "a3961445e7315f7a9c657fb1397e3237",
+    "phrase": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher"
+   }
   },
   {
    "lu": "gebuer",
@@ -2141,7 +2221,12 @@
     "participe passé"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "01b6d34cd35336fb5f284aa6cf9926ab",
+    "phrase": "Hie gouf op Niklosdag gebuer"
+   }
   },
   {
    "lu": "éischte",
@@ -2198,7 +2283,11 @@
     "graphie de l'index de recherche (contrôlée (règle du n))"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "seuls exemples trop longs ou nominalisés (« deen Éischte »)"
+   }
   },
   {
    "lu": "dräizéngte",
@@ -2248,7 +2337,12 @@
     "graphie de l'index de recherche (contrôlée (règle du n))"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "1f024cee976c57cb1109834219d2bec7",
+    "phrase": "Mäi Büro ass um dräizéngte Stack"
+   }
   },
   {
    "lu": "uechtzéngte",
@@ -2298,7 +2392,12 @@
     "graphie de l'index de recherche (contrôlée (règle du n))"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "c3c8005c68f6e8265c1935d2a5fd0aff",
+    "phrase": "Eist Appartement ass um uechtzéngte Stack"
+   }
   },
   {
    "lu": "véieranzwanzegste",
@@ -2348,7 +2447,11 @@
     "graphie de l'index de recherche (contrôlée (règle du n))"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "seul exemple trop long pour un débutant"
+   }
   },
   {
    "lu": "zweedausendvéier",
@@ -2438,7 +2541,10 @@
    "analyses": [
     "forme déclinée (table)"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "drëtte",
@@ -2477,7 +2583,10 @@
    "analyses": [
     "graphie de l'index de recherche (contrôlée (règle du n))"
    ],
-   "statut_graphie": "contrôlée (règle du n)"
+   "statut_graphie": "contrôlée (règle du n)",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "fënnefte",
@@ -2516,7 +2625,10 @@
    "analyses": [
     "graphie de l'index de recherche (contrôlée (règle du n))"
    ],
-   "statut_graphie": "contrôlée (règle du n)"
+   "statut_graphie": "contrôlée (règle du n)",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "zéngte",
@@ -2555,7 +2667,10 @@
    "analyses": [
     "graphie de l'index de recherche (contrôlée (règle du n))"
    ],
-   "statut_graphie": "contrôlée (règle du n)"
+   "statut_graphie": "contrôlée (règle du n)",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "zwanzegsten",
@@ -2603,7 +2718,10 @@
     "forme déclinée (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eenanzwanzegsten",
@@ -2642,7 +2760,10 @@
    "analyses": [
     "forme déclinée (table)"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hallwer",
@@ -2698,7 +2819,12 @@
     "forme déclinée (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "170b7717128d74e89ad00298a2bd2ced",
+    "phrase": "O vreck, ass et schonn hallwer dräi!"
+   }
   },
   {
    "lu": "iessen",
@@ -2744,7 +2870,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : IESSEN1"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Këschten",
@@ -2793,7 +2922,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "28db61f2e5afae2d149b22a878afbeeb",
+    "phrase": "Mir mussen nach d'Këschten ausraumen"
+   }
   },
   {
    "lu": "Kommod",
@@ -2895,7 +3029,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "316ab5e6c6a0951fa3e7f3c8c8c0d003",
+    "phrase": "Beim Spullen hunn ech zwee Glieser gebrach"
+   }
   },
   {
    "lu": "Still",
@@ -2967,7 +3106,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "197d199a3e2dd2070918eb5c6c9bacf1",
+    "phrase": "An deem klengen Zëmmer ass just Plaz fir en Dësch an e puer Still"
+   }
   },
   {
    "lu": "Handdicher",
@@ -3016,7 +3160,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "5b4257b128dd2c68855f03c9148cfbfc",
+    "phrase": "Hëllefs de mer, d'Handdicher falen?"
+   }
   },
   {
    "lu": "Biller",
@@ -3079,7 +3228,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "67a0d51cafd2439307ed8f4947a2e62f",
+    "phrase": "Am neie Musée si vill schéi Biller ausgestallt"
+   }
   },
   {
    "lu": "Telleren",
@@ -3135,7 +3289,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "a0155b4631365868b0ca3316bc2cc378",
+    "phrase": "Huel der e Kichenduch an dréchen d'Telleren of!"
+   }
   },
   {
    "lu": "Becheren",
@@ -3184,7 +3343,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "51b36fcd28f253de16c4fda11769ce6f",
+    "phrase": "Um Camping drénke mir aus plastiks Becheren"
+   }
   },
   {
    "lu": "eng Kommod",
@@ -3269,7 +3433,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "ginn",
@@ -3385,7 +3552,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "spillen",
@@ -3430,7 +3600,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "fueren",
@@ -3475,7 +3648,10 @@
    "confiance": "à valider",
    "raisons": [
     "traduction lue dans un tableau"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "du",
@@ -3576,7 +3752,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "méchs",
@@ -3638,7 +3817,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "spills",
@@ -3677,7 +3859,10 @@
    "analyses": [
     "présent (table)"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "fiers",
@@ -3725,7 +3910,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hien",
@@ -3771,7 +3959,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hatt",
@@ -3818,7 +4009,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : HATT1"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "geet",
@@ -3880,7 +4074,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "mécht",
@@ -3942,7 +4139,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "spillt",
@@ -4005,7 +4205,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "fiert",
@@ -4060,7 +4263,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "mir",
@@ -4116,7 +4322,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : MIR2"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "dir",
@@ -4172,7 +4381,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : DIR2, DIR3"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Dir",
@@ -4219,7 +4431,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : DIR1, DIR2"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "gitt",
@@ -4330,7 +4545,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "fuert",
@@ -4370,7 +4588,10 @@
     "impératif (table)",
     "présent (table)"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "d'Kanner",
@@ -4432,7 +4653,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "af04ccf737ca4bf5a998117d47b3f494",
+    "phrase": "D'Kanner hu sech iwwer d'Kaddoe gefreet"
+   }
   },
   {
    "lu": "d'Enkelkanner",
@@ -4480,7 +4706,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "b47bb66364386e93acfe2bc5d3ef7304",
+    "phrase": "D'Enkelkanner hunn hirem Grousspapp gehollef, d'Gromperen erauszehuelen"
+   }
   },
   {
    "lu": "mäi",
@@ -4542,7 +4773,10 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "meng",
@@ -4648,7 +4882,10 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "deng",
@@ -4692,7 +4929,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "säi",
@@ -4754,7 +4994,10 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hire",
@@ -4816,7 +5059,10 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hiert",
@@ -4861,7 +5107,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : HIERT1"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eise",
@@ -4968,7 +5217,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : EIS2, EIS3"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eist",
@@ -5012,7 +5264,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Äre",
@@ -5067,7 +5322,10 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Är",
@@ -5112,7 +5370,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : AR2"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Äert",
@@ -5157,7 +5418,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : AERT1"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "gefuer",
@@ -5222,7 +5486,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "4b8fc7cbe339fe8e5e981c3209271801",
+    "phrase": "Meng Eltere sinn de Moien op de Flughafe gefuer"
+   }
   },
   {
    "lu": "gaangen",
@@ -5287,7 +5556,11 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "exemples seulement figurés (« et ass gaangen », « matenee gaangen »)"
+   }
   },
   {
    "lu": "heemgaangen",
@@ -5338,7 +5611,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "823e4cbff3ec694c3f6039292dfdd6cb",
+    "phrase": "Meng Kolleegin ass fréi heemgaangen, well se de Kapp wéi hat"
+   }
   },
   {
    "lu": "erausgaangen",
@@ -5403,7 +5681,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "6ddf20ec96f5b1835a292f0d6ea080c0",
+    "phrase": "Ech sinn de ganzen Dag nach net aus dem Haus erausgaangen"
+   }
   },
   {
    "lu": "erwächt",
@@ -5470,7 +5753,12 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "49056e606710febfd926c71ff3d8b777",
+    "phrase": "Ech sinn hënt zweemol erwächt"
+   }
   },
   {
    "lu": "opgestanen",
@@ -5528,7 +5816,11 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "exemples trop longs"
+   }
   },
   {
    "lu": "gelaf",
@@ -5586,7 +5878,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "8182a3a3b83ba67f0e4bbe5a1c99f278",
+    "phrase": "Bass du schonn eng Kéier e Marathon gelaf?"
+   }
   },
   {
    "lu": "gefall",
@@ -5660,7 +5957,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "96fd453070af28d476a5eeab5aaced9f",
+    "phrase": "Hënt ass Schnéi gefall"
+   }
   },
   {
    "lu": "getrëppelt",
@@ -5725,7 +6027,11 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "exemples seulement figurés (« op d'Féiss getrëppelt ») ; sens de trëppelen à vérifier"
+   }
   },
   {
    "lu": "giess",
@@ -5818,7 +6124,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "45c820f9a2324892c0a371c82c2e9def",
+    "phrase": "Ech hunn nach kee Kaffi gedronk"
+   }
   },
   {
    "lu": "geschafft",
@@ -5883,7 +6194,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "44ac428772b65e35861596863c3b5b31",
+    "phrase": "Ech hunn de ganzen Dag am Gaart geschafft"
+   }
   },
   {
    "lu": "geschlof",
@@ -5948,7 +6264,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "c3902b82c42de9e7832217b1ea1eca81",
+    "phrase": "Deen huet net gutt geschlof"
+   }
   },
   {
    "lu": "geschriwwen",
@@ -6013,7 +6334,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "c615e551afd4bd2f3529867f18dbde63",
+    "phrase": "Du hues mer scho laang net méi geschriwwen"
+   }
   },
   {
    "lu": "gemaach",
@@ -6078,7 +6404,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "e122886284dcac05fd42cd7464249773",
+    "phrase": "Ech hunn näischt gemaach!"
+   }
   },
   {
    "lu": "geduscht",
@@ -6173,7 +6504,12 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "51d8fdbd54ff06bd10abecd34db315c8",
+    "phrase": "De Monni huet sengem Neveu telefonéiert, fir him ze gratuléieren"
+   }
   },
   {
    "lu": "gewunnt",
@@ -6280,7 +6616,12 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "9b6a5d8e57b1bc52d9d3f967e5c30734",
+    "phrase": "Mir hunn de ganzen Owend Fotoe gekuckt"
+   }
   },
   {
    "lu": "trëppelen",
@@ -6324,7 +6665,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "lafen",
@@ -6368,7 +6712,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "falen",
@@ -6422,7 +6769,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : FALEN2"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "opstoen",
@@ -6466,7 +6816,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "drénken",
@@ -6510,7 +6863,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "wunnen",
@@ -6554,7 +6910,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "kucken",
@@ -6598,7 +6957,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "gespillt",
@@ -6661,7 +7023,10 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "gekacht",
@@ -6710,7 +7075,10 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "gelies",
@@ -6759,7 +7127,10 @@
     "participe passé",
     "participe passé (table)"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "lauschteren",
@@ -6803,7 +7174,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "gelauschtert",
@@ -6852,7 +7226,10 @@
     "participe passé (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "war",
@@ -6909,7 +7286,10 @@
     "prétérit (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hat",
@@ -7019,7 +7399,10 @@
     "prétérit (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "has",
@@ -7067,7 +7450,10 @@
    "analyses": [
     "prétérit (table)"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "waren",
@@ -7115,7 +7501,10 @@
    "analyses": [
     "prétérit (table)"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "haten",
@@ -7186,7 +7575,10 @@
     "prétérit (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "waart",
@@ -7296,7 +7688,11 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "expression « Äppel a Bieren vergläichen » ; autre exemple trop long"
+   }
   },
   {
    "lu": "Bieren",
@@ -7364,7 +7760,11 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "refusée",
+    "raison": "expression « Äppel a Bieren vergläichen »"
+   }
   },
   {
    "lu": "Gromperen",
@@ -7428,7 +7828,12 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "a0d239d24a154387fb4be07c774f5d7e",
+    "phrase": "De Bop ass amgaang, Gromperen ze schielen"
+   }
   },
   {
    "lu": "Aprikosen",
@@ -7513,7 +7918,10 @@
    "confiance": "à valider",
    "raisons": [
     "traduction lue dans un tableau"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "en Apel",
@@ -7557,7 +7965,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eng Bier",
@@ -7663,7 +8074,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "eng Aprikos",
@@ -7707,7 +8121,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Aarbechtsannonce",
@@ -7833,7 +8250,12 @@
    "local": false,
    "confiance": "sans fichier",
    "raisons": [],
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "32190b5dff92fcf12e14570a325a29c7",
+    "phrase": "Meng Hausdoktesch schafft méindes an dënschdes ganzdaags"
+   }
   },
   {
    "lu": "viru",
@@ -7896,7 +8318,12 @@
     "variante règle du n"
    ],
    "statut_graphie": "contrôlée (règle du n)",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "retenue",
+    "id": "624ca886166df1a1e734cc21c2b865cb",
+    "phrase": "Viru laanger, laanger Zäit huet an deem Schlass eng Prinzessin gewunnt"
+   }
   },
   {
    "lu": "eng Aarbechtsannonce",
@@ -7966,7 +8393,10 @@
    "confiance": "à valider",
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Kenntnesser",
@@ -8005,7 +8435,10 @@
    "analyses": [
     "pluriel"
    ],
-   "statut_graphie": "contrôlée"
+   "statut_graphie": "contrôlée",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "Sproochen",
@@ -8053,7 +8486,10 @@
     "pluriel"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "sinn",
@@ -8107,7 +8543,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : SINN2"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hunn",
@@ -8161,7 +8600,10 @@
    "raisons": [
     "sens non vérifiable (cellule de tableau sans traduction)",
     "homographes : HUNN2, HUNN3"
-   ]
+   ],
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "bass",
@@ -8218,7 +8660,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hues",
@@ -8289,7 +8734,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "ass",
@@ -8360,7 +8808,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "huet",
@@ -8431,7 +8882,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "sidd",
@@ -8489,7 +8943,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   },
   {
    "lu": "hutt",
@@ -8554,7 +9011,10 @@
     "présent (table)"
    ],
    "statut_graphie": "contrôlée",
-   "audio_contexte": "CONTEXTE_CANDIDAT"
+   "audio_contexte": "CONTEXTE_CANDIDAT",
+   "contexte_relu": {
+    "decision": "tableau seul (pas de bouton)"
+   }
   }
  ]
 }

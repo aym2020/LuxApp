@@ -114,10 +114,20 @@
     "phrase": "Gëschter Owend hu mer flott gedanzt",
     "fr": "Hier soir, nous avons bien dansé."
   },
+  "Glieser": {
+    "son": "lod-phrases/316ab5e6c6a0951fa3e7f3c8c8c0d003.m4a",
+    "phrase": "Beim Spullen hunn ech zwee Glieser gebrach",
+    "fr": "En faisant la vaisselle, j'ai cassé deux verres."
+  },
   "Gudden Owend!": {
     "son": "lod-phrases/9a4981c8b5b541ca3318b9a165f6c700.m4a",
     "phrase": "Gudden Owend, wéi geet et Iech?",
     "fr": "Bonsoir, comment allez-vous ?"
+  },
+  "hallwer": {
+    "son": "lod-phrases/170b7717128d74e89ad00298a2bd2ced.m4a",
+    "phrase": "O vreck, ass et schonn hallwer dräi!",
+    "fr": "Oh mince, il est déjà deux heures et demie !"
   },
   "hallwer dräi": {
     "son": "lod-phrases/170b7717128d74e89ad00298a2bd2ced.m4a",

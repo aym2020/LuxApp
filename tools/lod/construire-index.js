@@ -14,11 +14,16 @@ const zlib = require('zlib');
 const SORTIE = path.join(__dirname, 'lod-index.json.gz');
 
 // Texte d'un exemple : les mots dans l'ordre, la ponctuation collée au mot précédent.
+// SPEC 73 : les balises peuvent porter des attributs (<word partOfPreviousInflectedHeadword="true">gaangen,</word>) ;
+// « partOfPrevious… » colle le mot au précédent (« heem » + « gaangen, » → « heemgaangen, »).
 function texteExemple(bloc) {
   const mots = [];
-  const re = /<(inflectedHeadword|word)>([^<]*)<\/\1>/g;
+  const re = /<(inflectedHeadword|word)([^>]*)>([^<]*)<\/\1>/g;
   let m;
-  while ((m = re.exec(bloc))) mots.push(m[2]);
+  while ((m = re.exec(bloc))) {
+    if (/partOfPrevious[A-Za-z]*="true"/.test(m[2]) && mots.length) mots[mots.length - 1] += m[3];
+    else mots.push(m[3]);
+  }
   return mots.join(' ').replace(/\s+([,.;:!?)])/g, '$1').replace(/\(\s+/g, '(')
     .replace(/(^|\s)([dD]['’])\s+/g, '$1$2').trim(); // « d' Aen » → « d'Aen »
 }

@@ -100,7 +100,14 @@ function chercherContextes(index, texte) {
   return candidats.sort((a, b) => RANG_NIVEAU[a.niveau] - RANG_NIVEAU[b.niveau] || a.nbMots - b.nbMots || a.id.localeCompare(b.id));
 }
 // L'exemple contient-il bien l'expression selon les règles ci-dessus ? (contrôle des choix manuels)
+// SPEC 73 : un mot seul (forme fléchie relue à la main, « Kanner », « gedronk ») est accepté
+// si l'exemple prononce exactement cette forme, comme mot entier.
 function contientExpression(index, texte, idExemple) {
+  if (phraseCle(texte).split(' ').length === 1) {
+    const ex = index.utilisables.find(e => e.id === idExemple);
+    // « d'Këschten » prononce bien « Këschten » : l'article élidé est ignoré.
+    return !!ex && ex.cle.split(' ').some(m => m === phraseCle(texte) || m.replace(/^d'/, '') === phraseCle(texte).replace(/^d'/, ''));
+  }
   return chercherContextes(index, texte).some(e => e.id === idExemple);
 }
 

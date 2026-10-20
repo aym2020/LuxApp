@@ -474,6 +474,11 @@ function classer(it, ctx) {
         enregistrement: phrasesDispo.has(x.id) ? 'téléchargé' : 'à vérifier (Termux)' }));
       if (r.contexte.length) r.audio_contexte = 'CONTEXTE_CANDIDAT';
     }
+    // Relecture déjà faite (tools/lod/contextes.json) : phrase retenue ou proposition refusée.
+    const choix = ctx.contextes || {};
+    if (choix[it.lu] && !it.lu.startsWith('_')) r.contexte_relu = { decision: 'retenue', id: choix[it.lu].id, phrase: choix[it.lu].lod };
+    else if ((choix['_refusés'] || {})[it.lu]) r.contexte_relu = { decision: 'refusée', raison: choix['_refusés'][it.lu] };
+    else if (!r.sections.some(x => x !== 'tableau')) r.contexte_relu = { decision: 'tableau seul (pas de bouton)' };
   }
   return r;
 }
@@ -493,7 +498,8 @@ function auditer(opts) {
   const textes = {};
   for (const e of lodIndex.utilisables) textes[e.id] = e;
 
-  const ctx = { entrees, formes, recherche, textes, phrasesDispo, horsLigne: opts.horsLigne };
+  const contextes = JSON.parse(fs.readFileSync(path.join(__dirname, 'contextes.json'), 'utf8'));
+  const ctx = { entrees, formes, recherche, textes, phrasesDispo, horsLigne: opts.horsLigne, contextes };
   const inventaire = [];
   for (const it of elementsIsoles()) {
     if (direct(it.lu)) continue; // déjà un son validé
@@ -523,6 +529,9 @@ function ecrire({ inventaire, nbEntrees, nbTables, recherche }, refusActuels) {
     sonSur: sur.length, sonAValider: aValider.length, sonSansFichier: sansFichier.length,
     sansSon: compte(r => r.audio === 'ENTREE_SANS_AUDIO_EXACT'), contexte: contexte.length,
     contexteTelecharge: compte(r => r.contexte.some(c => c.enregistrement === 'téléchargé')),
+    contexteRetenu: compte(r => r.contexte_relu && r.contexte_relu.decision === 'retenue'),
+    contexteRefuse: compte(r => r.contexte_relu && r.contexte_relu.decision === 'refusée'),
+    contexteTableau: compte(r => r.audio_contexte && r.contexte_relu && r.contexte_relu.decision.startsWith('tableau')),
   };
   const parLecon = {};
   for (const r of inventaire) for (const l of r.lecons) {
@@ -574,6 +583,7 @@ ${nb.total} mots isolés des leçons (cartes, vocabulaire et exemples du cours, 
 |---|---:|
 | Formes fléchies validées (pluriel, participe, impératif, forme conjuguée ou déclinée) : le MP3 de l'entrée prononce le lemme, **pas de son direct** | ${nb.flechie} |
 | … dont **audio contextuel candidat** (un exemple de la même entrée prononce exactement la forme ; relecture humaine requise) | ${nb.contexte} (${nb.contexteTelecharge} déjà téléchargés) |
+| Relecture (\`tools/lod/contextes.json\`) : phrase retenue / refusée / tableau seul, sans bouton | ${nb.contexteRetenu} / ${nb.contexteRefuse} / ${nb.contexteTableau} |
 | Graphies à vérifier (fautive selon le LOD, générée, ou graphie LOD proche) | ${nb.graphie} |
 | Sens ambigu | ${nb.ambigu} |
 | Pas d'entrée dans les trois sources | ${nb.absent} |
@@ -624,9 +634,11 @@ ${sansFichier.length ? '### Lemme identique sans fichier disponible\n\n' + table
 Le MP3 d'une entrée prononce son lemme (« Kand »), jamais le pluriel ou le participe affiché (« Kanner »). Ces formes n'auront pas de son direct.
 Une phrase de la même entrée qui prononce exactement la forme est proposée quand elle existe ; **chaque proposition doit être relue** (sens, idiomatisme, niveau).
 
-${table(['Texte LuxApp', 'Traduction', 'Leçons · sections', 'Entrée LOD', 'Analyse retenue (autres)', 'Graphie', 'Phrase candidate'],
+${table(['Texte LuxApp', 'Traduction', 'Leçons · sections', 'Entrée LOD', 'Analyse retenue (autres)', 'Graphie', 'Phrase candidate', 'Relecture'],
     flechies.map(r => [r.lu, r.fr || '—', lecSec(r), entree(r), r.type + (r.analyses && r.analyses.length > 1 ? ' (' + r.analyses.filter(t => t !== r.type).join(', ') + ')' : ''),
-      r.statut_graphie || '—', r.contexte.length ? '« ' + r.contexte[0].phrase + ' » (' + r.contexte[0].niveau + ', ' + r.contexte[0].enregistrement + ')' : '—']))}
+      r.statut_graphie || '—', r.contexte.length ? '« ' + r.contexte[0].phrase + ' » (' + r.contexte[0].niveau + ', ' + r.contexte[0].enregistrement + ')' : '—',
+      !r.contexte_relu ? 'à relire' : r.contexte_relu.decision === 'retenue' ? '**retenue** : « ' + r.contexte_relu.phrase + ' »' :
+        r.contexte_relu.decision === 'refusée' ? 'refusée : ' + r.contexte_relu.raison : r.contexte_relu.decision]))}
 
 ## 4. Graphies à vérifier (${graphies.length}) — aucun remplacement automatique
 

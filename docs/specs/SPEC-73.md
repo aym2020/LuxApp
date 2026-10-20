@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | Priorité | P1 — fiabilité linguistique et couverture audio |
-| Statut | **Phase A livrée (audit) — phase B en attente de validation** |
+| Statut | **Phase B livrée par lots (moteur, sons sûrs, contextes relus, inventaire orthographique) — corrections orthographiques en attente de décision** |
 | Complète | SPEC 68, 69, 70, 71 et 72 |
 | Périmètre | Index LOD, formes fléchies, validation du sens, audio direct/contextuel, audit |
 | Hors périmètre initial | Réécriture des leçons, refonte visuelle, TTS, téléchargement massif |
@@ -230,3 +230,25 @@ inventaire : `docs/audit-correspondances-lod.json`. Tests : `node tests/test_aud
 2. Associations exactes **sûres** d'abord (10), puis les cas « à valider » relus un par un.
 3. Exemples contextuels relus (comme SPEC 70), téléchargés via Termux.
 4. Orthographes : correction des leçons seulement après décision de Clayton, mot par mot.
+
+
+---
+
+## Phase B (20/10/2026)
+
+Journal détaillé : `docs/spec73-phase-b.md`. Inventaire orthographique : `docs/inventaire-orthographe-lod.md`.
+
+- **Lot 1 — moteur** : index des formes versionné `tools/lod/lod-formes.json.gz` (`tools/lod/construire-formes.js`) ; `tools/lod/audit-correspondances.js`
+  fonctionne sans les exports XML (résultat identique, contrôlé) ; chaîne proposer → valider (`tools/lod/correspondances.json`, `tools/lod/contextes.json`) → appliquer
+  (`tools/audio-lod.js`, mode `--essai` conservé) ; mots du cours sonorisés seulement par la table vérifiée ; notes entre parenthèses ignorées par la clé du son.
+- **Lot 2 — sons directs** : 10 sûrs + 2 vérifiés (un, widdert) intégrés ; 36 cellules de tableau vérifiées mais sans bouton (décision UI à prendre) ;
+  3 points présentés (eng Posch, trëppelen, eenasiechzeg).
+- **Lot 3 — contextes** : 74 candidats relus ; 29 tableau seul ; 37 retenus (36 nouveaux), 8 refusés ; mots isolés acceptés ; surlignage par mot entier ;
+  correction de l'index des exemples (mots avec attribut, 81 exemples).
+- **Lot 4 — orthographe** : 8 corrections, 187 occurrences ; Kirchberg, siechzeg, eenasiechzeg conservés ; aucune leçon modifiée.
+- **Mesure** : couverture 37,1 % → 37,8 % (fichiers présents) → 40,1 % après le passage Termux ; mots seuls 81,5 % → 88,6 % ; `lod.json` 442 → 448.
+
+### Reste à faire
+
+- Passage Termux (34 nouvelles phrases + 6 remplaçantes SPEC 72 + « Gudde Moien »).
+- Décisions de Clayton : corrections orthographiques (mot par mot), boutons audio dans les tableaux, eng Posch, trëppelen.

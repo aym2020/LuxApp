@@ -1,5 +1,5 @@
 {
-  "_lisez-moi": "SPEC 70 — audio contextuel relu à la main. Pour chaque mot ou expression des leçons sans son direct : l'exemple LOD choisi (id), le texte LOD (contrôle) et sa traduction française (le LOD n'en donne pas : traduction rédigée par Claude, relue). Le script vérifie que l'exemple contient bien l'expression. « _refusés » : propositions écartées et pourquoi.",
+  "_lisez-moi": "SPEC 70 — audio contextuel relu à la main. Pour chaque mot ou expression des leçons sans son direct : l'exemple LOD choisi (id), le texte LOD (contrôle) et sa traduction française (le LOD n'en donne pas : traduction rédigée par Claude, relue). Le script vérifie que l'exemple contient bien l'expression. « _refusés » : propositions écartées et pourquoi. SPEC 73 : mots seuls acceptés (forme fléchie prononcée telle quelle dans la phrase, relue à la main).",
   "Gudde Moien!": {
     "id": "ee04cddd4072d1d7a63aef7f1c667f6f",
     "lod": "Gudde Moien, Madamm, wat kann ech fir Iech maachen?",
@@ -310,6 +310,222 @@
     "lod": "Mir hu just zwee Jongen an der Klass",
     "fr": "Nous n'avons que deux garçons dans la classe."
   },
+  "Entschëllegt!": {
+    "id": "fb91567da132e4a17533c4ccf70962b9",
+    "lod": "Entschëllegt, ass dee Stull nach fräi?",
+    "fr": "Excusez-moi, cette chaise est-elle encore libre ?",
+    "lot": "SPEC 73 lot 3"
+  },
+  "zwou": {
+    "id": "292970fd94f90f6bb1b6d9cc4fd6ad79",
+    "lod": "Fir déi Distanz brauchs de ongeféier zwou Stonnen",
+    "fr": "Pour cette distance, il te faut environ deux heures.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "getrennt": {
+    "id": "f901ea9ba435f3d867c47f80d593b847",
+    "lod": "D'Koppel huet sech am Gudde getrennt",
+    "fr": "Le couple s'est séparé à l'amiable.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gepacst": {
+    "id": "db0f01835e9e06980d117ac4346c1c54",
+    "lod": "De Buergermeeschter huet d'Koppel gepacst",
+    "fr": "Le maire a pacsé le couple.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Kanner": {
+    "id": "a3961445e7315f7a9c657fb1397e3237",
+    "lod": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher",
+    "fr": "Nos voisins ont quatre enfants, deux garçons et deux filles.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Jongen": {
+    "id": "a3961445e7315f7a9c657fb1397e3237",
+    "lod": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher",
+    "fr": "Nos voisins ont quatre enfants, deux garçons et deux filles.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Meedercher": {
+    "id": "a3961445e7315f7a9c657fb1397e3237",
+    "lod": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher",
+    "fr": "Nos voisins ont quatre enfants, deux garçons et deux filles.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gebuer": {
+    "id": "01b6d34cd35336fb5f284aa6cf9926ab",
+    "lod": "Hie gouf op Niklosdag gebuer",
+    "fr": "Il est né le jour de la Saint-Nicolas.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "dräizéngte": {
+    "id": "1f024cee976c57cb1109834219d2bec7",
+    "lod": "Mäi Büro ass um dräizéngte Stack",
+    "fr": "Mon bureau est au treizième étage.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "uechtzéngte": {
+    "id": "c3c8005c68f6e8265c1935d2a5fd0aff",
+    "lod": "Eist Appartement ass um uechtzéngte Stack",
+    "fr": "Notre appartement est au dix-huitième étage.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "hallwer": {
+    "id": "170b7717128d74e89ad00298a2bd2ced",
+    "lod": "O vreck, ass et schonn hallwer dräi!",
+    "fr": "Oh mince, il est déjà deux heures et demie !",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Këschten": {
+    "id": "28db61f2e5afae2d149b22a878afbeeb",
+    "lod": "Mir mussen nach d'Këschten ausraumen",
+    "fr": "Nous devons encore vider les cartons.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Glieser": {
+    "id": "316ab5e6c6a0951fa3e7f3c8c8c0d003",
+    "lod": "Beim Spullen hunn ech zwee Glieser gebrach",
+    "fr": "En faisant la vaisselle, j'ai cassé deux verres.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Still": {
+    "id": "197d199a3e2dd2070918eb5c6c9bacf1",
+    "lod": "An deem klengen Zëmmer ass just Plaz fir en Dësch an e puer Still",
+    "fr": "Dans cette petite pièce, il n'y a de la place que pour une table et quelques chaises.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Handdicher": {
+    "id": "5b4257b128dd2c68855f03c9148cfbfc",
+    "lod": "Hëllefs de mer, d'Handdicher falen?",
+    "fr": "Tu m'aides à plier les serviettes ?",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Biller": {
+    "id": "67a0d51cafd2439307ed8f4947a2e62f",
+    "lod": "Am neie Musée si vill schéi Biller ausgestallt",
+    "fr": "Beaucoup de beaux tableaux sont exposés au nouveau musée.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Telleren": {
+    "id": "a0155b4631365868b0ca3316bc2cc378",
+    "lod": "Huel der e Kichenduch an dréchen d'Telleren of!",
+    "fr": "Prends un torchon et essuie les assiettes !",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Becheren": {
+    "id": "51b36fcd28f253de16c4fda11769ce6f",
+    "lod": "Um Camping drénke mir aus plastiks Becheren",
+    "fr": "Au camping, nous buvons dans des gobelets en plastique.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "d'Kanner": {
+    "id": "af04ccf737ca4bf5a998117d47b3f494",
+    "lod": "D'Kanner hu sech iwwer d'Kaddoe gefreet",
+    "fr": "Les enfants se sont réjouis des cadeaux.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "d'Enkelkanner": {
+    "id": "b47bb66364386e93acfe2bc5d3ef7304",
+    "lod": "D'Enkelkanner hunn hirem Grousspapp gehollef, d'Gromperen erauszehuelen",
+    "fr": "Les petits-enfants ont aidé leur grand-père à arracher les pommes de terre.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gefuer": {
+    "id": "4b8fc7cbe339fe8e5e981c3209271801",
+    "lod": "Meng Eltere sinn de Moien op de Flughafe gefuer",
+    "fr": "Mes parents sont allés à l'aéroport ce matin.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "heemgaangen": {
+    "id": "823e4cbff3ec694c3f6039292dfdd6cb",
+    "lod": "Meng Kolleegin ass fréi heemgaangen, well se de Kapp wéi hat",
+    "fr": "Ma collègue est rentrée tôt parce qu'elle avait mal à la tête.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "erausgaangen": {
+    "id": "6ddf20ec96f5b1835a292f0d6ea080c0",
+    "lod": "Ech sinn de ganzen Dag nach net aus dem Haus erausgaangen",
+    "fr": "Je ne suis pas encore sorti de la maison de toute la journée.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "erwächt": {
+    "id": "49056e606710febfd926c71ff3d8b777",
+    "lod": "Ech sinn hënt zweemol erwächt",
+    "fr": "Je me suis réveillé deux fois cette nuit.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gelaf": {
+    "id": "8182a3a3b83ba67f0e4bbe5a1c99f278",
+    "lod": "Bass du schonn eng Kéier e Marathon gelaf?",
+    "fr": "As-tu déjà couru un marathon ?",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gefall": {
+    "id": "96fd453070af28d476a5eeab5aaced9f",
+    "lod": "Hënt ass Schnéi gefall",
+    "fr": "Cette nuit, il est tombé de la neige.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gedronk": {
+    "id": "45c820f9a2324892c0a371c82c2e9def",
+    "lod": "Ech hunn nach kee Kaffi gedronk",
+    "fr": "Je n'ai pas encore bu de café.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "geschafft": {
+    "id": "44ac428772b65e35861596863c3b5b31",
+    "lod": "Ech hunn de ganzen Dag am Gaart geschafft",
+    "fr": "J'ai travaillé toute la journée dans le jardin.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "geschlof": {
+    "id": "c3902b82c42de9e7832217b1ea1eca81",
+    "lod": "Deen huet net gutt geschlof",
+    "fr": "Celui-là n'a pas bien dormi.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "geschriwwen": {
+    "id": "c615e551afd4bd2f3529867f18dbde63",
+    "lod": "Du hues mer scho laang net méi geschriwwen",
+    "fr": "Tu ne m'as plus écrit depuis longtemps.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gemaach": {
+    "id": "e122886284dcac05fd42cd7464249773",
+    "lod": "Ech hunn näischt gemaach!",
+    "fr": "Je n'ai rien fait !",
+    "lot": "SPEC 73 lot 3"
+  },
+  "telefonéiert": {
+    "id": "51d8fdbd54ff06bd10abecd34db315c8",
+    "lod": "De Monni huet sengem Neveu telefonéiert, fir him ze gratuléieren",
+    "fr": "L'oncle a téléphoné à son neveu pour le féliciter.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "gekuckt": {
+    "id": "9b6a5d8e57b1bc52d9d3f967e5c30734",
+    "lod": "Mir hunn de ganzen Owend Fotoe gekuckt",
+    "fr": "Nous avons regardé des photos toute la soirée.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "Gromperen": {
+    "id": "a0d239d24a154387fb4be07c774f5d7e",
+    "lod": "De Bop ass amgaang, Gromperen ze schielen",
+    "fr": "Grand-père est en train d'éplucher des pommes de terre.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "ganzdaags": {
+    "id": "32190b5dff92fcf12e14570a325a29c7",
+    "lod": "Meng Hausdoktesch schafft méindes an dënschdes ganzdaags",
+    "fr": "Ma médecin de famille travaille toute la journée le lundi et le mardi.",
+    "lot": "SPEC 73 lot 3"
+  },
+  "viru": {
+    "id": "624ca886166df1a1e734cc21c2b865cb",
+    "lod": "Viru laanger, laanger Zäit huet an deem Schlass eng Prinzessin gewunnt",
+    "fr": "Il y a très, très longtemps, une princesse vivait dans ce château.",
+    "lot": "SPEC 73 lot 3"
+  },
   "_refusés": {
     "zwee Still": "seul exemple : « Ech sëtzen tëschent zwee Still » (expression : être assis entre deux chaises)",
     "Gei spillen": "seul exemple : « déi éischt Gei spillen » (expression : jouer les premiers violons)",
@@ -318,7 +534,15 @@
     "mengem Papp": "seul exemple idiomatique (« géint eng Mauer schwätzen »)",
     "hire Jong": "seul exemple peu utile pour un débutant (« sech räich bestueden »)",
     "ech hu gekacht": "seul exemple trompeur : « Ech hu gekacht vu Roserei » = je bouillais de rage",
-    "si sinn": "exemples au passé composé (« Si sinn … geplënnert ») : sens « ils ont », trompeur pour « ils sont »"
+    "si sinn": "exemples au passé composé (« Si sinn … geplënnert ») : sens « ils ont », trompeur pour « ils sont »",
+    "kee": "seul exemple : « Kee vun hire Bouwen daacht eppes » (pronom « aucun », tournure ancienne ; la leçon enseigne l'article)",
+    "éischte": "seuls exemples trop longs ou nominalisés (« deen Éischte »)",
+    "véieranzwanzegste": "seul exemple trop long pour un débutant",
+    "gaangen": "exemples seulement figurés (« et ass gaangen », « matenee gaangen »)",
+    "opgestanen": "exemples trop longs",
+    "getrëppelt": "exemples seulement figurés (« op d'Féiss getrëppelt ») ; sens de trëppelen à vérifier",
+    "Äppel": "expression « Äppel a Bieren vergläichen » ; autre exemple trop long",
+    "Bieren": "expression « Äppel a Bieren vergläichen »"
   },
   "_sans enregistrement LOD": {
     "note": "Exemples choisis dont lod.lu n'a pas d'enregistrement (passage Termux du 20/10/2026), remplacés ci-dessus.",
