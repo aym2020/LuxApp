@@ -7,6 +7,18 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const l=JSON.parse(read('data/lecons/A1.1/lecon-00.json'));
 const lod=JSON.parse(read('public/audio/lod.json'));
 assert.deepEqual(l.unites.map(x=>x.activiteUnique),['quiz','trous']);
+assert.deepEqual(l.unites.map(u=>u.decouverte.length),[9,6],
+  'SPEC 83 : 9 sons puis 6 exemples présentés avant les exercices');
+for(const exemple of l.unites[0].decouverte){
+ assert.equal(exemple.audioFichier,lod[exemple.mot],'MP3 LOD réel pour chaque son');
+ assert.ok(exemple.son && exemple.indication,'le son et son repère sont visibles');
+}
+for(const exemple of l.unites[1].decouverte){
+ assert.ok(exemple.forme && exemple.suivant && typeof exemple.garderN === 'boolean');
+}
+assert.match(read('public/parcours.js'),/demarrerDecouverte\(uniteId\)/);
+assert.match(read('public/index.html'),/src="decouverte\.js"/);
+assert.match(read('public/navigation.js'),/case 'view-decouverte'/);
 assert.equal(l.quiz.length,20);
 assert.equal(l.trous.length,15);
 assert.equal(l.flashcards.length,0);
