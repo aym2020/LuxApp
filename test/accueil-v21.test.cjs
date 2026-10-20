@@ -77,3 +77,18 @@ test('Les quatre actions et la navigation existante restent disponibles', () => 
   }
   assert.ok(h.indexOf('Réviser') < h.indexOf('Mon chemin'));
 });
+
+test('Les deux photos du hero sont des WebP compacts, bien branchés dans le CSS', () => {
+  const style = fs.readFileSync(path.join(__dirname, '..', 'public', 'accueil-v21.css'), 'utf8');
+  for (const [filename, maxBytes] of [
+    ['hero-luxapp-mobile.webp', 80000],
+    ['hero-luxapp-fhd.webp', 250000]
+  ]) {
+    const file = fs.readFileSync(path.join(__dirname, '..', 'public', 'art', filename));
+    assert.equal(file.toString('ascii', 0, 4), 'RIFF');
+    assert.equal(file.toString('ascii', 8, 12), 'WEBP');
+    assert.ok(file.length < maxBytes, filename + ' doit rester optimisé');
+    assert.ok(style.includes(filename), filename + ' doit être chargé dans le hero');
+  }
+  assert.doesNotMatch(style, /lux-city\.svg/);
+});

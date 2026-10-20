@@ -46,10 +46,25 @@
   max-width:32ch; color:var(--muted-strong); line-height:1.45;
   font-size:clamp(.89rem,2.8vw,1rem);
 }
+/* Photo générée pour LuxApp ; overlays CSS séparés pour garantir la lisibilité. */
 #view-dashboard .ac-hero-image {
-  position:absolute; pointer-events:none; inset:22px -22px -14px 18%;
-  background:url('art/lux-city.svg') right bottom / 100% auto no-repeat;
-  opacity:.78; mask-image:linear-gradient(to right,transparent 0%,#000 45%);
+  position:absolute; pointer-events:none; inset:-12px -20px -10px -20px;
+  background-image:
+    linear-gradient(90deg, #0f0e0c 0%, rgba(15,14,12,.78) 24%, rgba(15,14,12,.21) 68%, rgba(15,14,12,.05) 100%),
+    linear-gradient(0deg, #0f0e0c 0%, rgba(15,14,12,0) 34%),
+    url('art/hero-luxapp-mobile.webp');
+  background-position:center, center, center 54%;
+  background-size:cover;
+  background-repeat:no-repeat;
+  opacity:.96;
+}
+@supports (background-image: image-set(url('art/hero-luxapp-mobile.webp') 1x)) {
+  #view-dashboard .ac-hero-image {
+    background-image:
+      linear-gradient(90deg, #0f0e0c 0%, rgba(15,14,12,.78) 24%, rgba(15,14,12,.21) 68%, rgba(15,14,12,.05) 100%),
+      linear-gradient(0deg, #0f0e0c 0%, rgba(15,14,12,0) 34%),
+      image-set(url('art/hero-luxapp-mobile.webp') 1x, url('art/hero-luxapp-fhd.webp') 2x);
+  }
 }
 /* Deux valeurs dominantes, troisième statistique en annotation, aucun faux chiffre. */
 #view-dashboard .ac-chiffres {
