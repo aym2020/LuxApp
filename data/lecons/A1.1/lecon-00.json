@@ -47,7 +47,8 @@
         "schwaarz"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : W → V. Aucune traduction à retenir."
+      "attention": "Son étudié : W → V. Aucune traduction à retenir.",
+      "audioFichier": "lod/WAISS1.mp3"
     },
     {
       "id": 3202,
@@ -61,7 +62,8 @@
         "kleng"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : J → Y. Aucune traduction à retenir."
+      "attention": "Son étudié : J → Y. Aucune traduction à retenir.",
+      "audioFichier": "lod/JO1.mp3"
     },
     {
       "id": 3203,
@@ -75,7 +77,8 @@
         "Meedchen"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : Z → TS. Aucune traduction à retenir."
+      "attention": "Son étudié : Z → TS. Aucune traduction à retenir.",
+      "audioFichier": "lod/ZENG1.mp3"
     },
     {
       "id": 3204,
@@ -89,7 +92,8 @@
         "grouss"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : SCH → CH. Aucune traduction à retenir."
+      "attention": "Son étudié : SCH → CH. Aucune traduction à retenir.",
+      "audioFichier": "lod/SCHOUL1.mp3"
     },
     {
       "id": 3205,
@@ -103,7 +107,8 @@
         "Kand"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : ST initial → CHT. Aucune traduction à retenir."
+      "attention": "Son étudié : ST initial → CHT. Aucune traduction à retenir.",
+      "audioFichier": "lod/STULL1.mp3"
     },
     {
       "id": 3206,
@@ -117,7 +122,8 @@
         "zwee"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : CH particulier. Aucune traduction à retenir."
+      "attention": "Son étudié : CH particulier. Aucune traduction à retenir.",
+      "audioFichier": "lod/BUCH1.mp3"
     },
     {
       "id": 3207,
@@ -131,7 +137,8 @@
         "wäiss"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : Ë neutre. Aucune traduction à retenir."
+      "attention": "Son étudié : Ë neutre. Aucune traduction à retenir.",
+      "audioFichier": "lod/FENSTER1.mp3"
     },
     {
       "id": 3208,
@@ -145,7 +152,8 @@
         "Jo"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : Ä. Aucune traduction à retenir."
+      "attention": "Son étudié : Ä. Aucune traduction à retenir.",
+      "audioFichier": "lod/ADDI2.mp3"
     },
     {
       "id": 3209,
@@ -159,7 +167,8 @@
         "zéng"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : ÉI diphtongue. Aucune traduction à retenir."
+      "attention": "Son étudié : ÉI diphtongue. Aucune traduction à retenir.",
+      "audioFichier": "lod/SCHEIN1.mp3"
     },
     {
       "id": 3210,
@@ -173,7 +182,8 @@
         "Schoul"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : Ë et Z. Aucune traduction à retenir."
+      "attention": "Son étudié : Ë et Z. Aucune traduction à retenir.",
+      "audioFichier": "lod/LETZEBUERG1.mp3"
     },
     {
       "id": 3211,
@@ -187,7 +197,8 @@
         "Stull"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : ÄI. Aucune traduction à retenir."
+      "attention": "Son étudié : ÄI. Aucune traduction à retenir.",
+      "audioFichier": "lod/DRAI1.mp3"
     },
     {
       "id": 3212,
@@ -201,7 +212,8 @@
         "Buch"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : ÄI et TSCH. Aucune traduction à retenir."
+      "attention": "Son étudié : ÄI et TSCH. Aucune traduction à retenir.",
+      "audioFichier": "lod/DAITSCH2.mp3"
     },
     {
       "id": 3213,
@@ -215,7 +227,8 @@
         "Fënster"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : Ë. Aucune traduction à retenir."
+      "attention": "Son étudié : Ë. Aucune traduction à retenir.",
+      "audioFichier": "lod/BRELL1.mp3"
     },
     {
       "id": 3214,
@@ -229,7 +242,8 @@
         "Äddi!"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : É et NG. Aucune traduction à retenir."
+      "attention": "Son étudié : É et NG. Aucune traduction à retenir.",
+      "audioFichier": "lod/GRENG1.mp3"
     },
     {
       "id": 3215,
@@ -243,7 +257,8 @@
         "schéin"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : SCH et W. Aucune traduction à retenir."
+      "attention": "Son étudié : SCH et W. Aucune traduction à retenir.",
+      "audioFichier": "lod/SCHWAARZ1.mp3"
     },
     {
       "id": 3216,
@@ -257,7 +272,8 @@
         "Lëtzebuerg"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : NG final. Aucune traduction à retenir."
+      "attention": "Son étudié : NG final. Aucune traduction à retenir.",
+      "audioFichier": "lod/KLENG1.mp3"
     },
     {
       "id": 3217,
@@ -271,7 +287,8 @@
         "dräi"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : CH. Aucune traduction à retenir."
+      "attention": "Son étudié : CH. Aucune traduction à retenir.",
+      "audioFichier": "lod/MEEDCHEN1.mp3"
     },
     {
       "id": 3218,
@@ -285,7 +302,8 @@
         "Däitsch"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : OU. Aucune traduction à retenir."
+      "attention": "Son étudié : OU. Aucune traduction à retenir.",
+      "audioFichier": "lod/GROUSS2.mp3"
     },
     {
       "id": 3219,
@@ -299,7 +317,8 @@
         "Brëll"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : A et ND. Aucune traduction à retenir."
+      "attention": "Son étudié : A et ND. Aucune traduction à retenir.",
+      "audioFichier": "lod/KAND1.mp3"
     },
     {
       "id": 3220,
@@ -313,7 +332,8 @@
         "gréng"
       ],
       "label": "ÉCOUTE ET RECONNAIS",
-      "attention": "Son étudié : ZW initial. Aucune traduction à retenir."
+      "attention": "Son étudié : ZW initial. Aucune traduction à retenir.",
+      "audioFichier": "lod/ZWEE2.mp3"
     }
   ],
   "trous": [
