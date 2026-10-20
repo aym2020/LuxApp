@@ -56,7 +56,7 @@ function afficherDecouverte() {
       '<div class="dc-mot" lang="lb">' + escHtml(ex.mot) + '</div>' +
       '<button type="button" class="dc-ecouter bouton-ecouter" onclick="ecouterDecouverte(this)" ' +
         'aria-label="Écouter la prononciation du mot ' + attrHtml(ex.mot) + '">' +
-        '<span aria-hidden="true">◖))</span> Écouter le mot</button>' +
+        ICONE_ECOUTER + '<span>Écouter le mot</span></button>' +
       '<p class="dc-note">Tu peux réécouter et continuer quand tu veux.</p>';
   } else {
     const espace = ex.forme.indexOf(' ');
