@@ -120,6 +120,7 @@ function verifierV2(f, l) {
     l.unites.forEach(u => {
       const n = items.filter(x => x.unite === u.id && !x.plus).length;
       const [min, max] = TAILLES[type];
+      if (l.id === 0 && u.activiteUnique) return; // parcours délibérément mono-activité (SPEC 82)
       if (n === 0) attention(f, 'unité ' + u.id + ' : aucun item ' + type);
       else if (n < min || n > max) attention(f, 'unité ' + u.id + ' : ' + n + ' ' + type + ' (conseillé ' + min + ' à ' + max + ')');
     });
@@ -132,6 +133,16 @@ function verifierV2(f, l) {
       if (nomSeul && !c.article) attention(f, 'unité ' + u.id + ' (article à écrire) : « ' + c.lu + ' » sans article');
     });
   });
+
+  // SPEC 82 : les deux unités sont des activités uniques, jamais du vocabulaire à écrire.
+  if (l.id === 0) {
+    const u1 = t => (l[t] || []).filter(x => x.unite === 1).length;
+    const u2 = t => (l[t] || []).filter(x => x.unite === 2).length;
+    if (u1('quiz') !== 20 || u1('flashcards') || u1('trous') || u1('ecriture'))
+      erreur(f, 'leçon 0 unité 1 : uniquement 20 quiz audio');
+    if (u2('trous') !== 15 || u2('flashcards') || u2('quiz') || u2('ecriture'))
+      erreur(f, 'leçon 0 unité 2 : uniquement 15 choix de N');
+  }
 
   // Contenu de chaque type.
   (l.flashcards || []).forEach(c => {
@@ -184,8 +195,29 @@ function verifierV2(f, l) {
     }
   });
 
-  // Mission : un fil par leçon (scène finale).
-  if (!l.mission || !l.scene) {
+  // SPEC 82 : mission audio/interactions de la leçon 0 (aucune traduction).
+  // Son format diffère volontairement du dialogue traditionnel à dix répliques.
+  if (l.mission && l.mission.type === 'studio-radio') {
+    if (l.id !== 0) erreur(f, 'mission studio radio réservée à la leçon 0');
+    if (!Array.isArray(l.scene) || l.scene.length) erreur(f, 'studio radio : scène héritée attendue vide');
+    if (l.mission.version < 2) erreur(f, 'studio radio : version minimum 2');
+    const defis = l.mission.defis || [];
+    if (defis.length !== 8) erreur(f, 'studio radio : huit défis attendus');
+    const compte = type => defis.filter(d => d.type === type).length;
+    if (compte('audio') !== 3 || compte('verification') !== 3 || compte('completer') !== 2)
+      erreur(f, 'studio radio : 3 sons, 3 vérifications et 2 choix de forme attendus');
+    const ids = defis.map(d => d.id);
+    if (new Set(ids).size !== ids.length) erreur(f, 'studio radio : IDs dupliqués');
+    defis.forEach(d => {
+      if (!Array.isArray(d.choix) || !d.choix.includes(d.reponse))
+        erreur(f, 'studio radio : réponse absente des choix, défi ' + d.id);
+      if (new Set(d.choix || []).size !== (d.choix || []).length)
+        erreur(f, 'studio radio : choix répétés, défi ' + d.id);
+      if (d.type === 'audio' && !d.audioMot) erreur(f, 'studio radio : audioMot manquant');
+      if (d.type !== 'audio' && !d.script) erreur(f, 'studio radio : script manquant');
+      if (![1,2].includes(d.unite)) erreur(f, 'studio radio : unité invalide');
+    });
+  } else if (!l.mission || !l.scene) {
     attention(f, 'pas de mission (« mission » + « scene ») : la leçon n\'a pas de fil');
   } else {
     ['titre', 'contexte', 'objectif'].forEach(k => { if (!l.mission[k]) erreur(f, 'mission sans « ' + k + ' »'); });
@@ -210,7 +242,7 @@ function verifierV2(f, l) {
     });
   }
   l.unites.forEach(u => {
-    if (!u.bonus && !u.phrase) attention(f, 'unité ' + u.id + ' sans « phrase » (la phrase de la scène qu\'elle apprend)');
+    if (l.id !== 0 && !u.bonus && !u.phrase) attention(f, 'unité ' + u.id + ' sans « phrase » (la phrase de la scène qu\'elle apprend)');
   });
 
   // Chaque mot caché doit se retrouver dans le cours.
