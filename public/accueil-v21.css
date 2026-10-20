@@ -101,6 +101,8 @@
   box-shadow:0 10px 28px rgba(245,207,77,.10);
 }
 #view-dashboard .ac-v21-cta .cs-ic { color:#1a1505; }
+#view-dashboard .ac-v21-cta .cs-txt > b { color:#1a1505; font-size:1.15rem; line-height:1.2; }
+#view-dashboard .ac-v21-cta .cs-txt > small { color:#47370f; }
 #view-dashboard .ac-v21-cta .cs-ic .ic { width:27px; height:27px; }
 #view-dashboard .ac-v21-cta .cs-txt { gap:3px; }
 #view-dashboard .ac-v21-cta .cs-kicker {
