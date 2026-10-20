@@ -20,7 +20,8 @@
     "objectif": "saluer, demander et dire comment ça va, dire ton nom poliment, prendre congé.",
     "version": 2,
     "contexte_intro": "Tu joues Paul. À ton premier cours, tu salues M. Kremer, Léa et Mme Weber. Tu te présentes, puis tu prends congé.",
-    "objectif_intro": "saluer, demander comment ça va, te présenter et prendre congé."
+    "objectif_intro": "saluer, demander et dire comment ça va, te présenter et prendre congé.",
+    "titre_intro": "Premier cours"
   },
   "scene": [
     {
