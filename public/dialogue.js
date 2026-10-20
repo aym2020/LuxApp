@@ -155,19 +155,19 @@ function cleePhrase(texte) {
     .replace(/[.,!?;:«»"…()\u2013\u2014]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 function chargerSonsLod() {
-  fetch('audio/mia.json').then(r => (r.ok ? r.json() : {})).then(data => {
+  const miaCharge = fetch('audio/mia.json').then(r => (r.ok ? r.json() : {})).then(data => {
     sonsMia = {};
     Object.keys(data || {}).forEach(t => { sonsMia[cleePhrase(t)] = data[t]; });
   }, () => {});
-  fetch('audio/lod-contexte.json').then(r => (r.ok ? r.json() : {})).then(d => {
+  const contexteCharge = fetch('audio/lod-contexte.json').then(r => (r.ok ? r.json() : {})).then(d => {
     sonsContexte = {};
     Object.keys(d || {}).forEach(p => { sonsContexte[cleePhrase(p)] = d[p]; });
   }, () => {});
-  fetch('audio/lod-phrases.json').then(r => (r.ok ? r.json() : {})).then(d => {
+  const phrasesCharge = fetch('audio/lod-phrases.json').then(r => (r.ok ? r.json() : {})).then(d => {
     sonsPhrases = {};
     Object.keys(d || {}).forEach(p => { sonsPhrases[cleePhrase(p)] = d[p]; });
   }, () => {});
-  return fetch('audio/lod.json').then(r => (r.ok ? r.json() : {})).then(d => {
+  const lodCharge = fetch('audio/lod.json').then(r => (r.ok ? r.json() : {})).then(d => {
     sonsLod = d || {};
     sonsLodSimples = {};
     Object.keys(sonsLod).forEach(mot => {
@@ -176,6 +176,8 @@ function chargerSonsLod() {
       sonsLodSimples[cle] = (cle in sonsLodSimples && sonsLodSimples[cle] !== sonsLod[mot]) ? null : sonsLod[mot];
     });
   }, () => {});
+  // Ne pas afficher un écran d'exercices sans avoir chargé les fichiers MIA.
+  return Promise.all([miaCharge, contexteCharge, phrasesCharge, lodCharge]);
 }
 // « de Stull », « Stull », « Moien! » → « stull », « moien »
 // SPEC 73 : une note entre parenthèses (« de Brudder (pl. d'Bridder) », « d'Meedchen (neutre) ») n'est pas prononcée.
