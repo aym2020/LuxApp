@@ -1682,7 +1682,8 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Mettre au pluriel demande <b>deux choses</b> : choisir <b>zwee</b> ou <b>zwou</b> selon le genre, et transformer le <b>nom</b> lui-même. Pour dire « ce sont » : <b>Dat sinn …</b>"
+      "contenu": "Mettre au pluriel demande <b>deux choses</b> : choisir <b>zwee</b> ou <b>zwou</b> selon le genre, et transformer le <b>nom</b> lui-même. Pour dire « ce sont » : <b>Dat sinn …</b>",
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1693,7 +1694,8 @@
         "Nom <b>féminin</b> → <b>zwou</b> : zwou Fläschen, zwou Aueren.",
         "C'est le genre <b>luxembourgeois</b> du nom <b>au singulier</b> qui décide."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1745,7 +1747,8 @@
           "deux avions"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1818,7 +1821,8 @@
         ]
       ],
       "unite": 1,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1837,7 +1841,8 @@
           "Ce sont deux bouteilles et deux ordinateurs."
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1845,7 +1850,8 @@
       "titre": "Le nom aussi change",
       "lignes": [
         "Trois schémas : <b>-(e)n</b> (unité 1), <b>-er</b> souvent avec changement de voyelle (unité 2), <b>changement de voyelle seul</b> (unité 3)."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1897,7 +1903,8 @@
           "deux tables"
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1930,7 +1937,8 @@
         ]
       ],
       "unite": 2,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1940,7 +1948,8 @@
         "Le pluriel ne se devine pas toujours : apprends-le <b>en même temps</b> que le singulier.",
         "La voyelle change souvent : Buch → B<b>i</b>cher, Haus → H<b>ai</b>ser, Glas → Gl<b>ie</b>ser."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1972,7 +1981,8 @@
           "deux trains"
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1987,7 +1997,8 @@
           "Ce sont deux souris."
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "lexique"
     },
     {
       "type": "dialogue",
@@ -2022,7 +2033,80 @@
           "Super, merci !"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Dat sinn zwou Fläschen an zwee Computeren.",
+          "Ce sont deux bouteilles et deux ordinateurs."
+        ],
+        [
+          "Dat sinn zwou Aueren.",
+          "Ce sont deux montres."
+        ],
+        [
+          "Dat sinn zwee Telefonen.",
+          "Ce sont deux téléphones."
+        ],
+        [
+          "Moien! Wat ass an der Këscht?",
+          "Bonjour ! Qu'y a-t-il dans le carton ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Dat sinn zwee Bicher an zwee Hefter.",
+          "Ce sont deux livres et deux cahiers."
+        ],
+        [
+          "Dat sinn zwee Haiser.",
+          "Ce sont deux maisons."
+        ],
+        [
+          "Dat sinn zwee Stëfter.",
+          "Ce sont deux stylos."
+        ],
+        [
+          "An dat hei?",
+          "Et ça ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Dat sinn zwee Still.",
+          "Ce sont deux chaises."
+        ],
+        [
+          "Dat sinn zwou Mais.",
+          "Ce sont deux souris."
+        ],
+        [
+          "Dat sinn zwee Bäll.",
+          "Ce sont deux balles."
+        ],
+        [
+          "An dat do?",
+          "Et ça, là-bas ?"
+        ]
+      ]
     }
   ]
 }

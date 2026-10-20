@@ -1413,7 +1413,8 @@
       "lignes": [
         "Question : <b>Wéi vill Auer ass et?</b> Heures pleines : <b>Et ass eng Auer</b>, <b>Et ass zwou Auer</b>.",
         "Et ass eng Auer · Et ass zwou Auer · Et ass zwielef Auer."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1448,17 +1449,15 @@
           "Wéi vill",
           "Quelle quantité ?"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Wéi vill Auer ass et ?",
           "Quelle heure est-il ?"
@@ -1489,7 +1488,8 @@
       "lignes": [
         "Avant la demi-heure : <b>op</b> l'heure en cours. Près de l'heure suivante : <b>vir</b> l'heure suivante.",
         "1 h 15 → <b>véierel op eng</b> · 1 h 45 → <b>véierel vir zwou</b>."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1528,17 +1528,15 @@
           "véierel vir",
           "moins le quart"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Et ass fënnef op eng.",
           "Il est une heure cinq."
@@ -1569,7 +1567,8 @@
       "lignes": [
         "<b>hallwer zwou</b> = 1 h 30 (la moitié vers 2 h), pas 2 h 30.",
         "1 h 25 → fënnef <b>vir hallwer zwou</b> · 1 h 35 → fënnef <b>op hallwer zwou</b>."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1604,17 +1603,15 @@
           "hallwer dräi",
           "2 h 30"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 3,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Et ass fënnef vir hallwer zwou.",
           "Il est une heure vingt-cinq."
@@ -1645,7 +1642,8 @@
       "lignes": [
         "Pour préciser le moment : <b>moies</b>, <b>mëttes</b>, <b>nomëttes</b>, <b>owes</b>. Verbes séparables : <b>fänken … un</b>, <b>halen … op</b>.",
         "Ech fänken um aacht Auer moies un · Ech halen um fënnef Auer nomëttes op."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1684,17 +1682,15 @@
           "ophalen",
           "terminer"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 4,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "moies",
           "Le matin"
@@ -1702,7 +1698,15 @@
         [
           "nomëttes",
           "L'après-midi"
-        ],
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 4,
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Et ass aacht Auer moies.",
           "Il est huit heures du matin."
@@ -1720,7 +1724,8 @@
     {
       "type": "texte",
       "contenu": "Cette leçon sert à lire et dire l'heure en luxembourgeois. La difficulté principale est que le luxembourgeois ne traduit pas toujours l'heure comme le français : on utilise beaucoup op, vir et hallwer.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1733,7 +1738,8 @@
         "hallwer indique la demi-heure avant l'heure annoncée : hallwer zwou = 1h30.",
         "Autour de la demi-heure, on dit : fënnef vir hallwer zwou = 1h25 et fënnef op hallwer zwou = 1h35."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1746,7 +1752,8 @@
         "Et ass zwielef Auer. = Il est douze heures.",
         "Ici, l'utilisateur n'a pas besoin de conjuguer tout le verbe : il doit surtout mémoriser Et ass."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1757,7 +1764,8 @@
         "La réponse commence presque toujours par Et ass...",
         "Wéi vill Auer ass et? → Et ass véierel vir néng."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1789,7 +1797,8 @@
           "midi ou minuit selon le contexte"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1821,7 +1830,8 @@
           "Il est neuf heures vingt."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1853,7 +1863,8 @@
           "Il est sept heures trente-cinq."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1885,7 +1896,8 @@
           "Il est huit heures moins cinq."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1898,7 +1910,8 @@
         "7h35 se dit fënnef op hallwer aacht, car hallwer aacht = 7h30.",
         "7h55 se dit fënnef vir aacht, car on est cinq minutes avant huit heures."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1935,7 +1948,8 @@
           "Il est huit heures moins cinq."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "tableau",
@@ -1977,7 +1991,8 @@
           "Et ass Mëtternuecht."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1990,7 +2005,8 @@
         "Du fänks um aacht Auer un. = Tu commences à huit heures.",
         "Hien / Si fänkt um aacht Auer un. = Il / Elle commence à huit heures."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2003,7 +2019,8 @@
         "Du häls um fënnef Auer op. = Tu termines à cinq heures.",
         "Hien / Si hält um fënnef Auer op. = Il / Elle termine à cinq heures."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2040,10 +2057,11 @@
           "question avec ophalen"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Phrases courtes à mémoriser",
       "items": [
         [
@@ -2083,7 +2101,8 @@
           "Je termine à cinq heures de l'après-midi."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -2114,7 +2133,8 @@
           "Il est neuf heures moins le quart."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -2145,7 +2165,8 @@
           "Oui, je travaille de huit heures du matin à cinq heures de l'après-midi."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     }
   ]
 }

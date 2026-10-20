@@ -1,11 +1,11 @@
-# SPEC 75 — Cours des leçons 1 à 3 : Règles / Lexique / Phrases
+# SPEC 75 — Cours de toutes les leçons : Règles / Lexique / Phrases
 
 | Champ | Valeur |
 |---|---|
 | Priorité | P1 — pédagogie et ergonomie |
-| Statut | **Pilote codé — recette visuelle Android en attente** |
+| Statut | **Déployé sur les 25 leçons A1.1 / A1.2 — recette Android de l'extension à confirmer** |
 | Objectif | Rendre le **Cours** plus lisible, progressif et utilisable pour écouter du luxembourgeois |
-| Portée pilote | **Uniquement les champs `cours` des leçons 1, 2 et 3** (A1.1) et les composants qui les affichent |
+| Portée | **Les 25 leçons existantes : A1.1 (17) + A1.2 (8)** ; uniquement leurs champs `cours` et le rendu partagé |
 | Ne pas modifier | Flashcards, quiz, trous, écriture, missions, scènes, identifiants et progression |
 | Dépendances | SPEC 68–73 (audio exact/contextuel), cours du Chemin, design system LuxApp |
 | Référence visuelle | [Maquette HTML interactive de la leçon 2](../maquettes/LuxApp_Lecon2_Cours_3onglets.html) |
@@ -197,3 +197,23 @@ L'implémentation doit reprendre l'organisation et le ton visuel, mais intégrer
 - Ne plus employer les anciennes structures de tableaux et cours-dialogue dans le pilote. Elles restent disponibles pour les leçons 4+.
 - L'ordre, les notes annexes de la troisième colonne et les catalogues LOD existants sont conservés ; aucun JSON de leçon, exercice, unité ou progression modifié.
 - Test automatique sur un terme avec son et un terme sans son, puis recette visuelle Android à confirmer.
+
+## Extension aux 25 leçons existantes (20/10/2026)
+
+**Décision finale (prévaut sur les mentions historiques « pilote 1–3 » ci-dessus)** : toutes les leçons structurées actuellement livrées en A1.1 (1–17) et A1.2 (20–27) utilisent le même cours Règles / Lexique / Phrases. Les leçons 1–3 restent intactes, le rendu et la hauteur du panneau déjà validés visuellement sont conservés.
+
+### Taxonomie stable et liens entre notions
+
+- **Règles** : toutes les explications `texte`, `callout`, `regle`, les tableaux de conjugaison, structures grammaticales, prépositions, articles et accords. Le titre original de chaque règle est conservé ; si une unité bonus ne possède pas de bloc de règles, reprendre `unites[].regle` et `unites[].exemple` sans reformulation, sous le titre de l'unité.
+- **Lexique** : `vocab` et tableaux lexicaux par nature (nationalités, pays, adjectifs contraires, pluriels, nombres, métiers, listes de verbes et formes irrégulières). Les tableaux complexes conservent leurs en-têtes et toutes leurs colonnes ; on ne traite jamais la colonne « Contraire », « Féminin » ou « Pluriel » comme une traduction française.
+- **Phrases** : dialogues, exemples bilingues et phrases issues des tableaux de production. Dans un tableau mixte « Phrases à produire », séparer les noms et expressions isolés (Lexique) des phrases complètes (Phrases), sans modifier aucun texte ou traduction. Les exemples supplémentaires proviennent exclusivement des `unites[].phrase(s)`, des scènes ou des exercices d'écriture existants.
+- **Portée** : chaque unité présente au moins une règle et une phrase ; « Tout » conserve les blocs généraux à la fin dans leur rubrique. Si le vocabulaire d'une unité n'existe qu'en référence générale (nationalités, etc.), la rubrique Lexique de l'unité rend consultable cette référence sous « Lexique commun à la leçon ».
+- **Rendu** : les paires bilingues de Lexique, Phrases et dialogues réutilisent `cours75EntreeHtml()`/`cours75ListeHtml()`. Les tableaux de plusieurs colonnes restent des **tableaux structurés**, parce qu'ils enseignent une relation (deux genres, singulier/pluriel, horaire/phrase), et non une paire LU/FR. Aucune recherche locale.
+- **Audio** : seules les associations LOD existantes sont réutilisées ; aucun son inventé ou enregistré artificiellement.
+
+### Intégrité et vérification
+
+- Migration traçable : `tools/spec75-migration.js` exporte `migrant()`, `categories()` et contrôle l'idempotence (`node tools/spec75-migration.js`). Une deuxième exécution ne doit modifier aucun JSON.
+- Seuls les champs `cours` des leçons 4–17 et 20–27 ont été modifiés. `flashcards`, `quiz`, `trous`, `ecriture`, `unites`, `scene`, `mission` et les informations de leçon ne sont pas modifiés.
+- Validation : `node tests/test_spec75.js && node tools/spec75-migration.js && node tools/valider-lecons.js && bash tools/critique.sh`.
+- Les tests statiques vérifient les 25 leçons, l'accès aux trois rubriques, l'absence de règle/phrase manquante par unité, les principaux tableaux riches, la navigation et les 36 mots complémentaires de la leçon 2. La **recette visuelle Android sur les leçons 4+ et A1.2 reste à faire**.

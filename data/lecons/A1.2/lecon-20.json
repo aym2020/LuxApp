@@ -747,7 +747,8 @@
       "lignes": [
         "Pour répondre à <b>Wou ass …?</b>, utilise <b>an</b> (dans), <b>op</b> (sur), <b>ënnert</b> (sous), <b>virun</b> (devant), <b>hannert</b> (derrière) ou <b>iwwert</b> (au-dessus), puis <b>der Këscht</b>.",
         "De Ball ass <b>ënnert der Këscht</b>."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -782,17 +783,15 @@
           "eng Këscht",
           "boîte"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 1,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "an",
           "dans"
@@ -823,7 +822,8 @@
       "lignes": [
         "<b>nieft</b> = à côté de ; <b>bei</b> = près de ; <b>tëschent</b> = entre. Après <b>tëschent</b>, on peut dire <b>zwou Këschten</b>.",
         "De Ball ass <b>nieft der Këscht</b> · <b>tëschent zwou Këschten</b>."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -858,21 +858,27 @@
           "Këschten",
           "des boîtes"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 2,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "tëschent",
           "entre (forme longue)"
-        ],
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Wou ass de Ball?",
           "Où est le ballon ?"
@@ -894,7 +900,8 @@
     {
       "type": "texte",
       "contenu": "Cette leçon présente 10 prépositions de lieu (d'Wiesselprepositiounen). Elles servent à répondre à la question Wou ass de Ball ? (Où est le ballon ?).",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -941,7 +948,8 @@
           "contre (appuyé contre)"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -953,7 +961,8 @@
         "bei, niewent et nieft = à côté de / près de.",
         "tëschent et tëscht ont le même sens : entre."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -965,10 +974,11 @@
         "Ex. : De Ball ass op der Këscht. = Le ballon est sur la boîte.",
         "Retiens « der Këscht » comme un bloc : la règle sera vue plus tard."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Wou ass de Ball?",
       "items": [
         [
@@ -1016,7 +1026,8 @@
           "Le ballon est entre deux boîtes."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -1039,7 +1050,32 @@
           "Le ballon est sous la boîte."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wou ass de Ball?",
+          "Où est le ballon ?"
+        ],
+        [
+          "De Ball ass an der Këscht.",
+          "Le ballon est dans la boîte."
+        ],
+        [
+          "An elo? Ass en op der Këscht?",
+          "Et maintenant ? Est-il sur la boîte ?"
+        ],
+        [
+          "De Ball ass ënnert der Këscht.",
+          "Le ballon est sous la boîte."
+        ]
+      ]
     }
   ]
 }

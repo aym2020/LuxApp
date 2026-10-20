@@ -2244,7 +2244,8 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Les nombres luxembourgeois se construisent à partir des unités, des dizaines et des centaines. La règle clé : l'unité se place <b>avant</b> la dizaine, et tout s'écrit <b>soudé</b> (sans espace, sans majuscule)."
+      "contenu": "Les nombres luxembourgeois se construisent à partir des unités, des dizaines et des centaines. La règle clé : l'unité se place <b>avant</b> la dizaine, et tout s'écrit <b>soudé</b> (sans espace, sans majuscule).",
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2291,7 +2292,8 @@
           "10"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2302,7 +2304,8 @@
         "<b>Et sinn …</b> = Il y a … / Il y en a …",
         "2 : <b>zwee</b> (masculin, neutre) : zwee Bussen · <b>zwou</b> (féminin) : zwou Dieren."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2326,7 +2329,8 @@
         ]
       ],
       "unite": 1,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2365,7 +2369,8 @@
           "20"
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2375,7 +2380,8 @@
         "<b>fofzéng</b> (15), <b>siechzéng</b> (16), <b>uechtzéng</b> (18), <b>nonzéng</b> (19) : la première partie change.",
         "<b>siwwenzéng</b> (17) prend deux w."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2414,7 +2420,8 @@
           "90"
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2424,7 +2431,8 @@
         "Schéma : <b>unité + an / a + dizaine</b>, le tout soudé : <b>fënnefanzwanzeg</b> = « cinq-et-vingt » = 25.",
         "Le <b>1</b> devient <b>een</b> : <b>eenanzwanzeg</b> (21)."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2476,7 +2484,8 @@
           "eenannonzeg (91)"
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2486,7 +2495,8 @@
         "On garde <b>an</b> si la dizaine commence par une voyelle ou par <b>n, d, t, z, h</b> (moyen mnémotechnique <b>UNITEDZOHA</b>).",
         "Sinon, on met <b>a</b> : devant v, f, s (véierzeg, fofzeg, siechzeg, siwwenzeg)."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2529,7 +2539,8 @@
           "zéngdausend"
         ]
       ],
-      "unite": 4
+      "unite": 4,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2539,7 +2550,8 @@
         "Même avec honnert et dausend : <b>zweehonnertfofzeg</b> (250), pas « zweehonnert fofzeg ».",
         "Les nombres sont des adjectifs → <b>pas de majuscule</b>."
       ],
-      "unite": 4
+      "unite": 4,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2550,7 +2562,8 @@
         "À partir de 2000 : 2025 = <b>zweedausendfënnefanzwanzeg</b>."
       ],
       "unite": 4,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -2593,7 +2606,104 @@
           "Super, merci !"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Et sinn aacht Käerzen.",
+          "Il y a huit bougies."
+        ],
+        [
+          "Wéi vill Käerze ginn et?",
+          "Combien de bougies y a-t-il ?"
+        ],
+        [
+          "Moien! Wéi vill Computere ginn et?",
+          "Bonjour ! Combien d'ordinateurs y a-t-il ?"
+        ],
+        [
+          "Et sinn néng.",
+          "Il y en a neuf."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Et sinn uechtzéng Autoen.",
+          "Il y a dix-huit voitures."
+        ],
+        [
+          "Et sinn zwanzeg Still.",
+          "Il y a vingt chaises."
+        ],
+        [
+          "A wéi vill Still?",
+          "Et combien de chaises ?"
+        ],
+        [
+          "Et sinn uechtzéng.",
+          "Il y en a dix-huit."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Et sinn zweeanzwanzeg Bussen.",
+          "Il y a vingt-deux bus."
+        ],
+        [
+          "Et sinn siwenavéierzeg Telefonen.",
+          "Il y a quarante-sept téléphones."
+        ],
+        [
+          "A wéi vill Bicher?",
+          "Et combien de livres ?"
+        ],
+        [
+          "Et sinn eenanzwanzeg.",
+          "Il y en a vingt et un."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 4,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Et sinn honnert Blieder.",
+          "Il y a cent feuilles."
+        ],
+        [
+          "Et sinn dausend Gebaier.",
+          "Il y a mille bâtiments."
+        ],
+        [
+          "A wéi vill Blieder?",
+          "Et combien de feuilles ?"
+        ],
+        [
+          "Et sinn zweehonnertfofzeg.",
+          "Il y en a deux cent cinquante."
+        ]
+      ]
     }
   ]
 }

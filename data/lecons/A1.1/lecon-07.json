@@ -1105,7 +1105,8 @@
         "Pour beaucoup de pays, on utilise <b>aus</b> : ech kommen aus Frankräich, aus Portugal, aus Däitschland.",
         "<b>Ech kommen</b> = je viens · <b>hien / si kënnt</b> = il / elle vient."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1115,7 +1116,8 @@
         "Pays particuliers : <b>vu Lëtzebuerg</b>, <b>aus der Belsch</b>, <b>aus der Schwäiz</b>, <b>aus dem Iran</b>, <b>vum Cap Vert</b>.",
         "<b>Vu wou kënns du?</b> = D'où viens-tu ? · <b>Vu wou kommt Dir?</b> = D'où venez-vous ?"
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1154,7 +1156,8 @@
           "Schweden",
           "Suède"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1186,17 +1189,15 @@
           "Holland",
           "Pays-Bas"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Dire d'où l'on vient",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "De Ronaldo kënnt aus Portugal.",
           "Ronaldo vient du Portugal."
@@ -1244,17 +1245,15 @@
           "Iran",
           "Iran"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Les pays particuliers et la question",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "De Guillaume kënnt vu Lëtzebuerg.",
           "Guillaume vient du Luxembourg."
@@ -1276,7 +1275,8 @@
     {
       "type": "texte",
       "contenu": "Pour dire d'où vient quelqu'un, on utilise <b>kommen / kënnt</b> + une préposition. Cette préposition <b>dépend du pays</b> : c'est le cœur de la leçon.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1286,7 +1286,8 @@
         "La grande majorité des pays prennent simplement <b>aus</b> : aus Portugal, aus Japan, aus Frankräich.",
         "Seuls <b>6 pays</b> font exception (article féminin/masculin, ou « vu ») — ce sont eux qu'il faut mémoriser."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1328,7 +1329,8 @@
           "masculin + article"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1395,7 +1397,8 @@
           "aus Schweden"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1405,7 +1408,8 @@
         "<b>Ech kommen</b> = je viens · <b>Du kënns</b> = tu viens.",
         "<b>Hien / Si kënnt</b> = il / elle vient · <b>Dir kommt</b> = vous venez."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1416,7 +1420,8 @@
         "<b>Vu wou kënnt hien / si?</b> = D'où vient-il / elle ?",
         "L'origine se dit <b>d'Hierkonft</b>."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1427,7 +1432,8 @@
         "Prénom masculin (voyelle) → <b>Den</b> : Den Emmanuel.",
         "Prénom féminin → <b>D'</b> : D'Angela, D'Greta."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -1458,7 +1464,8 @@
           "Il vient du Cap-Vert."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     }
   ]
 }

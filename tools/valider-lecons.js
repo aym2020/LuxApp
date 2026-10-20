@@ -25,17 +25,34 @@ function attention(fichier, msg) { nbAttentions++; console.log('  ATTENTION ' + 
 // SPEC 75 — valider le classement explicite des blocs de cours pilotes.
 function validerRubriques(f, l) {
   const valides = new Set(['regles', 'lexique', 'phrases']);
-  const pilote = /^A1\.1\/lecon-0[123]\.json$/.test(f);
+  const applicable = /^A1\.[12]\/lecon-\d+\.json$/.test(f) && Array.isArray(l.unites);
   (l.cours || []).forEach((b,i) => {
-    if (!pilote && b.rubrique === undefined) return;
+    if (!applicable && b.rubrique === undefined) return;
     if (!valides.has(b.rubrique)) erreur(f, 'cours bloc ' + i + ' : rubrique inconnue');
     if (b.unite !== undefined && b.unite !== 0 && !(l.unites || []).some(u => u.id === b.unite))
       erreur(f, 'cours bloc ' + i + ' : unité inconnue');
+    if (b.type === 'vocab' && b.rubrique !== 'lexique')
+      erreur(f, 'cours bloc ' + i + ' : vocabulaire hors Lexique');
+    if (b.type === 'dialogue' && b.rubrique !== 'phrases')
+      erreur(f, 'cours bloc ' + i + ' : dialogue hors Phrases');
+    if (['callout','regle','texte'].includes(b.type) && b.rubrique !== 'regles')
+      erreur(f, 'cours bloc ' + i + ' : explication hors Règles');
     if (b.type === 'phrases' && (b.rubrique !== 'phrases' || !Array.isArray(b.items) ||
       !b.items.length || b.items.some(p => !Array.isArray(p) || p.length !== 2 ||
         p.some(t => typeof t !== 'string' || !t.trim()))))
       erreur(f, 'cours bloc ' + i + ' : phrases invalides');
   });
+  if (applicable) {
+    for (const u of l.unites) {
+      if (!l.cours.some(b => b.unite === u.id && b.rubrique === 'regles'))
+        erreur(f, 'unité ' + u.id + ' : aucune règle nommée');
+      if (!l.cours.some(b => b.unite === u.id && b.rubrique === 'phrases'))
+        erreur(f, 'unité ' + u.id + ' : aucune phrase source');
+      if (!l.cours.some(b => b.unite === u.id && b.rubrique === 'lexique') &&
+          !l.cours.some(b => b.unite === 0 && b.rubrique === 'lexique'))
+        attention(f, 'unité ' + u.id + ' : lexique disponible seulement dans Toute la leçon');
+    }
+  }
 }
 
 // Texte brut d'un bloc de cours (sans les balises HTML), pour chercher un mot.

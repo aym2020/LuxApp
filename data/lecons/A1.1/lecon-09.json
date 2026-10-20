@@ -1096,7 +1096,8 @@
         "Une langue reste invariable. Avec « je », on dit <b>Ech schwätzen</b> ; avec « il / elle », <b>Hien / Si schwätzt</b>.",
         "Ech schwätze <b>Franséisch</b> an <b>Lëtzebuergesch</b>."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1106,7 +1107,8 @@
         "Question : <b>Wat fir eng Sprooch schwätzt du?</b> · Négation : <b>schwätzt net</b> + langue.",
         "Ech schwätzen <b>e bësse</b> Lëtzebuergesch · Hien schwätzt <b>net</b> Däitsch."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1145,17 +1147,15 @@
           "Japanesch",
           "japonais"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Dire les langues qu'on parle",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "De Ronaldo schwätzt Portugisesch.",
           "Ronaldo parle portugais."
@@ -1211,7 +1211,8 @@
           "e bësse",
           "un peu"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1231,17 +1232,15 @@
           "Koreanesch",
           "coréen"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Demander et répondre non",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Hien schwätzt Englesch, net Franséisch.",
           "Il parle anglais, pas français."
@@ -1263,7 +1262,8 @@
     {
       "type": "texte",
       "contenu": "Le nom d'une langue est <b>invariable</b> : il ne change jamais selon le genre ou la personne. <b>Ech schwätze Lëtzebuergesch.</b>",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1334,7 +1334,8 @@
           "coréen"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1346,7 +1347,8 @@
         "<b>Spuenier</b> (un Espagnol) ≠ <b>Spuenesch</b> (l'espagnol).",
         "C'est exactement ce que testent les pièges du quiz : repère bien la terminaison <b>-esch</b> des langues."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1381,7 +1383,8 @@
           "schwätzen"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1391,7 +1394,8 @@
         "Affirmation : <b>Hien schwätzt Japanesch.</b>",
         "Négation : on ajoute <b>net</b> avant la langue : <b>Hien schwätzt net Japanesch.</b>"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1402,7 +1406,8 @@
         "<b>Wat fir eng Sprooch schwätzt Dir?</b> = Quelle langue parlez-vous ? (formel)",
         "Au pluriel (plusieurs langues) : <b>Wat fir Sprooche schwätzt hien?</b> = Quelles langues parle-t-il ?"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1412,7 +1417,8 @@
         "On relie les langues avec <b>an</b> (et) : <b>Ech schwätze Franséisch an Lëtzebuergesch.</b>",
         "Avec une liste de trois langues ou plus, on utilise des virgules puis <b>a</b> avant la dernière : <b>Portugisesch, Franséisch a Lëtzebuergesch.</b>"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -1439,7 +1445,8 @@
           "Elle ne parle pas chinois."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     }
   ]
 }

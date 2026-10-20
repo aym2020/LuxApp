@@ -1605,7 +1605,8 @@
           "eng Tankstell",
           "Station-service"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1625,7 +1626,8 @@
           "eng Librairie",
           "Librairie"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1664,7 +1666,8 @@
           "eng Gare",
           "Gare"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1696,7 +1699,8 @@
           "e Fluchhafen",
           "Aéroport"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1727,7 +1731,8 @@
           "e Büro",
           "bureau"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1737,7 +1742,8 @@
         "Pour de nombreux bâtiments : <b>an engem</b> (masculin/neutre), <b>an enger</b> (féminin).",
         "an <b>engem</b> Büro · an <b>enger</b> Klinik."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1747,7 +1753,8 @@
         "Certains lieux prennent <b>op enger</b> ou <b>op engem</b> : op enger Bank, op enger Post, op engem Maart.",
         "De Bréifdréier schafft <b>op enger</b> Post."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1757,17 +1764,15 @@
         "Chez une personne : <b>bei engem</b> Dokter, <b>bei enger</b> Coiffeuse.",
         "<b>Wou schaffs du?</b> · <b>Wou schafft Dir?</b> (politesse)."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Dans un lieu : an",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech schaffen an engem Büro.",
           "Je travaille dans un bureau."
@@ -1787,14 +1792,11 @@
       ]
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Sur un site : op",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech schaffen op engem Maart.",
           "Je travaille au marché."
@@ -1814,14 +1816,11 @@
       ]
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Chez une personne et poser la question",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 3,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Wou schaffs du?",
           "Où travailles-tu ?"
@@ -1843,7 +1842,8 @@
     {
       "type": "texte",
       "contenu": "Pour dire <b>où quelqu'un travaille</b>, on utilise le verbe <b>schaffen</b> + une préposition. Cette préposition dépend du type de lieu : lieu physique, institution, personne ou employeur.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1856,7 +1856,8 @@
         "Après <b>an</b>, <b>op</b> et <b>bei</b>, on utilise souvent <b>engem</b> ou <b>enger</b>.",
         "<b>engem</b> s'utilise avec les noms masculins ou neutres. <b>enger</b> s'utilise avec les noms féminins."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1871,7 +1872,8 @@
         "<b>Si schaffen</b> = ils / elles travaillent.",
         "<b>Dir schafft</b> = vous travaillez, forme polie."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1903,7 +1905,8 @@
           "als Bäckesch · als Affekot"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1915,7 +1918,8 @@
         "<b>eng</b> devient <b>enger</b> : eng Klinik → an enger Klinik.",
         "Le piège n'est donc pas seulement la préposition. Il faut aussi connaître le genre du lieu."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1967,7 +1971,8 @@
           "op enger Gare"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2059,7 +2064,8 @@
           "De Fotograf schafft an engem Studio."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -2116,7 +2122,8 @@
           "Den Employé schafft op enger Gare."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2129,7 +2136,8 @@
         "<b>Je travaille chez un médecin</b> → Ech schaffen <b>bei engem Dokter</b>.",
         "<b>Je travaille comme boulangère</b> → Ech schaffen <b>als Bäckesch</b>."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2142,10 +2150,11 @@
         "<b>Wou schafft Dir?</b> = Où travaillez-vous ?",
         "<b>Wat schaffs du?</b> = Que fais-tu comme travail ?"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Réponses courtes à mémoriser",
       "items": [
         [
@@ -2177,7 +2186,8 @@
           "Je travaille comme boulangère."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -2224,7 +2234,8 @@
           "Oui, je travaille chez un médecin."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     }
   ]
 }

@@ -1078,7 +1078,8 @@
       "lignes": [
         "Cherche <b>engagéiert</b> (recrute) ou <b>sicht</b> (cherche), l'employeur et le poste.",
         "D'Gemeng engagéiert eng Sekretärin."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1113,17 +1114,15 @@
           "eng Sekretärin",
           "secrétaire"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 1,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "eng Aarbechtsannonce",
           "une offre d'emploi"
@@ -1139,7 +1138,15 @@
         [
           "de Profil",
           "le profil"
-        ],
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "D'Gemeng engagéiert eng Sekretärin.",
           "La commune recrute une secrétaire."
@@ -1154,7 +1161,8 @@
       "lignes": [
         "Compare <b>Stonnen d'Woch</b> (heures par semaine), <b>hallefdaags</b>, <b>ganzdaags</b>, <b>Erfarung</b>, <b>vu Virdeel</b> et <b>Prioritéit</b>.",
         "20 Stonnen d'Woch · Englesch ass vu Virdeel."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1193,17 +1201,15 @@
           "Stonnen d'Woch",
           "heures par semaine"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 2,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "d'Ausbildung",
           "la formation"
@@ -1234,7 +1240,8 @@
       "lignes": [
         "Pour postuler : <b>Kandidatur</b> (candidature), <b>schécken</b> (envoyer), <b>bis spéitstens</b> (au plus tard), <b>viru</b> (avant).",
         "Schéckt Är Kandidatur · bis spéitstens den 20. August."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1269,17 +1276,15 @@
           "den 20. August",
           "le 20 août"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 3,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "d'Kandidatur",
           "la candidature"
@@ -1305,10 +1310,11 @@
     {
       "type": "texte",
       "contenu": "Cette leçon prépare la partie <b>D'Annonce</b> de l'examen A1.2 (5 points). Dans les annales, c'est une <b>offre d'emploi</b> (eng Aarbechtsannonce) : on la lit, puis on répond richteg (vrai) ou falsch (faux). Il faut repérer cinq informations : qui recrute, quel poste, combien d'heures, quel profil, et jusqu'à quand postuler.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "L'annonce type de l'examen",
       "items": [
         [
@@ -1348,7 +1354,8 @@
           "Envoyez votre candidature au plus tard le 20 août à : gemeng@letz.lu"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "tableau",
@@ -1385,7 +1392,8 @@
           "bis spéitstens den 20. August"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1444,7 +1452,8 @@
           "au plus tard le …"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1456,7 +1465,8 @@
         "<b>Les langues</b> : « vu Virdeel » = un plus, ce n'est pas une <b>Prioritéit</b>. Si l'anglais est dans la liste des langues demandées, « Englesch ass Prioritéit » est <b>richteg</b>.",
         "<b>La date</b> : bis spéitstens den 20. August → « viru Mëtt August » (avant le 15) est <b>falsch</b>, « viru September » est <b>richteg</b>."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1466,7 +1476,8 @@
         "D'Gemeng <b>engagéiert</b> eng Sekretärin. = La commune <b>recrute</b> une secrétaire (verbe engagéieren).",
         "Profil: <b>engagéiert</b> a flexibel = <b>motivé</b> et flexible (adjectif)."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1478,7 +1489,8 @@
         "<b>schécken</b> : Schéckt Är Kandidatur! = Envoyez votre candidature ! (forme de politesse)",
         "<b>brauchen</b> : ech brauch, hien brauch (sans t), mir brauchen. D'Persoun brauch keng Erfarung."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1488,7 +1500,76 @@
         "Erfarung et Experienz veulent dire la même chose : l'expérience.",
         "Le dictionnaire LOD écrit <b>Kenntnesser</b> et <b>Führerschäin</b>. Le manuel écrit parfois Kenntnisser ou Fürerschäin."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wat fir eng Annonce ass dat?",
+          "Quel type d'annonce est-ce ?"
+        ],
+        [
+          "Dat ass eng Aarbechtsannonce.",
+          "C'est une offre d'emploi."
+        ],
+        [
+          "Wien engagéiert eng Sekretärin?",
+          "Qui recrute une secrétaire ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Englesch ass vu Virdeel.",
+          "L'anglais est un atout."
+        ],
+        [
+          "A bei der Gemeng? Wéi vill Stonnen d'Woch?",
+          "Et à la commune ? Combien d'heures par semaine ?"
+        ],
+        [
+          "Zwanzeg Stonnen d'Woch.",
+          "Vingt heures par semaine."
+        ],
+        [
+          "Ass d'Aarbecht ganzdaags?",
+          "Le travail est-il à temps plein ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Schéckt Är Kandidatur bis spéitstens den 20. August.",
+          "Envoyez votre candidature au plus tard le 20 août."
+        ],
+        [
+          "Brauch ech Erfarung?",
+          "Ai-je besoin d'expérience ?"
+        ],
+        [
+          "D'Persoun brauch keng Erfarung.",
+          "La personne n'a pas besoin d'expérience."
+        ],
+        [
+          "Bis wéini muss d'Kandidatur geschéckt ginn?",
+          "Jusqu'à quand faut-il envoyer la candidature ?"
+        ]
+      ]
     }
   ]
 }

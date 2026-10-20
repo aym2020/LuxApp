@@ -1264,7 +1264,8 @@
         "Pour dire son âge : <b>Ech sinn … Joer al.</b> Question : <b>Wéi al bass du?</b> ou poliment <b>Wéi al sidd Dir?</b>",
         "Ech sinn uechtzéng Joer al. · Si ass drësseg Joer al."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1303,17 +1304,15 @@
           "Joer al",
           "avoir … ans"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech sinn uechtzéng Joer al.",
           "J'ai 18 ans."
@@ -1344,7 +1343,8 @@
         "Les mois commencent par une majuscule. Pour parler de son anniversaire : <b>Ech hunn den dräizéngte Juni Gebuertsdag.</b>",
         "Wéini hues du Gebuertsdag? · Ech hunn den dräizéngte Juni Gebuertsdag."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1383,17 +1383,15 @@
           "Dezember",
           "décembre"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "Januar",
           "Janvier"
@@ -1424,7 +1422,8 @@
         "Pour la naissance : <b>Ech sinn den … gebuer.</b> La date utilise un jour ordinal, un mois et une année écrite en un seul mot.",
         "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1463,24 +1462,30 @@
           "zweedausendvéier",
           "2004"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 3,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
-        [
-          "Wéini bass du gebuer?",
-          "Quand es-tu né(e) ?"
-        ],
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "nonzénghonnertsiwenannonzeg",
           "1997"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wéini bass du gebuer?",
+          "Quand es-tu né(e) ?"
         ],
         [
           "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer.",
@@ -1499,7 +1504,8 @@
     {
       "type": "texte",
       "contenu": "Cette leçon sert à dire son âge, à demander l'âge de quelqu'un, à dire sa date de naissance et à parler de son anniversaire. On utilise surtout les verbes sinn et hunn.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1512,7 +1518,8 @@
         "Pour demander l'âge : Wéi al bass du? ou Wéi al sidd Dir?",
         "Pour demander la date de naissance : Wéini bass du gebuer? ou Wéini sidd Dir gebuer?"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1527,7 +1534,8 @@
         "Dir sidd = vous êtes.",
         "Si sinn = ils / elles sont."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1541,7 +1549,8 @@
         "Mais : Ech si véieranzwanzeg Joer al. → véieranzwanzeg commence par v.",
         "Dans cette leçon, apprends les phrases modèles telles qu'elles sont données."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1573,7 +1582,8 @@
           "Ech sinn + âge + Joer al"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1585,7 +1595,8 @@
         "Wéi al sidd Dir? = Quel âge avez-vous ?",
         "Wat ass Ären Alter? = Quel est votre âge ?"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1657,7 +1668,8 @@
           "den zwanzegsten Dezember"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1670,7 +1682,8 @@
         "de véieranzwanzegste Abrëll = le 24 avril.",
         "La forme den peut devenir de devant certains mots, comme dans de véieranzwanzegste Abrëll."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1732,7 +1745,8 @@
           "de véieranzwanzegste Abrëll"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1743,7 +1757,8 @@
         "Dans une date complète avec le mois, on utilise souvent la forme courte : den dräizéngte Juni, den uechtzéngte Januar.",
         "Pour éviter de deviner, les exercices doivent toujours indiquer clairement si on attend une date complète."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1760,7 +1775,8 @@
         "2015 = zweedausendfofzéng.",
         "2026 = zweedausendsechsanzwanzeg."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1787,7 +1803,8 @@
           "de + jour ordinal + mois + année"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1799,7 +1816,8 @@
         "Wéini ass d'Barbara gebuer? = Quand Barbara est-elle née ?",
         "Ech sinn den dräizéngte Juni nonzénghonnertnéngannonzeg gebuer. = Je suis né(e) le 13 juin 1999."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1814,7 +1832,8 @@
         "Dir hutt = vous avez.",
         "Si hunn = ils / elles ont."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1846,10 +1865,11 @@
           "Nom + huet + date + Gebuertsdag"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Phrases courtes à mémoriser",
       "items": [
         [
@@ -1889,7 +1909,8 @@
           "Mon anniversaire est le 13 juin."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -1920,7 +1941,8 @@
           "J'ai 40 ans."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -1951,7 +1973,32 @@
           "Mon anniversaire est le 13 juin."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wéini hues du Gebuertsdag?",
+          "Quand est ton anniversaire ?"
+        ],
+        [
+          "Ech hunn den dräizéngte Juni Gebuertsdag.",
+          "Mon anniversaire est le 13 juin."
+        ],
+        [
+          "Ech hunn den éischte Mee Gebuertsdag. An d'Barbara?",
+          "Mon anniversaire est le 1er mai. Et Barbara ?"
+        ],
+        [
+          "D'Barbara huet den uechtzéngte Januar Gebuertsdag.",
+          "L'anniversaire de Barbara est le 18 janvier."
+        ]
+      ]
     }
   ]
 }

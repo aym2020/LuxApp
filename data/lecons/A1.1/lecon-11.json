@@ -1649,7 +1649,8 @@
         "Métier au masculin : <b>e Banker</b> · <b>en Dokter</b>.",
         "Ech sinn <b>e</b> Polizist."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1659,7 +1660,8 @@
         "Au féminin : <b>eng</b> Bankerin, Polizistin, Doktesch.",
         "Dokter → <b>Doktesch</b> (forme particulière)."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1669,7 +1671,8 @@
         "<b>schaffen als</b> sans article ; négation <b>kee</b> / <b>keng</b> devant un métier.",
         "Ech sinn <b>kee</b> Coiffer. Ech schaffen <b>als</b> Banker."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1708,7 +1711,8 @@
           "e Metzler",
           "Boucher"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1752,17 +1756,15 @@
           "e Schauspiller",
           "Acteur"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Dire son métier",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech sinn e Polizist.",
           "Je suis policier."
@@ -1818,7 +1820,8 @@
           "eng Metzlesch",
           "Bouchère"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1862,17 +1865,15 @@
           "eng Schauspillerin",
           "Actrice"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Les métiers au féminin",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech sinn eng Doktesch.",
           "Je suis médecin (femme)."
@@ -1920,17 +1921,15 @@
           "Banker",
           "banquier"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Travailler comme et dire non",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 3,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech schaffen als Dokter.",
           "Je travaille comme médecin (homme)."
@@ -1952,7 +1951,8 @@
     {
       "type": "texte",
       "contenu": "Pour parler du métier de quelqu'un, on utilise surtout sinn pour dire ce que l'on est, et schaffen als pour dire comme quoi on travaille. La difficulté principale de cette leçon est de retenir la forme masculine, la forme féminine et l'article qui va avec.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1964,7 +1964,8 @@
         "Ech schaffen als Dokter. = Je travaille comme médecin.",
         "Après als, on ne met généralement pas l'article : als Dokter, als Metzler, als Léierin."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1976,7 +1977,8 @@
         "Féminin → eng : eng Polizistin, eng Bankerin, eng Doktesch.",
         "Dans les phrases avec sinn, on garde l'article : Ech sinn e Banker, Ech sinn eng Bankerin."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2073,7 +2075,8 @@
           "acteur / actrice"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2084,7 +2087,8 @@
         "Certains métiers ont une forme féminine particulière : Dokter → Doktesch, Apdikter → Apdiktesch, Bäcker → Bäckesch.",
         "Certains emprunts restent proches du français : en Infirmier / eng Infirmière, e Caissier / eng Caissière."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2126,7 +2130,8 @@
           "schaffen als + métier"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2137,7 +2142,8 @@
         "Ech schaffen als Dokter. = Je travaille comme médecin.",
         "Les deux phrases sont proches, mais elles ne se construisent pas pareil : avec sinn, on met l'article ; avec als, on ne le met pas."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2149,7 +2155,8 @@
         "Féminin avec eng → keng : Ech si keng Polizistin.",
         "Exemples : Ech si kee Coiffer. · Ech si keen Affekot. · Ech si keng Bankerin."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -2172,7 +2179,8 @@
           "Que faites-vous comme travail ?"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -2195,7 +2203,8 @@
           "Je travaille comme boulangère."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -2218,7 +2227,8 @@
           "Non, elle n'est pas banquière."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     }
   ]
 }

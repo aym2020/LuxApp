@@ -1337,7 +1337,8 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon présente des adjectifs et leurs <b>contraires</b>. L'adjectif se place après <b>ass</b> et reste <b>invariable</b> : <b>De Bus ass grouss.</b> Un contraire se retient mieux à deux : si tu connais <b>grouss</b>, tu connais <b>kleng</b>."
+      "contenu": "Cette leçon présente des adjectifs et leurs <b>contraires</b>. L'adjectif se place après <b>ass</b> et reste <b>invariable</b> : <b>De Bus ass grouss.</b> Un contraire se retient mieux à deux : si tu connais <b>grouss</b>, tu connais <b>kleng</b>.",
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1360,7 +1361,8 @@
           "niddereg (bas)"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1371,7 +1373,8 @@
         "Non : <b>net</b> devant l'adjectif : <b>De Vëlo ass net nei.</b>",
         "Le vélo = <b>de Vëlo</b> (masculin) → pronom <b>en</b> : En ass al."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1394,7 +1397,8 @@
           "eckeg (anguleux)"
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1404,7 +1408,8 @@
         "Et = <b>an</b>, qui devient <b>a</b> devant la plupart des consonnes : séier <b>a</b> liicht, lues <b>a</b> schwéier.",
         "Devant une voyelle et n, d, t, z, h, on garde <b>an</b>."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1420,7 +1425,8 @@
         ]
       ],
       "unite": 2,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1443,7 +1449,8 @@
           "ellen (laid)"
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1453,7 +1460,8 @@
         "Ici <b>ganz</b> = <b>intact, entier</b> (≠ futti) : <b>Den Handy ass ganz.</b>",
         "Mais <b>ganz</b> veut aussi dire <b>très</b> : ganz gutt = très bien (leçon 1)."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1469,16 +1477,14 @@
         ]
       ],
       "unite": 3,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Exemples : décrire un objet",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "type": "phrases",
+      "rubrique": "phrases",
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Den Handy ass nei.",
           "Le smartphone est neuf."
@@ -1534,7 +1540,80 @@
           "Non, il est cher. Et il est cassé !"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Den Elefant ass grouss.",
+          "L'éléphant est grand."
+        ],
+        [
+          "D'Mauer ass niddereg.",
+          "Le muret est bas."
+        ],
+        [
+          "Moien! De Vëlo ass nei!",
+          "Bonjour ! Le vélo est neuf !"
+        ],
+        [
+          "De Vëlo ass net nei. En ass al.",
+          "Le vélo n'est pas neuf. Il est vieux."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Den Auto ass séier.",
+          "La voiture est rapide."
+        ],
+        [
+          "De Ball ass ronn.",
+          "La balle est ronde."
+        ],
+        [
+          "Jo, mee de Vëlo ass séier a liicht!",
+          "Oui, mais le vélo est rapide et léger !"
+        ],
+        [
+          "Nee, en ass lues a schwéier!",
+          "Non, il est lent et lourd !"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Den Handy ass ganz.",
+          "Le smartphone est intact."
+        ],
+        [
+          "D'Fläsch ass voll.",
+          "La bouteille est pleine."
+        ],
+        [
+          "Mee de Vëlo ass bëlleg!",
+          "Mais le vélo n'est pas cher !"
+        ],
+        [
+          "Nee, en ass deier. An en ass futti!",
+          "Non, il est cher. Et il est cassé !"
+        ]
+      ]
     }
   ]
 }

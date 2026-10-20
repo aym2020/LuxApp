@@ -1168,7 +1168,8 @@
         "Situation familiale : <b>bestuet</b>, <b>gescheet</b>, <b>leedeg</b> · négation : <b>net bestuet</b>.",
         "<b>Bass du bestuet?</b> (tu) · <b>Sidd Dir bestuet?</b> (vous)."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1178,7 +1179,8 @@
         "<b>e Kand</b> (un enfant), <b>Kanner</b> (des enfants) ; <b>hunn</b> (avoir).",
         "Ech hunn <b>zwee Kanner</b> · Ech hu <b>keng Kanner</b>."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1188,7 +1190,8 @@
         "Un petit ami : <b>e Frënd</b> ; une petite amie : <b>eng Frëndin</b>.",
         "Ech hunn eng Frëndin · Hien huet <b>kee Frënd</b>."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1223,17 +1226,15 @@
           "e Jonggesell",
           "un célibataire (homme)"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Marié, divorcé ou célibataire ?",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "bestuet",
           "Marié(e)"
@@ -1285,17 +1286,15 @@
           "e Mupp",
           "un chien"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Les enfants",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "e Kand",
           "Un enfant"
@@ -1343,17 +1342,15 @@
           "Wittfra",
           "veuve"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Les proches et la négation",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 3,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "e Frënd",
           "Petit ami"
@@ -1375,7 +1372,8 @@
     {
       "type": "texte",
       "contenu": "Cette leçon sert à parler de la <b>situation familiale</b> : être marié, divorcé, séparé, pacsé, fiancé ou célibataire, mais aussi dire si l'on a des enfants, un partenaire ou des animaux.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1388,7 +1386,8 @@
         "Donc : <b>Hien ass leedeg</b> = Il est célibataire.",
         "Mais : <b>Hien ass e Jonggesell</b> = C'est un célibataire."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1430,7 +1429,8 @@
           "Nom : on attend eng Jonggesellin."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1445,7 +1445,8 @@
         "<b>Dir sidd bestuet.</b> = Vous êtes marié(e)(s).",
         "<b>Si si bestuet.</b> = Ils / Elles sont marié(e)s."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1457,7 +1458,8 @@
         "<b>Ech si leedeg.</b> = Je suis célibataire.",
         "Mais devant <b>net</b>, on garde <b>sinn</b> : <b>Ech sinn net bestuet.</b>"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1524,7 +1526,8 @@
           "Si ass Wittfra."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1539,7 +1542,8 @@
         "<b>Dir hutt e Kand.</b> = Vous avez un enfant.",
         "<b>Si hunn e Kand.</b> = Ils / Elles ont un enfant."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1601,7 +1605,8 @@
           "Si hunn eng Kaz."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1613,7 +1618,8 @@
         "Avec un <b>nom féminin</b>, on utilise <b>keng</b> : Si huet keng Frëndin.",
         "Avec un <b>pluriel</b>, on utilise aussi <b>keng</b> : Ech hu keng Kanner."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1645,7 +1651,8 @@
           "Kanner est pluriel."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1660,10 +1667,11 @@
         "<b>Hues du e Frënd?</b> = As-tu un petit ami ?",
         "<b>Hues du eng Frëndin?</b> = As-tu une petite amie ?"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Phrases courtes à mémoriser",
       "items": [
         [
@@ -1719,7 +1727,8 @@
           "Ils ont un chien et un chat."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -1762,7 +1771,8 @@
           "Oui, c'est un célibataire."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -1793,7 +1803,8 @@
           "Oui, j'ai deux enfants, une fille et un garçon."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -1824,7 +1835,80 @@
           "Non, elle est célibataire. Elle a un petit ami."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Bass du bestuet?",
+          "Es-tu marié ?"
+        ],
+        [
+          "Nee, ech sinn net bestuet.",
+          "Non, je ne suis pas marié."
+        ],
+        [
+          "De Paul ass bestuet.",
+          "Paul est marié."
+        ],
+        [
+          "Nee, de Paul ass gescheet.",
+          "Non, Paul est divorcé."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Hues du Kanner?",
+          "As-tu des enfants ?"
+        ],
+        [
+          "Jo, ech hunn zwee Kanner.",
+          "Oui, j'ai deux enfants."
+        ],
+        [
+          "E Jong an e Meedchen?",
+          "Un garçon et une fille ?"
+        ],
+        [
+          "Jo, e Meedchen an e Jong.",
+          "Oui, une fille et un garçon."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Hues du eng Frëndin?",
+          "As-tu une petite amie ?"
+        ],
+        [
+          "Jo, ech hunn eng Frëndin.",
+          "Oui, j'ai une petite amie."
+        ],
+        [
+          "Huet si e Mupp?",
+          "A-t-elle un chien ?"
+        ],
+        [
+          "Nee, si huet eng Kaz.",
+          "Non, elle a un chat."
+        ]
+      ]
     }
   ]
 }

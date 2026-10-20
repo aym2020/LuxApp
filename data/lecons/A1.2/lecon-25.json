@@ -1096,7 +1096,8 @@
       "lignes": [
         "Au marché, la vendeuse demande <b>Wat kritt Dir?</b> ; le client répond <b>Ech hätt gär …</b> ou <b>Ech huelen …</b>.",
         "Ech hätt gär e Kilo Äppel. · Soss nach eppes?"
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1131,17 +1132,15 @@
           "Et ass u mir",
           "c'est à moi"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "U wiem ass et?",
           "À qui le tour ?"
@@ -1172,7 +1171,8 @@
       "lignes": [
         "Une quantité : <b>e Kilo</b> (1 kg), <b>e Pond</b> (500 g), <b>eng Dosen</b> (12), <b>eng Tut</b> (sachet).",
         "Ech huelen eng Dosen Aprikosen."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1215,29 +1215,15 @@
           "Aprikosen",
           "abricots"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 2,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
-        [
-          "Eng Dosen, wann ech gelift.",
-          "Une douzaine, s'il vous plaît."
-        ],
-        [
-          "Wëllt Dir eng Tut?",
-          "Voulez-vous un sachet ?"
-        ],
-        [
-          "Nee merci, ech hunn en Akafskuerf.",
-          "Non merci, j'ai un panier à provisions."
-        ],
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "e Kilo",
           "un kilo"
@@ -1249,6 +1235,26 @@
       ]
     },
     {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Eng Dosen, wann ech gelift.",
+          "Une douzaine, s'il vous plaît."
+        ],
+        [
+          "Wëllt Dir eng Tut?",
+          "Voulez-vous un sachet ?"
+        ],
+        [
+          "Nee merci, ech hunn en Akafskuerf.",
+          "Non merci, j'ai un panier à provisions."
+        ]
+      ]
+    },
+    {
       "type": "callout",
       "unite": 3,
       "variant": "retenir",
@@ -1256,7 +1262,8 @@
       "lignes": [
         "Pour conclure : <b>Dat wier alles.</b> Pour régler : <b>Kann ech mat der Kaart bezuelen?</b> ou <b>Ech bezuele boer.</b>",
         "Dat mécht zesummen aacht Euro. · Ech bezuele mat der Kaart."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1291,17 +1298,15 @@
           "Euro",
           "euros"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 3,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Dat wier alles.",
           "Ce sera tout."
@@ -1327,7 +1332,8 @@
     {
       "type": "texte",
       "contenu": "Cette leçon prépare la partie <b>Um Maart</b> de l'examen A1.2 : un dialogue au marché à compléter (8 points). Il faut savoir qui dit quoi (la marchande ou le client), les <b>quantités</b> (Kilo, Pond, Dosen) et les mots pour <b>emballer</b> et <b>payer</b>. Les nombres sont ceux de la leçon 5.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -1386,7 +1392,8 @@
           "Oui, bien sûr."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "vocab",
@@ -1417,7 +1424,8 @@
           "Ça fait … en tout"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1452,7 +1460,8 @@
           "Non merci, j'ai un panier à provisions."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1494,7 +1503,8 @@
           "masculin → en (devant une voyelle)"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1526,7 +1536,8 @@
           "abricot(s)"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1538,7 +1549,8 @@
         "<b>bezuelen</b> : ech bezuelen, Dir bezuelt. Kann ech mat der Kaart bezuelen?",
         "Pour commander poliment : <b>Ech hätt gär …</b> (déjà vu avec gär, leçon 23)."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1551,7 +1563,8 @@
         "Avant un prix : Dat mécht <b>zesummen</b> …",
         "Après « mat der Kaart » : <b>bezuelen</b>."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1562,7 +1575,8 @@
         "On le perd devant les autres consonnes : Dat mécht zesumme fofzéng Euro. Ech bezuele boer.",
         "Même règle pour l'article : <b>en</b> Akafskuerf, mais <b>e</b> Kilo, <b>e</b> Pond, <b>e</b> Sak."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     }
   ]
 }

@@ -1094,7 +1094,8 @@
         "Pour demander poliment : <b>Ech hätt gär e Rendez-vous.</b> Les jours vont de Méindeg à Sonndeg.",
         "Ech hätt gär e Rendez-vous · Méindeg, Dënschdeg, Mëttwoch, Donneschdeg, Freideg."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1129,17 +1130,15 @@
           "Sonndeg",
           "dimanche"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "Méindeg",
           "lundi"
@@ -1174,7 +1173,8 @@
         "Pour proposer : <b>Fir e Freideg, geet dat?</b> Réponses : <b>Dat geet leider net</b> (non) ou <b>Dat ass an der Rei</b> (oui).",
         "Fir wéini? · Dat geet leider net. · Jo, dat ass an der Rei."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1213,17 +1213,15 @@
           "bis",
           "jusqu'à"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech hätt gär e Rendez-vous.",
           "Je voudrais un rendez-vous."
@@ -1258,7 +1256,8 @@
         "Question formelle : <b>Wéi ass Ären Numm?</b> · Pour finir : <b>Villmools Merci!</b>, <b>Bis d'nächst Woch</b>.",
         "Wéi buschtawéiert Dir dat? · Villmools Merci! · Et ass gär geschitt!"
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1297,17 +1296,15 @@
           "Ären",
           "votre (nom)"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à produire",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 3,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Wéi ass Ären Numm?",
           "Quel est votre nom ?"
@@ -1337,7 +1334,8 @@
     {
       "type": "texte",
       "contenu": "Cette leçon apprend à prendre un rendez-vous par téléphone, par exemple chez le médecin. On apprend les jours de la semaine, à demander un rendez-vous poliment, à accepter ou refuser un créneau, à donner et épeler son nom, puis à remercier et se saluer.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1350,7 +1348,8 @@
         "On donne et on épelle son nom : Mäin Numm ass Molitor. M-O-L-I-T-O-R.",
         "On termine poliment : Villmools Merci. Bis d'nächst Woch. Merci gläichfalls."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1385,7 +1384,8 @@
           "dimanche"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1398,7 +1398,8 @@
         "Um 10:30 ass nach e Rendez-vous fräi. = À 10h30, il y a encore un rendez-vous libre.",
         "On place le jour avec e : e Méindeg, e Freideg. On précise le moment : den Nomëtteg (l'après-midi)."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1411,7 +1412,8 @@
         "Ech schaffe bis 16:00 Auer. = Je travaille jusqu'à 16h00.",
         "Freides moies schaffen ech net. = Le vendredi matin, je ne travaille pas."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1424,7 +1426,8 @@
         "buschtawéieren = épeler : M-O-L-I-T-O-R.",
         "Ären / Är = votre (forme polie, vouvoiement avec Dir)."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1437,7 +1440,8 @@
         "Nach e schéinen Dag = bonne journée encore. Attention : schéinen Dag (accusatif masculin, -en).",
         "Merci gläichfalls = merci, de même (on renvoie le souhait)."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1494,10 +1498,11 @@
           "Pour renvoyer un souhait."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Phrases types",
       "items": [
         [
@@ -1533,7 +1538,8 @@
           "Merci, de même."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -1604,7 +1610,32 @@
           "Merci, de même !"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Gudde Moien, hei ass Molitor.",
+          "Bonjour, ici Molitor."
+        ],
+        [
+          "Gudde Moien, Madamm Molitor!",
+          "Bonjour, Madame Molitor !"
+        ],
+        [
+          "Ech hätt gär e Rendez-vous.",
+          "Je voudrais un rendez-vous."
+        ],
+        [
+          "Wéini schafft Dir?",
+          "Quand travaillez-vous ?"
+        ]
+      ]
     }
   ]
 }

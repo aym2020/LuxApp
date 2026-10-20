@@ -1044,7 +1044,8 @@
       "lignes": [
         "<b>sinn</b> (être) change avec le sujet : ech <b>sinn</b>, du <b>bass</b>, hien / si / hatt <b>ass</b>, mir <b>sinn</b>, dir / Dir <b>sidd</b>, si <b>sinn</b>.",
         "Ech <b>sinn</b> Italiener · Si <b>ass</b> bestuet · Mir <b>sinn</b> zu Lëtzebuerg."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1079,17 +1080,15 @@
           "si sinn",
           "ils sont"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech sinn Italiener.",
           "Je suis italien."
@@ -1112,7 +1111,8 @@
       "lignes": [
         "<b>hunn</b> (avoir) : ech <b>hunn</b>, du <b>hues</b>, hien / si / hatt <b>huet</b>, mir <b>hunn</b>, dir / Dir <b>hutt</b>, si <b>hunn</b>.",
         "Ech <b>hunn</b> en Auto · Hien <b>huet</b> en Handy · Mir <b>hunn</b> zwee Kanner."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1147,17 +1147,15 @@
           "si hunn",
           "ils ont"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech hunn en Auto.",
           "J'ai une voiture."
@@ -1180,7 +1178,8 @@
       "lignes": [
         "Question : le verbe passe <b>avant</b> le sujet : <b>Bass du</b> …? <b>Hues du</b> …? Règle du n : devant une consonne autre que n, d, t, z, h, <b>sinn → si</b> et <b>hunn → hu</b>.",
         "Ech <b>si</b> bestuet · Ech <b>hu</b> keen Auto · mais Ech <b>sinn</b> Italiener · Ech <b>hunn</b> en Auto."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1211,17 +1210,15 @@
           "Hues du?",
           "as-tu ?"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 3,
-      "titre": "Phrases à produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech si bestuet.",
           "Je suis marié."
@@ -1251,7 +1248,8 @@
     {
       "type": "texte",
       "unite": 0,
-      "contenu": "Cette leçon apprend les deux verbes les plus utiles : <b>sinn</b> (être) et <b>hunn</b> (avoir), au présent. Tu les connais déjà dans des phrases (leçons 7 à 14) ; ici, on apprend toutes les personnes. Ils serviront ensuite d'<b>auxiliaires</b> pour parler du passé (leçon 25)."
+      "contenu": "Cette leçon apprend les deux verbes les plus utiles : <b>sinn</b> (être) et <b>hunn</b> (avoir), au présent. Tu les connais déjà dans des phrases (leçons 7 à 14) ; ici, on apprend toutes les personnes. Ils serviront ensuite d'<b>auxiliaires</b> pour parler du passé (leçon 25).",
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1293,7 +1291,8 @@
           "sinn",
           "hunn"
         ]
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1304,7 +1303,8 @@
         "L'âge se dit avec <b>sinn</b> : Ech <b>sinn</b> drësseg Joer al = j'ai trente ans · Wéi al <b>bass</b> du? = quel âge as-tu ?",
         "<b>si</b> = elle ou ils, <b>dir</b> = vous (plusieurs), <b>Dir</b> = vous (poli) : c'est le verbe qui aide (si ass / si sinn).",
         "<b>hues</b> = tu as · <b>huet</b> = il/elle a."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1315,7 +1315,8 @@
         "Devant une consonne autre que <b>n, d, t, z, h</b>, on dit <b>si</b> au lieu de sinn et <b>hu</b> au lieu de hunn : Ech <b>si</b> bestuet · Ech <b>hu</b> keen Auto.",
         "Devant une voyelle ou n, d, t, z, h, on garde la forme pleine : Ech <b>sinn</b> Italiener · Mir <b>hunn</b> zwee Kanner.",
         "Les formes courtes : ech si, mir si, si si · ech hu, mir hu, si hu."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1352,7 +1353,8 @@
           "Nee, ech sinn Italiener.",
           "Êtes-vous français ? – Non, je suis italien."
         ]
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1362,7 +1364,8 @@
       "lignes": [
         "Dans la leçon 25, ces mêmes formes servent d'auxiliaires : Ech <b>hu</b> geschafft (j'ai travaillé) · Du <b>bass</b> heemgaangen (tu es rentré).",
         "La forme s'accorde toujours avec le sujet, comme ici au présent."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -1401,7 +1404,8 @@
           "Jo, mir sinn Italiener.",
           "Oui, nous sommes italiens."
         ]
-      ]
+      ],
+      "rubrique": "phrases"
     }
   ]
 }

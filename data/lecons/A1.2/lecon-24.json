@@ -1773,7 +1773,8 @@
       "lignes": [
         "Pour un <b>changement de lieu</b> (aller, rentrer, courir) ou un <b>changement d'état</b> (tomber, se réveiller, se lever), le passé composé utilise <b>sinn</b> + participe passé à la fin.",
         "fueren → Ech si <b>gefuer</b> · trëppelen → Ech si <b>getrëppelt</b> · lafen → Ech si <b>gelaf</b> · falen → Ech si <b>gefall</b> · erwächen → Ech sinn <b>erwächt</b>."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1816,17 +1817,15 @@
           "getrëppelt",
           "marché"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "titre": "Phrases à savoir produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "ech si gefuer",
           "je suis allé (en véhicule)"
@@ -1878,7 +1877,8 @@
           "am Kino sinn",
           "être au cinéma"
         ]
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1888,7 +1888,8 @@
       "lignes": [
         "Pour de nombreuses activités (travailler, boire, manger), on utilise <b>hunn</b> + participe passé à la fin.",
         "Ech hu <b>geschafft</b> · Ech hu <b>giess</b> · Ech hunn <b>de Moien e Kaffi gedronk</b>."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1935,17 +1936,15 @@
           "gekuckt",
           "regardé"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "titre": "Phrases à savoir produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "ech hu giess",
           "j'ai mangé"
@@ -1976,7 +1975,8 @@
       "lignes": [
         "Pour « j'étais » et « j'avais », apprends <b>ech war / mir waren</b> et <b>ech hat / mir haten</b> (devant m : <b>hate mir</b>). Après un temps en tête de phrase, le verbe conjugué garde la deuxième place.",
         "<b>Gëschter hunn ech</b> geschafft · <b>Ech war</b> doheem · <b>Ech hat</b> vill Aarbecht."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2023,17 +2023,15 @@
           "mir haten",
           "nous avions"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
+      "type": "vocab",
+      "rubrique": "lexique",
       "unite": 3,
-      "titre": "Phrases à savoir produire",
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Mots et expressions à retenir",
+      "items": [
         [
           "ech war",
           "j'étais"
@@ -2059,7 +2057,8 @@
     {
       "type": "texte",
       "contenu": "Cette leçon apprend à <b>parler du passé</b> : ce qu'on a fait hier, ce matin ou le week-end dernier. Le luxembourgeois utilise presque toujours le <b>passé composé</b> : un auxiliaire (<b>hunn</b> ou <b>sinn</b>) + un <b>participe passé</b>. On reprend les verbes de la journée (leçon 16) et des loisirs (leçon 23).",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2071,7 +2070,8 @@
         "Ech <b>hunn</b> de Moien e Kaffi <b>gedronk</b>. = J'ai bu un café ce matin.",
         "Le participe ne change jamais : pas d'accord avec le sujet."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2081,7 +2081,8 @@
         "Les formes de <b>sinn</b> (ech sinn, du bass, hien ass…) et de <b>hunn</b> (ech hunn, du hues, hien huet…) sont apprises dans la <b>leçon 20</b>.",
         "Ici, elles servent d'<b>auxiliaires</b> : la forme s'accorde avec le sujet, comme au présent : Du <b>bass</b> heemgaangen · Hien <b>huet</b> geschafft."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2092,7 +2093,8 @@
         "<b>sinn</b> aussi : changement d'état ou de position — falen (tomber), erwächen (se réveiller), opstoen (se lever).",
         "<b>hunn</b> : la plupart des autres verbes — iessen, drénken, schaffen, wunnen, schlofen, duschen… Apprends l'auxiliaire avec le verbe : il n'est pas toujours le même qu'en français."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2159,7 +2161,8 @@
           "Ech sinn opgestanen."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -2256,7 +2259,8 @@
           "Ech hu gelauschtert."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2269,7 +2273,8 @@
         "<b>Irréguliers</b> (à apprendre par cœur) : giess, gedronk, geschlof, geschriwwen, gemaach, gelies, gaangen, gefuer, gelaf, gefall.",
         "erwächen → <b>erwächt</b> : pas de ge-."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2281,7 +2286,8 @@
         "<b>fueren</b> = aller en véhicule · <b>goen</b> = aller à pied : Ech si mam Bus gefuer, mais Ech sinn an de Kino gaangen.",
         "<b>schlofe goen</b> → Ech si schlofe <b>gaangen</b> (sinn) · <b>schlofen</b> → Ech hu <b>geschlof</b> (hunn)."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2323,7 +2329,8 @@
           "haten"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2335,7 +2342,8 @@
         "Ech <b>hat</b> vill Aarbecht. = J'avais beaucoup de travail.",
         "Les participes existent (gewiescht, gehat) mais sont rares à ce niveau."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2382,7 +2390,8 @@
           "la réunion"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2395,7 +2404,8 @@
         "<b>UNITEDZOHA</b> : on garde le n de <b>hunn</b> et <b>sinn</b> devant une voyelle ou n, d, t, z, h. Sinon : <b>hunn → hu</b> et <b>sinn → si</b>.",
         "Ech <b>hu</b> geschafft · Ech <b>si</b> gefuer, mais Ech <b>hunn</b> de Moien… · Ech <b>sinn</b> heemgaangen · Ech <b>sinn</b> erwächt."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2427,10 +2437,11 @@
           "Tu as bien dormi ? – Oui, j'ai bien dormi."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Den Dagesoflaf vu gëschter (ma journée d'hier)",
       "items": [
         [
@@ -2470,7 +2481,8 @@
           "À onze heures, je suis allé me coucher."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     },
     {
       "type": "dialogue",
@@ -2501,7 +2513,32 @@
           "J'étais au restaurant. Nous avons bien mangé."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wou waars du owes?",
+          "Où étais-tu le soir ?"
+        ],
+        [
+          "Ech war doheem.",
+          "J'étais à la maison."
+        ],
+        [
+          "War et e gudden Dag?",
+          "C'était une bonne journée ?"
+        ],
+        [
+          "Jo, ech hat e gudden Dag.",
+          "Oui, j'ai passé une bonne journée."
+        ]
+      ]
     }
   ]
 }

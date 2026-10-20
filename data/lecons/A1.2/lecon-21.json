@@ -2480,7 +2480,8 @@
           "tëschent",
           "entre"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2490,7 +2491,8 @@
         "Objet <b>féminin</b> → <b>der</b> : op der Kommod, nieft der Fotell.",
         "Objet <b>masculin ou neutre</b> → <b>dem</b> : ënnert dem Bett, nieft dem Schaf.",
         "Contractions : <b>an + dem = am</b> · <b>op + dem = um</b> · <b>virun + dem = virum</b>."
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2501,7 +2503,8 @@
         "<b>am Buedzëmmer</b> = dans la salle de bain · <b>am Schlofzëmmer</b> = dans la chambre.",
         "Retiens-les comme des blocs. Question : <b>Wou ass … ?</b> = Où est … ?"
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2520,7 +2523,8 @@
           "une douche"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2551,7 +2555,8 @@
           "une machine à café"
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2560,7 +2565,8 @@
       "lignes": [
         "<b>eng Fotell</b> = un fauteuil → féminin : nieft <b>der</b> Fotell."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2595,7 +2601,8 @@
           "une table de nuit"
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2605,7 +2612,8 @@
         "<b>en Dësch</b> = une table · <b>en Teller</b> = une assiette → masculins : <b>um</b> Dësch.",
         "<b>e Regal</b> = une étagère → neutre : <b>um</b> Regal."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2647,7 +2655,8 @@
           "des gobelets"
         ]
       ],
-      "unite": 4
+      "unite": 4,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2695,7 +2704,8 @@
         ]
       ],
       "unite": 1,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2731,7 +2741,8 @@
         ]
       ],
       "unite": 3,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "dialogue",
@@ -2786,7 +2797,103 @@
           "Dans l'armoire."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wou ass de Frigo? – An der Kichen.",
+          "Où est le frigo ? – Dans la cuisine."
+        ],
+        [
+          "Wou ass d'Dusch?",
+          "Où est la douche ?"
+        ],
+        [
+          "D'Dusch ass am Buedzëmmer.",
+          "La douche est dans la salle de bain."
+        ],
+        [
+          "Wou ass de Frigo?",
+          "Où est le frigo ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "D'Planz ass op der Kommod.",
+          "La plante est sur la commode."
+        ],
+        [
+          "D'Luucht ass nieft der Fotell.",
+          "La lampe est à côté du fauteuil."
+        ],
+        [
+          "Wou ass d'Pan?",
+          "Où est la poêle ?"
+        ],
+        [
+          "Wou ass d'Planz?",
+          "Où est la plante ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Den Teller ass um Dësch.",
+          "L'assiette est sur la table."
+        ],
+        [
+          "Den Teppech ass ënnert dem Bett.",
+          "Le tapis est sous le lit."
+        ],
+        [
+          "Den Teller ass am Schaf.",
+          "L'assiette est dans l'armoire."
+        ],
+        [
+          "Wou ass den Teller?",
+          "Où est l'assiette ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 4,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Um Dësch sinn zwee Glieser.",
+          "Sur la table, il y a deux verres."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "rubrique": "regles",
+      "unite": 4,
+      "titre": "Les pluriels",
+      "variant": "retenir",
+      "lignes": [
+        "Les pluriels se retiennent par cœur",
+        "e Glas → <b>Glieser</b> · e Stull → <b>Still</b> · en Teller → <b>Telleren</b>"
+      ]
     }
   ]
 }

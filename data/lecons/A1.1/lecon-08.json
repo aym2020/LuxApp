@@ -2701,7 +2701,8 @@
           "Italienerin",
           "Italien"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2711,7 +2712,8 @@
         "<b>Ech si Fransous.</b> · <b>Hien ass Lëtzebuerger.</b>",
         "Pas d'article devant la nationalité : jamais « Ech si e Fransous »."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2721,7 +2723,8 @@
         "Le <b>n</b> de sinn tombe devant une consonne : <b>Ech si</b> Fransous, Lëtzebuerger, Belsch, Portugis.",
         "Il reste devant une voyelle ou n, d, t, z, h (UNITEDZOHA) : <b>Ech sinn</b> Däitschen, <b>Ech sinn</b> Italiener."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2748,7 +2751,8 @@
           "vous êtes (politesse)"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2758,7 +2762,8 @@
         "Le féminin = masculin + <b>-in</b> : Fransous → <b>Fransousin</b>, Portugis → <b>Portugisin</b>.",
         "<b>Hien ass Lëtzebuerger.</b> · <b>Si ass Lëtzebuergerin.</b>"
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2768,7 +2773,8 @@
         "<b>Belsch</b> ne change pas : Hien ass Belsch · Si ass <b>Belsch</b> (pas de -in).",
         "<b>Däitschen</b> (il) → <b>Däitsch</b> (elle), pas de -in."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2779,7 +2785,8 @@
         "<b>hien</b> perd son n devant une consonne (hors n, d, t, z, h) : Ass <b>hie</b> Portugis? · mais Ass <b>hien</b> Däitschen?",
         "<b>Wat ass seng Nationalitéit?</b> (à lui) · <b>Wat ass hir Nationalitéit?</b> (à elle)"
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2790,7 +2797,8 @@
         "Féminin : <b>keng</b>.",
         "Hien ass <b>kee</b> Portugis · Hien ass <b>keen</b> Däitschen · Si ass <b>keng</b> Fransousin."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2872,7 +2880,8 @@
           "Nordkorea"
         ]
       ],
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2883,7 +2892,8 @@
         "<b>Wat fir eng Nationalitéit huet si?</b> = De quelle nationalité est-elle ?"
       ],
       "unite": 3,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2893,7 +2903,8 @@
         "Quand on parle d'<b>une personne</b> (pas de sa nationalité) : <b>e</b> Fransous, <b>en</b> Italiener, <b>eng</b> Portugisin.",
         "<b>en</b> devant une voyelle ou n, d, t, z, h (UNITEDZOHA), sinon <b>e</b>. Au féminin : toujours <b>eng</b>."
       ],
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -2936,7 +2947,80 @@
           "Non, elle n'est pas française. Elle est belge."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Hien ass Lëtzebuerger.",
+          "Il est luxembourgeois."
+        ],
+        [
+          "Du bass Belsch.",
+          "Tu es belge."
+        ],
+        [
+          "Moien! Ech sinn d'Marie.",
+          "Bonjour ! Moi, c'est Marie."
+        ],
+        [
+          "Moien! Ech sinn de Paul. Ech si Fransous.",
+          "Bonjour ! Moi, c'est Paul. Je suis français."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "D'Anne ass Lëtzebuergerin.",
+          "Anne est luxembourgeoise."
+        ],
+        [
+          "Ech si Fransousin.",
+          "Je suis française."
+        ],
+        [
+          "Ech si Lëtzebuergerin.",
+          "Moi, je suis luxembourgeoise."
+        ],
+        [
+          "Dat ass d'Julie. Si ass Belsch.",
+          "Voici Julie. Elle est belge."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wat ass seng Nationalitéit?",
+          "Quelle est sa nationalité ? (à lui)"
+        ],
+        [
+          "Bass du Lëtzebuerger?",
+          "Es-tu luxembourgeois ?"
+        ],
+        [
+          "Ass hie Portugis?",
+          "Est-il portugais ?"
+        ],
+        [
+          "Nee, hien ass kee Portugis. Hien ass Däitschen.",
+          "Non, il n'est pas portugais. Il est allemand."
+        ]
+      ]
     }
   ]
 }

@@ -2392,7 +2392,8 @@
           "spillen",
           "fueren"
         ]
-      ]
+      ],
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2402,7 +2403,8 @@
         "On met <b>gär</b> juste après le verbe conjugué : <b>Ech liese gär.</b> · <b>Ech kucke gär e Film.</b>",
         "Ne pas confondre avec <b>Ech hätt gär …</b> = je voudrais … (leçon 18)."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2434,7 +2436,8 @@
           "Ech kucke guer net gär e Film."
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2444,7 +2447,8 @@
         "Le <b>n</b> final tombe devant <b>g</b> : Ech liese gär · Ech kache gär.",
         "Il reste devant n, d, t, z, h ou une voyelle : Ech liesen <b>net</b> gär · Ech maachen <b>net</b> gär Sport."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2454,7 +2458,8 @@
         "Sports, instruments, Vëlo et Schi : <b>pas d'article</b>.",
         "Sport maachen · Vëlo fueren · Fussball spillen · Gittar spillen."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2465,7 +2470,8 @@
         "<b>op</b> = événement, lieu ouvert, administration : op e Concert.",
         "<b>bei</b> = chez une personne : bei de Coiffer."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2475,7 +2481,8 @@
         "On conjugue <b>goen</b> et l'autre verbe va <b>à la fin</b> : Ech gi gär <b>spadséieren</b>.",
         "<b>goen</b> est irrégulier : ech ginn, du gees, hie geet, dir gitt."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2510,7 +2517,8 @@
           "une fois par mois"
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2520,7 +2528,8 @@
         "La fréquence se place juste après le verbe : Du gees <b>oft</b> an de Kino.",
         "<b>ni</b> = jamais ≠ <b>net</b> = ne… pas : Ech ginn <b>ni</b> an de Kino."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2628,7 +2637,8 @@
         ]
       ],
       "unite": 1,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -2681,7 +2691,8 @@
         ]
       ],
       "unite": 2,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2692,7 +2703,8 @@
         "<b>hatt</b> = elle, pour une fille ou une femme qu'on appelle par son prénom : Hatt mécht e Cours."
       ],
       "unite": 2,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2704,10 +2716,11 @@
         "Pour l'instant, retiens les expressions avec goen comme des blocs."
       ],
       "unite": 2,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
-      "type": "exemple",
+      "type": "phrases",
       "titre": "Mes projets pour le week-end",
       "items": [
         [
@@ -2728,7 +2741,8 @@
         ]
       ],
       "unite": 3,
-      "plus": true
+      "plus": true,
+      "rubrique": "phrases"
     },
     {
       "type": "callout",
@@ -2739,7 +2753,8 @@
         "<b>Wat maacht Dir gär de Weekend?</b> = Qu'est-ce que vous aimez faire le week-end ?"
       ],
       "unite": 3,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -2786,7 +2801,56 @@
           "Non, je ne vais jamais au cinéma."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wat méchs du gär an der Fräizäit? – Ech liese gär.",
+          "Qu'est-ce que tu aimes faire pendant ton temps libre ? – J'aime lire."
+        ],
+        [
+          "Ech liese ganz gär.",
+          "J'adore lire."
+        ],
+        [
+          "Fiers du gär Vëlo?",
+          "Aimes-tu faire du vélo ?"
+        ],
+        [
+          "Wat méchs du gär an der Fräizäit?",
+          "Qu'est-ce que tu aimes faire pendant ton temps libre ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Ech ginn an de Kino.",
+          "Je vais au cinéma."
+        ],
+        [
+          "Ech gi gär spadséieren.",
+          "J'aime me promener."
+        ],
+        [
+          "E Samschdeg ginn ech akafen.",
+          "Samedi, je vais faire les courses."
+        ],
+        [
+          "E Samschdeg ginn ech an de Kino.",
+          "Samedi, je vais au cinéma."
+        ]
+      ]
     }
   ]
 }

@@ -17,7 +17,7 @@ const ctx={currentLecon:lecons[1],pLecon:lecons[1],
   fermerBulleContexte:()=>{},document:{getElementById:id=>ecran[id]||null}};
 const api=vm.runInNewContext(fs.readFileSync(path.join(racine,'public/cours75.js'),'utf8')+
   ';({cours75Actif,cours75Html,cours75Contenu,cours75Choisir,cours75Filtrer,cours75Etats})',ctx);
-assert.equal(api.cours75Actif(lecon(4)),false,'leçon 4 conserve son cours historique');
+assert.equal(api.cours75Actif(lecon(4)),true,'leçon 4 migrée elle aussi');
 for(const l of lecons) {
   assert.ok(api.cours75Actif(l),'pilote '+l.id);
   assert.equal(l.cours.length,origine[l.id].cours+l.unites.length);
@@ -91,4 +91,54 @@ assert.equal(api.cours75Etats.panneau.unite,null,'Toute la leçon disponible');
 assert.match(css,/#cours-panel \.cp-feuille\s*\{[^}]*height:88dvh/,'hauteur fixe du panneau');
 assert.match(css,/grid-template-columns:repeat\(var\(--cours75-colonnes,5\),minmax\(0,1fr\)\)/,
   'toutes les unités accessibles sans défilement horizontal');
-console.log('SPEC 75 : OK — hauteur fixe, unités 1–4/Tout, recherche absente, cours intact, bonus et dialogues.');
+// Extension : les 25 leçons existantes partagent désormais la même structure.
+const migration = require('../tools/spec75-migration.js');
+let compte = 0, exemples = 0, tableauxComplexes = 0;
+for (const niveau of ['A1.1','A1.2']) {
+  for (const fichier of fs.readdirSync(path.join(racine,'data/lecons',niveau))
+    .filter(f=>/^lecon-\d+\.json$/.test(f))) {
+    const l=JSON.parse(fs.readFileSync(path.join(racine,'data/lecons',niveau,fichier)));
+    const parties=migration.categories(l); compte++;
+    assert.ok(api.cours75Actif(l),l.id+' : nouveau cours actif');
+    assert.deepEqual(migration.migrant(l),l,l.id+' : migration stable');
+    assert.ok(Object.values(parties).every(v=>v>0),l.id+' : 3 rubriques');
+    assert.equal(l.cours.filter(b=>b.type==='dialogue'&&b.rubrique!=='phrases').length,0,
+      'dialogue classé dans Phrases');
+    assert.equal(l.cours.filter(b=>b.type==='callout'&&b.rubrique!=='regles').length,0,
+      'règles correctement classées');
+    for(const u of l.unites) {
+      assert.ok(l.cours.some(b=>b.unite===u.id&&b.rubrique==='regles'),
+        l.id+'/'+u.id+' : règle explicite');
+      assert.ok(l.cours.some(b=>b.unite===u.id&&b.rubrique==='phrases'),
+        l.id+'/'+u.id+' : phrases existantes');
+    }
+    const all=api.cours75Html(l,'principal',null,false);
+    assert.ok(all.includes('--cours75-colonnes:'+(l.unites.length+1)));
+    assert.ok(!all.includes('type="search"'),'aucune recherche locale');
+    api.cours75Etats.principal.rubrique='phrases';
+    const phrases=api.cours75Contenu(l,'principal');
+    assert.ok(phrases.includes('cours75-entree-tete') || phrases.includes('cours-table'),
+      l.id+' : affichage de Phrases');
+    exemples+=(l.cours||[]).filter(b=>b.rubrique==='phrases').length;
+    tableauxComplexes+=(l.cours||[]).filter(b=>b.rubrique==='lexique'&&b.type==='tableau'&&
+      !(b.entetes[0]==='Luxembourgeois'&&b.entetes[1]==='Français')).length;
+  }
+}
+assert.equal(compte,25,'17 leçons A1.1 + 8 leçons A1.2');
+assert.ok(tableauxComplexes>=10,'tableaux complexes préservés avec leurs colonnes');
+const lecon4=lecon(4);
+assert.ok(lecon4.cours.some(b=>b.rubrique==='lexique'&&b.type==='tableau'&&
+  b.entetes[0]==='Adjectif'&&b.entetes[1]==='↔ Contraire'),'les contraires restent un tableau à deux adjectifs');
+const lecon6=lecon(6);
+assert.ok(lecon6.cours.some(b=>b.rubrique==='lexique'&&b.type==='tableau'&&
+  b.entetes[0]==='Singulier'&&b.entetes[1]==='Pluriel'),'pluriels préservés');
+const lecon8=lecon(8);
+assert.ok(lecon8.cours.some(b=>b.rubrique==='lexique'&&b.type==='tableau'&&
+  b.entetes[0]==='Il'&&b.entetes[1]==='Elle'),'nationalités préservées');
+const lecon21=JSON.parse(fs.readFileSync(path.join(racine,'data/lecons/A1.2/lecon-21.json')));
+assert.ok(lecon21.cours.some(b=>b.unite===4&&b.rubrique==='phrases'&&b.items.some(
+  x=>x[0]==='Um Dësch sinn zwee Glieser.')),'unité bonus avec phrase attestée');
+assert.ok(lecon21.cours.some(b=>b.unite===4&&b.rubrique==='regles'&&b.titre==='Les pluriels'),
+  'règle de l’unité bonus reprise des supports');
+
+console.log('SPEC 75 : OK — 25 leçons, règles nommées, phrases, tableaux complets, "+compte+" cours.');

@@ -766,7 +766,7 @@ ERREUR = bloquant, ATTENTION = à regarder.
 - Code simple à comprendre pour un junior, pas de pratiques complexes.
 
 
-### SPEC 75 — Cours pilotes A1.1 (leçons 1–3)
+### SPEC 75 — Cours partagés (pilote initial A1.1 1–3)
 
 Le composant `public/cours75.js` rend les trois rubriques Règles / Lexique / Phrases et la portée Unité/Toute la leçon, dans l'onglet Cours et le panneau d'exercice. Chaque bloc pilote porte `rubrique: regles|lexique|phrases`; les données hors `cours` sont inchangées. Les autres leçons continuent d'utiliser `coursBlocsHtml`. Le lexique local inclut les 36 mots complémentaires de la leçon 2 repliés, sans recherche locale. L'audio réutilise les catalogues validés SPEC 68–73 (or exact, sable contexte). Valider avec `node tests/test_spec75.js && node tools/valider-lecons.js && bash tools/critique.sh`, puis tester manuellement le panneau Android et l'audio avant de clôturer la recette.
 
@@ -775,3 +775,7 @@ SPEC 75 — Recette mobile : grille unique 1/2/3/4/Tout (ou 1/2/3/Tout), sans sc
 
 ### SPEC 75 — Lignes de cours harmonisées (20/10/2026)
 Dans les leçons pilotes 1–3, les mots, expressions, phrases et dialogues sont tous rendus par cours75EntreeHtml() et cours75ListeHtml(). La ligne LU a min-height:40px, qu'un bouton audio existe ou non ; la traduction et la note sont toujours placées en dessous avec les mêmes marges. L'audio utilise le vrai bouton LOD et n'est jamais simulé. Les anciens tableaux et cours-dialogue restent disponibles pour les leçons 4+. Contrôle : node tests/test_spec75.js puis recette Android.
+
+
+### SPEC 75 — Extension à toutes les leçons (20/10/2026)
+Règles/Lexique/Phrases est désormais activé pour les **25 leçons** (A1.1 1–17, A1.2 20–27). Migrer de façon conservatrice avec `tools/spec75-migration.js` : ne toucher qu'à `cours`, classer `texte`/`callout`/tableaux grammaticaux en Règles, les mots et tableaux lexicaux en Lexique (en-têtes originaux conservés), les dialogues et phrases complètes en Phrases. Les tableaux de production LU/FR mixtes sont séparés en mots/phrases sans changer les traductions. Une unité bonus dépourvue de phrase/règle reprend celles déjà contenues dans `unites` ou `ecriture`. Les paires LU/FR partagent `cours75EntreeHtml`, les tableaux complexes gardent un `<table>` avec leurs en-têtes. Lexique commun accessible si pas de vocabulaire local. Vérification `node tools/spec75-migration.js && node tests/test_spec75.js && node tools/valider-lecons.js && bash tools/critique.sh`. Le vieux texte du pilote ne restreint plus la portée. Recette Android 4–27 encore nécessaire.

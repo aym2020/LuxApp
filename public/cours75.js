@@ -1,8 +1,8 @@
-// SPEC 75 — Cours pilotes A1.1 (leçons 1–3). Composant commun Cours / panneau.
+// SPEC 75 — Cours harmonisés A1.1/A1.2 : Règles / Lexique / Phrases.
 const cours75Etats = { principal: null, panneau: null };
 
 function cours75Actif(l) {
-  return !!l && [1, 2, 3].includes(Number(l.id)) && Array.isArray(l.cours) &&
+  return !!l && Array.isArray(l.unites) && l.unites.length > 0 && Array.isArray(l.cours) &&
     l.cours.every(b => ['regles', 'lexique', 'phrases'].includes(b.rubrique));
 }
 function cours75Lecon(surface) { return surface === 'panneau' ? pLecon : currentLecon; }
@@ -70,7 +70,15 @@ function cours75Contenu(l, surface) {
   const e = cours75Etats[surface];
   const afficher = blocs => cours75Groupe(cours75Filtrer(blocs, e.rubrique), l, surface);
   let html = '';
-  if (e.unite != null) html = afficher(l.cours.filter(b => b.unite === e.unite || b.unite == null));
+  if (e.unite != null) {
+    html = afficher(l.cours.filter(b => b.unite === e.unite || b.unite == null));
+    // Certains lexiques (nationalités, langues, etc.) ne sont donnés que dans
+    // la référence commune. Ils restent consultables depuis leur unité.
+    if (!html && e.rubrique === 'lexique') {
+      const commun = afficher(l.cours.filter(b => b.unite === 0));
+      if (commun) html = '<h3 class="cours75-unite">Lexique commun à la leçon</h3>' + commun;
+    }
+  }
   else {
     for (const u of l.unites || []) {
       const content = afficher(l.cours.filter(b => b.unite === u.id));
@@ -113,9 +121,16 @@ function cours75EntreeHtml(row) {
 }
 
 function cours75Bloc(b, l) {
-  if (b.rubrique === 'lexique' && (b.type === 'vocab' || b.type === 'tableau')) {
-    const items = b.type === 'vocab' ? b.items : b.lignes;
-    return cours75ListeHtml(b, l, items);
+  if (b.rubrique === 'lexique' && b.type === 'vocab') {
+    return cours75ListeHtml(b, l, b.items);
+  }
+  // Tableaux à plusieurs colonnes : préserver le sens des en-têtes
+  // (ex. Masculin/Féminin/Pays ; Singulier/Pluriel/Français ; Nombre/LU).
+  // Ne jamais traiter la colonne 2 comme du français sans l'en-tête correspondant.
+  if (b.rubrique === 'lexique' && b.type === 'tableau') {
+    if (b.entetes && b.entetes[0] === 'Luxembourgeois' && b.entetes[1] === 'Français')
+      return cours75ListeHtml(b, l, b.lignes);
+    return coursBlocsHtml([b], l.couleur);
   }
   if (b.type === 'phrases' || b.type === 'dialogue') {
     return cours75ListeHtml(b, l, b.type === 'phrases' ? b.items : b.echanges);

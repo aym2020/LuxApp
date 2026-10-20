@@ -888,7 +888,8 @@
         "Pays : <b>zu Lëtzebuerg</b>, <b>a Frankräich</b>, <b>an Däitschland</b>, <b>an der Belsch</b>.",
         "<b>Ech wunnen</b> = j'habite ; <b>hien / si wunnt</b> = il / elle habite."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -898,7 +899,8 @@
         "Ville : <b>zu</b> Metz, zu Esch · Quartier : <b>um</b> Kirchberg, <b>am</b> Gronn.",
         "<b>Wou wunns du?</b> (tu) · <b>Wou wunnt Dir?</b> (vous, politesse)."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -929,17 +931,15 @@
           "Spuenien",
           "Espagne"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Habiter dans un pays",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 1,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech wunnen zu Lëtzebuerg.",
           "J'habite au Luxembourg."
@@ -991,17 +991,15 @@
           "de Quartier",
           "quartier"
         ]
-      ]
+      ],
+      "rubrique": "lexique"
     },
     {
-      "type": "tableau",
-      "titre": "Phrases à savoir produire · Villes, quartiers et questions",
+      "type": "phrases",
+      "rubrique": "phrases",
       "unite": 2,
-      "entetes": [
-        "Luxembourgeois",
-        "Français"
-      ],
-      "lignes": [
+      "titre": "Phrases à connaître",
+      "items": [
         [
           "Ech wunnen zu Metz.",
           "J'habite à Metz."
@@ -1023,7 +1021,8 @@
     {
       "type": "texte",
       "contenu": "Pour dire où l'on habite, on utilise <b>wunnen</b> + une préposition. Cette préposition <b>dépend du type de lieu</b> : pays, ville, quartier ou expression fixe.",
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1036,7 +1035,8 @@
         "Quartiers ou lieux particuliers → souvent <b>um / am</b> : um Kirchberg, am Gronn.",
         "Luxembourg est une exception utile à mémoriser : <b>zu Lëtzebuerg</b>."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1078,7 +1078,8 @@
           "um Kirchberg · am Gronn"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1115,7 +1116,8 @@
           "Ech wunnen an der Schwäiz."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1157,7 +1159,8 @@
           "Ech wunnen am Gronn."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1169,7 +1172,8 @@
         "<b>Hien / Si wunnt</b> = il / elle habite.",
         "<b>Dir wunnt</b> = vous habitez."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1181,7 +1185,8 @@
         "<b>Wou wunnt si?</b> = Où habite-t-elle ?",
         "<b>Wou wunnt Dir?</b> = Où habitez-vous ?"
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1194,7 +1199,8 @@
         "<b>J'habite au Luxembourg</b> → Ech wunnen <b>zu Lëtzebuerg</b>.",
         "<b>J'habite au Grund</b> → Ech wunnen <b>am Gronn</b>."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1205,7 +1211,8 @@
         "<b>um</b> = op + dem : um Kirchberg.",
         "Dans cette leçon, il vaut mieux apprendre directement les expressions complètes : <b>am Gronn</b>, <b>um Kirchberg</b>."
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "regles"
     },
     {
       "type": "dialogue",
@@ -1244,7 +1251,8 @@
           "J'habite au Grund."
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
     }
   ]
 }
