@@ -580,6 +580,8 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   const mots = itemsUnite(l, 'flashcards', u.id, 'coeur');
   let apercu = mots.slice(0, 4).map(c => escHtml(c.lu)).join(' · ');
   if (mots.length > 4) apercu += ' · +' + (mots.length - 4);
+  if (l.id === 0 && u.id === 1) apercu = '9 sons à découvrir · 20 écoutes LOD';
+  if (l.id === 0 && u.id === 2) apercu = '6 exemples guidés · 15 exercices sur le N';
 
   const label = u.bonus ? 'BONUS' : 'UNITÉ ' + u.id;
   const estProchaine = !!(prochaine && prochaine.id === u.id);
@@ -722,14 +724,17 @@ function openIntro(uniteId) {
   }
 
   const activiteUnique = studioActif(pLecon) && u.activiteUnique;
+  const nbDecouverte = decouvertePour(pLecon, uniteId).length;
   html += '<div class="pi-bas"><div class="pi-duree">' +
+    (nbDecouverte ? 'Découverte guidée (' + nbDecouverte + ' exemples), puis ' : '') +
     (activiteUnique ? '1 activité · ' + nbItems(pLecon, uniteId, 'coeur') + ' défis' : '4 étapes') +
     ' · environ ' + minutes + ' min</div></div>';
 
   document.getElementById('pi-content').innerHTML = html;
   // L'action principale, toujours visible en bas (spec 21).
   document.getElementById('pi-cta').innerHTML =
-    '<button class="pc-btn primary wide big" id="pi-commencer" onclick="startUnite(' + u.id + ')">Commencer →</button>';
+    '<button class="pc-btn primary wide big" id="pi-commencer" onclick="startUnite(' + u.id + ')">' +
+    (decouvertePour(pLecon,u.id).length ? 'Découvrir les exemples →' : 'Commencer →') + '</button>';
   showView('view-pintro');
 }
 
@@ -750,12 +755,18 @@ function motsHtml(mots) {
 //           'lecon'   (tout le contenu d'un coup : étoiles, sans faute et « + » de chaque unité)
 //           'erreurs' (refaire ses erreurs) · 'etape' (une seule étape)
 // filtre  : liste de clés "type:id" à garder (null = tout)
-function startUnite(uniteId, mode, filtre, metaRattrapage) {
+function startUnite(uniteId, mode, filtre, metaRattrapage, apresDecouverte) {
   mode = mode || 'unite';
   // SPEC 55 : protège aussi les raccourcis Quiz/Trous/Écriture et « Leçon
   // complète », accessibles depuis l'aperçu. Aucune progression avant accord.
   if (introMissionAVoir(pLecon)) {
     ouvrirIntroMission(pLecon, { type: 'demarrer', uniteId, mode, filtre, metaRattrapage });
+    return;
+  }
+  // SPEC 83 : une découverte manuelle avant la toute première question notée.
+  // Les raccourcis vers une étape, les révisions et la reprise restent directs.
+  if (!apresDecouverte && mode === 'unite' && !filtre && decouvertePour(pLecon, uniteId).length) {
+    demarrerDecouverte(uniteId);
     return;
   }
   let quoi = 'tout';
