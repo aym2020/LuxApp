@@ -2533,6 +2533,46 @@
     },
     {
       "type": "vocab",
+      "rubrique": "lexique",
+      "unite": 1,
+      "titre": "Les mots essentiels",
+      "items": [
+        [
+          "gär",
+          "aimer faire / volontiers"
+        ],
+        [
+          "ganz gär",
+          "adorer faire / beaucoup aimer"
+        ],
+        [
+          "net gär",
+          "ne pas aimer faire"
+        ],
+        [
+          "guer net gär",
+          "ne pas aimer du tout faire"
+        ],
+        [
+          "liesen",
+          "lire"
+        ],
+        [
+          "kachen",
+          "faire la cuisine"
+        ],
+        [
+          "Sport maachen",
+          "faire du sport"
+        ],
+        [
+          "Vëlo fueren",
+          "faire du vélo"
+        ]
+      ]
+    },
+    {
+      "type": "vocab",
       "titre": "Activités de loisirs (Fräizäitaktivitéiten)",
       "items": [
         [
@@ -2580,16 +2620,8 @@
           "jouer au mini-golf"
         ],
         [
-          "Vëlo fueren",
-          "faire du vélo"
-        ],
-        [
           "Schi fueren",
           "faire du ski"
-        ],
-        [
-          "Sport maachen",
-          "faire du sport"
         ],
         [
           "e Cours maachen",
@@ -2608,10 +2640,6 @@
           "écouter de la musique"
         ],
         [
-          "liesen",
-          "lire"
-        ],
-        [
           "raschten",
           "se reposer"
         ],
@@ -2628,10 +2656,6 @@
           "peindre / dessiner"
         ],
         [
-          "kachen",
-          "faire la cuisine"
-        ],
-        [
           "baken",
           "faire de la pâtisserie"
         ]
@@ -2639,6 +2663,38 @@
       "unite": 1,
       "plus": true,
       "rubrique": "lexique"
+    },
+    {
+      "type": "vocab",
+      "rubrique": "lexique",
+      "unite": 2,
+      "titre": "Les sorties essentielles",
+      "items": [
+        [
+          "goen",
+          "aller (à pied)"
+        ],
+        [
+          "an de Kino goen",
+          "aller au cinéma"
+        ],
+        [
+          "op e Concert goen",
+          "aller à un concert"
+        ],
+        [
+          "bei de Coiffer goen",
+          "aller chez le coiffeur"
+        ],
+        [
+          "spadséiere goen",
+          "se promener"
+        ],
+        [
+          "akafe goen",
+          "faire les courses / du shopping"
+        ]
+      ]
     },
     {
       "type": "tableau",
@@ -2649,11 +2705,6 @@
         "Français"
       ],
       "lignes": [
-        [
-          "an",
-          "an de Kino goen",
-          "aller au cinéma"
-        ],
         [
           "an",
           "an d'Schwämm goen",
@@ -2671,11 +2722,6 @@
         ],
         [
           "op",
-          "op e Concert goen",
-          "aller à un concert"
-        ],
-        [
-          "op",
           "op e Floumaart goen",
           "aller à un marché aux puces"
         ],
@@ -2683,11 +2729,6 @@
           "op",
           "op d'Gemeng goen",
           "aller à la commune"
-        ],
-        [
-          "bei",
-          "bei de Coiffer goen",
-          "aller chez le coiffeur"
         ]
       ],
       "unite": 2,
