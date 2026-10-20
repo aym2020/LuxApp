@@ -294,7 +294,13 @@ function examLinesHtml(part, renderBlank, traduire) {
   part.lignes.forEach(ligne => {
     const label = ligne[0];
     let texte = examFillBlanks(ligne[1], renderBlank);
-    if (traduire) texte += examFrBtn(ligne[2]) + examFrHtml(ligne[2]);
+    if (traduire) {
+      // En correction seulement : prononciation de la phrase entière corrigée.
+      const complet = String(ligne[1] || '').replace(/\{(\d+)\}/g, (_, n) =>
+        part.trous && part.trous[Number(n)-1] ? part.trous[Number(n)-1].reponse : '{' + n + '}');
+      if (!/\{\d+\}/.test(complet)) texte += boutonEcouterHtml(complet, true);
+      texte += examFrBtn(ligne[2]) + examFrHtml(ligne[2]);
+    }
 
     if (label === '•') {
       html += '<div class="ex-line ex-bullet">' + texte + '</div>';
@@ -807,7 +813,7 @@ function examCorrectionHtml(part, p, r) {
       const illustrees = examHasIllustrations(q);
       html += '<div class="ex-q">' + (q.horloge ? examClockHtml(q.horloge) : '') +
         '<div class="ex-q-text"><span class="ex-q-num">' + (i + 1) + '</span>' +
-        '<div>' + escHtml(q.question) + examFrBtn(q.question_fr) +
+        '<div>' + escHtml(q.question) + boutonEcouterHtml(q.question, true) + examFrBtn(q.question_fr) +
         examFrHtml(q.question_fr) + '</div></div><div class="ex-opts' + (illustrees ? ' pictures' : ' stack') + '">';
       q.choix.forEach((c, k) => {
         let cls = 'ex-opt fixed';
@@ -826,7 +832,8 @@ function examCorrectionHtml(part, p, r) {
       // Le passage du texte qui donne la réponse, avec sa traduction.
       if (q.preuve) {
         html += '<div class="exr-preuve">' +
-          '<span class="exr-preuve-lu">« ' + escHtml(q.preuve[0]) + ' »</span>' +
+          '<span class="exr-preuve-lu">« ' + escHtml(q.preuve[0]) + ' »' +
+          boutonEcouterHtml(q.preuve[0], true) + '</span>' +
           '<span class="exr-preuve-fr">' + escHtml(q.preuve[1]) + '</span>' +
         '</div>';
       }
