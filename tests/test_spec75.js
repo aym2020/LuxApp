@@ -141,6 +141,24 @@ assert.ok(lecon21.cours.some(b=>b.unite===4&&b.rubrique==='phrases'&&b.items.som
 assert.ok(lecon21.cours.some(b=>b.unite===4&&b.rubrique==='regles'&&b.titre==='Les pluriels'),
   'règle de l’unité bonus reprise des supports');
 
+// Leçon affichée 23 : ID interne 22 (A1.2), les unités 1 et 2 ont un lexique visible.
+const loisirs=JSON.parse(fs.readFileSync(path.join(racine,'data/lecons/A1.2/lecon-22.json')));
+assert.equal(loisirs.id,22);
+assert.equal(loisirs.numero,23,'A1.2 : numéro affiché différent de l’ID');
+assert.equal(loisirs.titre,'An der Fräizäit');
+for (const unite of [1,2]) {
+  const blocs=loisirs.cours.filter(b=>b.unite===unite&&b.rubrique==='lexique');
+  assert.ok(blocs.some(b=>!b.plus),'unité '+unite+' : mots essentiels visibles');
+  assert.ok(blocs.some(b=>b.plus),'unité '+unite+' : mots supplémentaires disponibles');
+  api.cours75Html(loisirs,'principal',unite,false);
+  api.cours75Etats.principal.rubrique='lexique';
+  const rendu=api.cours75Contenu(loisirs,'principal');
+  const titre=unite===1?'Les mots essentiels':'Les sorties essentielles';
+  assert.ok(rendu.includes(titre),'unité '+unite+' : lexique principal présent');
+  assert.ok(rendu.includes('Voir les mots supplémentaires ('+(unite===1?21:5)+')'),
+    'unité '+unite+' : uniquement le vocabulaire secondaire est replié');
+}
+
 // Les salutations équivalentes ne doivent pas apparaître en doublon dans le Lexique.
 const salutations=lecons[0].cours.find(b=>b.unite===1&&b.type==='vocab'&&b.titre==="Saluer quelqu'un");
 const salut=salutations.items.filter(row=>row[0]==='Salut!');
