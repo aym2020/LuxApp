@@ -4,6 +4,11 @@ on:
     branches: [v2]
     paths:
       - 'tools/audio-mia.js'
+      - 'tools/audit-audio-complet.js'
+      - 'data/lecons/**/*.json'
+      - 'data/examens/**/*.json'
+      - 'public/audio/lod.json'
+      - 'public/audio/lod-phrases.json'
       - '.github/workflows/audio-mia.yml'
   workflow_dispatch:
     inputs:
@@ -19,7 +24,7 @@ concurrency:
 jobs:
   voix:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,13 +45,18 @@ jobs:
           sudo apt-get install -y ffmpeg
       - name: Produire les MP3
         run: node tools/audio-mia.js --voice=mia --limit=${{ github.event.inputs.limit || '0' }}
+      - name: Auditer toute la couverture LOD/MIA
+        if: always()
+        run: |
+          node tools/audit-audio-complet.js --write
+          node tests/test_audio_mia.js --strict
       - name: Versionner les MP3 valides
         if: always()
         run: |
           node tests/test_audio_mia.js
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/audio/mia.json public/audio/mia/ 2>/dev/null || true
+          git add public/audio/mia.json public/audio/mia/ docs/audit-audio-complet.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "audio: ajout des sons generes par Mia"
             git pull --rebase origin v2
