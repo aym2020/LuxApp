@@ -99,4 +99,15 @@ const copie={idx:3,resultats:['ok','ok','ok','erreur'],vies:2,tentative:false};
 contexte.studioReprendreMission(copie);
 assert.equal(contexte.ms.idx,4);
 assert.equal(contexte.ms.vies,2);
+// Trois erreurs dans trois défis distincts épuisent les vies et empêchent la validation.
+contexte.studioOpenMission(false);
+for(let i=0;i<8;i++){
+ const q=l.mission.defis[i];
+ const index=i<3?q.choix.findIndex(x=>x!==q.reponse):q.choix.indexOf(q.reponse);
+ contexte.studioChoisir(index);
+ contexte.studioSuivant();
+}
+assert.equal(contexte.ms.vies,0);
+assert.equal(contexte.ms.bilan.ok,5);
+assert.equal(missionValidee,1,'une mission sans vie ne valide pas la leçon');
 console.log('SPEC 82 : OK — 20 sons, 15 choix N, 8 défis, score, vies, reprise, LOD.');
