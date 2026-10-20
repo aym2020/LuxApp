@@ -2897,10 +2897,10 @@ body.sans-transitions .view { animation:none!important; }
 
 /* Unique composant d'entrée : vocabulaire, expression, phrase, dialogue.
    La présence d'un audio ne change jamais la hauteur de la ligne luxembourgeoise. */
-.cours75-bloc .cours-bloc-titre { margin-bottom:.65rem; }
+.cours75-bloc .cours-bloc-titre { margin-bottom:.55rem; }
 .cours75-entrees { display:flex; flex-direction:column; }
 .cours75-entree {
-  padding:.55rem 0; border-bottom:1px solid var(--couleur-bord-1);
+  padding:.4rem 0; border-bottom:1px solid var(--couleur-bord-1);
 }
 .cours75-entree:first-child { padding-top:0; }
 .cours75-entree:last-child { padding-bottom:0; border-bottom:0; }
