@@ -634,6 +634,12 @@ Audio dans l'application : **or** = prononciation exacte du mot ou de la phrase 
 dite dans une phrase LOD (bulle flottante au clic : phrase en blanc cassé, expression en doré, traduction — SPEC 71/72). Un seul bouton,
 le son exact en priorité. Sous un bloc de vocabulaire, « N exemples en contexte » ouvre l'écran d'exemples (`public/contexte.js`).
 
+### Faux absents LOD et formes fléchies (SPEC 73)
+
+Le message « mot absent de LOD » signale actuellement l'absence du **lemme**, pas nécessairement de la forme fléchie. Avant d'ajouter des associations audio, étudier aussi l'index de recherche LOD et les tables de flexion (verbes et adjectifs). Les graphies générées automatiquement ne sont pas des preuves de correction orthographique.
+
+Procéder dans l'ordre : **audit des candidats → vérification de la forme et du sens → confirmation de la prononciation exacte ou contextuelle → contrôle du fichier → publication**. Ne jamais utiliser l'audio d'un lemme pour son pluriel/participe sans vérification de la forme réellement entendue. Voir docs/specs/SPEC-73.md. Les leçons ne doivent pas être modifiées lors de l'audit.
+
 ### Blocs `cours`
 
 ```json
