@@ -1210,6 +1210,7 @@ let ecrDirLuFr  = false; // false = fr→lu (défaut), true = lu→fr
 function normalize(str) {
   return str
     .normalize('NFD')
+    .replace(/[‘’ʼ＇]/g, "'")            // apostrophes typographiques = apostrophe droite
     .replace(/[\u0300-\u036f]/g, '')  // diacritiques
     .replace(/ë/gi, 'e').replace(/ä/gi, 'a').replace(/ö/gi, 'o').replace(/ü/gi, 'u')
     .toLowerCase()
