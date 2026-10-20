@@ -8,7 +8,13 @@ const lesson=n=>JSON.parse(read('data/lecons/A1.1/lecon-'+String(n).padStart(2,'
 const l0=lesson(0),l1=lesson(1),l2=lesson(2),arch=JSON.parse(read('data/archives/lecon-02-unite-02-avant-spec79.json'));
 const audio=JSON.parse(read('public/audio/lod.json'));
 const sounds=['wäiss','Jo','zéng','Schoul','Stull','Buch','Fënster','Äddi!','schéin'];
+assert.equal(l0.titre_fr,'Les bases');
+assert.deepEqual(l0.unites.map(x=>x.titre),['Prononciation','United Zoha']);
 assert.equal(l0.id,0); assert.equal(l0.unites.length,2);assert.deepEqual(l0.unites.map(u=>u.id),[1,2]);
+for(const q of l0.quiz.filter(q=>q.unite===1)) {
+  assert.ok(q.distracteurs.every(d=>sounds.includes(d)&&d!==q.reponse),
+    'écoute : trois vrais mots appris, et non trois graphies indiscernables');
+}
 for(const word of sounds){
   assert.ok(audio[word],word+' dans le dictionnaire local');
   assert.ok(fs.existsSync(path.join(root,'public/audio',audio[word])),word+' : fichier audio physique');
@@ -38,7 +44,7 @@ for(const t of l0.trous.concat(l2.trous)){
   assert.equal(new Set(t.choix).size,t.choix.length,'choix distincts');
   assert.ok((t.avant+t.trou+t.apres).trim(),'trou substantiel');
 }
-assert.ok(l0.cours.some(b=>b.titre.includes('UNITEDZOHA')),'règle nommée');
+assert.ok(l0.cours.some(b=>b.titre.includes('United Zoha')),'règle nommée');
 assert.ok(l1.unites[0].regle.includes('Gudde Moien')&&l1.unites[0].regle.includes('Gudden Owend'),
   'les exemples suivants sont déjà présents dans la leçon 1');
 assert.match(read('server.js'),/const files = fs\.readdirSync\(dir\).*\.sort\(\)/,'leçon 00 chargée avec le répertoire');

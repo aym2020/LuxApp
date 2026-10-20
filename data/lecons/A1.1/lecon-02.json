@@ -6,7 +6,7 @@
   "instructions": {
     "flashcards": "Mot caché : retrouve le nom et son article. Unité 1 : e / eng ; unité 2 : de / den / d' (article défini complet à écrire) ; unité 3 : questions et négation.",
     "quiz": "À partir du français, choisis l'article et le nom luxembourgeois corrects. Distingue indéfini, défini et négation selon l'unité.",
-    "trous": "Complète une phrase luxembourgeoise avec le bon article ou la bonne négation, en respectant les genres et UNITEDZOHA enseignés dans la leçon 0.",
+    "trous": "Complète une phrase luxembourgeoise avec le bon article ou la bonne négation, en respectant les genres et United Zoha enseignés dans la leçon 0.",
     "ecriture": "Traduis les phrases françaises en luxembourgeois. L'unité 2 exige la structure définie (« le/la/l' »), distincte de « un/une »."
   },
   "mission": {
@@ -53,7 +53,7 @@
       "lu": "Dat ass e Computer.",
       "fr": "C'est un ordinateur.",
       "unite": 1,
-      "aide": "C n'est pas dans UNITEDZOHA → <b>e</b> Computer."
+      "aide": "C n'est pas dans United Zoha → <b>e</b> Computer."
     },
     {
       "qui": "toi",
@@ -79,7 +79,7 @@
       "lu": "Dat ass den Telefon.",
       "fr": "C'est le téléphone.",
       "unite": 2,
-      "aide": "Article défini masculin : <b>den</b> devant T ou D (UNITEDZOHA)."
+      "aide": "Article défini masculin : <b>den</b> devant T ou D (United Zoha)."
     },
     {
       "qui": "Sarah",
@@ -92,7 +92,7 @@
       "lu": "Dat ass den Drécker.",
       "fr": "C'est l'imprimante.",
       "unite": 2,
-      "aide": "Article défini masculin : <b>den</b> devant T ou D (UNITEDZOHA)."
+      "aide": "Article défini masculin : <b>den</b> devant T ou D (United Zoha)."
     },
     {
       "qui": "Sarah",
@@ -105,7 +105,7 @@
       "lu": "Dat ass den Dësch.",
       "fr": "C'est la table.",
       "unite": 2,
-      "aide": "Article défini masculin : <b>den</b> devant T ou D (UNITEDZOHA)."
+      "aide": "Article défini masculin : <b>den</b> devant T ou D (United Zoha)."
     },
     {
       "qui": "Sarah",
@@ -156,7 +156,7 @@
         "Wat ass dat? – Dat ass e Stull.",
         "Qu'est-ce que c'est ? – C'est une chaise."
       ],
-      "regle": "Masculin et neutre → <b>e</b> ou <b>en</b> selon UNITEDZOHA (leçon 0) · Féminin → <b>eng</b>.",
+      "regle": "Masculin et neutre → <b>e</b> ou <b>en</b> selon United Zoha (leçon 0) · Féminin → <b>eng</b>.",
       "exemple": "<b>e</b> Stull · <b>e</b> Buch · <b>eng</b> Dier · <b>eng</b> Mapp",
       "phrases": [
         [
@@ -182,7 +182,7 @@
         "Dat ass den Auto.",
         "C'est la voiture."
       ],
-      "regle": "Devant un nom <b>masculin</b> : <b>de</b> ou <b>den</b> selon UNITEDZOHA. Devant un nom <b>féminin ou neutre</b> : <b>d'</b> attaché au nom.",
+      "regle": "Devant un nom <b>masculin</b> : <b>de</b> ou <b>den</b> selon United Zoha. Devant un nom <b>féminin ou neutre</b> : <b>d'</b> attaché au nom.",
       "exemple": "<b>de</b> Stull · <b>den</b> Auto · <b>d'</b>Mapp · <b>d'</b>Buch",
       "phrases": [
         [
@@ -2157,7 +2157,7 @@
         "den",
         "d'"
       ],
-      "note": "Articles définis : de/den selon UNITEDZOHA"
+      "note": "Articles définis : de/den selon United Zoha"
     },
     {
       "id": 2702,
@@ -2171,7 +2171,7 @@
         "den",
         "d'"
       ],
-      "note": "Articles définis : de/den selon UNITEDZOHA"
+      "note": "Articles définis : de/den selon United Zoha"
     },
     {
       "id": 2703,
@@ -2185,7 +2185,7 @@
         "den",
         "d'"
       ],
-      "note": "Articles définis : de/den selon UNITEDZOHA"
+      "note": "Articles définis : de/den selon United Zoha"
     },
     {
       "id": 2704,
@@ -2199,7 +2199,7 @@
         "den",
         "d'"
       ],
-      "note": "Articles définis : de/den selon UNITEDZOHA"
+      "note": "Articles définis : de/den selon United Zoha"
     },
     {
       "id": 2705,
@@ -2213,7 +2213,7 @@
         "den",
         "d'"
       ],
-      "note": "Articles définis : de/den selon UNITEDZOHA"
+      "note": "Articles définis : de/den selon United Zoha"
     },
     {
       "id": 2706,
@@ -2227,7 +2227,7 @@
         "den",
         "d'"
       ],
-      "note": "Articles définis : de/den selon UNITEDZOHA"
+      "note": "Articles définis : de/den selon United Zoha"
     },
     {
       "id": 2707,
@@ -2904,7 +2904,7 @@
           "kee"
         ],
         [
-          "… devant UNITEDZOHA",
+          "… devant United Zoha",
           "en",
           "keen"
         ],
@@ -3277,7 +3277,7 @@
       "lignes": [
         "Masculin : <b>de</b> devant B, C, M, S… et <b>den</b> devant une voyelle ou N, D, T, Z, H.",
         "Féminin et neutre : toujours <b>d'</b>, collé au mot. Ces articles indiquent une chose connue : « le / la / l' ».",
-        "Compare : <b>e Stull</b> (une chaise) → <b>de Stull</b> (la chaise). Rappel UNITEDZOHA : leçon 0, unité 2."
+        "Compare : <b>e Stull</b> (une chaise) → <b>de Stull</b> (la chaise). Rappel United Zoha : leçon 0, unité 2."
       ]
     },
     {

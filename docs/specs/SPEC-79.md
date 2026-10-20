@@ -49,3 +49,7 @@ Unité 1 inchangée dans son cœur, renvoie à la règle du N pour \`e/en\`. **U
 - LOD, \`n-Reegel\` : https://lod.lu/artikel/nreegel1
 - Données LOD officielles et graphies : https://data.public.lu/fr/datasets/letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun/
 - Fichier de référence interne : \`grammaire_luxembourg.md\` (articles, formes, exemples).
+
+## Après audit — SPEC 80
+
+La leçon 0 utilise désormais le titre court **« Les bases »**, les unités **« Prononciation »** et **« United Zoha »**. Les quiz audio ne demandent plus de choisir entre des graphies phonétiquement indistinguables, mais de reconnaître l'un des neuf mots réellement entendus. Les règles ont été abrégées, la terminologie harmonisée et les genres luxembourgeois des noms Auto/Dësch précisés. Voir `docs/specs/SPEC-80.md`.

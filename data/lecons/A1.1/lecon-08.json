@@ -2721,7 +2721,7 @@
       "titre": "Ech si ou Ech sinn ?",
       "lignes": [
         "Le <b>n</b> de sinn tombe devant une consonne : <b>Ech si</b> Fransous, Lëtzebuerger, Belsch, Portugis.",
-        "Il reste devant une voyelle ou n, d, t, z, h (UNITEDZOHA) : <b>Ech sinn</b> Däitschen, <b>Ech sinn</b> Italiener."
+        "Il reste devant une voyelle ou n, d, t, z, h (United Zoha) : <b>Ech sinn</b> Däitschen, <b>Ech sinn</b> Italiener."
       ],
       "unite": 1,
       "rubrique": "regles"
@@ -2901,7 +2901,7 @@
       "titre": "Avec un article : e ou en ?",
       "lignes": [
         "Quand on parle d'<b>une personne</b> (pas de sa nationalité) : <b>e</b> Fransous, <b>en</b> Italiener, <b>eng</b> Portugisin.",
-        "<b>en</b> devant une voyelle ou n, d, t, z, h (UNITEDZOHA), sinon <b>e</b>. Au féminin : toujours <b>eng</b>."
+        "<b>en</b> devant une voyelle ou n, d, t, z, h (United Zoha), sinon <b>e</b>. Au féminin : toujours <b>eng</b>."
       ],
       "plus": true,
       "rubrique": "regles"

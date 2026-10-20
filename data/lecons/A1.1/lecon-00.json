@@ -1,7 +1,7 @@
 {
   "id": 0,
   "titre": "Déi éischt Schrëtt",
-  "titre_fr": "Bien démarrer : les sons et la règle du N",
+  "titre_fr": "Les bases",
   "couleur": "#4acfa6",
   "instructions": {
     "flashcards": "Écoute les mots luxembourgeois enregistrés, puis retrouve leur orthographe. Unité 2 : mémorise quelques exemples courts de la règle du N.",
@@ -12,30 +12,30 @@
   "unites": [
     {
       "id": 1,
-      "titre": "Les sons différents du français",
+      "titre": "Prononciation",
       "phrase": [
         "Jo!",
         "Oui !"
       ],
-      "regle": "Écoute avant de lire : <b>w</b> se prononce comme v, <b>j</b> comme y, <b>z</b> comme ts, <b>sch</b> comme ch ; <b>st</b> en début de mot se prononce cht. <b>ch</b>, <b>ë</b>, <b>ä</b> et <b>éi</b> demandent aussi de l'écoute.",
+      "regle": "Quelques graphies se lisent autrement qu’en français : <b>W</b> ≈ V, <b>J</b> ≈ Y, <b>Z</b> ≈ TS, <b>SCH</b> ≈ CH, <b>ST</b> initial ≈ CHT. Pour <b>CH, Ë, Ä et ÉI</b>, écoute surtout les enregistrements.",
       "exemple": "wäiss · Jo · zéng · Schoul · Stull · Buch · Fënster · Äddi! · schéin",
       "pieges": [
-        "Appuie sur le haut-parleur : tous les mots proposés possèdent déjà un enregistrement LOD.",
-        "Les indications françaises sont des repères, pas des transcriptions exactes."
+        "Chaque mot possède un enregistrement LOD : écoute-le dans le lexique et répète.",
+        "Les repères français sont approximatifs : ne te fie pas seulement aux lettres."
       ]
     },
     {
       "id": 2,
-      "titre": "UNITEDZOHA : la règle du N",
+      "titre": "United Zoha",
       "phrase": [
         "Gudde Moien!",
         "Bonjour ! (formule du matin)"
       ],
-      "regle": "Dans les mots concernés, le <b>n final</b> reste devant une voyelle ou <b>N, D, T, Z, H</b> (UNITEDZOHA) et tombe devant les autres consonnes. En fin de phrase, on le conserve.",
+      "regle": "Dans certaines terminaisons, le <b>N final</b> reste devant une voyelle ou <b>N, D, T, Z, H</b> (United Zoha). Il tombe devant la plupart des autres consonnes et reste en fin d'énoncé.",
       "exemple": "Gudde Moien! / Gudden Owend! · e Stull / en Auto · de Bus / den Auto",
       "pieges": [
-        "La règle concerne des terminaisons qui alternent : on ne retire pas le N de tous les mots.",
-        "Le féminin utilise <b>eng</b> (indéfini) ou <b>d'</b> (défini) : la règle e/en ou de/den concerne ici le masculin et le neutre ou le masculin selon l'article."
+        "Cette règle concerne certaines terminaisons ; ne supprime pas le N au milieu des mots.",
+        "Auto et Dësch sont masculins en luxembourgeois, même si leurs traductions françaises sont féminines. Les articles seront approfondis dans la leçon 2."
       ]
     }
   ],
@@ -45,63 +45,63 @@
       "unite": 1,
       "lu": "wäiss",
       "fr": "blanc",
-      "note": "Audio officiel LOD · W se prononce comme V"
+      "note": "W se prononce comme V"
     },
     {
       "id": 3002,
       "unite": 1,
       "lu": "Jo",
       "fr": "oui",
-      "note": "Audio officiel LOD · J se prononce comme Y"
+      "note": "J se prononce comme Y"
     },
     {
       "id": 3003,
       "unite": 1,
       "lu": "zéng",
       "fr": "dix",
-      "note": "Audio officiel LOD · Z se prononce TS"
+      "note": "Z se prononce TS"
     },
     {
       "id": 3004,
       "unite": 1,
       "lu": "Schoul",
       "fr": "une école",
-      "note": "Audio officiel LOD · SCH se prononce CH"
+      "note": "SCH se prononce CH"
     },
     {
       "id": 3005,
       "unite": 1,
       "lu": "Stull",
       "fr": "une chaise",
-      "note": "Audio officiel LOD · ST initial se prononce CHT"
+      "note": "ST initial se prononce CHT"
     },
     {
       "id": 3006,
       "unite": 1,
       "lu": "Buch",
       "fr": "un livre",
-      "note": "Audio officiel LOD · CH n'est pas le CH français"
+      "note": "CH n'est pas le CH français"
     },
     {
       "id": 3007,
       "unite": 1,
       "lu": "Fënster",
       "fr": "une fenêtre",
-      "note": "Audio officiel LOD · Ë est une voyelle neutre"
+      "note": "Ë est une voyelle neutre"
     },
     {
       "id": 3008,
       "unite": 1,
       "lu": "Äddi!",
       "fr": "au revoir",
-      "note": "Audio officiel LOD · Écoute le Ä"
+      "note": "Écoute le Ä"
     },
     {
       "id": 3009,
       "unite": 1,
       "lu": "schéin",
       "fr": "beau",
-      "note": "Audio officiel LOD · ÉI forme une diphtongue"
+      "note": "ÉI forme une diphtongue"
     },
     {
       "id": 3010,
@@ -129,7 +129,7 @@
       "unite": 2,
       "lu": "en Auto",
       "fr": "une voiture (article indéfini)",
-      "note": "A : N conservé"
+      "note": "A : N conservé · masculin en luxembourgeois"
     },
     {
       "id": 3014,
@@ -143,14 +143,14 @@
       "unite": 2,
       "lu": "den Auto",
       "fr": "la voiture (article défini)",
-      "note": "A : N conservé"
+      "note": "A : N conservé · masculin en luxembourgeois"
     },
     {
       "id": 3016,
       "unite": 2,
       "lu": "en Dësch",
       "fr": "une table (article indéfini)",
-      "note": "D : N conservé"
+      "note": "D : N conservé · masculin en luxembourgeois"
     },
     {
       "id": 3017,
@@ -164,117 +164,117 @@
     {
       "id": 3001,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "wäiss",
       "reponse": "wäiss",
       "distracteurs": [
-        "waiss",
-        "weiss",
-        "wäis"
+        "schéin",
+        "zéng",
+        "Fënster"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3002,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "Jo",
       "reponse": "Jo",
       "distracteurs": [
-        "Yo",
-        "Jou",
-        "Zo"
+        "zéng",
+        "wäiss",
+        "Schoul"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3003,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "zéng",
       "reponse": "zéng",
       "distracteurs": [
-        "zeng",
-        "zéing",
-        "seng"
+        "schéin",
+        "Jo",
+        "Stull"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3004,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "Schoul",
       "reponse": "Schoul",
       "distracteurs": [
-        "Choul",
-        "Shoul",
-        "Schohl"
+        "Stull",
+        "schéin",
+        "Buch"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3005,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "Stull",
       "reponse": "Stull",
       "distracteurs": [
-        "Schtull",
-        "Stul",
-        "Stuhl"
+        "Schoul",
+        "Buch",
+        "Fënster"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3006,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "Buch",
       "reponse": "Buch",
       "distracteurs": [
-        "Bouch",
-        "Buck",
-        "Buche"
+        "Schoul",
+        "Stull",
+        "Jo"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3007,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "Fënster",
       "reponse": "Fënster",
       "distracteurs": [
-        "Fenster",
-        "Fénster",
-        "Fönster"
+        "Stull",
+        "wäiss",
+        "zéng"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3008,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "Äddi!",
       "reponse": "Äddi!",
       "distracteurs": [
-        "Eddi!",
-        "Addi!",
-        "Ädi!"
+        "Jo",
+        "Schoul",
+        "Buch"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
     {
       "id": 3009,
       "unite": 1,
-      "question": "Écoute, puis choisis l’orthographe exacte.",
+      "question": "Écoute et choisis le mot prononcé.",
       "audioMot": "schéin",
       "reponse": "schéin",
       "distracteurs": [
-        "schén",
-        "schein",
-        "schëin"
+        "Schoul",
+        "zéng",
+        "wäiss"
       ],
       "label": "ÉCOUTE ET RECONNAIS"
     },
@@ -680,13 +680,13 @@
   "cours": [
     {
       "type": "callout",
-      "titre": "Écoute les graphies différentes",
+      "titre": "Les sons essentiels",
       "rubrique": "regles",
       "unite": 1,
       "lignes": [
-        "<b>W</b> = v, <b>J</b> = y, <b>Z</b> = ts, <b>SCH</b> = ch français, <b>ST</b> initial = cht. Les repères sont approximatifs : écoute l'audio LOD.",
-        "Le <b>CH</b> de Buch, les voyelles <b>Ë</b> et <b>Ä</b>, et le groupe <b>ÉI</b> ne se lisent pas comme en français.",
-        "Dans les exemples : <b>Dat ass…</b> = « C'est… », <b>ass</b> = « est ». Écoute les mots dans le lexique."
+        "<b>W</b> ≈ v · <b>J</b> ≈ y · <b>Z</b> ≈ ts · <b>SCH</b> ≈ ch · <b>ST</b> initial ≈ cht.",
+        "<b>CH, Ë, Ä, ÉI</b> : écoute les exemples dans le <b>Lexique</b>. Les repères français sont approximatifs.",
+        "Dans les phrases : <b>Dat ass</b> = « C’est » ; <b>ass</b> = « est »."
       ]
     },
     {
@@ -780,23 +780,23 @@
     },
     {
       "type": "callout",
-      "titre": "UNITEDZOHA : garder ou enlever le N",
+      "titre": "United Zoha : la règle du N",
       "rubrique": "regles",
       "unite": 2,
       "lignes": [
-        "Le <b>N final</b> se conserve devant une voyelle ou <b>N · D · T · Z · H</b> ; devant la plupart des autres consonnes, il disparaît.",
-        "Ce mécanisme se retrouve dans <b>e/en</b>, <b>de/den</b>, <b>kee/keen</b> et des formes verbales. On conserve normalement le N à la fin d'un énoncé.",
-        "Ne supprime pas le N qui appartient au radical d'un mot : les exemples travaillent les terminaisons qui alternent."
+        "<b>U N I T E D Z O H A</b> : garde le N devant une voyelle ou <b>N, D, T, Z, H</b>. Devant les autres consonnes, enlève-le dans les formes concernées.",
+        "<b>Gudde Moien!</b> (M) mais <b>Gudden Owend!</b> (O). En fin de phrase, le N reste.",
+        "Il ne s'agit pas de tous les N : <b>e/en</b>, <b>de/den</b> et <b>kee/keen</b> seront approfondis ensuite."
       ]
     },
     {
       "type": "tableau",
-      "titre": "La même règle, plusieurs familles",
+      "titre": "Selon la lettre suivante",
       "rubrique": "regles",
       "unite": 2,
       "entetes": [
-        "Sans N (avant B, C, M, S…)",
-        "Avec N (avant A, D, O, T…)"
+        "Sans N",
+        "Avec N"
       ],
       "lignes": [
         [
@@ -837,7 +837,8 @@
         ],
         [
           "en Auto",
-          "une voiture (article indéfini)"
+          "une voiture (article indéfini)",
+          "Nom masculin en luxembourgeois"
         ],
         [
           "de Bus",
@@ -845,11 +846,13 @@
         ],
         [
           "den Auto",
-          "la voiture (article défini)"
+          "la voiture (article défini)",
+          "Nom masculin en luxembourgeois"
         ],
         [
           "en Dësch",
-          "une table (article indéfini)"
+          "une table (article indéfini)",
+          "Nom masculin en luxembourgeois"
         ],
         [
           "de Computer",

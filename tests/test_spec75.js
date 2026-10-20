@@ -4,7 +4,7 @@ const fs=require('node:fs'), path=require('node:path'), assert=require('node:ass
 const racine=path.join(__dirname,'..');
 const lecon=n=>JSON.parse(fs.readFileSync(path.join(racine,'data/lecons/A1.1/lecon-'+String(n).padStart(2,'0')+'.json')));
 const empreinte=t=>{let x=2166136261>>>0;for(let i=0;i<t.length;i++)x=Math.imul(x^t.charCodeAt(i),16777619)>>>0;return x.toString(16);};
-const origine={1:{autres:'b37b633b',cours:18},2:{autres:'c6c45ad5',cours:10},3:{autres:'259c0cf9',cours:12}};
+const origine={1:{autres:'b37b633b',cours:18},2:{autres:'308baf2d',cours:10},3:{autres:'259c0cf9',cours:12}};
 const lecons=[lecon(1),lecon(2),lecon(3)];
 const ecran={
   'cours75-panneau': {innerHTML:''},

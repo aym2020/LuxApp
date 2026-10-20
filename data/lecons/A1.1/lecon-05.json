@@ -2436,7 +2436,7 @@
     },
     {
       "type": "tableau",
-      "titre": "an ou a ? (règle UNITEDZOHA)",
+      "titre": "an ou a ? (règle United Zoha)",
       "entetes": [
         "Dizaine",
         "Liaison",
@@ -2492,7 +2492,7 @@
       "variant": "info",
       "titre": "Quand garder le n ?",
       "lignes": [
-        "On garde <b>an</b> si la dizaine commence par une voyelle ou par <b>n, d, t, z, h</b> (moyen mnémotechnique <b>UNITEDZOHA</b>).",
+        "On garde <b>an</b> si la dizaine commence par une voyelle ou par <b>n, d, t, z, h</b> (moyen mnémotechnique <b>United Zoha</b>).",
         "Sinon, on met <b>a</b> : devant v, f, s (véierzeg, fofzeg, siechzeg, siwwenzeg)."
       ],
       "unite": 3,
