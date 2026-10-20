@@ -67,6 +67,7 @@ function bulleSceneHtml(l, x) {
 // s'ouvre à la demande (« Voir le scénario »), pour laisser les unités en vue.
 // conseillee = true quand le fil est fini : le bouton passe en jaune (si jamais jouée).
 function missionHtml(l, conseillee) {
+  if (studioActif(l)) return studioMissionHtml(l, conseillee);
   if (!l.mission || !l.scene) return '';
   const best = getMissionBest(l.id);
   const apprises = l.scene.filter(x => repliqueApprise(l, x)).length;
@@ -106,6 +107,7 @@ function etatPreparationMission(l) {
 // « Voir le scénario » : panneau par-dessus l'écran de la leçon. Le fermer
 // laisse l'utilisateur exactement où il était.
 function voirScenario() {
+  if (studioActif(pLecon)) return studioVoirScenario();
   const l = pLecon;
   const html = '<div class="poignee"></div>' +
     '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + numLecon(l) + '</div>' +
@@ -146,6 +148,7 @@ function introMissionAVoir(l) {
 }
 
 function renderIntroMission() {
+  if (studioActif(pLecon)) return studioRenderIntroMission();
   const l = pLecon;
   document.getElementById('msi-content').innerHTML =
     '<div class="msi-haut">' +
@@ -256,6 +259,7 @@ function openMission(tentative) {
     ouvrirIntroMission(pLecon, { type: 'mission' });
     return;
   }
+  if (studioActif(pLecon)) return studioOpenMission(tentative);
   ms = { idx: 0, essais: 0, dernierEssai: '', resultats: [], formesValidees: [], tentative: !!tentative && peutTenterSaChance(pLecon), vues: 0, enBas: true,
     vies: VIES_MISSION, coquille: false };
   renderEnteteMission();
@@ -278,6 +282,7 @@ function openMission(tentative) {
 // mêmes réponses validées, mêmes vies, essais en cours gardés (pas de vie en
 // moins pour une erreur déjà comptée). Pas de rappel des règles au retour.
 function reprendreMission(note) {
+  if (studioActif(pLecon)) return studioReprendreMission(note);
   openMission(note.tentative);
   fermerPanneauSansSuite();
   Object.assign(ms, {
@@ -313,15 +318,16 @@ function masquerReglesVies(masquer) {
 
 // auLancement = true : affichage automatique avant la conversation.
 function voirReglesVies(auLancement) {
+  const studio = studioActif(pLecon);
   const coeurs = '<svg class="ms-coeur" viewBox="0 0 24 24" aria-hidden="true"><path d="' + CHEMIN_COEUR + '"/></svg>';
   const coche = reglesViesMasquees() ? ' checked' : '';
   ouvrirPanneau('<div class="poignee"></div>' +
     '<div class="ms-regles">' +
       '<div class="ms-regles-coeurs">' + coeurs + coeurs + coeurs + '</div>' +
       '<h2>Tu as 3 vies !</h2>' +
-      '<p>Chaque mauvaise réponse te fait perdre un cœur, un seul par réplique.</p>' +
+      '<p>Chaque mauvaise réponse te fait perdre un cœur, un seul par ' + (studio ? 'défi' : 'réplique') + '.</p>' +
       '<p>Garde au moins un cœur jusqu\'à la fin pour valider ta mission.</p>' +
-      '<p>Une simple faute de frappe reconnue ne te fait pas perdre de vie.</p>' +
+      (studio ? '<p>Dans le studio radio, tu choisis parmi des réponses : aucune saisie à faire.</p>' : '<p>Une simple faute de frappe reconnue ne te fait pas perdre de vie.</p>') +
       '<label class="ms-regles-masquer"><input type="checkbox" id="ms-regles-masquer"' + coche +
         ' onchange="masquerReglesVies(this.checked)"> Ne plus afficher</label>' +
     '</div>' +
@@ -499,6 +505,7 @@ function agrandirChamp(input) {
 
 // Contexte de la mission, à relire à tout moment (panneau).
 function voirContexte() {
+  if (studioActif(pLecon)) return studioVoirScenario();
   const l = pLecon;
   ouvrirPanneau('<div class="poignee"></div>' +
     '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + numLecon(l) + '</div>' +
