@@ -260,6 +260,27 @@
     <div class="cta-fixe" id="pi-cta"></div>
   </div>
 
+  <!-- SPEC 83 : DÉCOUVERTE GUIDÉE DE LA LEÇON 0 (sans score ni défilement automatique) -->
+  <div id="view-decouverte" class="view">
+    <div class="pc-topbar">
+      <button class="pc-icon-btn" data-retour aria-label="Retour" onclick="quitterDecouverte()">←</button>
+      <span class="pc-espace"></span>
+      <button class="pc-cours-btn" onclick="ouvrirCours(decouverteActive && decouverteActive.uniteId)">Cours</button>
+    </div>
+    <div class="dc-contenant">
+      <div class="pc-mini-label pc-gold">DÉCOUVERTE GUIDÉE</div>
+      <h1 id="dc-titre" class="dc-titre"></h1>
+      <p id="dc-soustitre" class="dc-soustitre"></p>
+      <div class="dc-ligne"><span id="dc-etape"></span><span id="dc-compteur"></span></div>
+      <div class="dc-piste"><div id="dc-progression"></div></div>
+      <div id="dc-contenu" class="dc-scene" aria-live="polite"></div>
+    </div>
+    <div class="cta-fixe dc-bas">
+      <button type="button" id="dc-retour" class="dc-precedent" onclick="precedentDecouverte()" aria-label="Exemple précédent">‹</button>
+      <button type="button" id="dc-suite" class="pc-btn primary big dc-continuer" onclick="suivantDecouverte()">Continuer →</button>
+    </div>
+  </div>
+
   <!-- ══ LEÇON EN UNITÉS : EXERCICE ═══════════════════════════════════════════ -->
   <div id="view-parcours" class="view">
     <div class="pc-topbar">
@@ -519,6 +540,7 @@
   <script src="parcours.js"></script>
   <script src="mission.js"></script>
   <script src="studio.js"></script>
+  <script src="decouverte.js"></script>
   <script src="revision.js"></script>
   <script src="accueil.js"></script>
   <script src="dialogue.js"></script>
