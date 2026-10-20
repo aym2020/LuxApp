@@ -15,6 +15,69 @@ function portailVisible() {
   const el = document.getElementById('portail-auth');
   return !!(el && !el.classList.contains('hidden'));
 }
+// SPEC 76 — information invitée, affichée une seule fois après le choix invité.
+// Ce drapeau n'influence jamais la progression : il masque uniquement la fenêtre.
+const INFO_INVITE_VUE = 'luxInfoInviteVueV1';
+let infoInviteOuverte = null; // { el, focusRetour }
+
+function infoInviteEstOuverte() { return !!infoInviteOuverte; }
+
+function afficherInfoInvite() {
+  if (portailLire(INFO_INVITE_VUE) === 'oui' || infoInviteOuverte) return false;
+  // Ne pas interrompre les captures ou tests automatiques.
+  if (window.APP_CONFIG && (window.APP_CONFIG.RECETTE || window.APP_CONFIG.TESTS)) return false;
+  if (fbAuth && fbAuth.currentUser) return false;
+
+  const el = document.createElement('div');
+  el.className = 'pi-overlay';
+  el.id = 'info-invite';
+  el.innerHTML =
+    '<div class="pi-voile" aria-hidden="true"></div>' +
+    '<section class="pi-carte" role="dialog" aria-modal="true" aria-labelledby="pi-titre" aria-describedby="pi-intro pi-risque pi-conseil">' +
+      '<header class="pi-entete">' +
+        '<span class="pi-symbole" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span>' +
+        '<span><h2 id="pi-titre">Mode invité</h2><p id="pi-intro">Apprends sans créer de compte</p></span>' +
+      '</header>' +
+      '<div class="pi-separateur" aria-hidden="true"></div>' +
+      '<div class="pi-ligne">' +
+        '<span class="pi-icone pi-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg></span>' +
+        '<span><strong>Progression enregistrée</strong><small>Sur cet appareil uniquement</small></span>' +
+      '</div>' +
+      '<div class="pi-ligne">' +
+        '<span class="pi-icone pi-attention" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 10 18H2z"/><path d="M12 9v5M12 17h.01"/></svg></span>' +
+        '<span><strong>Risque de perte</strong><small id="pi-risque">Si les données de l’application sont effacées</small></span>' +
+      '</div>' +
+      '<p class="pi-conseil" id="pi-conseil">Connecte-toi pour sauvegarder tes progrès en ligne.</p>' +
+      '<button type="button" class="pi-compris">Compris</button>' +
+    '</section>';
+
+  const retour = document.querySelector('#view-dashboard .carte-suite');
+  document.body.appendChild(el);
+  document.body.classList.add('pi-bloque');
+  infoInviteOuverte = { el, focusRetour: retour };
+  el.querySelector('.pi-compris').addEventListener('click', fermerInfoInvite);
+  el.addEventListener('keydown', e => {
+    // Une seule action dans la fenêtre : Tab reste sur « Compris ».
+    if (e.key === 'Tab') { e.preventDefault(); el.querySelector('.pi-compris').focus(); }
+    if (e.key === 'Escape') { e.preventDefault(); fermerInfoInvite(); }
+  });
+  el.querySelector('.pi-compris').focus({preventScroll:true});
+  if (typeof programmerGarde === 'function') programmerGarde();
+  return true;
+}
+
+function fermerInfoInvite() {
+  if (!infoInviteOuverte) return false;
+  const {el,focusRetour} = infoInviteOuverte;
+  infoInviteOuverte = null;
+  portailStocker(INFO_INVITE_VUE,'oui');
+  el.remove();
+  document.body.classList.remove('pi-bloque');
+  if (focusRetour && focusRetour.isConnected) focusRetour.focus({preventScroll:true});
+  if (typeof programmerGarde === 'function') programmerGarde();
+  return true;
+}
+
 // Formulaire affiché par-dessus la bienvenue : Retour y ramène (navigation.js).
 function portailFormulaireOuvert() {
   return portailVisible() && portailMode !== 'welcome';
@@ -205,13 +268,13 @@ function portailFermerVersAccueil() {
 }
 function portailAction(action) {
   if(action==='guest'){
-    // SPEC 66 : pas de confirmation, le choix est déjà exprimé. Message discret.
-    // L'accueil « Moien / Bonjour » revient au prochain lancement (SPEC 64).
+    // Le choix invité mène à l'accueil ; l'information sur le stockage
+    // local apparaît une fois, sans faux message de sauvegarde cloud.
     portailStocker(PORTAIL_INVITE, null);
     portailStocker(PORTAIL_COMPTE, null); // dernier mode choisi = invité
     portailFermer();
     if(typeof goDashboard==='function')goDashboard();
-    notifier('Ta progression est enregistrée sur cet appareil.');
+    afficherInfoInvite();
     return;
   }
   if(action==='signup'||action==='signin')portailOuvrir(action,'avant');

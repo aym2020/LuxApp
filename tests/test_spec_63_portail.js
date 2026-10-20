@@ -13,8 +13,24 @@ function node(id){return nodes[id] ||= {
  setAttribute(k,v){this.attrs[k]=v},
  querySelector(){return {focus(){},classList:{add(){}}}}
 };}
-const body={classList:{states:new Set,contains(k){return this.states.has(k)},add(k){this.states.add(k)},remove(k){this.states.delete(k)}}};
-const document={body,addEventListener(){},getElementById:node,querySelector(){return null}};
+let popup=null, ouverturesPopup=0, focusRetour=0;
+const body={classList:{states:new Set,contains(k){return this.states.has(k)},add(k){this.states.add(k)},remove(k){this.states.delete(k)}},
+  appendChild(el){popup=el; ouverturesPopup++;el.isConnected=true;}};
+const document={body,addEventListener(){},getElementById:node,
+  querySelector(sel){return sel==='#view-dashboard .carte-suite'?
+    {isConnected:true,focus(){focusRetour++;}}:null;},
+  createElement(tag){
+    assert.equal(tag,'div');
+    const button={events:{},focused:false,addEventListener(type,fn){this.events[type]=fn;},
+      focus(){this.focused=true;}};
+    return {innerHTML:'',className:'',id:'',isConnected:false,events:{},
+      querySelector(sel){return sel==='.pi-compris'?button:null;},
+      addEventListener(type,fn){this.events[type]=fn;},
+      remove(){this.isConnected=false;popup=null;},
+      get button(){return button;}
+    };
+  }
+};
 let cloud=true,signed=false,profile='anonymous',opened=0,notes=[];
 let snapshot=()=>null;
 const escHtml=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
@@ -22,7 +38,8 @@ const ctx=new Function('document','window','localStorage','fbAuth','currentStora
  'setStorageProfile','isCloudEnabled','aDejaPratique','getProgress','goDashboard',
  'programmerGarde','notifier','arreterAudio','escHtml','animationsReduites',code+
  '\nreturn {portailInitialiser,portailAction,portailOuvrir,portailCompteConnecte,portailCompteDeconnecte,'+
- 'portailVisible,portailFormulaireOuvert,portailRetourBienvenue,ouvrirCompteDepuisAccueil,portailContenu,get mode(){return portailMode}};')(
+ 'portailVisible,portailFormulaireOuvert,portailRetourBienvenue,ouvrirCompteDepuisAccueil,portailContenu,'+
+ 'afficherInfoInvite,fermerInfoInvite,infoInviteEstOuverte,get mode(){return portailMode}};')(
  document,{APP_CONFIG:{}},localStorage,{onAuthStateChanged(cb){snapshot=cb;}},
  profile,v=>{profile=v},()=>cloud,()=>false,()=>({}),()=>{opened++},()=>{},t=>notes.push(t),()=>{},escHtml,()=>true);
 ctx.portailInitialiser(null);
@@ -40,11 +57,41 @@ assert.match(accueil,/J’ai déjà un compte/);
 assert.ok(!accueil.includes('Continuer sans compte'),'fusionné avec « Commencer à apprendre »');
 assert.ok(!/test A1/.test(accueil));
 assert.ok(!ctx.portailFormulaireOuvert());
-// Invité : pas de confirmation, message discret, progression intacte.
+// Invité : une seule fenêtre informative, aucun toast trompeur, progression intacte.
 ctx.portailAction('guest');
 assert.ok(!ctx.portailVisible());assert.equal(opened,1);
-assert.deepEqual(notes,['Ta progression est enregistrée sur cet appareil.']);
+assert.deepEqual(notes,[],'ancien toast supprimé');
+assert.ok(ctx.infoInviteEstOuverte(),'popup ouvert après le choix invité');
+assert.ok(body.classList.contains('pi-bloque'),'pas de scroll derrière la popup');
+assert.equal(store.luxInfoInviteVueV1,undefined,'ne pas marquer comprise avant validation');
+assert.match(popup.innerHTML,/Mode invité/);
+assert.match(popup.innerHTML,/Progression enregistrée/);
+assert.match(popup.innerHTML,/Sur cet appareil uniquement/);
+assert.match(popup.innerHTML,/Risque de perte/);
+assert.match(popup.innerHTML,/données de l’application sont effacées/);
+assert.match(popup.innerHTML,/sauvegarder tes progrès en ligne/);
+assert.match(popup.innerHTML,/role="dialog" aria-modal="true"/);
+assert.equal((popup.innerHTML.match(/<button\b/g)||[]).length,1,'un seul bouton');
+assert.match(popup.innerHTML,/Compris/);
+assert.equal(popup.button.focused,true,'focus sur Compris');
+const premierePopup=popup;
+premierePopup.button.events.click();
+assert.ok(!ctx.infoInviteEstOuverte(),'Compris ferme la fenêtre');
+assert.equal(store.luxInfoInviteVueV1,'oui','confirmation mémorisée');
+assert.ok(!body.classList.contains('pi-bloque'),'scroll rétabli');
+assert.ok(focusRetour>0,'retour du focus à l’accueil');
+assert.equal(ctx.afficherInfoInvite(),false,'aucune réouverture après Compris');
+assert.equal(ouverturesPopup,1,'une seule apparition');
 assert.equal(store.luxPortailInviteV1,undefined);
+// Retour Android et Escape ferment aussi la fenêtre sans bloquer la navigation.
+delete store.luxInfoInviteVueV1;
+assert.ok(ctx.afficherInfoInvite());
+const secondePopup=popup;
+let escapeIntercepte=false;
+secondePopup.events.keydown({key:'Escape',preventDefault(){escapeIntercepte=true;}});
+assert.ok(escapeIntercepte);
+assert.ok(!ctx.infoInviteEstOuverte());
+assert.equal(store.luxInfoInviteVueV1,'oui');
 ctx.portailInitialiser(null);
 assert.ok(ctx.portailVisible(),'invité : écran de bienvenue à chaque nouveau démarrage');
 // Formulaire : Retour ramène à la bienvenue.
@@ -106,4 +153,8 @@ assert.ok(read('public/navigation.js').includes('fermerDialogue(false)'));
 assert.match(html,/src="dialogue.js"/);
 for (const f of ['app.js','examens.js','revision.js']) assert.ok(!/\b(confirm|alert)\(/.test(read('public/'+f)), f+' : plus de fenêtre native');
 assert.ok(fs.statSync(path.join(__dirname,'..','public/audio/moien.mp3')).size > 5000,'audio Moien présent');
-console.log('SPEC 63-66 : OK — bienvenue avec carte Moien!, invité sans confirmation, formulaires avec Retour, dialogues LuxApp.');
+assert.match(read('public/navigation.js'),/infoInviteEstOuverte\(\)/,'garde pour Retour Android');
+assert.match(read('public/navigation.js'),/fermerInfoInvite\(\)/,'fermeture par Retour Android');
+assert.match(css,/\.pi-carte\s*\{[^}]*border-radius:22px/s);
+assert.match(css,/\.pi-compris\s*\{[^}]*min-height:54px/s);
+console.log('SPEC 63-66 + 76 : OK — popup invité unique, risque local, Compris, Retour Android.');
