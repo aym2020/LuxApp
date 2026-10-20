@@ -148,7 +148,7 @@ function coursBlocsHtml(blocs, accent) {
         <div class="cours-bloc-titre" style="color:${accent}">${sec.titre}</div>${
           sec.items.map(([lu, fr]) =>
             `<div class="cours-ex-row">
-              <div class="cours-ex-lu" style="color:${accent}">${lu}</div>
+              <div class="cours-ex-lu" style="color:${accent}">${lu}${boutonEcouterHtml(lu, true)}</div>
               <div class="cours-ex-fr">${fr}</div>
             </div>`
           ).join('')
@@ -163,7 +163,7 @@ function coursBlocsHtml(blocs, accent) {
             <thead><tr>${sec.entetes.map(h => `<th>${h}</th>`).join('')}</tr></thead>
             <tbody>${
               sec.lignes.map(row =>
-                `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`
+                `<tr>${row.map((c,i) => `<td>${c}${i===0 ? boutonEcouterHtml(c, true) : ''}</td>`).join('')}</tr>`
               ).join('')
             }</tbody>
           </table>
