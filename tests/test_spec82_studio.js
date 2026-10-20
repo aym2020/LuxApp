@@ -17,7 +17,8 @@ assert.deepEqual(l.mission.defis.map(d=>d.type),
   ['audio','audio','audio','verification','verification','verification','completer','completer']);
 for(const q of l.quiz){
  assert.equal(q.audioMot,q.reponse);
- assert.ok(lod[q.audioMot] && fs.existsSync(path.join(root,'public/audio',lod[q.audioMot])));
+ assert.equal(q.audioFichier,lod[q.audioMot]);
+ assert.ok(lod[q.audioMot] && fs.existsSync(path.join(root,'public/audio',q.audioFichier)));
  assert.equal(q.distracteurs.length,3);
  assert.ok(!q.distracteurs.includes(q.reponse));
 }
