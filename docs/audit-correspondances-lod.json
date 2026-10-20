@@ -1,21 +1,21 @@
 {
- "genere": "2026-10-20",
  "sources": {
   "articles": "2026-07-27",
   "tables": "2026-07-27",
-  "recherche": null,
+  "recherche": "2026-07-27",
   "miroir": "2020-12-18"
  },
  "chiffres": {
   "total": 183,
-  "lemme": 54,
-  "flechie": 83,
-  "graphie": 17,
-  "ambigu": 14,
+  "lemme": 53,
+  "flechie": 90,
+  "graphie": 10,
+  "ambigu": 15,
   "absent": 15,
-  "sonDispo": 53,
+  "sonSur": 10,
+  "sonAValider": 42,
+  "sonSansFichier": 1,
   "sansSon": 90,
-  "indispo": 1,
   "contexte": 74,
   "contexteTelecharge": 4
  },
@@ -43,8 +43,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "Entschëllegt!",
@@ -72,11 +72,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "ENTSCHELLEGEN1",
    "lemme": "entschëllegen",
-   "type": "participe passé",
+   "type": "impératif (formule de politesse)",
    "categorie": "VRB",
    "sens": "excuser, pardon, excuse(z)-moi, pardon",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -102,7 +102,14 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de ENTSCHELLEGEN1 prononce « entschëllegen ») ; audio contextuel si un exemple prononce « entschëllegt »",
-   "justification": "« entschëllegt » = participe passé de entschëllegen (ENTSCHELLEGEN1), articles.",
+   "justification": "« entschëllegt » = impératif (formule de politesse) de entschëllegen (ENTSCHELLEGEN1) ; analyses possibles : participe passé, impératif (table), participe passé (table), présent (table).",
+   "analyses": [
+    "participe passé",
+    "impératif (table)",
+    "participe passé (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -134,12 +141,21 @@
    "categorie": "SUBST",
    "sens": "au revoir, dire au revoir (à), prendre congé (de)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer AWUER1.mp3 (après validation)",
-   "justification": "Lemme identique (variante de « Awar »), sens « au revoir, dire au revoir (à), prendre congé (de) ».",
-   "local": false
+   "decision": "Relire puis associer AWUER1.mp3",
+   "justification": "Lemme identique (variante de « Awar »), sens « au revoir, dire au revoir (à), prendre congé (de) » ; à valider : variante de « Awar » ; traduction lue dans un tableau.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "variante de « Awar »",
+    "traduction lue dans un tableau"
+   ]
   },
   {
    "lu": "Wollekekrazer",
@@ -163,8 +179,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté). Entrée voisine : Wollek (WOLLEK1)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche. Entrée voisine : Wollek (WOLLEK1)."
   },
   {
    "lu": "kee",
@@ -199,7 +215,7 @@
    "categorie": "PRON",
    "sens": "aucun, pas (de), personne, aucun",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -211,7 +227,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de KEEN1 prononce « keen ») ; audio contextuel si un exemple prononce « kee »",
-   "justification": "« kee » = variante règle du n de keen (KEEN1), articles.",
+   "justification": "« kee » = variante règle du n de keen (KEEN1).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -280,8 +300,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté). Entrée voisine : Wollek (WOLLEK1)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche. Entrée voisine : Wollek (WOLLEK1)."
   },
   {
    "lu": "de",
@@ -356,12 +376,20 @@
    "categorie": "ART",
    "sens": "le, le, les",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer DEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « le, le, les ».",
-   "local": false
+   "decision": "Relire puis associer DEN1.mp3",
+   "justification": "Lemme identique, sens « le, le, les » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "zwou",
@@ -380,7 +408,7 @@
     {
      "id": "ZWEE2",
      "lemme": "zwee",
-     "type": "forme adjectivale (table)",
+     "type": "forme déclinée (table)",
      "source": "tables",
      "categorie": "NB",
      "sens_lod": "deux",
@@ -391,11 +419,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "ZWEE2",
    "lemme": "zwee",
-   "type": "forme adjectivale (table)",
+   "type": "forme déclinée (table)",
    "categorie": "NB",
    "sens": "deux",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -407,7 +435,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de ZWEE2 prononce « zwee ») ; audio contextuel si un exemple prononce « zwou »",
-   "justification": "« zwou » = forme adjectivale (table) de zwee (ZWEE2), tables.",
+   "justification": "« zwou » = forme déclinée (table) de zwee (ZWEE2).",
+   "analyses": [
+    "forme déclinée (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -426,19 +458,22 @@
      "id": "ACHTZEG1",
      "lemme": "achtzeg",
      "graphie": "achtzeg",
-     "type": "lemme"
+     "type": "lemme",
+     "statut_graphie": "contrôlée"
     },
     {
      "id": "AACHT2",
      "lemme": "aacht",
      "graphie": "aachten",
-     "type": "forme adjectivale (table)"
+     "type": "forme déclinée (table)",
+     "statut_graphie": "contrôlée"
     },
     {
      "id": "AACHT2",
      "lemme": "aacht",
      "graphie": "aachter",
-     "type": "forme adjectivale (table)"
+     "type": "forme déclinée (table)",
+     "statut_graphie": "contrôlée"
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
@@ -452,8 +487,11 @@
    "graphie": "LuxApp « aachtzeg » ; LOD : « achtzeg » ou « aachten » ou « aachter »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « achtzeg » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « aachtzeg » ; graphie LOD proche : achtzeg (ACHTZEG1, lemme), aachten (AACHT2, forme adjectivale (table)), aachter (AACHT2, forme adjectivale (table)) ; sens LOD : quatre-vingt(s)."
+   "decision": "Vérifier l'orthographe : si « achtzeg » est retenu, corriger la leçon ; son exact alors disponible (ACHTZEG1.mp3, disponible)",
+   "justification": "Pas d'entrée « aachtzeg » ; graphie LOD proche : achtzeg (ACHTZEG1, lemme), aachten (AACHT2, forme déclinée (table)), aachter (AACHT2, forme déclinée (table)) ; sens LOD : quatre-vingt(s).",
+   "statut_graphie": "absente du LOD",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": []
   },
   {
    "lu": "zweehonnert",
@@ -478,8 +516,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "dräihonnert",
@@ -504,8 +542,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "zweedausend",
@@ -530,8 +568,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "zéngdausend",
@@ -556,8 +594,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "eenandrësseg",
@@ -588,12 +626,20 @@
    "categorie": "NB",
    "sens": "trente et un",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer EENANDRESSEG1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « trente et un ».",
-   "local": false
+   "decision": "Relire puis associer EENANDRESSEG1.mp3",
+   "justification": "Lemme identique, sens « trente et un » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "a",
@@ -696,12 +742,20 @@
    "categorie": "NB",
    "sens": "cinquante et un",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer EENAFOFZEG1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « cinquante et un ».",
-   "local": false
+   "decision": "Relire puis associer EENAFOFZEG1.mp3",
+   "justification": "Lemme identique, sens « cinquante et un » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "eenasiechzeg",
@@ -732,12 +786,21 @@
    "categorie": "NB",
    "sens": "soixante et un",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer EENASIECHZEG1.mp3 (après validation)",
-   "justification": "Lemme identique (variante de « eenasechzeg »), sens « soixante et un ».",
-   "local": false
+   "decision": "Relire puis associer EENASIECHZEG1.mp3",
+   "justification": "Lemme identique (variante de « eenasechzeg »), sens « soixante et un » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; variante de « eenasechzeg ».",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "variante de « eenasechzeg »"
+   ]
   },
   {
    "lu": "eenasiwwenzeg",
@@ -768,12 +831,20 @@
    "categorie": "NB",
    "sens": "soixante et onze",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer EENASIWWENZEG1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « soixante et onze ».",
-   "local": false
+   "decision": "Relire puis associer EENASIWWENZEG1.mp3",
+   "justification": "Lemme identique, sens « soixante et onze » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "eenanaachtzeg",
@@ -790,13 +861,15 @@
      "id": "EENANACHTZEG1",
      "lemme": "eenanachtzeg",
      "graphie": "eenanachtzeg",
-     "type": "lemme"
+     "type": "lemme",
+     "statut_graphie": "contrôlée"
     },
     {
      "id": "EENANUECHTZEG1",
      "lemme": "eenanuechtzeg",
      "graphie": "eenanuechtzeg",
-     "type": "lemme"
+     "type": "lemme",
+     "statut_graphie": "contrôlée"
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
@@ -810,8 +883,11 @@
    "graphie": "LuxApp « eenanaachtzeg » ; LOD : « eenanachtzeg » ou « eenanuechtzeg »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « eenanachtzeg » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « eenanaachtzeg » ; graphie LOD proche : eenanachtzeg (EENANACHTZEG1, lemme), eenanuechtzeg (EENANUECHTZEG1, lemme) ; sens LOD : quatre-vingt-un."
+   "decision": "Vérifier l'orthographe : si « eenanachtzeg » est retenu, corriger la leçon ; son exact alors disponible (EENANACHTZEG1.mp3, disponible)",
+   "justification": "Pas d'entrée « eenanaachtzeg » ; graphie LOD proche : eenanachtzeg (EENANACHTZEG1, lemme), eenanuechtzeg (EENANUECHTZEG1, lemme) ; sens LOD : quatre-vingt-un.",
+   "statut_graphie": "absente du LOD",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": []
   },
   {
    "lu": "eenannonzeg",
@@ -842,12 +918,20 @@
    "categorie": "NB",
    "sens": "quatre-vingt-onze",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer EENANNONZEG1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « quatre-vingt-onze ».",
-   "local": false
+   "decision": "Relire puis associer EENANNONZEG1.mp3",
+   "justification": "Lemme identique, sens « quatre-vingt-onze » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "honnerteenanzwanzeg",
@@ -871,8 +955,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté). Entrée voisine : honnert (HONNERT1)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche. Entrée voisine : honnert (HONNERT1)."
   },
   {
    "lu": "zweehonnertfofzeg",
@@ -896,8 +980,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "Dat sinn",
@@ -945,7 +1029,7 @@
   },
   {
    "lu": "eng Posch",
-   "fr": "deux poches",
+   "fr": "",
    "forme": "posch",
    "lecons": [
     "A1.1 L6"
@@ -964,23 +1048,32 @@
      "sens_correspond": false
     }
    ],
-   "correspondance": "SENS_AMBIGU",
-   "audio": "AUCUN",
-   "id": null,
-   "lemme": null,
-   "type": null,
-   "categorie": null,
-   "sens": null,
-   "source": null,
-   "graphie": null,
-   "son": null,
+   "correspondance": "LEMME_EXACT",
+   "audio": "SON_EXACT_DISPONIBLE",
+   "id": "POSCH1",
+   "lemme": "Posch",
+   "type": "lemme",
+   "categorie": "SUBST",
+   "sens": "sac à main, sacoche",
+   "source": "articles LOD 2026-07-27",
+   "graphie": "contrôlée (index de recherche)",
+   "son": "disponible",
    "contexte": [],
-   "decision": "Relecture humaine",
-   "justification": "Forme trouvée mais aucun sens LOD ne correspond à « deux poches »."
+   "decision": "Relire puis associer POSCH1.mp3",
+   "justification": "Lemme identique, sens « sac à main, sacoche » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "eng Mauer",
-   "fr": "deux murs",
+   "fr": "",
    "forme": "mauer",
    "lecons": [
     "A1.1 L6"
@@ -996,7 +1089,7 @@
      "source": "articles",
      "categorie": "SUBST",
      "sens_lod": "mur, séparateur de voie",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -1007,12 +1100,20 @@
    "categorie": "SUBST",
    "sens": "mur, séparateur de voie",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer MAUER1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « mur, séparateur de voie ».",
-   "local": false
+   "decision": "Relire puis associer MAUER1.mp3",
+   "justification": "Lemme identique, sens « mur, séparateur de voie » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "Italiener",
@@ -1029,29 +1130,37 @@
     {
      "id": "ITALIEENER1",
      "lemme": "Italieener",
-     "graphie": "Italieener",
-     "type": "lemme"
-    },
-    {
-     "id": "ITALIEINER1",
-     "lemme": "Italiéiner",
-     "graphie": "Italiéiner",
-     "type": "lemme"
+     "type": "graphie de l'index de recherche (fautive)",
+     "source": "recherche",
+     "categorie": "SUBST",
+     "sens_lod": "Italien",
+     "sens_correspond": true
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
    "audio": "AUCUN",
    "id": "ITALIEENER1",
    "lemme": "Italieener",
-   "type": "lemme",
+   "type": "graphie de l'index de recherche (fautive)",
    "categorie": "SUBST",
    "sens": "Italien",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "LuxApp « italiener » ; LOD : « Italieener » ou « Italiéiner »",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "graphie fautive selon le LOD ; standard : « Italieener »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « Italieener » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « italiener » ; graphie LOD proche : Italieener (ITALIEENER1, lemme), Italiéiner (ITALIEINER1, lemme) ; sens LOD : Italien."
+   "decision": "Corriger en « Italieener » si validé ; son exact alors disponible (ITALIEENER1.mp3, disponible)",
+   "justification": "« Italiener » est listé comme graphie fautive de « Italieener » (ITALIEENER1) dans l'index de recherche.",
+   "analyses": [
+    "graphie de l'index de recherche (fautive)"
+   ],
+   "statut_graphie": "fautive",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": [
+    "A1.1 L8 : « Hien ass Italiener. »",
+    "A1.1 L8 : « Ech sinn Italiener. »",
+    "A1.2 L27 : « Nee, ech sinn Italiener. »",
+    "A1.2 L27 : « Sidd dir zwee Italiener? »"
+   ]
   },
   {
    "lu": "Fransousin",
@@ -1069,7 +1178,8 @@
      "id": "FRANSEISIN1",
      "lemme": "Franséisin",
      "graphie": "Franséisin",
-     "type": "lemme"
+     "type": "lemme",
+     "statut_graphie": "contrôlée"
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
@@ -1083,8 +1193,16 @@
    "graphie": "LuxApp « fransousin » ; LOD : « Franséisin »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « Franséisin » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « fransousin » ; graphie LOD proche : Franséisin (FRANSEISIN1, lemme) ; sens LOD : Française."
+   "decision": "Vérifier l'orthographe : si « Franséisin » est retenu, corriger la leçon ; son exact alors disponible (FRANSEISIN1.mp3, disponible)",
+   "justification": "Pas d'entrée « fransousin » ; graphie LOD proche : Franséisin (FRANSEISIN1, lemme) ; sens LOD : Française.",
+   "statut_graphie": "absente du LOD",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": [
+    "A1.1 L8 : « Ass d'Julie och Fransousin? »",
+    "A1.1 L8 : « Nee, si ass keng Fransousin. Si ass Belsch. »",
+    "A1.1 L8 : « Ech si Fransousin. »",
+    "A1.1 L8 : « Nee, si ass keng Fransousin. »"
+   ]
   },
   {
    "lu": "Italienerin",
@@ -1101,29 +1219,36 @@
     {
      "id": "ITALIEENERIN1",
      "lemme": "Italieenerin",
-     "graphie": "Italieenerin",
-     "type": "lemme"
-    },
-    {
-     "id": "ITALIEINERIN1",
-     "lemme": "Italiéinerin",
-     "graphie": "Italiéinerin",
-     "type": "lemme"
+     "type": "graphie de l'index de recherche (fautive)",
+     "source": "recherche",
+     "categorie": "SUBST",
+     "sens_lod": "Italienne",
+     "sens_correspond": true
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
    "audio": "AUCUN",
    "id": "ITALIEENERIN1",
    "lemme": "Italieenerin",
-   "type": "lemme",
+   "type": "graphie de l'index de recherche (fautive)",
    "categorie": "SUBST",
    "sens": "Italienne",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "LuxApp « italienerin » ; LOD : « Italieenerin » ou « Italiéinerin »",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "graphie fautive selon le LOD ; standard : « Italieenerin »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « Italieenerin » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « italienerin » ; graphie LOD proche : Italieenerin (ITALIEENERIN1, lemme), Italiéinerin (ITALIEINERIN1, lemme) ; sens LOD : Italienne."
+   "decision": "Corriger en « Italieenerin » si validé ; son exact alors disponible (ITALIEENERIN1.mp3, disponible)",
+   "justification": "« Italienerin » est listé comme graphie fautive de « Italieenerin » (ITALIEENERIN1) dans l'index de recherche.",
+   "analyses": [
+    "graphie de l'index de recherche (fautive)"
+   ],
+   "statut_graphie": "fautive",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": [
+    "A1.1 L8 : « Si ass Italienerin. »",
+    "A1.1 L8 : « Ech sinn Italienerin. »",
+    "A1.1 L8 : « Nee, si ass keng Italienerin. »"
+   ]
   },
   {
    "lu": "Italienesch",
@@ -1140,35 +1265,32 @@
     {
      "id": "ITALIEENESCH1",
      "lemme": "italieenesch",
-     "graphie": "italieenesch",
-     "type": "lemme"
-    },
-    {
-     "id": "ITALIEENESCH1",
-     "lemme": "italieenesch",
-     "graphie": "italieenescht",
-     "type": "forme adjectivale (table)"
-    },
-    {
-     "id": "ITALIEINESCH1",
-     "lemme": "italiéinesch",
-     "graphie": "italiéinesch",
-     "type": "lemme"
+     "type": "graphie de l'index de recherche (fautive)",
+     "source": "recherche",
+     "categorie": "ADJ",
+     "sens_lod": "italien",
+     "sens_correspond": true
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
    "audio": "AUCUN",
    "id": "ITALIEENESCH1",
    "lemme": "italieenesch",
-   "type": "lemme",
+   "type": "graphie de l'index de recherche (fautive)",
    "categorie": "ADJ",
    "sens": "italien",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "LuxApp « italienesch » ; LOD : « italieenesch » ou « italieenescht » ou « italiéinesch »",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "graphie fautive selon le LOD ; standard : « italieenesch »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « italieenesch » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « italienesch » ; graphie LOD proche : italieenesch (ITALIEENESCH1, lemme), italieenescht (ITALIEENESCH1, forme adjectivale (table)), italiéinesch (ITALIEINESCH1, lemme) ; sens LOD : italien."
+   "decision": "Corriger en « italieenesch » si validé ; son exact alors disponible (ITALIEENESCH1.mp3, disponible)",
+   "justification": "« Italienesch » est listé comme graphie fautive de « italieenesch » (ITALIEENESCH1) dans l'index de recherche.",
+   "analyses": [
+    "graphie de l'index de recherche (fautive)"
+   ],
+   "statut_graphie": "fautive",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": []
   },
   {
    "lu": "Koreanesch",
@@ -1193,8 +1315,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "e bësse",
@@ -1226,7 +1348,7 @@
    "categorie": "PRON",
    "sens": "un peu (de)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1245,7 +1367,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de BESSEN1 prononce « bëssen ») ; audio contextuel si un exemple prononce « bësse »",
-   "justification": "« bësse » = variante règle du n de bëssen (BESSEN1), articles.",
+   "justification": "« bësse » = variante règle du n de bëssen (BESSEN1).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1262,7 +1388,7 @@
     {
      "id": "SCHWATZEN1",
      "lemme": "schwätzen",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "parler, dire, prononcer, parler",
@@ -1273,11 +1399,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SCHWATZEN1",
    "lemme": "schwätzen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "parler, dire, prononcer, parler",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1303,7 +1429,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SCHWATZEN1 prononce « schwätzen ») ; audio contextuel si un exemple prononce « schwätz »",
-   "justification": "« schwätz » = forme verbale (table) de schwätzen (SCHWATZEN1), tables.",
+   "justification": "« schwätz » = présent (table) de schwätzen (SCHWATZEN1) ; analyses possibles : impératif (table), présent (table).",
+   "analyses": [
+    "impératif (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1320,7 +1451,7 @@
     {
      "id": "SCHWATZEN1",
      "lemme": "schwätzen",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "parler, dire, prononcer, parler",
@@ -1331,11 +1462,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SCHWATZEN1",
    "lemme": "schwätzen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "parler, dire, prononcer, parler",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1354,7 +1485,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SCHWATZEN1 prononce « schwätzen ») ; audio contextuel si un exemple prononce « schwätzt »",
-   "justification": "« schwätzt » = forme verbale (table) de schwätzen (SCHWATZEN1), tables.",
+   "justification": "« schwätzt » = présent (table) de schwätzen (SCHWATZEN1) ; analyses possibles : impératif (table), présent (table).",
+   "analyses": [
+    "impératif (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1373,7 +1509,8 @@
      "id": "KIERCHBIERG1",
      "lemme": "Kierchbierg",
      "graphie": "Kierchbierg",
-     "type": "lemme"
+     "type": "lemme",
+     "statut_graphie": "contrôlée"
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
@@ -1387,8 +1524,14 @@
    "graphie": "LuxApp « kirchberg » ; LOD : « Kierchbierg »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « Kierchbierg » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « kirchberg » ; graphie LOD proche : Kierchbierg (KIERCHBIERG1, lemme) ; sens LOD : Kirchberg."
+   "decision": "Nom propre : « Kirchberg » est aussi la forme officielle (français / allemand) ; la forme luxembourgeoise est « Kierchbierg ». Examiner chaque contexte avant de remplacer",
+   "justification": "Pas d'entrée « kirchberg » ; graphie LOD proche : Kierchbierg (KIERCHBIERG1, lemme) ; sens LOD : Kirchberg.",
+   "statut_graphie": "absente du LOD",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": [
+    "A1.1 L10 : « Si wunnt um Kirchberg. »",
+    "A1.1 L10 : « Ech wunnen um Kirchberg. »"
+   ]
   },
   {
    "lu": "um",
@@ -1445,7 +1588,7 @@
   },
   {
    "lu": "enger",
-   "fr": "Travailler dans un lieu concret",
+   "fr": "",
    "forme": "enger",
    "lecons": [
     "A1.1 L12"
@@ -1457,7 +1600,7 @@
     {
      "id": "EEN2",
      "lemme": "een",
-     "type": "forme adjectivale (table)",
+     "type": "forme déclinée (table)",
      "source": "tables",
      "categorie": "NB",
      "sens_lod": "un",
@@ -1494,7 +1637,7 @@
    "son": null,
    "contexte": [],
    "decision": "Relecture humaine",
-   "justification": "Forme trouvée mais aucun sens LOD ne correspond à « Travailler dans un lieu concret »."
+   "justification": "Pas de traduction dans le tableau pour départager 3 entrées."
   },
   {
    "lu": "engem",
@@ -1510,7 +1653,7 @@
     {
      "id": "EEN2",
      "lemme": "een",
-     "type": "forme adjectivale (table)",
+     "type": "forme déclinée (table)",
      "source": "tables",
      "categorie": "NB",
      "sens_lod": "un",
@@ -1580,11 +1723,15 @@
    "categorie": "VRB",
    "sens": "divorcer",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de SCHEEDEN1 prononce « scheeden ») ; audio contextuel si un exemple prononce « gescheet »",
-   "justification": "« gescheet » = participe passé de scheeden (SCHEEDEN1), articles."
+   "justification": "« gescheet » = participe passé de scheeden (SCHEEDEN1).",
+   "analyses": [
+    "participe passé"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "getrennt",
@@ -1617,7 +1764,7 @@
    "categorie": "VRB",
    "sens": "séparer (de), séparer, séparer (de), séparer (de)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1643,7 +1790,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de TRENNEN1 prononce « trennen ») ; audio contextuel si un exemple prononce « getrennt »",
-   "justification": "« getrennt » = participe passé de trennen (TRENNEN1), articles.",
+   "justification": "« getrennt » = participe passé de trennen (TRENNEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1677,7 +1829,7 @@
    "categorie": "VRB",
    "sens": "pacser, se pacser",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1689,7 +1841,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de PACSEN1 prononce « pacsen ») ; audio contextuel si un exemple prononce « gepacst »",
-   "justification": "« gepacst » = participe passé de pacsen (PACSEN1), articles.",
+   "justification": "« gepacst » = participe passé de pacsen (PACSEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1709,7 +1866,8 @@
      "id": "VERLOBEN1",
      "lemme": "verloben",
      "graphie": "verloobt",
-     "type": "participe passé"
+     "type": "participe passé",
+     "statut_graphie": "contrôlée"
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
@@ -1723,8 +1881,13 @@
    "graphie": "LuxApp « verlobt » ; LOD : « verloobt »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « verloobt » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « verlobt » ; graphie LOD proche : verloobt (VERLOBEN1, participe passé) ; sens LOD : se fiancer."
+   "decision": "Vérifier l'orthographe : si « verloobt » est retenu, corriger la leçon ; participe passé de « verloben » : pas de son direct (le MP3 prononce « verloben »), audio contextuel possible",
+   "justification": "Pas d'entrée « verlobt » ; graphie LOD proche : verloobt (VERLOBEN1, participe passé) ; sens LOD : se fiancer.",
+   "statut_graphie": "absente du LOD",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": [
+    "A1.1 L13 : « Nee, ech si verlobt. »"
+   ]
   },
   {
    "lu": "leedeg",
@@ -1750,8 +1913,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "Kanner",
@@ -1784,7 +1947,7 @@
    "categorie": "SUBST",
    "sens": "enfant, enfant",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1810,7 +1973,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de KAND1 prononce « Kand ») ; audio contextuel si un exemple prononce « kanner »",
-   "justification": "« kanner » = pluriel de Kand (KAND1), articles.",
+   "justification": "« kanner » = pluriel de Kand (KAND1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1844,7 +2011,7 @@
    "categorie": "SUBST",
    "sens": "garçon, fils, gars, gaillard",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1870,7 +2037,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de JONG1 prononce « Jong ») ; audio contextuel si un exemple prononce « jongen »",
-   "justification": "« jongen » = pluriel de Jong (JONG1), articles.",
+   "justification": "« jongen » = pluriel de Jong (JONG1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1904,7 +2075,7 @@
    "categorie": "SUBST",
    "sens": "fille, fille, filles (légères)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1916,7 +2087,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de MEEDCHEN1 prononce « Meedchen ») ; audio contextuel si un exemple prononce « meedercher »",
-   "justification": "« meedercher » = pluriel de Meedchen (MEEDCHEN1), articles.",
+   "justification": "« meedercher » = pluriel de Meedchen (MEEDCHEN1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1949,7 +2124,7 @@
    "categorie": "VRB",
    "sens": "naître",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -1961,7 +2136,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de GEBIEREN1 prononce « gebieren ») ; audio contextuel si un exemple prononce « gebuer »",
-   "justification": "« gebuer » = participe passé de gebieren (GEBIEREN1), articles.",
+   "justification": "« gebuer » = participe passé de gebieren (GEBIEREN1).",
+   "analyses": [
+    "participe passé"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -1980,22 +2159,22 @@
     {
      "id": "EISCHT1",
      "lemme": "éischt",
-     "type": "variante règle du n dérivée de « éischten »",
-     "source": "tables",
+     "type": "graphie de l'index de recherche (contrôlée (règle du n))",
+     "source": "recherche",
      "categorie": "NB",
      "sens_lod": "premier, (tout) d'abord",
      "sens_correspond": false
     }
    ],
-   "correspondance": "GRAPHIE_A_VERIFIER",
+   "correspondance": "FORME_FLECHIE_VALIDEE",
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "EISCHT1",
    "lemme": "éischt",
-   "type": "variante règle du n dérivée de « éischten »",
+   "type": "graphie de l'index de recherche (contrôlée (règle du n))",
    "categorie": "NB",
    "sens": "premier, (tout) d'abord",
-   "source": "tables LOD 2026-07-27",
-   "graphie": "dérivée par la règle du n : à vérifier",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2014,7 +2193,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de EISCHT1 prononce « éischt ») ; audio contextuel si un exemple prononce « éischte »",
-   "justification": "« éischte » = variante règle du n dérivée de « éischten » de éischt (EISCHT1), tables.",
+   "justification": "« éischte » = graphie de l'index de recherche (contrôlée (règle du n)) de éischt (EISCHT1).",
+   "analyses": [
+    "graphie de l'index de recherche (contrôlée (règle du n))"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2033,22 +2216,22 @@
     {
      "id": "DRAIZENGT1",
      "lemme": "dräizéngt",
-     "type": "variante règle du n dérivée de « dräizéngten »",
-     "source": "tables",
+     "type": "graphie de l'index de recherche (contrôlée (règle du n))",
+     "source": "recherche",
      "categorie": "NB",
      "sens_lod": "treizième",
      "sens_correspond": false
     }
    ],
-   "correspondance": "GRAPHIE_A_VERIFIER",
+   "correspondance": "FORME_FLECHIE_VALIDEE",
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "DRAIZENGT1",
    "lemme": "dräizéngt",
-   "type": "variante règle du n dérivée de « dräizéngten »",
+   "type": "graphie de l'index de recherche (contrôlée (règle du n))",
    "categorie": "NB",
    "sens": "treizième",
-   "source": "tables LOD 2026-07-27",
-   "graphie": "dérivée par la règle du n : à vérifier",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2060,7 +2243,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de DRAIZENGT1 prononce « dräizéngt ») ; audio contextuel si un exemple prononce « dräizéngte »",
-   "justification": "« dräizéngte » = variante règle du n dérivée de « dräizéngten » de dräizéngt (DRAIZENGT1), tables.",
+   "justification": "« dräizéngte » = graphie de l'index de recherche (contrôlée (règle du n)) de dräizéngt (DRAIZENGT1).",
+   "analyses": [
+    "graphie de l'index de recherche (contrôlée (règle du n))"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2079,22 +2266,22 @@
     {
      "id": "UECHTZENGT1",
      "lemme": "uechtzéngt",
-     "type": "variante règle du n dérivée de « uechtzéngten »",
-     "source": "tables",
+     "type": "graphie de l'index de recherche (contrôlée (règle du n))",
+     "source": "recherche",
      "categorie": "NB",
      "sens_lod": "dix-huitième",
      "sens_correspond": false
     }
    ],
-   "correspondance": "GRAPHIE_A_VERIFIER",
+   "correspondance": "FORME_FLECHIE_VALIDEE",
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "UECHTZENGT1",
    "lemme": "uechtzéngt",
-   "type": "variante règle du n dérivée de « uechtzéngten »",
+   "type": "graphie de l'index de recherche (contrôlée (règle du n))",
    "categorie": "NB",
    "sens": "dix-huitième",
-   "source": "tables LOD 2026-07-27",
-   "graphie": "dérivée par la règle du n : à vérifier",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2106,7 +2293,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de UECHTZENGT1 prononce « uechtzéngt ») ; audio contextuel si un exemple prononce « uechtzéngte »",
-   "justification": "« uechtzéngte » = variante règle du n dérivée de « uechtzéngten » de uechtzéngt (UECHTZENGT1), tables.",
+   "justification": "« uechtzéngte » = graphie de l'index de recherche (contrôlée (règle du n)) de uechtzéngt (UECHTZENGT1).",
+   "analyses": [
+    "graphie de l'index de recherche (contrôlée (règle du n))"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2125,22 +2316,22 @@
     {
      "id": "VEIERANZWANZEGST1",
      "lemme": "véieranzwanzegst",
-     "type": "variante règle du n dérivée de « véieranzwanzegsten »",
-     "source": "tables",
+     "type": "graphie de l'index de recherche (contrôlée (règle du n))",
+     "source": "recherche",
      "categorie": "NB",
      "sens_lod": "vingt-quatrième",
      "sens_correspond": false
     }
    ],
-   "correspondance": "GRAPHIE_A_VERIFIER",
+   "correspondance": "FORME_FLECHIE_VALIDEE",
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "VEIERANZWANZEGST1",
    "lemme": "véieranzwanzegst",
-   "type": "variante règle du n dérivée de « véieranzwanzegsten »",
+   "type": "graphie de l'index de recherche (contrôlée (règle du n))",
    "categorie": "NB",
    "sens": "vingt-quatrième",
-   "source": "tables LOD 2026-07-27",
-   "graphie": "dérivée par la règle du n : à vérifier",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2152,7 +2343,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de VEIERANZWANZEGST1 prononce « véieranzwanzegst ») ; audio contextuel si un exemple prononce « véieranzwanzegste »",
-   "justification": "« véieranzwanzegste » = variante règle du n dérivée de « véieranzwanzegsten » de véieranzwanzegst (VEIERANZWANZEGST1), tables.",
+   "justification": "« véieranzwanzegste » = graphie de l'index de recherche (contrôlée (règle du n)) de véieranzwanzegst (VEIERANZWANZEGST1).",
+   "analyses": [
+    "graphie de l'index de recherche (contrôlée (règle du n))"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2178,8 +2373,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche."
   },
   {
    "lu": "nonzénghonnertsiwenannonzeg",
@@ -2203,8 +2398,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté). Entrée voisine : nonzénghonnert (NONZENGHONNERT1), nonzéng (NONZENG1)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche. Entrée voisine : nonzénghonnert (NONZENGHONNERT1), nonzéng (NONZENG1)."
   },
   {
    "lu": "zweeten",
@@ -2220,7 +2415,7 @@
     {
      "id": "ZWEET1",
      "lemme": "zweet",
-     "type": "forme adjectivale (table)",
+     "type": "forme déclinée (table)",
      "source": "tables",
      "categorie": "NB",
      "sens_lod": "deuxième, second",
@@ -2231,15 +2426,19 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "ZWEET1",
    "lemme": "zweet",
-   "type": "forme adjectivale (table)",
+   "type": "forme déclinée (table)",
    "categorie": "NB",
    "sens": "deuxième, second",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de ZWEET1 prononce « zweet ») ; audio contextuel si un exemple prononce « zweeten »",
-   "justification": "« zweeten » = forme adjectivale (table) de zweet (ZWEET1), tables."
+   "justification": "« zweeten » = forme déclinée (table) de zweet (ZWEET1).",
+   "analyses": [
+    "forme déclinée (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "drëtte",
@@ -2255,26 +2454,30 @@
     {
      "id": "DRETT1",
      "lemme": "drëtt",
-     "type": "variante règle du n dérivée de « drëtten »",
-     "source": "tables",
+     "type": "graphie de l'index de recherche (contrôlée (règle du n))",
+     "source": "recherche",
      "categorie": "NB",
      "sens_lod": "troisième",
      "sens_correspond": false
     }
    ],
-   "correspondance": "GRAPHIE_A_VERIFIER",
+   "correspondance": "FORME_FLECHIE_VALIDEE",
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "DRETT1",
    "lemme": "drëtt",
-   "type": "variante règle du n dérivée de « drëtten »",
+   "type": "graphie de l'index de recherche (contrôlée (règle du n))",
    "categorie": "NB",
    "sens": "troisième",
-   "source": "tables LOD 2026-07-27",
-   "graphie": "dérivée par la règle du n : à vérifier",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de DRETT1 prononce « drëtt ») ; audio contextuel si un exemple prononce « drëtte »",
-   "justification": "« drëtte » = variante règle du n dérivée de « drëtten » de drëtt (DRETT1), tables."
+   "justification": "« drëtte » = graphie de l'index de recherche (contrôlée (règle du n)) de drëtt (DRETT1).",
+   "analyses": [
+    "graphie de l'index de recherche (contrôlée (règle du n))"
+   ],
+   "statut_graphie": "contrôlée (règle du n)"
   },
   {
    "lu": "fënnefte",
@@ -2290,26 +2493,30 @@
     {
      "id": "FENNEFT1",
      "lemme": "fënneft",
-     "type": "variante règle du n dérivée de « fënneften »",
-     "source": "tables",
+     "type": "graphie de l'index de recherche (contrôlée (règle du n))",
+     "source": "recherche",
      "categorie": "NB",
      "sens_lod": "cinquième",
      "sens_correspond": false
     }
    ],
-   "correspondance": "GRAPHIE_A_VERIFIER",
+   "correspondance": "FORME_FLECHIE_VALIDEE",
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "FENNEFT1",
    "lemme": "fënneft",
-   "type": "variante règle du n dérivée de « fënneften »",
+   "type": "graphie de l'index de recherche (contrôlée (règle du n))",
    "categorie": "NB",
    "sens": "cinquième",
-   "source": "tables LOD 2026-07-27",
-   "graphie": "dérivée par la règle du n : à vérifier",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de FENNEFT1 prononce « fënneft ») ; audio contextuel si un exemple prononce « fënnefte »",
-   "justification": "« fënnefte » = variante règle du n dérivée de « fënneften » de fënneft (FENNEFT1), tables."
+   "justification": "« fënnefte » = graphie de l'index de recherche (contrôlée (règle du n)) de fënneft (FENNEFT1).",
+   "analyses": [
+    "graphie de l'index de recherche (contrôlée (règle du n))"
+   ],
+   "statut_graphie": "contrôlée (règle du n)"
   },
   {
    "lu": "zéngte",
@@ -2325,26 +2532,30 @@
     {
      "id": "ZENGT1",
      "lemme": "zéngt",
-     "type": "variante règle du n dérivée de « zéngten »",
-     "source": "tables",
+     "type": "graphie de l'index de recherche (contrôlée (règle du n))",
+     "source": "recherche",
      "categorie": "NB",
      "sens_lod": "dixième",
      "sens_correspond": false
     }
    ],
-   "correspondance": "GRAPHIE_A_VERIFIER",
+   "correspondance": "FORME_FLECHIE_VALIDEE",
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "ZENGT1",
    "lemme": "zéngt",
-   "type": "variante règle du n dérivée de « zéngten »",
+   "type": "graphie de l'index de recherche (contrôlée (règle du n))",
    "categorie": "NB",
    "sens": "dixième",
-   "source": "tables LOD 2026-07-27",
-   "graphie": "dérivée par la règle du n : à vérifier",
+   "source": "recherche LOD 2026-07-27",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de ZENGT1 prononce « zéngt ») ; audio contextuel si un exemple prononce « zéngte »",
-   "justification": "« zéngte » = variante règle du n dérivée de « zéngten » de zéngt (ZENGT1), tables."
+   "justification": "« zéngte » = graphie de l'index de recherche (contrôlée (règle du n)) de zéngt (ZENGT1).",
+   "analyses": [
+    "graphie de l'index de recherche (contrôlée (règle du n))"
+   ],
+   "statut_graphie": "contrôlée (règle du n)"
   },
   {
    "lu": "zwanzegsten",
@@ -2360,7 +2571,7 @@
     {
      "id": "ZWANZEGST1",
      "lemme": "zwanzegst",
-     "type": "forme adjectivale (table)",
+     "type": "forme déclinée (table)",
      "source": "tables",
      "categorie": "NB",
      "sens_lod": "vingtième",
@@ -2371,11 +2582,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "ZWANZEGST1",
    "lemme": "zwanzegst",
-   "type": "forme adjectivale (table)",
+   "type": "forme déclinée (table)",
    "categorie": "NB",
    "sens": "vingtième",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2387,7 +2598,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de ZWANZEGST1 prononce « zwanzegst ») ; audio contextuel si un exemple prononce « zwanzegsten »",
-   "justification": "« zwanzegsten » = forme adjectivale (table) de zwanzegst (ZWANZEGST1), tables.",
+   "justification": "« zwanzegsten » = forme déclinée (table) de zwanzegst (ZWANZEGST1).",
+   "analyses": [
+    "forme déclinée (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2404,7 +2619,7 @@
     {
      "id": "EENANZWANZEGST1",
      "lemme": "eenanzwanzegst",
-     "type": "forme adjectivale (table)",
+     "type": "forme déclinée (table)",
      "source": "tables",
      "categorie": "NB",
      "sens_lod": "vingt et unième",
@@ -2415,15 +2630,19 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "EENANZWANZEGST1",
    "lemme": "eenanzwanzegst",
-   "type": "forme adjectivale (table)",
+   "type": "forme déclinée (table)",
    "categorie": "NB",
    "sens": "vingt et unième",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de EENANZWANZEGST1 prononce « eenanzwanzegst ») ; audio contextuel si un exemple prononce « eenanzwanzegsten »",
-   "justification": "« eenanzwanzegsten » = forme adjectivale (table) de eenanzwanzegst (EENANZWANZEGST1), tables."
+   "justification": "« eenanzwanzegsten » = forme déclinée (table) de eenanzwanzegst (EENANZWANZEGST1).",
+   "analyses": [
+    "forme déclinée (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "hallwer",
@@ -2440,7 +2659,7 @@
     {
      "id": "HALLEF1",
      "lemme": "hallef",
-     "type": "forme adjectivale (table)",
+     "type": "forme déclinée (table)",
      "source": "tables",
      "categorie": "ADJ",
      "sens_lod": "demi",
@@ -2451,11 +2670,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "HALLEF1",
    "lemme": "hallef",
-   "type": "forme adjectivale (table)",
+   "type": "forme déclinée (table)",
    "categorie": "ADJ",
    "sens": "demi",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2474,12 +2693,16 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HALLEF1 prononce « hallef ») ; audio contextuel si un exemple prononce « hallwer »",
-   "justification": "« hallwer » = forme adjectivale (table) de hallef (HALLEF1), tables.",
+   "justification": "« hallwer » = forme déclinée (table) de hallef (HALLEF1).",
+   "analyses": [
+    "forme déclinée (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
    "lu": "iessen",
-   "fr": "manger",
+   "fr": "",
    "forme": "iessen",
    "lecons": [
     "A1.1 L16",
@@ -2496,7 +2719,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "manger, manger",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -2507,12 +2730,21 @@
    "categorie": "VRB",
    "sens": "manger, manger",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer IESSEN3.mp3 (après validation)",
-   "justification": "Lemme identique, sens « manger, manger ».",
-   "local": false
+   "decision": "Relire puis associer IESSEN3.mp3",
+   "justification": "Lemme identique, sens « manger, manger » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : IESSEN1.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : IESSEN1"
+   ]
   },
   {
    "lu": "Këschten",
@@ -2544,7 +2776,7 @@
    "categorie": "SUBST",
    "sens": "boîte, carton, caisse, boîte",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2556,7 +2788,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de KESCHT1 prononce « Këscht ») ; audio contextuel si un exemple prononce « këschten »",
-   "justification": "« këschten » = pluriel de Këscht (KESCHT1), articles.",
+   "justification": "« këschten » = pluriel de Këscht (KESCHT1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2597,12 +2833,20 @@
    "categorie": "PREP",
    "sens": "sur, à, contre, à",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer UN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « sur, à, contre, à » ; homographes : UN1, UN2.",
-   "local": false
+   "decision": "Relire puis associer UN1.mp3",
+   "justification": "Lemme identique, sens « sur, à, contre, à » ; à valider : homographes : UN2.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "homographes : UN2"
+   ]
   },
   {
    "lu": "widdert",
@@ -2633,12 +2877,20 @@
    "categorie": "PREP",
    "sens": "contre",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer WIDDERT1.mp3 (après validation)",
-   "justification": "Lemme identique (variante de « widder »), sens « contre ».",
-   "local": false
+   "decision": "Relire puis associer WIDDERT1.mp3",
+   "justification": "Lemme identique (variante de « widder »), sens « contre » ; à valider : variante de « widder ».",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "variante de « widder »"
+   ]
   },
   {
    "lu": "Kommod",
@@ -2655,7 +2907,8 @@
      "id": "KOMOUD1",
      "lemme": "Komoud",
      "graphie": "Komoud",
-     "type": "lemme"
+     "type": "lemme",
+     "statut_graphie": "contrôlée"
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
@@ -2669,8 +2922,14 @@
    "graphie": "LuxApp « kommod » ; LOD : « Komoud »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « Komoud » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « kommod » ; graphie LOD proche : Komoud (KOMOUD1, lemme) ; sens LOD : commode."
+   "decision": "Vérifier l'orthographe : si « Komoud » est retenu, corriger la leçon ; son exact alors disponible (KOMOUD1.mp3, disponible)",
+   "justification": "Pas d'entrée « kommod » ; graphie LOD proche : Komoud (KOMOUD1, lemme) ; sens LOD : commode.",
+   "statut_graphie": "absente du LOD",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": [
+    "A1.2 L21 : « D'Planz ass op der Kommod. »",
+    "A1.2 L21 : « eng Kommod »"
+   ]
   },
   {
    "lu": "Glieser",
@@ -2702,7 +2961,7 @@
    "categorie": "SUBST",
    "sens": "verre, verre, verre, bocal",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2728,7 +2987,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de GLAS1 prononce « Glas ») ; audio contextuel si un exemple prononce « glieser »",
-   "justification": "« glieser » = pluriel de Glas (GLAS1), articles.",
+   "justification": "« glieser » = pluriel de Glas (GLAS1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2770,7 +3033,7 @@
    "categorie": "SUBST",
    "sens": "chaise, selles",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2796,7 +3059,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de STULL1 prononce « Stull ») ; audio contextuel si un exemple prononce « still »",
-   "justification": "« still » = pluriel de Stull (STULL1), articles.",
+   "justification": "« still » = pluriel de Stull (STULL1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2829,7 +3096,7 @@
    "categorie": "SUBST",
    "sens": "essuie-main, serviette",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2841,7 +3108,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HANDDUCH1 prononce « Handduch ») ; audio contextuel si un exemple prononce « handdicher »",
-   "justification": "« handdicher » = pluriel de Handduch (HANDDUCH1), articles.",
+   "justification": "« handdicher » = pluriel de Handduch (HANDDUCH1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2874,7 +3145,7 @@
    "categorie": "SUBST",
    "sens": "tableau, image, image, image",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2900,7 +3171,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de BILD1 prononce « Bild ») ; audio contextuel si un exemple prononce « biller »",
-   "justification": "« biller » = pluriel de Bild (BILD1), articles.",
+   "justification": "« biller » = pluriel de Bild (BILD1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2933,7 +3208,7 @@
    "categorie": "SUBST",
    "sens": "assiette, assiette, assiettée",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2952,7 +3227,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de TELLER1 prononce « Teller ») ; audio contextuel si un exemple prononce « telleren »",
-   "justification": "« telleren » = pluriel de Teller (TELLER1), articles.",
+   "justification": "« telleren » = pluriel de Teller (TELLER1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -2985,7 +3264,7 @@
    "categorie": "SUBST",
    "sens": "gobelet, gobelet",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -2997,7 +3276,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de BECHER1 prononce « Becher ») ; audio contextuel si un exemple prononce « becheren »",
-   "justification": "« becheren » = pluriel de Becher (BECHER1), articles.",
+   "justification": "« becheren » = pluriel de Becher (BECHER1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3015,7 +3298,8 @@
      "id": "KOMOUD1",
      "lemme": "Komoud",
      "graphie": "Komoud",
-     "type": "lemme"
+     "type": "lemme",
+     "statut_graphie": "contrôlée"
     }
    ],
    "correspondance": "GRAPHIE_A_VERIFIER",
@@ -3029,8 +3313,14 @@
    "graphie": "LuxApp « kommod » ; LOD : « Komoud »",
    "son": null,
    "contexte": [],
-   "decision": "Vérifier l'orthographe : si « Komoud » est la bonne graphie, corriger la leçon puis associer le son",
-   "justification": "Pas d'entrée « kommod » ; graphie LOD proche : Komoud (KOMOUD1, lemme) ; sens LOD : commode."
+   "decision": "Vérifier l'orthographe : si « Komoud » est retenu, corriger la leçon ; son exact alors disponible (KOMOUD1.mp3, disponible)",
+   "justification": "Pas d'entrée « kommod » ; graphie LOD proche : Komoud (KOMOUD1, lemme) ; sens LOD : commode.",
+   "statut_graphie": "absente du LOD",
+   "statut_propose": "contrôlée",
+   "contextes_luxapp": [
+    "A1.2 L21 : « D'Planz ass op der Kommod. »",
+    "A1.2 L21 : « eng Kommod »"
+   ]
   },
   {
    "lu": "ech",
@@ -3063,12 +3353,20 @@
    "categorie": "PRON",
    "sens": "je, moi",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer ECH1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « je, moi ».",
-   "local": false
+   "decision": "Relire puis associer ECH1.mp3",
+   "justification": "Lemme identique, sens « je, moi » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "ginn",
@@ -3120,7 +3418,7 @@
     {
      "id": "GOEN1",
      "lemme": "goen",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "marcher, aller, aller, aller",
@@ -3143,7 +3441,7 @@
   },
   {
    "lu": "maachen",
-   "fr": "faire",
+   "fr": "",
    "forme": "maachen",
    "lecons": [
     "A1.2 L22",
@@ -3160,7 +3458,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "faire, faire, faire (à partir de), faire",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -3171,16 +3469,24 @@
    "categorie": "VRB",
    "sens": "faire, faire, faire (à partir de), faire",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer MAACHEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « faire, faire, faire (à partir de), faire ».",
-   "local": false
+   "decision": "Relire puis associer MAACHEN1.mp3",
+   "justification": "Lemme identique, sens « faire, faire, faire (à partir de), faire » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "spillen",
-   "fr": "jouer",
+   "fr": "",
    "forme": "spillen",
    "lecons": [
     "A1.2 L22",
@@ -3197,7 +3503,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "jouer à, jouer à, jouer, jouer de",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -3208,12 +3514,20 @@
    "categorie": "VRB",
    "sens": "jouer à, jouer à, jouer, jouer de",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer SPILLEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « jouer à, jouer à, jouer, jouer de ».",
-   "local": false
+   "decision": "Relire puis associer SPILLEN1.mp3",
+   "justification": "Lemme identique, sens « jouer à, jouer à, jouer, jouer de » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "fueren",
@@ -3245,12 +3559,20 @@
    "categorie": "VRB",
    "sens": "circuler, traverser, conduire, faire du",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer FUEREN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « circuler, traverser, conduire, faire du ».",
-   "local": false
+   "decision": "Relire puis associer FUEREN1.mp3",
+   "justification": "Lemme identique, sens « circuler, traverser, conduire, faire du » ; à valider : traduction lue dans un tableau.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "traduction lue dans un tableau"
+   ]
   },
   {
    "lu": "du",
@@ -3312,7 +3634,7 @@
     {
      "id": "GOEN1",
      "lemme": "goen",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "marcher, aller, aller, aller",
@@ -3323,11 +3645,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "GOEN1",
    "lemme": "goen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "marcher, aller, aller, aller",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -3346,7 +3668,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de GOEN1 prononce « goen ») ; audio contextuel si un exemple prononce « gees »",
-   "justification": "« gees » = forme verbale (table) de goen (GOEN1), tables.",
+   "justification": "« gees » = présent (table) de goen (GOEN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3363,7 +3689,7 @@
     {
      "id": "MAACHEN1",
      "lemme": "maachen",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "faire, faire, faire (à partir de), faire",
@@ -3374,11 +3700,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "MAACHEN1",
    "lemme": "maachen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "faire, faire, faire (à partir de), faire",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -3404,7 +3730,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de MAACHEN1 prononce « maachen ») ; audio contextuel si un exemple prononce « méchs »",
-   "justification": "« méchs » = forme verbale (table) de maachen (MAACHEN1), tables.",
+   "justification": "« méchs » = présent (table) de maachen (MAACHEN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3421,7 +3751,7 @@
     {
      "id": "SPILLEN1",
      "lemme": "spillen",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "jouer à, jouer à, jouer, jouer de",
@@ -3432,15 +3762,19 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SPILLEN1",
    "lemme": "spillen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "jouer à, jouer à, jouer, jouer de",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de SPILLEN1 prononce « spillen ») ; audio contextuel si un exemple prononce « spills »",
-   "justification": "« spills » = forme verbale (table) de spillen (SPILLEN1), tables."
+   "justification": "« spills » = présent (table) de spillen (SPILLEN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "fiers",
@@ -3456,7 +3790,7 @@
     {
      "id": "FUEREN1",
      "lemme": "fueren",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "circuler, traverser, conduire, faire du",
@@ -3467,11 +3801,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "FUEREN1",
    "lemme": "fueren",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "circuler, traverser, conduire, faire du",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -3483,7 +3817,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de FUEREN1 prononce « fueren ») ; audio contextuel si un exemple prononce « fiers »",
-   "justification": "« fiers » = forme verbale (table) de fueren (FUEREN1), tables.",
+   "justification": "« fiers » = présent (table) de fueren (FUEREN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3517,12 +3855,20 @@
    "categorie": "PRON",
    "sens": "il, lui, le, lui",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer HIEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « il, lui, le, lui ».",
-   "local": false
+   "decision": "Relire puis associer HIEN1.mp3",
+   "justification": "Lemme identique, sens « il, lui, le, lui » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "hatt",
@@ -3555,12 +3901,21 @@
    "categorie": "PRON",
    "sens": "elle, la",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer HATT2.mp3 (après validation)",
-   "justification": "Lemme identique, sens « elle, la ».",
-   "local": false
+   "decision": "Relire puis associer HATT2.mp3",
+   "justification": "Lemme identique, sens « elle, la » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : HATT1.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : HATT1"
+   ]
   },
   {
    "lu": "geet",
@@ -3576,7 +3931,7 @@
     {
      "id": "GOEN1",
      "lemme": "goen",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "marcher, aller, aller, aller",
@@ -3587,11 +3942,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "GOEN1",
    "lemme": "goen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "marcher, aller, aller, aller",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -3617,7 +3972,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de GOEN1 prononce « goen ») ; audio contextuel si un exemple prononce « geet »",
-   "justification": "« geet » = forme verbale (table) de goen (GOEN1), tables.",
+   "justification": "« geet » = présent (table) de goen (GOEN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3634,7 +3993,7 @@
     {
      "id": "MAACHEN1",
      "lemme": "maachen",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "faire, faire, faire (à partir de), faire",
@@ -3645,11 +4004,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "MAACHEN1",
    "lemme": "maachen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "faire, faire, faire (à partir de), faire",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -3675,7 +4034,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de MAACHEN1 prononce « maachen ») ; audio contextuel si un exemple prononce « mécht »",
-   "justification": "« mécht » = forme verbale (table) de maachen (MAACHEN1), tables.",
+   "justification": "« mécht » = présent (table) de maachen (MAACHEN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3692,7 +4055,7 @@
     {
      "id": "SPILLEN1",
      "lemme": "spillen",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "jouer à, jouer à, jouer, jouer de",
@@ -3703,11 +4066,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SPILLEN1",
    "lemme": "spillen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "jouer à, jouer à, jouer, jouer de",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -3733,7 +4096,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SPILLEN1 prononce « spillen ») ; audio contextuel si un exemple prononce « spillt »",
-   "justification": "« spillt » = forme verbale (table) de spillen (SPILLEN1), tables.",
+   "justification": "« spillt » = présent (table) de spillen (SPILLEN1) ; analyses possibles : impératif (table), présent (table).",
+   "analyses": [
+    "impératif (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3750,7 +4118,7 @@
     {
      "id": "FUEREN1",
      "lemme": "fueren",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "circuler, traverser, conduire, faire du",
@@ -3761,11 +4129,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "FUEREN1",
    "lemme": "fueren",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "circuler, traverser, conduire, faire du",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -3784,7 +4152,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de FUEREN1 prononce « fueren ») ; audio contextuel si un exemple prononce « fiert »",
-   "justification": "« fiert » = forme verbale (table) de fueren (FUEREN1), tables.",
+   "justification": "« fiert » = présent (table) de fueren (FUEREN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -3827,12 +4199,21 @@
    "categorie": "PRON",
    "sens": "nous, nous autres, me, moi",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer MIR1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « nous, nous autres, me, moi » ; homographes : MIR1, MIR2.",
-   "local": false
+   "decision": "Relire puis associer MIR1.mp3",
+   "justification": "Lemme identique, sens « nous, nous autres, me, moi » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : MIR2.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : MIR2"
+   ]
   },
   {
    "lu": "dir",
@@ -3874,12 +4255,21 @@
    "categorie": "PRON",
    "sens": "vous, vous autres, te, toi",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer DIR1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « vous, vous autres, te, toi » ; homographes : DIR1, DIR2.",
-   "local": false
+   "decision": "Relire puis associer DIR1.mp3",
+   "justification": "Lemme identique, sens « vous, vous autres, te, toi » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : DIR2, DIR3.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : DIR2, DIR3"
+   ]
   },
   {
    "lu": "Dir",
@@ -3912,12 +4302,21 @@
    "categorie": "PRON",
    "sens": "vous",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer DIR3.mp3 (après validation)",
-   "justification": "Lemme identique, sens « vous ».",
-   "local": false
+   "decision": "Relire puis associer DIR3.mp3",
+   "justification": "Lemme identique, sens « vous » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : DIR1, DIR2.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : DIR1, DIR2"
+   ]
   },
   {
    "lu": "gitt",
@@ -3933,7 +4332,7 @@
     {
      "id": "GINN1",
      "lemme": "ginn",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "donner, donner, offrir, donner",
@@ -3942,7 +4341,7 @@
     {
      "id": "GINN2",
      "lemme": "ginn",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "devenir",
@@ -3951,7 +4350,7 @@
     {
      "id": "GINN3",
      "lemme": "ginn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -3960,7 +4359,7 @@
     {
      "id": "GOEN1",
      "lemme": "goen",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "marcher, aller, aller, aller",
@@ -3995,7 +4394,7 @@
     {
      "id": "MAACHEN1",
      "lemme": "maachen",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "faire, faire, faire (à partir de), faire",
@@ -4006,11 +4405,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "MAACHEN1",
    "lemme": "maachen",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "faire, faire, faire (à partir de), faire",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -4022,7 +4421,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de MAACHEN1 prononce « maachen ») ; audio contextuel si un exemple prononce « maacht »",
-   "justification": "« maacht » = forme verbale (table) de maachen (MAACHEN1), tables.",
+   "justification": "« maacht » = présent (table) de maachen (MAACHEN1) ; analyses possibles : impératif (table), présent (table).",
+   "analyses": [
+    "impératif (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -4039,7 +4443,7 @@
     {
      "id": "FUEREN1",
      "lemme": "fueren",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "circuler, traverser, conduire, faire du",
@@ -4050,15 +4454,20 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "FUEREN1",
    "lemme": "fueren",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "circuler, traverser, conduire, faire du",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de FUEREN1 prononce « fueren ») ; audio contextuel si un exemple prononce « fuert »",
-   "justification": "« fuert » = forme verbale (table) de fueren (FUEREN1), tables."
+   "justification": "« fuert » = présent (table) de fueren (FUEREN1) ; analyses possibles : impératif (table), présent (table).",
+   "analyses": [
+    "impératif (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "d'Elteren",
@@ -4089,12 +4498,18 @@
    "categorie": "SUBST",
    "sens": "parents",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer ELTEREN1.mp3 (après validation)",
+   "decision": "Associer ELTEREN1.mp3",
    "justification": "Lemme identique, sens « parents ».",
-   "local": false
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "de Brudder (pl. d'Bridder)",
@@ -4125,12 +4540,18 @@
    "categorie": "SUBST",
    "sens": "frère, frère, type",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer BRUDDER1.mp3 (après validation)",
+   "decision": "Associer BRUDDER1.mp3",
    "justification": "Lemme identique, sens « frère, frère, type » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "local": true
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": true,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Geschwëster",
@@ -4161,12 +4582,18 @@
    "categorie": "SUBST",
    "sens": "frères et sœurs",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer GESCHWESTER1.mp3 (après validation)",
+   "decision": "Associer GESCHWESTER1.mp3",
    "justification": "Lemme identique, sens « frères et sœurs ».",
-   "local": false
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Meedchen (neutre)",
@@ -4197,12 +4624,18 @@
    "categorie": "SUBST",
    "sens": "fille, fille, filles (légères)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer MEEDCHEN1.mp3 (après validation)",
+   "decision": "Associer MEEDCHEN1.mp3",
    "justification": "Lemme identique, sens « fille, fille, filles (légères) » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "local": true
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": true,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Kanner",
@@ -4233,7 +4666,7 @@
    "categorie": "SUBST",
    "sens": "enfant, enfant",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -4259,7 +4692,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de KAND1 prononce « Kand ») ; audio contextuel si un exemple prononce « kanner »",
-   "justification": "« kanner » = pluriel de Kand (KAND1), articles.",
+   "justification": "« kanner » = pluriel de Kand (KAND1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -4291,12 +4728,18 @@
    "categorie": "SUBST",
    "sens": "grand-père",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer GROUSSPAPP1.mp3 (après validation)",
+   "decision": "Associer GROUSSPAPP1.mp3",
    "justification": "Lemme identique, sens « grand-père » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "local": true
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": true,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Groussmamm (fam. d'Boma/Bomi)",
@@ -4327,12 +4770,18 @@
    "categorie": "SUBST",
    "sens": "grand-mère",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer GROUSSMAMM1.mp3 (après validation)",
+   "decision": "Associer GROUSSMAMM1.mp3",
    "justification": "Lemme identique, sens « grand-mère » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "local": true
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": true,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Grousselteren",
@@ -4363,12 +4812,18 @@
    "categorie": "SUBST",
    "sens": "grands-parents",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer GROUSSELTEREN1.mp3 (après validation)",
+   "decision": "Associer GROUSSELTEREN1.mp3",
    "justification": "Lemme identique, sens « grands-parents ».",
-   "local": false
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Niess (pl. d'Niessen)",
@@ -4399,12 +4854,18 @@
    "categorie": "SUBST",
    "sens": "nièce",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer NIESS1.mp3 (après validation)",
+   "decision": "Associer NIESS1.mp3",
    "justification": "Lemme identique, sens « nièce » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "local": true
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": true,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Enkelkand (neutre)",
@@ -4435,12 +4896,18 @@
    "categorie": "SUBST",
    "sens": "petit-fils, petite-fille, petit-enfant",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer ENKELKAND1.mp3 (après validation)",
+   "decision": "Associer ENKELKAND1.mp3",
    "justification": "Lemme identique, sens « petit-fils, petite-fille, petit-enfant » ; fichier déjà dans le dépôt : seule la clé d'affichage manque.",
-   "local": true
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": true,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "d'Enkelkanner",
@@ -4471,7 +4938,7 @@
    "categorie": "SUBST",
    "sens": "petit-fils, petite-fille, petit-enfant",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -4483,7 +4950,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de ENKELKAND1 prononce « Enkelkand ») ; audio contextuel si un exemple prononce « enkelkanner »",
-   "justification": "« enkelkanner » = pluriel de Enkelkand (ENKELKAND1), articles.",
+   "justification": "« enkelkanner » = pluriel de Enkelkand (ENKELKAND1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -4515,7 +4986,7 @@
    "categorie": "PRON",
    "sens": "mon, le mien, mon, le mien",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -4541,7 +5012,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de MAIN1 prononce « mäin ») ; audio contextuel si un exemple prononce « mäi »",
-   "justification": "« mäi » = variante règle du n de mäin (MAIN1), articles.",
+   "justification": "« mäi » = variante règle du n de mäin (MAIN1).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -4563,22 +5038,30 @@
      "categorie": "PRON",
      "sens_lod": "ma, la mienne, ma, la mienne",
      "sens_correspond": false
+    },
+    {
+     "id": "MENGEN1",
+     "lemme": "mengen",
+     "type": "impératif (table)",
+     "source": "tables",
+     "categorie": "VRB",
+     "sens_lod": "croire, penser, dire, signifier",
+     "sens_correspond": false
     }
    ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "MENG1",
-   "lemme": "meng",
-   "type": "lemme",
-   "categorie": "PRON",
-   "sens": "ma, la mienne, ma, la mienne",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
-   "son": "disponible",
+   "correspondance": "SENS_AMBIGU",
+   "audio": "AUCUN",
+   "id": null,
+   "lemme": null,
+   "type": null,
+   "categorie": null,
+   "sens": null,
+   "source": null,
+   "graphie": null,
+   "son": null,
    "contexte": [],
-   "decision": "Associer MENG1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « ma, la mienne, ma, la mienne ».",
-   "local": false
+   "decision": "Relecture humaine",
+   "justification": "Pas de traduction dans le tableau pour départager 2 entrées."
   },
   {
    "lu": "däi",
@@ -4609,7 +5092,7 @@
    "categorie": "PRON",
    "sens": "ton, le tien, ton, le tien",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -4635,7 +5118,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de DAIN1 prononce « däin ») ; audio contextuel si un exemple prononce « däi »",
-   "justification": "« däi » = variante règle du n de däin (DAIN1), articles.",
+   "justification": "« däi » = variante règle du n de däin (DAIN1).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -4667,12 +5154,20 @@
    "categorie": "PRON",
    "sens": "ta, la tienne, ta, la tienne",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer DENG2.mp3 (après validation)",
-   "justification": "Lemme identique, sens « ta, la tienne, ta, la tienne ».",
-   "local": false
+   "decision": "Relire puis associer DENG2.mp3",
+   "justification": "Lemme identique, sens « ta, la tienne, ta, la tienne » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "säi",
@@ -4703,7 +5198,7 @@
    "categorie": "PRON",
    "sens": "son, le sien, son, le sien",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -4729,7 +5224,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SAIN1 prononce « säin ») ; audio contextuel si un exemple prononce « säi »",
-   "justification": "« säi » = variante règle du n de säin (SAIN1), articles.",
+   "justification": "« säi » = variante règle du n de säin (SAIN1).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -4761,7 +5260,7 @@
    "categorie": "PRON",
    "sens": "son, le sien, son, le sien",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -4787,7 +5286,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HIREN1 prononce « hiren ») ; audio contextuel si un exemple prononce « hire »",
-   "justification": "« hire » = variante règle du n de hiren (HIREN1), articles.",
+   "justification": "« hire » = variante règle du n de hiren (HIREN1).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -4819,12 +5322,21 @@
    "categorie": "PRON",
    "sens": "son, sa, le sien, la sienne",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer HIERT2.mp3 (après validation)",
-   "justification": "Lemme identique, sens « son, sa, le sien, la sienne ».",
-   "local": false
+   "decision": "Relire puis associer HIERT2.mp3",
+   "justification": "Lemme identique, sens « son, sa, le sien, la sienne » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : HIERT1.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : HIERT1"
+   ]
   },
   {
    "lu": "eise",
@@ -4917,12 +5429,21 @@
    "categorie": "PRON",
    "sens": "nous, à nous, nous",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer EIS1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « nous, à nous, nous » ; homographes : EIS1, EIS2, EIS3.",
-   "local": false
+   "decision": "Relire puis associer EIS1.mp3",
+   "justification": "Lemme identique, sens « nous, à nous, nous » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : EIS2, EIS3.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : EIS2, EIS3"
+   ]
   },
   {
    "lu": "eist",
@@ -4953,12 +5474,20 @@
    "categorie": "PRON",
    "sens": "notre, le nôtre, la nôtre, notre",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer EIST1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « notre, le nôtre, la nôtre, notre ».",
-   "local": false
+   "decision": "Relire puis associer EIST1.mp3",
+   "justification": "Lemme identique, sens « notre, le nôtre, la nôtre, notre » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "Äre",
@@ -4989,7 +5518,7 @@
    "categorie": "PRON",
    "sens": "votre, le vôtre, votre, le vôtre",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5008,7 +5537,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de AREN2 prononce « Ären ») ; audio contextuel si un exemple prononce « äre »",
-   "justification": "« äre » = variante règle du n de Ären (AREN2), articles.",
+   "justification": "« äre » = variante règle du n de Ären (AREN2).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5040,12 +5573,21 @@
    "categorie": "PRON",
    "sens": "votre, la vôtre, votre, la vôtre",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer AR3.mp3 (après validation)",
-   "justification": "Lemme identique, sens « votre, la vôtre, votre, la vôtre ».",
-   "local": false
+   "decision": "Relire puis associer AR3.mp3",
+   "justification": "Lemme identique, sens « votre, la vôtre, votre, la vôtre » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : AR2.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : AR2"
+   ]
   },
   {
    "lu": "Äert",
@@ -5076,12 +5618,21 @@
    "categorie": "PRON",
    "sens": "votre, le vôtre, la vôtre, votre",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer AERT2.mp3 (après validation)",
-   "justification": "Lemme identique, sens « votre, le vôtre, la vôtre, votre ».",
-   "local": false
+   "decision": "Relire puis associer AERT2.mp3",
+   "justification": "Lemme identique, sens « votre, le vôtre, la vôtre, votre » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : AERT1.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : AERT1"
+   ]
   },
   {
    "lu": "gefuer",
@@ -5114,7 +5665,7 @@
    "categorie": "VRB",
    "sens": "circuler, traverser, conduire, faire du",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5140,7 +5691,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de FUEREN1 prononce « fueren ») ; audio contextuel si un exemple prononce « gefuer »",
-   "justification": "« gefuer » = participe passé de fueren (FUEREN1), articles.",
+   "justification": "« gefuer » = participe passé de fueren (FUEREN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5174,7 +5730,7 @@
    "categorie": "VRB",
    "sens": "marcher, aller, aller, aller",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5200,7 +5756,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de GOEN1 prononce « goen ») ; audio contextuel si un exemple prononce « gaangen »",
-   "justification": "« gaangen » = participe passé de goen (GOEN1), articles.",
+   "justification": "« gaangen » = participe passé de goen (GOEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5234,7 +5795,7 @@
    "categorie": "VRB",
    "sens": "rentrer (chez soi), rentrer (à la maison)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5246,7 +5807,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HEEMGOEN1 prononce « heemgoen ») ; audio contextuel si un exemple prononce « heemgaangen »",
-   "justification": "« heemgaangen » = participe passé de heemgoen (HEEMGOEN1), articles.",
+   "justification": "« heemgaangen » = participe passé de heemgoen (HEEMGOEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5280,7 +5846,7 @@
    "categorie": "VRB",
    "sens": "sortir, sortir, partir, quitter",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5306,7 +5872,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de ERAUSGOEN1 prononce « erausgoen ») ; audio contextuel si un exemple prononce « erausgaangen »",
-   "justification": "« erausgaangen » = participe passé de erausgoen (ERAUSGOEN1), articles.",
+   "justification": "« erausgaangen » = participe passé de erausgoen (ERAUSGOEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5340,7 +5911,7 @@
    "categorie": "VRB",
    "sens": "réveiller, se réveiller",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5366,7 +5937,14 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de ERWACHEN1 prononce « erwächen ») ; audio contextuel si un exemple prononce « erwächt »",
-   "justification": "« erwächt » = participe passé de erwächen (ERWACHEN1), articles.",
+   "justification": "« erwächt » = participe passé de erwächen (ERWACHEN1) ; analyses possibles : participe passé, impératif (table), participe passé (table), présent (table).",
+   "analyses": [
+    "participe passé",
+    "impératif (table)",
+    "participe passé (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5400,7 +5978,7 @@
    "categorie": "VRB",
    "sens": "se lever, se mettre debout, se lever, être (bien) calé",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5419,7 +5997,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de OPSTOEN2 prononce « opstoen ») ; audio contextuel si un exemple prononce « opgestanen »",
-   "justification": "« opgestanen » = participe passé de opstoen (OPSTOEN2), articles.",
+   "justification": "« opgestanen » = participe passé de opstoen (OPSTOEN2) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5453,7 +6036,7 @@
    "categorie": "VRB",
    "sens": "courir, couler, confluer avec, se jeter dans",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5472,7 +6055,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de LAFEN1 prononce « lafen ») ; audio contextuel si un exemple prononce « gelaf »",
-   "justification": "« gelaf » = participe passé de lafen (LAFEN1), articles.",
+   "justification": "« gelaf » = participe passé de lafen (LAFEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5515,7 +6103,7 @@
    "categorie": "VRB",
    "sens": "tomber, tomber, tomber, tomber",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5541,7 +6129,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de FALEN1 prononce « falen ») ; audio contextuel si un exemple prononce « gefall »",
-   "justification": "« gefall » = participe passé de falen (FALEN1), articles.",
+   "justification": "« gefall » = participe passé de falen (FALEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5575,7 +6168,7 @@
    "categorie": "VRB",
    "sens": "marcher sur, poser le pied sur, former, blesser",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5601,7 +6194,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de TREPPELEN2 prononce « trëppelen ») ; audio contextuel si un exemple prononce « getrëppelt »",
-   "justification": "« getrëppelt » = participe passé de trëppelen (TREPPELEN2), articles.",
+   "justification": "« getrëppelt » = participe passé de trëppelen (TREPPELEN2) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5635,11 +6233,16 @@
    "categorie": "VRB",
    "sens": "manger, manger",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de IESSEN3 prononce « iessen ») ; audio contextuel si un exemple prononce « giess »",
-   "justification": "« giess » = participe passé de iessen (IESSEN3), articles."
+   "justification": "« giess » = participe passé de iessen (IESSEN3) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "gedronk",
@@ -5672,7 +6275,7 @@
    "categorie": "VRB",
    "sens": "boire, boire, prendre le petit-déjeuner, boire",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5684,7 +6287,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de DRENKEN1 prononce « drénken ») ; audio contextuel si un exemple prononce « gedronk »",
-   "justification": "« gedronk » = participe passé de drénken (DRENKEN1), articles.",
+   "justification": "« gedronk » = participe passé de drénken (DRENKEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5718,7 +6326,7 @@
    "categorie": "VRB",
    "sens": "travailler, travailler, travailler, travailler",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5744,7 +6352,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SCHAFFEN3 prononce « schaffen ») ; audio contextuel si un exemple prononce « geschafft »",
-   "justification": "« geschafft » = participe passé de schaffen (SCHAFFEN3), articles.",
+   "justification": "« geschafft » = participe passé de schaffen (SCHAFFEN3) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5778,7 +6391,7 @@
    "categorie": "VRB",
    "sens": "dormir, coucher, passer la nuit, dormir",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5804,7 +6417,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SCHLOFEN1 prononce « schlofen ») ; audio contextuel si un exemple prononce « geschlof »",
-   "justification": "« geschlof » = participe passé de schlofen (SCHLOFEN1), articles.",
+   "justification": "« geschlof » = participe passé de schlofen (SCHLOFEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5838,7 +6456,7 @@
    "categorie": "VRB",
    "sens": "écrire, écrire, orthographier, écrire",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5864,7 +6482,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SCHREIWEN1 prononce « schreiwen ») ; audio contextuel si un exemple prononce « geschriwwen »",
-   "justification": "« geschriwwen » = participe passé de schreiwen (SCHREIWEN1), articles.",
+   "justification": "« geschriwwen » = participe passé de schreiwen (SCHREIWEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5898,7 +6521,7 @@
    "categorie": "VRB",
    "sens": "faire, faire, faire (à partir de), faire",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -5924,7 +6547,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de MAACHEN1 prononce « maachen ») ; audio contextuel si un exemple prononce « gemaach »",
-   "justification": "« gemaach » = participe passé de maachen (MAACHEN1), articles.",
+   "justification": "« gemaach » = participe passé de maachen (MAACHEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -5958,11 +6586,16 @@
    "categorie": "VRB",
    "sens": "doucher, se doucher, prendre une douche, se doucher",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de DUSCHEN1 prononce « duschen ») ; audio contextuel si un exemple prononce « geduscht »",
-   "justification": "« geduscht » = participe passé de duschen (DUSCHEN1), articles."
+   "justification": "« geduscht » = participe passé de duschen (DUSCHEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "telefonéiert",
@@ -5995,7 +6628,7 @@
    "categorie": "VRB",
    "sens": "(se) téléphoner, téléphoner (à)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6007,7 +6640,14 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de TELEFONEIEREN1 prononce « telefonéieren ») ; audio contextuel si un exemple prononce « telefonéiert »",
-   "justification": "« telefonéiert » = participe passé de telefonéieren (TELEFONEIEREN1), articles.",
+   "justification": "« telefonéiert » = participe passé de telefonéieren (TELEFONEIEREN1) ; analyses possibles : participe passé, impératif (table), participe passé (table), présent (table).",
+   "analyses": [
+    "participe passé",
+    "impératif (table)",
+    "participe passé (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -6041,11 +6681,16 @@
    "categorie": "VRB",
    "sens": "habiter, avoir son domicile, résider",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de WUNNEN1 prononce « wunnen ») ; audio contextuel si un exemple prononce « gewunnt »",
-   "justification": "« gewunnt » = participe passé de wunnen (WUNNEN1), articles."
+   "justification": "« gewunnt » = participe passé de wunnen (WUNNEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "gekuckt",
@@ -6078,7 +6723,7 @@
    "categorie": "VRB",
    "sens": "regarder, regarder, vérifier, regarder",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6104,12 +6749,17 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de KUCKEN1 prononce « kucken ») ; audio contextuel si un exemple prononce « gekuckt »",
-   "justification": "« gekuckt » = participe passé de kucken (KUCKEN1), articles.",
+   "justification": "« gekuckt » = participe passé de kucken (KUCKEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
    "lu": "trëppelen",
-   "fr": "marcher",
+   "fr": "",
    "forme": "trëppelen",
    "lecons": [
     "A1.2 L24"
@@ -6125,7 +6775,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "marcher sur, poser le pied sur, former, blesser",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -6136,16 +6786,24 @@
    "categorie": "VRB",
    "sens": "marcher sur, poser le pied sur, former, blesser",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer TREPPELEN2.mp3 (après validation)",
-   "justification": "Lemme identique, sens « marcher sur, poser le pied sur, former, blesser ».",
-   "local": false
+   "decision": "Relire puis associer TREPPELEN2.mp3",
+   "justification": "Lemme identique, sens « marcher sur, poser le pied sur, former, blesser » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "lafen",
-   "fr": "courir",
+   "fr": "",
    "forme": "lafen",
    "lecons": [
     "A1.2 L24"
@@ -6161,7 +6819,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "courir, couler, confluer avec, se jeter dans",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -6172,16 +6830,24 @@
    "categorie": "VRB",
    "sens": "courir, couler, confluer avec, se jeter dans",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer LAFEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « courir, couler, confluer avec, se jeter dans ».",
-   "local": false
+   "decision": "Relire puis associer LAFEN1.mp3",
+   "justification": "Lemme identique, sens « courir, couler, confluer avec, se jeter dans » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "falen",
-   "fr": "tomber",
+   "fr": "",
    "forme": "falen",
    "lecons": [
     "A1.2 L24"
@@ -6197,7 +6863,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "tomber, tomber, tomber, tomber",
-     "sens_correspond": true
+     "sens_correspond": false
     },
     {
      "id": "FALEN2",
@@ -6217,16 +6883,25 @@
    "categorie": "VRB",
    "sens": "tomber, tomber, tomber, tomber",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer FALEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « tomber, tomber, tomber, tomber » ; homographes : FALEN1, FALEN2.",
-   "local": false
+   "decision": "Relire puis associer FALEN1.mp3",
+   "justification": "Lemme identique, sens « tomber, tomber, tomber, tomber » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : FALEN2.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : FALEN2"
+   ]
   },
   {
    "lu": "opstoen",
-   "fr": "se lever",
+   "fr": "",
    "forme": "opstoen",
    "lecons": [
     "A1.2 L24"
@@ -6242,7 +6917,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "se lever, se mettre debout, se lever, être (bien) calé",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -6253,16 +6928,24 @@
    "categorie": "VRB",
    "sens": "se lever, se mettre debout, se lever, être (bien) calé",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer OPSTOEN2.mp3 (après validation)",
-   "justification": "Lemme identique, sens « se lever, se mettre debout, se lever, être (bien) calé ».",
-   "local": false
+   "decision": "Relire puis associer OPSTOEN2.mp3",
+   "justification": "Lemme identique, sens « se lever, se mettre debout, se lever, être (bien) calé » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "drénken",
-   "fr": "boire",
+   "fr": "",
    "forme": "drénken",
    "lecons": [
     "A1.2 L24"
@@ -6278,7 +6961,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "boire, boire, prendre le petit-déjeuner, boire",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -6289,16 +6972,24 @@
    "categorie": "VRB",
    "sens": "boire, boire, prendre le petit-déjeuner, boire",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer DRENKEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « boire, boire, prendre le petit-déjeuner, boire ».",
-   "local": false
+   "decision": "Relire puis associer DRENKEN1.mp3",
+   "justification": "Lemme identique, sens « boire, boire, prendre le petit-déjeuner, boire » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "wunnen",
-   "fr": "habiter",
+   "fr": "",
    "forme": "wunnen",
    "lecons": [
     "A1.2 L24"
@@ -6314,7 +7005,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "habiter, avoir son domicile, résider",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -6325,16 +7016,24 @@
    "categorie": "VRB",
    "sens": "habiter, avoir son domicile, résider",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer WUNNEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « habiter, avoir son domicile, résider ».",
-   "local": false
+   "decision": "Relire puis associer WUNNEN1.mp3",
+   "justification": "Lemme identique, sens « habiter, avoir son domicile, résider » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "kucken",
-   "fr": "regarder",
+   "fr": "",
    "forme": "kucken",
    "lecons": [
     "A1.2 L24"
@@ -6350,7 +7049,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "regarder, regarder, vérifier, regarder",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -6361,16 +7060,24 @@
    "categorie": "VRB",
    "sens": "regarder, regarder, vérifier, regarder",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer KUCKEN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « regarder, regarder, vérifier, regarder ».",
-   "local": false
+   "decision": "Relire puis associer KUCKEN1.mp3",
+   "justification": "Lemme identique, sens « regarder, regarder, vérifier, regarder » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "gespillt",
-   "fr": "jouer",
+   "fr": "",
    "forme": "gespillt",
    "lecons": [
     "A1.2 L24"
@@ -6386,7 +7093,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "jouer à, jouer à, jouer, jouer de",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "FORME_FLECHIE_VALIDEE",
@@ -6397,7 +7104,7 @@
    "categorie": "VRB",
    "sens": "jouer à, jouer à, jouer, jouer de",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6423,12 +7130,17 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SPILLEN1 prononce « spillen ») ; audio contextuel si un exemple prononce « gespillt »",
-   "justification": "« gespillt » = participe passé de spillen (SPILLEN1), articles.",
+   "justification": "« gespillt » = participe passé de spillen (SPILLEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
    "lu": "gekacht",
-   "fr": "faire la cuisine",
+   "fr": "",
    "forme": "gekacht",
    "lecons": [
     "A1.2 L24"
@@ -6444,7 +7156,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "(faire) cuire, faire bouillir, cuisiner, faire bouillir",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "FORME_FLECHIE_VALIDEE",
@@ -6455,7 +7167,7 @@
    "categorie": "VRB",
    "sens": "(faire) cuire, faire bouillir, cuisiner, faire bouillir",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6467,12 +7179,17 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de KACHEN2 prononce « kachen ») ; audio contextuel si un exemple prononce « gekacht »",
-   "justification": "« gekacht » = participe passé de kachen (KACHEN2), articles.",
+   "justification": "« gekacht » = participe passé de kachen (KACHEN2) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
    "lu": "gelies",
-   "fr": "lire",
+   "fr": "",
    "forme": "gelies",
    "lecons": [
     "A1.2 L24"
@@ -6488,7 +7205,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "lire, lire, lire, lire",
-     "sens_correspond": true
+     "sens_correspond": false
     },
     {
      "id": "LIESEN2",
@@ -6508,15 +7225,20 @@
    "categorie": "VRB",
    "sens": "lire, lire, lire, lire",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de LIESEN1 prononce « liesen ») ; audio contextuel si un exemple prononce « gelies »",
-   "justification": "« gelies » = participe passé de liesen (LIESEN1), articles."
+   "justification": "« gelies » = participe passé de liesen (LIESEN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "lauschteren",
-   "fr": "écouter",
+   "fr": "",
    "forme": "lauschteren",
    "lecons": [
     "A1.2 L24"
@@ -6532,7 +7254,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "écouter, écouter, écouter, écouter",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -6543,16 +7265,24 @@
    "categorie": "VRB",
    "sens": "écouter, écouter, écouter, écouter",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer LAUSCHTEREN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « écouter, écouter, écouter, écouter ».",
-   "local": false
+   "decision": "Relire puis associer LAUSCHTEREN1.mp3",
+   "justification": "Lemme identique, sens « écouter, écouter, écouter, écouter » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "gelauschtert",
-   "fr": "écouter",
+   "fr": "",
    "forme": "gelauschtert",
    "lecons": [
     "A1.2 L24"
@@ -6568,7 +7298,7 @@
      "source": "articles",
      "categorie": "VRB",
      "sens_lod": "écouter, écouter, écouter, écouter",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "FORME_FLECHIE_VALIDEE",
@@ -6579,7 +7309,7 @@
    "categorie": "VRB",
    "sens": "écouter, écouter, écouter, écouter",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6591,7 +7321,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de LAUSCHTEREN1 prononce « lauschteren ») ; audio contextuel si un exemple prononce « gelauschtert »",
-   "justification": "« gelauschtert » = participe passé de lauschteren (LAUSCHTEREN1), articles.",
+   "justification": "« gelauschtert » = participe passé de lauschteren (LAUSCHTEREN1) ; analyses possibles : participe passé, participe passé (table).",
+   "analyses": [
+    "participe passé",
+    "participe passé (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -6608,7 +7343,7 @@
     {
      "id": "SINN1",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être, être, être, être",
@@ -6617,7 +7352,7 @@
     {
      "id": "SINN2",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -6628,11 +7363,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SINN1",
    "lemme": "sinn",
-   "type": "forme verbale (table)",
+   "type": "prétérit (table)",
    "categorie": "VRB",
    "sens": "être, être, être, être",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6644,7 +7379,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SINN1 prononce « sinn ») ; audio contextuel si un exemple prononce « war »",
-   "justification": "« war » = forme verbale (table) de sinn (SINN1), tables.",
+   "justification": "« war » = prétérit (table) de sinn (SINN1).",
+   "analyses": [
+    "prétérit (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -6661,7 +7400,7 @@
     {
      "id": "HAEN1",
      "lemme": "haen",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "fendre, couper, abattre, frapper",
@@ -6670,7 +7409,7 @@
     {
      "id": "HUNN1",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir, posséder, avoir, avoir (sous la main)",
@@ -6679,7 +7418,7 @@
     {
      "id": "HUNN3",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir",
@@ -6714,7 +7453,7 @@
     {
      "id": "SINN1",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être, être, être, être",
@@ -6723,7 +7462,7 @@
     {
      "id": "SINN2",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -6734,11 +7473,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SINN1",
    "lemme": "sinn",
-   "type": "forme verbale (table)",
+   "type": "prétérit (table)",
    "categorie": "VRB",
    "sens": "être, être, être, être",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6750,7 +7489,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SINN1 prononce « sinn ») ; audio contextuel si un exemple prononce « waars »",
-   "justification": "« waars » = forme verbale (table) de sinn (SINN1), tables.",
+   "justification": "« waars » = prétérit (table) de sinn (SINN1).",
+   "analyses": [
+    "prétérit (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -6767,7 +7510,7 @@
     {
      "id": "HUNN1",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir, posséder, avoir, avoir (sous la main)",
@@ -6776,7 +7519,7 @@
     {
      "id": "HUNN3",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir",
@@ -6787,15 +7530,19 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "HUNN1",
    "lemme": "hunn",
-   "type": "forme verbale (table)",
+   "type": "prétérit (table)",
    "categorie": "VRB",
    "sens": "avoir, posséder, avoir, avoir (sous la main)",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de HUNN1 prononce « hunn ») ; audio contextuel si un exemple prononce « has »",
-   "justification": "« has » = forme verbale (table) de hunn (HUNN1), tables."
+   "justification": "« has » = prétérit (table) de hunn (HUNN1).",
+   "analyses": [
+    "prétérit (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "waren",
@@ -6811,7 +7558,7 @@
     {
      "id": "SINN1",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être, être, être, être",
@@ -6820,7 +7567,7 @@
     {
      "id": "SINN2",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -6831,15 +7578,19 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SINN1",
    "lemme": "sinn",
-   "type": "forme verbale (table)",
+   "type": "prétérit (table)",
    "categorie": "VRB",
    "sens": "être, être, être, être",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de SINN1 prononce « sinn ») ; audio contextuel si un exemple prononce « waren »",
-   "justification": "« waren » = forme verbale (table) de sinn (SINN1), tables."
+   "justification": "« waren » = prétérit (table) de sinn (SINN1).",
+   "analyses": [
+    "prétérit (table)"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "haten",
@@ -6855,7 +7606,7 @@
     {
      "id": "HUNN1",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir, posséder, avoir, avoir (sous la main)",
@@ -6864,7 +7615,7 @@
     {
      "id": "HUNN3",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir",
@@ -6875,11 +7626,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "HUNN1",
    "lemme": "hunn",
-   "type": "forme verbale (table)",
+   "type": "prétérit (table)",
    "categorie": "VRB",
    "sens": "avoir, posséder, avoir, avoir (sous la main)",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -6905,7 +7656,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HUNN1 prononce « hunn ») ; audio contextuel si un exemple prononce « haten »",
-   "justification": "« haten » = forme verbale (table) de hunn (HUNN1), tables.",
+   "justification": "« haten » = prétérit (table) de hunn (HUNN1).",
+   "analyses": [
+    "prétérit (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -6922,7 +7677,7 @@
     {
      "id": "SINN1",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être, être, être, être",
@@ -6931,7 +7686,7 @@
     {
      "id": "SINN2",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "prétérit (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -6940,7 +7695,7 @@
     {
      "id": "WAARDEN1",
      "lemme": "waarden",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "attendre, patienter",
@@ -6990,12 +7745,18 @@
    "categorie": "SUBST",
    "sens": "réunion",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer REUNIOUN1.mp3 (après validation)",
+   "decision": "Associer REUNIOUN1.mp3",
    "justification": "Lemme identique, sens « réunion ».",
-   "local": false
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "sûr",
+   "raisons": []
   },
   {
    "lu": "Äppel",
@@ -7028,7 +7789,7 @@
    "categorie": "SUBST",
    "sens": "pomme",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -7047,7 +7808,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de APEL1 prononce « Apel ») ; audio contextuel si un exemple prononce « äppel »",
-   "justification": "« äppel » = pluriel de Apel (APEL1), articles.",
+   "justification": "« äppel » = pluriel de Apel (APEL1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7099,7 +7864,7 @@
    "categorie": "SUBST",
    "sens": "poire, ampoule (électrique), caboche",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -7111,7 +7876,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de BIER3 prononce « Bier ») ; audio contextuel si un exemple prononce « bieren »",
-   "justification": "« bieren » = pluriel de Bier (BIER3), articles.",
+   "justification": "« bieren » = pluriel de Bier (BIER3).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7145,7 +7914,7 @@
    "categorie": "SUBST",
    "sens": "pomme de terre, patate douce, montre (tape-à-l'œil), montre (de frimeur)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -7171,7 +7940,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de GROMPER1 prononce « Gromper ») ; audio contextuel si un exemple prononce « gromperen »",
-   "justification": "« gromperen » = pluriel de Gromper (GROMPER1), articles.",
+   "justification": "« gromperen » = pluriel de Gromper (GROMPER1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7205,11 +7978,15 @@
    "categorie": "SUBST",
    "sens": "abricot",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de APRIKOS1 prononce « Aprikos ») ; audio contextuel si un exemple prononce « aprikosen »",
-   "justification": "« aprikosen » = pluriel de Aprikos (APRIKOS1), articles."
+   "justification": "« aprikosen » = pluriel de Aprikos (APRIKOS1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "en Akafskuerf",
@@ -7240,16 +8017,24 @@
    "categorie": "SUBST",
    "sens": "panier à provisions, sac à provisions",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer AKAFSKUERF1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « panier à provisions, sac à provisions ».",
-   "local": false
+   "decision": "Relire puis associer AKAFSKUERF1.mp3",
+   "justification": "Lemme identique, sens « panier à provisions, sac à provisions » ; à valider : traduction lue dans un tableau.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "traduction lue dans un tableau"
+   ]
   },
   {
    "lu": "en Apel",
-   "fr": "pomme(s)",
+   "fr": "",
    "forme": "apel",
    "lecons": [
     "A1.2 L25"
@@ -7265,7 +8050,7 @@
      "source": "articles",
      "categorie": "SUBST",
      "sens_lod": "pomme",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -7276,16 +8061,24 @@
    "categorie": "SUBST",
    "sens": "pomme",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer APEL1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « pomme ».",
-   "local": false
+   "decision": "Relire puis associer APEL1.mp3",
+   "justification": "Lemme identique, sens « pomme » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "eng Bier",
-   "fr": "poire(s)",
+   "fr": "",
    "forme": "bier",
    "lecons": [
     "A1.2 L25"
@@ -7319,7 +8112,7 @@
      "source": "articles",
      "categorie": "SUBST",
      "sens_lod": "poire, ampoule (électrique), caboche",
-     "sens_correspond": true
+     "sens_correspond": false
     },
     {
      "id": "BIER4",
@@ -7331,24 +8124,23 @@
      "sens_correspond": false
     }
    ],
-   "correspondance": "LEMME_EXACT",
-   "audio": "SON_EXACT_DISPONIBLE",
-   "id": "BIER3",
-   "lemme": "Bier",
-   "type": "lemme",
-   "categorie": "SUBST",
-   "sens": "poire, ampoule (électrique), caboche",
-   "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
-   "son": "disponible",
+   "correspondance": "SENS_AMBIGU",
+   "audio": "AUCUN",
+   "id": null,
+   "lemme": null,
+   "type": null,
+   "categorie": null,
+   "sens": null,
+   "source": null,
+   "graphie": null,
+   "son": null,
    "contexte": [],
-   "decision": "Associer BIER3.mp3 (après validation)",
-   "justification": "Lemme identique, sens « poire, ampoule (électrique), caboche » ; homographes : BIER1, BIER2, BIER3, BIER4.",
-   "local": false
+   "decision": "Relecture humaine",
+   "justification": "Pas de traduction dans le tableau pour départager 4 entrées."
   },
   {
    "lu": "eng Gromper",
-   "fr": "pomme(s) de terre",
+   "fr": "",
    "forme": "gromper",
    "lecons": [
     "A1.2 L25"
@@ -7364,7 +8156,7 @@
      "source": "articles",
      "categorie": "SUBST",
      "sens_lod": "pomme de terre, patate douce, montre (tape-à-l'œil), montre (de frimeur)",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -7375,16 +8167,24 @@
    "categorie": "SUBST",
    "sens": "pomme de terre, patate douce, montre (tape-à-l'œil), montre (de frimeur)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer GROMPER1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « pomme de terre, patate douce, montre (tape-à-l'œil), montre (de frimeur) ».",
-   "local": false
+   "decision": "Relire puis associer GROMPER1.mp3",
+   "justification": "Lemme identique, sens « pomme de terre, patate douce, montre (tape-à-l'œil), montre (de frimeur) » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "eng Aprikos",
-   "fr": "abricot(s)",
+   "fr": "",
    "forme": "aprikos",
    "lecons": [
     "A1.2 L25"
@@ -7400,7 +8200,7 @@
      "source": "articles",
      "categorie": "SUBST",
      "sens_lod": "abricot",
-     "sens_correspond": true
+     "sens_correspond": false
     }
    ],
    "correspondance": "LEMME_EXACT",
@@ -7411,12 +8211,20 @@
    "categorie": "SUBST",
    "sens": "abricot",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer APRIKOS1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « abricot ».",
-   "local": false
+   "decision": "Relire puis associer APRIKOS1.mp3",
+   "justification": "Lemme identique, sens « abricot » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "Aarbechtsannonce",
@@ -7440,8 +8248,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté). Entrée voisine : Aarbecht (AARBECHT1)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche. Entrée voisine : Aarbecht (AARBECHT1)."
   },
   {
    "lu": "d'Kenntnesser",
@@ -7474,11 +8282,15 @@
    "categorie": "SUBST",
    "sens": "connaissance",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de KENNTNES1 prononce « Kenntnes ») ; audio contextuel si un exemple prononce « kenntnesser »",
-   "justification": "« kenntnesser » = pluriel de Kenntnes (KENNTNES1), articles."
+   "justification": "« kenntnesser » = pluriel de Kenntnes (KENNTNES1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "ganzdaags",
@@ -7511,8 +8323,8 @@
    "categorie": "ADV",
    "sens": "toute la journée, à temps plein, à temps complet",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
-   "son": "absent du miroir (404)",
+   "graphie": "contrôlée (index de recherche)",
+   "son": "absent du miroir (404) ; enregistrement annoncé par l'index de recherche (audio=\"true\") : à récupérer sur lod.lu",
    "contexte": [
     {
      "id": "32190b5dff92fcf12e14570a325a29c7",
@@ -7529,9 +8341,15 @@
      "enregistrement": "à vérifier (Termux)"
     }
    ],
-   "decision": "Chercher une autre source (M4A officiel) ou un contexte",
-   "justification": "Lemme identique, sens « toute la journée, à temps plein, à temps complet » ; MP3 : absent du miroir (404).",
+   "decision": "Chercher le fichier officiel (lod.lu, via Termux) ou un contexte",
+   "justification": "Lemme identique, sens « toute la journée, à temps plein, à temps complet » ; MP3 : absent du miroir (404) ; enregistrement annoncé par l'index de recherche (audio=\"true\") : à récupérer sur lod.lu.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
    "local": false,
+   "confiance": "sans fichier",
+   "raisons": [],
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7564,7 +8382,7 @@
    "categorie": "PREP",
    "sens": "devant, devant, avant, devant",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (règle du n) (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -7590,7 +8408,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de VIRUN1 prononce « virun ») ; audio contextuel si un exemple prononce « viru »",
-   "justification": "« viru » = variante règle du n de virun (VIRUN1), articles.",
+   "justification": "« viru » = variante règle du n de virun (VIRUN1).",
+   "analyses": [
+    "variante règle du n"
+   ],
+   "statut_graphie": "contrôlée (règle du n)",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7616,8 +8438,8 @@
    "graphie": null,
    "son": null,
    "contexte": [],
-   "decision": "Pas de son ; vérifier la graphie avec l'index de recherche",
-   "justification": "Aucune forme identique dans les articles ni dans les tables (index de recherche non consulté). Entrée voisine : Aarbecht (AARBECHT1)."
+   "decision": "Pas de son ; vérifier la graphie",
+   "justification": "Aucune forme identique dans les articles ni dans les tables ni dans l'index de recherche. Entrée voisine : Aarbecht (AARBECHT1)."
   },
   {
    "lu": "e Sekretär",
@@ -7648,16 +8470,24 @@
    "categorie": "SUBST",
    "sens": "secrétaire, secrétaire, secrétaire, secrétaire",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer SEKRETAR1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « secrétaire, secrétaire, secrétaire, secrétaire ».",
-   "local": false
+   "decision": "Relire puis associer SEKRETAR1.mp3",
+   "justification": "Lemme identique, sens « secrétaire, secrétaire, secrétaire, secrétaire » ; à valider : sens non vérifiable (cellule de tableau sans traduction).",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)"
+   ]
   },
   {
    "lu": "Kenntnesser",
-   "fr": "",
+   "fr": "connaissances",
    "forme": "kenntnesser",
    "lecons": [
     "A1.2 L26"
@@ -7673,7 +8503,7 @@
      "source": "articles",
      "categorie": "SUBST",
      "sens_lod": "connaissance",
-     "sens_correspond": false
+     "sens_correspond": true
     }
    ],
    "correspondance": "FORME_FLECHIE_VALIDEE",
@@ -7684,11 +8514,15 @@
    "categorie": "SUBST",
    "sens": "connaissance",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [],
    "decision": "Pas de son direct (le MP3 de KENNTNES1 prononce « Kenntnes ») ; audio contextuel si un exemple prononce « kenntnesser »",
-   "justification": "« kenntnesser » = pluriel de Kenntnes (KENNTNES1), articles."
+   "justification": "« kenntnesser » = pluriel de Kenntnes (KENNTNES1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée"
   },
   {
    "lu": "Sproochen",
@@ -7719,7 +8553,7 @@
    "categorie": "SUBST",
    "sens": "parole, langue, langage, langue",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -7731,7 +8565,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SPROOCH1 prononce « Sprooch ») ; audio contextuel si un exemple prononce « sproochen »",
-   "justification": "« sproochen » = pluriel de Sprooch (SPROOCH1), articles.",
+   "justification": "« sproochen » = pluriel de Sprooch (SPROOCH1).",
+   "analyses": [
+    "pluriel"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7772,12 +8610,21 @@
    "categorie": "VRB",
    "sens": "être, être, être, être",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer SINN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « être, être, être, être » ; homographes : SINN1, SINN2.",
-   "local": false
+   "decision": "Relire puis associer SINN1.mp3",
+   "justification": "Lemme identique, sens « être, être, être, être » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : SINN2.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : SINN2"
+   ]
   },
   {
    "lu": "hunn",
@@ -7817,12 +8664,21 @@
    "categorie": "VRB",
    "sens": "avoir, posséder, avoir, avoir (sous la main)",
    "source": "articles LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (articles)",
+   "graphie": "contrôlée (index de recherche)",
    "son": "disponible",
    "contexte": [],
-   "decision": "Associer HUNN1.mp3 (après validation)",
-   "justification": "Lemme identique, sens « avoir, posséder, avoir, avoir (sous la main) » ; homographes : HUNN1, HUNN3.",
-   "local": false
+   "decision": "Relire puis associer HUNN1.mp3",
+   "justification": "Lemme identique, sens « avoir, posséder, avoir, avoir (sous la main) » ; à valider : sens non vérifiable (cellule de tableau sans traduction) ; homographes : HUNN2, HUNN3.",
+   "analyses": [
+    "lemme"
+   ],
+   "statut_graphie": "contrôlée",
+   "local": false,
+   "confiance": "à valider",
+   "raisons": [
+    "sens non vérifiable (cellule de tableau sans traduction)",
+    "homographes : HUNN2, HUNN3"
+   ]
   },
   {
    "lu": "bass",
@@ -7838,7 +8694,7 @@
     {
      "id": "SINN1",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être, être, être, être",
@@ -7847,7 +8703,7 @@
     {
      "id": "SINN2",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -7858,11 +8714,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SINN1",
    "lemme": "sinn",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "être, être, être, être",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -7874,7 +8730,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SINN1 prononce « sinn ») ; audio contextuel si un exemple prononce « bass »",
-   "justification": "« bass » = forme verbale (table) de sinn (SINN1), tables.",
+   "justification": "« bass » = présent (table) de sinn (SINN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7891,7 +8751,7 @@
     {
      "id": "HUNN1",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir, posséder, avoir, avoir (sous la main)",
@@ -7900,7 +8760,7 @@
     {
      "id": "HUNN3",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir",
@@ -7911,11 +8771,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "HUNN1",
    "lemme": "hunn",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "avoir, posséder, avoir, avoir (sous la main)",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -7941,7 +8801,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HUNN1 prononce « hunn ») ; audio contextuel si un exemple prononce « hues »",
-   "justification": "« hues » = forme verbale (table) de hunn (HUNN1), tables.",
+   "justification": "« hues » = présent (table) de hunn (HUNN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -7958,7 +8822,7 @@
     {
      "id": "SINN1",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être, être, être, être",
@@ -7967,7 +8831,7 @@
     {
      "id": "SINN2",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -7978,11 +8842,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SINN1",
    "lemme": "sinn",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "être, être, être, être",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -8008,7 +8872,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SINN1 prononce « sinn ») ; audio contextuel si un exemple prononce « ass »",
-   "justification": "« ass » = forme verbale (table) de sinn (SINN1), tables.",
+   "justification": "« ass » = présent (table) de sinn (SINN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -8025,7 +8893,7 @@
     {
      "id": "HUNN1",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir, posséder, avoir, avoir (sous la main)",
@@ -8034,7 +8902,7 @@
     {
      "id": "HUNN3",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir",
@@ -8045,11 +8913,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "HUNN1",
    "lemme": "hunn",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "avoir, posséder, avoir, avoir (sous la main)",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -8075,7 +8943,11 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HUNN1 prononce « hunn ») ; audio contextuel si un exemple prononce « huet »",
-   "justification": "« huet » = forme verbale (table) de hunn (HUNN1), tables.",
+   "justification": "« huet » = présent (table) de hunn (HUNN1).",
+   "analyses": [
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -8092,7 +8964,7 @@
     {
      "id": "SINN1",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être, être, être, être",
@@ -8101,7 +8973,7 @@
     {
      "id": "SINN2",
      "lemme": "sinn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "être",
@@ -8112,11 +8984,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "SINN1",
    "lemme": "sinn",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "être, être, être, être",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -8128,7 +9000,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de SINN1 prononce « sinn ») ; audio contextuel si un exemple prononce « sidd »",
-   "justification": "« sidd » = forme verbale (table) de sinn (SINN1), tables.",
+   "justification": "« sidd » = présent (table) de sinn (SINN1) ; analyses possibles : impératif (table), présent (table).",
+   "analyses": [
+    "impératif (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   },
   {
@@ -8145,7 +9022,7 @@
     {
      "id": "HUNN1",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "impératif (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir, posséder, avoir, avoir (sous la main)",
@@ -8154,7 +9031,7 @@
     {
      "id": "HUNN3",
      "lemme": "hunn",
-     "type": "forme verbale (table)",
+     "type": "présent (table)",
      "source": "tables",
      "categorie": "VRB",
      "sens_lod": "avoir",
@@ -8165,11 +9042,11 @@
    "audio": "ENTREE_SANS_AUDIO_EXACT",
    "id": "HUNN1",
    "lemme": "hunn",
-   "type": "forme verbale (table)",
+   "type": "présent (table)",
    "categorie": "VRB",
    "sens": "avoir, posséder, avoir, avoir (sous la main)",
    "source": "tables LOD 2026-07-27",
-   "graphie": "forme éditoriale du LOD (tables)",
+   "graphie": "contrôlée (index de recherche)",
    "son": null,
    "contexte": [
     {
@@ -8188,7 +9065,12 @@
     }
    ],
    "decision": "Pas de son direct (le MP3 de HUNN1 prononce « hunn ») ; audio contextuel si un exemple prononce « hutt »",
-   "justification": "« hutt » = forme verbale (table) de hunn (HUNN1), tables.",
+   "justification": "« hutt » = présent (table) de hunn (HUNN1) ; analyses possibles : impératif (table), présent (table).",
+   "analyses": [
+    "impératif (table)",
+    "présent (table)"
+   ],
+   "statut_graphie": "contrôlée",
    "audio_contexte": "CONTEXTE_CANDIDAT"
   }
  ]

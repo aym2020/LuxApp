@@ -157,49 +157,76 @@ La SPEC 73 ne peut être déclarée implémentée que si :
 
 ---
 
-## Résultats de la phase A (20/10/2026)
+## Résultats de la phase A — révision 2 (20/10/2026)
 
-Outil : `node tools/lod/audit-correspondances.js --articles new_lod-art.xml --tables new_lod-tab.xml [--recherche …] [--hors-ligne]`
-(exports LOD gardés hors dépôt). Rapport : `docs/audit-correspondances-lod.md` ; inventaire : `docs/audit-correspondances-lod.json`.
-Tests ciblés : `node tests/test_audit_correspondances.js` (ajouté à la suite critique avec `tests/test_audio_lod.js`).
+Outil : `node tools/lod/audit-correspondances.js --articles new_lod-art.xml --tables new_lod-tab.xml --recherche new_lod-search.xml [--hors-ligne]`
+(exports LOD 2026-07-27 gardés hors dépôt ; résultat identique à chaque exécution). Rapport : `docs/audit-correspondances-lod.md` ;
+inventaire : `docs/audit-correspondances-lod.json`. Tests : `node tests/test_audit_correspondances.js` (suite critique).
 **Aucune leçon, association audio ni fichier son modifié.**
 
 ### Sources et schémas réellement lus
 
-- Articles (export 2026-07-27, 33 941 entrées) : `lemma` (+ attribut `nRuleForm`), `inflection type="plural"` / `form` (attributs `nRuleForm`, `rare`),
-  `pastParticiple`, `internalLink relation="Variant"` (entrée sans traduction → sens de l'entrée liée), exemples avec `inflectedHeadword`.
-- Tables (2026-07-27, 9 851 tables) : `verbConjugation` et `adjDeclension`. Temps composés et auxiliaire exclus (« si », « war » ne sont pas des formes du verbe),
-  pronoms réfléchis entre parenthèses retirés (« mécht (sech) » → « mécht »).
-- **Index de recherche : non consulté** — `download.data.public.lu` est refusé par le proxy de l'environnement de Claude.
-  Les « sans entrée » sont donc provisoires ; les graphies générées (`suggest` absent) n'ont pas pu être distinguées.
-- Casse conservée (« Still » pluriel de Stull ≠ « still » calme ; « Sproochen » ≠ « sproochen »), normalisation Unicode NFC, aucun accent retiré côté luxembourgeois.
+- Articles : `lemma` (+ `nRuleForm`), `inflection type="plural"` / `form` (attributs `nRuleForm`, `rare`), `pastParticiple`,
+  `internalLink relation="Variant"` (renvoi : sens de l'entrée liée), exemples avec `inflectedHeadword`.
+- Tables : `verbConjugation` (infinitif, participe, présent, prétérit, conditionnel, **impératif** — bloc lu à part, « ! » retiré)
+  et `adjDeclension`. Temps composés et auxiliaires exclus ; pronoms réfléchis entre parenthèses retirés.
+- **Index de recherche** (fourni par Clayton, 88 Mo) : `entry/@audio`, `spellings/spelling` avec `suggest` et `reason`.
+  Règle de data.public.lu : `suggest="true"` = graphie contrôlée ; les formes `reason="n-rule"` sont aussi contrôlées
+  (dans le fichier elles portent `suggest="false"`) ; `erroneous-spelling` = graphie fautive rattachée au standard ; les autres raisons = graphies générées.
+  L'index sert d'arbitre orthographique et de source de secours (il contient aussi les morceaux des verbes composés : jamais prioritaire).
+- `audio="true"` est présent sur les 33 941 entrées : il ne prouve pas la disponibilité d'un fichier. Seuls les MP3 vérifiés sur le miroir comptent.
 
-### Chiffres (183 mots isolés sans son : cartes, vocabulaire et exemples du cours, cellules de tableaux)
+### Corrections d'interprétation (retours de Clayton)
 
-| | |
+- **Entschëllegt!** : impératif (formule de politesse), pas participe passé ; les deux analyses sont documentées, l'usage LuxApp tranche
+  (formule exclamative → impératif ; cellule de conjugaison → présent).
+- **Traductions des tableaux** : la colonne française n'est attribuée que si le tableau a une seule colonne luxembourgeoise ;
+  sinon, traduction prise dans les cartes / le vocabulaire, ou aucune (« eng Mauer » n'est plus traduit « deux murs »).
+  « Dat sinn » ne prête plus sa traduction à « sinn ».
+- **Sons exacts séparés** en « sûrs » et « à valider » ; les sons contextuels sont dans une section distincte.
+- **Corrections d'orthographe** : un participe proposé (verloobt) n'apporte pas de son direct (le MP3 prononce « verloben »).
+
+### Chiffres (183 mots isolés sans son)
+
+| Sons exacts (forme affichée) | |
 |---|---:|
-| LEMME_EXACT (dont 53 MP3 disponibles sur le miroir, 1 absent : ganzdaags) | 54 |
-| FORME_FLECHIE_VALIDEE (pluriels, participes, formes conjuguées / déclinées) — **sans son direct** | 83 |
-| GRAPHIE_A_VERIFIER (10 graphies LuxApp ≠ LOD, 7 variantes règle du n dérivées) | 17 |
-| SENS_AMBIGU (surtout cellules de tableaux grammaticaux sans traduction) | 14 |
-| PAS_D_ENTREE (provisoire) | 15 |
-| CONTEXTE_CANDIDAT (exemple de la même entrée prononçant la forme exacte, relecture requise) | 74 |
+| Sûrs : lemme identique, graphie contrôlée, sens lu dans la traduction, sans homographe ni variante, MP3 présent | **10** |
+| À valider : 37 cellules de tableau sans traduction, 13 avec homographes, 3 variantes, 3 traductions lues dans un tableau | 42 |
+| Lemme identique sans fichier (ganzdaags, absent du miroir 2020) | 1 |
 
-- Les 63 « absents » : **53 faux absents** (41 formes fléchies, 12 graphies à vérifier), 10 sans entrée
-  (Hallo, Wollekekrazer, nombres composés, Koreanesch, leedeg, Aarbechtsannonce).
-- Les 4 « sens différent » : Still → pluriel de Stull, Becheren → pluriel de Becher, gemaach → participe de maachen (résolus par la casse) ;
-  « Dat sinn » reste ambigu (« Dat » n'est pas un article ici).
-- Catalogue : les 442 associations existantes sont toutes cohérentes (lemme LOD identique) et conservées.
-- 6 mots du cours ont déjà leur MP3 dans le dépôt mais pas de bouton à cause d'une parenthèse dans le texte affiché
-  (« de Brudder (pl. d'Bridder) ») : correction de clé d'affichage seulement.
+| Sans son exact | |
+|---|---:|
+| Formes fléchies validées (pluriels, participes, impératif, présent, prétérit, formes déclinées, règle du n contrôlée) | 90 |
+| … dont phrase LOD candidate prononçant la forme exacte (relecture requise) | 74 |
+| Graphies à vérifier (3 fautives selon le LOD, 7 graphies LOD proches) | 10 |
+| Sens ambigu | 15 |
+| Pas d'entrée dans les trois sources (définitif) | 15 |
 
-### Orthographes LuxApp à valider (graphie LOD, MP3 vérifié sur le miroir)
+- Les 10 sons sûrs sont tous des mots du cours (« de Brudder (pl. d'Bridder) », « d'Reunioun »…) ; 6 MP3 sont déjà dans le dépôt.
+- Les 63 « absents » : 45 formes fléchies, 8 graphies à vérifier, 10 sans entrée ; les 7 ordinaux en « -te » sont des formes règle du n **contrôlées**.
+- Les 4 « sens différent » : Still, Becheren, gemaach résolus (casse) ; « Dat sinn » ambigu.
+- 442 associations existantes : toutes cohérentes et conservées.
 
-aachtzeg → **achtzeg** (`ACHTZEG1`) · eenanaachtzeg → **eenanachtzeg** · Italiener → **Italieener** (ou Italiéiner) · Italienerin → **Italieenerin** ·
-Italienesch → **italieenesch** · Fransousin → **Franséisin** · Kirchberg → **Kierchbierg** · verlobt → **verloobt** · Kommod → **Komoud** ·
-éischte, dräizéngte, uechtzéngte, véieranzwanzegste, drëtte, fënnefte, zéngte : variantes règle du n de formes officielles (à confirmer avec l'index de recherche).
+### Orthographes (aucun remplacement automatique)
 
-### Gain estimé (mots isolés)
+| LuxApp | LOD | Constat | Son exact après correction |
+|---|---|---|---|
+| Italiener, Italienerin, Italienesch | Italieener, Italieenerin, italieenesch | graphies **fautives** selon l'index | oui (MP3 présents) |
+| aachtzeg, eenanaachtzeg | achtzeg, eenanachtzeg | absentes du LOD, graphie contrôlée proche | oui |
+| Fransousin | Franséisin | absente du LOD | oui |
+| Kommod | Komoud (Kommoud = fautive) | absente du LOD | oui |
+| verlobt | verloobt (participe de verloben) | absente du LOD | non (forme fléchie) |
+| Kirchberg | Kierchbierg | **nom propre** : Kirchberg est aussi la forme officielle française / allemande ; 2 emplois en leçon 10 (« Ech wunnen um Kirchberg. ») à examiner avant tout remplacement | oui si remplacé |
 
-+53 sons directs (forme exacte, MP3 du miroir) ; +74 audios contextuels possibles (≈ +67 réellement disponibles, 1 enregistrement sur 10 manquant lors du passage SPEC 72) ;
-+9 sons supplémentaires si les orthographes ci-dessus sont corrigées. Les 83 formes fléchies n'ont pas de son direct (règle centrale).
+### Gain estimé
+
++10 sons exacts sûrs ; jusqu'à +52 après relecture des 42 cas à valider ; jusqu'à +74 audios contextuels relus (≈ +67 disponibles) ;
++7 mots avec son exact (8 éléments) si les orthographes sont corrigées, hors verlobt (forme fléchie) et Kirchberg (nom propre).
+
+### Phase B proposée (après validation)
+
+1. Moteur : index morphologique compact et versionné (formes des articles et des tables + statut de l'index de recherche), utilisé par `tools/audio-lod.js`
+   pour toutes les futures leçons ; clé d'affichage tolérant les parenthèses (« (pl. d'Bridder) »).
+2. Associations exactes **sûres** d'abord (10), puis les cas « à valider » relus un par un.
+3. Exemples contextuels relus (comme SPEC 70), téléchargés via Termux.
+4. Orthographes : correction des leçons seulement après décision de Clayton, mot par mot.

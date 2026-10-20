@@ -22,20 +22,35 @@ ${entree('AWUER1', '<lemma>Awuer</lemma><ipa>ɑvˈuːɐ̯</ipa><microStructure><
 ${entree('EISCHT1', '<lemma>éischt</lemma><ipa>x</ipa><microStructure><partOfSpeech>NB</partOfSpeech><grammaticalUnit><meaning id="E1">' + fr(['premier']) + '</meaning></grammaticalUnit></microStructure>')}
 ${entree('FRANSOUS1', '<lemma>Fransous</lemma><ipa>x</ipa><microStructure><partOfSpeech gen="M">SUBST</partOfSpeech><grammaticalUnit><meaning id="F1">' + fr(['Français']) + '</meaning></grammaticalUnit></microStructure>')}
 ${entree('ACHTZEG1', '<lemma>achtzeg</lemma><ipa>x</ipa><microStructure><partOfSpeech>NB</partOfSpeech><grammaticalUnit><meaning id="H1">' + fr(['quatre-vingt(s)']) + '</meaning></grammaticalUnit></microStructure>')}
+${entree('ENTSCHELLEGEN1', '<lemma nRuleForm="entschëllege">entschëllegen</lemma><ipa>x</ipa><microStructure><partOfSpeech>VRB</partOfSpeech><pastParticiple>entschëllegt</pastParticiple><grammaticalUnit><meaning id="EN1">' + fr(['excuser']) + '</meaning></grammaticalUnit></microStructure>')}
+${entree('ITALIEENER1', '<lemma>Italieener</lemma><ipa>x</ipa><microStructure><partOfSpeech gen="M">SUBST</partOfSpeech><grammaticalUnit><meaning id="I1">' + fr(['Italien']) + '</meaning></grammaticalUnit></microStructure>')}
 ${entree('KANNE1', '<lemma>Känn</lemma><ipa>x</ipa><microStructure><partOfSpeech gen="F">SUBST</partOfSpeech><grammaticalUnit><meaning id="X1">' + fr(['menton']) + '</meaning></grammaticalUnit></microStructure>')}
 </lod>`;
 const tables = `<tables>
 <inflection><adjDeclension id="ZWEE2"><basicForms><positive>zwee</positive></basicForms><declension><positive><singular><feminine><nominative>zwou</nominative></feminine></singular></positive></declension></adjDeclension></inflection>
 <inflection><adjDeclension id="EISCHT1"><basicForms><positive>éischt</positive></basicForms><declension><positive><singular><masculine><nominative>éischten</nominative></masculine></singular></positive></declension></adjDeclension></inflection>
 <inflection><verbConjugation id="GOEN1"><infinitive>goen</infinitive><pastParticiple>gaangen / gaang</pastParticiple><auxiliaryVerb>sinn</auxiliaryVerb><indicative><present><p2>gees</p2><p3>geet (sech)</p3></present><presentPerfect><p1>si gaangen / gaang</p1></presentPerfect></indicative></verbConjugation></inflection>
+<inflection><verbConjugation id="ENTSCHELLEGEN1"><infinitive>entschëllegen</infinitive><pastParticiple>entschëllegt</pastParticiple><indicative><present><p5>entschëllegt (iech)</p5></present></indicative><imperative><present><p2>entschëlleg (dech)!</p2><p5>entschëllegt (iech)!</p5></present></imperative></verbConjugation></inflection>
 </tables>`;
+const recherche = `<entries>
+<entry id="KAND1" audio="true"><spellings><spelling suggest="true">Kand</spelling><spelling suggest="true">Kanner</spelling></spellings></entry>
+<entry id="EISCHT1" audio="true"><spellings><spelling suggest="true">éischt</spelling><spelling suggest="false" reason="n-rule">éischte</spelling></spellings></entry>
+<entry id="ITALIEENER1" audio="true"><spellings><spelling suggest="true">Italieener</spelling><spelling suggest="false" reason="erroneous-spelling">Italiener</spelling></spellings></entry>
+<entry id="STILL1" audio="true"><spellings><spelling suggest="true">still</spelling></spellings></entry>
+<entry id="STULL1" audio="true"><spellings><spelling suggest="true">Stull</spelling><spelling suggest="false" reason="filled-croissant">Stullen</spelling></spellings></entry>
+</entries>`;
 fs.writeFileSync(path.join(dossier, 'art.xml'), articles);
 fs.writeFileSync(path.join(dossier, 'tab.xml'), tables);
+fs.writeFileSync(path.join(dossier, 'rech.xml'), recherche);
 
 const entrees = a.lireArticles(path.join(dossier, 'art.xml'));
 const tab = a.lireTables(path.join(dossier, 'tab.xml'));
 const ctx = { entrees, formes: a.indexFormes(entrees, tab), recherche: null, textes: {}, phrasesDispo: new Set(), horsLigne: true };
-const c = (lu, fr) => a.classer({ lu, fr, lecons: new Set(['T']), sections: new Set(['cartes']) }, ctx);
+const c = (lu, fr) => a.classer({ lu, fr, origineFr: fr ? 'carte' : 'aucune', lecons: new Set(['T']), sections: new Set(['cartes']) }, ctx);
+// Avec l'index de recherche et un son « disponible » simulé (aucune requête réseau).
+const rech = a.lireRecherche(path.join(dossier, 'rech.xml'));
+const ctxR = { entrees, formes: a.indexFormes(entrees, tab, rech), recherche: rech, textes: {}, phrasesDispo: new Set(), verifierSon: () => 'disponible' };
+const cR = (lu, fr, origineFr) => a.classer({ lu, fr, origineFr: origineFr || (fr ? 'carte' : 'aucune'), lecons: new Set(['T']), sections: new Set(['tableau']) }, ctxR);
 
 // Kanner / Kand : pluriel validé, jamais le son du lemme « Kand ».
 let r = c('Kanner', 'des enfants');
@@ -110,12 +125,55 @@ assert.equal(r.correspondance, 'SENS_AMBIGU');
 assert.equal(r.audio, 'AUCUN');
 ok('sens différent : relecture humaine, aucune association');
 
+// Index de recherche : statuts de graphie (documentation data.public.lu).
+assert.equal(a.statutGraphie(' suggest="true"'), 'contrôlée');
+assert.equal(a.statutGraphie(' suggest="false" reason="n-rule"'), 'contrôlée (règle du n)');
+assert.equal(a.statutGraphie(' suggest="false" reason="erroneous-spelling"'), 'fautive');
+assert.match(a.statutGraphie(' suggest="false" reason="filled-croissant"'), /^générée/);
+r = cR('éischte', 'le 1er (ordinal)');
+assert.equal(r.correspondance, 'FORME_FLECHIE_VALIDEE', 'règle du n contrôlée par l\'index');
+assert.equal(r.statut_graphie, 'contrôlée (règle du n)');
+r = cR('Italiener', 'Italien');
+assert.equal(r.correspondance, 'GRAPHIE_A_VERIFIER');
+assert.match(r.graphie, /fautive.*Italieener/);
+assert.equal(r.audio, 'AUCUN', 'pas de son tant que la leçon garde la graphie fautive');
+r = cR('Stullen', 'des chaises');
+assert.equal(r.correspondance, 'GRAPHIE_A_VERIFIER', 'graphie générée : jamais validée par défaut');
+ok('index de recherche : contrôlée, règle du n, fautive (Italiener → Italieener), générée');
+
+// Impératif : « Entschëllegt! » (excusez-moi) n'est pas présenté comme un participe passé.
+r = cR('Entschëllegt!', 'Excusez-moi !');
+assert.equal(r.type, 'impératif (formule de politesse)');
+assert.ok(r.analyses.some(t => t.startsWith('participe passé')), 'l\'autre analyse reste documentée');
+assert.ok(tab.ENTSCHELLEGEN1.some(f => f.forme === 'entschëllegt' && f.type === 'impératif (table)'), 'impératif lu dans son bloc, « ! » retiré');
+ok('Entschëllegt! → impératif (formule), participe passé gardé comme analyse possible');
+
+// Sons exacts : « sûr » seulement si rien n'est à interpréter.
+r = cR('still', 'calme');
+assert.equal(r.confiance, 'sûr');
+r = cR('Awuer!', 'Au revoir');
+assert.equal(r.confiance, 'à valider');
+assert.ok(r.raisons.some(x => /variante/.test(x)));
+r = cR('zwee', '', 'aucune');
+assert.equal(r.confiance, 'à valider', 'cellule de tableau sans traduction');
+r = cR('Kanner', 'des enfants');
+assert.equal(r.confiance, undefined, 'forme fléchie : aucun son exact proposé');
+ok('sons exacts : sûr (still) / à valider (variante, tableau sans traduction) ; aucun pour une forme fléchie');
+
+// Traduction des tableaux : « Un | Plusieurs | Français » ne traduit pas la colonne « Un » par la colonne française.
+const isoles = a.elementsIsoles();
+const mauer = isoles.find(x => x.lu === 'eng Mauer');
+if (mauer) assert.notEqual(mauer.fr, 'deux murs', 'la traduction du pluriel n\'est pas celle du singulier');
+assert.ok(!isoles.some(x => x.lu === 'sinn' && x.fr === 'ce sont'), '« Dat sinn » ne prête pas sa traduction à « sinn »');
+ok('tableaux : traduction attribuée seulement à une colonne luxembourgeoise unique');
+
 // Rapport réel (s'il a été généré) : statuts valides, aucune association audio écrite.
 const json = path.join(__dirname, '../docs/audit-correspondances-lod.json');
 if (fs.existsSync(json)) {
   const inv = JSON.parse(fs.readFileSync(json, 'utf8'));
   const ST = ['LEMME_EXACT', 'FORME_FLECHIE_VALIDEE', 'GRAPHIE_A_VERIFIER', 'SENS_AMBIGU', 'PAS_D_ENTREE'];
   const AU = ['SON_EXACT_DISPONIBLE', 'ENTREE_SANS_AUDIO_EXACT', 'AUDIO_INDISPONIBLE', 'AUCUN'];
+  for (const x of inv.inventaire) if (x.confiance === 'sûr') assert.ok(x.fr && !x.raisons.length, x.lu + ' : sûr = traduction lue, aucune réserve');
   for (const x of inv.inventaire) {
     assert.ok(ST.includes(x.correspondance), x.lu);
     assert.ok(AU.includes(x.audio), x.lu);
