@@ -18,7 +18,9 @@
     "titre": "Premier cours de luxembourgeois",
     "contexte": "C'est ton premier cours au centre de langues. Tu salues Monsieur Kremer à l'accueil, puis Léa, une autre élève, et Madame Weber, la professeure, qui te demande ton nom. Tu joues Paul. À la fin du cours, tu prends congé.",
     "objectif": "saluer, demander et dire comment ça va, dire ton nom poliment, prendre congé.",
-    "version": 2
+    "version": 2,
+    "contexte_intro": "Tu joues Paul. À ton premier cours, tu salues M. Kremer, Léa et Mme Weber. Tu te présentes, puis tu prends congé.",
+    "objectif_intro": "saluer, demander comment ça va, te présenter et prendre congé."
   },
   "scene": [
     {
