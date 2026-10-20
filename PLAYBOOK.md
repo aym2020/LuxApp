@@ -640,6 +640,10 @@ Le message « mot absent de LOD » signale actuellement l'absence du **lemme**, 
 
 Procéder dans l'ordre : **audit des candidats → vérification de la forme et du sens → confirmation de la prononciation exacte ou contextuelle → contrôle du fichier → publication**. Ne jamais utiliser l'audio d'un lemme pour son pluriel/participe sans vérification de la forme réellement entendue. Voir docs/specs/SPEC-73.md. Les leçons ne doivent pas être modifiées lors de l'audit.
 
+### Cours en trois rubriques — SPEC 75 (pilote leçons 1 à 3)
+
+Pour les seules leçons 1 à 3, répartir explicitement les blocs `cours` en **Règles / Lexique / Phrases** via `rubrique`, en conservant le filtre d'unité et « Toute la leçon ». Les tableaux de grammaire restent dans Règles ; les tableaux de vocabulaire vont dans Lexique (avec `plus` replié). Les phrases et dialogues restent dans Phrases, avec audio uniquement si vérifié. Le Cours doit rendre de manière cohérente dans l'onglet principal et dans le panneau ouvert pendant un exercice. Ne modifier aucune autre section de leçon ni l'état de progression. Ne pas migrer les autres cours avant validation du pilote. Référence complète : `docs/specs/SPEC-75.md` ; maquette : `docs/maquettes/LuxApp_Lecon2_Cours_3onglets.html`.
+
 ### Blocs `cours`
 
 ```json
