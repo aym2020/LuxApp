@@ -1,0 +1,201 @@
+/* LuxApp 2.1 — accueil seulement, sans modifier les composants du parcours.
+   Couche chargée après style.css pour préserver les autres écrans. */
+#view-dashboard .accueil {
+  position:relative; isolation:isolate; width:100%; max-width:620px;
+  margin-inline:auto; gap:clamp(12px,2.2vh,20px);
+  padding:16px 20px calc(22px + env(safe-area-inset-bottom));
+}
+#view-dashboard .ac-ent { min-height:48px; }
+#view-dashboard .ac-marque { display:flex; gap:9px; align-items:center; min-width:0; }
+#view-dashboard .ac-marque-symbole { width:34px; height:34px; flex:none; color:var(--accent); }
+#view-dashboard .ac-titre {
+  color:var(--text); font-size:1.12rem; letter-spacing:-.025em;
+  line-height:1.1; font-weight:800;
+}
+#view-dashboard .ac-marque-sous {
+  display:block; color:var(--muted-strong); font-size:.68rem;
+  letter-spacing:.025em; margin-top:2px;
+}
+#view-dashboard .puces-niveau { margin-top:-7px; }
+#view-dashboard .puce-niv {
+  min-width:66px; min-height:40px; padding:0 14px;
+  border-radius:12px; font-size:.76rem;
+}
+#view-dashboard .puce-niv[aria-pressed="true"] {
+  background:rgba(245,207,77,.12);
+  border-color:var(--accent); color:var(--accent);
+}
+/* Signature éditoriale : serif dans l'expression luxembourgeoise, Inter ailleurs. */
+#view-dashboard .ac-hero {
+  position:relative; overflow:hidden; min-height:178px;
+  display:flex; align-items:flex-start; padding:14px 0 32px;
+}
+#view-dashboard .ac-hero-texte { z-index:1; position:relative; max-width:86%; }
+#view-dashboard .ac-hero-surtitre {
+  display:block; color:var(--muted-strong); font-size:.61rem;
+  letter-spacing:.15em; font-weight:750; margin-bottom:8px;
+}
+#view-dashboard .ac-hero h2 {
+  font-family:var(--serif,'Instrument Serif',serif);
+  font-size:clamp(3.5rem,13vw,5.4rem); font-weight:400;
+  line-height:.97; letter-spacing:-.025em;
+  color:var(--text); margin:0 0 12px;
+}
+#view-dashboard .ac-hero-exclamation { color:var(--accent); }
+#view-dashboard .ac-hero p {
+  max-width:32ch; color:var(--muted-strong); line-height:1.45;
+  font-size:clamp(.89rem,2.8vw,1rem);
+}
+#view-dashboard .ac-hero-image {
+  position:absolute; pointer-events:none; inset:22px -22px -14px 18%;
+  background:url('art/lux-city.svg') right bottom / 100% auto no-repeat;
+  opacity:.78; mask-image:linear-gradient(to right,transparent 0%,#000 45%);
+}
+/* Deux valeurs dominantes, troisième statistique en annotation, aucun faux chiffre. */
+#view-dashboard .ac-chiffres {
+  display:grid; grid-template-columns:1.3fr .7fr; gap:5px 18px;
+  align-items:center; text-align:left; padding:4px 0 2px;
+}
+#view-dashboard .ac-chiffres > div { display:block; padding:0; }
+#view-dashboard .ac-chiffres > div + div {
+  border-left:1px solid var(--bord-2); padding-left:18px;
+}
+#view-dashboard .ac-stat-principale { display:flex; align-items:baseline; gap:8px; }
+#view-dashboard .ac-stat-principale b {
+  color:var(--text); font-size:clamp(1.7rem,7vw,2.15rem);
+  line-height:1.1; font-weight:800;
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+#view-dashboard .ac-stat-principale span,
+#view-dashboard .ac-serie-mesure > span {
+  font-size:.73rem; color:var(--muted-strong); line-height:1.35;
+}
+#view-dashboard .ac-piste {
+  margin-top:9px; height:5px; width:100%;
+  background:#38332a; border-radius:99px; overflow:hidden;
+}
+#view-dashboard .ac-piste i {
+  display:block; height:100%; background:var(--accent);
+  border-radius:inherit; transition:width .3s ease;
+}
+#view-dashboard .ac-serie-mesure {
+  display:flex !important; flex-direction:column; align-items:flex-start; gap:3px;
+}
+#view-dashboard .ac-serie-mesure b {
+  display:inline-flex; align-items:center; gap:7px; color:var(--text);
+  font-size:clamp(1.6rem,7vw,2rem); line-height:1.05;
+  font-variant-numeric:tabular-nums;
+}
+#view-dashboard .ac-serie-mesure .ic {
+  color:#ff9d4d; width:24px; height:24px;
+}
+#view-dashboard .ac-lecons-faites {
+  grid-column:1/-1; color:var(--muted); font-size:.72rem;
+  margin-top:7px; line-height:1.45;
+}
+/* Un seul bouton or central, mais mêmes fonctions et étapes que v2. */
+#view-dashboard .carte-suite.ac-v21-cta {
+  width:100%; min-height:98px; padding:18px 17px; gap:12px;
+  border:1px solid var(--accent); border-radius:20px;
+  background:var(--accent); color:#1a1505;
+  box-shadow:0 10px 28px rgba(245,207,77,.10);
+}
+#view-dashboard .ac-v21-cta .cs-ic { color:#1a1505; }
+#view-dashboard .ac-v21-cta .cs-ic .ic { width:27px; height:27px; }
+#view-dashboard .ac-v21-cta .cs-txt { gap:3px; }
+#view-dashboard .ac-v21-cta .cs-kicker {
+  font-size:1.15rem; font-weight:800; line-height:1.2;
+  text-transform:none; letter-spacing:-.015em; color:#1a1505;
+}
+#view-dashboard .ac-v21-cta .cs-titre {
+  display:block; overflow:hidden; text-overflow:ellipsis;
+  white-space:nowrap; max-width:100%; font-size:.82rem;
+  line-height:1.3; font-weight:700; color:#1a1505;
+}
+#view-dashboard .ac-v21-cta .cs-lecon {
+  background:transparent; border:0; color:#47370f; padding:0;
+  font-size:.7rem; font-weight:700;
+}
+#view-dashboard .ac-v21-cta .cs-etape {
+  display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  color:#47370f; font-size:.73rem; line-height:1.3;
+}
+#view-dashboard .ac-v21-cta .cs-rond {
+  width:32px; height:32px; background:transparent; color:#1a1505;
+}
+#view-dashboard .ou-choisir { display:none; }
+/* Raccourcis discrets + accès Mon chemin conservé. */
+#view-dashboard .ac-acces {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;
+}
+#view-dashboard .ac-acces .ac-btn {
+  --c:var(--accent);
+  flex-direction:column; justify-content:center; align-items:center; gap:7px;
+  min-width:0; min-height:86px; padding:12px 5px;
+  border:1px solid var(--bord-1); border-radius:16px;
+  background:var(--surface-1); color:var(--text); text-align:center;
+}
+#view-dashboard .ac-btn.rev,
+#view-dashboard .ac-btn.exa,
+#view-dashboard .ac-btn.err { --c:var(--accent); }
+#view-dashboard .ac-btn > .ic:first-child {
+  color:var(--accent); width:23px; height:23px; flex:none;
+}
+#view-dashboard .ac-btn > b {
+  flex:none; font-size:.79rem; line-height:1.2; font-weight:700;
+}
+#view-dashboard .ac-btn > .ic:last-child { display:none; }
+#view-dashboard .ac-info {
+  flex-direction:row; align-items:baseline; gap:3px;
+  justify-content:center; font-size:.62rem; line-height:1.1;
+}
+#view-dashboard .ac-info b { font-size:.69rem; }
+#view-dashboard .ac-acces .ac-btn.lecons {
+  grid-column:1/-1; flex-direction:row; justify-content:center;
+  gap:9px; min-height:44px; padding:5px 12px;
+  border:0; background:transparent; color:var(--muted-strong);
+  border-radius:10px;
+}
+#view-dashboard .ac-btn.lecons > .ic:first-child {
+  color:currentColor; width:17px; height:17px;
+}
+#view-dashboard .ac-btn.lecons > b { font-size:.79rem; }
+#view-dashboard .ac-btn.lecons > .ic:last-child {
+  display:block; width:17px; height:17px;
+}
+#view-dashboard .ac-v21-cta:focus-visible,
+#view-dashboard .ac-btn:focus-visible,
+#view-dashboard .puce-niv:focus-visible {
+  outline:3px solid var(--accent); outline-offset:3px;
+}
+#view-dashboard .ac-v21-cta:focus-visible { outline-color:#fff; }
+/* Cibles tactiles et scroll existant préservés ; écran étroit adaptatif. */
+@media(max-width:360px) {
+  #view-dashboard .accueil { padding-inline:14px; gap:11px; }
+  #view-dashboard .ac-hero { min-height:151px; padding-bottom:15px; }
+  #view-dashboard .ac-hero h2 { font-size:3.5rem; }
+  #view-dashboard .ac-hero-texte { max-width:90%; }
+  #view-dashboard .ac-chiffres { gap:6px 12px; }
+  #view-dashboard .ac-chiffres > div + div { padding-left:12px; }
+  #view-dashboard .ac-stat-principale { flex-wrap:wrap; gap:1px 6px; }
+  #view-dashboard .ac-lecons-faites { margin-top:3px; }
+  #view-dashboard .carte-suite.ac-v21-cta {
+    padding:13px 11px; min-height:90px; gap:9px;
+  }
+  #view-dashboard .ac-v21-cta .cs-kicker { font-size:1.05rem; }
+  #view-dashboard .ac-acces { gap:6px; }
+  #view-dashboard .ac-acces .ac-btn { min-height:76px; }
+}
+@media(max-height:810px) {
+  #view-dashboard .accueil.ac-nouveau-invite {
+    gap:8px; padding-top:11px; padding-bottom:8px;
+  }
+  #view-dashboard .ac-nouveau-invite .ac-hero {
+    min-height:156px; padding-top:5px; padding-bottom:8px;
+  }
+  #view-dashboard .ac-nouveau-invite .ac-acces .ac-btn { min-height:76px; }
+  #view-dashboard .ac-nouveau-invite .ac-acces .ac-btn.lecons { min-height:44px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #view-dashboard .ac-piste i { transition:none; }
+}
