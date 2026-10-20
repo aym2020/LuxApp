@@ -7,25 +7,27 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const lesson=n=>JSON.parse(read('data/lecons/A1.1/lecon-'+String(n).padStart(2,'0')+'.json'));
 const l0=lesson(0),l1=lesson(1),l2=lesson(2),arch=JSON.parse(read('data/archives/lecon-02-unite-02-avant-spec79.json'));
 const audio=JSON.parse(read('public/audio/lod.json'));
-const sounds=['wäiss','Jo','zéng','Schoul','Stull','Buch','Fënster','Äddi!','schéin'];
-assert.equal(l0.titre_fr,'Les bases');
-assert.deepEqual(l0.unites.map(x=>x.titre),['Prononciation','United Zoha']);
-assert.equal(l0.id,0); assert.equal(l0.unites.length,2);assert.deepEqual(l0.unites.map(u=>u.id),[1,2]);
-for(const q of l0.quiz.filter(q=>q.unite===1)) {
-  assert.ok(q.distracteurs.every(d=>sounds.includes(d)&&d!==q.reponse),
-    'écoute : trois vrais mots appris, et non trois graphies indiscernables');
-}
-for(const word of sounds){
-  assert.ok(audio[word],word+' dans le dictionnaire local');
-  assert.ok(fs.existsSync(path.join(root,'public/audio',audio[word])),word+' : fichier audio physique');
-  assert.ok(l0.flashcards.some(x=>x.unite===1&&x.lu===word),word+' : mot mémorisé');
-  assert.ok(l0.quiz.some(x=>x.unite===1&&x.reponse===word&&x.audioMot===word),word+' : épreuve d’écoute');
+const sounds=l0.quiz.filter(q=>q.unite===1).map(q=>q.reponse);
+assert.equal(sounds.length,20,'un seul exercice de 20 écoutes');
+assert.equal(new Set(sounds).size,20,'20 sons différents');
+assert.equal(l0.flashcards.length,0,'pas de vocabulaire à mémoriser');
+assert.equal(l0.ecriture.length,0,'pas de traduction écrite');
+assert.equal(l0.quiz.filter(q=>q.unite===2).length,0);
+assert.equal(l0.trous.filter(q=>q.unite===1).length,0);
+assert.equal(l0.trous.filter(q=>q.unite===2).length,15);
+for(const q of l0.quiz) {
+  assert.equal(q.audioMot,q.reponse);
+  assert.ok(audio[q.audioMot],q.audioMot+' dans le dictionnaire LOD');
+  assert.ok(fs.existsSync(path.join(root,'public/audio',audio[q.audioMot])),q.audioMot+' : MP3 physique');
+  assert.equal(q.distracteurs.length,3);
+  assert.ok(q.distracteurs.every(d=>sounds.includes(d)&&d!==q.reponse));
 }
 for(const typ of ['flashcards','quiz','trous','ecriture']){
   const ids=l0[typ].map(x=>x.id).sort((a,b)=>a-b);
   assert.equal(new Set(ids).size,ids.length,typ+' IDs uniques');
   for(let i=1;i<ids.length;i++)assert.equal(ids[i],ids[i-1]+1,typ+' IDs séquentiels');
-  for(const u of l0.unites)assert.ok(l0[typ].filter(x=>x.unite===u.id).length>=5,typ+' unité '+u.id);
+  if (typ==='quiz') assert.equal(l0[typ].filter(x=>x.unite===1).length,20);
+  if (typ==='trous') assert.equal(l0[typ].filter(x=>x.unite===2).length,15);
 }
 for(const c of l0.cours){
   assert.ok(['regles','lexique','phrases'].includes(c.rubrique),'rubrique SPEC75');
@@ -128,4 +130,4 @@ const rendu=new Function('lecon','card',
 )(l2,u2article);
 assert.equal(rendu,"d'Mapp",'article élidé sans espace');
 
-console.log('SPEC 79 : OK — 26 leçons, 9 audios LOD, quiz écoute, UNIT2 définis, historique préservé.');
+console.log('SPEC 79 : OK — 26 leçons, 20 audios LOD dans la leçon 0, UNIT2 définis, historique préservé.');
