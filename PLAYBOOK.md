@@ -333,6 +333,7 @@ Fix : dans `calculateLessonStats`, remplacer le calcul de `percent` par un appel
 - **Les IDs sont globaux et continus** : A1.2 commence à 20, pas à 1.
 - **Ne jamais renuméroter** une leçon existante (sinon perte ou mélange de progression).
 - **Numéro affiché ≠ id (spec 42)** : le champ facultatif `"numero"` donne le numéro affiché (« Leçon 20 ») et l'ordre du parcours ; sans lui, c'est l'id. Pour insérer une leçon, lui donner un **id libre** (ex. 27) et un `numero`, puis décaler les `numero` des suivantes. Afficher toujours `numLecon(l)`, jamais `l.id`. Les renvois « leçon N » dans les textes utilisent le numéro affiché.
+- **Correspondance A1.2 actuelle (à ne pas confondre)** : les fichiers `lecon-20.json` à `lecon-26.json` portent un `id` de 20 à 26, mais sont affichés sous les numéros **21 à 27** (`numero = id + 1`). Ex. **« Leçon 23 · An der Fräizäit » = `id: 22`, fichier `data/lecons/A1.2/lecon-22.json`**. Exception importante : `lecon-27.json` (`id: 27`) est affichée comme **leçon 20** (insertion de « Sinn an hunn »). Pour chaque correctif, chercher par **titre + `numero`**, puis modifier le fichier de l'`id` réel. Ne jamais changer les IDs juste pour aligner l'affichage.
 - Prochain id libre en A1.2 : 28.
 - L'id 17 est libre (non utilisé en A1.1).
 
