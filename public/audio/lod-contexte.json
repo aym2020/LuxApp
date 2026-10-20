@@ -44,6 +44,11 @@
     "phrase": "Um Camping drénke mir aus plastiks Becheren",
     "fr": "Au camping, nous buvons dans des gobelets en plastique."
   },
+  "Biller": {
+    "son": "lod-phrases/67a0d51cafd2439307ed8f4947a2e62f.m4a",
+    "phrase": "Am neie Musée si vill schéi Biller ausgestallt",
+    "fr": "Beaucoup de beaux tableaux sont exposés au nouveau musée."
+  },
   "d'Enkelkanner": {
     "son": "lod-phrases/b47bb66364386e93acfe2bc5d3ef7304.m4a",
     "phrase": "D'Enkelkanner hunn hirem Grousspapp gehollef, d'Gromperen erauszehuelen",
@@ -194,6 +199,11 @@
     "phrase": "Ech hunn näischt gemaach!",
     "fr": "Je n'ai rien fait !"
   },
+  "gepacst": {
+    "son": "lod-phrases/db0f01835e9e06980d117ac4346c1c54.m4a",
+    "phrase": "De Buergermeeschter huet d'Koppel gepacst",
+    "fr": "Le maire a pacsé le couple."
+  },
   "geschafft": {
     "son": "lod-phrases/44ac428772b65e35861596863c3b5b31.m4a",
     "phrase": "Ech hunn de ganzen Dag am Gaart geschafft",
@@ -228,6 +238,11 @@
     "son": "lod-phrases/a0d239d24a154387fb4be07c774f5d7e.m4a",
     "phrase": "De Bop ass amgaang, Gromperen ze schielen",
     "fr": "Grand-père est en train d'éplucher des pommes de terre."
+  },
+  "Gudde Moien!": {
+    "son": "lod-phrases/ee04cddd4072d1d7a63aef7f1c667f6f.m4a",
+    "phrase": "Gudde Moien, Madamm, wat kann ech fir Iech maachen?",
+    "fr": "Bonjour Madame, que puis-je faire pour vous ?"
   },
   "Gudden Owend!": {
     "son": "lod-phrases/9a4981c8b5b541ca3318b9a165f6c700.m4a",
@@ -309,6 +324,11 @@
     "phrase": "Bezuelt Der boer oder mat der Kaart?",
     "fr": "Vous payez en espèces ou par carte ?"
   },
+  "Meedercher": {
+    "son": "lod-phrases/a3961445e7315f7a9c657fb1397e3237.m4a",
+    "phrase": "Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher",
+    "fr": "Nos voisins ont quatre enfants, deux garçons et deux filles."
+  },
   "meng Mamm": {
     "son": "lod-phrases/b9f3b32ce4e218c957fde78ed344c2ed.m4a",
     "phrase": "Meng Mamm baakt all Sonndeg",
@@ -353,6 +373,11 @@
     "son": "lod-phrases/9fb24f03fea8fd6322dd35f057e375ab.m4a",
     "phrase": "Mir waren an d'Stad d'Fënstere kucken",
     "fr": "Nous sommes allés en ville faire du lèche-vitrines."
+  },
+  "net gär": {
+    "son": "lod-phrases/46df023aacf1a4737278a025b1ef4289.m4a",
+    "phrase": "Ech hunn d'Porretten net gär",
+    "fr": "Je n'aime pas les poireaux."
   },
   "op hallwer": {
     "son": "lod-phrases/4be3ced07e07854262a097252f1ccb9f.m4a",

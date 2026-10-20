@@ -8,12 +8,12 @@ Généré par `node tools/lod/audit-audio.js` (SPEC 70). Ne pas modifier à la m
 |---|---:|---:|
 | Éléments luxembourgeois des leçons (sans doublon par leçon) | 1980 | 100 % |
 | Audio direct du mot, **validé et disponible** | 665 | 33,6 % |
-| Phrase enregistrée à l'identique dans le LOD | 26 (dont 24 disponibles) | 1,3 % |
-| Audio contextuel relu et traduit | 103 (dont 96 disponibles) | 5,2 % |
+| Phrase enregistrée à l'identique dans le LOD | 26 (dont 26 disponibles) | 1,3 % |
+| Audio contextuel relu et traduit | 103 (dont 103 disponibles) | 5,2 % |
 | Candidats contextuels pas encore relus | 0 | 0 % |
 | Sans audio LOD (dont 18 propositions refusées à la relecture) | 1186 | 59,9 % |
 
-**Couverture actuelle (fichiers disponibles)** : 39,6 %
+**Couverture actuelle (fichiers disponibles)** : 40,1 %
 **Couverture après téléchargement des phrases identifiées** : 40,1 %
 
 Les phrases (exactes et contextuelles) viennent de `lod.lu`. Tant que ce site est inaccessible depuis l'environnement de Claude,
@@ -36,7 +36,7 @@ de niveau A1 ou A2) : **2 961 en A1** et **2 907 en A2**.
 
 | Leçon | Éléments | Direct | Phrase exacte | Contexte | Sans audio | Disponible | Après téléchargement |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| A1.1 · 1 Salutations et comment ça va | 70 | 11 | 3 | 4 | 52 | 24,3 % | 25,7 % |
+| A1.1 · 1 Salutations et comment ça va | 70 | 11 | 3 | 4 | 52 | 25,7 % | 25,7 % |
 | A1.1 · 2 Identifier des objets – articles indéfinis | 119 | 67 | 0 | 1 | 51 | 57,1 % | 57,1 % |
 | A1.1 · 3 Décrire des objets – les couleurs | 64 | 23 | 0 | 0 | 41 | 35,9 % | 35,9 % |
 | A1.1 · 4 Les contraires – adjectifs opposés | 85 | 45 | 0 | 0 | 40 | 52,9 % | 52,9 % |
@@ -48,14 +48,14 @@ de niveau A1 ou A2) : **2 961 en A1** et **2 907 en A2**.
 | A1.1 · 10 L'habitation – où j'habite | 64 | 15 | 5 | 0 | 44 | 31,3 % | 31,3 % |
 | A1.1 · 11 Les métiers | 134 | 72 | 0 | 0 | 62 | 53,7 % | 53,7 % |
 | A1.1 · 12 Les lieux de travail | 100 | 57 | 0 | 0 | 43 | 57 % | 57 % |
-| A1.1 · 13 La situation familiale | 90 | 21 | 0 | 5 | 64 | 24,4 % | 28,9 % |
+| A1.1 · 13 La situation familiale | 90 | 21 | 0 | 5 | 64 | 28,9 % | 28,9 % |
 | A1.1 · 14 L'âge et la date de naissance | 65 | 21 | 0 | 4 | 40 | 38,5 % | 38,5 % |
 | A1.1 · 15 Lire et dire l'heure | 80 | 19 | 4 | 8 | 49 | 38,8 % | 38,8 % |
 | A1.1 · 16 Le déroulement de la journée | 68 | 16 | 0 | 2 | 50 | 26,5 % | 26,5 % |
-| A1.1 · 17 Prendre un rendez-vous | 67 | 19 | 4 | 0 | 44 | 31,3 % | 34,3 % |
+| A1.1 · 17 Prendre un rendez-vous | 67 | 19 | 4 | 0 | 44 | 34,3 % | 34,3 % |
 | A1.2 · 20 Les prépositions de lieu – Wou ass de Ball ? | 37 | 16 | 0 | 2 | 19 | 48,6 % | 48,6 % |
-| A1.2 · 21 Les meubles et objets de la maison | 121 | 70 | 0 | 10 | 41 | 65,3 % | 66,1 % |
-| A1.2 · 22 Les loisirs et le week-end – aimer faire (gär) | 98 | 14 | 0 | 6 | 78 | 19,4 % | 20,4 % |
+| A1.2 · 21 Les meubles et objets de la maison | 121 | 70 | 0 | 10 | 41 | 66,1 % | 66,1 % |
+| A1.2 · 22 Les loisirs et le week-end – aimer faire (gär) | 98 | 14 | 0 | 6 | 78 | 20,4 % | 20,4 % |
 | A1.2 · 23 Les membres de la famille et les possessifs | 93 | 36 | 0 | 9 | 48 | 48,4 % | 48,4 % |
 | A1.2 · 24 Le passé composé – hunn / sinn + participe passé | 94 | 5 | 0 | 23 | 66 | 29,8 % | 29,8 % |
 | A1.2 · 25 Faire ses courses au marché – quantités et paiement | 53 | 10 | 1 | 4 | 38 | 28,3 % | 28,3 % |
@@ -152,7 +152,7 @@ de niveau A1 ou A2) : **2 961 en A1** et **2 907 en A2**.
 
 - **Audio direct (21)** : bestuet, Jonggesell, Kand, Jong, Meedchen, Mupp, Frëndin, Frënd, Kaz, Jonggesellin, Wittmann, Wittfra, e Jonggesell, eng Jonggesellin, e Frënd, eng Frëndin, e Kand, e Jong, e Meedchen, e Mupp, eng Kaz
 - **Phrases enregistrées à l'identique (0)** : —
-- **Audio contextuel relu (5)** : getrennt → « D'Koppel huet sech am Gudde getrennt » · gepacst → « De Buergermeeschter huet d'Koppel gepacst » · Kanner → « Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher » · Jongen → « Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher » · Meedercher → « Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher »
+- **Audio contextuel relu (5)** : getrennt → « D'Koppel huet sech am Gudde getrennt » · gepacst → « De Buergermeeschter huet d'Koppel gepacst » · Kanner → « Ech hu Fra a Kanner » · Jongen → « Mir hu just zwee Jongen an der Klass » · Meedercher → « Eis Noperen hu véier Kanner, zwee Jongen an zwee Meedercher »
 - **Sans audio (64)** : gescheet · verlobt · leedeg · Bass du bestuet? · Nee, ech sinn net bestuet. · De Paul ass bestuet. · Nee, de Paul ass gescheet. · Nee, ech si verlobt. · Hues du Kanner? · Jo, ech hunn zwee Kanner. · E Jong an e Meedchen? · Jo, e Meedchen an e Jong. · Huet de Paul Kanner? · Nee, de Paul huet keng Kanner. · Hues du eng Frëndin? · Jo, ech hunn eng Frëndin. · Huet si e Mupp? · Nee, si huet eng Kaz. · An de Paul? Huet hien eng Frëndin? · Nee, hien huet e Frënd. · Ass d'Madamm Weber bestuet? · Nee, si ass Wittfra. · Sidd Dir bestuet? · Hutt Dir Kanner? · Jo, ech si bestuet. · Jo, ech hunn e Kand. · Nee, ech hu keng Kanner. · Ech hunn e Frënd. · Ech hunn eng Frëndin. · Ech hunn e Kand, e Jong. · Ech hunn e Kand, e Meedchen. · Ech hunn zwee Kanner, e Meedchen an e Jong. · Hien ass bestuet. · Si ass bestuet. · Hien ass gescheet. · Si hunn e Mupp an eng Kaz. · Hien huet kee Frënd. · Si huet keng Frëndin. · Hien ass e Jonggesell. · Si ass eng Jonggesellin. · D'Jennifer ass eng Jonggesellin. · De Paul Mercier ass bestuet. · De Paul Mercier huet zwee Kanner. · Den Hubert Schmidt ass gescheet. · Den Hubert Schmidt huet keng Kanner. · D'Jeanne Schanck ass net bestuet. · D'Jennifer huet e Frënd. · De Jean Thilges an d'Lydie Thilges si bestuet. · Si hunn véier Kanner. · Den Här Gustavsson an d'Madame Gustavsson si bestuet. · Si hunn keng Kanner. · Bass du leedeg? · Jo, ech si leedeg. · Ass hien leedeg? · Jo, hien ass leedeg. · Ass hien e Jonggesell? · Jo, hien ass e Jonggesell. · Jo, ech hunn zwee Kanner, e Meedchen an e Jong. · Ass de Paul Mercier bestuet? · Jo, hie ass bestuet. Hien huet zwee Kanner. · Ass den Hubert Schmidt bestuet? · Nee, hien ass gescheet. Hien huet keng Kanner. · Ass d'Jennifer bestuet? · Nee, si ass leedeg. Si huet e Frënd.
 
 ### A1.1 · Leçon 14 — Den Alter & De Gebuertsdatum (L'âge et la date de naissance)
