@@ -153,7 +153,7 @@ function renderIntroMission() {
   document.getElementById('msi-content').innerHTML =
     '<div class="msi-haut">' +
       '<div class="pc-mini-label pc-gold msi-in">MISSION · LEÇON ' + numLecon(l) + '</div>' +
-      '<h1 class="msi-titre msi-in">' + escHtml(l.mission.titre) + '</h1>' +
+      '<h1 class="msi-titre msi-in">' + escHtml(l.mission.titre_intro || l.mission.titre) + '</h1>' +
       '<p class="msi-contexte msi-in">' + escHtml(l.mission.contexte_intro || l.mission.contexte) + '</p>' +
     '</div>' +
     '<div class="msi-objectif msi-in">' +
