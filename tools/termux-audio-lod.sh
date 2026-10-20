@@ -11,7 +11,7 @@
 #
 # Ce que fait le script :
 #   1. dossier ~/LuxApp : clone le dépôt la première fois, sinon récupère la dernière version de v2 ;
-#   2. met de côté toute modification locale (git stash), rien n'est perdu ;
+#   2. met de côté toute modification locale (git stash), sauf les sons déjà téléchargés ; rien n'est perdu ;
 #   3. repart de v2 sur la branche audio-phrases ;
 #   4. node tools/audio-lod.js : télécharge seulement les sons manquants, contrôle chaque fichier (MP3 / M4A valides) ;
 #   5. node tests/test_audio_lod.js : vérifie les tables et tous les fichiers ;
@@ -22,6 +22,9 @@ set -euo pipefail
 DEPOT="aym2020/LuxApp"
 DOSSIER="$HOME/LuxApp"
 BRANCHE="audio-phrases"
+# Termux n'a pas de /tmp : le journal va dans son dossier temporaire ($TMPDIR).
+JOURNAL="${TMPDIR:-${PREFIX:-}/tmp}/audio-lod.log"
+mkdir -p "$(dirname "$JOURNAL")"
 
 etape() { printf '\n\033[1;33m▶ %s\033[0m\n' "$1"; }
 stop() { printf '\n\033[1;31m✖ %s\033[0m\n' "$1"; exit 1; }
@@ -38,15 +41,16 @@ if [ ! -d "$DOSSIER/.git" ]; then
 fi
 cd "$DOSSIER"
 git fetch origin v2
-if [ -n "$(git status --porcelain)" ]; then
-  git stash push -u -m "avant audio-phrases $(date +%F-%H%M)" >/dev/null
+# Les sons déjà téléchargés (public/audio) restent en place : pas besoin de les reprendre.
+if [ -n "$(git status --porcelain -- . ':(exclude)public/audio' ':(exclude)docs/audit-audio-lod.md')" ]; then
+  git stash push -u -m "avant audio-phrases $(date +%F-%H%M)" -- . ':(exclude)public/audio' ':(exclude)docs/audit-audio-lod.md' >/dev/null
   echo "Modifications locales mises de côté (git stash list pour les retrouver)."
 fi
 git checkout -B "$BRANCHE" origin/v2
 echo "Base : $(git log --oneline -1)"
 
 etape "Téléchargement des sons manquants (mots, phrases exactes, phrases en contexte)"
-node tools/audio-lod.js | tee /tmp/audio-lod.log
+node tools/audio-lod.js | tee "$JOURNAL"
 
 etape "Vérification des fichiers"
 node tests/test_audio_lod.js || stop "Vérification en échec : rien n'est envoyé. Copie le message ci-dessus à Claude."
@@ -67,4 +71,4 @@ git push --force -u origin "$BRANCHE"
 
 printf '\n\033[1;32m✔ Terminé : %s fichiers de phrases sur la branche %s.\033[0m\n' "$PHRASES" "$BRANCHE"
 echo "Dis à Claude : « audio-phrases est poussée ». Il vérifie et fusionne dans v2."
-grep -E '^(MOTS|PHRASES|CONTEXTE)' /tmp/audio-lod.log || true
+grep -E '^(MOTS|PHRASES|CONTEXTE)' "$JOURNAL" || true
