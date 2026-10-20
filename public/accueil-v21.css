@@ -52,8 +52,10 @@
 #view-dashboard .ac-hero {
   height:258px; min-height:0; flex:none; display:block; position:relative;
   isolation:isolate; padding:0; overflow:hidden;
-  margin:8px -22px -4px; border:0; border-radius:0;
+  margin:8px -22px 8px; border:0; border-radius:0;
 }
+/* La carte principale reste intégralement visible devant le hero, y compris ses coins supérieurs. */
+#view-dashboard #today { position:relative; z-index:2; }
 #view-dashboard .ac-hero-image {
   position:absolute; inset:0; z-index:0; opacity:.92;
   pointer-events:none; background-image:url('art/hero-luxapp-mobile.webp');
