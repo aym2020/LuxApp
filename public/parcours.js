@@ -1867,6 +1867,7 @@ function refaireErreurs() {
 // uniteId = null -> toute la leçon. Pendant un exercice, on ouvre sur l'unité.
 function ouvrirCours(uniteId) {
   pCoursUnite = uniteId == null ? null : uniteId;
+  if (cours75Actif(pLecon)) cours75Etats.panneau = null;
   renderCoursPanel();
   document.getElementById('cours-panel').classList.remove('hidden');
   document.body.classList.add('no-scroll');
@@ -1900,6 +1901,15 @@ function coursChoisir(uniteId) {
 function renderCoursPanel() {
   const l = pLecon;
   document.getElementById('cp-titre').textContent = l.titre;
+
+  if (cours75Actif(l)) {
+    document.getElementById('cp-onglets').innerHTML = '';
+    const uniteExo = uniteDeLExercice();
+    const limite = uniteExo != null && pCoursUnite === uniteExo;
+    document.getElementById('cp-content').innerHTML = cours75Html(l, 'panneau', pCoursUnite, limite);
+    document.getElementById('cp-content').scrollTop = 0;
+    return;
+  }
 
   // Onglets : l'unité de l'exercice (s'il y en a un) + toute la leçon.
   const uniteExo = uniteDeLExercice();

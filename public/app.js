@@ -55,6 +55,7 @@ function changerNiveau(niveau) {
 
 function openLecon(l) {
   currentLecon = l;
+  cours75Etats.principal = null; // Nouvelle leçon : retour à Règles.
 
   document.getElementById('lecon-num').textContent = `LEÇON ${numLecon(l)}`;
   document.getElementById('lecon-titre').textContent = l.titre;
@@ -92,7 +93,9 @@ function renderCours() {
   </div>`;
 
   html += renderLessonProgress();
-  html += coursBlocsHtml(currentLecon.cours, accent);
+  html += cours75Actif(currentLecon)
+    ? cours75Html(currentLecon, 'principal', null, false)
+    : coursBlocsHtml(currentLecon.cours, accent);
 
   container.innerHTML = html;
 }

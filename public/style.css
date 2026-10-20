@@ -2844,3 +2844,60 @@ body.sans-transitions .view { animation:none!important; }
   .dlg { padding:var(--sp-3); }
   .pa-atouts { gap:var(--sp-2); }
 }
+
+
+/* SPEC 75 — Deux niveaux de navigation uniquement dans le Cours pilote. */
+.cours75 { width:100%; }
+.cours75-navigation {
+ position:sticky;top:0;z-index:5;background:var(--surface,#181714);
+ padding:.55rem 0 .75rem;margin-bottom:.7rem;border-bottom:1px solid var(--couleur-bord-1);
+}
+.cours75-portee {display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;padding:.1rem 0 .5rem;}
+.cours75-portee::-webkit-scrollbar {display:none;}
+.cours75-chip {
+ flex:none;min-height:44px;padding:.55rem .85rem;border-radius:999px;
+ border:1px solid var(--couleur-bord-1);color:var(--text);background:var(--surface);
+ font-size:.88rem;font-weight:650;white-space:nowrap;cursor:pointer;
+}
+.cours75-chip.active {color:#17140a;background:var(--accent);border-color:var(--accent);}
+.cours75-onglets {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem;}
+.cours75-onglet {
+ min-height:44px;border:0;border-bottom:2px solid transparent;border-radius:6px 6px 0 0;
+ background:transparent;color:var(--muted-strong);font-size:.93rem;font-weight:700;cursor:pointer;
+}
+.cours75-onglet.active {border-bottom-color:var(--accent);color:var(--text);background:var(--couleur-bord-1);}
+.cours75-recherche-label {display:block;font-size:.8rem;color:var(--muted-strong);margin:.6rem 0 .3rem;}
+.cours75-recherche {
+ width:100%;min-height:44px;background:var(--surface);border:1px solid var(--couleur-bord-1);
+ border-radius:10px;color:var(--text);padding:.65rem .8rem;font:inherit;font-size:.92rem;
+}
+.cours75-recherche:focus-visible,.cours75-chip:focus-visible,.cours75-onglet:focus-visible {
+ outline:2px solid var(--accent);outline-offset:2px;
+}
+.cours75-unite {margin:1.3rem 0 .65rem;font-size:.95rem;font-weight:750;color:var(--accent);}
+.cours75-vide {padding:1.4rem .6rem;color:var(--muted-strong);text-align:center;}
+.cours75-plus {margin:.55rem 0 1.1rem;}
+.cours75-plus summary {
+ cursor:pointer;min-height:44px;display:flex;align-items:center;padding:.55rem .8rem;
+ color:var(--accent);font-size:.9rem;font-weight:700;border:1px solid var(--couleur-bord-1);
+ background:var(--surface);border-radius:10px;
+}
+.cours75-plus[open] summary {margin-bottom:.65rem;}
+.cours75-voir-phrases {
+ display:block;min-height:44px;margin:.7rem 0 1.2rem;padding:.5rem .1rem;color:var(--accent);
+ font-size:.88rem;font-weight:700;border:0;background:transparent;cursor:pointer;text-align:left;
+}
+.cours75-table-wrap {width:100%;overflow-x:auto;}
+.cours75-lexbloc .cours-vocab td {vertical-align:top;}
+.cours75-lexbloc .cours-lu {font-size:.95rem;width:45%;}
+.cours75-lexbloc .cours-fr {text-align:left;width:40%;}
+.cours75-colonne-annexe {font-size:.82rem;color:var(--muted-strong);min-width:68px;}
+.cours75-phrases .cours-dialogue-lu {color:var(--text);}
+#cp-content:has(.cours75) {padding-top:0;}
+#cp-onglets:empty {display:none;}
+@media(max-width:400px) {
+ .cours75-chip {padding:.5rem .72rem;font-size:.84rem;}
+ .cours75-lexbloc {padding:.8rem .7rem;}
+ .cours75-lexbloc .cours-vocab td {padding:.5rem .25rem;}
+ .cours75-colonne-annexe {font-size:.76rem;}
+}

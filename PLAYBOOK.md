@@ -764,3 +764,8 @@ ERREUR = bloquant, ATTENTION = à regarder.
 - Solution optimale directement.
 - Réponses précises, directes, droit au but.
 - Code simple à comprendre pour un junior, pas de pratiques complexes.
+
+
+### SPEC 75 — Cours pilotes A1.1 (leçons 1–3)
+
+Le composant `public/cours75.js` rend les trois rubriques Règles / Lexique / Phrases et la portée Unité/Toute la leçon, dans l'onglet Cours et le panneau d'exercice. Chaque bloc pilote porte `rubrique: regles|lexique|phrases`; les données hors `cours` sont inchangées. Les autres leçons continuent d'utiliser `coursBlocsHtml`. Le lexique local inclut les 36 mots complémentaires de la leçon 2 repliés et une recherche FR/LU. L'audio réutilise les catalogues validés SPEC 68–73 (or exact, sable contexte). Valider avec `node tests/test_spec75.js && node tools/valider-lecons.js && bash tools/critique.sh`, puis tester manuellement le panneau Android et l'audio avant de clôturer la recette.

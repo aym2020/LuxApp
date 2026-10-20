@@ -1880,7 +1880,8 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Cette leçon apprend à saluer, demander comment ça va, se présenter et prendre congé. Le point clé : distinguer le registre <b>informel</b> (amis, famille : <b>dir</b>, <b>du</b>) du registre <b>formel</b> (inconnus, travail : <b>Iech</b>, <b>Dir</b>)."
+      "contenu": "Cette leçon apprend à saluer, demander comment ça va, se présenter et prendre congé. Le point clé : distinguer le registre <b>informel</b> (amis, famille : <b>dir</b>, <b>du</b>) du registre <b>formel</b> (inconnus, travail : <b>Iech</b>, <b>Dir</b>).",
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1907,7 +1908,8 @@
           "Bonsoir"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1917,7 +1919,8 @@
         "Le n final tombe devant la plupart des consonnes : <b>Gudde</b> Moien, <b>Gudde</b> Mëtteg.",
         "Il reste devant une voyelle : <b>Gudden</b> Owend. C'est la même règle que e / en (leçon 2)."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1948,7 +1951,8 @@
           "Bonsoir, Monsieur Michels !"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -1959,7 +1963,8 @@
         "Mais <b>Här</b> (Monsieur) est d'origine germanique."
       ],
       "unite": 1,
-      "plus": true
+      "plus": true,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1970,7 +1975,8 @@
         "Inconnus, travail : <b>Iech</b> → Wéi geet et Iech? · An Iech?",
         "<b>Iech</b>, <b>Dir</b>, <b>Ären</b> prennent toujours une <b>majuscule</b>."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -2005,7 +2011,8 @@
           "Très mal"
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2044,7 +2051,8 @@
           "Mal."
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2072,7 +2080,8 @@
         ]
       ],
       "unite": 2,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2083,7 +2092,8 @@
         "<b>Ech heeschen …</b> = Je m'appelle … : ech <b>heeschen</b>, du <b>heeschs</b>, Dir <b>heescht</b>.",
         "Demander poliment : <b>Wéi ass Ären Numm, wann ech gelift?</b> (à l'écrit : wgl.)"
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -2093,7 +2103,8 @@
         "Devant la plupart des consonnes, le n tombe : <b>Ech heesche Paul.</b>",
         "Devant une voyelle (et n, d, t, z, h), il reste : <b>Ech heeschen Anna.</b>"
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2128,7 +2139,8 @@
           "Moi aussi."
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2144,7 +2156,8 @@
         ]
       ],
       "unite": 3,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -2181,7 +2194,8 @@
           "Avant d'aller dormir"
         ]
       ],
-      "unite": 4
+      "unite": 4,
+      "rubrique": "lexique"
     },
     {
       "type": "callout",
@@ -2192,7 +2206,8 @@
         "<b>Schéinen Owend!</b> = bonne soirée, en <b>partant</b>.",
         "<b>Gutt Nuecht!</b> = bonne nuit, seulement <b>avant de dormir</b>."
       ],
-      "unite": 4
+      "unite": 4,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -2211,7 +2226,8 @@
           "Merci, pareillement ! Au revoir !"
         ]
       ],
-      "unite": 4
+      "unite": 4,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -2227,7 +2243,8 @@
         ]
       ],
       "unite": 4,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "dialogue",
@@ -2274,7 +2291,100 @@
           "Merci, pareillement ! Au revoir !"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Moien Anna!",
+          "Bonjour Anna !"
+        ],
+        [
+          "Gudden Owend, Madamm Wagner!",
+          "Bonsoir, Madame Wagner !"
+        ],
+        [
+          "Moien!",
+          "Bonjour !"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Wéi geet et Iech?",
+          "Comment allez-vous ?"
+        ],
+        [
+          "Ganz gutt, merci! An Iech?",
+          "Très bien, merci ! Et vous ?"
+        ],
+        [
+          "Wéi geet et dir?",
+          "Comment vas-tu ?"
+        ],
+        [
+          "Mir geet et gutt. An dir?",
+          "Je vais bien. Et toi ?"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Mäin Numm ass Bertha.",
+          "Mon nom est Bertha."
+        ],
+        [
+          "Wéi ass Ären Numm, wann ech gelift?",
+          "Quel est votre nom, s'il vous plaît ?"
+        ],
+        [
+          "Wéi heescht Dir?",
+          "Comment vous appelez-vous ?"
+        ],
+        [
+          "Ech heesche Paul. Et freet mech.",
+          "Je m'appelle Paul. Enchanté."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 4,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Äddi, schéinen Dag!",
+          "Au revoir, bonne journée !"
+        ],
+        [
+          "Gutt Nuecht!",
+          "Bonne nuit !"
+        ],
+        [
+          "Merci, gläichfalls! Äddi!",
+          "Merci, pareillement ! Au revoir !"
+        ],
+        [
+          "Awar, Paul!",
+          "Salut, Paul !"
+        ]
+      ]
     }
   ]
 }

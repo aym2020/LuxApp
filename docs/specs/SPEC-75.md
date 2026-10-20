@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | Priorité | P1 — pédagogie et ergonomie |
-| Statut | **À implémenter — maquette déposée, code de production inchangé** |
+| Statut | **Pilote codé — recette visuelle Android en attente** |
 | Objectif | Rendre le **Cours** plus lisible, progressif et utilisable pour écouter du luxembourgeois |
 | Portée pilote | **Uniquement les champs `cours` des leçons 1, 2 et 3** (A1.1) et les composants qui les affichent |
 | Ne pas modifier | Flashcards, quiz, trous, écriture, missions, scènes, identifiants et progression |
@@ -156,3 +156,12 @@ Ceci est un **exemple de structure**, pas un remplacement complet des contenus. 
 La maquette livrée avec cette SPEC est une **référence UX autonome**, non le code à copier tel quel dans `public`. Elle contient des mots réels de la leçon 2 et des commandes de démonstration. Elle n'embarque **pas** les MP3/M4A et ne prétend pas que toutes les phrases LOD sont enregistrées.
 
 L'implémentation doit reprendre l'organisation et le ton visuel, mais intégrer les vrais catalogues, les règles de navigation, les textes validés et les composants natifs de LuxApp. Ne pas traiter l'audio simulé comme disponible.
+
+## Implémentation pilote (20/10/2026)
+
+- Rendu partagé `public/cours75.js` dans Cours principal et panneau d'exercice (2 rangées : portée puis rubrique).
+- Classement `rubrique` explicite dans les seuls champs `cours` des leçons A1.1 1–3. Les phrases modèles sont reprises des unités et scènes validées ; dialogues transversaux inchangés et réservés à « Toute la leçon ».
+- Recherche bilingue, 36 objets complémentaires repliés, reprise de l'audio LOD existant sans URL inventée.
+- Aucun changement aux exercices, aux identifiants, à la progression ou aux leçons 4+.
+- Tests de données et de rendu sans navigateur : `node tests/test_spec75.js`. Contrôles complémentaires : `node tools/valider-lecons.js` et `bash tools/critique.sh`.
+- Recette Android réelle à réaliser avant statut « validé » : recherche/focus, scroll, audio exact/contextuel, retour, et vue libre vs exercice.

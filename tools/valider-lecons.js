@@ -22,6 +22,22 @@ let nbAttentions = 0;
 function erreur(fichier, msg) { nbErreurs++; console.log('  ERREUR    ' + fichier + ' : ' + msg); }
 function attention(fichier, msg) { nbAttentions++; console.log('  ATTENTION ' + fichier + ' : ' + msg); }
 
+// SPEC 75 — valider le classement explicite des blocs de cours pilotes.
+function validerRubriques(f, l) {
+  const valides = new Set(['regles', 'lexique', 'phrases']);
+  const pilote = /^A1\.1\/lecon-0[123]\.json$/.test(f);
+  (l.cours || []).forEach((b,i) => {
+    if (!pilote && b.rubrique === undefined) return;
+    if (!valides.has(b.rubrique)) erreur(f, 'cours bloc ' + i + ' : rubrique inconnue');
+    if (b.unite !== undefined && b.unite !== 0 && !(l.unites || []).some(u => u.id === b.unite))
+      erreur(f, 'cours bloc ' + i + ' : unité inconnue');
+    if (b.type === 'phrases' && (b.rubrique !== 'phrases' || !Array.isArray(b.items) ||
+      !b.items.length || b.items.some(p => !Array.isArray(p) || p.length !== 2 ||
+        p.some(t => typeof t !== 'string' || !t.trim()))))
+      erreur(f, 'cours bloc ' + i + ' : phrases invalides');
+  });
+}
+
 // Texte brut d'un bloc de cours (sans les balises HTML), pour chercher un mot.
 function texteDuBloc(bloc) {
   return JSON.stringify(bloc).replace(/<[^>]+>/g, '').toLowerCase();
@@ -217,6 +233,7 @@ function verifierFichier(fichier) {
     return null;
   }
   ['id', 'titre', 'titre_fr', 'couleur'].forEach(k => { if (l[k] == null) erreur(nom, 'champ « ' + k + ' » manquant'); });
+  validerRubriques(nom, l);
   if (Array.isArray(l.unites)) {
     verifierV2(nom, l);
     compterNotesAvecReponse(nom, l);

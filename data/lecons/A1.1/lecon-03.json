@@ -1200,7 +1200,8 @@
   "cours": [
     {
       "type": "texte",
-      "contenu": "Pour décrire un objet : <b>article + nom + ass + couleur</b>. Exemple : <b>De Bus ass gréng.</b> (Le bus est vert.) La couleur est <b>invariable</b> : elle ne change jamais selon le genre."
+      "contenu": "Pour décrire un objet : <b>article + nom + ass + couleur</b>. Exemple : <b>De Bus ass gréng.</b> (Le bus est vert.) La couleur est <b>invariable</b> : elle ne change jamais selon le genre.",
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1231,7 +1232,8 @@
           "vert"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1263,7 +1265,8 @@
           "d'Buch, d'Blat"
         ]
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1273,7 +1276,8 @@
         "<b>Wat fir eng Faarf huet</b> d'Mapp? = De quelle couleur est le sac ?",
         "<b>D'Mapp ass schwaarz.</b> = Le sac est noir."
       ],
-      "unite": 1
+      "unite": 1,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1296,7 +1300,8 @@
           "rose"
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "lexique"
     },
     {
       "type": "vocab",
@@ -1312,7 +1317,8 @@
         ]
       ],
       "unite": 2,
-      "plus": true
+      "plus": true,
+      "rubrique": "lexique"
     },
     {
       "type": "tableau",
@@ -1334,7 +1340,8 @@
           "Oui, le bus est vert."
         ]
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1344,7 +1351,8 @@
         "<b>an</b> = et. Le n tombe devant la plupart des consonnes : schwaarz <b>a</b> brong, brong <b>a</b> wäiss.",
         "On garde <b>an</b> devant une voyelle et n, d, t, z, h : brong <b>an</b> orange. Même règle que e / en (leçon 2)."
       ],
-      "unite": 2
+      "unite": 2,
+      "rubrique": "regles"
     },
     {
       "type": "callout",
@@ -1355,7 +1363,8 @@
         "<b>De Bus ass net rosa.</b> — et non « kee / keng ».",
         "<b>Nee</b> = non · <b>kee / keen / keng</b> nient un <b>nom</b> (leçon 2)."
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "tableau",
@@ -1382,7 +1391,8 @@
           "D'Blat ass wäiss. → Et ass wäiss."
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "regles"
     },
     {
       "type": "vocab",
@@ -1405,7 +1415,8 @@
           "Non, il n'est pas rouge. Il est bleu."
         ]
       ],
-      "unite": 3
+      "unite": 3,
+      "rubrique": "lexique"
     },
     {
       "type": "dialogue",
@@ -1440,7 +1451,80 @@
           "Voici le stylo !"
         ]
       ],
-      "unite": 0
+      "unite": 0,
+      "rubrique": "phrases"
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 1,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "De Bus ass gréng.",
+          "Le bus est vert."
+        ],
+        [
+          "Den Auto ass rout.",
+          "La voiture est rouge."
+        ],
+        [
+          "Moien! Wat fir eng Faarf huet d'Mapp?",
+          "Bonjour ! De quelle couleur est le sac ?"
+        ],
+        [
+          "D'Mapp ass schwaarz.",
+          "Le sac est noir."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 2,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "Ass de Bus gréng?",
+          "Est-ce que le bus est vert ?"
+        ],
+        [
+          "Den Dësch ass brong a wäiss.",
+          "La table est marron et blanche."
+        ],
+        [
+          "Ass d'Mapp schwaarz a brong?",
+          "Le sac est-il noir et marron ?"
+        ],
+        [
+          "Jo, d'Mapp ass schwaarz a brong.",
+          "Oui, le sac est noir et marron."
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "rubrique": "phrases",
+      "unite": 3,
+      "titre": "Phrases à connaître",
+      "items": [
+        [
+          "De Bus ass net rosa.",
+          "Le bus n'est pas rose."
+        ],
+        [
+          "D'Blat ass wäiss. → Et ass wäiss.",
+          "La feuille est blanche. → Elle est blanche."
+        ],
+        [
+          "An de Stëft? Ass de Stëft rout?",
+          "Et le stylo ? Le stylo est-il rouge ?"
+        ],
+        [
+          "Nee, en ass net rout. En ass blo.",
+          "Non, il n'est pas rouge. Il est bleu."
+        ]
+      ]
     }
   ]
 }
