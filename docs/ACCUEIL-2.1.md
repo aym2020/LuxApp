@@ -55,7 +55,7 @@ Le visuel généré précédemment est une **maquette d'intention** : ses chiffr
 
 ## Étapes suivantes
 
-Le chemin des leçons et les exercices seront traités par des changements séparés après validation de cet accueil.
+**Accueil validé comme référence de la V2.1 le 21 octobre 2026.** Sa direction artistique et l'ordre de migration des autres écrans sont formalisés dans [`docs/CHARTE_UI_2.1.md`](CHARTE_UI_2.1.md). Les changements du chemin des leçons et des exercices seront réalisés par lots séparés, avec validation sur téléphone.
 
 ## Accueil V2 — mise en œuvre du mockup approuvé (20 octobre 2026)
 
