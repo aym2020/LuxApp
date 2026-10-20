@@ -16,6 +16,12 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## Exception explicite — Harmonisation visuelle LuxApp 2.1
+
+Pour toute tâche concernant le **design V2.1**, travailler sur la branche **`2.1`**, et lire [`docs/CHARTE_UI_2.1.md`](docs/CHARTE_UI_2.1.md) avant de modifier les pages. L'accueil validé est la référence de composition ; `docs/DESIGN_SYSTEM.md` conserve les règles communes de composants, d'états et d'accessibilité. Les autres vues sont à harmoniser par lots, sans toucher aux contenus pédagogiques ou à la logique de progression. Pour les travaux ordinaires non explicitement V2.1, la règle de branche `v2` ci-dessous reste applicable.
+
+---
+
 ## Règle prioritaire — Toujours suivre le vrai dépôt et la branche v2
 
 **Incident du 19 octobre 2026 :** un examen A1.1 a été créé dans un HTML autonome et proposé sur une branche basée sur `main`, alors que LuxApp avait déjà un moteur d'examens et que la branche de travail était `v2`. Ne jamais reproduire cette erreur.
