@@ -783,3 +783,7 @@ Règles/Lexique/Phrases est désormais activé pour les **25 leçons** (A1.1 1�
 
 ### SPEC 76 — Information mode invité (20/10/2026)
 Après le choix invité du portail, une fenêtre sombre avec deux lignes (progression stockée **sur l'appareil uniquement**, **risque de perte** si les données sont effacées) remplace le toast trompeur. Un seul bouton « Compris » jaune. `public/portail.js` utilise `luxInfoInviteVueV1` en localStorage, mémorisé uniquement à la fermeture ; pas d'effet sur les données de progression. Blocage du scroll et focus, Retour Android et Échap via `navigation.js`. Pas d'apparition pour comptes connectés ni en mode RECETTE/TESTS. Vérifier : `node tests/test_spec_63_portail.js`. Ne pas réintroduire le toast.
+
+
+### SPEC 76 — Version « C’est parti ! » animée (20/10/2026)
+Après validation UX Android, remplacement de l'en-tête trop haut par une carte **centrée et compacte** : téléphone + coche verte, titre « C’est parti ! », deux messages courts (progrès locaux ✓, perte possible ⚠), invitation discrète à se connecter, un bouton jaune « Compris ». CSS scoped `.pi-*` sans balise `header` (l'ancienne héritait du CSS global et grandissait). Apparition 420 ms, coche retardée, halo discret deux cycles, zéro mouvement si `prefers-reduced-motion:reduce`. Clé `luxInfoInviteVueV2` pour permettre une dernière présentation de cette version aux invités ayant déjà validé la V1 ; ensuite une seule fois. Navigation Android inchangée. Tester avec `node tests/test_spec_63_portail.js` et sur Android.

@@ -17,7 +17,7 @@ function portailVisible() {
 }
 // SPEC 76 — information invitée, affichée une seule fois après le choix invité.
 // Ce drapeau n'influence jamais la progression : il masque uniquement la fenêtre.
-const INFO_INVITE_VUE = 'luxInfoInviteVueV1';
+const INFO_INVITE_VUE = 'luxInfoInviteVueV2'; // Nouvelle présentation : visible une fois même après la V1
 let infoInviteOuverte = null; // { el, focusRetour }
 
 function infoInviteEstOuverte() { return !!infoInviteOuverte; }
@@ -33,21 +33,24 @@ function afficherInfoInvite() {
   el.id = 'info-invite';
   el.innerHTML =
     '<div class="pi-voile" aria-hidden="true"></div>' +
-    '<section class="pi-carte" role="dialog" aria-modal="true" aria-labelledby="pi-titre" aria-describedby="pi-intro pi-risque pi-conseil">' +
-      '<header class="pi-entete">' +
-        '<span class="pi-symbole" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span>' +
-        '<span><h2 id="pi-titre">Mode invité</h2><p id="pi-intro">Apprends sans créer de compte</p></span>' +
-      '</header>' +
-      '<div class="pi-separateur" aria-hidden="true"></div>' +
-      '<div class="pi-ligne">' +
-        '<span class="pi-icone pi-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg></span>' +
-        '<span><strong>Progression enregistrée</strong><small>Sur cet appareil uniquement</small></span>' +
+    '<section class="pi-carte" role="dialog" aria-modal="true" aria-labelledby="pi-titre" aria-describedby="pi-intro pi-progres pi-risque pi-conseil">' +
+      '<div class="pi-hero" aria-hidden="true">' +
+        '<span class="pi-telephone"><svg viewBox="0 0 40 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="28" height="52" rx="5"/><path d="M17 48h6"/></svg></span>' +
+        '<span class="pi-coche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>' +
       '</div>' +
-      '<div class="pi-ligne">' +
-        '<span class="pi-icone pi-attention" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 10 18H2z"/><path d="M12 9v5M12 17h.01"/></svg></span>' +
-        '<span><strong>Risque de perte</strong><small id="pi-risque">Si les données de l’application sont effacées</small></span>' +
+      '<h2 id="pi-titre">C’est parti !</h2>' +
+      '<p class="pi-intro" id="pi-intro">Apprends sans compte, à ton rythme.</p>' +
+      '<div class="pi-lignes">' +
+        '<div class="pi-ligne pi-ligne-ok" id="pi-progres">' +
+          '<span class="pi-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>' +
+          '<span>Progrès enregistrés sur cet appareil</span>' +
+        '</div>' +
+        '<div class="pi-ligne pi-ligne-risque" id="pi-risque">' +
+          '<span class="pi-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 10 18H2z"/><path d="M12 9v5M12 17h.01"/></svg></span>' +
+          '<span>Ils peuvent être perdus si les données sont effacées</span>' +
+        '</div>' +
       '</div>' +
-      '<p class="pi-conseil" id="pi-conseil">Connecte-toi pour sauvegarder tes progrès en ligne.</p>' +
+      '<p class="pi-conseil" id="pi-conseil">Connecte-toi pour les sauvegarder en ligne.</p>' +
       '<button type="button" class="pi-compris">Compris</button>' +
     '</section>';
 
