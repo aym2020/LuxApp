@@ -13,10 +13,13 @@
 // Écrans intermédiaires : quand un même appui affiche deux écrans à la suite
 // (ex. ouvrir la leçon puis l'intro de l'unité), seul le dernier est noté.
 //
-// Bouton Retour du téléphone : on ajoute UNE entrée « garde » à l'historique du
-// navigateur tant qu'il reste un écran précédent (ou un panneau ouvert). Le
-// bouton Retour la retire : on fait alors notre propre retour, puis on remet
-// la garde si besoin. À l'accueil, sans garde, Retour quitte l'app normalement.
+// Bouton Retour du téléphone : l'historique du navigateur contient une entrée
+// « garde » par écran précédent (et une de plus si un panneau est ouvert).
+// Les gardes sont ajoutées pendant l'appui qui ouvre l'écran. Le bouton Retour
+// en retire une : on fait notre propre retour sans en rajouter. Chrome Android
+// saute les entrées ajoutées sans appui de l'utilisateur (après un Retour) :
+// les remettre ferait quitter l'app au Retour suivant. À l'accueil, sans
+// garde, Retour quitte l'app normalement.
 
 const NIVEAU_VUE = {
   'view-dashboard': 0,
@@ -38,7 +41,8 @@ let pileAvantAppui = null; // la pile au début de l'appui en cours (écrans int
 let enRestauration = false;
 // Après une actualisation, la page est rechargée sur l'entrée « garde » déjà
 // posée (elle reste rattachée à la page) : on ne la rajoute pas (spec 44).
-let gardeHistorique = !!(window.history && history.state && history.state.luxapp === 'garde');
+let gardesHistorique = (window.history && history.state && history.state.luxapp === 'garde')
+  ? (history.state.n || 1) : 0; // nombre d'entrées « garde » au-dessus de l'entrée de départ
 let popsAIgnorer = 0;
 
 function estActivite(vue) {
@@ -407,25 +411,28 @@ function programmerGarde() {
   Promise.resolve().then(majGarde);
 }
 
-// Une seule entrée « garde » dans l'historique du navigateur, quand il y a où revenir.
+// Autant d'entrées « garde » dans l'historique du navigateur que d'écrans où revenir.
 // Pas avant la fin du démarrage (restauration comprise, spec 44) : sinon la
 // garde serait retirée puis remise en même temps, et Retour quitterait l'app.
 function majGarde() {
   if (!window.history || !history.pushState || !navigationRestauree) return;
-  const besoin = pileNav.length > 1 || superpositionOuverte();
-  if (besoin && !gardeHistorique) {
-    history.pushState({ luxapp: 'garde' }, '');
-    gardeHistorique = true;
-  } else if (!besoin && gardeHistorique) {
-    gardeHistorique = false;
+  const besoin = Math.max(0, pileNav.length - 1) + (superpositionOuverte() ? 1 : 0);
+  while (gardesHistorique < besoin) {
+    gardesHistorique++;
+    history.pushState({ luxapp: 'garde', n: gardesHistorique }, '');
+  }
+  if (gardesHistorique > besoin) {
+    // Retour en arrière de plusieurs entrées d'un coup : un seul popstate.
     popsAIgnorer++;
-    history.back();
+    history.go(besoin - gardesHistorique);
+    gardesHistorique = besoin;
   }
 }
 
-window.addEventListener('popstate', () => {
+window.addEventListener('popstate', e => {
   if (popsAIgnorer > 0) { popsAIgnorer--; return; }
-  gardeHistorique = false; // le navigateur vient de retirer la garde
+  // Le navigateur vient de retirer une garde : on lit où on est réellement.
+  gardesHistorique = e.state && e.state.luxapp === 'garde' ? (e.state.n || 1) : 0;
   if (fermerSuperposition()) { majGarde(); return; }
   retour();
 });

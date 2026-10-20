@@ -504,11 +504,23 @@ function basculerLeconChemin(leconId) {
   const apres = document.getElementById('chemin-lecon-' + leconId);
   if (!apres) return;
   // Un seul défilement par appui (spec 33) : la carte touchée reste à la même
-  // hauteur, puis, si on vient de l'ouvrir, on la cadre — calculés ensemble.
+  // hauteur. La page ne bouge pas tant que la 1re étape de la leçon ouverte
+  // est visible ; sinon (carte tout en bas de l'écran) on la cadre.
   const r = apres.getBoundingClientRect();
   const compense = hautAvant != null ? r.top - hautAvant : 0;
-  const cadre = dejaOuverte ? 0 : decalageCadrage(r.top - compense, r.bottom - compense);
+  let cadre = 0;
+  if (!dejaOuverte && !premiereEtapeVisible(apres, compense)) {
+    cadre = decalageCadrage(r.top - compense, r.bottom - compense);
+  }
   if (compense + cadre) window.scrollBy(0, compense + cadre);
+}
+
+// La 1re étape de la carte ouverte est-elle au-dessus de la barre du bas ?
+// (compense : le défilement qui va être appliqué pour garder la carte en place)
+function premiereEtapeVisible(carte, compense) {
+  const etape = carte.querySelector('.unites li');
+  if (!etape) return true;
+  return etape.getBoundingClientRect().bottom - compense <= basVisibleChemin();
 }
 
 // Pour revenir d'un exercice : la leçon de l'exercice est dépliée.
