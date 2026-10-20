@@ -90,8 +90,8 @@ let boutonAudio = null;
 // une seconde source du MÊME enregistrement (pas de voix artificielle).
 const MIROIR_AUDIO_LOD = 'https://raw.githubusercontent.com/robertoentringer/lod-mp3-mirror/master/2020-12-18-lod-opendata/';
 function sourcesAudio(fichier) {
-  // N'accepte que les chemins audio issus de nos index LOD, sans ../.
-  if (!/^(?:lod\/[A-Za-z0-9_-]+\.mp3|lod-phrases\/[A-Za-z0-9_-]+\.m4a|mia\/[a-f0-9]{24}\.mp3)$/.test(fichier)) return [];
+  // Fichier d'accueil autorisé explicitement, en plus des sons indexés ; jamais de ../.
+  if (!/^(?:moien\.mp3|lod\/[A-Za-z0-9_-]+\.mp3|lod-phrases\/[A-Za-z0-9_-]+\.m4a|mia\/[a-f0-9]{24}\.mp3)$/.test(fichier)) return [];
   const sources = ['/audio/' + fichier];
   const lod = /^lod\/([A-Za-z0-9_-]+)\.mp3$/.exec(fichier);
   if (lod) sources.push(MIROIR_AUDIO_LOD + lod[1] + '.mp3');
