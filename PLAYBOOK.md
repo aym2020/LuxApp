@@ -850,3 +850,10 @@ Sur PC, « Écouter la prononciation » ne faisait rien : `portailEcouter()` app
 - **Vérification ciblée :** `node tests/test_spec82_studio.js` et contrôle syntaxique. Sur PC/téléphone, vérifier le premier son W, l'écoute répétée, Précédent, le sixième exemple, les deux derniers boutons vers les vrais exercices et le retour/rechargement.
 
 **Périmètre :** exclusivement la leçon 0 ; aucune modification des autres leçons ni des règles de score.
+
+### SPEC 85 — Introductions condensées et CTA visibles sur mobile (20/10/2026)
+
+- **Mission leçon 1 :** l'introduction utilise désormais titre_intro, contexte_intro et objectif_intro (si présents), alors que le titre, le scénario et l'objectif complets de la mission restent intacts. Le texte introductif est court, et les trois actions « Commencer », « Voir les unités » et « Tenter la mission directement » restent accessibles. Les autres missions conservent leur texte si elles ne déclarent pas ces variantes.
+- **Leçon 0 :** avant les 9 sons guidés et les 6 exemples United Zoha, les introductions d'unité montrent uniquement le principe et un exemple bref. Les anciennes cartes « Attention » redondantes ont été retirées de cet écran ; les notions complètes restent dans le cours et les activités. Les résumés et CTA sont raccourcis.
+- **Responsive :** public/style.css réduit l'espacement, le titre et la hauteur des boutons de l'introduction de mission, conserve un déroulement naturel si l'écran est très court et prévoit l'espace nécessaire au CTA fixe de l'introduction d'unité. Aucun CTA supprimé ni mission modifiée dans sa logique.
+- **Recette ciblée :** sur un téléphone Android, vérifier mission 1 avec ses trois CTA et le titre complet dans le scénario ; vérifier leçon 0 unités 1/2 avec les résumés et leurs boutons fixes, puis le lancement des découvertes.
