@@ -609,8 +609,16 @@ header {
   padding: 1rem; border: 1px dashed var(--couleur-bord-3); border-radius: var(--r);
 }
 
-/* La vue occupe tout l'écran pour que la barre du bas reste en bas. */
-#view-examen.active { min-height: 100dvh; }
+/* Examen : une vraie disposition sur la hauteur visible, plutôt qu'une barre
+   sticky tributaire du scroll du document. La question défile seule ; les
+   réponses et le CTA restent dans un bandeau stable, même pendant l'entrée. */
+#view-examen.active {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+#view-examen > .lecon-header,
+#view-examen > .ex-steps { flex: 0 0 auto; }
 
 /* Une case par partie */
 .ex-steps { display: flex; gap: .4rem; padding: .7rem 1rem 0; }
@@ -630,6 +638,13 @@ header {
 .ex-body .exr-part { border-top: 0; padding-top: 0; }
 
 .ex-body { padding: 1rem 1rem 1.5rem; display: flex; flex-direction: column; gap: .9rem; }
+#view-examen .ex-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
 
 .ex-section { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--couleur-texte-3); }
 .ex-part-titre { font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; margin-top: .15rem; }
@@ -710,13 +725,27 @@ header {
   .ex-opts.pictures .ex-image-choice { padding: .2rem; }
 }
 
-/* Barre collée en bas : mots à placer + navigation */
+/* Barre d'examen ancrée par Flexbox, pas par sticky : elle ne doit jamais
+   sortir du viewport quand la banque de mots augmente de hauteur. */
 .ex-bottom {
-  position: sticky; bottom: 0; margin-top: auto;
+  position: relative;
+  flex: 0 0 auto;
+  bottom: auto;
+  margin-top: 0;
+  min-height: 0;
+  max-height: 46dvh;
+  display: flex;
+  flex-direction: column;
   background: var(--bg); border-top: 1px solid var(--couleur-bord-1);
-  padding: .7rem 1rem .8rem;
+  padding: .7rem 1rem calc(.8rem + env(safe-area-inset-bottom));
 }
-.ex-tray { margin-bottom: .7rem; }
+.ex-tray {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin-bottom: .7rem;
+}
+.ex-nav { flex: 0 0 auto; }
 .ex-tray-titre { font-size: var(--fs-micro); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--couleur-texte-3); margin-bottom: .45rem; }
 .ex-chips { display: flex; flex-wrap: wrap; gap: .45rem; }
 .ex-chip {
@@ -2814,13 +2843,13 @@ body.portail-bloque { overflow:hidden; }
   opacity:0; transform:translate(-50%,12px); pointer-events:none; transition:opacity .25s ease, transform .25s ease; }
 .notif.visible { opacity:1; transform:translate(-50%,0); }
 
-/* Changement d'écran de l'app : arrivée courte, sens selon la navigation. */
-/* Pas de « fill forwards » : un transform maintenu ferait des éléments fixes de l'écran
-   (barres d'action en bas) des enfants positionnés par rapport à la vue. */
-.view.entre-avant { animation:pa-glisse-avant .26s cubic-bezier(.2,.8,.2,1); }
-.view.entre-arriere { animation:pa-glisse-arriere .26s cubic-bezier(.2,.8,.2,1); }
-/* Accueil : opacité uniquement ; pas de débordement horizontal ni saut des éléments fixes. */
-.view.entre-fondu { animation:fondu .18s ease-out; }
+/* Navigation V2.1 : aucune translation du conteneur .view.
+   transform change le repère des enfants fixed et peut provoquer des sauts
+   des CTA (examen, résultats, découverte, introduction) sur Chrome Android.
+   Les animations propres aux contenus restent indépendantes. */
+.view.entre-avant,
+.view.entre-arriere,
+.view.entre-fondu { animation: fondu .18s ease-out; }
 body.sans-transitions .view { animation:none!important; }
 @media (prefers-reduced-motion: reduce) {
   .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere, .view.entre-fondu { animation:none!important; }
@@ -3179,10 +3208,9 @@ body.pi-bloque { overflow:hidden; }
   #view-decouverte .dc-formule { font-size:27px; }
 }
 
-/* SPEC 84 — Introduction d'unité : CTA « Commencer » ancré au vrai bas d'écran.
-   L'animation .view.entre-* utilise transform, ce qui crée un bloc de référence
-   pour les enfants position:fixed : le CTA se décale/jumpe pendant la transition.
-   Les autres écrans gardent leur animation ; l'introduction garde son CTA fixe. */
+/* SPEC 84 — L'introduction conserve son entrée sans animation.
+   Les transitions communes sont désormais sans transform pour protéger aussi
+   les CTA fixes des autres écrans et le bandeau inférieur de l'examen. */
 #view-pintro.active { min-height: 100dvh; }
 #view-pintro.entre-avant,
 #view-pintro.entre-arriere { animation: none; }
