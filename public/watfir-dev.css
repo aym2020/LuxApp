@@ -20,15 +20,15 @@
   width: 100%;
   max-width: 470px;
   margin-inline: auto;
-  padding: 22px 20px calc(25px + env(safe-area-inset-bottom));
+  padding: 14px 20px calc(12px + env(safe-area-inset-bottom));
   background: var(--wf-paper);
   color: var(--wf-ink);
 }
 
 /* 1 — Wordmark, paramètres, niveau et mode invité : un en-tête compact. */
 #view-dashboard .ac-ent {
-  min-height: 42px;
-  gap: 12px;
+  min-height: 40px;
+  gap: 10px;
 }
 #view-dashboard .ac-marque { gap: 0; }
 #view-dashboard .ac-marque-symbole,
@@ -48,7 +48,7 @@
   min-width: 44px;
 }
 #view-dashboard .ac-v21-controls {
-  margin-top: 19px;
+  margin-top: 7px;
   min-height: 44px;
   gap: 8px;
 }
@@ -86,10 +86,10 @@
   position: relative;
   flex: none;
   width: auto;
-  height: 338px;
-  min-height: 338px;
+  height: 220px;
+  min-height: 220px;
   overflow: hidden;
-  margin: 10px -20px 0;
+  margin: 3px -20px 0;
   padding: 0;
   border: 0;
   border-radius: 0;
@@ -117,13 +117,13 @@
   position: relative;
   z-index: 1;
   max-width: 100%;
-  padding: 28px 14px 0;
+  padding: 17px 14px 0;
   color: var(--wf-ink);
 }
 #view-dashboard .watfir-hero .ac-hero-surtitre {
   display: block;
   color: var(--wf-ink);
-  margin: 0 0 16px;
+  margin: 0 0 9px;
   font: 800 10px/1.25 Inter, system-ui, sans-serif;
   letter-spacing: .20em;
   text-transform: uppercase;
@@ -132,7 +132,7 @@
   color: var(--wf-ink);
   margin: 0 0 8px;
   font-family: "Barlow Condensed", Impact, "Arial Narrow", sans-serif;
-  font-size: clamp(91px, 27.5vw, 132px);
+  font-size: clamp(83px, 25vw, 110px);
   font-weight: 900;
   line-height: .88;
   letter-spacing: -.035em;
@@ -141,9 +141,9 @@
 #view-dashboard .watfir-hero .watfir-punctuation { color: var(--wf-orange); }
 #view-dashboard .watfir-hero p {
   max-width: 275px;
-  margin: 9px 0 0;
+  margin: 5px 0 0;
   color: var(--wf-ink);
-  font: 850 clamp(18px, 5.3vw, 21px)/1.07 Inter, system-ui, sans-serif;
+  font: 850 clamp(16px, 4.7vw, 19px)/1.1 Inter, system-ui, sans-serif;
   letter-spacing: -.05em;
   text-wrap: balance;
 }
@@ -154,7 +154,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   padding: 0;
-  margin: 15px 0 0;
+  margin: 9px 0 0;
   color: var(--wf-ink);
 }
 #view-dashboard .ac-chiffres > div {
@@ -192,9 +192,9 @@
    la navigation Commencer, Continuer ou Niveau terminé héritée de v2.1. */
 #view-dashboard .carte-suite.ac-v21-cta {
   width: 100%;
-  min-height: 82px;
-  margin-top: 15px;
-  padding: 16px;
+  min-height: 70px;
+  margin-top: 9px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
   gap: 13px;
@@ -214,7 +214,7 @@
   display: block;
   margin: 0;
   color: var(--wf-ink);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 900;
   letter-spacing: -.04em;
   line-height: 1.18;
@@ -232,6 +232,8 @@
   color: #292016;
   font-size: 10.5px;
   font-weight: 500;
+  /* Tout reste dans l'aria-label de la carte : deux lignes visuelles suffisent. */
+  display: none;
 }
 #view-dashboard .ac-v21-cta .cs-rond {
   width: 22px;
@@ -240,12 +242,12 @@
 }
 
 /* 5 — Bandeau de révision numéroté : pas de grille de cartes génériques. */
-#view-dashboard .watfir-actions { margin-top: 12px; }
+#view-dashboard .watfir-actions { margin-top: 8px; }
 #view-dashboard .watfir-actions .ac-acces {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
-  padding: 13px 6px;
+  padding: 8px 6px;
   background: var(--wf-ink);
   border: 0;
   border-radius: 11px;
@@ -256,7 +258,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
   min-height: 44px;
   padding: 2px 4px;
@@ -280,7 +282,7 @@
 #view-dashboard .ac-acces .err .watfir-shortcut-n { color: var(--wf-pink); }
 #view-dashboard .watfir-actions .ac-v21-journey {
   min-height: 44px;
-  margin: 18px 0 0;
+  margin: 6px 0 0;
   color: #24261f;
   background: transparent;
   border: 0;
@@ -298,7 +300,7 @@
   color: inherit;
 }
 #view-dashboard .watfir-footer {
-  margin: 12px 3px 0;
+  margin: 3px 3px 0;
   text-align: center;
   color: #85857f;
   font-size: 10.5px;
@@ -323,31 +325,41 @@
 }
 #view-dashboard .ac-v21-cta:focus-visible { outline-color: var(--wf-ink); }
 
-/* Les petits écrans défilent ; on ne réduit pas les cibles tactiles. */
+/* Le hero doit laisser les actions visibles au premier écran mobile.
+   Les cibles tactiles restent >=44px ; on compresse la décoration, pas les boutons. */
 @media (max-width: 375px) {
   #view-dashboard .accueil { padding-inline: 16px; }
   #view-dashboard .watfir-hero {
     margin-inline: -16px;
-    height: 320px;
-    min-height: 320px;
+    height: 208px;
+    min-height: 208px;
   }
-  #view-dashboard .watfir-hero .ac-hero-texte { padding: 24px 12px 0; }
-  #view-dashboard .watfir-hero h2 { font-size: clamp(82px, 27vw, 104px); }
-  #view-dashboard .watfir-hero p { font-size: 19px; }
+  #view-dashboard .watfir-hero .ac-hero-texte { padding: 15px 12px 0; }
+  #view-dashboard .watfir-hero h2 { font-size: clamp(80px, 26vw, 96px); }
+  #view-dashboard .watfir-hero p { font-size: 17px; }
   #view-dashboard .ac-v21-guest { font-size: 10px; }
 }
 @media (max-width: 330px) {
-  #view-dashboard .watfir-hero h2 { font-size: 82px; }
+  #view-dashboard .watfir-hero h2 { font-size: 79px; }
   #view-dashboard .puce-niv { min-width: 51px; padding-inline: 9px; }
   #view-dashboard .ac-v21-guest { font-size: 9.5px; }
 }
 @media (max-height: 760px) {
+  #view-dashboard .watfir-hero,
   #view-dashboard .accueil.ac-nouveau-invite .watfir-hero {
-    height: 300px;
-    min-height: 300px;
+    height: 205px;
+    min-height: 205px;
     padding: 0;
-    margin-top: 10px;
   }
+}
+@media (max-height: 650px) {
+  #view-dashboard .watfir-hero,
+  #view-dashboard .accueil.ac-nouveau-invite .watfir-hero {
+    height: 190px;
+    min-height: 190px;
+  }
+  #view-dashboard .watfir-hero .ac-hero-texte { padding-top: 11px; }
+  #view-dashboard .watfir-hero h2 { font-size: clamp(77px, 23vw, 96px); }
 }
 @media (prefers-reduced-motion: reduce) {
   #view-dashboard .watfir-hero *,
