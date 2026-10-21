@@ -61,7 +61,7 @@ test('parcours réel : question vide, validation, correction, ordre, révélatio
  vm.runInContext('expressionStart(exSujet)',ctx);
  assert.equal(views.at(-1),'view-examen');
  assert.equal(node('ex-next').textContent,'Valider');
- assert.match(node('ex-body').innerHTML,/Le week-end dernier était très agréable/);
+ assert.match(node('ex-body').innerHTML,/Le week-end dernier était très bien/);
  // Impossible de marquer une phrase vide sans demander explicitement la solution.
  node('xee-input').value='';
  vm.runInContext('expressionNext()',ctx);
@@ -73,7 +73,7 @@ test('parcours réel : question vide, validation, correction, ordre, révélatio
  assert.match(node('ex-body').innerHTML,/Juste !/);
  assert.equal(node('ex-next').textContent,'Phrase suivante');
  vm.runInContext('expressionNext()',ctx);
- assert.match(node('ex-body').innerHTML,/J&#39;ai passé beaucoup de temps/);
+ assert.match(node('ex-body').innerHTML,/J&#39;ai dormi longtemps/);
  // Erreur : aucun point, puis on avance.
  node('xee-input').value='Ech sinn um Weekend';
  vm.runInContext('expressionNext()',ctx);
