@@ -324,13 +324,15 @@ function ouvrirPlus() {
   const lignes = [
     [ICONES.loupe, 'Lexique', 'Tous les mots du niveau', 'openLexique()'],
     [ICONES.alerte, 'Mes pièges', 'Les points où tu t\'es trompé', 'openPieges()'],
+    [ICONES.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2.1', 'ouvrirNouveautes()'],
     [ICONES.reglages, 'Réglages', etat ? etat.texte : 'Compte, synchronisation, remise à zéro', 'openReglages()']
   ];
   const html = '<div class="poignee"></div><h2>Plus</h2>' +
     '<div class="plus-acquis">' + tuiles.map(t => '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('') + '</div>' +
     lignes.map(x => '<button class="plus-ligne" onclick="fermerPanneau(); ' + x[3] + '">' + x[0] +
       '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
-      '>' + escHtml(x[2]) + '</small></span></button>').join('');
+      '>' + escHtml(x[2]) + '</small></span></button>').join('') +
+    '<div class="plus-version">LuxApp <b>2.1</b></div>';
   ouvrirPanneau(html, 'Plus');
 }
 
