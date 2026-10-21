@@ -27,3 +27,13 @@ test('écriture : champ libellé, validation inchangée',()=>{
   assert.match(html,/id="session-feedback"[\s\S]*aria-live="polite"/);
   assert.match(html,/id="session-input-btn" onclick="validateSessionInput\(\)">Valider<\/button>/);
 });
+
+// Recette statique du problème constaté sur Samsung : le clavier et le bouton.
+test('écriture compacte, auto-extensible, sans clavier imposé sur tactile',()=>{
+  assert.match(html,/id="session-input"[\s\S]*rows="1"/);
+  assert.match(css,/min-height:70px;height:70px;max-height:150px/);
+  assert.match(css,/#view-session \.ecr-input-wrap \{gap:12px;margin-top:26px\}/);
+  assert.match(app,/window\.matchMedia\('\(hover: hover\) and \(pointer: fine\)'\)\.matches/);
+  assert.match(app,/visualViewport\.addEventListener\('resize', cadrerSaisieSession\)/);
+  assert.match(parcours,/Math\.min\(150, Math\.max\(70, input\.scrollHeight\)\)/);
+});

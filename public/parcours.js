@@ -1547,7 +1547,7 @@ function renderEcriturePc(e) {
     '</div>' + aideVocabHtml(e) +
     '<div class="mc-erreur hidden" id="pc-ecr-erreur"></div>' +
     '<label class="pc-input-label" for="pc-ecr-input">Ta réponse</label>' +
-    '<textarea id="pc-ecr-input" class="ecr-input" rows="2" placeholder="Tape ta réponse…"' +
+    '<textarea id="pc-ecr-input" class="ecr-input" rows="1" placeholder="Tape ta réponse…"' +
       ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
     '<div class="pc-actions"><button class="pc-btn primary wide" id="pc-ecr-valider" onclick="ecrValiderPc()">Valider</button></div>';
 
@@ -1559,7 +1559,12 @@ function renderEcriturePc(e) {
     if (pAttente) continuerParcours();
     else ecrValiderPc();
   });
-  input.addEventListener('input', () => { document.getElementById('pc-ecr-valider').textContent = 'Valider'; });
+  input.addEventListener('input', () => {
+    document.getElementById('pc-ecr-valider').textContent = 'Valider';
+    // Une ligne au départ ; le champ grandit pour une vraie phrase.
+    input.style.height = '70px';
+    input.style.height = Math.min(150, Math.max(70, input.scrollHeight)) + 'px';
+  });
   focusSiClavierPhysique(input); // sur téléphone, on touche le champ pour écrire
 }
 

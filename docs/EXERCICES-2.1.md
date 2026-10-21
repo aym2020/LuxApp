@@ -23,3 +23,9 @@ Leçon : **1. Mot caché → 2. Quiz → 3. Trous → 4. Écriture**. L'ancien t
 7. Vérifier que les boutons Cours/Accueil/Retour et les sauvegardes ne régressent pas.
 
 La recette visuelle mobile réelle reste nécessaire ; les contrôles statiques seuls ne la remplacent pas.
+
+## Ajustement écriture mobile (21 octobre 2026)
+
+Suite aux captures Android, le champ initial de 114 px était excessif et le CTA « Valider » collait au champ. Le champ débute désormais sur **une ligne (70 px)**, grandit automatiquement jusqu'à 150 px si une phrase est longue, et reste séparé du bouton par 12 px. L'en-tête de session est raccourci ; sur téléphone tactile, **le clavier ne s'ouvre plus tout seul**. Lorsque le clavier redimensionne le viewport, le groupe de saisie est recadré pour laisser le CTA accessible sans recouvrement. Focus discret, accessible au clavier ; mécanismes de validation et de scores inchangés.
+
+Recette complémentaire : écrire « Februar » pour « Février » et une phrase longue, sur clavier Samsung ouvert/fermé ; contrôler le CTA dans les deux cas et le scroll lorsque le clavier monte. Refaire le même test dans une leçon et après une erreur au premier essai.

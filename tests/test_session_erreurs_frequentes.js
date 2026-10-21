@@ -40,6 +40,7 @@ const harness = [
   'renderSessionQ = () => { rendered++; session.answered = false; session.essais = 0; };',
   'updateQuestionProgress = (...args) => updates.push(args);',
   'aideErreur = () => ({ diagnostic: "", attention: "" });',
+  'boutonEcouterHtml = () => "";', // stub du module audio (non chargé dans ce test isolé)
   'const matcher = s => normalize(s);',
   'reponseReconnue = (s, item) => [item.lu, ...(item.alternatives || [])].find(x => matcher(x) === matcher(s)) || null;',
   'autresReponsesAcceptees = (item, accepted) => [item.lu, ...(item.alternatives || [])].filter(x => matcher(x) !== matcher(accepted));',

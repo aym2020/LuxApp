@@ -731,10 +731,13 @@ function renderSessionQ() {
     inputWrap.classList.remove('hidden');
     const input = document.getElementById('session-input');
     input.value = '';
-    input.style.height = 'auto';
+    input.style.height = '70px';
     input.className = 'ecr-input';
     input.disabled = false;
-    input.focus();
+    // Sur écran tactile : ne pas ouvrir le clavier dès l'arrivée sur la question.
+    // Le clavier physique conserve son autofocus.
+    if (typeof window === 'undefined' || !window.matchMedia ||
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches) input.focus();
     const btn = document.getElementById('session-input-btn');
     btn.disabled = false;
   }
@@ -1440,9 +1443,26 @@ ecrInput.addEventListener('keydown', e => {
 const sessionInput = document.getElementById('session-input');
 if (sessionInput) {
   sessionInput.addEventListener('input', () => {
-    sessionInput.style.height = 'auto';
-    sessionInput.style.height = sessionInput.scrollHeight + 'px';
+    sessionInput.style.height = '70px';
+    sessionInput.style.height = Math.min(150, Math.max(70, sessionInput.scrollHeight)) + 'px';
   });
+  // Le clavier Android réduit le viewport : recadrer le groupe champ + Valider.
+  // Ne touche ni la réponse, ni le score, ni l'affichage de correction.
+  const cadrerSaisieSession = () => {
+    if (document.activeElement !== sessionInput) return;
+    const vue = document.getElementById('view-session');
+    const groupe = document.getElementById('session-input-wrap');
+    if (!vue || !vue.classList.contains('active') || !groupe ||
+        groupe.classList.contains('hidden')) return;
+    if (typeof requestAnimationFrame === 'function') {
+      requestAnimationFrame(() => groupe.scrollIntoView({ block: 'nearest', behavior: 'auto' }));
+    }
+  };
+  sessionInput.addEventListener('focus', cadrerSaisieSession);
+  if (typeof window !== 'undefined' && window.visualViewport &&
+      typeof window.visualViewport.addEventListener === 'function') {
+    window.visualViewport.addEventListener('resize', cadrerSaisieSession);
+  }
   sessionInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();

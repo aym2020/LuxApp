@@ -57,6 +57,7 @@ const document = {
 };
 const suffix = [
   'lecons = [{ id: 1 }];',
+  'boutonEcouterHtml = () => "";', // stub audio du test isolé
   'updateQuestionProgress = (lid, type, qid, ok, changeLevel) => {',
   '  const fb = document.getElementById("session-feedback");',
   '  if (!fb.innerHTML || fb.classList.contains("hidden"))',
