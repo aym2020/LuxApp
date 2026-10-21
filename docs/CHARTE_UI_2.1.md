@@ -183,3 +183,11 @@ Implémentation : `public/index.html`, `public/revision-v21.css` (scopé à Rév
 ## Nommage des accès d'apprentissage — 21 octobre 2026
 
 **S'entraîner** désigne la pratique libre (toutes les questions disponibles selon les filtres), distincte de **Erreurs** (questions ratées) et de **Examens** (évaluation). C'est le nom affiché sur l'accueil, dans la navigation basse et sur l'écran de configuration (« Ton entraînement », « Commencer l'entraînement »). Les noms de fonctions / états `review`, `reviser` et les rappels « Réviser / Revoir » dans une leçon précise sont conservés.
+
+
+## Maquette 1 — Écran d’ensemble de la leçon (21 octobre 2026)
+
+La première maquette validée concerne **`view-plecon`** (« Moien! ...an Äddi! », mission et liste d’unités), à ne pas confondre avec les introductions `view-msintro` et `view-pintro`. L’écran adopte le titre éditorial en Instrument Serif, l’image WebP déjà optimisée en en-tête, la mission neutre avec sa progression réelle, une seule unité actuelle en léger or et des raccourcis d’exercices visuellement secondaires. Les cartes « Toute la leçon » et « Bilan » sont conservées et allégées.
+
+Implémentation : `public/lecon-v21.css`, lien dans `public/index.html`, ajout d’une piste accessible dans `public/mission.js`. Aucun changement du score, des étapes, de l'ordre ni des sauvegardes. Tests : `test/lecon-overview-v21.test.cjs`. Documentation et recette Android : [LECON-OVERVIEW-2.1.md](LECON-OVERVIEW-2.1.md).
+
