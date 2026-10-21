@@ -10,7 +10,7 @@ L’introduction de mission est une courte mise en situation avant le parcours d
 
 ### Hero photographique
 
-L’image `public/art/mission-objets-trouves-v21.webp` est une scène générée pour **la mission « Aux objets trouvés » (leçon 3)** : sac, bouteille et effets personnels oubliés dans un bus. Le fichier est un **WebP sans interface ni texte superposé**, recadré depuis le visuel approuvé ; résolution 480 × 236, environ 5 Ko. Il est placé en premier sous la navigation, dans une zone de hauteur limitée et avec dégradé sombre afin d’assurer la continuité du fond de l’application.
+L’image `public/art/mission-objets-trouves-v21.webp` est une scène générée pour **la mission « Aux objets trouvés » (leçon 3)** : sac, bouteille et effets personnels oubliés dans un bus. Le fichier est un **WebP sans interface ni texte superposé**, recadré depuis le visuel approuvé ; résolution 400 × 198, environ 3,4 Ko. L’empreinte Git du fichier a été comparée avec celle du WebP local avant validation. Il est placé en premier sous la navigation, dans une zone de hauteur limitée et avec dégradé sombre afin d’assurer la continuité du fond de l’application.
 
 Le hero est volontairement **conditionnel à la leçon 3 ET au titre « objets trouvés »**, afin de ne pas afficher une photographie de bus sur une mission sans rapport. Les autres introductions conservent leurs textes sans photo en attendant une illustration pertinente. Aucun décor n’est encodé dans le texte pédagogique.
 
