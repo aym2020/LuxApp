@@ -89,6 +89,14 @@ L'effet V2.1 doit rester fluide, **pas spectaculaire** :
 - Aucun scroll horizontal, aucun bord supérieur de CTA masqué sous le hero, aucun bouton hors champ. Tap targets ≥ **44 px**, boutons principaux ≥ **48 px** ; contrastes et focus clavier conformes au design system.
 - Préserver le scroll, le retour Android, le retour applicatif, les états de session et les positions d'éléments lorsqu'ils sont contractuellement requis.
 
+## Implémentation du Chemin V2.1 — 21 octobre 2026
+
+Le premier lot est **codé sur la branche `2.1`**, avec une feuille `public/chemin-v21.css` entièrement limitée à `#view-lessons`. Ce découplage temporaire, identique à celui de l'accueil validé, permet de valider visuellement le lot sans risquer de modifier les anciens styles des écrans d'exercice. Lors d'une consolidation ultérieure, les styles réellement communs seront replacés dans `components.css` ou `style.css`.
+
+Principes mis en œuvre : en-tête photographique compact utilisant le **WebP déjà présent** sur l'accueil ; « Mon chemin » en Instrument Serif ; barre réelle des **leçons terminées sur les leçons du niveau** (une acquisition historique n'est pas une leçon terminée) ; mini-résumé distinct des acquis historiques / en cours ; frise continue de repères plus légers ; or réservé à la recommandation ; carte actuelle prioritaire mais sans photographie supplémentaire ; lignes d'unités complètes et lisibles ; examens ouverts à tout moment.
+
+La structure HTML et les boutons du parcours restent fournis par `public/chemin.js` et son moteur existant. Les nouveaux contrôles ciblés sont dans `test/chemin-v21.test.cjs`. **Le rendu final sur téléphone et les autres états de progression restent à recetter manuellement avant validation visuelle définitive.**
+
 ## 7. Stratégie d'implémentation — une harmonisation en plusieurs lots
 
 ### Lot 0 — Audit visuel, avant modification
