@@ -82,7 +82,7 @@ test('Contexte et objectif sont repliés, sans répétition obligatoire',()=>{
 });
 test('Chaque réplique et sa traduction sont affichées avec audio et repères d’unités',()=>{
   const a=simulate();
-  assert.equal((a.htmlContent.match(/class="ms-v21-ligne/g)||[]).length,4);
+  assert.equal((a.htmlContent.match(/class="ms-v21-ligne(?: toi)?"/g)||[]).length,4);
   assert.equal((a.htmlContent.match(/aria-label="Écouter"/g)||[]).length,4);
   assert.match(a.htmlContent,/D'Mapp ass schwaarz/);
   assert.match(a.htmlContent,/Le sac est noir/);
