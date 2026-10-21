@@ -1,0 +1,139 @@
+/* LuxApp 2.1 — introduction de mission, composition éditoriale.
+   Hero unique pour la leçon « Aux objets trouvés ». Le reste du parcours,
+   les actions, la progression et les introductions du studio sont inchangés. */
+#view-msintro .msi-content {
+  padding: 0 1.1rem calc(1.2rem + env(safe-area-inset-bottom));
+  gap: .85rem;
+  align-content: start;
+}
+#view-msintro .msi-haut { gap: .45rem; }
+#view-msintro .msi-v21-hero {
+  flex: none;
+  height: clamp(140px, 21vh, 205px);
+  margin: 0 -1.1rem .35rem;
+  background-image:
+    linear-gradient(to bottom, rgba(15,14,12,.1), transparent 40%, #0f0e0c 100%),
+    url("art/mission-objets-trouves-v21.webp");
+  background-repeat: no-repeat;
+  background-position: center, center 54%;
+  background-size: cover;
+}
+#view-msintro .msi-titre {
+  font: 400 clamp(2.1rem, 8.6vw, 2.7rem)/1.07 var(--police-serif);
+  letter-spacing: -.025em;
+  overflow-wrap: break-word;
+}
+#view-msintro .msi-contexte {
+  margin: .15rem 0 0;
+  color: var(--couleur-texte-2);
+  font-size: .98rem;
+  line-height: 1.48;
+}
+/* Objectif : un repère éditorial, pas une carte orange supplémentaire. */
+#view-msintro .msi-objectif {
+  gap: .4rem;
+  border: 0;
+  border-left: 3px solid var(--couleur-action);
+  background: transparent;
+  border-radius: 0;
+  padding: .2rem 0 .2rem 1rem;
+  box-shadow: none;
+}
+#view-msintro .msi-objectif-titre {
+  color: var(--couleur-action);
+  font-size: .83rem;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+#view-msintro .msi-objectif-txt {
+  align-items: flex-start;
+  gap: .65rem;
+  font-size: .95rem;
+  line-height: 1.43;
+  color: var(--couleur-texte);
+}
+#view-msintro .msi-objectif-txt .ic {
+  margin-top: .2rem;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  stroke: var(--couleur-action);
+}
+/* Les actions suivent le scénario : plus de grand vide artificiel. */
+#view-msintro .msi-bas {
+  position: static;
+  bottom: auto;
+  z-index: auto;
+  flex: none;
+  margin: .15rem 0 0;
+  padding: 0 0 .5rem;
+  background: transparent;
+  gap: .4rem;
+}
+#view-msintro .msi-v21-info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  text-align: left;
+  margin: .15rem 0 .55rem;
+  padding: .9rem .1rem .1rem;
+  border-top: 1px solid var(--couleur-bord-1);
+}
+#view-msintro .msi-v21-stat {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .16rem;
+}
+#view-msintro .msi-v21-stat strong {
+  color: var(--couleur-texte);
+  font: 750 .95rem/1.25 var(--police);
+}
+#view-msintro .msi-v21-stat small {
+  color: var(--couleur-texte-3);
+  font: 400 .8rem/1.35 var(--police);
+}
+#view-msintro .msi-bas .pc-btn.primary {
+  width: 100%;
+  min-height: 53px;
+  border-radius: var(--rayon-bouton);
+  background: var(--couleur-action);
+  color: var(--couleur-sur-or);
+}
+#view-msintro .msi-bas .msi-v21-link {
+  width: 100%;
+  min-height: 42px;
+  margin: 0;
+  padding: .35rem .2rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--couleur-texte-2);
+  box-shadow: none;
+  font-size: .89rem;
+  font-weight: 600;
+  text-align: center;
+}
+#view-msintro .msi-v21-link:focus-visible {
+  outline: 2px solid var(--couleur-action);
+  outline-offset: -2px;
+}
+#view-msintro.active .msi-in { animation: none; }
+/* Le contenu défile normalement sur petits écrans ou avec police agrandie :
+   les actions restent sous le texte, jamais superposées dessus. */
+@media (max-width: 380px) {
+  #view-msintro .msi-content { padding-inline: .9rem; gap: .7rem; }
+  #view-msintro .msi-v21-hero { margin-inline: -.9rem; height: 140px; }
+  #view-msintro .msi-titre { font-size: clamp(1.9rem, 8vw, 2.3rem); }
+  #view-msintro .msi-v21-info { gap: .55rem; }
+}
+@media (max-height: 740px) {
+  #view-msintro .msi-v21-hero { height: 125px; }
+  #view-msintro .msi-content { gap: .55rem; }
+  #view-msintro .msi-contexte { line-height: 1.4; }
+  #view-msintro .msi-v21-info { margin-bottom: .25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #view-msintro .msi-in { animation: none !important; }
+}
