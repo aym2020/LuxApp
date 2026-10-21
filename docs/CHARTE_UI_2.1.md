@@ -196,3 +196,10 @@ Implémentation : `public/lecon-v21.css`, lien dans `public/index.html`, ajout d
 ### Finalisation de la carte de leçon — 21 octobre 2026
 
 Cinq améliorations validées sont désormais en place sur `view-plecon` : réduction légère de l'espace avant la mission, carte mission plus compacte et liens secondaires, décompte des répliques **à produire** et préparées par les unités, suppression des quatre raccourcis d'exercice dans les cartes (bonus conservés), et transformation de « Toute la leçon » et « Bilan » en deux lignes compactes entièrement cliquables. Aucun changement aux points, étoiles, règles de validation, contenus ou sauvegardes. Voir [LECON-OVERVIEW-2.1.md](LECON-OVERVIEW-2.1.md).
+
+
+## Maquette 2 — Introduction de mission (21 octobre 2026)
+
+Cette introduction garde ses objectifs et son scénario, mais abandonne l'encadré orange et la hauteur vide avant les actions. Le hero est un WebP généré spécifiquement pour « Aux objets trouvés » (leçon 3), placé avant le titre ; aucun visuel de bus n'est affiché pour les autres missions. L'objectif est signalé par un filet jaune, le nombre d'unités et les répliques restent dynamiques. « Commencer » reste la seule action jaune ; « Voir les unités » et « Tenter la mission directement » sont secondaires. Toutes les fonctions de découverte et de navigation sont conservées.
+
+Fichiers : `public/art/mission-objets-trouves-v21.webp`, `public/mission.js`, `public/mission-intro-v21.css`, `public/index.html`. Tests : `test/mission-intro-v21.test.cjs`. Documentation : [MISSION-INTRO-2.1.md](MISSION-INTRO-2.1.md).
