@@ -12,6 +12,9 @@ const LUXAPP_NOUVEAUTES_21 = [
   {categorie:'LEÇONS',titre:'Apprendre sans surcharge',
    description:'Une règle à lire sur le fond noir, les points d’attention signalés par un filet, le bouton Commencer toujours disponible.',
    apercu:'lecons',commit:'3effc6466'},
+  {categorie:'COURS',titre:'Une référence toujours à portée de main',
+   description:'Règles, lexique et phrases dans une lecture épurée, avec les unités accessibles et le retour à l’exercice toujours visible.',
+   apercu:'cours',commit:'22fc0b201'},
   {categorie:'MISSIONS',titre:'La langue prend vie',
    description:'Une mise en situation plus immersive et un scénario épuré : répliques, traductions, audio et bouton Jouer toujours accessible.',
    apercu:'missions',commit:'a181db13f'},
@@ -35,6 +38,9 @@ function apercuNouveaute21(type) {
     case 'lecons':
       return '<div class="nv21-mini-rule"><span>LA RÈGLE</span><strong>Objets + <em>ass</em> + adjectif</strong>' +
         '<p>ATTENTION <small>Une précision utile, sans grosse carte.</small></p></div>';
+    case 'cours':
+      return '<div class="nv21-mini-course"><div class="nv21-mini-course-tabs"><b>Règles</b><span>Lexique</span><span>Phrases</span></div>' +
+        '<small>UNITÉ 1</small><p>Une langue reste <em>invariable</em>.</p><div>Revenir à l’exercice</div></div>';
     case 'missions':
       return '<div class="nv21-mini-dialog"><div><small>L’EMPLOYÉE</small><b>Moien!</b></div>' +
         '<div><small>TOI</small><b>Gudde Moien!</b></div><span>Jouer la mission →</span></div>';
