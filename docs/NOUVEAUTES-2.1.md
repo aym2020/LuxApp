@@ -85,3 +85,8 @@ Symptôme Android : après un appui sur « Nouveautés », le contenu semblait a
 Le constructeur commun `ouvrirPanneau(html, titre, apresFermeture, classeInitiale = '')` accepte désormais une classe de présentation facultative **avant la création visible** ; toutes les autres ouvertures conservent la classe `panneau` par défaut. `ouvrirNouveautes()` fournit `nv21-panel` dès la construction, sans `classList.add` tardif. La feuille de style annule également l’animation/fondu héritée du panneau commun pour cette page pleine hauteur seulement. Les URLs des fichiers CSS/JS Nouveautés portent `?v=2` pour limiter les problèmes de cache mobile. Aucun effet n'a été ajouté à la mise en page du contenu : les éléments apparaissent directement dans leur état final.
 
 Contrôle : les tests vérifient la classe initiale sur les panneaux spéciaux et ordinaires, la suppression du changement de classe tardif, ainsi que les propriétés CSS de non-animation. Le rendu sur Samsung reste à confirmer visuellement.
+
+
+## Mise à jour — panneau Cours (21 octobre 2026)
+
+La rubrique « COURS » rejoint les six thèmes initiaux : la page Nouveautés présente désormais **sept évolutions** majeures. Elle montre un petit aperçu de Règles / Lexique / Phrases et renvoie vers le commit de la refonte du panneau Cours. La rubrique reste statique et éditoriale : elle n'est pas alimentée automatiquement depuis GitHub. Le code de la nouvelle vue est décrit dans [COURS-2.1.md](COURS-2.1.md).
