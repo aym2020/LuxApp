@@ -57,10 +57,10 @@ function etiquetteMission(l) {
 function bulleSceneHtml(l, x) {
   const toi = x.qui === 'toi';
   const apprise = repliqueApprise(l, x);
-  return '<article class="ms-v21-ligne' + (toi ? ' toi' : '') + '" ' +
-      'aria-label="' + escHtml((toi ? 'Toi' : x.qui) + ', unité ' + x.unite) + '">' +
+  return '<article class="ms-v21-ligne' + (toi ? ' toi' : '') + '">' +
     '<div class="ms-v21-ligne-entete">' +
       '<span class="ms-v21-qui">' + (toi ? 'TOI' : escHtml(x.qui)) + '</span>' +
+      '<span class="ms-v21-visually-hidden">Unité ' + x.unite + '</span>' +
       (apprise ? '<span class="ms-v21-acquis" aria-label="Unité apprise">✓</span>' : '') +
     '</div>' +
     '<div class="ms-v21-lux">' +
