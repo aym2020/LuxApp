@@ -7,11 +7,17 @@ const path = require('node:path');
 const base = path.join(__dirname, '..', 'data');
 const debutants = JSON.parse(fs.readFileSync(path.join(base, 'lecons', 'A1.1', 'lecon-01.json'), 'utf8'));
 const variant = /\b(?:Awar|Awuer)\b/iu;
-const mainSections = ['scene', 'unites', 'flashcards', 'quiz', 'trous'];
+const mainSections = ['unites', 'flashcards', 'quiz', 'trous'];
 
-test('A1.1 leçon 1 : les variantes ne sont ni imposées ni mises en scène', () => {
+test('A1.1 leçon 1 : les variantes ne sont jamais une réponse imposée', () => {
   for (const section of mainSections) {
     assert.doesNotMatch(JSON.stringify(debutants[section]), variant, section);
+  }
+  for (const section of ['scene', 'ecriture']) {
+    for (const item of debutants[section]) {
+      assert.doesNotMatch(item.lu, variant, section + ' : réponse principale');
+      if (item.aide) assert.doesNotMatch(item.aide, variant, section + ' : aide');
+    }
   }
   const core = debutants.cours.filter(b => !b.plus);
   assert.doesNotMatch(JSON.stringify(core), variant, 'cours principal');
@@ -40,13 +46,32 @@ test('Äddi est enseigné explicitement et reste la réponse de base', () => {
   assert.equal(h.trou, 'Äddi');
 });
 
-test('Awar et Awuer ne sont acceptés que comme alternatives en écriture libre', () => {
-  const items = debutants.ecriture.filter(q => variant.test(JSON.stringify(q)));
-  assert.equal(items.length, 1);
-  assert.equal(items[0].id, 2038);
-  assert.deepEqual(items[0].alternatives, ['Awar!', 'Awuer!']);
+test('Awar et Awuer sont acceptés sans jamais devenir la réponse principale', () => {
+  const ecritureAttendue = new Map([
+    [2038, ['Awar!', 'Awuer!']],
+    [2039, ['Awar, schéinen Dag!', 'Awuer, schéinen Dag!']],
+    [2045, ['Merci, gläichfalls! Awar!', 'Merci, gläichfalls! Awuer!']]
+  ]);
+  const sceneAttendue = new Map([
+    ['Merci, gläichfalls! Äddi!', ['Merci, gläichfalls! Awar!', 'Merci, gläichfalls! Awuer!']],
+    ['Äddi, Léa! Schéinen Dag!', ['Awar, Léa! Schéinen Dag!', 'Awuer, Léa! Schéinen Dag!']]
+  ]);
+  const ecritureAvecVariantes = debutants.ecriture.filter(x => variant.test(JSON.stringify(x)));
+  const sceneAvecVariantes = debutants.scene.filter(x => variant.test(JSON.stringify(x)));
+  assert.equal(ecritureAvecVariantes.length, ecritureAttendue.size);
+  assert.equal(sceneAvecVariantes.length, sceneAttendue.size);
 
-  // Réutiliser la vraie validation de l'app (spec 50), sans la réimplémenter.
+  for (const [id, formes] of ecritureAttendue) {
+    assert.deepEqual(debutants.ecriture.find(x => x.id === id).alternatives, formes);
+  }
+  for (const [phrase, formes] of sceneAttendue) {
+    const item = debutants.scene.find(x => x.qui === 'toi' && x.lu === phrase);
+    assert.ok(item);
+    assert.deepEqual(item.alternatives, formes);
+  }
+
+  // Tester le vrai moteur de validation (SPEC 50), et non seulement la présence
+  // du champ dans le JSON. Il doit fonctionner en écriture ET dans la mission.
   const correction = fs.readFileSync(path.join(__dirname, '..', 'public', 'correction.js'), 'utf8');
   const start = correction.indexOf('function reponseReconnue(');
   const end = correction.indexOf('// Formes correctes autres', start);
@@ -55,12 +80,16 @@ test('Awar et Awuer ne sont acceptés que comme alternatives en écriture libre'
   const normalize = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .toLowerCase().replace(/[^a-z0-9]/g, '');
   const reconnaitre = new Function('normalize', fonction + '; return reponseReconnue;')(normalize);
-  for (const rep of ['Äddi!', 'Awar!', 'Awuer!', 'awar', 'AWUER']) {
-    assert.ok(reconnaitre(rep, items[0]), 'réponse valide : ' + rep);
+
+  for (const item of [...ecritureAvecVariantes, ...sceneAvecVariantes]) {
+    assert.equal(reconnaitre(item.lu, item), item.lu);
+    for (const rep of item.alternatives) assert.equal(reconnaitre(rep, item), rep);
+    assert.equal(reconnaitre('Moien!', item), null);
   }
-  assert.equal(reconnaitre('Moien!', items[0]), null);
-  const plusLong = debutants.ecriture.find(q => q.id === 2039);
-  assert.equal(reconnaitre('Awar!', plusLong), null);
+  const a = debutants.ecriture.find(x => x.id === 2038);
+  assert.equal(reconnaitre('awar', a), 'Awar!');
+  assert.equal(reconnaitre('AWUER', a), 'Awuer!');
+  assert.equal(reconnaitre('Awar!', debutants.ecriture.find(x => x.id === 2039)), null);
 });
 
 test('Le deuxième exercice pratique une nouvelle phrase avec Äddi sans créer de doublon', () => {
