@@ -215,3 +215,8 @@ Le WebP de la scène « Aux objets trouvés » est passé de 400 × 198 px à 1�
 Le panneau « Voir le scénario » devient un lecteur plein écran, avec un **en-tête constant**, une **zone de répliques défilante** et un pied fixe contenant l'unique CTA **« Jouer / Rejouer la mission »**. Les répliques sont des lignes typographiques avec séparateurs fins, sans grandes bulles colorées ; `TOI` reçoit le seul accent or. Les traductions françaises, les audios et l'unité associée restent accessibles. Contexte et objectif passent dans « Rappel du contexte » replié par défaut. Les autres panneaux, le moteur de mission et le parcours restent inchangés.
 
 Fichiers : `public/mission.js`, `public/scenario-v21.css`, `public/index.html` ; vérification : `test/scenario-v21.test.cjs`. Détails : [SCENARIO-2.1.md](SCENARIO-2.1.md).
+
+
+## Introduction d'unité — allègement éditorial (21 octobre 2026)
+
+Sur `view-pintro`, « LA RÈGLE » perd son fond brun et devient une section typographique sur le fond noir ; les termes importants restent en or. « ATTENTION » perd son fond orange et conserve seulement un filet vertical orange. Les espaces entre le titre, la phrase, la règle et l'avertissement sont légèrement réduits. Le lexique, les exemples, le contenu des leçons, le CTA fixe et l'ensemble de la logique pédagogique sont inchangés. La feuille `public/intro-unite-v21.css` est strictement scoped à cette vue. Tests : `test/intro-unite-v21.test.cjs`. Détails : [INTRO-UNITE-2.1.md](INTRO-UNITE-2.1.md).
