@@ -330,7 +330,7 @@ let panneauApres = null;
 function ouvrirPanneau(html, titre, apresFermeture) {
   const precedent = document.getElementById('panneau');
   // Ne pas reconstruire la feuille si l'action est répétée rapidement.
-  if (precedent && precedent.getAttribute('aria-label') === titre) return;
+  if (titre === 'Plus' && precedent && precedent.getAttribute('aria-label') === titre) return;
   if (precedent) fermerPanneau();
   panneauApres = apresFermeture || null;
   const voile = document.createElement('div');
@@ -350,7 +350,7 @@ function ouvrirPanneau(html, titre, apresFermeture) {
           e.clientY >= r.top - 10 && e.clientY <= r.bottom + 10) return;
     }
     // Ignorer les clics parasites du tout début de l'ouverture.
-    if (Date.now() - ouvertA < 250) return;
+    if (titre === 'Plus' && Date.now() - ouvertA < 250) return;
     fermerPanneau();
   });
   const panneau = document.createElement('div');
