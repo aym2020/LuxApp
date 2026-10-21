@@ -1,0 +1,7 @@
+# Examens d'expression écrite A1.2 — LuxApp 2.1
+
+Deux sujets de restitution de texte modèle, chacun de 70 mots : 11 phrases (week-end) et 10 phrases (semaine). La phrase française est montrée une à une, dans l'ordre. L'apprenant écrit la phrase luxembourgeoise puis appuie sur Valider. Réponse et explication immédiatement visibles, traduction FR à la demande, puis Phrase suivante. Bouton Voir la réponse = zéro point. Score final sur 11 ou 10, pourcentage, meilleurs scores du système d'examen, filtre Mes erreurs et texte complet, avec variante vacances non notée pour le premier texte.
+
+Format de données : fichiers expression-01.json et expression-02.json dans data/examens/A1.2, type format expression_ecrite. Les annales anciennes ne sont pas modifiées. Correction exacte du texte modèle avec normalize() de l'app (casse, ponctuation et accents ignorés) : ceci mesure la RESTITUTION DU MODÈLE, et non une évaluation humaine de toutes les traductions possibles. Les autres formulations doivent être déclarées explicitement en alternatives.
+
+Recette requise : vérifier les deux sujets dans A1.2, les sept annales historiques, une phrase correcte, une phrase fausse, Voir la réponse, saisie vide, la navigation, les traductions FR cachées puis ouvertes, le score et le meilleur score après rechargement ; tester clavier Android/petit écran et absence de recouvrement du footer. Tests Node inclus à GitHub Actions. La validation visuelle Samsung reste nécessaire.

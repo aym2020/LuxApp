@@ -1,0 +1,71 @@
+{
+  "id": "a12-expression-02",
+  "titre": "Expression écrite 2",
+  "titre_fr": "La semaine dernière",
+  "format": "expression_ecrite",
+  "niveau": "A1.2",
+  "couleur": "#F5CF4D",
+  "consigne": "Restitue le texte modèle, phrase après phrase dans l'ordre. Chaque phrase correcte vaut un point. Une correction et une explication suivent chaque réponse.",
+  "phrases": [
+    {
+      "id": 1,
+      "fr": "La semaine dernière, j'ai beaucoup travaillé.",
+      "lu": "D'lescht Woch hunn ech vill geschafft.",
+      "note": "D'lescht Woch = la semaine dernière ; geschafft = travaillé."
+    },
+    {
+      "id": 2,
+      "fr": "Du lundi au vendredi, je me suis levé tôt.",
+      "lu": "Vu Méindes bis Freides sinn ech fréi opgestanen.",
+      "note": "Vu … bis … = du … au ; sinn + opgestanen."
+    },
+    {
+      "id": 3,
+      "fr": "J'ai bu un café, puis je suis allé au travail.",
+      "lu": "Ech hunn e Kaffi gedronk an duerno sinn ech op d'Aarbecht gefuer.",
+      "note": "hunn avec gedronk, mais sinn avec gefuer."
+    },
+    {
+      "id": 4,
+      "fr": "Au bureau, j'ai travaillé avec mes collègues.",
+      "lu": "Um Büro hunn ech mat menge Kolleegen geschafft.",
+      "note": "Um Büro = au bureau ; mat menge Kolleegen = avec mes collègues."
+    },
+    {
+      "id": 5,
+      "fr": "Le midi, j'ai mangé quelque chose.",
+      "lu": "Mëttes hunn ech eppes giess.",
+      "note": "Mëttes = le midi ; eppes = quelque chose."
+    },
+    {
+      "id": 6,
+      "fr": "Le soir, je suis rentré chez moi.",
+      "lu": "Owes sinn ech heemgefuer.",
+      "note": "heemgefuer = rentré en véhicule ; sinn est l'auxiliaire."
+    },
+    {
+      "id": 7,
+      "fr": "À la maison, j'ai mangé avec ma famille.",
+      "lu": "Doheem hunn ech mat menger Famill giess.",
+      "note": "Doheem = à la maison ; mat menger Famill."
+    },
+    {
+      "id": 8,
+      "fr": "J'ai aussi regardé un film et écouté de la musique.",
+      "lu": "Ech hunn och e Film gekuckt a Musek gelauschtert.",
+      "note": "och = aussi ; hunn + gekuckt / gelauschtert."
+    },
+    {
+      "id": 9,
+      "fr": "Le week-end, je me suis reposé.",
+      "lu": "Um Weekend hunn ech mech ausgerout.",
+      "note": "mech ausgerout = je me suis reposé."
+    },
+    {
+      "id": 10,
+      "fr": "C'était une bonne semaine.",
+      "lu": "Et war eng gutt Woch.",
+      "note": "Et war = c'était ; eng gutt Woch = une bonne semaine."
+    }
+  ]
+}

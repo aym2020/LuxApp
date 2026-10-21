@@ -68,6 +68,7 @@ function examItems(part) {
 
 // Nombre total de points d'un sujet.
 function examTotal(ex) {
+  if (expressionEstSujet(ex)) return expressionTotal(ex);
   let total = 0;
   ex.parties.forEach(p => total += examItems(p).length);
   return total;
@@ -147,7 +148,7 @@ function renderExamens() {
         '<span class="ex-carte-texte">' +
           '<span class="ex-carte-num">' + escHtml(ex.titre) + '</span>' +
           '<span class="ex-carte-titre">' + escHtml(ex.titre_fr) + '</span>' +
-          '<span class="ex-carte-info">' + ex.parties.length + ' parties · ' + total + ' points' + (best ? '' : ' · Pas encore fait') + '</span>' +
+          '<span class="ex-carte-info">' + (expressionEstSujet(ex) ? total + ' phrases dans l’ordre · 70 mots · ' + total + ' points' : ex.parties.length + ' parties · ' + total + ' points') + (best ? '' : ' · Pas encore fait') + '</span>' +
           scoreHtml +
         '</span>' +
         '<span class="chevron-l">' + ICONES.droite + '</span>' +
@@ -172,6 +173,7 @@ function renderExamens() {
 function startExamen(examId) {
   exam = examens.find(e => e.id === examId);
   if (!exam) return;
+  if (expressionEstSujet(exam)) { expressionStart(exam); return; }
 
   // Une case vide (null) par réponse attendue.
   examAnswers = exam.parties.map(p => examItems(p).map(() => null));
@@ -188,7 +190,9 @@ function startExamen(examId) {
 
 // Quitter en cours de route : on prévient si des réponses seraient perdues.
 async function quitExamen() {
-  const started = examAnswers.some(part => part.some(a => a !== null));
+  const started = expressionEstSujet(exam) && expressionEtat
+    ? expressionEtat.reponses.some(r => r !== null) || !!expressionEtat.brouillon
+    : examAnswers.some(part => part.some(a => a !== null));
   if (started && !(await confirmer({ titre: 'Quitter ce sujet ?', texte: 'Tes réponses seront perdues.', ok: 'Quitter', annuler: 'Rester', danger: true }))) return;
   retour(); // l'écran réellement précédent (spec 15), en général la liste des sujets
 }
@@ -594,11 +598,13 @@ function examGoTo(i) {
 }
 
 function examPrev() {
+  if (expressionEstSujet(exam)) { expressionPrev(); return; }
   if (examPart > 0) examGoTo(examPart - 1);
 }
 
 // Bouton principal : corrige la partie, puis passe à la suivante.
 function examNext() {
+  if (expressionEstSujet(exam)) { expressionNext(); return; }
   if (!examChecked[examPart]) { examCheck(); return; }
 
   if (examPart < exam.parties.length - 1) { examGoTo(examPart + 1); return; }
