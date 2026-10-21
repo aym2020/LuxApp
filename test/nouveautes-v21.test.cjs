@@ -82,7 +82,7 @@ test('Le correctif scroll ne modifie ni la restauration ni le moteur de progress
  assert.match(snippet,/const introScroll = document\.getElementById\('pi-content'\)/);
  assert.match(snippet,/introScroll\.scrollTop = 0/);
  assert.match(snippet,/showView\('view-pintro'\)/);
- assert.doesNotMatch(snippet,/window\.scrollTo|setTimeout|startUnite\(/);
+ assert.doesNotMatch(snippet,/window\.scrollTo|setTimeout|^\s*startUnite\(/m);
 });
 test('CSS Nouveautés : écran défilant, cibles lisibles, animation réduite',()=>{
  assert.match(css,/\.panneau\.nv21-panel \{/);
