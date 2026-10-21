@@ -8,8 +8,8 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: 206px;
-  padding: 37px 20px 30px;
+  min-height: 188px;
+  padding: 30px 20px 17px;
   gap: 7px;
   margin: 0;
   align-items: flex-start;
@@ -55,7 +55,7 @@
 /* La liste reste librement défilable et conserve tous les boutons d'origine. */
 #view-plecon .pl-units {
   padding: 0 16px calc(30px + env(safe-area-inset-bottom));
-  gap: 13px;
+  gap: 11px;
 }
 #view-plecon .pl-unit,
 #view-plecon .ms-carte.compacte {
@@ -65,8 +65,8 @@
 
 /* Mission : une surface neutre, progression réelle et deux actions distinctes. */
 #view-plecon .ms-carte.compacte {
-  gap: 9px;
-  padding: 17px 17px 16px;
+  gap: 7px;
+  padding: 13px 15px 12px;
   background: linear-gradient(150deg, #201e1a, var(--couleur-surface-1) 78%);
   border: 1px solid var(--couleur-bord-2);
   border-radius: var(--rayon-carte);
@@ -112,15 +112,18 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px 12px;
-  margin-top: 3px;
+  gap: 1px 12px;
+  margin-top: 1px;
 }
 #view-plecon .ms-actions .pc-chip {
   min-height: var(--toucher);
-  padding: 9px 11px;
-  border-radius: var(--rayon-pilule);
+  padding: 7px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   font-size: var(--fs-sec);
-  line-height: 1.2;
+  font-weight: 650;
+  line-height: 1.3;
 }
 #view-plecon .ms-actions .ms-scenario {
   border-color: transparent;
@@ -137,7 +140,7 @@
 #view-plecon .ms-actions .ms-jouer {
   color: var(--couleur-action);
   background: transparent;
-  border-color: var(--couleur-or-bord);
+  border: 0;
   flex: 0 1 auto;
   max-width: 100%;
   white-space: normal;
@@ -192,50 +195,81 @@
   color: var(--couleur-sur-or);
   background: var(--couleur-action);
 }
-/* Les raccourcis sont secondaires : pas d'or sur toutes les étiquettes. */
+/* Seul le bonus pédagogique « + » reste directement accessible.
+   Il devient un lien léger plutôt qu'une cinquième pilule. */
 #view-plecon .pl-unit-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 2px;
-}
-#view-plecon .pl-unit-actions .pc-chip {
-  min-height: var(--toucher);
-  padding: 9px 12px;
-  border: 1px solid var(--couleur-bord-3);
-  border-radius: var(--rayon-pilule);
-  background: transparent;
-  color: var(--couleur-texte-2);
-  font-weight: 550;
-  font-size: var(--fs-sec);
+  display: flex; align-items: center;
+  gap: 8px; margin-top: 0;
 }
 #view-plecon .pl-unit-actions .pc-chip.plus {
+  min-height: var(--toucher);
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--couleur-action);
-  border-color: var(--couleur-or-bord);
+  text-align: left;
+  white-space: normal;
+  font-weight: 650;
+  font-size: var(--fs-sec);
 }
-#view-plecon .pl-unit-actions .pc-chip.fait {
-  color: var(--couleur-reussi);
-  border-color: var(--couleur-vert-bord);
+#view-plecon .pl-unit-actions .pc-chip.plus.fait { color: var(--couleur-reussi); }
+
+/* La leçon complète et le bilan ne sont plus deux grandes cartes.
+   Ce sont des boutons-lignes cliquables en entier et accessibles au clavier. */
+#view-plecon .pl-resume {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  min-height: 72px;
+  padding: 12px 8px;
+  border: 0;
+  border-top: 1px solid var(--couleur-bord-1);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  color: var(--couleur-texte);
+  text-align: left;
+  font-family: var(--police);
+  cursor: pointer;
 }
-#view-plecon .pl-unit-actions .pc-chip.fraicheur {
-  color: var(--couleur-turquoise);
-  border-color: var(--couleur-turq-bord);
+#view-plecon .pl-resume-contenu { display: flex; flex-direction: column; min-width: 0; gap: 4px; }
+#view-plecon .pl-resume-sur {
+  color: var(--couleur-texte-3);
+  font-size: var(--fs-micro);
+  font-weight: 750;
+  letter-spacing: .13em;
 }
-/* Les deux options de synthèse sont de simples sections, pas deux « héros ». */
-#view-plecon .pl-toute,
-#view-plecon .pl-bilan {
-  background: var(--couleur-surface-1);
-  border-color: var(--couleur-bord-1);
+#view-plecon .pl-resume-titre {
+  color: var(--couleur-texte);
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: break-word;
 }
-#view-plecon .pl-bilan { border-style: solid; }
+#view-plecon .pl-resume-description {
+  color: var(--couleur-texte-3);
+  font-size: var(--fs-sec);
+  line-height: 1.4;
+}
+#view-plecon .pl-resume-chevron {
+  flex: none;
+  color: var(--couleur-texte-3);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+#view-plecon .pl-resume:active { background: var(--couleur-surface-1); }
+#view-plecon .pl-resume:focus-visible { outline: 2px solid var(--couleur-action); outline-offset: -2px; }
 
 /* Écrans compacts : ne jamais couper des mots ou réduire les cibles tactiles. */
 @media (max-width: 380px) {
-  #view-plecon .pl-head { min-height: 184px; padding: 27px 16px 23px; }
+  #view-plecon .pl-head { min-height: 170px; padding: 25px 16px 14px; }
   #view-plecon .pl-titre { font-size: clamp(2.15rem, 10vw, 2.75rem); }
   #view-plecon .pl-units { padding-inline: 12px; gap: 11px; }
   #view-plecon .ms-carte.compacte, #view-plecon .pl-unit { padding: 14px; }
-  #view-plecon .ms-actions .pc-chip { width: 100%; }
+  #view-plecon .ms-actions .pc-chip { width: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   #view-plecon .ms-progression span { transition: none; }
