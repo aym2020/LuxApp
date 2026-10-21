@@ -492,19 +492,13 @@ function quoiEtape(uniteId) {
   return uniteId === TOUTE_LA_LECON ? 'tout' : 'coeur';
 }
 
-// Boutons d'étape (Mot caché, Quiz…) pour une unité ou pour toute la leçon,
-// puis le chip « + » de l'unité (doré et coché quand il est fait).
+// Les exercices isolés n'encombrent plus les unités ; seuls les bonus
+// « + » restent accessibles directement dans le parcours.
 function chipsEtapes(uniteId) {
-  const param = uniteId === TOUTE_LA_LECON ? '\'' + TOUTE_LA_LECON + '\'' : uniteId;
-  let html = ETAPES.filter(e => itemsUnite(pLecon, e.type, uniteId, quoiEtape(uniteId)).length).map(e =>
-    '<button class="pc-chip" onclick="startEtapeSeule(' + param + ', \'' + e.type + '\')">' + e.label + '</button>'
-  ).join('');
-  if (uniteId !== TOUTE_LA_LECON && aDuPlus(pLecon, uniteId)) {
-    const fait = getPlusFait(pLecon.id, uniteId);
-    html += '<button class="pc-chip plus' + (fait ? ' fait' : '') + '" onclick="startUnite(' + uniteId + ', \'plus\')">' +
-      (fait ? '✓ ' : '') + '+' + textePlus(pLecon, uniteId) + ' · S\'entraîner</button>';
-  }
-  return html;
+  if (uniteId === TOUTE_LA_LECON || !aDuPlus(pLecon, uniteId)) return '';
+  const fait = getPlusFait(pLecon.id, uniteId);
+  return '<button class="pc-chip plus' + (fait ? ' fait' : '') + '" onclick="startUnite(' + uniteId + ', \'plus\')">' +
+    (fait ? '✓ ' : '') + '+' + textePlus(pLecon, uniteId) + ' · S\'entraîner</button>';
 }
 
 function renderParcoursLecon() {
@@ -531,32 +525,26 @@ function renderParcoursLecon() {
     html += carteUniteHtml(l, u, runIci, prochaine, revision);
   });
 
-  // ── Toute la leçon : tout le contenu d'un coup, une étape, révision ──
+  // Synthèses : deux lignes compactes ; aucune redondance avec S'entraîner.
   const nbTout = nbItems(l, TOUTE_LA_LECON, 'tout');
-  html += '<div class="pl-unit pl-toute" id="pl-toute">';
-  html += '<div class="pl-unit-top"><div>' +
-    '<div class="pc-mini-label">TOUTE LA LEÇON' +
-      (leconComplete(l) ? ' · <span class="pc-vert">COMPLÈTE</span>' : '') + '</div>' +
-    '<div class="pl-unit-titre">Tout le contenu d\'un coup</div></div></div>' +
-    '<div class="pl-unit-mots">Le fil et tous les « + »' + (l.unites.some(u => u.bonus) ? ', bonus compris' : '') + ' · ' + nbTout +
-      ' questions · environ ' + minutesPour(nbTout) + ' min</div>';
-  // La leçon complète est de l'entraînement libre : reprenable, jamais l'action principale.
-  if (pLibreIci && pLibreIci.uniteId === TOUTE_LA_LECON) {
-    html += '<div class="pc-steps">' + segmentsHtml(pLibreIci) + '</div>' +
-      '<button class="pc-btn wide" onclick="reprendreRun(true)">Continuer la leçon complète</button>';
-  } else {
-    html += '<button class="pc-btn wide" onclick="startUnite(\'' + TOUTE_LA_LECON + '\', \'lecon\')">Leçon complète</button>';
-  }
-  html += '<div class="pl-unit-actions">' + chipsEtapes(TOUTE_LA_LECON) +
-    '<button class="pc-chip" onclick="toutRevoir()">Tout revoir</button>' +
-    (revision.dus ? '<button class="pc-chip fraicheur" onclick="rafraichirLecon()">Réviser · ' + revision.dus + '</button>' : '') +
-    '</div></div>';
+  const reprendreTout = !!(pLibreIci && pLibreIci.uniteId === TOUTE_LA_LECON);
+  const actionTout = reprendreTout ? 'reprendreRun(true)' : "startUnite('all', 'lecon')";
+  html += '<button type="button" class="pl-resume pl-toute" id="pl-toute" onclick="' + actionTout + '">' +
+    '<span class="pl-resume-contenu">' +
+      '<span class="pl-resume-sur">TOUTE LA LEÇON' +
+        (leconComplete(l) ? ' · COMPLÈTE' : '') + '</span>' +
+      '<span class="pl-resume-titre">' +
+        (reprendreTout ? 'Reprendre la leçon complète' : "Tout le contenu d'un coup") + '</span>' +
+      '<span class="pl-resume-description">' + nbTout + ' questions · environ ' + minutesPour(nbTout) + ' min' +
+        (reprendreTout ? ' · En cours' : '') + '</span>' +
+    '</span><span class="pl-resume-chevron" aria-hidden="true">›</span></button>';
 
-  // Bilan : toujours ouvert.
-  html += '<div class="pl-unit pl-bilan">' +
-    '<div class="pl-unit-titre">Bilan de la leçon</div>' +
-    '<div class="pl-unit-mots">10 questions mélangées sur le fil de la leçon</div>' +
-    '<button class="pc-btn wide" onclick="lancerBilan()">Lancer le bilan</button></div>';
+  // Le bilan garde sa fonction : 10 questions mélangées sur le fil.
+  html += '<button type="button" class="pl-resume pl-bilan" onclick="lancerBilan()">' +
+    '<span class="pl-resume-contenu">' +
+      '<span class="pl-resume-titre">Bilan de la leçon</span>' +
+      '<span class="pl-resume-description">10 questions mélangées</span>' +
+    '</span><span class="pl-resume-chevron" aria-hidden="true">›</span></button>';
 
   document.getElementById('pl-units').innerHTML = html;
 }
@@ -624,8 +612,9 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
     html += '<button class="pc-btn ghost wide pl-reprendre-revision" onclick="reprendreRun(true)">Reprendre la révision · ' +
       escHtml(nomPartie(pLibreIci.uniteId, pLibreIci.mode)) + '</button>';
   }
-  // Les étapes seules et le « + » sont toujours disponibles.
-  html += '<div class="pl-unit-actions">' + chipsEtapes(u.id) + '</div>';
+  // On garde seulement le bonus « + » (si présent).
+  const bonus = chipsEtapes(u.id);
+  if (bonus) html += '<div class="pl-unit-actions">' + bonus + '</div>';
   html += '</div>';
   return html;
 }
