@@ -91,3 +91,14 @@ test('Le rendu garde ses protections mobile et la sémantique des couleurs', () 
   assert.match(styles, /\.pas\.exam > \.rond/);
   assert.match(styles, /\.pas\.ouverte \.btn-jaune/);
 });
+
+test('Le header ne réserve pas de grand espace vide entre avancement et leçon 0', () => {
+  const rule = styles.match(/#view-lessons \.chemin-tete \{([\s\S]*?)\}/);
+  assert.ok(rule, 'règle du hero du chemin présente');
+  assert.match(rule[1], /padding:\s*19px 14px 6px/);
+  assert.match(rule[1], /margin:\s*-10px -14px 0/);
+  assert.match(rule[1], /min-height:\s*140px/);
+  assert.match(styles, /#view-lessons \.chemin \{/);
+  assert.match(styles, /#view-lessons \.chemin \.pas/);
+  assert.doesNotMatch(styles, /#view-lessons \.chemin\s*\{[^}]*margin-top:\s*-/);
+});
