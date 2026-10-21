@@ -279,6 +279,61 @@
   }
   #view-dashboard .ac-nouveau-invite .ac-acces .ac-btn { min-height:57px; }
 }
+/* Accueil mobile contenu dans la hauteur utile de l'écran.
+   Le hero absorbe l'espace disponible : ne jamais rogner les commandes.
+   Si la hauteur est réellement insuffisante (texte agrandi, très petit écran),
+   le scroll natif de #view-dashboard reste disponible. */
+@media (max-width:600px) {
+  #view-dashboard .accueil {
+    height:100%;
+    min-height:0;
+  }
+  #view-dashboard .ac-ent,
+  #view-dashboard .ac-v21-controls,
+  #view-dashboard .ac-chiffres.ac-v21-bilan,
+  #view-dashboard #today,
+  #view-dashboard .ac-v21-actions {
+    flex-shrink:0;
+  }
+  #view-dashboard .ac-hero {
+    height:auto;
+    flex:1 1 258px;
+    min-height:172px;
+    max-height:258px;
+  }
+}
+@media (max-width:600px) and (max-height:850px) {
+  #view-dashboard .accueil {
+    padding-top:14px;
+    padding-bottom:calc(11px + env(safe-area-inset-bottom));
+  }
+  #view-dashboard .ac-v21-controls { margin-top:10px; }
+  #view-dashboard .ac-hero {
+    height:auto;
+    min-height:166px;
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+  #view-dashboard .ac-hero-texte { padding-top:27px; }
+  #view-dashboard .ac-hero-surtitre { margin-bottom:9px; }
+  #view-dashboard .ac-hero h2 { font-size:68px; margin-bottom:9px; }
+  #view-dashboard .ac-hero p { font-size:13px; line-height:1.45; }
+  #view-dashboard .ac-btn.ac-v21-journey { margin-top:10px; }
+}
+@media (max-width:380px) and (max-height:850px) {
+  #view-dashboard .accueil { padding-top:13px; }
+  #view-dashboard .ac-hero { height:auto; }
+  #view-dashboard .ac-hero-texte { padding-top:25px; }
+  #view-dashboard .ac-hero h2 { font-size:64px; }
+}
+@media (max-width:600px) and (max-height:720px) {
+  #view-dashboard .ac-hero { min-height:150px; }
+  #view-dashboard .ac-hero-texte { padding-top:18px; }
+  #view-dashboard .ac-hero-surtitre { margin-bottom:6px; }
+  #view-dashboard .ac-hero h2 { font-size:60px; margin-bottom:7px; }
+  #view-dashboard .ac-hero p { font-size:12px; line-height:1.4; }
+  #view-dashboard .accueil { padding-top:9px; padding-bottom:calc(6px + env(safe-area-inset-bottom)); }
+}
 @media (prefers-reduced-motion:reduce) {
   #view-dashboard .ac-piste i { transition:none; }
 }
