@@ -1,0 +1,242 @@
+/* LuxApp 2.1 — écran d'ensemble d'une leçon en unités.
+   Maquette validée n° 1 : « Moien! ...an Äddi! ».
+   Présentation uniquement ; zéro changement du moteur, du scoring ou du parcours.
+   Portée : #view-plecon. L'image est le WebP existant de l'accueil. */
+
+/* L'en-tête typographique donne le contexte, sans seconde carte artificielle. */
+#view-plecon .pl-head {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 206px;
+  padding: 37px 20px 30px;
+  gap: 7px;
+  margin: 0;
+  align-items: flex-start;
+}
+#view-plecon .pl-head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, var(--couleur-fond) 0%, rgba(15,14,12,.89) 35%, rgba(15,14,12,.43) 100%),
+    linear-gradient(0deg, var(--couleur-fond) 0%, transparent 60%),
+    url("art/hero-luxapp-mobile.webp");
+  background-size: cover;
+  background-position: center, center, 62% 52%;
+  background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 71%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 71%, transparent);
+}
+#view-plecon .pl-head > * { position: relative; z-index: 1; }
+#view-plecon #pl-num {
+  color: var(--couleur-action);
+  letter-spacing: .17em;
+  font-weight: 750;
+}
+#view-plecon .pl-titre {
+  margin: 3px 0 0;
+  max-width: 100%;
+  font: 400 clamp(2.5rem, 10vw, 3.4rem)/1.04 var(--police-serif);
+  letter-spacing: -.035em;
+  color: var(--couleur-texte);
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+#view-plecon .pl-sous {
+  margin: 7px 0 0;
+  font-size: var(--fs-sec);
+  line-height: 1.45;
+  color: var(--couleur-texte-2);
+}
+
+/* La liste reste librement défilable et conserve tous les boutons d'origine. */
+#view-plecon .pl-units {
+  padding: 0 16px calc(30px + env(safe-area-inset-bottom));
+  gap: 13px;
+}
+#view-plecon .pl-unit,
+#view-plecon .ms-carte.compacte {
+  min-width: 0;
+  box-shadow: none;
+}
+
+/* Mission : une surface neutre, progression réelle et deux actions distinctes. */
+#view-plecon .ms-carte.compacte {
+  gap: 9px;
+  padding: 17px 17px 16px;
+  background: linear-gradient(150deg, #201e1a, var(--couleur-surface-1) 78%);
+  border: 1px solid var(--couleur-bord-2);
+  border-radius: var(--rayon-carte);
+}
+#view-plecon .ms-carte-haut { gap: 10px; flex-wrap: wrap; }
+#view-plecon .ms-carte .pc-mini-label {
+  letter-spacing: .15em;
+  font-size: var(--fs-micro);
+  color: var(--couleur-texte-3);
+}
+#view-plecon .ms-carte .ms-etat {
+  background: var(--couleur-surface-2);
+  color: var(--couleur-texte-2);
+  padding: 4px 10px;
+  font-weight: 550;
+  letter-spacing: 0;
+}
+#view-plecon .ms-carte .ms-titre {
+  font: 750 clamp(1.06rem, 4.7vw, 1.25rem)/1.25 var(--police);
+  letter-spacing: -.02em;
+  color: var(--couleur-texte);
+}
+#view-plecon .ms-carte .ms-bas {
+  color: var(--couleur-texte-3);
+  font-size: var(--fs-sec);
+  line-height: 1.4;
+}
+#view-plecon .ms-progression {
+  height: 3px;
+  width: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--couleur-bord-2);
+}
+#view-plecon .ms-progression span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--couleur-action);
+}
+#view-plecon .ms-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  margin-top: 3px;
+}
+#view-plecon .ms-actions .pc-chip {
+  min-height: var(--toucher);
+  padding: 9px 11px;
+  border-radius: var(--rayon-pilule);
+  font-size: var(--fs-sec);
+  line-height: 1.2;
+}
+#view-plecon .ms-actions .ms-scenario {
+  border-color: transparent;
+  background: transparent;
+  color: var(--couleur-texte-2);
+  padding-left: 0;
+  text-align: left;
+}
+#view-plecon .ms-actions .ms-scenario::after {
+  content: " →";
+  color: inherit;
+}
+#view-plecon .ms-actions .ms-tenter,
+#view-plecon .ms-actions .ms-jouer {
+  color: var(--couleur-action);
+  background: transparent;
+  border-color: var(--couleur-or-bord);
+  flex: 0 1 auto;
+  max-width: 100%;
+  white-space: normal;
+  text-wrap: pretty;
+}
+#view-plecon .ms-actions .ms-jouer.conseille {
+  color: var(--couleur-sur-or);
+  background: var(--couleur-action);
+  border-color: var(--couleur-action);
+}
+
+/* Unité courante : la seule autre surface mise en avant. */
+#view-plecon .pl-unit {
+  gap: 10px;
+  padding: 16px;
+  border-radius: var(--rayon-carte);
+  border-color: var(--couleur-bord-1);
+  background: var(--couleur-surface-1);
+}
+#view-plecon .pl-unit.prochaine,
+#view-plecon .pl-unit.en-cours {
+  border-color: var(--couleur-or-bord);
+  background: linear-gradient(145deg, var(--couleur-or-fond), var(--couleur-surface-1) 92%);
+}
+#view-plecon .pl-unit-top .pc-mini-label {
+  font-size: var(--fs-micro);
+  letter-spacing: .13em;
+}
+#view-plecon .pl-unit-titre {
+  margin-top: 4px;
+  font: 400 clamp(1.55rem, 6vw, 1.9rem)/1.12 var(--police-serif);
+  color: var(--couleur-texte);
+  overflow-wrap: break-word;
+}
+#view-plecon .pl-unit-phrase {
+  font: 400 clamp(1.2rem, 5vw, 1.45rem)/1.15 var(--police-serif);
+  color: var(--couleur-texte);
+}
+#view-plecon .pl-unit-mots {
+  font-size: var(--fs-sec);
+  line-height: 1.5;
+  color: var(--couleur-texte-3);
+  overflow-wrap: anywhere;
+}
+#view-plecon .pl-unit > .pc-btn.wide {
+  margin-top: 4px;
+  min-height: 52px;
+  border-radius: var(--rayon-bouton);
+}
+#view-plecon .pl-unit > .pc-btn.primary {
+  min-height: var(--hauteur-cta);
+  color: var(--couleur-sur-or);
+  background: var(--couleur-action);
+}
+/* Les raccourcis sont secondaires : pas d'or sur toutes les étiquettes. */
+#view-plecon .pl-unit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+#view-plecon .pl-unit-actions .pc-chip {
+  min-height: var(--toucher);
+  padding: 9px 12px;
+  border: 1px solid var(--couleur-bord-3);
+  border-radius: var(--rayon-pilule);
+  background: transparent;
+  color: var(--couleur-texte-2);
+  font-weight: 550;
+  font-size: var(--fs-sec);
+}
+#view-plecon .pl-unit-actions .pc-chip.plus {
+  color: var(--couleur-action);
+  border-color: var(--couleur-or-bord);
+}
+#view-plecon .pl-unit-actions .pc-chip.fait {
+  color: var(--couleur-reussi);
+  border-color: var(--couleur-vert-bord);
+}
+#view-plecon .pl-unit-actions .pc-chip.fraicheur {
+  color: var(--couleur-turquoise);
+  border-color: var(--couleur-turq-bord);
+}
+/* Les deux options de synthèse sont de simples sections, pas deux « héros ». */
+#view-plecon .pl-toute,
+#view-plecon .pl-bilan {
+  background: var(--couleur-surface-1);
+  border-color: var(--couleur-bord-1);
+}
+#view-plecon .pl-bilan { border-style: solid; }
+
+/* Écrans compacts : ne jamais couper des mots ou réduire les cibles tactiles. */
+@media (max-width: 380px) {
+  #view-plecon .pl-head { min-height: 184px; padding: 27px 16px 23px; }
+  #view-plecon .pl-titre { font-size: clamp(2.15rem, 10vw, 2.75rem); }
+  #view-plecon .pl-units { padding-inline: 12px; gap: 11px; }
+  #view-plecon .ms-carte.compacte, #view-plecon .pl-unit { padding: 14px; }
+  #view-plecon .ms-actions .pc-chip { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #view-plecon .ms-progression span { transition: none; }
+}
