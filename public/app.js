@@ -402,7 +402,7 @@ function attentionDe(item) {
 
 function startSession(mode) {
   let questions, titre;
-  if (mode === 'review') { questions = getReviewQuestions(20); titre = 'Révision'; }
+  if (mode === 'review') { questions = getReviewQuestions(20); titre = 'Entraînement'; }
   else if (mode === 'exam') { questions = getExamQuestions(50); titre = 'Examen'; }
   else { questions = getFrequentErrors(10); titre = 'Erreurs fréquentes'; }
 
@@ -616,7 +616,7 @@ function startConfiguredReview() {
     // Remet le bouton à l'état normal (pour la prochaine visite de l'écran).
     if (btn) {
       btn.disabled = false;
-      btn.textContent = originalLabel || 'Commencer la révision';
+      btn.textContent = originalLabel || 'Commencer l’entraînement';
       btn.style.opacity = '';
       btn.style.cursor = '';
     }
@@ -624,7 +624,7 @@ function startConfiguredReview() {
     if (!questions.length) {
       // Message adapté au focus choisi (jamais de session vide ni de remplissage).
       if (focus === 'connu') {
-        notifier('Aucune question à consolider pour le moment. Fais d\'abord une révision ou une leçon.');
+        notifier('Aucune question à consolider pour le moment. Fais d\'abord un entraînement ou une leçon.');
       } else if (focus === 'difficile') {
         notifier('Aucune question difficile pour le moment : elles apparaîtront après tes premières erreurs.');
       } else {
@@ -636,11 +636,11 @@ function startConfiguredReview() {
     // Réutilise le moteur de session (mode 'review' = les niveaux évoluent).
     // Le titre affiche le nombre RÉEL de questions, pas le nombre demandé.
     // En fin de session : on peut continuer avec les mêmes réglages, sans limite.
-    demarrerSession('review', 'RÉVISION', questions, {
+    demarrerSession('review', 'ENTRAÎNEMENT', questions, {
       actions: [
-        { label: 'Continuer à réviser', primary: true, fn: () => {
+        { label: 'Continuer l’entraînement', primary: true, fn: () => {
           const encore = getConfiguredReview(leconIds, types, focus, count, niveaux);
-          demarrerSession('review', 'RÉVISION', encore, session.options);
+          demarrerSession('review', 'ENTRAÎNEMENT', encore, session.options);
         } },
         { label: 'Accueil', fn: goDashboard }
       ]
