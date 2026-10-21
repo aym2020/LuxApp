@@ -74,10 +74,11 @@ body.avec-nav #view-review-setup.active {
   position:absolute; inset:0; opacity:0; width:100%; height:100%;
   margin:0; cursor:pointer;
 }
-#view-review-setup .rs-v21-segments .rs-check:focus-within {
-  outline:2px solid var(--couleur-action); outline-offset:2px;
+/* Sur mobile, un appui ne doit pas laisser de double contour de focus.
+   L'état coché reste identifiable par sa teinte et sa bordure simple. */
+#view-review-setup .rs-v21-types {
+  display:flex; flex-direction:row; flex-wrap:wrap; gap:8px;
 }
-#view-review-setup .rs-v21-types { display:flex; flex-wrap:wrap; gap:8px; }
 #view-review-setup .rs-v21-types .rs-check {
   position:relative; min-height:42px; padding:9px 12px;
   border:1px solid var(--couleur-bord-2); border-radius:10px;
@@ -90,9 +91,6 @@ body.avec-nav #view-review-setup.active {
 #view-review-setup .rs-v21-types .rs-check input {
   position:absolute; inset:0; opacity:0; width:100%; height:100%;
   margin:0; cursor:pointer;
-}
-#view-review-setup .rs-v21-types .rs-check:focus-within {
-  outline:2px solid var(--couleur-action); outline-offset:2px;
 }
 #view-review-setup .rs-v21-lesson-btn {
   display:flex; align-items:center; justify-content:space-between; gap:12px;
@@ -167,9 +165,15 @@ body.avec-nav #view-review-setup.active {
   background:var(--couleur-action); color:var(--couleur-sur-or);
   font:800 14px var(--police); margin-top:14px;
 }
-#view-review-setup button:focus-visible,
-#view-review-setup .rs-check:focus-within {
+/* Les boutons restent navigables au clavier. Le contour des choix est
+   réservé au clavier/souris précis : jamais une bordure persistante au tap. */
+#view-review-setup button:focus-visible {
   outline:2px solid var(--couleur-action); outline-offset:2px;
+}
+@media (hover:hover) and (pointer:fine) {
+  #view-review-setup .rs-check:has(input:focus-visible) {
+    outline:2px solid var(--couleur-action); outline-offset:2px;
+  }
 }
 @media(max-width:360px) {
   #view-review-setup .rs-v21-scroll { padding:18px 16px 16px; }
