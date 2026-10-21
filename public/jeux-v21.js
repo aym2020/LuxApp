@@ -2,9 +2,37 @@
 'use strict';
 let surviePartie = null;
 const SURVIE_DUREE = 30;
-const SURVIE_BONUS = 2;
+const SURVIE_BONUS = 3;
 const SURVIE_PENALITE = 3;
 const SURVIE_MAX = 30;
+function survieComboPalier(s) { return s>=10?3:s>=5?2:s>=3?1:0; }
+function survieComboMessage(s) {
+  return s>=10?'LÉGENDAIRE ×'+s:s>=5?'EN FEU ×'+s:s>=3?'COMBO ×'+s:s===2?'DOUBLE !':'BIEN JOUÉ !';
+}
+function survieGainLabel(reel) {
+  const n=Math.round(Math.max(0,reel)*10)/10;
+  return n ? '+'+String(n).replace('.',',')+' s' : 'CHRONO PLEIN';
+}
+function survieCelebrate(p) {
+  const combo=document.getElementById('survie-combo');
+  const cri=document.getElementById('survie-combo-cri');
+  const chrono=document.getElementById('survie-chrono');
+  const gain=document.getElementById('survie-gain');
+  if(combo){
+    combo.className='survie-combo';
+    void combo.offsetWidth;
+    combo.className='survie-combo survie-combo-hit';
+    combo.setAttribute('data-tier',String(survieComboPalier(p.serie)));
+  }
+  if(cri)cri.textContent=survieComboMessage(p.serie);
+  if(gain)gain.textContent=p.gainTexte;
+  if(chrono){chrono.className='survie-hud-time';void chrono.offsetWidth;chrono.className='survie-hud-time survie-time-hit';}
+}
+function survieResetEffects(){
+  const combo=document.getElementById('survie-combo'),chrono=document.getElementById('survie-chrono');
+  if(combo)combo.className='survie-combo';
+  if(chrono)chrono.className='survie-hud-time';
+}
 
 function jeuEscape(texte) {
   return String(texte).replace(/[&<>"']/g, c =>
@@ -133,16 +161,27 @@ function survieHud() {
   if(timer)timer.textContent=Math.ceil(p.restant)+' s';
   if(jauge)jauge.style.width=Math.max(0,p.restant/SURVIE_MAX*100)+'%';
   if(serie)serie.textContent=p.serie;
+  const combo=document.getElementById('survie-combo');
+  if(combo)combo.setAttribute('data-tier',String(survieComboPalier(p.serie)));
 }
 function survieRendre() {
   const box=document.getElementById('survie-jeu'),p=surviePartie;
   if(!box||!p || !p.mot)return;
+  const effet=p.fete===true;
   box.innerHTML=
     '<div class="survie-top"><button type="button" onclick="quitterSurvie()">← Jeux</button>'+
       '<span>MODE SURVIE</span></div>'+
     '<div class="survie-hud">'+
-      '<div><span>SÉRIE</span><strong id="survie-serie">'+p.serie+'</strong></div>'+
-      '<div class="survie-hud-time"><span>CHRONO</span><strong id="survie-secondes">'+Math.ceil(p.restant)+' s</strong></div></div>'+
+      '<div id="survie-combo" class="survie-combo'+(effet?' survie-combo-hit':'')+'" data-tier="'+survieComboPalier(p.serie)+'">'+
+        '<span>SÉRIE</span><div class="survie-combo-valeur">'+
+        '<span class="survie-flamme" aria-hidden="true"><svg viewBox="0 0 28 36"><path d="M14 1C16 8 23 10 23 19C23 29 19 34 14 34C6 34 2 28 2 21C2 15 6 10 8 7C9 15 13 15 14 1Z" fill="currentColor"/></svg></span>'+
+        '<strong id="survie-serie">'+p.serie+'</strong>'+
+        '<span class="survie-etincelles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>'+
+        '<span id="survie-combo-cri" class="survie-combo-cri" aria-hidden="true">'+jeuEscape(survieComboMessage(p.serie))+'</span>'+
+        '</div></div>'+
+      '<div id="survie-chrono" class="survie-hud-time'+(effet?' survie-time-hit':'')+'"><span>CHRONO</span>'+
+        '<strong id="survie-secondes">'+Math.ceil(p.restant)+' s</strong>'+
+        '<span id="survie-gain" class="survie-gain" aria-hidden="true">'+jeuEscape(p.gainTexte||'')+'</span></div></div>'+
     '<div class="survie-piste" role="progressbar" aria-label="Temps restant" aria-valuemin="0" aria-valuemax="30" aria-valuenow="'+Math.ceil(p.restant)+'"><i id="survie-jauge" style="width:'+(p.restant/30*100)+'%"></i></div>'+
     '<div class="survie-mot"><span>RECONSTRUIS LE MOT</span><h1>'+jeuEscape(p.mot.fr)+'</h1>'+
       '<p>'+p.mot.longueur+' lettres</p></div>'+
@@ -154,6 +193,7 @@ function survieRendre() {
     '<div class="survie-actions"><button type="button" onclick="survieEffacer()" aria-label="Effacer la dernière lettre">⌫ Effacer</button>'+
       '<span id="survie-info" role="status" aria-live="polite">Choisis les lettres dans l’ordre</span></div>'+
     '<div class="survie-record">Record personnel : '+survieRecord()+' mots</div>';
+  p.fete=false;
 }
 function survieLettre(index) {
   const p=surviePartie;
@@ -172,15 +212,22 @@ function survieLettre(index) {
     p.total++;
     p.serie++;
     p.maxSerie=Math.max(p.maxSerie,p.serie);
+    const avant=p.restant;
     p.restant=Math.min(SURVIE_MAX,p.restant+SURVIE_BONUS);
+    p.gainTexte=survieGainLabel(p.restant-avant);
+    p.fete=true;
     survieEnregistrer(p.maxSerie);
-    if(info){info.className='survie-ok';info.textContent='Juste ! +2 secondes';}
+    if(info){info.className='survie-ok';info.textContent='Juste ! · '+p.gainTexte;}
   } else {
     p.serie=0;
+    p.fete=false;
+    p.gainTexte='';
     p.restant=Math.max(0,p.restant-SURVIE_PENALITE);
     if(info){info.className='survie-ko';info.textContent='Pas encore · −3 secondes';}
+    survieResetEffects();
   }
   survieHud();
+  if(correct)survieCelebrate(p);
   const courant=p;
   setTimeout(()=>{
     if(surviePartie!==courant||!p.actif)return;
@@ -223,7 +270,7 @@ function demarrerSurvie() {
   if(pool.length<4){renderJeuxHub();return;}
   survieArreter();
   surviePartie={pool,vus:new Set(),precedent:null,tuiles:[],selection:[],serie:0,maxSerie:0,total:0,
-    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null};
+    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,fete:false,gainTexte:''};
   survieNouvelleQuestion();
   showView('view-survie');
   surviePartie.dernier=performance.now();
