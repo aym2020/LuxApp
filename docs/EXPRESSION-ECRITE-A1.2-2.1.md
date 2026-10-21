@@ -14,3 +14,9 @@ Ces deux textes réutilisent volontairement les mêmes verbes, avec une progress
 Les IDs ont été versionnés en `-v2` pour ne pas comparer des résultats sur 11 ou 10 phrases avec les nouveaux résultats sur 13 ou 12 phrases. Les anciens meilleurs scores restent dans les anciennes clés de stockage, non affichées pour les nouveaux sujets. Les sept annales historiques d'A1.2 et les autres moteurs ne sont pas modifiés.
 
 **Recette :** vérifier les 13/12 phrases dans le bon ordre, le compte de 70 mots sur les trois textes, les phrases partagées, les deux substitutions de vacances, la correction et les notes, l'absence totale du bouton « Voir la traduction FR » dans ce mode, le score, les nouveaux meilleurs scores et le clavier Samsung. Le CI Node ne remplace pas une recette visuelle navigateur et mobile.
+
+## Correctif orthographique — 21 octobre 2026 (règle du N)
+
+Une réponse « mir hu kaffi gedronk » a été refusée à tort : le modèle imposait « Mir hunn Kaffi gedronk. » Or, devant **K**, la règle du N (*Eifeler Reegel*) écrit **Mir hu Kaffi gedronk.** De même, « Ech hu laang geschlof », « Ech hu meng Famill gesinn » et « Ech hu Kaffi gedronk… » sont les formes adaptées au contexte. Cinq occurrences ont été rectifiées dans les deux textes, notes correspondantes comprises, sans changer le nombre de phrases ou les 70 mots. Le correcteur compare toujours les phrases du modèle, mais celles-ci sont désormais correctes pour ces cas. Le test `test/expression-ecrite-v21.test.cjs` parcourt toutes les occurrences de `hu/hunn` des deux textes et rejoue exactement la réponse initialement pénalisée.
+
+**Historique :** la sauvegarde existante ne mémorise que le meilleur score de l'examen, pas chaque phrase erronée ; il faut donc refaire le sujet pour enregistrer le score corrigé. Ne pas valider les variantes arbitraires en supprimant `n` partout : la règle dépend du mot suivant.

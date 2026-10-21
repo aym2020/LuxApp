@@ -100,3 +100,30 @@ test('parcours réel : question vide, validation, correction, ordre, révélatio
  assert.deepEqual(saved[1],{id:'a12-expression-02-v2',score:12,total:12});
  assert.equal(views.at(-1),'view-examen-result');
 });
+
+test('Eifeler Reegel : hu devant consonne K/L/M, hunn seulement en contexte où N reste',()=>{
+ const expected=[
+  [0,1,'Ech hu laang geschlof.'],
+  [0,2,'Ech hu Kaffi gedronk an eng Banann giess.'],
+  [0,8,'Ech hu meng Famill gesinn.'],
+  [0,9,'Mir hu Kaffi gedronk.'],
+  [1,2,'Ech hu Kaffi gedronk an eng Banann giess.']
+ ];
+ for(const [di,pi,lu] of expected)assert.equal(docs[di].phrases[pi].lu,lu);
+ const keepN=new Set(['a','e','i','o','u','n','d','h','t','z']);
+ let count=0;
+ for(const d of docs)for(const p of d.phrases)
+   for(const m of p.lu.matchAll(/\b(hu|hunn)\s+([\p{L}]+)/gu)){
+     const first=m[2].normalize('NFD')[0].toLowerCase();
+     assert.equal(m[1],keepN.has(first)?'hunn':'hu',
+       'N-Reegel : sujet '+d.id+', phrase '+p.id+' : '+m[0]);
+     count++;
+   }
+ assert.ok(count>=10,'audit des auxiliaires exécuté');
+});
+test('la réponse réelle de l’utilisateur est reconnue malgré casse/ponctuation',()=>{
+ ctx.cafe=docs[0].phrases[9];
+ assert.equal(vm.runInContext("expressionReconnue('mir hu kaffi gedronk',cafe)",ctx),true);
+ assert.equal(vm.runInContext("expressionReconnue('Mir hu Kaffi gedronk.',cafe)",ctx),true);
+ assert.equal(vm.runInContext("expressionReconnue('Mir hu Kaffi giess.',cafe)",ctx),false);
+});

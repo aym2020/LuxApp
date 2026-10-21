@@ -17,13 +17,13 @@
     {
       "id": 2,
       "fr": "J'ai dormi longtemps.",
-      "lu": "Ech hunn laang geschlof.",
-      "note": "Ech hunn + geschlof : passé composé de schlofen ; laang = longtemps."
+      "lu": "Ech hu laang geschlof.",
+      "note": "Ech hu + geschlof : passé composé de schlofen ; laang = longtemps."
     },
     {
       "id": 3,
       "fr": "J'ai bu du café et mangé une banane.",
-      "lu": "Ech hunn Kaffi gedronk an eng Banann giess.",
+      "lu": "Ech hu Kaffi gedronk an eng Banann giess.",
       "note": "gedronk = bu ; eng Banann = une banane ; giess = mangé."
     },
     {
@@ -59,14 +59,14 @@
     {
       "id": 9,
       "fr": "J'ai vu ma famille.",
-      "lu": "Ech hunn meng Famill gesinn.",
+      "lu": "Ech hu meng Famill gesinn.",
       "note": "meng Famill = ma famille ; gesinn = vu."
     },
     {
       "id": 10,
       "fr": "Nous avons bu du café.",
-      "lu": "Mir hunn Kaffi gedronk.",
-      "note": "Mir hunn = nous avons ; gedronk = bu."
+      "lu": "Mir hu Kaffi gedronk.",
+      "note": "Mir hu = nous avons ; gedronk = bu."
     },
     {
       "id": 11,
