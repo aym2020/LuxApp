@@ -157,23 +157,34 @@ function introMissionAVoir(l) {
 function renderIntroMission() {
   if (studioActif(pLecon)) return studioRenderIntroMission();
   const l = pLecon;
+  const titre = l.mission.titre_intro || l.mission.titre;
+  // Hero dédié à « Aux objets trouvés » ; ne pas utiliser une scène de bus
+  // pour les autres missions, dont les scénarios sont différents.
+  const heroObjets = l.id === 3 && /objets trouvés/i.test(titre);
+  const totalUnites = unitesCoeur(l).length;
+  const totalRepliques = nbRepliquesToi(l);
+
   document.getElementById('msi-content').innerHTML =
     '<div class="msi-haut">' +
+      (heroObjets ? '<div class="msi-v21-hero" aria-hidden="true"></div>' : '') +
       '<div class="pc-mini-label pc-gold msi-in">MISSION · LEÇON ' + numLecon(l) + '</div>' +
-      '<h1 class="msi-titre msi-in">' + escHtml(l.mission.titre_intro || l.mission.titre) + '</h1>' +
+      '<h1 class="msi-titre msi-in">' + escHtml(titre) + '</h1>' +
       '<p class="msi-contexte msi-in">' + escHtml(l.mission.contexte_intro || l.mission.contexte) + '</p>' +
     '</div>' +
     '<div class="msi-objectif msi-in">' +
       '<div class="msi-objectif-titre">À la fin, tu sauras :</div>' +
-      '<div class="msi-objectif-txt">' + ICONES.coche + '<span>' + escHtml(l.mission.objectif_intro || l.mission.objectif) + '</span></div>' +
+      '<div class="msi-objectif-txt">' + ICONES.coche +
+        '<span>' + escHtml(l.mission.objectif_intro || l.mission.objectif) + '</span></div>' +
     '</div>' +
     '<div class="msi-bas msi-in">' +
-      '<div class="msi-info">' + unitesCoeur(l).length + ' unités pour t\'y préparer, puis la scène à jouer · ' +
-        nbRepliquesToi(l) + ' répliques à dire</div>' +
+      '<div class="msi-info msi-v21-info">' +
+        '<span class="msi-v21-stat"><strong>' + totalUnites + ' unités</strong><small>pour te préparer</small></span>' +
+        '<span class="msi-v21-stat"><strong>' + totalRepliques + ' répliques</strong><small>à dire dans la scène</small></span>' +
+      '</div>' +
       '<button class="pc-btn primary wide big" onclick="confirmerIntroMission()">Commencer →</button>' +
-      '<button class="pc-btn ghost wide" onclick="voirUnitesDepuisIntro()">Voir les unités</button>' +
-      // S10 : on peut aussi tenter la scène tout de suite, sans passer par les unités.
-      (peutTenterSaChance(l) ? '<button class="pc-btn ghost wide msi-tenter" onclick="tenterDepuisIntro()">Tenter la mission directement</button>' : '') +
+      '<button class="pc-btn ghost wide msi-v21-link" onclick="voirUnitesDepuisIntro()">Voir les unités</button>' +
+      // Essai facultatif : n'est pas une validation et ne change pas le score.
+      (peutTenterSaChance(l) ? '<button class="pc-btn ghost wide msi-tenter msi-v21-link" onclick="tenterDepuisIntro()">Tenter la mission directement</button>' : '') +
     '</div>';
 }
 
