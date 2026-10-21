@@ -1,10 +1,11 @@
 {
-  "id": "a12-expression-02",
+  "id": "a12-expression-02-v2",
   "titre": "Expression écrite 2",
   "titre_fr": "La semaine dernière",
   "format": "expression_ecrite",
   "niveau": "A1.2",
   "couleur": "#F5CF4D",
+  "version": "textes-simplifies-2026-10-21",
   "consigne": "Restitue le texte modèle, phrase après phrase dans l'ordre. Chaque phrase correcte vaut un point. Une correction et une explication suivent chaque réponse.",
   "phrases": [
     {
@@ -16,53 +17,65 @@
     {
       "id": 2,
       "fr": "Du lundi au vendredi, je me suis levé tôt.",
-      "lu": "Vu Méindes bis Freides sinn ech fréi opgestanen.",
-      "note": "Vu … bis … = du … au ; sinn + opgestanen."
+      "lu": "Méindes bis Freides sinn ech fréi opgestanen.",
+      "note": "Méindes bis Freides = du lundi au vendredi ; fréi = tôt ; sinn + opgestanen."
     },
     {
       "id": 3,
-      "fr": "J'ai bu un café, puis je suis allé au travail.",
-      "lu": "Ech hunn e Kaffi gedronk an duerno sinn ech op d'Aarbecht gefuer.",
-      "note": "hunn avec gedronk, mais sinn avec gefuer."
+      "fr": "J'ai bu du café et mangé une banane.",
+      "lu": "Ech hunn Kaffi gedronk an eng Banann giess.",
+      "note": "Même phrase que dans le texte du week-end : hunn + gedronk / giess."
     },
     {
       "id": 4,
-      "fr": "Au bureau, j'ai travaillé avec mes collègues.",
-      "lu": "Um Büro hunn ech mat menge Kolleegen geschafft.",
-      "note": "Um Büro = au bureau ; mat menge Kolleegen = avec mes collègues."
+      "fr": "Ensuite, je suis allé au travail en voiture.",
+      "lu": "Duerno sinn ech op d'Aarbecht gefuer.",
+      "note": "Duerno = ensuite ; sinn + gefuer exprime un déplacement en véhicule."
     },
     {
       "id": 5,
-      "fr": "Le midi, j'ai mangé quelque chose.",
-      "lu": "Mëttes hunn ech eppes giess.",
-      "note": "Mëttes = le midi ; eppes = quelque chose."
+      "fr": "À midi, j'ai mangé une pizza.",
+      "lu": "Mëttes hunn ech eng Pizza giess.",
+      "note": "Même phrase que dans le texte du week-end."
     },
     {
       "id": 6,
-      "fr": "Le soir, je suis rentré chez moi.",
+      "fr": "Le soir, je suis rentré chez moi en voiture.",
       "lu": "Owes sinn ech heemgefuer.",
-      "note": "heemgefuer = rentré en véhicule ; sinn est l'auxiliaire."
+      "note": "Owes = le soir ; heemgefuer = rentré chez soi en véhicule."
     },
     {
       "id": 7,
-      "fr": "À la maison, j'ai mangé avec ma famille.",
-      "lu": "Doheem hunn ech mat menger Famill giess.",
-      "note": "Doheem = à la maison ; mat menger Famill."
+      "fr": "J'ai regardé la télévision.",
+      "lu": "Ech hunn Tëlee gekuckt.",
+      "note": "Tëlee gekuckt = regardé la télévision."
     },
     {
       "id": 8,
-      "fr": "J'ai aussi regardé un film et écouté de la musique.",
-      "lu": "Ech hunn och e Film gekuckt a Musek gelauschtert.",
-      "note": "och = aussi ; hunn + gekuckt / gelauschtert."
+      "fr": "J'ai aussi écouté de la musique et lu un livre.",
+      "lu": "Ech hunn och Musek gelauschtert an e Buch gelies.",
+      "note": "Même phrase que dans le texte du week-end."
     },
     {
       "id": 9,
-      "fr": "Le week-end, je me suis reposé.",
-      "lu": "Um Weekend hunn ech mech ausgerout.",
-      "note": "mech ausgerout = je me suis reposé."
+      "fr": "Le week-end, j'ai dormi longtemps.",
+      "lu": "Um Weekend hunn ech laang geschlof.",
+      "note": "Um Weekend = le week-end ; laang geschlof = dormi longtemps."
     },
     {
       "id": 10,
+      "fr": "J'ai regardé un film.",
+      "lu": "Ech hunn e Film gekuckt.",
+      "note": "Même phrase que dans le texte du week-end."
+    },
+    {
+      "id": 11,
+      "fr": "J'étais très content.",
+      "lu": "Ech war ganz frou.",
+      "note": "Ech war = j'étais ; ganz = très ; frou = content."
+    },
+    {
+      "id": 12,
       "fr": "C'était une bonne semaine.",
       "lu": "Et war eng gutt Woch.",
       "note": "Et war = c'était ; eng gutt Woch = une bonne semaine."

@@ -19,8 +19,7 @@
 #view-examen .xee-solution-label {font:800 11px var(--font);text-transform:uppercase;letter-spacing:.1em;color:var(--couleur-texte-3)}
 .xee-solution {font:650 17px/1.5 var(--font);color:var(--couleur-texte);margin:0}
 .xee-user {font-size:14px;line-height:1.5;color:var(--couleur-texte-2);margin:0;overflow-wrap:anywhere}
-.xee-note,.xee-fr {font-size:14px;line-height:1.55;color:var(--couleur-texte-2);margin:0}
-.xee-translate {align-self:flex-start;background:transparent;border:1px solid var(--couleur-bord-fort);color:var(--couleur-texte-2);padding:8px 12px;border-radius:10px;min-height:42px;font:700 13px var(--font);cursor:pointer}
+.xee-note {font-size:14px;line-height:1.55;color:var(--couleur-texte-2);margin:0}
 #view-examen-result .xee-full,#view-examen-result .xee-variant {border:1px solid var(--couleur-bord-1);background:var(--couleur-surface-1);padding:16px;border-radius:15px}
 #view-examen-result .xee-full h2 {font:750 19px var(--font);margin:0 0 12px}
 #view-examen-result .xee-full p {font:400 16px/1.8 var(--font);margin:0}
@@ -30,3 +29,7 @@
 #view-examen-result .xee-result-row.ok {border-left-color:var(--couleur-reussi)}
 #view-examen-result .xee-item-num {font:800 12px var(--font);text-transform:uppercase;letter-spacing:.07em;color:var(--couleur-texte-2)}
 @media(max-height:730px){#view-examen .xee-question{gap:10px;padding:8px 0}#view-examen .xee-prompt{font-size:clamp(26px,6.5vw,38px)}#view-examen #xee-input{min-height:80px}}
+
+/* Variante vacances : les deux phrases remplacées, sans bouton FR redondant. */
+#view-examen-result .xee-variant .xee-variant-old {color:var(--couleur-texte-2);text-decoration:line-through}
+#view-examen-result .xee-variant .xee-variant-new {color:var(--couleur-reussi);font-weight:700}

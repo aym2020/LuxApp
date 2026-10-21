@@ -42,8 +42,7 @@ function expressionRender() {
       (!rep.ok?'<p class="xee-user">Ta réponse : ' + escHtml(rep.texte || 'Non répondu') + '</p>':'') +
       '<div class="xee-solution-label">Phrase du texte modèle</div><p class="xee-solution" lang="lb">' + escHtml(p.lu) + '</p>' +
       '<p class="xee-note">' + escHtml(p.note) + '</p>' +
-      '<button type="button" class="xee-translate" aria-expanded="false" onclick="expressionToggleTraduction(this)">Voir la traduction FR</button>' +
-      '<p class="xee-fr hidden">' + escHtml(p.fr) + '</p></div>';
+      '</div>';
     document.getElementById('ex-next').textContent = i===total-1 ? 'Voir le score' : 'Phrase suivante';
   }
   document.getElementById('ex-body').innerHTML=h;
@@ -73,13 +72,6 @@ function expressionNext() {
   } else expressionFinish();
 }
 function expressionPrev() { /* Une phrase corrigée ne peut pas être rejouée dans le même examen. */ }
-function expressionToggleTraduction(button) {
-  const el=button.nextElementSibling;
-  if (!el) return;
-  const visible=el.classList.toggle('hidden')===false;
-  button.setAttribute('aria-expanded',String(visible));
-  button.textContent=visible?'Masquer la traduction FR':'Voir la traduction FR';
-}
 function expressionFinish() {
   if (!expressionEtat || !exam || !expressionEstSujet(exam)) return;
   saveExamScore(exam.id,expressionScore(expressionEtat.reponses),exam.phrases.length);
@@ -105,9 +97,17 @@ function expressionRenderResult() {
     '<div class="exr-sub">Expression écrite · 1 point par phrase du texte modèle</div></div>' +
     '<section class="xee-full"><h2>Le texte complet</h2><p lang="lb">' +
     exam.phrases.map(p=>escHtml(p.lu)).join(' ') + '</p></section>';
-  if (exam.variante) h+='<details class="xee-variant"><summary>' + escHtml(exam.variante.titre) +
-    '</summary><p lang="lb">' + escHtml(exam.variante.lu) + '</p><p>' + escHtml(exam.variante.fr) +
-    '</p><small>Variante facultative, non notée.</small></details>';
+  if (exam.variante && Array.isArray(exam.variante.changements)) {
+    h+='<details class="xee-variant"><summary>' + escHtml(exam.variante.titre) + '</summary>' +
+      '<p>Pour parler de tes vacances, remplace seulement ces deux phrases :</p>';
+    exam.variante.changements.forEach(c => {
+      const initiale=exam.phrases[c.index];
+      if (!initiale) return;
+      h+='<p class="xee-variant-old" lang="lb">' + escHtml(initiale.lu) + '</p>' +
+        '<p class="xee-variant-new" lang="lb">→ ' + escHtml(c.lu) + '</p>';
+    });
+    h+='</details>';
+  }
   h += '<div class="exr-filter"><button class="' + (!filtrer?'active':'') +
     '" onclick="expressionFiltrer(false)">Toute la correction</button>' +
     '<button class="' + (filtrer?'active':'') + '" onclick="expressionFiltrer(true)">Mes erreurs (' + erreurs + ')</button></div>';
@@ -119,8 +119,7 @@ function expressionRenderResult() {
       '<div class="xee-item-num">Phrase ' + (i+1) + ' · ' + (ok?'Juste':'À revoir') + '</div>' +
       (!ok?'<p class="xee-user">Ta réponse : ' + escHtml(ans&&ans.texte?ans.texte:'Non répondu') + '</p>':'') +
       '<p class="xee-solution" lang="lb">' + escHtml(p.lu) + '</p>' +
-      '<button type="button" class="xee-translate" aria-expanded="false" onclick="expressionToggleTraduction(this)">Voir la traduction FR</button>' +
-      '<p class="xee-fr hidden">' + escHtml(p.fr) + '</p><p class="xee-note">' + escHtml(p.note) + '</p></section>';
+      '<p class="xee-note">' + escHtml(p.note) + '</p></section>';
   });
   h+='<div class="exr-actions"><button class="lien-or" onclick="startExamen(\'' + exam.id + '\')">Refaire ce texte</button></div>';
   document.getElementById('exr-body').innerHTML=h;

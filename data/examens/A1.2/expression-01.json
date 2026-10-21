@@ -1,82 +1,103 @@
 {
-  "id": "a12-expression-01",
+  "id": "a12-expression-01-v2",
   "titre": "Expression écrite 1",
   "titre_fr": "Le week-end dernier",
   "format": "expression_ecrite",
   "niveau": "A1.2",
   "couleur": "#F5CF4D",
+  "version": "textes-simplifies-2026-10-21",
   "consigne": "Restitue le texte modèle, phrase après phrase dans l'ordre. Chaque phrase correcte vaut un point. Une correction et une explication suivent chaque réponse.",
   "phrases": [
     {
       "id": 1,
-      "fr": "Le week-end dernier était très agréable.",
-      "lu": "De leschte Weekend war ganz schéin.",
+      "fr": "Le week-end dernier était très bien.",
+      "lu": "De leschte Weekend war ganz gutt.",
       "note": "De leschte Weekend = le week-end dernier ; war = était."
     },
     {
       "id": 2,
-      "fr": "J'ai passé beaucoup de temps avec ma famille.",
-      "lu": "Ech hu vill Zäit mat menger Famill verbruecht.",
-      "note": "hu + verbruecht : auxiliaire et participe passé."
+      "fr": "J'ai dormi longtemps.",
+      "lu": "Ech hunn laang geschlof.",
+      "note": "Ech hunn + geschlof : passé composé de schlofen ; laang = longtemps."
     },
     {
       "id": 3,
-      "fr": "Nous avons bu du café ensemble et mangé quelque chose de bon.",
-      "lu": "Mir hunn zesumme Kaffi gedronk an eppes Guddes giess.",
-      "note": "hunn avec mir ; gedronk et giess sont deux participes."
+      "fr": "J'ai bu du café et mangé une banane.",
+      "lu": "Ech hunn Kaffi gedronk an eng Banann giess.",
+      "note": "gedronk = bu ; eng Banann = une banane ; giess = mangé."
     },
     {
       "id": 4,
-      "fr": "J'ai regardé un film et écouté de la musique.",
-      "lu": "Ech hunn e Film gekuckt a Musek gelauschtert.",
-      "note": "hunn + gekuckt / gelauschtert."
+      "fr": "Ensuite, j'ai regardé la télévision.",
+      "lu": "Duerno hunn ech Tëlee gekuckt.",
+      "note": "Duerno = ensuite ; Tëlee kucken = regarder la télévision."
     },
     {
       "id": 5,
-      "fr": "Je suis aussi allé me promener.",
-      "lu": "Ech sinn och spadséiere gaangen.",
-      "note": "sinn est l'auxiliaire du déplacement."
+      "fr": "À midi, j'ai mangé une pizza.",
+      "lu": "Mëttes hunn ech eng Pizza giess.",
+      "note": "Mëttes = à midi ; eng Pizza = une pizza."
     },
     {
       "id": 6,
-      "fr": "Ensuite, j'ai vu mes amis.",
-      "lu": "Duerno hunn ech meng Frënn gesinn.",
-      "note": "Duerno en tête, puis le verbe conjugué hunn."
+      "fr": "J'ai aussi écouté de la musique et lu un livre.",
+      "lu": "Ech hunn och Musek gelauschtert an e Buch gelies.",
+      "note": "och = aussi ; gelauschtert = écouté ; gelies = lu."
     },
     {
       "id": 7,
-      "fr": "Le soir, j'ai cuisiné à la maison.",
-      "lu": "Owes hunn ech doheem gekacht.",
-      "note": "Owes = le soir ; doheem = à la maison."
+      "fr": "Le soir, j'étais à la maison.",
+      "lu": "Owes war ech doheem.",
+      "note": "Owes = le soir ; war ech = j'étais ; doheem = à la maison."
     },
     {
       "id": 8,
-      "fr": "Nous avons beaucoup discuté et rigolé.",
-      "lu": "Mir hu vill geschwat a gelaacht.",
-      "note": "Mir hu : nous avons ; geschwat et gelaacht."
+      "fr": "J'ai regardé un film.",
+      "lu": "Ech hunn e Film gekuckt.",
+      "note": "gekuckt : participe passé de kucken (regarder)."
     },
     {
       "id": 9,
-      "fr": "J'ai aussi lu un livre.",
-      "lu": "Ech hunn och e Buch gelies.",
-      "note": "gelies est le participe de liesen."
+      "fr": "J'ai vu ma famille.",
+      "lu": "Ech hunn meng Famill gesinn.",
+      "note": "meng Famill = ma famille ; gesinn = vu."
     },
     {
       "id": 10,
-      "fr": "C'était un bon moment.",
-      "lu": "Et war eng flott Zäit.",
-      "note": "Et war = c'était."
+      "fr": "Nous avons bu du café.",
+      "lu": "Mir hunn Kaffi gedronk.",
+      "note": "Mir hunn = nous avons ; gedronk = bu."
     },
     {
       "id": 11,
-      "fr": "J'étais très content et reposé.",
-      "lu": "Ech war ganz frou an ausgerout.",
-      "note": "war est le passé de sinn ; ausgerout = reposé."
+      "fr": "J'ai aussi beaucoup étudié le luxembourgeois.",
+      "lu": "Ech hunn och vill Lëtzebuergesch geléiert.",
+      "note": "vill = beaucoup ; geléiert = appris / étudié."
+    },
+    {
+      "id": 12,
+      "fr": "J'étais content.",
+      "lu": "Ech war frou.",
+      "note": "Ech war = j'étais ; frou = content."
+    },
+    {
+      "id": 13,
+      "fr": "C'était un beau week-end.",
+      "lu": "Et war e schéine Weekend.",
+      "note": "Et war = c'était ; e schéine Weekend = un beau week-end."
     }
   ],
   "variante": {
-    "titre": "Variante vacances (hors score)",
-    "lu": "Meng lescht Vakanz war ganz schéin.",
-    "fr": "Mes dernières vacances étaient très agréables."
+    "titre": "Variante vacances — 70 mots (hors score)",
+    "changements": [
+      {
+        "index": 0,
+        "lu": "Meng lescht Vakanz war ganz gutt."
+      },
+      {
+        "index": 12,
+        "lu": "Et war eng schéi Vakanz."
+      }
+    ]
   }
 }
