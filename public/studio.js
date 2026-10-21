@@ -102,6 +102,8 @@ function studioRenderMission() {
       '<button type="button" class="studio-option" onclick="studioChoisir(' + i + ')">' +
       escHtml(rep) + '</button>').join('') + '</div>';
   document.getElementById('ms-reponse').classList.remove('hidden');
+  // Chaque défi commence sur sa question, pas au scroll de la correction précédente.
+  document.getElementById('ms-body').scrollTop = 0;
 }
 
 function studioEcouter(bouton) {
@@ -122,21 +124,35 @@ function studioChoisir(index) {
   ms.resultats[ms.idx] = correcte ? 'ok' : 'erreur';
   if (!correcte) perdreVie();
   arreterAudio();
-  const boutons = Array.from(document.querySelectorAll('#ms-reponse .studio-option'));
-  boutons.forEach((b,i) => {
-    b.disabled = true;
-    if (q.choix[i] === q.reponse) b.classList.add('correct');
-    else if (i === index) b.classList.add('wrong');
-  });
+  // Après la réponse, les choix ne restent pas devant l'explication :
+  // le pied d'écran accueille uniquement l'action « Continuer ».
+  // Le choix de l'apprenant reste visible dans la correction.
   const correction = q.correction ? '<div class="studio-correction"><b>Forme correcte : </b>' +
     escHtml(q.correction) + '</div>' : '';
-  document.getElementById('ms-body').insertAdjacentHTML('beforeend',
+  const choix = '<div class="studio-recap">Ton choix : <strong>' +
+    escHtml(q.choix[index]) + '</strong></div>';
+  const attendu = correcte ? '' : '<div class="studio-recap">Réponse attendue : <strong>' +
+    escHtml(q.reponse) + '</strong></div>';
+  const corps = document.getElementById('ms-body');
+  corps.insertAdjacentHTML('beforeend',
     '<div class="studio-feedback ' + (correcte ? 'ok' : 'ko') + '"><b>' +
-    (correcte ? '✓ Exact !' : '✕ Pas encore') + '</b><p>' + escHtml(q.explication) +
+    (correcte ? '✓ Exact !' : '✕ Pas encore') + '</b>' +
+    choix + attendu + '<p>' + escHtml(q.explication) +
     '</p>' + correction + '</div>');
-  document.getElementById('ms-reponse').insertAdjacentHTML('beforeend',
+  document.getElementById('ms-reponse').innerHTML =
     '<button type="button" class="pc-btn primary wide big studio-suivant" onclick="studioSuivant()">' +
-      (ms.idx === 7 ? 'Voir mon résultat' : 'Continuer →') + '</button>');
+      (ms.idx === 7 ? 'Voir mon résultat' : 'Continuer →') + '</button>';
+
+  // Cadrer le DÉBUT de la correction dans la zone défilante de la mission.
+  // Pas de scrollIntoView sur la page : le CTA et l'en-tête restent immobiles.
+  const montrerCorrection = () => {
+    const retour = corps.querySelector('.studio-feedback');
+    if (!retour) return; // « Continuer » a pu être pressé entre-temps.
+    corps.scrollTop += retour.getBoundingClientRect().top -
+      corps.getBoundingClientRect().top - 10;
+  };
+  if (typeof requestAnimationFrame === 'function') requestAnimationFrame(montrerCorrection);
+  else montrerCorrection();
 }
 
 function studioSuivant() {
