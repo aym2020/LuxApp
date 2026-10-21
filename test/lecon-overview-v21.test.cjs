@@ -72,7 +72,7 @@ test('Synthèses compactes : lancement du contenu complet et bilan, sans boutons
   };
   const l={id:1,titre:'Moien!',titre_fr:'Salutations',unites:[{id:1}]};
   const env={
-    pLecon:l,pLibreIci:null,loadRun:()=>null,
+    pLecon:l,pLibreIci:null,TOUTE_LA_LECON:'all',loadRun:()=>null,
     resumeRevision:()=>({parLecon:{1:{dus:0,dusParUnite:{}}}}),
     unitesCoeur:()=>[{id:1}],getUnitBest:()=>null,
     numLecon:()=>1,missionHtml:()=>'',carteUniteHtml:()=>'<div>UNITÉ</div>',
@@ -94,7 +94,7 @@ test('Reprise d’une leçon complète entamée toujours possible', () => {
   const nodes={'pl-num':{},'pl-titre':{},'pl-sous':{},'pl-units':{innerHTML:''}};
   const l={id:1,titre:'Leçon',titre_fr:'Cours',unites:[]};
   const env={
-    pLecon:l,loadRun:(libre)=>libre?{leconId:1,uniteId:'all'}:null,
+    pLecon:l,TOUTE_LA_LECON:'all',loadRun:(libre)=>libre?{leconId:1,uniteId:'all'}:null,
     resumeRevision:()=>({parLecon:{1:{dus:0,dusParUnite:{}}}}),
     unitesCoeur:()=>[],numLecon:()=>1,missionHtml:()=>'',nbItems:()=>80,
     minutesPour:()=>16,leconComplete:()=>false,
