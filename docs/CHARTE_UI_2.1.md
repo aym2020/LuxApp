@@ -89,6 +89,12 @@ L'effet V2.1 doit rester fluide, **pas spectaculaire** :
 - Aucun scroll horizontal, aucun bord supérieur de CTA masqué sous le hero, aucun bouton hors champ. Tap targets ≥ **44 px**, boutons principaux ≥ **48 px** ; contrastes et focus clavier conformes au design system.
 - Préserver le scroll, le retour Android, le retour applicatif, les états de session et les positions d'éléments lorsqu'ils sont contractuellement requis.
 
+## Réglages / panneau Plus — appuis rapides (21 octobre 2026)
+
+Le menu **Plus** (roue dentée de l'accueil et onglet Plus) ne doit pas s'ouvrir plusieurs fois sous un double appui. Un tap supplémentaire sur la position de la roue, intercepté par le voile du panneau, ne doit pas provoquer sa fermeture instantanée. La fermeture reste accessible en touchant une autre zone du voile, en choisissant une destination ou avec le bouton Retour.
+
+**Implémentation** : `public/accueil.js` réutilise le panneau Plus déjà ouvert, neutralise sur son voile les taps correspondant à l'emplacement de la roue et ignore les taps parasites pendant les 250 premières millisecondes. Les panneaux de mission conservent leur comportement de remplacement. `public/style.css` laisse la roue immobile à l'arrivée sur l'accueil et remplace la translation du panneau par un fondu court. **Recette** : `test/menu-taps-v21.test.cjs`, puis essai de double/triple appui rapide sur Chrome Android.
+
 ## Stabilisation des CTA — 21 octobre 2026
 
 Lors de l'ouverture d'une annale, le bandeau « banque de mots + Corriger » apparaissait partiellement hors champ avant de se repositionner. L'origine relevait de deux choix de présentation : animation de `.view` avec translation et barre `.ex-bottom` positionnée en `sticky` dans un écran de longueur variable.
