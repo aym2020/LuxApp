@@ -30,8 +30,8 @@ function renderFakeIntro(id, titre) {
 }
 
 test('Le visuel hero est un vrai asset WebP dédié à la mission correspondante',()=>{
-  assert.match(html,/href="mission-intro-v21\.css"/);
-  assert.match(css,/url\("art\/mission-objets-trouves-v21\.webp"\)/);
+  assert.match(html,/href="mission-intro-v21\.css\?v=2"/);
+  assert.match(css,/url\("art\/mission-objets-trouves-v21\.webp\?v=hd1024"\)/);
   assert.match(css,/#view-msintro \.msi-v21-hero/);
   const result=renderFakeIntro(3,'Aux objets trouvés');
   assert.match(result,/class="msi-v21-hero" aria-hidden="true"/);
@@ -53,6 +53,8 @@ test('Aucune instruction pédagogique ni option de navigation supprimée',()=>{
   assert.match(result,/onclick="confirmerIntroMission\(\)"/);
   assert.match(result,/onclick="voirUnitesDepuisIntro\(\)"/);
   assert.match(result,/onclick="tenterDepuisIntro\(\)"/);
+  assert.match(result,/class="msi-v21-links"/);
+  assert.match(result,/>Tenter la mission<\/button>/);
   assert.match(html,/id="view-msintro"/);
   assert.match(html,/onclick="voirUnitesDepuisIntro\(\)">Passer/);
 });
@@ -63,6 +65,8 @@ test('Pas de bloc orange ou de vide artificiel ; CTA et liens restent accessible
   assert.match(css,/#view-msintro \.msi-v21-info/);
   assert.match(css,/#view-msintro \.msi-bas \.pc-btn.primary/);
   assert.match(css,/#view-msintro \.msi-bas \.msi-v21-link/);
+  assert.match(css,/#view-msintro \.msi-v21-links\s*\{[^}]*display: flex;/s);
+  assert.match(css,/#view-msintro \.msi-bas \.msi-v21-link\s*\{[^}]*min-height: 44px;/s);
   assert.match(css,/@media \(max-width: 380px\)/);
   assert.match(css,/@media \(max-height: 740px\)/);
   assert.match(css,/:focus-visible/);
