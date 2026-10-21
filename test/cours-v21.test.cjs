@@ -50,7 +50,7 @@ function fixture() {
 }
 
 test('La feuille Cours est correctement chargée sur 2.1',()=>{
- assert.match(html,/href="cours-v21\.css\?v=1"/);
+ assert.match(html,/href="cours-v21\.css\?v=2"/);
  assert.match(html,/src="cours75\.js\?v=2"/);
  assert.match(html,/src="parcours\.js\?v=2"/);
  assert.match(html,/id="cours-panel"/);
@@ -126,4 +126,23 @@ test('Aucun contenu ni état d’exercice modifié par la nouvelle feuille',()=>
  assert.doesNotMatch(css,/#view-parcours|#view-session|#view-pintro|#view-dashboard/);
  assert.match(css,/prefers-reduced-motion/);
  assert.match(css,/env\(safe-area-inset-bottom\)/);
+});
+
+test('Les filtres et les onglets se rapprochent, avec des cibles de 44 px',()=>{
+ assert.match(rule('#cours-panel .cours75-navigation'),/padding: 7px 23px 0/);
+ assert.match(rule('#cours-panel .cours75-portee'),/padding: 0 0 4px/);
+ assert.match(rule('#cours-panel .cours75-onglet'),/min-height: 44px/);
+ assert.match(rule('#cours-panel .cours75-chip'),/min-height: 44px/);
+ assert.match(css,/#cours-panel \.cours75-onglet\.active::after/);
+});
+
+test('Tableaux : mots non césurés avec défilement horizontal de secours',()=>{
+ assert.match(rule('#cours-panel .cours-table'),/table-layout: auto/);
+ assert.match(rule('#cours-panel .cours-table-wrap'),/overflow-x: auto/);
+ const cells = rule('#cours-panel .cours-table th,\n#cours-panel .cours-table td');
+ assert.match(cells,/overflow-wrap: normal/);
+ assert.match(cells,/word-break: normal/);
+ assert.match(cells,/hyphens: none/);
+ assert.match(cells,/-webkit-hyphens: none/);
+ assert.doesNotMatch(css,/#cours-panel \.cours-table \{ table-layout: fixed/);
 });
