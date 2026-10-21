@@ -475,6 +475,8 @@ function openReviewSetup(seuleLeconId) {
 
   refreshReviewAvailability();
   showView('view-review-setup');
+  // Ce panneau possède son propre défilement : repartir du haut à chaque ouverture.
+  document.querySelector('#view-review-setup .rs-v21-scroll').scrollTop = 0;
 }
 
 // Lit les sélections courantes (leçons + types + niveaux).
