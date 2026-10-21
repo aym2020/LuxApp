@@ -44,7 +44,7 @@ Le prototype autonome fourni dans la conversation sert **uniquement** de cible v
 
 ## Réglages visuels et accessibilité
 
-L'objectif de composition mobile est un viewport CSS proche de **390 px**, avec un hero d'environ **338 px**. Les règles à 375 et 330 px réduisent les tailles de texte ; les petites hauteurs conservent le défilement plutôt que de cacher des fonctionnalités.
+Après retour sur capture Android (21 octobre 2026), le hero passe de **338 à 220 px** (208 px en largeur ≤375, 205 px sur petite hauteur et 190 px sur très petite hauteur). Le CTA descend à **70 px minimum** et affiche visuellement deux lignes ; l'intitulé complet de l'étape reste dans son `aria-label`. La barre de raccourcis est rapprochée et le lien « Voir mon chemin » reste présent. Les règles à 375 et 330 px réduisent les tailles de texte ; les petites hauteurs conservent le défilement plutôt que de cacher des fonctionnalités.
 
 Tous les boutons gardent des cibles de 44 px minimum et un état de focus explicite. L'image est décorative et masquée aux lecteurs d'écran ; le slogan et « MOIEN » restent du texte HTML. Les préférences de réduction des animations sont respectées.
 
@@ -73,3 +73,9 @@ Les tests automatisés **ne constituent pas** une validation graphique sur un vr
 ## Rollback
 
 Désactiver l'intégration de `watfir-dev.css` et `watfir-dev.js` dans `public/index.html` restaure l'accueil `2.1`, sans toucher au moteur de progression. La branche `dev` ne doit pas être fusionnée tant que l'ensemble de la recette n'est pas validé visuellement.
+
+## Ajustement de densité mobile — capture réelle du 21/10/2026
+
+Le premier déploiement présentait une zone de marque disproportionnée : le paysage prenait trop de hauteur, le CTA ressemblait à une carte et les trois raccourcis passaient sous le bas de la fenêtre du navigateur. Cette correction ne change **ni les couleurs, ni l'illustration, ni les fonctions**. Elle réduit les espacements et évite la troisième ligne visible dans le CTA, tout en conservant la description complète pour l'accessibilité. Un test de CSS vérifie les limites de hauteur et les cibles tactiles.
+
+**Limite de validation :** la correction est contrôlée par GitHub Actions, mais le comportement exact au bas de la fenêtre Android doit être revu après redéploiement. Selon la hauteur utile du navigateur, le défilement peut toujours être nécessaire, notamment avec du texte agrandi.
