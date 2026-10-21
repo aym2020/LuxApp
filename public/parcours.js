@@ -732,6 +732,11 @@ function openIntro(uniteId) {
       ? (u.id === 1 ? 'Découvrir les sons →' : 'Découvrir la règle →')
       : 'Commencer →') + '</button>';
   showView('view-pintro');
+  // L'introduction a son propre conteneur scrollable : window.scrollTo(0,0)
+  // ne le réinitialise pas. Chaque NOUVELLE unité commence en haut, y compris
+  // lorsqu'on vient de consulter le bas de l'unité précédente.
+  const introScroll = document.getElementById('pi-content');
+  if (introScroll) introScroll.scrollTop = 0;
 }
 
 // Retour depuis « Avant de commencer » : l'écran d'où on est parti, sur cette unité.
