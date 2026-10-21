@@ -14,7 +14,8 @@ function preparer({ anciennes = [], terminees = [0], active = 1, parties = [0,1,
   const liste = parties.map(id => ({ id, titre_fr: 'Leçon test ' + id }));
   const box = { innerHTML: '' };
   const c = {
-    document: { getElementById: () => box },
+    document: { getElementById: () => box, addEventListener() {} },
+    window: { addEventListener() {} },
     niveauActif: 'A1.1',
     leconsActives: () => liste,
     leconEnCours: () => liste.find(l => l.id === active) || null,
