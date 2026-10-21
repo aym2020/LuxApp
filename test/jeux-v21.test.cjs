@@ -7,6 +7,7 @@ function make(){
  const store=new Map(),nodes=new Map(),timeouts=[];let tick=1000;
  const element=id=>{
   if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',style:{},disabled:false,
+   className:id==='survie-combo'?'survie-combo':id==='survie-chrono'?'survie-hud-time':'',
    classList:{contains:cl=>id==='view-survie'&&cl==='active'},setAttribute(){},focus(){},blur(){}});
   return nodes.get(id);
  };
@@ -118,7 +119,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=3"/);
+ assert.match(html,/href="jeux-v21\.css\?v=4"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
