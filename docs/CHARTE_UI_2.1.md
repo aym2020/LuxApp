@@ -89,6 +89,12 @@ L'effet V2.1 doit rester fluide, **pas spectaculaire** :
 - Aucun scroll horizontal, aucun bord supérieur de CTA masqué sous le hero, aucun bouton hors champ. Tap targets ≥ **44 px**, boutons principaux ≥ **48 px** ; contrastes et focus clavier conformes au design system.
 - Préserver le scroll, le retour Android, le retour applicatif, les états de session et les positions d'éléments lorsqu'ils sont contractuellement requis.
 
+## Mission « Le studio radio » — feedback non masqué (21 octobre 2026)
+
+Pendant les huit défis, la zone basse `#ms-reponse` gardait les choix après validation puis ajoutait « Continuer » ; le retour « Exact ! / Pas encore » était, lui, injecté dans `#ms-body` et pouvait se retrouver caché sous cette zone devenue trop haute. La correction V2.1 remplace les choix par **un seul bouton « Continuer »** une fois la réponse enregistrée, affiche la réponse donnée (et, si elle est fausse, celle attendue) dans `.studio-feedback`, puis recentre le début de cette correction **dans le scroll local** de `#ms-body`. Chaque nouveau défi réinitialise ce scroll. Le compteur de vies, la notation, l'audio et la fin de mission ne changent pas.
+
+Régression couverte par `test/studio-feedback-v21.test.cjs` : succès, erreur, double appui, passage au défi suivant, huitième défi et défilement local. Recette visuelle Android nécessaire sur une petite hauteur et avec texte agrandi.
+
 ## Introductions de mission et d'unité — parité V2 (21 octobre 2026)
 
 L'écran « Unité 1 · Ce que tu vas apprendre » de la V2.1 devenait trop haut : la règle et l'avertissement repoussaient la synthèse vers le bas, alors que le CTA restait ancré et masquait visuellement la dernière ligne. La V2 avait déjà des règles compactes (**SPEC 85**) et une disposition fixe de découverte (**SPEC 86**), absentes de la branche `2.1`.
