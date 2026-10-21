@@ -32,8 +32,9 @@
 #view-survie .survie-mot p{font:500 13px var(--font);color:#aca293}
 #view-survie .survie-cases{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:5px;margin:6px auto 16px;max-width:100%}
 #view-survie .survie-case{width:clamp(24px,7.1vw,46px);height:clamp(40px,10vw,54px);border-bottom:3px solid #736445;border-radius:8px;background:#211f1a;display:grid;place-items:center;font:800 clamp(18px,5vw,25px) var(--font);color:#f6f0e6}
-#view-survie .survie-tuiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
-#view-survie .survie-tuile{min-width:0;min-height:53px;border:1px solid #4d473e;border-bottom:3px solid #6f6250;border-radius:11px;background:#24221d;color:#eee7dc;font:800 clamp(18px,5vw,26px) var(--font);cursor:pointer;touch-action:manipulation}
+/* Flex-wrap centre aussi la DERNIÈRE rangée (7 à 12 lettres). */
+#view-survie .survie-tuiles{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;width:100%;max-width:347px;margin-inline:auto}
+#view-survie .survie-tuile{flex:0 0 clamp(44px,13.2vw,52px);min-width:0;min-height:53px;border:1px solid #4d473e;border-bottom:3px solid #6f6250;border-radius:11px;background:#24221d;color:#eee7dc;font:800 clamp(18px,5vw,26px) var(--font);cursor:pointer;touch-action:manipulation}
 #view-survie .survie-tuile:disabled{opacity:.23;cursor:default}
 #view-survie .survie-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:54px}
 #view-survie .survie-actions button{border:1px solid #49443b;border-radius:10px;color:#e9e1d4;background:transparent;min-height:46px;padding:9px 12px;font:700 13px var(--font)}
