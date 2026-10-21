@@ -17,8 +17,8 @@ function extraction(s,begin,end){
   return s.slice(a,b);
 }
 test('Nouveautés est chargé et lié au menu Plus avec version 2.1',()=>{
- assert.match(html,/href="nouveautes-v21\.css"/);
- assert.match(html,/src="nouveautes-v21\.js"/);
+ assert.match(html,/href="nouveautes-v21\.css\?v=2"/);
+ assert.match(html,/src="nouveautes-v21\.js\?v=2"/);
  assert.match(accueil,/\[ICONES\.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2\.1', 'ouvrirNouveautes\(\)'\]/);
  assert.match(accueil,/<div class="plus-version">LuxApp <b>2\.1<\/b><\/div>/);
 });
@@ -32,17 +32,17 @@ test('Six thèmes issus de vrais commits : écran éditorial, pas un changelog b
  assert.match(source,/lien|visuel|scénario|série/i);
 });
 test('Le panneau de nouveautés est lisible, et chaque commit possède un lien externe',()=>{
- let rendered='',title='',classes=[],attr={},heading={};
+ let rendered='',title='',initialClass='',attr={},heading={};
  const env={
- ouvrirPanneau:(h,t)=>{rendered=h;title=t},
+ ouvrirPanneau:(h,t,after,firstClass)=>{rendered=h;title=t;initialClass=firstClass},
  document:{getElementById:id=>id==='panneau'?{
-  classList:{add:c=>classes.push(c)},setAttribute:(k,v)=>attr[k]=v,
+  classList:{add:c=>{throw Error('Classe ajoutée trop tard : '+c)}},setAttribute:(k,v)=>attr[k]=v,
   querySelector:()=>heading
  }:null}
  };
  new Function('env','with(env){'+source+';ouvrirNouveautes()}')(env);
  assert.equal(title,'Nouveautés LuxApp 2.1');
- assert.deepEqual(classes,['nv21-panel']);
+ assert.equal(initialClass,'nv21-panel');
  assert.equal(attr['aria-labelledby'],'nv21-heading');
  assert.equal(heading.id,'nv21-heading');
  assert.equal((rendered.match(/class="nv21-feature"/g)||[]).length,6);
@@ -87,7 +87,36 @@ test('Le correctif scroll ne modifie ni la restauration ni le moteur de progress
 test('CSS Nouveautés : écran défilant, cibles lisibles, animation réduite',()=>{
  assert.match(css,/\.panneau\.nv21-panel \{/);
  assert.match(css,/height: 100dvh/);
+ assert.match(css,/\.panneau\.nv21-panel \{[\s\S]*?animation: none;/);
+ assert.match(css,/\.panneau\.nv21-panel \{[\s\S]*?transition: none;/);
  assert.match(css,/\.nv21-panel \.nv21-scroll \{[\s\S]*?overflow-y: auto/);
  assert.match(css, /\.nv21-panel \.nv21-back \{[\s\S]*?min-height: 44px/);
  assert.match(css, /prefers-reduced-motion: reduce/);
+});
+
+test('Le panneau générique applique sa classe spéciale AVANT insertion dans le DOM',()=>{
+ const start=accueil.indexOf('function ouvrirPanneau(html, titre, apresFermeture, classeInitiale');
+ const end=accueil.indexOf('// Ferme le panneau sans lancer sa suite',start);
+ assert.ok(start>=0&&end>start);
+ const src=accueil.slice(start,end);
+ function run(special){
+  const elements=[];
+  const env={
+   panneauApres:null,
+   document:{
+    getElementById:()=>null,
+    createElement:()=>({
+     className:'',id:'',attrs:{},innerHTML:'',
+     addEventListener:()=>{},setAttribute(k,v){this.attrs[k]=v}
+    }),
+    body:{append(...nodes){elements.push(...nodes.map(n=>({id:n.id,className:n.className}))) }}
+   },
+   programmerGarde:()=>{},
+   Date
+  };
+  new Function('env','with(env){'+src+";ouvrirPanneau('<p>Test</p>', 'Test', null, "+(special?"'nv21-panel'":"''")+');}')(env);
+  return elements;
+ }
+ assert.deepEqual(run(true).map(x=>x.className),['voile','panneau nv21-panel']);
+ assert.deepEqual(run(false).map(x=>x.className),['voile','panneau']);
 });
