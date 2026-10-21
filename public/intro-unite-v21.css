@@ -1,0 +1,67 @@
+/* LuxApp 2.1 — Introduction d'unité (view-pintro).
+   Refonte éditoriale : règle sans carte, attention soulignée par l'ambre.
+   Aucune modification des données, du lexique, des exemples ou du CTA fixe. */
+
+/* Réduire légèrement les distances, sans sacrifier le contenu défilant. */
+#view-pintro .pi-content {
+  gap: .4rem;
+}
+#view-pintro .pi-titre {
+  margin-bottom: .2rem;
+}
+#view-pintro .pi-phrase {
+  margin-bottom: .4rem;
+}
+
+/* RÈGLE : texte directement sur le noir, sans panneau brun ni contour. */
+#view-pintro .pi-regle {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: .22rem 0 .18rem;
+  margin: .08rem 0 .35rem;
+  gap: .5rem;
+}
+#view-pintro .pi-regle .pc-mini-label {
+  color: var(--couleur-action);
+}
+#view-pintro .pi-regle-txt {
+  line-height: 1.45;
+}
+#view-pintro .pi-regle-ex {
+  line-height: 1.45;
+  margin-top: .05rem;
+}
+/* Les termes importants restent en jaune, comme auparavant. */
+#view-pintro .pi-regle-txt b,
+#view-pintro .pi-regle-ex b {
+  color: var(--couleur-action);
+}
+
+/* ATTENTION : un filet orange suffit à signaler la difficulté.
+   Les paragraphes et mises en évidence pédagogiques sont conservés. */
+#view-pintro .pi-piege {
+  background: transparent;
+  border: 0;
+  border-left: 3px solid var(--couleur-orange);
+  border-radius: 0;
+  box-shadow: none;
+  padding: .2rem 0 .2rem .85rem;
+  margin: .08rem 0 .4rem;
+  gap: .4rem;
+}
+#view-pintro .pi-piege .pc-mini-label,
+#view-pintro .pi-piege-txt b {
+  color: var(--couleur-orange);
+}
+#view-pintro .pi-piege-txt {
+  line-height: 1.45;
+}
+
+/* Préserver la lisibilité en petite largeur, sans jamais masquer le CTA. */
+@media (max-width: 380px) {
+  #view-pintro .pi-content { gap: .35rem; }
+  #view-pintro .pi-piege { padding-left: .7rem; }
+}
+/* Les mouvements de l'introduction restent désactivés : charte à venir. */
