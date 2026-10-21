@@ -79,10 +79,11 @@ function ouvrirNouveautes() {
       '</footer>' +
     '</main>';
 
-  ouvrirPanneau(html, 'Nouveautés LuxApp ' + LUXAPP_VERSION_21);
+  // Dimension plein écran appliquée dès le premier rendu, sans bascule
+  // entre le panneau standard et la page Nouveautés.
+  ouvrirPanneau(html, 'Nouveautés LuxApp ' + LUXAPP_VERSION_21, null, 'nv21-panel');
   const panneau = document.getElementById('panneau');
   if (panneau) {
-    panneau.classList.add('nv21-panel');
     panneau.setAttribute('aria-labelledby','nv21-heading');
     // On garde un titre textuel et accessible aux lecteurs d’écran.
     const titre = panneau.querySelector('.nv21-hero h2');
