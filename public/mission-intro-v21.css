@@ -101,18 +101,31 @@
   background: var(--couleur-action);
   color: var(--couleur-sur-or);
 }
+/* Deux actions sur une seule ligne sous le CTA ; aucun lien
+   poussé vers la barre système. Le clic reste confortable sur mobile. */
+#view-msintro .msi-v21-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .35rem;
+  margin-top: .25rem;
+}
 #view-msintro .msi-bas .msi-v21-link {
-  width: 100%;
-  min-height: 42px;
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 0;
+  min-height: 44px;
   margin: 0;
-  padding: .35rem .2rem;
+  padding: .45rem .12rem;
   border: 0;
   border-radius: 0;
   background: transparent;
   color: var(--couleur-texte-2);
   box-shadow: none;
-  font-size: .89rem;
+  font-size: .84rem;
   font-weight: 600;
+  line-height: 1.25;
+  white-space: normal;
   text-align: center;
 }
 #view-msintro .msi-v21-link:focus-visible {
@@ -127,6 +140,8 @@
   #view-msintro .msi-v21-hero { margin-inline: -.9rem; height: 140px; }
   #view-msintro .msi-titre { font-size: clamp(1.9rem, 8vw, 2.3rem); }
   #view-msintro .msi-v21-info { gap: .55rem; }
+  #view-msintro .msi-v21-links { gap: .3rem; }
+  #view-msintro .msi-v21-link { font-size: .78rem; }
 }
 @media (max-height: 740px) {
   #view-msintro .msi-v21-hero { height: 125px; }
