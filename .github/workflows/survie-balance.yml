@@ -1,0 +1,63 @@
+name: Survie — simulation et équilibrage (SPEC 91)
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - 'tools/survie/**'
+      - 'test/survie-sim.test.cjs'
+      - 'data/lecons/A1.1/**'
+      - 'data/lecons/A1.2/**'
+      - 'docs/specs/SPEC-89.md'
+      - 'docs/specs/SPEC-90.md'
+      - 'docs/specs/SPEC-91.md'
+  workflow_dispatch:
+    inputs:
+      runs_per_cell:
+        description: 'Nombre de simulations par cellule (320 cellules possibles)'
+        required: false
+        default: '2000'
+  # ATTENTION : GitHub déclenche schedule UNIQUEMENT depuis la branche par défaut.
+  # En 2.1 seule, ce cron est INACTIF. Aucun changement de branche implicite.
+  schedule:
+    - cron: '17 3 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: survie-balance-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: '2.1'
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Tests du simulateur déterministe
+        run: node --test test/survie-sim.test.cjs
+      - name: Campagne autonome (seed reproductible)
+        env:
+          REQUESTED_RUNS: ${{ github.event.inputs.runs_per_cell }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = "push" ]; then RUNS=200; else RUNS="${REQUESTED_RUNS:-2000}"; fi
+          node tools/survie/simulate.cjs --runs "$RUNS" --seed "balance-2026-v1" --out "survie-sim-report"
+      - name: Rapport LLM optionnel (aucune modification de code)
+        continue-on-error: true
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SURVIE_LLM_MODEL: ${{ vars.SURVIE_LLM_MODEL }}
+        run: node tools/survie/llm-review.cjs survie-sim-report/summary.json survie-sim-report/llm-review.md
+      - name: Résumé de campagne
+        run: |
+          cat survie-sim-report/manifest.json
+          cat survie-sim-report/llm-review.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: survie-balance-${{ github.run_id }}
+          path: survie-sim-report/
+          retention-days: 30

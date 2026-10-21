@@ -24,6 +24,12 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## SPEC 89–91 — Survie 2.0, compétition et simulation massive (branche `2.1`)
+
+[Deux modes](docs/specs/SPEC-89.md), [roguelite/Tempête](docs/specs/SPEC-90.md), [simulateur autonome](docs/specs/SPEC-91.md). **Ne pas intégrer les règles expérimentales au jeu existant sans comparaison/replay/tests.** Les bots ne constituent pas de la télémetrie humaine. Toute proposition d'équilibrage LLM doit rester en suggestion, jamais en commit automatique. GitHub `schedule` d'un workflow présent uniquement sur `2.1` n'est pas actif tant qu'il n'est pas installé sur la branche par défaut.
+
+---
+
 ## SPEC 88 — Accueil fixe, catégorie Jeux et Survie (branche `2.1`)
 
 Référence : [docs/specs/SPEC-88.md](docs/specs/SPEC-88.md). Quatre raccourcis sur une rangée (S'entraîner, Examens, Erreurs, Jeux) **sans ajout de hauteur**. Jeux est une rubrique indépendante ; Survie ne peut proposer que des mots de leçons déjà ouvertes/étudiées. Score Survie isolé des leçons, record stocké par profil local, navigation Retour Android et pause de timer sur sortie/masquage. Ne pas modifier le chemin, les examens ou la progression pour le mini-jeu.

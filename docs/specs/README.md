@@ -106,3 +106,11 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 - [Design system](../DESIGN_SYSTEM.md)
 - [Tests du projet](../../tests/README.md)
 - [Code `v2`](https://github.com/aym2020/LuxApp/tree/v2/public)
+
+## Évolution Survie 2.0 — cadrage (branche 2.1)
+
+| 89 | [Deux modes Survie : Mes mots / Arène et leaderboard](./SPEC-89.md) | P1 | À faire |
+| 90 | [Roguelite : pouvoirs, builds, combos, Tempête](./SPEC-90.md) | P1 | À faire |
+| 91 | [Simulateur massif et arbitrage d'équilibrage](./SPEC-91.md) | P1 | Simulateur V0 en cours ; gameplay à faire |
+
+Ces fiches sont distinctes de la SPEC 88 actuellement déployée. Ne jamais confondre règles simulées et règles de production.
