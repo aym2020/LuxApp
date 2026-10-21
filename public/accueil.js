@@ -122,20 +122,32 @@ function accrocheHtml() {
     '<p>Apprends le luxembourgeois pas à pas, simplement.</p></div>';
 }
 
-// Où j'en suis : trois chiffres sur une ligne.
+// Bilan compact : deux chiffres éditoriaux sans cartes ni séparateur.
+// Garde #serie pour l'animation de l'objectif du jour.
 function chiffresHtml() {
   const prog = progressionNiveau(niveauActif);
   const serie = serieActuelle();
-  return '<div class="ac-chiffres entre-2">' +
-    '<div class="ac-stat"><b id="serie" class="serie">' + ICONES.flamme + serie + ' j</b><span>Série</span></div>' +
-    '<div class="ac-stat"><b>' + prog.pourcent + ' %</b><span>Progression</span></div>' +
-    '<div class="ac-stat" aria-label="' + prog.terminees + ' leçons terminées sur ' + prog.nbLecons +
-      (prog.anciennes ? ', ' + prog.anciennes + ' acquises précédemment' : '') + '">' +
-      '<b>' + prog.terminees + ' / ' + prog.nbLecons + '</b><span>Terminées</span>' +
-      (prog.anciennes ? '<small class="ac-acquis" title="' + prog.anciennes +
-        ' leçons acquises précédemment">+' + prog.anciennes + ' acquise' +
-        (prog.anciennes > 1 ? 's' : '') + '</small>' : '') + '</div>' +
-  '</div>';
+  const pourcent = Math.max(0, Math.min(100, Number(prog.pourcent) || 0));
+  const jours = serie === 1 ? 'jour' : 'jours';
+  return '<section class="ac-chiffres ac-bilan entre-2" aria-label="Progression et série">' +
+    '<div class="ac-bilan-titre">Aujourd’hui</div>' +
+    '<div class="ac-bilan-ligne">' +
+      '<div class="ac-bilan-progress">' +
+        '<div class="ac-bilan-valeur">' + pourcent + '<span class="ac-bilan-unite"> %</span></div>' +
+        '<span class="ac-bilan-sous">Progression ' + escHtml(niveauActif) + '</span>' +
+        '<div class="ac-bilan-piste" role="progressbar" aria-label="Progression ' + escHtml(niveauActif) +
+          '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pourcent + '">' +
+          '<i style="width:' + pourcent + '%"></i></div>' +
+      '</div>' +
+      '<div class="ac-bilan-serie">' +
+        '<div id="serie" class="serie ac-bilan-valeur">' +
+          '<span class="ac-bilan-flamme" aria-hidden="true">' + ICONES.flamme + '</span>' +
+          '<b>' + serie + '</b><span class="ac-bilan-unite"> ' + jours + '</span>' +
+        '</div>' +
+        '<span class="ac-bilan-sous">Série actuelle</span>' +
+      '</div>' +
+    '</div>' +
+  '</section>';
 }
 
 // LA carte de l'écran : un geste pour commencer ou reprendre.
