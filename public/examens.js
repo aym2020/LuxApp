@@ -183,6 +183,7 @@ function startExamen(examId) {
   document.getElementById('ex-num').textContent = exam.titre.toUpperCase();
   showView('view-examen');
   renderExamPart();
+  examRemonter();
 }
 
 // Quitter en cours de route : on prévient si des réponses seraient perdues.
@@ -550,13 +551,15 @@ function examNextEmpty(answers, depuis) {
   return -1; // tout est rempli
 }
 
-// Fait défiler la page si le trou sélectionné est caché (en haut ou sous la barre).
+// Le contenu du sujet défile dans sa propre zone, sous la banque de mots
+// et les boutons fixes. Mesurer cette zone évite un saut de tout le document.
 function examShowBlank() {
   const el = document.getElementById('ex-blank-' + examBlank);
-  if (!el) return;
+  const zone = document.getElementById('ex-body');
+  if (!el || !zone) return;
   const box = el.getBoundingClientRect();
-  const barre = document.querySelector('.ex-bottom').offsetHeight;
-  if (box.top < 60 || box.bottom > window.innerHeight - barre - 10) {
+  const visible = zone.getBoundingClientRect();
+  if (box.top < visible.top + 10 || box.bottom > visible.bottom - 10) {
     el.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 }
@@ -569,6 +572,14 @@ function examAnswer(i, k) {
   renderExamPart();
 }
 
+// Les parties suivantes et leurs corrections recommencent en haut de la zone
+// scrollable ; window.scrollTo seul n'agirait pas sur le corps de l'examen.
+function examRemonter() {
+  const zone = document.getElementById('ex-body');
+  if (zone) zone.scrollTop = 0;
+  window.scrollTo(0, 0);
+}
+
 function examGoTo(i) {
   examPart = i;
   examBlank = 0;
@@ -579,7 +590,7 @@ function examGoTo(i) {
     if (vide !== -1) examBlank = vide;
   }
   renderExamPart();
-  window.scrollTo(0, 0);
+  examRemonter();
 }
 
 function examPrev() {
@@ -611,7 +622,7 @@ async function examCheck() {
 
   examChecked[examPart] = true;
   renderExamPart();
-  window.scrollTo(0, 0);
+  examRemonter();
 }
 
 // ─── FIN : CALCUL DU SCORE ──────────────────────────────────────────────────
