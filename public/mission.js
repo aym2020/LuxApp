@@ -70,8 +70,12 @@ function missionHtml(l, conseillee) {
   if (studioActif(l)) return studioMissionHtml(l, conseillee);
   if (!l.mission || !l.scene) return '';
   const best = getMissionBest(l.id);
-  const apprises = l.scene.filter(x => repliqueApprise(l, x)).length;
-  const progression = Math.round(100 * apprises / (l.scene.length || 1));
+  // Le compteur mesure uniquement les répliques que l'élève doit dire.
+  // Il reflète la préparation des unités, sans prétendre valider la mission.
+  const aProduire = l.scene.filter(x => x.qui === 'toi');
+  const apprises = aProduire.filter(x => repliqueApprise(l, x)).length;
+  const total = aProduire.length;
+  const progression = Math.round(100 * apprises / (total || 1));
 
   let html = '<div class="ms-carte compacte" id="pl-mission">' +
     '<div class="ms-carte-haut">' +
@@ -79,17 +83,16 @@ function missionHtml(l, conseillee) {
       '<span class="ms-etat">' + escHtml(etatPreparationMission(l)) + '</span>' +
     '</div>' +
     '<div class="ms-titre">' + escHtml(l.mission.titre) + '</div>' +
-    '<div class="ms-bas">Tu sais dire ' + apprises + ' réplique' + (apprises > 1 ? 's' : '') +
-      ' sur ' + l.scene.length + '</div>' +
-    '<div class="ms-progression" role="progressbar" aria-label="Répliques apprises" ' +
-      'aria-valuemin="0" aria-valuemax="' + l.scene.length + '" aria-valuenow="' + apprises + '">' +
+    '<div class="ms-bas">' + apprises + ' / ' + total + ' répliques préparées</div>' +
+    '<div class="ms-progression" role="progressbar" aria-label="Répliques à produire préparées" ' +
+      'aria-valuemin="0" aria-valuemax="' + total + '" aria-valuenow="' + apprises + '">' +
       '<span style="width:' + progression + '%"></span></div>' +
     '<div class="ms-actions">' +
       '<button class="pc-chip ms-scenario" onclick="voirScenario()">Voir le scénario</button>';
   // S10 : tant qu'aucune unité n'est terminée, on propose de tenter sa chance
   // (bouton secondaire : le chemin conseillé reste l'unité 1).
   if (peutTenterSaChance(l)) {
-    html += '<button class="pc-chip ms-tenter" onclick="openMission(true)">Tenter la mission · ' + nbRepliquesToi(l) + ' répliques</button>';
+    html += '<button class="pc-chip ms-tenter" onclick="openMission(true)">Tenter la mission →</button>';
   } else {
     html += '<button class="pc-chip ms-jouer' + (conseillee && best == null ? ' conseille' : '') + '" onclick="openMission()">' +
       (best != null ? 'Rejouer la mission' : 'Jouer la mission') + '</button>';
