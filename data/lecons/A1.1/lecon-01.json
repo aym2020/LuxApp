@@ -170,16 +170,16 @@
     },
     {
       "qui": "Léa",
-      "lu": "Awar, Paul!",
-      "fr": "Salut, Paul !",
+      "lu": "Äddi, Paul!",
+      "fr": "Au revoir, Paul !",
       "unite": 4
     },
     {
       "qui": "toi",
-      "lu": "Awar, Léa! Schéinen Dag!",
-      "fr": "Salut, Léa ! Bonne journée !",
+      "lu": "Äddi, Léa! Schéinen Dag!",
+      "fr": "Au revoir, Léa ! Bonne journée !",
       "unite": 4,
-      "aide": "Entre amis : <b>Awar</b> · bonne journée = <b>Schéinen Dag</b>."
+      "aide": "Pour prendre congé : <b>Äddi</b> · bonne journée = <b>Schéinen Dag</b>."
     }
   ],
   "unites": [
@@ -510,16 +510,16 @@
     {
       "id": 2031,
       "unite": 4,
-      "fr": "Au revoir ! (courant)",
+      "fr": "Au revoir !",
       "lu": "Äddi!",
-      "note": "Le plus courant"
+      "note": "Formule de base à retenir"
     },
     {
       "id": 2032,
       "unite": 4,
-      "fr": "Au revoir ! (familier)",
-      "lu": "Awar!",
-      "note": "Familier · aussi Awuer!"
+      "fr": "Au revoir, bonne journée !",
+      "lu": "Äddi, schéinen Dag!",
+      "note": "Pour prendre congé dans la journée"
     },
     {
       "id": 2033,
@@ -945,7 +945,7 @@
       "id": 2031,
       "unite": 4,
       "question": "Äddi!",
-      "reponse": "Au revoir ! (courant)",
+      "reponse": "Au revoir !",
       "distracteurs": [
         "Merci !",
         "Bonjour !",
@@ -956,12 +956,12 @@
     {
       "id": 2032,
       "unite": 4,
-      "question": "Awar!",
-      "reponse": "Au revoir ! (familier)",
+      "question": "Äddi, schéinen Dag!",
+      "reponse": "Au revoir, bonne journée !",
       "distracteurs": [
-        "Bonjour !",
-        "Merci !",
-        "Bonne nuit !"
+        "Au revoir, bonne soirée !",
+        "Bonne journée !",
+        "Bonjour, bonne journée !"
       ],
       "label": "CHOISIS LA TRADUCTION"
     },
@@ -1471,7 +1471,7 @@
         "Salut",
         "Merci"
       ],
-      "note": "Äddi = Au revoir · familier : Awar"
+      "note": "Äddi = Au revoir."
     },
     {
       "id": 2029,
@@ -1828,14 +1828,14 @@
     {
       "id": 2038,
       "unite": 4,
-      "fr": "Au revoir ! (courant)",
+      "fr": "Au revoir !",
       "lu": "Äddi!"
     },
     {
       "id": 2039,
       "unite": 4,
-      "fr": "Au revoir ! (familier)",
-      "lu": "Awar!"
+      "fr": "Au revoir, bonne journée !",
+      "lu": "Äddi, schéinen Dag!"
     },
     {
       "id": 2040,
@@ -2191,16 +2191,6 @@
           "Le plus courant"
         ],
         [
-          "Awar!",
-          "Au revoir",
-          "Familier"
-        ],
-        [
-          "Awuer!",
-          "Au revoir",
-          "Familier"
-        ],
-        [
           "Schéinen Dag!",
           "Bonne journée",
           "En partant dans la journée"
@@ -2217,6 +2207,30 @@
         ]
       ],
       "unite": 4,
+      "rubrique": "lexique"
+    },
+    {
+      "type": "tableau",
+      "titre": "Autres façons de dire au revoir (facultatif)",
+      "entetes": [
+        "Luxembourgeois",
+        "Français",
+        "Remarque"
+      ],
+      "lignes": [
+        [
+          "Awar!",
+          "Au revoir",
+          "Autre formule correcte"
+        ],
+        [
+          "Awuer!",
+          "Au revoir",
+          "Variante d’Awar (LOD)"
+        ]
+      ],
+      "unite": 4,
+      "plus": true,
       "rubrique": "lexique"
     },
     {
@@ -2411,8 +2425,8 @@
           "Merci, pareillement ! Au revoir !"
         ],
         [
-          "Awar, Paul!",
-          "Salut, Paul !"
+          "Äddi, Paul!",
+          "Au revoir, Paul !"
         ]
       ]
     }
