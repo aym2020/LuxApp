@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="components.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="accueil-v21.css" />
+  <link rel="stylesheet" href="revision-v21.css" />
   <link rel="stylesheet" href="chemin-v21.css" />
 </head>
 <body>
@@ -343,65 +344,51 @@
     </div>
   </div>
 
-    <!-- ══ CONFIGURATION DE RÉVISION ════════════════════════════════════════════ -->
+  <!-- ══ RÉVISER · CONFIGURATION ÉDITORIALE V2.1 ════════════════════════ -->
   <div id="view-review-setup" class="view">
-    <div class="lecon-header">
-      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
-      <div class="lecon-header-info">
-        <span class="lecon-num">RÉVISER</span>
-        <span class="lecon-titre">Configure ta révision</span>
-      </div>
-    </div>
+    <main class="rs rs-v21-scroll">
+      <header class="rs-v21-head">
+        <div class="rs-v21-eyebrow">RÉVISER</div>
+        <h1>Ta séance de révision</h1>
+        <p class="rs-v21-summary" id="rs-v21-total" aria-live="polite"></p>
+      </header>
 
-    <div class="rs">
-      <div class="rs-block">
-        <div class="rs-titre">Leçons</div>
-        <button class="rs-all" onclick="toggleAllChecks('rs-lecons')">Tout cocher / décocher</button>
-        <div class="rs-checks" id="rs-lecons"></div>
-      </div>
-
-      <div class="rs-block">
-        <div class="rs-titre">Types d'exercice</div>
-        <div class="rs-checks" id="rs-types">
-          <label class="rs-check"><input type="checkbox" value="quiz" checked> Quiz</label>
-          <label class="rs-check"><input type="checkbox" value="trous" checked> À trou</label>
-          <label class="rs-check"><input type="checkbox" value="ecriture" checked> Écriture</label>
+      <section class="rs-v21-section" aria-labelledby="rs-v21-niveaux-titre">
+        <div class="rs-v21-section-head">
+          <h2 id="rs-v21-niveaux-titre">Niveau des questions</h2>
+          <span class="rs-v21-meta" id="rs-v21-niveaux-resume"></span>
         </div>
-      </div>
-
-      <div class="rs-block">
-        <div class="rs-titre">Niveau des questions</div>
         <div class="rs-checks" id="rs-niveaux">
           <label class="rs-check">
             <input type="checkbox" value="1" checked>
-            <span class="rs-focus-text">Niveau 1 · fragile</span>
+            <span class="rs-focus-text">Fragile</span>
             <span class="rs-focus-count" id="rs-niv-count-1"></span>
           </label>
           <label class="rs-check">
             <input type="checkbox" value="2" checked>
-            <span class="rs-focus-text">Niveau 2 · en cours</span>
+            <span class="rs-focus-text">En cours</span>
             <span class="rs-focus-count" id="rs-niv-count-2"></span>
           </label>
           <label class="rs-check">
             <input type="checkbox" value="3" checked>
-            <span class="rs-focus-text">Niveau 3 · maîtrisé</span>
+            <span class="rs-focus-text">Maîtrisé</span>
             <span class="rs-focus-count" id="rs-niv-count-3"></span>
           </label>
         </div>
-      </div>
+      </section>
 
-      <div class="rs-block">
-        <div class="rs-titre">Nombre de questions</div>
-        <div class="rs-checks rs-count-opts" id="rs-count">
-          <label class="rs-check"><input type="radio" name="rs-count" value="10"> 10 questions</label>
-          <label class="rs-check"><input type="radio" name="rs-count" value="20" checked> 20 questions</label>
-          <label class="rs-check"><input type="radio" name="rs-count" value="50"> 50 questions</label>
-          <label class="rs-check"><input type="radio" name="rs-count" value="0"> Tout</label>
+      <section class="rs-v21-section" aria-labelledby="rs-v21-count-titre">
+        <div class="rs-v21-section-head"><h2 id="rs-v21-count-titre">Nombre de questions</h2></div>
+        <div class="rs-checks rs-v21-segments" id="rs-count">
+          <label class="rs-check"><input type="radio" name="rs-count" value="10">10</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="20" checked>20</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="50">50</label>
+          <label class="rs-check"><input type="radio" name="rs-count" value="0">Tout</label>
         </div>
-      </div>
+      </section>
 
-      <div class="rs-block">
-        <div class="rs-titre">Focus</div>
+      <section class="rs-v21-section" aria-labelledby="rs-v21-focus-titre">
+        <div class="rs-v21-section-head"><h2 id="rs-v21-focus-titre">Focus</h2></div>
         <div class="rs-checks" id="rs-focus">
           <label class="rs-check">
             <input type="radio" name="rs-focus" value="aleatoire" checked>
@@ -419,9 +406,55 @@
             <span class="rs-focus-count" id="rs-count-difficile"></span>
           </label>
         </div>
-      </div>
+        <p class="rs-v21-note" id="rs-v21-focus-note"></p>
+      </section>
 
-      <button class="dash-btn primary" onclick="startConfiguredReview()">Commencer la révision</button>
+      <section class="rs-v21-section" aria-labelledby="rs-v21-types-titre">
+        <div class="rs-v21-section-head">
+          <h2 id="rs-v21-types-titre">Types d’exercices</h2>
+          <span class="rs-v21-meta" id="rs-v21-types-resume"></span>
+        </div>
+        <div class="rs-checks rs-v21-types" id="rs-types">
+          <label class="rs-check"><input type="checkbox" value="quiz" checked>Quiz</label>
+          <label class="rs-check"><input type="checkbox" value="trous" checked>À trou</label>
+          <label class="rs-check"><input type="checkbox" value="ecriture" checked>Écriture</label>
+        </div>
+      </section>
+
+      <section class="rs-v21-section" aria-labelledby="rs-v21-lecons-titre">
+        <button type="button" class="rs-v21-lesson-btn" id="rs-v21-lecons-ouvrir"
+          aria-haspopup="dialog" aria-expanded="false" aria-controls="rs-lecons-panel"
+          onclick="ouvrirSelectionLecons()">
+          <span>
+            <span class="rs-v21-lesson-title" id="rs-v21-lecons-titre">Leçons</span>
+            <span class="rs-v21-lesson-sub" id="rs-v21-lecons-resume"></span>
+          </span>
+          <span class="rs-v21-chevron" aria-hidden="true">›</span>
+        </button>
+      </section>
+    </main>
+
+    <div class="rs-v21-footer">
+      <button type="button" class="dash-btn primary" onclick="startConfiguredReview()">Commencer la révision</button>
+    </div>
+
+    <div id="rs-lecons-panel" class="rs-v21-drawer hidden" role="dialog"
+      aria-modal="true" aria-labelledby="rs-v21-panel-titre">
+      <button type="button" class="rs-v21-backdrop" aria-label="Fermer la sélection des leçons"
+        onclick="fermerSelectionLecons()"></button>
+      <div class="rs-v21-sheet">
+        <div class="rs-v21-sheet-head">
+          <div>
+            <h2 id="rs-v21-panel-titre">Choisir les leçons</h2>
+            <small>Pour cette séance de révision</small>
+          </div>
+          <button type="button" class="rs-v21-close" id="rs-v21-lecons-fermer"
+            onclick="fermerSelectionLecons()" aria-label="Fermer">✕</button>
+        </div>
+        <button type="button" class="rs-all" onclick="toggleAllChecks('rs-lecons')">Tout cocher / décocher</button>
+        <div class="rs-checks" id="rs-lecons"></div>
+        <button type="button" class="rs-v21-done" onclick="fermerSelectionLecons()">Terminé</button>
+      </div>
     </div>
   </div>
 
