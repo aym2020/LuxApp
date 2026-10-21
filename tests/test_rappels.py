@@ -122,10 +122,7 @@ with sync_playwright() as p:
         for i in range(boutons.count()):
             if (boutons.nth(i).inner_text() == it['reponse']) == juste:
                 boutons.nth(i).click(); break
-        if juste:
-            pg.evaluate("() => { if (pAttente && pSuite === null) { clearTimeout(pTimer); reussir(); } }")
-        else:
-            pg.click('#pc-continuer')
+        pg.click('#pc-continuer')  # 2.1 : Continuer aussi après une bonne réponse
     assert vus == 3, vus
     ok('quiz : une question ratée à chaque fois est posée 3 fois au plus')
 

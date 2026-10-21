@@ -55,9 +55,13 @@
   flex:none;width:34px;height:34px;border-radius:9px;background:#38352e;
   color:#cfc5b3;font-size:14px;font-weight:800}
 #view-parcours .choice.correct, #view-session .choice.correct {
-  border-color:#68977e;background:#202821;color:var(--exo-fg)}
+  border-color:var(--correct);background:#0f1d18;color:var(--correct)}
 #view-parcours .choice.wrong, #view-session .choice.wrong {
-  border-color:#786a55;background:var(--exo-bg);color:var(--exo-muted)}
+  border-color:var(--wrong);background:#1f1513;color:var(--wrong)}
+#view-parcours .choice.correct::before, #view-session .choice.correct::before {
+  background:rgba(84,224,173,.2);color:var(--correct)}
+#view-parcours .choice.wrong::before, #view-session .choice.wrong::before {
+  background:rgba(239,122,115,.2);color:var(--wrong)}
 #view-parcours .choice:disabled, #view-session .choice:disabled {opacity:1}
 /* Même champ et même bouton Valider. */
 #view-parcours .pc-input-label, #view-session .session-field-label {
@@ -90,36 +94,45 @@
 #view-parcours .mc-top {margin-top:0;gap:16px}
 #view-parcours .mc-mot {margin-top:36px}
 #view-parcours .mc-case {background:var(--exo-bg);border-bottom-color:#605b50}
+#view-parcours .mc-case.vert   {background:#123329;border-bottom-color:var(--correct);color:var(--correct)}
+#view-parcours .mc-case.indice {background:#2e2810;border-bottom-color:var(--accent);color:var(--accent)}
+#view-parcours .mc-case.tapee  {background:var(--surface);border-bottom-color:#6b6555}
 #view-parcours .mc-score {color:var(--exo-muted)}
-/* Correction intégrée et sobre : pas de plein écran rouge/vert, pas de grande icône. */
-#view-parcours .pc-feedback, #view-session #session-feedback {
-  position:static;display:flex;flex-direction:column;gap:10px;
-  width:100%;max-width:500px;margin:24px auto 0;padding:17px 0 0;
-  background:transparent;border:0;border-top:1px solid #454138;
-  box-shadow:none;color:var(--exo-fg);font:400 14px/1.55 var(--font)}
-#view-parcours .pc-feedback.ok, #view-parcours .pc-feedback.ko,
-#view-session #session-feedback.ok, #view-session #session-feedback.ko {
-  background:transparent;border-top-color:#454138;color:var(--exo-fg)}
-#view-parcours .pc-feedback.discret {border-top:0;padding-top:0}
+/* Correction du parcours : bandeau collé en bas (comme avant la 2.1).
+   Le texte long défile (style.css : max-height 38vh), « Continuer » reste visible. */
+#view-parcours .pc-feedback {
+  position:sticky;bottom:0;margin-top:auto;width:100%;
+  padding:16px 21px calc(18px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;gap:10px;
+  background:#141310;border-top:2px solid #454138;color:var(--exo-fg);font:400 14px/1.55 var(--font)}
+#view-parcours .pc-feedback > * {width:100%;max-width:458px;margin-inline:auto}
+#view-parcours .pc-feedback.ok {background:#0f1d18;border-top-color:var(--correct)}
+#view-parcours .pc-feedback.ko {background:#1f1513;border-top-color:var(--wrong)}
+/* Entraînement : correction dans le flux, juste sous la question (SPEC 59). */
+#view-session #session-feedback {
+  display:flex;flex-direction:column;gap:8px;width:100%;margin:24px 0 0;padding:15px 16px;
+  border:1px solid #454138;border-radius:14px;background:#141310;
+  color:var(--exo-fg);font:400 14px/1.55 var(--font)}
+#view-session #session-feedback.ok {border-color:var(--correct);background:#0f1d18}
+#view-session #session-feedback.ko {border-color:var(--wrong);background:#1f1513}
+/* Titre : vert si juste, rouge si erreur. */
 #view-parcours .pc-fb-titre, #view-session .session-fb-title {
-  display:flex;align-items:center;gap:10px;color:var(--exo-fg);font-size:14px;font-weight:750}
-#view-parcours .pc-fb-titre::before, #view-session .session-fb-title::before {
-  content:'';width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#65d7ae}
-#view-parcours .pc-feedback.ko .pc-fb-titre::before,
-#view-session #session-feedback.ko .session-fb-title::before {background:var(--accent)}
-#view-parcours .pc-fb-txt, #view-session .ecr-correct-answer,
-#view-session .session-attention {color:#c5bdb0;font-size:14px;line-height:1.55}
-#view-parcours .pc-fb-txt b, #view-session .ecr-correct-answer b {color:var(--accent)}
+  display:flex;align-items:center;gap:8px;font-size:16px;font-weight:750}
+#view-parcours .pc-feedback.ok .pc-fb-titre, #view-session #session-feedback.ok .session-fb-title {color:var(--correct)}
+#view-parcours .pc-feedback.ko .pc-fb-titre, #view-session #session-feedback.ko .session-fb-title {color:var(--wrong)}
+#view-parcours .pc-fb-txt, #view-session .session-attention {color:#c5bdb0;font-size:14px;line-height:1.55}
+#view-session .ecr-correct-answer {color:var(--exo-fg);font-size:15px;font-weight:600}
+#view-parcours .pc-fb-txt b, #view-session .ecr-correct-answer b {color:var(--exo-fg)}
 #view-parcours .pc-feedback .pc-btn, #view-session .ecr-next-btn {
-  display:block;width:100%;min-height:54px;margin-top:9px;
+  display:block;width:100%;min-height:54px;margin-top:6px;
   border:1px solid var(--accent);border-radius:14px;background:var(--accent);
   color:#251c0b;font:800 15px var(--font);text-align:center}
 #view-parcours .pc-feedback .pc-btn.ok, #view-parcours .pc-feedback .pc-btn.ko {
   background:var(--accent);border-color:var(--accent);color:#251c0b}
 #view-session #session-feedback .bouton-ecouter {align-self:flex-start}
-#view-parcours .mc-erreur, #view-session .ecr-feedback.ko:not(.hidden) {
-  background:transparent;border-color:#454138;color:#c5bdb0}
-#view-parcours .mc-erreur b {color:var(--accent)}
+/* Message temporaire du 1er essai (mot caché, écriture) : rouge discret. */
+#view-parcours .mc-erreur {background:rgba(239,122,115,.1);border:0;color:#c5bdb0}
+#view-parcours .mc-erreur b {color:var(--wrong)}
 @media(max-width:365px){
   #view-parcours .pc-body, #view-session .session-body {padding-inline:15px}
   #view-parcours .choice, #view-session .choice {min-height:56px;padding-inline:11px;font-size:14px}

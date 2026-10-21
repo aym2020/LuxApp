@@ -187,9 +187,13 @@ with sync_playwright() as p:
     bonne = c['item']['reponse'] if c['type'] == 'quiz' else c['item']['trou']
     avant = page.evaluate('run.stepIdx + "-" + run.steps[run.stepIdx].queue.length')
     page.locator('#pc-choix .choice', has_text=bonne).first.click()
-    assert page.evaluate('pAttente'), 'la bonne réponse reste affichée un instant'
+    # 2.1 : pas d'avance automatique, la correction reste jusqu'à « Continuer ».
+    page.wait_for_timeout(1600)
+    assert page.evaluate('pAttente'), 'la correction reste affichée'
+    assert 'Juste !' in page.inner_text('#pc-feedback')
+    page.click('#pc-continuer')
     page.wait_for_function('a => !pAttente && (run.stepIdx + "-" + run.steps[run.stepIdx].queue.length) !== a', arg=avant, timeout=4000)
-    ok('bonne réponse en ' + c['type'] + ' : passage automatique à la suite après le délai')
+    ok('bonne réponse en ' + c['type'] + ' : « Juste ! » reste affiché, Continuer passe à la suite')
 
     # 6. Finir l'unité : une erreur en quiz et en trous
     deja_faux = set()

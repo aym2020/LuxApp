@@ -779,7 +779,7 @@ function handleSessionChoice(btn, ok, correctText) {
     const blank = document.getElementById('session-blank');
     if (blank) {
       blank.textContent = item.q.trou;
-      blank.style.color = ok ? 'var(--correct)' : 'var(--wrong)';
+      blank.style.color = 'var(--correct)'; // c'est la bonne réponse, même après une erreur
     }
   }
 
@@ -790,9 +790,9 @@ function handleSessionChoice(btn, ok, correctText) {
   const note = attentionDe(item);
   feedback.className = 'ecr-feedback ' + (ok ? 'ok' : 'ko');
   feedback.innerHTML =
-    '<span class="session-fb-title">' + (ok ? 'Bien vu.' : 'À retenir') + '</span>' +
-    (ok ? '' : '<span class="ecr-correct-answer">Réponse attendue : <b>' + escHtml(correctText) + '</b></span>') +
-    (note ? '<span class="session-attention">Attention : ' + escHtml(note) + '</span>' : '');
+    '<span class="session-fb-title">' + (ok ? 'Juste !' : 'Pas encore') + '</span>' +
+    (ok ? '' : '<span class="ecr-correct-answer">Bonne réponse : <b>' + escHtml(correctText) + '</b></span>') +
+    (note ? '<span class="session-attention">Attention : ' + noteHtml(note) + '</span>' : '');
   ajouterBoutonSuivante(feedback);
 }
 
@@ -1219,6 +1219,11 @@ function setProgress(prefix, index, total) {
 function escHtml(str) {
   if (!str) return '';
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Notes et points d'attention des leçons : texte échappé, seul le gras <b> est gardé.
+function noteHtml(str) {
+  return escHtml(str).replace(/&lt;(\/?)b&gt;/g, '<$1b>');
 }
 
 // ─── BUG 1 + 2 FIX : interaction carte unifiée, sans onclick HTML ─────────────

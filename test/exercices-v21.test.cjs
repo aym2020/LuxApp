@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'), css=read('exercices-v21.css');
 const app=read('app.js'), parcours=read('parcours.js');
 test('couleurs et UI partagées seulement entre les deux vues d’exercices',()=>{
-  assert.match(html,/href="exercices-v21\.css\?v=5"/);
+  assert.match(html,/href="exercices-v21\.css\?v=6"/);
   assert.match(css,/#view-session \.question-card/);
   assert.match(css,/#view-parcours #pc-choix\.pc-choix-grille/);
   assert.doesNotMatch(css,/#view-dashboard|#view-lessons|#view-examen\b/);
@@ -19,7 +19,7 @@ test('ordre conservé, sans écran flashcards supplémentaire',()=>{
 test('correction accessible et passage manuel',()=>{
   assert.match(app,/ajouterBoutonSuivante\(feedback\)/);
   assert.match(app,/session-fb-title/);
-  assert.match(parcours,/showFeedback\(true, 'Bien vu\.', note/);
+  assert.match(parcours,/showFeedback\(true, 'Juste !', note/);
   assert.doesNotMatch(parcours.slice(parcours.indexOf('function choisirP('),parcours.indexOf('let ecrEssais')),/setTimeout\(reussir/);
 });
 test('écriture : champ libellé, validation inchangée',()=>{
@@ -34,7 +34,7 @@ test('écriture compacte, auto-extensible, sans clavier imposé sur tactile',()=
   assert.match(css,/min-height:70px;height:70px;max-height:150px/);
   assert.match(css,/session-body:focus-within/);
   assert.match(app,/valider\.scrollIntoView\(\{ block: 'nearest', behavior: 'auto' \}\)/);
-  assert.match(html,/src="app\.js\?v=4"/);
+  assert.match(html,/src="app\.js\?v=5"/);
   assert.match(css,/#view-session \.ecr-input-wrap \{gap:12px;margin-top:26px\}/);
   assert.match(app,/window\.matchMedia\('\(hover: hover\) and \(pointer: fine\)'\)\.matches/);
   assert.match(app,/visualViewport\.addEventListener\('resize', cadrerSaisieSession\)/);

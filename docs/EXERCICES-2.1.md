@@ -45,3 +45,17 @@ Les phrases françaises de plus de 42 caractères reçoivent la classe `question
 ## Retour de l'entraînement — alignement de l'en-tête
 
 Après contrôle de la capture Android (17:08), le retour était anormalement centré, contrairement aux autres écrans. Cause CSS : l'en-tête flex de `#view-session` avait seulement `max-width:500px` et `margin-inline:auto`, sans `width:100%`. Il se réduisait à son contenu. Fix : largeur entière limitée à 500px, les 21px de padding positionnent le retour sur le bord gauche et le titre reste à droite. Le handler `retour()` n'est pas modifié.
+
+## Réparation des corrections (21 octobre 2026, soir)
+
+La refonte avait uniformisé les corrections au détriment de leur sens. Corrigé sans toucher aux moteurs (notation, essais, rappels, audio, sauvegarde) :
+
+- **Titres réels rétablis** : `showFeedback()` affiche de nouveau le titre transmis (« Bien joué ! », « Juste ! », « Juste, au 2e essai », « Pas encore », « La réponse : … ») au lieu de « Bien vu. » / « À retenir ». Entraînement : « Juste ! » / « Pas encore » + « Bonne réponse : … ».
+- **Un seul message à la fois** : la correction finale masque le « Pas encore » temporaire du premier essai (mot caché et écriture).
+- **Trou révélé en vert** : après une erreur, le trou contient la bonne réponse ; il n'est plus coloré comme une erreur (parcours et entraînement).
+- **Gras des points d'attention** : `noteHtml()` échappe le texte et ne garde que `<b>` ; plus de `<b>Madamm</b>` affiché littéralement.
+- **Bandeau de correction du parcours** de nouveau collé en bas (`position:sticky`), fond et titre vert/rouge, contenu aligné sur l'exercice ; texte long défilant, « Continuer » toujours visible. Entraînement : correction encadrée vert/rouge dans le flux (SPEC 59).
+- **Choix** : bonne réponse en vert, mauvais choix en rouge (au lieu de gris/brun).
+- **Mot caché** : `#view-parcours .mc-case` écrasait `.mc-case.vert` / `.indice` (spécificité) ; états redéclarés. Le score précise « sans indice » ou le nombre d'indices.
+
+Test de comportement : `test/exercices-etats-v21.test.cjs` exécute les vraies fonctions sur un faux DOM (titres, masquage de l'erreur, couleur du trou, gras, règles CSS clés). Ajouté au workflow 2.1. Recette tactile Android toujours nécessaire.

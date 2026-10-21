@@ -53,8 +53,10 @@ def item_courant(pg):
 
 
 def passer_delai(pg):
-    """Bonne réponse en quiz / trou : passe à la suite sans attendre le délai de l'app."""
+    """Bonne réponse en quiz / trou : passe à la suite.
+    2.1 : plus d'avance automatique, la correction attend « Continuer »."""
     pg.evaluate("() => { if (pAttente && pSuite === null) { clearTimeout(pTimer); reussir(); } }")
+    continuer_si_besoin(pg)
 
 
 def continuer_si_besoin(pg):

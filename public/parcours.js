@@ -986,10 +986,13 @@ function showFeedback(ok, titre, texteHtml, suite) {
   pAttente = true;
   pSuite = suite;
   const fb = document.getElementById('pc-feedback');
+  // Correction finale : le message temporaire du 1er essai disparaît.
+  document.querySelectorAll('#view-parcours .mc-erreur').forEach(e => e.classList.add('hidden'));
   fb.className = 'pc-feedback ' + (ok ? 'ok' : 'ko');
-  // Repère discret plutôt que grand pictogramme ou panneau coloré.
+  const coche = ok ? '<svg class="coche-anim" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' : '';
+  // Le titre transmis par le moteur porte le sens : « Juste ! », « Juste, au 2e essai »…
   fb.innerHTML =
-    '<div class="pc-fb-titre">' + (ok ? 'Bien vu.' : 'À retenir') + '</div>' +
+    '<div class="pc-fb-titre">' + coche + titre + '</div>' +
     (texteHtml ? '<div class="pc-fb-txt">' + texteHtml + '</div>' : '') +
     '<button class="pc-btn wide ' + (ok ? 'ok' : 'ko') + '" id="pc-continuer" onclick="continuerParcours()">Continuer</button>';
   focusApresClavier(document.getElementById('pc-continuer')); // focus seulement après une saisie au clavier (spec 35)
@@ -1383,7 +1386,8 @@ function mcValider() {
     // Juste : le point d'attention complet, pour retenir le piège (S6).
     showFeedback(true, 'Bien joué !', '<b>' + escHtml(motComplet(card)) + '</b> = ' + escHtml(card.fr) +
       boutonEcouterHtml(card.lu) + // SPEC 68 : aussi pour un mot déjà étudié
-      '<div class="pc-fb-score">Score du mot : <b>' + Math.round(mcScore() * 100) + ' %</b></div>' +
+      '<div class="pc-fb-score">Score du mot : <b>' + Math.round(mcScore() * 100) + ' %</b>' +
+        (mc.indices ? ' · ' + mc.indices + ' indice' + (mc.indices > 1 ? 's' : '') : ' · sans indice') + '</div>' +
       (card.note ? '<br>' + escHtml(card.note) : '') + attentionHtml(attentionItem(card, 'flashcards')), reussir);
     return;
   }
@@ -1504,7 +1508,7 @@ function choisirP(btn, ok, bonne, item, type) {
   const blank = document.getElementById('pc-blank');
   if (blank) {
     blank.textContent = bonne;
-    blank.style.color = ok ? 'var(--correct)' : 'var(--wrong)';
+    blank.style.color = 'var(--correct)'; // c'est la bonne réponse, même après une erreur
   }
 
   enregistrer(item, ok ? 1 : 0, ok);
@@ -1512,7 +1516,7 @@ function choisirP(btn, ok, bonne, item, type) {
   if (ok) {
     // Même rythme que les autres types : réponse lisible, puis Continuer.
     const note = type === 'trous' ? item.note : '';
-    showFeedback(true, 'Bien vu.', note ? escHtml(note) : '', reussir);
+    showFeedback(true, 'Juste !', note ? escHtml(note) : '', reussir);
   } else {
     showFeedback(false, 'Pas encore',
       'La bonne réponse : <b>' + escHtml(bonne) + '</b>' +

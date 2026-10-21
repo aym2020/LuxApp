@@ -15,6 +15,6 @@ jobs:
         with:
           node-version: '22'
       - name: Test du rendu et des liens de l'accueil
-        run: node --test test/accueil-v21.test.cjs test/exercices-v21.test.cjs
+        run: node --test test/accueil-v21.test.cjs test/exercices-v21.test.cjs test/exercices-etats-v21.test.cjs
       - name: Tests du moteur de session et des corrections
         run: node tests/test_session_erreurs_frequentes.js && node tests/test_session_feedback_visible.js
