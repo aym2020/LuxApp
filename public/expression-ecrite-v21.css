@@ -33,3 +33,21 @@
 /* Variante vacances : les deux phrases remplacées, sans bouton FR redondant. */
 #view-examen-result .xee-variant .xee-variant-old {color:var(--couleur-texte-2);text-decoration:line-through}
 #view-examen-result .xee-variant .xee-variant-new {color:var(--couleur-reussi);font-weight:700}
+
+/* Examen A1.2 : même surface de clavier que les exercices. */
+body.clavier-actif #view-examen.active {
+  position: fixed; top: var(--clavier-vtop, 0px); left: 0; right: 0; bottom: auto;
+  width: 100%; height: var(--clavier-vh, 100dvh); min-height: 0;
+  max-width: 720px; margin: 0 auto; overflow: hidden; z-index: 35;
+}
+body.clavier-actif #view-examen.active > .lecon-header { display: none; }
+body.clavier-actif #view-examen.active .ex-steps { padding: .45rem 1rem .2rem; }
+body.clavier-actif #view-examen.active .ex-body {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto;
+  padding: .4rem 1rem .65rem;
+}
+body.clavier-actif #view-examen.active .xee-question { gap: 8px; padding: 6px 0 0; }
+body.clavier-actif #view-examen.active .xee-write { gap: 9px; margin-top: 8px; }
+body.clavier-actif #view-examen.active .ex-bottom {
+  flex: 0 0 auto; padding: .5rem 1rem calc(.6rem + env(safe-area-inset-bottom));
+}
