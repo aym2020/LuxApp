@@ -191,3 +191,8 @@ La première maquette validée concerne **`view-plecon`** (« Moien! ...an Äddi
 
 Implémentation : `public/lecon-v21.css`, lien dans `public/index.html`, ajout d’une piste accessible dans `public/mission.js`. Aucun changement du score, des étapes, de l'ordre ni des sauvegardes. Tests : `test/lecon-overview-v21.test.cjs`. Documentation et recette Android : [LECON-OVERVIEW-2.1.md](LECON-OVERVIEW-2.1.md).
 
+
+
+### Finalisation de la carte de leçon — 21 octobre 2026
+
+Cinq améliorations validées sont désormais en place sur `view-plecon` : réduction légère de l'espace avant la mission, carte mission plus compacte et liens secondaires, décompte des répliques **à produire** et préparées par les unités, suppression des quatre raccourcis d'exercice dans les cartes (bonus conservés), et transformation de « Toute la leçon » et « Bilan » en deux lignes compactes entièrement cliquables. Aucun changement aux points, étoiles, règles de validation, contenus ou sauvegardes. Voir [LECON-OVERVIEW-2.1.md](LECON-OVERVIEW-2.1.md).
