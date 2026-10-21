@@ -7,9 +7,9 @@ const path = require('node:path');
 const base = path.join(__dirname, '..', 'data');
 const debutants = JSON.parse(fs.readFileSync(path.join(base, 'lecons', 'A1.1', 'lecon-01.json'), 'utf8'));
 const variant = /\b(?:Awar|Awuer)\b/iu;
-const mainSections = ['scene', 'unites', 'flashcards', 'quiz', 'trous', 'ecriture'];
+const mainSections = ['scene', 'unites', 'flashcards', 'quiz', 'trous'];
 
-test('A1.1 leçon 1 : les variantes ne sont plus demandées dans les exercices ni la scène', () => {
+test('A1.1 leçon 1 : les variantes ne sont ni imposées ni mises en scène', () => {
   for (const section of mainSections) {
     assert.doesNotMatch(JSON.stringify(debutants[section]), variant, section);
   }
@@ -17,7 +17,7 @@ test('A1.1 leçon 1 : les variantes ne sont plus demandées dans les exercices n
   assert.doesNotMatch(JSON.stringify(core), variant, 'cours principal');
 });
 
-test('Les variantes correctes restent disponibles en cours complémentaire uniquement', () => {
+test('Les variantes ne sont enseignées que dans le cours complémentaire', () => {
   const optional = debutants.cours.filter(b => b.plus);
   const text = JSON.stringify(optional);
   assert.match(text, /Awar!/u);
@@ -36,7 +36,31 @@ test('Äddi est enseigné explicitement et reste la réponse de base', () => {
   assert.equal(q.reponse, 'Au revoir !');
   assert.equal(e.fr, 'Au revoir !');
   assert.equal(e.lu, 'Äddi!');
+  assert.deepEqual(e.alternatives, ['Awar!', 'Awuer!']);
   assert.equal(h.trou, 'Äddi');
+});
+
+test('Awar et Awuer ne sont acceptés que comme alternatives en écriture libre', () => {
+  const items = debutants.ecriture.filter(q => variant.test(JSON.stringify(q)));
+  assert.equal(items.length, 1);
+  assert.equal(items[0].id, 2038);
+  assert.deepEqual(items[0].alternatives, ['Awar!', 'Awuer!']);
+
+  // Réutiliser la vraie validation de l'app (spec 50), sans la réimplémenter.
+  const correction = fs.readFileSync(path.join(__dirname, '..', 'public', 'correction.js'), 'utf8');
+  const start = correction.indexOf('function reponseReconnue(');
+  const end = correction.indexOf('// Formes correctes autres', start);
+  assert.ok(start >= 0 && end > start);
+  const fonction = correction.slice(start, end);
+  const normalize = s => String(s).normalize('NFD').replace(/[\\u0300-\\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]/g, '');
+  const reconnaitre = new Function('normalize', fonction + '; return reponseReconnue;')(normalize);
+  for (const rep of ['Äddi!', 'Awar!', 'Awuer!', 'awar', 'AWUER']) {
+    assert.ok(reconnaitre(rep, items[0]), 'réponse valide : ' + rep);
+  }
+  assert.equal(reconnaitre('Moien!', items[0]), null);
+  const plusLong = debutants.ecriture.find(q => q.id === 2039);
+  assert.equal(reconnaitre('Awar!', plusLong), null);
 });
 
 test('Le deuxième exercice pratique une nouvelle phrase avec Äddi sans créer de doublon', () => {
