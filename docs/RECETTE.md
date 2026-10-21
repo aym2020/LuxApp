@@ -1,5 +1,8 @@
 # Recette visuelle (spec 43)
 
+> **Alerte branche 2.1 :** cette recette a été rédigée pour `v2` et ne valide **pas** entièrement les nouveaux exercices 2.1. Pour `2.1`, ne pas exécuter la commande `git reset --hard origin/v2` documentée ci-dessous : elle abandonne les modifications locales et revient sur une autre branche. Lire [le protocole 2.1](POSTMORTEM-EXERCICES-2.1-2026-10-21.md) ; les tests des états et le rendu Android restent nécessaires.
+
+
 Voir en quelques secondes, sur le téléphone, le **vrai** écran de fin de mission, de fin d'étape ou d'unité, ou le Chemin après « Refaire mes erreurs », sans rejouer la leçon et **sans toucher à ta vraie progression**.
 
 ## Principe de sécurité

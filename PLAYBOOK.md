@@ -16,6 +16,14 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## Alerte prioritaire — Incident des exercices 2.1 (21 octobre 2026)
+
+**Règle permanente :** lire [le post-mortem des exercices](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md) et [les consignes pour agents](AGENTS.md) avant toute refonte UI/UX 2.1. **L'état actuel des exercices est NON VALIDÉ** : les captures Samsung révèlent des états contradictoires, corrections mal placées et styles faux/juste ambigus, malgré CI verte.
+
+**Pour les exercices :** conserver tous les états pédagogiques et la logique de progression ; un seul type/une seule cause à la fois ; exécuter `bash tools/critique.sh rapide` **et** `bash tools/critique.sh` avant push, vérifier DOM/captures navigateur, puis Android réel si clavier concerné. Faute de recette visuelle, ne pas annoncer un correctif UI validé. Au premier défaut majeur, stopper les patchs, chercher la cause et envisager un rollback sélectif. Branche **`2.1` uniquement**, sauf instruction contraire.
+
+---
+
 ## Exception explicite — Harmonisation visuelle LuxApp 2.1
 
 Pour toute tâche concernant le **design V2.1**, travailler sur la branche **`2.1`**, et lire [`docs/CHARTE_UI_2.1.md`](docs/CHARTE_UI_2.1.md) avant de modifier les pages. L'accueil validé est la référence de composition ; `docs/DESIGN_SYSTEM.md` conserve les règles communes de composants, d'états et d'accessibilité. Les autres vues sont à harmoniser par lots, sans toucher aux contenus pédagogiques ou à la logique de progression. Pour les travaux ordinaires non explicitement V2.1, la règle de branche `v2` ci-dessous reste applicable.

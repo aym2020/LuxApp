@@ -1,5 +1,8 @@
 # LuxApp 2.1 — Exercices unifiés
 
+> **AVERTISSEMENT — RECRÉATION NON VALIDÉE (21 octobre 2026).** Les mentions antérieures « code poussé » ou « implémenté » documentent seulement un état historique ; les captures Android montrent des régressions majeures (corrections incohérentes, dispositions et états juste/faux cassés). Ne pas considérer cet écran validé. Lire [post-mortem et protocole anti-régression](POSTMORTEM-EXERCICES-2.1-2026-10-21.md). Ce document ne corrige aucun bug.
+
+
 **Branche exclusive :** `2.1`. **Statut :** code poussé, validation tactile Android à faire.
 
 ## Direction visuelle
