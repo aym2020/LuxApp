@@ -8,6 +8,7 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 | Version | Date | Changements |
 | --- | --- | --- |
+| 2.1 (CTA et examens) | 2026-10-21 | Entrée des vues en fondu sans `transform`; bandeau de passation des examens ancré dans une disposition flex de hauteur stable, zone de lecture et banque de mots défilantes indépendamment ; tests anti-régression des CTA fixes. |
 | 2.1 (chemin, phase 1) | 2026-10-21 | Bandeau éditorial sobre, progression réelle, frise épurée, leçon active et états conservés ; `public/chemin-v21.css` scoped à `#view-lessons`. Voir `docs/CHARTE_UI_2.1.md`. |
 | 2.1 (accueil validé) | 2026-10-20 | Première étape de personnalisation : Moien en grand, photographie originale WebP optimisée, CTA principal or et statistiques allégées. Voir docs/ACCUEIL-2.1.md |
 | 1.11 | 2026-10-19 | SPEC 57 : pression tactile uniforme des CTA (enfoncement CSS pendant l'appui, désactivés inertes, mouvement réduit) ; tokens de pression |
