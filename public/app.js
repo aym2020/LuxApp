@@ -441,10 +441,31 @@ function openReviewSetup(seuleLeconId) {
 
   // Recalcule les compteurs dès qu'une case change (leçons, types, focus).
   if (!reviewListenerAttached) {
-    document.getElementById('view-review-setup')
-      .addEventListener('change', scheduleReviewRefresh);
+    const view = document.getElementById('view-review-setup');
+    view.addEventListener('change', scheduleReviewRefresh);
+    // La sélection des leçons est une véritable feuille secondaire.
+    // Échap la ferme sans perdre les choix courants ni quitter Réviser.
+    view.addEventListener('keydown', e => {
+      const dialog = document.getElementById('rs-lecons-panel');
+      if (!dialog || dialog.classList.contains('hidden')) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        fermerSelectionLecons();
+      } else if (e.key === 'Tab') {
+        const focusables = [...dialog.querySelectorAll('button:not([disabled]),input:not([disabled])')];
+        if (!focusables.length) return;
+        const first = focusables[0], last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    });
     reviewListenerAttached = true;
   }
+  // Nouvelle ouverture (onglet du bas ou depuis une leçon) : panneau fermé.
+  fermerSelectionLecons(false);
 
   // Au départ : focus Aléatoire (jamais connu/difficile auto-sélectionné).
   document.querySelector('input[name="rs-focus"][value="aleatoire"]').checked = true;
@@ -500,6 +521,26 @@ function refreshReviewAvailability() {
   setFocusAvailability('connu',     connu,     total, 'Disponible après tes premières réponses.');
   setFocusAvailability('difficile', difficile, total, 'Disponible après tes premières erreurs.');
 
+  // Résumés dynamiques de l'interface V2.1 (les sélections restent dans les inputs).
+  const leconsEl = document.getElementById('rs-v21-lecons-resume');
+  if (leconsEl) leconsEl.textContent = leconIds.length + ' leçon' +
+    (leconIds.length > 1 ? 's' : '') + ' sélectionnée' + (leconIds.length > 1 ? 's' : '');
+  const niveauxEl = document.getElementById('rs-v21-niveaux-resume');
+  if (niveauxEl) niveauxEl.textContent = niveaux.length + ' sélectionné' + (niveaux.length > 1 ? 's' : '');
+  const totalEl = document.getElementById('rs-v21-total');
+  if (totalEl) totalEl.textContent = total.toLocaleString('fr-FR') +
+    ' question' + (total > 1 ? 's' : '') + ' disponible' + (total > 1 ? 's' : '');
+  const typeEl = document.getElementById('rs-v21-types-resume');
+  if (typeEl) typeEl.textContent = types.length + ' sélectionné' + (types.length > 1 ? 's' : '');
+  const focusInfo = document.getElementById('rs-v21-focus-note');
+  if (focusInfo) {
+    const horsConnu = connu === 0, horsDifficile = difficile === 0;
+    focusInfo.textContent = horsConnu && horsDifficile
+      ? 'Les autres modes se débloquent avec tes premières réponses.'
+      : horsConnu ? 'À consolider sera disponible après tes premières réponses.'
+      : horsDifficile ? 'Difficile sera disponible après tes premières erreurs.' : '';
+  }
+
   // Si le focus coché est devenu indisponible, on revient à Aléatoire.
   const checked = document.querySelector('input[name="rs-focus"]:checked');
   if (checked && checked.disabled) {
@@ -520,6 +561,28 @@ function toggleAllChecks(containerId) {
   const allChecked = [...boxes].every(b => b.checked);
   boxes.forEach(b => b.checked = !allChecked);
   refreshReviewAvailability(); // .checked programmatique ne déclenche pas 'change'
+}
+
+// Ouvre/ferme le panneau de leçons sans reconstruire les cases : la sélection
+// reste synchronisée avec les compteurs et le moteur de la révision.
+function ouvrirSelectionLecons() {
+  const dialog = document.getElementById('rs-lecons-panel');
+  const trigger = document.getElementById('rs-v21-lecons-ouvrir');
+  if (!dialog) return;
+  dialog.classList.remove('hidden');
+  if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  const close = document.getElementById('rs-v21-lecons-fermer');
+  if (close) close.focus();
+}
+
+function fermerSelectionLecons(restaurerFocus = true) {
+  const dialog = document.getElementById('rs-lecons-panel');
+  const trigger = document.getElementById('rs-v21-lecons-ouvrir');
+  if (!dialog) return;
+  const ouvert = !dialog.classList.contains('hidden');
+  dialog.classList.add('hidden');
+  if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  if (restaurerFocus && ouvert && trigger) trigger.focus();
 }
 
 // Lit les choix, construit la liste et lance la session existante.
