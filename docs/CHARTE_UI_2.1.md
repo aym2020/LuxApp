@@ -89,6 +89,14 @@ L'effet V2.1 doit rester fluide, **pas spectaculaire** :
 - Aucun scroll horizontal, aucun bord supérieur de CTA masqué sous le hero, aucun bouton hors champ. Tap targets ≥ **44 px**, boutons principaux ≥ **48 px** ; contrastes et focus clavier conformes au design system.
 - Préserver le scroll, le retour Android, le retour applicatif, les états de session et les positions d'éléments lorsqu'ils sont contractuellement requis.
 
+## Introductions de mission et d'unité — parité V2 (21 octobre 2026)
+
+L'écran « Unité 1 · Ce que tu vas apprendre » de la V2.1 devenait trop haut : la règle et l'avertissement repoussaient la synthèse vers le bas, alors que le CTA restait ancré et masquait visuellement la dernière ligne. La V2 avait déjà des règles compactes (**SPEC 85**) et une disposition fixe de découverte (**SPEC 86**), absentes de la branche `2.1`.
+
+- **Repris directement de `v2` :** SPEC 85/86 de `public/style.css` ; fonction d'introduction de mission de `public/mission.js` avec `titre_intro`, `contexte_intro`, `objectif_intro` lorsqu'ils existent ; fonction `openIntro` de `public/parcours.js`, y compris le résumé « 9 sons à découvrir · 20 écoutes » et le CTA « Découvrir les sons » pour la prononciation.
+- **Sécurité de mise en page propre à `2.1` :** introductions de mission et d'unité limitées à `100dvh`, défilement uniquement dans les zones de lecture en cas de contenu long ou de grands caractères, bouton de démarrage accessible en permanence et bloc d'actions de mission collé au bas du contenu visible. La découverte guidée emploie la barre inférieure stable de `v2`.
+- **Non modifiés :** textes source des leçons, missions jouées, résultats, sauvegardes et calculs de progression. Tests ciblés dans `test/intros-v2-fixed.test.cjs`. Contrôle visuel sur Samsung Android encore nécessaire.
+
 ## Réglages / panneau Plus — appuis rapides (21 octobre 2026)
 
 Le menu **Plus** (roue dentée de l'accueil et onglet Plus) ne doit pas s'ouvrir plusieurs fois sous un double appui. Un tap supplémentaire sur la position de la roue, intercepté par le voile du panneau, ne doit pas provoquer sa fermeture instantanée. La fermeture reste accessible en touchant une autre zone du voile, en choisissant une destination ou avec le bouton Retour.
