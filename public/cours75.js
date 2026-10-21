@@ -60,7 +60,12 @@ function cours75Choisir(surface, champ, valeur) {
   root.innerHTML = cours75Navigation(l, surface) +
     '<div class="cours75-resultats" id="cours75-resultats-' + surface + '">' +
     cours75Contenu(l, surface) + '</div>';
-  if (surface === 'panneau') document.getElementById('cp-content').scrollTop = 0;
+  if (surface === 'panneau') {
+    // La navigation reste fixe : seul le résultat défile, et repart en haut
+    // à chaque changement de rubrique ou d'unité.
+    const resultats = document.getElementById('cours75-resultats-panneau');
+    if (resultats) resultats.scrollTop = 0;
+  }
 }
 function cours75VersPhrases(surface) { cours75Choisir(surface, 'rubrique', 'phrases'); }
 function cours75Filtrer(blocs, rubrique) {
