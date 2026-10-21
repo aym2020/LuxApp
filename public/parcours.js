@@ -987,9 +987,9 @@ function showFeedback(ok, titre, texteHtml, suite) {
   pSuite = suite;
   const fb = document.getElementById('pc-feedback');
   fb.className = 'pc-feedback ' + (ok ? 'ok' : 'ko');
-  const coche = ok ? '<svg class="coche-anim" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' : '';
+  // Repère discret plutôt que grand pictogramme ou panneau coloré.
   fb.innerHTML =
-    '<div class="pc-fb-titre">' + coche + titre + '</div>' +
+    '<div class="pc-fb-titre">' + (ok ? 'Bien vu.' : 'À retenir') + '</div>' +
     (texteHtml ? '<div class="pc-fb-txt">' + texteHtml + '</div>' : '') +
     '<button class="pc-btn wide ' + (ok ? 'ok' : 'ko') + '" id="pc-continuer" onclick="continuerParcours()">Continuer</button>';
   focusApresClavier(document.getElementById('pc-continuer')); // focus seulement après une saisie au clavier (spec 35)
@@ -1510,14 +1510,9 @@ function choisirP(btn, ok, bonne, item, type) {
   enregistrer(item, ok ? 1 : 0, ok);
 
   if (ok) {
-    // Juste : la note du trou s'affiche discrètement, puis on passe à la suite.
+    // Même rythme que les autres types : réponse lisible, puis Continuer.
     const note = type === 'trous' ? item.note : '';
-    pTimer = setTimeout(reussir, note ? 1500 : 900);
-    if (note) {
-      const fb = document.getElementById('pc-feedback');
-      fb.className = 'pc-feedback ok discret';
-      fb.innerHTML = '<div class="pc-fb-txt">' + escHtml(note) + '</div>';
-    }
+    showFeedback(true, 'Bien vu.', note ? escHtml(note) : '', reussir);
   } else {
     showFeedback(false, 'Pas encore',
       'La bonne réponse : <b>' + escHtml(bonne) + '</b>' +

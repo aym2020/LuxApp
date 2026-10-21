@@ -115,7 +115,8 @@ x = running.state();
 assert.equal(x.score, 1);
 assert.equal(x.answered, true);
 assert.equal(x.updates.length, 1);
-assert.equal(callbacks.length > 0, true, 'le passage à la question suivante est programmé');
+assert.ok(x.btn, 'la correction reste visible jusqu’au clic sur Suivante');
+assert.equal(x.timers, 0, 'aucune avance automatique du quiz');
 
 // Attention : correction visible et bouton Suivante si choix faux.
 running.start('errors', quiz);

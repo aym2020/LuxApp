@@ -694,7 +694,12 @@ function renderSessionQ() {
   feedback.innerHTML = ''; // SPEC 59 : ne jamais garder un ancien diagnostic
   document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
 
-  document.getElementById('session-label').textContent = typeLabel(type);
+  // V2.1 : même consigne pédagogique dans les deux contextes.
+  document.getElementById('session-label').textContent =
+    type === 'quiz' ? (q.label || 'CHOISIS LA BONNE RÉPONSE') :
+    type === 'trous' ? 'COMPLÈTE' :
+    type === 'ecriture' ? 'ÉCRIS EN LUXEMBOURGEOIS' : typeLabel(type);
+  document.getElementById('view-session').dataset.type = type;
   const wordEl = document.getElementById('session-word');
 
   if (type === 'quiz') {
@@ -772,16 +777,15 @@ function handleSessionChoice(btn, ok, correctText) {
 
   document.querySelectorAll('#session-choices .choice').forEach(b => b.disabled = true);
 
-  // Faux avec un point d'attention : on l'affiche et on attend « Suivante ».
-  const attention = attentionDe(item);
-  if (!ok && attention) {
-    const feedback = document.getElementById('session-feedback');
-    feedback.className = 'ecr-feedback ko';
-    feedback.innerHTML = '<span class="session-attention">Attention : ' + attention + '</span>';
-    ajouterBoutonSuivante(feedback);
-    return;
-  }
-  setTimeout(nextSessionQ, item.type === 'trous' ? 1400 : 1100);
+  // Correction toujours lisible jusqu'au choix « Suivante » : aucun auto-skip.
+  const feedback = document.getElementById('session-feedback');
+  const note = attentionDe(item);
+  feedback.className = 'ecr-feedback ' + (ok ? 'ok' : 'ko');
+  feedback.innerHTML =
+    '<span class="session-fb-title">' + (ok ? 'Bien vu.' : 'À retenir') + '</span>' +
+    (ok ? '' : '<span class="ecr-correct-answer">Réponse attendue : <b>' + escHtml(correctText) + '</b></span>') +
+    (note ? '<span class="session-attention">Attention : ' + escHtml(note) + '</span>' : '');
+  ajouterBoutonSuivante(feedback);
 }
 
 function ajouterBoutonSuivante(feedback) {
@@ -839,7 +843,7 @@ function validateSessionInput() {
     const aide = aideErreur(val, corrige, attention, 1);
     session.essais = 1;
     feedback.className = 'ecr-feedback ko';
-    feedback.innerHTML = '❌ Pas encore · réessaie' +
+    feedback.innerHTML = 'Pas encore · réessaie' +
       (aide.diagnostic ? '<span class="session-diagnostic">' + escHtml(aide.diagnostic) + '</span>' : '') +
       (aide.attention ? '<span class="session-attention">Attention : ' + aide.attention + '</span>' : '');
     input.value = '';
@@ -858,14 +862,14 @@ function validateSessionInput() {
   if (ok) {
     feedback.className = 'ecr-feedback ok';
     const autres = item.type === 'ecriture' ? autresReponsesAcceptees(corrige, reconnue) : [];
-    feedback.innerHTML = (session.essais ? '✅ Correct, au 2e essai' : '✅ Correct !') +
+    feedback.innerHTML = (session.essais ? 'Correct, au 2e essai' : 'Correct !') +
       boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
       (autres.length ? '<span class="session-attention">Autre formulation correcte : ' +
         autres.map(escHtml).join(' · ') + '</span>' : '') +
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   } else {
     feedback.className = 'ecr-feedback ko';
-    feedback.innerHTML = '❌ Réponse :<span class="ecr-correct-answer">' + escHtml(affiche) + '</span>' +
+    feedback.innerHTML = 'Réponse :<span class="ecr-correct-answer">' + escHtml(affiche) + '</span>' +
       boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   }

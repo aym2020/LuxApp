@@ -1,0 +1,113 @@
+/* LuxApp 2.1 — Style partagé entre parcours et S'entraîner.
+   Vues isolées : aucun changement de l'accueil, cours, mission ou examens dédiés. */
+#view-parcours, #view-session {
+  --exo-bg:#1b1a17; --exo-border:#393630; --exo-fg:#f5f0e7; --exo-muted:#aaa296;
+}
+/* La même surface de travail, centrée et scrollable sur petits écrans. */
+#view-parcours .pc-body, #view-session .session-body {
+  width:100%;max-width:500px;margin-inline:auto;
+  padding:clamp(28px,5.5dvh,52px) 21px calc(36px + env(safe-area-inset-bottom));
+}
+#view-parcours .pc-body {gap:0}
+#view-session .session-body {align-items:stretch;padding-top:20px}
+#view-session .lecon-header {max-width:500px;margin-inline:auto}
+#view-session .session-body .progress-wrap {width:100%;margin-bottom:clamp(35px,6dvh,56px)!important}
+/* Plus de carte « question » en entraînement : elle redevient une composition typographique. */
+#view-session .question-card {background:none;border:0;box-shadow:none;border-radius:0;
+  position:static;overflow:visible;padding:0;margin:0;text-align:center}
+#view-session .question-card::before {display:none}
+#view-parcours .pc-question {gap:15px;margin:0 0 40px}
+#view-session .question-label, #view-parcours .pc-question .pc-mini-label,
+#view-parcours .mc-top .pc-mini-label {
+  font:800 12px/1.4 var(--font);letter-spacing:.13em;text-transform:uppercase;color:#ada497}
+#view-session .question-label {margin-bottom:20px}
+#view-session .question-word, #view-parcours .pc-question-mot, #view-parcours .mc-fr {
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(35px,8.6vw,47px);line-height:1.17;letter-spacing:-.025em;
+  color:var(--exo-fg);overflow-wrap:break-word}
+#view-session[data-type="trous"] .question-word, #view-parcours .pc-trou-fr {
+  font:500 17px/1.4 var(--font);color:#c5beb2;letter-spacing:0;
+  max-width:none;margin:0 0 13px}
+#view-session .trou-sentence, #view-parcours .pc-trou-phrase {
+  font:400 clamp(29px,7.5vw,38px)/1.45 'Instrument Serif',Georgia,serif;
+  color:var(--exo-fg);letter-spacing:-.02em;overflow-wrap:break-word}
+#view-session .trou-sentence {margin-top:4px}
+#view-session .trou-blank, #view-parcours .pc-trou-phrase .trou-blank {
+  display:inline-block;min-width:56px;padding:0 5px 5px;margin-inline:3px;
+  border-bottom:2px solid var(--accent);font:750 .72em/1.15 var(--font);color:var(--accent)}
+/* Trois ou quatre propositions : une seule colonne dans les deux modes. */
+#view-parcours #pc-choix.pc-choix-grille, #view-parcours #pc-choix,
+#view-session #session-choices {display:flex;flex-direction:column;gap:9px;width:100%}
+#view-session #session-choices {margin-top:36px}
+#view-parcours .choice, #view-session .choice {
+  min-height:62px;padding:11px 15px;gap:14px;border:1px solid var(--exo-border);
+  border-radius:15px;background:var(--exo-bg);box-shadow:none;color:var(--exo-fg);
+  font:670 16px/1.3 var(--font)}
+#view-parcours .choice::before, #view-session .choice::before {
+  flex:none;width:34px;height:34px;border-radius:9px;background:#38352e;
+  color:#cfc5b3;font-size:14px;font-weight:800}
+#view-parcours .choice.correct, #view-session .choice.correct {
+  border-color:#68977e;background:#202821;color:var(--exo-fg)}
+#view-parcours .choice.wrong, #view-session .choice.wrong {
+  border-color:#786a55;background:var(--exo-bg);color:var(--exo-muted)}
+#view-parcours .choice:disabled, #view-session .choice:disabled {opacity:1}
+/* Même champ et même bouton Valider. */
+#view-parcours .pc-input-label, #view-session .session-field-label {
+  display:block;color:var(--exo-muted);font:600 13px var(--font);margin:0 0 12px}
+#view-parcours .pc-body>.ecr-input, #view-session #session-input {
+  min-height:114px;width:100%;padding:17px 18px;background:var(--exo-bg);
+  border:1px solid #45423b;border-radius:16px;color:var(--exo-fg);
+  font:400 16px/1.45 var(--font);resize:none}
+#view-parcours .pc-body>.ecr-input:focus, #view-session #session-input:focus {border-color:var(--accent)}
+#view-parcours .pc-body>.ecr-input::placeholder, #view-session #session-input::placeholder {color:#807a70}
+#view-session .ecr-input-wrap {gap:0;margin-top:40px}
+#view-parcours .pc-actions {margin-top:16px}
+#view-parcours .pc-actions .pc-btn.primary, #view-session .ecr-btn-validate {
+  min-height:55px;background:var(--accent);color:#251c0b;border:1px solid var(--accent);
+  border-radius:14px;font:800 16px var(--font)}
+/* Mot caché : conserver cases, tuiles, indices et score ; mise en page harmonisée. */
+#view-parcours .mc-top {margin-top:0;gap:16px}
+#view-parcours .mc-mot {margin-top:36px}
+#view-parcours .mc-case {background:var(--exo-bg);border-bottom-color:#605b50}
+#view-parcours .mc-score {color:var(--exo-muted)}
+/* Correction intégrée et sobre : pas de plein écran rouge/vert, pas de grande icône. */
+#view-parcours .pc-feedback, #view-session #session-feedback {
+  position:static;display:flex;flex-direction:column;gap:10px;
+  width:100%;max-width:500px;margin:24px auto 0;padding:17px 0 0;
+  background:transparent;border:0;border-top:1px solid #454138;
+  box-shadow:none;color:var(--exo-fg);font:400 14px/1.55 var(--font)}
+#view-parcours .pc-feedback.ok, #view-parcours .pc-feedback.ko,
+#view-session #session-feedback.ok, #view-session #session-feedback.ko {
+  background:transparent;border-top-color:#454138;color:var(--exo-fg)}
+#view-parcours .pc-feedback.discret {border-top:0;padding-top:0}
+#view-parcours .pc-fb-titre, #view-session .session-fb-title {
+  display:flex;align-items:center;gap:10px;color:var(--exo-fg);font-size:14px;font-weight:750}
+#view-parcours .pc-fb-titre::before, #view-session .session-fb-title::before {
+  content:'';width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#65d7ae}
+#view-parcours .pc-feedback.ko .pc-fb-titre::before,
+#view-session #session-feedback.ko .session-fb-title::before {background:var(--accent)}
+#view-parcours .pc-fb-txt, #view-session .ecr-correct-answer,
+#view-session .session-attention {color:#c5bdb0;font-size:14px;line-height:1.55}
+#view-parcours .pc-fb-txt b, #view-session .ecr-correct-answer b {color:var(--accent)}
+#view-parcours .pc-feedback .pc-btn, #view-session .ecr-next-btn {
+  display:block;width:100%;min-height:54px;margin-top:9px;
+  border:1px solid var(--accent);border-radius:14px;background:var(--accent);
+  color:#251c0b;font:800 15px var(--font);text-align:center}
+#view-parcours .pc-feedback .pc-btn.ok, #view-parcours .pc-feedback .pc-btn.ko {
+  background:var(--accent);border-color:var(--accent);color:#251c0b}
+#view-session #session-feedback .bouton-ecouter {align-self:flex-start}
+#view-parcours .mc-erreur, #view-session .ecr-feedback.ko:not(.hidden) {
+  background:transparent;border-color:#454138;color:#c5bdb0}
+#view-parcours .mc-erreur b {color:var(--accent)}
+@media(max-width:365px){
+  #view-parcours .pc-body, #view-session .session-body {padding-inline:15px}
+  #view-parcours .choice, #view-session .choice {min-height:56px;padding-inline:11px;font-size:14px}
+  #view-parcours .choice::before, #view-session .choice::before {width:30px;height:30px}
+}
+@media(max-height:750px){
+  #view-parcours .pc-body {padding-top:24px}
+  #view-session .session-body .progress-wrap {margin-bottom:28px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-parcours .choice, #view-session .choice {transition:none!important}
+}

@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="intro-unite-v21.css" />
   <link rel="stylesheet" href="nouveautes-v21.css?v=3" />
   <link rel="stylesheet" href="cours-v21.css?v=2" />
+  <link rel="stylesheet" href="exercices-v21.css?v=1" />
 </head>
 <body>
   <!-- SPEC 63 : portail d'entrée, indépendant des écrans pédagogiques. -->
@@ -486,19 +487,20 @@
         <div class="trou-sentence hidden" id="session-sentence"></div>
       </div>
 
-      <div id="session-choices" class="choices hidden" style="margin-top:.9rem"></div>
+      <div id="session-choices" class="choices hidden"></div>
 
       <!-- SPEC 59 : correction visible AVANT le champ et le clavier mobile. -->
       <div id="session-feedback" class="ecr-feedback hidden"
            role="status" aria-live="polite" aria-atomic="true"></div>
 
       <div class="ecr-input-wrap hidden" id="session-input-wrap">
+        <label class="pc-input-label session-field-label" for="session-input">Ta réponse</label>
         <textarea id="session-input" class="ecr-input"
-          placeholder="Tapez votre réponse…"
+          placeholder="Tape ta réponse…"
           rows="2"
           autocomplete="off" autocorrect="off"
           autocapitalize="none" spellcheck="false"></textarea>
-        <button class="ecr-btn-validate" id="session-input-btn" onclick="validateSessionInput()">Valider ✓</button>
+        <button class="ecr-btn-validate" id="session-input-btn" onclick="validateSessionInput()">Valider</button>
       </div>
 
       <div id="session-result" class="result-card hidden">
