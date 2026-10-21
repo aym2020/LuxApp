@@ -126,6 +126,6 @@ test('La version mobile donne priorité aux actions plutôt qu’à un hero trop
   assert.match(css, /\.accueil\.ac-nouveau-invite \.watfir-hero/);
   assert.match(css, /min-height:\s*70px/);
   assert.match(css, /margin-top:\s*6px/);
-  assert.match(css, /display:\s*none;\s*\/\* Tout reste dans l'aria-label/);
+  assert.match(css, /\/\* Tout reste dans l'aria-label[\s\S]*?display:\s*none/);
   assert.doesNotMatch(css, /height:\s*338px/);
 });
