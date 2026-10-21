@@ -72,7 +72,7 @@ test('parcours réel : question vide, validation, correction, ordre, révélatio
  assert.match(node('ex-body').innerHTML,/Juste !/);
  assert.equal(node('ex-next').textContent,'Phrase suivante');
  vm.runInContext('expressionNext()',ctx);
- assert.match(node('ex-body').innerHTML,/J'ai passé beaucoup de temps/);
+ assert.match(node('ex-body').innerHTML,/J&#39;ai passé beaucoup de temps/);
  // Erreur : aucun point, puis on avance.
  node('xee-input').value='Ech sinn um Weekend';
  vm.runInContext('expressionNext()',ctx);
