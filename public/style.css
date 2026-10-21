@@ -3221,3 +3221,120 @@ body.pi-bloque { overflow:hidden; }
 #view-pintro.active { min-height: 100dvh; }
 #view-pintro.entre-avant,
 #view-pintro.entre-arriere { animation: none; }
+
+/* SPEC 85 — Intros lisibles sur smartphone : actions atteignables sans texte masqué.
+   Les scénarios complets restent consultables ; seule leur introduction est raccourcie. */
+#view-msintro.active { min-height: 100dvh; }
+#view-msintro .msi-content {
+  flex: 1 0 auto;
+  min-height: 0;
+  padding: .7rem 1.1rem calc(1rem + env(safe-area-inset-bottom));
+  gap: .8rem;
+}
+#view-msintro .msi-haut { gap: .45rem; }
+#view-msintro .msi-titre { font-size: clamp(2rem, 8vw, 2.45rem); line-height: 1.07; }
+#view-msintro .msi-contexte { font-size: .96rem; line-height: 1.42; }
+#view-msintro .msi-objectif { padding: .7rem .85rem; gap: .3rem; }
+#view-msintro .msi-objectif-txt { line-height: 1.35; font-size: .95rem; }
+#view-msintro .msi-bas { gap: .3rem; }
+#view-msintro .msi-info { line-height: 1.35; }
+#view-msintro .msi-bas .pc-btn { min-height: 44px; }
+#view-msintro .msi-bas .pc-btn.big { min-height: 52px; }
+#view-pintro .pi-content { padding-bottom: calc(118px + env(safe-area-inset-bottom)); }
+#view-pintro .pi-titre { margin-bottom: .3rem; }
+#view-pintro .pi-regle { padding: .85rem .95rem; gap: .3rem; margin-bottom: .35rem; }
+#view-pintro .pi-regle-txt { font-size: 1rem; line-height: 1.4; }
+#view-pintro .pi-regle-ex { font-size: .9rem; }
+#view-pintro .pi-bas { padding-top: .25rem; }
+@media (max-height: 700px) {
+  #view-msintro .msi-content { padding-top: .35rem; gap: .55rem; }
+  #view-msintro .msi-haut { gap: .3rem; }
+  #view-msintro .msi-titre { font-size: 1.9rem; }
+  #view-msintro .msi-objectif { padding: .55rem .75rem; }
+  #view-msintro .msi-contexte { font-size: .93rem; }
+}
+
+
+/* SPEC 86 — Découverte mobile : supprimer le saut du CTA pendant le chargement.
+   Un bandeau fixed dans une vue animée avec transform change de repère sur Android.
+   La vue occupe exactement le viewport ; son contenu défile, pas son pied de page. */
+#view-decouverte.active {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+#view-decouverte.entre-avant,
+#view-decouverte.entre-arriere {
+  animation: none;
+}
+#view-decouverte .dc-contenant {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 1rem;
+}
+#view-decouverte .dc-scene {
+  flex: 1 0 auto;
+  min-height: 290px;
+  padding: 12px 0;
+}
+#view-decouverte .dc-bas {
+  position: static; /* Ne plus hériter du fixed global de .cta-fixe */
+  inset: auto;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: .65rem 1.25rem calc(.75rem + env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid var(--couleur-bord-1);
+  pointer-events: auto;
+}
+#view-decouverte .dc-ligne { margin-top: 16px; }
+@media (max-height: 700px) {
+  #view-decouverte .dc-scene { min-height: 260px; }
+}
+
+/* V2.1 — même composition V2, avec viewport stable sur Android.
+   Le contenu des introductions reste entièrement accessible via son propre
+   scroll si police agrandie, petite hauteur ou règle exceptionnellement longue.
+   Aucun défilement de la page entière ni recouvrement du CTA « Commencer ». */
+#view-pintro.active,
+#view-msintro.active {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+#view-pintro > .pc-topbar,
+#view-msintro > .pc-topbar { flex: 0 0 auto; }
+#view-pintro .pi-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  /* L'action reste visible au bas de la fenêtre, jamais sur le dernier texte. */
+  padding-bottom: calc(118px + env(safe-area-inset-bottom));
+}
+#view-msintro .msi-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+/* Actions de l'introduction de mission accessibles même sur petit téléphone.
+   Sur une introduction longue, la partie informative peut défiler tandis que
+   le bloc d'actions reste en bas du conteneur. */
+#view-msintro .msi-bas {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background: var(--couleur-fond);
+  padding-block: .3rem calc(.45rem + env(safe-area-inset-bottom));
+}
+@media (max-height: 700px) {
+  #view-pintro .pi-content { padding-top: 0; gap: .35rem; }
+  #view-msintro .msi-bas { padding-top: .15rem; }
+}
