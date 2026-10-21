@@ -52,7 +52,7 @@ test('Awar et Awuer ne sont acceptés que comme alternatives en écriture libre'
   const end = correction.indexOf('// Formes correctes autres', start);
   assert.ok(start >= 0 && end > start);
   const fonction = correction.slice(start, end);
-  const normalize = s => String(s).normalize('NFD').replace(/[\\u0300-\\u036f]/g, '')
+  const normalize = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .toLowerCase().replace(/[^a-z0-9]/g, '');
   const reconnaitre = new Function('normalize', fonction + '; return reponseReconnue;')(normalize);
   for (const rep of ['Äddi!', 'Awar!', 'Awuer!', 'awar', 'AWUER']) {
