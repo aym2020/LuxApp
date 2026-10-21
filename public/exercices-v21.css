@@ -68,6 +68,9 @@
   border-color:#9b8650;box-shadow:0 0 0 1px rgba(245,207,77,.09)}
 #view-parcours .pc-body>.ecr-input::placeholder, #view-session #session-input::placeholder {color:#807a70}
 #view-session .ecr-input-wrap {gap:12px;margin-top:26px}
+/* La zone de saisie doit pouvoir être amenée au-dessus du clavier Android. */
+#view-session .session-body:focus-within {padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+#view-session #session-input-btn {scroll-margin-bottom:16px}
 #view-session .ecr-input-wrap .session-field-label {margin:0}
 #view-session[data-type="ecriture"] .question-word,
 #view-session[data-type="motcache"] .question-word {font-size:clamp(35px,8vw,44px)}

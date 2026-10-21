@@ -1455,7 +1455,15 @@ if (sessionInput) {
     if (!vue || !vue.classList.contains('active') || !groupe ||
         groupe.classList.contains('hidden')) return;
     if (typeof requestAnimationFrame === 'function') {
-      requestAnimationFrame(() => groupe.scrollIntoView({ block: 'nearest', behavior: 'auto' }));
+      requestAnimationFrame(() => {
+        // Scroll vers le CTA, pas seulement le bloc : sur un clavier Android
+        // le champ pouvait être visible tandis que Valider restait dessous.
+        if (document.activeElement !== sessionInput) return;
+        const valider = document.getElementById('session-input-btn');
+        if (valider && typeof valider.scrollIntoView === 'function') {
+          valider.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+        }
+      });
     }
   };
   sessionInput.addEventListener('focus', cadrerSaisieSession);
