@@ -621,7 +621,14 @@ header {
 #view-examen > .ex-steps { flex: 0 0 auto; }
 
 /* Une case par partie */
-.ex-steps { display: flex; gap: .4rem; padding: .7rem 1rem 0; }
+/* Navigation des parties : 12 px sous les boutons + fond opaque.
+   Empêche le texte de l'annale défilante de sembler passer sous la barre. */
+.ex-steps {
+  display: flex; gap: .4rem;
+  padding: .7rem 1rem 12px;
+  background: var(--bg);
+  position: relative; z-index: 1;
+}
 .ex-step {
   flex: 1; min-height: 36px; border-radius: 10px; cursor: pointer;
   background: var(--surface); border: 1px solid var(--couleur-bord-3); color: var(--muted);

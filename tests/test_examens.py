@@ -32,6 +32,21 @@ with sync_playwright() as p:
     assert pg.evaluate("document.querySelector('.view.active').id") == 'view-examen'
     assert pg.inner_text('#view-examen .back-btn').endswith('Sujets')
     assert pg.locator('#ex-next.pc-btn.primary').count() == 1 and pg.locator('#ex-prev.pc-btn').count() == 1
+    # Régression UI (21/10/2026) : la barre 1…6 ne doit pas toucher/laisser
+    # transparaître le texte à trous quand le corps de l'annale défile.
+    barre = pg.evaluate("""() => {
+        const steps = document.getElementById('ex-steps');
+        const lastButton = steps.querySelector('.ex-step');
+        const body = document.getElementById('ex-body');
+        return {
+            gap: body.getBoundingClientRect().top - lastButton.getBoundingClientRect().bottom,
+            fond: getComputedStyle(steps).backgroundColor,
+            fondPage: getComputedStyle(document.body).backgroundColor
+        };
+    }""")
+    assert barre['gap'] >= 10, ('Espacement insuffisant sous les parties', barre)
+    assert barre['fond'] == barre['fondPage'], ('La barre des parties doit être opaque', barre)
+    ok('barre 1…6 : 12 px sous les boutons, fond opaque et contenu séparé')
     fond = pg.evaluate("getComputedStyle(document.getElementById('ex-next')).backgroundImage")
     assert fond == 'none', ('bouton principal en dégradé', fond)  # or uni
     pg.evaluate(REMPLIR, [0, 0])
