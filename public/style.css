@@ -2814,14 +2814,16 @@ body.portail-bloque { overflow:hidden; }
   opacity:0; transform:translate(-50%,12px); pointer-events:none; transition:opacity .25s ease, transform .25s ease; }
 .notif.visible { opacity:1; transform:translate(-50%,0); }
 
-/* Changement d'écran de l'app : arrivée courte, sens selon la navigation. */
-/* Pas de « fill forwards » : un transform maintenu ferait des éléments fixes de l'écran
-   (barres d'action en bas) des enfants positionnés par rapport à la vue. */
-.view.entre-avant { animation:pa-glisse-avant .26s cubic-bezier(.2,.8,.2,1); }
-.view.entre-arriere { animation:pa-glisse-arriere .26s cubic-bezier(.2,.8,.2,1); }
+/* Navigation : aucune translation du conteneur .view.
+   transform change le repère des enfants fixed et peut provoquer des sauts
+   des CTA (examen, résultats, découverte, introduction) sur Chrome Android.
+   Les animations propres aux contenus restent indépendantes. */
+.view.entre-avant,
+.view.entre-arriere,
+.view.entre-fondu { animation: fondu .18s ease-out; }
 body.sans-transitions .view { animation:none!important; }
 @media (prefers-reduced-motion: reduce) {
-  .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere { animation:none!important; }
+  .pa-anim, .pa-entre-avant, .pa-entre-arriere, .view.entre-avant, .view.entre-arriere, .view.entre-fondu { animation:none!important; }
   .pa-carte-in, .dlg-voile, .dlg-carte, .notif { transition:none!important; }
   .bouton-ecouter.joue .onde1, .bouton-ecouter.joue .onde2 { animation:none; }
   .bulle-contexte, .exv { animation:none; }
