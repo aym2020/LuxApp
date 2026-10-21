@@ -39,7 +39,7 @@ test('écriture compacte, auto-extensible, sans clavier imposé sur tactile',()=
   assert.match(app,/window\.matchMedia\('\(hover: hover\) and \(pointer: fine\)'\)\.matches/);
   assert.match(parcours,/Math\.min\(150, Math\.max\(70, input\.scrollHeight\)\)/);
   // Le champ d'entraînement passe par body.clavier-actif comme le parcours…
-  assert.match(ui,/CHAMPS_EXERCICE = '[^']*#session-input'/);
+  assert.match(ui,/CHAMPS_EXERCICE = '[^']*#session-input[^']*'/);
   assert.match(ui,/#view-session\.active'\)\)/);
   assert.match(css,/body\.clavier-actif #view-session\.active \{/);
   // …et l'ancien mécanisme concurrent a disparu.
