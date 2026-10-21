@@ -76,3 +76,12 @@ Tests de code : `node --test test/nouveautes-v21.test.cjs`. Les tests statiques 
 - [x] Page « Nouveautés » et affichage des versions
 - [ ] Panneau Cours
 - [ ] Charte globale des animations
+
+
+## Correctif ouverture sans saut de mise en page — 21 octobre 2026
+
+Symptôme Android : après un appui sur « Nouveautés », le contenu semblait apparaître au centre puis se déployer pendant une fraction de seconde. La cause probable était le passage successif du panneau commun `.panneau` (feuille limitée à 85 vh, ancrée en bas) vers `.panneau.nv21-panel` (plein écran), la seconde classe étant ajoutée **après** l’insertion du nœud dans le DOM.
+
+Le constructeur commun `ouvrirPanneau(html, titre, apresFermeture, classeInitiale = '')` accepte désormais une classe de présentation facultative **avant la création visible** ; toutes les autres ouvertures conservent la classe `panneau` par défaut. `ouvrirNouveautes()` fournit `nv21-panel` dès la construction, sans `classList.add` tardif. La feuille de style annule également l’animation/fondu héritée du panneau commun pour cette page pleine hauteur seulement. Les URLs des fichiers CSS/JS Nouveautés portent `?v=2` pour limiter les problèmes de cache mobile. Aucun effet n'a été ajouté à la mise en page du contenu : les éléments apparaissent directement dans leur état final.
+
+Contrôle : les tests vérifient la classe initiale sur les panneaux spéciaux et ordinaires, la suppression du changement de classe tardif, ainsi que les propriétés CSS de non-animation. Le rendu sur Samsung reste à confirmer visuellement.
