@@ -8,7 +8,7 @@ const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const html = read('public/index.html');
 const css = read('public/style.css');
 const source = ['public/diagnostic.js', 'public/correction.js', 'public/app.js']
-  .map(read).join('\n');
+  .map(read).join('\n').replace(/\ninit\(\);\n/, '\n'); // Pas de boot réseau pendant les tests.
 
 const section = html.slice(html.indexOf('id="view-session"'),
   html.indexOf('<!-- ══ EXAMENS', html.indexOf('id="view-session"')));

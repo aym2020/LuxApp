@@ -71,7 +71,8 @@ const harness = [
   '    timers: timerCallbacks.length }; }',
   '};'
 ].join('\n');
-const appSource = read('public/app.js');
+// Pas de boot réseau dans un test isolé des fonctions de session.
+const appSource = read('public/app.js').replace(/\ninit\(\);\n/, '\n');
 const running = new Function('document', 'setTimeout', appSource + '\n' + harness)(
   document, cb => { callbacks.push(cb); }
 );
