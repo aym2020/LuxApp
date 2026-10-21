@@ -1,6 +1,6 @@
 # SPEC 91 — Simulation massive autonome et arbitrage d'équilibrage par LLM
 
-**Branche :** `2.1` · **Statut :** simulateur V0 à développer, avant branchement à l'UI · **Cible :** comparer les règles de SPEC 89/90 sans modifier le gameplay actuel.
+**Branche :** `2.1` · **Statut :** simulateur V0 indépendant exécuté en CI ; moteur public à faire · **Cible :** comparer les règles de SPEC 89/90 sans modifier le gameplay actuel.
 
 ## Objectifs non négociables
 
@@ -55,3 +55,9 @@ La CI exécute des **tests de déterminisme** à volume réduit ; les simulation
 6. Sortie en cas d'entrée invalidée, aucune donnée personnelle ni API réseau non opt-in.
 7. Relectures LLM **critiques** et contradictoires, elles proposent mais ne décident pas : aucune modification de paramètres par une sortie non validée.
 8. Suite GitHub CI verte et documentation de la commande de lancement, des limites statistiques, et de l'absence de cron actif si sur `2.1`.
+
+## Premier jalon réel — 22 octobre 2026
+
+GitHub Actions sur `2.1` : **64 000 parties synthétiques, 320 cellules, 200 parties/cellule**, exécution et tests Node réussis. Audit technique : **227 entrées admissibles** du corpus A1.1/A1.2 (avant validation linguistique). Deux alertes heuristiques signalées, détails dans l'artefact `summary.json`. Le `llm-review.md` du premier run indique honnêtement **analyse LLM non activée**, faute de configuration explicite de `OPENAI_API_KEY` et `SURVIE_LLM_MODEL`. Ceci ne valide ni le gameplay futur ni son équilibre.
+
+[Run initial](https://github.com/aym2020/LuxApp/actions/runs/39694291948) · [Artefact](https://github.com/aym2020/LuxApp/actions/runs/39694291948/artifacts/12390226459).

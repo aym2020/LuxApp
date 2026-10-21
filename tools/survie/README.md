@@ -36,3 +36,7 @@ La campagne produit un brief exploitable par un LLM, même sans clé API. Si un 
 Ce moteur est une **maquette mathématique prospective**, pas un replay du moteur Survie actuel. Il modélise bonus +3, plafond 30, tempête 45/90/135 s, malus 3/4/5/6, pouvoirs actifs/passifs simplifiés, paliers 4/8/12…, un cap 45/90/180 s et une résurrection max. Les bots ne reproduisent ni l'hésitation, ni la mémorisation, ni l'attention d'une vraie personne. **À ce stade** : les drafts ne modélisent pas encore les trois cartes tirées ni l'échange tactique complet d'un pouvoir de niveau III contre un nouveau niveau I ; les lettres parasites et élites sont des coûts/risques statistiques, pas des interactions de tuiles. Le score et les pouvoirs devront être raccordés à un moteur pur partagé avant tout classement public.
 
 **Critère de suite :** dès que Survie 2.0 existe, les tests de simulation doivent jouer des traces identiques dans le moteur réel et le simulateur (même RNG, delta temps, pénalités, pouvoirs, réapparition de mots, fin). Compléter par bots qui font des erreurs volontaires et tests humains.
+
+## Première exécution vérifiée
+
+Le push initial du 22 octobre a déclenché [la campagne CI](https://github.com/aym2020/LuxApp/actions/runs/39694291948) : **64 000 parties, 320 groupes, 227 mots admissibles, deux alertes**. Six tests du simulateur réussis. Artefact produit et accessible depuis le run, avec les rapports détaillés. Pas de revue LLM effective sans connexion volontaire à l'API.

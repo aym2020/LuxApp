@@ -111,6 +111,6 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 
 | 89 | [Deux modes Survie : Mes mots / Arène et leaderboard](./SPEC-89.md) | P1 | À faire |
 | 90 | [Roguelite : pouvoirs, builds, combos, Tempête](./SPEC-90.md) | P1 | À faire |
-| 91 | [Simulateur massif et arbitrage d'équilibrage](./SPEC-91.md) | P1 | Simulateur V0 en cours ; gameplay à faire |
+| 91 | [Simulateur massif et arbitrage d'équilibrage](./SPEC-91.md) | P1 | Simulateur V0 exécuté en CI (64 000 parties) ; gameplay à faire |
 
 Ces fiches sont distinctes de la SPEC 88 actuellement déployée. Ne jamais confondre règles simulées et règles de production.
