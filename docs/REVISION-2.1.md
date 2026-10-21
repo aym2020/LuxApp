@@ -1,4 +1,4 @@
-# LuxApp 2.1 — Réviser : configuration éditoriale
+# LuxApp 2.1 — S'entraîner : configuration éditoriale
 
 Date : 21 octobre 2026  
 Branche : `2.1`  
@@ -10,7 +10,7 @@ L'ancienne configuration de révision juxtaposait cinq sections sous forme de gr
 
 ## 2. Présentation cible
 
-Le nouvel écran affiche un en-tête « RÉVISER / Ta séance de révision » avec le **nombre réel de questions disponibles** pour la sélection actuelle, puis des sections sans fond de carte :
+Le nouvel écran affiche un en-tête « S’ENTRAÎNER / Ton entraînement » avec le **nombre réel de questions disponibles** pour la sélection actuelle, puis des sections sans fond de carte :
 
 - **Niveau des questions** : Fragile / En cours / Maîtrisé, avec sélection multiple et compteurs calculés.
 - **Nombre de questions** : 10 / 20 / 50 / Tout, sélecteur à choix unique. Le choix par défaut reste **20**.
@@ -18,7 +18,7 @@ Le nouvel écran affiche un en-tête « RÉVISER / Ta séance de révision » av
 - **Types d'exercices** : Quiz / À trou / Écriture, filtres multiples conservés et affichés en pastilles compactes.
 - **Leçons** : ligne synthétique indiquant combien de leçons sont sélectionnées. L'appui ouvre une feuille indépendante listant toutes les leçons du niveau. « Tout cocher / décocher » et « Terminé » conservent les sélections.
 
-Le bouton **Commencer la révision** constitue l'unique CTA jaune principal. La zone des critères défile indépendamment si nécessaire ; le CTA reste visible **au-dessus de la barre de navigation inférieure**. Sur petite largeur, les réglages conservent leurs cibles tactiles d'au moins 44 px.
+Le bouton **Commencer l’entraînement** constitue l'unique CTA jaune principal. La zone des critères défile indépendamment si nécessaire ; le CTA reste visible **au-dessus de la barre de navigation inférieure**. Sur petite largeur, les réglages conservent leurs cibles tactiles d'au moins 44 px.
 
 ## 3. Comportement conservé
 
@@ -43,7 +43,7 @@ La feuille CSS dédiée permet de modifier la page Réviser sans toucher à la p
 
 ## 5. Recette attendue
 
-1. Ouvrir « Réviser » via l'onglet du bas et via le bouton de l'accueil : titre, compteurs, sélections et CTA corrects.
+1. Ouvrir « S'entraîner » via l'onglet du bas et via le bouton de l'accueil : titre, compteurs, sélections et CTA corrects.
 2. Vérifier les trois niveaux, les types, les quatre quantités, et le fallback d'un focus devenu indisponible.
 3. Ouvrir « Leçons », en décocher une, fermer, vérifier le résumé et le nombre de questions ; recommencer avec « Tout cocher / décocher ».
 4. Ouvrir la révision depuis une seule leçon et vérifier qu'elle est l'unique leçon cochée.
@@ -63,3 +63,14 @@ Après vérification sur Samsung, deux incohérences ont été corrigées :
 - Les filtres « Quiz », « À trou », « Écriture » retrouvent leur disposition horizontale avec retour à la ligne, plutôt que trois grandes bandes sur mobile.
 
 Tests de non-régression ajoutés à `test/revision-v21.test.cjs` : parité des entrées et absence de focus persistant au tap. Recette visuelle Android requise pour le toucher et la densité à petite largeur.
+
+
+## 7. Terminologie — distinguer entraînement, erreurs et examens
+
+La V2.1 utilise désormais trois finalités explicites :
+
+- **S'entraîner** : séance libre sur des questions de leçons sélectionnées, même si l'utilisateur n'a encore rien à consolider. Ce terme s'applique au raccourci d'accueil, à l'onglet principal, à l'en-tête de configuration et aux actions de lancement/continuation.
+- **Erreurs** : retravailler spécifiquement les questions ratées ; le raccourci distinct reste disponible.
+- **Examens** : s'évaluer avec les sujets dédiés.
+
+Le verbe **Réviser / Revoir** reste pertinent *dans une leçon déjà travaillée*, pour reprendre un contenu précis. Les noms techniques `review`, `openReviewSetup`, `getConfiguredReview` et les identifiants `reviser` sont inchangés pour préserver le moteur, les sélections, les statistiques et la navigation sauvegardée. L'ancien indicateur « à revoir / fait » du raccourci d'accueil est supprimé : il ne décrivait qu'une partie des usages possibles de « S'entraîner ».
