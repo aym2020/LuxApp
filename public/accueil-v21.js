@@ -102,7 +102,7 @@
   accesHtml = function (rev) {
     return '<div class="ac-v21-actions">' +
       '<nav class="ac-acces entre-3" aria-label="Accès rapides">' +
-        boutonAcces('rev', ICONES.revision, 'Réviser', infoRevision(rev), 'lancerRevision()') +
+        boutonAcces('rev', ICONES.revision, 'Réviser', infoRevision(rev), 'openReviewSetup()') +
         boutonAcces('exa', ICONES.toque, 'Examens', '', 'openExamens()') +
         boutonAcces('err', ICONES.cible, 'Erreurs', '', "startSession('errors')").replace(
           'class="ac-btn err"', 'class="ac-btn err" aria-label="Erreurs fréquentes"'
