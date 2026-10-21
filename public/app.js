@@ -866,7 +866,7 @@ function showView(id) {
   const avant = document.querySelector('.view.active');
   const profondeur = pileNav.length;
   noterNavigation(id); // historique : le bouton Retour ramène à l'écran précédent
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active', 'entre-avant', 'entre-arriere'));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active', 'entre-avant', 'entre-arriere', 'entre-fondu'));
   const vue = document.getElementById(id);
   vue.classList.add('active');
   // L'accueil est une zone de scroll indépendante : repartir en haut à chaque entrée.
@@ -874,10 +874,15 @@ function showView(id) {
   if (id === 'view-dashboard') vue.scrollTop = 0;
   // SPEC 66 : courte arrivée du nouvel écran ; sens inverse quand on revient en arrière.
   if (avant && avant !== vue) {
-    vue.classList.add(pileNav.length < profondeur ? 'entre-arriere' : 'entre-avant');
+    // Depuis/vers l'accueil : fondu sans translation du conteneur entier.
+    // La translation provoquait un débordement et un saut des éléments fixes sur Android.
+    const depuisOuVersAccueil = avant.id === 'view-dashboard' || id === 'view-dashboard';
+    vue.classList.add(depuisOuVersAccueil
+      ? 'entre-fondu'
+      : (pileNav.length < profondeur ? 'entre-arriere' : 'entre-avant'));
     const fin = e => {
       if (e.target !== vue) return; // animations des éléments de l'écran : ignorées
-      vue.classList.remove('entre-avant', 'entre-arriere');
+      vue.classList.remove('entre-avant', 'entre-arriere', 'entre-fondu');
       vue.removeEventListener('animationend', fin);
     };
     vue.addEventListener('animationend', fin);
