@@ -40,3 +40,8 @@ test('écriture compacte, auto-extensible, sans clavier imposé sur tactile',()=
   assert.match(app,/visualViewport\.addEventListener\('resize', cadrerSaisieSession\)/);
   assert.match(parcours,/Math\.min\(150, Math\.max\(70, input\.scrollHeight\)\)/);
 });
+
+test('une phrase complète reçoit un corps réduit, sans changer le texte',()=>{
+  assert.match(app,/\(q\.fr \|\| ''\)\.length > 42/);
+  assert.match(css,/#view-session\[data-type="ecriture"\] \.question-word\.question-longue/);
+});

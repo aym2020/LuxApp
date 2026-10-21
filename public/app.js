@@ -701,6 +701,11 @@ function renderSessionQ() {
     type === 'ecriture' ? 'ÉCRIS EN LUXEMBOURGEOIS' : typeLabel(type);
   document.getElementById('view-session').dataset.type = type;
   const wordEl = document.getElementById('session-word');
+  // En écriture, un mot et une phrase entière ne doivent pas avoir le même corps.
+  // La classe est recalculée pour chaque question (une session mélange les types).
+  wordEl.className = 'question-word' +
+    ((type === 'ecriture' || type === 'motcache') && (q.fr || '').length > 42
+      ? ' question-longue' : '');
 
   if (type === 'quiz') {
     wordEl.textContent = q.question;
