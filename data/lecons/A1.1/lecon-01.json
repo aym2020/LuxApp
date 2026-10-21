@@ -163,7 +163,11 @@
       "lu": "Merci, gläichfalls! Äddi!",
       "fr": "Merci, pareillement ! Au revoir !",
       "unite": 4,
-      "aide": "À un souhait, on répond <b>Merci, gläichfalls!</b>"
+      "aide": "À un souhait, on répond <b>Merci, gläichfalls!</b>",
+      "alternatives": [
+        "Merci, gläichfalls! Awar!",
+        "Merci, gläichfalls! Awuer!"
+      ]
     },
     {
       "qui": "Léa",
@@ -176,7 +180,11 @@
       "lu": "Äddi, Léa! Schéinen Dag!",
       "fr": "Au revoir, Léa ! Bonne journée !",
       "unite": 4,
-      "aide": "Pour prendre congé : <b>Äddi</b> · bonne journée = <b>Schéinen Dag</b>."
+      "aide": "Pour prendre congé : <b>Äddi</b> · bonne journée = <b>Schéinen Dag</b>.",
+      "alternatives": [
+        "Awar, Léa! Schéinen Dag!",
+        "Awuer, Léa! Schéinen Dag!"
+      ]
     }
   ],
   "unites": [
@@ -1836,7 +1844,11 @@
       "id": 2039,
       "unite": 4,
       "fr": "Au revoir, bonne journée !",
-      "lu": "Äddi, schéinen Dag!"
+      "lu": "Äddi, schéinen Dag!",
+      "alternatives": [
+        "Awar, schéinen Dag!",
+        "Awuer, schéinen Dag!"
+      ]
     },
     {
       "id": 2040,
@@ -1873,7 +1885,11 @@
       "id": 2045,
       "unite": 4,
       "fr": "Merci, pareillement ! Au revoir !",
-      "lu": "Merci, gläichfalls! Äddi!"
+      "lu": "Merci, gläichfalls! Äddi!",
+      "alternatives": [
+        "Merci, gläichfalls! Awar!",
+        "Merci, gläichfalls! Awuer!"
+      ]
     },
     {
       "id": 2046,
