@@ -8,6 +8,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'public/index.html'), 'utf8');
 const js = fs.readFileSync(path.join(root, 'public/app.js'), 'utf8');
+const accueil21 = fs.readFileSync(path.join(root, 'public/accueil-v21.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'public/revision-v21.css'), 'utf8');
 
 test('le nouveau CSS est chargé et limité à Réviser', () => {
@@ -64,4 +65,18 @@ test('lancement de révision inchangé avec CTA accessible', () => {
 test('une leçon seule est conservée dans les paramètres de révision', () => {
   assert.match(js, /const coche = seuleLeconId == null \|\| l\.id === seuleLeconId/);
   assert.match(js, /fermerSelectionLecons\(false\)/);
+});
+
+test('l’accès Réviser de l’accueil ouvre le même écran que la navigation basse', () => {
+  assert.match(accueil21, /boutonAcces\('rev',[^\n]*'openReviewSetup\(\)'\)/);
+  assert.doesNotMatch(accueil21, /boutonAcces\('rev',[^\n]*'lancerRevision\(\)'\)/);
+  assert.match(html, /data-nav="reviser" onclick="openReviewSetup\(\)"/);
+});
+
+test('un tap ne laisse pas de double encadrement des options', () => {
+  assert.doesNotMatch(css, /\.rs-check:focus-within/);
+  assert.match(css, /@media \(hover:hover\) and \(pointer:fine\)/);
+  assert.match(css, /\.rs-check:has\(input:focus-visible\)/);
+  assert.match(css, /\.rs-v21-types \{\s*display:flex; flex-direction:row;/);
+  assert.match(css, /\.rs-v21-segments \.rs-check:has\(input:checked\)/);
 });
