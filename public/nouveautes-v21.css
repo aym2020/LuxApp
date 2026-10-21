@@ -1,0 +1,238 @@
+/* LuxApp 2.1 — Nouveautés, accessible depuis Plus.
+   Lecture éditoriale locale, sans dépendance réseau. */
+.panneau.nv21-panel {
+  inset: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 720px;
+  height: 100dvh;
+  min-height: 0;
+  max-height: 100dvh;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--couleur-fond);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.nv21-panel .nv21-top {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: calc(12px + env(safe-area-inset-top)) 22px 12px;
+  border-bottom: 1px solid var(--couleur-bord-1);
+  background: var(--couleur-fond);
+}
+.nv21-panel .nv21-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--couleur-texte);
+  font: 600 1rem/1.3 var(--police);
+  cursor: pointer;
+}
+.nv21-panel .nv21-back span { color: var(--couleur-texte-2); }
+.nv21-panel .nv21-top-version {
+  color: var(--couleur-action);
+  font: 750 .72rem/1.25 var(--police);
+  letter-spacing: .12em;
+}
+.nv21-panel .nv21-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(36px + env(safe-area-inset-bottom));
+}
+.nv21-panel .nv21-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 220px;
+  padding: 28px 23px 25px;
+  background-image:
+    linear-gradient(0deg, var(--couleur-fond) 0%, rgba(15,14,12,.3) 70%, rgba(15,14,12,.3) 100%),
+    url('art/hero-luxapp-mobile.webp');
+  background-position: center;
+  background-size: cover;
+}
+.nv21-panel .nv21-overline {
+  color: var(--couleur-action);
+  font: 750 .72rem/1.3 var(--police);
+  letter-spacing: .16em;
+}
+.nv21-panel .nv21-hero h2 {
+  margin: 9px 0 6px;
+  color: var(--couleur-texte);
+  font: 400 clamp(3rem, 12vw, 4.4rem)/1 var(--police-serif);
+}
+.nv21-panel .nv21-hero h2 em { color: var(--couleur-action); font-style: normal; }
+.nv21-panel .nv21-hero p {
+  max-width: 370px;
+  margin: 0;
+  color: var(--couleur-texte);
+  font: 400 .97rem/1.5 var(--police);
+}
+.nv21-panel .nv21-lead {
+  padding: 18px 23px 8px;
+  color: var(--couleur-texte-2);
+  font: 450 .94rem/1.5 var(--police);
+}
+.nv21-panel .nv21-feature {
+  margin: 0 23px;
+  padding: 25px 0 26px;
+  border-bottom: 1px solid var(--couleur-bord-1);
+}
+.nv21-panel .nv21-index {
+  color: var(--couleur-action);
+  font: 750 .73rem/1.3 var(--police);
+  letter-spacing: .13em;
+}
+.nv21-panel .nv21-index span { color: var(--couleur-texte-3); }
+.nv21-panel .nv21-feature h3 {
+  margin: 9px 0 7px;
+  color: var(--couleur-texte);
+  font: 400 1.85rem/1.14 var(--police-serif);
+}
+.nv21-panel .nv21-feature > p {
+  margin: 0 0 16px;
+  color: var(--couleur-texte-2);
+  font: 400 .91rem/1.5 var(--police);
+}
+.nv21-panel .nv21-preview {
+  overflow: hidden;
+  border: 1px solid var(--couleur-bord-1);
+  border-radius: 16px;
+  padding: 18px 20px;
+  background: var(--couleur-surface-1);
+  min-height: 84px;
+}
+.nv21-panel .nv21-source {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 8px;
+  color: var(--couleur-texte-3);
+  font: 550 .78rem/1.3 var(--police);
+  text-decoration: none;
+}
+.nv21-panel .nv21-source:hover,
+.nv21-panel .nv21-footer a:hover { color: var(--couleur-action); }
+.nv21-panel .nv21-mini-word {
+  font: 400 2.8rem/1 var(--police-serif);
+  color: var(--couleur-texte);
+}
+.nv21-panel .nv21-mini-word span { color: var(--couleur-action); }
+.nv21-panel .nv21-mini-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 14px 0 11px;
+  color: var(--couleur-texte-3);
+  font: 650 .65rem/1.4 var(--police);
+  letter-spacing: .09em;
+}
+.nv21-panel .nv21-mini-stats b { color: var(--couleur-orange); font-size: 1rem; }
+.nv21-panel .nv21-mini-track {
+  display: block;
+  width: 110px;
+  height: 4px;
+  margin-top: 5px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--couleur-bord-2);
+}
+.nv21-panel .nv21-mini-track i { display: block; width: 37%; height: 100%; border-radius: inherit; background: var(--couleur-action); }
+.nv21-panel .nv21-mini-main,
+.nv21-panel .nv21-mini-dialog > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--couleur-action);
+  color: var(--couleur-sur-or);
+  font: 750 .86rem/1.4 var(--police);
+}
+.nv21-panel .nv21-mini-path { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.nv21-panel .nv21-mini-path > span {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--couleur-bord-2);
+  color: var(--couleur-texte-3);
+  font: 650 .85rem var(--police);
+}
+.nv21-panel .nv21-mini-path > span.fait { color: var(--couleur-reussi); border-color: var(--couleur-vert-bord); }
+.nv21-panel .nv21-mini-path > span.actif { color: var(--couleur-action); border-color: var(--couleur-action); }
+.nv21-panel .nv21-mini-path > i { height: 2px; width: 32px; background: var(--couleur-bord-2); }
+.nv21-panel .nv21-mini-path p { width: 100%; margin: 12px 0 0; color: var(--couleur-texte-3); font-size: .76rem; }
+.nv21-panel .nv21-mini-path p b { color: var(--couleur-action); }
+.nv21-panel .nv21-mini-rule > span {
+  color: var(--couleur-action);
+  font: 750 .75rem/1.5 var(--police);
+  letter-spacing: .12em;
+}
+.nv21-panel .nv21-mini-rule > strong { display: block; margin: 6px 0 12px; color: var(--couleur-texte); font: 650 1rem/1.4 var(--police); }
+.nv21-panel .nv21-mini-rule em { color: var(--couleur-action); font-style: normal; }
+.nv21-panel .nv21-mini-rule p {
+  border-left: 3px solid var(--couleur-orange);
+  margin: 0;
+  padding: 4px 0 4px 11px;
+  color: var(--couleur-orange);
+  font: 750 .68rem/1.45 var(--police);
+  letter-spacing: .07em;
+}
+.nv21-panel .nv21-mini-rule small { display: block; color: var(--couleur-texte-2); font: 450 .82rem/1.4 var(--police); letter-spacing: 0; }
+.nv21-panel .nv21-mini-dialog { display: flex; flex-direction: column; gap: 12px; }
+.nv21-panel .nv21-mini-dialog > div { display: flex; flex-direction: column; gap: 3px; border-bottom: 1px solid var(--couleur-bord-1); padding-bottom: 10px; }
+.nv21-panel .nv21-mini-dialog small { font: 750 .66rem var(--police); color: var(--couleur-texte-3); letter-spacing: .1em; }
+.nv21-panel .nv21-mini-dialog div:nth-child(2) small { color: var(--couleur-action); }
+.nv21-panel .nv21-mini-dialog b { color: var(--couleur-texte); font: 600 .97rem var(--police); }
+.nv21-panel .nv21-mini-dialog > span { justify-content: center; }
+.nv21-panel .nv21-mini-practice { display: flex; gap: 6px; flex-wrap: wrap; }
+.nv21-panel .nv21-mini-practice > span {
+  border: 1px solid var(--couleur-bord-3);
+  border-radius: 9px;
+  padding: 9px 14px;
+  color: var(--couleur-texte-2);
+  font: 650 .85rem var(--police);
+}
+.nv21-panel .nv21-mini-practice > span.actif { border-color: var(--couleur-action); color: var(--couleur-action); background: var(--couleur-or-fond); }
+.nv21-panel .nv21-mini-practice p { width: 100%; color: var(--couleur-texte-3); font: 500 .79rem var(--police); margin: 7px 0 0; }
+.nv21-panel .nv21-mini-comfort { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--couleur-texte-2); font: 550 .9rem var(--police); }
+.nv21-panel .nv21-mini-comfort span:last-child { color: var(--couleur-reussi); }
+.nv21-panel .nv21-footer { padding: 26px 23px 12px; }
+.nv21-panel .nv21-footer p { margin: 0 0 13px; color: var(--couleur-texte-3); font: 400 .83rem/1.55 var(--police); }
+.nv21-panel .nv21-footer a { color: var(--couleur-action); font: 600 .86rem/1.4 var(--police); }
+.nv21-panel .nv21-footer small { display: block; margin-top: 24px; color: var(--couleur-texte-3); font: 550 .73rem var(--police); }
+.nv21-panel button:focus-visible, .nv21-panel a:focus-visible { outline: 2px solid var(--couleur-action); outline-offset: 3px; }
+/* Version visible dans Plus sans concurrencer les actions. */
+.panneau .plus-version {
+  align-self: center;
+  margin: 12px 0 0;
+  color: var(--couleur-texte-3);
+  font: 500 .75rem/1.5 var(--police);
+}
+.panneau .plus-version b { color: var(--couleur-texte-2); font-weight: 650; }
+@media (max-width: 380px) {
+  .nv21-panel .nv21-top { padding-inline: 16px; }
+  .nv21-panel .nv21-hero { padding-inline: 18px; min-height: 195px; }
+  .nv21-panel .nv21-lead { padding-inline: 18px; }
+  .nv21-panel .nv21-feature { margin-inline: 18px; }
+  .nv21-panel .nv21-footer { padding-inline: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .panneau.nv21-panel { animation: none; } }
