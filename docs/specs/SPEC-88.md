@@ -43,3 +43,11 @@ Recette navigateur mesurée sur Chromium aux largeurs **320, 360, 390 et 430 px*
 - Les étiquettes évoluent avec la série : « BIEN JOUÉ ! », « DOUBLE ! », « COMBO ×3 », « EN FEU ×5 », « LÉGENDAIRE ×10 ».
 - **Sans décaler les tuiles** : effets dans la barre supérieure, animations exclusivement de transformation/opacité. Le délai de passage au mot suivant reste 280 ms. Mauvaise réponse = série remise à zéro et effets arrêtés.
 - **Accessibilité :** la série chiffrée reste visible en permanence ; `prefers-reduced-motion` désactive impacts/étincelles/texte flottant. Test de non-régression dédié aux seuils et aux temps réels ; vérifier le rendu sur Samsung avant validation finale.
+
+## Correctif animation unique et continuité du HUD — 22 octobre 2026
+
+**Cause constatée :** sur réussite, `survieCelebrate` déclenchait les effets dans le HUD puis `survieNouvelleQuestion` appelait `survieRendre` au bout de 280 ms. Ce dernier reconstruisait tout le `innerHTML` du jeu avec `p.fete=true`, **relançant les animations encore actives** (430–1050 ms). Des lectures `offsetWidth` forçaient en outre des synchronisations de style, et des transitions `font-size` à chaque palier recalculaient la mise en page.
+
+**Correction :** HUD crée une fois par partie ; seule `#survie-question` est remplacée au changement de mot. Impulsion unique déclenchée sur réussite et terminée en 620 ms, sans double départ ni lecture d'offsetWidth. Paliers durables via `transform:scale`, taille de police/hauteurs fixes pour préserver les positions des tuiles. Score et gain réels inchangés (+3 s, plafond 30, erreur −3 s) ; mot suivant toujours à 280 ms. Reset d'animation au faux, nettoyage seulement en fin d'effet ; `prefers-reduced-motion` conservé. Les animations restent limitées à une durée modérée et à des propriétés principalement compositées.
+
+**Vérification :** régression DOM sur stabilité du HUD et absence de deuxième impulsion après 280 ms, succès/faux, chrono, bonus, paliers, CSS et cache. Validation visuelle Chrome Android/Samsung nécessaire avant d'affirmer que le rendu est fluide sur le téléphone.

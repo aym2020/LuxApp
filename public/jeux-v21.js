@@ -13,20 +13,27 @@ function survieGainLabel(reel) {
   const n=Math.round(Math.max(0,reel)*10)/10;
   return n ? '+'+String(n).replace('.',',')+' s' : 'CHRONO PLEIN';
 }
+// Une seule impulsion par réponse, sur un HUD qui n'est jamais recréé
+// entre les questions. Aucun reflow forcé (ancien offsetWidth).
 function survieCelebrate(p) {
   const combo=document.getElementById('survie-combo');
   const cri=document.getElementById('survie-combo-cri');
   const chrono=document.getElementById('survie-chrono');
   const gain=document.getElementById('survie-gain');
-  if(combo){
-    combo.className='survie-combo';
-    void combo.offsetWidth;
-    combo.className='survie-combo survie-combo-hit';
-    combo.setAttribute('data-tier',String(survieComboPalier(p.serie)));
-  }
   if(cri)cri.textContent=survieComboMessage(p.serie);
   if(gain)gain.textContent=p.gainTexte;
-  if(chrono){chrono.className='survie-hud-time';void chrono.offsetWidth;chrono.className='survie-hud-time survie-time-hit';}
+  if(combo){
+    // Ne pas couper une animation déjà en cours : une impulsion, pas deux.
+    if(!combo.className.includes('survie-combo-hit'))combo.className='survie-combo survie-combo-hit';
+  }
+  if(chrono && !chrono.className.includes('survie-time-hit'))
+    chrono.className='survie-hud-time survie-time-hit';
+  // Nettoyage après la plus longue animation (620ms), sans DOM recréé.
+  setTimeout(()=>{
+    if(surviePartie!==p || !p.actif)return;
+    if(combo && combo.className.includes('survie-combo-hit'))combo.className='survie-combo';
+    if(chrono && chrono.className.includes('survie-time-hit'))chrono.className='survie-hud-time';
+  },650);
 }
 function survieResetEffects(){
   const combo=document.getElementById('survie-combo'),chrono=document.getElementById('survie-chrono');
@@ -158,32 +165,21 @@ function survieHud() {
   const timer=document.getElementById('survie-secondes');
   const jauge=document.getElementById('survie-jauge');
   const serie=document.getElementById('survie-serie');
-  if(timer)timer.textContent=Math.ceil(p.restant)+' s';
-  if(jauge)jauge.style.width=Math.max(0,p.restant/SURVIE_MAX*100)+'%';
-  if(serie)serie.textContent=p.serie;
+  const sec=Math.ceil(p.restant),label=sec+' s';
+  if(timer && timer.textContent!==label)timer.textContent=label;
+  if(jauge)jauge.style.transform='scaleX('+Math.max(0,Math.min(1,p.restant/SURVIE_MAX))+')';
+  if(serie && serie.textContent!==String(p.serie))serie.textContent=p.serie;
   const combo=document.getElementById('survie-combo');
-  if(combo)combo.setAttribute('data-tier',String(survieComboPalier(p.serie)));
+  const tier=survieComboPalier(p.serie);
+  if(combo && p.hudTier!==tier){
+    combo.setAttribute('data-tier',String(tier));
+    p.hudTier=tier;
+  }
 }
-function survieRendre() {
-  const box=document.getElementById('survie-jeu'),p=surviePartie;
-  if(!box||!p || !p.mot)return;
-  const effet=p.fete===true;
-  box.innerHTML=
-    '<div class="survie-top"><button type="button" onclick="quitterSurvie()">← Jeux</button>'+
-      '<span>MODE SURVIE</span></div>'+
-    '<div class="survie-hud">'+
-      '<div id="survie-combo" class="survie-combo'+(effet?' survie-combo-hit':'')+'" data-tier="'+survieComboPalier(p.serie)+'">'+
-        '<span>SÉRIE</span><div class="survie-combo-valeur">'+
-        '<span class="survie-flamme" aria-hidden="true"><svg viewBox="0 0 28 36"><path d="M14 1C16 8 23 10 23 19C23 29 19 34 14 34C6 34 2 28 2 21C2 15 6 10 8 7C9 15 13 15 14 1Z" fill="currentColor"/></svg></span>'+
-        '<strong id="survie-serie">'+p.serie+'</strong>'+
-        '<span class="survie-etincelles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>'+
-        '<span id="survie-combo-cri" class="survie-combo-cri" aria-hidden="true">'+jeuEscape(survieComboMessage(p.serie))+'</span>'+
-        '</div></div>'+
-      '<div id="survie-chrono" class="survie-hud-time'+(effet?' survie-time-hit':'')+'"><span>CHRONO</span>'+
-        '<strong id="survie-secondes">'+Math.ceil(p.restant)+' s</strong>'+
-        '<span id="survie-gain" class="survie-gain" aria-hidden="true">'+jeuEscape(p.gainTexte||'')+'</span></div></div>'+
-    '<div class="survie-piste" role="progressbar" aria-label="Temps restant" aria-valuemin="0" aria-valuemax="30" aria-valuenow="'+Math.ceil(p.restant)+'"><i id="survie-jauge" style="width:'+(p.restant/30*100)+'%"></i></div>'+
-    '<div class="survie-mot"><span>RECONSTRUIS LE MOT</span><h1>'+jeuEscape(p.mot.fr)+'</h1>'+
+// Le HUD est un élément stable de la partie. Modifier uniquement cette zone
+// est essentiel : sinon les keyframes redémarrent après chaque mot (+280ms).
+function survieQuestionHtml(p) {
+  return '<div class="survie-mot"><span>RECONSTRUIS LE MOT</span><h1>'+jeuEscape(p.mot.fr)+'</h1>'+
       '<p>'+p.mot.longueur+' lettres</p></div>'+
     '<div id="survie-cases" class="survie-cases" aria-label="Mot à reconstruire">'+
       survieLettres(p.mot.mot).map((_,i)=>'<span class="survie-case" data-case="'+i+'"></span>').join('')+'</div>'+
@@ -191,10 +187,40 @@ function survieRendre() {
       p.tuiles.map((l,i)=>'<button type="button" class="survie-tuile" data-index="'+i+
         '" onclick="survieLettre('+i+')" aria-label="Lettre '+jeuEscape(l)+', position '+(i+1)+'">'+jeuEscape(l)+'</button>').join('')+'</div>'+
     '<div class="survie-actions"><button type="button" onclick="survieEffacer()" aria-label="Effacer la dernière lettre">⌫ Effacer</button>'+
-      '<span id="survie-info" role="status" aria-live="polite">Choisis les lettres dans l’ordre</span></div>'+
-    '<div class="survie-record">Record personnel : '+survieRecord()+' mots</div>';
-  p.fete=false;
+      '<span id="survie-info" role="status" aria-live="polite">Choisis les lettres dans l’ordre</span></div>';
 }
+function survieRendre() {
+  const box=document.getElementById('survie-jeu'),p=surviePartie;
+  if(!box||!p||!p.mot)return;
+  if(p.ecranPret){
+    const question=document.getElementById('survie-question');
+    if(question){
+      question.innerHTML=survieQuestionHtml(p);
+      survieHud();
+      return;
+    }
+    p.ecranPret=false; // vue détruite ailleurs, restauration complète une fois
+  }
+  box.innerHTML=
+    '<div class="survie-top"><button type="button" onclick="quitterSurvie()">← Jeux</button>'+
+      '<span>MODE SURVIE</span></div>'+
+    '<div class="survie-hud">'+
+      '<div id="survie-combo" class="survie-combo" data-tier="'+survieComboPalier(p.serie)+'">'+
+        '<span>SÉRIE</span><div class="survie-combo-valeur">'+
+        '<span class="survie-flamme" aria-hidden="true"><svg viewBox="0 0 28 36"><path d="M14 1C16 8 23 10 23 19C23 29 19 34 14 34C6 34 2 28 2 21C2 15 6 10 8 7C9 15 13 15 14 1Z" fill="currentColor"/></svg></span>'+
+        '<strong id="survie-serie">'+p.serie+'</strong>'+
+        '<span class="survie-etincelles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>'+
+        '<span id="survie-combo-cri" class="survie-combo-cri" aria-hidden="true">'+jeuEscape(survieComboMessage(p.serie))+'</span>'+
+        '</div></div>'+
+      '<div id="survie-chrono" class="survie-hud-time"><span>CHRONO</span>'+
+        '<strong id="survie-secondes">'+Math.ceil(p.restant)+' s</strong>'+
+        '<span id="survie-gain" class="survie-gain" aria-hidden="true"></span></div></div>'+
+    '<div class="survie-piste" role="progressbar" aria-label="Temps restant" aria-valuemin="0" aria-valuemax="30" aria-valuenow="'+Math.ceil(p.restant)+'"><i id="survie-jauge" style="transform:scaleX('+(p.restant/30)+')"></i></div>'+
+    '<div id="survie-question">'+survieQuestionHtml(p)+'</div>'+
+    '<div class="survie-record">Record personnel : <span id="survie-record-chiffre">'+survieRecord()+'</span> mots</div>';
+  p.ecranPret=true;
+}
+
 function survieLettre(index) {
   const p=surviePartie;
   if(!p||!p.actif||p.verrou||p.selection.some(i=>i===index)||index<0||index>=p.tuiles.length)return;
@@ -215,12 +241,12 @@ function survieLettre(index) {
     const avant=p.restant;
     p.restant=Math.min(SURVIE_MAX,p.restant+SURVIE_BONUS);
     p.gainTexte=survieGainLabel(p.restant-avant);
-    p.fete=true;
     survieEnregistrer(p.maxSerie);
+    const record=document.getElementById('survie-record-chiffre');
+    if(record)record.textContent=survieRecord();
     if(info){info.className='survie-ok';info.textContent='Juste ! · '+p.gainTexte;}
   } else {
     p.serie=0;
-    p.fete=false;
     p.gainTexte='';
     p.restant=Math.max(0,p.restant-SURVIE_PENALITE);
     if(info){info.className='survie-ko';info.textContent='Pas encore · −3 secondes';}
@@ -262,7 +288,11 @@ function survieTick() {
   p.dernier=maintenant;
   survieHud();
   const progress=document.querySelector('.survie-piste');
-  if(progress)progress.setAttribute('aria-valuenow',String(Math.ceil(p.restant)));
+  const remaining=Math.ceil(p.restant);
+  if(progress && p.accessibleSec!==remaining){
+    progress.setAttribute('aria-valuenow',String(remaining));
+    p.accessibleSec=remaining;
+  }
   if(p.restant<=0)survieTerminer();
 }
 function demarrerSurvie() {
@@ -270,7 +300,7 @@ function demarrerSurvie() {
   if(pool.length<4){renderJeuxHub();return;}
   survieArreter();
   surviePartie={pool,vus:new Set(),precedent:null,tuiles:[],selection:[],serie:0,maxSerie:0,total:0,
-    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,fete:false,gainTexte:''};
+    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,ecranPret:false,gainTexte:''};
   survieNouvelleQuestion();
   showView('view-survie');
   surviePartie.dernier=performance.now();
