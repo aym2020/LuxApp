@@ -59,13 +59,13 @@
   position: static;
   flex: 0 0 auto;
   margin: 0;
-  padding: 9px 23px 0;
+  padding: 7px 23px 0;
   border-bottom: 1px solid var(--couleur-bord-1);
   background: var(--couleur-fond);
 }
 #cours-panel .cours75-portee {
   gap: 7px;
-  padding: 0 0 11px;
+  padding: 0 0 4px;
 }
 #cours-panel .cours75-chip {
   min-height: 44px;
@@ -91,8 +91,8 @@
 }
 #cours-panel .cours75-onglet {
   position: relative;
-  min-height: 46px;
-  padding: 9px 0 12px;
+  min-height: 44px;
+  padding: 6px 0 9px;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -237,9 +237,17 @@
 #cours-panel .cours-ex-fr,
 #cours-panel .cours-dialogue-fr { color: var(--couleur-texte-3); }
 
-/* Les tables restent des tables, avec leurs en-têtes et un scroll de secours. */
+/* Tableaux : préserver les mots entiers (« United Zoha », termes appris).
+   Les colonnes s'adaptent au texte, avec défilement horizontal si nécessaire. */
 #cours-panel .cours-table-wrap { width: 100%; overflow-x: auto; }
-#cours-panel .cours-table { table-layout: fixed; }
+#cours-panel .cours-table { table-layout: auto; }
+#cours-panel .cours-table th,
+#cours-panel .cours-table td {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
 #cours-panel .cours-table th {
   color: var(--couleur-action);
   border-bottom-color: var(--couleur-bord-2);
