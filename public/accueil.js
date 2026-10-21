@@ -341,7 +341,7 @@ function ouvrirPlus() {
 // quelle que soit la façon (bouton, voile, Retour du téléphone, Échap).
 let panneauApres = null;
 
-function ouvrirPanneau(html, titre, apresFermeture) {
+function ouvrirPanneau(html, titre, apresFermeture, classeInitiale = '') {
   const precedent = document.getElementById('panneau');
   // Ne pas reconstruire la feuille si l'action est répétée rapidement.
   if (titre === 'Plus' && precedent && precedent.getAttribute('aria-label') === titre) return;
@@ -368,7 +368,9 @@ function ouvrirPanneau(html, titre, apresFermeture) {
     fermerPanneau();
   });
   const panneau = document.createElement('div');
-  panneau.className = 'panneau';
+  // La classe de présentation doit être présente AVANT l'insertion dans le DOM.
+  // Sinon un panneau standard (85vh) peut apparaître avant le mode plein écran.
+  panneau.className = 'panneau' + (classeInitiale ? ' ' + classeInitiale : '');
   panneau.id = 'panneau';
   panneau.setAttribute('role', 'dialog');
   panneau.setAttribute('aria-label', titre);
