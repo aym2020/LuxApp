@@ -199,10 +199,10 @@
 #view-dashboard .ac-v21-cta .cs-rond .ic { width:21px; height:21px; stroke-width:2.5; }
 #view-dashboard .ou-choisir { display:none; }
 
-/* Raccourcis dans UNE surface neutre à séparateurs ; pas trois grosses cartes. */
+/* SPEC 88 : quatre raccourcis dans LA MÊME surface, aucune hauteur ajoutée. */
 #view-dashboard .ac-v21-actions { margin-top:var(--ac-stack-gap); }
 #view-dashboard .ac-acces {
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
   gap:0; background:#171613; border:1px solid #2a2824;
   padding:12px 2px; border-radius:15px; overflow:hidden;
 }
@@ -218,13 +218,16 @@
 }
 #view-dashboard .ac-btn.rev,
 #view-dashboard .ac-btn.exa,
-#view-dashboard .ac-btn.err { --c:var(--accent); }
+#view-dashboard .ac-btn.err,
+#view-dashboard .ac-btn.jeux { --c:var(--accent); }
 #view-dashboard .ac-acces .ac-btn > .ic:first-child {
   width:21px; height:21px; color:var(--accent); flex:none;
 }
 #view-dashboard .ac-acces .ac-btn > b {
-  flex:none; color:#eee6d8; font:650 12px/1.2 var(--font);
+  flex:none; color:#eee6d8; font:650 clamp(10px,2.8vw,12px)/1.2 var(--font);
+  white-space:nowrap; letter-spacing:-.035em;
 }
+#view-dashboard .ac-acces .ac-btn.jeux > b { color:var(--accent); }
 #view-dashboard .ac-acces .ac-btn > .ic:last-child { display:none; }
 #view-dashboard .ac-acces .ac-info {
   display:flex; flex-wrap:wrap; flex-direction:row; justify-content:center;

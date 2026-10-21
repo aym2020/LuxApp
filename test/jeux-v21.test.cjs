@@ -1,0 +1,92 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
+const script=read('public/jeux-v21.js'),accueil=read('public/accueil-v21.js'),css=read('public/accueil-v21.css'),html=read('public/index.html'),nav=read('public/navigation.js');
+const card=(fr,lu)=>({fr,lu}),lesson=(id,flashcards)=>({id,flashcards});
+function make(){
+ const store=new Map(),nodes=new Map(),timeouts=[];let tick=1000;
+ const element=id=>{
+  if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',style:{},disabled:false,
+   classList:{contains:cl=>id==='view-survie'&&cl==='active'},setAttribute(){},focus(){},blur(){}});
+  return nodes.get(id);
+ };
+ const ctx={console,lecons:[],getProgress:()=>({}),getLeconVue:()=>false,
+  storageKey:x=>'profilA:'+x,
+  localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)},
+  document:{visibilityState:'visible',getElementById:element,querySelector:()=>({disabled:false,textContent:''}),querySelectorAll:()=>[]},
+  showView:id=>{ctx.lastView=id},retour:()=>{ctx.lastView='retour'},goLessons:()=>{},
+  performance:{now:()=>tick},setInterval:()=>1,clearInterval:()=>{},setTimeout:fn=>timeouts.push(fn)};
+ vm.createContext(ctx);vm.runInContext(script,ctx);
+ return {ctx,store,element,advance:ms=>tick+=ms,flush:()=>{while(timeouts.length)timeouts.shift()()}};
+}
+test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
+ assert.match(accueil,/boutonAcces\('jeux',/);
+ assert.match(accueil,/ouvrirJeux\(\)/);
+ assert.match(css,/grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+ assert.match(css,/#view-dashboard \.ac-btn\.ac-v21-journey/);
+ assert.doesNotMatch(accueil,/jeux-carte|survie-mot/);
+});
+test('Pages Jeux et Survie, navigation native Android',()=>{
+ for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
+ assert.match(html,/jeux-v21.css\?v=1/);assert.match(html,/jeux-v21.js\?v=1/);
+ assert.match(nav,/'view-jeux': 1/);
+ assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
+ assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
+});
+test('Mots issus uniquement des leçons étudiées, sans Plus, phrases ni doublons',()=>{
+ const {ctx}=make();
+ ctx.list=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht'),card('salut','Moien'),card('film','Film'),card('Au bureau','Um Büro'),{...card('cher','deier'),plus:true},card('maison','Haus')]),lesson(2,[card('table','Dësch')])];
+ ctx.progress={1:{vue:{ouverte:1}}};
+ const pool=vm.runInContext('survieMotsDisponibles(list,progress)',ctx);
+ assert.deepEqual(Array.from(pool,p=>p.mot),['Haus','Bam','Buch','Këscht','Moien']);
+ assert.equal(vm.runInContext('survieMotsDisponibles(list,{}).length',ctx),0);
+});
+test('Record persistant et isolé par profil sans écrire la progression',()=>{
+ const {ctx,store}=make();
+ vm.runInContext('survieEnregistrer(8)',ctx);
+ assert.equal(vm.runInContext('survieRecord()',ctx),8);
+ vm.runInContext('survieEnregistrer(2)',ctx);
+ assert.equal(vm.runInContext('survieRecord()',ctx),8);
+ assert.ok(store.has('profilA:luxSurvieBest'));
+ ctx.storageKey=k=>'profilB:'+k;
+ assert.equal(vm.runInContext('survieRecord()',ctx),0);
+});
+test('Survie : auto-validation, +2 s, mauvaise réponse -3 s et série remise à zéro',()=>{
+ const {ctx,element,advance,flush}=make();
+ ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht'),card('bonjour','Moien')])];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie()',ctx);
+ assert.equal(ctx.lastView,'view-survie');
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),30);
+ advance(4000);vm.runInContext('survieTick()',ctx);
+ assert.equal(vm.runInContext('Math.round(surviePartie.restant)',ctx),26);
+ // Associer chaque lettre correcte à une tuile disponible.
+ ctx.indices=vm.runInContext('(function(){const p=surviePartie,used=new Set();return Array.from(p.mot.mot).map(c=>{const i=p.tuiles.findIndex((x,j)=>x===c&&!used.has(j));used.add(i);return i})})()',ctx);
+ vm.runInContext('indices.forEach(survieLettre)',ctx);
+ assert.equal(vm.runInContext('surviePartie.serie',ctx),1);
+ assert.equal(vm.runInContext('Math.round(surviePartie.restant)',ctx),28);
+ assert.equal(vm.runInContext('survieRecord()',ctx),1);
+ flush();
+ // Forcer un ordre de tuiles différent de la solution attendue.
+ ctx.bad=vm.runInContext('(function(){const p=surviePartie,ids=p.tuiles.map((_,i)=>i);while(ids.map(i=>p.tuiles[i]).join("")===p.mot.mot){ids.push(ids.shift())}return ids})()',ctx);
+ vm.runInContext('bad.forEach(survieLettre)',ctx);
+ assert.equal(vm.runInContext('surviePartie.serie',ctx),0);
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),25);
+ flush();
+ advance(32000);vm.runInContext('survieTick()',ctx);
+ assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
+ assert.equal(vm.runInContext('surviePartie.actif',ctx),false);
+ vm.runInContext('demarrerSurvie()',ctx);
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),30);
+});
+test('Timer en pause quand le document est caché',()=>{
+ const {ctx,advance}=make();
+ ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie()',ctx);
+ ctx.document.visibilityState='hidden';
+ advance(30000);vm.runInContext('survieTick()',ctx);
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),30);
+ ctx.document.visibilityState='visible';vm.runInContext('survieTick()',ctx);
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),30);
+});

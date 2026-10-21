@@ -24,6 +24,12 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## SPEC 88 — Accueil fixe, catégorie Jeux et Survie (branche `2.1`)
+
+Référence : [docs/specs/SPEC-88.md](docs/specs/SPEC-88.md). Quatre raccourcis sur une rangée (S'entraîner, Examens, Erreurs, Jeux) **sans ajout de hauteur**. Jeux est une rubrique indépendante ; Survie ne peut proposer que des mots de leçons déjà ouvertes/étudiées. Score Survie isolé des leçons, record stocké par profil local, navigation Retour Android et pause de timer sur sortie/masquage. Ne pas modifier le chemin, les examens ou la progression pour le mini-jeu.
+
+---
+
 ## Exception explicite — Harmonisation visuelle LuxApp 2.1
 
 Pour toute tâche concernant le **design V2.1**, travailler sur la branche **`2.1`**, et lire [`docs/CHARTE_UI_2.1.md`](docs/CHARTE_UI_2.1.md) avant de modifier les pages. L'accueil validé est la référence de composition ; `docs/DESIGN_SYSTEM.md` conserve les règles communes de composants, d'états et d'accessibilité. Les autres vues sont à harmoniser par lots, sans toucher aux contenus pédagogiques ou à la logique de progression. Pour les travaux ordinaires non explicitement V2.1, la règle de branche `v2` ci-dessous reste applicable.

@@ -1,0 +1,50 @@
+/* SPEC 88 — Jeux, Survie : charte LuxApp 2.1, classes isolées. */
+#view-jeux,#view-survie{width:100%;max-width:720px;min-height:100dvh;background:#0f0e0c;color:#f5f0e8}
+#view-jeux .jeux-hub,#view-survie .survie-jeu{width:100%;max-width:470px;margin:0 auto;padding:clamp(16px,4vw,24px);padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+#view-jeux .jeux-retour,#view-survie .survie-top button{min-height:44px;border:0;background:transparent;color:#bbb1a2;font:650 14px var(--font);text-align:left;cursor:pointer}
+#view-jeux .jeux-entete{padding:42px 0 30px}
+#view-jeux .jeux-kicker,#view-survie .jeux-kicker{color:#afa494;letter-spacing:.16em;font:800 12px/1.4 var(--font)}
+#view-jeux .jeux-entete h1,#view-survie .survie-fin h1{font:400 68px/1.07 'Instrument Serif',Georgia,serif;margin:12px 0}
+#view-jeux .jeux-entete h1 span,#view-survie .survie-fin h1 span{color:var(--accent)}
+#view-jeux .jeux-entete p{font:400 14px/1.6 var(--font);color:#b5ac9d;max-width:310px}
+#view-jeux .jeux-carte{border:1px solid #594a30;background:linear-gradient(140deg,#29241b,#191713);border-radius:18px;padding:21px}
+#view-jeux .jeux-lettres{display:flex;gap:6px;margin-bottom:22px}
+#view-jeux .jeux-lettres span{display:grid;place-items:center;width:38px;height:44px;border:1px solid #685634;border-bottom:3px solid #957737;border-radius:8px;background:#342e21;color:var(--accent);font:800 21px var(--font)}
+#view-jeux .jeux-carte h2{font:400 40px/1.1 'Instrument Serif',Georgia,serif;margin:0 0 12px}
+#view-jeux .jeux-carte p{font:400 14px/1.55 var(--font);color:#c2b8a8;margin:0 0 18px}
+#view-jeux .jeux-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font:650 12px/1.5 var(--font);color:#bbb0a1;margin-bottom:14px}
+#view-jeux .jeux-meta b{color:var(--accent)}
+#view-jeux .jeux-carte .jeux-verrou{font-size:13px;color:#d2b66f}
+#view-jeux .jeux-jouer,#view-survie .jeux-jouer{display:block;width:100%;min-height:54px;background:var(--accent);border:0;border-radius:12px;color:#251b0d;font:800 16px var(--font);cursor:pointer}
+#view-jeux button:focus-visible,#view-survie button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#view-survie .survie-jeu{min-height:100dvh;display:flex;flex-direction:column;gap:13px}
+#view-survie .survie-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#b3a899;font:800 11px/1.4 var(--font);letter-spacing:.12em}
+#view-survie .survie-hud{display:flex;justify-content:space-between;align-items:flex-end;padding-top:10px}
+#view-survie .survie-hud>div{display:flex;flex-direction:column;gap:3px}
+#view-survie .survie-hud span{font:800 11px var(--font);letter-spacing:.12em;color:#aaa293}
+#view-survie .survie-hud strong{font:800 34px/1 var(--font);color:var(--accent);font-variant-numeric:tabular-nums}
+#view-survie .survie-hud-time{text-align:right}
+#view-survie .survie-piste{height:6px;border-radius:99px;overflow:hidden;background:#36322b}
+#view-survie .survie-piste i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .12s linear}
+#view-survie .survie-mot{text-align:center;padding:clamp(18px,5vh,49px) 0 17px}
+#view-survie .survie-mot>span{font:800 12px/1.4 var(--font);letter-spacing:.14em;color:#afa596}
+#view-survie .survie-mot h1{font:400 clamp(38px,10vw,53px)/1.12 'Instrument Serif',Georgia,serif;margin:18px 0 10px;overflow-wrap:anywhere}
+#view-survie .survie-mot p{font:500 13px var(--font);color:#aca293}
+#view-survie .survie-cases{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:5px;margin:6px auto 16px;max-width:100%}
+#view-survie .survie-case{width:clamp(24px,7.1vw,46px);height:clamp(40px,10vw,54px);border-bottom:3px solid #736445;border-radius:8px;background:#211f1a;display:grid;place-items:center;font:800 clamp(18px,5vw,25px) var(--font);color:#f6f0e6}
+#view-survie .survie-tuiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
+#view-survie .survie-tuile{min-width:0;min-height:53px;border:1px solid #4d473e;border-bottom:3px solid #6f6250;border-radius:11px;background:#24221d;color:#eee7dc;font:800 clamp(18px,5vw,26px) var(--font);cursor:pointer;touch-action:manipulation}
+#view-survie .survie-tuile:disabled{opacity:.23;cursor:default}
+#view-survie .survie-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:54px}
+#view-survie .survie-actions button{border:1px solid #49443b;border-radius:10px;color:#e9e1d4;background:transparent;min-height:46px;padding:9px 12px;font:700 13px var(--font)}
+#view-survie #survie-info{font:550 12px/1.4 var(--font);text-align:right;color:#bcb2a4}
+#view-survie #survie-info.survie-ok{color:var(--couleur-reussi)}
+#view-survie #survie-info.survie-ko{color:var(--couleur-erreur)}
+#view-survie .survie-record{text-align:center;color:#ada394;font:600 12px var(--font);margin-top:auto;padding-top:20px}
+#view-survie .survie-fin{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:19px;text-align:center}
+#view-survie .survie-fin h1{margin:0}
+#view-survie .survie-fin-score{font:800 86px/1 var(--font);color:var(--accent)}
+#view-survie .survie-fin p{font:500 14px/1.45 var(--font);color:#b7ae9f}
+#view-survie .survie-fin-retour{background:transparent;border:0;color:#bcb2a3;min-height:48px;padding:12px;font:650 14px var(--font)}
+@media(max-height:720px){#view-survie .survie-mot{padding:12px 0 8px}#view-survie .survie-mot h1{margin:8px 0}#view-survie .survie-case{height:38px}#view-survie .survie-tuile{min-height:44px}#view-survie .survie-record{padding-top:5px}}
+@media(prefers-reduced-motion:reduce){#view-survie .survie-piste i{transition:none}}

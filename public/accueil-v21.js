@@ -98,7 +98,7 @@
     return html;
   };
 
-  // 3 raccourcis regroupés, puis un lien discret vers Mon chemin.
+  // SPEC 88 : 4 raccourcis sur la même rangée, sans agrandir l'accueil.
   accesHtml = function (rev) {
     return '<div class="ac-v21-actions">' +
       '<nav class="ac-acces entre-3" aria-label="Accès rapides">' +
@@ -107,6 +107,10 @@
         boutonAcces('err', ICONES.cible, 'Erreurs', '', "startSession('errors')").replace(
           'class="ac-btn err"', 'class="ac-btn err" aria-label="Erreurs fréquentes"'
         ) +
+        boutonAcces('jeux', '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">' +
+          '<path d="M7 9h10a4 4 0 0 1 3.8 3l1.1 4a2.5 2.5 0 0 1-4 2.5l-2.1-1.8H8.2l-2.1 1.8A2.5 2.5 0 0 1 2.2 16l1-4A4 4 0 0 1 7 9Z"/>' +
+          '<path d="M8 11v5m-2.5-2.5h5M16.5 12.5h.01m2 2h.01"/>' +
+          '</svg>', 'Jeux', '', 'ouvrirJeux()') +
       '</nav>' +
       '<button type="button" class="ac-btn lecons ac-v21-journey" onclick="goLessons()">' +
         ICONES.livre + '<b>Voir mon chemin</b>' + ICONES.suite +

@@ -24,7 +24,7 @@
 const NIVEAU_VUE = {
   'view-dashboard': 0,
   'view-lessons': 1, 'view-review-setup': 1, 'view-lexique': 1, 'view-pieges': 1,
-  'view-examens': 1, 'view-reglages': 1,
+  'view-examens': 1, 'view-reglages': 1, 'view-jeux': 1,
   'view-plecon': 2, 'view-lecon': 2,
   // L'introduction de mission est un écran à part entière (spec 18) : ce qu'on
   // ouvre depuis elle (unités, mission, 1re unité) s'empile au-dessus, et
@@ -132,7 +132,7 @@ function nomEcran(e) {
   const l = e.lecon != null && typeof lecons !== 'undefined' ? lecons.find(x => x.id === e.lecon) : null;
   const noms = {
     'view-dashboard': 'Accueil', 'view-lessons': 'Mon chemin', 'view-review-setup': "S'entraîner",
-    'view-lexique': 'Lexique', 'view-pieges': 'Mes pièges', 'view-examens': 'Sujets', 'view-reglages': 'Réglages'
+    'view-lexique': 'Lexique', 'view-pieges': 'Mes pièges', 'view-examens': 'Sujets', 'view-reglages': 'Réglages', 'view-jeux': 'Jeux'
   };
   if (noms[e.vue]) return noms[e.vue];
   if (e.vue === 'view-msintro') return 'Introduction';
@@ -214,6 +214,7 @@ function restaurerEcran(e, cible) {
   } else if (e.vue === 'view-plecon') renderParcoursLecon();
   else if (e.vue === 'view-msintro') renderIntroMission();
   else if (e.vue === 'view-examens') renderExamens(); // meilleur score à jour après un sujet
+  else if (e.vue === 'view-jeux') renderJeuxHub(); // record Survie actualisé
   showView(e.vue);
   enRestauration = false;
 
@@ -318,6 +319,8 @@ async function rouvrirEcran(etat, l) {
     case 'view-session':
       openReviewSetup();
       return true;
+    case 'view-jeux': ouvrirJeux(); return true;
+    case 'view-survie': ouvrirJeux(); return true; // partie chronométrée non restaurée
     case 'view-lexique': openLexique(); return true;
     case 'view-pieges': openPieges(); return true;
     case 'view-reglages': openReglages(); return true;

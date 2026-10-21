@@ -71,10 +71,10 @@ test('Le niveau terminé laisse explicitement le choix', () => {
   assert.match(h, /ac-v21-cta/);
   assert.match(h, /passerAuNiveau\('A1\.2'\)/);
 });
-test('Les quatre actions et la navigation existante restent disponibles', () => {
+test('Quatre raccourcis visibles plus Mon chemin indépendant', () => {
   const h = contexte().accesHtml({etat:'rien'});
-  assert.equal((h.match(/class="ac-btn /g)||[]).length,4);
-  for(const action of ['openReviewSetup()', 'openExamens()', "startSession('errors')", 'goLessons()']) {
+  assert.equal((h.match(/class="ac-btn /g)||[]).length,5);
+  for(const action of ['openReviewSetup()', 'openExamens()', "startSession('errors')", 'goLessons()', 'ouvrirJeux()']) {
     assert.ok(h.includes(action), action);
   }
   assert.ok(h.indexOf("S'entraîner") < h.indexOf('Voir mon chemin'));
