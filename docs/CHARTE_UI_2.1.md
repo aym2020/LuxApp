@@ -171,3 +171,10 @@ Un lot est **terminé** si :
 - Les tests ciblés passent ; `node --test test/accueil-v21.test.cjs` valide au moins la non-régression de l'accueil. Une validation sur téléphone réel reste requise pour les effets visuels et clavier.
 
 **Critère de décision :** si deux designs sont aussi lisibles et fonctionnels, retenir celui qui demande **moins de cadres, moins de couleurs concurrentes et moins d'effets**. La personnalité vient du contenu luxembourgeois, de la typographie, de la chaleur et de la qualité des détails.
+
+
+## Implémentation de Réviser V2.1 — 21 octobre 2026
+
+La configuration de révision adopte la composition éditoriale de l'accueil : titre sans carte, sections délimitées par des filets, sélecteur compact de 10 / 20 / 50 / Tout, focus et niveaux visibles, **types d'exercices conservés**, liste des leçons dans un panneau secondaire, un seul CTA jaune au-dessus de la barre inférieure. Aucun calcul de disponibilité, règle de sélection, lancement de séance ni suivi de progression n'est modifié.
+
+Implémentation : `public/index.html`, `public/revision-v21.css` (scopé à Réviser) et adaptation minimale de `public/app.js`. Recette : `test/revision-v21.test.cjs`, plus vérification sur Android. Spécification détaillée et critères de recette : [REVISION-2.1.md](REVISION-2.1.md).
