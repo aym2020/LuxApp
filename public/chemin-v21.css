@@ -1,0 +1,327 @@
+/* LuxApp 2.1 — Mon chemin. Identité issue de l'accueil validé.
+   Feuille strictement limitée à #view-lessons : pas d'impact sur les autres
+   parcours, exercices, cartes du cours ou les données de progression. */
+
+/* Une entrée éditoriale compacte : l'image donne du caractère mais les
+   leçons restent l'élément central. Le texte ne fait pas partie du WebP. */
+#view-lessons .chemin-page {
+  gap: 0;
+  padding: 10px 14px calc(32px + env(safe-area-inset-bottom));
+}
+#view-lessons .chemin-tete {
+  position: relative;
+  isolation: isolate;
+  padding: 19px 14px 20px;
+  margin: -10px -14px 7px;
+  min-height: 166px;
+}
+#view-lessons .chemin-tete::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, #0f0e0c 2%, rgba(15,14,12,.80) 41%, rgba(15,14,12,.34) 100%),
+    linear-gradient(to bottom, rgba(15,14,12,.36), rgba(15,14,12,.25) 48%, #0f0e0c 97%),
+    url("art/hero-luxapp-mobile.webp");
+  background-position: center, center, 62% 51%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 63%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 63%, transparent 100%);
+}
+#view-lessons .chemin-tete > * { position: relative; z-index: 1; }
+#view-lessons .chemin-titre {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+#view-lessons .chemin-tete h1 {
+  margin: 0;
+  font-family: var(--police-serif);
+  font-size: clamp(2.4rem, 10.4vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1.07;
+  letter-spacing: -.025em;
+  color: var(--couleur-texte);
+}
+#view-lessons .chemin-niveau {
+  color: var(--couleur-action);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 700;
+  font-size: var(--fs-micro);
+  white-space: nowrap;
+}
+#view-lessons .chemin-accroche {
+  margin-top: 6px;
+  color: var(--couleur-texte-2);
+  font-size: var(--fs-sec);
+  line-height: 1.35;
+}
+#view-lessons .chemin-avancement {
+  margin-top: 19px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#view-lessons .chemin-avancement-barre {
+  flex: 1 1 120px;
+  max-width: 160px;
+  height: 5px;
+  border-radius: 999px;
+  background: #38352e;
+  overflow: hidden;
+}
+#view-lessons .chemin-avancement-barre > span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--couleur-action);
+}
+#view-lessons .chemin-avancement-texte {
+  color: var(--couleur-texte-2);
+  font-size: var(--fs-micro);
+  line-height: 1.4;
+}
+#view-lessons .chemin-avancement-texte strong {
+  color: var(--couleur-texte);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+#view-lessons .chemin-statuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 7px;
+  font-size: var(--fs-micro);
+  color: var(--couleur-texte-3);
+}
+
+/* Rail : seuls les tronçons réellement terminés sont verts. Le cercle or
+   repère la recommandation, il ne signifie pas que le segment est acquis. */
+#view-lessons .chemin {
+  gap: 0;
+  padding: 0;
+}
+#view-lessons .chemin .pas {
+  display: grid;
+  grid-template-columns: 32px minmax(0,1fr);
+  column-gap: 12px;
+  padding-bottom: 8px;
+}
+#view-lessons .chemin .pas::before {
+  left: 15px;
+  top: 31px;
+  bottom: -1px;
+  width: 2px;
+  border-radius: 99px;
+  background: #474238;
+}
+#view-lessons .chemin .pas.fait::before { background: var(--couleur-vert-plein); }
+#view-lessons .chemin .pas.acquis::before { background: var(--couleur-acquis-bord); }
+#view-lessons .chemin .pas.exam::before { display: none; }
+#view-lessons .chemin .pas > .rond {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border: 2px solid #474238;
+  background: #24221e;
+  color: var(--couleur-texte-3);
+  box-shadow: none;
+}
+#view-lessons .chemin .pas > .rond .ic { width: 18px; height: 18px; }
+#view-lessons .chemin .pas.futur:not(.ouverte) > .rond {
+  width: 18px;
+  height: 18px;
+  margin: 7px 0 7px 7px;
+  border-color: #514c42;
+  background: #191816;
+}
+#view-lessons .chemin-noeud-vide {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #706a60;
+}
+#view-lessons .chemin .pas.encours > .rond {
+  color: var(--couleur-sur-or);
+  background: var(--couleur-action);
+  border-color: var(--couleur-action);
+  box-shadow: 0 0 0 3px var(--couleur-fond);
+}
+#view-lessons .chemin .pas.fait > .rond {
+  color: #eafff6;
+  background: var(--couleur-vert-plein);
+  border-color: var(--couleur-vert-plein);
+}
+#view-lessons .chemin .pas.acquis > .rond {
+  background: var(--couleur-acquis-fond);
+  color: var(--couleur-acquis);
+  border-color: var(--couleur-acquis-bord);
+}
+#view-lessons .chemin .pas.exam > .rond {
+  background: var(--couleur-bleu-fond);
+  border-color: var(--couleur-bleu-bord);
+  color: var(--couleur-info);
+}
+#view-lessons .chemin .pas.encours > .rond::after { display: none; }
+
+/* Cartes repliées : lisibles et légères, sans icône livre répétée. */
+#view-lessons .chemin .pas .carte-lecon {
+  border-radius: 16px;
+  background: var(--couleur-surface-1);
+  border: 1px solid var(--couleur-bord-1);
+  box-shadow: none;
+}
+#view-lessons .chemin .carte-lecon.compacte {
+  min-height: 57px;
+  padding: 10px 12px;
+  row-gap: 3px;
+}
+#view-lessons .chemin .carte-lecon.compacte .num {
+  font-size: var(--fs-micro);
+  font-weight: 650;
+  color: var(--couleur-texte-3);
+  letter-spacing: .08em;
+}
+#view-lessons .chemin .carte-lecon.compacte .titre {
+  font-size: .975rem;
+  line-height: 1.27;
+  font-weight: 700;
+  color: var(--couleur-texte);
+}
+#view-lessons .chemin .carte-lecon.compacte > .chevron-l {
+  margin-top: 5px;
+  color: var(--couleur-texte-3);
+}
+#view-lessons .chemin .pas .carte-ligne2 {
+  color: var(--couleur-texte-2);
+  line-height: 1.4;
+}
+#view-lessons .chemin .pas .carte-lecon:focus-visible,
+#view-lessons .chemin .pas .carte-tete:focus-visible,
+#view-lessons .chemin .pas .lien-or:focus-visible {
+  outline: 2px solid var(--couleur-action);
+  outline-offset: 3px;
+}
+
+/* La leçon ouverte est la seule grande carte du parcours. L'or plus fort
+   n'est utilisé que lorsqu'elle correspond réellement à la recommandation. */
+#view-lessons .chemin .pas.ouverte > .carte-lecon {
+  padding: 13px 13px 12px;
+  gap: 6px;
+  border-radius: 20px;
+}
+#view-lessons .chemin .pas.encours.ouverte > .carte-lecon {
+  border-color: var(--couleur-or-bord);
+  background: linear-gradient(150deg, #222019, var(--couleur-surface-1) 68%);
+}
+#view-lessons .chemin .carte-tete {
+  min-height: 48px;
+  align-items: start;
+}
+#view-lessons .chemin .carte-tete .num {
+  color: var(--couleur-texte-3);
+  font-size: var(--fs-micro);
+  line-height: 1.4;
+}
+#view-lessons .chemin .carte-tete h3 {
+  font-family: var(--police-serif);
+  font-weight: 400;
+  font-size: clamp(1.55rem, 6.7vw, 1.85rem);
+  line-height: 1.07;
+  color: var(--couleur-texte);
+}
+#view-lessons .chemin .pas .unites {
+  margin: 3px 0 4px;
+}
+#view-lessons .chemin .pas .unites li {
+  border-bottom: 1px solid rgba(200,189,168,.12);
+}
+#view-lessons .chemin .pas .unites li:last-child { border-bottom: none; }
+#view-lessons .chemin .pas .unites button {
+  min-height: 45px;
+  padding-block: 7px;
+  column-gap: 7px;
+}
+#view-lessons .chemin .pas .unites li:not(.mission):not(.bilan) .nom {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  font-size: var(--fs-sec);
+  line-height: 1.28;
+}
+#view-lessons .chemin .pas .unites li.mission .nom.chemin-mission-nom {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+#view-lessons .chemin .pas .unites li.bilan .nom {
+  white-space: normal;
+}
+#view-lessons .chemin .pas.ouverte .btn-jaune {
+  margin-top: 5px;
+  min-height: 54px;
+  border-radius: 13px;
+  box-shadow: 0 5px 16px rgba(245,207,77,.13);
+}
+#view-lessons .chemin .pas.ouverte .lien-or {
+  margin: 2px auto 0;
+  color: var(--couleur-texte-2);
+  font-size: var(--fs-sec);
+  font-weight: 600;
+  text-decoration: none;
+}
+#view-lessons .chemin .pas.ouverte .lien-or .ic { color: inherit; }
+#view-lessons .chemin .pas.ouverte .lien-or:active { color: var(--couleur-action); }
+
+/* Les examens sont disponibles dès le début : pas d'icône cadenas ni de
+   mise en scène comme si le parcours entier était obligatoirement terminé. */
+#view-lessons .chemin .pas.exam { padding-top: 5px; }
+#view-lessons .chemin .pas.exam .carte-exam {
+  min-height: 108px;
+  padding: 14px 16px;
+  gap: 4px;
+  background: linear-gradient(115deg, var(--couleur-surface-1), #1c1c1b);
+}
+#view-lessons .chemin .pas.exam h3 {
+  font-family: var(--police-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+#view-lessons .chemin .pas.exam .exam-txt {
+  font-size: var(--fs-sec);
+  line-height: 1.4;
+  color: var(--couleur-texte-2);
+}
+#view-lessons .chemin .pas.exam .lien-bleu {
+  font-size: var(--fs-sec);
+  margin-top: 5px;
+}
+
+/* Petits écrans et grands caractères : ne jamais tronquer une consigne ou
+   repousser les chevrons en dehors des cartes. */
+@media (max-width: 360px) {
+  #view-lessons .chemin-page { padding-inline: 12px; }
+  #view-lessons .chemin-tete { margin-inline: -12px; padding-inline: 12px; }
+  #view-lessons .chemin .pas { grid-template-columns: 28px minmax(0,1fr); column-gap: 8px; }
+  #view-lessons .chemin .pas::before { left: 13px; }
+  #view-lessons .chemin .pas > .rond { width: 28px; height: 28px; }
+  #view-lessons .chemin .pas.futur:not(.ouverte) > .rond { margin-left: 5px; }
+  #view-lessons .chemin .pas.ouverte > .carte-lecon { padding-inline: 10px; }
+}
+@media (max-width: 330px) {
+  #view-lessons .chemin-avancement { flex-wrap: wrap; gap: 7px; }
+  #view-lessons .chemin-avancement-barre { flex-basis: 100%; max-width: 100%; }
+  #view-lessons .chemin-tete h1 { font-size: 2.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #view-lessons .chemin .pas .unites li.pulse .etat { animation: none !important; }
+}
