@@ -37,15 +37,25 @@ function renderLessons() {
   if (ouverte != null && !liste.some(l => l.id === ouverte)) ouverte = enCours ? enCours.id : null;
   const dus = l => (fraicheurs[l.id] ? fraicheurs[l.id].dus : 0);
 
-  // L'en-tête ne s'anime qu'à l'arrivée sur le chemin, jamais quand on
-  // déplie ou replie une leçon (il clignotait, spec 33).
+  // V2.1 : composition éditoriale ; le décompte reste strictement issu des
+  // statuts réels. Une leçon ancienne "acquise" n'est pas comptée comme terminée.
+  const avancement = liste.length ? Math.round(100 * terminees / liste.length) : 0;
+  // L'en-tête ne s'anime qu'à l'arrivée, jamais quand une carte est dépliée.
   let html = '<div class="chemin-tete' + (pulse ? ' entre' : '') + '">' +
-    '<div class="chemin-titre"><h1>Mon chemin</h1><span class="etiquette or">Parcours ' + niveauActif + '</span></div>' +
-    '<div class="resume">' +
-      (terminees || !anciennes ? '<span class="pastille v"><i></i>' + terminees + ' terminée' + (terminees > 1 ? 's' : '') + '</span>' : '') +
-      (anciennes ? '<span class="pastille a"><i></i>' + anciennes + ' acquise' + (anciennes > 1 ? 's' : '') + ' précédemment</span>' : '') +
-      (commencees ? '<span class="pastille o"><i></i>' + commencees + ' en cours</span>' : '') +
-    '</div></div><ol class="chemin">';
+    '<div class="chemin-titre"><h1>Mon chemin</h1><span class="chemin-niveau">Parcours ' + escHtml(niveauActif) + '</span></div>' +
+    '<p class="chemin-accroche">Une leçon après l\'autre.</p>' +
+    '<div class="chemin-avancement">' +
+      '<div class="chemin-avancement-barre" role="progressbar" aria-label="Leçons terminées" ' +
+        'aria-valuemin="0" aria-valuemax="' + liste.length + '" aria-valuenow="' + terminees + '">' +
+        '<span style="width:' + avancement + '%"></span></div>' +
+      '<p class="chemin-avancement-texte"><strong>' + terminees + ' / ' + liste.length +
+        '</strong> leçon' + (liste.length > 1 ? 's' : '') + ' terminée' + (terminees > 1 ? 's' : '') + '</p>' +
+    '</div>' +
+    (anciennes || commencees ? '<div class="chemin-statuts">' +
+      (anciennes ? '<span>' + anciennes + ' acquise' + (anciennes > 1 ? 's' : '') + ' précédemment</span>' : '') +
+      (commencees ? '<span>' + commencees + ' en cours</span>' : '') +
+    '</div>' : '') +
+    '</div><ol class="chemin">';
 
   // Les leçons dans leur ordre : une seule carte chacune, dépliée sur place.
   liste.forEach(l => {
@@ -55,7 +65,7 @@ function renderLessons() {
   });
 
   // 3. Examens, en fin de chemin.
-  html += '<li class="pas exam"><span class="rond">' + ICONES.toque + '</span>' +
+  html += '<li class="pas exam"><span class="rond" aria-hidden="true">' + ICONES.toque + '</span>' +
     '<button class="carte-lecon carte-exam" onclick="openExamens()">' +
       '<span class="num">Fin du parcours</span>' +
       '<h3>Examens ' + niveauActif + '</h3>' +
@@ -98,7 +108,7 @@ function classePas(statut, conseillee) {
 
 function iconePas(classe) {
   if (classe === 'fait' || classe === 'acquis') return ICONES.coche;
-  return classe === 'encours' ? ICONES.lecture : ICONES.livre;
+  return classe === 'encours' ? ICONES.lecture : '<span class="chemin-noeud-vide" aria-hidden="true"></span>';
 }
 
 // « 11 questions à réviser » (vide si rien à réviser). Compte réel du moteur.
@@ -152,7 +162,7 @@ function leconReplieeHtml(l, dus, conseillee, anim) {
   const nomLu = 'Leçon ' + numLecon(l) + ', ' + (l.titre_fr || titreCourt(l)) + ', ' + statut.libelle +
     (conseillee ? ', leçon conseillée' : '') + (dus ? ', ' + texteAReviser(dus) : '');
   return '<li class="pas ' + classe + (classe === 'futur' ? '' : ' replie') + '" id="chemin-lecon-' + l.id + '">' +
-    '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '">' + iconePas(classe) + '</span>' +
+    '<span class="rond' + (vientDeFinir ? ' vient-de-finir' : '') + '" aria-hidden="true">' + iconePas(classe) + '</span>' +
     '<button class="carte-lecon compacte chemin-lecon" aria-expanded="false" aria-label="' + attrHtml(nomLu) +
       '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + (l.titre_fr || titreCourt(l))) +
       '" onclick="basculerLeconChemin(' + l.id + ')">' +
@@ -174,7 +184,7 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
   const nomLu = 'Leçon ' + numLecon(l) + ', ' + (l.titre_fr || titreCourt(l)) + ', ' + statut.libelle;
 
   let html = '<li class="pas ' + classe + ' ouverte" id="chemin-lecon-' + l.id + '">' +
-    '<span class="rond">' + iconePas(classe) + '</span>' +
+    '<span class="rond" aria-hidden="true">' + iconePas(classe) + '</span>' +
     '<div class="carte-lecon chemin-lecon ouvre' + deplie + '">' +
       '<button class="carte-tete" aria-expanded="true" aria-label="' + attrHtml(nomLu) +
         '" title="' + attrHtml('Leçon ' + numLecon(l) + ' · ' + (l.titre_fr || titreCourt(l))) +
