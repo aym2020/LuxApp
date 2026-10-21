@@ -52,3 +52,14 @@ La feuille CSS dédiée permet de modifier la page Réviser sans toucher à la p
 7. Exécuter `node --test test/revision-v21.test.cjs` depuis la racine.
 
 **Limite :** les tests statiques valident le contrat code/HTML, pas les dimensions et le comportement tactile exacts du Samsung. Le contrôle mobile reste nécessaire.
+
+
+## 6. Correctifs d’ergonomie — 21 octobre 2026
+
+Après vérification sur Samsung, deux incohérences ont été corrigées :
+
+- **Double contour après un appui** : les labels sélectionnés étaient entourés à la fois de leur bordure d'état et d'un second contour `:focus-within`, conservé après le tap sur Android. Le second contour est supprimé sur tactile ; les indications d'état (case cochée / sélection jaune) restent visibles et le focus clavier garde un indicateur dans les environnements à pointeur précis.
+- **Accès Réviser non homogènes** : le raccourci de l'accueil appelait `lancerRevision()` (séance automatique ou message lorsqu'aucune question n'était encore à consolider) alors que l'onglet inférieur appelait `openReviewSetup()`. Dans la V2.1, les deux ouvrent `openReviewSetup()` ; le lancement réel ne se fait qu'avec « Commencer la révision ». Cela n'altère ni les règles ni les compteurs du moteur de révision.
+- Les filtres « Quiz », « À trou », « Écriture » retrouvent leur disposition horizontale avec retour à la ligne, plutôt que trois grandes bandes sur mobile.
+
+Tests de non-régression ajoutés à `test/revision-v21.test.cjs` : parité des entrées et absence de focus persistant au tap. Recette visuelle Android requise pour le toucher et la densité à petite largeur.
