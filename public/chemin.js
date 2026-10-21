@@ -49,7 +49,7 @@ function renderLessons() {
         'aria-valuemin="0" aria-valuemax="' + liste.length + '" aria-valuenow="' + terminees + '">' +
         '<span style="width:' + avancement + '%"></span></div>' +
       '<p class="chemin-avancement-texte"><strong>' + terminees + ' / ' + liste.length +
-        '</strong> leçon' + (liste.length > 1 ? 's' : '') + ' terminée' + (terminees > 1 ? 's' : '') + '</p>' +
+        '</strong> leçon' + (liste.length > 1 ? 's' : '') + ' terminée' + (liste.length > 1 ? 's' : '') + '</p>' +
     '</div>' +
     (anciennes || commencees ? '<div class="chemin-statuts">' +
       (anciennes ? '<span>' + anciennes + ' acquise' + (anciennes > 1 ? 's' : '') + ' précédemment</span>' : '') +
