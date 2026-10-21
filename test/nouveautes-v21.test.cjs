@@ -17,17 +17,17 @@ function extraction(s,begin,end){
   return s.slice(a,b);
 }
 test('Nouveautés est chargé et lié au menu Plus avec version 2.1',()=>{
- assert.match(html,/href="nouveautes-v21\.css\?v=2"/);
- assert.match(html,/src="nouveautes-v21\.js\?v=2"/);
+ assert.match(html,/href="nouveautes-v21\.css\?v=3"/);
+ assert.match(html,/src="nouveautes-v21\.js\?v=3"/);
  assert.match(accueil,/\[ICONES\.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2\.1', 'ouvrirNouveautes\(\)'\]/);
  assert.match(accueil,/<div class="plus-version">LuxApp <b>2\.1<\/b><\/div>/);
 });
-test('Six thèmes issus de vrais commits : écran éditorial, pas un changelog brut',()=>{
+test('Sept thèmes issus de vrais commits : écran éditorial, pas un changelog brut',()=>{
  assert.match(source,/const LUXAPP_VERSION_21 = '2\.1'/);
- const categories=['ACCUEIL','CHEMIN','LEÇONS','MISSIONS','ENTRAÎNEMENT','CONFORT'];
+ const categories=['ACCUEIL','CHEMIN','LEÇONS','COURS','MISSIONS','ENTRAÎNEMENT','CONFORT'];
  for(const category of categories) assert.ok(source.includes("categorie:'"+category+"'"),category);
  const commitIds=[...source.matchAll(/commit:'([0-9a-f]{9})'/g)].map(x=>x[1]);
- assert.equal(commitIds.length,6);
+ assert.equal(commitIds.length,7);
  assert.equal(new Set(commitIds).size,6);
  assert.match(source,/lien|visuel|scénario|série/i);
 });
@@ -45,8 +45,8 @@ test('Le panneau de nouveautés est lisible, et chaque commit possède un lien e
  assert.equal(initialClass,'nv21-panel');
  assert.equal(attr['aria-labelledby'],'nv21-heading');
  assert.equal(heading.id,'nv21-heading');
- assert.equal((rendered.match(/class="nv21-feature"/g)||[]).length,6);
- assert.equal((rendered.match(/Voir un commit associé/g)||[]).length,6);
+ assert.equal((rendered.match(/class="nv21-feature"/g)||[]).length,7);
+ assert.equal((rendered.match(/Voir un commit associé/g)||[]).length,7);
  assert.match(rendered,/Retour au menu Plus/);
  assert.match(rendered,/fermerPanneau\(\); ouvrirPlus\(\)/);
  assert.match(rendered,/historique complet/);
