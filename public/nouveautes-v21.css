@@ -241,3 +241,12 @@
   .nv21-panel .nv21-footer { padding-inline: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .panneau.nv21-panel { animation: none; } }
+
+/* Mini-aperçu de la refonte du panneau Cours (nouveautés 2.1). */
+.nv21-panel .nv21-mini-course { display:flex; flex-direction:column; gap:11px; }
+.nv21-panel .nv21-mini-course-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding-bottom:10px; border-bottom:1px solid var(--couleur-bord-1); color:var(--couleur-texte-3); font-size:.76rem; text-align:center; }
+.nv21-panel .nv21-mini-course-tabs b { color:var(--couleur-texte); border-bottom:2px solid var(--couleur-action); padding-bottom:8px; font-weight:700; }
+.nv21-panel .nv21-mini-course small { color:var(--couleur-texte-3); letter-spacing:.12em; font-size:.65rem; font-weight:700; }
+.nv21-panel .nv21-mini-course p { margin:0; font-size:.94rem; color:var(--couleur-texte); }
+.nv21-panel .nv21-mini-course p em { font-style:normal; font-weight:700; color:var(--couleur-action); }
+.nv21-panel .nv21-mini-course > div:last-child { padding:10px; border:1px solid var(--couleur-bord-3); border-radius:10px; color:var(--couleur-texte-2); text-align:center; font-size:.76rem; }
