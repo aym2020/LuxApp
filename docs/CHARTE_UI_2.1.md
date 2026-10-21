@@ -220,3 +220,10 @@ Fichiers : `public/mission.js`, `public/scenario-v21.css`, `public/index.html` ;
 ## Introduction d'unité — allègement éditorial (21 octobre 2026)
 
 Sur `view-pintro`, « LA RÈGLE » perd son fond brun et devient une section typographique sur le fond noir ; les termes importants restent en or. « ATTENTION » perd son fond orange et conserve seulement un filet vertical orange. Les espaces entre le titre, la phrase, la règle et l'avertissement sont légèrement réduits. Le lexique, les exemples, le contenu des leçons, le CTA fixe et l'ensemble de la logique pédagogique sont inchangés. La feuille `public/intro-unite-v21.css` est strictement scoped à cette vue. Tests : `test/intro-unite-v21.test.cjs`. Détails : [INTRO-UNITE-2.1.md](INTRO-UNITE-2.1.md).
+
+
+## Nouveautés et identification de version — 21 octobre 2026
+
+Dans le menu **Plus**, une entrée « Nouveautés » ouvre sur la branche `2.1` une page éditoriale autonome avec hero local, six thèmes de changements et leurs mini-aperçus en HTML/CSS. Ce n'est pas une liste brute de commits : chaque thème renvoie vers un commit réel et une sortie vers l'historique GitHub complet est disponible en bas. La version reste visible dans Plus, sobrement : **LuxApp 2.1** (branche `2.1`) et **LuxApp 2.0** (branche `v2`). La branche `v2` ne reçoit aucun des éléments 2.1.
+
+Correctifs annexes : le conteneur défilant `#pi-content` est réinitialisé sur chaque nouvelle ouverture d'introduction ; dans le scénario, les repères UNITÉ deviennent plus discrets que les noms d'interlocuteurs, `TOI` conservant le jaune. Le contenu pédagogique est inchangé. Voir [NOUVEAUTES-2.1.md](NOUVEAUTES-2.1.md) pour les commits, les fichiers et la recette mobile.
