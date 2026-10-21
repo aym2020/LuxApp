@@ -315,7 +315,8 @@ function ouvrirPlus() {
     '<div class="plus-acquis">' + tuiles.map(t => '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('') + '</div>' +
     lignes.map(x => '<button class="plus-ligne" onclick="fermerPanneau(); ' + x[3] + '">' + x[0] +
       '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
-      '>' + escHtml(x[2]) + '</small></span></button>').join('');
+      '>' + escHtml(x[2]) + '</small></span></button>').join('') +
+    '<div class="plus-version">LuxApp <b>2.0</b></div>';
   ouvrirPanneau(html, 'Plus');
 }
 
