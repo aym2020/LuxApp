@@ -1,0 +1,292 @@
+/* LuxApp 2.1 · Panneau Cours — maquette éditoriale validée
+   Portée strictement limitée à #cours-panel et à son rendu SPEC 75.
+   Le moteur de cours, les audios et les données ne sont pas modifiés. */
+
+/* La fenêtre a sa taille finale dès l'ouverture, sans déformation de layout. */
+#cours-panel .cp-feuille {
+  height: calc(100dvh - 56px);
+  max-height: calc(100dvh - 56px);
+  min-height: 0;
+  background: var(--couleur-fond);
+  border-radius: 24px 24px 0 0;
+  animation: none;
+}
+#cours-panel .cp-poignee { display: none; }
+#cours-panel .cp-head {
+  flex: 0 0 auto;
+  padding: 18px 21px 9px 23px;
+  border-bottom: 0;
+  align-items: center;
+  background: var(--couleur-fond);
+}
+#cours-panel .cp-head .pc-mini-label {
+  color: var(--couleur-texte-3);
+  font-size: .71rem;
+  letter-spacing: .14em;
+  font-weight: 750;
+}
+#cours-panel .cp-titre {
+  margin-top: 4px;
+  color: var(--couleur-texte);
+  font: 400 clamp(1.9rem, 7.5vw, 2.25rem)/1.13 var(--police-serif);
+  overflow-wrap: anywhere;
+}
+#cours-panel .cp-head .pc-icon-btn {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  color: var(--couleur-texte-2);
+}
+#cours-panel .cp-onglets:empty { display: none; }
+
+/* La navigation de la leçon est fixe, SEUL le cours défile. */
+#cours-panel .cp-content:has(.cours75) {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#cours-panel .cours75 {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+#cours-panel .cours75-navigation {
+  position: static;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 9px 23px 0;
+  border-bottom: 1px solid var(--couleur-bord-1);
+  background: var(--couleur-fond);
+}
+#cours-panel .cours75-portee {
+  gap: 7px;
+  padding: 0 0 11px;
+}
+#cours-panel .cours75-chip {
+  min-height: 44px;
+  padding: 8px 3px;
+  border: 1px solid var(--couleur-bord-3);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--couleur-texte-3);
+  font: 650 clamp(.8rem, 3.4vw, .92rem)/1.25 var(--police);
+}
+#cours-panel .cours75-chip.active {
+  border-color: var(--couleur-or-bord);
+  background: var(--couleur-or-fond);
+  color: var(--couleur-action);
+}
+#cours-panel .cours75-chip-tout:not(.active) {
+  border-color: var(--couleur-bord-3);
+}
+#cours-panel .cours75-onglets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+}
+#cours-panel .cours75-onglet {
+  position: relative;
+  min-height: 46px;
+  padding: 9px 0 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--couleur-texte-3);
+  font: 650 .9rem/1.25 var(--police);
+}
+#cours-panel .cours75-onglet.active {
+  background: transparent;
+  color: var(--couleur-texte);
+  border-bottom: 0;
+}
+#cours-panel .cours75-onglet.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 19%;
+  right: 19%;
+  height: 3px;
+  background: var(--couleur-action);
+  border-radius: 3px;
+}
+#cours-panel .cours75-resultats {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 23px 30px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--couleur-bord-2) transparent;
+}
+
+/* Sections comme une référence, pas des cartes répétées. */
+#cours-panel .cours75-unite {
+  margin: 22px 0 10px;
+  color: var(--couleur-texte-3);
+  font: 750 .72rem/1.4 var(--police);
+  letter-spacing: .04em;
+}
+#cours-panel .cours75-unite:not(:first-child) {
+  padding-top: 23px;
+  border-top: 1px solid var(--couleur-bord-1);
+}
+#cours-panel .cours75-bloc,
+#cours-panel .cours-bloc,
+#cours-panel .cours-regle {
+  margin: 0 0 17px;
+  padding: 2px 0 8px;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#cours-panel .cours-bloc-titre,
+#cours-panel .cours-bloc-titre[style],
+#cours-panel .cours-regle-titre,
+#cours-panel .cours-regle-titre[style] {
+  margin: 4px 0 11px;
+  color: var(--couleur-texte-3) !important;
+  font: 750 .77rem/1.4 var(--police);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+#cours-panel .cours-regle ul { gap: 8px; }
+#cours-panel .cours-regle li,
+#cours-panel .cours-texte {
+  font-size: .96rem;
+  line-height: 1.65;
+  color: var(--couleur-texte);
+}
+#cours-panel .cours-texte { margin-bottom: 17px; }
+#cours-panel .cours-regle b,
+#cours-panel .cours-texte b {
+  color: var(--couleur-action);
+}
+
+/* Le vert ne désigne plus une règle déjà acquise.
+   Un avertissement garde un filet orange ; les autres infos restent sobres. */
+#cours-panel .cours-callout {
+  margin: 16px 0 20px;
+  padding: 5px 0 5px 13px;
+  border: 0;
+  border-left: 3px solid var(--couleur-bord-2);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  line-height: 1.65;
+}
+#cours-panel .cours-callout::before { content: none; }
+#cours-panel .cours-callout.cc-attention { border-left-color: var(--couleur-orange); }
+#cours-panel .cours-callout.cc-astuce { border-left-color: var(--couleur-or-bord); }
+#cours-panel .cours-callout .cours-callout-titre {
+  margin-bottom: 8px;
+  font: 750 .73rem/1.45 var(--police);
+  letter-spacing: .06em;
+  color: var(--couleur-texte-2);
+}
+#cours-panel .cours-callout.cc-attention .cours-callout-titre { color: var(--couleur-orange); }
+#cours-panel .cours-callout.cc-astuce .cours-callout-titre { color: var(--couleur-action); }
+#cours-panel .cours-callout b { color: var(--couleur-action); }
+#cours-panel .cours-callout.cc-attention b { color: var(--couleur-orange); }
+#cours-panel .cours-callout li { font-size: .94rem; line-height: 1.65; }
+
+/* Lexique et phrases : mots prioritaires, traduction secondaire, audio à droite. */
+#cours-panel .cours75-entrees { gap: 0; }
+#cours-panel .cours75-entree {
+  padding: 13px 0 15px;
+  border-bottom: 1px solid var(--couleur-bord-1);
+}
+#cours-panel .cours75-entree:first-child { padding-top: 2px; }
+#cours-panel .cours75-entree-tete { min-height: 44px; gap: 9px; }
+#cours-panel .cours75-entree-lu {
+  flex: 1 1 auto;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.45;
+  color: var(--couleur-texte);
+  overflow-wrap: anywhere;
+}
+#cours-panel .cours75-entree-tete .bouton-ecouter.compact {
+  flex: 0 0 44px;
+  min-width: 44px;
+  width: 44px;
+  min-height: 44px;
+  height: 44px;
+  margin-left: auto;
+  color: var(--couleur-action);
+}
+#cours-panel .cours75-entree-fr {
+  margin-top: 2px;
+  color: var(--couleur-texte-3);
+  font-size: .87rem;
+  line-height: 1.5;
+}
+#cours-panel .cours75-entree-note { color: var(--couleur-texte-3); }
+#cours-panel .cours-ex-lu[style],
+#cours-panel .cours-dialogue-lu[style] {
+  color: var(--couleur-texte) !important;
+}
+#cours-panel .cours-ex-row,
+#cours-panel .cours-dialogue { padding: 12px 0; border-color: var(--couleur-bord-1); }
+#cours-panel .cours-ex-fr,
+#cours-panel .cours-dialogue-fr { color: var(--couleur-texte-3); }
+
+/* Les tables restent des tables, avec leurs en-têtes et un scroll de secours. */
+#cours-panel .cours-table-wrap { width: 100%; overflow-x: auto; }
+#cours-panel .cours-table { table-layout: fixed; }
+#cours-panel .cours-table th {
+  color: var(--couleur-action);
+  border-bottom-color: var(--couleur-bord-2);
+}
+#cours-panel .cours-table td { border-bottom-color: var(--couleur-bord-1); }
+#cours-panel .cours75-plus summary {
+  border-color: var(--couleur-bord-3);
+  background: transparent;
+  color: var(--couleur-action);
+}
+
+/* Retour discret et fixe ; laisse une surface tactile confortable. */
+#cours-panel .cp-bas {
+  flex: 0 0 auto;
+  padding: 12px 23px calc(14px + env(safe-area-inset-bottom));
+  background: var(--couleur-surface-1);
+  border-top: 1px solid var(--couleur-bord-1);
+}
+#cours-panel .cp-bas .pc-btn {
+  min-height: 52px;
+  border: 1px solid var(--couleur-bord-3);
+  border-radius: var(--rayon-bouton);
+  background: transparent;
+  color: var(--couleur-texte);
+  font: 650 .96rem/1.3 var(--police);
+}
+#cours-panel .cp-bas .pc-btn:focus-visible,
+#cours-panel .cours75-chip:focus-visible,
+#cours-panel .cours75-onglet:focus-visible {
+  outline: 2px solid var(--couleur-action);
+  outline-offset: 2px;
+}
+@media (max-width: 380px) {
+  #cours-panel .cp-head { padding-inline: 16px; }
+  #cours-panel .cours75-navigation { padding-inline: 16px; }
+  #cours-panel .cours75-resultats { padding-inline: 16px; }
+  #cours-panel .cp-bas { padding-inline: 16px; }
+  #cours-panel .cours75-portee { gap: 4px; }
+  #cours-panel .cours75-chip { font-size: .78rem; }
+}
+@media (max-height: 690px) {
+  #cours-panel .cp-feuille { height: calc(100dvh - 34px); max-height: calc(100dvh - 34px); }
+  #cours-panel .cp-head { padding-top: 10px; padding-bottom: 4px; }
+  #cours-panel .cours75-navigation { padding-top: 4px; }
+  #cours-panel .cours75-portee { padding-bottom: 6px; }
+  #cours-panel .cp-bas { padding-top: 8px; padding-bottom: calc(9px + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #cours-panel .cp-feuille { animation: none; }
+}
