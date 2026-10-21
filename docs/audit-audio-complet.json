@@ -1,10 +1,10 @@
 {
   "version": "SPEC 87",
-  "date": "2026-10-21T06:37:08.677Z",
+  "date": "2026-10-21T06:40:31.232Z",
   "perimetre": "26 leçons et 8 examens actifs (correction uniquement), pas les missions brouillons",
-  "textesUniques": 2838,
+  "textesUniques": 2844,
   "lodExact": 421,
-  "miaDisponibles": 2417,
+  "miaDisponibles": 2423,
   "manquants": 0,
   "couverturePourcent": 100,
   "manquantsDetail": []
