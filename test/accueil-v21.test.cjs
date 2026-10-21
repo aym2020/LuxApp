@@ -74,10 +74,11 @@ test('Le niveau terminé laisse explicitement le choix', () => {
 test('Les quatre actions et la navigation existante restent disponibles', () => {
   const h = contexte().accesHtml({etat:'rien'});
   assert.equal((h.match(/class="ac-btn /g)||[]).length,4);
-  for(const action of ['lancerRevision()', 'openExamens()', "startSession('errors')", 'goLessons()']) {
+  for(const action of ['openReviewSetup()', 'openExamens()', "startSession('errors')", 'goLessons()']) {
     assert.ok(h.includes(action), action);
   }
-  assert.ok(h.indexOf('Réviser') < h.indexOf('Voir mon chemin'));
+  assert.ok(h.indexOf("S'entraîner") < h.indexOf('Voir mon chemin'));
+  assert.doesNotMatch(h, /à revoir|à finir|>Fait</);
   assert.match(h, /ac-v21-actions/);
   assert.match(h, /ac-v21-journey/);
 });
