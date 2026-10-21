@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'), css=read('exercices-v21.css');
 const app=read('app.js'), parcours=read('parcours.js');
 test('couleurs et UI partagées seulement entre les deux vues d’exercices',()=>{
-  assert.match(html,/href="exercices-v21\.css\?v=4"/);
+  assert.match(html,/href="exercices-v21\.css\?v=5"/);
   assert.match(css,/#view-session \.question-card/);
   assert.match(css,/#view-parcours #pc-choix\.pc-choix-grille/);
   assert.doesNotMatch(css,/#view-dashboard|#view-lessons|#view-examen\b/);
@@ -44,4 +44,9 @@ test('écriture compacte, auto-extensible, sans clavier imposé sur tactile',()=
 test('une phrase complète reçoit un corps réduit, sans changer le texte',()=>{
   assert.match(app,/\(q\.fr \|\| ''\)\.length > 42/);
   assert.match(css,/#view-session\[data-type="ecriture"\] \.question-word\.question-longue/);
+});
+
+test('retour de S’entraîner collé au bord gauche comme les autres vues',()=>{
+  assert.match(css,/#view-session \.lecon-header \{width:100%;max-width:500px;margin-inline:auto;flex-shrink:0\}/);
+  assert.match(html,/<div id="view-session" class="view">[\s\S]*?class="back-btn" data-retour onclick="retour\(\)"/);
 });

@@ -38,3 +38,7 @@ Une version ancienne des assets semblait encore chargée sur Android : captures 
 
 ### Consignes longues
 Les phrases françaises de plus de 42 caractères reçoivent la classe `question-longue` et une typographie réduite (25–31 px). Les mots isolés conservent la taille éditoriale. Le contenu de la question et la correction ne sont pas transformés.
+
+## Retour de l'entraînement — alignement de l'en-tête
+
+Après contrôle de la capture Android (17:08), le retour était anormalement centré, contrairement aux autres écrans. Cause CSS : l'en-tête flex de `#view-session` avait seulement `max-width:500px` et `margin-inline:auto`, sans `width:100%`. Il se réduisait à son contenu. Fix : largeur entière limitée à 500px, les 21px de padding positionnent le retour sur le bord gauche et le titre reste à droite. Le handler `retour()` n'est pas modifié.

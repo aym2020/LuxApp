@@ -10,7 +10,9 @@
 }
 #view-parcours .pc-body {gap:0}
 #view-session .session-body {align-items:stretch;padding-top:10px}
-#view-session .lecon-header {max-width:500px;margin-inline:auto}
+#view-session .lecon-header {width:100%;max-width:500px;margin-inline:auto;flex-shrink:0}
+/* L'en-tête est un flex item : sans width:100%, il se rétrécit à son contenu
+   et se centre, éloignant « ← S'entraîner » du bord gauche. */
 /* Entraînement : entête compacte pour laisser place à la réponse et au clavier. */
 #view-session .lecon-header {align-items:center;justify-content:space-between;gap:10px;padding:12px 21px 9px}
 #view-session .lecon-header .back-btn {flex:none;margin:0;font-size:13px;min-height:42px;padding-inline:0}
