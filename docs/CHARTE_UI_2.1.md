@@ -14,7 +14,7 @@ LuxApp 2.1 est une application d'apprentissage du luxembourgeois pour francophon
 2. **Personnalité éditoriale** : « Moien ! » en Instrument Serif, grand et expressif, sur une scène luxembourgeoise panoramique. Les autres écrans peuvent employer cette police pour **une expression ou un titre narratif**, jamais pour tout le contenu.
 3. **Un or identifiable** : `#f5cf4d` fait ressortir l'action prioritaire ; il ne sert pas à décorer toutes les cartes, tous les boutons ou chaque ligne.
 4. **Une lecture immédiate** : marque/niveau → contexte ou message → action principale → alternatives. Une seule information dominante à la fois.
-5. **Des actions secondaires réunies** : sur l'accueil, Réviser / Examens / Erreurs partagent une surface sombre à séparateurs fins ; « Voir mon chemin » est volontairement discret. Ailleurs, appliquer cette économie visuelle **si cela aide vraiment la décision**, sans copier mécaniquement cette rangée.
+5. **Des actions secondaires réunies** : sur l'accueil, S'entraîner / Examens / Erreurs partagent une surface sombre à séparateurs fins ; « Voir mon chemin » est volontairement discret. Ailleurs, appliquer cette économie visuelle **si cela aide vraiment la décision**, sans copier mécaniquement cette rangée.
 
 **But du travail sur les autres pages :** obtenir une même signature graphique et une même sensation de fluidité, **pas faire 18 copies de l'accueil**. Le panorama photographique est réservé aux moments d'orientation ou de narration pertinents ; les écrans d'entraînement doivent être plus calmes et lisibles.
 
@@ -141,7 +141,7 @@ Inventorier chaque vue et capturer au moins un état représentatif sur une larg
 
 ### Lot 3 — Suivi et évaluation
 
-**Réviser, Erreurs, Lexique, Examens, résultats.** Mutualiser les surfaces et les présentations de chiffres, sans fusionner des statuts qui ont des sens différents.
+**S'entraîner, Erreurs, Lexique, Examens, résultats.** Mutualiser les surfaces et les présentations de chiffres, sans fusionner des statuts qui ont des sens différents.
 
 ### Lot 4 — Finition transversale
 
@@ -173,8 +173,13 @@ Un lot est **terminé** si :
 **Critère de décision :** si deux designs sont aussi lisibles et fonctionnels, retenir celui qui demande **moins de cadres, moins de couleurs concurrentes et moins d'effets**. La personnalité vient du contenu luxembourgeois, de la typographie, de la chaleur et de la qualité des détails.
 
 
-## Implémentation de Réviser V2.1 — 21 octobre 2026
+## Implémentation de S'entraîner V2.1 — 21 octobre 2026
 
 La configuration de révision adopte la composition éditoriale de l'accueil : titre sans carte, sections délimitées par des filets, sélecteur compact de 10 / 20 / 50 / Tout, focus et niveaux visibles, **types d'exercices conservés**, liste des leçons dans un panneau secondaire, un seul CTA jaune au-dessus de la barre inférieure. Aucun calcul de disponibilité, règle de sélection, lancement de séance ni suivi de progression n'est modifié.
 
 Implémentation : `public/index.html`, `public/revision-v21.css` (scopé à Réviser) et adaptation minimale de `public/app.js`. Recette : `test/revision-v21.test.cjs`, plus vérification sur Android. Spécification détaillée et critères de recette : [REVISION-2.1.md](REVISION-2.1.md).
+
+
+## Nommage des accès d'apprentissage — 21 octobre 2026
+
+**S'entraîner** désigne la pratique libre (toutes les questions disponibles selon les filtres), distincte de **Erreurs** (questions ratées) et de **Examens** (évaluation). C'est le nom affiché sur l'accueil, dans la navigation basse et sur l'écran de configuration (« Ton entraînement », « Commencer l'entraînement »). Les noms de fonctions / états `review`, `reviser` et les rappels « Réviser / Revoir » dans une leçon précise sont conservés.
