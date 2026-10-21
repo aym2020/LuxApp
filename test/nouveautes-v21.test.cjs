@@ -28,7 +28,7 @@ test('Sept thèmes issus de vrais commits : écran éditorial, pas un changelog 
  for(const category of categories) assert.ok(source.includes("categorie:'"+category+"'"),category);
  const commitIds=[...source.matchAll(/commit:'([0-9a-f]{9})'/g)].map(x=>x[1]);
  assert.equal(commitIds.length,7);
- assert.equal(new Set(commitIds).size,6);
+ assert.equal(new Set(commitIds).size,7);
  assert.match(source,/lien|visuel|scénario|série/i);
 });
 test('Le panneau de nouveautés est lisible, et chaque commit possède un lien externe',()=>{
