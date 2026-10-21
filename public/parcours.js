@@ -725,16 +725,23 @@ function openIntro(uniteId) {
 
   const activiteUnique = studioActif(pLecon) && u.activiteUnique;
   const nbDecouverte = decouvertePour(pLecon, uniteId).length;
+  const resumeCompact = studioActif(pLecon) && nbDecouverte
+    ? (uniteId === 1 ? '9 sons à découvrir · 20 écoutes' : '6 exemples · 15 choix sur le N')
+    : null;
   html += '<div class="pi-bas"><div class="pi-duree">' +
-    (nbDecouverte ? 'Découverte guidée (' + nbDecouverte + ' exemples), puis ' : '') +
-    (activiteUnique ? '1 activité · ' + nbItems(pLecon, uniteId, 'coeur') + ' défis' : '4 étapes') +
-    ' · environ ' + minutes + ' min</div></div>';
+    (resumeCompact || (
+      (nbDecouverte ? 'Découverte guidée (' + nbDecouverte + ' exemples), puis ' : '') +
+      (activiteUnique ? '1 activité · ' + nbItems(pLecon, uniteId, 'coeur') + ' défis' : '4 étapes') +
+      ' · environ ' + minutes + ' min'
+    )) + '</div></div>';
 
   document.getElementById('pi-content').innerHTML = html;
   // L'action principale, toujours visible en bas (spec 21).
   document.getElementById('pi-cta').innerHTML =
     '<button class="pc-btn primary wide big" id="pi-commencer" onclick="startUnite(' + u.id + ')">' +
-    (decouvertePour(pLecon,u.id).length ? 'Découvrir les exemples →' : 'Commencer →') + '</button>';
+    (decouvertePour(pLecon,u.id).length
+      ? (u.id === 1 ? 'Découvrir les sons →' : 'Découvrir la règle →')
+      : 'Commencer →') + '</button>';
   showView('view-pintro');
 }
 
