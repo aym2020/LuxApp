@@ -2823,9 +2823,18 @@ body.portail-bloque { overflow:hidden; }
 
 /* Changement d'écran du portail : court glissement, sens selon la navigation. */
 .pa-entre-avant { animation:pa-glisse-avant .28s cubic-bezier(.2,.8,.2,1) backwards; }
-.pa-entre-arriere { animation:pa-glisse-arriere .28s cubic-bezier(.2,.8,.2,1) backwards; }
+/* Retour depuis le formulaire : un seul fondu sur toute la page.
+   Annule l'entrée séquencée des six enfants (.pa-anim, 70 ms d'écart)
+   qui donnait un effet de déroulement vertical et de saccades. */
+.pa-entre-arriere {
+  animation:pa-glisse-arriere .32s cubic-bezier(.22,1,.36,1) both;
+}
+.pa-entre-arriere .pa-anim { animation:none; }
 @keyframes pa-glisse-avant { from { opacity:0; transform:translateX(24px); } }
-@keyframes pa-glisse-arriere { from { opacity:0; transform:translateX(-24px); } }
+@keyframes pa-glisse-arriere {
+  from { opacity:0; transform:translate3d(-12px,0,0); }
+  to { opacity:1; transform:translate3d(0,0,0); }
+}
 /* SPEC 67 : fermeture vers l'accueil invité. */
 .pa-sortie { animation:pa-sortie .2s ease-in forwards; }
 @keyframes pa-sortie { to { opacity:0; transform:translateX(24px); } }
