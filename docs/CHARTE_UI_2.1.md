@@ -203,3 +203,8 @@ Cinq améliorations validées sont désormais en place sur `view-plecon` : rédu
 Cette introduction garde ses objectifs et son scénario, mais abandonne l'encadré orange et la hauteur vide avant les actions. Le hero est un WebP généré spécifiquement pour « Aux objets trouvés » (leçon 3), placé avant le titre ; aucun visuel de bus n'est affiché pour les autres missions. L'objectif est signalé par un filet jaune, le nombre d'unités et les répliques restent dynamiques. « Commencer » reste la seule action jaune ; « Voir les unités » et « Tenter la mission directement » sont secondaires. Toutes les fonctions de découverte et de navigation sont conservées.
 
 Fichiers : `public/art/mission-objets-trouves-v21.webp`, `public/mission.js`, `public/mission-intro-v21.css`, `public/index.html`. Tests : `test/mission-intro-v21.test.cjs`. Documentation : [MISSION-INTRO-2.1.md](MISSION-INTRO-2.1.md).
+
+
+### Finition de l'introduction de mission — contrôle mobile
+
+Le WebP de la scène « Aux objets trouvés » est passé de 400 × 198 px à 1 024 × 412 px ; CSS et image possèdent des versions de cache pour actualiser le rendu sur Android. Les deux liens « Voir les unités » et « Tenter la mission » sont désormais côte à côte sous l'unique bouton jaune, avec cibles de 44 px. Aucun changement aux états de validation ou à la logique pédagogique. Voir [MISSION-INTRO-2.1.md](MISSION-INTRO-2.1.md).
