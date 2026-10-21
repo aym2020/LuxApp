@@ -49,25 +49,34 @@
       '</div></section>';
   };
 
-  // Pour les utilisateurs actifs uniquement : vraies valeurs, jamais celles du mockup.
+  // Bilan éditorial : valeurs réelles, aucune carte, aucune séparation.
+  // #serie conserve l'animation de l'objectif du jour.
   chiffresHtml = function () {
     const prog = progressionNiveau(niveauActif);
     const serie = serieActuelle();
     const pct = Math.max(0, Math.min(100, Number(prog.pourcent) || 0));
+    const jours = serie === 1 ? 'jour' : 'jours';
     const acquis = prog.anciennes
       ? ' · +' + prog.anciennes + ' acquise' + (prog.anciennes > 1 ? 's' : '') + ' précédemment'
       : '';
-    return '<section class="ac-chiffres entre-2" aria-label="Ma progression">' +
-      '<div class="ac-progress-mesure">' +
-        '<b class="ac-stat-valeur">' + pct + ' %</b>' +
-        '<span class="ac-stat-description">Progression ' + escHtml(niveauActif) + '</span>' +
-        '<div class="ac-piste" role="progressbar" aria-label="Progression ' +
-          escHtml(niveauActif) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' +
-          pct + '"><i style="width:' + pct + '%"></i></div>' +
-      '</div>' +
-      '<div class="ac-serie-mesure">' +
-        '<b id="serie" class="serie">' + ICONES.flamme + serie + ' jour' + (serie > 1 ? 's' : '') + '</b>' +
-        '<span class="ac-stat-description">Série actuelle</span>' +
+    return '<section class="ac-chiffres ac-v21-bilan entre-2" aria-label="Progression et série">' +
+      '<div class="ac-v21-bilan-titre">Aujourd’hui</div>' +
+      '<div class="ac-v21-bilan-ligne">' +
+        '<div class="ac-progress-mesure">' +
+          '<div class="ac-v21-bilan-chiffre">' + pct + '<span class="ac-v21-bilan-unite"> %</span></div>' +
+          '<span class="ac-v21-bilan-legende">Progression ' + escHtml(niveauActif) + '</span>' +
+          '<div class="ac-piste" role="progressbar" aria-label="Progression ' + escHtml(niveauActif) +
+            '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '">' +
+            '<i style="width:' + pct + '%"></i></div>' +
+        '</div>' +
+        '<div class="ac-serie-mesure">' +
+          '<div id="serie" class="serie ac-v21-bilan-chiffre">' +
+            '<span class="ac-v21-bilan-flamme" aria-hidden="true">' + ICONES.flamme + '</span>' +
+            '<span class="ac-v21-bilan-nombre">' + serie + '</span>' +
+            '<span class="ac-v21-bilan-unite"> ' + jours + '</span>' +
+          '</div>' +
+          '<span class="ac-v21-bilan-legende">Série actuelle</span>' +
+        '</div>' +
       '</div>' +
       '<p class="ac-lecons-faites">' + prog.terminees + ' / ' + prog.nbLecons +
         ' leçons terminées' + acquis + '</p>' +
