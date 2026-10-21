@@ -1540,6 +1540,11 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 .point-synchro.attente i { background: var(--accent-2); }
 
 
+
+/* La roue des réglages doit rester immobile et utilisable immédiatement :
+   l'animation générique d'entrée 'entre' déplaçait son conteneur de 8px. */
+#view-dashboard .anime .ac-ent { animation: none; }
+
 /* ── Panneau qui monte du bas (niveau, Plus) ─────────────────────────────── */
 .voile { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, .55); animation: fondu .25s ease both; }
 .panneau {
@@ -1548,7 +1553,9 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
   background: var(--surface-2); border: 1px solid var(--bord-2); border-bottom: 0; border-radius: 24px 24px 0 0;
   padding: 10px max(20px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
   display: flex; flex-direction: column; gap: 8px;
-  animation: monte .25s cubic-bezier(.2, .8, .2, 1) both;
+  /* La feuille reste à sa position finale dès le premier frame : pas de
+     translateY(100%) qui laisse le panneau en décalage lors de taps rapides. */
+  animation: fondu .16s ease-out;
 }
 .panneau .poignee { width: 40px; height: 4px; border-radius: 4px; background: var(--bord-2); margin: 0 auto 10px; }
 .panneau h2 { font-size: var(--fs-titre); }
