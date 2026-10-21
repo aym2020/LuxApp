@@ -1950,6 +1950,9 @@ function coursChoisir(uniteId) {
 function renderCoursPanel() {
   const l = pLecon;
   document.getElementById('cp-titre').textContent = l.titre;
+  // Repère de navigation compact, identique sur toutes les leçons.
+  const repereCours = document.querySelector('#cours-panel .cp-head .pc-mini-label');
+  if (repereCours) repereCours.textContent = 'COURS · LEÇON ' + numLecon(l);
 
   if (cours75Actif(l)) {
     document.getElementById('cp-onglets').innerHTML = '';
