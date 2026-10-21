@@ -3155,8 +3155,12 @@ body.pi-bloque { overflow:hidden; }
 #view-mission .studio-feedback b { font-size: 15px; color: #75dfb4; }
 #view-mission .studio-feedback.ko b { color: #f29b92; }
 #view-mission .studio-feedback p { margin: 6px 0 0; }
+/* Après validation les options disparaissent du pied de page ; la correction
+   reprend le choix et reste lisible dans la zone de lecture défilante. */
+#view-mission .studio-feedback .studio-recap { margin-top: 7px; color: #c7c7bf; }
+#view-mission .studio-feedback .studio-recap strong { color: #f5f2ea; font-weight: 700; }
 #view-mission .studio-correction { margin-top: 7px; color: #f0d878; }
-#view-mission .studio-suivant { margin-top: 12px; }
+#view-mission .studio-suivant { margin-top: 0; min-height: 54px; }
 #view-mission .studio-fin { padding: 24px 18px; text-align: center; }
 #view-mission .studio-fin h2 { font-size: 26px; font-weight: 800; margin: 10px 0; }
 #view-mission .studio-trophee { font-size: 38px; }
