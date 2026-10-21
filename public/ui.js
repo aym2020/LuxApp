@@ -4,7 +4,7 @@
 // 1. Clavier du téléphone : empêcher le scrollIntoView('center') qui
 //    faisait disparaître la question derrière le haut de l'écran.
 //    On adapte la hauteur de l'exercice à la surface visible au-dessus du clavier.
-const CHAMPS_EXERCICE = '#mc-input, #pc-ecr-input, #ms-input, #session-input';
+const CHAMPS_EXERCICE = '#mc-input, #pc-ecr-input, #ms-input, #session-input, #xee-input';
 const fenetreVisuelle = window.visualViewport;
 let hauteurSansClavier = fenetreVisuelle ? fenetreVisuelle.height : window.innerHeight;
 let dispositionClavierActive = false;
@@ -14,7 +14,7 @@ function actualiserClavierMobile() {
   const hauteur = fenetreVisuelle ? fenetreVisuelle.height : window.innerHeight;
   const saisieExercice = !!(champ && champ.matches &&
     champ.matches(CHAMPS_EXERCICE) &&
-    champ.closest('#view-parcours.active, #view-mission.active, #view-session.active'));
+    champ.closest('#view-parcours.active, #view-mission.active, #view-session.active, #view-examen.active'));
   const clavierOuvert = saisieExercice && hauteurSansClavier - hauteur > 140;
 
   if (!clavierOuvert) {
@@ -32,15 +32,33 @@ function actualiserClavierMobile() {
   document.body.classList.add('clavier-actif');
   if (!dispositionClavierActive) {
     const zone = champ.closest('#view-parcours')?.querySelector('.pc-body') ||
-      champ.closest('#view-session')?.querySelector('.session-body');
-    if (zone) zone.scrollTop = 0; // la question d'abord
+      champ.closest('#view-session')?.querySelector('.session-body') ||
+      champ.closest('#view-examen')?.querySelector('.ex-body');
+    // L'examen garde sa position de saisie quand le clavier s'ouvre.
+    if (zone && champ.id !== 'xee-input') zone.scrollTop = 0;
     window.scrollTo(0, 0);
     // On ne repositionne que si l'élément est vraiment caché par le clavier.
     // S'entraîner (SPEC 87) : c'est « Valider » qui doit rester touchable.
     const cible = champ.id === 'session-input' ? document.getElementById('session-input-btn') : champ;
-    requestAnimationFrame(() => montrerChampSiCache(cible, hauteur));
+    requestAnimationFrame(() => {
+      if (champ.id === 'xee-input') montrerChampExamen(champ);
+      else montrerChampSiCache(cible, hauteur);
+    });
   }
   dispositionClavierActive = true;
+}
+
+// Le champ de l'examen défile dans .ex-body, pas dans la page entière.
+function montrerChampExamen(champ) {
+  const zone = champ.closest('.ex-body');
+  if (!zone) return;
+  const r = champ.getBoundingClientRect();
+  const visible = zone.getBoundingClientRect();
+  const marge = 12;
+  if (r.bottom > visible.bottom - marge)
+    zone.scrollTop += r.bottom - visible.bottom + marge;
+  else if (r.top < visible.top + marge)
+    zone.scrollTop += r.top - visible.top - marge;
 }
 
 function montrerChampSiCache(champ, hauteurVisible) {
