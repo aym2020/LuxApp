@@ -1829,7 +1829,11 @@
       "id": 2038,
       "unite": 4,
       "fr": "Au revoir !",
-      "lu": "Äddi!"
+      "lu": "Äddi!",
+      "alternatives": [
+        "Awar!",
+        "Awuer!"
+      ]
     },
     {
       "id": 2039,
