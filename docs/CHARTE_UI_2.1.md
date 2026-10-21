@@ -83,11 +83,19 @@ Ne pas multiplier en-têtes, liserés, pastilles, scores, étiquettes et cartes 
 L'effet V2.1 doit rester fluide, **pas spectaculaire** :
 
 - Aucun écran ne doit apparaître brièvement **plus large, plus haut ou zoomé** avant de retrouver sa taille. Ne pas animer `width`, `height`, `padding` ou la taille de la page pour changer d'écran.
-- Depuis/vers l'accueil, conserver la correction mise en place sur `2.1` : **fondu d'opacité court sans translation du conteneur complet**. Les autres transitions existantes restent possibles si elles ne créent ni débordement ni déplacement des éléments fixes.
+- **Toutes les transitions de vues** doivent utiliser un fondu court **sans `transform` sur le conteneur `.view`** (correction V2.1 du 21/10). Les animations internes (cartes, résultats, réponses) peuvent rester indépendantes. Cette règle protège les contrôles fixes et le bandeau d'examen du saut observé à l'ouverture.
 - Les boutons ancrés en bas et les zones de saisie doivent rester stables, y compris pendant une animation et à l'ouverture du clavier.
 - Tester au minimum **320, 360, 390, 430 et 720 px**, sur téléphone de faible hauteur, avec zones sûres Android/iOS, texte agrandi à **130 % et 200 %**, et préférences `prefers-reduced-motion`.
 - Aucun scroll horizontal, aucun bord supérieur de CTA masqué sous le hero, aucun bouton hors champ. Tap targets ≥ **44 px**, boutons principaux ≥ **48 px** ; contrastes et focus clavier conformes au design system.
 - Préserver le scroll, le retour Android, le retour applicatif, les états de session et les positions d'éléments lorsqu'ils sont contractuellement requis.
+
+## Stabilisation des CTA — 21 octobre 2026
+
+Lors de l'ouverture d'une annale, le bandeau « banque de mots + Corriger » apparaissait partiellement hors champ avant de se repositionner. L'origine relevait de deux choix de présentation : animation de `.view` avec translation et barre `.ex-bottom` positionnée en `sticky` dans un écran de longueur variable.
+
+**Correctif :** animation des vues uniquement en opacité dans `public/style.css`; `#view-examen` utilise une hauteur `100dvh`, un `#ex-body` défilant et un bandeau `.ex-bottom` maintenu dans le flux flex, avec banque de mots défilante si nécessaire et prise en compte de `safe-area-inset-bottom`. `public/examens.js` replace le scroll de la zone de question après changement ou correction de partie et mesure cette même zone pour rendre un trou visible.
+
+**Périmètre préventif :** intro d'unité, découverte guidée, résultat d'unité et résultat d'examen possèdent des CTA fixes ; ils bénéficient de l'absence de translation sur la vue entière. Tests de structure et comportement dans `test/navigation-cta.test.cjs`. Les essais en environnement simulé ne se substituent pas à la recette sur Android (hauteurs de clavier, parties à banque longue, retour depuis résultats).
 
 ## Implémentation du Chemin V2.1 — 21 octobre 2026
 
