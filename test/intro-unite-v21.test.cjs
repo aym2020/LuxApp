@@ -72,7 +72,7 @@ test('Le contenu pédagogique et les actions de l’écran sont conservés', () 
 });
 
 test('Aucun sélecteur ne déborde sur une autre vue', () => {
-  const selectors = css.match(/(?:^|\})\s*([^{}]+)\{/gm) || [];
+  const selectors = css.replace(/\/\*[\s\S]*?\*\//g, '').match(/(?:^|\})\s*([^{}]+)\{/gm) || [];
   for (const raw of selectors) {
     const selector = raw.replace(/^\}/,'').replace(/\{$/,'').trim();
     if (selector.startsWith('@')) continue;
