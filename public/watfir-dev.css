@@ -1,131 +1,355 @@
-/* Watfir — nouveau territoire pop-éditorial, isolé sur la branche dev.
-   Fond turquoise/noir/orange, texte de production toujours HTML.
-   Le parcours, les cours, les évaluations et la sauvegarde ne sont pas modifiés. */
+/* WATFIR / DEV — accueil HTML de référence (Pop Editorial).
+   #view-dashboard limite la nouvelle DA à l'accueil. Les écrans pédagogiques
+   héritent du design v2.1 tant que leur refonte n'est pas validée.
+   Cf. docs/brand/WATFIR-ACCUEIL-DEV.md */
+
+#view-dashboard {
+  --wf-ink: #101110;
+  --wf-paper: #f2eee5;
+  --wf-turquoise: #08d9bd;
+  --wf-orange: #ff6924;
+  --wf-pink: #ff619b;
+  background: var(--wf-paper);
+  color: var(--wf-ink);
+}
+
 #view-dashboard .accueil {
-  --wf-ink:#101110;
-  --wf-teal:#08d9bd;
-  --wf-orange:#ff6924;
-  --wf-cream:#f2eee5;
-  background:#f2eee5;
-  color:#101110;
-  max-width:470px;
-  padding-top:18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 470px;
+  margin-inline: auto;
+  padding: 22px 20px calc(25px + env(safe-area-inset-bottom));
+  background: var(--wf-paper);
+  color: var(--wf-ink);
 }
-#view-dashboard .ac-ent { color:#101110; }
+
+/* 1 — Wordmark, paramètres, niveau et mode invité : un en-tête compact. */
+#view-dashboard .ac-ent {
+  min-height: 42px;
+  gap: 12px;
+}
+#view-dashboard .ac-marque { gap: 0; }
 #view-dashboard .ac-marque-symbole,
-#view-dashboard .ac-marque-sous { display:none; }
+#view-dashboard .ac-marque-sous { display: none; }
 #view-dashboard .ac-titre.watfir-wordmark {
-  font:900 clamp(28px,8vw,36px)/1 "Inter",sans-serif;
-  color:#101110;
-  letter-spacing:-.09em;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(31px, 9vw, 37px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.09em;
+  color: var(--wf-ink);
 }
-#view-dashboard .watfir-wordmark span { color:var(--wf-orange); }
-#view-dashboard .ac-menu { color:#101110; }
-#view-dashboard .ac-v21-controls { margin-top:13px; }
-#view-dashboard .puce-niv { border-color:#c9c5ba; color:#222; }
+#view-dashboard .watfir-wordmark span { color: var(--wf-orange); }
+#view-dashboard .ac-menu {
+  color: var(--wf-ink);
+  min-height: 44px;
+  min-width: 44px;
+}
+#view-dashboard .ac-v21-controls {
+  margin-top: 19px;
+  min-height: 44px;
+  gap: 8px;
+}
+#view-dashboard .puces-niveau { gap: 7px; margin: 0; }
+#view-dashboard .puce-niv {
+  min-width: 55px;
+  min-height: 44px;
+  padding-inline: 12px;
+  border: 1px solid #a6a39a;
+  border-radius: 9px;
+  background: transparent;
+  color: #373a33;
+  font-size: 12px;
+  font-weight: 700;
+}
 #view-dashboard .puce-niv[aria-pressed="true"] {
-  background:#101110; border-color:#101110; color:#08d9bd;
+  color: var(--wf-turquoise);
+  border-color: var(--wf-ink);
+  background: var(--wf-ink);
 }
-#view-dashboard .ac-v21-guest,
-#view-dashboard .ac-v21-guest b { color:#57584f; }
+#view-dashboard .ac-v21-guest {
+  min-height: 44px;
+  padding: 0 1px;
+  color: #61635b;
+  font-size: 10.5px;
+}
+#view-dashboard .ac-v21-guest b { color: #20221d; }
+#view-dashboard .ac-v21-guest span { color: #888880; }
+
+/* 2 — Hero : illustration vierge en fond et titres réels en HTML.
+   L'affiche est volontairement sans cadre, dégradé ni diagonale. */
 #view-dashboard .watfir-hero {
-  height:310px; min-height:310px;
-  overflow:hidden; position:relative;
-  margin:15px -22px 15px;
-  border:0; border-radius:0;
-  background:#08d9bd;
+  display: block;
+  isolation: isolate;
+  position: relative;
+  flex: none;
+  width: auto;
+  height: 338px;
+  min-height: 338px;
+  overflow: hidden;
+  margin: 10px -20px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--wf-turquoise);
 }
 #view-dashboard .watfir-hero .ac-hero-image {
-  position:absolute; inset:0; opacity:1;
-  background-image:url("art/watfir-hero-background-mobile.webp");
-  background-size:cover; background-position:61% center;
-  background-repeat:no-repeat;
-  mask-image:none; -webkit-mask-image:none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 0;
+  background: url("art/watfir-hero-background-mobile.webp") 59% center / cover no-repeat;
+  mask-image: none;
+  -webkit-mask-image: none;
 }
-@supports (background-image:image-set(url("art/watfir-hero-background-mobile.webp") 1x)) {
+@supports (background-image: image-set(url("art/watfir-hero-background-mobile.webp") 1x)) {
   #view-dashboard .watfir-hero .ac-hero-image {
-    background-image:image-set(
+    background-image: image-set(
       url("art/watfir-hero-background-mobile.webp") 1x,
       url("art/watfir-hero-background-fhd.webp") 2x
     );
   }
 }
 #view-dashboard .watfir-hero .ac-hero-texte {
-  position:absolute; z-index:1; inset:0;
-  padding:26px 14px 0;
-  max-width:none; color:#101110;
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  padding: 28px 14px 0;
+  color: var(--wf-ink);
 }
 #view-dashboard .watfir-hero .ac-hero-surtitre {
-  color:#101110; margin:0 0 8px;
-  font:800 10px/1.2 "Inter",sans-serif;
-  letter-spacing:.21em;
+  display: block;
+  color: var(--wf-ink);
+  margin: 0 0 16px;
+  font: 800 10px/1.25 Inter, system-ui, sans-serif;
+  letter-spacing: .20em;
+  text-transform: uppercase;
 }
 #view-dashboard .watfir-hero h2 {
-  color:#101110; margin:0;
-  font-family:"Barlow Condensed","Roboto Condensed","Arial Narrow",Impact,sans-serif;
-  font-size:clamp(100px,32vw,168px);
-  font-weight:900; line-height:.79;
-  letter-spacing:-.045em;
-  white-space:nowrap;
+  color: var(--wf-ink);
+  margin: 0 0 8px;
+  font-family: "Barlow Condensed", Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(91px, 27.5vw, 132px);
+  font-weight: 900;
+  line-height: .88;
+  letter-spacing: -.035em;
+  white-space: nowrap;
 }
-#view-dashboard .watfir-hero .watfir-punctuation { color:#ff6924; }
+#view-dashboard .watfir-hero .watfir-punctuation { color: var(--wf-orange); }
 #view-dashboard .watfir-hero p {
-  max-width:275px; margin:19px 0 0; color:#101110;
-  font:800 clamp(17px,4.6vw,23px)/1.08 "Inter",sans-serif;
-  letter-spacing:-.035em;
-  text-wrap:balance;
+  max-width: 275px;
+  margin: 9px 0 0;
+  color: var(--wf-ink);
+  font: 850 clamp(18px, 5.3vw, 21px)/1.07 Inter, system-ui, sans-serif;
+  letter-spacing: -.05em;
+  text-wrap: balance;
 }
-/* Carte de progression réelle, traitée comme de la typographie éditoriale. */
-#view-dashboard .ac-chiffres { margin:0 0 17px; color:#101110; }
+
+/* 3 — Progression : les vrais compteurs n'apparaissent qu'après pratique. */
+#view-dashboard .ac-chiffres {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0;
+  margin: 15px 0 0;
+  color: var(--wf-ink);
+}
+#view-dashboard .ac-chiffres > div {
+  min-width: 0;
+  padding: 0;
+  gap: 2px;
+}
+#view-dashboard .ac-chiffres > div + div {
+  border-left: 1px solid #b7b7ad;
+  padding-left: 15px;
+}
 #view-dashboard .ac-stat-valeur,
-#view-dashboard .ac-serie-mesure b { color:#101110; font-weight:900; }
-#view-dashboard .ac-serie-mesure .ic { color:#ff6924; }
-#view-dashboard .ac-stat-description { color:#55554f; }
-#view-dashboard .ac-piste { background:#cbc7bc; }
-#view-dashboard .ac-piste i { background:#08d9bd; }
-/* CTA principal conservé, mais en orange de marque. */
+#view-dashboard .ac-serie-mesure b {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--wf-ink);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -.05em;
+  line-height: 1.3;
+}
+#view-dashboard .ac-serie-mesure .ic { color: var(--wf-orange); width: 18px; height: 18px; }
+#view-dashboard .ac-stat-description { color: #62645b; font-size: 10.5px; }
+#view-dashboard .ac-piste {
+  height: 4px;
+  margin-top: 6px;
+  background: #d0cec5;
+  border-radius: 4px;
+}
+#view-dashboard .ac-piste i { background: var(--wf-turquoise); }
+
+/* 4 — Une seule action dominante. Conserve les vrais titres de leçon et
+   la navigation Commencer, Continuer ou Niveau terminé héritée de v2.1. */
 #view-dashboard .carte-suite.ac-v21-cta {
-  background:#ff6924; color:#101110; border-color:#ff6924;
-  border-radius:14px; box-shadow:none; min-height:82px;
+  width: 100%;
+  min-height: 82px;
+  margin-top: 15px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border: 0;
+  border-radius: 12px;
+  text-align: left;
+  background: var(--wf-orange);
+  color: var(--wf-ink);
+  box-shadow: none;
 }
 #view-dashboard .ac-v21-cta .cs-ic,
+#view-dashboard .ac-v21-cta .cs-rond { color: var(--wf-ink); }
+#view-dashboard .ac-v21-cta .cs-ic .ic { width: 27px; height: 27px; }
+#view-dashboard .ac-v21-cta .cs-txt { gap: 2px; }
 #view-dashboard .ac-v21-cta .cs-kicker,
-#view-dashboard .ac-v21-cta .cs-titre,
-#view-dashboard .ac-v21-cta .cs-rond { color:#101110; }
-/* La marque est expressive dans le hero, sobre dans les actions secondaires. */
-#view-dashboard .ac-acces {
-  background:#101110; border-color:#101110;
-  border-radius:11px;
+#view-dashboard .ac-v21-cta .cs-txt > b {
+  display: block;
+  margin: 0;
+  color: var(--wf-ink);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.18;
 }
-#view-dashboard .ac-acces .ac-btn { color:#f2eee5; }
-#view-dashboard .ac-acces .ac-btn > .ic:first-child { color:#08d9bd; }
-#view-dashboard .ac-acces .ac-btn:nth-child(2) > .ic:first-child { color:#ff6924; }
-#view-dashboard .ac-acces .ac-btn:nth-child(3) > .ic:first-child { color:#ff619b; }
-#view-dashboard .ac-acces .ac-btn > b { color:#f2eee5; }
-#view-dashboard .ac-btn.ac-v21-journey { color:#393932; }
-#view-dashboard .ac-v21-cta:focus-visible { outline:3px solid #101110; }
+#view-dashboard .ac-v21-cta .cs-titre,
+#view-dashboard .ac-v21-cta .cs-txt > span:not(.cs-kicker) {
+  display: block;
+  color: var(--wf-ink);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+#view-dashboard .ac-v21-cta .cs-etape,
+#view-dashboard .ac-v21-cta .cs-txt > small {
+  color: #292016;
+  font-size: 10.5px;
+  font-weight: 500;
+}
+#view-dashboard .ac-v21-cta .cs-rond {
+  width: 22px;
+  height: 22px;
+  background: transparent;
+}
+
+/* 5 — Bandeau de révision numéroté : pas de grille de cartes génériques. */
+#view-dashboard .watfir-actions { margin-top: 12px; }
+#view-dashboard .watfir-actions .ac-acces {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding: 13px 6px;
+  background: var(--wf-ink);
+  border: 0;
+  border-radius: 11px;
+  overflow: hidden;
+}
+#view-dashboard .watfir-actions .ac-acces .ac-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 2px 4px;
+  color: var(--wf-paper);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+#view-dashboard .watfir-actions .ac-acces .ac-btn + .ac-btn {
+  border-left: 1px solid #43443f;
+}
+#view-dashboard .watfir-actions .ac-acces .ac-btn > b {
+  color: var(--wf-paper);
+  font: 750 11px/1.2 Inter, system-ui, sans-serif;
+}
+#view-dashboard .watfir-shortcut-n {
+  font: 900 11px/1 Inter, system-ui, sans-serif;
+  color: var(--wf-turquoise);
+}
+#view-dashboard .ac-acces .exa .watfir-shortcut-n { color: var(--wf-orange); }
+#view-dashboard .ac-acces .err .watfir-shortcut-n { color: var(--wf-pink); }
+#view-dashboard .watfir-actions .ac-v21-journey {
+  min-height: 44px;
+  margin: 18px 0 0;
+  color: #24261f;
+  background: transparent;
+  border: 0;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 9px;
+}
+#view-dashboard .watfir-actions .ac-v21-journey > b {
+  font: 800 13px/1.2 Inter, system-ui, sans-serif;
+  color: inherit;
+}
+#view-dashboard .watfir-actions .ac-v21-journey > .ic {
+  width: 17px;
+  height: 17px;
+  color: inherit;
+}
+#view-dashboard .watfir-footer {
+  margin: 12px 3px 0;
+  text-align: center;
+  color: #85857f;
+  font-size: 10.5px;
+}
+#view-dashboard .watfir-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  clip-path: inset(50%) !important;
+}
+
+/* Seuls les contrôles réels reçoivent un état de focus. */
+#view-dashboard .ac-v21-cta:focus-visible,
 #view-dashboard .ac-btn:focus-visible,
 #view-dashboard .puce-niv:focus-visible,
-#view-dashboard .ac-v21-guest:focus-visible { outline:3px solid #ff6924; outline-offset:2px; }
-@media (max-width:380px) {
+#view-dashboard .ac-v21-guest:focus-visible,
+#view-dashboard .ac-menu:focus-visible {
+  outline: 3px solid var(--wf-orange);
+  outline-offset: 3px;
+}
+#view-dashboard .ac-v21-cta:focus-visible { outline-color: var(--wf-ink); }
+
+/* Les petits écrans défilent ; on ne réduit pas les cibles tactiles. */
+@media (max-width: 375px) {
+  #view-dashboard .accueil { padding-inline: 16px; }
   #view-dashboard .watfir-hero {
-    margin-left:-17px; margin-right:-17px;
-    height:278px; min-height:278px;
+    margin-inline: -16px;
+    height: 320px;
+    min-height: 320px;
   }
-  #view-dashboard .watfir-hero .ac-hero-texte { padding:22px 12px 0; }
-  #view-dashboard .watfir-hero h2 { font-size:clamp(88px,31vw,120px); }
+  #view-dashboard .watfir-hero .ac-hero-texte { padding: 24px 12px 0; }
+  #view-dashboard .watfir-hero h2 { font-size: clamp(82px, 27vw, 104px); }
+  #view-dashboard .watfir-hero p { font-size: 19px; }
+  #view-dashboard .ac-v21-guest { font-size: 10px; }
 }
-@media (max-width:330px) {
-  #view-dashboard .watfir-hero { height:265px; min-height:265px; }
-  #view-dashboard .watfir-hero h2 { font-size:88px; }
-  #view-dashboard .watfir-hero p { max-width:215px; font-size:17px; }
+@media (max-width: 330px) {
+  #view-dashboard .watfir-hero h2 { font-size: 82px; }
+  #view-dashboard .puce-niv { min-width: 51px; padding-inline: 9px; }
+  #view-dashboard .ac-v21-guest { font-size: 9.5px; }
 }
-@media (max-height:810px) {
+@media (max-height: 760px) {
   #view-dashboard .accueil.ac-nouveau-invite .watfir-hero {
-    height:265px; min-height:265px; padding:0; margin-top:10px;
+    height: 300px;
+    min-height: 300px;
+    padding: 0;
+    margin-top: 10px;
   }
 }
-@media (prefers-reduced-motion:reduce) {
-  #view-dashboard .watfir-hero,
-  #view-dashboard .watfir-hero * { transition:none; animation:none; }
+@media (prefers-reduced-motion: reduce) {
+  #view-dashboard .watfir-hero *,
+  #view-dashboard .ac-piste i { transition: none; animation: none; }
 }
