@@ -3261,3 +3261,7 @@ body.pi-bloque { overflow:hidden; }
 @media (max-height: 700px) {
   #view-decouverte .dc-scene { min-height: 260px; }
 }
+
+/* Branche v2 : version affichée uniquement dans le panneau Plus. */
+.panneau .plus-version { align-self: center; margin: 12px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+.panneau .plus-version b { color: var(--text); font-weight: 650; }
