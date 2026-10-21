@@ -95,6 +95,12 @@
   border-radius: 0;
   background: var(--wf-turquoise);
 }
+/* Un sélecteur spécifique neutralise l'ancienne hauteur invitée de v2.1. */
+#view-dashboard .accueil.ac-nouveau-invite .watfir-hero {
+  height: 220px;
+  min-height: 220px;
+  margin-top: 3px;
+}
 #view-dashboard .watfir-hero .ac-hero-image {
   position: absolute;
   inset: 0;
@@ -329,7 +335,8 @@
    Les cibles tactiles restent >=44px ; on compresse la décoration, pas les boutons. */
 @media (max-width: 375px) {
   #view-dashboard .accueil { padding-inline: 16px; }
-  #view-dashboard .watfir-hero {
+  #view-dashboard .watfir-hero,
+  #view-dashboard .accueil.ac-nouveau-invite .watfir-hero {
     margin-inline: -16px;
     height: 208px;
     min-height: 208px;
