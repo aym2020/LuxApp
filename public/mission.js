@@ -52,14 +52,23 @@ function etiquetteMission(l) {
   return 'MISSION';
 }
 
-// Une bulle de la scène, avec la pastille de l'unité qui l'enseigne.
+// Une ligne du scénario consultatif. Les unités et l'audio restent disponibles,
+// mais les bulles du jeu (bulleJeuHtml) et leurs couleurs ne changent pas.
 function bulleSceneHtml(l, x) {
   const toi = x.qui === 'toi';
   const apprise = repliqueApprise(l, x);
-  return '<div class="ms-bulle' + (toi ? ' toi' : '') + '">' +
-    '<div class="ms-bulle-tete"><b>' + (toi ? 'Toi' : escHtml(x.qui)) + '</b>' +
-      '<span class="ms-pastille' + (apprise ? ' apprise' : '') + '">' + (apprise ? '✓ ' : '') + 'Unité ' + x.unite + '</span></div>' +
-    escHtml(x.lu) + boutonEcouterHtml(x.lu, true) + '<em>' + escHtml(x.fr) + '</em></div>'; // SPEC 69
+  return '<article class="ms-v21-ligne' + (toi ? ' toi' : '') + '" ' +
+      'aria-label="' + escHtml((toi ? 'Toi' : x.qui) + ', unité ' + x.unite) + '">' +
+    '<div class="ms-v21-ligne-entete">' +
+      '<span class="ms-v21-qui">' + (toi ? 'TOI' : escHtml(x.qui)) + '</span>' +
+      (apprise ? '<span class="ms-v21-acquis" aria-label="Unité apprise">✓</span>' : '') +
+    '</div>' +
+    '<div class="ms-v21-lux">' +
+      '<span>' + escHtml(x.lu) + '</span>' +
+      '<span class="ms-v21-audio">' + boutonEcouterHtml(x.lu, true) + '</span>' +
+    '</div>' +
+    '<div class="ms-v21-fr">' + escHtml(x.fr) + '</div>' +
+  '</article>';
 }
 
 // ─── CARTE MISSION (en haut de l'écran de la leçon) ─────────────────────────
@@ -111,24 +120,49 @@ function etatPreparationMission(l) {
   return 'Prête à jouer';
 }
 
-// « Voir le scénario » : panneau par-dessus l'écran de la leçon. Le fermer
-// laisse l'utilisateur exactement où il était.
+// « Voir le scénario » : lecteur immersif consultatif, à défilement interne.
+// Le pied reste visible, et Retour / Échap / voile utilisent fermerPanneau()
+// pour conserver le comportement Android existant.
 function voirScenario() {
   if (studioActif(pLecon)) return studioVoirScenario();
   const l = pLecon;
-  const html = '<div class="poignee"></div>' +
-    '<div class="pc-mini-label pc-gold">MISSION · LEÇON ' + numLecon(l) + '</div>' +
-    '<h2 class="ms-titre">' + escHtml(l.mission.titre) + '</h2>' +
-    '<div class="ms-contexte">' + escHtml(l.mission.contexte) + '</div>' +
-    '<div class="ms-objectif"><span>À la fin, tu sauras :</span> ' + escHtml(l.mission.objectif) + '</div>' +
-    '<div class="pc-mini-label">LA SCÈNE · ' + l.scene.length + ' RÉPLIQUES</div>' +
-    '<div class="ms-scene">' + l.scene.map(x => bulleSceneHtml(l, x)).join('') + '</div>' +
-    '<div class="ms-panneau-bas">' +
-      '<button class="pc-btn primary wide" onclick="fermerPanneau(); openMission(peutTenterSaChance(pLecon))">' +
-        (getMissionBest(l.id) != null ? 'Rejouer la mission' : 'Jouer la mission') + '</button>' +
-      '<button class="pc-btn ghost wide" onclick="fermerPanneau()">Fermer</button>' +
+  const titre = escHtml(l.mission.titre);
+  const nbToi = nbRepliquesToi(l);
+  const scene = l.scene.map((x, i) =>
+    (i === 0 || l.scene[i - 1].unite !== x.unite
+      ? '<div class="ms-v21-unite">UNITÉ ' + x.unite + '</div>' : '') +
+    bulleSceneHtml(l, x)
+  ).join('');
+  const html =
+    '<div class="ms-v21-entete">' +
+      '<button type="button" class="ms-v21-retour" onclick="fermerPanneau()" aria-label="Fermer le scénario">←</button>' +
+      '<div class="ms-v21-titres">' +
+        '<div class="ms-v21-kicker">SCÉNARIO · LEÇON ' + numLecon(l) + '</div>' +
+        '<h2 id="ms-v21-titre">' + titre + '</h2>' +
+        '<p>' + l.scene.length + ' répliques · ' + nbToi + ' à toi</p>' +
+      '</div>' +
+    '</div>' +
+    '<div class="ms-v21-lecture">' +
+      '<details class="ms-v21-rappel">' +
+        '<summary>Rappel du contexte</summary>' +
+        '<p>' + escHtml(l.mission.contexte) + '</p>' +
+        '<p class="ms-v21-objectif"><strong>Objectif :</strong> ' + escHtml(l.mission.objectif) + '</p>' +
+      '</details>' +
+      '<div class="ms-v21-scene">' + scene + '</div>' +
+    '</div>' +
+    '<div class="ms-v21-pied">' +
+      '<button type="button" class="pc-btn primary wide" ' +
+        'onclick="fermerPanneau(); openMission(peutTenterSaChance(pLecon))">' +
+        (getMissionBest(l.id) != null ? 'Rejouer la mission' : 'Jouer la mission') +
+      '</button>' +
     '</div>';
   ouvrirPanneau(html, 'Scénario de la mission');
+  const panneau = document.getElementById('panneau');
+  if (panneau) {
+    panneau.classList.add('ms-v21-dialogue');
+    panneau.setAttribute('aria-modal', 'true');
+    panneau.setAttribute('aria-labelledby', 'ms-v21-titre');
+  }
 }
 
 // ─── INTRODUCTION DE LA MISSION (1re découverte de la leçon) ────────────────
