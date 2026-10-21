@@ -13,7 +13,7 @@ function make(){
  const ctx={console,lecons:[],getProgress:()=>({}),getLeconVue:()=>false,
   storageKey:x=>'profilA:'+x,
   localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)},
-  document:{visibilityState:'visible',getElementById:element,querySelector:()=>({disabled:false,textContent:''}),querySelectorAll:()=>[]},
+  document:{visibilityState:'visible',getElementById:element,querySelector:()=>({disabled:false,textContent:'',setAttribute(){}}),querySelectorAll:()=>[]},
   showView:id=>{ctx.lastView=id},retour:()=>{ctx.lastView='retour'},goLessons:()=>{},
   performance:{now:()=>tick},setInterval:()=>1,clearInterval:()=>{},setTimeout:fn=>timeouts.push(fn)};
  vm.createContext(ctx);vm.runInContext(script,ctx);
