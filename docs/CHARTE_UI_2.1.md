@@ -208,3 +208,10 @@ Fichiers : `public/art/mission-objets-trouves-v21.webp`, `public/mission.js`, `p
 ### Finition de l'introduction de mission — contrôle mobile
 
 Le WebP de la scène « Aux objets trouvés » est passé de 400 × 198 px à 1 024 × 412 px ; CSS et image possèdent des versions de cache pour actualiser le rendu sur Android. Les deux liens « Voir les unités » et « Tenter la mission » sont désormais côte à côte sous l'unique bouton jaune, avec cibles de 44 px. Aucun changement aux états de validation ou à la logique pédagogique. Voir [MISSION-INTRO-2.1.md](MISSION-INTRO-2.1.md).
+
+
+## Scénario de mission — lecteur immersif (21 octobre 2026)
+
+Le panneau « Voir le scénario » devient un lecteur plein écran, avec un **en-tête constant**, une **zone de répliques défilante** et un pied fixe contenant l'unique CTA **« Jouer / Rejouer la mission »**. Les répliques sont des lignes typographiques avec séparateurs fins, sans grandes bulles colorées ; `TOI` reçoit le seul accent or. Les traductions françaises, les audios et l'unité associée restent accessibles. Contexte et objectif passent dans « Rappel du contexte » replié par défaut. Les autres panneaux, le moteur de mission et le parcours restent inchangés.
+
+Fichiers : `public/mission.js`, `public/scenario-v21.css`, `public/index.html` ; vérification : `test/scenario-v21.test.cjs`. Détails : [SCENARIO-2.1.md](SCENARIO-2.1.md).
