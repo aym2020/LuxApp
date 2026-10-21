@@ -58,6 +58,8 @@ const document = {
 const suffix = [
   'lecons = [{ id: 1 }];',
   'boutonEcouterHtml = () => "";', // stub audio du test isolé
+  // SPEC 87 : le cadrage mesure le vrai DOM (vérifié dans le navigateur) ; ici on vérifie qu'il est demandé.
+  'cadrerSession = fb => scrolls.push({ id: fb.id });',
   'updateQuestionProgress = (lid, type, qid, ok, changeLevel) => {',
   '  const fb = document.getElementById("session-feedback");',
   '  if (!fb.innerHTML || fb.classList.contains("hidden"))',
@@ -135,7 +137,7 @@ node('session-input').value = 'Gudde Moien!';
 run.validate();
 x = run.result();
 assert.equal(x.score, 1);
-assert.ok(x.feedback.includes('Correct !'));
+assert.ok(x.feedback.includes('Juste !'));
 assert.ok(x.feedback.includes('Autre formulation correcte'));
 assert.equal(x.inputHidden, true);
 assert.equal(x.next, true);
@@ -149,7 +151,7 @@ node('session-input').value = 'Äddi!';
 run.validate();
 x = run.result();
 assert.equal(x.answered, true);
-assert.ok(x.feedback.includes('Réponse :'));
+assert.ok(x.feedback.includes('Bonne réponse :'));
 assert.equal(x.inputHidden, true);
 assert.equal(x.records.length, 1);
 assert.equal(x.records[0].changeLevel, false);

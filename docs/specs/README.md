@@ -90,6 +90,7 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 | 73 | [Corriger les faux absents LOD et améliorer les correspondances audio](./SPEC-73.md) | P1 | Phase B livrée par lots — corrections orthographiques en attente de décision |
 | 74 | [Résultat d'annale : Terminer prioritaire, Refaire ce sujet secondaire](./SPEC-74.md) | P2 | Implémentée — recette Android à confirmer |
 | 75 | [Cours des leçons 1–3 : Règles / Lexique / Phrases](./SPEC-75.md) | P1 | À implémenter — maquette leçon 2 déposée |
+| 87 | [Stabilisation UX des exercices sur mobile (branche 2.1)](./SPEC-87.md) | P1 | Implémentée — recette Samsung à faire |
 
 ## Gestion des changements
 

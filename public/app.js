@@ -794,6 +794,7 @@ function handleSessionChoice(btn, ok, correctText) {
     (ok ? '' : '<span class="ecr-correct-answer">Bonne réponse : <b>' + escHtml(correctText) + '</b></span>') +
     (note ? '<span class="session-attention">Attention : ' + noteHtml(note) + '</span>' : '');
   ajouterBoutonSuivante(feedback);
+  montrerFeedbackSession(feedback, null); // SPEC 87 : Suivante entièrement visible
 }
 
 function ajouterBoutonSuivante(feedback) {
@@ -811,9 +812,8 @@ function montrerFeedbackSession(feedback, input) {
   if (input && typeof input.blur === 'function') input.blur();
   feedback.classList.remove('hidden');
   const amener = () => {
-    if (feedback.className.split(/\s+/).includes('hidden') ||
-        typeof feedback.scrollIntoView !== 'function') return;
-    feedback.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    if (feedback.className.split(/\s+/).includes('hidden')) return;
+    cadrerSession(feedback);
   };
   // Deux frames : laisser le clavier commencer à se fermer et le DOM
   // recalculer la hauteur après la disparition du bouton Valider.
@@ -822,6 +822,28 @@ function montrerFeedbackSession(feedback, input) {
   } else {
     amener(); // navigateurs anciens et environnement de test
   }
+}
+
+// SPEC 87 : défiler juste ce qu'il faut pour que l'action (Valider ou Suivante)
+// soit entière, en gardant la question si tout tient, sinon la correction.
+// La place est mesurée : sous l'en-tête collant, au-dessus du clavier éventuel.
+function cadrerSession(feedback) {
+  const suivante = document.querySelector('#view-session .ecr-next-btn');
+  const saisie = document.getElementById('session-input-wrap');
+  const action = suivante ||
+    (saisie.classList.contains('hidden') ? feedback : document.getElementById('session-input-btn'));
+  const tete = document.querySelector('#view-session .lecon-header');
+  const hautVisible = tete && tete.offsetHeight ? tete.getBoundingClientRect().bottom : 0;
+  const basVisible = (window.visualViewport ? window.visualViewport.height : window.innerHeight) - 12;
+  const place = basVisible - hautVisible;
+  const bas = action.getBoundingClientRect().bottom;
+
+  let haut = document.getElementById('session-q').getBoundingClientRect().top;
+  if (bas - haut > place) haut = feedback.getBoundingClientRect().top; // la question ne tient pas
+  let decalage = 0;
+  if (bas - haut > place || bas > basVisible) decalage = bas - basVisible; // l'action d'abord
+  else if (haut < hautVisible + 8) decalage = haut - hautVisible - 8;      // remonter un peu
+  if (Math.abs(decalage) > 1) window.scrollBy({ top: decalage, behavior: 'smooth' });
 }
 
 // Réponse écrite (mot caché, écriture). Deux essais hors examen (S6) :
@@ -850,10 +872,13 @@ function validateSessionInput() {
   if (!ok && premiereTentative && session.mode !== 'exam') {
     const aide = aideErreur(val, corrige, attention, 1);
     session.essais = 1;
-    feedback.className = 'ecr-feedback ko';
-    feedback.innerHTML = 'Pas encore · réessaie' +
+    // SPEC 87 : essai provisoire = une seule zone compacte, sans la réponse.
+    feedback.className = 'ecr-feedback ko essai';
+    const aideHtml =
       (aide.diagnostic ? '<span class="session-diagnostic">' + escHtml(aide.diagnostic) + '</span>' : '') +
       (aide.attention ? '<span class="session-attention">Attention : ' + aide.attention + '</span>' : '');
+    feedback.innerHTML = '<span class="session-fb-title">Pas encore · réessaie</span>' +
+      (aideHtml ? '<span class="session-aide">' + aideHtml + '</span>' : '');
     input.value = '';
     montrerFeedbackSession(feedback, input);
     // Un seul comptage, sur la première tentative seulement.
@@ -870,14 +895,16 @@ function validateSessionInput() {
   if (ok) {
     feedback.className = 'ecr-feedback ok';
     const autres = item.type === 'ecriture' ? autresReponsesAcceptees(corrige, reconnue) : [];
-    feedback.innerHTML = (session.essais ? 'Correct, au 2e essai' : 'Correct !') +
+    feedback.innerHTML =
+      '<span class="session-fb-title">' + (session.essais ? 'Juste, au 2e essai' : 'Juste !') + '</span>' +
       boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
       (autres.length ? '<span class="session-attention">Autre formulation correcte : ' +
         autres.map(escHtml).join(' · ') + '</span>' : '') +
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   } else {
     feedback.className = 'ecr-feedback ko';
-    feedback.innerHTML = 'Réponse :<span class="ecr-correct-answer">' + escHtml(affiche) + '</span>' +
+    feedback.innerHTML = '<span class="session-fb-title">Pas encore</span>' +
+      '<span class="ecr-correct-answer">Bonne réponse : <b>' + escHtml(affiche) + '</b></span>' +
       boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
       (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
   }
@@ -1456,31 +1483,7 @@ if (sessionInput) {
     sessionInput.style.height = '70px';
     sessionInput.style.height = Math.min(150, Math.max(70, sessionInput.scrollHeight)) + 'px';
   });
-  // Le clavier Android réduit le viewport : recadrer le groupe champ + Valider.
-  // Ne touche ni la réponse, ni le score, ni l'affichage de correction.
-  const cadrerSaisieSession = () => {
-    if (document.activeElement !== sessionInput) return;
-    const vue = document.getElementById('view-session');
-    const groupe = document.getElementById('session-input-wrap');
-    if (!vue || !vue.classList.contains('active') || !groupe ||
-        groupe.classList.contains('hidden')) return;
-    if (typeof requestAnimationFrame === 'function') {
-      requestAnimationFrame(() => {
-        // Scroll vers le CTA, pas seulement le bloc : sur un clavier Android
-        // le champ pouvait être visible tandis que Valider restait dessous.
-        if (document.activeElement !== sessionInput) return;
-        const valider = document.getElementById('session-input-btn');
-        if (valider && typeof valider.scrollIntoView === 'function') {
-          valider.scrollIntoView({ block: 'nearest', behavior: 'auto' });
-        }
-      });
-    }
-  };
-  sessionInput.addEventListener('focus', cadrerSaisieSession);
-  if (typeof window !== 'undefined' && window.visualViewport &&
-      typeof window.visualViewport.addEventListener === 'function') {
-    window.visualViewport.addEventListener('resize', cadrerSaisieSession);
-  }
+  // Clavier mobile : géré par ui.js (body.clavier-actif), comme le parcours (SPEC 87).
   sessionInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();

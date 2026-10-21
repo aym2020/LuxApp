@@ -92,8 +92,8 @@ test('entraînement : trou vert, titre clair et gras rendu (pas de <b> littéral
     'return handleSessionChoice;'].join('\n');
   const session = { answered: false, index: 0, questions: [{
     type: 'trous', q: { trou: 'Madamm', attention: 'Madame = <b>Madamm</b>' } }] };
-  const handle = new Function('document', 'session', 'recordSessionAnswer', 'ajouterBoutonSuivante', code)(
-    dom.document, session, () => {}, () => {});
+  const handle = new Function('document', 'session', 'recordSessionAnswer', 'ajouterBoutonSuivante',
+    'montrerFeedbackSession', code)(dom.document, session, () => {}, () => {}, () => {});
   handle(element('b'), false, 'Madamm');
   assert.equal(dom.get('session-blank').style.color, 'var(--correct)');
   assert.match(fb.innerHTML, /Pas encore/);

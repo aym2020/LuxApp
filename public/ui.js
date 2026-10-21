@@ -4,7 +4,7 @@
 // 1. Clavier du téléphone : empêcher le scrollIntoView('center') qui
 //    faisait disparaître la question derrière le haut de l'écran.
 //    On adapte la hauteur de l'exercice à la surface visible au-dessus du clavier.
-const CHAMPS_EXERCICE = '#mc-input, #pc-ecr-input, #ms-input';
+const CHAMPS_EXERCICE = '#mc-input, #pc-ecr-input, #ms-input, #session-input';
 const fenetreVisuelle = window.visualViewport;
 let hauteurSansClavier = fenetreVisuelle ? fenetreVisuelle.height : window.innerHeight;
 let dispositionClavierActive = false;
@@ -14,7 +14,7 @@ function actualiserClavierMobile() {
   const hauteur = fenetreVisuelle ? fenetreVisuelle.height : window.innerHeight;
   const saisieExercice = !!(champ && champ.matches &&
     champ.matches(CHAMPS_EXERCICE) &&
-    champ.closest('#view-parcours.active, #view-mission.active'));
+    champ.closest('#view-parcours.active, #view-mission.active, #view-session.active'));
   const clavierOuvert = saisieExercice && hauteurSansClavier - hauteur > 140;
 
   if (!clavierOuvert) {
@@ -31,11 +31,14 @@ function actualiserClavierMobile() {
     Math.round(fenetreVisuelle ? fenetreVisuelle.offsetTop : 0) + 'px');
   document.body.classList.add('clavier-actif');
   if (!dispositionClavierActive) {
-    const zone = champ.closest('#view-parcours')?.querySelector('.pc-body');
-    if (zone) zone.scrollTop = 0;
+    const zone = champ.closest('#view-parcours')?.querySelector('.pc-body') ||
+      champ.closest('#view-session')?.querySelector('.session-body');
+    if (zone) zone.scrollTop = 0; // la question d'abord
     window.scrollTo(0, 0);
-    // On ne repositionne que si le champ est vraiment caché par le clavier.
-    requestAnimationFrame(() => montrerChampSiCache(champ, hauteur));
+    // On ne repositionne que si l'élément est vraiment caché par le clavier.
+    // S'entraîner (SPEC 87) : c'est « Valider » qui doit rester touchable.
+    const cible = champ.id === 'session-input' ? document.getElementById('session-input-btn') : champ;
+    requestAnimationFrame(() => montrerChampSiCache(cible, hauteur));
   }
   dispositionClavierActive = true;
 }

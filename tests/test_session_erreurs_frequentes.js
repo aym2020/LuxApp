@@ -41,6 +41,7 @@ const harness = [
   'updateQuestionProgress = (...args) => updates.push(args);',
   'aideErreur = () => ({ diagnostic: "", attention: "" });',
   'boutonEcouterHtml = () => "";', // stub du module audio (non chargé dans ce test isolé)
+  'cadrerSession = () => {};', // mise en page : mesurée dans le navigateur (SPEC 87)
   'const matcher = s => normalize(s);',
   'reponseReconnue = (s, item) => [item.lu, ...(item.alternatives || [])].find(x => matcher(x) === matcher(s)) || null;',
   'autresReponsesAcceptees = (item, accepted) => [item.lu, ...(item.alternatives || [])].filter(x => matcher(x) !== matcher(accepted));',
@@ -89,7 +90,7 @@ assert.equal(x.score, 1);
 assert.equal(x.answered, true);
 assert.equal(x.updates.length, 1);
 assert.equal(x.updates[0][4], true, 'la progression évolue hors examen');
-assert.ok(x.feedback.includes('Correct !'));
+assert.ok(x.feedback.includes('Juste !'));
 assert.ok(x.feedback.includes('Autre formulation correcte'));
 assert.ok(x.btn, 'le bouton Suivante est créé');
 

@@ -864,3 +864,10 @@ Sur PC, « Écouter la prononciation » ne faisait rien : `portailEcouter()` app
 - **Vérification ciblée :** `node tests/test_spec82_studio.js` et contrôle syntaxique. Sur PC/téléphone, vérifier le premier son W, l'écoute répétée, Précédent, le sixième exemple, les deux derniers boutons vers les vrais exercices et le retour/rechargement.
 
 **Périmètre :** exclusivement la leçon 0 ; aucune modification des autres leçons ni des règles de score.
+
+### SPEC 87 — S'entraîner sur mobile : clavier, cadrage et corrections (21/10/2026, branche 2.1)
+
+- **Un seul mécanisme clavier :** `#session-input` passe par `ui.js` (`body.clavier-actif`), comme `#mc-input`, `#pc-ecr-input`, `#ms-input`. Ne jamais rajouter de `scrollIntoView` ou de `padding` en `:focus-within` à côté. Sous `clavier-actif`, geler les enfants du corps (`flex:none`) : `.progress-wrap` porte un `flex:1` historique.
+- **Cadrage après réponse :** `cadrerSession(feedback)` mesure la place visible (sous l'en-tête collant, au-dessus du clavier) et défile juste assez pour que Valider/Suivante soit entier, question gardée si tout tient. Appelé par `montrerFeedbackSession()` (écriture, quiz, trous).
+- **Titres :** « Juste ! », « Juste, au 2e essai », « Pas encore · réessaie » (zone compacte `.essai`, sans réponse), « Pas encore » + « Bonne réponse : … » (jamais en rouge).
+- **Vérification :** `python3 tests/test_spec87_session_mobile.py` (positions réelles, 4 tailles, clavier simulé) — inclus dans `critique.sh`. Clavier Samsung réel à contrôler à la main.

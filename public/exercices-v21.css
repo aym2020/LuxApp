@@ -74,9 +74,6 @@
   border-color:#9b8650;box-shadow:0 0 0 1px rgba(245,207,77,.09)}
 #view-parcours .pc-body>.ecr-input::placeholder, #view-session #session-input::placeholder {color:#807a70}
 #view-session .ecr-input-wrap {gap:12px;margin-top:26px}
-/* La zone de saisie doit pouvoir être amenée au-dessus du clavier Android. */
-#view-session .session-body:focus-within {padding-bottom:calc(110px + env(safe-area-inset-bottom))}
-#view-session #session-input-btn {scroll-margin-bottom:16px}
 #view-session .ecr-input-wrap .session-field-label {margin:0}
 #view-session[data-type="ecriture"] .question-word,
 #view-session[data-type="motcache"] .question-word {font-size:clamp(35px,8vw,44px)}
@@ -130,9 +127,37 @@
 #view-parcours .pc-feedback .pc-btn.ok, #view-parcours .pc-feedback .pc-btn.ko {
   background:var(--accent);border-color:var(--accent);color:#251c0b}
 #view-session #session-feedback .bouton-ecouter {align-self:flex-start}
+/* SPEC 87 — premier essai faux : une seule zone rouge compacte, aide en texte neutre
+   (pas de second encadré brun). Une aide longue défile dans la zone, le champ reste proche. */
+#view-session #session-feedback.essai {gap:4px;padding:10px 14px;margin-top:16px}
+#view-session #session-feedback.essai .session-aide {display:block;max-height:4.7em;overflow-y:auto}
+#view-session #session-feedback.essai .session-diagnostic,
+#view-session #session-feedback.essai .session-attention {
+  display:block;margin:0;padding:0;background:none;border-radius:0;
+  color:#c5bdb0;font-size:13.5px;font-weight:500;line-height:1.55}
+#view-session #session-feedback.essai .session-attention b {color:var(--exo-fg)}
 /* Message temporaire du 1er essai (mot caché, écriture) : rouge discret. */
 #view-parcours .mc-erreur {background:rgba(239,122,115,.1);border:0;color:#c5bdb0}
 #view-parcours .mc-erreur b {color:var(--wrong)}
+/* SPEC 87 — clavier ouvert (body.clavier-actif posé par ui.js, comme le parcours) :
+   la vue occupe exactement la zone au-dessus du clavier, seul le corps défile.
+   Question, champ et Valider tiennent ensemble ; les espaces non essentiels sont réduits. */
+body.clavier-actif #view-session.active {
+  position:fixed;top:var(--clavier-vtop,0px);left:0;right:0;bottom:auto;
+  height:var(--clavier-vh,100dvh);min-height:0;max-width:720px;margin:0 auto;overflow:hidden;z-index:35}
+body.clavier-actif #view-session.active .lecon-header {display:none}
+body.clavier-actif #view-session.active .session-body {
+  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 16px 12px}
+/* .progress-wrap a un flex:1 historique : sans ce gel, il s'étire dans la hauteur fixe. */
+body.clavier-actif #view-session .session-body > * {flex:none}
+body.clavier-actif #view-session .session-body .progress-wrap {margin-bottom:10px!important}
+body.clavier-actif #view-session .question-label {margin-bottom:6px}
+body.clavier-actif #view-session .question-word,
+body.clavier-actif #view-session[data-type="ecriture"] .question-word {font-size:clamp(25px,7vw,31px);line-height:1.2}
+body.clavier-actif #view-session[data-type="ecriture"] .question-word.question-longue {font-size:clamp(19px,5vw,22px);line-height:1.3}
+body.clavier-actif #view-session #session-feedback {margin-top:10px}
+body.clavier-actif #view-session .ecr-input-wrap {margin-top:10px;gap:8px}
+body.clavier-actif #view-session .ecr-btn-validate {min-height:48px}
 @media(max-width:365px){
   #view-parcours .pc-body, #view-session .session-body {padding-inline:15px}
   #view-parcours .choice, #view-session .choice {min-height:56px;padding-inline:11px;font-size:14px}
