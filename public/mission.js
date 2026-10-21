@@ -182,9 +182,11 @@ function renderIntroMission() {
         '<span class="msi-v21-stat"><strong>' + totalRepliques + ' répliques</strong><small>à dire dans la scène</small></span>' +
       '</div>' +
       '<button class="pc-btn primary wide big" onclick="confirmerIntroMission()">Commencer →</button>' +
-      '<button class="pc-btn ghost wide msi-v21-link" onclick="voirUnitesDepuisIntro()">Voir les unités</button>' +
-      // Essai facultatif : n'est pas une validation et ne change pas le score.
-      (peutTenterSaChance(l) ? '<button class="pc-btn ghost wide msi-tenter msi-v21-link" onclick="tenterDepuisIntro()">Tenter la mission directement</button>' : '') +
+      '<div class="msi-v21-links">' +
+        '<button class="pc-btn ghost msi-v21-link" onclick="voirUnitesDepuisIntro()">Voir les unités</button>' +
+        // Essai facultatif : n'est pas une validation et ne change pas le score.
+        (peutTenterSaChance(l) ? '<button class="pc-btn ghost msi-tenter msi-v21-link" onclick="tenterDepuisIntro()">Tenter la mission</button>' : '') +
+      '</div>' +
     '</div>';
 }
 
