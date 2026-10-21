@@ -299,6 +299,9 @@ function feterObjectifDuJour() {
 // ─── MENU (roue en haut de l'accueil, « Plus » dans la barre du bas) ───────
 // Ce qui sert moins souvent : lexique, pièges, réglages.
 function ouvrirPlus() {
+  // Un deuxième appui rapide sur la roue/Plus n'empile pas de panneaux.
+  const dejaOuvert = document.getElementById('panneau');
+  if (dejaOuvert && dejaOuvert.getAttribute('aria-label') === 'Plus') return;
   const tuiles = [
     [compterUnitesTerminees(), 'unités terminées'],
     ...(compterAcquisesAncienneVersion() ? [[compterAcquisesAncienneVersion(), 'leçons acquises précédemment']] : []), // spec 46
@@ -325,12 +328,31 @@ function ouvrirPlus() {
 let panneauApres = null;
 
 function ouvrirPanneau(html, titre, apresFermeture) {
-  fermerPanneau();
+  const precedent = document.getElementById('panneau');
+  // Ne pas reconstruire la feuille si l'action est répétée rapidement.
+  if (precedent && precedent.getAttribute('aria-label') === titre) return;
+  if (precedent) fermerPanneau();
   panneauApres = apresFermeture || null;
   const voile = document.createElement('div');
   voile.className = 'voile';
   voile.id = 'voile';
-  voile.addEventListener('click', fermerPanneau);
+  const ouvertA = Date.now();
+  voile.addEventListener('click', e => {
+    // La feuille recouvre la roue Réglages : le second appui du même geste
+    // atteint le voile et refermait immédiatement le panneau (Android).
+    // Laisser cette zone neutre tant que le panneau Plus est ouvert.
+    const roue = titre === 'Plus'
+      ? document.querySelector('#view-dashboard.active .ac-menu')
+      : null;
+    if (roue && typeof roue.getBoundingClientRect === 'function') {
+      const r = roue.getBoundingClientRect();
+      if (e.clientX >= r.left - 10 && e.clientX <= r.right + 10 &&
+          e.clientY >= r.top - 10 && e.clientY <= r.bottom + 10) return;
+    }
+    // Ignorer les clics parasites du tout début de l'ouverture.
+    if (Date.now() - ouvertA < 250) return;
+    fermerPanneau();
+  });
   const panneau = document.createElement('div');
   panneau.className = 'panneau';
   panneau.id = 'panneau';
@@ -338,6 +360,7 @@ function ouvrirPanneau(html, titre, apresFermeture) {
   panneau.setAttribute('aria-label', titre);
   panneau.innerHTML = html;
   document.body.append(voile, panneau);
+  programmerGarde();
 }
 
 // Ferme le panneau sans lancer sa suite (reprise après actualisation, spec 44).
