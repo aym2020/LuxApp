@@ -37,3 +37,64 @@ test('écran séquentiel et bilan avec correction, traduction et CSS isolé',()=
  assert.match(html,/expression-ecrite.js\?v=1/);
  assert.match(css,/#view-examen \.xee-prompt/);
 });
+
+test('parcours réel : question vide, validation, correction, ordre, révélation, score sauvegardé',()=>{
+ const nodes=Object.create(null);
+ function node(id) {
+  if(!nodes[id]) {
+   const set=new Set(['hidden']);
+   nodes[id]={textContent:'',innerHTML:'',value:'',disabled:false,
+    classList:{add:x=>set.add(x),remove:x=>set.delete(x),contains:x=>set.has(x)},
+    focus(){this.focused=true},blur(){this.focused=false}};
+  }
+  return nodes[id];
+ }
+ const views=[],saved=[];
+ ctx.document={getElementById:node};
+ ctx.showView=v=>views.push(v);
+ ctx.examRemonter=()=>{};
+ ctx.saveExamScore=(id,score,total)=>saved.push({id,score,total});
+ ctx.examClasse=pct=>pct>=60?'ok':'ko';
+ ctx.escHtml=value=>String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+ ctx.exSujet=docs[0];
+ vm.runInContext('expressionStart(exSujet)',ctx);
+ assert.equal(views.at(-1),'view-examen');
+ assert.equal(node('ex-next').textContent,'Valider');
+ assert.match(node('ex-body').innerHTML,/Le week-end dernier était très agréable/);
+ // Impossible de marquer une phrase vide sans demander explicitement la solution.
+ node('xee-input').value='';
+ vm.runInContext('expressionNext()',ctx);
+ assert.equal(node('xee-warning').classList.contains('hidden'),false);
+ assert.equal(node('ex-next').textContent,'Valider');
+ // Une bonne phrase : une seule validation comptée.
+ node('xee-input').value=docs[0].phrases[0].lu;
+ vm.runInContext('expressionNext()',ctx);
+ assert.match(node('ex-body').innerHTML,/Juste !/);
+ assert.equal(node('ex-next').textContent,'Phrase suivante');
+ vm.runInContext('expressionNext()',ctx);
+ assert.match(node('ex-body').innerHTML,/J'ai passé beaucoup de temps/);
+ // Erreur : aucun point, puis on avance.
+ node('xee-input').value='Ech sinn um Weekend';
+ vm.runInContext('expressionNext()',ctx);
+ assert.match(node('ex-body').innerHTML,/À retenir/);
+ vm.runInContext('expressionNext()',ctx);
+ // Suite : réponse révélée sur chacune des 9 dernières phrases.
+ for(let index=2;index<docs[0].phrases.length;index++) {
+  vm.runInContext('expressionReveal()',ctx);
+  if(index===docs[0].phrases.length-1) assert.equal(node('ex-next').textContent,'Voir le score');
+  vm.runInContext('expressionNext()',ctx);
+ }
+ assert.equal(views.at(-1),'view-examen-result');
+ assert.deepEqual(saved[0],{id:'a12-expression-01',score:1,total:11});
+ assert.match(node('exr-body').innerHTML,/Le texte complet/);
+ assert.match(node('exr-body').innerHTML,/Meng lescht Vakanz war ganz schéin/);
+ // Second sujet : réussite complète => 10/10 et même clé de sauvegarde par id.
+ ctx.exSujet=docs[1];vm.runInContext('expressionStart(exSujet)',ctx);
+ for(let index=0;index<docs[1].phrases.length;index++){
+  node('xee-input').value=docs[1].phrases[index].lu;
+  vm.runInContext('expressionNext()',ctx);
+  vm.runInContext('expressionNext()',ctx);
+ }
+ assert.deepEqual(saved[1],{id:'a12-expression-02',score:10,total:10});
+ assert.equal(views.at(-1),'view-examen-result');
+});
