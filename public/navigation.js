@@ -131,7 +131,7 @@ function nomEcran(e) {
   if (!e) return 'Accueil';
   const l = e.lecon != null && typeof lecons !== 'undefined' ? lecons.find(x => x.id === e.lecon) : null;
   const noms = {
-    'view-dashboard': 'Accueil', 'view-lessons': 'Mon chemin', 'view-review-setup': 'Réviser',
+    'view-dashboard': 'Accueil', 'view-lessons': 'Mon chemin', 'view-review-setup': "S'entraîner",
     'view-lexique': 'Lexique', 'view-pieges': 'Mes pièges', 'view-examens': 'Sujets', 'view-reglages': 'Réglages'
   };
   if (noms[e.vue]) return noms[e.vue];
