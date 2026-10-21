@@ -64,3 +64,13 @@ Les tests Node sont accessibles via `node --test test/cours-v21.test.cjs`. Les t
 - [x] Panneau Cours (à valider visuellement)
 - [ ] Refondre Plus et les pages auxquelles il donne accès
 - [ ] Formaliser et appliquer la charte d'animation
+
+
+## Ajustements finaux après validation Samsung — 21 octobre 2026
+
+- **Rythme vertical** : filtres 1 / 2 / 3 / Tout rapprochés des trois onglets. Réduction modérée des espaces, avec surfaces tactiles d'au moins 44 px.
+- **Tableaux** : suppression des césures automatiques et des coupures au milieu des mots dans le seul panneau Cours. Les colonnes prennent la largeur nécessaire ; le wrapper conserve le défilement horizontal lorsqu'une table est large, au lieu de casser « United Zoha ».
+- **Cache** : nouvelle URL `cours-v21.css?v=2` pour renouveler le style mobile.
+- **Non-régression** : deux nouveaux tests couvrent les espacements, la taille des touches et la lisibilité des cellules. Contenu pédagogique, audios, états d'exercice et autres vues inchangés.
+
+Contrôle visuel Samsung à confirmer.
