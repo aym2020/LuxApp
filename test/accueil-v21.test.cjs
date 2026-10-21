@@ -50,7 +50,7 @@ test('Moien affiche un message adapté au premier lancement', () => {
 });
 test('La progression affiche les vraies données et un indicateur accessible', () => {
   const h = contexte().chiffresHtml();
-  assert.match(h, /42 %/);
+  assert.match(h, /42(?:<[^>]+>)* %/); // valeur et unité séparées par le balisage V2.1
   assert.match(h, /aria-valuenow="42"/);
   assert.match(h, /style="width:42%"/);
   assert.match(h, /id="serie"/);
