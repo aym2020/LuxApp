@@ -8,12 +8,15 @@
   gap: 0;
   padding: 10px 14px calc(32px + env(safe-area-inset-bottom));
 }
+/* L'en-tête ne doit pas réserver un grand blanc après l'avancement.
+   On resserre la fin du hero tout en laissant les résumés de progression
+   s'étendre naturellement lorsque les caractères sont agrandis. */
 #view-lessons .chemin-tete {
   position: relative;
   isolation: isolate;
-  padding: 19px 14px 20px;
-  margin: -10px -14px 7px;
-  min-height: 166px;
+  padding: 19px 14px 6px;
+  margin: -10px -14px 0;
+  min-height: 140px;
 }
 #view-lessons .chemin-tete::before {
   content: "";
