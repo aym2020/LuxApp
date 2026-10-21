@@ -1,0 +1,182 @@
+/* LuxApp 2.1 — Configuration de révision, présentation éditoriale.
+   Scope strict : #view-review-setup. Moteur et critères inchangés. */
+#view-review-setup.active { width:100%; }
+body.avec-nav #view-review-setup.active {
+  height:calc(100dvh - 76px - env(safe-area-inset-bottom));
+  min-height:0; overflow:hidden;
+}
+#view-review-setup .rs-v21-scroll {
+  flex:1 1 auto; min-height:0; overflow-y:auto;
+  overscroll-behavior-y:contain; -webkit-overflow-scrolling:touch;
+  padding:26px 22px 20px; display:flex; flex-direction:column; gap:0;
+}
+#view-review-setup .rs-v21-head { padding:0 0 22px; }
+#view-review-setup .rs-v21-eyebrow {
+  color:var(--couleur-texte-3); font:750 12px/1.35 var(--police);
+  letter-spacing:.13em;
+}
+#view-review-setup .rs-v21-head h1 {
+  margin:7px 0 5px; color:var(--couleur-texte);
+  font:800 clamp(25px,6vw,32px)/1.18 var(--police);
+  letter-spacing:-.04em;
+}
+#view-review-setup .rs-v21-summary {
+  color:var(--couleur-texte-3); font:450 13px/1.5 var(--police);
+  font-variant-numeric:tabular-nums;
+}
+#view-review-setup .rs-v21-section {
+  padding:16px 0 18px; border-top:1px solid var(--couleur-bord-1);
+}
+#view-review-setup .rs-v21-section h2 {
+  margin:0; font:750 14px/1.4 var(--police);
+  letter-spacing:-.01em; color:var(--couleur-texte);
+}
+#view-review-setup .rs-v21-section-head {
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:10px; margin-bottom:11px;
+}
+#view-review-setup .rs-v21-meta { color:var(--couleur-texte-3); font:500 11px/1.4 var(--police); white-space:nowrap; }
+#view-review-setup .rs-v21-note {
+  font:450 12px/1.4 var(--police); color:var(--couleur-texte-3);
+  margin:9px 0 0;
+}
+#view-review-setup .rs-v21-note:empty { display:none; }
+#view-review-setup .rs-checks { gap:0; }
+#view-review-setup .rs-check {
+  min-height:44px; padding:5px 0; display:flex; align-items:center; gap:11px;
+  font:500 14px/1.35 var(--police); color:var(--couleur-texte);
+}
+#view-review-setup .rs-check input:not([type="radio"]) {
+  width:19px; height:19px; flex:none; accent-color:var(--couleur-action);
+}
+#view-review-setup .rs-focus-text { flex:1; min-width:0; }
+#view-review-setup .rs-focus-count {
+  font:450 11px/1.4 var(--police); color:var(--couleur-texte-3);
+  text-align:right; flex-shrink:0; max-width:45%;
+}
+#view-review-setup #rs-focus .rs-check.disabled { opacity:.48; }
+#view-review-setup #rs-focus .rs-check.disabled .rs-focus-count { display:none; }
+#view-review-setup .rs-v21-segments {
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px;
+}
+#view-review-setup .rs-v21-segments .rs-check {
+  position:relative; min-width:0; min-height:44px; padding:0;
+  justify-content:center; cursor:pointer;
+  border:1px solid var(--couleur-bord-2); border-radius:11px;
+  background:transparent; color:var(--couleur-texte-3);
+  font:700 13px/1 var(--police);
+}
+#view-review-setup .rs-v21-segments .rs-check:has(input:checked) {
+  color:var(--couleur-action); background:var(--couleur-or-fond);
+  border-color:var(--couleur-action);
+}
+#view-review-setup .rs-v21-segments input {
+  position:absolute; inset:0; opacity:0; width:100%; height:100%;
+  margin:0; cursor:pointer;
+}
+#view-review-setup .rs-v21-segments .rs-check:focus-within {
+  outline:2px solid var(--couleur-action); outline-offset:2px;
+}
+#view-review-setup .rs-v21-types { display:flex; flex-wrap:wrap; gap:8px; }
+#view-review-setup .rs-v21-types .rs-check {
+  position:relative; min-height:42px; padding:9px 12px;
+  border:1px solid var(--couleur-bord-2); border-radius:10px;
+  font:650 12px/1.4 var(--police); color:var(--couleur-texte-3);
+}
+#view-review-setup .rs-v21-types .rs-check:has(input:checked) {
+  border-color:var(--couleur-action); color:var(--couleur-texte);
+  background:var(--couleur-or-fond);
+}
+#view-review-setup .rs-v21-types .rs-check input {
+  position:absolute; inset:0; opacity:0; width:100%; height:100%;
+  margin:0; cursor:pointer;
+}
+#view-review-setup .rs-v21-types .rs-check:focus-within {
+  outline:2px solid var(--couleur-action); outline-offset:2px;
+}
+#view-review-setup .rs-v21-lesson-btn {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:0; min-height:48px; width:100%; border:0; background:transparent;
+  text-align:left; color:var(--couleur-texte); cursor:pointer;
+}
+#view-review-setup .rs-v21-lesson-btn .rs-v21-lesson-title {
+  display:block; font:750 14px/1.4 var(--police);
+}
+#view-review-setup .rs-v21-lesson-btn .rs-v21-lesson-sub {
+  display:block; margin-top:3px;
+  font:450 12px/1.35 var(--police); color:var(--couleur-texte-3);
+}
+#view-review-setup .rs-v21-chevron {
+  flex:none; font-size:26px; color:var(--couleur-texte-3); line-height:1;
+}
+#view-review-setup .rs-v21-footer {
+  flex:none; padding:11px 22px calc(12px + env(safe-area-inset-bottom));
+  background:var(--couleur-fond);
+  border-top:1px solid var(--couleur-bord-1);
+}
+#view-review-setup .rs-v21-footer .dash-btn.primary {
+  width:100%; min-height:55px;
+  border-radius:14px; font:800 15px/1.2 var(--police);
+  background:var(--couleur-action); color:var(--couleur-sur-or);
+}
+#view-review-setup .rs-v21-drawer {
+  position:fixed; inset:0; z-index:90;
+  display:flex; align-items:flex-end; justify-content:center;
+}
+#view-review-setup .rs-v21-backdrop {
+  position:absolute; inset:0; width:100%; height:100%;
+  border:0; background:rgba(0,0,0,.7); cursor:pointer;
+}
+#view-review-setup .rs-v21-sheet {
+  position:relative; width:100%; max-width:560px;
+  max-height:85dvh; display:flex; flex-direction:column;
+  padding:16px 20px calc(18px + env(safe-area-inset-bottom));
+  border:1px solid var(--couleur-bord-2); border-radius:22px 22px 0 0;
+  background:var(--couleur-surface-1);
+  box-shadow:0 -10px 50px rgba(0,0,0,.4);
+}
+#view-review-setup .rs-v21-sheet-head {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; padding:6px 0 14px;
+}
+#view-review-setup .rs-v21-sheet h2 {
+  font:800 22px/1.2 var(--police); letter-spacing:-.025em;
+}
+#view-review-setup .rs-v21-sheet small {
+  display:block; margin-top:4px; color:var(--couleur-texte-3); font-size:12px;
+}
+#view-review-setup .rs-v21-sheet .rs-v21-close,
+#view-review-setup .rs-v21-sheet .rs-all {
+  min-height:44px; border:1px solid var(--couleur-bord-2);
+  background:transparent; color:var(--couleur-texte);
+  border-radius:10px; padding:8px 12px;
+  font:650 12px/1.25 var(--police);
+}
+#view-review-setup .rs-v21-sheet .rs-v21-close { flex:none; font-size:18px; }
+#view-review-setup .rs-v21-sheet .rs-all { align-self:flex-start; margin:0 0 10px; }
+#view-review-setup #rs-lecons {
+  overflow-y:auto; min-height:0; flex:1 1 auto;
+  scrollbar-width:thin; scrollbar-color:var(--couleur-bord-2) transparent;
+}
+#view-review-setup #rs-lecons .rs-check {
+  padding:6px 0; min-height:46px; border-bottom:1px solid var(--couleur-bord-1);
+  overflow-wrap:anywhere;
+}
+#view-review-setup .rs-v21-done {
+  width:100%; min-height:48px; border:0; border-radius:12px;
+  background:var(--couleur-action); color:var(--couleur-sur-or);
+  font:800 14px var(--police); margin-top:14px;
+}
+#view-review-setup button:focus-visible,
+#view-review-setup .rs-check:focus-within {
+  outline:2px solid var(--couleur-action); outline-offset:2px;
+}
+@media(max-width:360px) {
+  #view-review-setup .rs-v21-scroll { padding:18px 16px 16px; }
+  #view-review-setup .rs-v21-footer { padding-left:16px; padding-right:16px; }
+  #view-review-setup .rs-focus-count { font-size:10px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #view-review-setup .rs-v21-segments .rs-check,
+  #view-review-setup .rs-v21-types .rs-check { transition:none; }
+}
