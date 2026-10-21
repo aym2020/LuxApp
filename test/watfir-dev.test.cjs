@@ -105,15 +105,27 @@ test('Le CSS reproduit les blocs clefs de la maquette et reste limité au dashbo
   const html=fs.readFileSync(path.join(root,'public','index.html'),'utf8');
   for(const expected of [
     '#view-dashboard .watfir-hero',
-    'height: 338px',
+    'height: 220px',
     '#view-dashboard .watfir-shortcut-n',
     '#view-dashboard .watfir-actions .ac-acces',
     '#view-dashboard .ac-chiffres',
-    'font-size: 20px',
+    'font-size: 19px',
     '@media (max-width: 375px)',
     'prefers-reduced-motion'
   ])assert.ok(css.includes(expected),expected);
   assert.ok(html.indexOf('accueil-v21.css')<html.indexOf('watfir-dev.css'));
   assert.ok(html.indexOf('accueil-v21.js')<html.indexOf('watfir-dev.js'));
   assert.doesNotMatch(css,/\b\d{2,3}vw\s*\*/);
+});
+
+test('La version mobile donne priorité aux actions plutôt qu’à un hero trop haut', () => {
+  const css=fs.readFileSync(path.join(root,'public','watfir-dev.css'),'utf8');
+  assert.match(css, /height:\s*220px/);
+  assert.match(css, /height:\s*208px/);
+  assert.match(css, /height:\s*190px/);
+  assert.match(css, /\.accueil\.ac-nouveau-invite \.watfir-hero/);
+  assert.match(css, /min-height:\s*70px/);
+  assert.match(css, /margin-top:\s*6px/);
+  assert.match(css, /display:\s*none;\s*\/\* Tout reste dans l'aria-label/);
+  assert.doesNotMatch(css, /height:\s*338px/);
 });
