@@ -1526,6 +1526,104 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
   .carte-suite.compacte, .ac-btn { transition: none; }
 }
 
+/* ── Bilan éditorial (accueil déjà commencé) ──────────────────────────────
+   Remplace les trois statistiques en colonnes par progression + série.
+   Aucun encart, aucune bordure : l'or reste réservé à la barre de progression. */
+.ac-chiffres.ac-bilan {
+  display: block;
+  width: 100%;
+  padding: 0 2px;
+  text-align: left;
+}
+.ac-chiffres.ac-bilan > div {
+  padding: 0;
+  min-width: 0;
+  border: 0;
+}
+.ac-chiffres.ac-bilan .ac-bilan-titre {
+  font-size: 10px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+  margin-bottom: 7px;
+}
+.ac-chiffres.ac-bilan .ac-bilan-ligne {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  column-gap: 16px;
+  width: 100%;
+}
+.ac-chiffres.ac-bilan .ac-bilan-progress,
+.ac-chiffres.ac-bilan .ac-bilan-serie { min-width: 0; }
+.ac-chiffres.ac-bilan .ac-bilan-valeur {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  font-size: clamp(1.95rem, 7vw, 2.3rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+  font-weight: 800;
+  color: var(--text);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.ac-chiffres.ac-bilan .ac-bilan-valeur b {
+  display: inline;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+.ac-chiffres.ac-bilan .ac-bilan-unite {
+  font-size: .53em;
+  line-height: 1;
+  letter-spacing: -.015em;
+  font-weight: 650;
+  color: var(--text);
+}
+.ac-chiffres.ac-bilan .ac-bilan-sous {
+  display: block;
+  font-size: .75rem;
+  line-height: 1.2;
+  margin-top: 5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.ac-chiffres.ac-bilan .ac-bilan-piste {
+  height: 3px;
+  margin-top: 9px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #39352d;
+}
+.ac-chiffres.ac-bilan .ac-bilan-piste i {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  background: var(--accent);
+  border-radius: inherit;
+}
+.ac-chiffres.ac-bilan .ac-bilan-flamme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 3px;
+}
+.ac-chiffres.ac-bilan .ac-bilan-flamme .ic {
+  width: 22px;
+  height: 25px;
+  color: #f3ae66;
+}
+@media (max-width: 360px) {
+  .ac-chiffres.ac-bilan .ac-bilan-ligne { column-gap: 10px; }
+  .ac-chiffres.ac-bilan .ac-bilan-valeur { font-size: 1.85rem; }
+  .ac-chiffres.ac-bilan .ac-bilan-sous { font-size: .68rem; }
+  .ac-chiffres.ac-bilan .ac-bilan-flamme .ic { width: 19px; height: 23px; }
+}
+
 /* ── Éléments communs (chemin, séance) ──────────────────────────────────── */
 .barre { height: 8px; border-radius: 999px; background: #3a362e; overflow: hidden; }
 .barre > i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--turquoise), #7be3c9); transform-origin: left; }
