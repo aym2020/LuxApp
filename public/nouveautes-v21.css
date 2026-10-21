@@ -17,6 +17,11 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  /* Écran déjà dimensionné avant le premier paint : aucun effet de
+     feuille modale (fondu/translation/scale) n'est hérité. */
+  animation: none;
+  transition: none;
+  transform: none;
 }
 .nv21-panel .nv21-top {
   flex: 0 0 auto;
