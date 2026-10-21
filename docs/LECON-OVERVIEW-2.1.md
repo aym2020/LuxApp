@@ -2,11 +2,11 @@
 
 Date : 21 octobre 2026  
 Branche : `2.1`  
-Statut : **intégré** ; validation visuelle sur Android à effectuer.
+Statut : **version compacte intégrée** ; contrôle du rendu tactile Samsung à effectuer.
 
 ## Périmètre
 
-Il s’agit du **premier écran parmi les maquettes retenues**, l’ensemble de la leçon « Moien! ...an Äddi! » : en-tête « Introduction / Cours », titre, mission, liste d’unités, raccourcis d’exercices et barre de navigation. **Ce n’est pas** l’introduction de mission, l’écran de règle, le quiz ou le panneau de cours. Ces autres maquettes ne sont pas intégrées par ce lot.
+Il s’agit du **premier écran parmi les maquettes retenues**, l’ensemble de la leçon « Moien! ...an Äddi! » : en-tête « Mon chemin / Cours », titre, mission, liste d’unités et barre de navigation. **Ce n’est pas** l’introduction de mission, l’écran de règle, le quiz ou le panneau de cours. Ces autres maquettes ne sont pas intégrées par ce lot.
 
 Les choix restent dynamiques pour toutes les leçons A1.1/A1.2 : titre, mission, état, étapes, nombre de répliques, statut des unités, étoiles, progression, textes, exercices et `+` viennent des objets de leçon et des fonctions existantes.
 
@@ -15,11 +15,13 @@ Les choix restent dynamiques pour toutes les leçons A1.1/A1.2 : titre, mission,
 - Réutilisation exclusive de `public/art/hero-luxapp-mobile.webp` dans l’en-tête, avec un masque de lisibilité ; aucun nouveau média.
 - Titres éditoriaux de leçon et d’unité en **Instrument Serif**, commandes et explications en **Inter**.
 - Fond noir chaud, photographie masquée, surfaces sobres. La carte Mission reste neutre ; l’unité en cours est seule mise en avant par une légère teinte ambrée.
-- Progression de la mission en piste fine et **réelle**, calculée à partir des répliques apprises, sans nouveau score.
-- « Voir le scénario » en action secondaire discrète ; « Tenter la mission · N répliques » en bouton contour. Le contenu vient de la mission, jamais d’un chiffre codé en dur.
-- Bouton jaune réservé à l’unité à faire ou à la reprise ; les exercices « Mot caché / Quiz / Trous / Écriture » restent des raccourcis secondaires.
-- Les blocs « Toute la leçon » et « Bilan » sont allégés visuellement, mais tous leurs contrôles restent présents.
-- Petites largeurs : boutons tactiles d’au moins 44 px, textes repliables, empilement des actions de mission si nécessaire.
+- Progression de la mission en piste fine et **réelle**, calculée uniquement sur les répliques que l’utilisateur doit produire (\`qui: "toi"\`). Une réplique est dite « préparée » quand l’unité qui l’enseigne est terminée ; cela ne vaut pas validation de la mission.
+- « Voir le scénario » et « Tenter la mission » en **liens texte discrets**, sans bouton secondaire à bordure. Les clics et la logique de la mission ne changent pas.
+- Le bouton « Commencer » est l’action principale de chaque unité. Les quatre boutons « Mot caché / Quiz / Trous / Écriture » disparaissent **de la carte d’unité** : les séquences guidées de l’unité contiennent toujours ces exercices. Quiz, À trou et Écriture restent également disponibles dans « S’entraîner ». Le mode « Mot caché » reste dans le parcours guidé ; il n’est pas actuellement un type sélectionnable de la rubrique « S’entraîner ». Le moteur d’étape isolée reste présent, sans accès direct dans cette carte.
+- « Toute la leçon » et « Bilan » deviennent deux **lignes cliquables**, avec informations utiles et chevron. La première lance exactement la même leçon complète (ou reprend celle en cours) ; la seconde ouvre le bilan de 10 questions. Les raccourcis redondants « Tout revoir » et exercices séparés disparaissent de la vue, sans modifier leur moteur.
+- Les bonus « +1 mot », reprises d’entraînement déjà commencées, défis étoiles et reprise d’erreurs restent visibles lorsqu’ils sont applicables.
+- En-tête photographique raccourci d’environ 18 px pour rapprocher la carte Mission du titre ; Mission resserrée en hauteur.
+- Petites largeurs : actions tactiles d’au moins 44 px, textes repliables, deux liens de mission capables de passer à la ligne si nécessaire.
 
 ## Intégration et limites
 
@@ -27,18 +29,29 @@ Les choix restent dynamiques pour toutes les leçons A1.1/A1.2 : titre, mission,
 |---|---|
 | `public/lecon-v21.css` | Style strictement limité à `#view-plecon` |
 | `public/index.html` | Chargement de la feuille après les styles existants |
-| `public/mission.js` | Barre d’avancement mission accessible et libellé du bouton, calculés sur les données réelles |
+| `public/mission.js` | Compteur de répliques à produire et actions secondaires sans changement du jeu | 
+| `public/parcours.js` | Rend les cartes et synthèses compactes, conserve les bonus et reprises |
 | `test/lecon-overview-v21.test.cjs` | Tests de non-régression du rendu, des actions et de la progression |
 
-Les fonctions `renderParcoursLecon`, `carteUniteHtml`, `chipsEtapes`, `openIntro`, `startUnite`, `openMission`, `voirScenario`, `lancerBilan` et la logique de progression restent inchangées. Les leçons sans mission et les contenus spécifiques du studio restent supportés grâce au rendu conditionnel historique.
+Les fonctions `openIntro`, `startUnite`, `openMission`, `voirScenario`, `lancerBilan`, les calculs de score et la logique de progression restent inchangés. Le rendu HTML de `renderParcoursLecon`, `carteUniteHtml` et `chipsEtapes` a été ajusté pour la nouvelle composition. Les leçons sans mission et les contenus spécifiques du studio restent supportés grâce au rendu conditionnel historique.
 
 ## Recette mobile
 
 1. Depuis « Mon chemin », ouvrir la leçon 1 puis une autre leçon longue ; contrôler le titre et l’image, sans débordement horizontal.
-2. Vérifier sur une mission neuve le compteur « 0 réplique sur N », la barre vide et le CTA de mission ; après avoir terminé une unité, contrôler le nombre et la barre.
-3. Tester « Voir le scénario », « Tenter la mission », « Commencer », « Refaire », « Reprendre » et les quatre raccourcis, sur une leçon jamais commencée et sur une leçon en cours.
-4. Dérouler jusqu’à « Toute la leçon » et « Bilan » ; contrôler que les actions restent accessibles.
+2. Vérifier sur une mission neuve le compteur « 0 / N répliques préparées », où N est le nombre de répliques `qui === 'toi'` ; après avoir terminé une unité, contrôler le nombre et la barre.
+3. Tester les deux liens de mission, « Commencer », « Refaire », « Reprendre », les bonus « + », les rattrapages étoiles et la reprise d’erreurs, sur une leçon neuve et sur une leçon en cours. Confirmer que les quatre raccourcis par type d’exercice ne sont plus affichés dans les cartes.
+4. Dérouler jusqu’aux lignes « Toute la leçon » et « Bilan », activer chacune en touchant toute la ligne ; vérifier la reprise d’une leçon complète interrompue et la suppression des boutons « Tout revoir » en doublon.
 5. Tester sur Samsung en navigation système normale, petit écran et police agrandie. La barre du bas ne doit pas masquer le bouton d’une unité.
 6. Vérifier avec `node --test test/lecon-overview-v21.test.cjs` et les tests de chemin/mission existants.
 
 **Note :** le test de code peut confirmer les attributs et les boutons, mais seule la recette sur appareil confirme l’équilibre visuel exact de la photographie et des retours à la ligne.
+
+## Historique du lot compact — validation des cinq changements
+
+1. Rapprocher le début de la carte Mission du bandeau en réduisant l’en-tête de 206 px à 188 px au format mobile standard (la hauteur reste extensible si le texte déborde).
+2. Compacter la carte Mission et laisser deux liens discrets ; suivre uniquement les répliques à produire.
+3. Réduire la carte de l’unité à une action pédagogique principale ; maintenir bonus et rattrapages sans les quatre raccourcis redondants.
+4. Transformer « Toute la leçon » en ligne cliquable, avec reprise prioritaire lorsqu’un entraînement libre est interrompu.
+5. Transformer le Bilan en ligne cliquable, en conservant les mêmes 10 questions mélangées.
+
+La mention **« répliques préparées »** est volontaire : le compteur dépend de la validation des unités, pas de l’évaluation orale ou écrite lors de la mission. Le statut réel de réussite de la mission continue de dépendre du moteur existant.
