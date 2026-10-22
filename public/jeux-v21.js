@@ -6,6 +6,7 @@ const SURVIE_DUREE = 30;
 const SURVIE_BONUS = 3;
 const SURVIE_PENALITE = 3;
 const SURVIE_MAX = 30;
+const SURVIE_MIN_MOTS = 4;
 const SURVIE_FIN_DUREE = 950; // extinction 0–250 ms, annonce, révélation des résultats
 
 function survieComboPalier(s) { return s>=10?3:s>=5?2:s>=3?1:0; }
@@ -171,19 +172,31 @@ function renderJeuxHub() {
   const box=document.getElementById('jeux-hub');
   if(!box)return;
   const nombre=surviePool().length,record=survieRecord();
+  const verrouille=nombre<SURVIE_MIN_MOTS;
+  const manquants=Math.max(0,SURVIE_MIN_MOTS-nombre);
+  const explication=nombre===0
+    ? 'Commence une leçon pour débloquer tes premiers mots. Il en faut 4 pour jouer.'
+    : 'Encore '+manquants+' mot'+(manquants>1?'s':'')+' pour jouer. Ouvre une autre leçon pour compléter ta réserve.';
   box.innerHTML=
     '<button class="jeux-retour" type="button" onclick="retour()">← Accueil</button>'+
     '<header class="jeux-entete"><span class="jeux-kicker">LUXAPP · MINI-JEUX</span>'+
       '<h1>Jeux<span>.</span></h1>'+
       '<p>Révise autrement, avec les mots que tu as déjà rencontrés.</p></header>'+
-    '<section class="jeux-carte" aria-labelledby="jeux-survie-titre">'+
+    '<section class="jeux-carte'+(verrouille?' jeux-carte-verrouillee':'')+'" aria-labelledby="jeux-survie-titre">'+
       '<div class="jeux-lettres" aria-hidden="true"><span>S</span><span>U</span><span>R</span></div>'+
-      '<h2 id="jeux-survie-titre">Survie</h2>'+
+      '<div class="jeux-carte-titre"><h2 id="jeux-survie-titre">Survie</h2>'+
+        (verrouille?'<span class="jeux-etat">À DÉBLOQUER</span>':'')+'</div>'+
       '<p>Des lettres mélangées, un chrono et des mots de plus en plus longs. Jusqu’où iras-tu ?</p>'+
-      '<div class="jeux-meta"><span>'+nombre+' mots disponibles</span><span>Record : <b>'+record+'</b></span></div>'+
-      (nombre>=4?'<button class="jeux-jouer" type="button" onclick="demarrerSurvie()">Jouer <span aria-hidden="true">→</span></button>':
-      '<p class="jeux-verrou">Découvre quelques mots dans tes leçons pour débloquer Survie (minimum 4).</p>'+
-      '<button class="jeux-jouer" type="button" onclick="goLessons()">Voir mon chemin →</button>')+
+      '<div class="jeux-meta"><span>'+nombre+' mot'+(nombre===1?'':'s')+' disponible'+(nombre===1?'':'s')+'</span><span>Record : <b>'+record+'</b></span></div>'+
+      (verrouille?
+        '<div class="jeux-deblocage" role="group" aria-label="Déblocage de Survie">'+
+          '<div class="jeux-deblocage-texte"><strong>'+nombre+' / '+SURVIE_MIN_MOTS+' mots</strong>'+
+            '<span>'+manquants+' restant'+(manquants>1?'s':'')+'</span></div>'+
+          '<div class="jeux-deblocage-barre" role="progressbar" aria-label="Mots disponibles pour jouer" aria-valuemin="0" aria-valuemax="'+SURVIE_MIN_MOTS+'" aria-valuenow="'+nombre+'">'+
+            '<i style="width:'+(100*nombre/SURVIE_MIN_MOTS)+'%"></i></div></div>'+
+        '<p class="jeux-verrou">'+explication+'</p>'+
+        '<button class="jeux-jouer" type="button" onclick="goLessons()">'+(nombre===0?'Commencer une leçon':'Voir mes leçons')+' <span aria-hidden="true">→</span></button>':
+        '<button class="jeux-jouer" type="button" onclick="demarrerSurvie()">Jouer <span aria-hidden="true">→</span></button>')+
     '</section>';
 }
 function survieChoisirMot(partie) {
@@ -403,7 +416,7 @@ function survieTick() {
 }
 function demarrerSurvie() {
   const pool=surviePool();
-  if(pool.length<4){renderJeuxHub();return;}
+  if(pool.length<SURVIE_MIN_MOTS){renderJeuxHub();return;}
   survieArreter();
   surviePartie={pool,vus:new Set(),precedent:null,tuiles:[],selection:[],serie:0,maxSerie:0,total:0,
     restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,ecranPret:false,gainTexte:'',
@@ -498,3 +511,35 @@ function survieAfficherResultat(p,sansAnimation=false) {
   }
   p.scoreRaf=window.requestAnimationFrame(incrementer);
 }
+
+// Sur ordinateur, Entrée active l'action principale du hub ou du résultat.
+// Pendant une question, la réponse est déjà vérifiée dès la dernière tuile.
+// Ne pas détourner Entrée des boutons et champs natifs (ni du clavier Android).
+function survieRaccourciEntree(e) {
+  if(e.key!=='Enter'||e.repeat||e.isComposing||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;
+  const cible=e.target;
+  if(cible && (cible.isContentEditable ||
+      (typeof cible.closest==='function' &&
+       cible.closest('button, a, input, textarea, select, [role="button"], [contenteditable="true"]'))))return;
+  const hub=document.getElementById('view-jeux');
+  const jeu=document.getElementById('view-survie');
+  let action=null;
+  if(hub && hub.classList.contains('active')){
+    action=document.querySelector('#jeux-hub .jeux-jouer');
+  } else if(jeu && jeu.classList.contains('active')){
+    const p=surviePartie;
+    if(p && p.finEnCours){
+      e.preventDefault();
+      e.stopPropagation();
+      survieFinPasser();
+      return;
+    }
+    if(p && p.resultatsVisibles)action=document.querySelector('#survie-jeu .jeux-jouer');
+  }
+  if(!action)return;
+  e.preventDefault();
+  e.stopPropagation();
+  action.click();
+}
+if(typeof document!=='undefined' && typeof document.addEventListener==='function')
+  document.addEventListener('keydown',survieRaccourciEntree,true);

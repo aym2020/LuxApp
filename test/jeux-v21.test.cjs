@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=8/);assert.match(html,/jeux-v21.js\?v=7/);assert.match(html,/survie-vfx.js\?v=2/);
+ assert.match(html,/jeux-v21.css\?v=9/);assert.match(html,/jeux-v21.js\?v=8/);assert.match(html,/survie-vfx.js\?v=2/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -122,7 +122,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=8"/);
+ assert.match(html,/href="jeux-v21\.css\?v=9"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
@@ -433,4 +433,45 @@ test('Fin : sans record, aucune fausse médaille ; avec nouveau record, badge se
  assert.match(element('survie-jeu').innerHTML,/Nouveau record/);
  const styles=read('public/jeux-v21.css');
  for(const x of ['.survie-fin-rideau','.survie-jeu-fin','.survie-fin-stats','@media(prefers-reduced-motion:reduce)'])assert.ok(styles.includes(x),x);
+});
+
+test('Jeux : blocage explicite, progression 0/4 puis 3/4, une leçon à commencer',()=>{
+ const {ctx,element}=make();
+ vm.runInContext('renderJeuxHub()',ctx);
+ let code=element('jeux-hub').innerHTML;
+ assert.match(code,/À DÉBLOQUER/);
+ assert.match(code,/0 \/ 4 mots/);
+ assert.match(code,/4 restants/);
+ assert.match(code,/Commencer une leçon/);
+ assert.match(code,/aria-valuenow="0"/);
+ assert.doesNotMatch(code,/onclick="demarrerSurvie\(\)"/);
+ ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch')])];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('renderJeuxHub()',ctx);
+ code=element('jeux-hub').innerHTML;
+ assert.match(code,/3 \/ 4 mots/);
+ assert.match(code,/Encore 1 mot pour jouer/);
+ assert.match(code,/aria-valuenow="3"/);
+ ctx.lecons[0].flashcards.push(card('boîte','Këscht'));
+ vm.runInContext('renderJeuxHub()',ctx);
+ code=element('jeux-hub').innerHTML;
+ assert.match(code,/4 mots disponibles/);
+ assert.match(code,/onclick="demarrerSurvie\(\)"/);
+ assert.doesNotMatch(code,/jeux-deblocage-barre/);
+});
+test('Entrée : action principale clavier hors boutons, sans activer un contrôle déjà ciblé',()=>{
+ const {ctx,element}=make();
+ element('view-jeux').classList={contains:cl=>cl==='active'};
+ let clics=0,annulations=0,stops=0;
+ ctx.document.querySelector=s=>s==='#jeux-hub .jeux-jouer'?{click(){clics++;}}:null;
+ ctx.evt={key:'Enter',repeat:false,target:{closest:()=>null},
+   preventDefault(){annulations++;},stopPropagation(){stops++;}};
+ vm.runInContext('survieRaccourciEntree(evt)',ctx);
+ assert.equal(clics,1);assert.equal(annulations,1);assert.equal(stops,1);
+ ctx.evt.target={closest:()=>({tagName:'BUTTON'})};
+ vm.runInContext('survieRaccourciEntree(evt)',ctx);
+ assert.equal(clics,1,'un bouton déjà focalisé garde son Entrée native');
+ ctx.evt.target={closest:()=>null};ctx.evt.repeat=true;
+ vm.runInContext('survieRaccourciEntree(evt)',ctx);
+ assert.equal(clics,1,'appui maintenu sans double lancement');
 });
