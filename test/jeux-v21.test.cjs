@@ -279,7 +279,7 @@ test('VFX V1 : combo charge par paliers, HUD stable et asset flamme dédié',()=
  assert.match(flame,/<svg/);assert.match(flame,/linearGradient/);
  const styles=read('public/jeux-v21.css');
  for(const className of ['.survie-combo-meter','.survie-meter-fire','.survie-ice-sheen',
-  '.survie-jeu.survie-is-frozen','#survie-gel-bouton'])assert.ok(styles.includes(className),className);
+  '.survie-jeu.survie-is-frozen','.survie-gel-bouton'])assert.ok(styles.includes(className),className);
 });
 
 test('Gel 3 secondes : timer et barre réellement immobiles, puis reprise sans cadeau',()=>{

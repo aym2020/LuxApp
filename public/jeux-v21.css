@@ -54,6 +54,7 @@
 @media(max-height:720px){#view-survie .survie-mot{padding:12px 0 8px}#view-survie .survie-mot h1{margin:8px 0}#view-survie .survie-case{height:38px}#view-survie .survie-tuile{min-height:44px}#view-survie .survie-record{padding-top:5px}}
 @media(prefers-reduced-motion:reduce){#view-survie .survie-piste i{transition:none}}
 
+#view-survie #survie-question{display:flex;flex-direction:column;gap:13px}
 /* SPEC 88 VFX V1 — HUD premium, jauge combo indépendante et Freeze réel.
    Le DOM du HUD ne se recrée jamais entre deux mots.
    Aucun effet pleine page ne doit gêner les tuiles ou le scroll. */
