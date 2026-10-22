@@ -54,43 +54,100 @@
 @media(max-height:720px){#view-survie .survie-mot{padding:12px 0 8px}#view-survie .survie-mot h1{margin:8px 0}#view-survie .survie-case{height:38px}#view-survie .survie-tuile{min-height:44px}#view-survie .survie-record{padding-top:5px}}
 @media(prefers-reduced-motion:reduce){#view-survie .survie-piste i{transition:none}}
 
-/* Survie : HUD stable. Les paliers utilisent transform, jamais font-size. */
-#view-survie #survie-question{display:flex;flex-direction:column;gap:13px}
-#view-survie .survie-combo{position:relative;--tier-scale:1;--tier-flamme:.72;--tier-halo:0;--tier-color:#F5CF4D}
-#view-survie .survie-combo[data-tier="1"]{--tier-scale:1.045;--tier-flamme:.9;--tier-halo:.24;--tier-color:#F5CF4D}
-#view-survie .survie-combo[data-tier="2"]{--tier-scale:1.075;--tier-flamme:1.06;--tier-halo:.37;--tier-color:#FFBE5B}
-#view-survie .survie-combo[data-tier="3"]{--tier-scale:1.11;--tier-flamme:1.18;--tier-halo:.50;--tier-color:#FFAD58}
-#view-survie .survie-combo-valeur{height:64px;display:flex;align-items:flex-end;gap:5px;position:relative;isolation:isolate}
-#view-survie .survie-combo-valeur::before{content:"";position:absolute;left:11px;bottom:0;width:82px;height:66px;border-radius:50%;background:radial-gradient(ellipse,#F5CF4D44 0%,transparent 68%);opacity:var(--tier-halo);pointer-events:none}
-#view-survie .survie-flamme{display:grid;place-items:center;flex:none;width:27px;height:40px;color:var(--tier-color);opacity:.6;transform:scale(var(--tier-flamme));transform-origin:bottom center;transition:transform 260ms ease-out,opacity 260ms ease-out}
-#view-survie .survie-flamme svg{width:26px;height:34px}
-#view-survie .survie-combo[data-tier="1"] .survie-flamme,#view-survie .survie-combo[data-tier="2"] .survie-flamme,#view-survie .survie-combo[data-tier="3"] .survie-flamme{opacity:1}
-#view-survie .survie-hud #survie-serie{position:relative;z-index:1;min-width:58px;display:block;color:var(--tier-color);font:800 43px/1 var(--font);font-variant-numeric:tabular-nums;transform-origin:left bottom;transform:scale(var(--tier-scale));transition:transform 260ms ease-out,color 260ms ease-out}
-#view-survie .survie-combo-cri{position:absolute;left:26px;bottom:-15px;white-space:nowrap;pointer-events:none;color:#F5CF4D;font:800 12px/1 var(--font);letter-spacing:.06em;opacity:0;z-index:2}
-#view-survie .survie-etincelles{position:absolute;left:38px;bottom:21px;pointer-events:none}
-#view-survie .survie-etincelles i{position:absolute;display:block;width:4px;height:4px;border-radius:50%;background:#FFCD68;opacity:0}
-#view-survie .survie-etincelles i:nth-child(1){--dx:-22px;--dy:-15px}
-#view-survie .survie-etincelles i:nth-child(2){--dx:-5px;--dy:-25px}
-#view-survie .survie-etincelles i:nth-child(3){--dx:21px;--dy:-16px}
-#view-survie .survie-etincelles i:nth-child(4){--dx:-19px;--dy:15px}
-#view-survie .survie-etincelles i:nth-child(5){--dx:21px;--dy:13px}
-#view-survie .survie-etincelles i:nth-child(6){--dx:4px;--dy:22px}
-#view-survie .survie-hud-time{position:relative;min-height:76px;justify-content:flex-end}
-#view-survie .survie-gain{position:absolute;top:22px;right:0;pointer-events:none;white-space:nowrap;font:800 14px/1 var(--font);color:var(--couleur-reussi);opacity:0}
-#view-survie .survie-combo-hit #survie-serie{animation:survie-combo-glide 430ms cubic-bezier(.2,.7,.25,1) both}
-#view-survie .survie-combo-hit .survie-flamme{animation:survie-flamme-glide 460ms cubic-bezier(.2,.7,.25,1) both}
-#view-survie .survie-combo-hit .survie-combo-cri{animation:survie-texte-glide 620ms ease-out both}
-#view-survie .survie-combo-hit .survie-etincelles i{animation:survie-eclat 460ms ease-out both}
-#view-survie .survie-time-hit .survie-gain{animation:survie-gain-glide 620ms ease-out both}
-@keyframes survie-combo-glide{0%{transform:scale(var(--tier-scale))}40%{transform:scale(1.2)}100%{transform:scale(var(--tier-scale))}}
-@keyframes survie-flamme-glide{0%{transform:scale(var(--tier-flamme)) rotate(-4deg)}42%{transform:scale(1.32) rotate(3deg)}100%{transform:scale(var(--tier-flamme)) rotate(0)}}
-@keyframes survie-texte-glide{0%{opacity:0;transform:translateY(6px)}19%{opacity:1}69%{opacity:1}100%{opacity:0;transform:translateY(-18px)}}
-@keyframes survie-eclat{0%{opacity:0;transform:translate(0,0) scale(.65)}23%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.8)}}
-@keyframes survie-gain-glide{0%{opacity:0;transform:translateY(4px)}22%{opacity:1}68%{opacity:1}100%{opacity:0;transform:translateY(-22px)}}
+/* SPEC 88 VFX V1 — HUD premium, jauge combo indépendante et Freeze réel.
+   Le DOM du HUD ne se recrée jamais entre deux mots.
+   Aucun effet pleine page ne doit gêner les tuiles ou le scroll. */
+#view-survie .survie-jeu{--s-fire:#e9a84d;--s-core:#f5cf4d;--s-ice:#9be4ff}
+#view-survie .survie-hud{align-items:center;padding:4px 0 0;min-height:104px;gap:15px}
+#view-survie .survie-hud>div{min-width:0}
+#view-survie .survie-hud .survie-hud-label{font:800 10px/1.4 var(--font);letter-spacing:.18em;color:#ada497}
+#view-survie .survie-combo{position:relative;flex:1 1 auto;--tier-scale:1;--flame-scale:.85;--flame-opacity:.28}
+#view-survie .survie-combo[data-tier="1"]{--tier-scale:1.02;--flame-scale:1;--flame-opacity:.9}
+#view-survie .survie-combo[data-tier="2"]{--tier-scale:1.05;--flame-scale:1.11;--flame-opacity:1}
+#view-survie .survie-combo[data-tier="3"]{--tier-scale:1.08;--flame-scale:1.2;--flame-opacity:1}
+#view-survie .survie-combo-valeur{display:flex;align-items:center;gap:9px;height:70px;position:relative;isolation:isolate}
+#view-survie .survie-flamme{display:grid;place-items:center;flex:0 0 43px;width:43px;height:62px;opacity:var(--flame-opacity);transform-origin:bottom center;transform:scale(var(--flame-scale));transition:transform 280ms ease-out,opacity 280ms ease-out;pointer-events:none}
+#view-survie .survie-flamme img{display:block;width:43px;height:57px;filter:drop-shadow(0 0 6px #ee9d3650)}
+#view-survie .survie-hud #survie-serie{display:block;min-width:52px;font:900 clamp(42px,12vw,56px)/1 var(--font);letter-spacing:-.035em;color:#f5cf4d;font-variant-numeric:tabular-nums;transform:scale(var(--tier-scale));transform-origin:left center;transition:transform 280ms ease-out}
+#view-survie .survie-combo-cri{position:absolute;left:68px;top:54px;font:900 11px/1.1 var(--font)!important;letter-spacing:.06em!important;white-space:nowrap;color:#ffd47e!important;pointer-events:none;opacity:0;z-index:4}
+#view-survie .survie-etincelles{position:absolute;left:39px;top:24px;pointer-events:none}
+#view-survie .survie-etincelles i{display:block;position:absolute;width:4px;height:4px;border-radius:50%;background:#ffd779;opacity:0}
+#view-survie .survie-etincelles i:nth-child(1){--dx:-27px;--dy:-13px}
+#view-survie .survie-etincelles i:nth-child(2){--dx:3px;--dy:-27px}
+#view-survie .survie-etincelles i:nth-child(3){--dx:25px;--dy:-16px}
+#view-survie .survie-etincelles i:nth-child(4){--dx:-23px;--dy:18px}
+#view-survie .survie-etincelles i:nth-child(5){--dx:21px;--dy:14px}
+#view-survie .survie-etincelles i:nth-child(6){--dx:0;--dy:26px}
+#view-survie .survie-hud-time{position:relative;flex:0 0 auto;min-width:122px;min-height:93px;align-items:flex-end;justify-content:center;text-align:right;border:1px solid #3b372f;border-radius:14px;background:linear-gradient(160deg,#211f1b,#161511);padding:11px 13px;overflow:visible;transition:border-color 250ms ease,background-color 250ms ease}
+#view-survie .survie-hud #survie-secondes{font:900 clamp(32px,9.8vw,45px)/1 var(--font);letter-spacing:-.045em;color:#f5cf4d;white-space:nowrap;min-width:98px;text-align:right}
+#view-survie .survie-hud .survie-freeze-indicator{display:block;height:12px;font:900 9px/12px var(--font);letter-spacing:.14em;white-space:nowrap;color:#8edcf9;opacity:0}
+#view-survie .survie-gain{position:absolute;right:9px;top:-25px;color:#70e1b8!important;font:850 13px/1 var(--font)!important;letter-spacing:0!important;white-space:nowrap;pointer-events:none;opacity:0}
+#view-survie .survie-meter-stack{display:flex;flex-direction:column;gap:7px;margin:0 0 1px}
+#view-survie .survie-meter-top{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:15px;color:#8f8576;font:800 9px/1.3 var(--font);letter-spacing:.13em}
+#view-survie .survie-meter-top strong{color:#e3bd68;font-weight:850}
+#view-survie .survie-combo-meter{position:relative;height:12px;overflow:visible;border-radius:7px;border:1px solid #564126;background:repeating-linear-gradient(90deg,#211e18 0,#211e18 calc(25% - 1px),#55432a calc(25% - 1px),#55432a 25%);isolation:isolate}
+#view-survie .survie-combo-meter::after{content:"";position:absolute;inset:2px;border-radius:6px;background:linear-gradient(90deg,transparent,#00000025 54%,transparent);pointer-events:none;z-index:2}
+#view-survie .survie-combo-meter #survie-combo-fill{display:block;position:absolute;inset:-1px 0 -1px -1px;width:calc(100% + 1px);border-radius:7px;transform-origin:left center;transition:transform 260ms cubic-bezier(.17,.85,.28,1);background:linear-gradient(90deg,#866638 0%,#e7a344 42%,#f7da69 72%,#fff0ad 100%);box-shadow:0 0 10px #dd9c3852}
+#view-survie .survie-meter-fire{display:block;position:absolute;left:0;right:0;bottom:7px;height:11px;border-radius:100%;pointer-events:none;opacity:0;transform:scaleY(.55);transform-origin:bottom;transition:opacity 330ms ease,transform 330ms ease;background:linear-gradient(90deg,transparent 3%,#ed8c3359 22%,#f0a64c8a 49%,#ffdc799a 78%,transparent 100%);clip-path:polygon(0% 100%,5% 70%,10% 95%,17% 15%,24% 100%,31% 34%,38% 100%,46% 0%,53% 98%,61% 25%,68% 100%,76% 8%,84% 100%,92% 30%,100% 100%)}
+#view-survie .survie-combo-meter[data-heat="1"] .survie-meter-fire{opacity:.35;transform:scaleY(.55)}
+#view-survie .survie-combo-meter[data-heat="2"] .survie-meter-fire{opacity:.62;transform:scaleY(.85)}
+#view-survie .survie-combo-meter[data-heat="3"] .survie-meter-fire{opacity:.84;transform:scaleY(1)}
+#view-survie .survie-combo-meter[data-heat="4"] .survie-meter-fire{opacity:1;transform:scaleY(1.35)}
+#view-survie .survie-combo-meter[data-heat="3"] #survie-combo-fill,#view-survie .survie-combo-meter[data-heat="4"] #survie-combo-fill{background:linear-gradient(90deg,#a75e28,#fbb249 40%,#ffd375 80%,#fff2af);box-shadow:0 0 12px #ee932d7d}
+#view-survie .survie-meter-time{position:relative;isolation:isolate}
+#view-survie .survie-meter-time .survie-piste{height:7px;background:#383731;border:1px solid #444038;border-radius:99px;overflow:hidden}
+#view-survie .survie-piste i{background:linear-gradient(90deg,#ba933c,#f5cf4d);transition:transform 90ms linear}
+#view-survie .survie-ice-sheen{position:absolute;inset:-4px -1px;pointer-events:none;border-radius:6px;border:1px solid #8ce2ff;opacity:0;transform:scaleX(.98);transition:opacity 160ms ease,transform 230ms ease;background:repeating-linear-gradient(115deg,#b9edff55 0 1px,transparent 1px 18px);box-shadow:inset 0 0 8px #acf3ff55,0 0 12px #8bd6ff77}
+#view-survie .survie-pouvoirs{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:58px;margin:1px 0 0}
+#view-survie .survie-gel-bouton{display:flex;align-items:center;gap:10px;min-width:142px;min-height:53px;padding:7px 11px;border-radius:12px;border:1px solid #4b7489;background:linear-gradient(130deg,#1d323e,#17242b);color:#b2edff;cursor:pointer;touch-action:manipulation;box-shadow:inset 0 1px 0 #94eaff20}
+#view-survie .survie-gel-bouton:not(:disabled):active{transform:scale(.97)}
+#view-survie .survie-ice-icon{flex:0 0 33px;display:grid;place-items:center;width:33px;height:33px;border-radius:8px;background:#84dfff13;color:#a8e8ff}
+#view-survie .survie-ice-icon svg{width:25px;height:25px;filter:drop-shadow(0 0 4px #9ceaff4d)}
+#view-survie .survie-gel-copy{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+#view-survie .survie-gel-copy strong{font:850 11px/1.1 var(--font);letter-spacing:.07em;white-space:nowrap}
+#view-survie .survie-gel-copy small{font:750 10px/1.1 var(--font);color:#a9c2ca;white-space:nowrap}
+#view-survie .survie-gel-bouton:disabled{cursor:default;border-color:#35464d;opacity:.68;background:#1b2123}
+#view-survie .survie-pouvoir-note{display:block;max-width:153px;color:#8d918f;font:600 11px/1.4 var(--font);text-align:right}
+#view-survie .survie-combo-hit #survie-serie{animation:survie-combo-glide 410ms cubic-bezier(.2,.7,.25,1) both}
+#view-survie .survie-combo-hit .survie-flamme{animation:survie-flamme-glide 430ms cubic-bezier(.2,.7,.25,1) both}
+#view-survie .survie-combo-hit .survie-combo-cri{animation:survie-texte-glide 610ms ease-out both}
+#view-survie .survie-combo-hit .survie-etincelles i{animation:survie-eclat 420ms ease-out both}
+#view-survie .survie-time-hit .survie-gain{animation:survie-gain-glide 610ms ease-out both}
+@keyframes survie-combo-glide{0%{transform:scale(var(--tier-scale))}42%{transform:scale(1.2)}100%{transform:scale(var(--tier-scale))}}
+@keyframes survie-flamme-glide{0%{transform:scale(var(--flame-scale))}43%{transform:scale(1.3) translateY(-2px)}100%{transform:scale(var(--flame-scale))}}
+@keyframes survie-texte-glide{0%{opacity:0;transform:translateY(5px)}25%{opacity:1}68%{opacity:1}100%{opacity:0;transform:translateY(-13px)}}
+@keyframes survie-eclat{0%{opacity:0;transform:translate(0,0)}26%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+@keyframes survie-gain-glide{0%{opacity:0;transform:translateY(6px)}25%{opacity:1}71%{opacity:1}100%{opacity:0;transform:translateY(-17px)}}
+/* VFX gel : chrono et barre de temps immobilisés par JS, givre réel côté CSS. */
+#view-survie .survie-jeu.survie-is-frozen .survie-hud-time{border-color:#8bdaf2;background:linear-gradient(145deg,#1e3441,#102934);box-shadow:inset 0 0 0 1px #bdeeff34,0 0 15px #63bded2c}
+#view-survie .survie-jeu.survie-is-frozen #survie-secondes{color:#bdefff;text-shadow:0 0 9px #94e2ff54}
+#view-survie .survie-jeu.survie-is-frozen .survie-freeze-indicator{opacity:1;color:#a8eeff}
+#view-survie .survie-jeu.survie-is-frozen .survie-meter-time .survie-piste{background:#254556;border-color:#79c9e8;box-shadow:0 0 13px #62cefc30}
+#view-survie .survie-jeu.survie-is-frozen #survie-jauge{background:linear-gradient(90deg,#3e99c0,#9ae6ff,#e2f9ff);transition:none}
+#view-survie .survie-jeu.survie-is-frozen .survie-ice-sheen{opacity:1;transform:scaleX(1);animation:survie-givre-impulsion 480ms ease-out both}
+#view-survie .survie-jeu.survie-is-frozen .survie-gel-bouton{border-color:#8bdafa;box-shadow:inset 0 0 12px #8de9ff24,0 0 10px #73d6ff30;opacity:1}
+@keyframes survie-givre-impulsion{0%{opacity:0;transform:scaleX(.6)}70%{opacity:1;transform:scaleX(1)}100%{opacity:1;transform:scaleX(1)}}
+@media(max-width:360px){
+ #view-survie .survie-hud-time{min-width:108px;padding:9px}
+ #view-survie .survie-hud #survie-secondes{min-width:0;font-size:32px}
+ #view-survie .survie-combo-valeur{gap:5px}
+ #view-survie .survie-flamme,#view-survie .survie-flamme img{width:36px}
+ #view-survie .survie-pouvoir-note{font-size:10px;max-width:105px}
+ #view-survie .survie-gel-bouton{min-width:136px}
+}
+@media(max-height:720px){
+ #view-survie .survie-hud{min-height:88px}
+ #view-survie .survie-pouvoirs{min-height:48px}
+ #view-survie .survie-gel-bouton{min-height:46px}
+ #view-survie .survie-combo-valeur{height:61px}
+}
 @media(prefers-reduced-motion:reduce){
- #view-survie .survie-flamme,#view-survie .survie-hud #survie-serie{transition:none}
+ #view-survie .survie-flamme,#view-survie .survie-hud #survie-serie,
+ #view-survie .survie-combo-meter #survie-combo-fill,
+ #view-survie .survie-meter-fire,#view-survie .survie-ice-sheen{transition:none}
  #view-survie .survie-combo-hit #survie-serie,#view-survie .survie-combo-hit .survie-flamme,
  #view-survie .survie-combo-hit .survie-combo-cri,#view-survie .survie-combo-hit .survie-etincelles i,
- #view-survie .survie-time-hit .survie-gain{animation:none}
+ #view-survie .survie-time-hit .survie-gain,
+ #view-survie .survie-jeu.survie-is-frozen .survie-ice-sheen{animation:none}
  #view-survie .survie-combo-cri,#view-survie .survie-gain{display:none}
 }
