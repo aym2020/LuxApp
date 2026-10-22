@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=6/);assert.match(html,/jeux-v21.js\?v=5/);assert.match(html,/survie-vfx.js\?v=1/);
+ assert.match(html,/jeux-v21.css\?v=6/);assert.match(html,/jeux-v21.js\?v=6/);assert.match(html,/survie-vfx.js\?v=1/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -51,7 +51,7 @@ test('Mots issus uniquement des leçons étudiées, sans Plus, phrases ni doublo
  ctx.list=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht'),card('salut','Moien'),card('film','Film'),card('Au bureau','Um Büro'),{...card('cher','deier'),plus:true},card('maison','Haus')]),lesson(2,[card('table','Dësch')])];
  ctx.progress={1:{vue:{ouverte:1}}};
  const pool=vm.runInContext('survieMotsDisponibles(list,progress)',ctx);
- assert.deepEqual(Array.from(pool,p=>p.mot),['Haus','Bam','Buch','Këscht','Moien']);
+ assert.deepEqual(Array.from(pool,p=>p.mot),['haus','bam','buch','këscht','moien']);
  assert.equal(vm.runInContext('survieMotsDisponibles(list,{}).length',ctx),0);
 });
 test('Record persistant et isolé par profil sans écrire la progression',()=>{
@@ -320,4 +320,24 @@ test('SPEC 92 : chrono critique sous 5 s, palier recopié sur la barre, jeu inta
   '.survie-urgence::before','#view-survie .survie-feu{display:none}','pointer-events:none'])assert.ok(styles.includes(x),x);
  const nouveau=styles.slice(styles.indexOf('SPEC 92'));
  assert.doesNotMatch(nouveau,/transition:[^;}]*(width|height|top|left|margin|font-size)/,'aucune transition de mise en page');
+});
+
+test('Survie : lettres toujours en minuscules, sans confusion I/l ni altération des flashcards',()=>{
+ const {ctx,element}=make();
+ const originals=[card('exemple','Ili'),card('maison','Haus'),card('boîte','Këscht'),
+   card('arbre','Bam'),card('livre','Buch')];
+ ctx.lecons=[lesson(1,originals)];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ const pool=vm.runInContext('surviePool()',ctx);
+ assert.deepEqual(Array.from(pool,p=>p.mot),['ili','haus','këscht','bam','buch']);
+ assert.equal(ctx.lecons[0].flashcards[0].lu,'Ili','donnée pédagogique inchangée');
+ assert.equal(ctx.lecons[0].flashcards[1].lu,'Haus','majuscule orthographique conservée');
+ vm.runInContext('demarrerSurvie()',ctx);
+ assert.equal(vm.runInContext('surviePartie.mot.mot===surviePartie.mot.mot.toLocaleLowerCase("lb")',ctx),true);
+ assert.equal(vm.runInContext('surviePartie.tuiles.every(c=>c===c.toLocaleLowerCase("lb"))',ctx),true);
+ assert.match(element('survie-jeu').innerHTML,/class="survie-tuile"/);
+ ctx.ordre=vm.runInContext('(()=>{const p=surviePartie,u=new Set();return Array.from(p.mot.mot).map(c=>{const i=p.tuiles.findIndex((x,j)=>x===c&&!u.has(j));u.add(i);return i})})()',ctx);
+ vm.runInContext('ordre.forEach(survieLettre)',ctx);
+ assert.equal(vm.runInContext('surviePartie.serie',ctx),1,'validation correcte inchangée');
+ assert.equal(vm.runInContext('survieRecord()',ctx),1);
 });

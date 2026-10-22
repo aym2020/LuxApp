@@ -69,3 +69,7 @@ Recette navigateur mesurée sur Chromium aux largeurs **320, 360, 390 et 430 px*
 **Fonctionnalités conservées :** jeu Survie, streak et chronomètre originels (+3 s/réussite, −3 s/erreur), bouton « Passer −3 s », record local, affichage du prochain mot sans double animation, navigation et progression indépendantes. **Fonctionnalités retirées :** nouveau HUD et jauge d'énergie, flamme SVG, prototype du Gel temporel et ses effets ; ce n'est pas une désactivation de la future SPEC 89/90, qui reste à concevoir/implémenter distinctement.
 
 Les tests VFX supprimés ciblaient la fonctionnalité retirée. La recette smartphone pourra confirmer le retour de l'ancienne présentation.
+
+## Accessibilité : minuscules dans le mot mélangé (22 octobre 2026)
+
+**Constat utilisateur :** dans le temps limité de Survie, le `I` majuscule et le `l` minuscule sont trop semblables visuellement en Inter, en particulier sur Android. **Règle appliquée au seul mini-jeu Survie :** le mot d'une flashcard est normalisé en minuscules luxembourgeoises (`toLocaleLowerCase('lb')` puis NFC) dès sa création dans le pool jouable. Les cases, tuiles, étiquettes accessibles et la comparaison de réponse utilisent ces mêmes lettres : pas de différenciation injuste entre `I` et `i`. Les données de cours, l'orthographe officielle et les autres exercices ne sont pas modifiés. La longueur et les accents sont conservés ; l'ajustement est exclusivement visuel/ergonomique pour cette épreuve de rapidité. Test dédié pour `Ili`, `Haus`, `Këscht`, validation et absence de mutation des flashcards.

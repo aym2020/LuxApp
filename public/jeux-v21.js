@@ -123,7 +123,9 @@ function survieMotsDisponibles(liste, progress) {
     if(!survieLeconEtudiee(lecon,progress)) continue;
     for(const c of lecon.flashcards||[]) {
       if(!c || c.plus || typeof c.lu!=='string' || typeof c.fr!=='string') continue;
-      const mot=c.lu.normalize('NFC').trim();
+      // Survie ne teste pas les majuscules : I et l se ressemblent sur mobile.
+      // Normaliser le mot jouable, sans modifier le mot des flashcards/leçons.
+      const mot=c.lu.normalize('NFC').trim().toLocaleLowerCase('lb').normalize('NFC');
       const fr=c.fr.trim().replace(/[.!?]+$/,'').trim();
       const lettres=survieLettres(mot);
       // Mots isolés uniquement : pas de phrases, d'articles à reconstruire,
@@ -131,7 +133,7 @@ function survieMotsDisponibles(liste, progress) {
       if(lettres.length<3 || lettres.length>12 ||
          !/^\p{L}+$/u.test(mot) ||
          !/^[\p{L}]+(?:[ '-][\p{L}]+){0,2}$/u.test(fr)) continue;
-      const k=mot.toLocaleLowerCase('lb');
+      const k=mot; // déjà normalisé en minuscules
       const f=fr.toLocaleLowerCase('fr');
       if(k===f || vocab.has(k) || definitions.has(f)) continue;
       vocab.add(k);definitions.add(f);
