@@ -12,6 +12,9 @@ const app = express();
 // Sans RECETTE=1, rien de tout cela n'existe : le dossier recette/ n'est pas servi.
 const RECETTE = process.env.RECETTE === '1';
 if (RECETTE) {
+  // Éviter que les captures de recette mélangent anciens HTML, JS et CSS.
+  // Même après un git pull, un onglet déjà ouvert doit être actualisé manuellement.
+  app.use((req,res,next) => { res.set('Cache-Control','no-store, max-age=0'); next(); });
   const utilisateur = process.env.RECETTE_USER || '';
   const motDePasse = process.env.RECETTE_PASS || '';
   app.use((req, res, next) => {

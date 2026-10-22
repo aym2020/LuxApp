@@ -141,6 +141,12 @@ def test_reserve(browser, w, h, path, passes=False):
     assert footer["y"] >= 0 and footer["y"]+footer["height"] <= h + 1, f"{w}: pied hors écran"
     assert primary["y"] >= footer["y"] and primary["y"]+primary["height"] <= footer["y"]+footer["height"]
     assert secondary["y"]+secondary["height"] <= h + 1
+    # Sur un écran normal, le centre ne doit plus bouger de quelques pixels.
+    if h >= 844:
+        dimensions = page.locator(".survie-resultat-scroll").evaluate(
+            "el => ({scroll: el.scrollHeight, visible: el.clientHeight})")
+        assert dimensions["scroll"] <= dimensions["visible"] + 2, (
+            f"{w}x{h}: micro-scroll inutile, {dimensions}")
     page.locator(".survie-resultat-scroll").evaluate("el => el.scrollTop = el.scrollHeight")
     after = page.locator(".survie-resultat-actions .jeux-jouer").bounding_box()
     assert abs(after["y"]-primary["y"])<=1, f"{w}: CTA bouge après scroll"

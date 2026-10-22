@@ -210,19 +210,19 @@
  scrollbar-width:thin;scrollbar-color:var(--couleur-bord-2) transparent
 }
 #view-survie .survie-jeu-resultats .survie-fin{
- flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
- width:100%;max-width:420px;min-height:0;margin:0 auto;padding:20px 17px 16px;
+ flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ width:100%;max-width:420px;min-height:100%;margin:0 auto;padding:12px 17px 11px;
  gap:0;text-align:center;animation:survie-resultat-arrive .36s ease-out both
 }
 #view-survie .survie-fin-embleme{
- flex:none;display:grid;place-items:center;width:54px;height:54px;margin-bottom:11px;
+ flex:none;display:grid;place-items:center;width:50px;height:50px;margin-bottom:8px;
  background:var(--couleur-surface-2);color:var(--survie-etat);
  border:1px solid var(--survie-etat);border-radius:50%
 }
 #view-survie .survie-resultat-parfait .survie-fin-embleme{background:var(--couleur-surface-1)}
 #view-survie .survie-fin-embleme svg{width:29px;height:29px}
 #view-survie .survie-fin-etat{
- margin-bottom:8px;color:var(--survie-etat);font:850 11px/1.4 var(--font);letter-spacing:.15em
+ margin-bottom:6px;color:var(--survie-etat);font:850 11px/1.4 var(--font);letter-spacing:.15em
 }
 #view-survie .survie-jeu-resultats .survie-fin h1{
  max-width:350px;margin:0;color:var(--couleur-texte);
@@ -231,9 +231,9 @@
 }
 #view-survie .survie-jeu-resultats .survie-fin h1 span{color:var(--couleur-action)}
 #view-survie .survie-jeu-resultats .survie-fin .survie-fin-intro{
- max-width:290px;margin:11px 0 0;color:var(--couleur-texte-2);font:500 13px/1.55 var(--font)
+ max-width:290px;margin:8px 0 0;color:var(--couleur-texte-2);font:500 13px/1.55 var(--font)
 }
-#view-survie .survie-fin-score-zone{display:flex;flex-direction:column;align-items:center;margin-top:18px}
+#view-survie .survie-fin-score-zone{display:flex;flex-direction:column;align-items:center;margin-top:12px}
 #view-survie .survie-fin-anneau{position:relative;width:145px;height:145px;flex:none}
 #view-survie .survie-fin-anneau svg{width:100%;height:100%;display:block;transform:rotate(-90deg)}
 #view-survie .survie-fin-cercle-fond{fill:none;stroke:var(--couleur-bord-2);stroke-width:5}
@@ -254,14 +254,14 @@
  color:var(--couleur-texte-3);font:800 10px/1.3 var(--font);letter-spacing:.11em
 }
 #view-survie .survie-jeu-resultats .survie-fin .survie-fin-bilan{
- margin:11px 0 0;color:var(--couleur-texte-2);font:600 13px/1.45 var(--font)
+ margin:8px 0 0;color:var(--couleur-texte-2);font:600 13px/1.45 var(--font)
 }
 #view-survie .survie-jeu-resultats .survie-fin .survie-fin-record{
  display:flex;align-items:center;justify-content:center;gap:6px;
- margin:11px 0 0;color:var(--couleur-action);font:800 12px/1.5 var(--font)
+ margin:8px 0 0;color:var(--couleur-action);font:800 12px/1.5 var(--font)
 }
 #view-survie .survie-fin-stats{
- width:100%;max-width:350px;margin-top:17px;padding:13px 0;
+ width:100%;max-width:350px;margin-top:12px;padding:10px 0;
  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;
  border-top:1px solid var(--couleur-bord-2);border-bottom:1px solid var(--couleur-bord-2)
 }
@@ -275,7 +275,7 @@
  color:var(--couleur-texte);font:800 23px/1 var(--font);font-variant-numeric:tabular-nums
 }
 #view-survie .survie-jeu-resultats .survie-fin .survie-fin-suite{
- max-width:330px;margin:15px 0 0;color:var(--couleur-texte-2);font:500 12px/1.55 var(--font)
+ max-width:330px;margin:10px 0 0;color:var(--couleur-texte-2);font:500 12px/1.55 var(--font)
 }
 #view-survie .survie-resultat-actions{
  flex:none;width:100%;display:flex;flex-direction:column;align-items:center;gap:3px;

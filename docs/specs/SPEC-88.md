@@ -91,3 +91,8 @@ Composition des **trois états** identique : en-tête « Jeux / MODE SURVIE » (
 Sans-faute = tous les mots réussis, **zéro erreur et zéro mot passé** (coche et vert `--couleur-reussi`). Réserve terminée autrement = livre et tons neutres ; les fautes corrigées sont signalées, sans fausse coche. Temps écoulé = horloge et tons neutres, mêmes boutons et présentation, rideau de 2,2 secondes conservé. Le score principal est le total de mots réussis, indépendamment de la meilleure série. Le record de la partie reste inchangé et isolé par profil.
 
 Recette `RECETTE=1` et tests Chromium à 320/360/390/430 px : le CTA et l'action secondaire ne doivent jamais être repoussés sous l'écran ; uniquement le centre est défilant. Vérifier le retour Android, les contrastes et les textes à 130/200 %, puis comparer sur Samsung réel.
+
+
+### Densité mobile des résultats et états de test (22 octobre 2026)
+
+Afin d'éviter le micro-défilement constaté sur Samsung plein écran, les trois états de résultat utilisent des espacements verticaux compacts et centrent la composition lorsque sa hauteur le permet. Aucun indicateur, record ou bouton n'est supprimé. Les contrôles restent à ≥ 44 px ; le bandeau de CTA conserve sa position. Si la hauteur, les barres du navigateur ou la police agrandie empêchent de tout afficher, **seul le centre** reste défilant : ne jamais couper silencieusement les informations pédagogiques ni les boutons.

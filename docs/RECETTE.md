@@ -79,3 +79,10 @@ Le décompte dépend du vocabulaire réel de la leçon sélectionnée, pas de mo
 ### Résultats Survie — maquette finale
 
 Utiliser **Fin de Survie** dans le mode recette sécurisé. Vérifier les trois états et le bandeau inférieur : le CTA jaune « Continuer mon chemin » ou « Rejouer Survie » doit rester visible sans faire défiler le résultat. Le centre peut défiler indépendamment. L'anneau affiche un nombre et « SUR N » sur deux lignes sans chevauchement. Les séries et records sont affichés en colonnes compactes. Le vert indique exclusivement un vrai sans-faute ; le temps écoulé et une réserve avec passés ou erreurs restent neutres.
+
+
+### Cohérence de la version dans Termux et absence de micro-scroll (22 octobre 2026)
+
+L'ancienne présentation de « Réserve terminée » (fraction horizontale dans le cercle et deux grosses cartes statistiques) ne fait **plus** partie de la version actuelle de `2.1` ; les trois résultats de Survie utilisent la même fonction `survieAfficherResultat`. Si `localhost:3001` l'affiche encore, rafraîchir réellement l'onglet, vérifier la branche locale avec `git branch --show-current` et le SHA avec `git rev-parse --short HEAD`, arrêter le serveur avec Ctrl+C, puis `git pull --ff-only origin 2.1` et redémarrer `RECETTE=1`. Les ressources de l'instance recette renvoient désormais `Cache-Control: no-store` pour éviter un mélange d'anciens CSS et JS entre captures. Un onglet déjà ouvert ne se met pas à jour tout seul.
+
+Les trois résultats gardent leur pied fixe et recentrent leur contenu dans la zone de lecture. Espacements verticaux resserrés pour qu'un Android moderne à hauteur normale voie tout le résultat **sans micro-scroll**. La zone de lecture reste défilante sur les écrans courts, en navigation navigateur avec barres visibles, ou en police agrandie : ne jamais désactiver tout scroll au prix d'un texte ou d'un bouton coupé. Tester le scénario **Réserve terminée** et le chrono ; quitter le mode test pour effacer le faux record.
