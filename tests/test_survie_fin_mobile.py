@@ -18,6 +18,7 @@ FIXTURE = """<!doctype html>
 *{box-sizing:border-box}html,body{margin:0;background:#0f0e0c;color:#f5f0e8;font:16px Arial,sans-serif}
 :root{--couleur-texte:#f6f1e9;--couleur-texte-2:#c8bda8;--couleur-texte-3:#aaa090;--couleur-bord-2:#3d3a31;--couleur-surface-1:#1a1916;--couleur-surface-2:#26241f;--couleur-bord-1:#2a2926;--couleur-action:#f5cf4d;--couleur-sur-action:#0f0e0c;--rayon-bouton:12px}
 .view{display:none}.view.active{display:block}</style>
+<link rel="stylesheet" href="design-tokens.css">
 <link rel="stylesheet" href="jeux-v21.css">
 </head><body>
 <div id="view-survie" class="view active"><div id="survie-jeu" class="survie-jeu"></div></div>
@@ -61,6 +62,16 @@ def test_size(browser, w, h, path):
     page.on("pageerror", lambda e: errors.append(str(e)))
     page.goto(path.as_uri())
     page.locator(".survie-tuile").first.wait_for()
+    # La police réelle doit être chargée : pas seulement une famille CSS déclarée.
+    loaded=page.evaluate("""async () => {
+      const faces=await document.fonts.load('700 26px "Atkinson Hyperlegible"');
+      return faces.some(f=>f.status==='loaded');
+    }""")
+    assert loaded, f"{w}px: Atkinson locale non chargée"
+    for selector in (".survie-tuile",".survie-case"):
+        famille=page.locator(selector).first.evaluate("el=>getComputedStyle(el).fontFamily")
+        poids=page.locator(selector).first.evaluate("el=>getComputedStyle(el).fontWeight")
+        assert "Atkinson Hyperlegible" in famille and poids=="700", f"{w}px: {selector} {famille}/{poids}"
     assert page.locator(".survie-fin-rideau").is_hidden()
     page.evaluate("surviePartie.total=4;surviePartie.maxSerie=3;surviePartie.vus=new Set(surviePartie.pool.slice(0,4).map(m=>m.mot));survieEnregistrer(6);survieTerminer()")
     assert page.evaluate("surviePartie.actif") is False

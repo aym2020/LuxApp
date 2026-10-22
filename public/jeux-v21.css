@@ -41,10 +41,10 @@
 #view-survie .survie-mot h1{font:400 clamp(38px,10vw,53px)/1.12 'Instrument Serif',Georgia,serif;margin:18px 0 10px;overflow-wrap:anywhere}
 #view-survie .survie-mot p{font:500 13px var(--font);color:#aca293}
 #view-survie .survie-cases{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:5px;margin:6px auto 16px;max-width:100%}
-#view-survie .survie-case{width:clamp(24px,7.1vw,46px);height:clamp(40px,10vw,54px);border-bottom:3px solid #736445;border-radius:8px;background:#211f1a;display:grid;place-items:center;font:800 clamp(18px,5vw,25px) var(--font);color:#f6f0e6}
+#view-survie .survie-case{width:clamp(24px,7.1vw,46px);height:clamp(40px,10vw,54px);border-bottom:3px solid #736445;border-radius:8px;background:#211f1a;display:grid;place-items:center;font:700 clamp(19px,6.15vw,24px) var(--police-lettres);color:#f6f0e6}
 /* Flex-wrap centre aussi la DERNIÈRE rangée (7 à 12 lettres). */
 #view-survie .survie-tuiles{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;width:100%;max-width:347px;margin-inline:auto}
-#view-survie .survie-tuile{flex:0 0 clamp(44px,13.2vw,52px);min-width:0;min-height:53px;border:1px solid #4d473e;border-bottom:3px solid #6f6250;border-radius:11px;background:#24221d;color:#eee7dc;font:800 clamp(18px,5vw,26px) var(--font);cursor:pointer;touch-action:manipulation}
+#view-survie .survie-tuile{flex:0 0 clamp(44px,13.2vw,52px);min-width:0;min-height:53px;border:1px solid #4d473e;border-bottom:3px solid #6f6250;border-radius:11px;background:#24221d;color:#eee7dc;font:700 clamp(22px,6.67vw,26px) var(--police-lettres);cursor:pointer;touch-action:manipulation}
 #view-survie .survie-tuile:disabled{opacity:.23;cursor:default}
 /* Deux vrais boutons tactiles ; feedback en pleine largeur pour éviter le chevauchement sur 320px. */
 #view-survie .survie-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:8px 10px;min-height:82px}

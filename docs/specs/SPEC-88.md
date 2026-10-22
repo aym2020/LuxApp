@@ -96,3 +96,10 @@ Recette `RECETTE=1` et tests Chromium à 320/360/390/430 px : le CTA et l'action
 ### Densité mobile des résultats et états de test (22 octobre 2026)
 
 Afin d'éviter le micro-défilement constaté sur Samsung plein écran, les trois états de résultat utilisent des espacements verticaux compacts et centrent la composition lorsque sa hauteur le permet. Aucun indicateur, record ou bouton n'est supprimé. Les contrôles restent à ≥ 44 px ; le bandeau de CTA conserve sa position. Si la hauteur, les barres du navigateur ou la police agrandie empêchent de tout afficher, **seul le centre** reste défilant : ne jamais couper silencieusement les informations pédagogiques ni les boutons.
+
+
+## Typographie des lettres en Survie (22 octobre 2026)
+
+Les **tuiles mélangées** et les **cases de reconstruction** utilisent désormais le token local `--police-lettres` (**Atkinson Hyperlegible Bold 700**), déjà hébergé dans `public/fonts/`, pour distinguer plus facilement `I`, `l`, `i`, `1`, `O` et `0`. Sur un Samsung à environ 390 px CSS : **26 px** pour les tuiles, **24 px** pour les cases ; tailles responsives entre 320 et 430 px. Cette règle prolonge l'usage pédagogique d'Atkinson déjà établi dans « Mot caché ».
+
+La traduction française reste en Instrument Serif, les consignes et boutons en Inter. Aucun changement de dimensions des tuiles/cases, centrage, couleur, geste, chronomètre, score ou progression ; aucun nouveau fichier de police. Tests : assertions CSS Node et chargement réel de la police dans la recette Chromium. Contrôle final sur Samsung à effectuer.

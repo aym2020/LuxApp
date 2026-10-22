@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=12/);assert.match(html,/jeux-v21.js\?v=12/);assert.match(html,/survie-vfx.js\?v=2/);
+ assert.match(html,/jeux-v21.css\?v=13/);assert.match(html,/jeux-v21.js\?v=12/);assert.match(html,/survie-vfx.js\?v=2/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -146,7 +146,23 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=12"/);
+ assert.match(html,/href="jeux-v21\.css\?v=13"/);
+});
+
+test('Survie : Atkinson Hyperlegible Bold sur les tuiles et cases, dimensions et gestes préservés',()=>{
+ const styles=read('public/jeux-v21.css'),tokens=read('public/design-tokens.css');
+ const tuile=styles.match(/#view-survie \.survie-tuile\{([^}]+)\}/);
+ const uneCase=styles.match(/#view-survie \.survie-case\{([^}]+)\}/);
+ assert.ok(tuile&&uneCase);
+ assert.match(tokens,/--police-lettres:\s*'Atkinson Hyperlegible'/);
+ assert.match(tokens,/@font-face\s*\{\s*font-family:\s*'Atkinson Hyperlegible';\s*font-weight:\s*700/);
+ assert.match(tuile[1],/font:700 clamp\(22px,6\.67vw,26px\) var\(--police-lettres\)/);
+ assert.match(uneCase[1],/font:700 clamp\(19px,6\.15vw,24px\) var\(--police-lettres\)/);
+ assert.match(tuile[1],/flex:0 0 clamp\(44px,13\.2vw,52px\)/);
+ assert.match(tuile[1],/min-height:53px/);
+ assert.match(tuile[1],/touch-action:manipulation/);
+ assert.match(uneCase[1],/display:grid;place-items:center/);
+ assert.match(html,/href="jeux-v21\.css\?v=13"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
