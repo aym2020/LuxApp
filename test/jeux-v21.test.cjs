@@ -378,7 +378,7 @@ test('Fin de Survie : extinction visible, chrono à 0, score figé, résultat ap
  assert.match(element('survie-jeu').innerHTML,/Meilleure série de cette partie/);
  assert.match(element('survie-jeu').innerHTML,/>13<\/strong><span>Mots trouvés/);
  assert.match(element('survie-jeu').innerHTML,/>9<\/strong><span>Record personnel/);
- assert.equal(store.get('profilA:luxSurvieBest'),'9','pas de mutation du record');
+ assert.equal(JSON.parse(store.get('profilA:luxSurvieBest')).record,9,'pas de mutation du record');
  assert.equal(events.filter(x=>x==='arreter').length,1,'Canvas arrêté après la transition');
  advance(1000);
  assert.equal(events.filter(x=>x==='arreter').length,1,'aucune seconde révélation');
