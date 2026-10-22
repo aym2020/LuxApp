@@ -7,7 +7,7 @@ const SURVIE_BONUS = 3;
 const SURVIE_PENALITE = 3;
 const SURVIE_MAX = 30;
 const SURVIE_MIN_MOTS = 4;
-const SURVIE_FIN_DUREE = 950; // extinction 0–250 ms, annonce, révélation des résultats
+const SURVIE_FIN_DUREE = 2200; // 0–250 ms extinction puis ~1,5 s pour lire TEMPS ÉCOULÉ
 
 function survieComboPalier(s) { return s>=10?3:s>=5?2:s>=3?1:0; }
 function survieComboMessage(s) {

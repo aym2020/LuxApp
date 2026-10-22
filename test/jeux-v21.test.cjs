@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=9/);assert.match(html,/jeux-v21.js\?v=9/);assert.match(html,/survie-vfx.js\?v=2/);
+ assert.match(html,/jeux-v21.css\?v=9/);assert.match(html,/jeux-v21.js\?v=10/);assert.match(html,/survie-vfx.js\?v=2/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -118,7 +118,7 @@ test('Survie : auto-validation, +3 s, mauvaise réponse -3 s et série remise à
  advance(32000);vm.runInContext('survieTick()',ctx);
  assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-fin','rideau visible avant les résultats');
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
- advance(951);
+ advance(2201);
  assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
  assert.equal(vm.runInContext('surviePartie.actif',ctx),false);
  vm.runInContext('demarrerSurvie()',ctx);
@@ -267,7 +267,7 @@ test('Passer : délai ignoré si la partie est quittée, et fin immédiate quand
  assert.equal(vm.runInContext('surviePartie.actif',ctx),false);
  assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-fin','rideau visible avant les résultats');
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
- advance(951);
+ advance(2201);
  assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
  assert.equal(vm.runInContext('surviePartie.restant',ctx),0);
  vm.runInContext('demarrerSurvie()',ctx);
@@ -344,7 +344,7 @@ test('SPEC 92 : chrono critique sous 5 s, palier recopié sur la barre, jeu inta
  advance(5000);vm.runInContext('survieTick()',ctx);
  assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-fin','rideau visible avant les résultats');
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
- advance(951);
+ advance(2201);
  assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
  assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-resultats','urgence retirée en fin de partie');
  const styles=read('public/jeux-v21.css');
@@ -375,7 +375,7 @@ test('Survie : lettres toujours en minuscules, sans confusion I/l ni altération
  assert.equal(vm.runInContext('survieRecord()',ctx),1);
 });
 
-test('Fin de Survie : extinction visible, chrono à 0, score figé, résultat après 950ms',()=>{
+test('Fin de Survie : extinction visible, chrono à 0, score figé, résultat après 2200ms',()=>{
  const {ctx,element,advance,store}=make(),events=[];
  ctx.SurvieFx={fin:()=>events.push('fin'),arreter:()=>events.push('arreter'),etat:()=>events.push('etat'),sonActif:()=>false};
  ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
@@ -392,7 +392,7 @@ test('Fin de Survie : extinction visible, chrono à 0, score figé, résultat ap
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
  assert.equal(events.filter(x=>x==='fin').length,1,'un seul effet de fin');
  assert.equal(events.filter(x=>x==='arreter').length,0,'pas de démolition prématurée du Canvas après fin');
- advance(949);
+ advance(2199);
  assert.equal(vm.runInContext('surviePartie.finEnCours',ctx),true);
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
  advance(1);

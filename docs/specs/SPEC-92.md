@@ -94,3 +94,7 @@ Chaque étape est jouable seule et validée sur Samsung avant la suivante. Les m
 - Ne change **aucune règle** : bonus +3 s, faute/Passer −3 s, records existants par profil, affichage du mot et pools, score futur SPEC 92 étape 2.
 
 **Recette requise :** tests Node des fins par chrono et Passer, fast-skip, départ/reprise, arrière-plan, égalité/nouveau record, préférence de réduction des mouvements, fumée/son VFX et absence de double sortie. Vérification navigateur 320–430 px puis essai Samsung avant validation visuelle. Ne pas qualifier la CI Node de validation d'animation sur Android.
+
+## Ajustement du tempo de fin — 22 octobre 2026
+
+À la demande de l'utilisateur, la transition entre l'apparition de **« TEMPS ÉCOULÉ »** et les résultats passe de **950 ms à 2 200 ms**, comptés à partir de l'arrêt du timer. Les 650 premières millisecondes environ servent à révéler le message ; il reste donc environ 1,5 seconde de lecture avant le score. Le bouton **« Passer l'animation »** continue d'ouvrir les résultats immédiatement ; `prefers-reduced-motion` continue de les montrer sans attente. Aucun changement au score, aux records, aux règles, au HUD, au Canvas ni à l'audio. Contrôles : à 1 100 ms le rideau est encore présent ; à 2 200 ms il est remplacé par les résultats, sur 320/360/390/430 px.

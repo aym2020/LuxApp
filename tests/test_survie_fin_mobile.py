@@ -71,6 +71,10 @@ def test_size(browser, w, h, path):
     page.wait_for_timeout(450)
     page.screenshot(path=str(OUT / f"rideau-{w}.png"), full_page=False)
     page.wait_for_timeout(650)
+    # À 1 100 ms, le message doit toujours être lisible (ancienne valeur : 950 ms).
+    assert page.locator(".survie-fin-rideau").is_visible()
+    assert page.locator("#survie-fin-score").count()==0
+    page.wait_for_timeout(1200)
     page.locator("#survie-fin-score").wait_for()
     assert page.locator(".survie-fin-rideau").count()==0
     assert page.locator(".survie-fin-stats").inner_text().find("8")>=0
