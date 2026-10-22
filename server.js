@@ -40,7 +40,9 @@ if (RECETTE) {
     res.type('html').send(html);
   };
   app.get(['/', '/index.html'], pageRecette);
-  app.use('/recette', express.static(path.join(__dirname, 'recette')));
+  app.use('/recette', express.static(path.join(__dirname, 'recette'), {
+    setHeaders(res) { res.set('Cache-Control', 'no-store, max-age=0'); }
+  }));
 }
 
 // Tests navigateur (tools/critique.sh) : LUX_TESTS=1 ajoute TESTS à la config pour
@@ -52,7 +54,11 @@ if (process.env.LUX_TESTS === '1' && !RECETTE) {
   });
 }
 
-app.use(express.static('public'));
+// express.static pose son propre Cache-Control ; en recette le surcharger dans
+// setHeaders pour que les JS/CSS soient réellement rechargés après un refresh.
+app.use(express.static('public', RECETTE ? {
+  setHeaders(res) { res.set('Cache-Control', 'no-store, max-age=0'); }
+} : {}));
 app.use(express.json());
 
 app.get('/api/ecriture', (req, res) => {

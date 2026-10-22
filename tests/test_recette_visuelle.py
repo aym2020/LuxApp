@@ -64,6 +64,13 @@ try:
     code, page = http(REC, USER + ':' + PASS)
     assert code == 200 and '/recette/recette.js' in page and 'gstatic.com/firebasejs' not in page
     assert 'FIREBASE: null' in http(REC + 'config.js', USER + ':' + PASS)[1]
+    # Les fichiers restent frais, même quand la recette tourne longtemps dans Termux.
+    auth='Basic '+base64.b64encode((USER+':'+PASS).encode()).decode()
+    for url in (REC, REC+'jeux-v21.js', REC+'jeux-v21.css', REC+'recette/recette.js'):
+        req=urllib.request.Request(url,headers={'Authorization':auth})
+        with urllib.request.urlopen(req) as response:
+            assert 'no-store' in response.headers.get('Cache-Control',''), (
+                url, response.headers.get('Cache-Control'))
     ok('instance recette : mot de passe exigé (401 sinon), Firebase retiré de la page et de la config')
 
     with sync_playwright() as p:
