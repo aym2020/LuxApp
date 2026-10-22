@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=7/);assert.match(html,/jeux-v21.js\?v=7/);assert.match(html,/survie-vfx.js\?v=2/);
+ assert.match(html,/jeux-v21.css\?v=8/);assert.match(html,/jeux-v21.js\?v=7/);assert.match(html,/survie-vfx.js\?v=2/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -122,7 +122,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=7"/);
+ assert.match(html,/href="jeux-v21\.css\?v=8"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
@@ -353,7 +353,7 @@ test('Survie : lettres toujours en minuscules, sans confusion I/l ni altération
 
 test('Fin de Survie : extinction visible, chrono à 0, score figé, résultat après 950ms',()=>{
  const {ctx,element,advance,store}=make(),events=[];
- ctx.SurvieFx={fin:()=>events.push('fin'),arreter:()=>events.push('arreter'),etat:()=>events.push('etat')};
+ ctx.SurvieFx={fin:()=>events.push('fin'),arreter:()=>events.push('arreter'),etat:()=>events.push('etat'),sonActif:()=>false};
  ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
  ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
  vm.runInContext('demarrerSurvie()',ctx);

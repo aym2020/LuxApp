@@ -160,7 +160,7 @@
 /* SPEC 92 — Fin de partie cinématique (transition brève, aucune nouvelle surface permanente).
    Le rideau est déjà dans le HUD : un seul changement de classe, aucun reflow ni
    démontage du Canvas avant l'extinction. */
-#view-survie .survie-fin-rideau{display:none;position:absolute;inset:0;z-index:15;pointer-events:none;
+#view-survie .survie-fin-rideau{display:none;position:fixed;inset:0;width:100%;max-width:720px;margin:0 auto;z-index:15;pointer-events:none;
   background:rgba(15,14,12,.79);color:#f6f0e6;align-items:center;justify-content:center;
   flex-direction:column;text-align:center;padding:30px 18px calc(40px + env(safe-area-inset-bottom))}
 #view-survie .survie-fin-rideau-contenu{display:flex;align-items:center;flex-direction:column;gap:12px}
