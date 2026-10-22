@@ -16,6 +16,12 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## TODO — Backlog priorisé LuxApp 2.1
+
+[**TODO.md — 37 tâches P0–P3, responsables et critères de validation**](TODO.md). Le plan est à exécuter par lots : fiabiliser les exercices, la sauvegarde et la recette mobile avant la gamification avancée. Une case ouverte ne veut pas dire que la fonctionnalité est absente : elle signale que la validation définie n'a pas encore été enregistrée. **L'ajout du TODO ne modifie pas l'application.**
+
+---
+
 ## Alerte prioritaire — Incident des exercices 2.1 (21 octobre 2026)
 
 **Règle permanente :** lire [le post-mortem des exercices](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md) et [les consignes pour agents](AGENTS.md) avant toute refonte UI/UX 2.1. **L'état actuel des exercices est NON VALIDÉ** : les captures Samsung révèlent des états contradictoires, corrections mal placées et styles faux/juste ambigus, malgré CI verte.
