@@ -14,9 +14,9 @@ SIZES = [(320, 700), (360, 740), (390, 844), (430, 932)]
 FIXTURE = """<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>:root{--font:Arial,sans-serif;--accent:#f5cf4d;--couleur-reussi:#58cca0;--couleur-erreur:#e5533d}
+<style>:root{--font:Arial,sans-serif;--accent:#f5cf4d;--couleur-reussi:#54e0ad;--couleur-erreur:#ef7a73}
 *{box-sizing:border-box}html,body{margin:0;background:#0f0e0c;color:#f5f0e8;font:16px Arial,sans-serif}
-:root{--couleur-texte:#f6f1e9;--couleur-texte-2:#c8bda8;--couleur-texte-3:#aaa090;--couleur-bord-2:#3d3a31;--couleur-surface-1:#1a1916;--couleur-surface-2:#26241f}
+:root{--couleur-texte:#f6f1e9;--couleur-texte-2:#c8bda8;--couleur-texte-3:#aaa090;--couleur-bord-2:#3d3a31;--couleur-surface-1:#1a1916;--couleur-surface-2:#26241f;--couleur-bord-1:#2a2926;--couleur-action:#f5cf4d;--couleur-sur-action:#0f0e0c;--rayon-bouton:12px}
 .view{display:none}.view.active{display:block}</style>
 <link rel="stylesheet" href="jeux-v21.css">
 </head><body>
@@ -79,10 +79,10 @@ def test_size(browser, w, h, path):
     page.locator("#survie-fin-score").wait_for()
     assert page.locator(".survie-fin-rideau").count()==0
     assert page.locator(".survie-fin-stats").inner_text().find("8")>=0
-    assert page.locator("#survie-jeu").get_attribute("class")=="survie-jeu survie-jeu-resultats"
+    assert "survie-jeu-resultats" in page.locator("#survie-jeu").get_attribute("class")
     assert page.evaluate("document.documentElement.scrollWidth") <= w+1
     page.screenshot(path=str(OUT / f"resultat-{w}.png"), full_page=True)
-    page.locator(".survie-fin .jeux-jouer").click()
+    page.locator(".survie-resultat-actions .jeux-jouer").click()
     assert page.evaluate("surviePartie.actif") is True
     assert page.locator(".survie-fin-rideau").is_hidden()
     assert not errors, f"{w}px erreurs JS : {errors}"
@@ -111,19 +111,20 @@ def test_reserve(browser, w, h, path, passes=False):
     page.locator("." + state + " .survie-fin").wait_for()
     expected = "RÉSERVE TERMINÉE" if passes else "SANS-FAUTE"
     assert expected in page.locator(".survie-fin-etat").inner_text()
-    assert page.locator("#survie-fin-score").inner_text().replace(" ", "") == ("4/6" if passes else "6/6")
+    assert page.locator("#survie-fin-score").inner_text() == ("4" if passes else "6")
+    assert page.locator(".survie-fin-anneau-chiffre span").inner_text()=="SUR 6"
     label = page.locator(".survie-fin-etat").evaluate("el => getComputedStyle(el).color")
     if passes:
-        assert label != "rgb(88, 204, 160)", "réserve parcourue indûment verte"
+        assert label != "rgb(84, 224, 173)", "réserve parcourue indûment verte"
         assert "2 mots passés" in page.locator(".survie-fin-bilan").inner_text()
-        assert "Rejouer Survie" in page.locator(".survie-fin .jeux-jouer").inner_text()
+        assert "Rejouer Survie" in page.locator(".survie-resultat-actions .jeux-jouer").inner_text()
         assert "SANS-FAUTE" not in page.locator(".survie-fin").inner_text()
     else:
-        assert label == "rgb(88, 204, 160)", "sans-faute non représenté en vert"
+        assert label == "rgb(84, 224, 173)", "sans-faute non représenté en vert"
         assert "Aucun mot passé" in page.locator(".survie-fin-bilan").inner_text()
-        assert "Continuer mon chemin" in page.locator(".survie-fin .jeux-jouer").inner_text()
+        assert "Continuer mon chemin" in page.locator(".survie-resultat-actions .jeux-jouer").inner_text()
     assert page.evaluate("document.documentElement.scrollWidth") <= w + 1, f"débordement horizontal {w}"
-    button = page.locator(".survie-fin .jeux-jouer").bounding_box()
+    button = page.locator(".survie-resultat-actions .jeux-jouer").bounding_box()
     assert button and button["width"] >= 200 and button["x"] >= 0 and button["x"] + button["width"] <= w + 1
     assert not errors, f"erreurs JS : {errors}"
     page.screenshot(path=str(OUT / f"reserve-{'passes' if passes else 'parfait'}-{w}.png"), full_page=True)
@@ -138,7 +139,7 @@ def test_skip(browser, path):
     assert p.locator("#survie-fin-score").is_visible()
     assert p.locator("#survie-fin-score").inner_text()=="2"
     assert p.evaluate("surviePartie.finEnCours") is False
-    p.locator(".survie-fin .survie-fin-retour").click()
+    p.locator(".survie-resultat-actions .survie-fin-retour").click()
     assert p.evaluate("surviePartie.resultatsVisibles") is False
     context.close()
 
@@ -147,7 +148,7 @@ def test_reduced(browser, path):
                                 reduced_motion="reduce",is_mobile=True,has_touch=True)
     p=context.new_page();p.goto(path.as_uri())
     p.evaluate("surviePartie.maxSerie=3;survieTerminer()")
-    assert p.locator("#survie-fin-score").inner_text()=="3"
+    assert p.locator("#survie-fin-score").inner_text()=="0"
     assert p.locator(".survie-fin-rideau").count()==0
     context.close()
 

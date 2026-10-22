@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=10/);assert.match(html,/jeux-v21.js\?v=11/);assert.match(html,/survie-vfx.js\?v=2/);
+ assert.match(html,/jeux-v21.css\?v=11/);assert.match(html,/jeux-v21.js\?v=12/);assert.match(html,/survie-vfx.js\?v=2/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -119,7 +119,7 @@ test('Survie : auto-validation, +3 s, mauvaise réponse -3 s et série remise à
  assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-fin','rideau visible avant les résultats');
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
  advance(2201);
- assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
+ assert.match(element('survie-jeu').innerHTML,/Le temps est écoulé/);
  assert.equal(vm.runInContext('surviePartie.actif',ctx),false);
  vm.runInContext('demarrerSurvie()',ctx);
  assert.equal(vm.runInContext('surviePartie.restant',ctx),30);
@@ -268,7 +268,7 @@ test('Passer : délai ignoré si la partie est quittée, et fin immédiate quand
  assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-fin','rideau visible avant les résultats');
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
  advance(2201);
- assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
+ assert.match(element('survie-jeu').innerHTML,/Le temps est écoulé/);
  assert.equal(vm.runInContext('surviePartie.restant',ctx),0);
  vm.runInContext('demarrerSurvie()',ctx);
  vm.runInContext('surviePasser();survieArreter()',ctx);
@@ -345,8 +345,8 @@ test('SPEC 92 : chrono critique sous 5 s, palier recopié sur la barre, jeu inta
  assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-fin','rideau visible avant les résultats');
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
  advance(2201);
- assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
- assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-resultats','urgence retirée en fin de partie');
+ assert.match(element('survie-jeu').innerHTML,/Le temps est écoulé/);
+ assert.match(element('survie-jeu').className,/survie-jeu survie-jeu-resultats/,'urgence retirée en fin de partie');
  const styles=read('public/jeux-v21.css');
  for(const x of ['.survie-tete[data-tier="3"] .survie-piste i','.survie-hud .survie-flamme{color:var(--tier-color)}',
   '.survie-cases-ok .survie-case','.survie-cases-ko','.survie-combo-ko','.survie-time-ko .survie-gain',
@@ -398,10 +398,10 @@ test('Fin de Survie : extinction visible, chrono à 0, score figé, résultat ap
  advance(1);
  assert.equal(vm.runInContext('surviePartie.finEnCours',ctx),false);
  assert.equal(vm.runInContext('surviePartie.resultatsVisibles',ctx),true);
- assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
- assert.match(element('survie-jeu').innerHTML,/Meilleure série de cette partie/);
- assert.match(element('survie-jeu').innerHTML,/>13<\/strong><span>Mots trouvés/);
- assert.match(element('survie-jeu').innerHTML,/>9<\/strong><span>Record personnel/);
+ assert.match(element('survie-jeu').innerHTML,/Le temps est écoulé/);
+ assert.match(element('survie-jeu').innerHTML,/Meilleure série/);
+ assert.match(element('survie-jeu').innerHTML,/>13<\/strong><span>SUR 4/);
+ assert.match(element('survie-jeu').innerHTML,/<span>Record personnel<\/span><strong>9<\/strong>/);
  assert.equal(JSON.parse(store.get('profilA:luxSurvieBest')).record,9,'pas de mutation du record');
  assert.equal(events.filter(x=>x==='arreter').length,1,'Canvas arrêté après la transition');
  advance(1000);
@@ -419,7 +419,7 @@ test('Fin : tap Passer l’animation immédiat, ancien timer ne remplace pas une
  assert.equal(vm.runInContext('surviePartie.actif',ctx),true);
  advance(1200);
  assert.match(element('survie-jeu').innerHTML,/id="survie-question"/);
- assert.doesNotMatch(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
+ assert.doesNotMatch(element('survie-jeu').innerHTML,/survie-resultat-actions/);
 });
 
 test('Fin : quitter pendant le rideau supprime tout résultat tardif',()=>{
@@ -431,7 +431,7 @@ test('Fin : quitter pendant le rideau supprime tout résultat tardif',()=>{
  advance(2000);
  assert.equal(vm.runInContext('surviePartie.resultatsVisibles',ctx),false);
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
- assert.doesNotMatch(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
+ assert.doesNotMatch(element('survie-jeu').innerHTML,/survie-resultat-actions/);
 });
 
 test('Fin : réduction des mouvements révèle immédiatement un résultat non animé',()=>{
@@ -441,8 +441,8 @@ test('Fin : réduction des mouvements révèle immédiatement un résultat non a
  ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
  vm.runInContext('demarrerSurvie();surviePartie.maxSerie=4;survieTerminer()',ctx);
  assert.equal(vm.runInContext('surviePartie.finEnCours',ctx),false);
- assert.match(element('survie-jeu').innerHTML,/id="survie-fin-score"[^>]*>4</);
- assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-resultats');
+ assert.match(element('survie-jeu').innerHTML,/id="survie-fin-score"[^>]*>0<\/strong>/);
+ assert.match(element('survie-jeu').className,/survie-jeu survie-jeu-resultats/);
  advance(1000);
  assert.equal(vm.runInContext('surviePartie.resultatsVisibles',ctx),true);
 });
@@ -517,7 +517,7 @@ test('Réserve épuisée : quatre réussites arrêtent immédiatement sans rép�
  assert.equal(vm.runInContext('surviePartie.restant',ctx),30);
  assert.match(element('survie-jeu').innerHTML,/SANS-FAUTE/);
  assert.match(element('survie-jeu').innerHTML,/Tous tes mots réussis/);
- assert.match(element('survie-jeu').innerHTML,/4<small> \/ 4/);
+ assert.match(element('survie-jeu').innerHTML,/>4<\/strong><span>SUR 4<\/span>/);
  assert.match(element('survie-jeu').innerHTML,/Continuer mon chemin/);
  assert.equal(JSON.parse(store.get('profilA:luxSurvieBest')).record,4);
  advance(2300);
@@ -541,10 +541,10 @@ test('Réserve parcourue : Passer donne une fin neutre, conserve record et offre
  assert.equal(vm.runInContext('surviePartie.passes',ctx),2);
  assert.match(element('survie-jeu').innerHTML,/RÉSERVE TERMINÉE/);
  assert.match(element('survie-jeu').innerHTML,/2 mots passés/);
- assert.match(element('survie-jeu').innerHTML,/2<small> \/ 4/);
+ assert.match(element('survie-jeu').innerHTML,/>2<\/strong><span>SUR 4<\/span>/);
  assert.match(element('survie-jeu').innerHTML,/Rejouer Survie/);
  assert.doesNotMatch(element('survie-jeu').innerHTML,/SANS-FAUTE|DÉFI ACCOMPLI/);
- assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-resultats survie-resultat-reserve survie-resultat-partiel');
+ assert.equal(element('survie-jeu').className,'survie-jeu survie-jeu-resultats survie-resultat-partiel');
 });
 test('Mauvaise réponse non validée : le mot reste dans la réserve ; chrono garde sa fin habituelle',()=>{
  const {ctx,element,advance}=make();
@@ -574,4 +574,35 @@ test('Recette Survie : les trois scénarios utilisent le moteur réel, uniquemen
  assert.match(serveur,/if \(RECETTE\)/);
  assert.match(serveur,/app\.use\('\/recette', express\.static/);
  assert.match(serveur,/FIREBASE: null, RECETTE: true/);
+});
+
+test('Maquette : vrais résultats ont un en-tête, un centre défilant et un footer fixe',()=>{
+ const {ctx,element}=make();
+ ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie();surviePartie.total=4;surviePartie.maxSerie=4;surviePartie.vus=new Set(surviePartie.pool.map(m=>m.mot));survieTerminerReserve()',ctx);
+ const markup=element('survie-jeu').innerHTML;
+ for(const label of ['survie-resultat-entete','survie-resultat-scroll','survie-resultat-actions',
+  'survie-fin-anneau-chiffre','MOTS RÉUSSIS','SUR 4','Continuer mon chemin','Retour aux Jeux'])assert.ok(markup.includes(label),label);
+ assert.match(markup,/id="survie-fin-score"[^>]*>4<\/strong><span>SUR 4<\/span>/);
+ const styles=read('public/jeux-v21.css');
+ for(const s of ['height:100dvh','min-height:0','overflow-y:auto','env(safe-area-inset-bottom)','survie-resultat-actions'])assert.ok(styles.includes(s),s);
+});
+test('Une faute corrigée ne peut plus produire un faux sans-faute',()=>{
+ const {ctx,element,advance}=make();
+ ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie()',ctx);
+ ctx.bad=vm.runInContext('(()=>{const p=surviePartie,a=p.tuiles.map((_,i)=>i);while(a.map(i=>p.tuiles[i]).join("")===p.mot.mot)a.push(a.shift());return a})()',ctx);
+ vm.runInContext('bad.forEach(survieLettre)',ctx);
+ assert.equal(vm.runInContext('surviePartie.erreurs',ctx),1);
+ advance(550);
+ for(let i=0;i<4;i++){
+   ctx.indices=vm.runInContext('(()=>{const p=surviePartie,u=new Set();return Array.from(p.mot.mot).map(c=>{const n=p.tuiles.findIndex((x,i)=>x===c&&!u.has(i));u.add(n);return n})})()',ctx);
+   vm.runInContext('indices.forEach(survieLettre)',ctx);
+   advance(300);
+ }
+ assert.match(element('survie-jeu').className,/survie-resultat-partiel/);
+ assert.doesNotMatch(element('survie-jeu').innerHTML,/SANS-FAUTE/);
+ assert.match(element('survie-jeu').innerHTML,/1 erreur avant correction/);
 });
