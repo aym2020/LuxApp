@@ -24,6 +24,16 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## Expérimentation VFX — « Embrasement » Canvas (22 octobre 2026)
+
+**Référence archivée :** [rapport et décisions](docs/prototypes/SURVIE-COMBO-FIRE-V01.md) · [prototype HTML autonome](docs/prototypes/survie-combo-fire-v01.html).
+
+Premier test interactif Canvas 2D : jauge de combo enflammée, cœur incandescent, particules, bursts sur réussite et dispersion sur rupture. Observations sur Samsung par l'utilisateur : **2 / 24 (10 %) et 20 / 24 (100 %)**. Retour : « c'est pas mal, c'est pas parfait mais un bon début ». Il s'agit d'une **piste graphique, pas d'une feature approuvée ni intégrée**.
+
+**Décision de périmètre :** garder le jeu `2.1` restauré au commit `64a0aba` ; ne pas réactiver la V1 VFX abandonnée. Avant intégration future : améliorer les flammes (moins triangulaires), intégrer dans un HUD compact, valider les performances Android, conserver feedback unique sans double animation et séparer gameplay / rendu. Le prototype n'est pas servi par l'application (fichiers `docs/prototypes/` uniquement).
+
+---
+
 ## SPEC 89–91 — Survie 2.0, compétition et simulation massive (branche `2.1`)
 
 [Deux modes](docs/specs/SPEC-89.md), [roguelite/Tempête](docs/specs/SPEC-90.md), [simulateur autonome](docs/specs/SPEC-91.md). **Ne pas intégrer les règles expérimentales au jeu existant sans comparaison/replay/tests.** Les bots ne constituent pas de la télémetrie humaine. Toute proposition d'équilibrage LLM doit rester en suggestion, jamais en commit automatique. GitHub `schedule` d'un workflow présent uniquement sur `2.1` n'est pas actif tant qu'il n'est pas installé sur la branche par défaut.
