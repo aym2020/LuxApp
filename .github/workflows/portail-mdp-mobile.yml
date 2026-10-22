@@ -1,0 +1,32 @@
+name: LuxApp 2.1 — œil mot de passe mobile
+
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - 'public/portail.js'
+      - 'public/style.css'
+      - 'public/index.html'
+      - 'tests/test_portail_mdp_mobile.py'
+      - '.github/workflows/portail-mdp-mobile.yml'
+  workflow_dispatch:
+
+jobs:
+  mot-de-passe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install playwright==1.56.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Vérifier l'œil du mot de passe au toucher et au clavier
+        run: python tests/test_portail_mdp_mobile.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: portail-oeil
+          path: portail-password-screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
