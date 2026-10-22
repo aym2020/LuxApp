@@ -1,0 +1,33 @@
+name: Survie VFX — recette Chromium mobile
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - 'public/jeux-v21.js'
+      - 'public/jeux-v21.css'
+      - 'public/assets/survie-flamme-v1.svg'
+      - 'tests/test_survie_vfx_mobile.py'
+      - '.github/workflows/survie-vfx-mobile.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  vfx-mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install playwright==1.56.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Recette HUD, combo, gel et captures mobiles
+        run: python tests/test_survie_vfx_mobile.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: survie-vfx-mobile-${{ github.run_id }}
+          path: survie-vfx-screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
