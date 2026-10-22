@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'), css=read('exercices-v21.css');
 const app=read('app.js'), parcours=read('parcours.js');
 test('couleurs et UI partagées seulement entre les deux vues d’exercices',()=>{
-  assert.match(html,/href="exercices-v21\.css\?v=7"/);
+  assert.match(html,/href="exercices-v21\.css\?v=8"/);
   assert.match(css,/#view-session \.question-card/);
   assert.match(css,/#view-parcours #pc-choix\.pc-choix-grille/);
   assert.doesNotMatch(css,/#view-dashboard|#view-lessons|#view-examen\b/);
@@ -57,3 +57,5 @@ test('retour de S’entraîner collé au bord gauche comme les autres vues',()=>
   assert.match(css,/#view-session \.lecon-header \{width:100%;max-width:500px;margin-inline:auto;flex-shrink:0\}/);
   assert.match(html,/<div id="view-session" class="view">[\s\S]*?class="back-btn" data-retour onclick="retour\(\)"/);
 });
+
+test("Mot caché : Valider ancré et erreur défilante dans la seule reconstruction",()=>{const s=read("exercices-v21.css");assert.match(s,/\[data-etat="saisie"\]:has\(#mc-btn-valider\).*\.mc-milieu \{flex:1;min-height:0;overflow-y:auto/);assert.match(s,/\.mc-saisie \{flex:none;background:var\(--bg\)/);});

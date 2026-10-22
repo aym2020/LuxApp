@@ -136,6 +136,15 @@
   display:block;margin:0;padding:0;background:none;border-radius:0;
   color:#c5bdb0;font-size:13.5px;font-weight:500;line-height:1.55}
 #view-session #session-feedback.essai .session-attention b {color:var(--exo-fg)}
+/* Reconstruction Mot caché : le panneau aide défile, la rangée de validation reste visible. */
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) {height:100dvh;min-height:0;overflow:hidden}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-topbar,
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-sous-barre {flex:none}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {flex:1;min-height:0;overflow:hidden;padding-bottom:0}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-top {flex:none}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:14px;-webkit-overflow-scrolling:touch}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie {flex:none;background:var(--bg);padding:10px 0 max(12px,env(safe-area-inset-bottom));gap:6px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-actions {margin-top:8px}
 /* Message temporaire du 1er essai (mot caché, écriture) : rouge discret. */
 #view-parcours .mc-erreur {background:rgba(239,122,115,.1);border:0;color:#c5bdb0}
 #view-parcours .mc-erreur b {color:var(--wrong)}
