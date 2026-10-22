@@ -123,7 +123,7 @@ test('Mot caché : une note de Survie par tuile valide, jamais en double ou sur 
   const sons = [], input = {disabled:false, value:''};
   const mc = {choix:[], tuiles:[{ch:'m'}, {ch:'o'}]};
   let reconstructions=0;
-  const code = fonction(parcours,'mcSonLettre') + fonction(parcours,'mcPoserLettre') +
+  const code = fonction(parcours,'mcSonLettre') + '\n' + fonction(parcours,'mcPoserLettre') +
     '\nreturn mcPoserLettre;';
   const jouer = new Function('SurvieFx','document','mc','pAttente','tuilesUtilisees',
     'mcCasesLettres','mcSynchroniserChamp','renderCases',code)(
@@ -154,7 +154,7 @@ test('Mot caché : au clavier une note par frappe valide, aucune lors du collage
   const sons=[],mc={choix:[],tuiles:[{ch:'m'},{ch:'o'}]},
     input={value:'',disabled:false},document={getElementById:()=>input};
   let redraw=0;
-  const code=fonction(parcours,'mcSonLettre')+fonction(parcours,'mcSaisie')+
+  const code=fonction(parcours,'mcSonLettre')+'\n'+fonction(parcours,'mcSaisie')+
     '\nreturn mcSaisie;';
   const frappe=new Function('SurvieFx','document','mc','pAttente',
     'mcLettresTapees','mcCasesLettres','tuilePourLettre','mcSynchroniserChamp',
