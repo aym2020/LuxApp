@@ -127,8 +127,9 @@ function survieMotsDisponibles(liste, progress) {
     for(const c of lecon.flashcards||[]) {
       if(!c || c.plus || typeof c.lu!=='string' || typeof c.fr!=='string') continue;
       // Survie ne teste pas les majuscules : I et l se ressemblent sur mobile.
-      // Normaliser le mot jouable, sans modifier le mot des flashcards/leçons.
-      const mot=c.lu.normalize('NFC').trim().toLocaleLowerCase('lb').normalize('NFC');
+      // Ignorer seulement la ponctuation finale : Moien! -> moien, Äddi! -> äddi.
+      // Les phrases et signes internes restent interdits ; les flashcards sont inchangées.
+      const mot=c.lu.normalize('NFC').trim().replace(/[.!?]+$/u,'').trim().toLocaleLowerCase('lb').normalize('NFC');
       const fr=c.fr.trim().replace(/[.!?]+$/,'').trim();
       const lettres=survieLettres(mot);
       // Mots isolés uniquement : pas de phrases, d'articles à reconstruire,

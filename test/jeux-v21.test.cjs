@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=9/);assert.match(html,/jeux-v21.js\?v=8/);assert.match(html,/survie-vfx.js\?v=2/);
+ assert.match(html,/jeux-v21.css\?v=9/);assert.match(html,/jeux-v21.js\?v=9/);assert.match(html,/survie-vfx.js\?v=2/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -53,6 +53,30 @@ test('Mots issus uniquement des leçons étudiées, sans Plus, phrases ni doublo
  const pool=vm.runInContext('survieMotsDisponibles(list,progress)',ctx);
  assert.deepEqual(Array.from(pool,p=>p.mot),['haus','bam','buch','këscht','moien']);
  assert.equal(vm.runInContext('survieMotsDisponibles(list,{}).length',ctx),0);
+});
+test('Leçon 1 réelle : ponctuation finale ignorée, cinq mots jouables et données intactes',()=>{
+ const {ctx}=make();
+ const l=JSON.parse(read('data/lecons/A1.1/lecon-01.json'));
+ ctx.list=[l];
+ ctx.progress={1:{vue:{ouverte:1}}};
+ const pool=vm.runInContext('survieMotsDisponibles(list,progress)',ctx);
+ assert.deepEqual(Array.from(pool,p=>p.mot),['moien','madamm','här','schlecht','äddi']);
+ assert.ok(pool.every(p=>!p.mot.includes(' ')&&!p.mot.includes('!')&&!p.mot.includes('.')&&!p.mot.includes('?')),'aucune phrase ni ponctuation dans les tuiles');
+ assert.equal(l.flashcards.find(c=>c.id===2001).lu,'Moien!','source originale préservée');
+ assert.equal(l.flashcards.find(c=>c.id===2031).lu,'Äddi!','accent et ponctuation d’origine préservés');
+ assert.equal(vm.runInContext('survieMotsDisponibles(list,{}).length',ctx),0,'leçon non vue exclue');
+});
+test('Survie : ponctuation uniquement en fin de mot ; cartes Plus et doublons exclus',()=>{
+ const {ctx}=make();
+ ctx.list=[lesson(7,[
+  card('Bonjour','Moien!'),card('Au revoir','Äddi!?'),
+  card('Bonjour','Moien'),card('Monsieur','Här.'),
+  card('Merci','Merci!'),card('Phrase','Wéi geet et dir?'),
+  card('Mot interne','mo!ien'),{...card('Salut','Hallo!'),plus:true}
+ ])];
+ ctx.progress={7:{vue:{ouverte:1}}};
+ const pool=vm.runInContext('survieMotsDisponibles(list,progress)',ctx);
+ assert.deepEqual(Array.from(pool,p=>p.mot),['moien','äddi','här']);
 });
 test('Record persistant et isolé par profil sans écrire la progression',()=>{
  const {ctx,store}=make();
