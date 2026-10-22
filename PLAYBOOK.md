@@ -34,6 +34,12 @@ Premier test interactif Canvas 2D : jauge de combo enflammée, cœur incandescen
 
 ---
 
+## SPEC 93 — PWA hors ligne : leçons, progression et audios (branche `2.1`)
+
+[Spécification](docs/specs/SPEC-93.md) — **à implémenter, aucune capacité offline complète livrée.** Le manifeste actuel n'est pas un Service Worker ; le démarrage dépend de `/api/lecons`. Objectif prioritaire : après une première mise en cache explicite, pouvoir **fermer puis relancer LuxApp sans réseau**, utiliser les leçons/exercices/Survie téléchargés, conserver la progression locale et resynchroniser sans perte au retour du réseau. Audios par leçon en option, jamais les milliers d'audios d'un coup. Cache de code/données publiques uniquement, pas de credentials, isolation stricte de la recette `RECETTE=1`. Tests navigateur froid hors ligne + Samsung avant validation ; publication par étapes, sans toucher aux JSON ni aux règles pédagogiques.
+
+---
+
 ## SPEC 92 — Survie « Feu et Tempête » (branche `2.1`)
 
 [Fiche](docs/specs/SPEC-92.md). **Passifs uniquement** (plus de pouvoir actif), draft par **barre de surchauffe** remplie par les points, record au score, Tempête sans mur de 180 s. Livraison en 4 étapes jouables, chacune validée sur Samsung avant la suivante. Effets dans `public/survie-vfx.js` (gestionnaire unique, canvas au-dessus de la barre chrono, sons Web Audio) ; le moteur `jeux-v21.js` n'émet que des événements via `survieFx()` et fonctionne sans ce fichier. Tests : `node --test test/jeux-v21.test.cjs test/survie-vfx.test.cjs`.
