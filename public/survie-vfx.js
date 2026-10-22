@@ -33,6 +33,7 @@ const SurvieFx = (function () {
   let ratioAffiche = 1;
   let derniereSeconde = null;
   let audio = null;
+  let extinction = false;
 
   /* ---------- Outils ---------- */
 
@@ -161,8 +162,10 @@ const SurvieFx = (function () {
     ratioAffiche += (etat.ratio - ratioAffiche) * Math.min(1, dt * 18);
     eclat = Math.max(0, eclat - dt * 2.2);
 
-    aCreerFlammes += FLAMMES_PAR_SECONDE[etat.palier] * dt;
-    aCreerBraises += BRAISES_PAR_SECONDE[etat.palier] * dt;
+    if(!extinction){
+      aCreerFlammes += FLAMMES_PAR_SECONDE[etat.palier] * dt;
+      aCreerBraises += BRAISES_PAR_SECONDE[etat.palier] * dt;
+    }
     while (aCreerFlammes >= 1) { creerFlamme(); aCreerFlammes -= 1; }
     while (aCreerBraises >= 1) { creerBraise(); aCreerBraises -= 1; }
 
@@ -304,6 +307,7 @@ const SurvieFx = (function () {
 
   function attacher(element) {
     arreter();
+    extinction = false;
     if (!element || typeof element.getContext !== 'function' || mouvementReduit()) return;
     canvas = element;
     ctx = canvas.getContext('2d');
@@ -363,7 +367,22 @@ const SurvieFx = (function () {
     note(160, 0, 0.24, 0.05, 'square', 70);
   }
 
+  // Extinction unique : plus de flammes générées, les dernières braises meurent
+  // naturellement et une très courte nappe de fumée reste visible sous le rideau.
+  function fin() {
+    if(extinction)return;
+    extinction=true;
+    aCreerFlammes=0;
+    aCreerBraises=0;
+    eclat=0;
+    if(canvas && !mouvementReduit()){
+      for(let i=0;i<10;i++)creerFumee(MARGE+hasard(0,longueurBarre()));
+    }
+    note(196,0,0.22,0.038,'sine',98);
+  }
+
   function arreter() {
+    extinction=false;
     if (boucle !== null && typeof window !== 'undefined') window.cancelAnimationFrame(boucle);
     boucle = null;
     dernierTemps = null;
@@ -387,6 +406,7 @@ const SurvieFx = (function () {
     lettre: lettre,
     reussite: reussite,
     erreur: erreur,
+    fin: fin,
     arreter: arreter,
     sonActif: sonActif,
     basculerSon: basculerSon,

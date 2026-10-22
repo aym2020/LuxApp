@@ -89,3 +89,22 @@ test('Chrono critique : un seul battement par seconde',()=>{
  fx.etat({ratio:.5,palier:0,urgence:false,secondes:15});
  assert.equal(oscillateurs.length,2);
 });
+
+test('Fin Canvas : extinction unique, dernières braises et arrêt propre',()=>{
+ const {fx,canvas,avancer,frames,oscillateurs}=charger();
+ fx.etat({ratio:0.4,palier:2,urgence:false,secondes:12});
+ fx.attacher(canvas);
+ avancer(28);
+ fx.etat({ratio:0,palier:2,urgence:false,secondes:0});
+ fx.fin();fx.fin();
+ const points=fx.nombreParticules(),sons=oscillateurs.length;
+ assert.ok(points>0);
+ assert.equal(sons,1,'un seul son discret en fin de partie');
+ avancer(120);
+ assert.equal(fx.nombreParticules(),0,'aucune création de braises après extinction');
+ fx.arreter();
+ assert.equal(fx.enCours(),false);assert.equal(frames.length,0);
+ fx.attacher(canvas); // une nouvelle partie doit pouvoir relancer le moteur
+ assert.equal(fx.enCours(),true);
+ fx.arreter();
+});

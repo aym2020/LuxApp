@@ -79,3 +79,18 @@ Chaque étape est jouable seule et validée sur Samsung avant la suivante. Les m
 ## Implémentation
 
 - 22 octobre 2026 — étape 1 : `public/survie-vfx.js` (nouveau), `public/jeux-v21.js` (événements, HUD enveloppé, bouton son, classes de feedback), `public/jeux-v21.css` (tuiles, cases, barre par palier, urgence, flamme), `public/index.html` (versions de cache), `test/jeux-v21.test.cjs`, `test/survie-vfx.test.cjs`, CI `accueil-2.1.yml`.
+
+## Transition de fin de partie — extension UX SPEC 92 (22 octobre 2026)
+
+**Cause corrigée :** l'ancien `survieTerminer()` arrêtait le Canvas puis remplaçait synchroniquement tout le HTML. Le passage de `0 s` au score était brutal et coupait l'effet de feu au milieu de son mouvement.
+
+**Séquence cible (V1) :**
+- À `0 s`, `p.actif=false`, `p.verrou=true`, intervalle du chrono interrompu, valeur `0 s` visible ; scores, streak et record **figés**. Aucun input, bonne réponse ou pénalité supplémentaire après la fin.
+- Le même DOM conserve les lettres et le HUD pendant **950 ms** au maximum. Un rideau sombre annonce **« TEMPS ÉCOULÉ »**, le chrono se vide en ~260 ms, le feu cesse de générer des particules et ses dernières braises s'éteignent, avec une note basse si le son est actif.
+- Bouton **« Passer l'animation »** pendant le rideau : résultat immédiatement accessible sans attente.
+- À la révélation seulement, on arrête/efface le Canvas et on affiche les résultats. Meilleure série (valeur source inchangée) avec animation numérique bornée à 460 ms, `Mots trouvés` et `Record personnel` dans deux tuiles. Si `maxSerie > recordDepart`, badge **« Nouveau record ! »** ; pas de médaille autrement.
+- `prefers-reduced-motion` : pas de rideau ni de comptage, résultat immédiat au score final. Le code reste fonctionnel si `survie-vfx.js` est absent.
+- Tous les callbacks vérifient **l'identité de la session** et l'état `finEnCours`. Un retour, une nouvelle partie, une double demande de fin ou un clic « Passer » n'affichent jamais des résultats d'une ancienne session. La navigation et les données pédagogiques sont inchangées.
+- Ne change **aucune règle** : bonus +3 s, faute/Passer −3 s, records existants par profil, affichage du mot et pools, score futur SPEC 92 étape 2.
+
+**Recette requise :** tests Node des fins par chrono et Passer, fast-skip, départ/reprise, arrière-plan, égalité/nouveau record, préférence de réduction des mouvements, fumée/son VFX et absence de double sortie. Vérification navigateur 320–430 px puis essai Samsung avant validation visuelle. Ne pas qualifier la CI Node de validation d'animation sur Android.

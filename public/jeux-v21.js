@@ -6,6 +6,8 @@ const SURVIE_DUREE = 30;
 const SURVIE_BONUS = 3;
 const SURVIE_PENALITE = 3;
 const SURVIE_MAX = 30;
+const SURVIE_FIN_DUREE = 950; // extinction 0–250 ms, annonce, révélation des résultats
+
 function survieComboPalier(s) { return s>=10?3:s>=5?2:s>=3?1:0; }
 function survieComboMessage(s) {
   return s>=10?'LÉGENDAIRE ×'+s:s>=5?'EN FEU ×'+s:s>=3?'COMBO ×'+s:s===2?'DOUBLE !':'BIEN JOUÉ !';
@@ -280,7 +282,11 @@ function survieRendre() {
     '<div class="survie-piste" role="progressbar" aria-label="Temps restant" aria-valuemin="0" aria-valuemax="30" aria-valuenow="'+Math.ceil(p.restant)+'"><i id="survie-jauge" style="transform:scaleX('+(p.restant/30)+')"></i></div>'+
     '<canvas id="survie-feu" class="survie-feu" aria-hidden="true"></canvas></div>'+
     '<div id="survie-question">'+survieQuestionHtml(p)+'</div>'+
-    '<div class="survie-record">Record personnel : <span id="survie-record-chiffre">'+survieRecord()+'</span> mots</div>';
+    '<div class="survie-record">Record personnel : <span id="survie-record-chiffre">'+survieRecord()+'</span> mots</div>'+
+    '<div class="survie-fin-rideau" role="status" aria-live="polite">'+
+      '<div class="survie-fin-rideau-contenu"><span class="survie-fin-symbol" aria-hidden="true">✦</span>'+
+        '<strong>TEMPS ÉCOULÉ</strong><span>La série est terminée</span></div>'+
+      '<button class="survie-fin-passer" type="button" onclick="survieFinPasser()">Passer l’animation →</button></div>';
   p.ecranPret=true;
   box.className='survie-jeu';
   p.hudUrgence=false;
@@ -400,7 +406,8 @@ function demarrerSurvie() {
   if(pool.length<4){renderJeuxHub();return;}
   survieArreter();
   surviePartie={pool,vus:new Set(),precedent:null,tuiles:[],selection:[],serie:0,maxSerie:0,total:0,
-    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,ecranPret:false,gainTexte:''};
+    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,ecranPret:false,gainTexte:'',
+    recordDepart:survieRecord(),finTimer:null,finEnCours:false,resultatsVisibles:false,scoreRaf:null};
   survieNouvelleQuestion();
   showView('view-survie');
   surviePartie.dernier=performance.now();
@@ -409,26 +416,85 @@ function demarrerSurvie() {
 function survieArreter() {
   if(!surviePartie)return;
   surviePartie.actif=false;
-  if(surviePartie.timer)clearInterval(surviePartie.timer);
-  surviePartie.timer=null;
+  const p=surviePartie;
+  if(p.timer)clearInterval(p.timer);
+  p.timer=null;
+  if(p.finTimer!==null && typeof clearTimeout==='function')clearTimeout(p.finTimer);
+  p.finTimer=null;
+  p.finEnCours=false;
+  p.resultatsVisibles=false;
+  if(p.scoreRaf!==null && typeof window!=='undefined' && window.cancelAnimationFrame)
+    window.cancelAnimationFrame(p.scoreRaf);
+  p.scoreRaf=null;
   survieFx('arreter');
 }
 function quitterSurvie() {
   survieArreter();
   retour();
 }
+// Une seule fin, avec scores figés dès l'instant où le temps atteint zéro.
+// Le HUD et son Canvas persistent pendant le rideau ; aucun mot ne repart.
 function survieTerminer() {
   const p=surviePartie;
-  if(!p||!p.actif)return;
-  survieArreter();
+  if(!p||!p.actif||p.finEnCours)return;
+  p.restant=0;
+  p.actif=false;
+  p.verrou=true;
+  p.finEnCours=true;
+  if(p.timer)clearInterval(p.timer);
+  p.timer=null;
+  p.dernier=null;
+  const box=document.getElementById('survie-jeu');
+  if(!box){survieArreter();return;}
+  survieHud(); // chrono et jauge à zéro AVANT l'extinction
+  survieFx('fin');
+  box.className='survie-jeu survie-jeu-fin';
+  const reduit=typeof window!=='undefined' && typeof window.matchMedia==='function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduit){survieAfficherResultat(p);return;}
+  p.finTimer=setTimeout(()=>survieAfficherResultat(p),SURVIE_FIN_DUREE);
+}
+// Fin anticipée à la demande de l'utilisateur, sans toucher aux statistiques.
+function survieFinPasser() {
+  const p=surviePartie;
+  if(p && p.finEnCours)survieAfficherResultat(p,true);
+}
+function survieAfficherResultat(p,sansAnimation=false) {
+  if(surviePartie!==p||!p.finEnCours)return;
+  p.finEnCours=false;
+  p.resultatsVisibles=true;
+  if(p.finTimer!==null && typeof clearTimeout==='function')clearTimeout(p.finTimer);
+  p.finTimer=null;
+  survieFx('arreter'); // le Canvas est détruit UNIQUEMENT après le rideau
   const box=document.getElementById('survie-jeu');
   if(!box)return;
-  const record=survieRecord();
-  box.className='survie-jeu';
+  const record=survieRecord(),nouveau=p.maxSerie>p.recordDepart;
+  const reduit=typeof window!=='undefined' && typeof window.matchMedia==='function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const compteAnime=!sansAnimation&&!reduit&&typeof window!=='undefined'&&
+    typeof window.requestAnimationFrame==='function';
+  box.className='survie-jeu survie-jeu-resultats';
   box.innerHTML='<div class="survie-fin">'+
-    '<span class="jeux-kicker">FIN DE PARTIE</span><h1>Bien joué<span> !</span></h1>'+
-    '<div class="survie-fin-score">'+p.maxSerie+'</div>'+
-    '<p>Meilleure série de cette partie</p><p>'+p.total+' mots reconstruits · Record : '+record+'</p>'+
+    '<span class="jeux-kicker">FIN DE PARTIE</span>'+
+    '<h1>'+(p.total?'Belle série<span>.</span>':'Encore une partie<span> ?</span>')+'</h1>'+
+    '<div class="survie-fin-score" id="survie-fin-score" aria-label="Meilleure série : '+p.maxSerie+'">'+
+      (compteAnime?0:p.maxSerie)+'</div>'+
+    '<p class="survie-fin-score-libelle">Meilleure série de cette partie</p>'+
+    (nouveau?'<p class="survie-fin-record">✦ Nouveau record !</p>':'')+
+    '<div class="survie-fin-stats"><div><strong>'+p.total+'</strong><span>Mots trouvés</span></div>'+
+    '<div><strong>'+record+'</strong><span>Record personnel</span></div></div>'+
     '<button type="button" class="jeux-jouer" onclick="demarrerSurvie()">Rejouer →</button>'+
     '<button type="button" class="survie-fin-retour" onclick="quitterSurvie()">Retour aux Jeux</button></div>';
+  // Animation de score à durée bornée, facultative et sans mise à jour du stockage.
+  if(!compteAnime||!p.maxSerie)return;
+  const cible=document.getElementById('survie-fin-score'),debut=performance.now();
+  function incrementer(t){
+    if(surviePartie!==p||!p.resultatsVisibles)return;
+    const r=Math.max(0,Math.min(1,(t-debut)/460));
+    const valeur=Math.min(p.maxSerie,Math.round(p.maxSerie*(1-Math.pow(1-r,3))));
+    if(cible)cible.textContent=valeur;
+    if(r<1)p.scoreRaf=window.requestAnimationFrame(incrementer);
+    else p.scoreRaf=null;
+  }
+  p.scoreRaf=window.requestAnimationFrame(incrementer);
 }
