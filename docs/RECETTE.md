@@ -65,3 +65,12 @@ Pour la **fin d’examen**, le mode test choisit des réponses présentes dans l
 - `server.js` : bloc « MODE RECETTE VISUELLE ».
 - `recette/recette.js`, `recette/recette.css` : panneau, scénarios et onglet « MODE TEST ».
 - `tests/test_recette_visuelle.py` : accès, isolation, scénarios et durée.
+
+
+## Survie — recette directe sur la branche `2.1` (22 octobre 2026)
+
+Sur une **instance de recette séparée** démarrée avec la branche `2.1`, `RECETTE=1`, `RECETTE_USER` et `RECETTE_PASS` (mot de passe requis), ouvrir **Plus → Outils de test** ou l'onglet **MODE TEST**, choisir **Fin de Survie**, puis la **leçon 1** et un des scénarios : **Sans-faute** (tous les mots réussis), **2 mots passés** (réserve entièrement parcourue sans sans-faute), **Temps écoulé** (réserve incomplète). Cliquer **Voir cet écran →** : le vrai résultat apparaît sans jouer une partie.
+
+Le décompte dépend du vocabulaire réel de la leçon sélectionnée, pas de mots fictifs. La leçon 1 fournit 5 mots jouables (Moien, Madamm, Här, Schlecht, Äddi). Tester le titre, le vert réservé au sans-faute, le ratio des mots réussis, la série et le record, la présence de « Rejouer » seulement comme action principale si la réserve est incomplètement réussie ou que le temps manque, les boutons « Continuer mon chemin » / « Retour aux Jeux », le Retour Android et les largeurs 320/360/390/430 px ainsi que le bureau.
+
+**Isolation :** ce contrôle est absent du service normal. Les scores de recette restent dans le stockage local de l'origine protégée, Firebase est désactivé. **Quitter le test** efface ces scores fictifs. Pour le rendu, la recette utilise `survieAfficherResultat` du vrai jeu et non une maquette HTML parallèle. Tester aussi manuellement l'arrêt après dernier mot : cette recette vérifie l'écran final, les tests Node vérifient l'enchaînement réel des mots.

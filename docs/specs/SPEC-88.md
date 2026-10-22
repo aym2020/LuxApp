@@ -73,3 +73,12 @@ Les tests VFX supprimés ciblaient la fonctionnalité retirée. La recette smart
 ## Accessibilité : minuscules dans le mot mélangé (22 octobre 2026)
 
 **Constat utilisateur :** dans le temps limité de Survie, le `I` majuscule et le `l` minuscule sont trop semblables visuellement en Inter, en particulier sur Android. **Règle appliquée au seul mini-jeu Survie :** le mot d'une flashcard est normalisé en minuscules luxembourgeoises (`toLocaleLowerCase('lb')` puis NFC) dès sa création dans le pool jouable. Les cases, tuiles, étiquettes accessibles et la comparaison de réponse utilisent ces mêmes lettres : pas de différenciation injuste entre `I` et `i`. Les données de cours, l'orthographe officielle et les autres exercices ne sont pas modifiés. La longueur et les accents sont conservés ; l'ajustement est exclusivement visuel/ergonomique pour cette épreuve de rapidité. Test dédié pour `Ili`, `Haus`, `Këscht`, validation et absence de mutation des flashcards.
+
+
+## Fin de réserve et résultats distincts (22 octobre 2026)
+
+- Une partie n'utilise un mot qu'une fois : la réserve **ne se réinitialise jamais** pendant cette partie. Un mot n'est « parcouru » que lorsqu'il est réussi ou volontairement passé ; un essai incorrect seul n'épuise pas le mot.
+- Le dernier mot résolu termine immédiatement la partie, même s'il reste du temps. Fin **sans-faute** si tous les mots sont réussis, sans mot passé : vert sémantique, ratio réussi/total, rappel de la meilleure série et du record, CTA principal vers **Mon chemin** pour découvrir de nouvelles leçons et terminer leurs missions.
+- Si certains mots ont été passés : fin **Réserve terminée** neutre, ratio des mots réussis (jamais confondu avec le nombre simplement parcouru), nombre de mots passés, CTA principal **Rejouer Survie**. Pas de coche ni de célébration verte.
+- Fin du chrono avant épuisement : conserver la transition existante « TEMPS ÉCOULÉ », le score de série et les CTA de rejouer. Les scores locaux/les données pédagogiques ne sont pas modifiés hors règles de fin de Survie.
+- Recette sous `RECETTE=1` uniquement : panneau **Outils de test → Fin de Survie** avec trois scénarios directs, sans jouer ni cloud. Voir `docs/RECETTE.md`. Tests dédiés dans `test/jeux-v21.test.cjs`.

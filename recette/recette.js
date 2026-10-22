@@ -47,6 +47,15 @@ const REC_ECRANS = {
       'termine': { titre: 'Erreurs refaites, résultat du rattrapage', erreurs: [0] }
     }
   },
+  survie: {
+    titre: 'Fin de Survie',
+    besoin: l => !!(l && survieMotsDisponibles([l],{[l.id]:{vue:{ouverte:1}}}).length>=4),
+    scenarios: {
+      'sans-faute': { titre: 'Réserve épuisée · tous les mots réussis' },
+      'passes': { titre: 'Réserve épuisée · 2 mots passés', passes: true },
+      'temps': { titre: 'Temps écoulé · mots restants', temps: true }
+    }
+  },
   examen: {
     titre: 'Fin d’examen (annales A1.2)',
     besoin: () => examens.length > 0,
@@ -157,6 +166,28 @@ async function recLancer(choix) {
   else if (choix.ecran === 'etape') await recJouerEtape(l, def);
   else if (choix.ecran === 'unite') await recJouerUnite(l, def);
   else if (choix.ecran === 'rattrapage') await recJouerRattrapage(l, def);
+  else if (choix.ecran === 'survie') recJouerSurvie(l, def);
+}
+
+// Résultats Survie directs : vrai moteur et vrai rendu, réserve issue de la leçon sélectionnée.
+// Les statistiques sont simulées uniquement sur l'origine RECETTE sans Firebase.
+function recJouerSurvie(l, def) {
+  marquerLeconVue(l.id);
+  ouvrirJeux();
+  demarrerSurvie();
+  const p=surviePartie;
+  if(!p || p.pool.length<4)throw new Error('Au moins quatre mots jouables sont nécessaires.');
+  const total=p.pool.length;
+  const reussis=def.temps?Math.min(2,total-1):def.passes?Math.max(1,total-2):total;
+  p.total=reussis;
+  p.passes=def.passes?total-reussis:0;
+  p.serie=reussis;
+  p.maxSerie=reussis;
+  const resolus=def.temps?Math.min(total-1,reussis):total;
+  p.vus=new Set(p.pool.slice(0,resolus).map(m=>m.mot.toLocaleLowerCase('lb')));
+  survieEnregistrer(p.maxSerie);
+  if(def.temps){survieTerminer();survieFinPasser();}
+  else survieTerminerReserve();
 }
 
 // Progression fictive vierge, sauf le choix du panneau. Les règles des vies et

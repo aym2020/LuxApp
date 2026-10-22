@@ -210,3 +210,30 @@
  #view-survie .survie-jeu-fin .survie-tete,#view-survie .survie-jeu-fin #survie-question,
  #view-survie .survie-jeu-fin .survie-record,#view-survie .survie-jeu-resultats .survie-fin{animation:none}
 }
+
+/* Survie : fin de réserve. Couleur de succès uniquement pour le sans-faute. */
+#view-survie .survie-fin-reserve{gap:12px;padding:clamp(12px,3.5vh,28px) 0;margin:auto}
+#view-survie .survie-fin-embleme{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--couleur-bord-2);background:var(--couleur-surface-2);color:var(--couleur-texte-2)}
+#view-survie .survie-fin-embleme svg{width:39px;height:39px}
+#view-survie .survie-resultat-parfait .survie-fin-embleme{border-color:var(--couleur-reussi);color:var(--couleur-reussi);background:var(--couleur-surface-1)}
+#view-survie .survie-fin-etat{color:var(--couleur-texte-2);font:800 11px/1.5 var(--font);letter-spacing:.14em}
+#view-survie .survie-resultat-parfait .survie-fin-etat{color:var(--couleur-reussi)}
+#view-survie .survie-fin .survie-fin-intro{max-width:320px;color:var(--couleur-texte-2);margin:0}
+#view-survie .survie-fin-anneau{position:relative;width:152px;height:152px;margin:6px 0 0}
+#view-survie .survie-fin-anneau svg{width:100%;height:100%;transform:rotate(-90deg)}
+#view-survie .survie-fin-cercle-fond{fill:none;stroke:var(--couleur-bord-2);stroke-width:6}
+#view-survie .survie-fin-cercle-progres{fill:none;stroke:var(--couleur-texte-2);stroke-width:6;stroke-linecap:round}
+#view-survie .survie-resultat-parfait .survie-fin-cercle-progres{stroke:var(--couleur-reussi)}
+#view-survie .survie-fin-anneau-chiffre{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+#view-survie .survie-fin-anneau-chiffre strong{font:800 40px/1 var(--font);color:var(--couleur-texte);font-variant-numeric:tabular-nums}
+#view-survie .survie-fin-anneau-chiffre small{font-size:22px;font-weight:500;color:var(--couleur-texte-3)}
+#view-survie .survie-fin-anneau-chiffre span{font:800 10px/1.2 var(--font);letter-spacing:.07em;color:var(--couleur-texte-3)}
+#view-survie .survie-fin .survie-fin-bilan{font:650 13px/1.5 var(--font);color:var(--couleur-texte-2);margin:0}
+#view-survie .survie-fin-reserve .survie-fin-stats{margin:5px 0}
+#view-survie .survie-fin-suite{max-width:350px;display:flex;flex-direction:column;gap:7px;margin-top:4px}
+#view-survie .survie-fin-suite strong{font:500 25px/1.2 'Instrument Serif',Georgia,serif;color:var(--couleur-texte)}
+#view-survie .survie-fin-suite p{color:var(--couleur-texte-2)}
+#view-survie .survie-fin-etat-temps{color:var(--couleur-texte-2)}
+#view-survie .survie-resultat-temps .survie-fin h1{color:var(--couleur-texte)}
+@media(max-height:690px){#view-survie .survie-fin-reserve{gap:8px;padding:8px 0}#view-survie .survie-fin-anneau{width:124px;height:124px}#view-survie .survie-fin-embleme{width:54px;height:54px}#view-survie .survie-fin-embleme svg{width:31px;height:31px}#view-survie .survie-fin-reserve h1{font-size:clamp(34px,9vw,48px)}}
