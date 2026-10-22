@@ -62,7 +62,7 @@ def test_size(browser, w, h, path):
     page.goto(path.as_uri())
     page.locator(".survie-tuile").first.wait_for()
     assert page.locator(".survie-fin-rideau").is_hidden()
-    page.evaluate("surviePartie.total=8;surviePartie.maxSerie=6;survieEnregistrer(6);survieTerminer()")
+    page.evaluate("surviePartie.total=4;surviePartie.maxSerie=3;surviePartie.vus=new Set(surviePartie.pool.slice(0,4).map(m=>m.mot));survieEnregistrer(6);survieTerminer()")
     assert page.evaluate("surviePartie.actif") is False
     assert page.evaluate("surviePartie.restant")==0
     assert page.locator(".survie-fin-rideau").is_visible()
@@ -78,7 +78,9 @@ def test_size(browser, w, h, path):
     page.wait_for_timeout(1200)
     page.locator("#survie-fin-score").wait_for()
     assert page.locator(".survie-fin-rideau").count()==0
-    assert page.locator(".survie-fin-stats").inner_text().find("8")>=0
+    assert page.locator("#survie-fin-score").inner_text()=="4"
+    assert "Meilleure série" in page.locator(".survie-fin-stats").inner_text()
+    assert "2 mots non parcourus" in page.locator(".survie-fin-bilan").inner_text()
     assert "survie-jeu-resultats" in page.locator("#survie-jeu").get_attribute("class")
     assert page.evaluate("document.documentElement.scrollWidth") <= w+1
     page.screenshot(path=str(OUT / f"resultat-{w}.png"), full_page=True)
@@ -124,10 +126,49 @@ def test_reserve(browser, w, h, path, passes=False):
         assert "Aucun mot passé" in page.locator(".survie-fin-bilan").inner_text()
         assert "Continuer mon chemin" in page.locator(".survie-resultat-actions .jeux-jouer").inner_text()
     assert page.evaluate("document.documentElement.scrollWidth") <= w + 1, f"débordement horizontal {w}"
+    ring = page.locator(".survie-fin-anneau").bounding_box()
+    number = page.locator("#survie-fin-score").bounding_box()
+    denominator = page.locator(".survie-fin-anneau-chiffre span").bounding_box()
+    assert ring and number and denominator
+    assert number["x"] >= ring["x"] + 8 and number["x"]+number["width"] <= ring["x"]+ring["width"]-8, f"{w}: chiffre déborde du cercle"
+    assert denominator["x"] >= ring["x"] + 8 and denominator["x"]+denominator["width"] <= ring["x"]+ring["width"]-8, f"{w}: total déborde du cercle"
+    assert number["y"]+number["height"] <= denominator["y"]+1, f"{w}: chevauchement chiffre / total"
+    footer = page.locator(".survie-resultat-actions").bounding_box()
+    primary = page.locator(".survie-resultat-actions .jeux-jouer").bounding_box()
+    secondary = page.locator(".survie-resultat-actions .survie-fin-retour").bounding_box()
+    assert footer and primary and secondary, f"{w}: actions manquantes"
+    assert primary["height"]>=48 and secondary["height"]>=44
+    assert footer["y"] >= 0 and footer["y"]+footer["height"] <= h + 1, f"{w}: pied hors écran"
+    assert primary["y"] >= footer["y"] and primary["y"]+primary["height"] <= footer["y"]+footer["height"]
+    assert secondary["y"]+secondary["height"] <= h + 1
+    page.locator(".survie-resultat-scroll").evaluate("el => el.scrollTop = el.scrollHeight")
+    after = page.locator(".survie-resultat-actions .jeux-jouer").bounding_box()
+    assert abs(after["y"]-primary["y"])<=1, f"{w}: CTA bouge après scroll"
     button = page.locator(".survie-resultat-actions .jeux-jouer").bounding_box()
     assert button and button["width"] >= 200 and button["x"] >= 0 and button["x"] + button["width"] <= w + 1
     assert not errors, f"erreurs JS : {errors}"
     page.screenshot(path=str(OUT / f"reserve-{'passes' if passes else 'parfait'}-{w}.png"), full_page=True)
+    context.close()
+
+
+def test_short_height(browser, path):
+    context=browser.new_context(viewport={"width":320,"height":520},is_mobile=True,has_touch=True)
+    page=context.new_page()
+    page.goto(path.as_uri())
+    page.evaluate("""() => {
+      const p=surviePartie;
+      p.total=p.pool.length; p.maxSerie=p.pool.length;
+      p.vus=new Set(p.pool.map(m=>m.mot));
+      survieTerminerReserve();
+    }""")
+    footer=page.locator(".survie-resultat-actions").bounding_box()
+    button=page.locator(".survie-resultat-actions .jeux-jouer").bounding_box()
+    assert footer and button and footer["y"]>=0 and footer["y"]+footer["height"]<=521
+    assert page.locator(".survie-resultat-scroll").evaluate("el=>el.scrollHeight>el.clientHeight"), "le contenu long doit défiler"
+    page.locator(".survie-resultat-scroll").evaluate("el=>el.scrollTop=el.scrollHeight")
+    button_after=page.locator(".survie-resultat-actions .jeux-jouer").bounding_box()
+    assert abs(button_after["y"]-button["y"])<=1
+    assert page.evaluate("document.documentElement.scrollWidth")<=321
     context.close()
 
 def test_skip(browser, path):
@@ -163,6 +204,7 @@ def main():
                 test_reserve(browser,w,h,fixture,passes=False)
                 test_reserve(browser,w,h,fixture,passes=True)
                 print(f"OK: {w} × {h} (chrono, sans-faute, mots passés)")
+            test_short_height(browser,fixture)
             test_skip(browser,fixture)
             test_reduced(browser,fixture)
             browser.close()
