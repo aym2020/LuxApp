@@ -5,11 +5,6 @@ const SURVIE_DUREE = 30;
 const SURVIE_BONUS = 3;
 const SURVIE_PENALITE = 3;
 const SURVIE_MAX = 30;
-const SURVIE_GEL_DUREE = 3; // pouvoir expérimental VFX, SPEC 90 à venir
-const SURVIE_GEL_RECHARGE = 5; // réussites, jamais secondes
-function survieChaleur(s){return s>=20?4:s>=15?3:s>=10?2:s>=5?1:0;}
-function survieChaleurNom(s){return ['CHARGE','IGNITION','BRASIER','SURCHAUFFE','INFERNO'][survieChaleur(s)];}
-
 function survieComboPalier(s) { return s>=10?3:s>=5?2:s>=3?1:0; }
 function survieComboMessage(s) {
   return s>=10?'LÉGENDAIRE ×'+s:s>=5?'EN FEU ×'+s:s>=3?'COMBO ×'+s:s===2?'DOUBLE !':'BIEN JOUÉ !';
@@ -180,53 +175,6 @@ function survieHud() {
     combo.setAttribute('data-tier',String(tier));
     p.hudTier=tier;
   }
-  const chaleur=survieChaleur(p.serie);
-  const meter=document.getElementById('survie-combo-meter');
-  const fill=document.getElementById('survie-combo-fill');
-  const labelCombo=document.getElementById('survie-combo-phase');
-  if(meter && p.hudChaleur!==chaleur){
-    meter.setAttribute('data-heat',String(chaleur));
-    p.hudChaleur=chaleur;
-  }
-  const charge=Math.min(1,p.serie/20);
-  if(fill)fill.style.transform='scaleX('+charge+')';
-  const flammes=document.getElementById('survie-combo-flammes');
-  if(flammes)flammes.style.width=(charge*100)+'%';
-  if(labelCombo){
-    const label=survieChaleurNom(p.serie);
-    if(labelCombo.textContent!==label)labelCombo.textContent=label;
-  }
-  const shell=document.getElementById('survie-jeu');
-  const frozen=p.gelRestant>0;
-  if(shell && p.hudGele!==frozen){
-    shell.className=frozen?'survie-jeu survie-is-frozen':'survie-jeu';
-    p.hudGele=frozen;
-  }
-  const pouvoir=document.getElementById('survie-gel-bouton');
-  const etat=document.getElementById('survie-gel-etat');
-  const indicateur=document.getElementById('survie-freeze-indicator');
-  const gelTexte=frozen?'GEL ACTIF · '+Math.ceil(p.gelRestant)+' s':
-    p.gelRecharge>0?'RECHARGE · '+p.gelRecharge+' MOTS':'PRÊT · 3 s';
-  if(etat && etat.textContent!==gelTexte)etat.textContent=gelTexte;
-  if(pouvoir){
-    const unavailable=frozen||p.gelRecharge>0;
-    if(pouvoir.disabled!==unavailable)pouvoir.disabled=unavailable;
-    const accessible='Gel temporel. '+gelTexte;
-    if(p.gelAria!==accessible){pouvoir.setAttribute('aria-label',accessible);p.gelAria=accessible;}
-  }
-  if(indicateur)indicateur.textContent=frozen?'TEMPS GELÉ':'';
-}
-// Seule la consommation du chronomètre s'arrête, pas le jeu ni les réponses.
-// Le stock gelé est mesuré en temps actif (document caché = aucune consommation).
-function survieActiverGel(){
-  const p=surviePartie;
-  if(!p||!p.actif||p.verrou||p.gelRestant>0||p.gelRecharge>0||
-      document.visibilityState==='hidden')return;
-  survieTick(); // solder les millisecondes écoulées avant l'appui
-  if(!p.actif)return;
-  p.gelRestant=SURVIE_GEL_DUREE;
-  p.gelRecharge=SURVIE_GEL_RECHARGE;
-  survieHud();
 }
 // Le HUD est un élément stable de la partie. Modifier uniquement cette zone
 // est essentiel : sinon les keyframes redémarrent après chaque mot (+280ms).
@@ -259,42 +207,19 @@ function survieRendre() {
       '<span>MODE SURVIE</span></div>'+
     '<div class="survie-hud">'+
       '<div id="survie-combo" class="survie-combo" data-tier="'+survieComboPalier(p.serie)+'">'+
-        '<span class="survie-hud-label">SÉRIE</span><div class="survie-combo-valeur">'+
-        '<span class="survie-flamme" aria-hidden="true"><img src="assets/survie-flamme-v1.svg" width="44" height="58" alt=""></span>'+
+        '<span>SÉRIE</span><div class="survie-combo-valeur">'+
+        '<span class="survie-flamme" aria-hidden="true"><svg viewBox="0 0 28 36"><path d="M14 1C16 8 23 10 23 19C23 29 19 34 14 34C6 34 2 28 2 21C2 15 6 10 8 7C9 15 13 15 14 1Z" fill="currentColor"/></svg></span>'+
         '<strong id="survie-serie">'+p.serie+'</strong>'+
         '<span class="survie-etincelles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>'+
         '<span id="survie-combo-cri" class="survie-combo-cri" aria-hidden="true">'+jeuEscape(survieComboMessage(p.serie))+'</span>'+
         '</div></div>'+
-      '<div id="survie-chrono" class="survie-hud-time">'+
-        '<span class="survie-hud-label">CHRONO</span>'+
+      '<div id="survie-chrono" class="survie-hud-time"><span>CHRONO</span>'+
         '<strong id="survie-secondes">'+Math.ceil(p.restant)+' s</strong>'+
-        '<span id="survie-freeze-indicator" class="survie-freeze-indicator"></span>'+
         '<span id="survie-gain" class="survie-gain" aria-hidden="true"></span></div></div>'+
-    '<div class="survie-meter-stack">'+
-      '<div class="survie-meter-top"><span>ÉNERGIE COMBO</span>'+
-        '<strong id="survie-combo-phase">'+survieChaleurNom(p.serie)+'</strong></div>'+
-      '<div id="survie-combo-meter" class="survie-combo-meter" data-heat="'+survieChaleur(p.serie)+'" aria-label="Énergie combo">'+
-        '<i id="survie-combo-fill" style="transform:scaleX('+Math.min(1,p.serie/20)+')"></i>'+
-        '<span id="survie-combo-flammes" class="survie-meter-fire" style="width:'+(Math.min(1,p.serie/20)*100)+'%" aria-hidden="true"></span></div>'+
-      '<div class="survie-meter-time">'+
-        '<div class="survie-piste" role="progressbar" aria-label="Temps restant" aria-valuemin="0" aria-valuemax="30" aria-valuenow="'+Math.ceil(p.restant)+'">'+
-          '<i id="survie-jauge" style="transform:scaleX('+(p.restant/30)+')"></i></div>'+
-        '<span class="survie-ice-sheen" aria-hidden="true"></span></div>'+
-    '</div>'+
-    '<div class="survie-pouvoirs">'+
-      '<button type="button" id="survie-gel-bouton" class="survie-gel-bouton" onclick="survieActiverGel()" aria-label="Gel temporel. Prêt, 3 secondes">'+
-        '<span class="survie-ice-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none">'+
-          '<path d="M24 5v38M5 24h38M10 10l28 28M38 10L10 38" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/>'+
-          '<path d="m19 10 5 5 5-5m-10 28 5-5 5 5M10 19l5 5-5 5m28 0-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'+
-        '</svg></span>'+
-        '<span class="survie-gel-copy"><strong>GEL TEMPOREL</strong><small id="survie-gel-etat">PRÊT · 3 s</small></span>'+
-      '</button>'+
-      '<span class="survie-pouvoir-note">Temps figé · recharge après 5 mots</span>'+
-    '</div>'+
+    '<div class="survie-piste" role="progressbar" aria-label="Temps restant" aria-valuemin="0" aria-valuemax="30" aria-valuenow="'+Math.ceil(p.restant)+'"><i id="survie-jauge" style="transform:scaleX('+(p.restant/30)+')"></i></div>'+
     '<div id="survie-question">'+survieQuestionHtml(p)+'</div>'+
     '<div class="survie-record">Record personnel : <span id="survie-record-chiffre">'+survieRecord()+'</span> mots</div>';
   p.ecranPret=true;
-  survieHud();
 }
 
 // Même pénalité que sur une réponse fausse, sans altérer score ni record.
@@ -337,7 +262,6 @@ function survieLettre(index) {
   if(correct) {
     p.total++;
     p.serie++;
-    if(p.gelRecharge>0)p.gelRecharge--; // recharge en mots corrects, y compris pendant gel
     p.maxSerie=Math.max(p.maxSerie,p.serie);
     const avant=p.restant;
     p.restant=Math.min(SURVIE_MAX,p.restant+SURVIE_BONUS);
@@ -382,12 +306,7 @@ function survieTick() {
   if(!view || !view.classList.contains('active')){survieArreter();return;}
   if(document.visibilityState==='hidden'){p.dernier=null;return;}
   const maintenant=performance.now();
-  if(p.dernier!==null){
-    const duree=Math.max(0,(maintenant-p.dernier)/1000);
-    const gelee=Math.min(duree,p.gelRestant);
-    p.gelRestant=Math.max(0,p.gelRestant-gelee);
-    p.restant=Math.max(0,p.restant-(duree-gelee));
-  }
+  if(p.dernier!==null)p.restant=Math.max(0,p.restant-(maintenant-p.dernier)/1000);
   p.dernier=maintenant;
   survieHud();
   const progress=document.querySelector('.survie-piste');
@@ -403,8 +322,7 @@ function demarrerSurvie() {
   if(pool.length<4){renderJeuxHub();return;}
   survieArreter();
   surviePartie={pool,vus:new Set(),precedent:null,tuiles:[],selection:[],serie:0,maxSerie:0,total:0,
-    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,ecranPret:false,gainTexte:'',
-    gelRestant:0,gelRecharge:0,hudTier:null,hudChaleur:null,hudGele:null,gelAria:null};
+    restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,ecranPret:false,gainTexte:''};
   survieNouvelleQuestion();
   showView('view-survie');
   surviePartie.dernier=performance.now();
@@ -415,7 +333,6 @@ function survieArreter() {
   surviePartie.actif=false;
   if(surviePartie.timer)clearInterval(surviePartie.timer);
   surviePartie.timer=null;
-  surviePartie.gelRestant=0;
 }
 function quitterSurvie() {
   survieArreter();

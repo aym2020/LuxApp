@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=7/);assert.match(html,/jeux-v21.js\?v=6/);
+ assert.match(html,/jeux-v21.css\?v=5/);assert.match(html,/jeux-v21.js\?v=4/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -119,7 +119,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=7"/);
+ assert.match(html,/href="jeux-v21\.css\?v=5"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
@@ -254,114 +254,4 @@ test('Passer : largeur mobile et statut séparé des boutons, aucun impact péda
  assert.match(script,/function surviePasser\(\)/);
  assert.match(script,/surviePenaliser\(p\)/);
  assert.doesNotMatch(script,/progress\.(?:set|update).*surviePasser/);
-});
-
-
-test('VFX V1 : combo charge par paliers, HUD stable et asset flamme dédié',()=>{
- const {ctx,element}=make();
- ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
- ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
- vm.runInContext('demarrerSurvie()',ctx);
- assert.match(element('survie-jeu').innerHTML,/assets\/survie-flamme-v1\.svg/);
- assert.match(element('survie-jeu').innerHTML,/id="survie-combo-meter"/);
- assert.match(element('survie-jeu').innerHTML,/class="survie-piste"/);
- ctx.valeurs=[0,4,5,9,10,14,15,19,20,99];
- assert.deepEqual(Array.from(vm.runInContext('valeurs.map(survieChaleur)',ctx)),[0,0,1,1,2,2,3,3,4,4]);
- const names=Array.from(vm.runInContext('valeurs.map(survieChaleurNom)',ctx));
- assert.deepEqual(names,['CHARGE','CHARGE','IGNITION','IGNITION','BRASIER','BRASIER','SURCHAUFFE','SURCHAUFFE','INFERNO','INFERNO']);
- const hud=element('survie-jeu').innerHTML;
- vm.runInContext('surviePartie.serie=12;survieHud()',ctx);
- assert.equal(element('survie-combo-meter').style.transform,undefined);
- assert.equal(element('survie-combo-fill').style.transform,'scaleX(0.6)');
- assert.equal(element('survie-combo-flammes').style.width,'60%');
- assert.equal(element('survie-combo-phase').textContent,'BRASIER');
- assert.equal(element('survie-jeu').innerHTML,hud,'HUD not recreated');
- const flame=read('public/assets/survie-flamme-v1.svg');
- assert.match(flame,/<svg/);assert.match(flame,/linearGradient/);
- const styles=read('public/jeux-v21.css');
- for(const className of ['.survie-combo-meter','.survie-meter-fire','.survie-ice-sheen',
-  '.survie-jeu.survie-is-frozen','.survie-gel-bouton'])assert.ok(styles.includes(className),className);
-});
-
-test('Gel 3 secondes : timer et barre réellement immobiles, puis reprise sans cadeau',()=>{
- const {ctx,element,advance}=make();
- ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
- ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
- vm.runInContext('demarrerSurvie()',ctx);
- advance(2000);vm.runInContext('survieTick()',ctx);
- assert.equal(vm.runInContext('surviePartie.restant',ctx),28);
- vm.runInContext('survieActiverGel()',ctx);
- assert.equal(vm.runInContext('surviePartie.gelRestant',ctx),3);
- assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),5);
- assert.match(element('survie-jeu').className,/survie-is-frozen/);
- assert.equal(element('survie-gel-bouton').disabled,true);
- assert.equal(element('survie-freeze-indicator').textContent,'TEMPS GELÉ');
- const bar=element('survie-jauge').style.transform;
- advance(2100);vm.runInContext('survieTick()',ctx);
- assert.equal(vm.runInContext('surviePartie.restant',ctx),28);
- assert.equal(element('survie-jauge').style.transform,bar);
- assert.ok(Math.abs(vm.runInContext('surviePartie.gelRestant',ctx)-.9)<1e-8);
- advance(900);vm.runInContext('survieTick()',ctx);
- assert.equal(vm.runInContext('surviePartie.restant',ctx),28);
- assert.equal(vm.runInContext('surviePartie.gelRestant',ctx),0);
- assert.doesNotMatch(element('survie-jeu').className,/survie-is-frozen/);
- advance(1000);vm.runInContext('survieTick()',ctx);
- assert.equal(vm.runInContext('surviePartie.restant',ctx),27);
- vm.runInContext('survieActiverGel()',ctx);
- assert.equal(vm.runInContext('surviePartie.gelRestant',ctx),0,'cooldown cannot be bypassed');
-});
-
-test('Gel : recharge après cinq réussites, pas à l’attente ni en sautant les mots',()=>{
- const {ctx,advance}=make();
- ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),
-  card('boîte','Këscht'),card('bonjour','Moien'),card('table','Dësch'),card('grand','grouss')])];
- ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
- vm.runInContext('demarrerSurvie();survieActiverGel()',ctx);
- vm.runInContext('surviePasser()',ctx);advance(265);
- assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),5);
- advance(3300);vm.runInContext('survieTick()',ctx);
- assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),5);
- for(let i=0;i<5;i++){
-  ctx.answer=vm.runInContext("(()=>{const p=surviePartie,u=new Set();return Array.from(p.mot.mot).map(c=>{const j=p.tuiles.findIndex((x,k)=>x===c&&!u.has(k));u.add(j);return j})})()",ctx);
-  vm.runInContext('answer.forEach(survieLettre)',ctx);
-  assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),4-i);
-  advance(290);
- }
- assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),0);
- vm.runInContext('survieActiverGel()',ctx);
- assert.equal(vm.runInContext('surviePartie.gelRestant',ctx),3);
- assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),5);
-});
-
-test('Gel : arrière-plan ne consomme ni réserve ni pouvoir, sortie et nouvelle partie nettoyées',()=>{
- const {ctx,advance}=make();
- ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
- ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
- vm.runInContext('demarrerSurvie();survieActiverGel()',ctx);
- ctx.document.visibilityState='hidden';
- advance(20000);vm.runInContext('survieTick()',ctx);
- ctx.document.visibilityState='visible';vm.runInContext('survieTick()',ctx);
- assert.equal(vm.runInContext('surviePartie.restant',ctx),30);
- assert.equal(vm.runInContext('surviePartie.gelRestant',ctx),3);
- vm.runInContext('survieArreter()',ctx);
- assert.equal(vm.runInContext('surviePartie.actif',ctx),false);
- assert.equal(vm.runInContext('surviePartie.gelRestant',ctx),0);
- vm.runInContext('demarrerSurvie()',ctx);
- assert.equal(vm.runInContext('surviePartie.gelRestant',ctx),0);
- assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),0);
-});
-
-test('Gel ne protège pas la pénalité erreur/Passer, n’affecte pas record et progression',()=>{
- const {ctx,advance}=make();
- ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),
-  card('boîte','Këscht'),card('bonjour','Moien')])];
- ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
- vm.runInContext('demarrerSurvie();survieActiverGel()',ctx);
- vm.runInContext('surviePasser()',ctx);
- assert.equal(vm.runInContext('surviePartie.restant',ctx),27);
- assert.equal(vm.runInContext('surviePartie.serie',ctx),0);
- assert.equal(vm.runInContext('surviePartie.gelRecharge',ctx),5);
- advance(260);
- assert.equal(vm.runInContext('surviePartie.restant',ctx),27);
- assert.equal(vm.runInContext('survieRecord()',ctx),0);
 });

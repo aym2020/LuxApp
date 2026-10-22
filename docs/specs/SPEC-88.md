@@ -62,14 +62,10 @@ Recette navigateur mesurée sur Chromium aux largeurs **320, 360, 390 et 430 px*
 - **Périmètre volontairement limité :** ce bouton n'est PAS le futur pouvoir « Joker » de SPEC 90 (qui sera une capacité rechargeable sans pénalité). Aucun changement dans les contenus, les examens, les sauvegardes ou la progression.
 - Contrôle en CI : nouveau mot, série rompue, pénalité unique, double tap, fin du chrono, retour, mise en page responsive. La recette tactile Samsung reste obligatoire avant validation UX.
 
-## V1 VFX HUD / jauge combo / gel effectif — 22 octobre 2026
+## Retour arrière ciblé de la V1 VFX — 22 octobre 2026
 
-- **Périmètre :** uniquement Survie personnel existant, branche `2.1`. Le draft, le leaderboard, les pouvoirs multiples et la Tempête de SPEC 89/90 **ne sont pas activés**.
-- Nouveau HUD : flamme SVG dessinée pour LuxApp (`public/assets/survie-flamme-v1.svg`), grande série, compte à rebours clair, étiquettes d'état non superposées.
-- Une **jauge énergie combo** indépendante de la réserve chronométrique se charge selon la série (0–20, puis saturée) et traverse cinq phases visuelles : Charge 0–4, Ignition 5–9, Brasier 10–14, Surchauffe 15–19, Inferno 20+. Progression persistante ; une erreur/Passer annule le combo et vide la jauge. Les paliers **ne modifient pas le score ni le barème** de la SPEC 88 ; c'est uniquement visuel.
-- Prototype de pouvoir **Gel temporel** immédiatement utilisable : 3 secondes de **temps actif** pendant lesquelles le chrono **et sa barre s'immobilisent réellement** (pas de simple skin), icône glacée et givre limité au HUD. Recharge après cinq mots réussis ; aucune recharge à l'attente, aux erreurs ni à « Passer ». Gel n'immunise pas à la pénalité de 3 s d'une erreur ; bouton indisponible pendant le gel et la recharge. Le clavier, les réponses et le passage de mot restent fonctionnels pendant l'effet.
-- Le gel utilise un compteur restant décrémenté par `performance.now()` uniquement tant que la vue est visible. Les appuis pendant une transition ou un retour Android sont ignorés ; `survieArreter` annule le gel. Aucun timer supplémentaire : pas de course ni animation JS double.
-- L'UI garde le HUD persistant ; seules les questions sont recréées entre les mots. Contrastes, boutons ≥44 px, `prefers-reduced-motion` et fallback CSS sans givre animé. Responsive 320–430 px à contrôler en navigateur, puis recette Samsung.
-- Tests : gel 3 secondes exactes, reprise sans temps perdu, recharge cinq mots, échec / Passer, pause en arrière-plan, nouvelle partie, palier et double déclenchement. **À ne pas confondre avec l'implémentation finale SPEC 90**, qui pourra changer les paramètres après simulation.
+À la demande de l'utilisateur, **Survie a été restauré exactement à l'état du commit `4069bd8`**, juste après l'ajout du bouton « Passer −3 s ». Ce retour restaure uniquement `public/jeux-v21.js`, `public/jeux-v21.css`, leurs références versionnées dans `public/index.html`, et `test/jeux-v21.test.cjs`. Les fichiers dédiés à la tentative VFX (`public/assets/survie-flamme-v1.svg`, `tests/test_survie_vfx_mobile.py`, `.github/workflows/survie-vfx-mobile.yml`) sont retirés.
 
-- Recette visuelle Chromium : les flammes du combo se limitent à la **partie remplie** de la jauge, et non à la zone vide. Capture sur 320/360/390/430 px ; test de largeur de l'effet ajouté.
+**Fonctionnalités conservées :** jeu Survie, streak et chronomètre originels (+3 s/réussite, −3 s/erreur), bouton « Passer −3 s », record local, affichage du prochain mot sans double animation, navigation et progression indépendantes. **Fonctionnalités retirées :** nouveau HUD et jauge d'énergie, flamme SVG, prototype du Gel temporel et ses effets ; ce n'est pas une désactivation de la future SPEC 89/90, qui reste à concevoir/implémenter distinctement.
+
+Les tests VFX supprimés ciblaient la fonctionnalité retirée. La recette smartphone pourra confirmer le retour de l'ancienne présentation.
