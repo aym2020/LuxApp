@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=6/);assert.match(html,/jeux-v21.js\?v=5/);
+ assert.match(html,/jeux-v21.css\?v=7/);assert.match(html,/jeux-v21.js\?v=6/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -119,7 +119,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=6"/);
+ assert.match(html,/href="jeux-v21\.css\?v=7"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
@@ -273,6 +273,7 @@ test('VFX V1 : combo charge par paliers, HUD stable et asset flamme dédié',()=
  vm.runInContext('surviePartie.serie=12;survieHud()',ctx);
  assert.equal(element('survie-combo-meter').style.transform,undefined);
  assert.equal(element('survie-combo-fill').style.transform,'scaleX(0.6)');
+ assert.equal(element('survie-combo-flammes').style.width,'60%');
  assert.equal(element('survie-combo-phase').textContent,'BRASIER');
  assert.equal(element('survie-jeu').innerHTML,hud,'HUD not recreated');
  const flame=read('public/assets/survie-flamme-v1.svg');

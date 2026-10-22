@@ -71,3 +71,5 @@ Recette navigateur mesurée sur Chromium aux largeurs **320, 360, 390 et 430 px*
 - Le gel utilise un compteur restant décrémenté par `performance.now()` uniquement tant que la vue est visible. Les appuis pendant une transition ou un retour Android sont ignorés ; `survieArreter` annule le gel. Aucun timer supplémentaire : pas de course ni animation JS double.
 - L'UI garde le HUD persistant ; seules les questions sont recréées entre les mots. Contrastes, boutons ≥44 px, `prefers-reduced-motion` et fallback CSS sans givre animé. Responsive 320–430 px à contrôler en navigateur, puis recette Samsung.
 - Tests : gel 3 secondes exactes, reprise sans temps perdu, recharge cinq mots, échec / Passer, pause en arrière-plan, nouvelle partie, palier et double déclenchement. **À ne pas confondre avec l'implémentation finale SPEC 90**, qui pourra changer les paramètres après simulation.
+
+- Recette visuelle Chromium : les flammes du combo se limitent à la **partie remplie** de la jauge, et non à la zone vide. Capture sur 320/360/390/430 px ; test de largeur de l'effet ajouté.

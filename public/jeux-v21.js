@@ -188,7 +188,10 @@ function survieHud() {
     meter.setAttribute('data-heat',String(chaleur));
     p.hudChaleur=chaleur;
   }
-  if(fill)fill.style.transform='scaleX('+Math.min(1,p.serie/20)+')';
+  const charge=Math.min(1,p.serie/20);
+  if(fill)fill.style.transform='scaleX('+charge+')';
+  const flammes=document.getElementById('survie-combo-flammes');
+  if(flammes)flammes.style.width=(charge*100)+'%';
   if(labelCombo){
     const label=survieChaleurNom(p.serie);
     if(labelCombo.textContent!==label)labelCombo.textContent=label;
@@ -272,7 +275,7 @@ function survieRendre() {
         '<strong id="survie-combo-phase">'+survieChaleurNom(p.serie)+'</strong></div>'+
       '<div id="survie-combo-meter" class="survie-combo-meter" data-heat="'+survieChaleur(p.serie)+'" aria-label="Énergie combo">'+
         '<i id="survie-combo-fill" style="transform:scaleX('+Math.min(1,p.serie/20)+')"></i>'+
-        '<span class="survie-meter-fire" aria-hidden="true"></span></div>'+
+        '<span id="survie-combo-flammes" class="survie-meter-fire" style="width:'+(Math.min(1,p.serie/20)*100)+'%" aria-hidden="true"></span></div>'+
       '<div class="survie-meter-time">'+
         '<div class="survie-piste" role="progressbar" aria-label="Temps restant" aria-valuemin="0" aria-valuemax="30" aria-valuenow="'+Math.ceil(p.restant)+'">'+
           '<i id="survie-jauge" style="transform:scaleX('+(p.restant/30)+')"></i></div>'+
