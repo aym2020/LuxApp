@@ -539,7 +539,7 @@ function survieAfficherResultat(p,sansAnimation=false) {
         (parfait?'Retour aux Jeux':'Continuer mon chemin')+'</button></div>';
     return;
   }
-  box.className='survie-jeu survie-jeu-resultats survie-resultat-temps';
+  box.className='survie-jeu survie-jeu-resultats';
   box.innerHTML='<div class="survie-fin">'+
     '<span class="survie-fin-etat survie-fin-etat-temps">TEMPS ÉCOULÉ</span>'+
     '<span class="jeux-kicker">FIN DE PARTIE</span>'+

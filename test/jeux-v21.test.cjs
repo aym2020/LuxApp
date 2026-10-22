@@ -561,3 +561,17 @@ test('Mauvaise réponse non validée : le mot reste dans la réserve ; chrono ga
  assert.match(element('survie-jeu').innerHTML,/TEMPS ÉCOULÉ/);
  assert.doesNotMatch(element('survie-jeu').innerHTML,/SANS-FAUTE/);
 });
+
+test('Recette Survie : les trois scénarios utilisent le moteur réel, uniquement en RECETTE=1',()=>{
+ const s=read('recette/recette.js'),serveur=read('server.js');
+ assert.match(s,/titre: 'Fin de Survie'/);
+ assert.match(s,/'sans-faute': \{ titre: 'Réserve épuisée/);
+ assert.match(s,/'passes': \{ titre: 'Réserve épuisée/);
+ assert.match(s,/'temps': \{ titre: 'Temps écoulé/);
+ assert.match(s,/function recJouerSurvie\(l, def\)/);
+ assert.match(s,/survieTerminerReserve\(\)/);
+ assert.match(s,/survieTerminer\(\);survieFinPasser\(\)/);
+ assert.match(serveur,/if \(RECETTE\)/);
+ assert.match(serveur,/app\.use\('\/recette', express\.static/);
+ assert.match(serveur,/FIREBASE: null, RECETTE: true/);
+});

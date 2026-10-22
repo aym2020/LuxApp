@@ -235,5 +235,4 @@
 #view-survie .survie-fin-suite strong{font:500 25px/1.2 'Instrument Serif',Georgia,serif;color:var(--couleur-texte)}
 #view-survie .survie-fin-suite p{color:var(--couleur-texte-2)}
 #view-survie .survie-fin-etat-temps{color:var(--couleur-texte-2)}
-#view-survie .survie-resultat-temps .survie-fin h1{color:var(--couleur-texte)}
 @media(max-height:690px){#view-survie .survie-fin-reserve{gap:8px;padding:8px 0}#view-survie .survie-fin-anneau{width:124px;height:124px}#view-survie .survie-fin-embleme{width:54px;height:54px}#view-survie .survie-fin-embleme svg{width:31px;height:31px}#view-survie .survie-fin-reserve h1{font-size:clamp(34px,9vw,48px)}}
