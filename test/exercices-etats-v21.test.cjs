@@ -117,3 +117,70 @@ test('styles : bandeau collé en bas, états vert/rouge, cases du mot caché con
   assert.match(regle('#view-parcours .mc-case.vert'), /var\(--correct\)/);
   assert.match(regle('#view-parcours .mc-case.indice'), /var\(--accent\)/);
 });
+
+// Sons des mots mélangés : mêmes notes que Survie, sans affecter la logique de reconstruction.
+test('Mot caché : une note de Survie par tuile valide, jamais en double ou sur désactivation', () => {
+  const sons = [], input = {disabled:false, value:''};
+  const mc = {choix:[], tuiles:[{ch:'m'}, {ch:'o'}]};
+  let reconstructions=0;
+  const code = fonction(parcours,'mcSonLettre') + fonction(parcours,'mcPoserLettre') +
+    '\nreturn mcPoserLettre;';
+  const jouer = new Function('SurvieFx','document','mc','pAttente','tuilesUtilisees',
+    'mcCasesLettres','mcSynchroniserChamp','renderCases',code)(
+    {lettre:n=>sons.push(n)}, {getElementById:()=>input}, mc, false,
+    ()=>mc.tuiles.map((_,i)=>mc.choix.includes(i)),
+    ()=>({libres:[0,1]}),
+    ()=>{input.value=mc.choix.map(i=>mc.tuiles[i].ch).join('');},
+    ()=>{reconstructions++;});
+  jouer(0);
+  jouer(0); // tuile déjà choisie
+  jouer(1);
+  jouer(8); // hors limites : déjà complet, aucun son
+  assert.deepEqual(sons,[0,1]);
+  assert.equal(reconstructions,2);
+  assert.equal(input.value,'mo');
+  input.disabled=true;
+  jouer(0);
+  assert.deepEqual(sons,[0,1],'aucun son après désactivation du champ');
+});
+test('Mot caché : dégradation silencieuse si module son absent ou erreur AudioContext', () => {
+  const code = fonction(parcours,'mcSonLettre') + '\nreturn mcSonLettre;';
+  const sansModule = new Function('SurvieFx',code)(undefined);
+  assert.doesNotThrow(()=>sansModule(0));
+  const enErreur = new Function('SurvieFx',code)({lettre(){throw Error('Audio bloqué')}});
+  assert.doesNotThrow(()=>enErreur(1));
+});
+test('Mot caché : au clavier une note par frappe valide, aucune lors du collage ou effacement', () => {
+  const sons=[],mc={choix:[],tuiles:[{ch:'m'},{ch:'o'}]},
+    input={value:'',disabled:false},document={getElementById:()=>input};
+  let redraw=0;
+  const code=fonction(parcours,'mcSonLettre')+fonction(parcours,'mcSaisie')+
+    '\nreturn mcSaisie;';
+  const frappe=new Function('SurvieFx','document','mc','pAttente',
+    'mcLettresTapees','mcCasesLettres','tuilePourLettre','mcSynchroniserChamp',
+    'renderCases','estLettre','mcValider','continuerParcours',code)(
+    {lettre:n=>sons.push(n)},document,mc,false,
+    ()=>mc.choix.map(i=>mc.tuiles[i].ch),
+    ()=>({toutes:[0,1],libres:[0,1]}),
+    ch=>mc.tuiles.findIndex((t,i)=>t.ch===ch&&!mc.choix.includes(i)),
+    ()=>{input.value=mc.choix.map(i=>mc.tuiles[i].ch).join('')},
+    ()=>{redraw++},ch=>/^[a-z]$/i.test(ch),()=>{},()=>{});
+  input.value='m';frappe({inputType:'insertText'});
+  input.value='mo';frappe({inputType:'insertText'});
+  assert.deepEqual(sons,[0,1]);
+  input.value='mo';frappe({inputType:'insertText'}); // rien ajouté
+  input.value='mox';frappe({inputType:'insertText'}); // lettre inconnue
+  input.value='';frappe({inputType:'deleteContentBackward'});
+  input.value='mo';frappe({inputType:'insertFromPaste'});
+  assert.deepEqual(sons,[0,1],'collage, touche invalide et suppression muets');
+  assert.equal(redraw,6,'le rendu mot caché continue à fonctionner');
+});
+test('Mot caché : le son de lettre est réutilisé sans nouvel asset ni dépendance en cas d’absence', () => {
+  const html = read('index.html');
+  const vfx = read('survie-vfx.js');
+  assert.match(vfx,/lettre: lettre/);
+  assert.match(vfx,/function lettre\(position\)/);
+  assert.match(vfx,/localStorage\.getItem\(cleSon\(\)\) !== '0'/);
+  assert.match(html,/src="survie-vfx\.js\?v=2"[\s\S]*src="jeux-v21\.js\?v=12"/);
+  assert.match(html,/src="parcours\.js\?v=5"/);
+});

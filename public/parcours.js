@@ -1185,6 +1185,14 @@ function renderTuiles() {
       ' onclick="mcPoserLettre(' + i + ')">' + escHtml(mcLettreTuile(t.ch)) + '</button>').join('');
 }
 
+// Même note synthétisée que Survie pour une lettre réellement placée.
+// Facultatif : si SurvieFx ou l'AudioContext manquent, le mot caché reste jouable.
+// SurvieFx.lettre applique déjà le choix Son du profil.
+function mcSonLettre(position) {
+  if (typeof SurvieFx === 'undefined' || typeof SurvieFx.lettre !== 'function') return;
+  try { SurvieFx.lettre(position); } catch (_) { /* feedback sonore facultatif */ }
+}
+
 // Toucher une tuile : cette tuile-là va dans la première case vide.
 function mcPoserLettre(i) {
   if (pAttente) return;
@@ -1192,6 +1200,7 @@ function mcPoserLettre(i) {
   if (!input || input.disabled || tuilesUtilisees()[i]) return;
   if (mc.choix.length >= mcCasesLettres().libres.length) return; // toutes les cases sont remplies
   mc.choix.push(i);
+  mcSonLettre(mc.choix.length - 1);
   mcSynchroniserChamp();
   renderCases();
 }
@@ -1234,7 +1243,7 @@ function mcLettresParCase() {
 }
 
 // À chaque frappe : on nettoie le champ et on redessine les cases.
-function mcSaisie() {
+function mcSaisie(event) {
   const input = document.getElementById('mc-input');
   // Entrée tapée sur certains claviers Android : on valide.
   if (input.value.indexOf('\n') !== -1) {
@@ -1264,6 +1273,10 @@ function mcSaisie() {
   });
   mcSynchroniserChamp();
   renderCases();
+  // Une seule note pour une lettre physiquement tapée et réellement ajoutée.
+  // Rien sur collage, suppression, saisie ignorée ou mise à jour programmatique.
+  if (event && event.inputType === 'insertText' && !event.isComposing &&
+      mc.choix.length === avant.length + 1) mcSonLettre(mc.choix.length - 1);
 }
 
 function mcMajFocus() {

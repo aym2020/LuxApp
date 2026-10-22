@@ -61,3 +61,10 @@ La refonte avait uniformisé les corrections au détriment de leur sens. Corrig�
 - **Mot caché** : `#view-parcours .mc-case` écrasait `.mc-case.vert` / `.indice` (spécificité) ; états redéclarés. Le score précise « sans indice » ou le nombre d'indices.
 
 Test de comportement : `test/exercices-etats-v21.test.cjs` exécute les vraies fonctions sur un faux DOM (titres, masquage de l'erreur, couleur du trou, gras, règles CSS clés). Ajouté au workflow 2.1. Recette tactile Android toujours nécessaire.
+
+
+## Son des lettres « Mot caché » et Survie (22 octobre 2026)
+
+Les lettres mélangées de l’étape **Mot caché** (`public/parcours.js`) jouent désormais **exactement le même son synthétisé ascendant** que les tuiles de Survie : `SurvieFx.lettre(position)`, fonction déjà incluse par `public/survie-vfx.js`. Une note à chaque tuile **réellement ajoutée**, au toucher ou avec le clavier physique ; aucune note en cas de touche ignorée, annulation, suppression, collage, indice ou reconstitution automatique de l’UI. `position` correspond au rang de la lettre posée, comme dans Survie.
+
+L’audio est facultatif, ne bloque jamais la saisie si `AudioContext` manque ou refuse de démarrer et **respecte le même réglage de son par profil** que Survie (`luxSurvieSon`, enregistré localement ; désactivation dans Survie coupe aussi les notes de Mot caché). La prononciation pédagogique LOD reste séparée et déclenchée explicitement par « Écouter » ; ne jamais la remplacer par cet effet d’interface. Aucun changement aux cases, indices, accents, notes, score, progression, sessions d'écriture ni mission. Tests unitaires de tapping, clavier, absence de son sur actions ignorées, mode silencieux et absence de module ; vérification tactile Samsung encore nécessaire.
