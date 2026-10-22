@@ -51,3 +51,13 @@ Recette navigateur mesurée sur Chromium aux largeurs **320, 360, 390 et 430 px*
 **Correction :** HUD crée une fois par partie ; seule `#survie-question` est remplacée au changement de mot. Impulsion unique déclenchée sur réussite et terminée en 620 ms, sans double départ ni lecture d'offsetWidth. Paliers durables via `transform:scale`, taille de police/hauteurs fixes pour préserver les positions des tuiles. Score et gain réels inchangés (+3 s, plafond 30, erreur −3 s) ; mot suivant toujours à 280 ms. Reset d'animation au faux, nettoyage seulement en fin d'effet ; `prefers-reduced-motion` conservé. Les animations restent limitées à une durée modérée et à des propriétés principalement compositées.
 
 **Vérification :** régression DOM sur stabilité du HUD et absence de deuxième impulsion après 280 ms, succès/faux, chrono, bonus, paliers, CSS et cache. Validation visuelle Chrome Android/Samsung nécessaire avant d'affirmer que le rendu est fluide sur le téléphone.
+
+## Passage volontaire d’un mot — 22 octobre 2026
+
+- Bouton secondaire **« Passer −3 s »**, disponible sous chaque mot, distinct d'**« Effacer »**.
+- Utilise exactement la même fonction de pénalité qu'une réponse fausse : −3 secondes (sans temps négatif), **streak remise à zéro**, animations de combo annulées. Aucun point, aucun bonus, aucune augmentation du record.
+- Contrairement à la réponse fausse, le bouton choisit **un autre mot** après une courte transition de 260 ms. La réserve évite le retour immédiat sur le mot précédent si le pool le permet.
+- Bouton verrouillé immédiatement après activation : double tap sans effet ; si les −3 secondes atteignent zéro, la partie se termine sans autre mot ; aucun timer ne survit à la fermeture de la session.
+- Deux boutons sur une ligne, retour d'état séparé sous les boutons pour que les textes ne se chevauchent pas à 320 px ; cible tactile d'au moins 48 px.
+- **Périmètre volontairement limité :** ce bouton n'est PAS le futur pouvoir « Joker » de SPEC 90 (qui sera une capacité rechargeable sans pénalité). Aucun changement dans les contenus, les examens, les sauvegardes ou la progression.
+- Contrôle en CI : nouveau mot, série rompue, pénalité unique, double tap, fin du chrono, retour, mise en page responsive. La recette tactile Samsung reste obligatoire avant validation UX.

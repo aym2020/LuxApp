@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=4/);assert.match(html,/jeux-v21.js\?v=3/);
+ assert.match(html,/jeux-v21.css\?v=5/);assert.match(html,/jeux-v21.js\?v=4/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -119,7 +119,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=4"/);
+ assert.match(html,/href="jeux-v21\.css\?v=5"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
@@ -199,4 +199,59 @@ test('Erreur : annule le combo immédiatement sans modifier le HUD ni le score',
  assert.equal(vm.runInContext('surviePartie.restant',ctx),27);
  flush();
  assert.equal(element('survie-combo'),hud);
+});
+
+test('Passer : même pénalité qu’une faute, nouveau mot, série perdue et double tap ignoré',()=>{
+ const {ctx,element,advance}=make();
+ ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),
+  card('boîte','Këscht'),card('bonjour','Moien'),card('table','Dësch')])];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie()',ctx);
+ const prev=vm.runInContext('surviePartie.mot.mot',ctx);
+ assert.match(element('survie-question').innerHTML,/onclick="surviePasser\(\)"/);
+ assert.match(element('survie-question').innerHTML,/Passer <small>−3 s<\/small>/);
+ ctx.correct=vm.runInContext("(()=>{const p=surviePartie,u=new Set();return Array.from(p.mot.mot).map(c=>{const i=p.tuiles.findIndex((x,j)=>x===c&&!u.has(j));u.add(i);return i})})()",ctx);
+ vm.runInContext('correct.forEach(survieLettre)',ctx);
+ advance(700); // HUD animation terminée, prochaine question active
+ assert.equal(vm.runInContext('surviePartie.serie',ctx),1);
+ const activeWord=vm.runInContext('surviePartie.mot.mot',ctx);
+ const record=vm.runInContext('survieRecord()',ctx);
+ const initial=vm.runInContext('surviePartie.restant',ctx);
+ vm.runInContext('surviePasser();surviePasser()',ctx);
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),initial-3);
+ assert.equal(vm.runInContext('surviePartie.serie',ctx),0);
+ assert.equal(vm.runInContext('surviePartie.total',ctx),1);
+ assert.equal(vm.runInContext('survieRecord()',ctx),record);
+ assert.equal(vm.runInContext('surviePartie.verrou',ctx),true);
+ assert.match(element('survie-info').textContent,/Mot passé/);
+ assert.equal(vm.runInContext('surviePartie.mot.mot',ctx),activeWord);
+ advance(261);
+ assert.equal(vm.runInContext('surviePartie.verrou',ctx),false);
+ assert.equal(vm.runInContext('surviePartie.selection.length',ctx),0);
+ assert.notEqual(vm.runInContext('surviePartie.mot.mot',ctx),activeWord);
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),initial-3);
+});
+test('Passer : délai ignoré si la partie est quittée, et fin immédiate quand le chrono atteint zéro',()=>{
+ const {ctx,element,advance}=make();
+ ctx.lecons=[lesson(1,[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht')])];
+ ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie()',ctx);
+ vm.runInContext('surviePartie.restant=2.5;surviePasser()',ctx);
+ assert.equal(vm.runInContext('surviePartie.actif',ctx),false);
+ assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
+ assert.equal(vm.runInContext('surviePartie.restant',ctx),0);
+ vm.runInContext('demarrerSurvie()',ctx);
+ vm.runInContext('surviePasser();survieArreter()',ctx);
+ advance(300);
+ assert.equal(vm.runInContext('surviePartie.actif',ctx),false);
+ assert.equal(vm.runInContext('surviePartie.verrou',ctx),true);
+});
+test('Passer : largeur mobile et statut séparé des boutons, aucun impact pédagogique',()=>{
+ const styles=read('public/jeux-v21.css');
+ assert.match(styles,/#view-survie \.survie-actions\{display:grid;grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(styles,/#view-survie #survie-info\{grid-column:1\/-1/);
+ assert.match(styles,/min-height:48px/);
+ assert.match(script,/function surviePasser\(\)/);
+ assert.match(script,/surviePenaliser\(p\)/);
+ assert.doesNotMatch(script,/progress\.(?:set|update).*surviePasser/);
 });

@@ -36,9 +36,13 @@
 #view-survie .survie-tuiles{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;width:100%;max-width:347px;margin-inline:auto}
 #view-survie .survie-tuile{flex:0 0 clamp(44px,13.2vw,52px);min-width:0;min-height:53px;border:1px solid #4d473e;border-bottom:3px solid #6f6250;border-radius:11px;background:#24221d;color:#eee7dc;font:800 clamp(18px,5vw,26px) var(--font);cursor:pointer;touch-action:manipulation}
 #view-survie .survie-tuile:disabled{opacity:.23;cursor:default}
-#view-survie .survie-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:54px}
-#view-survie .survie-actions button{border:1px solid #49443b;border-radius:10px;color:#e9e1d4;background:transparent;min-height:46px;padding:9px 12px;font:700 13px var(--font)}
-#view-survie #survie-info{font:550 12px/1.4 var(--font);text-align:right;color:#bcb2a4}
+/* Deux vrais boutons tactiles ; feedback en pleine largeur pour éviter le chevauchement sur 320px. */
+#view-survie .survie-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:8px 10px;min-height:82px}
+#view-survie .survie-actions button{display:flex;justify-content:center;align-items:center;gap:8px;min-width:0;border:1px solid #49443b;border-radius:10px;color:#e9e1d4;background:transparent;min-height:48px;padding:10px 12px;font:700 13px var(--font);touch-action:manipulation}
+#view-survie .survie-actions .survie-skip{border-color:#665147;background:#241d19;color:#efdfd1}
+#view-survie .survie-actions .survie-skip small{font:700 12px var(--font);color:#e7a48c;white-space:nowrap}
+#view-survie .survie-actions .survie-skip:active{background:#35231f}
+#view-survie #survie-info{grid-column:1/-1;min-height:20px;font:550 12px/1.4 var(--font);text-align:center;color:#bcb2a4}
 #view-survie #survie-info.survie-ok{color:var(--couleur-reussi)}
 #view-survie #survie-info.survie-ko{color:var(--couleur-erreur)}
 #view-survie .survie-record{text-align:center;color:#ada394;font:600 12px var(--font);margin-top:auto;padding-top:20px}

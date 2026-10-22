@@ -187,6 +187,7 @@ function survieQuestionHtml(p) {
       p.tuiles.map((l,i)=>'<button type="button" class="survie-tuile" data-index="'+i+
         '" onclick="survieLettre('+i+')" aria-label="Lettre '+jeuEscape(l)+', position '+(i+1)+'">'+jeuEscape(l)+'</button>').join('')+'</div>'+
     '<div class="survie-actions"><button type="button" onclick="survieEffacer()" aria-label="Effacer la dernière lettre">⌫ Effacer</button>'+
+      '<button type="button" class="survie-skip" onclick="surviePasser()" aria-label="Passer ce mot : perdre 3 secondes et la série">Passer <small>−3 s</small></button>'+
       '<span id="survie-info" role="status" aria-live="polite">Choisis les lettres dans l’ordre</span></div>';
 }
 function survieRendre() {
@@ -221,6 +222,30 @@ function survieRendre() {
   p.ecranPret=true;
 }
 
+// Même pénalité que sur une réponse fausse, sans altérer score ni record.
+function surviePenaliser(p) {
+  p.serie=0;
+  p.gainTexte='';
+  p.restant=Math.max(0,p.restant-SURVIE_PENALITE);
+  survieResetEffects();
+  survieHud();
+}
+// Passer est un abandon volontaire du mot : -3s, série perdue, mot suivant.
+function surviePasser() {
+  const p=surviePartie;
+  if(!p || !p.actif || p.verrou || !p.mot)return;
+  p.verrou=true; // protège du double tap et des touches pendant la transition
+  surviePenaliser(p);
+  const info=document.getElementById('survie-info');
+  if(info){info.className='survie-ko';info.textContent='Mot passé · −3 s · série perdue';}
+  if(p.restant<=0){survieTerminer();return;}
+  const current=p;
+  setTimeout(()=>{
+    if(surviePartie!==current || !p.actif)return;
+    if(p.restant<=0){survieTerminer();return;}
+    survieNouvelleQuestion();
+  },260);
+}
 function survieLettre(index) {
   const p=surviePartie;
   if(!p||!p.actif||p.verrou||p.selection.some(i=>i===index)||index<0||index>=p.tuiles.length)return;
@@ -246,11 +271,8 @@ function survieLettre(index) {
     if(record)record.textContent=survieRecord();
     if(info){info.className='survie-ok';info.textContent='Juste ! · '+p.gainTexte;}
   } else {
-    p.serie=0;
-    p.gainTexte='';
-    p.restant=Math.max(0,p.restant-SURVIE_PENALITE);
+    surviePenaliser(p);
     if(info){info.className='survie-ko';info.textContent='Pas encore · −3 secondes';}
-    survieResetEffects();
   }
   survieHud();
   if(correct)survieCelebrate(p);
