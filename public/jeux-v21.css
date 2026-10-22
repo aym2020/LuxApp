@@ -94,3 +94,65 @@
  #view-survie .survie-time-hit .survie-gain{animation:none}
  #view-survie .survie-combo-cri,#view-survie .survie-gain{display:none}
 }
+
+/* SPEC 92 étape 1 — Feu, feedbacks et chrono critique.
+   Animations limitées à transform / opacity / couleurs : aucune tuile ne bouge de place. */
+#view-survie .survie-jeu{position:relative}
+#view-survie .survie-top-droite{display:flex;align-items:center;gap:2px}
+#view-survie .survie-top .survie-son{width:44px;display:grid;place-items:center;padding:0;color:#bbb1a2}
+#view-survie .survie-son svg{width:20px;height:20px}
+#view-survie .survie-tete{position:relative;display:flex;flex-direction:column;gap:13px}
+#view-survie .survie-tete .survie-hud{position:relative;z-index:1}
+/* Le canvas déborde sous la barre (morceaux qui tombent) sans occuper de place dans le flux. */
+#view-survie .survie-feu{position:absolute;left:-12px;bottom:-12px;width:calc(100% + 24px);height:64px;pointer-events:none;z-index:0}
+/* Flamme de la série : la règle .survie-hud span la laissait grise. */
+#view-survie .survie-hud .survie-flamme{color:var(--tier-color)}
+#view-survie .survie-flamme svg{transform-origin:50% 100%}
+#view-survie .survie-combo[data-tier="1"] .survie-flamme svg{animation:survie-vacille 1.2s ease-in-out infinite}
+#view-survie .survie-combo[data-tier="2"] .survie-flamme svg{animation:survie-vacille .9s ease-in-out infinite}
+#view-survie .survie-combo[data-tier="3"] .survie-flamme svg{animation:survie-vacille .65s ease-in-out infinite}
+@keyframes survie-vacille{0%,100%{transform:scale(1,1) rotate(0)}30%{transform:scale(.94,1.07) rotate(-3deg)}65%{transform:scale(1.04,.96) rotate(2deg)}}
+/* Barre chrono : jaune au calme, de plus en plus incandescente avec le combo. */
+#view-survie .survie-piste i{transition:transform .12s linear,background-color .3s}
+#view-survie .survie-tete[data-tier="1"] .survie-piste i{background:linear-gradient(90deg,#8a2b0e,#e8742a 70%,#f5cf4d)}
+#view-survie .survie-tete[data-tier="2"] .survie-piste i{background:linear-gradient(90deg,#9c2a0c,#f07a22 55%,#ffc95a)}
+#view-survie .survie-tete[data-tier="3"] .survie-piste i{background:linear-gradient(90deg,#b0300c,#ff8a2a 45%,#ffe08a 90%,#fff3d0)}
+/* Tuiles : enfoncement au toucher, disparition douce une fois utilisées. */
+#view-survie .survie-tuile{transition:transform 90ms ease-out,opacity 120ms ease-out}
+#view-survie .survie-tuile:active:not(:disabled){transform:translateY(2px) scale(.96)}
+#view-survie .survie-tuile:disabled{transform:scale(.9)}
+/* Case remplie : la lettre saute dans la case avec un léger rebond. */
+#view-survie .survie-case-pleine{border-bottom-color:#a88a4c;animation:survie-case-pop 170ms cubic-bezier(.3,1.6,.5,1) both}
+@keyframes survie-case-pop{0%{transform:scale(.6) translateY(6px)}100%{transform:none}}
+/* Mot juste : balayage doré de gauche à droite, terminé avant le mot suivant (280 ms). */
+#view-survie .survie-cases-ok .survie-case{animation:survie-case-ok 160ms ease-out both;animation-delay:calc(var(--i) * var(--pas))}
+@keyframes survie-case-ok{0%{transform:none;color:#f6f0e6;border-bottom-color:#a88a4c}50%{transform:translateY(-6px) scale(1.06);color:#ffe08a;border-bottom-color:#F5CF4D}100%{transform:none;color:#F5CF4D;border-bottom-color:#F5CF4D}}
+/* Faute : les cases tremblent en rouge. */
+#view-survie .survie-cases-ko{animation:survie-secousse 320ms ease-out both}
+#view-survie .survie-cases-ko .survie-case{color:#ef8a78;border-bottom-color:#c94d3a}
+@keyframes survie-secousse{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+/* Combo brisé et temps perdu. */
+#view-survie .survie-combo-ko .survie-combo-cri{color:#ef8a78;animation:survie-texte-glide 620ms ease-out both}
+#view-survie .survie-combo-ko #survie-serie{animation:survie-serie-ko 360ms ease-out both}
+@keyframes survie-serie-ko{0%{transform:scale(1.12)}25%{transform:translateX(-5px)}50%{transform:translateX(4px)}100%{transform:scale(var(--tier-scale))}}
+/* Temps gagné ou perdu : sous les chiffres, sans chevaucher le libellé CHRONO. */
+#view-survie .survie-hud-time .survie-gain{top:auto;bottom:-15px}
+#view-survie .survie-time-hit .survie-gain{animation:survie-gain-sous 620ms ease-out both}
+@keyframes survie-gain-sous{0%{opacity:0;transform:translateY(6px)}22%{opacity:1}68%{opacity:1}100%{opacity:0;transform:translateY(-4px)}}
+#view-survie .survie-time-ko .survie-gain{color:var(--couleur-erreur);animation:survie-perte 620ms ease-out both}
+@keyframes survie-perte{0%{opacity:0;transform:translateY(-4px)}20%{opacity:1}70%{opacity:1}100%{opacity:0;transform:translateY(8px)}}
+/* Chrono critique (< 5 s) : barre rouge qui bat, bords de l'écran qui pulsent. */
+#view-survie .survie-jeu::before{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 70px rgba(229,83,61,.5);opacity:0;transition:opacity .3s}
+#view-survie .survie-urgence::before{animation:survie-vignette .9s ease-in-out infinite}
+#view-survie .survie-urgence .survie-piste i{background:#e5533d}
+#view-survie .survie-urgence .survie-piste{animation:survie-pouls .9s ease-in-out infinite}
+@keyframes survie-vignette{0%,100%{opacity:.25}20%{opacity:.85}45%{opacity:.4}}
+@keyframes survie-pouls{0%,45%,100%{transform:scaleY(1)}15%{transform:scaleY(1.7)}30%{transform:scaleY(1.3)}}
+@media(prefers-reduced-motion:reduce){
+ #view-survie .survie-feu{display:none}
+ #view-survie .survie-flamme svg,#view-survie .survie-case-pleine,#view-survie .survie-cases-ok .survie-case,
+ #view-survie .survie-cases-ko,#view-survie .survie-combo-ko #survie-serie,#view-survie .survie-combo-ko .survie-combo-cri,
+ #view-survie .survie-time-ko .survie-gain,#view-survie .survie-urgence::before,#view-survie .survie-urgence .survie-piste{animation:none}
+ #view-survie .survie-tuile{transition:none}
+ #view-survie .survie-urgence::before{opacity:.5}
+}

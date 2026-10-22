@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=5/);assert.match(html,/jeux-v21.js\?v=4/);
+ assert.match(html,/jeux-v21.css\?v=6/);assert.match(html,/jeux-v21.js\?v=5/);assert.match(html,/survie-vfx.js\?v=1/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -119,7 +119,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=5"/);
+ assert.match(html,/href="jeux-v21\.css\?v=6"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{
@@ -254,4 +254,70 @@ test('Passer : largeur mobile et statut séparé des boutons, aucun impact péda
  assert.match(script,/function surviePasser\(\)/);
  assert.match(script,/surviePenaliser\(p\)/);
  assert.doesNotMatch(script,/progress\.(?:set|update).*surviePasser/);
+});
+
+// SPEC 92 étape 1 : le moteur envoie des événements au gestionnaire d'effets, une seule fois par réponse.
+function fxStub(){
+ const appels=[];
+ return {appels,stub:{
+  attacher:()=>appels.push('attacher'),etat:()=>appels.push('etat'),lettre:i=>appels.push('lettre:'+i),
+  reussite:x=>appels.push('reussite:'+x.palier+':'+x.nouveauPalier),erreur:x=>appels.push('erreur:'+x.serieAvant),
+  arreter:()=>appels.push('arreter'),sonActif:()=>true,basculerSon:()=>false}};
+}
+const motsFx=[card('maison','Haus'),card('arbre','Bam'),card('livre','Buch'),card('boîte','Këscht'),card('bonjour','Moien')];
+const bonOrdre="(()=>{const p=surviePartie,u=new Set();return Array.from(p.mot.mot).map(c=>{const i=p.tuiles.findIndex((x,j)=>x===c&&!u.has(j));u.add(i);return i})})()";
+test('SPEC 92 : événements VFX — lettres, une réussite, palier, erreur, Passer et arrêt',()=>{
+ const {ctx,element,advance}=make();
+ const fx=fxStub();ctx.SurvieFx=fx.stub;
+ ctx.lecons=[lesson(1,motsFx)];ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie()',ctx);
+ assert.equal(fx.appels.filter(a=>a==='attacher').length,1,'canvas attaché une fois');
+ assert.match(element('survie-jeu').innerHTML,/<canvas id="survie-feu"/);
+ assert.match(element('survie-jeu').innerHTML,/id="survie-son"[^>]*aria-label="Couper le son"/);
+ const longueur=vm.runInContext('surviePartie.mot.longueur',ctx);
+ ctx.ordre=vm.runInContext(bonOrdre,ctx);
+ vm.runInContext('ordre.forEach(survieLettre)',ctx);
+ assert.deepEqual(fx.appels.filter(a=>a.startsWith('lettre:')),Array.from({length:longueur},(_,i)=>'lettre:'+i));
+ assert.deepEqual(fx.appels.filter(a=>a.startsWith('reussite')),['reussite:0:false']);
+ assert.equal(element('survie-cases').className,'survie-cases survie-cases-ok');
+ advance(700);
+ assert.equal(fx.appels.filter(a=>a.startsWith('reussite')).length,1,'aucun second déclenchement au mot suivant');
+ assert.equal(fx.appels.filter(a=>a==='attacher').length,1,'HUD et canvas conservés entre deux mots');
+ // Atteindre le palier 1 (série 3) : la réussite le signale une seule fois.
+ for(let n=0;n<2;n++){ctx.ordre=vm.runInContext(bonOrdre,ctx);vm.runInContext('ordre.forEach(survieLettre)',ctx);advance(700);}
+ assert.deepEqual(fx.appels.filter(a=>a.startsWith('reussite')),['reussite:0:false','reussite:0:false','reussite:1:true']);
+ // Faute après une série de 3 : combo brisé, −3 s affiché.
+ ctx.wrong=vm.runInContext("(()=>{const p=surviePartie,ids=p.tuiles.map((_,i)=>i);while(ids.map(i=>p.tuiles[i]).join('')===p.mot.mot)ids.push(ids.shift());return ids})()",ctx);
+ vm.runInContext('wrong.forEach(survieLettre)',ctx);
+ assert.deepEqual(fx.appels.filter(a=>a.startsWith('erreur')),['erreur:3']);
+ assert.equal(element('survie-combo').className,'survie-combo survie-combo-ko');
+ assert.equal(element('survie-combo-cri').textContent,'COMBO BRISÉ');
+ assert.equal(element('survie-gain').textContent,'−3 s');
+ assert.equal(element('survie-cases').className,'survie-cases survie-cases-ko');
+ advance(700);
+ assert.equal(element('survie-cases').className,'survie-cases','secousse retirée pour le nouvel essai');
+ assert.equal(element('survie-combo').className,'survie-combo');
+ // Passer : même effet de perte, sans secousse des cases.
+ vm.runInContext('surviePasser()',ctx);
+ assert.deepEqual(fx.appels.filter(a=>a.startsWith('erreur')),['erreur:3','erreur:0']);
+ vm.runInContext('quitterSurvie()',ctx);
+ assert.ok(fx.appels.includes('arreter'));
+});
+test('SPEC 92 : chrono critique sous 5 s, palier recopié sur la barre, jeu intact sans survie-vfx.js',()=>{
+ const {ctx,element,advance}=make();
+ ctx.lecons=[lesson(1,motsFx)];ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
+ vm.runInContext('demarrerSurvie()',ctx);
+ assert.doesNotMatch(element('survie-jeu').innerHTML,/id="survie-son"/,'pas de bouton son sans gestionnaire');
+ assert.equal(element('survie-jeu').className,'survie-jeu');
+ advance(26000);vm.runInContext('survieTick()',ctx);
+ assert.equal(element('survie-jeu').className,'survie-jeu survie-urgence');
+ advance(5000);vm.runInContext('survieTick()',ctx);
+ assert.match(element('survie-jeu').innerHTML,/FIN DE PARTIE/);
+ assert.equal(element('survie-jeu').className,'survie-jeu','urgence retirée en fin de partie');
+ const styles=read('public/jeux-v21.css');
+ for(const x of ['.survie-tete[data-tier="3"] .survie-piste i','.survie-hud .survie-flamme{color:var(--tier-color)}',
+  '.survie-cases-ok .survie-case','.survie-cases-ko','.survie-combo-ko','.survie-time-ko .survie-gain',
+  '.survie-urgence::before','#view-survie .survie-feu{display:none}','pointer-events:none'])assert.ok(styles.includes(x),x);
+ const nouveau=styles.slice(styles.indexOf('SPEC 92'));
+ assert.doesNotMatch(nouveau,/transition:[^;}]*(width|height|top|left|margin|font-size)/,'aucune transition de mise en page');
 });

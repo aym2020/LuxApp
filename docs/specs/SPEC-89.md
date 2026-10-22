@@ -4,7 +4,9 @@
 
 ## Décision produit
 
-`Jeux → Survie → Mes mots | Arène → Choisir 2 pouvoirs → Partie → Résultats`.
+`Jeux → Survie → Mes mots | Arène → Partie (drafts de passifs par surchauffe) → Résultats`.
+
+> **Révision du 22 octobre 2026 ([SPEC 92](./SPEC-92.md)) :** plus d'écran « Choisir 2 pouvoirs » ni de pouvoir actif ; la durée n'est plus plafonnée à 180 s, c'est la Tempête qui termine la partie ; les mentions de pouvoirs actifs, de boutons de pouvoir et de limite de 180 s ci-dessous sont remplacées par SPEC 92.
 Un **seul noyau de règles**, avec deux configurations explicites et des records séparés. Ne pas ajouter de scroll à l'accueil, ne pas toucher à la progression pédagogique ni aux examens.
 
 ### Mes mots — jouer avec le vocabulaire rencontré

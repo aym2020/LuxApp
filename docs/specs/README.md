@@ -109,8 +109,9 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 
 ## Évolution Survie 2.0 — cadrage (branche 2.1)
 
-| 89 | [Deux modes Survie : Mes mots / Arène et leaderboard](./SPEC-89.md) | P1 | À faire |
-| 90 | [Roguelite : pouvoirs, builds, combos, Tempête](./SPEC-90.md) | P1 | À faire |
-| 91 | [Simulateur massif et arbitrage d'équilibrage](./SPEC-91.md) | P1 | Simulateur V0 exécuté en CI (64 000 parties) ; gameplay à faire |
+| 89 | [Deux modes Survie : Mes mots / Arène et leaderboard](./SPEC-89.md) | P1 | À faire — révisée par SPEC 92 |
+| 90 | [Roguelite : pouvoirs, builds, combos, Tempête](./SPEC-90.md) | P1 | À faire — révisée par SPEC 92 (passifs uniquement) |
+| 91 | [Simulateur massif et arbitrage d'équilibrage](./SPEC-91.md) | P1 | Simulateur V0 exécuté en CI (64 000 parties) ; à aligner sur SPEC 92 |
+| 92 | [Feu et Tempête : passifs, surchauffe, VFX en 4 étapes](./SPEC-92.md) | P1 | Étape 1/4 implémentée — recette Samsung à faire |
 
 Ces fiches sont distinctes de la SPEC 88 actuellement déployée. Ne jamais confondre règles simulées et règles de production.

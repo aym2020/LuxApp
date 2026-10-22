@@ -49,3 +49,5 @@
 - [PLAYBOOK](../../PLAYBOOK.md)
 
 **Décision : archiver et itérer, pas déployer.**
+
+**Mise à jour du 22 octobre 2026 :** l'utilisateur a demandé l'intégration de l'étape 1/4 de [SPEC 92](../specs/SPEC-92.md). L'intégration reprend les enseignements de ce prototype (flammes organiques par particules, pas de bloom permanent, pics réservés aux événements, HUD compact, DPR et particules plafonnés, gestionnaire d'effets unique, remise à zéro visuelle sur erreur et Passer) ; recette Samsung toujours obligatoire.

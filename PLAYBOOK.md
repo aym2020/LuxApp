@@ -34,6 +34,12 @@ Premier test interactif Canvas 2D : jauge de combo enflammée, cœur incandescen
 
 ---
 
+## SPEC 92 — Survie « Feu et Tempête » (branche `2.1`)
+
+[Fiche](docs/specs/SPEC-92.md). **Passifs uniquement** (plus de pouvoir actif), draft par **barre de surchauffe** remplie par les points, record au score, Tempête sans mur de 180 s. Livraison en 4 étapes jouables, chacune validée sur Samsung avant la suivante. Effets dans `public/survie-vfx.js` (gestionnaire unique, canvas au-dessus de la barre chrono, sons Web Audio) ; le moteur `jeux-v21.js` n'émet que des événements via `survieFx()` et fonctionne sans ce fichier. Tests : `node --test test/jeux-v21.test.cjs test/survie-vfx.test.cjs`.
+
+---
+
 ## SPEC 89–91 — Survie 2.0, compétition et simulation massive (branche `2.1`)
 
 [Deux modes](docs/specs/SPEC-89.md), [roguelite/Tempête](docs/specs/SPEC-90.md), [simulateur autonome](docs/specs/SPEC-91.md). **Ne pas intégrer les règles expérimentales au jeu existant sans comparaison/replay/tests.** Les bots ne constituent pas de la télémetrie humaine. Toute proposition d'équilibrage LLM doit rester en suggestion, jamais en commit automatique. GitHub `schedule` d'un workflow présent uniquement sur `2.1` n'est pas actif tant qu'il n'est pas installé sur la branche par défaut.

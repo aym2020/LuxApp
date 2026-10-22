@@ -2,6 +2,8 @@
 
 **Branche :** `2.1` · **Statut :** simulateur V0 indépendant exécuté en CI ; moteur public à faire · **Cible :** comparer les règles de SPEC 89/90 sans modifier le gameplay actuel.
 
+> **Révision du 22 octobre 2026 :** le simulateur V0 modélise encore des pouvoirs actifs et un cap de 180 s. Il devra être aligné sur [SPEC 92](./SPEC-92.md) (passifs uniquement, surchauffe, Tempête sans mur) avant l'étape 3 ; ses résultats actuels ne s'appliquent pas aux règles révisées.
+
 ## Objectifs non négociables
 
 - Fournir un simulateur **headless Node.js**, déterministe à graine et version du corpus identiques, sans navigateur, dépendance externe, accès à Supabase ni score utilisateur.
