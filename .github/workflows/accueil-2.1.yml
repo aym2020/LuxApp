@@ -18,6 +18,8 @@ jobs:
         run: node --test test/accueil-v21.test.cjs test/exercices-v21.test.cjs test/exercices-etats-v21.test.cjs
       - name: Deux textes A1.2 expression écrite — structure et correction
         run: node --test test/expression-ecrite-v21.test.cjs
+      - name: Portail connexion — affichage du mot de passe et navigation
+        run: node tests/test_spec_63_portail.js
       - name: SPEC 88 - Jeux et Survie (données, parties, accueil)
         run: node --test test/jeux-v21.test.cjs test/survie-vfx.test.cjs
       - name: Tests du moteur de session et des corrections

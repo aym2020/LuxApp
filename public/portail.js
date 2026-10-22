@@ -217,8 +217,13 @@ function portailContenu(mode) {
     (cloud?'<form id="pa-form" novalidate onsubmit="portailSoumettre(event)">'+
       '<label for="pa-email">Adresse e-mail</label><input id="pa-email" type="email" autocomplete="email" placeholder="tonadresse@exemple.com" value="'+escHtml(portailEmail)+'" aria-describedby="pa-erreur-email">'+
       '<p id="pa-erreur-email" class="pa-erreur" role="alert"></p>'+
-      '<label for="pa-password">Mot de passe</label><input id="pa-password" type="password" autocomplete="'+
+      '<label for="pa-password">Mot de passe</label><div class="pa-mdp">'+
+      '<input id="pa-password" type="password" autocomplete="'+
       (creation?'new-password':'current-password')+'" placeholder="'+(creation?'6 caractères minimum':'Ton mot de passe')+'" aria-describedby="pa-erreur-password">'+
+      '<button class="pa-mdp-oeil" type="button" aria-controls="pa-password" aria-label="Afficher le mot de passe" aria-pressed="false" onpointerdown="event.preventDefault()" onclick="portailBasculerMotDePasse(this)">'+
+      '<svg class="pa-oeil-ouvert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>'+
+      '<svg class="pa-oeil-barre" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3 18 18M10.5 5.7c.5-.1 1-.2 1.5-.2 6.4 0 10 6.5 10 6.5a17 17 0 0 1-3.1 3.9M6.5 6.8A17 17 0 0 0 2 12s3.6 6.5 10 6.5c1.5 0 2.9-.4 4.1-1M10 10a3 3 0 0 0 4 4"/></svg>'+
+      '</button></div>'+
       '<p id="pa-erreur-password" class="pa-erreur" role="alert"></p>'+
       (!creation ? '<button class="pa-reset" type="button" onclick="portailReinitialiserMotDePasse()">Mot de passe oublié ?</button>' : '')+
       (importable?'<label class="pa-import"><input type="checkbox" id="pa-import"> Ajouter mes progrès de cet appareil à mon compte</label>':'')+
@@ -281,6 +286,17 @@ function portailAction(action) {
     return;
   }
   if(action==='signup'||action==='signin')portailOuvrir(action,'avant');
+}
+
+// Affichage temporaire uniquement : aucune conservation du mot de passe ni soumission.
+// pointerdown.preventDefault sur le bouton évite de voler le focus au champ sur Android.
+function portailBasculerMotDePasse(bouton) {
+  const champ=document.getElementById('pa-password');
+  if(!champ || !bouton)return;
+  const visible=champ.type==='password';
+  champ.type=visible?'text':'password';
+  bouton.setAttribute('aria-pressed',String(visible));
+  bouton.setAttribute('aria-label',visible?'Masquer le mot de passe':'Afficher le mot de passe');
 }
 
 // ─── FORMULAIRE ─────────────────────────────────────────────────────────────

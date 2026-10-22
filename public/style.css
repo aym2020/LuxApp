@@ -2906,6 +2906,26 @@ body.portail-bloque { overflow:hidden; }
   font-family:var(--police); font-size:var(--fs-corps);
 }
 #pa-form input::placeholder { color:var(--couleur-texte-3); }
+/* Portail connexion / inscription : œil intégré, sans réduire le champ ni déplacer le clavier. */
+#pa-form .pa-mdp { position:relative; width:100%; }
+#pa-form .pa-mdp input:not([type=checkbox]) {
+  padding-right:calc(var(--toucher) + var(--sp-4));
+}
+#pa-form .pa-mdp-oeil {
+  position:absolute; top:3px; right:4px; display:grid; place-items:center;
+  width:var(--toucher); height:var(--toucher); min-width:44px; min-height:44px;
+  padding:0; border:0; border-radius:var(--rayon-bouton);
+  background:transparent; color:var(--couleur-texte-2); cursor:pointer;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+}
+#pa-form .pa-mdp-oeil svg { display:block; width:22px; height:22px; }
+#pa-form .pa-mdp-oeil .pa-oeil-barre { display:none; }
+#pa-form .pa-mdp-oeil[aria-pressed="true"] .pa-oeil-ouvert { display:none; }
+#pa-form .pa-mdp-oeil[aria-pressed="true"] .pa-oeil-barre { display:block; }
+#pa-form .pa-mdp-oeil:focus-visible {
+  outline:2px solid var(--couleur-action); outline-offset:2px;
+}
+#pa-form .pa-mdp-oeil:active { background:var(--couleur-surface-2); }
 #pa-form .pa-import {
   display:flex; align-items:center; gap:var(--sp-2); line-height:1.4;
   margin:0 0 var(--sp-3); font-weight:500;

@@ -38,7 +38,7 @@ const ctx=new Function('document','window','localStorage','fbAuth','currentStora
  'setStorageProfile','isCloudEnabled','aDejaPratique','getProgress','goDashboard',
  'programmerGarde','notifier','arreterAudio','escHtml','animationsReduites',code+
  '\nreturn {portailInitialiser,portailAction,portailOuvrir,portailCompteConnecte,portailCompteDeconnecte,'+
- 'portailVisible,portailFormulaireOuvert,portailRetourBienvenue,ouvrirCompteDepuisAccueil,portailContenu,'+
+ 'portailVisible,portailFormulaireOuvert,portailRetourBienvenue,ouvrirCompteDepuisAccueil,portailContenu,portailBasculerMotDePasse,'+
  'afficherInfoInvite,fermerInfoInvite,infoInviteEstOuverte,get mode(){return portailMode}};')(
  document,{APP_CONFIG:{}},localStorage,{onAuthStateChanged(cb){snapshot=cb;}},
  profile,v=>{profile=v},()=>cloud,()=>false,()=>({}),()=>{opened++},()=>{},t=>notes.push(t),()=>{},escHtml,()=>true);
@@ -100,6 +100,22 @@ assert.ok(ctx.portailVisible(),'invité : écran de bienvenue à chaque nouveau 
 // Formulaire : Retour ramène à la bienvenue.
 ctx.portailAction('signup');
 assert.ok(ctx.portailFormulaireOuvert());
+assert.match(node('portail-auth').innerHTML,/id="pa-password" type="password" autocomplete="new-password"/);
+assert.match(node('portail-auth').innerHTML,/aria-label="Afficher le mot de passe" aria-pressed="false"/);
+assert.match(node('portail-auth').innerHTML,/onpointerdown="event.preventDefault\(\)"/);
+const boutonOeil={attrs:{},setAttribute(k,v){this.attrs[k]=v}};
+const champOeil=node('pa-password');
+champOeil.type='password'; champOeil.value='TestSecret42!';
+ctx.portailBasculerMotDePasse(boutonOeil);
+assert.equal(champOeil.type,'text','œil : montrer le mot de passe');
+assert.equal(champOeil.value,'TestSecret42!','valeur de saisie inchangée');
+assert.equal(boutonOeil.attrs['aria-pressed'],'true');
+assert.equal(boutonOeil.attrs['aria-label'],'Masquer le mot de passe');
+ctx.portailBasculerMotDePasse(boutonOeil);
+assert.equal(champOeil.type,'password','œil : remasquer le mot de passe');
+assert.equal(champOeil.value,'TestSecret42!');
+assert.equal(boutonOeil.attrs['aria-pressed'],'false');
+assert.equal(boutonOeil.attrs['aria-label'],'Afficher le mot de passe');
 assert.match(node('portail-auth').innerHTML,/pa-retour/);
 assert.match(node('portail-auth').innerHTML,/pa-erreur-email/);
 assert.match(node('portail-auth').innerHTML,/pa-entre-avant|Un compte pour/);
@@ -115,6 +131,8 @@ ctx.portailRetourBienvenue();
 assert.ok(!ctx.portailVisible(),'Retour depuis l’accueil : portail fermé');
 ctx.portailOuvrir('signin');
 assert.match(node('portail-auth').innerHTML,/Continuer sans compte/,'origine remise à zéro après fermeture');
+assert.match(node('portail-auth').innerHTML,/id="pa-password" type="password" autocomplete="current-password"/);
+assert.match(node('portail-auth').innerHTML,/class="pa-mdp-oeil"/);
 ctx.portailInitialiser(null);
 ctx.portailCompteConnecte({uid:'xyz'});
 assert.equal(store.luxPortailCompteConnuV1,'oui');assert.equal(store.luxPortailInviteV1,undefined);
@@ -131,6 +149,8 @@ assert.match(node('portail-auth').innerHTML,/Connexion momentanément indisponib
 assert.ok(!node('portail-auth').innerHTML.includes('id="pa-form"'));
 ctx.portailOuvrir('welcome');
 assert.ok(!node('portail-auth').innerHTML.includes('J’ai déjà un compte'),'sans cloud : seulement Commencer');
+assert.match(css,/#pa-form \.pa-mdp-oeil\s*\{[^}]*width:var\(--toucher\)/);
+assert.match(css,/#pa-form \.pa-mdp input:not\(\[type=checkbox\]\)\s*\{[^}]*padding-right:calc/);
 assert.match(css,/\.pa-bouton\s*\{[^}]*justify-content:center/);
 assert.match(css,/\.pa-bouton\s*\{[^}]*text-align:center/);
 assert.match(css,/\.pa-bouton\s*\{[^}]*min-height:60px/,'SPEC 65 : même hauteur que les accès de l’accueil');
@@ -148,7 +168,7 @@ assert.ok(!css.includes('.pa-compte-icone {'),'profil décoratif supprimé');
 assert.match(css,/background:var\(--couleur-fond\)/);
 assert.ok(!code.includes("portailStocker(PORTAIL_INVITE,'oui')"),'ne plus persister une admission invité');
 assert.match(html,/id="portail-auth"/);
-assert.match(html,/src="portail.js"/);
+assert.match(html,/src="portail.js\?v=pa-oeil-1"/);
 assert.ok(!read('public/accueil.js').includes('html += invitationCompteHtml()'));
 assert.ok(read('public/accueil.js').includes('ligneCompteHtml()'),'SPEC 67 : ligne de compte sous les niveaux');
 assert.ok(read('public/navigation.js').includes('portailRetourBienvenue()'));

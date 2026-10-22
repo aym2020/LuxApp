@@ -232,3 +232,10 @@ Correctifs annexes : le conteneur défilant `#pi-content` est réinitialisé sur
 ## Panneau Cours — maquette validée (21 octobre 2026)
 
 La référence pédagogique affichée pendant un exercice est désormais un panneau éditorial : titre en Instrument Serif, filtres d'unités et trois onglets visibles, et un pied fixe « Revenir à l'exercice ». Seul le contenu défile. Le fond brun et les gros encadrés verts/violets sont supprimés, au profit du fond noir, de séparateurs fins et de l'or réservé aux mots importants et à l'onglet actif. Les avertissements gardent un filet orange, les audios restent alignés à droite et les tableaux complexes ne sont pas aplatis. L'implémentation est strictement limitée à `#cours-panel`. Référence : [COURS-2.1.md](COURS-2.1.md) ; styles : `public/cours-v21.css` ; tests : `test/cours-v21.test.cjs`.
+
+
+## Portail de connexion — visibilité du mot de passe (22 octobre 2026)
+
+Les formulaires **Se connecter** et **Créer un compte** comportent un bouton œil à droite du champ « Mot de passe ». Il utilise les SVG au trait de LuxApp, une zone tactile minimale de **44 × 44 px**, les états accessibles `aria-label="Afficher le mot de passe" / "Masquer le mot de passe"` et `aria-pressed`. Le champ reste lié à son label et conserve ses attributs `autocomplete="current-password"` ou `new-password`, ses validations et le traitement d’authentification existant. L’action inverse repasse immédiatement à `type="password"` ; aucune valeur n’est stockée par le bouton.
+
+Sur mobile, `pointerdown.preventDefault()` empêche que le bouton prenne le focus au toucher ; le clavier du champ ne doit pas se refermer lorsqu'on révèle ou masque le mot de passe. Les essais clavier (Tab, Entrée, Espace) restent possibles grâce au vrai `button type="button"`. Scénarios à vérifier : champ vide, saisi, erreur de connexion, inscription, zoom 130 % / 200 %, Samsung clavier ouvert, tailles 320–430 px. L’ajout n’affecte pas le portail de recette protégé par Basic Auth (qui appartient au navigateur, pas à ce formulaire).
