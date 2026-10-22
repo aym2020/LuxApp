@@ -208,8 +208,8 @@ test('Passer : même pénalité qu’une faute, nouveau mot, série perdue et do
  ctx.getProgress=()=>({1:{vue:{ouverte:1}}});
  vm.runInContext('demarrerSurvie()',ctx);
  const prev=vm.runInContext('surviePartie.mot.mot',ctx);
- assert.match(element('survie-question').innerHTML,/onclick="surviePasser\(\)"/);
- assert.match(element('survie-question').innerHTML,/Passer <small>−3 s<\/small>/);
+ assert.match(element('survie-jeu').innerHTML,/onclick="surviePasser\(\)"/);
+ assert.match(element('survie-jeu').innerHTML,/Passer <small>−3 s<\/small>/);
  ctx.correct=vm.runInContext("(()=>{const p=surviePartie,u=new Set();return Array.from(p.mot.mot).map(c=>{const i=p.tuiles.findIndex((x,j)=>x===c&&!u.has(j));u.add(i);return i})})()",ctx);
  vm.runInContext('correct.forEach(survieLettre)',ctx);
  advance(700); // HUD animation terminée, prochaine question active
