@@ -367,6 +367,7 @@ function survieLettre(index) {
     if(record)record.textContent=survieRecord();
     if(info){info.className='survie-ok';info.textContent='Juste ! · '+p.gainTexte;}
   } else {
+    p.erreurs++;
     surviePenaliser(p);
     if(info){info.className='survie-ko';info.textContent='Pas encore · −3 secondes';}
   }
@@ -425,7 +426,7 @@ function demarrerSurvie() {
   const pool=surviePool();
   if(pool.length<SURVIE_MIN_MOTS){renderJeuxHub();return;}
   survieArreter();
-  surviePartie={pool,vus:new Set(),passes:0,precedent:null,tuiles:[],selection:[],serie:0,maxSerie:0,total:0,
+  surviePartie={pool,vus:new Set(),passes:0,erreurs:0,precedent:null,tuiles:[],selection:[],serie:0,maxSerie:0,total:0,
     restant:SURVIE_DUREE,dernier:null,actif:true,verrou:false,timer:null,mot:null,ecranPret:false,gainTexte:'',
     recordDepart:survieRecord(),finTimer:null,finEnCours:false,resultatsVisibles:false,scoreRaf:null};
   survieNouvelleQuestion();
@@ -493,77 +494,66 @@ function survieFinPasser() {
   const p=surviePartie;
   if(p && p.finEnCours)survieAfficherResultat(p,true);
 }
+// Résultat LuxApp 2.1 : trois états, un seul rendu conforme à la maquette validée.
 function survieAfficherResultat(p,sansAnimation=false) {
   if(surviePartie!==p||!p.finEnCours)return;
   p.finEnCours=false;
   p.resultatsVisibles=true;
-  if(p.finTimer!==null && typeof clearTimeout==='function')clearTimeout(p.finTimer);
+  if(p.finTimer!==null&&typeof clearTimeout==='function')clearTimeout(p.finTimer);
   p.finTimer=null;
-  survieFx('arreter'); // le Canvas est détruit UNIQUEMENT après le rideau
+  survieFx('arreter');
   const box=document.getElementById('survie-jeu');
   if(!box)return;
   const record=survieRecord(),nouveau=p.maxSerie>p.recordDepart;
-  const reduit=typeof window!=='undefined' && typeof window.matchMedia==='function' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const compteAnime=!sansAnimation&&!reduit&&typeof window!=='undefined'&&
-    typeof window.requestAnimationFrame==='function';
-  if(p.raisonFin==='reserve') {
-    const parfait=p.total===p.pool.length && p.passes===0;
-    const fraction=Math.max(0,Math.min(1,p.total/p.pool.length));
-    const decompte=346*(1-fraction);
-    const icone=parfait
-      ? '<svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="m15 33 12 12 23-24" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-      : '<svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M10 17c9-3 16-2 22 3 6-5 13-6 22-3v32c-9-3-16-2-22 3-6-5-13-6-22-3V17Zm22 3v32" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    box.className='survie-jeu survie-jeu-resultats survie-resultat-reserve'+(parfait?' survie-resultat-parfait':' survie-resultat-partiel');
-    box.innerHTML='<div class="survie-fin survie-fin-reserve">'+
-      '<div class="survie-fin-embleme">'+icone+'</div>'+
-      '<span class="survie-fin-etat">'+(parfait?'SANS-FAUTE':'RÉSERVE TERMINÉE')+'</span>'+
-      '<h1>'+(parfait?'Tous tes mots réussis<span>.</span>':'Tu as fait le tour<span>.</span>')+'</h1>'+
-      '<p class="survie-fin-intro">'+(parfait?'Tu as reconstruit tous les mots de ta réserve. Bien joué !':
-        'Tu as parcouru tous les mots disponibles. Certains méritent encore un essai.')+'</p>'+
-      '<div class="survie-fin-anneau" role="img" aria-label="'+p.total+' mots réussis sur '+p.pool.length+'">'+
-        '<svg viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="55" class="survie-fin-cercle-fond"/>'+
-          '<circle cx="70" cy="70" r="55" class="survie-fin-cercle-progres" style="stroke-dasharray:346;stroke-dashoffset:'+decompte+'"/></svg>'+
-        '<div class="survie-fin-anneau-chiffre"><strong id="survie-fin-score">'+p.total+'<small> / '+p.pool.length+'</small></strong>'+
-          '<span>MOTS RÉUSSIS</span></div></div>'+
-      '<p class="survie-fin-bilan">'+(parfait?'Aucun mot passé':p.passes+' mot'+(p.passes>1?'s':'')+' passé'+(p.passes>1?'s':''))+'</p>'+
-      (nouveau?'<p class="survie-fin-record">✦ Nouveau record !</p>':'')+
-      '<div class="survie-fin-stats"><div><strong>'+p.maxSerie+'</strong><span>Meilleure série</span></div>'+
-        '<div><strong>'+record+'</strong><span>Record personnel</span></div></div>'+
-      '<div class="survie-fin-suite"><strong>'+(parfait?'Prêt à aller plus loin ?':'Tu peux améliorer ta série.')+'</strong>'+
-        '<p>'+(parfait?'Découvre de nouvelles leçons et termine leurs missions pour gagner des mots et dépasser ton record.':
-          'Rejoue les mêmes mots, ou découvre de nouvelles leçons et leurs missions pour agrandir ta réserve.')+'</p></div>'+
-      '<button type="button" class="jeux-jouer" onclick="'+(parfait?'goLessons()':'demarrerSurvie()')+'">'+
-        (parfait?'Continuer mon chemin':'Rejouer Survie')+' <span aria-hidden="true">→</span></button>'+
-      '<button type="button" class="survie-fin-retour" onclick="'+(parfait?'quitterSurvie()':'goLessons()')+'">'+
-        (parfait?'Retour aux Jeux':'Continuer mon chemin')+'</button></div>';
-    return;
-  }
-  box.className='survie-jeu survie-jeu-resultats';
-  box.innerHTML='<div class="survie-fin">'+
-    '<span class="survie-fin-etat survie-fin-etat-temps">TEMPS ÉCOULÉ</span>'+
-    '<span class="jeux-kicker">FIN DE PARTIE</span>'+
-    '<h1>'+(p.total?'Belle tentative<span>.</span>':'Encore une partie<span> ?</span>')+'</h1>'+
-    '<div class="survie-fin-score" id="survie-fin-score" aria-label="Meilleure série : '+p.maxSerie+'">'+
-      (compteAnime?0:p.maxSerie)+'</div>'+
-    '<p class="survie-fin-score-libelle">Meilleure série de cette partie</p>'+
-    (nouveau?'<p class="survie-fin-record">✦ Nouveau record !</p>':'')+
-    '<div class="survie-fin-stats"><div><strong>'+p.total+'</strong><span>Mots trouvés</span></div>'+
-    '<div><strong>'+record+'</strong><span>Record personnel</span></div></div>'+
-    '<button type="button" class="jeux-jouer" onclick="demarrerSurvie()">Rejouer Survie →</button>'+
-    '<button type="button" class="survie-fin-retour" onclick="quitterSurvie()">Retour aux Jeux</button></div>';
-  // Animation de score à durée bornée, facultative et sans mise à jour du stockage.
-  if(!compteAnime||!p.maxSerie)return;
-  const cible=document.getElementById('survie-fin-score'),debut=performance.now();
-  function incrementer(t){
-    if(surviePartie!==p||!p.resultatsVisibles)return;
-    const r=Math.max(0,Math.min(1,(t-debut)/460));
-    const valeur=Math.min(p.maxSerie,Math.round(p.maxSerie*(1-Math.pow(1-r,3))));
-    if(cible)cible.textContent=valeur;
-    if(r<1)p.scoreRaf=window.requestAnimationFrame(incrementer);
-    else p.scoreRaf=null;
-  }
-  p.scoreRaf=window.requestAnimationFrame(incrementer);
+  const n=p.pool.length,correct=p.total,passes=p.passes||0,erreurs=p.erreurs||0;
+  const reserve=p.raisonFin==='reserve';
+  const parfait=reserve&&correct===n&&passes===0&&erreurs===0;
+  const restants=Math.max(0,n-p.vus.size);
+  const statut=parfait?'SANS-FAUTE':reserve?'RÉSERVE TERMINÉE':'TEMPS ÉCOULÉ';
+  const titre=parfait?'Tous tes mots réussis':reserve?'Tu as fait le tour':'Le temps est écoulé';
+  const intro=parfait?'Tu as réussi toute ta réserve. Bien joué !':
+    reserve?'Tous les mots ont été parcourus. Certains restent à réussir.':
+    'Le chrono a terminé la partie avant toi.';
+  const detail=parfait?'Aucun mot passé':reserve?
+    ([passes?passes+' mot'+(passes>1?'s':'')+' passé'+(passes>1?'s':''):null,
+      erreurs?erreurs+' erreur'+(erreurs>1?'s':'')+' avant correction':null]
+      .filter(Boolean).join(' · ')||'Tous les mots reconstruits'):
+    restants+' mot'+(restants>1?'s':'')+' non parcouru'+(restants>1?'s':'');
+  const conseil=parfait?'Pour battre ton record, découvre de nouveaux mots dans les prochaines leçons.':
+    reserve?'Rejoue pour réussir les mots passés et améliorer ta série.':
+    'Essaie à nouveau de parcourir davantage de mots avant la fin du chrono.';
+  const action=parfait?'Continuer mon chemin':'Rejouer Survie';
+  const secondaire=reserve&&!parfait?'Continuer mon chemin':'Retour aux Jeux';
+  const func1=parfait?'goLessons()':'demarrerSurvie()';
+  const func2=reserve&&!parfait?'goLessons()':'quitterSurvie()';
+  const fraction=n?Math.max(0,Math.min(1,correct/n)):0;
+  const cercle=(383.3*(1-fraction)).toFixed(2);
+  const icone=parfait?'<path d="m11 24 9 9 18-19"/>':
+    reserve?'<path d="M24 12c-7-4-13-4-19-2v27c7-2 13-2 19 2 6-4 12-4 19-2V10c-6-2-12-2-19 2Zm0 0v27"/>':
+    '<circle cx="24" cy="24" r="17"/><path d="M24 14v11l8 5"/>';
+  const fleche='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg>';
+  const retour='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 5-7 7 7 7M7 12h13"/></svg>';
+  box.className='survie-jeu survie-jeu-resultats '+(parfait?'survie-resultat-parfait':reserve?'survie-resultat-partiel':'survie-resultat-temps');
+  box.innerHTML='<div class="survie-resultat-entete">'+
+    '<button type="button" class="survie-resultat-retour" onclick="quitterSurvie()">'+retour+' Jeux</button><span>MODE SURVIE</span></div>'+
+    '<div class="survie-resultat-scroll" tabindex="0" aria-label="Détails du résultat">'+
+    '<main class="survie-fin">'+
+      '<div class="survie-fin-embleme" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round">'+icone+'</svg></div>'+
+      '<span class="survie-fin-etat">'+statut+'</span>'+
+      '<h1>'+titre+'<span>.</span></h1>'+
+      '<p class="survie-fin-intro">'+intro+'</p>'+
+      '<div class="survie-fin-score-zone"><div class="survie-fin-anneau" role="img" aria-label="'+correct+' mots réussis sur '+n+'">'+
+        '<svg viewBox="0 0 150 150" aria-hidden="true"><circle cx="75" cy="75" r="61" class="survie-fin-cercle-fond"/>'+
+        '<circle cx="75" cy="75" r="61" class="survie-fin-cercle-progres" style="stroke-dasharray:383.3;stroke-dashoffset:'+cercle+'"/></svg>'+
+        '<div class="survie-fin-anneau-chiffre"><strong id="survie-fin-score"'+(String(correct).length>3?' class="survie-score-long"':'')+'>'+correct+'</strong><span>SUR '+n+'</span></div></div>'+
+        '<span class="survie-fin-score-libelle">MOTS RÉUSSIS</span><p class="survie-fin-bilan">'+detail+'</p></div>'+
+      (nouveau?'<p class="survie-fin-record"><span aria-hidden="true">✦</span> Nouveau record !</p>':'')+
+      '<div class="survie-fin-stats"><div><span>Meilleure série</span><strong>'+p.maxSerie+'</strong></div>'+
+        '<div><span>Record personnel</span><strong>'+record+'</strong></div></div>'+
+      '<p class="survie-fin-suite">'+conseil+'</p>'+
+    '</main></div>'+
+    '<div class="survie-resultat-actions"><button type="button" class="jeux-jouer" onclick="'+func1+'">'+action+' '+fleche+'</button>'+
+      '<button type="button" class="survie-fin-retour" onclick="'+func2+'">'+secondaire+'</button></div>';
 }
 
 // Sur ordinateur, Entrée active l'action principale du hub ou du résultat.

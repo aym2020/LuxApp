@@ -82,3 +82,12 @@ Les tests VFX supprimés ciblaient la fonctionnalité retirée. La recette smart
 - Si certains mots ont été passés : fin **Réserve terminée** neutre, ratio des mots réussis (jamais confondu avec le nombre simplement parcouru), nombre de mots passés, CTA principal **Rejouer Survie**. Pas de coche ni de célébration verte.
 - Fin du chrono avant épuisement : conserver la transition existante « TEMPS ÉCOULÉ », le score de série et les CTA de rejouer. Les scores locaux/les données pédagogiques ne sont pas modifiés hors règles de fin de Survie.
 - Recette sous `RECETTE=1` uniquement : panneau **Outils de test → Fin de Survie** avec trois scénarios directs, sans jouer ni cloud. Voir `docs/RECETTE.md`. Tests dédiés dans `test/jeux-v21.test.cjs`.
+
+
+## UI de résultat — maquette validée (22 octobre 2026)
+
+Composition des **trois états** identique : en-tête « Jeux / MODE SURVIE » (50px), zone centrale défilante, bandeau d'actions fixe dans le flux flex en bas (CTA or 54px, lien secondaire 44px, safe-area). Les chiffres sont sur deux lignes **dans** un anneau SVG 145px : nombre de mots réussis en grand, « SUR N » en dessous, « MOTS RÉUSSIS » sous le cercle. Les statistiques (meilleure série, record personnel) sont compactes sur une seule ligne, sans deux cartes volumineuses. Texte de suite court. Aucun impact sur les tuiles et le HUD du jeu.
+
+Sans-faute = tous les mots réussis, **zéro erreur et zéro mot passé** (coche et vert `--couleur-reussi`). Réserve terminée autrement = livre et tons neutres ; les fautes corrigées sont signalées, sans fausse coche. Temps écoulé = horloge et tons neutres, mêmes boutons et présentation, rideau de 2,2 secondes conservé. Le score principal est le total de mots réussis, indépendamment de la meilleure série. Le record de la partie reste inchangé et isolé par profil.
+
+Recette `RECETTE=1` et tests Chromium à 320/360/390/430 px : le CTA et l'action secondaire ne doivent jamais être repoussés sous l'écran ; uniquement le centre est défilant. Vérifier le retour Android, les contrastes et les textes à 130/200 %, puis comparer sur Samsung réel.

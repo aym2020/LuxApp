@@ -74,3 +74,8 @@ Sur une **instance de recette séparée** démarrée avec la branche `2.1`, `REC
 Le décompte dépend du vocabulaire réel de la leçon sélectionnée, pas de mots fictifs. La leçon 1 fournit 5 mots jouables (Moien, Madamm, Här, Schlecht, Äddi). Tester le titre, le vert réservé au sans-faute, le ratio des mots réussis, la série et le record, la présence de « Rejouer » seulement comme action principale si la réserve est incomplètement réussie ou que le temps manque, les boutons « Continuer mon chemin » / « Retour aux Jeux », le Retour Android et les largeurs 320/360/390/430 px ainsi que le bureau.
 
 **Isolation :** ce contrôle est absent du service normal. Les scores de recette restent dans le stockage local de l'origine protégée, Firebase est désactivé. **Quitter le test** efface ces scores fictifs. Pour le rendu, la recette utilise `survieAfficherResultat` du vrai jeu et non une maquette HTML parallèle. Tester aussi manuellement l'arrêt après dernier mot : cette recette vérifie l'écran final, les tests Node vérifient l'enchaînement réel des mots.
+
+
+### Résultats Survie — maquette finale
+
+Utiliser **Fin de Survie** dans le mode recette sécurisé. Vérifier les trois états et le bandeau inférieur : le CTA jaune « Continuer mon chemin » ou « Rejouer Survie » doit rester visible sans faire défiler le résultat. Le centre peut défiler indépendamment. L'anneau affiche un nombre et « SUR N » sur deux lignes sans chevauchement. Les séries et records sont affichés en colonnes compactes. Le vert indique exclusivement un vrai sans-faute ; le temps écoulé et une réserve avec passés ou erreurs restent neutres.
