@@ -90,3 +90,10 @@ Après une erreur, seul un bandeau bref apparaît au-dessus du score : « Pas en
 **Contrôles :** CSS exercices-v21.css?v=10, JS parcours.js?v=6. Tester 0/1/2/3 erreurs, modal et Escape, indice payant inchangé, bilan final, largeur 320/360/390/430, aucune barre de défilement initiale et footer intégralement visible ; recette sur Samsung avant de cocher le P0.
 
 Le compteur pré-validation précise désormais automatiquement le nombre d'indices payants : « sans indice », « 1 indice » ou « N indices » ; le pourcentage n'a pas changé. Dernière version du moteur : parcours.js?v=7 (anti-cache).
+
+
+## 23 octobre 2026 — Stabilité géométrique des lettres et feedback (correctif P0)
+
+Retour Samsung après la maquette v10 : l'apparition du rouge déplaçait encore les cases et les lettres, et la légende des aides vertes/jaunes était invisible avant la première erreur. En **reconstruction uniquement**, le bandeau `#mc-erreur` dispose désormais d'un emplacement fixe de 80 px dès l'état initial (masqué visuellement, sans retirer sa place), et la grille de tuiles conserve la hauteur relevée au chargement du mot quand des lettres se figent en vert. La légende est visible **dès le départ**. Les cases, la grille, le pied et le bouton Valider ne doivent plus bouger lorsque le bandeau rouge apparaît. Les aides complètes restent dans le dialogue existant ; aucun changement d'essai, score, donnée ou audio. Version d'assets : `exercices-v21.css?v=11`, `parcours.js?v=8`.
+
+**Recette :** comparer au pixel près les coordonnées des cases, des tuiles et du pied entre départ et trois essais ratés, vérifier la légende dès l'ouverture, l'aide/dialogue et la fin réussie. Formats 320×700, 360×740, 390×844, 430×932. Des mots très longs peuvent nécessiter un scroll central, mais **aucun scroll inutile au démarrage** pour les mots ordinaires. Tester sur Samsung avant de clôturer P0-01.

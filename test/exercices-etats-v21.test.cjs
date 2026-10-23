@@ -182,5 +182,5 @@ test('Mot caché : le son de lettre est réutilisé sans nouvel asset ni dépend
   assert.match(vfx,/function lettre\(position\)/);
   assert.match(vfx,/localStorage\.getItem\(cleSon\(\)\) !== '0'/);
   assert.match(html,/src="survie-vfx\.js\?v=2"[\s\S]*src="jeux-v21\.js\?v=12"/);
-  assert.match(html,/src="parcours\.js\?v=7"/);
+  assert.match(html,/src="parcours\.js\?v=8"/);
 });

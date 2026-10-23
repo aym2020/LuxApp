@@ -1085,7 +1085,7 @@ function renderReconstruction() {
       '<textarea id="mc-input" class="mc-input" rows="1" inputmode="none" aria-label="Ta réponse en luxembourgeois"' +
         ' enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
     '</div>' +
-    '<div class="mc-legende hidden" id="mc-legende">' +
+    '<div class="mc-legende" id="mc-legende">' +
       '<span><i class="mc-dot vert"></i>bien placée · gratuit</span>' +
       '<span><i class="mc-dot indice"></i>indice · coûte des points</span>' +
     '</div>' +
@@ -1125,6 +1125,11 @@ function renderReconstruction() {
   input.addEventListener('focus', mcMajFocus);
   input.addEventListener('blur', mcMajFocus);
   renderCases();
+  // Garder l'emplacement maximal des tuiles de ce mot : quand une erreur
+  // fige des lettres en vert, les lignes restantes ne doivent pas déplacer
+  // les cases ni la première rangée de tuiles.
+  const banque = document.getElementById('mc-lettres');
+  if (banque) banque.style.minHeight = Math.ceil(banque.getBoundingClientRect().height) + 'px';
   focusSiClavierPhysique(input); // ordinateur : on peut taper les lettres
   mcMajFocus();
 }

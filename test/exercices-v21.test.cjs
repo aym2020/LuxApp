@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'), css=read('exercices-v21.css');
 const app=read('app.js'), parcours=read('parcours.js');
 test('couleurs et UI partagées seulement entre les deux vues d’exercices',()=>{
-  assert.match(html,/href="exercices-v21\.css\?v=10"/);
+  assert.match(html,/href="exercices-v21\.css\?v=11"/);
   assert.match(css,/#view-session \.question-card/);
   assert.match(css,/#view-parcours #pc-choix\.pc-choix-grille/);
   assert.doesNotMatch(css,/#view-dashboard|#view-lessons|#view-examen\b/);
@@ -70,5 +70,5 @@ test('Mot caché : bandeau court, bottom sheet et touches visibles',()=>{
  assert.match(s,/\.mc-saisie \{flex:none;min-width:0;background:var\(--bg\)/);
  assert.match(s,/\.mc-aide-dialog\[open\] \{display:flex;flex-direction:column/);
  assert.match(s,/\.pc-body\.glisse \{animation:none\}/);
- assert.match(html,/src="parcours\.js\?v=7"/);
+ assert.match(html,/src="parcours\.js\?v=8"/);
 });

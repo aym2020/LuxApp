@@ -35,7 +35,11 @@ METRICS="""() => {
  errorTop:er.top,errorBottom:er.bottom,errorHeight:er.height,limit,
  overflowX:Math.max(...els.map(el=>el.scrollWidth-el.clientWidth)),
  debugX:els.map(el=>({node:el.tagName,cls:String(el.className).slice(0,60),dx:el.scrollWidth-el.clientWidth})),
- overflowY:middle.scrollHeight-middle.clientHeight,bodyScroll:scrollY};
+ overflowY:middle.scrollHeight-middle.clientHeight,bodyScroll:scrollY,
+ casesTop:r(document.querySelector('#mc-cases')).top,tilesTop:r(document.querySelector('#mc-lettres')).top,
+ legendShown:getComputedStyle(document.querySelector('#mc-legende')).display!=='none',
+ tileHeight:r(document.querySelector('#mc-lettres')).height,
+ footerTop:r(document.querySelector('.mc-saisie')).top};
 }"""
 def check(page,size,scenario,after):
  x=page.evaluate(METRICS)
@@ -43,6 +47,8 @@ def check(page,size,scenario,after):
  assert abs(x['bodyScroll'])<=1,(size,scenario,'window scroll',x)
  assert x['top']>=-1 and x['bottom']<=x['limit']-1,(size,scenario,'Valider',x)
  assert x['height']>=48,(size,scenario,x)
+ assert x['legendShown'],(size,scenario,'legend not visible',x)
+ assert x['errorHeight']>=79,(size,scenario,'error slot not reserved',x)
  if after:
   assert not x['errorHidden'] and x['errorHeight']>=45,(size,scenario,'error hidden',x)
   assert x['errorTop']>=-1 and x['errorBottom']<=x['limit']-1,(size,scenario,'red clipped',x)
@@ -63,13 +69,15 @@ with sync_playwright() as p:
    page.goto(URL,wait_until='domcontentloaded')
    page.locator('#today').wait_for(timeout=15000)
    page.evaluate(INIT);page.wait_for_timeout(240)
-   check(page,(w,h),'avant réponse',False)
+   baseline=check(page,(w,h),'avant réponse',False)
    assert not page.locator('#mc-aide-dialog').evaluate('el=>el.open'),(w,h,'dialog visible initially')
    page.screenshot(path=str(OUT/f'{w}x{h}-depart.png'))
    for n in (1,2,3):
     assert page.evaluate(BAD)==n,(w,h,n)
     page.wait_for_timeout(80)
-    check(page,(w,h),f'erreur {n}',True)
+    current=check(page,(w,h),f'erreur {n}',True)
+    for key in ('casesTop','tilesTop','footerTop','tileHeight'):
+     assert abs(current[key]-baseline[key])<=2,(w,h,n,key,baseline[key],current[key])
     assert page.locator('.mc-aide-ouvrir').is_visible(),(w,h,'help link')
     before=page.evaluate('mc.indices')
     page.locator('.mc-aide-ouvrir').click()
@@ -85,6 +93,6 @@ with sync_playwright() as p:
     page.locator('.mc-milieu').evaluate('el=>el.scrollTop=el.scrollHeight')
     check(page,(w,h),f'erreur {n}, après scroll',True)
    assert not errors,(w,h,errors)
-   print(f'OK {w}x{h}: sans scroll initial, erreur visible et Valider après 3 erreurs',flush=True)
+   print(f'OK {w}x{h}: legende visible, cases/tuiles fixes 0-3 erreurs et Valider accessible',flush=True)
    ctx.close()
  finally:browser.close()
