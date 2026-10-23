@@ -2,10 +2,10 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 10 captures d'écran Android fournies dans la conversation ; fichiers source 54135.jpg à 54153.jpg, par ordre chronologique  
+**Corpus :** 20 captures d'écran Android fournies en deux séries ; fichiers 54135.jpg à 54173.jpg (noms impairs successifs). La première série est documentée aux sections 1–10 et annexes A–F ; la deuxième aux annexes G–J.  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, AGENTS.md, charte UI 2.1, design tokens et frontend de 2.1 consultés  
-**Périmètre :** écrans d'accueil et d'inscription/personnalisation observés uniquement. Ni la phase d'apprentissage ni le fonctionnement du backend ne sont visibles.
+**Périmètre :** accueil, onboarding/personnalisation, création apparente du parcours, bénéfices projetés et offre premium observés uniquement. Ni les exercices complets ni l'implémentation/backend ne sont visibles.
 
 ## 0. Convention de preuve
 
@@ -1348,3 +1348,513 @@ Toutes les images sont fournies par l'utilisateur dans la conversation du 23 oct
 - accessibilité réelle et performances de l'application.
 
 **Statut final de ce document : ARCHIVE DE RÉFÉRENCE UI/UX ENRICHIE sur la branche 2.1, sans modification de code, de design tokens, de jeux ou de contenu pédagogique.**
+
+
+---
+
+# ANNEXE G — Deuxième série : dix captures supplémentaires, du choix des priorités à l'essai premium
+
+**Ajout du 23/10/2026, branche 2.1.** Cette annexe prolonge **le même benchmark** : l'ancien corpus 54135–54153 représente les écrans 01–10 ; les dix images 54155–54173 constituent les **écrans/états photographiés 11–20**. Le total du dossier devient **20 captures**. Aucun code de l'application étudiée n'est accessible ; seuls les éléments visuels, textes et enchaînements peuvent être décrits avec certitude.
+
+**Convention complémentaire :** [OBSERVÉ] = visible dans les nouvelles captures ; [MESURÉ] = échantillon effectivement lu dans les fichiers JPG de 709×1536 pixels ; [HYPOTHÈSE] = fonction ou mécanisme possible mais non démontré. Les dimensions dans les tableaux sont des positions en pixels **du JPEG**, pas des dimensions CSS ou dp Android. Lorsque des captures montrent le même jalon, elles peuvent être des états successifs d'un seul écran et non des pages différentes.
+
+## G.1 — Tableau d'inventaire et continuité de la séquence
+
+| Image | Réf. | Repère actif à y≈95 (sur 14) | Élément principal | Bouton(s) visible(s) | Nature de la capture |
+|---|---|---|---|---|---|
+| 54155.jpg | 11 | 9/14 | « Quelles sont tes priorités ? » : choix d'objectifs | « Continuer » | Questionnaire, sélection cochée |
+| 54157.jpg | 12 | 9/14 | « C'est toi, ça ? » : je relis mon message | Grandes réponses « Non » / « Oui » | Première affirmation autoévaluative |
+| 54159.jpg | 13 | 9/14 | « C'est toi, ça ? » : une faute dans un e-mail professionnel | « Non » / « Oui » | Deuxième affirmation, même jalon |
+| 54161.jpg | 14 | 10/14 | « Comment as-tu connu Français sans Fautes ? » | Options de canal + « Continuer » gris | Attribution marketing / acquisition |
+| 54163.jpg | 15 | 12/14 | Logos universitaires, « Création de ton parcours », 100 %, témoignage | « Voir mes résultats » | Écran de préparation / réassurance |
+| 54165.jpg | 16 | 12/14 | « Tes futurs résultats », première promesse | « Continuer » | État 1 de la timeline |
+| 54167.jpg | 17 | 12/14 | Même titre ; deuxième promesse apparue | « Continuer » | État 2 de la même timeline |
+| 54169.jpg | 18 | 12/14 | Même titre ; troisième promesse partiellement visible | « Voir le parcours » | État 3 / zone basse tronquée |
+| 54171.jpg | 19 | 12/14 | Timeline défilée : troisième promesse lisible | « Voir le parcours » | Autre position de défilement |
+| 54173.jpg | 20 | 13/14 | Mascotte avec cadeau, « 7 jours offerts » | « J'en profite » | Offre d'essai premium |
+
+**Fait structurel nouveau :** sur toutes ces captures, le compteur possède **14 repères** à y≈95. Cela confirme que le passage de 13 à 14 constaté à partir de 54153 n'était pas limité à une seule image. **L'origine de ce changement reste inconnue** : il peut être lié à une variante de parcours, un défaut du stepper ou une répartition différente des étapes.
+
+**Autre fait important :** le 11e jalon n'est **pas** représenté dans cette nouvelle série (on passe du 10e actif à l'écran 54161 au 12e actif dans 54163). De même, aucune preuve ne relie chaque page visuelle à un jalon unique. **Ne pas inventer la page manquante ni les étapes réelles non filmées.**
+
+## G.2 — Capture 11 (54155.jpg) : priorités et choix d'objectifs
+
+### Textes relevés [OBSERVÉ]
+
+- En haut, flèche Retour turquoise et **14 indicateurs** ; le **9e** prend la forme d'une pilule allongée.
+- Grand titre sur deux lignes, centré et gras : **« Quelles sont tes priorités ? »**
+- Sous-titre sur deux lignes : **« On va personnaliser ton expérience. »**
+- Trois grandes cartes **avec libellé à gauche et contrôle circulaire à droite** :
+  - **« Écrire sans fautes »**, sélectionnée ; fond vert, petite pastille blanche à droite contenant une coche verte.
+  - **« M'exprimer plus clairement »**, inactive ; fond bleu-gris, cercle vide à droite, texte sur deux lignes.
+  - **« Enrichir mon vocabulaire »**, inactive ; même style, texte sur deux lignes.
+- Gros bouton vert inférieur **« Continuer »**.
+
+### Mesures et composition
+
+| Élément | Estimation sur 709×1536 |
+|---|---|
+| Titre | x≈140–573, y≈195–321 |
+| Sous-titre | x≈155–559, y≈355–435 |
+| Première carte verte | x≈63–646, y≈499–625 (hauteur ~126) |
+| Deuxième carte | x≈63–646, y≈649–833 (hauteur ~184) |
+| Troisième carte | x≈63–646, y≈858–1043 (hauteur ~185) |
+| CTA | x≈86–623, y≈1287–1390 |
+
+- Les cartes **n'ont pas toutes la même hauteur** : la première tient sur une ligne, les deux autres sur deux ; la zone de contrôle circulaire reste alignée verticalement au milieu de chaque carte.
+- Le bord droit des cartes apparaît légèrement **coupé** autour de x≈646 (portion plate verticale dans cette capture), contrairement aux rectangles parfaitement arrondis de l'écran âge. À auditer comme effet de **conteneur, clipping, padding ou masquage**, pas comme propriété CSS certaine.
+- La sélection dispose ici de **deux indices visibles** (fond vert + coche) : elle est plus accessible que les cartes vertes sans coche des premiers écrans.
+- L'espacement vertical avant le CTA est très grand, et l'option 3 ne risque pas de toucher le pied de page dans la capture affichée.
+- La question est au pluriel (« priorités ») et utilise des **cases cochées** plutôt que des radios classiques. **[HYPOTHÈSE]** Il pourrait s'agir d'une **sélection multiple** ; la capture ne montre qu'**une** option choisie et ne prouve pas que deux peuvent l'être simultanément.
+- L'utilisateur n'entre pas de texte libre : la personnalisation conserve un coût d'interaction très faible.
+
+### Fonction UX
+
+Cet écran passe d'une information descriptive (« quel âge as-tu / pourquoi es-tu ici ? ») à une intention d'apprentissage **opérationnelle** : orthographe, expression, lexique. Pour LuxApp, le parallèle possible serait de distinguer **prononciation/compréhension orale**, **vocabulaire du quotidien**, **grammaire/écriture**, **Sproochentest**, sans créer des objectifs qui n'influencent jamais le parcours. Il s'agit d'une transposition analytique, non d'un choix d'implémentation.
+
+## G.3 — Captures 12 et 13 (54157.jpg / 54159.jpg) : auto-identification par phrases, réponses binaires
+
+### Structure visuelle commune [OBSERVÉ]
+
+- Même 9e jalon actif sur 14 : les deux propositions restent dans **le même grand segment de personnalisation** que l'écran des priorités.
+- Grand titre **« C'est toi, ça ? »**, centré, gras, ponctuation familière.
+- Consigne au-dessous : **« Lis cette phrase et dis-nous si tu te reconnais. »**
+- Grande carte bleue centrée, texte entre guillemets français **« … »**, affiché en **italique** et sur trois lignes.
+- **Deux grands pavés bleus carrés/rectangulaires** dans la partie basse, disposés côte à côte :
+  - À gauche : une **croix orange** (dessin X) puis **« Non »** en blanc gras.
+  - À droite : une **coche verte** puis **« Oui »** en blanc gras.
+- Contrairement aux écrans précédents, **aucun troisième bouton « Continuer »** n'est visible. Les deux pavés semblent constituer les actions principales, avec choix immédiat probable.
+- Il n'y a **aucun état sélectionné ou corrigé** visible ; les icônes colorées signifient les réponses, pas la réussite/erreur à un exercice.
+
+### Textes exacts de chaque affirmation
+
+**54157 — Affirmation 1 :**
+
+> « Je relis mon message plusieurs fois avant d'appuyer sur Envoyer. »
+
+**54159 — Affirmation 2 :**
+
+> « Une faute dans un email pro me reste en tête toute la journée. »
+
+Important : la deuxième formulation écrit bien **« email pro »** (pas « e-mail professionnel »), et la première capitalise **« Envoyer »** ; conserver ce vocabulaire lors de la transcription.
+
+### Géométrie observable
+
+| Élément | Rectangle approximatif commun |
+|---|---|
+| Titre | x≈176–544, y≈193–250 |
+| Consigne | x≈88–617, y≈279–352 |
+| Carte de citation | x≈79–630, y≈417–682 (~551×265) |
+| Pavé gauche | x≈79–339, y≈1153–1412 (~260×259) |
+| Pavé droit | x≈370–630, y≈1153–1412 (~260×259) |
+| Espace entre pavés | ≈31 px |
+| Bord inférieur de l'app avant navigation | ≈1415–1468 |
+
+- La carte citation ne comporte ni titre interne, ni icône, ni bordure forte, ni auteur : l'affirmation est **l'unique contenu**.
+- Typographie centrale : texte grand, italique, guillemets français typographiques, interligne généreux ; la première citation commence par « Je » et interpelle la **reconnaissance de soi**.
+- Les boutons « Oui/Non » ont une **proportion presque carrée**, contrairement aux choix âge/motivation très larges et horizontaux.
+- Le symbole en haut du pavé et son label en bas sont **séparés verticalement**, rendant le choix lisible au regard comme au pouce.
+- Les icônes ont des couleurs chaudes/froides fortement distinctes de la surface bleue commune. La croix orange ne signifie pas une « mauvaise réponse » : ici, les deux réponses sont a priori légitimes.
+- Le centre de l'écran reste très vide entre citation et pavés ; cela fait de la réflexion et de l'autoévaluation la tâche centrale.
+- Sur 54159, l'aspect intérieur de la carte autour des lettres est légèrement différent par compression/éclairage JPEG ; aucune raison de conclure à une autre couleur d'état.
+
+### Fonction et mécanisme psychologique [HYPOTHÈSE]
+
+Les deux phrases portent sur une **appréhension sociale de l'erreur** : multiplier les vérifications avant d'envoyer, puis ruminer une faute en contexte professionnel. La technique est celle d'une affirmation concrète et familière plutôt que d'une question abstraite (« Es-tu anxieux face à l'écrit ? »). Cette reconnaissance peut servir à personnaliser le discours de l'application, mais **rien ne prouve** qu'elle modifie les contenus ou qu'elle réalise un test psychométrique.
+
+**À vérifier :** progression au tap Oui/Non, persistance d'une réponse si retour, possibilité de changer, ordre des affirmations, nombre total, éventuelle adaptation au métier, neutralité de l'expérience si l'utilisateur répond Non à tout, présence d'une sauvegarde.
+
+## G.4 — Capture 14 (54161.jpg) : provenance de l'acquisition
+
+### Contenu exact [OBSERVÉ]
+
+Titre centré sur deux lignes :
+**« Comment as-tu connu Français sans Fautes ? »**
+
+Options visibles :
+
+1. **Recherche Google**
+2. **En cherchant sur le Play Store** — sur **deux lignes**.
+3. **Instagram**
+4. **Facebook**
+5. **TikTok**
+6. **YouTube**
+7. Une **option supplémentaire partiellement visible** tout en bas de la zone défilante ; impossible de lire son libellé.
+
+Un **bouton « Continuer » gris clair (#A6A6A6 dans un échantillon)** est présent dans une bande de bas d'écran. Son aspect est celui d'un **état désactivé**, sans preuve de l'attribut HTML disabled. Aucune option des six visibles n'est mise en surbrillance sur cette capture.
+
+### Composants et géométrie
+
+| Élément | Rectangle apparent |
+|---|---|
+| Retour + étape 10/14 | y≈83–107 |
+| Titre | x≈91–618, y≈167–290 |
+| Google | x≈59–650, y≈358–468 |
+| Play Store | x≈59–650, y≈492–661, ~169 px car deux lignes |
+| Instagram | x≈59–650, y≈686–795 |
+| Facebook | x≈59–650, y≈819–928 |
+| TikTok | x≈59–650, y≈953–1063 |
+| YouTube | x≈59–650, y≈1087–1196 |
+| Carte suivante, bord haut seulement | vers y≈1222–1235 |
+| Bande de pied masquant la suite | à partir d'environ y≈1235 |
+| CTA gris | x≈64–646, y≈1279–1375 |
+
+**Détails du système :**
+- Le formulaire mélange des canaux **organique web**, **store Android**, et **réseaux sociaux** au sein d'un seul groupe.
+- Les cartes sont identiques aux sélections classiques et s'allongent pour les labels plus longs.
+- Le bouton gris est placé **hors du scroll des options** visuellement, comme une zone fixe de validation ; l'implémentation exacte reste inconnue.
+- L'option partielle montre qu'il y a **plus de réponses que l'espace visible**. Sans scroll correct ou avec un bouton qui masque le contenu, un utilisateur pourrait ne jamais voir toutes les options.
+- **[HYPOTHÈSE]** « Continuer » deviendrait vert après sélection ; on ne voit pas cette transition.
+- Cette information relève de la **mesure d'acquisition marketing**, pas du niveau linguistique ni d'une compétence pédagogique. Elle illustre qu'un tunnel peut intégrer de l'analytics sans l'annoncer comme tel. Pour LuxApp, imposer cette question avant la première leçon serait une friction supplémentaire à justifier.
+
+## G.5 — Capture 15 (54163.jpg) : préparation du parcours, caution sociale, témoignage
+
+### Découpage en trois preuves de réassurance [OBSERVÉ]
+
+**Bloc 1 — Établissements mis en avant :**
+- Texte uppercase et espacé : **« ILS L'UTILISENT AUSSI : »**.
+- Une grande carte **blanche**, aux coins très arrondis, contrastant fortement avec le fond sombre.
+- Trois logos, horizontalement alignés : **Sorbonne Université**, **ETH Zürich**, **University of Toronto**.
+- Leur présence est une **affirmation promotionnelle de l'application**. Les captures ne démontrent **aucun partenariat, aucune licence, aucune validation par ces institutions**, ni la nature exacte de leur utilisation.
+
+**Bloc 2 — Simulation de préparation :**
+- Gros titre blanc **« Création de ton parcours »**, sur **deux lignes**.
+- Étiquette **« 100% »** alignée vers l'extrémité droite d'une barre horizontale.
+- Barre de remplissage **turquoise clair** presque pleine largeur, avec extrémités arrondies, autour de y≈777–792.
+- **[OBSERVÉ]** On voit seulement l'état **100 % terminé**.
+- **[INCONNU]** Aucun calcul de programme réellement personnalisé, durée de chargement, génération de leçons, progression de 0 à 100 %, appel réseau ou animation n'est visible sur une photo statique.
+
+**Bloc 3 — Témoignage :**
+- Carte bleu-gris arrondie en bas de page, dont le contenu est **partiellement caché** sous la zone du bouton.
+- Cinq étoiles orange/jaune alignées **★★★★★**.
+- Citation italique : **« J'adore les exercices, c'est comme un jeu ! Je redécouvre des règles que j'avais oubliées depuis l'école. »**
+- Signature turquoise pâle : **« François, retraité passionné »**.
+- Bouton vert à l'avant-plan : **« Voir mes résultats »**.
+
+### Relevé spatial
+
+| Élément | Position raster estimée |
+|---|---|
+| « ILS L'UTILISENT AUSSI : » | y≈250–279 |
+| Bande blanche et logos | x≈79–630, y≈301–431 |
+| Titre « Création… » | y≈550–680 |
+| « 100 % » | x≈491–575, y≈734–765 |
+| Barre turquoise | x≈134–575, y≈777–793 |
+| Carte témoignage | x≈79–630, débute y≈840 et se poursuit au-dessous de y≈1240 |
+| Étoiles | y≈893–925 |
+| Citation | y≈947–1165 |
+| Signature | y≈1197–1244 |
+| CTA | x≈101–608, y≈1287–1390 |
+
+### Analyse UX détaillée
+
+- **Caution institutionnelle visuelle** : logos regroupés dans une **surface blanche**, vraisemblablement pour conserver la lisibilité et la fidélité des couleurs des marques. Ce n'est pas une mosaïque de logos répartis sur le fond sombre.
+- **Progression terminale** : le pourcentage 100 % donne le sentiment d'une opération achevée. L'utilisateur perçoit un parcours qui a été « fabriqué pour lui », même si on ne sait pas si c'est le cas.
+- **Témoignage cinq étoiles** : une seconde forme de preuve sociale plus qualitative. Les étoiles, la citation et la signature sont visuellement séparées (niveau de fiabilité non vérifiable).
+- **CTA « Voir mes résultats »** : promet un résultat personnel. La capture suivante affiche cependant **« Tes futurs résultats »**, c'est-à-dire des bénéfices projetés, pas un score mesuré. Cette nuance est essentielle pour notre rétro-ingénierie.
+- **Risque :** cumul important de techniques persuasives — institutions, chargement, avis, promesse de résultat — dans un écran. Un benchmark doit les noter sans les reprendre comme des faits.
+- La signature ne prouve pas que François est une personne réelle ou que son témoignage a été recueilli avec son consentement.
+- **Point de détail visuel** : c'est l'une des seules pages du tunnel qui introduisent un **grand aplat blanc**, une **barre turquoise horizontale** et des **étoiles jaunes** à la fois, tout en conservant le CTA vert constant.
+
+## G.6 — Captures 16 à 19 (54165, 54167, 54169, 54171) : une « timeline de bénéfices » révélée
+
+### Important : quatre photographies du **même écran logique**
+
+- Même **titre**, sous-titre et jalon **12/14** sur les quatre images.
+- Les captures 16 et 17 diffèrent par le **nombre de bénéfices visibles** (un, puis deux).
+- La capture 18 montre **trois bénéfices**, le dernier partiellement masqué en bas ; son CTA a changé de libellé.
+- La capture 19 montre **la même liste dans une autre position verticale** : le premier bénéfice est remonté au-dessus de la fenêtre, les second et troisième sont visibles.
+- Il est donc plus fidèle de lire ce groupe comme une **progression de présentation et un défilement**, plutôt que quatre pages indépendantes.
+- **[HYPOTHÈSE]** Le nouvel item peut être ajouté au clic sur « Continuer » avec une animation, ou être révélé par un changement d'état/scroll. Les images ne montrent **ni frames d'animation, ni événements de clic**, donc la temporalité et la transition sont inconnues.
+
+### En-tête identique
+
+**« Tes futurs résultats »**  
+**« En seulement 5 minutes par jour »**
+
+- Titre blanc très large, gras, centré autour de y≈196–241.
+- Sous-titre blanc plus fin autour de y≈279–308.
+- Retour cyan et stepper 12/14 à y≈83–107.
+- À la différence de l'écran 15, aucune marque universitaire ni témoignage ; l'attention est focalisée sur un **chemin de résultats dans le temps**.
+
+### Item 1 — visible dans les quatre états, sauf partiellement découpé après scroll (54165–54171)
+
+- Icône : une **croix rose/fuchsia** sur **disque bleu très sombre**.
+- Titre blanc gras : **« Moins de fautes »**.
+- Délais annoncés en turquoise pâle : **« En quelques jours »**.
+- Bénéfice détaillé en texte blanc, sur plusieurs lignes :  
+  **« Tu comprendras et supprimeras 80 % de tes fautes les plus fréquentes. »**
+- Une ligne verticale fine gris bleu descend sous le cercle de l'icône et occupe l'espace jusqu'au prochain item.
+- Le **80 %** est une **promesse marketing future**, pas un score que cette photo aurait démontré. Aucun protocole ne justifie le chiffre.
+
+### Item 2 — apparaît à partir de la capture 17
+
+- Icône : **mégaphone** (emoji/illustration), sur disque bleu sombre.
+- Titre : **« Phrases plus claires »**.
+- Délai : **« En quelques semaines »**.
+- Texte : **« Tu auras une communication plus efficace et structurée. »**
+- Même colonne gauche d'icônes, même titre en blanc gras, même délai turquoise, même description blanche.
+- Trait vertical gris bleu prolongeant la timeline.
+
+### Item 3 — partiellement visible sur la capture 18, lisible après scroll sur 19
+
+- Icône : **cœur bleu** sur disque bleu sombre.
+- Titre : **« Vocabulaire enrichi »**.
+- Délai : **« En quelques mois »**.
+- Texte : **« Ton vocabulaire sera enrichi, tu t'exprimeras avec plus de précision. »**
+- Sur 54169, la partie inférieure de la description est **masquée par la bande basse** au-dessus du CTA.
+- Sur 54171, un **défilement du contenu** déplace les items et fait apparaître la description entière.
+- Le changement de visibilité n'est pas un quatrième bénéfice : c'est **le troisième item de la même frise**.
+
+### Actions affichées et séquence apparente
+
+| Image | Items visibles | CTA en pied | Ce qu'on peut déduire |
+|---|---|---|---|
+| 54165 | 1 | **Continuer** | Première étape visuelle de présentation |
+| 54167 | 1 + 2 | **Continuer** | Deuxième promesse désormais affichée |
+| 54169 | 1 + 2 + début 3 | **Voir le parcours** | Troisième promesse présente, peut-être état final |
+| 54171 | fin du 1 + 2 + 3 entier | **Voir le parcours** | Scroll du contenu, footer stable visuellement |
+
+**Point UX très instructif :** la **commande change de signification** en fin de séquence. Tant qu'il reste du contenu à présenter, « Continuer » ; lorsque les trois bénéfices sont là, **« Voir le parcours »**. Cela montre un type d'interface où le CTA n'est pas seulement « suivant » mais **indique le prochain acte de l'utilisateur**.
+
+### Géométrie de la frise
+
+- Icônes/cercles disposés dans une colonne à gauche, centrés autour de **x≈138**.
+- Ligne de connexion verticale près de **x≈136–139**.
+- Colonne de textes commence autour de **x≈205**.
+- Premier item démarre autour de **y≈377**, avec titre près de y≈398 et description y≈513–669.
+- Deuxième item démarre autour de **y≈743–766**, avec description jusqu'à environ y≈987.
+- Troisième item démarre autour de **y≈1061–1090** dans l'état non défilé ; sa description se poursuit **au-delà du footer** dans 54169.
+- Dans 54171, la position scrollée remonte le deuxième item autour de **y≈640** et le troisième autour de **y≈966** ; la ligne de connexion et les textes défilent ensemble.
+- CTA standard bas : **x≈86–623, y≈1287–1390**.
+- **Zone du contenu limitée avant ~y=1210–1240** : la présence du footer semble contraindre la hauteur réellement lisible.
+- Le décalage temporel (« jours / semaines / mois ») est porté **par des étiquettes turquoise**, distinctes des titres blancs et des descriptions.
+
+### Traits stylistiques
+
+- Graphisme plus **fonctionnel/éditorial** que les pages Momo : une chronologie à icônes, traits verticaux et textes.
+- Contrairement aux cartes de choix, les items ne sont **pas enfermés dans trois grandes cartes** ; seul le pictogramme reçoit une surface circulaire.
+- La ligne de connexion organise la lecture verticalement et fait sentir la progression.
+- Le premier item emploie une croix fuchsia « moins de fautes » (éradication des erreurs), le deuxième un mégaphone « expression », le troisième un cœur bleu « vocabulaire ». Les images mélangent vecteur simple et emoji d'aspect natif.
+- Les intervalles temporels augmentent : **quelques jours → quelques semaines → quelques mois**, créant un crescendo et une promesse de continuité.
+- Le texte conserve le tutoiement et le **futur simple** : « tu comprendras », « tu auras », « sera enrichi ».
+- En dehors de la frise, pas de statistiques de jeu, pas de carte de leçon et pas de démonstration réelle d'apprentissage.
+
+### Risques et inconnues
+
+- Le « 5 minutes par jour » et les « 80 % » ne sont **pas prouvés** et ne doivent pas être copiés comme promesses LuxApp.
+- L'animation éventuelle, l'auto-scroll, les délais entre dévoilements et les gestes exacts restent non observés.
+- Les captures ne démontrent pas que les trois résultats sont adaptés aux priorités choisies. Leur correspondance avec les trois options de 54155 suggère une **possibilité de personnalisation ou de simple recyclage du même discours** ; il faut comparer avec un autre profil avant de conclure.
+- Sur petits écrans, un footer fixe peut couvrir le bas de la troisième promesse si le scroll est absent/mal configuré.
+- Le langage « futurs résultats » est plus exact que « résultats obtenus », mais il conserve une formulation très affirmative quant aux bénéfices.
+- Une page de résultats utilisateur ne devrait pas confondre **bénéfice attendu** et **compétence démontrée par un test**.
+
+## G.7 — Capture 20 (54173.jpg) : offre « 7 jours offerts » et transition vers le premium
+
+### Textes exacts et disposition [OBSERVÉ]
+
+- Barre supérieure : flèche Retour turquoise, 14 jalons, **13e pilule active**.
+- Grande illustration de **Momo souriant qui présente un paquet-cadeau orangé** avec ruban jaune, en buste devant un **grand disque bleu foncé**.
+- Titre très grand en blanc gras : **« 7 jours offerts »**.
+- Explication centrée sur trois lignes : **« Momo t'offre une semaine pour tester toutes les fonctionnalités premium. »**
+- Phrase de réassurance placée plus bas et en gras : **« Aucun engagement • Annulation simple »**.
+- Gros CTA vert : **« J'en profite »**.
+- Aucun prix, date de première facturation, moyen de paiement, condition de renouvellement, bouton « Pas maintenant » ou mention de résiliation détaillée **n'est visible dans cette capture**.
+
+### Approximation de la mise en page
+
+| Élément | Zone visible |
+|---|---|
+| Barre d'étapes | y≈83–107, 13/14 |
+| Cercle et illustration Momo-cadeau | x≈186–523, y≈228–563 |
+| Titre principal | y≈659–721 |
+| Description | y≈808–948 |
+| Rassurance « Aucun engagement… » | y≈1105–1184 |
+| CTA « J'en profite » | x≈86–623, y≈1270–1373 |
+| Navigation Android | y≈1470–1535 |
+
+- Le cercle bleu a approximativement **le tiers à la moitié de la largeur** du viewport et crée une vignette visuellement isolée.
+- Ici, Momo ne tient plus une plume mais un **cadeau** ; le personnage glisse du rôle de guide éducatif au rôle de **présentateur d'une offre**.
+- Orange et jaune du cadeau forment un nouvel accent chaud au milieu de la palette bleue/verte.
+- Les **trois étages verticaux** sont très nets : illustration ; offre et explication ; rassurance et CTA.
+- Le slogan « Aucun engagement • Annulation simple » se lit avant le bouton d'acquisition ; il réduit visuellement la peur du paiement/résiliation.
+- Le CTA reste une pilule verte à forte épaisseur, dans la même famille que tous les CTA du tunnel.
+- Aucune autre action de décision commerciale n'apparaît dans la portion visible de l'écran.
+
+### Analyse produit et limites [HYPOTHÈSE / INCONNU]
+
+- Il s'agit probablement d'une **mise en avant d'essai premium** après plusieurs étapes de personnalisation, ce qui maximise la perception de valeur investie dans la création du parcours. Ce positionnement est une **lecture du parcours**, pas une preuve de taux de conversion.
+- L'affirmation « 7 jours offerts » peut désigner un essai qui mène ou non à un abonnement ; on ne voit pas l'écran suivant. **Ne pas présumer la gratuité durable, l'absence de moyen de paiement ou un renouvellement automatique.**
+- « Aucun engagement » et « Annulation simple » sont des affirmations marketing qui demanderaient une vérification des conditions réelles.
+- La barre 13/14 suggère **une étape supplémentaire à venir**, mais son contenu exact est inconnu.
+- L'absence de « Passer » **dans l'image** ne prouve pas que l'utilisateur est forcé de souscrire ; le Retour Android, la flèche supérieure ou un autre chemin peuvent exister.
+- Pour un benchmark responsable, séparer le pattern **mascotte + cadeau + promesse d'essai** des conditions commerciales et de consentement, qui nécessitent un écran contractuel explicite.
+
+---
+
+# ANNEXE H — Mesures croisées, couleurs et inventaire de tous les états nouveaux
+
+## H.1 — Echantillonnage réellement exécuté sur les dix nouveaux JPG
+
+Les points listés ci-dessous proviennent de la lecture RGB des images /mnt/data/54155.jpg à 54173.jpg. Chaque valeur a été calculée sur le pixel identifié ; elle ne constitue pas la palette source originale.
+
+| Pixel d'échantillon | Coordonnée | RGB | HEX |
+|---|---|---|---|
+| Fond 54155 | (10,300) | (12,21,36) | **#0C1524** |
+| Priorité choisie 54155 | (200,510) | (31,160,15) | **#1FA00F** |
+| Priorité inactive 54155 | (200,680) | (26,50,78) | **#1A324E** |
+| CTA 54155 | (200,1310) | (26,143,11) | **#1A8F0B** |
+| Carte affirmation 54157 | (110,470) | (26,50,78) | **#1A324E** |
+| Pavé Oui/Non 54157 | (110,1190) | (26,50,78) | **#1A324E** |
+| Carte Play Store 54161 | (90,520) | (26,50,78) | **#1A324E** |
+| CTA inactif 54161 | (100,1310) | (166,166,166) | **#A6A6A6** |
+| Fond blanc logos 54163 | (100,340) | (255,255,255) | **#FFFFFF** |
+| Carte avis 54163 | (100,880) | (26,50,78) | **#1A324E** |
+| Barre 100 % 54163 | (350,790) | (172,216,219) | **#ACD8DB** |
+| Disque de la timeline 54165 | (110,410) | (21,36,65) | **#152441** |
+| Disque premium 54173 | (350,236) | (26,50,78) | **#1A324E** |
+| CTA premium 54173 | (100,1330) | (26,143,11) | **#1A8F0B** |
+
+**Constat :** continuité du fond, des cartes et du CTA ; les nouvelles pages ajoutent un **bouton gris désactivé**, des **contrôles Oui/Non**, une **barre turquoise**, une **caution de logos sur blanc**, une **frise verticale** et **un cercle premium à illustration**.
+
+## H.2 — Vérification technique du stepper au niveau d'une ligne raster
+
+Méthode : coupe à y=95 ; identification de segments contigus dont les trois composantes RGB dépassent 240 ; segments de largeur ≥6 px. Les segments de ~23 px représentent les ronds, ~47 px la pilule active.
+
+| Capture | Nombre de segments blancs | Position du segment large |
+|---|---:|---:|
+| 54155 | **14** | **9** (x≈396–442) |
+| 54157 | **14** | **9** (x≈396–442) |
+| 54159 | **14** | **9** (x≈396–442) |
+| 54161 | **14** | **10** (x≈439–485) |
+| 54163 | **14** | **12** (x≈483–528) |
+| 54165 | **14** | **12** (x≈483–528) |
+| 54167 | **14** | **12** (x≈483–528) |
+| 54169 | **14** | **12** (x≈483–528) |
+| 54171 | **14** | **12** (x≈483–528) |
+| 54173 | **14** | **13** (x≈526–572) |
+
+Ensemble du corpus : passage documenté de **13 ronds sur 54137–54151** à **14 ronds sur 54153–54173**. **Pas de preuve** que l'ajout de repère soit lié au pays/région, à un changement de version ou à une erreur. Le risque de collision entre retour et premiers repères, déjà noté pour 54153, doit être vérifié sur l'ensemble du tunnel.
+
+## H.3 — Etat de chaque composant et déclencheur probable
+
+| Sujet | Etats visibles | Comportements inconnus |
+|---|---|---|
+| Carte priorité | Verte + coche blanche/verte ; bleue + cercle blanc vide | Multisélection, modification, état disabled, validation obligatoire |
+| Réponse binaire | Deux pavés bleus + X orange / ✓ verte | Pression, animation, enregistrement, passage automatique, ordre |
+| Source d'acquisition | Six cartes bleues visibles, CTA gris | Activation du CTA, sélection unique/multiple, écran optionnel |
+| Progression de création | 100 % + barre turquoise saturée | Calcul réel, animation, attente réseau, échec, reprise |
+| Caution universitaire | 3 logos sur blanc | Permissions d'utilisation des marques, partenariat réel |
+| Témoignage | 5 étoiles, texte, signature | Donnée sourcée, clic, rotation des avis, authenticité |
+| Bénéfices temporels | 1, puis 2, puis 3 items | Animation, clic incrémental, scroll automatique, autre priorité |
+| Footer de timeline | « Continuer » puis « Voir le parcours » | Conditions du changement, désactivation à la fin |
+| Offre premium | Mascotte cadeau + 7 jours + CTA | Prix, paiement, prélèvement, refus, suite et annulation |
+
+---
+
+# ANNEXE I — Analyse UX transversale des vingt captures et logique de conversion
+
+## I.1 — Entonnoir observé (sans inventer les écrans non fournis)
+
+La succession visible dessine les **phases** suivantes, dont certaines comportent plusieurs écrans sous un seul jalon :
+
+1. **Promesse** : bataille contre les fautes, utilisateurs nombreux.
+2. **Compagnonnage** : Momo/Molière, aide personnelle.
+3. **Profil sommaire** : âge, motivation, message de réassurance.
+4. **Identité du joueur** : pseudo, avatar littéraire.
+5. **Appartenance** : pays, subdivision, encouragement régional.
+6. **Définition des objectifs** : orthographe, expression, vocabulaire.
+7. **Auto-identification** : deux phrases « C'est toi, ça ? », réponses Oui/Non.
+8. **Origine marketing** : Google/Play Store/réseaux.
+9. **Valorisation avant résultat** : logos universitaires, « Création de ton parcours », 100 %, avis 5 étoiles.
+10. **Projection dans le bénéfice** : trois échéances jours/semaines/mois révélées successivement.
+11. **Proposition premium** : 7 jours d'essai offerts par Momo.
+
+**Tension centrale :** le produit repousse l'accès aux leçons jusqu'après de nombreux engagements. Ce long tunnel peut renforcer la perception d'une expérience personnalisée, mais aussi provoquer des **abandons**. Les captures ne contiennent **aucun** taux de complétion, aucun A/B test ni mesure de rétention : impossible d'évaluer quantitativement l'efficacité.
+
+## I.2 — Mécanismes psychologiques et indices matériels
+
+| Mécanisme | Elément attesté | Interprétation UX, pas effet prouvé |
+|---|---|---|
+| Personnification | « Momo », deux poses initiales + cadeau premium | Compagnon relationnel, continuité de marque |
+| Micro-engagement | âge, raison, pseudo, avatar, région | Choix successifs simples, sentiment de participation |
+| Identité sociale | compétition régionale, 3 116 personnes actives affichées | Appartenance à un groupe et défi collectif |
+| Préférence déclarée | trois priorités cochables | Engagement sur ce qu'on souhaite améliorer |
+| Identification personnelle | « Je relis mon message… », « Une faute… » | Reconnaissance de situations quotidiennes |
+| Mesure d'acquisition | question Play Store/Google/social | Analyse marketing intégrée au tunnel |
+| Autorité perçue | logos Sorbonne, ETH Zürich, Toronto | Transfert possible de crédibilité, affiliation non vérifiée |
+| Préparation simulable | barre de création à 100 % | Impression d'un travail fait « pour moi » |
+| Preuve sociale | 900 000, 92 %, 3 116, avis 5 étoiles | Réassurance, validité empirique non connue |
+| Projection temporelle | quelques jours / semaines / mois | Rend les bénéfices imaginables et graduels |
+| Effet cadeau | Momo avec paquet et « 7 jours offerts » | Récompense après l'effort, incitation premium |
+| Réduction du risque | « Aucun engagement • Annulation simple » | Réassurance commerciale, conditions inconnues |
+| CTA évolutif | Continuer → Voir le parcours → J'en profite | Guide la transition apprentissage → acquisition |
+
+Ce découpage enrichit le précédent audit : **les nouvelles captures montrent davantage le marketing de conversion que le moteur pédagogique**. Il ne faut donc pas assimiler leur qualité persuasive à une preuve d'efficacité didactique.
+
+## I.3 — Parallèle utile pour LuxApp / Luxo sans décision produit
+
+Pour LuxApp, l'inspiration la plus exploitable est la **progression narrative** et la qualité des interactions, pas la quantité de questions marketing :
+
+- Choisir un **objectif concret lié au luxembourgeois** (communiquer au travail, comprendre au quotidien, préparer l'A1.2/Sproochentest), puis proposer réellement un point de départ adapté.
+- Une courte question sur une **situation vécue** peut engager davantage qu'un long questionnaire, mais elle n'a d'intérêt que si sa réponse modifie une recommandation ou une leçon.
+- Utiliser des **étapes motivantes** sans prétendre générer en 100 % un programme nouveau si le catalogue reste identique pour tous.
+- Une frise **« ce que je vais apprendre »** devrait décrire des compétences objectivement liées aux leçons : se présenter, demander un itinéraire, comprendre une consigne, conjuguer des verbes fréquents, etc., avec des délais non garantis plutôt qu'un « 80 % » arbitraire.
+- Une offre premium peut être présentée après la découverte réelle de la valeur, sans bloquer artificiellement les premières leçons ; prix, renouvellement, modalité d'annulation et alternative gratuite doivent être compréhensibles.
+- Les logos d'établissements, chiffres sociaux et citations ne devraient figurer **que s'ils sont vérifiables et autorisés**.
+- Sur la branche 2.1, **préserver la charte** : fond presque noir chaud et or pour l'action (design-tokens.css / CHARTE_UI_2.1.md) ; conserver vert pour succès réel, non vert universel comme cette app.
+- Priorité du backlog LuxApp 2.1 : fonctionnement, navigation, exercices et clavier Samsung avant longue expérimentation d'onboarding.
+
+## I.4 — Points UX particulièrement révélateurs des captures nouvelles
+
+**1. Une question peut avoir deux modes de validation.**  
+Le choix d'objectifs possède un grand CTA « Continuer » ; les deux affirmations Oui/Non n'en ont pas, les cartes sont elles-mêmes les grandes actions de navigation. L'app ne force pas une seule grammaire de formulaire.
+
+**2. La taille des cartes dépend du texte.**  
+La sélection prioritaire fait ~126 px sur une ligne mais ~185 px sur deux ; le Play Store fait ~169 px. Les composants s'étendent verticalement au lieu de réduire drastiquement la typographie.
+
+**3. L'état désactivé est explicite.**  
+« Continuer » gris sur la provenance contraste avec les CTA verts. Cela signale probablement l'absence de sélection valide et donne une information avant le clic. **Vérification nécessaire** pour confirmer les règles.
+
+**4. Les couleurs ne suffisent pas toujours.**  
+Priorité choisie = vert **et coche**. Affirmation = orange/vert **et mots Non/Oui**. Mais certaines anciennes sélections n'utilisaient que le vert ; leur accessibilité reste inégale.
+
+**5. Le « résultat » change de nature.**  
+« Voir mes résultats » aboutit visuellement à « Tes futurs résultats », sans test mesuré présenté. Ce sont des **promesses de bénéfices**. Reprendre ce pattern avec une terminologie trop affirmative dans un produit éducatif peut réduire la confiance.
+
+**6. Une seule page peut contenir plusieurs révélations.**  
+La frise apparaît à l'identique avec un, deux ou trois items. La navigation semble avoir un état de progression interne au screen ; ce n'est pas un écran standard figé.
+
+**7. Le pied de page peut masquer le texte à la première vue.**  
+La capture 18 coupe la description du troisième item, la 19 la montre après scroll. Ce n'est pas forcément un bug : le contenu reste accessible, mais il faut que le scroll soit **évident et fluide**.
+
+**8. La récompense commerciale est narrativisée.**  
+Momo remet un cadeau juste après la création de profil et la promesse de progression. Cela fait de l'essai premium une étape émotionnelle plutôt qu'une simple page de prix.
+
+---
+
+# ANNEXE J — Protocole de recette et limites de cette documentation complémentaire
+
+### Scénarios à refaire dans l'application de référence, si accès futur
+
+1. **Priorités** : cliquer une seule carte, deux cartes, puis trois ; vérifier si multi-sélection autorisée, changement de coche et validation.
+2. **Deux phrases d'identification** : tester Oui puis Non, puis retour, puis l'inverse ; vérifier l'ordre et si le jalon reste 9/14.
+3. **Acquisition** : choisir un canal, vérifier le passage du CTA gris au vert, scroller jusqu'aux dernières options, changer de sélection.
+4. **Création** : filmer depuis l'entrée de la page jusqu'à 100 % ; déterminer s'il s'agit d'une animation artificielle, d'un calcul ou d'un chargement réel, et mesurer la durée.
+5. **Cautions** : ouvrir les éventuels liens de logos/avis, identifier les sources et ne rien conclure d'un logo seul.
+6. **Timeline** : filmer le passage d'un item au suivant, tester les CTA, noter si la révélation est immédiate, animée, au clic ou automatique ; tester le scroll avec le footer.
+7. **Résultats** : répéter le parcours avec d'autres priorités et réponses pour déterminer si les bénéfices changent.
+8. **Essai** : cliquer « J'en profite » en environnement contrôlé, **sans confirmer de paiement**, lire les conditions, vérifier existence d'un chemin gratuit et d'un refus ; ne pas souscrire pour réaliser un simple benchmark.
+9. **Android** : tester clavier, petites hauteurs, gestes système, lecteur d'écran, zoom 200 % et scrolling des options sous footer.
+10. **Stepper** : filmer le passage de la région aux priorités et du jalon 10 au jalon 12 pour expliquer 13→14 repères et la page manquante.
+
+### Limites strictes
+
+- Les vingt captures ne révèlent **pas le code ni les API** du produit tiers.
+- Elles ne prouvent ni calcul d'un parcours personnalisé, ni étude universitaire, ni effet pédagogique d'une semaine d'essai.
+- Les **projections de résultats** sont des arguments affichés, non des résultats quantifiés d'un apprentissage réel.
+- Les transitions et animations **ne peuvent être certifiées sur des images fixes** ; seules leurs images de départ/arrivée sont observables.
+- Les mesures RGB et géométriques sont spécifiques aux captures, pas une extraction des tokens natifs de l'autre application.
+- Les droits sur les portraits, la mascotte, les logos et les témoignages ne sont pas établis ; **aucun de ces éléments graphiques n'a été ajouté au dépôt LuxApp**.
+
+**Statut : 20 captures documentées dans un fichier unique ; descriptions détaillées, géométrie, couleurs, parcours, UI, ergonomie, conversion et inconnues ; aucun changement fonctionnel apporté à LuxApp.**
