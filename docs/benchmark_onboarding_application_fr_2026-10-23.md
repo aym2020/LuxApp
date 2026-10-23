@@ -2,7 +2,7 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 69 captures Android en sept séries, fichiers 54135.jpg à 54271.jpg (noms impairs successifs). Séries 1–6 : sections 1–10 et annexes A–AE ; série 7 : annexes AF–AL (règle détaillée, conjugateur, niveaux, clavier Samsung, feedback, tableau et favoris).  
+**Corpus :** 70 captures Android : 69 captures réparties en sept séries (54135.jpg à 54271.jpg, noms impairs successifs), plus la capture ciblée 54324.jpg. Séries 1–6 : sections 1–10 et annexes A–AE ; série 7 : annexes AF–AL ; contre-exemple pédagogique : annexe AM (« mieux / meilleur »).  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md non accessible au chemin racine (404) lors de cette vérification.**  
 **Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
@@ -3897,3 +3897,58 @@ Ce sont des **patterns visuellement distincts**, même si le style de carte et l
 | **7** | **61–69** | **54255–54271** |
 
 **Statut : 69 captures documentées dans le benchmark unique, annexes A–AL.**
+
+
+
+---
+
+# ANNEXE AM — Capture 70 : correction injustifiée par ambiguïté sémantique (« mieux / meilleur »)
+
+**23 octobre 2026 — contre-exemple de qualité pédagogique ajouté après les sept séries.** Source : capture Android **54324.jpg**, dimensions **709 × 1536 pixels**, fournie par l'utilisateur. Le corpus documenté passe à **70 captures** : 69 précédentes + cette observation ciblée. Cette capture ne constitue pas à elle seule une huitième série complète.
+
+## AM.1 — Relevé visuel exact [VU]
+
+**Écran :** jeu « **Trouve la faute** », dans un état de **mauvaise réponse**.
+
+- Bandeau de titre : **« Trouve la faute »** en typographie serif blanche ; grand **X** de fermeture en haut à droite.
+- Progression sous le titre : **15 pastilles horizontales** ; parmi les 11 premières, **9 vertes et 2 rouges** (positions 4 et 11), les 4 dernières sombres. Il s'agit d'un état affiché, non d'une règle de score prouvée.
+- Phrase en six tuiles :
+  **« Ce gâteau est mieux que l'autre. »**
+- La tuile **« mieux »** est **rouge**. Cadre autour de la carte à **bordure rouge** et soulignement/tranche inférieure rouge épaisse.
+- Sous la carte, à droite : **drapeau blanc** de signalement.
+- Verdict centré : **« Eh non ! 😿 »**.
+- Message : **« Règle ajoutée à ta liste de révision. »**.
+- Encart bleu d'explication : en-tête **« Explications › Détails »**, puis texte affiché :
+  **« Le gâteau est bon, et le comparatif de bon est meilleur : ce gâteau est meilleur que l'autre. Mieux ne s'emploie qu'avec un verbe. »**
+- Sous l'encart, début d'une statistique de réussite **partiellement masquée par le CTA** ; le pourcentage semble commencer par « 51% », mais la capture ne permet pas de confirmer l'intégralité du libellé ou sa méthode.
+- Gros bouton vert fixe en bas : **« Suivant → »**.
+- **Pixels mesurés sur le JPEG :** fond extérieur (5,800) = **#0C1524** ; carte (350,400) = **#2C4259** ; explication (350,915) = **#1A324E** ; tuile rouge (170,475) = **#E53945** ; CTA vert (350,1390) = **#1A8F0B**. Couleurs raster, pas tokens CSS.
+- **Géométrie indicative [ESTIMÉ] :** barre de progression y≈199–240 ; carte de phrase x≈16–693/y≈294–594 ; verdict y≈696–756 ; encart explicatif x≈16–693/y≈869–1213 ; CTA x≈43–666/y≈1310–1413.
+
+## AM.2 — Diagnostic linguistique : le problème n'est pas seulement « mieux » vs « meilleur »
+
+**[FAIT OBSERVÉ]** L'application sanctionne le choix **« mieux »** et impose **« meilleur »**.
+
+**[VÉRIFICATION LEXICOGRAPHIQUE]** *Meilleur* est le comparatif usuel de *bon*, notamment lorsqu'on compare le **goût** de deux gâteaux. Toutefois, *mieux* a aussi un **emploi adjectival** au sens de « meilleur », « plus agréable » ou « préférable ». Le Larousse fournit notamment **« Cette robe est mieux que la dernière que tu as achetée »**. Source : https://www.larousse.fr/dictionnaires/francais/mieux/51376/locution?q=au+mieux (entrée **mieux**, rubriques *adjectif* et *difficultés*). L'assertion **« Mieux ne s'emploie qu'avec un verbe »** est donc **fausse si elle prétend exclure l'emploi adjectival** ; elle n'explique pas correctement la distinction.
+
+**[NUANCE]** Dans une comparaison explicitement **gustative** (« lequel est le plus savoureux ? »), **« ce gâteau est meilleur que l'autre »** serait la formulation attendue et la plus naturelle. Si l'on compare **la présentation, l'adéquation à un besoin ou l'appréciation générale**, **« ce gâteau est mieux que l'autre »** peut se défendre selon le contexte et le registre. Cela ne signifie pas que les deux tournures ont toujours exactement le même sens ni la même naturalité dans tous les contextes.
+
+**[DÉFAUT PÉDAGOGIQUE]** L'énoncé ne précise **aucun critère de comparaison** (goût, texture, présentation, effet souhaité, etc.). L'application choisit pourtant un **unique mot déclaré fautif**. Elle fait perdre une réponse et classe la règle parmi les erreurs à réviser : c'est potentiellement une **pénalisation injuste** à partir d'une phrase dont le jugement dépend du sens visé.
+
+## AM.3 — Ce qu'il faut retenir impérativement pour LuxApp / Luxo
+
+Le problème est plus grave qu'une simple maladresse de texte, car il peut contaminer une **boucle automatique de remédiation** : réponse rejetée → perte de vie / diminution de score → statistique d'erreur → fiche ajoutée en révision. Un moteur rigoureux sur le plan informatique peut **rejouer durablement une fausse faiblesse pédagogique**.
+
+**Garde-fous de contenu recommandés :**
+
+1. Chaque question doit définir une **compétence précise** et une **interprétation suffisamment contrainte** pour obtenir une réponse prédictible.
+2. Une erreur doit être **objective dans son contexte**. Écarter les phrases qui admettent plusieurs lectures grammaticalement et pragmatiquement défendables.
+3. Si plusieurs réponses sont acceptables, encoder explicitement les **variantes autorisées** quand le type d'exercice le permet, plutôt que de comparer à une unique chaîne.
+4. **Ne pas inventer de règle simplifiée fausse** pour défendre le corrigé. Une explication doit justifier la correction **sur cette phrase précise**, tout en distinguant la règle générale, les usages et les exceptions utiles au niveau.
+5. Les contenus ambigus ou signalés doivent pouvoir être **corrigés/retirés du catalogue**, puis, lorsque techniquement possible, **ne plus pénaliser la progression** des apprenants touchés. L'écran comporte un **drapeau de signalement** : son traitement réel par le produit tiers reste inconnu.
+6. Ajouter à la recette du contenu LuxApp un **test adversarial pédagogique** : « une autre formulation naturelle donnerait-elle aussi une réponse valide ? », en particulier pour les prépositions, traductions et formes verbales du luxembourgeois.
+7. Avant publication des leçons A1.1/A1.2, contrôler les règles et traductions sur **LOD.lu** et **grammaire_luxembourg.md**, puis tester la cohérence **cours ↔ exercice ↔ correction ↔ révision**.
+
+**Exemple d'énoncé français non ambigu pour illustrer le principe, sans le copier en luxembourgeois :** « Après les avoir goûtés, je trouve que ce gâteau a **meilleur goût** que l'autre. » Le critère gustatif y est explicitement fourni. À l'inverse, une question demandant **« mieux » ou « meilleur »** sans contexte suffisamment fort **doit être reformulée ou écartée**, pas simplement assortie d'un corrigé plus affirmatif.
+
+**Statut :** défaut observé dans l'application étudiée et recommandation d'assurance qualité **documentés uniquement**. Aucun code, JSON pédagogique, score ou mécanisme de correction de LuxApp n'est modifié par cette note.
