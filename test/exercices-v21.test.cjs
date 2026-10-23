@@ -70,5 +70,5 @@ test('Mot caché : bandeau court, bottom sheet et touches visibles',()=>{
  assert.match(s,/\.mc-saisie \{flex:none;min-width:0;background:var\(--bg\)/);
  assert.match(s,/\.mc-aide-dialog\[open\] \{display:flex;flex-direction:column/);
  assert.match(s,/\.pc-body\.glisse \{animation:none\}/);
- assert.match(html,/src="parcours\.js\?v=6"/);
+ assert.match(html,/src="parcours\.js\?v=7"/);
 });
