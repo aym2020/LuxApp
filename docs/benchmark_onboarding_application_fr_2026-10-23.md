@@ -4,7 +4,7 @@
 **Date de l'observation :** 23 octobre 2026  
 **Corpus :** 69 captures Android en sept séries, fichiers 54135.jpg à 54271.jpg (noms impairs successifs). Séries 1–6 : sections 1–10 et annexes A–AE ; série 7 : annexes AF–AL (règle détaillée, conjugateur, niveaux, clavier Samsung, feedback, tableau et favoris).  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
-**Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, AGENTS.md, charte UI 2.1, design tokens et frontend de 2.1 consultés  
+**Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md non accessible au chemin racine (404) lors de cette vérification.**  
 **Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
 
 ## 0. Convention de preuve
