@@ -174,6 +174,7 @@ body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat
 #view-parcours .mc-aide-dialog h2 {flex:none;font:750 21px/1.2 var(--font)}
 #view-parcours .mc-aide-detail {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;font:400 15px/1.6 var(--font);color:#e7dfd3;overflow-wrap:anywhere}
 #view-parcours .mc-aide-detail .pc-attention {margin:8px 0;padding:12px;background:#3b2c23;border-left:3px solid #dbab65}
+#view-parcours .mc-aide-dialog #mc-btn-voir {flex:none;min-height:48px;border:1px solid var(--accent);border-radius:12px;background:transparent;color:var(--accent);font-weight:750}
 #view-parcours .mc-aide-fermer {flex:none;min-height:51px;width:100%;border:0;border-radius:12px;background:var(--accent);color:#251c0b;font:800 16px var(--font)}
 @media(max-height:750px) {body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-tuile {height:44px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {gap:6px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {padding-top:8px}}
 

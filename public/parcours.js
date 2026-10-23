@@ -1101,6 +1101,7 @@ function renderReconstruction() {
       '<div class="mc-aide-poignee" aria-hidden="true"></div>' +
       '<h2 id="mc-aide-titre">Comprendre mon erreur</h2>' +
       '<div id="mc-aide-detail" class="mc-aide-detail"></div>' +
+      '<button class="pc-btn ghost wide hidden" id="mc-btn-voir" onclick="mcVoirReponse()">Voir la réponse</button>' +
       '<button type="button" class="mc-aide-fermer" onclick="mcFermerAide()">Revenir aux lettres</button>' +
     '</dialog>' +
     '<div class="pc-actions mc-actions">' +
@@ -1109,7 +1110,6 @@ function renderReconstruction() {
       '<button class="pc-btn" id="mc-btn-indice" onclick="mcIndice()">Indice</button>' +
       '<button class="pc-btn primary" id="mc-btn-valider" onclick="mcValider()">Valider</button>' +
     '</div>' +
-    '<button class="pc-btn ghost wide hidden" id="mc-btn-voir" onclick="mcVoirReponse()">Voir la réponse</button>' +
     '</div>';
 
   const input = document.getElementById('mc-input');
