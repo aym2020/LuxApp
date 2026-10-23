@@ -136,15 +136,23 @@
   display:block;margin:0;padding:0;background:none;border-radius:0;
   color:#c5bdb0;font-size:13.5px;font-weight:500;line-height:1.55}
 #view-session #session-feedback.essai .session-attention b {color:var(--exo-fg)}
-/* Reconstruction Mot caché : le panneau aide défile, la rangée de validation reste visible. */
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) {height:100dvh;min-height:0;overflow:hidden}
+/* Mot caché : pas de swipe avant de jouer ; après erreur, la fenêtre rouge reste
+   au-dessus des actions. Remplace le layout à scroll permanent de la v8. */
+body:not(.clavier-actif):has(#view-parcours.active[data-type="flashcards"][data-etat="saisie"] #mc-btn-valider) {overflow:hidden}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) {height:100dvh;min-height:0;max-height:100dvh;overflow:hidden;overscroll-behavior:none}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-topbar,
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-sous-barre {flex:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {flex:1;min-height:0;overflow:hidden;padding-bottom:0}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-top {flex:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:14px;-webkit-overflow-scrolling:touch}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie {flex:none;background:var(--bg);padding:10px 0 max(12px,env(safe-area-inset-bottom));gap:6px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-actions {margin-top:8px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {flex:1;min-height:0;overflow:hidden;padding-top:clamp(12px,2dvh,20px);padding-bottom:0}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body.glisse {animation:none}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-top {flex:none;gap:8px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-fr {font-size:clamp(32px,8.8vw,43px)}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-mot {margin-top:12px;max-width:100%}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-cases {max-width:100%}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-lettres {margin-top:10px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie {flex:none;min-width:0;background:var(--bg);padding:6px 0 max(12px,env(safe-area-inset-bottom));gap:6px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur {width:100%;max-height:min(24dvh,180px);overflow-y:auto;overscroll-behavior:contain}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-actions {margin-top:6px}
 /* Message temporaire du 1er essai (mot caché, écriture) : rouge discret. */
 #view-parcours .mc-erreur {background:rgba(239,122,115,.1);border:0;color:#c5bdb0}
 #view-parcours .mc-erreur b {color:var(--wrong)}

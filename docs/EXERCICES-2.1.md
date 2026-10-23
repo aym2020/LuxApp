@@ -73,3 +73,8 @@ L’audio est facultatif, ne bloque jamais la saisie si `AudioContext` manque ou
 ## Anomalie Samsung P0-01 — Valider disparaît après plusieurs erreurs (22 octobre 2026)
 
 Captures de « Bonsoir ! » (Gudden Owend) : le contenu d’aide s’étend dans `.mc-milieu` et repousse les commandes de `.mc-saisie` sous la navigation Android. Correction strictement visuelle : reconstruction à hauteur `100dvh`, milieu scrollable, actions non rétractables au pied. Le mode découverte, le bilan, le clavier actif, les scores et les JSON sont inchangés. Test Chromium : `tests/test_motcache_cta_mobile.py`. **Recette Samsung réelle encore nécessaire.**
+
+
+## Retours Samsung — second correctif du 23 octobre 2026
+
+La v8 ajoutait un défilement/mouvement avant la saisie et masquait le feedback rouge sous la zone scrollable. Conception revue : `#mc-erreur` est désormais dans `.mc-saisie`, **au-dessus du score et des actions** ; la transition latérale est neutralisée en reconstruction, les espacements réduits et seul le milieu défile si nécessaire. L’aide reste visible et consultable, avec hauteur limitée pour notes très longues. Découverte, correction finale, essais, indices, points et JSON inchangés. Révision CSS `v=9`. **Recette Samsung réelle toujours nécessaire.**

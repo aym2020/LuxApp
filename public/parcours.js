@@ -1091,9 +1091,9 @@ function renderReconstruction() {
     '<div class="mc-info" id="mc-info">' + nbLettres + ' lettres</div>' +
     (mc.cases.some(c => c.lettre && mcSansAccent(c.ch) !== c.ch)
       ? '<div class="mc-info">Les accents apparaissent après validation</div>' : '') +
-    '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
     '</div>' +
     '<div class="mc-saisie">' +
+    '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
     '<div class="mc-score">Score du mot : <b id="mc-score">100 %</b></div>' +
     '<div class="pc-actions mc-actions">' +
       '<button class="pc-btn mc-effacer" id="mc-btn-effacer" aria-label="Effacer la dernière lettre" onclick="mcEffacer()">' +
