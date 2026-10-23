@@ -133,6 +133,10 @@ try:
             if n == 3:
                 pg.locator('.mc-aide-ouvrir').click()
                 assert pg.locator('#mc-btn-voir').is_visible()
+                # Un dialogue natif reste modal : il faut le refermer avant
+                # de pouvoir toucher les Outils de test du scénario suivant.
+                pg.locator('.mc-aide-fermer').click()
+                assert not pg.locator('#mc-aide-dialog').evaluate('el => el.open')
         lancer(2, 'motcache', 'indice')
         assert pg.evaluate('mc.indices') == 1 and pg.locator('.mc-case.indice').count() == 1
         lancer(2, 'motcache', 'reussite')
