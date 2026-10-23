@@ -2,9 +2,9 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 79 captures Android distinctes : séries 1–7 = 69 captures ; annexe AM = 54324.jpg ; série 8 (première partie) = 9 captures inédites de la Partie rapide. Dix captures fournies dans cette série, dont 54324.jpg déjà archivée et non recomptée. Annexes A–AM historiques ; annexes AN–AR : partie rapide et signalement.  
+**Corpus :** 85 captures Android distinctes : séries 1–7 = 69 ; annexe AM = 54324.jpg (1) ; série 8, partie 1 = 9 inédites, 54304–54322 ; série 8, fin de partie = 6 inédites, 54326–54336. La capture 54324.jpg présente dans le lot précédent reste comptée une seule fois. Annexes A–AM historiques, AN–AR première partie rapide, AS–AW fin de partie.  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
-**Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md non accessible au chemin racine (404) lors de cette vérification.**  
+**Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md accessible et consulté sur 2.1 lors de la vérification du 23 octobre 2026.**  
 **Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
 
 ## 0. Convention de preuve
@@ -4204,3 +4204,225 @@ Les étiquettes **« que », « où », « qui »** ont un fond **bleu clair**, 
 **Sources de vérité LuxApp consultées avant cette édition :** PLAYBOOK.md sur main et 2.1, AGENTS.md sur 2.1, docs/CHARTE_UI_2.1.md, docs/DESIGN_SYSTEM.md, public/jeux-v21.js et public/progress.js, plus la version actuelle du benchmark sur la branche 2.1. L'architecture, les tests et le design de LuxApp restent prioritaires pour toute future mise en œuvre.
 
 **Statut :** uniquement une mise à jour documentaire. **79 captures distinctes observées** ; série 8 **partie 1**, encore ouverte. Aucun changement de JS, CSS, HTML, règles, exercices, authentification ou données de progression.
+
+
+
+---
+
+# ANNEXE AS — Partie rapide, fin de session et retour à l'accueil : 6 nouvelles captures
+
+**Lot complémentaire :** six fichiers Android à 709 × 1536 pixels : **54326.jpg**, **54328.jpg**, **54330.jpg**, **54332.jpg**, **54334.jpg**, **54336.jpg**. Relevés affichés vers **15 h 29–15 h 30, le 23 octobre 2026**, d'après la barre d'état. Il s'agit de la **fin du parcours Partie rapide** commencé en annexe AN, et non d'un nouvel onboarding. **Captures inédites numérotées 80 à 85** ; le corpus passe de **79 à 85 captures distinctes**.
+
+Le nom de fichier est pris comme référence d'archivage et la suite des écrans constitue le parcours observé. **L'ordre des interactions entre états n'est pas toujours reconstructible** à partir de ces images seules. En particulier, une notification de série est vue par-dessus un écran de résultat et un retour à l'accueil apparaît sur une autre capture : ne pas inventer les gestes intermédiaires.
+
+| Numéro | Fichier | Écran ou état |
+|---:|---|---|
+| **80** | **54326.jpg** | Signalement envoyé : « Merci ! » en modal sur une erreur disputée |
+| **81** | **54328.jpg** | « Choisis l'homophone » : correction positive des pronoms **leur/les** |
+| **82** | **54330.jpg** | « Trouve la faute » : dernière question correcte, 15/15 traitées |
+| **83** | **54332.jpg** | Modal de **série quotidienne** : 1 jour, demande d'autoriser les notifications |
+| **84** | **54334.jpg** | Résultat de la Partie rapide : **13 points, 87 %, règles maîtrisées** |
+| **85** | **54336.jpg** | Retour à l'accueil : **37 macarons, 1 diamant, série d'un jour, défi 3/5** |
+
+**Conventions de preuve :** [VU] texte ou état observable ; [MESURÉ] valeur de pixel JPEG ; [ESTIMÉ] géométrie lue sur le raster, ne constituant pas un dp ni un token CSS ; [INFÉRENCE] conséquence UX plausible ; [INCONNU] calcul ou action backend non vérifiable.
+
+# ANNEXE AT — Deux états tardifs de la partie : remédiation et validation finale
+
+## AT.1 — Capture 80, 54326.jpg : signalement réussi
+
+La question **« Ce gâteau est mieux que l'autre »**, déjà critiquée dans l'**annexe AM**, reste visible en arrière-plan sombre : phrase dans une carte dont le pourtour est rouge, et correction qui impose « meilleur ». Une **nouvelle modal de confirmation** occupe le centre de l'écran après la soumission d'un signalement.
+
+### Relevé d'interface [VU]
+
+- **Arrière-plan fortement obscurci** : le jeu, son titre, l'état de réponse fausse, la zone d'explication et le bouton Suivant restent présents mais difficiles à distinguer. L'utilisateur n'a visiblement pas quitté le contexte de sa question.
+- **Panneau bleu ardoise** à coins très arrondis, relativement compact par rapport au formulaire d'origine, au centre de l'écran ; environ x≈47–662 / y≈442–1099 [ESTIMÉ].
+- **Mascotte Momo** en pose festive (macarons empilés dans une main, bras levé, confettis) centrée vers le haut de la modal.
+- **Titre blanc gras « Merci ! 🙏 »**.
+- Texte turquoise clair centré, affiché exactement : **« Ton signalement a bien été envoyé. On regarde ça rapidement. »**
+- **Gros bouton vert « Fermer »**, relief plus sombre sous le bouton.
+- Aucun identifiant de ticket, aucune date de traitement, aucun statut visible autre que l'accusé d'envoi.
+
+### Ce qu'on peut conclure
+
+Le produit tiers possède **deux états distincts pour le signalement** : formulaire (capture 77, annexe AQ) et **accusé de soumission** (présente capture). Le chemin est donc très lisible. **[INCONNU]** si le signalement arrive effectivement dans un outil de modération, dans quels délais il est examiné, et si la correction ou le score sont modifiés. La phrase **« On regarde ça rapidement »** est une **promesse affichée**, pas une preuve de délai réel. Le signalement contestait justement une correction potentiellement injuste ; c'est un exemple fort de boucle **question → signalement → accusé**, mais **pas** de boucle complète **signalement → rectification**.
+
+**Pour LuxApp :** reproduire la clarté du feedback **seulement si un vrai processus existe derrière**. Conserver un identifiant de question, sa version de contenu et, si pertinent, la réponse donnée, les circonstances de l'exercice, ainsi qu'un statut de traitement. Ne pas prétendre automatiquement corriger la note dès l'accusé.
+
+## AT.2 — Capture 81, 54328.jpg : « Choisis l'homophone » sur leur/les
+
+Le titre grand, **serif blanc**, est **« Choisis l'homophone »** ; fermeture X à droite ; progression sur quinze pastilles avec **deux erreurs rouges visibles aux positions 4 et 11**, des validations vertes et encore des cases gris sombre à la fin. Cette capture n'est donc **pas** la fin de l'exercice.
+
+**Énoncé complet [VU] :**
+
+> « Les élèves ne comprennent pas : le professeur **leur** explique la règle, puis il **les** regarde travailler. »
+
+- Carte bleu ardoise large et assez haute, bordure et tranche inférieure **vertes** sur la réussite.
+- **« leur »** et **« les »** sont présentés en **vert, gras, soulignés**, encastrés dans le texte blanc de l'énoncé. L'utilisateur peut ainsi voir exactement quels deux emplacements sont corrigés.
+- Drapeau de signalement à droite, **« Bravo ! 💪 »** grand et centré.
+- Carte **« Explications › Détails »** distincte, bleu ardoise :
+  **« On explique quelque chose à quelqu'un : à + les élèves devient leur. On regarde quelqu'un, sans préposition, donc les. »**
+- Statistique affichée : **« En moyenne 65% ont répondu juste »** ; le volume de réponses, s'il existe, est **masqué par le CTA** dans le cadrage visible.
+- Gros bouton vert **« Suivant → »** superposé à la zone basse.
+
+**Intérêt pédagogique :** un exercice peut vérifier **deux positions reliées par une même opposition grammaticale**. Ici, une place appelle le pronom indirect **leur** (« expliquer *à* quelqu'un »), une autre le pronom direct **les** (« regarder quelqu'un »). L'explication courte fournit **un test grammatical opérationnel** directement applicable ; c'est plus formateur qu'un simple bon/mauvais.
+
+**Risque UI :** les résultats intermédiaires sont visuellement élégants mais une erreur sur une des deux positions devra permettre un verdict distinct : **[INCONNU]** si le moteur attribue une réussite partielle, une seule réponse fausse pour toute la question, ou une pondération par emplacement.
+
+## AT.3 — Capture 82, 54330.jpg : quinzième réponse, « Je vais meilleur depuis hier. »
+
+**Phrase en tuiles [VU] :**
+
+> « Je vais **meilleur** depuis hier. »
+
+- Cinq tuiles : **Je**, **vais**, **meilleur**, **depuis**, **hier.** ; la tuile **« meilleur »** est **rouge**.
+- Bordure fine **verte**, sous-bord épais **vert** ; verdict **« Bravo ! 💪 »**.
+- Barre du haut composée de **15 pastilles toutes traitées** : **13 vertes et 2 rouges** (positions 4 et 11).
+- Le drapeau blanc reste disponible sur le dernier état, même après validation de la séance.
+- Encadré **« Explications › Détails »** :
+  **« On va bien, donc on va mieux. Le mot porte sur le verbe aller, c'est l'adverbe mieux, invariable. »**
+- Statistique : **« En moyenne 83% ont répondu juste (651 réponses) »**.
+- CTA fixe **« Suivant → »**.
+
+**Contrôle pédagogique :** en emploi d'état/santé avec le verbe aller, **« Je vais mieux depuis hier »** est la formulation naturelle ; « meilleur » est effectivement fautif ici. Cet exemple aide à distinguer un cas déterminé par un **contexte grammatical explicite** du cas trop ouvert « ce gâteau est mieux » (annexe AM).
+
+**Transition [INCONNU] :** le bouton indique Suivant alors que la quinzième question est complétée. Il peut mener au résultat, mais **l'action précise n'est pas montrée**.
+
+# ANNEXE AU — Bilan de séance : score, pourcentage et maîtrise par règle
+
+## AU.1 — Capture 84, 54334.jpg : « Ton score : 13 »
+
+L'écran abandonne le HUD des exercices. **Aucune barre de quinze segments, aucun X, aucun onglet inférieur.** Fond plein **#0C1524** environ, une grande illustration festive de Momo (bras levé, macarons colorés, confettis), puis un résumé central spectaculaire.
+
+### Hiérarchie et détails [VU]
+
+- Illustration Momo sur un fond bleu arrondi, autour de x≈176–534/y≈131–424 [ESTIMÉ].
+- Texte centré **« Ton score : »**, blanc, sans-serif, d'un corps plus petit que la valeur.
+- **« 13 »** en très grandes lettres/chiffres gras blancs, point focal principal.
+- Juste dessous, **« 87 % »**, centré, blanc.
+- Titre de section **« Règles maîtrisées : »**, blanc gras, aligné à gauche.
+- Liste de **cartes par règle**, bleu ardoise et **contour vert** ; la première est visible entièrement, la seconde seulement en partie en raison du défilement et du CTA.
+- Première carte : **« « On » ou « ont » ? »**, **« 2/3 corrects »**, statut dans une petite **pastille arrondie au contour vert « Maîtrisé »**.
+- Deuxième carte partiellement affichée : **« « Il vaut mieux » ou « il faut mieux » ? »** ; son résultat et son statut ne sont pas tous visibles.
+- CTA large vert **« Terminer »**, ancré dans la partie inférieure, avec relief ; il masque ou chevauche visuellement le bas de la deuxième carte à cet instant.
+
+### Ce que révèlent les chiffres
+
+**13 bonnes réponses sur 15 donnent 13 / 15 = 86,666... %, arrondi à 87 %.** Le pourcentage de l'écran est donc cohérent avec la jauge de la dernière question.
+
+La **première carte « On/ont »** déclare **« Maîtrisé » avec 2/3 corrects**. Il s'agit d'un **statut que l'application attribue pour cette règle à la fin d'une partie**, mais les captures ne permettent **pas** de connaître précisément la formule de maîtrise : seuil général à 2/3, pondération, historique, autre mécanisme ? L'étiquette **n'est pas la preuve d'une maîtrise durable**. C'est un élément de conception à discuter pour LuxApp.
+
+Le titre de section « Règles maîtrisées » rend les résultats **interprétables par matière**, contrairement à un simple nombre total. **[INCONNU]** s'il y a aussi une section « À revoir », si les cinq règles sont toutes classées, et comment les règles ambiguës signalées sont traitées dans la note. Une erreur contestée a été sanctionnée pendant cette session ; le système pourrait donc sous-estimer la maîtrise réelle.
+
+### UX du bilan
+
+- **Célébration haute** réservée aux résultats, sans bloquer le défilement des notions.
+- **Chiffre avant explication**, puis restitution par règle : excellente hiérarchie pour comprendre une séance.
+- **CTA Terminer** plutôt que « Rejouer », donc sortie de session explicite ; les possibilités de refaire ou de modifier sa sélection ne sont pas visibles.
+- Le bouton fixe semble **masquer une partie de la liste** sur le screenshot ; un audit Android doit vérifier la réserve d'espace en bas, notamment quand la police système est augmentée.
+
+## AU.2 — Points à ne pas extrapoler
+
+- Le **13** est le score de cette séance, **pas** un score de classement global.
+- Le **87 %** est un taux de bonnes réponses, **pas** une certification de compétence linguistique.
+- **2/3 corrects ≠ règle nécessairement maîtrisée** dans des situations inédites. À fortiori, si l'une des trois questions peut être ambigüe ou injustement notée, l'indicateur peut être trompeur.
+- Ne pas inférer de politique de remise de monnaie à partir de la seule présence du score ; aucune animation d'attribution de macarons/diamants n'a été capturée.
+
+# ANNEXE AV — Rétention : série quotidienne, notifications et retour à l'accueil
+
+## AV.1 — Capture 83, 54332.jpg : « Série commencée ! »
+
+Une **modal bleue** centrée est superposée à l'écran de résultat (illustration festive visible en arrière-plan, cartes de résultats et CTA « Terminer » atténués).
+
+### Éléments visuels exacts [VU]
+
+- Fond du jeu assombri et carte modale **bleu ardoise**, très grands coins arrondis, x≈47–662 / y≈187–1350 [ESTIMÉ] ; panneau haut et étroit.
+- En haut de la modal, **flamme rouge** de très grande taille à gauche et **chiffre blanc « 1 »** à droite, centrés comme un indicateur de série.
+- Titre blanc gras **« Série commencée ! »**.
+- Sous-titre turquoise : **« Continue demain pour augmenter ta série »**.
+- Encadré plus sombre et arrondi contenant la semaine **« Lu Ma Me Je Ve Sa Di »**, des disques gris, et une **flamme sur « Ve »** (vendredi). Le vendredi ressort également en blanc gras.
+- Incitation turquoise sur deux lignes : **« Active les notifications pour ne pas perdre ta série ! »**
+- Très gros bouton vert avec relief **« Activer les notifications »**, texte blanc sur deux lignes ; zone secondaire **« Plus tard »**, turquoise clair, centrée tout en bas.
+- Pas de croix « X » visible dans la modal ; **« Plus tard »** est la sortie explicite sans consentir aux notifications.
+
+### Mécanismes et limites
+
+L'application marque une **série de 1 jour** et place immédiatement une **demande facultative de notifications**. Le message ne garantit pas que l'autorisation système a été accordée : aucune boîte de dialogue Android n'est montrée. **[INCONNU]** si la modal apparaît à la première partie du jour, à la première série, après l'onboarding ou après le score ; on voit seulement son apparition **sur** la page de résultat.
+
+Il s'agit d'un design de rétention à deux étapes : d'abord la gratification **« tu as démarré une série »**, ensuite une demande d'activation de rappel au moment où la valeur de la série est concrète. **Pour LuxApp**, ne pas déclencher de notifications intrusives avant bénéfice constaté et conserver « Plus tard » pleinement accessible.
+
+**Attention UX :** cette modal occupe presque tout le viewport, et son bouton vert est très imposant. Elle crée une friction supplémentaire **avant la sortie de la séance**. Vérifier en adaptation locale si une carte moins haute peut suffire.
+
+## AV.2 — Capture 85, 54336.jpg : accueil après la partie
+
+Retour sur l'écran d'accueil déjà observé dans les anciennes séries, avec données **actualisées**.
+
+### État visible [VU]
+
+- En haut à gauche, pictogramme de **macaron rouge** et compteur turquoise **« 37 »**.
+- En haut à droite, **diamant turquoise** et compteur **« 1 »**.
+- Grande illustration de **Momo caché derrière la carte de série**, les mains posées dessus, occupant approximativement x≈180–527/y≈95–381 [ESTIMÉ] : mascot comme élément de décor persistant et non comme simple icône.
+- Carte bleue de **« Série de 1 jour »**, large, très arrondie, avec grande **flamme rouge** qui déborde visuellement à droite.
+- Repères hebdomadaires **Lu, Ma, Me, Je, Ve, Sa, Di** ; **Ve** en blanc gras et **flamme sur vendredi**, autres jours en cercles creux bleutés.
+- Ligne de deux modules : à gauche **« ÉCRIRE »**, proposition illustrée d'un sujet **« Que signifie vivre une bo... »** ; à droite **« PARTIE RAPIDE »**, bouton vert **« Jouer › »**. Il s'agit d'une entrée rapide directement actionnable depuis l'accueil.
+- Carte **« Défi de bienvenue ! »** : Momo invite à découvrir l'application ; progression **verte sur fond gris** ; texte **« 3 / 5 étapes complétées »**. Une version précédente dans les premières séries affichait **1 / 5 étapes**, ce qui établit une évolution de l'état affiché, **pas** la cause exacte de chaque étape.
+- **Barre de navigation inférieure persistante** avec six icônes illustrées (poing, épées, livre, bloc-note, favori, profil). Poing coloré en état actif.
+
+### Points importants / inconnus
+
+Dans les captures précédentes de l'accueil, les compteurs montraient **0 macaron / 3 diamants**, alors que cet accueil montre **37 macarons / 1 diamant**. C'est bien une **différence observable entre deux instants**, mais **il est impossible de relier la variation exacte** à cette seule partie rapide : l'utilisateur a pu effectuer d'autres opérations entre les captures, échanger des ressources, etc.
+
+**« 3/5 étapes »** représente un défi onboarding avec progression visible. L'augmentation depuis **1/5** rend la boucle de familiarisation plus tangible, mais **ne démontre pas** quel écran ou quelle activité a validé chacune des deux étapes supplémentaires.
+
+**Rétention :** l'accueil fusionne **identité de joueur** (ressources, avatar), **habitude** (série), **recommandation** (écriture), **jeu accessible** (partie rapide) et **accompagnement initial** (défi). La partie terminée se replace dans une expérience plus longue, plutôt que s'achever sur une page isolée.
+
+# ANNEXE AW — Synthèse de fin de partie : design, métriques, leçons pour LuxApp
+
+## AW.1 — Détails UI mesurés et récurrents
+
+Toutes les positions indiquées sont **approximatives et exprimées dans le raster Android 709 × 1536**, pas dans des unités CSS ou dp ; les valeurs ci-dessous sont des **pixels échantillonnés** sur les JPEG.
+
+| Capture, point (x,y) | HEX du pixel | Zone |
+|---|---|---|
+| 54328, (5,800) | **#0C1524** | Fond du jeu |
+| 54328, (350,500) | **#1D3152** | Carte d'exercice |
+| 54328, (350,950) | **#1A324E** | Bloc Explications |
+| 54330, (355,300) | **#1A3150** | Carte du dernier exercice |
+| 54330, (355,870) | **#1A324E** | Bloc Explications |
+| 54332, (5,800) | **#050912** | Backdrop de la modal assombri |
+| 54332, (90,400) | **#1A324E** | Modal de série |
+| 54332, (355,1050) | **#1A8F0B** | CTA notifications |
+| 54334, (5,800) | **#0C1524** | Fond de bilan |
+| 54334, (350,900) | **#1A324E** | Carte de règle maîtrisée |
+| 54336, (5,800) | **#0C1524** | Fond accueil |
+| 54336, (350,1000) | **#1A324E** | Carte défi bienvenue |
+| 54336, (350,450) | **#14253F** | Carte série |
+| 54336, (500,750) | **#1FA10D** | Bouton Jouer |
+
+**Détails visuels transversaux :** fond bleu-nuit sans motif, grosses cartes ardoise, titres serif pour jeu mais gros sans-serif pour score/modal, CTA vert à relief simulé, dégradés et ombres limités, mascotte 2D vectorielle festive ou attendrissante selon état, nombre-score oversize, semaines jalonnées de cercles, badges « Maîtrisé » verts filaires, cartes de connaissance par règle, statut confirmé par texte + couleur, fond assombri des modales, CTA fixe sous un contenu scrollable.
+
+**Réserve d'accessibilité :** le **rouge/vert** structure les pastilles et les encarts, mais la réussite devrait rester compréhensible sans couleur : la série de quinze pastilles colorées **n'indique pas textuellement son sens** pendant la séance. Le bilan apporte davantage de sémantique (« 2/3 corrects », « Maîtrisé »). **Contrôles Android à prévoir :** scroll de liste sous bouton « Terminer », ouverture de modale et retour focus, hauteur disponible lorsque la police système est large, bouton « Plus tard » non masqué, animations compatibles réduction des mouvements.
+
+## AW.2 — Boucle complète maintenant observable dans la partie rapide
+
+**5 notions choisies → 15 questions multi-formats → feedback immédiat → fiches de règles et révision automatique → score global 13/15 (87 %) → statut apparent par règle → sollicitation facultative des notifications → accueil actualisé avec série, ressources et défi de bienvenue.**
+
+La **complétude fonctionnelle est meilleure qu'avec la partie 1 de la série 8**, mais plusieurs étapes internes demeurent inconnues : attribution exacte des monnaies, règle de catégorisation « Maîtrisé », délai de revue des signalements, garantie de notification, seuils et versioning, distribution des questions, récompense éventuelle de fin de session.
+
+**Signalement :** une confirmation de soumission est maintenant prouvée. Le fait que la capture du gâteau reste incorrectement notée dans l'arrière-plan rappelle qu'un signalement **n'efface pas automatiquement une pénalisation**.
+
+## AW.3 — Valeur transférable à LuxApp / Luxo, sans copie directe
+
+1. **Fin de séance explicative, pas seulement un score** : restituer les résultats au niveau des compétences/intentions (« se présenter », « demander son chemin ») ou des notions réellement évaluées. Prévoir identifiants stables pour agréger plusieurs formats sans calculer une maîtrise artificielle.
+2. **Statut de compétence prudent** : préférer un libellé tel que **« 2/3 réussis aujourd'hui »** ou **« À consolider »**, plutôt qu'annoncer une **maîtrise durable à partir d'une seule séance**. Le seuil réel observé est insuffisamment documenté.
+3. **Retour accueillant** : série et prochain exercice pertinent doivent être visibles dès l'accueil, sans y empiler trop de monnaies. LuxApp possède déjà sa **streak** et des **stats par question** dans public/progress.js : réutiliser au lieu de dupliquer.
+4. **Mascotte/feedback liés à des moments précis** : célébration de score, début de série, confirmation de signalement, mais pas en plein milieu des questions au détriment de la lisibilité. Respecter **la direction graphique approuvée en 2.1**.
+5. **Permission de notifications après valeur réelle** : l'opt-in doit être clair et non obligatoire ; aucune notification ne doit être demandée ou planifiée simplement pour copier la référence.
+6. **Signalement traçable et réconciliable** : la confirmation ne suffit pas. Penser workflow de tri, validation linguistique, correction versionnée et éventuelle réparation des résultats erronés.
+7. **Priorité au contenu fiable** : les quinze pastilles montrent deux erreurs, dont l'exemple ambigu du gâteau a été contesté. Une bonne interface peut amplifier l'injustice d'une correction ; imposer des scénarios adversariaux pour les exercices A1.1/A1.2, en cohérence avec LOD.lu et grammaire_luxembourg.md.
+8. **Ne pas recopier l'identité graphique du tiers** : la charte LuxApp 2.1, son fond chaud, ses touches ivoire/or et sa personnalité éditoriale restent la source de vérité. Adapter les mécanismes utiles seulement.
+
+## AW.4 — Captures restantes les plus utiles
+
+Pour la **partie rapide**, le **résultat final, la série et l'accusé de signalement sont maintenant couverts**. Les angles manquants les plus intéressants restent : **une sélection de 1 à 4 règles**, l'état initial **« Choisis le bon »**, l'état après correction partielle d'un homophone à plusieurs blancs, **un bilan avec une règle classée « À revoir »**, une relance de la même partie après signalement et le comportement après notification activée/refusée. Un suivi de signalement sur plusieurs jours permettrait d'évaluer l'engagement de correction, mais aucun écran ne le démontre actuellement.
+
+**Statut :** relevé UX et recommandations uniquement. **85 captures distinctes** au total. Aucune modification du code ou des données LuxApp ; aucun test applicatif nécessité pour cette modification documentaire.
