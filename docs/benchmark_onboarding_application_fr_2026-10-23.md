@@ -2,7 +2,7 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 92 captures Android distinctes : séries 1–7 = 69 ; annexe AM = 54324.jpg (1) ; série 8 = 15 inédites (54304–54322 et 54326–54336) ; série 9 = 7 nouvelles captures (54338–54350) de la bibliothèque de règles, du cours « Quelle/qu'elle » et de son quiz. La capture 54324.jpg présente dans le lot 8 reste comptée une fois. Annexes A–AW historiques, AX–AZ nouvelle série.  
+**Corpus :** 93 captures Android distinctes : séries 1–7 = 69 ; annexe AM = 54324.jpg (1) ; série 8 = 15 inédites (54304–54322 et 54326–54336) ; série 9 = 7 captures (54338–54350) ; série 9, complément = 1 capture inédite (54352.jpg), bilan du quiz « Quelle/qu'elle ». La capture 54324.jpg reste comptée une fois. Annexes A–AW historiques, AX–AZ série 9, BA bilan du quiz.  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md accessible et consulté sur 2.1 lors de la vérification du 23 octobre 2026.**  
 **Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
@@ -4551,9 +4551,9 @@ La question porte donc sur **le souvenir littéral d'une astuce donnée au cours
 
 ## AZ.2 — Vérification du comptage et progression
 
-**Corpus : 92 captures distinctes** (85 antérieures + 7 nouvelles, aucun doublon connu). Cette série n'apporte **pas** de preuve directe sur : le huitième item du quiz, le **bilan ou taux de réussite final** du module, une éventuelle validation de notion, la transformation du statut **« Non vue »** en **« Vue »**, ou le déclenchement d'une **partie de révision depuis une erreur récente**. La capture 87 montre seulement que l'onboarding signale **« Faire une partie révision »** comme accompli.
+**Corpus : 92 captures distinctes à l'issue des captures 86–92** (85 antérieures + 7 nouvelles, aucun doublon connu) ; **une 93e capture complémentaire** a ensuite documenté le bilan du quiz (annexe BA). La série 9 ne montre toujours pas la question 8/8 elle-même, le statut après retour au catalogue, ni le déclenchement d'une **partie de révision depuis une erreur récente**. La capture 87 montre seulement que l'onboarding signale **« Faire une partie révision »** comme accompli.
 
-**Prochain écran prioritaire pour le suivi :** **question 8/8 puis écran de résultat et retour à la carte de règle** afin de comprendre l'effet du quiz sur le statut et le progrès. Pour fermer ensuite la TODO P0 révision : **partie réellement ouverte depuis une règle marquée « Erreur récente »**, avec son bilan.
+**Suivi :** le **résultat 7/8** et une récompense **+5 macarons** ont maintenant été vus (annexe BA), mais ni la question 8/8 elle-même ni **le retour à la carte de règle après « Terminer »**. Pour fermer la TODO P0, vérifier ce nouveau statut ; puis observer une **partie réellement ouverte depuis une règle marquée « Erreur récente »**, avec son bilan.
 
 ## AZ.3 — Liens avec les choix LuxApp
 
@@ -4564,3 +4564,44 @@ La question porte donc sur **le souvenir littéral d'une astuce donnée au cours
 - Respecter **la charte UI 2.1 actuelle**, le moteur et la progression existants ; ceci est une **observation de référence**, pas une demande de clonage de l'interface.
 
 **Statut :** ajout documentaire uniquement ; aucune modification du code, des données pédagogiques ou du moteur de progression de LuxApp. Sources GitHub reconsultées : PLAYBOOK.md sur main/2.1, AGENTS.md, docs/CHARTE_UI_2.1.md, docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md, benchmark et TODO d'origine.
+
+
+---
+
+# ANNEXE BA — Résultat du quiz individuel « Quelle / qu'elle », capture 93
+
+**Référence :** **54352.jpg**, image Android **709 × 1536 px**, affichage à **16 h 01**, le 23 octobre 2026. Suite du quiz de règle montré aux captures 91–92, dont la septième question avait été ratée à cause d'une consigne jugée peu claire. **L'énoncé de la huitième question et les interactions conduisant à ce bilan ne sont pas visibles.**
+
+## BA.1 — Relevé exact [VU]
+
+L'écran final isole un **résultat personnalisé pour UNE règle**, distinct du bilan de la Partie rapide qui récapitulait cinq notions.
+
+- **Fond plein bleu nuit** (pixel échantillonné vers x=5, y=750 : **#0C1524**) ; aucune barre d'onglets ni jauge de quiz en haut. Statut Android et barre de navigation système Samsung encore visibles.
+- **Célébration haute** : pluie de **confettis**, formes géométriques oranges/rouges, petites étoiles et serpentins multicolores dans une zone libre au-dessus du panneau, approximativement jusqu'à y≈295 px. **[INCONNU]** s'il s'agit d'une animation réelle ou d'un dessin temporairement capturé.
+- **Carte principale très volumineuse** bleu ardoise, largeur presque plein écran, **coins arrondis** ≈ x35–674 / y294–1216 px [ESTIMÉ] ; pixel central typique vers x=350, y=650 : **#1A324E**. Carte sans contour décoratif voyant, ni masque qui opacifie le reste du fond.
+- **Titre centré « Bravo ! »**, blanc, serif très gras, assez haut sous les confettis ; feedback de réussite explicite sans utiliser uniquement le vert.
+- **« Ton score : 7 / 8 »**, plus bas, blanc sans-serif, centré. Aucun **pourcentage** affiché sur cet écran et aucune ventilation par item ; **sept réponses correctes sur huit** sont communiquées.
+- Message de maîtrise, **aligné à gauche** à l'intérieur de la carte, sur deux lignes : **« Tu maîtrises maintenant cette règle. »** Texte blanc sans-serif, grand et espacé.
+- **Encart de récompense imbriqué** vers x≈79–629 / y≈733–896 px [ESTIMÉ], fond bleu ardoise similaire, **contour bleu-gris épais**, grands coins arrondis, léger relief/ombre porté sous le cadre. À gauche **« Bravo ! »** en gros caractères blancs gras, à droite **« +5 »** en chiffres blancs et un **macaron rouge illustré**. L'association explicite signifie **+5 macarons annoncés** par ce résultat, sans révéler l'historique réel du solde.
+- **CTA principal vert saturé « Terminer »** vers x≈97–612 / y≈1037–1139 px [ESTIMÉ], grands rayons de courbure, texte blanc sans-serif gras, **bande inférieure vert foncé** simulant une épaisseur physique (style button 3D). Aucune action secondaire visible.
+- Le panneau garde **beaucoup d'espace vertical** entre la phrase de maîtrise, la récompense et le bouton ; lisibilité forte mais interface presque entièrement dédiée à la clôture.
+
+## BA.2 — Séquence métier observable et inconnues
+
+Cette image **confirme** un passage du quiz de 8 questions à un **état de réussite finale** avec mention de règle maîtrisée et récompense monétaire. La précédente capture affichait **six réponses vertes, une rouge et une encore à jouer** ; le total final **7/8** est cohérent avec une dernière bonne réponse, **mais cette dernière question n'a pas été montrée**.
+
+Une réussite malgré une question manquée donne un élément important : **le 8/8 n'est pas exigé** pour présenter l'état **« Tu maîtrises maintenant cette règle »**. Le **seuil de validation exact** demeure **[INCONNU]** : on n'a observé qu'un seul score final, sans cas de 6/8 ou moins.
+
+**[INCONNU]** également : si +5 macarons ont été effectivement crédités au compte, si le statut « Non vue » de la liste devient « Vue » / « Maîtrisée », si une nouvelle tentative rapporte les mêmes +5, si un quiz échoué propose une révision, si une question litigieuse peut être neutralisée, et si la progression de la catégorie augmente au retour.
+
+## BA.3 — Enseignements UI/UX pour LuxApp
+
+1. **Boucle tangible « règle → quiz → fin de séance → gratification ».** Le produit récompense immédiatement l'achèvement de l'évaluation avec un score lisible et une unité de monnaie familière.
+2. **Attention au mot « maîtrises » :** un unique essai à 7/8 prouve une réussite ponctuelle, pas la consolidation espacée de la notion. Pour LuxApp, distinguer **« Réussi aujourd'hui »** (évaluation de session) et **« Acquis / À consolider »** (historique de reprises et diversité d'exercices), sans changer la logique de progression existante sans validation.
+3. **Problème de mesure plus subtil :** dans ce quiz, la seule réponse fausse explicitement observée portait sur une **consigne métalinguistique elliptique** (« Quel mot faut-il essayer à la place pour trancher ? »), non sur une mauvaise application de « quelle / qu'elle » en contexte. La logique de maîtrise et l'explication de score doivent donc éviter d'agréger des erreurs de **compréhension de consigne** avec des lacunes de grammaire.
+4. **Le résultat n'est pas un certificat :** le libellé de maîtrise peut être un message de gamification ; l'exactitude de son critère n'est pas auditable sur screenshot.
+5. **Récompense et CTA bien hiérarchisés**, mais **risque d'espace perdu** sur petits téléphones : le panneau énorme ne donne pas le détail de ce qu'il faudrait réviser. Pour LuxApp, une fin de quiz peut rester plus compacte et proposer **« Continuer mon parcours »** sans imposer plusieurs écrans.
+
+**Prochain écran demandé pour clôturer ce flux :** **l'état de la règle immédiatement après « Terminer »**, puis son état dans **« Liste de révision »** / **« Confusions fréquentes »**. Cela permettrait de vérifier, plutôt que supposer, la liaison entre message de maîtrise, statut de notion et progression chiffrée.
+
+**Statut documentaire :** 93 captures distinctes ; aucune modification du code LuxApp. Références : [annexe AY](#annexe-ay--fiche-de-cours--quelle----quelle--et-quiz-intégré) et [TODO benchmark](TODO_BENCHMARK_FSSF.md).
