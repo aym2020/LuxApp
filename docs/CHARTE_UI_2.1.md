@@ -125,6 +125,54 @@ Principes mis en œuvre : en-tête photographique compact utilisant le **WebP d�
 
 La structure HTML et les boutons du parcours restent fournis par `public/chemin.js` et son moteur existant. Les nouveaux contrôles ciblés sont dans `test/chemin-v21.test.cjs`. **Le rendu final sur téléphone et les autres états de progression restent à recetter manuellement avant validation visuelle définitive.**
 
+## 6 bis. Référentiel de dimensions 2.1 — cible d'harmonisation
+
+**Statut : règles normatives pour les prochaines modifications de la branche `2.1`, non implémentées dans les CSS actuels.** Lire d'abord [l'audit des 20 vues et panneaux](AUDIT-DIMENSIONS-2.1.md) (état GitHub initial `ff6d6ee`). Les valeurs ci-dessous sont des **plafonds proposés et retenus comme cible de conception**, jamais des mesures DOM de tous les écrans.
+
+### 6 bis.1 — Un gabarit extérieur, des contenus adaptés
+
+| Rôle | Token à créer dans `design-tokens.css` | Maximum cible |
+|---|---|---:|
+| Enveloppe commune des vues | `--layout-shell` | **640px** |
+| Zone de lecture : cours, lexique, corrections longues | `--layout-reading` | **560px** |
+| Zone de concentration : exercices, saisie, tuiles, Survie | `--layout-focus` | **500px** |
+| Feuille contextuelle principale : Plus, Cours, recette | `--layout-sheet` | **640px** |
+| Dialogue bref / confirmation | `--layout-dialog` | **400px** |
+| Gouttière latérale | `--layout-gutter` | **16px mobile / 24px PC** |
+
+**Ces tokens ne sont pas encore définis dans le code.** Les utiliser seulement lors du futur lot d'implémentation, avec `width:100%`, `max-width`, `min-width:0` quand nécessaire et centrage cohérent. Jamais de largeur minimale supérieure à celle d'un téléphone. Ne pas étirer les caractères des tuiles, les bulles de messagerie ni les titres courts pour « remplir » 640px.
+
+**Mobile prioritaire :** préserver l'accueil déjà validé et les compositions jusqu'à 600px ; l'harmonisation extérieure se manifeste principalement sur les grands écrans. Aucune modification de la disposition des leçons, de leur ordre, du clavier, des réponses, des couleurs de feedback ou de la progression n'est autorisée pour gagner de la largeur.
+
+### 6 bis.2 — Alignement et exceptions par famille
+
+1. **Toutes les pages :** les vues, leurs en-têtes, la navigation basse `.nav-bas` et les bandeaux `.cta-fixe` prennent l'enveloppe commune de 640px. Les repères gauche et droit des titres, cartes et actions doivent être cohérents lors de la navigation.
+2. **Accueil, Chemin, détail de leçon et hub Jeux :** enveloppe commune de 640px sur grand écran. Les blocs intérieurs peuvent être plus étroits pour la lecture ; ne pas transformer l'accueil en grille de bureau et ne pas recopier le hero photographique sur les activités.
+3. **Cours, lexique, pièges, annales et résultats :** lecture jusqu'à 560px lorsqu'il s'agit de paragraphes. Tableaux, filtres et banques de mots restent intégralement utilisables et peuvent occuper l'enveloppe si nécessaire.
+4. **Mot caché, Quiz, Trous, Écriture, entraînement et Survie :** enveloppe extérieure identique mais **zone active à 500px au maximum**. Les lettres, choix, champs et feedback gardent leurs tailles tactiles réelles et une correction toujours lisible. Aligner correctement les headers et CTA sur ce système.
+5. **Mission :** garder l'en-tête, le fil de messages scrollable et la réponse fixe ; les bulles restent proportionnelles à la conversation. Ne pas modifier le comportement clavier.
+6. **Survie et bilans :** scores, anneaux et éléments centraux peuvent rester compacts (le résultat Survie possède aujourd'hui un bloc interne de 420px). Les boutons et la navigation suivent les axes retenus.
+7. **Panneaux principaux :** Plus / recette et Cours convergent vers 640px. Exceptions intentionnelles : aide Mot caché 500px, portail d'authentification compact 500px, modales 400px et popovers adaptés à leur ancre. Le lecteur d'exemples peut avoir un fond plein viewport et un contenu de 560px.
+
+**Ne pas appliquer** `* {max-width:640px}` ni créer des surcharges répétées en fin de `style.css`. Une valeur partagée va dans les tokens, la géométrie commune dans les composants, les exceptions vérifiées dans les feuilles propres aux vues.
+
+### 6 bis.3 — Règles verticales et scroll
+
+- **Consultation** (accueil, chemin, leçons, lexique, liste d'examens) : hauteur guidée par le contenu et une zone de défilement principale ; ne pas forcer un grand vide pour pousser le CTA au fond de la fenêtre PC.
+- **Immersion** (exercices, mission, Survie, examen) : `100dvh` ou hauteur de viewport ajustée au clavier lorsque nécessaire ; en-tête et actions stables, contenu central scrollable.
+- **Introductions / découverte** : sur Android, garder l'action accessible en bas ; sur PC très haut, réduire les distances artificielles tout en conservant l'ordre de navigation, le contenu entier et les safe areas.
+- **Résultats et panneaux** : jamais de recouvrement des dernières lignes par un CTA ; panneaux bornés en hauteur avec contenu défilant et actions toujours accessibles.
+
+### 6 bis.4 — Recette avant chaque déploiement
+
+Implémenter par lots séparés : **(1) tokens et vues de consultation, (2) accueil → chemin → leçon → Jeux, (3) navigation et panneaux, (4) activités sensibles et résultats**. Ne pas modifier en bloc toutes les vues et ne pas toucher à `main` ou à la progression.
+
+Mesurer avant et après via `getBoundingClientRect()` (vues, axes des en-têtes, footers, zones de réponse), puis comparer des captures sur **320 / 360 / 390 / 430 / 600 / 640 / 720 / 768 / 1024 / 1440 / 1920px**, hauteurs **600 / 900 / 1080px**, zoom 100/125/150 %, texte 130/200 % et Samsung avec clavier ouvert. Critères : zéro scroll horizontal, aucune troncature de contenu, zones tactiles ≥44px, CTA visibles, navigation et reprise correctes. Pour les lots d'exercices, exécuter les tests ciblés, `bash tools/critique.sh rapide` et `bash tools/critique.sh`, puis vérifier sur vrai Samsung. Une CI verte ne suffit pas.
+
+**Source normative unique pour le layout 2.1 : cette section de la charte.** L'audit fige l'état initial ; `docs/DESIGN_SYSTEM.md` reste la référence générale des composants. Ne pas confondre cible écrite et CSS déjà déployé.
+
+---
+
 ## 7. Stratégie d'implémentation — une harmonisation en plusieurs lots
 
 ### Lot 0 — Audit visuel, avant modification

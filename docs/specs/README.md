@@ -1,6 +1,6 @@
 # LuxApp — Registre des spécifications
 
-Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du projet LuxApp. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+Ce répertoire contient **88 fiches de spécification présentes** sur la branche `2.1` (01 à 81 et 87 à 93, au 23 octobre 2026). Les numéros **82 à 86 sont absents** du dépôt : ne pas leur inventer de contenu. Le registre historique ci-dessous n'indexe pas encore toutes ces fiches. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
 > **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; les fiches 35 à 37 sont implémentées (recette à confirmer) ; la fiche 38 décrit le correctif d'historique après confirmation de l'introduction et rattrapage des erreurs. La fiche 39 optimise l'outillage de tests ; la fiche 40 est implémentée (recette Android à confirmer) ; la fiche 41 est implémentée (recette Android à confirmer) ; la fiche 42 est implémentée (validation Android à confirmer) ; la fiche 43 décrit le mode de recette visuelle rapide à développer. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
@@ -91,6 +91,23 @@ Ce répertoire centralise les **64 spécifications** fonctionnelles et UX du pro
 | 74 | [Résultat d'annale : Terminer prioritaire, Refaire ce sujet secondaire](./SPEC-74.md) | P2 | Implémentée — recette Android à confirmer |
 | 75 | [Cours des leçons 1–3 : Règles / Lexique / Phrases](./SPEC-75.md) | P1 | À implémenter — maquette leçon 2 déposée |
 | 87 | [Stabilisation UX des exercices sur mobile (branche 2.1)](./SPEC-87.md) | P1 | Implémentée — recette Samsung à faire |
+
+## Fiches existantes non indexées dans le tableau historique
+
+Ces huit fiches existent sur `2.1` ; consulter chacune pour son statut précis avant de la déclarer validée.
+
+| ID | Fiche |
+|---|---|
+| 76 | [Progression du mode invité](SPEC-76.md) |
+| 77 | [Accueil invité stable](SPEC-77.md) |
+| 78 | [Salutations alternatives](SPEC-78.md) |
+| 79 | [Leçon 0 et prononciation LOD](SPEC-79.md) |
+| 80 | [Audit pédagogique de la leçon 0](SPEC-80.md) |
+| 81 | [Lecture audio en quiz](SPEC-81.md) |
+| 88 | [Accueil fixe, Jeux et Survie](SPEC-88.md) |
+| 93 | [PWA hors ligne, projet](SPEC-93.md) |
+
+**Hygiène documentaire :** consolider un jour le registre avec des statuts vérifiés plutôt que supprimer des fiches historiques ou confondre présence et validation.
 
 ## Gestion des changements
 

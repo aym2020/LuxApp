@@ -55,6 +55,8 @@ Ordre de chargement : `design-tokens.css` → `components.css` → `style.css`. 
 - Polices : **Inter** pour l'interface ; **Instrument Serif** pour les mots et phrases luxembourgeoises courtes et les titres narratifs (au-delà de 40 caractères, Inter : classe `.texte-long`) ; **Atkinson Hyperlegible** (`--police-lettres`) pour **tout l'exercice mot caché** (écran « Nouveau mot », consigne, article, cases, tuiles, correction) : c'est là qu'on apprend l'orthographe, I, l, i, 1, O et 0 doivent se distinguer d'un coup d'œil. Ailleurs, Inter et Instrument Serif.
 - Cartes arrondies (`--rayon-carte` 20 px), bordures discrètes (`--couleur-bord-1`), animations courtes, coupées par `prefers-reduced-motion`.
 
+> **Dimensions LuxApp 2.1 :** la [charte UI, § 6 bis](CHARTE_UI_2.1.md) définit désormais les gabarits cibles (640px page, 560px lecture, 500px interaction), leurs exceptions et les tests. L'[audit historique](AUDIT-DIMENSIONS-2.1.md) décrit les dimensions actuellement codées. Les nouveaux tokens ne sont **pas encore implémentés** ; conserver cette distinction jusqu'à la livraison CSS.
+
 ## 3. Tokens principaux
 
 | Rôle | Token | Valeur |
