@@ -1096,7 +1096,7 @@ function renderReconstruction() {
     '</div>' +
     '<div class="mc-saisie">' +
     '<div class="mc-erreur hidden" id="mc-erreur" role="status" aria-live="polite"></div>' +
-    '<div class="mc-score">Score des lettres : <b id="mc-score">100 %</b> · sans indice</div>' +
+    '<div class="mc-score">Score des lettres : <b id="mc-score">100 %</b><span id="mc-score-indices"> · sans indice</span></div>' +
     '<dialog id="mc-aide-dialog" class="mc-aide-dialog" aria-labelledby="mc-aide-titre">' +
       '<div class="mc-aide-poignee" aria-hidden="true"></div>' +
       '<h2 id="mc-aide-titre">Comprendre mon erreur</h2>' +
@@ -1347,6 +1347,8 @@ function mcScore() {
 
 function mcMajScore() {
   document.getElementById('mc-score').textContent = Math.round(mcScore() * 100) + ' %';
+  const info = document.getElementById('mc-score-indices');
+  if (info) info.textContent = mc.indices ? ' · ' + mc.indices + ' indice' + (mc.indices > 1 ? 's' : '') : ' · sans indice';
 }
 
 function mcIndice() {
