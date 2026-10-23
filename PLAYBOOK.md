@@ -26,7 +26,7 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ## TODO — Backlog priorisé LuxApp 2.1
 
-[**TODO.md — 37 tâches P0–P3, responsables et critères de validation**](TODO.md). Le plan est à exécuter par lots : fiabiliser les exercices, la sauvegarde et la recette mobile avant la gamification avancée. Une case ouverte ne veut pas dire que la fonctionnalité est absente : elle signale que la validation définie n'a pas encore été enregistrée. **L'ajout du TODO ne modifie pas l'application.**
+[**TODO.md — 42 tâches P0–P3, responsables et critères de validation**](TODO.md). Le plan est à exécuter par lots : fiabiliser les exercices, la sauvegarde et la recette mobile, puis mesurer les dimensions réelles avant d'harmoniser les gabarits PC/mobile (charte UI § 6 bis), et seulement ensuite étendre la gamification. Une case ouverte ne veut pas dire que la fonctionnalité est absente : elle signale que la validation définie n'a pas encore été enregistrée. **L'ajout du TODO ne modifie pas l'application.**
 
 ---
 
