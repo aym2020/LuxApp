@@ -16,6 +16,12 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## Recettes associées aux tests — branche 2.1
+
+[**Catalogue de vérification 3001**](docs/RECETTES-2.1.md) : chaque changement UI doit documenter l'identifiant de recette, le scénario préparé avec les **vraies fonctions**, le test automatisé associé, la vérification humaine et son état. P0-01 : recettes Mot caché / Quiz / Trous / Écriture dans les **Outils de test** de l'instance `RECETTE=1`. Firebase est volontairement coupé sur `3001` : les synchronisations cloud exigent une recette séparée et protégée. Ne cocher une tâche que lorsque les critères correspondants sont validés sur Samsung.
+
+---
+
 ## TODO — Backlog priorisé LuxApp 2.1
 
 [**TODO.md — 37 tâches P0–P3, responsables et critères de validation**](TODO.md). Le plan est à exécuter par lots : fiabiliser les exercices, la sauvegarde et la recette mobile avant la gamification avancée. Une case ouverte ne veut pas dire que la fonctionnalité est absente : elle signale que la validation définie n'a pas encore été enregistrée. **L'ajout du TODO ne modifie pas l'application.**

@@ -113,6 +113,59 @@ try:
             return time.time() - t
 
         durees = {}
+        # P0-01 : les états affichés dans 3001 proviennent du vrai moteur.
+        # Vérifier que chaque scénario est sélectionnable et explique le test lié.
+        pg.evaluate("fermerPanneau(); ouvrirRecette()")
+        pg.select_option('#rec-lecon','2')
+        pg.select_option('#rec-ecran','motcache')
+        assert pg.is_visible('#rec-criteres') and 'tests/test_motcache' in pg.inner_text('#rec-criteres')
+        pg.evaluate('fermerPanneau()')
+        lancer(2, 'motcache', 'decouverte')
+        assert pg.locator('#mc-btn-reconstruire').count() == 1
+        lancer(2, 'motcache', 'depart')
+        assert pg.locator('#mc-btn-valider').is_visible()
+        assert pg.locator('#mc-legende').is_visible()
+        for n in (1, 2, 3):
+            lancer(2, 'motcache', 'erreur-%d' % n)
+            assert pg.evaluate('mc.essais') == n
+            assert pg.locator('#mc-erreur').is_visible()
+            assert pg.locator('#mc-btn-valider').is_visible()
+            if n == 3:
+                pg.locator('.mc-aide-ouvrir').click()
+                assert pg.locator('#mc-btn-voir').is_visible()
+        lancer(2, 'motcache', 'indice')
+        assert pg.evaluate('mc.indices') == 1 and pg.locator('.mc-case.indice').count() == 1
+        lancer(2, 'motcache', 'reussite')
+        assert pg.evaluate('pAttente') and 'Bien joué' in pg.inner_text('#pc-feedback')
+        lancer(2, 'motcache', 'revelation')
+        assert pg.evaluate('pAttente') and pg.evaluate('mc.revele')
+        assert pg.locator('#pc-continuer').is_visible()
+        ok('3001 Mot caché : découverte, départ, 1–3 erreurs, aide, indice, réussite et révélation')
+
+        for ecran, prefix in (('quiz','Q'),('trous','T')):
+            lancer(2, ecran, 'depart')
+            assert pg.locator('#pc-choix .choice').count() >= 2
+            lancer(2, ecran, 'juste')
+            assert pg.evaluate('pAttente') and pg.locator('#pc-feedback.ok').is_visible()
+            lancer(2, ecran, 'faux')
+            assert pg.evaluate('pAttente') and pg.locator('#pc-feedback.ko').is_visible()
+            assert pg.locator('#pc-choix .choice.wrong').count() == 1
+            assert pg.locator('#pc-choix .choice.correct').count() == 1
+            if ecran == 'trous': assert pg.locator('#pc-blank').evaluate('el => el.style.color') != ''
+            ok('3001 %s : départ, juste, faux et correction cohérente' % prefix)
+
+        lancer(2, 'ecriture', 'depart')
+        assert pg.locator('#pc-ecr-input').is_visible()
+        lancer(2, 'ecriture', 'erreur-1')
+        assert pg.evaluate('ecrEssais') == 1 and pg.locator('#pc-ecr-erreur').is_visible()
+        lancer(2, 'ecriture', 'juste')
+        assert pg.evaluate('pAttente') and 'Juste !' in pg.inner_text('#pc-feedback')
+        lancer(2, 'ecriture', 'juste-2')
+        assert pg.evaluate('pAttente') and '2e essai' in pg.inner_text('#pc-feedback')
+        lancer(2, 'ecriture', 'faux-2')
+        assert pg.evaluate('pAttente') and pg.locator('#pc-feedback.ko').is_visible()
+        ok('3001 Écriture : départ, première erreur, réussite immédiate ou différée, échec définitif')
+
         # Missions (leçon 25 = id 24)
         durees['sans-faute'] = lancer(24, 'mission', 'sans-faute')
         assert vue(pg) == 'view-mission' and pg.evaluate("ms.bilan.vies") == 3 and pg.evaluate("ms.bilan.ok") == 10

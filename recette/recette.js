@@ -9,9 +9,90 @@
 
 const REC_CHOIX = 'recette:choix'; // dernier choix du panneau (gardé au nettoyage)
 
+// Chaque recette montre un véritable état du moteur (aucune maquette).
+// ID stable pour relier la vérification manuelle, les tests automatisés et le TODO.
+function recUnitePour(l, type) {
+  if (!l || !isParcoursLecon(l)) return null;
+  return unitesCoeur(l).find(u => itemsUnite(l, type, u.id, 'coeur').length > 0) || null;
+}
+
+const REC_GUIDES = {
+  motcache: {
+    tests: ['tests/test_motcache_cta_mobile.py', 'tests/test_motcache.py'],
+    verifier: ['Cases, tuiles et légende vert/jaune stables entre les essais',
+      'Aucune barre horizontale ni action masquée sur Samsung',
+      'Rouge visible et aide gratuite ; Indice déduit des points seulement si utilisé']
+  },
+  quiz: {
+    tests: ['tests/test_parcours.py', 'test/exercices-etats-v21.test.cjs'],
+    verifier: ['Réponse correcte verte et mauvais choix rouge si erreur',
+      'Correction lisible, un seul message et Continuer accessible']
+  },
+  trous: {
+    tests: ['tests/test_parcours.py', 'test/exercices-etats-v21.test.cjs'],
+    verifier: ['Mot corrigé en vert dans la phrase même après un mauvais choix',
+      'Choix faux identifiable, correction lisible et bouton Continuer visible']
+  },
+  ecriture: {
+    tests: ['tests/test_parcours.py', 'tests/test_spec87_session_mobile.py'],
+    verifier: ['Clavier et bouton Valider accessibles sans saut de scroll',
+      'Deuxième essai, variantes et aide sans révélation prématurée',
+      'Pas de balise HTML littérale, rappel après échec']
+  },
+  mission: { tests: ['tests/test_mission_vies.py'], verifier: ['Vies et dialogues corrects', 'Retour et reprise cohérents'] },
+  etape: { tests: ['tests/test_parcours.py'], verifier: ['Bilan et score exacts', 'Prochaine action compréhensible'] },
+  unite: { tests: ['tests/test_rappels.py'], verifier: ['Étoiles et erreurs exactes', 'Actions adaptées au bilan'] },
+  rattrapage: { tests: ['tests/test_rattrapage_etoiles.js'], verifier: ['Les erreurs refaites sont correctement enregistrées'] },
+  survie: { tests: ['tests/test_survie_fin_mobile.py'], verifier: ['Bilan, chrono, ratio et CTA visibles sans micro-scroll'] },
+  examen: { tests: ['tests/test_examens.py'], verifier: ['Score et correction cohérents', 'Filtres et Retour fiables'] }
+};
+
 // Les écrans proposés, et leurs scénarios.
 // erreurs : numéros (à partir de 0) des réponses ratées une fois, puis justes.
 const REC_ECRANS = {
+  motcache: {
+    titre: 'P0-01 · Mot caché',
+    besoin: l => !!recUnitePour(l, 'flashcards'),
+    scenarios: {
+      decouverte: { titre: 'MC-01 · Nouveau mot : découverte', etat: 'decouverte' },
+      depart: { titre: 'MC-02 · Reconstruction : départ', etat: 'depart' },
+      'erreur-1': { titre: 'MC-03 · 1er échec : rouge', erreurs: 1 },
+      'erreur-2': { titre: 'MC-04 · 2e échec : stabilité', erreurs: 2 },
+      'erreur-3': { titre: 'MC-05 · 3e échec : révélation accessible', erreurs: 3 },
+      indice: { titre: 'MC-06 · Indice payant (jaune)', indice: true },
+      reussite: { titre: 'MC-07 · Réussite après erreur', erreurs: 1, reussite: true },
+      revelation: { titre: 'MC-08 · Réponse révélée après 3 échecs', erreurs: 3, revelation: true }
+    }
+  },
+  quiz: {
+    titre: 'P0-01 · Quiz',
+    besoin: l => !!recUnitePour(l, 'quiz'),
+    scenarios: {
+      depart: { titre: 'Q-01 · Avant de répondre', etat: 'depart' },
+      juste: { titre: 'Q-02 · Bonne réponse', juste: true },
+      faux: { titre: 'Q-03 · Erreur et correction', juste: false }
+    }
+  },
+  trous: {
+    titre: 'P0-01 · Texte à trous',
+    besoin: l => !!recUnitePour(l, 'trous'),
+    scenarios: {
+      depart: { titre: 'T-01 · Phrase non complétée', etat: 'depart' },
+      juste: { titre: 'T-02 · Choix correct', juste: true },
+      faux: { titre: 'T-03 · Choix faux, solution verte', juste: false }
+    }
+  },
+  ecriture: {
+    titre: 'P0-01 · Écriture',
+    besoin: l => !!recUnitePour(l, 'ecriture'),
+    scenarios: {
+      depart: { titre: 'E-01 · Saisie initiale', etat: 'depart' },
+      'erreur-1': { titre: 'E-02 · 1er essai faux : aide', erreurs: 1 },
+      juste: { titre: 'E-03 · Juste au premier essai', juste: true },
+      'juste-2': { titre: 'E-04 · Juste au deuxième essai', erreurs: 1, juste: true },
+      'faux-2': { titre: 'E-05 · Deux échecs : correction', erreurs: 2 }
+    }
+  },
   mission: {
     titre: 'Fin de mission',
     besoin: l => !!(l.mission && l.scene),
@@ -98,7 +179,8 @@ function ouvrirRecette() {
       '<label>Écran à tester<select id="rec-ecran" onchange="recMajScenarios()"></select></label>' +
       '<label id="rec-examen-label">Sujet d’examen<select id="rec-examen">' + sujets + '</select></label>' +
       '<p class="recette-note hidden" id="rec-indispo"></p>' +
-      '<label>Scénario<select id="rec-scenario"></select></label>' +
+      '<label>Scénario<select id="rec-scenario" onchange="recMajCriteres()"></select></label>' +
+      '<div id="rec-criteres" class="recette-criteres" aria-live="polite"></div>' +
       '<button class="pc-btn primary wide big" id="rec-voir" onclick="recVoir()">Voir cet écran →</button>' +
       '<button class="pc-btn ghost wide" onclick="recQuitter()">Quitter le test</button>' +
       '<p class="recette-note" id="rec-duree"></p>' +
@@ -133,6 +215,24 @@ function recMajScenarios(scenario) {
   const estExamen = document.getElementById('rec-ecran').value === 'examen';
   document.getElementById('rec-lecon-label').style.display = estExamen ? 'none' : 'flex';
   document.getElementById('rec-examen-label').style.display = estExamen ? 'flex' : 'none';
+  recMajCriteres();
+}
+
+// Vérifications de la recette choisie ; présentées avant son lancement.
+// Le rapport de test automatisé reste distinct de la validation réelle sur Samsung.
+function recMajCriteres() {
+  const selectEcran = document.getElementById('rec-ecran');
+  const selectScenario = document.getElementById('rec-scenario');
+  const cible = document.getElementById('rec-criteres');
+  if (!selectEcran || !selectScenario || !cible) return;
+  const guide = REC_GUIDES[selectEcran.value];
+  const def = REC_ECRANS[selectEcran.value].scenarios[selectScenario.value];
+  if (!guide || !def) { cible.innerHTML = ''; return; }
+  cible.innerHTML =
+    '<b>Recette : ' + escHtml(def.titre) + '</b>' +
+    '<ul>' + guide.verifier.map(x => '<li>' + escHtml(x) + '</li>').join('') + '</ul>' +
+    '<small>Tests liés : ' + guide.tests.map(escHtml).join(' · ') + '</small>' +
+    '<p>À valider visuellement sur ce téléphone : la CI ne remplace pas cette étape.</p>';
 }
 
 // ─── LANCER UN SCÉNARIO ─────────────────────────────────────────────────────
@@ -167,6 +267,8 @@ async function recLancer(choix) {
   else if (choix.ecran === 'unite') await recJouerUnite(l, def);
   else if (choix.ecran === 'rattrapage') await recJouerRattrapage(l, def);
   else if (choix.ecran === 'survie') recJouerSurvie(l, def);
+  else if (['motcache', 'quiz', 'trous', 'ecriture'].includes(choix.ecran))
+    await recJouerExercice(l, choix.ecran === 'motcache' ? 'flashcards' : choix.ecran, def);
 }
 
 // Résultats Survie directs : vrai moteur et vrai rendu, réserve issue de la leçon sélectionnée.
@@ -231,6 +333,85 @@ function recCliquer(id) {
   const b = document.getElementById(id);
   if (b) b.click();
   return !!b;
+}
+
+// ─── RECETTES P0-01 : VRAIS ÉTATS DES QUATRE EXERCICES ────────────────────
+// On utilise startEtapeSeule puis les actions existantes. Aucun écran statique,
+// aucune simulation de réussite sans enregistrer les vrais scores de recette.
+async function recJouerExercice(l, type, def) {
+  const unite = recUnitePour(l, type);
+  if (!unite) throw new Error('Aucune unité avec un exercice ' + type + ' dans cette leçon.');
+  openParcoursLecon(l);
+  await recPause();
+  startEtapeSeule(unite.id, type);
+  await recPause();
+  if (type === 'flashcards') {
+    if (def.etat === 'decouverte') {
+      if (!document.getElementById('mc-btn-reconstruire'))
+        throw new Error('Découverte manquante : ce mot semble déjà connu.');
+      return;
+    }
+    recCliquer('mc-btn-reconstruire');
+    if (!document.getElementById('mc-btn-valider')) throw new Error('Reconstruction absente.');
+    for (let i = 0; i < (def.erreurs || 0); i++) recMotCacheErreur();
+    if (def.indice) mcIndice();
+    if (def.reussite) recMotCacheJuste();
+    if (def.revelation) {
+      mcOuvrirAide();
+      if (!recCliquer('mc-btn-voir')) throw new Error('Révélation indisponible.');
+    }
+    return;
+  }
+  if (def.etat === 'depart') return;
+  if (type === 'quiz' || type === 'trous') {
+    const { item } = recItemCourant();
+    const bonne = type === 'quiz' ? item.reponse : item.trou;
+    const boutons = Array.from(document.querySelectorAll('#pc-choix .choice'));
+    const choix = boutons.find(b => (b.textContent === bonne) === def.juste);
+    if (!choix) throw new Error('Choix ' + (def.juste ? 'correct' : 'incorrect') + ' introuvable.');
+    choix.click();
+    return;
+  }
+  const item = recItemCourant().item;
+  for (let i = 0; i < (def.erreurs || 0); i++)
+    recEcrire(i === 0 ? 'zzz reponse manifestement fausse' : 'zzz encore une reponse fausse');
+  if (def.juste) recEcrire(item.lu);
+}
+
+// La réponse partielle volontairement incorrecte passe par mcPoserLettre et
+// mcValider : diagnostic, conservation des lettres et score sont réels.
+function recMotCacheErreur() {
+  const libres = mcCasesLettres().libres;
+  if (libres.length < 2) throw new Error('Mot trop court pour une erreur de recette non ambiguë.');
+  const attendu = mcLettreTuile(mc.cases[libres[0]].ch);
+  let k = mc.tuiles.findIndex((t, i) => !t.retiree && mcLettreTuile(t.ch) !== attendu);
+  if (k < 0) k = mc.tuiles.findIndex(t => !t.retiree);
+  if (k < 0) throw new Error('Aucune tuile disponible pour la recette.');
+  const avant = mc.essais;
+  mcPoserLettre(k);
+  mcValider();
+  if (mc.essais !== avant + 1) throw new Error('La fausse réponse n’a pas été enregistrée.');
+}
+
+// Composer la véritable bonne réponse à partir des tuiles libres, y compris
+// si certaines cases sont déjà vertes après un premier essai.
+function recMotCacheJuste() {
+  const utilisees = new Set();
+  const positions = mcCasesLettres().libres;
+  const choix = positions.map(i => {
+    const attendue = mcLettreTuile(mc.cases[i].ch);
+    const k = mc.tuiles.findIndex((t, n) => !t.retiree && !utilisees.has(n) &&
+      mcLettreTuile(t.ch) === attendue);
+    if (k < 0) throw new Error('Tuile de réponse introuvable pour la recette.');
+    utilisees.add(k);
+    return k;
+  });
+  mc.choix = choix;
+  mcSynchroniserChamp();
+  renderCases();
+  mcValider();
+  if (!pAttente || !document.getElementById('pc-continuer'))
+    throw new Error('Bilan de réussite introuvable.');
 }
 
 // ─── MISSION ────────────────────────────────────────────────────────────────

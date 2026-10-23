@@ -89,3 +89,10 @@ Les trois résultats gardent leur pied fixe et recentrent leur contenu dans la z
 
 
 **Précision technique sur le cache de recette :** pour les fichiers statiques (`jeux-v21.css`, `jeux-v21.js` et `recette/recette.js`), Express configure ses propres en-têtes : `setHeaders` impose désormais `Cache-Control: no-store` dans les deux dossiers statiques. Une vérification HTTP est ajoutée à `tests/test_recette_visuelle.py`. Ce contrôle ne remplace pas l'actualisation de l'onglet ni la mise à jour du clone Git local.
+
+
+## Contrat de recette 2.1 (23 octobre 2026)
+
+**La recette visuelle de chaque correction est associée à un identifiant, une suite de tests et des contrôles Samsung.** Voir [catalogue des recettes 2.1](RECETTES-2.1.md) : dans le panneau 3001, sélectionner **P0-01 · Mot caché / Quiz / Texte à trous / Écriture**, choisir l'état **MC-01…08 / Q-01…03 / T-01…03 / E-01…05**, lire les critères, puis « Voir cet écran → ». Ce sont de **vrais états du moteur** générés avec la progression fictive du serveur `RECETTE=1`, pas des maquettes ; la validation doit être réalisée sur le téléphone.
+
+Pour la branche `2.1`, **ne pas exécuter la commande de l'Option A qui checkout/reset `v2`**. À la place : `git fetch origin && git switch 2.1 && git pull --ff-only origin 2.1` (uniquement avec arborescence propre), puis `RECETTE=1 RECETTE_USER=moi RECETTE_PASS=<mot-de-passe> PORT=3001 node server.js`. Aucun cloud n'est disponible dans cette instance. Les tests de fusion entre deux comptes/appareils doivent être réalisés ailleurs, dans un environnement Firebase isolé et autorisé, **jamais** en supprimant la protection de recette.

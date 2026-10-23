@@ -1,0 +1,33 @@
+name: Recettes P0-01 sur véritable moteur (3001)
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - 'recette/**'
+      - 'tests/test_recette_visuelle.py'
+      - '.github/workflows/recettes-p0-01.yml'
+      - 'public/parcours.js'
+      - 'public/index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recette-3001:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m pip install playwright==1.56.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Tester le mode privé et les 19 recettes P0-01
+        run: |
+          LUX_TESTS=1 PORT=3456 node server.js > /tmp/lux-tests.log 2>&1 &
+          for i in $(seq 1 50); do curl -sf http://localhost:3456/ > /dev/null && break; sleep .2; done
+          python tests/test_recette_visuelle.py

@@ -22,3 +22,11 @@ body:has(#panneau) .recette-badge { display: none; } /* jamais sur un panneau ou
 .recette-note { font-size: .85em; color: var(--couleur-texte-2); margin: .5rem 0 0; }
 .recette-ligne b { color: #f3a6c3; }
 .recette-actif { margin: .6rem 0 0; padding: .45rem .7rem; border-radius: 10px; background: rgba(255, 255, 255, .05); font-size: var(--fs-sec); }
+
+/* Critères visibles dans Outils de test : lecture mobile, sans faux écran d'exercice. */
+.recette-criteres {margin:12px 0 10px;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.035);font-size:13px;line-height:1.45;color:var(--couleur-texte-2)}
+.recette-criteres b {display:block;font-size:14px;color:var(--text)}
+.recette-criteres ul {margin:8px 0;padding-left:18px}
+.recette-criteres li {margin:5px 0}
+.recette-criteres small {display:block;overflow-wrap:anywhere;font-size:11px}
+.recette-criteres p {margin:8px 0 0;font-size:12px;color:var(--couleur-texte-2)}

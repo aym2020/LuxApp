@@ -6,6 +6,8 @@
 
 > **Ordre d'exécution :** exercices et sauvegardes fiables → ergonomie mobile → confort pédagogique → Survie avancée → évolutions. Règles : [AGENTS](AGENTS.md) · [Charte UI 2.1](docs/CHARTE_UI_2.1.md) · [Post-mortem des exercices](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md). Les contenus JSON ne sont pas à modifier sans approbation.
 
+> **Recette 3001 :** la vérification Samsung de la partie **Mot caché** de P0-01 est validée le 23/10/2026 par l'utilisateur. Les autres exercices de P0-01 restent à vérifier : Quiz, Trous, Écriture. Voir [catalogue des recettes](docs/RECETTES-2.1.md) et choisir `P0-01 · ...` dans **Plus → Outils de test** sur l'instance privée `localhost:3001`. Ne pas cocher P0-01 avant les quatre validations et les tests associés.
+
 ## P0 — Bloquants : fiabiliser et valider
 
 - [ ] **01 · Corriger l'incident des exercices.** **Dev** ; val. **Produit**. Vérifier Mot caché → Quiz → Trous → Écriture, 1er/2e essai, indices, révélation, scores et correction. **Fini si :** feedback unique sans contradiction ni balise brute, vrai/faux correctement distingués et captures navigateur + Samsung validées.
