@@ -34,6 +34,7 @@ METRICS="""() => {
  return {bottom:btn.bottom,top:btn.top,height:btn.height,errorHidden:e.classList.contains('hidden'),
  errorTop:er.top,errorBottom:er.bottom,errorHeight:er.height,limit,
  overflowX:Math.max(...els.map(el=>el.scrollWidth-el.clientWidth)),
+ debugX:els.map(el=>({node:el.tagName,cls:String(el.className).slice(0,60),dx:el.scrollWidth-el.clientWidth})),
  overflowY:middle.scrollHeight-middle.clientHeight,bodyScroll:scrollY};
 }"""
 def check(page,size,scenario,after):
