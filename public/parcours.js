@@ -981,6 +981,7 @@ function etatExercice(etat) {
 
 // Bandeau du bas : "Juste !" ou "Pas encore", avec un bouton Continuer.
 function showFeedback(ok, titre, texteHtml, suite) {
+  mcFermerAide(); // Fermer la fiche si la réponse est corrigée.
   fermerClavier(); // la correction doit être visible, pas cachée par le clavier
   etatExercice('corrige'); // plus de Valider / Indice / Effacer : une seule action
   pAttente = true;
@@ -1093,8 +1094,14 @@ function renderReconstruction() {
       ? '<div class="mc-info">Les accents apparaissent après validation</div>' : '') +
     '</div>' +
     '<div class="mc-saisie">' +
-    '<div class="mc-erreur hidden" id="mc-erreur"></div>' +
-    '<div class="mc-score">Score du mot : <b id="mc-score">100 %</b></div>' +
+    '<div class="mc-erreur hidden" id="mc-erreur" role="status" aria-live="polite"></div>' +
+    '<div class="mc-score">Score des lettres : <b id="mc-score">100 %</b> · sans indice</div>' +
+    '<dialog id="mc-aide-dialog" class="mc-aide-dialog" aria-labelledby="mc-aide-titre">' +
+      '<div class="mc-aide-poignee" aria-hidden="true"></div>' +
+      '<h2 id="mc-aide-titre">Comprendre mon erreur</h2>' +
+      '<div id="mc-aide-detail" class="mc-aide-detail"></div>' +
+      '<button type="button" class="mc-aide-fermer" onclick="mcFermerAide()">Revenir aux lettres</button>' +
+    '</dialog>' +
     '<div class="pc-actions mc-actions">' +
       '<button class="pc-btn mc-effacer" id="mc-btn-effacer" aria-label="Effacer la dernière lettre" onclick="mcEffacer()">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 5H8l-6 7 6 7h13a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/><path d="m16 9-5 6M11 9l5 6"/></svg></button>' +
@@ -1367,6 +1374,18 @@ function mcIndice() {
   focusSiClavierPhysique(input);
 }
 
+// Le dialogue de correction est gratuit, contrairement à Indice.
+function mcOuvrirAide() {
+  const d = document.getElementById('mc-aide-dialog');
+  if (!d || d.open) return;
+  fermerClavier();
+  if (typeof d.showModal === 'function') d.showModal();
+}
+function mcFermerAide() {
+  const d = document.getElementById('mc-aide-dialog');
+  if (d && d.open) d.close();
+}
+
 function mcValider() {
   if (pAttente) return;
   const input = document.getElementById('mc-input');
@@ -1422,8 +1441,14 @@ function mcValider() {
   // réponse ; ensuite, le point d'attention complet (S6).
   const err = document.getElementById('mc-erreur');
   err.classList.remove('hidden');
-  err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(essaiAffiche) + ' · essai ' + mc.essais +
-    aideErreurHtml(val, carteACorriger(pLecon, card), attentionItem(card, 'flashcards'), mc.essais);
+  err.innerHTML = '<div class="mc-erreur-tete">' +
+      '<b>Pas encore · essai ' + mc.essais + '</b>' +
+      '<button type="button" class="mc-aide-ouvrir" aria-haspopup="dialog" aria-controls="mc-aide-dialog" onclick="mcOuvrirAide()">Voir l’aide ↗</button>' +
+    '</div><div class="mc-erreur-essai">Ton essai : ' + escHtml(essaiAffiche) + '</div>';
+  // Réutiliser exactement l'aide pédagogique actuelle : rien de révélé en plus.
+  const detail = aideErreurHtml(val, carteACorriger(pLecon, card), attentionItem(card, 'flashcards'), mc.essais);
+  document.getElementById('mc-aide-detail').innerHTML = detail ||
+    '<p>Observe les lettres conservées en vert, puis reconstruis les autres lettres.</p>';
 
   if (mc.essais >= ESSAIS_AVANT_REPONSE) {
     document.getElementById('mc-btn-voir').classList.remove('hidden');

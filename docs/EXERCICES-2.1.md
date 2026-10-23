@@ -78,3 +78,13 @@ Captures de « Bonsoir ! » (Gudden Owend) : le contenu d’aide s’étend dans
 ## Retours Samsung — second correctif du 23 octobre 2026
 
 La v8 ajoutait un défilement/mouvement avant la saisie et masquait le feedback rouge sous la zone scrollable. Conception revue : `#mc-erreur` est désormais dans `.mc-saisie`, **au-dessus du score et des actions** ; la transition latérale est neutralisée en reconstruction, les espacements réduits et seul le milieu défile si nécessaire. L’aide reste visible et consultable, avec hauteur limitée pour notes très longues. Découverte, correction finale, essais, indices, points et JSON inchangés. Révision CSS `v=9`. **Recette Samsung réelle toujours nécessaire.**
+
+## Maquette retenue — bandeau compact et explication séparée (23 octobre 2026)
+
+Remplace la disposition v9 après retour Samsung : en reconstruction, les cases et lettres sont présentées sans scroll initial sur les formats 320/360/390/430 px, et le pied Effacer / Indice / Valider reste accessible. La zone centrale est défilable uniquement pour les contenus réellement trop longs. Aucun scroll horizontal autorisé.
+
+Après une erreur, seul un bandeau bref apparaît au-dessus du score : « Pas encore · essai N », la réponse tentée sur une ligne et « Voir l'aide ». L'aide complète préexistante est affichée **sans altération** dans un dialogue HTML natif ouvrable à volonté et refermable avec « Revenir aux lettres », Échap ou Retour. Les explications longues défilent dans le dialogue, pas derrière les boutons.
+
+**Invariant pédagogique :** ouvrir l'aide est gratuit et ne révèle rien de plus que l'ancienne fonction aideErreurHtml à cet essai ; le bouton Indice garde son coût et son fonctionnement. Scores, essais, lettres vertes, audio, sauvegarde, JSON et bilan de réussite inchangés. Le score avant validation est libellé « Score des lettres » pour le différencier de la réussite du premier coup.
+
+**Contrôles :** CSS exercices-v21.css?v=10, JS parcours.js?v=6. Tester 0/1/2/3 erreurs, modal et Escape, indice payant inchangé, bilan final, largeur 320/360/390/430, aucune barre de défilement initiale et footer intégralement visible ; recette sur Samsung avant de cocher le P0.

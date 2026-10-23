@@ -136,23 +136,42 @@
   display:block;margin:0;padding:0;background:none;border-radius:0;
   color:#c5bdb0;font-size:13.5px;font-weight:500;line-height:1.55}
 #view-session #session-feedback.essai .session-attention b {color:var(--exo-fg)}
-/* Mot caché : pas de swipe avant de jouer ; après erreur, la fenêtre rouge reste
-   au-dessus des actions. Remplace le layout à scroll permanent de la v8. */
+/* Mot caché : bandeau court, boutons fixes, dialogue d'explication en top layer.
+   Remplace l'ancienne carte rouge scrollable ; pas de scroll au départ. */
 body:not(.clavier-actif):has(#view-parcours.active[data-type="flashcards"][data-etat="saisie"] #mc-btn-valider) {overflow:hidden}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) {height:100dvh;min-height:0;max-height:100dvh;overflow:hidden;overscroll-behavior:none}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-topbar,
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-sous-barre {flex:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {flex:1;min-height:0;overflow:hidden;padding-top:clamp(12px,2dvh,20px);padding-bottom:0}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {flex:1;min-height:0;min-width:0;overflow:hidden;padding:clamp(8px,1.6dvh,18px) 15px 0}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body.glisse {animation:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-top {flex:none;gap:8px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-top {flex:none;gap:8px;min-width:0}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-fr {font-size:clamp(32px,8.8vw,43px)}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding-bottom:6px;-webkit-overflow-scrolling:touch}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-mot {margin-top:12px;max-width:100%}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:clamp(7px,1.2dvh,13px);padding:5px 0 8px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu::-webkit-scrollbar {display:none}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-mot {margin:auto 0 0;max-width:100%;gap:6px}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-cases {max-width:100%}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-lettres {margin-top:10px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie {flex:none;min-width:0;background:var(--bg);padding:6px 0 max(12px,env(safe-area-inset-bottom));gap:6px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur {width:100%;max-height:min(24dvh,180px);overflow-y:auto;overscroll-behavior:contain}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-actions {margin-top:6px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-lettres {margin-top:0;gap:6px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-tuile {min-width:44px;height:47px;padding:0 7px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-info:last-child {margin-bottom:auto}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie {flex:none;min-width:0;background:var(--bg);padding:5px 0 max(11px,env(safe-area-inset-bottom));gap:6px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-actions {margin-top:5px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur {width:100%;max-height:none;overflow:visible;padding:8px 10px 7px;min-width:0;border:1px solid #573532;border-left:3px solid var(--wrong);border-radius:11px;background:#2a1919;color:#e1d1cc}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-tete {display:flex;justify-content:space-between;align-items:center;gap:6px;min-width:0}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-tete b {font-size:clamp(12px,3.4vw,14px);line-height:1.25;white-space:nowrap;color:var(--wrong)}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-aide-ouvrir {flex:none;min-height:36px;border:0;background:transparent;padding:5px 2px;color:#f3b5a8;font:700 12px/1.25 var(--font);text-decoration:underline;text-underline-offset:3px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-essai {font-size:12px;line-height:1.35;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#d0bbb6}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-score {font-size:12px}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) #mc-btn-voir {min-height:44px;margin-top:2px}
+#view-parcours .mc-aide-dialog {position:fixed;inset:auto 0 0;margin:0 auto;width:min(100%,500px);max-height:min(76dvh,590px);border:1px solid #4d4039;border-bottom:0;border-radius:22px 22px 0 0;background:#24211e;color:#f5f0e7;box-shadow:0 -10px 35px #0009;padding:14px 19px max(22px,env(safe-area-inset-bottom))}
+#view-parcours .mc-aide-dialog[open] {display:flex;flex-direction:column;gap:14px}
+#view-parcours .mc-aide-dialog::backdrop {background:rgba(0,0,0,.72)}
+#view-parcours .mc-aide-poignee {flex:none;width:38px;height:4px;border-radius:3px;background:#6d6258;margin:0 auto}
+#view-parcours .mc-aide-dialog h2 {flex:none;font:750 21px/1.2 var(--font)}
+#view-parcours .mc-aide-detail {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;font:400 15px/1.6 var(--font);color:#e7dfd3;overflow-wrap:anywhere}
+#view-parcours .mc-aide-detail .pc-attention {margin:8px 0;padding:12px;background:#3b2c23;border-left:3px solid #dbab65}
+#view-parcours .mc-aide-fermer {flex:none;min-height:51px;width:100%;border:0;border-radius:12px;background:var(--accent);color:#251c0b;font:800 16px var(--font)}
+@media(max-height:750px) {body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-tuile {height:44px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {gap:6px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {padding-top:8px}}
+
 /* Message temporaire du 1er essai (mot caché, écriture) : rouge discret. */
 #view-parcours .mc-erreur {background:rgba(239,122,115,.1);border:0;color:#c5bdb0}
 #view-parcours .mc-erreur b {color:var(--wrong)}
