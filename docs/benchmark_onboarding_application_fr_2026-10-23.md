@@ -2,10 +2,10 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 20 captures d'écran Android fournies en deux séries ; fichiers 54135.jpg à 54173.jpg (noms impairs successifs). La première série est documentée aux sections 1–10 et annexes A–F ; la deuxième aux annexes G–J.  
+**Corpus :** 30 captures d'écran Android en trois séries ; fichiers 54135.jpg à 54193.jpg (noms impairs successifs). Série 1 : sections 1–10 et annexes A–F ; série 2 : annexes G–J ; série 3 : annexes K–N (rappel d'essai et jeu de niveau).  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, AGENTS.md, charte UI 2.1, design tokens et frontend de 2.1 consultés  
-**Périmètre :** accueil, onboarding/personnalisation, création apparente du parcours, bénéfices projetés et offre premium observés uniquement. Ni les exercices complets ni l'implémentation/backend ne sont visibles.
+**Périmètre :** accueil, onboarding, personnalisation, création apparente du parcours, bénéfices projetés, essai premium et premiers états du jeu « Trouve la faute ». Ni le test complet, ni toutes les règles de jeu, ni l'implémentation/backend ne sont visibles.
 
 ## 0. Convention de preuve
 
@@ -1858,3 +1858,334 @@ Momo remet un cadeau juste après la création de profil et la promesse de progr
 - Les droits sur les portraits, la mascotte, les logos et les témoignages ne sont pas établis ; **aucun de ces éléments graphiques n'a été ajouté au dépôt LuxApp**.
 
 **Statut : 20 captures documentées dans un fichier unique ; descriptions détaillées, géométrie, couleurs, parcours, UI, ergonomie, conversion et inconnues ; aucun changement fonctionnel apporté à LuxApp.**
+
+
+
+---
+
+# ANNEXE K — Troisième série : dix captures, rappel premium, test de niveau et exercice « Trouve la faute »
+
+**Complément du 23 octobre 2026 à la branche 2.1.** Le corpus s'étend de **20 à 30 captures** en trois séries, toutes issues du parcours sur Android. Les images de la troisième série sont : 54175.jpg, 54177.jpg, 54179.jpg, 54181.jpg, 54183.jpg, 54185.jpg, 54187.jpg, 54189.jpg, 54191.jpg et 54193.jpg.
+
+**Méthode :** [VU] élément explicitement représenté ; [MESURÉ] point RGB ou coordonnées visibles dans les JPG 709 × 1536 ; [INFÉRENCE] mécanisme déduit d'une succession de captures ; [INCONNU] comportement non démontrable. Les coordonnées sont des **pixels d'image**, non des unités CSS, dp ou rem. L'accès au code source du produit tiers n'est pas établi.
+
+## K.1 — Vue chronologique
+
+| Capture | N° | Etape ou situation | Etat observé |
+|---|---:|---|---|
+| 54175.jpg | 21 | Rappel de fin d'essai, jalon **13/14** | Deux dates, possibilité de continuer sans rappel, CTA gris |
+| 54177.jpg | 22 | Introduction au test de niveau, jalon **14/14** | Mascotte haltérophile, pseudo repris, bouton « Je commence » |
+| 54179.jpg | 23 | Transition vers le jeu | Seul chiffre « 2 » au centre, plus de stepper |
+| 54181.jpg | 24 | Trouve la faute : phrase 1, début | Score 0 ; quatre cœurs pleins ; tuiles de mots et consigne |
+| 54183.jpg | 25 | Phrase 1, réussite | Score 1 ; quatre cœurs ; mot rouge, cadre vert, explication |
+| 54185.jpg | 26 | Phrase 1, correction défilée | Score 1 ; métrique 65 % et 1 787 826 réponses visibles |
+| 54187.jpg | 27 | Phrase 2, erreur | Score 1 ; mot fautif rouge, contour rouge, « Eh non ! » |
+| 54189.jpg | 28 | Phrase 2, autre état/défilement | Score 1 ; trois cœurs pleins + un évidé ; statistique 86 % |
+| 54191.jpg | 29 | Phrase 3, début | Score 1 ; trois cœurs pleins ; nouvelle phrase |
+| 54193.jpg | 30 | Phrase 3, réussite | Score 2 ; trois cœurs pleins ; mot rouge, cadre vert, explication longue |
+
+**Passage de mode confirmé :** l'onboarding utilise des ronds de progression, une flèche de retour et des CTA de personnalisation ; le test utilise un **titre de jeu, X de fermeture, score et cœurs**. Ce n'est pas seulement un changement de contenu à l'intérieur du même écran.
+
+## K.2 — Image 21 : « Quand veux-tu un rappel avant la fin de l'essai ? » (54175)
+
+**Textes et éléments visibles :**
+
+- Titre blanc très grand et gras, **trois lignes centrées** : « Quand veux-tu un rappel avant la fin de l'essai ? »
+- Momo illustré dans un **cercle bleu sombre**, en train de tenir une horloge blanche analogique ; son visage affiche une émotion d'attente/inquiétude.
+- Deux grandes options **encadrées**, non remplies de bleu comme les listes précédentes :
+  - « 2 jours avant » — **« 28 oct. »** en turquoise à droite.
+  - « 3 jours avant » — **« 27 oct. »** à droite.
+- Action texte centrale **« Démarrer sans rappel »**, explicitement proposée avant le CTA.
+- CTA **gris** « Activer mon rappel » : aspect **désactivé** dans la capture, sans preuve technique de la propriété disabled.
+- Barre à **14 segments**, 13e pilule active ; retour turquoise en haut à gauche.
+- Aucune carte ne montre un état sélectionné ; aucun rappel effectivement configuré n'est démontré.
+
+**Estimations de rectangles raster :**
+
+| Élément | Position x / y approximative |
+|---|---|
+| Titre | x≈101–611 ; y≈187–377 |
+| Disque et Momo à l'horloge | x≈197–512 ; y≈434–750 |
+| Option 2 jours | x≈63–646 ; y≈812–944 |
+| Option 3 jours | x≈63–646 ; y≈956–1090 |
+| Lien « sans rappel » | centré vers y≈1170–1210 |
+| CTA gris | x≈86–623 ; y≈1270–1366 |
+
+**Style :** cartes gris charbon bordées d'un trait gris assez épais, rayon modéré ; labels gauche **blanc gras**, dates droite **turquoise atténué**. Les deux lignes bénéficient d'un contraste structurel sans sélection verte. Grand espace vide entre mascotte et options.
+
+**Logique commerciale :** les deux dates, lues littéralement, correspondent à une échéance implicite au **30 octobre** si le calcul de « 2 / 3 jours avant » est exact. Il s'agit d'une **inférence sur l'interface**, non d'une preuve de fin d'abonnement. Aucune permission notification, programmation réelle ni prix n'est visible. L'option « sans rappel » est importante : on peut visiblement continuer sans accepter la sollicitation.
+
+## K.3 — Image 22 : fin du parcours initial et entrée au diagnostic (54177)
+
+**Composition :**
+
+- Le **14e / dernier segment** de la progression est une pilule blanche, tout à droite.
+- Grande illustration de Momo occupant le tiers supérieur/médian : personnage **accroupi et souriant, avec goutte de sueur**, soulevant une **barre d'haltères dont les poids sont des piles de livres** ; livre sous lui.
+- Titre sur deux lignes, aligné à gauche, accueillant l'utilisateur par le **pseudo saisi précédemment**, suivi de « **on va te tester !** ». Le pseudo de l'exemple est offensant : il **est effectivement réaffiché**, ce qui démontre l'absence de blocage avant cet écran ; aucune conclusion possible sur sa visibilité publique ou la validation côté serveur.
+- Texte explicatif, aligné à gauche : « On va situer ton niveau, sans pression. Réponds simplement du mieux que tu peux. »
+- Bouton vert relief **« Je commence → »**, au bas de l'écran.
+- Pas de score ou de cœurs : l'utilisateur **n'est pas encore** dans le mode jeu.
+
+**Rythme et dimensions :** illustration x≈108–615/y≈236–690 ; titre vers y≈813–928 ; explication vers y≈1006–1197 ; CTA x≈58–652/y≈1287–1390. Le vide entre l'illustration et le texte crée une séparation claire entre **mise en scène** et **instruction**.
+
+**Psychologie UX :** les livres-haltères transmettent le thème de l'entraînement, la mascotte souriante réduit l'appréhension, la mention « sans pression » cherche à neutraliser la peur de l'évaluation. L'existence ultérieure de cœurs perdus ajoute cependant un enjeu ludique qui peut contredire ce discours chez certains utilisateurs. L'impact émotionnel réel n'est pas mesuré.
+
+## K.4 — Image 23 : interstitiel au chiffre « 2 » (54179)
+
+- Fond **#0C1524**, même palette que le reste du parcours.
+- Grand chiffre blanc **« 2 »**, centré presque seul dans l'image, autour de x≈295–416 et y≈666–839.
+- **Plus de pilules de progression, aucun Retour, aucun CTA, aucun logo ni illustration.**
+- Barres système Android uniquement en haut/bas.
+
+**[INFÉRENCE]** Très probablement une phase de **compte à rebours avant le jeu** ; les états « 3 » ou « 1 », la durée, le son et les éventuelles animations ne sont pas montrés. On ne peut pas en déduire que l'exercice qui suit est chronométré : **aucun compte à rebours de réponse** n'est visible dans l'état de jeu.
+
+---
+
+# ANNEXE L — Le mini-jeu « Trouve la faute » : inventaire des composants et des états
+
+## L.1 — Image 24 : première question, état initial (54181)
+
+**Header séparé du parcours :**
+- Très grand titre **serif** blanc « **Trouve la faute** », à gauche, y≈91–144.
+- Bouton de fermeture **X** fin, gris/turquoise pâle, à droite. **Destination de fermeture inconnue**.
+- Badge bleu arrondi « **Score : 0** » à gauche vers x≈16–251, y≈200–278.
+- **4 cœurs rouges** à droite vers x≈393–688, y≈210–268. Aucun autre indicateur de vie.
+
+**Carte de mots :**
+- Surface bleu-gris **#1A324E**, x≈16–693, y≈316–616, coins arrondis.
+- Mots séparés en **8 tuiles** sur deux rangs, **une tuile par mot**, police sans-serif blanche large, padding important, léger relief bas :
+  - ligne 1 : **« Il » « peux » « venir » « ce »** ;
+  - ligne 2 : **« soir, » « mais » « pas » « toi. »**.
+- Phrase à reconstituer : **« Il peux venir ce soir, mais pas toi. »**. Erreur grammaticale « peux » pour « peut » à la troisième personne du singulier.
+- Largeurs des tuiles **variables selon la longueur du mot**, hauteurs relativement homogènes (~85–90 pixels raster).
+- La ponctuation reste **attachée aux mots** (« soir, » et « toi. »).
+- Aucun token n'est rouge tant que l'utilisateur n'a pas répondu.
+
+**Instruction :**
+- Encadré bleu foncé à bordure **pêche clair** x≈16–693, y≈648–804 ; miniature Momo pointant du doigt à gauche.
+- Phrase : **« Tape sur la faute s'il y en a une. »**
+- L'encadré est remplacé ensuite par le feedback : **ce n'est pas une carte d'aide permanente**.
+
+**Choix de réponse alternative :**
+- Gros CTA vert **« Il n'y a pas de fautes »** x≈42–666/y≈883–988.
+- Icône : coche verte insérée dans un cercle blanc à gauche du texte.
+- Ce bouton est une **réponse** (« la phrase est correcte »), et non un bouton de passage à la question suivante. Les captures ne montrent aucune phrase effectivement sans faute ni activation de ce choix.
+
+**Absences :** pas de timer de question, pas de barre de progression du nombre de phrases, pas de niveau affiché, pas de correction ou de statistique avant la réponse.
+
+## L.2 — Images 25 et 26 : première réponse correcte, puis défilement (54183 / 54185)
+
+**Modifications visibles après le choix du mot fautif :**
+
+- Score **0 → 1**.
+- **4 cœurs conservés**.
+- Tuile **« peux » rouge vif avec texte blanc**.
+- Carte de phrase entourée d'un **liseré vert**, plus épais en bas : état **réponse globalement correcte**.
+- L'encadré de consigne disparaît ; apparition d'un **petit fanion blanc** vers la droite, à proximité du feedback.
+- Grand message émotionnel centré : **« Bravo ! 💪 »**.
+- Carte bleu-gris « **Explications › Détails** » avec une justification :
+  > « 'Peux' est incorrect ici, il faut écrire 'peut', la forme conjuguée du verbe 'pouvoir' à la troisième personne du singulier. »
+- Sous la carte : « **En moyenne 65% ont répondu juste** » puis « **(1 787 826 réponses)** ».
+- Gros bouton vert bas « **Suivant →** ».
+
+**Distinction capitale : le rouge ne signifie pas toujours une mauvaise tentative.** La **tuile rouge désigne le mot fautif dans la phrase** ; le **cadre vert, le « Bravo » et le score augmenté** codent la réussite de l'utilisateur. Mélanger ces deux sens ferait conclure à tort que l'application présente une réponse correcte en rouge.
+
+**Entre les deux captures :** sur 54183, la statistique de bas de page est partiellement cachée ; dans 54185, elle est lisible et le haut de la question remonte hors de la zone centrale. Le HUD (titre, score, cœurs) et le CTA restent pratiquement fixes. **[INFÉRENCE]** corps de correction défilant entre un header et un footer stables, mais la technique CSS/native exacte est inconnue.
+
+**Fanion et « Détails » :** le fanion pourrait signaler une question, et le chevron pourrait ouvrir une explication développée. **Aucun clic n'est montré**, ne pas présenter ces fonctions comme confirmées.
+
+**Statistique :** 65 % et 1 787 826 sont des nombres **affichés**, sans audit de leur source, de leur actualisation ou de leur dénominateur.
+
+## L.3 — Images 27 et 28 : deuxième question, erreur puis cœur perdu (54187 / 54189)
+
+**Phrase :** « **Ils on pris leurs affaires avant de partir.** »  
+Tuiles sur **3 rangs** : « Ils », « on », « pris », « leurs » ; « affaires », « avant », « de » ; « partir. ».
+
+**Après la tentative :**
+- Score **1**, inchangé.
+- Mot cible **« on » rouge** : l'explication demande **« ont »** (verbe avoir).
+- Une tuile supplémentaire **« partir. » grise très claire** ; cet état diffère de la tuile normale et pourrait correspondre à un **mauvais jeton choisi par l'utilisateur**, mais le mécanisme exact est **non prouvé** par l'image.
+- Contour de la carte **rouge** et bord bas plus épais.
+- Grand texte **« Eh non ! 😿 »** ; sous-texte **« Règle ajoutée à ta liste de révision. »**
+- Carte « Explications › Détails » :
+  > « Il faut écrire 'ont', verbe 'avoir'. Conseil : ils ont pris leurs affaires. »
+- CTA vert « **Suivant →** ».
+
+**Différence visible entre les photos :**
+
+- **54187 : 4 cœurs pleins** sont encore présents dans la barre, malgré le feedback d'erreur.
+- **54189 : 3 cœurs pleins + 1 cœur vide turquoise** sont affichés ; score toujours 1.
+- Cela atteste **une vie consommée dans cette séquence**, pas le **moment exact** où l'animation ou le calcul la retire. Ne pas supposer automatiquement un « délai d'une seconde » ou une deuxième mauvaise tentative.
+- La position scrollée de 54189 permet de lire « **En moyenne 86% ont répondu juste** » et « **(1 374 453 réponses)** ».
+
+**Lecture pédagogique et technique :**
+- Le texte indique un **ajout aux révisions**, mais l'écriture effective dans un stockage permanent n'est **pas démontrée** par la notification.
+- Le cadre rouge et le « Eh non » qualifient la réponse de l'utilisateur. Le mot « on » rouge qualifie, lui, l'erreur intrinsèque de la phrase.
+- Le jeton gris clair et le cœur évidé sont deux états graphiques différents qu'il faudra distinguer lors d'une reproduction.
+- Aucune baisse de score n'est montrée sur l'échec.
+
+## L.4 — Images 29 et 30 : troisième phrase, nouvelle réussite (54191 / 54193)
+
+**Etat initial :**
+- Score **1**, **3 cœurs pleins et 1 évidé** — la pénalité précédente est conservée après « Suivant ».
+- Huit tuiles sur **trois rangs** :
+  - « Elle », « a », « oublié », « sont » ;
+  - « sac », « dans », « la » ;
+  - « Twingo. ».
+- Phrase « **Elle a oublié sont sac dans la Twingo.** »
+- Bandeau Momo « **Tape sur la faute s'il y en a une.** »
+- Bouton « **Il n'y a pas de fautes** » réapparaît ; retour de l'état initial non corrigé.
+
+**Etat corrigé :**
+- Score **1 → 2**.
+- **3 cœurs pleins + 1 évidé** inchangés.
+- La tuile **« sont » passe au rouge** ; faute ciblée : **son** (déterminant possessif).
+- Carte de phrase **liseré vert** avec bord inférieur plus épais, puis fanion, « **Bravo ! 💪** ».
+- Carte « Explications › Détails » contenant un **texte plus long** :
+  > « 'Sont' est le verbe être ; ici il faut 'son', l'adjectif possessif : son sac. Et 'oublié' reste sans e : avec l'auxiliaire avoir, le participe ne s'accorde pas avec le sujet, même… »
+- La phrase d'explication **est coupée dans l'image** : la suite exacte n'est pas visible et n'a pas été reconstituée.
+- CTA « **Suivant →** » visible par-dessus la zone basse.
+
+**Problème UX à noter :** la carte explicative longue descend **sous la bande réservée au bouton Suivant**. Les dernières lignes ne sont pas lisibles dans la capture 54193 ; l'existence d'un scroll dans les précédents états rend plausible qu'elles soient récupérables, mais **cela reste à tester** sur cet exemple précis. Pour LuxApp, aucune justification pédagogique ne doit être définitivement masquée par le footer.
+
+---
+
+# ANNEXE M — Inventaire détaillé du design de jeu et du modèle d'interaction
+
+## M.1 — Composants uniques repérés dans le mode « Trouve la faute »
+
+| Composant | Apparence | Fonction visible ou soupçonnée |
+|---|---|---|
+| Header titre | Grand serif blanc, aligné à gauche | Identité du mini-jeu |
+| X de fermeture | Trait fin bleu gris, coin supérieur droit | Fermeture probable ; destination non vérifiée |
+| Score | Badge bleu compact à coins très arrondis | Valeur cumulée 0, 1, 2 |
+| Cœurs | Quatre pictogrammes rouges ; évidement turquoise après erreur | Ressource de jeu distincte du score |
+| Carte phrase | Grand rectangle bleu #1A324E | Contient les jetons de la phrase |
+| Tuiles interactives | Bleu-gris plus clair, bord et relief inférieur | Choix d'un mot fautif |
+| Tuile rouge | Rouge vif, texte blanc | **Mot qui contient la faute**, que la tentative soit réussie ou ratée |
+| Tuile grise | Gris clair au lieu du bleu neutre | Etat supplémentaire, rôle exact à vérifier |
+| Cadre vert | Ligne + bande inférieure verte | Bonne réponse globale |
+| Cadre rouge | Ligne + bande inférieure rouge | Mauvaise réponse globale |
+| Bandeau Momo | Vignette du guide à gauche, bord pêche clair | Consigne avant réponse |
+| Bouton sans-faute | Vert 3D + cercle blanc/coché | Réponse alternative, non navigation |
+| Fanion blanc | Petit symbole discret sous phrase | Signalement probable, à vérifier |
+| Message Bravo | Gros texte et emoji biceps | Renforcement positif |
+| Message Eh non | Gros texte et emoji chat triste | Retour sur erreur |
+| Ajout aux révisions | Ligne sous le message d'échec | Promesse de rappel pédagogique |
+| Carte explication | Carte bleue avec titre gras et action « Détails » | Règle grammaticale et correction |
+| Métrique socialisée | Pourcentage + grand volume de réponses | Repère de communauté après réponse |
+| CTA Suivant | Bouton vert relief avec flèche droite | Avancement après correction |
+
+**Les deux CTA verts n'ont pas la même sémantique :** « Il n'y a pas de fautes » = une **réponse** à évaluer ; « Suivant » = **navigation** après verdict. Une copie superficielle de leur style sans gestion correcte des états rendrait le parcours trompeur.
+
+## M.2 — Transitions réellement déductibles : score, cœurs, feedback
+
+| Avant | Après | Constat |
+|---|---|---|
+| Score 0 / 4 cœurs / Q1 initiale | Score 1 / 4 cœurs / Bravo | Réussite accompagnée de +1 point |
+| Q1 Bravo, métrique peu lisible | Même Q1, métrique lisible | Le contenu central change de position verticale |
+| Score 1 / 4 cœurs / Q2 erreur | Score 1 / 3 cœurs / même erreur | Pénalité de **un cœur**, score conservé |
+| Q2 corrigée | Q3 initiale / score 1 / 3 cœurs | Cœurs et score persistent entre questions |
+| Q3 initiale / score 1 / 3 cœurs | Q3 Bravo / score 2 / 3 cœurs | Nouvelle réussite, pas de cœur restauré |
+
+Le petit échantillon visible présente **deux réussites et un échec**. On ne peut pas en déduire la durée du test, la fin à zéro vie, la possibilité de récupérer des cœurs ou le calcul définitif d'un niveau A1/A2.
+
+## M.3 — Couleurs mesurées dans les JPG de cette série
+
+Les valeurs ci-dessous ont été relevées directement au pixel indiqué ; ce sont des couleurs **raster** soumises à la compression JPEG, **pas les variables du code d'origine**.
+
+| Image et point | RGB | HEX | Usage |
+|---|---|---|---|
+| 54175 (20,200) | (12,21,36) | **#0C1524** | Fond bleu nuit |
+| 54175 (100,850) | (30,39,54) | **#1E2736** | Carte option de rappel |
+| 54175 (63,865) | (75,85,97) | **#4B5561** | Bordure de rappel |
+| 54177 (20,750) | (12,21,36) | **#0C1524** | Fond d'introduction |
+| 54181 (35,350) | (26,50,78) | **#1A324E** | Carte phrase |
+| 54181 (75,400) | (44,66,89) | **#2C4259** | Tuile neutre |
+| 54181 (424,230) | (231,56,69) | **#E73845** | Cœur rouge |
+| 54183 (45,611) | (29,164,10) | **#1DA40A** | Cadre de bonne réponse |
+| 54187 (100,625) | (162,162,162) | **#A2A2A2** | Jeton gris |
+| 54187 (50,720) | (225,60,67) | **#E13C43** | Cadre d'échec |
+| 54193 (40,1000) | (26,50,78) | **#1A324E** | Fond explication |
+| 54193 (100,1340) | (26,143,11) | **#1A8F0B** | Bouton Suivant |
+
+**Sémantique multi-niveaux :** le rouge du cœur désigne une ressource, le rouge du jeton une faute grammaticale et le rouge du contour une mauvaise tentative ; le vert de l'encadrement signale une réussite, tandis que le vert du CTA est une action. Ces couleurs ne doivent pas être interprétées uniformément hors contexte.
+
+## M.4 — Composition et scroll de l'exercice
+
+La comparaison 54183/54185 et 54187/54189 indique vraisemblablement un **HUD stable en haut**, une zone de question + feedback **défilante**, et un bouton d'action **maintenu près du bas**. L'implémentation exacte (sticky, fixed, scroll de fenêtre ou conteneur) ne peut pas être tirée de ces photos.
+
+**Contraintes à préserver si l'on prototypait :**
+1. Les mots courts et longs doivent être disposés en lignes fluides sans agrandir ou réduire tous les jetons.
+2. La ponctuation doit suivre son mot et rester facile à toucher.
+3. Chaque mot doit être une cible tactile suffisamment grande et identifiable comme cliquable.
+4. Le corps doit pouvoir grandir lorsqu'une explication grammaticale dépasse la hauteur d'écran.
+5. Header et bouton ne doivent pas cacher définitivement les explications ; réserver un espace scrollable et un padding bas.
+6. Tester sur petits Android, texte système augmenté, rotation et navigation système.
+7. Ne pas afficher deux feedbacks contradictoires ou un ancien message au passage à la question suivante.
+8. Conserver les ressources (score, vies) de façon cohérente sans décrément double après un re-render.
+9. Toujours distinguer **cible fautive**, **choix de l'utilisateur** et **verdict global**.
+10. Tester une **phrase sans faute**, absente de ce corpus, avant de qualifier le jeu de complet.
+
+## M.5 — Pédagogie des trois phrases et nuance des corrections
+
+| Phrase observée | Erreur dans le texte | Règle rappelée par l'interface | Etat utilisateur |
+|---|---|---|---|
+| « Il peux venir ce soir, mais pas toi. » | peux → peut | Pouvoir à la 3e personne du singulier | Bravo, +1 |
+| « Ils on pris leurs affaires avant de partir. » | on → ont | Auxiliaire avoir au pluriel | Eh non, perte d'un cœur |
+| « Elle a oublié sont sac dans la Twingo. » | sont → son | Déterminant possessif ; rappel additionnel du participe passé | Bravo, +1 |
+
+Le troisième feedback évoque également l'absence d'accord de « oublié » avec le sujet après avoir ; la **suite intégrale de la note est invisible**. Les captures démontrent une explication qui peut **déborder la seule faute ciblée**, mais non la validité pédagogique de tout un catalogue.
+
+## M.6 — Protocoles de test complémentaires pour reproduire réellement l'expérience
+
+- **Rappels premium :** sélectionner chaque durée, vérifier le bouton activé, refuser/retour, permissions notifications et date exacte ; ne jamais inventer une notification déjà enregistrée.
+- **Pseudo :** vérifier reprise réelle dans le titre, dépassement de ligne, caractères Unicode, emoji, modération avant exposition publique.
+- **Compte à rebours :** capturer tous les chiffres, animations et comportement réduire-les-animations ; ne pas confondre avec le temps de réponse.
+- **Jeu :** bonne sélection, mauvaise sélection, réponse « aucune faute » sur phrase avec et sans erreur, répétition de tap, interruption.
+- **Score/vies :** juste → juste, faux → juste, 0 vie, éventuelle récupération, sauvegarde, retour.
+- **Feedback :** jeton cible rouge et cadre vert/rouge lisibles sans se fier exclusivement à la couleur ; afficher le choix utilisateur quand il diffère de la solution.
+- **Correction :** lire la totalité du texte, ouvrir « Détails », signaler au fanion, faire défiler le texte long sans chevaucher Suivant.
+- **Statistiques :** chargement, absence de réponses, source, cohérence du pourcentage et du nombre.
+- **Révision :** après une erreur, contrôler la présence effective de la règle dans une liste persistée.
+- **Mobile :** 320/360/390/430 px CSS, Android Samsung, texte 130/200 %, orientation, gestes système, lecteur d'écran.
+
+---
+
+# ANNEXE N — Lecture transversale des 30 captures et garde-fous LuxApp
+
+## N.1 — Le parcours global tel que les images le montrent
+
+**Photos 01–10 :** promesse, Momo guide, âge, motivation, pseudo, avatar, pays/région, équipe.  
+**Photos 11–20 :** priorités, deux affirmations de reconnaissance personnelle, provenance marketing, parcours « généré » à 100 %, logos/témoignage, timeline des bénéfices, essai premium.  
+**Photos 21–30 :** proposition de rappel avant fin de l'essai, Momo invitant au test de niveau, interstitiel « 2 », puis première vraie boucle de questions avec réussites, erreur, cœurs, score, explications et « Suivant ».
+
+**Lecture UX :** l'application ne montre pas immédiatement son exercice le plus concret : elle construit longuement un joueur, une motivation et un scénario de valeur. La troisième série prouve néanmoins que l'interface sait ensuite **passer à une boucle de jeu claire et visuellement gratifiante**. L'effet de ce long tunnel sur l'abandon n'est pas mesuré.
+
+## N.2 — Distinguer données et promesses
+
+| Valeur | Rôle affiché | Statut |
+|---|---|---|
+| « 7 jours offerts » | Promesse d'essai | Conditions inconnues |
+| « 28 oct. / 27 oct. » | Proposition de rappel | Calcul affiché, envoi inconnu |
+| « 2 » | Interstitiel avant test | Compte à rebours probable, un seul état visible |
+| Score « 0 → 1 → 2 » | Evolution de la session | **Directement visible** |
+| Cœurs « 4 → 3 » | Ressource de jeu consommée | **Directement visible**, timing inconnu |
+| 65 % (1 787 826) | Statistique après question 1 | Chiffres affichés, source non auditée |
+| 86 % (1 374 453) | Statistique après question 2 | Chiffres affichés, source non auditée |
+| Révision « ajoutée » | Promesse de sauvegarde pédagogique | Persistante ou non : inconnu |
+
+## N.3 — Principales leçons pour Luxo, sans décision d'implémentation
+
+- Reprendre **la lisibilité du gameplay**, le HUD simple, les tuiles faciles à toucher, le feedback riche et l'explication contextualisée ; **ne pas recopier** les illustrations ou les phrases.
+- Conserver les invariants documentés de LuxApp 2.1 : fond quasi noir chaud, **or pour action**, vert pour succès, rouge pour erreur, turquoise pour révision, architecture des exercices et progression existantes.
+- Le post-mortem de la branche 2.1 impose une vigilance particulière sur les **corrections coupées par les CTA**, messages contradictoires, réponses colorées ambiguës, score et reprise.
+- La boucle de rétroaction **erreur → explication → révision future** est une piste intéressante uniquement si la sauvegarde et la restitution de la règle fonctionnent réellement.
+- Une phrase « sans faute » doit être traitée explicitement comme une catégorie de réponse, et non comme « passer la question ».
+- Éviter de déplacer le test de niveau après une longue séquence marketing par défaut : vérifier la valeur pédagogique d'abord.
+- Toute métrique publique affichée doit être réelle et définie, sans se fonder sur des chiffres de démonstration.
+- La réutilisation d'un pseudo dans la narration crée de la proximité, mais exige des règles de validation adaptées si sa diffusion dépasse la sphère privée.
+- Un état de jeu déjà réussi ne doit pas effacer la vie perdue sur la tentative précédente sans règle explicite.
+- **Aucune décision d'ajout de gameplay ni modification des fichiers applicatifs n'est demandée ou réalisée par ce benchmark.**
+
+**Statut après série 3 : 30 captures archivées et analysées, avec trois états pédagogiques corrigés, contrôles UI, géométrie raster, couleurs, score et ressources ; document de référence uniquement.**
