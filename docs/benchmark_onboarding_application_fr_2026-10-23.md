@@ -2,10 +2,10 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 30 captures d'écran Android en trois séries ; fichiers 54135.jpg à 54193.jpg (noms impairs successifs). Série 1 : sections 1–10 et annexes A–F ; série 2 : annexes G–J ; série 3 : annexes K–N (rappel d'essai et jeu de niveau).  
+**Corpus :** 40 captures Android en quatre séries, fichiers 54135.jpg à 54213.jpg (noms impairs successifs). Série 1 : sections 1–10 et annexes A–F ; série 2 : G–J ; série 3 : K–N ; série 4 : O–S (fiches de règle, accueil, défi, monnaies, ligues et classements).  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, AGENTS.md, charte UI 2.1, design tokens et frontend de 2.1 consultés  
-**Périmètre :** accueil, onboarding, personnalisation, création apparente du parcours, bénéfices projetés, essai premium et premiers états du jeu « Trouve la faute ». Ni le test complet, ni toutes les règles de jeu, ni l'implémentation/backend ne sont visibles.
+**Périmètre :** onboarding, essai premium, test initial, jeu « Trouve la faute », fiches grammaticales enrichies, accueil après test, défi de bienvenue, monnaies virtuelles, compétitions et classements. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
 
 ## 0. Convention de preuve
 
@@ -2189,3 +2189,630 @@ Le troisième feedback évoque également l'absence d'accord de « oublié » av
 - **Aucune décision d'ajout de gameplay ni modification des fichiers applicatifs n'est demandée ou réalisée par ce benchmark.**
 
 **Statut après série 3 : 30 captures archivées et analysées, avec trois états pédagogiques corrigés, contrôles UI, géométrie raster, couleurs, score et ressources ; document de référence uniquement.**
+
+
+
+---
+
+# ANNEXE O — Série 4 : dix nouvelles captures, explications détaillées, accueil et écosystème compétitif
+
+**Ajout du 23 octobre 2026 sur la branche 2.1.** Corpus désormais étendu à **40 captures** (quatre séries de dix), de 54135.jpg à 54213.jpg, à pas de deux dans les noms. Cette série documente **les captures 31–40** : 54195.jpg, 54197.jpg, 54199.jpg, 54201.jpg, 54203.jpg, 54205.jpg, 54207.jpg, 54209.jpg, 54211.jpg et 54213.jpg.
+
+**Cadre d'analyse :** [VU] = visible dans la capture ; [MESURÉ] = coordonnées ou RGB obtenus en lisant les JPG ; [INFÉRENCE] = comportement plausible à confirmer ; [INCONNU] = non démontré par une image fixe. Toutes les images ont **709 × 1536 pixels** ; les valeurs de géométrie ci-dessous sont des **pixels du screenshot**, non des pixels CSS ni dp Android. Aucune inspection du code de cette application tierce n'a été réalisée. Les captures montrent certains **états de scroll** d'une seule page, à ne pas compter comme des fonctionnalités autonomes.
+
+## O.1 — Inventaire précis de la séquence observée
+
+| N° | JPG | Écran / sous-état | Information principale |
+|---|---|---|---|
+| 31 | 54195 | Correction 3, après défilement | Explication complète « son / sont » + statistique **66 %**, **1 763 598 réponses** |
+| 32 | 54197 | Fiche « Explications » ouverte | Grande **bottom sheet** sur fond assombri ; textes pédagogiques, sous-titres serif, exemples |
+| 33 | 54199 | Même fiche, défilée près du bas | Distinction son nom commun, encadré « Astuce » avec Momo, bouton « Fermer » |
+| 34 | 54201 | Quatrième réponse correcte | « Voici nôtre chien. », Score **3**, 3 cœurs pleins + 1 vide ; correction et **64 %** |
+| 35 | 54203 | Accueil après test | Série de 1 jour, monnaie et diamants, accès Écrire/Partie rapide, défi de bienvenue |
+| 36 | 54205 | Accueil, défi de bienvenue défilé | Progression **1/5** ; étapes 1–3, détail du niveau **Facile** |
+| 37 | 54207 | Accueil, défi de bienvenue en fin de liste | Étapes 4–5 et récompense **10 diamants** |
+| 38 | 54209 | Espace compétitif | Duel illustré, « Prochaine partie », cercle **71**, participants **2/20**, classement régional |
+| 39 | 54211 | Espace compétitif, plus bas | Podium régions, ligues privées, classement global annuel |
+| 40 | 54213 | Classement global, Top 20 | Classement individuel à avatars, rangs, trophées, scores |
+
+**Transition de nature** : les captures précédentes décrivaient l'intégration et les premiers exercices ; les présentes démontrent que le produit comporte aussi un **répertoire pédagogique enrichi**, un **dashboard de motivation**, des **défis orientés découverte**, une **économie virtuelle** et des **classements géographiques et individuels**.
+
+---
+
+## O.2 — Capture 31, 54195 : explication courte entièrement lisible après scroll
+
+### Contenu [VU]
+
+- La correction de « Elle a oublié sont sac dans la Twingo » reste en état **Bravo ! 💪**, Score **2**, **3 cœurs rouges + 1 cœur au contour turquoise**.
+- Le **haut de la carte de question est remonté hors de la zone visible**, jusqu'à ne laisser voir que la tuile « Twingo. ».
+- La bordure verte du résultat reste apparente, y compris une tranche inférieure en vert plus épais.
+- Petit fanion blanc à droite, sous la question.
+- Carte de correction « **Explications › Détails** » : toute la justification de la question précédente devient lisible, avec sa fin.
+- Texte intégral visible de la carte :
+
+> « 'Sont' est le verbe être ; ici il faut 'son', l'adjectif possessif : son sac. Et 'oublié' reste sans e : avec l'auxiliaire avoir, le participe ne s'accorde pas avec le sujet, même quand c'est elle. »
+
+- Sous la carte, statistique : **« En moyenne 66% ont répondu juste »** puis **« (1 763 598 réponses) »**.
+- CTA vert « **Suivant →** » conservé près du bas.
+
+### Analyse UI/UX
+
+- **La dernière ligne de l'explication qui paraissait coupée dans 54193 est accessible après défilement**, au moins sur cette question. Le tronquage de 54193 ne doit donc **pas** être qualifié de perte irréversible du texte.
+- La zone centrale bouge, alors que le titre, score, cœurs et CTA restent dans une position visuelle stable : **[INFÉRENCE]** composition en header/HUD, body scrollable et footer ; technique exacte inconnue.
+- La statistique de difficulté est placée **après** la règle, ce qui donne la priorité au contenu pédagogique puis à la comparaison avec d'autres réponses.
+- **Le nombre 66 % et le volume 1 763 598 sont des valeurs affichées, non auditées.**
+
+### Dimensions raster approximatives
+
+| Élément | Rectangle apparent |
+|---|---|
+| HUD « Score : 2 » | x≈16–251, y≈199–277 |
+| Carte de phrase remontée | x≈16–693 ; visible de y≈308 à y≈464 |
+| Fanion | x≈649–677, y≈495–532 |
+| « Bravo ! » | centré vers y≈574–632 |
+| Carte « Explications » | x≈16–693, y≈687–1118 |
+| Statistique 66 % | y≈1185–1253 |
+| CTA « Suivant » | x≈42–667, y≈1310–1414 |
+
+---
+
+## O.3 — Capture 32, 54197 : ouverture du panneau approfondi « Explications »
+
+### Relation au contexte
+
+Depuis le bloc « Explications › Détails » visible dans le jeu, la nouvelle capture montre une **grande feuille de contenu superposée**. Le déclencheur exact n'est pas photographié, mais **[INFÉRENCE FORTE]** l'action « Détails » est très probablement liée à cette ouverture.
+
+### Structure graphique [VU]
+
+- Le jeu en arrière-plan **reste présent** mais est **fortement assombri** : on reconnaît le haut de « Trouve la faute », le score et les cœurs.
+- Une **bottom sheet** bleu nuit/bleu-gris commence vers **y≈229** et couvre tout le bas de l'écran, **jusqu'à la navigation Android**.
+- Coins supérieurs **très arrondis** ; pas de cadre intérieur de fenêtre standard.
+- Petite **poignée horizontale** claire centrée vers **x≈328–380, y≈250–258** : affordance de panneau déplaçable.
+- Grand titre **avec empattements** « **Explications** », aligné à gauche, vers y≈319–371.
+- Icône **signet / bookmark au contour blanc**, placée dans un disque plus clair tout en haut à droite du panneau. C'est une action distincte de la fermeture.
+- **Grand espacement** entre le titre et le premier paragraphe, qui commence vers y≈485 ; la fiche ressemble à un mini-chapitre, pas à une alerte.
+- Texte d'introduction :
+
+> L'un montre à qui appartient une chose, l'autre est le verbe « être ». Un seul test suffit à les séparer.
+
+- Grand intertitre serif :
+  **« Son » : ça appartient à quelqu'un**
+- Explication avec mot souligné et coloré :
+  « C'est un adjectif possessif : il se pose devant un nom pour dire de qui il est question. »
+- Exemples avec **puces turquoise** et termes mis en avant :
+  - **Son** vélo est resté dehors.
+  - Elle a oublié **son** badge.
+  - **Son** idée m'a convaincu.
+- Ligne supplémentaire : « Au pluriel, il devient « ses » : ses clés, ses idées. »
+- Deuxième grand intertitre :
+  **« Sont » : c'est le verbe être**
+- Le texte qui suit cet intertitre est **partiellement coupé au bas de la capture** ; il se poursuit plus loin dans la fiche.
+
+### Système typographique et contenu [VU]
+
+- Titre principal et sous-titres de section **serif, gras**, beaucoup plus éditoriaux que la carte de correction courte.
+- Paragraphes en **sans-serif blanc cassé**, assez grande taille, largeur de texte limitée par un padding généreux (~47 px).
+- Certains termes grammaticaux apparaissent en **turquoise et soulignés**, comme des liens ou entrées de glossaire. **[INCONNU]** s'ils sont cliquables ou seulement décorés.
+- Les puces turquoise sont utilisées pour les exemples, le **mot important y est parfois teinté/gras**.
+- L'utilisateur bénéficie ainsi de **deux niveaux d'information** : une correction condensée dans la question et une **fiche complète** sur demande.
+
+### Point UX critique
+
+- L'ouverture ne change apparemment pas de page : **le jeu reste sous la feuille**, ce qui peut permettre de lire la règle sans perdre la question.
+- La feuille remplace la grande partie du viewport ; elle a vraisemblablement **son propre scroll**.
+- La poignée du haut évoque un **glissement vers le bas pour fermer**, mais aucun geste de fermeture n'est montré : **ne pas le certifier**.
+- La présence du signet suggère une **mise en favoris de la règle**, mais le stockage effectif et le feedback de sélection ne sont pas démontrés.
+
+---
+
+## O.4 — Capture 33, 54199 : bas de la fiche, cas limites et astuce mémorisable
+
+### Ce qui change par rapport à 54197
+
+- La même bottom sheet est visible, avec la **poignée horizontale au même niveau** et le même fond bleu-gris.
+- Le titre initial n'est plus visible : le **contenu à l'intérieur de la feuille a défilé** vers le bas.
+- Le haut du texte affiché est une **remarque de nuance** :
+
+> Attention, « son » existe aussi comme nom : le son d'une guitare, le son d'avoine. Ça ne change rien à l'orthographe, mais ça évite de croire qu'on s'est trompé.
+
+- Un grand **encadré plus foncé** présente un bloc « **Astuce** », avec titre serif blanc.
+- Miniature de **Momo en haut à droite** de l'encadré, pointant du doigt, plutôt qu'un emoji dans la phrase.
+- Texte de l'astuce :
+
+> Mets la phrase à l'imparfait. **Sont** devient **étaient**, et il finit par un **t** comme **étaient**. **Son** ne bouge pas, parce que ce n'est pas un verbe.
+
+- Les mots-clés sont différenciés par **gras**, et « imparfait » reçoit un **soulignement turquoise** (lien possible, non vérifié).
+- À droite, plus bas, **petit fanion blanc** ; rôle probablement lié au signalement, non démontré.
+- Gros CTA **« Fermer »** vert et relief, centré en bas de la feuille.
+
+### Conception pédagogique
+
+L'organisation n'est pas « règle et définition » seulement. Elle suit plutôt un parcours :
+1. distinguer les deux sens ;
+2. illustrer **son** par trois exemples ;
+3. présenter **sont** comme forme du verbe être ;
+4. signaler un **cas homographe** du nom « son » ;
+5. offrir un **test opérationnel** de substitution à l'imparfait ;
+6. fermer pour retourner à la question.
+
+Ce format est très intéressant pour LuxApp : **une explication rapide au moment de la correction et une fiche détaillée ouverte à la demande**. Le schéma est observable ; le contenu doit évidemment être spécifique au luxembourgeois et vérifié.
+
+### Géométrie
+
+- Bottom sheet x≈0–708, y≈230–1536, coins supérieurs visibles.
+- Remarque « Attention… » autour de x≈48–642, y≈318–566.
+- Carte « Astuce » x≈47–662, y≈656–1148.
+- Illustration Momo dans la carte autour de x≈510–610, y≈681–810.
+- Fanion vers x≈621–650, y≈1242–1272.
+- Bouton Fermer x≈72–638, y≈1317–1422.
+- En arrière-plan, le header du jeu est visiblement obscurci mais pas retiré.
+
+**Points à tester** : verrouillage du scroll arrière quand la fiche est ouverte, retour Android, gestes vers le bas, focus lecteur d'écran dans le panneau, perte de position après fermeture, persistance du signet, scroll interne jusqu'au CTA, état d'un lien turquoise.
+
+---
+
+## O.5 — Capture 34, 54201 : une quatrième réussite sur un énoncé beaucoup plus court
+
+### Données de la question [VU]
+
+- Header « Trouve la faute », croix de sortie.
+- Score affiché : **3**.
+- **3 cœurs rouges pleins + 1 contour turquoise vide**, comme la question précédente réussie.
+- Énoncé visible sous forme de **trois tuiles sur une seule ligne** :
+  **« Voici » — « nôtre » — « chien. »**
+- Phrase complète : **« Voici nôtre chien. »**
+- La tuile **« nôtre »** est rouge, l'ensemble de la carte est entouré de **vert** : réussite du choix de l'utilisateur.
+- **« Bravo ! 💪 »**, fanion blanc à droite.
+- Carte « Explications › Détails » :
+
+> « 'Nôtre' est incorrect ici, il faut écrire 'notre' l'adjectif possessif utilisé directement avant un nom. »
+
+- Statistique :
+  **« En moyenne 64% ont répondu juste »**  
+  **« (1 557 291 réponses) »**
+- CTA « Suivant → ».
+
+### Ce que cette capture précise
+
+- Après les trois premières questions (deux succès, un échec), le joueur atteint ici **Score 3** : troisième réussite observée, sans vie regagnée.
+- **Une phrase très courte** occupe une carte beaucoup moins haute (~188 px autour de y≈316–506), contrairement aux phrases de 8 mots sur deux ou trois lignes. **La hauteur du contenant semble dépendre du contenu**, non figée au plus grand exemple.
+- La correction courte n'a pas besoin d'un déplacement vertical particulier : titre, verdict, justification, métrique et CTA tiennent à l'écran.
+- Il faut distinguer ici **« nôtre » pronom possessif** et **« notre » déterminant possessif** ; le texte affiché parle d'« adjectif possessif », formulation du produit source à documenter telle quelle.
+- **Aucune faute de l'utilisateur supplémentaire** n'est visible dans cette capture ; le passage de la troisième à la quatrième question ne révèle pas les éventuels écrans intermédiaires.
+
+### Mesures raster estimées
+
+| Élément | Boîte approximative |
+|---|---|
+| Score/cœurs | y≈199–278 |
+| Carte de phrase, courte | x≈16–693, y≈317–505 |
+| « Bravo ! » | vers y≈613–677 |
+| Carte de correction | x≈16–693, y≈727–1026 |
+| Statistique 64 % | y≈1094–1165 |
+| CTA Suivant | x≈42–667, y≈1310–1413 |
+
+---
+
+# ANNEXE P — Accueil après test : récompenses, série et défi guidé
+
+## P.1 — Capture 35, 54203 : anatomie intégrale de la première vue du dashboard
+
+### Fin du tunnel et nouveau langage de navigation
+
+La barre des 14 jalons de l'onboarding et l'en-tête « Trouve la faute » ont disparu. Une nouvelle page sert de **hub permanent**. Au lieu d'un seul CTA en bas, on observe une **barre d'onglets visuels à six icônes** fixée près du bas du viewport.
+
+### En-tête du dashboard
+
+- En haut gauche : un pictogramme de **macaron rouge** (forme ovale bicolore évoquant la pâtisserie), accompagné de **« 0 »** en turquoise.
+- En haut droite : **diamant bleu pâle** et valeur **« 3 »**.
+- Aucune étiquette textuelle expliquant ici la fonction de ces ressources. **[INFÉRENCE]** macarons et diamants constituent deux monnaies/indicateurs différents. La manière de les gagner/dépenser reste inconnue.
+- Grande illustration de **Momo inquiet qui dépasse de la carte de série** : tête et mains appuyées sur la bordure supérieure. Cette composition rappelle explicitement **la mascotte de l'écran d'accueil 54135**, ce qui assure la continuité de marque.
+
+### Carte de série quotidienne
+
+- Surface bleu gris sombre à **gros coins arrondis et tranche/bord inférieur plus clair**, y≈350–597.
+- Titre très lisible : **« Série de 1 jour »**.
+- Une **flamme rouge/orange géante** flotte au bord supérieur droit.
+- Sept abréviations de jours en une rangée : **Lu, Ma, Me, Je, Ve, Sa, Di**.
+- Sous chaque jour, cercle vide à contour turquoise pâle, sauf **Ve** où apparaît une **flamme colorée**.
+- Le libellé **« Ve » est en gras/blanc**, les autres jours en gris atténué.
+- Cela matérialise **une activité le vendredi**, sans attester si le jour est calculé automatiquement, si les autres jours ont une signification future ni comment une série est conservée.
+- Le fait que **23 octobre 2026 soit un vendredi** rend cohérente l'illustration, sans démontrer la gestion des fuseaux ou resets de série.
+
+### Deux accès rapides immédiatement sous la carte
+
+**Colonne gauche : « ÉCRIRE »**
+- Label uppercase turquoise, espacement des lettres.
+- Carte arrondie avec une **illustration éditoriale colorée d'une personne souriante** à gauche.
+- Texte coupé par ellipsis : **« Que signifie vivre une bo… »**.
+- Le titre complet est inconnu ; ne pas inventer la fin de la phrase.
+- **[INFÉRENCE]** raccourci vers une activité d'écriture liée à une question/consigne.
+
+**Colonne droite : « PARTIE RAPIDE »**
+- Label uppercase turquoise.
+- Grand bouton vert **« Jouer › »** avec chevron droit.
+- Composition en **deux colonnes asymétriques**, l'une proposant un contenu éditorial, l'autre un démarrage immédiat.
+
+### Carte « Défi de bienvenue ! »
+
+- Grande surface bleue occupant l'essentiel du bas du contenu.
+- Titre centré blanc gras : **« Défi de bienvenue ! »**.
+- Texte turquoise :
+  **« Momo t'invite à relever un premier défi pour découvrir l'application. »**
+- **Barre de progression** horizontale : partie remplie verte à gauche, reste bleu-gris.
+- Texte **« 1 / 5 étapes complétées »**.
+- Le bas de la carte et les étapes sont **cachés sous la zone de navigation** dans cette première vue ; les captures suivantes démontrent leur accès au scroll.
+- Le parcours de bienvenue est ainsi une **quête utilisateur**, et non simplement une page descriptive : étapes numérotées, marque de complétion et récompense finale.
+
+### Navigation inférieure à six icônes [VU]
+
+La barre occupe environ **y≈1320–1446**, au-dessus des trois boutons de navigation Android. De gauche à droite :
+
+1. **Poing** rouge / gant levé — actif sur le dashboard dans cette capture.
+2. **Deux épées croisées** — onglet de compétition (actif dans les captures 38–40).
+3. **Livre** fermé clair.
+4. **Bloc-notes + crayon**.
+5. **Signet avec cœur**.
+6. **Visage/avatar stylisé**.
+
+- Les icônes sont **illustrées et presque cartoon**, non des pictogrammes monochromes ordinaires.
+- L'élément actif reçoit une **couleur plus vive** et le reste paraît désaturé/clairement différencié, selon l'onglet.
+- **Aucun libellé de navigation n'est visible** sous les icônes : il faut un nom accessible vocalement pour chacune, et idéalement un état actif indépendant de la couleur.
+- L'interprétation fonctionnelle des onglets 3–6 n'est **pas démontrée** par leur seule illustration ; ne pas les nommer comme des fonctionnalités confirmées.
+
+---
+
+## P.2 — Capture 36, 54205 : « Défi de bienvenue » et premières étapes, écran défilé
+
+**État et déplacement :** la page d'accueil est défilée. Le haut de la carte « Défi de bienvenue » monte **jusque sous la barre d'état Android**. La barre inférieure de six icônes reste visible à la même hauteur. L'absence de masque opaque sur la zone du haut provoque une **superposition perceptible** entre contenu et heure/icônes système dans cette capture.
+
+### Tableau des premières étapes de la quête
+
+| Étape | Intitulé exact | Description / but visible | Etat |
+|---|---|---|---|
+| **1** | **Test de placement** | « Ton test de placement t'a situé au niveau Facile. Tes prochaines parties sont adaptées à ce niveau. » ; objectif « Situer ton niveau » | **Complétée**, carte verte à contour et coche |
+| **2** | **Valider une règle** | « Les règles sont des fiches théoriques sur un point de grammaire expliqué simplement. » ; objectif « Comprendre les bases de la grammaire » | A faire, carte bleu sombre bordée de cyan avec chevron |
+| **3** | **Faire une partie révision** | « Elles sont personnalisées par Momo en fonction de tes dernières erreurs. » ; objectif « Ne plus jamais refaire les erreurs » | A faire, même famille de carte |
+
+### Détails UI
+
+- Progression affichée en haut de la capture **« 1 / 5 étapes complétées »** après une jauge courte (~20 % visuel), matérialisation directe du fait qu'une étape a été accomplie.
+- Grandes cartes empilées, **contour coloré selon le statut**, coins arrondis, marges importantes.
+- Carte terminée : bord **vert**, **coche verte** en haut droit et tranche basse verte, texte descriptif en italique turquoise.
+- Carte disponible : **bord turquoise pâle**, titre plus pâle, **chevron blanc** à droite.
+- Chaque carte intègre une ligne de **finalité pédagogique** avec petite icône **cible verte** suivie d'un objectif.
+- L'étape 1 contient un **résultat personnalisé concret** : le test de placement a affiché le niveau **« Facile »**, et le produit affirme adapter les parties suivantes. L'adaptation réelle reste à vérifier.
+- Le texte descriptif d'une étape peut prendre trois ou quatre lignes, sans réduction de taille radicale.
+- **Précaution** : la « règle ajoutée aux révisions » affichée après une erreur et « Valider une règle » dans cette quête ne sont pas automatiquement la même action ; aucune preuve de leur connexion.
+
+### Ergonomie Android
+
+La capture est un contre-exemple potentiel de **safe-area haut** : le contenu défilé est visible jusque derrière la barre d'état système, avec chevauchement de l'heure et du texte de la carte. Cela mérite une vérification pratique de la gestion des insets / du scroll, particulièrement en WebView ou en mode edge-to-edge. La navigation basse, au contraire, semble former une zone stable distincte.
+
+---
+
+## P.3 — Capture 37, 54207 : fin du défi, cinquième étape et récompense
+
+**La même carte est défilée plus bas**, sans changement apparent de progression (toujours 1/5 sur la séquence). Les items 4 et 5 apparaissent :
+
+| Étape | Titre et description | Objectif affiché |
+|---|---|---|
+| **4** | **Faire une dictée** — « Des dictées rapides, modernes et ciblées sur tes points faibles. » | « Se tester sur les règles apprises » |
+| **5** | **Écriture libre** — « Écris librement sur un thème qui te plaît et reçois les conseils de Momo sur ton orthographe mais aussi ton style. » | « Travailler son style et sa clarté » |
+
+- Chaque étape prend une grande **carte bleu sombre à bord turquoise**, chevron droit blanc, contenu explicatif *italique*, objectif précédé d'une cible verte.
+- Sous ces cinq étapes, récompense mise en scène sans carte superflue supplémentaire :
+  - **💎 « 10 diamants à récupérer »**
+  - « **Complète toutes les étapes pour récupérer ta récompense !** »
+- Ces **10 diamants** sont la **récompense annoncée pour terminer la quête**, distincte du solde « 3 » vu dans l'en-tête du dashboard. La capture ne montre aucune remise effective de 10 diamants.
+- Une large zone vide subsiste sous la carte, puis la barre de navigation fixe.
+- Les deuxième à cinquième étapes constituent une **visite guidée du produit par l'action** : théorie, révision, dictée et écriture. Ce pattern remplace un tutoriel passif de fonctionnalités.
+- **[INFÉRENCE]** toucher une étape disponible peut ouvrir la fonctionnalité concernée ; la capture ne montre pas les clics ni la destination.
+- Les intitulés et objectifs sont ceux du produit étudié ; ils **ne doivent pas** être recopiés comme description de modules LuxApp existants sans correspondance réelle.
+
+### Structure des cartes estimée
+
+- Colonne des cartes autour de **x≈89–621** ; gouttières verticales ~15–25 px.
+- Dans 54205, carte 1 visible autour de y≈294–597, carte 2 y≈612–954 et carte 3 y≈974–1320.
+- Dans 54207 (plus bas), carte 4 autour de y≈248–516, carte 5 y≈533–869, bloc récompense y≈941–1110.
+- Barre fixe à icônes autour de y≈1320–1446.
+- La composition confirme que le défi de bienvenue est **plus long qu'un viewport** et requiert un défilement naturel.
+
+---
+
+# ANNEXE Q — Compétition sociale, duel, régions, ligues, classement
+
+## Q.1 — Capture 38, 54209 : onglet « épées » et interface de bataille
+
+### Premier écran compétitif [VU]
+
+- En haut, nouvelle scène illustrée : **deux personnages stylisés faisant un duel à l'épée**, sur un **fond bleu plus clair** que le bleu nuit général. Ils ont des cheveux et expressions différents : l'un cheveux gris, l'autre cheveux bleus, tous deux en posture active.
+- Carte au premier plan, très sombre, coins fortement arrondis et bordure/tranche bleu clair :
+  - titre « **Prochaine partie** », grand, blanc, gras ;
+  - petite **coupe de trophée** illustrée en haut droit ;
+  - grand **anneau circulaire** partiellement coloré en bleu, avec valeur centrale **« 71 »** ;
+  - pictogramme **deux personnes**, compteur **« 2 / 20 »** ;
+  - CTA vert « **Rejoindre ›** ».
+- La valeur **71** n'a **aucune unité visible**. Elle peut représenter un compte à rebours, une capacité, une progression ou une autre métrique. **Ne pas la décrire comme 71 secondes/minutes sans preuve.**
+- « **2 / 20** » est interprétable comme deux places prises sur vingt participants, **mais** la nature exacte de cette capacité/inscription n'est pas garantie sans ouvrir la partie.
+
+### Zone « CETTE SEMAINE »
+
+Texte gris en capitales :
+**« CETTE SEMAINE »**
+
+Sous ce titre :
+- **« Mise à jour toutes les 2 minutes. »**
+- **« Tu n'as pas encore gagné de macarons cette semaine pour rentrer dans le classement. »**
+- Chevron à droite de la section, indiquant un accès probable au détail.
+
+**Constat :** la monnaie/score **« macaron »** de l'accueil est explicitement liée à une **activité compétitive hebdomadaire**. La capture indique une fréquence d'actualisation annoncée, **pas une synchronisation vérifiée**. On ne peut pas conclure que les données changent effectivement toutes les 120 secondes sans observer les requêtes.
+
+### Zone « TOP RÉGIONS CETTE SEMAINE »
+
+- Titre gris uppercase à gauche, chevron turquoise à droite.
+- **Sélecteur segmenté « Régions / Pays »**, avec **Régions sélectionné** sur fond bleu éclairci ; Pays est l'option secondaire.
+- Tableau/liste bleu-gris qui commence en bas de la capture. Première ligne visible :
+  - **🥇 Nouvelle-Aquitaine 🇫🇷 : 85 macarons** (icône macaron rouge à droite).
+- La deuxième ligne est partiellement masquée par le footer. Les captures suivantes dévoilent les autres entrées.
+- Navigation basse à six icônes : **les épées croisées sont cette fois actives, rouges**, le poing étant passé à un état neutre. Confirmation visuelle qu'il s'agit d'un **changement d'onglet** et pas du même écran de dashboard.
+
+### Géométrie de la première vue, estimée
+
+| Élément | Position raster |
+|---|---|
+| Scène de duel | x≈173–537, y≈105–337 |
+| Grande carte « Prochaine partie » | x≈40–670, y≈364–674 |
+| Anneau « 71 » | x≈88–209, y≈499–618 |
+| Participants « 2/20 » | x≈255–349, y≈515–604 |
+| CTA « Rejoindre » | x≈347–638, y≈509–608 |
+| Section CETTE SEMAINE | y≈755–961 |
+| TOP RÉGIONS | vers y≈1010–1144 |
+| Liste des régions | démarre y≈1161 |
+| Barre onglets | y≈1320–1446 |
+
+**Micro-UX :** héroïser la prochaine partie au début, puis montrer la situation personnelle, ensuite la compétition par régions. La première action de ce parcours est **Rejoindre**, sans devoir parcourir le classement.
+
+---
+
+## Q.2 — Capture 39, 54211 : classement régional et ligues privées
+
+### Podium régional vu entièrement
+
+Le sélecteur segmenté **« Régions / Pays »** reste visible. Classement :
+
+1. **🥇 Nouvelle-Aquitaine 🇫🇷 — 85** macarons.
+2. **🥈 Québec 🇨🇦 — 84** macarons.
+3. **🥉 Île-de-France 🇫🇷 — 83** macarons.
+
+- Les valeurs sont en **turquoise pâle**, suivies d'un petit pictogramme macaron rouge, constant.
+- Les noms sont en blanc ; la **première place est en gras** (ou davantage mise en avant).
+- Médailles or, argent et bronze affichées à gauche et classant les trois lignes.
+- Chaque ligne remplit toute la largeur d'une carte collective **bleu-gris**, avec bordures/séparateurs fins.
+- Québec apparaît à côté de régions françaises : le mot « région » est utilisé **de manière large/transnationale** et pas seulement au sens administratif français.
+- **Ce sont des scores affichés**, aucune vérification backend, aucun détail du calcul des macarons.
+
+### Section « MES LIGUES »
+
+- Titre secondaire uppercase gris.
+- Description : **« Rejoins ou crée une ligue pour commencer à jouer en famille, entre amis ou collègues ! »**
+- Grande phrase centrée et expressive :
+  **« Un peu seul ? 👀 »**
+- Gros CTA vert : **« Rejoindre/créer une ligue ➜ »**.
+- **[INFÉRENCE]** les ligues correspondent à des groupes privés ou semi-privés, indépendants de l'appartenance régionale. La capture ne prouve ni confidentialité, ni invitations, ni code, ni règles de gestion.
+- Le texte invite à utiliser des **relations déjà existantes** pour soutenir la rétention (famille, amis, collègues), plutôt que seulement une compétition anonyme.
+
+### Section « CLASSEMENT GLOBAL »
+
+- Titre gris uppercase : **« CLASSEMENT GLOBAL »**.
+- Sous-titre : **« Meilleurs scores de tous les joueurs cette année. »**
+- Segmented control à deux choix :
+  - **« Mon classement »** (non sélectionné sur la capture) ;
+  - **« Top 20 »** (sélectionné, fond plus clair).
+- Le résultat complet du Top 20 est illustré sur la capture suivante.
+
+### UX générale du scroll
+
+- Le haut de page est hors vue ; les panneaux régions, ligues et classement s'enchaînent **dans un seul long flux vertical**.
+- La **barre de navigation à six icônes reste fixe**.
+- Dans le screenshot, la partie basse du classement n'est pas visible car il se poursuit sous le footer, mais elle apparaît ensuite via scroll.
+- Les trois espaces sociaux sont présentés dans un ordre **du proche au global** : mon activité / ma région / mes groupes / la communauté entière.
+
+---
+
+## Q.3 — Capture 40, 54213 : classement individuel annuel, avatars et trophées
+
+### Liste observée, lignes 1–10
+
+**Contexte :** sélecteur **« Mon classement / Top 20 »** avec **Top 20 actif**. Valeurs et noms retranscrits tels qu'affichés, sans supposer qu'il s'agit de comptes authentiques.
+
+| Rang | Pseudo affiché | Score affiché | Style du rang |
+|---:|---|---:|---|
+| 1 | **Dominique** | **5134** | Bordure **or**, trophée or |
+| 2 | **Samuel** | **3644** | Bordure **argent**, trophée argent |
+| 3 | **Boxteur** | **3563** | Bordure **bronze**, trophée bronze |
+| 4 | **Laurent cha..** | **3111** | Bordure neutre, trophée turquoise |
+| 5 | **Mamili** | **2400** | Neutre |
+| 6 | **LivLu** | **2352** | Neutre |
+| 7 | **Biozne** | **1474** | Neutre |
+| 8 | **Actarus** | **1170** | Neutre |
+| 9 | **Almudena** | **1137** | Neutre |
+| 10 | **Bora Lula** | **1106** | Neutre |
+
+- Une **11e ligne** apparaît partiellement sous le viewport et la barre de navigation. Son prénom/pseudo semble commencer par « Mathilda », mais le libellé complet et son score ne sont pas intégralement visibles : ne pas les intégrer comme données certaines.
+- Les **avatars sont des portraits circulaires sur fond rouge**, issus de la famille esthétique présentée lors de la sélection initiale : personnalisation **réutilisée dans le classement social**, pas cantonnée à l'onboarding.
+- Plusieurs utilisateurs ont **le même portrait** (notamment Victor Hugo) : pas d'unicité apparente d'avatar par personne.
+- À droite : icône trophée (métal coloré pour le podium, turquoise pour les autres) et score **très gras** en blanc.
+- Les rangs sont préfixés d'un **#**, affichés en blanc avant le pseudo.
+- La ligne #4 affiche un pseudo **tronqué avec des points**, ce qui préserve la place du score et du trophée. Le texte exact du compte n'est donc pas récupérable.
+- Les scores ne sont **pas des macarons accompagnés de l'icône rouge** sur cette liste ; ils sont explicitement présentés comme un **classement global annuel**. Il faut éviter de supposer que **5134 points = 5134 macarons**.
+- Les trois premières places sont visuellement **prestigieuses** sans former un podium vertical séparé : même ligne standard, mais bordures et trophées colorés par rang.
+
+### Géométrie et rythme [estimés]
+
+- Conteneur de liste centré, rangées autour de **x≈40–669**.
+- Chaque ligne est une **capsule bleu-gris** d'environ **98–105 px de haut**, séparée par ~10–17 px.
+- Avatar circulaire autour de **x≈48–129**, diamètre ~78–83 px.
+- Rang textuel autour de **x≈160–222** ; pseudo autour de **x≈234**.
+- Trophée vers **x≈469–512** ; score à droite x≈525–623.
+- Bordures des trois premiers : or, argent, bronze ; autres bordures claires plus discrètes.
+- Barre de navigation continue à occuper la zone **y≈1320–1446**.
+- Le bas de la liste est **clippé derrière le footer**, mais le scroll est vraisemblable vu la continuité depuis la capture précédente.
+
+### Ce que le classement ne prouve pas
+
+- Classement réel, comptes actifs, méthode de calcul, remise à zéro, anti-triche et origine des scores.
+- Possibilité de consulter un autre joueur en touchant sa ligne.
+- Actualisation live des chiffres, cohérence avec la mise à jour à 2 minutes annoncée pour les macarons régionaux.
+- Récompenses exactes associées aux trophées or/argent/bronze.
+- Accessibilité de la recherche de son propre rang après sélection de « Mon classement ».
+
+---
+
+# ANNEXE R — Système visuel observé, comportements de scroll et micro-détails Android
+
+## R.1 — Couleurs réellement échantillonnées dans les JPG de la quatrième série
+
+**Méthode :** lecture ponctuelle du pixel RGB sur les images montées localement, sans extraction des variables sources du produit tiers. Les coordonnées sont (x,y) en pixels raster. Un même composant peut donner des valeurs légèrement différentes par JPEG/anti-crénelage.
+
+| Capture / pixel | RGB | HEX | Interprétation |
+|---|---|---|---|
+| 54195 (15,150) | (12,21,36) | **#0C1524** | Fond global du jeu |
+| 54195 (30,700) | (28,49,78) | **#1C314E** | Bord/surface correction |
+| 54195 (350,1330) | (26,143,11) | **#1A8F0B** | CTA Suivant |
+| 54197 (15,150) | (6,11,17) | **#060B11** | Backdrop assombri |
+| 54197 (15,310) | (26,50,78) | **#1A324E** | Fond de la fiche |
+| 54199 (15,150) | (6,11,17) | **#060B11** | Backdrop assombri |
+| 54199 (350,1330) | (26,143,11) | **#1A8F0B** | CTA Fermer |
+| 54201 (15,150) | (12,21,36) | **#0C1524** | Fond jeu |
+| 54201 (300,750) | (26,50,78) | **#1A324E** | Carte explication |
+| 54203 (100,910) | (26,50,78) | **#1A324E** | Carte défi |
+| 54205 (100,355) | (26,50,78) | **#1A324E** | Carte étape terminée |
+| 54209 (90,410) | (16,25,40) | **#101928** | Carte Prochaine partie, sombre |
+| 54209 (450,530) | (26,143,11) | **#1A8F0B** | CTA Rejoindre |
+| 54211 (130,440) | (26,50,78) | **#1A324E** | Surface classement régional |
+| 54213 (350,200) | (27,43,66) | **#1B2B42** | Surface capsule classement global |
+
+### Invariants chromatiques
+
+- **Fond bleu nuit** quasi constant dans le jeu, l'accueil et l'onglet compétition.
+- Cartes importantes en bleu-gris et variantes plus sombres pour grands héros compétitifs.
+- CTA verts avec bas en relief, même logique que l'onboarding.
+- Turquoise pâle récurrent dans icônes, métriques, cadres des cartes disponibles, textes secondaires et barres de progression.
+- Rouge utilisé simultanément pour cœurs, macarons et une partie de l'état actif d'onglet.
+- Or/argent/bronze réservés aux **meilleurs rangs**, claire hiérarchie de rareté/prestige.
+- Les portraits circulaires sur fond rouge sont réutilisés comme identifiants dans les listes sociales.
+- Une couche **noire translucide** (ici échantillon #060B11) matérialise la modalité de la fiche d'explication.
+
+## R.2 — Recensement des éléments UI introduits
+
+1. **Bottom sheet pédagogique** : poignée centrée, coins supérieurs arrondis, backdrop opaque, texte riche, bookmarks et footer.
+2. **Fiche longue** : titres serif, texte courant sans-serif, mots-clés soulignés, puces, encadré Astuce, miniature mascotte.
+3. **Barre de navigation permanente** : six icônes illustrées, actif mis en valeur, pas de texte visible.
+4. **Ressources virtuelles** : macaron et diamant, chiffres séparés dans les coins opposés du dashboard.
+5. **Carte de série** : mascotte débordante, flamme géante, sept jours et marqueur quotidien.
+6. **Raccourcis d'activité asymétriques** : vignette d'écriture, démarrage Partie rapide par CTA.
+7. **Quête d'accueil** : 5 étapes numérotées, progression 1/5, cartes terminées vs à faire, objectif et récompense.
+8. **Hero de compétition** : duel illustré, panneau sombre, trophée, anneau numérique et participants.
+9. **Classement géographique** : onglets Régions/Pays, médailles, drapeaux, score macaron.
+10. **Ligues** : état vide explicite, message émotionnel, invitation à rejoindre ou créer.
+11. **Classement global** : option Mon classement/Top 20, lignes à avatar et trophées.
+12. **Hiérarchie de prestige** : trois premières lignes à bordures or/argent/bronze.
+13. **Chevron de section** : navigation ou développement suggérés pour classement et activité, sans clic attesté.
+14. **Cible verte pédagogique** : but concret mentionné à chaque étape du défi.
+
+## R.3 — Gestion des zones fixes et des parties défilantes
+
+**Observé sur la séquence :**
+
+- Fiche (54197→54199) : le **contenu interne défile** alors que le bord supérieur du panneau et sa poignée restent visibles. Le jeu sous-jacent est obscurci.
+- Correction (54193→54195) : le **texte long devient entièrement lisible** après défilement, tandis que le HUD/CTA restent visuellement stables.
+- Dashboard (54203→54205→54207) : la **barre d'onglets reste au même endroit**, alors que la carte de quête monte dans la fenêtre.
+- Compétition (54209→54211→54213) : la **liste des régions, les ligues et le classement global défilent** sous la même barre d'onglets.
+
+**Anomalie à consigner :** dans 54205 et 54207, le contenu de la page peut être visible derrière les indicateurs de la **barre d'état Android**, sans zone tampon opaque. C'est un défaut potentiel d'insets/safe-area ou une gestion edge-to-edge volontaire mal maîtrisée ; il ne faut pas conclure à la cause technique sans inspection.
+
+**Risque bas de viewport :** la barre d'onglets empiète sur le flux de cartes et listes, qui continuent sous celle-ci ; les screenshots ne démontrent pas à eux seuls si **la toute dernière ligne** reste atteignable à la fin du scroll. Les options longues devront avoir une marge basse adéquate dans toute reproduction.
+
+## R.4 — Différence entre navigation dans l'exercice et dans l'application principale
+
+| Zone | Méthode de navigation | Signification |
+|---|---|---|
+| Onboarding | Retour + points d'étapes + gros CTA | Tunnel contrôlé |
+| Question | Titre + X, score, vies, « Suivant » | Session immersive au cadre restreint |
+| Fiche d'explication | Bottom sheet + poignée + « Fermer » | Lecture approfondie sans perdre la question |
+| Dashboard | Barre à **six onglets** permanents | Exploration des fonctions et progression |
+| Compétition | Même barre d'onglets, épées sélectionnées | Espace social et classement |
+| Rangements internes | Choix Régions/Pays, Mon classement/Top 20 | Filtres locaux, pas changement d'onglet principal |
+
+La grammaire de navigation est **contextuelle** et garde chaque mode de travail relativement simple. Un retour Android dans le jeu, dans la fiche ou dans un sous-onglet ne doit pas être supposé équivalent.
+
+---
+
+# ANNEXE S — Lecture produit, gamification et questions à investiguer
+
+## S.1 — Mécanismes d'engagement désormais démontrés visuellement
+
+**De la première visite à l'usage quotidien :**
+
+- Le personnage **Momo** existe dans le marketing, l'onboarding, le jeu (aide et astuces), puis **sur l'accueil** en train de surveiller la série. Ce n'est pas une simple mascotte d'introduction.
+- Une **série quotidienne d'un jour** et un calendrier de sept jours visent la récurrence.
+- Un **défi guidé de cinq actions** convertit la première session en découverte de fonctionnalités réellement accessibles ; l'une est déjà terminée à la suite du test.
+- Une **récompense en diamants** est annoncée à l'issue du défi ; une autre monnaie, le **macaron**, a un rôle apparent de classement compétitif.
+- Les **parties compétitives** ont un appel « Rejoindre », un compteur de participants et un panneau d'attente.
+- Les **régions** rivalisent sur une période **hebdomadaire**, tandis que le classement individuel global est qualifié d'**annuel**.
+- Les **ligues privées ou groupées** semblent encourager les interactions entre proches, mais leurs modalités ne sont pas établies.
+- Les avatars choisis au début sont **visibles dans les classements**, donnant une utilité sociale à la personnalisation.
+
+**Non démontré :** les règles de calcul, la monnaie réelle, le matchmaking, les trophées remportés, la persistance de la série, le système de notification, la présence de bots, le règlement des ligues et l'intégrité des données présentées.
+
+## S.2 — Deux niveaux pédagogiques réellement distincts
+
+- **Correction immédiate :** carte « Explications › Détails » visible après une réponse, quelques phrases, contextualisée avec le mot corrigé.
+- **Fiche de règle enrichie :** panneau couvrant presque tout l'écran, définition, comparaison, exemples, nuance, astuce de transformation grammaticale.
+
+Ce dédoublement est une **véritable architecture de contenu pédagogique**, dont le bénéfice UX est de ne pas noyer l'utilisateur dans la théorie lors de la correction, tout en laissant une porte ouverte vers un approfondissement.
+
+La présence du signet pourrait permettre une sauvegarde de la fiche, mais **sa fonction réelle n'est pas attestée**. De même, la « validation » d'une règle dans le défi peut être une consultation, une confirmation de lecture ou un quiz ; impossible de trancher.
+
+## S.3 — Leçons concrètes pour LuxApp / Luxo, sans modifier la charte de 2.1
+
+**À étudier sérieusement plus tard :**
+
+- Décliner **une règle courte / une fiche détaillée** sur les contenus existants, sans dupliquer des blocs HTML et sans casser le rendu des explications actuelles.
+- Construire **un défi de première utilisation réellement adossé à la progression**, plutôt qu'un tutoriel de boutons non mémorisé.
+- Afficher une **série quotidienne** uniquement si elle peut être calculée de manière cohérente et restaurée après reconnexion.
+- Séparer clairement **score personnel**, **monnaie/récompense** et **activité collective** ; leurs significations ne doivent jamais être interchangeables.
+- Associer l'avatar choisi au profil de façon cohérente si une fonctionnalité communautaire est effectivement créée.
+- Utiliser des groupes/ligues seulement si les données, droits, consentement et règles anti-triche sont maîtrisés.
+- Prévoir les **états vides** de classement comme dans « Tu n'as pas encore gagné de macarons », plutôt que d'inventer un rang.
+- Garder des **temps de jeu courts**, une action dominante et une forte lisibilité mobile, sans reproduire la longueur commerciale du tunnel.
+- Corriger spécifiquement les **recouvrements de la barre Android haute**, les très longues cartes, le scroll sous le footer et l'accessibilité des icônes sans libellé.
+- Protéger la charte déjà adoptée : **fond quasi noir chaud + action or** pour LuxApp 2.1, plutôt que copie littérale du bleu/vert du benchmark.
+- Tester réellement la sauvegarde et la restitution d'une règle/erreur lorsque l'UI affiche une promesse de révision.
+- Ne pas confondre un **« 71 »** dans un anneau avec une durée mesurée, ni considérer **85 macarons** comme **85 points annuels**.
+
+## S.4 — Recette de vérification de l'application observée, si accès interactif ultérieur
+
+| Sujet | Scénario à exécuter | Preuve à recueillir |
+|---|---|---|
+| Fiche de règle | Toucher Détails, scroller, revenir | Vidéo d'ouverture/fermeture, reprise même question |
+| Signet | Toucher dans panneau | Etat sélectionné, fiche visible dans une bibliothèque, persistance |
+| Liens soulignés | Toucher « imparfait » ou terme grammatical | Lien interne, glossaire ou simple mise en forme |
+| Série | Revenir le lendemain, consulter historique | Calcul horaire, timezone, restauration, statut des jours |
+| Défi 1/5 | Terminer l'étape 2 puis relancer | Passage à 2/5, récompense finale réelle |
+| Monnaies | Jouer et comparer soldes | Source et destination macarons/diamants |
+| Rejoindre partie | Toucher le CTA | Attente, statut participants, annulation, conditions d'entrée |
+| Anneau 71 | Observer pendant plusieurs minutes | Variation, unité, fréquence, événement de départ |
+| Classement régions | Basculer Régions/Pays | Cohérence des périmètres et valeurs, renouvellement |
+| Ligues | Rejoindre/créer dans un compte de test | Invitations, rôles, confidentialité, scores |
+| Classement individuel | Basculer Top 20/Mon classement | Identité, score, rang, chargement, navigation |
+| Ergonomie Android | Scroll haut/bas, texte 200 %, TalkBack | Safe-area, tab focus, lecture des cartes, footer |
+
+## S.5 — Synthèse de fin de la quatrième série
+
+La première série posait **l'identité du joueur** ; la deuxième promettait une expérience personnalisée ; la troisième prouvait une **boucle de jeu éducatif** ; cette quatrième série établit une **architecture complète d'engagement après la première partie** : approfondir la règle, conserver une série, terminer une quête, gagner des ressources, rejoindre une partie, comparer sa région, créer une ligue et grimper un classement.
+
+L'enseignement principal pour Luxo n'est pas « ajouter le maximum de fonctionnalités » : c'est la **continuité entre une action réussie et une nouvelle raison utile de revenir**. Le danger symétrique est de créer une gamification qui n'enregistre rien ou qui donne des scores opaques. L'ergonomie n'est pas parfaite non plus : la superposition dans la barre Android, les zones scrollables et les libellés uniquement iconographiques demandent une validation sur appareil.
+
+**État documentaire : 40 captures analysées au total, sans modification du code ni de la progression LuxApp.**
