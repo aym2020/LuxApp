@@ -2,7 +2,7 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 93 captures Android distinctes : séries 1–7 = 69 ; annexe AM = 54324.jpg (1) ; série 8 = 15 inédites (54304–54322 et 54326–54336) ; série 9 = 7 captures (54338–54350) ; série 9, complément = 1 capture inédite (54352.jpg), bilan du quiz « Quelle/qu'elle ». La capture 54324.jpg reste comptée une fois. Annexes A–AW historiques, AX–AZ série 9, BA bilan du quiz.  
+**Corpus :** 103 captures Android distinctes : séries 1–7 = 69 ; annexe AM = 54324.jpg (1) ; série 8 = 15 inédites (54304–54322 et 54326–54336) ; série 9 = 7 captures (54338–54350) ; série 9, complément = 1 capture inédite (54352.jpg), bilan du quiz « Quelle/qu'elle ». La capture 54324.jpg reste comptée une fois. Annexes A–AW historiques, AX–AZ série 9, BA bilan du quiz ; nouvelle série de 10 captures 54359–54377 (numéros impairs), annexes BB–BE. Les états comparables du paywall sont documentés comme captures distinctes, pas comme fonctionnalités distinctes.  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md accessible et consulté sur 2.1 lors de la vérification du 23 octobre 2026.**  
 **Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
@@ -4604,4 +4604,192 @@ Une réussite malgré une question manquée donne un élément important : **le 
 
 **Prochain écran demandé pour clôturer ce flux :** **l'état de la règle immédiatement après « Terminer »**, puis son état dans **« Liste de révision »** / **« Confusions fréquentes »**. Cela permettrait de vérifier, plutôt que supposer, la liaison entre message de maîtrise, statut de notion et progression chiffrée.
 
-**Statut documentaire :** 93 captures distinctes ; aucune modification du code LuxApp. Références : [annexe AY](#annexe-ay--fiche-de-cours--quelle----quelle--et-quiz-intégré) et [TODO benchmark](TODO_BENCHMARK_FSSF.md).
+**Statut documentaire (à la date de l'annexe BA) :** 93 captures distinctes ; aucune modification du code LuxApp. Références : [annexe AY](#annexe-ay--fiche-de-cours--quelle----quelle--et-quiz-intégré) et [TODO benchmark](TODO_BENCHMARK_FSSF.md).
+
+
+---
+
+# ANNEXE BB — Économie du jeu : macarons et diamants (captures 94–95)
+
+**Nouveau lot :** 54359.jpg, 54361.jpg, 54363.jpg, 54365.jpg, 54367.jpg, 54369.jpg, 54371.jpg, 54373.jpg, 54375.jpg, 54377.jpg. Les **10 fichiers sont des captures distinctes** de 709 × 1536 px sur Android (23 octobre 2026, 17 h 18–17 h 19). **Le contenu initial du paywall 54363 est très semblable à une capture antérieure** : nouvelle image, pas une nouvelle fonctionnalité. Les parties masquées ou coupées sont explicitement signalées.
+
+## BB.1 — Capture 94 : 54359.jpg, information « Des Macarons ? » [VU]
+
+**Écran d'origine :** accueil. En haut à gauche compteur de monnaie illustré d'un petit macaron rouge : **42** ; en haut à droite diamant bleu : **1**. Sous ces compteurs, mascotte Momo penchée derrière une carte « Série de 1 jour » ; semaine « Lu Ma Me Je Ve Sa Di », seul **Ve** porte une flamme. Ligne de raccourcis **ÉCRIRE** et **PARTIE RAPIDE** ; « Défi de bienvenue ! » partiellement visible.
+
+**Interaction illustrée :** fond de l'accueil noirci par un masque très sombre ; ouverture d'une **feuille inférieure / bottom sheet**, alignée sur les bords latéraux, coin supérieur très arrondi, petite **poignée horizontale sombre** au milieu supérieur. La feuille ne recouvre pas toute la hauteur : environ la moitié inférieure. Surface bleue ≈ **#1A324E**, fond principal ≈ **#0C1524** quand il n'est pas assombri. **Momo miniature pointant à droite** à gauche du message.
+
+**Texte visible :**
+
+> « Des Macarons ? » — « Tu peux gagner un macaron pour chaque bonne réponse, et 10 par dictée. Les macarons te permettent de débloquer des badges. »
+
+**UI :** titre blanc **gros sans-serif**, texte descriptif blanc en lignes courtes sur la droite de l'illustration. Pas de CTA dans la portion visible. La barre système Android est visible au pied de la feuille, au même niveau que son contenu ; pas de preuve sur la présence de boutons plus bas, sur le scroll du panneau ni sur une fermeture par glissement.
+
+**Mécanique directement annoncée :** **1 macaron par bonne réponse**, **10 par dictée**, monnaie utilisée pour **débloquer des badges**. **[NON VU]** calcul lors d'une partie classée, coût précis des badges, dépense et décrément du solde. **Indice cohérent, non preuve de causalité :** le compteur est ici à 42 alors qu'un écran antérieur montrait 37, et le quiz individuel avait annoncé +5 ; aucune continuité intégrale de session n'établit que ces 5 sont la seule source du changement.
+
+## BB.2 — Capture 95 : 54361.jpg, information « Des Diamants ? » [VU]
+
+Même écran d'accueil obscurci et même composant bottom sheet ; **feuille plus haute** et zone de texte partiellement cachée par le bas de l'écran. Petite poignée horizontale centrée. Le titre **« Des Diamants ? »** est cette fois grand, **aligné à gauche** et **sans personnage** adjacent dans la partie visible.
+
+**Texte lisible** : « Les diamants te permettent de jouer une partie, tes diamants sont réinitialisés à 2 chaque jour, ou à 30 … » **[TRONQUÉ]** après « 30 » : ne pas inventer le complément. **Interprétation prudente :** la monnaie diamant sert de **quota d'accès aux parties** ; **2 diamants/jour** apparaissent comme quota gratuit annoncé. La règle exacte pour les **30**, l'horaire de renouvellement, le coût par mode de jeu et les exceptions Premium demeurent **non vérifiés**.
+
+**Actions visibles :** bouton vert volumineux **« Deviens Premium 👑 »** (relief bas vert sombre), suivi de **« Annuler »** sur un bouton bleu nuit. Contrairement au panneau macaron, ce panneau transforme l'explication de monnaie en **point de conversion vers l'abonnement**. Le texte de règle est partiellement couvert et mérite un test d'ergonomie réel : scrolling interne ? safe-area Android ? aucune conclusion déterministe à partir d'une image statique.
+
+**Contraste des deux monnaies :** macaron = *incitation / accumulation / badges* ; diamant = *consommation / limitation des parties*. Ce sont deux rôles économiques distincts explicitement présentés au début du parcours, mais **aucune équivalence de conversion** n'est visible.
+
+## BB.3 — Enseignements pour LuxApp
+
+- **Information accessible depuis les compteurs** : expliquer clairement à quoi sert chaque ressource sans détourner vers une page d'aide. Cela aide à comprendre les récompenses dès le premier jour.
+- **Eviter une double monnaie uniquement cosmétique** : elle ne se justifie que si les rôles sont distincts et compris, et si la limitation ne bloque pas brutalement un apprenant A1.
+- **Pas de copie du quota** : pour LuxApp, ne pas empêcher un débutant de **réviser un point non acquis** par manque de monnaie ; envisager la rareté sur des bonus facultatifs seulement.
+- **Conserver les équivalences visibles** : gain par activité, dépense exacte et date de remise à zéro, avec une feuille **lisible jusqu'en bas** y compris sur Galaxy/Android.
+
+# ANNEXE BC — Entonnoir Premium : proposition, FAQ et mentions (captures 96–99)
+
+## BC.1 — Capture 96 : 54363.jpg, couverture Premium [VU ; recoupement]
+
+La capture montre un **paywall plein écran** bleu nuit, **petit oiseau** dans un cercle en haut, **croix de fermeture** à droite, grand slogan centré **« Investis en toi. Écris en toute confiance. »** avec mots sur plusieurs lignes. Quatre bénéfices précédés d'une coche verte : **« Débloque +5 000 tests et jeux »**, **« Sur mobile et ordinateur »**, **« Des explications claires à chaque faute »**, **« Zéro publicité »**.
+
+Plus bas : carte d'offre claire avec **« 7 jours d'essai gratuits »**, titre **« Annuel »**, prix affichés **« €3.74 / mois »** et **« €44.99 par an »**, étiquette **« -66% »**, rond blanc avec coche sur le bord supérieur droit pour indiquer l'option sélectionnée. Une seconde offre commence en bas, étiquetée **« Sans essai gratuit »** mais ses détails ne sont pas visibles sur cette capture. **[NON VU]** prix de référence et méthode du -66 %, détails de l'autre offre, facture effective.
+
+**CTA persistant dans un socle sombre séparé par une ligne cyan claire** : bouton vert 3D **« COMMENCER MA SEMAINE OFFERTE »**, puis lien secondaire blanc **« VOIR TOUTES LES OFFRES »**. Les mentions légales ne sont pas visibles en premier écran, contrairement à la capture 100.
+
+## BC.2 — Capture 97 : 54365.jpg, bonus et FAQ [VU]
+
+L'utilisateur a **fait défiler** la même page payante jusqu'au slogan **« Encore un doute ? »** (centré, gras, sans-serif). Illustration de **cadeau blanc au nœud rouge** centrée, très grands blancs autour ; mise en avant de :
+
+> « Bonus : Accès premium à Shaky English offert ! »
+
+Description : pendant la durée de l'abonnement, accès à une autre application de l'éditeur, Shaky, dédiée à l'anglais. Cette offre secondaire sert à **augmenter la valeur perçue de l'abonnement** et à faire du **cross-sell** entre produits, non à enseigner directement la grammaire française.
+
+Sous l'offre, grand titre **« Questions fréquentes »**, puis début d'une carte accordéon « Vais-je payer pendant l'essai gratuit ? ». Boutons Premium **toujours fixés en bas** malgré le scroll.
+
+## BC.3 — Capture 98 : 54367.jpg, FAQ en accordéons [VU]
+
+Pile verticale de **cartes rectangulaires** arrondies, bleu ardoise ≈ **#1A324E**, **contour blanc fin**, chevron à droite. Questions visibles :
+
+1. « Vais-je payer pendant l'essai gratuit ? »
+2. « Comment me désabonner ? »
+3. « Vais-je vraiment progresser ? »
+4. « Je peux l'utiliser sur mon ordinateur ? »
+5. « Combien de temps dure l'apprentissage ? »
+6. « Qui a créé l'application ? »
+
+La sixième question est **dépliée** : son chevron est vers le haut, la carte s'agrandit, un **trait horizontal** sépare question et réponse. La réponse commence : collaboration de profils techniques et de professeurs de français. Elle se poursuit sur la capture suivante. **[NON VU]** réponses détaillées aux cinq autres questions ; elles ne peuvent être reconstituées à partir des intitulés.
+
+**UX :** cette FAQ se trouve **dans** le tunnel payant, après la valeur et le bonus. Elle vise à lever les réticences avant achat sans naviguer vers une page de support. Le fond autour reste bleu nuit ; la barre de CTA reste ancrée.
+
+## BC.4 — Capture 99 : 54369.jpg, pied légal du paywall [VU]
+
+Fin de la réponse dépliée : application conçue par une collaboration entre équipe technique et enseignants ; orientation déclarée vers **simplicité, design et ludification**. Il s'agit d'une **déclaration marketing visible**, pas d'une preuve de qualité éditoriale.
+
+Sous la FAQ, **mention de reconduction** visible, sur plusieurs lignes, en petits caractères blancs :
+
+> « Ton compte sera automatiquement facturé à la fin de ton essai gratuit, au tarif de l'abonnement préalablement sélectionné, sauf si tu résilies au moins 24 heures avant la fin de ton essai gratuit. »
+
+Liens soulignés séparés verticalement : **« Restaurer mon achat »**, **« J'ai un code »**, **« Conditions générales d'utilisation »**, **« Politique de confidentialité »**. Sous ces mentions, le **CTA Premium fixe** reste très voyant.
+
+**Audit UX :** fort contraste entre le bouton gratuit et la **facturation à défaut de résiliation** indiquée beaucoup plus bas. Le CTA est accessible à tout moment, alors que l'information contractuelle nécessite de défiler jusqu'au pied. Pour LuxApp, favoriser une présentation **immédiatement explicite du prix post-essai et de la reconduction**, sans supposer que l'apprenant lit le pied de page.
+
+## BC.5 — Parcours commercial observé, non observé et intérêt produit
+
+**Parcours [VU] :** clic/explication des diamants → proposition **« Deviens Premium »** → écran de vente plein format → écran à scroll long → argument de bonus d'autre application → FAQ accordéon → notice de facturation + liens légaux ; la capture ne démontre pas la transition exacte entre chaque étape, mais atteste la disponibilité des états.
+
+**[NON VU]** passage au paiement Google Play, conditions réelles après validation, restauration d'achat, comportement « Voir toutes les offres », retour sans conversion et éventuelle mémorisation de la sélection.
+
+**À retenir pour LuxApp :** une offre devrait expliquer ce qu'elle améliore **concrètement** (par exemple entraînements Sproochentest, simulations et analyses de progression), pas multiplier les écrans de persuasion. L'exemple signale le coût UX d'un modèle où le quota de jeu sert de friction d'achat. Le **double niveau « valeur d'abord, FAQ ensuite »** et le **CTA stable** sont pertinents si les détails tarifaires et les conditions essentielles restent immédiatement visibles.
+
+# ANNEXE BD — Parcours standards et personnalisés (captures 100–102)
+
+## BD.1 — Capture 100 : 54371.jpg, onglet « Standards » [VU]
+
+Page **« Parcours d'apprentissage »** avec **header bleu ardoise / bleu foncé** occupant le haut jusqu'à environ y≈390 px : **flèche retour blanche** à gauche, titre blanc sans-serif large, deux grands onglets **« Standards »** et **« Personnalisés »** alignés côte à côte, coins arrondis et états de sélection différenciés par le remplissage de couleur. **Le bandeau d'en-tête et les onglets restent visibles** dans les captures suivantes plus bas sur le même catalogue ; cela **suggère** un header sticky ou des captures après scroll dans une surface dédiée, sans preuve du mécanisme technique exact.
+
+Sous l'entête, **liste verticale de grandes cartes** sur fond bleu nuit, environ x≈31–678 px de large. Chaque carte est bleu gris foncé (≈ **#1A324E**), rayon généreux, avec **liseré/épaisseur inférieure bleu azur assourdi**, donnant une sensation de carte pressable en relief. Bandeau niveau collé au **coin supérieur gauche**, typographie blanche et fond coloré.
+
+Première carte :
+- Badge **vert vif « Facile »**.
+- Titre blanc gras : **« Les homophones qui piègent tout le monde »**.
+- Aperçu grisé en 2 lignes / tronqué : **« Ces, ses, c'est, s'est… Les mots qui se prononcent pareil et s'écrivent diffé… »**.
+- Petit **chevron blanc** en bas à droite : cette carte est disponible / actionnable en l'état affiché.
+
+Seconde carte :
+- Badge bleu cyan désaturé **« Intermédiaire »**.
+- Titre **« Le subjonctif et les autres modes »**.
+- Description tronquée.
+- **Badge rouge « 🔒 Premium »** en bas à droite au lieu du chevron, montrant une différence d'accès directement dans la liste.
+
+**Navigation persistante :** barre basse à 6 icônes illustrées, sur fond nuit, **livre rouge actif** ; la page reste dans l'onglet Règles / Apprendre.
+
+## BD.2 — Capture 101 : 54373.jpg, scroll de la liste [VU]
+
+Même header, mêmes onglets visibles ; défilement central de contenus dont :
+- **« Écrire un e-mail professionnel »** — niveau **Intermédiaire**, aperçu « Ci-joint, à l'attention de, suite à… Les formules du courrier professionnel… », verrouillé **Premium**.
+- **« Majuscules, genres et subtilités »** — niveau **Intermédiaire**, aperçu « Genre des noms, majuscules… », **Premium**.
+- Début d'une troisième carte **« Les expressions figées et… »** partiellement masquée par la navigation du bas : ne pas compléter le titre.
+
+Les cartes conservent la même hauteur approximative, tags de niveau et alignement du verrou. L'aperçu de description est **coupé par ellipsis** et non détaillé ; l'utilisateur doit ouvrir la carte pour avoir davantage d'information. **[NON VU]** contenu du premier parcours standard gratuit, durée et nombre d'étapes, progression réelle d'une notion, passage au parcours suivant.
+
+## BD.3 — Capture 102 : 54375.jpg, onglet « Personnalisés » [VU]
+
+Sélection du **second onglet « Personnalisés »**, désormais visuellement activé, même cadre bleu ardoise, flèche retour et nav inférieure. L'écran devient un **état vide volontaire** :
+- Grande carte d'action bleu gris **à contour pointillé** : **« + Créer un parcours personnalisé »**, alignement horizontal, texte blanc gras centré, **rayons larges**.
+- Sous la carte : explication **centrée** en plusieurs lignes : « Les parcours personnalisés te permettent de choisir les règles que tu veux travailler. C'est un excellent moyen de cibler tes points faibles et de progresser à ton rythme ! »
+- Pas de liste ni illustration d'état vide supplémentaire ; espace libre important jusqu'à la barre d'onglets basse.
+
+**[NON VU]** la modal / page après « Créer », sélecteur de règles, contraintes de nombre, replanification, sauvegarde cloud, éventuel verrou Premium. Ce n'est **pas** la preuve d'un algorithme adaptatif automatique : l'utilisateur semble ici pouvoir **choisir manuellement des règles**, d'après la description.
+
+## BD.4 — Enseignements pour LuxApp
+
+1. **Deux approches complémentaires** : parcours **standards** = trajectoire éditoriale guidée ; parcours **personnalisés** = remédiation choisie par l'apprenant. Pour LuxApp, garder la **progression par leçons A1.1/A1.2** comme repère et proposer des **révisions ciblées facultatives** plutôt que dupliquer la logique de progression.
+2. **Badges de difficulté immédiatement lisibles** et cartes dédiées aux thèmes. Adapter à des objectifs luxembourgeois utiles, p. ex. « Se présenter », « Prendre rendez-vous », « Demander son chemin », « Préparer l'oral », pas à des intitulés abstraits lorsque l'utilisateur débute.
+3. **Verrou Premium en place** clairement signalé dans la carte, sans interaction nécessaire pour connaître le statut. Attention à ne pas barrer arbitrairement les fondamentaux A1 derrière un paiement.
+4. **Très bon état vide explicatif** : action primaire + bénéfice clair, sans décor superflu ; reprendre le principe (pas nécessairement le fond bleu froid) selon la **charte LuxApp 2.1**, plus chaleureuse.
+5. **Cas limite à tester** : quand un parcours personnalisé n'a aucune règle choisie, affichage d'une règle déjà maîtrisée, accès offline et maintien de la progression existante. Aucun de ces états n'est visible ici.
+
+# ANNEXE BE — Écriture longue : écran d'entrée d'un sujet (capture 103)
+
+**Capture 103 :** **54377.jpg**, affichée à 17 h 19 sur Android, 709 × 1536 px.
+
+## BE.1 — Composition visuelle exacte [VU]
+
+À la différence des menus bleu nuit homogènes, cet écran ouvre sur une **illustration éditoriale panoramique très grande**, occupant toute la largeur de x=0 à x=709 et du bas de la status bar jusqu'à environ **y≈540 px** : femme souriante aux cheveux noirs flottants, tons **corail, pêche, crème, vert d'eau et vert pétrole**, végétation et formes décoratives. Aucune carte arrondie autour : **image bord-à-bord** pour installer une ambiance.
+
+- **Flèche retour circulaire** en haut à gauche de l'illustration, bouton bleu foncé, chevron blanc ; visible sur la photo, contrasté avec le décor.
+- Sous l'image, **fond bleu nuit** ≈ #0C1524.
+- **Titre serif blanc très grand sur deux lignes** : **« Que signifie vivre une bonne vie ? »**, aligné à gauche, marge horizontale approximative 48 px.
+- **Texte d'introduction blanc sans-serif**, grande taille, **très large interligne**, présenté sous forme de paragraphes commençant par une **flèche →** plutôt que des puces rondes. Exemples visibles :
+  - « Qu’est-ce qu’une vie moralement bonne ? Est-ce une vie dédiée au bonheur personnel, à l’accomplissement de ses devoirs ou à une autre quête plus profonde ? »
+  - « Certains pensent que le bonheur est l’objectif ultime, tandis que d’autres estiment qu’agir avec… » [TRONQUÉ par l'écran].
+- **CTA fixe au bas**, bouton vert saturé 3D **« Commencer »**, texte blanc gras et **icône flèche blanche dans un cercle blanc**, relief inférieur vert plus sombre. Le texte introductif peut continuer derrière / avant la zone CTA ; **le comportement du scroll et la zone de sécurité restent à tester**.
+- Pas de nav à six icônes durant cet écran de préparation, contrairement à la bibliothèque précédente : l'utilisateur entre dans un **flux immersif d'écriture**.
+
+## BE.2 — Fonction pédagogique visible et hypothèses
+
+Il s'agit d'une **consigne de production libre guidée** : le thème philosophique s'accompagne de **questions d'amorçage**, ce qui réduit l'angoisse de la page blanche. L'app ne montre pas encore la zone de saisie, le clavier, le nombre de mots, l'envoi, la correction ni le système de sauvegarde. **[NON VU]** évaluation réelle du style et des fautes, limites d'utilisation, récompense, personnalisation du sujet.
+
+**Apport possible pour LuxApp :** privilégier **des amorces situées A1/A2** et des productions courtes, par exemple **« Présente ta famille en 3 phrases »**, **« Écris un message pour fixer un rendez-vous »** ou **« Décris ton trajet vers le travail »**, en cohérence avec cours et vocabulaire effectivement enseignés. Éviter de transposer à l'identique un sujet philosophique trop ouvert pour A1.1.
+
+## BE.3 — Navigation et conformité LuxApp
+
+L'écran privilégie **une seule décision « Commencer »**, une illustration engageante et aucune distraction concurrente. Pour LuxApp, l'idée convient, sous réserve du **clavier Android**, du maintien du texte saisi au retour, du safe-area avec CTA fixe, des messages de correction non ambigus et de la progression existante. Aucune modification des leçons ni du moteur n'est déduite de cette simple capture.
+
+---
+
+## Synthèse transversale — corpus de 103 captures distinctes
+
+**Compteur vérifié : 103 captures Android distinctes**, 93 déjà documentées + **10 nouvelles**. La série 54359–54377 correspond aux **captures 94–103**.
+
+### Nouvelles preuves utiles
+
+- **Macarons** : annoncés comme récompense de bonnes réponses et dictées, échangeables contre des badges.
+- **Diamants** : utilisés pour jouer, renouvellement annoncé, quota supérieur partiellement illisible, **point d'entrée Premium** visible.
+- **Premium** : paywall en plusieurs sections, prix annuel et équivalent mensuel, essai, bonus d'une autre application, FAQ accordéon, reconduction automatique mentionnée en pied.
+- **Parcours** : catalogue thématique standard avec niveaux et cartes verrouillées, état vide du parcours personnalisé et création manuelle annoncée.
+- **Écriture** : écran d'amorçage très illustré, questions de réflexion et CTA dédié avant production.
+
+### Inconnues les plus utiles à lever ensuite
+
+**Priorité conservée :** vérifier le **statut de la règle « Quelle / qu'elle » après « Terminer »**, car le gain de 5 points et la maîtrise affichée ne prouvent pas que le compteur de progression de la catégorie a été effectivement mis à jour. Puis : **écran de création d'un parcours personnalisé**, **premier parcours standard accessible**, et **production écrite avec saisie/correction**.
+
+**Statut documentaire :** analyse d'interface fondée sur 10 nouvelles captures ; aucun accès au code tiers, aucun algorithme supposé et **aucun code LuxApp modifié**.
