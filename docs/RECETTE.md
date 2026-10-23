@@ -16,7 +16,26 @@ Le mode recette n'existe que sur une **instance lancée avec `RECETTE=1`** :
 | Stockage séparé | L'instance a sa propre adresse (autre port ou autre domaine), donc son propre stockage local, distinct de l'app que tu utilises pour apprendre. |
 | Rien en production | Sans `RECETTE=1`, le dossier `recette/` n'est pas servi et la page ne contient aucune trace du mode test. Ni `?debug=1` ni le stockage local ne peuvent l'activer. |
 
-**Ne jamais mettre `RECETTE=1` sur les services publics (`main` ou `v2`).**
+**Ne jamais mettre `RECETTE=1` sur les services publics (`main`, `v2` ou `2.1`).**
+
+## Accès privé depuis LuxApp — configuration Render (branche `2.1`)
+
+Deux services Render distincts, tous deux reliés à la branche `2.1`. L'URL habituelle de LuxApp ne change pas.
+
+| Service | Variable | Valeur |
+|---|---|---|
+| Recette uniquement | `RECETTE` | `1` |
+| Recette uniquement | `RECETTE_USER` | identifiant privé |
+| Recette uniquement | `RECETTE_PASS` | mot de passe fort et secret |
+| Recette uniquement | `LUXAPP_URL` | URL HTTPS de la vraie LuxApp |
+| Service principal | `RECETTE_URL` | URL HTTPS du service Render de recette |
+| Service principal | `RECETTE_ACCES` | UID Firebase autorisés, séparés par des virgules |
+
+Créer le second Web Service avec `npm install` / `npm start`. Conserver les autres variables de LuxApp. Ne **jamais** définir `RECETTE=1` sur le service principal. Se connecter avec un UID autorisé, puis **Plus → Outils de test**. La recette demande ensuite son propre identifiant et son mot de passe. **Retour à LuxApp** utilise `LUXAPP_URL`. La recette ne charge pas Firebase et son stockage local est isolé.
+
+**Sécurité :** `RECETTE_URL` et les UID autorisés sont envoyés dans le JavaScript public ; le masquage du menu n'est pas un contrôle d'accès au serveur. Le mot de passe de recette reste obligatoire (401 sans lui). Sur Render Free, le service peut se mettre en veille.
+
+**Tests :** `tests/test_acces_recette.py` vérifie la visibilité par UID, les URL HTTPS, l'authentification et le retour ; `tests/test_recette_visuelle.py` contrôle l'isolation et les scénarios. Vérifier la navigation finale sur un vrai Samsung. Pour `2.1`, utiliser ces instructions, pas les commandes Termux historiques `v2` ci-dessous.
 
 ## Option A — sur le téléphone, avec Termux (le plus rapide)
 

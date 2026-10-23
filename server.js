@@ -29,7 +29,9 @@ if (RECETTE) {
   });
   // Pas de configuration Firebase : l'app reste en mode local (cloud.js).
   app.get('/config.js', (req, res) => {
-    res.type('application/javascript').send('window.APP_CONFIG = { FIREBASE: null, RECETTE: true };');
+    // LUXAPP_URL : vraie app, pour le bouton Retour.
+    const retour = /^https:\/\/[^\s"'<>]+$/.test(process.env.LUXAPP_URL || '') ? process.env.LUXAPP_URL : null;
+    res.type('application/javascript').send('window.APP_CONFIG = { FIREBASE: null, RECETTE: true, RETOUR_LUXAPP: ' + JSON.stringify(retour) + ' };');
   });
   // La vraie page, sans les scripts Firebase, avec le panneau de recette en plus.
   const pageRecette = (req, res) => {
@@ -47,10 +49,19 @@ if (RECETTE) {
 
 // Tests navigateur (tools/critique.sh) : LUX_TESTS=1 ajoute TESTS à la config pour
 // masquer le portail d'entrée (SPEC 63), qui couvrirait sinon tous les écrans testés.
-if (process.env.LUX_TESTS === '1' && !RECETTE) {
+// Le contrôle par UID masque seulement le raccourci : la recette reste protégée par son mot de passe.
+const lienRecette = /^https:\/\/[^\s"'<>]+$/.test(process.env.RECETTE_URL || '') ? process.env.RECETTE_URL : '';
+const accesRecette = (process.env.RECETTE_ACCES || '').split(',').map(uid => uid.trim()).filter(Boolean);
+const configTests = process.env.LUX_TESTS === '1';
+const configLienRecette = lienRecette && accesRecette.length > 0;
+if (!RECETTE && (configTests || configLienRecette)) {
   app.get('/config.js', (req, res) => {
-    const config = fs.readFileSync(path.join(__dirname, 'public/config.js'), 'utf8');
-    res.type('application/javascript').send(config + '\nwindow.APP_CONFIG.TESTS = true;\n');
+    let config = fs.readFileSync(path.join(__dirname, 'public/config.js'), 'utf8');
+    if (configTests) config += '\nwindow.APP_CONFIG.TESTS = true;\n';
+    if (configLienRecette) {
+      config += '\nwindow.APP_CONFIG.LIEN_RECETTE = ' + JSON.stringify({ url: lienRecette, uids: accesRecette }) + ';\n';
+    }
+    res.type('application/javascript').send(config);
   });
 }
 

@@ -35,7 +35,7 @@ done
 
 if [ "$1" != "rapide" ]; then
   # 2. Tests navigateur, du plus long au plus court
-  TESTS="test_retours test_retour_intro test_parcours test_rappels test_prerequis test_recette_visuelle test_actualisation test_acquis_v1 test_chemin_cartes test_missions_10 test_mission_vies test_navigation
+  TESTS="test_retours test_retour_intro test_parcours test_rappels test_prerequis test_recette_visuelle test_acces_recette test_actualisation test_acquis_v1 test_chemin_cartes test_missions_10 test_mission_vies test_navigation
          test_lot2 test_lot3 test_motcache test_decouverte test_chemin_lignes test_seance
          test_mission_validation test_lot1 test_libre test_examens test_contexte_audio test_retour_android test_spec87_session_mobile"
   lancer() {
