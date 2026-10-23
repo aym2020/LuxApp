@@ -97,6 +97,26 @@ try:
         assert 'Leçon 25' in libelle and 'passé composé' in libelle, libelle
         ok('Plus → Outils de test : leçons avec leur numéro affiché (id 24 → « Leçon 25 · Le passé composé »), badge MODE TEST')
 
+        # Régression Chrome/Windows : popup native blanche + texte clair illisible.
+        # Le color-scheme et les couleurs des options actives/désactivées doivent rester lisibles.
+        menu_couleurs = pg.evaluate("""() => {
+          const select = document.querySelector('#rec-ecran');
+          const enabled = [...select.options].find(o => !o.disabled);
+          const disabled = [...select.options].find(o => o.disabled);
+          return {
+            scheme: getComputedStyle(select).colorScheme,
+            fond: getComputedStyle(enabled).backgroundColor,
+            actif: getComputedStyle(enabled).color,
+            inactif: getComputedStyle(disabled).color
+          };
+        }""")
+        assert 'dark' in menu_couleurs['scheme'], menu_couleurs
+        assert menu_couleurs['fond'] == 'rgb(38, 36, 31)', menu_couleurs
+        assert menu_couleurs['actif'] == 'rgb(246, 241, 233)', menu_couleurs
+        assert menu_couleurs['inactif'] == 'rgb(183, 175, 163)', menu_couleurs
+        ok('liste native de recette : popup sombre, options lisibles même désactivées (Chrome/Windows)')
+
+
         def lancer(lecon, ecran, scenario, sujet=None):
             pg.evaluate("fermerPanneau(); ouvrirRecette()")
             # La leçon n'est proposée que hors examen (champ masqué pour « Fin d'examen »)
