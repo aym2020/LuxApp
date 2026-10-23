@@ -981,7 +981,8 @@ function etatExercice(etat) {
 
 // Bandeau du bas : "Juste !" ou "Pas encore", avec un bouton Continuer.
 function showFeedback(ok, titre, texteHtml, suite) {
-  mcFermerAide(); // Fermer la fiche si la réponse est corrigée.
+  const boiteAide = document.getElementById('mc-aide-dialog');
+  if (boiteAide && boiteAide.open) boiteAide.close();
   fermerClavier(); // la correction doit être visible, pas cachée par le clavier
   etatExercice('corrige'); // plus de Valider / Indice / Effacer : une seule action
   pAttente = true;
