@@ -88,3 +88,5 @@ Après une erreur, seul un bandeau bref apparaît au-dessus du score : « Pas en
 **Invariant pédagogique :** ouvrir l'aide est gratuit et ne révèle rien de plus que l'ancienne fonction aideErreurHtml à cet essai ; le bouton Indice garde son coût et son fonctionnement. Scores, essais, lettres vertes, audio, sauvegarde, JSON et bilan de réussite inchangés. Le score avant validation est libellé « Score des lettres » pour le différencier de la réussite du premier coup.
 
 **Contrôles :** CSS exercices-v21.css?v=10, JS parcours.js?v=6. Tester 0/1/2/3 erreurs, modal et Escape, indice payant inchangé, bilan final, largeur 320/360/390/430, aucune barre de défilement initiale et footer intégralement visible ; recette sur Samsung avant de cocher le P0.
+
+Le compteur pré-validation précise désormais automatiquement le nombre d'indices payants : « sans indice », « 1 indice » ou « N indices » ; le pourcentage n'a pas changé. Dernière version du moteur : parcours.js?v=7 (anti-cache).
