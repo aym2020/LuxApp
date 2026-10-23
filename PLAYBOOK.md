@@ -1,5 +1,7 @@
 # PLAYBOOK — LuxembourgishApp
 
+**Index de référence :** [docs/README.md](docs/README.md) (charte UI, spécifications, recettes, audits, archives et statut des documents).
+
 Mémo des méthodes et techniques pour résoudre les problèmes récurrents du projet.
 But : arrêter de re-réfléchir à des trucs déjà résolus.
 

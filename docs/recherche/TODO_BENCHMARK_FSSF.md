@@ -2,7 +2,7 @@
 
 **Dernière mise à jour :** 23/10/2026 · **Branche :** `2.1` · **Document d'analyse :** [Benchmark UX (103 captures distinctes)](benchmark_onboarding_application_fr_2026-10-23.md).
 
-**Objet :** choisir uniquement les écrans qui apportent encore des informations sur la pédagogie, la navigation, les états de jeu et la rétention. **Ne pas confondre avec [TODO.md](../TODO.md)**, backlog de développement LuxApp. Cette liste suit la rétro-ingénierie du produit observé, sans commander de changement de code.
+**Objet :** choisir uniquement les écrans qui apportent encore des informations sur la pédagogie, la navigation, les états de jeu et la rétention. **Ne pas confondre avec [TODO.md](../../TODO.md)**, backlog de développement LuxApp. Cette liste suit la rétro-ingénierie du produit observé, sans commander de changement de code.
 
 ## Couvert
 

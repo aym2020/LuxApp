@@ -1,6 +1,6 @@
 # AGENTS.md — Consignes obligatoires pour coder LuxApp
 
-Lire avant toute intervention : [PLAYBOOK.md](PLAYBOOK.md), et pour la refonte `2.1`, [docs/CHARTE_UI_2.1.md](docs/CHARTE_UI_2.1.md) + [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md).
+Lire avant toute intervention : [PLAYBOOK.md](PLAYBOOK.md) (voir aussi l'[index documentaire](docs/README.md)), et pour la refonte `2.1`, [docs/CHARTE_UI_2.1.md](docs/CHARTE_UI_2.1.md) + [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md).
 
 ## Règles prioritaires — UI/UX 2.1
 

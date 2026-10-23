@@ -1,6 +1,6 @@
 # Catalogue des recettes LuxApp 2.1 — tests et validations sur téléphone
 
-**Branche :** `2.1` · **Instance :** `http://localhost:3001` démarrée avec `RECETTE=1`, authentification obligatoire. **Statut :** déploiement incrémental ; les recettes de P0-01 sont le premier lot, pas tous les tests existants.
+**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** livraison incrémentale ; les recettes P0-01 sont le premier lot, pas tous les tests existants. Voir [configuration et sécurité](RECETTE.md).
 
 ## Principe obligatoire pour chaque nouvelle tâche
 

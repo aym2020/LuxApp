@@ -1,117 +1,51 @@
-# Recette visuelle (spec 43)
+# LuxApp 2.1 — Recette privée et outils de test
 
-> **Alerte branche 2.1 :** cette recette a été rédigée pour `v2` et ne valide **pas** entièrement les nouveaux exercices 2.1. Pour `2.1`, ne pas exécuter la commande `git reset --hard origin/v2` documentée ci-dessous : elle abandonne les modifications locales et revient sur une autre branche. Lire [le protocole 2.1](POSTMORTEM-EXERCICES-2.1-2026-10-21.md) ; les tests des états et le rendu Android restent nécessaires.
+**Référence actuelle :** branche `2.1`. Cette page est le **mode d'emploi officiel** du dispositif de recette. Pour les scénarios disponibles et leurs statuts, voir [RECETTES-2.1.md](RECETTES-2.1.md) ; pour les consignes de non-régression, consulter le [post-mortem](POSTMORTEM-EXERCICES-2.1-2026-10-21.md).
 
+## Principe
 
-Voir en quelques secondes, sur le téléphone, le **vrai** écran de fin de mission, de fin d'étape ou d'unité, ou le Chemin après « Refaire mes erreurs », sans rejouer la leçon et **sans toucher à ta vraie progression**.
+Le site public LuxApp et le site de recette sont deux **services distincts**, déployés à partir de la même branche `2.1`. **L'URL habituelle de LuxApp ne change pas.** Le service privé peut être ouvert depuis **Plus → Outils de test** pour les comptes Firebase autorisés, ou directement à son URL HTTPS.
 
-## Principe de sécurité
+- **Sur l'application normale :** Firebase et les données réelles continuent de fonctionner. Le raccourci n'est montré qu'aux UID configurés avec `RECETTE_ACCES` ; cette visibilité n'est **pas** une barrière de sécurité.
+- **Sur la recette :** `RECETTE=1` active l'authentification HTTP Basic côté serveur (`RECETTE_USER`, `RECETTE_PASS`), retire les scripts Firebase, empêche les écritures cloud et isole le stockage par un domaine différent. Sans utilisateur ou mot de passe de recette, l'accès est refusé (503).
+- **Retour :** `LUXAPP_URL` autorise le bouton « Retour à LuxApp ». Les essais et records de recette ne constituent pas une progression réelle.
 
-Le mode recette n'existe que sur une **instance lancée avec `RECETTE=1`** :
+## Configuration Render
 
-| Protection | Comment |
-|---|---|
-| Accès privé | Tout le site demande un identifiant et un mot de passe (`RECETTE_USER`, `RECETTE_PASS`). Sans eux, l'instance refuse de servir (503). |
-| Pas de cloud | Le serveur envoie une configuration **sans Firebase** et retire les scripts Firebase de la page : aucune connexion et aucune écriture cloud n'est possible. |
-| Stockage séparé | L'instance a sa propre adresse (autre port ou autre domaine), donc son propre stockage local, distinct de l'app que tu utilises pour apprendre. |
-| Rien en production | Sans `RECETTE=1`, le dossier `recette/` n'est pas servi et la page ne contient aucune trace du mode test. Ni `?debug=1` ni le stockage local ne peuvent l'activer. |
+Créer un **second** Render Web Service sur `aym2020/LuxApp`, branche `2.1`, avec `npm install` en build et `npm start` au démarrage. Conserver le service public existant.
 
-**Ne jamais mettre `RECETTE=1` sur les services publics (`main`, `v2` ou `2.1`).**
-
-## Accès privé depuis LuxApp — configuration Render (branche `2.1`)
-
-Deux services Render distincts, tous deux reliés à la branche `2.1`. L'URL habituelle de LuxApp ne change pas.
-
-| Service | Variable | Valeur |
+| Où ? | Variable | Valeur |
 |---|---|---|
-| Recette uniquement | `RECETTE` | `1` |
-| Recette uniquement | `RECETTE_USER` | identifiant privé |
-| Recette uniquement | `RECETTE_PASS` | mot de passe fort et secret |
-| Recette uniquement | `LUXAPP_URL` | URL HTTPS de la vraie LuxApp |
-| Service principal | `RECETTE_URL` | URL HTTPS du service Render de recette |
-| Service principal | `RECETTE_ACCES` | UID Firebase autorisés, séparés par des virgules |
+| **Service recette uniquement** | `RECETTE` | `1` |
+| Service recette | `RECETTE_USER` | Identifiant privé |
+| Service recette | `RECETTE_PASS` | Mot de passe fort et non versionné |
+| Service recette | `LUXAPP_URL` | URL HTTPS réelle de LuxApp |
+| **Service public uniquement** | `RECETTE_URL` | URL HTTPS du **second** service Render |
+| Service public | `RECETTE_ACCES` | Un ou plusieurs UID Firebase, séparés par des virgules |
 
-Créer le second Web Service avec `npm install` / `npm start`. Conserver les autres variables de LuxApp. Ne **jamais** définir `RECETTE=1` sur le service principal. Se connecter avec un UID autorisé, puis **Plus → Outils de test**. La recette demande ensuite son propre identifiant et son mot de passe. **Retour à LuxApp** utilise `LUXAPP_URL`. La recette ne charge pas Firebase et son stockage local est isolé.
+**Ne jamais renseigner `RECETTE=1` dans le service public.** Ne pas pointer `RECETTE_URL` vers l'URL de LuxApp normale. Les UID autorisés et l'URL de recette étant envoyés au navigateur dans `/config.js`, le mot de passe serveur reste obligatoire même si le menu est masqué.
 
-**Sécurité :** `RECETTE_URL` et les UID autorisés sont envoyés dans le JavaScript public ; le masquage du menu n'est pas un contrôle d'accès au serveur. Le mot de passe de recette reste obligatoire (401 sans lui). Sur Render Free, le service peut se mettre en veille.
+Après chaque changement de variables, laisser Render redéployer le service concerné. Le plan gratuit peut se mettre en veille.
 
-**Tests :** `tests/test_acces_recette.py` vérifie la visibilité par UID, les URL HTTPS, l'authentification et le retour ; `tests/test_recette_visuelle.py` contrôle l'isolation et les scénarios. Vérifier la navigation finale sur un vrai Samsung. Pour `2.1`, utiliser ces instructions, pas les commandes Termux historiques `v2` ci-dessous.
+## Utilisation sur PC et Samsung
 
-## Option A — sur le téléphone, avec Termux (le plus rapide)
+1. Ouvrir LuxApp sur son URL habituelle, se connecter avec un UID autorisé et choisir **Plus → Outils de test** ; saisir l'identifiant/mot de passe de recette dans la fenêtre native du navigateur.
+2. Dans la recette, choisir une **leçon**, puis un **écran** disponible et un **scénario** ; cliquer sur **Voir cet écran**.
+3. Contrôler le rendu réel, la correction et les actions. Le contenu est préparé par les moteurs réels. Une option « indisponible » dépend des données de la leçon ou du mode de jeu.
+4. Utiliser le repère **MODE TEST** pour changer de scénario, puis « Retour à LuxApp » pour revenir à l'application habituelle.
 
-```bash
-cd ~/LuxembourgishApp
-git fetch origin && git checkout v2 && git reset --hard origin/v2
-npm install
-RECETTE=1 RECETTE_USER=moi RECETTE_PASS=un-mot-de-passe PORT=3001 node server.js
-```
+Le menu et ses scénarios sont documentés dans [RECETTES-2.1.md](RECETTES-2.1.md). Une réussite des tests automatisés **ne signifie pas** validation de l'ergonomie Android réelle. Vérifier les cas clavier ouvert, écrans 320–430px, zoom, scroll, retour Android et CTA bas.
 
-Puis ouvrir **http://localhost:3001** dans Chrome sur le même téléphone, et saisir l'identifiant et le mot de passe. `localhost:3001` est une autre origine que l'app en ligne : ta progression réelle n'est pas visible et ne peut pas être modifiée.
+## Usage local — optionnel
 
-## Option B — service Render privé (HTTPS, accessible partout)
+Pour une instance locale isolée, lancer le serveur Node sur un port dédié avec `RECETTE=1` et les variables Basic Auth, sans toucher au checkout du site public. L'URL locale classique est `http://localhost:3001`. Une procédure locale historique existe en [archive v2](archives/RECETTE-V2-TERMUX.md) ; elle **ne doit pas être copiée telle quelle**, car elle référence une ancienne branche et des commandes destructrices.
 
-1. Render → **New → Web Service** → dépôt `aym2020/LuxApp`, branche **`v2`**, commande `npm start` (comme le service v2).
-2. Variables d'environnement : `RECETTE=1`, `RECETTE_USER=…`, `RECETTE_PASS=…` (un mot de passe long).
-3. Ouvrir l'URL `https://….onrender.com` du nouveau service : le navigateur demande l'identifiant.
+## Contrôles et règles de qualité
 
-Ce service suit la branche `v2` : chaque push met aussi la recette à jour.
+- Test d'accès / authentification / retour : `python tests/test_acces_recette.py`.
+- Recettes navigateur et isolation : `python tests/test_recette_visuelle.py`.
+- Suite critique avant modification sensible : `bash tools/critique.sh rapide`, puis `bash tools/critique.sh`.
+- Résultats et validation humaine par recette : [RECETTES-2.1.md](RECETTES-2.1.md).
+- Incidents connus des exercices `2.1` : [post-mortem](POSTMORTEM-EXERCICES-2.1-2026-10-21.md).
 
-## Utilisation
-
-1. **Plus → Outils de test** (ou toucher l'onglet rose « MODE TEST » au bord droit de l'écran).
-2. Choisir l'**écran** à tester : pour les leçons, sélectionner la leçon ; pour **Fin d'examen**, sélectionner le sujet (annale A1.2). Choisir ensuite le **scénario**.
-3. **Voir cet écran →** : l'app vide la progression fictive, joue la leçon en accéléré avec ses vraies fonctions, puis affiche le vrai écran (moins d'une seconde dans les tests).
-4. Utiliser ensuite les vrais boutons (Continuer, Refaire mes erreurs, Mon chemin, Rejouer la mission, Retour Android…). Depuis tout résultat, « Mon chemin » et Retour mènent au Chemin, la leçon seule dépliée et cadrée (spec 45).
-5. **Tester l'actualisation (spec 44)** : sur n'importe quel écran obtenu (mission en cours, exercice, Chemin), tirer l'écran vers le bas pour actualiser. Le même écran doit revenir, avec les réponses, les vies, la leçon dépliée et la position.
-6. **Quitter le test** : efface toute la progression fictive (seul le dernier choix du panneau est gardé).
-
-| Écran | Scénarios |
-|---|---|
-| Fin de mission | Sans faute (3 vies) · Réussie avec 2 erreurs (1 vie) · Perdue (0 vie) · Tente ta chance réussie / perdue · Juste avant la dernière réponse |
-| Fin d'étape (écriture, unité 1) | Sans faute · 1re réponse juste au 2e essai |
-| Fin d'unité (unité 1) | Sans faute · Avec 3 erreurs (« Refaire mes erreurs ») |
-| Rattrapage des erreurs → Chemin | Erreurs refaites : résultat du rattrapage, puis « Mon chemin » (leçon seule dépliée et cadrée, spec 44) |
-| **Fin d’examen (annales)** | **100 %** · **≈ 85 %** (Très bien) · **≈ 70 %** (Réussi) · **≈ 40 %** (À retravailler) · **≈ 70 % avec « Mes erreurs » affiché** |
-
-Les erreurs simulées dans les missions et les leçons sont de vraies erreurs (une vie de moins par réplique ratée, réponses ratées une fois puis justes). Les bilans et validations utilisent les fonctions de l'app.
-
-Pour la **fin d’examen**, le mode test choisit des réponses présentes dans les options du sujet, répartit automatiquement les bonnes et mauvaises réponses selon le scénario, puis appelle les **véritables fonctions** de calcul du score, d'affichage des sections et de correction. Le résultat n'est pas une maquette. Les pourcentages sont **approximatifs**, arrondis selon le nombre total de points. Tester ensuite les vrais boutons **« Toute la correction »**, **« Mes erreurs »**, **« Refaire ce sujet »** et **« Autres sujets »**.
-
-**Isolation :** tous les scores et meilleurs résultats obtenus dans ce mode restent sur l'origine de recette sans Firebase. « Quitter le test » les efface ; ils ne sont jamais synchronisés avec ton compte.
-
-## Fichiers
-
-- `server.js` : bloc « MODE RECETTE VISUELLE ».
-- `recette/recette.js`, `recette/recette.css` : panneau, scénarios et onglet « MODE TEST ».
-- `tests/test_recette_visuelle.py` : accès, isolation, scénarios et durée.
-
-
-## Survie — recette directe sur la branche `2.1` (22 octobre 2026)
-
-Sur une **instance de recette séparée** démarrée avec la branche `2.1`, `RECETTE=1`, `RECETTE_USER` et `RECETTE_PASS` (mot de passe requis), ouvrir **Plus → Outils de test** ou l'onglet **MODE TEST**, choisir **Fin de Survie**, puis la **leçon 1** et un des scénarios : **Sans-faute** (tous les mots réussis), **2 mots passés** (réserve entièrement parcourue sans sans-faute), **Temps écoulé** (réserve incomplète). Cliquer **Voir cet écran →** : le vrai résultat apparaît sans jouer une partie.
-
-Le décompte dépend du vocabulaire réel de la leçon sélectionnée, pas de mots fictifs. La leçon 1 fournit 5 mots jouables (Moien, Madamm, Här, Schlecht, Äddi). Tester le titre, le vert réservé au sans-faute, le ratio des mots réussis, la série et le record, la présence de « Rejouer » seulement comme action principale si la réserve est incomplètement réussie ou que le temps manque, les boutons « Continuer mon chemin » / « Retour aux Jeux », le Retour Android et les largeurs 320/360/390/430 px ainsi que le bureau.
-
-**Isolation :** ce contrôle est absent du service normal. Les scores de recette restent dans le stockage local de l'origine protégée, Firebase est désactivé. **Quitter le test** efface ces scores fictifs. Pour le rendu, la recette utilise `survieAfficherResultat` du vrai jeu et non une maquette HTML parallèle. Tester aussi manuellement l'arrêt après dernier mot : cette recette vérifie l'écran final, les tests Node vérifient l'enchaînement réel des mots.
-
-
-### Résultats Survie — maquette finale
-
-Utiliser **Fin de Survie** dans le mode recette sécurisé. Vérifier les trois états et le bandeau inférieur : le CTA jaune « Continuer mon chemin » ou « Rejouer Survie » doit rester visible sans faire défiler le résultat. Le centre peut défiler indépendamment. L'anneau affiche un nombre et « SUR N » sur deux lignes sans chevauchement. Les séries et records sont affichés en colonnes compactes. Le vert indique exclusivement un vrai sans-faute ; le temps écoulé et une réserve avec passés ou erreurs restent neutres.
-
-
-### Cohérence de la version dans Termux et absence de micro-scroll (22 octobre 2026)
-
-L'ancienne présentation de « Réserve terminée » (fraction horizontale dans le cercle et deux grosses cartes statistiques) ne fait **plus** partie de la version actuelle de `2.1` ; les trois résultats de Survie utilisent la même fonction `survieAfficherResultat`. Si `localhost:3001` l'affiche encore, rafraîchir réellement l'onglet, vérifier la branche locale avec `git branch --show-current` et le SHA avec `git rev-parse --short HEAD`, arrêter le serveur avec Ctrl+C, puis `git pull --ff-only origin 2.1` et redémarrer `RECETTE=1`. Les ressources de l'instance recette renvoient désormais `Cache-Control: no-store` pour éviter un mélange d'anciens CSS et JS entre captures. Un onglet déjà ouvert ne se met pas à jour tout seul.
-
-Les trois résultats gardent leur pied fixe et recentrent leur contenu dans la zone de lecture. Espacements verticaux resserrés pour qu'un Android moderne à hauteur normale voie tout le résultat **sans micro-scroll**. La zone de lecture reste défilante sur les écrans courts, en navigation navigateur avec barres visibles, ou en police agrandie : ne jamais désactiver tout scroll au prix d'un texte ou d'un bouton coupé. Tester le scénario **Réserve terminée** et le chrono ; quitter le mode test pour effacer le faux record.
-
-
-**Précision technique sur le cache de recette :** pour les fichiers statiques (`jeux-v21.css`, `jeux-v21.js` et `recette/recette.js`), Express configure ses propres en-têtes : `setHeaders` impose désormais `Cache-Control: no-store` dans les deux dossiers statiques. Une vérification HTTP est ajoutée à `tests/test_recette_visuelle.py`. Ce contrôle ne remplace pas l'actualisation de l'onglet ni la mise à jour du clone Git local.
-
-
-## Contrat de recette 2.1 (23 octobre 2026)
-
-**La recette visuelle de chaque correction est associée à un identifiant, une suite de tests et des contrôles Samsung.** Voir [catalogue des recettes 2.1](RECETTES-2.1.md) : dans le panneau 3001, sélectionner **P0-01 · Mot caché / Quiz / Texte à trous / Écriture**, choisir l'état **MC-01…08 / Q-01…03 / T-01…03 / E-01…05**, lire les critères, puis « Voir cet écran → ». Ce sont de **vrais états du moteur** générés avec la progression fictive du serveur `RECETTE=1`, pas des maquettes ; la validation doit être réalisée sur le téléphone.
-
-Pour la branche `2.1`, **ne pas exécuter la commande de l'Option A qui checkout/reset `v2`**. À la place : `git fetch origin && git switch 2.1 && git pull --ff-only origin 2.1` (uniquement avec arborescence propre), puis `RECETTE=1 RECETTE_USER=moi RECETTE_PASS=<mot-de-passe> PORT=3001 node server.js`. Aucun cloud n'est disponible dans cette instance. Les tests de fusion entre deux comptes/appareils doivent être réalisés ailleurs, dans un environnement Firebase isolé et autorisé, **jamais** en supprimant la protection de recette.
+**Statut :** mécanisme d'accès privé disponible dans le code ; les recettes restent validées ou non **individuellement**, sur navigateur et Samsung. Ni ce guide ni une CI verte ne constituent une validation générale de tous les exercices.

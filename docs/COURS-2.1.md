@@ -8,7 +8,7 @@ Statut : implémenté et couvert par des tests de code ; recette Android en atte
 
 Le panneau **Cours** constitue une aide de référence pendant l'apprentissage. Il était composé d'une navigation très visuelle (boutons d'unité, onglets à fond gris), puis de blocs pédagogiques très colorés (règles sur cartes vertes, astuces jaunes, vocabulaire bordé de violet). Les contenus sont riches et utiles, mais la répétition de bordures et de grandes cartes rend la consultation lente. La maquette validée privilégie une interface **éditoriale, sobre et immédiatement lisible**, sans supprimer les données.
 
-La refonte ne concerne que `#cours-panel` sur la branche `2.1`. L'onglet Cours de référence générale (surface `principal`), les exercices, Supabase, les scores et les fichiers de leçons ne sont pas modifiés.
+La refonte ne concerne que `#cours-panel` sur la branche `2.1`. L'onglet Cours de référence générale (surface `principal`), les exercices, la synchronisation cloud, les scores et les fichiers de leçons ne sont pas modifiés.
 
 ## Écran livré
 
