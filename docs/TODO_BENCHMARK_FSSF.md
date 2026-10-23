@@ -1,6 +1,6 @@
 # TODO compacte — Captures de référence pour LuxApp
 
-**Dernière mise à jour :** 23/10/2026 · **Branche :** `2.1` · **Document d'analyse :** [Benchmark UX (85 captures distinctes)](benchmark_onboarding_application_fr_2026-10-23.md).
+**Dernière mise à jour :** 23/10/2026 · **Branche :** `2.1` · **Document d'analyse :** [Benchmark UX (92 captures distinctes)](benchmark_onboarding_application_fr_2026-10-23.md).
 
 **Objet :** choisir uniquement les écrans qui apportent encore des informations sur la pédagogie, la navigation, les états de jeu et la rétention. **Ne pas confondre avec [TODO.md](../TODO.md)**, backlog de développement LuxApp. Cette liste suit la rétro-ingénierie du produit observé, sans commander de changement de code.
 
@@ -8,13 +8,15 @@
 
 - [x] Onboarding : progression, choix du profil et des priorités, essai Premium.
 - [x] Accueil, profil, navigation principale, classement, badges et première présentation du mode classé.
-- [x] Catalogue de règles, explication détaillée, conjugaison, bibliothèque, écriture (écrans d'entrée).
+- [x] Catalogue de règles, explications détaillées, conjugaison, bibliothèque, écriture (écrans d'entrée). **Nouveau :** fiche « Quelle/qu'elle », astuce, quiz 8 questions, états succès/erreur et décompte de notions par catégorie.
 - [x] Partie rapide : sélection de **5 règles**, **15 questions** à formats variés, réponses bonnes/fausses, détails, bilan **13/15**, série quotidienne.
 - [x] Signalement : formulaire, seuil de saisie et confirmation d'envoi. **Traitement réel d'un signalement non observé.**
+- [x] Règle individuelle « Quelle/qu'elle » : contenu théorique, astuce, ouverture du quiz, réponse correcte, mauvaise réponse à une consigne abstraite ; **fin du quiz non observée**.
 
 ## À voir ensuite — par priorité
 
-- [ ] **P0 · Révision après une erreur — PROCHAIN.** Depuis une règle marquée « erreur récente » (par exemple « On/ont »), montrer son ouverture, le lancement d'une **partie de révision**, un exercice, sa correction puis le bilan. **Intérêt :** établir le fonctionnement réel de la boucle erreur → notion → réentraînement → progression.
+- [ ] **P0 · Fin du quiz de règle — PROCHAIN.** Maintenant que théorie → quiz et l'erreur à la question 7/8 sont couverts, montrer la **question 8/8**, le **bilan**, puis le **statut de la règle dans le catalogue**. **Intérêt :** savoir ce que signifient « Non vue », notion validée et progrès réel.
+- [ ] **P0 · Révision après une erreur — PARTIEL.** La fiche « Quelle/qu'elle » consultée est marquée **« Non vue »**, et le défi d'accueil indique une révision accomplie, mais on n'a **pas** encore suivi une partie ouverte depuis **« Erreur récente »** jusqu'au résultat. À capturer ensuite.
 - [ ] **P0 · Parcours guidé d'une règle.** Ouvrir « Parcours guidés », suivre une règle complète : présentation, éventuel test, validation, état suivant. **Intérêt :** modèle de leçon progressive, critères de maîtrise et déverrouillage.
 - [ ] **P0 · Dictée ou écriture avec correction.** Écran avant saisie, clavier Android, soumission, feedback et sauvegarde/révision. **Intérêt :** ergonomie réelle, contenu produit par l'apprenant, qualité et traçabilité de la correction.
 - [ ] **P1 · Partie classée complète.** Après le lobby déjà observé : début d'une manche, interaction en direct, fin de manche, classement et récompense. **Intérêt :** compétition, timing, attribution de points et engagement social.
@@ -31,4 +33,4 @@
 3. **Cocher ou préciser** les tâches traitées ici ; actualiser la date, le compteur et **une seule priorité « PROCHAIN »**.
 4. Préserver la distinction **observé / inféré / non vérifié**, et le code actuel de LuxApp.
 
-**Prochain envoi recommandé :** une séquence continue de la rubrique **Révision après une erreur**, depuis son entrée jusqu'au résultat. **Pas besoin de refaire les 85 captures précédentes.**
+**Prochain envoi recommandé :** **fin du quiz « Quelle/qu'elle » (8/8), résultat et retour au catalogue**, puis une partie ouverte depuis une **erreur récente**. **Pas besoin de refaire les 92 captures précédentes.**
