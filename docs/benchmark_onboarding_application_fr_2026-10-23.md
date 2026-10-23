@@ -2,10 +2,10 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 50 captures Android en cinq séries, fichiers 54135.jpg à 54233.jpg (noms impairs successifs). Séries 1–4 : sections 1–10 et annexes A–S ; série 5 : annexes T–Y (règles, écriture, révision, sauvegardes, profil et badges).  
+**Corpus :** 60 captures Android en six séries, fichiers 54135.jpg à 54253.jpg (noms impairs successifs). Séries 1–4 : sections 1–10 et annexes A–S ; série 5 : annexes T–Y ; série 6 : annexes Z–AE (offres, compétition chronométrée, compte, écriture, Premium, catalogue filtrable).  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, AGENTS.md, charte UI 2.1, design tokens et frontend de 2.1 consultés  
-**Périmètre :** onboarding, essai premium, placement, jeu, corrections et règles, accueil, défis, compétitions, écrit, révision, sauvegardes, profil et badges. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
+**Périmètre :** onboarding, essais et offres Premium, test de placement, jeu et corrections, fiches de règles, accueil, défis, compétition et salle d'attente, jeu chronométré, écriture, révision, sauvegardes, profil, badges et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
 
 ## 0. Convention de preuve
 
@@ -3139,3 +3139,459 @@ Ce document est **un relevé de l'application tierce**, pas une instruction de r
 | **5** | **41–50 : 54215–54233** | **Règles, écriture, révision, favoris, profil, badges et offres** |
 
 **État documentaire : 50 captures analysées dans un fichier unique. Aucun code, JSON pédagogique ni système de progression LuxApp modifié.**
+
+
+
+---
+
+# ANNEXE Z — Série 6 : offres, parties compétitives, authentification, écriture et catalogue (captures 51–60)
+
+**Observation datée du 23 octobre 2026 — branche 2.1.** Dix nouvelles images : **54235.jpg, 54237.jpg, 54239.jpg, 54241.jpg, 54243.jpg, 54245.jpg, 54247.jpg, 54249.jpg, 54251.jpg, 54253.jpg**. Le corpus passe ainsi de **50 à 60 captures**, en six séries. Les fichiers ont tous été examinés ; chacun mesure **709 × 1536 pixels**.
+
+**Convention :** [VU] présent sur une image ; [ESTIMÉ] zone géométrique approximative du raster, et non pixels CSS ou dp ; [MESURÉ] pixel couleur réellement lu dans le JPG, non token de code ; [INFÉRENCE] mécanisme suggéré mais non testé ; [INCONNU] non démontrable à partir de la séquence. Les captures constituent une **observation d'interface**, pas un accès aux sources du produit tiers, aux API, au règlement d'abonnement ni à son stockage.
+
+| Capture | Nom JPG | Écran / état | Nouvel enseignement |
+|---:|---|---|---|
+| 51 | 54235 | Profil défilé — Nos offres | Six segments d'offre, version ordinateur avec badge Nouveau |
+| 52 | 54237 | Profil défilé — promotion communautaire | Note, suggestions, partage, réseau d'apps, quatre réseaux sociaux |
+| 53 | 54239 | Salle d'attente multijoueur | Anneau numérique, joueurs inscrits, scores, réactions, fait renouvelable |
+| 54 | 54241 | Partie live : manche 1/3 et mauvais choix | Temps 58, six paliers, état réponse fausse sur phrase correcte |
+| 55 | 54243 | Confirmation de sortie de la partie | Dialog Android « Es-tu sûr ? », OUI/NON, fond sombre |
+| 56 | 54245 | Inviter à enregistrer son compte par email | Écran « Ne perds pas tes progrès ! », email ou Google, CTA inactif |
+| 57 | 54247 | Choix du type de partie | Partie classée vs partie de révision, difficulté Facile |
+| 58 | 54249 | Hub Histoires | Proposition personnalisée, objectif 0/400 mots/semaine, sujets libres |
+| 59 | 54251 | Offre Premium et tarifs | Écran de vente, avantages, essai 7 jours, prix annuel |
+| 60 | 54253 | Famille « Les accords » | Filtres Toutes/Non vues/Niveau, notions, étiquettes, Premium ponctuel |
+
+## Z.1 — Capture 51 : les offres commerciales du profil (54235.jpg)
+
+**Contexte :** continuité du bas de la page Profil, section « Nos offres » aperçue à la capture 50. Le haut du profil (identité, statistiques, badges) est hors viewport ; **la barre inférieure à six icônes reste fixée en bas**, profil actif.
+
+**Libellés exacts visibles dans l'ordre :**
+1. **🕊️ Devenir Premium**
+2. **🏡 Premium Famille**
+3. **🧑‍🏫 Pour les professeurs**
+4. **💼 Pour les entreprises**
+5. **🎓 Pour les écoles**
+6. **🇬🇧 Shaky English**
+
+Après un espacement vertical plus grand, septième destination :
+- **🖥️ Version ordinateur**
+- Petit badge **« Nouveau »** rouge en surplomb à droite.
+- Sous-texte turquoise : **« Joue aussi depuis ton navigateur ! »**.
+- Chevron blanc à droite, comme les cartes d'offres.
+
+**Structure visuelle [VU] :**
+- titre serif blanc **« Nos offres »** aligné à gauche vers x≈47/y≈95 ;
+- six **cartes très homogènes** bleu ardoise, largeur ~615 pixels raster (x≈47–662), hauteur ~125–130, coins de rayon généreux ;
+- **bord fin turquoise pâle** et **tranche turquoise plus épaisse en bas** (effet de bouton physique/relief) ;
+- pictogramme/emoji coloré à gauche, grand texte blanc semi-gras/gras au centre, chevron blanc à droite ;
+- espacement régulier de ~20–22 px entre les six cartes ;
+- distinction forte **offres / variante PC** par une plus grande marge avant la dernière carte et son badge « Nouveau » ;
+- footer avec les six icônes illustrées, avatar actif en rouge.
+
+**Géométrie [ESTIMÉ] :** titre y≈94–142 ; cartes y≈183–310, 331–457, 479–605, 626–754, 774–902, 923–1049 ; « Version ordinateur » vers y≈1148–1335, bas partiellement pris par le footer à y≈1320–1446.
+
+**Lecture fonctionnelle :** la même application affiche des **segments commerciaux individuels, familiaux, professionnels, institutionnels**, et une **marque/produit English**. Les tarifs et les propriétés distinctes de Premium Famille/profs/entreprises/écoles ne sont **pas montrés** : ne pas inventer conditions de licence ni nombre de comptes. « Version ordinateur » constitue une **promesse de disponibilité web**, pas une preuve de synchronisation entre appareils.
+
+## Z.2 — Capture 52 : partage, acquisition et présence sociale (54237.jpg)
+
+**Page toujours défilée :** la carte « Version ordinateur » apparaît partiellement tout en haut, y compris son sous-texte « Joue aussi depuis ton navigateur ! », dans une zone où se superpose la barre de statut Android. On voit à nouveau le **problème de recouvrement du contenu par l'heure et les icônes système** lors d'un scroll au sommet.
+
+Titre serif sur deux lignes : **« Aide-nous à lutter contre les fautes »**.
+
+Quatre grandes cartes, même langage graphique que les offres :
+- **⭐ Note l'application**
+- **💡 Des suggestions ?**
+- **🔗 Partage l'application**
+- **📱 Toutes nos** — libellé **visiblement incomplet** ; le reste n'est pas lisible. Le chevron droit déborde/paraît décalé à l'extrême droite de la carte dans cette capture, à noter comme défaut potentiel de clipping/placement.
+
+Puis une **grande carte promotionnelle bleu plus clair** :
+- texte centré **« Apprends tous les jours sur : »** ;
+- quatre logos sociaux blancs, alignés horizontalement et fortement espacés : **Instagram, TikTok, Facebook, LinkedIn** ;
+- pas de texte nominatif sous les quatre logos ;
+- pas de preuve qu'un clic ouvre un profil précis ou une application.
+
+**Géométrie [ESTIMÉ] :** titre x≈47–610, y≈190–290 ; cartes de soutien x≈47–662, y≈339–469, 487–615, 636–763, 783–911 ; bloc social x≈47–662, y≈1000–1272 ; navigation basse y≈1320–1446.
+
+**Lecture produit :** la section de profil va au-delà du compte : **monétiser**, **recueillir du feedback**, **solliciter des notes**, **inciter au partage**, **diriger vers une présence sociale**, et **faire découvrir le reste du catalogue**. Aucun déclenchement de partage, store review ou suggestion n'est attesté par une capture. L'utilisation d'emoji colorés comme repères permet de conserver une charte de cartes uniforme malgré des objectifs très différents.
+
+---
+
+# ANNEXE AA — Salle d'attente et partie compétitive chronométrée
+
+## AA.1 — Capture 53 : salon « En attente » (54239.jpg)
+
+**Ce qui change visuellement :** la barre à six onglets disparaît. L'application bascule en **mode plein écran de partie**, avec fond bleu nuit, gros titre serif blanc **« En attente »** aligné à gauche et **X** blanche à droite. Cela ressemble à un état d'inscription/attente après une action « Rejoindre » de l'onglet compétition, **mais la capture exacte du clic n'existe pas**.
+
+**Structure, du haut vers le bas :**
+- Grand **anneau circulaire rouge avec une portion gris clair**, chiffre central blanc **« 8 »**. Le chiffre peut être un compte à rebours avant le démarrage, mais l'unité et la règle sont **inconnues** ; la seule lecture sûre est sa valeur affichée et son état de jauge.
+- Intertitre **« Joueurs inscrits : »**.
+- Deux **lignes joueurs en capsules horizontales arrondies** :
+  - première : petit avatar littéraire rond, **« #348781 »**, **« Canard »**, icône de **trophée turquoise** et valeur **« 6 »** ;
+  - seconde : avatar du profil observé dans l'onboarding, pseudo du compte, valeur **« 0 »** à droite, **sans le même préfixe # visible**.
+- Sous les deux participants, une bande/ligne de séparation.
+- **Quatre réactions circulaires** dessinées comme des petits boutons : **👏**, **😎**, **😱**, **🍀**. Disponibilité et diffusion réseau des réactions **non démontrées** par la seule présence des icônes.
+- Phrase centrée : **« La partie va bientôt commencer »**.
+- Carte « **Le savais-tu ?** » au fond un peu plus clair :
+  - texte : **« Test vient du latin testum, un vase utilisé par les alchimistes pour vérifier la pureté des métaux. »**
+  - au bas de la carte : **« Appuie pour un autre fait »**, en gris atténué. C'est une instruction d'interaction, mais aucun autre fait n'a été montré.
+
+**Géométrie [ESTIMÉ] :** titre y≈109–157 ; anneau centré vers x≈355/y≈323, diamètre ~198 px ; intitulé joueurs y≈468–502 ; joueurs x≈32–679, y≈527–626 et y≈638–735 ; réactions y≈767–860 ; message démarrage y≈904–942 ; carte fait x≈63–646, y≈991–1410 ; barre Android en bas.
+
+**Éléments UX remarquables :**
+- Le lobby **occupe une attente** avec un fait culturel renouvelable, réduisant potentiellement la perception de temps perdu.
+- Les réactions sont disposées **en ligne à accès direct**, sans clavier ni champ de saisie de chat visible.
+- Le jeu utilise **les avatars choisis auparavant** pour identifier les membres.
+- Deux valeurs différentes apparaissent près des joueurs (6 et 0) avec un trophée pour l'un ; il n'est **pas démontré** que ce sont les scores de la partie future, ni que Canard est le propriétaire du lobby.
+- Seuls **deux joueurs sont visibles** ; aucun joueur invisible, bot, latence ou politique de matchmaking ne peut être établi.
+- Aucun bouton « Démarrer » n'est affiché ; passage automatique **possible** mais non prouvé par une succession continue filmée.
+
+## AA.2 — Capture 54 : « MANCHE 1 SUR 3 — Échauffement » (54241.jpg)
+
+**Nouvel état de jeu, distinct du test de placement :**
+- en-tête centré :
+  - surtitre turquoise uppercase à lettres espacées **« MANCHE 1 SUR 3 »** ;
+  - grand titre serif blanc **« Échauffement »** ;
+  - **X** de fermeture à gauche et **anneau de minuterie bleu** à droite, chiffre blanc **« 58 »**.
+- Sous le titre : **six capsules/paliers horizontaux**, la première **rouge** et les cinq restantes **gris foncé**. Le statut rouge de la première peut représenter la question active ou échouée ; les états de progression des autres questions ne sont pas montrés.
+- Grande carte de phrase bleu-gris à coins arrondis, bordure **rouge** et **épais filet rouge en bas**.
+- Huit tuiles sur **trois lignes** :
+  - « Il », « vaut », **« mieux »** (tuile gris clair, différente des autres) ;
+  - « ranger », « ta », « chambre » ;
+  - « plus », « tard. ».
+- Phrase entière : **« Il vaut mieux ranger ta chambre plus tard. »**
+- Verdict en grand, centré : **« Eh non ! 😿 »**.
+- Indication **« Il n'y a pas d'erreur dans cette phrase. »** puis **« Règle ajoutée à ta liste de révision. »**.
+- Carte « **Explications › Détails** » :
+  - texte visible : **« Correct : la formule exprime ce qui est préférable. Astuce : 'vaut' = valeur/préférence. »**
+- Bouton bas, vert et en relief **« Suivant → »** ; le bas de la carte de correction semble se prolonger **derrière la zone du CTA**, ce qui appelle une vérification de défilement.
+
+**Géométrie [ESTIMÉ] :** titre de manche y≈91–177 ; anneau minuterie x≈575–678/y≈86–189 ; six jalons y≈239–276 ; carte de mots x≈31–679/y≈330–742 ; verdict y≈787–844 ; explications x≈31–678 à partir de y≈1027 ; CTA x≈57–653/y≈1309–1410.
+
+**Point pédagogique capital :** **la phrase est correcte** et il fallait donc choisir **« Il n'y a pas de fautes »** (action visible dans les autres états avant réponse). Ici une tuile gris clair **« mieux »** paraît avoir été choisie, ce qui déclenche une erreur utilisateur : la **bordure rouge** code l'échec, et le retour indique explicitement **qu'aucun mot n'était fautif**.
+
+Cela démontre que le jeu ne consiste pas à repérer systématiquement une faute. La troisième série avait déjà montré le bouton de réponse « Il n'y a pas de fautes », mais **c'est le premier exemple documenté où la solution réelle est l'absence de faute**.
+
+**Comparaison avec le diagnostic initial :**
+- **Test de placement :** score numérique, quatre cœurs, pas de minuterie visible, pas de jalons par question, bouton « aucune faute » pendant la question.
+- **Partie compétitive :** manche **1/3**, minuteur affiché **58**, jalons (ici six), pas de quatre cœurs dans le HUD observé, erreur suivie d'une correction et d'un CTA.
+- Il est donc **incorrect de fusionner ces deux HUD** dans une seule spécification sans états explicites.
+
+**Interrogations :** le numéro de manche concerne-t-il trois types d'exercices ? Les six capsules correspondent-elles à six questions par manche ? Le timer est-il global par manche ou par question ? Les images seules ne suffisent pas. Même si la valeur 58 évoque des secondes, **l'unité n'est pas affichée**.
+
+## AA.3 — Capture 55 : dialogue de sortie (54243.jpg)
+
+**Avant-plan [VU] :** boîte rectangulaire **gris foncé** d'aspect Android natif (ou imitation), placée vers x≈49–660/y≈592–918. Titre blanc gras **« Es-tu sûr ? »**, message **« Tu quittes la partie. »**, deux boutons-textes turquoise en bas à droite **« OUI »** et **« NON »**.
+
+**Arrière-plan :** jeu sombre sous une surcouche presque noire/translucide ; on distingue encore la manche 1/3, « Échauffement », un timer à **51**, une nouvelle phrase commençant par **« Il a réagi désespérément face… »** (suite sous le dialogue), et le gros bouton vert « Il n'y a pas de fautes ». Le contenu en fond est **visuellement inactif / modal** ; aucun clic traversant n'est montré.
+
+**Détails UX :**
+- demande de **confirmation explicite avant d'abandonner la partie**, ce qui protège de la fermeture involontaire ;
+- **OUI/NON** dans l'ordre gauche→droite, sans accent graphique très fort en dehors du turquoise ;
+- aucune mention d'une sanction pour abandon, de la perte de points ni de l'issue de la manche ;
+- la réduction du timer apparent de **58 à 51** entre captures constitue deux valeurs observées, **pas une mesure précise de durée** sans une chronologie des événements ;
+- le choix effectué ensuite **n'est pas photographié** : l'écran 56 ne prouve pas automatiquement quel bouton a été activé ni si la partie a été conservée/reprise.
+
+**Risque technique d'une future transposition :** ne pas maintenir un timer actif qui consommerait silencieusement le temps pendant un dialogue de confirmation, sauf règle de jeu explicitement voulue. **Aucun comportement de pause n'est démontré ici.** Vérifier priorité du bouton Retour Android, accessibilité du dialogue, focus, et restauration de l'état après annulation.
+
+---
+
+# ANNEXE AB — Protection du compte et choix d'une partie
+
+## AB.1 — Capture 56 : « Ne perds pas tes progrès ! » (54245.jpg)
+
+**Ecran distinct de l'onboarding initial :**
+- fond bleu nuit sans la barre inférieure à six icônes ;
+- bouton **X** blanc dans un disque bleu foncé, en haut à droite ;
+- grande illustration **enveloppe blanche** centrée en haut ;
+- titre sans-serif blanc gras sur plusieurs lignes : **« Ne perds pas tes progrès ! »** ;
+- texte centré/gauche large :
+  **« Enregistre ton adresse email pour ne pas perdre tes résultats en cas de déconnexion. »**
+- champ email bleu-gris, très arrondi, avec **« john@gmail.fr »** en gris clair comme **exemple / placeholder apparent**, pas une adresse personnellement vérifiée ;
+- bouton pleine largeur **« Continuer »**, gris désactivé en apparence, sans preuve d'un attribut disabled ;
+- séparateur horizontal **« OU »** entre deux segments blancs ;
+- bouton blanc **« Continuer avec Google »**, logo Google à quatre couleurs à gauche, texte bleu marine.
+- Grand espace vide sous ce bouton jusqu'à la navigation système Android.
+
+**Disposition [ESTIMÉ] :** X x≈603–679/y≈83–159 ; enveloppe x≈299–412/y≈192–273 ; titre centré y≈345–468 ; paragraphe y≈530–647 ; champ x≈59–650/y≈704–810 ; CTA gris x≈59–650/y≈872–966 ; séparateur OU y≈1030–1060 ; bouton Google x≈59–650/y≈1110–1212.
+
+**Interprétation :**
+- La personnalisation initiale (pseudo, avatar, niveau) était possible **avant la collecte d'une adresse email**. Cette page matérialise une **authentification progressive / sécurisation différée**.
+- La formulation met l'accent sur le **risque de perte de progression**, et non sur un bénéfice d'inscription abstrait.
+- Deux voies proposées : **email** et **Google**. On ne voit pas de mot de passe, de magic link, de procédure OAuth, ni de consentement : ne pas inventer le mécanisme.
+- La présence de la **croix** suggère que l'utilisateur peut sortir de cette sollicitation ; le retour effectif et la conservation de la progression restent non vérifiés.
+- Cette page fait écho à l'encart email de l'écran 48, montrant une **cohérence de discours** entre avertissement contextuel et parcours de sécurisation.
+- **Ne pas conclure** qu'un compte sans email perd forcément ses données : c'est une déclaration commerciale/produit affichée, pas une preuve de fonctionnement du stockage.
+
+## AB.2 — Capture 57 : sélection des parties, plein écran promotionnel (54247.jpg)
+
+**Changement majeur de composition :** moitié haute de l'écran en **rouge vif**, opposée à la palette dominante bleu nuit. Retour circulaire bleu en haut à gauche. Le rouge n'est ici **pas une erreur** mais une **surface de mise en avant d'un mode de jeu**.
+
+**Partie classée, bloc supérieur :**
+- grande illustration centrale de **Momo sur la première marche d'un podium 1/2/3**, fond de disque blanc, geste de célébration ;
+- très grand **bouton blanc bombé à tranche turquoise**, texte bleu gras **« Partie classée »**, flèche circulaire bleue ;
+- sous-texte blanc :
+  **« Teste-toi sur des questions nouvelles et grimpe dans le classement. »**
+- petite capsule encadrée, transparente/blanchâtre :
+  **« Niveau : Facile ⌄ »**
+- pas de bouton de niveau ouvert ; aucune autre difficulté observée.
+
+**Partie de révision, bloc inférieur :**
+- fond bleu nuit ;
+- illustration ronde de **Momo soulevant un haltère de livres**, déjà utilisée pour le test et « Répéter » ;
+- gros **bouton blanc à tranche turquoise**, texte bleu gras **« Partie de révision »** et flèche circulaire bleue ;
+- texte blanc en dessous :
+  **« Revois des règles déjà vues et choisis les règles que tu aimerais revoir. »**
+  La fin reste visible près de la navigation système du screenshot.
+- aucune barre d'onglets visible, le mode est un choix immersif entre deux types de session.
+
+**Géométrie [ESTIMÉ] :** retour x≈21–94/y≈76–150 ; héros classé y≈109–414 ; CTA classé x≈71–638/y≈470–576 ; description y≈599–726 ; sélecteur niveau x≈202–507/y≈744–810 ; frontière rouge/bleu y≈857 ; illustration révision y≈908–1182 ; bouton révision x≈71–638/y≈1243–1347 ; sous-texte révision partiellement dans la zone y≈1371–1503.
+
+**Contraste de fonctionnement :**
+- Classée : **questions nouvelles** et score de compétition.
+- Révision : **règles déjà vues**, avec choix possible de celles à revoir.
+- L'existence du niveau **« Facile »** réemploie le résultat du placement affiché dans le défi de bienvenue, sans garantir le degré de personnalisation du moteur.
+- On ne voit **pas** de prix ou de cadenas sur ces deux modes, mais cela ne prouve pas que toutes leurs sessions sont illimitées.
+
+**Point UX :** grand contraste rouge/bleu + deux CTA géants rend le choix simple, mais le texte de présentation du deuxième mode est si bas qu'il entre visuellement en conflit avec la barre système Android. Vérifier safe areas et hauteur de scroll pour écran plus petit.
+
+---
+
+# ANNEXE AC — Écriture guidée, objectif hebdomadaire et offre Premium
+
+## AC.1 — Capture 58 : hub « Histoires » (54249.jpg)
+
+**Contexte :** après le hub « Écrire, simplement. » de la cinquième série, voici une sous-page consacrée à l'écriture libre. La **barre inférieure à six onglets reste présente**, avec le bloc-notes actif (rouge). Un **bouton Retour rond** est présent en haut gauche.
+
+**Carte éditoriale principale [VU] :**
+- très grande **illustration horizontale originale** : femme souriante aux cheveux noirs, en pleine nature fleurie, palette pastel pêche, vert sauge, crème ;
+- la photo/illustration occupe le **haut de la carte** et possède les coins supérieurs arrondis ;
+- dessous, bloc bleu avec grand titre blanc :
+  **« Que signifie vivre une bonne vie ? »**
+- ligne secondaire :
+  **« Sélectionnée pour toi »**
+- grande flèche droite blanche.
+- tranche basse turquoise sous la carte, en cohérence avec les grandes cartes de l'app.
+
+**Objectif de production, puis création :**
+- titre blanc gras **« Mon objectif hebdo »** ;
+- barre de progression horizontale **gris sombre, vide** ;
+- compteur centré **« 0 / 400 mots cette semaine »** ;
+- section **« Sujets libres »**, et à droite bouton vert **« Créer + »** ;
+- badge rouge **« Nouveau ! »** flottant au-dessus du bouton / près de son côté gauche ;
+- grande carte bleue sous le titre, début d'illustration de **plume turquoise**, et texte partiellement visible commençant par **« Écris ta propre histoire et fais-la… »**. Le texte complet **n'est pas lisible** : ne pas le reconstruire.
+
+**Géométrie [ESTIMÉ] :** Retour x≈47–120/y≈69–144 ; carte sélectionnée x≈47–691, y≈168–742 ; illustration jusqu'à y≈524, texte jusqu'à y≈734 ; titre objectif x≈65/y≈811–856 ; barre x≈41–679/y≈894–934 ; métrique y≈964–996 ; Sujets libres y≈1077–1122 ; CTA Créer x≈496–688/y≈1064–1134 ; carte libre commence y≈1147 et se prolonge sous footer.
+
+**UX :**
+- deux portes d'entrée : **thème proposé** et **sujet choisi par l'utilisateur** ;
+- « sélectionnée pour toi » suggère une personnalisation, mais sa méthode est **inconnue** ;
+- une **unité d'objectif explicite (mots)**, et une **fenêtre temporelle (cette semaine)**, rendent la progression tangible sans créer un système de vies ;
+- le compteur **0/400** ne doit pas être assimilé aux « 0 mot écrit » du profil sans vérifier période, périmètre et synchronisation ;
+- accent visuel par **grande illustration éditoriale**, à l'inverse des cartes d'exercices à jetons ;
+- un marqueur **« Nouveau ! »** met en avant une fonctionnalité à essayer, non un score.
+
+## AC.2 — Capture 59 : écran d'abonnement Premium (54251.jpg)
+
+**Plein écran sans barre d'onglets [VU].** Fond bleu nuit, **X** blanche dans un disque bleu foncé en haut droite, petite illustration ronde d'un **oiseau bleu à aile déployée** près du sommet.
+
+**Message de valeur :**
+- grand titre blanc gras, centré sur trois lignes :
+  **« Investis en toi. Écris en toute confiance. »**
+- quatre avantages en grande liste verticale, avec coches vertes à gauche :
+  1. **« Débloque +5 000 tests et jeux »**
+  2. **« Sur mobile et ordinateur »**
+  3. **« Des explications claires à chaque faute »**
+  4. **« Zéro publicité »**
+
+**Plan sélectionné sur la capture :**
+- grande carte bleu ardoise à **contour blanc épais**, coins fortement arrondis ;
+- petite languette blanche chevauchant son haut gauche :
+  **« 7 jours d'essai gratuits »** ;
+- coche de sélection **blanche sur pastille blanche/bleue** au coin supérieur droit ;
+- libellé **« Annuel »** ;
+- à droite, prix affiché **« €3.74 / mois »** ;
+- en bas, **« €44.99 par an »** ;
+- badge vert **« -66% »**.
+
+**Un deuxième plan** commence au-dessous avec une languette **« Sans essai gratuit »**, mais le tarif, la période et les autres conditions ne sont **pas entièrement visibles**. Aucun bouton de choix ou prix complet de ce plan ne doit être inventé.
+
+**Actions en footer fixe :**
+- très gros CTA vert et relief, capitales :
+  **« COMMENCER MA SEMAINE OFFERTE »** ;
+- lien/CTA secondaire centré, blanc gras :
+  **« VOIR TOUTES LES OFFRES »**.
+- fine séparation turquoise au-dessus de la zone d'action.
+
+**Mesures [ESTIMÉ] :** icône oiseau y≈76–229 ; titre y≈309–501 ; liste avantages y≈577–838 ; première carte de plan x≈31–678/y≈897–1104 ; deuxième plan débute y≈1119–1197 ; footer démarre y≈1197 ; bouton vert x≈28–681/y≈1230–1333 ; action secondaire y≈1381–1415.
+
+**Lecture commerciale rigoureuse :**
+- Les **7 jours gratuits** et le **prix annuel 44,99 €** sont **deux informations affichées**, mais la capture ne révèle **ni date du prélèvement, ni prix de renouvellement, ni annulation, ni conditions d'essai**.
+- **Contrôle arithmétique :** 44,99 €/an ÷ 12 ≈ **3,749 €/mois**. Le libellé **« €3.74 / mois »** paraît **tronqué au centime** plutôt qu'arrondi normalement à 3,75 €. Le décalage est de **0,11 € sur 12 × 3,74 €** ; il faut donc traiter les **44,99 €/an comme prix annuel affiché** et **3,74 €/mois comme équivalence promotionnelle**, non comme douze prélèvements mensuels prouvés.
+- Le **« -66 % »** est affiché, mais le **prix de référence de calcul** n'est pas visible sur cette capture : ne pas qualifier ce taux de remise vérifiée.
+- Le bouton **« Voir toutes les offres »** pourrait amener d'autres tarifs, mais aucune destination observée.
+- Le lien ordinateur avec le plan Premium est commercialement cohérent avec la section « Version ordinateur », **sans démontrer** une connexion effective.
+
+**Méthode UX :** vaste promesse aspirationnelle, quatre bénéfices simples, plan par défaut présélectionné et **action primaire fixe**, tandis que les autres plans sont secondaires et en partie cachés par la limite du viewport. L'accessibilité des détails et les informations légales mériteraient un test réel avant toute comparaison de transparence tarifaire.
+
+---
+
+# ANNEXE AD — Catalogue des règles, niveaux et restriction Premium
+
+## AD.1 — Capture 60 : catégorie « Les accords » (54253.jpg)
+
+**Origine :** prolongement des cartes de catégories de la cinquième série. Ici une sous-page de la catégorie **Les accords**, mais **la barre inférieure des six icônes reste présente**, troisième onglet Livre actif.
+
+**En-tête de filtres [VU] :**
+- bande horizontale gris/bleu plus claire en haut, avec **flèche Retour circulaire** à gauche ;
+- **contrôle segmenté « Toutes / Non vues »**, avec **Toutes sélectionné** (bleu très sombre, texte blanc gras) et Non vues non sélectionné ;
+- grand contrôle **« Niveau ⌄ »** à droite, style bleu identique, chevron bas.
+- Les contrôles s'inscrivent **sur la même ligne que les icônes système Android** en haut de la capture, avec risque de superposition quand l'espace haut n'est pas correctement réservé.
+
+**Section de contexte :**
+- titre serif blanc **« Les accords »** ;
+- texte turquoise :
+  **« Les accords des noms, des adjectifs, en nombre et en genre. »**
+
+**Cartes de notions :**
+1. **Intermédiaire** — libellé bleu clair dans un onglet/étiquette chevauchant la partie supérieure gauche de la carte. Titre de question tronqué sur la capture :
+   **« "Des résultats juste passables" ou "Des résultats... »**
+   Statut en bas gauche **« Non vue »**, sous forme de pastille sombre.
+   A droite, bouton/badge rouge **« 🔒 Premium »**.
+2. **Expert** — petite étiquette bleu-gris différente, titre :
+   **« "Ils se sont donnés rdv" ou "Ils se sont donné rdv" ? »**
+   Statut **« Non vue »**, à droite **chevron blanc**, pas de badge Premium visible.
+3. **Intermédiaire** — troisième carte tronquée en bas :
+   **« Les fruits que j'ai "mangés" ou "mangé" ? »**
+   Les éléments de pied de carte de ce troisième item ne sont pas visibles.
+
+**Géométrie [ESTIMÉ] :** barre de filtres y≈0–159 ; titre x≈47/y≈200–250 ; description y≈287–359 ; première carte x≈42–665/y≈425–759 ; deuxième carte x≈42–665/y≈775–1113 ; troisième carte x≈42–665/y≈1126–1326, suite sous footer à y≈1320–1446.
+
+**Design des cartes :**
+- surface bleu-gris à **rayon généreux**, liseré discret et **tranche basse turquoise épaisse** ;
+- étiquette de difficulté **superposée au bord haut gauche**, couleur différente selon niveau ;
+- question en **très gros texte blanc**, 2 à 3 lignes, souvent littéralement présentée comme un choix entre deux formulations ;
+- pastille d'état **« Non vue »** à gauche du pied ; à droite soit **Premium rouge** soit simple flèche ;
+- marge verticale généreuse : les cartes de règles occupent ~330 px raster chacune ; seulement deux items complets sur ce viewport.
+
+**Constat fonctionnel déterminant :** le badge Premium n'est **pas uniquement lié au niveau de difficulté** : la première fiche **Intermédiaire** est Premium alors que la seconde **Expert** possède un chevron ordinaire, sans cadenas visible. On ne peut donc pas affirmer « tout Expert est Premium » ou « seules les notions difficiles sont payantes ». D'autres critères de catalogue ou d'accès peuvent être en jeu.
+
+**Inconnus :** résultats réels du filtre « Non vues », options du sélecteur « Niveau », nombre total de niveaux, comportement d'une fiche Premium, conditions des fiches gratuites, possibilité de prévisualisation, critère de validation et pagination. Une notion marquée « Non vue » ne signifie pas nécessairement que l'apprenant ne connaît pas la règle : c'est **un état d'utilisation produit**, pas un diagnostic de compétence.
+
+---
+
+# ANNEXE AE — Design, comportements, validations et lecture LuxApp
+
+## AE.1 — Tableau de couleurs réellement échantillonnées sur les JPG 51–60
+
+**Méthode :** valeurs RGB lues dans les fichiers joints, aux coordonnées en pixels raster indiquées ; elles **ne sont pas** les variables du code source, et certaines surfaces portent des variantes de bleu voisines.
+
+| JPG, point | RGB | HEX | Élément |
+|---|---|---|---|
+| 54235 (5,400) | (12,21,36) | **#0C1524** | Fond global |
+| 54235 (100,200) | (26,50,78) | **#1A324E** | Carte offre |
+| 54237 (350,1130) | (69,123,157) | **#457B9D** | Carte réseaux sociaux |
+| 54239 (350,1090) | (20,37,63) | **#14253F** | Carte « Le savais-tu ? » |
+| 54241 (350,540) | (42,67,89) | **#2A4359** | Tuile de phrase |
+| 54241 (100,1370) | (26,143,11) | **#1A8F0B** | CTA suivant vert |
+| 54243 (5,400) | (4,7,14) | **#04070E** | Backdrop modal |
+| 54243 (100,1050) | (102,104,103) | **#666867** | Fond obscurci du jeu |
+| 54245 (350,770) | (30,54,82) | **#1E3652** | Champ email |
+| 54245 (350,905) | (164,164,164) | **#A4A4A4** | CTA inactif apparent |
+| 54247 (5,400) | (229,57,69) | **#E53945** | Fond rouge Partie classée |
+| 54249 (350,605) | (26,50,78) | **#1A324E** | Carte sujet d'écriture |
+| 54251 (350,970) | (44,66,89) | **#2C4259** | Plan annuel Premium |
+| 54251 (300,1300) | (26,143,11) | **#1A8F0B** | CTA abonnement |
+| 54253 (350,1000) | (26,50,78) | **#1A324E** | Carte notion |
+
+**Évolution de palette :**
+- la couleur **rouge** sert à une **erreur**, à un **cœur**, à un **onglet actif**, mais aussi au **fond promotionnel d'une partie classée** : sa sémantique est liée au contexte ;
+- **turquoise pâle** pour la majorité des textes secondaires, bordures, tranches, contrôles et certains anneaux ;
+- **vert** de CTA primaire, y compris pour **s'abonner**, et non exclusivement pour une bonne réponse ;
+- **blanc** pour le CTA de sélection des modes et Google ; **gris** pour un état apparemment inactif et certains boutons de dialogue ;
+- progression **rouge** dans une manche et **bleu** pour le temps : les sous-systèmes de jeu ne partagent pas obligatoirement la même sémantique de jauge.
+
+## AE.2 — Navigation et hierarchies confirmées par les 60 captures
+
+| Scénario | Header / controls | Footer | Note UI |
+|---|---|---|---|
+| Profil / offres | Aucun header fixe dédié à la section ; long scroll | 6 onglets | Collection, offres, soutien |
+| Salon multijoueur | « En attente » + X | Pas d'onglets | Transition en mode partie |
+| Partie en cours | Manche, titre, minuterie et X | CTA Suivant si feedback | Timer et progression spécifiques |
+| Confirmation quitter | Dialogue OUI/NON au-dessus du jeu | Arrière-plan obscurci | Priorité modale |
+| Sécuriser compte | X, enveloppe, email/Google | Aucun onglet | Interruption à thème sécurité |
+| Choisir partie | Retour, deux héros rouges/bleus, niveau | Pas d'onglets | Grande mise en scène de modes |
+| Histoires | Retour et sujet éditorial | 6 onglets | Production autonome, objectif hebdo |
+| Paywall Premium | X et arguments commerciaux | CTA fixe + lien toutes offres | Hiérarchie d'abonnement |
+| Catégorie des règles | Retour + filtres segmentés/Niveau | 6 onglets | Catalogue scrollable, états de vue |
+
+**Parcours possibles à vérifier :** Profil → carte Premium → paywall ; Accueil/partie rapide → modes classé/révision → salon → manche ; Écrire → Histoires ; Les règles → catégorie → notion. Les captures successives sont cohérentes avec ces chemins, mais **les clics exacts et les branches alternatives ne sont pas enregistrés**.
+
+## AE.3 — Règles de gameplay désormais observables
+
+- **Test de placement :** score 0→3 documenté, quatre cœurs puis trois, pas de temps visible, question courte/longue, correction après sélection.
+- **Multijoueur, attente :** anneau « 8 », deux joueurs visibles, pseudos/avatars, réactions et fait culturel. Le « 8 » n'est pas assimilé au « 71 » de la carte « Prochaine partie » sans vérification.
+- **Manche compétitive :** **1 sur 3**, « Échauffement », temps apparent **58** puis **51**, six paliers, feedback, possibilité de quitter par X.
+- **Réponse sans faute :** la bonne solution de « Il vaut mieux ranger ta chambre plus tard » est **l'absence de faute**. Le verdict « Eh non » signifie **erreur de l'utilisateur**, et le filet rouge signifie **échec global**, pas qu'un mot rouge existe forcément.
+- **Révision suite à erreur :** message « Règle ajoutée » dans placement et partie compétitive. La **réelle apparition On/ont en Liste de révision** n'a été montrée que pour la partie précédente ; ne pas généraliser automatiquement toute erreur compétitive à une entrée persistée.
+- **Sortie :** confirmation avant abandon, mais pas de preuve de score perdu, de pénalité ou de pause du temps.
+- **Conditions de victoire, récompenses, matchmaking, anti-triche, limites de temps, nombre total de questions** : tous à investiguer, aucun déduit d'un seul état graphique.
+
+## AE.4 — Défauts/risques observés et à ne pas recopier
+
+1. **Texte derrière la barre d'état** du smartphone lors du défilement en profil (54237), comme auparavant dans les catégories (54217) et l'accueil (54205). Risque d'insets mal gérés.
+2. **Chevron / texte proche du bord**, parfois en débordement visible, notamment la ligne « Toutes nos » (54237) ; ne pas considérer le libellé incomplet comme un nom de rubrique.
+3. **Information commerciale partiellement masquée** par le footer en 54251 : second plan « Sans essai gratuit » tronqué. Distinguer un simple état de scroll d'une impossibilité de consultation.
+4. **Montant annualisé ambigu** : 44,99 €/an et 3,74 €/mois affichés simultanément ne correspondent pas à une équivalence mensuelle arrondie classique.
+5. **Motivation émotionnelle fondée sur la perte** : « Ne perds pas tes progrès ! » ; à doser, ne jamais utiliser une alerte anxiogène si la sauvegarde locale réelle est fiable.
+6. **Modal de sortie et compte à rebours** : pause ou non pendant la confirmation inconnue ; une erreur de conception pourrait pénaliser l'utilisateur.
+7. **CTA bas vs explication longue** en partie compétitive : vérification nécessaire du scroll et de l'accessibilité à l'intégralité de la règle.
+8. **Énoncé correct marqué incorrect par le joueur** : feedback doit expliciter pourquoi aucun mot n'est fautif ; éviter de colorer la solution comme une erreur.
+9. **Niveaux/difficultés non synonymes du paywall** : un item Expert peut être visiblement accessible tandis qu'un Intermédiaire est marqué Premium.
+10. **Gros héros de choix du mode** et cartes de 330 px en catalogue : design expressif, mais densité d'information limitée sur petits écrans.
+11. **Disponibilité de la version ordinateur** promise dans les offres : ne garantit pas un état de compte synchronisé.
+12. **Contenus personnalisés et statistiques** : « Sélectionnée pour toi », 0/400 mots, classement et récompenses ne démontrent aucun algorithme de recommandation.
+
+## AE.5 — Campagne de tests inverses conseillée
+
+| Parcours | Vérification concrète |
+|---|---|
+| Offres | Ouvrir chaque segment ; relever prix, plateformes, conditions, nombre de bénéficiaires |
+| Version navigateur | Vérifier présence effective, login et synchronisation du même compte |
+| Community/support | Tester note, suggestions, partage et liens Instagram/TikTok/Facebook/LinkedIn |
+| Salle d'attente | Observer la valeur « 8 », une réaction envoyée, le fait renouvelé, l'ajout de joueur et le départ |
+| Partie live | Voir les six paliers sur une manche et leur effet sur score/temps ; observer les manches 2 et 3 |
+| Phrase correcte | Appuyer sur « Il n'y a pas de fautes » dans une question réellement correcte |
+| Quitter | Choisir NON puis OUI ; vérifier la pause et les sanctions éventuelles |
+| Compte | Email valide/invalide, bouton activé, Google, fermeture, sauvegarde invitée puis reconnectée |
+| Choix du mode | Ouvrir Niveau Facile, lister les niveaux ; comparer classée et révision |
+| Histoires | Ouvrir sujet conseillé, créer sujet libre, rédiger ; mesurer mise à jour de 0/400 |
+| Premium | Voir seconde offre, conditions d'essai, date de prélèvement, gestion résiliation, prix 44,99 € |
+| Catégories | Filtrer Non vues et Niveau, ouvrir la notion Expert sans badge, puis celle Premium |
+| Mobile | 320–430 px CSS, grands textes, scroll, retour système, CTA fixe, clavier ouvert |
+
+## AE.6 — Bilan cumulatif et applicabilité à LuxApp
+
+Les captures 51–60 ferment de nouvelles boucles de compréhension :
+
+**Motivation → interaction sociale :** compétition hebdomadaire par régions → carte de prochaine partie → salle d'attente → manche chronométrée ; les étapes sont visibles, mais le chemin exact et la logique serveur restent à valider.
+
+**Apprentissage → remédiation :** on peut répondre à une phrase fausse **ou parfaitement correcte** ; le modèle de réponse doit permettre explicitement « aucune faute », avec feedback adapté. La correction courte et la fiche détaillée demeurent complémentaires.
+
+**Exploration → monétisation :** accès à divers parcours et menus avant demande d'email ; contenu identifié Premium dans les règles ; page de vente à essai offert ; offres famille/profs/entreprises/écoles. Les prix et conditions ne sont connus que pour une carte annuelle partiellement contextualisée.
+
+**Ecriture → objectif mesurable :** thème proposé, sujet libre, progression en mots par semaine ; une indication d'activité plus concrète que la seule monnaie virtuelle.
+
+**Pour LuxApp 2.1 :** le benchmark constitue une référence d'expérience, **non un modèle à recopier**. Respecter le code actuel, la charte bleu nuit chaud/ivoire/or de LuxApp, les séquences de leçons A1.1/A1.2, les sauvegardes, les feedbacks et les exigences Samsung. Priorité future à des mécanismes **utiles et testables** (révision ciblée, absence de faute, objectifs explicites, retour d'erreur lisible), pas à une copie des contenus, couleurs, personnages ou promotions du tiers.
+
+| Série | Captures | Thèmes |
+|---|---|---|
+| 1 | 01–10 (54135–54153) | Promesse, identité, personnalisation |
+| 2 | 11–20 (54155–54173) | Objectifs, profilage, preuve sociale, essai |
+| 3 | 21–30 (54175–54193) | Test, score, cœurs, correction |
+| 4 | 31–40 (54195–54213) | Fiches, accueil, quête, compétition, classement |
+| 5 | 41–50 (54215–54233) | Règles, écriture, répétition, sauvegardes, profil, badges |
+| **6** | **51–60 (54235–54253)** | **Offres, salle d'attente, manche en temps limité, sortie, compte, modes, écriture, Premium et catégories** |
+
+**Statut documentaire : 60 captures analysées dans le même fichier. Aucune modification de code, de JSON de leçon ni de données de progression LuxApp.**
