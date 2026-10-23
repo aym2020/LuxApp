@@ -2,10 +2,10 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 40 captures Android en quatre séries, fichiers 54135.jpg à 54213.jpg (noms impairs successifs). Série 1 : sections 1–10 et annexes A–F ; série 2 : G–J ; série 3 : K–N ; série 4 : O–S (fiches de règle, accueil, défi, monnaies, ligues et classements).  
+**Corpus :** 50 captures Android en cinq séries, fichiers 54135.jpg à 54233.jpg (noms impairs successifs). Séries 1–4 : sections 1–10 et annexes A–S ; série 5 : annexes T–Y (règles, écriture, révision, sauvegardes, profil et badges).  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, AGENTS.md, charte UI 2.1, design tokens et frontend de 2.1 consultés  
-**Périmètre :** onboarding, essai premium, test initial, jeu « Trouve la faute », fiches grammaticales enrichies, accueil après test, défi de bienvenue, monnaies virtuelles, compétitions et classements. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
+**Périmètre :** onboarding, essai premium, placement, jeu, corrections et règles, accueil, défis, compétitions, écrit, révision, sauvegardes, profil et badges. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
 
 ## 0. Convention de preuve
 
@@ -2816,3 +2816,326 @@ La première série posait **l'identité du joueur** ; la deuxième promettait u
 L'enseignement principal pour Luxo n'est pas « ajouter le maximum de fonctionnalités » : c'est la **continuité entre une action réussie et une nouvelle raison utile de revenir**. Le danger symétrique est de créer une gamification qui n'enregistre rien ou qui donne des scores opaques. L'ergonomie n'est pas parfaite non plus : la superposition dans la barre Android, les zones scrollables et les libellés uniquement iconographiques demandent une validation sur appareil.
 
 **État documentaire : 40 captures analysées au total, sans modification du code ni de la progression LuxApp.**
+
+
+
+---
+
+# ANNEXE T — Cinquième série : bibliothèque, écriture, répétition, profil (captures 41–50)
+
+**23 octobre 2026 — suite de la rétro-ingénierie, branche 2.1.** Dix nouvelles images originales, 54215.jpg à 54233.jpg (noms impairs successifs), viennent porter le corpus à **50 captures Android**. Les dix fichiers ont été vérifiés individuellement : **709 × 1536 pixels** chacun.
+
+**Conventions :** [VU] texte/état de l'image ; [MESURÉ] valeur RGB effectivement échantillonnée dans le fichier ; [ESTIMÉ] géométrie approximative en pixels du raster (jamais CSS ni dp) ; [INFÉRENCE] comportement possible à tester ; [INCONNU] absence de preuve. Les captures montrent des **pages et des états de défilement** ; ne pas leur attribuer une animation, une persistance cloud ou une règle de déblocage sans observation supplémentaire.
+
+## T.1 — Inventaire des vues
+
+| N° | Fichier | Destination | Contenu |
+|---:|---|---|---|
+| 41 | 54215.jpg | 3e onglet, Livre | « Les règles », recherche, révision personnalisée, parcours, catégories |
+| 42 | 54217.jpg | Livre, page défilée | Les accords (0/53), conjugaison (0/47), confusions (0/77), mauvais usages (0/78) |
+| 43 | 54219.jpg | 4e onglet, Bloc-notes | Momo écrivant, Histoires, Dictées, Correcteur |
+| 44 | 54221.jpg | 5e onglet, Signet-cœur | « Répéter », mot du jour, widget Android, cartes de révision |
+| 45 | 54223.jpg | Sous-page Conjugateur | Trois modes de jeu dont deux verrouillés |
+| 46 | 54225.jpg | Sous-page Définitions sauvegardées | État vide, bouton « Commencer une partie » |
+| 47 | 54227.jpg | Sous-page Corrections sauvegardées | État vide, instruction de sauvegarde et CTA |
+| 48 | 54229.jpg | Sous-page Revoir les synonymes | Invitation à ajouter email, 0 synonymes vus, 63 à découvrir, cartes verrouillées |
+| 49 | 54231.jpg | 6e onglet, Profil | Portrait, pseudo, handle, récap, début du graphique des scores |
+| 50 | 54233.jpg | Profil, page défilée | Badges, seuils de macarons, promotion Premium |
+
+## T.2 — Capture 41 : « Les règles » (54215.jpg)
+
+**Contenu exact [VU].** En haut : bandeau bleu plus clair avec **« Les règles »**, sous-titre **« revois les bases »** et grande illustration à droite de **fiches superposées**, dont une fiche rouge intitulée « ARTICLES DÉFINIS ». C'est une **page racine**, sans bouton de retour interne. Sous le bandeau, un champ sombre arrondi **« Rechercher une règle »** contient une **loupe blanche** ; à sa droite se trouve un **bouton signet séparé** dans son propre rectangle arrondi.
+
+Titre serif **« Liste de révision »** : une **rangée horizontale** de grandes cartes, dont la première affiche **« « On » ou « ont » ? »**, badge rose à croix **« Erreur récente »**, et chevron à droite. La deuxième carte, **coupée au bord droit**, commence par « « Qui » … » et possède un badge **« Non vue »**. La suite de son intitulé n'est pas visible. La disposition suggère un **carrousel à défilement horizontal**, non un tableau de deux colonnes figées [INFÉRENCE].
+
+Sous le carrousel : grand titre serif **« Parcours »**, puis carte pleine largeur avec Momo à gauche, titre **« Parcours guidés »**, sous-titre **« Progressez étape par étape »**, chevron droit. Plus bas, titre serif **« Catégories »** puis haut de la première carte, partiellement caché par la limite basse du flux.
+
+**Mesures [ESTIMÉ] :** hero y≈0–275 ; recherche x≈31–590 / y≈299–374 ; bouton signet x≈605–679 / y≈299–374 ; titre Révision y≈424–476 ; première carte x≈26–498 / y≈508–816 ; seconde carte à partir de x≈518 ; Parcours y≈895–948 ; carte Parcours guidés x≈23–686 / y≈957–1129 ; titre Catégories y≈1190–1249 ; barre de navigation persistante vers y≈1320–1446.
+
+**Détails visuels :** bloc titre/héros plus clair que le fond #0C1524 ; titres de section serif blancs ; cartes bleu-gris à tranche inférieure turquoise, gros rayon ; séparation large entre titre de carte et badge inférieur ; indicateur de statut **textuel et coloré** ; chevrons distincts des badges ; contenu partiellement visible à droite incitant au glissement. Le livre de la barre basse (troisième position) est **rouge/actif**, les cinq autres icônes restent neutres.
+
+**Relation inter-écrans importante :** lors de la seconde question du test (captures 27–28), l'utilisateur s'était trompé sur **on/ont** et l'app avait indiqué **« Règle ajoutée à ta liste de révision. »**. Cette même distinction figure maintenant ici comme **« On ou ont ? — Erreur récente »**. C'est une **preuve visuelle de continuité exercice → révision dans cette session**, bien plus forte que le seul message d'ajout. **On ne sait pas** si le statut survit à un redémarrage, une déconnexion ou une synchronisation cloud.
+
+## T.3 — Capture 42 : catégories de règles défilées (54217.jpg)
+
+Quatre cartes entièrement ou partiellement visibles :
+
+| Titre | Description visible | Jauge |
+|---|---|---|
+| **Les accords** | « Les accords des noms, des adjectifs, en nombre et en genre. » | **0/53 notions** |
+| **La conjugaison** | « La conjugaison des verbes en général. » | **0/47 notions** |
+| **Confusions fréquentes** | « Confusion courante entre deux mots similaires, comme "censé" et "sensé" mais qui ont des rôles différents » | **0/77 notions** |
+| **Les mauvais usages** | « Utiliser un mot de façon erronée, avec un sens qu'on pense différent. » | **0/78 notions** |
+
+**Composant catégorie :** grande carte bleu ardoise, texte blanc, titre gras très large, description sur une à trois lignes, **barre de progression horizontale sombre vide**, compteur turquoise « 0/… notions » en bas à gauche et grosse flèche blanche à droite. Chaque catégorie donne une information sur **l'étendue du catalogue** et **l'avancement propre à l'utilisateur**.
+
+**Géométrie [ESTIMÉ] :** cartes autour de x≈25–683 ; Les accords : contenu partiel au haut de l'écran, jusqu'à y≈303 ; La conjugaison y≈332–616 ; Confusions fréquentes y≈645–999 ; Les mauvais usages y≈1027–1325, partiellement couverte. La barre fixe reste à y≈1320–1446.
+
+**Lecture de produit :** ces quatre familles totalisent **53 + 47 + 77 + 78 = 255 notions affichées** ; on ne sait pas si d'autres catégories existent, si une même notion peut être dans plusieurs catégories, ni quelle action valide une notion. Le progrès théorique **0** est distinct du **score 3** obtenu au test. La première carte en haut est **recouverte par les informations système Android pendant ce scroll**, phénomène déjà constaté au dashboard dans les précédentes séries : défaut visuel d'insets/safe-area à vérifier, pas preuve d'une cause CSS particulière.
+
+## T.4 — Capture 43 : « Écrire, simplement. » (54219.jpg)
+
+**[VU]** Quatrième onglet (bloc-notes/crayon devenu rouge). Grande illustration de **Momo assis sur des livres et écrivant dans un cahier** au centre supérieur ; texte serif blanc, aligné à gauche : **« Écrire, simplement. »**.
+
+Trois cartes verticales :
+- **Histoires** — « Choisis un thème et écris librement » — pictogramme d'**oiseau** dans un carré turquoise arrondi.
+- **Dictées** — « Le grand classique pour te tester » — pictogramme de **casque audio** dans un carré turquoise.
+- **Correcteur** — titre visible, la description commence **« Fais corriger tes… »**, mais le reste est masqué/coupé ; ne pas le reconstituer.
+
+Ces cartes bleu-gris ont une **tranche inférieure turquoise**, un titre gras blanc, un sous-texte turquoise clair et un grand chevron droit blanc. Le pictogramme éditorial se trouve **à gauche**, la navigation **à droite**. Les deux premiers items apparaissent au complet ; troisième tronqué à la frontière du corps visible.
+
+**Géométrie [ESTIMÉ] :** illustration x≈225–470, y≈151–501 ; titre y≈586–633 ; Histoires x≈47–662, y≈685–873 ; Dictées y≈896–1083 ; Correcteur débute y≈1108 et se poursuit sous la limite de contenu vers y≈1226 ; footer y≈1320–1446.
+
+**UX :** un hub d'actions **écrire librement / écouter puis écrire / faire corriger**. Le choix n'impose pas un formulaire : chaque carte représente une intention claire. La capture ne prouve ni l'interface de dictée ni la qualité/technologie du correcteur, ni leurs conditions commerciales. L'illustration adapte le personnage à la fonction tout en conservant la signature visuelle de Momo.
+
+---
+
+# ANNEXE U — Répétition, mot du jour, widget et Conjugateur
+
+## U.1 — Capture 44 : « Répéter » (54221.jpg)
+
+**Hero [VU] :** cinquième onglet actif (signet-cœur rouge). Bandeau bleu plus clair avec grand titre sans-serif **« Répéter »**, sous-titre **« répéter, répéter »** et illustration, à droite, de **Momo soulevant des livres comme des haltères** (pose réemployée du début du test).
+
+**« MOT DU JOUR » :** carte sombre à coins très arrondis, texte blanc **« Prémices »**, tag turquoise uppercase **« MOT DU JOUR »**, définition **« Premiers signes annonçant quelque chose. »**, chevron bas. La présence du chevron suggère une fiche déroulante [INFÉRENCE], mais aucun déploiement n'a été observé.
+
+**Promotion du widget :** grande carte bleu-gris comportant miniature circulaire de Momo avec plume, badge **« NOUVEAU »**, texte **« Ajoute le widget sur ton téléphone. »**, **X** en haut droite et gros CTA vert **« Ajouter le widget »** avec pictogramme d'app/widget. L'icône X constitue un **moyen explicite de fermer** la suggestion ; la mémorisation du choix et la capacité native réelle du widget restent inconnues.
+
+**Sous la carte :** titre serif **« Revoir »**, carte **« Conjugateur »** à bordure turquoise et illustration de carnet rouge/crayon à droite ; une deuxième carte est partiellement visible en bas.
+
+**Mesures [ESTIMÉ] :** hero y≈0–325 ; carte mot x≈39–669/y≈375–600 ; carte widget x≈39–670/y≈663–1025 ; titre Revoir y≈1048–1099 ; carte Conjugateur x≈39–669/y≈1124–1252 ; barre de navigation y≈1320–1446.
+
+**Analyse :** la page agrège **micro-apprentissage quotidien**, **répétition outillée** et **promotion d'une présence hors app via widget**. Elle adopte un rythme éditorial plutôt que de lancer directement un exercice. Les étiquettes, icônes et CTA ne prouvent aucune programmation native du widget.
+
+## U.2 — Capture 45 : « Le Conjugateur » (54223.jpg)
+
+**Transition UI :** le menu ouvert n'affiche **plus la barre permanente des six onglets**. En haut gauche, flèche Retour blanche dans un **disque bleu foncé** ; titre sans-serif gras **« Le Conjugateur »** ; sous-titre **« Choisis ton mode de jeu : »**.
+
+Trois énormes cartes en colonne, largeur x≈31–678 et hauteur d'environ 413 px chacune :
+1. **Aléatoire** : fond bleu clair/grisé, icône blanche de **mélange/shuffle**, titre gras, descriptif **« Mélange de verbes et de temps »**. **Pas de cadenas**.
+2. **Choisir des temps** : fond bleu sombre, icône **horloge**, descriptif **« Passé simple, imparfait, présent… »**, **cadenas** dans un disque en haut droite.
+3. **Choisir des verbes** : carte **rouge vif**, icône **livre ouvert** et titre partiellement visible en bas ; **cadenas** en haut droite. Description et bord inférieur hors de la capture.
+
+**Placement [ESTIMÉ] :** retour/titre y≈99–178 ; consigne y≈218–265 ; Aléatoire y≈316–730 ; Temps y≈763–1176 ; Verbes commence y≈1209.
+
+**Point de comportement :** deux modes sont **graphiquement verrouillés**. Le type exact de déblocage (compte, progression, Premium, monnaie) est **inconnu**. Le contraste entre la **troisième carte rouge attirante et pourtant verrouillée** impose de ne pas utiliser seulement la couleur pour inférer la disponibilité. Les cartes géantes ont de fortes cibles tactiles, mais obligent à scroller même pour voir seulement trois options. Aucune partie lancée dans le Conjugateur n'est montrée.
+
+---
+
+# ANNEXE V — Bibliothèques sauvegardées et verrouillages
+
+## V.1 — Capture 46 : « Définitions sauvegardées » (54225.jpg)
+
+**Header [VU] :** bandeau bleu avec bouton Retour circulaire à gauche, illustration d'un **livre rouge A–Z incliné** à droite. Grand titre blanc **mal coupé en pleine syllabe/mot** : la première ligne se termine par **« Définitions s »**, la suivante affiche **« auvegardées »**. L'intitulé complet voulu est « Définitions sauvegardées » ; le retour à la ligne au milieu du mot est un **défaut visuel avéré**.
+
+**Corps vide :**
+- texte blanc très grand **« Aucune définition sauvegardée pour l'instant… »** ;
+- bouton bleu moyen à relief **« Commencer une partie »** ;
+- vaste espace libre jusqu'au footer à six icônes, dont le signet-cœur demeure actif.
+
+**Géométrie [ESTIMÉ] :** header y≈0–279 ; message x≈48–610/y≈365–544 ; CTA x≈55–654/y≈607–712 ; footer y≈1320–1446.
+
+**UX :** état vide **explicatif et actionnable**. Il indique l'absence d'éléments plutôt qu'un échec technique et propose une action pour amorcer la collection. Les définitions réellement enregistrées, leur provenance et leur synchronisation sont **inconnues**. Ce CTA est **bleu**, ce qui montre que le vert n'est pas la seule teinte d'action de l'application étudiée.
+
+## V.2 — Capture 47 : « Corrections sauvegardées » (54227.jpg)
+
+**Header [VU] :** retour circulaire, grande illustration de **sifflet rouge et blanc** à droite. Nouveau défaut de wrapping : **« Corrections »**, puis **« sauvegardée »**, puis un **« s » isolé sur une troisième ligne**. Le titre voulu se lit « Corrections sauvegardées » ; la capture montre une **cassure de mot beaucoup plus inélégante** qu'un retour à la ligne normal.
+
+**Contenu :**
+- « **Aucune correction enregistrée pour l'instant…** »
+- « **Tu peux enregistrer les corrections une fois avoir écrit un texte en cliquant sur l'icône de sauvegarde.** » (formulation reproduite telle qu'affichée, sans réécriture).
+- bouton bleu à relief **« Commence à écrire »**.
+
+**Mesures [ESTIMÉ] :** header jusqu'à y≈311 ; message y≈402–523 ; instruction y≈564–687 ; CTA x≈97–612/y≈739–842 ; footer y≈1320–1446.
+
+**Analyse :** cette bibliothèque est réservée à des **corrections de textes produits par l'utilisateur**, distinctes des **définitions enregistrées** et des **règles à revoir suite à un échec**. Les trois familles de données peuvent cohabiter sans être le même objet applicatif. Le message explique **quand** utiliser l'icône de sauvegarde, puis donne une action de reprise ; la place laissée vide n'est pas remplie artificiellement de contenus.
+
+## V.3 — Capture 48 : « Revoir les synonymes » (54229.jpg)
+
+**Header [VU] :** titre sur deux lignes **« Revoir les synonymes »**, bouton Retour circulaire, illustration du sifflet rouge à droite réutilisée depuis l'écran précédent. Barre à six onglets visible, cinquième actif.
+
+**Grand encart d'avertissement :** rectangle bleu à **épais contour turquoise**, autour de x≈35–675/y≈353–805. Texte exact : **« Tu risques de perdre tes progrès si tu te déconnectes ! Pour ne rien perdre ajoute ton email à ton compte. »**. CTA sombre interne **« Ajouter mon email »** avec icône de carte d'identité à droite.
+
+Sous l'encart :
+- **« Tu as déjà vu 0 synonyme. »**
+- **« 63 à (re)découvrir. »**
+- tuiles/grandes lignes **gris sombre** et texte turquoise désaturé en majuscules :
+  - **« SYMPA »** et **cadenas** à droite ;
+  - **« DIRE »** et **cadenas** ;
+  - troisième carte partiellement visible, non lisible.
+
+**UX :** combinaison de révision lexicale, récupération potentielle d'un **compte invité** et contenus **marqués verrouillés**. L'absence de sauvegarde cloud n'est pas démontrée : seule **la mise en garde affichée** est avérée. Il n'est pas prouvé que les 63 synonymes exigent un achat Premium ; le cadenas pourrait signaler des prérequis. L'encart de collecte d'email repousse visuellement la première action pédagogique loin vers le bas.
+
+---
+
+# ANNEXE W — Profil, historique et récompenses
+
+## W.1 — Capture 49 : profil (54231.jpg)
+
+**Hero bleu clair [VU] :**
+- haut gauche, bouton rond rouge **couronne blanche** (accès Premium probable, non testé) ;
+- haut droite, **roue dentée blanche** (réglages probables) ;
+- au centre, **portrait circulaire d'Alexandre Dumas** sur fond rouge, le même personnage choisi dans l'onboarding ;
+- petit **badge circulaire grenouille** superposé au bord inférieur droit du grand portrait ;
+- grand **pseudo en serif blanc** et **handle secondaire gris du type @Pseudo53779**. Le pseudo offensant entré au début du parcours apparaît dans le profil personnel : l'affichage est démontré, **pas une publication automatique dans les classements ni une validation serveur**.
+
+**Section « Récap » :**
+- titre serif ;
+- **3 colonnes** à séparateurs verticaux : icône Livre et **« 0 / Notion validée »** ; icône Crayon/carnet et **« 0 / Mot écrit »** ; icône Flamme et **« 1 / Ma Série »**.
+- Chiffres blancs épais, libellés turquoise.
+- La **réussite au jeu de placement** n'a donc pas automatiquement été assimilée à une **notion validée** : la distinction entre scores et maîtrise théorique est visuellement nette.
+
+**Section « Derniers scores »** :
+- grand titre serif, libellé turquoise **« Moyenne : 3 »**, début d'un **graphique très sobre** avec axe gris ; une seule petite portion visible dans cette capture.
+- L'état défilé de la capture suivante donne une date **23/10**, mais **ne montre pas une série complète** suffisante pour déduire la méthode de calcul de moyenne.
+
+**Mesures [ESTIMÉ] :** bandeau profil y≈0–598 ; portrait centre x≈355, y≈120–388 ; badge grenouille x≈410–490, y≈330–408 ; pseudo+handle y≈422–540 ; Récap y≈640–1030 ; Derniers scores y≈1100–1230 ; footer y≈1320–1446.
+
+**Composant de navigation :** la sixième icône visage est active (rouge), les cinq autres deviennent neutres. Les quatre premières captures du benchmark avaient déjà présenté les avatars comme un choix culturel ; leur **réutilisation dans le profil** et dans les **classements annuels** confirme une identité graphique transversale.
+
+## W.2 — Capture 50 : profil défilé, badges et offres (54233.jpg)
+
+**Sous la fin du graphique :** axe horizontal gris, annotation de date **« 23/10 »**. Puis grand titre serif **« Badges »** et texte turquoise :
+**« Tu as actuellement 0 macaron, pratique tous les jours pour gagner de nouveaux badges. »**
+
+**Trois badges en rangée :**
+
+| Badge (nom exact) | Aspect | Valeur affichée |
+|---|---|---|
+| **La grenouille de La Fontaine** | Grenouille stylisée colorée sur cercle turquoise, comme le badge du portrait | **0** + pictogramme macaron rouge |
+| **La madeleine de Proust** | Madeleine grisâtre/désaturée sur cercle gris | **50** macarons |
+| **Le képi du général** | Képi gris sur cercle gris | **100** macarons |
+
+- Les **trois cercles** ont un diamètre comparable, alignés horizontalement.
+- Les **noms longs passent sur deux ou trois lignes**, ce qui crée un **désalignement des nombres de macarons** en bas.
+- Le premier badge est **coloré**, les deux autres **grisés**. Cela peut signaler acquis vs à débloquer [INFÉRENCE]. Le seuil **0 macaron** est affiché comme montant d'entrée, pas comme indication de rareté certaine.
+- L'image relie directement le **macaron du solde d'accueil**, les **macarons du classement régional** et le **coût/condition des badges**, sans prouver l'algorithme d'attribution.
+
+**Section suivante :** grand titre serif **« Nos offres »** ; première carte bleue bordée turquoise **« Devenir Premium »**, avec **colombe blanche** à gauche et chevron droit. Deuxième carte marketing **partiellement coupée** en bas : ni intitulé, ni tarif ne peuvent être conclus.
+
+**Géométrie [ESTIMÉ] :** Badges y≈272–322 ; phrase informative y≈344–454 ; cercles badges centres x≈134, 378, 618 et y≈586 ; noms y≈699–826 ; seuils y≈810–902 ; Nos offres y≈1035–1082 ; carte Premium x≈47–662/y≈1122–1248 ; barre à six onglets y≈1320–1446.
+
+**Analyse :** le profil combine **identité**, **progression**, **collection** puis **conversion commerciale**, plutôt que d'afficher une grille de prix dès le premier viewport. Le badge-grenouille de l'avatar renforce la matérialité d'une récompense : elle devient un élément du profil, pas un simple chiffre.
+
+---
+
+# ANNEXE X — Mesures vérifiées, invariants UI et défauts mobiles
+
+## X.1 — Échantillons RGB lus dans les dix JPG (couleurs de pixels, non tokens source)
+
+| Capture, coordonnée | RGB exact | HEX | Zone |
+|---|---|---|---|
+| 54215 (100,130) | (27,43,66) | **#1B2B42** | Bandeau « Les règles » |
+| 54215 (100,550) | (26,50,78) | **#1A324E** | Carte révision |
+| 54215 (90,330) | (16,22,36) | **#101624** | Champ recherche |
+| 54215 (5,400) | (12,21,36) | **#0C1524** | Fond général |
+| 54217 (350,412) | (42,67,87) | **#2A4357** | Carte catégorie |
+| 54217 (350,505) | (12,21,36) | **#0C1524** | Barre de progression vide |
+| 54219 (350,730) | (28,50,74) | **#1C324A** | Carte Histoires |
+| 54219 (100,770) | (165,216,217) | **#A5D8D9** | Fond carré d'icône |
+| 54221 (350,220) | (20,37,63) | **#14253F** | Hero Répéter |
+| 54221 (350,690) | (26,50,78) | **#1A324E** | Carte widget |
+| 54223 (350,880) | (26,50,74) | **#1A324A** | Carte modes verrouillés |
+| 54223 (350,1370) | (229,57,69) | **#E53945** | Mode verbes rouge |
+| 54225 (350,150) | (22,38,64) | **#162640** | Header Définitions |
+| 54225 (200,645) | (41,75,123) | **#294B7B** | Bouton bleu état vide |
+| 54227 (350,450) | (12,21,36) | **#0C1524** | Fond état vide |
+| 54229 (350,1050) | (30,38,49) | **#1E2631** | Synonyme grisé |
+| 54231 (350,430) | (18,38,63) | **#12263F** | Hero Profil |
+| 54233 (350,570) | (89,98,113) | **#596271** | Badge grisé |
+| 54233 (300,1200) | (28,50,74) | **#1C324A** | Carte Premium |
+
+**Familles chromatiques :** fond nuit récurrent #0C1524 ; bandeaux héros plus clairs ; cartes bleues #1A324E ; cartes de catégorie ardoise ; gris sombre de contenu verrouillé ; turquoise d'informations secondaires et cadres ; vert CTA ; rouge d'onglet actif ou de carte ; gris pour désactivation et objets non obtenus ; or réservé aux rangs/prestige vus dans la série précédente. Les états UI ne peuvent être définis par couleur seule.
+
+## X.2 — Tableau consolidé des six onglets de la navigation basse
+
+| Rang | Icône illustrée | Page observée | Etat actif observé |
+|---:|---|---|---|
+| 1 | Poing | Accueil, série, défi en cinq étapes | Poing rouge |
+| 2 | Epées croisées | Parties, régions, ligues, classement annuel | Epées rouges |
+| 3 | Livre | Règles, révision, catégories | Livre rouge |
+| 4 | Bloc-notes et crayon | Histoires, Dictées, Correcteur | Bloc-notes rouge |
+| 5 | Signet et cœur | Répéter, mot du jour, outils, favoris | Signet rouge |
+| 6 | Visage stylisé | Profil, indicateurs, badges, offres | Visage rouge |
+
+**La barre est fixe sur les écrans racines et plusieurs sous-pages de favoris**, mais **absente de la sous-page Conjugateur**. Les icônes n'ont **pas de libellé visible** sous elles. Cela rend la signature ludique immédiatement reconnaissable mais peut compromettre la découvrabilité : tester labels accessibles, état actif annoncé, tailles tactiles et différence entre « Accueil » (poing) et « Compétition » (épées).
+
+## X.3 — Défauts vérifiables et risques
+
+- **Titre cassé à l'intérieur d'un mot** : « Définitions s / auvegardées » (54225) et « Corrections / sauvegardée / s » (54227). C'est un défaut net de la combinaison **titre énorme + illustration** dans un hero de largeur insuffisante.
+- **Superposition possible au statut Android** : 54217 montre le haut d'une catégorie derrière l'heure système (similaire à 54205/54207).
+- **Contenu masqué dans l'état courant** : Correcteur (54219), dernière carte de catégorie (54217), dernier mode du Conjugateur (54223), carte commerciale suivante (54233). C'est une observation de clipping sur capture, **pas une preuve qu'aucun scroll ne permet d'y accéder**.
+- **Badges mal alignés** : leurs noms occupent des hauteurs différentes et les montants 0/50/100 ne tombent pas sur la même ligne (54233).
+- **Cadenas sans explication du motif** : deux modes du Conjugateur et au moins deux synonymes (54223/54229), même quand une carte verrouillée est visuellement très attractive.
+- **Carte de demande d'email encombrante** : elle occupe presque la moitié du contenu visible et repousse les synonymes.
+- **Absence de texte sous les six icônes de navigation** : noms accessibles/vocaux et indication d'état non vérifiables.
+- **Réutilisation d'un même sifflet** pour corrections et synonymes : homogénéité graphique, mais pouvoir discriminant des illustrations limité.
+- **Aucune preuve de données persistées** dans les deux bibliothèques vides, malgré leurs libellés ; le cas on/ont a lui une **preuve inter-écran pendant la session**.
+
+**Tests Android recommandés :** largeurs CSS 320/360/390/430, grand texte système 130/200 %, safe-area au haut et au bas, scroll jusqu'au dernier élément, lecteur d'écran, retour Android dans les sous-pages, réouverture d'un favori et reprise de progression. Ne pas copier les coordonnées raster comme unités CSS.
+
+---
+
+# ANNEXE Y — Synthèse des 50 captures et correspondances avec Luxo
+
+## Y.1 — Progressions et ressources distinctes, attestées dans l'ensemble du corpus
+
+| Domaine | Valeur/objet affiché | Sémantique à distinguer |
+|---|---|---|
+| Diagnostic | Niveau « Facile » sur le défi de bienvenue | Niveau attribué après test de placement |
+| Session « Trouve la faute » | Score 0→1→2→3 | Nombre de réussites visibles |
+| Ressource de session | Quatre puis trois cœurs | Vies ou essais, distincts du score |
+| Liste de révision | « On/ont », statut « Erreur récente » | Faiblesse de grammaire conservée dans la session |
+| Notions validées | 0/53, 0/47, 0/77, 0/78 | Progression théorique par famille |
+| Ecriture | 0 « Mot écrit » au profil | Indicateur distinct du nombre de parties |
+| Assiduité | Série de 1 jour | Activité quotidienne |
+| Défi guidé | 1/5 étapes complétées | Découverte du produit |
+| Diamants | Solde 3, récompense annoncée 10 | Ressource virtuelle distincte des macarons |
+| Macarons | Solde 0, seuils de badges 0/50/100 | Ressource de compétition/collection |
+| Scores annuels | Top 20 avec 5134, 3644… | Classement global, unité non confirmée identique aux macarons |
+| Historique | « Moyenne : 3 », date 23/10 | Indicateur de partie récapitulatif |
+| Collection | Badge grenouille coloré, autres grisés | Récompenses attachées au profil |
+
+**Enseignement :** la gamification fonctionne visuellement parce que chaque indicateur est lié à une intention différente. Le risque serait de multiplier ces compteurs sans expliciter leur signification ou sans véritable sauvegarde des événements qui les alimentent.
+
+## Y.2 — Points les plus intéressants pour un audit futur de LuxApp
+
+1. **Boucle d'erreur démontrée** : question fautive → mauvaise réponse → annonce d'ajout → carte « Erreur récente ». Pour LuxApp, relier une erreur réellement persistée à une révision est plus utile que créer un score supplémentaire.
+2. **Trois façons d'entrer dans un apprentissage théorique** : règle à revoir, catégorie à progression, parcours guidé. Conserver les objectifs pédagogiques et le niveau A1.1/A1.2 existants.
+3. **Deux degrés de contenu grammatical** : micro-explication dans l'exercice, fiche détaillée à la demande. La gestion du signet, du lien « Détails » et des erreurs ne devrait pas dupliquer le contenu sous plusieurs formats non maintenus.
+4. **Hub d'écriture lisible** : Histoires, Dictées, Correcteur, chaque fonctionnalité représentée par une carte et une micro-promesse concrète ; leur véritable disponibilité reste à tester.
+5. **Révision quotidienne en contexte** : mot du jour et conjugaison, avec éventuel widget, sans que la quantité de promotions n'éclipse l'activité principale.
+6. **Etat vide actionnable** : « Aucun… pour l'instant » + un CTA qui permet de créer la première donnée ; éviter les fausses données.
+7. **Profil causalement cohérent** : distinction score, notion validée, écriture et série. Ne jamais compter une bonne réponse de placement comme « notion validée » sans règle pédagogique explicite.
+8. **Objets collectés visibles** : badge-grenouille lié au profil et aux seuils macarons ; le bénéfice d'une récompense est matériel et personnel, pas seulement un pop-up.
+9. **Monétisation non invasive dans le profil** : offres après la progression ; néanmoins, cadenas et sollicitation d'email méritent des explications transparentes.
+10. **Vigilance UI Android** : priorité à la lisibilité sans coupure de mots, aux safe areas, aux CTA et au scroll sous la barre fixe. Les captures montrent aussi **des défauts de l'application de référence à ne pas imiter**.
+
+## Y.3 — Cas à vérifier dans le produit source si test interactif possible
+
+- Recherche de règle « on », « ont » et absence de résultat ; filtrage et ouverture.
+- Glissement latéral du rail de révision, retour à une erreur et tri par récence.
+- Fermer l'app puis vérifier la présence d'« On/ont — Erreur récente » ; tester autre appareil.
+- Valider une notion des Accords puis vérifier passage 0/53→1/53, et statut de la règle.
+- Ouvrir Parcours guidés, Histoires, Dictées et Correcteur pour distinguer vues réellement utilisables.
+- Déplier Prémices, ajouter le widget, vérifier le comportement du bouton X de promotion.
+- Toucher mode Aléatoire puis les deux modes avec cadenas ; identifier la raison du blocage.
+- Enregistrer une définition et une correction, puis revenir aux bibliothèques vides.
+- Cliquer sur Ajouter mon email, tester reprise locale/cloud et comportement invité.
+- Lire une fiche de synonymes et le texte d'état verrouillé.
+- Modifier avatar/badge, vérifier effets dans profil et classement ; consulter réglages et offres.
+- Faire une nouvelle partie, contrôler le graphique Moyenne et la mise à jour de date.
+- Tester titres longs, viewport étroit, retour Android, lecteur d'écran, défilement complet.
+
+## Y.4 — Garde-fous du projet LuxApp 2.1
+
+Ce document est **un relevé de l'application tierce**, pas une instruction de refonte automatique. La branche 2.1 reste régie par PLAYBOOK.md, AGENTS.md, docs/CHARTE_UI_2.1.md, docs/DESIGN_SYSTEM.md et les tests documentés. La charte LuxApp conserve **fond quasi noir chaud, tonalité ivoire et accent d'action or**. Les exercices actuels, données utilisateur, scores, sauvegardes, examens et contenus luxembourgeois A1.1/A1.2 ne sont pas modifiés.
+
+| Série | Captures | Documentées |
+|---|---|---|
+| 1 | 01–10 : 54135–54153 | Accueil marketing, onboarding, identité |
+| 2 | 11–20 : 54155–54173 | Personnalisation, promesses, essai |
+| 3 | 21–30 : 54175–54193 | Rappel, jeu, score, vies, correction |
+| 4 | 31–40 : 54195–54213 | Fiche détaillée, accueil, défi, ligues, classements |
+| **5** | **41–50 : 54215–54233** | **Règles, écriture, révision, favoris, profil, badges et offres** |
+
+**État documentaire : 50 captures analysées dans un fichier unique. Aucun code, JSON pédagogique ni système de progression LuxApp modifié.**
