@@ -1,6 +1,6 @@
 # LuxApp — Registre des spécifications
 
-Ce répertoire contient **88 fiches de spécification présentes** sur la branche `2.1` (01 à 81 et 87 à 93, au 23 octobre 2026). Les numéros **82 à 86 sont absents** du dépôt : ne pas leur inventer de contenu. Le registre historique ci-dessous n'indexe pas encore toutes ces fiches. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+Ce répertoire contient **88 fiches de spécification présentes** sur la branche `2.1` (01 à 81 et 87 à 93, au 23 octobre 2026). Les numéros **82 à 86 sont absents** du dépôt : ne pas leur inventer de contenu. Le tableau ci-dessous indexe **toutes les fiches actuellement présentes** ; leur statut est une information documentaire, pas une preuve de recette. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
 > **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; les fiches 35 à 37 sont implémentées (recette à confirmer) ; la fiche 38 décrit le correctif d'historique après confirmation de l'introduction et rattrapage des erreurs. La fiche 39 optimise l'outillage de tests ; la fiche 40 est implémentée (recette Android à confirmer) ; la fiche 41 est implémentée (recette Android à confirmer) ; la fiche 42 est implémentée (validation Android à confirmer) ; la fiche 43 décrit le mode de recette visuelle rapide à développer. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
@@ -90,24 +90,27 @@ Ce répertoire contient **88 fiches de spécification présentes** sur la branch
 | 73 | [Corriger les faux absents LOD et améliorer les correspondances audio](./SPEC-73.md) | P1 | Phase B livrée par lots — corrections orthographiques en attente de décision |
 | 74 | [Résultat d'annale : Terminer prioritaire, Refaire ce sujet secondaire](./SPEC-74.md) | P2 | Implémentée — recette Android à confirmer |
 | 75 | [Cours des leçons 1–3 : Règles / Lexique / Phrases](./SPEC-75.md) | P1 | À implémenter — maquette leçon 2 déposée |
+| 76 | [Progression en mode invité](./SPEC-76.md) | — | Implémentée sur v2 — recette Android à confirmer |
+| 77 | [Accueil invité stable sur Android](./SPEC-77.md) | — | Implémentée sur v2 — recette Android à confirmer |
+| 78 | [Salutations alternatives](./SPEC-78.md) | P1 | Implémentée sur v2 — recette Android à confirmer |
+| 79 | [Leçon 0 : prononciation LOD](./SPEC-79.md) | — | Implémentée sur v2 — recette Android à confirmer |
+| 80 | [Audit pédagogique leçon 0](./SPEC-80.md) | — | Implémentée sur v2 — recette Android à confirmer |
+| 81 | [Lecture audio en quiz](./SPEC-81.md) | — | Implémentée sur v2 — recette Android à confirmer |
 | 87 | [Stabilisation UX des exercices sur mobile (branche 2.1)](./SPEC-87.md) | P1 | Implémentée — recette Samsung à faire |
+| 88 | [Accueil fixe, Jeux et Survie](./SPEC-88.md) | — | Première version 2.1 — recette à confirmer |
+| 89 | [Deux modes Survie et compétition](./SPEC-89.md) | P1 | Conception non implémentée — révisée par SPEC 92 |
+| 90 | [Roguelite, pouvoirs et Tempête](./SPEC-90.md) | P1 | Candidats non implémentés — révisés par SPEC 92 |
+| 91 | [Simulation et équilibrage autonome](./SPEC-91.md) | P1 | Simulateur V0 indépendant en CI, à aligner sur SPEC 92 |
+| 92 | [Survie Feu et Tempête](./SPEC-92.md) | P1 | Étape 1/4 codée — recette Samsung à faire |
+| 93 | [PWA hors ligne](./SPEC-93.md) | — | Proposition à implémenter — non développée |
 
-## Fiches existantes non indexées dans le tableau historique
+## Précautions de lecture
 
-Ces huit fiches existent sur `2.1` ; consulter chacune pour son statut précis avant de la déclarer validée.
-
-| ID | Fiche |
-|---|---|
-| 76 | [Progression du mode invité](SPEC-76.md) |
-| 77 | [Accueil invité stable](SPEC-77.md) |
-| 78 | [Salutations alternatives](SPEC-78.md) |
-| 79 | [Leçon 0 et prononciation LOD](SPEC-79.md) |
-| 80 | [Audit pédagogique de la leçon 0](SPEC-80.md) |
-| 81 | [Lecture audio en quiz](SPEC-81.md) |
-| 88 | [Accueil fixe, Jeux et Survie](SPEC-88.md) |
-| 93 | [PWA hors ligne, projet](SPEC-93.md) |
-
-**Hygiène documentaire :** consolider un jour le registre avec des statuts vérifiés plutôt que supprimer des fiches historiques ou confondre présence et validation.
+- Les fiches 01–22 reconstruisent en partie des décisions antérieures ; vérifier le code de la branche réellement visée avant toute modification.
+- La SPEC 65 est **remplacée par la SPEC 66** ; elle reste dans la numérotation pour l'historique.
+- Les SPEC 89 et 90 sont des **conceptions futures**, révisées par la SPEC 92. La SPEC 91 est une simulation qui ne vaut pas comportement du jeu public.
+- Les numéros 82 à 86 sont absents de l'arbre de fichiers actuel, **sans conclusion sur leur existence historique**.
+- Le préfixe `v2` d'une fiche ancienne ne signifie pas validation du comportement ou des styles sur la branche `2.1`.
 
 ## Gestion des changements
 
@@ -124,11 +127,8 @@ Ces huit fiches existent sur `2.1` ; consulter chacune pour son statut précis a
 - [Tests du projet](../../tests/README.md)
 - [Code `v2`](https://github.com/aym2020/LuxApp/tree/v2/public)
 
-## Évolution Survie 2.0 — cadrage (branche 2.1)
+## Évolution Survie 2.0 — rappel
 
-| 89 | [Deux modes Survie : Mes mots / Arène et leaderboard](./SPEC-89.md) | P1 | À faire — révisée par SPEC 92 |
-| 90 | [Roguelite : pouvoirs, builds, combos, Tempête](./SPEC-90.md) | P1 | À faire — révisée par SPEC 92 (passifs uniquement) |
-| 91 | [Simulateur massif et arbitrage d'équilibrage](./SPEC-91.md) | P1 | Simulateur V0 exécuté en CI (64 000 parties) ; à aligner sur SPEC 92 |
-| 92 | [Feu et Tempête : passifs, surchauffe, VFX en 4 étapes](./SPEC-92.md) | P1 | Étape 1/4 implémentée — recette Samsung à faire |
+Pour les règles actuellement implémentées, lire [SPEC 88](SPEC-88.md). Les [SPEC 89](SPEC-89.md) et [SPEC 90](SPEC-90.md) décrivent des projets non livrés dont une partie a été remplacée par [SPEC 92](SPEC-92.md). Le simulateur indépendant est documenté dans [SPEC 91](SPEC-91.md). **Ne jamais confondre une règle simulée et le jeu réel.**
 
-Ces fiches sont distinctes de la SPEC 88 actuellement déployée. Ne jamais confondre règles simulées et règles de production.
+Retour à l'[index de la documentation](../README.md).
