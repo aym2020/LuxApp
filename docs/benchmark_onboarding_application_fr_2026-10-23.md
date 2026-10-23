@@ -2,7 +2,7 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 85 captures Android distinctes : séries 1–7 = 69 ; annexe AM = 54324.jpg (1) ; série 8, partie 1 = 9 inédites, 54304–54322 ; série 8, fin de partie = 6 inédites, 54326–54336. La capture 54324.jpg présente dans le lot précédent reste comptée une seule fois. Annexes A–AM historiques, AN–AR première partie rapide, AS–AW fin de partie.  
+**Corpus :** 92 captures Android distinctes : séries 1–7 = 69 ; annexe AM = 54324.jpg (1) ; série 8 = 15 inédites (54304–54322 et 54326–54336) ; série 9 = 7 nouvelles captures (54338–54350) de la bibliothèque de règles, du cours « Quelle/qu'elle » et de son quiz. La capture 54324.jpg présente dans le lot 8 reste comptée une fois. Annexes A–AW historiques, AX–AZ nouvelle série.  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md accessible et consulté sur 2.1 lors de la vérification du 23 octobre 2026.**  
 **Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
@@ -4426,3 +4426,141 @@ La **complétude fonctionnelle est meilleure qu'avec la partie 1 de la série 8*
 Pour la **partie rapide**, le **résultat final, la série et l'accusé de signalement sont maintenant couverts**. Les angles manquants les plus intéressants restent : **une sélection de 1 à 4 règles**, l'état initial **« Choisis le bon »**, l'état après correction partielle d'un homophone à plusieurs blancs, **un bilan avec une règle classée « À revoir »**, une relance de la même partie après signalement et le comportement après notification activée/refusée. Un suivi de signalement sur plusieurs jours permettrait d'évaluer l'engagement de correction, mais aucun écran ne le démontre actuellement.
 
 **Statut :** relevé UX et recommandations uniquement. **85 captures distinctes** au total. Aucune modification du code ou des données LuxApp ; aucun test applicatif nécessité pour cette modification documentaire.
+
+
+
+---
+
+# ANNEXE AX — Catalogue de règles et parcours théorique : série 9, captures 86–90
+
+**Série observée :** sept captures Android distinctes fournies le 23/10/2026, vers 15 h 58–15 h 59 : **54338.jpg, 54340.jpg, 54342.jpg, 54344.jpg, 54346.jpg, 54348.jpg, 54350.jpg**. Chaque JPEG mesure **709 × 1536 px [MESURÉ]**. Cette séquence porte sur l'accès à une règle, sa présentation théorique, le déclenchement de son quiz et une erreur de compréhension du libellé. Elle ne démontre pas la réalisation d'une **partie de révision déclenchée par « erreur récente »** : la règle consultée est marquée **« Non vue »**.
+
+| N° corpus | Capture | Écran et observation principale |
+|---:|---|---|
+| **86** | **54338.jpg** | Onglet **Les règles**, recherche, liste de révision horizontale, carte **« Quelle » ou « qu'elle » ? — Non vue**, entrée Parcours guidés |
+| **87** | **54340.jpg** | Défi de bienvenue : **3. Faire une partie révision** coché ; étapes **4. Dictée**, **5. Écriture libre** encore proposées ; récompense 10 diamants |
+| **88** | **54342.jpg** | Catégories : Accords **0/53**, Conjugaison **0/47**, Confusions fréquentes **3/77** notions ; carte Mauvais usages en bas |
+| **89** | **54344.jpg** | Ouverture règle **« Quelle » ou « qu'elle » ?**, difficulté **Facile**, bouton signet, haut de la théorie |
+| **90** | **54346.jpg** | Fin de la théorie, cas de **double lecture**, astuce de substitution, CTA **Faire le quiz** |
+| **91** | **54348.jpg** | Quiz de **8 questions**, réussite d'un exemple de complétion « Je pense qu'elle a raison de refuser » |
+| **92** | **54350.jpg** | **7e question du quiz**, mauvaise réponse sur une consigne métalinguistique insuffisamment contextualisée |
+
+## AX.1 — Page « Les règles » (capture 86)
+
+**Header intégré au scroll :** large bandeau bleu plus clair sur le fond nuit, grand titre sans-serif blanc **« Les règles »**, sous-titre **« revois les bases »** plus petit et visuel de livres superposés en haut à droite. Sous le bandeau, champ de recherche filaire **« Rechercher une règle »**, loupe à droite, et **bouton signet** séparé, carré arrondi. En dessous, titre serif blanc **« Liste de révision »** et **carrousel horizontal** de cartes surélevées ; la carte visible **« « Quelle » ou « qu'elle » ? »** porte une pastille sombre **« Non vue »** et chevron blanc. Une deuxième carte est partiellement visible sur la droite, montrant le débordement horizontal. Section **« Parcours »**, carte avec Momo en vignette et intitulé **« Parcours guidés — Progressez étape par étape »**. Plus bas, « Catégories ».
+
+**Navigation :** une barre fixe à six icônes illustrées reste visible au bas : le **livre rouge** indique l'onglet actif. Le CTA des cartes n'est pas un bouton vert mais **l'ensemble de la carte**, avec chevron directionnel. Fond des cartes ≈ **#1C314E** et arrière-plan ≈ **#0C1524** [pixels échantillonnés, non tokens officiels].
+
+**Note UX :** les étiquettes **« Non vue »** dans la **liste de révision** semblent contre-intuitives si la section était exclusivement issue d'erreurs. L'écran ne montre pas pourquoi une règle est proposée ; cette liste peut agréger différents états (hypothèse non vérifiée).
+
+## AX.2 — Défi de bienvenue (capture 87)
+
+Capture en position de scroll avancée. La carte du défi contient :
+- **Étape 3 « Faire une partie révision »** : bordure **verte** et **coche verte** ; description *« Elles sont personnalisées par Momo en fonction de tes dernières erreurs. »* ; objectif précédé d'une cible verte : **« Ne plus jamais refaire les erreurs »**.
+- **Étape 4 « Faire une dictée »** : carte bleu ardoise à bordure **turquoise claire**, chevron, description *« Des dictées rapides, modernes et ciblées sur tes points faibles. »* ; objectif **« Se tester sur les règles apprises »**.
+- **Étape 5 « Écriture libre »** : même construction, explication *« Écris librement sur un thème qui te plaît et reçois les conseils de Momo sur ton orthographe mais aussi ton style. »* ; objectif **« Travailler son style et sa clarté »**.
+- **Bas de la carte :** icône diamant turquoise, **« 10 diamants à récupérer »**, texte **« Complète toutes les étapes pour récupérer ta récompense ! »**.
+
+**Information nouvelle :** l'étape 3 est déclarée **réalisée** (elle était auparavant présentée comme à faire) ; cela n'établit **pas** quelles questions ont été rejouées ni la logique interne des révisions. Le parcours d'accueil fait désormais le pont entre **entraînement, dictée, écriture libre et récompense**.
+
+**Technique visuelle :** badge/coche + titre + description *italique turquoise* + objectif accompagné d'une petite cible ; cartes successives à fond homogène avec distinction **complété/non complété** surtout par couleur et icônes ; numéros 3, 4, 5 visibles ; chevrons à droite ; navigation en bas toujours persistante.
+
+## AX.3 — Catégories et progression par notions (capture 88)
+
+Écran scrollable en pleine hauteur, titre serif **« Catégories »** en blanc. Cartes grand format, arrondies, fond gris-bleu clair par rapport au fond principal. Chacune contient **titre sans-serif blanc gras**, courte description, **barre horizontale de progression sombre**, puis **compteur turquoise** et chevron à droite :
+
+- **Les accords : 0/53 notions** ; « Les accords des noms, des adjectifs, en nombre et en genre. »
+- **La conjugaison : 0/47 notions** ; « La conjugaison des verbes en général. »
+- **Confusions fréquentes : 3/77 notions** ; description relative aux mots voisins du type **« censé » et « sensé »** ; **courte section verte** sur la barre.
+- **Les mauvais usages** : carte partiellement visible, **compteur hors champ** ; ne pas inventer.
+
+**Comparaison au corpus antérieur :** la catégorie **Confusions fréquentes** apparaissait auparavant avec **0/77**. On observe désormais **3/77**, sans prouver quelles actions précises ont modifié le compteur. Cela suggère une dimension de progression au niveau de **notions consultées/validées**, distincte des simples scores d'une partie.
+
+# ANNEXE AY — Fiche de cours « Quelle » / « qu'elle » et quiz intégré
+
+## AY.1 — Haut de la règle (capture 89)
+
+**Navigation :** retour simple **flèche gauche blanche**, grand header bleu haut avec titre sans-serif blanc **« « Quelle » ou « qu'elle » ? »** centré, qui occupe plusieurs lignes selon l'espace. À la transition vers le fond nuit, **pastille de difficulté verte « Facile »** alignée à gauche, **signet dans un disque bleu-gris** à droite (action de sauvegarde supposée, non exercée ici).
+
+**Pédagogie visible :** titre serif **« Explications »** ; texte introductif blanc : **« Deux orthographes, un seul son. Un seul test les sépare, et il marche à tous les coups. »** Sous-titre serif **« « Quelle » : le déterminant »**. Définition **« Il accompagne un nom et sert à interroger ou à s'exclamer. Le nom est juste à côté. »**. Trois exemples à puces, accentuation turquoise pour le mot cible :
+- « Quelle heure est-il ? »
+- « Quelle chance tu as ! »
+- « Je ne sais pas quelle route prendre. »
+
+Début de la section suivante **« « Qu'elle » : deux mots »** visible en bas : c'est « que » élidé devant le pronom « elle ». Pas de CTA sur cet état du haut ; lecture par scroll vertical.
+
+## AY.2 — Bas de la règle (capture 90)
+
+Texte [VU] : **« Quelques phrases s'écrivent des deux façons, avec deux sens différents. Là, aucune règle ne tranche : c'est ce que tu veux dire qui décide. »** Deux exemples contrastés :
+- **« Dis-lui quelle est la meilleure »** : laquelle des deux ?
+- **« Dis-lui qu'elle est la meilleure »** : fais-lui ce compliment.
+
+**Carte Astuce** : petite ampoule, titre turquoise en capitales **« ASTUCE »**, Momo en vignette à gauche, texte principal :
+**« Remplace par « qu'il ». Si la phrase tient, c'est qu'elle en deux mots. Sinon c'est quelle, et un nom l'accompagne. »**
+
+En bas après un espace de respiration, titre serif centré **« Tout est clair ? »** puis **CTA vert fixe ou en bord de fin de contenu « Faire le quiz → »**, grand texte blanc et relief sombre. Un petit **drapeau blanc** est visible au-dessus de cette zone, possibilité d'alerter sur le contenu.
+
+**Analyse du texte pédagogique :** l'heuristique *qu'elle → qu'il* fonctionne bien pour **tester la présence du pronom personnel « elle »** lorsqu'un passage au masculin est grammatical et sémantiquement plausible. Mais **« un seul test marche à tous les coups »** est une promesse trop forte : les phrases peuvent être ambiguës, et le genre ou l'accord des éléments environnants peut demander d'autres transformations. De plus, la formule « sinon c'est quelle et un nom l'accompagne » est trop simplificatrice au regard de l'exemple « Dis-lui quelle est la meilleure », où **« quelle » précède directement « est »**. L'explication devrait distinguer **la construction syntaxique et le sens**, pas uniquement le mot qui suit.
+
+**Mise en page :** beaucoup d'espace vertical entre fin d'explication et CTA ; fond nuit continu sans carte enveloppant tout le texte ; serif pour titres et sous-titres, sans-serif pour paragraphes ; puces turquoise ; italique non dominant ; encadré astuce bleu profond, contour discret, titre en petites capitales, illustration de mascotte ponctuelle.
+
+## AY.3 — Exercice après la théorie, réussite d'un item (capture 91)
+
+Page quiz **sans onglet inférieur**, avec **X blanche** de fermeture, **8 segments horizontaux arrondis** près du haut (le premier vert, les autres gris sombre). Aucune bannière de règle à l'écran et peu de décor.
+
+**Énoncé :** **« Je pense ___ a raison de refuser. »**. Une grande **carte de réponse** porte **« qu'elle »**, entourée de **vert** avec **coche blanche dans un disque vert**. **« Suivant »** dans un grand bouton vert à relief, ancré vers le bas du viewport. Un **drapeau blanc** se trouve au-dessus du CTA sur le côté droit.
+
+La solution est pertinente : **« Je pense qu'elle a raison de refuser. »**. On peut tester **« Je pense qu'il a raison de refuser. »** : substituer « il » à « elle » donne toujours une phrase grammaticalement construite. **[INCONNU]** Le nombre d'options proposé avant réponse et l'ordre des interactions, car seul l'état **post-validation** est montré.
+
+## AY.4 — Mauvaise réponse au septième item (capture 92)
+
+**État :** sept cases déjà traitées **6 vertes puis 1 rouge**, plus **1 grise** (question 8 restante). Le titre de la règle n'est plus affiché ; seule la **X**, les segments et la consigne structurent le haut de page.
+
+**Consigne exacte :** **« Quel mot faut-il essayer à la place pour trancher ? »**
+
+Deux propositions en **grandes cartes bleu très sombre** :
+- **« qu'il »** : **cadre épais vert** et **coche blanche sur disque vert** : bonne option révélée ;
+- **« lequel »** : **cadre épais rouge** et **croix blanche sur disque rouge** : option erronée choisie.
+
+Sous les options, **encart d'explications** bleu ardoise surélevé, titre gras blanc **« Explications »**. Texte :
+**« Si la phrase tient avec « qu'il », c'est qu'elle en deux mots. Sinon, c'est quelle. »**
+
+En bas, pictogramme de drapeau de signalement à droite et grand CTA vert **« Suivant »**.
+
+**Cause de la confusion utilisateur, directement observable :** la consigne est **métalinguistique et elliptique**. Elle **n'indique pas** :
+1. le segment exact qu'il faudrait remplacer (**« qu'elle »** envisagé comme « que + elle ») ;
+2. la phrase support sur laquelle l'essai doit porter ;
+3. le but concret du test (distinguer le pronom élidé *qu'elle* de *quelle*).
+
+La question porte donc sur **le souvenir littéral d'une astuce donnée au cours**, pas sur la compréhension d'une phrase. L'option **« lequel »** ressemble également à un mot utilisé pour tester une construction interrogative, et devient un distracteur trompeur **faute de contexte suffisant**. Ce n'est pas une ambiguïté de correction grammaticale (la réponse attendue *« qu'il »* correspond effectivement à l'astuce de la fiche), mais **un défaut de clarté de la tâche**. L'utilisateur a explicitement indiqué qu'il ne comprenait pas la question après correction.
+
+**Proposition plus fiable pour LuxApp :** montrer une phrase concrète et demander d'identifier la bonne construction, par exemple **« Je pense ___ a raison » : quelle forme complète correctement la phrase ?** (options *qu'elle* / *quelle*). Ensuite proposer l'astuce **« Remplace « elle » par « il » : si la phrase reste correcte, « qu'elle » est formé de deux mots »** comme renforcement, et non comme unique compétence évaluée. Alternative si l'astuce elle-même est la compétence visée : **« Pour vérifier si « qu'elle » contient le pronom « elle », par quel pronom masculin peut-on remplacer « elle » ? »** (réponse *il*), avec une phrase de démonstration.
+
+**Risque produit :** un quiz de huit questions peut être globalement réussi (six bonnes réponses sur sept traitées) tout en sanctionnant une incompréhension de **la consigne**, pas du phénomène linguistique. La barre rouge et l'erreur ont un effet de progression même si la notion centrale est comprise. Il ne faut pas transformer l'habileté à mémoriser une formulation pédagogique en score de maîtrise du luxembourgeois.
+
+# ANNEXE AZ — Consolidation UI/UX et questions ouvertes
+
+## AZ.1 — Invariants nouveaux du flux « théorie → quiz »
+
+- **Séparation forte des contextes :** bibliothèque avec nav en bas ; fiche de cours en plein écran avec flèche retour ; quiz en plein écran avec **X**, jauge et CTA fixe.
+- **Accès direct à l'action :** fin d'un article long avec question de transition **« Tout est clair ? »** puis bouton **« Faire le quiz »**, sans étape intermédiaire visible.
+- **Niveau affiché dans la fiche :** badge **« Facile »**, distinct des statistiques de catégorie **0/53, 0/47, 3/77**.
+- **Gestion d'état visuelle :** réussite en vert (contour et coche), erreur en rouge (contour et croix), jauge par **8 items** et boutons volumineux adaptés au doigt.
+- **Bouton de signalement jusqu'au quiz :** drapeau dans les états de réponse, y compris lorsque la question est incomprise.
+- **Mascotte surtout en contexte de conseil :** vignette dans l'encadré Astuce, pas de mascotte envahissante sur chaque question.
+
+## AZ.2 — Vérification du comptage et progression
+
+**Corpus : 92 captures distinctes** (85 antérieures + 7 nouvelles, aucun doublon connu). Cette série n'apporte **pas** de preuve directe sur : le huitième item du quiz, le **bilan ou taux de réussite final** du module, une éventuelle validation de notion, la transformation du statut **« Non vue »** en **« Vue »**, ou le déclenchement d'une **partie de révision depuis une erreur récente**. La capture 87 montre seulement que l'onboarding signale **« Faire une partie révision »** comme accompli.
+
+**Prochain écran prioritaire pour le suivi :** **question 8/8 puis écran de résultat et retour à la carte de règle** afin de comprendre l'effet du quiz sur le statut et le progrès. Pour fermer ensuite la TODO P0 révision : **partie réellement ouverte depuis une règle marquée « Erreur récente »**, avec son bilan.
+
+## AZ.3 — Liens avec les choix LuxApp
+
+- Conserver les **explications contextuelles en deux niveaux**, mais éviter les règles absolues infondées ou incohérentes avec les exemples.
+- Tester le **texte des consignes auprès d'un débutant** et confronter ce que mesure le score avec l'objectif pédagogique réel.
+- Préférer une **question illustrative** à une consigne abstraite sur une technique grammaticale ; cela est particulièrement important pour le français → luxembourgeois A1.1/A1.2.
+- Les segments progressifs et les couleurs sont intéressants, mais les verdicts doivent rester **compréhensibles sans couleur**, et les bons choix ne doivent pas être confondus avec l'erreur de l'apprenant.
+- Respecter **la charte UI 2.1 actuelle**, le moteur et la progression existants ; ceci est une **observation de référence**, pas une demande de clonage de l'interface.
+
+**Statut :** ajout documentaire uniquement ; aucune modification du code, des données pédagogiques ou du moteur de progression de LuxApp. Sources GitHub reconsultées : PLAYBOOK.md sur main/2.1, AGENTS.md, docs/CHARTE_UI_2.1.md, docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md, benchmark et TODO d'origine.
