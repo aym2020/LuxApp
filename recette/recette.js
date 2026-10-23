@@ -183,6 +183,7 @@ function ouvrirRecette() {
       '<div id="rec-criteres" class="recette-criteres" aria-live="polite"></div>' +
       '<button class="pc-btn primary wide big" id="rec-voir" onclick="recVoir()">Voir cet écran →</button>' +
       '<button class="pc-btn ghost wide" onclick="recQuitter()">Quitter le test</button>' +
+      (recAdresseRetour() ? '<button class="pc-btn ghost wide" onclick="recRetourLuxApp()">Retour à LuxApp</button>' : '') +
       '<p class="recette-note" id="rec-duree"></p>' +
     '</div>', 'Outils de test');
   recMajEcrans(choix.ecran, choix.scenario);
@@ -558,6 +559,16 @@ function recJouerExamen(sujet, def) {
   examPart = exam.parties.length - 1;
   examFinish();
   if (def.filtre) examSetFilter(true);
+}
+
+// ─── RETOUR VERS LUXAPP (LUXAPP_URL côté serveur) ───────────────────────────
+function recAdresseRetour() {
+  return (window.APP_CONFIG && window.APP_CONFIG.RETOUR_LUXAPP) || null;
+}
+
+function recRetourLuxApp() {
+  const url = recAdresseRetour();
+  if (url) window.location.href = url;
 }
 
 // ─── SORTIE ─────────────────────────────────────────────────────────────────

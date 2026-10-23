@@ -332,8 +332,25 @@ function ouvrirPlus() {
     lignes.map(x => '<button class="plus-ligne" onclick="fermerPanneau(); ' + x[3] + '">' + x[0] +
       '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
       '>' + escHtml(x[2]) + '</small></span></button>').join('') +
+    // Ne pas fermer le panneau ici : le Retour doit revenir à Plus.
+    (lienRecettePourMoi() ? '<button class="plus-ligne" onclick="ouvrirRecetteDistante()">' + ICONES.cible +
+      '<span><b>Outils de test</b><small>Recette privée, progression fictive</small></span></button>' : '') +
     '<div class="plus-version">LuxApp <b>2.1</b></div>';
   ouvrirPanneau(html, 'Plus');
+}
+
+// Ligne visible uniquement pour les UID Firebase définis dans RECETTE_ACCES.
+// La sécurité réelle est le mot de passe de l'instance dédiée.
+function lienRecettePourMoi() {
+  const lien = window.APP_CONFIG && window.APP_CONFIG.LIEN_RECETTE;
+  const utilisateur = fbAuth && fbAuth.currentUser;
+  if (!lien || !utilisateur) return null;
+  return lien.uids.includes(utilisateur.uid) ? lien.url : null;
+}
+
+function ouvrirRecetteDistante() {
+  const url = lienRecettePourMoi();
+  if (url) window.location.href = url;
 }
 
 // ─── PANNEAU QUI MONTE DU BAS (commun) ──────────────────────────────────────

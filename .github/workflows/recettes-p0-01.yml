@@ -2,9 +2,15 @@ name: Recettes P0-01 sur véritable moteur (3001)
 on:
   push:
     branches: ['2.1']
+  pull_request:
+    branches: ['2.1']
     paths:
       - 'recette/**'
       - 'tests/test_recette_visuelle.py'
+      - 'tests/test_acces_recette.py'
+      - 'server.js'
+      - 'public/accueil.js'
+      - 'public/cloud.js'
       - '.github/workflows/recettes-p0-01.yml'
       - 'public/parcours.js'
       - 'public/index.html'
@@ -31,3 +37,4 @@ jobs:
           LUX_TESTS=1 PORT=3456 node server.js > /tmp/lux-tests.log 2>&1 &
           for i in $(seq 1 50); do curl -sf http://localhost:3456/ > /dev/null && break; sleep .2; done
           python tests/test_recette_visuelle.py
+          python tests/test_acces_recette.py
