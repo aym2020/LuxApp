@@ -2,10 +2,10 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 60 captures Android en six séries, fichiers 54135.jpg à 54253.jpg (noms impairs successifs). Séries 1–4 : sections 1–10 et annexes A–S ; série 5 : annexes T–Y ; série 6 : annexes Z–AE (offres, compétition chronométrée, compte, écriture, Premium, catalogue filtrable).  
+**Corpus :** 69 captures Android en sept séries, fichiers 54135.jpg à 54271.jpg (noms impairs successifs). Séries 1–6 : sections 1–10 et annexes A–AE ; série 7 : annexes AF–AL (règle détaillée, conjugateur, niveaux, clavier Samsung, feedback, tableau et favoris).  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, AGENTS.md, charte UI 2.1, design tokens et frontend de 2.1 consultés  
-**Périmètre :** onboarding, essais et offres Premium, test de placement, jeu et corrections, fiches de règles, accueil, défis, compétition et salle d'attente, jeu chronométré, écriture, révision, sauvegardes, profil, badges et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
+**Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
 
 ## 0. Convention de preuve
 
@@ -3595,3 +3595,305 @@ Les captures 51–60 ferment de nouvelles boucles de compréhension :
 | **6** | **51–60 (54235–54253)** | **Offres, salle d'attente, manche en temps limité, sortie, compte, modes, écriture, Premium et catégories** |
 
 **Statut documentaire : 60 captures analysées dans le même fichier. Aucune modification de code, de JSON de leçon ni de données de progression LuxApp.**
+
+
+
+---
+
+# ANNEXE AF — Série 7 : fiche grammaticale, conjugateur et clavier Android (captures 61–69)
+
+**Observation du 23 octobre 2026 — branche 2.1.** La série comporte **9 captures** (pas 10) : 54255.jpg, 54257.jpg, 54259.jpg, 54261.jpg, 54263.jpg, 54265.jpg, 54267.jpg, 54269.jpg, 54271.jpg. Dimensions des neuf images contrôlées : **709 × 1536 pixels**. Le corpus atteint **69 captures**.
+
+**Conventions de preuve :** **[VU]** élément ou texte présent dans l'image ; **[MESURÉ]** couleur lue sur le JPEG (ne pas la traiter comme un token officiel) ; **[ESTIMÉ]** position approchée sur l'image raster, jamais une valeur CSS/dp ; **[INFÉRENCE]** comportement suggéré, non directement testé ; **[INCONNU]** information non attestée. Aucune supposition sur l'implémentation interne, les appels réseau, les mécanismes de sauvegarde ou la vérification d'une réponse non photographiée.
+
+| Numéro | Fichier | Écran et état | Observation nouvelle |
+|---:|---|---|---|
+| **61** | **54255.jpg** | Fiche Expert, accord du participe passé | Article grammatical détaillé, hyperliens, signet |
+| **62** | **54257.jpg** | Conjugateur, mode Aléatoire | Choix 5/10/20 questions et niveau Débutant |
+| **63** | **54259.jpg** | Filtre de difficulté ouvert | Bottom sheet à quatre valeurs, sélection Débutant |
+| **64** | **54261.jpg** | Conjugateur, question 1/5 avant clavier | Input, aide, touche de validation grisée, touches accentuées |
+| **65** | **54263.jpg** | Même question, clavier Samsung ouvert | Carte compacte, consigne masquée, accents remontés |
+| **66** | **54265.jpg** | Même question validée | « (vous) ✓ appuyez », segment vert, accès au tableau |
+| **67** | **54267.jpg** | Modal « appuyer » | Tableau par temps et personne, Présent / Imparfait |
+| **68** | **54269.jpg** | Question 2/5 non répondue | « préciser au impératif passé », « nous », placeholder |
+| **69** | **54271.jpg** | Définitions sauvegardées | Variante d'état vide avec deuxième action de révision |
+
+---
+
+# ANNEXE AG — Fiche de règle complète et lien avec le catalogue
+
+## AG.1 — Capture 61 (54255) : « Ils se sont donnés rdv » ou « Ils se sont donné rdv » ?
+
+Cette fiche est la suite du **deuxième item Expert sans verrou Premium** du catalogue « Les accords » vu à la capture 60. La séquence catalogue → fiche est très fortement suggérée ; le tap lui-même n'a pas été filmé.
+
+**En haut [VU] :**
+- Bandeau **bleu plus clair que le fond nuit** sur la partie supérieure de la page.
+- **Flèche Retour simple blanche**, sans disque, située près du coin supérieur gauche, variante notable par rapport aux retours circulaires des autres menus.
+- Question en **très grande sans-serif blanche grasse**, sur deux lignes :
+  **« "Ils se sont donnés rdv" ou "Ils se sont donné rdv" ? »**
+- En chevauchement au pied du bandeau, **badge rectangulaire arrondi « Expert »** à gauche.
+- À droite, **bouton rond bleu avec pictogramme signet filaire blanc**. L'interface promet un mécanisme de favoris, mais **aucune activation ni sauvegarde durable n'est observée**.
+
+**Dans le corps [VU] :**
+- Gros titre **serif blanc « Explications »**.
+- Premier paragraphe, texte exact :
+  **« On écrit « ils se sont donné rendez-vous », sans s. Avec les verbes pronominaux, l'accord dépend du rôle de « se ». »**
+- La solution est en **turquoise gras** ; **« verbes pronominaux »** en turquoise **souligné**, comme un lien contextuel. Le soulignement est important : il distingue un mot explicatif mis en valeur d'un terme cliquable.
+- Sous-titre **serif blanc « Ce qu'est un verbe pronominal »**.
+- Paragraphe :
+  **« C'est un verbe construit avec se : se laver, se parler, se souvenir. Ils se conjuguent tous avec « être », mais l'accord ne suit pas la règle de « être ». »**
+- Le mot « se » est en **turquoise gras** dans l'incipit du paragraphe.
+- Sous-titre suivant **« Il y a accord quand « se » subit l'action »**, visible au bas de la capture ; le texte qui suit est **hors champ**.
+
+**Géométrie raster indicative [ESTIMÉ] :** hero x≈0–709/y≈0–482 ; flèche x≈32–73/y≈108–150 ; titre x≈43–662/y≈210–336 ; badge Expert x≈31–202/y≈458–516 ; signet x≈580–663/y≈438–520 ; titre Explications x≈31/y≈599–657 ; premier paragraphe y≈709–901 ; sous-titre Ce qu'est… y≈976–1065 ; second paragraphe y≈1121–1315 ; dernier intertitre autour de y≈1382, proche de la navigation Android.
+
+**Hiérarchie :** titre de problème en sans-serif → indication de niveau → titre de dossier en serif → **solution immédiatement formulée** → définition → règle plus nuancée. Le contenu est un **article scrollable**, pas une succession de cartes indépendantes. **UX favorable** : on ne doit pas deviner la solution avant de recevoir l'explication, elle figure au début. **Limite :** aucune preuve de destination exacte du terme souligné ni du comportement du signet.
+
+**Pour Luxo :** inspirant pour la structure **question concrète → réponse → règle → exemple → approfondissement**, mais les règles françaises sur les verbes pronominaux ne constituent aucune source sur le luxembourgeois. Ne pas les transposer.
+
+---
+
+# ANNEXE AH — Paramétrage du Conjugateur et bottom sheet de niveaux
+
+## AH.1 — Capture 62 (54257) : écran « Nombre de questions »
+
+**Continuité :** le mode **Aléatoire** était la grande carte accessible du Conjugateur en capture 45 ; la présente vue correspond à son paramétrage. Header autonome, **aucun footer à six onglets**.
+
+**Composants [VU] :**
+- Retour gauche **dans un disque bleu** ;
+- titre sans-serif blanc gras **« Nombre de questions »** ;
+- sous-titre **« Aléatoire »** ;
+- capsule de filtre en haut à droite **« Niveau : Débutant ⌄ »** et **pastille verte pleine** ;
+- instruction **« Choisis le nombre de questions : »** ;
+- trois énormes cartes bleu-gris, bords et coins arrondis :
+  **« 5 questions »**, **« 10 questions »**, **« 20 questions »**.
+- Nombre 5/10/20 **bien plus grand** que le mot « questions », les deux éléments centrés verticalement dans chaque carte.
+
+**Mesures [ESTIMÉ] :** retour x≈31–106/y≈118–191 ; titre x≈151–636/y≈110–159 ; capsule x≈310–677/y≈242–314 ; consigne y≈372–414 ; carte 5 x≈31–678/y≈468–779, hauteur ~311 ; carte 10 y≈813–1123 ; carte 20 commence y≈1155 et se poursuit sous le viewport. Les cartes ne sont pas des petites radios : **la zone entière est un bouton tactile large**.
+
+**Interaction [INFÉRENCE] :** sélectionner le nombre semble déclencher directement la session ; aucun bouton « Valider » n'est visible et la question 1/5 est capturée ensuite. Le choix de niveau est **indépendant de la durée de la série**, au moins visuellement.
+
+## AH.2 — Capture 63 (54259) : « Filtrer par niveau »
+
+Le même écran est recouvert d'un **scrim noir translucide**. Une **bottom sheet pleine largeur** en bleu sombre monte depuis le bas ; coins supérieurs très arrondis, petite **poignée horizontale** gris-bleu, titre centré en blanc gras **« Filtrer par niveau »**.
+
+Quatre **choix à la verticale**, avec pastille de couleur à gauche :
+1. **Tous les niveaux** — pastille bleu foncé, texte turquoise/gris.
+2. **Débutant** — pastille **verte**, **état actif** : ligne bleu plus clair bordée, texte gras blanc, **coche blanche à droite**.
+3. **Intermédiaire** — pastille pêche clair, texte turquoise/gris.
+4. **Expert** — pastille rouge, texte turquoise/gris.
+
+**[ESTIMÉ]** Sheet commence vers y≈769 ; poignée x≈328–381/y≈787–796 ; titre y≈860–914 ; quatre lignes environ y≈963–1077, 1092–1214, 1228–1345, 1358–1477.
+
+**Principes UI :** un **segmented/radio panel** amélioré par couleur et coche ; la sélection est expliquée par **trois indices** (pastille, surface surlignée, coche), pas seulement par la couleur. Pas de bouton Appliquer visible ; mise à jour immédiate probable, **non prouvée**. Le panneau conserve le contexte de sélection des questions en arrière-plan. Vérifier le tap hors sheet, le retour Android et la fermeture par glissement.
+
+**Attention sémantique :** Débutant/Intermédiaire/Expert dans le jeu français ne sont pas automatiquement équivalents à Facile dans le placement, ni aux niveaux CECR A1.1/A1.2 de LuxApp. Aucun mapping n'est démontré.
+
+---
+
+# ANNEXE AI — Exercice de conjugaison et adaptation au clavier Samsung
+
+## AI.1 — Capture 64 (54261) : Question 1/5, état initial
+
+**Header [VU] :** **X blanc** à gauche, **« Question 1/5 »** centré, puis **cinq segments gris foncé** alignés (aucun vert). Pas de score, de cœurs ou de minuteur : **troisième HUD de gameplay**, après celui du placement (score + cœurs) et de la compétition (manche + timer).
+
+**Grande carte bleu-gris arrondie** avec tranche/relief inférieur :
+- instruction de conjugaison : **« appuyer à l'impératif présent »** ;
+- **appuyer** en gras ; **« impératif présent »** souligné, possiblement lien pédagogique, et petit **? cerclé** à droite ;
+- au centre, **flèche droite**, puis **« (vous) »** en blanc gras, suivi d'un **champ sous-ligné** à long trait horizontal, avec placeholder gris partiellement visible **« ta… »** (ne pas le confondre avec une valeur réellement saisie) ;
+- bouton de validation **✓ à l'intérieur d'un cercle gris bleuté** à droite ; état visuellement **inactif** ;
+- instruction illustrée d'un mini-pictogramme clavier : **« Touche le champ pour ouvrir le clavier »** ;
+- **clavier d'accents intégré à la carte**, indépendant du clavier système : rangée 1 **é è à ê î â û ô**, rangée 2 **ù ï ç**, chaque touche petite, rectangulaire à coins arrondis, fond sombre et contour gris-bleu.
+
+**[ESTIMÉ]** Header y≈104–143, barre segments x≈31–678/y≈171–203 ; carte x≈16–693/y≈243–913 ; prompt y≈305–343 ; rangée de saisie y≈419–513 ; consigne y≈554–634 ; touches diacritiques y≈693–827.
+
+**Interaction :** l'exercice est en **production écrite**. La personne **(vous)** est un indice de conjugaison et ne doit pas nécessairement faire partie du texte entré. Une aide contextuelle est possible par le temps souligné et l'icône ?, mais **aucun clic sur ces éléments n'est montré**. La consigne invite à toucher le champ avant l'apparition du clavier ; le focus automatique n'est pas démontré.
+
+## AI.2 — Capture 65 (54263) : le clavier rose Android s'ouvre
+
+**Comparatif visuel essentiel pour LuxApp mobile-first :**
+
+| Élément | Clavier fermé (54261) | Clavier ouvert (54263) |
+|---|---|---|
+| « Question 1/5 » et 5 segments | visibles au même endroit | visibles, **position inchangée** |
+| Prompt grammatical | vers y≈305 | **reste au même niveau** |
+| Champ « (vous) » et ✓ | accessibles | **restent accessibles**, au-dessus du clavier |
+| Aide « Touche le champ… » | **visible** | **masquée** pendant la saisie |
+| Clavier d'accents interne | bas de carte, y≈693–827 | **remonté**, y≈559–694 |
+| Bas de carte | environ y≈913 | environ y≈778 : **-135 pixels raster** |
+| Clavier système | invisible | **rose**, y≈883–1444 |
+| Barre Android | navigation standard | navigation sur fond noir, fermeture clavier disponible |
+
+**Fait observable :** l'ouverture du clavier **recompose verticalement la carte**. Le petit texte d'aide disparaît et les accents sont rapprochés de l'input, plutôt que de passer sous le clavier. La hauteur de carte diminue d'environ 135 pixels **dans ces captures raster**, pas d'une valeur CSS démontrée.
+
+Le clavier rose est **un thème choisi sur le smartphone** et ne fait **pas** partie de la palette interne. Les touches de diacritiques de l'app restent visuellement indépendantes et disponibles en plus du clavier système. Les flèches/pronoms/✓ restent visibles.
+
+**Points de recette à retenir :** focus et blur ; insertion des caractères spéciaux **au niveau du curseur** (pas systématiquement à la fin) ; sélection de texte ; touche Entrée ; déplacement de la barre de saisie au-dessus du clavier ; absence de défilement impossible ; pression sur Retour Android lorsque le clavier est affiché ; appareils compacts et fort agrandissement système. On ne peut pas déduire les événements techniques (visualViewport, resize, observer, etc.) de l'apparence.
+
+---
+
+# ANNEXE AJ — Correction positive et tableau de conjugaison sans quitter le jeu
+
+## AJ.1 — Capture 66 (54265) : réussite à Question 1/5
+
+La même question affiche maintenant :
+- **premier segment de progression vert**, quatre suivants gris ; progression de réponse **déjà enregistrée à l'affichage du verdict**, avant le clic sur Suivant ;
+- verbe initial **appuyer** et cible **impératif présent** toujours visibles ;
+- remplacement de la ligne d'input par **« (vous) ✓ appuyez »**, en **vert** pour coche et bonne réponse ;
+- disparition des touches d'accents et de la consigne de clavier ;
+- **nouvelle carte interne** bleu-gris plus clair à coins arrondis :
+  **« → Voir les conjugaisons de appuyer »**, le mot **appuyer** passant sur une deuxième ligne et en gras ;
+- petit **drapeau blanc** de signalement sous la carte, sur le bord droit ;
+- gros bouton vert **« Suivant → »** fixé dans la zone inférieure, avec relief sombre.
+
+**[ESTIMÉ]** segments y≈171–204 ; carte x≈16–693/y≈243–761 ; ligne validée y≈440–498 ; sous-carte x≈51–658/y≈571–708 ; drapeau vers x≈641/y≈796–831 ; CTA x≈43–666/y≈1285–1391.
+
+**Boucle d'interaction observée :** prompt → saisie → verdict **vert**, réponse canonique → lien facultatif vers une fiche structurée → bouton de continuation. Contrairement au mode « Trouve la faute », aucune explication longue n'occupe immédiatement tout l'espace : elle est accessible **à la demande**. Aucun nombre de points, politique d'erreur ou effet sur une maîtrise certifiée n'est montré.
+
+## AJ.2 — Capture 67 (54267) : bottom sheet de conjugaison « appuyer »
+
+**Structure [VU] :** la question validée reste perceptible sous un **fond assombri**, tandis qu'une grande **feuille bleue plein écran en largeur** apparaît depuis environ y≈230, avec coins hauts arrondis et poignée horizontale centrée. Titre blanc gras centré **« appuyer »**, puis fine ligne séparatrice.
+
+**Sections grammaticales :** « **Présent** » puis « **Imparfait** », titres blancs gras alignés à gauche. Chaque forme occupe une **ligne pleine largeur** bleu-gris plus clair, coins arrondis, pronom gris sur la gauche et forme verbale blanche **plus appuyée** à droite. Ce n'est ni un simple texte déroulant ni une image statique : visuellement, une **table paradigmatique**.
+
+**Présent — transcription exacte des formes visibles :**
+
+| Pronom | Réponse |
+|---|---|
+| j' | appuie |
+| tu | appuies |
+| il/elle/on | appuie |
+| nous | appuyons |
+| vous | appuyez |
+| ils/elles | appuient |
+
+**Imparfait — transcription exacte des formes visibles :**
+
+| Pronom | Réponse |
+|---|---|
+| j' | appuyais |
+| tu | appuyais |
+| il/elle/on | appuyait |
+| nous | appuyions |
+| vous | appuyiez |
+| ils/elles | appuyaient |
+
+**[ESTIMÉ]** sheet y≈230–1536, poignée x≈328–381/y≈249–257 ; titre y≈324–374 ; filet y≈417–421 ; Présent y≈461–497 ; six lignes du présent de y≈526 à 968 ; Imparfait y≈1027–1069 ; lignes imparfait dès y≈1090 et jusqu'en bas du viewport.
+
+**UX :** le contexte d'exercice est **préservé derrière la modal**. Le tableau montre **plusieurs temps**, et pas seulement l'impératif demandé par l'exercice : la feuille est une référence générale du verbe. Aucun bouton Fermer visible ; la poignée suggère un glissement possible, mais **fermeture par drag, tap extérieur ou Retour Android à tester**. Le contenu est **long** et rejoint la barre système basse : vérifier scroll interne, padding et restitution de la position après fermeture.
+
+**Distinction des deux types de fiches pédagogiques :** « Explications › Détails » des fautes = **article long**, ici « Voir les conjugaisons » = **tableau**. Le pattern identique est **ouvrir une aide sans quitter l'exercice**, mais il faut respecter la nature des données.
+
+---
+
+# ANNEXE AK — Deuxième question et évolution d'un état vide
+
+## AK.1 — Capture 68 (54269) : Question 2/5, nouvel item
+
+**[VU]** Header **« Question 2/5 »** ; cinq segments dont le **premier est vert**, les quatre autres gris. Cela confirme que l'avancement de la première question demeure actif après « Suivant ».
+
+Carte de même famille (x≈16–693/y≈243–779), prompt exact **« préciser au impératif passé »**. La formulation **« au impératif passé »** est grammaticalement maladroite en français ; transcription conservée, pas corrigée silencieusement. Au centre : flèche et **« nous »** en blanc gras suivi d'un placeholder gris **« ta réponse »**, grand soulignement, ✓ désactivé/grisé à droite. Les touches de diacritiques sont visibles mais **très assombries/désaturées** sur cet état ; cause indéterminée (pas de preuve d'un chargement, d'un état disabled effectif, d'une animation ou d'un focus).
+
+**Point pédagogique à signaler :** associer un sujet/pronom **« nous »** à un exercice d'impératif français et demander « au impératif passé » pose une **question de qualité de l'énoncé** ; la capture ne montre **ni la bonne solution attendue ni le verdict**. Ne pas inventer l'algorithme de conjugaison ou prétendre que la réponse attendue serait valide sans test.
+
+**Flux établi visuellement :** Question 1/5 → ✓ appuyez → ouverture d'une aide générale → Question 2/5. On ne dispose pas de l'image du tap de fermeture de l'aide ni du clic sur Suivant, mais les états montrent que l'utilisateur peut poursuivre.
+
+## AK.2 — Capture 69 (54271) : Définitions sauvegardées, deuxième bouton
+
+Cette capture revient à l'état vide déjà observé en **capture 46** :
+- bandeau bleu, bouton Retour circulaire, illustration du **livre rouge A–Z** ;
+- même défaut de césure **« Définitions s / auvegardées »** ;
+- message **« Aucune définition sauvegardée pour l'instant… »** ;
+- CTA bleu clair **« Commencer une partie »** ;
+- barre d'onglets basse persistante, signet-cœur actif.
+
+**NOUVEAU dans l'état visible :** second CTA **« Revoir les définitions vues »**, plus sombre et un peu moins large, affiché sous « Commencer une partie ».
+
+**[ESTIMÉ]** hero y≈0–278 ; message x≈47–622/y≈370–543 ; CTA principal x≈55–654/y≈608–711 ; **CTA secondaire x≈67–643/y≈765–844** ; footer y≈1320–1446.
+
+**Interprétation :** les notions **déjà vues** semblent constituer une catégorie distincte des définitions **explicitement sauvegardées**. On peut avoir zéro favori mais accéder à un historique de découvertes. **[INCONNU]** raison exacte pour laquelle le second bouton était absent dans la capture 46 : changement de condition, de version, d'état ou apparition après chargement. Ne pas affirmer qu'il apparaît automatiquement après une question réussie.
+
+**Défaut maintenu :** le titre demeure coupé à l'intérieur du mot « sauvegardées ». Le nouveau CTA secondaire améliore néanmoins l'état vide en offrant un accès à l'apprentissage passé.
+
+---
+
+# ANNEXE AL — Relevés visuels, mécanismes et tests prioritaires
+
+## AL.1 — Couleurs RGB mesurées sur les images
+
+Les échantillons ci-dessous ont été obtenus en ouvrant directement les fichiers JPEG fournis, sans OCR. Ils constituent **des valeurs de pixel**, pas la charte officielle de l'application source.
+
+| Image, coordonnée raster (x,y) | HEX [MESURÉ] | Surface |
+|---|---|---|
+| 54255 (350,100) | **#14253F** | Hero de fiche |
+| 54255 (5,800) | **#0C1524** | Fond de lecture |
+| 54255 (615,475) | **#2C4259** | Fond du bouton signet |
+| 54257 (350,500) | **#2C4259** | Carte de quantité |
+| 54257 (5,850) | **#0C1524** | Fond |
+| 54259 (5,550) | **#060B11** | Arrière-plan avec scrim |
+| 54259 (350,810) | **#1A324E** | Feuille de filtre |
+| 54259 (350,1150) | **#334D66** | Option de filtre active |
+| 54261 (350,500) | **#1A324E** | Carte de question |
+| 54261 (600,460) | **#67798F** | Cercle ✓ inactif |
+| 54263 (350,925) | **#F4C1D2** | Clavier système Android, hors design app |
+| 54265 (350,700) | **#334D66** | Carte lien vers conjugaisons |
+| 54265 (430,472) | **#5BD05D** | Texte de solution verte |
+| 54265 (350,1350) | **#1D8D11** | CTA vert |
+| 54267 (5,800) | **#1A324E** | Sheet conjugaison |
+| 54267 (350,1100) | **#334D66** | Ligne de conjugaison |
+| 54269 (350,500) | **#1A324E** | Question 2 |
+| 54271 (350,100) | **#14253F** | Hero favoris |
+| 54271 (5,800) | **#0C1524** | Fond état vide |
+
+**Typographies :** forte **sans-serif arrondie** pour questions, compteurs et choix ; **serif blanc** pour titres d'explications et sous-règles ; soulignements réservés aux notions potentiellement consultables ; turquoise pour termes clés et aides, gris pour indisponibilité, **vert pour validation réussie**. La couleur des touches du clavier système n'appartient pas à l'application.
+
+## AL.2 — Les trois interfaces de progression constatées dans le benchmark
+
+| Jeu | HUD photographié | Signification visible |
+|---|---|---|
+| Placement « Trouve la faute » | score + quatre cœurs | Score et vies |
+| Compétition multijoueur | Manche 1 sur 3 + minuteur circulaire + six segments | Round, temps et progression interne |
+| Conjugateur solo | Question 1/5 + cinq segments, sans temps ni cœurs | Série numérotée de questions |
+
+Ce sont des **patterns visuellement distincts**, même si le style de carte et le bouton de continuation se ressemblent. Ne pas supposer qu'un seul moteur implémente leurs règles.
+
+## AL.3 — Cas de recette pour reproduire ou comparer avec Luxo
+
+| Fonction | Test cible | Critère de qualité |
+|---|---|---|
+| Règle Expert | Ouvrir la fiche puis le signet | Sauvegarde visible et persistante, retour au catalogue |
+| Lien de théorie | Taper un terme turquoise souligné | Destination compréhensible et retour au scroll initial |
+| Choix 5/10/20 | Taper chaque carte dans plusieurs séances | Quantité réellement conforme |
+| Filtre 4 niveaux | Tester Tout/Débutant/Intermédiaire/Expert | Sélection unique, état lisible, contexte préservé |
+| Question 1/5 | Taper dans le champ | Clavier apparaît sans masquer saisie/validation |
+| Diacritiques | Insertion avec curseur au milieu du champ | Respect de la sélection et du focus |
+| Clavier ouvert | Retour Android | Ferme d'abord le clavier sans abandonner la partie |
+| Validateur | Réponse vide/invalide/bonne/mauvaise | Activations cohérentes, pas de double validation |
+| Succès | « appuyez » puis ✓ | Bonne solution + segment vert + Suivant |
+| Tableau | Ouvrir « Voir les conjugaisons » | Lecture du Présent/Imparfait et scroll entier |
+| Sheet | Fermer par geste, Retour ou hors-feuille | Retour à la question/résultat sans perte |
+| Question 2 | Répondre « préciser » | Vérifier l'énoncé et les solutions réelles |
+| Définitions | Bouton « Revoir les définitions vues » | Historique distinct des favoris, même si favoris vides |
+| Responsive | 320/360/390/430 CSS px, texte agrandi | Aucun titre cassé, aucune touche recouverte, safe areas |
+
+## AL.4 — Enseignements pour LuxApp / Luxo, sans intervention sur le code
+
+**Intérêt majeur :** transformer une série de questions en un cycle **réponse → correction immédiatement lisible → fiche ou tableau contextuel à la demande → continuation**, tout en conservant la question et la progression. La séparation entre **notions vues** et **notions sauvegardées** peut également améliorer la révision ciblée.
+
+**Mobile Android :** la réorganisation réelle lors de l'ouverture du clavier est plus importante à reproduire conceptuellement que les couleurs. Maintenir le champ au-dessus de l'IME, raccourcir les aides non essentielles et conserver la validation visible. Prévoir accents utiles uniquement si l'exercice luxembourgeois l'exige.
+
+**Pédagogie :** ne pas copier des conjugaisons françaises vers A1.1/A1.2. Le référentiel luxembourgeois et les conventions existantes dans le dépôt restent prioritaires. Les anomalies « au impératif passé » et les césures de titres du produit tiers servent de **contre-exemples**, non de fonctionnalités.
+
+**Architecture du projet :** benchmark documentaire seulement ; aucune modification du frontend, backend, des exercices, du JSON, des sauvegardes ou de la progression de LuxApp. La branche 2.1 reste gouvernée par PLAYBOOK.md, la charte UI 2.1 et DESIGN_SYSTEM.md consultés sur GitHub.
+
+| Série | Captures | Fichiers |
+|---|---|---|
+| 1 | 01–10 | 54135–54153 |
+| 2 | 11–20 | 54155–54173 |
+| 3 | 21–30 | 54175–54193 |
+| 4 | 31–40 | 54195–54213 |
+| 5 | 41–50 | 54215–54233 |
+| 6 | 51–60 | 54235–54253 |
+| **7** | **61–69** | **54255–54271** |
+
+**Statut : 69 captures documentées dans le benchmark unique, annexes A–AL.**
