@@ -150,6 +150,7 @@ body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu::-webkit-scrollbar {display:none}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-mot {margin:auto 0 0;max-width:100%;gap:6px}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-cases {max-width:100%}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-mot .mc-input {inset:0;width:100%;height:100%}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-lettres {margin-top:0;gap:6px}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-tuile {min-width:44px;height:47px;padding:0 7px}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-info:last-child {margin-bottom:auto}
