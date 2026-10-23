@@ -2,7 +2,7 @@
 
 **Projet destinataire :** LuxApp / Luxo — apprentissage du luxembourgeois pour francophones  
 **Date de l'observation :** 23 octobre 2026  
-**Corpus :** 70 captures Android : 69 captures réparties en sept séries (54135.jpg à 54271.jpg, noms impairs successifs), plus la capture ciblée 54324.jpg. Séries 1–6 : sections 1–10 et annexes A–AE ; série 7 : annexes AF–AL ; contre-exemple pédagogique : annexe AM (« mieux / meilleur »).  
+**Corpus :** 79 captures Android distinctes : séries 1–7 = 69 captures ; annexe AM = 54324.jpg ; série 8 (première partie) = 9 captures inédites de la Partie rapide. Dix captures fournies dans cette série, dont 54324.jpg déjà archivée et non recomptée. Annexes A–AM historiques ; annexes AN–AR : partie rapide et signalement.  
 **Nature du document :** relevé factuel, analyse du parcours observable, hypothèses explicitement signalées ; **aucune spécification de développement validée**  
 **Dépôt de référence :** aym2020/LuxApp ; version initiale sur main, édition enrichie destinée à 2.1 ; PLAYBOOK.md, charte UI 2.1, design system et frontend de 2.1 consultés. **AGENTS.md non accessible au chemin racine (404) lors de cette vérification.**  
 **Périmètre :** onboarding, placement, jeux, compétition, révision, règles détaillées, conjugaison et saisie, écriture, bibliothèque, sauvegardes, profil, badges, offres Premium et catalogue filtrable. Les algorithmes, règles intégrales, accès backend et implémentation du produit tiers ne sont pas disponibles.
@@ -3952,3 +3952,255 @@ Le problème est plus grave qu'une simple maladresse de texte, car il peut conta
 **Exemple d'énoncé français non ambigu pour illustrer le principe, sans le copier en luxembourgeois :** « Après les avoir goûtés, je trouve que ce gâteau a **meilleur goût** que l'autre. » Le critère gustatif y est explicitement fourni. À l'inverse, une question demandant **« mieux » ou « meilleur »** sans contexte suffisamment fort **doit être reformulée ou écartée**, pas simplement assortie d'un corrigé plus affirmatif.
 
 **Statut :** défaut observé dans l'application étudiée et recommandation d'assurance qualité **documentés uniquement**. Aucun code, JSON pédagogique, score ou mécanisme de correction de LuxApp n'est modifié par cette note.
+
+
+
+---
+
+# ANNEXE AN — Partie rapide du menu principal, première série de captures (nouveaux écrans 71–79)
+
+**Observation le 23 octobre 2026, 15 h 25 à 15 h 28 sur captures Android.** Série reçue : 54304.jpg, 54306.jpg, 54310.jpg, 54312.jpg, 54314.jpg, 54316.jpg, 54318.jpg, 54320.jpg, 54322.jpg et 54324.jpg. **Dix fichiers**, tous vérifiés à **709 × 1536 pixels** ; **neuf nouveaux** et **un doublon documentaire** : 54324.jpg correspond à la faute « Ce gâteau est mieux que l'autre », déjà en **annexe AM**. Il n'y a pas de fichier 54308.jpg fourni. **Corpus total : 79 captures uniques**. Cet ensemble représente la **première partie d'une Partie rapide**, pas sa totalité ; l'écran de fin de série de 15 questions n'est pas montré.
+
+**Légende :** [VU] visible ; [MESURÉ] pixels des fichiers JPG ; [ESTIMÉ] position en pixels du raster, non CSS ni dp ; [INFÉRENCE] hypothèse à tester ; [INCONNU] non démontré par captures. Les résultats statistiques sont affichés par le produit étudié, pas vérifiés indépendamment.
+
+| Numéro | Fichier | État |
+|---:|---|---|
+| **71** | **54304.jpg** | Sélection des règles, aucune option cochée, Valider grisé |
+| **72** | **54306.jpg** | Cinq règles choisies, résumé à coches, jauge complète, Valider vert |
+| **73** | **54310.jpg** | Première question de « Trouve la faute », verdict correct, 1/15 |
+| **74** | **54312.jpg** | Explications détaillées sur « il vaut mieux / il faut mieux » en bottom sheet |
+| **75** | **54314.jpg** | Deuxième question, verdict correct, 2/15 |
+| **76** | **54316.jpg** | Troisième question : autre format, « Choisis le bon », 3/15 |
+| **77** | **54318.jpg** | Modal « Signaler un problème », vide, Envoyer désactivé |
+| **78** | **54320.jpg** | Quatrième question : faute « on / ont », réponse incorrecte, 4/15 |
+| **79** | **54322.jpg** | Cinquième question : « Choisis l'homophone », banque de cinq choix |
+| **70** | **54324.jpg** | Capture déjà analysée dans l'annexe AM ; 11/15, erreur « mieux / meilleur » |
+
+# ANNEXE AO — Écran de préparation : sélection de cinq règles
+
+## AO.1 — Capture 71, 54304.jpg : état initial
+
+**Identité :** plein écran fond nuit, aucun onglet de navigation inférieur, titre sans-serif **« Sélection des règles »** en grands caractères blancs gras en haut à gauche ; **X** blanc de fermeture en haut à droite. Sous le titre, **cinq segments horizontaux arrondis**, tous gris à l'état initial. Plus bas, en-tête de section **« Recommandées pour toi : »**. La formule suggère une sélection personnalisée, mais **aucune preuve du calcul des recommandations** n'apparaît.
+
+**Six recommandations visibles [VU] :**
+
+1. **« Il vaut mieux » ou « il faut mieux » ?**
+2. **« On » ou « ont » ?**
+3. **« Qui » ou « que » ? Les relatifs qui, que, où**
+4. **« Meilleur » ou « mieux » ?**
+5. **« Je l'appelle » ou « je lui appelle » ? Le, la, les…** (libellé tronqué)
+6. **« Quelle » ou « qu'elle » ?**
+
+**Cartes de sélection :** grandes cartes bleu ardoise, verticales, pleines largeurs, angles très arrondis, **petite tranche claire inférieure** donnant un aspect tactile. Texte aligné à gauche, assez gros et gras, retour naturel à deux lignes quand le titre est long ; **cercle blanc vide** à droite, très visible. Les hauteurs varient selon la longueur des libellés. Un **fin indicateur de défilement** sur le bord droit signale une liste plus longue.
+
+**CTA :** large bouton **« Valider »** en gris clair, texte blanc désaturé, placé dans une zone basse fixe : état **désactivé visible** en l'absence de sélection. La liste défile derrière/au-dessus du footer.
+
+**Repères raster [ESTIMÉ] :** titre y≈80–124 ; jauge x≈8–700/y≈151–191 ; « Recommandées » y≈290–327 ; première carte x≈47–662/y≈351–512 ; deuxième y≈532–651 ; troisième y≈672–833 ; quatrième y≈852–970 ; cinquième y≈992–1154 ; sixième commence y≈1173 ; CTA x≈28–680/y≈1316–1412. Pas d'icône de recherche visible dans ce cadrage.
+
+## AO.2 — Capture 72, 54306.jpg : état cinq règles choisies
+
+**Transformations directement visibles :**
+- La jauge de **cinq segments devient entièrement vert clair**.
+- Un **récapitulatif sous forme de cinq lignes à coches blanches** s'insère avant la section « Recommandées pour toi ».
+- Ordre affiché dans le récapitulatif : **On/ont**, **Il vaut mieux/il faut mieux**, **Qui/que**, **Meilleur/mieux**, **Je l'appelle/je lui appelle**.
+- Les cartes concernées ont une **coche bleu foncé dans un disque blanc**, alors que les non retenues ont un **cercle vide**.
+- La section recommandations est repoussée vers le bas (environ y≈555), devient partiellement masquée par la limite du viewport.
+- **« Valider » devient vert** avec relief inférieur sombre, texte blanc fortement contrasté. Le bouton reste fixe, accessible au pouce.
+
+**UX :** l'utilisateur dispose d'une confirmation de sélection **à deux endroits** (récapitulatif et cartes). Les cinq étapes vertes traduisent un quota atteint. **[INCONNU]** Valider s'active-t-il dès la première sélection ou seulement à 5 ? L'écran à 1–4 éléments n'est pas donné. **[INCONNU]** L'ordre du récapitulatif est-il l'ordre de sélection, un ordre de pertinence ou une règle métier ? Il diffère de l'ordre de la liste visible. **Point faible potentiel :** l'ajout du résumé modifie sensiblement la position de la liste et peut provoquer des sauts de scroll sur petit écran.
+
+**Lien avec la suite :** après une sélection de **5 règles**, les exercices montrent une barre de **15 questions**. Il s'agit de deux compteurs différents ; une règle qui génère précisément 3 questions n'est **pas démontrée**. Les questions photographiées comportent plusieurs formats, donc il ne s'agit pas nécessairement de 15 fois le même type de question.
+
+# ANNEXE AP — Partie rapide : HUD et questions mélangées dans une même séance
+
+## AP.1 — Anatomie commune du jeu
+
+**En-tête récurrent [VU] :** titre **serif blanc** indiquant le type actuel (« Trouve la faute », « Choisis le bon », « Choisis l'homophone ») ; grande **X** à droite ; **15 pastilles de progression** espacées en ligne. Les pastilles sont **gris sombre** avant traitement, **vertes** après bonne réponse et **rouges** après mauvaise réponse, selon les états comparés. Contrairement au placement, **aucun compteur de cœurs ni score explicite** n'est visible.
+
+**Carte d'exercice :** fond bleu ardoise, angles arrondis, marge latérale étroite ; **bordure et tranche inférieure verte/rouge** en état validé selon le verdict. Elle peut contenir des tuiles de mots, un champ de choix inséré dans la phrase, ou des mots soulignés.
+
+**Après verdict :** petit drapeau de signalement à droite sous la carte ; **« Bravo ! 💪 »** ou **« Eh non ! 😿 »** ; parfois message **« Règle ajoutée à ta liste de révision. »** ; encart **« Explications › Détails »** en bleu ; parfois statistique de réussite collective ; grand bouton vert fixe **« Suivant → »** en bas. **La correction courte** est dans la page ; le **détail** s'ouvre en feuille modale distincte. Le CTA demeure à portée du pouce, mais le contenu peut être masqué sous lui dans certains états (annexe AM).
+
+**États successifs de quinze pastilles :**
+
+| Capture | Jauge | Résultat visible |
+|---|---|---|
+| 54310 | 1 verte, 14 grises | 1re réponse correcte |
+| 54314 | 2 vertes, 13 grises | 2e réponse correcte |
+| 54316 | 3 vertes, 12 grises | 3e réponse correcte |
+| 54320 | 3 vertes, 1 rouge, 11 grises | 4e réponse fausse |
+| 54322 | 3 vertes, 1 rouge, 11 grises | 5e question en cours |
+| 54324 | 9 vertes, 2 rouges, 4 grises | 11 réponses traitées, dernière incorrecte |
+
+La barre passe d'un type de question à l'autre **sans remise à zéro**. La sélection initiale ciblée porte sur **des notions**, tandis que le moteur de séance change d'**interaction** en cours de route : intéressant pour l'entraînement multimodal.
+
+## AP.2 — Capture 73 / 54310.jpg : « Il faut mieux éviter cette rue le soir. »
+
+**Phrase sous forme de huit tuiles [VU] :** « Il » (vert), « faut » (**rouge**), « mieux » (vert), « éviter », « cette », « rue », « le », « soir. » (bleu-gris neutres). Deux lignes de tuiles et un mot isolé sur une troisième. **Contour/tranche de carte verts** : réussite globale. Verdict **« Bravo ! 💪 »** ; fiche courte :
+
+**« La forme correcte est 'il vaut mieux éviter'. Conseil : comparer des options = 'vaut mieux'. »**
+
+Bouton « Suivant → » fixé en bas. Drapeau blanc disponible entre la carte et le verdict. **[INCONNU]** L'utilisateur a-t-il tapé « faut », appuyé sur un autre contrôle ou corrigé directement une forme ? Seul le résultat est montré. Le fait que les tuiles « Il » et « mieux » soient vertes **simultanément** au « faut » rouge peut brouiller la signification du vert : réussite de l'ensemble, fragment de la locution ou surlignage d'autres mots ? Ne pas affirmer un moteur de remplacement qui n'est pas visible.
+
+**Point linguistique :** pour une recommandation de trajet, « Il vaut mieux éviter cette rue le soir » est la tournure naturelle. Mais la combinaison « il faut mieux » peut avoir un sens dans d'autres constructions : *mieux* qualifie l'action (« il faut mieux organiser le travail »). La règle ne peut donc pas être réduite à l'interdiction absolue des deux mots.
+
+## AP.3 — Capture 74 / 54312.jpg : détail théorique du même contraste
+
+**Bottom sheet** bleu ardoise presque pleine hauteur, ouverte devant le jeu assombri : poignée horizontale claire centrée en haut ; coins supérieurs arrondis ; grand titre **serif « Explications »** ; **bouton signet rond** en haut à droite. Texte blanc en grands paragraphes, passages clés en **turquoise gras**, intertitres serif, exemples à **puces turquoise**, lien souligné sur un terme grammatical.
+
+**Transcription partielle des textes visibles :**
+
+**« Pour donner un conseil, on écrit « il vaut mieux ». « Il faut mieux » existe, mais veut dire autre chose. »**
+
+Intertitre **« « Il vaut mieux » : c'est préférable »**. Paragraphe **« Du verbe « valoir ». L'expression compare deux options et désigne la meilleure. »**. Exemples :
+- « Il vaut mieux partir tôt. »
+- « Il vaut mieux demander de l'aide. »
+- « Il vaut mieux prévenir que guérir. »
+
+Puis intertitre **« « Il faut mieux » : il faut faire mieux »**. Paragraphe commençant par **« Du verbe « falloir », suivi de l'adverbe « mieux ». La phrase dit qu'il faut améliorer une façon de… »**. **La suite est sous le bas de la capture : ne pas compléter le texte par supposition**.
+
+**Enseignement :** le détail comporte une nuance absente des conseils abrégés : les deux constructions peuvent exister dans des contextes distincts. En ingénierie pédagogique, il faut s'assurer que **la fiche détaillée et le feedback instantané ne se contredisent pas**. La fiche est un exemple de documentation accessible en contexte, non d'un écran de cours imposé. **[INCONNU]** Le fonctionnement effectif du signet et des hyperliens dans cette feuille.
+
+## AP.4 — Capture 75 / 54314.jpg : deuxième succès
+
+Deux premières pastilles **vertes**, verdict **« Bravo ! 💪 »**, carte bordée de **vert**. La partie supérieure de l'énoncé est **hors champ** ; seuls les fragments suivants sont visibles dans les tuiles : **« partir », « maintenant », « si », « on », « veut », « éviter », « les », « bouchons. »**. **Ne pas inventer le début de la phrase**.
+
+Explication affichée :
+
+**« On dit 'il vaut mieux partir'. Astuce : pour un conseil, c'est toujours 'il vaut mieux'. »**
+
+Statistique : **« En moyenne 80% ont répondu juste (25 959 réponses) »**. CTA « Suivant → ».
+
+**Observations :** deux questions successives semblent travailler la **même opposition « vaut / faut mieux »**, au lieu de la présenter une seule fois. Il reste **[INCONNU]** si le moteur regroupe 3 questions par règle ou réordonne les exercices autrement. La formule « pour un conseil, c'est toujours il vaut mieux » est **excessivement générale** : il existe bien d'autres façons de formuler un conseil. C'est le **sens précis de la locution** qu'il faut enseigner, pas une exclusivité.
+
+## AP.5 — Capture 76 / 54316.jpg : troisième succès, « Choisis le bon »
+
+**Premier changement de format à l'intérieur de la même session :** titre « **Choisis le bon** » au lieu de « Trouve la faute » ; **trois pastilles vertes**. Carte **beaucoup plus basse**, phrase continue plutôt que tuiles individuelles :
+
+**« Ce sont mes meilleures amies. »**
+
+**« meilleures »** est affiché dans une **pastille intégrée** à la phrase, sur fond bleu-gris et **texte vert**, avec un petit trait clair inférieur. Contour/tranche verts. Verdict Bravo, drapeau blanc, CTA fixe. Explication :
+
+**« Devant le nom amies, l'adjectif s'accorde au féminin pluriel. Mieux ne se met pas devant un nom, et meilleurs serait le masculin. »**
+
+Statistique : **« En moyenne 77% ont répondu juste (510 réponses) »**.
+
+Le résultat est correct pour « meilleures amies » ; mais **les propositions non retenues et l'état avant validation ne sont pas visibles**. On ne sait ni leur nombre, ni si le simple tap déclenche un verdict ou si un bouton Valider intervient avant. La statistique du tiers n'est **pas une mesure de fiabilité linguistique**.
+
+## AP.6 — Capture 78 / 54320.jpg : quatrième question, mauvais choix
+
+Titre **« Trouve la faute »** ; **trois pastilles vertes puis une rouge**. Phrase en tuiles :
+
+**« Les enfants on fait leurs devoirs. »**
+
+Le mot **« on »** est **rouge**, faute réelle attendue ; **« leurs »** est **gris clair**, probablement la tuile touchée par l'utilisateur [INFÉRENCE]. Autres mots bleu-gris. Contour/tranche de carte rouges. Verdict **« Eh non ! 😿 »** ; message **« Règle ajoutée à ta liste de révision. »** ; explication :
+
+**« Il faut écrire 'ont', verbe 'avoir'. Astuce : les enfants = ils → ils ont. »**
+
+Statistique : **« En moyenne 94% ont répondu juste (21 600 réponses) »**. CTA Suivant vert.
+
+**Intérêt pour l'analyse :** le moteur sait différencier le **mot que l'on a probablement sélectionné**, le **mot réellement fautif**, et le **verdict**. Cependant ces éléments ne sont **pas légendés** : une réponse erronée peut paraître peu claire sans texte « ton choix / erreur réelle ». C'est aussi une preuve d'un **ajout automatique à la révision après erreur**, présenté à l'écran. Aucun test ne confirme comment l'ajout est stocké ou si l'historique persiste.
+
+**Qualité grammaticale :** dans ce contexte, **« Les enfants ont fait leurs devoirs »** constitue une correction objective, à la différence de la situation ambiguë « ce gâteau est mieux… » (annexe AM).
+
+## AP.7 — Capture 79 / 54322.jpg : cinquième question, « Choisis l'homophone »
+
+**Deuxième changement de format visible** : titre serif **« Choisis l'homophone »**, X de fermeture, **3 pastilles vertes, 1 rouge, le reste gris** ; cinquième question en cours, pas encore validée.
+
+**Grande carte phrase** bleu ardoise :
+
+**« Le film qui passe ce soir est celui que tu m'as conseillé, le jour où on s'est vus. »**
+
+Les trois mots **« qui »**, **« que »**, **« où »** sont **turquoise, gras et soulignés** dans la phrase ; ils constituent visuellement les positions de réponse / termes sélectionnés. Sous la carte, **banque de cinq étiquettes** arrondies en deux rangées :
+- rangée du haut : **« que »**, **« dont »**, **« quand »** ;
+- rangée du bas : **« où »**, **« qui »**.
+
+Les étiquettes **« que », « où », « qui »** ont un fond **bleu clair**, les deux autres un **bleu foncé** avec tranche plus claire, suggérant un état sélectionné/non sélectionné. **Ne pas déduire l'ordre exact des taps ni le mécanisme du placement** d'après ce seul état.
+
+**Bouton « Valider » vert visible** : à la différence des états corrigés de « Trouve la faute », la **soumission explicite** est ici demandée après les choix. Pas encore de verdict, d'explication ni de drapeau de signalement visible sur cet écran.
+
+**Trois interactions de la même session :** erreur à toucher dans une phrase en tuiles ; bon mot inséré dans une phrase continue ; plusieurs homophones à sélectionner dans une même phrase. Le HUD et la progression se maintiennent **malgré les changements de type d'exercice**.
+
+# ANNEXE AQ — Signalement directement dans le jeu
+
+## AQ.1 — Capture 77 / 54318.jpg : « Signaler un problème »
+
+**Modal superposée à la question réussie « meilleures amies »**, arrière-plan obscurci. Déclenchement **probablement par le drapeau**, car ce pictogramme apparaît sur les écrans de feedback, mais **le tap lui-même n'est pas photographié**.
+
+**Panneau [VU] :**
+- Grand rectangle centré bleu ardoise, **coins fortement arrondis**, marge d'environ 47 px par côté ; haut autour de y≈297, bas vers y≈1238.
+- **Drapeau blanc** au centre d'un **cercle bleu-gris** en haut.
+- Gros titre blanc gras centré **« Signaler un problème »**.
+- Texte turquoise clair centré :
+  **« Décris ce qui ne va pas avec cet élément. Ton signalement nous aide à corriger le contenu. »**
+- Champ multiligne bleu sombre à bords arrondis et contour discret ; placeholder :
+  **« Ex. : la réponse attendue est fausse, il manque un accent… »**
+- Aide alignée à droite sous le champ : **« Au moins 10 caractères »**.
+- Bouton **« Envoyer ➤ »** en **gris désactivé** ; lien/action **« Annuler »** centré sous le bouton, en turquoise.
+- Pas de catégorie de problème, de capture jointe, d'état envoyé ou d'accusé de réception visibles.
+
+**Architecture UX :** le signalement est **contextualisé visuellement**, effectué dans le cours de la séance sans redirection apparente vers un outil externe. L'interface demande un **minimum de texte**, avec un exemple particulièrement pertinent (« réponse attendue fausse », « accent »). **[INCONNU]** Quand Envoyer devient actif, ce qui est transmis en backend, si le message est lié à un ID de question, si le report est relu, et si l'erreur de progression est éventuellement rectifiée.
+
+**Point mobile critique :** la modal utilise beaucoup de hauteur ; **l'ouverture du clavier Samsung risque de masquer le champ ou le bouton** sans reflow/scroll adéquat. Le benchmark ne montre pas cet état avec clavier.
+
+**Apport pour LuxApp :** un drapeau sur les corrections controversées peut nourrir un **workflow de contrôle de contenu** : question stable, version, réponse fournie, contenu du signalement, revue humaine, statut, correction du JSON et réconciliation éventuelle des scores. **Un formulaire seul ne suffit pas** : sans gouvernance, les signalements ne corrigent pas le défaut pédagogique. Il ne s'agit ici que d'une recommandation, aucune fonctionnalité n'est implémentée.
+
+# ANNEXE AR — Visuels, garde-fous et suites de la rétro-ingénierie
+
+## AR.1 — Pixels des images reçues
+
+**Échantillons lus sur les fichiers JPEG d'origine [MESURÉ]**. Chaque valeur correspond à un pixel local, **pas à la couleur officielle du produit**.
+
+| Fichier, pixel (x,y) | HEX | Interprétation |
+|---|---|---|
+| 54304 (5,700) | **#0C1524** | Fond sombre |
+| 54304 (100,400) | **#183350** | Carte recommandée |
+| 54304 (50,170) | **#29313E** | Segment de quota inactif |
+| 54306 (50,170) | **#5BD159** | Segment rempli |
+| 54306 (100,700) | **#1A324E** | Carte après sélection |
+| 54306 (345,1360) | **#1A8E11** | CTA Valider actif |
+| 54310 (40,550) | **#1A324E** | Carte de question |
+| 54310 (80,380) | **#209F10** | Mot vert dans la correction |
+| 54312 (5,850) | **#1A324E** | Fond de feuille théorique |
+| 54314 (350,900) | **#1A324E** | Bloc Explications |
+| 54316 (350,1360) | **#1A8F0B** | CTA Suivant actif |
+| 54318 (5,700) | **#050912** | Fond obscurci par la modal |
+| 54320 (200,500) | **#A7A5A6** | Tuile grisée |
+| 54322 (100,1000) | **#457B9D** | Choix bleu clair |
+| 54322 (350,1050) | **#1A324E** | Choix bleu foncé |
+
+**Invariants visuels :** fond nuit uniforme, cartes bleu-gris surélevées par tranche, gros caractères blancs, titres de modes en serif, vert de confirmation/succès, rouge d'erreur, gris pour la désactivation, grandes zones tactiles, quinze segments horizontaux, bottom sheets théoriques, modal de signalement, CTA fixe près de la zone basse et absence de navigation globale pendant la partie.
+
+## AR.2 — Résultat de rétro-ingénierie fonctionnelle
+
+**Parcours étayé :**
+
+1. Depuis le menu principal, **Partie rapide** [destination donnée par l'utilisateur].
+2. **Sélection de cinq règles** parmi « Recommandées pour toi ».
+3. **Valider** devient vert lorsque les cinq choix sont représentés ; aucun intermédiaire 1–4 visible.
+4. Démarrage d'une **série de quinze questions**. La règle de répartition notions/questions n'est pas connue.
+5. Exercices **à formats multiples** au sein du même parcours : « Trouve la faute », « Choisis le bon », « Choisis l'homophone ».
+6. À chaque verdict, **barre de progression colorée**, correction courte, détails facultatifs, bouton Suivant.
+7. Une mauvaise réponse annonce l'**ajout de la règle à la révision**.
+8. Une question peut être **signalée** grâce au drapeau, via un formulaire.
+9. La **fin de session n'est pas couverte** ; rien n'est à inventer sur les résultats ou les récompenses.
+
+**Leçon principale :** le concurrent propose un **entraînement ciblé par notions** puis **diversifié par types d'interactions**, ce qui est plus riche qu'un quiz uniforme. Il fait aussi apparaître un lien entre entraînement, explication et révision. Ce comportement visible n'établit toutefois pas une IA d'adaptation.
+
+## AR.3 — Opportunités pour LuxApp 2.1 et risques
+
+**Pistes à étudier, sans modifier le code :**
+
+- Faire émerger une **sélection facultative de notions à réviser** depuis les statistiques par question déjà stockées dans LuxApp ; conserver le moteur de répétition espacée existant.
+- Exploiter plusieurs **formats pédagogiquement compatibles** sur une notion maîtrisable en A1.1/A1.2 : identification, QCM, trou et écriture. Chaque format requiert des réponses valides explicitement définies ; ne pas transformer des traductions libres en pièges.
+- Relier **erreur → notion / règle → correction explicite → révision**, sans pénalisation d'une réponse linguistiquement acceptable.
+- Envisager un **signalement lié à l'identifiant et à la version du contenu**, plutôt qu'un champ libre non traçable. Traiter les cas ambigus et, si besoin, corriger la progression injustement affectée.
+- Éviter les **explications universelles mais fausses** : « Mieux ne s'emploie qu'avec un verbe » (annexe AM) et « pour un conseil c'est toujours il vaut mieux » (cette série) sont des contre-exemples à discuter.
+- Préserver la **charte 2.1** existante de LuxApp (fond chaud, ivoire, or d'action primaire), et reprendre seulement des principes ergonomiques, pas la palette ou la mascotte.
+- Ne pas sacrifier la qualité : le bouton fixe peut **masquer des statistiques**, les nombreux verts/rouges **ne sont pas toujours auto-explicatifs**, la modal de signalement exige des tests avec clavier Samsung.
+
+**Priorités de capture pour la prochaine suite :** validation du 5e exercice avec correction ; état « Choisis le bon » avant réponse ; choix de 1 à 4 règles ; signalement rempli et confirmation ; **bilan des 15 questions** ; écran de sortie et reprise. Tester aussi scroll des explications contre le CTA fixe. Aucun de ces états n'est attesté par les présentes images.
+
+**Sources de vérité LuxApp consultées avant cette édition :** PLAYBOOK.md sur main et 2.1, AGENTS.md sur 2.1, docs/CHARTE_UI_2.1.md, docs/DESIGN_SYSTEM.md, public/jeux-v21.js et public/progress.js, plus la version actuelle du benchmark sur la branche 2.1. L'architecture, les tests et le design de LuxApp restent prioritaires pour toute future mise en œuvre.
+
+**Statut :** uniquement une mise à jour documentaire. **79 captures distinctes observées** ; série 8 **partie 1**, encore ouverte. Aucun changement de JS, CSS, HTML, règles, exercices, authentification ou données de progression.
