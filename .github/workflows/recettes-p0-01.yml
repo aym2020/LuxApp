@@ -2,6 +2,16 @@ name: Recettes P0-01 sur véritable moteur (3001)
 on:
   push:
     branches: ['2.1']
+    paths:
+      - 'recette/**'
+      - 'tests/test_recette_visuelle.py'
+      - 'tests/test_acces_recette.py'
+      - 'server.js'
+      - 'public/accueil.js'
+      - 'public/cloud.js'
+      - '.github/workflows/recettes-p0-01.yml'
+      - 'public/parcours.js'
+      - 'public/index.html'
   pull_request:
     branches: ['2.1']
     paths:
