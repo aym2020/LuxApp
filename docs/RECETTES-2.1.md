@@ -16,8 +16,25 @@
 |---|---|---|---|
 | **Mot caché** | MC-01 Découverte ; MC-02 Départ ; MC-03/04/05 1/2/3 erreurs ; MC-06 Indice ; MC-07 Réussite ; MC-08 Réponse révélée | `tests/test_motcache_cta_mobile.py`, `tests/test_motcache.py`, `test/exercices-etats-v21.test.cjs` | **Mot caché validé sur Samsung 23/10** ; nouvel accès 3001 à tester |
 | **Quiz** | Q-01 Départ ; Q-02 Juste ; Q-03 Faux | `tests/test_parcours.py`, `test/exercices-etats-v21.test.cjs` | **À valider sur Samsung** |
-| **Trous** | T-01 Départ ; T-02 Juste ; T-03 Faux | `tests/test_parcours.py`, `test/exercices-etats-v21.test.cjs` | **À valider sur Samsung** |
-| **Écriture** | E-01 Départ ; E-02 1re erreur ; E-03 Juste ; E-04 Juste au 2e ; E-05 Échec final | `tests/test_parcours.py`, `tests/test_spec87_session_mobile.py` | **À valider sur Samsung** |
+| **Trous** | T-01 Départ ; T-02 Juste ; T-03 Faux | `tests/test_parcours.py`, `test/exercices-etats-v21.test.cjs` | **T-02 visuellement conforme sur Samsung 24/10 ; T-03 anomalie de visibilité (voir ci-dessous) ; T-01 non fourni** |
+| **Écriture** | E-01 Départ ; E-02 1re erreur ; E-03 Juste ; E-04 Juste au 2e ; E-05 Échec final | `tests/test_parcours.py`, `tests/test_spec87_session_mobile.py` | **E-01 à E-05 : rendu statique conforme sur captures Samsung 24/10 ; clavier ouvert, transitions, compteur/rappel et sauvegarde non validés** |
+
+### Revue manuelle Samsung — 24 octobre 2026 (captures utilisateur)
+
+**Périmètre :** 10 captures Samsung Android transmises dans la conversation. Le SHA déployé n'est pas vérifiable sur les images ; le code de référence consulté pour l'analyse est celui de `2.1`, commit `bad2166`. **Aucune preuve vidéo, aucun test réel du clavier ouvert ni preuve de passage entre questions** dans ce lot. Les captures ne sont **pas** ajoutées au dépôt GitHub.
+
+- **T-02 (juste) :** solution verte, « Juste ! », bonne réponse dans la phrase et CTA « Continuer » visibles. **Conforme visuellement**, sans preuve du fonctionnement de Continuer.
+- **T-03 (faux) :** première capture lisible (choix erroné rouge, solution dans la phrase et correction). **Seconde capture : anomalie bloquante de lisibilité** : « Madamm » en vert et « Pas encore » en rouge, alors que l'option erronée marquée rouge est située plus bas dans la liste et **cachée sous le bandeau de correction** ; une proposition est partiellement recouverte. Le code `choisirP()` attribue les classes `.wrong` et `.correct` aux bons éléments, mais l'écran ne les rend pas simultanément consultables. La pédagogie devient ambiguë. **Ne pas clôturer T-03.**
+- **E-01 (départ) :** consigne, champ et Valider visibles. **Conforme sur clavier fermé**.
+- **E-02 (premier faux) :** diagnostic sans révélation, saisie conservée et « Réessayer » visibles. **Conforme visuellement**.
+- **E-03 (premier juste) :** titre « Juste ! », réponse, audio et Continuer visibles. **Conforme visuellement**.
+- **E-04 (juste au second essai) :** titre « Juste, au 2e essai », réponse, audio, rappel de fin d'étape et Continuer visibles. **Conforme visuellement**.
+- **E-05 (deux faux) :** titre « Pas encore », réponse attendue, audio, rappel et Continuer visibles. **Conforme visuellement**.
+- **Q-01 à Q-03** : aucune capture dans ce lot. **Non validés**. **Mot caché** : état antérieur inchangé, sans nouvelle capture.
+
+**Correctif requis T-03 :** une fois la réponse fausse, faire apparaître sans ambiguïté et sans chevauchement **le choix erroné rouge et la bonne réponse verte**, tout en gardant la correction et « Continuer » accessibles. Préférer un cadrage du corps scrollable ou un résumé « Ton choix : … » explicite dans le bandeau ; tester les cas où l'option erronée est la dernière de 4 à **320/360/390/430 px**, avec textes longs et zoom. Ne pas changer le score, la répétition de la question ni les JSON.
+
+**Clôture P0-01 interdite** tant que T-03 n'est pas corrigé et rejoué sur Samsung, que Q-01/02/03 ne sont pas vérifiés, et que les tests fonctionnels/clavier/retour concernés restent ouverts. Les validations visuelles partielles ne prouvent ni la sauvegarde ni le cloud (Firebase désactivé en recette).
 
 Chaque scénario affiche sa **liste de contrôle dans le panneau** avant ouverture. Après « Voir cet écran », vérifier le rendu sur le vrai écran, puis utiliser « MODE TEST » pour passer au suivant. Un indice doit garder son coût, « Voir l'aide » rester gratuit, « Continuer » rester visible. Tests navigateur de l'instance et protections : `tests/test_recette_visuelle.py`.
 
