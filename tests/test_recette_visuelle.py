@@ -127,7 +127,7 @@ try:
         pg.wait_for_selector('#rec-indispo:not(.hidden)')
         assert 'test echec simulé' in pg.inner_text('#rec-indispo')
         assert pg.url.startswith(REC)
-        pg.evaluate("recLancer = window.__recLancerInitial")
+        pg.evaluate("() => { recLancer = window.__recLancerInitial; return true; }")
         ok('scénario en échec : erreur lisible, recette intacte, nouveau test possible')
 
         # Régression Chrome/Windows : popup native blanche + texte clair illisible.
