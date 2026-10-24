@@ -122,6 +122,25 @@ for retour in (URL_LUXAPP, None):
         # Contrôle du vrai accès HTTP, indépendamment de la visibilité du bouton.
         assert http(REC)[0] == 401
         assert http(REC + 'config.js')[0] == 401
+        # Chrome/WebAPK peut consulter publiquement le manifeste et les icônes.
+        # Aucun autre fichier applicatif ne doit être exposé sans authentification.
+        import json
+        status, contenu_manifeste = http(REC + 'manifest.json')
+        assert status == 200
+        manifeste = json.loads(contenu_manifeste)
+        assert manifeste['name'] == 'LuxApp · TEST'
+        assert manifeste['short_name'] == 'LuxApp TEST'
+        assert manifeste['display'] == 'standalone'
+        assert manifeste['start_url'] == '/'
+        for fichier in ('icon-192.png', 'icon-512.png',
+                        'icon-maskable-192.png', 'icon-maskable-512.png'):
+            assert http(REC + 'icons/' + fichier)[0] == 200, fichier
+        assert http(REC + 'favicon.ico')[0] == 200
+        for fichier in ('index.html', 'app.js', 'accueil.js',
+                        'api/lecons', 'recette/recette.js', 'recette/recette.css'):
+            assert http(REC + fichier)[0] == 401, fichier
+        assert http(REC + 'icons/../app.js')[0] != 200
+        ok('PWA recette : manifeste et icônes publics ; application, données et tests protégés par Basic Auth')
         assert http(REC, USER + ':faux')[0] == 401
         code, config_rec = http(REC + 'config.js', USER + ':' + PASS)
         assert code == 200 and 'FIREBASE: null' in config_rec
@@ -136,6 +155,15 @@ for retour in (URL_LUXAPP, None):
             pg.route(URL_LUXAPP + '**', lambda r: r.fulfill(status=200, content_type='text/html', body='<h1>app</h1>'))
             pg.goto(REC)
             pg.wait_for_selector('#today')
+            # Diagnostic Chromium : vérification des métadonnées réellement
+            # prises en compte par son moteur d'installation PWA.
+            cdp = ctx.new_cdp_session(pg)
+            metadata = cdp.send('Page.getAppManifest')
+            assert not metadata.get('errors'), metadata.get('errors')
+            manifest = __import__('json').loads(metadata['data'])
+            assert manifest['short_name'] == 'LuxApp TEST', manifest
+            diagnostic = cdp.send('Page.getInstallabilityErrors')
+            print('diagnostic PWA Chromium recette :', diagnostic, flush=True)
             assert pg.evaluate("window.APP_CONFIG.FIREBASE") is None
             pg.evaluate("ouvrirRecette()")
             bouton = pg.locator('.recette-panneau button', has_text='Retour à LuxApp')
