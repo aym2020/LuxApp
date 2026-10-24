@@ -324,13 +324,20 @@ function renderPlusPage() {
     [ICONES.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2.1', 'ouvrirNouveautes()'],
     [ICONES.reglages, 'Réglages', etat ? etat.texte : 'Compte, synchronisation, remise à zéro', 'openReglages()']
   ];
-  const html = '<header class="plus-entete"><h1>Plus</h1><p>Ton apprentissage et tes outils</p></header>' +
-    '<div class="plus-acquis">' + tuiles.map(t => '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('') + '</div>' +
-    lignes.map(x => '<button class="plus-ligne" onclick="' + x[3] + '">' + x[0] +
-      '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
-      '>' + escHtml(x[2]) + '</small></span></button>').join('') +
-    (lienRecettePourMoi() ? '<button class="plus-ligne" onclick="ouvrirRecetteDistante()">' + ICONES.cible +
-      '<span><b>Outils de test</b><small>Recette privée, progression fictive</small></span></button>' : '') +
+  const html = '<header class="plus-entete">' +
+      '<span class="plus-surtitre">MON ESPACE</span><h1>Plus</h1></header>' +
+    '<section class="plus-resume" aria-labelledby="plus-resume-titre">' +
+      '<h2 id="plus-resume-titre">Ma progression</h2>' +
+      '<div class="plus-acquis">' + tuiles.map(t => '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('') +
+      '</div></section>' +
+    '<section class="plus-outils" aria-labelledby="plus-outils-titre">' +
+      '<h2 id="plus-outils-titre">Mes outils</h2><div class="plus-options">' +
+      lignes.map(x => '<button class="plus-ligne" onclick="' + x[3] + '">' + x[0] +
+        '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
+        '>' + escHtml(x[2]) + '</small></span></button>').join('') +
+      (lienRecettePourMoi() ? '<button class="plus-ligne" onclick="ouvrirRecetteDistante()">' + ICONES.cible +
+        '<span><b>Outils de test</b><small>Recette privée, progression fictive</small></span></button>' : '') +
+      '</div></section>' +
     '<div class="plus-version">LuxApp <b>2.1</b></div>';
   const cible = document.getElementById('plus-page');
   if (cible) cible.innerHTML = html;

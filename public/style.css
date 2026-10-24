@@ -1650,17 +1650,82 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
    l'animation générique d'entrée 'entre' déplaçait son conteneur de 8px. */
 #view-dashboard .anime .ac-ent { animation: none; }
 
-/* Le menu Plus est un écran de premier niveau, pas un panneau temporaire. */
+/* Plus : vraie page, densité identique aux écrans de consultation 2.1.
+   Statistiques en texte, puis UNE liste de navigation (pas huit cartes). */
 #view-plus .plus-page {
-  width: 100%; max-width: 640px; margin: 0 auto;
-  padding: 30px max(20px, env(safe-area-inset-left)) calc(110px + env(safe-area-inset-bottom));
-  display: flex; flex-direction: column; gap: 12px;
+  width: 100%; max-width: 640px; min-width: 0; margin: 0 auto;
+  padding: 26px max(20px, env(safe-area-inset-left)) calc(24px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 0;
 }
-#view-plus .plus-entete h1 { font-size: clamp(30px, 7vw, 38px); line-height: 1.1; font-weight: 800; }
-#view-plus .plus-entete p { color: var(--muted-strong); font-size: var(--fs-sec); margin-top: 6px; }
-#view-plus .plus-acquis { margin: 12px 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-#view-plus .plus-ligne { width: 100%; }
-#view-plus .plus-version { text-align: center; color: var(--muted); padding-top: 14px; }
+#view-plus .plus-entete { padding: 0 0 20px; }
+#view-plus .plus-surtitre {
+  display: block; color: var(--muted); font: 750 12px/1.35 var(--font);
+  letter-spacing: .13em;
+}
+#view-plus .plus-entete h1 {
+  margin: 6px 0 0; color: var(--text); font: 800 clamp(25px, 6vw, 32px)/1.18 var(--font);
+  letter-spacing: -.04em;
+}
+#view-plus .plus-resume, #view-plus .plus-outils {
+  padding: 14px 0 16px; border-top: 1px solid var(--bord-1); min-width: 0;
+}
+#view-plus .plus-resume h2, #view-plus .plus-outils h2 {
+  margin: 0 0 12px; font: 750 14px/1.4 var(--font);
+  color: var(--text); letter-spacing: -.01em;
+}
+#view-plus .plus-acquis {
+  margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+}
+#view-plus .plus-acquis div {
+  display: flex; flex-direction: row; align-items: baseline; gap: 7px;
+  min-width: 0; padding: 0; border: 0; border-radius: 0; background: transparent;
+}
+#view-plus .plus-acquis b {
+  color: var(--text); font: 750 18px/1.25 var(--font); font-variant-numeric: tabular-nums;
+  flex: none;
+}
+#view-plus .plus-acquis span {
+  min-width: 0; color: var(--muted-strong); font: 450 12px/1.35 var(--font);
+  overflow-wrap: anywhere;
+}
+#view-plus .plus-outils { padding-top: 16px; }
+#view-plus .plus-options {
+  display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--bord-1); border-radius: var(--rayon-carte);
+  background: var(--surface-1);
+}
+#view-plus .plus-options .plus-ligne {
+  width: 100%; min-height: 62px; padding: 10px 14px;
+  gap: 13px; border: 0; border-radius: 0; background: transparent;
+}
+#view-plus .plus-options .plus-ligne + .plus-ligne { border-top: 1px solid var(--bord-1); }
+#view-plus .plus-options .plus-ligne > .ic { width: 20px; height: 20px; color: var(--muted-strong); }
+#view-plus .plus-options .plus-ligne > span { min-width: 0; flex: 1; gap: 2px; }
+#view-plus .plus-options .plus-ligne b { font: 650 15px/1.3 var(--font); color: var(--text); }
+#view-plus .plus-options .plus-ligne small {
+  font: 450 12px/1.35 var(--font); color: var(--muted-strong);
+}
+#view-plus .plus-options .plus-ligne::after {
+  content: '›'; font: 350 25px/1 var(--font); color: var(--muted);
+  margin-left: auto; align-self: center;
+}
+#view-plus .plus-options .plus-ligne:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: -3px; position: relative; z-index: 1;
+}
+@media (hover: hover) {
+  #view-plus .plus-options .plus-ligne:hover { background: rgba(255,255,255,.035); }
+}
+#view-plus .plus-options .recette-ligne b { color: #f3a6c3; }
+#view-plus .plus-version {
+  text-align: center; font: 450 11px/1.4 var(--font);
+  color: var(--muted); padding-top: 14px;
+}
+@media (max-width: 360px) {
+  #view-plus .plus-page { padding-inline: max(16px, env(safe-area-inset-left)); }
+  #view-plus .plus-acquis { column-gap: 12px; }
+}
+
 
 /* ── Panneau qui monte du bas (aides, recette et confirmations) ──────────── */
 .voile { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, .55); animation: fondu .25s ease both; }

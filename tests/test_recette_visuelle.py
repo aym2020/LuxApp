@@ -89,6 +89,27 @@ try:
         assert pg.evaluate("typeof firebase") == 'undefined' and pg.evaluate("window.APP_CONFIG.FIREBASE") is None
         assert pg.is_visible('#recette-badge') and 'MODE TEST' in pg.inner_text('#recette-badge')
 
+        # Plus compact : chiffres sans cartes, liens réunis dans un seul bloc.
+        pg.evaluate("fermerPanneau(); ouvrirPlus()")
+        mesure_plus = pg.evaluate("""() => {
+          const rect = s => document.querySelector(s).getBoundingClientRect();
+          return {
+            statistiques: rect('#view-plus .plus-acquis').height,
+            liens: rect('#view-plus .plus-options').height,
+            nombre: document.querySelectorAll('#view-plus .plus-options .plus-ligne').length,
+            cartes: getComputedStyle(document.querySelector('#view-plus .plus-acquis div')).backgroundColor,
+            largeurPage: rect('#view-plus .plus-page').width,
+            largeurViewport: document.documentElement.clientWidth
+          };
+        }""")
+        assert mesure_plus['statistiques'] < 110, mesure_plus
+        assert mesure_plus['liens'] <= 400, mesure_plus
+        assert mesure_plus['nombre'] == 5, mesure_plus
+        assert mesure_plus['cartes'] == 'rgba(0, 0, 0, 0)', mesure_plus
+        assert mesure_plus['largeurPage'] <= mesure_plus['largeurViewport'], mesure_plus
+        ok('Plus compact : statistiques sans cartes, cinq entrées groupées et largeur mobile sans débordement')
+        pg.evaluate("fermerPanneau()")
+
         # Plus est une vraie page ; Réglages doit pouvoir revenir à Plus.
         pg.evaluate("ouvrirPlus()")
         assert pg.is_visible('#view-plus.active')

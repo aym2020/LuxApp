@@ -130,3 +130,20 @@ test('Le hero est un élément décoratif, pas un fond photographique derrière 
   assert.match(css, /#view-dashboard \.ac-v21-cta/);
   assert.match(css, /#view-dashboard \.ac-acces/);
 });
+
+
+test('Plus compact : conserve progression et raccourcis dans un groupe unique', () => {
+  const accueil = fs.readFileSync(path.join(base, 'accueil.js'), 'utf8');
+  const cssPlus = fs.readFileSync(path.join(base, 'style.css'), 'utf8');
+  const recette = fs.readFileSync(path.join(__dirname, '..', 'recette', 'recette.js'), 'utf8');
+  assert.match(accueil, /class="plus-resume"/);
+  assert.match(accueil, /class="plus-acquis"/);
+  assert.match(accueil, /class="plus-options"/);
+  for (const titre of ['Lexique', 'Mes pièges', 'Nouveautés', 'Réglages']) {
+    assert.ok(accueil.includes("'" + titre + "'"), titre);
+  }
+  assert.match(accueil, /Outils de test/);
+  assert.match(recette, /page\.querySelector\('\.plus-options'\)/);
+  assert.match(cssPlus, /#view-plus \.plus-options \.plus-ligne \+ \.plus-ligne/);
+  assert.match(cssPlus, /#view-plus \.plus-acquis div\s*\{[^}]*background:\s*transparent/s);
+});
