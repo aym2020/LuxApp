@@ -133,8 +133,8 @@ test('Le hero est un élément décoratif, pas un fond photographique derrière 
 
 
 test('Plus compact : conserve progression et raccourcis dans un groupe unique', () => {
-  const accueil = fs.readFileSync(path.join(base, 'accueil.js'), 'utf8');
-  const cssPlus = fs.readFileSync(path.join(base, 'style.css'), 'utf8');
+  const accueil = fs.readFileSync(path.join(__dirname, '..', 'public', 'accueil.js'), 'utf8');
+  const cssPlus = fs.readFileSync(path.join(__dirname, '..', 'public', 'style.css'), 'utf8');
   const recette = fs.readFileSync(path.join(__dirname, '..', 'recette', 'recette.js'), 'utf8');
   assert.match(accueil, /class="plus-resume"/);
   assert.match(accueil, /class="plus-acquis"/);
