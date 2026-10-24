@@ -103,7 +103,17 @@ L'écran « Unité 1 · Ce que tu vas apprendre » de la V2.1 devenait trop haut
 - **Sécurité de mise en page propre à `2.1` :** introductions de mission et d'unité limitées à `100dvh`, défilement uniquement dans les zones de lecture en cas de contenu long ou de grands caractères, bouton de démarrage accessible en permanence et bloc d'actions de mission collé au bas du contenu visible. La découverte guidée emploie la barre inférieure stable de `v2`.
 - **Non modifiés :** textes source des leçons, missions jouées, résultats, sauvegardes et calculs de progression. Tests ciblés dans `test/intros-v2-fixed.test.cjs`. Contrôle visuel sur Samsung Android encore nécessaire.
 
-## Réglages / panneau Plus — appuis rapides (21 octobre 2026)
+## Plus — page de navigation compacte (24 octobre 2026)
+
+Le menu Plus est **une vraie vue** (`view-plus`) et non plus un panneau temporaire ; les destinations Réglages, Lexique et Mes pièges doivent y revenir via le bouton Retour Android et le bouton retour de l'écran.
+
+**Composition cible :** même hiérarchie que l'écran S'entraîner : surtitre discret, titre sobre, statistiques compactes sans quatre grandes cartes, puis **une seule liste** de liens sur surface sombre avec séparateurs fins. Garder les quatre compteurs, les quatre destinations, l'accès recette réservé aux comptes autorisés, le statut de synchronisation et la version ; ne supprimer aucune fonctionnalité pour réduire la hauteur. Les zones cliquables doivent rester ≥44px, sans masquer la navigation basse. Styles limités à `#view-plus`, pas de changement global d'autres vues.
+
+**Recette UI :** vérifier en 320, 390, 430px, clavier/zoom et PC ; aucune troncature, liens visibles par défilement si nécessaire, puis ouvrir Réglages/Lexique et revenir à Plus. L'accès de recette via Render reste distinct et sécurisé.
+
+### Historique : ancien panneau Plus (21 octobre 2026)
+
+
 
 Le menu **Plus** (roue dentée de l'accueil et onglet Plus) ne doit pas s'ouvrir plusieurs fois sous un double appui. Un tap supplémentaire sur la position de la roue, intercepté par le voile du panneau, ne doit pas provoquer sa fermeture instantanée. La fermeture reste accessible en touchant une autre zone du voile, en choisissant une destination ou avec le bouton Retour.
 

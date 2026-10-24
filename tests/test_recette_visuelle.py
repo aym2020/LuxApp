@@ -89,6 +89,44 @@ try:
         assert pg.evaluate("typeof firebase") == 'undefined' and pg.evaluate("window.APP_CONFIG.FIREBASE") is None
         assert pg.is_visible('#recette-badge') and 'MODE TEST' in pg.inner_text('#recette-badge')
 
+        # Plus compact : chiffres sans cartes, liens réunis dans un seul bloc.
+        pg.evaluate("fermerPanneau(); ouvrirPlus()")
+        mesure_plus = pg.evaluate("""() => {
+          const rect = s => document.querySelector(s).getBoundingClientRect();
+          return {
+            statistiques: rect('#view-plus .plus-acquis').height,
+            liens: rect('#view-plus .plus-options').height,
+            nombre: document.querySelectorAll('#view-plus .plus-options .plus-ligne').length,
+            cartes: getComputedStyle(document.querySelector('#view-plus .plus-acquis div')).backgroundColor,
+            largeurPage: rect('#view-plus .plus-page').width,
+            largeurViewport: document.documentElement.clientWidth
+          };
+        }""")
+        assert mesure_plus['statistiques'] < 110, mesure_plus
+        assert mesure_plus['liens'] <= 400, mesure_plus
+        assert mesure_plus['nombre'] == 5, mesure_plus
+        assert mesure_plus['cartes'] == 'rgba(0, 0, 0, 0)', mesure_plus
+        assert mesure_plus['largeurPage'] <= mesure_plus['largeurViewport'], mesure_plus
+        ok('Plus compact : statistiques sans cartes, cinq entrées groupées et largeur mobile sans débordement')
+
+        # Matrice de tailles : pas de scroll horizontal, touches >=44 px, liste intacte.
+        for largeur in (320, 390, 430, 720):
+            pg.set_viewport_size({'width': largeur, 'height': 844})
+            pg.evaluate("ouvrirPlus()")
+            taille = pg.evaluate("""() => ({
+              viewport: document.documentElement.clientWidth,
+              scroll: document.documentElement.scrollWidth,
+              boutons: [...document.querySelectorAll('#view-plus .plus-options .plus-ligne')]
+                .map(b => ({h:b.getBoundingClientRect().height, w:b.getBoundingClientRect().width})),
+              bloc: document.querySelector('#view-plus .plus-options').getBoundingClientRect().width
+            })""")
+            assert taille['scroll'] <= taille['viewport'] + 1, (largeur, taille)
+            assert len(taille['boutons']) == 5 and all(b['h'] >= 44 for b in taille['boutons']), (largeur, taille)
+            assert all(b['w'] <= taille['bloc'] + 1 for b in taille['boutons']), (largeur, taille)
+        pg.set_viewport_size({'width': 390, 'height': 844})
+        ok('Plus responsive : 320/390/430/720 px, sans débordement et touches >=44px')
+        pg.evaluate("fermerPanneau()")
+
         # Plus est une vraie page ; Réglages doit pouvoir revenir à Plus.
         pg.evaluate("ouvrirPlus()")
         assert pg.is_visible('#view-plus.active')

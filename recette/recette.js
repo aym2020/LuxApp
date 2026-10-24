@@ -626,8 +626,8 @@ renderPlusPage = function () {
   ligne.className = 'plus-ligne recette-ligne';
   ligne.onclick = ouvrirRecette;
   ligne.innerHTML = ICONES.reglages + '<span><b>Outils de test</b><small>Voir une fin de mission ou un résultat en quelques secondes</small></span>';
-  const version = page.querySelector('.plus-version');
-  if (version) version.before(ligne);
+  const options = page.querySelector('.plus-options');
+  if (options) options.appendChild(ligne);
   else page.appendChild(ligne);
 };
 
