@@ -102,6 +102,13 @@ try:
         assert pg.is_visible('#view-plus.active')
         ok('Plus : page navigable, retour depuis Réglages/Lexique vers les outils')
 
+        # La flèche système Android est reliée aux entrées History, pas seulement au bouton retour.
+        pg.evaluate("ouvrirPlus()")
+        pg.evaluate("openReglages()")
+        pg.evaluate("history.back()")
+        pg.wait_for_function("document.querySelector('#view-plus.active') !== null")
+        ok('Retour navigateur Android : Réglages → Plus, sans revenir à l’accueil')
+
         # Plus → Outils de test
         pg.evaluate("ouvrirPlus()")
         assert pg.is_visible('#view-plus.active')
@@ -110,6 +117,18 @@ try:
         libelle = pg.evaluate("document.querySelector('#rec-lecon option[value=\"24\"]').textContent")
         assert 'Leçon 25' in libelle and 'passé composé' in libelle, libelle
         ok('Plus → Outils de test : leçons avec leur numéro affiché (id 24 → « Leçon 25 · Le passé composé »), badge MODE TEST')
+
+        # Un scénario qui plante doit afficher l'erreur dans les outils, jamais quitter la recette.
+        pg.evaluate("""() => {
+          window.__recLancerInitial = recLancer;
+          recLancer = async () => { throw new Error('test echec simulé'); };
+        }""")
+        pg.click('#rec-voir')
+        pg.wait_for_selector('#rec-indispo:not(.hidden)')
+        assert 'test echec simulé' in pg.inner_text('#rec-indispo')
+        assert pg.url.startswith(REC)
+        pg.evaluate("recLancer = window.__recLancerInitial")
+        ok('scénario en échec : erreur lisible, recette intacte, nouveau test possible')
 
         # Régression Chrome/Windows : popup native blanche + texte clair illisible.
         # Le color-scheme et les couleurs des options actives/désactivées doivent rester lisibles.
