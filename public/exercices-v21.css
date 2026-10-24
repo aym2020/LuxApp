@@ -125,6 +125,59 @@ body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .pc-b
   min-height:48px; margin:0;
 }
 
+/* P0 — Trous, correction mobile : 4 choix visibles en même temps.
+   Le bandeau et le texte restent dans le flux flex : jamais de carte masquée.
+   Sur une petite hauteur/texte agrandi : corps scrollable plutôt que recouvert. */
+#view-parcours.active[data-type="trous"][data-etat="corrige"] {
+  height:100dvh;min-height:0;max-height:100dvh;overflow:hidden;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-topbar,
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-sous-barre {flex:none}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-body {
+  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  padding:clamp(7px,1.4dvh,12px) 18px 8px;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-question {
+  flex:none;gap:5px;margin-bottom:9px;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-question .pc-mini-label {
+  font-size:11px;line-height:1.2;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-trou-fr {
+  font-size:14px;line-height:1.25;margin:0;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-trou-phrase {
+  font-size:clamp(23px,6.8vw,30px);line-height:1.23;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-trou-phrase .trou-blank {
+  padding:0 3px 2px;min-width:44px;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] #pc-choix {gap:5px;flex:none}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] #pc-choix .choice {
+  min-height:49px;padding:6px 12px;gap:10px;
+  border-radius:12px;font-size:15px;line-height:1.25;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] #pc-choix .choice::before {
+  width:29px;height:29px;flex:none;font-size:13px;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-feedback {
+  flex:none;position:relative;bottom:auto;margin-top:0;
+  gap:6px;padding:10px 16px calc(11px + env(safe-area-inset-bottom));
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-fb-titre {font-size:15px;line-height:1.25}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-fb-txt {
+  font-size:13px;line-height:1.35;max-height:min(20dvh,150px);overflow-y:auto;
+}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-fb-rappel {margin-top:3px}
+#view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-feedback .pc-btn {
+  min-height:48px;margin-top:2px;
+}
+@media(max-height:720px) {
+  #view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-body {padding-top:6px}
+  #view-parcours.active[data-type="trous"][data-etat="corrige"] .pc-question {gap:3px;margin-bottom:6px}
+  #view-parcours.active[data-type="trous"][data-etat="corrige"] #pc-choix .choice {min-height:44px}
+}
+
 /* Entraînement : correction dans le flux, juste sous la question (SPEC 59). */
 #view-session #session-feedback {
   display:flex;flex-direction:column;gap:8px;width:100%;margin:24px 0 0;padding:15px 16px;
