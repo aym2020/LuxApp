@@ -1011,7 +1011,8 @@ const ONGLET_DE_LA_VUE = {
   'view-lexique': 'plus',
   'view-pieges': 'plus',
   'view-examens': 'plus',
-  'view-reglages': 'plus'
+  'view-reglages': 'plus',
+  'view-plus': 'plus'
 };
 
 function majNavigation(id) {

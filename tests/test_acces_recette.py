@@ -92,10 +92,9 @@ try:
         pg.wait_for_selector('#today')
 
         def lignes_plus():
-            pg.evaluate("fermerPanneau && document.getElementById('panneau') && fermerPanneau()")
-            pg.wait_for_function("!document.getElementById('panneau')")
             pg.evaluate("ouvrirPlus()")
-            return pg.evaluate("[...document.querySelectorAll('#panneau .plus-ligne b')].map(b => b.textContent)")
+            assert pg.is_visible('#view-plus.active')
+            return pg.evaluate("[...document.querySelectorAll('#plus-page .plus-ligne b')].map(b => b.textContent)")
 
         assert 'Outils de test' not in lignes_plus(), 'invité : pas de ligne'
         pg.evaluate("fbAuth = { currentUser: { uid: 'xyz' } }")
@@ -105,7 +104,7 @@ try:
         assert lignes[-1] == 'Outils de test', lignes
         ok('Plus : « Outils de test » seulement pour le compte autorisé (ni invité, ni autre compte)')
 
-        pg.click('#panneau .plus-ligne:last-of-type')
+        pg.click('#plus-page .plus-ligne:last-of-type')
         pg.wait_for_url(URL_RECETTE)
         assert erreurs == [], erreurs
         ok('Outils de test : ouvre l\'instance de recette')
@@ -126,6 +125,7 @@ for retour in (URL_LUXAPP, None):
         assert http(REC, USER + ':faux')[0] == 401
         code, config_rec = http(REC + 'config.js', USER + ':' + PASS)
         assert code == 200 and 'FIREBASE: null' in config_rec
+        assert 'LuxApp TEST' in http(REC + 'manifest.json', USER + ':' + PASS)[1]
         assert (URL_LUXAPP in config_rec) == bool(retour)
         with sync_playwright() as p:
             b = p.chromium.launch()

@@ -1650,7 +1650,19 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
    l'animation générique d'entrée 'entre' déplaçait son conteneur de 8px. */
 #view-dashboard .anime .ac-ent { animation: none; }
 
-/* ── Panneau qui monte du bas (niveau, Plus) ─────────────────────────────── */
+/* Le menu Plus est un écran de premier niveau, pas un panneau temporaire. */
+#view-plus .plus-page {
+  width: 100%; max-width: 640px; margin: 0 auto;
+  padding: 30px max(20px, env(safe-area-inset-left)) calc(110px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 12px;
+}
+#view-plus .plus-entete h1 { font-size: clamp(30px, 7vw, 38px); line-height: 1.1; font-weight: 800; }
+#view-plus .plus-entete p { color: var(--muted-strong); font-size: var(--fs-sec); margin-top: 6px; }
+#view-plus .plus-acquis { margin: 12px 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#view-plus .plus-ligne { width: 100%; }
+#view-plus .plus-version { text-align: center; color: var(--muted); padding-top: 14px; }
+
+/* ── Panneau qui monte du bas (aides, recette et confirmations) ──────────── */
 .voile { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, .55); animation: fondu .25s ease both; }
 .panneau {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 61; margin: 0 auto; max-width: 560px;

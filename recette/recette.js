@@ -243,12 +243,26 @@ async function recVoir() {
   const scenario = document.getElementById('rec-scenario').value;
   const choix = { lecon: l.id, ecran, scenario, examen: document.getElementById('rec-examen').value };
   recEcrireChoix(choix);
-  fermerPanneau();
   recDerniereDuree = null;
   const debut = Date.now();
-  await recLancer(choix);
-  recDerniereDuree = Date.now() - debut;
-  recMajBadge();
+  // Préparer le vrai écran derrière les outils ; ne fermer qu'après réussite.
+  // Une erreur ne provoque plus fermeture/réouverture et désynchronisation History.
+  try {
+    await recLancer(choix);
+    recDerniereDuree = Date.now() - debut;
+    fermerPanneau();
+    recMajBadge();
+  } catch (err) {
+    console.error('Recette : échec de préparation', err);
+    recScenarioActif = null;
+    const note = document.getElementById('rec-indispo');
+    if (note) {
+      note.textContent = 'Impossible de préparer ce scénario : ' +
+        (err && err.message ? err.message : 'erreur inconnue') + '. Essaie une autre leçon ou un autre scénario.';
+      note.classList.remove('hidden');
+      note.setAttribute('role', 'alert');
+    }
+  }
 }
 
 let recDerniereDuree = null;
@@ -303,7 +317,7 @@ async function recRepartirDeZero(l) {
   pResultat = null;
   dernierFini = null;
   cheminLeconOuverte = undefined;
-  pileNav = [];
+  // Garder les gardes History Android cohérentes : goDashboard() vide la pile normalement.
   const p = getProgress();
   p.guide = { viesMasquees: 1 };
   saveProgress(p);
@@ -579,7 +593,7 @@ function recQuitter() {
   recEcrireChoix(choix);
   run = null;
   pResultat = null;
-  pileNav = [];
+  // La navigation vers l'accueil réinitialise la pile, sans casser History Android.
   recScenarioActif = null;
   recDerniereDuree = null;
   goDashboard();
@@ -602,17 +616,19 @@ function recMajBadge() {
   if (d && recDerniereDuree != null) d.textContent = 'Dernier scénario prêt en ' + (recDerniereDuree / 1000).toFixed(1) + ' s.';
 }
 
-// « Plus » : une ligne de plus, « Outils de test ».
-const recOuvrirPlusApp = ouvrirPlus;
-ouvrirPlus = function () {
-  recOuvrirPlusApp();
-  const panneau = document.getElementById('panneau');
-  if (!panneau) return;
+// La recette ajoute son entrée à la page Plus, y compris lorsqu'on y revient.
+const recRenderPlusPage = renderPlusPage;
+renderPlusPage = function () {
+  recRenderPlusPage();
+  const page = document.getElementById('plus-page');
+  if (!page || page.querySelector('.recette-ligne')) return;
   const ligne = document.createElement('button');
   ligne.className = 'plus-ligne recette-ligne';
-  ligne.onclick = () => { fermerPanneau(); ouvrirRecette(); };
+  ligne.onclick = ouvrirRecette;
   ligne.innerHTML = ICONES.reglages + '<span><b>Outils de test</b><small>Voir une fin de mission ou un résultat en quelques secondes</small></span>';
-  panneau.appendChild(ligne);
+  const version = page.querySelector('.plus-version');
+  if (version) version.before(ligne);
+  else page.appendChild(ligne);
 };
 
 document.title = 'TEST · ' + document.title;

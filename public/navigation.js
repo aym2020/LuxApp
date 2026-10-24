@@ -24,7 +24,7 @@
 const NIVEAU_VUE = {
   'view-dashboard': 0,
   'view-lessons': 1, 'view-review-setup': 1, 'view-lexique': 1, 'view-pieges': 1,
-  'view-examens': 1, 'view-reglages': 1, 'view-jeux': 1,
+  'view-examens': 1, 'view-reglages': 1, 'view-jeux': 1, 'view-plus': 1,
   'view-plecon': 2, 'view-lecon': 2,
   // L'introduction de mission est un écran à part entière (spec 18) : ce qu'on
   // ouvre depuis elle (unités, mission, 1re unité) s'empile au-dessus, et
@@ -91,6 +91,13 @@ function noterNavigation(vue) {
 
   // Un écran de navigation : l'activité en cours se termine.
   if (haut && estActivite(haut.vue)) pileNav.pop();
+  // Depuis Plus, les rubriques sont de vrais sous-écrans, pas d'autres onglets.
+  // Leur niveau général demeure 1 quand on les ouvre ailleurs dans l'application.
+  if (pileNav[pileNav.length - 1]?.vue === 'view-plus' &&
+      ['view-lexique', 'view-pieges', 'view-reglages', 'view-examens'].includes(vue)) {
+    pileNav.push(entree);
+    return;
+  }
   const niveau = NIVEAU_VUE[vue];
   // Depuis l'introduction : « Voir les unités » s'empile (exploration).
   const dessus = pileNav[pileNav.length - 1];
@@ -132,7 +139,7 @@ function nomEcran(e) {
   const l = e.lecon != null && typeof lecons !== 'undefined' ? lecons.find(x => x.id === e.lecon) : null;
   const noms = {
     'view-dashboard': 'Accueil', 'view-lessons': 'Mon chemin', 'view-review-setup': "S'entraîner",
-    'view-lexique': 'Lexique', 'view-pieges': 'Mes pièges', 'view-examens': 'Sujets', 'view-reglages': 'Réglages', 'view-jeux': 'Jeux'
+    'view-lexique': 'Lexique', 'view-pieges': 'Mes pièges', 'view-examens': 'Sujets', 'view-reglages': 'Réglages', 'view-jeux': 'Jeux', 'view-plus': 'Plus'
   };
   if (noms[e.vue]) return noms[e.vue];
   if (e.vue === 'view-msintro') return 'Introduction';
@@ -215,6 +222,7 @@ function restaurerEcran(e, cible) {
   else if (e.vue === 'view-msintro') renderIntroMission();
   else if (e.vue === 'view-examens') renderExamens(); // meilleur score à jour après un sujet
   else if (e.vue === 'view-jeux') renderJeuxHub(); // record Survie actualisé
+  else if (e.vue === 'view-plus') renderPlusPage();
   showView(e.vue);
   enRestauration = false;
 
@@ -324,6 +332,7 @@ async function rouvrirEcran(etat, l) {
     case 'view-lexique': openLexique(); return true;
     case 'view-pieges': openPieges(); return true;
     case 'view-reglages': openReglages(); return true;
+    case 'view-plus': ouvrirPlus(); return true;
     case 'view-examens':
     case 'view-examen':
     case 'view-examen-result':
@@ -435,10 +444,20 @@ function majGarde() {
     history.pushState({ luxapp: 'garde', n: gardesHistorique }, '');
   }
   if (gardesHistorique > besoin) {
-    // Retour en arrière de plusieurs entrées d'un coup : un seul popstate.
-    popsAIgnorer++;
-    history.go(besoin - gardesHistorique);
-    gardesHistorique = besoin;
+    // Recette : les préparations enchaînent automatiquement plusieurs écrans.
+    // history.go(-N) pouvait remonter au-delà de l'entrée initiale et ouvrir
+    // about:blank / l'application précédente dans l'onglet Android.
+    // Remettre le compteur logique à jour SANS naviguer dans l'historique réel.
+    // Le mode public conserve son comportement de retour ordinaire.
+    if (window.APP_CONFIG && window.APP_CONFIG.RECETTE) {
+      gardesHistorique = besoin;
+      history.replaceState(besoin ? { luxapp: 'garde', n: besoin } : { luxapp: 'racine' }, '');
+    } else {
+      // Retour en arrière de plusieurs entrées d'un coup : un seul popstate.
+      popsAIgnorer++;
+      history.go(besoin - gardesHistorique);
+      gardesHistorique = besoin;
+    }
   }
 }
 

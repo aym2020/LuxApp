@@ -45,10 +45,15 @@
     <div id="survie-jeu" class="survie-jeu"></div>
   </div>
 
+  <!-- Plus est une page navigable : Retour depuis ses sous-écrans y revient. -->
+  <div id="view-plus" class="view">
+    <main class="plus-page" id="plus-page"></main>
+  </div>
+
   <!-- ══ RÉGLAGES ════════════════════════════════════════════════════════════ -->
   <div id="view-reglages" class="view">
     <div class="lecon-header">
-      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Accueil</span></button>
       <div class="lecon-header-info">
         <span class="lecon-titre">Réglages</span>
       </div>
@@ -219,7 +224,7 @@
   <!-- ══ LEXIQUE : tous les mots de toutes les leçons du niveau ═══════════════ -->
   <div id="view-lexique" class="view">
     <div class="lecon-header">
-      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Accueil</span></button>
       <div class="lecon-header-info">
         <span class="lecon-num">LEXIQUE · <span id="lexique-niveau"></span></span>
         <span class="lecon-titre" id="lexique-compte"></span>
@@ -236,7 +241,7 @@
   <!-- ══ MES PIÈGES : points d'attention sur lesquels on s'est trompé ═════════ -->
   <div id="view-pieges" class="view">
     <div class="lecon-header">
-      <button class="back-btn" onclick="goDashboard()">← Accueil</button>
+      <button class="back-btn" data-retour onclick="retour()">← <span class="retour-txt">Accueil</span></button>
       <div class="lecon-header-info">
         <span class="lecon-num">MES PIÈGES · <span id="pieges-niveau"></span></span>
         <span class="lecon-titre">Les points d'attention où tu t'es trompé</span>

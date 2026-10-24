@@ -73,3 +73,18 @@ test('Examen : le prochain trou reste visible au-dessus du bandeau', () => {
   fn();
   assert.equal(etat.visible,true);
 });
+
+
+test('Plus est une vue de navigation persistante et peut être restaurée', () => {
+  const accueil = fs.readFileSync(path.join(base, 'accueil.js'), 'utf8');
+  const nav = fs.readFileSync(path.join(base, 'navigation.js'), 'utf8');
+  assert.match(html, /id="view-plus" class="view"/);
+  assert.match(accueil, /function ouvrirPlus\(\)\s*\{\s*renderPlusPage\(\);\s*showView\('view-plus'\);/);
+  assert.match(nav, /'view-plus': 1/);
+  assert.match(nav, /'view-plus': ouvrirPlus\(\)/);
+  assert.match(nav, /e\.vue === 'view-plus'\) renderPlusPage\(\)/);
+  for (const id of ['view-reglages', 'view-lexique', 'view-pieges']) {
+    const fragment = html.slice(html.indexOf('id="' + id + '"'), html.indexOf('id="' + id + '"') + 185);
+    assert.match(fragment, /data-retour onclick="retour\(\)"/);
+  }
+});

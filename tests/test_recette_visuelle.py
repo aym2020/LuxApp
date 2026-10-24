@@ -89,13 +89,46 @@ try:
         assert pg.evaluate("typeof firebase") == 'undefined' and pg.evaluate("window.APP_CONFIG.FIREBASE") is None
         assert pg.is_visible('#recette-badge') and 'MODE TEST' in pg.inner_text('#recette-badge')
 
+        # Plus est une vraie page ; Réglages doit pouvoir revenir à Plus.
+        pg.evaluate("ouvrirPlus()")
+        assert pg.is_visible('#view-plus.active')
+        pg.evaluate("openReglages()")
+        assert pg.is_visible('#view-reglages.active')
+        pg.evaluate("retour()")
+        assert pg.is_visible('#view-plus.active')
+        assert 'Outils de test' in pg.inner_text('#plus-page')
+        pg.evaluate("openLexique()")
+        pg.evaluate("retour()")
+        assert pg.is_visible('#view-plus.active')
+        ok('Plus : page navigable, retour depuis Réglages/Lexique vers les outils')
+
+        # La flèche système Android est reliée aux entrées History, pas seulement au bouton retour.
+        pg.evaluate("ouvrirPlus()")
+        pg.evaluate("openReglages()")
+        pg.evaluate("history.back()")
+        pg.wait_for_function("document.querySelector('#view-plus.active') !== null")
+        ok('Retour navigateur Android : Réglages → Plus, sans revenir à l’accueil')
+
         # Plus → Outils de test
         pg.evaluate("ouvrirPlus()")
+        assert pg.is_visible('#view-plus.active')
         pg.click('.recette-ligne')
         assert pg.is_visible('#rec-lecon') and 'progression fictive' in pg.inner_text('.recette-panneau')
         libelle = pg.evaluate("document.querySelector('#rec-lecon option[value=\"24\"]').textContent")
         assert 'Leçon 25' in libelle and 'passé composé' in libelle, libelle
         ok('Plus → Outils de test : leçons avec leur numéro affiché (id 24 → « Leçon 25 · Le passé composé »), badge MODE TEST')
+
+        # Un scénario qui plante doit afficher l'erreur dans les outils, jamais quitter la recette.
+        pg.evaluate("""() => {
+          window.__recLancerInitial = recLancer;
+          recLancer = async () => { throw new Error('test echec simulé'); };
+        }""")
+        pg.click('#rec-voir')
+        pg.wait_for_selector('#rec-indispo:not(.hidden)')
+        assert 'test echec simulé' in pg.inner_text('#rec-indispo')
+        assert pg.url.startswith(REC)
+        pg.evaluate("() => { recLancer = window.__recLancerInitial; return true; }")
+        ok('scénario en échec : erreur lisible, recette intacte, nouveau test possible')
 
         # Régression Chrome/Windows : popup native blanche + texte clair illisible.
         # Le color-scheme et les couleurs des options actives/désactivées doivent rester lisibles.
@@ -129,7 +162,8 @@ try:
             pg.select_option('#rec-scenario', scenario)
             t = time.time()
             pg.click('#rec-voir')
-            pg.wait_for_function("recDerniereDuree !== null && !document.getElementById('panneau')", timeout=10000)
+            pg.wait_for_function("typeof recDerniereDuree !== 'undefined' && recDerniereDuree !== null && !document.getElementById('panneau')", timeout=10000)
+            assert pg.url == REC, 'la recette ne doit jamais sortir de son origine : ' + pg.url
             return time.time() - t
 
         durees = {}
