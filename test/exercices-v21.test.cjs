@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'), css=read('exercices-v21.css');
 const app=read('app.js'), parcours=read('parcours.js');
 test('couleurs et UI partagées seulement entre les deux vues d’exercices',()=>{
-  assert.match(html,/href="exercices-v21\.css\?v=ecriture-essai-bas-1"/);
+  assert.match(html,/href="exercices-v21\.css\?v=trous-4choix-correction-1"/);
   assert.match(css,/#view-session \.question-card/);
   assert.match(css,/#view-parcours #pc-choix\.pc-choix-grille/);
   assert.doesNotMatch(css,/#view-dashboard|#view-lessons|#view-examen\b/);
