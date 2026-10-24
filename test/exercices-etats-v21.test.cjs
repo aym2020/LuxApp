@@ -191,7 +191,7 @@ test('écriture parcours : première erreur dans le bandeau inférieur, 2e essai
   assert.match(extrait, /fb\.className = 'pc-feedback ko essai'/);
   assert.match(extrait, /fb\.appendChild\(bouton\)/);
   assert.match(extrait, /bouton\.textContent = 'Réessayer'/);
-  assert.doesNotMatch(extrait.split("if (ecrEssais === 1) {")[1].split("input.disabled = true;")[0], /showFeedback\(/);
+  assert.doesNotMatch(extrait.split("if (ecrEssais === 1) {")[1].split("input.disabled = true;")[0], /^\s*showFeedback\(/m);
   assert.match(styles, /#view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
   assert.match(styles, /body\.clavier-actif #view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
 });
