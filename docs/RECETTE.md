@@ -27,6 +27,12 @@ Créer un **second** Render Web Service sur `aym2020/LuxApp`, branche `2.1`, ave
 
 Après chaque changement de variables, laisser Render redéployer le service concerné. Le plan gratuit peut se mettre en veille.
 
+## Fenêtre « app » Android : pourquoi une installation distincte est nécessaire
+
+L'URL de recette et l'URL de LuxApp normale sont **deux origines** : ouvrir la recette depuis l'icône installée de LuxApp passe donc par un onglet du navigateur (Chrome / Brave peuvent afficher leur barre d'adresse). Le manifeste de la recette porte le nom **« LuxApp TEST »**, mais **on ne peut pas forcer un autre domaine à s'ouvrir à l'intérieur de la PWA LuxApp**.
+
+Pour obtenir une **fenêtre dédiée sans barre de navigateur**, ouvrir directement l'URL `https://luxapp-recette.onrender.com` dans Brave/Chrome, s'authentifier puis utiliser le menu du navigateur **Installer l'application** ou **Ajouter à l'écran d'accueil** si l'option PWA est proposée. Lancer ensuite l'icône LuxApp TEST ainsi créée. Selon la prise en charge du navigateur et de HTTP Basic Auth, l'option peut n'être qu'un raccourci et conserver l'interface du navigateur. **Ne pas** rapprocher les deux sites sur la même origine : cela supprimerait la séparation du stockage local de progression.
+
 ## Utilisation sur PC et Samsung
 
 1. Ouvrir LuxApp sur son URL habituelle, se connecter avec un UID autorisé et choisir **Plus → Outils de test** ; saisir l'identifiant/mot de passe de recette dans la fenêtre native du navigateur.

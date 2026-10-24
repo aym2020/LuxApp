@@ -293,7 +293,7 @@ function actualiserStatutSynchro() {
   }
   const zone = document.getElementById('reglages-synchro');
   if (zone) zone.innerHTML = detailSynchroHtml(etat);
-  const sousTitre = document.querySelector('#panneau [data-synchro-menu]');
+  const sousTitre = document.querySelector('#plus-page [data-synchro-menu]');
   if (sousTitre) sousTitre.textContent = etat ? etat.texte : 'Compte, synchronisation, remise à zéro';
 }
 
@@ -308,15 +308,12 @@ function feterObjectifDuJour() {
   if (flamme) flamme.classList.add('bump');
 }
 
-// ─── MENU (roue en haut de l'accueil, « Plus » dans la barre du bas) ───────
-// Ce qui sert moins souvent : lexique, pièges, réglages.
-function ouvrirPlus() {
-  // Un deuxième appui rapide sur la roue/Plus n'empile pas de panneaux.
-  const dejaOuvert = document.getElementById('panneau');
-  if (dejaOuvert && dejaOuvert.getAttribute('aria-label') === 'Plus') return;
+// ─── PLUS : page de navigation plutôt que feuille modale ──────────────────
+// Les quatre raccourcis habituels sont conservés, Retour revient ici.
+function renderPlusPage() {
   const tuiles = [
     [compterUnitesTerminees(), 'unités terminées'],
-    ...(compterAcquisesAncienneVersion() ? [[compterAcquisesAncienneVersion(), 'leçons acquises précédemment']] : []), // spec 46
+    ...(compterAcquisesAncienneVersion() ? [[compterAcquisesAncienneVersion(), 'leçons acquises précédemment']] : []),
     [leconsActives().filter(missionReussie).length, 'missions réussies'],
     [totalJours(), 'jours de pratique']
   ];
@@ -327,16 +324,21 @@ function ouvrirPlus() {
     [ICONES.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2.1', 'ouvrirNouveautes()'],
     [ICONES.reglages, 'Réglages', etat ? etat.texte : 'Compte, synchronisation, remise à zéro', 'openReglages()']
   ];
-  const html = '<div class="poignee"></div><h2>Plus</h2>' +
+  const html = '<header class="plus-entete"><h1>Plus</h1><p>Ton apprentissage et tes outils</p></header>' +
     '<div class="plus-acquis">' + tuiles.map(t => '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>').join('') + '</div>' +
-    lignes.map(x => '<button class="plus-ligne" onclick="fermerPanneau(); ' + x[3] + '">' + x[0] +
+    lignes.map(x => '<button class="plus-ligne" onclick="' + x[3] + '">' + x[0] +
       '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
       '>' + escHtml(x[2]) + '</small></span></button>').join('') +
-    // Ne pas fermer le panneau ici : le Retour doit revenir à Plus.
     (lienRecettePourMoi() ? '<button class="plus-ligne" onclick="ouvrirRecetteDistante()">' + ICONES.cible +
       '<span><b>Outils de test</b><small>Recette privée, progression fictive</small></span></button>' : '') +
     '<div class="plus-version">LuxApp <b>2.1</b></div>';
-  ouvrirPanneau(html, 'Plus');
+  const cible = document.getElementById('plus-page');
+  if (cible) cible.innerHTML = html;
+}
+
+function ouvrirPlus() {
+  renderPlusPage();
+  showView('view-plus');
 }
 
 // Ligne visible uniquement pour les UID Firebase définis dans RECETTE_ACCES.

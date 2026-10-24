@@ -89,8 +89,22 @@ try:
         assert pg.evaluate("typeof firebase") == 'undefined' and pg.evaluate("window.APP_CONFIG.FIREBASE") is None
         assert pg.is_visible('#recette-badge') and 'MODE TEST' in pg.inner_text('#recette-badge')
 
+        # Plus est une vraie page ; Réglages doit pouvoir revenir à Plus.
+        pg.evaluate("ouvrirPlus()")
+        assert pg.is_visible('#view-plus.active')
+        pg.evaluate("openReglages()")
+        assert pg.is_visible('#view-reglages.active')
+        pg.evaluate("retour()")
+        assert pg.is_visible('#view-plus.active')
+        assert 'Outils de test' in pg.inner_text('#plus-page')
+        pg.evaluate("openLexique()")
+        pg.evaluate("retour()")
+        assert pg.is_visible('#view-plus.active')
+        ok('Plus : page navigable, retour depuis Réglages/Lexique vers les outils')
+
         # Plus → Outils de test
         pg.evaluate("ouvrirPlus()")
+        assert pg.is_visible('#view-plus.active')
         pg.click('.recette-ligne')
         assert pg.is_visible('#rec-lecon') and 'progression fictive' in pg.inner_text('.recette-panneau')
         libelle = pg.evaluate("document.querySelector('#rec-lecon option[value=\"24\"]').textContent")

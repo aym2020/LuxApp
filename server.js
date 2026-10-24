@@ -33,6 +33,15 @@ if (RECETTE) {
     const retour = /^https:\/\/[^\s"'<>]+$/.test(process.env.LUXAPP_URL || '') ? process.env.LUXAPP_URL : null;
     res.type('application/javascript').send('window.APP_CONFIG = { FIREBASE: null, RECETTE: true, RETOUR_LUXAPP: ' + JSON.stringify(retour) + ' };');
   });
+  // Même PWA techniquement, mais une origine et une icône Android distinctes.
+  // L'ouverture depuis LuxApp installée reste une navigation inter-domaines :
+  // seule l'installation séparée de cette recette lance sa propre fenêtre standalone.
+  app.get('/manifest.json', (req, res) => {
+    const manifeste = JSON.parse(fs.readFileSync(path.join(__dirname, 'public/manifest.json'), 'utf8'));
+    manifeste.name = 'LuxApp · TEST';
+    manifeste.short_name = 'LuxApp TEST';
+    res.json(manifeste);
+  });
   // La vraie page, sans les scripts Firebase, avec le panneau de recette en plus.
   const pageRecette = (req, res) => {
     const html = fs.readFileSync(path.join(__dirname, 'public/index.html'), 'utf8')
