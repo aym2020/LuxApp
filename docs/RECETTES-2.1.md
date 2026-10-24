@@ -31,6 +31,7 @@
 - **E-04 (juste au second essai) :** titre « Juste, au 2e essai », réponse, audio, rappel de fin d'étape et Continuer visibles. **Conforme visuellement**.
 - **E-05 (deux faux) :** titre « Pas encore », réponse attendue, audio, rappel et Continuer visibles. **Conforme visuellement**.
 - **Q-01 à Q-03** : aucune capture dans ce lot. **Non validés**. **Mot caché** : état antérieur inchangé, sans nouvelle capture.
+- **Badge MODE TEST : problème secondaire propre à la recette** : le volet rose fixe sur la bordure droite chevauche visuellement l'extrémité des boutons de réponse et, en Écriture, du bouton « Valider ». Déplacer/réduire ce raccourci ou utiliser une zone sûre pour ne pas intercepter les appuis sur les commandes du vrai moteur. À tester sur Samsung ; ne pas confondre avec un défaut de l'application de production.
 
 **Correctif requis T-03 :** une fois la réponse fausse, faire apparaître sans ambiguïté et sans chevauchement **le choix erroné rouge et la bonne réponse verte**, tout en gardant la correction et « Continuer » accessibles. Préférer un cadrage du corps scrollable ou un résumé « Ton choix : … » explicite dans le bandeau ; tester les cas où l'option erronée est la dernière de 4 à **320/360/390/430 px**, avec textes longs et zoom. Ne pas changer le score, la répétition de la question ni les JSON.
 
