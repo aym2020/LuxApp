@@ -31,7 +31,13 @@ Après chaque changement de variables, laisser Render redéployer le service con
 
 L'URL de recette et l'URL de LuxApp normale sont **deux origines** : ouvrir la recette depuis l'icône installée de LuxApp passe donc par un onglet du navigateur (Chrome / Brave peuvent afficher leur barre d'adresse). Le manifeste de la recette porte le nom **« LuxApp TEST »**, mais **on ne peut pas forcer un autre domaine à s'ouvrir à l'intérieur de la PWA LuxApp**.
 
-Pour obtenir une **fenêtre dédiée sans barre de navigateur**, ouvrir directement l'URL `https://luxapp-recette.onrender.com` dans Brave/Chrome, s'authentifier puis utiliser le menu du navigateur **Installer l'application** ou **Ajouter à l'écran d'accueil** si l'option PWA est proposée. Lancer ensuite l'icône LuxApp TEST ainsi créée. Selon la prise en charge du navigateur et de HTTP Basic Auth, l'option peut n'être qu'un raccourci et conserver l'interface du navigateur. **Ne pas** rapprocher les deux sites sur la même origine : cela supprimerait la séparation du stockage local de progression.
+Pour obtenir une **fenêtre dédiée sans barre de navigateur**, ouvrir directement l'URL `https://luxapp-recette.onrender.com` **dans Chrome** (ou Samsung Internet), s'authentifier, puis choisir **⋮ → Installer l'application**. La recette utilise le manifeste `LuxApp TEST`, distinct de la PWA normale. Sur Brave, l'option peut n'offrir qu'un raccourci qui conserve la barre de navigateur.
+
+**Correctif d'installation Android (octobre 2026) :** le manifeste `/manifest.json`, les quatre icônes PWA, `apple-touch-icon.png` et `favicon.ico` sont accessibles **sans HTTP Basic** afin que Chrome et son service WebAPK puissent récupérer les métadonnées d'installation. **Toutes les autres URL de la recette**, dont la page d'accueil, les scripts, `/api/lecons` et les outils de test, exigent toujours le mot de passe côté serveur. Cela n'expose ni progression ni données pédagogiques privées. L'absence de Service Worker n'empêche pas une installation depuis le menu Chrome, mais **la recette reste dépendante du réseau**.
+
+Après le déploiement de `2.1`, dans Chrome **actualiser directement** `https://luxapp-recette.onrender.com`, puis ouvrir ⋮ → « Installer l'application ». Si « This app cannot be installed » apparaît encore, essayer une fois après redémarrage de l'onglet ; vérifier ensuite dans DevTools PC (Application → Manifest, Console) si Chrome peut récupérer les icônes et le `start_url`. Les contraintes Android/Chrome et les éventuels effets de l'authentification peuvent nécessiter un contrôle sur le Samsung : ne pas présenter l'installation comme validée sans cette preuve.
+
+**Ne pas** réunir la recette et le service normal sur la même origine : cela supprimerait la séparation du stockage local de progression.
 
 ## Utilisation sur PC et Samsung
 

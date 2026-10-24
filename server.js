@@ -15,6 +15,27 @@ if (RECETTE) {
   // Éviter que les captures de recette mélangent anciens HTML, JS et CSS.
   // Même après un git pull, un onglet déjà ouvert doit être actualisé manuellement.
   app.use((req,res,next) => { res.set('Cache-Control','no-store, max-age=0'); next(); });
+  // PWA installable sur Android : Chromium/WebAPK doit pouvoir lire
+  // manifeste et icônes hors du contexte HTTP Basic. Ces ressources sont
+  // uniquement des métadonnées/images publiques ; le HTML, les scripts,
+  // les données et les API restent TOUS derrière le mot de passe.
+  app.get('/manifest.json', (req, res) => {
+    const manifeste = JSON.parse(fs.readFileSync(path.join(__dirname, 'public/manifest.json'), 'utf8'));
+    manifeste.name = 'LuxApp · TEST';
+    manifeste.short_name = 'LuxApp TEST';
+    res.set('Content-Type', 'application/manifest+json').send(JSON.stringify(manifeste));
+  });
+  const iconesInstall = [
+    'icon-192.png', 'icon-512.png',
+    'icon-maskable-192.png', 'icon-maskable-512.png',
+    'apple-touch-icon.png'
+  ];
+  for (const fichier of iconesInstall) {
+    app.get('/icons/' + fichier, (req, res) =>
+      res.sendFile(path.join(__dirname, 'public/icons', fichier)));
+  }
+  app.get('/favicon.ico', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/favicon.ico')));
   const utilisateur = process.env.RECETTE_USER || '';
   const motDePasse = process.env.RECETTE_PASS || '';
   app.use((req, res, next) => {
@@ -32,15 +53,6 @@ if (RECETTE) {
     // LUXAPP_URL : vraie app, pour le bouton Retour.
     const retour = /^https:\/\/[^\s"'<>]+$/.test(process.env.LUXAPP_URL || '') ? process.env.LUXAPP_URL : null;
     res.type('application/javascript').send('window.APP_CONFIG = { FIREBASE: null, RECETTE: true, RETOUR_LUXAPP: ' + JSON.stringify(retour) + ' };');
-  });
-  // Même PWA techniquement, mais une origine et une icône Android distinctes.
-  // L'ouverture depuis LuxApp installée reste une navigation inter-domaines :
-  // seule l'installation séparée de cette recette lance sa propre fenêtre standalone.
-  app.get('/manifest.json', (req, res) => {
-    const manifeste = JSON.parse(fs.readFileSync(path.join(__dirname, 'public/manifest.json'), 'utf8'));
-    manifeste.name = 'LuxApp · TEST';
-    manifeste.short_name = 'LuxApp TEST';
-    res.json(manifeste);
   });
   // La vraie page, sans les scripts Firebase, avec le panneau de recette en plus.
   const pageRecette = (req, res) => {
