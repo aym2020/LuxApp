@@ -184,3 +184,14 @@ test('Mot caché : le son de lettre est réutilisé sans nouvel asset ni dépend
   assert.match(html,/src="survie-vfx\.js\?v=2"[\s\S]*src="jeux-v21\.js\?v=12"/);
   assert.match(html,/src="parcours\.js\?v=8"/);
 });
+
+test('écriture parcours : première erreur dans le bandeau inférieur, 2e essai non verrouillé', () => {
+  const extrait = fonction(parcours, 'ecrValiderPc');
+  const styles = read('exercices-v21.css');
+  assert.match(extrait, /fb\.className = 'pc-feedback ko essai'/);
+  assert.match(extrait, /fb\.appendChild\(bouton\)/);
+  assert.match(extrait, /bouton\.textContent = 'Réessayer'/);
+  assert.doesNotMatch(extrait.split("if (ecrEssais === 1) {")[1].split("input.disabled = true;")[0], /^\s*showFeedback\(/m);
+  assert.match(styles, /#view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
+  assert.match(styles, /body\.clavier-actif #view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
+});

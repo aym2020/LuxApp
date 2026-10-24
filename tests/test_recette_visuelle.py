@@ -253,7 +253,23 @@ try:
         lancer(2, 'ecriture', 'depart')
         assert pg.locator('#pc-ecr-input').is_visible()
         lancer(2, 'ecriture', 'erreur-1')
-        assert pg.evaluate('ecrEssais') == 1 and pg.locator('#pc-ecr-erreur').is_visible()
+        assert pg.evaluate('ecrEssais') == 1 and not pg.evaluate('pAttente')
+        assert pg.locator('#pc-ecr-erreur').is_hidden()
+        assert pg.locator('#pc-feedback.ko.essai').is_visible()
+        assert 'Pas encore · réessaie' in pg.inner_text('#pc-feedback')
+        assert pg.locator('#pc-feedback #pc-ecr-valider').inner_text() == 'Réessayer'
+        assert pg.locator('#pc-ecr-input').is_enabled()
+        assert pg.locator('#pc-ecr-input').input_value().startswith('zzz')
+        assert pg.locator('#view-parcours .pc-feedback').evaluate('e => getComputedStyle(e).position') == 'sticky'
+        # 1er faux : le bandeau est en bas, mais la correction n'est PAS révélée.
+        assert 'Réponse attendue :' not in pg.inner_text('#pc-feedback')
+        pg.locator('#pc-ecr-input').fill('Deuxième tentative sans réponse correcte')
+        assert pg.locator('#pc-feedback #pc-ecr-valider').inner_text() == 'Réessayer'
+        assert pg.locator('#pc-feedback #pc-ecr-valider').is_visible()
+        pg.locator('#pc-feedback #pc-ecr-valider').click()
+        assert pg.locator('#pc-feedback.ko:not(.essai)').is_visible()
+        assert pg.locator('#pc-ecr-input').is_disabled()
+        ok('Écriture E-02 : bandeau inférieur, saisie conservée, deuxième tentative réelle puis correction finale')
         lancer(2, 'ecriture', 'juste')
         assert pg.evaluate('pAttente') and 'Juste !' in pg.inner_text('#pc-feedback')
         lancer(2, 'ecriture', 'juste-2')

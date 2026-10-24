@@ -1610,7 +1610,7 @@ function renderEcriturePc(e) {
     else ecrValiderPc();
   });
   input.addEventListener('input', () => {
-    document.getElementById('pc-ecr-valider').textContent = 'Valider';
+    document.getElementById('pc-ecr-valider').textContent = ecrEssais ? 'Réessayer' : 'Valider';
     // Une ligne au départ ; le champ grandit pour une vraie phrase.
     input.style.height = '70px';
     input.style.height = Math.min(150, Math.max(70, input.scrollHeight)) + 'px';
@@ -1673,13 +1673,22 @@ function ecrValiderPc() {
   ecrEssais++;
   if (ecrEssais === 1) {
     enregistrer(e, 0, false); // une vraie erreur compte dès le 1er essai
+    // Même bandeau inférieur que Quiz, Trous et correction finale d'Écriture.
+    // NE PAS utiliser showFeedback() : il verrouillerait le champ et pAttente,
+    // alors que l'apprenant a encore son deuxième essai.
     const err = document.getElementById('pc-ecr-erreur');
-    err.classList.remove('hidden', 'coquille');
-    err.innerHTML = '<b>Pas encore</b> · Ton essai : ' + escHtml(val) + ' · corrige ta réponse' +
-      aideErreurHtml(val, e, attention, 1);
-    // La réponse reste dans le champ pour la corriger ; le clavier se ferme
-    // pour laisser lire l'aide. Une seule action : « Réessayer ».
-    document.getElementById('pc-ecr-valider').textContent = 'Réessayer';
+    err.classList.add('hidden');
+    err.classList.remove('coquille');
+    const fb = document.getElementById('pc-feedback');
+    fb.className = 'pc-feedback ko essai';
+    fb.innerHTML = '<div class="pc-fb-titre">Pas encore · réessaie</div>' +
+      '<div class="pc-fb-txt">Ton essai : <b>' + escHtml(val) +
+      '</b> · corrige ta réponse' + aideErreurHtml(val, e, attention, 1) + '</div>';
+    // Conserver LE MÊME bouton et sa logique ecrValiderPc, sans doublon.
+    // Il apparaît dans le bandeau sans empêcher la saisie, le clavier ni Entrée.
+    const bouton = document.getElementById('pc-ecr-valider');
+    bouton.textContent = 'Réessayer';
+    fb.appendChild(bouton);
     fermerClavier();
     focusSiClavierPhysique(input);
     return;

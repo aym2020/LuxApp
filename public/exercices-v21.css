@@ -105,6 +105,26 @@
 #view-parcours .pc-feedback > * {width:100%;max-width:458px;margin-inline:auto}
 #view-parcours .pc-feedback.ok {background:#0f1d18;border-top-color:var(--correct)}
 #view-parcours .pc-feedback.ko {background:#1f1513;border-top-color:var(--wrong)}
+/* Écriture parcours, premier essai incorrect : correction comme les QCM,
+   mais la saisie et son bouton restent actifs pour le deuxième essai. */
+#view-parcours[data-type="ecriture"] .pc-actions:empty { display:none; }
+#view-parcours[data-type="ecriture"] .pc-feedback.essai {
+  gap:8px; padding-top:14px; padding-bottom:calc(16px + env(safe-area-inset-bottom));
+}
+#view-parcours[data-type="ecriture"] .pc-feedback.essai .pc-fb-txt {
+  overflow-y:auto; max-height:min(20dvh,130px); overflow-wrap:anywhere;
+}
+body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai {
+  flex:none; gap:0; padding:8px 14px 10px;
+}
+body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .pc-fb-titre,
+body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .pc-fb-txt {
+  display:none; /* lisibles dès fermeture du clavier ; action reste touchable */
+}
+body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .pc-btn {
+  min-height:48px; margin:0;
+}
+
 /* Entraînement : correction dans le flux, juste sous la question (SPEC 59). */
 #view-session #session-feedback {
   display:flex;flex-direction:column;gap:8px;width:100%;margin:24px 0 0;padding:15px 16px;
