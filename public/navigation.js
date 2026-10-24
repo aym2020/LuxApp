@@ -444,10 +444,20 @@ function majGarde() {
     history.pushState({ luxapp: 'garde', n: gardesHistorique }, '');
   }
   if (gardesHistorique > besoin) {
-    // Retour en arrière de plusieurs entrées d'un coup : un seul popstate.
-    popsAIgnorer++;
-    history.go(besoin - gardesHistorique);
-    gardesHistorique = besoin;
+    // Recette : les préparations enchaînent automatiquement plusieurs écrans.
+    // history.go(-N) pouvait remonter au-delà de l'entrée initiale et ouvrir
+    // about:blank / l'application précédente dans l'onglet Android.
+    // Remettre le compteur logique à jour SANS naviguer dans l'historique réel.
+    // Le mode public conserve son comportement de retour ordinaire.
+    if (window.APP_CONFIG && window.APP_CONFIG.RECETTE) {
+      gardesHistorique = besoin;
+      history.replaceState(besoin ? { luxapp: 'garde', n: besoin } : { luxapp: 'racine' }, '');
+    } else {
+      // Retour en arrière de plusieurs entrées d'un coup : un seul popstate.
+      popsAIgnorer++;
+      history.go(besoin - gardesHistorique);
+      gardesHistorique = besoin;
+    }
   }
 }
 

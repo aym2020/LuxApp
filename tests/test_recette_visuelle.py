@@ -78,7 +78,6 @@ try:
         ctx = b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True,
                             http_credentials={'username': USER, 'password': PASS})
         pg = ctx.new_page()
-        pg.on('framenavigated', lambda frame: print('TRACE_NAVIGATION:',frame.url) if frame == pg.main_frame else None)
         erreurs_js = []
         cloud = []
         pg.on('pageerror', lambda e: erreurs_js.append(str(e)))
@@ -163,8 +162,8 @@ try:
             pg.select_option('#rec-scenario', scenario)
             t = time.time()
             pg.click('#rec-voir')
-            print('TRACE_APRES_VOIR:', pg.url, pg.evaluate("typeof recDerniereDuree"), pg.evaluate("history.state"))
             pg.wait_for_function("typeof recDerniereDuree !== 'undefined' && recDerniereDuree !== null && !document.getElementById('panneau')", timeout=10000)
+            assert pg.url == REC, 'la recette ne doit jamais sortir de son origine : ' + pg.url
             return time.time() - t
 
         durees = {}

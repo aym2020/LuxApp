@@ -243,18 +243,18 @@ async function recVoir() {
   const scenario = document.getElementById('rec-scenario').value;
   const choix = { lecon: l.id, ecran, scenario, examen: document.getElementById('rec-examen').value };
   recEcrireChoix(choix);
-  fermerPanneau();
   recDerniereDuree = null;
   const debut = Date.now();
+  // Préparer le vrai écran derrière les outils ; ne fermer qu'après réussite.
+  // Une erreur ne provoque plus fermeture/réouverture et désynchronisation History.
   try {
     await recLancer(choix);
     recDerniereDuree = Date.now() - debut;
+    fermerPanneau();
     recMajBadge();
   } catch (err) {
-    // Échec explicite plutôt qu'une promesse rejetée laissant l'app sur un écran aléatoire.
     console.error('Recette : échec de préparation', err);
     recScenarioActif = null;
-    ouvrirRecette();
     const note = document.getElementById('rec-indispo');
     if (note) {
       note.textContent = 'Impossible de préparer ce scénario : ' +
