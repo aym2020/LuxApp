@@ -195,3 +195,11 @@ test('écriture parcours : première erreur dans le bandeau inférieur, 2e essai
   assert.match(styles, /#view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
   assert.match(styles, /body\.clavier-actif #view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
 });
+
+test('Trous corrigé : les quatre choix restent dans une zone scrollable, CTA hors du corps', () => {
+  assert.match(css, /#view-parcours\.active\[data-type="trous"\]\[data-etat="corrige"\] \{/);
+  assert.match(css, /data-etat="corrige"\] \.pc-body\s*\{[^}]*flex:1;min-height:0;overflow-y:auto/s);
+  assert.match(css, /data-etat="corrige"\] #pc-choix \.choice\s*\{[^}]*min-height:49px/s);
+  assert.match(css, /data-etat="corrige"\] \.pc-feedback\s*\{[^}]*position:relative/s);
+  assert.match(css, /data-etat="corrige"\] \.pc-feedback \.pc-btn\s*\{[^}]*min-height:48px/s);
+});
