@@ -1,6 +1,6 @@
 # Catalogue des recettes LuxApp 2.1 — tests et validations sur téléphone
 
-**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** correction visuelle et sons acceptés le 25/10 ; P0-01 clôturée. **P0-02 partielle :** clavier Samsung ouvert + CTA et saisie longue vus ; Entrée, retour, zoom et autres scénarios non encore validés. Voir [configuration et sécurité](RECETTE.md).
+**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** correction visuelle et sons acceptés le 25/10 ; P0-01 clôturée. **P0-02 presque terminée :** clavier Samsung ouvert, CTA, saisie longue, essai faux + Réessayer, touche Entrée et Retour Android confirmés ; reste l'agrandissement de police 130/200 %. Voir [configuration et sécurité](RECETTE.md).
 
 ## Principe obligatoire pour chaque nouvelle tâche
 
@@ -42,6 +42,12 @@ Quatre captures de l'exercice **Écriture Leçon** sur téléphone Samsung, dont
 - **Repère de l'instance de recette :** l'onglet rose « MODE TEST » est volontaire. Confirmation Produit le 25/10 : **pas un défaut, aucune action corrective**. Il n'entre pas dans les critères de P0-02.
 - **Pédagogie à examiner séparément (P0-09) :** pour « Marc est portugais. », l'aide montre « au féminin : + -in », précision non pertinente pour l'exemple masculin. Ne pas modifier les JSON sans revue pédagogique.
 - **Non établis :** comportement de la touche Entrée et du retour Android, transitions et deuxième essai effectués pendant que le clavier est ouvert, texte 130/200 %, autres tailles de téléphone et clavier alternatif. **P0-02 reste ouverte**, mais le cas normal clavier ouvert + saisie longue + CTA a une preuve visuelle réelle.
+
+### Revue complémentaire Samsung — 25 octobre 2026, 23h34–23h36 (P0-02)
+
+Trois nouvelles captures Samsung en **S'entraîner → Écriture** montrent le clavier AZERTY ouvert, la question lisible, le champ accessible, le CTA « Valider » fixe et un état **premier faux** avec texte d'aide et « Réessayer » entièrement visible au-dessus du clavier. **Confirmation explicite du Produit :** touche Entrée et Retour Android fonctionnent. Le badge MODE TEST ne constitue pas un défaut. Les captures ne démontrent pas un réglage de police agrandie.
+
+**Bilan :** clavier et actions critiques validés sur Samsung en Leçon et S'entraîner. P0-02 reste ouverte uniquement pour le contrôle de police agrandie 130/200 % prévu dans ses critères ; la recette globale, les parcours de progression et TalkBack restent dans leurs tâches distinctes.
 
 **E-02 clos visuellement au 25/10 :** première erreur « Pas encore · réessaie » dans le corps, bouton « Réessayer » fixe en bas ; échec final avec solution et « Suivante ». L'ancienne demande de bandeau inférieur est remplacée par la SPEC 95. Vérifications restantes : clavier réellement ouvert, transitions et texte agrandi.
 
