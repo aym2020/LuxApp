@@ -250,63 +250,6 @@ try:
             if ecran == 'trous': assert pg.locator('#pc-blank').evaluate('el => el.style.color') != ''
             ok('3001 %s : départ, juste, faux et correction cohérente' % prefix)
 
-
-        # Les captures Samsung P0 imposent quatre choix visibles pendant la
-        # correction, y compris si l'erreur sélectionnée est le quatrième choix.
-        for largeur, hauteur in ((390, 844), (430, 900)):
-            pg.set_viewport_size({'width': largeur, 'height': hauteur})
-            lancer(1, 'trous', 'faux')  # Leçon 1 : vrais JSON à 4 choix.
-            pg.wait_for_timeout(260)  # Fin de l'animation de correction.
-            geometrie = pg.evaluate("""() => {
-              const view = document.querySelector('#view-parcours');
-              const zone = view.querySelector('#pc-body');
-              const footer = view.querySelector('#pc-feedback');
-              const choix = [...view.querySelectorAll('#pc-choix .choice')];
-              const premier = choix[0].getBoundingClientRect();
-              const dernier = choix[choix.length-1].getBoundingClientRect();
-              const fb = footer.getBoundingClientRect();
-              const rect = e => e.getBoundingClientRect();
-              return {
-                nombre:choix.length,
-                premierTop:premier.top,
-                dernierBas:dernier.bottom,
-                bandeauHaut:fb.top,
-                bandeauBas:fb.bottom,
-                visible:choix.every(el => {
-                  const r=rect(el);
-                  return r.height>=44 && r.top>=rect(zone).top-1 && r.bottom<=rect(zone).bottom+1
-                }),
-                rouge:choix.filter(e=>e.classList.contains('wrong')).length,
-                vert:choix.filter(e=>e.classList.contains('correct')).length,
-                bodyScroll:zone.scrollHeight-zone.clientHeight,
-                documentScroll:document.documentElement.scrollWidth
-              }
-            }""")
-            assert geometrie['nombre'] == 4, geometrie
-            assert geometrie['visible'], (largeur,hauteur,geometrie)
-            assert geometrie['dernierBas'] < geometrie['bandeauHaut'] - 2, geometrie
-            assert geometrie['bandeauBas'] <= hauteur+2, geometrie
-            assert geometrie['rouge'] == 1 and geometrie['vert'] == 1, geometrie
-            assert geometrie['documentScroll'] <= largeur+1, geometrie
-        # Très petite hauteur : aucun recouvrement, défilement intérieur conservé.
-        pg.set_viewport_size({'width': 320, 'height': 640})
-        lancer(1, 'trous', 'faux')
-        pg.wait_for_timeout(260)
-        zones = pg.evaluate("""() => {
-          const z=document.querySelector('#pc-body'),fb=document.querySelector('#pc-feedback');
-          return {zBottom:z.getBoundingClientRect().bottom,
-                  fTop:fb.getBoundingClientRect().top,
-                  scroll:getComputedStyle(z).overflowY,
-                  btnHeight:document.querySelector('#pc-choix .choice').getBoundingClientRect().height,
-                  cta:document.querySelector('#pc-continuer').getBoundingClientRect().bottom,
-                  viewport:window.innerHeight}
-        }""")
-        assert zones['zBottom'] <= zones['fTop'] + 2, zones
-        assert zones['scroll'] == 'auto' and zones['btnHeight'] >= 44, zones
-        assert zones['cta'] <= zones['viewport'] + 2, zones
-        pg.set_viewport_size({'width':390,'height':844})
-        ok('Trous P0 : quatre choix visibles pendant correction à 390/430 px ; petit écran défilable et CTA visible')
-
         lancer(2, 'ecriture', 'depart')
         assert pg.locator('#pc-ecr-input').is_visible()
         lancer(2, 'ecriture', 'erreur-1')

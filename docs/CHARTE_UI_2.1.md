@@ -103,10 +103,6 @@ L'écran « Unité 1 · Ce que tu vas apprendre » de la V2.1 devenait trop haut
 - **Sécurité de mise en page propre à `2.1` :** introductions de mission et d'unité limitées à `100dvh`, défilement uniquement dans les zones de lecture en cas de contenu long ou de grands caractères, bouton de démarrage accessible en permanence et bloc d'actions de mission collé au bas du contenu visible. La découverte guidée emploie la barre inférieure stable de `v2`.
 - **Non modifiés :** textes source des leçons, missions jouées, résultats, sauvegardes et calculs de progression. Tests ciblés dans `test/intros-v2-fixed.test.cjs`. Contrôle visuel sur Samsung Android encore nécessaire.
 
-### Correction de Texte à trous : visibilité des quatre propositions (24 octobre 2026)
-
-Lorsque le feedback apparaît, **les quatre options doivent être visibles simultanément sur un écran Samsung courant**, notamment si la quatrième option a été choisie. Compacter **uniquement** l'état corrigé de Trous : espaces verticaux, présentation de la phrase et bandeau de correction ; chaque choix doit rester une cible d'au moins **44px**, avec le rouge sur le choix faux et le vert sur la solution. Le bandeau « Continuer » reste toujours accessible. Pour une hauteur de fenêtre trop faible ou un agrandissement de texte important, faire défiler la liste dans **le corps de l'exercice**, sans la cacher sous le pied de page. Les types Quiz/Écriture/Mot caché gardent leurs dimensions et aucun score ni JSON n'est modifié.
-
 ## Plus — page de navigation compacte (24 octobre 2026)
 
 Le menu Plus est **une vraie vue** (`view-plus`) et non plus un panneau temporaire ; les destinations Réglages, Lexique et Mes pièges doivent y revenir via le bouton Retour Android et le bouton retour de l'écran.

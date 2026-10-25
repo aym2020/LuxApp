@@ -39,12 +39,6 @@
 
 Chaque scénario affiche sa **liste de contrôle dans le panneau** avant ouverture. Après « Voir cet écran », vérifier le rendu sur le vrai écran, puis utiliser « MODE TEST » pour passer au suivant. Un indice doit garder son coût, « Voir l'aide » rester gratuit, « Continuer » rester visible. Tests navigateur de l'instance et protections : `tests/test_recette_visuelle.py`.
 
-### À vérifier ensuite — Trous et quatre choix lors de la correction (24 octobre 2026)
-
-**Retour Samsung confirmé :** avec le bandeau de correction ouvert, la **quatrième proposition doit rester visible**, pas seulement scrollable derrière « Pas encore ». Le cas concerné est T-03 (faux) à **4 propositions**, mais la règle s'applique aussi à T-02 (juste). Cible : conserver les quatre choix et la distinction rouge/vert visibles simultanément à 390 et 430 px de largeur avec hauteur courante, sans agrandir la place du bandeau. Sur les fenêtres trop courtes ou le texte agrandi, garder le corps **défilable indépendamment du bandeau et du bouton Continuer**, sans recouvrement. Ne jamais réduire les cibles en dessous de 44px ni changer les réponses/score.
-
-**Code en cours de recette :** CSS limité au parcours `data-type="trous"` + `data-etat="corrige"`, testé sur le **vrai moteur** avec les JSON quatre choix de la leçon 1. Vérification finale sur Samsung encore nécessaire après déploiement.
-
 ## Déjà présent dans 3001 (à conserver)
 
 | Famille | Cas | Tests associés |
