@@ -24,3 +24,5 @@ jobs:
         run: node --test test/jeux-v21.test.cjs test/survie-vfx.test.cjs
       - name: Tests du moteur de session et des corrections
         run: node tests/test_session_erreurs_frequentes.js && node tests/test_session_feedback_visible.js
+      - name: P0-06 — Barème des étoiles et rattrapage (SPEC 58)
+        run: node tests/test_rattrapage_etoiles.js
