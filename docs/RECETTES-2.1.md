@@ -1,6 +1,6 @@
 # Catalogue des recettes LuxApp 2.1 — tests et validations sur téléphone
 
-**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** correction visuelle et sons des exercices acceptés par le Produit sur Samsung le 25/10 ; P0-01 clôturée, clavier ouvert et recette globale restent distincts. Voir [configuration et sécurité](RECETTE.md).
+**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** correction visuelle et sons acceptés le 25/10 ; P0-01 clôturée. **P0-02 partielle :** clavier Samsung ouvert + CTA et saisie longue vus ; Entrée, retour, zoom et autres scénarios non encore validés. Voir [configuration et sécurité](RECETTE.md).
 
 ## Principe obligatoire pour chaque nouvelle tâche
 
@@ -32,6 +32,16 @@
 - **E-05 (deux faux) :** titre « Pas encore », réponse attendue, audio, rappel et Continuer visibles. **Conforme visuellement**.
 - **Q-01 à Q-03** : aucune capture dans ce lot. **Non validés**. **Mot caché** : état antérieur inchangé, sans nouvelle capture.
 - **Badge MODE TEST : problème secondaire propre à la recette** : le volet rose fixe sur la bordure droite chevauche visuellement l'extrémité des boutons de réponse et, en Écriture, du bouton « Valider ». Déplacer/réduire ce raccourci ou utiliser une zone sûre pour ne pas intercepter les appuis sur les commandes du vrai moteur. À tester sur Samsung ; ne pas confondre avec un défaut de l'application de production.
+
+### Revue complémentaire Samsung — 25 octobre 2026, 23h08–23h09 (P0-02)
+
+Quatre captures de l'exercice **Écriture Leçon** sur téléphone Samsung, dont une avec clavier Samsung AZERTY réellement ouvert et une saisie anormalement longue :
+
+- **Validé sur image :** énoncé « Je suis français. » visible avec clavier ouvert, champ multilignes lisible, bouton « Valider » entièrement au-dessus du clavier ; après fermeture, premier faux et longue réponse sans débordement horizontal apparent, bouton « Réessayer » fixe ; autre cas premier faux puis échec final avec solution, aide et bouton « Continuer » accessibles.
+- **Comportement délibéré :** l'en-tête Leçon (`.pc-topbar` et `.pc-sous-barre`) est masqué lorsque `body.clavier-actif` est présent (CSS actuel), pour préserver la place pour l'énoncé et la saisie. Ne pas diagnostiquer cette disparition comme une régression.
+- **Défaut confirmé de la seule recette :** l'onglet rose « MODE TEST » reste fixe au milieu à droite et **chevauche le bord du champ** (ainsi que la zone de texte sur l'une des captures). Sa présence ne prouve pas un défaut de l'application standard ; corriger son emplacement/visibilité sans régression d'accès aux scénarios.
+- **Pédagogie à examiner séparément (P0-09) :** pour « Marc est portugais. », l'aide montre « au féminin : + -in », précision non pertinente pour l'exemple masculin. Ne pas modifier les JSON sans revue pédagogique.
+- **Non établis :** comportement de la touche Entrée et du retour Android, transitions et deuxième essai effectués pendant que le clavier est ouvert, texte 130/200 %, autres tailles de téléphone et clavier alternatif. **P0-02 reste ouverte**, mais le cas normal clavier ouvert + saisie longue + CTA a une preuve visuelle réelle.
 
 **E-02 clos visuellement au 25/10 :** première erreur « Pas encore · réessaie » dans le corps, bouton « Réessayer » fixe en bas ; échec final avec solution et « Suivante ». L'ancienne demande de bandeau inférieur est remplacée par la SPEC 95. Vérifications restantes : clavier réellement ouvert, transitions et texte agrandi.
 
