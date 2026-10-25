@@ -46,7 +46,7 @@ Ordre de chargement : `design-tokens.css` → `components.css` → `style.css`. 
 | Couleur | Token | Sens | Exemples |
 | --- | --- | --- | --- |
 | Or / jaune | `--couleur-action`, `--couleur-or-fond/-bord` | Action principale, étape recommandée, activité en cours | Grand bouton jaune, prochaine unité, leçon conseillée |
-| Vert | `--couleur-reussi`, `--couleur-vert-*` | Réussite ou validation **effectivement obtenue** | Leçon terminée, unité terminée, validée par la mission, « Continuer » après bonne réponse |
+| Vert | `--couleur-reussi`, `--couleur-vert-*` | Réussite ou validation **effectivement obtenue** | Leçon terminée, unité terminée, validée par la mission, bonne réponse d'un exercice (le bouton « Continuer » reste or, SPEC 95) |
 | Gris neutre | `--couleur-texte-3`, `--couleur-bord-*`, surfaces | Non commencé, secondaire, informatif | Leçon à découvrir, unité à venir, textes secondaires |
 | Gris bleuté | `--couleur-acquis`, `--couleur-acquis-fond/-bord` | Acquis **historique** (ancienne version) | « Acquise précédemment » |
 | Turquoise | `--couleur-turquoise`, `--couleur-turq-*` | Révision, répétition espacée | « 11 questions à réviser », écran Réviser |
@@ -73,6 +73,7 @@ Ordre de chargement : `design-tokens.css` → `components.css` → `style.css`. 
 | Action | `--couleur-action` | #f5cf4d |
 | Texte sur action | `--couleur-sur-action`, `--couleur-sur-or` | #0f0e0c, #1a1505 |
 | Réussi / erreur / info | `--couleur-reussi` / `-erreur` / `-info` | #54e0ad / #ef7a73 / #6fb0f2 |
+| Correction d'exercice (SPEC 94/95) | `--couleur-correction-texte` ; note « À retenir » `--couleur-note-trait` / `--couleur-note-label` | #c5bdb0 ; #4b4437 / #d8bb77 |
 | Révision (turquoise) | `--couleur-turquoise` / `--couleur-turq-fond` / `--couleur-turq-bord` | #4fd1c5 / #10282a / #2b6b68 |
 | Acquis historique (gris bleuté) | `--couleur-acquis` / `--couleur-acquis-fond` / `--couleur-acquis-bord` | #9aabbd / #1b2027 / #3b4756 |
 | Prochaine étape (carte) | `--couleur-or-fond` / `--couleur-or-bord` | #2b2514 / #6b5a22 |
@@ -88,7 +89,7 @@ Les anciens noms (`--accent`, `--bg`, `--muted`…) restent comme **alias** dans
 Les boutons d'action utilisent `--cta-pression-echelle` (0,975), `--cta-pression-decalage` (1 px), `--cta-pression-duree` (140 ms), `--cta-pression-luminosite` (0,92) et `--cta-pression-ombre`. Ces tokens sont définis dans `design-tokens.css`.
 
 - Déclenchement natif `:active`, dès le toucher et pendant un appui prolongé ; enfoncement discret et retour fluide au relâchement.
-- Périmètre : `.pc-btn`, `.btn-jaune`, CTA accueil `.carte-suite` / `.ac-btn`, `.dash-btn.primary`, `.ecr-btn-validate`, `.session-action.primary`, `.ms-envoyer`. Les boutons de mission, de résultat, d'exercice et d'examen héritent des styles communs.
+- Périmètre : `.pc-btn`, `.btn-jaune`, CTA accueil `.carte-suite` / `.ac-btn`, `.dash-btn.primary`, `.ecr-btn-validate`, `.session-action.primary`, `.ms-envoyer`, boutons du pied d'action des exercices `.exo-cta` / `.exo-secondaire` (SPEC 95). Les boutons de mission, de résultat, d'exercice et d'examen héritent des styles communs.
 - Désactivés (`:disabled`, `aria-disabled="true"`) : aucun effet. `prefers-reduced-motion: reduce` : feedback statique sans échelle, translation ni transition.
 - Les simples liens, réponses, tuiles, cartes descriptives et boutons de navigation ne reçoivent pas cette animation ; les autres feedbacks existants sont conservés.
 - Aucun JS supplémentaire, aucun retard du clic, aucune modification de la zone tactile ou des `pointer-events`.
@@ -106,12 +107,13 @@ Les boutons d'action utilisent `--cta-pression-echelle` (0,975), `--cta-pression
 | Barre du haut | `.back-btn` « ← écran précédent », `.pc-cours-btn`, `.pc-icon-btn.maison` | barre fixe (`position: sticky`) |
 | Étiquettes | `.pc-mini-label`, `.etiquette(.or)` | |
 | Badges et pastilles | `.badge(.fait)`, `.pastille(.v/.o)`, `.lecon-pill` | |
-| Retour d'exercice | `.pc-feedback(.ok/.ko)` | une seule action : « Continuer » |
+| Correction d'exercice (SPEC 94/95) | `.exo-feedback(.ok/.ko/.essai/.avec-titre/.nu)` dans `.exo-scroll` ; rendu par `renderFeedbackCommun()` | correction **légère** : pas de fond ni de carte ; note « À retenir » (`.fb-attention`, tokens `--couleur-note-*`) ; titre + trait vertical coloré seulement pour l'Écriture et le Mot caché dévoilé ; **aucun bouton** |
+| Pied d'action d'exercice (SPEC 95) | `.exo-action-dock` + `.exo-cta` (or, 56 px) + `.exo-secondaire` (Effacer, Indice) ; rendu par `renderActionExercice()` | seul emplacement des boutons d'un exercice (Leçon et S'entraîner) ; même nœud et même place pour Valider → Réessayer → Continuer ; place réservée sans bouton avant un choix ; max 500 px |
 | Bandeau d'action fixe | `.cta-fixe` (résultats d'unité, introduction d'unité, résultat d'examen) | porte l'action principale en bas de l'écran (zone de sécurité comprise) ; le contenu garde 96 px de marge en bas ; fondu seulement dans la marge haute, `pointer-events` limité au bouton |
 
 ## 5. Règles d'interface
 
-1. **Une seule action principale par écran** (or). Après une correction, les commandes de saisie disparaissent ; il reste « Continuer » (vert ou rouge).
+1. **Une seule action principale par écran** (or). Après une correction, les commandes de saisie disparaissent ; il reste « Continuer » (or), dans le pied d'action, à la même place que « Valider » (SPEC 95).
 2. **Compacter l'interface, jamais l'information** : les titres et intitulés pédagogiques ne sont pas tronqués dans une carte ouverte.
 3. Zone tactile ≥ 44 px ; boutons ≥ 48 px.
 4. Le clavier du téléphone ne s'ouvre jamais tout seul.

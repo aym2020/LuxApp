@@ -24,7 +24,8 @@ function ruleSection(code, tag) {
 const css = ruleSection(shared, '/* ══ SPEC 57 : PRESSION TACTILE UNIFIÉE SUR LES CTA');
 const allSelectors = [
   '.pc-btn', '.btn-jaune', '.carte-suite', '.ac-btn',
-  '.dash-btn.primary', '.ecr-btn-validate', '.session-action.primary', '.ms-envoyer'
+  '.dash-btn.primary', '.ecr-btn-validate', '.session-action.primary', '.ms-envoyer',
+  '.exo-cta', '.exo-secondaire' // SPEC 95 : pied d'action des exercices
 ];
 for (const sel of allSelectors) assert.ok(css.includes(sel), 'CTA couvert : ' + sel);
 assert.ok(css.includes(':not(:disabled):not([aria-disabled="true"])'),

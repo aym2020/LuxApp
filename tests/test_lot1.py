@@ -161,13 +161,13 @@ with sync_playwright() as p:
     mots = attendu.split(' ')
     faux = ' '.join(mots[:-1])  # dernier mot retiré
     page.fill('#pc-ecr-input', faux)
-    page.click('#pc-body .pc-btn.primary')
+    page.click('#pc-ecr-valider')  # SPEC 95 : bouton du pied d'action
     e1 = page.inner_text('#pc-ecr-erreur')
     assert 'Il manque un mot.' in e1 and attendu not in e1, e1
     assert page.evaluate("!document.getElementById('pc-ecr-input').disabled")
     page.screenshot(path=OUT + 'lot1-ecriture-diagnostic.png', full_page=True)
     page.fill('#pc-ecr-input', 'xxx')
-    page.click('#pc-body .pc-btn.primary')
+    page.click('#pc-ecr-valider')  # SPEC 95 : bouton du pied d'action
     assert attendu.rstrip('.?!') in page.inner_text('#pc-feedback')
     ok('écriture « ' + attendu + ' » : 1er essai → « Il manque un mot », sans la réponse ; 2e essai → réponse')
 

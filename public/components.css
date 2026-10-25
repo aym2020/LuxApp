@@ -136,7 +136,7 @@
   font: 700 15px var(--police); cursor: pointer;
 }
 .exo-secondaire:disabled { opacity: .35; cursor: default; }
-@media (max-width: 360px) {
+@media (max-width: 365px) { /* même marge que le contenu (exercices-v21.css) */
   .exo-action-dock { padding-inline: 15px; }
   .exo-secondaire { padding: 0 var(--sp-3); }
 }

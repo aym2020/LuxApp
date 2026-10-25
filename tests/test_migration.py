@@ -47,7 +47,7 @@ def repondre(page):
         passer_delai(page)  # même reussir() que l'app, sans le délai (helpers.py)
     else:
         page.fill('#pc-ecr-input', it['lu'])
-        page.click('#pc-body .pc-btn.primary')
+        page.click('#pc-ecr-valider')  # SPEC 95 : bouton du pied d'action
         page.click('#pc-continuer')
 
 

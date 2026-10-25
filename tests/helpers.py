@@ -88,7 +88,7 @@ def repondre(pg, juste=True):
             continuer_si_besoin(pg)
     else:
         pg.fill('#pc-ecr-input', it['lu'] if juste else 'faux')
-        pg.click('#pc-body .pc-btn.primary')
+        pg.click('#pc-ecr-valider')  # SPEC 95 : bouton du pied d'action
         continuer_si_besoin(pg)
 
 

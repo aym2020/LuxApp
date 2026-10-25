@@ -1706,7 +1706,9 @@ function ecrValiderPc() {
     if (analyse.correctionGratuiteAutorisee) {
       ecrCoquille = true;
       afficherCoquille(document.getElementById('pc-ecr-erreur'), analyse);
-      document.getElementById('pc-ecr-valider').textContent = 'Corriger ma saisie';
+      // Même bouton du pied, nouvelle action : un double appui ne revalide pas la même saisie.
+      renderActionExercice(document.getElementById('pc-action-dock'),
+        { id: 'pc-ecr-valider', label: 'Corriger ma saisie', onClick: ecrValiderPc });
       fermerClavier();
       focusSiClavierPhysique(input);
       return;
@@ -1724,7 +1726,10 @@ function ecrValiderPc() {
     err.classList.remove('coquille');
     jouerFeedbackSon('retry'); // SPEC 94 : erreur provisoire, on peut réessayer
     // SPEC 95 : le même bouton du pied devient « Réessayer » ; le champ reste éditable.
-    document.getElementById('pc-ecr-valider').textContent = 'Réessayer';
+    // Passer par renderActionExercice : le 2e appui d'un double appui est ignoré
+    // (sinon il revalidait la même réponse fausse et consommait le 2e essai).
+    renderActionExercice(document.getElementById('pc-action-dock'),
+      { id: 'pc-ecr-valider', label: 'Réessayer', onClick: ecrValiderPc });
     const feedback = document.getElementById('pc-feedback');
     renderFeedbackCommun(feedback, {
       etat: 'retry', titre: 'Pas encore · réessaie',

@@ -39,7 +39,7 @@ def repondre(pg, juste=True):
             pg.click('#pc-continuer')
     else:
         pg.fill('#pc-ecr-input', it['lu'])
-        pg.click('#pc-body .pc-btn.primary')
+        pg.click('#pc-ecr-valider')  # SPEC 95 : bouton du pied d'action
         pg.click('#pc-continuer')
 
 

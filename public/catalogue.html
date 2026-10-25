@@ -96,11 +96,15 @@
     <span class="lecon-pill">2 / 4 unités</span>
   </div>
 
-  <h2>Bandeau de correction · .feedback-flat (SPEC 94, Leçon et S'entraîner)</h2>
+  <h2>Correction et pied d'action des exercices · .exo-feedback / .exo-action-dock (SPEC 95)</h2>
   <div class="grille" style="grid-template-columns:1fr 1fr 1fr">
-    <div class="feedback-flat ok"><div class="fb-txt"><b>e Stull</b> = une chaise</div><button class="fb-cta">Continuer</button></div>
-    <div class="feedback-flat ko"><div class="fb-titre">Pas encore</div><div class="fb-txt"><div class="fb-reponse">Réponse attendue : <b>e Stull</b></div></div><button class="fb-cta">Continuer</button></div>
-    <div class="feedback-flat ko essai"><div class="fb-titre">Pas encore · réessaie</div><div class="fb-txt">Ton essai : <b>e Stul</b> · corrige ta réponse</div></div>
+    <div class="exo-feedback ok"><div class="fb-bloc"><div class="fb-txt"><div class="fb-attention"><div class="fb-attention-label">À retenir</div><p>Mapp est <b>féminin</b> → <b>eng</b> Mapp.</p></div></div></div></div>
+    <div class="exo-feedback ko avec-titre"><div class="fb-bloc"><div class="fb-titre">Pas encore</div><div class="fb-txt"><div class="fb-reponse">Réponse attendue : <b>Dat ass e Stull.</b></div></div></div></div>
+    <div class="exo-feedback ko essai avec-titre"><div class="fb-bloc"><div class="fb-titre">Pas encore · réessaie</div><div class="fb-txt">Ton essai : <b>e Stul</b> · corrige ta réponse</div></div></div>
+  </div>
+  <div class="grille" style="grid-template-columns:1fr 1fr">
+    <div class="exo-action-dock"><button class="exo-cta">Continuer</button></div>
+    <div class="exo-action-dock"><button class="exo-secondaire">Indice</button><button class="exo-cta">Valider</button></div>
   </div>
 
   <script>

@@ -865,8 +865,10 @@ function validateSessionInput() {
       annonce: 'Pas encore, réessaie. ' + (aide.diagnostic || ''),
       corpsHtml: aideErreurHtml(val, corrige, attention, 1)
     });
-    // SPEC 95 : même bouton du pied, même action, libellé « Réessayer ».
-    document.getElementById('session-input-btn').textContent = 'Réessayer';
+    // SPEC 95 : même bouton du pied, même action, libellé « Réessayer »
+    // (via renderActionExercice : un double appui ne valide pas deux fois).
+    renderActionExercice(document.getElementById('session-action-dock'),
+      { id: 'session-input-btn', label: 'Réessayer', onClick: validateSessionInput });
     input.value = '';
     montrerFeedbackSession(feedback, input);
     // Un seul comptage, sur la première tentative seulement.

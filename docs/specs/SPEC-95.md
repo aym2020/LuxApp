@@ -1,6 +1,6 @@
 # SPEC 95 — Écran d'exercice stable : zone centrale défilante, feedback minimal, CTA ancré
 
-> **Statut : décision UX validée en conception, À IMPLÉMENTER.** Ce document n'est **pas** un correctif livré. Il concerne uniquement `2.1` ; `main` reste intouchée.
+> **Statut : IMPLÉMENTÉE sur `2.1` (25/10/2026) — recette Samsung à faire.** Voir « Implémentation » en fin de fiche (structure livrée, écarts assumés, tests). `main` reste intouchée.
 > **Priorité P0 ergonomie Android / P1 mutualisation.** Base technique étudiée : commit `956ff3a0a4e8ffe697ed5bde5a31bda69ffe977e`, 25/10/2026.
 > **Précédence** : cette SPEC remplace les règles **de placement et d'habillage du feedback/CTA** de SPEC 94 (§0 D03, §2, §4.1, §5, A01–A04 et A14–A15 lorsqu'elles supposent un bandeau/CTA imbriqués). Elle **ne remplace pas** SPEC 94 sur le scoring, le masquage des distracteurs, les 3 sons, la correction en deux essais, les indices, le rappel ni l'API sonore. SPEC 59 et SPEC 87 restent des contraintes de comportement clavier à reproduire par la nouvelle structure — ne pas garder leurs anciens `scrollBy` par dogme.
 
@@ -218,3 +218,51 @@ Pendant l'activation d'un CTA, empêcher le double tap **au niveau de l'état m�
 Livrable accepté quand **tous les types migrés** disposent d'un dock commun indépendant du feedback, aucune condition avec/sans explication ne modifie le CTA (tolérance ±2px), le scroll/IME fonctionnent sur Samsung et tous les résultats de SPEC 94 demeurent corrects. Aucun CSS « pansement » sur l'ancien bandeau, aucun `position:fixed` global, aucune création de framework. **Le code de branche reste inchangé par cette fiche documentaire.**
 
 **Si une contrainte SPEC 59/87 paraît incompatible avec G16/G17, changer le placement via une enveloppe adaptée et prouver son comportement sur Android ; ne jamais écarter une vérification clavier ou baisser les assertions pour obtenir du vert.**
+
+---
+
+## Implémentation (25/10/2026)
+
+**Statut : implémentée (lots 1 à 5) — recette Samsung à faire.** Branche `2.1`, à partir de `3f7523e`.
+
+### Structure livrée
+
+- `public/index.html` : `#view-parcours` et `#view-session` ont la classe `exo-shell` et trois zones : en-tête (S'entraîner : `.lecon-header` + `.session-progress`, sortie du corps), `.exo-scroll` (`#pc-scroll`, `#session-scroll` : corps + correction `.exo-feedback`) et `.exo-action-dock` (`#pc-action-dock`, `#session-action-dock`). `#pc-feedback` est hors de `#pc-body`. Identifiants existants conservés.
+- `public/feedback-unifie.js` :
+  - `renderFeedbackCommun(host, { etat, titre, annonce, corpsHtml })` : **aucun bouton** ;
+  - `renderActionExercice(dock, config)` : **un seul bouton primaire `.exo-cta`, toujours le même nœud** (Valider → Réessayer → Continuer garde place et focus clavier possible) ; `onclick` remplacé à chaque état (pas d'écouteur en double) ; secondaires `.exo-secondaire` (Effacer, Indice : Mot caché) recréés à chaque appel (jamais deux fois le même id) ; `config = null` : place réservée de même hauteur, sans faux bouton ;
+  - `cadrerFeedback(zone, element, question)` : fait défiler **la zone de contenu seulement**, juste assez pour montrer la correction (la question reste en haut si tout tient) ;
+  - `fbAttentionHtml()` : note « À retenir » discrète.
+- `public/parcours.js` : `showFeedback()` → correction dans le contenu + « Continuer » dans le pied ; `renderItem()` vide la correction, réserve le pied et remet le contenu en haut ; Écriture, Mot caché (découverte, reconstruction) et Quiz/Trous configurent le pied. Mot caché : diagnostic d'essai rendu visible par `cadrerFeedback`.
+- `public/app.js` : `renderSessionQ()` réinitialise le pied (Valider pour la saisie) ; `handleSessionChoice()` / `validateSessionInput()` → correction puis Suivante / Voir le score dans le pied ; Réessayer au 1er essai ; `showSessionResult()` masque le pied. **`cadrerSession()` et `window.scrollBy` supprimés.**
+- `public/ui.js` : clavier ouvert → défilement de `.exo-scroll` pour garder le champ visible ; la vue garde la hauteur visible (`--clavier-vh`), le pied est donc juste au-dessus du clavier.
+- CSS : enveloppe et correction légère dans `public/feedback-unifie.css` ; pied et bouton dans `public/components.css` (pression SPEC 57 incluse) ; supprimés : correction `sticky`, ancien bandeau coloré, mise en page plein écran propre au Mot caché (défilement imbriqué de `.mc-milieu`), `.ecr-btn-validate` de S'entraîner, règles clavier sur `.pc-body` / `.session-body`.
+- Aucune modification de notation, de sons (`SurvieFx.feedback`), de `verdict-choix.js` ni de `diagnostic.js`.
+
+### Correction affichée (D'après la maquette validée)
+
+| Cas | Visible dans le contenu |
+|---|---|
+| Quiz/Trous juste | Bon choix vert ; « À retenir » si la donnée a une note ; rien sinon |
+| Quiz/Trous faux | Choix rouge + choix vert ; « À retenir » si note ; rappel de la Leçon (« reviendra ») ; **pas de titre visible** (annonce lecteur d'écran : « Pas encore. Ton choix … Bonne réponse … ») |
+| Écriture 1er faux | « ↻ Pas encore · réessaie » + diagnostic, champ éditable |
+| Écriture juste / 2e juste / faux final, Mot caché dévoilé | Titre coloré + bloc à trait vertical (vert ou rouge), solution, Écouter, « À retenir », rappel |
+| Mot caché juste | Mot = traduction, Écouter, score, note, « À retenir » (pas de titre) |
+
+### Écarts assumés
+
+- **Double appui** : tout changement de libellé ou d'action du bouton primaire passe par `renderActionExercice` (Réessayer, Corriger ma saisie compris) ; c'est ce qui active la garde. Défaut trouvé par l'audit sur le 1er commit (`118e8dc`) : un double appui sur « Réessayer » / « Corriger ma saisie » revalidait la même réponse fausse (2e essai perdu, coquille comptée comme erreur). Corrigé et couvert par G19 (souris et doigt).
+- **« Voir la réponse » (Mot caché) reste dans la fenêtre d'aide**, ouverte par « Voir l'aide » près du diagnostic, et non dans le pied (§5). Pourquoi : action secondaire déjà validée (SPEC 94), elle ne masque ni Valider ni la banque, et un 4e bouton dans le pied à 320 px réduirait les cibles. Test : `test_motcache_cta_mobile.py`, `test_spec94_feedback.py` (A06/A08).
+- Filet supérieur gris discret (`--couleur-bord-1`) sur le pied, sans couleur de verdict (maquette validée).
+- Garde de double appui : compteur de clics du navigateur (`event.detail`), pas de minuterie ; le 2e appui rapide ne déclenche pas la nouvelle action du même bouton (ex. Valider puis Continuer, Valider puis Réessayer).
+
+### Tests
+
+- Nouveau : `tests/test_spec95_exercices.py` (ajouté à `critique.sh`) — G01–G19, G21–G23 sur le vrai moteur : bouton à la même place (±2 px) avec/sans note, juste/faux, Leçon/S'entraîner, Valider → Réessayer → Continuer (même nœud), place réservée avant le choix, double appui, coquille, examen, fin de session, Mot caché (pied à 3 commandes, ≥ 44 px à 320 px), texte 200 %, clavier simulé (Leçon et S'entraîner), paysage 740×360 et 720/1024/1440 px.
+- Adaptés au nouveau DOM, **assertions métier conservées** : `test_spec94_feedback.py`, `test_spec87_session_mobile.py`, `test_motcache_cta_mobile.py` (positions mesurées dans le contenu ; réservation fixe de 80 px du diagnostic retirée, remplacée par « diagnostic visible entre l'en-tête et le pied »), `test_motcache.py`, `test_recette_visuelle.py`, `test/exercices-etats-v21.test.cjs`, `test/exercices-v21.test.cjs`.
+- Défaut trouvé et corrigé pendant les tests : la phrase `.sr-only` (position absolue) agrandissait la page quand la correction était sous le pli (paysage court) → `.exo-feedback { position: relative }`.
+- **Comparaison avant (`3f7523e`) / après sur les 28 tests navigateur** (même machine, serveurs séparés) : résultats identiques test par test ; les tests en échec sur la base cassent aux mêmes lignes, hors exercices (Mot caché `#mc-btn-voir` de l'ancien `test_parcours`, accueil, chemin, missions). Six tests cliquaient l'ancien « Valider » dans `#pc-body` : mis à jour (`helpers.py` et 5 fichiers). `test_actualisation` reste instable (des deux côtés). `test/*.cjs` : seuls `cours`, `intro-unite`, `menu-taps` échouent, déjà avant SPEC 94. `test_audio_lod.js` : échec préexistant (« Awar! »).
+- Audit `ui-parity-auditor` sur `118e8dc` : architecture et parité PASS (bouton identique au pixel entre vues et états, un seul défilement, aucun bouton hors du pied) ; **P0 double appui** et tests non mis à jour → corrigés ; P1/P2 corrigés : couleurs de la note en tokens (`--couleur-note-*`), marge de la correction et du pied alignée sur le contenu à ≤ 365 px, catalogue et `DESIGN_SYSTEM.md` à jour.
+- `bash tools/critique.sh` complet (après corrections) : `test_spec87_session_mobile`, `test_spec94_verdict`, `test_spec94_feedback`, `test_spec95_exercices`, `test_motcache`, `test_recette_visuelle`, `test_acces_recette`, `test_retour_intro`, `test_examens`, `test_contexte_audio`, `test_chemin_cartes` verts ; les autres échecs sont ceux de la base, aux mêmes lignes.
+- Captures de référence `captures/mc-cta-mobile/` régénérées (nouvelle mise en page).
+- **Non testé** : Samsung réel (clavier, barre de navigation, safe area, sons), vrai zoom navigateur 130/200 %.

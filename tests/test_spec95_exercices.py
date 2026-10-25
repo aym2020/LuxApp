@@ -198,6 +198,23 @@ with sync_playwright() as p:
     meme_place(g0['cta'], g2['cta'], 'G10 Réessayer → Continuer')
     ok('G07/G08/G10/G19 Écriture Leçon : Valider → Réessayer → Continuer, même nœud, même place ; double appui sans saut')
 
+    # G19 (audit) : double appui sur Valider avec une réponse FAUSSE, à la souris puis au doigt :
+    # un seul essai consommé, le 2e appui ne revalide pas la même réponse.
+    for maniere in ('souris', 'doigt'):
+        etape(pg, 2, 'ecriture')
+        pg.evaluate("() => { window.__sons = []; SurvieFx.feedback = e => window.__sons.push(e); }")
+        pg.fill('#pc-ecr-input', 'zzz reponse manifestement fausse')
+        if maniere == 'souris':
+            pg.dblclick('#pc-ecr-valider')
+        else:
+            pg.tap('#pc-ecr-valider')
+            pg.tap('#pc-ecr-valider')
+        pg.wait_for_timeout(200)
+        assert pg.evaluate('ecrEssais') == 1 and not pg.evaluate('pAttente'), ('G19 faux', maniere, pg.evaluate('ecrEssais'))
+        assert pg.evaluate('window.__sons') == ['retry'], ('G19 faux', maniere, pg.evaluate('window.__sons'))
+        assert geo(pg)['ctaTexte'] == 'Réessayer'
+    ok('G19 double appui sur une réponse fausse (souris et doigt) : un seul essai consommé, un seul son')
+
     etape(pg, 2, 'ecriture')
     pg.fill('#pc-ecr-input', 'zzz reponse manifestement fausse')
     pg.click('#pc-ecr-valider')
@@ -221,11 +238,12 @@ with sync_playwright() as p:
       s.queue = [id].concat(s.queue.filter(x => x !== id)); renderItem();
       return trouver(trouverItem(pLecon, 'ecriture', id).lu); }""")
     pg.fill('#pc-ecr-input', coquille)
-    pg.click('#pc-ecr-valider')
+    pg.dblclick('#pc-ecr-valider')  # G19 (audit) : un double appui ne transforme pas la coquille en erreur
+    pg.wait_for_timeout(200)
     g = geo(pg)
     base_ok(g, 'G09')
-    assert g['ctaTexte'] == 'Corriger ma saisie' and pg.evaluate('ecrEssais') == 0, g['ctaTexte']
-    ok('G09 coquille gratuite : « Corriger ma saisie » dans le pied, aucune erreur comptée')
+    assert g['ctaTexte'] == 'Corriger ma saisie' and pg.evaluate('ecrEssais') == 0, (g['ctaTexte'], pg.evaluate('ecrEssais'))
+    ok('G09/G19 coquille gratuite (double appui compris) : « Corriger ma saisie » dans le pied, aucune erreur comptée')
 
     # ── G12, G13 : Écriture S'entraîner, deux essais puis examen ──
     lid, qid = 17, 2011

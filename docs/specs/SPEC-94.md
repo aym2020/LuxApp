@@ -9,7 +9,7 @@
 |---|---|
 | Dépôt/branche | `aym2020/LuxApp`, **`2.1`** ; ne pas modifier `main` |
 | Base consultée | `3c80ef54a3b5d728c8f5dc343fcb857db2170453` |
-| État réel | **Lots 1 et 2 (2A–2E) implémentés** : choix dans `public/verdict-choix.js`, bandeau commun `public/feedback-unifie.js` + `.css`, sons `SurvieFx.feedback()` ; **recette Samsung à faire** — voir « Implémentation — lot 2 » en fin de fiche |
+| État réel | **Présentation de la correction et emplacement des boutons remplacés par [SPEC 95](SPEC-95.md) (implémentée)** ; scores, sons, essais, indices de cette fiche toujours valables. **Lots 1 et 2 (2A–2E) implémentés** : choix dans `public/verdict-choix.js`, bandeau commun `public/feedback-unifie.js` + `.css`, sons `SurvieFx.feedback()` ; **recette Samsung à faire** — voir « Implémentation — lot 2 » en fin de fiche |
 | Nouvelle décision | **Bandeau plat à trait supérieur** commun aux parcours, **pas de carte bordée de correction**, et **aucun encadré « Juste ! » redondant** |
 | Périmètre lot 2 | Quiz/Trous en Leçon et S'entraîner/Révision/Erreurs, Mot caché en Leçon, Écriture en Leçon et Session |
 | Contraintes | Préserver scores, feedback pédagogique, variantes, aides, audio LOD, progression, clavier Android, navigation, cloud et JSON |

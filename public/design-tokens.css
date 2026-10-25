@@ -58,6 +58,8 @@
   --couleur-correction-ok-fond: #0f1d18;  /* réussite */
   --couleur-correction-ko-fond: #1f1513;  /* erreur (aussi le diagnostic du Mot caché) */
   --couleur-correction-texte: #c5bdb0;    /* explication, aide */
+  --couleur-note-trait: #4b4437;          /* SPEC 95 : trait gauche de la note « À retenir » */
+  --couleur-note-label: #d8bb77;          /* SPEC 95 : étiquette « À retenir » */
 
   /* ── Fonds et bordures teintés (pastilles, cartes d'état) ── */
   --couleur-turquoise: #4fd1c5;

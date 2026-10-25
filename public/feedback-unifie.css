@@ -47,10 +47,10 @@
 .exo-feedback.essai .fb-txt { font-size: 13.5px; }
 
 /* « À retenir » : note discrète (trait gris à gauche, étiquette or). */
-.exo-feedback .fb-attention { margin-top: var(--sp-2); padding-left: 13px; border-left: 2px solid #4b4437; }
+.exo-feedback .fb-attention { margin-top: var(--sp-2); padding-left: 13px; border-left: 2px solid var(--couleur-note-trait); }
 .exo-feedback .fb-bloc > .fb-txt > .fb-attention:first-child { margin-top: 0; }
 .exo-feedback.avec-titre:not(.essai) .fb-attention { padding-left: 0; border-left: 0; }
-.exo-feedback .fb-attention-label { margin-bottom: 4px; font-size: 12px; font-weight: 800; letter-spacing: .035em; color: #d8bb77; }
+.exo-feedback .fb-attention-label { margin-bottom: 4px; font-size: 12px; font-weight: 800; letter-spacing: .035em; color: var(--couleur-note-label); }
 .exo-feedback .fb-attention p { margin: 0; color: var(--couleur-correction-texte); }
 .exo-feedback .fb-attention b,
 .exo-feedback .pc-attention b { color: var(--couleur-orange); }

@@ -103,8 +103,8 @@ Ce répertoire contient **90 fiches de spécification présentes** sur la branch
 | 91 | [Simulation et équilibrage autonome](./SPEC-91.md) | P1 | Simulateur V0 indépendant en CI, à aligner sur SPEC 92 |
 | 92 | [Survie Feu et Tempête](./SPEC-92.md) | P1 | Étape 1/4 codée — recette Samsung à faire |
 | 93 | [PWA hors ligne](./SPEC-93.md) | — | Proposition à implémenter — non développée |
-| 94 | [Feedback unifié, audio et parité de composants UI](./SPEC-94.md) | P1 | **Lots 1 et 2 codés** ; **présentation et emplacement des CTA supplantés par SPEC 95**, code à migrer ; Samsung à faire |
-| 95 | [Dock d'action stable, correction minimale et scroll unique](./SPEC-95.md) | P0 UX | **Conception détaillée validée, non implémentée** ; Leçon/Session, Quiz/Trous/Écriture/Mot caché, 24 cas G01–G24 |
+| 94 | [Feedback unifié, audio et parité de composants UI](./SPEC-94.md) | P1 | **Lots 1 et 2 codés** ; présentation de la correction et emplacement des CTA **remplacés par SPEC 95 (codée)** ; scores, sons, essais inchangés ; Samsung à faire |
+| 95 | [Dock d'action stable, correction minimale et scroll unique](./SPEC-95.md) | P0 UX | **Implémentée** (enveloppe à trois zones, `renderActionExercice`, correction légère) ; G01–G19, G21–G23 automatisés (`test_spec95_exercices.py`) ; **recette Samsung à faire** |
 
 ## Précautions de lecture
 

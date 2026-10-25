@@ -140,7 +140,8 @@ body.clavier-actif #view-session[data-type="ecriture"] .question-word.question-l
 body.clavier-actif #view-session #session-feedback {margin-top:10px}
 body.clavier-actif #view-session .ecr-input-wrap {margin-top:10px;gap:8px}
 @media(max-width:365px){
-  #view-parcours .pc-body, #view-session .session-body {padding-inline:15px}
+  #view-parcours .pc-body, #view-session .session-body,
+  #view-parcours #pc-feedback, #view-session .session-progress {padding-inline:15px}
   #view-parcours .choice, #view-session .choice {min-height:56px;padding-inline:11px;font-size:14px}
   #view-parcours .choice::before, #view-session .choice::before {width:30px;height:30px}
 }
