@@ -769,13 +769,7 @@ function handleSessionChoice(btn, ok, correctText) {
   const item = session.questions[session.index];
   recordSessionAnswer(ok);
 
-  if (ok) { btn.classList.add('correct'); }
-  else {
-    btn.classList.add('wrong');
-    document.querySelectorAll('#session-choices .choice').forEach(b => {
-      if (b.textContent === correctText) b.classList.add('correct');
-    });
-  }
+  afficherVerdictChoix(document.getElementById('session-choices'), correctText, btn, ok); // SPEC 94
 
   if (item.type === 'trous') {
     const blank = document.getElementById('session-blank');
@@ -784,8 +778,6 @@ function handleSessionChoice(btn, ok, correctText) {
       blank.style.color = 'var(--correct)'; // c'est la bonne réponse, même après une erreur
     }
   }
-
-  document.querySelectorAll('#session-choices .choice').forEach(b => b.disabled = true);
 
   // Correction toujours lisible jusqu'au choix « Suivante » : aucun auto-skip.
   const feedback = document.getElementById('session-feedback');

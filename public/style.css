@@ -227,6 +227,16 @@ header {
 }
 .choice.correct { border-color: var(--correct); background: rgba(84,224,173,.1); color: var(--correct); }
 .choice.wrong   { border-color: var(--wrong);   background: rgba(239,122,115,.1); color: var(--wrong); }
+/* SPEC 94 : après la réponse, les propositions inutiles disparaissent.
+   La lettre est figée (data-lettre) pour ne pas être renumérotée. */
+.choice[hidden] { display: none; }
+.choice[data-lettre]::before { content: attr(data-lettre); }
+.choice.secousse { animation: secousse-choix .2s ease-out 1; }
+@keyframes secousse-choix {
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+@media (prefers-reduced-motion: reduce) { .choice.secousse { animation: none; } }
 .choice.correct::before { background: rgba(84,224,173,.2); color: var(--correct); }
 .choice.wrong::before   { background: rgba(239,122,115,.2); color: var(--wrong); }
 

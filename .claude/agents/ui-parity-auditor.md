@@ -22,4 +22,4 @@ Agent **indépendant du développeur**. Contrôler que **deux éléments équiva
 ## Invocations attendues
 Demander explicitement : « Utilise l'agent `ui-parity-auditor` sur le diff de cette PR ; compare Leçon et S'entraîner avec SPEC 94, remonte les FAIL et fournis les preuves avant fusion. »
 
-**Statut actuel** : agent disponible pour revue ; **SPEC 94 non implémentée dans les moteurs**. Ne jamais produire de faux PASS sur la parité du feedback tant que `parcours.js` et `app.js` gardent leurs deux renderers indépendants.
+**Statut actuel** : le marquage des choix Quiz/Trous est partagé (`afficherVerdictChoix()` dans `public/verdict-choix.js`, appelée par `choisirP()` et `handleSessionChoice()`). Les **bandeaux** de correction (`showFeedback()` dans `parcours.js`, `#session-feedback` dans `app.js`) restent deux rendus distincts : ne pas produire de PASS de parité sur eux.

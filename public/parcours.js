@@ -1545,11 +1545,7 @@ function construireChoix(choix, bonne, item, type) {
 function choisirP(btn, ok, bonne, item, type) {
   if (pAttente) return;
   pAttente = true;
-  document.querySelectorAll('#pc-choix .choice').forEach(b => {
-    b.disabled = true;
-    if (b.textContent === bonne) b.classList.add('correct');
-  });
-  if (!ok) btn.classList.add('wrong');
+  afficherVerdictChoix(document.getElementById('pc-choix'), bonne, btn, ok); // SPEC 94
 
   const blank = document.getElementById('pc-blank');
   if (blank) {

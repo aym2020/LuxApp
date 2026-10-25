@@ -367,6 +367,18 @@ const SurvieFx = (function () {
     note(160, 0, 0.24, 0.05, 'square', 70);
   }
 
+  // SPEC 94 : verdict d'un Quiz ou d'un Trou. Deux notes douces,
+  // montantes si juste, descendantes si faux.
+  function verdict(ok) {
+    if (ok) {
+      note(587.33, 0, 0.1, 0.045, 'sine');
+      note(783.99, 0.1, 0.12, 0.045, 'sine');
+    } else {
+      note(329.63, 0, 0.1, 0.045, 'sine');
+      note(246.94, 0.1, 0.14, 0.045, 'sine');
+    }
+  }
+
   // Extinction unique : plus de flammes générées, les dernières braises meurent
   // naturellement et une très courte nappe de fumée reste visible sous le rideau.
   function fin() {
@@ -406,6 +418,7 @@ const SurvieFx = (function () {
     lettre: lettre,
     reussite: reussite,
     erreur: erreur,
+    verdict: verdict,
     fin: fin,
     arreter: arreter,
     sonActif: sonActif,
