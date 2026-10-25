@@ -71,15 +71,15 @@ def repondre_session(page):
                 boutons.nth(i).click()
                 break
         page.wait_for_function('session.answered', timeout=3000)
-        if page.locator('#view-session .ecr-next-btn').count():
-            page.click('#view-session .ecr-next-btn')
+        if page.locator('#session-suivante').count():
+            page.click('#session-suivante')
         else:
             idx = page.evaluate('session.index')
             page.wait_for_function('i => session.index > i || !document.getElementById("session-result").classList.contains("hidden")', arg=idx, timeout=4000)
     else:
         page.fill('#session-input', it['lu'])
         page.click('#session-input-btn')
-        page.click('#view-session .ecr-next-btn')
+        page.click('#session-suivante')
 
 
 def finir_session(page):

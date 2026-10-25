@@ -53,6 +53,11 @@
   --couleur-violet: #b18cf0;
   --couleur-orange: #f2a65a;
   --couleur-fraicheur: #4fc9c3;
+  /* SPEC 94 : bandeau de correction commun (feedback-unifie.css) */
+  --couleur-correction-fond: #141310;     /* bandeau sans verdict coloré */
+  --couleur-correction-ok-fond: #0f1d18;  /* réussite */
+  --couleur-correction-ko-fond: #1f1513;  /* erreur (aussi le diagnostic du Mot caché) */
+  --couleur-correction-texte: #c5bdb0;    /* explication, aide */
 
   /* ── Fonds et bordures teintés (pastilles, cartes d'état) ── */
   --couleur-turquoise: #4fd1c5;

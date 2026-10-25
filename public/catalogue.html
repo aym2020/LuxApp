@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="design-tokens.css" />
   <link rel="stylesheet" href="components.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="feedback-unifie.css" />
   <style>
     /* Mise en page du catalogue seulement (pas de composant ici) */
     body { display: block; padding: var(--sp-5) var(--sp-4) var(--sp-6); max-width: 760px; margin: 0 auto; }
@@ -95,10 +96,11 @@
     <span class="lecon-pill">2 / 4 unités</span>
   </div>
 
-  <h2>Retours d'exercice · .pc-feedback</h2>
-  <div class="grille" style="grid-template-columns:1fr 1fr">
-    <div class="pc-feedback ok" style="position:static"><div class="pc-fb-titre">Bien joué !</div><div class="pc-fb-txt"><b>e Stull</b> = une chaise</div><button class="pc-btn ok wide">Continuer</button></div>
-    <div class="pc-feedback ko" style="position:static"><div class="pc-fb-titre">Pas encore</div><div class="pc-fb-txt">Réponse attendue : <b>e Stull</b></div><button class="pc-btn ko wide">Continuer</button></div>
+  <h2>Bandeau de correction · .feedback-flat (SPEC 94, Leçon et S'entraîner)</h2>
+  <div class="grille" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="feedback-flat ok"><div class="fb-txt"><b>e Stull</b> = une chaise</div><button class="fb-cta">Continuer</button></div>
+    <div class="feedback-flat ko"><div class="fb-titre">Pas encore</div><div class="fb-txt"><div class="fb-reponse">Réponse attendue : <b>e Stull</b></div></div><button class="fb-cta">Continuer</button></div>
+    <div class="feedback-flat ko essai"><div class="fb-titre">Pas encore · réessaie</div><div class="fb-txt">Ton essai : <b>e Stul</b> · corrige ta réponse</div></div>
   </div>
 
   <script>

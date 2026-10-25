@@ -1097,8 +1097,6 @@ body.no-scroll { overflow: hidden; }
 .pc-attention { margin: .45rem 0; padding: .55rem .7rem; border-radius: 10px; background: rgba(242,166,90,.12); color: var(--text); font-size: .88rem; line-height: 1.45; }
 .pc-attention b { color: var(--orange); }
 .mc-erreur .pc-attention { margin-bottom: 0; }
-.session-attention { display: block; margin-top: .5rem; padding: .5rem .7rem; border-radius: 10px; background: rgba(242,166,90,.12); color: var(--text); font-size: var(--fs-sec); font-weight: 500; }
-.session-attention b { color: var(--orange); }
 .pf-attention { color: var(--orange) !important; font-size: var(--fs-sec) !important; margin-top: .15rem; }
 .pf-attention b { color: var(--orange); }
 
@@ -1301,7 +1299,6 @@ body.no-scroll { overflow: hidden; }
 
 /* ── AIDE À L'ERREUR (S6) ─────────────────────────────────────────────────── */
 .pc-diagnostic { margin-top: var(--sp-2); font-size: var(--fs-sec); font-weight: 700; color: var(--text); }
-.session-diagnostic { display: block; margin-top: var(--sp-2); font-size: var(--fs-sec); font-weight: 700; color: var(--text); }
 
 /* ══ LOT 2 : ACCUEIL, CHEMIN, BIENVENUE, BARRE DU BAS (S7, S9, S12, S13) ══════
    Couleurs = sens, partout :
@@ -1900,8 +1897,6 @@ body.avec-nav .lecon-header { padding-top: 1.25rem; }
 #view-parcours { overflow-x: clip; } /* le glissement ne doit pas créer de défilement horizontal */
 .pc-seg > div { transition: width .3s ease; }
 .pc-feedback:not(.hidden):not(.discret) { animation: monte-b .2s ease-out both; }
-.coche-anim { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.coche-anim path { stroke-dasharray: 30; animation: dessine .35s ease-out .05s both; }
 .choice.correct { animation: rebond .3s ease-out; }
 
 /* Mission : les répliques arrivent une par une, bandeau de réussite */
@@ -1913,7 +1908,6 @@ body.avec-nav .lecon-header { padding-top: 1.25rem; }
 
 @keyframes glisse-g { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
 @keyframes monte-b { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes dessine { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
 @keyframes rebond { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
 @keyframes deplie { from { opacity: 0; transform: scaleY(.85); } to { opacity: 1; transform: none; } }
 

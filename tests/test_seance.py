@@ -22,8 +22,8 @@ def repondre_session(page, juste=True):
                 boutons.nth(i).click()
                 break
         page.wait_for_function('session.answered', timeout=3000)
-        if page.locator('#view-session .ecr-next-btn').count():
-            page.click('#view-session .ecr-next-btn')
+        if page.locator('#session-suivante').count():
+            page.click('#session-suivante')
         else:
             idx = page.evaluate('session.index')
             page.wait_for_function('i => session.index > i || !document.getElementById("session-result").classList.contains("hidden")', arg=idx, timeout=4000)
@@ -33,7 +33,7 @@ def repondre_session(page, juste=True):
         if not juste:  # 2 essais (S6) : le 1er raté laisse réessayer
             page.fill('#session-input', 'xxx')
             page.click('#session-input-btn')
-        page.click('#view-session .ecr-next-btn')
+        page.click('#session-suivante')
 
 
 def jour(page):

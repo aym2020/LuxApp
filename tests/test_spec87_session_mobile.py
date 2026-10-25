@@ -95,9 +95,9 @@ with sync_playwright() as p:
         clavier(pg, w, h, False)
         fb = pos(pg, '#session-feedback')
         assert fb['h'] <= 130, f'{t} : 1er essai trop haut ({fb["h"]:.0f} px)'
-        assert pg.locator('#view-session .ecr-next-btn').count() == 0
+        assert pg.locator('#session-suivante').count() == 0
         assert 'Ech schaffen' not in pg.inner_text('#session-feedback')
-        fond = pg.evaluate("getComputedStyle(document.querySelector('#session-feedback .fb-attention')).backgroundColor")
+        fond = pg.evaluate("getComputedStyle(document.querySelector('#session-feedback .pc-attention, #session-feedback .fb-attention')).backgroundColor")
         assert fond in ('rgba(0, 0, 0, 0)', 'transparent'), f'{t} : second encadré au 1er essai ({fond})'
         visibles(pg, t, '1er essai faux', '#session-word', '#session-feedback', '#session-input-btn')
         assert pg.evaluate("session.essais") == 1
@@ -116,8 +116,8 @@ with sync_playwright() as p:
         couleur = pg.evaluate("getComputedStyle(document.querySelector('#session-feedback .fb-reponse b')).color")
         assert couleur != pg.evaluate("getComputedStyle(document.querySelector('#session-feedback .fb-titre')).color"), \
             'la bonne réponse ne doit pas être rouge'
-        assert pg.locator('#view-session .ecr-next-btn').count() == 1
-        visibles(pg, t, '2 essais faux', '#view-session .ecr-next-btn')
+        assert pg.locator('#session-suivante').count() == 1
+        visibles(pg, t, '2 essais faux', '#session-suivante')
 
         # Deuxième essai juste.
         ouvrir_question(pg, 17, 'ecriture', 2011)
@@ -127,7 +127,7 @@ with sync_playwright() as p:
         pg.click('#session-input-btn')
         pg.wait_for_timeout(500)
         assert titre(pg) == 'Juste, au 2e essai', titre(pg)
-        visibles(pg, t, '2e essai juste', '#view-session .ecr-next-btn')
+        visibles(pg, t, '2e essai juste', '#session-suivante')
 
         # Phrase longue, clavier ouvert.
         ouvrir_question(pg, 15, 'ecriture', 2027)
@@ -144,18 +144,18 @@ with sync_playwright() as p:
             assert pg.evaluate("document.getElementById('session-blank').style.color") == 'var(--correct)'
             assert pg.locator('#session-choices .choice.wrong').count() == 1
             assert pg.locator('#session-choices .choice.correct').count() == 1
-            visibles(pg, t, f'trou {qid} faux', '#session-feedback', '#view-session .ecr-next-btn')
+            visibles(pg, t, f'trou {qid} faux', '#session-feedback', '#session-suivante')
         ouvrir_question(pg, 5, 'trous', 2010)
         choisir(pg, True)
         assert titre(pg).startswith('Juste !'), titre(pg)  # SPEC 94 : annoncé, pas affiché
-        visibles(pg, t, 'trou juste', '#view-session .ecr-next-btn')
+        visibles(pg, t, 'trou juste', '#session-suivante')
 
         # Quiz à 4 propositions avec point d'attention, réponse fausse.
         lid, qid = pg.evaluate("""(() => { const l = lecons.find(l => (l.quiz || []).some(q => (q.distracteurs || []).length === 3 && q.attention));
           return [l.id, l.quiz.find(q => (q.distracteurs || []).length === 3 && q.attention).id]; })()""")
         ouvrir_question(pg, lid, 'quiz', qid)
         choisir(pg, False)
-        visibles(pg, t, 'quiz faux', '#session-feedback', '#view-session .ecr-next-btn')
+        visibles(pg, t, 'quiz faux', '#session-feedback', '#session-suivante')
 
         assert not erreurs, erreurs
         ok(f'{t} : question, correction et action principale visibles dans les 11 scénarios')

@@ -9,9 +9,10 @@
 // Les lettres A/B/C/D sont figées avant de masquer : la bonne réponse « C »
 // reste « C » (sinon le compteur CSS la renumérote en « B »).
 //
-// Cette fonction ne touche ni au score, ni à la progression, ni aux données :
-// chaque moteur garde ses propres calculs.
-function afficherVerdictChoix(conteneur, bonne, choisi, ok) {
+// Cette fonction ne touche ni au score, ni à la progression, ni aux données,
+// et ne joue aucun son : chaque moteur garde ses calculs et joue le son
+// (jouerFeedbackSon) au moment de la réponse (SPEC 94).
+function afficherVerdictChoix(conteneur, bonne, choisi) {
   if (!conteneur) return;
   const boutons = conteneur.querySelectorAll('.choice');
   boutons.forEach((b, i) => {
@@ -25,6 +26,4 @@ function afficherVerdictChoix(conteneur, bonne, choisi, ok) {
       b.hidden = true;
     }
   });
-  // Son de la correction (feedback-unifie.js) : une seule fois, ici, au moment de la réponse.
-  jouerFeedbackSon(ok ? 'success' : 'finalFailure');
 }

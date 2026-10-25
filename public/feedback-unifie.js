@@ -20,7 +20,8 @@
 //   titre     : texte du titre visible, ou '' pour aucun titre,
 //   annonce   : phrase lue par le lecteur d'écran (toujours fournie),
 //   corpsHtml : explication, audio, score, rappel… déjà échappés par l'appelant,
-//   action    : { label, id, classe, onClick } pour un nouveau bouton,
+//   action    : { label, id, onClick } pour un nouveau bouton (classe fb-cta,
+//               la même dans les deux vues ; l'id sert seulement de repère),
 //               ou { bouton } pour réutiliser un bouton existant (Écriture),
 //               ou null (aucun bouton dans le bandeau).
 // }
@@ -31,7 +32,7 @@ function renderFeedbackCommun(host, o) {
   const corps = o.corpsHtml || '';
 
   // Les classes ok / ko / essai restent : d'autres écrans et tests s'en servent.
-  host.classList.remove('hidden', 'ok', 'ko', 'essai', 'nu', 'reveal', 'discret');
+  host.classList.remove('hidden', 'ok', 'ko', 'essai', 'nu', 'reveal');
   host.classList.add('feedback-flat', succes ? 'ok' : 'ko');
   if (o.etat === 'retry') host.classList.add('essai');
   if (o.etat === 'reveal') host.classList.add('reveal');
@@ -49,7 +50,6 @@ function renderFeedbackCommun(host, o) {
     bouton = document.createElement('button');
     bouton.type = 'button';
     if (o.action.id) bouton.id = o.action.id;
-    if (o.action.classe) bouton.className = o.action.classe;
     bouton.textContent = o.action.label;
     bouton.addEventListener('click', o.action.onClick);
   }

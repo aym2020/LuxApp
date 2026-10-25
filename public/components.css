@@ -110,7 +110,7 @@
    Les composants propres aux écrans utilisent les mêmes tokens que .pc-btn. */
 :where(
   .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-  .ecr-btn-validate, .session-action.primary, .ms-envoyer
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
 ):not(:disabled):not([aria-disabled="true"]) {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -123,7 +123,7 @@
 }
 :where(
   .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-  .ecr-btn-validate, .session-action.primary, .ms-envoyer
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
 ):not(:disabled):not([aria-disabled="true"]):active {
   transform: translateY(var(--cta-pression-decalage)) scale(var(--cta-pression-echelle));
   filter: brightness(var(--cta-pression-luminosite));
@@ -133,7 +133,7 @@
 /* Empêche les anciennes règles :active de presser un bouton désactivé. */
 :where(
   .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-  .ecr-btn-validate, .session-action.primary, .ms-envoyer
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
 ):is(:disabled, [aria-disabled="true"]):active {
   transform: none;
   filter: none;
@@ -142,13 +142,13 @@
 @media (prefers-reduced-motion: reduce) {
   :where(
     .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-    .ecr-btn-validate, .session-action.primary, .ms-envoyer
+    .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
   ):not(:disabled):not([aria-disabled="true"]) {
     transition: none;
   }
   :where(
     .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-    .ecr-btn-validate, .session-action.primary, .ms-envoyer
+    .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
   ):not(:disabled):not([aria-disabled="true"]):active {
     transform: none;
     filter: brightness(var(--cta-pression-luminosite));

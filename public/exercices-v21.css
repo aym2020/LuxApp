@@ -126,12 +126,11 @@ body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .pc-b
 /* S'entraîner : correction dans le flux, juste sous la question (SPEC 59).
    Même bandeau plat que la Leçon : trait supérieur, pas de carte. */
 #view-session #session-feedback {width:100%;margin:24px 0 0;padding:14px 16px 16px}
-/* SPEC 87 — premier essai faux : une seule zone compacte, aide en texte neutre.
-   Une aide longue défile dans la zone, le champ reste proche. */
-#view-session #session-feedback.essai {gap:4px;padding:10px 14px;margin-top:16px}
+/* SPEC 87 — premier essai faux : zone compacte (emplacement seulement ; la
+   typographie de l'essai est commune, feedback-unifie.css). Une aide longue
+   défile dans la zone, le champ reste proche. */
+#view-session #session-feedback.essai {padding:10px 14px;margin-top:16px}
 #view-session #session-feedback.essai .fb-txt {max-height:4.7em;overflow-y:auto}
-#view-session #session-feedback.essai .fb-txt,
-#view-session #session-feedback.essai .fb-attention {font-size:13.5px;font-weight:500}
 /* Mot caché : bandeau court, boutons fixes, dialogue d'explication en top layer.
    Remplace l'ancienne carte rouge scrollable ; pas de scroll au départ. */
 body:not(.clavier-actif):has(#view-parcours.active[data-type="flashcards"][data-etat="saisie"] #mc-btn-valider) {overflow:hidden}
@@ -153,7 +152,7 @@ body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-info:last-child {margin-bottom:auto}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie {flex:none;min-width:0;background:var(--bg);padding:5px 0 max(11px,env(safe-area-inset-bottom));gap:6px}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-actions {margin-top:5px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur {width:100%;height:80px;min-height:80px;flex:none;overflow:hidden;padding:8px 10px 7px;min-width:0;border:0;border-top:2px solid var(--wrong);border-radius:0;background:#2a1919;color:#e1d1cc}
+body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur {width:100%;height:80px;min-height:80px;flex:none;overflow:hidden;padding:8px 10px 7px;min-width:0;border:0;border-top:2px solid var(--couleur-erreur);border-radius:0;background:var(--couleur-correction-ko-fond);color:#e1d1cc}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur.hidden {display:block!important;visibility:hidden;pointer-events:none}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-tete {display:flex;justify-content:space-between;align-items:center;gap:6px;min-width:0}
 body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-tete b {font-size:clamp(12px,3.4vw,14px);line-height:1.25;white-space:nowrap;color:var(--wrong)}
@@ -173,7 +172,8 @@ body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat
 @media(max-height:750px) {body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-tuile {height:44px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {gap:6px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {padding-top:8px}}
 
 /* Message temporaire du 1er essai (mot caché, écriture) : rouge discret. */
-#view-parcours .mc-erreur {background:rgba(239,122,115,.1);border:0;color:#c5bdb0}
+/* SPEC 94 : diagnostic d'essai = bandeau plat à trait rouge, comme la correction. */
+#view-parcours .mc-erreur:not(.coquille) {border:0;border-top:2px solid var(--couleur-erreur);border-radius:0;background:var(--couleur-correction-ko-fond);color:var(--couleur-correction-texte)}
 #view-parcours .mc-erreur b {color:var(--wrong)}
 /* SPEC 87 — clavier ouvert (body.clavier-actif posé par ui.js, comme le parcours) :
    la vue occupe exactement la zone au-dessus du clavier, seul le corps défile.

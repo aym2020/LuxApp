@@ -8,14 +8,16 @@
 .feedback-flat {
   display: flex; flex-direction: column; gap: var(--sp-2);
   border: 0; border-top: 2px solid var(--couleur-bord-3); border-radius: 0; box-shadow: none;
-  background: #141310; color: var(--exo-fg, var(--couleur-texte));
+  background: var(--couleur-correction-fond); color: var(--couleur-texte);
   font: 400 var(--fs-sec)/1.55 var(--police);
 }
-/* Mêmes poids que .ecr-feedback.ok/.ko (style.css) : ce fichier, chargé après, l'emporte. */
-.feedback-flat.ok { border: 0; border-top: 2px solid var(--couleur-reussi); border-radius: 0; background: #0f1d18; }
-.feedback-flat.ko { border: 0; border-top: 2px solid var(--couleur-erreur); border-radius: 0; background: #1f1513; }
+.feedback-flat.ok { border-top-color: var(--couleur-reussi); background: var(--couleur-correction-ok-fond); }
+.feedback-flat.ko { border-top-color: var(--couleur-erreur); background: var(--couleur-correction-ko-fond); }
 /* Réussite sans rien à ajouter : aucun bandeau, seulement le bouton or. */
 .feedback-flat.nu { border-top-color: transparent; background: transparent; }
+/* Erreur provisoire (on peut réessayer) : plus compact, mêmes couleurs. */
+.feedback-flat.essai { gap: var(--sp-1); }
+.feedback-flat.essai .fb-txt { font-size: 13.5px; font-weight: 500; }
 
 .feedback-flat .fb-titre {
   display: flex; align-items: center; gap: var(--sp-2);
@@ -24,26 +26,31 @@
 .feedback-flat.ok .fb-titre { color: var(--couleur-reussi); }
 .feedback-flat.ko .fb-titre { color: var(--couleur-erreur); }
 
-.feedback-flat .fb-txt { color: #c5bdb0; font-size: var(--fs-sec); line-height: 1.55; overflow-wrap: break-word; }
-.feedback-flat .fb-txt b { color: var(--exo-fg, var(--couleur-texte)); }
-.feedback-flat .fb-reponse b { color: var(--exo-fg, var(--couleur-texte)); font-weight: 700; }
+.feedback-flat .fb-txt { color: var(--couleur-correction-texte); line-height: 1.55; overflow-wrap: break-word; }
+.feedback-flat .fb-txt b,
+.feedback-flat .fb-reponse b { color: var(--couleur-texte); font-weight: 700; }
 
-/* « Attention : … » : texte neutre, pas d'encadré brun dans le bandeau. */
+/* « Attention : … », diagnostic, note : texte neutre, jamais un encadré dans le bandeau.
+   .pc-attention et .pc-diagnostic viennent de aideErreurHtml (diagnostic.js),
+   la même aide du 1er essai en Leçon et en S'entraîner. */
 .feedback-flat .fb-attention,
-.feedback-flat .fb-diagnostic,
+.feedback-flat .pc-attention,
+.feedback-flat .pc-diagnostic,
 .feedback-flat .fb-note,
-.feedback-flat .pc-fb-variante { margin-top: 6px; color: #c5bdb0; }
-.feedback-flat .fb-attention b { color: var(--couleur-orange); }
-/* L'aide du 1er essai (aideErreurHtml) garde sa classe .pc-attention : dans le
-   bandeau, elle devient du texte neutre (pas d'encadré brun dans le bandeau rouge). */
-.feedback-flat .pc-attention { margin: 6px 0 0; padding: 0; border: 0; border-radius: 0; background: none; color: #c5bdb0; }
-.feedback-flat .fb-diagnostic { font-weight: 700; color: var(--exo-fg, var(--couleur-texte)); }
-.feedback-flat .pc-fb-rappel { margin-top: 6px; }
+.feedback-flat .pc-fb-variante,
+.feedback-flat .pc-fb-rappel {
+  margin: 6px 0 0; padding: 0; border: 0; border-radius: 0; background: none;
+  color: var(--couleur-correction-texte);
+}
+.feedback-flat .fb-attention b,
+.feedback-flat .pc-attention b { color: var(--couleur-orange); }
+.feedback-flat .pc-diagnostic { font-weight: 700; color: var(--couleur-texte); }
 .feedback-flat .bouton-ecouter { align-self: flex-start; }
 
-/* Le seul bouton principal : or, pleine largeur, 56 px. */
+/* Le seul bouton principal : or, pleine largeur, 56 px. Même classe dans
+   les deux vues ; la pression tactile vient de components.css (SPEC 57). */
 .feedback-flat .fb-cta {
-  display: block; width: 100%; min-height: var(--hauteur-cta); margin: 6px 0 0;
+  display: block; width: 100%; min-height: var(--hauteur-cta); margin: 6px 0 0; padding: 0 var(--sp-4);
   border: 1px solid var(--couleur-action); border-radius: var(--rayon-moyen);
   background: var(--couleur-action); color: var(--couleur-sur-or);
   font: 800 15px var(--police); text-align: center; cursor: pointer;
@@ -56,10 +63,7 @@
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* Mot caché : diagnostic d'essai en bandeau plat à trait rouge (pas de carte). */
-#view-parcours .mc-erreur:not(.coquille) {
-  border: 0; border-top: 2px solid var(--couleur-erreur); border-radius: 0;
-}
-/* Mot caché : seules les cases encore à trouver tremblent, une fois. */
+/* Mot caché : seules les cases encore à trouver tremblent, une fois.
+   (Le diagnostic d'essai du Mot caché est stylé dans exercices-v21.css.) */
 .mc-case.secousse { animation: secousse-choix .2s ease-out 1; }
 @media (prefers-reduced-motion: reduce) { .mc-case.secousse { animation: none; } }

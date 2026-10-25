@@ -99,7 +99,7 @@ with sync_playwright() as p:
             cliquer(pg, '#session-choices', bonne, juste)
             pg.wait_for_timeout(300)
             verifier(pg, '#session-choices', bonne, juste, avant, f'session {type_} {"juste" if juste else "faux"}')
-            assert pg.locator('#view-session .ecr-next-btn').count() == 1
+            assert pg.locator('#session-suivante').count() == 1
             # Double appui : aucun second son, aucune seconde correction.
             pg.evaluate("document.querySelector('#session-choices .choice.correct').click()")
             assert pg.evaluate('window.__sons') == [juste]

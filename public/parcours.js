@@ -992,10 +992,9 @@ function showFeedback(fb, suite) {
   pSuite = suite;
   // Correction finale : le message temporaire du 1er essai disparaît.
   document.querySelectorAll('#view-parcours .mc-erreur').forEach(e => e.classList.add('hidden'));
-  const ok = fb.etat === 'success';
   renderFeedbackCommun(document.getElementById('pc-feedback'), {
     etat: fb.etat, titre: fb.titre, annonce: fb.annonce, corpsHtml: fb.corpsHtml,
-    action: { label: 'Continuer', id: 'pc-continuer', classe: 'pc-btn wide ' + (ok ? 'ok' : 'ko'), onClick: continuerParcours }
+    action: { label: 'Continuer', id: 'pc-continuer', onClick: continuerParcours }
   });
   focusApresClavier(document.getElementById('pc-continuer')); // focus seulement après une saisie au clavier (spec 35)
 }
@@ -1560,7 +1559,8 @@ function construireChoix(choix, bonne, item, type) {
 function choisirP(btn, ok, bonne, item, type) {
   if (pAttente) return;
   pAttente = true;
-  afficherVerdictChoix(document.getElementById('pc-choix'), bonne, btn, ok); // SPEC 94
+  afficherVerdictChoix(document.getElementById('pc-choix'), bonne, btn); // SPEC 94
+  jouerFeedbackSon(ok ? 'success' : 'finalFailure');
 
   const blank = document.getElementById('pc-blank');
   if (blank) {

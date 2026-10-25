@@ -42,6 +42,8 @@ STYLE = """sel => {
     titre: t && t.offsetParent ? t.textContent : null,
     titreStyle: t ? getComputedStyle(t).color + ' ' + getComputedStyle(t).fontSize : null,
     cta: sc ? [sc.backgroundColor, sc.minHeight, c.textContent] : null,
+    ctaDetail: sc ? [c.className, sc.padding, sc.transitionProperty, sc.borderRadius, sc.font, sc.color] : null,
+    couleur: s.color,
     ctaBas: c ? c.getBoundingClientRect().bottom : null, vh,
     texteVisible: f.innerText, annonce: (f.querySelector('.sr-only') || {}).textContent || ''
   };
@@ -151,7 +153,7 @@ with sync_playwright() as p:
             nom = f'Session {type_} {"juste" if juste else "faux"}'
             assert sons(pg) == ['success' if juste else 'finalFailure'], (nom, sons(pg))
             assert st['cta'] and st['cta'][2] in ('Voir le score →', 'Suivante →'), (nom, st['cta'])
-            assert pg.locator('#view-session .ecr-next-btn').count() == 1, nom
+            assert pg.locator('#session-suivante').count() == 1, nom
             if juste:
                 assert st['titre'] is None and 'Juste' in st['annonce'], (nom, st)
             else:
@@ -164,7 +166,7 @@ with sync_playwright() as p:
     for type_ in ('quiz', 'trous'):
         for juste in (True, False):
             a, b = styles[('lecon', type_, juste)], styles[('session', type_, juste)]
-            for cle in ('classes', 'fond', 'haut', 'gauche', 'rayon', 'titreStyle', 'titre'):
+            for cle in ('classes', 'fond', 'haut', 'gauche', 'rayon', 'titreStyle', 'titre', 'couleur', 'ctaDetail'):
                 assert a[cle] == b[cle], (type_, juste, cle, a[cle], b[cle])
             assert a['cta'][:2] == b['cta'][:2], (type_, juste, a['cta'], b['cta'])
             # Mêmes types de nœuds (la Leçon ajoute le rappel dans .fb-txt : détail métier)
@@ -328,7 +330,8 @@ with sync_playwright() as p:
     assert 'Coupés' in pg.inner_text('#plus-sons') and not pg.evaluate('SurvieFx.sonActif()')
     assert pg.evaluate("localStorage.getItem(storageKey('luxSurvieSon'))") == '0', 'autre clé que celle de Survie'
     pg.evaluate("location.reload()")
-    pg.wait_for_function("typeof SurvieFx !== 'undefined'")
+    # Attendre la fin du démarrage (app.js et navigation.js chargés), pas seulement SurvieFx.
+    pg.wait_for_function("typeof navigationRestauree !== 'undefined' && navigationRestauree === true")
     assert not pg.evaluate('SurvieFx.sonActif()'), 'réglage non conservé après rechargement'
     pg.evaluate('ouvrirPlus()')
     pg.locator('#plus-sons').click()

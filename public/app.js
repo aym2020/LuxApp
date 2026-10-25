@@ -692,9 +692,9 @@ function renderSessionQ() {
   choicesEl.classList.add('hidden');
   inputWrap.classList.add('hidden');
   sentenceEl.classList.add('hidden');
-  feedback.className = 'ecr-feedback hidden';
+  feedback.className = 'hidden'; // SPEC 94 : le style vient de .feedback-flat
   feedback.innerHTML = ''; // SPEC 59 : ne jamais garder un ancien diagnostic
-  document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
+  document.querySelectorAll('#session-suivante').forEach(b => b.remove());
 
   // V2.1 : même consigne pédagogique dans les deux contextes.
   document.getElementById('session-label').textContent =
@@ -769,7 +769,8 @@ function handleSessionChoice(btn, ok, correctText) {
   const item = session.questions[session.index];
   recordSessionAnswer(ok);
 
-  afficherVerdictChoix(document.getElementById('session-choices'), correctText, btn, ok); // SPEC 94
+  afficherVerdictChoix(document.getElementById('session-choices'), correctText, btn); // SPEC 94
+  jouerFeedbackSon(ok ? 'success' : 'finalFailure');
 
   if (item.type === 'trous') {
     const blank = document.getElementById('session-blank');
@@ -798,7 +799,7 @@ function handleSessionChoice(btn, ok, correctText) {
 function actionSuivante() {
   return {
     label: session.index < session.questions.length - 1 ? 'Suivante →' : 'Voir le score →',
-    classe: 'ecr-next-btn',
+    id: 'session-suivante',
     onClick: nextSessionQ // nextSessionQ retire déjà le bouton
   };
 }
@@ -826,7 +827,7 @@ function montrerFeedbackSession(feedback, input) {
 // soit entière, en gardant la question si tout tient, sinon la correction.
 // La place est mesurée : sous l'en-tête collant, au-dessus du clavier éventuel.
 function cadrerSession(feedback) {
-  const suivante = document.querySelector('#view-session .ecr-next-btn');
+  const suivante = document.getElementById('session-suivante');
   const saisie = document.getElementById('session-input-wrap');
   const action = suivante ||
     (saisie.classList.contains('hidden') ? feedback : document.getElementById('session-input-btn'));
@@ -868,18 +869,16 @@ function validateSessionInput() {
   // Premier essai raté : le diagnostic est montré AVANT d'enregistrer
   // la réponse, sinon une erreur de sauvegarde masque tout le feedback.
   if (!ok && premiereTentative && session.mode !== 'exam') {
-    const aide = aideErreur(val, corrige, attention, 1);
+    const aide = aideErreur(val, corrige, attention, 1); // pour l'annonce
     session.essais = 1;
     jouerFeedbackSon('retry'); // SPEC 94 : erreur provisoire, 2e essai possible
     // SPEC 87 : essai provisoire = une seule zone compacte, sans la réponse.
     // Le bouton Valider reste sous le champ (pas dans le bandeau) : SPEC 87.
-    const aideHtml =
-      (aide.diagnostic ? '<div class="fb-diagnostic">' + escHtml(aide.diagnostic) + '</div>' : '') +
-      fbAttentionHtml(aide.attention);
+    // Même aide que l'Écriture de la Leçon : aideErreurHtml (diagnostic.js).
     renderFeedbackCommun(feedback, {
       etat: 'retry', titre: 'Pas encore · réessaie',
       annonce: 'Pas encore, réessaie. ' + (aide.diagnostic || ''),
-      corpsHtml: aideHtml, action: null
+      corpsHtml: aideErreurHtml(val, corrige, attention, 1), action: null
     });
     input.value = '';
     montrerFeedbackSession(feedback, input);
@@ -939,7 +938,7 @@ function recordSessionAnswer(ok) {
 }
 
 function nextSessionQ() {
-  document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
+  document.querySelectorAll('#session-suivante').forEach(b => b.remove());
   session.index++;
   renderSessionQ();
 }
@@ -949,7 +948,7 @@ function showSessionResult() {
   document.getElementById('session-choices').classList.add('hidden');
   document.getElementById('session-input-wrap').classList.add('hidden');
   document.getElementById('session-feedback').classList.add('hidden');
-  document.querySelectorAll('#view-session .ecr-next-btn').forEach(b => b.remove());
+  document.querySelectorAll('#session-suivante').forEach(b => b.remove());
 
   const total = session.questions.length;
   const pct = total ? Math.round(session.score / total * 100) : 0;

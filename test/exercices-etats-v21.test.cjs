@@ -65,10 +65,10 @@ function parcoursAvec(dom, sons) {
     'return { showFeedback, choisirP };'].join('\n');
   return new Function('document', 'fermerClavier', 'focusApresClavier', 'enregistrer',
     'attentionItem', 'rappelHtml', 'reussir', 'echouer', 'pAttente', 'pSuite',
-    'continuerParcours', 'afficherVerdictChoix', code)(
+    'continuerParcours', 'afficherVerdictChoix', 'jouerFeedbackSon', code)(
     dom.document, () => {}, () => {}, () => {}, item => item.attention || '',
-    () => '', () => {}, () => {}, false, null, () => {},
-    (c, bonne, choisi, ok) => (sons || []).push(ok ? 'success' : 'finalFailure'));
+    () => '', () => {}, () => {}, false, null, () => {}, () => {},
+    evenement => (sons || []).push(evenement));
 }
 
 test('le titre transmis par le moteur est affiché, dans le bandeau commun (SPEC 94)', () => {
@@ -115,8 +115,10 @@ test('entraînement : trou vert, même bandeau, gras rendu (pas de <b> littéral
     fonction(app, 'handleSessionChoice'), fonction(app, 'actionSuivante'), 'return handleSessionChoice;'].join('\n');
   const session = { answered: false, index: 0, questions: [{
     type: 'trous', q: { trou: 'Madamm', attention: 'Madame = <b>Madamm</b>' } }] };
+  const sons = [];
   const handle = new Function('document', 'session', 'recordSessionAnswer', 'nextSessionQ',
-    'montrerFeedbackSession', 'afficherVerdictChoix', code)(dom.document, session, () => {}, () => {}, () => {}, () => {});
+    'montrerFeedbackSession', 'afficherVerdictChoix', 'jouerFeedbackSon', code)(
+    dom.document, session, () => {}, () => {}, () => {}, () => {}, e => sons.push(e));
   const choisi = element('b');
   choisi.textContent = 'Monsieur';
   handle(choisi, false, 'Madamm');
@@ -127,6 +129,7 @@ test('entraînement : trou vert, même bandeau, gras rendu (pas de <b> littéral
   assert.match(fb.innerHTML, /Madame = <b>Madamm<\/b>/);
   assert.doesNotMatch(fb.innerHTML, /&lt;b&gt;/);
   assert.match(fb.innerHTML, /<button>Voir le score →<\/button>/);
+  assert.deepEqual(sons, ['finalFailure'], 'un seul son, joué par le moteur');
 });
 
 test('noteHtml garde le gras mais échappe toute autre balise', () => {
@@ -139,8 +142,9 @@ test('styles : bandeau collé en bas, bandeau plat vert/rouge, cases du mot cach
   const commun = read('feedback-unifie.css');
   assert.match(regle(css, '#view-parcours .pc-feedback'), /position:sticky;bottom:0;margin-top:auto/);
   // SPEC 94 : couleurs du verdict dans le style commun, bandeau plat (trait supérieur, pas de coins).
-  assert.match(regle(commun, '.feedback-flat.ok'), /border-top: 2px solid var\(--couleur-reussi\);\s*border-radius: 0/);
-  assert.match(regle(commun, '.feedback-flat.ko'), /border-top: 2px solid var\(--couleur-erreur\);\s*border-radius: 0/);
+  assert.match(regle(commun, '.feedback-flat'), /border: 0; border-top: 2px solid [^;]+; border-radius: 0; box-shadow: none/);
+  assert.match(regle(commun, '.feedback-flat.ok'), /border-top-color: var\(--couleur-reussi\)/);
+  assert.match(regle(commun, '.feedback-flat.ko'), /border-top-color: var\(--couleur-erreur\)/);
   assert.doesNotMatch(css, /#view-session #session-feedback[^{]*\{[^}]*border-radius:14px/, 'plus de carte en S\'entraîner');
   assert.match(css, /#view-parcours \.choice\.wrong, #view-session \.choice\.wrong \{\s*border-color:var\(--wrong\)/);
   // #view-parcours .mc-case est plus spécifique que .mc-case.vert : l'état doit être redéclaré.
