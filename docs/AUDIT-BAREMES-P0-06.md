@@ -30,7 +30,7 @@ Vérifier les résultats métier, pas seulement le rendu : barèmes des exercice
 
 ### Réserves et suites
 
-1. Contrôler le résultat GitHub Actions du test de rattrapage nouvellement ajouté. **Une CI verte n'implique pas la réussite des tests navigateur absents du workflow.**
+1. **Contrôle CI réalisé :** workflow [LuxApp 2.1 — tests interface, exécution 40242069360](https://github.com/aym2020/LuxApp/actions/runs/40242069360) **vert**, y compris l'étape ajoutée « P0-06 — Barème des étoiles et rattrapage (SPEC 58) ». **Cela ne prouve pas la réussite des tests navigateur absents de ce workflow.**
 2. Exécuter `bash tools/critique.sh rapide` puis `bash tools/critique.sh` dans un environnement où le dépôt et le serveur de test sont présents ; comparer les échecs **test par test** à la même base avant toute conclusion de non-régression.
 3. Compléter les assertions aux seuils limites (49/50, 69/70, 89/90), au rappel et au score premier/deuxième essai, à l'idempotence de la sauvegarde et au cas Mot caché « erreurs gratuites mais score 100 % sans indice ».
 4. Conserver la question de libellé « Score du mot : 100 % » malgré des erreurs comme une **nuance produit/pédagogie**, pas comme un bug démontré : la règle actuelle porte sur les indices, alors que « Sans faute » tient compte de l'exactitude initiale.
