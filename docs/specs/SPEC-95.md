@@ -224,7 +224,7 @@ Livrable accepté quand **tous les types migrés** disposent d'un dock commun in
 
 ## Implémentation (25/10/2026)
 
-**Statut : implémentée (lots 1 à 5) — recette Samsung à faire.** Branche `2.1`, à partir de `3f7523e`.
+**Statut : implémentée (lots 1 à 5) — recette Samsung des exercices et du clavier acceptée le 25/10/2026 (P0-01/P0-02), tests de zoom navigateur instrumenté et TalkBack toujours ouverts en recette globale/accessibilité.** Branche `2.1`, à partir de `3f7523e`.
 
 ### Structure livrée
 

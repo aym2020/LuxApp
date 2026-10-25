@@ -32,7 +32,7 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ## Alerte prioritaire — Incident des exercices 2.1 (21 octobre 2026)
 
-**Règle permanente :** lire [le post-mortem des exercices](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md) et [les consignes pour agents](AGENTS.md) avant toute refonte UI/UX 2.1. **Historique 21/10 :** captures avec états contradictoires malgré CI verte. **Mise à jour 25/10 :** corrections et sons acceptés sur Samsung, P0-01 et P0-07 clôturées ; clavier ouvert, barèmes transverses et cloud restent à valider (P0-02/04/06/08).
+**Règle permanente :** lire [le post-mortem des exercices](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md) et [les consignes pour agents](AGENTS.md) avant toute refonte UI/UX 2.1. **Historique 21/10 :** captures avec états contradictoires malgré CI verte. **Mise à jour 25/10 :** corrections, sons et clavier Android acceptés sur Samsung, police agrandie testée ; **P0-01, P0-02 et P0-07 clôturées**. Barèmes transverses, cloud et recette générale demeurent à valider (P0-04/06/08).
 
 **Pour les exercices :** conserver tous les états pédagogiques et la logique de progression ; un seul type/une seule cause à la fois ; exécuter `bash tools/critique.sh rapide` **et** `bash tools/critique.sh` avant push, vérifier DOM/captures navigateur, puis Android réel si clavier concerné. Faute de recette visuelle, ne pas annoncer un correctif UI validé. Au premier défaut majeur, stopper les patchs, chercher la cause et envisager un rollback sélectif. Branche **`2.1` uniquement**, sauf instruction contraire.
 

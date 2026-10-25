@@ -1,6 +1,6 @@
 # Catalogue des recettes LuxApp 2.1 — tests et validations sur téléphone
 
-**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** correction visuelle et sons acceptés le 25/10 ; P0-01 clôturée. **P0-02 presque terminée :** clavier Samsung ouvert, CTA, saisie longue, essai faux + Réessayer, touche Entrée et Retour Android confirmés ; reste l'agrandissement de police 130/200 %. Voir [configuration et sécurité](RECETTE.md).
+**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** correction visuelle et sons acceptés le 25/10 ; P0-01 clôturée. **P0-02 clôturée le 25/10 sur Samsung :** clavier ouvert, CTA, saisie longue, premier faux et Réessayer, touche Entrée, Retour Android et police agrandie tous acceptés par le Produit. Autres tailles d'écran, zoom exact et TalkBack relèvent de la recette globale/accessibilité. Voir [configuration et sécurité](RECETTE.md).
 
 ## Principe obligatoire pour chaque nouvelle tâche
 
@@ -47,7 +47,13 @@ Quatre captures de l'exercice **Écriture Leçon** sur téléphone Samsung, dont
 
 Trois nouvelles captures Samsung en **S'entraîner → Écriture** montrent le clavier AZERTY ouvert, la question lisible, le champ accessible, le CTA « Valider » fixe et un état **premier faux** avec texte d'aide et « Réessayer » entièrement visible au-dessus du clavier. **Confirmation explicite du Produit :** touche Entrée et Retour Android fonctionnent. Le badge MODE TEST ne constitue pas un défaut. Les captures ne démontrent pas un réglage de police agrandie.
 
-**Bilan :** clavier et actions critiques validés sur Samsung en Leçon et S'entraîner. P0-02 reste ouverte uniquement pour le contrôle de police agrandie 130/200 % prévu dans ses critères ; la recette globale, les parcours de progression et TalkBack restent dans leurs tâches distinctes.
+**Bilan à cette date (avant la dernière confirmation) :** clavier et actions critiques validés sur Samsung en Leçon et S'entraîner ; l'agrandissement de police restait à tester. **Le contrôle est depuis accepté** par le Produit le 25/10 (voir validation finale ci-dessous). La recette globale, les parcours de progression et TalkBack restent dans leurs tâches distinctes.
+
+### Validation finale P0-02 — 25 octobre 2026
+
+Le Produit confirme avoir **augmenté la taille de police sur Samsung** et testé l'interface : **aucun problème signalé**. Avec les captures antérieures (clavier ouvert en Leçon et S'entraîner, champ long et CTA visibles, premier essai faux avec « Réessayer ») et la confirmation du bon fonctionnement d'**Entrée** et **Retour Android**, **P0-02 est clôturée par acceptation Produit**. Le pourcentage exact de police n'est pas mesuré : ne pas présenter cette validation comme une mesure instrumentée 130/200 % ou un test de zoom navigateur.
+
+La validation ne couvre pas l'ensemble des vues, TalkBack, la synchronisation, la notation complète ou les résolutions d'autres appareils ; ces sujets restent dans P0-08/P1-18 et P0-03/04/06. Aucun changement de code applicatif n'a été nécessaire.
 
 **E-02 clos visuellement au 25/10 :** première erreur « Pas encore · réessaie » dans le corps, bouton « Réessayer » fixe en bas ; échec final avec solution et « Suivante ». L'ancienne demande de bandeau inférieur est remplacée par la SPEC 95. Vérifications restantes : clavier réellement ouvert, transitions et texte agrandi.
 
@@ -68,7 +74,7 @@ Chaque scénario affiche sa **liste de contrôle dans le panneau** avant ouvertu
 
 | Ordre | TODO | Recettes à développer |
 |---|---|---|
-| **2** | P0-02 Clavier Android | Saisie vide/longue, clavier ouvert/fermé, bouton visible, taille 130/200 %, Retour |
+| **2 — clôturé Samsung 25/10** | P0-02 Clavier Android | Clavier ouvert/fermé, CTA, saisie longue, premier faux, Entrée, Retour et police agrandie validés ; autres résolutions et TalkBack en P0-08/P1-18 |
 | **3** | P0-03 Navigation | Accueil → Chemin → leçon, fermeture Cours/Plus, Retour et reprise |
 | **4** | P0-04 / P0-06 Progression | Révision, scores, modes invité, interruption et restauration en recette **locale seulement** |
 | **5** | P0-05 / P0-08 Survie + validation | État final 320–430 px, résultats, Retour, temps écoulé, interactions |
