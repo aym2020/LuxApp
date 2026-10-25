@@ -25,12 +25,6 @@ function afficherVerdictChoix(conteneur, bonne, choisi, ok) {
       b.hidden = true;
     }
   });
-  jouerSonVerdict(ok);
-}
-
-// Son bref : montant si juste, descendant si faux. Il suit le réglage Son
-// déjà utilisé par Survie et le Mot caché. Facultatif : sans son, rien ne casse.
-function jouerSonVerdict(ok) {
-  if (typeof SurvieFx === 'undefined' || typeof SurvieFx.verdict !== 'function') return;
-  try { SurvieFx.verdict(ok); } catch (_) { /* le son est un bonus */ }
+  // Son de la correction (feedback-unifie.js) : une seule fois, ici, au moment de la réponse.
+  jouerFeedbackSon(ok ? 'success' : 'finalFailure');
 }

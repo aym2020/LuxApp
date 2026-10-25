@@ -21,12 +21,15 @@ function fonction(source, nom) {
 
 // Faux élément DOM minimal.
 function element(id) {
-  const el = { id, className: '', innerHTML: '', textContent: '', style: {}, dataset: {}, disabled: false };
+  const el = { id, className: '', innerHTML: '', textContent: '', style: {}, dataset: {}, disabled: false, enfants: [] };
   el.classList = {
-    add(c) { if (!this.contains(c)) el.className = (el.className + ' ' + c).trim(); },
+    add(...cs) { cs.forEach(c => { if (!this.contains(c)) el.className = (el.className + ' ' + c).trim(); }); },
     remove(...cs) { el.className = el.className.split(/\s+/).filter(x => !cs.includes(x)).join(' '); },
     contains(c) { return el.className.split(/\s+/).includes(c); }
   };
+  el.addEventListener = () => {};
+  // Le bouton ajouté au bandeau apparaît dans innerHTML, comme dans un vrai DOM.
+  el.appendChild = enfant => { el.enfants.push(enfant); el.innerHTML += '<button>' + enfant.textContent + '</button>'; };
   return el;
 }
 
@@ -39,6 +42,7 @@ function fauxDom() {
     ids, get, erreurs,
     document: {
       getElementById: get,
+      createElement: () => element(''),
       querySelectorAll: sel => sel.includes('mc-erreur') ? erreurs : (ids.__choix || [])
     }
   };
@@ -46,60 +50,83 @@ function fauxDom() {
 
 const escHtml = fonction(app, 'escHtml');
 const noteHtml = fonction(app, 'noteHtml');
+// SPEC 94 : le bandeau commun est rendu par feedback-unifie.js (vraies fonctions).
+const unifie = read('feedback-unifie.js');
+const renderFeedbackCommun = fonction(unifie, 'renderFeedbackCommun');
+const fbAttentionHtml = fonction(unifie, 'fbAttentionHtml');
 
-function parcoursAvec(dom) {
-  const code = [escHtml, fonction(parcours, 'etatExercice'), fonction(parcours, 'showFeedback'),
+// Texte visible du bandeau : sans la phrase réservée au lecteur d'écran.
+const visible = html => html.replace(/<span class="sr-only">[^<]*<\/span>/, '');
+
+function parcoursAvec(dom, sons) {
+  const code = [escHtml, noteHtml, renderFeedbackCommun, fbAttentionHtml,
+    fonction(parcours, 'etatExercice'), fonction(parcours, 'showFeedback'),
     fonction(parcours, 'choisirP'),
     'return { showFeedback, choisirP };'].join('\n');
   return new Function('document', 'fermerClavier', 'focusApresClavier', 'enregistrer',
-    'attentionHtml', 'attentionItem', 'rappelHtml', 'reussir', 'echouer', 'pAttente', 'pSuite', code)(
-    dom.document, () => {}, () => {}, () => {}, t => t ? 'Attention : ' + t : '', () => '',
-    () => '', () => {}, () => {}, false, null);
+    'attentionItem', 'rappelHtml', 'reussir', 'echouer', 'pAttente', 'pSuite',
+    'continuerParcours', 'afficherVerdictChoix', code)(
+    dom.document, () => {}, () => {}, () => {}, item => item.attention || '',
+    () => '', () => {}, () => {}, false, null, () => {},
+    (c, bonne, choisi, ok) => (sons || []).push(ok ? 'success' : 'finalFailure'));
 }
 
-test('le titre transmis par le moteur est affiché (plus de « Bien vu. » générique)', () => {
+test('le titre transmis par le moteur est affiché, dans le bandeau commun (SPEC 94)', () => {
   const dom = fauxDom();
   const p = parcoursAvec(dom);
-  p.showFeedback(true, 'Juste, au 2e essai', '<b>Moien!</b>', () => {});
+  p.showFeedback({ etat: 'success', titre: 'Juste, au 2e essai', annonce: 'Juste, au 2e essai.', corpsHtml: '<b>Moien!</b>' }, () => {});
   const fb = dom.get('pc-feedback');
-  assert.match(fb.innerHTML, /Juste, au 2e essai/);
+  assert.match(fb.innerHTML, /class="fb-titre"[^>]*>Juste, au 2e essai</);
   assert.doesNotMatch(fb.innerHTML, /Bien vu\.|À retenir/);
-  assert.ok(fb.classList.contains('ok'));
-  p.showFeedback(false, 'La réponse : Stull', '', () => {});
-  assert.match(fb.innerHTML, /La réponse : Stull/);
-  assert.ok(fb.classList.contains('ko'));
+  assert.ok(fb.classList.contains('ok') && fb.classList.contains('feedback-flat'));
+  assert.match(fb.innerHTML, /<button>Continuer<\/button>/);
+  p.showFeedback({ etat: 'reveal', titre: 'Réponse dévoilée', annonce: 'Réponse dévoilée : Stull', corpsHtml: '<b>Stull</b>' }, () => {});
+  assert.match(fb.innerHTML, /Réponse dévoilée/);
+  assert.ok(fb.classList.contains('ko') && fb.classList.contains('reveal'));
 });
 
 test('la correction finale masque le « Pas encore » du premier essai', () => {
   const dom = fauxDom();
-  parcoursAvec(dom).showFeedback(true, 'Bien joué !', '', () => {});
+  parcoursAvec(dom).showFeedback({ etat: 'success', titre: '', annonce: 'Bien joué !' }, () => {});
   dom.erreurs.forEach(e => assert.ok(e.classList.contains('hidden'), e.id + ' doit être masqué'));
 });
 
-test('parcours : après une erreur, le trou montre la bonne réponse en vert', () => {
+test('parcours : après une erreur, le trou montre la bonne réponse en vert, sans la répéter dans le bandeau', () => {
   const dom = fauxDom();
   dom.ids.__choix = [];
-  parcoursAvec(dom).choisirP(element('b'), false, 'Madamm', {}, 'trous');
+  const sons = [];
+  const choisi = element('b');
+  choisi.textContent = 'Monsieur';
+  parcoursAvec(dom, sons).choisirP(choisi, false, 'Madamm', { attention: 'Madame = <b>Madamm</b>' }, 'trous');
+  const fb = dom.get('pc-feedback').innerHTML;
   assert.equal(dom.get('pc-blank').textContent, 'Madamm');
   assert.equal(dom.get('pc-blank').style.color, 'var(--correct)');
-  assert.match(dom.get('pc-feedback').innerHTML, /Pas encore/);
+  assert.match(fb, /Pas encore/);
+  assert.match(fb, /Madame = <b>Madamm<\/b>/);
+  assert.doesNotMatch(visible(fb), /Bonne réponse/);
+  assert.match(fb, /sr-only">Pas encore\. Ton choix : Monsieur\. Bonne réponse : Madamm\./);
+  assert.deepEqual(sons, ['finalFailure']);
 });
 
-test('entraînement : trou vert, titre clair et gras rendu (pas de <b> littéral)', () => {
+test('entraînement : trou vert, même bandeau, gras rendu (pas de <b> littéral)', () => {
   const dom = fauxDom();
   const fb = dom.get('session-feedback');
-  const code = [escHtml, noteHtml, fonction(app, 'attentionDe'), fonction(app, 'handleSessionChoice'),
-    'return handleSessionChoice;'].join('\n');
+  const code = [escHtml, noteHtml, renderFeedbackCommun, fbAttentionHtml, fonction(app, 'attentionDe'),
+    fonction(app, 'handleSessionChoice'), fonction(app, 'actionSuivante'), 'return handleSessionChoice;'].join('\n');
   const session = { answered: false, index: 0, questions: [{
     type: 'trous', q: { trou: 'Madamm', attention: 'Madame = <b>Madamm</b>' } }] };
-  const handle = new Function('document', 'session', 'recordSessionAnswer', 'ajouterBoutonSuivante',
-    'montrerFeedbackSession', code)(dom.document, session, () => {}, () => {}, () => {});
-  handle(element('b'), false, 'Madamm');
+  const handle = new Function('document', 'session', 'recordSessionAnswer', 'nextSessionQ',
+    'montrerFeedbackSession', 'afficherVerdictChoix', code)(dom.document, session, () => {}, () => {}, () => {}, () => {});
+  const choisi = element('b');
+  choisi.textContent = 'Monsieur';
+  handle(choisi, false, 'Madamm');
   assert.equal(dom.get('session-blank').style.color, 'var(--correct)');
-  assert.match(fb.innerHTML, /Pas encore/);
-  assert.match(fb.innerHTML, /Bonne réponse : <b>Madamm<\/b>/);
+  assert.ok(fb.classList.contains('feedback-flat') && fb.classList.contains('ko'));
+  assert.match(fb.innerHTML, /class="fb-titre"[^>]*>Pas encore</);
+  assert.doesNotMatch(visible(fb.innerHTML), /Bonne réponse/);
   assert.match(fb.innerHTML, /Madame = <b>Madamm<\/b>/);
   assert.doesNotMatch(fb.innerHTML, /&lt;b&gt;/);
+  assert.match(fb.innerHTML, /<button>Voir le score →<\/button>/);
 });
 
 test('noteHtml garde le gras mais échappe toute autre balise', () => {
@@ -107,15 +134,18 @@ test('noteHtml garde le gras mais échappe toute autre balise', () => {
   assert.equal(f('a <b>x</b> <i>y</i>'), 'a <b>x</b> &lt;i&gt;y&lt;/i&gt;');
 });
 
-test('styles : bandeau collé en bas, états vert/rouge, cases du mot caché conservées', () => {
-  const regle = sel => (css.match(new RegExp(sel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*\\{([^}]*)\\}')) || [])[1] || '';
-  assert.match(regle('#view-parcours .pc-feedback'), /position:sticky;bottom:0;margin-top:auto/);
-  assert.match(regle('#view-parcours .pc-feedback.ok'), /var\(--correct\)/);
-  assert.match(regle('#view-parcours .pc-feedback.ko'), /var\(--wrong\)/);
+test('styles : bandeau collé en bas, bandeau plat vert/rouge, cases du mot caché conservées', () => {
+  const regle = (source, sel) => (source.match(new RegExp(sel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*\\{([^}]*)\\}')) || [])[1] || '';
+  const commun = read('feedback-unifie.css');
+  assert.match(regle(css, '#view-parcours .pc-feedback'), /position:sticky;bottom:0;margin-top:auto/);
+  // SPEC 94 : couleurs du verdict dans le style commun, bandeau plat (trait supérieur, pas de coins).
+  assert.match(regle(commun, '.feedback-flat.ok'), /border-top: 2px solid var\(--couleur-reussi\);\s*border-radius: 0/);
+  assert.match(regle(commun, '.feedback-flat.ko'), /border-top: 2px solid var\(--couleur-erreur\);\s*border-radius: 0/);
+  assert.doesNotMatch(css, /#view-session #session-feedback[^{]*\{[^}]*border-radius:14px/, 'plus de carte en S\'entraîner');
   assert.match(css, /#view-parcours \.choice\.wrong, #view-session \.choice\.wrong \{\s*border-color:var\(--wrong\)/);
   // #view-parcours .mc-case est plus spécifique que .mc-case.vert : l'état doit être redéclaré.
-  assert.match(regle('#view-parcours .mc-case.vert'), /var\(--correct\)/);
-  assert.match(regle('#view-parcours .mc-case.indice'), /var\(--accent\)/);
+  assert.match(regle(css, '#view-parcours .mc-case.vert'), /var\(--correct\)/);
+  assert.match(regle(css, '#view-parcours .mc-case.indice'), /var\(--accent\)/);
 });
 
 // Sons des mots mélangés : mêmes notes que Survie, sans affecter la logique de reconstruction.
@@ -181,16 +211,19 @@ test('Mot caché : le son de lettre est réutilisé sans nouvel asset ni dépend
   assert.match(vfx,/lettre: lettre/);
   assert.match(vfx,/function lettre\(position\)/);
   assert.match(vfx,/localStorage\.getItem\(cleSon\(\)\) !== '0'/);
-  assert.match(html,/src="survie-vfx\.js\?v=2"[\s\S]*src="jeux-v21\.js\?v=12"/);
-  assert.match(html,/src="parcours\.js\?v=8"/);
+  // Versions d'assets : seulement l'ordre de chargement (les numéros changent à chaque livraison).
+  assert.match(html,/src="survie-vfx\.js\?v=\d+"[\s\S]*src="jeux-v21\.js\?v=\d+"/);
+  assert.match(html,/src="parcours\.js\?v=\d+"/);
 });
 
 test('écriture parcours : première erreur dans le bandeau inférieur, 2e essai non verrouillé', () => {
   const extrait = fonction(parcours, 'ecrValiderPc');
   const styles = read('exercices-v21.css');
-  assert.match(extrait, /fb\.className = 'pc-feedback ko essai'/);
-  assert.match(extrait, /fb\.appendChild\(bouton\)/);
+  // SPEC 94 : bandeau commun, état « retry », même bouton déplacé dans le bandeau.
+  assert.match(extrait, /etat: 'retry', titre: 'Pas encore · réessaie'/);
+  assert.match(extrait, /action: \{ bouton \}/);
   assert.match(extrait, /bouton\.textContent = 'Réessayer'/);
+  assert.match(extrait, /jouerFeedbackSon\('retry'\)/);
   assert.doesNotMatch(extrait.split("if (ecrEssais === 1) {")[1].split("input.disabled = true;")[0], /^\s*showFeedback\(/m);
   assert.match(styles, /#view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
   assert.match(styles, /body\.clavier-actif #view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);

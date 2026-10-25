@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="design-tokens.css" />
   <link rel="stylesheet" href="components.css" />
-  <link rel="stylesheet" href="style.css?v=spec94-1" />
+  <link rel="stylesheet" href="style.css?v=spec94-2" />
   <link rel="stylesheet" href="accueil-v21.css?v=jeux88" />
   <link rel="stylesheet" href="jeux-v21.css?v=13" />
   <link rel="stylesheet" href="revision-v21.css" />
@@ -25,7 +25,8 @@
   <link rel="stylesheet" href="intro-unite-v21.css" />
   <link rel="stylesheet" href="nouveautes-v21.css?v=3" />
   <link rel="stylesheet" href="cours-v21.css?v=2" />
-  <link rel="stylesheet" href="exercices-v21.css?v=ecriture-essai-bas-1" />
+  <link rel="stylesheet" href="exercices-v21.css?v=spec94-2" />
+  <link rel="stylesheet" href="feedback-unifie.css?v=1" />
   <link rel="stylesheet" href="expression-ecrite-v21.css?v=2" />
 </head>
 <body>
@@ -319,7 +320,7 @@
       <span id="pc-compteur"></span>
     </div>
     <div class="pc-body" id="pc-body"></div>
-    <div class="pc-feedback hidden" id="pc-feedback"></div>
+    <div class="pc-feedback hidden" id="pc-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
   </div>
 
   <!-- ══ LEÇON EN UNITÉS : MISSION (la scène finale) ══════════════════════════ -->
@@ -596,15 +597,16 @@
   <script src="expression-ecrite.js?v=1"></script>
   <script src="diagnostic.js"></script>
   <script src="correction.js"></script>
-  <script src="verdict-choix.js"></script>
-  <script src="parcours.js?v=9"></script>
+  <script src="verdict-choix.js?v=2"></script>
+  <script src="feedback-unifie.js?v=1"></script>
+  <script src="parcours.js?v=10"></script>
   <script src="mission.js"></script>
   <script src="studio.js"></script>
   <script src="decouverte.js"></script>
   <script src="revision.js"></script>
-  <script src="accueil.js"></script>
+  <script src="accueil.js?v=sons-1"></script>
   <script src="accueil-v21.js?v=jeux88"></script>
-  <script src="survie-vfx.js?v=3"></script>
+  <script src="survie-vfx.js?v=4"></script>
   <script src="jeux-v21.js?v=12"></script>
   <script src="nouveautes-v21.js?v=3"></script>
   <script src="dialogue.js"></script>
@@ -613,7 +615,7 @@
   <script src="chemin.js"></script>
   <script src="anim.js"></script>
   <script src="cours75.js?v=2"></script>
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
   <script src="ui.js?v=3"></script>
   <script src="navigation.js"></script>
 </body>

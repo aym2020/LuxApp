@@ -1007,8 +1007,6 @@ body.no-scroll { overflow: hidden; }
 .mc-espace { width: 14px; }
 .mc-groupe { display: inline-flex; gap: 5px; align-items: center; } /* un mot = un bloc insécable */
 .mc-sep { display: flex; align-items: center; font-size: 1.25rem; font-weight: 600; color: var(--muted-strong); }
-.mc-cases.shake { animation: pc-shake .35s; }
-@keyframes pc-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 .mc-legende { display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem 1rem; font-size: var(--fs-sec); color: var(--muted); }
 .mc-legende span { display: flex; align-items: center; gap: .35rem; }
 .mc-dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
@@ -1025,16 +1023,8 @@ body.no-scroll { overflow: hidden; }
   position: sticky; bottom: 0; margin-top: auto;
   padding: 1rem 1.25rem calc(1.2rem + env(safe-area-inset-bottom));
   display: flex; flex-direction: column; gap: .7rem;
-  background: #141310; border-top: 2px solid var(--couleur-bord-3);
 }
-.pc-feedback.ok { background: #0f1d18; border-top-color: var(--correct); }
-.pc-feedback.ko { background: #1f1513; border-top-color: var(--wrong); }
-.pc-feedback.discret { background: transparent; border-top-color: transparent; padding-top: 0; }
-.pc-fb-titre { font-size: 1.05rem; font-weight: 600; }
-.pc-feedback.ok .pc-fb-titre { color: var(--correct); }
-.pc-feedback.ko .pc-fb-titre { color: var(--wrong); }
-.pc-fb-txt { font-size: .9rem; color: var(--muted-strong); line-height: 1.5; }
-.pc-fb-txt b { color: var(--text); }
+/* Couleurs, titre et texte : feedback-unifie.css (SPEC 94). */
 .pc-fb-rappel { margin-top: .4rem; } /* la phrase « reviendra » toujours sur sa ligne (spec 40) */
 #view-parcours.active { min-height: 100dvh; }
 
@@ -1720,6 +1710,18 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
   content: '›'; font: 350 25px/1 var(--font); color: var(--muted);
   margin-left: auto; align-self: center;
 }
+/* SPEC 94 (2E) : ligne interrupteur « Sons des exercices » (pas de chevron). */
+#view-plus .plus-options .plus-interrupteur::after { content: none; }
+#view-plus .plus-options .plus-ligne > .plus-switch {
+  position: relative; flex: none; width: 44px; height: 26px; border-radius: var(--rayon-pilule);
+  background: var(--couleur-bord-3); transition: background .15s;
+}
+#view-plus .plus-options .plus-ligne > .plus-switch::before {
+  content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+  border-radius: 50%; background: var(--couleur-texte-2); transition: transform .15s;
+}
+#view-plus .plus-interrupteur[aria-checked="true"] .plus-switch { background: var(--couleur-action); }
+#view-plus .plus-interrupteur[aria-checked="true"] .plus-switch::before { transform: translateX(18px); background: var(--couleur-sur-or); }
 #view-plus .plus-options .plus-ligne:focus-visible {
   outline: 2px solid var(--accent); outline-offset: -3px; position: relative; z-index: 1;
 }
@@ -1898,7 +1900,6 @@ body.avec-nav .lecon-header { padding-top: 1.25rem; }
 #view-parcours { overflow-x: clip; } /* le glissement ne doit pas créer de défilement horizontal */
 .pc-seg > div { transition: width .3s ease; }
 .pc-feedback:not(.hidden):not(.discret) { animation: monte-b .2s ease-out both; }
-.pc-fb-titre { display: flex; align-items: center; gap: 8px; }
 .coche-anim { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .coche-anim path { stroke-dasharray: 30; animation: dessine .35s ease-out .05s both; }
 .choice.correct { animation: rebond .3s ease-out; }
@@ -2278,7 +2279,7 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 #view-parcours[data-etat="corrige"] .mc-mot { pointer-events: none; }
 .pc-fb-score { margin-top: .35rem; font-size: var(--fs-sec); color: var(--muted-strong); }
 /* Correction longue : elle défile, « Continuer » reste visible en bas */
-.pc-feedback .pc-fb-txt { max-height: 38vh; overflow-y: auto; }
+.pc-feedback .fb-txt { max-height: 38vh; overflow-y: auto; }
 /* Révision : une fois la réponse corrigée, le bouton « Valider » disparaît */
 #session-input-btn:disabled { display: none; }
 
@@ -2832,7 +2833,7 @@ body.portail-bloque { overflow:hidden; }
 @keyframes pa-onde { 50% { opacity:.25; } }
 /* SPEC 68 : icône seule dans les listes et tableaux ; cible tactile de 40 px. */
 .bouton-ecouter.compact { min-height:40px; min-width:40px; padding:0; justify-content:center; margin-left:4px; vertical-align:middle; }
-.pc-fb-txt .bouton-ecouter, .ecr-feedback .bouton-ecouter { display:flex; margin:4px 0 0 -10px; }
+.fb-txt .bouton-ecouter, .ecr-feedback .bouton-ecouter { display:flex; margin:4px 0 0 -10px; }
 .lx-mot > div { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; column-gap:2px; }
 .lx-mot > div > em { flex-basis:100%; }
 /* SPEC 70 / 72 : prononciation dans une phrase LOD (gris sable ; or = son exact). */

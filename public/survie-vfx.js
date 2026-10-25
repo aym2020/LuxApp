@@ -367,16 +367,28 @@ const SurvieFx = (function () {
     note(160, 0, 0.24, 0.05, 'square', 70);
   }
 
-  // SPEC 94 : verdict d'un Quiz ou d'un Trou. Deux notes douces,
-  // montantes si juste, descendantes si faux.
-  function verdict(ok) {
-    if (ok) {
+  // SPEC 94 : sons des corrections d'exercice. Trois événements distincts :
+  //   success      : trois notes douces qui montent ;
+  //   retry        : deux notes qui descendent (on peut encore réessayer) ;
+  //   finalFailure : trois notes plus graves qui descendent (correction montrée).
+  function feedback(evenement) {
+    if (evenement === 'success') {
       note(587.33, 0, 0.1, 0.045, 'sine');
-      note(783.99, 0.1, 0.12, 0.045, 'sine');
-    } else {
-      note(329.63, 0, 0.1, 0.045, 'sine');
-      note(246.94, 0.1, 0.14, 0.045, 'sine');
+      note(739.99, 0.08, 0.1, 0.045, 'sine');
+      note(880, 0.16, 0.14, 0.04, 'sine');
+    } else if (evenement === 'retry') {
+      note(493.88, 0, 0.09, 0.04, 'sine');
+      note(415.3, 0.09, 0.12, 0.04, 'sine');
+    } else if (evenement === 'finalFailure') {
+      note(329.63, 0, 0.11, 0.045, 'sine');
+      note(277.18, 0.1, 0.11, 0.045, 'sine');
+      note(220, 0.2, 0.15, 0.045, 'sine');
     }
+  }
+
+  // Ancien nom (lot 1) : juste → success, faux → finalFailure.
+  function verdict(ok) {
+    feedback(ok ? 'success' : 'finalFailure');
   }
 
   // Extinction unique : plus de flammes générées, les dernières braises meurent
@@ -419,6 +431,7 @@ const SurvieFx = (function () {
     reussite: reussite,
     erreur: erreur,
     verdict: verdict,
+    feedback: feedback,
     fin: fin,
     arreter: arreter,
     sonActif: sonActif,

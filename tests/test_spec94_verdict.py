@@ -23,7 +23,8 @@ JS_ETAT = """sel => [...document.querySelectorAll(sel + ' .choice')].map(b => ({
 }))"""
 
 # Remplace le son par un compteur pour vérifier qu'il est joué une seule fois.
-JS_ESPION_SON = "() => { window.__sons = []; SurvieFx.verdict = ok => window.__sons.push(ok); }"
+# Lot 2 : le son passe par SurvieFx.feedback('success' | 'finalFailure').
+JS_ESPION_SON = "() => { window.__sons = []; SurvieFx.feedback = e => window.__sons.push(e === 'success'); }"
 
 
 def lettres_avant(pg, sel):

@@ -979,24 +979,24 @@ function etatExercice(etat) {
   document.getElementById('view-parcours').dataset.etat = etat;
 }
 
-// Bandeau du bas : "Juste !" ou "Pas encore", avec un bouton Continuer.
-function showFeedback(ok, titre, texteHtml, suite) {
+// Bandeau du bas (SPEC 94) : rendu commun avec S'entraîner (feedback-unifie.js),
+// puis un seul bouton « Continuer ».
+//   fb = { etat, titre, annonce, corpsHtml } (voir renderFeedbackCommun)
+// Le son est joué par l'appelant, au moment de la réponse, jamais ici.
+function showFeedback(fb, suite) {
   const boiteAide = document.getElementById('mc-aide-dialog');
   if (boiteAide && boiteAide.open) boiteAide.close();
   fermerClavier(); // la correction doit être visible, pas cachée par le clavier
   etatExercice('corrige'); // plus de Valider / Indice / Effacer : une seule action
   pAttente = true;
   pSuite = suite;
-  const fb = document.getElementById('pc-feedback');
   // Correction finale : le message temporaire du 1er essai disparaît.
   document.querySelectorAll('#view-parcours .mc-erreur').forEach(e => e.classList.add('hidden'));
-  fb.className = 'pc-feedback ' + (ok ? 'ok' : 'ko');
-  const coche = ok ? '<svg class="coche-anim" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' : '';
-  // Le titre transmis par le moteur porte le sens : « Juste ! », « Juste, au 2e essai »…
-  fb.innerHTML =
-    '<div class="pc-fb-titre">' + coche + titre + '</div>' +
-    (texteHtml ? '<div class="pc-fb-txt">' + texteHtml + '</div>' : '') +
-    '<button class="pc-btn wide ' + (ok ? 'ok' : 'ko') + '" id="pc-continuer" onclick="continuerParcours()">Continuer</button>';
+  const ok = fb.etat === 'success';
+  renderFeedbackCommun(document.getElementById('pc-feedback'), {
+    etat: fb.etat, titre: fb.titre, annonce: fb.annonce, corpsHtml: fb.corpsHtml,
+    action: { label: 'Continuer', id: 'pc-continuer', classe: 'pc-btn wide ' + (ok ? 'ok' : 'ko'), onClick: continuerParcours }
+  });
   focusApresClavier(document.getElementById('pc-continuer')); // focus seulement après une saisie au clavier (spec 35)
 }
 
@@ -1336,6 +1336,11 @@ function renderCases(avecTuiles = true) {
     }
     else if (c.etat !== '') texte = c.ch;
     if (i === curseur) classe += ' curseur';
+    // SPEC 94 : juste après une validation fausse, seules les cases encore
+    // à trouver tremblent (une fois). Les cases vertes ne bougent pas.
+    // (fenêtre de 250 ms : un nouveau rendu juste après garde l'effet,
+    // un rendu plus tard — lettre touchée, retour — ne tremble plus)
+    if (Date.now() < (mc.secousseFin || 0) && c.etat === '') classe += ' secousse';
     html += '<span class="' + classe + '">' + escHtml(texte) + '</span>';
   });
   document.getElementById('mc-cases').innerHTML = html + '</span>';
@@ -1423,12 +1428,19 @@ function mcValider() {
     document.getElementById('mc-cases').classList.add('juste');
     const ok = !mc.revele && mc.indices === 0 && mc.essais === 0;
     enregistrer(card, mcScore(), ok, { indices: mc.indices, essais: mc.essais, revele: mc.revele });
-    // Juste : le point d'attention complet, pour retenir le piège (S6).
-    showFeedback(true, 'Bien joué !', '<b>' + escHtml(motComplet(card)) + '</b> = ' + escHtml(card.fr) +
-      boutonEcouterHtml(card.lu) + // SPEC 68 : aussi pour un mot déjà étudié
-      '<div class="pc-fb-score">Score du mot : <b>' + Math.round(mcScore() * 100) + ' %</b>' +
-        (mc.indices ? ' · ' + mc.indices + ' indice' + (mc.indices > 1 ? 's' : '') : ' · sans indice') + '</div>' +
-      (card.note ? '<br>' + escHtml(card.note) : '') + attentionHtml(attentionItem(card, 'flashcards')), reussir);
+    jouerFeedbackSon('success'); // SPEC 94 : une fois, au moment de la réponse
+    // Juste : les cases vertes suffisent, pas de titre « Bien joué ! » visible.
+    // On garde le mot, sa traduction, l'audio, le score et le point d'attention (S6).
+    showFeedback({
+      etat: 'success', titre: '',
+      annonce: 'Bien joué ! ' + motComplet(card) + ' = ' + card.fr,
+      corpsHtml: '<b>' + escHtml(motComplet(card)) + '</b> = ' + escHtml(card.fr) +
+        boutonEcouterHtml(card.lu) + // SPEC 68 : aussi pour un mot déjà étudié
+        '<div class="pc-fb-score">Score du mot : <b>' + Math.round(mcScore() * 100) + ' %</b>' +
+          (mc.indices ? ' · ' + mc.indices + ' indice' + (mc.indices > 1 ? 's' : '') : ' · sans indice') + '</div>' +
+        (card.note ? '<div class="fb-note">' + escHtml(card.note) + '</div>' : '') +
+        fbAttentionHtml(noteHtml(attentionItem(card, 'flashcards')))
+    }, reussir);
     return;
   }
 
@@ -1442,7 +1454,11 @@ function mcValider() {
   input.value = '';
   mc.choix = [];
   mc.tuiles = nouvellesTuiles();
+  mc.secousseFin = Date.now() + 250; // les cases à trouver tremblent une fois
   renderCases();
+  // SPEC 94 : « retry » à chaque validation fausse, même après 3 erreurs :
+  // on peut toujours réessayer, « Voir la réponse » reste un choix.
+  jouerFeedbackSon('retry');
   document.getElementById('mc-legende').classList.remove('hidden');
 
   // Message d'erreur : au 1er essai, diagnostic + point d'attention SANS la
@@ -1462,12 +1478,6 @@ function mcValider() {
     document.getElementById('mc-btn-voir').classList.remove('hidden');
   }
 
-  // Petite secousse pour signaler l'erreur.
-  const cases = document.getElementById('mc-cases');
-  cases.classList.remove('shake');
-  void cases.offsetWidth;
-  cases.classList.add('shake');
-
   // Le clavier se ferme pour laisser voir l'aide ; on touche les cases pour réessayer.
   fermerClavier();
   focusSiClavierPhysique(input);
@@ -1486,9 +1496,14 @@ function mcVoirReponse() {
   mcMajFocus();
   mcMajScore();
   enregistrer(mc.card, 0, false, { indices: mc.indices, essais: mc.essais, revele: true });
-  showFeedback(false, 'La réponse : ' + escHtml(motComplet(mc.card)),
-    boutonEcouterHtml(mc.card.lu) + attentionHtml(attentionItem(mc.card, 'flashcards')) +
-    rappelHtml('Ce mot reviendra à la fin de l\'étape.', 'Tu le retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
+  jouerFeedbackSon('finalFailure'); // SPEC 94 : réponse dévoilée = échec final, une fois
+  showFeedback({
+    etat: 'reveal', titre: 'Réponse dévoilée',
+    annonce: 'Réponse dévoilée : ' + motComplet(mc.card) + ' = ' + mc.card.fr,
+    corpsHtml: '<b>' + escHtml(motComplet(mc.card)) + '</b> = ' + escHtml(mc.card.fr) +
+      boutonEcouterHtml(mc.card.lu) + fbAttentionHtml(noteHtml(attentionItem(mc.card, 'flashcards'))) +
+      rappelHtml('Ce mot reviendra à la fin de l\'étape.', 'Tu le retrouveras dans « Refaire mes erreurs » et dans tes révisions.')
+  }, echouer);
 }
 
 // ─── ÉTAPES 2 ET 3 : QUIZ ET TROUS (choix multiples) ────────────────────────
@@ -1555,15 +1570,22 @@ function choisirP(btn, ok, bonne, item, type) {
 
   enregistrer(item, ok ? 1 : 0, ok);
 
+  // SPEC 94 : la bonne réponse verte est déjà visible dans les choix.
+  // Pas de titre « Juste ! » ni de « Bonne réponse : … » répétés à l'écran ;
+  // le lecteur d'écran, lui, entend le verdict complet.
+  const attention = fbAttentionHtml(noteHtml(attentionItem(item, type)));
   if (ok) {
-    // Même rythme que les autres types : réponse lisible, puis Continuer.
-    const note = type === 'trous' ? item.note : '';
-    showFeedback(true, 'Juste !', note ? escHtml(note) : '', reussir);
+    showFeedback({
+      etat: 'success', titre: '', annonce: 'Juste ! Bonne réponse : ' + bonne,
+      corpsHtml: attention
+    }, reussir);
   } else {
-    showFeedback(false, 'Pas encore',
-      'La bonne réponse : <b>' + escHtml(bonne) + '</b>' +
-      attentionHtml(attentionItem(item, type)) +
-      rappelHtml('Cette question reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
+    showFeedback({
+      etat: 'finalFailure', titre: 'Pas encore',
+      annonce: 'Pas encore. Ton choix : ' + btn.textContent + '. Bonne réponse : ' + bonne + '.',
+      corpsHtml: attention +
+        rappelHtml('Cette question reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.')
+    }, echouer);
   }
 }
 
@@ -1634,21 +1656,31 @@ function ecrValiderPc() {
       autres.map(escHtml).join('</b> · <b>') + '</b></div>'
     : '';
 
+  // Écriture : le titre reste, car la réponse n'est pas montrée ailleurs
+  // sous forme de choix vert (SPEC 94, D02).
   if (ok && ecrEssais === 0) {
     enregistrer(e, 1, true);
     input.disabled = true;
     input.className = 'ecr-input correct';
-    showFeedback(true, 'Juste !', '<b>' + escHtml(reconnue) + '</b>' + boutonEcouterHtml(e.lu) +
-      variantesHtml + attentionHtml(attention), reussir);
+    jouerFeedbackSon('success');
+    showFeedback({
+      etat: 'success', titre: 'Juste !', annonce: 'Juste ! ' + reconnue,
+      corpsHtml: '<b>' + escHtml(reconnue) + '</b>' + boutonEcouterHtml(e.lu) +
+        variantesHtml + fbAttentionHtml(noteHtml(attention))
+    }, reussir);
     return;
   }
   if (ok) {
     input.disabled = true;
     input.className = 'ecr-input correct';
-    showFeedback(true, 'Juste, au 2e essai', '<b>' + escHtml(reconnue) + '</b>' + boutonEcouterHtml(e.lu) +
-      variantesHtml + attentionHtml(attention) +
-      rappelHtml('Pour la valider, trouve-la du premier coup : elle reviendra à la fin de l\'étape.',
-        'Elle est notée à revoir : tu la retrouveras dans tes révisions.'), echouer);
+    jouerFeedbackSon('success');
+    showFeedback({
+      etat: 'success', titre: 'Juste, au 2e essai', annonce: 'Juste, au 2e essai. ' + reconnue,
+      corpsHtml: '<b>' + escHtml(reconnue) + '</b>' + boutonEcouterHtml(e.lu) +
+        variantesHtml + fbAttentionHtml(noteHtml(attention)) +
+        rappelHtml('Pour la valider, trouve-la du premier coup : elle reviendra à la fin de l\'étape.',
+          'Elle est notée à revoir : tu la retrouveras dans tes révisions.')
+    }, echouer);
     return;
   }
 
@@ -1675,16 +1707,17 @@ function ecrValiderPc() {
     const err = document.getElementById('pc-ecr-erreur');
     err.classList.add('hidden');
     err.classList.remove('coquille');
-    const fb = document.getElementById('pc-feedback');
-    fb.className = 'pc-feedback ko essai';
-    fb.innerHTML = '<div class="pc-fb-titre">Pas encore · réessaie</div>' +
-      '<div class="pc-fb-txt">Ton essai : <b>' + escHtml(val) +
-      '</b> · corrige ta réponse' + aideErreurHtml(val, e, attention, 1) + '</div>';
+    jouerFeedbackSon('retry'); // SPEC 94 : erreur provisoire, on peut réessayer
     // Conserver LE MÊME bouton et sa logique ecrValiderPc, sans doublon.
     // Il apparaît dans le bandeau sans empêcher la saisie, le clavier ni Entrée.
     const bouton = document.getElementById('pc-ecr-valider');
     bouton.textContent = 'Réessayer';
-    fb.appendChild(bouton);
+    renderFeedbackCommun(document.getElementById('pc-feedback'), {
+      etat: 'retry', titre: 'Pas encore · réessaie',
+      annonce: 'Pas encore, réessaie. Ton essai : ' + val,
+      corpsHtml: 'Ton essai : <b>' + escHtml(val) + '</b> · corrige ta réponse' + aideErreurHtml(val, e, attention, 1),
+      action: { bouton }
+    });
     fermerClavier();
     focusSiClavierPhysique(input);
     return;
@@ -1693,9 +1726,13 @@ function ecrValiderPc() {
   input.disabled = true;
   input.className = 'ecr-input wrong';
   document.getElementById('pc-ecr-erreur').classList.add('hidden');
-  showFeedback(false, 'Pas encore',
-    'Réponse attendue : <b>' + escHtml(e.lu) + '</b>' + boutonEcouterHtml(e.lu) + attentionHtml(attention) +
-    rappelHtml('Cette phrase reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.'), echouer);
+  jouerFeedbackSon('finalFailure');
+  showFeedback({
+    etat: 'finalFailure', titre: 'Pas encore', annonce: 'Pas encore. Réponse attendue : ' + e.lu,
+    corpsHtml: '<div class="fb-reponse">Réponse attendue : <b>' + escHtml(e.lu) + '</b></div>' + boutonEcouterHtml(e.lu) +
+      fbAttentionHtml(noteHtml(attention)) +
+      rappelHtml('Cette phrase reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.')
+  }, echouer);
 }
 
 // « Possible faute de frappe » : sans révéler la réponse, on montre le mot à vérifier.

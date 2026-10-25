@@ -779,24 +779,28 @@ function handleSessionChoice(btn, ok, correctText) {
     }
   }
 
+  // SPEC 94 : même bandeau que la Leçon (feedback-unifie.js). La bonne réponse
+  // verte est déjà dans les choix : pas de « Juste ! » ni de réponse répétés à l'écran.
   // Correction toujours lisible jusqu'au choix « Suivante » : aucun auto-skip.
   const feedback = document.getElementById('session-feedback');
-  const note = attentionDe(item);
-  feedback.className = 'ecr-feedback ' + (ok ? 'ok' : 'ko');
-  feedback.innerHTML =
-    '<span class="session-fb-title">' + (ok ? 'Juste !' : 'Pas encore') + '</span>' +
-    (ok ? '' : '<span class="ecr-correct-answer">Bonne réponse : <b>' + escHtml(correctText) + '</b></span>') +
-    (note ? '<span class="session-attention">Attention : ' + noteHtml(note) + '</span>' : '');
-  ajouterBoutonSuivante(feedback);
+  renderFeedbackCommun(feedback, {
+    etat: ok ? 'success' : 'finalFailure',
+    titre: ok ? '' : 'Pas encore',
+    annonce: ok ? 'Juste ! Bonne réponse : ' + correctText
+                : 'Pas encore. Ton choix : ' + btn.textContent + '. Bonne réponse : ' + correctText + '.',
+    corpsHtml: fbAttentionHtml(noteHtml(attentionDe(item))),
+    action: actionSuivante()
+  });
   montrerFeedbackSession(feedback, null); // SPEC 87 : Suivante entièrement visible
 }
 
-function ajouterBoutonSuivante(feedback) {
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'ecr-next-btn';
-  nextBtn.textContent = session.index < session.questions.length - 1 ? 'Suivante →' : 'Voir le score →';
-  nextBtn.addEventListener('click', () => { nextBtn.remove(); nextSessionQ(); });
-  feedback.after(nextBtn);
+// Bouton « Suivante → » (ou « Voir le score → ») du bandeau de correction.
+function actionSuivante() {
+  return {
+    label: session.index < session.questions.length - 1 ? 'Suivante →' : 'Voir le score →',
+    classe: 'ecr-next-btn',
+    onClick: nextSessionQ // nextSessionQ retire déjà le bouton
+  };
 }
 
 // SPEC 59 : garantir que la correction est perceptible même avec le clavier
@@ -866,13 +870,17 @@ function validateSessionInput() {
   if (!ok && premiereTentative && session.mode !== 'exam') {
     const aide = aideErreur(val, corrige, attention, 1);
     session.essais = 1;
+    jouerFeedbackSon('retry'); // SPEC 94 : erreur provisoire, 2e essai possible
     // SPEC 87 : essai provisoire = une seule zone compacte, sans la réponse.
-    feedback.className = 'ecr-feedback ko essai';
+    // Le bouton Valider reste sous le champ (pas dans le bandeau) : SPEC 87.
     const aideHtml =
-      (aide.diagnostic ? '<span class="session-diagnostic">' + escHtml(aide.diagnostic) + '</span>' : '') +
-      (aide.attention ? '<span class="session-attention">Attention : ' + aide.attention + '</span>' : '');
-    feedback.innerHTML = '<span class="session-fb-title">Pas encore · réessaie</span>' +
-      (aideHtml ? '<span class="session-aide">' + aideHtml + '</span>' : '');
+      (aide.diagnostic ? '<div class="fb-diagnostic">' + escHtml(aide.diagnostic) + '</div>' : '') +
+      fbAttentionHtml(aide.attention);
+    renderFeedbackCommun(feedback, {
+      etat: 'retry', titre: 'Pas encore · réessaie',
+      annonce: 'Pas encore, réessaie. ' + (aide.diagnostic || ''),
+      corpsHtml: aideHtml, action: null
+    });
     input.value = '';
     montrerFeedbackSession(feedback, input);
     // Un seul comptage, sur la première tentative seulement.
@@ -886,26 +894,35 @@ function validateSessionInput() {
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
   document.getElementById('session-input-btn').disabled = true;
 
+  // SPEC 94 : même bandeau et mêmes sons que l'Écriture de la Leçon.
+  // Le titre reste : la saisie est masquée, la réponse n'est pas visible ailleurs.
+  // En examen, la première erreur est définitive (pas de « retry »).
   if (ok) {
-    feedback.className = 'ecr-feedback ok';
     const autres = item.type === 'ecriture' ? autresReponsesAcceptees(corrige, reconnue) : [];
-    feedback.innerHTML =
-      '<span class="session-fb-title">' + (session.essais ? 'Juste, au 2e essai' : 'Juste !') + '</span>' +
-      boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
-      (autres.length ? '<span class="session-attention">Autre formulation correcte : ' +
-        autres.map(escHtml).join(' · ') + '</span>' : '') +
-      (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
+    const titre = session.essais ? 'Juste, au 2e essai' : 'Juste !';
+    jouerFeedbackSon('success');
+    renderFeedbackCommun(feedback, {
+      etat: 'success', titre, annonce: titre + ' ' + (reconnue || affiche),
+      corpsHtml: '<b>' + escHtml(reconnue || affiche) + '</b>' +
+        boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
+        (autres.length ? '<div class="pc-fb-variante">Autre formulation correcte : <b>' +
+          autres.map(escHtml).join('</b> · <b>') + '</b></div>' : '') +
+        fbAttentionHtml(noteHtml(attention)),
+      action: actionSuivante()
+    });
   } else {
-    feedback.className = 'ecr-feedback ko';
-    feedback.innerHTML = '<span class="session-fb-title">Pas encore</span>' +
-      '<span class="ecr-correct-answer">Bonne réponse : <b>' + escHtml(affiche) + '</b></span>' +
-      boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
-      (attention ? '<span class="session-attention">Attention : ' + attention + '</span>' : '');
+    jouerFeedbackSon('finalFailure');
+    renderFeedbackCommun(feedback, {
+      etat: 'finalFailure', titre: 'Pas encore', annonce: 'Pas encore. Réponse attendue : ' + affiche,
+      corpsHtml: '<div class="fb-reponse">Réponse attendue : <b>' + escHtml(affiche) + '</b></div>' +
+        boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
+        fbAttentionHtml(noteHtml(attention)),
+      action: actionSuivante()
+    });
   }
 
   // Le bouton Valider n'occupe plus inutilement l'écran après une correction.
   document.getElementById('session-input-wrap').classList.add('hidden');
-  ajouterBoutonSuivante(feedback);
   montrerFeedbackSession(feedback, input);
   if (premiereTentative) recordSessionAnswer(ok);
 }

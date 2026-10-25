@@ -1,0 +1,65 @@
+/* ─── BANDEAU DE CORRECTION COMMUN (SPEC 94, lot 2) ───────────────────────
+   Un seul style pour Leçon (#pc-feedback) et S'entraîner (#session-feedback).
+   Bandeau plat : trait supérieur de la couleur du verdict, pas de carte
+   (ni bordure sur 4 côtés, ni ombre, ni coins arrondis).
+   L'emplacement propre à chaque vue reste dans exercices-v21.css.
+   Ce fichier est chargé après style.css et exercices-v21.css. */
+
+.feedback-flat {
+  display: flex; flex-direction: column; gap: var(--sp-2);
+  border: 0; border-top: 2px solid var(--couleur-bord-3); border-radius: 0; box-shadow: none;
+  background: #141310; color: var(--exo-fg, var(--couleur-texte));
+  font: 400 var(--fs-sec)/1.55 var(--police);
+}
+/* Mêmes poids que .ecr-feedback.ok/.ko (style.css) : ce fichier, chargé après, l'emporte. */
+.feedback-flat.ok { border: 0; border-top: 2px solid var(--couleur-reussi); border-radius: 0; background: #0f1d18; }
+.feedback-flat.ko { border: 0; border-top: 2px solid var(--couleur-erreur); border-radius: 0; background: #1f1513; }
+/* Réussite sans rien à ajouter : aucun bandeau, seulement le bouton or. */
+.feedback-flat.nu { border-top-color: transparent; background: transparent; }
+
+.feedback-flat .fb-titre {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-corps); font-weight: 750; line-height: 1.3;
+}
+.feedback-flat.ok .fb-titre { color: var(--couleur-reussi); }
+.feedback-flat.ko .fb-titre { color: var(--couleur-erreur); }
+
+.feedback-flat .fb-txt { color: #c5bdb0; font-size: var(--fs-sec); line-height: 1.55; overflow-wrap: break-word; }
+.feedback-flat .fb-txt b { color: var(--exo-fg, var(--couleur-texte)); }
+.feedback-flat .fb-reponse b { color: var(--exo-fg, var(--couleur-texte)); font-weight: 700; }
+
+/* « Attention : … » : texte neutre, pas d'encadré brun dans le bandeau. */
+.feedback-flat .fb-attention,
+.feedback-flat .fb-diagnostic,
+.feedback-flat .fb-note,
+.feedback-flat .pc-fb-variante { margin-top: 6px; color: #c5bdb0; }
+.feedback-flat .fb-attention b { color: var(--couleur-orange); }
+/* L'aide du 1er essai (aideErreurHtml) garde sa classe .pc-attention : dans le
+   bandeau, elle devient du texte neutre (pas d'encadré brun dans le bandeau rouge). */
+.feedback-flat .pc-attention { margin: 6px 0 0; padding: 0; border: 0; border-radius: 0; background: none; color: #c5bdb0; }
+.feedback-flat .fb-diagnostic { font-weight: 700; color: var(--exo-fg, var(--couleur-texte)); }
+.feedback-flat .pc-fb-rappel { margin-top: 6px; }
+.feedback-flat .bouton-ecouter { align-self: flex-start; }
+
+/* Le seul bouton principal : or, pleine largeur, 56 px. */
+.feedback-flat .fb-cta {
+  display: block; width: 100%; min-height: var(--hauteur-cta); margin: 6px 0 0;
+  border: 1px solid var(--couleur-action); border-radius: var(--rayon-moyen);
+  background: var(--couleur-action); color: var(--couleur-sur-or);
+  font: 800 15px var(--police); text-align: center; cursor: pointer;
+}
+.feedback-flat.nu .fb-cta { margin-top: 0; }
+
+/* Texte réservé au lecteur d'écran (verdict complet, même sans titre visible). */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Mot caché : diagnostic d'essai en bandeau plat à trait rouge (pas de carte). */
+#view-parcours .mc-erreur:not(.coquille) {
+  border: 0; border-top: 2px solid var(--couleur-erreur); border-radius: 0;
+}
+/* Mot caché : seules les cases encore à trouver tremblent, une fois. */
+.mc-case.secousse { animation: secousse-choix .2s ease-out 1; }
+@media (prefers-reduced-motion: reduce) { .mc-case.secousse { animation: none; } }

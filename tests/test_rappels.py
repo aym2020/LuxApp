@@ -49,7 +49,7 @@ with sync_playwright() as p:
     cible = item_id(pg)
     lu = bonne_reponse(pg)
     rater_ecriture(pg)
-    fb = pg.evaluate("""() => { const t = document.querySelector('#pc-feedback .pc-fb-txt');
+    fb = pg.evaluate("""() => { const t = document.querySelector('#pc-feedback .fb-txt');
         return { b: t.querySelector('b').textContent, rappel: (t.querySelector('.pc-fb-rappel') || {}).textContent || null,
                  texte: t.innerText }; }""")
     assert fb['b'] == lu and fb['rappel'] == 'Cette phrase reviendra à la fin de l\'étape.', fb

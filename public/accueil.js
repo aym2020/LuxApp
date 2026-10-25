@@ -335,12 +335,34 @@ function renderPlusPage() {
       lignes.map(x => '<button class="plus-ligne" onclick="' + x[3] + '">' + x[0] +
         '<span><b>' + x[1] + '</b><small' + (x[1] === 'Réglages' ? ' data-synchro-menu' : '') +
         '>' + escHtml(x[2]) + '</small></span></button>').join('') +
+      ligneSonsHtml() +
       (lienRecettePourMoi() ? '<button class="plus-ligne" onclick="ouvrirRecetteDistante()">' + ICONES.cible +
         '<span><b>Outils de test</b><small>Recette privée, progression fictive</small></span></button>' : '') +
       '</div></section>' +
     '<div class="plus-version">LuxApp <b>2.1</b></div>';
   const cible = document.getElementById('plus-page');
   if (cible) cible.innerHTML = html;
+}
+
+// SPEC 94 (2E) : « Sons des exercices ». Même réglage que le bouton Son de
+// Survie (une seule préférence) : il coupe aussi les sons des corrections
+// et des lettres du Mot caché. La prononciation LOD (Écouter) n'est pas concernée.
+function ligneSonsHtml() {
+  if (typeof SurvieFx === 'undefined') return '';
+  const actif = SurvieFx.sonActif();
+  return '<button class="plus-ligne plus-interrupteur" id="plus-sons" role="switch" aria-checked="' + actif +
+    '" onclick="basculerSonsExercices()">' + survieIconeSon(actif).replace('<svg ', '<svg class="ic" ') +
+    '<span><b>Sons des exercices</b><small>' + (actif ? 'Activés' : 'Coupés') +
+    ' · bonne réponse, erreur, lettres</small></span>' +
+    '<span class="plus-switch" aria-hidden="true"></span></button>';
+}
+
+function basculerSonsExercices() {
+  SurvieFx.basculerSon();
+  const ligne = document.getElementById('plus-sons');
+  if (ligne) ligne.outerHTML = ligneSonsHtml();
+  const nouvelle = document.getElementById('plus-sons');
+  if (nouvelle) nouvelle.focus();
 }
 
 function ouvrirPlus() {

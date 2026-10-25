@@ -8,7 +8,10 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'), css=read('exercices-v21.css');
 const app=read('app.js'), parcours=read('parcours.js');
 test('couleurs et UI partagées seulement entre les deux vues d’exercices',()=>{
-  assert.match(html,/href="exercices-v21\.css\?v=ecriture-essai-bas-1"/);
+  // Versions d'assets : on vérifie le chargement, pas le numéro (il change à chaque livraison).
+  assert.match(html,/href="exercices-v21\.css\?v=[^"]+"/);
+  // SPEC 94 : le style du bandeau de correction est commun, chargé après exercices-v21.css.
+  assert.match(html,/href="exercices-v21\.css\?v=[^"]+" \/>\s*<link rel="stylesheet" href="feedback-unifie\.css\?v=[^"]+"/);
   assert.match(css,/#view-session \.question-card/);
   assert.match(css,/#view-parcours #pc-choix\.pc-choix-grille/);
   assert.doesNotMatch(css,/#view-dashboard|#view-lessons|#view-examen\b/);
@@ -17,9 +20,11 @@ test('ordre conservé, sans écran flashcards supplémentaire',()=>{
   for(const label of ["Mot caché","Quiz","Trous","Écriture"])assert.ok(parcours.includes("label: '"+label+"'"));
 });
 test('correction accessible et passage manuel',()=>{
-  assert.match(app,/ajouterBoutonSuivante\(feedback\)/);
-  assert.match(app,/session-fb-title/);
-  assert.match(parcours,/showFeedback\(true, 'Juste !', note/);
+  // SPEC 94 : un seul rendu (renderFeedbackCommun) dans les deux vues, CTA manuel.
+  assert.match(app,/renderFeedbackCommun\(feedback, \{/);
+  assert.match(app,/action: actionSuivante\(\)/);
+  assert.match(parcours,/renderFeedbackCommun\(document\.getElementById\('pc-feedback'\), \{/);
+  assert.match(html,/id="pc-feedback" role="status" aria-live="polite"/);
   assert.doesNotMatch(parcours.slice(parcours.indexOf('function choisirP('),parcours.indexOf('let ecrEssais')),/setTimeout\(reussir/);
 });
 test('écriture : champ libellé, validation inchangée',()=>{
@@ -33,7 +38,7 @@ test('écriture compacte, auto-extensible, sans clavier imposé sur tactile',()=
   const ui=read('ui.js');
   assert.match(html,/id="session-input"[\s\S]*rows="1"/);
   assert.match(css,/min-height:70px;height:70px;max-height:150px/);
-  assert.match(html,/src="app\.js\?v=6"/);
+  assert.match(html,/src="app\.js\?v=\d+"/);
   assert.match(html,/src="ui\.js\?v=\d+"/);
   assert.match(css,/#view-session \.ecr-input-wrap \{gap:12px;margin-top:26px\}/);
   assert.match(app,/window\.matchMedia\('\(hover: hover\) and \(pointer: fine\)'\)\.matches/);
@@ -71,5 +76,5 @@ test('Mot caché : bandeau court, bottom sheet et touches visibles',()=>{
  assert.match(s,/\.mc-saisie \{flex:none;min-width:0;background:var\(--bg\)/);
  assert.match(s,/\.mc-aide-dialog\[open\] \{display:flex;flex-direction:column/);
  assert.match(s,/\.pc-body\.glisse \{animation:none\}/);
- assert.match(html,/src="parcours\.js\?v=8"/);
+ assert.match(html,/src="parcours\.js\?v=\d+"/);
 });
