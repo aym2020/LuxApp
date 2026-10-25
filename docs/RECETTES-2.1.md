@@ -1,6 +1,6 @@
 # Catalogue des recettes LuxApp 2.1 — tests et validations sur téléphone
 
-**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** livraison incrémentale ; les recettes P0-01 sont le premier lot, pas tous les tests existants. Voir [configuration et sécurité](RECETTE.md).
+**Branche :** `2.1` · **Instance :** service Render privé avec `RECETTE=1` **ou** installation locale sur `http://localhost:3001`, authentification obligatoire dans les deux cas. Sur Render, la recette a sa propre URL et Firebase est désactivé. **Statut :** correction visuelle et sons des exercices acceptés par le Produit sur Samsung le 25/10 ; P0-01 clôturée, clavier ouvert et recette globale restent distincts. Voir [configuration et sécurité](RECETTE.md).
 
 ## Principe obligatoire pour chaque nouvelle tâche
 
@@ -14,10 +14,10 @@
 
 | Recettes dans « Écran à tester » | Scénarios | Tests associés | État |
 |---|---|---|---|
-| **Mot caché** | MC-01 Découverte ; MC-02 Départ ; MC-03/04/05 1/2/3 erreurs ; MC-06 Indice ; MC-07 Réussite ; MC-08 Réponse révélée | `tests/test_motcache_cta_mobile.py`, `tests/test_motcache.py`, `test/exercices-etats-v21.test.cjs` | **Mot caché validé sur Samsung 23/10** ; nouvel accès 3001 à tester |
-| **Quiz** | Q-01 Départ ; Q-02 Juste ; Q-03 Faux | `tests/test_parcours.py`, `test/exercices-etats-v21.test.cjs` | **À valider sur Samsung** |
-| **Trous** | T-01 Départ ; T-02 Juste ; T-03 Faux | `tests/test_parcours.py`, `test/exercices-etats-v21.test.cjs` | **T-02 et T-03 : visuellement cohérents sur captures Samsung du 24/10 (sélection D erronée confirmée par l'utilisateur) ; T-01 et transitions non vérifiés** |
-| **Écriture** | E-01 Départ ; E-02 1re erreur ; E-03 Juste ; E-04 Juste au 2e ; E-05 Échec final | `tests/test_parcours.py`, `tests/test_spec87_session_mobile.py` | **E-02 défaut confirmé : premier faux affiché dans le corps au lieu du bandeau inférieur ; correctif proposé dans la PR de suivi, à retester sur Samsung. E-01/03/04/05 visuellement conformes ; clavier/transitions non vérifiés** |
+| **Mot caché** | MC-01 Découverte ; MC-02 Départ ; MC-03/04/05 1/2/3 erreurs ; MC-06 Indice ; MC-07 Réussite ; MC-08 Réponse révélée | `tests/test_motcache_cta_mobile.py`, `tests/test_motcache.py`, `test/exercices-etats-v21.test.cjs` | **validé visuellement sur Samsung les 23 et 25/10** (états de jeu, deux erreurs et réponse révélée) ; aide non montrée |
+| **Quiz** | Q-01 Départ ; Q-02 Juste ; Q-03 Faux | `tests/test_parcours.py`, `test/exercices-etats-v21.test.cjs` | **Q-02 juste et Q-03 faux validés visuellement sur Samsung le 25/10** ; Q-01 non montré |
+| **Trous** | T-01 Départ ; T-02 Juste ; T-03 Faux | `tests/test_parcours.py`, `test/exercices-etats-v21.test.cjs` | **T-02 et T-03 confirmés sur captures Samsung du 25/10** (mot et explication affichés) ; T-01 et transitions non montrés |
+| **Écriture** | E-01 Départ ; E-02 1re erreur ; E-03 Juste ; E-04 Juste au 2e ; E-05 Échec final | `tests/test_parcours.py`, `tests/test_spec87_session_mobile.py` | **E-02 (premier faux et Réessayer) et E-05 (échec final) acceptés sur Samsung 25/10 selon SPEC 95** ; E-01/03/04 observés le 24/10. Clavier ouvert et transitions non montrés |
 
 ### Revue manuelle Samsung — 24 octobre 2026 (captures utilisateur)
 
@@ -26,16 +26,16 @@
 - **T-02 (juste) :** solution verte, « Juste ! », bonne réponse dans la phrase et CTA « Continuer » visibles. **Conforme visuellement**, sans preuve du fonctionnement de Continuer.
 - **T-03 (faux) :** **rectificatif utilisateur du 24/10** : le choix erroné était D, plus bas dans la liste. Le vert « Madamm » indique correctement la solution tandis que « Pas encore » indique l'erreur. **Retirer le diagnostic de bug T-03** ; choix et correction cohérents sur ces captures, sans validation de défilement ou de transition complète.
 - **E-01 (départ) :** consigne, champ et Valider visibles. **Conforme sur clavier fermé**.
-- **E-02 (premier faux) :** **défaut réel signalé par l'utilisateur** : message rouge placé au milieu dans le corps de la question, au lieu du **bandeau inférieur** commun aux états Quiz/Trous et aux corrections finales. Le deuxième essai et la réponse saisie doivent rester disponibles. Correctif ciblé en cours : utiliser `#pc-feedback.ko.essai` avec « Réessayer » et ne pas verrouiller `pAttente`.
+- **E-02 (historique 24/10) :** l'affichage dans le corps était alors considéré comme un défaut ; **SPEC 95 remplace cette décision**. Depuis le 25/10, feedback léger dans le corps + Réessayer au pied fixe sont acceptés sur Samsung. La saisie et le deuxième essai restent disponibles.
 - **E-03 (premier juste) :** titre « Juste ! », réponse, audio et Continuer visibles. **Conforme visuellement**.
 - **E-04 (juste au second essai) :** titre « Juste, au 2e essai », réponse, audio, rappel de fin d'étape et Continuer visibles. **Conforme visuellement**.
 - **E-05 (deux faux) :** titre « Pas encore », réponse attendue, audio, rappel et Continuer visibles. **Conforme visuellement**.
 - **Q-01 à Q-03** : aucune capture dans ce lot. **Non validés**. **Mot caché** : état antérieur inchangé, sans nouvelle capture.
 - **Badge MODE TEST : problème secondaire propre à la recette** : le volet rose fixe sur la bordure droite chevauche visuellement l'extrémité des boutons de réponse et, en Écriture, du bouton « Valider ». Déplacer/réduire ce raccourci ou utiliser une zone sûre pour ne pas intercepter les appuis sur les commandes du vrai moteur. À tester sur Samsung ; ne pas confondre avec un défaut de l'application de production.
 
-**Correctif requis E-02 :** présenter la **première erreur d'Écriture en bandeau inférieur**, comme les autres feedbacks de parcours, avec titre rouge, aide sans réponse attendue, valeur du champ préservée et **Réessayer** accessible. Après saisie corrigée, conserver exactement les deux issues : « Juste, au 2e essai » ou « Pas encore » avec solution et rappel. Vérifier clavier Android, hauteur de 320–430px et absence de double feedback ; aucune modification de la notation ou des JSON.
+**E-02 clos visuellement au 25/10 :** première erreur « Pas encore · réessaie » dans le corps, bouton « Réessayer » fixe en bas ; échec final avec solution et « Suivante ». L'ancienne demande de bandeau inférieur est remplacée par la SPEC 95. Vérifications restantes : clavier réellement ouvert, transitions et texte agrandi.
 
-**Clôture P0-01 interdite** tant qu'E-02 n'est pas revérifié sur Samsung après correctif, que Q-01/02/03 ne sont pas vérifiés, et que les tests fonctionnels/clavier/retour concernés restent ouverts. Les validations visuelles partielles ne prouvent ni la sauvegarde ni le cloud (Firebase désactivé en recette).
+**P0-01 clôturée avec accord Produit le 25/10/2026 :** Quiz Q-02/03, Trous T-02/03, Écriture E-02/05, Mot caché (saisie/essais/solution) vus sur 10 captures Samsung ; sons de verdict confirmés satisfaisants par le Produit. Workflows interface, recettes P0-01 et Mot caché verts au SHA applicatif `33786e0`. Les images restent dans la conversation, pas dans Git. **Réserves hors P0-01 :** clavier ouvert et Q-01/transitions non démontrés par les captures (P0-02/08), barèmes/progression transverses (P0-06), Firebase (P0-04), grossissement et TalkBack (P0-08). Survie garde un échec CI distinct (P0-05).
 
 Chaque scénario affiche sa **liste de contrôle dans le panneau** avant ouverture. Après « Voir cet écran », vérifier le rendu sur le vrai écran, puis utiliser « MODE TEST » pour passer au suivant. Un indice doit garder son coût, « Voir l'aide » rester gratuit, « Continuer » rester visible. Tests navigateur de l'instance et protections : `tests/test_recette_visuelle.py`.
 

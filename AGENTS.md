@@ -11,7 +11,7 @@ Lire avant toute intervention : [PLAYBOOK.md](PLAYBOOK.md) (voir aussi l'[index 
 ## Règles prioritaires — UI/UX 2.1
 
 - **Branche :** `2.1` exclusivement pour cette refonte, sauf instruction explicite contraire ; inspecter SHA distant et diff, ne jamais changer de branche ni écraser le travail d'autrui à son insu.
-- **État actuel :** les exercices 2.1 sont **NON VALIDÉS** après régressions visuelles/pédagogiques du 21 octobre 2026. Une CI verte ne rend pas l'UI validée.
+- **État actuel (25/10) :** corrections visuelles, CTA fixe et sons **acceptés sur captures Samsung** par le Produit ; P0-01/P0-07 clôturées. **Restent ouvertes** la validation clavier ouvert (P0-02), les barèmes transverses (P0-06), les sauvegardes (P0-04) et la recette complète (P0-08). La CI verte ne couvre pas ces validations.
 - **Ne pas changer le sens des exercices :** Mot caché → Quiz → Trous → Écriture ; conserver exactitude du 1er/2e essai, indices, faux, « Voir la réponse », rappel, score, données, audio et reprise. Ne jamais remplacer tous les titres de feedback par deux textes génériques.
 - **Périmètre minimal :** une cause racine/une famille d'exercices à la fois ; comparer le comportement ancien/actuel. Ne pas ajouter de surcharges CSS sans contrôler cascade, spécificité, états du composant, scroll et position réelle.
 - **Feedback fiable :** un seul message actif, bon/faux clairement identifiables sans dépendre exclusivement de couleur ; la bonne solution ne doit pas être teintée comme une erreur ; aucune balise HTML littérale ni répétition de note.

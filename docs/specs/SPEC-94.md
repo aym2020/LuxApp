@@ -1,6 +1,6 @@
 # SPEC 94 — Corrections unifiées, audio et parité UI
 
-> **Évolution UX impérative — [SPEC 95](SPEC-95.md) (nouveau document, non implémenté).** La SPEC 95 remplace les règles de **présentation et de placement** des commentaires/corrections et des boutons : **plus de grand bandeau coloré, note légère dans le contenu, pied d'action toujours ancré en bas**, indépendant de la longueur de l'explication. **Toute autre règle métier, son, choix rouge/vert et essai de la SPEC 94 reste valide.** Les sections ci-dessous décrivent l'architecture des lots 1/2 **déjà livrés**, non la cible visuelle finale.
+> **Évolution UX impérative — [SPEC 95](SPEC-95.md) (implémentée le 25/10, visuels validés sur Samsung).** La SPEC 95 remplace les règles de **présentation et de placement** des commentaires/corrections et des boutons : **plus de grand bandeau coloré, note légère dans le contenu, pied d'action toujours ancré en bas**, indépendant de la longueur de l'explication. **Toute autre règle métier, son, choix rouge/vert et essai de la SPEC 94 reste valide.** Les sections ci-dessous décrivent l'architecture des lots 1/2 **déjà livrés**, non la cible visuelle finale.
 
 > **Décision produit mise à jour le 25 octobre 2026 — texte normatif pour le codeur.**
 > Les maquettes des conversations sont des références de comportement, **pas** une preuve d'implémentation. Ne pas recopier leur CSS, leurs couleurs approximatives ou leur code de démonstration dans l'application.
@@ -347,3 +347,7 @@ Le seul bouton pour couper le son est dans l'écran Survie. Un réglage « Sons 
 ### Reste à faire (P2, non bloquant)
 
 - `#e1d1cc` (texte du diagnostic Mot caché compact, `exercices-v21.css`) et 13,5 px (texte de l'essai) ne sont pas des tokens.
+
+## Recette Produit — 25 octobre 2026
+
+Les corrections visuelles Quiz/Trous (juste/faux), Écriture (premier faux/final) et Mot caché (essais et solution) sont approuvées à partir de 10 captures Samsung. Le Produit confirme les sons de verdict audibles et satisfaisants après le gain de +18 % du commit `33786e0`. SPEC 95 gouverne le placement des messages et du CTA. Clavier ouvert, zoom et TalkBack restent à vérifier ; cette validation n'atteste ni les sauvegardes cloud ni les barèmes transverses.

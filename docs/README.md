@@ -12,7 +12,7 @@ Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour
 | Refonte visuelle LuxApp 2.1 | [CHARTE_UI_2.1.md](CHARTE_UI_2.1.md) | **Règles UI normatives**, y compris § 6 bis pour les dimensions 640 / 560 / 500px **à implémenter** |
 | Composants, typographie, couleurs, statuts | [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) | Référence partagée ; ne pas dupliquer les valeurs |
 | Correction, sons et parité de feedback | [SPEC 94](specs/SPEC-94.md) · [agent de vérification](../.claude/agents/ui-parity-auditor.md) | **Lots 1/2 codés** ; les bandeaux actuels seront remplacés visuellement selon SPEC 95 |
-| **Nouvelle structure des exercices / CTA fixe** | [SPEC 95](specs/SPEC-95.md) | **Conception normative NON implémentée** : trois zones DOM, correction minimale, action indépendante, clavier Android, critères G01–G24 |
+| **Nouvelle structure des exercices / CTA fixe** | [SPEC 95](specs/SPEC-95.md) | **Implémentée ; visuels/sons acceptés sur Samsung le 25/10** : trois zones DOM, CTA stable ; clavier ouvert, zoom et TalkBack à valider |
 | Dimensions PC/mobile existantes | [AUDIT-DIMENSIONS-2.1.md](AUDIT-DIMENSIONS-2.1.md) | **Diagnostic statique**, pas preuve de validation visuelle |
 | Priorités à livrer | [TODO.md](../TODO.md) | Backlog et critères d'acceptation |
 | Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel** : LuxApp TEST autonome, authentification et isolation ; pas de raccourci dans le Plus normal |
