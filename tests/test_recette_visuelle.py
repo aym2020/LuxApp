@@ -104,7 +104,7 @@ try:
         }""")
         assert mesure_plus['statistiques'] < 110, mesure_plus
         assert mesure_plus['liens'] <= 400, mesure_plus
-        assert mesure_plus['nombre'] == 5, mesure_plus
+        assert mesure_plus['nombre'] == 6, mesure_plus  # SPEC 94 (2E) : + « Sons des exercices »
         assert mesure_plus['cartes'] == 'rgba(0, 0, 0, 0)', mesure_plus
         assert mesure_plus['largeurPage'] <= mesure_plus['largeurViewport'], mesure_plus
         ok('Plus compact : statistiques sans cartes, cinq entrées groupées et largeur mobile sans débordement')
@@ -121,7 +121,7 @@ try:
               bloc: document.querySelector('#view-plus .plus-options').getBoundingClientRect().width
             })""")
             assert taille['scroll'] <= taille['viewport'] + 1, (largeur, taille)
-            assert len(taille['boutons']) == 5 and all(b['h'] >= 44 for b in taille['boutons']), (largeur, taille)
+            assert len(taille['boutons']) == 6 and all(b['h'] >= 44 for b in taille['boutons']), (largeur, taille)
             assert all(b['w'] <= taille['bloc'] + 1 for b in taille['boutons']), (largeur, taille)
         pg.set_viewport_size({'width': 390, 'height': 844})
         ok('Plus responsive : 320/390/430/720 px, sans débordement et touches >=44px')
