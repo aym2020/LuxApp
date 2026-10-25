@@ -215,6 +215,32 @@ with sync_playwright() as p:
         assert geo(pg)['ctaTexte'] == 'Réessayer'
     ok('G19 double appui sur une réponse fausse (souris et doigt) : un seul essai consommé, un seul son')
 
+    # G19 (décision produit) : revalider la MÊME réponse que le 1er essai faux, même
+    # longtemps après ou avec Entrée, ne consomme pas le 2e essai ; un message le dit.
+    etape(pg, 2, 'ecriture')
+    pg.evaluate("() => { window.__sons = []; SurvieFx.feedback = e => window.__sons.push(e); }")
+    pg.fill('#pc-ecr-input', 'zzz reponse manifestement fausse')
+    pg.click('#pc-ecr-valider')
+    pg.wait_for_timeout(900)  # appui délibéré, hors fenêtre de double clic
+    pg.click('#pc-ecr-valider')
+    pg.wait_for_timeout(150)
+    pg.focus('#pc-ecr-input')
+    pg.keyboard.press('Enter')
+    pg.wait_for_timeout(150)
+    pg.fill('#pc-ecr-input', 'ZZZ réponse manifestement fausse !')  # identique pour le correcteur
+    pg.click('#pc-ecr-valider')
+    pg.wait_for_timeout(150)
+    assert pg.evaluate('ecrEssais') == 1 and not pg.evaluate('pAttente'), ('G19 même saisie', pg.evaluate('ecrEssais'))
+    assert pg.evaluate('window.__sons') == ['retry'], ('G19 même saisie', pg.evaluate('window.__sons'))
+    assert pg.locator('#pc-ecr-erreur.meme-saisie').is_visible() and 'Même réponse' in pg.inner_text('#pc-ecr-erreur')
+    assert geo(pg)['ctaTexte'] == 'Réessayer'
+    pg.fill('#pc-ecr-input', 'zzz autre reponse')  # la saisie change : message retiré, le 2e essai compte
+    assert pg.locator('#pc-ecr-erreur').is_hidden()
+    pg.click('#pc-ecr-valider')
+    pg.wait_for_timeout(200)
+    assert pg.evaluate('ecrEssais') == 2 and pg.evaluate('pAttente') and pg.evaluate('window.__sons') == ['retry', 'finalFailure']
+    ok('G19 même réponse revalidée (après 0,9 s, Entrée, accents/casse) : 2e essai conservé, aucun son ; une autre réponse compte')
+
     etape(pg, 2, 'ecriture')
     pg.fill('#pc-ecr-input', 'zzz reponse manifestement fausse')
     pg.click('#pc-ecr-valider')

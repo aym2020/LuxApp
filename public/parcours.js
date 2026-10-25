@@ -1604,6 +1604,7 @@ function choisirP(btn, ok, bonne, item, type) {
 // ─── ÉTAPE 4 : ÉCRITURE ─────────────────────────────────────────────────────
 let ecrEssais = 0;      // essais ratés sur la phrase en cours
 let ecrCoquille = false; // correction gratuite déjà utilisée sur cette phrase (spec 24)
+let ecrPremierEssai = ''; // 1er essai faux, normalisé : le revalider tel quel ne compte pas (SPEC 95)
 
 // Aide vocabulaire (spec 42) : les mots nouveaux qui ne sont pas l'objet de
 // l'exercice, déclarés dans la leçon (« aide_vocab »). Fermée par défaut,
@@ -1620,12 +1621,13 @@ function aideVocabHtml(item) {
 function renderEcriturePc(e) {
   ecrEssais = 0;
   ecrCoquille = false;
+  ecrPremierEssai = '';
   document.getElementById('pc-body').innerHTML =
     '<div class="pc-question">' +
       '<div class="pc-mini-label">ÉCRIS EN LUXEMBOURGEOIS</div>' +
       '<div class="pc-question-mot">' + escHtml(e.fr) + '</div>' +
     '</div>' + aideVocabHtml(e) +
-    '<div class="mc-erreur hidden" id="pc-ecr-erreur"></div>' +
+    '<div class="mc-erreur hidden" id="pc-ecr-erreur" role="status" aria-live="polite"></div>' +
     '<label class="pc-input-label" for="pc-ecr-input">Ta réponse</label>' +
     '<textarea id="pc-ecr-input" class="ecr-input" rows="1" placeholder="Tape ta réponse…"' +
       ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
@@ -1644,6 +1646,9 @@ function renderEcriturePc(e) {
   });
   input.addEventListener('input', () => {
     document.getElementById('pc-ecr-valider').textContent = ecrEssais ? 'Réessayer' : 'Valider';
+    // La saisie change : le rappel « même réponse » n'a plus lieu d'être.
+    const memeSaisie = document.querySelector('#pc-ecr-erreur.meme-saisie');
+    if (memeSaisie) memeSaisie.className = 'mc-erreur hidden';
     // Une ligne au départ ; le champ grandit pour une vraie phrase.
     input.style.height = '70px';
     input.style.height = Math.min(150, Math.max(70, input.scrollHeight)) + 'px';
@@ -1660,6 +1665,14 @@ function ecrValiderPc() {
   const input = document.getElementById('pc-ecr-input');
   const val = input.value.trim();
   if (!val) return;
+  // SPEC 95 : revalider la même réponse que le 1er essai faux (même comparaison
+  // que le correcteur : accents, majuscules, ponctuation ignorés) ne consomme
+  // pas le 2e essai. Aucun son, rien n'est enregistré : on demande de la modifier.
+  // Couvre les appuis répétés, même espacés, et la touche Entrée.
+  if (ecrEssais === 1 && normalize(val) === ecrPremierEssai) {
+    afficherMemeSaisie(document.getElementById('pc-ecr-erreur'));
+    return;
+  }
 
   const e = trouverItem(pLecon, 'ecriture', etapeCourante().queue[0]);
   const attention = attentionItem(e, 'ecriture');
@@ -1717,6 +1730,7 @@ function ecrValiderPc() {
 
   ecrEssais++;
   if (ecrEssais === 1) {
+    ecrPremierEssai = normalize(val); // pour reconnaître une revalidation identique
     enregistrer(e, 0, false); // une vraie erreur compte dès le 1er essai
     // Même bandeau inférieur que Quiz, Trous et correction finale d'Écriture.
     // NE PAS utiliser showFeedback() : il verrouillerait le champ et pAttente,
@@ -1752,6 +1766,13 @@ function ecrValiderPc() {
       fbAttentionHtml(noteHtml(attention)) +
       rappelHtml('Cette phrase reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.')
   }, echouer);
+}
+
+// SPEC 95 : même réponse que le 1er essai faux, renvoyée sans modification.
+// Message neutre près du champ (comme la coquille) ; le 2e essai reste disponible.
+function afficherMemeSaisie(zone) {
+  zone.className = 'mc-erreur coquille meme-saisie';
+  zone.innerHTML = '<b>Même réponse que ton essai</b> · Modifie-la pour utiliser ton deuxième essai.';
 }
 
 // « Possible faute de frappe » : sans révéler la réponse, on montre le mot à vérifier.

@@ -122,6 +122,9 @@
 /* Message temporaire du 1er essai (mot caché) : trait rouge à gauche, sans fond (SPEC 95). */
 #view-parcours .mc-erreur:not(.coquille) {border:0;border-left:2px solid var(--couleur-erreur);border-radius:0;background:none;padding:2px 0 2px 12px;color:var(--couleur-correction-texte)}
 #view-parcours .mc-erreur b {color:var(--wrong)}
+/* Message neutre près du champ d'Écriture (coquille, même réponse) : or, pas rouge (ce n'est pas une erreur). */
+#view-parcours .mc-erreur.coquille b {color:var(--couleur-action)}
+#view-parcours #pc-ecr-erreur:not(.hidden) {margin-bottom:12px}
 /* SPEC 87 — clavier ouvert (body.clavier-actif posé par ui.js, comme le parcours) :
    la vue occupe exactement la zone au-dessus du clavier, seul le corps défile.
    Question, champ et Valider tiennent ensemble ; les espaces non essentiels sont réduits. */
