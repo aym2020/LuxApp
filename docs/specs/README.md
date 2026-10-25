@@ -103,7 +103,7 @@ Ce répertoire contient **89 fiches de spécification présentes** sur la branch
 | 91 | [Simulation et équilibrage autonome](./SPEC-91.md) | P1 | Simulateur V0 indépendant en CI, à aligner sur SPEC 92 |
 | 92 | [Survie Feu et Tempête](./SPEC-92.md) | P1 | Étape 1/4 codée — recette Samsung à faire |
 | 93 | [PWA hors ligne](./SPEC-93.md) | — | Proposition à implémenter — non développée |
-| 94 | [Feedback unifié, audio et parité de composants UI](./SPEC-94.md) | P1 | Lot 1 codé (Quiz + Trous, Leçon et S'entraîner) — recette Samsung à faire |
+| 94 | [Feedback unifié, audio et parité de composants UI](./SPEC-94.md) | P1 | **Lot 1 codé** (choix/sons Quiz/Trous) ; **lot 2 spécifié et validé comme cible de conception**, non codé (bandeau plat, 3 sons, Mot caché, Écriture) ; Samsung à faire |
 
 ## Précautions de lecture
 
