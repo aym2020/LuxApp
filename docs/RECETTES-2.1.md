@@ -31,7 +31,7 @@
 - **E-04 (juste au second essai) :** titre « Juste, au 2e essai », réponse, audio, rappel de fin d'étape et Continuer visibles. **Conforme visuellement**.
 - **E-05 (deux faux) :** titre « Pas encore », réponse attendue, audio, rappel et Continuer visibles. **Conforme visuellement**.
 - **Q-01 à Q-03** : aucune capture dans ce lot. **Non validés**. **Mot caché** : état antérieur inchangé, sans nouvelle capture.
-- **Badge MODE TEST : problème secondaire propre à la recette** : le volet rose fixe sur la bordure droite chevauche visuellement l'extrémité des boutons de réponse et, en Écriture, du bouton « Valider ». Déplacer/réduire ce raccourci ou utiliser une zone sûre pour ne pas intercepter les appuis sur les commandes du vrai moteur. À tester sur Samsung ; ne pas confondre avec un défaut de l'application de production.
+- **Badge MODE TEST :** repère volontaire de l'environnement de recette. Le Produit confirme le 25/10 qu'il ne constitue pas une anomalie et qu'aucune correction n'est demandée. Sans objet pour la validation de l'application normale.
 
 ### Revue complémentaire Samsung — 25 octobre 2026, 23h08–23h09 (P0-02)
 
@@ -39,7 +39,7 @@ Quatre captures de l'exercice **Écriture Leçon** sur téléphone Samsung, dont
 
 - **Validé sur image :** énoncé « Je suis français. » visible avec clavier ouvert, champ multilignes lisible, bouton « Valider » entièrement au-dessus du clavier ; après fermeture, premier faux et longue réponse sans débordement horizontal apparent, bouton « Réessayer » fixe ; autre cas premier faux puis échec final avec solution, aide et bouton « Continuer » accessibles.
 - **Comportement délibéré :** l'en-tête Leçon (`.pc-topbar` et `.pc-sous-barre`) est masqué lorsque `body.clavier-actif` est présent (CSS actuel), pour préserver la place pour l'énoncé et la saisie. Ne pas diagnostiquer cette disparition comme une régression.
-- **Défaut confirmé de la seule recette :** l'onglet rose « MODE TEST » reste fixe au milieu à droite et **chevauche le bord du champ** (ainsi que la zone de texte sur l'une des captures). Sa présence ne prouve pas un défaut de l'application standard ; corriger son emplacement/visibilité sans régression d'accès aux scénarios.
+- **Repère de l'instance de recette :** l'onglet rose « MODE TEST » est volontaire. Confirmation Produit le 25/10 : **pas un défaut, aucune action corrective**. Il n'entre pas dans les critères de P0-02.
 - **Pédagogie à examiner séparément (P0-09) :** pour « Marc est portugais. », l'aide montre « au féminin : + -in », précision non pertinente pour l'exemple masculin. Ne pas modifier les JSON sans revue pédagogique.
 - **Non établis :** comportement de la touche Entrée et du retour Android, transitions et deuxième essai effectués pendant que le clavier est ouvert, texte 130/200 %, autres tailles de téléphone et clavier alternatif. **P0-02 reste ouverte**, mais le cas normal clavier ouvert + saisie longue + CTA a une preuve visuelle réelle.
 
