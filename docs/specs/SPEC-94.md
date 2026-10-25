@@ -1,5 +1,7 @@
 # SPEC 94 — Corrections unifiées, audio et parité UI
 
+> **Évolution UX impérative — [SPEC 95](SPEC-95.md) (nouveau document, non implémenté).** La SPEC 95 remplace les règles de **présentation et de placement** des commentaires/corrections et des boutons : **plus de grand bandeau coloré, note légère dans le contenu, pied d'action toujours ancré en bas**, indépendant de la longueur de l'explication. **Toute autre règle métier, son, choix rouge/vert et essai de la SPEC 94 reste valide.** Les sections ci-dessous décrivent l'architecture des lots 1/2 **déjà livrés**, non la cible visuelle finale.
+
 > **Décision produit mise à jour le 25 octobre 2026 — texte normatif pour le codeur.**
 > Les maquettes des conversations sont des références de comportement, **pas** une preuve d'implémentation. Ne pas recopier leur CSS, leurs couleurs approximatives ou leur code de démonstration dans l'application.
 

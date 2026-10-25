@@ -6,6 +6,9 @@ Référence visuelle de LuxApp. Catalogue vivant : `/catalogue.html` (mêmes feu
 
 ## Historique des versions
 
+> **Cible non implémentée — [SPEC 95](specs/SPEC-95.md)** : pour les exercices immersifs uniquement, l'action primaire or (`--hauteur-cta`, `--couleur-action`, pression SPEC 57) réside dans un **dock persistant indépendant du feedback** ; le corps est seul défilant. Le feedback devient une note locale sobre sans carte ni grand bandeau. Les composants et tokens ci-dessous décrivent l'interface **actuellement livrée** tant que la migration SPEC 95 n'est pas effectuée.
+
+
 | Version | Date | Changements |
 | --- | --- | --- |
 | 2.1 (CTA et examens) | 2026-10-21 | Entrée des vues en fondu sans `transform`; bandeau de passation des examens ancré dans une disposition flex de hauteur stable, zone de lecture et banque de mots défilantes indépendamment ; tests anti-régression des CTA fixes. |
