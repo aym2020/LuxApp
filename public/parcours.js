@@ -892,7 +892,9 @@ function renderItem() {
     Math.min(resolus + 1, step.total) + ' / ' + step.total +
     (aRefaire ? ' <span class="pc-refaire">· +' + aRefaire + ' à refaire</span>' : '');
 
-  document.getElementById('pc-feedback').className = 'pc-feedback hidden';
+  document.getElementById('pc-feedback').className = 'exo-feedback hidden';
+  // SPEC 95 : pied vidé (place réservée) ; chaque type y met ses boutons.
+  renderActionExercice(document.getElementById('pc-action-dock'), null);
   etatExercice('saisie'); // nouvel item : on repart de la saisie
   document.getElementById('view-parcours').dataset.type = step.type; // police propre au mot caché
 
@@ -905,7 +907,7 @@ function renderItem() {
   corps.classList.remove('glisse');
   void corps.offsetWidth;
   corps.classList.add('glisse');
-  window.scrollTo(0, 0);
+  document.getElementById('pc-scroll').scrollTop = 0; // seul le contenu défile (SPEC 95)
 }
 
 // ─── RÉPONSES : ENREGISTRER, RÉUSSIR, ÉCHOUER ───────────────────────────────
@@ -979,8 +981,9 @@ function etatExercice(etat) {
   document.getElementById('view-parcours').dataset.etat = etat;
 }
 
-// Bandeau du bas (SPEC 94) : rendu commun avec S'entraîner (feedback-unifie.js),
-// puis un seul bouton « Continuer ».
+// Correction (SPEC 94 + 95) : rendu commun avec S'entraîner (feedback-unifie.js).
+// La correction va dans le contenu (#pc-feedback, sous la question) ; le bouton
+// « Continuer » va dans le pied d'action, toujours au même endroit.
 //   fb = { etat, titre, annonce, corpsHtml } (voir renderFeedbackCommun)
 // Le son est joué par l'appelant, au moment de la réponse, jamais ici.
 function showFeedback(fb, suite) {
@@ -992,11 +995,12 @@ function showFeedback(fb, suite) {
   pSuite = suite;
   // Correction finale : le message temporaire du 1er essai disparaît.
   document.querySelectorAll('#view-parcours .mc-erreur').forEach(e => e.classList.add('hidden'));
-  renderFeedbackCommun(document.getElementById('pc-feedback'), {
-    etat: fb.etat, titre: fb.titre, annonce: fb.annonce, corpsHtml: fb.corpsHtml,
-    action: { label: 'Continuer', id: 'pc-continuer', onClick: continuerParcours }
-  });
-  focusApresClavier(document.getElementById('pc-continuer')); // focus seulement après une saisie au clavier (spec 35)
+  const feedback = document.getElementById('pc-feedback');
+  renderFeedbackCommun(feedback, fb);
+  const bouton = renderActionExercice(document.getElementById('pc-action-dock'),
+    { id: 'pc-continuer', label: 'Continuer', onClick: continuerParcours });
+  cadrerFeedback(document.getElementById('pc-scroll'), feedback, document.querySelector('#pc-body .pc-question, #pc-body .mc-top'));
+  focusApresClavier(bouton); // focus seulement après une saisie au clavier (spec 35)
 }
 
 function continuerParcours() {
@@ -1056,9 +1060,10 @@ function renderDecouverte() {
     '</div>' +
     '<div class="mc-saisie">' +
       '<div class="mc-info">Regarde bien le mot : tu vas le reconstruire.</div>' +
-      '<button class="pc-btn primary wide" id="mc-btn-reconstruire" onclick="renderReconstruction()">À toi de reconstruire →</button>' +
     '</div>';
-  document.getElementById('mc-btn-reconstruire').focus({ preventScroll: true }); // Entrée = continuer (ordinateur)
+  const bouton = renderActionExercice(document.getElementById('pc-action-dock'),
+    { id: 'mc-btn-reconstruire', label: 'À toi de reconstruire →', onClick: renderReconstruction });
+  bouton.focus({ preventScroll: true }); // Entrée = continuer (ordinateur)
 }
 
 function renderReconstruction() {
@@ -1103,13 +1108,16 @@ function renderReconstruction() {
       '<button class="pc-btn ghost wide hidden" id="mc-btn-voir" onclick="mcVoirReponse()">Voir la réponse</button>' +
       '<button type="button" class="mc-aide-fermer" onclick="mcFermerAide()">Revenir aux lettres</button>' +
     '</dialog>' +
-    '<div class="pc-actions mc-actions">' +
-      '<button class="pc-btn mc-effacer" id="mc-btn-effacer" aria-label="Effacer la dernière lettre" onclick="mcEffacer()">' +
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 5H8l-6 7 6 7h13a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/><path d="m16 9-5 6M11 9l5 6"/></svg></button>' +
-      '<button class="pc-btn" id="mc-btn-indice" onclick="mcIndice()">Indice</button>' +
-      '<button class="pc-btn primary" id="mc-btn-valider" onclick="mcValider()">Valider</button>' +
-    '</div>' +
     '</div>';
+  // SPEC 95 : Effacer et Indice (secondaires) + Valider (primaire) dans le pied d'action.
+  renderActionExercice(document.getElementById('pc-action-dock'), {
+    id: 'mc-btn-valider', label: 'Valider', onClick: mcValider,
+    secondaires: [
+      { id: 'mc-btn-effacer', classe: 'mc-effacer', ariaLabel: 'Effacer la dernière lettre', onClick: mcEffacer,
+        html: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 5H8l-6 7 6 7h13a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/><path d="m16 9-5 6M11 9l5 6"/></svg>' },
+      { id: 'mc-btn-indice', label: 'Indice', onClick: mcIndice }
+    ]
+  });
 
   const input = document.getElementById('mc-input');
   input.addEventListener('keydown', e => {
@@ -1476,6 +1484,9 @@ function mcValider() {
   if (mc.essais >= ESSAIS_AVANT_REPONSE) {
     document.getElementById('mc-btn-voir').classList.remove('hidden');
   }
+  // SPEC 95 : le diagnostic est dans le contenu, près des cases : le rendre visible
+  // si un petit écran l'a placé sous le pli (seule la zone de contenu défile).
+  cadrerFeedback(document.getElementById('pc-scroll'), err, document.querySelector('#pc-body .mc-top'));
 
   // Le clavier se ferme pour laisser voir l'aide ; on touche les cases pour réessayer.
   fermerClavier();
@@ -1580,8 +1591,9 @@ function choisirP(btn, ok, bonne, item, type) {
       corpsHtml: attention
     }, reussir);
   } else {
+    // SPEC 95 : pas de titre visible, le choix rouge et le choix vert suffisent.
     showFeedback({
-      etat: 'finalFailure', titre: 'Pas encore',
+      etat: 'finalFailure', titre: '',
       annonce: 'Pas encore. Ton choix : ' + btn.textContent + '. Bonne réponse : ' + bonne + '.',
       corpsHtml: attention +
         rappelHtml('Cette question reviendra à la fin de l\'étape.', 'Tu la retrouveras dans « Refaire mes erreurs » et dans tes révisions.')
@@ -1617,7 +1629,10 @@ function renderEcriturePc(e) {
     '<label class="pc-input-label" for="pc-ecr-input">Ta réponse</label>' +
     '<textarea id="pc-ecr-input" class="ecr-input" rows="1" placeholder="Tape ta réponse…"' +
       ' autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>' +
-    '<div class="pc-actions"><button class="pc-btn primary wide" id="pc-ecr-valider" onclick="ecrValiderPc()">Valider</button></div>';
+    '';
+  // SPEC 95 : un seul bouton, dans le pied : Valider, puis Réessayer, puis Continuer.
+  renderActionExercice(document.getElementById('pc-action-dock'),
+    { id: 'pc-ecr-valider', label: 'Valider', onClick: ecrValiderPc });
 
   const input = document.getElementById('pc-ecr-input');
   input.addEventListener('keydown', ev => {
@@ -1708,16 +1723,15 @@ function ecrValiderPc() {
     err.classList.add('hidden');
     err.classList.remove('coquille');
     jouerFeedbackSon('retry'); // SPEC 94 : erreur provisoire, on peut réessayer
-    // Conserver LE MÊME bouton et sa logique ecrValiderPc, sans doublon.
-    // Il apparaît dans le bandeau sans empêcher la saisie, le clavier ni Entrée.
-    const bouton = document.getElementById('pc-ecr-valider');
-    bouton.textContent = 'Réessayer';
-    renderFeedbackCommun(document.getElementById('pc-feedback'), {
+    // SPEC 95 : le même bouton du pied devient « Réessayer » ; le champ reste éditable.
+    document.getElementById('pc-ecr-valider').textContent = 'Réessayer';
+    const feedback = document.getElementById('pc-feedback');
+    renderFeedbackCommun(feedback, {
       etat: 'retry', titre: 'Pas encore · réessaie',
       annonce: 'Pas encore, réessaie. Ton essai : ' + val,
-      corpsHtml: 'Ton essai : <b>' + escHtml(val) + '</b> · corrige ta réponse' + aideErreurHtml(val, e, attention, 1),
-      action: { bouton }
+      corpsHtml: 'Ton essai : <b>' + escHtml(val) + '</b> · corrige ta réponse' + aideErreurHtml(val, e, attention, 1)
     });
+    cadrerFeedback(document.getElementById('pc-scroll'), feedback, document.querySelector('#pc-body .pc-question'));
     fermerClavier();
     focusSiClavierPhysique(input);
     return;

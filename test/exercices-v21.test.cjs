@@ -20,17 +20,21 @@ test('ordre conservé, sans écran flashcards supplémentaire',()=>{
   for(const label of ["Mot caché","Quiz","Trous","Écriture"])assert.ok(parcours.includes("label: '"+label+"'"));
 });
 test('correction accessible et passage manuel',()=>{
-  // SPEC 94 : un seul rendu (renderFeedbackCommun) dans les deux vues, CTA manuel.
+  // SPEC 94/95 : un seul rendu (renderFeedbackCommun) dans les deux vues ;
+  // le bouton manuel est dans le pied d'action (renderActionExercice), jamais dans la correction.
   assert.match(app,/renderFeedbackCommun\(feedback, \{/);
-  assert.match(app,/action: actionSuivante\(\)/);
-  assert.match(parcours,/renderFeedbackCommun\(document\.getElementById\('pc-feedback'\), \{/);
+  assert.match(app,/renderActionExercice\(document\.getElementById\('session-action-dock'\), actionSuivante\(\)\)/);
+  assert.match(parcours,/renderFeedbackCommun\(feedback, fb\)/);
+  assert.match(parcours,/renderActionExercice\(document\.getElementById\('pc-action-dock'\),\s*\{ id: 'pc-continuer', label: 'Continuer', onClick: continuerParcours \}\)/);
   assert.match(html,/id="pc-feedback" role="status" aria-live="polite"/);
   assert.doesNotMatch(parcours.slice(parcours.indexOf('function choisirP('),parcours.indexOf('let ecrEssais')),/setTimeout\(reussir/);
 });
 test('écriture : champ libellé, validation inchangée',()=>{
   assert.match(html,/for="session-input">Ta réponse<\/label>/);
   assert.match(html,/id="session-feedback"[\s\S]*aria-live="polite"/);
-  assert.match(html,/id="session-input-btn" onclick="validateSessionInput\(\)">Valider<\/button>/);
+  // SPEC 95 : « Valider » est le bouton du pied d'action, même action validateSessionInput.
+  assert.match(app,/renderActionExercice\(dock, \{ id: 'session-input-btn', label: 'Valider', onClick: validateSessionInput \}\)/);
+  assert.match(html,/id="session-action-dock" class=|class="exo-action-dock" id="session-action-dock"/);
 });
 
 // Recette statique du clavier : un seul mécanisme, celui de ui.js (SPEC 87).
@@ -60,7 +64,7 @@ test('une phrase complète reçoit un corps réduit, sans changer le texte',()=>
 
 test('retour de S’entraîner collé au bord gauche comme les autres vues',()=>{
   assert.match(css,/#view-session \.lecon-header \{width:100%;max-width:500px;margin-inline:auto;flex-shrink:0\}/);
-  assert.match(html,/<div id="view-session" class="view">[\s\S]*?class="back-btn" data-retour onclick="retour\(\)"/);
+  assert.match(html,/<div id="view-session" class="view exo-shell">[\s\S]*?class="back-btn" data-retour onclick="retour\(\)"/);
 });
 
 test('Mot caché : bandeau court, bottom sheet et touches visibles',()=>{
@@ -72,9 +76,9 @@ test('Mot caché : bandeau court, bottom sheet et touches visibles',()=>{
  assert.match(code,/Voir l’aide/);
  assert.match(code,/Score des lettres/);
  assert.match(code,/mc-aide-detail[\s\S]*id="mc-btn-voir"/);
- assert.match(s,/\.mc-milieu \{flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden/);
- assert.match(s,/\.mc-saisie \{flex:none;min-width:0;background:var\(--bg\)/);
+ // SPEC 95 : un seul défilement (.exo-scroll) ; Effacer, Indice, Valider dans le pied.
+ assert.match(code,/id: 'mc-btn-valider', label: 'Valider', onClick: mcValider/);
+ assert.match(code,/id: 'mc-btn-effacer'[\s\S]*id: 'mc-btn-indice'/);
  assert.match(s,/\.mc-aide-dialog\[open\] \{display:flex;flex-direction:column/);
- assert.match(s,/\.pc-body\.glisse \{animation:none\}/);
  assert.match(html,/src="parcours\.js\?v=\d+"/);
 });

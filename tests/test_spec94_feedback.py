@@ -1,4 +1,7 @@
-"""SPEC 94, lot 2 — bandeau de correction commun et sons, Leçon et S'entraîner.
+"""SPEC 94, lot 2 — correction commune et sons, Leçon et S'entraîner.
+Mis à jour pour SPEC 95 : la correction est légère (pas de bandeau) et le bouton
+est dans le pied d'action ; les assertions métier (sons, essais, examen, coquille,
+réglage Sons) sont inchangées. La géométrie du pied : test_spec95_exercices.py.
 
 Vrai moteur dans Chromium (pas de DOM simulé). Critères couverts : A01–A14, A16
 (son coupé, réduction des animations), A15 en partie (320×640 et 390×844).
@@ -29,13 +32,15 @@ OUVRIR_ETAPE = """async ([lid, type]) => {
 
 ITEM = "(() => { const s = run.steps[run.stepIdx]; return trouverItem(pLecon, s.type, s.queue[0]); })()"
 
-# Style calculé du bandeau : sert à vérifier « bandeau plat, pas carte » et la parité.
+# Style calculé de la correction et du bouton du pied (SPEC 95) : parité Leçon / S'entraîner.
 STYLE = """sel => {
-  const f = document.querySelector(sel), c = f.querySelector('.fb-cta'), t = f.querySelector('.fb-titre');
+  const f = document.querySelector(sel), t = f.querySelector('.fb-titre');
+  const c = f.closest('.exo-shell').querySelector('.exo-action-dock .exo-cta:not([hidden])');
   const s = getComputedStyle(f), sc = c ? getComputedStyle(c) : null;
   const vh = window.visualViewport ? window.visualViewport.height : innerHeight;
   return {
-    classes: [...f.classList].filter(x => !['pc-feedback', 'ecr-feedback'].includes(x)).sort().join(' '),
+    classes: [...f.classList].sort().join(' '),
+    boutonsDansCorrection: f.querySelectorAll('button:not(.bouton-ecouter)').length,
     enfants: [...f.children].map(e => e.className.split(' ').filter(x => x.startsWith('fb-') || x === 'sr-only').join('.')),
     fond: s.backgroundColor, haut: s.borderTopWidth + ' ' + s.borderTopColor,
     gauche: s.borderLeftWidth, bas: s.borderBottomWidth, rayon: s.borderTopLeftRadius,
@@ -104,8 +109,10 @@ def session(pg, lid, type_, qid, mode='review'):
 
 
 def plat(st, nom):
-    assert st['gauche'] == '0px' and st['bas'] == '0px' and st['rayon'] == '0px', (nom, 'carte au lieu d\'un bandeau', st)
-    assert st['haut'].startswith('2px'), (nom, st['haut'])
+    """SPEC 95 : correction légère — ni fond, ni bordure, ni bouton."""
+    assert st['fond'] in ('rgba(0, 0, 0, 0)', 'transparent'), (nom, 'fond coloré', st['fond'])
+    assert st['gauche'] == st['bas'] == '0px' and st['haut'].startswith('0px'), (nom, 'bordure de carte', st)
+    assert st['boutonsDansCorrection'] == 0, (nom, 'bouton dans la correction')
 
 
 with sync_playwright() as p:
@@ -131,14 +138,16 @@ with sync_playwright() as p:
                 assert 'Juste' in st['annonce'] and bonne in st['annonce'], (nom, st['annonce'])
             else:
                 plat(st, nom)
-                assert st['titre'] == 'Pas encore', (nom, st['titre'])
+                # SPEC 95 : pas de titre visible ; les choix rouge et vert portent le verdict.
+                assert st['titre'] is None, (nom, st['titre'])
                 assert 'Bonne réponse' not in visible_sans_annonce(st), (nom, 'réponse répétée', st['texteVisible'])
+                assert st['annonce'].startswith('Pas encore'), (nom, st['annonce'])
                 assert choisi in st['annonce'] and bonne in st['annonce'], (nom, st['annonce'])
             # A05 : double appui sans second son ni seconde notation
             pg.evaluate("document.querySelector('#pc-choix .choice.correct').click()")
             assert len(sons(pg)) == 1, (nom, sons(pg))
             styles[('lecon', type_, juste)] = st
-    ok('A01–A05 Leçon : Quiz/Trous juste = 1 choix sans « Juste ! », faux = 2 choix + « Pas encore » en bandeau plat, 1 son')
+    ok('A01–A05 Leçon : Quiz/Trous juste = 1 choix, faux = 2 choix, correction légère sans titre ni bouton, 1 son')
 
     # S'entraîner : un Trou de la leçon 5 et le premier Quiz de la leçon 2
     quiz_id = pg.evaluate("lecons.find(l => l.id === %d).quiz[0].id" % LECON)
@@ -158,7 +167,7 @@ with sync_playwright() as p:
                 assert st['titre'] is None and 'Juste' in st['annonce'], (nom, st)
             else:
                 plat(st, nom)
-                assert st['titre'] == 'Pas encore' and 'Bonne réponse' not in visible_sans_annonce(st), (nom, st)
+                assert st['titre'] is None and 'Bonne réponse' not in visible_sans_annonce(st), (nom, st)
                 assert choisi in st['annonce'], nom
             styles[('session', type_, juste)] = st
 
@@ -170,8 +179,9 @@ with sync_playwright() as p:
                 assert a[cle] == b[cle], (type_, juste, cle, a[cle], b[cle])
             assert a['cta'][:2] == b['cta'][:2], (type_, juste, a['cta'], b['cta'])
             # Mêmes types de nœuds (la Leçon ajoute le rappel dans .fb-txt : détail métier)
-            assert a['enfants'][0] == b['enfants'][0] == 'sr-only' and a['enfants'][-1] == b['enfants'][-1] == 'fb-cta', (a['enfants'], b['enfants'])
-    ok('A01–A05 + A14 S\'entraîner : même bandeau que la Leçon (classes, fond, trait, rayon, titre, CTA)')
+            assert a['enfants'][0] == b['enfants'][0] == 'sr-only', (a['enfants'], b['enfants'])
+            assert a['boutonsDansCorrection'] == b['boutonsDansCorrection'] == 0
+    ok('A01–A05 + A14 S\'entraîner : même correction et même bouton du pied que la Leçon (classes, styles, CTA)')
 
     # ── A06–A08 : Mot caché ──
     # Repartir de l'accueil : ouvrir une leçon depuis l'écran S'entraîner fait
@@ -193,7 +203,8 @@ with sync_playwright() as p:
             assert pg.locator('#mc-cases .mc-case.secousse').count() >= 1
             assert pg.locator('#mc-cases .mc-case.vert.secousse').count() == 0, 'une case verte tremble'
             err = pg.evaluate("(e => [getComputedStyle(e).borderTopWidth, getComputedStyle(e).borderLeftWidth, getComputedStyle(e).borderTopLeftRadius])(document.getElementById('mc-erreur'))")
-            assert err == ['2px', '0px', '0px'], ('diagnostic Mot caché en carte', err)
+            # SPEC 95 : diagnostic compact, simple trait rouge à gauche (pas de bandeau ni de carte)
+            assert err == ['0px', '2px', '0px'], ('diagnostic Mot caché en carte', err)
     pg.wait_for_timeout(400)
     pg.evaluate('mcPoserLettre(0)')  # nouveau rendu des cases, plus tard : aucune nouvelle secousse
     assert pg.locator('#mc-cases .mc-case.secousse').count() == 0
@@ -234,13 +245,14 @@ with sync_playwright() as p:
     assert sons(pg) == ['retry'] and pg.evaluate('ecrEssais') == 1 and not pg.evaluate('pAttente')
     plat(st, 'Écriture 1er faux')
     assert st['titre'] == 'Pas encore · réessaie' and lu not in st['texteVisible'], st
-    assert pg.locator('#pc-feedback #pc-ecr-valider.fb-cta').inner_text() == 'Réessayer'
+    # SPEC 95 : le même bouton du pied (Valider) devient « Réessayer ».
+    assert pg.locator('#pc-action-dock #pc-ecr-valider.exo-cta').inner_text() == 'Réessayer'
     assert pg.evaluate("!document.getElementById('pc-ecr-input').disabled")
     ecrire(lu)
     st = pg.evaluate(STYLE, '#pc-feedback')
     assert sons(pg) == ['retry', 'success'] and st['titre'] == 'Juste, au 2e essai', (sons(pg), st['titre'])
     assert 'reviendra' in st['texteVisible'] or 'à revoir' in st['texteVisible'], 'rappel perdu'
-    ok('A09/A10 Écriture : 1er faux = bandeau plat « retry » + même champ ; 2e juste = « success » + rappel')
+    ok('A09/A10 Écriture : 1er faux = « retry », même champ, Réessayer dans le pied ; 2e juste = « success » + rappel')
 
     etape(pg, 'ecriture')
     lu = pg.evaluate(ITEM)['lu']
@@ -289,8 +301,8 @@ with sync_playwright() as p:
     pg.click('#session-input-btn')
     st = pg.evaluate(STYLE, '#session-feedback')
     assert sons(pg) == ['retry', 'finalFailure'] and 'Réponse attendue' in st['texteVisible'], (sons(pg), st)
-    ecrit_lecon = styles[('lecon', 'quiz', False)]
-    assert st['classes'] == ecrit_lecon['classes'] and st['haut'] == ecrit_lecon['haut'], (st['classes'], ecrit_lecon['classes'])
+    plat(st, 'Session écriture 2e faux')
+    assert pg.locator('#session-action-dock #session-suivante.exo-cta').count() == 1
     session(pg, LECON, 'ecriture', ecr_id, mode='exam')
     pg.fill('#session-input', 'zzz faux')
     pg.click('#session-input-btn')

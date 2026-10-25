@@ -31,18 +31,19 @@ function actualiserClavierMobile() {
     Math.round(fenetreVisuelle ? fenetreVisuelle.offsetTop : 0) + 'px');
   document.body.classList.add('clavier-actif');
   if (!dispositionClavierActive) {
-    const zone = champ.closest('#view-parcours')?.querySelector('.pc-body') ||
-      champ.closest('#view-session')?.querySelector('.session-body') ||
+    // SPEC 95 : Leçon et S'entraîner défilent dans .exo-scroll ; le bouton est
+    // dans le pied, juste au-dessus du clavier : seul le champ doit rester visible.
+    const zone = champ.closest('#view-parcours, #view-session')?.querySelector('.exo-scroll') ||
       champ.closest('#view-examen')?.querySelector('.ex-body');
-    // L'examen garde sa position de saisie quand le clavier s'ouvre.
-    if (zone && champ.id !== 'xee-input') zone.scrollTop = 0;
     window.scrollTo(0, 0);
-    // On ne repositionne que si l'élément est vraiment caché par le clavier.
-    // S'entraîner (SPEC 87) : c'est « Valider » qui doit rester touchable.
-    const cible = champ.id === 'session-input' ? document.getElementById('session-input-btn') : champ;
     requestAnimationFrame(() => {
+      // L'examen garde sa position de saisie quand le clavier s'ouvre.
       if (champ.id === 'xee-input') montrerChampExamen(champ);
-      else montrerChampSiCache(cible, hauteur);
+      else if (zone && zone.classList.contains('exo-scroll')) montrerDansZone(zone, champ);
+      else {
+        if (zone) zone.scrollTop = 0;
+        montrerChampSiCache(champ, hauteur);
+      }
     });
   }
   dispositionClavierActive = true;
@@ -59,6 +60,15 @@ function montrerChampExamen(champ) {
     zone.scrollTop += r.bottom - visible.bottom + marge;
   else if (r.top < visible.top + marge)
     zone.scrollTop += r.top - visible.top - marge;
+}
+
+// SPEC 95 : faire défiler la zone de contenu (pas la page) juste assez pour voir le champ.
+function montrerDansZone(zone, champ) {
+  const r = champ.getBoundingClientRect();
+  const visible = zone.getBoundingClientRect();
+  const marge = 12;
+  if (r.bottom > visible.bottom - marge) zone.scrollTop += r.bottom - visible.bottom + marge;
+  else if (r.top < visible.top + marge) zone.scrollTop += r.top - visible.top - marge;
 }
 
 function montrerChampSiCache(champ, hauteurVisible) {

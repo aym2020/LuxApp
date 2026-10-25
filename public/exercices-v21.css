@@ -6,7 +6,7 @@
 /* La même surface de travail, centrée et scrollable sur petits écrans. */
 #view-parcours .pc-body, #view-session .session-body {
   width:100%;max-width:500px;margin-inline:auto;
-  padding:clamp(28px,5.5dvh,52px) 21px calc(36px + env(safe-area-inset-bottom));
+  padding:clamp(28px,5.5dvh,52px) 21px 0;
 }
 #view-parcours .pc-body {gap:0}
 #view-session .session-body {align-items:stretch;padding-top:10px}
@@ -19,7 +19,8 @@
 #view-session .lecon-header-info {align-items:flex-end;text-align:right}
 #view-session .lecon-header-info .lecon-num {font-size:10px;line-height:1.3;letter-spacing:.1em}
 #view-session .lecon-header-info .lecon-titre {font-size:18px;line-height:1.2;white-space:nowrap;margin-top:2px}
-#view-session .session-body .progress-wrap {width:100%;margin-bottom:clamp(24px,4dvh,36px)!important}
+/* SPEC 95 : la progression fait partie de l'en-tête (elle ne défile pas). */
+#view-session .session-progress {flex:none;width:100%;max-width:500px;margin:0 auto;padding:0 21px clamp(8px,1.6dvh,14px)}
 /* Plus de carte « question » en entraînement : elle redevient une composition typographique. */
 #view-session .question-card {background:none;border:0;box-shadow:none;border-radius:0;
   position:static;overflow:visible;padding:0;margin:0;text-align:center}
@@ -82,11 +83,6 @@
 #view-session[data-type="motcache"] .question-word.question-longue {
   font-size:clamp(25px,6.1vw,31px);line-height:1.3;max-width:27ch;
 }
-#view-parcours .pc-actions {margin-top:16px}
-#view-session .ecr-btn-validate {margin-top:2px}
-#view-parcours .pc-actions .pc-btn.primary, #view-session .ecr-btn-validate {
-  min-height:55px;background:var(--accent);color:#251c0b;border:1px solid var(--accent);
-  border-radius:14px;font:800 16px var(--font)}
 /* Mot caché : conserver cases, tuiles, indices et score ; mise en page harmonisée. */
 #view-parcours .mc-top {margin-top:0;gap:16px}
 #view-parcours .mc-mot {margin-top:36px}
@@ -95,71 +91,24 @@
 #view-parcours .mc-case.indice {background:#2e2810;border-bottom-color:var(--accent);color:var(--accent)}
 #view-parcours .mc-case.tapee  {background:var(--surface);border-bottom-color:#6b6555}
 #view-parcours .mc-score {color:var(--exo-muted)}
-/* SPEC 94 : le style du bandeau de correction est commun (feedback-unifie.css).
-   Ici, seulement son EMPLACEMENT dans chaque vue. */
-/* Leçon : bandeau collé en bas (comme avant la 2.1).
-   Le texte long défile (max-height 38vh), « Continuer » reste visible. */
-#view-parcours .pc-feedback {
-  position:sticky;bottom:0;margin-top:auto;width:100%;
-  padding:16px 21px calc(18px + env(safe-area-inset-bottom))}
-#view-parcours .pc-feedback > * {width:100%;max-width:458px;margin-inline:auto}
-/* Écriture parcours, premier essai incorrect : correction comme les QCM,
-   mais la saisie et son bouton restent actifs pour le deuxième essai. */
-#view-parcours[data-type="ecriture"] .pc-actions:empty { display:none; }
-#view-parcours[data-type="ecriture"] .pc-feedback.essai {
-  padding-top:14px; padding-bottom:calc(16px + env(safe-area-inset-bottom));
-}
-#view-parcours[data-type="ecriture"] .pc-feedback.essai .fb-txt {
-  overflow-y:auto; max-height:min(20dvh,130px); overflow-wrap:anywhere;
-}
-body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai {
-  flex:none; gap:0; padding:8px 14px 10px;
-}
-body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .fb-titre,
-body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .fb-txt {
-  display:none; /* lisibles dès fermeture du clavier ; action reste touchable */
-}
-body.clavier-actif #view-parcours[data-type="ecriture"] .pc-feedback.essai .pc-btn {
-  min-height:48px; margin:0;
-}
-
-/* S'entraîner : correction dans le flux, juste sous la question (SPEC 59).
-   Même bandeau plat que la Leçon : trait supérieur, pas de carte. */
-#view-session #session-feedback {width:100%;margin:24px 0 0;padding:14px 16px 16px}
-/* SPEC 87 — premier essai faux : zone compacte (emplacement seulement ; la
-   typographie de l'essai est commune, feedback-unifie.css). Une aide longue
-   défile dans la zone, le champ reste proche. */
-#view-session #session-feedback.essai {padding:10px 14px;margin-top:16px}
-#view-session #session-feedback.essai .fb-txt {max-height:4.7em;overflow-y:auto}
-/* Mot caché : bandeau court, boutons fixes, dialogue d'explication en top layer.
-   Remplace l'ancienne carte rouge scrollable ; pas de scroll au départ. */
-body:not(.clavier-actif):has(#view-parcours.active[data-type="flashcards"][data-etat="saisie"] #mc-btn-valider) {overflow:hidden}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) {height:100dvh;min-height:0;max-height:100dvh;overflow:hidden;overscroll-behavior:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-topbar,
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-sous-barre {flex:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {flex:1;min-height:0;min-width:0;overflow:hidden;padding:clamp(8px,1.6dvh,18px) 15px 0}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body.glisse {animation:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-top {flex:none;gap:8px;min-width:0}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-fr {font-size:clamp(32px,8.8vw,43px)}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:clamp(7px,1.2dvh,13px);padding:5px 0 8px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu::-webkit-scrollbar {display:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-legende {flex:none;min-height:24px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-mot {margin:auto 0 0;max-width:100%;gap:6px;flex:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-cases {max-width:100%}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-mot .mc-input {inset:0;width:100%;height:100%}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-lettres {margin-top:0;gap:6px;align-content:flex-start;flex:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-tuile {min-width:44px;height:47px;padding:0 7px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-info:last-child {margin-bottom:auto}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie {flex:none;min-width:0;background:var(--bg);padding:5px 0 max(11px,env(safe-area-inset-bottom));gap:6px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-actions {margin-top:5px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur {width:100%;height:80px;min-height:80px;flex:none;overflow:hidden;padding:8px 10px 7px;min-width:0;border:0;border-top:2px solid var(--couleur-erreur);border-radius:0;background:var(--couleur-correction-ko-fond);color:#e1d1cc}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-saisie .mc-erreur.hidden {display:block!important;visibility:hidden;pointer-events:none}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-tete {display:flex;justify-content:space-between;align-items:center;gap:6px;min-width:0}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-tete b {font-size:clamp(12px,3.4vw,14px);line-height:1.25;white-space:nowrap;color:var(--wrong)}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-aide-ouvrir {flex:none;min-height:36px;border:0;background:transparent;padding:5px 2px;color:#f3b5a8;font:700 12px/1.25 var(--font);text-decoration:underline;text-underline-offset:3px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-erreur-essai {font-size:12px;line-height:1.35;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#d0bbb6}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-score {font-size:12px}
-body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) #mc-btn-voir {min-height:44px;margin-top:2px}
+/* Le mot et sa zone de saisie invisible restent dans la largeur de l'écran (320 px). */
+#view-parcours .mc-mot, #view-parcours .mc-cases {max-width:100%}
+#view-parcours .mc-mot .mc-input {inset:0;width:100%;height:100%}
+#view-parcours .mc-tuile {min-width:44px;height:47px;padding:0 7px}
+/* SPEC 94/95 : le style de la correction est commun (feedback-unifie.css) et
+   les boutons sont dans le pied d'action (components.css). Ici, seulement
+   l'EMPLACEMENT de la correction dans chaque vue. */
+/* Leçon : la correction suit la question, dans la zone qui défile. */
+#view-parcours #pc-feedback {width:100%;max-width:500px;margin:0 auto;padding:22px 21px 0}
+/* S'entraîner : la correction est sous les choix, avant le champ (SPEC 59). */
+#view-session #session-feedback {width:100%;margin:22px 0 0}
+#view-session #session-feedback.essai {margin-top:16px}
+#view-parcours #pc-feedback.nu, #view-session #session-feedback.nu {padding:0;margin:0}
+/* Mot caché : diagnostic d'essai compact, près des cases (pas de bandeau). */
+#view-parcours .mc-erreur-tete {display:flex;justify-content:space-between;align-items:center;gap:6px;min-width:0}
+#view-parcours .mc-erreur-tete b {font-size:clamp(13px,3.6vw,15px);line-height:1.25;color:var(--couleur-erreur)}
+#view-parcours .mc-aide-ouvrir {flex:none;min-height:44px;border:0;background:transparent;padding:5px 2px;color:#f3b5a8;font:700 13px/1.25 var(--font);text-decoration:underline;text-underline-offset:3px}
+#view-parcours .mc-erreur-essai {font-size:13px;line-height:1.4;overflow-wrap:anywhere;color:var(--couleur-correction-texte)}
 #view-parcours .mc-aide-dialog {position:fixed;inset:auto 0 0;margin:0 auto;width:min(100%,500px);max-height:min(76dvh,590px);border:1px solid #4d4039;border-bottom:0;border-radius:22px 22px 0 0;background:#24211e;color:#f5f0e7;box-shadow:0 -10px 35px #0009;padding:14px 19px max(22px,env(safe-area-inset-bottom))}
 #view-parcours .mc-aide-dialog[open] {display:flex;flex-direction:column;gap:14px}
 #view-parcours .mc-aide-dialog::backdrop {background:rgba(0,0,0,.72)}
@@ -169,11 +118,9 @@ body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat
 #view-parcours .mc-aide-detail .pc-attention {margin:8px 0;padding:12px;background:#3b2c23;border-left:3px solid #dbab65}
 #view-parcours .mc-aide-dialog #mc-btn-voir {flex:none;min-height:48px;border:1px solid var(--accent);border-radius:12px;background:transparent;color:var(--accent);font-weight:750}
 #view-parcours .mc-aide-fermer {flex:none;min-height:51px;width:100%;border:0;border-radius:12px;background:var(--accent);color:#251c0b;font:800 16px var(--font)}
-@media(max-height:750px) {body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-tuile {height:44px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .mc-milieu {gap:6px} body:not(.clavier-actif) #view-parcours.active[data-type="flashcards"][data-etat="saisie"]:has(#mc-btn-valider) .pc-body {padding-top:8px}}
 
-/* Message temporaire du 1er essai (mot caché, écriture) : rouge discret. */
-/* SPEC 94 : diagnostic d'essai = bandeau plat à trait rouge, comme la correction. */
-#view-parcours .mc-erreur:not(.coquille) {border:0;border-top:2px solid var(--couleur-erreur);border-radius:0;background:var(--couleur-correction-ko-fond);color:var(--couleur-correction-texte)}
+/* Message temporaire du 1er essai (mot caché) : trait rouge à gauche, sans fond (SPEC 95). */
+#view-parcours .mc-erreur:not(.coquille) {border:0;border-left:2px solid var(--couleur-erreur);border-radius:0;background:none;padding:2px 0 2px 12px;color:var(--couleur-correction-texte)}
 #view-parcours .mc-erreur b {color:var(--wrong)}
 /* SPEC 87 — clavier ouvert (body.clavier-actif posé par ui.js, comme le parcours) :
    la vue occupe exactement la zone au-dessus du clavier, seul le corps défile.
@@ -182,18 +129,16 @@ body.clavier-actif #view-session.active {
   position:fixed;top:var(--clavier-vtop,0px);left:0;right:0;bottom:auto;
   height:var(--clavier-vh,100dvh);min-height:0;max-width:720px;margin:0 auto;overflow:hidden;z-index:35}
 body.clavier-actif #view-session.active .lecon-header {display:none}
-body.clavier-actif #view-session.active .session-body {
-  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 16px 12px}
+body.clavier-actif #view-session.active .session-body {padding:8px 16px 12px}
 /* .progress-wrap a un flex:1 historique : sans ce gel, il s'étire dans la hauteur fixe. */
 body.clavier-actif #view-session .session-body > * {flex:none}
-body.clavier-actif #view-session .session-body .progress-wrap {margin-bottom:10px!important}
+body.clavier-actif #view-session .session-progress {padding-top:8px;padding-bottom:6px}
 body.clavier-actif #view-session .question-label {margin-bottom:6px}
 body.clavier-actif #view-session .question-word,
 body.clavier-actif #view-session[data-type="ecriture"] .question-word {font-size:clamp(25px,7vw,31px);line-height:1.2}
 body.clavier-actif #view-session[data-type="ecriture"] .question-word.question-longue {font-size:clamp(19px,5vw,22px);line-height:1.3}
 body.clavier-actif #view-session #session-feedback {margin-top:10px}
 body.clavier-actif #view-session .ecr-input-wrap {margin-top:10px;gap:8px}
-body.clavier-actif #view-session .ecr-btn-validate {min-height:48px}
 @media(max-width:365px){
   #view-parcours .pc-body, #view-session .session-body {padding-inline:15px}
   #view-parcours .choice, #view-session .choice {min-height:56px;padding-inline:11px;font-size:14px}
@@ -201,7 +146,6 @@ body.clavier-actif #view-session .ecr-btn-validate {min-height:48px}
 }
 @media(max-height:750px){
   #view-parcours .pc-body {padding-top:24px}
-  #view-session .session-body .progress-wrap {margin-bottom:20px!important}
   #view-session .ecr-input-wrap {margin-top:19px}
 }
 @media(prefers-reduced-motion:reduce){

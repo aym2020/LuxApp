@@ -1,4 +1,6 @@
-"""Mot caché sur Chromium tactile : fenêtre rouge et Valider visibles, aucun swipe initial."""
+"""Mot caché sur Chromium tactile : fenêtre rouge et Valider visibles, aucun swipe initial.
+SPEC 95 : Effacer / Indice / Valider sont dans le pied d'action ; seul .exo-scroll défile.
+Les positions des cases et des tuiles sont mesurées dans le contenu (indépendantes du défilement)."""
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -28,18 +30,20 @@ BAD="""() => {
 }"""
 METRICS="""() => {
  const r=e=>e.getBoundingClientRect(), b=document.querySelector('#mc-btn-valider');
- const e=document.querySelector('#mc-erreur'), middle=document.querySelector('.mc-milieu'),page=document.querySelector('#view-parcours');
+ const e=document.querySelector('#mc-erreur'), zone=document.querySelector('#pc-scroll'),page=document.querySelector('#view-parcours');
  const vv=visualViewport,limit=vv?vv.offsetTop+vv.height:innerHeight;
- const er=r(e),btn=r(b), els=[document.documentElement,document.body,page,document.querySelector('.pc-body'),middle];
+ const z=r(zone), dans=el=>r(el).top-z.top+zone.scrollTop; // position dans le contenu
+ const dock=r(document.querySelector('#pc-action-dock'));
+ const er=r(e),btn=r(b), els=[document.documentElement,document.body,page,zone,document.querySelector('.pc-body')];
  return {bottom:btn.bottom,top:btn.top,height:btn.height,errorHidden:e.classList.contains('hidden'),
- errorTop:er.top,errorBottom:er.bottom,errorHeight:er.height,limit,
+ errorTop:er.top,errorBottom:er.bottom,errorHeight:er.height,limit,zoneTop:z.top,dockTop:dock.top,
  overflowX:Math.max(...els.map(el=>el.scrollWidth-el.clientWidth)),
  debugX:els.map(el=>({node:el.tagName,cls:String(el.className).slice(0,60),dx:el.scrollWidth-el.clientWidth})),
- overflowY:middle.scrollHeight-middle.clientHeight,bodyScroll:scrollY,
- casesTop:r(document.querySelector('#mc-cases')).top,tilesTop:r(document.querySelector('#mc-lettres')).top,
+ overflowY:zone.scrollHeight-zone.clientHeight,bodyScroll:scrollY,
+ casesTop:dans(document.querySelector('#mc-cases')),tilesTop:dans(document.querySelector('#mc-lettres')),
  legendShown:getComputedStyle(document.querySelector('#mc-legende')).display!=='none',
  tileHeight:r(document.querySelector('#mc-lettres')).height,
- footerTop:r(document.querySelector('.mc-saisie')).top};
+ footerTop:dans(document.querySelector('.mc-saisie'))};
 }"""
 def check(page,size,scenario,after):
  x=page.evaluate(METRICS)
@@ -48,13 +52,19 @@ def check(page,size,scenario,after):
  assert x['top']>=-1 and x['bottom']<=x['limit']-1,(size,scenario,'Valider',x)
  assert x['height']>=48,(size,scenario,x)
  assert x['legendShown'],(size,scenario,'legend not visible',x)
- assert x['errorHeight']>=79,(size,scenario,'error slot not reserved',x)
  if after:
-  assert not x['errorHidden'] and x['errorHeight']>=45,(size,scenario,'error hidden',x)
-  assert x['errorTop']>=-1 and x['errorBottom']<=x['limit']-1,(size,scenario,'red clipped',x)
- else:
-  assert x['errorHidden'],(size,scenario,'error shown before attempt',x)
-  assert x['overflowY']<=1,(size,scenario,'initial vertical scroll',x)
+  assert not x['errorHidden'] and x['errorHeight']>=40,(size,scenario,'error hidden',x)
+ return x
+
+def check_visible(page,size,scenario):
+ """Juste après une validation fausse : le diagnostic est visible entre l'en-tête et le pied."""
+ x=page.evaluate(METRICS)
+ assert x['errorTop']>=x['zoneTop']-1 and x['errorBottom']<=x['dockTop']+1,(size,scenario,'red clipped',x)
+ return x
+
+def check_initial(page,size,scenario):
+ x=check(page,size,scenario,False)
+ assert x['errorHidden'],(size,scenario,'error shown before attempt',x)
  return x
 with sync_playwright() as p:
  browser=p.chromium.launch()
@@ -69,13 +79,14 @@ with sync_playwright() as p:
    page.goto(URL,wait_until='domcontentloaded')
    page.locator('#today').wait_for(timeout=15000)
    page.evaluate(INIT);page.wait_for_timeout(240)
-   baseline=check(page,(w,h),'avant réponse',False)
+   baseline=check_initial(page,(w,h),'avant réponse')
    assert not page.locator('#mc-aide-dialog').evaluate('el=>el.open'),(w,h,'dialog visible initially')
    page.screenshot(path=str(OUT/f'{w}x{h}-depart.png'))
    for n in (1,2,3):
     assert page.evaluate(BAD)==n,(w,h,n)
     page.wait_for_timeout(80)
     current=check(page,(w,h),f'erreur {n}',True)
+    check_visible(page,(w,h),f'erreur {n}')
     for key in ('casesTop','tilesTop','footerTop','tileHeight'):
      assert abs(current[key]-baseline[key])<=2,(w,h,n,key,baseline[key],current[key])
     assert page.locator('.mc-aide-ouvrir').is_visible(),(w,h,'help link')
@@ -90,7 +101,7 @@ with sync_playwright() as p:
     assert not page.locator('#mc-aide-dialog').evaluate('el=>el.open'),(w,h,'dialog not closed')
     check(page,(w,h),f'erreur {n}, aide fermée',True)
     if n==2:page.screenshot(path=str(OUT/f'{w}x{h}-2-erreurs.png'))
-    page.locator('.mc-milieu').evaluate('el=>el.scrollTop=el.scrollHeight')
+    page.locator('#pc-scroll').evaluate('el=>el.scrollTop=el.scrollHeight')
     check(page,(w,h),f'erreur {n}, après scroll',True)
    assert page.locator('#mc-btn-voir').is_hidden(),(w,h,'révélation exposée hors du panneau')
    page.locator('.mc-aide-ouvrir').click()

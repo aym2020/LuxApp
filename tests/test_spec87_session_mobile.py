@@ -140,7 +140,7 @@ with sync_playwright() as p:
         for qid in (2010, 2023):
             ouvrir_question(pg, 5, 'trous', qid)
             choisir(pg, False)
-            assert titre(pg) == 'Pas encore'
+            assert titre(pg).startswith('Pas encore'), titre(pg)  # SPEC 95 : annoncé, choix rouge/vert visibles
             assert pg.evaluate("document.getElementById('session-blank').style.color") == 'var(--correct)'
             assert pg.locator('#session-choices .choice.wrong').count() == 1
             assert pg.locator('#session-choices .choice.correct').count() == 1

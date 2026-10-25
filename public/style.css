@@ -1018,15 +1018,8 @@ body.no-scroll { overflow: hidden; }
 .mc-score { text-align: center; font-size: var(--fs-sec); color: var(--muted); }
 .mc-score b { color: var(--text); }
 
-/* Bandeau de réponse en bas */
-.pc-feedback {
-  position: sticky; bottom: 0; margin-top: auto;
-  padding: 1rem 1.25rem calc(1.2rem + env(safe-area-inset-bottom));
-  display: flex; flex-direction: column; gap: .7rem;
-}
-/* Couleurs, titre et texte : feedback-unifie.css (SPEC 94). */
+/* Correction et pied d'action des exercices : feedback-unifie.css et components.css (SPEC 94/95). */
 .pc-fb-rappel { margin-top: .4rem; } /* la phrase « reviendra » toujours sur sa ligne (spec 40) */
-#view-parcours.active { min-height: 100dvh; }
 
 /* Fin d'unité */
 .pf-content { padding: 2.2rem 1.25rem 1.75rem; display: flex; flex-direction: column; gap: 1.1rem; min-height: 100dvh; }
@@ -1896,7 +1889,6 @@ body.avec-nav .lecon-header { padding-top: 1.25rem; }
 .pc-body.glisse { animation: glisse-g .22s ease-out both; }
 #view-parcours { overflow-x: clip; } /* le glissement ne doit pas créer de défilement horizontal */
 .pc-seg > div { transition: width .3s ease; }
-.pc-feedback:not(.hidden):not(.discret) { animation: monte-b .2s ease-out both; }
 .choice.correct { animation: rebond .3s ease-out; }
 
 /* Mission : les répliques arrivent une par une, bandeau de réussite */
@@ -1907,7 +1899,6 @@ body.avec-nav .lecon-header { padding-top: 1.25rem; }
 .carte-lecon.deplie { animation: deplie .45s ease-out .35s both; transform-origin: top; }
 
 @keyframes glisse-g { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
-@keyframes monte-b { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes rebond { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
 @keyframes deplie { from { opacity: 0; transform: scaleY(.85); } to { opacity: 1; transform: none; } }
 
@@ -1941,15 +1932,8 @@ body.clavier-actif #view-parcours.active .pc-sous-barre {
   display: none;
 }
 body.clavier-actif #view-parcours.active .pc-body {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
   padding: 8px 14px 12px;
   gap: .45rem;
-}
-body.clavier-actif #view-parcours.active .pc-body:has(.mc-saisie) {
-  overflow: hidden;
 }
 body.clavier-actif #view-parcours.active .mc-top {
   flex: none;
@@ -1962,13 +1946,7 @@ body.clavier-actif #view-parcours.active .mc-fr {
   max-height: 3.15em;
   overflow-y: auto;
 }
-body.clavier-actif #view-parcours.active .mc-milieu {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  gap: .4rem;
-}
+body.clavier-actif #view-parcours.active .mc-milieu { gap: .4rem; }
 body.clavier-actif #view-parcours.active .mc-mot { margin-top: .15rem; }
 body.clavier-actif #view-parcours.active .mc-case {
   width: 28px;
@@ -1988,8 +1966,6 @@ body.clavier-actif #view-parcours.active .mc-saisie {
   gap: .3rem;
 }
 body.clavier-actif #view-parcours.active .mc-score { line-height: 1.2; }
-body.clavier-actif #view-parcours.active .pc-actions { margin-top: .1rem; }
-body.clavier-actif #view-parcours.active .pc-actions .pc-btn { min-height: 44px; }
 body.clavier-actif #view-parcours.active .pc-question {
   gap: .3rem;
   margin-bottom: .2rem;
@@ -2187,7 +2163,8 @@ body.clavier-actif #view-mission.active .ms-histoire { display: none; }
 .mc-tuile:active { transform: scale(.92); }
 .mc-tuile.utilisee { opacity: .18; cursor: default; }
 .mc-mot .mc-input { caret-color: transparent; }
-.mc-actions .mc-effacer { flex: none; width: 52px; padding: 0; display: grid; place-items: center; }
+/* Effacer (Mot caché) : bouton icône du pied d'action (SPEC 95). */
+.exo-action-dock .mc-effacer { width: 56px; padding: 0; display: grid; place-items: center; }
 .mc-effacer svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ══ MON CHEMIN : LISIBILITÉ (spec 17) — compacter l'interface, jamais l'information ══ */
@@ -2264,7 +2241,6 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 /* ══ EXERCICES : UNE SEULE ACTION PRINCIPALE ════════════════════════════════ */
 /* Correction affichée : les commandes de saisie disparaissent (et sortent du
    parcours clavier). Les lettres assemblées restent, en lecture seule. */
-#view-parcours[data-etat="corrige"] .pc-body .pc-actions,
 #view-parcours[data-etat="corrige"] #mc-btn-voir,
 #view-parcours[data-etat="corrige"] #mc-lettres,
 #view-parcours[data-etat="corrige"] .mc-score,
@@ -2272,10 +2248,6 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 #view-parcours[data-etat="corrige"] .mc-info { display: none; }
 #view-parcours[data-etat="corrige"] .mc-mot { pointer-events: none; }
 .pc-fb-score { margin-top: .35rem; font-size: var(--fs-sec); color: var(--muted-strong); }
-/* Correction longue : elle défile, « Continuer » reste visible en bas */
-.pc-feedback .fb-txt { max-height: 38vh; overflow-y: auto; }
-/* Révision : une fois la réponse corrigée, le bouton « Valider » disparaît */
-#session-input-btn:disabled { display: none; }
 
 /* ══ FIN DE PARTIE (spec 20) : contenu qui défile, action principale fixe ═════ */
 .pf-content { min-height: 0; padding: 1.4rem 1.25rem calc(96px + env(safe-area-inset-bottom)); gap: .9rem; }
@@ -2301,7 +2273,7 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 #view-parcours[data-type="flashcards"] .pc-body,
 #view-parcours[data-type="flashcards"] .pc-body .mc-fr,
 #view-parcours[data-type="flashcards"] .pc-body .mc-decouverte-lu,
-#view-parcours[data-type="flashcards"] .pc-feedback { font-family: var(--police-lettres); }
+#view-parcours[data-type="flashcards"] #pc-feedback { font-family: var(--police-lettres); }
 .mc-tuile { font-weight: 700; font-size: 1.4rem; }
 
 /* Spec 22 : révision libre interrompue (chemin, écran de la leçon) */

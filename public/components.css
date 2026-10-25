@@ -16,6 +16,9 @@
      .back-btn          « ← écran précédent »
      .cta-fixe          bandeau fixe en bas portant L'action principale (résultats,
                         introduction d'unité) ; le contenu garde 96 px de marge en bas
+     .exo-action-dock   pied d'action des exercices (Leçon et S'entraîner, SPEC 95) :
+                        .exo-cta (bouton primaire or, toujours au même endroit) et
+                        .exo-secondaire (Effacer, Indice : Mot caché seulement)
    Étiquettes et badges
      .pc-mini-label .etiquette(.or) .badge(.fait) .pastille(.v/.o/.a) .lecon-pill
    ═════════════════════════════════════════════════════════════════════════════ */
@@ -102,6 +105,41 @@
 }
 .cta-fixe > * { pointer-events: auto; }
 .cta-fixe:empty { display: none; }
+
+/* ══ SPEC 95 : PIED D'ACTION DES EXERCICES ══════════════════════════════════
+   Seul emplacement des boutons d'un exercice (Valider, Réessayer, Continuer,
+   Suivante, Effacer, Indice). Dans le flux de l'écran (pas position:fixed) :
+   il reste en bas, au-dessus du clavier, et ne recouvre jamais le contenu.
+   Hauteur constante : avec ou sans bouton (place réservée avant un choix),
+   avec ou sans explication. Rempli par renderActionExercice (feedback-unifie.js). */
+.exo-action-dock {
+  flex: none; display: flex; align-items: center; gap: var(--sp-2);
+  width: 100%; max-width: 500px; margin: 0 auto;
+  padding: var(--sp-3) 21px calc(var(--sp-4) + env(safe-area-inset-bottom));
+  min-height: calc(var(--hauteur-cta) + var(--sp-3) + var(--sp-4) + env(safe-area-inset-bottom));
+  background: var(--couleur-fond);
+  border-top: 1px solid var(--couleur-bord-1); /* filet discret, sans couleur de verdict */
+}
+.exo-action-dock.hidden { display: none; }
+.exo-cta {
+  flex: 1 1 auto; min-width: 0; height: var(--hauteur-cta); padding: 0 var(--sp-4);
+  border: 1px solid var(--couleur-action); border-radius: var(--rayon-moyen);
+  background: var(--couleur-action); color: var(--couleur-sur-or);
+  font: 800 16px var(--police); text-align: center; cursor: pointer;
+}
+.exo-cta[hidden] { display: none; }
+.exo-cta:disabled { opacity: .35; cursor: default; }
+.exo-secondaire {
+  flex: none; height: var(--hauteur-cta); min-width: 56px; padding: 0 var(--sp-4);
+  border: 1px solid var(--couleur-bord-3); border-radius: var(--rayon-moyen);
+  background: transparent; color: var(--couleur-texte);
+  font: 700 15px var(--police); cursor: pointer;
+}
+.exo-secondaire:disabled { opacity: .35; cursor: default; }
+@media (max-width: 360px) {
+  .exo-action-dock { padding-inline: 15px; }
+  .exo-secondaire { padding: 0 var(--sp-3); }
+}
 .view:not(.active) .cta-fixe { display: none; }
 
 /* ══ SPEC 57 : PRESSION TACTILE UNIFIÉE SUR LES CTA ═════════════════════════
@@ -110,7 +148,7 @@
    Les composants propres aux écrans utilisent les mêmes tokens que .pc-btn. */
 :where(
   .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .exo-cta, .exo-secondaire
 ):not(:disabled):not([aria-disabled="true"]) {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -123,7 +161,7 @@
 }
 :where(
   .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .exo-cta, .exo-secondaire
 ):not(:disabled):not([aria-disabled="true"]):active {
   transform: translateY(var(--cta-pression-decalage)) scale(var(--cta-pression-echelle));
   filter: brightness(var(--cta-pression-luminosite));
@@ -133,7 +171,7 @@
 /* Empêche les anciennes règles :active de presser un bouton désactivé. */
 :where(
   .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
+  .ecr-btn-validate, .session-action.primary, .ms-envoyer, .exo-cta, .exo-secondaire
 ):is(:disabled, [aria-disabled="true"]):active {
   transform: none;
   filter: none;
@@ -142,13 +180,13 @@
 @media (prefers-reduced-motion: reduce) {
   :where(
     .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-    .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
+    .ecr-btn-validate, .session-action.primary, .ms-envoyer, .exo-cta, .exo-secondaire
   ):not(:disabled):not([aria-disabled="true"]) {
     transition: none;
   }
   :where(
     .pc-btn, .btn-jaune, .carte-suite, .ac-btn, .dash-btn.primary,
-    .ecr-btn-validate, .session-action.primary, .ms-envoyer, .fb-cta
+    .ecr-btn-validate, .session-action.primary, .ms-envoyer, .exo-cta, .exo-secondaire
   ):not(:disabled):not([aria-disabled="true"]):active {
     transform: none;
     filter: brightness(var(--cta-pression-luminosite));

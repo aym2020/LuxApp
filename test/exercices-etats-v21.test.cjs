@@ -42,6 +42,7 @@ function fauxDom() {
     ids, get, erreurs,
     document: {
       getElementById: get,
+      querySelector: () => null,
       createElement: () => element(''),
       querySelectorAll: sel => sel.includes('mc-erreur') ? erreurs : (ids.__choix || [])
     }
@@ -53,6 +54,10 @@ const noteHtml = fonction(app, 'noteHtml');
 // SPEC 94 : le bandeau commun est rendu par feedback-unifie.js (vraies fonctions).
 const unifie = read('feedback-unifie.js');
 const renderFeedbackCommun = fonction(unifie, 'renderFeedbackCommun');
+// Pied d'action (SPEC 95) : on enregistre la configuration demandée par le moteur.
+function piedEspion(dom) {
+  return (dock, config) => { dom.pied = { dock: dock && dock.id, config }; return element(config ? config.id : ''); };
+}
 const fbAttentionHtml = fonction(unifie, 'fbAttentionHtml');
 
 // Texte visible du bandeau : sans la phrase réservée au lecteur d'écran.
@@ -65,10 +70,10 @@ function parcoursAvec(dom, sons) {
     'return { showFeedback, choisirP };'].join('\n');
   return new Function('document', 'fermerClavier', 'focusApresClavier', 'enregistrer',
     'attentionItem', 'rappelHtml', 'reussir', 'echouer', 'pAttente', 'pSuite',
-    'continuerParcours', 'afficherVerdictChoix', 'jouerFeedbackSon', code)(
+    'continuerParcours', 'afficherVerdictChoix', 'jouerFeedbackSon', 'renderActionExercice', 'cadrerFeedback', code)(
     dom.document, () => {}, () => {}, () => {}, item => item.attention || '',
     () => '', () => {}, () => {}, false, null, () => {}, () => {},
-    evenement => (sons || []).push(evenement));
+    evenement => (sons || []).push(evenement), piedEspion(dom), () => {});
 }
 
 test('le titre transmis par le moteur est affiché, dans le bandeau commun (SPEC 94)', () => {
@@ -78,8 +83,12 @@ test('le titre transmis par le moteur est affiché, dans le bandeau commun (SPEC
   const fb = dom.get('pc-feedback');
   assert.match(fb.innerHTML, /class="fb-titre"[^>]*>Juste, au 2e essai</);
   assert.doesNotMatch(fb.innerHTML, /Bien vu\.|À retenir/);
-  assert.ok(fb.classList.contains('ok') && fb.classList.contains('feedback-flat'));
-  assert.match(fb.innerHTML, /<button>Continuer<\/button>/);
+  assert.ok(fb.classList.contains('ok') && fb.classList.contains('exo-feedback'));
+  // SPEC 95 : aucun bouton dans la correction ; « Continuer » est dans le pied.
+  assert.doesNotMatch(fb.innerHTML, /<button/);
+  assert.equal(dom.pied.dock, 'pc-action-dock');
+  assert.equal(dom.pied.config.id, 'pc-continuer');
+  assert.equal(dom.pied.config.label, 'Continuer');
   p.showFeedback({ etat: 'reveal', titre: 'Réponse dévoilée', annonce: 'Réponse dévoilée : Stull', corpsHtml: '<b>Stull</b>' }, () => {});
   assert.match(fb.innerHTML, /Réponse dévoilée/);
   assert.ok(fb.classList.contains('ko') && fb.classList.contains('reveal'));
@@ -101,9 +110,10 @@ test('parcours : après une erreur, le trou montre la bonne réponse en vert, sa
   const fb = dom.get('pc-feedback').innerHTML;
   assert.equal(dom.get('pc-blank').textContent, 'Madamm');
   assert.equal(dom.get('pc-blank').style.color, 'var(--correct)');
-  assert.match(fb, /Pas encore/);
   assert.match(fb, /Madame = <b>Madamm<\/b>/);
-  assert.doesNotMatch(visible(fb), /Bonne réponse/);
+  // SPEC 95 : ni « Pas encore » ni « Bonne réponse » visibles (choix rouge/vert) ; le verdict est annoncé.
+  assert.doesNotMatch(visible(fb), /Bonne réponse|Pas encore|<button/);
+  assert.equal(dom.pied.config.label, 'Continuer');
   assert.match(fb, /sr-only">Pas encore\. Ton choix : Monsieur\. Bonne réponse : Madamm\./);
   assert.deepEqual(sons, ['finalFailure']);
 });
@@ -113,22 +123,26 @@ test('entraînement : trou vert, même bandeau, gras rendu (pas de <b> littéral
   const fb = dom.get('session-feedback');
   const code = [escHtml, noteHtml, renderFeedbackCommun, fbAttentionHtml, fonction(app, 'attentionDe'),
     fonction(app, 'handleSessionChoice'), fonction(app, 'actionSuivante'), 'return handleSessionChoice;'].join('\n');
+  dom.ids['session-action-dock'] = element('session-action-dock');
   const session = { answered: false, index: 0, questions: [{
     type: 'trous', q: { trou: 'Madamm', attention: 'Madame = <b>Madamm</b>' } }] };
   const sons = [];
   const handle = new Function('document', 'session', 'recordSessionAnswer', 'nextSessionQ',
-    'montrerFeedbackSession', 'afficherVerdictChoix', 'jouerFeedbackSon', code)(
-    dom.document, session, () => {}, () => {}, () => {}, () => {}, e => sons.push(e));
+    'montrerFeedbackSession', 'afficherVerdictChoix', 'jouerFeedbackSon', 'renderActionExercice', code)(
+    dom.document, session, () => {}, () => {}, () => {}, () => {}, e => sons.push(e), piedEspion(dom));
   const choisi = element('b');
   choisi.textContent = 'Monsieur';
   handle(choisi, false, 'Madamm');
   assert.equal(dom.get('session-blank').style.color, 'var(--correct)');
-  assert.ok(fb.classList.contains('feedback-flat') && fb.classList.contains('ko'));
-  assert.match(fb.innerHTML, /class="fb-titre"[^>]*>Pas encore</);
-  assert.doesNotMatch(visible(fb.innerHTML), /Bonne réponse/);
+  assert.ok(fb.classList.contains('exo-feedback') && fb.classList.contains('ko'));
+  assert.doesNotMatch(visible(fb.innerHTML), /Bonne réponse|Pas encore|<button/);
+  assert.match(fb.innerHTML, /sr-only">Pas encore\. Ton choix : Monsieur\. Bonne réponse : Madamm\./);
   assert.match(fb.innerHTML, /Madame = <b>Madamm<\/b>/);
   assert.doesNotMatch(fb.innerHTML, /&lt;b&gt;/);
-  assert.match(fb.innerHTML, /<button>Voir le score →<\/button>/);
+  // SPEC 95 : « Voir le score » est le bouton du pied, même composant qu'en Leçon.
+  assert.equal(dom.pied.dock, 'session-action-dock');
+  assert.equal(dom.pied.config.id, 'session-suivante');
+  assert.equal(dom.pied.config.label, 'Voir le score →');
   assert.deepEqual(sons, ['finalFailure'], 'un seul son, joué par le moteur');
 });
 
@@ -137,15 +151,18 @@ test('noteHtml garde le gras mais échappe toute autre balise', () => {
   assert.equal(f('a <b>x</b> <i>y</i>'), 'a <b>x</b> &lt;i&gt;y&lt;/i&gt;');
 });
 
-test('styles : bandeau collé en bas, bandeau plat vert/rouge, cases du mot caché conservées', () => {
+test('styles : écran à trois zones, correction légère, pied d\'action, cases du mot caché conservées', () => {
   const regle = (source, sel) => (source.match(new RegExp(sel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*\\{([^}]*)\\}')) || [])[1] || '';
   const commun = read('feedback-unifie.css');
-  assert.match(regle(css, '#view-parcours .pc-feedback'), /position:sticky;bottom:0;margin-top:auto/);
-  // SPEC 94 : couleurs du verdict dans le style commun, bandeau plat (trait supérieur, pas de coins).
-  assert.match(regle(commun, '.feedback-flat'), /border: 0; border-top: 2px solid [^;]+; border-radius: 0; box-shadow: none/);
-  assert.match(regle(commun, '.feedback-flat.ok'), /border-top-color: var\(--couleur-reussi\)/);
-  assert.match(regle(commun, '.feedback-flat.ko'), /border-top-color: var\(--couleur-erreur\)/);
-  assert.doesNotMatch(css, /#view-session #session-feedback[^{]*\{[^}]*border-radius:14px/, 'plus de carte en S\'entraîner');
+  const composants = read('components.css');
+  // SPEC 95 : seul le contenu défile ; le pied est dans le flux (pas position:fixed).
+  assert.match(regle(commun, '.exo-shell > .exo-scroll'), /overflow-y: auto/);
+  assert.match(commun, /#view-session\.exo-shell\.active \{ height: 100dvh/);
+  assert.match(regle(composants, '.exo-action-dock'), /flex: none/);
+  assert.doesNotMatch(regle(composants, '.exo-action-dock'), /position: ?fixed/);
+  // Correction légère : ni fond, ni bordure, ni ombre (pas de carte ni de bandeau coloré).
+  assert.match(regle(commun, '.exo-feedback'), /background: none; border: 0; box-shadow: none/);
+  assert.doesNotMatch(css + commun, /position:\s*sticky/, 'plus de correction collée en bas');
   assert.match(css, /#view-parcours \.choice\.wrong, #view-session \.choice\.wrong \{\s*border-color:var\(--wrong\)/);
   // #view-parcours .mc-case est plus spécifique que .mc-case.vert : l'état doit être redéclaré.
   assert.match(regle(css, '#view-parcours .mc-case.vert'), /var\(--correct\)/);
@@ -223,12 +240,17 @@ test('Mot caché : le son de lettre est réutilisé sans nouvel asset ni dépend
 test('écriture parcours : première erreur dans le bandeau inférieur, 2e essai non verrouillé', () => {
   const extrait = fonction(parcours, 'ecrValiderPc');
   const styles = read('exercices-v21.css');
-  // SPEC 94 : bandeau commun, état « retry », même bouton déplacé dans le bandeau.
+  // SPEC 94/95 : état « retry » ; le même bouton du pied devient « Réessayer », sans déplacement.
   assert.match(extrait, /etat: 'retry', titre: 'Pas encore · réessaie'/);
-  assert.match(extrait, /action: \{ bouton \}/);
-  assert.match(extrait, /bouton\.textContent = 'Réessayer'/);
+  assert.match(extrait, /getElementById\('pc-ecr-valider'\)\.textContent = 'Réessayer'/);
+  assert.doesNotMatch(extrait, /appendChild/);
   assert.match(extrait, /jouerFeedbackSon\('retry'\)/);
+  assert.match(fonction(parcours, 'renderEcriturePc'), /\{ id: 'pc-ecr-valider', label: 'Valider', onClick: ecrValiderPc \}/);
   assert.doesNotMatch(extrait.split("if (ecrEssais === 1) {")[1].split("input.disabled = true;")[0], /^\s*showFeedback\(/m);
-  assert.match(styles, /#view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
-  assert.match(styles, /body\.clavier-actif #view-parcours\[data-type="ecriture"\] \.pc-feedback\.essai/);
+});
+
+test('SPEC 95 : renderFeedbackCommun ne crée aucun bouton (G24)', () => {
+  assert.doesNotMatch(renderFeedbackCommun, /appendChild|createElement|o\.action/);
+  const pied = fonction(unifie, 'renderActionExercice');
+  assert.match(pied, /principal\.onclick = /, 'une action remplace la précédente (pas d\'écouteur en double)');
 });

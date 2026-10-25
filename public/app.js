@@ -692,9 +692,14 @@ function renderSessionQ() {
   choicesEl.classList.add('hidden');
   inputWrap.classList.add('hidden');
   sentenceEl.classList.add('hidden');
-  feedback.className = 'hidden'; // SPEC 94 : le style vient de .feedback-flat
+  feedback.className = 'exo-feedback hidden'; // SPEC 94/95 : style commun .exo-feedback
   feedback.innerHTML = ''; // SPEC 59 : ne jamais garder un ancien diagnostic
-  document.querySelectorAll('#session-suivante').forEach(b => b.remove());
+  // SPEC 95 : pied d'action visible, place réservée sans bouton (Quiz/Trous) ;
+  // la saisie y met « Valider » plus bas. Contenu remis en haut.
+  const dock = document.getElementById('session-action-dock');
+  dock.classList.remove('hidden');
+  renderActionExercice(dock, null);
+  document.getElementById('session-scroll').scrollTop = 0;
 
   // V2.1 : même consigne pédagogique dans les deux contextes.
   document.getElementById('session-label').textContent =
@@ -745,8 +750,8 @@ function renderSessionQ() {
     // Le clavier physique conserve son autofocus.
     if (typeof window === 'undefined' || !window.matchMedia ||
         window.matchMedia('(hover: hover) and (pointer: fine)').matches) input.focus();
-    const btn = document.getElementById('session-input-btn');
-    btn.disabled = false;
+    // SPEC 95 : un seul bouton, dans le pied : Valider, puis Réessayer, puis Suivante.
+    renderActionExercice(dock, { id: 'session-input-btn', label: 'Valider', onClick: validateSessionInput });
   }
 }
 
@@ -786,13 +791,13 @@ function handleSessionChoice(btn, ok, correctText) {
   const feedback = document.getElementById('session-feedback');
   renderFeedbackCommun(feedback, {
     etat: ok ? 'success' : 'finalFailure',
-    titre: ok ? '' : 'Pas encore',
+    titre: '', // SPEC 95 : le choix rouge et le choix vert suffisent ; l'annonce garde le verdict
     annonce: ok ? 'Juste ! Bonne réponse : ' + correctText
                 : 'Pas encore. Ton choix : ' + btn.textContent + '. Bonne réponse : ' + correctText + '.',
-    corpsHtml: fbAttentionHtml(noteHtml(attentionDe(item))),
-    action: actionSuivante()
+    corpsHtml: fbAttentionHtml(noteHtml(attentionDe(item)))
   });
-  montrerFeedbackSession(feedback, null); // SPEC 87 : Suivante entièrement visible
+  renderActionExercice(document.getElementById('session-action-dock'), actionSuivante());
+  montrerFeedbackSession(feedback, null); // correction visible dans la zone qui défile
 }
 
 // Bouton « Suivante → » (ou « Voir le score → ») du bandeau de correction.
@@ -800,49 +805,29 @@ function actionSuivante() {
   return {
     label: session.index < session.questions.length - 1 ? 'Suivante →' : 'Voir le score →',
     id: 'session-suivante',
-    onClick: nextSessionQ // nextSessionQ retire déjà le bouton
+    onClick: nextSessionQ
   };
 }
 
 // SPEC 59 : garantir que la correction est perceptible même avec le clavier
 // Android ouvert. Une saisie validée n'a pas besoin de garder le focus.
 // La région ARIA est placée au-dessus du champ de saisie dans index.html.
+// SPEC 95 : le bouton est dans le pied (toujours visible) ; on fait seulement
+// défiler la zone de contenu (#session-scroll), jamais la page entière.
 function montrerFeedbackSession(feedback, input) {
   if (input && typeof input.blur === 'function') input.blur();
   feedback.classList.remove('hidden');
   const amener = () => {
     if (feedback.className.split(/\s+/).includes('hidden')) return;
-    cadrerSession(feedback);
+    cadrerFeedback(document.getElementById('session-scroll'), feedback, document.getElementById('session-q'));
   };
   // Deux frames : laisser le clavier commencer à se fermer et le DOM
-  // recalculer la hauteur après la disparition du bouton Valider.
+  // recalculer la hauteur.
   if (typeof requestAnimationFrame === 'function') {
     requestAnimationFrame(() => requestAnimationFrame(amener));
   } else {
     amener(); // navigateurs anciens et environnement de test
   }
-}
-
-// SPEC 87 : défiler juste ce qu'il faut pour que l'action (Valider ou Suivante)
-// soit entière, en gardant la question si tout tient, sinon la correction.
-// La place est mesurée : sous l'en-tête collant, au-dessus du clavier éventuel.
-function cadrerSession(feedback) {
-  const suivante = document.getElementById('session-suivante');
-  const saisie = document.getElementById('session-input-wrap');
-  const action = suivante ||
-    (saisie.classList.contains('hidden') ? feedback : document.getElementById('session-input-btn'));
-  const tete = document.querySelector('#view-session .lecon-header');
-  const hautVisible = tete && tete.offsetHeight ? tete.getBoundingClientRect().bottom : 0;
-  const basVisible = (window.visualViewport ? window.visualViewport.height : window.innerHeight) - 12;
-  const place = basVisible - hautVisible;
-  const bas = action.getBoundingClientRect().bottom;
-
-  let haut = document.getElementById('session-q').getBoundingClientRect().top;
-  if (bas - haut > place) haut = feedback.getBoundingClientRect().top; // la question ne tient pas
-  let decalage = 0;
-  if (bas - haut > place || bas > basVisible) decalage = bas - basVisible; // l'action d'abord
-  else if (haut < hautVisible + 8) decalage = haut - hautVisible - 8;      // remonter un peu
-  if (Math.abs(decalage) > 1) window.scrollBy({ top: decalage, behavior: 'smooth' });
 }
 
 // Réponse écrite (mot caché, écriture). Deux essais hors examen (S6) :
@@ -878,8 +863,10 @@ function validateSessionInput() {
     renderFeedbackCommun(feedback, {
       etat: 'retry', titre: 'Pas encore · réessaie',
       annonce: 'Pas encore, réessaie. ' + (aide.diagnostic || ''),
-      corpsHtml: aideErreurHtml(val, corrige, attention, 1), action: null
+      corpsHtml: aideErreurHtml(val, corrige, attention, 1)
     });
+    // SPEC 95 : même bouton du pied, même action, libellé « Réessayer ».
+    document.getElementById('session-input-btn').textContent = 'Réessayer';
     input.value = '';
     montrerFeedbackSession(feedback, input);
     // Un seul comptage, sur la première tentative seulement.
@@ -891,7 +878,6 @@ function validateSessionInput() {
   const affiche = item.type === 'motcache' && corrige.article ? corrige.article + ' ' + target : target;
   input.disabled = true;
   input.className = 'ecr-input ' + (ok ? 'correct' : 'wrong');
-  document.getElementById('session-input-btn').disabled = true;
 
   // SPEC 94 : même bandeau et mêmes sons que l'Écriture de la Leçon.
   // Le titre reste : la saisie est masquée, la réponse n'est pas visible ailleurs.
@@ -906,8 +892,7 @@ function validateSessionInput() {
         boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
         (autres.length ? '<div class="pc-fb-variante">Autre formulation correcte : <b>' +
           autres.map(escHtml).join('</b> · <b>') + '</b></div>' : '') +
-        fbAttentionHtml(noteHtml(attention)),
-      action: actionSuivante()
+        fbAttentionHtml(noteHtml(attention))
     });
   } else {
     jouerFeedbackSon('finalFailure');
@@ -915,13 +900,13 @@ function validateSessionInput() {
       etat: 'finalFailure', titre: 'Pas encore', annonce: 'Pas encore. Réponse attendue : ' + affiche,
       corpsHtml: '<div class="fb-reponse">Réponse attendue : <b>' + escHtml(affiche) + '</b></div>' +
         boutonEcouterHtml(corrige.lu) + // SPEC 68 (mot) et 69 (phrase enregistrée)
-        fbAttentionHtml(noteHtml(attention)),
-      action: actionSuivante()
+        fbAttentionHtml(noteHtml(attention))
     });
   }
 
-  // Le bouton Valider n'occupe plus inutilement l'écran après une correction.
+  // La saisie n'occupe plus l'écran après une correction ; le pied passe à « Suivante ».
   document.getElementById('session-input-wrap').classList.add('hidden');
+  renderActionExercice(document.getElementById('session-action-dock'), actionSuivante());
   montrerFeedbackSession(feedback, input);
   if (premiereTentative) recordSessionAnswer(ok);
 }
@@ -938,7 +923,6 @@ function recordSessionAnswer(ok) {
 }
 
 function nextSessionQ() {
-  document.querySelectorAll('#session-suivante').forEach(b => b.remove());
   session.index++;
   renderSessionQ();
 }
@@ -948,7 +932,9 @@ function showSessionResult() {
   document.getElementById('session-choices').classList.add('hidden');
   document.getElementById('session-input-wrap').classList.add('hidden');
   document.getElementById('session-feedback').classList.add('hidden');
-  document.querySelectorAll('#session-suivante').forEach(b => b.remove());
+  // SPEC 95 : le pied des questions disparaît ; l'écran de score a ses propres boutons.
+  renderActionExercice(document.getElementById('session-action-dock'), null);
+  document.getElementById('session-action-dock').classList.add('hidden');
 
   const total = session.questions.length;
   const pct = total ? Math.round(session.score / total * 100) : 0;

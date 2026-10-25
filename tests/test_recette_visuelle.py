@@ -257,19 +257,20 @@ try:
         assert pg.locator('#pc-ecr-erreur').is_hidden()
         assert pg.locator('#pc-feedback.ko.essai').is_visible()
         assert 'Pas encore · réessaie' in pg.inner_text('#pc-feedback')
-        assert pg.locator('#pc-feedback #pc-ecr-valider').inner_text() == 'Réessayer'
+        # SPEC 95 : le bouton est dans le pied d'action, jamais dans la correction.
+        assert pg.locator('#pc-action-dock #pc-ecr-valider').inner_text() == 'Réessayer'
+        assert pg.locator('#pc-feedback button').count() == 0
         assert pg.locator('#pc-ecr-input').is_enabled()
         assert pg.locator('#pc-ecr-input').input_value().startswith('zzz')
-        assert pg.locator('#view-parcours .pc-feedback').evaluate('e => getComputedStyle(e).position') == 'sticky'
-        # 1er faux : le bandeau est en bas, mais la correction n'est PAS révélée.
-        assert 'Réponse attendue :' not in pg.inner_text('#pc-feedback')
+        # 1er faux : la correction n'est PAS révélée.
+        assert 'Réponse attendue' not in pg.inner_text('#pc-feedback')
         pg.locator('#pc-ecr-input').fill('Deuxième tentative sans réponse correcte')
-        assert pg.locator('#pc-feedback #pc-ecr-valider').inner_text() == 'Réessayer'
-        assert pg.locator('#pc-feedback #pc-ecr-valider').is_visible()
-        pg.locator('#pc-feedback #pc-ecr-valider').click()
+        assert pg.locator('#pc-action-dock #pc-ecr-valider').inner_text() == 'Réessayer'
+        assert pg.locator('#pc-action-dock #pc-ecr-valider').is_visible()
+        pg.locator('#pc-action-dock #pc-ecr-valider').click()
         assert pg.locator('#pc-feedback.ko:not(.essai)').is_visible()
         assert pg.locator('#pc-ecr-input').is_disabled()
-        ok('Écriture E-02 : bandeau inférieur, saisie conservée, deuxième tentative réelle puis correction finale')
+        ok('Écriture E-02 : bouton dans le pied, saisie conservée, deuxième tentative réelle puis correction finale')
         lancer(2, 'ecriture', 'juste')
         assert pg.evaluate('pAttente') and 'Juste !' in pg.inner_text('#pc-feedback')
         lancer(2, 'ecriture', 'juste-2')

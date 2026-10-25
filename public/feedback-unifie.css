@@ -1,61 +1,74 @@
-/* ─── BANDEAU DE CORRECTION COMMUN (SPEC 94, lot 2) ───────────────────────
-   Un seul style pour Leçon (#pc-feedback) et S'entraîner (#session-feedback).
-   Bandeau plat : trait supérieur de la couleur du verdict, pas de carte
-   (ni bordure sur 4 côtés, ni ombre, ni coins arrondis).
-   L'emplacement propre à chaque vue reste dans exercices-v21.css.
+/* ─── ÉCRAN D'EXERCICE COMMUN (SPEC 94 + SPEC 95) ───────────────────────────
+   Leçon (#view-parcours) et S'entraîner (#view-session) ont trois zones :
+     1. l'en-tête (ne défile pas) ;
+     2. .exo-scroll : le contenu, SEULE zone qui défile ;
+     3. .exo-action-dock : le pied d'action (components.css), toujours en bas.
+   La correction (.exo-feedback) est légère et vit dans le contenu : pas de
+   fond coloré, pas de carte, pas de bouton. La réponse verte / rouge porte le
+   verdict ; la correction n'ajoute que ce qui est utile.
    Ce fichier est chargé après style.css et exercices-v21.css. */
 
-.feedback-flat {
+/* 1. Enveloppe : la vue occupe l'écran, seul le contenu défile.
+   Clavier ouvert : ui.js fixe la hauteur sur la zone visible (style.css,
+   body.clavier-actif) ; le pied reste alors juste au-dessus du clavier. */
+#view-parcours.exo-shell.active,
+#view-session.exo-shell.active { height: 100dvh; min-height: 0; max-height: 100dvh; overflow: hidden; }
+.exo-shell > * { flex: none; }
+.exo-shell > .exo-scroll {
+  flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
+  overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
+  padding-bottom: var(--sp-5);
+}
+.exo-scroll > .pc-body, .exo-scroll > .session-body { flex: none; }
+
+/* 2. Correction légère */
+.exo-feedback {
+  /* relative : la phrase .sr-only (absolue) reste dans la zone qui défile,
+     sinon elle agrandit la page entière quand la correction est sous le pli. */
+  position: relative;
   display: flex; flex-direction: column; gap: var(--sp-2);
-  border: 0; border-top: 2px solid var(--couleur-bord-3); border-radius: 0; box-shadow: none;
-  background: var(--couleur-correction-fond); color: var(--couleur-texte);
-  font: 400 var(--fs-sec)/1.55 var(--police);
+  background: none; border: 0; box-shadow: none;
+  color: var(--couleur-texte); font: 400 var(--fs-sec)/1.55 var(--police);
 }
-.feedback-flat.ok { border-top-color: var(--couleur-reussi); background: var(--couleur-correction-ok-fond); }
-.feedback-flat.ko { border-top-color: var(--couleur-erreur); background: var(--couleur-correction-ko-fond); }
-/* Réussite sans rien à ajouter : aucun bandeau, seulement le bouton or. */
-.feedback-flat.nu { border-top-color: transparent; background: transparent; }
-/* Erreur provisoire (on peut réessayer) : plus compact, mêmes couleurs. */
-.feedback-flat.essai { gap: var(--sp-1); }
-.feedback-flat.essai .fb-txt { font-size: 13.5px; font-weight: 500; }
+.exo-feedback.hidden { display: none; }
+.exo-feedback .fb-bloc { display: flex; flex-direction: column; gap: var(--sp-2); }
+/* Titre (Écriture, Mot caché dévoilé) : la réponse attendue n'est pas un choix vert,
+   un trait coloré à gauche suffit à porter le verdict. */
+.exo-feedback.avec-titre:not(.essai) .fb-bloc { border-left: 2px solid var(--couleur-erreur); padding-left: 14px; }
+.exo-feedback.avec-titre.ok .fb-bloc { border-left-color: var(--couleur-reussi); }
+.exo-feedback .fb-titre { font-size: 15px; font-weight: 800; line-height: 1.3; }
+.exo-feedback.ok .fb-titre { color: var(--couleur-reussi); }
+.exo-feedback.ko .fb-titre { color: var(--couleur-erreur); }
+.exo-feedback.essai .fb-titre::before { content: '↻ '; }
 
-.feedback-flat .fb-titre {
-  display: flex; align-items: center; gap: var(--sp-2);
-  font-size: var(--fs-corps); font-weight: 750; line-height: 1.3;
-}
-.feedback-flat.ok .fb-titre { color: var(--couleur-reussi); }
-.feedback-flat.ko .fb-titre { color: var(--couleur-erreur); }
+.exo-feedback .fb-txt { color: var(--couleur-correction-texte); line-height: 1.55; overflow-wrap: break-word; }
+.exo-feedback .fb-txt b { color: var(--couleur-texte); font-weight: 700; }
+.exo-feedback .fb-reponse b { display: block; margin-top: 2px; font-size: 18px; line-height: 1.4; overflow-wrap: anywhere; }
+.exo-feedback.essai .fb-txt { font-size: 13.5px; }
 
-.feedback-flat .fb-txt { color: var(--couleur-correction-texte); line-height: 1.55; overflow-wrap: break-word; }
-.feedback-flat .fb-txt b,
-.feedback-flat .fb-reponse b { color: var(--couleur-texte); font-weight: 700; }
+/* « À retenir » : note discrète (trait gris à gauche, étiquette or). */
+.exo-feedback .fb-attention { margin-top: var(--sp-2); padding-left: 13px; border-left: 2px solid #4b4437; }
+.exo-feedback .fb-bloc > .fb-txt > .fb-attention:first-child { margin-top: 0; }
+.exo-feedback.avec-titre:not(.essai) .fb-attention { padding-left: 0; border-left: 0; }
+.exo-feedback .fb-attention-label { margin-bottom: 4px; font-size: 12px; font-weight: 800; letter-spacing: .035em; color: #d8bb77; }
+.exo-feedback .fb-attention p { margin: 0; color: var(--couleur-correction-texte); }
+.exo-feedback .fb-attention b,
+.exo-feedback .pc-attention b { color: var(--couleur-orange); }
 
-/* « Attention : … », diagnostic, note : texte neutre, jamais un encadré dans le bandeau.
-   .pc-attention et .pc-diagnostic viennent de aideErreurHtml (diagnostic.js),
-   la même aide du 1er essai en Leçon et en S'entraîner. */
-.feedback-flat .fb-attention,
-.feedback-flat .pc-attention,
-.feedback-flat .pc-diagnostic,
-.feedback-flat .fb-note,
-.feedback-flat .pc-fb-variante,
-.feedback-flat .pc-fb-rappel {
+/* Aide du 1er essai (aideErreurHtml, diagnostic.js), note, variantes, rappel :
+   texte neutre, jamais un encadré. */
+.exo-feedback .pc-attention,
+.exo-feedback .pc-diagnostic,
+.exo-feedback .fb-note,
+.exo-feedback .pc-fb-variante,
+.exo-feedback .pc-fb-rappel,
+.exo-feedback .pc-fb-score {
   margin: 6px 0 0; padding: 0; border: 0; border-radius: 0; background: none;
   color: var(--couleur-correction-texte);
 }
-.feedback-flat .fb-attention b,
-.feedback-flat .pc-attention b { color: var(--couleur-orange); }
-.feedback-flat .pc-diagnostic { font-weight: 700; color: var(--couleur-texte); }
-.feedback-flat .bouton-ecouter { align-self: flex-start; }
-
-/* Le seul bouton principal : or, pleine largeur, 56 px. Même classe dans
-   les deux vues ; la pression tactile vient de components.css (SPEC 57). */
-.feedback-flat .fb-cta {
-  display: block; width: 100%; min-height: var(--hauteur-cta); margin: 6px 0 0; padding: 0 var(--sp-4);
-  border: 1px solid var(--couleur-action); border-radius: var(--rayon-moyen);
-  background: var(--couleur-action); color: var(--couleur-sur-or);
-  font: 800 15px var(--police); text-align: center; cursor: pointer;
-}
-.feedback-flat.nu .fb-cta { margin-top: 0; }
+.exo-feedback .pc-diagnostic { font-weight: 700; color: var(--couleur-texte); }
+.exo-feedback .pc-fb-rappel { font-size: 13px; color: var(--couleur-texte-3); }
+.exo-feedback .bouton-ecouter { align-self: flex-start; }
 
 /* Texte réservé au lecteur d'écran (verdict complet, même sans titre visible). */
 .sr-only {
@@ -63,7 +76,6 @@
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* Mot caché : seules les cases encore à trouver tremblent, une fois.
-   (Le diagnostic d'essai du Mot caché est stylé dans exercices-v21.css.) */
+/* Mot caché : seules les cases encore à trouver tremblent, une fois. */
 .mc-case.secousse { animation: secousse-choix .2s ease-out 1; }
 @media (prefers-reduced-motion: reduce) { .mc-case.secousse { animation: none; } }
