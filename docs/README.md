@@ -11,12 +11,13 @@ Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour
 | Conventions, branches, tests et risques | [PLAYBOOK.md](../PLAYBOOK.md) · [AGENTS.md](../AGENTS.md) | Méthode d'intervention et garde-fous |
 | Refonte visuelle LuxApp 2.1 | [CHARTE_UI_2.1.md](CHARTE_UI_2.1.md) | **Règles UI normatives**, y compris § 6 bis pour les dimensions 640 / 560 / 500px **à implémenter** |
 | Composants, typographie, couleurs, statuts | [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) | Référence partagée ; ne pas dupliquer les valeurs |
+| Règles de correction et parité Leçon / S'entraîner | [SPEC 94](specs/SPEC-94.md) · [agent de vérification](../.claude/agents/ui-parity-auditor.md) | **Conception et revue** : pas encore un composant produit unifié |
 | Dimensions PC/mobile existantes | [AUDIT-DIMENSIONS-2.1.md](AUDIT-DIMENSIONS-2.1.md) | **Diagnostic statique**, pas preuve de validation visuelle |
 | Priorités à livrer | [TODO.md](../TODO.md) | Backlog et critères d'acceptation |
 | Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel**, authentification et isolation |
 | Choisir les scénarios de test | [RECETTES-2.1.md](RECETTES-2.1.md) | Catalogue des scénarios et validations |
 | Incident des exercices | [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](POSTMORTEM-EXERCICES-2.1-2026-10-21.md) | Incidents et procédure obligatoire anti-régression |
-| Comportement attendu et décisions produit | [specs/README.md](specs/README.md) | **Registre de 88 fiches** ; lire l'état de chaque SPEC |
+| Comportement attendu et décisions produit | [specs/README.md](specs/README.md) | **Registre de 89 fiches** ; lire l'état de chaque SPEC |
 
 **Hiérarchie en cas de contradiction :** version réelle du code et des données sur la branche cible pour le fonctionnement constaté ; PLAYBOOK/AGENTS pour la méthode ; charte et Design System pour les règles d'interface ; SPEC concernée pour l'intention fonctionnelle ; TODO et recette pour l'état de validation. Un rapport historique ne vaut pas approbation produit.
 

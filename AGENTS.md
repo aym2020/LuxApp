@@ -2,6 +2,10 @@
 
 Lire avant toute intervention : [PLAYBOOK.md](PLAYBOOK.md) (voir aussi l'[index documentaire](docs/README.md)), et pour la refonte `2.1`, [docs/CHARTE_UI_2.1.md](docs/CHARTE_UI_2.1.md) + [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md).
 
+## Contrôle de parité UI (SPEC 94 — conception, non encore implémentée)
+
+**Règle : deux éléments identiques dans leur sens et leurs interactions doivent réutiliser le même composant de présentation, ses tokens et ses états** (et non deux copies HTML/CSS qui « semblent pareilles »). Les deux moteurs de Leçon (`parcours.js`) et S'entraîner (`app.js`) conservent **des calculs pédagogiques indépendants**. Tout changement de correction, CTA, choix ou feedback partagé nécessite une revue par l'[agent de parité UI](.claude/agents/ui-parity-auditor.md) selon la [SPEC 94](docs/specs/SPEC-94.md), des tests DOM/browser avant/après, et Samsung pour valider le rendu réel. L'agent est un contrôle de revue ; son existence ne prouve **ni** la migration, **ni** le passage de tests.
+
 ## Règles prioritaires — UI/UX 2.1
 
 - **Branche :** `2.1` exclusivement pour cette refonte, sauf instruction explicite contraire ; inspecter SHA distant et diff, ne jamais changer de branche ni écraser le travail d'autrui à son insu.

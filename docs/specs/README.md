@@ -1,6 +1,6 @@
 # LuxApp — Registre des spécifications
 
-Ce répertoire contient **88 fiches de spécification présentes** sur la branche `2.1` (01 à 81 et 87 à 93, au 23 octobre 2026). Les numéros **82 à 86 sont absents** du dépôt : ne pas leur inventer de contenu. Le tableau ci-dessous indexe **toutes les fiches actuellement présentes** ; leur statut est une information documentaire, pas une preuve de recette. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
+Ce répertoire contient **89 fiches de spécification présentes** sur la branche `2.1` (01 à 81 et 87 à 94, au 23 octobre 2026). Les numéros **82 à 86 sont absents** du dépôt : ne pas leur inventer de contenu. Le tableau ci-dessous indexe **toutes les fiches actuellement présentes** ; leur statut est une information documentaire, pas une preuve de recette. Source de référence : discussions de cadrage, implémentation dans le dépôt `v2`, [playbook](../../PLAYBOOK.md) et [design system](../DESIGN_SYSTEM.md).
 
 > **Précision importante :** les fiches 01 à 22 sont une **reconstruction structurée** des demandes/échanges et des fonctionnalités observées : elles ne prétendent pas être des copies littérales des versions originales. La fiche 23 est implémentée côté moteur (scènes à 10 réponses à écrire) ; les fiches 24 à 28 sont implémentées, recette sur smartphone à faire ; les fiches 29 à 31 sont implémentées avec validation à confirmer ; la fiche 32 est implémentée (recette à confirmer) ; les fiches 33 et 34 sont implémentées (recette à confirmer) ; les fiches 35 à 37 sont implémentées (recette à confirmer) ; la fiche 38 décrit le correctif d'historique après confirmation de l'introduction et rattrapage des erreurs. La fiche 39 optimise l'outillage de tests ; la fiche 40 est implémentée (recette Android à confirmer) ; la fiche 41 est implémentée (recette Android à confirmer) ; la fiche 42 est implémentée (validation Android à confirmer) ; la fiche 43 décrit le mode de recette visuelle rapide à développer. Les statuts sont un point de départ de pilotage, **pas une attestation de tests de recette**.
 
@@ -103,6 +103,7 @@ Ce répertoire contient **88 fiches de spécification présentes** sur la branch
 | 91 | [Simulation et équilibrage autonome](./SPEC-91.md) | P1 | Simulateur V0 indépendant en CI, à aligner sur SPEC 92 |
 | 92 | [Survie Feu et Tempête](./SPEC-92.md) | P1 | Étape 1/4 codée — recette Samsung à faire |
 | 93 | [PWA hors ligne](./SPEC-93.md) | — | Proposition à implémenter — non développée |
+| 94 | [Feedback unifié, audio et parité de composants UI](./SPEC-94.md) | P1 | **Conception à valider**, moteurs non modifiés ; agent de contrôle défini |
 
 ## Précautions de lecture
 

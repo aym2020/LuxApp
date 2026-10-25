@@ -61,6 +61,12 @@ Ne pas multiplier en-têtes, liserés, pastilles, scores, étiquettes et cartes 
 - **Icônes :** SVG au trait, tailles et épaisseurs cohérentes, valeur sémantique ; ne jamais insérer des emojis décoratifs à la place d'une icône UI déjà définie.
 - **Feedback :** immédiat, lisible, sans déplacement du contenu essentiel ni masque sur le bouton suivant ; pas de multiplication d'effets d'animation.
 
+### Règle de réutilisation sémantique — SPEC 94 (cible)
+
+Deux éléments **ayant le même rôle, le même état et la même interaction** (choix correct/faux, retour, bouton de suite, explication, signal de validation) doivent partager **une seule implémentation de présentation** et les tokens existants. **Ne pas fusionner aveuglément** les moteurs de score Leçon et Session : seuls le modèle d'état et la présentation sont mutualisables. État de la règle : **conception à implémenter**, non conforme aujourd'hui pour les deux types de feedback. [SPEC 94](specs/SPEC-94.md) définit la correction à un seul choix juste / deux choix juste+faux, les sons et l'animation de faute, sans reproduction de la palette des captures de référence.
+
+Avant fusion d'une modification UI transversale : revue indépendante par [l'agent de vérification](../.claude/agents/ui-parity-auditor.md) et contrôle navigateur, puis Samsung ; `AGENTS.md` fixe les critères de preuve.
+
 ## 5. Traduction de la direction par parcours
 
 | Vues existantes | Cible V2.1 | À préserver |
