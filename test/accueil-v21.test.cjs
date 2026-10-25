@@ -142,7 +142,9 @@ test('Plus compact : conserve progression et raccourcis dans un groupe unique', 
   for (const titre of ['Lexique', 'Mes pièges', 'Nouveautés', 'Réglages']) {
     assert.ok(accueil.includes("'" + titre + "'"), titre);
   }
-  assert.match(accueil, /Outils de test/);
+  // LuxApp TEST est une app indépendante : aucune entrée sur le Plus public.
+  assert.doesNotMatch(accueil, /Outils de test|lienRecettePourMoi|ouvrirRecetteDistante/);
+  assert.match(recette, /<b>Outils de test<\/b>/);
   assert.match(recette, /page\.querySelector\('\.plus-options'\)/);
   assert.match(cssPlus, /#view-plus \.plus-options \.plus-ligne \+ \.plus-ligne/);
   assert.match(cssPlus, /#view-plus \.plus-acquis div\s*\{[^}]*background:\s*transparent/s);
