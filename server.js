@@ -68,21 +68,12 @@ if (RECETTE) {
   }));
 }
 
-// Tests navigateur (tools/critique.sh) : LUX_TESTS=1 ajoute TESTS à la config pour
-// masquer le portail d'entrée (SPEC 63), qui couvrirait sinon tous les écrans testés.
-// Le contrôle par UID masque seulement le raccourci : la recette reste protégée par son mot de passe.
-const lienRecette = /^https:\/\/[^\s"'<>]+$/.test(process.env.RECETTE_URL || '') ? process.env.RECETTE_URL : '';
-const accesRecette = (process.env.RECETTE_ACCES || '').split(',').map(uid => uid.trim()).filter(Boolean);
-const configTests = process.env.LUX_TESTS === '1';
-const configLienRecette = lienRecette && accesRecette.length > 0;
-if (!RECETTE && (configTests || configLienRecette)) {
+// Tests navigateur (tools/critique.sh) : LUX_TESTS=1 masque le portail d'entrée
+// (SPEC 63). L'app publique ne publie plus de lien, URL ou UID de recette.
+if (!RECETTE && process.env.LUX_TESTS === '1') {
   app.get('/config.js', (req, res) => {
-    let config = fs.readFileSync(path.join(__dirname, 'public/config.js'), 'utf8');
-    if (configTests) config += '\nwindow.APP_CONFIG.TESTS = true;\n';
-    if (configLienRecette) {
-      config += '\nwindow.APP_CONFIG.LIEN_RECETTE = ' + JSON.stringify({ url: lienRecette, uids: accesRecette }) + ';\n';
-    }
-    res.type('application/javascript').send(config);
+    const config = fs.readFileSync(path.join(__dirname, 'public/config.js'), 'utf8');
+    res.type('application/javascript').send(config + '\nwindow.APP_CONFIG.TESTS = true;\n');
   });
 }
 

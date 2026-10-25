@@ -15,7 +15,7 @@ Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour
 | **Nouvelle structure des exercices / CTA fixe** | [SPEC 95](specs/SPEC-95.md) | **Conception normative NON implémentée** : trois zones DOM, correction minimale, action indépendante, clavier Android, critères G01–G24 |
 | Dimensions PC/mobile existantes | [AUDIT-DIMENSIONS-2.1.md](AUDIT-DIMENSIONS-2.1.md) | **Diagnostic statique**, pas preuve de validation visuelle |
 | Priorités à livrer | [TODO.md](../TODO.md) | Backlog et critères d'acceptation |
-| Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel**, authentification et isolation |
+| Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel** : LuxApp TEST autonome, authentification et isolation ; pas de raccourci dans le Plus normal |
 | Choisir les scénarios de test | [RECETTES-2.1.md](RECETTES-2.1.md) | Catalogue des scénarios et validations |
 | Incident des exercices | [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](POSTMORTEM-EXERCICES-2.1-2026-10-21.md) | Incidents et procédure obligatoire anti-régression |
 | Comportement attendu et décisions produit | [specs/README.md](specs/README.md) | **Registre de 89 fiches** ; lire l'état de chaque SPEC |

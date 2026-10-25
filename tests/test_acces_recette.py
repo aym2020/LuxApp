@@ -1,8 +1,9 @@
-"""Accès à la recette depuis l'app réelle.
-- RECETTE_URL + RECETTE_ACCES : la ligne « Outils de test » n'apparaît dans Plus
-  que pour les comptes autorisés, et ouvre l'instance de recette ;
-- adresse non https ou liste vide : rien n'est exposé ;
-- instance de recette avec LUXAPP_URL : bouton « Retour à LuxApp ».
+"""Recette exclusivement dans l'application dédiée (SPEC 43).
+- App normale : aucun raccourci « Outils de test » dans Plus, même si les
+  variables historiques RECETTE_URL / RECETTE_ACCES restent configurées ;
+  aucun UID ni lien privé publié dans config.js.
+- Instance RECETTE=1 : outil accessible dans Plus, authentification HTTP Basic.
+- LUXAPP_URL : bouton « Retour à LuxApp » préservé.
 Lance ses propres serveurs sur d'autres ports."""
 import base64
 import os
@@ -57,27 +58,26 @@ def arreter(proc):
     proc.wait()
 
 
-# ── 1. Config : exposée seulement si adresse https ET liste de comptes ──
+# ── 1. Application normale : ni entrée ni configuration privée exposée ──
+# Les anciennes variables peuvent rester sur Render après le déploiement :
+# elles ne doivent plus injecter les UID ou l'URL de recette dans l'app.
 cas = [
-    ({'RECETTE_URL': URL_RECETTE}, False),
-    ({'RECETTE_ACCES': 'abc'}, False),
-    ({'RECETTE_URL': 'javascript:alert(1)', 'RECETTE_ACCES': 'abc'}, False),
-    ({'RECETTE_URL': 'http://recette.exemple.test/', 'RECETTE_ACCES': 'abc'}, False),
-    ({'RECETTE_URL': URL_RECETTE, 'RECETTE_ACCES': 'abc, def'}, True),
+    {},
+    {'RECETTE_URL': URL_RECETTE, 'RECETTE_ACCES': 'abc, def'},
+    {'RECETTE_URL': 'javascript:alert(1)', 'RECETTE_ACCES': 'abc'}
 ]
-for env, attendu in cas:
+for env in cas:
     proc = demarrer(PORT_APP, env)
     try:
         config = http(APP + 'config.js')[1]
         assert 'luxapp-b5c1e' in config, 'config Firebase conservée'
-        assert ('LIEN_RECETTE' in config) == attendu, (env, config[-200:])
-        if attendu:
-            assert '"uids":["abc","def"]' in config
+        assert 'LIEN_RECETTE' not in config, ('le lien ne doit plus être publié', env)
+        assert URL_RECETTE not in config and '"uids"' not in config
     finally:
         arreter(proc)
-ok('config : lien exposé seulement avec une adresse https et au moins un compte autorisé')
+ok('app normale : ancienne configuration Render ignorée, aucun UID ou lien de recette exposé')
 
-# ── 2. App réelle : ligne visible pour le compte autorisé, absente sinon ──
+# ── 2. Plus normal : aucune entrée, même pour l'ancien UID autorisé ──
 proc = demarrer(PORT_APP, {'LUX_TESTS': '1', 'RECETTE_URL': URL_RECETTE, 'RECETTE_ACCES': 'abc'})
 try:
     with sync_playwright() as p:
@@ -87,27 +87,18 @@ try:
         pg.on('pageerror', lambda e: erreurs.append(str(e)))
         pg.route('**/*gstatic*/**', lambda r: r.abort())
         pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
-        pg.route(URL_RECETTE + '**', lambda r: r.fulfill(status=200, content_type='text/html', body='<h1>recette</h1>'))
         pg.goto(APP)
         pg.wait_for_selector('#today')
-
-        def lignes_plus():
-            pg.evaluate("ouvrirPlus()")
+        for uid in (None, 'xyz', 'abc'):
+            pg.evaluate("(uid) => { fbAuth = uid ? { currentUser: { uid } } : null; ouvrirPlus(); }", uid)
             assert pg.is_visible('#view-plus.active')
-            return pg.evaluate("[...document.querySelectorAll('#plus-page .plus-ligne b')].map(b => b.textContent)")
-
-        assert 'Outils de test' not in lignes_plus(), 'invité : pas de ligne'
-        pg.evaluate("fbAuth = { currentUser: { uid: 'xyz' } }")
-        assert 'Outils de test' not in lignes_plus(), 'autre compte : pas de ligne'
-        pg.evaluate("fbAuth = { currentUser: { uid: 'abc' } }")
-        lignes = lignes_plus()
-        assert lignes[-1] == 'Outils de test', lignes
-        ok('Plus : « Outils de test » seulement pour le compte autorisé (ni invité, ni autre compte)')
-
-        pg.click('#plus-page .plus-ligne:last-of-type')
-        pg.wait_for_url(URL_RECETTE)
+            noms = pg.evaluate("[...document.querySelectorAll('#plus-page .plus-ligne b')].map(b => b.textContent)")
+            assert 'Outils de test' not in noms, (uid, noms)
+            for attendu in ('Lexique', 'Mes pièges', 'Nouveautés', 'Réglages'):
+                assert attendu in noms, (attendu, noms)
+            assert pg.locator('#plus-sons').count() == 1, 'interrupteur Sons des exercices conservé'
         assert erreurs == [], erreurs
-        ok('Outils de test : ouvre l\'instance de recette')
+        ok('Plus normal : aucun Outils de test, quatre menus et réglage Sons conservés pour tout UID')
         b.close()
 finally:
     arreter(proc)

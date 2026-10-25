@@ -4,10 +4,10 @@
 
 ## Principe
 
-Le site public LuxApp et le site de recette sont deux **services distincts**, déployés à partir de la même branche `2.1`. **L'URL habituelle de LuxApp ne change pas.** Le service privé peut être ouvert depuis **Plus → Outils de test** pour les comptes Firebase autorisés, ou directement à son URL HTTPS.
+LuxApp et LuxApp TEST sont deux **applications distinctes**, déployées à partir de la même branche `2.1`. **L'URL habituelle de LuxApp ne change pas.** Le service privé s'ouvre **directement depuis l'icône LuxApp TEST installée sur Android** ou depuis son URL HTTPS (`https://luxapp-recette.onrender.com`). **L'app normale n'affiche plus « Outils de test » dans Plus.**
 
-- **Sur l'application normale :** Firebase et les données réelles continuent de fonctionner. Le raccourci n'est montré qu'aux UID configurés avec `RECETTE_ACCES` ; cette visibilité n'est **pas** une barrière de sécurité.
-- **Sur la recette :** `RECETTE=1` active l'authentification HTTP Basic côté serveur (`RECETTE_USER`, `RECETTE_PASS`), retire les scripts Firebase, empêche les écritures cloud et isole le stockage par un domaine différent. Sans utilisateur ou mot de passe de recette, l'accès est refusé (503).
+- **Sur l'application normale :** Firebase et les données réelles continuent de fonctionner. Aucune entrée de test et aucun UID/URL de recette ne sont exposés via `/config.js`.
+- **Sur LuxApp TEST :** `RECETTE=1` active l'authentification HTTP Basic côté serveur (`RECETTE_USER`, `RECETTE_PASS`), retire les scripts Firebase, empêche les écritures cloud et isole le stockage par un domaine différent. Les **Outils de test** sont accessibles depuis **Plus** dans LuxApp TEST et par le badge **MODE TEST**. Sans utilisateur ou mot de passe de recette, l'accès est refusé (503).
 - **Retour :** `LUXAPP_URL` autorise le bouton « Retour à LuxApp ». Les essais et records de recette ne constituent pas une progression réelle.
 
 ## Configuration Render
@@ -20,16 +20,15 @@ Créer un **second** Render Web Service sur `aym2020/LuxApp`, branche `2.1`, ave
 | Service recette | `RECETTE_USER` | Identifiant privé |
 | Service recette | `RECETTE_PASS` | Mot de passe fort et non versionné |
 | Service recette | `LUXAPP_URL` | URL HTTPS réelle de LuxApp |
-| **Service public uniquement** | `RECETTE_URL` | URL HTTPS du **second** service Render |
-| Service public | `RECETTE_ACCES` | Un ou plusieurs UID Firebase, séparés par des virgules |
+| **Service public** | *(aucune variable de recette)* | L'app normale n'a plus de raccourci vers LuxApp TEST |
 
-**Ne jamais renseigner `RECETTE=1` dans le service public.** Ne pas pointer `RECETTE_URL` vers l'URL de LuxApp normale. Les UID autorisés et l'URL de recette étant envoyés au navigateur dans `/config.js`, le mot de passe serveur reste obligatoire même si le menu est masqué.
+**Ne jamais renseigner `RECETTE=1` dans le service public.** Les anciennes variables `RECETTE_URL` et `RECETTE_ACCES` du service public ne sont plus utilisées par le code et peuvent être supprimées dans Render ; elles sont ignorées même si elles restent configurées. La sécurité de LuxApp TEST repose toujours sur HTTP Basic côté serveur, pas sur la présence ou l'absence d'un menu.
 
 Après chaque changement de variables, laisser Render redéployer le service concerné. Le plan gratuit peut se mettre en veille.
 
 ## Fenêtre « app » Android : pourquoi une installation distincte est nécessaire
 
-L'URL de recette et l'URL de LuxApp normale sont **deux origines** : ouvrir la recette depuis l'icône installée de LuxApp passe donc par un onglet du navigateur (Chrome / Brave peuvent afficher leur barre d'adresse). Le manifeste de la recette porte le nom **« LuxApp TEST »**, mais **on ne peut pas forcer un autre domaine à s'ouvrir à l'intérieur de la PWA LuxApp**.
+L'URL de recette et l'URL de LuxApp normale sont **deux origines** : la recette doit être installée séparément pour s'ouvrir en plein écran, sans dépendre de LuxApp. Son manifeste porte le nom **« LuxApp TEST »**. Il n'y a plus de raccourci inter-app depuis le menu Plus de LuxApp normale.
 
 Pour obtenir une **fenêtre dédiée sans barre de navigateur**, ouvrir directement l'URL `https://luxapp-recette.onrender.com` **dans Chrome** (ou Samsung Internet), s'authentifier, puis choisir **⋮ → Installer l'application**. La recette utilise le manifeste `LuxApp TEST`, distinct de la PWA normale. Sur Brave, l'option peut n'offrir qu'un raccourci qui conserve la barre de navigateur.
 
@@ -41,10 +40,10 @@ Après le déploiement de `2.1`, dans Chrome **actualiser directement** `https:/
 
 ## Utilisation sur PC et Samsung
 
-1. Ouvrir LuxApp sur son URL habituelle, se connecter avec un UID autorisé et choisir **Plus → Outils de test** ; saisir l'identifiant/mot de passe de recette dans la fenêtre native du navigateur.
-2. Dans la recette, choisir une **leçon**, puis un **écran** disponible et un **scénario** ; cliquer sur **Voir cet écran**.
-3. Contrôler le rendu réel, la correction et les actions. Le contenu est préparé par les moteurs réels. Une option « indisponible » dépend des données de la leçon ou du mode de jeu.
-4. Utiliser le repère **MODE TEST** pour changer de scénario, puis « Retour à LuxApp » pour revenir à l'application habituelle.
+1. Ouvrir **LuxApp TEST** depuis son icône Android ou directement `https://luxapp-recette.onrender.com`, puis saisir les identifiants HTTP Basic de recette si demandés.
+2. Dans **LuxApp TEST**, ouvrir **Plus → Outils de test** (ou le badge **MODE TEST**), choisir une **leçon**, un **écran** et un **scénario**, puis **Voir cet écran**.
+3. Contrôler le vrai rendu et les actions des moteurs. Une option « indisponible » dépend des données de la leçon ou du mode de jeu.
+4. Utiliser **MODE TEST** pour changer de scénario. Le bouton « Retour à LuxApp » reste disponible si `LUXAPP_URL` est configurée.
 
 Le menu et ses scénarios sont documentés dans [RECETTES-2.1.md](RECETTES-2.1.md). Une réussite des tests automatisés **ne signifie pas** validation de l'ergonomie Android réelle. Vérifier les cas clavier ouvert, écrans 320–430px, zoom, scroll, retour Android et CTA bas.
 
