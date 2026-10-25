@@ -293,3 +293,55 @@ Rapport agent : `PASS | FAIL | NON TESTÉ` par invariant, fichiers/lignes, test 
 ### Limite connue
 
 Le seul bouton pour couper le son est dans l'écran Survie. Un réglage « Sons » visible dans Plus serait plus clair ; non fait dans ce lot.
+
+## Implémentation — lot 2 (25/10/2026)
+
+**Statut : lots 2A à 2E implémentés — recette Samsung à faire.** Branche `2.1`, à partir de `0562a1a`.
+
+### Ce qui est livré
+
+| Lot | Livré |
+|---|---|
+| 2A — QCM | Bandeau plat commun Leçon + S'entraîner. Réussite : pas de titre « Juste ! » visible (annoncé au lecteur d'écran), seulement l'aide utile et le CTA ; bandeau `nu` (sans fond ni trait) s'il n'y a rien à dire. Erreur : trait rouge, « Pas encore », aide si présente ; la bonne réponse n'est plus répétée dans le bandeau (elle est verte dans les choix et dans le trou). |
+| 2B — Mot caché | `retry` à chaque validation fausse (essais 1, 2, 3, 4…), secousse des seules cases encore à trouver (fenêtre de 250 ms : pas de nouvelle secousse au rendu suivant), diagnostic d'essai en bandeau à trait rouge. Réussite : plus de « Bien joué ! » visible ; mot, traduction, audio, score, note et attention conservés. « Voir la réponse » : `finalFailure`, titre « Réponse dévoilée ». Indice : aucun son de verdict. |
+| 2C — Écriture Leçon | 1er faux : `retry`, bandeau plat, même champ modifiable, bouton Réessayer déplacé dans le bandeau. 2e juste : `success` + « Juste, au 2e essai » + rappel. 2e faux : `finalFailure` + « Réponse attendue ». Coquille gratuite : aucun son, aucune erreur comptée. |
+| 2D — Saisie S'entraîner | Même bandeau et mêmes sons ; « Réponse attendue » (même libellé qu'en Leçon). Examen (`session.mode === 'exam'`) : pas de 2e essai, `finalFailure` dès la première faute. |
+| 2E — Préférences | Ligne « Sons des exercices » (interrupteur) dans Plus. Même clé `luxSurvieSon` que le bouton de Survie : une seule préférence. La prononciation LOD (Écouter) n'est pas concernée. |
+
+### Architecture (simple, lisible par un junior)
+
+- `public/feedback-unifie.js` : `renderFeedbackCommun(host, o)` (un seul rendu : `sr-only` + `fb-titre` + `fb-txt` + bouton `.fb-cta`), `fbAttentionHtml()`, `jouerFeedbackSon(evenement)`. Le rendu ne note rien et ne joue aucun son.
+- Bouton principal : **une seule classe** `fb-cta` dans les deux vues (ids de repère `pc-continuer` / `session-suivante`), pression tactile SPEC 57 (`components.css`) incluse. Plus de `pc-btn ok/ko` ni d'`.ecr-next-btn` sur ce bouton.
+- Hôte S'entraîner sans la classe de carte `.ecr-feedback` (elle reste réservée aux anciennes vues v1).
+- `public/feedback-unifie.css` : seul style du bandeau (`.feedback-flat`, `.ok`, `.ko`, `.nu`, `.essai`, `.fb-*`), couleurs en tokens (`--couleur-correction-*` dans `design-tokens.css`), chargé après `exercices-v21.css`. Les règles `#view-parcours .pc-feedback` et `#view-session #session-feedback` ne gèrent que l'emplacement (position, marges, padding, hauteur de défilement).
+- Aide du 1er essai d'Écriture : **une seule fonction** `aideErreurHtml()` (diagnostic.js) en Leçon et en S'entraîner.
+- `SurvieFx.feedback(evenement)` dans `public/survie-vfx.js` ; `verdict(ok)` garde son nom (délégué). Pas de nouvel `AudioContext`. `afficherVerdictChoix()` ne joue plus de son : `choisirP()` et `handleSessionChoice()` l'appellent eux-mêmes, au moment de la réponse.
+- Les moteurs (`parcours.js`, `app.js`) gardent leur notation : seuls l'appel du son et l'appel du rendu ont changé.
+- Notes pédagogiques : même échappement `noteHtml()` dans les deux vues (les données n'utilisent que `<b>`).
+
+### Exceptions documentées (pourquoi · où · quel test)
+
+| Exception | Pourquoi | Où | Test |
+|---|---|---|---|
+| Écriture en S'entraîner, 1er essai : le bouton reste « Valider » sous le champ (en Leçon, « Réessayer » dans le bandeau) | Disposition clavier Android validée par SPEC 87 ; le champ est vidé pour la 2e saisie (comportement antérieur au lot) | `app.js` `validateSessionInput()` ; `index.html` `#session-input-btn` | `test_spec87_session_mobile.py` (11 scénarios × 4 tailles), `test_spec94_feedback.py` |
+| Écriture : titre « Juste ! » / « Juste, au 2e essai » visible | D02 : la réponse n'est pas montrée comme choix vert | `parcours.js` `ecrValiderPc()`, `app.js` `validateSessionInput()` | `test_spec94_feedback.py` (A10) |
+| Leçon : rappel « reviendra à la fin de l'étape » dans le bandeau | Détail métier du parcours (rattrapage), absent en S'entraîner | `parcours.js` `rappelHtml()` | `test_rappels.py`, A14 compare les mêmes nœuds hors ce rappel |
+| Leçon, Écriture 1er essai : le bouton Réessayer garde aussi `pc-btn primary wide` | C'est le même bouton que Valider, déplacé dans le bandeau (même gestionnaire, Entrée au clavier) ; son style calculé est celui de `.fb-cta` | `parcours.js` `ecrValiderPc()` | `test_recette_visuelle.py` (E-02), A09 |
+| Coquille gratuite : fond or neutre, sans trait rouge | Ce n'est pas une erreur (SPEC 24, §3.2) : aucun son, aucune erreur comptée | `exercices-v21.css` `.mc-erreur:not(.coquille)` | A12 |
+| Leçon : le bandeau monte (`monte-b`, 0,2 s) ; S'entraîner : non | Emplacement : bandeau collé en bas d'écran contre correction dans le flux (SPEC 59) | `style.css` `.pc-feedback:not(.hidden)` | Désactivé par « réduire les animations » |
+
+### Tests
+
+- Nouveau : `tests/test_spec94_feedback.py` (ajouté à `critique.sh`) — A01–A14, A16, A15 partiel (320×640), 2E.
+- Mis à jour pour le nouveau balisage, même intention : `tests/test_spec94_verdict.py`, `tests/test_spec87_session_mobile.py`, `tests/test_rappels.py`, `test/exercices-etats-v21.test.cjs`, `test/exercices-v21.test.cjs`, `test/jeux-v21.test.cjs`.
+- Correction d'une régression du lot 1 non vue à l'époque (`test/*.cjs` ne fait pas partie de `critique.sh`) : 3 tests `.cjs` cassés par `afficherVerdictChoix` et les numéros de version. Les `.cjs` d'exercices et de jeux : 52/52. Restent en échec, **déjà avant le lot 1** (`9aaeb11`) : `cours-v21`, `intro-unite-v21`, `menu-taps-v21`.
+- `tests/test_recette_visuelle.py` : Plus compte désormais 6 lignes (« Sons des exercices » ; hauteur du bloc 387 px, budget 400 px).
+- Audit `ui-parity-auditor` (1er passage sur `f9c697a`) : « ne pas fusionner » — bouton différent entre vues, classe de carte résiduelle sur l'hôte S'entraîner, typographie de l'essai propre à une vue, aide du 1er essai rendue deux fois, test instable (attente au rechargement), couleurs en dur, son dans une fonction d'affichage, catalogue non à jour. **Tous corrigés** ; A14 compare désormais aussi la classe, le padding, la transition, la police et la couleur du bouton, et la couleur de l'hôte. Test stable 3/3.
+- **Comparaison avant (`0562a1a`) / après, sur les mêmes 26 tests navigateur de la suite** (serveurs séparés, même machine) : **résultats identiques test par test**, deux fois (avant et après les corrections de l'audit). Les tests en échec sur la base cassent aux mêmes lignes, toutes hors correction (Mot caché `#mc-btn-voir`, accueil, chemin, missions). `test_actualisation` est instable (passe ou échoue selon la charge, des deux côtés). `test_recette_visuelle` et `test_acces_recette` : verts. `test_audio_lod.js` : échec préexistant (contenu « Awar! »).
+- 2e audit `ui-parity-auditor` (sur `241f410`) : les 9 corrections PASS, 8 invariants PASS sous Chromium, aucune duplication P1 ; fusion sur `2.1` autorisée sous condition de cette section et de la comparaison ci-dessus ; **UI non validée sans Samsung**.
+- Mesuré par l'audit sous Chromium : 320, 360, 390, 430 et 720 px, 390×520, texte racine 200 % (approximation du zoom).
+- **Non testé** : Samsung réel (3 sons, son coupé, volume média, secousse, clavier, Retour Android), vrai zoom navigateur 130/200 %, lecture LOD réelle.
+
+### Reste à faire (P2, non bloquant)
+
+- `#e1d1cc` (texte du diagnostic Mot caché compact, `exercices-v21.css`) et 13,5 px (texte de l'essai) ne sont pas des tokens.

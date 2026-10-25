@@ -107,7 +107,7 @@
    mais la saisie et son bouton restent actifs pour le deuxième essai. */
 #view-parcours[data-type="ecriture"] .pc-actions:empty { display:none; }
 #view-parcours[data-type="ecriture"] .pc-feedback.essai {
-  gap:8px; padding-top:14px; padding-bottom:calc(16px + env(safe-area-inset-bottom));
+  padding-top:14px; padding-bottom:calc(16px + env(safe-area-inset-bottom));
 }
 #view-parcours[data-type="ecriture"] .pc-feedback.essai .fb-txt {
   overflow-y:auto; max-height:min(20dvh,130px); overflow-wrap:anywhere;
