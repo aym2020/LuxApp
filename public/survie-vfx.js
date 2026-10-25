@@ -371,18 +371,25 @@ const SurvieFx = (function () {
   //   success      : trois notes douces qui montent ;
   //   retry        : deux notes qui descendent (on peut encore réessayer) ;
   //   finalFailure : trois notes plus graves qui descendent (correction montrée).
+  // Léger renforcement des seuls sons de verdict (+18 % en amplitude, ≈ +1,4 dB).
+  // Ne change ni les sons du mode Survie ni la prononciation LOD.
+  const GAIN_VERDICT_EXERCICE = 1.18;
+  function noteVerdict(frequence, decalage, duree, volume) {
+    note(frequence, decalage, duree, volume * GAIN_VERDICT_EXERCICE, 'sine');
+  }
+
   function feedback(evenement) {
     if (evenement === 'success') {
-      note(587.33, 0, 0.1, 0.045, 'sine');
-      note(739.99, 0.08, 0.1, 0.045, 'sine');
-      note(880, 0.16, 0.14, 0.04, 'sine');
+      noteVerdict(587.33, 0, 0.1, 0.045);
+      noteVerdict(739.99, 0.08, 0.1, 0.045);
+      noteVerdict(880, 0.16, 0.14, 0.04);
     } else if (evenement === 'retry') {
-      note(493.88, 0, 0.09, 0.04, 'sine');
-      note(415.3, 0.09, 0.12, 0.04, 'sine');
+      noteVerdict(493.88, 0, 0.09, 0.04);
+      noteVerdict(415.3, 0.09, 0.12, 0.04);
     } else if (evenement === 'finalFailure') {
-      note(329.63, 0, 0.11, 0.045, 'sine');
-      note(277.18, 0.1, 0.11, 0.045, 'sine');
-      note(220, 0.2, 0.15, 0.045, 'sine');
+      noteVerdict(329.63, 0, 0.11, 0.045);
+      noteVerdict(277.18, 0.1, 0.11, 0.045);
+      noteVerdict(220, 0.2, 0.15, 0.045);
     }
   }
 

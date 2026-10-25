@@ -8,11 +8,11 @@ function faux2d(){
   createRadialGradient:()=>({addColorStop:f}),dessins:0,globalAlpha:1,globalCompositeOperation:'source-over',fillStyle:''};
 }
 function charger({reduit=false}={}){
- const store=new Map(),frames=[],oscillateurs=[];
+ const store=new Map(),frames=[],oscillateurs=[],niveaux=[];
  const ctx2d=faux2d();
  class FauxAudio{constructor(){this.state='running';this.currentTime=0;this.destination={}}
   createOscillator(){const o={type:'',frequency:{setValueAtTime(){},exponentialRampToValueAtTime(){}},connect(){},start(){},stop(){}};oscillateurs.push(o);return o}
-  createGain(){return {gain:{setValueAtTime(){},exponentialRampToValueAtTime(){}},connect(){}}}}
+  createGain(){return {gain:{setValueAtTime(){},exponentialRampToValueAtTime(volume){if(volume>.01)niveaux.push(volume)}},connect(){}}}}
  const window={devicePixelRatio:3,addEventListener(){},matchMedia:()=>({matches:reduit}),
   requestAnimationFrame:fn=>{frames.push(fn);return frames.length},cancelAnimationFrame:()=>{frames.length=0},AudioContext:FauxAudio};
  const document={createElement:()=>({width:0,height:0,getContext:()=>faux2d()})};
@@ -22,7 +22,7 @@ function charger({reduit=false}={}){
  const canvas={clientWidth:360,clientHeight:64,width:0,height:0,getContext:()=>ctx2d};
  let temps=0;
  const avancer=(n)=>{for(let i=0;i<n;i++){const fn=frames.shift();if(!fn)return;temps+=16;fn(temps)}};
- return {fx:ctx.SurvieFx,ctx,canvas,ctx2d,frames,avancer,store,oscillateurs};
+ return {fx:ctx.SurvieFx,ctx,canvas,ctx2d,frames,avancer,store,oscillateurs,niveaux};
 }
 test('Canvas : DPR plafonné à 2, boucle lancée puis arrêtée proprement',()=>{
  const {fx,canvas,frames,avancer}=charger();
@@ -80,6 +80,31 @@ test('Son : actif par défaut, coupure mémorisée par profil, aucun oscillateur
  assert.equal(oscillateurs.length,joues);
  ctx.storageKey=k=>'profilB:'+k;
  assert.equal(fx.sonActif(),true,'autre profil : son actif');
+});
+test('SPEC 94 : sons de verdict +18 % seulement, trois états, Survie inchangée et silence respecté',()=>{
+ const {fx,niveaux,store,oscillateurs}=charger();
+ const presque=(reel,attendu)=>assert.ok(Math.abs(reel-attendu)<1e-9,realMsg(reel,attendu));
+ function realMsg(reel,attendu){return 'volume '+reel+' attendu '+attendu}
+ fx.feedback('success');
+ assert.equal(niveaux.length,3);
+ [0.045,0.045,0.04].forEach((v,i)=>presque(niveaux[i],v*1.18));
+ fx.feedback('retry');
+ assert.equal(niveaux.length,5);
+ [0.04,0.04].forEach((v,i)=>presque(niveaux[i+3],v*1.18));
+ fx.feedback('finalFailure');
+ assert.equal(niveaux.length,8);
+ [0.045,0.045,0.045].forEach((v,i)=>presque(niveaux[i+5],v*1.18));
+ fx.verdict(true); // compatibilité API préexistante
+ assert.equal(niveaux.length,11);
+ presque(niveaux[8],0.045*1.18);
+ fx.lettre(0);
+ presque(niveaux[11],0.045); // mode Survie / tuiles inchangé
+ fx.reussite({palier:0,nouveauPalier:false});
+ presque(niveaux[12],0.05); // sons Survie inchangés
+ store.set('profilA:luxSurvieSon','0');
+ const sons=oscillateurs.length;
+ fx.feedback('success');fx.feedback('retry');fx.feedback('finalFailure');
+ assert.equal(oscillateurs.length,sons,'aucun son quand l’option est coupée');
 });
 test('Chrono critique : un seul battement par seconde',()=>{
  const {fx,oscillateurs}=charger();
