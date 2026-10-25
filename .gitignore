@@ -4,3 +4,6 @@ node_modules/
 
 tests/captures/
 __pycache__/
+# Captures générées par les tests navigateur (à ne pas commiter)
+survie-fin-screenshots/
+portail-password-screenshots/
