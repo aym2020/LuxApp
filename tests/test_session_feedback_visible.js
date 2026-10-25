@@ -7,7 +7,7 @@ const root = path.join(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const html = read('public/index.html');
 const css = read('public/style.css');
-const source = ['public/diagnostic.js', 'public/correction.js', 'public/app.js']
+const source = ['public/diagnostic.js', 'public/correction.js', 'public/feedback-unifie.js', 'public/app.js']
   .map(read).join('\n').replace(/\ninit\(\);\n/, '\n'); // Pas de boot réseau pendant les tests.
 
 const section = html.slice(html.indexOf('id="view-session"'),
@@ -38,8 +38,8 @@ function node(id) {
       after(btn) { this.nextButton = btn; }
     };
     n.classList = {
-      add(c) { if (!this.contains(c)) n.className += ' ' + c; },
-      remove(c) { n.className = n.className.split(/\s+/).filter(x => x !== c).join(' '); },
+      add(...cs) { cs.forEach(c => { if (!this.contains(c)) n.className += ' ' + c; }); },
+      remove(...cs) { n.className = n.className.split(/\s+/).filter(x => !cs.includes(x)).join(' '); },
       contains(c) { return n.className.split(/\s+/).includes(c); }
     };
     dom.set(id, n);
@@ -58,8 +58,12 @@ const document = {
 const suffix = [
   'lecons = [{ id: 1 }];',
   'boutonEcouterHtml = () => "";', // stub audio du test isolé
-  // SPEC 87 : le cadrage mesure le vrai DOM (vérifié dans le navigateur) ; ici on vérifie qu'il est demandé.
-  'cadrerSession = fb => scrolls.push({ id: fb.id });',
+  // attentionHtml vient de parcours.js (non chargé ici) ; même rendu que l'original.
+  'attentionHtml = t => t ? \'<div class="pc-attention">Attention : \' + t + \'</div>\' : "";',
+  // SPEC 95 : le cadrage mesure le vrai DOM (vérifié dans le navigateur) ; ici on vérifie qu'il est demandé.
+  'cadrerFeedback = (zone, fb) => scrolls.push({ id: fb.id });',
+  'let pied = null;', // SPEC 95 : bouton demandé au pied d'action
+  'renderActionExercice = (dock, config) => { pied = config; return null; };',
   'updateQuestionProgress = (lid, type, qid, ok, changeLevel) => {',
   '  const fb = document.getElementById("session-feedback");',
   '  if (!fb.innerHTML || fb.classList.contains("hidden"))',
@@ -80,7 +84,7 @@ const suffix = [
   '    const inp = document.getElementById("session-input");',
   '    inp.disabled = false; inp.blurred = false; inp.value = "";',
   '    document.getElementById("session-input-wrap").className = "ecr-input-wrap";',
-  '    records = []; scrolls.length = 0;',
+  '    records = []; scrolls.length = 0; pied = null;',
   '  },',
   '  result() { return {',
   '    score: session.score, answered: session.answered, essais: session.essais,',
@@ -88,7 +92,7 @@ const suffix = [
   '    visible: !document.getElementById("session-feedback").classList.contains("hidden"),',
   '    blurred: document.getElementById("session-input").blurred,',
   '    inputHidden: document.getElementById("session-input-wrap").classList.contains("hidden"),',
-  '    next: !!document.getElementById("session-feedback").nextButton,',
+  '    next: !!(pied && pied.id === "session-suivante"),',
   '    records: records.slice(), scrolls: scrolls.slice()',
   '  }; }',
   '};'
@@ -151,7 +155,7 @@ node('session-input').value = 'Äddi!';
 run.validate();
 x = run.result();
 assert.equal(x.answered, true);
-assert.ok(x.feedback.includes('Bonne réponse :'));
+assert.ok(x.feedback.includes('Réponse attendue'), 'même libellé qu’en Leçon (SPEC 94)');
 assert.equal(x.inputHidden, true);
 assert.equal(x.records.length, 1);
 assert.equal(x.records[0].changeLevel, false);

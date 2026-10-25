@@ -11,8 +11,8 @@ function domElement(id) {
     id, value: '', textContent: '', innerHTML: '', className: '',
     disabled: false, style: {}, children: [],
     classList: {
-      add(c) { const el = elements.get(id); if (!el.className.split(/\s+/).includes(c)) el.className += ' ' + c; },
-      remove(c) { const el = elements.get(id); el.className = el.className.split(/\s+/).filter(x => x !== c).join(' '); },
+      add(...cs) { const el = elements.get(id); cs.forEach(c => { if (!el.className.split(/\s+/).includes(c)) el.className += ' ' + c; }); },
+      remove(...cs) { const el = elements.get(id); el.className = el.className.split(/\s+/).filter(x => !cs.includes(x)).join(' '); },
       contains(c) { return elements.get(id).className.split(/\s+/).includes(c); },
       toggle() {}
     },
@@ -40,20 +40,26 @@ const harness = [
   'renderSessionQ = () => { rendered++; session.answered = false; session.essais = 0; };',
   'updateQuestionProgress = (...args) => updates.push(args);',
   'aideErreur = () => ({ diagnostic: "", attention: "" });',
+  'aideErreurHtml = () => "";', // SPEC 94 : même aide qu'en Leçon (diagnostic.js), sans contenu ici
+  'afficherVerdictChoix = () => {};', // SPEC 94 : affichage des choix, vérifié dans le navigateur (test_spec94_verdict.py)
   'boutonEcouterHtml = () => "";', // stub du module audio (non chargé dans ce test isolé)
-  'cadrerSession = () => {};', // mise en page : mesurée dans le navigateur (SPEC 87)
+  // SPEC 95 : cadrage et pied d'action mesurés dans le navigateur (test_spec95_exercices.py) ;
+  // ici on enregistre seulement le bouton demandé au pied.
+  'cadrerFeedback = () => {};',
+  'let pied = null;',
+  'renderActionExercice = (dock, config) => { pied = config; return null; };',
   'const matcher = s => normalize(s);',
   'reponseReconnue = (s, item) => [item.lu, ...(item.alternatives || [])].find(x => matcher(x) === matcher(s)) || null;',
   'autresReponsesAcceptees = (item, accepted) => [item.lu, ...(item.alternatives || [])].filter(x => matcher(x) !== matcher(accepted));',
   'return {',
   '  start(mode, question) {',
   '    getFrequentErrors = getReviewQuestions = getExamQuestions = () => [question];',
-  '    updates = []; timerCallbacks = []; rendered = 0;',
+  '    updates = []; timerCallbacks = []; rendered = 0; pied = null;',
   '    startSession(mode);',
   '    return session.options;',
   '  },',
   '  configured(question, cb) {',
-  '    updates = []; timerCallbacks = []; rendered = 0;',
+  '    updates = []; timerCallbacks = []; rendered = 0; pied = null;',
   '    demarrerSession("review", "RÉVISION", [question], { apresReponse: cb });',
   '  },',
   '  missingOptions() { delete session.options; },',
@@ -68,12 +74,12 @@ const harness = [
   '  state() { return { updates: updates.slice(), score: session.score, answered: session.answered,',
   '    essais: session.essais, options: session.options, rendered,',
   '    feedback: document.getElementById("session-feedback").innerHTML,',
-  '    btn: document.getElementById("session-feedback").nextButton,',
+  '    btn: pied && pied.id === "session-suivante" ? pied : null,', // SPEC 95 : bouton du pied
   '    timers: timerCallbacks.length }; }',
   '};'
 ].join('\n');
 // Pas de boot réseau dans un test isolé des fonctions de session.
-const appSource = read('public/app.js').replace(/\ninit\(\);\n/, '\n');
+const appSource = (read('public/feedback-unifie.js') + '\n' + read('public/app.js')).replace(/\ninit\(\);\n/, '\n');
 const running = new Function('document', 'setTimeout', appSource + '\n' + harness)(
   document, cb => { callbacks.push(cb); }
 );

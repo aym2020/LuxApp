@@ -242,7 +242,9 @@ test('écriture parcours : première erreur dans le bandeau inférieur, 2e essai
   const styles = read('exercices-v21.css');
   // SPEC 94/95 : état « retry » ; le même bouton du pied devient « Réessayer », sans déplacement.
   assert.match(extrait, /etat: 'retry', titre: 'Pas encore · réessaie'/);
-  assert.match(extrait, /getElementById\('pc-ecr-valider'\)\.textContent = 'Réessayer'/);
+  // Via renderActionExercice : même nœud, et la garde de double appui s'applique.
+  assert.match(extrait, /renderActionExercice\(document\.getElementById\('pc-action-dock'\),\s*\{ id: 'pc-ecr-valider', label: 'Réessayer', onClick: ecrValiderPc \}\)/);
+  assert.match(extrait, /\{ id: 'pc-ecr-valider', label: 'Corriger ma saisie', onClick: ecrValiderPc \}/);
   assert.doesNotMatch(extrait, /appendChild/);
   assert.match(extrait, /jouerFeedbackSon\('retry'\)/);
   assert.match(fonction(parcours, 'renderEcriturePc'), /\{ id: 'pc-ecr-valider', label: 'Valider', onClick: ecrValiderPc \}/);

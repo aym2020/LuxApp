@@ -29,8 +29,12 @@ git rev-parse -q --verify main >/dev/null || git fetch -q --depth 1 origin main:
 
 # 1. Syntaxe, contenu, tests Node : rapides, en série
 for f in public/*.js; do node --check "$f" || echec=1; done
-for t in "tools/valider-lecons.js" "tests/test_cloud.js" "tests/test_sync.js" "tests/test_correction.js" "tests/test_audio_lod.js" "tests/test_audit_correspondances.js"; do
+for t in "tools/valider-lecons.js" "tests/test_cloud.js" "tests/test_sync.js" "tests/test_correction.js" "tests/test_audio_lod.js" "tests/test_audit_correspondances.js" "tests/test_session_erreurs_frequentes.js" "tests/test_session_feedback_visible.js"; do
   if node "$t" >"$LOGS/node.log" 2>&1; then echo "OK      $t"; else echo "ECHEC   $t"; tail -8 "$LOGS/node.log"; echec=1; fi
+done
+# SPEC 95 : les tests Node des exercices (aussi lancés par la CI GitHub accueil-2.1).
+for t in "test/exercices-v21.test.cjs" "test/exercices-etats-v21.test.cjs"; do
+  if node --test "$t" >"$LOGS/node.log" 2>&1; then echo "OK      $t"; else echo "ECHEC   $t"; grep -A4 "^not ok" "$LOGS/node.log" | head -12; echec=1; fi
 done
 
 if [ "$1" != "rapide" ]; then
