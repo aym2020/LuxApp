@@ -1,0 +1,612 @@
+{
+  "schemaVersion": "lux-match-archetypes-v01",
+  "status": "draft_not_runtime",
+  "audience": "adult_21_plus",
+  "sources": [
+    "data/lecons/A1.1 (branche 2.1)",
+    "grammaire_luxembourg.md",
+    "docs/specs/SPEC-109.md"
+  ],
+  "notes": [
+    "Les biographies courtes en LU et champs nouveaux exigent une relecture native/LOD avant intégration.",
+    "Le caractère identifiable vient des posts/indices explicites, jamais d'une inférence métier/origine.",
+    "Pix privé conserve uniquement la bio publique; followers et photos sont masqués."
+  ],
+  "styles": [
+    "sportif",
+    "casual",
+    "loose",
+    "bcbg",
+    "creatif"
+  ],
+  "colors": [
+    "schwaarz",
+    "wäiss",
+    "blo",
+    "gréng",
+    "rout",
+    "beige"
+  ],
+  "archetypes": [
+    {
+      "id": "sportive",
+      "title": "La sportive",
+      "primary": "sport",
+      "secondary": [
+        "directe",
+        "taquine"
+      ],
+      "visual": "sweat, baskets, sac de sport, gestes dynamiques",
+      "preferredStyles": [
+        "sportif",
+        "casual"
+      ],
+      "styleCue": "photo de jogging + post de préférence sportive",
+      "phoneTolerance": "normal",
+      "hobbyTags": [
+        "football",
+        "running"
+      ],
+      "trapId": "trap_sport",
+      "characterRule": "Le style sportif est signalé par un post ; on n'infère rien des seuls habits."
+    },
+    {
+      "id": "bc_bg",
+      "title": "L'ambitieuse",
+      "primary": "carriere",
+      "secondary": [
+        "ponctuelle",
+        "ironique"
+      ],
+      "visual": "blazer élégant, carnet, posture assurée",
+      "preferredStyles": [
+        "bcbg",
+        "casual"
+      ],
+      "styleCue": "post public disant préférer les looks soignés",
+      "phoneTolerance": "normal",
+      "hobbyTags": [
+        "carriere",
+        "voyage"
+      ],
+      "trapId": "trap_metier",
+      "characterRule": "La profession n'est pas une preuve du goût pour le BCBG ; preuve explicite."
+    },
+    {
+      "id": "artiste",
+      "title": "L'artiste",
+      "primary": "creation",
+      "secondary": [
+        "spontanee",
+        "reveuse"
+      ],
+      "visual": "cheveux colorés, carnet de croquis, accessoires",
+      "preferredStyles": [
+        "creatif",
+        "loose"
+      ],
+      "styleCue": "post de dessin + commentaire 'j'aime les couleurs'",
+      "phoneTolerance": "normal",
+      "hobbyTags": [
+        "art",
+        "musique"
+      ],
+      "trapId": "trap_dessin",
+      "characterRule": "Un métier créatif n'impose aucune opinion : préférences déclarées."
+    },
+    {
+      "id": "geek",
+      "title": "La geek",
+      "primary": "gaming",
+      "secondary": [
+        "ironique",
+        "calme"
+      ],
+      "visual": "veste décontractée, pins arcade, console portable",
+      "preferredStyles": [
+        "casual",
+        "loose"
+      ],
+      "styleCue": "photo de LAN + préférence casual explicite",
+      "phoneTolerance": "normal",
+      "hobbyTags": [
+        "jeux",
+        "technologie"
+      ],
+      "trapId": "trap_arcade",
+      "characterRule": "Le piège gaming est une gag narratif, pas une évaluation A1.1 hors programme."
+    },
+    {
+      "id": "voyageuse",
+      "title": "La voyageuse",
+      "primary": "voyage",
+      "secondary": [
+        "curieuse",
+        "energetique"
+      ],
+      "visual": "veste voyage, sac week-end, badges",
+      "preferredStyles": [
+        "casual",
+        "sportif"
+      ],
+      "styleCue": "post sur les tenues pratiques en voyage",
+      "phoneTolerance": "normal",
+      "hobbyTags": [
+        "langues",
+        "voyages"
+      ],
+      "trapId": "trap_portugal",
+      "characterRule": "Une photo d'un pays n'est jamais une preuve de nationalité/origine."
+    },
+    {
+      "id": "chill",
+      "title": "La chill",
+      "primary": "simplicite",
+      "secondary": [
+        "attentionnee",
+        "franche"
+      ],
+      "visual": "pull cosy, tasse, livre",
+      "preferredStyles": [
+        "casual",
+        "loose"
+      ],
+      "styleCue": "post 'look simple' ; avertissement explicite sur téléphone",
+      "phoneTolerance": "anti_phone",
+      "hobbyTags": [
+        "cafe",
+        "lecture"
+      ],
+      "trapId": "trap_telephone",
+      "characterRule": "La réaction au téléphone est annoncée avant le rendez-vous."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "lena_r01",
+      "archetypeId": "sportive",
+      "name": "Léna",
+      "age": 27,
+      "city": "Metz",
+      "country": "Frankräich",
+      "originExpressionLu": "Ech kommen aus Frankräich.",
+      "cityExpressionLu": "Ech wunnen zu Metz.",
+      "jobFr": "Professeure",
+      "languages": [
+        "Franséisch",
+        "Lëtzebuergesch"
+      ],
+      "mainInterest": "football",
+      "secondaryInterest": "running",
+      "favoriteColor": "blo",
+      "outfitSignal": {
+        "style": "sportif",
+        "color": "blo",
+        "explicit": true,
+        "source": "amis.posts[0]"
+      },
+      "phoneSignal": {
+        "trait": "normal",
+        "source": "amis.bio"
+      },
+      "pix": {
+        "private": false,
+        "followers": 840,
+        "bioLu": "Sport a Fussball.",
+        "bioFr": "Sport et football.",
+        "photos": [
+          {
+            "key": "run_park",
+            "captionFr": "Entraînement du matin",
+            "tag": "running"
+          },
+          {
+            "key": "foot_field",
+            "captionFr": "Match entre amis",
+            "tag": "football"
+          }
+        ]
+      },
+      "pro": {
+        "jobFr": "Professeure",
+        "educationFr": "Université de Metz",
+        "cityFr": "Metz",
+        "langs": [
+          "Franséisch",
+          "Lëtzebuergesch"
+        ]
+      },
+      "amis": {
+        "bioLu": "Ech wunnen zu Metz.",
+        "bioFr": "J'habite à Metz.",
+        "posts": [
+          {
+            "lu": "Ech spillen gär Fussball.",
+            "fr": "J'aime jouer au football.",
+            "tag": "football"
+          },
+          {
+            "lu": "Blo.",
+            "fr": "Ma couleur préférée est le bleu.",
+            "tag": "color",
+            "editorialStatus": "draft_fragment"
+          }
+        ]
+      },
+      "knownPreferences": [
+        "style_sportif",
+        "blue"
+      ],
+      "quirk": "Met les gens au défi de courir.",
+      "trapId": "trap_sport"
+    },
+    {
+      "id": "claire_r01",
+      "archetypeId": "bc_bg",
+      "name": "Claire",
+      "age": 31,
+      "city": "Lëtzebuerg",
+      "country": "Frankräich",
+      "originExpressionLu": "Ech kommen aus Frankräich.",
+      "cityExpressionLu": "Ech wunnen zu Lëtzebuerg.",
+      "jobFr": "Banquière",
+      "languages": [
+        "Franséisch",
+        "Englesch"
+      ],
+      "mainInterest": "carriere",
+      "secondaryInterest": "voyage",
+      "favoriteColor": "schwaarz",
+      "outfitSignal": {
+        "style": "bcbg",
+        "color": "schwaarz",
+        "explicit": true,
+        "source": "amis.posts[0]"
+      },
+      "phoneSignal": {
+        "trait": "normal",
+        "source": "amis.bio"
+      },
+      "pix": {
+        "private": false,
+        "followers": 510,
+        "bioLu": "Lëtzebuerg.",
+        "bioFr": "Luxembourg.",
+        "photos": [
+          {
+            "key": "reception",
+            "captionFr": "Soirée de gala, costume élégant",
+            "tag": "style_bcbg"
+          },
+          {
+            "key": "city_night",
+            "captionFr": "Vue depuis le centre-ville",
+            "tag": "urban"
+          }
+        ]
+      },
+      "pro": {
+        "jobFr": "Banquière",
+        "educationFr": "Université du Luxembourg",
+        "cityFr": "Luxembourg",
+        "langs": [
+          "Franséisch",
+          "Englesch"
+        ]
+      },
+      "amis": {
+        "bioLu": "Ech wunnen zu Lëtzebuerg.",
+        "bioFr": "J'habite au Luxembourg.",
+        "posts": [
+          {
+            "lu": "Schwaarz.",
+            "fr": "Pour les rendez-vous, j'aime les tenues élégantes et noires.",
+            "tag": "style_bcbg",
+            "editorialStatus": "draft_fragment"
+          },
+          {
+            "lu": "Ech schaffen an enger Bank.",
+            "fr": "Je travaille dans une banque.",
+            "tag": "profession"
+          }
+        ]
+      },
+      "knownPreferences": [
+        "style_bcbg",
+        "black",
+        "punctuality"
+      ],
+      "quirk": "Vérifie les déclarations professionnelles.",
+      "trapId": "trap_metier"
+    },
+    {
+      "id": "noemie_r01",
+      "archetypeId": "artiste",
+      "name": "Noémie",
+      "age": 25,
+      "city": "Esch",
+      "country": "Belsch",
+      "originExpressionLu": "Ech kommen aus der Belsch.",
+      "cityExpressionLu": "Ech wunnen zu Esch.",
+      "jobFr": "Illustratrice",
+      "languages": [
+        "Franséisch",
+        "Englesch"
+      ],
+      "mainInterest": "art",
+      "secondaryInterest": "musique",
+      "favoriteColor": "rout",
+      "outfitSignal": {
+        "style": "creatif",
+        "color": "rout",
+        "explicit": true,
+        "source": "amis.posts[0]"
+      },
+      "phoneSignal": {
+        "trait": "normal",
+        "source": "amis.bio"
+      },
+      "pix": {
+        "private": false,
+        "followers": 1760,
+        "bioLu": "Rout a blo.",
+        "bioFr": "Rouge et bleu.",
+        "photos": [
+          {
+            "key": "sketchbook",
+            "captionFr": "Croquis dans un café",
+            "tag": "art"
+          },
+          {
+            "key": "atelier",
+            "captionFr": "Peinture rouge",
+            "tag": "color"
+          }
+        ]
+      },
+      "pro": {
+        "jobFr": "Illustratrice",
+        "educationFr": "École d'art",
+        "cityFr": "Esch",
+        "langs": [
+          "Franséisch",
+          "Englesch"
+        ]
+      },
+      "amis": {
+        "bioLu": "Ech wunnen zu Esch.",
+        "bioFr": "J'habite à Esch.",
+        "posts": [
+          {
+            "lu": "Rout.",
+            "fr": "J'adore les looks créatifs avec une touche de rouge.",
+            "tag": "style_creatif",
+            "editorialStatus": "draft_fragment"
+          }
+        ]
+      },
+      "knownPreferences": [
+        "style_creatif",
+        "red"
+      ],
+      "quirk": "Propose des défis créatifs spontanés.",
+      "trapId": "trap_dessin"
+    },
+    {
+      "id": "maya_r01",
+      "archetypeId": "geek",
+      "name": "Maya",
+      "age": 26,
+      "city": "Tréier",
+      "country": "Däitschland",
+      "originExpressionLu": "Ech kommen aus Däitschland.",
+      "cityExpressionLu": "Ech wunnen zu Tréier.",
+      "jobFr": "Développeuse",
+      "languages": [
+        "Däitsch",
+        "Englesch"
+      ],
+      "mainInterest": "jeux",
+      "secondaryInterest": "technologie",
+      "favoriteColor": "gréng",
+      "outfitSignal": {
+        "style": "casual",
+        "color": "gréng",
+        "explicit": true,
+        "source": "amis.posts[0]"
+      },
+      "phoneSignal": {
+        "trait": "normal",
+        "source": "amis.bio"
+      },
+      "pix": {
+        "private": true,
+        "followers": 0,
+        "bioLu": "Spiller.",
+        "bioFr": "Jeux vidéo.",
+        "photos": []
+      },
+      "pro": {
+        "jobFr": "Développeuse",
+        "educationFr": "Formation informatique",
+        "cityFr": "Trèves",
+        "langs": [
+          "Däitsch",
+          "Englesch"
+        ]
+      },
+      "amis": {
+        "bioLu": "Ech wunnen zu Tréier.",
+        "bioFr": "J'habite à Trèves.",
+        "posts": [
+          {
+            "lu": "Gréng.",
+            "fr": "Pour un rendez-vous, casual et vert, c'est mon style.",
+            "tag": "style_casual",
+            "editorialStatus": "draft_fragment"
+          },
+          {
+            "lu": "Spiller.",
+            "fr": "Jeux rétro.",
+            "tag": "games",
+            "editorialStatus": "draft_fragment"
+          }
+        ]
+      },
+      "knownPreferences": [
+        "style_casual",
+        "green"
+      ],
+      "quirk": "Fait des blagues sur les vieux jeux.",
+      "trapId": "trap_arcade"
+    },
+    {
+      "id": "sofia_r01",
+      "archetypeId": "voyageuse",
+      "name": "Sofia",
+      "age": 29,
+      "city": "Metz",
+      "country": "Portugal",
+      "originExpressionLu": "Ech kommen aus Portugal.",
+      "cityExpressionLu": "Ech wunnen zu Metz.",
+      "jobFr": "Guide touristique",
+      "languages": [
+        "Portugisesch",
+        "Franséisch"
+      ],
+      "mainInterest": "voyage",
+      "secondaryInterest": "langues",
+      "favoriteColor": "blo",
+      "outfitSignal": {
+        "style": "casual",
+        "color": "blo",
+        "explicit": true,
+        "source": "amis.posts[0]"
+      },
+      "phoneSignal": {
+        "trait": "normal",
+        "source": "amis.bio"
+      },
+      "pix": {
+        "private": false,
+        "followers": 2140,
+        "bioLu": "Portugal a Lëtzebuerg.",
+        "bioFr": "Portugal et Luxembourg.",
+        "photos": [
+          {
+            "key": "lisbon",
+            "captionFr": "Vacances à Lisbonne, pays d'origine confirmé dans Amis",
+            "tag": "voyage"
+          },
+          {
+            "key": "train",
+            "captionFr": "Week-end en train",
+            "tag": "transport"
+          }
+        ]
+      },
+      "pro": {
+        "jobFr": "Guide touristique",
+        "educationFr": "Tourisme",
+        "cityFr": "Metz",
+        "langs": [
+          "Portugisesch",
+          "Franséisch"
+        ]
+      },
+      "amis": {
+        "bioLu": "Ech kommen aus Portugal. Ech wunnen zu Metz.",
+        "bioFr": "Je viens du Portugal et j'habite à Metz.",
+        "posts": [
+          {
+            "lu": "Blo.",
+            "fr": "J'aime les looks confortables, casual, et la couleur bleue.",
+            "tag": "style_casual",
+            "editorialStatus": "draft_fragment"
+          },
+          {
+            "lu": "Ech schwätzen Portugisesch.",
+            "fr": "Je parle portugais.",
+            "tag": "language"
+          }
+        ]
+      },
+      "knownPreferences": [
+        "style_casual",
+        "blue",
+        "portuguese"
+      ],
+      "quirk": "Curieuse des langues et des voyages.",
+      "trapId": "trap_portugal"
+    },
+    {
+      "id": "emma_r01",
+      "archetypeId": "chill",
+      "name": "Emma",
+      "age": 30,
+      "city": "Lëtzebuerg",
+      "country": "Frankräich",
+      "originExpressionLu": "Ech kommen aus Frankräich.",
+      "cityExpressionLu": "Ech wunnen zu Lëtzebuerg.",
+      "jobFr": "Libraire",
+      "languages": [
+        "Franséisch",
+        "Lëtzebuergesch"
+      ],
+      "mainInterest": "cafe",
+      "secondaryInterest": "lecture",
+      "favoriteColor": "beige",
+      "outfitSignal": {
+        "style": "loose",
+        "color": "beige",
+        "explicit": true,
+        "source": "amis.posts[0]"
+      },
+      "phoneSignal": {
+        "trait": "anti_phone",
+        "source": "amis.posts[1]"
+      },
+      "pix": {
+        "private": true,
+        "followers": 0,
+        "bioLu": "Kaffi.",
+        "bioFr": "Café.",
+        "photos": []
+      },
+      "pro": {
+        "jobFr": "Libraire",
+        "educationFr": "Lettres",
+        "cityFr": "Luxembourg",
+        "langs": [
+          "Franséisch",
+          "Lëtzebuergesch"
+        ]
+      },
+      "amis": {
+        "bioLu": "Ech wunnen zu Lëtzebuerg.",
+        "bioFr": "J'habite au Luxembourg.",
+        "posts": [
+          {
+            "lu": "Beige.",
+            "fr": "J'adore les tenues simples, amples et beiges.",
+            "tag": "style_loose",
+            "editorialStatus": "draft_fragment"
+          },
+          {
+            "lu": "",
+            "fr": "En rendez-vous, je déteste quand on sort son téléphone.",
+            "tag": "anti_phone",
+            "editorialStatus": "fr_only_pending_lu"
+          }
+        ]
+      },
+      "knownPreferences": [
+        "style_loose",
+        "beige",
+        "anti_phone"
+      ],
+      "quirk": "Apprécie une conversation attentive.",
+      "trapId": "trap_telephone"
+    }
+  ]
+}
