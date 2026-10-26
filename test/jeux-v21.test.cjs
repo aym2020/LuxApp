@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=13/);assert.match(html,/jeux-v21.js\?v=12/);assert.match(html,/survie-vfx\.js\?v=\d+/);
+ assert.match(html,/jeux-v21.css\?v=13/);assert.match(html,/jeux-v21.js\?v=13/);assert.match(html,/survie-vfx\.js\?v=\d+/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);

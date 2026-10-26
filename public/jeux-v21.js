@@ -166,6 +166,7 @@ function survieEnregistrer(record) {
 }
 function ouvrirJeux() {
   survieArreter();
+  if(typeof runnerArreter==='function')runnerArreter(); // SPEC 96
   renderJeuxHub();
   showView('view-jeux');
 }
@@ -198,7 +199,8 @@ function renderJeuxHub() {
         '<p class="jeux-verrou">'+explication+'</p>'+
         '<button class="jeux-jouer" type="button" onclick="goLessons()">'+(nombre===0?'Commencer une leçon':'Voir mes leçons')+' <span aria-hidden="true">→</span></button>':
         '<button class="jeux-jouer" type="button" onclick="demarrerSurvie()">Jouer <span aria-hidden="true">→</span></button>')+
-    '</section>';
+    '</section>'+
+    (typeof runnerCarteHub==='function'?runnerCarteHub():''); // SPEC 96 : Lux Runner
 }
 function survieChoisirMot(partie) {
   // On ne remet jamais la réserve à zéro au cours d'une partie.

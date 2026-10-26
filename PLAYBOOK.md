@@ -48,6 +48,12 @@ Premier test interactif Canvas 2D : jauge de combo enflammée, cœur incandescen
 
 ---
 
+## SPEC 96 — Lux Runner, les trois portails (branche `2.1`)
+
+[Fiche](docs/specs/SPEC-96.md). Deuxième jeu de la rubrique Jeux : choisir la voie Masculin / Féminin / Neutre avant l'arrivée des portails (Sprint 60, 3 vies, entraînement, tutoriel). **Tout dépend du temps de jeu, jamais des images.** Banque de noms **générée** : `node tools/runner-genres.cjs` après toute modification d'un genre dans une leçon (le test échoue sinon) ; ne jamais déduire un genre de `e`/`en`. Records par niveau, hors progression des leçons. Tests : `node --test test/runner.test.cjs`.
+
+---
+
 ## SPEC 93 — PWA hors ligne : leçons, progression et audios (branche `2.1`)
 
 [Spécification](docs/specs/SPEC-93.md) — **à implémenter, aucune capacité offline complète livrée.** Le manifeste actuel n'est pas un Service Worker ; le démarrage dépend de `/api/lecons`. Objectif prioritaire : après une première mise en cache explicite, pouvoir **fermer puis relancer LuxApp sans réseau**, utiliser les leçons/exercices/Survie téléchargés, conserver la progression locale et resynchroniser sans perte au retour du réseau. Audios par leçon en option, jamais les milliers d'audios d'un coup. Cache de code/données publiques uniquement, pas de credentials, isolation stricte de la recette `RECETTE=1`. Tests navigateur froid hors ligne + Samsung avant validation ; publication par étapes, sans toucher aux JSON ni aux règles pédagogiques.

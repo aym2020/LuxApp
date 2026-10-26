@@ -18,7 +18,7 @@ Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour
 | Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel** : LuxApp TEST autonome, authentification et isolation ; pas de raccourci dans le Plus normal |
 | Choisir les scénarios de test | [RECETTES-2.1.md](RECETTES-2.1.md) | Catalogue des scénarios et validations |
 | Incident des exercices | [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](POSTMORTEM-EXERCICES-2.1-2026-10-21.md) | Incidents et procédure obligatoire anti-régression |
-| Comportement attendu et décisions produit | [specs/README.md](specs/README.md) | **Registre de 89 fiches** ; lire l'état de chaque SPEC |
+| Comportement attendu et décisions produit | [specs/README.md](specs/README.md) | **Registre de 91 fiches** ; lire l'état de chaque SPEC |
 
 **Hiérarchie en cas de contradiction :** version réelle du code et des données sur la branche cible pour le fonctionnement constaté ; PLAYBOOK/AGENTS pour la méthode ; charte et Design System pour les règles d'interface ; SPEC concernée pour l'intention fonctionnelle ; TODO et recette pour l'état de validation. Un rapport historique ne vaut pas approbation produit.
 
