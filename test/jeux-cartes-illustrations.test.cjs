@@ -1,25 +1,21 @@
 'use strict';
-const test=require('node:test');
-const assert=require('node:assert/strict');
-const fs=require('node:fs'),path=require('node:path');
-const root=path.resolve(__dirname,'..');
-const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-
-test('Cartes Jeux : deux illustrations HD WebP optimisées, sans SVG utilisé',()=>{
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+test('Cartes Jeux SPEC 99 : WebP carré, léger et correctement référencé',()=>{
   const css=read('public/jeux-univers.css');
   for(const name of ['survie','runner']){
-    const pathname='public/art/jeux-'+name+'-card-hd.webp';
-    const asset=fs.readFileSync(path.join(root,pathname));
-    assert.ok(asset.length>30000 && asset.length<210000,'Image HD optimisée : '+name);
-    assert.equal(asset.toString('ascii',0,4),'RIFF');
-    assert.equal(asset.toString('ascii',8,12),'WEBP');
-    assert.ok(css.includes('art/jeux-'+name+'-card-hd.webp'),'Fond '+name+' non référencé');
-    assert.ok(!css.includes('url("art/jeux-'+name+'-card.svg")'),'Ancien SVG encore utilisé pour '+name);
+    const b=fs.readFileSync(path.join(root,'public/art/jeux-'+name+'-card-portrait.webp'));
+    assert.ok(b.length>30000&&b.length<150000,'fichier mobile optimisé : '+name);
+    assert.equal(b.toString('ascii',0,4),'RIFF');
+    assert.equal(b.toString('ascii',8,12),'WEBP');
+    assert.equal(b.toString('ascii',12,16),'VP8 ');
+    assert.equal(b.readUInt16LE(26)&0x3fff,1200);
+    assert.equal(b.readUInt16LE(28)&0x3fff,1200);
+    assert.ok(css.includes('art/jeux-'+name+'-card-portrait.webp'));
+    assert.ok(!css.includes('url("art/jeux-'+name+'-card-hd.webp")'));
   }
-  assert.ok(css.includes('linear-gradient(90deg,rgba(21,16,12'),'masque Survie');
-  assert.ok(css.includes('linear-gradient(90deg,rgba(19,14,27'),'masque Runner');
+  assert.ok(css.includes('max-width:88%'));
 });
-
 test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=>{
   const js=read('public/runner.js');
   const css=read('public/jeux-univers.css');
@@ -33,9 +29,9 @@ test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=
   assert.ok(css.includes('.runner-tuile.runner-n'));
 });
 
-test('Assets V1.3 versionnés : l’ancienne présentation n’est pas conservée par le cache',()=>{
+test('Assets SPEC 99 versionnés : l'ancien décor sort du cache',()=>{
   const html=read('public/index.html');
-  assert.match(html,/jeux-univers\.css\?v=3/);
+  assert.match(html,/jeux-univers\.css\?v=4/);
   assert.match(html,/runner\.js\?v=4/);
-  assert.doesNotMatch(html,/jeux-univers\.css\?v=2/);
+  assert.doesNotMatch(html,/jeux-univers\.css\?v=3/);
 });

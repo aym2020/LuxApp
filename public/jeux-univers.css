@@ -50,16 +50,16 @@
    Dégradé de contraste côté texte, rendu local sans CDN. */
 #view-jeux .jeux-carte:not(.runner-carte){
   background:
-    linear-gradient(90deg,rgba(21,16,12,.94) 0%,rgba(21,16,12,.86) 37%,rgba(21,16,12,.52) 70%,rgba(21,16,12,.12) 100%),
-    linear-gradient(0deg,rgba(20,17,12,.90) 0%,transparent 45%),
-    url("art/jeux-survie-card-hd.webp") center center / cover no-repeat,
+    linear-gradient(90deg,rgba(21,16,12,.3) 0%,rgba(21,16,12,.19) 48%,rgba(21,16,12,.06) 78%,transparent 100%),
+    linear-gradient(0deg,rgba(20,17,12,.3) 0%,transparent 38%),
+    url("art/jeux-survie-card-portrait.webp") center center / cover no-repeat,
     #211b13;
 }
 #view-jeux .runner-carte{
   background:
-    linear-gradient(90deg,rgba(19,14,27,.94) 0%,rgba(19,14,27,.84) 38%,rgba(19,14,27,.50) 70%,rgba(19,14,27,.10) 100%),
-    linear-gradient(0deg,rgba(19,15,27,.92) 0%,transparent 49%),
-    url("art/jeux-runner-card-hd.webp") center center / cover no-repeat,
+    linear-gradient(90deg,rgba(19,14,27,.3) 0%,rgba(19,14,27,.19) 48%,rgba(19,14,27,.06) 78%,transparent 100%),
+    linear-gradient(0deg,rgba(19,15,27,.3) 0%,transparent 38%),
+    url("art/jeux-runner-card-portrait.webp") center center / cover no-repeat,
     #191421;
 }
 #view-jeux .runner-tuiles{display:flex;gap:6px;margin-bottom:22px}
@@ -85,3 +85,7 @@
    Les mots, records et commandes HTML restent sur un contraste sombre. */
 #view-jeux .jeux-carte:not(.runner-carte){background-position:center center}
 #view-jeux .runner-carte{background-position:center center}
+
+/* SPEC 99 — Composition portrait : texte calme à gauche, scène à droite. */
+#view-jeux .jeux-carte > p:not(.jeux-verrou){max-width:88%;text-shadow:0 1px 7px rgba(0,0,0,.76)}
+#view-jeux .jeux-carte .jeux-meta{text-shadow:0 1px 6px rgba(0,0,0,.7)}
