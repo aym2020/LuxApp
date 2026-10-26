@@ -16,8 +16,8 @@ test('Cartes Jeux : deux illustrations HD WebP optimisées, sans SVG utilisé',(
     assert.ok(css.includes('art/jeux-'+name+'-card-hd.webp'),'Fond '+name+' non référencé');
     assert.ok(!css.includes('url("art/jeux-'+name+'-card.svg")'),'Ancien SVG encore utilisé pour '+name);
   }
-  assert.match(css,/linear-gradient\\(90deg,rgba\\(21,16,12/,'masque Survie');
-  assert.match(css,/linear-gradient\\(90deg,rgba\\(19,14,27/,'masque Runner');
+  assert.ok(css.includes('linear-gradient(90deg,rgba(21,16,12'),'masque Survie');
+  assert.ok(css.includes('linear-gradient(90deg,rgba(19,14,27'),'masque Runner');
 });
 
 test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=>{
