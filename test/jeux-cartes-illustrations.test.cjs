@@ -29,7 +29,7 @@ test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=
   assert.ok(css.includes('.runner-tuile.runner-n'));
 });
 
-test('Assets SPEC 99 versionnés : l'ancien décor sort du cache',()=>{
+test('Assets SPEC 99 versionnés : l’ancien décor sort du cache',()=>{
   const html=read('public/index.html');
   assert.match(html,/jeux-univers\.css\?v=4/);
   assert.match(html,/runner\.js\?v=4/);
