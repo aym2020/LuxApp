@@ -28,6 +28,18 @@ Le **violet** devient la couche ludique ; l'**or** reste la valeur LuxApp. Fichi
 - **Canvas :** ciel teinté violet avec brume et étoiles, route plus contrastée, pointillés plus lisibles, bords plus lumineux, perspective plus marquée, lampadaires à halo pré-dessiné ; arches « énergétiques » (sommet arrondi, halo, cœur clair, intérieur translucide, sol teinté, reflet sur la route, lettre dans une pastille au sommet, nom dès que la place le permet) ; aura du coureur au passage (couleur du genre, rouge sur un choc) et écharpe or qui flotte.
 - **Résultats :** stats apparaissant en cascade, score et record en or, mots à retravailler en cartes avec barre et pastille de la couleur du genre, article et choix fait.
 
+## Prototype 3D (V2 — bêta, opt-in)
+
+**Statut : prototype, désactivé par défaut.** Activation sur un appareil avec `?runner3d=1` dans l'adresse (mémorisé : `localStorage.luxRunner3D`), désactivation avec `?runner3d=0`. Badge « RENDU 3D · BÊTA » sur l'écran de préparation.
+
+- **Même jeu, autre rendu :** `public/runner-3d.js` (module ES, Three.js r170 vendorisé dans `public/vendor/three/`, aucun CDN) lit l'état de la partie et le met en scène ; aucune règle, aucun score, aucun son n'y sont modifiés. Il n'est téléchargé (import dynamique) que si le prototype est activé ; les modèles sont préchargés pendant l'écran de préparation et gardés en mémoire entre deux parties.
+- **Secours :** tant que la 3D charge, ou si WebGL / le chargement échoue, le rendu 2D V1.2 continue. Le canvas WebGL et ses ressources sont libérés à chaque fin de partie (seules les géométries des modèles partagés sont conservées).
+- **Scène :** caméra fixe derrière le coureur ; la route défile à la même vitesse que l'approche des portails (`RUNNER_PROFONDEUR` → 18 unités). Trio en cours + deux suivants + trio franchi, arche d'arrivée. Arches néon (tube, halo additif, voile, flaque au sol, pastille lettre + nom), bande lumineuse de la voie occupée, ville de nuit (brouillard violet, ciel dégradé, étoiles), lampadaires avec halo, particules, onde et aura au passage.
+- **Coureur animé :** course (vitesse d'animation liée à la vitesse du jeu), inclinaison au changement de voie, coup reçu sur une erreur, victoire ou chute en fin de Sprint.
+- **Assets (CC0) :** `public/runner3d/coureur.glb` (Quaternius, 405 Ko, 7 animations) et `ville.glb` (Kenney City Kit Roads + Commercial, 650 Ko) ; crédits dans `public/runner3d/CREDITS.md`. Scripts de régénération Blender (`bpy`) : `tools/runner3d/exporter_coureur.py` et `exporter_ville.py`. Les FBX du pack Quaternius ne contiennent pas la course : l'export part des `.blend`.
+- **Poids total au premier lancement 3D :** ≈ 1,9 Mo (Three.js 690 Ko + chargeurs 140 Ko + modèles 1,05 Mo), puis cache navigateur.
+- **Non vérifié :** fluidité sur Samsung (le navigateur de test sans GPU tourne à ~2,5 images/s, non représentatif), lisibilité des portails au loin en jeu réel, chauffe/batterie. Bascule par défaut seulement après recette Samsung.
+
 ## Banque de mots — `public/runner-mots.js`
 
 - Fichier **généré** par `node tools/runner-genres.cjs` (`--check` pour vérifier). Jamais d'analyse de texte libre pendant la partie.

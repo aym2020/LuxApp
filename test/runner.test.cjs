@@ -269,3 +269,27 @@ test('Intégration : vue, scripts, navigation et hub', () => {
   // Sons propres au runner : jamais ceux des exercices.
   assert.doesNotMatch(read('public/runner.js'), /jouerFeedbackSon|SurvieFx/);
 });
+
+test('Prototype 3D : chargé à la demande, assets locaux et légers, secours 2D', () => {
+  const runner = read('public/runner.js'), r3d = read('public/runner-3d.js'), html = read('public/index.html');
+  // Jamais chargé pour tout le monde : ni balise script, ni import statique.
+  assert.doesNotMatch(html, /runner-3d\.js|three\.module/);
+  assert.match(runner, /import\('\.\/runner-3d\.js/);
+  assert.match(runner, /function runnerRendu3DActif/);
+  assert.match(runner, /if \(runnerRendu3DActif\(\)\) runnerBrancher3D/);
+  // En cas d'échec, le rendu 2D continue.
+  assert.match(runner, /rendu 2D conservé/);
+  assert.match(runner, /if \(a\.rendu3d\) a\.rendu3d\.image\(p, dt\);\s*\/\/[^\n]*\n\s*else \{/);
+  // Imports relatifs uniquement (aucun CDN) et assets présents.
+  assert.doesNotMatch(r3d, /https?:\/\//);
+  assert.match(r3d, /from '\.\/vendor\/three\/three\.module\.min\.js'/);
+  for (const f of ['public/vendor/three/three.module.min.js', 'public/vendor/three/GLTFLoader.js',
+    'public/vendor/three/BufferGeometryUtils.js', 'public/runner3d/coureur.glb', 'public/runner3d/ville.glb', 'public/runner3d/CREDITS.md']) {
+    assert.ok(fs.existsSync(path.join(racine, f)), f);
+  }
+  const poids = ['coureur.glb', 'ville.glb'].reduce((t, f) => t + fs.statSync(path.join(racine, 'public/runner3d', f)).size, 0);
+  assert.ok(poids < 1.5e6, 'modèles < 1,5 Mo (' + poids + ')');
+  assert.doesNotMatch(read('public/vendor/three/GLTFLoader.js'), /from 'three'/);
+  // Aucune règle du jeu dans le rendu 3D.
+  assert.doesNotMatch(r3d, /runnerResoudre|runnerAvancer|p\.vies\s*[-+]=|p\.score\s*[-+]=/);
+});

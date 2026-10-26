@@ -357,6 +357,8 @@ function runnerCarteHub() {
 
 function ouvrirRunner() {
   runnerArreter();
+  // Prototype 3D : modèles téléchargés pendant l'écran de préparation.
+  if (runnerRendu3DActif()) runnerCharger3D().then(R3D => R3D.precharger()).catch(() => {});
   const mots = runnerMotsDuNiveau(runnerNiveau());
   if (!runnerDisponible(mots)) { if (typeof renderJeuxHub === 'function') renderJeuxHub(); return; }
   runnerRendrePreparation(false);
@@ -393,6 +395,7 @@ function runnerRendrePreparation(apresTuto) {
       '<span class="jeux-kicker">' + (apresTuto ? 'TU ES PRÊT' : 'LES TROIS PORTAILS') + '</span>' +
       '<h1>Lux Runner<span>.</span></h1>' +
       '<p class="runner-prepa-format">60 secondes · 3 vies</p>' +
+      (runnerRendu3DActif() ? '<span class="runner-badge-3d">RENDU 3D · BÊTA</span>' : '') +
       runnerApercuPortails() +
       '<div class="runner-prepa-records"><div><span>Record</span><strong>' + r.score + '</strong></div>' +
         '<div><span>Meilleure série</span><strong>' + r.combo + '</strong></div>' +
@@ -620,6 +623,7 @@ function runnerMontrerResultat(r) {
   const scene = document.getElementById('runner-scene');
   if (scene) scene.className = 'runner-scene runner-flash-' + (r.statut === 'correct' ? 'ok' : 'ko') + '-' + (p.rencontres % 2 ? 'a' : 'b');
   runnerEffetCollision(r);
+  if (p.affichage.rendu3d) p.affichage.rendu3d.collision(r);
 }
 
 // Annonce « Combo ×N » à partir de 3 bonnes réponses ; disparaît à la première erreur.
@@ -688,6 +692,7 @@ function runnerArreter() {
     if (a.feedbackTimer) clearTimeout(a.feedbackTimer);
     if (a.finTimer) clearTimeout(a.finTimer);
     if (a.redimension && typeof window !== 'undefined') window.removeEventListener('resize', a.redimension);
+    if (a.rendu3d) { a.rendu3d.detacher(); a.rendu3d = null; }
   }
   runnerPartie = null;
 }
@@ -784,7 +789,7 @@ function runnerNouvelAffichage() {
     fond: null, villeProche: null, degradeRoute: null, voieX: 1, inclinaison: 0, horloge: 0,
     secousse: 0, eclat: null, onde: null, particules: [], passe: null, trainees: [], creerTrainee: 0,
     feedbackTimer: null, finTimer: null, finProgrammee: false, redimension: null,
-    portailAffiche: null, chrono: '', vies: -1, score: -1, compteur: '', glisse: null
+    portailAffiche: null, chrono: '', vies: -1, score: -1, compteur: '', glisse: null, rendu3d: null
   };
 }
 
@@ -820,8 +825,11 @@ function runnerImage(maintenant) {
     if (typeof RunnerAudio !== 'undefined' && p.mode === 'sprint') RunnerAudio.suivreTemps(RUNNER_DUREE_SPRINT - p.temps);
     if (p.etat === 'fin') runnerFinDePartie();
   }
-  runnerMettreAJourEffets(p, p.etat === 'pause' ? 0 : dt);
-  runnerDessiner(p);
+  if (a.rendu3d) a.rendu3d.image(p, dt); // prototype 3D (même état, même horloge)
+  else {
+    runnerMettreAJourEffets(p, p.etat === 'pause' ? 0 : dt);
+    runnerDessiner(p);
+  }
   if (runnerPartie === p) a.boucle = requestAnimationFrame(runnerImage);
 }
 
@@ -841,6 +849,40 @@ function runnerAttacherScene() {
     scene.addEventListener('pointerup', runnerToucherFin);
     scene.addEventListener('pointercancel', () => { if (runnerPartie) runnerPartie.affichage.glisse = null; });
   }
+  if (runnerRendu3DActif()) runnerBrancher3D(p, scene);
+}
+
+// ─── Prototype 3D (SPEC 96 V2) ───────────────────────────────────────────────
+// Activé seulement avec ?runner3d=1 (mémorisé sur l'appareil ; ?runner3d=0 le
+// retire). Three.js et les modèles ne sont téléchargés que dans ce cas.
+// Pendant le chargement, ou si WebGL échoue, le rendu 2D continue.
+let runnerModule3D = null;
+function runnerRendu3DActif() {
+  try {
+    const param = typeof location !== 'undefined' ? new URLSearchParams(location.search).get('runner3d') : null;
+    if (param === '1') localStorage.setItem('luxRunner3D', '1');
+    if (param === '0') localStorage.removeItem('luxRunner3D');
+    return localStorage.getItem('luxRunner3D') === '1';
+  } catch (_) { return false; }
+}
+function runnerCharger3D() {
+  if (!runnerModule3D) {
+    runnerModule3D = import('./runner-3d.js?v=1').then(() => window.Runner3D);
+    runnerModule3D.catch(() => { runnerModule3D = null; });
+  }
+  return runnerModule3D;
+}
+function runnerBrancher3D(p, scene) {
+  if (!scene) return;
+  runnerCharger3D()
+    .then(R3D => R3D.creer(scene))
+    .then(instance => {
+      // La partie a pu se terminer pendant le chargement.
+      if (runnerPartie !== p || !p.affichage) { instance.detacher(); return; }
+      p.affichage.rendu3d = instance;
+      scene.setAttribute('data-rendu', '3d');
+    })
+    .catch(e => { if (typeof console !== 'undefined') console.warn('Lux Runner 3D indisponible, rendu 2D conservé :', e); });
 }
 
 // ─── 6. CONTRÔLES ───────────────────────────────────────────────────────────
