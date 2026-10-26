@@ -124,7 +124,7 @@ const RunnerAudio = (function () {
   function demarrerMusique() {
     if (!audio || minuterie !== null || !musiqueActive()) return;
     busMusique = audio.createGain();
-    busMusique.gain.value = 0.42;
+    busMusique.gain.value = 0.32;
     busMusique.connect(sortie);
     prochaine = audio.currentTime + 0.05;
     pas = 0;
@@ -173,21 +173,29 @@ const RunnerAudio = (function () {
     try { fabrique(audio.currentTime); } catch (_) { /* le son est un bonus */ }
   }
   // voie : 0 gauche, 1 centre, 2 droite → son placé dans l'espace stéréo.
+  // Retour haptique (Android) : court sur un bon portail, double sur une erreur.
+  function vibrer(motif) {
+    if (!effetsActifs() || typeof navigator === 'undefined' || typeof navigator.vibrate !== 'function') return;
+    try { navigator.vibrate(motif); } catch (_) { /* facultatif */ }
+  }
   function changementVoie(voie) {
     effet(t => souffle(sortie, t, 0.12, 0.12, 900, 2400, (voie - 1) * 0.6));
   }
   function bonPortail(serie) {
+    vibrer(18);
     effet(t => {
-      souffle(sortie, t, 0.22, 0.13, 600, 5000);
+      souffle(sortie, t, 0.22, 0.26, 600, 5000);
       const base = 523.25 * Math.pow(2, Math.min(serie, 8) / 24); // monte avec la série
-      note(sortie, base, t + 0.02, 0.12, 0.1, 'triangle');
-      note(sortie, base * 1.5, t + 0.08, 0.16, 0.08, 'triangle');
+      note(sortie, base, t + 0.02, 0.14, 0.22, 'triangle');
+      note(sortie, base * 1.5, t + 0.09, 0.2, 0.2, 'triangle');
     });
   }
   function erreur() {
+    vibrer([45, 40, 70]);
     effet(t => {
-      note(sortie, 110, t, 0.28, 0.35, 'sine', 40);
-      souffle(sortie, t, 0.18, 0.18, 300, 120);
+      note(sortie, 110, t, 0.3, 0.6, 'sine', 40);
+      note(sortie, 196, t, 0.16, 0.18, 'square', 98);
+      souffle(sortie, t, 0.2, 0.32, 300, 120);
     });
   }
   function combo(serie) {

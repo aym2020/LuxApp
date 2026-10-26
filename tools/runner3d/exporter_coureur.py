@@ -3,6 +3,7 @@
 # Ne garde que les animations utiles et remplace les anciens matériaux (Diffuse BSDF non exportable).
 import bpy, sys
 src, dst = sys.argv[1], sys.argv[2]
+PEAU_SRGB = (214, 160, 122)  # teinte chaude moyenne
 garder = {'Idle', 'Run', 'Jump', 'RecieveHit', 'Victory', 'Death', 'Roll'}
 bpy.ops.wm.open_mainfile(filepath=src)
 for a in list(bpy.data.actions):
@@ -20,6 +21,10 @@ for m in bpy.data.materials:
     sortie = noeuds.new('ShaderNodeOutputMaterial')
     sortie.is_active_output = True
     m.node_tree.links.new(bsdf.outputs[0], sortie.inputs[0])
+    # Peau : les personnages Quaternius ont une peau noire stylisée (silhouette
+    # avec yeux blancs). Pour LuxApp, teinte de peau naturelle (sRGB → linéaire).
+    if m.name == 'Skin':
+        couleur = tuple((c / 255) ** 2.2 for c in PEAU_SRGB) + (1.0,)
     bsdf.inputs['Base Color'].default_value = couleur
     bsdf.inputs['Metallic'].default_value = 0.0
     bsdf.inputs['Roughness'].default_value = 0.75

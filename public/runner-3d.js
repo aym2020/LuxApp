@@ -26,8 +26,8 @@ function chargerModeles() {
   if (!modelesPromesse) {
     const loader = new GLTFLoader();
     modelesPromesse = Promise.all([
-      loader.loadAsync('runner3d/coureur.glb'),
-      loader.loadAsync('runner3d/ville.glb')
+      loader.loadAsync('runner3d/coureur.glb?v=2'),
+      loader.loadAsync('runner3d/ville.glb?v=2')
     ]).then(([coureur, ville]) => {
       const pieces = {};
       ville.scene.children.forEach(c => { pieces[c.name.replace(/\d+$/, '')] = c; });
@@ -244,9 +244,21 @@ function creer(conteneur) {
     new THREE.MeshLambertMaterial({ map: texRoute, emissive: 0xffffff, emissiveMap: texRoute, emissiveIntensity: 0.12 }));
   route.rotation.x = -Math.PI / 2; route.position.set(0, 0, -60); scene.add(route);
   // Voie occupée : bande lumineuse de la couleur du genre.
-  const bande = new THREE.Mesh(new THREE.PlaneGeometry(VOIE * 0.95, 90),
-    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.0, blending: THREE.AdditiveBlending, depthWrite: false }));
-  bande.rotation.x = -Math.PI / 2; bande.position.set(0, 0.01, -40); scene.add(bande);
+  // Les trois voies portent leur couleur en permanence (bandes + liserés),
+  // la voie occupée est nettement plus lumineuse.
+  const texBande = textureCanvas(64, 4, (g, w) => {
+    const d = g.createLinearGradient(0, 0, w, 0);
+    d.addColorStop(0, 'rgba(255,255,255,0.9)'); d.addColorStop(0.12, 'rgba(255,255,255,0.35)');
+    d.addColorStop(0.5, 'rgba(255,255,255,0.2)'); d.addColorStop(0.88, 'rgba(255,255,255,0.35)'); d.addColorStop(1, 'rgba(255,255,255,0.9)');
+    g.fillStyle = d; g.fillRect(0, 0, w, 4);
+  });
+  const bandes = ORDRE.map((genre, i) => {
+    const b = new THREE.Mesh(new THREE.PlaneGeometry(VOIE * 0.92, 90),
+      new THREE.MeshBasicMaterial({ map: texBande, color: COULEURS[genre], transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false }));
+    b.rotation.x = -Math.PI / 2; b.position.set((i - 1) * VOIE, 0.01, -40);
+    scene.add(b);
+    return b;
+  });
 
   // Portails : trio en cours, deux suivants, trio franchi, arche d'arrivée.
   const trios = [creerTrio(lueur, etiquettes), creerTrio(lueur, etiquettes), creerTrio(lueur, etiquettes)];
@@ -321,19 +333,23 @@ function creer(conteneur) {
       for (let z = 0; z < BOUCLE; z += 6) {
         const lampe = rendreMat(pieces['light_curved'].clone(), 0);
         lampe.scale.setScalar(3.2);
-        lampe.rotation.y = cote > 0 ? Math.PI / 2 : -Math.PI / 2;
-        // La pièce Kenney est décalée sur sa tuile : on recentre son pied.
+        // Bras tourné vers la route (V2.1 : il pointait vers l'extérieur).
+        lampe.rotation.y = cote > 0 ? -Math.PI / 2 : Math.PI / 2;
+        // La pièce Kenney est décalée sur sa tuile : le pied (côté extérieur)
+        // est placé à l'origine du groupe, la tête au-dessus de la route.
         const boite = new THREE.Box3().setFromObject(lampe);
         const centre = boite.getCenter(new THREE.Vector3());
-        lampe.position.set(-centre.x, 0, -centre.z);
+        const taille = boite.getSize(new THREE.Vector3());
+        lampe.position.set(-(cote > 0 ? boite.max.x : boite.min.x), 0, -centre.z);
         const groupe = new THREE.Group();
         groupe.add(lampe);
-        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: lueur, color: 0xffd27a, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false }));
-        halo.scale.set(0.9, 0.9, 1); halo.position.set(-cote * 0.45, 2.1, 0);
+        const tete = -cote * Math.max(0.2, taille.x - 0.08);
+        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: lueur, color: 0xffd27a, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false }));
+        halo.scale.set(0.9, 0.9, 1); halo.position.set(tete, taille.y - 0.12, 0);
         groupe.add(halo);
         const flaque = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 2.2),
           new THREE.MeshBasicMaterial({ map: lueur, color: 0xffc860, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false }));
-        flaque.rotation.x = -Math.PI / 2; flaque.position.set(-cote * 0.6, 0.014, 0);
+        flaque.rotation.x = -Math.PI / 2; flaque.position.set(tete, 0.014, 0);
         groupe.add(flaque);
         groupe.position.x = cote * (LARGEUR_ROUTE / 2 + 0.35);
         scene.add(groupe); etat.decor.push({ objet: groupe, z: -z - 3 });
@@ -343,6 +359,12 @@ function creer(conteneur) {
 
   const pret = chargerModeles().then(({ coureur, pieces }) => {
     const modele = coureur.scene; // un seul coureur par partie : pas besoin de cloner le squelette
+    // Le modèle est gardé en mémoire et réutilisé à chaque partie : on remet
+    // l'échelle à 1 avant de mesurer (sinon « Rejouer » le rendait immense).
+    modele.scale.set(1, 1, 1);
+    modele.rotation.set(0, 0, 0);
+    modele.position.set(0, 0, 0);
+    modele.updateMatrixWorld(true);
     const boite = new THREE.Box3().setFromObject(modele);
     modele.scale.setScalar(1.12 / Math.max(0.01, boite.max.y - boite.min.y));
     modele.rotation.y = Math.PI; // de dos face à la caméra
@@ -443,11 +465,10 @@ function creer(conteneur) {
     aura.position.x = etat.x;
     aura.material.opacity = Math.max(0, aura.material.opacity - dt * 2.2);
     if (onde.material.opacity > 0) { onde.scale.multiplyScalar(1 + dt * 5); onde.material.opacity = Math.max(0, onde.material.opacity - dt * 2.4); }
-    if (p.voie) {
-      bande.material.color.set(COULEURS[p.voie]);
-      bande.position.x = (ORDRE.indexOf(p.voie) - 1) * VOIE;
-      bande.material.opacity = 0.1;
-    } else bande.material.opacity = 0;
+    bandes.forEach((b, i) => {
+      const cible = ORDRE[i] === p.voie ? 0.75 : 0.28;
+      b.material.opacity += (cible - b.material.opacity) * Math.min(1, dt * 10);
+    });
 
     // Portails : en cours, puis suivants derrière, tous à la même vitesse.
     trios.forEach(t => { t.visible = false; });
