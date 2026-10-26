@@ -329,6 +329,14 @@ function runnerApercuPortails() {
     RUNNER_GENRES[g].nom + '</small></span>').join('') + '</div>';
 }
 
+// Carte uniquement : tuiles M/F/N alignées sur S/U/R de Survie.
+// Le tutoriel et la préparation conservent l'aperçu en arches.
+function runnerApercuTuiles() {
+  return '<div class="runner-tuiles" aria-hidden="true">' +
+    RUNNER_VOIES.map(g => '<span class="runner-tuile runner-' + g + '">' +
+      RUNNER_GENRES[g].lettre + '</span>').join('') + '</div>';
+}
+
 // Carte affichée dans la rubrique Jeux (appelée par renderJeuxHub).
 function runnerCarteHub() {
   const niveau = runnerNiveau();
@@ -336,7 +344,7 @@ function runnerCarteHub() {
   const dispo = runnerDisponible(mots);
   const record = runnerRecords(niveau).score;
   return '<section class="jeux-carte runner-carte' + (dispo ? '' : ' jeux-carte-verrouillee') + '" aria-labelledby="jeux-runner-titre">' +
-    runnerApercuPortails() +
+    runnerApercuTuiles() +
     '<div class="jeux-carte-titre"><h2 id="jeux-runner-titre">Lux Runner</h2>' +
       (dispo ? '' : '<span class="jeux-etat">BIENTÔT</span>') + '</div>' +
     '<p>Apprends les genres en courant : choisis le bon portail avant qu’il n’arrive.</p>' +

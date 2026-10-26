@@ -42,3 +42,40 @@
 #view-jeux .runner-carte .jeux-meta{color:#bfb3d6}
 #view-jeux .runner-carte .jeux-meta b{color:var(--accent)}
 #view-jeux .runner-carte .jeux-etat{border-color:rgba(177,140,240,.6);color:#d9c9ff}
+
+
+/* SPEC 96 V1.3 — Illustrations intégrées : deux cartes, même composition.
+   Les images SVG sont locales, sans police distante ni JS, et les dégradés
+   maintiennent le contraste des titres, métadonnées et CTA sur mobile. */
+#view-jeux .jeux-carte:not(.runner-carte){
+  background:
+    linear-gradient(90deg,rgba(23,19,13,.98) 0%,rgba(23,19,13,.90) 37%,rgba(23,19,13,.64) 67%,rgba(23,19,13,.28) 100%),
+    linear-gradient(0deg,rgba(20,17,12,.90) 0%,transparent 45%),
+    url("art/jeux-survie-card.svg") center center / cover no-repeat,
+    #211b13;
+}
+#view-jeux .runner-carte{
+  background:
+    linear-gradient(90deg,rgba(19,15,27,.98) 0%,rgba(19,15,27,.90) 38%,rgba(19,15,27,.61) 69%,rgba(19,15,27,.24) 100%),
+    linear-gradient(0deg,rgba(19,15,27,.92) 0%,transparent 49%),
+    url("art/jeux-runner-card.svg") center center / cover no-repeat,
+    #191421;
+}
+#view-jeux .runner-tuiles{display:flex;gap:6px;margin-bottom:22px}
+#view-jeux .runner-tuile{
+  --tile-color:var(--runner-m,var(--info,#6fb0f2));
+  display:grid;place-items:center;
+  width:38px;height:44px;
+  border:1px solid var(--tile-color);
+  border-bottom:3px solid var(--tile-color);
+  border-radius:8px;
+  background:color-mix(in srgb,var(--tile-color) 12%,#201b29);
+  color:var(--tile-color);
+  font:800 21px/1 var(--font);
+  text-shadow:none;
+}
+#view-jeux .runner-tuile.runner-f{--tile-color:var(--runner-f,#f18bbb)}
+#view-jeux .runner-tuile.runner-n{--tile-color:var(--runner-n,var(--violet,#b18cf0))}
+@media (forced-colors:active){
+  #view-jeux .runner-tuile{border-color:CanvasText;color:CanvasText}
+}

@@ -71,3 +71,10 @@ Mode Endurance (le moteur le permet : `runnerAvancer` sans limite), classement e
 4. Musique et effets : volume, coupure séparée, silence en pause et écran éteint, aucun son résiduel après sortie.
 5. Fluidité du rendu V1.1 (lampadaires, traînées, trios suivants) sur un téléphone modeste.
 6. Équilibrage 4 / 3,5 / 3 s à confirmer par des parties réelles.
+
+## V1.3 — Illustrations des cartes et tuiles de la rubrique Jeux (26/10/2026)
+
+- **Survie** et **Lux Runner** possèdent chacun une illustration locale et légère `public/art/jeux-survie-card.svg` et `public/art/jeux-runner-card.svg`. Les fonds sont décoratifs : aucun texte de jeu ne dépend de l'image. Dégradés d'opacité de gauche à droite + ombre basse préservent la lecture des titres, descriptions, records et boutons dorés.
+- **Survie** conserve ses trois tuiles S/U/R existantes ; sur la **carte Lux Runner seulement**, M/F/N prennent les mêmes dimensions, espaces, arrondis et proportions de tuiles, avec les couleurs sémantiques masculin bleu, féminin rose, neutre violet. Dans les écrans de tutoriel et de préparation, les **arches restent inchangées** pour expliquer la mécanique des portails.
+- Les illustrations sont SVG statiques, aucun asset externe, aucune animation lourde ni ressource réseau pendant une partie. Le gameplay, les scores, le son, le niveau et la progression sont inchangés.
+- Recette : vérifier sous 320, 360, 390 et 430 px que les 3 tuiles, les titres, le texte, les records et le CTA restent entièrement lisibles, y compris avec une carte verrouillée ; contrôler le parcours tutoriel et l'aperçu en arches séparément.
