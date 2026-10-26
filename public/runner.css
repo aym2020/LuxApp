@@ -83,7 +83,7 @@
 #view-runner .runner-hud-score{text-align:right;align-items:flex-end}
 #view-runner .runner-hud-score strong{color:var(--accent);display:inline-block;transform-origin:right bottom}
 /* Gain : « +150 » en or à gauche du score (ne passe plus sous le bouton pause). */
-#view-runner .runner-hud-score em{position:absolute;right:calc(100% + 8px);bottom:4px;font:900 17px/1 var(--font);font-style:italic;color:var(--accent);text-shadow:0 0 10px rgba(245,207,77,.6);white-space:nowrap;opacity:0;pointer-events:none}
+#view-runner .runner-hud-score em{position:absolute;right:calc(100% + 8px);bottom:6px;font:12px/1 var(--pixel);font-style:normal;color:#ffd84a;text-shadow:0 2px 0 #c06a12,2px 2px 0 #000;white-space:nowrap;opacity:0;pointer-events:none}
 #view-runner .runner-vies{display:flex;gap:4px;padding-bottom:3px}
 #view-runner .runner-vies i{display:block;width:24px;height:24px;color:var(--wrong);transition:opacity .25s ease,transform .25s ease}
 #view-runner .runner-vies i svg{width:24px;height:24px;fill:currentColor}
@@ -113,64 +113,62 @@
 #view-runner .runner-flash-ko-b::after{animation-name:runner-flash-b}
 @keyframes runner-flash-a{0%{opacity:1}100%{opacity:0}}
 @keyframes runner-flash-b{0%{opacity:1}100%{opacity:0}}
-/* SPEC 106 / V2.6 — Feedback « MOT PRÉCÉDENT » dans la DA du jeu (néon de nuit) :
-   carte de verre sombre, liseré lumineux vert (juste) ou corail (faux),
-   pastille du genre comme sur les portails, gain en or. Aucune zone tactile captée. */
+/* SPEC 106 / V2.7 — Feedback « MOT PRÉCÉDENT » en style arcade rétro :
+   texte centré en police pixel (Press Start 2P, OFL, auto-hébergée), ombres dures,
+   apparition « pop » en paliers. Aucune boîte, aucune zone tactile captée. */
+@font-face{font-family:'Press Start 2P';src:url('fonts/press-start-2p-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+#view-runner{--pixel:'Press Start 2P',ui-monospace,monospace}
 #view-runner .runner-feedback{
-  --etat:#54e0ad;
-  position:absolute;left:12px;top:12px;z-index:2;
-  width:max-content;max-width:min(300px,calc(100% - 150px));min-width:150px;
-  padding:8px 12px 9px 12px;
-  border-radius:14px;
-  background:linear-gradient(160deg,rgba(38,28,60,.86),rgba(14,11,22,.9));
-  border:1px solid color-mix(in srgb,var(--etat) 55%,transparent);
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  box-shadow:0 0 0 1px rgba(0,0,0,.35),0 0 18px color-mix(in srgb,var(--etat) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.06);
-  text-align:left;color:#f4edff;
-  opacity:0;transform:translateY(-6px) scale(.96);transform-origin:left top;
-  transition:opacity .16s ease,transform .22s cubic-bezier(.2,1.4,.4,1);
-  pointer-events:none;
+  position:absolute;left:12px;right:12px;top:14px;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:8px 6px 10px;text-align:center;
+  font-family:var(--pixel);-webkit-font-smoothing:none;font-smooth:never;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(8,5,16,.6),transparent 75%);
+  opacity:0;visibility:hidden;pointer-events:none;
 }
-/* Liseré lumineux à gauche, comme une voie allumée. */
-#view-runner .runner-feedback::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;
-  background:var(--etat);box-shadow:0 0 8px var(--etat)}
-#view-runner .runner-feedback.runner-feedback-visible{opacity:1;transform:none}
-#view-runner .runner-feedback.runner-ko{--etat:#ff6b6b}
-#view-runner .runner-feedback-entete{display:flex;align-items:baseline;justify-content:space-between;gap:12px;white-space:nowrap}
-#view-runner .runner-feedback-entete span{font:800 9px/1.2 var(--font);letter-spacing:.14em;color:#a996cf}
-#view-runner .runner-feedback-entete b{font:900 16px/1 var(--font);font-variant-numeric:tabular-nums;font-style:italic;letter-spacing:.01em}
-#view-runner .runner-feedback.runner-ok .runner-feedback-entete b{color:var(--accent);text-shadow:0 0 10px rgba(245,207,77,.55)}
-#view-runner .runner-feedback.runner-ko .runner-feedback-entete b{color:#ff8a80;text-shadow:0 0 10px rgba(255,107,107,.55)}
-#view-runner .runner-feedback-correction{display:flex;flex-wrap:wrap;align-items:center;gap:3px 7px;margin-top:6px;min-width:0}
-/* Pastille du genre : même rendu que sur les portails. */
-#view-runner .runner-feedback-genre{flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;
-  background:var(--g);color:#0f0e0c;font:900 11px/1 var(--font);font-style:normal;
-  box-shadow:0 0 0 2px rgba(255,255,255,.75),0 0 10px var(--g)}
-#view-runner .runner-feedback-correction strong{font:800 15px/1.2 var(--font);color:#fff;overflow-wrap:anywhere;min-width:0;max-width:100%}
-#view-runner .runner-feedback-correction small{font:750 11px/1.2 var(--font);color:var(--g);filter:brightness(1.25)}
+#view-runner .runner-feedback.runner-feedback-visible{opacity:1;visibility:visible}
+/* Animation sur les enfants : recréés à chaque message, l'effet repart toujours. */
+#view-runner .runner-feedback.runner-feedback-visible>*{animation:runner-arcade-pop 240ms steps(3,end)}
+@keyframes runner-arcade-pop{0%{transform:scale(1.6)}100%{transform:scale(1)}}
+#view-runner .runner-feedback-entete{display:flex;flex-direction:column;align-items:center;gap:7px}
+#view-runner .runner-feedback-entete span{font:8px/1 var(--pixel);letter-spacing:.08em;color:#b9a6e6;text-shadow:1px 1px 0 #000}
+#view-runner .runner-feedback-entete b{font:24px/1 var(--pixel);font-weight:400;text-transform:uppercase;letter-spacing:.02em}
+#view-runner .runner-feedback.runner-ok .runner-feedback-entete b{color:#ffd84a;text-shadow:0 3px 0 #c06a12,3px 3px 0 #2a1204,-2px 0 0 #2a1204,2px -1px 0 #2a1204}
+#view-runner .runner-feedback.runner-ko .runner-feedback-entete b{color:#ff5a5a;text-shadow:0 3px 0 #8e1b2a,3px 3px 0 #1d0508,-2px 0 0 #1d0508,2px -1px 0 #1d0508;
+  animation:runner-arcade-clignote 420ms steps(1,end) 2}
+@keyframes runner-arcade-clignote{50%{color:#fff}}
+#view-runner .runner-feedback-correction{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 12px;max-width:100%}
+/* Genre : carré pixel de la couleur du portail. */
+#view-runner .runner-feedback-genre{flex:none;display:grid;place-items:center;width:22px;height:22px;
+  background:var(--g);color:#0f0e0c;font:12px/1 var(--pixel);font-style:normal;
+  box-shadow:0 0 0 2px #0f0e0c,0 0 0 4px #fff,4px 4px 0 2px #000}
+#view-runner .runner-feedback-correction strong{font:14px/1.3 var(--pixel);font-weight:400;color:#fff;text-shadow:2px 2px 0 #000;overflow-wrap:anywhere;max-width:100%}
+#view-runner .runner-feedback-correction small{font:8px/1 var(--pixel);text-transform:uppercase;letter-spacing:.08em;color:var(--g);text-shadow:1px 1px 0 #000}
 @media(max-width:359px){
-  #view-runner .runner-feedback{left:9px;top:9px;max-width:calc(100% - 130px);min-width:0;padding:7px 10px}
+  #view-runner .runner-feedback-entete b{font-size:20px}
+  #view-runner .runner-feedback-correction strong{font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){
-  #view-runner .runner-feedback{transition:none;transform:none}
+  #view-runner .runner-feedback.runner-feedback-visible>*,#view-runner .runner-feedback.runner-ko .runner-feedback-entete b{animation:none}
 }
 #view-runner .runner-aide{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:700 13px var(--font);color:var(--accent);pointer-events:none;text-shadow:0 1px 6px #000}
 
-/* Combo : texte d'arcade sans boîte — italique, or lumineux, halo qui grandit avec le palier. */
-#view-runner .runner-combo{position:absolute;right:12px;top:10px;display:flex;flex-direction:column;align-items:flex-end;gap:0;
-  opacity:0;transform:scale(.8) rotate(-4deg);transform-origin:right top;transition:opacity .18s ease,transform .25s cubic-bezier(.2,1.5,.4,1);pointer-events:none}
-#view-runner .runner-combo span{font:900 10px/1 var(--font);font-style:italic;letter-spacing:.22em;color:#d9c9ff;text-shadow:0 0 8px rgba(177,140,240,.8),0 1px 2px #000}
-#view-runner .runner-combo strong{display:block;font:900 34px/1 var(--font);font-style:italic;font-variant-numeric:tabular-nums;color:#ffe27a;
-  background:linear-gradient(180deg,#fff3b0 0%,#f5cf4d 55%,#e09a1f 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 2px 0 #3a2208) drop-shadow(0 0 8px rgba(245,207,77,.55));transform-origin:right center}
-#view-runner .runner-combo[data-palier="2"] strong{filter:drop-shadow(0 2px 0 #3a2208) drop-shadow(0 0 12px rgba(245,207,77,.75)) drop-shadow(0 0 18px rgba(177,140,240,.6))}
-#view-runner .runner-combo[data-palier="3"] strong{font-size:40px;filter:drop-shadow(0 2px 0 #3a2208) drop-shadow(0 0 14px rgba(255,170,60,.9)) drop-shadow(0 0 26px rgba(255,120,40,.6))}
-#view-runner .runner-combo.runner-combo-visible{opacity:1;transform:rotate(-4deg)}
-#view-runner .runner-combo.runner-combo-casse{opacity:0;transform:translateY(10px) scale(.85) rotate(-4deg)}
-#view-runner .runner-combo-anim-a strong{animation:runner-combo-a 380ms cubic-bezier(.2,1.4,.4,1)}
-#view-runner .runner-combo-anim-b strong{animation:runner-combo-b 380ms cubic-bezier(.2,1.4,.4,1)}
-@keyframes runner-combo-a{0%{transform:scale(1)}35%{transform:scale(1.4)}100%{transform:scale(1)}}
-@keyframes runner-combo-b{0%{transform:scale(1)}35%{transform:scale(1.4)}100%{transform:scale(1)}}
+/* Combo : HUD arcade centré sous le feedback, police pixel, jamais coupé sur les bords. */
+#view-runner .runner-combo{position:absolute;left:12px;right:12px;top:112px;display:flex;justify-content:center;align-items:baseline;gap:10px;
+  font-family:var(--pixel);-webkit-font-smoothing:none;opacity:0;visibility:hidden;pointer-events:none}
+#view-runner .runner-combo span{font:10px/1 var(--pixel);letter-spacing:.1em;color:#d9c9ff;text-shadow:2px 2px 0 #2a1a4a,3px 3px 0 #000}
+#view-runner .runner-combo strong{display:inline-block;font:22px/1 var(--pixel);font-weight:400;color:#ffd84a;
+  text-shadow:0 3px 0 #c06a12,3px 3px 0 #2a1204,-2px 0 0 #2a1204;font-variant-numeric:tabular-nums}
+#view-runner .runner-combo[data-palier="2"] span{color:#ffb3ff}
+#view-runner .runner-combo[data-palier="3"] strong{animation:runner-combo-arcenciel 480ms steps(1,end) infinite}
+@keyframes runner-combo-arcenciel{0%{color:#ffd84a}25%{color:#ff7a3c}50%{color:#ffffff}75%{color:#7cf2ff}}
+#view-runner .runner-combo.runner-combo-visible{opacity:1;visibility:visible}
+#view-runner .runner-combo.runner-combo-casse{opacity:0;visibility:hidden}
+#view-runner .runner-combo-anim-a strong,#view-runner .runner-combo-anim-b strong{animation:runner-combo-a 300ms steps(3,end)}
+#view-runner .runner-combo-anim-b strong{animation-name:runner-combo-b}
+#view-runner .runner-combo-anim-a[data-palier="3"] strong,#view-runner .runner-combo-anim-b[data-palier="3"] strong{animation:runner-combo-a 300ms steps(3,end),runner-combo-arcenciel 480ms steps(1,end) 300ms infinite}
+@keyframes runner-combo-a{0%{transform:scale(1.8)}100%{transform:scale(1)}}
+@keyframes runner-combo-b{0%{transform:scale(1.8)}100%{transform:scale(1)}}
 
 /* Commandes de voie : vraies commandes de jeu. */
 #view-runner .runner-voies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:4px}
@@ -209,8 +207,8 @@
 #view-runner .runner-gain-anim-b{animation-name:runner-gain-b}
 @keyframes runner-score-a{40%{transform:scale(1.18)}}
 @keyframes runner-score-b{40%{transform:scale(1.18)}}
-@keyframes runner-gain-a{0%{opacity:0;transform:translateX(8px) scale(.8)}20%{opacity:1;transform:none}75%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
-@keyframes runner-gain-b{0%{opacity:0;transform:translateX(8px) scale(.8)}20%{opacity:1;transform:none}75%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+@keyframes runner-gain-a{0%{opacity:1;transform:translateY(4px)}15%{transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
+@keyframes runner-gain-b{0%{opacity:1;transform:translateY(4px)}15%{transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
 
 /* Pause */
 #view-runner .runner-pause{position:absolute;inset:0;z-index:5;display:grid;place-items:center;padding:16px;background:rgba(10,8,14,.8);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}

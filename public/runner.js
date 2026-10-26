@@ -629,7 +629,8 @@ function runnerDureeFeedback(statut) {
 }
 function runnerHtmlFeedback(r, mode) {
   const bon = r.statut === 'correct';
-  const signal = bon ? '✓ +' + r.points : (mode === 'sprint' ? '−1 vie' : 'À revoir');
+  // Style arcade (police pixel) : pas de ✓ ni de signe − typographique, absents de la police.
+  const signal = bon ? '+' + r.points : (mode === 'sprint' ? '-1 vie' : 'À revoir');
   const g = RUNNER_GENRES[r.mot.gender];
   const complement = r.statut === 'absent' ? ' · sans choix' : '';
   // Pastille du genre identique à celle des portails (couleur + lettre).

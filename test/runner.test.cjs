@@ -337,14 +337,14 @@ test('SPEC 106 : micro-feedback attribué au mot précédent sans bloquer la cou
   ctx.exemple = { statut:'correct', points:125, mot:{ articleForm:'e Bild', gender:'n' } };
   let html = vm.runInContext('runnerHtmlFeedback(exemple, "sprint")', ctx);
   assert.match(html, /MOT PRÉCÉDENT/);
-  assert.match(html, /✓ \+125/);
+  assert.match(html, /\+125/);
   assert.match(html, /e Bild/);
   assert.match(html, /Neutre/);
   assert.doesNotMatch(html, /Correct|Faux|Trop tard/);
   assert.equal(vm.runInContext('runnerDureeFeedback("correct")', ctx), 650);
   ctx.exemple = { statut:'faux', points:0, mot:{ articleForm:'eng Dier', gender:'f' } };
   html = vm.runInContext('runnerHtmlFeedback(exemple, "sprint")', ctx);
-  assert.match(html, /−1 vie/);
+  assert.match(html, /-1 vie/);
   assert.match(html, /eng Dier/);
   assert.match(html, /Féminin/);
   assert.equal(vm.runInContext('runnerDureeFeedback("faux")', ctx), 1050);
@@ -353,7 +353,7 @@ test('SPEC 106 : micro-feedback attribué au mot précédent sans bloquer la cou
   assert.match(html, /sans choix/);
   html = vm.runInContext('runnerHtmlFeedback(exemple, "entrainement")', ctx);
   assert.match(html, /À revoir/);
-  assert.doesNotMatch(html, /−1 vie/);
+  assert.doesNotMatch(html, /-1 vie/);
   ctx.exemple = { statut:'correct', points:100, mot:{ articleForm:'<b>mot&',gender:'m' } };
   html = vm.runInContext('runnerHtmlFeedback(exemple, "tuto")', ctx);
   assert.match(html, /&lt;b&gt;mot&amp;/);

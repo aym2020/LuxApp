@@ -131,3 +131,10 @@ Voir [`SPEC-106.md`](SPEC-106.md) : micro-correction compacte après chaque coll
 - **Feedback « MOT PRÉCÉDENT »** (contenu SPEC 106 inchangé) : carte de verre violet sombre, liseré lumineux à gauche et halo vert (juste) ou corail (faux), signal en italique gras (or pour le gain, corail pour « −1 vie »), pastille du genre identique à celle des portails (couleur + lettre), nom du genre dans sa couleur. Largeur limitée pour laisser la place au combo.
 - **Combo** : texte d'arcade sans boîte, en haut à droite, italique incliné, « ×N » en dégradé or avec contour sombre ; halo plus fort au palier 2 (violet) et au palier 3 (orangé, texte plus grand).
 - **Gain de score** : « +N » en or à gauche du score (il passait sous le bouton pause).
+
+## V2.7 — Messages en style arcade rétro (26/10/2026)
+- Remplace V2.6. Police pixel **Press Start 2P** (SIL OFL, `public/fonts/press-start-2p-latin-400-normal.woff2`, 12 Ko, licence `PRESS-START-2P-LICENSE.txt`), réservée aux messages du jeu.
+- **Feedback « MOT PRÉCÉDENT »** : texte centré en haut de la scène, sans boîte (léger voile sombre radial), ombres dures. Signal en 24 px : « +150 » or, « -1 VIE » rouge qui clignote deux fois, « À REVOIR » en entraînement. Correction en dessous : carré pixel de la couleur du genre + mot + nom du genre dans sa couleur. Apparition « pop » en 3 paliers (`steps`).
+- Les caractères ✓ et − (absents de la police) ne sont plus utilisés : `+N`, `-1 vie`.
+- **Combo** : centré sous le feedback (plus jamais coupé au bord), « COMBO ×N » en pixel, pop à chaque palier ; au palier 3, couleurs arcade qui alternent.
+- **Gain de score** : « +N » en pixel or à gauche du score.
