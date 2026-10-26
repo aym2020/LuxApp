@@ -30,3 +30,10 @@ test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=
   assert.ok(css.includes('.runner-tuile.runner-f'));
   assert.ok(css.includes('.runner-tuile.runner-n'));
 });
+
+test('Assets V1.3 versionnés : l’ancienne présentation n’est pas conservée par le cache',()=>{
+  const html=read('public/index.html');
+  assert.match(html,/jeux-univers\\.css\\?v=2/);
+  assert.match(html,/runner\\.js\\?v=4/);
+  assert.doesNotMatch(html,/jeux-univers\\.css\\?v=1/);
+});

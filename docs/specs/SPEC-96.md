@@ -78,3 +78,6 @@ Mode Endurance (le moteur le permet : `runnerAvancer` sans limite), classement e
 - **Survie** conserve ses trois tuiles S/U/R existantes ; sur la **carte Lux Runner seulement**, M/F/N prennent les mêmes dimensions, espaces, arrondis et proportions de tuiles, avec les couleurs sémantiques masculin bleu, féminin rose, neutre violet. Dans les écrans de tutoriel et de préparation, les **arches restent inchangées** pour expliquer la mécanique des portails.
 - Les illustrations sont SVG statiques, aucun asset externe, aucune animation lourde ni ressource réseau pendant une partie. Le gameplay, les scores, le son, le niveau et la progression sont inchangés.
 - Recette : vérifier sous 320, 360, 390 et 430 px que les 3 tuiles, les titres, le texte, les records et le CTA restent entièrement lisibles, y compris avec une carte verrouillée ; contrôler le parcours tutoriel et l'aperçu en arches séparément.
+
+## Livraison visuelle V1.3 — cache navigateur
+`public/index.html` référence désormais `jeux-univers.css?v=2` et `runner.js?v=4` pour invalider les ressources mises en cache avant l’arrivée des nouveaux décors et tuiles. Les illustrations restent des ressources locales sous `public/art/` ; les modes de jeu, les comptes et les sauvegardes ne sont pas modifiés.
