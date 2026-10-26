@@ -279,7 +279,7 @@ test('Prototype 3D : chargé à la demande, assets locaux et légers, secours 2D
   assert.match(runner, /if \(runnerRendu3DActif\(\)\) p\.affichage\.pret3d = runnerBrancher3D/);
   // En cas d'échec, le rendu 2D continue.
   assert.match(runner, /rendu 2D conservé/);
-  assert.match(runner, /if \(a\.rendu3d\) a\.rendu3d\.image\(p, dt\);\s*\/\/[^\n]*\n\s*else \{/);
+  assert.match(runner, /if \(a\.rendu3d\) a\.rendu3d\.image\(p, dt\);\s*\/\/[^\n]*\n\s*else if \(!a\.attente3d\) \{/);
   // Imports relatifs uniquement (aucun CDN) et assets présents.
   assert.doesNotMatch(r3d, /https?:\/\//);
   assert.match(r3d, /from '\.\/vendor\/three\/three\.module\.min\.js'/);

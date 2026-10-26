@@ -106,7 +106,7 @@ Ce répertoire contient **91 fiches de spécification présentes** sur la branch
 | 94 | [Feedback unifié, audio et parité de composants UI](./SPEC-94.md) | P1 | **Lots 1 et 2 codés** ; présentation de la correction et emplacement des CTA **remplacés par SPEC 95 (codée)** ; scores, sons, essais inchangés ; Samsung à faire |
 | 95 | [Dock d'action stable, correction minimale et scroll unique](./SPEC-95.md) | P0 UX | **Implémentée** (enveloppe à trois zones, `renderActionExercice`, correction légère) ; G01–G19, G21–G23 automatisés (`test_spec95_exercices.py`) ; **recette Samsung à faire** |
 | 96 | [Lux Runner : les trois portails](./SPEC-96.md) | — | V1.2 implémentée (voie conservée, rythme 4/3,5/3 s, son dédié, univers visuel violet) ; **prototype 3D opt-in** (`?runner3d=1`) — `test/runner.test.cjs` ; contrôle navigateur 360/430 ; **recette Samsung à faire** |
-| 101 | [Compte à rebours avant Survie et Lux Runner](./SPEC-101.md) | — | Implémentée — `test/jeux-decompte.test.cjs` ; **recette Samsung à faire** |
+| 101 | [Compte à rebours avant Survie et Lux Runner](./SPEC-101.md) | — | **Retirée** (26/10/2026) — décompte jugé insuffisant ; seule la synchro son/scène de Lux Runner est conservée |
 
 ## Précautions de lecture
 

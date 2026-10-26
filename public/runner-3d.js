@@ -673,8 +673,8 @@ function creer(conteneur) {
     const avance = p.etat === 'course';
     if (etat.mixer) {
       // Retour à la course après un coup reçu.
-      // Décompte : le coureur attend sur place, puis s'élance au GO.
-      if (p.etat === 'decompte') jouer('Idle', { fondu: 0.2 });
+      // Chargement : le coureur attend sur place, puis s'élance.
+      if (p.etat === 'attente') jouer('Idle', { fondu: 0.2 });
       else if (etat.actionCourante === etat.actions.Idle && avance) jouer('Run', { fondu: 0.15 });
       const ponctuelle = etat.actionCourante === etat.actions.RecieveHit || etat.actionCourante === etat.actions.Jump;
       if (ponctuelle && !etat.actionCourante.isRunning() && avance) jouer('Run', { fondu: 0.15 });

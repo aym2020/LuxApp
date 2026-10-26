@@ -453,37 +453,30 @@ function demarrerRunner(mode) {
   const vue = document.getElementById('view-runner');
   if (!vue || !vue.classList.contains('active')) showView('view-runner');
   // Pendant l'appui sur Jouer : on déverrouille seulement l'audio (Android/iOS).
-  // La musique ne démarre qu'au GO, une fois la scène affichée.
+  // La musique et la course ne partent qu'une fois la scène 3D affichée.
   if (typeof RunnerAudio !== 'undefined') RunnerAudio.preparer();
-  if (typeof jeuDecompteDebloquer === 'function') jeuDecompteDebloquer();
   runnerLancerPortail(runnerPartie, 0);
   runnerMajMot();
   runnerMajHud(true);
-  // SPEC 101 : le temps de jeu reste figé tant que la scène n'est pas prête,
-  // puis « 3, 2, 1, GO ! » (pas de décompte pour le tutoriel).
   const p = runnerPartie;
-  p.etat = 'decompte';
-  const partir = () => {
-    if (runnerPartie !== p) return;
+  p.etat = 'attente'; // temps de jeu figé pendant le chargement de la scène
+  runnerQuandScenePrete(p, () => {
+    if (runnerPartie !== p || p.etat !== 'attente') return;
     p.etat = 'course';
     p.affichage.dernier = null; // aucun saut de temps au départ
     if (typeof RunnerAudio !== 'undefined') RunnerAudio.demarrer();
-  };
-  runnerQuandScenePrete(p, () => {
-    const scene = document.getElementById('runner-scene');
-    if (mode === 'tuto' || typeof jeuDecompte !== 'function' || !scene) { partir(); return; }
-    p.affichage.annulerDecompte = jeuDecompte({
-      conteneur: scene, theme: 'runner',
-      son: typeof RunnerAudio === 'undefined' || RunnerAudio.effetsActifs(),
-      estActif: () => runnerPartie === p
-    }, partir);
   });
   runnerDemarrerBoucle();
 }
 
-// Attend que la 3D soit affichée (2,5 s max, sinon le rendu 2D suffit),
+// Attend que la 3D soit affichée (4 s max, sinon le rendu 2D prend le relais),
 // puis deux images pour être sûr que l'écran est réellement peint.
 function runnerQuandScenePrete(p, suite) {
+  const secours = () => { // 3D trop lente : on bascule sur le rendu 2D
+    const a = p.affichage, scene = document.getElementById('runner-scene');
+    if (runnerPartie === p && a && a.attente3d) { a.attente3d = false; if (scene) scene.setAttribute('data-rendu', '2d'); }
+    lancer();
+  };
   const pret = (p.affichage && p.affichage.pret3d) || Promise.resolve();
   let fait = false;
   const lancer = () => {
@@ -492,7 +485,7 @@ function runnerQuandScenePrete(p, suite) {
     requestAnimationFrame(() => requestAnimationFrame(() => { if (runnerPartie === p) suite(); }));
   };
   pret.then(lancer, lancer);
-  setTimeout(lancer, 2500);
+  setTimeout(secours, 4000);
 }
 
 function runnerRendreCourse() {
@@ -728,7 +721,6 @@ function runnerArreter() {
     if (a.finTimer) clearTimeout(a.finTimer);
     if (a.redimension && typeof window !== 'undefined') window.removeEventListener('resize', a.redimension);
     if (a.rendu3d) { a.rendu3d.detacher(); a.rendu3d = null; }
-    if (a.annulerDecompte) { a.annulerDecompte(); a.annulerDecompte = null; }
   }
   runnerPartie = null;
 }
@@ -861,8 +853,8 @@ function runnerImage(maintenant) {
     if (typeof RunnerAudio !== 'undefined' && p.mode === 'sprint') RunnerAudio.suivreTemps(RUNNER_DUREE_SPRINT - p.temps);
     if (p.etat === 'fin') runnerFinDePartie();
   }
-  if (a.rendu3d) a.rendu3d.image(p, dt); // prototype 3D (même état, même horloge)
-  else {
+  if (a.rendu3d) a.rendu3d.image(p, dt); // rendu 3D (même état, même horloge)
+  else if (!a.attente3d) { // pas d'image 2D pendant le chargement de la 3D
     runnerMettreAJourEffets(p, p.etat === 'pause' ? 0 : dt);
     runnerDessiner(p);
   }
@@ -886,6 +878,7 @@ function runnerAttacherScene() {
     scene.addEventListener('pointercancel', () => { if (runnerPartie) runnerPartie.affichage.glisse = null; });
   }
   if (runnerRendu3DActif()) p.affichage.pret3d = runnerBrancher3D(p, scene);
+  else if (scene) scene.setAttribute('data-rendu', '2d');
 }
 
 // ─── 3D par défaut (SPEC 96 V2.2) ───────────────────────────────────────────
@@ -897,22 +890,27 @@ function runnerRendu3DActif() {
 }
 function runnerCharger3D() {
   if (!runnerModule3D) {
-    runnerModule3D = import('./runner-3d.js?v=9').then(() => window.Runner3D);
+    runnerModule3D = import('./runner-3d.js?v=10').then(() => window.Runner3D);
     runnerModule3D.catch(() => { runnerModule3D = null; });
   }
   return runnerModule3D;
 }
 function runnerBrancher3D(p, scene) {
   if (!scene) return Promise.resolve();
+  // Scène masquée (fond seul) tant que la 3D n'est pas prête : pas de flash 2D au relancement.
+  p.affichage.attente3d = true;
+  scene.setAttribute('data-rendu', 'chargement');
   return runnerCharger3D()
     .then(R3D => R3D.creer(scene))
     .then(instance => {
       // La partie a pu se terminer pendant le chargement.
       if (runnerPartie !== p || !p.affichage) { instance.detacher(); return; }
       p.affichage.rendu3d = instance;
+      p.affichage.attente3d = false;
       scene.setAttribute('data-rendu', '3d');
     })
     .catch(e => {
+      if (runnerPartie === p && p.affichage) { p.affichage.attente3d = false; scene.setAttribute('data-rendu', '2d'); }
       if (typeof console !== 'undefined') console.warn('Lux Runner 3D indisponible, rendu 2D conservé :', e);
       const aide = document.getElementById('runner-aide');
       if (aide && runnerPartie === p) {
@@ -927,8 +925,8 @@ function runnerBrancher3D(p, scene) {
 // Sélectionne une voie ; la réponse ne sera validée qu'à la collision.
 function runnerChoisir(genre) {
   const p = runnerPartie;
-  // Pendant le décompte, on peut déjà se placer sur une voie.
-  if (!p || (p.etat !== 'course' && p.etat !== 'decompte') || !p.portail || p.portail.arrivee || !RUNNER_GENRES[genre]) return;
+  // Pendant le chargement de la scène, on peut déjà se placer sur une voie.
+  if (!p || (p.etat !== 'course' && p.etat !== 'attente') || !p.portail || p.portail.arrivee || !RUNNER_GENRES[genre]) return;
   const change = p.voie !== genre;
   p.voie = genre;
   p.toucheMot = true;

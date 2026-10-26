@@ -76,6 +76,6 @@ test('SPEC 103 — cartes compactes lisibles avec records et actions intactes',(
   assert.ok(js.includes("'<div class=\"jeux-meta\"><span><strong>'+nombre"));
   assert.ok(runner.includes('<strong>60 s</strong>'));
   assert.ok(html.includes('jeux-univers.css?v=8'));
-  assert.ok(html.includes('jeux-v21.js?v=15'));
-  assert.ok(html.includes('runner.js?v=16'));
+  assert.match(html, /jeux-v21\.js\?v=(1[5-9]|[2-9]\d)/);
+  assert.match(html, /runner\.js\?v=(1[6-9]|[2-9]\d)/);
 });

@@ -1,6 +1,13 @@
 # SPEC 101 — Compte à rebours avant Survie et Lux Runner
 
-**Branche :** `2.1` · **Statut :** implémentée — recette Samsung à faire · **Date :** 26 octobre 2026.
+**Branche :** `2.1` · **Statut :** **retirée** le 26 octobre 2026 (rendu jugé pas assez bon) · **Date :** 26 octobre 2026.
+
+> **Retrait (26/10/2026).** Le compte à rebours est supprimé des deux jeux (`jeux-decompte.js/.css` et `test/jeux-decompte.test.cjs` supprimés). Survie démarre de nouveau immédiatement. Lux Runner conserve seulement :
+> - état `attente` (temps figé, choix de voie possible, coureur en Idle) tant que la scène 3D n'est pas affichée (`p.affichage.pret3d`, 4 s max puis bascule 2D) ;
+> - musique démarrée à la sortie de `attente` (`RunnerAudio.preparer()` pendant l'appui, `RunnerAudio.demarrer()` ensuite) ;
+> - scène `data-rendu="chargement"` : canvas 2D masqué et non dessiné pendant le chargement 3D, ce qui supprime le flash 2D au relancement.
+>
+> Le texte ci-dessous décrit l'ancienne version, conservé pour l'historique.
 
 ## Comportement
 - Au lancement d'une partie, un décompte **« 3, 2, 1, Partez ! »** (Survie) ou **« 3, 2, 1, GO ! »** (Lux Runner) s'affiche au-dessus de la zone de jeu, **900 ms par chiffre** (V2). Le jeu démarre dès l'affichage de « Partez ! » / « GO ! », puis le voile s'efface en fondu (~650 ms).
