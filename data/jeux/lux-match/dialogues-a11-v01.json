@@ -432,7 +432,8 @@
           },
           "claims": {
             "football": false
-          }
+          },
+          "pedagogicalScoring": false
         },
         {
           "id": "football_oui",
@@ -450,7 +451,8 @@
           "flags": [
             "said_football"
           ],
-          "followupEventId": "trap_sport"
+          "followupEventId": "trap_sport",
+          "pedagogicalScoring": false
         },
         {
           "id": "football_hors_sujet",
@@ -461,19 +463,21 @@
             "affinity": -6,
             "suspicion": 0
           },
-          "correctionFr": "Répondre Jo ou Nee à cette question fermée."
+          "correctionFr": "Répondre Jo ou Nee à cette question fermée.",
+          "pedagogicalScoring": false
         }
       ],
       "theme": "sport",
       "eligibility": "playerPersona.football===false",
-      "editorialNote": "Vérifier l'adéquation exacte du football à l'unité débloquée ; la grammaire documente la question."
+      "editorialNote": "Vérifier l'adéquation exacte du football à l'unité débloquée ; la grammaire documente la question.",
+      "pedagogicalScoring": false,
+      "optionalNonCurricular": true,
+      "translationHelpAlwaysAvailable": true,
+      "editorialStatus": "draft_bonus_non_scored_requires_lu_audit"
     },
     {
       "id": "dessin",
-      "lessonIds": [
-        4,
-        16
-      ],
+      "lessonIds": [],
       "prompt": {
         "lu": "Mols du gär?",
         "fr": "Tu aimes dessiner ?"
@@ -487,7 +491,8 @@
           "effects": {
             "affinity": 4,
             "suspicion": 0
-          }
+          },
+          "pedagogicalScoring": false
         },
         {
           "id": "dessin_oui",
@@ -501,18 +506,19 @@
           "lie": true,
           "flags": [
             "claimed_artist"
-          ]
+          ],
+          "pedagogicalScoring": false
         }
       ],
       "theme": "hobbies",
-      "editorialStatus": "draft_outside_core_a11"
+      "editorialStatus": "draft_bonus_non_scored_requires_lu_audit",
+      "pedagogicalScoring": false,
+      "optionalNonCurricular": true,
+      "translationHelpAlwaysAvailable": true
     },
     {
       "id": "videogames",
-      "lessonIds": [
-        4,
-        16
-      ],
+      "lessonIds": [],
       "prompt": {
         "lu": "Spills du gär Computerspiller?",
         "fr": "Tu aimes jouer aux jeux vidéo ?"
@@ -526,7 +532,8 @@
           "effects": {
             "affinity": 4,
             "suspicion": 0
-          }
+          },
+          "pedagogicalScoring": false
         },
         {
           "id": "game_oui",
@@ -540,11 +547,15 @@
           "lie": true,
           "flags": [
             "claimed_gamer"
-          ]
+          ],
+          "pedagogicalScoring": false
         }
       ],
       "theme": "hobbies",
-      "editorialStatus": "draft_outside_core_a11"
+      "editorialStatus": "draft_bonus_non_scored_requires_lu_audit",
+      "pedagogicalScoring": false,
+      "optionalNonCurricular": true,
+      "translationHelpAlwaysAvailable": true
     },
     {
       "id": "routine",
@@ -1005,6 +1016,7 @@
     "La version des choix du joueur (vrai âge 28, etc.) est liée au persona Alex, pas aux informations du profil de la partenaire.",
     "Les événements de gag sont en français si la traduction luxembourgeoise n'est pas sûre ; ne pas supposer une phrase LU validée.",
     "Les nœuds dessin et videogames sont des brouillons optionnels hors lexique A1.1 strict : ne débloquer qu'après validation du cours correspondant.",
-    "Tous les pièges ont désormais une voie de déclenchement atteignable depuis le déroulé de leur archétype."
+    "Tous les pièges ont désormais une voie de déclenchement atteignable depuis le déroulé de leur archétype.",
+    "Sport, dessin et jeux vidéo sont des scènes comiques optionnelles non notées A1.1 avec aide FR permanente, jusqu'à ce que leurs notions aient été formellement enseignées et validées."
   ]
 }
