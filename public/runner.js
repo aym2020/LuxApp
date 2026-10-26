@@ -40,8 +40,8 @@ const RUNNER_TUTO_ATTENTE = 0.7;    // tutoriel : le portail attend la réponse 
 const RUNNER_MIN_PAR_GENRE = 2;     // en dessous : niveau indisponible
 const RUNNER_SANS_REPETITION = 4;   // un nom ne revient pas dans les 4 portails suivants
 const RUNNER_PRECISION_MIN = 5;     // record de précision : au moins 5 portails
-const RUNNER_FEEDBACK_OK_MS = 650;   // Succès : ne pas masquer le mot suivant
-const RUNNER_FEEDBACK_KO_MS = 1050;  // Erreur : laisser lire la correction
+const RUNNER_FEEDBACK_OK_MS = 1100;   // Succès : ne pas masquer le mot suivant
+const RUNNER_FEEDBACK_KO_MS = 1700;  // Erreur : laisser lire la correction
 const RUNNER_PALIERS_COMBO = [3, 5, 10, 15, 20]; // séries qui déclenchent l'annonce « Combo »
 
 let runnerPartie = null;  // partie en cours (null hors course)

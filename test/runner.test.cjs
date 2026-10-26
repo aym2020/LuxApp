@@ -341,13 +341,13 @@ test('SPEC 106 : micro-feedback attribué au mot précédent sans bloquer la cou
   assert.match(html, /e Bild/);
   assert.match(html, /Neutre/);
   assert.doesNotMatch(html, /Correct|Faux|Trop tard/);
-  assert.equal(vm.runInContext('runnerDureeFeedback("correct")', ctx), 650);
+  assert.equal(vm.runInContext('runnerDureeFeedback("correct")', ctx), 1100);
   ctx.exemple = { statut:'faux', points:0, mot:{ articleForm:'eng Dier', gender:'f' } };
   html = vm.runInContext('runnerHtmlFeedback(exemple, "sprint")', ctx);
   assert.match(html, /-1 vie/);
   assert.match(html, /eng Dier/);
   assert.match(html, /Féminin/);
-  assert.equal(vm.runInContext('runnerDureeFeedback("faux")', ctx), 1050);
+  assert.equal(vm.runInContext('runnerDureeFeedback("faux")', ctx), 1700);
   ctx.exemple.statut = 'absent';
   html = vm.runInContext('runnerHtmlFeedback(exemple, "sprint")', ctx);
   assert.match(html, /sans choix/);

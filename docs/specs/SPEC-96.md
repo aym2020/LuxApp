@@ -138,3 +138,8 @@ Voir [`SPEC-106.md`](SPEC-106.md) : micro-correction compacte après chaque coll
 - Les caractères ✓ et − (absents de la police) ne sont plus utilisés : `+N`, `-1 vie`.
 - **Combo** : centré sous le feedback (plus jamais coupé au bord), « COMBO ×N » en pixel, pop à chaque palier ; au palier 3, couleurs arcade qui alternent.
 - **Gain de score** : « +N » en pixel or à gauche du score.
+
+## V2.8 — Messages plus longs, combo latéral, sons arcade (26/10/2026)
+- **Durée des messages** : 1,1 s après un bon portail (au lieu de 0,65 s), 1,7 s après une erreur (au lieu de 1,05 s). La course n'est jamais bloquée.
+- **Combo** : badge arcade sur le côté droit (`top: max(124px, 36%)`), penché de −10°, étiquette « COMBO » en bloc pixel violet (rose au palier 2, orange au palier 3) au-dessus de « ×N » en or. Marge de 18 px : l'inclinaison n'est plus coupée.
+- **Sons (`runner-audio.js` v4)** : palette 8 bits commune à la musique et aux effets — ondes pulse 12,5 % / 25 %, triangle, bruit granuleux, enveloppes en paliers. Musique chiptune originale (132 BPM, 4 mesures fa mineur → ré bémol → mi bémol → do, basse triangle, arpège, mélodie, batterie de bruit, couche finale à 15 s). Effets : blip de voie, « pièce » au bon portail (plus aiguë avec la série), chute + choc à l'erreur, arpège power-up au combo, fanfare de victoire ou « game over ». API inchangée.

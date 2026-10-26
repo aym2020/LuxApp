@@ -153,14 +153,18 @@
 }
 #view-runner .runner-aide{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:700 13px var(--font);color:var(--accent);pointer-events:none;text-shadow:0 1px 6px #000}
 
-/* Combo : HUD arcade centré sous le feedback, police pixel, jamais coupé sur les bords. */
-#view-runner .runner-combo{position:absolute;left:12px;right:12px;top:112px;display:flex;justify-content:center;align-items:baseline;gap:10px;
-  font-family:var(--pixel);-webkit-font-smoothing:none;opacity:0;visibility:hidden;pointer-events:none}
-#view-runner .runner-combo span{font:10px/1 var(--pixel);letter-spacing:.1em;color:#d9c9ff;text-shadow:2px 2px 0 #2a1a4a,3px 3px 0 #000}
-#view-runner .runner-combo strong{display:inline-block;font:22px/1 var(--pixel);font-weight:400;color:#ffd84a;
-  text-shadow:0 3px 0 #c06a12,3px 3px 0 #2a1204,-2px 0 0 #2a1204;font-variant-numeric:tabular-nums}
-#view-runner .runner-combo[data-palier="2"] span{color:#ffb3ff}
-#view-runner .runner-combo[data-palier="3"] strong{animation:runner-combo-arcenciel 480ms steps(1,end) infinite}
+/* Combo : badge arcade sur le côté droit, penché, police pixel.
+   Marge suffisante pour que l'inclinaison ne soit jamais coupée par le bord. */
+#view-runner .runner-combo{position:absolute;right:18px;top:max(124px,36%);display:flex;flex-direction:column;align-items:center;gap:5px;
+  font-family:var(--pixel);-webkit-font-smoothing:none;opacity:0;visibility:hidden;pointer-events:none;
+  transform:rotate(-10deg);transform-origin:center}
+#view-runner .runner-combo span{font:9px/1 var(--pixel);letter-spacing:.12em;color:#fff;padding:4px 6px 3px;background:#6b3fd1;
+  box-shadow:0 0 0 2px #0f0e0c,3px 3px 0 2px #000}
+#view-runner .runner-combo strong{display:inline-block;font:30px/1 var(--pixel);font-weight:400;color:#ffd84a;
+  text-shadow:0 4px 0 #c06a12,4px 4px 0 #2a1204,-2px 0 0 #2a1204,2px -2px 0 #2a1204;font-variant-numeric:tabular-nums}
+#view-runner .runner-combo[data-palier="2"] span{background:#d1437a}
+#view-runner .runner-combo[data-palier="3"] span{background:#e0651f}
+#view-runner .runner-combo[data-palier="3"] strong{font-size:36px;animation:runner-combo-arcenciel 480ms steps(1,end) infinite}
 @keyframes runner-combo-arcenciel{0%{color:#ffd84a}25%{color:#ff7a3c}50%{color:#ffffff}75%{color:#7cf2ff}}
 #view-runner .runner-combo.runner-combo-visible{opacity:1;visibility:visible}
 #view-runner .runner-combo.runner-combo-casse{opacity:0;visibility:hidden}
