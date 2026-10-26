@@ -254,7 +254,7 @@ function creer(conteneur) {
   });
   const bandes = ORDRE.map((genre, i) => {
     const b = new THREE.Mesh(new THREE.PlaneGeometry(VOIE * 0.92, 90),
-      new THREE.MeshBasicMaterial({ map: texBande, color: COULEURS[genre], transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false }));
+      new THREE.MeshBasicMaterial({ map: texBande, color: COULEURS[genre], transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
     b.rotation.x = -Math.PI / 2; b.position.set((i - 1) * VOIE, 0.01, -40);
     scene.add(b);
     return b;
@@ -308,26 +308,102 @@ function creer(conteneur) {
     etat.actionCourante = action;
   }
 
+  // Arbres et maisons low-poly, dans le style des kits Kenney.
+  const materiauxDecor = {
+    pelouse: new THREE.MeshLambertMaterial({ color: 0x1d2a22 }),
+    tronc: new THREE.MeshLambertMaterial({ color: 0x5a4030 }),
+    feuillage: [0x2f6b45, 0x3d7a4a, 0x2a5c49, 0x4b7d3c].map(c => new THREE.MeshLambertMaterial({ color: c, flatShading: true, emissive: c, emissiveIntensity: 0.12 })),
+    murs: [0xd8c7b0, 0xc9b2d6, 0xb7c9d8, 0xe0c9a6, 0xc2d3bf].map(c => new THREE.MeshLambertMaterial({ color: c, emissive: c, emissiveIntensity: 0.08 })),
+    toits: [0x7a3b34, 0x4a4060, 0x5b4636].map(c => new THREE.MeshLambertMaterial({ color: c, flatShading: true })),
+    fenetre: new THREE.MeshBasicMaterial({ color: 0xffd27a }),
+    porte: new THREE.MeshLambertMaterial({ color: 0x3b2a22 })
+  };
+  const geoDecor = {
+    tronc: new THREE.CylinderGeometry(0.07, 0.1, 0.7, 6),
+    rond: new THREE.IcosahedronGeometry(0.55, 0),
+    sapin: new THREE.ConeGeometry(0.5, 1.3, 7),
+    corps: new THREE.BoxGeometry(1.6, 1.2, 1.4),
+    toit: new THREE.ConeGeometry(1.25, 0.8, 4),
+    fenetre: new THREE.PlaneGeometry(0.28, 0.32),
+    porte: new THREE.PlaneGeometry(0.3, 0.55)
+  };
+  function creerArbre(hasard) {
+    const arbre = new THREE.Group();
+    const tronc = new THREE.Mesh(geoDecor.tronc, materiauxDecor.tronc);
+    tronc.position.y = 0.35;
+    const sapin = hasard() < 0.4;
+    const feuilles = new THREE.Mesh(sapin ? geoDecor.sapin : geoDecor.rond,
+      materiauxDecor.feuillage[Math.floor(hasard() * materiauxDecor.feuillage.length)]);
+    feuilles.position.y = sapin ? 1.25 : 1.05;
+    feuilles.rotation.y = hasard() * Math.PI;
+    arbre.add(tronc, feuilles);
+    arbre.scale.setScalar(0.9 + hasard() * 0.7);
+    return arbre;
+  }
+  function creerBosquet(hasard, nombre) {
+    const groupe = new THREE.Group();
+    for (let i = 0; i < nombre; i++) {
+      const a = creerArbre(hasard);
+      a.position.set((hasard() - 0.5) * 1.4, 0, (hasard() - 0.5) * 1.6);
+      groupe.add(a);
+    }
+    return groupe;
+  }
+  // Maison : murs, toit en pyramide, fenêtres éclairées et porte face à la route.
+  function creerMaison(hasard, cote) {
+    const maison = new THREE.Group();
+    const corps = new THREE.Mesh(geoDecor.corps, materiauxDecor.murs[Math.floor(hasard() * materiauxDecor.murs.length)]);
+    corps.position.y = 0.6;
+    const toit = new THREE.Mesh(geoDecor.toit, materiauxDecor.toits[Math.floor(hasard() * materiauxDecor.toits.length)]);
+    toit.position.y = 1.6; toit.rotation.y = Math.PI / 4; toit.scale.set(1, 1, 0.9);
+    maison.add(corps, toit);
+    const face = -cote * 0.81; // façade tournée vers la route
+    const ajouter = (geo, mat, z, y) => {
+      const m = new THREE.Mesh(geo, mat);
+      m.position.set(face, y, z); m.rotation.y = cote > 0 ? -Math.PI / 2 : Math.PI / 2;
+      maison.add(m);
+    };
+    ajouter(geoDecor.porte, materiauxDecor.porte, 0, 0.28);
+    if (hasard() < 0.75) ajouter(geoDecor.fenetre, materiauxDecor.fenetre, -0.45, 0.75);
+    if (hasard() < 0.75) ajouter(geoDecor.fenetre, materiauxDecor.fenetre, 0.45, 0.75);
+    maison.scale.setScalar(0.95 + hasard() * 0.35);
+    return maison;
+  }
+
   function construireDecor(pieces) {
     const batiments = Object.keys(pieces).filter(n => n.indexOf('building') >= 0);
     let graine = 11;
     const hasard = () => { graine = (graine * 9301 + 49297) % 233280; return graine / 233280; };
     for (const cote of [-1, 1]) {
-      // Première rangée : bâtiments bas ; deuxième rangée : tours.
-      for (let z = 0; z < BOUCLE; z += 2.6) {
-        const nom = batiments.filter(n => n.indexOf('low-detail') >= 0)[Math.floor(hasard() * 16)] || batiments[0];
-        const b = rendreMat(pieces[nom].clone(), 0.06, 0x8a7fa8);
-        b.scale.setScalar(4.2 + hasard() * 1.2);
-        b.position.set(cote * (LARGEUR_ROUTE / 2 + 2.9 + hasard() * 0.8), 0, 0);
-        b.rotation.y = cote > 0 ? -Math.PI / 2 : Math.PI / 2;
-        scene.add(b); etat.decor.push({ objet: b, z: -z });
+      // Bande de pelouse le long du trottoir (rend le décor plus aéré).
+      const pelouse = new THREE.Mesh(new THREE.PlaneGeometry(9, 160), materiauxDecor.pelouse);
+      pelouse.rotation.x = -Math.PI / 2;
+      pelouse.position.set(cote * (LARGEUR_ROUTE / 2 + 0.6 + 4.5), 0.005, -60);
+      scene.add(pelouse);
+      // Première rangée variée : arbres, maisons, petits immeubles, vides.
+      for (let z = 0; z < BOUCLE; z += 3.2) {
+        const tirage = hasard();
+        const x = cote * (LARGEUR_ROUTE / 2 + 2.6 + hasard() * 1.2);
+        let objet = null;
+        if (tirage < 0.38) objet = creerBosquet(hasard, 1 + Math.floor(hasard() * 3));
+        else if (tirage < 0.72) objet = creerMaison(hasard, cote);
+        else if (tirage < 0.88) {
+          const petits = batiments.filter(n => n.indexOf('low-detail') >= 0);
+          objet = rendreMat(pieces[petits[Math.floor(hasard() * petits.length)]].clone(), 0.06, 0x8a7fa8);
+          objet.scale.setScalar(3.2 + hasard() * 0.8);
+          objet.rotation.y = cote > 0 ? -Math.PI / 2 : Math.PI / 2;
+        }
+        if (!objet) continue; // espace vide : on voit la pelouse et le ciel
+        objet.position.x = x;
+        scene.add(objet); etat.decor.push({ objet, z: -z - hasard() * 0.8 });
       }
-      for (let z = 1.3; z < BOUCLE; z += 5.5) {
+      // Arrière-plan : quelques tours seulement, loin de la route.
+      for (let z = 2; z < BOUCLE; z += 12) {
         const tours = batiments.filter(n => n.indexOf('skyscraper') >= 0);
-        const b = rendreMat(pieces[tours[Math.floor(hasard() * tours.length)]].clone(), 0.05, 0x7d72a0);
-        b.scale.setScalar(3 + hasard() * 1.4);
-        b.position.set(cote * (LARGEUR_ROUTE / 2 + 7 + hasard() * 4), 0, 0);
-        scene.add(b); etat.decor.push({ objet: b, z: -z });
+        const t = rendreMat(pieces[tours[Math.floor(hasard() * tours.length)]].clone(), 0.05, 0x6f6694);
+        t.scale.setScalar(3 + hasard() * 1.4);
+        t.position.set(cote * (LARGEUR_ROUTE / 2 + 11 + hasard() * 5), 0, 0);
+        scene.add(t); etat.decor.push({ objet: t, z: -z });
       }
       // Lampadaires tournés vers la route, avec halo chaud.
       for (let z = 0; z < BOUCLE; z += 6) {
@@ -466,7 +542,7 @@ function creer(conteneur) {
     aura.material.opacity = Math.max(0, aura.material.opacity - dt * 2.2);
     if (onde.material.opacity > 0) { onde.scale.multiplyScalar(1 + dt * 5); onde.material.opacity = Math.max(0, onde.material.opacity - dt * 2.4); }
     bandes.forEach((b, i) => {
-      const cible = ORDRE[i] === p.voie ? 0.75 : 0.28;
+      const cible = ORDRE[i] === p.voie ? 0.75 : 0; // seule la voie choisie est colorée
       b.material.opacity += (cible - b.material.opacity) * Math.min(1, dt * 10);
     });
 
