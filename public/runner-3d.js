@@ -105,7 +105,9 @@ function textureRoute() {
 function textureEtiquette(genre) {
   return textureCanvas(256, 256, (g) => {
     const c = '#' + COULEURS[genre].toString(16).padStart(6, '0');
-    g.fillStyle = c; g.beginPath(); g.arc(128, 96, 80, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#0f0e0c'; g.beginPath(); g.arc(128, 96, 86, 0, Math.PI * 2); g.fill();
+    g.fillStyle = c; g.beginPath(); g.arc(128, 96, 76, 0, Math.PI * 2); g.fill();
+    g.strokeStyle = 'rgba(255,255,255,0.85)'; g.lineWidth = 5; g.beginPath(); g.arc(128, 96, 80, 0, Math.PI * 2); g.stroke();
     g.fillStyle = '#0f0e0c'; g.textAlign = 'center'; g.textBaseline = 'middle';
     g.font = '800 104px Inter, system-ui, sans-serif'; g.fillText(genre.toUpperCase(), 128, 100);
     g.fillStyle = '#ffffff'; g.font = '800 34px Inter, system-ui, sans-serif';
@@ -145,58 +147,106 @@ function contourPortail(forme, l, h) {
   return pts;
 }
 
-// Membrane d'énergie : bandes lumineuses qui montent, plus vives en bas.
+// Dimensions communes des portails (unités 3D).
+const PORTAIL = { l: 0.94, h: 1.85, cadre: 0.13, marge: 0.42 };
+
+// Intérieur : léger dégradé coloré avec un scintillement doux qui monte.
 function materiauMembrane(couleur, hauteur) {
   return new THREE.ShaderMaterial({
     uniforms: { uCouleur: { value: new THREE.Color(couleur) }, uTemps: TEMPS_PORTAILS, uOpacite: { value: 1 }, uHauteur: { value: hauteur } },
     vertexShader: 'varying float vY; void main(){ vY = position.y; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
     fragmentShader: 'uniform vec3 uCouleur; uniform float uTemps; uniform float uOpacite; uniform float uHauteur; varying float vY;' +
-      'void main(){ float v = vY / uHauteur; float bandes = 0.5 + 0.5 * sin(v * 18.0 - uTemps * 7.0);' +
-      'float a = (0.10 + 0.16 * bandes) * (1.15 - v * 0.6); gl_FragColor = vec4(uCouleur * (1.0 + bandes * 0.4), a * uOpacite); }',
+      'void main(){ float v = clamp(vY / uHauteur, 0.0, 1.0);' +
+      'float scintille = 0.88 + 0.12 * sin(v * 5.0 - uTemps * 2.2);' +
+      'float a = (0.05 + 0.2 * (1.0 - v) * (1.0 - v)) * scintille; gl_FragColor = vec4(uCouleur, a * uOpacite); }',
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, toneMapped: false
   });
 }
 
-function creerArche(genre, lueur) {
+// Halo néon pré-dessiné (flou véritable, sans facettes) : une texture par genre,
+// plaquée sur un plan face à la caméra, derrière le liseré du cadre.
+function textureHalo(genre) {
+  const { l, h, marge } = PORTAIL;
+  const largeur = l + 2 * marge, hauteur = h + marge + 0.1;
+  const k = 220 / largeur;
+  const tex = textureCanvas(Math.round(largeur * k), Math.round(hauteur * k), (g, w, ht) => {
+    const pts = contourPortail(FORMES[genre], l, h);
+    const c = '#' + COULEURS[genre].toString(16).padStart(6, '0');
+    const tracer = () => {
+      g.beginPath();
+      pts.forEach((p, i) => {
+        const x = (p[0] + largeur / 2) * k, y = ht - (p[1] + 0.1) * k;
+        if (i) g.lineTo(x, y); else g.moveTo(x, y);
+      });
+      g.stroke();
+    };
+    g.lineJoin = 'round'; g.lineCap = 'round';
+    g.strokeStyle = c; g.shadowColor = c;
+    for (const [epaisseur, flou, alpha] of [[0.16, 0.34, 0.5], [0.09, 0.18, 0.7], [0.05, 0.08, 0.9]]) {
+      g.globalAlpha = alpha; g.lineWidth = epaisseur * k; g.shadowBlur = flou * k; tracer();
+    }
+  });
+  tex.userData = { largeur, hauteur };
+  return tex;
+}
+
+// Cadre solide en relief : forme en U (contour extérieur, puis intérieur à l'envers).
+function geometrieCadre(forme) {
+  const { l, h, cadre } = PORTAIL;
+  const exterieur = contourPortail(forme, l + 2 * cadre, h + cadre);
+  const interieur = contourPortail(forme, l, h).reverse();
+  const contour = new THREE.Shape();
+  exterieur.concat(interieur).forEach((p, i) => (i ? contour.lineTo(p[0], p[1]) : contour.moveTo(p[0], p[1])));
+  contour.closePath();
+  const geo = new THREE.ExtrudeGeometry(contour, { depth: 0.16, bevelEnabled: true, bevelThickness: 0.025, bevelSize: 0.02, bevelSegments: 2, curveSegments: 4 });
+  geo.translate(0, 0, -0.08);
+  return geo;
+}
+
+function creerArche(genre, lueur, halos) {
   const couleur = COULEURS[genre];
+  const { l, h } = PORTAIL;
   const groupe = new THREE.Group();
-  const l = 0.94, h = 1.85;
   const pts = contourPortail(FORMES[genre], l, h);
-  const chemin = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(p[0], p[1], 0)), false, 'centripetal');
-  // Néon saturé : couleurs non retouchées par le moteur (toneMapped: false).
-  const clair = new THREE.Color(couleur).lerp(new THREE.Color(0xffffff), 0.55);
-  const coeur = new THREE.Mesh(new THREE.TubeGeometry(chemin, 72, 0.06, 8, false),
-    new THREE.MeshBasicMaterial({ color: couleur, toneMapped: false }));
-  const filament = new THREE.Mesh(new THREE.TubeGeometry(chemin, 72, 0.022, 6, false),
-    new THREE.MeshBasicMaterial({ color: clair, toneMapped: false }));
-  filament.position.z = 0.045;
-  const halo = new THREE.Mesh(new THREE.TubeGeometry(chemin, 72, 0.16, 8, false),
-    new THREE.MeshBasicMaterial({ color: couleur, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
-  // Membrane animée à l'intérieur du portail.
+  // Cadre : métal sombre légèrement teinté de la couleur du genre.
+  const cadre = new THREE.Mesh(geometrieCadre(FORMES[genre]), new THREE.MeshLambertMaterial({
+    color: new THREE.Color(0x1c1924).lerp(new THREE.Color(couleur), 0.18),
+    emissive: new THREE.Color(couleur), emissiveIntensity: 0.08
+  }));
+  // Liseré néon fin sur le bord intérieur, en couleur pure (toneMapped: false).
+  const chemin = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(p[0], p[1], 0.1)), false, 'centripetal');
+  const lisere = new THREE.Mesh(new THREE.TubeGeometry(chemin, 80, 0.026, 6, false),
+    new THREE.MeshBasicMaterial({ color: new THREE.Color(couleur).lerp(new THREE.Color(0xffffff), 0.35), toneMapped: false }));
+  // Halo flou dessiné à l'avance.
+  const tex = halos[genre];
+  const halo = new THREE.Mesh(new THREE.PlaneGeometry(tex.userData.largeur, tex.userData.hauteur),
+    new THREE.MeshBasicMaterial({ map: tex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+  halo.position.set(0, tex.userData.hauteur / 2 - 0.1, 0.09);
+  // Intérieur discret.
   const forme = new THREE.Shape();
   pts.forEach((p, i) => (i ? forme.lineTo(p[0], p[1]) : forme.moveTo(p[0], p[1])));
   forme.lineTo(pts[0][0], pts[0][1]);
   const membrane = new THREE.Mesh(new THREE.ShapeGeometry(forme), materiauMembrane(couleur, h));
-  // Flaque et anneau de lumière au sol.
+  // Lumière au sol.
   const sol = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 1.1),
-    new THREE.MeshBasicMaterial({ map: lueur, color: couleur, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+    new THREE.MeshBasicMaterial({ map: lueur, color: couleur, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
   sol.rotation.x = -Math.PI / 2; sol.position.y = 0.015;
-  groupe.add(sol, membrane, halo, coeur, filament);
+  groupe.add(sol, membrane, cadre, halo, lisere);
   groupe.userData = {
-    materiaux: [coeur.material, filament.material, halo.material, membrane.material, sol.material],
-    opacites: [1, 1, 0.32, 1, 0.9]
+    materiaux: [cadre.material, lisere.material, halo.material, membrane.material, sol.material],
+    opacites: [1, 1, 1, 1, 0.8]
   };
   return groupe;
 }
 
-function creerTrio(lueur, etiquettes) {
+function creerTrio(lueur, etiquettes, halos) {
   const trio = new THREE.Group();
   ORDRE.forEach((genre, i) => {
-    const arche = creerArche(genre, lueur);
+    const arche = creerArche(genre, lueur, halos);
     arche.position.x = (i - 1) * VOIE;
-    const pastille = new THREE.Mesh(new THREE.PlaneGeometry(0.78, 0.78),
-      new THREE.MeshBasicMaterial({ map: etiquettes[genre], transparent: true, depthWrite: false }));
-    pastille.position.set(0, 1.38, 0.02);
+    const pastille = new THREE.Mesh(new THREE.PlaneGeometry(0.74, 0.74),
+      new THREE.MeshBasicMaterial({ map: etiquettes[genre], transparent: true, depthWrite: false, toneMapped: false }));
+    pastille.position.set(0, 1.4, 0.13);
     arche.add(pastille);
     arche.userData.materiaux.push(pastille.material); arche.userData.opacites.push(1);
     trio.add(arche);
@@ -262,6 +312,7 @@ function creer(conteneur) {
 
   const lueur = textureLueur();
   const etiquettes = { m: textureEtiquette('m'), f: textureEtiquette('f'), n: textureEtiquette('n') };
+  const halos = { m: textureHalo('m'), f: textureHalo('f'), n: textureHalo('n') };
 
   // Ciel (grand cylindre dégradé) et étoiles.
   const ciel = new THREE.Mesh(new THREE.CylinderGeometry(100, 100, 120, 24, 1, true),
@@ -304,8 +355,8 @@ function creer(conteneur) {
   });
 
   // Portails : trio en cours, deux suivants, trio franchi, arche d'arrivée.
-  const trios = [creerTrio(lueur, etiquettes), creerTrio(lueur, etiquettes), creerTrio(lueur, etiquettes)];
-  const trioPasse = creerTrio(lueur, etiquettes);
+  const trios = [creerTrio(lueur, etiquettes, halos), creerTrio(lueur, etiquettes, halos), creerTrio(lueur, etiquettes, halos)];
+  const trioPasse = creerTrio(lueur, etiquettes, halos);
   trios.concat([trioPasse]).forEach(t => { t.visible = false; scene.add(t); });
   const arrivee = creerArrivee(textureArrivee()); arrivee.visible = false; scene.add(arrivee);
 
@@ -621,7 +672,7 @@ function creer(conteneur) {
       const progres = Math.min(1, Math.max(0, (p.temps - portail.debut) / portail.duree));
       const z = -DISTANCE * (1 - progres);
       const suivants = typeof runnerPortailsSuivants === 'function' ? runnerPortailsSuivants(p, portail) : [];
-      const elements = [portail.arrivee ? 'arrivee' : 'trio'].concat(suivants);
+      const elements = [portail.arrivee ? 'arrivee' : 'trio'].concat(suivants.slice(0, 1)); // un seul suivant : moins de surcharge
       let iTrio = 0;
       elements.forEach((type, k) => {
         const zk = z - k * DISTANCE;
