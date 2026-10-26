@@ -3,15 +3,15 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 test('Cartes Jeux SPEC 99 : WebP carré, léger et correctement référencé',()=>{
   const css=read('public/jeux-univers.css');
-  for(const name of ['survie','runner']){
-    const b=fs.readFileSync(path.join(root,'public/art/jeux-'+name+'-card-portrait.webp'));
+  for(const [name,filename] of [['survie','jeux-survie-card-portrait.webp'],['runner','jeux-runner-card-or-violet.webp']]){
+    const b=fs.readFileSync(path.join(root,'public/art',filename));
     assert.ok(b.length>30000&&b.length<150000,'fichier mobile optimisé : '+name);
     assert.equal(b.toString('ascii',0,4),'RIFF');
     assert.equal(b.toString('ascii',8,12),'WEBP');
     assert.equal(b.toString('ascii',12,16),'VP8 ');
     assert.equal(b.readUInt16LE(26)&0x3fff,1200);
     assert.equal(b.readUInt16LE(28)&0x3fff,1200);
-    assert.ok(css.includes('art/jeux-'+name+'-card-portrait.webp'));
+    assert.ok(css.includes('art/'+filename));
     assert.ok(!css.includes('url("art/jeux-'+name+'-card-hd.webp")'));
   }
   assert.ok(css.includes('max-width:88%'));
@@ -46,5 +46,15 @@ test('SPEC 100 — lisibilité renforcée des deux cartes sans changer les WebP'
   assert.ok(css.includes('font-weight:500'),'graisse description');
   assert.ok(css.includes('max-width:88%'),'composition préservée');
   assert.ok(css.includes('art/jeux-survie-card-portrait.webp'));
-  assert.ok(css.includes('art/jeux-runner-card-portrait.webp'));
+  assert.ok(css.includes('art/jeux-runner-card-or-violet.webp'));
+});
+
+test('SPEC 102 — fond Runner or/violet indépendant des couleurs pédagogiques',()=>{
+  const css=read('public/jeux-univers.css'),html=read('public/index.html');
+  assert.ok(css.includes('art/jeux-runner-card-or-violet.webp'));
+  assert.ok(!css.includes('url("art/jeux-runner-card-portrait.webp")'));
+  assert.ok(html.includes('jeux-univers.css?v=7'));
+  assert.ok(css.includes('.runner-tuile.runner-f'));
+  assert.ok(css.includes('.runner-tuile.runner-n'));
+  assert.ok(css.includes('art/jeux-survie-card-portrait.webp'),'Survie non modifié');
 });

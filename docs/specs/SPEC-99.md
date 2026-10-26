@@ -32,3 +32,13 @@ La capture Android montrait des descriptions et des records difficiles à lire s
 - `jeux-univers.css?v=5` force la mise à jour du cache ; tests statiques dédiés.
 
 Contrôle visuel Android Chrome/PWA encore nécessaire aux largeurs 320–430 px, avec zoom de texte et état verrouillé.
+
+## SPEC 102 — Mise à jour de l’illustration Lux Runner (26/10/2026)
+
+**Motif :** la branche `2.1` propose désormais, dans le gameplay 3D, trois formes distinctes de portails (carré masculin, rond féminin, octogone neutre), avec bleu/rouge/vert comme codes *pédagogiques*. Il ne faut pas reproduire ces couleurs sémantiques dans le décor statique de la carte.
+
+**Décision artistique :** le fond de carte est une illustration raster HD **1200 × 1200 WebP**, ~97 Ko, montrant Luxembourg nocturne avec éclairages **jaune/or**, route et ambiance **violettes**, coureur de dos et passages neutres dans le décor. Les formes ne sont pas des réponses colorées ni des contrôles interactifs. Les vrais M/F/N restent des tuiles HTML bleu/rouge/vert au-dessus de l'image. La zone gauche reste sombre pour les titres/description ; le bas protège les statistiques et le bouton « Jouer ».
+
+**Changement isolé :** nouveau `public/art/jeux-runner-card-or-violet.webp`, nouvelle URL dans `public/jeux-univers.css`, cache-busting `jeux-univers.css?v=7`, tests mis à jour. **Aucun changement** au visuel Survie, au code 3D, au gameplay, au score, aux sauvegardes ou aux données linguistiques.
+
+**Recette :** contrôles Chrome Android à 320–430 px CSS, descriptions longues, reflets dorés visibles à droite, absence de bleu/rouge/vert sur les portails de fond, maintien des trois tuiles colorées M/F/N en HTML.

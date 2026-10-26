@@ -59,7 +59,7 @@
   background:
     linear-gradient(90deg,rgba(19,14,27,.84) 0%,rgba(19,14,27,.75) 34%,rgba(19,14,27,.61) 57%,rgba(19,14,27,.39) 80%,rgba(19,14,27,.15) 100%),
     linear-gradient(0deg,rgba(19,15,27,.70) 0%,rgba(19,15,27,.46) 32%,transparent 63%),
-    url("art/jeux-runner-card-portrait.webp") center center / cover no-repeat,
+    url("art/jeux-runner-card-or-violet.webp") center center / cover no-repeat,
     #191421;
 }
 #view-jeux .runner-tuiles{display:flex;gap:6px;margin-bottom:22px}
