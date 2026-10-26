@@ -144,3 +144,25 @@
  #view-runner .runner-feedback,#view-runner .runner-voie,#view-runner .runner-vies i{transition:none}
  #view-runner .runner-score-anim-a,#view-runner .runner-score-anim-b,#view-runner .runner-gain-anim-a,#view-runner .runner-gain-anim-b{animation:none}
 }
+
+/* ── V1.1 : combo, réglages du son ───────────────────────────────── */
+#view-runner .runner-combo{position:absolute;right:10px;top:58px;display:flex;align-items:baseline;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(15,14,12,.82);border:1px solid #6b5626;opacity:0;transform:scale(.85);transition:opacity .2s ease,transform .2s ease;pointer-events:none}
+#view-runner .runner-combo span{font:800 10px var(--font);letter-spacing:.14em;color:#d8c48c}
+#view-runner .runner-combo strong{font:800 20px/1 var(--font);color:var(--accent);font-variant-numeric:tabular-nums}
+#view-runner .runner-combo[data-palier="2"]{border-color:#c79a36;box-shadow:0 0 14px rgba(245,207,77,.25)}
+#view-runner .runner-combo[data-palier="3"]{border-color:var(--accent);box-shadow:0 0 22px rgba(245,207,77,.45)}
+#view-runner .runner-combo.runner-combo-visible{opacity:1;transform:none}
+#view-runner .runner-combo.runner-combo-casse{opacity:0;transform:translateY(8px) scale(.9)}
+#view-runner .runner-combo-anim-a strong{animation:runner-combo-a 360ms ease-out}
+#view-runner .runner-combo-anim-b strong{animation:runner-combo-b 360ms ease-out}
+@keyframes runner-combo-a{40%{transform:scale(1.35)}}
+@keyframes runner-combo-b{40%{transform:scale(1.35)}}
+#view-runner .runner-sons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
+#view-runner .runner-son{min-height:44px;border:1px solid #3a362f;border-radius:10px;background:transparent;color:#a99f90;font:700 13px var(--font);cursor:pointer}
+#view-runner .runner-son[aria-pressed="true"]{border-color:#6b5626;color:#f1d78b;background:#211d14}
+#view-runner .runner-pause-carte .runner-sons{margin-top:6px}
+#view-runner .runner-resultat{padding-bottom:20px}
+@media(prefers-reduced-motion:reduce){
+ #view-runner .runner-combo{transition:none}
+ #view-runner .runner-combo-anim-a strong,#view-runner .runner-combo-anim-b strong{animation:none}
+}

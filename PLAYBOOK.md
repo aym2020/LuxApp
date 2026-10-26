@@ -50,7 +50,7 @@ Premier test interactif Canvas 2D : jauge de combo enflammée, cœur incandescen
 
 ## SPEC 96 — Lux Runner, les trois portails (branche `2.1`)
 
-[Fiche](docs/specs/SPEC-96.md). Deuxième jeu de la rubrique Jeux : choisir la voie Masculin / Féminin / Neutre avant l'arrivée des portails (Sprint 60, 3 vies, entraînement, tutoriel). **Tout dépend du temps de jeu, jamais des images.** Banque de noms **générée** : `node tools/runner-genres.cjs` après toute modification d'un genre dans une leçon (le test échoue sinon) ; ne jamais déduire un genre de `e`/`en`. Records par niveau, hors progression des leçons. Tests : `node --test test/runner.test.cjs`.
+[Fiche](docs/specs/SPEC-96.md). Deuxième jeu de la rubrique Jeux : choisir la voie Masculin / Féminin / Neutre avant l'arrivée des portails (Sprint 60, 3 vies, entraînement, tutoriel). **Tout dépend du temps de jeu, jamais des images. Le coureur garde sa voie (V1.1)** : ne jamais la remettre au centre entre deux portails. Rendu dans `runner-rendu.js`, sons propres dans `runner-audio.js` (ne pas réutiliser les sons des exercices). Banque de noms **générée** : `node tools/runner-genres.cjs` après toute modification d'un genre dans une leçon (le test échoue sinon) ; ne jamais déduire un genre de `e`/`en`. Records par niveau, hors progression des leçons. Tests : `node --test test/runner.test.cjs`.
 
 ---
 

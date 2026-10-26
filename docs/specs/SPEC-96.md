@@ -1,6 +1,6 @@
 # SPEC 96 — Lux Runner : les trois portails
 
-**Branche :** `2.1` · **Statut :** implémentée — recette Samsung à faire · **Source :** Game Design Document « Lux Runner — Les trois portails » v1.0 (26/10/2026).
+**Branche :** `2.1` · **Statut :** V1.1 implémentée — recette Samsung à faire · **Sources :** Game Design Document « Lux Runner — Les trois portails » v1.0, puis « Correctifs et polish V1.1 » (26/10/2026). Les règles ci-dessous intègrent la V1.1.
 
 ## Objectif
 
@@ -9,11 +9,11 @@ Mini-jeu de la rubrique **Jeux** (SPEC 88) pour mémoriser le **genre des noms**
 ## Règles implémentées
 
 - **Temps de décision = trajet jusqu'aux portails.** Tout est piloté par le temps de jeu actif (`partie.temps`) : approche des portails, défilement des marquages, collision. Le résultat ne dépend jamais du nombre d'images (testé à 2, 10, 30 et 60 images/s).
-- **Sprint 60** : 60 s de jeu actif, 3 vies. Approche fixée à l'apparition du mot : 6 s (0–20 s), 5 s (20–40 s), 4 s (40–60 s). Une séquence qui dépasserait 60 s n'est pas lancée (arche d'arrivée à la place) ; le chrono n'est jamais prolongé. Défaite à la 3e vie perdue, au temps de l'impact.
-- **Validation à la collision uniquement**, sur la **dernière** voie choisie. Aucune voie présélectionnée : sans choix → « Trop tard · Aucun portail choisi », perte d'une vie. Sélection remise à zéro à chaque mot.
+- **Sprint 60** : 60 s de jeu actif, 3 vies. Approche fixée à l'apparition du mot : **4 s (0–20 s), 3,5 s (20–40 s), 3 s (40–60 s)** — 17 portails, puis l'arche d'arrivée de 59 à 60 s. Une séquence qui dépasserait 60 s n'est pas lancée ; le chrono n'est jamais prolongé. Défaite à la 3e vie perdue, au temps de l'impact.
+- **Validation à la collision uniquement**, sur la **voie occupée** à cet instant. **V1.1 : le coureur garde sa voie d'un portail à l'autre** (plus de retour au centre) ; rester sur la bonne voie est une réponse valide. Seul le **premier** portail exige un choix : sans aucune voie choisie → « Trop tard · Aucun portail choisi », perte d'une vie (on ne gagne donc pas en laissant le coureur au centre au départ).
 - **Score** : +100, +25 par bonne réponse consécutive précédente (bonus plafonné à +100). Erreur ou absence : 0 et série remise à zéro. Aucun bonus de rapidité.
-- **Entraînement** : approche de 8 s, vies illimitées, pas de limite de durée, bouton « Terminer », aucun record compétitif.
-- **Tutoriel** (première ouverture) : 3 mots, le portail s'arrête à 70 % du trajet tant qu'aucune voie n'est choisie. « Passer le tutoriel » et « Revoir le tutoriel » disponibles.
+- **Entraînement** : approche de 6 s, vies illimitées, pas de limite de durée, bouton « Terminer », aucun record compétitif.
+- **Tutoriel** (première ouverture) : 3 mots, le portail s'arrête à 70 % du trajet tant que le joueur n'a pas touché une voie pour ce mot (toucher sa propre voie confirme qu'il reste). « Passer le tutoriel » et « Revoir le tutoriel » disponibles.
 - **Pause** (bouton, Échap ou P) : chrono, portails et validation arrêtés ; « Reprendre » / « Quitter la partie ». Pause automatique quand l'app passe en arrière-plan (`visibilitychange`). Retour Android : la course est abandonnée (non comptée), retour à Jeux.
 - **Contrôles** : trois boutons sous la scène (≥ 44 px, lettre + nom + couleur), toucher direct d'une voie sur la route, glisser horizontal vers la voie voisine, touches 1/2/3 et flèches.
 
@@ -29,9 +29,13 @@ Mini-jeu de la rubrique **Jeux** (SPEC 88) pour mémoriser le **genre des noms**
 
 `luxRunnerRecords[niveau]` : meilleur score, meilleur temps de survie, meilleure précision (si ≥ 5 portails), meilleur combo, parties jouées. Écrits **une fois** en fin de Sprint. `luxRunnerTuto` mémorise le tutoriel. Rien n'est envoyé au cloud ni mêlé à la progression des leçons.
 
-## Rendu
+## Rendu (V1.1 — `public/runner-rendu.js`)
 
-Canvas 2D pseudo-3D (ville nocturne en parallaxe pré-dessinée une fois, route, marquages défilant à la vitesse des portails, arches colorées avec lettre et nom, coureur vu de dos, particules sur réussite, secousse et voie correcte éclairée sur erreur). HUD et commandes en HTML/CSS. `prefers-reduced-motion` : pas de secousse, peu de particules, glissement instantané. Boucle `requestAnimationFrame`, pas de stockage par image ; boucle, minuteries et écouteurs libérés à chaque arrêt.
+Canvas 2D pseudo-3D, aucune dépendance. Un trio apparaît à la profondeur `RUNNER_PROFONDEUR = 0,42` (lisible dès son apparition, lettre toujours dessinée) ; **les deux trios suivants** (ou l'arche d'arrivée) sont dessinés derrière lui, à la même vitesse : succession continue d'obstacles, sans vide. Le trio franchi passe sous la caméra pendant 0,3 s. Route éclairée (dégradé, bords lumineux, pointillés et lampadaires qui défilent à la vitesse des portails → accélération perceptible à 3,5 puis 3 s), ville nocturne sur deux plans de parallaxe et ciel étoilé pré-dessinés une seule fois, traînées de vitesse sur les côtés. Arches avec épaisseur, halo, reflet et flaque de lumière ; coureur dessiné (genoux, coudes, maillot or, inclinaison pendant le changement de voie, recul sur un choc, bras levés à l'arrivée). Bon portail : onde et particules (or à partir de 3 de série) ; erreur : secousse et bonne voie éclairée. Badge « Combo ×N » dès 3, plus lumineux à 5 et 10. `prefers-reduced-motion` : pas de secousse, d'onde ni de traînées, peu de particules. Décors coûteux dessinés une fois par taille d'écran ; boucle, minuteries et écouteurs libérés à chaque arrêt.
+
+## Son (V1.1 — `public/runner-audio.js`)
+
+Identité sonore propre, **synthétisée en Web Audio** (aucun fichier, aucune licence) ; Lux Runner n'appelle plus `jouerFeedbackSon` et les sons des exercices sont inchangés. Musique électronique arcade originale à 128 BPM (grosse caisse, charleston, basse, arpège), programmée sur l'horloge audio ; couche rythmique supplémentaire dans les 15 dernières secondes. Effets : souffle stéréo au changement de voie, traversée lumineuse (qui monte avec la série), impact sourd, fanfare de combo (3, 5, 10, 15, 20), séquence de fin et de victoire. **Musique et effets se coupent séparément** (boutons dans la préparation et la pause, mémorisés par profil : `luxRunnerMusique`, `luxRunnerEffets`). Contexte audio créé à l'appui sur Jouer, suspendu en pause et en arrière-plan, musique arrêtée à la sortie.
 
 ## Écrans
 
@@ -43,14 +47,15 @@ Mode Endurance (le moteur le permet : `runnerAvancer` sans limite), classement e
 
 ## Implémentation
 
-- Fichiers : `public/runner.js`, `public/runner.css`, `public/runner-mots.js`, `tools/runner-genres.cjs`, `public/index.html` (vue `view-runner`), `public/jeux-v21.js` (carte du hub, arrêt dans `ouvrirJeux`), `public/navigation.js` (actualisation → Jeux).
-- Tests : `node --test test/runner.test.cjs` (référentiel, barème, approche, 60 s pile, cadence d'images, absence de choix, dernière voie, équilibre du tirage, priorité des erreurs, tutoriel, records, intégration) ; `test/jeux-v21.test.cjs` mis à jour.
-- Contrôle navigateur (Playwright, 360 × 740 et 430 × 932) : hub, tutoriel, course, pause figée, défaite, victoire 60 s (2 150 points), retour Jeux, aucun scroll horizontal, aucune erreur JS. **Samsung non testé.**
+- Fichiers : `public/runner.js` (règles, écrans, contrôles), `public/runner-rendu.js`, `public/runner-audio.js`, `public/runner.css`, `public/runner-mots.js`, `tools/runner-genres.cjs`, `public/index.html` (vue `view-runner`), `public/jeux-v21.js` (carte du hub, arrêt dans `ouvrirJeux`), `public/navigation.js` (actualisation → Jeux).
+- Tests : `node --test test/runner.test.cjs` — 14 tests (référentiel, barème, approche 4/3,5/3, 17 portails puis arrivée à 60 s, **deux féminins de suite réussis sans retoucher**, cadence d'images, absence de choix, voie à la collision, équilibre du tirage, priorité des erreurs, tutoriel, portails suivants, records, intégration, aucun son d'exercice) ; `test/jeux-v21.test.cjs` mis à jour.
+- Contrôle navigateur (Playwright, 360 × 740 et 430 × 932) : hub, tutoriel, course, voie conservée, combo, pause figée avec réglages du son, défaite, victoire 60 s (3 150 points, 17/17), musique arrêtée en fin de partie, retour Jeux, aucune erreur JS. **Samsung non testé, son non écouté.**
 
 ## Recette à faire (Samsung)
 
 1. Fluidité de la course et lisibilité des portails ; changement de voie au doigt et par glissement.
 2. Écran éteint / appel pendant une course → pause, reprise sans saut de temps.
 3. Retour Android pendant la course, depuis les résultats, depuis la préparation.
-4. Réglage du son de l'app respecté.
-5. Équilibrage 6/5/4 s à confirmer par des parties réelles.
+4. Musique et effets : volume, coupure séparée, silence en pause et écran éteint, aucun son résiduel après sortie.
+5. Fluidité du rendu V1.1 (lampadaires, traînées, trios suivants) sur un téléphone modeste.
+6. Équilibrage 4 / 3,5 / 3 s à confirmer par des parties réelles.

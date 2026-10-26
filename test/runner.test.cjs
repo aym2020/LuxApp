@@ -17,6 +17,7 @@ function make(niveau) {
   vm.createContext(ctx);
   vm.runInContext(read('public/runner-mots.js') + '\n;this.RUNNER_MOTS=RUNNER_MOTS;', ctx);
   vm.runInContext(read('public/runner.js'), ctx);
+  vm.runInContext(read('public/runner-rendu.js'), ctx);
   return { ctx, store };
 }
 // Hasard reproductible.
@@ -30,14 +31,16 @@ function partie(ctx, mode, seed, niveau) {
   ctx.niv = niveau || 'A1.1';
   return vm.runInContext('runnerNouvellePartie(mode, runnerMotsDuNiveau(niv), {niveau: niv, hasard: seed})', ctx);
 }
-// Joue une partie : strategie(portail) → genre choisi (ou null), pas = durée d'une image.
+// Joue une partie : strategie(mot) → voie voulue (ou null = ne rien toucher).
+// Le joueur n'agit qu'une fois par portail, et seulement s'il doit changer de voie.
 function jouer(ctx, p, pas, strategie, limite) {
   const resultats = [];
-  let garde = 0;
+  let garde = 0, dernier = null;
   while (p.etat === 'course' && p.temps < (limite || 1000) && garde++ < 1e6) {
-    if (p.portail && p.portail.mot && p.choix === null) {
+    if (p.portail && p.portail.mot && p.portail !== dernier) {
+      dernier = p.portail;
       const g = strategie(p.portail.mot);
-      if (g) ctx.runnerChoisirTest(p, g);
+      if (g && (g !== p.voie || p.mode === 'tuto')) ctx.runnerChoisirTest(p, g);
     }
     resultats.push(...ctx.runnerAvancer(p, pas));
   }
@@ -45,7 +48,7 @@ function jouer(ctx, p, pas, strategie, limite) {
 }
 function preparer(ctx) {
   // Même règle que runnerChoisir, sans DOM.
-  ctx.runnerChoisirTest = (p, g) => { if (p.portail && !p.portail.arrivee) p.choix = g; };
+  ctx.runnerChoisirTest = (p, g) => { if (p.portail && !p.portail.arrivee) { p.voie = g; p.toucheMot = true; } };
 }
 
 test('Référentiel : fichier généré à jour, genres m/f/n, ids uniques, lien avec la leçon', () => {
@@ -94,14 +97,14 @@ test('Référentiel : fichier généré à jour, genres m/f/n, ids uniques, lien
 test('Barème et temps d’approche', () => {
   const { ctx } = make();
   assert.deepEqual([0, 1, 2, 3, 4, 7].map(s => ctx.runnerPoints(s)), [100, 125, 150, 175, 200, 200]);
-  assert.deepEqual([0, 19.9, 20, 39.9, 40, 59].map(t => ctx.runnerApproche('sprint', t)), [6, 6, 5, 5, 4, 4]);
-  assert.equal(ctx.runnerApproche('entrainement', 50), 8);
+  assert.deepEqual([0, 19.9, 20, 39.9, 40, 59].map(t => ctx.runnerApproche('sprint', t)), [4, 4, 3.5, 3.5, 3, 3]);
+  assert.equal(ctx.runnerApproche('entrainement', 50), 6);
   assert.equal(ctx.runnerApproche('tuto', 0), 6);
   assert.equal(ctx.runnerFormatTemps(48.2), '00:49');
   assert.equal(ctx.runnerFormatTemps(60), '01:00');
 });
 
-test('Sprint parfait : arrivée à 60 s pile, aucun portail lancé au-delà, combo plafonné', () => {
+test('Sprint parfait : 17 portails, arche d’arrivée à 60 s pile, combo plafonné', () => {
   const { ctx } = make(); preparer(ctx);
   const p = partie(ctx, 'sprint', 3);
   const lances = [];
@@ -109,12 +112,30 @@ test('Sprint parfait : arrivée à 60 s pile, aucun portail lancé au-delà, com
   assert.equal(p.etat, 'fin'); assert.equal(p.victoire, true);
   assert.equal(p.finTemps, 60);
   assert.equal(p.vies, 3);
-  // 0-20 : 6 s, 20-40 : 5 s, 40-60 : 4 s → le dernier portail (lancé à 56 s) arrive à 60 s pile.
-  assert.deepEqual(res.map(r => r.temps), [6, 12, 18, 24, 29, 34, 39, 44, 48, 52, 56, 60]);
+  // 0-20 : 4 s, 20-40 : 3,5 s, 40-60 : 3 s ; à 59 s un portail de 3 s dépasserait 60 → arche d'arrivée.
+  assert.deepEqual(res.map(r => r.temps), [4, 8, 12, 16, 20, 23.5, 27, 30.5, 34, 37.5, 41, 44, 47, 50, 53, 56, 59]);
   assert.ok(lances.every(x => x.debut + x.duree <= 60));
-  assert.deepEqual(res.map(r => r.points), [100, 125, 150, 175, 200, 200, 200, 200, 200, 200, 200, 200]);
-  assert.equal(p.score, 2150);
-  assert.equal(p.maxSerie, 12);
+  assert.deepEqual(res.map(r => r.points), [100, 125, 150, 175].concat(Array(13).fill(200)));
+  assert.equal(p.score, 3150);
+  assert.equal(p.maxSerie, 17);
+});
+
+test('Le coureur garde sa voie : deux noms du même genre réussis sans retoucher', () => {
+  const { ctx } = make(); preparer(ctx);
+  const p = partie(ctx, 'sprint', 1);
+  // Mots imposés : deux féminins de suite.
+  const fem = ctx.RUNNER_MOTS.filter(m => m.level === 'A1.1' && m.gender === 'f');
+  let i = 0;
+  ctx.runnerChoisirMot = () => fem[i++];
+  ctx.runnerAvancer(p, 0.01);
+  ctx.runnerChoisirTest(p, 'f');           // un seul appui, au premier mot
+  const r1 = ctx.runnerAvancer(p, 4);      // premier impact
+  assert.equal(r1[0].statut, 'correct');
+  assert.equal(p.voie, 'f');               // pas de retour au centre ni de remise à zéro
+  assert.equal(p.portail.mot.gender, 'f');
+  const r2 = ctx.runnerAvancer(p, 4);      // aucun nouvel appui
+  assert.equal(r2[0].statut, 'correct');
+  assert.equal(p.serie, 2);
 });
 
 test('Résultat identique quelle que soit la cadence d’images', () => {
@@ -129,35 +150,35 @@ test('Résultat identique quelle que soit la cadence d’images', () => {
   assert.equal(resume(0.1), resume(1 / 30));
 });
 
-test('Sans choix : réponse manquée, perte de vie, défaite au 3e impact (18 s)', () => {
+test('Jamais de choix : réponse manquée, perte de vie, défaite au 3e impact (12 s)', () => {
   const { ctx } = make(); preparer(ctx);
   const p = partie(ctx, 'sprint', 5);
   const res = jouer(ctx, p, 0.05, () => null);
   assert.deepEqual(res.map(r => r.statut), ['absent', 'absent', 'absent']);
   assert.equal(p.vies, 0); assert.equal(p.victoire, false);
-  assert.equal(p.finTemps, 18);
+  assert.equal(p.finTemps, 12);
   assert.equal(p.erreurs.length, 3);
   assert.equal(p.erreurs[0].choix, null);
 });
 
-test('Seule la dernière voie compte, et rien n’est validé avant la collision', () => {
+test('Seule la voie occupée à la collision compte, rien n’est validé avant', () => {
   const { ctx } = make(); preparer(ctx);
   const p = partie(ctx, 'sprint', 7);
   ctx.runnerAvancer(p, 0.01);
   const bon = p.portail.mot.gender;
   const mauvais = bon === 'm' ? 'f' : 'm';
-  p.choix = mauvais;
-  assert.equal(ctx.runnerAvancer(p, 5).length, 0); // 5,01 s : pas encore d'impact
-  p.choix = bon;                                     // changement d'avis au dernier moment
+  ctx.runnerChoisirTest(p, mauvais);
+  assert.equal(ctx.runnerAvancer(p, 3.9).length, 0); // 3,91 s : pas encore d'impact
+  ctx.runnerChoisirTest(p, bon);                     // changement d'avis au dernier moment
   const res = ctx.runnerAvancer(p, 1);
   assert.equal(res.length, 1); assert.equal(res[0].statut, 'correct');
-  assert.equal(p.choix, null); // sélection réinitialisée au mot suivant
+  assert.equal(p.voie, bon); // la voie est conservée pour le mot suivant
 });
 
 test('Tirage : genres équilibrés, jamais 3 fois le même genre ni le même nom dans 4 portails', () => {
   const { ctx } = make(); preparer(ctx);
   const p = partie(ctx, 'entrainement', 9);
-  const res = jouer(ctx, p, 0.25, m => m.gender, 8 * 300);
+  const res = jouer(ctx, p, 0.25, m => m.gender, 6 * 300);
   assert.ok(res.length >= 290);
   const genres = res.map(r => r.mot.gender);
   for (let i = 0; i + 6 <= genres.length; i += 6) {
@@ -192,8 +213,12 @@ test('Tutoriel : le portail attend la réponse, 3 mots puis fin', () => {
   ctx.runnerAvancer(p, 30);
   assert.ok(Math.abs(p.temps - 6 * 0.7) < 1e-9, 'arrêt à 70 % du trajet');
   assert.equal(p.rencontres, 0);
+  ctx.runnerChoisirTest(p, p.portail.mot.gender);
+  ctx.runnerAvancer(p, 30);                  // 2e mot : il attend une nouvelle action
+  assert.equal(p.rencontres, 1);
+  assert.ok(Math.abs(p.temps - (6 + 6 * 0.7)) < 1e-9);
   const res = jouer(ctx, p, 0.1, m => m.gender, 100);
-  assert.equal(res.length, 3); assert.equal(p.etat, 'fin');
+  assert.equal(res.length, 2); assert.equal(p.etat, 'fin');
 });
 
 test('Records par niveau, une seule écriture par partie ; erreurs mémorisées', () => {
@@ -208,6 +233,16 @@ test('Records par niveau, une seule écriture par partie ; erreurs mémorisées'
   const mots = JSON.parse(store.get('profilA:luxRunnerMots'))['A1.1'];
   assert.ok(Object.keys(mots).length >= 1);
   assert.equal(JSON.parse(store.get('profilA:luxRunnerRecords'))['A1.2'], undefined);
+});
+
+test('Rendu : trios suivants et arche d’arrivée annoncés à l’avance', () => {
+  const { ctx } = make(); preparer(ctx);
+  const p = partie(ctx, 'sprint', 2);
+  ctx.runnerAvancer(p, 0.01);
+  assert.deepEqual(Array.from(ctx.runnerPortailsSuivants(p, p.portail)), ['trio', 'trio']);
+  p.portail = { mot: p.portail.mot, debut: 53, duree: 3 }; // suivant lancé à 56 s, puis 59 s
+  assert.deepEqual(Array.from(ctx.runnerPortailsSuivants(p, p.portail)), ['trio', 'arrivee']);
+  assert.ok(vm.runInContext('RUNNER_PROFONDEUR', ctx) * 2 <= 1, 'deux trios suivants visibles avant l’horizon');
 });
 
 test('Carte du hub : niveau disponible, niveau sans noms validés', () => {
@@ -229,4 +264,8 @@ test('Intégration : vue, scripts, navigation et hub', () => {
   assert.doesNotMatch(nav, /'view-runner': \d/); // activité, pas un onglet
   assert.match(jeux, /runnerCarteHub\(\)/);
   assert.match(jeux, /runnerArreter\(\)/);
+  assert.ok(html.indexOf('runner-audio.js') < html.indexOf('src="runner.js'));
+  assert.ok(html.indexOf('runner-rendu.js') < html.indexOf('src="runner.js'));
+  // Sons propres au runner : jamais ceux des exercices.
+  assert.doesNotMatch(read('public/runner.js'), /jouerFeedbackSon|SurvieFx/);
 });

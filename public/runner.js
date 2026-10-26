@@ -2,17 +2,23 @@
    Un nom luxembourgeois s'affiche ; le joueur choisit la voie Masculin,
    Féminin ou Neutre avant que les portails n'arrivent sur lui.
 
-   Organisation du fichier :
-     1. Constantes et données (référentiel RUNNER_MOTS, runner-mots.js)
-     2. Règles du jeu, sans DOM (testées dans test/runner.test.cjs)
-     3. Records et mots à retravailler (localStorage, par profil)
-     4. Écrans HTML : préparation, course, pause, résultats
-     5. Boucle d'animation et rendu Canvas 2D (pseudo-3D)
-     6. Contrôles : boutons, toucher, glisser, clavier
+   Organisation :
+     runner-mots.js   référentiel des genres (généré)
+     runner-audio.js  musique et effets sonores (RunnerAudio)
+     runner-rendu.js  dessin Canvas 2D de la course
+     runner.js        ce fichier :
+       1. Constantes
+       2. Règles du jeu, sans DOM (testées dans test/runner.test.cjs)
+       3. Records et mots à retravailler (localStorage, par profil)
+       4. Écrans HTML : préparation, course, pause, résultats
+       5. Boucle d'animation
+       6. Contrôles : boutons, toucher, glisser, clavier
 
    Règle fondamentale : le temps de décision EST le trajet jusqu'aux portails.
    Tout dépend de partie.temps (temps de jeu actif, en secondes), jamais du
-   nombre d'images affichées. */
+   nombre d'images affichées.
+   V1.1 : le coureur RESTE sur sa voie d'un portail à l'autre ; rester sur la
+   bonne voie est une réponse valide. Seul le tout premier portail exige un choix. */
 'use strict';
 
 // ─── 1. CONSTANTES ──────────────────────────────────────────────────────────
@@ -24,15 +30,16 @@ const RUNNER_GENRES = {
 };
 const RUNNER_DUREE_SPRINT = 60;     // secondes de jeu actif
 const RUNNER_VIES = 3;
-const RUNNER_APPROCHE_ENTRAINEMENT = 8;
+const RUNNER_APPROCHE_ENTRAINEMENT = 6;
 const RUNNER_APPROCHE_TUTO = 6;
+const RUNNER_PROFONDEUR = 0.42;     // profondeur d'apparition d'un trio (1 = horizon)
 const RUNNER_TUTO_MOTS = 3;
 const RUNNER_TUTO_ATTENTE = 0.7;    // tutoriel : le portail attend la réponse à 70 % du trajet
 const RUNNER_MIN_PAR_GENRE = 2;     // en dessous : niveau indisponible
 const RUNNER_SANS_REPETITION = 4;   // un nom ne revient pas dans les 4 portails suivants
 const RUNNER_PRECISION_MIN = 5;     // record de précision : au moins 5 portails
-const RUNNER_FEEDBACK_MS = 1600;
-const RUNNER_PASSAGE = 0.35;        // durée (s) du portail franchi qui disparaît
+const RUNNER_FEEDBACK_MS = 1400;
+const RUNNER_PALIERS_COMBO = [3, 5, 10, 15, 20]; // séries qui déclenchent l'annonce « Combo »
 
 let runnerPartie = null;  // partie en cours (null hors course)
 let runnerEcran = null;   // 'preparation' | 'course' | 'resultats'
@@ -43,9 +50,9 @@ let runnerEcran = null;   // 'preparation' | 'course' | 'resultats'
 function runnerApproche(mode, tempsDebut) {
   if (mode === 'entrainement') return RUNNER_APPROCHE_ENTRAINEMENT;
   if (mode === 'tuto') return RUNNER_APPROCHE_TUTO;
-  if (tempsDebut < 20) return 6;
-  if (tempsDebut < 40) return 5;
-  return 4;
+  if (tempsDebut < 20) return 4;
+  if (tempsDebut < 40) return 3.5;
+  return 3;
 }
 
 // 100 points + 25 par bonne réponse consécutive précédente, bonus plafonné à 100.
@@ -95,7 +102,8 @@ function runnerNouvellePartie(mode, mots, options) {
     bons: 0,
     rencontres: 0,
     portail: null,                    // { mot, debut, duree } ou { arrivee: true, debut, duree }
-    choix: null,                      // 'm' | 'f' | 'n' | null : rien n'est présélectionné
+    voie: null,                       // voie occupée 'm' | 'f' | 'n' ; null avant le premier choix
+    toucheMot: false,                 // le joueur a agi pendant ce portail (tutoriel)
     sac: [],                          // genres à venir (2 de chaque, mélangés)
     genresRecents: [],
     derniers: [],                     // ids des derniers portails
@@ -150,7 +158,7 @@ function runnerChoisirMot(p) {
 // Sprint : une séquence qui dépasserait les 60 s n'est pas lancée ;
 // l'arche d'arrivée arrive à la place, exactement à 60 s.
 function runnerLancerPortail(p, debut) {
-  p.choix = null;
+  p.toucheMot = false; // la voie, elle, est conservée
   if (p.mode === 'tuto' && p.rencontres >= RUNNER_TUTO_MOTS) {
     p.portail = null;
     runnerFinir(p, true, debut);
@@ -169,10 +177,10 @@ function runnerLancerPortail(p, debut) {
   p.derniers = [mot.id].concat(p.derniers).slice(0, RUNNER_SANS_REPETITION);
 }
 
-// Collision : on valide la DERNIÈRE voie choisie, et seulement maintenant.
+// Collision : on évalue la voie occupée à cet instant, et seulement maintenant.
 function runnerResoudre(p) {
   const mot = p.portail.mot;
-  const choix = p.choix;
+  const choix = p.voie;
   p.rencontres++;
   let statut;
   let points = 0;
@@ -209,13 +217,13 @@ function runnerAvancer(p, dt) {
   if (!p || p.etat !== 'course' || !(dt > 0)) return resultats;
   if (!p.portail) runnerLancerPortail(p, p.temps);
   let cible = p.temps + dt;
-  // Tutoriel : le portail s'arrête à 70 % du trajet tant qu'aucune voie n'est choisie.
-  if (p.mode === 'tuto' && p.portail && !p.portail.arrivee && p.choix === null) {
+  // Tutoriel : le portail s'arrête à 70 % du trajet tant que le joueur n'a pas agi.
+  if (p.mode === 'tuto' && p.portail && !p.portail.arrivee && !p.toucheMot) {
     cible = Math.min(cible, Math.max(p.temps, p.portail.debut + p.portail.duree * RUNNER_TUTO_ATTENTE));
   }
   while (p.etat === 'course' && p.portail && cible >= p.portail.debut + p.portail.duree) {
     const impact = p.portail.debut + p.portail.duree;
-    p.distance += (impact - p.temps) / p.portail.duree;
+    p.distance += (impact - p.temps) * RUNNER_PROFONDEUR / p.portail.duree;
     p.temps = impact;
     if (p.portail.arrivee) { p.portail = null; runnerFinir(p, true, impact); break; }
     const resultat = runnerResoudre(p);
@@ -224,12 +232,12 @@ function runnerAvancer(p, dt) {
     resultats.push(resultat);
     if (p.mode === 'sprint' && p.vies <= 0) { runnerFinir(p, false, impact); break; }
     runnerLancerPortail(p, impact);
-    if (p.mode === 'tuto' && p.portail && p.choix === null) {
+    if (p.mode === 'tuto' && p.portail && !p.toucheMot) {
       cible = Math.min(cible, p.portail.debut + p.portail.duree * RUNNER_TUTO_ATTENTE);
     }
   }
   if (p.etat === 'course' && cible > p.temps) {
-    if (p.portail) p.distance += (cible - p.temps) / p.portail.duree;
+    if (p.portail) p.distance += (cible - p.temps) * RUNNER_PROFONDEUR / p.portail.duree;
     p.temps = cible;
   }
   return resultats;
@@ -381,12 +389,37 @@ function runnerRendrePreparation(apresTuto) {
       '<div class="runner-prepa-records"><div><span>Record</span><strong>' + r.score + '</strong></div>' +
         '<div><span>Meilleure série</span><strong>' + r.combo + '</strong></div>' +
         '<div><span>Parties</span><strong>' + r.parties + '</strong></div></div>' +
+      runnerBoutonsSon() +
     '</main>' +
     '<div class="runner-actions">' +
       '<button type="button" class="jeux-jouer" onclick="demarrerRunner(\'sprint\')">Jouer ' + runnerIcone('fleche') + '</button>' +
       '<button type="button" class="runner-secondaire" onclick="demarrerRunner(\'entrainement\')">S’entraîner</button>' +
       '<button type="button" class="runner-lien" onclick="demarrerRunner(\'tuto\')">Revoir le tutoriel</button>' +
     '</div>';
+  runnerMajBoutonsSon();
+}
+
+// Musique et effets : deux réglages séparés, mémorisés par profil.
+function runnerBoutonsSon() {
+  if (typeof RunnerAudio === 'undefined') return '';
+  return '<div class="runner-sons" role="group" aria-label="Son du jeu">' +
+    '<button type="button" class="runner-son" data-son="musique" onclick="runnerBasculerSon(\'musique\')"></button>' +
+    '<button type="button" class="runner-son" data-son="effets" onclick="runnerBasculerSon(\'effets\')"></button></div>';
+}
+function runnerMajBoutonsSon() {
+  if (typeof RunnerAudio === 'undefined') return;
+  document.querySelectorAll('#runner-jeu .runner-son').forEach(b => {
+    const musique = b.getAttribute('data-son') === 'musique';
+    const actif = musique ? RunnerAudio.musiqueActive() : RunnerAudio.effetsActifs();
+    b.setAttribute('aria-pressed', String(actif));
+    b.textContent = (musique ? 'Musique' : 'Effets') + (actif ? ' : oui' : ' : non');
+  });
+}
+function runnerBasculerSon(quoi) {
+  if (typeof RunnerAudio === 'undefined') return;
+  if (quoi === 'musique') RunnerAudio.basculerMusique(!!runnerPartie && runnerPartie.etat !== 'fin');
+  else RunnerAudio.basculerEffets();
+  runnerMajBoutonsSon();
 }
 
 function runnerPasserTuto() {
@@ -407,6 +440,8 @@ function demarrerRunner(mode) {
   runnerRendreCourse();
   const vue = document.getElementById('view-runner');
   if (!vue || !vue.classList.contains('active')) showView('view-runner');
+  // Démarré pendant l'appui sur Jouer : autorisé par Android et iOS.
+  if (typeof RunnerAudio !== 'undefined') RunnerAudio.demarrer();
   runnerLancerPortail(runnerPartie, 0);
   runnerMajMot();
   runnerMajHud(true);
@@ -447,6 +482,7 @@ function runnerRendreCourse() {
       '<canvas id="runner-canvas" aria-hidden="true"></canvas>' +
       '<div id="runner-feedback" class="runner-feedback" role="status" aria-live="polite"></div>' +
       '<div id="runner-aide" class="runner-aide" aria-hidden="true"></div>' +
+      '<div id="runner-combo" class="runner-combo" data-palier="1" aria-hidden="true"><span>COMBO</span><strong>×3</strong></div>' +
     '</div>' +
     '<div class="runner-voies" role="group" aria-label="Choisir le genre">' +
       RUNNER_VOIES.map((g, i) =>
@@ -459,6 +495,7 @@ function runnerRendreCourse() {
         '<h2 id="runner-pause-titre">Pause</h2><p>Le chrono et les portails sont arrêtés.</p>' +
         '<button type="button" class="jeux-jouer" onclick="runnerReprendre()">Reprendre</button>' +
         '<button type="button" class="runner-secondaire" onclick="runnerQuitterPartie()">Quitter la partie</button>' +
+        runnerBoutonsSon() +
       '</div></div>';
   runnerAttacherScene();
 }
@@ -486,15 +523,15 @@ function runnerMajMot() {
 function runnerMajVoies() {
   const p = runnerPartie;
   if (!p) return;
-  const attente = p.mode === 'tuto' && p.choix === null && p.portail && !p.portail.arrivee;
+  const attente = p.mode === 'tuto' && !p.toucheMot && p.portail && !p.portail.arrivee;
   document.querySelectorAll('#runner-jeu .runner-voie').forEach(b => {
-    const choisi = b.getAttribute('data-genre') === p.choix;
+    const choisi = b.getAttribute('data-genre') === p.voie;
     b.setAttribute('aria-pressed', String(choisi));
     b.classList.toggle('runner-voie-choisie', choisi);
   });
   const aide = document.getElementById('runner-aide');
   if (aide) {
-    const texte = attente ? 'Touche une voie pour choisir' : '';
+    const texte = !attente ? '' : p.voie ? 'Change de voie ou touche la tienne pour rester' : 'Touche une voie pour choisir';
     if (aide.textContent !== texte) aide.textContent = texte;
   }
 }
@@ -563,14 +600,38 @@ function runnerMontrerResultat(r) {
     if (gain) { gain.textContent = '+' + r.points; gain.className = 'runner-gain-anim-' + suffixe; }
     if (score) score.className = 'runner-score-anim-' + suffixe;
   }
-  if (typeof jouerFeedbackSon === 'function') jouerFeedbackSon(r.statut === 'correct' ? 'success' : 'finalFailure');
+  // Sons propres au runner (jamais ceux des exercices).
+  if (typeof RunnerAudio !== 'undefined') {
+    if (r.statut === 'correct') RunnerAudio.bonPortail(r.serie);
+    else RunnerAudio.erreur();
+    if (r.statut === 'correct' && RUNNER_PALIERS_COMBO.indexOf(r.serie) >= 0) RunnerAudio.combo(r.serie);
+  }
+  runnerMajCombo(r);
   runnerEffetCollision(r);
+}
+
+// Annonce « Combo ×N » à partir de 3 bonnes réponses ; disparaît à la première erreur.
+function runnerMajCombo(r) {
+  const p = runnerPartie;
+  const badge = document.getElementById('runner-combo');
+  if (!badge || !p) return;
+  if (r.statut !== 'correct' || r.serie < 3) {
+    if (badge.className.indexOf('runner-combo-visible') >= 0) badge.className = 'runner-combo runner-combo-casse';
+    return;
+  }
+  const valeur = badge.querySelector('strong');
+  if (valeur) valeur.textContent = '×' + r.serie;
+  const palier = r.serie >= 10 ? 3 : r.serie >= 5 ? 2 : 1;
+  badge.setAttribute('data-palier', String(palier));
+  badge.className = 'runner-combo runner-combo-visible runner-combo-anim-' + (r.serie % 2 ? 'a' : 'b');
 }
 
 function runnerPause() {
   const p = runnerPartie;
   if (!p || p.etat !== 'course') return;
   p.etat = 'pause';
+  if (typeof RunnerAudio !== 'undefined') RunnerAudio.pause();
+  runnerMajBoutonsSon();
   const voile = document.getElementById('runner-pause');
   if (voile) {
     voile.hidden = false;
@@ -583,6 +644,7 @@ function runnerReprendre() {
   if (!p || p.etat !== 'pause') return;
   p.etat = 'course';
   p.affichage.dernier = null; // pas de saut de temps à la reprise
+  if (typeof RunnerAudio !== 'undefined') RunnerAudio.reprendre();
   const voile = document.getElementById('runner-pause');
   if (voile) voile.hidden = true;
 }
@@ -603,6 +665,7 @@ function runnerTerminerEntrainement() {
 
 // Arrêt complet : boucle, écouteurs et minuteries (aucune fuite entre parties).
 function runnerArreter() {
+  if (typeof RunnerAudio !== 'undefined') RunnerAudio.arreter();
   const p = runnerPartie;
   if (!p) return;
   if (p.etat !== 'fin') p.etat = 'fin';
@@ -625,6 +688,7 @@ function runnerFinDePartie() {
   if (p.mode === 'sprint') battus = runnerEnregistrerSprint(p);
   if (p.mode !== 'tuto') runnerEnregistrerMots(p);
   if (p.mode === 'tuto') runnerMarquerTuto();
+  if (typeof RunnerAudio !== 'undefined' && p.mode !== 'tuto') RunnerAudio.fin(p.victoire && p.mode === 'sprint');
   // Laisser voir l'arrivée ou le dernier trébuchement, sans prolonger le chrono.
   const delai = p.mode === 'entrainement' ? 0 : 900;
   p.affichage.finTimer = setTimeout(() => {
@@ -703,7 +767,8 @@ function runnerVoirErreurs() {
 function runnerNouvelAffichage() {
   return {
     boucle: null, dernier: null, canvas: null, ctx: null, largeur: 0, hauteur: 0, ratio: 1,
-    ville: null, voieX: 1, secousse: 0, eclat: null, particules: [], passe: null,
+    fond: null, villeProche: null, degradeRoute: null, voieX: 1, inclinaison: 0, horloge: 0,
+    secousse: 0, eclat: null, onde: null, particules: [], passe: null, trainees: [], creerTrainee: 0,
     feedbackTimer: null, finTimer: null, finProgrammee: false, redimension: null,
     portailAffiche: null, chrono: '', vies: -1, score: -1, compteur: '', glisse: null
   };
@@ -738,6 +803,7 @@ function runnerImage(maintenant) {
     resultats.forEach(runnerMontrerResultat);
     if (p.portail !== ancien) runnerMajMot();
     runnerMajHud(false);
+    if (typeof RunnerAudio !== 'undefined' && p.mode === 'sprint') RunnerAudio.suivreTemps(RUNNER_DUREE_SPRINT - p.temps);
     if (p.etat === 'fin') runnerFinDePartie();
   }
   runnerMettreAJourEffets(p, p.etat === 'pause' ? 0 : dt);
@@ -763,363 +829,24 @@ function runnerAttacherScene() {
   }
 }
 
-function runnerRedimensionner() {
-  const p = runnerPartie;
-  if (!p || !p.affichage.canvas) return;
-  const a = p.affichage;
-  const rect = a.canvas.getBoundingClientRect();
-  a.ratio = Math.min(2, window.devicePixelRatio || 1);
-  a.largeur = Math.max(1, rect.width);
-  a.hauteur = Math.max(1, rect.height);
-  a.canvas.width = Math.round(a.largeur * a.ratio);
-  a.canvas.height = Math.round(a.hauteur * a.ratio);
-  a.ville = runnerDessinerVille(a.largeur * 1.3, a.hauteur * 0.2, a.ratio);
-}
-
-// Silhouettes de la ville, dessinées une seule fois (pas à chaque image).
-function runnerDessinerVille(largeur, hauteur, ratio) {
-  if (typeof document === 'undefined' || !document.createElement) return null;
-  const c = document.createElement('canvas');
-  c.width = Math.max(1, Math.round(largeur * ratio));
-  c.height = Math.max(1, Math.round(hauteur * ratio));
-  const g = c.getContext('2d');
-  if (!g) return null;
-  g.scale(ratio, ratio);
-  // Hasard fixe : la même ville à chaque partie.
-  let graine = 7;
-  const hasard = () => { graine = (graine * 9301 + 49297) % 233280; return graine / 233280; };
-  let x = 0;
-  while (x < largeur) {
-    const l = 14 + hasard() * 30;
-    const h = hauteur * (0.28 + hasard() * 0.6);
-    g.fillStyle = hasard() < 0.5 ? '#17150f' : '#1c1913';
-    g.fillRect(x, hauteur - h, l, h);
-    if (hasard() < 0.18) { // flèche d'église / tour
-      g.beginPath();
-      g.moveTo(x + l / 2 - 4, hauteur - h);
-      g.lineTo(x + l / 2, hauteur - h - 16 - hasard() * 12);
-      g.lineTo(x + l / 2 + 4, hauteur - h);
-      g.fill();
-    }
-    for (let fy = hauteur - h + 5; fy < hauteur - 4; fy += 7) {
-      for (let fx = x + 3; fx < x + l - 4; fx += 6) {
-        if (hasard() < 0.22) {
-          g.fillStyle = 'rgba(245,207,77,' + (0.25 + hasard() * 0.45).toFixed(2) + ')';
-          g.fillRect(fx, fy, 2, 3);
-        }
-      }
-    }
-    x += l + hasard() * 3;
-  }
-  return c;
-}
-
-// Perspective : profondeur d = 1 (horizon) → 0 (ligne du coureur).
-// s = 1 à la ligne du coureur, 0 à l'horizon ; > 1 sous le coureur.
-const RUNNER_PERSPECTIVE = 3;
-function runnerEchelle(d) {
-  const brut = 1 / (1 + d * RUNNER_PERSPECTIVE);
-  const loin = 1 / (1 + RUNNER_PERSPECTIVE);
-  return (brut - loin) / (1 - loin);
-}
-
-function runnerGeometrie(a) {
-  const W = a.largeur, H = a.hauteur;
-  return {
-    W: W, H: H, cx: W / 2,
-    horizon: H * 0.2,
-    ligne: H * 0.84,                       // ligne des portails = position du coureur
-    demiLoin: W * 0.035,
-    demiPres: Math.min(W * 0.48, H * 0.55)
-  };
-}
-function runnerPoint(geo, d) {
-  const s = runnerEchelle(d);
-  return {
-    s: s,
-    y: geo.horizon + (geo.ligne - geo.horizon) * s,
-    demi: geo.demiLoin + (geo.demiPres - geo.demiLoin) * s
-  };
-}
-function runnerVoieX(geo, pt, voie) {
-  return geo.cx + (voie - 1) * (2 / 3) * pt.demi;
-}
-
-function runnerEffetCollision(r) {
-  const p = runnerPartie;
-  if (!p) return;
-  const a = p.affichage;
-  const reduit = runnerMouvementReduit();
-  const voieBonne = RUNNER_VOIES.indexOf(r.mot.gender);
-  a.passe = { debut: r.temps, duree: r.duree, bonne: voieBonne, ok: r.statut === 'correct' };
-  if (r.statut === 'correct') {
-    const geo = runnerGeometrie(a);
-    const pt = runnerPoint(geo, 0);
-    const x = runnerVoieX(geo, pt, voieBonne);
-    const nombre = reduit ? 6 : 22;
-    for (let i = 0; i < nombre; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const vitesse = 60 + Math.random() * 140;
-      a.particules.push({ x: x, y: geo.ligne - pt.demi * 0.5, vx: Math.cos(angle) * vitesse,
-        vy: Math.sin(angle) * vitesse - 60, vie: 0.6, age: 0, couleur: RUNNER_GENRES[r.mot.gender].couleur });
-    }
-    a.eclat = { voie: voieBonne, age: 0, couleur: RUNNER_GENRES[r.mot.gender].couleur };
-  } else {
-    if (!reduit) a.secousse = 0.4;
-    // Indication du bon portail : sa voie s'éclaire brièvement.
-    a.eclat = { voie: voieBonne, age: 0, couleur: RUNNER_GENRES[r.mot.gender].couleur, correction: true };
-  }
-}
-
-function runnerMettreAJourEffets(p, dt) {
-  const a = p.affichage;
-  // Le coureur glisse vers la voie choisie (centre si aucun choix).
-  const cible = p.choix ? RUNNER_VOIES.indexOf(p.choix) : 1;
-  const vitesse = runnerMouvementReduit() ? 1 : Math.min(1, dt * 14);
-  a.voieX += (cible - a.voieX) * vitesse;
-  if (a.secousse > 0) a.secousse = Math.max(0, a.secousse - dt);
-  if (a.eclat) { a.eclat.age += dt; if (a.eclat.age > 0.7) a.eclat = null; }
-  a.particules = a.particules.filter(q => {
-    q.age += dt;
-    q.x += q.vx * dt; q.y += q.vy * dt; q.vy += 260 * dt;
-    return q.age < q.vie;
-  });
-}
-
-function runnerDessiner(p) {
-  const a = p.affichage;
-  const g = a.ctx;
-  if (!g || !a.largeur) return;
-  const geo = runnerGeometrie(a);
-  g.setTransform(a.ratio, 0, 0, a.ratio, 0, 0);
-  // Ciel nocturne et lueur chaude à l'horizon.
-  const ciel = g.createLinearGradient(0, 0, 0, geo.horizon);
-  ciel.addColorStop(0, '#0f0e0c'); ciel.addColorStop(1, '#221c13');
-  g.fillStyle = ciel; g.fillRect(0, 0, geo.W, geo.horizon + 1);
-  const halo = g.createRadialGradient(geo.cx, geo.horizon, 0, geo.cx, geo.horizon, geo.W * 0.6);
-  halo.addColorStop(0, 'rgba(245,207,77,0.16)'); halo.addColorStop(1, 'rgba(245,207,77,0)');
-  g.fillStyle = halo; g.fillRect(0, 0, geo.W, geo.horizon + 1);
-  // Ville en parallaxe : légère dérive opposée au coureur.
-  if (a.ville) {
-    const decalage = (a.voieX - 1) * geo.W * 0.03;
-    const villeL = a.ville.width / a.ratio, villeH = a.ville.height / a.ratio;
-    g.drawImage(a.ville, -geo.W * 0.15 - decalage, geo.horizon - villeH + 1, villeL, villeH);
-  }
-  // Sol.
-  g.fillStyle = '#0b0a08'; g.fillRect(0, geo.horizon, geo.W, geo.H - geo.horizon);
-  // Route : trapèze de l'horizon jusqu'au bas de l'écran.
-  const basD = runnerProfondeurBas(geo);
-  const haut = runnerPoint(geo, 1), bas = runnerPointBas(geo);
-  g.fillStyle = '#1a1916';
-  g.beginPath();
-  g.moveTo(geo.cx - haut.demi, haut.y); g.lineTo(geo.cx + haut.demi, haut.y);
-  g.lineTo(geo.cx + bas.demi, bas.y); g.lineTo(geo.cx - bas.demi, bas.y); g.closePath(); g.fill();
-  // Voie choisie mise en évidence.
-  if (p.choix) runnerDessinerVoie(g, geo, RUNNER_VOIES.indexOf(p.choix), RUNNER_GENRES[p.choix].couleur, 0.14);
-  if (a.eclat) runnerDessinerVoie(g, geo, a.eclat.voie, a.eclat.couleur, (a.eclat.correction ? 0.32 : 0.22) * (1 - a.eclat.age / 0.7));
-  // Bords lumineux.
-  g.strokeStyle = 'rgba(245,207,77,0.38)'; g.lineWidth = 2;
-  g.beginPath(); g.moveTo(geo.cx - haut.demi, haut.y); g.lineTo(geo.cx - bas.demi, bas.y);
-  g.moveTo(geo.cx + haut.demi, haut.y); g.lineTo(geo.cx + bas.demi, bas.y); g.stroke();
-  // Marquages qui défilent à la même vitesse que les portails (un seul système).
-  runnerDessinerMarquages(g, geo, p.distance, basD);
-  // Portails : le trio franchi (qui disparaît) puis le trio qui arrive.
-  if (a.passe) {
-    const age = p.temps - a.passe.debut;
-    if (age < RUNNER_PASSAGE) runnerDessinerTrio(g, geo, -age / a.passe.duree, 1 - age / RUNNER_PASSAGE, a.passe);
-    else a.passe = null;
-  }
-  const portail = p.portail;
-  if (portail) {
-    const progres = Math.min(1, Math.max(0, (p.temps - portail.debut) / portail.duree));
-    const apparition = Math.min(1, progres / 0.12);
-    if (portail.arrivee) runnerDessinerArrivee(g, geo, 1 - progres, apparition);
-    else runnerDessinerTrio(g, geo, 1 - progres, apparition, null);
-  }
-  runnerDessinerCoureur(g, geo, p);
-  // Particules de réussite.
-  a.particules.forEach(q => {
-    g.globalAlpha = Math.max(0, 1 - q.age / q.vie);
-    g.fillStyle = q.couleur;
-    g.fillRect(q.x - 2, q.y - 2, 4, 4);
-  });
-  g.globalAlpha = 1;
-}
-
-function runnerPointBas(geo) {
-  return runnerPointSous(geo, runnerProfondeurBas(geo));
-}
-
-function runnerDessinerVoie(g, geo, voie, couleur, alpha) {
-  if (alpha <= 0) return;
-  const haut = runnerPoint(geo, 1), bas = runnerPointBas(geo);
-  const bord = (pt, cote) => geo.cx + ((voie - 1) * 2 / 3 + cote / 3) * pt.demi;
-  g.globalAlpha = alpha;
-  g.fillStyle = couleur;
-  g.beginPath();
-  g.moveTo(bord(haut, -1), haut.y); g.lineTo(bord(haut, 1), haut.y);
-  g.lineTo(bord(bas, 1), bas.y); g.lineTo(bord(bas, -1), bas.y); g.closePath(); g.fill();
-  g.globalAlpha = 1;
-}
-
-function runnerDessinerMarquages(g, geo, distance, basD) {
-  const pas = 0.1, longueur = 0.05;
-  const decalage = (distance % pas + pas) % pas;
-  g.fillStyle = 'rgba(246,241,233,0.32)';
-  for (let z = 1 - decalage; z > basD - pas; z -= pas) {
-    const z2 = Math.max(basD, z - longueur);
-    if (z2 >= 1) continue;
-    const loin = runnerPointZ(geo, z), pres = runnerPointZ(geo, z2);
-    for (const cote of [-1, 1]) {
-      const x1 = geo.cx + cote / 3 * loin.demi, x2 = geo.cx + cote / 3 * pres.demi;
-      const e1 = Math.max(0.5, 2.2 * loin.s), e2 = Math.max(0.5, 2.2 * pres.s);
-      g.beginPath();
-      g.moveTo(x1 - e1, loin.y); g.lineTo(x1 + e1, loin.y);
-      g.lineTo(x2 + e2, pres.y); g.lineTo(x2 - e2, pres.y); g.closePath(); g.fill();
-    }
-  }
-}
-
-// Trois arches à la profondeur d. passe : trio déjà franchi (bonne voie en évidence).
-function runnerDessinerTrio(g, geo, d, opacite, passe) {
-  const pt = runnerPointZ(geo, d);
-  const largeurVoie = (2 / 3) * pt.demi;
-  RUNNER_VOIES.forEach((genre, voie) => {
-    const info = RUNNER_GENRES[genre];
-    let alpha = opacite;
-    if (passe) alpha *= voie === passe.bonne ? 1 : 0.35;
-    if (alpha <= 0.01) return;
-    const x = runnerVoieX(geo, pt, voie);
-    const l = largeurVoie * 0.84, h = largeurVoie * 1.15;
-    const pilier = Math.max(2, l * 0.1);
-    const base = pt.y, sommet = pt.y - h;
-    g.globalAlpha = alpha * (passe ? 0.08 : 0.18);
-    g.fillStyle = info.couleur;
-    g.fillRect(x - l / 2, sommet, l, h); // voile lumineux dans l'arche
-    g.globalAlpha = alpha;
-    g.fillRect(x - l / 2, sommet, pilier, h);
-    g.fillRect(x + l / 2 - pilier, sommet, pilier, h);
-    const bandeau = Math.max(4, h * 0.26);
-    g.fillRect(x - l / 2, sommet, l, bandeau);
-    if (bandeau > 9) {
-      g.fillStyle = '#0f0e0c';
-      g.textAlign = 'center'; g.textBaseline = 'middle';
-      const taille = Math.round(bandeau * 0.72);
-      g.font = '800 ' + taille + 'px Inter, system-ui, sans-serif';
-      if (l > taille * 4.6) g.fillText(info.lettre + ' · ' + info.nom.toUpperCase(), x, sommet + bandeau / 2 + 1);
-      else g.fillText(info.lettre, x, sommet + bandeau / 2 + 1);
-    }
-    if (passe && voie === passe.bonne && !passe.ok) { // correction : contour blanc
-      g.strokeStyle = '#f6f1e9'; g.lineWidth = 2;
-      g.strokeRect(x - l / 2 - 3, sommet - 3, l + 6, h + 6);
-    }
-  });
-  g.globalAlpha = 1;
-}
-
-// Sous la ligne du coureur (d < 0), la route continue de s'élargir.
-// Pente choisie pour prolonger runnerEchelle sans cassure (≈ 4 en d = 0).
-const RUNNER_PENTE_SOUS = 4;
-function runnerPointSous(geo, d) {
-  const s = 1 - d * RUNNER_PENTE_SOUS;
-  return { s: s, y: geo.horizon + (geo.ligne - geo.horizon) * s, demi: geo.demiLoin + (geo.demiPres - geo.demiLoin) * s };
-}
-// Profondeur qui correspond au bas de l'écran (négative).
-function runnerProfondeurBas(geo) {
-  const s = (geo.H - geo.horizon) / (geo.ligne - geo.horizon);
-  return (1 - s) / RUNNER_PENTE_SOUS;
-}
-function runnerPointZ(geo, d) {
-  return d >= 0 ? runnerPoint(geo, Math.min(1, d)) : runnerPointSous(geo, d);
-}
-
-function runnerDessinerArrivee(g, geo, d, opacite) {
-  const pt = runnerPoint(geo, d);
-  const l = pt.demi * 2 * 0.98, h = pt.demi * 0.9;
-  const x = geo.cx - l / 2, sommet = pt.y - h;
-  const pilier = Math.max(2, l * 0.03);
-  g.globalAlpha = opacite;
-  g.fillStyle = '#f5cf4d';
-  g.fillRect(x, sommet, pilier, h);
-  g.fillRect(x + l - pilier, sommet, pilier, h);
-  const bandeau = Math.max(4, h * 0.2);
-  // Damier d'arrivée.
-  const cases = 16, c = l / cases;
-  for (let i = 0; i < cases; i++) {
-    g.fillStyle = i % 2 ? '#f5cf4d' : '#0f0e0c';
-    g.fillRect(x + i * c, sommet, c, bandeau / 2);
-    g.fillStyle = i % 2 ? '#0f0e0c' : '#f5cf4d';
-    g.fillRect(x + i * c, sommet + bandeau / 2, c, bandeau / 2);
-  }
-  if (bandeau > 12) {
-    g.fillStyle = '#f5cf4d';
-    g.textAlign = 'center'; g.textBaseline = 'bottom';
-    g.font = '800 ' + Math.round(bandeau * 0.8) + 'px Inter, system-ui, sans-serif';
-    g.fillText('ARRIVÉE', geo.cx, sommet - 4);
-  }
-  g.globalAlpha = 1;
-}
-
-// Coureur vu de dos, simple et contrasté, dans le tiers inférieur.
-function runnerDessinerCoureur(g, geo, p) {
-  const a = p.affichage;
-  const pt = runnerPoint(geo, 0);
-  let x = geo.cx + (a.voieX - 1) * (2 / 3) * pt.demi;
-  const taille = Math.min(64, geo.H * 0.15);
-  const enCourse = p.etat !== 'fin' || !p.victoire;
-  const phase = p.temps * 13;
-  let rebond = enCourse ? Math.abs(Math.sin(phase)) * taille * 0.05 : 0;
-  let bras = Math.sin(phase) * 0.6;
-  let inclinaison = 0;
-  if (a.secousse > 0) {
-    x += Math.sin(a.secousse * 70) * 6 * (a.secousse / 0.4);
-    inclinaison = 0.25 * (a.secousse / 0.4);
-  }
-  if (p.etat === 'fin' && p.victoire && p.mode === 'sprint') { rebond = taille * 0.18; bras = 2.6; } // bras levés
-  const pied = geo.ligne + taille * 0.08;
-  g.fillStyle = 'rgba(0,0,0,0.45)';
-  g.beginPath(); g.ellipse(x, pied, taille * 0.28, taille * 0.07, 0, 0, Math.PI * 2); g.fill();
-  g.save();
-  g.translate(x, pied - rebond);
-  g.rotate(inclinaison);
-  const t = taille;
-  g.strokeStyle = '#f6f1e9'; g.lineCap = 'round';
-  // Jambes.
-  g.lineWidth = t * 0.11;
-  const jambe = Math.sin(phase) * t * 0.12;
-  g.beginPath(); g.moveTo(-t * 0.08, -t * 0.42); g.lineTo(-t * 0.1, -t * 0.02 - Math.max(0, jambe));
-  g.moveTo(t * 0.08, -t * 0.42); g.lineTo(t * 0.1, -t * 0.02 - Math.max(0, -jambe)); g.stroke();
-  // Bras.
-  g.lineWidth = t * 0.08;
-  g.beginPath();
-  g.moveTo(-t * 0.15, -t * 0.72); g.lineTo(-t * 0.26, -t * 0.5 - bras * t * 0.12);
-  g.moveTo(t * 0.15, -t * 0.72); g.lineTo(t * 0.26, -t * 0.5 + bras * t * 0.12); g.stroke();
-  // Torse.
-  g.fillStyle = '#f6f1e9';
-  g.beginPath(); g.ellipse(0, -t * 0.62, t * 0.17, t * 0.24, 0, 0, Math.PI * 2); g.fill();
-  // Écharpe or (couleur LuxApp) et tête.
-  g.fillStyle = '#f5cf4d';
-  g.fillRect(-t * 0.15, -t * 0.84, t * 0.3, t * 0.07);
-  g.fillStyle = '#e8dfcf';
-  g.beginPath(); g.arc(0, -t * 0.96, t * 0.13, 0, Math.PI * 2); g.fill();
-  g.restore();
-}
-
 // ─── 6. CONTRÔLES ───────────────────────────────────────────────────────────
 
 // Sélectionne une voie ; la réponse ne sera validée qu'à la collision.
 function runnerChoisir(genre) {
   const p = runnerPartie;
   if (!p || p.etat !== 'course' || !p.portail || p.portail.arrivee || !RUNNER_GENRES[genre]) return;
-  p.choix = genre;
+  const change = p.voie !== genre;
+  p.voie = genre;
+  p.toucheMot = true;
+  if (change && typeof RunnerAudio !== 'undefined') RunnerAudio.changementVoie(RUNNER_VOIES.indexOf(genre));
   runnerMajVoies();
 }
 
-// Voie voisine (glisser, flèches). Sans choix, on part du centre.
+// Voie voisine (glisser, flèches). Avant le premier choix, on part du centre.
 function runnerVoisine(sens) {
   const p = runnerPartie;
   if (!p) return;
-  const actuelle = p.choix ? RUNNER_VOIES.indexOf(p.choix) : 1;
+  const actuelle = p.voie ? RUNNER_VOIES.indexOf(p.voie) : 1;
   const nouvelle = Math.max(0, Math.min(2, actuelle + sens));
   runnerChoisir(RUNNER_VOIES[nouvelle]);
 }

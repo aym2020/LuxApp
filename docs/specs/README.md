@@ -105,7 +105,7 @@ Ce répertoire contient **91 fiches de spécification présentes** sur la branch
 | 93 | [PWA hors ligne](./SPEC-93.md) | — | Proposition à implémenter — non développée |
 | 94 | [Feedback unifié, audio et parité de composants UI](./SPEC-94.md) | P1 | **Lots 1 et 2 codés** ; présentation de la correction et emplacement des CTA **remplacés par SPEC 95 (codée)** ; scores, sons, essais inchangés ; Samsung à faire |
 | 95 | [Dock d'action stable, correction minimale et scroll unique](./SPEC-95.md) | P0 UX | **Implémentée** (enveloppe à trois zones, `renderActionExercice`, correction légère) ; G01–G19, G21–G23 automatisés (`test_spec95_exercices.py`) ; **recette Samsung à faire** |
-| 96 | [Lux Runner : les trois portails](./SPEC-96.md) | — | Implémentée — `test/runner.test.cjs` ; contrôle navigateur 360/430 ; **recette Samsung à faire** |
+| 96 | [Lux Runner : les trois portails](./SPEC-96.md) | — | V1.1 implémentée (voie conservée, rythme 4/3,5/3 s, son et rendu dédiés) — `test/runner.test.cjs` ; contrôle navigateur 360/430 ; **recette Samsung à faire** |
 
 ## Précautions de lecture
 
