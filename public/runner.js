@@ -457,6 +457,22 @@ function demarrerRunner(mode) {
   runnerLancerPortail(runnerPartie, 0);
   runnerMajMot();
   runnerMajHud(true);
+  // SPEC 101 : « 3, 2, 1, GO ! » avant la course (pas pour le tutoriel).
+  // La scène s'affiche déjà ; le temps de jeu ne démarre qu'au GO.
+  const p = runnerPartie;
+  const scene = document.getElementById('runner-scene');
+  if (mode !== 'tuto' && typeof jeuDecompte === 'function' && scene) {
+    p.etat = 'decompte';
+    p.affichage.annulerDecompte = jeuDecompte({
+      conteneur: scene, theme: 'runner',
+      son: typeof RunnerAudio === 'undefined' || RunnerAudio.effetsActifs(),
+      estActif: () => runnerPartie === p
+    }, () => {
+      if (runnerPartie !== p) return;
+      p.etat = 'course';
+      p.affichage.dernier = null; // aucun saut de temps au départ
+    });
+  }
   runnerDemarrerBoucle();
 }
 
@@ -693,6 +709,7 @@ function runnerArreter() {
     if (a.finTimer) clearTimeout(a.finTimer);
     if (a.redimension && typeof window !== 'undefined') window.removeEventListener('resize', a.redimension);
     if (a.rendu3d) { a.rendu3d.detacher(); a.rendu3d = null; }
+    if (a.annulerDecompte) { a.annulerDecompte(); a.annulerDecompte = null; }
   }
   runnerPartie = null;
 }
@@ -861,7 +878,7 @@ function runnerRendu3DActif() {
 }
 function runnerCharger3D() {
   if (!runnerModule3D) {
-    runnerModule3D = import('./runner-3d.js?v=8').then(() => window.Runner3D);
+    runnerModule3D = import('./runner-3d.js?v=9').then(() => window.Runner3D);
     runnerModule3D.catch(() => { runnerModule3D = null; });
   }
   return runnerModule3D;
@@ -891,7 +908,8 @@ function runnerBrancher3D(p, scene) {
 // Sélectionne une voie ; la réponse ne sera validée qu'à la collision.
 function runnerChoisir(genre) {
   const p = runnerPartie;
-  if (!p || p.etat !== 'course' || !p.portail || p.portail.arrivee || !RUNNER_GENRES[genre]) return;
+  // Pendant le décompte, on peut déjà se placer sur une voie.
+  if (!p || (p.etat !== 'course' && p.etat !== 'decompte') || !p.portail || p.portail.arrivee || !RUNNER_GENRES[genre]) return;
   const change = p.voie !== genre;
   p.voie = genre;
   p.toucheMot = true;

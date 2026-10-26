@@ -433,13 +433,34 @@ function demarrerSurvie() {
     recordDepart:survieRecord(),finTimer:null,finEnCours:false,resultatsVisibles:false,scoreRaf:null};
   survieNouvelleQuestion();
   showView('view-survie');
-  surviePartie.dernier=performance.now();
-  surviePartie.timer=setInterval(survieTick,100);
+  const p=surviePartie;
+  // SPEC 101 : « 3, 2, 1, Partez ! » ; lettres bloquées et chrono arrêté jusqu'au départ.
+  const box=document.getElementById('survie-jeu');
+  if(typeof jeuDecompte==='function' && box){
+    p.verrou=true;
+    p.annulerDecompte=jeuDecompte({
+      conteneur:box, theme:'survie',
+      son:typeof SurvieFx==='undefined' || SurvieFx.sonActif(),
+      estActif:()=>{
+        const vue=document.getElementById('view-survie');
+        return surviePartie===p && p.actif && !!vue && vue.classList.contains('active');
+      }
+    },()=>{
+      if(surviePartie!==p || !p.actif)return;
+      p.verrou=false;
+      p.dernier=performance.now();
+      p.timer=setInterval(survieTick,100);
+    });
+    return;
+  }
+  p.dernier=performance.now();
+  p.timer=setInterval(survieTick,100);
 }
 function survieArreter() {
   if(!surviePartie)return;
   surviePartie.actif=false;
   const p=surviePartie;
+  if(p.annulerDecompte){p.annulerDecompte();p.annulerDecompte=null;}
   if(p.timer)clearInterval(p.timer);
   p.timer=null;
   if(p.finTimer!==null && typeof clearTimeout==='function')clearTimeout(p.finTimer);
