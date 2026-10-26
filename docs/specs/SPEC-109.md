@@ -72,7 +72,7 @@ Banque pilote : **6 personnages adultes pré-écrits, un par archétype**, puis 
 
 ## 6. Mécanique de conversation, mensonges et conséquences
 
-Chaque échange possède : \`id\`, \`question.lu/fr\`, \`lessonIds\`, \`options[]\`, effets numériques, \`claims\` éventuellement posées, conditions d'éligibilité, réaction textuelle FR/LU, éventuel \`eventId\`. Le moteur ne concatène pas librement du LU : **seules substitutions grammaticalement validées** (prénom propre, nombre, pays avec préposition prévue, ville avec \`zu\`, métier avec article/forme correcte) ; pas de construction automatique via traduction française.
+Le **pilote** commence avec une identité jouable fictive stable (Alex, 28 ans, originaire de France, habitant Metz, banquier, francophone). L'identité servira de référence pour distinguer sincérité, bluff et contradictions ; ne jamais demander d'information personnelle réelle au joueur. L'écran DATE doit permettre de consulter au moins le rappel de son propre profil hors batterie.\n\nChaque échange possède : \`id\`, \`question.lu/fr\`, \`lessonIds\`, \`options[]\`, effets numériques, \`claims\` éventuellement posées, conditions d'éligibilité, réaction textuelle FR/LU, éventuel \`eventId\`. Le moteur ne concatène pas librement du LU : **seules substitutions grammaticalement validées** (prénom propre, nombre, pays avec préposition prévue, ville avec \`zu\`, métier avec article/forme correcte) ; pas de construction automatique via traduction française.
 
 - **Réponse linguistiquement correcte + cohérente :** score pédagogique +1, affinité +6 environ, suspicion stable.
 - **Réponse erronée en LU :** explication courte, pénalité pédagogique limitée, pas de mensonge impliqué mécaniquement.
@@ -108,7 +108,7 @@ Nœuds prioritaires : \`salutation\` (L1), \`age\` (L5/L14), \`origine\` (L7), \
 ## 9. Contrat de données (brouillons livrés avec cette fiche)
 
 - \`data/jeux/lux-match/archetypes-v01.json\` : catalogue de 6 personnalités + 6 profils tests, faits, préférences, indices Pix/Pro/Amis, styles et events.
-- \`data/jeux/lux-match/dialogues-a11-v01.json\` : 8 nœuds conversationnels de base, options LU/FR, flags, effets; 6 déclencheurs/personnalités + événements comiques (dont Portugal), niveaux de compétence, transitions conditionnelles.
+- \`data/jeux/lux-match/dialogues-a11-v01.json\` : 12 nœuds conversationnels de base, options LU/FR, flags, effets; 6 déclencheurs/personnalités + événements comiques (dont Portugal), niveaux de compétence, transitions conditionnelles.
 - Format **de conception** : le schéma final sera ajusté après prototype. Identifiants stables en snake_case ; propriétés explicites, valeurs numériques sans logique cachée, sources de notions par IDs. Aucun champ \`lu\` nouveau n'est réputé validé sans audit.
 - Les fichiers ne sont **pas encore servis** dans \`/api/lecons\`, non utilisés par le hub, ne modifient aucune donnée utilisateur.
 
