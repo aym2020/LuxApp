@@ -453,8 +453,8 @@ function runnerDessinerTrio(g, geo, d, opacite, passe) {
     runnerCheminArche(g, x, base, l, h); g.closePath(); g.fill();
     // Halo externe (traits larges et transparents), arche pleine, cœur clair.
     g.strokeStyle = info.couleur;
-    g.globalAlpha = alpha * 0.14; g.lineWidth = trait * 3.2; runnerCheminArche(g, x, base, l, h); g.stroke();
-    g.globalAlpha = alpha * 0.3; g.lineWidth = trait * 1.9; runnerCheminArche(g, x, base, l, h); g.stroke();
+    g.globalAlpha = alpha * 0.10; g.lineWidth = trait * 3.2; runnerCheminArche(g, x, base, l, h); g.stroke();
+    g.globalAlpha = alpha * 0.21; g.lineWidth = trait * 1.9; runnerCheminArche(g, x, base, l, h); g.stroke();
     g.globalAlpha = alpha; g.lineWidth = trait; runnerCheminArche(g, x, base, l, h); g.stroke();
     g.globalAlpha = alpha * 0.55; g.strokeStyle = '#ffffff'; g.lineWidth = Math.max(0.8, trait * 0.28);
     runnerCheminArche(g, x, base, l, h); g.stroke();

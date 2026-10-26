@@ -122,3 +122,7 @@ Ce sont les formes usuelles au nominatif/accusatif, régies notamment par la rè
 Visuel : ligne d'articles de 12 px au-dessus de M/F/N, petits écrans 11 px, boutons min. 84 px et zones tactiles préservées. `aria-label` indique le genre, les articles possibles et le raccourci clavier. Aucun changement à la mécanique, aux scores, à l'audio ni au moteur 3D. Versions : `runner.js?v=20`, `runner.css?v=10`.
 
 Recette mobile : Samsung Chrome 320/360/390/430 px, contrôles non tronqués au-dessus de la barre Android, état `TA VOIE`, entraînement/sprint, zoom texte.
+
+## SPEC 106 — Feedback du mot précédent et lueurs réduites
+
+Voir [`SPEC-106.md`](SPEC-106.md) : micro-correction compacte après chaque collision, durée 650 / 1050 ms sans interruption de course, halo 2D/3D réduit d’environ 30 %. Scores, sons, genres et progression inchangés.

@@ -185,7 +185,8 @@ function textureHalo(genre) {
     };
     g.lineJoin = 'round'; g.lineCap = 'round';
     g.strokeStyle = c; g.shadowColor = c;
-    for (const [epaisseur, flou, alpha] of [[0.16, 0.34, 0.5], [0.09, 0.18, 0.7], [0.05, 0.08, 0.9]]) {
+    // SPEC 106 : halos réduits d'environ 30 %, liseré et lettre inchangés.
+    for (const [epaisseur, flou, alpha] of [[0.16, 0.34, 0.35], [0.09, 0.18, 0.49], [0.05, 0.08, 0.63]]) {
       g.globalAlpha = alpha; g.lineWidth = epaisseur * k; g.shadowBlur = flou * k; tracer();
     }
   });
@@ -232,12 +233,12 @@ function creerArche(genre, lueur, halos) {
   const membrane = new THREE.Mesh(new THREE.ShapeGeometry(forme), materiauMembrane(couleur, h));
   // Lumière au sol.
   const sol = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 1.1),
-    new THREE.MeshBasicMaterial({ map: lueur, color: couleur, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+    new THREE.MeshBasicMaterial({ map: lueur, color: couleur, transparent: true, opacity: 0.56, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
   sol.rotation.x = -Math.PI / 2; sol.position.y = 0.015;
   groupe.add(sol, membrane, cadre, halo, lisere);
   groupe.userData = {
     materiaux: [cadre.material, lisere.material, halo.material, membrane.material, sol.material],
-    opacites: [1, 1, 1, 1, 0.8]
+    opacites: [1, 1, 1, 1, 0.56]
   };
   return groupe;
 }
@@ -795,7 +796,7 @@ function creer(conteneurInitial) {
   try {
     composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
-    bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.42, 0.28, 0.5); // force, rayon, seuil
+    bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.30, 0.28, 0.5); // force, rayon, seuil
     composer.addPass(bloom);
     composer.addPass(new OutputPass());
   } catch (_) { composer = null; }

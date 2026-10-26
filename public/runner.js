@@ -40,7 +40,8 @@ const RUNNER_TUTO_ATTENTE = 0.7;    // tutoriel : le portail attend la réponse 
 const RUNNER_MIN_PAR_GENRE = 2;     // en dessous : niveau indisponible
 const RUNNER_SANS_REPETITION = 4;   // un nom ne revient pas dans les 4 portails suivants
 const RUNNER_PRECISION_MIN = 5;     // record de précision : au moins 5 portails
-const RUNNER_FEEDBACK_MS = 1400;
+const RUNNER_FEEDBACK_OK_MS = 650;   // Succès : ne pas masquer le mot suivant
+const RUNNER_FEEDBACK_KO_MS = 1050;  // Erreur : laisser lire la correction
 const RUNNER_PALIERS_COMBO = [3, 5, 10, 15, 20]; // séries qui déclenchent l'annonce « Combo »
 
 let runnerPartie = null;  // partie en cours (null hors course)
@@ -621,20 +622,33 @@ function runnerMajHud(force) {
   }
 }
 
-// Correction discrète, non bloquante : le mot suivant reste lisible.
+// Feedback attaché au portail franchi, jamais au nom déjà affiché pour le
+// suivant. La durée du message n'interrompt ni le chrono ni les collisions.
+function runnerDureeFeedback(statut) {
+  return statut === 'correct' ? RUNNER_FEEDBACK_OK_MS : RUNNER_FEEDBACK_KO_MS;
+}
+function runnerHtmlFeedback(r, mode) {
+  const bon = r.statut === 'correct';
+  const signal = bon ? '✓ +' + r.points : (mode === 'sprint' ? '−1 vie' : 'À revoir');
+  const genre = RUNNER_GENRES[r.mot.gender].nom;
+  const complement = r.statut === 'absent' ? ' · sans choix' : '';
+  return '<div class="runner-feedback-entete"><span>MOT PRÉCÉDENT</span><b>' + signal + '</b></div>' +
+    '<div class="runner-feedback-correction"><strong lang="lb">' + runnerEchapper(r.mot.articleForm) +
+    '</strong><small>' + genre + complement + '</small></div>';
+}
 function runnerMontrerResultat(r) {
   const p = runnerPartie;
   const box = document.getElementById('runner-feedback');
-  const genre = RUNNER_GENRES[r.mot.gender];
   if (box) {
-    const debut = r.statut === 'correct' ? 'Correct' : r.statut === 'faux' ? 'Faux' : 'Trop tard';
-    box.innerHTML = '<b>' + debut + '</b> · <span lang="lb">' + runnerEchapper(r.mot.articleForm) + '</span> · ' + genre.mot +
-      (r.statut === 'absent' ? ' <small>Aucun portail choisi</small>' : '');
+    box.innerHTML = runnerHtmlFeedback(r, p.mode);
     box.className = 'runner-feedback runner-feedback-visible ' + (r.statut === 'correct' ? 'runner-ok' : 'runner-ko');
     if (p.affichage.feedbackTimer) clearTimeout(p.affichage.feedbackTimer);
     p.affichage.feedbackTimer = setTimeout(() => {
-      if (box.className.indexOf('runner-feedback-visible') >= 0) box.className = box.className.replace(' runner-feedback-visible', '');
-    }, RUNNER_FEEDBACK_MS);
+      if (runnerPartie === p && box.classList.contains('runner-feedback-visible')) {
+        box.classList.remove('runner-feedback-visible');
+      }
+      p.affichage.feedbackTimer = null;
+    }, runnerDureeFeedback(r.statut));
   }
   if (r.statut === 'correct' && p.mode === 'sprint') {
     const gain = document.getElementById('runner-gain');
@@ -894,7 +908,7 @@ function runnerRendu3DActif() {
 }
 function runnerCharger3D() {
   if (!runnerModule3D) {
-    runnerModule3D = import('./runner-3d.js?v=11').then(() => window.Runner3D);
+    runnerModule3D = import('./runner-3d.js?v=12').then(() => window.Runner3D);
     runnerModule3D.catch(() => { runnerModule3D = null; });
   }
   return runnerModule3D;

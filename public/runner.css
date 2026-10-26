@@ -112,16 +112,42 @@
 #view-runner .runner-flash-ko-b::after{animation-name:runner-flash-b}
 @keyframes runner-flash-a{0%{opacity:1}100%{opacity:0}}
 @keyframes runner-flash-b{0%{opacity:1}100%{opacity:0}}
-/* Correction : pastille en verre sombre, compacte, intégrée en haut de la scène. */
-#view-runner .runner-feedback{position:absolute;left:50%;top:10px;max-width:calc(100% - 20px);width:max-content;padding:7px 14px;border-radius:999px;background:var(--jeu-verre);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid #3a3346;font:600 13px/1.35 var(--font);color:#ece4dc;text-align:center;
-  opacity:0;transform:translate(-50%,-8px) scale(.96);transition:opacity .22s ease,transform .22s cubic-bezier(.2,.8,.3,1);pointer-events:none}
-#view-runner .runner-feedback.runner-feedback-visible{opacity:1;transform:translate(-50%,0) scale(1)}
-#view-runner .runner-feedback b{font-weight:800}
-#view-runner .runner-feedback small{display:block;font:600 11px var(--font);color:#c9bfb0;margin-top:1px}
-#view-runner .runner-feedback.runner-ok{border-color:rgba(84,224,173,.6);box-shadow:0 0 16px rgba(84,224,173,.18)}
-#view-runner .runner-feedback.runner-ok b{color:var(--correct)}
-#view-runner .runner-feedback.runner-ko{border-color:rgba(239,122,115,.65);box-shadow:0 0 16px rgba(239,122,115,.2)}
-#view-runner .runner-feedback.runner-ko b{color:var(--wrong)}
+/* SPEC 106 — Feedback de collision : compact, attaché au MOT PRÉCÉDENT.
+   Ne recouvre ni le nom en cours ni les commandes ; aucune zone tactile captée. */
+#view-runner .runner-feedback{
+  position:absolute;left:12px;top:12px;z-index:2;
+  width:max-content;max-width:min(330px,calc(100% - 24px));
+  padding:8px 11px 9px;
+  border-radius:12px;background:rgba(16,14,23,.92);
+  border:1px solid rgba(177,140,240,.38);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  box-shadow:0 5px 15px rgba(0,0,0,.24);
+  text-align:left;color:#f1e9f2;
+  opacity:0;transform:translateY(-5px);
+  transition:opacity .14s ease,transform .14s ease;
+  pointer-events:none;
+}
+#view-runner .runner-feedback.runner-feedback-visible{opacity:1;transform:translateY(0)}
+#view-runner .runner-feedback-entete{display:flex;align-items:baseline;justify-content:space-between;gap:12px;white-space:nowrap}
+#view-runner .runner-feedback-entete span{
+  font:800 9px/1.2 var(--font);letter-spacing:.09em;color:#afa1c4;
+}
+#view-runner .runner-feedback-entete b{font:800 15px/1.1 var(--font);font-variant-numeric:tabular-nums}
+#view-runner .runner-feedback-correction{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 8px;margin-top:4px;min-width:0}
+#view-runner .runner-feedback-correction strong{
+  font:750 13px/1.25 var(--font);overflow-wrap:anywhere;min-width:0;max-width:100%;
+}
+#view-runner .runner-feedback-correction small{font:650 11px/1.25 var(--font);color:#c6bcd2}
+#view-runner .runner-feedback.runner-ok{border-color:rgba(84,224,173,.43)}
+#view-runner .runner-feedback.runner-ok .runner-feedback-entete b{color:var(--correct)}
+#view-runner .runner-feedback.runner-ko{border-color:rgba(239,122,115,.48)}
+#view-runner .runner-feedback.runner-ko .runner-feedback-entete b{color:var(--wrong)}
+@media(max-width:359px){
+  #view-runner .runner-feedback{left:9px;top:9px;max-width:calc(100% - 18px);padding:7px 9px}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-runner .runner-feedback{transition:none;transform:none}
+}
 #view-runner .runner-aide{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:700 13px var(--font);color:var(--accent);pointer-events:none;text-shadow:0 1px 6px #000}
 
 /* Combo : énergie violette, valeur or. */
