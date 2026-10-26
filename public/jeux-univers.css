@@ -50,14 +50,14 @@
    Dégradé de contraste côté texte, rendu local sans CDN. */
 #view-jeux .jeux-carte:not(.runner-carte){
   background:
-    linear-gradient(90deg,rgba(21,16,12,.82) 0%,rgba(21,16,12,.74) 34%,rgba(21,16,12,.58) 57%,rgba(21,16,12,.36) 80%,rgba(21,16,12,.13) 100%),
+    linear-gradient(90deg,rgba(21,16,12,.88) 0%,rgba(21,16,12,.79) 36%,rgba(21,16,12,.43) 69%,rgba(21,16,12,.04) 100%),
     linear-gradient(0deg,rgba(20,17,12,.66) 0%,rgba(20,17,12,.45) 32%,transparent 63%),
     url("art/jeux-survie-card-portrait.webp") center center / cover no-repeat,
     #211b13;
 }
 #view-jeux .runner-carte{
   background:
-    linear-gradient(90deg,rgba(19,14,27,.84) 0%,rgba(19,14,27,.75) 34%,rgba(19,14,27,.61) 57%,rgba(19,14,27,.39) 80%,rgba(19,14,27,.15) 100%),
+    linear-gradient(90deg,rgba(19,14,27,.9) 0%,rgba(19,14,27,.82) 36%,rgba(19,14,27,.43) 70%,rgba(19,14,27,.04) 100%),
     linear-gradient(0deg,rgba(19,15,27,.70) 0%,rgba(19,15,27,.46) 32%,transparent 63%),
     url("art/jeux-runner-card-or-violet.webp") center center / cover no-repeat,
     #191421;
@@ -102,4 +102,84 @@
 #view-jeux .runner-carte .jeux-meta{color:#efe7f7}
 #view-jeux .jeux-carte-titre h2{
   text-shadow:0 2px 10px rgba(0,0,0,.85),0 0 18px rgba(0,0,0,.48);
+}
+
+/* SPEC 103 — Cartes Jeux : éditoriales, plus compactes et plus lisibles.
+   L'image fait l'ambiance à droite, le contenu et les CTA restent en HTML.
+   Aucune animation du gameplay, aucune nouvelle image ou dépendance. */
+#view-jeux .jeux-carte{
+  display:flex;
+  flex-direction:column;
+  isolation:isolate;
+  border-radius:24px;
+  padding:clamp(18px,5vw,24px);
+  box-shadow:0 10px 26px rgba(0,0,0,.16);
+}
+#view-jeux .jeux-carte:not(.jeux-carte-verrouillee){min-height:318px}
+#view-jeux .jeux-carte .jeux-lettres,
+#view-jeux .jeux-carte .runner-tuiles{margin-bottom:19px}
+#view-jeux .jeux-carte .jeux-carte-titre{margin-bottom:9px}
+#view-jeux .jeux-carte .jeux-carte-titre h2{
+  font:400 clamp(40px,10vw,46px)/1.06 'Instrument Serif',Georgia,serif;
+}
+#view-jeux .jeux-carte > p:not(.jeux-verrou){
+  max-width:88%;
+  margin-bottom:19px;
+  font:500 14px/1.48 var(--font);
+  color:#f6f0e8;
+  text-shadow:0 2px 8px rgba(0,0,0,.75);
+}
+#view-jeux .jeux-carte .jeux-meta{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:8px;
+  min-height:48px;
+  margin-top:auto;
+  margin-bottom:12px;
+  padding:9px 11px;
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:12px;
+  background:rgba(15,12,14,.76);
+  color:#f4ede5;
+  font:600 12px/1.35 var(--font);
+  text-shadow:none;
+}
+#view-jeux .runner-carte .jeux-meta{background:rgba(18,13,27,.79);color:#eee7f3}
+#view-jeux .jeux-meta > span{min-width:0}
+#view-jeux .jeux-meta > span:first-child strong{
+  color:#f6f1e9;
+  font:800 16px/1 var(--font);
+  font-variant-numeric:tabular-nums;
+}
+#view-jeux .jeux-meta > span:last-child{
+  display:flex;
+  align-items:baseline;
+  gap:5px;
+  padding-left:11px;
+  border-left:1px solid rgba(255,255,255,.18);
+  white-space:nowrap;
+}
+#view-jeux .jeux-meta > span:last-child b{
+  font:800 19px/1 var(--font);
+  color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+#view-jeux .jeux-carte .jeux-jouer{
+  flex:none;
+  min-height:56px;
+  border-radius:13px;
+  box-shadow:0 5px 14px rgba(0,0,0,.2);
+  transition:filter .14s ease,transform .14s ease;
+}
+#view-jeux .jeux-carte .jeux-jouer:active{filter:brightness(.95);transform:scale(.99)}
+@media(max-width:359px){
+  #view-jeux .jeux-carte{padding:18px}
+  #view-jeux .jeux-carte .jeux-meta{padding:8px;gap:6px}
+  #view-jeux .jeux-meta > span:last-child{padding-left:8px}
+  #view-jeux .jeux-carte > p:not(.jeux-verrou){max-width:94%}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-jeux .jeux-carte .jeux-jouer{transition:none}
 }

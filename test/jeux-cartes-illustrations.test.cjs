@@ -38,8 +38,8 @@ test('Assets SPEC 99 versionnés : l’ancien décor sort du cache',()=>{
 
 test('SPEC 100 — lisibilité renforcée des deux cartes sans changer les WebP',()=>{
   const css=read('public/jeux-univers.css');
-  assert.ok(css.includes('rgba(21,16,12,.82)'),'masque gauche Survie');
-  assert.ok(css.includes('rgba(19,14,27,.84)'),'masque gauche Runner');
+  assert.ok(css.includes('rgba(21,16,12,.88)'),'masque gauche Survie');
+  assert.ok(css.includes('rgba(19,14,27,.9)'),'masque gauche Runner');
   assert.ok(css.includes('rgba(20,17,12,.66)'),'masque bas Survie');
   assert.ok(css.includes('rgba(19,15,27,.70)'),'masque bas Runner');
   assert.ok(css.includes('color:#f4ede5'),'couleur description');
@@ -53,8 +53,29 @@ test('SPEC 102 — fond Runner or/violet indépendant des couleurs pédagogiques
   const css=read('public/jeux-univers.css'),html=read('public/index.html');
   assert.ok(css.includes('art/jeux-runner-card-or-violet.webp'));
   assert.ok(!css.includes('url("art/jeux-runner-card-portrait.webp")'));
-  assert.ok(html.includes('jeux-univers.css?v=7'));
+  assert.ok(html.includes('jeux-univers.css?v=8'));
   assert.ok(css.includes('.runner-tuile.runner-f'));
   assert.ok(css.includes('.runner-tuile.runner-n'));
   assert.ok(css.includes('art/jeux-survie-card-portrait.webp'),'Survie non modifié');
+});
+
+test('SPEC 103 — cartes compactes lisibles avec records et actions intactes',()=>{
+  const css=read('public/jeux-univers.css'),js=read('public/jeux-v21.js');
+  const runner=read('public/runner.js'),html=read('public/index.html');
+  assert.ok(css.includes('SPEC 103'));
+  assert.ok(css.includes('min-height:318px'));
+  assert.ok(css.includes('grid-template-columns:minmax(0,1fr) auto'));
+  assert.ok(css.includes('background:rgba(15,12,14,.76)'));
+  assert.ok(css.includes('background:rgba(18,13,27,.79)'));
+  assert.ok(css.includes('min-height:56px'));
+  assert.ok(css.includes('prefers-reduced-motion:reduce'));
+  assert.ok(js.includes('Recompose les mots avant la fin du chrono'));
+  assert.ok(runner.includes('Trouve le bon genre avant de franchir le portail.'));
+  assert.ok(js.includes('onclick="demarrerSurvie()"'));
+  assert.ok(runner.includes('onclick="ouvrirRunner()"'));
+  assert.ok(js.includes("'<div class=\"jeux-meta\"><span><strong>'+nombre"));
+  assert.ok(runner.includes('<strong>60 s</strong>'));
+  assert.ok(html.includes('jeux-univers.css?v=8'));
+  assert.ok(html.includes('jeux-v21.js?v=15'));
+  assert.ok(html.includes('runner.js?v=16'));
 });

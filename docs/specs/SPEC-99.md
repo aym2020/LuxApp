@@ -42,3 +42,17 @@ Contrôle visuel Android Chrome/PWA encore nécessaire aux largeurs 320–430 px
 **Changement isolé :** nouveau `public/art/jeux-runner-card-or-violet.webp`, nouvelle URL dans `public/jeux-univers.css`, cache-busting `jeux-univers.css?v=7`, tests mis à jour. **Aucun changement** au visuel Survie, au code 3D, au gameplay, au score, aux sauvegardes ou aux données linguistiques.
 
 **Recette :** contrôles Chrome Android à 320–430 px CSS, descriptions longues, reflets dorés visibles à droite, absence de bleu/rouge/vert sur les portails de fond, maintien des trois tuiles colorées M/F/N en HTML.
+
+## SPEC 103 — Hiérarchie UX des cartes Jeux (26/10/2026)
+
+Après audit des captures Android, les deux cartes cumulaient image trop sombre, paragraphes longs, statistiques isolées et CTA redondants visuellement. **Correction de la présentation réelle, sans générer de nouvel asset** :
+
+- Titres Instrument Serif conservés, espacement vertical resserré et cartes au rayon commun de 24 px.
+- Textes de présentation plus courts : objectif pédagogique de chaque jeu immédiatement identifiable.
+- Statistiques regroupées dans un bandeau sombre et compact à deux colonnes : réserve ou durée/niveau à gauche, **record valorisé en or** à droite ; valeurs dynamiques et stockage inchangés.
+- Illustration révélée davantage à droite tout en gardant une réserve sombre sous la copie. La ville reste or, l'univers Runner violet, et les couleurs des portails ne sont pas imprimées sur l'image.
+- Bouton « Jouer » jaune conservé, min. 56 px de hauteur, avec retour tactile sobre ; aucun nouveau contrôle.
+- Mobile-first : cartes non verrouillées d'une hauteur minimale modérée, contenu verrouillé à hauteur intrinsèque, prise en charge des largeurs <= 359 px et de `prefers-reduced-motion`.
+- Cache invalidé : `jeux-univers.css?v=8`, `jeux-v21.js?v=15`, `runner.js?v=16`. Tests statiques dédiés aux URL, textes, CTA et records.
+
+**Recette manuelle :** Chrome Samsung portrait 320/360/390/430 px, cartes verrouillées/déverrouillées, zoom de texte 200 %, records à 4 chiffres et navigation. Jeux, progression et données pédagogiques inchangés.

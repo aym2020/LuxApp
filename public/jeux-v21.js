@@ -188,8 +188,8 @@ function renderJeuxHub() {
       '<div class="jeux-lettres" aria-hidden="true"><span>S</span><span>U</span><span>R</span></div>'+
       '<div class="jeux-carte-titre"><h2 id="jeux-survie-titre">Survie</h2>'+
         (verrouille?'<span class="jeux-etat">À DÉBLOQUER</span>':'')+'</div>'+
-      '<p>Des lettres mélangées, un chrono et des mots de plus en plus longs. Jusqu’où iras-tu ?</p>'+
-      '<div class="jeux-meta"><span>'+nombre+' mot'+(nombre===1?'':'s')+' disponible'+(nombre===1?'':'s')+'</span><span>Record : <b>'+record+'</b></span></div>'+
+      '<p>Recompose les mots avant la fin du chrono. Jusqu’où iras-tu ?</p>'+
+      '<div class="jeux-meta"><span><strong>'+nombre+'</strong> mot'+(nombre===1?'':'s')+' disponible'+(nombre===1?'':'s')+'</span><span>Record <b>'+record+'</b></span></div>'+
       (verrouille?
         '<div class="jeux-deblocage" role="group" aria-label="Déblocage de Survie">'+
           '<div class="jeux-deblocage-texte"><strong>'+nombre+' / '+SURVIE_MIN_MOTS+' mots</strong>'+

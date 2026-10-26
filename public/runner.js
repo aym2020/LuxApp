@@ -347,8 +347,8 @@ function runnerCarteHub() {
     runnerApercuTuiles() +
     '<div class="jeux-carte-titre"><h2 id="jeux-runner-titre">Lux Runner</h2>' +
       (dispo ? '' : '<span class="jeux-etat">BIENTÔT</span>') + '</div>' +
-    '<p>Apprends les genres en courant : choisis le bon portail avant qu’il n’arrive.</p>' +
-    '<div class="jeux-meta"><span>60 secondes · ' + niveau + '</span><span>Record : <b>' + record + '</b></span></div>' +
+    '<p>Trouve le bon genre avant de franchir le portail.</p>' +
+    '<div class="jeux-meta"><span><strong>60 s</strong> · ' + niveau + '</span><span>Record <b>' + record + '</b></span></div>' +
     (dispo
       ? '<button class="jeux-jouer runner-jouer-hub" type="button" onclick="ouvrirRunner()">Jouer <span aria-hidden="true">→</span></button>'
       : '<p class="jeux-verrou">Pas encore de noms validés pour le niveau ' + niveau + '. Lux Runner arrive bientôt.</p>') +
