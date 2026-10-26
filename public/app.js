@@ -845,8 +845,9 @@ function validateSessionInput() {
   const corrige = item.type === 'motcache' ? carteACorriger(leconItem, item.q) : item.q;
   const target = corrige.lu;
   // SPEC 50 : les variantes d'écriture restent valables aussi en révision.
-  const reconnue = item.type === 'ecriture' ? reponseReconnue(val, corrige) : null;
-  const ok = item.type === 'ecriture' ? !!reconnue : normalize(val) === normalize(target);
+  const reconnue = (item.type === 'ecriture' || item.type === 'motcache')
+    ? reponseReconnue(val, corrige) : null;
+  const ok = !!reconnue;
   const attention = attentionDe(item);
   const feedback = document.getElementById('session-feedback');
   const premiereTentative = session.essais === 0;
@@ -885,7 +886,7 @@ function validateSessionInput() {
   // Le titre reste : la saisie est masquée, la réponse n'est pas visible ailleurs.
   // En examen, la première erreur est définitive (pas de « retry »).
   if (ok) {
-    const autres = item.type === 'ecriture' ? autresReponsesAcceptees(corrige, reconnue) : [];
+    const autres = autresReponsesAcceptees(corrige, reconnue);
     const titre = session.essais ? 'Juste, au 2e essai' : 'Juste !';
     jouerFeedbackSon('success');
     renderFeedbackCommun(feedback, {

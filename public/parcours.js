@@ -297,7 +297,13 @@ function motATaper(lecon, card) {
 // (sert au diagnostic « Bon mot, mauvais article » et au masquage de l'aide).
 function carteACorriger(lecon, card) {
   if (!articleAEcrire(lecon, card)) return card;
-  return Object.assign({}, card, { lu: motATaper(lecon, card), article: null });
+  const corrige = Object.assign({}, card, { lu: motATaper(lecon, card), article: null });
+  // L'article fait partie de la réponse : le préfixer aussi aux variantes.
+  if (Array.isArray(card.alternatives)) {
+    const prefixe = card.article + (card.article.endsWith("'") ? '' : ' ');
+    corrige.alternatives = card.alternatives.map(alt => prefixe + alt);
+  }
+  return corrige;
 }
 
 // Texte luxembourgeois d'un mot caché, avec son article s'il en a un.
@@ -1425,7 +1431,7 @@ function mcValider() {
 
   // SPEC 51 : seules les lettres de base et leur ordre sont évalués.
   // Les accents corrects apparaissent déjà dans les cases, sans être notés.
-  if (normalize(val) === normalize(motATaper(pLecon, card))) {
+  if (reponseReconnue(val, carteACorriger(pLecon, card))) {
     mc.cases.forEach(c => { if (c.lettre) c.etat = 'vert'; });
     input.value = '';
     mc.choix = []; // les lettres sont maintenant dans les cases vertes

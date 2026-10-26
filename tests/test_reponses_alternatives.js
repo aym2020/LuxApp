@@ -234,4 +234,33 @@ for (const item of lesson.ecriture.concat(lesson.scene.filter(x => x.qui === 'to
 assert.equal(ecriture(2001).alternatives, undefined);
 assert.equal(lesson.mission.version, 2);
 assert.equal(lesson.scene.filter(x => x.qui === 'toi').length, 10);
-console.log('SPEC 50 + 78 : OK — Salut!/Hallo! équivalents en salutation, score, prénoms et mission.');
+// Leçon 2 : « Wollekekrazert » affiché, « Wollekekrazer » accepté.
+const gratteLecon = JSON.parse(read('data/lecons/A1.1/lecon-02.json'));
+const gratteCarte = gratteLecon.flashcards.find(q => q.id === 2019);
+assert.equal(gratteCarte.lu, 'Wollekekrazert');
+assert.deepEqual(gratteCarte.alternatives, ['Wollekekrazer']);
+assert.equal(matcher.reponseReconnue('Wollekekrazer', gratteCarte), 'Wollekekrazer');
+assert.equal(matcher.reponseReconnue('Wollekekrazert', gratteCarte), 'Wollekekrazert');
+// L'unité 1 exige l'article : les deux orthographes doivent l'accepter.
+const parcoursCode = read('public/parcours.js');
+function extraireFonction(nom) {
+  const start = parcoursCode.indexOf('function ' + nom + '(');
+  assert.ok(start >= 0, nom + ' introuvable');
+  const end = parcoursCode.indexOf('\n}\n', start);
+  assert.ok(end >= 0, nom + ' incomplet');
+  return parcoursCode.slice(start, end + 2);
+}
+const carteACorrigerGratte = new Function(
+  extraireFonction('articleAEcrire') +
+  extraireFonction('motATaper') +
+  extraireFonction('carteACorriger') +
+  '\nreturn carteACorriger;'
+)();
+const gratteCorrigee = carteACorrigerGratte(gratteLecon, gratteCarte);
+assert.equal(gratteCorrigee.lu, 'e Wollekekrazert');
+assert.deepEqual(gratteCorrigee.alternatives, ['e Wollekekrazer']);
+assert.equal(matcher.reponseReconnue('e Wollekekrazer', gratteCorrigee), 'e Wollekekrazer');
+assert.equal(matcher.reponseReconnue('e Wollekekrazert', gratteCorrigee), 'e Wollekekrazert');
+assert.equal(matcher.reponseReconnue('en Wollekekrazer', gratteCorrigee), null);
+
+console.log('SPEC 50 + 78 : OK — variantes reconnues, y compris Wollekekrazert.');

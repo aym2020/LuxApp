@@ -404,9 +404,12 @@
       "unite": 1,
       "plus": true,
       "fr": "un gratte-ciel",
-      "lu": "Wollekekrazer",
+      "lu": "Wollekekrazert",
+      "alternatives": [
+        "Wollekekrazer"
+      ],
       "article": "e",
-      "note": "Masculin · e devant W · non : kee Wollekekrazer",
+      "note": "Masculin · e devant W · non : kee Wollekekrazert",
       "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
@@ -968,10 +971,10 @@
       "unite": 1,
       "plus": true,
       "question": "un gratte-ciel",
-      "reponse": "e Wollekekrazer",
+      "reponse": "e Wollekekrazert",
       "distracteurs": [
-        "en Wollekekrazer",
-        "eng Wollekekrazer",
+        "en Wollekekrazert",
+        "eng Wollekekrazert",
         "e Fliger"
       ],
       "label": "CHOISIS LA BONNE FORME",
@@ -1800,13 +1803,13 @@
       "fr": "C'est un gratte-ciel.",
       "avant": "Dat ass",
       "trou": "e",
-      "apres": "Wollekekrazer.",
+      "apres": "Wollekekrazert.",
       "choix": [
         "e",
         "en",
         "eng"
       ],
-      "note": "Masculin devant W → e Wollekekrazer",
+      "note": "Masculin devant W → e Wollekekrazert",
       "attention": "Masculin ou neutre devant une consonne hors n, d, t, z, h → <b>e</b>, sans -n."
     },
     {
@@ -2448,13 +2451,13 @@
       "fr": "Ce n'est pas un gratte-ciel.",
       "avant": "Nee, dat ass",
       "trou": "kee",
-      "apres": "Wollekekrazer.",
+      "apres": "Wollekekrazert.",
       "choix": [
         "kee",
         "keen",
         "keng"
       ],
-      "note": "W : le n tombe → kee Wollekekrazer",
+      "note": "W : le n tombe → kee Wollekekrazert",
       "attention": "<b>kee</b> : masculin ou neutre devant une consonne hors n, d, t, z, h (comme e)."
     },
     {
@@ -3045,9 +3048,9 @@
           "kee Schleek"
         ],
         [
-          "e Wollekekrazer",
+          "e Wollekekrazert",
           "un gratte-ciel",
-          "kee Wollekekrazer"
+          "kee Wollekekrazert"
         ],
         [
           "e Glas",

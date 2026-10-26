@@ -178,10 +178,10 @@ const RUNNER_MOTS = [
   "sourceLessonId": 2,
   "sourceFlashcardId": 2019,
   "level": "A1.1",
-  "lemma": "Wollekekrazer",
+  "lemma": "Wollekekrazert",
   "translation": "gratte-ciel",
   "gender": "m",
-  "articleForm": "e Wollekekrazer"
+  "articleForm": "e Wollekekrazert"
  },
  {
   "id": "a11-l02-fc2020",
