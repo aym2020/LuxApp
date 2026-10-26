@@ -109,3 +109,16 @@ Mode Endurance (le moteur le permet : `runnerAvancer` sans limite), classement e
 - **Instance 3D unique par session** (`runnerObtenir3D`) : créée dès l'ouverture de l'écran Lux Runner, shaders compilés d'avance (`renderer.compile`), puis réutilisée à chaque partie (`attacher` / `retirer` / `reinitialiser`). « Rejouer » affiche la 3D immédiatement. Contexte WebGL perdu (appli en arrière-plan) : instance recréée à la partie suivante.
 - **Jamais de 2D en attendant la 3D** : scène `data-rendu="chargement"` (fond sombre + petit anneau de chargement), temps de jeu figé (`attente`). Le rendu 2D n'est utilisé qu'en cas d'échec WebGL ou après 10 s, et alors pour toute la partie (pas de bascule 2D → 3D en cours de jeu).
 - **Arches :** les trois portails ont la même forme, un carré aux coins bien arrondis (rayon 0,24) ; seule la couleur distingue les genres.
+
+## SPEC 105 — Articles au-dessus des commandes de voie (26 octobre 2026)
+
+Les boutons de jeu affichent désormais les **articles indéfinis de référence** avant la grande lettre M/F/N :
+- **Masculin (M)** : `e / en`
+- **Féminin (F)** : `eng`
+- **Neutre (N)** : `e / en`
+
+Ce sont les formes usuelles au nominatif/accusatif, régies notamment par la règle du n. Les articles indéfinis du masculin et du neutre sont identiques, donc ils ne suffisent pas à reconnaître le genre : la lettre, la couleur et le libellé restent essentiels. Il ne faut **pas afficher `mot.articleForm` avant la collision**, sous peine de dévoiler la solution sur les noms féminins. L'article exact reste présenté dans le feedback et le bilan des erreurs, après validation.
+
+Visuel : ligne d'articles de 12 px au-dessus de M/F/N, petits écrans 11 px, boutons min. 84 px et zones tactiles préservées. `aria-label` indique le genre, les articles possibles et le raccourci clavier. Aucun changement à la mécanique, aux scores, à l'audio ni au moteur 3D. Versions : `runner.js?v=20`, `runner.css?v=10`.
+
+Recette mobile : Samsung Chrome 320/360/390/430 px, contrôles non tronqués au-dessus de la barre Android, état `TA VOIE`, entraînement/sprint, zoom texte.

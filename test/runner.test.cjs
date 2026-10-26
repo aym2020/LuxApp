@@ -308,3 +308,26 @@ test('SPEC 96 V2.2 : rendu 3D par défaut sans selecteur, secours 2D conserve', 
   assert.ok(!read('public/runner.css').includes('.runner-bouton-3d'));
   assert.match(page, /runner\.js\?v=(1[0-9]|[2-9][0-9])\b/); // v10 ou plus récent
 });
+
+test('SPEC 105 — articles indéfinis au-dessus de M/F/N sans dévoiler le mot', () => {
+  const { ctx } = make();
+  const genres = vm.runInContext('RUNNER_GENRES', ctx);
+  assert.equal(genres.m.articleRepere, 'e / en');
+  assert.equal(genres.f.articleRepere, 'eng');
+  assert.equal(genres.n.articleRepere, 'e / en');
+  assert.equal(genres.m.articleRepere, genres.n.articleRepere);
+  const js = read('public/runner.js');
+  const css = read('public/runner.css');
+  const html = read('public/index.html');
+  assert.ok(js.includes('class="runner-voie-article" lang="lb"'));
+  assert.ok(js.includes("articleRepere.replace(' / ', ' ou ')"));
+  assert.ok(js.includes('onclick="runnerChoisir'));
+  const start = js.indexOf('class="runner-voies"');
+  const end = js.indexOf('id="runner-pause"', start);
+  assert.ok(start >= 0 && end > start);
+  assert.ok(!js.slice(start, end).includes('.articleForm'));
+  assert.ok(css.includes('.runner-voie .runner-voie-article'));
+  assert.ok(css.includes('min-height:84px'));
+  assert.ok(html.includes('runner.js?v=20'));
+  assert.ok(html.includes('runner.css?v=10'));
+});

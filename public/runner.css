@@ -139,7 +139,7 @@
 
 /* Commandes de voie : vraies commandes de jeu. */
 #view-runner .runner-voies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:4px}
-#view-runner .runner-voie{--c:var(--runner-m);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:70px;padding:6px 4px;overflow:hidden;
+#view-runner .runner-voie{--c:var(--runner-m);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:84px;padding:6px 4px;overflow:hidden;
   border:1px solid color-mix(in srgb,var(--c) 35%,#2d2a33);border-bottom:3px solid var(--c);border-radius:14px;
   background:linear-gradient(180deg,color-mix(in srgb,var(--c) 28%,#141218),color-mix(in srgb,var(--c) 12%,#121016));color:#e9e1d4;cursor:pointer;touch-action:manipulation;
   transition:background-color .12s ease,border-color .12s ease,transform .12s ease,box-shadow .15s ease}
@@ -147,6 +147,18 @@
 #view-runner .runner-voie.runner-n{--c:var(--runner-n)}
 #view-runner .runner-voie b{font:800 24px/1 var(--font);color:var(--c)}
 #view-runner .runner-voie span{font:700 12px/1.2 var(--font)}
+/* SPEC 105 : articles au-dessus des lettres M/F/N, sans révéler le genre du mot. */
+#view-runner .runner-voie .runner-voie-article{
+  display:block;
+  margin:0 0 2px;
+  color:#f1e9f2;
+  font:750 12px/1.1 var(--font);
+  letter-spacing:.01em;
+  white-space:nowrap;
+}
+@media(max-width:359px){
+  #view-runner .runner-voie .runner-voie-article{font-size:11px}
+}
 /* « TA VOIE » : place réservée dans le flux (aucun saut de mise en page), visible si choisie. */
 #view-runner .runner-voie i{order:3;margin-top:2px;font:800 8px/1 var(--font);font-style:normal;letter-spacing:.1em;color:#0f0e0c;background:var(--c);border-radius:99px;padding:3px 6px;opacity:0;transform:scale(.8);transition:opacity .15s ease,transform .15s ease}
 #view-runner .runner-voie:active{transform:scale(.97)}

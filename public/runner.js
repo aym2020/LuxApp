@@ -24,9 +24,11 @@
 // ─── 1. CONSTANTES ──────────────────────────────────────────────────────────
 const RUNNER_VOIES = ['m', 'f', 'n']; // gauche, centre, droite
 const RUNNER_GENRES = {
-  m: { nom: 'Masculin', lettre: 'M', couleur: '#2f8cff', mot: 'masculin' },
-  f: { nom: 'Féminin', lettre: 'F', couleur: '#ff3d5a', mot: 'féminin' },
-  n: { nom: 'Neutre', lettre: 'N', couleur: '#22e06b', mot: 'neutre' }
+  // Repère permanent : M et N partagent les articles indéfinis e / en.
+  // Il ne donne jamais l'article propre au mot en cours de question.
+  m: { nom: 'Masculin', lettre: 'M', couleur: '#2f8cff', mot: 'masculin', articleRepere: 'e / en' },
+  f: { nom: 'Féminin', lettre: 'F', couleur: '#ff3d5a', mot: 'féminin', articleRepere: 'eng' },
+  n: { nom: 'Neutre', lettre: 'N', couleur: '#22e06b', mot: 'neutre', articleRepere: 'e / en' }
 };
 const RUNNER_DUREE_SPRINT = 60;     // secondes de jeu actif
 const RUNNER_VIES = 3;
@@ -528,7 +530,8 @@ function runnerRendreCourse() {
     '<div class="runner-voies" role="group" aria-label="Choisir le genre">' +
       RUNNER_VOIES.map((g, i) =>
         '<button type="button" class="runner-voie runner-' + g + '" data-genre="' + g + '" aria-pressed="false" ' +
-        'onclick="runnerChoisir(\'' + g + '\')" aria-label="' + RUNNER_GENRES[g].nom + ' (touche ' + (i + 1) + ')">' +
+        'onclick="runnerChoisir(\'' + g + '\')" aria-label="' + RUNNER_GENRES[g].nom + ', article indéfini ' + RUNNER_GENRES[g].articleRepere.replace(' / ', ' ou ') + ' (touche ' + (i + 1) + ')">' +
+        '<small class="runner-voie-article" lang="lb">' + RUNNER_GENRES[g].articleRepere + '</small>' +
         '<i aria-hidden="true">TA VOIE</i><b>' + RUNNER_GENRES[g].lettre + '</b><span>' + RUNNER_GENRES[g].nom + '</span></button>').join('') +
     '</div>' +
     '<div id="runner-pause" class="runner-pause" hidden>' +
