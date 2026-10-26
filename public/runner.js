@@ -344,6 +344,7 @@ function runnerCarteHub() {
   const dispo = runnerDisponible(mots);
   const record = runnerRecords(niveau).score;
   return '<section class="jeux-carte runner-carte' + (dispo ? '' : ' jeux-carte-verrouillee') + '" aria-labelledby="jeux-runner-titre">' +
+    '<div class="jeux-decor jeux-decor-runner" aria-hidden="true"><span class="jeux-decor-portail portal-3"></span><span class="jeux-decor-portail portal-2"></span><span class="jeux-decor-portail portal-1"></span><span class="jeux-decor-piste"></span></div>' +
     runnerApercuTuiles() +
     '<div class="jeux-carte-titre"><h2 id="jeux-runner-titre">Lux Runner</h2>' +
       (dispo ? '' : '<span class="jeux-etat">BIENTÔT</span>') + '</div>' +

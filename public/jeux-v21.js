@@ -184,7 +184,9 @@ function renderJeuxHub() {
     '<header class="jeux-entete"><span class="jeux-kicker">LUXAPP · MINI-JEUX</span>'+
       '<h1>Jeux<span>.</span></h1>'+
       '<p>Révise autrement, avec les mots que tu as déjà rencontrés.</p></header>'+
+    '<div class="jeux-cartes-grille">'+
     '<section class="jeux-carte'+(verrouille?' jeux-carte-verrouillee':'')+'" aria-labelledby="jeux-survie-titre">'+
+      '<div class="jeux-decor jeux-decor-survie" aria-hidden="true"><span class="jeux-decor-anneau"></span><span class="jeux-decor-lettre art-a">A</span><span class="jeux-decor-lettre art-b">B</span><span class="jeux-decor-lettre art-c">C</span></div>'+
       '<div class="jeux-lettres" aria-hidden="true"><span>S</span><span>U</span><span>R</span></div>'+
       '<div class="jeux-carte-titre"><h2 id="jeux-survie-titre">Survie</h2>'+
         (verrouille?'<span class="jeux-etat">À DÉBLOQUER</span>':'')+'</div>'+
@@ -200,7 +202,7 @@ function renderJeuxHub() {
         '<button class="jeux-jouer" type="button" onclick="goLessons()">'+(nombre===0?'Commencer une leçon':'Voir mes leçons')+' <span aria-hidden="true">→</span></button>':
         '<button class="jeux-jouer" type="button" onclick="demarrerSurvie()">Jouer <span aria-hidden="true">→</span></button>')+
     '</section>'+
-    (typeof runnerCarteHub==='function'?runnerCarteHub():''); // SPEC 96 : Lux Runner
+    (typeof runnerCarteHub==='function'?runnerCarteHub():'')+'</div>'; // SPEC 104 : cartes responsive, 2 colonnes sur ordinateur
 }
 function survieChoisirMot(partie) {
   // On ne remet jamais la réserve à zéro au cours d'une partie.

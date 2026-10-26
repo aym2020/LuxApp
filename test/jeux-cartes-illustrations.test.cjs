@@ -1,81 +1,64 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-test('Cartes Jeux SPEC 99 : WebP carré, léger et correctement référencé',()=>{
+
+test('SPEC 104 : cartes sans images, harmonisées en violet nuit avec formes CSS',()=>{
   const css=read('public/jeux-univers.css');
-  for(const [name,filename] of [['survie','jeux-survie-card-portrait.webp'],['runner','jeux-runner-card-or-violet.webp']]){
-    const b=fs.readFileSync(path.join(root,'public/art',filename));
-    assert.ok(b.length>30000&&b.length<150000,'fichier mobile optimisé : '+name);
-    assert.equal(b.toString('ascii',0,4),'RIFF');
-    assert.equal(b.toString('ascii',8,12),'WEBP');
-    assert.equal(b.toString('ascii',12,16),'VP8 ');
-    assert.equal(b.readUInt16LE(26)&0x3fff,1200);
-    assert.equal(b.readUInt16LE(28)&0x3fff,1200);
-    assert.ok(css.includes('art/'+filename));
-    assert.ok(!css.includes('url("art/jeux-'+name+'-card-hd.webp")'));
-  }
-  assert.ok(css.includes('max-width:88%'));
-});
-test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=>{
-  const js=read('public/runner.js');
-  const css=read('public/jeux-univers.css');
-  assert.ok(js.includes('function runnerApercuTuiles()'));
-  assert.ok(js.includes('runnerApercuTuiles() +'),'carte du hub');
-  assert.ok(js.includes('runnerApercuPortails() +'),'aperçu arches pour préparation');
-  assert.ok(js.includes('RUNNER_VOIES.map(g =>'),'un élément par genre');
-  assert.ok(css.includes('#view-jeux .runner-tuiles'));
-  assert.ok(css.includes('width:38px;height:44px'),'dimensions S/U/R');
-  assert.ok(css.includes('.runner-tuile.runner-f'));
-  assert.ok(css.includes('.runner-tuile.runner-n'));
+  assert.match(css,/SPEC 104/);
+  assert.match(css,/#view-jeux \.jeux-carte:not\(\.runner-carte\)/);
+  assert.match(css,/#view-jeux \.runner-carte/);
+  assert.match(css,/\.jeux-decor-anneau/);
+  assert.match(css,/\.jeux-decor-lettre\.art-a/);
+  assert.match(css,/\.jeux-decor-portail\.portal-1|\.jeux-decor-portail\{/);
+  assert.match(css,/\.jeux-decor-piste/);
+  assert.doesNotMatch(css,/url\((?:["']?)art\/|\.webp|\.svg/i);
+  assert.ok(css.includes('pointer-events:none'),'ornements non interactifs');
+  assert.ok(css.includes('z-index:0'),'ornements derrière le contenu');
+  assert.ok(css.includes('> :not(.jeux-decor)'),'contenu au-dessus du décor');
 });
 
-test('Assets SPEC 99 versionnés : l’ancien décor sort du cache',()=>{
-  const html=read('public/index.html');
-  assert.match(html,/jeux-univers\.css\?v=([5-9]|\d{2,})\b/); // v5 ou plus récent
-  assert.match(html,/runner\.js\?v=([4-9]|\d{2,})\b/); // v4 ou plus récent
-  assert.doesNotMatch(html,/jeux-univers\.css\?v=4/);
-});
-
-test('SPEC 100 — lisibilité renforcée des deux cartes sans changer les WebP',()=>{
-  const css=read('public/jeux-univers.css');
-  assert.ok(css.includes('rgba(21,16,12,.88)'),'masque gauche Survie');
-  assert.ok(css.includes('rgba(19,14,27,.9)'),'masque gauche Runner');
-  assert.ok(css.includes('rgba(20,17,12,.66)'),'masque bas Survie');
-  assert.ok(css.includes('rgba(19,15,27,.70)'),'masque bas Runner');
-  assert.ok(css.includes('color:#f4ede5'),'couleur description');
-  assert.ok(css.includes('font-weight:500'),'graisse description');
-  assert.ok(css.includes('max-width:88%'),'composition préservée');
-  assert.ok(css.includes('art/jeux-survie-card-portrait.webp'));
-  assert.ok(css.includes('art/jeux-runner-card-or-violet.webp'));
-});
-
-test('SPEC 102 — fond Runner or/violet indépendant des couleurs pédagogiques',()=>{
+test('SPEC 104 : une grille mobile, deux colonnes desktop et boutons or',()=>{
   const css=read('public/jeux-univers.css'),html=read('public/index.html');
-  assert.ok(css.includes('art/jeux-runner-card-or-violet.webp'));
-  assert.ok(!css.includes('url("art/jeux-runner-card-portrait.webp")'));
-  assert.ok(html.includes('jeux-univers.css?v=8'));
-  assert.ok(css.includes('.runner-tuile.runner-f'));
-  assert.ok(css.includes('.runner-tuile.runner-n'));
-  assert.ok(css.includes('art/jeux-survie-card-portrait.webp'),'Survie non modifié');
+  assert.ok(css.includes('grid-template-columns:minmax(0,1fr)'));
+  assert.ok(css.includes('@media(min-width:760px)'));
+  assert.ok(css.includes('grid-template-columns:repeat(2,minmax(0,1fr))'));
+  assert.ok(css.includes('@media(max-width:359px)'));
+  assert.ok(css.includes('prefers-reduced-motion:reduce'));
+  assert.ok(css.includes('forced-colors:active'));
+  assert.ok(css.includes('background:var(--accent)'),'CTA or conservé');
+  assert.ok(css.includes('min-height:56px'),'cible tactile confortable');
+  assert.ok(css.includes('color:var(--accent)'),'record or conservé');
+  assert.ok(html.includes('jeux-univers.css?v=9'));
+  assert.ok(html.includes('jeux-v21.js?v=17'));
+  assert.ok(html.includes('runner.js?v=19'));
 });
 
-test('SPEC 103 — cartes compactes lisibles avec records et actions intactes',()=>{
-  const css=read('public/jeux-univers.css'),js=read('public/jeux-v21.js');
-  const runner=read('public/runner.js'),html=read('public/index.html');
-  assert.ok(css.includes('SPEC 103'));
-  assert.ok(css.includes('min-height:318px'));
-  assert.ok(css.includes('grid-template-columns:minmax(0,1fr) auto'));
-  assert.ok(css.includes('background:rgba(15,12,14,.76)'));
-  assert.ok(css.includes('background:rgba(18,13,27,.79)'));
-  assert.ok(css.includes('min-height:56px'));
-  assert.ok(css.includes('prefers-reduced-motion:reduce'));
-  assert.ok(js.includes('Recompose les mots avant la fin du chrono'));
-  assert.ok(runner.includes('Trouve le bon genre avant de franchir le portail.'));
-  assert.ok(js.includes('onclick="demarrerSurvie()"'));
+test('SPEC 104 : même organisation HTML, records dynamiques, états verrouillés',()=>{
+  const survie=read('public/jeux-v21.js'),runner=read('public/runner.js');
+  assert.ok(survie.includes("'<div class=\"jeux-cartes-grille\">'+"));
+  assert.ok(survie.includes("runnerCarteHub():'')+'</div>'"));
+  assert.ok(survie.includes('jeux-decor-survie'));
+  assert.ok(runner.includes('jeux-decor-runner'));
+  assert.ok(survie.includes('aria-hidden="true"'));
+  assert.ok(runner.includes('aria-hidden="true"'));
+  assert.ok(survie.includes('onclick="demarrerSurvie()"'));
   assert.ok(runner.includes('onclick="ouvrirRunner()"'));
-  assert.ok(js.includes("'<div class=\"jeux-meta\"><span><strong>'+nombre"));
+  assert.ok(survie.includes("'<div class=\"jeux-meta\"><span><strong>'+nombre"));
   assert.ok(runner.includes('<strong>60 s</strong>'));
-  assert.ok(html.includes('jeux-univers.css?v=8'));
-  assert.match(html, /jeux-v21\.js\?v=(1[5-9]|[2-9]\d)/);
-  assert.match(html, /runner\.js\?v=(1[6-9]|[2-9]\d)/);
+  assert.ok(survie.includes('À DÉBLOQUER'));
+  assert.ok(survie.includes('onclick="goLessons()"'));
+  assert.ok(runner.includes('BIENTÔT'));
+  assert.ok(runner.includes('runnerApercuTuiles()'));
+  assert.ok(runner.includes('runnerApercuPortails()'));
+  assert.ok(survie.includes('Recompose les mots avant la fin du chrono'));
+  assert.ok(runner.includes('Trouve le bon genre avant de franchir le portail'));
+});
+
+test('SPEC 104 : couleurs sémantiques M/F/N réservées aux tuiles HTML',()=>{
+  const css=read('public/jeux-univers.css');
+  assert.ok(css.includes('var(--runner-m,#2f8cff)'));
+  assert.ok(css.includes('var(--runner-f,#ff3d5a)'));
+  assert.ok(css.includes('var(--runner-n,#22e06b)'));
+  assert.ok(css.includes('border:6px solid rgba(192,158,238,.58)'));
+  assert.ok(!css.includes('background-image:url('));
 });

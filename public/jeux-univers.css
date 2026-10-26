@@ -28,129 +28,200 @@
 #view-jeux .jeux-kicker{position:relative;color:#bda7ea}
 #view-jeux .jeux-entete h1,#view-jeux .jeux-entete p{position:relative}
 
-/* ── Carte Lux Runner : arcade, violet, lumineuse ────────────────── */
-#view-jeux .jeux-carte+.jeux-carte{margin-top:16px}
-#view-jeux .runner-carte{
-  position:relative;overflow:hidden;
-  border-color:rgba(177,140,240,.5);
-  background:
-    radial-gradient(80% 60% at 20% 0%,rgba(177,140,240,.18),transparent 70%),
-    linear-gradient(150deg,#241c35 0%,#18141f 55%,#121015 100%);
-  box-shadow:0 4px 16px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05);
+/* SPEC 104 — Cartes Jeux : même famille violet nuit, zéro image, formes CSS
+   Survie : touches or / lettres en orbite.
+   Lux Runner : arches violettes abstraites, jamais les couleurs M/F/N.
+   Tous les vrais titres, statistiques et boutons restent du HTML. */
+#view-jeux{max-width:none}
+#view-jeux .jeux-cartes-grille{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:16px;
 }
-#view-jeux .runner-carte .jeux-carte-titre h2{text-shadow:0 0 22px rgba(177,140,240,.35)}
-#view-jeux .runner-carte .jeux-meta{color:#bfb3d6}
-#view-jeux .runner-carte .jeux-meta b{color:var(--accent)}
-#view-jeux .runner-carte .jeux-etat{border-color:rgba(177,140,240,.6);color:#d9c9ff}
-
-
-/* SPEC 98 — Fonds illustrés HD, WebP raster optimisé (sans SVG).
-   Les décors représentent réellement les mécaniques : lettres mélangées pour Survie,
-   trois portails et coureur pour Lux Runner. Tous les contenus interactifs restent HTML.
-   Dégradé de contraste côté texte, rendu local sans CDN. */
+#view-jeux .jeux-carte{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:354px;
+  padding:clamp(19px,4.6vw,23px);
+  border:1px solid rgba(165,137,192,.4);
+  border-radius:24px;
+  background:
+    radial-gradient(ellipse 68% 56% at 100% 17%,rgba(125,78,163,.25),transparent 78%),
+    linear-gradient(128deg,#23192b 0%,#21192b 53%,#141119 100%);
+  box-shadow:0 9px 24px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.035);
+}
 #view-jeux .jeux-carte:not(.runner-carte){
+  border-color:rgba(181,144,91,.43);
   background:
-    linear-gradient(90deg,rgba(21,16,12,.88) 0%,rgba(21,16,12,.79) 36%,rgba(21,16,12,.43) 69%,rgba(21,16,12,.04) 100%),
-    linear-gradient(0deg,rgba(20,17,12,.66) 0%,rgba(20,17,12,.45) 32%,transparent 63%),
-    url("art/jeux-survie-card-portrait.webp") center center / cover no-repeat,
-    #211b13;
+    radial-gradient(ellipse 70% 60% at 100% 19%,rgba(154,102,58,.29),transparent 76%),
+    linear-gradient(126deg,#261c29 0%,#211925 53%,#141117 100%);
 }
 #view-jeux .runner-carte{
+  border-color:rgba(177,140,240,.46);
   background:
-    linear-gradient(90deg,rgba(19,14,27,.9) 0%,rgba(19,14,27,.82) 36%,rgba(19,14,27,.43) 70%,rgba(19,14,27,.04) 100%),
-    linear-gradient(0deg,rgba(19,15,27,.70) 0%,rgba(19,15,27,.46) 32%,transparent 63%),
-    url("art/jeux-runner-card-or-violet.webp") center center / cover no-repeat,
-    #191421;
+    radial-gradient(ellipse 76% 64% at 100% 18%,rgba(145,92,191,.32),transparent 76%),
+    linear-gradient(128deg,#251b34 0%,#20182c 53%,#131119 100%);
 }
-#view-jeux .runner-tuiles{display:flex;gap:6px;margin-bottom:22px}
-#view-jeux .runner-tuile{
-  --tile-color:var(--runner-m,#2f8cff);
-  display:grid;place-items:center;
-  width:38px;height:44px;
-  border:1px solid var(--tile-color);
-  border-bottom:3px solid var(--tile-color);
+#view-jeux .jeux-carte > :not(.jeux-decor){
+  position:relative;
+  z-index:1;
+}
+#view-jeux .jeux-decor{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:0;
+  pointer-events:none;
+}
+#view-jeux .jeux-decor::before{
+  content:"";
+  position:absolute;
+  width:60%;
+  aspect-ratio:1;
+  right:-30%;
+  top:8%;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:38px;
+  box-shadow:0 0 0 28px rgba(255,255,255,.017),0 0 0 58px rgba(255,255,255,.008);
+  transform:rotate(-29deg);
+}
+#view-jeux .jeux-decor-survie::before{border-color:rgba(235,194,111,.17)}
+#view-jeux .jeux-decor-anneau{
+  position:absolute;
+  width:57%;
+  aspect-ratio:1;
+  right:-19%;
+  top:27%;
+  border-radius:50%;
+  border:1px solid rgba(232,181,85,.3);
+  box-shadow:inset 0 0 28px rgba(231,175,79,.045),0 0 25px rgba(219,150,47,.045);
+}
+#view-jeux .jeux-decor-anneau::after{
+  content:"";
+  position:absolute;
+  inset:14%;
+  border-radius:50%;
+  border:1px dashed rgba(248,201,99,.19);
+}
+#view-jeux .jeux-decor-lettre{
+  position:absolute;
+  display:grid;
+  place-items:center;
+  width:62px;
+  height:72px;
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(102,75,44,.87),rgba(42,31,29,.95));
+  border:1px solid rgba(239,191,97,.46);
+  color:#f0c66a;
+  font:800 34px/1 var(--font);
+  box-shadow:0 10px 23px rgba(0,0,0,.35),inset 0 1px rgba(255,227,159,.15);
+}
+#view-jeux .jeux-decor-lettre.art-a{right:3%;top:41%;transform:rotate(18deg);opacity:.77}
+#view-jeux .jeux-decor-lettre.art-b{right:23%;top:63%;transform:rotate(-18deg) scale(.65);opacity:.52}
+#view-jeux .jeux-decor-lettre.art-c{right:-7%;top:68%;transform:rotate(12deg) scale(.7);opacity:.4}
+#view-jeux .jeux-decor-runner::after{
+  content:"";
+  position:absolute;
+  right:-14%;
+  bottom:-21%;
+  width:58%;
+  height:66%;
+  transform:perspective(150px) rotateX(33deg);
+  border-left:2px solid rgba(178,132,244,.32);
+  border-right:2px solid rgba(178,132,244,.32);
+  background:linear-gradient(90deg,transparent 49%,rgba(184,145,243,.14) 50%,transparent 51%);
+}
+#view-jeux .jeux-decor-portail{
+  position:absolute;
+  top:32%;
+  right:4%;
+  width:79px;
+  height:104px;
+  border:6px solid rgba(192,158,238,.58);
+  border-bottom:0;
+  border-radius:48px 48px 0 0;
+  background:linear-gradient(180deg,rgba(162,114,216,.12),rgba(104,71,151,0));
+  box-shadow:0 0 13px rgba(187,132,240,.16),inset 0 0 12px rgba(190,148,241,.09);
+}
+#view-jeux .jeux-decor-portail.portal-2{top:37%;right:25%;transform:scale(.7);transform-origin:top right;opacity:.52}
+#view-jeux .jeux-decor-portail.portal-3{top:41%;right:41%;transform:scale(.5);transform-origin:top right;opacity:.3}
+#view-jeux .jeux-decor-piste{
+  position:absolute;
+  right:-11%;
+  bottom:-13%;
+  width:44%;
+  height:43%;
+  border-right:2px solid rgba(186,137,239,.25);
+  transform:rotate(-19deg);
+}
+#view-jeux .jeux-carte .jeux-lettres,
+#view-jeux .jeux-carte .runner-tuiles{display:flex;gap:6px;margin-bottom:28px}
+#view-jeux .jeux-carte .jeux-lettres span,
+#view-jeux .jeux-carte .runner-tuile{
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:44px;
   border-radius:8px;
-  background:color-mix(in srgb,var(--tile-color) 12%,#201b29);
-  color:var(--tile-color);
   font:800 21px/1 var(--font);
   text-shadow:none;
 }
+#view-jeux .jeux-carte .jeux-lettres span{
+  color:var(--accent);
+  border:1px solid #806a49;
+  border-bottom:3px solid #ad8c4e;
+  background:#423526;
+}
+#view-jeux .jeux-carte .runner-tuile{
+  --tile-color:var(--runner-m,#2f8cff);
+  color:var(--tile-color);
+  border:1px solid var(--tile-color);
+  border-bottom:3px solid var(--tile-color);
+  background:color-mix(in srgb,var(--tile-color) 13%,#251e31);
+}
 #view-jeux .runner-tuile.runner-f{--tile-color:var(--runner-f,#ff3d5a)}
 #view-jeux .runner-tuile.runner-n{--tile-color:var(--runner-n,#22e06b)}
-@media (forced-colors:active){
-  #view-jeux .runner-tuile{border-color:CanvasText;color:CanvasText}
-}
-
-/* SPEC 98 : conserver les décors cadrés quand la taille ou le zoom varie.
-   Les mots, records et commandes HTML restent sur un contraste sombre. */
-#view-jeux .jeux-carte:not(.runner-carte){background-position:center center}
-#view-jeux .runner-carte{background-position:center center}
-
-/* SPEC 99 — Composition portrait : texte calme à gauche, scène à droite. */
-/* SPEC 100 — Contraste renforcé pour le texte sur illustration.
-    Aucune image ni dimension de carte modifiée. */
-#view-jeux .jeux-carte > p:not(.jeux-verrou){
-  max-width:88%;
-  color:#f4ede5;
-  font-weight:500;
-  text-shadow:0 2px 9px rgba(0,0,0,.94),0 0 17px rgba(0,0,0,.65);
-}
-#view-jeux .jeux-carte .jeux-meta{
-  color:#f0e8dd;
-  text-shadow:0 2px 8px rgba(0,0,0,.96),0 0 13px rgba(0,0,0,.7);
-}
-#view-jeux .runner-carte .jeux-meta{color:#efe7f7}
-#view-jeux .jeux-carte-titre h2{
-  text-shadow:0 2px 10px rgba(0,0,0,.85),0 0 18px rgba(0,0,0,.48);
-}
-
-/* SPEC 103 — Cartes Jeux : éditoriales, plus compactes et plus lisibles.
-   L'image fait l'ambiance à droite, le contenu et les CTA restent en HTML.
-   Aucune animation du gameplay, aucune nouvelle image ou dépendance. */
-#view-jeux .jeux-carte{
-  display:flex;
-  flex-direction:column;
-  isolation:isolate;
-  border-radius:24px;
-  padding:clamp(18px,5vw,24px);
-  box-shadow:0 10px 26px rgba(0,0,0,.16);
-}
-#view-jeux .jeux-carte:not(.jeux-carte-verrouillee){min-height:318px}
-#view-jeux .jeux-carte .jeux-lettres,
-#view-jeux .jeux-carte .runner-tuiles{margin-bottom:19px}
-#view-jeux .jeux-carte .jeux-carte-titre{margin-bottom:9px}
+#view-jeux .jeux-carte .jeux-carte-titre{margin-bottom:10px}
 #view-jeux .jeux-carte .jeux-carte-titre h2{
-  font:400 clamp(40px,10vw,46px)/1.06 'Instrument Serif',Georgia,serif;
+  margin:0;
+  font:400 clamp(39px,10vw,45px)/1.07 'Instrument Serif',Georgia,serif;
+  letter-spacing:-.02em;
+  color:#fff9f0;
+  text-shadow:0 2px 12px rgba(0,0,0,.22);
 }
+#view-jeux .runner-carte .jeux-carte-titre h2{text-shadow:0 1px 10px rgba(0,0,0,.25)}
 #view-jeux .jeux-carte > p:not(.jeux-verrou){
-  max-width:88%;
-  margin-bottom:19px;
-  font:500 14px/1.48 var(--font);
-  color:#f6f0e8;
-  text-shadow:0 2px 8px rgba(0,0,0,.75);
+  max-width:90%;
+  margin:0 0 17px;
+  font:500 14px/1.52 var(--font);
+  color:#e8dfe9;
+  text-shadow:0 1px 3px rgba(0,0,0,.28);
 }
 #view-jeux .jeux-carte .jeux-meta{
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
   align-items:center;
   flex-wrap:nowrap;
-  gap:8px;
-  min-height:48px;
+  min-height:56px;
   margin-top:auto;
-  margin-bottom:12px;
-  padding:9px 11px;
-  border:1px solid rgba(255,255,255,.11);
-  border-radius:12px;
-  background:rgba(15,12,14,.76);
-  color:#f4ede5;
+  margin-bottom:11px;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:13px;
+  background:rgba(15,12,19,.85);
+  color:#e0d7e2;
   font:600 12px/1.35 var(--font);
   text-shadow:none;
 }
-#view-jeux .runner-carte .jeux-meta{background:rgba(18,13,27,.79);color:#eee7f3}
 #view-jeux .jeux-meta > span{min-width:0}
 #view-jeux .jeux-meta > span:first-child strong{
-  color:#f6f1e9;
-  font:800 16px/1 var(--font);
+  color:#fff9f0;
+  font:800 16px/1.2 var(--font);
   font-variant-numeric:tabular-nums;
 }
 #view-jeux .jeux-meta > span:last-child{
@@ -158,28 +229,58 @@
   align-items:baseline;
   gap:5px;
   padding-left:11px;
-  border-left:1px solid rgba(255,255,255,.18);
+  border-left:1px solid rgba(255,255,255,.16);
   white-space:nowrap;
 }
 #view-jeux .jeux-meta > span:last-child b{
-  font:800 19px/1 var(--font);
   color:var(--accent);
+  font:800 20px/1 var(--font);
   font-variant-numeric:tabular-nums;
 }
 #view-jeux .jeux-carte .jeux-jouer{
+  display:block;
   flex:none;
+  width:100%;
   min-height:56px;
-  border-radius:13px;
-  box-shadow:0 5px 14px rgba(0,0,0,.2);
+  border:0;
+  border-radius:12px;
+  background:var(--accent);
+  color:#251b0d;
+  font:800 16px/1.1 var(--font);
+  cursor:pointer;
+  box-shadow:0 5px 12px rgba(0,0,0,.18);
   transition:filter .14s ease,transform .14s ease;
 }
 #view-jeux .jeux-carte .jeux-jouer:active{filter:brightness(.95);transform:scale(.99)}
+#view-jeux .jeux-carte .jeux-etat{
+  border-color:rgba(177,140,240,.42);
+  background:rgba(26,20,36,.75);
+  color:#e9d5ff;
+}
+#view-jeux .jeux-carte .jeux-deblocage{
+  position:relative;
+  z-index:1;
+}
+#view-jeux .jeux-carte .jeux-verrou{color:#edce87}
+@media(min-width:760px){
+  #view-jeux .jeux-hub{max-width:960px}
+  #view-jeux .jeux-cartes-grille{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  #view-jeux .jeux-carte{min-height:395px}
+  #view-jeux .jeux-carte > p:not(.jeux-verrou){max-width:92%}
+}
 @media(max-width:359px){
   #view-jeux .jeux-carte{padding:18px}
   #view-jeux .jeux-carte .jeux-meta{padding:8px;gap:6px}
   #view-jeux .jeux-meta > span:last-child{padding-left:8px}
   #view-jeux .jeux-carte > p:not(.jeux-verrou){max-width:94%}
+  #view-jeux .jeux-decor-lettre.art-b{opacity:.28}
 }
 @media(prefers-reduced-motion:reduce){
   #view-jeux .jeux-carte .jeux-jouer{transition:none}
+}
+@media(forced-colors:active){
+  #view-jeux .jeux-decor{display:none}
+  #view-jeux .jeux-carte .runner-tuile{color:CanvasText;border-color:CanvasText}
+  #view-jeux .jeux-carte .jeux-meta{border-color:CanvasText}
+  #view-jeux .jeux-carte .jeux-jouer{border:1px solid ButtonText}
 }
