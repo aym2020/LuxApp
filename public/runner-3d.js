@@ -380,7 +380,7 @@ function creer(conteneur) {
       const arbres = ['tree-large', 'tree-small'].filter(n => pieces[n]);
       const maison = () => {
         if (!maisons.length) return creerMaison(hasard, cote);
-        const m = rendreMat(pieces[maisons[Math.floor(hasard() * maisons.length)]].clone(), 0.14);
+        const m = rendreMat(pieces[maisons[Math.floor(hasard() * maisons.length)]].clone(), 0.05, 0x7a72a0); // teinte de nuit
         m.scale.setScalar(2.2 + hasard() * 0.4);
         m.rotation.y = cote > 0 ? -Math.PI / 2 : Math.PI / 2; // façade vers la route
         return m;
@@ -389,7 +389,7 @@ function creer(conteneur) {
         if (!arbres.length) return creerBosquet(hasard, nombre);
         const groupe = new THREE.Group();
         for (let i = 0; i < nombre; i++) {
-          const a = rendreMat(pieces[arbres[Math.floor(hasard() * arbres.length)]].clone(), 0.12);
+          const a = rendreMat(pieces[arbres[Math.floor(hasard() * arbres.length)]].clone(), 0.03, 0x5d6690); // teinte de nuit
           a.scale.setScalar(2.6 + hasard() * 1.2);
           a.rotation.y = hasard() * Math.PI * 2;
           a.position.set((hasard() - 0.5) * 1.6, 0, (hasard() - 0.5) * 1.8);
