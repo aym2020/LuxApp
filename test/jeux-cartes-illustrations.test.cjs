@@ -5,17 +5,19 @@ const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 
-test('Cartes Jeux : fonds locaux, lisibles et sans ressources externes',()=>{
+test('Cartes Jeux : deux illustrations HD WebP optimisées, sans SVG utilisé',()=>{
   const css=read('public/jeux-univers.css');
   for(const name of ['survie','runner']){
-    const svg=read('public/art/jeux-'+name+'-card.svg');
-    assert.ok(css.includes('art/jeux-'+name+'-card.svg'),'fond '+name+' non référence');
-    assert.ok(svg.startsWith('<svg '),'SVG attendu : '+name);
-    assert.ok(svg.includes('viewBox="0 0 760 450"'));
-    assert.ok(!svg.includes('<script')&&!svg.includes('xlink:href=')&&!svg.includes('<image '));
+    const pathname='public/art/jeux-'+name+'-card-hd.webp';
+    const asset=fs.readFileSync(path.join(root,pathname));
+    assert.ok(asset.length>30000 && asset.length<210000,'Image HD optimisée : '+name);
+    assert.equal(asset.toString('ascii',0,4),'RIFF');
+    assert.equal(asset.toString('ascii',8,12),'WEBP');
+    assert.ok(css.includes('art/jeux-'+name+'-card-hd.webp'),'Fond '+name+' non référencé');
+    assert.ok(!css.includes('url("art/jeux-'+name+'-card.svg")'),'Ancien SVG encore utilisé pour '+name);
   }
-  assert.ok(css.includes('linear-gradient(90deg,rgba(23,19,13'),'masque de lisibilité Survie');
-  assert.ok(css.includes('linear-gradient(90deg,rgba(19,15,27'),'masque de lisibilité Runner');
+  assert.match(css,/linear-gradient\\(90deg,rgba\\(21,16,12/,'masque Survie');
+  assert.match(css,/linear-gradient\\(90deg,rgba\\(19,14,27/,'masque Runner');
 });
 
 test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=>{
@@ -33,7 +35,7 @@ test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=
 
 test('Assets V1.3 versionnés : l’ancienne présentation n’est pas conservée par le cache',()=>{
   const html=read('public/index.html');
-  assert.match(html,/jeux-univers\.css\?v=2/);
+  assert.match(html,/jeux-univers\.css\?v=3/);
   assert.match(html,/runner\.js\?v=4/);
-  assert.doesNotMatch(html,/jeux-univers\.css\?v=1/);
+  assert.doesNotMatch(html,/jeux-univers\.css\?v=2/);
 });

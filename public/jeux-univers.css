@@ -36,7 +36,7 @@
   background:
     radial-gradient(80% 60% at 20% 0%,rgba(177,140,240,.18),transparent 70%),
     linear-gradient(150deg,#241c35 0%,#18141f 55%,#121015 100%);
-  box-shadow:0 0 26px rgba(116,82,180,.22),inset 0 1px 0 rgba(255,255,255,.05);
+  box-shadow:0 4px 16px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05);
 }
 #view-jeux .runner-carte .jeux-carte-titre h2{text-shadow:0 0 22px rgba(177,140,240,.35)}
 #view-jeux .runner-carte .jeux-meta{color:#bfb3d6}
@@ -44,21 +44,22 @@
 #view-jeux .runner-carte .jeux-etat{border-color:rgba(177,140,240,.6);color:#d9c9ff}
 
 
-/* SPEC 96 V1.3 — Illustrations intégrées : deux cartes, même composition.
-   Les images SVG sont locales, sans police distante ni JS, et les dégradés
-   maintiennent le contraste des titres, métadonnées et CTA sur mobile. */
+/* SPEC 98 — Fonds illustrés HD, WebP raster optimisé (sans SVG).
+   Les décors représentent réellement les mécaniques : lettres mélangées pour Survie,
+   trois portails et coureur pour Lux Runner. Tous les contenus interactifs restent HTML.
+   Dégradé de contraste côté texte, rendu local sans CDN. */
 #view-jeux .jeux-carte:not(.runner-carte){
   background:
-    linear-gradient(90deg,rgba(23,19,13,.98) 0%,rgba(23,19,13,.90) 37%,rgba(23,19,13,.64) 67%,rgba(23,19,13,.28) 100%),
+    linear-gradient(90deg,rgba(21,16,12,.94) 0%,rgba(21,16,12,.86) 37%,rgba(21,16,12,.52) 70%,rgba(21,16,12,.12) 100%),
     linear-gradient(0deg,rgba(20,17,12,.90) 0%,transparent 45%),
-    url("art/jeux-survie-card.svg") center center / cover no-repeat,
+    url("art/jeux-survie-card-hd.webp") center center / cover no-repeat,
     #211b13;
 }
 #view-jeux .runner-carte{
   background:
-    linear-gradient(90deg,rgba(19,15,27,.98) 0%,rgba(19,15,27,.90) 38%,rgba(19,15,27,.61) 69%,rgba(19,15,27,.24) 100%),
+    linear-gradient(90deg,rgba(19,14,27,.94) 0%,rgba(19,14,27,.84) 38%,rgba(19,14,27,.50) 70%,rgba(19,14,27,.10) 100%),
     linear-gradient(0deg,rgba(19,15,27,.92) 0%,transparent 49%),
-    url("art/jeux-runner-card.svg") center center / cover no-repeat,
+    url("art/jeux-runner-card-hd.webp") center center / cover no-repeat,
     #191421;
 }
 #view-jeux .runner-tuiles{display:flex;gap:6px;margin-bottom:22px}
@@ -79,3 +80,8 @@
 @media (forced-colors:active){
   #view-jeux .runner-tuile{border-color:CanvasText;color:CanvasText}
 }
+
+/* SPEC 98 : conserver les décors cadrés quand la taille ou le zoom varie.
+   Les mots, records et commandes HTML restent sur un contraste sombre. */
+#view-jeux .jeux-carte:not(.runner-carte){background-position:center center}
+#view-jeux .runner-carte{background-position:center center}
