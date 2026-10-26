@@ -1,12 +1,15 @@
 # SPEC 96 V2 — Lux Runner 3D : assemble les pièces Kenney utiles dans un seul GLB.
-# Usage : python (avec bpy) exporter_ville.py <City Kit Roads/Models/GLTF format> <City Kit Commercial/Models/GLB format> public/runner3d/ville.glb
+# Usage : python (avec bpy) exporter_ville.py <City Kit Roads/Models/GLTF format> <City Kit Commercial/Models/GLB format> public/runner3d/ville.glb <City Kit Suburban/Models/GLB format>
 import bpy, sys, os
-routes, commercial, dst = sys.argv[1], sys.argv[2], sys.argv[3]
+routes, commercial, dst, banlieue = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 bpy.ops.wm.read_factory_settings(use_empty=True)
 pieces = [(routes, n) for n in ['road_straight', 'road_straightBarrier', 'light_curved', 'light_square', 'construction_light']]
 pieces += [(commercial, 'low-detail-building-' + c) for c in 'abcdefghijklmn']
 pieces += [(commercial, 'low-detail-building-wide-a'), (commercial, 'low-detail-building-wide-b')]
 pieces += [(commercial, 'building-skyscraper-' + c) for c in 'abcde']
+# Maisons, arbres et petits détails (City Kit Suburban).
+pieces += [(banlieue, 'building-type-' + c) for c in 'aghikmr']  # les 7 plus légères
+pieces += [(banlieue, n) for n in ['tree-large', 'tree-small']]
 for dossier, nom in pieces:
     avant = set(bpy.data.objects)
     bpy.ops.import_scene.gltf(filepath=os.path.join(dossier, nom + '.glb'))

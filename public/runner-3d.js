@@ -27,7 +27,7 @@ function chargerModeles() {
     const loader = new GLTFLoader();
     modelesPromesse = Promise.all([
       loader.loadAsync('runner3d/coureur.glb?v=2'),
-      loader.loadAsync('runner3d/ville.glb?v=2')
+      loader.loadAsync('runner3d/ville.glb?v=3')
     ]).then(([coureur, ville]) => {
       const pieces = {};
       ville.scene.children.forEach(c => { pieces[c.name.replace(/\d+$/, '')] = c; });
@@ -375,6 +375,28 @@ function creer(conteneur) {
     let graine = 11;
     const hasard = () => { graine = (graine * 9301 + 49297) % 233280; return graine / 233280; };
     for (const cote of [-1, 1]) {
+      // Kenney City Kit Suburban (maisons, arbres) ; formes maison en secours.
+      const maisons = Object.keys(pieces).filter(n => n.indexOf('building-type') === 0);
+      const arbres = ['tree-large', 'tree-small'].filter(n => pieces[n]);
+      const maison = () => {
+        if (!maisons.length) return creerMaison(hasard, cote);
+        const m = rendreMat(pieces[maisons[Math.floor(hasard() * maisons.length)]].clone(), 0.14);
+        m.scale.setScalar(2.2 + hasard() * 0.4);
+        m.rotation.y = cote > 0 ? -Math.PI / 2 : Math.PI / 2; // façade vers la route
+        return m;
+      };
+      const bosquet = (nombre) => {
+        if (!arbres.length) return creerBosquet(hasard, nombre);
+        const groupe = new THREE.Group();
+        for (let i = 0; i < nombre; i++) {
+          const a = rendreMat(pieces[arbres[Math.floor(hasard() * arbres.length)]].clone(), 0.12);
+          a.scale.setScalar(2.6 + hasard() * 1.2);
+          a.rotation.y = hasard() * Math.PI * 2;
+          a.position.set((hasard() - 0.5) * 1.6, 0, (hasard() - 0.5) * 1.8);
+          groupe.add(a);
+        }
+        return groupe;
+      };
       // Bande de pelouse le long du trottoir (rend le décor plus aéré).
       const pelouse = new THREE.Mesh(new THREE.PlaneGeometry(9, 160), materiauxDecor.pelouse);
       pelouse.rotation.x = -Math.PI / 2;
@@ -385,8 +407,8 @@ function creer(conteneur) {
         const tirage = hasard();
         const x = cote * (LARGEUR_ROUTE / 2 + 2.6 + hasard() * 1.2);
         let objet = null;
-        if (tirage < 0.38) objet = creerBosquet(hasard, 1 + Math.floor(hasard() * 3));
-        else if (tirage < 0.72) objet = creerMaison(hasard, cote);
+        if (tirage < 0.38) objet = bosquet(1 + Math.floor(hasard() * 3));
+        else if (tirage < 0.72) objet = maison();
         else if (tirage < 0.88) {
           const petits = batiments.filter(n => n.indexOf('low-detail') >= 0);
           objet = rendreMat(pieces[petits[Math.floor(hasard() * petits.length)]].clone(), 0.06, 0x8a7fa8);
