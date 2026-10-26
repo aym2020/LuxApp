@@ -358,7 +358,7 @@ function runnerCarteHub() {
 function ouvrirRunner() {
   runnerArreter();
   // Précharger le rendu 3D pendant la préparation (repli 2D automatique).
-  if (runnerRendu3DActif()) runnerCharger3D().then(R3D => R3D.precharger()).catch(() => {});
+  if (runnerRendu3DActif()) runnerObtenir3D().catch(() => {}); // prête avant « Jouer »
   const mots = runnerMotsDuNiveau(runnerNiveau());
   if (!runnerDisponible(mots)) { if (typeof renderJeuxHub === 'function') renderJeuxHub(); return; }
   runnerRendrePreparation(false);
@@ -469,7 +469,7 @@ function demarrerRunner(mode) {
   runnerDemarrerBoucle();
 }
 
-// Attend que la 3D soit affichée (4 s max, sinon le rendu 2D prend le relais),
+// Attend que la 3D soit affichée (10 s max, sinon le rendu 2D prend le relais pour toute la partie),
 // puis deux images pour être sûr que l'écran est réellement peint.
 function runnerQuandScenePrete(p, suite) {
   const secours = () => { // 3D trop lente : on bascule sur le rendu 2D
@@ -485,7 +485,7 @@ function runnerQuandScenePrete(p, suite) {
     requestAnimationFrame(() => requestAnimationFrame(() => { if (runnerPartie === p) suite(); }));
   };
   pret.then(lancer, lancer);
-  setTimeout(secours, 4000);
+  setTimeout(secours, 10000);
 }
 
 function runnerRendreCourse() {
@@ -720,7 +720,7 @@ function runnerArreter() {
     if (a.feedbackTimer) clearTimeout(a.feedbackTimer);
     if (a.finTimer) clearTimeout(a.finTimer);
     if (a.redimension && typeof window !== 'undefined') window.removeEventListener('resize', a.redimension);
-    if (a.rendu3d) { a.rendu3d.detacher(); a.rendu3d = null; }
+    if (a.rendu3d) { a.rendu3d.retirer(); a.rendu3d = null; } // instance gardée pour la partie suivante
   }
   runnerPartie = null;
 }
@@ -890,21 +890,37 @@ function runnerRendu3DActif() {
 }
 function runnerCharger3D() {
   if (!runnerModule3D) {
-    runnerModule3D = import('./runner-3d.js?v=10').then(() => window.Runner3D);
+    runnerModule3D = import('./runner-3d.js?v=11').then(() => window.Runner3D);
     runnerModule3D.catch(() => { runnerModule3D = null; });
   }
   return runnerModule3D;
 }
+// Instance 3D unique pour la session : créée dès l'écran de préparation,
+// puis réutilisée à chaque partie (pas de rechargement ni d'écran noir).
+let runnerInstance3D = null;
+function runnerObtenir3D() {
+  if (!runnerInstance3D) {
+    runnerInstance3D = runnerCharger3D().then(R3D => R3D.creer(null));
+    runnerInstance3D.catch(() => { runnerInstance3D = null; });
+  }
+  return runnerInstance3D.then(instance => {
+    if (!instance.perdu()) return instance;
+    // Contexte WebGL perdu (appli mise en arrière-plan) : on en recrée une.
+    instance.detacher();
+    runnerInstance3D = null;
+    return runnerObtenir3D();
+  });
+}
 function runnerBrancher3D(p, scene) {
   if (!scene) return Promise.resolve();
-  // Scène masquée (fond seul) tant que la 3D n'est pas prête : pas de flash 2D au relancement.
+  // Scène masquée (fond + « Chargement ») tant que la 3D n'est pas prête : jamais de 2D en attendant.
   p.affichage.attente3d = true;
   scene.setAttribute('data-rendu', 'chargement');
-  return runnerCharger3D()
-    .then(R3D => R3D.creer(scene))
+  return runnerObtenir3D()
     .then(instance => {
-      // La partie a pu se terminer pendant le chargement.
-      if (runnerPartie !== p || !p.affichage) { instance.detacher(); return; }
+      // La partie a pu se terminer, ou passer en 2D de secours, pendant le chargement.
+      if (runnerPartie !== p || !p.affichage || !p.affichage.attente3d) return;
+      instance.attacher(scene);
       p.affichage.rendu3d = instance;
       p.affichage.attente3d = false;
       scene.setAttribute('data-rendu', '3d');

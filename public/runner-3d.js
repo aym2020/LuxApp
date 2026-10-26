@@ -21,9 +21,9 @@ const DISTANCE = 18;          // distance (unités 3D) d'apparition d'un trio
 const VOIE = 1.05;            // écart entre deux voies
 const LARGEUR_ROUTE = 3.6;
 const BOUCLE = 84;            // longueur de décor recyclé (bâtiments, lampadaires)
-// V2.2 : bleu / rouge / vert saturés ; une forme par genre (carré, rond, octogone).
+// V2.2 : bleu / rouge / vert saturés. V2.5 : trois arches identiques, carrés arrondis.
 const COULEURS = { m: 0x2f8cff, f: 0xff3d5a, n: 0x22e06b };
-const FORMES = { m: 'carre', f: 'rond', n: 'octo' };
+const FORMES = { m: 'carre', f: 'carre', n: 'carre' };
 const TEMPS_PORTAILS = { value: 0 }; // horloge partagée des membranes animées
 const ORDRE = ['m', 'f', 'n'];
 const NOMS = { m: 'MASCULIN', f: 'FÉMININ', n: 'NEUTRE' };
@@ -138,10 +138,10 @@ function contourPortail(forme, l, h) {
   const arc = (cx, cy, rayon, a1, a2, n) => { for (let i = 1; i < n; i++) { const a = a1 + (a2 - a1) * i / n; pts.push([cx + Math.cos(a) * rayon, cy + Math.sin(a) * rayon]); } };
   if (forme === 'rond') {
     ligne(-r, 0, -r, h - r, 6); arc(0, h - r, r, Math.PI, 0, 18); ligne(r, h - r, r, 0, 6);
-  } else if (forme === 'carre') {
-    const c = 0.1;
-    ligne(-r, 0, -r, h - c, 6); arc(-r + c, h - c, c, Math.PI, Math.PI / 2, 5);
-    ligne(-r + c, h, r - c, h, 6); arc(r - c, h - c, c, Math.PI / 2, 0, 5); ligne(r, h - c, r, 0, 6);
+  } else if (forme === 'carre') { // carré aux coins bien arrondis
+    const c = Math.min(0.24, r * 0.6);
+    ligne(-r, 0, -r, h - c, 6); arc(-r + c, h - c, c, Math.PI, Math.PI / 2, 9);
+    ligne(-r + c, h, r - c, h, 6); arc(r - c, h - c, c, Math.PI / 2, 0, 9); ligne(r, h - c, r, 0, 6);
   } else { // octogone : montants droits, deux pans coupés, sommet plat
     const c = l * 0.3;
     ligne(-r, 0, -r, h - c, 6); ligne(-r, h - c, -r + c, h, 3); ligne(-r + c, h, r - c, h, 4);
@@ -283,11 +283,16 @@ function creerArrivee(texture) {
 
 // ─── Instance de rendu attachée à la scène HTML du jeu ───────────────────────
 
-function creer(conteneur) {
+// Une seule instance est créée par session et réutilisée à chaque partie
+// (shaders déjà compilés : « Rejouer » s'affiche tout de suite).
+function creer(conteneurInitial) {
+  let conteneur = conteneurInitial || null;
   const canvas = document.createElement('canvas');
   canvas.className = 'runner-canvas-3d';
   canvas.setAttribute('aria-hidden', 'true');
-  conteneur.insertBefore(canvas, conteneur.firstChild);
+  if (conteneur) conteneur.insertBefore(canvas, conteneur.firstChild);
+  let perdu = false; // contexte WebGL perdu (appli en arrière-plan) : instance à recréer
+  canvas.addEventListener('webglcontextlost', () => { perdu = true; });
 
   let renderer;
   try {
@@ -616,6 +621,7 @@ function creer(conteneur) {
   });
 
   function redimensionner() {
+    if (!conteneur) return;
     const r = conteneur.getBoundingClientRect();
     const l = Math.max(1, Math.round(r.width)), h = Math.max(1, Math.round(r.height));
     if (l === etat.largeur && h === etat.hauteur) return;
@@ -803,7 +809,27 @@ function creer(conteneur) {
     if (composer) composer.render(); else renderer.render(scene, camera);
   }
 
-  // Libère la carte graphique (aucune fuite entre deux parties).
+  // Place le canvas dans la scène de la nouvelle partie et remet l'état à zéro.
+  function attacher(nouveau) {
+    conteneur = nouveau;
+    conteneur.insertBefore(canvas, conteneur.firstChild);
+    etat.largeur = 0; etat.hauteur = 0;
+    reinitialiser();
+    redimensionner();
+  }
+  function reinitialiser() {
+    Object.assign(etat, { x: 0, horloge: 0, choc: 0, passe: null, finJouee: false, zoom: 0, secousseCam: 0, vitesseCombo: 0, serie: 0 });
+    aura.material.opacity = 0; onde.material.opacity = 0; trainees.material.opacity = 0;
+    bandes.forEach(b => { b.material.opacity = 0; });
+    for (let i = 0; i < NB; i++) { partVie[i] = 0; partPos[i * 3 + 1] = -50; }
+    partGeo.attributes.position.needsUpdate = true;
+    if (etat.coureur) etat.coureur.rotation.set(0, 0, 0);
+    if (etat.mixer) { etat.mixer.stopAllAction(); etat.actionCourante = null; jouer('Idle'); }
+  }
+  // Fin de partie : le canvas sort de la page, la carte graphique est conservée.
+  function retirer() { canvas.remove(); conteneur = null; }
+
+  // Libère la carte graphique.
   function detacher() {
     scene.traverse(o => {
       if (o.geometry && !o.userData.partage) o.geometry.dispose();
@@ -815,7 +841,13 @@ function creer(conteneur) {
     canvas.remove();
   }
 
-  return pret.then(() => { redimensionner(); return { image, collision, redimensionner, detacher }; })
+  return pret.then(() => {
+    redimensionner();
+    // Compile tous les shaders maintenant (sinon la première image reste noire 1 à 2 s).
+    try { renderer.compile(scene, camera); } catch (_) { /* facultatif */ }
+    reinitialiser();
+    return { image, collision, redimensionner, attacher, retirer, detacher, perdu: () => perdu };
+  })
     .catch(e => { detacher(); throw e; });
 }
 

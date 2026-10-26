@@ -222,4 +222,8 @@
 /* SPEC 96 V2 — prototype 3D : le canvas WebGL remplace le canvas 2D une fois prêt. */
 #view-runner .runner-scene .runner-canvas-3d{position:absolute;inset:0;width:100%;height:100%;display:block}
 #view-runner .runner-scene[data-rendu="3d"] #runner-canvas,#view-runner .runner-scene[data-rendu="chargement"] #runner-canvas{visibility:hidden}
+/* Chargement de la 3D : petit anneau discret au centre, jamais d'image 2D. */
+#view-runner .runner-scene[data-rendu="chargement"]::after{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;
+  border:3px solid rgba(217,201,255,.18);border-top-color:#d9c9ff;animation:runner-chargement .8s linear infinite;opacity:0;animation-delay:.25s;animation-fill-mode:forwards}
+@keyframes runner-chargement{from{transform:rotate(0);opacity:1}to{transform:rotate(360deg);opacity:1}}
 #view-runner .runner-badge-3d{align-self:flex-start;margin:-8px 0 16px;padding:4px 10px;border-radius:999px;border:1px solid var(--jeu-violet-bord);color:#d9c9ff;font:800 10px var(--font);letter-spacing:.12em}

@@ -104,3 +104,8 @@ Mode Endurance (le moteur le permet : `runnerAvancer` sans limite), classement e
 - La tuile « Jeux » n'a plus de fond radial (bords visibles sur Samsung) ; l'icône et le texte restent violets, avec seulement un très léger éclat local de l'icône.
 - Cache-busting : `runner.js?v=10`, `runner.css?v=6`, `jeux-univers.css?v=6`.
 - Tests : rendu 3D par défaut sans toggle, menu sonore conservé, CSS de l'accueil isolé. Recette GPU réelle sur Samsung encore requise.
+
+## V2.5 — Chargement sans écran noir, arches identiques (26/10/2026)
+- **Instance 3D unique par session** (`runnerObtenir3D`) : créée dès l'ouverture de l'écran Lux Runner, shaders compilés d'avance (`renderer.compile`), puis réutilisée à chaque partie (`attacher` / `retirer` / `reinitialiser`). « Rejouer » affiche la 3D immédiatement. Contexte WebGL perdu (appli en arrière-plan) : instance recréée à la partie suivante.
+- **Jamais de 2D en attendant la 3D** : scène `data-rendu="chargement"` (fond sombre + petit anneau de chargement), temps de jeu figé (`attente`). Le rendu 2D n'est utilisé qu'en cas d'échec WebGL ou après 10 s, et alors pour toute la partie (pas de bascule 2D → 3D en cours de jeu).
+- **Arches :** les trois portails ont la même forme, un carré aux coins bien arrondis (rayon 0,24) ; seule la couleur distingue les genres.
