@@ -1,0 +1,46 @@
+name: LuxApp 2.1 — Défis évolutifs
+
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - 'public/chemin.js'
+      - 'public/defis.js'
+      - 'public/progress.js'
+      - 'public/parcours.js'
+      - 'public/index.html'
+      - 'public/chemin-v21.css'
+      - 'test/defis-v21.test.cjs'
+      - 'tests/test_defis_chemin.py'
+      - '.github/workflows/defis-v21.yml'
+  workflow_dispatch:
+
+jobs:
+  defis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dépendances et serveur de recette
+        run: |
+          npm install --no-audit --no-fund
+          pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+          LUX_TESTS=1 PORT=3456 node server.js > /tmp/lux-defis-server.log 2>&1 &
+          for n in $(seq 1 35); do curl -sf localhost:3456/config.js | grep -q 'APP_CONFIG.TESTS = true' && break; sleep 1; done
+      - name: Vérifications Node
+        run: |
+          node --check public/defis.js
+          node --check public/chemin.js
+          node --check public/progress.js
+          node --test test/defis-v21.test.cjs
+      - name: Recette mobile réelle dans Chromium
+        run: python tests/test_defis_chemin.py
+      - name: Journal serveur si échec
+        if: failure()
+        run: cat /tmp/lux-defis-server.log | tail -60

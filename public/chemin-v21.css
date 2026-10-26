@@ -328,3 +328,11 @@
 @media (prefers-reduced-motion: reduce) {
   #view-lessons .chemin .pas .unites li.pulse .etat { animation: none !important; }
 }
+
+/* SPEC 107 — Indicateur simple, non cliquable, avant l'unique CTA. */
+#view-lessons .chemin .pas.ouverte .chemin-defis-info {
+  display:flex;align-items:center;gap:8px;margin:8px 2px 13px;padding:0;
+  color:var(--couleur-action);font-size:var(--fs-sec);line-height:1.45;
+}
+#view-lessons .chemin .pas.ouverte .chemin-defis-info>span {flex:none;font-size:20px;line-height:1}
+#view-lessons .chemin .pas.ouverte .chemin-defis-info.termine {color:var(--couleur-reussi)}

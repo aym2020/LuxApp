@@ -128,7 +128,7 @@ with sync_playwright() as p:
     assert page.locator('.pas.fait.replie').count() == 8
     assert '8 terminées' in page.inner_text('.resume').lower()
     encours = page.inner_text('.pas.encours')
-    assert 'leçon 8' in encours.lower() and 'mission' in encours.lower() and 'bilan' in encours.lower(), encours
+    assert 'leçon 8' in encours.lower() and 'mission' in encours.lower() and 'bilan' not in encours.lower(), encours
     assert page.locator('.pas.futur').count() == 9
     page.screenshot(path=OUT + 'lot2-03-chemin.png', full_page=True)
     page.click('#chemin-u-8-2 button')
@@ -145,9 +145,12 @@ with sync_playwright() as p:
     assert actif(page, 'view-lecon') or actif(page, 'view-plecon') or actif(page, 'view-msintro')  # leçon future : intro de mission à la 1re découverte
     page.evaluate('goLessons()')
     page.click('.pas.encours .carte-lecon')  # on redéplie la leçon conseillée
-    page.click('.pas.encours .unites li.bilan button')
+    # Le Bilan est conservé uniquement dans « Voir toute la leçon ».
+    page.click('.pas.encours .lien-or')
+    assert actif(page, 'view-plecon') and page.locator('#pl-units .pl-bilan').count() == 1
+    page.click('#pl-units .pl-bilan')
     assert actif(page, 'view-session') and page.evaluate('session.questions.length') > 0
-    ok('chemin : leçons 0 à 7 vertes à leur place, leçon 8 dépliée (unités, mission, bilan) ; tout s\'ouvre')
+    ok('chemin : unités, mission ; bilan conservé dans le détail')
 
     # ── S12 : animation de l'étape tout juste finie, une seule fois ──
     page.evaluate("saveUnitBest(8, 1, 90); dernierFini = { leconId: 8, uniteId: 1 }; goLessons()")

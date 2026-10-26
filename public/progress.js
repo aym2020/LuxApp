@@ -781,7 +781,7 @@ function dateRevisionItem(item, stats, erreurActive) {
 }
 
 // Tous les items révisables d'une leçon, mot caché compris (type "motcache").
-function itemsRevision(l) {
+function itemsRevision(l, statsStore) {
   const items = [];
   if (Array.isArray(l.unites)) {
     (l.flashcards || []).forEach(q => items.push({ leconId: l.id, type: 'motcache', qid: q.id, q }));
@@ -789,6 +789,8 @@ function itemsRevision(l) {
   (l.quiz || []).forEach(q => items.push({ leconId: l.id, type: 'quiz', qid: q.id, q }));
   (l.trous || []).forEach(q => items.push({ leconId: l.id, type: 'trous', qid: q.id, q }));
   (l.ecriture || []).forEach((q, i) => items.push({ leconId: l.id, type: 'ecriture', qid: ecritureId(q, i), q }));
+  // Un défi rejoint les révisions uniquement après une réponse enregistrée.
+  if (typeof itemsDefisDecouverts === 'function') items.push(...itemsDefisDecouverts(l, statsStore));
   return items;
 }
 
@@ -805,7 +807,7 @@ function resumeRevision(listeLecons) {
 
   listeLecons.forEach(l => {
     const r = { vus: 0, dus: 0, dusParUnite: {} };
-    itemsRevision(l).forEach(item => {
+    itemsRevision(l, store).forEach(item => {
       const byLecon = store[item.leconId];
       const s = byLecon && byLecon[item.type] && byLecon[item.type][item.qid];
       if (!s || !s.attempts || !s.lastSeenAt) return; // jamais vue

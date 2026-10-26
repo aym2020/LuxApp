@@ -1,6 +1,6 @@
 """Spec 29 : lignes compactes de « Mon chemin ». Le titre d'une unité n'est
 jamais coupé ni recouvert, « Révision en cours » passe dessous, la mission
-et le bilan ont la même structure (statut discret à droite), rien
+ont une structure compacte (statut discret à droite), rien
 ne déborde de 320 à 430 px (et texte agrandi), noms accessibles complets."""
 import os
 from playwright.sync_api import sync_playwright
@@ -63,10 +63,9 @@ with sync_playwright() as p:
         assert all(l['sous'] is None for l in lignes[1:]), 'pas de ligne de statut vide'
         mission = next(l for l in lignes if 'mission' in l['id'])
         assert mission['lignes'] <= 2 + (texte > 100), mission  # plus de colonne d'un mot par ligne
-        bilan = lignes[-1]
-        # Spec 53 : « Bilan · 10 questions » sur une ligne, sans badge ; « optionnel » reste dans le nom accessible
-        assert bilan['lignes'] <= 1 + (texte > 100) and bilan['tag'] is None and bilan['mots'].replace('\xa0', ' ') == 'Bilan · 10 questions', bilan
-        assert 'optionnel' in bilan['aria'], bilan
+        # SPEC 107 : Bilan dans l'écran de leçon détaillé uniquement.
+        assert pg.locator('#chemin-lecon-1 .unites li.bilan').count() == 0
+        assert lignes[-1]['id'].endswith('mission'), lignes[-1]
         # Spec 48 : pas de compteur « n/20 » ; un résultat seulement après une partie jouée
         assert '/' not in pg.inner_text('#chemin-u-1-mission'), pg.inner_text('#chemin-u-1-mission')
         if mission['tag'] and largeur >= 393 and texte == 100:

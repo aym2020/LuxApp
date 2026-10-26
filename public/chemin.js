@@ -202,6 +202,14 @@ function leconDeplieeHtml(l, dus, anim, conseillee, pulse) {
       (pct ? ' Maîtrise : ' + pct + ' %.' : '') + '</p>';
   }
 
+  // Un statut de défi, pas une carte ni un CTA secondaire.
+  if (fini && action.libelle === 'Découvrir les défis') {
+    const nb = defisIneditsRestants(l).length;
+    html += '<p class="chemin-defis-info" aria-label="' + nb + ' nouveaux défis disponibles">' +
+      '<span aria-hidden="true">✦</span><strong>' + nb + ' nouveau' + (nb > 1 ? 'x' : '') + ' défi' + (nb > 1 ? 's' : '') + '</strong></p>';
+  } else if (fini && action.libelle === 'Réviser mes acquis' && poolDefisLecon(l).length) {
+    html += '<p class="chemin-defis-info termine"><span aria-hidden="true">✓</span> Tous les défis découverts</p>';
+  }
   html += '<button class="btn-jaune" onclick="lancerActionLecon(' + l.id + ')"><span>' + escHtml(action.libelle) + '</span>' + ICONES.fleche + '</button>' +
     boutonAmeliorationChemin(l) +
     '<button class="lien-or" onclick="ouvrirTouteLaLeconDepuisChemin(' + l.id + ')">Voir toute la leçon' + ICONES.fleche + '</button>' +
@@ -249,7 +257,9 @@ function actionLeconChemin(l) {
   }
   // Une leçon acquise se révise dans le moteur dédié (sélection limitée à cette leçon),
   // pas dans le même écran que « Voir toute la leçon ».
-  return { etape: null, libelle: 'Revoir', fn: () => openReviewSetup(l.id) };
+  return { etape: null,
+    libelle: defisIneditsRestants(l).length ? 'Découvrir les défis' : 'Réviser mes acquis',
+    fn: () => lancerDefisLecon(l.id) };
 }
 
 function lancerActionLecon(leconId) {
@@ -429,7 +439,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Unités du fil, mission, bilan : chacune ouvrable d'un appui (chevron à droite).
+// Unités du fil et mission : accessibles depuis le Chemin. Bilan dans la leçon.
 // etapeActuelle : l'étape mise en avant (anneau doré).
 function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
   let html = '';
@@ -486,11 +496,7 @@ function etapesLeconHtml(l, etapeActuelle, anim, pulse) {
       ICONES.droite + '</button></li>';
   }
 
-  // Bilan : une ligne, le caractère optionnel dans le texte (pas de badge).
-  html += '<li class="bilan"><button aria-label="Bilan, 10 questions, optionnel" title="Bilan facultatif · 10 questions" onclick="lancerBilanDepuisChemin(' + l.id + ')">' +
-    '<span class="etat">' + ICONES.cible + '</span>' +
-    '<span class="texte"><span class="nom">Bilan&nbsp;· 10&nbsp;questions</span></span>' +
-    ICONES.droite + '</button></li>';
+  // Bilan conservé dans « Voir toute la leçon », absent du Chemin.
   return html;
 }
 

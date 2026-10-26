@@ -81,10 +81,10 @@ test('Synthèses compactes : lancement du contenu complet et bilan, sans boutons
   };
   new Function('ctx','with(ctx){'+extrait+';renderParcoursLecon()}')(env);
   const s=nodes['pl-units'].innerHTML;
-  assert.match(s,/class="pl-resume pl-toute"/);
+  assert.match(s,/class="pc-btn pl-resume pl-toute"/);
   assert.match(s,/onclick="startUnite\('all', 'lecon'\)"/);
   assert.match(s,/157 questions · environ 31 min/);
-  assert.match(s,/class="pl-resume pl-bilan" onclick="lancerBilan\(\)"/);
+  assert.match(s,/class="pc-btn pl-resume pl-bilan" onclick="lancerBilan\(\)"/);
   assert.match(s,/10 questions mélangées/);
   assert.doesNotMatch(s,/Tout revoir|onclick="toutRevoir|chipsEtapes|startEtapeSeule/);
 });

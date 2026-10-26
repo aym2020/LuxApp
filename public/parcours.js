@@ -645,7 +645,7 @@ function lancerBilan() {
     return;
   }
   const pool = itemsRevision(pLecon).filter(i =>
-    i.type !== 'motcache' && !i.q.plus && !trouverUnite(pLecon, i.q.unite).bonus);
+    !i.q.defiInedit && i.type !== 'motcache' && !i.q.plus && !trouverUnite(pLecon, i.q.unite).bonus);
   demarrerSession('review', 'BILAN · LEÇON ' + numLecon(pLecon), melanger(pool).slice(0, 10), { actions: retourLecon() });
 }
 

@@ -7,6 +7,10 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## SPEC 107 — Défis évolutifs du Chemin (26 octobre 2026)
+
+[Spécification et recette](docs/DEFIS-EVOLUTIFS-2.1.md). Leçon terminée : questions inversées contrôlées (12 max/leçon), compteur discret, CTA « Découvrir les défis » puis « Réviser mes acquis » direct. Bilan seulement dans le détail. Les acquis et le cloud restent intacts. Tests dédiés Node et navigateur ; Android à valider.
+
 ## 0. Contexte projet (rappel rapide)
 
 - **Repo** : `aym2020/LuxApp` (GitHub), déployé sur **Render**.

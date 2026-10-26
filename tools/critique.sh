@@ -33,13 +33,13 @@ for t in "tools/valider-lecons.js" "tests/test_cloud.js" "tests/test_sync.js" "t
   if node "$t" >"$LOGS/node.log" 2>&1; then echo "OK      $t"; else echo "ECHEC   $t"; tail -8 "$LOGS/node.log"; echec=1; fi
 done
 # SPEC 95 : les tests Node des exercices (aussi lancés par la CI GitHub accueil-2.1).
-for t in "test/exercices-v21.test.cjs" "test/exercices-etats-v21.test.cjs"; do
+for t in "test/defis-v21.test.cjs" "test/exercices-v21.test.cjs" "test/exercices-etats-v21.test.cjs"; do
   if node --test "$t" >"$LOGS/node.log" 2>&1; then echo "OK      $t"; else echo "ECHEC   $t"; grep -A4 "^not ok" "$LOGS/node.log" | head -12; echec=1; fi
 done
 
 if [ "$1" != "rapide" ]; then
   # 2. Tests navigateur, du plus long au plus court
-  TESTS="test_lecon_resumes test_retours test_retour_intro test_parcours test_rappels test_prerequis test_recette_visuelle test_acces_recette test_actualisation test_acquis_v1 test_chemin_cartes test_missions_10 test_mission_vies test_navigation
+  TESTS="test_defis_chemin test_lecon_resumes test_retours test_retour_intro test_parcours test_rappels test_prerequis test_recette_visuelle test_acces_recette test_actualisation test_acquis_v1 test_chemin_cartes test_missions_10 test_mission_vies test_navigation
          test_lot2 test_lot3 test_motcache test_decouverte test_chemin_lignes test_seance
          test_mission_validation test_lot1 test_libre test_examens test_contexte_audio test_retour_android test_spec87_session_mobile test_spec94_verdict test_spec94_feedback test_spec95_exercices"
   lancer() {
