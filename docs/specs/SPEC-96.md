@@ -21,25 +21,25 @@ Mini-jeu de la rubrique **Jeux** (SPEC 88) pour mémoriser le **genre des noms**
 
 Le **violet** devient la couche ludique ; l'**or** reste la valeur LuxApp. Fichier dédié `public/jeux-univers.css` (accueil, page Jeux, carte) et `public/runner.css` (écrans du runner).
 
-- **Violet :** icône et libellé « Jeux » de l'accueil avec halo léger (seule la tuile change : CTA Continuer, progression et autres raccourcis restent or), ambiance radiale aubergine de la page Jeux et halo du titre, carte Lux Runner (bordure, glow, dégradé noir → violet), kickers et micro-libellés, barre de temps lumineuse, bouton pause en verre sombre, contours secondaires (S'entraîner, puces Musique/Effets, pause), badge combo, séparateurs des records et des résultats.
+- **Violet :** icône et libellé « Jeux » en violet, sans halo radial de fond, avec un éclat très discret de l'icône (seule la tuile change : CTA Continuer, progression et autres raccourcis restent or), ambiance radiale aubergine de la page Jeux et halo du titre, carte Lux Runner (bordure, glow, dégradé noir → violet), kickers et micro-libellés, barre de temps lumineuse, bouton pause en verre sombre, contours secondaires (S'entraîner, puces Musique/Effets, pause), badge combo, séparateurs des records et des résultats.
 - **Or :** Jouer, Rejouer, Reprendre, score, record (pastille « Nouveau record »), point final des titres.
 - **Survie** garde son identité or/brun, inchangée.
 - **Course :** zone du mot cadrée (lueur diffuse, filet violet, traduction plus claire) ; commandes M/F/N en vraies commandes de jeu (fond teinté par genre, lettre plus grande, état choisi teinté + glow + « TA VOIE ») ; correction en pastille de verre sombre bordée selon le statut ; flash bref vert/rouge de la scène.
 - **Canvas :** ciel teinté violet avec brume et étoiles, route plus contrastée, pointillés plus lisibles, bords plus lumineux, perspective plus marquée, lampadaires à halo pré-dessiné ; arches « énergétiques » (sommet arrondi, halo, cœur clair, intérieur translucide, sol teinté, reflet sur la route, lettre dans une pastille au sommet, nom dès que la place le permet) ; aura du coureur au passage (couleur du genre, rouge sur un choc) et écharpe or qui flotte.
 - **Résultats :** stats apparaissant en cascade, score et record en or, mots à retravailler en cartes avec barre et pastille de la couleur du genre, article et choix fait.
 
-## Prototype 3D (V2 — bêta, opt-in)
+## Rendu 3D (V2.2 — par défaut, secours 2D)
 
-**Statut : prototype, désactivé par défaut.** Activation par le bouton **« Rendu 3D bêta : oui / non »** de l'écran de préparation (indispensable dans l'app installée, sans barre d'adresse), ou avec `?runner3d=1` / `?runner3d=0` dans l'adresse. Choix mémorisé sur l'appareil (`localStorage.luxRunner3D`). Si la 3D échoue, le message « 3D indisponible sur cet appareil : rendu 2D » s'affiche brièvement dans la scène.
+**Statut : 3D activée par défaut, sans bouton de sélection.** Le moteur 3D se précharge durant la préparation. Si WebGL ou le chargement échoue, le Canvas 2D assure automatiquement la continuité. L'ancienne préférence `luxRunner3D` est ignorée, sans modification des sauvegardes.
 
-- **Même jeu, autre rendu :** `public/runner-3d.js` (module ES, Three.js r170 vendorisé dans `public/vendor/three/`, aucun CDN) lit l'état de la partie et le met en scène ; aucune règle, aucun score, aucun son n'y sont modifiés. Il n'est téléchargé (import dynamique) que si le prototype est activé ; les modèles sont préchargés pendant l'écran de préparation et gardés en mémoire entre deux parties.
+- **Même jeu, autre rendu :** `public/runner-3d.js` (module ES, Three.js r170 vendorisé dans `public/vendor/three/`, aucun CDN) lit l'état de la partie et le met en scène ; aucune règle, aucun score, aucun son n'y sont modifiés. Il est importé dynamiquement à l'ouverture de Lux Runner (jamais au chargement général de LuxApp) ; les modèles sont préchargés pendant la préparation et gardés en mémoire entre deux parties.
 - **Secours :** tant que la 3D charge, ou si WebGL / le chargement échoue, le rendu 2D V1.2 continue. Le canvas WebGL et ses ressources sont libérés à chaque fin de partie (seules les géométries des modèles partagés sont conservées).
 - **Scène :** caméra fixe derrière le coureur ; la route défile à la même vitesse que l'approche des portails (`RUNNER_PROFONDEUR` → 18 unités). Trio en cours + deux suivants + trio franchi, arche d'arrivée. Arches néon (tube, halo additif, voile, flaque au sol, pastille lettre + nom), bande lumineuse de la voie occupée, ville de nuit (brouillard violet, ciel dégradé, étoiles), lampadaires avec halo, particules, onde et aura au passage.
 - **Correctifs V2.1 (retours Samsung) :** taille du coureur correcte après « Rejouer » (modèle réutilisé : échelle remise à 1 avant mesure) ; bras des lampadaires tournés vers la route ; trois voies colorées en permanence (bleu / rose / violet), voie occupée nettement plus lumineuse ; peau du coureur en teinte naturelle (le pack Quaternius a une peau noire stylisée, recolorée dans `tools/runner3d/exporter_coureur.py`) ; effets sonores plus forts face à la musique ; **vibration** sur Android (courte sur un bon portail, double sur une erreur), coupée avec le réglage « Effets ».
 - **Coureur animé :** course (vitesse d'animation liée à la vitesse du jeu), inclinaison au changement de voie, coup reçu sur une erreur, victoire ou chute en fin de Sprint.
 - **Assets (CC0) :** `public/runner3d/coureur.glb` (Quaternius, 405 Ko, 7 animations) et `ville.glb` (Kenney City Kit Roads + Commercial, 650 Ko) ; crédits dans `public/runner3d/CREDITS.md`. Scripts de régénération Blender (`bpy`) : `tools/runner3d/exporter_coureur.py` et `exporter_ville.py`. Les FBX du pack Quaternius ne contiennent pas la course : l'export part des `.blend`.
 - **Poids total au premier lancement 3D :** ≈ 1,9 Mo (Three.js 690 Ko + chargeurs 140 Ko + modèles 1,05 Mo), puis cache navigateur.
-- **Non vérifié :** fluidité sur Samsung (le navigateur de test sans GPU tourne à ~2,5 images/s, non représentatif), lisibilité des portails au loin en jeu réel, chauffe/batterie. Bascule par défaut seulement après recette Samsung.
+- **Non vérifié :** fluidité sur Samsung (le navigateur de test sans GPU tourne à ~2,5 images/s, non représentatif), lisibilité des portails au loin en jeu réel, chauffe/batterie. Rendu 3D par défaut : recette Samsung indispensable pour confirmer la fluidité, la chauffe et la batterie.
 
 ## Banque de mots — `public/runner-mots.js`
 
@@ -94,3 +94,10 @@ Mode Endurance (le moteur le permet : `runnerAvancer` sans limite), classement e
 
 ## Livraison visuelle V1.3 — cache navigateur
 `public/index.html` référence désormais `jeux-univers.css?v=2` et `runner.js?v=4` pour invalider les ressources mises en cache avant l’arrivée des nouveaux décors et tuiles. Les illustrations restent des ressources locales sous `public/art/` ; les modes de jeu, les comptes et les sauvegardes ne sont pas modifiés.
+
+## V2.2 — Simplification de l'interface et accueil (26 octobre 2026)
+
+- Suppression du sélecteur « Rendu 3D bêta : oui/non » dans la préparation. La 3D est le rendu normal ; le Canvas 2D reste le repli technique en cas d'échec WebGL. Les préférences sonores, le tutoriel, le score et les sauvegardes ne changent pas.
+- La tuile « Jeux » n'a plus de fond radial (bords visibles sur Samsung) ; l'icône et le texte restent violets, avec seulement un très léger éclat local de l'icône.
+- Cache-busting : `runner.js?v=10`, `runner.css?v=6`, `jeux-univers.css?v=6`.
+- Tests : rendu 3D par défaut sans toggle, menu sonore conservé, CSS de l'accueil isolé. Recette GPU réelle sur Samsung encore requise.

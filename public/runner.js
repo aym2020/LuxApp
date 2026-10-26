@@ -357,7 +357,7 @@ function runnerCarteHub() {
 
 function ouvrirRunner() {
   runnerArreter();
-  // Prototype 3D : modèles téléchargés pendant l'écran de préparation.
+  // Précharger le rendu 3D pendant la préparation (repli 2D automatique).
   if (runnerRendu3DActif()) runnerCharger3D().then(R3D => R3D.precharger()).catch(() => {});
   const mots = runnerMotsDuNiveau(runnerNiveau());
   if (!runnerDisponible(mots)) { if (typeof renderJeuxHub === 'function') renderJeuxHub(); return; }
@@ -400,7 +400,7 @@ function runnerRendrePreparation(apresTuto) {
       '<div class="runner-prepa-records"><div><span>Record</span><strong>' + r.score + '</strong></div>' +
         '<div><span>Meilleure série</span><strong>' + r.combo + '</strong></div>' +
         '<div><span>Parties</span><strong>' + r.parties + '</strong></div></div>' +
-      runnerBoutonsSon() + runnerBouton3D() +
+      runnerBoutonsSon() +
     '</main>' +
     '<div class="runner-actions">' +
       '<button type="button" class="jeux-jouer" onclick="demarrerRunner(\'sprint\')">Jouer ' + runnerIcone('fleche') + '</button>' +
@@ -416,20 +416,6 @@ function runnerBoutonsSon() {
   return '<div class="runner-sons" role="group" aria-label="Son du jeu">' +
     '<button type="button" class="runner-son" data-son="musique" onclick="runnerBasculerSon(\'musique\')"></button>' +
     '<button type="button" class="runner-son" data-son="effets" onclick="runnerBasculerSon(\'effets\')"></button></div>';
-}
-// Prototype 3D : interrupteur visible sur l'écran de préparation.
-function runnerBouton3D() {
-  const actif = runnerRendu3DActif();
-  return '<button type="button" class="runner-son runner-bouton-3d" aria-pressed="' + actif + '" onclick="runnerBasculer3D()" ' +
-    'aria-label="Rendu 3D bêta ' + (actif ? 'activé' : 'désactivé') + '"><i aria-hidden="true"></i>Rendu 3D bêta : <b>' + (actif ? 'oui' : 'non') + '</b></button>';
-}
-function runnerBasculer3D() {
-  try {
-    if (localStorage.getItem('luxRunner3D') === '1') localStorage.removeItem('luxRunner3D');
-    else localStorage.setItem('luxRunner3D', '1');
-  } catch (_) { /* stockage indisponible : la 2D reste active */ }
-  if (runnerRendu3DActif()) runnerCharger3D().then(R3D => R3D.precharger()).catch(() => {});
-  runnerRendrePreparation(false);
 }
 function runnerMajBoutonsSon() {
   if (typeof RunnerAudio === 'undefined') return;
@@ -866,18 +852,12 @@ function runnerAttacherScene() {
   if (runnerRendu3DActif()) runnerBrancher3D(p, scene);
 }
 
-// ─── Prototype 3D (SPEC 96 V2) ───────────────────────────────────────────────
-// Activé seulement avec ?runner3d=1 (mémorisé sur l'appareil ; ?runner3d=0 le
-// retire). Three.js et les modèles ne sont téléchargés que dans ce cas.
-// Pendant le chargement, ou si WebGL échoue, le rendu 2D continue.
+// ─── 3D par défaut (SPEC 96 V2.2) ───────────────────────────────────────────
+// Aucun sélecteur de rendu : la 3D se charge pendant la préparation.
+// Le moteur 2D continue pendant le chargement et en cas d'échec WebGL.
 let runnerModule3D = null;
 function runnerRendu3DActif() {
-  try {
-    const param = typeof location !== 'undefined' ? new URLSearchParams(location.search).get('runner3d') : null;
-    if (param === '1') localStorage.setItem('luxRunner3D', '1');
-    if (param === '0') localStorage.removeItem('luxRunner3D');
-    return localStorage.getItem('luxRunner3D') === '1';
-  } catch (_) { return false; }
+  return true;
 }
 function runnerCharger3D() {
   if (!runnerModule3D) {

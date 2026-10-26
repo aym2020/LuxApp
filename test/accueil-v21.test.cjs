@@ -149,3 +149,15 @@ test('Plus compact : conserve progression et raccourcis dans un groupe unique', 
   assert.match(cssPlus, /#view-plus \.plus-options \.plus-ligne \+ \.plus-ligne/);
   assert.match(cssPlus, /#view-plus \.plus-acquis div\s*\{[^}]*background:\s*transparent/s);
 });
+
+test('Tuile Jeux : halo radial supprime, identite violette conservee', () => {
+  const css = fs.readFileSync(path.join(__dirname, '..', 'public', 'jeux-univers.css'), 'utf8');
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  assert.ok(css.includes('#view-dashboard .ac-acces .ac-btn.jeux{'));
+  assert.ok(css.includes('  background:none;'));
+  assert.ok(!css.includes('radial-gradient(circle at 50% 34%'));
+  assert.ok(css.includes('drop-shadow(0 0 2px rgba(177,140,240,.16))'));
+  assert.ok(css.includes('.ac-btn.jeux > b{color:var(--violet'));
+  assert.ok(html.includes('jeux-univers.css?v=6'));
+  assert.match(contexte().accesHtml({etat:'rien'}), /ouvrirJeux/);
+});

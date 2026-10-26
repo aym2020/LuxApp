@@ -4,14 +4,14 @@
    progression, bouton Jouer, records, point final des titres).
    Chargée après accueil-v21.css et jeux-v21.css. Survie garde son identité or. */
 
-/* ── Accueil : tuile Jeux uniquement ─────────────────────────────── */
+/* ── Accueil : violet sans halo radial visible ──────────────────── */
 #view-dashboard .ac-acces .ac-btn.jeux{
   --c:var(--violet,#b18cf0);
-  background:radial-gradient(circle at 50% 34%,rgba(177,140,240,.18),transparent 62%);
+  background:none;
 }
 #view-dashboard .ac-acces .ac-btn.jeux > .ic:first-child{
   color:var(--violet,#b18cf0);
-  filter:drop-shadow(0 0 6px rgba(177,140,240,.6));
+  filter:drop-shadow(0 0 2px rgba(177,140,240,.16));
 }
 #view-dashboard .ac-acces .ac-btn.jeux > b{color:var(--violet,#b18cf0)}
 

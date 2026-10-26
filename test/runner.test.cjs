@@ -293,3 +293,18 @@ test('Prototype 3D : chargé à la demande, assets locaux et légers, secours 2D
   // Aucune règle du jeu dans le rendu 3D.
   assert.doesNotMatch(r3d, /runnerResoudre|runnerAvancer|p\.vies\s*[-+]=|p\.score\s*[-+]=/);
 });
+
+test('SPEC 96 V2.2 : rendu 3D par défaut sans selecteur, secours 2D conserve', () => {
+  const { ctx } = make();
+  const js = read('public/runner.js');
+  const page = read('public/index.html');
+  assert.equal(vm.runInContext('runnerRendu3DActif()', ctx), true);
+  assert.ok(!js.includes('runnerBouton3D'));
+  assert.ok(!js.includes('runnerBasculer3D'));
+  assert.ok(!js.includes("localStorage.getItem('luxRunner3D')"));
+  assert.ok(js.includes('runnerBoutonsSon() +'));
+  assert.ok(js.includes('runnerBrancher3D(p, scene)'));
+  assert.ok(js.includes('rendu 2D conservé'));
+  assert.ok(!read('public/runner.css').includes('.runner-bouton-3d'));
+  assert.ok(page.includes('runner.js?v=10'));
+});
