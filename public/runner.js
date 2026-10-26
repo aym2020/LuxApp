@@ -395,12 +395,12 @@ function runnerRendrePreparation(apresTuto) {
       '<span class="jeux-kicker">' + (apresTuto ? 'TU ES PRÊT' : 'LES TROIS PORTAILS') + '</span>' +
       '<h1>Lux Runner<span>.</span></h1>' +
       '<p class="runner-prepa-format">60 secondes · 3 vies</p>' +
-      (runnerRendu3DActif() ? '<span class="runner-badge-3d">RENDU 3D · BÊTA</span>' : '') +
+
       runnerApercuPortails() +
       '<div class="runner-prepa-records"><div><span>Record</span><strong>' + r.score + '</strong></div>' +
         '<div><span>Meilleure série</span><strong>' + r.combo + '</strong></div>' +
         '<div><span>Parties</span><strong>' + r.parties + '</strong></div></div>' +
-      runnerBoutonsSon() +
+      runnerBoutonsSon() + runnerBouton3D() +
     '</main>' +
     '<div class="runner-actions">' +
       '<button type="button" class="jeux-jouer" onclick="demarrerRunner(\'sprint\')">Jouer ' + runnerIcone('fleche') + '</button>' +
@@ -417,9 +417,23 @@ function runnerBoutonsSon() {
     '<button type="button" class="runner-son" data-son="musique" onclick="runnerBasculerSon(\'musique\')"></button>' +
     '<button type="button" class="runner-son" data-son="effets" onclick="runnerBasculerSon(\'effets\')"></button></div>';
 }
+// Prototype 3D : interrupteur visible sur l'écran de préparation.
+function runnerBouton3D() {
+  const actif = runnerRendu3DActif();
+  return '<button type="button" class="runner-son runner-bouton-3d" aria-pressed="' + actif + '" onclick="runnerBasculer3D()" ' +
+    'aria-label="Rendu 3D bêta ' + (actif ? 'activé' : 'désactivé') + '"><i aria-hidden="true"></i>Rendu 3D bêta : <b>' + (actif ? 'oui' : 'non') + '</b></button>';
+}
+function runnerBasculer3D() {
+  try {
+    if (localStorage.getItem('luxRunner3D') === '1') localStorage.removeItem('luxRunner3D');
+    else localStorage.setItem('luxRunner3D', '1');
+  } catch (_) { /* stockage indisponible : la 2D reste active */ }
+  if (runnerRendu3DActif()) runnerCharger3D().then(R3D => R3D.precharger()).catch(() => {});
+  runnerRendrePreparation(false);
+}
 function runnerMajBoutonsSon() {
   if (typeof RunnerAudio === 'undefined') return;
-  document.querySelectorAll('#runner-jeu .runner-son').forEach(b => {
+  document.querySelectorAll('#runner-jeu .runner-son[data-son]').forEach(b => {
     const musique = b.getAttribute('data-son') === 'musique';
     const actif = musique ? RunnerAudio.musiqueActive() : RunnerAudio.effetsActifs();
     b.setAttribute('aria-pressed', String(actif));
@@ -882,7 +896,14 @@ function runnerBrancher3D(p, scene) {
       p.affichage.rendu3d = instance;
       scene.setAttribute('data-rendu', '3d');
     })
-    .catch(e => { if (typeof console !== 'undefined') console.warn('Lux Runner 3D indisponible, rendu 2D conservé :', e); });
+    .catch(e => {
+      if (typeof console !== 'undefined') console.warn('Lux Runner 3D indisponible, rendu 2D conservé :', e);
+      const aide = document.getElementById('runner-aide');
+      if (aide && runnerPartie === p) {
+        aide.textContent = '3D indisponible sur cet appareil : rendu 2D';
+        setTimeout(() => { if (aide.textContent.indexOf('3D') === 0) aide.textContent = ''; }, 3500);
+      }
+    });
 }
 
 // ─── 6. CONTRÔLES ───────────────────────────────────────────────────────────

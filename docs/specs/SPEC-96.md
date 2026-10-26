@@ -30,7 +30,7 @@ Le **violet** devient la couche ludique ; l'**or** reste la valeur LuxApp. Fichi
 
 ## Prototype 3D (V2 — bêta, opt-in)
 
-**Statut : prototype, désactivé par défaut.** Activation sur un appareil avec `?runner3d=1` dans l'adresse (mémorisé : `localStorage.luxRunner3D`), désactivation avec `?runner3d=0`. Badge « RENDU 3D · BÊTA » sur l'écran de préparation.
+**Statut : prototype, désactivé par défaut.** Activation par le bouton **« Rendu 3D bêta : oui / non »** de l'écran de préparation (indispensable dans l'app installée, sans barre d'adresse), ou avec `?runner3d=1` / `?runner3d=0` dans l'adresse. Choix mémorisé sur l'appareil (`localStorage.luxRunner3D`). Si la 3D échoue, le message « 3D indisponible sur cet appareil : rendu 2D » s'affiche brièvement dans la scène.
 
 - **Même jeu, autre rendu :** `public/runner-3d.js` (module ES, Three.js r170 vendorisé dans `public/vendor/three/`, aucun CDN) lit l'état de la partie et le met en scène ; aucune règle, aucun score, aucun son n'y sont modifiés. Il n'est téléchargé (import dynamique) que si le prototype est activé ; les modèles sont préchargés pendant l'écran de préparation et gardés en mémoire entre deux parties.
 - **Secours :** tant que la 3D charge, ou si WebGL / le chargement échoue, le rendu 2D V1.2 continue. Le canvas WebGL et ses ressources sont libérés à chaque fin de partie (seules les géométries des modèles partagés sont conservées).

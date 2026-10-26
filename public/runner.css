@@ -222,3 +222,4 @@
 #view-runner .runner-scene .runner-canvas-3d{position:absolute;inset:0;width:100%;height:100%;display:block}
 #view-runner .runner-scene[data-rendu="3d"] #runner-canvas{visibility:hidden}
 #view-runner .runner-badge-3d{align-self:flex-start;margin:-8px 0 16px;padding:4px 10px;border-radius:999px;border:1px solid var(--jeu-violet-bord);color:#d9c9ff;font:800 10px var(--font);letter-spacing:.12em}
+#view-runner .runner-bouton-3d{width:100%;margin-top:8px}
