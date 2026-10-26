@@ -31,7 +31,7 @@ test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=
 
 test('Assets SPEC 99 versionnés : l’ancien décor sort du cache',()=>{
   const html=read('public/index.html');
-  assert.match(html,/jeux-univers\.css\?v=5/);
+  assert.match(html,/jeux-univers\.css\?v=([5-9]|\d{2,})\b/); // v5 ou plus récent
   assert.match(html,/runner\.js\?v=([4-9]|\d{2,})\b/); // v4 ou plus récent
   assert.doesNotMatch(html,/jeux-univers\.css\?v=4/);
 });

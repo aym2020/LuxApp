@@ -306,5 +306,5 @@ test('SPEC 96 V2.2 : rendu 3D par défaut sans selecteur, secours 2D conserve', 
   assert.ok(js.includes('runnerBrancher3D(p, scene)'));
   assert.ok(js.includes('rendu 2D conservé'));
   assert.ok(!read('public/runner.css').includes('.runner-bouton-3d'));
-  assert.ok(page.includes('runner.js?v=10'));
+  assert.match(page, /runner\.js\?v=(1[0-9]|[2-9][0-9])\b/); // v10 ou plus récent
 });

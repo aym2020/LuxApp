@@ -16,7 +16,10 @@ const DISTANCE = 18;          // distance (unités 3D) d'apparition d'un trio
 const VOIE = 1.05;            // écart entre deux voies
 const LARGEUR_ROUTE = 3.6;
 const BOUCLE = 84;            // longueur de décor recyclé (bâtiments, lampadaires)
-const COULEURS = { m: 0x6fb0f2, f: 0xf18bbb, n: 0xb18cf0 };
+// V2.2 : bleu / rouge / vert saturés ; une forme par genre (carré, rond, octogone).
+const COULEURS = { m: 0x2f8cff, f: 0xff3d5a, n: 0x22e06b };
+const FORMES = { m: 'carre', f: 'rond', n: 'octo' };
+const TEMPS_PORTAILS = { value: 0 }; // horloge partagée des membranes animées
 const ORDRE = ['m', 'f', 'n'];
 const NOMS = { m: 'MASCULIN', f: 'FÉMININ', n: 'NEUTRE' };
 
@@ -123,40 +126,73 @@ function textureArrivee() {
 
 // ─── Construction de la scène ────────────────────────────────────────────────
 
-function creerArche(couleur, lueur) {
-  const groupe = new THREE.Group();
-  const l = 0.94, h = 1.85, r = l / 2;
-  // Tracé : montant gauche, demi-cercle, montant droit (points serrés).
-  const points = [];
-  for (let i = 0; i <= 6; i++) points.push(new THREE.Vector3(-r, (h - r) * i / 6, 0));
-  for (let i = 1; i < 16; i++) {
-    const a = Math.PI - Math.PI * i / 16;
-    points.push(new THREE.Vector3(Math.cos(a) * r, h - r + Math.sin(a) * r, 0));
+// Contour d'un portail (ouvert en bas), selon la forme du genre.
+function contourPortail(forme, l, h) {
+  const r = l / 2, pts = [];
+  const ligne = (x1, y1, x2, y2, n) => { for (let i = 0; i <= n; i++) pts.push([x1 + (x2 - x1) * i / n, y1 + (y2 - y1) * i / n]); };
+  const arc = (cx, cy, rayon, a1, a2, n) => { for (let i = 1; i < n; i++) { const a = a1 + (a2 - a1) * i / n; pts.push([cx + Math.cos(a) * rayon, cy + Math.sin(a) * rayon]); } };
+  if (forme === 'rond') {
+    ligne(-r, 0, -r, h - r, 6); arc(0, h - r, r, Math.PI, 0, 18); ligne(r, h - r, r, 0, 6);
+  } else if (forme === 'carre') {
+    const c = 0.1;
+    ligne(-r, 0, -r, h - c, 6); arc(-r + c, h - c, c, Math.PI, Math.PI / 2, 5);
+    ligne(-r + c, h, r - c, h, 6); arc(r - c, h - c, c, Math.PI / 2, 0, 5); ligne(r, h - c, r, 0, 6);
+  } else { // octogone : montants droits, deux pans coupés, sommet plat
+    const c = l * 0.3;
+    ligne(-r, 0, -r, h - c, 6); ligne(-r, h - c, -r + c, h, 3); ligne(-r + c, h, r - c, h, 4);
+    ligne(r - c, h, r, h - c, 3); ligne(r, h - c, r, 0, 6);
   }
-  for (let i = 6; i >= 0; i--) points.push(new THREE.Vector3(r, (h - r) * i / 6, 0));
-  const chemin = new THREE.CatmullRomCurve3(points);
-  const coeur = new THREE.Mesh(new THREE.TubeGeometry(chemin, 48, 0.055, 8, false),
-    new THREE.MeshBasicMaterial({ color: couleur }));
-  const halo = new THREE.Mesh(new THREE.TubeGeometry(chemin, 48, 0.14, 8, false),
-    new THREE.MeshBasicMaterial({ color: couleur, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false }));
-  // Intérieur translucide : forme de l'arche.
+  return pts;
+}
+
+// Membrane d'énergie : bandes lumineuses qui montent, plus vives en bas.
+function materiauMembrane(couleur, hauteur) {
+  return new THREE.ShaderMaterial({
+    uniforms: { uCouleur: { value: new THREE.Color(couleur) }, uTemps: TEMPS_PORTAILS, uOpacite: { value: 1 }, uHauteur: { value: hauteur } },
+    vertexShader: 'varying float vY; void main(){ vY = position.y; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+    fragmentShader: 'uniform vec3 uCouleur; uniform float uTemps; uniform float uOpacite; uniform float uHauteur; varying float vY;' +
+      'void main(){ float v = vY / uHauteur; float bandes = 0.5 + 0.5 * sin(v * 18.0 - uTemps * 7.0);' +
+      'float a = (0.10 + 0.16 * bandes) * (1.15 - v * 0.6); gl_FragColor = vec4(uCouleur * (1.0 + bandes * 0.4), a * uOpacite); }',
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, toneMapped: false
+  });
+}
+
+function creerArche(genre, lueur) {
+  const couleur = COULEURS[genre];
+  const groupe = new THREE.Group();
+  const l = 0.94, h = 1.85;
+  const pts = contourPortail(FORMES[genre], l, h);
+  const chemin = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(p[0], p[1], 0)), false, 'centripetal');
+  // Néon saturé : couleurs non retouchées par le moteur (toneMapped: false).
+  const clair = new THREE.Color(couleur).lerp(new THREE.Color(0xffffff), 0.55);
+  const coeur = new THREE.Mesh(new THREE.TubeGeometry(chemin, 72, 0.06, 8, false),
+    new THREE.MeshBasicMaterial({ color: couleur, toneMapped: false }));
+  const filament = new THREE.Mesh(new THREE.TubeGeometry(chemin, 72, 0.022, 6, false),
+    new THREE.MeshBasicMaterial({ color: clair, toneMapped: false }));
+  filament.position.z = 0.045;
+  const halo = new THREE.Mesh(new THREE.TubeGeometry(chemin, 72, 0.16, 8, false),
+    new THREE.MeshBasicMaterial({ color: couleur, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+  // Membrane animée à l'intérieur du portail.
   const forme = new THREE.Shape();
-  forme.moveTo(-r, 0); forme.lineTo(-r, h - r); forme.absarc(0, h - r, r, Math.PI, 0, true); forme.lineTo(r, 0); forme.lineTo(-r, 0);
-  const voile = new THREE.Mesh(new THREE.ShapeGeometry(forme, 16),
-    new THREE.MeshBasicMaterial({ color: couleur, transparent: true, opacity: 0.14, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
-  // Flaque de lumière au sol.
-  const sol = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 1.0),
-    new THREE.MeshBasicMaterial({ map: lueur, color: couleur, transparent: true, opacity: 0.75, blending: THREE.AdditiveBlending, depthWrite: false }));
+  pts.forEach((p, i) => (i ? forme.lineTo(p[0], p[1]) : forme.moveTo(p[0], p[1])));
+  forme.lineTo(pts[0][0], pts[0][1]);
+  const membrane = new THREE.Mesh(new THREE.ShapeGeometry(forme), materiauMembrane(couleur, h));
+  // Flaque et anneau de lumière au sol.
+  const sol = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 1.1),
+    new THREE.MeshBasicMaterial({ map: lueur, color: couleur, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
   sol.rotation.x = -Math.PI / 2; sol.position.y = 0.015;
-  groupe.add(sol, voile, halo, coeur);
-  groupe.userData = { materiaux: [coeur.material, halo.material, voile.material, sol.material], opacites: [1, 0.28, 0.14, 0.75] };
+  groupe.add(sol, membrane, halo, coeur, filament);
+  groupe.userData = {
+    materiaux: [coeur.material, filament.material, halo.material, membrane.material, sol.material],
+    opacites: [1, 1, 0.32, 1, 0.9]
+  };
   return groupe;
 }
 
 function creerTrio(lueur, etiquettes) {
   const trio = new THREE.Group();
   ORDRE.forEach((genre, i) => {
-    const arche = creerArche(COULEURS[genre], lueur);
+    const arche = creerArche(genre, lueur);
     arche.position.x = (i - 1) * VOIE;
     const pastille = new THREE.Mesh(new THREE.PlaneGeometry(0.78, 0.78),
       new THREE.MeshBasicMaterial({ map: etiquettes[genre], transparent: true, depthWrite: false }));
@@ -170,7 +206,11 @@ function creerTrio(lueur, etiquettes) {
 function opaciteTrio(trio, alpha, bonne) {
   trio.children.forEach((arche, i) => {
     const a = bonne == null ? alpha : alpha * (i === bonne ? 1 : 0.3);
-    arche.userData.materiaux.forEach((m, k) => { m.transparent = true; m.opacity = arche.userData.opacites[k] * a; });
+    arche.userData.materiaux.forEach((m, k) => {
+      const op = arche.userData.opacites[k] * a;
+      if (m.uniforms) m.uniforms.uOpacite.value = op; // membrane (shader)
+      else { m.transparent = true; m.opacity = op; }
+    });
     arche.visible = a > 0.01;
   });
 }
@@ -246,15 +286,18 @@ function creer(conteneur) {
   // Voie occupée : bande lumineuse de la couleur du genre.
   // Les trois voies portent leur couleur en permanence (bandes + liserés),
   // la voie occupée est nettement plus lumineuse.
-  const texBande = textureCanvas(64, 4, (g, w) => {
+  const texBande = textureCanvas(64, 64, (g, w, h) => {
     const d = g.createLinearGradient(0, 0, w, 0);
-    d.addColorStop(0, 'rgba(255,255,255,0.9)'); d.addColorStop(0.12, 'rgba(255,255,255,0.35)');
-    d.addColorStop(0.5, 'rgba(255,255,255,0.2)'); d.addColorStop(0.88, 'rgba(255,255,255,0.35)'); d.addColorStop(1, 'rgba(255,255,255,0.9)');
-    g.fillStyle = d; g.fillRect(0, 0, w, 4);
+    d.addColorStop(0, 'rgba(255,255,255,1)'); d.addColorStop(0.1, 'rgba(255,255,255,0.75)');
+    d.addColorStop(0.5, 'rgba(255,255,255,0.55)'); d.addColorStop(0.9, 'rgba(255,255,255,0.75)'); d.addColorStop(1, 'rgba(255,255,255,1)');
+    g.fillStyle = d; g.fillRect(0, 0, w, h);
+    g.fillStyle = 'rgba(255,255,255,0.35)'; g.fillRect(0, 0, w, h * 0.32); // bande claire qui défile
   });
+  texBande.wrapT = THREE.RepeatWrapping;
+  texBande.repeat.set(1, 30);
   const bandes = ORDRE.map((genre, i) => {
     const b = new THREE.Mesh(new THREE.PlaneGeometry(VOIE * 0.92, 90),
-      new THREE.MeshBasicMaterial({ map: texBande, color: COULEURS[genre], transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+      new THREE.MeshBasicMaterial({ map: texBande, color: COULEURS[genre], transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
     b.rotation.x = -Math.PI / 2; b.position.set((i - 1) * VOIE, 0.01, -40);
     scene.add(b);
     return b;
@@ -541,6 +584,8 @@ function creer(conteneur) {
     // Défilement : la même distance que le jeu (profondeur → unités 3D).
     const parcouru = p.distance / RUNNER_PROFONDEUR * DISTANCE;
     texRoute.offset.y = parcouru / (160 / 18) % 1;
+    texBande.offset.y = parcouru / 3 % 1; // bandes de la voie qui défilent vers le coureur
+    TEMPS_PORTAILS.value = etat.horloge;
     etat.decor.forEach(d => {
       let z = d.z + (parcouru % BOUCLE);
       if (z > 6) z -= BOUCLE;
@@ -564,7 +609,7 @@ function creer(conteneur) {
     aura.material.opacity = Math.max(0, aura.material.opacity - dt * 2.2);
     if (onde.material.opacity > 0) { onde.scale.multiplyScalar(1 + dt * 5); onde.material.opacity = Math.max(0, onde.material.opacity - dt * 2.4); }
     bandes.forEach((b, i) => {
-      const cible = ORDRE[i] === p.voie ? 0.75 : 0; // seule la voie choisie est colorée
+      const cible = ORDRE[i] === p.voie ? 0.9 : 0; // seule la voie choisie est colorée
       b.material.opacity += (cible - b.material.opacity) * Math.min(1, dt * 10);
     });
 

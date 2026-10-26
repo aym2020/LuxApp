@@ -64,7 +64,7 @@
 }
 #view-jeux .runner-tuiles{display:flex;gap:6px;margin-bottom:22px}
 #view-jeux .runner-tuile{
-  --tile-color:var(--runner-m,var(--info,#6fb0f2));
+  --tile-color:var(--runner-m,#2f8cff);
   display:grid;place-items:center;
   width:38px;height:44px;
   border:1px solid var(--tile-color);
@@ -75,8 +75,8 @@
   font:800 21px/1 var(--font);
   text-shadow:none;
 }
-#view-jeux .runner-tuile.runner-f{--tile-color:var(--runner-f,#f18bbb)}
-#view-jeux .runner-tuile.runner-n{--tile-color:var(--runner-n,var(--violet,#b18cf0))}
+#view-jeux .runner-tuile.runner-f{--tile-color:var(--runner-f,#ff3d5a)}
+#view-jeux .runner-tuile.runner-n{--tile-color:var(--runner-n,#22e06b)}
 @media (forced-colors:active){
   #view-jeux .runner-tuile{border-color:CanvasText;color:CanvasText}
 }

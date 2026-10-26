@@ -5,7 +5,8 @@
    halos, contours secondaires) ; l'or reste la valeur LuxApp (Jouer, score,
    récompenses, point final des titres). */
 #view-runner,#view-jeux{
-  --runner-m:var(--info,#6fb0f2);--runner-f:#f18bbb;--runner-n:var(--violet,#b18cf0);
+  /* V2.2 : bleu / rouge / vert saturés (convention der-die-das, teintes bien séparées) */
+  --runner-m:#2f8cff;--runner-f:#ff3d5a;--runner-n:#22e06b;
   --jeu-violet:var(--violet,#b18cf0);--jeu-violet-fonce:#2a2040;--jeu-violet-bord:#4f3f72;
   --jeu-verre:rgba(22,19,28,.78)
 }
@@ -140,7 +141,7 @@
 #view-runner .runner-voies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:4px}
 #view-runner .runner-voie{--c:var(--runner-m);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:70px;padding:6px 4px;overflow:hidden;
   border:1px solid color-mix(in srgb,var(--c) 35%,#2d2a33);border-bottom:3px solid var(--c);border-radius:14px;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--c) 14%,#17151b),#141217);color:#e9e1d4;cursor:pointer;touch-action:manipulation;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--c) 28%,#141218),color-mix(in srgb,var(--c) 12%,#121016));color:#e9e1d4;cursor:pointer;touch-action:manipulation;
   transition:background-color .12s ease,border-color .12s ease,transform .12s ease,box-shadow .15s ease}
 #view-runner .runner-voie.runner-f{--c:var(--runner-f)}
 #view-runner .runner-voie.runner-n{--c:var(--runner-n)}

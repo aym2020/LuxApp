@@ -24,9 +24,9 @@
 // ─── 1. CONSTANTES ──────────────────────────────────────────────────────────
 const RUNNER_VOIES = ['m', 'f', 'n']; // gauche, centre, droite
 const RUNNER_GENRES = {
-  m: { nom: 'Masculin', lettre: 'M', couleur: '#6fb0f2', mot: 'masculin' },
-  f: { nom: 'Féminin', lettre: 'F', couleur: '#f18bbb', mot: 'féminin' },
-  n: { nom: 'Neutre', lettre: 'N', couleur: '#b18cf0', mot: 'neutre' }
+  m: { nom: 'Masculin', lettre: 'M', couleur: '#2f8cff', mot: 'masculin' },
+  f: { nom: 'Féminin', lettre: 'F', couleur: '#ff3d5a', mot: 'féminin' },
+  n: { nom: 'Neutre', lettre: 'N', couleur: '#22e06b', mot: 'neutre' }
 };
 const RUNNER_DUREE_SPRINT = 60;     // secondes de jeu actif
 const RUNNER_VIES = 3;
@@ -861,7 +861,7 @@ function runnerRendu3DActif() {
 }
 function runnerCharger3D() {
   if (!runnerModule3D) {
-    runnerModule3D = import('./runner-3d.js?v=5').then(() => window.Runner3D);
+    runnerModule3D = import('./runner-3d.js?v=6').then(() => window.Runner3D);
     runnerModule3D.catch(() => { runnerModule3D = null; });
   }
   return runnerModule3D;
