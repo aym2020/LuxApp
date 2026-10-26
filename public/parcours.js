@@ -535,7 +535,7 @@ function renderParcoursLecon() {
   const nbTout = nbItems(l, TOUTE_LA_LECON, 'tout');
   const reprendreTout = !!(pLibreIci && pLibreIci.uniteId === TOUTE_LA_LECON);
   const actionTout = reprendreTout ? 'reprendreRun(true)' : "startUnite('all', 'lecon')";
-  html += '<button type="button" class="pl-resume pl-toute" id="pl-toute" onclick="' + actionTout + '">' +
+  html += '<button type="button" class="pc-btn pl-resume pl-toute" id="pl-toute" onclick="' + actionTout + '">' +
     '<span class="pl-resume-contenu">' +
       '<span class="pl-resume-sur">TOUTE LA LEÇON' +
         (leconComplete(l) ? ' · COMPLÈTE' : '') + '</span>' +
@@ -546,7 +546,7 @@ function renderParcoursLecon() {
     '</span><span class="pl-resume-chevron" aria-hidden="true">›</span></button>';
 
   // Le bilan garde sa fonction : 10 questions mélangées sur le fil.
-  html += '<button type="button" class="pl-resume pl-bilan" onclick="lancerBilan()">' +
+  html += '<button type="button" class="pc-btn pl-resume pl-bilan" onclick="lancerBilan()">' +
     '<span class="pl-resume-contenu">' +
       '<span class="pl-resume-titre">Bilan de la leçon</span>' +
       '<span class="pl-resume-description">10 questions mélangées</span>' +

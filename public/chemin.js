@@ -247,7 +247,9 @@ function actionLeconChemin(l) {
   if (!deja && l.mission && l.scene) { // unités faites, mission pas encore réussie
     return { etape: 'mission', libelle: 'Continuer', fn: () => ouvrirMissionDepuisChemin(l.id) };
   }
-  return { etape: null, libelle: 'Revoir', fn: () => ouvrirLeconDepuisListe(l.id) };
+  // Une leçon acquise se révise dans le moteur dédié (sélection limitée à cette leçon),
+  // pas dans le même écran que « Voir toute la leçon ».
+  return { etape: null, libelle: 'Revoir', fn: () => openReviewSetup(l.id) };
 }
 
 function lancerActionLecon(leconId) {
