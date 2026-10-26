@@ -51,6 +51,26 @@ test('visuel isolé, CSS chargée et états tactiles/clavier accessibles',()=>{
  assert.match(css,/#view-plecon \.pl-revoir-erreurs \.pl-action-icone/);
  assert.match(css,/#view-plecon \.pl-gagner-etoile \.pl-action-icone/);
  assert.match(css,/@media \(max-width: 360px\)/);
- assert.match(index,/lecon-v21\.css\?v=actions-unite-20261026/);
+ assert.match(index,/lecon-v21\.css\?v=actions-unite-or-doux-20261026/);
  assert.doesNotMatch(css,/#view-dashboard|#view-mission|#view-review-setup/);
+});
+
+test('SPEC 108 : glyphes remontés sans déplacer leur fond ni modifier leur taille', () => {
+  const icone = css.match(/#view-plecon \.pl-action-unite \.pl-action-icone \{([^}]*)\}/);
+  const chevron = css.match(/#view-plecon \.pl-action-unite \.pl-action-chevron \{([^}]*)\}/);
+  assert.ok(icone && chevron);
+  assert.match(icone[1], /box-sizing:\s*border-box/);
+  assert.match(icone[1], /padding-bottom:\s*4px/);
+  assert.match(icone[1], /width:\s*36px/);
+  assert.match(icone[1], /height:\s*36px/);
+  assert.match(chevron[1], /transform:\s*translateY\(-2px\)/);
+});
+test('SPEC 108 : défi étoile en or doux, moins dominant que le CTA primaire', () => {
+  const defi = css.match(/#view-plecon \.pl-unit > \.pl-action-unite\.pl-gagner-etoile \{([^}]*)\}/);
+  assert.ok(defi);
+  assert.match(defi[1], /color:\s*#d6ae51/);
+  assert.match(defi[1], /border-color:\s*#574b32/);
+  assert.doesNotMatch(defi[1], /var\(--couleur-action\)/);
+  assert.match(css, /#view-plecon \.pl-gagner-etoile \.pl-action-chevron \{ color: var\(--couleur-texte-3\); \}/);
+  assert.match(css, /#view-plecon \.pl-revoir-erreurs \.pl-action-icone/);
 });
