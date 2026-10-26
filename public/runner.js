@@ -412,7 +412,8 @@ function runnerMajBoutonsSon() {
     const musique = b.getAttribute('data-son') === 'musique';
     const actif = musique ? RunnerAudio.musiqueActive() : RunnerAudio.effetsActifs();
     b.setAttribute('aria-pressed', String(actif));
-    b.textContent = (musique ? 'Musique' : 'Effets') + (actif ? ' : oui' : ' : non');
+    b.innerHTML = '<i aria-hidden="true"></i>' + (musique ? 'Musique' : 'Effets') + ' : <b>' + (actif ? 'oui' : 'non') + '</b>';
+    b.setAttribute('aria-label', (musique ? 'Musique' : 'Effets sonores') + (actif ? ' activés' : ' coupés'));
   });
 }
 function runnerBasculerSon(quoi) {
@@ -488,7 +489,7 @@ function runnerRendreCourse() {
       RUNNER_VOIES.map((g, i) =>
         '<button type="button" class="runner-voie runner-' + g + '" data-genre="' + g + '" aria-pressed="false" ' +
         'onclick="runnerChoisir(\'' + g + '\')" aria-label="' + RUNNER_GENRES[g].nom + ' (touche ' + (i + 1) + ')">' +
-        '<b>' + RUNNER_GENRES[g].lettre + '</b><span>' + RUNNER_GENRES[g].nom + '</span></button>').join('') +
+        '<i aria-hidden="true">TA VOIE</i><b>' + RUNNER_GENRES[g].lettre + '</b><span>' + RUNNER_GENRES[g].nom + '</span></button>').join('') +
     '</div>' +
     '<div id="runner-pause" class="runner-pause" hidden>' +
       '<div class="runner-pause-carte" role="dialog" aria-modal="true" aria-labelledby="runner-pause-titre">' +
@@ -607,6 +608,9 @@ function runnerMontrerResultat(r) {
     if (r.statut === 'correct' && RUNNER_PALIERS_COMBO.indexOf(r.serie) >= 0) RunnerAudio.combo(r.serie);
   }
   runnerMajCombo(r);
+  // Flash bref de la scène (deux classes alternées pour relancer l'animation).
+  const scene = document.getElementById('runner-scene');
+  if (scene) scene.className = 'runner-scene runner-flash-' + (r.statut === 'correct' ? 'ok' : 'ko') + '-' + (p.rencontres % 2 ? 'a' : 'b');
   runnerEffetCollision(r);
 }
 
@@ -713,10 +717,11 @@ function runnerRendreResultats(p, battus) {
     : victoire ? 'Tu as franchi la ligne d’arrivée.'
     : 'Tu as tenu ' + runnerFormatTemps(p.finTemps) + '. Les mots ratés t’attendent ci-dessous.';
   const nouveauRecord = battus.indexOf('score') >= 0 && p.score > 0;
+  // [libellé, valeur, en or ?] — l'or reste réservé au score et au record.
   const stats = sprint
-    ? [['Score', p.score], [victoire ? 'Temps' : 'Temps de survie', runnerFormatTemps(p.finTemps)],
+    ? [['Score', p.score, true], [victoire ? 'Temps' : 'Temps de survie', runnerFormatTemps(p.finTemps)],
        ['Bonnes réponses', p.bons + ' / ' + p.rencontres], ['Précision', runnerPrecision(p) + ' %'],
-       ['Plus long combo', p.maxSerie], ['Record', r.score]]
+       ['Plus long combo', p.maxSerie], ['Record', r.score, true]]
     : [['Bonnes réponses', p.bons + ' / ' + p.rencontres], ['Précision', runnerPrecision(p) + ' %'],
        ['Plus longue série', p.maxSerie]];
   // Une ligne par nom raté (le dernier choix est gardé).
@@ -726,7 +731,7 @@ function runnerRendreResultats(p, battus) {
   const liste = erreurs.length
     ? '<ul class="runner-erreurs-liste">' + erreurs.map(e => {
         const g = RUNNER_GENRES[e.mot.gender];
-        return '<li><div><strong lang="lb">' + runnerEchapper(e.mot.lemma) + '</strong><span>' + runnerEchapper(e.mot.translation) + '</span></div>' +
+        return '<li class="runner-genre-' + e.mot.gender + '"><div><strong lang="lb">' + runnerEchapper(e.mot.lemma) + '</strong><span>' + runnerEchapper(e.mot.translation) + '</span></div>' +
           '<div class="runner-erreur-correction"><b class="runner-txt-' + e.mot.gender + '">' + g.nom + '</b>' +
           '<span lang="lb">' + runnerEchapper(e.mot.articleForm) + '</span>' +
           '<small>' + (e.choix ? 'Ton choix : ' + RUNNER_GENRES[e.choix].nom : 'Aucun portail choisi') + '</small></div></li>';
@@ -742,7 +747,8 @@ function runnerRendreResultats(p, battus) {
         '<h1>' + titre + '</h1>' +
         '<p class="runner-resultat-intro">' + intro + '</p>' +
         (nouveauRecord ? '<p class="runner-record"><span aria-hidden="true">✦</span> Nouveau record !</p>' : '') +
-        '<dl class="runner-stats">' + stats.map(s => '<div><dt>' + s[0] + '</dt><dd>' + s[1] + '</dd></div>').join('') + '</dl>' +
+        '<dl class="runner-stats">' + stats.map((s, i) => '<div style="--i:' + i + '"' + (s[2] ? ' class="runner-stat-or"' : '') +
+          '><dt>' + s[0] + '</dt><dd>' + s[1] + '</dd></div>').join('') + '</dl>' +
         '<section id="runner-erreurs" class="runner-erreurs" aria-labelledby="runner-erreurs-titre">' +
           '<h2 id="runner-erreurs-titre">' + (sprint && !victoire ? 'Mots à retravailler' : 'Mes erreurs') +
           (erreurs.length ? ' <span>' + erreurs.length + '</span>' : '') + '</h2>' + liste + '</section>' +

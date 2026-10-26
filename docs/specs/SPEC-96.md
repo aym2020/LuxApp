@@ -17,6 +17,17 @@ Mini-jeu de la rubrique **Jeux** (SPEC 88) pour mémoriser le **genre des noms**
 - **Pause** (bouton, Échap ou P) : chrono, portails et validation arrêtés ; « Reprendre » / « Quitter la partie ». Pause automatique quand l'app passe en arrière-plan (`visibilitychange`). Retour Android : la course est abandonnée (non comptée), retour à Jeux.
 - **Contrôles** : trois boutons sous la scène (≥ 44 px, lettre + nom + couleur), toucher direct d'une voie sur la route, glisser horizontal vers la voie voisine, touches 1/2/3 et flèches.
 
+## Univers visuel « Jeux » (V1.2)
+
+Le **violet** devient la couche ludique ; l'**or** reste la valeur LuxApp. Fichier dédié `public/jeux-univers.css` (accueil, page Jeux, carte) et `public/runner.css` (écrans du runner).
+
+- **Violet :** icône et libellé « Jeux » de l'accueil avec halo léger (seule la tuile change : CTA Continuer, progression et autres raccourcis restent or), ambiance radiale aubergine de la page Jeux et halo du titre, carte Lux Runner (bordure, glow, dégradé noir → violet), kickers et micro-libellés, barre de temps lumineuse, bouton pause en verre sombre, contours secondaires (S'entraîner, puces Musique/Effets, pause), badge combo, séparateurs des records et des résultats.
+- **Or :** Jouer, Rejouer, Reprendre, score, record (pastille « Nouveau record »), point final des titres.
+- **Survie** garde son identité or/brun, inchangée.
+- **Course :** zone du mot cadrée (lueur diffuse, filet violet, traduction plus claire) ; commandes M/F/N en vraies commandes de jeu (fond teinté par genre, lettre plus grande, état choisi teinté + glow + « TA VOIE ») ; correction en pastille de verre sombre bordée selon le statut ; flash bref vert/rouge de la scène.
+- **Canvas :** ciel teinté violet avec brume et étoiles, route plus contrastée, pointillés plus lisibles, bords plus lumineux, perspective plus marquée, lampadaires à halo pré-dessiné ; arches « énergétiques » (sommet arrondi, halo, cœur clair, intérieur translucide, sol teinté, reflet sur la route, lettre dans une pastille au sommet, nom dès que la place le permet) ; aura du coureur au passage (couleur du genre, rouge sur un choc) et écharpe or qui flotte.
+- **Résultats :** stats apparaissant en cascade, score et record en or, mots à retravailler en cartes avec barre et pastille de la couleur du genre, article et choix fait.
+
 ## Banque de mots — `public/runner-mots.js`
 
 - Fichier **généré** par `node tools/runner-genres.cjs` (`--check` pour vérifier). Jamais d'analyse de texte libre pendant la partie.
@@ -49,6 +60,7 @@ Mode Endurance (le moteur le permet : `runnerAvancer` sans limite), classement e
 
 - Fichiers : `public/runner.js` (règles, écrans, contrôles), `public/runner-rendu.js`, `public/runner-audio.js`, `public/runner.css`, `public/runner-mots.js`, `tools/runner-genres.cjs`, `public/index.html` (vue `view-runner`), `public/jeux-v21.js` (carte du hub, arrêt dans `ouvrirJeux`), `public/navigation.js` (actualisation → Jeux).
 - Tests : `node --test test/runner.test.cjs` — 14 tests (référentiel, barème, approche 4/3,5/3, 17 portails puis arrivée à 60 s, **deux féminins de suite réussis sans retoucher**, cadence d'images, absence de choix, voie à la collision, équilibre du tirage, priorité des erreurs, tutoriel, portails suivants, records, intégration, aucun son d'exercice) ; `test/jeux-v21.test.cjs` mis à jour.
+- V1.2 : `public/jeux-univers.css`, `public/runner.css`, `public/runner-rendu.js`, `public/runner.js` ; captures 360 × 640/760 et 430 × 932 (accueil, Jeux, préparation, course, erreur, résultats), aucun scroll horizontal, commandes de 74 px, aucune erreur JS.
 - Contrôle navigateur (Playwright, 360 × 740 et 430 × 932) : hub, tutoriel, course, voie conservée, combo, pause figée avec réglages du son, défaite, victoire 60 s (3 150 points, 17/17), musique arrêtée en fin de partie, retour Jeux, aucune erreur JS. **Samsung non testé, son non écouté.**
 
 ## Recette à faire (Samsung)

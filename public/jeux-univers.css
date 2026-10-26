@@ -1,0 +1,44 @@
+/* SPEC 96 V1.2 — Couche « univers jeu » (violet), au-dessus de la charte LuxApp.
+   Le violet signale la zone ludique : tuile Jeux de l'accueil, ambiance de la
+   page Jeux, carte Lux Runner. Il ne remplace jamais l'or (CTA Continuer,
+   progression, bouton Jouer, records, point final des titres).
+   Chargée après accueil-v21.css et jeux-v21.css. Survie garde son identité or. */
+
+/* ── Accueil : tuile Jeux uniquement ─────────────────────────────── */
+#view-dashboard .ac-acces .ac-btn.jeux{
+  --c:var(--violet,#b18cf0);
+  background:radial-gradient(circle at 50% 34%,rgba(177,140,240,.18),transparent 62%);
+}
+#view-dashboard .ac-acces .ac-btn.jeux > .ic:first-child{
+  color:var(--violet,#b18cf0);
+  filter:drop-shadow(0 0 6px rgba(177,140,240,.6));
+}
+#view-dashboard .ac-acces .ac-btn.jeux > b{color:var(--violet,#b18cf0)}
+
+/* ── Page Jeux : ambiance aubergine discrète ─────────────────────── */
+#view-jeux{
+  background:
+    radial-gradient(90% 45% at 30% 0%,rgba(98,64,160,.28),transparent 70%),
+    radial-gradient(70% 40% at 80% 70%,rgba(60,40,100,.18),transparent 70%),
+    #0f0e0c;
+}
+#view-jeux .jeux-entete{position:relative}
+#view-jeux .jeux-entete::before{content:"";position:absolute;left:-20px;top:20px;width:260px;height:150px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(177,140,240,.16),transparent 70%);pointer-events:none}
+#view-jeux .jeux-kicker{position:relative;color:#bda7ea}
+#view-jeux .jeux-entete h1,#view-jeux .jeux-entete p{position:relative}
+
+/* ── Carte Lux Runner : arcade, violet, lumineuse ────────────────── */
+#view-jeux .jeux-carte+.jeux-carte{margin-top:16px}
+#view-jeux .runner-carte{
+  position:relative;overflow:hidden;
+  border-color:rgba(177,140,240,.5);
+  background:
+    radial-gradient(80% 60% at 20% 0%,rgba(177,140,240,.18),transparent 70%),
+    linear-gradient(150deg,#241c35 0%,#18141f 55%,#121015 100%);
+  box-shadow:0 0 26px rgba(116,82,180,.22),inset 0 1px 0 rgba(255,255,255,.05);
+}
+#view-jeux .runner-carte .jeux-carte-titre h2{text-shadow:0 0 22px rgba(177,140,240,.35)}
+#view-jeux .runner-carte .jeux-meta{color:#bfb3d6}
+#view-jeux .runner-carte .jeux-meta b{color:var(--accent)}
+#view-jeux .runner-carte .jeux-etat{border-color:rgba(177,140,240,.6);color:#d9c9ff}

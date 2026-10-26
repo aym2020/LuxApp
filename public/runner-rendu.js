@@ -11,7 +11,7 @@
      on voit toujours une succession d'obstacles, jamais un vide. */
 'use strict';
 
-const RUNNER_PERSPECTIVE = 3;
+const RUNNER_PERSPECTIVE = 3.4;  // V1.2 : perspective un peu plus marquée
 const RUNNER_PENTE_SOUS = 4;     // prolonge la perspective sous la ligne du coureur
 const RUNNER_PASSAGE = 0.3;      // durée (s) du trio franchi qui passe sous la caméra
 
@@ -28,10 +28,10 @@ function runnerGeometrie(a) {
   const W = a.largeur, H = a.hauteur;
   return {
     W: W, H: H, cx: W / 2,
-    horizon: H * 0.24,
+    horizon: H * 0.23,
     ligne: H * 0.82,                       // ligne des portails = position du coureur
-    demiLoin: W * 0.03,
-    demiPres: Math.min(W * 0.5, H * 0.6)
+    demiLoin: W * 0.026,
+    demiPres: Math.min(W * 0.56, H * 0.66)
   };
 }
 function runnerPointDepuisEchelle(geo, s) {
@@ -70,6 +70,19 @@ function runnerRedimensionner() {
   a.fond = runnerDessinerFond(geo, a.ratio);
   a.villeProche = runnerDessinerVille(geo.W * 1.25, geo.horizon * 0.62, a.ratio, 31, ['#100e0b', '#14120e'], 0.12);
   a.degradeRoute = null; // recréé au prochain dessin (dépend de la taille)
+  a.lueur = runnerDessinerLueur(a.ratio);
+}
+
+// Halo chaud des lampadaires : un petit dégradé dessiné une fois, puis recopié.
+function runnerDessinerLueur(ratio) {
+  const hc = runnerCanvasHorsEcran(64, 64, ratio);
+  if (!hc) return null;
+  const halo = hc.g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  halo.addColorStop(0, 'rgba(255,236,170,0.95)');
+  halo.addColorStop(0.18, 'rgba(245,207,77,0.55)');
+  halo.addColorStop(1, 'rgba(245,207,77,0)');
+  hc.g.fillStyle = halo; hc.g.fillRect(0, 0, 64, 64);
+  return hc.c;
 }
 
 function runnerCanvasHorsEcran(largeur, hauteur, ratio) {
@@ -90,16 +103,22 @@ function runnerDessinerFond(geo, ratio) {
   if (!hc) return null;
   const g = hc.g;
   const ciel = g.createLinearGradient(0, 0, 0, geo.horizon);
-  ciel.addColorStop(0, '#0c0b0f'); ciel.addColorStop(0.65, '#17131a'); ciel.addColorStop(1, '#2b2116');
+  // V1.2 : nuit teintée de violet, brume, halo urbain chaud à l'horizon.
+  ciel.addColorStop(0, '#0d0a14'); ciel.addColorStop(0.55, '#1a1326'); ciel.addColorStop(1, '#2d1f1c');
   g.fillStyle = ciel; g.fillRect(0, 0, largeur, geo.horizon + 2);
+  const brume = g.createRadialGradient(largeur * 0.25, geo.horizon * 0.25, 0, largeur * 0.25, geo.horizon * 0.25, largeur * 0.5);
+  brume.addColorStop(0, 'rgba(140,100,220,0.2)'); brume.addColorStop(1, 'rgba(140,100,220,0)');
+  g.fillStyle = brume; g.fillRect(0, 0, largeur, geo.horizon + 2);
   let graine = 3;
   const hasard = () => { graine = (graine * 9301 + 49297) % 233280; return graine / 233280; };
-  for (let i = 0; i < 40; i++) {
-    g.fillStyle = 'rgba(246,241,233,' + (0.15 + hasard() * 0.45).toFixed(2) + ')';
-    g.fillRect(hasard() * largeur, hasard() * geo.horizon * 0.6, 1.2, 1.2);
+  for (let i = 0; i < 55; i++) {
+    const violette = hasard() < 0.3;
+    g.fillStyle = (violette ? 'rgba(200,170,255,' : 'rgba(246,241,233,') + (0.15 + hasard() * 0.5).toFixed(2) + ')';
+    const taille = hasard() < 0.12 ? 1.8 : 1.1;
+    g.fillRect(hasard() * largeur, hasard() * geo.horizon * 0.65, taille, taille);
   }
   const halo = g.createRadialGradient(largeur / 2, geo.horizon, 0, largeur / 2, geo.horizon, largeur * 0.55);
-  halo.addColorStop(0, 'rgba(245,207,77,0.22)'); halo.addColorStop(1, 'rgba(245,207,77,0)');
+  halo.addColorStop(0, 'rgba(245,190,90,0.26)'); halo.addColorStop(0.5, 'rgba(177,120,200,0.08)'); halo.addColorStop(1, 'rgba(177,140,240,0)');
   g.fillStyle = halo; g.fillRect(0, 0, largeur, geo.horizon + 2);
   const ville = runnerDessinerVille(largeur, geo.horizon * 0.45, ratio, 7, ['#1d1914', '#221d17'], 0.24);
   if (ville) g.drawImage(ville, 0, geo.horizon - geo.horizon * 0.45 + 1, largeur, geo.horizon * 0.45);
@@ -232,7 +251,7 @@ function runnerDessiner(p) {
   const bas = runnerPointZ(geo, dBas);
   if (!a.degradeRoute) {
     a.degradeRoute = g.createLinearGradient(0, geo.horizon, 0, geo.H);
-    a.degradeRoute.addColorStop(0, '#15130f'); a.degradeRoute.addColorStop(1, '#2a2620');
+    a.degradeRoute.addColorStop(0, '#16131b'); a.degradeRoute.addColorStop(0.5, '#211d22'); a.degradeRoute.addColorStop(1, '#332e2a');
   }
   g.fillStyle = a.degradeRoute;
   g.beginPath();
@@ -242,13 +261,13 @@ function runnerDessiner(p) {
   if (p.voie) runnerDessinerVoie(g, geo, RUNNER_VOIES.indexOf(p.voie), RUNNER_GENRES[p.voie].couleur, 0.12);
   if (a.eclat) runnerDessinerVoie(g, geo, a.eclat.voie, a.eclat.couleur, (a.eclat.correction ? 0.34 : 0.24) * (1 - a.eclat.age / 0.7));
   // Bords lumineux (double trait : halo + ligne).
-  for (const [largeur, couleur] of [[6, 'rgba(245,207,77,0.12)'], [2, 'rgba(245,207,77,0.55)']]) {
+  for (const [largeur, couleur] of [[9, 'rgba(245,207,77,0.13)'], [4, 'rgba(245,207,77,0.22)'], [1.6, 'rgba(255,226,140,0.85)']]) {
     g.strokeStyle = couleur; g.lineWidth = largeur;
     g.beginPath(); g.moveTo(geo.cx - haut.demi, haut.y); g.lineTo(geo.cx - bas.demi, bas.y);
     g.moveTo(geo.cx + haut.demi, haut.y); g.lineTo(geo.cx + bas.demi, bas.y); g.stroke();
   }
   runnerDessinerMarquages(g, geo, p.distance, dBas);
-  runnerDessinerLampadaires(g, geo, p.distance, dBas);
+  runnerDessinerLampadaires(g, geo, p.distance, dBas, a.lueur);
   runnerDessinerTrainees(g, geo, a);
 
   // 3. Portails, du plus lointain au plus proche (le plus proche recouvre).
@@ -286,14 +305,14 @@ function runnerDessinerVoie(g, geo, voie, couleur, alpha) {
 function runnerDessinerMarquages(g, geo, distance, dBas) {
   const pas = 0.08, longueur = 0.04;
   const decalage = ((distance % pas) + pas) % pas;
-  g.fillStyle = 'rgba(246,241,233,0.38)';
+  g.fillStyle = 'rgba(246,241,233,0.55)';
   for (let z = 1 + pas - decalage; z > dBas - pas; z -= pas) {
     const z1 = Math.min(1, z), z2 = Math.max(dBas, z - longueur);
     if (z2 >= z1) continue;
     const loin = runnerPointZ(geo, z1), pres = runnerPointZ(geo, z2);
     for (const cote of [-1, 1]) {
       const x1 = geo.cx + cote / 3 * loin.demi, x2 = geo.cx + cote / 3 * pres.demi;
-      const e1 = Math.max(0.4, 2.4 * loin.s), e2 = Math.max(0.4, 2.4 * pres.s);
+      const e1 = Math.max(0.5, 3 * loin.s), e2 = Math.max(0.5, 3 * pres.s);
       g.beginPath();
       g.moveTo(x1 - e1, loin.y); g.lineTo(x1 + e1, loin.y);
       g.lineTo(x2 + e2, pres.y); g.lineTo(x2 - e2, pres.y); g.closePath(); g.fill();
@@ -302,7 +321,7 @@ function runnerDessinerMarquages(g, geo, distance, dBas) {
 }
 
 // Lampadaires de chaque côté : ils défilent et donnent la sensation de vitesse.
-function runnerDessinerLampadaires(g, geo, distance, dBas) {
+function runnerDessinerLampadaires(g, geo, distance, dBas, lueur) {
   const pas = 0.2;
   const decalage = ((distance % pas) + pas) % pas;
   for (let z = 1 - decalage; z > dBas; z -= pas) {
@@ -316,11 +335,13 @@ function runnerDessinerLampadaires(g, geo, distance, dBas) {
       g.strokeStyle = '#3a342b'; g.lineWidth = Math.max(1, 2.5 * pt.s);
       g.beginPath(); g.moveTo(x, pt.y); g.lineTo(x, pt.y - hauteur);
       g.lineTo(x - cote * pt.demi * 0.12, pt.y - hauteur); g.stroke();
-      // Lumière chaude et reflet au sol.
+      // Lumière chaude (halo pré-dessiné) et reflet au sol.
+      const lx = x - cote * pt.demi * 0.12, ly = pt.y - hauteur;
+      const r = Math.max(5, 26 * pt.s);
+      if (lueur) g.drawImage(lueur, lx - r, ly - r, r * 2, r * 2);
       g.fillStyle = 'rgba(245,207,77,0.9)';
-      g.beginPath(); g.arc(x - cote * pt.demi * 0.12, pt.y - hauteur, Math.max(1.2, 3.5 * pt.s), 0, Math.PI * 2); g.fill();
-      g.globalAlpha = alpha * 0.1;
-      g.beginPath(); g.ellipse(x - cote * pt.demi * 0.18, pt.y, pt.demi * 0.25, pt.demi * 0.05, 0, 0, Math.PI * 2); g.fill();
+      g.globalAlpha = alpha * 0.14;
+      g.beginPath(); g.ellipse(x - cote * pt.demi * 0.18, pt.y, pt.demi * 0.28, pt.demi * 0.055, 0, 0, Math.PI * 2); g.fill();
     }
   }
   g.globalAlpha = 1;
@@ -384,7 +405,19 @@ function runnerPortailsSuivants(p, portail) {
   return liste;
 }
 
+// Contour d'une arche « énergétique » : deux montants et un sommet arrondi.
+function runnerCheminArche(g, x, base, l, h) {
+  const r = l / 2;
+  g.beginPath();
+  g.moveTo(x - r, base);
+  g.lineTo(x - r, base - h + r);
+  g.arc(x, base - h + r, r, Math.PI, 0);
+  g.lineTo(x + r, base);
+}
+
 // Trois arches à la profondeur d. passe = trio franchi (bonne voie en évidence).
+// V1.2 : bord externe lumineux, cœur clair, intérieur translucide, sol teinté,
+// reflet sur la route ; lettre dans une pastille au sommet (jamais la couleur seule).
 function runnerDessinerTrio(g, geo, d, opacite, passe) {
   const pt = runnerPointZ(geo, d);
   const arriere = runnerPointZ(geo, d + 0.025); // épaisseur des arches
@@ -395,50 +428,57 @@ function runnerDessinerTrio(g, geo, d, opacite, passe) {
     if (passe) alpha *= voie === passe.bonne ? 1 : 0.3;
     if (alpha <= 0.01) return;
     const x = runnerVoieX(geo, pt, voie);
-    const l = largeurVoie * 0.86, h = largeurVoie * 1.3;
-    const pilier = Math.max(2, l * 0.11);
-    const base = pt.y, sommet = base - h;
-    const bandeau = Math.max(6, h * 0.28);
-    // Flaque de lumière sur la route.
-    g.globalAlpha = alpha * 0.22;
+    const l = largeurVoie * 0.84, h = largeurVoie * 1.4;
+    const trait = Math.max(2, l * 0.1);
+    const base = pt.y;
+    g.lineJoin = 'round';
+    // Sol teinté sous l'arche et reflet vertical sur la route.
+    g.globalAlpha = alpha * 0.3;
     g.fillStyle = info.couleur;
-    g.beginPath(); g.ellipse(x, base, l * 0.62, Math.max(2, l * 0.13), 0, 0, Math.PI * 2); g.fill();
-    // Face arrière, plus sombre : donne l'épaisseur.
+    g.beginPath(); g.ellipse(x, base, l * 0.66, Math.max(2, l * 0.14), 0, 0, Math.PI * 2); g.fill();
+    for (let k = 0; k < 3; k++) {
+      g.globalAlpha = alpha * (0.14 - k * 0.04);
+      g.fillRect(x - l / 2 - trait / 2, base + k * h * 0.08, trait, h * 0.08);
+      g.fillRect(x + l / 2 - trait / 2, base + k * h * 0.08, trait, h * 0.08);
+    }
+    // Face arrière sombre : donne l'épaisseur.
     const xa = runnerVoieX(geo, arriere, voie);
-    const la = (2 / 3) * arriere.demi * 0.86, ha = (2 / 3) * arriere.demi * 1.3;
-    g.globalAlpha = alpha * 0.55;
-    g.fillStyle = '#0f0e0c';
-    g.fillRect(xa - la / 2, arriere.y - ha, la, Math.max(4, ha * 0.28));
-    g.fillRect(xa - la / 2, arriere.y - ha, Math.max(2, la * 0.11), ha);
-    g.fillRect(xa + la / 2 - Math.max(2, la * 0.11), arriere.y - ha, Math.max(2, la * 0.11), ha);
-    // Voile lumineux dans l'arche.
-    g.globalAlpha = alpha * (passe ? 0.08 : 0.16);
+    const la = (2 / 3) * arriere.demi * 0.84, ha = (2 / 3) * arriere.demi * 1.4;
+    g.globalAlpha = alpha * 0.6;
+    g.strokeStyle = '#0d0b10'; g.lineWidth = Math.max(2, la * 0.1);
+    runnerCheminArche(g, xa, arriere.y, la, ha); g.stroke();
+    // Intérieur translucide.
+    g.globalAlpha = alpha * (passe ? 0.08 : 0.17);
     g.fillStyle = info.couleur;
-    g.fillRect(x - l / 2, sommet, l, h);
-    // Halo (trait large et transparent) puis arche pleine.
-    g.globalAlpha = alpha * 0.28;
-    g.strokeStyle = info.couleur; g.lineWidth = Math.max(2, pilier * 0.9);
-    g.strokeRect(x - l / 2, sommet, l, h);
+    runnerCheminArche(g, x, base, l, h); g.closePath(); g.fill();
+    // Halo externe (traits larges et transparents), arche pleine, cœur clair.
+    g.strokeStyle = info.couleur;
+    g.globalAlpha = alpha * 0.14; g.lineWidth = trait * 3.2; runnerCheminArche(g, x, base, l, h); g.stroke();
+    g.globalAlpha = alpha * 0.3; g.lineWidth = trait * 1.9; runnerCheminArche(g, x, base, l, h); g.stroke();
+    g.globalAlpha = alpha; g.lineWidth = trait; runnerCheminArche(g, x, base, l, h); g.stroke();
+    g.globalAlpha = alpha * 0.55; g.strokeStyle = '#ffffff'; g.lineWidth = Math.max(0.8, trait * 0.28);
+    runnerCheminArche(g, x, base, l, h); g.stroke();
+    // Pastille de la lettre au sommet de l'arche, puis le nom si la place le permet.
+    const rayon = Math.max(6, l * 0.17);
+    const cy = base - h + l * 0.36;
     g.globalAlpha = alpha;
     g.fillStyle = info.couleur;
-    g.fillRect(x - l / 2, sommet, pilier, h);
-    g.fillRect(x + l / 2 - pilier, sommet, pilier, h);
-    g.fillRect(x - l / 2, sommet, l, bandeau);
-    // Reflet clair sur l'arête intérieure.
-    g.globalAlpha = alpha * 0.45;
-    g.fillStyle = '#ffffff';
-    g.fillRect(x - l / 2 + pilier - Math.max(1, pilier * 0.2), sommet + bandeau, Math.max(1, pilier * 0.2), h - bandeau);
-    // Lettre (toujours) et nom (si la place le permet) : jamais la couleur seule.
-    g.globalAlpha = alpha;
+    g.beginPath(); g.arc(x, cy, rayon, 0, Math.PI * 2); g.fill();
     g.fillStyle = '#0f0e0c';
     g.textAlign = 'center'; g.textBaseline = 'middle';
-    const taille = Math.max(7, Math.round(bandeau * 0.72));
-    g.font = '800 ' + taille + 'px Inter, system-ui, sans-serif';
-    const texte = l > taille * 5 ? info.lettre + ' · ' + info.nom.toUpperCase() : info.lettre;
-    g.fillText(texte, x, sommet + bandeau / 2 + 1);
+    g.font = '800 ' + Math.round(rayon * 1.25) + 'px Inter, system-ui, sans-serif';
+    g.fillText(info.lettre, x, cy + 1);
+    if (l > 64) {
+      const taille = Math.max(8, Math.round(l * 0.12));
+      g.font = '800 ' + taille + 'px Inter, system-ui, sans-serif';
+      g.fillStyle = '#ffffff';
+      g.globalAlpha = alpha * 0.92;
+      g.fillText(info.nom.toUpperCase(), x, cy + rayon + taille * 0.95);
+    }
     if (passe && voie === passe.bonne && !passe.ok) { // correction : contour blanc
+      g.globalAlpha = alpha;
       g.strokeStyle = '#f6f1e9'; g.lineWidth = 2;
-      g.strokeRect(x - l / 2 - 3, sommet - 3, l + 6, h + 6);
+      runnerCheminArche(g, x, base, l + trait * 3, h + trait * 1.5); g.stroke();
     }
   });
   g.globalAlpha = 1;
@@ -496,6 +536,14 @@ function runnerDessinerCoureur(g, geo, p) {
   // Ombre.
   g.fillStyle = 'rgba(0,0,0,0.5)';
   g.beginPath(); g.ellipse(x, pied, t * 0.26, t * 0.06, 0, 0, Math.PI * 2); g.fill();
+  // Aura brève : couleur du portail franchi (juste) ou rouge (choc).
+  if (a.eclat && a.eclat.age < 0.4 && a.lueur) {
+    const force = 1 - a.eclat.age / 0.4;
+    g.globalAlpha = 0.5 * force;
+    g.fillStyle = a.eclat.correction ? '#ef7a73' : a.eclat.couleur;
+    g.beginPath(); g.ellipse(x, pied - t * 0.5, t * (0.45 + 0.25 * (1 - force)), t * 0.62, 0, 0, Math.PI * 2); g.fill();
+    g.globalAlpha = 1;
+  }
 
   g.save();
   g.translate(x, pied - rebond);
@@ -543,6 +591,15 @@ function runnerDessinerCoureur(g, geo, p) {
   g.lineTo(t * 0.14, -t * 0.5); g.lineTo(-t * 0.14, -t * 0.5); g.closePath(); g.fill();
   g.fillStyle = '#f5cf4d';
   g.fillRect(-t * 0.155, -t * 0.66, t * 0.31, t * 0.05);
+  // Écharpe or qui flotte : elle ondule et part à l'opposé du déplacement.
+  const vent = court ? 1 : 0.3;
+  const sensEcharpe = a.inclinaison > 0.02 ? -1 : a.inclinaison < -0.02 ? 1 : 0.6;
+  g.strokeStyle = '#f5cf4d'; g.lineWidth = t * 0.045; g.lineCap = 'round';
+  g.beginPath(); g.moveTo(t * 0.04, -t * 0.79);
+  for (let k = 1; k <= 4; k++) {
+    g.lineTo(t * 0.04 + sensEcharpe * k * t * 0.07, -t * 0.79 + k * t * 0.035 + Math.sin(a.horloge * 18 + k) * t * 0.025 * vent);
+  }
+  g.stroke();
   // Cou, oreilles et tête vue de dos (cheveux).
   runnerMembre(g, 0, -t * 0.78, 0, -t * 0.83, t * 0.07, peau);
   g.fillStyle = peau;
