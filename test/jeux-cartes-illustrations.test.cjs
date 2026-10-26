@@ -12,7 +12,7 @@ test('Cartes Jeux : fonds locaux, lisibles et sans ressources externes',()=>{
     assert.ok(css.includes('art/jeux-'+name+'-card.svg'),'fond '+name+' non référence');
     assert.ok(svg.startsWith('<svg '),'SVG attendu : '+name);
     assert.ok(svg.includes('viewBox="0 0 760 450"'));
-    assert.ok(!svg.includes('<script')&&!svg.includes('http://')&&!svg.includes('https://'));
+    assert.ok(!svg.includes('<script')&&!svg.includes('xlink:href=')&&!svg.includes('<image '));
   }
   assert.ok(css.includes('linear-gradient(90deg,rgba(23,19,13'),'masque de lisibilité Survie');
   assert.ok(css.includes('linear-gradient(90deg,rgba(19,15,27'),'masque de lisibilité Runner');
