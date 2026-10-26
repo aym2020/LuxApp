@@ -126,3 +126,8 @@ Recette mobile : Samsung Chrome 320/360/390/430 px, contrôles non tronqués au-
 ## SPEC 106 — Feedback du mot précédent et lueurs réduites
 
 Voir [`SPEC-106.md`](SPEC-106.md) : micro-correction compacte après chaque collision, durée 650 / 1050 ms sans interruption de course, halo 2D/3D réduit d’environ 30 %. Scores, sons, genres et progression inchangés.
+
+## V2.6 — Messages intégrés à la DA (26/10/2026)
+- **Feedback « MOT PRÉCÉDENT »** (contenu SPEC 106 inchangé) : carte de verre violet sombre, liseré lumineux à gauche et halo vert (juste) ou corail (faux), signal en italique gras (or pour le gain, corail pour « −1 vie »), pastille du genre identique à celle des portails (couleur + lettre), nom du genre dans sa couleur. Largeur limitée pour laisser la place au combo.
+- **Combo** : texte d'arcade sans boîte, en haut à droite, italique incliné, « ×N » en dégradé or avec contour sombre ; halo plus fort au palier 2 (violet) et au palier 3 (orangé, texte plus grand).
+- **Gain de score** : « +N » en or à gauche du score (il passait sous le bouton pause).

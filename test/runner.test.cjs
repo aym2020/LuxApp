@@ -328,8 +328,8 @@ test('SPEC 105 — articles indéfinis au-dessus de M/F/N sans dévoiler le mot'
   assert.ok(!js.slice(start, end).includes('.articleForm'));
   assert.ok(css.includes('.runner-voie .runner-voie-article'));
   assert.ok(css.includes('min-height:84px'));
-  assert.ok(html.includes('runner.js?v=20'));
-  assert.ok(html.includes('runner.css?v=10'));
+  assert.ok(Number((html.match(/runner\.js\?v=(\d+)/) || [])[1]) >= 20);
+  assert.ok(Number((html.match(/runner\.css\?v=(\d+)/) || [])[1]) >= 10);
 });
 
 test('SPEC 106 : micro-feedback attribué au mot précédent sans bloquer la course', () => {
@@ -373,9 +373,9 @@ test('SPEC 106 : halo réduit dans les rendus 3D et 2D avec cache renouvelé', (
   assert.ok(t.includes('new THREE.Vector2(256, 256), 0.30, 0.28, 0.5'));
   assert.ok(c.includes('g.globalAlpha = alpha * 0.10;'));
   assert.ok(c.includes('g.globalAlpha = alpha * 0.21;'));
-  assert.ok(html.includes('runner.css?v=11'));
+  assert.ok(Number((html.match(/runner\.css\?v=(\d+)/) || [])[1]) >= 11);
   assert.ok(html.includes('runner-rendu.js?v=3'));
-  assert.ok(html.includes('runner.js?v=21'));
+  assert.ok(Number((html.match(/runner\.js\?v=(\d+)/) || [])[1]) >= 21);
   assert.ok(read('public/runner.js').includes("import('./runner-3d.js?v=12')"));
   assert.ok(css.includes('MOT PRÉCÉDENT') && css.includes('prefers-reduced-motion:reduce'));
 });

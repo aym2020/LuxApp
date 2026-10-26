@@ -630,11 +630,14 @@ function runnerDureeFeedback(statut) {
 function runnerHtmlFeedback(r, mode) {
   const bon = r.statut === 'correct';
   const signal = bon ? '✓ +' + r.points : (mode === 'sprint' ? '−1 vie' : 'À revoir');
-  const genre = RUNNER_GENRES[r.mot.gender].nom;
+  const g = RUNNER_GENRES[r.mot.gender];
   const complement = r.statut === 'absent' ? ' · sans choix' : '';
+  // Pastille du genre identique à celle des portails (couleur + lettre).
   return '<div class="runner-feedback-entete"><span>MOT PRÉCÉDENT</span><b>' + signal + '</b></div>' +
-    '<div class="runner-feedback-correction"><strong lang="lb">' + runnerEchapper(r.mot.articleForm) +
-    '</strong><small>' + genre + complement + '</small></div>';
+    '<div class="runner-feedback-correction" style="--g:' + g.couleur + '">' +
+    '<i class="runner-feedback-genre" aria-hidden="true">' + g.lettre + '</i>' +
+    '<strong lang="lb">' + runnerEchapper(r.mot.articleForm) +
+    '</strong><small>' + g.nom + complement + '</small></div>';
 }
 function runnerMontrerResultat(r) {
   const p = runnerPartie;

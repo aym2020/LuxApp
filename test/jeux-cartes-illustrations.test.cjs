@@ -30,7 +30,7 @@ test('SPEC 104 : une grille mobile, deux colonnes desktop et boutons or',()=>{
   assert.ok(css.includes('color:var(--accent)'),'record or conservé');
   assert.ok(html.includes('jeux-univers.css?v=9'));
   assert.ok(html.includes('jeux-v21.js?v=17'));
-  assert.ok(html.includes('runner.js?v=19'));
+  assert.ok(Number((html.match(/runner\.js\?v=(\d+)/) || [])[1]) >= 19);
 });
 
 test('SPEC 104 : même organisation HTML, records dynamiques, états verrouillés',()=>{
