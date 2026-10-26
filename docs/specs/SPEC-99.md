@@ -21,3 +21,14 @@ Les éléments interactifs et textes restent en HTML (jamais incrustés dans les
 - `test/jeux-cartes-illustrations.test.cjs` — présence, format, dimensions, poids et conservation des M/F/N du jeu.
 
 Aucune modification des moteurs de jeux, contenus pédagogiques, records, utilisateurs ou sauvegardes. Anciennes images conservées mais non référencées. Recette manuelle à vérifier sur Samsung Chrome/PWA à 320/360/390/430 px CSS, état verrouillé, zoom texte et connexion lente.
+
+## SPEC 100 — Lisibilité des cartes sur illustration (26/10/2026)
+
+La capture Android montrait des descriptions et des records difficiles à lire sur les scènes lumineuses. Correction exclusivement CSS :
+- Renforcement graduel du voile sombre à gauche, jusqu'au centre-droit, sans panneau rectangulaire visible ; les éléments graphiques restent apparents à droite.
+- Assombrissement supplémentaire du bas pour les statistiques et le CTA.
+- Description plus claire (`#f4ede5`, graisse 500) avec ombre diffuse ; même protection des titres et métadonnées.
+- Les WebP, leurs dimensions, les tuiles, les records et les actions des boutons sont inchangés.
+- `jeux-univers.css?v=5` force la mise à jour du cache ; tests statiques dédiés.
+
+Contrôle visuel Android Chrome/PWA encore nécessaire aux largeurs 320–430 px, avec zoom de texte et état verrouillé.

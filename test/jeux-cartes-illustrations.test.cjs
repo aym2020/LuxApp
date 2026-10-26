@@ -31,7 +31,20 @@ test('M/F/N : trois tuiles sur la carte et arches intactes dans le tutoriel',()=
 
 test('Assets SPEC 99 versionnés : l’ancien décor sort du cache',()=>{
   const html=read('public/index.html');
-  assert.match(html,/jeux-univers\.css\?v=4/);
+  assert.match(html,/jeux-univers\.css\?v=5/);
   assert.match(html,/runner\.js\?v=([4-9]|\d{2,})\b/); // v4 ou plus récent
-  assert.doesNotMatch(html,/jeux-univers\.css\?v=3/);
+  assert.doesNotMatch(html,/jeux-univers\.css\?v=4/);
+});
+
+test('SPEC 100 — lisibilité renforcée des deux cartes sans changer les WebP',()=>{
+  const css=read('public/jeux-univers.css');
+  assert.ok(css.includes('rgba(21,16,12,.82)'),'masque gauche Survie');
+  assert.ok(css.includes('rgba(19,14,27,.84)'),'masque gauche Runner');
+  assert.ok(css.includes('rgba(20,17,12,.66)'),'masque bas Survie');
+  assert.ok(css.includes('rgba(19,15,27,.70)'),'masque bas Runner');
+  assert.ok(css.includes('color:#f4ede5'),'couleur description');
+  assert.ok(css.includes('font-weight:500'),'graisse description');
+  assert.ok(css.includes('max-width:88%'),'composition préservée');
+  assert.ok(css.includes('art/jeux-survie-card-portrait.webp'));
+  assert.ok(css.includes('art/jeux-runner-card-portrait.webp'));
 });
