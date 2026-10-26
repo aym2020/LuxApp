@@ -1,0 +1,929 @@
+{
+  "schemaVersion": "lux-match-dialogues-a11-v01",
+  "status": "draft_requires_lod_and_native_review",
+  "authoringRules": [
+    "Les phrases LU sont des brouillons : ne pas les afficher en production sans vérification LOD/grammaire.",
+    "Corriger les variations dépendant de la règle de l'Eifel et les expressions nouvelles avant intégration.",
+    "Les jokers humoristiques non enseignés ne sont jamais évalués linguistiquement.",
+    "Ne générer les options par substitution qu'après audit de la déclinaison, des prépositions et de la source pédagogique.",
+    "Le score d'apprentissage n'est indépendant que des fautes de langue, pas des goûts sociaux."
+  ],
+  "pilotPlayerPersona": {
+    "id": "alex_v01",
+    "name": "Alex",
+    "age": 28,
+    "origin": "Frankräich",
+    "city": "Metz",
+    "languages": [
+      "Franséisch"
+    ],
+    "job": "Banker",
+    "football": false,
+    "morningCoffee": true
+  },
+  "stateVars": [
+    "affinity",
+    "suspicion",
+    "languageScore",
+    "phoneBattery",
+    "claims",
+    "flags",
+    "touchedNetwork",
+    "askedNodeIds",
+    "triggeredTrapIds"
+  ],
+  "openingState": {
+    "affinity": 40,
+    "suspicion": 0,
+    "phoneBattery": 100
+  },
+  "sharedDialogueNodes": [
+    {
+      "id": "salutation",
+      "lessonIds": [
+        1
+      ],
+      "prompt": {
+        "lu": "Moien! Wéi geet et dir?",
+        "fr": "Bonjour ! Comment vas-tu ?"
+      },
+      "choices": [
+        {
+          "id": "salue_bien",
+          "lu": "Mir geet et gutt, merci. An dir?",
+          "fr": "Je vais bien, merci. Et toi ?",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          }
+        },
+        {
+          "id": "salue_court",
+          "lu": "Moien!",
+          "fr": "Bonjour !",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 2,
+            "suspicion": 0
+          }
+        },
+        {
+          "id": "salue_depart",
+          "lu": "Äddi!",
+          "fr": "Au revoir !",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -6,
+            "suspicion": 2
+          },
+          "correctionFr": "Le rendez-vous commence : réponds à la salutation, pas à un au revoir."
+        }
+      ],
+      "theme": "salutations"
+    },
+    {
+      "id": "prenom",
+      "lessonIds": [
+        1
+      ],
+      "prompt": {
+        "lu": "Wéi heeschs du?",
+        "fr": "Comment t'appelles-tu ?"
+      },
+      "choices": [
+        {
+          "id": "prenom_vrai",
+          "lu": "Ech heeschen Alex.",
+          "fr": "Je m'appelle Alex.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          },
+          "claims": {
+            "prenom": "Alex"
+          }
+        },
+        {
+          "id": "prenom_bluff",
+          "lu": "Ech heeschen Max.",
+          "fr": "Je m'appelle Max.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 2
+          },
+          "claims": {
+            "prenom": "Max"
+          },
+          "lie": true
+        },
+        {
+          "id": "prenom_erreur",
+          "lu": "Ech heescht Alex.",
+          "fr": "Je m'appelle Alex (forme fautive).",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -5,
+            "suspicion": 0
+          },
+          "correctionLu": "Ech heeschen Alex.",
+          "correctionFr": "Avec ech, c'est heeschen."
+        }
+      ],
+      "theme": "presentation"
+    },
+    {
+      "id": "age",
+      "lessonIds": [
+        5,
+        14
+      ],
+      "prompt": {
+        "lu": "Wéi al bass du?",
+        "fr": "Quel âge as-tu ?"
+      },
+      "choices": [
+        {
+          "id": "age_vrai",
+          "lu": "Ech sinn aachtanzwanzeg Joer al.",
+          "fr": "J'ai 28 ans.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          },
+          "claims": {
+            "age": 28
+          },
+          "ageLu": "aachtanzwanzeg"
+        },
+        {
+          "id": "age_bluff",
+          "lu": "Ech sinn drësseg Joer al.",
+          "fr": "J'ai 30 ans.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 2
+          },
+          "claims": {
+            "age": 30
+          },
+          "lie": true
+        },
+        {
+          "id": "age_faux_verbe",
+          "lu": "Ech bass aachtanzwanzeg Joer al.",
+          "fr": "J'ai 28 ans (forme fautive).",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -5,
+            "suspicion": 0
+          },
+          "correctionLu": "Ech sinn aachtanzwanzeg Joer al.",
+          "correctionFr": "Avec ech, on dit sinn et non bass."
+        }
+      ],
+      "theme": "age",
+      "eligibility": "playerPersona.age===28"
+    },
+    {
+      "id": "origine",
+      "lessonIds": [
+        7
+      ],
+      "prompt": {
+        "lu": "Vu wou kënns du?",
+        "fr": "D'où viens-tu ?"
+      },
+      "choices": [
+        {
+          "id": "origine_vraie",
+          "lu": "Ech kommen aus Frankräich.",
+          "fr": "Je viens de France.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 5,
+            "suspicion": 0
+          },
+          "claims": {
+            "origin": "Frankräich"
+          }
+        },
+        {
+          "id": "origine_portugal",
+          "lu": "Ech kommen aus Portugal.",
+          "fr": "Je viens du Portugal.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 3
+          },
+          "claims": {
+            "origin": "Portugal"
+          },
+          "lie": true,
+          "flags": [
+            "said_portugal"
+          ],
+          "followupEventId": "trap_portugal"
+        },
+        {
+          "id": "origine_mal_construite",
+          "lu": "Ech sinn aus Frankräich.",
+          "fr": "Je suis de France (forme non ciblée ici).",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -3,
+            "suspicion": 0
+          },
+          "correctionLu": "Ech kommen aus Frankräich.",
+          "correctionFr": "Pour répondre avec le verbe étudié, utiliser Ech kommen aus Frankräich."
+        }
+      ],
+      "theme": "origine",
+      "eligibility": "playerPersona.origin==='Frankräich'"
+    },
+    {
+      "id": "ville",
+      "lessonIds": [
+        10
+      ],
+      "prompt": {
+        "lu": "Wou wunns du?",
+        "fr": "Où habites-tu ?"
+      },
+      "choices": [
+        {
+          "id": "ville_vraie",
+          "lu": "Ech wunnen zu Metz.",
+          "fr": "J'habite à Metz.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          },
+          "claims": {
+            "city": "Metz"
+          }
+        },
+        {
+          "id": "ville_bluff",
+          "lu": "Ech wunnen zu Lëtzebuerg.",
+          "fr": "J'habite au Luxembourg.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 3
+          },
+          "claims": {
+            "city": "Lëtzebuerg"
+          },
+          "lie": true
+        },
+        {
+          "id": "ville_preposition",
+          "lu": "Ech wunnen an Metz.",
+          "fr": "J'habite à Metz (préposition fautive).",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -5,
+            "suspicion": 0
+          },
+          "correctionLu": "Ech wunnen zu Metz.",
+          "correctionFr": "Avec la ville Metz, c'est zu."
+        }
+      ],
+      "theme": "habitation",
+      "eligibility": "playerPersona.city==='Metz'"
+    },
+    {
+      "id": "langue",
+      "lessonIds": [
+        9
+      ],
+      "prompt": {
+        "lu": "Wat fir eng Sprooch schwätz du?",
+        "fr": "Quelle langue parles-tu ?"
+      },
+      "choices": [
+        {
+          "id": "langue_vraie",
+          "lu": "Ech schwätzen Franséisch.",
+          "fr": "Je parle français.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          },
+          "claims": {
+            "language": "Franséisch"
+          }
+        },
+        {
+          "id": "langue_bluff",
+          "lu": "Ech schwätzen Portugisesch.",
+          "fr": "Je parle portugais.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 3
+          },
+          "claims": {
+            "language": "Portugisesch"
+          },
+          "lie": true,
+          "flags": [
+            "said_portuguese"
+          ],
+          "followupEventId": "trap_portugal"
+        },
+        {
+          "id": "langue_verbe_faux",
+          "lu": "Ech schwätzt Franséisch.",
+          "fr": "Je parle français (forme fautive).",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -5,
+            "suspicion": 0
+          },
+          "correctionLu": "Ech schwätzen Franséisch.",
+          "correctionFr": "Avec ech, c'est schwätzen."
+        }
+      ],
+      "theme": "langues",
+      "eligibility": "playerPersona.languages.includes('Franséisch')"
+    },
+    {
+      "id": "metier",
+      "lessonIds": [
+        11
+      ],
+      "prompt": {
+        "lu": "Wat schaffs du?",
+        "fr": "Quel métier fais-tu ?"
+      },
+      "choices": [
+        {
+          "id": "metier_vrai",
+          "lu": "Ech sinn e Banker.",
+          "fr": "Je suis banquier.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          },
+          "claims": {
+            "job": "Banker"
+          }
+        },
+        {
+          "id": "metier_bluff",
+          "lu": "Ech sinn en Dokter.",
+          "fr": "Je suis médecin.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 3
+          },
+          "claims": {
+            "job": "Dokter"
+          },
+          "lie": true,
+          "followupEventId": "trap_metier"
+        },
+        {
+          "id": "metier_verbe_faux",
+          "lu": "Ech bass e Banker.",
+          "fr": "Je suis banquier (forme fautive).",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -5,
+            "suspicion": 0
+          },
+          "correctionLu": "Ech sinn e Banker.",
+          "correctionFr": "Avec ech, on utilise sinn."
+        }
+      ],
+      "theme": "metier",
+      "eligibility": "playerPersona.job==='Banker'"
+    },
+    {
+      "id": "football",
+      "lessonIds": [
+        4,
+        16
+      ],
+      "prompt": {
+        "lu": "Spills du gär Fussball?",
+        "fr": "Aimes-tu jouer au football ?"
+      },
+      "choices": [
+        {
+          "id": "football_non",
+          "lu": "Nee.",
+          "fr": "Non.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 3,
+            "suspicion": 0
+          },
+          "claims": {
+            "football": false
+          }
+        },
+        {
+          "id": "football_oui",
+          "lu": "Jo.",
+          "fr": "Oui.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 4
+          },
+          "claims": {
+            "football": true
+          },
+          "lie": true,
+          "flags": [
+            "said_football"
+          ],
+          "followupEventId": "trap_sport"
+        },
+        {
+          "id": "football_hors_sujet",
+          "lu": "Äddi!",
+          "fr": "Au revoir !",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -6,
+            "suspicion": 0
+          },
+          "correctionFr": "Répondre Jo ou Nee à cette question fermée."
+        }
+      ],
+      "theme": "sport",
+      "eligibility": "playerPersona.football===false",
+      "editorialNote": "Vérifier l'adéquation exacte du football à l'unité débloquée ; la grammaire documente la question."
+    },
+    {
+      "id": "routine",
+      "lessonIds": [
+        16
+      ],
+      "prompt": {
+        "lu": "Drénks du moies Kaffi?",
+        "fr": "Tu bois du café le matin ?"
+      },
+      "choices": [
+        {
+          "id": "routine_vraie",
+          "lu": "Jo, ech drénke Kaffi.",
+          "fr": "Oui, je bois du café.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          },
+          "claims": {
+            "morningCoffee": true
+          }
+        },
+        {
+          "id": "routine_non",
+          "lu": "Nee.",
+          "fr": "Non.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 4,
+            "suspicion": 2
+          },
+          "claims": {
+            "morningCoffee": false
+          },
+          "lie": true
+        },
+        {
+          "id": "routine_mot_seul",
+          "lu": "Kaffi.",
+          "fr": "Café.",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": 0,
+            "suspicion": 0
+          },
+          "correctionLu": "Jo, ech drénke Kaffi.",
+          "correctionFr": "Formuler une réponse complète."
+        }
+      ],
+      "theme": "routine",
+      "eligibility": "playerPersona.morningCoffee===true",
+      "editorialStatus": "needs_review_of_question_drénks"
+    },
+    {
+      "id": "au_revoir",
+      "lessonIds": [
+        1
+      ],
+      "prompt": {
+        "lu": "Äddi!",
+        "fr": "Au revoir !"
+      },
+      "choices": [
+        {
+          "id": "fin_polie",
+          "lu": "Äddi!",
+          "fr": "Au revoir !",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 7,
+            "suspicion": 0
+          }
+        },
+        {
+          "id": "fin_courtoise",
+          "lu": "Schéinen Dag nach!",
+          "fr": "Bonne journée !",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 6,
+            "suspicion": 0
+          }
+        },
+        {
+          "id": "fin_decalee",
+          "lu": "Moien!",
+          "fr": "Bonjour !",
+          "learningCorrect": false,
+          "effects": {
+            "affinity": -3,
+            "suspicion": 0
+          },
+          "correctionFr": "Le rendez-vous se termine : prends congé."
+        }
+      ],
+      "theme": "cloture"
+    }
+  ],
+  "conditionalTrapEvents": [
+    {
+      "id": "trap_portugal",
+      "archetypeId": "voyageuse",
+      "condition": {
+        "anyClaim": [
+          {
+            "origin": "Portugal"
+          },
+          {
+            "language": "Portugisesch"
+          }
+        ],
+        "requiresLie": true
+      },
+      "tag": "comedie_hors_programme",
+      "npc": {
+        "luDraft": "Du kënns aus Portugal? Wéi en Déier sinn ech? Op Portugisesch!",
+        "fr": "Tu viens du Portugal ? Alors, à quel animal je ressemble ? Réponds en portugais !",
+        "linguisticReviewPending": true
+      },
+      "choices": [
+        {
+          "id": "vaca",
+          "text": "Vaca",
+          "meaningFr": "Vache",
+          "effects": {
+            "affinity": -14,
+            "suspicion": 18
+          },
+          "reactionFr": "UNE VACHE ?! Silence. La musique s'arrête.",
+          "visual": "record_scratch"
+        },
+        {
+          "id": "hipopotamo",
+          "text": "Hipopótamo",
+          "meaningFr": "Hippopotame",
+          "effects": {
+            "affinity": -16,
+            "suspicion": 18
+          },
+          "reactionFr": "UN HIPPOPOTAME ?! Zoom dramatique.",
+          "visual": "dramatic_zoom"
+        },
+        {
+          "id": "gata",
+          "text": "Gata",
+          "meaningFr": "Chatte / chat femelle",
+          "effects": {
+            "affinity": 7,
+            "suspicion": 0
+          },
+          "reactionFr": "Oh, un chat ! Elle sourit.",
+          "visual": "sparkles"
+        },
+        {
+          "id": "aveu",
+          "luDraft": "Ech schwätzen net Portugisesch.",
+          "fr": "Je t'avoue que je ne parle pas portugais.",
+          "effects": {
+            "affinity": 2,
+            "suspicion": -6
+          },
+          "reactionFr": "Elle rit : c'est un peu mieux que d'inventer !",
+          "visual": "laugh",
+          "linguisticReviewPending": true
+        }
+      ],
+      "rules": [
+        "Ce piège ne teste jamais du vocabulaire portugais pour les points de LU.",
+        "L'aveu est toujours disponible.",
+        "Si le personnage vient réellement du Portugal et sait parler portugais, n'en faire aucune punition de mensonge."
+      ]
+    },
+    {
+      "id": "trap_sport",
+      "archetypeId": "sportive",
+      "condition": {
+        "flagsAll": [
+          "said_football"
+        ],
+        "requiresLie": true
+      },
+      "tag": "cutscene",
+      "npc": {
+        "luDraft": "Spills du gär Fussball? Da komm!",
+        "fr": "Tu adores le foot ? Parfait, on joue après le café !",
+        "linguisticReviewPending": true
+      },
+      "choices": [
+        {
+          "id": "accepter",
+          "luDraft": "Jo, gär!",
+          "fr": "Oui, avec plaisir !",
+          "effects": {
+            "affinity": 5,
+            "suspicion": 8
+          },
+          "reactionFr": "Ton personnage manque le ballon de trois mètres.",
+          "visual": "miss_ball"
+        },
+        {
+          "id": "avouer",
+          "luDraft": "Ech spillen net gär Fussball.",
+          "fr": "En fait, je n'aime pas jouer au foot.",
+          "effects": {
+            "affinity": 0,
+            "suspicion": -6
+          },
+          "reactionFr": "Elle apprécie la franchise tardive.",
+          "visual": "shrug"
+        }
+      ]
+    },
+    {
+      "id": "trap_metier",
+      "archetypeId": "bc_bg",
+      "condition": {
+        "claims": {
+          "job": "Dokter"
+        },
+        "requiresLie": true
+      },
+      "tag": "dialogue",
+      "npc": {
+        "luDraft": "Du bass Dokter? Wou schaffs du?",
+        "fr": "Tu es médecin ? Tu travailles où ?",
+        "linguisticReviewPending": true
+      },
+      "choices": [
+        {
+          "id": "improviser",
+          "luDraft": "Ech schaffen am Spidol.",
+          "fr": "Je travaille à l'hôpital.",
+          "effects": {
+            "affinity": 3,
+            "suspicion": 12
+          },
+          "reactionFr": "Elle pose une autre question ; ton bluff devient fragile.",
+          "visual": "suspicious_eyebrow"
+        },
+        {
+          "id": "avouer",
+          "luDraft": "Nee, ech sinn e Banker.",
+          "fr": "Non, je suis banquier.",
+          "effects": {
+            "affinity": 0,
+            "suspicion": -6
+          },
+          "reactionFr": "Elle rit : pourquoi inventer ça ?",
+          "visual": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "trap_dessin",
+      "archetypeId": "artiste",
+      "condition": {
+        "flagsAll": [
+          "claimed_artist"
+        ],
+        "requiresLie": true
+      },
+      "tag": "cutscene",
+      "npc": {
+        "luDraft": "Kanns du molen?",
+        "fr": "Tu sais dessiner ? Dessine-moi !",
+        "linguisticReviewPending": true
+      },
+      "choices": [
+        {
+          "id": "dessiner",
+          "fr": "Dessiner sur la serviette",
+          "effects": {
+            "affinity": 6,
+            "suspicion": 4
+          },
+          "reactionFr": "Ton portrait ressemble à une patate. Elle éclate de rire.",
+          "visual": "draw_potato"
+        },
+        {
+          "id": "avouer",
+          "fr": "Avouer ne pas savoir dessiner",
+          "effects": {
+            "affinity": 2,
+            "suspicion": -4
+          },
+          "reactionFr": "Elle te tend quand même un crayon.",
+          "visual": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "trap_arcade",
+      "archetypeId": "geek",
+      "condition": {
+        "flagsAll": [
+          "claimed_gamer"
+        ],
+        "requiresLie": true
+      },
+      "tag": "cutscene",
+      "npc": {
+        "luDraft": "Spills du gär?",
+        "fr": "Ah, tu adores les jeux rétro ? Montre-moi !",
+        "linguisticReviewPending": true
+      },
+      "choices": [
+        {
+          "id": "essayer",
+          "fr": "Essayer sa mini-console",
+          "effects": {
+            "affinity": 5,
+            "suspicion": 5
+          },
+          "reactionFr": "Tu perds en quatre secondes : elle te propose une revanche.",
+          "visual": "retro_fail"
+        },
+        {
+          "id": "avouer",
+          "fr": "Avouer n'y rien connaître",
+          "effects": {
+            "affinity": 3,
+            "suspicion": -5
+          },
+          "reactionFr": "Elle t'explique sa borne préférée.",
+          "visual": "teach"
+        }
+      ]
+    },
+    {
+      "id": "trap_telephone",
+      "archetypeId": "chill",
+      "condition": {
+        "event": "phone_opened_during_date",
+        "profilePhoneTolerance": "anti_phone"
+      },
+      "tag": "environmental",
+      "npc": {
+        "luDraft": "Bass du ëmmer um Telefon?",
+        "fr": "Tu es toujours sur ton téléphone ?",
+        "linguisticReviewPending": true
+      },
+      "choices": [
+        {
+          "id": "ranger",
+          "fr": "Ranger immédiatement le téléphone",
+          "effects": {
+            "affinity": -8,
+            "suspicion": 0
+          },
+          "reactionFr": "Elle reprend la conversation.",
+          "visual": "phone_down"
+        },
+        {
+          "id": "insister",
+          "fr": "Continuer à consulter",
+          "effects": {
+            "affinity": -13,
+            "suspicion": 5
+          },
+          "reactionFr": "Elle regarde ostensiblement sa montre.",
+          "visual": "cold_look"
+        }
+      ],
+      "rules": [
+        "Déclenché par consultation, même sans mensonge ; annoncé par son post.",
+        "Première consultation => -8 maximum ; seconde => -5 supplémentaires (pas de doublon à chaque frame)."
+      ]
+    }
+  ],
+  "archetypeFlows": [
+    {
+      "id": "sportive",
+      "flow": [
+        "salutation",
+        "prenom",
+        "football",
+        "origine",
+        "ville",
+        "routine",
+        "au_revoir"
+      ],
+      "trap": "trap_sport"
+    },
+    {
+      "id": "bc_bg",
+      "flow": [
+        "salutation",
+        "prenom",
+        "metier",
+        "origine",
+        "age",
+        "ville",
+        "au_revoir"
+      ],
+      "trap": "trap_metier"
+    },
+    {
+      "id": "artiste",
+      "flow": [
+        "salutation",
+        "prenom",
+        "ville",
+        "origine",
+        "langue",
+        "routine",
+        "au_revoir"
+      ],
+      "trap": "trap_dessin",
+      "specialChoiceFlag": "claimed_artist"
+    },
+    {
+      "id": "geek",
+      "flow": [
+        "salutation",
+        "prenom",
+        "langue",
+        "metier",
+        "football",
+        "ville",
+        "au_revoir"
+      ],
+      "trap": "trap_arcade",
+      "specialChoiceFlag": "claimed_gamer"
+    },
+    {
+      "id": "voyageuse",
+      "flow": [
+        "salutation",
+        "prenom",
+        "origine",
+        "langue",
+        "age",
+        "ville",
+        "au_revoir"
+      ],
+      "trap": "trap_portugal"
+    },
+    {
+      "id": "chill",
+      "flow": [
+        "salutation",
+        "prenom",
+        "routine",
+        "ville",
+        "metier",
+        "age",
+        "au_revoir"
+      ],
+      "trap": "trap_telephone"
+    }
+  ],
+  "notes": [
+    "V1 joue 6-8 nœuds (la longueur ci-dessus inclut des options de variations et peuvent être filtrés).",
+    "Les deux archétypes artiste/geek nécessitent une scène de dialogue de claim initial à écrire avant de rendre leur trap activable ; ne jamais déclencher sans flag.",
+    "La version des choix du joueur (vrai âge 28, etc.) est liée au persona Alex, pas aux informations du profil de la partenaire.",
+    "Les événements de gag sont en français si la traduction luxembourgeoise n'est pas sûre ; ne pas supposer une phrase LU validée."
+  ]
+}
