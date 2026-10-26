@@ -861,7 +861,7 @@ function runnerRendu3DActif() {
 }
 function runnerCharger3D() {
   if (!runnerModule3D) {
-    runnerModule3D = import('./runner-3d.js?v=7').then(() => window.Runner3D);
+    runnerModule3D = import('./runner-3d.js?v=8').then(() => window.Runner3D);
     runnerModule3D.catch(() => { runnerModule3D = null; });
   }
   return runnerModule3D;

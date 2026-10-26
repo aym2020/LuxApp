@@ -11,6 +11,11 @@
      (voir public/runner3d/CREDITS.md). */
 import * as THREE from './vendor/three/three.module.min.js';
 import { GLTFLoader } from './vendor/three/GLTFLoader.js';
+import { mergeGeometries } from './vendor/three/BufferGeometryUtils.js';
+import { EffectComposer } from './vendor/three/EffectComposer.js';
+import { RenderPass } from './vendor/three/RenderPass.js';
+import { UnrealBloomPass } from './vendor/three/UnrealBloomPass.js';
+import { OutputPass } from './vendor/three/OutputPass.js';
 
 const DISTANCE = 18;          // distance (unités 3D) d'apparition d'un trio
 const VOIE = 1.05;            // écart entre deux voies
@@ -109,10 +114,8 @@ function textureEtiquette(genre) {
     g.fillStyle = c; g.beginPath(); g.arc(128, 96, 76, 0, Math.PI * 2); g.fill();
     g.strokeStyle = 'rgba(255,255,255,0.85)'; g.lineWidth = 5; g.beginPath(); g.arc(128, 96, 80, 0, Math.PI * 2); g.stroke();
     g.fillStyle = '#0f0e0c'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.font = '800 104px Inter, system-ui, sans-serif'; g.fillText(genre.toUpperCase(), 128, 100);
-    g.fillStyle = '#ffffff'; g.font = '800 34px Inter, system-ui, sans-serif';
-    g.shadowColor = 'rgba(0,0,0,0.8)'; g.shadowBlur = 8;
-    g.fillText(NOMS[genre], 128, 214);
+    g.font = '800 112px Inter, system-ui, sans-serif'; g.fillText(genre.toUpperCase(), 128, 104);
+    // Le nom du genre n'est plus écrit sur le portail : illisible de loin, déjà sur les boutons.
   });
 }
 function textureArrivee() {
@@ -148,7 +151,7 @@ function contourPortail(forme, l, h) {
 }
 
 // Dimensions communes des portails (unités 3D).
-const PORTAIL = { l: 0.94, h: 1.85, cadre: 0.13, marge: 0.42 };
+const PORTAIL = { l: 0.8, h: 1.75, cadre: 0.065, marge: 0.36 }; // V2.4 : plus fins, la route se voit entre eux
 
 // Intérieur : léger dégradé coloré avec un scintillement doux qui monte.
 function materiauMembrane(couleur, hauteur) {
@@ -198,8 +201,8 @@ function geometrieCadre(forme) {
   const contour = new THREE.Shape();
   exterieur.concat(interieur).forEach((p, i) => (i ? contour.lineTo(p[0], p[1]) : contour.moveTo(p[0], p[1])));
   contour.closePath();
-  const geo = new THREE.ExtrudeGeometry(contour, { depth: 0.16, bevelEnabled: true, bevelThickness: 0.025, bevelSize: 0.02, bevelSegments: 2, curveSegments: 4 });
-  geo.translate(0, 0, -0.08);
+  const geo = new THREE.ExtrudeGeometry(contour, { depth: 0.1, bevelEnabled: true, bevelThickness: 0.018, bevelSize: 0.014, bevelSegments: 2, curveSegments: 4 });
+  geo.translate(0, 0, -0.05);
   return geo;
 }
 
@@ -244,9 +247,9 @@ function creerTrio(lueur, etiquettes, halos) {
   ORDRE.forEach((genre, i) => {
     const arche = creerArche(genre, lueur, halos);
     arche.position.x = (i - 1) * VOIE;
-    const pastille = new THREE.Mesh(new THREE.PlaneGeometry(0.74, 0.74),
+    const pastille = new THREE.Mesh(new THREE.PlaneGeometry(0.66, 0.66),
       new THREE.MeshBasicMaterial({ map: etiquettes[genre], transparent: true, depthWrite: false, toneMapped: false }));
-    pastille.position.set(0, 1.4, 0.13);
+    pastille.position.set(0, 1.32, 0.11);
     arche.add(pastille);
     arche.userData.materiaux.push(pastille.material); arche.userData.opacites.push(1);
     trio.add(arche);
@@ -295,11 +298,12 @@ function creer(conteneur) {
   }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.15;
+  // Tonalité « Neutral » : garde la saturation des néons (ACES les délavait).
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMappingExposure = 1.05;
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x1d1528, 16, 52);
+  scene.fog = new THREE.Fog(0x170f22, 12, 46); // brouillard plus marqué : profondeur
   const camera = new THREE.PerspectiveCamera(58, 1, 0.1, 140);
   camera.position.set(0, 2.55, 4.4);
   camera.lookAt(0, 0.35, -8);
@@ -308,7 +312,9 @@ function creer(conteneur) {
   // venant de la caméra pour éclairer le dos du coureur.
   scene.add(new THREE.HemisphereLight(0x9b8cff, 0x241a2a, 1.25));
   const lune = new THREE.DirectionalLight(0xb9c4ff, 0.9); lune.position.set(-6, 9, -4); scene.add(lune);
-  const face = new THREE.DirectionalLight(0xffd9a0, 1.5); face.position.set(1.5, 4, 6); scene.add(face);
+  const face = new THREE.DirectionalLight(0xffd9a0, 1.3); face.position.set(1.5, 4, 6); scene.add(face);
+  // Lumière de contour dorée, venant de devant le coureur : il se détache du décor.
+  const contour = new THREE.DirectionalLight(0xffc860, 1.6); contour.position.set(0, 2.5, -6); scene.add(contour);
 
   const lueur = textureLueur();
   const etiquettes = { m: textureEtiquette('m'), f: textureEtiquette('f'), n: textureEtiquette('n') };
@@ -386,8 +392,23 @@ function creer(conteneur) {
   const etat = {
     coureur: null, mixer: null, actions: {}, actionCourante: null,
     x: 0, distanceDecor: 0, decor: [], horloge: 0, choc: 0, auraCouleur: new THREE.Color(),
-    passe: null, finJouee: false, largeur: 0, hauteur: 0
+    passe: null, finJouee: false, largeur: 0, hauteur: 0,
+    fovBase: 58, zoom: 0, secousseCam: 0, vitesseCombo: 0, serie: 0
   };
+  // Traînées de vitesse (à partir d'un combo de 3) : segments fins sur les côtés.
+  const NB_TRAINEES = 26;
+  const traineesPos = new Float32Array(NB_TRAINEES * 6);
+  const traineesGeo = new THREE.BufferGeometry();
+  traineesGeo.setAttribute('position', new THREE.BufferAttribute(traineesPos, 3));
+  const trainees = new THREE.LineSegments(traineesGeo, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+  trainees.frustumCulled = false; scene.add(trainees);
+  const traineesZ = new Float32Array(NB_TRAINEES);
+  for (let i = 0; i < NB_TRAINEES; i++) {
+    const cote = i % 2 ? 1 : -1;
+    traineesPos[i * 6] = traineesPos[i * 6 + 3] = cote * (1.9 + Math.random() * 2.2);
+    traineesPos[i * 6 + 1] = traineesPos[i * 6 + 4] = 0.3 + Math.random() * 2.6;
+    traineesZ[i] = -Math.random() * 30;
+  }
 
   function jouer(nom, options) {
     const action = etat.actions[nom];
@@ -409,7 +430,8 @@ function creer(conteneur) {
     feuillage: [0x2f6b45, 0x3d7a4a, 0x2a5c49, 0x4b7d3c].map(c => new THREE.MeshLambertMaterial({ color: c, flatShading: true, emissive: c, emissiveIntensity: 0.12 })),
     murs: [0xd8c7b0, 0xc9b2d6, 0xb7c9d8, 0xe0c9a6, 0xc2d3bf].map(c => new THREE.MeshLambertMaterial({ color: c, emissive: c, emissiveIntensity: 0.08 })),
     toits: [0x7a3b34, 0x4a4060, 0x5b4636].map(c => new THREE.MeshLambertMaterial({ color: c, flatShading: true })),
-    fenetre: new THREE.MeshBasicMaterial({ color: 0xffd27a }),
+    fenetre: new THREE.MeshBasicMaterial({ color: 0xffd27a, side: THREE.DoubleSide }),
+    fenetreFroide: new THREE.MeshBasicMaterial({ color: 0xa8c4ff, side: THREE.DoubleSide }),
     porte: new THREE.MeshLambertMaterial({ color: 0x3b2a22 })
   };
   const geoDecor = {
@@ -491,6 +513,27 @@ function creer(conteneur) {
         }
         return groupe;
       };
+      // Fenêtres éclairées sur la façade tournée vers la route (une seule géométrie par immeuble).
+      const avecFenetres = (batiment, cote, nombre) => {
+        const groupe = new THREE.Group();
+        groupe.position.x = batiment.position.x; batiment.position.x = 0;
+        groupe.add(batiment);
+        batiment.updateMatrixWorld(true);
+        const boite = new THREE.Box3().setFromObject(batiment);
+        const faceX = cote > 0 ? boite.min.x - 0.02 : boite.max.x + 0.02;
+        const carres = [];
+        for (let i = 0; i < nombre; i++) {
+          const q = new THREE.PlaneGeometry(0.16, 0.2);
+          q.rotateY(cote > 0 ? -Math.PI / 2 : Math.PI / 2);
+          q.translate(faceX, boite.min.y + 0.4 + hasard() * (boite.max.y - boite.min.y - 0.6),
+            boite.min.z + 0.15 + hasard() * Math.max(0.1, boite.max.z - boite.min.z - 0.3));
+          carres.push(q);
+        }
+        const fenetres = new THREE.Mesh(mergeGeometries(carres), hasard() < 0.25 ? materiauxDecor.fenetreFroide : materiauxDecor.fenetre);
+        carres.forEach(q => q.dispose());
+        groupe.add(fenetres);
+        return groupe;
+      };
       // Bande de pelouse le long du trottoir (rend le décor plus aéré).
       const pelouse = new THREE.Mesh(new THREE.PlaneGeometry(9, 160), materiauxDecor.pelouse);
       pelouse.rotation.x = -Math.PI / 2;
@@ -505,21 +548,23 @@ function creer(conteneur) {
         else if (tirage < 0.72) objet = maison();
         else if (tirage < 0.88) {
           const petits = batiments.filter(n => n.indexOf('low-detail') >= 0);
-          objet = rendreMat(pieces[petits[Math.floor(hasard() * petits.length)]].clone(), 0.06, 0x8a7fa8);
+          objet = rendreMat(pieces[petits[Math.floor(hasard() * petits.length)]].clone(), 0.03, 0x5c5480);
           objet.scale.setScalar(3.2 + hasard() * 0.8);
           objet.rotation.y = cote > 0 ? -Math.PI / 2 : Math.PI / 2;
         }
         if (!objet) continue; // espace vide : on voit la pelouse et le ciel
         objet.position.x = x;
+        if (tirage >= 0.72) objet = avecFenetres(objet, cote, 10);
         scene.add(objet); etat.decor.push({ objet, z: -z - hasard() * 0.8 });
       }
       // Arrière-plan : quelques tours seulement, loin de la route.
       for (let z = 2; z < BOUCLE; z += 12) {
         const tours = batiments.filter(n => n.indexOf('skyscraper') >= 0);
-        const t = rendreMat(pieces[tours[Math.floor(hasard() * tours.length)]].clone(), 0.05, 0x6f6694);
+        const t = rendreMat(pieces[tours[Math.floor(hasard() * tours.length)]].clone(), 0.02, 0x4c4570);
         t.scale.setScalar(3 + hasard() * 1.4);
         t.position.set(cote * (LARGEUR_ROUTE / 2 + 11 + hasard() * 5), 0, 0);
-        scene.add(t); etat.decor.push({ objet: t, z: -z });
+        const tour = avecFenetres(t, cote, 22);
+        scene.add(tour); etat.decor.push({ objet: tour, z: -z });
       }
       // Lampadaires tournés vers la route, avec halo chaud.
       for (let z = 0; z < BOUCLE; z += 6) {
@@ -536,11 +581,11 @@ function creer(conteneur) {
         const groupe = new THREE.Group();
         groupe.add(lampe);
         const tete = -cote * Math.max(0.2, taille.x - 0.08);
-        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: lueur, color: 0xffd27a, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false }));
+        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: lueur, color: 0xffd27a, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false }));
         halo.scale.set(0.9, 0.9, 1); halo.position.set(tete, taille.y - 0.12, 0);
         groupe.add(halo);
         const flaque = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 2.2),
-          new THREE.MeshBasicMaterial({ map: lueur, color: 0xffc860, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false }));
+          new THREE.MeshBasicMaterial({ map: lueur, color: 0xffc860, transparent: true, opacity: 0.13, blending: THREE.AdditiveBlending, depthWrite: false }));
         flaque.rotation.x = -Math.PI / 2; flaque.position.set(tete, 0.014, 0);
         groupe.add(flaque);
         groupe.position.x = cote * (LARGEUR_ROUTE / 2 + 0.35);
@@ -576,9 +621,15 @@ function creer(conteneur) {
     if (l === etat.largeur && h === etat.hauteur) return;
     etat.largeur = l; etat.hauteur = h;
     renderer.setSize(l, h, false);
+    if (composer) {
+      composer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+      composer.setSize(l, h);
+      bloom.resolution.set(Math.round(l / 2), Math.round(h / 2)); // bloom à demi-résolution
+    }
     camera.aspect = l / h;
     // Écran étroit : un peu plus de champ pour voir les trois voies.
-    camera.fov = l / h < 0.75 ? 62 : 55;
+    etat.fovBase = l / h < 0.75 ? 62 : 55;
+    camera.fov = etat.fovBase;
     camera.updateProjectionMatrix();
   }
 
@@ -604,11 +655,12 @@ function creer(conteneur) {
       eclater((voie - 1) * VOIE, couleur, reduit ? 8 : (r.serie >= 3 ? 34 : 22));
       if (r.serie >= 3 && !reduit) eclater((voie - 1) * VOIE, 0xf5cf4d, 12);
       etat.auraCouleur.set(couleur); aura.material.opacity = 0.9;
+      if (!reduit) { etat.zoom = 1; jouer('Jump', { une: true, fondu: 0.06 }); } // petit saut + zoom
       onde.material.color.set(couleur); onde.material.opacity = reduit ? 0 : 0.9; onde.scale.setScalar(1);
       onde.position.x = (voie - 1) * VOIE;
     } else {
       etat.auraCouleur.set(0xef7a73); aura.material.opacity = 0.8;
-      if (!reduit) etat.choc = 0.45;
+      if (!reduit) { etat.choc = 0.45; etat.secousseCam = 0.35; }
       jouer('RecieveHit', { une: true, fondu: 0.08 });
     }
     aura.material.color.copy(etat.auraCouleur);
@@ -621,7 +673,8 @@ function creer(conteneur) {
     const avance = p.etat === 'course';
     if (etat.mixer) {
       // Retour à la course après un coup reçu.
-      if (etat.actionCourante === etat.actions.RecieveHit && !etat.actions.RecieveHit.isRunning() && avance) jouer('Run', { fondu: 0.2 });
+      const ponctuelle = etat.actionCourante === etat.actions.RecieveHit || etat.actionCourante === etat.actions.Jump;
+      if (ponctuelle && !etat.actionCourante.isRunning() && avance) jouer('Run', { fondu: 0.15 });
       if (p.etat === 'fin' && !etat.finJouee) {
         etat.finJouee = true;
         if (p.victoire && p.mode === 'sprint') jouer('Victory', { fondu: 0.25 });
@@ -703,7 +756,48 @@ function creer(conteneur) {
     partGeo.attributes.position.needsUpdate = true;
     partGeo.attributes.color.needsUpdate = true;
 
-    renderer.render(scene, camera);
+    // Caméra : zoom bref sur un bon portail, secousse sur une erreur, champ plus large en combo.
+    const enCombo = p.serie >= 3 && avance;
+    etat.vitesseCombo += ((enCombo ? 1 : 0) - etat.vitesseCombo) * Math.min(1, dt * 3);
+    etat.zoom = Math.max(0, etat.zoom - dt * 3);
+    etat.secousseCam = Math.max(0, etat.secousseCam - dt);
+    const fov = etat.fovBase - etat.zoom * 3 + etat.vitesseCombo * 4;
+    if (Math.abs(camera.fov - fov) > 0.01) { camera.fov = fov; camera.updateProjectionMatrix(); }
+    const s = etat.secousseCam;
+    camera.position.set(s ? (Math.random() - 0.5) * 0.12 * s / 0.35 : 0, 2.55 + (s ? (Math.random() - 0.5) * 0.08 * s / 0.35 : 0), 4.4);
+    // Traînées de vitesse.
+    trainees.material.opacity = 0.35 * etat.vitesseCombo;
+    if (etat.vitesseCombo > 0.02) {
+      const v = (p.portail ? DISTANCE / p.portail.duree : 6) * 2.2 * dt;
+      for (let i = 0; i < NB_TRAINEES; i++) {
+        traineesZ[i] += v;
+        if (traineesZ[i] > 4) traineesZ[i] -= 34;
+        traineesPos[i * 6 + 2] = traineesZ[i]; traineesPos[i * 6 + 5] = traineesZ[i] - 1.6;
+      }
+      traineesGeo.attributes.position.needsUpdate = true;
+    }
+    rendreImage(dt);
+  }
+
+  // ── 5. Bloom (halo lumineux réel) : actif seulement si le téléphone suit.
+  // Mesure des 90 premières images : au-dessus de ~22 ms en moyenne, on le coupe.
+  let composer = null, bloom = null;
+  const mesure = { images: 0, total: 0 };
+  try {
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.42, 0.28, 0.5); // force, rayon, seuil
+    composer.addPass(bloom);
+    composer.addPass(new OutputPass());
+  } catch (_) { composer = null; }
+  function rendreImage(dt) {
+    if (composer && mesure.images < 90 && dt > 0) {
+      mesure.images++; mesure.total += dt;
+      if (mesure.images === 90 && mesure.total / 90 > 0.022) {
+        composer.dispose(); composer = null; // trop lent : rendu sans bloom
+      }
+    }
+    if (composer) composer.render(); else renderer.render(scene, camera);
   }
 
   // Libère la carte graphique (aucune fuite entre deux parties).
@@ -712,6 +806,7 @@ function creer(conteneur) {
       if (o.geometry && !o.userData.partage) o.geometry.dispose();
       if (o.material) [].concat(o.material).forEach(m => { if (m.map && m.map.isCanvasTexture) m.map.dispose(); m.dispose(); });
     });
+    if (composer) composer.dispose();
     renderer.dispose();
     if (renderer.forceContextLoss) renderer.forceContextLoss();
     canvas.remove();
