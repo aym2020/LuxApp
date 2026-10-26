@@ -50,6 +50,10 @@ Ces fichiers conservent volontairement leurs chemins historiques, car les **scri
 
 La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. Les rapports générés ne doivent **jamais** être corrigés manuellement pour maquiller un écart.
 
+## Nouveau concept de jeu — Lux Match (documentation seule)
+
+[**SPEC 109 — Lux Match : Double jeu**](specs/SPEC-109.md) : proposition de dating arcade PS1, smartphone à batterie limitée durant le rendez-vous, 6 archétypes fictifs et dialogues conditionnels. Banques de conception : [archétypes et profils](../data/jeux/lux-match/archetypes-v01.json) · [dialogues A1.1 et pièges](../data/jeux/lux-match/dialogues-a11-v01.json). **Aucun code de production branché ; dialogues LU à auditer.**
+
 ## Recherche, maquettes, prototypes et archives
 
 | Répertoire | Utilisation |
