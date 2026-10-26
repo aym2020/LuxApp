@@ -232,15 +232,15 @@
         },
         {
           "id": "origine_mal_construite",
-          "lu": "Ech sinn aus Frankräich.",
-          "fr": "Je suis de France (forme non ciblée ici).",
+          "lu": "Ech kënnt aus Frankräich.",
+          "fr": "Je viens de France (conjugaison fautive).",
           "learningCorrect": false,
           "effects": {
             "affinity": -3,
             "suspicion": 0
           },
           "correctionLu": "Ech kommen aus Frankräich.",
-          "correctionFr": "Pour répondre avec le verbe étudié, utiliser Ech kommen aus Frankräich."
+          "correctionFr": "Avec ech, utiliser kommen et non kënnt."
         }
       ],
       "theme": "origine",
@@ -467,6 +467,84 @@
       "theme": "sport",
       "eligibility": "playerPersona.football===false",
       "editorialNote": "Vérifier l'adéquation exacte du football à l'unité débloquée ; la grammaire documente la question."
+    },
+    {
+      "id": "dessin",
+      "lessonIds": [
+        4,
+        16
+      ],
+      "prompt": {
+        "lu": "Mols du gär?",
+        "fr": "Tu aimes dessiner ?"
+      },
+      "choices": [
+        {
+          "id": "dessin_non",
+          "lu": "Nee.",
+          "fr": "Non.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 4,
+            "suspicion": 0
+          }
+        },
+        {
+          "id": "dessin_oui",
+          "lu": "Jo.",
+          "fr": "Oui.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 3
+          },
+          "lie": true,
+          "flags": [
+            "claimed_artist"
+          ]
+        }
+      ],
+      "theme": "hobbies",
+      "editorialStatus": "draft_outside_core_a11"
+    },
+    {
+      "id": "videogames",
+      "lessonIds": [
+        4,
+        16
+      ],
+      "prompt": {
+        "lu": "Spills du gär Computerspiller?",
+        "fr": "Tu aimes jouer aux jeux vidéo ?"
+      },
+      "choices": [
+        {
+          "id": "game_non",
+          "lu": "Nee.",
+          "fr": "Non.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 4,
+            "suspicion": 0
+          }
+        },
+        {
+          "id": "game_oui",
+          "lu": "Jo.",
+          "fr": "Oui.",
+          "learningCorrect": true,
+          "effects": {
+            "affinity": 8,
+            "suspicion": 3
+          },
+          "lie": true,
+          "flags": [
+            "claimed_gamer"
+          ]
+        }
+      ],
+      "theme": "hobbies",
+      "editorialStatus": "draft_outside_core_a11"
     },
     {
       "id": "routine",
@@ -871,6 +949,7 @@
         "salutation",
         "prenom",
         "ville",
+        "dessin",
         "origine",
         "langue",
         "routine",
@@ -885,6 +964,7 @@
         "salutation",
         "prenom",
         "langue",
+        "videogames",
         "metier",
         "football",
         "ville",
@@ -922,8 +1002,9 @@
   ],
   "notes": [
     "V1 joue 6-8 nœuds (la longueur ci-dessus inclut des options de variations et peuvent être filtrés).",
-    "Les deux archétypes artiste/geek nécessitent une scène de dialogue de claim initial à écrire avant de rendre leur trap activable ; ne jamais déclencher sans flag.",
     "La version des choix du joueur (vrai âge 28, etc.) est liée au persona Alex, pas aux informations du profil de la partenaire.",
-    "Les événements de gag sont en français si la traduction luxembourgeoise n'est pas sûre ; ne pas supposer une phrase LU validée."
+    "Les événements de gag sont en français si la traduction luxembourgeoise n'est pas sûre ; ne pas supposer une phrase LU validée.",
+    "Les nœuds dessin et videogames sont des brouillons optionnels hors lexique A1.1 strict : ne débloquer qu'après validation du cours correspondant.",
+    "Tous les pièges ont désormais une voie de déclenchement atteignable depuis le déroulé de leur archétype."
   ]
 }
