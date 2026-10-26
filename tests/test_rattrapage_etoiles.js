@@ -143,5 +143,7 @@ assert.ok(/\.pl-rattrapage\s*\{[^}]*flex-direction:\s*column/.test(css),
 assert.ok(css.includes('.pf-rattrapage'));
 assert.ok(parcours.includes("run.mode === 'rattrapage' ? appliquerResultatRattrapage"));
 assert.ok(parcours.includes("if (run.mode === 'unite' || run.mode === 'lecon')"));
-assert.ok(parcours.includes('★ Rattraper ma 3e étoile'));
+assert.ok(parcours.includes('Gagner ma 3e étoile'));
+assert.ok(parcours.includes('onclick="lancerRattrapageEtoile('));
+assert.ok(parcours.includes('onclick="lancerRevisionErreursUnite('));
 console.log('SPEC 58 : OK — 2→3 étoiles, défi historique, progrès non régressif, cloud, suppression points V1.');

@@ -599,19 +599,26 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   }
   // SPEC 58 : rattrapage permanent pour une unité à 2 étoiles.
   // L'unité complète reste disponible, le mini-défi est facultatif.
+  // SPEC 108 : deux actions contextuelles dans un composant commun compact.
+  // Le rattrapage noté et la révision non notée gardent leurs moteurs distincts.
   if (peutRattraperEtoile(l, u)) {
-    const detail = detailRattrapageValide(l, u.id);
-    html += '<button class="pc-btn wide pl-rattrapage" onclick="lancerRattrapageEtoile(' + u.id + ')">' +
-      '★ Rattraper ma 3e étoile <small>' + best + ' % → 90 % · ' +
-      (detail ? 'questions à retravailler' : 'défi ciblé') + '</small></button>';
+    html += '<button type="button" class="pc-btn wide pl-rattrapage pl-action-unite pl-gagner-etoile"' +
+      ' onclick="lancerRattrapageEtoile(' + u.id + ')">' +
+      '<span class="pl-action-icone" aria-hidden="true">★</span>' +
+      '<span class="pl-action-contenu">' +
+        '<span class="pl-action-titre">Gagner ma 3e étoile</span>' +
+        '<span class="pl-action-sous-texte">' + best + ' % → 90 % · Défi ciblé</span>' +
+      '</span><span class="pl-action-chevron" aria-hidden="true">›</span></button>';
   }
-  // SPEC 60 : l'unité à 3 étoiles conserve un accès direct à ses fautes.
+  // SPEC 60 : à 3 étoiles, la reprise ciblée des erreurs reste non notée.
   if (peutRevoirErreursUnite(l, u)) {
-    const detail = detailRattrapageValide(l, u.id);
-    html += '<button class="pc-btn wide pl-rattrapage pl-revoir-erreurs" onclick="lancerRevisionErreursUnite(' + u.id + ')">' +
-      '↻ Revoir mes erreurs <small>' +
-      (detail ? 'Questions à retravailler' : 'Difficultés déjà rencontrées') +
-      ' · sans changement des étoiles</small></button>';
+    html += '<button type="button" class="pc-btn wide pl-rattrapage pl-revoir-erreurs pl-action-unite"' +
+      ' onclick="lancerRevisionErreursUnite(' + u.id + ')">' +
+      '<span class="pl-action-icone" aria-hidden="true">↻</span>' +
+      '<span class="pl-action-contenu">' +
+        '<span class="pl-action-titre">Revoir mes erreurs</span>' +
+        '<span class="pl-action-sous-texte">Questions difficiles · étoiles conservées</span>' +
+      '</span><span class="pl-action-chevron" aria-hidden="true">›</span></button>';
   }
   // Révision libre interrompue sur cette unité : reprenable, sans être la prochaine étape.
   if (pLibreIci && pLibreIci.uniteId === u.id) {

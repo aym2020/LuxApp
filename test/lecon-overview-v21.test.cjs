@@ -17,7 +17,7 @@ function entre(s,debut,fin) {
 }
 
 test('Périmètre visuel isolé : header plus court et actions secondaires sobres', () => {
-  assert.match(html,/href="lecon-v21\.css"/);
+  assert.match(html,/href="lecon-v21\.css(?:\?[^"]+)?"/);
   assert.match(css,/url\("art\/hero-luxapp-mobile\.webp"\)/);
   const hero=entre(css,'#view-plecon .pl-head {','#view-plecon .pl-head::before');
   assert.match(hero,/min-height: 188px/);
@@ -116,4 +116,7 @@ test('Sécurité mobile, focus clavier, navigation et CTA pédagogiques conserv�
   assert.match(parcours,/lancerRevisionErreursUnite\(/);
   assert.match(parcours,/function lancerBilan\(\)/);
   assert.match(css,/@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(css,/#view-plecon \.pl-unit > \.pc-btn\.wide\.pl-action-unite/);
+  assert.match(parcours,/Gagner ma 3e étoile/);
+  assert.match(parcours,/Questions difficiles · étoiles conservées/);
 });

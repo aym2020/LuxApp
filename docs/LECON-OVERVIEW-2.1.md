@@ -55,3 +55,14 @@ Les fonctions `openIntro`, `startUnite`, `openMission`, `voirScenario`, `lancerB
 5. Transformer le Bilan en ligne cliquable, en conservant les mêmes 10 questions mélangées.
 
 La mention **« répliques préparées »** est volontaire : le compteur dépend de la validation des unités, pas de l’évaluation orale ou écrite lors de la mission. Le statut réel de réussite de la mission continue de dépendre du moteur existant.
+
+## SPEC 108 — Actions contextuelles des unités (26 octobre 2026)
+
+**Maquette retenue sur Android :** un composant compact partagé, à icône à gauche, texte et courte précision sur deux lignes, chevron à droite. Cible tactile complète de 76 px minimum, hauteur extensible avec gros caractères, focus clavier visible et aucun badge supplémentaire. Les boutons n'apparaissent que lorsque les conditions métier historiques sont remplies.
+
+- **Revoir mes erreurs** : fond sombre vert/turquoise discret, ↻, sous-texte **« Questions difficiles · étoiles conservées »**. Appel inchangé à `lancerRevisionErreursUnite(u.id)`, session non notée.
+- **Gagner ma 3e étoile** : léger fond brun/or, ★, sous-texte dynamique **« [score] % → 90 % · Défi ciblé »**. Appel inchangé à `lancerRattrapageEtoile(u.id)`, rattrapage noté, meilleur score conservé en cas d'échec.
+- **Refaire l'unité**, mission, bonus, chemin, Bilan, scores, étoiles, sauvegardes et calculs ne changent pas.
+- Styles strictement limités à `#view-plecon` dans `public/lecon-v21.css`. Classes `.pl-rattrapage` et `.pl-revoir-erreurs` préservées pour les contrats existants ; la nouvelle classe commune est `.pl-action-unite`. Version CSS actualisée dans `public/index.html`.
+
+Recette : `node --test test/actions-unite-v21.test.cjs`, `node tests/test_rattrapage_etoiles.js`, `python tests/test_actions_unite.py` (320, 360, 390, 430 et 720 px, 130/200 %), puis tests critiques habituels. Le contrôle tactile sur Samsung réel reste distinct.

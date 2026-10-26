@@ -274,3 +274,94 @@
 @media (prefers-reduced-motion: reduce) {
   #view-plecon .ms-progression span { transition: none; }
 }
+
+/* SPEC 108 — Actions contextuelles d'unité, dessin identique / couleurs par rôle.
+   Le bouton complet est une cible tactile ; les moteurs de score restent inchangés.
+   Spécificité locale pour neutraliser l'ancienne pile .pl-rattrapage dans style.css. */
+#view-plecon .pl-unit > .pc-btn.wide.pl-action-unite {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 11px;
+  width: 100%;
+  min-height: 76px;
+  height: auto;
+  margin-top: 11px;
+  padding: 11px 12px;
+  border-radius: 13px;
+  border-width: 1px;
+  box-shadow: none;
+  text-align: left;
+  white-space: normal;
+  font-family: var(--police);
+  line-height: 1.35;
+}
+#view-plecon .pl-action-unite .pl-action-icone {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 11px;
+  font-size: 1.27rem;
+  font-weight: 700;
+}
+#view-plecon .pl-action-unite .pl-action-contenu {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+#view-plecon .pl-action-unite .pl-action-titre {
+  font-size: var(--fs-sec);
+  line-height: 1.28;
+  font-weight: 800;
+}
+#view-plecon .pl-action-unite .pl-action-sous-texte {
+  display: block;
+  font-size: var(--fs-micro);
+  line-height: 1.4;
+  font-weight: 500;
+}
+#view-plecon .pl-action-unite .pl-action-chevron {
+  flex: 0 0 auto;
+  color: var(--couleur-texte-3);
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1;
+}
+#view-plecon .pl-unit > .pl-action-unite.pl-revoir-erreurs {
+  background: #202320;
+  color: var(--couleur-texte);
+  border-color: #3b4741;
+}
+#view-plecon .pl-revoir-erreurs .pl-action-icone {
+  background: #203b34;
+  color: var(--couleur-turquoise);
+}
+#view-plecon .pl-revoir-erreurs .pl-action-sous-texte { color: var(--couleur-texte-2); }
+#view-plecon .pl-unit > .pl-action-unite.pl-gagner-etoile {
+  background: linear-gradient(112deg, #302917, #242118);
+  color: var(--couleur-action);
+  border-color: #776335;
+}
+#view-plecon .pl-gagner-etoile .pl-action-icone {
+  background: #48391a;
+  color: var(--couleur-action);
+}
+#view-plecon .pl-gagner-etoile .pl-action-sous-texte { color: #e0d0a5; }
+#view-plecon .pl-gagner-etoile .pl-action-chevron { color: var(--couleur-action); }
+#view-plecon .pl-action-unite:focus-visible {
+  outline: 2px solid var(--couleur-action);
+  outline-offset: 3px;
+}
+#view-plecon .pl-unit > .pl-action-unite:active { filter: brightness(1.1); }
+@media (max-width: 360px) {
+  #view-plecon .pl-unit > .pc-btn.wide.pl-action-unite { gap: 8px; padding: 11px 9px; }
+  #view-plecon .pl-action-unite .pl-action-icone {
+    width: 32px; height: 32px; flex-basis: 32px;
+  }
+}

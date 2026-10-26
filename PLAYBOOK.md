@@ -7,6 +7,10 @@ But : arrêter de re-réfléchir à des trucs déjà résolus.
 
 ---
 
+## SPEC 108 — Deux actions contextuelles d'une unité (26 octobre 2026)
+
+[Maquette intégrée et recette](docs/LECON-OVERVIEW-2.1.md#spec-108--actions-contextuelles-des-unités-26-octobre-2026). Boutons « Revoir mes erreurs » (turquoise, non noté) et « Gagner ma 3e étoile » (or, score 70–89 %) : composant commun icône–texte–chevron, moteurs et sauvegardes inchangés. Tests Node et navigateur 320–720 px ; validation tactile réelle toujours nécessaire.
+
 ## SPEC 107 — Défis évolutifs du Chemin (26 octobre 2026)
 
 [Spécification et recette](docs/DEFIS-EVOLUTIFS-2.1.md). Leçon terminée : questions inversées contrôlées (12 max/leçon), compteur discret, CTA « Découvrir les défis » puis « Réviser mes acquis » direct. Bilan seulement dans le détail. Les acquis et le cloud restent intacts. Tests dédiés Node et navigateur ; Android à valider.

@@ -1,0 +1,44 @@
+name: LuxApp 2.1 — Boutons révision et étoile
+
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - 'public/parcours.js'
+      - 'public/lecon-v21.css'
+      - 'public/index.html'
+      - 'tests/test_actions_unite.py'
+      - 'test/actions-unite-v21.test.cjs'
+      - 'tests/test_rattrapage_etoiles.js'
+      - '.github/workflows/ux-actions-unite.yml'
+  workflow_dispatch:
+
+jobs:
+  ui-unite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dépendances et serveur de tests
+        run: |
+          npm install --no-audit --no-fund
+          pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+          LUX_TESTS=1 PORT=3456 node server.js >/tmp/lux-unit-actions.log 2>&1 &
+          for n in $(seq 1 35); do curl -sf localhost:3456/config.js | grep -q 'APP_CONFIG.TESTS = true' && break; sleep 1; done
+      - name: Syntaxe, composants et barème
+        run: |
+          node --check public/parcours.js
+          node --test test/actions-unite-v21.test.cjs
+          node tests/test_rattrapage_etoiles.js
+          node --test test/lecon-overview-v21.test.cjs
+      - name: Recette Chromium responsive et interactions
+        run: python tests/test_actions_unite.py
+      - name: Journal serveur en cas d'échec
+        if: failure()
+        run: tail -80 /tmp/lux-unit-actions.log
