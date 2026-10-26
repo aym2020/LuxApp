@@ -276,7 +276,7 @@ test('Prototype 3D : chargé à la demande, assets locaux et légers, secours 2D
   assert.doesNotMatch(html, /runner-3d\.js|three\.module/);
   assert.match(runner, /import\('\.\/runner-3d\.js/);
   assert.match(runner, /function runnerRendu3DActif/);
-  assert.match(runner, /if \(runnerRendu3DActif\(\)\) runnerBrancher3D/);
+  assert.match(runner, /if \(runnerRendu3DActif\(\)\) p\.affichage\.pret3d = runnerBrancher3D/);
   // En cas d'échec, le rendu 2D continue.
   assert.match(runner, /rendu 2D conservé/);
   assert.match(runner, /if \(a\.rendu3d\) a\.rendu3d\.image\(p, dt\);\s*\/\/[^\n]*\n\s*else \{/);

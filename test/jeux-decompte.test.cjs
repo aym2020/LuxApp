@@ -10,7 +10,7 @@ function make() {
   const enfants = [];
   const conteneur = { appendChild: e => { enfants.push(e); e.parentNode = conteneur; }, removeChild: e => { enfants.splice(enfants.indexOf(e), 1); e.parentNode = null; } };
   const ctx = {
-    document: { createElement: () => ({ className: '', innerHTML: '', setAttribute() {}, parentNode: null }) },
+    document: { createElement: () => ({ className: '', innerHTML: '', setAttribute() {}, style: { setProperty() {} }, parentNode: null }) },
     setTimeout: (fn, ms) => { minuteries.push({ fn, a: maintenant + ms }); return minuteries.length; },
     clearTimeout: id => { if (minuteries[id - 1]) minuteries[id - 1].fn = null; }
   };
@@ -34,9 +34,12 @@ test('3, 2, 1 puis départ : « fini » une seule fois, voile retiré', () => {
   ctx.fini = () => fini++;
   ctx.opts = { conteneur, theme: 'runner', son: false };
   vm.runInContext('jeuDecompte(opts, fini)', ctx);
-  for (let i = 0; i < 4; i++) { vus.push(enfants[0] && enfants[0].innerHTML.replace(/<[^>]+>/g, '')); avancer(700); }
+  for (let i = 0; i < 3; i++) { vus.push(enfants[0].innerHTML.replace(/<[^>]+>/g, '')); assert.equal(fini, 0); avancer(900); }
+  vus.push(enfants[0].innerHTML.replace(/<[^>]+>/g, ''));
   assert.deepEqual(vus, ['3', '2', '1', 'GO !']);
-  assert.equal(fini, 1); assert.equal(enfants.length, 0);
+  // Le jeu part dès l'affichage du GO ; le voile s'efface ensuite en fondu.
+  assert.equal(fini, 1); assert.match(enfants[0].className, /jeu-decompte-sortie/);
+  avancer(700); assert.equal(enfants.length, 0);
   avancer(5000); assert.equal(fini, 1);
 });
 
@@ -46,10 +49,10 @@ test('Survie : « Partez ! » ; annulation et sortie du jeu sans départ', () =>
   ctx.fini = () => fini++;
   ctx.opts = { conteneur, theme: 'survie', son: false, estActif: () => actif };
   ctx.annuler = vm.runInContext('jeuDecompte(opts, fini)', ctx);
-  avancer(2100);
-  assert.match(enfants[0].innerHTML, /Partez !/);
-  actif = false;              // Retour Android pendant le décompte
   avancer(1000);
+  assert.match(enfants[0].innerHTML, />2</);
+  actif = false;              // Retour Android pendant le décompte
+  avancer(3000);
   assert.equal(fini, 0); assert.equal(enfants.length, 0);
   const b = make(); let f2 = 0; b.ctx.fini = () => f2++; b.ctx.opts = { conteneur: b.conteneur, theme: 'survie' };
   const annuler = vm.runInContext('jeuDecompte(opts, fini)', b.ctx);
@@ -63,7 +66,11 @@ test('Intégration : chrono lancé au départ seulement, tutoriel sans décompte
   assert.match(html, /jeux-decompte\.css\?v=\d+/);
   assert.match(jeux, /p\.verrou=true;\s*p\.annulerDecompte=jeuDecompte/);
   assert.match(jeux, /p\.timer=setInterval\(survieTick,100\);\s*\}\);/);
-  assert.match(runner, /mode !== 'tuto' && typeof jeuDecompte === 'function'/);
+  assert.match(runner, /mode === 'tuto' \|\| typeof jeuDecompte !== 'function'/);
   assert.match(runner, /p\.etat = 'decompte';/);
+  // Son : seulement déverrouillé pendant l'appui, la musique part au GO, après la scène.
+  assert.match(runner, /RunnerAudio\.preparer\(\);/);
+  assert.match(runner, /p\.etat = 'course';[\s\S]{0,120}RunnerAudio\.demarrer\(\)/);
+  assert.match(runner, /runnerQuandScenePrete\(p, /);
   assert.match(runner, /a\.annulerDecompte\(\)/);
 });

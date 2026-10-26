@@ -231,7 +231,7 @@ const RunnerAudio = (function () {
   }
 
   return {
-    demarrer: demarrer, pause: pause, reprendre: reprendre, arreter: arreter,
+    preparer: preparer, demarrer: demarrer, pause: pause, reprendre: reprendre, arreter: arreter,
     suivreTemps: suivreTemps, changementVoie: changementVoie, bonPortail: bonPortail,
     erreur: erreur, combo: combo, fin: fin,
     musiqueActive: musiqueActive, effetsActifs: effetsActifs,

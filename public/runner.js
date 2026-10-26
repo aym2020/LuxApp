@@ -452,28 +452,47 @@ function demarrerRunner(mode) {
   runnerRendreCourse();
   const vue = document.getElementById('view-runner');
   if (!vue || !vue.classList.contains('active')) showView('view-runner');
-  // Démarré pendant l'appui sur Jouer : autorisé par Android et iOS.
-  if (typeof RunnerAudio !== 'undefined') RunnerAudio.demarrer();
+  // Pendant l'appui sur Jouer : on déverrouille seulement l'audio (Android/iOS).
+  // La musique ne démarre qu'au GO, une fois la scène affichée.
+  if (typeof RunnerAudio !== 'undefined') RunnerAudio.preparer();
+  if (typeof jeuDecompteDebloquer === 'function') jeuDecompteDebloquer();
   runnerLancerPortail(runnerPartie, 0);
   runnerMajMot();
   runnerMajHud(true);
-  // SPEC 101 : « 3, 2, 1, GO ! » avant la course (pas pour le tutoriel).
-  // La scène s'affiche déjà ; le temps de jeu ne démarre qu'au GO.
+  // SPEC 101 : le temps de jeu reste figé tant que la scène n'est pas prête,
+  // puis « 3, 2, 1, GO ! » (pas de décompte pour le tutoriel).
   const p = runnerPartie;
-  const scene = document.getElementById('runner-scene');
-  if (mode !== 'tuto' && typeof jeuDecompte === 'function' && scene) {
-    p.etat = 'decompte';
+  p.etat = 'decompte';
+  const partir = () => {
+    if (runnerPartie !== p) return;
+    p.etat = 'course';
+    p.affichage.dernier = null; // aucun saut de temps au départ
+    if (typeof RunnerAudio !== 'undefined') RunnerAudio.demarrer();
+  };
+  runnerQuandScenePrete(p, () => {
+    const scene = document.getElementById('runner-scene');
+    if (mode === 'tuto' || typeof jeuDecompte !== 'function' || !scene) { partir(); return; }
     p.affichage.annulerDecompte = jeuDecompte({
       conteneur: scene, theme: 'runner',
       son: typeof RunnerAudio === 'undefined' || RunnerAudio.effetsActifs(),
       estActif: () => runnerPartie === p
-    }, () => {
-      if (runnerPartie !== p) return;
-      p.etat = 'course';
-      p.affichage.dernier = null; // aucun saut de temps au départ
-    });
-  }
+    }, partir);
+  });
   runnerDemarrerBoucle();
+}
+
+// Attend que la 3D soit affichée (2,5 s max, sinon le rendu 2D suffit),
+// puis deux images pour être sûr que l'écran est réellement peint.
+function runnerQuandScenePrete(p, suite) {
+  const pret = (p.affichage && p.affichage.pret3d) || Promise.resolve();
+  let fait = false;
+  const lancer = () => {
+    if (fait || runnerPartie !== p) return;
+    fait = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (runnerPartie === p) suite(); }));
+  };
+  pret.then(lancer, lancer);
+  setTimeout(lancer, 2500);
 }
 
 function runnerRendreCourse() {
@@ -866,7 +885,7 @@ function runnerAttacherScene() {
     scene.addEventListener('pointerup', runnerToucherFin);
     scene.addEventListener('pointercancel', () => { if (runnerPartie) runnerPartie.affichage.glisse = null; });
   }
-  if (runnerRendu3DActif()) runnerBrancher3D(p, scene);
+  if (runnerRendu3DActif()) p.affichage.pret3d = runnerBrancher3D(p, scene);
 }
 
 // ─── 3D par défaut (SPEC 96 V2.2) ───────────────────────────────────────────
@@ -884,8 +903,8 @@ function runnerCharger3D() {
   return runnerModule3D;
 }
 function runnerBrancher3D(p, scene) {
-  if (!scene) return;
-  runnerCharger3D()
+  if (!scene) return Promise.resolve();
+  return runnerCharger3D()
     .then(R3D => R3D.creer(scene))
     .then(instance => {
       // La partie a pu se terminer pendant le chargement.
