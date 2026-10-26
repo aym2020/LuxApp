@@ -19,6 +19,19 @@ let cloudSaveTimer = null;
 
 const CLOUD_COLLECTION = 'user_progress';
 const CLOUD_TIMEOUT_MS = 8000;
+// SPEC 93 : dernier compte ouvert sur cet appareil. Si Firebase ne peut pas se
+// charger (hors ligne, SDK pas encore copié), on garde sa progression locale
+// au lieu de basculer sur le profil invité.
+const DERNIER_COMPTE = 'luxDernierCompte';
+function restaurerCompteHorsLigne() {
+  const cfg = window.APP_CONFIG && window.APP_CONFIG.FIREBASE;
+  if (fbAuth || !cfg || !cfg.apiKey) return false;
+  let uid = null;
+  try { uid = localStorage.getItem(DERNIER_COMPTE); } catch (_) { uid = null; }
+  if (!uid) return false;
+  setStorageProfile('user:' + uid);
+  return true;
+}
 
 // ─── INITIALISATION ─────────────────────────────────────────────────────────
 function initFirebase() {
@@ -97,6 +110,7 @@ async function signIn(email, password) {
 }
 
 async function signOut() {
+  try { localStorage.removeItem(DERNIER_COMPTE); } catch (_) { /* facultatif */ }
   if (!fbAuth) return;
   try { await fbAuth.signOut(); } catch (e) { /* ignore */ }
 }
@@ -392,6 +406,8 @@ async function syncProgress() {
   const user = await getCurrentUser();
   if (!fbDb || !user) return;
   migrateLegacyProfiles(user);
+  // Hors ligne : rien à attendre du cloud, la progression reste locale (reprise sur « online »).
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) { noterSynchro(false); return; }
 
   let cloud;
   try {
@@ -440,6 +456,7 @@ async function bootAuthAndSync() {
     if (user) {
       // Profil isolé pour ce compte AVANT toute lecture/écriture locale.
       setStorageProfile('user:' + user.uid);
+      try { localStorage.setItem(DERNIER_COMPTE, user.uid); } catch (_) { /* facultatif */ }
       await syncProgress(); // charge ce profil + cloud, fusionne, réécrit les deux
     }
     // Sinon : on reste sur le profil "anonymous" (valeur par défaut).

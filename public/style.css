@@ -1278,6 +1278,12 @@ body.no-scroll { overflow: hidden; }
   padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-3); }
 .reglages-titre { font-size: var(--fs-corps); font-weight: 700; }
 .reglages-texte { font-size: var(--fs-sec); color: var(--muted-strong); line-height: 1.5; }
+/* SPEC 93 — carte Hors ligne. */
+.hl-barre { height: 8px; border-radius: 99px; background: var(--bord-1); overflow: hidden; }
+.hl-barre i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: inherit; transition: width .2s ease; }
+.hl-bouton { align-self: flex-start; min-height: var(--toucher); padding: 0 var(--sp-4); border-radius: var(--r); border: 1px solid var(--accent);
+  background: transparent; color: var(--accent); font: 700 var(--fs-sec) var(--font); cursor: pointer; }
+.hl-bouton:disabled { border-color: var(--bord-1); color: var(--muted); cursor: default; }
 
 /* ── MISSION LISIBLE (S4) ─────────────────────────────────────────────────── */
 .ms-bulle-tete { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); }

@@ -1,6 +1,14 @@
 # SPEC 93 — LuxApp 2.1 utilisable hors ligne (PWA)
 
-**Branche :** `2.1` · **Date :** 22 octobre 2026 · **Statut :** **proposition technique à implémenter**, non développée et non validée sur Android.  
+**Branche :** `2.1` · **Date :** 22 octobre 2026 · **Statut :** **implémentée le 26/10/2026** (app hors ligne + téléchargement complet des audios) — **recette Samsung à faire**.  
+
+> **Implémentation (26/10/2026).** Choix produit : un seul bouton « Télécharger tous les audios » (≈ 33 Mo, 1 960 fichiers) au lieu des packs par leçon (§3.4).
+> - `server.js` : `/offline-manifest.json` (fichiers de l'app, API de contenu, scripts externes, liste des audios avec tailles ; version = empreinte des fichiers publics et de `data/`) et `/sw.js` (version injectée). En recette, `/sw.js` est un worker qui vide les caches `luxapp-*` et se désinstalle.
+> - `public/sw.js` : à l'installation, copie de l'app (≈ 100 fichiers) + SDK Firebase et CSS des polices (copie opaque). Page et fichiers sans `?v=` : réseau d'abord (délai 4 s), copie hors ligne ; fichiers `?v=` : copie d'abord ; `/api/*` : dernière réponse JSON valide ; audios : cache d'abord, fichier entier gardé, réponses 206 pour les lectures par plage. Anciennes versions de l'app supprimées à l'activation, audios conservés. Jamais : non-GET, Firestore, authentification.
+> - `public/hors-ligne.js` : enregistrement (sauf `RECETTE`/`TESTS`), carte **Réglages › Hors ligne** (état, barre de progression, Annuler, reprise des seuls fichiers manquants, 3 essais par fichier, vérification finale, `navigator.storage.persist()`, message si l'espace manque). État de l'appareil dans `luxHorsLigneAudio`.
+> - Compte hors ligne : `cloud.js` mémorise le dernier compte (`luxDernierCompte`, effacé à la déconnexion) ; si Firebase ne se charge pas, `restaurerCompteHorsLigne()` garde ce profil et le portail ne s'ouvre pas. `syncProgress()` ne contacte pas le cloud quand `navigator.onLine === false` (statut « En attente · hors ligne », reprise sur `online`).
+> - Tests : `test/hors-ligne.test.cjs` ; contrôle navigateur : SW actif, 1 960 audios téléchargés (~15 s en local), rechargement complet hors ligne → accueil, 26 leçons, audio 200 et 206, Lux Runner ouvert, aucune erreur JS.
+
 **Références :** [PLAYBOOK](../../PLAYBOOK.md), [AGENTS](../../AGENTS.md), [Charte UI 2.1](../CHARTE_UI_2.1.md), [SPEC 63 — Portail et reconnexion](./SPEC-63.md), [SPEC 88 — Jeux/Survie](./SPEC-88.md), [Recette](../RECETTE.md).
 
 ## 1. Objectif produit et définition du « hors ligne »

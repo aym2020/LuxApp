@@ -99,6 +99,8 @@ function portailInitialiser(user) {
   // Recette visuelle et tests navigateur : pas de portail.
   if (window.APP_CONFIG && (window.APP_CONFIG.RECETTE || window.APP_CONFIG.TESTS)) return;
   if (user) portailCompteConnecte(user);
+  // SPEC 93 : hors ligne sans Firebase, le dernier compte reste ouvert en local.
+  else if (!fbAuth && typeof currentStorageProfile === 'string' && currentStorageProfile.startsWith('user:')) return;
   else {
     // SPEC 64 : le choix « invité » ne masque plus l'accueil aux prochains lancements.
     // Ne jamais effacer la progression : seul l'ancien drapeau d'UI est nettoyé.

@@ -26,6 +26,7 @@ async function init() {
   chargerSonsLod();        // 1 ter. sons LOD des mots (sans attendre : facultatif)
   // 2. la progression locale est déjà lue à la demande depuis localStorage
   initFirebase();          // 3. init Firebase (sans effet si non configuré)
+  restaurerCompteHorsLigne(); // 3 bis. SPEC 93 : Firebase indisponible → profil du dernier compte
   await bootAuthAndSync(); // 4-6. si connecté : charge + fusionne cloud + local
   appliquerNiveauChoisi(); // niveau choisi par l'utilisateur (S13)
   migrerParties();         // spec 22 : une ancienne répétition passe dans l'entraînement libre
@@ -223,6 +224,7 @@ function openReglages() {
   showView('view-reglages');
   // SPEC 52 : afficher le dernier état sans attendre un nouvel événement cloud.
   if (typeof actualiserStatutSynchro === 'function') actualiserStatutSynchro();
+  if (typeof horsLigneRendre === 'function') horsLigneRendre(); // SPEC 93
 }
 
 // Réinitialise TOUTE la progression, après confirmation.

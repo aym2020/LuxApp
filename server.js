@@ -77,6 +77,65 @@ if (!RECETTE && process.env.LUX_TESTS === '1') {
   });
 }
 
+// ─── HORS LIGNE (SPEC 93) ───────────────────────────────────────────────────
+// /offline-manifest.json : liste des fichiers de l'app (mis en cache à
+// l'installation du Service Worker) et liste des audios (téléchargement complet
+// à la demande, depuis Réglages). La version change dès qu'un fichier de l'app
+// ou une donnée de leçon change : le Service Worker se met alors à jour.
+const crypto = require('crypto');
+const AUDIO_EXT = /\.(mp3|m4a|ogg|wav)$/i;
+function listerFichiers(dossier, base) {
+  let liste = [];
+  for (const nom of fs.readdirSync(dossier).sort()) {
+    if (nom.startsWith('.')) continue;
+    const complet = path.join(dossier, nom);
+    const relatif = base ? base + '/' + nom : nom;
+    if (fs.statSync(complet).isDirectory()) liste = liste.concat(listerFichiers(complet, relatif));
+    else liste.push(relatif);
+  }
+  return liste;
+}
+let manifesteHorsLigne = null;
+function construireManifeste() {
+  const tous = listerFichiers(path.join(__dirname, 'public'), '');
+  const app = tous.filter(f => !AUDIO_EXT.test(f) && f !== 'sw.js' && !f.endsWith('.map'));
+  const audios = tous.filter(f => AUDIO_EXT.test(f));
+  const empreinte = crypto.createHash('sha1');
+  for (const f of app) empreinte.update(f).update(fs.readFileSync(path.join(__dirname, 'public', f)));
+  for (const f of listerFichiers(path.join(__dirname, 'data'), '')) empreinte.update(f).update(fs.readFileSync(path.join(__dirname, 'data', f)));
+  const fichiersAudio = audios.map(f => ({ u: '/' + f, t: fs.statSync(path.join(__dirname, 'public', f)).size }));
+  const empreinteAudio = crypto.createHash('sha1').update(audios.join('\n')).digest('hex').slice(0, 12);
+  // Scripts et feuilles externes de la page (SDK Firebase, polices Google).
+  const page = fs.readFileSync(path.join(__dirname, 'public/index.html'), 'utf8');
+  const externes = [...page.matchAll(/(?:src|href)="(https:\/\/(?:www\.gstatic\.com\/firebasejs|fonts\.googleapis\.com\/css)[^"]+)"/g)].map(m => m[1].replace(/&amp;/g, '&'));
+  return {
+    version: empreinte.digest('hex').slice(0, 12),
+    externes,
+    // « / » : la page d'accueil ; les API publiques des contenus pédagogiques.
+    fichiers: ['/', '/api/lecons', '/api/examens', '/api/ecriture'].concat(app.filter(f => f !== 'index.html').map(f => '/' + f)),
+    audio: { version: empreinteAudio, total: fichiersAudio.reduce((s, a) => s + a.t, 0), fichiers: fichiersAudio }
+  };
+}
+if (!RECETTE) {
+  app.get('/offline-manifest.json', (req, res) => {
+    if (!manifesteHorsLigne) manifesteHorsLigne = construireManifeste();
+    res.set('Cache-Control', 'no-store').json(manifesteHorsLigne);
+  });
+  app.get('/sw.js', (req, res) => {
+    if (!manifesteHorsLigne) manifesteHorsLigne = construireManifeste();
+    const code = fs.readFileSync(path.join(__dirname, 'public/sw.js'), 'utf8').replace('__VERSION__', manifesteHorsLigne.version);
+    res.set('Cache-Control', 'no-cache').type('application/javascript').send(code);
+  });
+} else {
+  // Recette : jamais de cache hors ligne. Un ancien Service Worker éventuel se désinstalle.
+  app.get('/sw.js', (req, res) => {
+    res.set('Cache-Control', 'no-store').type('application/javascript').send(
+      "self.addEventListener('install',()=>self.skipWaiting());" +
+      "self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n.startsWith('luxapp-')).map(n=>caches.delete(n))))" +
+      ".then(()=>self.registration.unregister()).then(()=>self.clients.matchAll()).then(c=>c.forEach(x=>x.navigate(x.url)))));");
+  });
+}
+
 // express.static pose son propre Cache-Control ; en recette le surcharger dans
 // setHeaders pour que les JS/CSS soient réellement rechargés après un refresh.
 app.use(express.static('public', RECETTE ? {
