@@ -1192,3 +1192,63 @@ Créer un petit catalogue **éditorial de cartes-situations** plutôt qu'un syst
 4. **Livraison** : code séparé moteur/contenus/UI, tests d'interaction et audits LOD/grammaire pour toute phrase LU, aucune nouvelle ville/fille/app, aucun changement de progression ou d'autre jeu. **Ne pas implémenter une banque de LU non relue au prétexte d'aller vite.**
 
 **Principe directeur :** « Je suis un glandeur ; j'essaie de me vendre ; parfois ça marche, parfois je me ridiculise, et les filles ont du répondant. » Chaque partie doit contenir **au moins une décision risquée mémorable** et **une occasion où une information lue en français influence une réponse en luxembourgeois**, sans transformer le mini-jeu en test de culture générale.
+
+
+---
+
+## 24. Duels de bluff à embranchements courts (27/10/2026)
+
+**Statut : conception à implémenter, aucun code de jeu changé par cette spécification.** Le joueur valide la densification de la rencontre Léna : affirmation → réponse de la fille → insistance → confrontation → tentative d'explication → réaction. Inspiration : duels verbaux de jeux d'enquête, avec une direction artistique originale. **Cette section précise les §§22–23, sans rallonger Lux Match au-delà d'environ 3 à 5 minutes.**
+
+### 24.1. Le cœur de la rejouabilité
+
+Remplacer les questions isolées par **un seul mini-arc principal par rendez-vous**, déclenché uniquement par un mensonge ou une vantardise réellement maintenue. Structure possible :
+
+**Affirmation → Doute → Relance → Vérification → Sortie**, avec étapes facultatives. Une plaisanterie manifestement absurde peut s'arrêter au rire, tandis qu'un bluff crédible peut rester impuni si la partenaire n'a pas de raison de le vérifier. **Si le joueur réaffirme sérieusement son histoire après une mise en doute, et qu'un arc de vérification rédigé existe, il faut que cette insistance ait une conséquence ultérieure visible** : question de détail ou piège. Le joueur peut avouer tôt, inventer davantage, détourner par l'humour ou tenter une réponse correcte.
+
+La fille ne doit connaître **que les affirmations entendues, ses propres connaissances et les événements joués** ; le moteur ne peut pas lui communiquer directement la vérité secrète de la fiche. La mauvaise réponse à une question factuelle peut entraîner un effet social mais **n'est pas une faute de luxembourgeois**.
+
+**Budget :** un duel majeur de 2 à 4 décisions, qui **remplace** des questions génériques dans un rendez-vous de 6 à 8 décisions principales. Des événements mineurs restent possibles, mais ne doivent jamais interrompre un duel en cours. En l'absence de mensonge, un défi clivant ou une situation drôle remplace le piège : pas de partie ennuyeuse pour un joueur sincère.
+
+### 24.2. Un même mensonge, de vrais embranchements
+
+**Léna / bluff sportif :**
+- Le joueur exagère puis **avoue immédiatement** : elle se moque de lui, mais apprécie une bonne autodérision ; l'escalade s'arrête.
+- Il **maintient** : elle demande une précision simple (pratique, poste, habitude sportive). Si la réponse paraît cohérente, il passe cette étape, sans preuve magique qu'il est vraiment sportif.
+- Il **persiste puis se trompe** à un test ou accepte une démonstration et échoue : réaction arcade spectaculaire, malus motivé, puis dernière possibilité de s'expliquer.
+- Il **prétend que tout était une blague** après avoir été coincé : possible sortie humoristique, mais sans effacer systématiquement la méfiance.
+
+**Noémie / bluff artistique :**
+- Avouer qu'on ne dessine pas et poser une question sur ses œuvres : échange sincère, sans piège.
+- Maintenir qu'on dessine puis accepter un portrait sur serviette : catastrophe visuelle, qui peut **néanmoins la faire rire** ; la personnalité de Noémie compte plus qu'un examen technique.
+- Inventer une histoire absurde autour du dessin : elle peut entrer dans le jeu et faire monter l'affinité.
+
+**Autres familles à développer :** métier (question sur une journée concrète, pas jargon professionnel), pays et monuments connus, langues (gag portugais de Sofia déjà présent), football, films ou jeux très populaires, goûts clivants. Les questions doivent être **simples, durables et sans ambiguïté**. Un quiz ne doit apparaître que si une déclaration précédente le justifie ; la préférence pour les chats ou la conduite n'est pas une preuve de mensonge.
+
+### 24.3. Moteur : un mini-graphe conditionnel, pas une IA
+
+Conserver `public/lux-match-core.js`, les `claims`, `journal`, `etat.enAttente`, le seed déterministe et les JSON. Ajouter une **instance de duel active** (thème, affirmation déclencheuse, étape courante, indices observés, issue possible, histoire des choix) et une priorité dans la file. Ses étapes internes appartiennent à **une affaire unique**, sans utiliser tout le budget `MAX_EVENEMENTS=2` comme des événements indépendants. Après une réponse, choisir la prochaine scène selon l'état réel, pas seulement selon le plan initial.
+
+**Point bloquant vérifié dans la version courante :** `EV_LENA_TONE_CHECK` se déclenche sur `blague:vantardise` ; sa réponse « Non, je suis vraiment une superstar » est classée `jokeKind` mais **ne crée pas une affirmation mémorisable**. Une vantardise manifestement humoristique ne doit pas être assimilée par défaut à un mensonge, mais **la persistance sérieuse doit créer un claim explicite**, qui pourra justifier une relance ou un test.
+
+**Deuxième point bloquant :** `EV_LENA_TONE_CHECK` affiche aujourd'hui un prompt et des choix **FR sans version LU**, via `npc.luARediger`, alors que les dialogues de rendez-vous doivent être LU (aide FR facultative). Il faut rédiger et auditer la version LU selon les leçons, `grammaire_luxembourg.md` et LOD.lu **avant d'en faire le modèle des nouveaux duels**.
+
+**Troisième défaut vu sur Android :** après une contradiction **28 puis 30 ans**, un texte de réparation dit « tu ne mens plus sur ton niveau » : réaction inadéquate à l'attribut `age`. Les réactions et conséquences doivent se rapporter **au sujet effectivement discuté**, et les dénouements ne doivent citer que des étapes réellement jouées.
+
+### 24.4. Variété réelle : écrire petit, combiner intelligemment
+
+Développer **une bibliothèque de 12 à 18 duels courts contextualisés**, répartis sur les six filles, mais en priorité deux prototypes complets avec Léna et Noémie. Chacun a une ou deux relances, un contrôle éventuel, et **trois ou quatre sorties réellement différentes** : aveu, bluff tenu, bluff démasqué, humour qui retourne la scène. Combiner personnalité, thème, indices FR des réseaux, ordre des scènes et issue permet **plusieurs dizaines de parcours mémorables** sans écrire d'arbres interminables. Ne pas compter le simple mélange de questions génériques comme une branche.
+
+La personnalité doit changer la **réaction et parfois la mécanique** : Léna est compétitive, Noémie joue avec l'absurde, Emma préfère la simplicité, Sofia taquine sur les voyages, etc. Conserver un moment où Alex pose une question à la fille ; les informations Pix/Pro/Amis en FR éclairent des réponses au date en LU.
+
+### 24.5. Effet objection et tests
+
+Lors d'une vraie découverte, un impact arcade bref peut afficher **« AH BON ?! »**, **« COINCÉ ! »** ou **« ATTENDS ! »**, accompagné d'un sprite manga et d'un son court **originaux**. Ne pas reprendre le design, les sons ou les éléments graphiques d'un autre jeu. **Une seule grande explosion visuelle** par date, pas de points ni de texte géant sur le visage ; deltas près des jauges.
+
+**Lots Claude :**
+- **14A, moteur** : registre des duels, escalade, aveu/persistance, priorité des étapes, mémoire et absence de double déclenchement ; adapter l'identité du personnage conformément à §23 avant d'écrire de nouvelles vérités métier.
+- **14B, contenu** : Léna et Noémie, textes LU validés, réactions par branche, indices FR correspondants ; extension graduelle aux autres profils.
+- **14C, présentation** : impact et lisibilité Android, pas de longues coupures ni scroll parasite.
+- **14D, rejouabilité** : tests par graines fixes, couverture de chaque transition et chaque sortie, partie sans mensonge intéressante, score LU indépendant des tests factuels.
+
+**Acceptation :** aveu immédiat coupe la relance ; maintien sérieux peut aboutir à une vérification ; bluff crédible pas automatiquement détecté ; pas de deuxième duel qui interrompt le premier ; pas de boucle infinie ni scène FR-only au date ; fin de partie fidèle au journal ; 6 filles × 200 graines après extension ; tests Node, navigateurs mobiles et recette Samsung réelle lorsque possible. **Aucun code, asset 3D, progression ou autre jeu n'est modifié par la présente documentation.**
