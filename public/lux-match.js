@@ -116,7 +116,7 @@ async function lmChargerDonnees() {
 // Le moteur 3D est créé une seule fois (préchargé dès l'ouverture du jeu).
 function lmObtenir3D() {
   if (!lm.promesse3d) {
-    lm.promesse3d = import('./lux-match-3d.js?v=2').then(() => window.LuxMatch3D.creer());
+    lm.promesse3d = import('./lux-match-3d.js?v=3').then(() => window.LuxMatch3D.creer());
     lm.promesse3d.then(r => { lm.rendu3d = r; }).catch(() => { lm.promesse3d = null; });
   }
   return lm.promesse3d;
@@ -438,12 +438,11 @@ function lmRendreDate(box) {
         '<button type="button" class="lm-icone-btn" onclick="lmMoi(true)" aria-label="Mon profil (Alex)">' + lmIcone('moi') + '</button>' +
         '<button type="button" class="lm-tel-btn" id="lm-tel-btn" onclick="lmOuvrirTelephoneDate()" aria-label="Ouvrir le téléphone">' + lmIcone('tel') + '<span id="lm-batterie">' + Math.ceil(p.battery) + '%</span></button>' +
       '</div>' +
-      '<div class="lm-demo" aria-hidden="true">DÉMO · textes LU en relecture</div>' +
       '<div class="lm-feedback" id="lm-feedback" aria-live="polite"></div>' +
       '<div class="lm-bas">' +
         '<div class="lm-bulle" id="lm-bulle"></div>' +
         '<div class="lm-reponses" id="lm-reponses"></div>' +
-        lmBoutonAide() +
+        '<div class="lm-bas-pied">' + lmBoutonAide() + '<span class="lm-demo">DÉMO · textes LU en relecture</span></div>' +
       '</div>' +
       '<div class="lm-panneau" id="lm-tel-date" hidden></div>' +
       '<div class="lm-panneau lm-moi" id="lm-moi" hidden></div>' +
@@ -671,7 +670,7 @@ let lmPrechargeLance = false;
 function lmPrecharger() {
   if (lmPrechargeLance) return;
   lmPrechargeLance = true;
-  const lancer = () => import('./lux-match-3d.js?v=2')
+  const lancer = () => import('./lux-match-3d.js?v=3')
     .then(() => window.LuxMatch3D.precharger(['Casual_Female', 'Casual2_Female', 'Casual3_Female', 'Suit_Female', 'Doctor_Female_Young', 'Casual_Male']))
     .catch(() => { lmPrechargeLance = false; });
   if (typeof requestIdleCallback === 'function') requestIdleCallback(lancer, { timeout: 2500 });

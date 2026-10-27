@@ -169,6 +169,7 @@ async function creer() {
   const camPortrait = new THREE.PerspectiveCamera(30, 0.8, 0.1, 20);
 
   let boucle = null, conteneur = null, dernier = 0, rendu = null;
+  let demande = 0; // numéro de la dernière scène demandée (aperçu, date) ou de l'arrêt
   const observateur = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => redimensionner()) : null;
 
   function redimensionner() {
@@ -209,24 +210,25 @@ async function creer() {
 
   // Personnage prêt (modèle chargé, teinté, animé). Un modèle n'a qu'une instance :
   // il est retiré de son ancienne scène quand on le réutilise.
-  async function personnage(modele, teintes) {
-    const gltf = await charger(modele);
+  // Préparation SYNCHRONE après le chargement : deux portraits lancés en même temps
+  // (Noémie et Emma partagent un modèle) ne peuvent pas mélanger leurs couleurs.
+  function instancier(gltf, teintes) {
     const racine = preparerPersonnage(gltf);
     teindre(racine, teintes);
     if (racine.parent) racine.parent.remove(racine);
     racine.position.set(0, 0, 0); racine.rotation.set(0, 0, 0);
+    racine.userData.personnage = true;
     if (!racine.userData.anim) racine.userData.anim = animateur(racine, clips);
     return racine;
   }
-
   // Portrait : plan taille, pose figée, fond en dégradé.
   async function portrait(profil, pose, fond, largeur, hauteur) {
     const l = largeur || 240, h = hauteur || 300;
     const modele = profil === 'alex' ? STYLES.casual.modele : profil.apparence3d.modele;
-    // Modèle affiché à l'écran (aperçu du look ou rendez-vous en cours) : jamais déplacé pour un portrait.
     const gltf = await charger(modele);
+    // Modèle affiché à l'écran (aperçu du look ou rendez-vous en cours) : jamais déplacé pour un portrait.
     if (rendu && gltf.scene.parent === rendu.scene) throw new Error('modele_occupe');
-    const racine = await personnage(modele, profil === 'alex' ? teintesAlex(null) : teintesProfil(profil));
+    const racine = instancier(gltf, profil === 'alex' ? teintesAlex(null) : teintesProfil(profil));
     const nomPose = typeof pose === 'string' ? pose : 'Idle';
     racine.userData.anim.poser(nomPose, nomPose === 'Idle' ? 0.4 : 0.55);
     scenePortrait.add(racine);
@@ -246,7 +248,7 @@ async function creer() {
     return url;
   }
 
-  // ── Écran LOOK : Alex tourne doucement sur un socle néon.
+  // ── Écran LOOK : Alex pivote lentement entre la face et le trois-quarts (jamais de dos).
   const sceneApercu = new THREE.Scene();
   sceneApercu.background = new THREE.Color('#1a1426');
   sceneApercu.add(new THREE.HemisphereLight(0xd9c9ff, 0x2a2038, 2.0));
@@ -254,24 +256,24 @@ async function creer() {
   const socle = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.8, 0.08, 24), new THREE.MeshLambertMaterial({ color: 0x3b2d55, emissive: 0x6b3fd1, emissiveIntensity: 0.35 }));
   socle.position.y = -0.04; sceneApercu.add(socle);
   const camApercu = new THREE.PerspectiveCamera(32, 1, 0.1, 30);
-  camApercu.position.set(0, 1.15, 4.3); camApercu.lookAt(0, 0.85, 0);
-  let alexApercu = null, demandeApercu = 0;
+  camApercu.position.set(0, 1.12, 3.9); camApercu.lookAt(0, 0.88, 0);
+  let alexApercu = null, tempsApercu = 0;
   async function apercu(cible, look) {
     // Plusieurs clics rapides : seule la dernière demande est affichée.
-    const numero = ++demandeApercu;
-    const nouveau = await personnage(STYLES[(look && look.style) || 'casual'].modele, teintesAlex(look));
-    if (numero !== demandeApercu) return false;
+    const numero = ++demande;
+    const gltf = await charger(STYLES[(look && look.style) || 'casual'].modele);
+    if (numero !== demande) return false;
+    const nouveau = instancier(gltf, teintesAlex(look));
     // Un seul Alex sur le socle : l'ancien modèle (autre style) est retiré.
     if (alexApercu && alexApercu !== nouveau && alexApercu.parent === sceneApercu) sceneApercu.remove(alexApercu);
-    const angle = alexApercu ? alexApercu.rotation.y : 0;
     alexApercu = nouveau;
-    alexApercu.rotation.y = angle;
     sceneApercu.add(alexApercu);
     alexApercu.userData.anim.jouer('Idle');
     if (!rendu || rendu.scene !== sceneApercu || conteneur !== cible) {
       attacher(cible, { scene: sceneApercu, camera: camApercu, avancer: dt => {
         if (!alexApercu) return;
-        alexApercu.rotation.y += dt * 0.7;
+        tempsApercu += dt;
+        alexApercu.rotation.y = Math.sin(tempsApercu * 0.6) * 0.6; // ±35° autour de la face
         alexApercu.userData.anim.avancer(dt);
       } });
     }
@@ -369,11 +371,14 @@ async function creer() {
   const etatDate = { partenaire: null, alex: null, temps: 0, zoom: 0, secousse: 0, fige: 0, parle: 0, tete: null };
 
   async function date(cible, profil, look) {
-    const [partenaire, alex, cafe] = await Promise.all([
-      personnage(profil.apparence3d.modele, teintesProfil(profil)),
-      personnage(STYLES[(look && look.style) || 'casual'].modele, teintesAlex(look)),
-      charger('cafe')
+    const numero = ++demande;
+    const [gltfPartenaire, gltfAlex, cafe] = await Promise.all([
+      charger(profil.apparence3d.modele), charger(STYLES[(look && look.style) || 'casual'].modele), charger('cafe')
     ]);
+    // Partie quittée ou relancée pendant le chargement : on n'affiche rien.
+    if (numero !== demande) return false;
+    const partenaire = instancier(gltfPartenaire, teintesProfil(profil));
+    const alex = instancier(gltfAlex, teintesAlex(look));
     meublerCafe(cafe);
     // Partie précédente : ses personnages quittent le café (jamais deux partenaires à la fois).
     [etatDate.partenaire, etatDate.alex].forEach(ancien => {
@@ -443,7 +448,16 @@ async function creer() {
     else if (type === 'froid') { anim.jouer('Defeat', true); e.zoom = 0.6; }
   }
 
-  return { portrait, apercu, saluerApercu, date, reagir, detacher };
+  // Nombre de personnages par scène (tests : aucun doublon après plusieurs parties).
+  function diagnostic() {
+    const compter = scene => scene.children.filter(o => o.userData.personnage).length;
+    return { apercu: compter(sceneApercu), date: compter(sceneDate), portrait: compter(scenePortrait), attache: rendu ? (rendu.scene === sceneDate ? 'date' : 'apercu') : null };
+  }
+
+  // Arrêt demandé par l'interface : annule aussi les scènes encore en chargement.
+  function arreter() { demande++; detacher(); }
+
+  return { portrait, apercu, saluerApercu, date, reagir, detacher: arreter, diagnostic };
 }
 
 // Préchargement sans créer de contexte WebGL (depuis le hub Jeux) : animations + modèles.

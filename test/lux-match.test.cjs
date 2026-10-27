@@ -134,3 +134,17 @@ test('Premières parties : 2 réponses ; ensuite 3', () => {
   const ensuite = partieAvec('lena_r01', { parties: 4 });
   assert.equal(ensuite.courant.choix.length, 3);
 });
+
+test('3D : une instance par modèle, scènes annulables, aperçu face/trois-quarts', () => {
+  const src = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match-3d.js'), 'utf8');
+  // Couleurs appliquées sans « await » entre teinture et rendu (modèles partagés Noémie/Emma).
+  assert.match(src, /function instancier\(gltf, teintes\)/);
+  assert.doesNotMatch(src, /await personnage\(/);
+  // Une scène demandée puis abandonnée (partie quittée) ne s'affiche jamais.
+  assert.match(src, /if \(numero !== demande\) return false;/);
+  assert.match(src, /function arreter\(\) \{ demande\+\+; detacher\(\); \}/);
+  // Aperçu du look : oscillation autour de la face, jamais de dos.
+  assert.doesNotMatch(src, /alexApercu\.rotation\.y \+=/);
+  assert.match(src, /Math\.sin\(tempsApercu \* 0\.6\) \* 0\.6/);
+  assert.match(src, /function diagnostic\(\)/);
+});
