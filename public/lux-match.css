@@ -395,3 +395,13 @@
   #view-luxmatch .lm-pastille{width:42px;height:42px} #view-luxmatch .lm-pastille i{width:32px;height:32px}
   #view-luxmatch .lm-couleurs{gap:2px}
 }
+#view-luxmatch .lm-ton{margin-top:4px;font-size:14px;font-weight:600;font-style:italic;color:#ffd1f4}
+#view-luxmatch .lm-carte-infos{padding-top:28px}
+#view-luxmatch .lm-carte-infos .lm-lu{font-size:15px} #view-luxmatch .lm-carte-infos .lm-fr{font-size:12px}
+#view-luxmatch .lm-carte-infos .lm-ton{font-size:13px}
+#view-luxmatch .lm-carte-infos h2{font-size:24px;margin-bottom:4px}
+#view-luxmatch .lm-app-match{min-height:min(64dvh,560px)}
+/* Choix sans luxembourgeois (scène bonus en français) : lisible comme une réponse. */
+#view-luxmatch .lm-reponse>.lm-fr:only-child{font-size:15px;font-weight:650;color:#f2ecfa}
+/* Le visage remonte au-dessus de la bio (le bas de la photo est sous le dégradé du texte). */
+#view-luxmatch img.lm-carte-photo{transform:translateY(-20%)}

@@ -92,6 +92,7 @@ const LuxMatchCore = (function () {
       mensonges: {},              // attributs dont l'affirmation actuelle est fausse
       dejaMenti: {},              // attributs sur lesquels il a menti au moins une fois
       blagues: {},                // plaisanteries (ex. 120 ans) : jamais des affirmations
+      genresBlague: {},           // genres de blague tentés : absurde, vantardise, autoderision, taquinerie
       choixFaits: [],             // identifiants de tous les choix du rendez-vous
       evenements: [],             // événements joués ou programmés
       contradictions: 0,
@@ -178,7 +179,8 @@ const LuxMatchCore = (function () {
 
   // 1. Traits de la partenaire : humour, une variante de post, au plus UN levier social fort.
   function tirerTraits(c, profil, hasard) {
-    const traits = { humour: choisirUn(profil.humours, hasard), phoneTolerance: profil.phoneTolerance, agePreference: null, dislikedFirstName: null, agePrefPositive30: false };
+    // L'humour est propre à chaque personnage (annoncé par sa bio et un post Amis) : jamais tiré au hasard.
+    const traits = { phoneTolerance: profil.phoneTolerance, agePreference: null, dislikedFirstName: null, agePrefPositive30: false };
     const variante = profil.variantes.length && hasard() < POIDS.variante ? choisirUn(profil.variantes, hasard) : null;
     const levierDejaPris = profil.phoneTolerance === 'anti_phone';  // Emma : le téléphone suffit
     const r = hasard();
@@ -253,6 +255,8 @@ const LuxMatchCore = (function () {
     if (plan.traits.dislikedFirstName && plan.scenes.indexOf('B03_NAME') < 0) erreurs.push('prenom_jamais_demande');
     // L'accroche de la partenaire est bien jouée (son événement reste atteignable).
     if (!profil.beatsForts.some(id => plan.scenes.indexOf(id) >= 0)) erreurs.push('accroche');
+    // Si une plaisanterie peut lui déplaire, son humour est annoncé publiquement.
+    if (Object.keys(profil.humour).some(k => profil.humour[k].gout === 'n_aime_pas') && !indice('humour')) erreurs.push('indice_humour');
     return erreurs;
   }
 
@@ -265,7 +269,7 @@ const LuxMatchCore = (function () {
     return {
       id: pilote.id, scenes, rappel: pilote.sequence.some(id => c.rappels[id]),
       cloture: pilote.sequence.find(id => c.clotures[id]) || 'B18_END',
-      variante: pilote.variante || null, traits: { humour: profil.humours[0], phoneTolerance: profil.phoneTolerance, agePreference: null, dislikedFirstName: null, agePrefPositive30: false }
+      variante: pilote.variante || null, traits: { phoneTolerance: profil.phoneTolerance, agePreference: null, dislikedFirstName: null, agePrefPositive30: false }
     };
   }
 
@@ -435,6 +439,7 @@ const LuxMatchCore = (function () {
     if (d.trait === 'agePrefPositive30' && !traits.agePrefPositive30) return false;
     if (d.telephone) return false;                  // placé par ouvrirTelephone()
     if (d.look) return !!etat.look && etat.look.style === d.look.style && etat.look.couleur === d.look.color;
+    if (d.blague) return !!etat.genresBlague[d.blague];
     const vaut = (cle, valeur) => etat.claims[cle] === valeur;
     if (d.mensonge) {
       const cles = Object.keys(d.mensonge);
@@ -485,10 +490,17 @@ const LuxMatchCore = (function () {
     if (pref === 'prefers_similar') return Math.abs(age - sienne) <= 2 ? 2 : 0;
     return 0;
   }
-  // Humour de la partenaire : une blague plaît (humour absurde) ou tombe à plat.
-  function aimeLAbsurde(etat) {
-    const humour = (etat.plan.traits || {}).humour;
-    return humour ? humour === 'absurde' : (etat.profil.humours || []).indexOf('absurde') >= 0;
+  // Humour de la partenaire (SPEC §14) : chaque genre de blague lui plaît, la laisse
+  // indifférente ou l'agace. Petit effet social, jamais de suspicion ni de faute de langue.
+  const EFFET_GOUT = { aime: 4, neutre: 0, n_aime_pas: -3 };
+  function goutBlague(etat, genre) {
+    const h = etat.profil.humour && etat.profil.humour[genre];
+    return h ? h.gout : 'neutre';
+  }
+  function reactionBlague(etat, choix, genre) {
+    const propre = etat.profil.reactionsChoix && etat.profil.reactionsChoix[choix.id];
+    const h = etat.profil.humour && etat.profil.humour[genre];
+    return { cle: 'HUMOUR', genre, gout: goutBlague(etat, genre), fr: propre || (h && h.fr) || '' };
   }
   function reaction(etat, cle) { return etat.profil.reactions[cle] ? { cle, fr: etat.profil.reactions[cle] } : null; }
 
@@ -533,9 +545,17 @@ const LuxMatchCore = (function () {
         r.visuel = 'sourire';
         if (fort) { r.reaction = reaction(etat, 'BLUFF'); r.visuel = 'sourcil'; }
       } else if (choix.truth === 'joke') {
-        const plait = aimeLAbsurde(etat);
-        ajouter(plait ? 4 : -2);
-        r.visuel = plait ? 'rire' : 'froid';
+        const genre = choix.jokeKind || 'absurde';
+        etat.genresBlague[genre] = true;
+        r.reaction = reactionBlague(etat, choix, genre);
+        ajouter(EFFET_GOUT[r.reaction.gout]);
+        r.visuel = r.reaction.gout === 'aime' ? 'rire' : r.reaction.gout === 'neutre' ? 'hoche' : genre === 'vantardise' ? 'sourcil' : 'gene';
+      } else if (choix.truth === 'decale') {
+        // Réponse correcte mais décalée (« Kaffi! ») : c'est elle qui réagit, pas un professeur.
+        const d = etat.profil.decale || { gout: 'n_aime_pas', fr: '' };
+        r.reaction = { cle: 'DECALE', gout: d.gout, fr: d.fr };
+        ajouter(d.gout === 'n_aime_pas' ? -2 : 0);
+        r.visuel = d.gout === 'n_aime_pas' ? 'gene' : 'rire';
       } else {
         ajouter(social.affinity, social.suspicion);
         r.visuel = 'gene';
@@ -550,6 +570,7 @@ const LuxMatchCore = (function () {
       ajouter(social.affinity, social.suspicion);
       r.reaction = { fr: choix.reactionFr };
       r.visuel = choix.visuel || null;
+      if (choix.jokeKind) { etat.genresBlague[choix.jokeKind] = true; r.reaction.genre = choix.jokeKind; }
       affirmerChoix();
       if (choix.aveu) {
         // Avouer : les mensonges liés à CET événement sont réparés, sans pénalité.
@@ -567,11 +588,11 @@ const LuxMatchCore = (function () {
       if (choix.valeur === 'blague') {
         // « Dat war e Witz! » ou un nouveau « James Bond » : pas de contradiction.
         ajouter(etat.blagues.joke_age_120 && attribut === 'age' ? 3 : 0);
-        r.visuel = aimeLAbsurde(etat) ? 'rire' : 'hoche';
+        r.visuel = goutBlague(etat, 'absurde') === 'aime' ? 'rire' : 'hoche';
       } else if (choix.valeur === etat.claims[attribut]) {
         ajouter(etat.mensonges[attribut] ? 2 : 4);
         r.visuel = 'hoche';
-        r.reaction = { cle: 'RAPPEL', fr: 'Elle s’en souvient… et ta réponse colle.' };
+        r.reaction = { cle: 'RAPPEL', fr: 'Elle hoche la tête : « Ah oui, c’est ça. »' };
       } else {
         affirmer(etat, attribut, choix.valeur);
         r.contradiction = true;

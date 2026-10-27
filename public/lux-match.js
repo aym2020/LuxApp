@@ -370,6 +370,7 @@ function lmRendreSwipe(box) {
       lmImage(profil, 'Idle', LM_FONDS.carte, 'lm-carte-photo') +
       '<div class="lm-carte-infos"><h2>' + lmEchapper(profil.name) + ', <span>' + profil.age + '</span></h2>' +
       lmLu(t.lu) + lmFr(t.fr) +
+      (profil.ton ? '<p class="lm-lu lm-ton" lang="lb">' + lmEchapper(profil.ton.lu) + '</p>' + lmFr(profil.ton.fr) : '') +
       '<div class="lm-tags">' + t.tags.map(tag => '<span><b lang="lb">' + lmEchapper(tag.lu) + '</b>' + (lm.aideFr && tag.fr !== tag.lu ? '<small>' + lmEchapper(tag.fr) + '</small>' : '') + '</span>').join('') + '</div>' +
       '</div><div class="lm-tampon lm-tampon-oui">OUI</div><div class="lm-tampon lm-tampon-non">NON</div></div>';
   box.innerHTML = lmEntete() +

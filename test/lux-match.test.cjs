@@ -284,3 +284,40 @@ test('Lot 6 : en-tête allégée, menu, dossier sans méta, dressing à un seul 
   assert.deepEqual(C.persona.ficheFr.map(x => x[0]), ['Âge', 'Origine', 'Ville', 'Métier', 'Langue']);
   assert.equal(C.persona.habitudesFr.length, 5);
 });
+
+test('Lot 7 : tempérament annoncé avant le date, blagues jugées par genre', () => {
+  C.profils.forEach(p => {
+    assert.ok(p.ton && p.ton.lu, p.id + ' signal Tinder');
+    assert.ok(p.amis.posts.some(x => x.reveals === 'humour' && x.obligatoire), p.id + ' post Amis sur l’humour');
+    ['absurde', 'vantardise', 'autoderision', 'taquinerie'].forEach(g => assert.ok(['aime', 'neutre', 'n_aime_pas'].includes(p.humour[g].gout) && p.humour[g].fr, p.id + ' ' + g));
+  });
+  // Même blague (« star du foot »), réactions différentes : Léna n'aime pas, Noémie rit.
+  const jouerBlague = profilId => {
+    const etat = partieAvec(profilId);
+    etat.courant = null; etat.file.unshift('B10_FOOT'); Core.continuer(etat);
+    const s0 = etat.suspicion, l0 = [etat.scoreLangue, etat.totalLangue];
+    const r = Core.repondre(etat, 'REP10_C');
+    assert.equal(etat.suspicion, s0); // une blague ne rend pas suspect
+    assert.deepEqual([etat.scoreLangue, etat.totalLangue], l0); // B10 non noté : pas d'effet de langue
+    return { r, etat };
+  };
+  const lena = jouerBlague('lena_r01'), noemie = jouerBlague('noemie_r01');
+  assert.ok(lena.r.affinity < 0 && noemie.r.affinity > 0);
+  assert.match(lena.r.reaction.fr, /Coupes du monde/); // réplique de la bible §13.2
+  // Léna : scène bonus « Tu plaisantes ou tu es sérieux ? », l'autodérision lui plaît.
+  Core.continuer(lena.etat);
+  assert.equal(lena.etat.courant.id, 'EV_LENA_TONE_CHECK');
+  assert.ok(Core.repondre(lena.etat, 'EV_LENA_TONE_SELF').affinity > 0);
+});
+
+test('Lot 7 : « Kaffi! » = réponse décalée, réaction naturelle, aucune correction', () => {
+  const etat = partieAvec('lena_r01');
+  etat.courant = null; etat.file.unshift('B11_COFFEE'); Core.continuer(etat);
+  const s0 = etat.suspicion, ok0 = etat.scoreLangue;
+  const r = Core.repondre(etat, 'REP11_C');
+  assert.equal(r.correction, null); assert.equal(r.langue, true); assert.equal(etat.scoreLangue, ok0 + 1);
+  assert.ok(r.affinity < 0 && r.affinity >= -3); assert.equal(etat.suspicion, s0);
+  assert.match(r.reaction.fr, /KAFFI/);
+  // Plus aucun commentaire de « professeur de politesse » dans les contenus.
+  assert.doesNotMatch(JSON.stringify(C), /un peu sec|phrase complète/);
+});

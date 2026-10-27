@@ -137,6 +137,38 @@
     "direct",
     "taquine"
    ],
+   "humour": {
+    "absurde": {
+     "gout": "n_aime_pas",
+     "fr": "Elle hausse un sourcil : « Hm. Et sinon, sérieusement ? »"
+    },
+    "vantardise": {
+     "gout": "n_aime_pas",
+     "fr": "« Ah oui ? Tu as des médailles à me montrer ? »"
+    },
+    "autoderision": {
+     "gout": "aime",
+     "fr": "« Ah, au moins tu sais rire de toi ! »"
+    },
+    "taquinerie": {
+     "gout": "aime",
+     "fr": "Elle te rend la pique avec un grand sourire."
+    }
+   },
+   "reactionsChoix": {
+    "REP03_C": "« James Bond ? Tu te prends pour qui exactement ? »",
+    "REP10_C": "« Une star du foot ? Et tu as gagné combien de Coupes du monde ? »"
+   },
+   "decale": {
+    "gout": "n_aime_pas",
+    "fr": "« KAFFI ? Tu commandes ou tu m’appelles au secours ? »"
+   },
+   "ton": {
+    "id": "TONE_LENA_TINDER",
+    "lu": "Ech sinn direkt a sportlech. Ech hu gär éierlech Leit.",
+    "fr": "Je suis directe et sportive. J'aime les gens honnêtes.",
+    "review": "a_verifier_lod"
+   },
    "tinder": {
     "id": "TINDER.LENA.BIO",
     "lu": "Ech wunnen zu Metz. Ech spille gär Fussball.",
@@ -217,6 +249,14 @@
       "fr": "Ma couleur préférée est le bleu. J'adore les tenues sportives.",
       "review": "a_verifier_lod",
       "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "TONE_LENA_AMIS",
+      "lu": "Ech maache gär Witzer. Mee ech hu Leit net gär, déi sech ëmmer fir Stare halen.",
+      "fr": "J'aime faire des blagues. Mais je n'aime pas les gens qui se prennent toujours pour des stars.",
+      "review": "a_verifier_lod",
+      "reveals": "humour",
       "obligatoire": true
      },
      {
@@ -338,6 +378,35 @@
     "ironique",
     "franchise"
    ],
+   "humour": {
+    "absurde": {
+     "gout": "neutre",
+     "fr": "Elle esquisse un sourire poli : « Original. »"
+    },
+    "vantardise": {
+     "gout": "n_aime_pas",
+     "fr": "« Impressionnant… si c’est vrai. »"
+    },
+    "autoderision": {
+     "gout": "aime",
+     "fr": "Elle rit : « Au moins, tu es lucide. »"
+    },
+    "taquinerie": {
+     "gout": "aime",
+     "fr": "« Touché. »"
+    }
+   },
+   "reactionsChoix": {},
+   "decale": {
+    "gout": "n_aime_pas",
+    "fr": "« … Oui ou non, c’était la question. »"
+   },
+   "ton": {
+    "id": "TONE_CLAIRE_TINDER",
+    "lu": "Ech hu gär kloer Äntwerten.",
+    "fr": "J'aime les réponses claires.",
+    "review": "a_verifier_lod"
+   },
    "tinder": {
     "id": "TINDER.CLAIRE.BIO",
     "lu": "Ech wunnen zu Lëtzebuerg. Ech schaffen an enger Bank.",
@@ -418,6 +487,14 @@
       "fr": "Ma couleur préférée est le noir. J'aime les vêtements élégants.",
       "review": "a_verifier_lod",
       "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "TONE_CLAIRE_AMIS",
+      "lu": "Ironie ass flott. Mee erfonnt Geschichte si manner flott.",
+      "fr": "L'ironie, c'est sympa. Mais les histoires inventées, c'est moins sympa.",
+      "review": "a_verifier_lod",
+      "reveals": "humour",
       "obligatoire": true
      },
      {
@@ -536,6 +613,35 @@
     "absurde",
     "franchise"
    ],
+   "humour": {
+    "absurde": {
+     "gout": "aime",
+     "fr": "Elle éclate de rire : « J’adore ! Continue ! »"
+    },
+    "vantardise": {
+     "gout": "aime",
+     "fr": "« Rien que ça ? J’adore quand on exagère pour rire. »"
+    },
+    "autoderision": {
+     "gout": "aime",
+     "fr": "« C’est ça, l’esprit ! »"
+    },
+    "taquinerie": {
+     "gout": "aime",
+     "fr": "Elle te tire la langue."
+    }
+   },
+   "reactionsChoix": {},
+   "decale": {
+    "gout": "neutre",
+    "fr": "« KAFFI ! Haha, quelle énergie. »"
+   },
+   "ton": {
+    "id": "TONE_NOEMIE_TINDER",
+    "lu": "Ech hu gär Faarwen a komesch Iddien.",
+    "fr": "J'aime les couleurs et les idées bizarres.",
+    "review": "a_verifier_lod"
+   },
    "tinder": {
     "id": "TINDER.NOEMIE.BIO",
     "lu": "Ech wunnen zu Esch. Ech mole gär.",
@@ -616,6 +722,14 @@
       "fr": "Ma couleur préférée est le rouge. J'aime les vêtements colorés.",
       "review": "a_verifier_lod",
       "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "TONE_NOEMIE_AMIS",
+      "lu": "Och eng schlecht Zeechnung ka mech zum Laache bréngen.",
+      "fr": "Même un dessin raté peut me faire rire.",
+      "review": "a_verifier_lod",
+      "reveals": "humour",
       "obligatoire": true
      },
      {
@@ -737,6 +851,35 @@
     "ironique",
     "absurde"
    ],
+   "humour": {
+    "absurde": {
+     "gout": "neutre",
+     "fr": "« … Je cherche encore la référence. »"
+    },
+    "vantardise": {
+     "gout": "n_aime_pas",
+     "fr": "« Champion, hein ? On en reparle au premier niveau. »"
+    },
+    "autoderision": {
+     "gout": "aime",
+     "fr": "« Haha, respect. »"
+    },
+    "taquinerie": {
+     "gout": "aime",
+     "fr": "« Bien joué. Un point pour toi. »"
+    }
+   },
+   "reactionsChoix": {},
+   "decale": {
+    "gout": "n_aime_pas",
+    "fr": "« Commande enregistrée. Autre chose ? »"
+   },
+   "ton": {
+    "id": "TONE_MAYA_TINDER",
+    "lu": "Ech hu gär al Spiller an ironesch Witzer.",
+    "fr": "J'aime les vieux jeux et l'humour ironique.",
+    "review": "a_verifier_lod"
+   },
    "tinder": {
     "id": "TINDER.MAYA.BIO",
     "lu": "Ech wunnen zu Tréier. Ech spille gär Computerspiller.",
@@ -796,6 +939,14 @@
       "fr": "Ma couleur préférée est le vert. J'aime les tenues simples.",
       "review": "a_verifier_lod",
       "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "TONE_MAYA_AMIS",
+      "lu": "Wann s du verléiers an driwwer laachs, si mir Frënn.",
+      "fr": "Si tu perds et que tu en ris, on est amis.",
+      "review": "a_verifier_lod",
+      "reveals": "humour",
       "obligatoire": true
      },
      {
@@ -918,6 +1069,35 @@
     "enthousiaste",
     "absurde"
    ],
+   "humour": {
+    "absurde": {
+     "gout": "aime",
+     "fr": "Elle rit : « Tu as toujours des histoires pareilles ? »"
+    },
+    "vantardise": {
+     "gout": "neutre",
+     "fr": "« Ah bon ? Raconte… »"
+    },
+    "autoderision": {
+     "gout": "aime",
+     "fr": "« Haha ! J’aime bien ton humour. »"
+    },
+    "taquinerie": {
+     "gout": "aime",
+     "fr": "Elle rit et te répond du tac au tac."
+    }
+   },
+   "reactionsChoix": {},
+   "decale": {
+    "gout": "neutre",
+    "fr": "Elle rit : « Un café pour toi aussi, alors ! »"
+   },
+   "ton": {
+    "id": "TONE_SOFIA_TINDER",
+    "lu": "Ech reese gär. Ech laache gär.",
+    "fr": "J'aime voyager. J'aime rire.",
+    "review": "a_verifier_lod"
+   },
    "tinder": {
     "id": "TINDER.SOFIA.BIO",
     "lu": "Ech kommen aus Portugal. Ech wunnen zu Metz.",
@@ -998,6 +1178,14 @@
       "fr": "Ma couleur préférée est le bleu. J'aime les looks confortables.",
       "review": "a_verifier_lod",
       "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "TONE_SOFIA_AMIS",
+      "lu": "Witzer si super. Mee ech hu keng Loscht op Leit, déi ëmmer léien.",
+      "fr": "Les blagues, c'est super. Mais je n'ai pas envie de gens qui mentent tout le temps.",
+      "review": "a_verifier_lod",
+      "reveals": "humour",
       "obligatoire": true
      },
      {
@@ -1117,6 +1305,35 @@
     "franchise",
     "calme"
    ],
+   "humour": {
+    "absurde": {
+     "gout": "neutre",
+     "fr": "Elle sourit doucement, un peu perdue."
+    },
+    "vantardise": {
+     "gout": "n_aime_pas",
+     "fr": "« Tu n’as pas besoin d’en faire autant, tu sais. »"
+    },
+    "autoderision": {
+     "gout": "aime",
+     "fr": "« C’est mignon. »"
+    },
+    "taquinerie": {
+     "gout": "neutre",
+     "fr": "Elle sourit poliment."
+    }
+   },
+   "reactionsChoix": {},
+   "decale": {
+    "gout": "n_aime_pas",
+    "fr": "Elle cligne des yeux : « … D’accord. »"
+   },
+   "ton": {
+    "id": "TONE_EMMA_TINDER",
+    "lu": "Kaffi, e gutt Gespréich, keen Handy.",
+    "fr": "Un café, une vraie conversation, pas de téléphone.",
+    "review": "a_verifier_lod"
+   },
    "tinder": {
     "id": "TINDER.EMMA.BIO",
     "lu": "Ech wunnen zu Lëtzebuerg. Moies drénken ech Kaffi.",
@@ -1176,6 +1393,14 @@
       "fr": "Ma couleur préférée est le beige. J'aime les tenues simples.",
       "review": "a_verifier_lod",
       "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "TONE_EMMA_AMIS",
+      "lu": "Ech hu kleng Witzer gär. Mee beim Rendez-vous wëll ech richteg schwätzen.",
+      "fr": "J'aime les petites blagues. Mais au rendez-vous, je veux vraiment parler.",
+      "review": "a_verifier_lod",
+      "reveals": "humour",
       "obligatoire": true
      },
      {
@@ -1702,6 +1927,7 @@
      "flags": [
       "joke_prenom"
      ],
+     "jokeKind": "absurde",
      "review": "audit_regles"
     }
    ]
@@ -1752,6 +1978,7 @@
      "flags": [
       "joke_age_120"
      ],
+     "jokeKind": "absurde",
      "review": "lecon_modele"
     }
    ]
@@ -2031,6 +2258,7 @@
      "flags": [
       "joke_foot"
      ],
+     "jokeKind": "vantardise",
      "review": "a_verifier_lod"
     }
    ]
@@ -2074,17 +2302,8 @@
      "id": "REP11_C",
      "lu": "Kaffi!",
      "fr": "Café !",
-     "truth": "error",
-     "languageCorrect": false,
-     "social": {
-      "affinity": -1
-     },
-     "pragmatique": true,
-     "correction": {
-      "lu": "Jo, ech drénke moies Kaffi.",
-      "fr": "Pas faux, mais un peu sec : réponds avec une phrase complète.",
-      "review": "audit_regles"
-     },
+     "truth": "decale",
+     "languageCorrect": true,
      "review": "lecon"
     }
    ]
@@ -2282,6 +2501,7 @@
      "flags": [
       "joke_art"
      ],
+     "jokeKind": "vantardise",
      "review": "a_verifier_lod"
     }
    ]
@@ -2329,6 +2549,7 @@
      "flags": [
       "joke_gaming"
      ],
+     "jokeKind": "vantardise",
      "review": "audit_regles"
     }
    ]
@@ -2435,6 +2656,7 @@
      "flags": [
       "joke_cafe"
      ],
+     "jokeKind": "absurde",
      "review": "audit_regles"
     }
    ]
@@ -3313,6 +3535,50 @@
     }
    ]
   },
+  "EV_LENA_TONE_CHECK": {
+   "titreFr": "Léna se demande si tu plaisantes",
+   "profil": "lena_r01",
+   "taille": "petit",
+   "pedagogicalScoring": false,
+   "declencheur": {
+    "blague": "vantardise"
+   },
+   "npc": {
+    "fr": "Tu plaisantes ou tu es sérieux ?",
+    "luARediger": true
+   },
+   "choices": [
+    {
+     "id": "EV_LENA_TONE_SELF",
+     "fr": "Je plaisante ! Je suis surtout champion des buts ratés.",
+     "social": {
+      "affinity": 5
+     },
+     "reactionFr": "Elle rit franchement : « Ah, au moins tu sais rire de toi ! »",
+     "visuel": "rire",
+     "jokeKind": "autoderision"
+    },
+    {
+     "id": "EV_LENA_TONE_BRAG",
+     "fr": "Non, je suis vraiment une superstar.",
+     "social": {
+      "affinity": -3
+     },
+     "reactionFr": "Elle soupire et regarde ailleurs.",
+     "visuel": "froid",
+     "jokeKind": "vantardise"
+    },
+    {
+     "id": "EV_LENA_TONE_HONEST",
+     "fr": "D’accord, j’en fais un peu trop.",
+     "social": {
+      "affinity": 2
+     },
+     "reactionFr": "Elle sourit et revient à une conversation simple.",
+     "visuel": "sourire"
+    }
+   ]
+  },
   "B25_TRUTH_REPAIR": {
    "titreFr": "tu as dû t’expliquer",
    "profil": "tous",
@@ -3397,6 +3663,18 @@
    "raison": "Persona sans mode de travail : ni vérité ni mensonge (Bible §6.28)."
   },
   {
+   "id": "EV_LENA_TONE_CHECK (LU)",
+   "raison": "Scène bonus de la bible §13.4 intégrée en français seulement (répliques LU « à rédiger et valider ») ; non notée en langue."
+  },
+  {
+   "id": "REACT_LENA_* LU (§13.2)",
+   "raison": "Répliques LU candidates au sens différent du FR : seules les réactions FR sont affichées."
+  },
+  {
+   "id": "TONE_* (§13.1)",
+   "raison": "Intégrés ; les traductions FR suivent fidèlement le LU candidat (la bible signalait des écarts de sens pour Léna et Sofia)."
+  },
+  {
    "id": "REACT_* (LU §11)",
    "raison": "Répliques LU candidates non affichées : les réactions sont montrées en FR (feedback social), comme prévu si l’audit n’est pas fait."
   },
@@ -3425,6 +3703,16 @@
    "avant": "Nee, ech spille net gär …",
    "apres": "Nee, ech spillen net gär …",
    "regle": "Le n reste devant n."
+  },
+  {
+   "avant": "Witzer sinn super. (TONE_SOFIA_AMIS)",
+   "apres": "Witzer si super.",
+   "regle": "Le n tombe devant s."
+  },
+  {
+   "avant": "Kaffi! (REP11_C) noté comme faute",
+   "apres": "Réponse décalée, luxembourgeois correct",
+   "regle": "Le mot est juste : maladresse de conversation, pas une faute de langue (SPEC §14.4, §15.4)."
   },
   {
    "avant": "Ech hunn Musek gär",
