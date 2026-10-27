@@ -485,3 +485,64 @@ Une partie contre Léna s'est terminée à **61 affinité / 0 suspicion / 83 % L
 - **Prérequis** : stabilisation des autres lots et relecture LU ; cet ajout est un travail de contenu/gameplay de faible priorité par rapport aux régressions 3D/UX.
 
 **Contenus source et mapping** : [Bible éditoriale — section 13](../LUX-MATCH-BIBLE-EDITORIALE-A11.md#13-signaux-de-temperament-et-style-dhumour--complements-de-dialogues) et [Guide pour Claude](../LUX-MATCH-GUIDE-INTEGRATION-CONTENUS.md).
+
+---
+
+## 15. Réactions émotionnelles manga en surimpression 2D (27/10/2026)
+
+**Statut : choix de direction UX/game feel à réaliser, aucune modification du jeu par cette note.** Objectif : les personnages 3D low-poly de Lux Match expriment peu les micro-émotions faciales ; **le joueur doit comprendre ce qu'il vient de provoquer même si la fille reste poker face**. Dans ce jeu, le silence et la neutralité du visage peuvent être volontairement comiques. Il ne faut pas remplacer cette comédie par des explications pédagogiques sur la maladresse sociale.
+
+### 15.1. Solution : signes manga / visual novel en 2D au-dessus de la scène 3D
+
+Créer une **couche HTML/CSS de réactions non interactive**, visuellement associée à la tête de la partenaire, sans modifier le squelette 3D ni générer de nouvelles expressions faciales. Graphismes originaux en **SVG ou sprites 2D locaux** (traits épais, silhouettes lisibles, style arcade PS1 cohérent avec l'UI violette). Pas d'emojis système comme unique rendu (variables selon Android), pas de bibliothèque d'animation externe, pas d'ajout de canvas/WebGL pour les glyphes.
+
+Six émotions de base, avec un effet **déterminé par la réaction de la scène**, jamais par un tirage décoratif :
+
+| Émotion de scène (ID éditorial) | Signe 2D | Compréhension attendue | Exemple déclencheur |
+| --- | --- | --- | --- |
+| `awkward` | **grosse goutte de sueur** (bleue, avec petit rebond) | Malaise / « euh… » | Alex crie « Kaffi! » au lieu de répondre normalement |
+| `annoyed` | **veine de colère** rouge / deux traits de tension | Agacée, pas nécessairement soupçonneuse | Téléphone ressorti malgré avertissement d'Emma |
+| `doubt` | **petit point d'interrogation** ou goutte + regard figé | Elle ne te croit pas / doute du sens | Une vantardise de foot, un bluff improbable |
+| `delighted` | **petites étoiles** ou éclats roses, sans grand cœur systématique | Elle apprécie sincèrement | Une réponse attentionnée ou de l'autodérision |
+| `charmed` | **petit cœur rose**, usage peu fréquent | Attirance plutôt que simple réponse correcte | Très bonne réponse sociale sur un sujet qui la touche |
+| `stunned` | **! / traits de choc** avec micro-freeze | Stupeur comique | Piège portugais « hippopotame » ; mensonge totalement démasqué |
+
+**Règles de lisibilité :** garder **un seul signe émotionnel principal** à la fois et un espace de respiration entre deux réactions. Ne pas mettre un cœur à chaque bonne réponse de LU, une goutte à chaque faute linguistique ni une veine à chaque choix négatif. La **grammaire** et la **réaction sociale** restent séparées. Les nombres d'affinité et de suspicion continuent d'exister dans le HUD, mais le symbole ne doit pas exposer la logique interne (seuils, pénalité exacte).
+
+### 15.2. Exemples de mise en scène : les signes remplacent l'explication de professeur
+
+**Léna / « Kaffi! » :**
+- Alex dit « Kaffi! ».
+- Léna reste impassible pendant ~0,3 s ; une **goutte manga** apparaît près de sa tempe et disparaît après ~1,2 s.
+- Elle peut avoir une courte réplique naturelle et amusante : **FR intention :** « KAFFI ? Tu me réponds ou tu commandes ? ». **LU candidate à rédiger/auditer dans la Bible, ne pas afficher la phrase FR comme question LU.**
+- Affinité légèrement réduite : la sanction est **sociale**. Ne pas expliquer « tu es trop direct » comme un tuteur de savoir-vivre ; si la réponse était une **erreur d'usage linguistique enseigné**, sa correction de langue relève d'un espace distinct, bref, sans confondre les deux.
+
+**Léna / « Je suis James Bond » :** point d'interrogation + regard perplexe, sans punition de langue si la phrase est correcte. **Léna / « Je suis une star du foot » :** veine discrète ou point d'interrogation selon si elle interprète ça comme vantardise ou plaisanterie ; les traits humoristiques publics (§14) déterminent la réponse.
+
+**Léna / autodérision sur son niveau de foot :** deux petites étoiles / petit rire. Une partenaire peut donc apprécier une plaisanterie et pas une autre.
+
+**Emma / téléphone :** signe d'agacement (veine) **uniquement si son trait anti-téléphone est actif et son indice public**, pas simplement parce que le téléphone a été ouvert.
+
+**Sofia / réponse « hipopótamo » :** symbole de choc « !! » + arrêt de la musique + très court zoom ; scène rare avec une intensité supérieure. Ne pas multiplier les gros effets à chaque tour.
+
+### 15.3. Intégration technique minimale et robustesse mobile
+
+**Constat du code réel `2.1` :** `public/lux-match.js` déclenche déjà `LuxMatchCore.repondre(...)`, obtient `r.visuel` et affiche `lmFeedback(...)` ; `public/lux-match-3d.js` expose `reagir(type)` avec mouvements de tête `hoche`, `sourire`, `sourcil`, `gene`, `froid`, `rire`, et événements `scratch`/`zoom`. La scène `#lm-scene` est absolue derrière les jauges et les options. **Pas besoin de refonte du moteur 3D.**
+
+- **Source d'état unique :** enrichir les retours d'événement ou un mapping UI contrôlé `{visualReaction, emotionFx}` ; les glyphes découlent **de la même décision sociale** qui a produit `r.visuel`. Ne pas faire dépendre les icônes du score total, ni recalculer arbitrairement la personnalité.
+- **Surimpression :** un petit composant DOM non cliquable `#lm-emotion-fx` au-dessus de `#lm-scene`, sous HUD et dialogue. Visuellement près de la tête de la partenaire, **sans masquer le visage, les sous-titres, l'indicateur batterie ou les réponses**.
+- **Position :** version MVP : ancrage en % **vérifié sur plusieurs tailles Android et orientations** pour la caméra actuelle fixe, y compris fallback portrait 2D. Si le cadrage bouge avec zoom, soit corriger par 2–3 positions prédéfinies, soit projeter un **seul point proche de la tête** depuis la caméra déjà existante à l'écran (pas de nouvel effet Three.js) ; ne pas ajouter un second `requestAnimationFrame` à la page pour cela si cela n'apporte rien.
+- **Rythme :** effet apparu après réponse, ~0,2–0,4 s de suspension pour les situations gênantes, 0,8–1,4 s de durée visible, puis disparition. **Aucune animation bloquante** ni attente forcée pour afficher le choix suivant ou lire le dialogue. Supprimer/annuler l'effet précédent au changement d'échange, au téléphone ouvert, à la navigation ou à la fin d'une partie. Un seul timeout/animation sous contrôle du cycle de vie.
+- **Intensité** : `subtle` (petit pictogramme, pas de son) par défaut, `medium` (pop CSS court + son optionnel), `big` réservé à **un gag majeur** par date. Les petites réponses satisfaisantes ne doivent pas toutes avoir des effets.
+- **Accessibilité et performances :** rendu SVG/CSS local léger, `pointer-events:none`, aria cachée si la réaction équivalente existe déjà textuellement ; sinon un retour textuel discret accessible en aria-live **sans diagnostic professoral**. Respecter `prefers-reduced-motion` (signe statique ou fondu sans secousse), mode silencieux, faible GPU. Éviter de répéter dans TalkBack le score ET le signe ET la réplique.
+- **Thème :** contours assez contrastés pour rester lisibles sur fond néon/violet et sur le portrait de fallback ; signes cohérents stylistiquement avec les pixels/low-poly ; pas d'image manga sous licence empruntée à un anime.
+
+### 15.4. Critères de recette et périmètre de Claude
+
+1. Tester au minimum les événements **« Kaffi! »**, James Bond, star du foot, autodérision, faux métier de Claire, téléphone d'Emma, piège portugais de Sofia ; vérifier que chaque signe **correspond au contexte**, pas juste au malus.
+2. Test **« poker face »** : visage/animation de la partenaire neutre et son coupé ; 3 testeurs doivent pouvoir dire s'il s'agit de gêne, colère, doute, amusement ou attirance grâce à la composition, **sans lecture du panneau de correction**. Si doute/colère confondus, modifier les symboles.
+3. Réaction sociale ≠ faute de LU : même si l'affinité diminue, ne pas déclencher automatiquement de correction de grammaire. Le cas `Kaffi!` actuel nécessite une revue distincte de son statut `languageCorrect:false` (maladresse conversationnelle vs objectif pédagogique).
+4. Vérifier 320 × 640, 360 × 740, 430 × 932, Android Samsung, safe areas, zoom caméra, fallback 2D, son OFF, motion reduced, téléphone ouvert/fermé et **3 rendez-vous successifs** : pas d'effet persistant, de dédoublement d'icône, de rendu masquant les choix ou de nouvelle fuite de timer/RAF.
+5. Garder le moteur procédural, les six profils, le café et les graphismes 3D existants. **Cette évolution est une couche de feedback UX légère**, non un nouveau jeu, pas de nouveaux décors/lore.
+
+**Livraison attendue ultérieurement :** petit atlas de **six sprites originaux**, mapping `r.visuel / emotionFx` et tests de non-régression ; **ne pas développer le changement par cette mise à jour documentaire**. Les répliques LU supplémentaires demeurent à valider selon la Bible/LOD.
