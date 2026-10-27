@@ -829,7 +829,7 @@ Ces textes n'évaluent **jamais** la qualité du luxembourgeois. Les quatre issu
 | ID | Texte final |
 |---|---|
 | `FIN_EMMA_SUCCESS` | « Parler sans écran, ça fait du bien. On reprend un café ensemble ? » |
-| `FIN_EMMA_FUN` | « Ton téléphone est mort avant le rendez-vous. Au moins, il nous a laissés tranquilles ! » |
+| `FIN_EMMA_FUN` | « Ton téléphone est mort au milieu du rendez-vous. Au moins, il nous a laissés tranquilles ! » |
 | `FIN_EMMA_NEUTRAL` | « C'était calme et agréable, mais je ne crois pas qu'on se reverra. » |
 | `FIN_EMMA_FAIL` | « J'aurais préféré discuter avec toi plutôt qu'avec ton téléphone. » |
 
