@@ -265,3 +265,295 @@ Les variantes ci-dessous **ne remplacent pas les preuves indispensables du look*
 
 **Photos :** produire depuis le moteur 3D existant si possible des décors contextualisés, sinon une illustration cohérente. Une légende ne doit jamais décrire autre chose que ce qui est visible. Un personnage majeur apparaît toujours identique entre Tinder, Pix et la scène café.
 
+
+
+---
+
+## 6. Banque de scènes de conversation : 26 beats à sélectionner, jamais tous dans une date
+
+Les 26 beats suivants **ne remplacent pas automatiquement les dialogues existants**. Ils constituent un pool d'**intentions et de textes candidats** avec identifiants uniques. Claude doit faire valider toute nouvelle ligne LU et intégrer les nœuds selon la section 13 de SPEC 109. **À_AUDITER par défaut** ; les phrases manifestement au-delà d'A1.1 sont `OPTIONNEL` ou affectées seulement aux réactions non notées.
+
+**Notation de chaque réponse :** `L/V` luxembourgeois grammaticalement correct + sincère ; `L/M` langue correcte + bluff ; `L/B` langue correcte + blague ; `E` erreur pédagogique ou conversationnelle à examiner ; `L partenaire` est une **ligne prononcée par la partenaire**, pas une réponse sélectionnable par Alex. Les tags n'équivalent pas à une validation linguistique. Les effets sont des **intentions d'auteur**, les valeurs de jauges seront calibrées par Claude, **pas un score fixe imposé**.
+
+**Garde spéciale :** `B04_AGE` doit afficher 3 propositions même pendant les deux premiers runs (nouvelle exception à la réduction à 2 choix prévue dans le moteur actuel). L'âge de 120 ans est une **plaisanterie contextuelle**, pas un vrai `claim.age=120` par défaut : sinon la blague rendrait absurdes les rappels. On peut mémoriser `ageJoke=120` séparément.
+
+
+### B01_SALUT — A1 · L1
+
+**Déclenchement :** tous. **Interlocutrice :** « Moien! Wéi geet et dir? » → *Salut ! Comment ça va ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP01_A` | « Mir geet et gutt, merci. An dir? » → *Je vais bien, merci. Et toi ?* | L/V | affinité+ |
+| `REP01_B` | « Et geet. » → *Ça va.* | L/V | neutre |
+| `REP01_C` | « Äddi! » → *Au revoir !* | E | réaction gênée; correction contextuelle |
+
+### B02_SALUT_SOIR — A1 · L1
+
+**Déclenchement :** date en soirée. **Interlocutrice :** « Gudden Owend! » → *Bonsoir !*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP02_A` | « Gudden Owend! » → *Bonsoir !* | L/V | affinité+ |
+| `REP02_B` | « Moien! » → *Bonjour !* | L/V | neutre, registre plus simple |
+| `REP02_C` | « Gudde Moien! » → *Bonjour ! (matin)* | E | décalage horaire comique |
+
+### B03_NAME — A1 · L1
+
+**Déclenchement :** Alex déjà présenté avant swipe. **Interlocutrice :** « Wéi heeschs du? » → *Comment t'appelles-tu ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP03_A` | « Ech heeschen Alex. » → *Je m'appelle Alex.* | L/V | claims.prenom=Alex |
+| `REP03_B` | « Ech heeschen Max. » → *Je m'appelle Max.* | L/M | claims.prenom=Max; vérifier aux rappels |
+| `REP03_C` | « Ech heeschen James Bond. » → *Je m'appelle James Bond.* | L/B | claims.prenom=James Bond; réaction selon humour |
+
+### B04_AGE — A1 · L5,L14
+
+**Déclenchement :** obligatoire si l'âge demandé; **3 choix quel que soit numéro de partie**. **Interlocutrice :** « Wéi al bass du? » → *Quel âge as-tu ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP04_A` | « Ech sinn aachtanzwanzeg Joer al. » → *J'ai 28 ans.* | L/V | claims.age=28 |
+| `REP04_B` | « Ech sinn drësseg Joer al. » → *J'ai 30 ans.* | L/M | claims.age=30; préférence d'âge facultative |
+| `REP04_C` | « Ech sinn honnertzwanzeg Joer al. » → *J'ai 120 ans.* | L/B | claims.age=120? NON: enregistrer « joke » sans prétendre faire croire durablement à 120; voir note |
+
+### B05_ORIGIN — A2 · L7
+
+**Déclenchement :** Alex vient de France. **Interlocutrice :** « Vu wou kënns du? » → *D'où viens-tu ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP05_A` | « Ech kommen aus Frankräich. » → *Je viens de France.* | L/V | claims.origin=Frankräich |
+| `REP05_B` | « Ech kommen aus Portugal. » → *Je viens du Portugal.* | L/M | claims.origin=Portugal; Sofia → trap_portugal éligible |
+| `REP05_C` | « Ech kommen aus Däitschland. » → *Je viens d'Allemagne.* | L/M | claims.origin=Däitschland; cohérence future |
+
+### B06_CITY — A2 · L10
+
+**Déclenchement :** Alex réside à Metz. **Interlocutrice :** « Wou wunns du? » → *Où habites-tu ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP06_A` | « Ech wunnen zu Metz. » → *J'habite à Metz.* | L/V | claims.city=Metz |
+| `REP06_B` | « Ech wunnen zu Lëtzebuerg. » → *J'habite à Luxembourg-ville.* | L/M | claims.city=Lëtzebuerg |
+| `REP06_C` | « Ech wunnen zu Esch. » → *J'habite à Esch.* | L/M | claims.city=Esch |
+
+### B07_LANGUAGE — A2 · L9
+
+**Déclenchement :** Alex ne parle que français comme fait canonique. **Interlocutrice :** « Wat fir eng Sprooch schwätz du? » → *Quelle langue parles-tu ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP07_A` | « Ech schwätzen Franséisch. » → *Je parle français.* | L/V | claims.language=Franséisch |
+| `REP07_B` | « Ech schwätzen Portugisesch. » → *Je parle portugais.* | L/M | claims.language=Portugisesch; Sofia → gag possible |
+| `REP07_C` | « Ech schwätzen Däitsch. » → *Je parle allemand.* | L/M | claims.language=Däitsch |
+
+### B08_PROFESSION — A2 · L11
+
+**Déclenchement :** Alex est banquier. **Interlocutrice :** « Wat schaffs du? » → *Que fais-tu comme travail ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP08_A` | « Ech sinn e Banker. » → *Je suis banquier.* | L/V | claims.job=Banker |
+| `REP08_B` | « Ech sinn en Dokter. » → *Je suis médecin.* | L/M | claims.job=Dokter; Claire → piège possible |
+| `REP08_C` | « Ech sinn e Polizist. » → *Je suis policier.* | L/M | claims.job=Polizist; rappel possible |
+
+### B09_WORKPLACE — A2 · L11,L10
+
+**Déclenchement :** Alex banquier, lieu de travail non défini → parler de secteur et non de ville. **Interlocutrice :** « Wou schaffs du? » → *Où travailles-tu ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP09_A` | « Ech schaffen an enger Bank. » → *Je travaille dans une banque.* | L/V | précision du métier |
+| `REP09_B` | « Ech schaffen an engem Spidol. » → *Je travaille dans un hôpital.* | L/M | uniquement avec une couverture « médecin » cohérente ou nouvel aveu, sinon contradiction |
+| `REP09_C` | « Ech schaffen doheem. » → *Je travaille de chez moi.* | L/? | non relié au persona : ne pas noter comme mensonge ou vérité tant que workMode absent |
+
+### B10_FOOT — A2 · OPTIONNEL (loisir non noté)
+
+**Déclenchement :** partenaire sportive ou foot, Alex ne joue pas au foot. **Interlocutrice :** « Spills du gär Fussball? » → *Tu aimes jouer au football ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP10_A` | « Nee, ech spille net gär Fussball. » → *Non, je n'aime pas jouer au football.* | L/V | réponse honnête, pas de pénalité automatique |
+| `REP10_B` | « Jo, ech spille gär Fussball. » → *Oui, j'aime jouer au football.* | L/M | claims.football=true; défi sportif éligible |
+| `REP10_C` | « Jo! Ech sinn de Messi! » → *Oui ! Je suis Messi !* | L/B | réaction comique ; pas d'usurpation réelle ni d'épreuve notée |
+
+### B11_COFFEE — A2 · L16
+
+**Déclenchement :** Alex boit du café le matin. **Interlocutrice :** « Drénks du moies Kaffi? » → *Tu bois du café le matin ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP11_A` | « Jo, ech drénke moies Kaffi. » → *Oui, je bois du café le matin.* | L/V | claims.morningCoffee=true |
+| `REP11_B` | « Nee, ech drénke moies keen Kaffi. » → *Non, je ne bois pas de café le matin.* | L/M | claims.morningCoffee=false |
+| `REP11_C` | « Kaffi! » → *Café !* | E pragmatique | phrase incomplète pour répondre naturellement ; pas nécessairement faute de lexique |
+
+### B12_COFFEE_OFFER — A2 · L16
+
+**Déclenchement :** la partenaire propose le café, pas de nouveau trait. **Interlocutrice :** « Drénks du Kaffi? » → *Tu bois du café ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP12_A` | « Jo, gär. » → *Oui, volontiers.* | L/V | réaction chaleureuse |
+| `REP12_B` | « Jo, merci. » → *Oui, merci.* | L/V | neutre |
+| `REP12_C` | « Nee, merci. » → *Non merci.* | L/V | neutre ; ce refus ponctuel ne modifie pas morningCoffee |
+
+### B13_NATIONALITY — A2 · L8
+
+**Déclenchement :** optionnel si cours débloqué, Alex français. **Interlocutrice :** « Wat fir eng Nationalitéit hues du? » → *Quelle est ta nationalité ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP13_A` | « Ech sinn e Fransous. » → *Je suis français.* | L/V | claims.nationality=Fransous |
+| `REP13_B` | « Ech sinn e Portugis. » → *Je suis portugais.* | L/M | claims.nationality=Portugis; liée à l'origine si revendiquée |
+| `REP13_C` | « Ech sinn e Lëtzebuerger. » → *Je suis luxembourgeois.* | L/M | claims.nationality=Lëtzebuerger; éviter incohérence automatique avec lieu de résidence |
+
+### B14_TIME — A2 · L15
+
+**Déclenchement :** définir une heure canonique de rendez-vous dans scenarioPlan : ex. 19:00, sinon ne pas jouer. **Interlocutrice :** « Um wéi vill Auer ass eise Rendez-vous? » → *À quelle heure est notre rendez-vous ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP14_A` | « Um siwen Auer. » → *À sept heures.* | L/V contextuel | date.time=19:00 à expliciter format 12/24 h |
+| `REP14_B` | « Um aacht Auer. » → *À huit heures.* | L/M contextuel | si rendez-vous à 19h, erreur de mémoire, pas forcément mensonge |
+| `REP14_C` | « Um hallwer aacht. » → *À sept heures et demie.* | L/M contextuel | forme de demi-heure à confirmer en contexte |
+
+### B15_NAME_RECALL — A3 · L1
+
+**Déclenchement :** si claims.prenom défini ; question déjà existante, ne pas poser si nom jamais déclaré. **Interlocutrice :** « Wéi heeschs du nach eng Kéier? » → *Tu t'appelles comment, déjà ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP15_A` | « Ech heeschen Alex. » → *Je m'appelle Alex.* | L/V ou contradiction | si prénom annoncé Max auparavant → contradiction sociale |
+| `REP15_B` | « Ech heeschen Max. » → *Je m'appelle Max.* | L/M ou cohérence | si Max annoncé → maintient le mensonge |
+| `REP15_C` | « Ech heeschen James Bond. » → *Je m'appelle James Bond.* | L/B | nouvelle plaisanterie, pas pénalité automatique de grammaire |
+
+### B16_AGE_RECALL — A3 · L5,L14
+
+**Déclenchement :** uniquement si une affirmation d'âge durable a été faite. **Interlocutrice :** « Wéi al bass du nach eng Kéier? » → *Tu as quel âge, déjà ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP16_A` | « Ech sinn aachtanzwanzeg Joer al. » → *J'ai 28 ans.* | L/V conditionnel | cohérent si claim=28 ; sinon contradiction |
+| `REP16_B` | « Ech sinn drësseg Joer al. » → *J'ai 30 ans.* | L/M conditionnel | cohérent si claim=30 ; sinon contradiction |
+| `REP16_C` | « Dat war e Witz! » → *C'était une blague !* | L/B | réparation si ageJoke=120 ; LU à auditer |
+
+### B17_CITY_RECALL — A3 · L10
+
+**Déclenchement :** si claims.city. **Interlocutrice :** « Wou wunns du nach eng Kéier? » → *Tu habites où, déjà ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP17_A` | « Ech wunnen zu Metz. » → *J'habite à Metz.* | L/V conditionnel | vrai mais contradiction si claim antérieur différent |
+| `REP17_B` | « Ech wunnen zu Lëtzebuerg. » → *J'habite au Luxembourg.* | L/M conditionnel | cohérent seulement si déclaré auparavant |
+| `REP17_C` | « Ech wunnen zu Esch. » → *J'habite à Esch.* | L/M conditionnel | cohérent seulement si déclaré auparavant |
+
+### B18_END — A3 · L1
+
+**Déclenchement :** obligatoire, fin d'échange. **Interlocutrice :** « Äddi! » → *Au revoir !*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP18_A` | « Äddi! » → *Au revoir !* | L/V | fin polie |
+| `REP18_B` | « Schéinen Owend nach! » → *Bonne soirée !* | L/V | si date en soirée |
+| `REP18_C` | « Moien! » → *Bonjour !* | E pragmatique | salutation de début au moment du départ |
+
+### B19_PARTNER_NAME — A2 · L1
+
+**Déclenchement :** question posée par Alex à une fille dont il connait déjà le prénom ; intention : attention à l'autre. **Interlocutrice :** « Wéi heeschs du? » → *Comment tu t'appelles ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP19_A` | « Wéi geet et dir? » → *Comment vas-tu ?* | L/V | ouvre une réponse sur l'humeur plutôt que redemander un prénom connu |
+| `REP19_B` | « Wou wunns du? » → *Où habites-tu ?* | L/V | demande cohérente avec le profil |
+| `REP19_C` | « Wéi heeschs du? » → *Comment tu t'appelles ?* | L/B ou maladroit | elle rappelle son prénom, selon humour |
+
+### B20_PARTNER_CITY — A2 · L10
+
+**Déclenchement :** si le joueur choisit de s'intéresser à elle. **Interlocutrice :** « Wou wunns du? » → *Où habites-tu ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP20_A` | « Ech wunnen zu Metz. » → *J'habite à Metz.* | L partenaire | réplique fournie par Sofia/Léna seulement ; source canonique du profil |
+| `REP20_B` | « Ech wunnen zu Lëtzebuerg. » → *J'habite au Luxembourg.* | L partenaire | réplique fournie par Emma/Claire seulement |
+| `REP20_C` | « Ech wunnen zu Esch. » → *J'habite à Esch.* | L partenaire | réplique fournie par Noémie seulement |
+
+### B21_ASK_HER — A2 · L1,L10,L11
+
+**Déclenchement :** nouveau type de nœud : Alex choisit quelle question POSER, aucune question fausse. **Interlocutrice :** « Elo bass du drun! » → *À toi de poser une question !*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP21_A` | « Wou wunns du? » → *Où habites-tu ?* | L | elle répond par la ville canonique |
+| `REP21_B` | « Wat schaffs du? » → *Quel est ton métier ?* | L | elle répond par la profession canonique, variante validée |
+| `REP21_C` | « Wéi al bass du? » → *Quel âge as-tu ?* | L | elle répond par l'âge canonique, peut être jugé indiscret selon trait visible |
+
+### B22_ASK_HER_LANG — A2 · L9
+
+**Déclenchement :** si langue connue du profil via Pro. **Interlocutrice :** « Schwätz du Portugisesch? » → *Tu parles portugais ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP22_A` | « Jo, ech schwätzen Portugisesch. » → *Oui, je parle portugais.* | L partenaire | Sofia seulement |
+| `REP22_B` | « Nee, ech schwätzen Franséisch. » → *Non, je parle français.* | L partenaire | autre profil si français et pas portugais |
+| `REP22_C` | « Jo, ech schwätzen Englesch. » → *Oui, je parle anglais.* | L partenaire | profil concerné selon Pro |
+
+### B23_STYLE_REACTION — A1 · L3/L4 + OPTIONNEL
+
+**Déclenchement :** si préférence vestimentaire publique révélée ; première impression. **Interlocutrice :** « Deng Faarf ass schéin! » → *Ta couleur est jolie !*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP23_A` | « Merci! » → *Merci !* | L | réaction naturelle |
+| `REP23_B` | « Gutt! » → *Bien !* | L | court |
+| `REP23_C` | « Deng Faarf ass och schéin. » → *Ta couleur est jolie aussi.* | L | sous réserve de sens et contexte LU audité |
+
+### B24_TOMORROW — A3 · L15/L16
+
+**Déclenchement :** fin positive, propose un autre RDV ; pas de vraie planification ni agenda. **Interlocutrice :** « Hues du muer Zäit? » → *Tu as du temps demain ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP24_A` | « Jo, gär! » → *Oui, volontiers !* | L | fin enthousiaste |
+| `REP24_B` | « Nee, leider net. » → *Non, malheureusement.* | L | fin polie |
+| `REP24_C` | « Dat weess ech nach net. » → *Je ne sais pas encore.* | L | fin neutre ; formulation LU à auditer |
+
+### B25_TRUTH_REPAIR — A3 · L1 + OPTIONNEL
+
+**Déclenchement :** après mensonge démasqué ou révélateur d'un gag, réparation narrative. **Interlocutrice :** « Ass dat wouer? » → *C'est vrai ?*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP25_A` | « Nee, dat war e Witz. » → *Non, c'était une blague.* | L/B | peut calmer si gag volontaire |
+| `REP25_B` | « Entschëllegt, ech hu gelunn. » → *Pardon, j'ai menti.* | L/V | aveu restaure un peu la confiance, LU à auditer |
+| `REP25_C` | « Jo. » → *Oui.* | L/M selon claim | maintient le bluff, pas d'effet automatique |
+
+### B26_DATE_FAREWELL — A3 · L1
+
+**Déclenchement :** réutiliser en petite variante de fin. **Interlocutrice :** « Et war flott! » → *C'était sympa !*.
+
+| Choix | Réponse LU → FR | Type | Conséquence / mémoire |
+| --- | --- | --- | --- |
+| `REP26_A` | « Merci, et war flott. » → *Merci, c'était sympa.* | L | conclusion chaleureuse |
+| `REP26_B` | « Äddi! » → *Au revoir !* | L | court, poli |
+| `REP26_C` | « Bis geschwënn! » → *À bientôt !* | L | positif, ne pas promettre une suite si affinité insuffisante |
+
+
+### 6.27. Conditions de montage et indications d'animation
+
+- **Acte 1** : 1 salutation (B01 ou B02), B03 prénom OU une autre présentation, B04 âge si choisi. Jamais deux « bonjour » successifs. Un éventuel trait prénom/âge doit être signalé avant le date dans Amis.
+- **Acte 2** : 3–4 beats parmi B05 (origine), B06 (ville), B07 (langues), B08 (métier), B09 (travail), B10 (football), B11/B12 (café), B13 (nationalité), B14 (heure), B21 (Alex questionne la partenaire). Diversifier les sujets, ne pas poser deux fois la même question.
+- **Acte 3** : 0–1 piège conditionnel, 0–1 rappel (B15–B17), 1 clôture B18 ou B26. Éviter le piège et le rappel sur le même attribut dans la même minute.
+- **Question d'Alex à une fille :** B21 est un **type différent** : Alex choisit une question, la partenaire répond avec ses informations canonique. B20/B22 sont des **réponses de PNJ conditionnelles**, qui ne doivent jamais apparaître comme trois choix parmi lesquels le joueur sélectionne ce que l'autre dit. Si le core ne sait pas gérer ce type, **ne pas intégrer le beat tant qu'il n'est pas implémenté**.
+- **Réactions sous-titrées** : une phrase douce → sourire/hochement ; une compatibilité → rire discret ; une contradiction → regard soupçonneux ; seule une gaffe rare autorise zoom/dramatic scratch. Ne pas jouer une animation « Victory » à chaque bonne réponse.
+- **Refus du téléphone / correction** : texte et score d'apprentissage restent indépendants des conséquences sociales. La batterie ne doit jamais se décharger sur l'écran de rappel « Moi ».
+
+### 6.28. Phrases à ne PAS publier sans correction
+
+- **B14 heure** : « Um siwen Auer » peut signifier 7 h OU 19 h selon contexte ; pour une échéance explicite à 19 h, **prévoir une formulation non ambiguë validée** ou cadrer clairement « ce soir » ; sinon neutraliser B14.
+- **B20/B22** : ce sont des **réponses de PNJ** et non des choix de réponse. Le contrat doit préserver le locuteur.
+- **B09_WORKPLACE** : le persona Alex n'indique pas où il travaille exactement ; une réponse « doheem » ne peut pas être qualifiée d'honnête ou de mensonge sans étoffer le persona.
+- **B24/B25** : expressions plus avancées ; hors progression A1.1 si non enseignées, utilisables uniquement avec une traduction visible et `pedagogicalScoring=false`.
+- **Age 120** : orthographe « honnertzwanzeg » est **à vérifier** malgré sa construction lexicale plausible ; si non validée, ne pas l'utiliser comme distracteur pédagogique.
+- **Prénom « James Bond »** : blague, nom de personnage de fiction en réplique courte ; ne pas en faire un visage, une image, une citation ou un atout officiel et éviter toute représentation de marque sous licence.
+
