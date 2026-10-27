@@ -1029,3 +1029,67 @@ Les posts à introduire **seulement dans les scénarios qui activent ces critèr
 Cette bible livre : **6 profils complets**, leurs trois réseaux et briefs photo ; **26 beats de conversation** avec **78 réponses candidates** ; **2 amorces de loisirs supplémentaires** ; **14 événements avec 43 choix/réactions** ; **24 conclusions** ; **30 réactions sociales FR** avec **30 propositions LU additionnelles à auditer** ; **12 plans pilotes** et les textes UI. **Aucun code du jeu, aucun JSON runtime, aucune sauvegarde utilisateur modifiés par cette bible.**
 
 **Statut final : corpus d'auteur V1 proposé, pas certification native complète des nouvelles formulations LU.** Les validations linguistiques et les contrôles mobiles sont des **portes de publication**, pas des tâches d'invention de scénario pour Claude.
+
+---
+
+## 13. Signaux de tempérament et style d'humour — compléments de dialogues
+
+**Contexte de création :** première partie avec Léna — les répliques « James Bond », « Je suis une star du foot ! » et « Kaffi! » ont déplu alors que ses réseaux annonçaient surtout qu'elle aime le sport et les plaisanteries directes. Le joueur doit **pouvoir lire son tempérament** avant de miser sur les réponses absurdes. Voir [SPEC 109 § 14](specs/SPEC-109.md#14-lisibilite-du-temperament-et-compatibilite-humoristique-retour-joueur-27102026).
+
+**Statut linguistique : `À_AUDITER` pour TOUTES les phrases LU ci-dessous.** Les formulations FR sont des textes d'auteur prêts pour discussion ; les traductions LU candidates doivent être corrigées à l'aide de LOD.lu, de `grammaire_luxembourg.md` et d'une relecture native. Les indices doivent être en LU dans le jeu, FR seulement avec l'aide. **Ne pas publier la seule version FR** dans un post pédagogique.
+
+### 13.1. Indices publics à lire avant le rendez-vous (6 × 2)
+
+| ID éditorial | Personnage, réseau | Texte LU candidat (À_AUDITER) | Sens FR |
+| --- | --- | --- | --- |
+| `TONE_LENA_TINDER` | Léna · Tinder (après sa bio sportive) | « Ech sinn direkt a sportlech. Ech hu gär éierlech Leit. » | Je suis directe et sportive. J'aime les gens honnêtes. |
+| `TONE_LENA_AMIS` | Léna · Amis | « Ech maache gär Witzer. Mee ech hu Leit net gär, déi sech ëmmer fir Stare halen. » | J'adore taquiner, mais les gens qui se prennent pour des stars, très peu pour moi. |
+| `TONE_CLAIRE_TINDER` | Claire · Tinder | « Ech hu gär kloer Äntwerten. » | J'aime les réponses franches. |
+| `TONE_CLAIRE_AMIS` | Claire · Amis | « Ironie ass flott. Mee erfonnt Geschichte si manner flott. » | L'ironie, oui. Les histoires inventées pour impressionner, beaucoup moins. |
+| `TONE_NOEMIE_TINDER` | Noémie · Tinder | « Ech hu gär Faarwen a komesch Iddien. » | J'aime les couleurs et les idées un peu folles. |
+| `TONE_NOEMIE_AMIS` | Noémie · Amis | « Och eng schlecht Zeechnung ka mech zum Laache bréngen. » | Même un dessin complètement raté peut me faire rire. |
+| `TONE_MAYA_TINDER` | Maya · Tinder | « Ech hu gär al Spiller an ironesch Witzer. » | J'aime les vieux jeux et l'humour ironique. |
+| `TONE_MAYA_AMIS` | Maya · Amis | « Wann s du verléiers an driwwer laachs, si mir Frënn. » | Si tu perds et que tu sais en rire, on va bien s'entendre. |
+| `TONE_SOFIA_TINDER` | Sofia · Tinder | « Ech reese gär. Ech laache gär. » | J'adore voyager et rigoler. |
+| `TONE_SOFIA_AMIS` | Sofia · Amis | « Witzer sinn super. Mee ech hu keng Loscht op Leit, déi ëmmer léien. » | J'adore les histoires incroyables… tant qu'on sait que c'est une plaisanterie. |
+| `TONE_EMMA_TINDER` | Emma · Tinder | « Kaffi, e gutt Gespréich, keen Handy. » | Un café, une vraie conversation, sans téléphone. |
+| `TONE_EMMA_AMIS` | Emma · Amis | « Ech hu kleng Witzer gär. Mee beim Rendez-vous wëll ech richteg schwätzen. » | J'aime les petites plaisanteries, mais surtout qu'on m'écoute. |
+
+**Note éditoriale essentielle :** avant intégration, aligner **exactement** le sens LU et le sens FR. En particulier, `TONE_SOFIA_AMIS` et `TONE_LENA_AMIS` sont des **intentions bilingues en cours de traduction**, pas des phrases équivalentes certifiées. Remplacer les LU par des versions de sens identique et naturelles, **ne pas forcer l'interprétation d'une phrase à cause du français**.
+
+La bio Tinder fournit un indice **général** visible sans enquête. Le post Amis précise le type d'humour. Si le moteur tire une variante de caractère plus débridée, il doit sélectionner **une variante de ces deux textes**, pas afficher l'indice « premier degré » dans une partie où les grandes histoires plaisent.
+
+### 13.2. Réactions à écrire en interaction (Léna)
+
+| ID | Déclencheur | LU candidat, à auditer | Réplique FR_JEU attendue | Intensité |
+| --- | --- | --- | --- | --- |
+| `REACT_LENA_BOND_SERIOUS` | `REP03_C`, `jokeKind=vantardise` | « James Bond? Wierklech? » | « James Bond ? Tu te prends pour qui exactement ? » | Incrédulité, léger malus social |
+| `REACT_LENA_FOOT_STAR` | `REP10_C`, `jokeKind=vantardise` | « E Fussballstar? Awer sécher! » | « Une star du foot ? Et tu as gagné combien de Coupes du monde ? » | Taquinerie sceptique |
+| `REACT_LENA_FOOT_SELF` | `jokeKind=autoderision` après un raté sportif réel | « Haha! Dat war gutt! » | « Ah, au moins tu sais rire de toi ! » | Sourire, bonus modéré |
+| `REACT_LENA_COFFEE_SHOUT` | réponse `REP11_C`, `pragmaticMismatch` | « Kaffi? Einfach esou? » | « KAFFI ? Tu commandes ou tu m'appelles au secours ? » | Surprise, pas un jugement lexical |
+| `REACT_LENA_STRIKEBACK` | réponse posée et honnête sur le football | « Dat ass kee Problem. » | « Pas besoin d'être footballeur pour qu'on s'entende. » | Sourire bref, pas de punition pour le refus du foot |
+
+**Attention :** les réactions FR peuvent être affichées comme commentaire social dès que la donnée et la logique sont prêtes, mais si la ligne joue une **réplique orale de la partenaire**, il faut une **LU réellement validée**. Ne pas réutiliser une LU candidate avec une traduction FR qui en change le sens (c'est le cas possible de plusieurs exemples ci-dessus).
+
+### 13.3. Petit catalogue de tons réutilisable (PAS de jauge supplémentaire)
+
+| `jokeKind` | Exemple d'option | Léna (directe/taquine) | Noémie (absurde/créative) | Maya (ironique) |
+| --- | --- | --- | --- | --- |
+| `vantardise` | « Je suis une star du foot ! » | Elle soupire / contredit | Elle peut rire si c'est clairement exagéré | Elle ironise |
+| `absurde` | « Je suis James Bond » | Elle ne voit pas l'intérêt | Elle joue le jeu | Ça dépend de la référence |
+| `autoderision` | « Je suis tellement mauvais au foot que le ballon me fuit » | Elle rit | Elle rit | Elle apprécie |
+| `taquinerie` | Gentille provocation sur la compétition | Elle réplique volontiers | Elle sourit | Elle répond ironiquement |
+
+**Règles :** l'âge, l'origine ou la profession de la fille ne disent rien du style humoristique à eux seuls. Une même partenaire peut aimer une forme d'humour et pas l'autre ; **le changement de tonalité doit être lisible dans un post du même scénario**. Ne pas transformer les cases ci-dessus en règles de points universelles pour chaque archétype. `Kaffi!` reste une réponse décalée/pragmatique à une question ; ce n'est pas une preuve de « mauvais luxembourgeois » si le mot est correct.
+
+### 13.4. Une scène bonus optionnelle pour tester le trait sans gros malus
+
+**`EV_LENA_TONE_CHECK`** — après un propos gentiment exagéré, Léna demande, avec un petit sourire : « Tu plaisantes ou tu es sérieux ? »
+
+- **`EV_LENA_TONE_SELF` (FR)** : « Je plaisante ! Je suis surtout champion des buts ratés. » → elle rit franchement ; effet social positif si elle apprécie l'autodérision.
+- **`EV_LENA_TONE_BRAG` (FR)** : « Non, je suis vraiment une superstar. » → elle soupire ; suspicion possible seulement si l'affirmation est assumée comme mensonge factuel, pas si c'est une blague.
+- **`EV_LENA_TONE_HONEST` (FR)** : « D'accord, j'en fais un peu trop. » → elle sourit et revient à une conversation simple.
+
+**Les trois répliques LU restent à rédiger et à valider**, ce bonus est facultatif et **ne doit pas** bloquer l'intégration des premiers indices publics. Si utilisé, il remplace un événement de l'acte 3 et respecte le budget maximum de deux surprises.
+
+**Priorité :** ajouter d'abord les **indices**, puis distinguer `jokeKind` lors du calcul des réactions. Aucun nouveau décor, personnage ou système global.
