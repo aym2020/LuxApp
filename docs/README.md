@@ -58,6 +58,10 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 **Bible textuelle à intégrer (27/10/2026) :** [LUX-MATCH-BIBLE-EDITORIALE-A11.md](LUX-MATCH-BIBLE-EDITORIALE-A11.md) — 6 profils et leurs faux réseaux, textes de l'interface, 28 beats de dialogue (26 principaux + 2 amorces), 14 événements conditionnels, 24 conclusions, 30 réactions, 12 plans de partie et règles d'audit. **Document éditorial uniquement, phrases LU proposées à valider ; aucun code de production modifié par ce lot.**
 
+## Jeu — Lux Démasque (SPEC 110, conception non intégrée)
+
+[**SPEC 110 — Lux Démasque : dépositions, preuves, objections et dossiers générés**](specs/SPEC-110.md) : mini-jeu de déduction indépendant de Lux Match. Le joueur interroge des prétendants **toujours menteurs**, mais dont plusieurs déclarations sont vraies ; il cherche **toutes les disquettes**, avec les indices de Pix/Pro/Amis en **français**, des dépositions/questions en **luxembourgeois**, des objections appuyées sur des preuves **visuelles**, un moteur de dossiers **semi-procédural contraint**, le café/personnages **3D low-poly** et une **musique arcade d'enquête originale**. **Statut : spécification issue d'une démo HTML autonome hors dépôt, non implémentée dans l'application ; ne pas confondre avec Lux Match.** Pour développer : commencer par le dossier Milo et les lots D0–D5 de la SPEC 110, puis tester sans régression de Lux Match.
+
 ## Recherche, maquettes, prototypes et archives
 
 | Répertoire | Utilisation |
