@@ -1,5 +1,7 @@
 # SPEC 109 — Lux Match : Double jeu (game design + bible de contenu)
 
+> **Masqué au public le 27/10/2026** (SPEC 110, lot D0) : plus de carte dans Jeux ni d'ouverture ; code, données, records et tests conservés. Réactivation : `JEUX_DISPONIBLES.luxMatch = true` (`public/jeux-v21.js`).
+
 **Dépôt :** aym2020/LuxApp · **Branche cible :** `2.1` · **Statut :** **démo jouable ; bible éditoriale intégrée le 27/10/2026 (lots 1–5, voir « Suivi par lot »)**, textes LU **audités par règles et leçons, non certifiés LOD/natif**, recette Samsung à faire · **Date :** 26 octobre 2026 · **État documentaire :** les sections 12 et 13 sont implémentées dans la mesure décrite au tableau de suivi ; les écarts et points ouverts y sont listés.
 
 > **Banque textuelle unique à exploiter lors des prochains lots :** [Bible éditoriale Lux Match A1.1](../LUX-MATCH-BIBLE-EDITORIALE-A11.md) — personnages, réseaux, 28 scènes candidates, événements, réactions et conclusions, avec identifiants et garde-fous linguistiques. Ce contenu est un **brouillon documenté**, distinct des JSON runtime et **ne remplace pas le code** ; consulter la section 12 pour les priorités et la section 13 pour le planificateur procédural.

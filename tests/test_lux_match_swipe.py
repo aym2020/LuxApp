@@ -39,7 +39,8 @@ def geste(pg, suite):
 
 with sync_playwright() as p:
     b, pg, erreurs_js = ouvrir(p, mobile=True)
-    pg.evaluate("ouvrirLuxMatch(); 0")
+    # Lux Match est masqué au public (JEUX_DISPONIBLES) : le test le réactive pour lui seul.
+    pg.evaluate("JEUX_DISPONIBLES.luxMatch = true; ouvrirLuxMatch(); 0")
     pg.wait_for_selector('.lm-profil', timeout=40000)
     pg.evaluate(PREPARER)
     pg.wait_for_selector('#lm-carte')

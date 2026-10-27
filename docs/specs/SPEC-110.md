@@ -2,6 +2,7 @@
 
 **Dépôt :** `aym2020/LuxApp` · **Branche cible :** `2.1` · **Date de conception :** 27 octobre 2026  
 **Statut : PROPOSITION VALIDÉE DANS SON PRINCIPE / À PROTOTYPER DANS L'APPLICATION — AUCUNE IMPLÉMENTATION PAR CETTE SPEC.**  
+**Suivi d'implémentation :** voir § 12 (lots D0 → D5).  
 **Origine :** prototype HTML autonome « Lux Démasque — Dossier n°001 » déjà testé par le joueur, puis demande d'y ajouter le luxembourgeois, un moteur de génération de cas, la 3D low-poly et une bande-son arcade d'interrogatoire. Le fichier HTML original est un prototype de conversation, **non présent dans ce dépôt à la date de rédaction** : ne pas inventer un chemin GitHub. Ce document consigne son fonctionnement et les évolutions souhaitées.
 
 > **Séparation obligatoire :** Lux Démasque est un **mini-jeu distinct de Lux Match** (SPEC 109), même si l'on mutualise des briques techniques. Lux Match reste jouable et sa progression, ses données, ses dialogues et ses parcours ne doivent pas être altérés par ce nouveau jeu. Les propositions abandonnées de Lux Match (LuxTrad, saisie libre, nouveaux personnages joueurs) ne sont pas des dépendances de Lux Démasque.
@@ -278,3 +279,9 @@ Chaque preuve comporte `proofId`, source, date, titre court, media/alt, transcri
 **Non demandés :** voix générée, modèle de traduction tiers, saisie libre, PNJ conversationnel LLM, nouvelle ville, réseau social réel, musique sous droit d'auteur d'une autre licence.
 
 **Critère de réussite du concept :** après une partie, le joueur doit pouvoir dire **« Il m'a affirmé X, je lui ai demandé Y, j'ai trouvé Z dans son profil, alors je l'ai coincé »** — et pouvoir raconter une histoire différente lors du dossier suivant.
+
+## 12. Suivi d'implémentation (Claude)
+
+| Lot | Statut | Contenu livré |
+| --- | --- | --- |
+| D0 — Masquage de Lux Match + audit | Fait (navigateur) | **Lux Match masqué, pas supprimé** : `JEUX_DISPONIBLES = { luxMatch: false }` + `jeuDisponible(id)` en tête de `public/jeux-v21.js` (point unique). Masqué ⇒ `luxMatchCarteHub()` ne rend rien et ne lance plus `lmPrecharger()` (aucune requête 3D/GLB/contenus depuis le hub) ; `ouvrirLuxMatch()` renvoie au hub Jeux sans créer de partie ; la restauration de la vue `view-luxmatch` renvoyait déjà au hub (`navigation.js`). Fichiers, JSON, GLB, sons, moteur, tests, records (`luxMatchRecord`) et préférences (`luxMatchAideFr`, `luxMatchSon`, `luxMatchMusique`) intacts. **Réactivation : `luxMatch: true`.** Service Worker inchangé : les fichiers Lux Match restent dans la copie hors ligne (les GLB du café et des personnages serviront à Lux Démasque). Tests : `tests/test_lux_match_masque.py` (carte absente, zéro préchargement, ouverture refusée, données conservées, réactivation), `tests/test_lux_match_swipe.py` réactive le jeu pour lui seul. **Audit du prototype :** le HTML autonome n'est pas dans le dépôt et n'a pas pu être exécuté ; matrice `déclaration × précision × preuve × résultat` du dossier Milo réécrite avec des preuves recoupées, sans aveu publié : [LUX-DEMASQUE-DOSSIER-MILO.md](../LUX-DEMASQUE-DOSSIER-MILO.md). |

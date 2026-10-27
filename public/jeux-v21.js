@@ -1,6 +1,12 @@
 /* SPEC 88 — Jeux / Survie. Nouveau moteur indépendant des leçons et examens.
    SPEC 92 étape 1 : événements envoyés au gestionnaire d'effets survie-vfx.js. */
 'use strict';
+// Disponibilité des mini-jeux, en un seul endroit (réversible) : un jeu à false n'a ni
+// carte dans Jeux, ni préchargement, ni ouverture possible ; ses fichiers, ses données
+// sauvegardées (records, préférences) et ses tests restent intacts. Survie et Lux Runner
+// sont toujours disponibles. Pour réactiver Lux Match : luxMatch: true.
+const JEUX_DISPONIBLES = { luxMatch: false };
+function jeuDisponible(id) { return JEUX_DISPONIBLES[id] === true; }
 let surviePartie = null;
 const SURVIE_DUREE = 30;
 const SURVIE_BONUS = 3;

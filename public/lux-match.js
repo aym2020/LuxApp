@@ -265,7 +265,10 @@ function lmEcranChargement(progres, etape) {
   if (barre) barre.style.width = progres + '%';
   if (texte) texte.textContent = etape;
 }
+// Jeu masqué (JEUX_DISPONIBLES.luxMatch = false) : aucune ouverture, retour au hub Jeux.
+function luxMatchDisponible() { return typeof jeuDisponible !== 'function' || jeuDisponible('luxMatch'); }
 async function ouvrirLuxMatch() {
+  if (!luxMatchDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
   luxMatchArreter();
   LuxMatchSon.preparer();
   showView('view-luxmatch');
@@ -1111,6 +1114,7 @@ function lmPrecharger() {
   else setTimeout(lancer, 800);
 }
 function luxMatchCarteHub() {
+  if (!luxMatchDisponible()) return ''; // masqué : ni carte, ni préchargement 3D
   lmPrecharger();
   return '<section class="jeux-carte lm-carte-hub" aria-labelledby="jeux-lm-titre">' +
     '<div class="jeux-decor lm-decor" aria-hidden="true"><span class="lm-decor-tel"></span><span class="lm-decor-coeur">♥</span></div>' +
