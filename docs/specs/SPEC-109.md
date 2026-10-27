@@ -546,3 +546,64 @@ Six émotions de base, avec un effet **déterminé par la réaction de la scène
 5. Garder le moteur procédural, les six profils, le café et les graphismes 3D existants. **Cette évolution est une couche de feedback UX légère**, non un nouveau jeu, pas de nouveaux décors/lore.
 
 **Livraison attendue ultérieurement :** petit atlas de **six sprites originaux**, mapping `r.visuel / emotionFx` et tests de non-régression ; **ne pas développer le changement par cette mise à jour documentaire**. Les répliques LU supplémentaires demeurent à valider selon la Bible/LOD.
+
+---
+
+## 16. Direction musicale et orchestration audio : deux boucles arcade rétro (27/10/2026)
+
+**Statut : choix créatif et cahier des charges audio, NON implémenté par cette modification documentaire.** Ajouter exactement **deux thèmes musicaux originaux** à la démo Lux Match : un avant le rendez-vous et un pendant le rendez-vous. Ne pas ajouter de troisième thème complet pour les résultats ou les personnages ; conserver les SFX courts actuels. L'esthétique visée est **arcade old school / dating sim rétro PS1**, dans la DA violet–rose–or existante, et non une bande-son générique d'application de vocabulaire.
+
+### 16.1. Les deux morceaux à produire
+
+| Identifiant d'asset proposé | Phase de jeu | Direction artistique et instrumentation | Durée / pulsation cible |
+| --- | --- | --- | --- |
+| **LM_BGM_PRE_DATE** — titre de travail « Love Circuit » | Fiche d'Alex, swipes, match, enquête Pix/Pro/Amis, essayage des vêtements | **Electro-funk rétro joyeux**, sonorités 16-bit / synthèse FM, basse rebondissante, petite batterie électronique sèche, mélodie courte en sons de console, accords légèrement romantiques et kitsch. Énergie de sélection de personnage / dating sim, jamais musique agressive de runner ou EDM moderne | **108–116 BPM**, 4/4, boucle de **32–45 secondes** |
+| **LM_BGM_DATE** — titre de travail « Neon Café » | Décor du café 3D, conversations, consultation éventuelle du téléphone pendant le date | **Lounge/chill rétro de jeu de rencontre**, piano électrique FM chaleureux, basse synthé ronde, percussions légères, nappes douces, échos 8-bit très sobres et petites notes mélodiques timides. Un peu romantique et maladroit ; **aucune voix**, aucun leitmotiv strident qui concurrence les répliques LU | **78–88 BPM**, 4/4, boucle de **44–60 secondes** |
+
+**Parenté musicale** : un **motif de 3–5 notes** commun aux deux morceaux (en pré-date vif et sautillant, au café lent et délicat), pour que la transition donne l'impression d'un seul jeu cohérent. Accords riches mais lisibles, timbres synthétiques assumés, grain console **sans dégrader artificiellement la qualité des voix ou du texte**. Prévoir des mélodies originales, aucune reprise, aucun riff ressemblant volontairement à une bande-son protégée, aucun extrait de chanson commerciale.
+
+**Repères de composition indicatifs (non imposés)** : une mesure 4/4, structure A/B/A de 16 ou 24 mesures avec variation d'instrument plutôt qu'un solo long ; limiter les aigus piquants et les grosses basses. La musique pré-date doit supporter la répétition lors de l'enquête, celle du café doit rester confortable pendant **plusieurs minutes de lecture**, y compris à faible volume. Test d'écoute comparative sur haut-parleur de téléphone Android et casque.
+
+### 16.2. Machine à états audio : une musique active maximum
+
+| Transition / état | Comportement attendu |
+| --- | --- |
+| Ouverture de Lux Match, après première **interaction explicite** autorisant l'audio | Démarrer **LM_BGM_PRE_DATE** si le son/musique sont autorisés ; ne pas lancer de musique avant une interaction conforme à l'autoplay mobile |
+| Fiche Alex → swipe → match → enquête → look et retours en arrière | **Continuer la même piste**, sans la redémarrer à chaque \`lmRendre()\` ou réouverture des faux réseaux ; le jingle \`match\` existant reste audible en surimpression |
+| Validation « Aller au rendez-vous » / passage \`phase === "date"\` | Fondu sortant pré-date ~**0,6–1 s**, démarrage/fondu entrant date ~**0,8–1,2 s** ; ne pas attendre le chargement Three.js pour garder une continuité sonore si c'est possible sans UX bizarre |
+| Pendant date, ouverture du téléphone et panneau « Moi » | **Conserver LM_BGM_DATE** au même point ; la musique **ne suit pas la batterie** et ne recommence pas à chaque sous-panneau |
+| Gros gag (Portugal, malaise volontaire, \`scratch\`) | **Micro-coupure ou baisse forte très brève** de la musique (environ **0,3–0,8 s**) synchronisée à l'effet existant, puis reprise en fondu ; ne jamais bloquer la lecture ou la réponse |
+| Fin de date / \`resultats\` | Arrêter progressivement la boucle de café ; **réutiliser le petit jingle \`fin\` / \`bof\` déjà existant**, pas une troisième longue musique |
+| « Nouveau match » | Revenir au morceau pré-date **une seule fois** ; aucune piste précédente ne continue en parallèle |
+| Quitter Lux Match, ouvrir un autre jeu, perdre la visibilité de l'onglet ou verrouiller l'écran | Pause/arrêt immédiat ou fondu très court, **aucun son en arrière-plan non sollicité** ; sur retour visible, ne reprendre que si Lux Match est toujours actif ET préférence son active ET action utilisateur/autoplay permise |
+
+**Règle absolue :** un seul contrôleur de bande-son et **un seul lecteur/pipeline de musique actif**. Ne pas multiplier les \`AudioContext\`, éléments \`Audio\`, timers ou \`requestAnimationFrame\` au fil des parties. Les sons de \`LuxMatchSon.jouer(...)\` restent indépendants mais intégrés au même système de gestion des volumes.
+
+### 16.3. Mixage, pédagogie et commandes
+
+- **La compréhension du luxembourgeois prime sur la musique** : volume musical initial **très bas** et stable, environ **15–25 % de la perception** d'une voix de lecture à volume usuel (ce n'est pas une valeur de gain ni une norme de LUFS : régler réellement à l'oreille et mesurer si possible).
+- **Ducking de musique** : lors de la prononciation/TTS ou d'une réplique audio LU, réduire la musique d'environ **8–12 dB** (à calibrer), puis la remonter en ~0,4 s une fois l'audio terminé. **Ne pas couper** les sons de prononciation ni leur imposer de reprendre la piste du début.
+- Les petits SFX \`swipe\`, \`like\`, \`match\`, \`bien\`, \`bof\`, \`faux\`, \`scratch\`, \`tel\`, \`vide\`, \`fin\` déjà synthétisés restent clairs, **sans être masqués** par une caisse claire, un arpège aigu ou un fort kick sur chaque interaction.
+- **Respecter le réglage existant \`luxMatchSon\`** : s'il est désactivé, pas de musique ni de SFX. Ajouter si utile un booléen distinct \`luxMatchMusique\` (**activé par défaut seulement si la permission sonore globale le permet**) afin que le joueur coupe la musique **sans perdre les effets ni la prononciation** ; ne jamais réactiver l'audio sans son accord.
+- **Commande accessible pendant le date** : le bouton son n'existe actuellement que dans l'entête pré-date (\`lmEntete\`). Placer un contrôle discret et tactile ≥44×44 px dans l'interface de date (ou menu audio commun réellement accessible), sans cacher jauges, téléphone, textes LU ou choix. Éviter de multiplier des boutons si le toggle global suffit ; en cas de menu séparé, comportement cohérent avec celui du hub.
+- Les pistes sont **instrumentales** ; pas de voix chantée, pas d'effets de vibration forcée, pas de tempo qui impose de répondre vite. Aide FR, mode silencieux, \`prefers-reduced-motion\` et paramètre d'accessibilité batterie ne doivent pas rendre la lecture pénible. **Ne jamais lier la fin d'une boucle musicale à l'avancée du dialogue.**
+
+### 16.4. Livraison des assets et implémentation conservative
+
+- **Produire ou faire produire deux boucles originales** ; les fichiers audio finaux ne sont **pas fournis par la présente spec**, qui constitue le brief de composition. Utiliser une licence et provenance **traçables**, idéalement création originale du projet ; ne pas récupérer de MP3 YouTube, d'OST de dating sim, de « Nintendo soundalike » reconnaissable, ni d'asset incertain.
+- Emplacement proposé : \`public/audio/lux-match/pre-date.ogg\` / \`date.ogg\` (+ \`mp3\` ou \`m4a\` de secours selon support effectif du navigateur, à vérifier). **Adapter aux conventions actuelles** du repo après audit, pas créer de doublons de répertoire.
+- Les deux fichiers doivent être **bouclables sans clic, blanc, attaque tronquée ni décrochement** ; éventuellement utiliser un point de boucle interne mesuré si une longue queue de réverbération existe. Formats compressés raisonnables, **budget cible ≤1 Mo par piste** si la qualité est acceptable (à valider, pas un critère qui sacrifie l'écoute). Chargement différé selon la phase et cache navigateur/PWA si supporté.
+- Aujourd'hui, le code \`public/lux-match.js\` comporte déjà **\`LuxMatchSon\` avec un unique \`AudioContext\`** et des notes Web Audio ponctuelles, mais aucune lecture de BGM. **Faire évoluer ce contrôleur ou un petit module adjoint**, sans recopier tous les SFX, sans modifier les moteurs 3D/runner et sans démarrer un second AudioContext inutile.
+- Prévoir les états \`playPreDate\`, \`playDate\`, \`pause\`, \`stop\`, \`setMuted\`, \`dispose\`, support d'appel répété sans double lancement et **annulation des transitions obsolètes**. Les changements de phase et sortie de jeu pilotent la musique, pas le rendu HTML ou Three.js. Éviter de réinitialiser la musique si \`lmRendre()\` est rappelé uniquement pour changer la traduction FR.
+
+### 16.5. Recette musicale et technique
+
+1. **Timbre & cohérence** : avant-date vif et ludique, café doux et romantique, motif identifiable commun ; les deux fonctionnent sur haut-parleur Samsung à **volume modéré**, sans saturation, bourdonnement ni fatigue auditive au bout de 10 minutes.
+2. **Loop** : 5 répétitions consécutives de chaque morceau sans trou sonore, clic ou montée de volume ; ne pas confondre effet de fin volontaire et mauvais raccord.
+3. **Transitions** : jouer 3 manches de suite, swiper, ouvrir 3 apps, revenir Look, passer au date, faire un gag, terminer, recommencer : toujours **une seule** musique active, crossfades fluides, pas de reprise inattendue.
+4. **Mute** : bouton OFF avant une partie, OFF puis ON pendant le café, retour à un autre jeu, écran verrouillé/app en arrière-plan ; jamais de réactivation intempestive, boutons et états sonores cohérents.
+5. **Voix & SFX** : écouter des questions LU sur musique, avec ducking, match jingle, \`Kaffi!\` gênant et \`scratch\` de Sofia ; l'audio pédagogique reste intelligible et la musique ne masque ni feedback ni silence comique.
+6. **Résilience** : réseau lent/asset absent/autoplay refusée/Web Audio indisponible/PWA hors-ligne : le gameplay continue **sans blocage ni erreur visible** ; fallback silencieux. Nettoyer timers/ressources au replay et quand l'utilisateur quitte.
+7. **Tests existants** : \`node --test test/lux-match.test.cjs\` et suites critiques du dépôt ; ajouter tests ciblés sur le contrôleur audio/transition et recette Android réelle avant de marquer le travail validé.
+
+**Interdits :** pas de nouvelle ville/café, pas de CUPID.EXE, pas de troisième thème musical complet, pas d'effet « horror » constant qui stresse la lecture du luxembourgeois. La batterie du téléphone crée la tension, **la musique du date crée l'ambiance**.
