@@ -66,7 +66,7 @@
 
 | ID auteur Bible | Fichier ou mécanisme existant | Règle d'intégration |
 | --- | --- | --- |
-| `TINDER_SOFIA.BIO`, `P_SOFIA` | `data/jeux/lux-match/archetypes-v01.json` → profil `sofia_r01` | Bio en LU + traduction FR conditionnelle ; préserver faits |
+| `TINDER.SOFIA.BIO`, `P_SOFIA` | `data/jeux/lux-match/archetypes-v01.json` → profil `sofia_r01` | Bio en LU + traduction FR conditionnelle ; préserver faits |
 | `PIX_SOFIA_P01` | `profiles[].pix.photos[]` | Légende `lu/fr`, `photoAssetId` cohérent ; scène Lisbonne représentée, pas phrase méta |
 | `AMIS_SOFIA_A02` | `profiles[].amis.posts[]` | Offre l'indice d'origine Portugal ; disponible uniquement si variante le prévoit |
 | `B05_ORIGIN` | `data/jeux/lux-match/dialogues-a11-v01.json` → nœud `origine` | Options françaises/LU auditées, vraie France vs bluff Portugal ; `claims.origin` |
