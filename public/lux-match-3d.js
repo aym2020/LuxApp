@@ -338,6 +338,23 @@ async function creer() {
       g.add(boite(0.6, 0.4, 0.05, '#1c1b20', 1.0, 1.05, -1.4), boite(0.56, 0.34, 0.051, lueur('#9fd0f0'), 1.0, 1.05, -1.37));
       const valise = boite(0.5, 0.6, 0.25, '#d8343c', -0.9, 0.3, -0.4); g.add(valise, boite(0.2, 0.06, 0.04, '#1c1b20', -0.9, 0.63, -0.4));
     },
+    hopital: g => {
+      g.add(plancher('#cfd8dc'), boite(8, 3, 0.1, '#e6eef0', 0, 1.5, -2.2), boite(8, 0.3, 0.11, '#4fa3a5', 0, 0.15, -2.15));
+      [-1.6, 1.6].forEach(x => g.add(boite(0.9, 2.1, 0.06, '#9fc7c9', x, 1.05, -2.12), boite(0.5, 0.5, 0.061, lueur('#dff6ff'), x, 1.55, -2.1)));
+      g.add(boite(0.5, 0.5, 0.05, lueur('#2fa35a'), 0, 2.35, -2.12), boite(0.12, 0.34, 0.051, lueur('#ffffff'), 0, 2.35, -2.1), boite(0.34, 0.12, 0.051, lueur('#ffffff'), 0, 2.35, -2.1));
+      g.add(boite(2.0, 0.08, 0.8, '#f2f4f5', 1.2, 0.7, -0.9), boite(2.0, 0.5, 0.06, '#b0bec5', 1.2, 0.95, -1.28));
+    },
+    chien: g => {
+      g.add(plancher('#4f8f4a'), boite(1.1, 0.01, 8, '#cdb98f', 0.2, 0.005, -2));
+      [[-1.6, -1.2, 2.2], [1.7, -1.6, 2.6], [-1.1, -3, 2.8]].forEach(a => g.add(arbre(...a)));
+      const chien = new THREE.Group(), brun = '#8a5a2c', fonce = '#4a2e16';
+      const corps = boite(0.6, 0.3, 0.26, brun, 0, 0.42, 0); chien.add(corps);
+      chien.add(boite(0.26, 0.24, 0.22, brun, 0.38, 0.62, 0), boite(0.14, 0.1, 0.14, fonce, 0.55, 0.58, 0));
+      [[0.4, 0.74, 0.08], [0.4, 0.74, -0.08]].forEach(([x, y, z]) => chien.add(boite(0.06, 0.14, 0.05, fonce, x, y, z)));
+      [[-0.22, 0.13], [-0.22, -0.13], [0.22, 0.13], [0.22, -0.13]].forEach(([x, z]) => chien.add(boite(0.08, 0.3, 0.08, brun, x, 0.15, z * 0.9)));
+      const queue = boite(0.05, 0.05, 0.26, fonce, -0.34, 0.56, 0); queue.rotation.y = Math.PI / 2; queue.rotation.z = 0.6; chien.add(queue);
+      chien.position.set(0.6, 0, 0.3); chien.rotation.y = -0.5; g.add(chien);
+    },
     pesto: g => {
       g.add(plancher('#6a4a36'), boite(3.4, 0.08, 1.8, '#f1e6cf', 0, 0.8, 0), cylindre(0.08, 0.8, '#3a2a20', 0, 0.4, 0));
       [[-0.55, 0.1], [0.6, -0.1]].forEach(([x, z]) => { g.add(cylindre(0.38, 0.04, '#ffffff', x, 0.86, z, 14)); const pates = cylindre(0.27, 0.07, '#5aa04a', x, 0.91, z, 10); g.add(pates); });

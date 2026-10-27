@@ -62,6 +62,273 @@
      ]
     }
    }
+  },
+  "noah": {
+   "id": "noah",
+   "nom": "Noah",
+   "age": 32,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Suit_Male",
+    "peau": "#e8b48f",
+    "cheveux": "#5a3a1e",
+    "costume": "#2b3a55"
+   },
+   "accrocheFr": "Sérieux au travail, drôle le week-end. Je cherche une vraie complicité.",
+   "salut": {
+    "lu": "Moien! Ech sinn den Noah.",
+    "fr": "Salut ! Moi, c’est Noah.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@noah.lux",
+     "bioFr": "Week-ends, musique, famille"
+    },
+    "pro": {
+     "pseudo": "Noah B.",
+     "bioFr": "Santé · urgences"
+    },
+    "amis": {
+     "pseudo": "Noah",
+     "bioFr": "Luxembourg ❤️"
+    }
+   }
+  },
+  "tom": {
+   "id": "tom",
+   "nom": "Tom",
+   "age": 28,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Casual3_Male",
+    "peau": "#c98a5f",
+    "cheveux": "#141010",
+    "haut": "#2f6fd6",
+    "bas": "#24242e"
+   },
+   "accrocheFr": "Toujours partant pour une nouvelle aventure. Et pour un bon repas.",
+   "salut": {
+    "lu": "Moien! Ech sinn den Tom.",
+    "fr": "Salut ! Moi, c’est Tom.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@tom.go",
+     "bioFr": "Voyages · sport · bonne bouffe"
+    },
+    "pro": {
+     "pseudo": "Tom M.",
+     "bioFr": "Restauration"
+    },
+    "amis": {
+     "pseudo": "Tom",
+     "bioFr": "Toujours dehors"
+    }
+   }
+  },
+  "leo": {
+   "id": "leo",
+   "nom": "Léo",
+   "age": 29,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Casual_Male",
+    "peau": "#f0c3a0",
+    "cheveux": "#c98a3a",
+    "haut": "#2fa35a",
+    "bas": "#2c3550"
+   },
+   "accrocheFr": "Curieux de tout, surtout de toi.",
+   "salut": {
+    "lu": "Moien! Ech sinn de Léo.",
+    "fr": "Salut ! Moi, c’est Léo.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@léo.photos",
+     "bioFr": "Photos du quotidien"
+    },
+    "pro": {
+     "pseudo": "Léo",
+     "bioFr": "Profil professionnel"
+    },
+    "amis": {
+     "pseudo": "Léo",
+     "bioFr": "Amis & famille"
+    }
+   },
+   "generateur": true
+  },
+  "hugo": {
+   "id": "hugo",
+   "nom": "Hugo",
+   "age": 34,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Suit_Male",
+    "peau": "#c98a5f",
+    "cheveux": "#1a1210",
+    "costume": "#3a2a4a"
+   },
+   "accrocheFr": "Calme, fiable… et plein de surprises.",
+   "salut": {
+    "lu": "Moien! Ech sinn den Hugo.",
+    "fr": "Salut ! Moi, c’est Hugo.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@hugo.photos",
+     "bioFr": "Photos du quotidien"
+    },
+    "pro": {
+     "pseudo": "Hugo",
+     "bioFr": "Profil professionnel"
+    },
+    "amis": {
+     "pseudo": "Hugo",
+     "bioFr": "Amis & famille"
+    }
+   },
+   "generateur": true
+  },
+  "sam": {
+   "id": "sam",
+   "nom": "Sam",
+   "age": 27,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Casual3_Male",
+    "peau": "#e0a985",
+    "cheveux": "#5a3a22",
+    "haut": "#d8343c",
+    "bas": "#1d2a4a"
+   },
+   "accrocheFr": "Je raconte bien les histoires. Viens vérifier !",
+   "salut": {
+    "lu": "Moien! Ech sinn de Sam.",
+    "fr": "Salut ! Moi, c’est Sam.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@sam.photos",
+     "bioFr": "Photos du quotidien"
+    },
+    "pro": {
+     "pseudo": "Sam",
+     "bioFr": "Profil professionnel"
+    },
+    "amis": {
+     "pseudo": "Sam",
+     "bioFr": "Amis & famille"
+    }
+   },
+   "generateur": true
+  },
+  "jules": {
+   "id": "jules",
+   "nom": "Jules",
+   "age": 31,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Casual_Male",
+    "peau": "#8a5a3c",
+    "cheveux": "#0e0c0a",
+    "haut": "#f2c230",
+    "bas": "#3a3a48"
+   },
+   "accrocheFr": "Un café, une balade, une bonne discussion.",
+   "salut": {
+    "lu": "Moien! Ech sinn de Jules.",
+    "fr": "Salut ! Moi, c’est Jules.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@jules.photos",
+     "bioFr": "Photos du quotidien"
+    },
+    "pro": {
+     "pseudo": "Jules",
+     "bioFr": "Profil professionnel"
+    },
+    "amis": {
+     "pseudo": "Jules",
+     "bioFr": "Amis & famille"
+    }
+   },
+   "generateur": true
+  },
+  "enzo": {
+   "id": "enzo",
+   "nom": "Enzo",
+   "age": 30,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Suit_Male",
+    "peau": "#f2d0b0",
+    "cheveux": "#3a2a1a",
+    "costume": "#1c3a2e"
+   },
+   "accrocheFr": "Organisé au travail, spontané le reste du temps.",
+   "salut": {
+    "lu": "Moien! Ech sinn den Enzo.",
+    "fr": "Salut ! Moi, c’est Enzo.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@enzo.photos",
+     "bioFr": "Photos du quotidien"
+    },
+    "pro": {
+     "pseudo": "Enzo",
+     "bioFr": "Profil professionnel"
+    },
+    "amis": {
+     "pseudo": "Enzo",
+     "bioFr": "Amis & famille"
+    }
+   },
+   "generateur": true
+  },
+  "nico": {
+   "id": "nico",
+   "nom": "Nico",
+   "age": 33,
+   "villeFr": "Luxembourg-ville",
+   "apparence3d": {
+    "modele": "Casual3_Male",
+    "peau": "#d9a27a",
+    "cheveux": "#6a4a2a",
+    "haut": "#7a3fc4",
+    "bas": "#24242e"
+   },
+   "accrocheFr": "Toujours le sourire, souvent une anecdote.",
+   "salut": {
+    "lu": "Moien! Ech sinn den Nico.",
+    "fr": "Salut ! Moi, c’est Nico.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@nico.photos",
+     "bioFr": "Photos du quotidien"
+    },
+    "pro": {
+     "pseudo": "Nico",
+     "bioFr": "Profil professionnel"
+    },
+    "amis": {
+     "pseudo": "Nico",
+     "bioFr": "Amis & famille"
+    }
+   },
+   "generateur": true
   }
  },
  "figurants": {
@@ -73,6 +340,17 @@
     "peau": "#a8714f",
     "cheveux": "#121010",
     "haut": "#2fa35a",
+    "bas": "#3a3a48"
+   }
+  },
+  "karim": {
+   "id": "karim",
+   "nom": "Karim",
+   "apparence3d": {
+    "modele": "Casual2_Male",
+    "peau": "#b07a55",
+    "cheveux": "#1a1210",
+    "haut": "#d8a020",
     "bas": "#3a3a48"
    }
   }
@@ -528,5 +806,1320 @@
    },
    "reviewStatus": "lu_audit_claude"
   }
- ]
+ ],
+ "affaires": [
+  {
+   "id": "A_TRAVAIL_CONTRAT",
+   "theme": "travail",
+   "vrai": false,
+   "base": {
+    "lu": "Ech schaffen an engem Restaurant. Ech sinn e Kach.",
+    "fr": "Je travaille dans un restaurant. Je suis cuisinier.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wou schaffs du?",
+     "fr": "Tu travailles où ?",
+     "review": "lecon"
+    },
+    "reponse": {
+     "lu": "Am Restaurant Bei Lucie. Ech sinn all Dag do.",
+     "fr": "Au restaurant Bei Lucie. J’y suis tous les jours.",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Nee, nee. Ech sinn e Kach!",
+    "fr": "Non, non. Je suis cuisinier !",
+    "review": "audit_regles"
+   },
+   "pieces": [
+    {
+     "id": "PRO_CONTRAT",
+     "source": "pro",
+     "auteur": "{npc}",
+     "dateFr": null,
+     "titre": "Profil Pro de {npc}",
+     "transcription": "{npc} · Restauration. Expérience : cuisinier au restaurant Bei Lucie (Luxembourg-Gare), septembre 2022 – mai 2026. Formation : CAP cuisine, 2019.",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Cuisinier · Bei Lucie",
+        "sept. 2022 – mai 2026"
+       ],
+       [
+        "CAP cuisine",
+        "2019"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "PRO_PLAT",
+     "source": "pro",
+     "auteur": "{npc}",
+     "dateFr": "12 mars 2026",
+     "titre": "Publication : mon plat",
+     "transcription": "« Mon plat signature chez Bei Lucie 🍝 Venez goûter ! »",
+     "visuel": {
+      "type": "post",
+      "image": "plat",
+      "scene": "pesto",
+      "personnes": []
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "PRO_CONTRAT"
+     ]
+    ],
+    "exigePrecision": true,
+    "refusSansPrecision": {
+     "lu": "Wéi? Ech hunn den Numm net gesot!",
+     "fr": "Quoi ? Je n’ai pas dit quel restaurant !",
+     "review": "a_verifier_lod"
+    },
+    "justification": {
+     "lu": "Bis Mee, jo. Elo sichen ech eng nei Aarbecht.",
+     "fr": "Jusqu’en mai, oui. Maintenant, je cherche un nouveau travail.",
+     "review": "audit_regles"
+    },
+    "aveuFr": "Il soupire : « Je voulais avoir l’air installé… »",
+    "motivationFr": "Paraître stable pendant qu’il cherche un emploi.",
+    "explicationFr": "Son profil Pro arrête Bei Lucie en mai 2026. Or il t’a dit y être « tous les jours », en octobre."
+   },
+   "refusPieces": {
+    "PRO_PLAT": {
+     "lu": "Kuck! Dat hunn ech gekacht!",
+     "fr": "Regarde ! C’est moi qui l’ai cuisiné !",
+     "review": "audit_regles"
+    }
+   }
+  },
+  {
+   "id": "A_TRAVAIL_DOKTER",
+   "theme": "travail",
+   "vrai": false,
+   "base": {
+    "lu": "Ech sinn en Dokter. Ech schaffen am Spidol.",
+    "fr": "Je suis médecin. Je travaille à l’hôpital.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Zënter wéini?",
+     "fr": "Depuis quand ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Zënter zwee Joer.",
+     "fr": "Depuis deux ans.",
+     "review": "lecon"
+    }
+   },
+   "refus": {
+    "lu": "Jo! Ech sinn en Dokter!",
+    "fr": "Oui ! Je suis médecin !",
+    "review": "lecon"
+   },
+   "pieces": [
+    {
+     "id": "AMIS_COLLEGUE",
+     "source": "amis",
+     "auteur": "Inès R.",
+     "dateFr": "15 septembre 2026",
+     "titre": "Publication d’Inès (collègue de {npc})",
+     "transcription": "« Bravo à {npc}, notre infirmier de nuit, pour ses deux ans aux urgences ! 🎉 »",
+     "visuel": {
+      "type": "post",
+      "image": "fete"
+     }
+    },
+    {
+     "id": "PIX_NUIT",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "3 octobre 2026",
+     "titre": "Photo : nuit de garde",
+     "transcription": "Photo : un couloir d’hôpital la nuit. Légende : « Encore une nuit à l’hôpital 🏥 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "hopital",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Idle",
+        "x": 0.2,
+        "z": 0,
+        "rotation": -0.2
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "AMIS_COLLEGUE"
+     ]
+    ],
+    "justification": {
+     "lu": "Okay… ech sinn en Infirmier. Net Dokter.",
+     "fr": "Bon… je suis infirmier. Pas médecin.",
+     "review": "audit_regles"
+    },
+    "aveuFr": "« Mais je fais des piqûres, c’est presque pareil ! »",
+    "motivationFr": "Impressionner avec un titre plus prestigieux.",
+    "explicationFr": "Sa collègue le présente comme « notre infirmier de nuit » aux urgences : il n’est pas médecin."
+   },
+   "refusPieces": {
+    "PIX_NUIT": {
+     "lu": "Gesäis du? Ech sinn am Spidol!",
+     "fr": "Tu vois ? Je suis à l’hôpital !",
+     "review": "a_verifier_lod"
+    }
+   }
+  },
+  {
+   "id": "A_LOGEMENT_COLOC",
+   "theme": "logement",
+   "vrai": false,
+   "base": {
+    "lu": "Ech wunnen eleng. Ech hunn en Appartement an der Stad.",
+    "fr": "J’habite seul. J’ai un appartement en ville.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wunns du eleng?",
+     "fr": "Tu habites seul ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Jo, ganz eleng.",
+     "fr": "Oui, tout seul.",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Nee! Ech wunne wierklech eleng.",
+    "fr": "Non ! J’habite vraiment seul.",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "AMIS_KARIM",
+     "source": "amis",
+     "auteur": "Karim D.",
+     "dateFr": null,
+     "titre": "Profil de Karim (ami de {npc})",
+     "transcription": "Karim D. · Kinésithérapeute · Coloc avec {npc} au centre-ville depuis 2025 🏠",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Kinésithérapeute",
+        ""
+       ],
+       [
+        "Coloc avec {npc} au centre-ville depuis 2025 🏠",
+        ""
+       ]
+      ]
+     }
+    },
+    {
+     "id": "PIX_MATCH",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "4 octobre 2026",
+     "titre": "Photo : soirée match",
+     "transcription": "Photo : deux amis devant un match. Légende : « Karim est passé voir le match 📺 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "canape",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": -0.7,
+        "z": 0.2,
+        "rotation": 0.25
+       },
+       {
+        "qui": "karim",
+        "pose": "Victory",
+        "x": 0.75,
+        "z": 0.1,
+        "rotation": -0.25
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "AMIS_KARIM"
+     ]
+    ],
+    "justification": {
+     "lu": "Okay, ech wunne mam Karim. Mee ech hu mäin Zëmmer!",
+     "fr": "Bon, j’habite avec Karim. Mais j’ai ma chambre !",
+     "review": "audit_regles"
+    },
+    "aveuFr": "« Bon… c’est lui qui a la grande chambre. »",
+    "motivationFr": "Paraître autonome.",
+    "explicationFr": "Karim se présente lui-même comme son coloc au centre-ville : il n’habite pas seul."
+   },
+   "refusPieces": {
+    "PIX_MATCH": {
+     "lu": "De Karim war just fir de Match do!",
+     "fr": "Karim était juste là pour le match !",
+     "review": "a_verifier_lod"
+    }
+   }
+  },
+  {
+   "id": "A_VOYAGE_JAPON",
+   "theme": "voyage",
+   "vrai": false,
+   "base": {
+    "lu": "Am August war ech dräi Wochen a Japan.",
+    "fr": "En août, j’étais trois semaines au Japon.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wat hues du do gemaach?",
+     "fr": "Qu’est-ce que tu as fait là-bas ?",
+     "review": "lecon_modele"
+    },
+    "reponse": {
+     "lu": "Ech hu vill Fotoe gemaach!",
+     "fr": "J’ai pris plein de photos !",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Ech war a Japan, wierklech!",
+    "fr": "J’étais au Japon, vraiment !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "LUXRUN_MERL",
+     "source": "amis",
+     "auteur": "{npc}",
+     "dateFr": "31 août 2026",
+     "titre": "Capture LuxRun partagée par {npc}",
+     "transcription": "Appli LuxRun — Août 2026 : 5 courses, les dimanches 2, 9, 16, 23 et 30 août, Parc de Merl, 10 minutes chacune. Message de {npc} : « Régulier ! 💪 »",
+     "visuel": {
+      "type": "appli",
+      "lignes": [
+       [
+        "dim. 2 août",
+        "Parc de Merl · 10 min"
+       ],
+       [
+        "dim. 9 août",
+        "Parc de Merl · 10 min"
+       ],
+       [
+        "dim. 16 août",
+        "Parc de Merl · 10 min"
+       ],
+       [
+        "dim. 23 août",
+        "Parc de Merl · 10 min"
+       ],
+       [
+        "dim. 30 août",
+        "Parc de Merl · 10 min"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "PIX_KYOTO2",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "31 août 2026",
+     "titre": "Photo : Kyoto",
+     "transcription": "Photo : un temple et des lanternes rouges. Légende : « Kyoto ✨ 3 semaines inoubliables ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "kyoto",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": 0.5,
+        "z": 0.3,
+        "rotation": -0.25
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "LUXRUN_MERL"
+     ]
+    ],
+    "justification": {
+     "lu": "Ech war net a Japan. Ech war doheem.",
+     "fr": "Je n’étais pas au Japon. J’étais à la maison.",
+     "review": "lecon_modele"
+    },
+    "aveuFr": "« Kyoto vu de mon canapé. J’ai même ajouté les lanternes ! »",
+    "motivationFr": "Paraître aventureux.",
+    "explicationFr": "LuxRun le place au Parc de Merl tous les dimanches d’août : trois semaines au Japon en août, c’est impossible.",
+    "revelation": {
+     "piece": "PIX_KYOTO2",
+     "fr": "Regarde mieux : six lanternes identiques, alignées au centimètre, et {npc} collé devant le temple."
+    }
+   },
+   "refusPieces": {
+    "PIX_KYOTO2": {
+     "lu": "Kuck! Dat ass Kyoto!",
+     "fr": "Regarde ! C’est Kyoto !",
+     "review": "audit_regles"
+    }
+   },
+   "incompatibles": [
+    "A_SPORT_TOUSLESJOURS"
+   ],
+   "croise": true
+  },
+  {
+   "id": "A_VOYAGE_ESPAGNE",
+   "theme": "voyage",
+   "vrai": false,
+   "base": {
+    "lu": "Am Juli war ech zwou Wochen a Spuenien.",
+    "fr": "En juillet, j’étais deux semaines en Espagne.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wou genee?",
+     "fr": "Où exactement ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Zu Barcelona. Et war super!",
+     "fr": "À Barcelone. C’était super !",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Ech war a Spuenien, wierklech!",
+    "fr": "J’étais en Espagne, vraiment !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "AMIS_COACH",
+     "source": "amis",
+     "auteur": "Coach Marc",
+     "dateFr": "31 juillet 2026",
+     "titre": "Publication du coach de foot",
+     "transcription": "« Juillet 2026 : bravo {npc}, présent aux 9 entraînements du mois — tous les mardis et jeudis ! ⚽ »",
+     "visuel": {
+      "type": "post",
+      "image": "foot",
+      "scene": "foot",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": 0.1,
+        "z": 0.4,
+        "rotation": 0
+       }
+      ]
+     }
+    },
+    {
+     "id": "PIX_BARCELONE",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "1er août 2026",
+     "titre": "Photo : Barcelone",
+     "transcription": "Photo : des façades colorées et un tram jaune. Légende : « Barcelone ☀️ deux semaines de rêve ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "lisbonne",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": -0.6,
+        "z": 0.4,
+        "rotation": 0.2
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "AMIS_COACH"
+     ]
+    ],
+    "justification": {
+     "lu": "Ech war net a Spuenien. Ech war beim Fussball.",
+     "fr": "Je n’étais pas en Espagne. J’étais au foot.",
+     "review": "a_verifier_lod"
+    },
+    "aveuFr": "« Barcelone, c’était mon fond d’écran… »",
+    "motivationFr": "Paraître grand voyageur.",
+    "explicationFr": "Son coach le félicite d’avoir été là aux 9 entraînements de juillet, tous les mardis et jeudis : deux semaines en Espagne en juillet, c’est impossible."
+   },
+   "refusPieces": {
+    "PIX_BARCELONE": {
+     "lu": "Kuck! Dat ass Barcelona!",
+     "fr": "Regarde ! C’est Barcelone !",
+     "review": "audit_regles"
+    }
+   },
+   "croise": true
+  },
+  {
+   "id": "A_SPORT_TOUSLESJOURS",
+   "theme": "sport",
+   "vrai": false,
+   "base": {
+    "lu": "Ech ginn all Dag lafen.",
+    "fr": "Je vais courir tous les jours.",
+    "review": "lecon"
+   },
+   "press": {
+    "question": {
+     "lu": "Wéi laang?",
+     "fr": "Combien de temps ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Eng Stonn!",
+     "fr": "Une heure !",
+     "review": "lecon"
+    }
+   },
+   "refus": {
+    "lu": "Jo, all Dag!",
+    "fr": "Oui, tous les jours !",
+    "review": "audit_regles"
+   },
+   "pieces": [
+    {
+     "id": "LUXRUN_SEPT",
+     "source": "amis",
+     "auteur": "{npc}",
+     "dateFr": "30 septembre 2026",
+     "titre": "Capture LuxRun partagée par {npc}",
+     "transcription": "Appli LuxRun (suivi automatique par la montre) — Septembre 2026 : 2 courses, le 6 et le 20 septembre, 25 minutes chacune. Message de {npc} : « Ma montre compte tout ⌚ »",
+     "visuel": {
+      "type": "appli",
+      "lignes": [
+       [
+        "dim. 6 sept.",
+        "25 min"
+       ],
+       [
+        "dim. 20 sept.",
+        "25 min"
+       ],
+       [
+        "Total septembre",
+        "2 courses"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "PIX_COURSE",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "6 septembre 2026",
+     "titre": "Photo : course du matin",
+     "transcription": "Photo : un parc au petit matin. Légende : « Course du matin 🏃 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "parc",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Walk",
+        "x": 0.1,
+        "z": 0.3,
+        "rotation": -0.3
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "LUXRUN_SEPT"
+     ]
+    ],
+    "justification": {
+     "lu": "Okay… net all Dag. Zweemol am September.",
+     "fr": "Bon… pas tous les jours. Deux fois en septembre.",
+     "review": "a_verifier_lod"
+    },
+    "aveuFr": "« Mais je pense à courir tous les jours ! »",
+    "motivationFr": "Paraître sportif.",
+    "explicationFr": "Sa montre, qui compte toutes ses courses, n’en a enregistré que deux en septembre."
+   },
+   "refusPieces": {
+    "PIX_COURSE": {
+     "lu": "Gesäis du? Ech lafen!",
+     "fr": "Tu vois ? Je cours !",
+     "review": "a_verifier_lod"
+    }
+   },
+   "incompatibles": [
+    "A_VOYAGE_JAPON"
+   ],
+   "croise": true
+  },
+  {
+   "id": "A_LOISIR_BAND",
+   "theme": "loisir",
+   "vrai": false,
+   "base": {
+    "lu": "Ech spille Gittar an enger Band.",
+    "fr": "Je joue de la guitare dans un groupe.",
+    "review": "a_verifier_lod"
+   },
+   "press": {
+    "question": {
+     "lu": "Wéi heescht d’Band?",
+     "fr": "Comment s’appelle le groupe ?",
+     "review": "a_verifier_lod"
+    },
+    "reponse": {
+     "lu": "The Kirchberg Cats!",
+     "fr": "The Kirchberg Cats !",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Ech spille wierklech Gittar!",
+    "fr": "Je joue vraiment de la guitare !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "AMIS_BAND",
+     "source": "amis",
+     "auteur": "The Kirchberg Cats",
+     "dateFr": null,
+     "titre": "Page du groupe The Kirchberg Cats",
+     "transcription": "The Kirchberg Cats (groupe pop, Luxembourg) · Membres : Julie (chant), Marc (guitare), Paul (basse), Lina (batterie). Prochain concert : 7 novembre.",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Julie",
+        "chant"
+       ],
+       [
+        "Marc",
+        "guitare"
+       ],
+       [
+        "Paul",
+        "basse"
+       ],
+       [
+        "Lina",
+        "batterie"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "PIX_CONCERT",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "19 septembre 2026",
+     "titre": "Photo : concert",
+     "transcription": "Photo : {npc} dans le public, sous les lumières. Légende : « Concert des Kirchberg Cats 🎸 trop bien ! ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "reception",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": 0.3,
+        "z": 0.6,
+        "rotation": -0.2
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "AMIS_BAND"
+     ]
+    ],
+    "exigePrecision": true,
+    "refusSansPrecision": {
+     "lu": "Wéi? Wéi eng Band?",
+     "fr": "Quoi ? Quel groupe ?",
+     "review": "a_verifier_lod"
+    },
+    "justification": {
+     "lu": "Okay… ech si just Fan.",
+     "fr": "Bon… je suis juste fan.",
+     "review": "a_verifier_lod"
+    },
+    "aveuFr": "« Mais je connais tous les accords… de leur chanson la plus simple. »",
+    "motivationFr": "Paraître artiste.",
+    "explicationFr": "La page du groupe liste ses quatre membres : {npc} n’en fait pas partie, et c’est Marc qui joue de la guitare."
+   },
+   "refusPieces": {
+    "PIX_CONCERT": {
+     "lu": "Kuck! Ech sinn um Concert!",
+     "fr": "Regarde ! Je suis au concert !",
+     "review": "a_verifier_lod"
+    }
+   }
+  },
+  {
+   "id": "A_LANGUE_DAITSCH",
+   "theme": "langue",
+   "vrai": false,
+   "base": {
+    "lu": "Ech schwätze perfekt Däitsch.",
+    "fr": "Je parle parfaitement allemand.",
+    "review": "a_verifier_lod"
+   },
+   "press": {
+    "question": {
+     "lu": "Wou hues du dat geléiert?",
+     "fr": "Où est-ce que tu as appris ça ?",
+     "review": "a_verifier_lod"
+    },
+    "reponse": {
+     "lu": "Zu Berlin. Dräi Joer!",
+     "fr": "À Berlin. Trois ans !",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Jo, perfekt!",
+    "fr": "Oui, parfaitement !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "PRO_LANGUES",
+     "source": "pro",
+     "auteur": "{npc}",
+     "dateFr": null,
+     "titre": "Profil Pro de {npc} : langues",
+     "transcription": "Langues : français (langue maternelle), anglais (B2), allemand (A1 – débutant). Parcours : études et emplois au Luxembourg uniquement.",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Français",
+        "langue maternelle"
+       ],
+       [
+        "Anglais",
+        "B2"
+       ],
+       [
+        "Allemand",
+        "A1 – débutant"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "PIX_TREVES",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "27 septembre 2026",
+     "titre": "Photo : Trèves",
+     "transcription": "Photo : {npc} dans un train. Légende : « Week-end à Trèves 🇩🇪 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "train",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Idle",
+        "x": 0.1,
+        "z": 0.2,
+        "rotation": -0.3
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "PRO_LANGUES"
+     ]
+    ],
+    "justification": {
+     "lu": "Okay… just e bëssen Däitsch.",
+     "fr": "Bon… juste un peu d’allemand.",
+     "review": "audit_regles"
+    },
+    "aveuFr": "« Je sais dire « Guten Tag » avec un accent parfait. »",
+    "motivationFr": "Paraître brillant.",
+    "explicationFr": "Son propre profil Pro indique « allemand : A1 – débutant » et un parcours uniquement au Luxembourg."
+   },
+   "refusPieces": {
+    "PIX_TREVES": {
+     "lu": "Kuck! Ech war an Däitschland!",
+     "fr": "Regarde ! J’étais en Allemagne !",
+     "review": "audit_regles"
+    }
+   }
+  },
+  {
+   "id": "A_ANIMAL_HOND",
+   "theme": "animal",
+   "vrai": false,
+   "base": {
+    "lu": "Ech hunn en Hond. Hien heescht Rex.",
+    "fr": "J’ai un chien. Il s’appelle Rex.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wou ass hien elo?",
+     "fr": "Il est où maintenant ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Doheem. Hie schléift.",
+     "fr": "À la maison. Il dort.",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "De Rex ass mäin Hond!",
+    "fr": "Rex est mon chien !",
+    "review": "audit_regles"
+   },
+   "pieces": [
+    {
+     "id": "AMIS_CLARA_REX",
+     "source": "amis",
+     "auteur": "Clara (sœur de {npc})",
+     "dateFr": "20 octobre 2026",
+     "titre": "Publication de Clara",
+     "transcription": "« Merci à mon frère {npc} d’avoir promené MON chien Rex pendant mes vacances 🐶 Rex est rentré à la maison avec moi ! »",
+     "visuel": {
+      "type": "post",
+      "image": "chien",
+      "scene": "chien",
+      "personnes": []
+     }
+    },
+    {
+     "id": "PIX_REX",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "10 octobre 2026",
+     "titre": "Photo : Rex",
+     "transcription": "Photo : {npc} et un chien brun au parc. Légende : « Rex et moi 🐶 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "chien",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": -0.6,
+        "z": 0.2,
+        "rotation": 0.25
+       }
+      ]
+     }
+    }
+   ],
+   "mensonge": {
+    "preuves": [
+     [
+      "AMIS_CLARA_REX"
+     ]
+    ],
+    "justification": {
+     "lu": "Okay… de Rex ass dem Clara säin Hond.",
+     "fr": "Bon… Rex est le chien de Clara.",
+     "review": "audit_regles"
+    },
+    "aveuFr": "« Mais il m’aime plus qu’elle ! »",
+    "motivationFr": "Paraître responsable et attachant.",
+    "explicationFr": "Sa sœur Clara remercie {npc} d’avoir promené SON chien Rex pendant ses vacances : Rex n’est pas à lui."
+   },
+   "refusPieces": {
+    "PIX_REX": {
+     "lu": "Kuck! Dat ass de Rex!",
+     "fr": "Regarde ! C’est Rex !",
+     "review": "audit_regles"
+    }
+   }
+  },
+  {
+   "id": "V_TRAVAIL_BUREAU",
+   "theme": "travail",
+   "vrai": true,
+   "base": {
+    "lu": "Ech schaffen an engem Büro.",
+    "fr": "Je travaille dans un bureau.",
+    "review": "lecon"
+   },
+   "press": {
+    "question": {
+     "lu": "Wéini schaffs du?",
+     "fr": "Tu travailles quand ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Vu Méindeg bis Freideg.",
+     "fr": "Du lundi au vendredi.",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Ech schaffen an engem Büro, wierklech!",
+    "fr": "Je travaille dans un bureau, vraiment !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "PRO_COMPTABLE",
+     "source": "pro",
+     "auteur": "{npc}",
+     "dateFr": null,
+     "titre": "Profil Pro de {npc}",
+     "transcription": "{npc} · Comptable à la Fiduciaire Moselle (Luxembourg) depuis 2021, du lundi au vendredi.",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Comptable · Fiduciaire Moselle",
+        "depuis 2021"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "V_LOGEMENT_SEUL",
+   "theme": "logement",
+   "vrai": true,
+   "base": {
+    "lu": "Ech wunnen eleng. Mäin Appartement ass kleng.",
+    "fr": "J’habite seul. Mon appartement est petit.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wou wunns du?",
+     "fr": "Tu habites où ?",
+     "review": "lecon"
+    },
+    "reponse": {
+     "lu": "An der Stad.",
+     "fr": "En ville.",
+     "review": "lecon"
+    }
+   },
+   "refus": {
+    "lu": "Jo, eleng! Mäin Appartement ass kleng!",
+    "fr": "Oui, seul ! Mon appartement est petit !",
+    "review": "audit_regles"
+   },
+   "pieces": [
+    {
+     "id": "PIX_APPART",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "2 septembre 2026",
+     "titre": "Photo : mon appart",
+     "transcription": "Photo : un petit salon avec une plante. Légende : « Mon petit appart, mon petit bonheur 🌿 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "canape",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Idle",
+        "x": 0.0,
+        "z": 0.4,
+        "rotation": 0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "V_SPORT_TENNIS",
+   "theme": "sport",
+   "vrai": true,
+   "base": {
+    "lu": "Ech spillen Tennis.",
+    "fr": "Je joue au tennis.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wéini?",
+     "fr": "Quand ?",
+     "review": "lecon"
+    },
+    "reponse": {
+     "lu": "Samschdes moies.",
+     "fr": "Le samedi matin.",
+     "review": "lecon"
+    }
+   },
+   "refus": {
+    "lu": "Ech spille wierklech Tennis!",
+    "fr": "Je joue vraiment au tennis !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "PIX_TENNIS",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "17 octobre 2026",
+     "titre": "Photo : tennis",
+     "transcription": "Photo : {npc} au parc, raquette à la main. Légende : « Tennis du samedi matin 🎾 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "parc",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": 0.1,
+        "z": 0.3,
+        "rotation": -0.2
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "V_ANIMAL_KAZ",
+   "theme": "animal",
+   "vrai": true,
+   "base": {
+    "lu": "Ech hunn eng Kaz. Si heescht Mimi.",
+    "fr": "J’ai un chat. Il s’appelle Mimi.",
+    "review": "audit_regles",
+    "noteFr": "Kaz est féminin : on dit « si », même pour un chat."
+   },
+   "press": {
+    "question": {
+     "lu": "Wou ass deng Kaz?",
+     "fr": "Il est où, ton chat ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Doheem. Si schléift.",
+     "fr": "À la maison. Il dort.",
+     "review": "lecon"
+    }
+   },
+   "refus": {
+    "lu": "Nee! Dat ass wierklech meng Kaz!",
+    "fr": "Non ! C’est vraiment mon chat !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "PIX_MIMI",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "5 octobre 2026",
+     "titre": "Photo : Mimi",
+     "transcription": "Photo : un chat roux endormi sur un coussin. Légende : « Mimi, reine de la sieste ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "chat",
+      "personnes": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "V_CUISINE_ZOPP",
+   "theme": "cuisine",
+   "vrai": true,
+   "base": {
+    "lu": "Ech kache gär fir meng Frënn.",
+    "fr": "J’aime cuisiner pour mes amis.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wat kachs du?",
+     "fr": "Qu’est-ce que tu cuisines ?",
+     "review": "audit_regles"
+    },
+    "reponse": {
+     "lu": "Gromperenzopp!",
+     "fr": "De la soupe de pommes de terre !",
+     "review": "a_verifier_lod"
+    }
+   },
+   "refus": {
+    "lu": "Hues du meng Zopp net gär?",
+    "fr": "Tu n’aimes pas ma soupe ?",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "AMIS_ZOPP",
+     "source": "amis",
+     "auteur": "Léa M.",
+     "dateFr": "26 septembre 2026",
+     "titre": "Publication de Léa",
+     "transcription": "« Merci {npc} pour la soupe de pommes de terre de samedi ! 🥔 »",
+     "visuel": {
+      "type": "post",
+      "image": "soupe"
+     }
+    }
+   ]
+  },
+  {
+   "id": "V_LOISIR_LIESEN",
+   "theme": "loisir",
+   "vrai": true,
+   "base": {
+    "lu": "Ech liese gär. Ech hu vill Bicher.",
+    "fr": "J’aime lire. J’ai beaucoup de livres.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wéi vill Bicher?",
+     "fr": "Combien de livres ?",
+     "review": "lecon"
+    },
+    "reponse": {
+     "lu": "Honnert!",
+     "fr": "Cent !",
+     "review": "lecon"
+    }
+   },
+   "refus": {
+    "lu": "Jo! Ech liese wierklech gär!",
+    "fr": "Oui ! J’aime vraiment lire !",
+    "review": "a_verifier_lod"
+   },
+   "pieces": [
+    {
+     "id": "PIX_LIVRES",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "11 octobre 2026",
+     "titre": "Photo : mes livres",
+     "transcription": "Photo : une pile de livres sur une table. Légende : « La pile de la semaine 📚 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "carnet",
+      "personnes": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "V_LANGUE_ENGLESCH",
+   "theme": "langue",
+   "vrai": true,
+   "base": {
+    "lu": "Ech schwätzen Englesch a Franséisch.",
+    "fr": "Je parle anglais et français.",
+    "review": "lecon"
+   },
+   "press": {
+    "question": {
+     "lu": "An Däitsch?",
+     "fr": "Et allemand ?",
+     "review": "lecon"
+    },
+    "reponse": {
+     "lu": "Nee, just e bëssen.",
+     "fr": "Non, juste un peu.",
+     "review": "audit_regles"
+    }
+   },
+   "refus": {
+    "lu": "Jo, Englesch a Franséisch!",
+    "fr": "Oui, anglais et français !",
+    "review": "audit_regles"
+   },
+   "pieces": [
+    {
+     "id": "PRO_LANGUES2",
+     "source": "pro",
+     "auteur": "{npc}",
+     "dateFr": null,
+     "titre": "Profil Pro de {npc} : langues",
+     "transcription": "Langues : français (langue maternelle), anglais (C1), allemand (A2).",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Français",
+        "langue maternelle"
+       ],
+       [
+        "Anglais",
+        "C1"
+       ],
+       [
+        "Allemand",
+        "A2"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "V_FAMILLE_CLARA",
+   "theme": "famille",
+   "vrai": true,
+   "base": {
+    "lu": "Ech hunn eng Schwëster. Si heescht Clara.",
+    "fr": "J’ai une sœur. Elle s’appelle Clara.",
+    "review": "audit_regles"
+   },
+   "press": {
+    "question": {
+     "lu": "Wou wunnt si?",
+     "fr": "Elle habite où ?",
+     "review": "lecon"
+    },
+    "reponse": {
+     "lu": "Zu Esch.",
+     "fr": "À Esch.",
+     "review": "lecon"
+    }
+   },
+   "refus": {
+    "lu": "Jo, ech hunn eng Schwëster!",
+    "fr": "Oui, j’ai une sœur !",
+    "review": "audit_regles"
+   },
+   "pieces": [
+    {
+     "id": "AMIS_CLARA",
+     "source": "amis",
+     "auteur": "Clara",
+     "dateFr": null,
+     "titre": "Profil de Clara",
+     "transcription": "Clara · sœur de {npc} · Esch-sur-Alzette.",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Sœur de {npc}",
+        ""
+       ],
+       [
+        "Esch-sur-Alzette",
+        ""
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "dossiersRediges": [
+  {
+   "id": "NOAH_001",
+   "numero": "002",
+   "npc": "noah",
+   "affaires": [
+    "A_TRAVAIL_DOKTER",
+    "V_FAMILLE_CLARA",
+    "A_LOISIR_BAND",
+    "V_CUISINE_ZOPP",
+    "A_ANIMAL_HOND",
+    "V_LANGUE_ENGLESCH"
+   ]
+  },
+  {
+   "id": "TOM_001",
+   "numero": "003",
+   "npc": "tom",
+   "affaires": [
+    "A_TRAVAIL_CONTRAT",
+    "V_SPORT_TENNIS",
+    "A_VOYAGE_ESPAGNE",
+    "V_LOGEMENT_SEUL",
+    "A_LANGUE_DAITSCH",
+    "V_LOISIR_LIESEN"
+   ]
+  }
+ ],
+ "generateur": {
+  "npcs": [
+   "leo",
+   "hugo",
+   "sam",
+   "jules",
+   "enzo",
+   "nico"
+  ],
+  "mensonges": [
+   3,
+   3
+  ],
+  "verites": [
+   3,
+   3
+  ],
+  "auMoinsUnePrecision": true,
+  "auMoinsUnCroise": true,
+  "dateFr": "samedi 24 octobre 2026",
+  "lieuFr": "au café",
+  "fin": {
+   "complet": {
+    "lu": "Okay… Du hues gewonnen.",
+    "fr": "Bon… Tu as gagné.",
+    "review": "a_verifier_lod"
+   },
+   "partiel": {
+    "lu": "Gesäis du? Ech hunn net gelunn!",
+    "fr": "Tu vois ? Je n’ai pas menti !",
+    "review": "a_verifier_lod"
+   }
+  }
+ }
 }

@@ -63,7 +63,7 @@ function ldIcone(nom) {
 // Moteur de Lux Match (public/lux-match-3d.js), chargé à la demande, instance partagée.
 function ldObtenir3D() {
   if (!ld.promesse3d) {
-    ld.promesse3d = import('./lux-match-3d.js?v=10').then(() => window.LuxMatch3D.partage());
+    ld.promesse3d = import('./lux-match-3d.js?v=11').then(() => window.LuxMatch3D.partage());
     ld.promesse3d.then(m => { ld.rendu3d = m; }).catch(() => { ld.promesse3d = null; });
   }
   return ld.promesse3d;
@@ -76,7 +76,7 @@ function ldPersonne(qui) {
 function ldPreparerImages() {
   const p = ld.partie;
   if (!p) return Promise.resolve();
-  const dossier = p.dossier, npc = p.npc, pieces = LuxDemasqueCore.piecesParId(p.contenus);
+  const dossier = p.dossier, npc = p.npc, pieces = LuxDemasqueCore.pieces(p);
   ld.preparation = ldObtenir3D().then(async m => {
     const taches = [['portrait:' + npc.id, () => m.portrait(npc, 'Idle', '#3a2a55', 240, 300)],
       ['portrait-defaite:' + npc.id, () => m.portrait(npc, 'Defeat', '#2a2438', 240, 300)]];
@@ -84,7 +84,7 @@ function ldPreparerImages() {
       const v = pieces[id].visuel;
       if (!v.scene) return;
       const personnes = (v.personnes || []).map(x => Object.assign({}, x, { profil: ldPersonne(x.qui) })).filter(x => x.profil);
-      taches.push(['piece:' + id, () => m.photo(v.scene, personnes, 320, 240)]);
+      taches.push([ldClePiece(id), () => m.photo(v.scene, personnes, 320, 240)]);
     });
     for (const [cle, faire] of taches) {
       if (ld.images[cle]) continue;
@@ -93,6 +93,8 @@ function ldPreparerImages() {
   }).catch(() => {});
   return ld.preparation;
 }
+// Une même affaire peut servir à plusieurs prétendants : l'image dépend aussi de lui.
+function ldClePiece(id) { return 'piece:' + (ld.partie ? ld.partie.npc.id : '') + ':' + id; }
 // Remplace les emplacements en attente par l'image prête.
 function ldPoserImage(cle) {
   document.querySelectorAll('#ld-jeu [data-ld-image="' + cle + '"]').forEach(el => {
@@ -146,7 +148,7 @@ function ldEffetObjection(reussi, ensuite, pieceId) {
   fx.className = 'ld-fx ' + (reussi ? 'ld-fx-ok' : 'ld-fx-non');
   fx.setAttribute('aria-hidden', 'true');
   // La pièce présentée est brandie sous le cri.
-  const piece = pieceId && ld.partie ? LuxDemasqueCore.piecesParId(ld.partie.contenus)[pieceId] : null;
+  const piece = pieceId && ld.partie ? LuxDemasqueCore.pieces(ld.partie)[pieceId] : null;
   const brandie = piece ? '<div class="ld-fx-piece">' + ldVisuel(piece, true) + '<span><small>' + LD_APPS[piece.source] + '</small><b>' + ldEchapper(piece.titre) + '</b></span></div>' : '';
   fx.innerHTML = '<i class="ld-fx-lignes"></i><div class="ld-fx-centre"><b class="ld-fx-cri">OBJECTION !</b>' + brandie + '</div>' + (reussi ? '<i class="ld-fx-flash"></i>' : '');
   depo.appendChild(fx);
@@ -192,7 +194,7 @@ async function ouvrirLuxDemasque(dossierId) {
   }
   if (!ldVueActive()) return; // l'utilisateur est reparti pendant le chargement
   ld.aideFr = ldLire('luxDemasqueAideFr', true);
-  ld.partie = LuxDemasqueCore.nouvellePartie(ld.donnees, { dossierId: dossierId || ld.donnees.dossiers[0].id });
+  ld.partie = LuxDemasqueCore.nouvellePartie(ld.donnees, ldChoisirDossier(dossierId));
   ldRendre();
   ldPreparerImages(); // portrait 3D et photos des preuves, pendant que le joueur lit la fiche
 }
@@ -215,7 +217,20 @@ function luxDemasqueArreter() {
     .observe(vue, { attributes: true, attributeFilter: ['class'] });
 })();
 function ldQuitter() { luxDemasqueArreter(); if (typeof ouvrirJeux === 'function') ouvrirJeux(); }
-function ldNouveauDossier() { const id = ld.partie ? ld.partie.dossier.id : null; ouvrirLuxDemasque(id); }
+// Rotation des dossiers : d'abord les dossiers rédigés pas encore résolus (Milo, Noah, Tom),
+// puis des dossiers générés (graine aléatoire, rejouable telle quelle depuis le diagnostic).
+function ldDossiersRediges() { return ld.donnees.dossiers.map(d => d.id).concat((ld.donnees.dossiersRediges || []).map(d => d.id)); }
+function ldChoisirDossier(dossierId) {
+  if (typeof dossierId === 'number') return { dossier: LuxDemasqueCore.composerDossier(ld.donnees, { graine: dossierId }) };
+  if (dossierId) return { dossierId };
+  const resolus = ldLire('luxDemasqueResolus', []);
+  const suivant = ldDossiersRediges().find(id => resolus.indexOf(id) < 0);
+  if (suivant) return { dossierId: suivant };
+  const dossier = LuxDemasqueCore.composerDossier(ld.donnees, { graine: 1 + Math.floor(Math.random() * 999999) });
+  return dossier ? { dossier } : { dossierId: ld.donnees.dossiers[0].id };
+}
+function ldNouveauDossier() { ouvrirLuxDemasque(); }
+function ldRejouer() { const d = ld.partie && ld.partie.dossier; ouvrirLuxDemasque(d && d.genere ? d.graine : d && d.id); }
 
 // ─── Rendu par écran ───────────────────────────────────────────────────────
 function ldEntete(options) {
@@ -258,11 +273,12 @@ function ldRendreRencontre(box) {
   const p = ld.partie, n = p.npc, d = p.dossier;
   box.innerHTML = ldEntete({ menu: false }) +
     '<div class="ld-rencontre">' +
-      '<p class="ld-tampon">DOSSIER N°' + ldEchapper(d.numero) + '</p>' +
+      '<p class="ld-tampon">DOSSIER N°' + ldEchapper(d.numero) + (d.genere ? ' · INÉDIT' : '') + '</p>' +
       '<div class="ld-fiche">' + ldPortrait('ld-portrait-fiche') +
         '<div class="ld-fiche-texte"><h1>' + ldEchapper(n.nom) + ', ' + n.age + ' ans</h1>' +
           '<p class="ld-fiche-ville">' + ldEchapper(n.villeFr) + '</p>' +
           '<p class="ld-fiche-accroche">« ' + ldEchapper(n.accrocheFr) + ' »</p></div></div>' +
+      (n.salut ? '<div class="ld-salut"><span class="ld-locuteur">' + ldEchapper(n.nom) + '</span>' + ldReplique(n.salut) + '</div>' : '') +
       '<p class="ld-rdv">Rendez-vous ' + ldEchapper(d.lieuFr) + ' · <b>' + ldEchapper(d.dateFr) + '</b></p>' +
       '<ul class="ld-regles">' +
         '<li><b>Il ment</b> pour t’impressionner… mais pas sur tout.</li>' +
@@ -404,7 +420,7 @@ function ldToast(texte) {
 function ldReseaux(app) {
   const p = ld.partie; if (!p) return;
   if (app) ld.app = app;
-  const r = p.npc.reseaux[ld.app], pieces = LuxDemasqueCore.piecesParId(p.contenus);
+  const r = LuxDemasqueCore.reseaux(p)[ld.app] || { pseudo: p.npc.nom, bioFr: '', pieces: [] }, pieces = LuxDemasqueCore.pieces(p);
   const html = ldFermerBouton('ld-reseaux') +
     '<h2 class="ld-fen-titre">Réseaux de ' + ldEchapper(p.npc.nom) + '</h2>' +
     '<div class="ld-onglets" role="tablist">' + Object.keys(LD_APPS).map(a =>
@@ -427,14 +443,14 @@ function ldVisuel(piece, mini) {
   if (v.type === 'photo' || v.type === 'post') {
     const fond = v.type === 'photo' ? ' ld-photo-' + v.scene : ' ld-post-' + v.image;
     return '<span class="' + classe + fond + '"' + (mini ? ' aria-hidden="true"' : ' role="img" aria-label="' + ldEchapper(piece.transcription) + '"') + '>' +
-      ldImage('piece:' + piece.id, 'ld-photo-image') + '</span>';
+      ldImage(ldClePiece(piece.id), 'ld-photo-image') + '</span>';
   }
   const lignes = (v.lignes || []).map(l => '<span><b>' + ldEchapper(l[0]) + '</b>' + (l[1] ? '<em>' + ldEchapper(l[1]) + '</em>' : '') + '</span>').join('');
   return '<span class="' + classe + '"' + (mini ? ' aria-hidden="true"' : '') + '>' + (mini ? '<span><b>' + ldEchapper(piece.auteur) + '</b></span>' : lignes) + '</span>';
 }
 function ldOuvrirPiece(id) {
   const p = ld.partie; if (!p) return;
-  const piece = LuxDemasqueCore.piecesParId(p.contenus)[id];
+  const piece = LuxDemasqueCore.pieces(p)[id];
   const nouvelle = LuxDemasqueCore.consulter(p, id);
   ldSon(nouvelle ? 'indice' : 'page');
   ldCalque('ld-piece', 'ld-calque-piece', piece.titre,
@@ -521,7 +537,7 @@ function ldAfficherVerdict(r) {
 }
 // Révélation éventuelle, après la preuve (le montage de la photo « Kyoto »).
 function ldRevelation(r) {
-  const pieces = LuxDemasqueCore.piecesParId(ld.partie.contenus);
+  const pieces = LuxDemasqueCore.pieces(ld.partie);
   if (!r.revelation || !pieces[r.revelation.piece]) return '';
   return '<div class="ld-revelation"><span class="ld-revelation-photo">' + ldVisuel(pieces[r.revelation.piece], false) + '<b>MONTAGE</b></span>' +
     '<p>' + ldEchapper(r.revelation.fr) + '</p></div>';
@@ -569,6 +585,10 @@ function ldConclure(confirme) {
   const fin = LuxDemasqueCore.conclure(p);
   if (fin.score > ldLire('luxDemasqueRecord', 0)) { ldEcrire('luxDemasqueRecord', fin.score); p.nouveauRecord = true; }
   ldSon(fin.complet ? 'resolu' : 'clos');
+  if (fin.complet && !p.dossier.genere) {
+    const resolus = ldLire('luxDemasqueResolus', []);
+    if (resolus.indexOf(p.dossier.id) < 0) ldEcrire('luxDemasqueResolus', resolus.concat(p.dossier.id));
+  }
   ldFermerToutesFenetres();
   ldEffacerEmotion();
   if (ld.rendu3d) ld.rendu3d.detacher();
@@ -589,6 +609,7 @@ function ldRendreBilan(box) {
         '<div><span>' + (p.nouveauRecord ? 'Nouveau record' : 'Record') + '</span><b>' + ldLire('luxDemasqueRecord', 0) + '</b></div></div>' +
       (fin.sansFaute ? '<p class="ld-sans-faute">SANS FAUTE !</p>' : '') +
       '<div class="ld-actions"><button type="button" class="ld-btn ld-btn-or" onclick="ldNouveauDossier()">Nouveau dossier</button>' +
+        (fin.complet ? '' : '<button type="button" class="ld-btn ld-btn-sombre" onclick="ldRejouer()">Rejouer ce dossier</button>') +
         '<button type="button" class="ld-btn ld-btn-lien" onclick="ldQuitter()">Retour aux jeux</button></div>' +
       '<details class="ld-details" open><summary>Comment il a essayé de t’embobiner</summary><ul class="ld-liste-bilan">' +
         mensonges.map(l => '<li class="' + (l.demasquee ? 'ld-ok' : 'ld-rate') + '"><small>' + (l.demasquee ? 'Démasquée' : 'Pas démasquée') + ' · ' + ldEchapper(LD_THEMES_FR[l.theme] || l.theme) + '</small>' +
@@ -597,7 +618,7 @@ function ldRendreBilan(box) {
           '<span class="ld-preuve">Preuve : ' + ldEchapper(l.explicationFr) + '</span></li>').join('') + '</ul></details>' +
       '<details class="ld-details"><summary>Ce qui était vrai</summary><ul class="ld-liste-bilan">' +
         vraies.map(l => '<li><b lang="lb">' + ldEchapper(l.base.lu) + '</b><span>' + ldEchapper(l.base.fr) + '</span></li>').join('') + '</ul></details>' +
-      '<details class="ld-details ld-diag"><summary>Diagnostic</summary><p class="ld-texte">Dossier <b>' + ldEchapper(p.dossier.id) + '</b> · contenu ' + ldEchapper(p.contenus.contentVersion) + ' · ' + p.journal.length + ' actions</p></details>' +
+      '<details class="ld-details ld-diag"><summary>Diagnostic</summary><p class="ld-texte">Dossier <b>' + ldEchapper(p.dossier.id) + '</b>' + (p.dossier.genere ? ' · graine <b>' + p.dossier.graine + '</b> · affaires ' + ldEchapper(p.dossier.affaires.join(', ')) : '') + ' · contenu ' + ldEchapper(p.contenus.contentVersion) + ' · ' + p.journal.length + ' actions</p></details>' +
       '<p class="ld-demo-note">Répliques luxembourgeoises en relecture · progression des leçons inchangée</p>' +
     '</div>';
 }

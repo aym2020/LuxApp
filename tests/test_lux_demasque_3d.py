@@ -18,7 +18,7 @@ with sync_playwright() as p:
         pg.wait_for_function("ld.preparation", timeout=30000)
         pg.evaluate("ld.preparation")
         images = pg.evaluate("Object.keys(ld.images).sort()")
-        assert images == ['piece:AMIS_LEA', 'piece:PIX_CANAPE', 'piece:PIX_KYOTO', 'piece:PIX_PIXEL', 'piece:PRO_EQUIPE', 'portrait-defaite:milo', 'portrait:milo'], images
+        assert images == ['piece:milo:AMIS_LEA', 'piece:milo:PIX_CANAPE', 'piece:milo:PIX_KYOTO', 'piece:milo:PIX_PIXEL', 'piece:milo:PRO_EQUIPE', 'portrait-defaite:milo', 'portrait:milo'], images
         assert pg.locator('.ld-fiche .ld-image-prete').count() == 1
         pg.click('.ld-rencontre .ld-btn-or')
         pg.wait_for_selector('.ld-scene-3d', timeout=30000)

@@ -112,7 +112,8 @@ with sync_playwright() as p:
     pg.click('.ld-bilan .ld-btn-or')
     pg.wait_for_selector('.ld-rencontre')
     assert pg.evaluate("ld.partie.phase") == 'rencontre' and pg.evaluate("ld.partie.erreurs") == 0
-    ok('« Nouveau dossier » visible sans scroller, nouvelle partie propre')
+    assert 'Noah, 32 ans' in pg.inner_text('.ld-fiche')   # Milo résolu → dossier rédigé suivant
+    ok('« Nouveau dossier » visible sans scroller, Milo résolu → dossier suivant (Noah), partie propre')
 
     # Aide FR désactivée : luxembourgeois seul, l'enquête reste identique.
     pg.click('.ld-rencontre .ld-btn-or')
@@ -120,7 +121,7 @@ with sync_playwright() as p:
     pg.click('.ld-fr-btn')
     assert pg.locator('#ld-declaration .ld-fr').count() == 0
     pg.click('#ld-preciser')
-    assert pg.locator('#ld-declaration .ld-fr').count() == 0 and 'Bei Horizon' in pg.inner_text('#ld-declaration')
+    assert pg.locator('#ld-declaration .ld-fr').count() == 0 and 'Zënter zwee Joer' in pg.inner_text('#ld-declaration')
     pg.click('.ld-fr-btn')
     assert pg.locator('#ld-declaration .ld-fr').count() >= 2
     ok('aide FR : désactivée = LU seul, réactivée = traductions')
