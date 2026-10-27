@@ -1,6 +1,6 @@
 # SPEC 109 — Lux Match : Double jeu (game design + bible de contenu)
 
-**Dépôt :** aym2020/LuxApp · **Branche cible :** `2.1` · **Statut :** **démo jouable implémentée le 27/10/2026** (prototypes A + B réunis), contenus LU **toujours en brouillon**, recette Samsung à faire · **Date :** 26 octobre 2026 · **Périmètre de cette livraison :** documentation et brouillons de données exclusivement.
+**Dépôt :** aym2020/LuxApp · **Branche cible :** `2.1` · **Statut :** **démo jouable implémentée le 27/10/2026** (prototypes A + B réunis), contenus LU **toujours en brouillon**, recette Samsung à faire · **Date :** 26 octobre 2026 · **État documentaire :** démo jouable et contenus JSON existants ; section 12 = nouvelles décisions produit à implémenter, non livrées.
 
 ## Démo implémentée (27/10/2026)
 
@@ -157,7 +157,7 @@ Nœuds prioritaires : `salutation` (L1), `age` (L5/L14), `origine` (L7), `nation
 
 **Mesure de succès à valider en jeu :** joueurs comprennent swipe et date sans aide, prennent une décision éclairée à partir d'un indice, ne trouvent pas les choix arbitraires, veulent rejouer un autre archétype, savent reformuler au moins une phrase de présentation après la session. La DA seule ne suffit pas.
 
-**STATUT RÉEL DE CETTE LIVRAISON : spécification + premiers contenus JSON, pas d'intégration moteur, pas de déploiement, pas de tests Android.**
+**STATUT DE LA VERSION INITIALE DE CETTE FICHE (historique) :** seule la spec et les contenus JSON avaient été livrés. Depuis le 27/10/2026, une démo jouable est intégrée (voir tête du document) ; **les décisions de la section 12 ne sont pas encore implémentées**. La recette complète Samsung et la validation linguistique restent à effectuer.
 
 
 ---
