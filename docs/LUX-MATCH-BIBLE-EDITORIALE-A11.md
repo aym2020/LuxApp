@@ -771,3 +771,130 @@ Les 26 beats suivants **ne remplacent pas automatiquement les dialogues existant
 - Si l'âge « 120 ans » était une plaisanterie, stocker `joke.age=120` plutôt que `claims.age=120`, à moins que le joueur ne réaffirme réellement ce mensonge en contexte.
 - La scène au café n'est **jamais remplacée** : console, serviette, agenda, ballon imaginaire peuvent être des accessoires ou animations très courts.
 
+
+
+---
+
+## 8. Conclusions personnalisées — 24 textes FR_JEU
+
+Ces textes n'évaluent **jamais** la qualité du luxembourgeois. Les quatre issues sont SUCCESS (affinité haute, faible suspicion), FUN (gag réellement survenu, ambiance positive), NEUTRAL (pas d'alchimie), FAIL (mensonges découverts et forte suspicion). **Vérifier le fait vécu** avant de sélectionner la fin : la vache de Sofia n'est pas évoquée si le gag portugais n'a pas été déclenché.
+
+### LENA
+
+| ID | Texte final |
+|---|---|
+| `FIN_LENA_SUCCESS` | « J'aime les gens qui tiennent parole. Un autre café après un match ? » |
+| `FIN_LENA_FUN` | « Tu as raté le ballon de trois mètres. C'était magnifique. Je veux une revanche. » |
+| `FIN_LENA_NEUTRAL` | « On n'a pas les mêmes passions, mais j'ai aimé discuter. » |
+| `FIN_LENA_FAIL` | « Tu as juré aimer le foot, puis tu as changé d'histoire trois fois. Ça fait beaucoup ! » |
+
+### CLAIRE
+
+| ID | Texte final |
+|---|---|
+| `FIN_CLAIRE_SUCCESS` | « Tu es ponctuel et intéressant. Je note un deuxième rendez-vous ? » |
+| `FIN_CLAIRE_FUN` | « J'ai trois métiers différents dans mon agenda. Lequel est le vrai ? » |
+| `FIN_CLAIRE_NEUTRAL` | « La conversation était agréable, mais je crois qu'on cherche autre chose. » |
+| `FIN_CLAIRE_FAIL` | « Médecin, banquier, policier… Je vais avoir besoin d'un CV plus clair. » |
+
+### NOEMIE
+
+| ID | Texte final |
+|---|---|
+| `FIN_NOEMIE_SUCCESS` | « J'aime les gens qui assument leurs goûts. Un autre café ? » |
+| `FIN_NOEMIE_FUN` | « J'ai gardé ton portrait sur serviette. Il est atroce. Je l'adore. » |
+| `FIN_NOEMIE_NEUTRAL` | « On a passé un moment sympa, sans déclic. » |
+| `FIN_NOEMIE_FAIL` | « Tu as affirmé être peintre, puis tu as fui devant un crayon. Dommage. » |
+
+### MAYA
+
+| ID | Texte final |
+|---|---|
+| `FIN_MAYA_SUCCESS` | « Une belle partie, sans triche. J'accepte une deuxième manche. » |
+| `FIN_MAYA_FUN` | « Tu as perdu au premier niveau mais tu m'as fait rire. Bien joué. » |
+| `FIN_MAYA_NEUTRAL` | « On ne joue pas dans la même équipe, mais c'était agréable. » |
+| `FIN_MAYA_FAIL` | « Tu prétends tout connaître, mais ton histoire change à chaque question. Game over. » |
+
+### SOFIA
+
+| ID | Texte final |
+|---|---|
+| `FIN_SOFIA_SUCCESS` | « Merci pour cette soirée. Raconte-moi ta prochaine destination au prochain café ! » |
+| `FIN_SOFIA_FUN` | « La vache en portugais… Je m'en souviendrai longtemps. J'ai quand même bien ri. » |
+| `FIN_SOFIA_NEUTRAL` | « Nos routes se croisent ici. Bon voyage ! » |
+| `FIN_SOFIA_FAIL` | « Portugal, France, Allemagne… je ne sais plus du tout d'où tu viens. » |
+
+### EMMA
+
+| ID | Texte final |
+|---|---|
+| `FIN_EMMA_SUCCESS` | « Parler sans écran, ça fait du bien. On reprend un café ensemble ? » |
+| `FIN_EMMA_FUN` | « Ton téléphone est mort avant le rendez-vous. Au moins, il nous a laissés tranquilles ! » |
+| `FIN_EMMA_NEUTRAL` | « C'était calme et agréable, mais je ne crois pas qu'on se reverra. » |
+| `FIN_EMMA_FAIL` | « J'aurais préféré discuter avec toi plutôt qu'avec ton téléphone. » |
+
+### Règle d'éligibilité et fallback
+
+Le texte FUN peut être affiché seulement si l'événement correspondant figure dans l'historique. Si un autre gag a eu lieu, écrire une variante supplémentaire du même profil **ou** utiliser l'issue générique du jeu : ne jamais inventer rétrospectivement ce que le joueur a fait. Une issue FAIL ne peut pas se conclure sur une déclaration de nouveau rendez-vous.
+
+---
+
+## 9. Réactions de personnalité (30 répliques FR_JEU)
+
+Répliques de commentaire social français, distinctes du dialogue LU enseigné. Pour en faire des lignes orales luxembourgeoises, **écrire une traduction complète, puis la faire auditer**. Réactions 3D sobres (sourire, hochement, haussement de sourcil) ; animations spectaculaires réservées aux pièges rares.
+
+| Ligne | Contexte | Réplique |
+|---|---|---|
+| `REACT_LENA_LOOK_OK` | LOOK_OK | « Ah, du bleu et des baskets ! » |
+| `REACT_LENA_LOOK_DIFFERENT` | LOOK_DIFFERENT | « Tu viens courir en costume ? Ambitieux. » |
+| `REACT_LENA_BLUFF` | BLUFF | « Tu joues au foot ? Je note ! » |
+| `REACT_LENA_AVEU` | AVEU | « Bon, au moins tu ne mens plus sur ton niveau. » |
+| `REACT_LENA_SINCERE` | SINCERE | « Pas besoin d'aimer le foot pour être sympa. » |
+| `REACT_CLAIRE_LOOK_OK` | LOOK_OK | « C'est soigné. J'aime bien. » |
+| `REACT_CLAIRE_LOOK_DIFFERENT` | LOOK_DIFFERENT | « C'est… original pour un rendez-vous. » |
+| `REACT_CLAIRE_BLUFF` | BLUFF | « Ah bon ? Et tu fais ça depuis quand ? » |
+| `REACT_CLAIRE_AVEU` | AVEU | « Merci pour la précision. C'est mieux. » |
+| `REACT_CLAIRE_SINCERE` | SINCERE | « Au moins, ta réponse est claire. » |
+| `REACT_NOEMIE_LOOK_OK` | LOOK_OK | « Cette couleur te va bien ! » |
+| `REACT_NOEMIE_LOOK_DIFFERENT` | LOOK_DIFFERENT | « Tu as choisi la sobriété. C'est un concept aussi. » |
+| `REACT_NOEMIE_BLUFF` | BLUFF | « Sérieux ? Il faut que tu me montres ! » |
+| `REACT_NOEMIE_AVEU` | AVEU | « La vérité, c'est aussi de l'art. » |
+| `REACT_NOEMIE_SINCERE` | SINCERE | « J'aime les gens qui ont leurs propres goûts. » |
+| `REACT_MAYA_LOOK_OK` | LOOK_OK | « Style validé. +1 en charisme. » |
+| `REACT_MAYA_LOOK_DIFFERENT` | LOOK_DIFFERENT | « Cette tenue est tirée au hasard, non ? » |
+| `REACT_MAYA_BLUFF` | BLUFF | « Ah oui ? Alors on va voir ça ! » |
+| `REACT_MAYA_AVEU` | AVEU | « Pas grave, on apprend tous au niveau un. » |
+| `REACT_MAYA_SINCERE` | SINCERE | « Tu ne bluffes pas. C'est rare, ça. » |
+| `REACT_SOFIA_LOOK_OK` | LOOK_OK | « J'adore cette couleur. Bon début. » |
+| `REACT_SOFIA_LOOK_DIFFERENT` | LOOK_DIFFERENT | « Tu voyages toujours dans cette tenue ? » |
+| `REACT_SOFIA_BLUFF` | BLUFF | « Vraiment ? Je veux tout savoir ! » |
+| `REACT_SOFIA_AVEU` | AVEU | « Au moins, maintenant on se comprend. » |
+| `REACT_SOFIA_SINCERE` | SINCERE | « Super. Et tu aimes voyager ? » |
+| `REACT_EMMA_LOOK_OK` | LOOK_OK | « Ça te va bien. Simple, j'aime. » |
+| `REACT_EMMA_LOOK_DIFFERENT` | LOOK_DIFFERENT | « Tu t'es beaucoup préparé, non ? » |
+| `REACT_EMMA_BLUFF` | BLUFF | « Hm. Tu es sûr de toi ? » |
+| `REACT_EMMA_AVEU` | AVEU | « Merci. Je préfère ça. » |
+| `REACT_EMMA_SINCERE` | SINCERE | « On peut juste discuter, tu sais. » |
+
+---
+
+## 10. Douze parcours pilotes pour le compositeur procédural
+
+Montages **indicatifs**, non scripts imposés ; garantir 6–8 tours principaux, ≤2 événements et toutes les préconditions. Les identifiants B_DRAW / B_GAMING sont des beats **à écrire et à auditer** avant leur intégration : ne surtout pas réutiliser B10 (football) pour tester le dessin ou le gaming.
+
+| Plan | Profil | Séquence indicative | Particularité |
+|---|---|---|---|
+| `P01` | Léna | `B01 B03 B10 EV_LENA_FOOT B06 B15 B18` | mensonge football → gaffe ou aveu |
+| `P02` | Léna | `B02 B03 B11 EV_LENA_MORNING B05 B21 B18` | routine matinale → pas de bluff imposé |
+| `P03` | Claire | `B02 B03 B08 EV_CLAIRE_JOB B06 B17 B18` | faux métier → contrôle cohérent |
+| `P04` | Claire | `B01 B03 B04 B14 EV_CLAIRE_TIME B07 B18` | horaire public → rappel d'heure |
+| `P05` | Noémie | `B01 B03 B06 B_DRAW EV_NOEMIE_DRAW B07 B18` | dessin, futur beat spécifique B_DRAW requis |
+| `P06` | Noémie | `B02 B03 B05 B12 EV_NOEMIE_COLOR B21 B18` | couleur/look et café |
+| `P07` | Maya | `B01 B03 B07 B_GAMING EV_MAYA_RETRO B05 B18` | console, futur beat spécifique B_GAMING requis |
+| `P08` | Maya | `B02 B03 B07 EV_MAYA_GERMAN B06 B21 B18` | bluff sur l'allemand, hors score allemand |
+| `P09` | Sofia | `B02 B03 B05 EV_SOFIA_PORTUGAL B07 B15 B18` | mensonge Portugal → chat/vache/aveu |
+| `P10` | Sofia | `B01 B03 B06 B14 EV_SOFIA_TRAIN B21 B18` | horaire de train, indice Pix obligatoire |
+| `P11` | Emma | `B01 B03 B11 B06 EV_EMMA_PHONE B15 B18` | téléphone consulté et trait déclaré |
+| `P12` | Emma | `B02 B03 B11 EV_EMMA_COFFEE B07 B21 B18` | conversation détendue sans téléphone |
+
+Les deux parcours horaires sont invalides tant qu'une heure non ambiguë n'est pas visible et vérifiée ; le plan d'Emma anti-téléphone ne doit pas déclencher si Alex n'ouvre pas son téléphone. Une même partenaire peut avoir un rendez-vous **sans grand événement**, ce qui fait partie de la variété.
