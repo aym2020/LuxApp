@@ -200,7 +200,7 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 
 ## 13. Recette Android des deux salves : corrections P0/P1 et scroll
 
-**État au 27/10/2026 :** lots **10A** (journal claim/contradiction/aveu, bilan « Tes réponses » / « Phrases modèles ») et **10B** (suspicion perceptible, diversité d'état civil, rappel espacé, confrontation « X oder Y? », au revoir selon l'ambiance) **implémentés**, détail dans le tableau « Suivi par lot » de SPEC 109 ; lot 10C en cours. Nouvelle phrase LU : uniquement le modèle « {a} oder {b}? » (`audit_regles`, « oder » attesté dans l'examen A1.1 n° 1) rempli par des valeurs déjà dites ; « maintenir » répète la phrase du joueur. **Recette Samsung à faire.**
+**État au 27/10/2026 :** lots **10A** (journal claim/contradiction/aveu, bilan « Tes réponses » / « Phrases modèles ») et **10B** (suspicion perceptible, diversité d'état civil, rappel espacé, confrontation « X oder Y? », au revoir selon l'ambiance) et **10C** (dressing sans scroll, résultats repliables, deltas dans le HUD, sous-titres au lieu de « Continuer », aide FR cohérente) **implémentés**, détail dans le tableau « Suivi par lot » de SPEC 109. Nouvelle phrase LU : uniquement le modèle « {a} oder {b}? » (`audit_regles`, « oder » attesté dans l'examen A1.1 n° 1) rempli par des valeurs déjà dites ; « maintenir » répète la phrase du joueur. **Recette Samsung à faire.**
 
 **Commencer par [SPEC 109 § 18](specs/SPEC-109.md#18-recette-android--deux-salves-emma-fidelite-narrative-et-ecrans-sans-scroll-inutile-27102026).** La section 18 est la **liste complète de recette Android** après les lots 6–9 et constitue la **passation pour les lots 10A, 10B, 10C**. Ne pas prendre les demandes ci-dessous pour du code déjà livré.
 

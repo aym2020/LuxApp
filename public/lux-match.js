@@ -294,6 +294,8 @@ async function ouvrirLuxMatch() {
 }
 function lmNouvellePartie() {
   lm.lookEnCours = null;
+  clearTimeout(lm.feedbackTimer);
+  lm.attente = null; lm.dernierResultat = null; lm.traductionScene = null;
   lm.partie = LuxMatchCore.nouvellePartie(lm.donnees, { parties: lmLire('luxMatchParties', 0) });
   lm.app = null;
   lmRendre();
@@ -305,6 +307,7 @@ function luxMatchArreter() {
   lmFermerCalque('lm-menu'); lmFermerCalque('lm-moi');
   lm.lookEnCours = null;
   clearTimeout(lm.feedbackTimer);
+  lm.attente = null; lm.dernierResultat = null; lm.traductionScene = null;
   if (lm.rendu3d) lm.rendu3d.detacher();
   lm.partie = null;
   lm.ecran = null;
@@ -406,6 +409,7 @@ function lmRendre() {
   if (!p || !box) return;
   if (lm.ecran !== p.phase) window.scrollTo(0, 0); // nouvel écran : on repart du haut
   lm.ecran = p.phase;
+  box.dataset.ecran = p.phase; // politique de scroll par écran (SPEC §18.6)
   lmSynchroMusique(); // même piste = rien ne redémarre (aide FR, apps, retours)
   if (p.phase !== 'date' && lm.rendu3d && p.phase !== 'look') lm.rendu3d.detacher();
   if (p.phase === 'profil') lmRendreProfil(box);
@@ -684,7 +688,7 @@ function lmAllerAuLook() { lm.partie.phase = 'look'; lm.app = null; lmRendre(); 
 // ── LOOK : mini-dressing arcade. Sans choix, on part avec la tenue par défaut.
 function lmEtiquetteLook(look) {
   const style = LM_STYLES.find(s => s.id === look.style), couleur = LM_COULEURS.find(c => c.id === look.couleur);
-  if (!style && !couleur) return 'TENUE ACTUELLE';
+  if (!style && !couleur) return 'CASUAL · TENUE ACTUELLE';
   return (style ? style.nom : 'Casual').toUpperCase() + (couleur ? ' · ' + couleur.id.toUpperCase() : '');
 }
 function lmNomCouleur(look) {
@@ -701,8 +705,7 @@ function lmRendreLook(box) {
       '<div class="lm-cabine-etiquette" id="lm-look-etiquette" aria-live="polite">' + lmEtiquetteLook(look) + '</div></div>' +
     '<p class="lm-dressing-sous">STYLE</p>' +
     '<div class="lm-styles" role="radiogroup" aria-label="Style">' + LM_STYLES.map(s =>
-      '<button type="button" role="radio" aria-checked="' + (look.style === s.id) + '" class="lm-style' + (look.style === s.id ? ' lm-choisi' : '') + '" onclick="lmChoisirStyle(\'' + s.id + '\')">' +
-      lmPicto(s.id) + '<span>' + s.nom + '</span></button>').join('') + '</div>' +
+      lmBoutonStyle(s, look)).join('') + '</div>' +
     '<p class="lm-dressing-sous">COULEUR <span id="lm-couleur-nom">' + lmNomCouleur(look) + '</span></p>' +
     '<div class="lm-couleurs" role="radiogroup" aria-label="Couleur">' + LM_COULEURS.map(c =>
       '<button type="button" role="radio" aria-checked="' + (look.couleur === c.id) + '" aria-label="' + c.id + ' (' + c.fr + ')" class="lm-pastille' + (look.couleur === c.id ? ' lm-choisi' : '') + '" onclick="lmChoisirCouleur(\'' + c.id + '\')">' +
@@ -715,6 +718,14 @@ function lmRendreLook(box) {
     const t = document.querySelector('#lm-apercu .lm-apercu-attente'); if (t) t.textContent = 'Aperçu 3D indisponible';
   });
 }
+// Carte de style. Sans choix, la tenue de départ (casual, celle de l'aperçu) est marquée
+// « actuelle » : cohérent à l'écran, sans compter comme une sélection (aucun bonus de look).
+function lmBoutonStyle(s, look) {
+  const choisi = look.style === s.id, actuel = !look.style && s.id === 'casual';
+  return '<button type="button" role="radio" aria-checked="' + choisi + '" class="lm-style' + (choisi ? ' lm-choisi' : '') + (actuel ? ' lm-actuel' : '') + '"' +
+    (actuel ? ' aria-label="Casual, tenue actuelle"' : '') + ' onclick="lmChoisirStyle(\'' + s.id + '\')">' +
+    lmPicto(s.id) + '<span>' + s.nom + '</span>' + (actuel ? '<small>ACTUELLE</small>' : '') + '</button>';
+}
 // Tenue montrée : la sélection, ou la tenue par défaut (casual) pour ce qui n'est pas choisi.
 function lmLookAffiche(look) { return { style: look.style || 'casual', couleur: look.couleur || null }; }
 function lmRevoirReseaux() { lm.partie.phase = 'reseaux'; lm.partie.enquete = true; lm.app = null; lmRendre(); }
@@ -725,6 +736,8 @@ function lmMajLook() {
   const look = lm.lookEnCours;
   document.querySelectorAll('#lm-jeu .lm-styles .lm-style').forEach((b, i) => {
     const oui = LM_STYLES[i].id === look.style; b.classList.toggle('lm-choisi', oui); b.setAttribute('aria-checked', oui);
+    // Dès qu'un style est choisi, la mention « actuelle » disparaît (le focus reste sur le bouton).
+    if (look.style && b.classList.contains('lm-actuel')) { b.classList.remove('lm-actuel'); b.removeAttribute('aria-label'); const m = b.querySelector('small'); if (m) m.remove(); }
   });
   document.querySelectorAll('#lm-jeu .lm-couleurs .lm-pastille').forEach((b, i) => {
     const oui = LM_COULEURS[i].id === look.couleur; b.classList.toggle('lm-choisi', oui); b.setAttribute('aria-checked', oui);
@@ -757,8 +770,8 @@ function lmRendreDate(box) {
       '<div class="lm-hud">' +
         '<button type="button" class="lm-icone-btn" onclick="lmMenu(true)" aria-label="Menu" aria-haspopup="dialog">' + lmIcone('menu') + '</button>' +
         '<div class="lm-jauges">' +
-          '<div class="lm-jauge lm-jauge-aff"><span>' + lmIcone('coeur') + 'Affinité</span><b id="lm-aff-val">' + p.affinity + '</b><i><em id="lm-aff" style="width:' + p.affinity + '%"></em></i></div>' +
-          '<div class="lm-jauge lm-jauge-sus"><span>' + lmIcone('oeil') + 'Suspicion</span><b id="lm-sus-val">' + p.suspicion + '</b><i><em id="lm-sus" style="width:' + p.suspicion + '%"></em></i></div>' +
+          '<div class="lm-jauge lm-jauge-aff"><strong class="lm-delta" id="lm-aff-delta" aria-hidden="true"></strong><span>' + lmIcone('coeur') + 'Affinité</span><b id="lm-aff-val">' + p.affinity + '</b><i><em id="lm-aff" style="width:' + p.affinity + '%"></em></i></div>' +
+          '<div class="lm-jauge lm-jauge-sus"><strong class="lm-delta" id="lm-sus-delta" aria-hidden="true"></strong><span>' + lmIcone('oeil') + 'Suspicion</span><b id="lm-sus-val">' + p.suspicion + '</b><i><em id="lm-sus" style="width:' + p.suspicion + '%"></em></i></div>' +
         '</div>' +
         '<button type="button" class="lm-icone-btn lm-moi-btn" onclick="lmMoi(true)" aria-label="Dossier Alex">' + lmIcone('moi') + '<span>Moi</span></button>' +
         '<button type="button" class="lm-tel-btn" id="lm-tel-btn" onclick="lmOuvrirTelephoneDate()" aria-label="Ouvrir le téléphone">' + lmIcone('tel') + '<span id="lm-batterie">' + Math.ceil(p.battery) + '%</span></button>' +
@@ -800,24 +813,49 @@ function lmMajDialogue() {
   if (!bulle || !rep) return;
   const e = p.courant;
   if (!e) { bulle.innerHTML = ''; rep.innerHTML = ''; return; }
-  // Expressions hors A1.1 (B24, B25) : traduction toujours visible (bible §6.28).
-  const traduire = lm.aideFr || e.source.traductionVisible;
+  // Aide FR cohérente (SPEC §18.5) : désactivée = aucune traduction affichée d'office.
+  // Les expressions hors A1.1 (B24, B25) gardent une aide contextuelle à la demande.
+  const avancee = !!e.source.traductionVisible;
+  const traduire = lm.aideFr || lm.traductionScene === e.id;
   const impression = lm.impressionAAfficher;
   lm.impressionAAfficher = null;
   bulle.innerHTML = (impression ? '<p class="lm-impression' + (impression.positive ? ' lm-positive' : '') + '">« ' + lmEchapper(impression.fr) + ' »</p>' : '') +
     // Transition narrative avant un au revoir tendu (SPEC §18.4) : jamais de saut brusque.
     (e.transition ? '<p class="lm-impression lm-transition">' + lmEchapper(e.transition.fr) + '</p>' : '') +
     '<span class="lm-speaker">' + lmEchapper(lmNomSpeaker()) + (LM_ETIQUETTES[e.type] ? ' <em>· ' + LM_ETIQUETTES[e.type] + '</em>' : '') + '</span>' +
-    (e.prompt.lu ? lmLu(e.prompt.lu) : '') + (traduire || !e.prompt.lu ? '<p class="lm-fr">' + lmEchapper(e.prompt.fr) + '</p>' : '');
+    (e.prompt.lu ? lmLu(e.prompt.lu) : '') + (traduire || !e.prompt.lu ? '<p class="lm-fr">' + lmEchapper(e.prompt.fr) + '</p>' : '') +
+    (avancee && !traduire ? '<button type="button" class="lm-aide-ctx" onclick="lmTraduireScene()" aria-label="Traduire cette scène en français">? Traduire cette réplique</button>' : '');
   rep.innerHTML = e.choix.map(c => '<button type="button" class="lm-reponse" onclick="lmRepondre(\'' + lmEchapper(c.id) + '\')">' +
-    (e.source.traductionVisible && !lm.aideFr && c.lu ? lmTexteChoix(c) + '<span class="lm-fr">' + lmEchapper(c.fr) + '</span>' : lmTexteChoix(c)) + '</button>').join('');
+    (lm.traductionScene === e.id && !lm.aideFr && c.lu ? lmTexteChoix(c) + '<span class="lm-fr">' + lmEchapper(c.fr) + '</span>' : lmTexteChoix(c)) + '</button>').join('');
+}
+// Aide ponctuelle : traduit la scène avancée affichée (prompt + réponses), sans changer le réglage.
+function lmTraduireScene() {
+  const p = lm.partie;
+  if (!p || !p.courant) return;
+  lm.traductionScene = p.courant.id;
+  lmMajDialogue();
 }
 function lmMajJauges() {
   const p = lm.partie;
   const maj = (id, v) => { const b = document.getElementById(id); const t = document.getElementById(id + '-val'); if (b) b.style.width = v + '%'; if (t) t.textContent = v; };
   maj('lm-aff', p.affinity); maj('lm-sus', p.suspicion);
 }
-// Messages arcade (police pixel) au-dessus de la scène.
+// Variations de score à côté des jauges (SPEC §18.5 : HUD = points, visage = émotion).
+function lmDeltas(affinite, suspicion, etiquette) {
+  const poser = (id, texte, classe) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.className = 'lm-delta';
+    if (!texte) { el.textContent = ''; return; }
+    el.textContent = texte;
+    void el.offsetWidth;
+    el.className = 'lm-delta lm-visible ' + classe;
+  };
+  poser('lm-aff-delta', affinite ? (affinite > 0 ? '+' : '') + affinite : '', affinite > 0 ? 'lm-plus' : 'lm-moins');
+  const sus = suspicion ? (suspicion > 0 ? '+' : '') + suspicion : '';
+  poser('lm-sus-delta', etiquette ? etiquette + (sus ? ' ' + sus : '') : sus, suspicion > 0 || etiquette === 'CONTRADICTION' ? 'lm-sus' : 'lm-plus');
+}
+// Grand bandeau arcade (police pixel) : réservé aux événements exceptionnels.
 function lmFeedback(lignes) {
   const box = document.getElementById('lm-feedback');
   if (!box) return;
@@ -837,35 +875,37 @@ function lmRepondre(choixId) {
   const r = LuxMatchCore.repondre(p, choixId);
   if (!r) return;
   lmMajJauges();
-  // Messages arcade (textes UI_FEED_* de la bible) puis jauges.
-  const lignes = [];
-  if (r.contradiction) lignes.push({ texte: 'CONTRADICTION !', classe: 'lm-alerte' });
-  else if (r.aveu) lignes.push({ texte: 'SAUVÉ… DE JUSTESSE !', classe: 'lm-plus' });
-  else if (r.bluff) lignes.push({ texte: 'BLUFF !', classe: 'lm-sus' });
-  else if (!r.emotion && (r.langue === false || r.visuel === 'gene' || r.visuel === 'froid')) lignes.push({ texte: 'GÊNANT…', classe: 'lm-moins' }); // le signe suffit
-  else if (r.reaction && r.reaction.cle === 'RAPPEL') lignes.push({ texte: 'ELLE S’EN SOUVIENT…', classe: 'lm-plus' });
-  if (r.affinity) lignes.push({ texte: (r.affinity > 0 ? '+' : '') + r.affinity + ' ♥', classe: r.affinity > 0 ? 'lm-plus' : 'lm-moins' });
-  if (r.suspicion > 0) lignes.push({ texte: 'SUSPICION +' + r.suspicion, classe: 'lm-sus' });
-  if (r.suspicion < 0) lignes.push({ texte: 'SUSPICION ' + r.suspicion, classe: 'lm-plus' });
-  if (lignes.length) lmFeedback(lignes);
+  // Hiérarchie (SPEC §18.5) : points et mots-clés près des jauges ; le visage garde l'émotion ;
+  // le grand bandeau arcade seulement quand elle s'en va.
+  lmDeltas(r.affinity, r.suspicion, r.contradiction ? 'CONTRADICTION' : r.aveu ? 'AVEU' : null);
+  if (r.finAnticipee) lmFeedback([{ texte: 'ELLE S’EN VA !', classe: 'lm-alerte' }]);
   // Réaction 3D, signe manga (même décision sociale) et son.
   const reaction = LM_VISUELS[r.visuel] || null;
   if (lm.rendu3d && reaction) lm.rendu3d.reagir(reaction);
   lmEmotion(r.emotion);
   if (r.emotion && r.emotion.intensite === 'big') LuxMatchSon.silenceComique(0.7);
   LuxMatchSon.jouer(r.visuel === 'scratch' || r.contradiction ? 'scratch' : r.langue === false ? 'faux' : r.affinity > 0 ? 'bien' : 'bof');
-  // Panneau à lire (correction de langue, réaction d'imprévu, contradiction) ou suite automatique.
-  const aLire = r.correction || r.reaction || r.reponseElle || r.finAnticipee;
+  // Lecture contrôlée (bouton Continuer) seulement pour ce qui compte : correction de langue,
+  // sa réponse en LU, contradiction, issue d'un imprévu, départ. Une petite réaction (sourire,
+  // gêne, blague) reste un sous-titre court, puis la conversation continue (SPEC §18.5).
+  const important = !!(r.correction || r.reponseElle || r.finAnticipee || r.contradiction || (r.echange.type === 'evenement' && r.reaction && r.reaction.fr));
   lm.dernierResultat = r;
-  lm.attente = aLire ? 'lecture' : 'auto';
+  lm.attente = important ? 'lecture' : 'auto';
   lmAfficherResultat(r);
-  if (!aLire) lm.feedbackTimer = setTimeout(lmContinuer, 1300);
+  if (!important) lm.feedbackTimer = setTimeout(lmContinuer, lmDureeSousTitre(r));
+}
+// Temps de lecture d'un sous-titre FR : jamais sous 1,3 s, proportionnel à sa longueur.
+function lmDureeSousTitre(r) {
+  const texte = r.reaction && r.reaction.fr ? r.reaction.fr : '';
+  return texte ? Math.min(5000, 1600 + 45 * texte.length) : 1300;
 }
 // Réponse d'Alex dans la bulle, puis panneau de lecture si nécessaire (réaffiché si l'aide FR change).
 function lmAfficherResultat(r) {
   const rep = document.getElementById('lm-reponses'), bulle = document.getElementById('lm-bulle');
-  if (bulle) bulle.innerHTML = '<span class="lm-speaker">Toi</span><p class="lm-toi">' + lmTexteChoix(r.choix) + '</p>';
-  if (rep) rep.innerHTML = lm.attente === 'lecture' ? lmHtmlLecture(r) : '';
+  const sousTitre = lm.attente === 'auto' && r.reaction && r.reaction.fr ? '<p class="lm-sous-titre">' + lmEchapper(r.reaction.fr) + '</p>' : '';
+  if (bulle) bulle.innerHTML = '<span class="lm-speaker">Toi</span><p class="lm-toi">' + lmTexteChoix(r.choix) + '</p>' + sousTitre;
+  // Sous-titre : un appui sur « Suite » avance tout de suite (jamais d'attente imposée).
+  if (rep) rep.innerHTML = lm.attente === 'lecture' ? lmHtmlLecture(r) : sousTitre ? '<button type="button" class="lm-suite" onclick="lmContinuer()">Suite ▸</button>' : '';
 }
 function lmHtmlLecture(r) {
   let html = '<div class="lm-lecture">';
@@ -885,6 +925,7 @@ function lmHtmlLecture(r) {
 }
 function lmContinuer() {
   clearTimeout(lm.feedbackTimer);
+  if (!lm.attente) return; // déjà avancé (appui sur « Suite » puis fin du minuteur)
   lmEffacerEmotion();
   lm.attente = null;
   lm.dernierResultat = null;
@@ -905,7 +946,7 @@ function lmOuvrirTelephoneDate() {
   LuxMatchSon.jouer('tel');
   if (evenement === 'piege_telephone') lmToast(p.profil.name + ' a remarqué ton téléphone…');
   lmEffacerEmotion();
-  if (evenement === 'malus_telephone') { lmFeedback([{ texte: '-5 ♥', classe: 'lm-moins' }]); lmMajJauges(); if (lm.rendu3d) lm.rendu3d.reagir('froid'); }
+  if (evenement === 'malus_telephone') { lmDeltas(-5, 0); lmMajJauges(); if (lm.rendu3d) lm.rendu3d.reagir('froid'); }
   lm.app = null;
   const panneau = document.getElementById('lm-tel-date');
   if (panneau) panneau.hidden = false;
@@ -996,7 +1037,7 @@ function lmTerminer() {
 const LM_TAG_VERITE = { lie: 'bluff', joke: 'blague', decale: 'décalé' };
 function lmBilanReponses(reponses) {
   if (!reponses.length) return '';
-  return '<h2 class="lm-section">Tes réponses pendant le date</h2><ul class="lm-expressions lm-reponses">' +
+  return '<ul class="lm-expressions lm-reponses">' +
     reponses.map(e => {
       const tag = e.faute ? '<em>à revoir</em>' : e.modele ? '<em class="lm-tag-modele">phrase modèle</em>' : LM_TAG_VERITE[e.truth] ? '<em class="lm-tag-' + e.truth + '">' + LM_TAG_VERITE[e.truth] + '</em>' : '';
       return '<li' + (e.faute ? ' class="lm-a-revoir"' : '') + '><span class="lm-q" lang="lb">' + lmEchapper(e.question.lu) + '</span>' +
@@ -1004,36 +1045,56 @@ function lmBilanReponses(reponses) {
     }).join('') + '</ul>';
 }
 function lmBilanModeles(modeles) {
-  if (!modeles.length) return '';
-  return '<h2 class="lm-section">Phrases modèles à retenir</h2><p class="lm-bilan-aide">Les réponses de référence du cours, là où ta réponse était différente.</p>' +
+  return '<p class="lm-bilan-aide">Les réponses de référence du cours, là où ta réponse était différente.</p>' +
     '<ul class="lm-expressions lm-modeles">' +
     modeles.map(e => '<li><span class="lm-q" lang="lb">' + lmEchapper(e.question.lu) + '</span>' +
       '<b lang="lb">' + lmEchapper(e.reponse.lu) + '</b><span>' + lmEchapper(e.reponse.fr) + '</span></li>').join('') + '</ul>';
 }
+// Section repliable : le titre dit ce qu'elle contient, le détail ne pousse pas l'action principale.
+function lmDetails(titre, compte, contenu, classe) {
+  return '<details class="lm-details' + (classe ? ' ' + classe : '') + '"><summary><span>' + titre + '</span>' + (compte != null ? '<b>' + compte + '</b>' : '') + '</summary>' + contenu + '</details>';
+}
 
+// Écran de fin (SPEC §18.6) : 1. conclusion et portrait, 2. stats et score, 3. Nouveau match,
+// 4. détails repliables, 5. diagnostic (scénario, graine) à part.
 function lmRendreResultats(box) {
   const p = lm.partie, issue = LM_ISSUES[p.fin.issue];
   const reponses = LuxMatchCore.reponsesJouees(p);
   const modeles = LuxMatchCore.phrasesModeles(p).filter(m => !m.dejaJouee);
+  const victoire = p.fin.issue === 'nouveau_rdv';
+  const conclusion = p.fin.texte
+    ? '<blockquote class="lm-res-citation"><p>« ' + lmEchapper(p.fin.texte.fr) + ' »</p><cite>— ' + lmEchapper(p.profil.name) + '</cite></blockquote>'
+    : '<p class="lm-res-texte">' + lmEchapper(issue.texte) + '</p>';
   box.innerHTML = lmEntete({ fr: false }) +
     '<div class="lm-resultats">' +
       '<div class="lm-res-titre lm-res-' + p.fin.issue + '">' + issue.titre + '</div>' +
-      lmImage(p.profil, p.fin.issue === 'nouveau_rdv' ? 'Victory' : 'Idle', p.fin.issue === 'nouveau_rdv' ? '#5a2a55' : '#2a2438', 'lm-res-photo') +
-      // Conclusion de la bible si son fait a vraiment eu lieu, sinon texte générique.
-      (p.fin.texte ? '<blockquote class="lm-res-citation"><p>« ' + lmEchapper(p.fin.texte.fr) + ' »</p><cite>— ' + lmEchapper(p.profil.name) + '</cite></blockquote>'
-        : '<p class="lm-res-texte">' + lmEchapper(issue.texte) + '</p>') +
+      '<div class="lm-res-tete">' + lmImage(p.profil, victoire ? 'Victory' : 'Idle', victoire ? '#5a2a55' : '#2a2438', 'lm-res-photo') + conclusion + '</div>' +
       '<div class="lm-res-stats">' +
         '<div><span>Affinité</span><b>' + p.affinity + '</b></div><div><span>Suspicion</span><b>' + p.suspicion + '</b></div>' +
         '<div><span>Luxembourgeois</span><b>' + p.fin.langue + ' %</b></div></div>' +
       '<div class="lm-res-score"><span>SCORE</span><b>' + p.fin.score + '</b>' + (p.nouveauRecord ? '<em>NOUVEAU RECORD</em>' : '<small>Record ' + lmLire('luxMatchRecord', 0) + '</small>') + '</div>' +
-      '<h2 class="lm-section">Ce qui s’est passé</h2><ul class="lm-resume">' +
-        p.fin.resume.map(l => '<li class="lm-resume-' + l.type + '">' + lmEchapper(l.fr) + '</li>').join('') + '</ul>' +
-      lmBilanReponses(reponses) + lmBilanModeles(modeles) +
       '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmNouvellePartie()">Nouveau match</button>' +
       '<button type="button" class="lm-btn lm-btn-lien" onclick="lmQuitter()">Retour aux jeux</button></div>' +
-      '<p class="lm-demo-note">Démo : les répliques luxembourgeoises sont des brouillons en cours de vérification (LOD). Ta progression des leçons n’est pas modifiée.<br>Scénario ' + lmEchapper(p.plan.id) + ' · graine ' + p.graine + '</p>' +
+      '<div class="lm-res-details">' +
+        lmDetails('Ce qui s’est passé', p.fin.resume.length, '<ul class="lm-resume">' +
+          p.fin.resume.map(l => '<li class="lm-resume-' + l.type + '">' + lmEchapper(l.fr) + '</li>').join('') + '</ul>') +
+        (reponses.length ? lmDetails('Tes réponses pendant le date', reponses.length, lmBilanReponses(reponses)) : '') +
+        (modeles.length ? lmDetails('Phrases modèles à retenir', modeles.length, lmBilanModeles(modeles)) : '') +
+        lmDetails('Diagnostic', null, '<p class="lm-diag-texte">Scénario <b>' + lmEchapper(p.plan.id) + '</b> · profil <b>' + lmEchapper(p.profil.id) + '</b> · graine <b id="lm-graine">' + p.graine + '</b>' +
+          (p.plan.contentVersion ? ' · contenu ' + lmEchapper(p.plan.contentVersion) : '') + '</p>' +
+          '<button type="button" class="lm-btn lm-btn-lien lm-copier" onclick="lmCopierGraine()">Copier la graine</button>', 'lm-diag') +
+      '</div>' +
+      '<p class="lm-demo-note">DÉMO · répliques LU en relecture · progression des leçons inchangée</p>' +
     '</div>';
-  lmPreparerImages([[p.profil, p.fin.issue === 'nouveau_rdv' ? 'Victory' : 'Idle', p.fin.issue === 'nouveau_rdv' ? '#5a2a55' : '#2a2438']]);
+  lmPreparerImages([[p.profil, victoire ? 'Victory' : 'Idle', victoire ? '#5a2a55' : '#2a2438']]);
+}
+// Pour reproduire un bug : profil, scénario et graine en une ligne.
+function lmCopierGraine() {
+  const p = lm.partie;
+  if (!p) return;
+  const texte = 'Lux Match ' + p.profil.id + ' ' + p.plan.id + ' graine ' + p.graine;
+  const fini = () => lmToast('Graine copiée');
+  try { navigator.clipboard.writeText(texte).then(fini, () => lmToast(texte)); } catch (_) { lmToast(texte); }
 }
 
 // ─── Carte du hub Jeux ─────────────────────────────────────────────────────

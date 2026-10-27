@@ -362,3 +362,31 @@ test('Lot 9 : deux boucles originales, un seul lecteur, musique pilotée par la 
   assert.match(ui, /lmLire\('luxMatchMusique', true\)/);                                   // musique coupable seule
   assert.match(ui, /document\.hidden\) audio\.suspend\(\)/);                               // arrière-plan
 });
+
+test('Lot 10C : HUD pour les points, peu de Continuer, aide FR cohérente, résultats compacts, dressing adaptatif', () => {
+  const ui = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match.js'), 'utf8');
+  const css = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match.css'), 'utf8');
+  const repondre = ui.slice(ui.indexOf('function lmRepondre('), ui.indexOf('function lmDureeSousTitre('));
+  // Plus de « BLUFF ! » / « CONTRADICTION ! » au milieu du visage : points et mots-clés dans le HUD.
+  assert.doesNotMatch(repondre, /'BLUFF !'|'CONTRADICTION !'|'GÊNANT…'|SUSPICION \+/);
+  assert.match(repondre, /lmDeltas\(r\.affinity, r\.suspicion/);
+  assert.match(ui, /id="lm-aff-delta"/); assert.match(ui, /id="lm-sus-delta"/);
+  // Le panneau « Continuer » est réservé à ce qui doit être lu.
+  assert.match(repondre, /const important = !!\(r\.correction \|\| r\.reponseElle \|\| r\.finAnticipee \|\| r\.contradiction/);
+  assert.doesNotMatch(repondre, /r\.reaction \|\| r\.reponseElle/);
+  // Aide FR : le réglage décide ; plus de traduction imposée par traductionVisible.
+  const dialogue = ui.slice(ui.indexOf('function lmMajDialogue('), ui.indexOf('function lmTraduireScene('));
+  assert.doesNotMatch(dialogue, /lm\.aideFr \|\| e\.source\.traductionVisible/);
+  assert.match(dialogue, /lm-aide-ctx/);
+  // Résultats : Nouveau match avant les détails repliables ; graine dans le diagnostic.
+  const res = ui.slice(ui.indexOf('function lmRendreResultats('), ui.indexOf('function lmCopierGraine('));
+  assert.ok(res.indexOf('lmNouvellePartie()') < res.indexOf('lm-res-details'));
+  assert.ok(res.indexOf('graine') > res.indexOf("lmDetails('Diagnostic'"));
+  assert.match(res, /lmDetails\('Ce qui s’est passé'/);
+  // Dressing : hauteur adaptative, pas de hauteur minimale de 240 px ni d'overflow masquant.
+  const look = css.slice(css.indexOf('/* ════ Lot 10C'));
+  assert.match(look, /\[data-ecran="look"\] \.lm-cabine\{flex:1 1 0;min-height:150px/);
+  assert.doesNotMatch(look, /data-ecran="look"[^{]*\{[^}]*overflow:hidden/);
+  assert.match(ui, /box\.dataset\.ecran = p\.phase/);
+  assert.match(ui, /CASUAL · TENUE ACTUELLE/);
+});

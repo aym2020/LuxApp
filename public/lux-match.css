@@ -431,3 +431,74 @@
 @media(prefers-reduced-motion:reduce){#view-luxmatch .lm-emotion svg{animation:lm-fondu 1.3s linear forwards!important}}
 @keyframes lm-fondu{0%,85%{opacity:1}100%{opacity:0}}
 #view-luxmatch .lm-menu-ligne:disabled{opacity:.45;cursor:default}
+
+/* ════ Lot 10C (SPEC §18.5–18.6) : ergonomie Android ════ */
+/* Dressing : tout tient dans la hauteur utile (dvh). L'aperçu 3D prend l'espace restant
+   (jamais moins de 150 px) ; si la police est agrandie, la page défile au lieu de masquer. */
+#view-luxmatch .lm-jeu[data-ecran="look"]{gap:8px;padding-top:8px;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-dressing{flex:1 1 auto;gap:7px;min-height:0}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-titre-pixel{margin:0;font-size:15px}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-cabine{flex:1 1 0;min-height:150px;display:flex}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-apercu{flex:1;height:auto;min-height:150px}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-dressing-sous{margin:0}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-styles{grid-template-columns:repeat(5,1fr);gap:5px}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-style{min-height:56px;padding:5px 1px;gap:3px;font-size:11.5px}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-style .lm-picto{width:24px;height:24px}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-couleurs{gap:0}
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-pastille{width:44px;height:44px} /* cible tactile ≥ 44 px même à 320 px */
+#view-luxmatch .lm-jeu[data-ecran="look"] .lm-actions-bas{margin-top:2px;gap:2px}
+/* Tenue de départ : casual visible, signalée « actuelle » (pas une sélection : aucun bonus). */
+#view-luxmatch .lm-style.lm-actuel{border-style:dashed;border-color:#8f7bb8}
+#view-luxmatch .lm-style.lm-actuel .lm-picto{color:#ece4f6}
+#view-luxmatch .lm-style small{font:6px/1 var(--lm-pixel);letter-spacing:.04em;color:#cbb8f2;-webkit-font-smoothing:none}
+@media(max-width:359px){#view-luxmatch .lm-jeu[data-ecran="look"] .lm-style{font-size:10.5px} #view-luxmatch .lm-jeu[data-ecran="look"] .lm-style .lm-picto{width:22px;height:22px}}
+@media(min-height:800px){#view-luxmatch .lm-jeu[data-ecran="look"] .lm-dressing{gap:10px} #view-luxmatch .lm-jeu[data-ecran="look"] .lm-style{min-height:64px}}
+
+/* HUD : variations de points à côté des jauges, jamais sur le visage. */
+#view-luxmatch .lm-jauge{position:relative}
+#view-luxmatch .lm-delta{position:absolute;right:34px;top:50%;translate:0 -60%;padding:3px 5px 2px;border-radius:4px;font:9px/1 var(--lm-pixel);font-weight:400;white-space:nowrap;
+  opacity:0;pointer-events:none;-webkit-font-smoothing:none;background:#120e18;box-shadow:2px 2px 0 #000}
+#view-luxmatch .lm-delta.lm-visible{animation:lm-delta 1.8s steps(9,end) forwards}
+#view-luxmatch .lm-delta.lm-plus{color:#ff8ae6} #view-luxmatch .lm-delta.lm-moins{color:#9fb0ff} #view-luxmatch .lm-delta.lm-sus{color:#ffb347}
+@keyframes lm-delta{0%{opacity:0;transform:translateX(8px)}15%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-4px)}}
+@media(prefers-reduced-motion:reduce){#view-luxmatch .lm-delta.lm-visible{animation:lm-fondu 1.8s linear forwards}}
+/* Le grand bandeau (rare) passe au-dessus de la bulle, pas au milieu du visage. */
+#view-luxmatch .lm-feedback{top:auto;bottom:calc(52dvh + 8px)}
+/* Signes manga : à côté de la tête (tempe / épaule), pas sur les yeux. */
+#view-luxmatch .lm-emotion svg{transform:translate(10%,-100%)}
+#view-luxmatch .lm-emotion-big svg{transform:translate(0,-95%)}
+
+/* Petite réaction : sous-titre dans la bulle, puis la conversation continue. */
+#view-luxmatch .lm-sous-titre{margin:6px 0 0;padding-top:6px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;font-style:italic;line-height:1.35;color:#e3d9f5}
+#view-luxmatch .lm-suite{align-self:flex-end;min-height:44px;padding:0 14px;border:0;background:none;color:#cbbfe0;font-size:13px;font-weight:800;cursor:pointer}
+/* Aide contextuelle pour les répliques hors A1.1, quand l'aide FR est désactivée. */
+#view-luxmatch .lm-aide-ctx{margin-top:6px;min-height:36px;padding:0 12px;border:1px dashed var(--lm-bord);border-radius:99px;background:none;color:#cbb8f2;font-size:12px;font-weight:700;cursor:pointer}
+
+/* Résultats compacts : conclusion, chiffres, puis l'action principale ; le détail se déplie. */
+#view-luxmatch .lm-resultats{gap:10px}
+#view-luxmatch .lm-res-titre{font-size:19px}
+#view-luxmatch .lm-res-tete{width:100%;display:flex;align-items:center;gap:12px;text-align:left}
+#view-luxmatch .lm-res-tete .lm-res-photo{flex:none;width:clamp(92px,28vw,128px);height:auto;aspect-ratio:4/5;border-radius:16px}
+#view-luxmatch .lm-res-tete .lm-res-citation,#view-luxmatch .lm-res-tete .lm-res-texte{flex:1;min-width:0}
+#view-luxmatch .lm-res-citation p{font-size:15px}
+#view-luxmatch .lm-res-stats div{padding:7px 4px}
+#view-luxmatch .lm-res-stats b{font-size:13px}
+#view-luxmatch .lm-res-score{flex-direction:row;align-items:baseline;gap:10px}
+#view-luxmatch .lm-res-score b{font-size:24px}
+#view-luxmatch .lm-res-details{width:100%;display:flex;flex-direction:column;gap:6px;text-align:left}
+#view-luxmatch .lm-details{border-radius:14px;background:var(--lm-verre);border:1px solid var(--lm-bord)}
+#view-luxmatch .lm-details>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:0 14px;cursor:pointer;list-style:none;
+  font:800 13px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:#cbb8f2}
+#view-luxmatch .lm-details>summary::-webkit-details-marker{display:none}
+#view-luxmatch .lm-details>summary::after{content:'▾';font-size:14px;color:#a99cc4}
+#view-luxmatch .lm-details[open]>summary::after{content:'▴'}
+#view-luxmatch .lm-details>summary b{margin-left:auto;font:9px/1 var(--lm-pixel);color:#ffd84a}
+#view-luxmatch .lm-details>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:14px}
+#view-luxmatch .lm-details>:not(summary){width:auto;margin:0 10px 10px}
+#view-luxmatch .lm-diag>summary{min-height:44px;font-size:11px;color:#8f84a6}
+#view-luxmatch .lm-diag-texte{font-size:12.5px;color:#bdb0d6}
+#view-luxmatch .lm-copier{min-height:44px;font-size:13px}
+#view-luxmatch .lm-demo-note{font-size:11px}
+
+/* Politique de scroll (SPEC §18.6) : swipe et accueil des réseaux tiennent dans l'écran. */
+#view-luxmatch .lm-jeu[data-ecran="swipe"],#view-luxmatch .lm-jeu[data-ecran="reseaux"]{gap:8px}
