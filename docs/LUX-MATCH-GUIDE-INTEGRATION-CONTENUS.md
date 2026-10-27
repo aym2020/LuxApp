@@ -155,3 +155,20 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 **Priorité et recette :** après stabilisation 3D et audit des textes ; pas de nouvelle animation WebGL, pas de nouvelle dépendance, pas de second RAF ; 320–430 px, orientation/pause, fallback portrait, TalkBack, `prefers-reduced-motion`, 3 runs successives. Tous les nouveaux mots en LU doivent être audités, comme dans la bible.
 
 **Aucun code de production n'a été modifié par cette documentation.**
+
+---
+
+## 11. Ambiance musicale arcade — deux pistes et comportement de lecture
+
+**Source de référence :** [SPEC 109 §16](specs/SPEC-109.md#16-direction-musicale-et-orchestration-audio--deux-boucles-arcade-retro-27102026). Ceci est une **passation à Claude**, pas une bande-son livrée ni une modification de code.
+
+**Deux pistes originales à produire** : `LM_BGM_PRE_DATE` (nom de travail **Love Circuit**, 108–116 BPM, electro-funk FM/chiptune rétro, boucle 32–45 s) pour fiche Alex, swipes, match, enquête et look ; `LM_BGM_DATE` (nom de travail **Neon Café**, 78–88 BPM, lounge rétro piano FM/basse ronde/percus discrètes, boucle 44–60 s) pour la conversation au café et le téléphone pendant date. **Motif court commun**, musique instrumentale sans voix, pas d'OST existante copiée. Composer/exporter et vérifier les licences avant intégration. **Aucun fichier audio de musique n'est actuellement fourni par les docs.**
+
+**Implémentation attendue (lot indépendant et limité) :**
+1. Auditer le `LuxMatchSon` déjà intégré à `public/lux-match.js` (SFX Web Audio, paramètre `luxMatchSon`, bouton son visible sur l'entête avant date, pas sur l'HUD du date). Réutiliser son contrôleur ou un module léger ; **une seule musique active, aucun AudioContext superflu**.
+2. Changer de thème **seulement selon la phase** : `profil/swipe/match/reseaux/look → pre-date`; `date → café`; `resultats/quitter → musique arrêtée`; `nouvellePartie → pre-date`. Pas de redémarrage lors du re-render, d'une traduction FR, de l'ouverture Pix/Amis/Pro, du téléphone ou du panneau Moi.
+3. Fondus de 0,6–1,2 s à l'entrée du date, les SFX `match`/`faux`/`scratch` restent audibles. Sur gag majeur, bref retrait de la musique (silence comique), puis reprise. Le lecteur ne doit pas imposer son tempo aux réponses.
+4. Volume de musique **bas** sous les voix LU ; ducking d'environ 8–12 dB lors de lecture/TTS si elle est disponible. Respecter la préférence `luxMatchSon` et permettre de couper la musique **pendant le date** sans cacher les questions/options ; une option musicale distincte est pertinente si elle évite de désactiver les effets et la prononciation.
+5. Android/PWA : démarrer après geste utilisateur autorisant l'audio, couper/pause quand l'app est masquée/quittée, reprendre proprement, annuler les fondues en cours, ne jamais superposer des pistes sur trois runs. En cas de fichier absent ou refus d'autoplay, **fallback silencieux**, jeu toujours utilisable.
+
+**Critères de recette :** deux pistes bouclent 5 fois sans clic/silence ; 3 runs successives sans superposition ; son désactivé = silence total ; au date le bouton audio reste accessible (≥44 px) ; les voix sont intelligibles, le téléphone/batterie ne redémarre pas la piste, bascule de vue ne relance pas la musique ; tests Android réel et tests existants Lux Match. **Ne pas annoncer deux musiques ajoutées tant que les fichiers n'existent pas et ne sont pas audibles en jeu.**
