@@ -58,6 +58,50 @@
    }
   ],
   "resumeFr": "Alex, 28 ans — Je viens de France, j’habite à Metz, je suis banquier et je parle français.",
+  "ficheFr": [
+   [
+    "Âge",
+    "28 ans"
+   ],
+   [
+    "Origine",
+    "France"
+   ],
+   [
+    "Ville",
+    "Metz"
+   ],
+   [
+    "Métier",
+    "Banquier"
+   ],
+   [
+    "Langue",
+    "Français"
+   ]
+  ],
+  "habitudesFr": [
+   [
+    "Café le matin",
+    true
+   ],
+   [
+    "Football",
+    false
+   ],
+   [
+    "Dessin",
+    false
+   ],
+   [
+    "Jeux vidéo",
+    false
+   ],
+   [
+    "Course à pied",
+    false
+   ]
+  ],
   "source": "Bible §4"
  },
  "profils": [

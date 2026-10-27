@@ -13,6 +13,9 @@ persona = {
              L('Ech kommen aus Frankräich.', 'Je viens de France.', 'lecon'), L('Ech wunnen zu Metz.', "J'habite à Metz.", 'lecon'),
              L('Ech sinn e Banker.', 'Je suis banquier.', 'lecon'), L('Ech schwätze Franséisch.', 'Je parle français.', 'lecon')],
   'resumeFr': 'Alex, 28 ans — Je viens de France, j’habite à Metz, je suis banquier et je parle français.',
+  # Fiche « DOSSIER ALEX » : faits canoniques en libellés courts (texte d'interface FR).
+  'ficheFr': [['Âge', '28 ans'], ['Origine', 'France'], ['Ville', 'Metz'], ['Métier', 'Banquier'], ['Langue', 'Français']],
+  'habitudesFr': [['Café le matin', True], ['Football', False], ['Dessin', False], ['Jeux vidéo', False], ['Course à pied', False]],
   'source': 'Bible §4'
 }
 

@@ -403,6 +403,7 @@ function remettreScroll(y) {
 
 // ─── BOUTON RETOUR DU TÉLÉPHONE (API History) ───────────────────────────────
 function superpositionOuverte() {
+  if (typeof luxMatchSuperposition === 'function' && luxMatchSuperposition()) return true; // SPEC 109 (menu, dossier, téléphone)
   if (typeof infoInviteEstOuverte === 'function' && infoInviteEstOuverte()) return true; // SPEC 76
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) return true; // SPEC 66
   if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) return true; // SPEC 66
@@ -415,6 +416,7 @@ function superpositionOuverte() {
 
 // Ferme le panneau ouvert, s'il y en a un. Renvoie true si quelque chose a été fermé.
 function fermerSuperposition() {
+  if (typeof luxMatchFermerSuperposition === 'function' && luxMatchFermerSuperposition()) return true; // SPEC 109
   if (typeof fermerInfoInvite === 'function' && fermerInfoInvite()) return true; // SPEC 76
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) { fermerDialogue(false); return true; }
   // SPEC 66 : inscription ou connexion → retour à la bienvenue.

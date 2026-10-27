@@ -263,3 +263,24 @@ test('3D : réactions sobres et photos Pix dans leur décor', () => {
   // Chaque scène Pix de la bible a un décor 3D (la photo montre ce que dit la légende).
   C.profils.forEach(p => p.pix.photos.forEach(ph => assert.match(src3d, new RegExp('\\b' + ph.scene + ': g => \\{'), ph.id)));
 });
+
+test('Lot 6 : en-tête allégée, menu, dossier sans méta, dressing à un seul CTA', () => {
+  const ui = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match.js'), 'utf8');
+  const nav = fs.readFileSync(path.join(__dirname, '..', 'public/navigation.js'), 'utf8');
+  const entete = ui.slice(ui.indexOf('function lmEntete('), ui.indexOf('function lmQuitter()'));
+  assert.doesNotMatch(entete, /lmBasculerSon|lmIcone\('son'\)/);               // plus d'icône son en haut
+  assert.match(ui, /onclick="lmBasculerSon\(\)"/);                              // … mais le réglage existe (menu)
+  const dossier = ui.slice(ui.indexOf('function lmFicheAlex()'), ui.indexOf('function lmRendreProfil('));
+  const moi = ui.slice(ui.indexOf('function lmMajMoi()'), ui.indexOf('function lmFermerPanneaux()'));
+  assert.doesNotMatch(dossier + moi, /lmBoutonAide|mensonges|souvenir/);
+  assert.match(moi, /DOSSIER ALEX/);
+  assert.doesNotMatch(ui, /Garder cette tenue|Prends ton temps|Enquête sur /);
+  assert.match(ui, /onclick="lmCommencerDate\(\)">Aller au rendez-vous/);
+  assert.doesNotMatch(ui, /lm-btn-or" onclick="lmCommencerDate\(\)"[^>]*disabled/);
+  ['pix', 'pro', 'amis', 'sportif', 'casual', 'loose', 'bcbg', 'creatif'].forEach(n => assert.match(ui, new RegExp('\\n  ' + n + ": '<")));
+  // Retour Android : ferme d'abord menu, dossier, téléphone ou app ouverte.
+  assert.match(nav, /luxMatchSuperposition\(\)/); assert.match(nav, /luxMatchFermerSuperposition\(\)/);
+  // Le dossier d'Alex garde tous les faits canoniques.
+  assert.deepEqual(C.persona.ficheFr.map(x => x[0]), ['Âge', 'Origine', 'Ville', 'Métier', 'Langue']);
+  assert.equal(C.persona.habitudesFr.length, 5);
+});

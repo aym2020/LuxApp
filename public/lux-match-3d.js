@@ -154,7 +154,9 @@ async function creer() {
   const canvas = document.createElement('canvas');
   canvas.className = 'lm-canvas-3d';
   canvas.setAttribute('aria-hidden', 'true');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: false });
+  // alpha : l'aperçu du look se détache sur la cabine CSS (les autres scènes ont un fond opaque).
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, preserveDrawingBuffer: false });
+  renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NeutralToneMapping;
   // Seules les animations sont nécessaires tout de suite (portraits) ; le café se charge au rendez-vous.
@@ -328,15 +330,15 @@ async function creer() {
     return url;
   }
 
-  // ── Écran LOOK : Alex pivote lentement entre la face et le trois-quarts (jamais de dos).
+  // ── Écran LOOK : Alex pivote lentement entre la face et le trois-quarts (jamais de dos),
+  // sur fond transparent (la cabine du dressing est dessinée en CSS).
   const sceneApercu = new THREE.Scene();
-  sceneApercu.background = new THREE.Color('#1a1426');
   sceneApercu.add(new THREE.HemisphereLight(0xd9c9ff, 0x2a2038, 2.0));
   const lumApercu = new THREE.DirectionalLight(0xffe0c0, 1.8); lumApercu.position.set(2, 3, 4); sceneApercu.add(lumApercu);
-  const socle = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.8, 0.08, 24), new THREE.MeshLambertMaterial({ color: 0x3b2d55, emissive: 0x6b3fd1, emissiveIntensity: 0.35 }));
+  const socle = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.66, 0.06, 24), new THREE.MeshLambertMaterial({ color: 0x3b2d55, emissive: 0xff4fd8, emissiveIntensity: 0.25 }));
   socle.position.y = -0.04; sceneApercu.add(socle);
   const camApercu = new THREE.PerspectiveCamera(32, 1, 0.1, 30);
-  camApercu.position.set(0, 1.12, 3.9); camApercu.lookAt(0, 0.88, 0);
+  camApercu.position.set(0, 1.12, 3.55); camApercu.lookAt(0, 0.93, 0);
   let alexApercu = null, tempsApercu = 0;
   async function apercu(cible, look) {
     // Plusieurs clics rapides : seule la dernière demande est affichée.
