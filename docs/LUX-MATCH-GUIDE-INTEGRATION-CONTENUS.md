@@ -194,3 +194,31 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 - **Recette** : 320/360/393/430 px ; captures comparatives de chaque écran, pas de blocage scroll ni scroll horizontal, CTA toujours accessible, 3 runs successives, suite `test/lux-match.test.cjs` et `tools/critique.sh`. Ne pas certifier la compatibilité Samsung sans test matériel.
 
 **Éviter toute refonte des autres jeux, nouvelles villes ou nouveaux personnages.** Les modifications code ne sont pas incluses dans cette passation documentaire.
+
+
+---
+
+## 13. Recette Android des deux salves : corrections P0/P1 et scroll
+
+**Commencer par [SPEC 109 § 18](specs/SPEC-109.md#18-recette-android--deux-salves-emma-fidelite-narrative-et-ecrans-sans-scroll-inutile-27102026).** La section 18 est la **liste complète de recette Android** après les lots 6–9 et constitue la **passation pour les lots 10A, 10B, 10C**. Ne pas prendre les demandes ci-dessous pour du code déjà livré.
+
+**Ce que le joueur a montré :** deux salves partielles d'un date avec Emma, fin « Ça ne colle pas » à **44 affinité / 41 suspicion / 100 % langue**, score 850, `G0` graine `693698638` ; l'âge 30, origine Portugal, nationalité luxembourgeoise, retour à France au rappel, puis « Jo. » lors de la demande de clarification. **Les screenshots sont incomplets : toute reconstruction est partielle.**
+
+**Lot 10A — corriger avant le polish :**
+- `affirmer` efface le mensonge actif lorsqu'une réponse tardive donne la vérité ; `resumer` dit alors « Bluff réparé » même si le joueur **n'a pas avoué**. Séparer contradiction / correction factuelle / aveu et reconstruire les bilans depuis les **faits réellement joués**.
+- `expressionsTravaillees` utilise la réponse marquée `honest`, pas la réponse réellement choisie. Distinguer **« Tes réponses »** et **« Phrase modèle à retenir »**, sans pénaliser une phrase LU grammaticalement correcte sous prétexte qu'elle ment.
+- Tests ciblés Emma avec et sans aveu explicite, multiples bluffs, aucun mensonge.
+
+**Lot 10B — rendre les personnes crédibles :**
+- Les mensonges augmentent mécaniquement la suspicion avant vérification ; calibrer la suspicion selon les signaux **perceptibles par le personnage**, pas la connaissance secrète du moteur. Conserver un risque, mais éviter la divination.
+- Garde de **diversité des thèmes** au générateur : âge/origine/nationalité/rappel dans un intervalle court = interrogatoire administratif. Privilégier tempérament et centres d'intérêt ; origine Portugal et nationalité luxembourgeoise ne sont pas intrinsèquement incompatibles.
+- Reactions de contradictions contextualisées, transitions et clôtures crédibles ; rédiger/réviser les nouvelles phrases LU selon `grammaire_luxembourg.md` et LOD.lu.
+
+**Lot 10C — ergonomie :**
+- **Dressing 100 % visible et zéro scroll normal** : aperçu Alex, 5 styles, 6 couleurs, bouton principal et « Revoir ses réseaux » ensemble. Remplacer la hauteur minimale forcée `clamp(240px,42dvh,380px)` par une hauteur **réellement adaptative à l'espace**, sans cacher des boutons avec `overflow:hidden`. Garder zones tactiles ≥44px, défilement autorisé uniquement en cas de font-scale/viewport extrêmes ; rendre le style casual par défaut visuellement cohérent.
+- **Dossier Alex** : scroll autorisé ; **Pix/Pro/Amis** : feed défilant volontaire, pas scroll parasite du hub ; **date** : sans scroll standard ; **résultat** : détail scrollable, mais CTA « Nouveau match » proche du score et détails repliables.
+- Éviter les trois feedbacks superposés **sur le visage** : symbole manga près de la tempe, scores près des jauges, paroles dans les bulles. Ne pas forcer « Continuer » pour chaque sourire ; garder l'avancement contrôlé quand du LU doit être lu.
+- « Aide FR désactivée » doit correspondre à l'affichage réel ; ne pas forcer les traductions en cachette. Mieux exposer l'aide contextuelle pour les segments avancés.
+- Garder `scenario G0 / graine` en diagnostic reproductible, **pas dans le récit public**.
+
+**Recette** : comparer captures réelles 320×640 / 360×740 / 393×852 / 430×932 ; trois runs, petite et grande police, Android Back et son ; tests Lux Match et suite critique. Aucun patch 3D, audio ou code des autres jeux requis par ce lot. **Pousser des commits séparés avec bilan des tests.**
