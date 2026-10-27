@@ -14,7 +14,7 @@ test('Service Worker : version injectée, caches séparés, aucune requête non 
   assert.match(sw, /status: 206/); // lecture audio par plage
   // V2 : démarrage depuis la copie, mise à jour incrémentale et sur demande.
   assert.match(sw, /anciennes\[f\.u\] === f\.h/);
-  assert.match(sw, /if \(!self\.registration\.active\) await self\.skipWaiting\(\);/);
+  assert.match(sw, /if \(!self\.registration\.active \|\| !ancienCache\) await self\.skipWaiting\(\);/);
   assert.match(sw, /event\.data\.type === 'activer'/);
   assert.doesNotMatch(sw, /setTimeout\(\(\) => resolve\(null\), 4000\)/); // plus d'attente réseau au lancement
 });

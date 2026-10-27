@@ -66,7 +66,9 @@ self.addEventListener('install', event => {
     }));
     // Première installation : active tout de suite. Mise à jour : attend le prochain
     // lancement (ou le bouton « Mettre à jour »), pour ne jamais mélanger deux versions.
-    if (!self.registration.active) await self.skipWaiting();
+    // Exception : l'ancienne version 1 (sans empreintes) attendait le réseau au lancement ;
+    // on la remplace tout de suite pour supprimer l'écran noir.
+    if (!self.registration.active || !ancienCache) await self.skipWaiting();
   })());
 });
 

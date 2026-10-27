@@ -457,7 +457,12 @@ async function bootAuthAndSync() {
       // Profil isolé pour ce compte AVANT toute lecture/écriture locale.
       setStorageProfile('user:' + user.uid);
       try { localStorage.setItem(DERNIER_COMPTE, user.uid); } catch (_) { /* facultatif */ }
-      await syncProgress(); // charge ce profil + cloud, fusionne, réécrit les deux
+      // Charge ce profil + cloud, fusionne, réécrit les deux. SPEC 93 V2 : l'accueil
+      // n'attend pas le cloud plus de 1,5 s (réseau lent) ; la synchro continue en
+      // arrière-plan et rafraîchit l'écran quand elle se termine.
+      const synchro = syncProgress().catch(() => {});
+      const fini = await Promise.race([synchro.then(() => true), new Promise(r => setTimeout(() => r(false), 1500))]);
+      if (!fini) synchro.then(() => { if (typeof apresSynchro === 'function') apresSynchro(); });
     }
     // Sinon : on reste sur le profil "anonymous" (valeur par défaut).
   } catch (e) {
