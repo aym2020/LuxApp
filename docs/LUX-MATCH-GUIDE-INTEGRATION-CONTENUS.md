@@ -6,6 +6,9 @@
 
 > **Lis d'abord ce fichier, puis les sections de la bible qui concernent le lot.** Ne lis pas 1 000 lignes d'un seul bloc pour ensuite improviser. Tous les textes candidats sont déjà rédigés ; ton travail consiste à **auditer, structurer, raccorder et tester**, pas à inventer le scénario. Tant que la validation luxembourgeoise n'est pas obtenue, ces nouvelles répliques sont **des propositions, pas du contenu publiable**. Le moteur 3D en cours de correction par Claude est hors périmètre de cette passation.
 
+> **IMPORTANT — NOUVEL ARBITRAGE PRODUIT (27/10/2026)** : [SPEC 109 § 22](specs/SPEC-109.md#22-simplification-produit--enquete-fr-rendez-vous-lu-mini-jeu-avant-tout) **prime sur les propositions du lot 12/§21 qui vont trop loin**. **Tinder, Pix, Pro, Amis : français visible par défaut, sans dépendre de l'aide FR. Rendez-vous : questions/réponses luxembourgeoises, aide FR facultative.** Ne pas développer pour le moment LuxTrad, recherche de dictionnaire, saisie libre, traducteur tiers ou moteur d'improvisation lourd. Conserver le mini-jeu court (6–8 tours), les questions d'Alex et les réactions contextuelles ; priorité à la fluidité, au fun et aux indices utiles. **Tout le code existe encore en LU prioritaire sur les réseaux à la date de ce document : changement À IMPLÉMENTER, non livré.**
+
+
 ## 1. Les quatre niveaux de vérité (à ne pas confondre)
 
 | Priorité / rôle | Fichier | Ce qu'il apporte |
