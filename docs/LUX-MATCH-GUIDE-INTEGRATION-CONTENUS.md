@@ -256,3 +256,26 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 **Lot 11C :** vérifier que le téléphone **a une valeur stratégique**, notamment en cours de date pendant les **20 s de batterie**. Les mêmes indices restent disponibles gratuitement AVANT le date, sans consultation forcée pendant le café. Emma anti-téléphone : enquête préalable avantageuse mais absence d'enquête ne rend pas le date impossible. Pas de score pour « avoir ouvert l'app », seulement pour le fait utilisé à bon escient. Tests seedés des six filles : joue sans enquête, avec enquête, avec consultation au café ; éviter double événement et fuite de batterie, conserver l'accessibilité mobile.
 
 **Ne pas commencer en créant 12 scènes entièrement nouvelles sans revoir les sources** : inventorier la bible et `contenus-v02.json` pour réutiliser les répliques existantes, rédiger uniquement le manque, documenter `reviewStatus` et les tests avant toute publication. Aucun besoin de retoucher les modèles 3D, le rendu café, le lecteur musical, le hub global ni `luxProgress`.
+
+
+---
+
+## 16. Lot 12 — boucle V2, questions d'Alex, LuxTrad et micro-écriture
+
+**Cahier des charges approuvé :** [SPEC 109 § 21](specs/SPEC-109.md#21-boucle-de-gameplay-v2--conversation-active-luxtrad-et-micro-ecriture-27102026). **Source éditoriale FR :** [Bible § 14](LUX-MATCH-BIBLE-EDITORIALE-A11.md#14-amorces-editoriales-v2--curiosite-questions-dalex-traduction-ecriture-27102026), avec **12 cellules narratrices** (2 par fille) et patrons de micro-écriture. **État : documentation poussée, aucun code ou texte LU final intégré.**
+
+**Diagnostic spécifique** :
+- Les derniers screenshots d'un date avec Sofia montrent plusieurs bluffs (policier / Portugal / portugais) et quiz des animaux ; c'est ludique, mais elle questionne encore surtout le joueur. Dans « Elo bass du drun! », le joueur peut immédiatement redemander « Wat schaffs du? » après qu'elle lui a demandé son métier. Ce n'est pas un défaut de grammaire mais de **composition conversationnelle et de réciprocité**.
+- Les questions posées à elle plaisent au joueur : **en faire un vrai moment actif** avec 3 sujets pertinents, une réponse concrète de la fille et un éventuel callback.
+- Pix, Pro, Amis doivent informer 2 opportunités sociales dans les dates sans transformer la conversation en quiz sur une fiche ni exiger une consultation.
+- Besoin de **comprendre ponctuellement le LU** (outil façon traducteur) et d'**écrire une micro-phrase** sans imposer du free-text arbitrairement noté.
+
+**Séquence demandée à Claude** :
+1. **12A (prioritaire)** : enrichir `B21_ASK_HER` / la banque équivalente ; faire émerger une vraie information *sur la fille* et une réaction de suivi. Filtrer doublons exacts et thèmes déjà posés par elle. Ne pas augmenter systématiquement les 6–8 tours, conserver le procédural seedé.
+2. **12B** : ajouter **LuxTrad LU ⇄ FR** comme utilitaire dans le dock du faux téléphone, distinct des 3 réseaux ; glossaire **prévalidé**, consultable hors ligne. Pendant le date, **taper sur un mot / question actuelle** pour une traduction rapide ; pas de clavier de recherche indispensable pendant la décharge à 5 %/s. Pré-date recherche facultative gratuite. Pas de Google API requise ni de promesse de traduction universelle. FR ON/OFF inchangé. Ne pas créer d'incohérence entre vocabulaire affiché et cours/Lexique LOD.
+3. **12C** : **une seule micro-écriture facultative par date**, alternative à un QCM, sans clavier pop-up automatique. Variantes LU fermées écrites/auditées, évaluation `recognized` / `unrecognized` / `empty` ; **pas de faute grammaticale supposée quand hors catalogue**, aucun malus social pour non reconnue, QCM accessible sans perte d'état, mobile Samsung IME/scroll/focus/retour Android.
+4. **12D** : calibration et QA déterministes : 6 personnages × 200 graines, au moins un acte où Alex pose une vraie question et 2 possibilités de connexion si banque suffisante, 6–8 tours, aucune référence à un fait non montré, profils privés respectés, scénario sans enquête jouable et scénario avec enquête plus riche, batterie restant utile mais non punitive.
+
+**Les textes LU nouveaux ne sont PAS livrés par § 21 ou Bible § 14** : ces documents livrent les **intentions et le mapping** des données. En tant que responsable d'intégration, Claude doit **d'abord rechercher les phrases LU réutilisables** dans la Bible, les leçons et `contenus-v02.json`, puis ne rédiger/faire valider que le nécessaire dans une banque JSON conforme. Toute phrase nouvelle doit passer par `grammaire_luxembourg.md`, les leçons et LOD.lu ; conserver `reviewStatus`. Ne pas prétendre qu'un brouillon a été certifié.
+
+**Aucune refonte** des modèles 3D, de la direction artistique, de la musique, du cloud, des scores de progression ou des autres jeux. **Livrer les lots par commits isolés sur `2.1`, avec tests et bilan honnête.**
