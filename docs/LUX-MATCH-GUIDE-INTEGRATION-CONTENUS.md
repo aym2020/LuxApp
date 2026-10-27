@@ -119,3 +119,23 @@ Ne dire « textes intégrés » que si :
 Ne pas demander une nouvelle « bible » à un générateur de texte ; elle existe. Ne pas recopier les 74 Ko de Markdown dans des fichiers JS ; **extraire les éléments du lot puis produire des JSON structurés après audit**. Ne pas réécrire tous les noeuds d'un coup. Ne pas brancher le catalogue complet avant de garantir la correction linguistique. Ne pas faire apparaître les textes français pédagogiques quand l'aide est désactivée. Ne pas ajouter de nouvelles villes, un second café ou CUPID.EXE.
 
 **En bref :** lisez ce guide → sélectionnez un lot → consultez ses sections de la bible → auditez ses lignes → mappez à la donnée actuelle → testez → poussez. **La SPEC définit les règles, la bible fournit les mots, ce guide explique comment les brancher.**
+
+---
+
+## 9. Complément gameplay — signaler le tempérament avant de juger l'humour
+
+**Source :** [SPEC 109 § 14](specs/SPEC-109.md#14-lisibilite-du-temperament-et-compatibilite-humoristique-retour-joueur-27102026) et [Bible § 13](LUX-MATCH-BIBLE-EDITORIALE-A11.md#13-signaux-de-temperament-et-style-dhumour--complements-de-dialogues). **Évolution documentaire, pas code livré.**
+
+### Diagnostic sur la démo actuelle
+
+Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taquine"]`, et non `absurde`. Dans `public/lux-match-core.js`, `aimeLAbsurde()` récompense seulement `humour === "absurde"`. Ainsi les plaisanteries de type James Bond ou champion du foot subissent systématiquement le même malus sur ce profil, bien que les informations Tinder/Amis n'explicitent pas qu'elle déteste la vantardise. L'archétype sportive n'est pas une indication suffisante.
+
+### Tâches ciblées pour Claude (après les corrections en cours)
+
+1. **Éditorialiser les signaux** : importer les `TONE_*` de Bible § 13 après correction linguistique et correspondance LU/FR. Dans Tinder un indice général, dans Amis un trait explicite. Conserver l'aspect naturel d'un réseau de rencontres, aucun indicateur « risque de malus ».
+2. **Différencier le type de blague** : si cela ne complexifie pas le moteur, ajouter aux options humoristiques `jokeKind` (`absurde`, `vantardise`, `autoderision`, `taquinerie`) et une matrice simple de réactions par partenaire ou trait tiré. Le simple booléen `aimeLAbsurde` est trop grossier : Léna taquine peut apprécier l'autodérision tout en rejetant la vantardise.
+3. **S'assurer de la cohérence procédurale** : une partenaire dont le scénario accepte l'humour extravagant ne doit pas publier l'indice « je déteste les grandes histoires » ; **même scenarioPlan pour indices et calcul**.
+4. **Ne pas sursanctionner** : une blague correctement exprimée en LU conserve la réussite linguistique ; une maladresse sociale fait varier l'affinité, sans suspicion automatique. `Kaffi!` est une réponse pragmatiquement décalée, pas un mot luxembourgeois erroné ; justifier pédagogiquement l'évaluation au lieu de la traiter comme une faute grammaticale.
+5. **Réactions** : associer `REACT_LENA_BOND_SERIOUS`, `REACT_LENA_FOOT_STAR`, `REACT_LENA_FOOT_SELF`, `REACT_LENA_COFFEE_SHOUT` (Bible § 13), sans générer de nouvelles phrases LU à l'exécution.
+
+**Test d'acceptation ciblé :** un joueur a un indice accessible avant d'utiliser « James Bond » / « star du foot » ; il peut comprendre l'échec social **après** la réaction, sans connaître les variables du moteur. La même option reçoit des réactions différentes chez Léna et Noémie. Une plaisanterie d'autodérision peut plaire à Léna. Aucun statut de validation LU accordé avant audit. Ne pas modifier Lux Runner, le moteur Three.js ni la progression utilisateur pour cette évolution.
