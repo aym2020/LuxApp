@@ -1110,3 +1110,85 @@ Le rendez-vous mêle :
 4. Tests : FR pour bio Tinder, tags, Pix, Pro, Amis **avec FR OFF et FR ON**, y compris profils privés et posts procéduraux ; date LU inchangé, traduction optionnelle ; aucune fuite d'un texte de réseau en LU principal, aucun scroll inutile, pas de régression des contenus, de l'aide, de la batterie, des likes, de la tenue ou des scores. Tests automatisés et vérification navigateur 320–430 px, recette Samsung réel signalée si non effectuée.
 
 **Règle de conception : un mini-jeu agréable en 3–5 minutes, dont les réseaux sont les indices en français et le rendez-vous l'occasion de s'exprimer en luxembourgeois.** Ne pas complexifier la boucle tant que cette expérience simple n'est pas excellente.
+
+
+---
+
+## 23. Nouvelle direction : dragueur glandeur, choix clivants et contrôles de bluff (27/10/2026)
+
+**Statut : direction game design proposée par le joueur et précisée ici pour la prochaine itération ; à implémenter, PAS livrée par cette documentation.** Cette section **affine et remplace** les règles contraires des §§12, 20–22 concernant l'identité canonique d'Alex et la structure des échanges. Le jeu reste **un mini-jeu arcade comique de 3–5 min**, six filles existantes, un seul café, aucun LLM, aucun traducteur, aucune saisie de dialogue libre. Les réseaux sont **en FR**, le date et les choix **en LU**, aide FR facultative. Tout le contenu de piège cité ci-dessous est une **intention FR non encore rédigée/validée en LU**.
+
+### 23.1. Nouveau personnage-joueur : un anti-héros volontairement peu impressionnant
+
+**Nouvelle fantasy :** le joueur incarne un homme adulte de départ, **sans emploi, peu sportif, amateur de jeux vidéo et de glandouille** ; il veut séduire et se vend souvent beaucoup mieux que la réalité. Le comique vient de l'écart entre ce personnage banal et les histoires extraordinaires qu'il invente.
+
+- **Saisie du prénom seulement** à l'ouverture (une étape brève, sans écran de formulaire interminable) : prénom homme par défaut (ex. Alex), personnalisable ; ne pas demander âge, métier, nationalité, 12 loisirs ou sexe dans le MVP. Prévoir les structures de données sans bloquer une future variante féminine, **mais ne pas la produire maintenant**.
+- **Fiche perso très courte** et immersive : portrait low-poly + prénom + **sans emploi** + **sport : non** + **loisir : jeux vidéo** ; au besoin âge canonique (28) et ville/origine stables en données pour préserver les leçons/rappels, **pas six phrases LU en grands blocs** dès l'écran d'accueil. Accessible pendant le date, pas de batterie.
+- **Vérité canonique cohérente** : métier = sans emploi (et non Banker), sport/course/foot = non, loisir jeux vidéo = oui. Le joueur peut **prétendre** être policier, banquier, sportif, gamer professionnel, globe-trotter ou parler une langue étrangère : l'état retient ces claims. Les blagues absurdes restent **distinctes** des mensonges littéraux (James Bond/120 ans peuvent être des plaisanteries, pas des assertions de métier/âge par défaut).
+- **Attention à la migration** : aujourd'hui `persona.name='Alex'`, `job='Banker'`, `gaming=false`, `ficheFr`/phrases modèles fixes ; `lmFicheAlex()`, `lmImage('alex')`, `lmRendreProfil()`, `valeurPersona()`, `REP08_*`/`B08_PROFESSION`, `B09_WORKPLACE`, `EV_CLAIRE_JOB`, les rappels, le résumé, tests et événement `PREF_EX_ALEX` dépendent en partie d'Alex banquier. **Auditer toutes ces dépendances** avant de modifier la persona : remplacer les formulations LU devenues fausses, adapter les événements conditionnés au métier, et traiter le gag « mon ex s'appelait Alex » comme **prénom précis réellement annoncé**, ou le neutraliser pour les autres prénoms. Ne pas coller simplement un `input` par-dessus des textes contenant « Alex » ou « Banker ».
+- Conserver les contrôles d'injection/longueur du prénom, rendu HTML échappé, clavier Android/focus/validation, valeur de repli et persistance à l'échelle d'une partie ; ne pas exposer le prénom à la sauvegarde de progression générale. Les nouveaux modèles LU du chômage (« je ne travaille pas », etc.) doivent être **revus selon leçon/grammaire/LOD** avant déploiement.
+
+### 23.2. Pivot mécanique : elle ne cherche pas toujours les mêmes goûts
+
+**Deux catégories de questions distinctes**, scénarisées et contextualisées :
+1. **Question clivante / préférence** : « Tu aimes les chats ? », « Tu aimes conduire ? », « Tu joues aux jeux vidéo ? », « Tu aimes les musées ? » ; la fille peut **adorer, détester ou s'en moquer**. **Ne jamais supposer** que « oui » ou « même passion » rapporte automatiquement des points ; parfois répondre **non** est la meilleure stratégie. Certaines personnalités peuvent préférer la franchise à la similitude, ou apprécier une différence. Au lieu d'un quiz à vérité binaire, c'est une question de **tempérament et de risque social**.
+2. **Question de vérification de bluff** : si Alex a affirmé « je suis sportif », « je viens du Portugal », « je connais très bien ce film », elle peut le **mettre à l'épreuve** sur un détail concret : pratique/activité, monument populaire, élément culturel très connu, film populaire, football. **Ne jamais injecter un test sans affirmation préalable**. La question et la bonne réponse factuelle sont écrites/validées à l'avance, **la connaissance générale n'entre pas dans la note de LU**.
+
+**Exemple de retournement** (intention FR, non traduite) : elle demande « Tu aimes les chats ? ». Le joueur répond « Oui ! » pour se vendre. Elle réplique « Ah, moi pas du tout. » : **c'est drôle parce qu'il a essayé de deviner, pas parce qu'une option est mal traduite**.
+
+**Équité indispensable à de gros bonus/malus :**
+- Les **préférences fortement clivantes** doivent avoir un signe FR perceptible avant ou pendant la rencontre (post Amis, légende Pix, bio, indice dans la conversation). Ce signe peut être subtil et **pas nécessairement explicite**, mais ne doit **jamais être l'inverse du fait canonique publié**, sauf trait d'ironie transparent et scénarisé.
+- Une surprise entièrement non signalée reste autorisée **pour le gag**, avec conséquence **modérée ou rattrapable** : pas de -15 arbitraire pour ne pas avoir deviné qu'une fille inconnue déteste les chats.
+- Les **vérifications factuelles risquées** sont autorisées si elles découlent d'un **bluff volontaire identifiable**, mais doivent être de difficulté populaire/A1.1 et sans ambiguïté (ex. reconnaître un monument connu parmi Eiffel / Belém / Colisée, questions très simples sur le football ou une référence culturelle populaire). Pas de trivia d'expert, questions mouvantes d'actualité, noms douteux ou pièges factuellement disputables.
+- Le joueur peut **reconnaître qu'il a exagéré** ou en rire ; donner une **porte de sortie humoristique** sans annuler magiquement les conséquences sociales. Les erreurs LU sont corrigées pédagogiquement si justifié, les erreurs de culture générale sont **sociales**, pas des fautes LU.
+
+### 23.3. Rythme arcade : six à sept décisions, un ou deux gros retournements
+
+**Ne pas allonger le jeu.** Le compositeur garde un cadre seedé et des événements conditionnels, mais la distribution des tours change :
+
+| Moment | Rôle | Fréquence cible |
+| --- | --- | --- |
+| Rencontre | 1 salutation / présentation rapide et un premier choix de ton | 1 |
+| **Clivage** | Elle demande un goût ou une habitude ; le joueur tente la sincérité, le bluff ou l'humour | 1–2 |
+| **Initiative** | Alex lui pose **une question** (sport, voyage, livre, jeu, etc.) et reçoit une vraie réponse | 1 |
+| **Test du récit** | Vérification d'une affirmation antérieure réellement jouée ; sinon interaction alternative comique | 1–2 |
+| **Coup de théâtre** | Un gros gag contextuel maximum ou une réplique très marquée, lié aux choix | 0–1 |
+| Sortie | Conclusion réactive, un au revoir bref | 1 |
+
+**Contraintes :** au moins **un moment de vraie curiosité envers elle**, un à deux choix de préférences/personnalité, et **un seul test majeur** garanti si le joueur a fait au moins un bluff testable ; un joueur sincère obtient une épreuve sociale/choix comique équivalente, **jamais un interrogatoire ou un contrôle Wikipédia**. Ne pas générer plusieurs questions identiques (âge, nationalité, travail). Favoriser **des scènes à rebond court**, où la réponse actuelle peut sélectionner une variante de l'échange suivant plutôt que le recommencer mécaniquement. Ne pas imposer un timing à la lecture du LU.
+
+### 23.4. Puissance des résultats : sensation arcade, causalité et calibration
+
+**Objectif : les points doivent faire ressentir les paris sociaux.** Les valeurs ci-dessous sont des **ordres de grandeur de design, PAS des chiffres directement à coder** (départ 40 affinité, succès actuel 65, suspicion et seuil de fin restent à auditer) :
+
+| Événement | Delta affinité envisagé | Suspicion envisagée |
+| --- | ---: | ---: |
+| Réponse honnête/curieuse ordinaire | 0 à +3 | 0 |
+| Bonne lecture d'une préférence publique ou vraie connexion | +6 à +10 | 0 |
+| Gros pari social réussi / plaisanterie mémorable | **+10 à +12**, rarement | 0 |
+| Préférence contraire non annoncée (surprise injustifiable) | 0 à -3 | 0 |
+| Préférence contraire **fortement annoncée**, ignorée volontairement | **-6 à -10** | 0 (goût ≠ mensonge démontré) |
+| Bluff vérifié et **démasqué** | **-8 à -14**, selon intensité | **+12 à +20** |
+| Aveu drôle / autodérision bien accueillie | récupération sociale partielle, **pas reset** | suspicion modérée ou maintenue |
+
+**Garde-fous :** jamais un gain automatique pour « aimer ce qu'elle aime » ; le fait d'être chômeur n'est pas à lui seul une pénalité invisible à chaque question ; pas d'affinité offerte simplement pour cliquer sur une app, ni de suspicion gratuite pour une préférence. L'issue doit rester incertaine, même avec un bon look, mais **un rendez-vous gagné doit être possible par humour et curiosité sans six bluffs**. Gros deltas rares, pas un jeu de hasard avec des -15 non annoncés. **Tester la distribution du succès** des six filles à seeds fixes avant d'ajuster les seuils.
+
+**Mise en scène :** grand effet manga / record scratch / bruitage seulement quand un bluff s'écroule ou qu'un choix a un effet spectaculaire ; affichage des points **près des jauges**, pas sur le visage. Les répliques restent en LU, les réactions/conséquences courtes et drôles ; ne pas forcer un écran « Continuer » après chaque micro-sourire.
+
+### 23.5. Banque de pièges réutilisable sans moteur narratif compliqué
+
+Créer un petit catalogue **éditorial de cartes-situations** plutôt qu'un système infini d'improvisation, avec les données suivantes :
+- `id`, `profileId` / tempéraments concernés, `theme` (chats/conduite/sport/jeux/films/pays/culture/monuments), `clueIds` (indices réellement consultables en FR), `choiceIds`, `triggerClaim` facultatif, `truthFact` validé pour test factuel, `polarity` (+/-/neutre), `riskTier`, `frReaction`, `luPrompt` et `luChoices` validés, `fallback` sans mensonge, `reviewStatus`.
+- Les préférences et indices sont **constants au sein d'une partie** et cohérents entre faux réseaux et café ; variations seedées au niveau du scénario **sans montrer des indices contradictoires**.
+- Les tests factuels suivent le mensonge concerné, par exemple : faux sportif → situation pratique/football simple ; faux Portugais/voyageur → monument/pays connu ; prétendu cinéphile → film grand public connu ; pseudo-gamer pro → référence très simple de jeu ; pas de question « tu aimes X ? » recyclée comme seule méthode de vérification.
+- **Ne jamais sous-entendre qu'une date est spécialiste des monuments/cinéma/police** sans raison narrative. Le test est généralement une taquinerie raisonnable, pas un examen d'expert. Questions et faits culturellement vérifiables et durables ; pas de mauvaises réponses ambiguës.
+- **Garder les gags établis** : Sofia + portugais/animaux, Léna + vantardise sportive, Noémie + dessin sur serviette, etc. N'ajouter que des cartes qui apportent une **mécanique nouvelle ou une punchline meilleure**, pas 100 variations sans intérêt.
+
+### 23.6. Intégration / livrables acceptables pour Claude
+
+1. **Prototype persona anti-héros** : personnalisation prénom et dossier raccourci ; adapter les phrases LU modèles métier, l'origine du profil, les choix honnêtes et les pièges en conséquence. Tester **prénom personnalisé ≠ Alex** dans toutes les vues, résumés, déclencheurs et rendus, y compris gag de l'ex prénommé Alex. Ne pas modifier les modèles 3D (homme par défaut ; futur personnage féminin hors scope).
+2. **Prototype gameplay sur deux filles contrastées** : **Noémie** (humour absurde et dessin) et **Léna** (sport, compétition, intolérance à la vantardise), puis étendre aux 4 autres. Chaque fille doit disposer de **2 scènes clivantes et 2 contrôles de bluff candidats**, sélectionnés par le moteur en fonction des affirmations ; la date n'en montre **qu'une partie**.
+3. **Tests** : dialogues et situations vrais en FR social / LU date, caractéristiques utilisateur canoniques cohérentes, bluff préalable obligatoire pour l'examen correspondant, indice non contradictoire pour sanctions lourdes, sujet sans doublons, évitement des connaissances spécialisées, 6–7 décisions typiques et 3–5 minutes sans timers de lecture, 6 profils × 200 seeds. Tester cas honnête, bluff cohérent, plusieurs bluffs, aveu, humour, bluff éventé, aucune visite des réseaux, consultation pendant date, 3 runs Android.
+4. **Livraison** : code séparé moteur/contenus/UI, tests d'interaction et audits LOD/grammaire pour toute phrase LU, aucune nouvelle ville/fille/app, aucun changement de progression ou d'autre jeu. **Ne pas implémenter une banque de LU non relue au prétexte d'aller vite.**
+
+**Principe directeur :** « Je suis un glandeur ; j'essaie de me vendre ; parfois ça marche, parfois je me ridiculise, et les filles ont du répondant. » Chaque partie doit contenir **au moins une décision risquée mémorable** et **une occasion où une information lue en français influence une réponse en luxembourgeois**, sans transformer le mini-jeu en test de culture générale.
