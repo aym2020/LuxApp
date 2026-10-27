@@ -139,3 +139,19 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 5. **Réactions** : associer `REACT_LENA_BOND_SERIOUS`, `REACT_LENA_FOOT_STAR`, `REACT_LENA_FOOT_SELF`, `REACT_LENA_COFFEE_SHOUT` (Bible § 13), sans générer de nouvelles phrases LU à l'exécution.
 
 **Test d'acceptation ciblé :** un joueur a un indice accessible avant d'utiliser « James Bond » / « star du foot » ; il peut comprendre l'échec social **après** la réaction, sans connaître les variables du moteur. La même option reçoit des réactions différentes chez Léna et Noémie. Une plaisanterie d'autodérision peut plaire à Léna. Aucun statut de validation LU accordé avant audit. Ne pas modifier Lux Runner, le moteur Three.js ni la progression utilisateur pour cette évolution.
+
+---
+
+## 10. Réactions visuelles type manga — émotions lisibles sans visage 3D expressif
+
+**Nouvel arbitrage UX :** [SPEC 109 §15](specs/SPEC-109.md#15-reactions-emotionnelles-manga-en-surimpression-2d-27102026). Ce guide ajoute les instructions d'implémentation **sans changer les contenus JSON ni le moteur de jeu**.
+
+**Brief de réalisation :** six petits sprites originaux / SVG locaux (goutte de gêne, veine de colère, interrogation de doute, étincelles d'amusement, cœur rare d'attirance, choc « !! ») affichés **près de la tête** en calque HTML/CSS au-dessus du café 3D. Maintenir les personnages et `r.visuel` existants, synchroniser l'effet 2D avec le résultat social et la réaction 3D ; limiter à un signe à la fois et ne pas masquer HUD, sous-titres, options ni téléphone.
+
+**Scénarios obligatoires** : « Kaffi! » → goutte, Léna poker face et possible réplique naturelle (pas de message professeur « tu es trop sec ») ; James Bond → interrogation ; vantardise football → doute/agacement ; autodérision → rire/éclats ; Emma + téléphone → agacement seulement si trait prévu ; Sofia + hippopotame → gros « !! » avec effet rare. Chaque vignette doit être **la conséquence d'un choix**, pas un signe aléatoire ajouté selon le score.
+
+**Séparation critique :** une maladresse sociale n'est pas forcément une faute linguistique. Le cas `REP11_C` (`Kaffi!`) est actuellement `languageCorrect:false`, `truth:error` et accompagné d'une correction de style « Pas faux, mais un peu sec » : **réexaminer le statut** et déplacer l'explication de politesse vers une réaction naturelle de la partenaire. Conserver une vraie correction pédagogique seulement si un objectif linguistique le justifie.
+
+**Priorité et recette :** après stabilisation 3D et audit des textes ; pas de nouvelle animation WebGL, pas de nouvelle dépendance, pas de second RAF ; 320–430 px, orientation/pause, fallback portrait, TalkBack, `prefers-reduced-motion`, 3 runs successives. Tous les nouveaux mots en LU doivent être audités, comme dans la bible.
+
+**Aucun code de production n'a été modifié par cette documentation.**
