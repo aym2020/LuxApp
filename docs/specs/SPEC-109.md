@@ -683,3 +683,111 @@ Six émotions de base, avec un effet **déterminé par la réaction de la scène
 5. **Audio** : bouton haut-parleur absent de l'entête, mais contrôle mute effectif et découvrable ailleurs, \`luxMatchSon\` conservé ; musique §16 non relancée par rendu du hub / dossier / LOOK.
 6. **Tests** : \`node --test test/lux-match.test.cjs\`, suites critiques \`bash tools/critique.sh rapide\` puis \`bash tools/critique.sh\` ; tester avec la version réelle des sources et conserver preuves/captures. Vérifier réellement sur Samsung avant d'affirmer « Android validé ».
 7. **État d'avancement documentaire** : ne pas marquer cette §17 « implémentée » tant qu'aucun code, test et recette visuelle ne l'attestent. Limiter la modification aux écrans visés et au contrôleur audio prévu ; ne pas toucher aux autres jeux, à Lux Runner ni à \`luxProgress\`.
+
+
+---
+
+## 18. Recette Android — deux salves Emma, fidélité narrative et écrans sans scroll inutile (27/10/2026)
+
+**Statut : anomalies et arbitrages identifiés sur deux salves de captures Samsung réelles, à corriger. Aucune des modifications ci-dessous n'est implémentée par la présente SPEC.** Branche auditée : `2.1`, HEAD `1e20da36` (lot 9 Claude, musique). Captures partielles d'une rencontre avec **Emma** (certains tours absents). Référence de reproduction observée à l'écran de résultats : `profil=emma_r01`, `scenario=G0`, `graine=693698638` ; l'historique exact des choix doit être reconstitué ou injecté en test avant d'affirmer une reproduction complète.
+
+**Portée :** corrections ciblées au moteur social, composition des scènes, récapitulatif, UX du rendez-vous, **gestion du scroll par écran**. Ne pas refaire le dressing artistiquement, les modèles 3D, le café, la musique des lots 6–9, ni Lux Runner/progression.
+
+### 18.1. Les constats observés, séparés des diagnostics code
+
+| ID recette | Symptôme observé sur Android | Cause vérifiée / hypothèse | Priorité |
+| --- | --- | --- | --- |
+| `LM-R18-01` | Après avoir annoncé venir du Portugal, puis France, le récapitulatif indique « **Bluff réparé : maintenant elle sait que tu viens de France** » alors qu'une réponse à « Ass dat wouer? » a été « Jo. », **pas un aveu** | **Confirmé :** en rappel, `affirmer()` écrase le `claim` précédent, efface `mensonges[origin]` si la nouvelle valeur est vraie ; `resumer()` interprète ensuite absence du mensonge actif comme « bluff réparé ». `r.aveu` reste distinct. | **P0** |
+| `LM-R18-02` | Résultats « **Tes expressions en luxembourgeois** » donnent « 28 ans / Français » alors que le joueur a choisi dans la partie « 30 ans / Luxembourgeois » | **Confirmé :** `expressionsTravaillees()` cherche `source.choices.find(c => c.truth === 'honest')`, **pas le choix fait**. Bon comme **corrigé de référence**, trompeur comme historique réel. | **P0** |
+| `LM-R18-03` | La jauge de suspicion augmente dès l'annonce de mensonges encore invérifiables ; Emma semble soupçonner ce que seul le moteur connaît | **Confirmé dans la règle :** `repondre()` ajoute `min(12,2+3*dejaActifs)`, plus 4 sur sujet fort, pour `truth=lie`. **Arbitrage game design**, pas preuve d'un bug algorithmique. | **P1** |
+| `LM-R18-04` | Age → origine → nationalité → rappel de l'origine : séquence perçue comme un **entretien administratif** avec une Emma censée être calme | **Confirmé :** composition filtrée sur scènes et absence de doublon d'ID, mais pas de garde suffisante sur la **proximité sémantique** origine/nationalité et le rythme des rappels. | **P1** |
+| `LM-R18-05` | « BLUFF ! », « CONTRADICTION ! », points d'affinité/suspicion et pictos manga se superposent au **visage d'Emma** | **Confirmé :** `lmFeedback()` empile les textes arcade au-dessus de la scène, en parallèle de `lmEmotion()`. | **P1** |
+| `LM-R18-06` | Une correction de contradiction donne une scène générique « **Ass dat wouer?** » et une réponse « Jo. », sans mention de Portugal ou France | **Confirmé :** `B25_TRUTH_REPAIR` fixe pour tous les attributs ; contenu narratif trop générique, conditionné à `contradiction`. | **P1** |
+| `LM-R18-07` | Plusieurs réponses déclenchent un texte narratif en FR et **Continuer** ; rythme saccadé, notamment pour « Ech sinn e Kaffi! » | **Confirmé :** `aLire = r.correction || r.reaction || r.reponseElle || r.finAnticipee` force un panneau et un clic dès qu'une réaction existe. La nuance sociale du nouveau lot 7 est bonne, **l'interruption généralisée** ne l'est pas. | **P1** |
+| `LM-R18-08` | En mode « **Aide FR désactivée** », B25 affiche pourtant les traductions | **Confirmé :** `lmMajDialogue()` applique `e.source.traductionVisible` malgré le réglage utilisateur. Fonction voulue pour les éléments hors A1.1 mais contradictoire avec l'intitulé du bouton. | **P2** |
+| `LM-R18-09` | Résultats très longs : six lignes « Ce qui s'est passé » + six cartes d'expressions avant d'atteindre « Nouveau match », puis infos techniques « G0 / graine » | **Confirmé :** `lmRendreResultats()` place les deux listes complètes **avant** les CTA et affiche `p.plan.id / p.graine` dans le pied public. | **P1** |
+| `LM-R18-10` | Dressing : nécessité de **scroller** pour atteindre « Revoir ses réseaux » et parfois voir l'action finale sur smartphone ; écran de sélection pourtant court | **Confirmé :** `.lm-apercu{height:clamp(240px,42dvh,380px)}`, styles sur **3+2** cartes de `min-height:64px`, espaces/grandes pastilles et CTA empilés ; total non borné par la hauteur utile. | **P1** |
+| `LM-R18-11` | Dressing : « TENUE ACTUELLE » affichée, mais **aucune carte style sélectionnée** malgré prévisualisation d'un casual par défaut | **Confirmé :** `lmLookAffiche()` utilise `look.style || 'casual'`, tandis que l'état visuel du groupe radio dépend de `look.style` nul. | **P2** |
+
+**Ce qui marche et doit être conservé :** les nouvelles cartes de style et pictos, l'avatar mieux cadré, les 6 couleurs, la scène café, les 3 options d'âge (28/30/120, toutes LU correctes après audit), les petites émotions manga en tant que concept, le moteur procédural seedé, le bluff/les rappels, l'aide FR sur les contenus pédagogiques, la séparation langue/social. **100 % de score linguistique avec des mensonges grammaticaux corrects est NORMAL.** Les captures manquantes empêchent de conclure sur chaque étape réellement jouée : ne pas fabriquer des choix pour compléter le journal.
+
+### 18.2. P0 — Sémantique honnêteté / mensonge / contradiction / aveu
+
+**Décision de conception :** le moteur sait la vérité, mais la partenaire **ne connaît que les propos et les événements observables**. Séparer trois états :
+- `claimActuel` = dernière affirmation du joueur dans la conversation ;
+- `historiqueAffirmations` et `contradictions` = ce qu'elle a entendu et remarqué ;
+- `mensongeActif`, `mensongeRevele` et **`aveuExplicite`** = faits distincts de gameplay (noms conceptuels, conserver au besoin la structure actuelle et ajouter un petit journal d'événements, pas refonte complète).
+
+**Scénario de référence :** `B05_ORIGIN` → Alex déclare Portugal, puis `RAPPEL_ORIGINE` → France ; le moteur détecte une contradiction. Le mensonge sur la valeur actuelle peut cesser, **mais ce n'est pas un aveu**, et la suspicion découlant de la contradiction ne s'efface pas automatiquement. La suite `B25_TRUTH_REPAIR` :
+1. « Oui » : Alex **maintient** ce qu'il vient de déclarer, la contradiction reste non expliquée ; aucun `aveu`.
+2. « Non, c'était une blague » : tentative **d'explication humoristique**, dont la crédibilité dépend du contexte ; ne pas la stocker comme aveu franc.
+3. « Pardon, j'ai menti » : **aveu explicite**, avec effet social et transition narrative propres.
+
+**Règle de résumé :** `Bluff réparé` seulement si l'aveu est réellement prononcé **ou** si le jeu définit explicitement une autre voie de réparation et qu'elle a été acceptée dans la narration. Une déclaration redevenue vraie, seule, ne suffit pas. Ne pas forcer une accusation si le personnage n'a pas détecté le mensonge.
+
+**Implémentation recommandée :** commencer par un journal d'événements append-only léger (événement `claim`, `contradiction`, `avoué`, `assumé_comme_blague`, `démasqué`) attaché à l'état courant. Les jauges et `claims` existants restent la source de la partie ; `resumer`, rappels et conclusions sont dérivés des événements **réellement survenus**, pas d'un booléen final ambigu. Préserver le replay déterministe, les sauvegardes nécessaires et les comportements existants.
+
+**Tests minimaux :** mensonge Portugal → France → « Jo. » = contradiction non avouée ; Portugal → France → « Entschëllegt, ech hu gelunn. » = aveu ; « Dat war e Witz. » = plaisanterie assumée ; jamais de mensonge → aucun « bluff réparé » ; plusieurs mensonges dont un seul avoué → ne pas effacer tous les autres ; journal isolé entre deux runs ; fin qui cite uniquement un événement joué.
+
+### 18.3. P0 — Bilan linguistique fidèle ET référence pédagogique
+
+`expressionsTravaillees()` doit proposer **deux concepts clairement nommés**, pas un faux historique :
+1. **« Tes réponses pendant le date »** : montrer **le `choix.lu` réellement joué** dans l'ordre réel, avec sa traduction et, si besoin, son indicateur **linguistique** ; jamais remplacer silencieusement « 30 ans » par « 28 ans ».
+2. **« À retenir / expression de référence »** : conserver la réponse honnête / modèle de la leçon lorsqu'elle est utile pour réviser ; la nommer comme une **phrase modèle**, pas comme un dialogue effectivement prononcé. Les formulations non notées, choix de blague ou faits de personnage demandent des filtres explicites.
+
+**Le score A1.1 continue à juger la compétence linguistique, non la sincérité** ; les deux panneaux ne doivent pas inverser ce principe. Le résumé narratif doit refléter les actions, pas expliquer des variables techniques.
+
+### 18.4. P1 — Suspicion « méritée », conversation et relances naturelles
+
+- **Dissocier** l'intention `truth=lie` connue du moteur et un **signal de doute perceptible pour la fille**. Un mensonge plausible et non vérifié peut rester neutre ou donner un très léger risque latent ; les grosses montées de suspicion viennent d'une contradiction, d'une vantardise invraisemblable, d'un indice connu du personnage, d'une réaction spécifique ou d'un test réellement effectué. Ne pas rendre le bluff gratuit ni changer arbitrairement les seuils de victoire : **comparer les distributions de parties avant/après** avec les mêmes seeds.
+- **Origine et nationalité ne sont pas interchangeables** : le fait d'être né au Portugal et de posséder la nationalité luxembourgeoise **n'est pas contradictoire par nature**. N'établir des contradictions que pour des propos effectivement incompatibles, selon les faits et leur temporalité. Rappeler des propos tenus à la partenaire, pas le dossier secret d'Alex.
+- Éviter l'enchaînement de deux/trois questions sur **la même famille de thèmes** (âge, ville, origine, nationalité) ; ajouter une garde simple de **diversité thématique** au planificateur `tirerActe2()`, plutôt qu'un générateur narratif lourd. Insérer café/loisirs/routine/questions à la partenaire selon l'archétype. Emma ne doit pas se comporter comme une agente KYC.
+- Les **rappels** doivent paraître conversationnels : pertinents au sujet, espacés lorsque les 6–8 tours le permettent, déclenchés à partir d'une affirmation réelle. Une rencontre honnête doit rester intéressante.
+- Remplacer les confrontations trop génériques par quelques **variantes bilingues auditables** contextualisées par `attribut` (`origin`, `age`, `prenom`, etc.) ; ex. la confrontation France/Portugal doit évoquer cette contradiction, pas une accusation hors sujet. **Nouvelle phrase LU = revue `grammaire_luxembourg.md`, cours et LOD.lu**, pas d'interpolation grammaticale incontrôlée.
+- **Clôture** conditionnée à l'ambiance : politesse calme, gêne, complicité, tension, mais jamais promesse de nouveau rendez-vous si l'issue est négative. Ne pas laisser une correction de bluff déboucher brusquement sur « Et war flott! » sans transition ou réaction crédible.
+
+### 18.5. P1 — Réactions fluides et overlays lisibles
+
+**Hiérarchie de lecture : visage = émotion ; HUD = points/jauges ; bulles = paroles et corrections de langue si justifiées.**
+
+- Les **symboles manga** restent près de la tempe / épaule ou de l'espace négatif du décor ; ne pas cacher les yeux / le visage. La position doit tolérer cadrage 3D actuel et petits viewports.
+- **Déplacer les nombres `+2 ♥`, `SUSPICION +8`** vers les jauges, sous forme de petits delta temporaires, plutôt que les superposer au portrait ; conserver animations légères et sons pertinents. Éviter « BLUFF ! » ou « CONTRADICTION ! » en plein visage à chaque occurrence : réserver le grand bandeau arcade à une scène réellement majeure.
+- Si une réaction se résume à « Elle sourit un peu, perdue » / petit signe manga, **ne pas forcer un écran intermédiaire avec bouton Continuer**. La réaction courte peut s'afficher en sous-titre pendant un bref délai, puis continuer. **Ne jamais avancer pendant que le joueur lit une phrase LU** : si la réaction demande une lecture importante, conserver un contrôle d'avancement explicite, non une temporisation arbitraire.
+- Les corrections grammaticales fondées sont conservées et accessibles ; ne pas masquer une vraie information pédagogique au prétexte de fluidifier. Un « Kaffi! » ou « Ech sinn e Kaffi! » correct mais absurde doit être évalué socialement et **sans leçon de politesse explicative**.
+- **Aide FR** : le réglage doit être cohérent. Préférence UX : OFF masque les traductions, y compris sur B25 ; pour les scènes au-delà du cours, un bouton d'aide contextuel très accessible vaut mieux qu'un `traductionVisible` qui contredit « désactivée ». Revoir la politique d'exposition des contenus avancés et leur `pedagogicalScoring=false`.
+
+### 18.6. Scroll : politique par écran, priorité dressing « zéro scroll inutile »
+
+| Écran | Règle à hauteur/texte standard sur Android | Exception d'accessibilité |
+| --- | --- | --- |
+| Fiche de swipe et hub Pix/Pro/Amis | **Aucun scroll de page** ; les posts eux-mêmes ont un scroll intentionnel dans l'app | Si très petit viewport / texte agrandi, pas de contenu coupé |
+| Fiche Alex / dossier personnel | **Scroll autorisé** car référence riche | Navigation interne/retour sans scroll piège |
+| **Relooking / dressing** | **TOUT tenir en une seule vue : avatar, 5 styles, 6 couleurs, CTA « Aller au rendez-vous » et « Revoir ses réseaux » simultanément visibles**, pas de défilement | Si hauteur extrêmement réduite ou police agrandie, un scroll accessible vaut mieux que masquer des contrôles ; **ne pas utiliser `overflow:hidden` pour feindre la conformité** |
+| Date / choix | Zéro scroll en cas standard, HUD et choix accessibles | Si longs textes/Aide FR/agrandissement, privilégier région de texte défilante sans déplacer action critique |
+| Écran de résultats | Scroll autorisé **uniquement pour les détails** ; fin, score et « Nouveau match » accessibles très tôt | Sections détaillées extensibles et lecture d'écran |
+
+**Cause CSS du dressing actuelle :** `lm-apercu` a une hauteur minimale de **240 px**, 42dvh, max 380 px ; les styles prennent 2 lignes de ≥64 px sur 320–430 px, les 6 pastilles une ligne, plus titre, header, labels, marges et 2 actions. La hauteur totale dépasse le viewport Samsung observé.
+
+**Solution attendue :** une mise en page **adaptative par hauteur utile** (`100dvh` moins safe areas et barres du hub), répartir un budget vertical entre avatar, styles/couleurs/actions ; réduire la zone 3D **sans rendre Alex minuscule**, utiliser des styles compacts mais de cibles tactiles ≥44×44 px, resserrer les vides avant les éléments utiles. Évaluer une ligne compacte de 5 cartes si lisible, sinon grille 3+2 avec avatar proportionnellement moins haut ; **ne pas imposer une hauteur de 240 px** sur petits écrans. Le CTA principal **et le lien de retour aux réseaux** doivent être visibles ensemble.
+
+**Choix par défaut :** l'avatar montre actuellement un `casual` même lorsque l'état `look.style` est `null`, d'où absence de sélection dans les cartes. Afficher clairement **« Casual — tenue actuelle »** comme état initial cohérent, tout en conservant la sémantique du look non modifié (pas de bonus rétroactif de tenue si le joueur n'a rien sélectionné).
+
+**Résultats :** placer `Nouveau match` immédiatement après le récapitulatif principal (issue, portrait, phrase, jauges/score), et laisser « Ce qui s'est passé » / « Expressions » derrière deux sections dépliables correctement accessibles (ou un détail secondaire). Préserver **toutes** les données utiles ; déplacer `G0 / graine` dans un panneau diagnostic optionnel (copier la graine pour reproduire un bug) plutôt que dans la narration publique. Conserver un indicateur discret **DÉMO / contenu linguistique en relecture** si nécessaire, sans long texte méta à chaque fin.
+
+### 18.7. Plan de réalisation pour Claude et tests d'acceptation
+
+**Lot 10A — P0 intégrité narrative :** corriger la sémantique `claim`/contradiction/aveu, puis les deux vues de bilan : **réponses réellement choisies** et **modèles à retenir**. Ajouter tests unitaires avant UX. Préserver `luxProgress`, seeds et compatibilité des 6 profils.
+
+**Lot 10B — P1 scène sociale :** recalibrer suspicion seulement à partir d'indices/observations, améliorer diversité des thèmes et rappel, variantes de confrontation/clôture **après relecture LU**, éviter faux dialogues de type entretien administratif. Comparer au moins 20 parties/replays à seeds fixes et vérifier les 6 profils, plus le cas Emma.
+
+**Lot 10C — P1 ergonomie / rythme :** réduire feedback envahissant, positionner les émotions manga, alléger les panneaux Continuer sans perdre les corrections, clarifier l'aide FR ; **dressing intégralement visible sans scroll standard**, repli pour font-scale, bilan principal accessible avant les listes. Ne pas altérer les styles rétro, assets musicaux ou performances 3D.
+
+**Recette de fin de lots :**
+1. Rejouer les parcours **Emma** : 30 ans, Portugal, nationalité luxembourgeoise, France au rappel, « Jo. » à la confrontation ; vérifier récit et résultats sans inventer les scènes manquantes. Rejouer avec **aveu**, puis sans mensonge.
+2. Langue à 100 % possible malgré mensonges LU grammaticalement justes ; bilan « mes réponses » = vrais `choixFaits/historique`, modèles clairement étiquetés, corrections A1.1 justifiées.
+3. Vérifier comportement avec `FR OFF`, `FR ON`, réponses longues, réactions courtes/longues, `prefers-reduced-motion`, 3 runs et retour depuis le téléphone.
+4. **Screenshots à dimensions réelles** : 320×640, 360×740, 393×852, 430×932, clavier/safe areas, Samsung natif si disponible. **Dressing : aucun scroll standard** et toutes les interactions visibles. Tester aussi une police agrandie sans boutons coupés.
+5. Aucun pictogramme/scores n'occulte le visage ni une bulle ; aucune fin ne cite un événement absent ; aucun résultat contradictoire avec l'historique.
+6. Lancer `node --test test/lux-match.test.cjs`, `bash tools/critique.sh rapide` puis suite critique complète `bash tools/critique.sh` selon PLAYBOOK ; signaler les erreurs préexistantes, ne jamais revendiquer une validation Samsung sans vrai test.
+
+**Contraintes de livraison :** consulter HEAD, `PLAYBOOK.md`, SPEC 109 et code actuel avant chaque lot ; commits distincts et testés sur `2.1`, pas de refonte supplémentaire, pas de nouveaux personnages/lieux, pas de LLM runtime, pas de changement au cloud/progression ou autres jeux. **La présente section sert de passation : elle ne vaut ni patch, ni preuve de recette des corrections.**
