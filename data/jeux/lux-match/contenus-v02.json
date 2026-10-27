@@ -220,7 +220,8 @@
     "B05_ORIGIN",
     "B11_COFFEE",
     "B21_ASK_HER",
-    "B08_PROFESSION"
+    "B08_PROFESSION",
+    "EV_LENA_MORNING"
    ],
    "beatsForts": [
     "B10_FOOT"

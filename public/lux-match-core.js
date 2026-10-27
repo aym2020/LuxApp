@@ -156,25 +156,159 @@ const LuxMatchCore = (function () {
     if (etat.appsVues.indexOf(app) < 0) etat.appsVues.push(app);
   }
 
-  // ─── Scénario : un parcours pilote de la bible (§10) ─────────────────────
+  // ─── Générateur semi-procédural (SPEC §13) ───────────────────────────────
+  // Compose UNE FOIS, au match, un scénario cohérent à partir de scènes écrites de la bible.
+  // Il ne fait que choisir et ordonner : aucun texte n'est fabriqué.
+  // Même graine = même scénario (hasard dédié, indépendant des tirages d'affichage).
 
-  // Renvoie { id, profil, scenes, rappel, cloture, variante, traits, posts }.
-  // Les événements conditionnels ne sont pas placés : le moteur les déclenche.
-  // planId (facultatif, tests) : impose un parcours.
-  function composerScenario(c, profil, graine, planId) {
-    const hasard = creerHasard((graine ^ 0x5bd1e995) >>> 0);
+  const SCHEMA_SCENARIO = 1;
+  const POIDS = { exAlex: 0.10, agePreference: 0.35, variante: 0.6, age: 0.85, rappel: 0.75, adieuFlott: 0.3, quatreThemes: 0.5 };
+  const AGES_PREF = ['indifferent', 'prefers_similar', 'prefers_older', 'prefers_younger'];
+  const PREF_POST = { indifferent: 'PREF_AGE_INDIFFERENT', prefers_similar: 'PREF_AGE_SIMILAR', prefers_older: 'PREF_AGE_OLDER', prefers_younger: 'PREF_AGE_YOUNGER' };
+  // Thèmes de l'acte 2 ouverts à toutes ; les scènes propres à une partenaire viennent de profil.beats.
+  const THEMES_COMMUNS = ['B05_ORIGIN', 'B06_CITY', 'B07_LANGUAGE', 'B08_PROFESSION', 'B09_WORKPLACE', 'B11_COFFEE', 'B12_COFFEE_OFFER', 'B13_NATIONALITY', 'B21_ASK_HER'];
+  const CAFE = ['B11_COFFEE', 'B12_COFFEE_OFFER', 'EV_EMMA_COFFEE'];   // un seul sujet « café » par rendez-vous
+
+  function tirerPondere(liste, poids, hasard) {
+    const total = liste.reduce((t, x) => t + poids(x), 0);
+    let r = hasard() * total;
+    for (const x of liste) { r -= poids(x); if (r < 0) return x; }
+    return liste[liste.length - 1];
+  }
+
+  // 1. Traits de la partenaire : humour, une variante de post, au plus UN levier social fort.
+  function tirerTraits(c, profil, hasard) {
+    const traits = { humour: choisirUn(profil.humours, hasard), phoneTolerance: profil.phoneTolerance, agePreference: null, dislikedFirstName: null, agePrefPositive30: false };
+    const variante = profil.variantes.length && hasard() < POIDS.variante ? choisirUn(profil.variantes, hasard) : null;
+    const levierDejaPris = profil.phoneTolerance === 'anti_phone';  // Emma : le téléphone suffit
+    const r = hasard();
+    if (!levierDejaPris && profil.exAlexPossible && r < POIDS.exAlex) traits.dislikedFirstName = c.persona.name;
+    else if (profil.agePrefPossible && r < POIDS.exAlex + POIDS.agePreference) {
+      traits.agePreference = choisirUn(levierDejaPris ? ['indifferent'] : AGES_PREF, hasard);
+      // EV_AGE_PREF (« Du bass drësseg? ») seulement si 30 ans lui plaît vraiment.
+      traits.agePrefPositive30 = traits.agePreference === 'prefers_older' ||
+        (traits.agePreference === 'prefers_similar' && Math.abs(30 - profil.age) < Math.abs(28 - profil.age));
+    }
+    return { traits, variante };
+  }
+
+  // 2. Posts du scénario : variante + préférence publiée (toujours sur Amis, jamais privé).
+  function postsDuScenario(c, variante, traits) {
+    const posts = [];
+    if (variante) posts.push(Object.assign({ id: variante, reveals: c.variantes[variante].trait }, c.variantes[variante]));
+    if (traits.agePreference) posts.push(Object.assign({ id: PREF_POST[traits.agePreference], reveals: 'age' }, c.preferences[PREF_POST[traits.agePreference]]));
+    if (traits.dislikedFirstName) posts.push(Object.assign({ id: 'PREF_EX_ALEX', reveals: 'prenom' }, c.preferences.PREF_EX_ALEX));
+    return posts;
+  }
+
+  // 3. Scènes de l'acte 2 : l'accroche de la partenaire + 2 ou 3 thèmes variés.
+  function themePossible(c, profil, id, variante, choisis) {
+    const b = c.beats[id];
+    if (!b || choisis.indexOf(id) >= 0) return false;
+    if (b.profil && b.profil !== profil.id) return false;
+    if (b.requiresVariant && b.requiresVariant !== variante) return false;
+    if (CAFE.indexOf(id) >= 0 && choisis.some(x => CAFE.indexOf(x) >= 0)) return false;
+    if (id === 'B09_WORKPLACE' && choisis.indexOf('B08_PROFESSION') < 0) return false;  // le lieu de travail suit le métier
+    return true;
+  }
+  function tirerActe2(c, profil, variante, hasard) {
+    const propres = profil.beats.filter(id => !c.evenements[id]);
+    const accroche = choisirUn(profil.beatsForts, hasard);
+    const choisis = [accroche];
+    const nombre = hasard() < POIDS.quatreThemes ? 4 : 3;
+    // Les scènes de la partenaire pèsent 3 fois plus que les thèmes communs.
+    const candidats = propres.concat(THEMES_COMMUNS.filter(id => propres.indexOf(id) < 0));
+    let essais = 0;
+    while (choisis.length < nombre && essais++ < 30) {
+      const possibles = candidats.filter(id => themePossible(c, profil, id, variante, choisis));
+      if (!possibles.length) break;
+      choisis.push(tirerPondere(possibles, id => propres.indexOf(id) >= 0 ? 3 : 1, hasard));
+    }
+    // Ordre : mélangé, puis B09 après B08 et la question d'Alex jamais en premier.
+    let ordre = melanger(choisis, hasard);
+    if (ordre.indexOf('B09_WORKPLACE') >= 0 && ordre.indexOf('B09_WORKPLACE') < ordre.indexOf('B08_PROFESSION')) {
+      ordre = ordre.filter(id => id !== 'B09_WORKPLACE');
+      ordre.splice(ordre.indexOf('B08_PROFESSION') + 1, 0, 'B09_WORKPLACE');
+    }
+    if (ordre[0] === 'B21_ASK_HER' && ordre.length > 1) { ordre.shift(); ordre.splice(1, 0, 'B21_ASK_HER'); }
+    return ordre;
+  }
+
+  // 4. Validation (contraintes fortes de la bible §12.2 et de la SPEC §13.4).
+  function validerScenario(c, profil, plan) {
+    const erreurs = [];
+    const principaux = plan.scenes.length + (plan.rappel ? 1 : 0) + 1;
+    if (principaux < 6 || principaux > 8) erreurs.push('tours:' + principaux);
+    if (new Set(plan.scenes).size !== plan.scenes.length) erreurs.push('doublon');
+    if (plan.scenes.indexOf('B01_SALUT') >= 0 && plan.scenes.indexOf('B02_SALUT_SOIR') >= 0) erreurs.push('deux_salutations');
+    if (plan.scenes.filter(id => CAFE.indexOf(id) >= 0).length > 1) erreurs.push('deux_cafes');
+    plan.scenes.forEach(id => { if (!c.beats[id]) erreurs.push('scene_inconnue:' + id); });
+    // Chaque critère à fort effet a un indice public AVANT le date.
+    const posts = profil.amis.posts.concat(plan.posts);
+    const indice = reveals => posts.some(p => p.reveals === reveals);
+    if (!indice('style')) erreurs.push('indice_look');
+    if (profil.phoneTolerance === 'anti_phone' && !indice('anti_phone')) erreurs.push('indice_telephone');
+    if (plan.traits.agePreference && !indice('age')) erreurs.push('indice_age');
+    if (plan.traits.dislikedFirstName && !indice('prenom')) erreurs.push('indice_prenom');
+    if (plan.traits.dislikedFirstName && plan.scenes.indexOf('B03_NAME') < 0) erreurs.push('prenom_jamais_demande');
+    // L'accroche de la partenaire est bien jouée (son événement reste atteignable).
+    if (!profil.beatsForts.some(id => plan.scenes.indexOf(id) >= 0)) erreurs.push('accroche');
+    return erreurs;
+  }
+
+  // Repli : un parcours pilote de la bible (§10), âge ajouté après le prénom.
+  function scenarioPilote(c, profil, hasard, planId) {
     const plans = c.plans.filter(p => p.profil === profil.id && p.valide !== false);
-    const plan = plans.find(p => p.id === planId) || choisirUn(plans, hasard);
-    const scenes = plan.sequence.filter(id => !c.evenements[id] && !c.rappels[id] && !c.clotures[id]);
-    // L'âge (3 réponses correctes) est toujours demandé juste après le prénom.
+    const pilote = plans.find(p => p.id === planId) || choisirUn(plans, hasard);
+    const scenes = pilote.sequence.filter(id => !c.evenements[id] && !c.rappels[id] && !c.clotures[id]);
     if (scenes.indexOf('B04_AGE') < 0) scenes.splice(scenes.indexOf('B03_NAME') + 1, 0, 'B04_AGE');
     return {
-      id: plan.id, profil: profil.id, scenes,
-      rappel: plan.sequence.some(id => c.rappels[id]),
-      cloture: plan.sequence.find(id => c.clotures[id]) || 'B18_END',
-      variante: plan.variante || null, traits: {},
-      posts: plan.variante ? [Object.assign({ id: plan.variante }, c.variantes[plan.variante])] : []
+      id: pilote.id, scenes, rappel: pilote.sequence.some(id => c.rappels[id]),
+      cloture: pilote.sequence.find(id => c.clotures[id]) || 'B18_END',
+      variante: pilote.variante || null, traits: { humour: profil.humours[0], phoneTolerance: profil.phoneTolerance, agePreference: null, dislikedFirstName: null, agePrefPositive30: false }
     };
+  }
+
+  // Renvoie un plan gelé : { schemaVersion, contentVersion, graine, profil, scenes, rappel,
+  // cloture, variante, traits, posts, indices, diagnostics }.
+  // planId (facultatif, tests) : impose un parcours pilote de la bible.
+  function composerScenario(c, profil, graine, planId) {
+    const hasard = creerHasard((graine ^ 0x5bd1e995) >>> 0);
+    let plan = null;
+    const diagnostics = [];
+    if (!planId) {
+      for (let essai = 0; essai < 3 && !plan; essai++) {
+        const { traits, variante } = tirerTraits(c, profil, hasard);
+        const acte1 = [hasard() < 0.5 ? 'B01_SALUT' : 'B02_SALUT_SOIR', 'B03_NAME'];
+        if (traits.agePreference || hasard() < POIDS.age) acte1.push('B04_AGE');
+        const candidat = {
+          id: 'G' + essai, scenes: acte1.concat(tirerActe2(c, profil, variante, hasard)),
+          rappel: hasard() < POIDS.rappel, cloture: hasard() < POIDS.adieuFlott ? 'B26_DATE_FAREWELL' : 'B18_END',
+          variante, traits
+        };
+        // Trop long : on retire un thème de l'acte 2 (jamais l'accroche).
+        while (candidat.scenes.length + (candidat.rappel ? 1 : 0) + 1 > 8) {
+          const retirable = candidat.scenes.slice().reverse().find(id => acte1.indexOf(id) < 0 && profil.beatsForts.indexOf(id) < 0);
+          candidat.scenes.splice(candidat.scenes.lastIndexOf(retirable), 1);
+        }
+        candidat.posts = postsDuScenario(c, variante, traits);
+        const erreurs = validerScenario(c, profil, candidat);
+        if (erreurs.length) diagnostics.push('essai ' + essai + ' : ' + erreurs.join(', '));
+        else plan = candidat;
+      }
+    }
+    if (!plan) {
+      plan = scenarioPilote(c, profil, hasard, planId);
+      plan.posts = postsDuScenario(c, plan.variante, plan.traits);
+      if (!planId) diagnostics.push('repli : parcours pilote ' + plan.id);
+    }
+    plan.schemaVersion = SCHEMA_SCENARIO;
+    plan.contentVersion = c.contentVersion;
+    plan.graine = graine;
+    plan.profil = profil.id;
+    plan.indices = profil.amis.posts.concat(plan.posts).filter(p => p.reveals).map(p => ({ id: p.id, app: 'amis', reveals: p.reveals }));
+    plan.diagnostics = diagnostics;
+    return plan;
   }
 
   // ─── Look ─────────────────────────────────────────────────────────────────
@@ -221,14 +355,15 @@ const LuxMatchCore = (function () {
     if (c.evenements[id]) return { type: 'evenement', id, prompt: c.evenements[id].npc, choix: c.evenements[id].choices.slice(), source: c.evenements[id] };
     if (c.rappels[id]) return { type: 'rappel', id, prompt: c.rappels[id].prompt, choix: melanger(c.rappels[id].choices, etat.hasard), source: c.rappels[id] };
     const source = scene(etat, id);
-    // Scène-événement écrite pour une partenaire (EV_LENA_MORNING, EV_EMMA_COFFEE) : comptée dans le budget.
-    if (/^EV_/.test(id) && etat.evenements.indexOf(id) < 0) etat.evenements.push(id);
     return { type: source.type === 'demande' ? 'demande' : 'question', id, prompt: source.prompt, choix: preparerChoix(etat, source), source };
   }
 
   function commencerDate(etat) {
     if (etat.phase !== 'look') return;
     etat.file = etat.plan.scenes.slice();
+    // Scènes-événements écrites pour une partenaire (EV_LENA_MORNING, EV_EMMA_COFFEE) :
+    // réservées dès le départ dans le budget de 2 événements.
+    etat.file.forEach(id => { if (/^EV_/.test(id)) etat.evenements.push(id); });
     etat.affinity = borne(etat.affinity + etat.lookEffet);
     etat.phase = 'date';
     etat.telephoneOuvert = false;
@@ -390,8 +525,10 @@ const LuxMatchCore = (function () {
         if (fort) r.reaction = reaction(etat, 'SINCERE');
         if (choix.reactionFr) r.reaction = { fr: choix.reactionFr };
       } else if (choix.truth === 'lie') {
-        // Le bluff plaît… pour l'instant, mais il est mémorisé.
-        ajouter(social.affinity !== undefined ? social.affinity : 2, 2);
+        // Le bluff plaît… pour l'instant, mais il est mémorisé. Plus les mensonges
+        // s'accumulent, plus elle doute ; mentir sur SON sujet favori se remarque.
+        const dejaActifs = Object.keys(etat.mensonges).filter(k => !(choix.claims && k in choix.claims)).length;
+        ajouter(social.affinity !== undefined ? social.affinity : 2, Math.min(12, 2 + 3 * dejaActifs) + (fort ? 4 : 0));
         r.bluff = true;
         r.visuel = 'sourire';
         if (fort) { r.reaction = reaction(etat, 'BLUFF'); r.visuel = 'sourcil'; }
@@ -560,7 +697,8 @@ const LuxMatchCore = (function () {
     });
     if (etat.blagues.joke_age_120) lignes.push({ type: 'blague', fr: 'Tu as prétendu avoir 120 ans.' });
     if (etat.contradictions) lignes.push({ type: 'contradiction', fr: (etat.contradictions > 1 ? etat.contradictions + ' contradictions' : 'Une contradiction') + ' : elle l’a remarqué.' });
-    etat.evenements.forEach(id => { if (id !== REPARATION) lignes.push({ type: 'evenement', fr: 'Imprévu : ' + titreEvenement(etat, id) + '.' }); });
+    const joues = etat.historique.map(h => h.id);
+    etat.evenements.forEach(id => { if (id !== REPARATION && joues.indexOf(id) >= 0) lignes.push({ type: 'evenement', fr: 'Imprévu : ' + titreEvenement(etat, id) + '.' }); });
     if (etat.ouverturesDate) lignes.push({ type: 'telephone', fr: 'Téléphone consulté ' + etat.ouverturesDate + ' fois pendant le rendez-vous' + (etat.batterieVide ? ', jusqu’à la batterie à plat.' : '.') });
     else lignes.push({ type: 'telephone', fr: 'Téléphone resté dans ta poche.' });
     if (!Object.keys(etat.dejaMenti).length && !etat.blagues.joke_age_120) lignes.unshift({ type: 'sincere', fr: 'Tu as dit la vérité du début à la fin.' });
@@ -584,7 +722,7 @@ const LuxMatchCore = (function () {
     nouvellePartie, commencerSwipes, carteCourante, swiper, apresMatch, noterApp,
     effetLook, choisirLook, commencerDate, repondre, continuer,
     ouvrirTelephone, fermerTelephone, avancerTemps, expressionsTravaillees,
-    profilParId, creerHasard, composerScenario, gardeOk
+    profilParId, creerHasard, composerScenario, validerScenario, gardeOk
   };
 })();
 

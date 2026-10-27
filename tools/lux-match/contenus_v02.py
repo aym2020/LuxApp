@@ -38,7 +38,7 @@ profils = [
    variantes=['VAR_LENA_COFFEE', 'VAR_LENA_EARLY'], agePrefPossible=True, exAlexPossible=False,
    repliques={'ville': L('Ech wunnen zu Metz.', "J'habite à Metz.", 'lecon'), 'metier': L('Ech schaffen als Léierin.', 'Je suis professeure.', 'lecon'),
               'age': L('Ech si siwenanzwanzeg Joer al.', "J'ai 27 ans.", 'lecon')},
-   beats=['B10_FOOT', 'B06_CITY', 'B05_ORIGIN', 'B11_COFFEE', 'B21_ASK_HER', 'B08_PROFESSION'], beatsForts=['B10_FOOT'],
+   beats=['B10_FOOT', 'B06_CITY', 'B05_ORIGIN', 'B11_COFFEE', 'B21_ASK_HER', 'B08_PROFESSION', 'EV_LENA_MORNING'], beatsForts=['B10_FOOT'],
    reactions={'LOOK_OK': 'Ah, du bleu et des baskets !', 'LOOK_DIFFERENT': 'Tu viens courir en costume ? Ambitieux.', 'BLUFF': 'Tu joues au foot ? Je note !',
               'AVEU': 'Bon, au moins tu ne mens plus sur ton niveau.', 'SINCERE': 'Pas besoin d’aimer le foot pour être sympa.'},
    fins={'SUCCESS': {'id': 'FIN_LENA_SUCCESS', 'fr': 'J’aime les gens qui tiennent parole. Un autre café après un match ?', 'garde': {'aucunMensongeActif': True}},
