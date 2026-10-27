@@ -359,6 +359,11 @@ async function creer() {
       g.add(plancher('#6a4a36'), boite(3.4, 0.08, 1.8, '#f1e6cf', 0, 0.8, 0), cylindre(0.08, 0.8, '#3a2a20', 0, 0.4, 0));
       [[-0.55, 0.1], [0.6, -0.1]].forEach(([x, z]) => { g.add(cylindre(0.38, 0.04, '#ffffff', x, 0.86, z, 14)); const pates = cylindre(0.27, 0.07, '#5aa04a', x, 0.91, z, 10); g.add(pates); });
       g.add(cylindre(0.07, 0.24, '#f4f0ff', 0.05, 0.96, 0.5, 8), cylindre(0.12, 0.3, '#2a6a3a', -0.1, 0.99, -0.55, 8));
+    },
+    soupe: g => {   // grande marmite de soupe de pommes de terre et deux bols
+      g.add(plancher('#6a4a36'), boite(3.4, 0.08, 1.8, '#f1e6cf', 0, 0.8, 0), cylindre(0.08, 0.8, '#3a2a20', 0, 0.4, 0));
+      g.add(cylindre(0.5, 0.55, '#5a5f68', 0, 1.12, -0.2, 16), cylindre(0.46, 0.02, '#e8c860', 0, 1.4, -0.2, 16));
+      [[-0.9, 0.35], [0.9, 0.35]].forEach(([x, z]) => g.add(cylindre(0.26, 0.14, '#ffffff', x, 0.91, z, 12), cylindre(0.22, 0.02, '#e8c860', x, 0.98, z, 12)));
     }
   });
   // Photo de preuve : décor + jusqu'à deux personnes posées. Un modèle affiché à l'écran

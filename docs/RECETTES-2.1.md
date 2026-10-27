@@ -82,6 +82,21 @@ Chaque scénario affiche sa **liste de contrôle dans le panneau** avant ouvertu
 
 **Exception non contournable :** le mode sécurisé `3001` **désactive Firebase**. Aucune recette sur cette origine ne peut prouver la vraie connexion, la fusion cloud ni la synchronisation entre deux appareils. Ces points exigent des tests automatisés `tests/test_cloud.js` / `tests/test_sync.js` et une recette distincte sur comptes de test, uniquement en environnement isolé. Ne pas désactiver la protection Firebase de 3001 pour cette raison.
 
+## Lux Démasque (SPEC 110) — recette sur appareil à faire
+
+**Non réalisée** : aucun test tactile, GPU ni écoute sur Samsung n'a été fait par Claude (Chromium + SwiftShader seulement). Automatisé : `test/lux-demasque*.cjs`, `tests/test_lux_demasque*.py`, `tests/test_lux_match_masque.py`.
+
+| À vérifier sur Samsung | Attendu |
+|---|---|
+| Hub Jeux | Carte Lux Démasque, **aucune carte Lux Match** |
+| Dossier Milo complet au doigt | Réseaux, pièces, carnet, « Faire préciser », OBJECTION ! sans tap fantôme ; effet passable d'un appui |
+| 3D | Visage lisible, jamais caché par la feuille du verdict ; fluidité acceptable ; pas d'échauffement anormal sur 5 min |
+| Musique et effets | Boucles sans clic au raccord, volume équilibré, ducking à l'objection ; silence en arrière-plan, reprise au retour ; Son/Musique coupés mémorisés |
+| Retour Android | Ferme la fenêtre du dessus, passe l'effet OBJECTION !, puis revient au hub |
+| 320–430 px, police agrandie | Aucun texte coupé, OBJECTION ! visible sans défiler |
+| Noah, Tom, dossier « INÉDIT » | Après Milo résolu : Noah puis Tom, puis dossiers générés ; « Rejouer » redonne le même dossier |
+| Relecture LU | Phrases `a_verifier_lod` de [LUX-DEMASQUE-AFFAIRES.md](LUX-DEMASQUE-AFFAIRES.md) et du dossier Milo confirmées sur LOD.lu ou par un locuteur |
+
 ## Commandes sécurisées (Termux)
 
 ```bash

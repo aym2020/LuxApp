@@ -18,7 +18,8 @@ const ld = {
   images: {},             // portraits et photos de preuves déjà rendus (dataURL)
   preparation: null,      // promesse de rendu des images du dossier
   emotionTimer: null,
-  fxTimer: null
+  fxTimer: null,
+  fxFin: null   // fin de l’effet OBJECTION ! en cours (appui ou Retour pour le passer)
 };
 const LD_APPS = { pix: 'Pix', pro: 'Pro', amis: 'Amis' };
 const LD_THEMES_FR = { travail: 'Travail', logement: 'Logement', sport: 'Sport', voyage: 'Voyage', cuisine: 'Cuisine', animal: 'Animal', famille: 'Famille', loisir: 'Loisir' };
@@ -63,7 +64,7 @@ function ldIcone(nom) {
 // Moteur de Lux Match (public/lux-match-3d.js), chargé à la demande, instance partagée.
 function ldObtenir3D() {
   if (!ld.promesse3d) {
-    ld.promesse3d = import('./lux-match-3d.js?v=11').then(() => window.LuxMatch3D.partage());
+    ld.promesse3d = import('./lux-match-3d.js?v=12').then(() => window.LuxMatch3D.partage());
     ld.promesse3d.then(m => { ld.rendu3d = m; }).catch(() => { ld.promesse3d = null; });
   }
   return ld.promesse3d;
@@ -154,7 +155,15 @@ function ldEffetObjection(reussi, ensuite, pieceId) {
   depo.appendChild(fx);
   depo.classList.remove('ld-secousse'); void depo.offsetWidth;
   if (reussi) depo.classList.add('ld-secousse');
-  ld.fxTimer = setTimeout(() => { fx.remove(); depo.classList.remove('ld-secousse'); ensuite(); }, reussi ? 1300 : 700);
+  // L'effet bloque les autres boutons ; un appui (ou Retour) le passe et montre le verdict.
+  const finir = () => {
+    if (ld.fxFin !== finir) return;
+    ld.fxFin = null; clearTimeout(ld.fxTimer);
+    fx.remove(); depo.classList.remove('ld-secousse'); ensuite();
+  };
+  ld.fxFin = finir;
+  fx.addEventListener('click', finir);
+  ld.fxTimer = setTimeout(finir, reussi ? 1300 : 700);
 }
 
 // ─── Carte du hub Jeux ─────────────────────────────────────────────────────
@@ -205,6 +214,7 @@ function luxDemasqueArreter() {
   ldFermerToutesFenetres();
   ldEffacerEmotion();
   clearTimeout(ld.fxTimer);
+  ld.fxFin = null;
   if (ld.rendu3d && partie && document.querySelector('#ld-jeu .ld-scene-3d')) ld.rendu3d.detacher();
   ld.verdict = null;
 }
@@ -398,9 +408,10 @@ function ldFermerCalque(id) {
 function ldFermerToutesFenetres() { document.querySelectorAll('#ld-jeu .ld-calque').forEach(c => c.remove()); ldSynchroMusique(); }
 function ldFermerBouton(id) { return '<button type="button" class="ld-fermer" onclick="ldFermerCalque(\'' + id + '\')" aria-label="Fermer">✕</button>'; }
 // Android Retour / Échap : la fenêtre du dessus se ferme d'abord.
-function luxDemasqueSuperposition() { return ldVueActive() && !!document.querySelector('#ld-jeu .ld-calque'); }
+function luxDemasqueSuperposition() { return ldVueActive() && (!!ld.fxFin || !!document.querySelector('#ld-jeu .ld-calque')); }
 function luxDemasqueFermerSuperposition() {
   if (!ldVueActive()) return false;
+  if (ld.fxFin) { ld.fxFin(); return true; }   // OBJECTION ! en cours : on passe directement au verdict
   const calques = document.querySelectorAll('#ld-jeu .ld-calque');
   if (!calques.length) return false;
   const dessus = calques[calques.length - 1];
@@ -518,7 +529,7 @@ function ldPresenter(pieceId) {
   const reussi = r.resultat === 'demasque';
   ldSon(reussi ? 'objection' : 'rate', { baisse: reussi });
   ldEffetObjection(reussi, () => {
-    if (!ld.partie || ld.verdict !== r) return;
+    if (!ld.partie || ld.partie.phase !== 'deposition' || ld.verdict !== r) return;
     if (reussi) { ldReagir('zoom'); ldEmotion('stunned', 'big'); ldSon('percee', { baisse: true }); }
     else { ldReagir('rire'); ldEmotion('delighted', 'subtle'); }
     ldAfficherVerdict(r);
@@ -601,7 +612,7 @@ function ldRendreBilan(box) {
   const mensonges = lignes.filter(l => !l.vrai), vraies = lignes.filter(l => l.vrai);
   box.innerHTML = ldEntete({ menu: false }) +
     '<div class="ld-bilan">' +
-      '<p class="ld-bilan-titre' + (fin.complet ? ' ld-complet' : '') + '">' + fin.trouvees + ' / ' + fin.total + '<span>disquette' + (fin.total > 1 ? 's' : '') + ' démasquée' + (fin.trouvees > 1 ? 's' : '') + '</span></p>' +
+      '<p class="ld-bilan-titre' + (fin.complet ? ' ld-complet' : '') + '">' + fin.trouvees + ' / ' + fin.total + '<span>' + (fin.total > 1 ? 'disquettes démasquées' : 'disquette démasquée') + '</span></p>' +
       '<div class="ld-bilan-tete">' + ldPortrait('ld-portrait-bilan', fin.complet ? 'Defeat' : 'Idle') +
         '<div class="ld-verdict-parole"><span class="ld-locuteur">' + ldEchapper(p.npc.nom) + '</span>' + ldReplique(fin.replique) + '</div></div>' +
       '<div class="ld-stats"><div><span>Objections ratées</span><b>' + fin.erreurs + '</b></div>' +
@@ -615,7 +626,10 @@ function ldRendreBilan(box) {
         mensonges.map(l => '<li class="' + (l.demasquee ? 'ld-ok' : 'ld-rate') + '"><small>' + (l.demasquee ? 'Démasquée' : 'Pas démasquée') + ' · ' + ldEchapper(LD_THEMES_FR[l.theme] || l.theme) + '</small>' +
           '<b lang="lb">' + ldEchapper(l.base.lu) + '</b><span>' + ldEchapper(l.base.fr) + '</span>' +
           '<span class="ld-motif">Pourquoi : ' + ldEchapper(l.motivationFr) + '</span>' +
-          '<span class="ld-preuve">Preuve : ' + ldEchapper(l.explicationFr) + '</span></li>').join('') + '</ul></details>' +
+          '<span class="ld-preuve">Preuve : ' + ldEchapper(l.explicationFr) + '</span>' +
+          // Disquette manquée : où était la pièce, et l'avait-il ouverte ?
+          (!l.demasquee && l.preuve ? '<span class="ld-piece-cle">Pièce : ' + ldEchapper(LD_APPS[l.preuve.source] + ' · ' + l.preuve.titre) + (l.preuveVue ? ' — tu l’avais ouverte' : ' — jamais ouverte') + '</span>' : '') +
+          '</li>').join('') + '</ul></details>' +
       '<details class="ld-details"><summary>Ce qui était vrai</summary><ul class="ld-liste-bilan">' +
         vraies.map(l => '<li><b lang="lb">' + ldEchapper(l.base.lu) + '</b><span>' + ldEchapper(l.base.fr) + '</span></li>').join('') + '</ul></details>' +
       '<details class="ld-details ld-diag"><summary>Diagnostic</summary><p class="ld-texte">Dossier <b>' + ldEchapper(p.dossier.id) + '</b>' + (p.dossier.genere ? ' · graine <b>' + p.dossier.graine + '</b> · affaires ' + ldEchapper(p.dossier.affaires.join(', ')) : '') + ' · contenu ' + ldEchapper(p.contenus.contentVersion) + ' · ' + p.journal.length + ' actions</p></details>' +

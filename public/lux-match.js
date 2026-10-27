@@ -244,7 +244,7 @@ async function lmChargerDonnees() {
 // Le moteur 3D est créé une seule fois (préchargé dès l'ouverture du jeu).
 function lmObtenir3D() {
   if (!lm.promesse3d) {
-    lm.promesse3d = import('./lux-match-3d.js?v=11').then(() => window.LuxMatch3D.partage()); // instance partagée avec Lux Démasque
+    lm.promesse3d = import('./lux-match-3d.js?v=12').then(() => window.LuxMatch3D.partage()); // instance partagée avec Lux Démasque
     lm.promesse3d.then(r => { lm.rendu3d = r; }).catch(() => { lm.promesse3d = null; });
   }
   return lm.promesse3d;
@@ -1107,7 +1107,7 @@ let lmPrechargeLance = false;
 function lmPrecharger() {
   if (lmPrechargeLance) return;
   lmPrechargeLance = true;
-  const lancer = () => import('./lux-match-3d.js?v=11')
+  const lancer = () => import('./lux-match-3d.js?v=12')
     .then(() => window.LuxMatch3D.precharger(['Casual_Female', 'Casual2_Female', 'Casual3_Female', 'Suit_Female', 'Doctor_Female_Young', 'Casual_Male']))
     .catch(() => { lmPrechargeLance = false; });
   if (typeof requestIdleCallback === 'function') requestIdleCallback(lancer, { timeout: 2500 });

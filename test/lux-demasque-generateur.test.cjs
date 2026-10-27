@@ -110,6 +110,39 @@ test('Cohérence des faits : dates de juillet, août et septembre 2026 vérifié
   C.affaires.flatMap(a => a.pieces).forEach(x => assert.doesNotMatch(x.transcription, /menti|jamais (été|allé)|pas (médecin|musicien)|chômage|sans emploi/i, x.id));
 });
 
+test('Équilibrage : le nombre de pièces ne trahit pas les mensonges, la force brute ne paie pas', () => {
+  // Chaque affaire, vraie ou fausse, apporte exactement deux pièces au dossier.
+  C.affaires.forEach(a => assert.equal(a.pieces.length, 2, a.id));
+  for (let g = 1; g <= 200; g++) {
+    const d = Core.composerDossier(C, { graine: g });
+    assert.equal(d.pieces.length, 12, 'graine ' + g);
+    // Force brute : toutes les pièces contre toutes les déclarations, précisions obtenues.
+    const e = Core.nouvellePartie(C, { dossier: d });
+    Core.commencer(e);
+    d.declarations.forEach((x, i) => Core.allerA(e, i));
+    d.declarations.forEach(x => Core.preciser(e, x.id));
+    d.pieces.forEach(p => Core.consulter(e, p));
+    d.declarations.forEach(x => d.pieces.forEach(p => Core.objecter(e, x.id, p)));
+    const brute = Core.conclure(e);
+    assert.equal(brute.trouvees, 3);
+    assert.equal(brute.score, 0, 'graine ' + g + ' : la force brute ne rapporte rien');
+  }
+  // Partie attentive : 3/3 sans faute = 1 100 ; une erreur = 850 ; deux sur trois sans faute = 600.
+  const d = Core.composerDossier(C, { graine: 9 });
+  const jouer = (erreurs, trouvees) => {
+    const e = Core.nouvellePartie(C, { dossier: d });
+    Core.commencer(e);
+    d.declarations.forEach((x, i) => Core.allerA(e, i));
+    d.declarations.forEach(x => Core.preciser(e, x.id));
+    d.pieces.forEach(p => Core.consulter(e, p));
+    const vraie = d.declarations.find(x => x.vrai);
+    for (let k = 0; k < erreurs; k++) Core.objecter(e, vraie.id, d.pieces[k]);
+    d.declarations.filter(x => !x.vrai).slice(0, trouvees).forEach(x => Core.objecter(e, x.id, x.mensonge.preuves[0][0]));
+    return Core.conclure(e).score;
+  };
+  assert.deepEqual([jouer(0, 3), jouer(1, 3), jouer(0, 2), jouer(0, 0), jouer(30, 1)], [1100, 850, 600, 0, 0]);
+});
+
 test('Rejouer : même dossier généré + mêmes décisions = même partie', () => {
   const d = Core.composerDossier(C, { graine: 4242 });
   const jouer = () => {

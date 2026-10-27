@@ -122,6 +122,8 @@
 #view-luxdemasque .ld-photo-chat{background:radial-gradient(40% 30% at 50% 62%,#e08a3a 0 98%,transparent 100%),linear-gradient(180deg,#d9c9b0,#bfa98a)}
 #view-luxdemasque .ld-post-equipe{background:linear-gradient(135deg,#2f5fa0,#1d3a66)}
 #view-luxdemasque .ld-post-pesto{background:radial-gradient(45% 35% at 50% 55%,#5aa04a 0 98%,transparent 100%),#f1e6cf}
+#view-luxdemasque .ld-post-soupe,#view-luxdemasque .ld-photo-soupe{background:radial-gradient(40% 30% at 50% 55%,#e8c860 0 98%,transparent 100%),#f1e6cf}
+#view-luxdemasque .ld-post-fete{background:linear-gradient(135deg,#4fa3a5,#2a5f60)}
 #view-luxdemasque .ld-visuel-profil,#view-luxdemasque .ld-visuel-appli{padding:10px 12px;background:#f2eee6;color:#1d1726}
 #view-luxdemasque .ld-visuel-appli{background:#0f2a24;color:#d8fff0}
 #view-luxdemasque .ld-visuel-profil>span,#view-luxdemasque .ld-visuel-appli>span{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;line-height:1.3}
@@ -180,7 +182,7 @@
 #view-luxdemasque .ld-liste-bilan li.ld-ok{box-shadow:inset 3px 0 0 var(--ld-or)} #view-luxdemasque .ld-liste-bilan li.ld-rate{box-shadow:inset 3px 0 0 #9fb0ff}
 #view-luxdemasque .ld-liste-bilan small{font-weight:800;color:#a99cc4}
 #view-luxdemasque .ld-liste-bilan b{font-size:15px;color:#fff}
-#view-luxdemasque .ld-motif{color:#ffd1f4} #view-luxdemasque .ld-preuve{color:#ffe9a8}
+#view-luxdemasque .ld-motif{color:#ffd1f4} #view-luxdemasque .ld-preuve{color:#ffe9a8} #view-luxdemasque .ld-piece-cle{color:#c9f2ff}
 #view-luxdemasque .ld-diag>summary{min-height:44px;font-size:11px;color:#8f84a6}
 #view-luxdemasque .ld-demo-note{margin:0;text-align:center;font-size:11px;color:#8f84a6}
 #view-luxdemasque .ld-toast{position:fixed;z-index:40;left:50%;top:calc(110px + env(safe-area-inset-top));transform:translateX(-50%);padding:10px 14px;border-radius:12px;
@@ -216,7 +218,7 @@
 @keyframes ld-signe{0%{opacity:0;scale:.4}20%{opacity:1;scale:1.12}35%{scale:1}85%{opacity:1}100%{opacity:0}}
 @keyframes ld-choc{0%{opacity:0;scale:2}10%{opacity:1;scale:1}15%{translate:-3px 0}20%{translate:3px 0}25%{translate:-2px 0}30%{translate:0 0}85%{opacity:1}100%{opacity:0}}
 /* OBJECTION ! plein écran : lignes de vitesse, cri qui claque, flash blanc. */
-#view-luxdemasque .ld-fx{position:absolute;inset:0;z-index:20;display:grid;place-items:center;pointer-events:none;overflow:hidden}
+#view-luxdemasque .ld-fx{position:absolute;inset:0;z-index:20;display:grid;place-items:center;pointer-events:auto;overflow:hidden}
 #view-luxdemasque .ld-fx-lignes{position:absolute;inset:-50%;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.95) 0deg 3deg,rgba(224,41,61,.92) 3deg 11deg);
   animation:ld-lignes .95s steps(10,end) forwards}
 #view-luxdemasque .ld-fx-non .ld-fx-lignes{background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.5) 0deg 2deg,rgba(60,50,90,.85) 2deg 12deg);animation-duration:.52s}

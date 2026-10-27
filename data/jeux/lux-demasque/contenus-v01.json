@@ -936,7 +936,17 @@
      "transcription": "« Bravo à {npc}, notre infirmier de nuit, pour ses deux ans aux urgences ! 🎉 »",
      "visuel": {
       "type": "post",
-      "image": "fete"
+      "image": "fete",
+      "scene": "hopital",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Victory",
+        "x": -0.4,
+        "z": 0.3,
+        "rotation": 0.2
+       }
+      ]
      }
     },
     {
@@ -1726,6 +1736,27 @@
        ]
       ]
      }
+    },
+    {
+     "id": "PIX_BUREAU",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "19 octobre 2026",
+     "titre": "Photo : lundi matin",
+     "transcription": "Photo : {npc} à son bureau, devant un écran. Légende : « Lundi : café et tableaux ☕📊 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "bureau",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Idle",
+        "x": 0.3,
+        "z": 0.2,
+        "rotation": -0.2
+       }
+      ]
+     }
     }
    ]
   },
@@ -1774,6 +1805,27 @@
         "z": 0.4,
         "rotation": 0
        }
+      ]
+     }
+    },
+    {
+     "id": "AMIS_VOISINE",
+     "source": "amis",
+     "auteur": "Mme Weber",
+     "dateFr": "14 octobre 2026",
+     "titre": "Publication de Mme Weber (voisine)",
+     "transcription": "« Merci à {npc}, mon gentil voisin du 3e, d’avoir arrosé mes plantes pendant mes vacances 🌱 »",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Mme Weber · voisine de {npc}",
+        "14 octobre 2026"
+       ],
+       [
+        "« Merci pour mes plantes 🌱 »",
+        ""
+       ]
       ]
      }
     }
@@ -1826,6 +1878,27 @@
        }
       ]
      }
+    },
+    {
+     "id": "AMIS_CLUB",
+     "source": "amis",
+     "auteur": "TC Belair",
+     "dateFr": "12 septembre 2026",
+     "titre": "Publication du TC Belair",
+     "transcription": "« Bravo à {npc}, vainqueur du petit tournoi du samedi matin ! 🎾 »",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "TC Belair · club de tennis",
+        "12 septembre 2026"
+       ],
+       [
+        "« Bravo à {npc}, vainqueur du tournoi ! 🎾 »",
+        ""
+       ]
+      ]
+     }
     }
    ]
   },
@@ -1869,6 +1942,27 @@
       "scene": "chat",
       "personnes": []
      }
+    },
+    {
+     "id": "AMIS_VETO",
+     "source": "amis",
+     "auteur": "Clinique vétérinaire du Parc",
+     "dateFr": "8 octobre 2026",
+     "titre": "Publication de la clinique vétérinaire",
+     "transcription": "« Mimi, le chat de {npc}, est venu pour son vaccin. Quel patient ! 🐱 »",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Clinique vétérinaire du Parc",
+        "8 octobre 2026"
+       ],
+       [
+        "« Mimi, le chat de {npc} : vaccin fait ! 🐱 »",
+        ""
+       ]
+      ]
+     }
     }
    ]
   },
@@ -1908,7 +2002,30 @@
      "transcription": "« Merci {npc} pour la soupe de pommes de terre de samedi ! 🥔 »",
      "visuel": {
       "type": "post",
-      "image": "soupe"
+      "image": "soupe",
+      "scene": "soupe",
+      "personnes": []
+     }
+    },
+    {
+     "id": "PIX_ZOPP",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "26 septembre 2026",
+     "titre": "Photo : ma soupe",
+     "transcription": "Photo : {npc} derrière une grande marmite. Légende : « Soupe de pommes de terre pour les copains 🥔 ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "soupe",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Idle",
+        "x": -0.9,
+        "z": -0.6,
+        "rotation": 0.3
+       }
+      ]
      }
     }
    ]
@@ -1951,6 +2068,27 @@
       "type": "photo",
       "scene": "carnet",
       "personnes": []
+     }
+    },
+    {
+     "id": "AMIS_LECTURE",
+     "source": "amis",
+     "auteur": "Club de lecture de Bonnevoie",
+     "dateFr": "8 octobre 2026",
+     "titre": "Publication du club de lecture",
+     "transcription": "« Merci à {npc}, qui nous a présenté son livre du mois ! 📚 »",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Club de lecture · Bonnevoie",
+        "8 octobre 2026"
+       ],
+       [
+        "« Merci à {npc} pour le livre du mois ! 📚 »",
+        ""
+       ]
+      ]
      }
     }
    ]
@@ -2006,6 +2144,27 @@
        ]
       ]
      }
+    },
+    {
+     "id": "AMIS_SARAH",
+     "source": "amis",
+     "auteur": "Sarah K.",
+     "dateFr": "15 octobre 2026",
+     "titre": "Publication de Sarah",
+     "transcription": "« Thanks {npc} ! Merci pour la traduction en anglais de mon CV 🇬🇧 »",
+     "visuel": {
+      "type": "profil",
+      "lignes": [
+       [
+        "Sarah K. · amie de {npc}",
+        "15 octobre 2026"
+       ],
+       [
+        "« Merci pour la traduction de mon CV 🇬🇧 »",
+        ""
+       ]
+      ]
+     }
     }
    ]
   },
@@ -2054,6 +2213,27 @@
         "Esch-sur-Alzette",
         ""
        ]
+      ]
+     }
+    },
+    {
+     "id": "PIX_CLARA",
+     "source": "pix",
+     "auteur": "{npc}",
+     "dateFr": "4 octobre 2026",
+     "titre": "Photo : dimanche à Esch",
+     "transcription": "Photo : {npc} dans un parc. Légende : « Dimanche à Esch avec ma sœur Clara ❤️ ».",
+     "visuel": {
+      "type": "photo",
+      "scene": "parc",
+      "personnes": [
+       {
+        "qui": "npc",
+        "pose": "Idle",
+        "x": -0.3,
+        "z": 0.3,
+        "rotation": 0.2
+       }
       ]
      }
     }

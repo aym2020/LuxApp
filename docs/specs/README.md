@@ -108,7 +108,7 @@ Ce répertoire contient **91 fiches de spécification présentes** sur la branch
 | 96 | [Lux Runner : les trois portails](./SPEC-96.md) | — | V1.2 implémentée (voie conservée, rythme 4/3,5/3 s, son dédié, univers visuel violet) ; **prototype 3D opt-in** (`?runner3d=1`) — `test/runner.test.cjs` ; contrôle navigateur 360/430 ; **recette Samsung à faire** |
 | 101 | [Compte à rebours avant Survie et Lux Runner](./SPEC-101.md) | — | **Retirée** (26/10/2026) — décompte jugé insuffisant ; seule la synchro son/scène de Lux Runner est conservée |
 | 109 | [Lux Match : Double jeu](./SPEC-109.md) | — | **Démo jouable + bible intégrée** (27/10/2026, lots 1–9 : profil d'Alex, réseaux, conversations, événements, fins, générateur 1 000 graines, refonte pré-date, humour par genre, signes manga, deux musiques) — `test/lux-match*.test.cjs` ; textes LU non certifiés LOD ; **recette Samsung à faire** |
-| 110 | [Lux Démasque : dépositions, preuves et objections](./SPEC-110.md) | — | **Conception / à prototyper**, issue d'une démo HTML autonome. Mini-jeu distinct de Lux Match : tous les prétendants mentent, dossiers à preuves exhaustives, dialogues LU, indices FR, moteur de cas semi-procédural contraint, 3D low-poly et musiques d'enquête originales. **Aucun code de jeu modifié.** |
+| 110 | [Lux Démasque : dépositions, preuves et objections](./SPEC-110.md) | — | **Implémentée sur 2.1 (lots D0–D5)** — recette Samsung, écoute musicale et relecture LU native à faire. Mini-jeu distinct de Lux Match (masqué, pas supprimé) : tous les prétendants mentent, dossiers Milo/Noah/Tom puis dossiers générés, dialogues LU, indices FR, 3D low-poly partagée, musiques d'enquête originales. |
 
 ## Précautions de lecture
 

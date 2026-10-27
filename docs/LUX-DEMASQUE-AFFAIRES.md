@@ -1,4 +1,4 @@
-# Lux Démasque — Affaires atomiques et générateur (SPEC 110, lot D4)
+# Lux Démasque — Affaires atomiques et générateur (SPEC 110, lots D4–D5)
 
 Source unique : `tools/lux-demasque/contenus.py` → `data/jeux/lux-demasque/contenus-v01.json` (clés `affaires`, `dossiersRediges`, `generateur`). Moteur : `public/lux-demasque-core.js` (`assembler`, `composerDossier`, `validerAffaires`). Dossier pilote : [LUX-DEMASQUE-DOSSIER-MILO.md](LUX-DEMASQUE-DOSSIER-MILO.md).
 
@@ -21,16 +21,23 @@ Le générateur **n'écrit aucun texte** : il choisit des affaires validées, re
 | A_LOISIR_BAND | loisir | mensonge | Ech spille Gittar an enger Band. | AMIS_BAND (**précision indispensable**) | AMIS_BAND, PIX_CONCERT | La page du groupe nommé dans la précision liste 4 membres, sans lui. |
 | A_LANGUE_DAITSCH | langue | mensonge | Ech schwätze perfekt Däitsch. | PRO_LANGUES | PRO_LANGUES, PIX_TREVES | Son profil Pro : « allemand A1 », parcours uniquement au Luxembourg. |
 | A_ANIMAL_HOND | animal | mensonge | Ech hunn en Hond. Hien heescht Rex. | AMIS_CLARA_REX | AMIS_CLARA_REX, PIX_REX | Clara le remercie d'avoir promené **son** chien Rex. |
-| V_TRAVAIL_BUREAU | travail | vraie | Ech schaffen an engem Büro. | — | PRO_COMPTABLE | — |
-| V_LOGEMENT_SEUL | logement | vraie | Ech wunnen eleng. Mäin Appartement ass kleng. | — | PIX_APPART | — |
-| V_SPORT_TENNIS | sport | vraie | Ech spillen Tennis. | — | PIX_TENNIS | — |
-| V_ANIMAL_KAZ | animal | vraie | Ech hunn eng Kaz. Si heescht Mimi. | — | PIX_MIMI | — |
-| V_CUISINE_ZOPP | cuisine | vraie | Ech kache gär fir meng Frënn. | — | AMIS_ZOPP | — |
-| V_LOISIR_LIESEN | loisir | vraie | Ech liese gär. Ech hu vill Bicher. | — | PIX_LIVRES | — |
-| V_LANGUE_ENGLESCH | langue | vraie | Ech schwätzen Englesch a Franséisch. | — | PRO_LANGUES2 | — |
-| V_FAMILLE_CLARA | famille | vraie | Ech hunn eng Schwëster. Si heescht Clara. | — | AMIS_CLARA | — |
+| V_TRAVAIL_BUREAU | travail | vraie | Ech schaffen an engem Büro. | — | PRO_COMPTABLE, PIX_BUREAU | — |
+| V_LOGEMENT_SEUL | logement | vraie | Ech wunnen eleng. Mäin Appartement ass kleng. | — | PIX_APPART, AMIS_VOISINE | — |
+| V_SPORT_TENNIS | sport | vraie | Ech spillen Tennis. | — | PIX_TENNIS, AMIS_CLUB | — |
+| V_ANIMAL_KAZ | animal | vraie | Ech hunn eng Kaz. Si heescht Mimi. | — | PIX_MIMI, AMIS_VETO | — |
+| V_CUISINE_ZOPP | cuisine | vraie | Ech kache gär fir meng Frënn. | — | AMIS_ZOPP, PIX_ZOPP | — |
+| V_LOISIR_LIESEN | loisir | vraie | Ech liese gär. Ech hu vill Bicher. | — | PIX_LIVRES, AMIS_LECTURE | — |
+| V_LANGUE_ENGLESCH | langue | vraie | Ech schwätzen Englesch a Franséisch. | — | PRO_LANGUES2, AMIS_SARAH | — |
+| V_FAMILLE_CLARA | famille | vraie | Ech hunn eng Schwëster. Si heescht Clara. | — | AMIS_CLARA, PIX_CLARA | — |
 
 **Incompatibilité déclarée** : A_VOYAGE_JAPON ✕ A_SPORT_TOUSLESJOURS (le relevé LuxRun d'août contredirait aussi « tous les jours » : deux preuves pour un mensonge, ou une preuve pour deux). Aucune autre paire ne crée de fausse contradiction : vérifié exhaustivement (toutes déclarations × toutes pièces) sur 300 graines.
+
+## 2 bis. Équilibrage (lot D5)
+
+- **Deux pièces par affaire**, vraie ou fausse : un dossier généré compte 12 pièces, et le nombre de pièces liées à une phrase ne trahit pas un mensonge. Les pièces des vérités confirment la phrase, jamais ne la contredisent ; leurs dates ne croisent aucun mensonge (12 et 26 septembre, 4, 8, 14, 15 et 19 octobre 2026, jours de la semaine vérifiés).
+- **Barème** (moteur, inchangé) : 300 par disquette, −50 par objection ratée, +200 sans faute, plancher à 0. Mesures : 3/3 sans faute = 1 100 ; 3/3 avec une ratée = 850 ; 2/3 = 600 ; **force brute** (toutes les pièces contre toutes les phrases) = 0 sur 200 graines.
+- **Précision indispensable** : la bonne pièce sans précision est refusée avec une réplique propre et l'indice « fais-lui d'abord préciser » ; cela compte comme une objection ratée (sinon on pourrait tester les pièces gratuitement).
+- Milo (dossier pilote) garde ses 8 pièces : sa logique est validée telle quelle.
 
 ## 3. Règles du générateur (`composerDossier`)
 
@@ -56,7 +63,7 @@ Ordre de jeu : le premier dossier rédigé non résolu (`luxDemasqueResolus`), p
 
 ## 5. Décors 3D ajoutés
 
-`hopital` (couloir, lit, croix) et `chien` (Rex low-poly), en plus des décors du lot D2, dans `public/lux-match-3d.js` (`FABRIQUES`, additif). Images mises en cache par prétendant (`piece:<npc>:<id>`).
+`hopital` (couloir, lit, croix), `chien` (Rex low-poly) et, au lot D5, `soupe` (marmite et bols), en plus des décors du lot D2, dans `public/lux-match-3d.js` (`FABRIQUES`, additif). Images mises en cache par prétendant (`piece:<npc>:<id>`).
 
 ## 6. Statut de relecture LU (affaires)
 
