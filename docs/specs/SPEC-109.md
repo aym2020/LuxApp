@@ -1056,3 +1056,57 @@ Les décisions doivent répondre aux quatre axes suivants (sans quatre nouvelles
 7. Suite `node --test test/lux-match.test.cjs` + tests critiques du PLAYBOOK ; screenshots 320×640, 360×740, 393×852, 430×932 et recettage Android **réel** avant d'annoncer la compatibilité Samsung.
 
 **Contraintes :** six filles existantes, **un seul café**, Pix/Pro/Amis inchangés dans leur rôle, LuxTrad seulement comme utilité du téléphone, **pas** de CUPID.EXE/nouveau lore/personnages, pas de backend/LLM runtime, pas de migration risquée de progression. Des commits distincts sur `2.1` et statuts réels dans la SPEC ; cette section est **uniquement un cahier des charges**.
+
+
+---
+
+## 22. Simplification produit — enquête FR, rendez-vous LU, mini-jeu avant tout (27/10/2026)
+
+**Statut : nouvel arbitrage produit, prioritaire sur les propositions plus ambitieuses des §§20–21 si elles sont contradictoires. À implémenter, aucun code modifié ici.** Retour utilisateur : « On va trop loin, ça doit rester un mini-jeu fun. Les réseaux et les infos des filles doivent être en français, puis on doit tout dire en luxembourgeois. » L'objectif n'est pas un simulateur conversationnel, un traducteur ou une évaluation de texte libre.
+
+### 22.1. Contrat de langue simple et stable
+
+| Surface | Langue principale | Rôle |
+| --- | --- | --- |
+| **Tinder / fiche d'une fille / tags et indices** | **FR**, directement lisible | Découvrir qui elle est ; décider de liker et se souvenir d'un détail |
+| **Pix / Pro / Amis : bio, photos, légendes, posts, traits de caractère** | **FR**, directement lisible | Enquête ludique : passions, goûts, métier, anecdotes, préférences ; **aucune bascule Aide FR nécessaire ici** |
+| **Dossier Alex** | Infos factuelles FR ; rappels LU possibles comme mémo d'apprentissage | Rappeler les données canoniques d'Alex, sans métacommentaire sur les mensonges |
+| **Date : ses questions, les choix et les réponses d'Alex, ses paroles** | **LU d'abord** ; aide FR facultative si elle est activée/demandée | Comprendre, sélectionner/formuler une **réplique luxembourgeoise** cohérente avec les infos lues en français |
+| **Feedback social / menus / bilan** | FR jeu, avec citations LU des réponses jouées | Compréhension immédiate des conséquences sans jargon pédagogique |
+
+Les textes `lu` et `fr` déjà présents dans les JSON des réseaux peuvent **rester en données** pour éviter toute migration destructive, mais le **rendu public** des réseaux doit devenir **FR principal**, sans doublon LU/FR. Ne pas mélanger deux langues dans une bio au motif que l'aide FR est activée : **l'aide FR commande les dialogues et options en LU, pas le contenu des réseaux**. Le texte FR des réseaux est une ressource d'information, **pas une correction de langue**.
+
+**Justification pédagogique :** le transfert FR → LU se fait **au moment du dialogue** : le joueur lit « Elle adore peindre » dans Amis et peut poser une question appropriée **en luxembourgeois** au café. Ne pas forcer une traduction littérale de tout le post ni exiger de connaître par cœur du vocabulaire que l'app n'a pas encore enseigné. Tous les choix LU restent des phrases complètes validées, lisibles A1.1 ou signalées non notées si plus avancées.
+
+### 22.2. Boucle minimale à préserver : fun en 5 actions
+
+**Swiper → enquêter si on veut → choisir sa tenue → rendez-vous en LU avec 6–8 échanges → conclusion drôle et personnalisée.**
+
+Le rendez-vous mêle :
+- Des questions simples **sur Alex**, parfois bluff/absurdité et rappel motivé ;
+- **Au moins un moment où Alex pose une question à la fille**, avec une réponse naturelle et un éventuel clin d'œil ultérieur ;
+- **Un à deux choix où se souvenir d'un fait FR des réseaux aide** (sujet de discussion, humour, tenue, activité), sans quiz de mémorisation « quelle est sa couleur ? » répétitif et sans obliger le joueur à ouvrir le téléphone ;
+- **Une conséquence sociale compréhensible** (rire réel = petit gain, politesse ≠ rire, bluff repéré = réaction cohérente) et une fin fondée sur les scènes réellement jouées.
+
+**Ne pas rallonger le jeu** pour insérer toutes les mécaniques. Une interaction agréable compte davantage que dix variations invisibles. Conserver les deux jauges existantes, le téléphone à batterie limité pendant le date et le score LU. **La consultation des réseaux pendant le date reste facultative** : elle aide à retrouver un détail vu en FR, pas à effectuer une traduction sous pression.
+
+### 22.3. Ce qui est reporté ou explicitement hors du MVP
+
+- **LuxTrad / outil de traduction dans le téléphone : reporté.** La nouvelle règle FR sur les réseaux et l'aide FR sur les dialogues réduisent nettement son besoin. Ne pas créer une quatrième app, un glossaire, un appel Google Translate ou une nouvelle mécanique de consommation de batterie pour cette itération.
+- **Micro-écriture / clavier : reporté.** Ne pas intégrer pour l'instant de saisie libre ni d'évaluateur de texte : cela complexifie l'Android, le contenu LU et le scoring. Les réponses choisies en LU suffisent pour un mini-jeu fluide.
+- **Grand moteur d'improvisation, NLU, LLM runtime et arborescences sans fin : hors périmètre.** Conserver le petit compositeur procédural déterministe en cours, les événements conditionnels et les personnalités.
+- La **SPEC §21** reste un historique d'exploration des idées **non validées pour implémentation immédiate**, hormis l'initiative simple d'Alex et la diversité des sujets. **Ce §22 prime en cas de conflit**. La SPEC §20 sur les vraies récompenses d'humour et quelques indices utiles reste applicable dans son intention, en version compacte.
+
+### 22.4. Mini-parcours de référence et recette Claude
+
+**Exemple Noémie** : dans Amis (FR), Alex lit qu'elle aime dessiner ; au café, Noémie l'évoque en LU, puis Alex choisit parmi des questions **en LU** pour montrer sa curiosité. La réponse de Noémie change selon la question et un bon rebond peut augmenter l'affinité. **Pas besoin de LuxTrad, de clavier ni d'un test « traduis ce post ».** Le joueur qui n'a pas enquêté peut quand même demander quelque chose d'intéressant.
+
+**Exemple Sofia** : infos de voyage/origine/langues lues en FR sur Pix/Pro/Amis ; elle parle LU au café ; Alex peut être curieux, sincère ou mentir en LU ; son bluff portugais déclenche éventuellement le gag des animaux comme aujourd'hui. L'information préalable aide le joueur à éviter ou provoquer le piège ; elle n'est pas une solution obligatoire.
+
+**Lot de correction prioritaire pour Claude :**
+1. Vérifier le HEAD `2.1`, PLAYBOOK et l'affichage existant de `lmRendreProfil()` et `lmContenuApps()` ; **faire passer Tinder + Pix/Pro/Amis en FR principal** en réutilisant les `fr` déjà présents, sans réécrire tout le JSON ni changer les relations des indices `reveals`.
+2. **Conserver les dialogues et boutons LU**, l'aide FR facultative **pendant le date**, l'affichage du bilan en FR avec citations LU, et le dossier personnel cohérent.
+3. Se limiter aux petits changements de contenu qui rendent l'enquête réellement utile et les questions posées à la fille amusantes ; **ne pas démarrer les lots LuxTrad / micro-écriture de §21**.
+4. Tests : FR pour bio Tinder, tags, Pix, Pro, Amis **avec FR OFF et FR ON**, y compris profils privés et posts procéduraux ; date LU inchangé, traduction optionnelle ; aucune fuite d'un texte de réseau en LU principal, aucun scroll inutile, pas de régression des contenus, de l'aide, de la batterie, des likes, de la tenue ou des scores. Tests automatisés et vérification navigateur 320–430 px, recette Samsung réel signalée si non effectuée.
+
+**Règle de conception : un mini-jeu agréable en 3–5 minutes, dont les réseaux sont les indices en français et le rendez-vous l'occasion de s'exprimer en luxembourgeois.** Ne pas complexifier la boucle tant que cette expérience simple n'est pas excellente.
