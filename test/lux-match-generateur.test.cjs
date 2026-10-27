@@ -100,6 +100,7 @@ test('1 000 parties par stratégie : aucune boucle, 6–8 tours principaux, budg
         assert.ok(ev.length <= 2, ou + ' ' + ev);
         assert.ok(ev.filter(id => (C.evenements[id] || C.beats[id]).taille === 'gros').length <= 1, ou);
         assert.equal(new Set(etat.historique.map(h => h.id)).size, etat.historique.length, ou + ' : question répétée');
+        assert.ok(etat.emotions.filter(e => e.endsWith(':big')).length <= 1, ou + ' : plusieurs gros effets');
         // Un événement de mensonge n'arrive qu'après un vrai mensonge, et propose un aveu.
         etat.historique.filter(h => h.type === 'evenement').forEach(h => {
           const d = C.evenements[h.id].declencheur || {};

@@ -92,7 +92,8 @@ const LuxMatchCore = (function () {
       mensonges: {},              // attributs dont l'affirmation actuelle est fausse
       dejaMenti: {},              // attributs sur lesquels il a menti au moins une fois
       blagues: {},                // plaisanteries (ex. 120 ans) : jamais des affirmations
-      genresBlague: {},           // genres de blague tentés : absurde, vantardise, autoderision, taquinerie
+      genresBlague: {},
+      emotions: [],               // signes manga affichés (type:intensité), pour le bilan et les tests           // genres de blague tentés : absurde, vantardise, autoderision, taquinerie
       choixFaits: [],             // identifiants de tous les choix du rendez-vous
       evenements: [],             // événements joués ou programmés
       contradictions: 0,
@@ -607,6 +608,8 @@ const LuxMatchCore = (function () {
       if (evenementEligible(etat, REPARATION)) { etat.enAttente.unshift(REPARATION); etat.evenements.push(REPARATION); }
     }
 
+    r.emotion = emotionDe(etat, ech, choix, r);
+
     etat.affinity = borne(etat.affinity + r.affinity);
     etat.suspicion = borne(etat.suspicion + r.suspicion);
     etat.tour++;
@@ -619,6 +622,27 @@ const LuxMatchCore = (function () {
     if (etat.suspicion >= FIN_ANTICIPEE) { terminer(etat); r.finAnticipee = true; return r; }
     etat.courant = null;
     return r;
+  }
+
+  // ─── Émotion lisible (SPEC §15) ───────────────────────────────────────────
+  // Déduite de la MÊME décision sociale que la réaction : jamais du score total, jamais
+  // d'une faute de langue. null le plus souvent (pas d'effet après chaque réponse).
+  // Renvoie { type: awkward | annoyed | doubt | delighted | charmed | stunned, intensite, delai }.
+  const EMOTION_VISUEL = { rire: 'delighted', joie: 'delighted', sourcil: 'doubt', froid: 'annoyed', scratch: 'stunned', zoom: 'stunned' };
+  function emotionDe(etat, ech, choix, r) {
+    let e = null;
+    if (r.contradiction) e = { type: 'stunned', intensite: 'medium' };
+    else if (r.reaction && r.reaction.cle === 'DECALE') e = r.reaction.gout === 'n_aime_pas' ? { type: 'awkward', intensite: 'medium', delai: 300 } : { type: 'delighted', intensite: 'subtle' };
+    else if (r.reaction && r.reaction.cle === 'HUMOUR') e = r.reaction.gout === 'aime' ? { type: 'delighted', intensite: 'subtle' } : r.reaction.gout === 'n_aime_pas' ? { type: 'doubt', intensite: 'subtle' } : null;
+    else if (r.reaction && r.reaction.cle === 'BLUFF') e = { type: 'doubt', intensite: 'subtle' };
+    else if (ech.type === 'evenement') {
+      const type = EMOTION_VISUEL[choix.visuel];
+      if (type) e = { type, intensite: type === 'stunned' ? 'big' : type === 'annoyed' ? 'medium' : 'subtle' };
+    } else if (ech.type === 'question' && choix.truth === 'honest' && r.affinity >= 7) e = { type: 'charmed', intensite: 'subtle' }; // rare : un vrai point commun
+    // Un seul gros effet par rendez-vous : les suivants restent moyens.
+    if (e && e.intensite === 'big') { if (etat.grosEffetFait) e.intensite = 'medium'; etat.grosEffetFait = true; }
+    if (e) etat.emotions.push(e.type + ':' + e.intensite);
+    return e;
   }
 
   // L'interface appelle continuer() après avoir montré la réaction.

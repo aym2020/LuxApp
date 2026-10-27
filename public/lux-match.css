@@ -405,3 +405,25 @@
 #view-luxmatch .lm-reponse>.lm-fr:only-child{font-size:15px;font-weight:650;color:#f2ecfa}
 /* Le visage remonte au-dessus de la bio (le bas de la photo est sous le dégradé du texte). */
 #view-luxmatch img.lm-carte-photo{transform:translateY(-20%)}
+
+/* ════ Lot 8 (SPEC §15) : signes manga 2D au-dessus du café ════ */
+#view-luxmatch .lm-emotion{position:absolute;z-index:1;width:0;height:0;pointer-events:none}
+#view-luxmatch .lm-emotion svg{position:absolute;left:0;top:0;width:62px;height:62px;transform:translate(-20%,-90%);overflow:visible;filter:drop-shadow(2px 3px 0 rgba(0,0,0,.45))}
+#view-luxmatch .lm-emotion .lm-s-trait,#view-luxmatch .lm-emotion .lm-s-trait *{fill:#1a1026;stroke:#1a1026;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+#view-luxmatch .lm-emotion g.lm-s-ligne path{fill:none}
+#view-luxmatch .lm-emotion-medium svg{width:72px;height:72px}
+#view-luxmatch .lm-emotion-big svg{width:96px;height:96px;transform:translate(-35%,-85%)}
+#view-luxmatch .lm-emotion-awkward svg{animation:lm-goutte 1.3s steps(10,end) forwards}
+#view-luxmatch .lm-emotion-annoyed svg{animation:lm-veine 1.3s steps(8,end) forwards}
+#view-luxmatch .lm-emotion-doubt svg{animation:lm-signe 1.3s steps(8,end) forwards}
+#view-luxmatch .lm-emotion-delighted svg{animation:lm-etoiles 1.3s steps(10,end) forwards}
+#view-luxmatch .lm-emotion-charmed svg{animation:lm-coeur 1.3s steps(10,end) forwards}
+#view-luxmatch .lm-emotion-stunned svg{animation:lm-choc 1.7s steps(12,end) forwards}
+@keyframes lm-goutte{0%{opacity:0;margin-top:-10px}15%{opacity:1;margin-top:0}30%{margin-top:-4px}45%{margin-top:0}85%{opacity:1}100%{opacity:0;margin-top:8px}}
+@keyframes lm-veine{0%{opacity:0;scale:.4}20%{opacity:1;scale:1.15}35%{scale:.95}50%{scale:1.1}65%{scale:1}85%{opacity:1}100%{opacity:0}}
+@keyframes lm-signe{0%{opacity:0;rotate:-20deg}20%{opacity:1;rotate:8deg}35%{rotate:0deg}85%{opacity:1}100%{opacity:0}}
+@keyframes lm-etoiles{0%{opacity:0;scale:.3}25%{opacity:1;scale:1.1}100%{opacity:0;scale:1;margin-top:-16px}}
+@keyframes lm-coeur{0%{opacity:0;scale:.3}20%{opacity:1;scale:1.2}35%{scale:1}50%{scale:1.12}65%{scale:1}85%{opacity:1}100%{opacity:0;margin-top:-12px}}
+@keyframes lm-choc{0%{opacity:0;scale:2}10%{opacity:1;scale:1}15%{translate:-3px 0}20%{translate:3px 0}25%{translate:-2px 0}30%{translate:0 0}85%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#view-luxmatch .lm-emotion svg{animation:lm-fondu 1.3s linear forwards!important}}
+@keyframes lm-fondu{0%,85%{opacity:1}100%{opacity:0}}

@@ -562,6 +562,17 @@ async function creer() {
     else if (type === 'froid') { anim.jouer('Defeat', true); e.zoom = 0.6; }
   }
 
+  // Position à l'écran (0–1) d'un point juste au-dessus de la tempe de la partenaire,
+  // calculée à la demande avec la caméra du café (aucune boucle supplémentaire).
+  const pointTemp = new THREE.Vector3();
+  function pointTete() {
+    if (!etatDate.tete || !rendu || rendu.scene !== sceneDate) return null;
+    etatDate.tete.getWorldPosition(pointTemp);
+    pointTemp.y += 0.22; pointTemp.x += 0.16;
+    pointTemp.project(camDate);
+    return { x: (pointTemp.x + 1) / 2, y: (1 - pointTemp.y) / 2 };
+  }
+
   // Nombre de personnages par scène (tests : aucun doublon après plusieurs parties).
   function diagnostic() {
     const compter = scene => scene.children.filter(o => o.userData.personnage).length;
@@ -571,7 +582,7 @@ async function creer() {
   // Arrêt demandé par l'interface : annule aussi les scènes encore en chargement.
   function arreter() { demande++; detacher(); }
 
-  return { portrait, apercu, saluerApercu, date, reagir, detacher: arreter, diagnostic };
+  return { portrait, apercu, saluerApercu, date, reagir, detacher: arreter, diagnostic, pointTete };
 }
 
 // Préchargement sans créer de contexte WebGL (depuis le hub Jeux) : animations + modèles.

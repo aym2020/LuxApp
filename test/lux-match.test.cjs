@@ -321,3 +321,27 @@ test('Lot 7 : « Kaffi! » = réponse décalée, réaction naturelle, aucune cor
   // Plus aucun commentaire de « professeur de politesse » dans les contenus.
   assert.doesNotMatch(JSON.stringify(C), /un peu sec|phrase complète/);
 });
+
+test('Lot 8 : signes manga déduits de la décision sociale, jamais d’une faute de langue', () => {
+  const ui = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match.js'), 'utf8');
+  ['awkward', 'annoyed', 'doubt', 'delighted', 'charmed', 'stunned'].forEach(t => assert.match(ui, new RegExp('\\n  ' + t + ": '<")));
+  const repondreSur = (profilId, sceneId, choixId) => {
+    const etat = partieAvec(profilId);
+    etat.courant = null; etat.file.unshift(sceneId); Core.continuer(etat);
+    return { r: Core.repondre(etat, choixId), etat };
+  };
+  assert.equal(repondreSur('lena_r01', 'B11_COFFEE', 'REP11_C').r.emotion.type, 'awkward');   // Kaffi!
+  assert.equal(repondreSur('lena_r01', 'B03_NAME', 'REP03_C').r.emotion.type, 'doubt');       // James Bond
+  assert.equal(repondreSur('noemie_r01', 'B03_NAME', 'REP03_C').r.emotion.type, 'delighted'); // même blague, autre humour
+  assert.equal(repondreSur('lena_r01', 'B01_SALUT', 'REP01_C').r.emotion, null);             // faute de langue : pas de signe
+  // Sofia : « hippopotame » = gros choc, un seul gros effet par rendez-vous.
+  const { etat } = repondreSur('sofia_r01', 'B05_ORIGIN', 'REP05_B');
+  Core.continuer(etat);
+  assert.equal(etat.courant.id, 'EV_SOFIA_PORTUGAL');
+  const choc = Core.repondre(etat, 'hipopotamo').emotion;
+  assert.deepEqual([choc.type, choc.intensite], ['stunned', 'big']);
+  // Parcours sincère : peu de signes (pas d'effet après chaque réponse).
+  const calme = partieAvec('claire_r01', null, 'P03');
+  jouerJusquA(calme, () => false);
+  assert.ok(calme.emotions.length <= 2, calme.emotions.join());
+});

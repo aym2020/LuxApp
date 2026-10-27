@@ -82,6 +82,39 @@ const LM_PICTOS = {
   bcbg: '<path d="M11 4l5 6 5-6 6 4v18H5V8z"/><path d="M16 10l-2 3 2 9 2-9z"/><path d="M11 4l-1 8 4 3M21 4l1 8-4 3"/>',
   creatif: '<path d="M16 4C9 4 4 9 4 15s5 11 11 11c2 0 2-2 1-3s-1-3 1-3h4c3 0 6-2 6-6 0-6-5-10-11-10z"/><circle cx="10" cy="14" r="1.5"/><circle cx="14" cy="9" r="1.5"/><circle cx="20" cy="9" r="1.5"/><circle cx="23" cy="14" r="1.5"/>'
 };
+// Signes « manga » originaux au-dessus de la scène 3D (SPEC §15) : gros traits sombres,
+// lisibles sur le café néon et sur le portrait de repli.
+const LM_SIGNES = {
+  awkward: '<path class="lm-s-trait" d="M32 6C40 22 50 31 50 42a18 18 0 0 1-36 0c0-11 10-20 18-36z"/><path fill="#6ec6ff" d="M32 6C40 22 50 31 50 42a18 18 0 0 1-36 0c0-11 10-20 18-36z"/><ellipse fill="#fff" cx="25" cy="40" rx="3.5" ry="6"/>',
+  annoyed: '<g class="lm-s-trait lm-s-ligne"><path d="M27 8c1 9-4 15-14 16M37 8c-1 9 4 15 14 16M27 56c1-9-4-15-14-16M37 56c-1-9 4-15 14-16"/></g><g fill="none" stroke="#ff3b4e" stroke-width="6" stroke-linecap="round"><path d="M27 8c1 9-4 15-14 16M37 8c-1 9 4 15 14 16M27 56c1-9-4-15-14-16M37 56c-1-9 4-15 14-16"/></g>',
+  doubt: '<g class="lm-s-trait lm-s-ligne"><path d="M21 22a11 11 0 1 1 16 9c-4 3-5 5-5 10"/><circle cx="32" cy="52" r="4"/></g><g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M21 22a11 11 0 1 1 16 9c-4 3-5 5-5 10"/></g><circle fill="#fff" cx="32" cy="52" r="4.5"/>',
+  delighted: '<g class="lm-s-trait"><path d="M22 6Q22 20 36 20Q22 20 22 34Q22 20 8 20Q22 20 22 6z"/><path d="M46 26Q46 36 56 36Q46 36 46 46Q46 36 36 36Q46 36 46 26z"/><path d="M26 42Q26 49 33 49Q26 49 26 56Q26 49 19 49Q26 49 26 42z"/></g><path fill="#ffd84a" d="M22 6Q22 20 36 20Q22 20 22 34Q22 20 8 20Q22 20 22 6z"/><path fill="#ff8ae6" d="M46 26Q46 36 56 36Q46 36 46 46Q46 36 36 36Q46 36 46 26z"/><path fill="#fff4b0" d="M26 42Q26 49 33 49Q26 49 26 56Q26 49 19 49Q26 49 26 42z"/>',
+  charmed: '<path class="lm-s-trait" d="M32 54C10 38 6 26 14 18c6-6 14-4 18 4 4-8 12-10 18-4 8 8 4 20-18 36z"/><path fill="#ff5fb7" d="M32 54C10 38 6 26 14 18c6-6 14-4 18 4 4-8 12-10 18-4 8 8 4 20-18 36z"/><path fill="#ffd1ec" d="M18 22c3-3 7-3 9 0-3 0-6 2-7 5-2-1-3-3-2-5z"/>',
+  stunned: '<g class="lm-s-trait lm-s-ligne"><path d="M24 10l2 30M40 10l-2 30M6 14l8 6M58 14l-8 6M4 34h8M60 34h-8"/><circle cx="26.5" cy="51" r="4"/><circle cx="37.5" cy="51" r="4"/></g><g fill="none" stroke="#ffd84a" stroke-width="7" stroke-linecap="round"><path d="M24 10l2 30M40 10l-2 30"/></g><g fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M6 14l8 6M58 14l-8 6M4 34h8M60 34h-8"/></g><circle fill="#ffd84a" cx="26.5" cy="51" r="4.5"/><circle fill="#ffd84a" cx="37.5" cy="51" r="4.5"/>'
+};
+// Affiche UN signe près de la tête de la partenaire (le précédent est annulé).
+function lmEmotion(e) {
+  lmEffacerEmotion();
+  if (!e || !LM_SIGNES[e.type]) return;
+  const calque = document.getElementById('lm-emotion');
+  if (!calque) return;
+  const afficher = () => {
+    const point = (lm.rendu3d && lm.rendu3d.pointTete && lm.rendu3d.pointTete()) || { x: 0.6, y: 0.3 };
+    calque.style.left = (Math.max(0.12, Math.min(0.88, point.x)) * 100) + '%';
+    calque.style.top = (Math.max(0.12, Math.min(0.46, point.y)) * 100) + '%';
+    calque.className = 'lm-emotion lm-emotion-' + e.type + ' lm-emotion-' + (e.intensite || 'subtle');
+    calque.innerHTML = '<svg viewBox="0 0 64 64" aria-hidden="true">' + LM_SIGNES[e.type] + '</svg>';
+    lm.emotionTimer = setTimeout(lmEffacerEmotion, e.intensite === 'big' ? 1700 : 1300);
+  };
+  // Petit silence avant la goutte de gêne : le « poker face » fait partie du gag.
+  if (e.delai) lm.emotionTimer = setTimeout(afficher, e.delai); else afficher();
+}
+function lmEffacerEmotion() {
+  clearTimeout(lm.emotionTimer); lm.emotionTimer = null;
+  const calque = document.getElementById('lm-emotion');
+  if (calque) { calque.className = 'lm-emotion'; calque.innerHTML = ''; }
+}
+
 function lmPicto(nom) {
   return '<svg class="lm-picto" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (LM_PICTOS[nom] || '') + '</svg>';
 }
@@ -136,7 +169,7 @@ async function lmChargerDonnees() {
 // Le moteur 3D est créé une seule fois (préchargé dès l'ouverture du jeu).
 function lmObtenir3D() {
   if (!lm.promesse3d) {
-    lm.promesse3d = import('./lux-match-3d.js?v=6').then(() => window.LuxMatch3D.creer());
+    lm.promesse3d = import('./lux-match-3d.js?v=7').then(() => window.LuxMatch3D.creer());
     lm.promesse3d.then(r => { lm.rendu3d = r; }).catch(() => { lm.promesse3d = null; });
   }
   return lm.promesse3d;
@@ -192,6 +225,7 @@ function lmNouvellePartie() {
 }
 function luxMatchArreter() {
   lmArreterBatterie();
+  lmEffacerEmotion();
   lmFermerCalque('lm-menu'); lmFermerCalque('lm-moi');
   lm.lookEnCours = null;
   clearTimeout(lm.feedbackTimer);
@@ -611,6 +645,7 @@ function lmRendreDate(box) {
         '<button type="button" class="lm-icone-btn lm-moi-btn" onclick="lmMoi(true)" aria-label="Dossier Alex">' + lmIcone('moi') + '<span>Moi</span></button>' +
         '<button type="button" class="lm-tel-btn" id="lm-tel-btn" onclick="lmOuvrirTelephoneDate()" aria-label="Ouvrir le téléphone">' + lmIcone('tel') + '<span id="lm-batterie">' + Math.ceil(p.battery) + '%</span></button>' +
       '</div>' +
+      '<div class="lm-emotion" id="lm-emotion" aria-hidden="true"></div>' +
       '<div class="lm-feedback" id="lm-feedback" aria-live="polite"></div>' +
       '<div class="lm-bas">' +
         '<div class="lm-bulle" id="lm-bulle"></div>' +
@@ -687,15 +722,16 @@ function lmRepondre(choixId) {
   if (r.contradiction) lignes.push({ texte: 'CONTRADICTION !', classe: 'lm-alerte' });
   else if (r.aveu) lignes.push({ texte: 'SAUVÉ… DE JUSTESSE !', classe: 'lm-plus' });
   else if (r.bluff) lignes.push({ texte: 'BLUFF !', classe: 'lm-sus' });
-  else if (r.langue === false || r.visuel === 'gene' || r.visuel === 'froid') lignes.push({ texte: 'GÊNANT…', classe: 'lm-moins' });
+  else if (!r.emotion && (r.langue === false || r.visuel === 'gene' || r.visuel === 'froid')) lignes.push({ texte: 'GÊNANT…', classe: 'lm-moins' }); // le signe suffit
   else if (r.reaction && r.reaction.cle === 'RAPPEL') lignes.push({ texte: 'ELLE S’EN SOUVIENT…', classe: 'lm-plus' });
   if (r.affinity) lignes.push({ texte: (r.affinity > 0 ? '+' : '') + r.affinity + ' ♥', classe: r.affinity > 0 ? 'lm-plus' : 'lm-moins' });
   if (r.suspicion > 0) lignes.push({ texte: 'SUSPICION +' + r.suspicion, classe: 'lm-sus' });
   if (r.suspicion < 0) lignes.push({ texte: 'SUSPICION ' + r.suspicion, classe: 'lm-plus' });
   if (lignes.length) lmFeedback(lignes);
-  // Réaction 3D et son.
+  // Réaction 3D, signe manga (même décision sociale) et son.
   const reaction = LM_VISUELS[r.visuel] || null;
   if (lm.rendu3d && reaction) lm.rendu3d.reagir(reaction);
+  lmEmotion(r.emotion);
   LuxMatchSon.jouer(r.visuel === 'scratch' || r.contradiction ? 'scratch' : r.langue === false ? 'faux' : r.affinity > 0 ? 'bien' : 'bof');
   // Panneau à lire (correction de langue, réaction d'imprévu, contradiction) ou suite automatique.
   const aLire = r.correction || r.reaction || r.reponseElle || r.finAnticipee;
@@ -728,6 +764,7 @@ function lmHtmlLecture(r) {
 }
 function lmContinuer() {
   clearTimeout(lm.feedbackTimer);
+  lmEffacerEmotion();
   lm.attente = null;
   lm.dernierResultat = null;
   const p = lm.partie;
@@ -746,6 +783,7 @@ function lmOuvrirTelephoneDate() {
   if (evenement === 'batterie_vide') { lmToast('Batterie à plat. Maintenant, improvise.'); LuxMatchSon.jouer('vide'); return; }
   LuxMatchSon.jouer('tel');
   if (evenement === 'piege_telephone') lmToast(p.profil.name + ' a remarqué ton téléphone…');
+  lmEffacerEmotion();
   if (evenement === 'malus_telephone') { lmFeedback([{ texte: '-5 ♥', classe: 'lm-moins' }]); lmMajJauges(); if (lm.rendu3d) lm.rendu3d.reagir('froid'); }
   lm.app = null;
   const panneau = document.getElementById('lm-tel-date');
@@ -865,7 +903,7 @@ let lmPrechargeLance = false;
 function lmPrecharger() {
   if (lmPrechargeLance) return;
   lmPrechargeLance = true;
-  const lancer = () => import('./lux-match-3d.js?v=6')
+  const lancer = () => import('./lux-match-3d.js?v=7')
     .then(() => window.LuxMatch3D.precharger(['Casual_Female', 'Casual2_Female', 'Casual3_Female', 'Suit_Female', 'Doctor_Female_Young', 'Casual_Male']))
     .catch(() => { lmPrechargeLance = false; });
   if (typeof requestIdleCallback === 'function') requestIdleCallback(lancer, { timeout: 2500 });
