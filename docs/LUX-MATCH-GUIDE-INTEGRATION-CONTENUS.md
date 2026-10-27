@@ -300,3 +300,20 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 **Pilote recommandé** : Noémie (dessin/absurde) et Léna (sport/vanité) d'abord, puis quatre autres. Préciser les tables de préférences/faits `clueIds/claim/trigger/riskTier` dans les JSON et **rédiger/auditer le LU hors moteur**, avec `reviewStatus`. Tester 6 profils × 200 seeds après extension, français pour réseaux, LU au rendez-vous, 3 runs mobile et suite critique.
 
 **Hors périmètre** : LuxTrad, saisie libre, personnages féminins joueurs pour le moment, nouvel environnement, nouvelles filles, modèle d'IA runtime et toute modification de la progression des leçons.
+
+
+---
+
+## 18. Lot 14 — duels de bluff et mises à l'épreuve
+
+Voir **[SPEC 109 §24](specs/SPEC-109.md)**, nouvelle priorité de game design, **non implémentée**.
+
+**14A — Moteur :** petit arc conditionnel reposant sur le journal et les déclarations. Enchaînement éventuel : affirmation, doute, demande de précision, vérification, sortie. Prévoir les voies « maintenir », « avouer », « plaisanter ». Une seule confrontation majeure par partie ; préserver la durée de 3–5 minutes et l'existant.
+
+**14B — Contenu :** prototypes Léna (football) et Noémie (dessin) puis extension progressive aux six profils. Chaque branche exige des textes LU révisés, des faits fiables et une suite spécifique aux décisions réelles. Sur le code actuel, l'événement `EV_LENA_TONE_CHECK` a des choix uniquement FR et une vantardise maintenue non enregistrée en tant que déclaration persistante : corriger avant toute extension. La réponse à une correction de l'âge doit évoquer l'âge, pas le niveau sportif.
+
+**14C — Présentation :** confrontation arcade originale ponctuelle, lisible sans cacher le visage ; points près des jauges, réaction contextualisée.
+
+**14D — Tests :** toutes transitions atteignables, pas de boucle, pas de confrontation sans motif, aveu arrête l'escalade, journal et conclusion fidèles, replays déterministes, tests multi-profils Android. Pas de nouveaux personnages, lieux, applications ou système d'IA.
+
+**Ne pas confondre** ce cadrage avec une fonctionnalité livrée.
