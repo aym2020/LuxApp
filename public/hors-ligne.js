@@ -25,10 +25,43 @@ function horsLigneEnregistrer() {
     navigator.serviceWorker.getRegistrations().then(liste => liste.forEach(r => r.unregister())).catch(() => {});
     return;
   }
-  const enregistrer = () => navigator.serviceWorker.register('/sw.js').then(() => horsLigneRendre()).catch(() => {});
+  const enregistrer = () => navigator.serviceWorker.register('/sw.js').then(reg => {
+    horsLigneRendre();
+    // Nouvelle version téléchargée en arrière-plan : proposée par un bandeau discret.
+    if (reg.waiting && navigator.serviceWorker.controller) horsLigneBandeauMaj(reg);
+    reg.addEventListener('updatefound', () => {
+      const nouveau = reg.installing;
+      if (!nouveau) return;
+      nouveau.addEventListener('statechange', () => {
+        if (nouveau.state === 'installed' && navigator.serviceWorker.controller) horsLigneBandeauMaj(reg);
+      });
+    });
+  }).catch(() => {});
   if (document.readyState === 'complete') enregistrer();
   else window.addEventListener('load', enregistrer);
-  navigator.serviceWorker.addEventListener('controllerchange', horsLigneRendre);
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (horsLigneMajDemandee) { location.reload(); return; }
+    horsLigneRendre();
+  });
+}
+
+// Bandeau « Nouvelle version » : la mise à jour ne s'applique qu'à la demande
+// (ou au prochain lancement), jamais au milieu d'une leçon ou d'une partie.
+let horsLigneMajDemandee = false;
+function horsLigneBandeauMaj(reg) {
+  if (document.getElementById('hl-maj')) return;
+  const bandeau = document.createElement('div');
+  bandeau.id = 'hl-maj';
+  bandeau.className = 'hl-maj';
+  bandeau.setAttribute('role', 'status');
+  bandeau.innerHTML = '<span>Nouvelle version de LuxApp prête</span><button type="button">Mettre à jour</button>';
+  bandeau.querySelector('button').addEventListener('click', () => {
+    horsLigneMajDemandee = true;
+    bandeau.querySelector('button').disabled = true;
+    if (reg.waiting) reg.waiting.postMessage({ type: 'activer' });
+    else location.reload();
+  });
+  document.body.appendChild(bandeau);
 }
 
 function horsLigneLireEtat() {

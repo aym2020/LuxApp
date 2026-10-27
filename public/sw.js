@@ -1,10 +1,15 @@
-/* SPEC 93 — Service Worker de LuxApp : l'app s'ouvre et fonctionne hors ligne.
-   Servi par server.js (route /sw.js) avec la version de l'app injectée :
-   dès qu'un fichier change, le navigateur installe la nouvelle version.
+/* SPEC 93 — Service Worker de LuxApp : l'app s'ouvre vite et fonctionne hors ligne.
+   Servi par server.js (route /sw.js) avec la version de l'app injectée.
+
+   V2 (27/10/2026) — démarrage instantané :
+   - l'app (page, code, styles, images, leçons) est servie depuis une copie COHÉRENTE
+     installée sur l'appareil : plus aucune attente du réseau au lancement ;
+   - une nouvelle version publiée s'installe en arrière-plan, en ne téléchargeant que les
+     fichiers modifiés (empreintes du manifeste) ; elle est appliquée au prochain lancement
+     ou tout de suite via le bandeau « Mettre à jour » (hors-ligne.js).
 
    Caches :
-   - luxapp-app-<version> : code, styles, images, leçons (remplacé à chaque version) ;
-   - luxapp-donnees       : dernières réponses valides des API de contenu ;
+   - luxapp-app-<version> : copie complète de l'app pour cette version ;
    - luxapp-audio         : audios (téléchargement complet depuis Réglages, ou au fil de l'écoute) ;
    - luxapp-externe       : SDK Firebase et polices Google (fichiers publics versionnés).
    Jamais mis en cache : requêtes non GET, authentification, Firestore, données personnelles. */
@@ -12,23 +17,44 @@
 
 const VERSION = '__VERSION__';
 const CACHE_APP = 'luxapp-app-' + VERSION;
-const CACHE_DONNEES = 'luxapp-donnees';
 const CACHE_AUDIO = 'luxapp-audio';
 const CACHE_EXTERNE = 'luxapp-externe';
+const INDEX = '/__luxapp-index.json'; // empreintes des fichiers de la copie
 const EXTERNES = ['https://www.gstatic.com/firebasejs/', 'https://fonts.googleapis.com/', 'https://fonts.gstatic.com/'];
 const AUDIO = /\.(mp3|m4a|ogg|wav)$/i;
+const PARALLELE = 4; // téléchargements simultanés : la page garde de la bande passante
 
-// ─── Installation : copie de toute l'app (hors audios) ─────────────────────
+// ─── Installation : copie de l'app, en ne téléchargeant que ce qui a changé ──
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
-    const reponse = await fetch('/offline-manifest.json', { cache: 'no-store' });
-    const manifeste = await reponse.json();
+    const manifeste = await (await fetch('/offline-manifest.json', { cache: 'no-store' })).json();
     const cache = await caches.open(CACHE_APP);
-    // Par paquets : un échec réseau fait échouer l'installation (nouvel essai plus tard).
-    const liste = manifeste.fichiers;
-    for (let i = 0; i < liste.length; i += 12) {
-      await cache.addAll(liste.slice(i, i + 12).map(u => new Request(u, { cache: 'reload' })));
+    // Copie précédente (version active) et ses empreintes.
+    const noms = (await caches.keys()).filter(n => n.startsWith('luxapp-app-') && n !== CACHE_APP);
+    let ancienCache = null, anciennes = {};
+    for (const nom of noms) {
+      const c = await caches.open(nom);
+      const index = await c.match(INDEX);
+      if (index) { ancienCache = c; anciennes = await index.json(); break; }
     }
+    const liste = manifeste.fichiers.map(f => (typeof f === 'string' ? { u: f, h: null } : f));
+    let prochain = 0;
+    async function ouvrier() {
+      while (prochain < liste.length) {
+        const f = liste[prochain++];
+        if (f.h && anciennes[f.u] === f.h && ancienCache) {
+          const copie = await ancienCache.match(f.u);
+          if (copie) { await cache.put(f.u, copie); continue; } // inchangé : copie locale
+        }
+        const r = await fetch(new Request(f.u, { cache: 'reload' }));
+        if (!r.ok) throw new Error('installation : ' + f.u);
+        await cache.put(f.u, r);
+      }
+    }
+    await Promise.all(Array.from({ length: PARALLELE }, ouvrier));
+    const index = {};
+    liste.forEach(f => { index[f.u] = f.h; });
+    await cache.put(INDEX, new Response(JSON.stringify(index), { headers: { 'Content-Type': 'application/json' } }));
     // SDK Firebase et polices : facultatif (copie opaque, sans faire échouer l'installation).
     const externe = await caches.open(CACHE_EXTERNE);
     await Promise.all((manifeste.externes || []).map(async u => {
@@ -38,15 +64,22 @@ self.addEventListener('install', event => {
         if (r.ok || r.type === 'opaque') await externe.put(u, r);
       } catch (_) { /* réessayé au prochain chargement en ligne */ }
     }));
-    await self.skipWaiting();
+    // Première installation : active tout de suite. Mise à jour : attend le prochain
+    // lancement (ou le bouton « Mettre à jour »), pour ne jamais mélanger deux versions.
+    if (!self.registration.active) await self.skipWaiting();
   })());
+});
+
+// Bouton « Mettre à jour » de la page.
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'activer') self.skipWaiting();
 });
 
 // ─── Activation : suppression des anciennes versions de l'app ──────────────
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const noms = await caches.keys();
-    await Promise.all(noms.filter(n => n.startsWith('luxapp-app-') && n !== CACHE_APP).map(n => caches.delete(n)));
+    await Promise.all(noms.filter(n => (n.startsWith('luxapp-app-') && n !== CACHE_APP) || n === 'luxapp-donnees').map(n => caches.delete(n)));
     await self.clients.claim();
   })());
 });
@@ -64,74 +97,29 @@ self.addEventListener('fetch', event => {
   if (url.pathname === '/sw.js' || url.pathname === '/offline-manifest.json') return;
   if (url.pathname.startsWith('/recette')) return;
 
-  if (requete.mode === 'navigate') { event.respondWith(page(requete)); return; }
-  if (url.pathname.startsWith('/api/')) { event.respondWith(reseauDabord(requete)); return; }
   if (AUDIO.test(url.pathname)) { event.respondWith(audio(requete, url)); return; }
-  event.respondWith(fichier(requete, url));
+  event.respondWith(copieDabord(requete, url));
 });
 
-// Réseau d'abord avec délai : en ligne, toujours la dernière version ; réseau absent
-// ou trop lent (plus de 4 s) et copie disponible : la copie, mise à jour en arrière-plan.
-async function reseauPuisCopie(requete, cache, cle, copieSecours) {
-  const reseau = fetch(requete).then(reponse => {
-    if (reponse.ok) cache.put(cle, reponse.clone());
+// Page, code, styles, images et API de contenu : la copie de la version active,
+// sans attendre le réseau. Les « ?v= » des URL désignent la même version de fichier.
+async function copieDabord(requete, url) {
+  const cache = await caches.open(CACHE_APP);
+  const cle = requete.mode === 'navigate' ? '/' : requete;
+  const copie = (await cache.match(cle)) || (await cache.match(cle, { ignoreSearch: true }));
+  if (copie) return copie;
+  // Pas encore dans la copie (premier lancement, fichier ajouté) : réseau, puis copie.
+  try {
+    const reponse = await fetch(requete);
+    if (reponse.ok && reponse.type === 'basic' && !url.pathname.startsWith('/api/')) cache.put(requete, reponse.clone());
     return reponse;
-  });
-  reseau.catch(() => {});
-  const copie = await copieSecours();
-  if (!copie) return reseau;
-  const delai = new Promise(resolve => setTimeout(() => resolve(null), 4000));
-  try {
-    return (await Promise.race([reseau, delai])) || copie;
   } catch (_) {
-    return copie;
-  }
-}
-
-// Page d'accueil (toutes les navigations ouvrent la même page).
-async function page(requete) {
-  const cache = await caches.open(CACHE_APP);
-  try {
-    return await reseauPuisCopie(requete, cache, '/', async () => (await cache.match('/')) || (await caches.match('/')));
-  } catch (_) {
-    return new Response('LuxApp est hors ligne et pas encore installée sur cet appareil.', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
-  }
-}
-
-// API de contenu (leçons, examens, écriture) : dernière copie valide hors ligne.
-async function reseauDabord(requete) {
-  const cache = await caches.open(CACHE_DONNEES);
-  const secours = async () => (await cache.match(requete)) || (await caches.match(requete));
-  try {
-    const reseau = fetch(requete).then(reponse => {
-      if (reponse.ok && (reponse.headers.get('content-type') || '').includes('json')) cache.put(requete, reponse.clone());
-      return reponse;
-    });
-    reseau.catch(() => {});
-    const copie = await secours();
-    if (!copie) return await reseau;
-    const delai = new Promise(resolve => setTimeout(() => resolve(null), 4000));
-    return (await Promise.race([reseau, delai])) || copie;
-  } catch (_) {
-    return (await secours()) || new Response('[]', { status: 503, headers: { 'Content-Type': 'application/json' } });
-  }
-}
-
-// Fichiers de l'app. Avec « ?v= » (version dans l'URL) : la copie suffit.
-// Sans version : réseau d'abord (jamais un vieux fichier avec une page récente).
-async function fichier(requete, url) {
-  const cache = await caches.open(CACHE_APP);
-  if (url.search) {
-    const exacte = await cache.match(requete);
-    if (exacte) return exacte;
-  }
-  // Hors ligne avec une autre version dans l'URL : la copie installée du même fichier.
-  const secours = async () => (await cache.match(requete)) ||
-    (await cache.match(requete, { ignoreSearch: true })) || (await caches.match(requete, { ignoreSearch: true }));
-  try {
-    return await reseauPuisCopie(requete, cache, requete, secours);
-  } catch (_) {
-    return (await secours()) || new Response('', { status: 504 });
+    if (requete.mode === 'navigate') {
+      return new Response('LuxApp est hors ligne et pas encore installée sur cet appareil.', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    }
+    return url.pathname.startsWith('/api/')
+      ? new Response('[]', { status: 503, headers: { 'Content-Type': 'application/json' } })
+      : new Response('', { status: 504 });
   }
 }
 

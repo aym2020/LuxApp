@@ -101,8 +101,22 @@ function construireManifeste() {
   const app = tous.filter(f => !AUDIO_EXT.test(f) && f !== 'sw.js' && !f.endsWith('.map'));
   const audios = tous.filter(f => AUDIO_EXT.test(f));
   const empreinte = crypto.createHash('sha1');
-  for (const f of app) empreinte.update(f).update(fs.readFileSync(path.join(__dirname, 'public', f)));
-  for (const f of listerFichiers(path.join(__dirname, 'data'), '')) empreinte.update(f).update(fs.readFileSync(path.join(__dirname, 'data', f)));
+  // Empreinte par fichier : le Service Worker ne retélécharge que ce qui a changé.
+  const hachage = contenu => crypto.createHash('sha1').update(contenu).digest('hex').slice(0, 12);
+  const fichiers = [];
+  for (const f of app) {
+    const contenu = fs.readFileSync(path.join(__dirname, 'public', f));
+    empreinte.update(f).update(contenu);
+    fichiers.push({ u: f === 'index.html' ? '/' : '/' + f, h: hachage(contenu) });
+  }
+  const donnees = crypto.createHash('sha1');
+  for (const f of listerFichiers(path.join(__dirname, 'data'), '')) {
+    const contenu = fs.readFileSync(path.join(__dirname, 'data', f));
+    empreinte.update(f).update(contenu); donnees.update(f).update(contenu);
+  }
+  const hDonnees = donnees.digest('hex').slice(0, 12);
+  // API publiques des contenus pédagogiques (même empreinte que data/).
+  ['/api/lecons', '/api/examens', '/api/ecriture', '/api/jeux/lux-match'].forEach(u => fichiers.push({ u, h: hDonnees }));
   const fichiersAudio = audios.map(f => ({ u: '/' + f, t: fs.statSync(path.join(__dirname, 'public', f)).size }));
   const empreinteAudio = crypto.createHash('sha1').update(audios.join('\n')).digest('hex').slice(0, 12);
   // Scripts et feuilles externes de la page (SDK Firebase, polices Google).
@@ -111,8 +125,7 @@ function construireManifeste() {
   return {
     version: empreinte.digest('hex').slice(0, 12),
     externes,
-    // « / » : la page d'accueil ; les API publiques des contenus pédagogiques.
-    fichiers: ['/', '/api/lecons', '/api/examens', '/api/ecriture', '/api/jeux/lux-match'].concat(app.filter(f => f !== 'index.html').map(f => '/' + f)),
+    fichiers,
     audio: { version: empreinteAudio, total: fichiersAudio.reduce((s, a) => s + a.t, 0), fichiers: fichiersAudio }
   };
 }

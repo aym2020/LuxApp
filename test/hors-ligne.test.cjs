@@ -12,6 +12,11 @@ test('Service Worker : version injectée, caches séparés, aucune requête non 
   assert.match(sw, /n\.startsWith\('luxapp-app-'\) && n !== CACHE_APP/); // anciennes versions supprimées, audios gardés
   assert.match(sw, /Firestore, authentification… : toujours le réseau/);
   assert.match(sw, /status: 206/); // lecture audio par plage
+  // V2 : démarrage depuis la copie, mise à jour incrémentale et sur demande.
+  assert.match(sw, /anciennes\[f\.u\] === f\.h/);
+  assert.match(sw, /if \(!self\.registration\.active\) await self\.skipWaiting\(\);/);
+  assert.match(sw, /event\.data\.type === 'activer'/);
+  assert.doesNotMatch(sw, /setTimeout\(\(\) => resolve\(null\), 4000\)/); // plus d'attente réseau au lancement
 });
 
 test('Serveur : manifeste et sw.js hors recette, désinstallation en recette', () => {
@@ -29,6 +34,7 @@ test('Page : enregistrement, carte Réglages et compte gardé sans Firebase', ()
   assert.match(hl, /if \(cfg\.TESTS\) return;/);
   assert.match(hl, /if \(cfg\.RECETTE\)/);
   assert.match(hl, /navigator\.storage\.persist/);
+  assert.match(hl, /horsLigneBandeauMaj\(reg\)/);
   assert.match(read('public/app.js'), /restaurerCompteHorsLigne\(\);/);
   assert.match(read('public/cloud.js'), /navigator\.onLine === false\) \{ noterSynchro\(false\); return; \}/);
   assert.match(read('public/portail.js'), /!fbAuth && typeof currentStorageProfile === 'string' && currentStorageProfile\.startsWith\('user:'\)\) return;/);
