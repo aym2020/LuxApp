@@ -269,3 +269,7 @@
   font:10px/1 var(--ld-pixel);color:var(--ld-rouge);background:rgba(255,255,255,.88);-webkit-font-smoothing:none}
 @media(max-width:359px){#view-luxdemasque .ld-btn-preciser{font-size:14px;gap:4px;padding:0 8px} #view-luxdemasque .ld-btn-preciser svg{width:16px;height:16px}}
 #view-luxdemasque .ld-btn-preciser{white-space:nowrap}
+/* Lot D3 : réglages son / musique du menu */
+#view-luxdemasque .ld-reglage{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:0 14px;border:1px solid var(--ld-bord);border-radius:14px;background:transparent;color:#f2ecfa;font-size:15px;font-weight:700;cursor:pointer}
+#view-luxdemasque .ld-reglage b{font-size:13px;color:#a99cc4}
+#view-luxdemasque .ld-reglage[aria-checked="true"] b{color:var(--ld-or)}

@@ -180,6 +180,9 @@ async function ldChargerDonnees() {
 async function ouvrirLuxDemasque(dossierId) {
   if (!luxDemasqueDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
   luxDemasqueArreter();
+  // Geste de l'utilisateur : le son peut démarrer (autoplay mobile) ; Lux Match se tait.
+  if (typeof LuxMatchSon !== 'undefined') LuxMatchSon.musique(null);
+  if (typeof LuxDemasqueSon !== 'undefined') { LuxDemasqueSon.preparer(); LuxDemasqueSon.precharger(); }
   showView('view-luxdemasque');
   const box = ldBox();
   if (box) box.innerHTML = '<p class="ld-chargement">Ouverture du dossier…</p>';
@@ -194,11 +197,13 @@ async function ouvrirLuxDemasque(dossierId) {
   ldPreparerImages(); // portrait 3D et photos des preuves, pendant que le joueur lit la fiche
 }
 function luxDemasqueArreter() {
+  const partie = ld.partie;
+  ld.partie = null; // d'abord : fermer les fenêtres ne relance aucune musique
+  if (typeof LuxDemasqueSon !== 'undefined') LuxDemasqueSon.musique(null);
   ldFermerToutesFenetres();
   ldEffacerEmotion();
   clearTimeout(ld.fxTimer);
-  if (ld.rendu3d && document.querySelector('#ld-jeu .ld-scene-3d')) ld.rendu3d.detacher();
-  ld.partie = null;
+  if (ld.rendu3d && partie && document.querySelector('#ld-jeu .ld-scene-3d')) ld.rendu3d.detacher();
   ld.verdict = null;
 }
 // Jeu quitté par la navigation de l'appli (retour, barre du bas) : la partie s'arrête,
@@ -222,6 +227,18 @@ function ldEntete(options) {
       (o.menu === false ? '' : '<button type="button" class="ld-icone-btn" onclick="ldMenu()" aria-label="Menu" aria-haspopup="dialog">' + ldIcone('menu') + '</button>') +
     '</div></div>';
 }
+// Musique selon l'écran : enquête (fiche, réseaux, carnet), déposition, silence au bilan.
+function ldSynchroMusique() {
+  if (typeof LuxDemasqueSon === 'undefined') return;
+  const p = ld.partie;
+  if (!p || !ldVueActive() || p.phase === 'bilan') { LuxDemasqueSon.musique(null); return; }
+  const fouille = !!document.querySelector('#ld-reseaux, #ld-carnet, #ld-piece');
+  LuxDemasqueSon.musique(p.phase === 'rencontre' || fouille ? 'enquete' : 'deposition');
+}
+function ldSon(nom, options) {
+  if (typeof LuxDemasqueSon === 'undefined') return;
+  if (nom === 'nav' || nom === 'page' || nom === 'ouvrir') LuxDemasqueSon.clic(nom); else LuxDemasqueSon.accent(nom, options);
+}
 function ldRendre() {
   const p = ld.partie, box = ldBox();
   if (!p || !box) return;
@@ -230,6 +247,7 @@ function ldRendre() {
   if (p.phase === 'rencontre') ldRendreRencontre(box);
   else if (p.phase === 'deposition') ldRendreDeposition(box);
   else ldRendreBilan(box);
+  ldSynchroMusique();
 }
 function ldPortrait(classe, pose) {
   const n = ld.partie.npc;
@@ -319,13 +337,13 @@ function ldNaviguer(sens) {
   const avant = p.index;
   LuxDemasqueCore.allerA(p, p.index + sens);
   ldMajDeposition();
-  if (p.index !== avant) ldReagir('parle');
+  if (p.index !== avant) { ldReagir('parle'); ldSon('nav'); }
 }
 function ldPreciser() {
   const p = ld.partie;
   if (!p || p.phase !== 'deposition') return;
   const r = LuxDemasqueCore.preciser(p);
-  if (r && r.nouvelle) { ldToast('Précision ajoutée au carnet'); ldReagir('parle'); }
+  if (r && r.nouvelle) { ldToast('Précision ajoutée au carnet'); ldReagir('parle'); ldSon('indice'); }
   ldMajDeposition();
 }
 
@@ -346,6 +364,7 @@ function ldCalque(id, classe, titre, html) {
     box.appendChild(calque);
   }
   calque.innerHTML = '<div class="ld-fenetre">' + html + '</div>';
+  if (nouveau) ldSynchroMusique();
   // Focus dans la fenêtre à son ouverture (pas à chaque mise à jour de son contenu).
   const premier = calque.querySelector('button, [tabindex]');
   if (nouveau && premier) premier.focus({ preventScroll: true });
@@ -355,11 +374,12 @@ function ldFermerCalque(id) {
   const calque = document.getElementById(id);
   if (!calque) return false;
   calque.remove();
+  ldSynchroMusique();
   if (!document.querySelector('#ld-jeu .ld-calque') && ld.focusAvant && document.contains(ld.focusAvant)) ld.focusAvant.focus();
   if (typeof programmerGarde === 'function') programmerGarde();
   return true;
 }
-function ldFermerToutesFenetres() { document.querySelectorAll('#ld-jeu .ld-calque').forEach(c => c.remove()); }
+function ldFermerToutesFenetres() { document.querySelectorAll('#ld-jeu .ld-calque').forEach(c => c.remove()); ldSynchroMusique(); }
 function ldFermerBouton(id) { return '<button type="button" class="ld-fermer" onclick="ldFermerCalque(\'' + id + '\')" aria-label="Fermer">✕</button>'; }
 // Android Retour / Échap : la fenêtre du dessus se ferme d'abord.
 function luxDemasqueSuperposition() { return ldVueActive() && !!document.querySelector('#ld-jeu .ld-calque'); }
@@ -416,6 +436,7 @@ function ldOuvrirPiece(id) {
   const p = ld.partie; if (!p) return;
   const piece = LuxDemasqueCore.piecesParId(p.contenus)[id];
   const nouvelle = LuxDemasqueCore.consulter(p, id);
+  ldSon(nouvelle ? 'indice' : 'page');
   ldCalque('ld-piece', 'ld-calque-piece', piece.titre,
     ldFermerBouton('ld-piece') +
     '<p class="ld-piece-source">' + LD_APPS[piece.source] + ' · ' + ldEchapper(piece.auteur) + (piece.dateFr ? ' · ' + ldEchapper(piece.dateFr) : '') + '</p>' +
@@ -479,9 +500,10 @@ function ldPresenter(pieceId) {
   ld.verdict = r;
   ldMajDeposition();
   const reussi = r.resultat === 'demasque';
+  ldSon(reussi ? 'objection' : 'rate', { baisse: reussi });
   ldEffetObjection(reussi, () => {
     if (!ld.partie || ld.verdict !== r) return;
-    if (reussi) { ldReagir('zoom'); ldEmotion('stunned', 'big'); }
+    if (reussi) { ldReagir('zoom'); ldEmotion('stunned', 'big'); ldSon('percee', { baisse: true }); }
     else { ldReagir('rire'); ldEmotion('delighted', 'subtle'); }
     ldAfficherVerdict(r);
   }, r.piece && r.piece.indexOf(':') < 0 ? r.piece : null);
@@ -519,7 +541,19 @@ function ldMenu() {
     '<div class="ld-actions">' +
       (ld.partie && ld.partie.phase === 'deposition' ? '<button type="button" class="ld-btn ld-btn-or" onclick="ldFermerCalque(\'ld-menu\'); ldDemanderConclusion()">Conclure le dossier</button>' : '') +
       '<button type="button" class="ld-btn ld-btn-sombre" onclick="ldFermerCalque(\'ld-menu\')">Reprendre</button>' +
+      ldReglage('Son', 'luxDemasqueSon', true) + ldReglage('Musique', 'luxDemasqueMusique', true) +
       '<button type="button" class="ld-btn ld-btn-lien" onclick="ldQuitter()">Quitter Lux Démasque</button></div>');
+}
+// Interrupteurs du menu : Son (tout) et Musique (garde les effets). Mémorisés.
+function ldReglage(libelle, cle, defaut) {
+  const actif = ldLire(cle, defaut);
+  return '<button type="button" class="ld-reglage" role="switch" aria-checked="' + actif + '" onclick="ldBasculerReglage(\'' + cle + '\')">' +
+    '<span>' + libelle + '</span><b>' + (actif ? 'Activé' : 'Coupé') + '</b></button>';
+}
+function ldBasculerReglage(cle) {
+  ldEcrire(cle, !ldLire(cle, true));
+  if (typeof LuxDemasqueSon !== 'undefined') { LuxDemasqueSon.musique(null); ldSynchroMusique(); }
+  ldMenu();
 }
 function ldDemanderConclusion() {
   const p = ld.partie; if (!p || p.phase !== 'deposition') return;
@@ -534,6 +568,7 @@ function ldConclure(confirme) {
   const p = ld.partie; if (!p || !confirme) return;
   const fin = LuxDemasqueCore.conclure(p);
   if (fin.score > ldLire('luxDemasqueRecord', 0)) { ldEcrire('luxDemasqueRecord', fin.score); p.nouveauRecord = true; }
+  ldSon(fin.complet ? 'resolu' : 'clos');
   ldFermerToutesFenetres();
   ldEffacerEmotion();
   if (ld.rendu3d) ld.rendu3d.detacher();
