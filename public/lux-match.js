@@ -122,19 +122,47 @@ function lmObtenir3D() {
   return lm.promesse3d;
 }
 
+// Écran de chargement sobre : logo, barre en paliers, étape en cours.
+function lmEcranChargement(progres, etape) {
+  const box = lmBox();
+  if (!box) return;
+  if (!box.querySelector('.lm-lancement')) {
+    box.innerHTML = '<div class="lm-lancement" role="status" aria-live="polite">' +
+      '<div class="lm-lancement-logo">LUX <i>♥</i> MATCH</div>' +
+      '<div class="lm-lancement-barre"><i id="lm-lancement-progres"></i></div>' +
+      '<p id="lm-lancement-etape"></p></div>';
+  }
+  const barre = document.getElementById('lm-lancement-progres');
+  const texte = document.getElementById('lm-lancement-etape');
+  if (barre) barre.style.width = progres + '%';
+  if (texte) texte.textContent = etape;
+}
 async function ouvrirLuxMatch() {
   luxMatchArreter();
   LuxMatchSon.preparer();
   showView('view-luxmatch');
-  const box = lmBox();
-  if (box) box.innerHTML = '<p class="lm-chargement">Chargement…</p>';
+  const debut = performance.now();
+  lmEcranChargement(10, 'Connexion au réseau…');
   try { await lmChargerDonnees(); } catch (_) {
+    const box = lmBox();
     if (box) box.innerHTML = lmEntete() + '<p class="lm-chargement">Impossible de charger Lux Match. Vérifie ta connexion.</p>';
     return;
   }
-  lmObtenir3D().catch(() => {});
   lm.aideFr = lmLire('luxMatchAideFr', true);
-  lmNouvellePartie();
+  const partie = LuxMatchCore.nouvellePartie(lm.donnees, { parties: lmLire('luxMatchParties', 0) });
+  lm.partie = partie;
+  lmEcranChargement(40, 'Recherche de profils à proximité…');
+  // On attend la 3D et les deux premières photos, 6 s au plus (sinon les initiales s'affichent).
+  const premieres = partie.paquet.slice(0, 2).map(id => [LuxMatchCore.profilParId(partie, id), 'Idle', '#3a2a55']);
+  const pret = lmObtenir3D().then(() => { lmEcranChargement(75, 'Préparation des photos…'); return lmPreparerImages(premieres); });
+  await Promise.race([pret.catch(() => {}), new Promise(r => setTimeout(r, 6000))]);
+  if (lm.partie !== partie || !lmVueActive()) return; // l'utilisateur est reparti
+  lmEcranChargement(100, 'C’est parti !');
+  // Durée minimale courte : l'écran ne clignote pas quand tout est déjà en cache.
+  await new Promise(r => setTimeout(r, Math.max(250, 700 - (performance.now() - debut))));
+  if (lm.partie !== partie || !lmVueActive()) return;
+  lm.app = null;
+  lmRendre();
 }
 function lmNouvellePartie() {
   lm.partie = LuxMatchCore.nouvellePartie(lm.donnees, { parties: lmLire('luxMatchParties', 0) });
@@ -219,7 +247,7 @@ function lmRendreSwipe(box) {
       '<div class="lm-carte-infos"><h2>' + lmEchapper(profil.name) + ', <span>' + profil.age + '</span></h2>' +
       '<p class="lm-lu" lang="lb">' + lmEchapper(profil.amis.bioLu) + '</p>' +
       (lm.aideFr ? '<p class="lm-fr">' + lmEchapper(profil.amis.bioFr) + '</p>' : '') +
-      '<div class="lm-tags">' + profil.pix.bioLu.split(/[ .]+/).filter(Boolean).slice(0, 3).map(t => '<span lang="lb">' + lmEchapper(t) + '</span>').join('') + '</div>' +
+      '<div class="lm-tags">' + profil.pix.bioLu.split(/[ .]+/).filter(m => m.length > 2).slice(0, 3).map(t => '<span lang="lb">' + lmEchapper(t) + '</span>').join('') + '</div>' +
       '</div><div class="lm-tampon lm-tampon-oui">OUI</div><div class="lm-tampon lm-tampon-non">NON</div></div>';
   box.innerHTML = lmEntete() +
     '<p class="lm-consigne">Swipe à droite si elle te plaît. ' + reste + ' profil' + (reste > 1 ? 's' : '') + ' à proximité.</p>' +

@@ -10,6 +10,12 @@
 #view-luxmatch button{font-family:var(--font)}
 #view-luxmatch button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 #view-luxmatch svg{width:20px;height:20px}
+#view-luxmatch .lm-lancement{min-height:calc(100dvh - 40px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center}
+#view-luxmatch .lm-lancement-logo{font:20px/1 var(--lm-pixel);letter-spacing:.06em;color:#ffd1f4;-webkit-font-smoothing:none;text-shadow:0 0 14px rgba(255,79,216,.55)}
+#view-luxmatch .lm-lancement-logo i{font-style:normal;color:var(--lm-rose);display:inline-block;animation:lm-battement .8s steps(2,end) infinite}
+#view-luxmatch .lm-lancement-barre{width:min(70%,240px);height:16px;padding:2px;border:2px solid var(--lm-bord);background:#120e18}
+#view-luxmatch .lm-lancement-barre i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--lm-rose) 0 8px,transparent 8px 10px);transition:width .35s steps(5,end)}
+#view-luxmatch .lm-lancement p{margin:0;min-height:1.4em;color:#a99cc4;font-size:13px}
 #view-luxmatch .lm-chargement{margin:40vh auto 0;color:#bdb0d6;text-align:center}
 #view-luxmatch .lm-lu{font:700 16px/1.35 var(--font);color:#fff;margin:0}
 #view-luxmatch .lm-fr{font:500 13px/1.35 var(--font);color:#bdb0d6;margin:2px 0 0}
@@ -230,6 +236,7 @@
 #view-jeux .lm-etat-demo{background:var(--accent);color:#251b0d}
 
 @media(prefers-reduced-motion:reduce){
+  #view-luxmatch .lm-lancement-logo i,#view-luxmatch .lm-lancement-barre i,
   #view-luxmatch .lm-match-titre,#view-luxmatch .lm-match-coeur,#view-luxmatch .lm-res-titre,#view-luxmatch .lm-feedback.lm-visible,
   #view-luxmatch .lm-tel-btn.lm-faible,#view-luxmatch .lm-tel-date-barre.lm-faible,#view-luxmatch .lm-tel-faible .lm-tel-ecran{animation:none}
   #view-luxmatch .lm-feedback.lm-visible{opacity:1}
