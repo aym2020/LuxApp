@@ -840,3 +840,103 @@ Dans `public/lux-match.js`, `lmBrancherSwipe(carte)` (autour des lignes 518–53
 **Instrumentation facultative uniquement en debug** : enregistrer `type`, `pointerId`, `clientX`, `dx`, `cancelReason` si disponible, numéro de carte et décision **sans données personnelles**, et sans bruit en production. Une vidéo ralentie ou un enregistrement des `pointercancel` sur Samsung aiderait à confirmer la cause si le défaut survit au correctif.
 
 **Priorité pour Claude : corriger cette perte de contrôle utilisateur AVANT ou en parallèle des lots 10A/10B, avec commit isolé et tests de gestes.** Ne pas modifier le jeu par la seule rédaction de la SPEC ; préserver le faux smartphone, la DA, l'accessibilité et les transitions musicales.
+
+
+---
+
+## 20. Complicité récompensée et enquête utile pendant le date (retour joueur 27/10/2026)
+
+**Statut : décision de conception / lot suivant À IMPLÉMENTER. Aucun patch du jeu dans cette mise à jour.** Retour Samsung (Claire) : le joueur fait **deux blagues** (« Ech heesche James Bond », « Ech sinn honnertzwanzeg Joer al »), Claire esquisse un sourire mais l'affinité ne progresse pas. Autre critique : les conversations actuelles offrent trop peu d'occasions de **réinvestir les informations Pix, Pro et Amis**, si bien qu'enquêter avant le date ou sortir le téléphone pendant le date n'apporte pas assez de valeur ludique.
+
+### 20.1. Cause vérifiée dans le code, sans extrapolation
+
+- Dans `public/lux-match-core.js`, `EFFET_GOUT = { aime: 4, neutre: 0, n_aime_pas: -3 }`. Les réponses `truth:"joke"` choisissent un `jokeKind` et `goutBlague(etat, genre)` ; `reactionBlague()` fournit la réplique FR, **distinctement** de la variation d'affinité.
+- Dans `data/jeux/lux-match/contenus-v02.json`, Claire a `humour.absurde.gout = "neutre"` et `fr = "Elle esquisse un sourire poli : « Original. »"`. Les choix `REP03_C` (James Bond) et `REP04_C` (120 ans) sont tous deux `jokeKind:"absurde"`. Ils rapportent donc **0 chacun par construction** ; le score n'est pas mal calculé. Le sourire peut être poli, mais **le jeu ne distingue pas assez clairement l'accueil poli de l'amusement réel**.
+- Le catalogue actuel comprend **18 beats principaux** et le compositeur `tirerActe2()` pioche surtout dans des questions autobiographiques (`B05_ORIGIN`, `B06_CITY`, `B07_LANGUAGE`, `B08_PROFESSION`, `B13_NATIONALITY`, etc.) plus `B21_ASK_HER` (3 questions standards posées par Alex). Les posts de Pix/Pro/Amis sont informatifs, mais très peu **de nœuds datés exploitent directement un fait social vérifiable** pour offrir une réponse personnalisée.
+- La consultation pendant le date consomme **5 % de batterie/seconde** (`20 s` cumulées) et Emma possède un trait anti-téléphone explicite. Si consulter ne procure aucun avantage perceptible, **la mécanique batterie/risque n'a plus d'intérêt stratégique**. Ne pas modifier ces règles avant d'avoir ajouté des opportunités qui justifient ce risque.
+
+### 20.2. Principe game design : si elle rit, il faut que ce soit lisible et gratifiant
+
+**Règle fondamentale : texte + micro-animation + delta social doivent raconter LA MÊME réaction.** Ne jamais afficher un éclat de rire enthousiaste assorti d'un delta 0 ; inversement un sourire poli neutre doit ressembler clairement à de la politesse, pas à une récompense.
+
+| Réaction réellement ressentie par la fille | Mise en scène | Variation sociale cible indicative |
+| --- | --- | --- |
+| Sourire de politesse, elle n'accroche pas à la blague | Coin des lèvres / sourire réservé, réplique « original… » | **0** possible et lisible |
+| Une vraie blague bien accueillie | Petit rire, étoile manga discrète, relance complice | **+2 à +4** |
+| Moment mémorable de connivence (contexte / personnalité / rappel bien amené) | Rire franc, animation un peu plus vive, réplique propre au profil | **+5 à +7**, rare et mérité |
+| Blague mal reçue / vantardise agaçante | Regard gêné ou sceptique, petite réplique contextualisée | Petit malus existant, pas de suspicion automatique |
+
+**Ne pas transformer toutes les blagues en bonus universel.** Claire aime les traits d'esprit et l'autodérision, mais demeure plutôt neutre vis-à-vis des énormités « James Bond » et « 120 ans » : conserver cette cohérence tant que son indice de tempérament l'annonce. En revanche, offrir **des choix de taquinerie subtile ou d'autodérision** pour qu'un joueur puisse effectivement la faire rire et en tirer une récompense. Ne pas changer arbitrairement `neutre` en `aime` simplement pour gonfler les chiffres.
+
+**Anti-farming et diversité :** deux plaisanteries `absurde` d'affilée doivent produire une **réaction évolutive** (ex. elle comprend qu'Alex exagère volontairement, ou elle trouve que cela devient répétitif). Petit bonus de première réussite possible, bonus réduit si même `jokeKind` répété ; une deuxième blague **mieux contextualisée**, d'un autre genre ou associée à un souvenir, peut rapporter davantage. Pas de compteur punitif mystérieux ; expliquer la répétition par le caractère de la fille, sans commentaire professoral.
+
+**Scoring indépendant :** une réplique en luxembourgeois correcte vaut une réponse linguistiquement correcte, que le personnage rit, reste poli ou n'apprécie pas. Ne pas créditer une réplique erronée en luxembourgeois parce que la blague est drôle.
+
+### 20.3. Le problème plus profond : les réseaux doivent servir AU RENDEZ-VOUS
+
+**Nouvelle promesse joueur :** « J'ai enquêté sur elle, je peux donc mieux la connaître, créer des connexions et anticiper certaines réactions ; si je n'ai rien lu, je peux consulter mon téléphone au café, mais le temps est limité et certaines filles n'aiment pas ça. »
+
+**Objectif V1 :** dans chaque scénario de **6–8 échanges principaux**, proposer **au moins 2 opportunités sociales significatives liées à un fait public de la fille**, parfois une 3e si le rythme le permet ; elles doivent porter sur **au moins 2 thèmes différents** (centres d'intérêt, activité, ville/lieu, habitudes, métier, personnalité, style, etc.). Une telle opportunité doit **changer la qualité du dialogue**, pas simplement faire passer un contrôle de mémorisation. Un gag majeur conditionnel peut constituer l'une d'elles s'il est relié à un indice public déjà disponible. Ne pas allonger systématiquement les dates : **remplacer** des questions génériques, ne pas ajouter 5 tours.
+
+Les informations doivent être :
+- **Canoniques dans `scenarioPlan`** (un fait identique sur Pix, Pro, Amis, choix du date et résumé).
+- **Accessibles avant le date** ; consultation au café = rattrapage possible, pas exclusivité.
+- **Non nécessaires pour gagner** : réponse prudente ou sincère disponible ; sans enquête, réussite encore possible, avec moins d'optimisation.
+- **Pas révélées gratuitement par les boutons** : si le dialogue demande de reconnaître une préférence, éviter un choix qui dit directement « J'ai lu ton post sur Amis » **et serait la seule réponse gagnante sans que le joueur ait eu à lire quoi que ce soit**. Le gain doit correspondre à une information réellement retenue / bien interprétée, non au fait mécanique d'avoir ouvert une app.
+- **Non intrusives** : les profils Pix privés ne divulguent aucune photo privée ; Pro et Amis doivent offrir une voie équivalente, au besoin. Pas d'exploitation d'une préférence d'âge ou d'un nom d'ex comme seule chance de réussite.
+
+### 20.4. Un nouveau type de beat : échange « intérêt partagé / souvenir / question personnalisée »
+
+Étendre le catalogue de petites **scènes conversationnelles éditées**, pas un quiz mécanique sur l'identité :
+- **Accroche naturelle** : la fille parle d'elle, de son métier, de ses activités ou d'un événement récent.
+- **Trois stratégies sociales jouables** :
+  1. **Réponse personnalisée**, qui s'appuie sur un fait vérifiable vu dans Pix/Pro/Amis (ex. sport, peinture, lecture, voyage, routine) → petite prime de complicité si adaptée au tempérament, idéalement **+3 à +5** au-dessus du neutre selon équilibre ;
+  2. **Réponse naturelle sans renseignement**, simple et honnête (« Raconte ! », « Et toi ? », « Je ne connais pas bien ») → **neutre ou petite progression** ; le joueur n'est pas puni de ne pas enquêter ;
+  3. **Supposition / bluff / taquinerie risquée** → peut faire rire, être maladroite ou déclencher une relance, avec conséquences **connues du moteur et perceptibles par la fille**.
+- **Suite du dialogue adaptée** : la fille réagit spécifiquement au fait mentionné, peut poser une petite question en retour ou faire une allusion plus tard. Éviter « bonne réponse : +5 » qui ressemble à une interrogation sur ses réseaux.
+- **Pas de « clique sur cette option pour +5 »**, pas de surlignage du meilleur choix. Les indices vivent dans les posts, la mémoire et la conversation.
+- **Tous les textes LU sont des répliques complètes vérifiées** contre le cours A1.1, `grammaire_luxembourg.md` et LOD.lu. Éviter la concaténation libre de métiers/prépositions/qualificatifs pour produire des variantes.
+
+**Exemples d'intentions conversationnelles À ÉCRIRE EN LU ET AUDITER, non intégrables telles quelles :**
+
+| Partenaire | Indice disponible | Moment de discussion où l'information sert | Conséquence voulue |
+| --- | --- | --- | --- |
+| **Claire** | Pro : elle travaille en banque ; Amis : ponctuelle, aime le noir et les looks soignés, apprécie l'ironie | Elle parle d'une journée chargée ; Alex peut rebondir naturellement sur son métier **ou** faire un trait d'esprit fin plutôt que « Je suis James Bond » | + affinité si réponse pertinente ; humour absurde poli = toujours 0 si neutre |
+| **Léna** | Amis/Pix : football, sport et activité matinale | Elle évoque une rencontre sportive ou une sortie ; Alex s'intéresse au football **sans prétendre être champion** | Elle apprécie l'attention, petite connivence ; bluff héroïque peut revenir |
+| **Noémie** | Pix : dessin / croquis ; Amis : aime le rouge, créations | Elle montre un dessin ou parle d'une création ; Alex pose une question sur **ce qu'elle a réellement publié** plutôt que demander où elle habite | Variante drôle si intérêt sincère ; absurde accepté chez Noémie |
+| **Maya** | Pro : développeuse ; Amis : gaming, jeux rétro ; Pix privé | Elle évoque un jeu ou son travail ; Alex peut rappeler une information Amis ou s'intéresser à ce qu'elle raconte | Réponse personnalisée + petit bonus ; Pix privé n'empêche rien |
+| **Sofia** | Pix : Lisbonne/tram ; Pro : guide ; Amis : vient du Portugal et aime voyager | Elle parle d'un voyage ; Alex rebondit sur Lisbonne, son travail ou une langue, sans prétendre parler portugais | Attention récompensée ; bluff portugais reste une voie risquée et drôle |
+| **Emma** | Amis : livres, café, n'aime pas le téléphone ; Pix privé | Elle parle de sa librairie ou de sa lecture ; Alex pose une vraie question sur ses livres ou une habitude | Complicité possible **sans sortir son téléphone** ; usage du téléphone au café reste un arbitrage intéressant |
+
+**Attention aux traductions :** les exemples ci-dessus sont des intentions FR de design, pas des répliques LU déjà validées. Les mots « travail en banque », « dessiner », « lire », « café » doivent être reliés aux leçons disponibles ; expressions plus avancées seulement en `pedagogicalScoring:false` avec aide prévue.
+
+### 20.5. Téléphone pendant le date : information vs risque, pas « punition gratuite »
+
+- Avant le date, les recherches restent **gratuites et facultatives**. Pendant le date, le téléphone peut servir à **retrouver un indice utile pour une décision à venir**. Batterie actuelle : 20 secondes cumulées ; elle ne se vide que lorsque le téléphone est ouvert. Ne pas augmenter artificiellement le nombre d'ouvertures exigées.
+- **Au moins une opportunité** d'un scénario doit laisser un choix suffisamment complexe pour que « je vais vérifier ce que j'ai vu sur Amis/Pro » ait un sens. **Pas d'injonction à regarder son téléphone**, pas de minuteur pendant la lecture d'une question LU ; limiter les risques de sortie accidentelle.
+- Pour **Emma anti-téléphone**, les indices sont particulièrement intéressants **à lire AVANT le date** ; l'avantage d'enquête doit se sentir. Mais un joueur qui arrive sans enquête conserve une voie sociale positive (écouter, demander, rester honnête) **sans être obligé de sortir le téléphone et se faire sanctionner**.
+- Une consultation qui ne rapporte rien de pertinent doit rester possible (le joueur est libre), mais le jeu doit offrir de **vraies raisons contextuelles** de consulter : noms, centre d'intérêt, préférence publique, anecdote, activité, langue, détail Pix, etc.
+- Ne pas ajouter une jauge « Points d'enquête », des checklists de lecture, des badges de « bonne source », ni du spam de notifications. Les trois réseaux restent des **réseaux sociaux fictifs**, pas une fiche d'examen.
+- On ne récompense **pas l'ouverture d'une app** mais **l'utilisation correcte d'une information**. Si le joueur devine sans avoir consulté, l'option pertinente peut réussir : cela reste équitable.
+
+### 20.6. Mise en œuvre simple et contrôlée
+
+**Lot 11A — Corriger le contrat réaction / récompense** :
+1. Conserver `EFFET_GOUT` par genre pour le tempérament, mais enrichir ses nuances si nécessaire (`politesse`, `rireLeger`, `complicite`) de manière éditoriale légère. **Ne pas utiliser l'animation `sourire` pour signifier une récompense quand `affinity=0`**, sauf sourire explicitement de politesse.
+2. Donner à Claire **au moins une option de taquinerie et une d'autodérision** atteignables dans un date, avec humour compatible et bonus positif, sans rendre ses blagues absurdes systématiquement gagnantes.
+3. Éviter les deux énormités identiques qui n'apportent aucune variation narrative : léger rappel humoristique / réaction différente au deuxième essai, sans punition invisible.
+4. Tests : pour chaque partenaire, `absurde / vantardise / autoderision / taquinerie` → texte, émotion et delta cohérents ; jamais `rire franc` à 0 sans règle scénaristique claire ; score langue indépendant.
+
+**Lot 11B — Banque de scènes fondées sur les indices** :
+1. Inventorier chaque `factId` présent dans Pix/Pro/Amis et **écrire** au moins deux petites scènes conversationnelles réellement réutilisables par partenaire (6 × 2 = 12 scènes candidates), avec `sourceClueIds`, `act`, `theme`, `npc`, `choices`, `reaction`, `socialEffects`, `lessonIds`, `reviewStatus`.
+2. N'intégrer que les lignes LU auditées ; **ne pas faire inventer des phrases au runtime**. Le générateur doit choisir **deux** occasions pertinentes dans chaque plan de 6–8 tours (si banque auditée suffisante), réparties sur deux thèmes, sans rallonger systématiquement les dates.
+3. Assurer le **partage d'état** entre `scenarioPlan`, posts sociaux et date. Les moments d'enquête doivent être différents selon la fille, et si Pix privé Pro/Amis couvrent les thèmes nécessaires.
+4. Préserver l'algorithme actuel et son repli déterministe pendant la migration : si catalogue trop maigre/non audité, rester sur les beats validés plutôt que publier des questions sans sens.
+
+**Lot 11C — Mesurer la valeur réelle de l'enquête** :
+1. Simuler les six filles avec un joueur **ayant enquêté** et **sans enquête** : les deux doivent pouvoir terminer positivement, mais l'enquête doit augmenter les occasions de connexion et améliorer les décisions éclairées.
+2. Tester une consultation du téléphone au **milieu d'un échange** sans perte d'état, sans double événement, dans les 20 secondes cumulées, et avec le trait anti-téléphone d'Emma.
+3. Utiliser les mêmes graines pour mesurer le nombre de beats personnalisés, la cohérence indice↔réaction et la part des dates où consulter est inutile. Éviter des milliers de combinaisons cosmétiques présentées comme de nouveaux scénarios.
+4. Sur 20 parties de recette couvrant six profils, un observateur doit pouvoir raconter **au moins deux choses précises sur la partenaire qui ont effectivement changé le dialogue ou l'issue sociale** ; testeur qui ignore les apps peut quand même jouer de façon satisfaisante.
+
+**Périmètre :** garder les six filles, un café, le faux téléphone, la batterie et les voix/3D actuelles ; ne pas toucher au cloud, progression, Lux Runner, autres jeux ou système de musique. **La banque de nouvelles scènes et les traductions LU doivent passer par la bible éditoriale et la relecture linguistique avant toute intégration.**
