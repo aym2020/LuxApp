@@ -607,3 +607,75 @@ Six émotions de base, avec un effet **déterminé par la réaction de la scène
 7. **Tests existants** : \`node --test test/lux-match.test.cjs\` et suites critiques du dépôt ; ajouter tests ciblés sur le contrôleur audio/transition et recette Android réelle avant de marquer le travail validé.
 
 **Interdits :** pas de nouvelle ville/café, pas de CUPID.EXE, pas de troisième thème musical complet, pas d'effet « horror » constant qui stresse la lecture du luxembourgeois. La batterie du téléphone crée la tension, **la musique du date crée l'ambiance**.
+
+
+---
+
+## 17. Refonte des écrans pré-date : téléphone, dossier Alex et dressing arcade (27/10/2026)
+
+**Statut : spécification de refonte UI/UX, NON implémentée ; captures Samsung utilisateur du 27/10/2026.** Cet arbitrage complète les §§14–16 de la SPEC 109 et la bible éditoriale. Périmètre strict : **hub des réseaux dans le faux téléphone, modale dossier Alex, écran de relooking et entête mobile associée**. **Conserver** toutes les fonctionnalités déjà codées, l'aide FR disponible dans les contenus pédagogiques (mais pas dans la fiche Moi), les trois apps Pix/Pro/Amis, l'enquête, la navigation, les choix de tenue et le bouton de son **dans une configuration accessible**, sans icône permanente en haut.
+
+### 17.1. Diagnostic confirmé par les captures Android réelles
+
+1. **Réseaux** : double empilement d'interfaces (« grande barre supérieure Lux Match » + « énorme faux smartphone »), marge et largeur excessives, message externe « Enquête sur Noémie avant le rendez-vous. », hub intérieur minimal (3 grosses tuiles à lettres P/P/A sur fond vide), texte méta « Prends ton temps. La batterie ne se vide pas ici. », CTA jaune éloigné de l'interface du téléphone. L'écran fait **maquette** plutôt que faux système social intégré au jeu.
+2. **Fiche Moi** : grand panneau avec portrait/bio française, 6 énormes lignes luxembourgeoises verticales, liste d'habitudes séparée, bouton « Aide FR désactivée », deux paragraphes explicatifs (« Tes mensonges ne modifieront pas cette fiche », « Ce que tu as raconté, à toi de t'en souvenir »). Résultat : **panneau de tutoriel méta** qui déborde la réalité fictive du jeu et demande beaucoup de scroll.
+3. **Relooking** : grande zone de rendu 3D rectangulaire sans composition, avatar relativement petit et posé sur un socle violet, **cinq pavés de style comprimés sur une ligne**, **six couleurs et leurs noms tassés** avec risqué de collision/illisibilité, deux actions principales concurrentes (« Aller au rendez-vous » désactivé tant que rien n'est sélectionné, « Garder cette tenue » toujours accessible), beaucoup de vide autour. Ça ressemble à un paramétrage technique plutôt qu'à une préparation de date.
+4. **Entête** : logo, badge DÉMO, FR, Moi, son sur une seule ligne : trop chargé pour ~320–430 px, d'où présence disproportionnée des contrôles. Le bouton de son doit **disparaître de la top bar** selon décision utilisateur ; ce n'est **pas** une demande de supprimer l'audio.
+
+**But transversal :** impression de jouer à une **dating sim arcade old school/PS1** (typographie pixel pour les micro-titres, boutons et textures de console sobres, cadres maîtrisés, hautes contrastes et rétro modernisé), mais **lisibilité Android avant décoration**. Éviter les cartes SaaS géantes, faux effets CRT agressifs, bruit visuel permanent, ou esthétique de téléphone iPhone réaliste qui contredit la DA.
+
+### 17.2. Composition cible — HUB « Réseaux de Noémie »
+
+**Principe d'interaction :** le faux téléphone reste un **objet dans l'univers** et une interface fonctionnelle ; l'écran ne doit pas devenir une deuxième page web avec un smartphone qui prend toute la hauteur pour trois icônes.
+
+- **Entête global réduit** : bouton retour ≥44×44, logo compact **LUX ♥ MATCH**, badge DÉMO miniaturisé ou déplacé sans masquer le titre. FR uniquement à l'endroit pertinent pour les contenus LU. **Supprimer l'icône son permanente de cet entête**, et éviter un bouton Moi redondant dans chaque vue si la navigation vers le dossier existe ailleurs ; garder l'accessibilité du dossier, notamment pendant le date.
+- **Supprimer la phrase externe « Enquête sur [Nom] avant le rendez-vous. »** si le titre dans le faux téléphone dit déjà « Réseaux de [Nom] ». Aucun doublon.
+- **Supprimer entièrement « Prends ton temps. La batterie ne se vide pas ici. »**, et toutes les phrases meta de règles sur cet écran. L'absence de drain avant le date reste vraie **dans le moteur**, sans être annoncée par un tutoriel non demandé.
+- Téléphone au bon ratio, **cadre plus fin et moins haut en état d'accueil**, largeur relative adaptée au viewport (marges latérales et safe areas ; éviter de gagner 30 % de hauteur avec un cadre disproportionné). Préserver le style téléphone sans le faire ressembler littéralement à un appareil iOS haut de gamme.
+- Intérieur : **barre d'état fictive arcade** compacte + titre **« Réseaux de Noémie »** + 3 apps réellement identifiables, dessinées comme **icônes pixel/sprites originaux** plutôt que 3 lettres P/P/A identiques. Chaque app possède sa couleur et son motif : Pix (photo/flash), Pro (carte/porte-documents), Amis (deux portraits/bulle). Conserver Pix/Pro/Amis et les écrans existants, **ne pas renommer ou inventer de quatrième app**.
+- Sous chaque app, une courte étiquette fonctionnelle, voire un **état réel uniquement si calculable** (ex. privé pour Pix, publication récente) : **ne pas inventer de badge « 3 indices » ou compteur non représenté par les données**. Retirer les tuiles inutilement larges.
+- Espace vide : **ne pas remplir avec de la décoration gratuite**. Réduire le hub à sa juste hauteur / compacter la façade et laisser respirer l'interface, ou proposer une petite vignette de la partenaire (déjà disponible) si elle apporte un contexte réel. Les détails OS doivent rester légers, pas créer des onglets fantômes.
+- CTA primaire **« Choisir mon look »** clair, visible sans scroll non nécessaire, position cohérente **sous le téléphone ou dans sa barre d'action** (une seule solution, pas deux boutons). Le passage aux apps ouvertes doit rester entièrement scrollable et lisible ; conserver le retour apps et la confidentialité Pix.
+- Les posts LU restent en luxembourgeois quand aide FR off ; le système ne réintroduit pas des traductions non demandées. Taille des zones tactiles ≥44 px.
+
+### 17.3. Composition cible — dossier immersif Alex
+
+**Ce panneau est consultable gratuitement pendant le date** et accessible en préparation. Il doit faire penser à une petite fiche privée / dossier de personnage **diégétique**, pas à une leçon ni à une fiche de debug.
+
+- Titre court : **« DOSSIER ALEX »** (ou « Mon profil », tonalité immersive). **Retirer le libellé « Ma vraie identité »** si un vocabulaire de menu technique reste perceptible ; l'utilisateur comprend implicitement qu'il s'agit de sa fiche.
+- Conserver portrait low-poly, Alex, 28 ans, vrai métier, Metz, France, langue, goûts et habitudes **canoniques** du persona — ne pas effacer les informations qui servent au gameplay. En revanche, **éviter le bloc narratif FR long** en doublon des champs.
+- Présenter les caractéristiques en petites **lignes ou paires label/valeur** et les phrases LU essentielles en sous-cartes **compactes, lisibles, à densité maîtrisée** (pas six énormes cartes pleines largeur avec 20 px de marge). Garder suffisamment de LU pour qu'on puisse se rappeler les formulations, sans transformer l'écran en exercice.
+- **Retirer totalement le bouton « Aide FR » dans la fiche** ; il n'y a pas de quiz à cet endroit. L'aide FR reste disponible là où un contenu pédagogique LU est proposé. **Retirer** : « Tes mensonges ne modifieront pas cette fiche », « Ce que tu as raconté, à toi de t'en souvenir », et tous rappels de mécanique énoncés par le système.
+- Le descriptif des loisirs peut être reformulé comme **quelques faits sobres** (« Matin : café », « Football : non », etc.) sans expliquer au joueur que c'est une arme pour mentir.
+- **Fermer** accessible sans descendre toute la fiche, bouton grande cible tactile / croix claire et sortie Android Back, focus restitué au contrôle d'ouverture, pas de perte du dialogue ou de batterie. Supporter scroll interne si nécessaire sans scroll piégé de la page.
+- Pas de nouvelle personnalisation, ni de sauvegarde des mensonges dans les champs canoniques du profil.
+
+### 17.4. Composition cible — relooking = mini-dressing / écran d'équipement arcade
+
+**Intention** : « Je prépare mon personnage pour impressionner Noémie », pas « je choisis deux valeurs dans un formulaire ».
+
+- **Haut du dressing** : un titre pixel court **« PRÉPARE TON LOOK »**, décor de cabine / écran de sélection d'avatar rétro possible **en CSS léger**, avatar 3D **nettement plus présent dans un cadrage face ou 3/4**, bien éclairé, **jamais dos à la caméra au moment d'un choix**. Les cinq modèles d'apparence existants restent. Éviter une grande dalle vide autour d'un petit personnage. Prévisualiser les changements immédiatement, conserver contrôle du rendu et caméra existants si possible.
+- **Styles** : cinq **cartes d'équipement** plus visuelles que des pavés textuels. Petit pictogramme original simple / silhouette CSS + nom en français \`Sportif / Casual / Loose / BCBG / Créatif\`. Ne pas obliger cinq colonnes sur petit Android : grille adaptable (ex. 3 + 2), carrousel seulement s'il évite d'en cacher sans signalement ; pas de scroll horizontal nécessaire juste pour toucher une option.
+- **Couleurs** : six **pastilles 36–44 px**, avec zone tactile ≥44 px et contraste/contour de sélection ; **le nom LU/FR peut être affiché sous la seule couleur choisie**, pas serré six fois dans un rang avec les autres. Accessibilité : chaque pastille a \`aria-label\` clair, non ambigu sans perception de couleur.
+- **Un seul CTA primaire non trompeur** : « **Aller au rendez-vous** ». Ne pas le bloquer sans raison si une **tenue par défaut** existe. Si le joueur n'a rien modifié, continuer avec la tenue par défaut ; sinon la sélection est celle qu'il voit.
+- Le secondaire « Garder cette tenue » est ambigu : **supprimer ce bouton comme action de départ séparée** et préserver sa sémantique via le CTA unique qui accepte le look actuel. Rendre \`Revoir ses réseaux\` secondaire discret (naviguer sans effacer la sélection de tenue).
+- Choix + avatar + CTA doivent être utilisables **sur 320–430 px** : éviter que la grille et le CTA se heurtent au bord, utiliser le scroll naturel si nécessaire, **sticky CTA seulement si nécessaire et sans masquer les derniers choix** ; safe area Android respectée.
+- **Pas de révélation automatique des préférences de la fille** à ce stade : le jeu récompense l'enquête. Éviter un label qui vend la solution (« Indice détecté : bleu + casual ») si le joueur n'a rien consulté. Si futur rappel, il doit seulement refléter des informations **déjà vues explicitement** par le joueur, sans badge de score.
+- Le visuel doit correspondre à la DA arcade (socle/stage de personnage, sélection lumineuse brève), **sans modifier les modèles 3D ni ajouter de scènes**, sans recomposition des assets à chaque bouton.
+
+### 17.5. Barre haute et réglage du son — arbitrage avec la musique (§16)
+
+- **Décision explicite : supprimer l'icône haut-parleur permanente de la top bar pré-date**. Le logo, le retour et l'aide FR réellement pertinente ont priorité sur les autres actions.
+- **Ne pas supprimer le son du jeu** : la SPEC §16 demande deux thèmes musicaux et le respect du réglage \`luxMatchSon\`. Conserver la préférence utilisateur et le mute **accessible via un emplacement discret dédié** (p. ex. panneau Pause/Options ou réglage audio réutilisable sans ouvrir un écran additionnel non nécessaire). Si un menu audio séparé est requis, il ne doit pas recréer l'encombrement dans l'entête. Tester le **mute durant le date** et la persistance quand le joueur revient dans Lux Match.
+- **La fiche Moi** doit rester accessible pendant le date (HUD) sans consommer de batterie ; ne pas la retirer sous prétexte d'alléger le header.
+- Les fonctions disponibles (Aide FR, Moi, Son) ne doivent jamais être supprimées silencieusement : **déplacer ou contextualiser**, sauf suppression explicitement demandée **dans la fiche Moi** (\`Aide FR\`) et **dans l'entête** (\`son\`).
+
+### 17.6. Acceptation visuelle et non-régression
+
+1. Produire **captures avant/après sur viewport identique** : 320×640, 360×740, 393×852, 430×932 ; trois vues réseau hub, dossier et dressing, **en mode sombre**. Vérifier absence de débordement horizontal, textes coupés, chevauchement barre OS, navigation Android, état actif et CTA non masqué.
+2. **Réseaux** : hub de faux smartphone compact, agréable et arcade ; aucune phrase « prends ton temps », ni « Enquête sur Noémie » redondante, aucune icône son en top bar ; trois apps visibles, pages internes fonctionnelles, contenu conditionné aide FR, Pix privée inchangée.
+3. **Dossier** : aucune bascule Aide FR à l'intérieur ; aucun message méta sur les mensonges ; **tous les faits canoniques d'Alex** et formulations LU de référence encore consultables ; fermeture Android Back, pas de décharge de batterie.
+4. **Dressing** : cinq styles et six couleurs réellement sélectionnables, avatar avant/3/4, **prévisualisation fiable après plusieurs modifications**, CTA toujours fonctionnel **même sans choix** (tenue par défaut), retour réseaux sans perte des sélections, aucun risque de rechargement WebGL après 3 parties.
+5. **Audio** : bouton haut-parleur absent de l'entête, mais contrôle mute effectif et découvrable ailleurs, \`luxMatchSon\` conservé ; musique §16 non relancée par rendu du hub / dossier / LOOK.
+6. **Tests** : \`node --test test/lux-match.test.cjs\`, suites critiques \`bash tools/critique.sh rapide\` puis \`bash tools/critique.sh\` ; tester avec la version réelle des sources et conserver preuves/captures. Vérifier réellement sur Samsung avant d'affirmer « Android validé ».
+7. **État d'avancement documentaire** : ne pas marquer cette §17 « implémentée » tant qu'aucun code, test et recette visuelle ne l'attestent. Limiter la modification aux écrans visés et au contrôleur audio prévu ; ne pas toucher aux autres jeux, à Lux Runner ni à \`luxProgress\`.
