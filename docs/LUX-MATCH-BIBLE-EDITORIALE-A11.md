@@ -898,3 +898,129 @@ Montages **indicatifs**, non scripts imposés ; garantir 6–8 tours principaux,
 | `P12` | Emma | `B02 B03 B11 EV_EMMA_COFFEE B07 B21 B18` | conversation détendue sans téléphone |
 
 Les deux parcours horaires sont invalides tant qu'une heure non ambiguë n'est pas visible et vérifiée ; le plan d'Emma anti-téléphone ne doit pas déclencher si Alex n'ouvre pas son téléphone. Une même partenaire peut avoir un rendez-vous **sans grand événement**, ce qui fait partie de la variété.
+
+
+---
+
+## 11. Compléments de contenu : amorces des deux gags manquants et préférences
+
+Ces deux beats doivent être **distincts de B10 (football)** afin que l'artiste et la geek ne soient pas interrogées sur le foot par erreur. Tous les textes LU inédits : `À_AUDITER` et, si hors leçons, `pedagogicalScoring=false`.
+
+### B_DRAW — Noémie, acte 2, amorce du piège dessin
+
+**Question :** « Mols du gär? » → *Tu aimes dessiner ?*
+
+| ID | LU → FR | Situation |
+|---|---|---|
+| `B_DRAW_NO` | « Nee, ech molen net gär. » → Non, je n'aime pas dessiner. | Honnête dans l'identité pilote ; aucun piège |
+| `B_DRAW_YES` | « Jo, ech molen gär. » → Oui, j'aime dessiner. | Bluff si personnage joueur ne dessine pas ; `flags.claimed_artist` ; `EV_NOEMIE_DRAW` éligible |
+| `B_DRAW_JOKE` | « Ech sinn e grousse Kënschtler! » → Je suis un grand artiste ! | Blague absurde, `flags.art_joke` séparé de `claims` sérieux |
+
+Le persona Alex doit déclarer explicitement `drawing=false` pour classer la première réponse comme vérité, **sinon ces réponses sont toutes des déclarations librement créées**, à ne pas noter comme mensonge. Ne jamais déduire que quelqu'un ne dessine pas de l'absence de champ.
+
+### B_GAMING — Maya, acte 2, amorce du piège console
+
+**Question :** « Spills du gär Computerspiller? » → *Tu aimes les jeux vidéo ?*
+
+| ID | LU → FR | Situation |
+|---|---|---|
+| `B_GAMING_NO` | « Nee, ech spille net gär Computerspiller. » → Non, je n'aime pas les jeux vidéo. | Honnête seulement si `gaming=false` défini dans le persona |
+| `B_GAMING_YES` | « Jo, ech spille gär Computerspiller. » → Oui, j'aime les jeux vidéo. | Bluff seulement si `gaming=false` ; piège `EV_MAYA_RETRO` |
+| `B_GAMING_JOKE` | « Ech sinn de Champion! » → Je suis le champion ! | Blague, pas une revendication factuelle durable |
+
+Même règle : `gaming` doit être renseigné dans le persona ou **aucune option ne sera automatiquement qualifiée de mensonge**.
+
+### Publications d'âge et prénom — textes LU candidats
+
+Les posts à introduire **seulement dans les scénarios qui activent ces critères**, avant le rendez-vous. Ils ne doivent pas être masqués derrière un profil privé.
+
+| ID public | LU (À_AUDITER) → FR | Conséquence |
+|---|---|---|
+| `PREF_AGE_INDIFFERENT` | « Mir ass den Alter net esou wichteg. » → *L'âge ne compte pas tant que ça pour moi.* | Aucune évaluation sociale sur 28 vs 30. |
+| `PREF_AGE_SIMILAR` | « Ech hu léiwer een, deen ongeféier esou al ass wéi ech. » → *Je préfère quelqu'un d'à peu près mon âge.* | Évaluation faible, pas une condition bloquante. |
+| `PREF_AGE_OLDER` | « Ech hu léiwer eeler Leit. » → *Je préfère les personnes plus âgées.* | Tous les candidats majeurs, préférence explicite. |
+| `PREF_AGE_YOUNGER` | « Ech hu léiwer méi jonk Leit. » → *Je préfère les personnes plus jeunes.* | Tous majeurs ; ne pas confondre avec mineurs. |
+| `PREF_EX_ALEX` | « Mäin Ex huet Alex geheescht. Dat ass nach ëmmer komesch fir mech. » → *Mon ex s'appelait Alex. Ça me fait encore drôle d'entendre ce prénom.* | Rare ; déclenche si le joueur dit effectivement Alex. |
+
+### Répliques luxembourgeoises candidates correspondant aux 30 réactions FR du §9
+
+**À_AUDITER intégralement.** Ces textes sont destinés uniquement aux sous-titres optionnels / TTS LU après validation ; **si l'audit échoue, conserver le commentaire FR déjà écrit**, sans générer une traduction automatique à l'exécution. Ils suivent les mêmes IDs, donc Claude n'a pas à réinventer le contenu.
+
+| ID de réaction §9 | LU candidate | Statut |
+|---|---|---|
+| `REACT_LENA_LOOK_OK` | « Blo a Sportschong! Dat ass super! » | À_AUDITER |
+| `REACT_LENA_LOOK_DIFFERENT` | « E Kostüm? Fir Sport? » | À_AUDITER |
+| `REACT_LENA_BLUFF` | « Du spills gär Fussball? Super! » | À_AUDITER |
+| `REACT_LENA_AVEU` | « Okay. Merci fir deng Éierlechkeet. » | À_AUDITER |
+| `REACT_LENA_SINCERE` | « Net jidderee muss Fussball gär hunn. » | À_AUDITER |
+| `REACT_CLAIRE_LOOK_OK` | « Dat gesäit gutt aus. » | À_AUDITER |
+| `REACT_CLAIRE_LOOK_DIFFERENT` | « Dat ass en interessante Look. » | À_AUDITER |
+| `REACT_CLAIRE_BLUFF` | « Wierklech? An zënter wéini? » | À_AUDITER |
+| `REACT_CLAIRE_AVEU` | « Merci. Elo verstinn ech. » | À_AUDITER |
+| `REACT_CLAIRE_SINCERE` | « Dat ass eng kloer Äntwert. » | À_AUDITER |
+| `REACT_NOEMIE_LOOK_OK` | « Déi Faarf ass schéin! » | À_AUDITER |
+| `REACT_NOEMIE_LOOK_DIFFERENT` | « Esou vill schwaarz! » | À_AUDITER |
+| `REACT_NOEMIE_BLUFF` | « Wierklech? Dat muss de mir weisen! » | À_AUDITER |
+| `REACT_NOEMIE_AVEU` | « Éierlechkeet ass och flott. » | À_AUDITER |
+| `REACT_NOEMIE_SINCERE` | « Du hues däin eegene Stil. » | À_AUDITER |
+| `REACT_MAYA_LOOK_OK` | « De Look ass gutt! » | À_AUDITER |
+| `REACT_MAYA_LOOK_DIFFERENT` | « Hues du dat zoufälleg gewielt? » | À_AUDITER |
+| `REACT_MAYA_BLUFF` | « Da weis mer dat! » | À_AUDITER |
+| `REACT_MAYA_AVEU` | « Kee Problem. Mir fänke bei null un. » | À_AUDITER |
+| `REACT_MAYA_SINCERE` | « Du bass éierlech. Dat gefällt mir. » | À_AUDITER |
+| `REACT_SOFIA_LOOK_OK` | « Déi Faarf hunn ech gär! » | À_AUDITER |
+| `REACT_SOFIA_LOOK_DIFFERENT` | « Rees du ëmmer esou? » | À_AUDITER |
+| `REACT_SOFIA_BLUFF` | « Wierklech? Erziel mer méi! » | À_AUDITER |
+| `REACT_SOFIA_AVEU` | « Elo verstinn ech dech. » | À_AUDITER |
+| `REACT_SOFIA_SINCERE` | « Rees du gär? » | À_AUDITER |
+| `REACT_EMMA_LOOK_OK` | « Einfach a schéin. » | À_AUDITER |
+| `REACT_EMMA_LOOK_DIFFERENT` | « Du hues dech vill virbereet, oder? » | À_AUDITER |
+| `REACT_EMMA_BLUFF` | « Bass du sécher? » | À_AUDITER |
+| `REACT_EMMA_AVEU` | « Merci. Dat ass besser. » | À_AUDITER |
+| `REACT_EMMA_SINCERE` | « Mir kënne jo einfach schwätzen. » | À_AUDITER |
+
+---
+
+## 12. Contrat d'intégration et recette exclusivement éditoriale (pour Claude)
+
+### 12.1. L'intégration ne doit pas demander à Claude d'écrire les histoires
+
+1. **Lire les derniers commits de `2.1`, `PLAYBOOK.md`, la SPEC 109 §§12–13 et cette bible.** Vérifier le schéma JSON *actuel* avant toute évolution : les exemples d'IDs ci-dessus sont des **identifiants éditoriaux**, pas nécessairement les clés finales de l'API.
+2. Reprendre, avec traduction, dans des données structurées **seulement les lignes relues et validées**, en conservant `contentId`, `speaker`, `lu`, `fr`, `lessonIds`, `reviewStatus`, `source` et les conditions, au lieu d'embarquer des textes dans `public/lux-match.js`.
+3. Pour chaque personnage, déployer **Tinder + Pix + Pro + Amis cohérents issus d'UN `scenarioPlan`**, en respectant les photos privées, les préférences publiées, et l'absence de texte français pédagogique quand l'aide FR est off.
+4. Le moteur choisit des **beats entiers** et leur ordre, jamais de concaténation libre de luxembourgeois, jamais d'appel LLM à l'exécution ; conserver les `claims`, `truthKind`, choix et conséquences du core. Les options de **réponse de la partenaire** sont des résultats, pas des boutons sur lesquels Alex choisit ce qu'elle va dire.
+5. Pour les nouveaux événements, **ne pas ajouter de jauges sociales**, n'exécuter que les événements éligibles après l'action, limiter les gros gags et garder le café unique. L'affinité n'est pas un score de maîtrise du luxembourgeois.
+6. Pour l'âge, **trois réponses grammaticalement correctes même en première partie** ; un âge absurdité (120) peut être mémorisé comme `joke`, distinct d'un `claim` sincèrement défendu. La préférence de la fille est facultative, et **visible avant** si elle est forte.
+7. Les conclusions choisies citent **uniquement des faits réellement survenus**, avec fallback générique si aucun `FIN_*_FUN` ne correspond au run. Pas de doublon de texte de première rencontre si la session se termine en malaise.
+
+### 12.2. Critères QA de contenu à automatiser
+
+- **Unicité des IDs** par namespace (`UI_`, `TINDER_`, `PIX_`, `AMIS_`, `Bxx_`, `EV_`, `FIN_`, `REACT_`) ; aucune référence à un ID inexistant.
+- Chacune des six partenaires adultes garde les **mêmes faits canoniques sur tous les réseaux et dans le dialogue** pendant un run. Ne jamais inférer la nationalité à partir du visage, ni inventer une profession du profil joueur.
+- Chaque critère social à fort effet (**téléphone, look, âge, prénom**) a au moins **un indice public** sélectionné dans le même scénario **avant** le date. Aucun âge/prénom « piège » sans post correspondant.
+- Les textes `À_AUDITER` ne sont **jamais marqués validés** par simple passage des tests JSON ; revue LOD + `grammaire_luxembourg.md` + leçon source + relecture humaine. Garder les variantes `fr` dans l'aide, pas dans le flux LU.
+- Une photo Pix correspond réellement à la légende ; pas de description développeur (« cette photo confirme le pays d'origine »). Une Pix privée n'affiche **aucune photo**.
+- Les 26 beats initiaux du §6 + 2 amorces du §11 ne doivent pas tous apparaître en une seule partie : **6–8 tours**, 0–2 surprises ; prévenir séquences absurdes (2 salutations, 2 rappels sur le même âge, un piège de dessin sans affirmation préalable, etc.).
+- **Deux échelles séparées** : `languageCorrect` et évaluation sociale. Des phrases sincères/bluff/absurdes **grammaticalement correctes** obtiennent le même crédit de langue. Un gag en portugais ou une action de dessin ne compte pas.
+- Vérifier la relecture de **100 % des lignes LU visibles** et l'absence de réponses grammaticalement acceptables marquées fautives. Si le chapitre n'est pas débloqué, retirer le beat ou activer un mode non noté avec traduction claire.
+- **Tests sur 1 000 graines** pour cohérence/reproductibilité, puis **3 runs successifs sur Samsung** pour lisibilité, temps de batterie, scroll/touch et second chargement Three.js ; aucune modification du moteur Runner ni de la progression globale.
+
+### 12.3. Registre de points à résoudre avant publication (pas de délégation de rédaction)
+
+| Point | Impact | Action exigée |
+| --- | --- | --- |
+| `grammaticalReviewStatus` non confirmé pour les nouvelles phrases LU | P0 linguistique | Vérifier chacune avec LOD/grammaire ; faire relire. La présente bible n'affirme pas qu'elles sont validées. |
+| Profession des profils (Léierin, Illustratorin, Programméiererin, Buchhändlerin) | P0 | Vérifier les dénominations et les accords ; les traductions FR sources sont sûres, pas les nouvelles formes LU. |
+| Couleurs + look (« sportlech Kleeder », « bequeme Look » etc.) | P0 | Vérifier accords, registre et variantes naturelles ; ne pas remplacer par `Blo.` artificiel. |
+| Heures à 7h vs 19h, lieu-ville/pays | P0 | Fournir contexte horaire sans ambiguïté, respecter `zu` pour villes et `a/an` pour pays. |
+| Prénom de l'ex et préférences d'âge | P1 | Utiliser uniquement quand un indice Amis public du même plan existe ; `dislikedFirstName` rare. |
+| Trait `drawing` / `gaming` absent du persona actuel | P1 | Expliciter valeur canonique ou traiter ces choix comme **préférences nouvelles** ; jamais mensonge détecté par défaut. |
+| Textes sociaux FR qui apparaissent quand aide off | P0 UX/pédagogie | Affecter chaque chaîne à bonne couche et afficher FR seulement en aide ou en feedback FR_JEU. |
+| Anciennes légendes Pix « pays d'origine confirmé… » | P0 immersion | Les remplacer par scènes et textes authentiques du §5, avec contexte visible. |
+| UI difficile sur petit écran | P1 mobile | Contrôle à 320×640, 360×740, 430×932 : police LU lisible, 3 choix d'âge visibles, CTA accessible. |
+
+### 12.4. Bilan de livraison documentaire
+
+Cette bible livre : **6 profils complets**, leurs trois réseaux et briefs photo ; **26 beats de conversation** avec **78 réponses candidates** ; **2 amorces de loisirs supplémentaires** ; **14 événements avec 43 choix/réactions** ; **24 conclusions** ; **30 réactions sociales FR** avec **30 propositions LU additionnelles à auditer** ; **12 plans pilotes** et les textes UI. **Aucun code du jeu, aucun JSON runtime, aucune sauvegarde utilisateur modifiés par cette bible.**
+
+**Statut final : corpus d'auteur V1 proposé, pas certification native complète des nouvelles formulations LU.** Les validations linguistiques et les contrôles mobiles sont des **portes de publication**, pas des tâches d'invention de scénario pour Claude.
