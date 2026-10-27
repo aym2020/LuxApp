@@ -29,14 +29,15 @@ test('SPEC 104 : une grille mobile, deux colonnes desktop et boutons or',()=>{
   assert.ok(css.includes('min-height:56px'),'cible tactile confortable');
   assert.ok(css.includes('color:var(--accent)'),'record or conservé');
   assert.ok(html.includes('jeux-univers.css?v=9'));
-  assert.ok(html.includes('jeux-v21.js?v=17'));
+  assert.ok(Number((html.match(/jeux-v21\.js\?v=(\d+)/) || [])[1]) >= 17);
   assert.ok(Number((html.match(/runner\.js\?v=(\d+)/) || [])[1]) >= 19);
 });
 
 test('SPEC 104 : même organisation HTML, records dynamiques, états verrouillés',()=>{
   const survie=read('public/jeux-v21.js'),runner=read('public/runner.js');
   assert.ok(survie.includes("'<div class=\"jeux-cartes-grille\">'+"));
-  assert.ok(survie.includes("runnerCarteHub():'')+'</div>'"));
+  assert.ok(survie.includes("runnerCarteHub():'')+"));
+  assert.ok(survie.includes("luxMatchCarteHub():'')+'</div>'")); // SPEC 109 : 3e carte
   assert.ok(survie.includes('jeux-decor-survie'));
   assert.ok(runner.includes('jeux-decor-runner'));
   assert.ok(survie.includes('aria-hidden="true"'));

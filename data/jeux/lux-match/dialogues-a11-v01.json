@@ -673,7 +673,7 @@
       },
       "tag": "comedie_hors_programme",
       "npc": {
-        "luDraft": "Du kënns aus Portugal? Wéi en Déier sinn ech? Op Portugisesch!",
+        "luDraft": "Du kënns aus Portugal? Wat fir en Déier sinn ech? Op Portugisesch!",
         "fr": "Tu viens du Portugal ? Alors, à quel animal je ressemble ? Réponds en portugais !",
         "linguisticReviewPending": true
       },
@@ -741,7 +741,7 @@
       },
       "tag": "cutscene",
       "npc": {
-        "luDraft": "Spills du gär Fussball? Da komm!",
+        "luDraft": "Du spills gär Fussball? Super, da komm, mir spillen!",
         "fr": "Tu adores le foot ? Parfait, on joue après le café !",
         "linguisticReviewPending": true
       },
@@ -1018,5 +1018,118 @@
     "Les nœuds dessin et videogames sont des brouillons optionnels hors lexique A1.1 strict : ne débloquer qu'après validation du cours correspondant.",
     "Tous les pièges ont désormais une voie de déclenchement atteignable depuis le déroulé de leur archétype.",
     "Sport, dessin et jeux vidéo sont des scènes comiques optionnelles non notées A1.1 avec aide FR permanente, jusqu'à ce que leurs notions aient été formellement enseignées et validées."
-  ]
+  ],
+  "recallNodes": [
+    {
+      "id": "rappel_prenom",
+      "attribute": "prenom",
+      "lessonIds": [
+        1
+      ],
+      "prompt": {
+        "lu": "Wéi heeschs du nach eng Kéier?",
+        "fr": "Tu t'appelles comment, déjà ?"
+      },
+      "choices": [
+        {
+          "id": "rappel_prenom_alex",
+          "lu": "Ech heeschen Alex.",
+          "fr": "Je m'appelle Alex.",
+          "value": "Alex"
+        },
+        {
+          "id": "rappel_prenom_max",
+          "lu": "Ech heeschen Max.",
+          "fr": "Je m'appelle Max.",
+          "value": "Max"
+        }
+      ]
+    },
+    {
+      "id": "rappel_origine",
+      "attribute": "origin",
+      "lessonIds": [
+        7
+      ],
+      "prompt": {
+        "lu": "Vu wou kënns du nach eng Kéier?",
+        "fr": "Tu viens d'où, déjà ?"
+      },
+      "choices": [
+        {
+          "id": "rappel_origine_fr",
+          "lu": "Ech kommen aus Frankräich.",
+          "fr": "Je viens de France.",
+          "value": "Frankräich"
+        },
+        {
+          "id": "rappel_origine_pt",
+          "lu": "Ech kommen aus Portugal.",
+          "fr": "Je viens du Portugal.",
+          "value": "Portugal"
+        }
+      ]
+    },
+    {
+      "id": "rappel_ville",
+      "attribute": "city",
+      "lessonIds": [
+        10
+      ],
+      "prompt": {
+        "lu": "Wou wunns du nach eng Kéier?",
+        "fr": "Tu habites où, déjà ?"
+      },
+      "choices": [
+        {
+          "id": "rappel_ville_metz",
+          "lu": "Ech wunnen zu Metz.",
+          "fr": "J'habite à Metz.",
+          "value": "Metz"
+        },
+        {
+          "id": "rappel_ville_lux",
+          "lu": "Ech wunnen zu Lëtzebuerg.",
+          "fr": "J'habite au Luxembourg.",
+          "value": "Lëtzebuerg"
+        }
+      ]
+    },
+    {
+      "id": "rappel_age",
+      "attribute": "age",
+      "lessonIds": [
+        5,
+        14
+      ],
+      "prompt": {
+        "lu": "Wéi al bass du nach eng Kéier?",
+        "fr": "Tu as quel âge, déjà ?"
+      },
+      "choices": [
+        {
+          "id": "rappel_age_28",
+          "lu": "Ech sinn aachtanzwanzeg Joer al.",
+          "fr": "J'ai 28 ans.",
+          "value": 28
+        },
+        {
+          "id": "rappel_age_30",
+          "lu": "Ech sinn drësseg Joer al.",
+          "fr": "J'ai 30 ans.",
+          "value": 30
+        }
+      ]
+    }
+  ],
+  "recallRules": [
+    "Un seul rappel par rendez-vous, juste avant au_revoir, sur un attribut déjà affirmé (priorité aux mensonges).",
+    "Réponse identique à l'affirmation : affinité +4. Réponse différente : contradiction, suspicion +20, affinité -10.",
+    "Formulation « nach eng Kéier » à auditer sur LOD avant production."
+  ],
+  "contradictionReaction": {
+    "lu": "Hä? Du hues virdrun eppes anescht gesot!",
+    "fr": "Hein ? Tu as dit autre chose tout à l'heure !",
+    "linguisticReviewPending": true
+  }
 }

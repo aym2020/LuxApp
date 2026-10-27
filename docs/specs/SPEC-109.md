@@ -1,6 +1,24 @@
 # SPEC 109 — Lux Match : Double jeu (game design + bible de contenu)
 
-**Dépôt :** aym2020/LuxApp · **Branche cible :** `2.1` · **Statut :** proposition détaillée, **non implémentée / non validée** · **Date :** 26 octobre 2026 · **Périmètre de cette livraison :** documentation et brouillons de données exclusivement.
+**Dépôt :** aym2020/LuxApp · **Branche cible :** `2.1` · **Statut :** **démo jouable implémentée le 27/10/2026** (prototypes A + B réunis), contenus LU **toujours en brouillon**, recette Samsung à faire · **Date :** 26 octobre 2026 · **Périmètre de cette livraison :** documentation et brouillons de données exclusivement.
+
+## Démo implémentée (27/10/2026)
+
+**Accès :** Jeux › carte « Lux Match · DÉMO » (`ouvrirLuxMatch()`), vue `view-luxmatch`, non restaurée après actualisation (retour au hub). Badge « DÉMO · textes LU en relecture » en jeu et note sur l'écran de fin.
+
+| Fichier | Rôle |
+|---|---|
+| `public/lux-match-core.js` | Moteur pur (Node + navigateur) : swipe (4–6 cartes, match au 1er ou 2e « j'aime », paquet relancé si tout est refusé), look (±4 max selon `outfitSignal` publié), file d'échanges par `archetypeFlows`, pièges conditionnels (max 2), aveu = réparation sans pénalité, **rappel de mémoire** avant l'au revoir (contradiction : suspicion +20, affinité −10), batterie −5 %/s ouverte (temps actif, pas de 0,25 s max), anti-téléphone (piège après la réponse en cours, puis −5), fin anticipée à suspicion ≥ 80, issues `nouveau_rdv` / `gene_drole` / `pas_colle` / `malaise`, score (langue 600 + affinité ×3 + (100 − suspicion) ×2), 2 réponses lors des 2 premières parties puis 3 |
+| `public/lux-match.js` + `.css` | Téléphone CSS (swipe glissé ou boutons), MATCH arcade, apps fictives Pix / Pro / Amis (compte privé respecté), LOOK 5 styles × 6 couleurs (noms LU), date : jauges, bulle LU + aide FR, réponses, corrections LU/FR, messages pixel, téléphone à batterie, fiche « Moi » hors batterie, résultats + expressions (question → bonne réponse, « à revoir » si faute). Sons Web Audio propres. Records `luxMatchRecord`, `luxMatchParties`, préférences `luxMatchAideFr`, `luxMatchSon` (par profil). Aucune écriture dans `luxProgress`. |
+| `public/lux-match-3d.js` | Module chargé à la demande : un renderer, rendu basse résolution « PS1 » (pixel ratio ×0,5, `image-rendering: pixelated`), portraits et « photos » Pix rendus en 3D (poses), aperçu du look qui tourne, café néon de nuit (Kenney Furniture), partenaire face caméra, Alex de dos, réactions (joie, déception, surprise, rire, zoom, disque rayé). Repli : portrait 2D si WebGL indisponible. |
+| `public/lux-match/` | GLB CC0 : 5 modèles de partenaires, 4 looks d'Alex, `anims.glb` (squelette commun), `cafe.glb` ; voir `CREDITS.md`. Régénération : `tools/lux-match/`. |
+| `server.js` | `GET /api/jeux/lux-match` → `{ archetypes, dialogues }` (copie hors ligne via SPEC 93). |
+
+**Ajouts de données (brouillons) :** `apparence3d` par profil ; `recallNodes`, `recallRules`, `contradictionReaction` ; corrections « Ech spille gär Fussball », « Wat fir en Déier sinn ech? », post anti-téléphone d'Emma en LU. **Tout reste à auditer sur LOD avant production.**
+
+**Tests :** `node --test test/lux-match.test.cjs` (références croisées, match borné, look ±4, parcours sincère pour les 6 profils, piège Portugal seulement après mensonge + aveu, contradiction au rappel, batterie identique à 30/60 fps, téléphone fermé = aucune perte, anti-téléphone, 2 puis 3 réponses). Parcours navigateur : swipe → match → enquête → look → date → résultats sans erreur JS, batterie −10,5 % après ~2 s.
+
+**Non fait dans la démo :** voix (TTS) facultative, filtrage des nœuds par leçons débloquées, mode batterie lente (paramètre `accessible` prêt dans le moteur, sans réglage UI), fallback complet sans WebGL testé sur appareil.
 
 ## 0. Sources de vérité et réutilisation
 

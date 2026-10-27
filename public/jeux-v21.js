@@ -167,6 +167,7 @@ function survieEnregistrer(record) {
 function ouvrirJeux() {
   survieArreter();
   if(typeof runnerArreter==='function')runnerArreter(); // SPEC 96
+  if(typeof luxMatchArreter==='function')luxMatchArreter(); // SPEC 109
   renderJeuxHub();
   showView('view-jeux');
 }
@@ -202,7 +203,8 @@ function renderJeuxHub() {
         '<button class="jeux-jouer" type="button" onclick="goLessons()">'+(nombre===0?'Commencer une leçon':'Voir mes leçons')+' <span aria-hidden="true">→</span></button>':
         '<button class="jeux-jouer" type="button" onclick="demarrerSurvie()">Jouer <span aria-hidden="true">→</span></button>')+
     '</section>'+
-    (typeof runnerCarteHub==='function'?runnerCarteHub():'')+'</div>'; // SPEC 104 : cartes responsive, 2 colonnes sur ordinateur
+    (typeof runnerCarteHub==='function'?runnerCarteHub():'')+
+    (typeof luxMatchCarteHub==='function'?luxMatchCarteHub():'')+'</div>'; // SPEC 104 : cartes responsive, 2 colonnes sur ordinateur
 }
 function survieChoisirMot(partie) {
   // On ne remet jamais la réserve à zéro au cours d'une partie.

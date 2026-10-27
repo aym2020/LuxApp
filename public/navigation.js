@@ -330,6 +330,7 @@ async function rouvrirEcran(etat, l) {
     case 'view-jeux': ouvrirJeux(); return true;
     case 'view-survie': ouvrirJeux(); return true; // partie chronométrée non restaurée
     case 'view-runner': ouvrirJeux(); return true; // SPEC 96 : course non restaurée
+    case 'view-luxmatch': ouvrirJeux(); return true; // SPEC 109 : partie non restaurée
     case 'view-lexique': openLexique(); return true;
     case 'view-pieges': openPieges(); return true;
     case 'view-reglages': openReglages(); return true;

@@ -50,9 +50,9 @@ Ces fichiers conservent volontairement leurs chemins historiques, car les **scri
 
 La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. Les rapports générés ne doivent **jamais** être corrigés manuellement pour maquiller un écart.
 
-## Nouveau concept de jeu — Lux Match (documentation seule)
+## Jeu — Lux Match (démo jouable)
 
-[**SPEC 109 — Lux Match : Double jeu**](specs/SPEC-109.md) : proposition de dating arcade PS1, smartphone à batterie limitée durant le rendez-vous, 6 archétypes fictifs et dialogues conditionnels. Banques de conception : [archétypes et profils](../data/jeux/lux-match/archetypes-v01.json) · [dialogues A1.1 et pièges](../data/jeux/lux-match/dialogues-a11-v01.json). **Aucun code de production branché ; dialogues LU à auditer.**
+[**SPEC 109 — Lux Match : Double jeu**](specs/SPEC-109.md) : proposition de dating arcade PS1, smartphone à batterie limitée durant le rendez-vous, 6 archétypes fictifs et dialogues conditionnels. Banques de conception : [archétypes et profils](../data/jeux/lux-match/archetypes-v01.json) · [dialogues A1.1 et pièges](../data/jeux/lux-match/dialogues-a11-v01.json). **Démo jouable sur `2.1` (26-27/10/2026) : carte « Lux Match · DÉMO » dans Jeux. Dialogues LU encore à auditer (signalé dans le jeu).** Fichiers : `public/lux-match-core.js` (moteur pur), `public/lux-match.js` + `.css` (interface), `public/lux-match-3d.js` (café 3D), `public/lux-match/` (GLB CC0), `test/lux-match.test.cjs`.
 
 ## Recherche, maquettes, prototypes et archives
 

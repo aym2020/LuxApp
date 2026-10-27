@@ -10,7 +10,8 @@
   "notes": [
     "Les biographies courtes en LU et champs nouveaux exigent une relecture native/LOD avant intégration.",
     "Le caractère identifiable vient des posts/indices explicites, jamais d'une inférence métier/origine.",
-    "Pix privé conserve uniquement la bio publique; followers et photos sont masqués."
+    "Pix privé conserve uniquement la bio publique; followers et photos sont masqués.",
+    "apparence3d : modèle Quaternius et teintes utilisés par la démo (public/lux-match/), purement visuel."
   ],
   "styles": [
     "sportif",
@@ -221,7 +222,7 @@
         "bioFr": "J'habite à Metz.",
         "posts": [
           {
-            "lu": "Ech spillen gär Fussball.",
+            "lu": "Ech spille gär Fussball.",
             "fr": "J'aime jouer au football.",
             "tag": "football"
           },
@@ -238,7 +239,14 @@
         "blue"
       ],
       "quirk": "Met les gens au défi de courir.",
-      "trapId": "trap_sport"
+      "trapId": "trap_sport",
+      "apparence3d": {
+        "modele": "Casual3_Female",
+        "peau": "#e0a985",
+        "cheveux": "#5a3a22",
+        "haut": "#2f7be0",
+        "bas": "#1d2a4a"
+      }
     },
     {
       "id": "claire_r01",
@@ -317,7 +325,13 @@
         "punctuality"
       ],
       "quirk": "Vérifie les déclarations professionnelles.",
-      "trapId": "trap_metier"
+      "trapId": "trap_metier",
+      "apparence3d": {
+        "modele": "Suit_Female",
+        "peau": "#f0c3a0",
+        "cheveux": "#2a1d18",
+        "costume": "#18161c"
+      }
     },
     {
       "id": "noemie_r01",
@@ -390,7 +404,14 @@
         "red"
       ],
       "quirk": "Propose des défis créatifs spontanés.",
-      "trapId": "trap_dessin"
+      "trapId": "trap_dessin",
+      "apparence3d": {
+        "modele": "Casual2_Female",
+        "peau": "#c98a5f",
+        "cheveux": "#d2398f",
+        "haut": "#d8343c",
+        "bas": "#2b2340"
+      }
     },
     {
       "id": "maya_r01",
@@ -458,7 +479,14 @@
         "green"
       ],
       "quirk": "Fait des blagues sur les vieux jeux.",
-      "trapId": "trap_arcade"
+      "trapId": "trap_arcade",
+      "apparence3d": {
+        "modele": "Casual_Female",
+        "peau": "#8d5a3b",
+        "cheveux": "#151217",
+        "haut": "#2fa35a",
+        "bas": "#3a3430"
+      }
     },
     {
       "id": "sofia_r01",
@@ -537,7 +565,13 @@
         "portuguese"
       ],
       "quirk": "Curieuse des langues et des voyages.",
-      "trapId": "trap_portugal"
+      "trapId": "trap_portugal",
+      "apparence3d": {
+        "modele": "Doctor_Female_Young",
+        "peau": "#b97d55",
+        "cheveux": "#3b2417",
+        "manteau": "#5c8fd6"
+      }
     },
     {
       "id": "emma_r01",
@@ -593,10 +627,10 @@
             "editorialStatus": "draft_fragment"
           },
           {
-            "lu": "",
+            "lu": "Beim Rendez-vous: keen Handy, w.e.g.!",
             "fr": "En rendez-vous, je déteste quand on sort son téléphone.",
             "tag": "anti_phone",
-            "editorialStatus": "fr_only_pending_lu"
+            "editorialStatus": "draft_requires_lod_review"
           }
         ]
       },
@@ -606,7 +640,14 @@
         "anti_phone"
       ],
       "quirk": "Apprécie une conversation attentive.",
-      "trapId": "trap_telephone"
+      "trapId": "trap_telephone",
+      "apparence3d": {
+        "modele": "Casual2_Female",
+        "peau": "#f2c9a8",
+        "cheveux": "#d9b268",
+        "haut": "#d8c3a0",
+        "bas": "#6b5a4a"
+      }
     }
   ]
 }

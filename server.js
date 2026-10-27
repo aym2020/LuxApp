@@ -112,7 +112,7 @@ function construireManifeste() {
     version: empreinte.digest('hex').slice(0, 12),
     externes,
     // « / » : la page d'accueil ; les API publiques des contenus pédagogiques.
-    fichiers: ['/', '/api/lecons', '/api/examens', '/api/ecriture'].concat(app.filter(f => f !== 'index.html').map(f => '/' + f)),
+    fichiers: ['/', '/api/lecons', '/api/examens', '/api/ecriture', '/api/jeux/lux-match'].concat(app.filter(f => f !== 'index.html').map(f => '/' + f)),
     audio: { version: empreinteAudio, total: fichiersAudio.reduce((s, a) => s + a.t, 0), fichiers: fichiersAudio }
   };
 }
@@ -171,6 +171,12 @@ app.get('/api/lecons', (req, res) => {
   lecons.sort((a, b) => rangNiveau(a.niveau) - rangNiveau(b.niveau) || (a.numero || a.id) - (b.numero || b.id));
 
   res.json(lecons);
+});
+
+// SPEC 109 — Lux Match (démo) : profils et dialogues (brouillons signalés dans le jeu).
+app.get('/api/jeux/lux-match', (req, res) => {
+  const lire = f => JSON.parse(fs.readFileSync(path.join(__dirname, 'data/jeux/lux-match', f), 'utf8'));
+  res.json({ archetypes: lire('archetypes-v01.json'), dialogues: lire('dialogues-a11-v01.json') });
 });
 
 // Sujets d'examen : même principe que les leçons, un dossier par niveau.
