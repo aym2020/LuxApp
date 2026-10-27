@@ -222,3 +222,20 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 - Garder `scenario G0 / graine` en diagnostic reproductible, **pas dans le récit public**.
 
 **Recette** : comparer captures réelles 320×640 / 360×740 / 393×852 / 430×932 ; trois runs, petite et grande police, Android Back et son ; tests Lux Match et suite critique. Aucun patch 3D, audio ou code des autres jeux requis par ce lot. **Pousser des commits séparés avec bilan des tests.**
+
+
+---
+
+## 14. Bug tactile intermittent : glisse droite déclenchant « NON »
+
+**Nouveau signalement Android du 27/10/2026 — P0 d'interaction**. Diagnostic complet et tests dans [SPEC 109 § 19](specs/SPEC-109.md#19-bug-tactile-android--swipe-droite-interprete-comme--non--27102026).
+
+**Symptôme** : en glissant vers la droite sur Tinder, le joueur observe parfois très brièvement « NON » et la carte est refusée ; phénomène difficile à reproduire.
+
+**Défaut de code identifié** : `lmBrancherSwipe()` dans `public/lux-match.js` utilise **le même gestionnaire de fin** pour `pointerup` et `pointercancel`. Sur Android, avec `touch-action:pan-y`, le navigateur peut annuler un geste ; **un cancel ne doit jamais valider un refus**. Le gestionnaire calcule pourtant `dx=e.clientX-depart` puis peut appeler `lmSwiper(false)`. Cause plausible du symptôme mais **reproduction Samsung pas encore confirmée**.
+
+**Tâche prioritaire à ajouter avant/avec le lot 10A :** isoler un correctif tactile **sans refondre le swipe** : annuler proprement sur `pointercancel`/`lostpointercapture`, n'accepter `pointerup` que du pointeur actif, nettoyer transform/classes/capture et verrouiller une décision unique par carte. Respecter les scrolls verticaux normaux ; garder le swipe à droite = aimer et gauche = passer, boutons accessibles et animation existante.
+
+**Tests indispensables** : pointerdown/move vers droite puis **pointercancel clientX=0** (aucun NON), geste gauche réel (NON), droit réel (OUI), geste vertical, multi-touch, seuil, double clic, glisses rapides, plusieurs profils, trois runs Samsung. Ajouter tests DOM/browser, car `test/lux-match.test.cjs` teste le moteur pur `Core.swiper()` mais pas les événements tactiles. Ne marquer corrigé qu'après tests, ne pas annoncer la reproduction comme certaine.
+
+**Livraison :** commit isolé, tests et note de vérification de la SPEC 109 § 19 ; aucune modification du 3D, musique, progression ou autres jeux.
