@@ -21,9 +21,11 @@
    "nom": "Milo",
    "age": 30,
    "villeFr": "Bonnevoie (Luxembourg)",
-   "modele3d": "Casual_Male",
-   "couleurs": {
-    "haut": "#3a6fb0",
+   "apparence3d": {
+    "modele": "Casual_Male",
+    "peau": "#d9a27a",
+    "cheveux": "#2a1a12",
+    "haut": "#c0392b",
     "bas": "#2b2b38"
    },
    "accrocheFr": "Voyageur, chef d’équipe, amoureux des chats. Cherche quelqu’un qui aime les belles histoires.",
@@ -62,6 +64,19 @@
    }
   }
  },
+ "figurants": {
+  "sami": {
+   "id": "sami",
+   "nom": "Sami",
+   "apparence3d": {
+    "modele": "Casual2_Male",
+    "peau": "#a8714f",
+    "cheveux": "#121010",
+    "haut": "#2fa35a",
+    "bas": "#3a3a48"
+   }
+  }
+ },
  "pieces": [
   {
    "id": "PRO_PROFIL",
@@ -93,7 +108,17 @@
    "transcription": "« Fier de mon équipe chez Horizon Voyages ! 🧳 Cinq ans déjà. »",
    "visuel": {
     "type": "post",
-    "image": "equipe"
+    "image": "equipe",
+    "scene": "bureau",
+    "personnes": [
+     {
+      "qui": "milo",
+      "pose": "Victory",
+      "x": 0.2,
+      "z": -0.2,
+      "rotation": -0.2
+     }
+    ]
    }
   },
   {
@@ -126,7 +151,23 @@
    "transcription": "Photo : deux amis sur un canapé devant un match. Légende : « Sami est passé voir le match 📺 ».",
    "visuel": {
     "type": "photo",
-    "scene": "canape"
+    "scene": "canape",
+    "personnes": [
+     {
+      "qui": "milo",
+      "pose": "Victory",
+      "x": -0.7,
+      "z": 0.2,
+      "rotation": 0.25
+     },
+     {
+      "qui": "sami",
+      "pose": "Victory",
+      "x": 0.75,
+      "z": 0.1,
+      "rotation": -0.25
+     }
+    ]
    }
   },
   {
@@ -171,7 +212,16 @@
    "transcription": "Photo : un temple et des lanternes rouges. Légende : « Kyoto ✨ 3 semaines inoubliables ».",
    "visuel": {
     "type": "photo",
-    "scene": "kyoto"
+    "scene": "kyoto",
+    "personnes": [
+     {
+      "qui": "milo",
+      "pose": "Victory",
+      "x": 0.5,
+      "z": 0.3,
+      "rotation": -0.25
+     }
+    ]
    }
   },
   {
@@ -183,7 +233,9 @@
    "transcription": "« Merci Milo pour le pesto de samedi ! 🍝 »",
    "visuel": {
     "type": "post",
-    "image": "pesto"
+    "image": "pesto",
+    "scene": "pesto",
+    "personnes": []
    }
   },
   {
@@ -195,7 +247,8 @@
    "transcription": "Photo : un chat roux endormi. Légende : « Pixel, champion de sieste ».",
    "visuel": {
     "type": "photo",
-    "scene": "chat"
+    "scene": "chat",
+    "personnes": []
    }
   }
  ],
@@ -381,7 +434,11 @@
       },
       "aveuFr": "« Kyoto vu de mon canapé. J’ai même ajouté les lanternes ! »",
       "motivationFr": "Paraître aventureux.",
-      "explicationFr": "LuxRun le place au Parc de Bonnevoie tous les dimanches d’août : trois semaines au Japon en août, c’est impossible."
+      "explicationFr": "LuxRun le place au Parc de Bonnevoie tous les dimanches d’août : trois semaines au Japon en août, c’est impossible.",
+      "revelation": {
+       "piece": "PIX_KYOTO",
+       "fr": "Regarde mieux : six lanternes identiques, alignées au centimètre, et Milo collé devant le temple."
+      }
      },
      "refusPieces": {
       "PIX_KYOTO": {

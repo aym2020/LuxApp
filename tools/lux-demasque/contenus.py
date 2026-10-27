@@ -16,7 +16,8 @@ L = lambda lu, fr, statut='audit_regles', note=None: dict({'lu': lu, 'fr': fr, '
 personnages = {
  'milo': {
   'id': 'milo', 'nom': 'Milo', 'age': 30, 'villeFr': 'Bonnevoie (Luxembourg)',
-  'modele3d': 'Casual_Male', 'couleurs': {'haut': '#3a6fb0', 'bas': '#2b2b38'},
+  # Modèle Quaternius de Lux Match (public/lux-match/, CC0), recoloré.
+  'apparence3d': {'modele': 'Casual_Male', 'peau': '#d9a27a', 'cheveux': '#2a1a12', 'haut': '#c0392b', 'bas': '#2b2b38'},
   'accrocheFr': 'Voyageur, chef d’équipe, amoureux des chats. Cherche quelqu’un qui aime les belles histoires.',
   'salut': L('Moien! Ech sinn de Milo.', 'Salut ! Moi, c’est Milo.', 'lecon_modele'),
   'reseaux': {
@@ -27,6 +28,13 @@ personnages = {
  }
 }
 
+# Personnes qui apparaissent seulement sur les photos (jamais interrogées).
+figurants = {
+ 'sami': {'id': 'sami', 'nom': 'Sami', 'apparence3d': {'modele': 'Casual2_Male', 'peau': '#a8714f', 'cheveux': '#121010', 'haut': '#2fa35a', 'bas': '#3a3a48'}}
+}
+# Une « photo » = un décor low-poly (lux-match-3d.js) + les personnes posées dedans.
+def personne(qui, pose='Idle', x=0, z=0, rotation=0): return {'qui': qui, 'pose': pose, 'x': x, 'z': z, 'rotation': rotation}
+
 # ─── Pièces (FR) : source, date, transcription complète, visuel décrit ─────────
 def piece(id, source, auteur, dateFr, titre, transcription, visuel):
     return {'id': id, 'source': source, 'auteur': auteur, 'dateFr': dateFr, 'titre': titre, 'transcription': transcription, 'visuel': visuel}
@@ -36,25 +44,25 @@ pieces = [
        {'type': 'profil', 'lignes': [['Chef d’équipe · Horizon Voyages', 'mars 2021 – juin 2026'], ['BTS Tourisme', '2017']]}),
  piece('PRO_EQUIPE', 'pro', 'Milo R.', '14 avril 2026', 'Publication : mon équipe',
        '« Fier de mon équipe chez Horizon Voyages ! 🧳 Cinq ans déjà. »',
-       {'type': 'post', 'image': 'equipe'}),
+       {'type': 'post', 'image': 'equipe', 'scene': 'bureau', 'personnes': [personne('milo', 'Victory', 0.2, -0.2, -0.2)]}),
  piece('AMIS_SAMI', 'amis', 'Sami K.', None, 'Profil de Sami (ami de Milo)',
        'Sami K. · Graphiste · Coloc à Bonnevoie avec Milo (et Pixel 🐈).',
        {'type': 'profil', 'lignes': [['Graphiste', ''], ['Coloc à Bonnevoie avec Milo (et Pixel 🐈)', '']]}),
  piece('PIX_CANAPE', 'pix', 'Milo', '4 octobre 2026', 'Photo : soirée match',
        'Photo : deux amis sur un canapé devant un match. Légende : « Sami est passé voir le match 📺 ».',
-       {'type': 'photo', 'scene': 'canape'}),
+       {'type': 'photo', 'scene': 'canape', 'personnes': [personne('milo', 'Victory', -0.7, 0.2, 0.25), personne('sami', 'Victory', 0.75, 0.1, -0.25)]}),
  piece('LUXRUN_AOUT', 'amis', 'Milo', '31 août 2026', 'Capture LuxRun partagée par Milo',
        'Appli LuxRun — Août 2026 : 5 courses, les dimanches 2, 9, 16, 23 et 30 août, Parc de Bonnevoie, 10 minutes chacune. Message de Milo : « Régulier ! 💪 »',
        {'type': 'appli', 'lignes': [['dim. 2 août', 'Parc de Bonnevoie · 10 min'], ['dim. 9 août', 'Parc de Bonnevoie · 10 min'], ['dim. 16 août', 'Parc de Bonnevoie · 10 min'], ['dim. 23 août', 'Parc de Bonnevoie · 10 min'], ['dim. 30 août', 'Parc de Bonnevoie · 10 min']]}),
  piece('PIX_KYOTO', 'pix', 'Milo', '31 août 2026', 'Photo : Kyoto',
        'Photo : un temple et des lanternes rouges. Légende : « Kyoto ✨ 3 semaines inoubliables ».',
-       {'type': 'photo', 'scene': 'kyoto'}),
+       {'type': 'photo', 'scene': 'kyoto', 'personnes': [personne('milo', 'Victory', 0.5, 0.3, -0.25)]}),
  piece('AMIS_LEA', 'amis', 'Léa M.', '12 septembre 2026', 'Publication de Léa : le pesto',
        '« Merci Milo pour le pesto de samedi ! 🍝 »',
-       {'type': 'post', 'image': 'pesto'}),
+       {'type': 'post', 'image': 'pesto', 'scene': 'pesto', 'personnes': []}),
  piece('PIX_PIXEL', 'pix', 'Milo', '2 octobre 2026', 'Photo : Pixel',
        'Photo : un chat roux endormi. Légende : « Pixel, champion de sieste ».',
-       {'type': 'photo', 'scene': 'chat'}),
+       {'type': 'photo', 'scene': 'chat', 'personnes': []}),
 ]
 
 # ─── Déclarations du dossier Milo ─────────────────────────────────────────────
@@ -106,7 +114,9 @@ declarations = [
                 'justification': L('Ech war net a Japan. Ech war doheem.', 'Je n’étais pas au Japon. J’étais à la maison.', 'lecon_modele'),
                 'aveuFr': '« Kyoto vu de mon canapé. J’ai même ajouté les lanternes ! »',
                 'motivationFr': 'Paraître aventureux.',
-                'explicationFr': 'LuxRun le place au Parc de Bonnevoie tous les dimanches d’août : trois semaines au Japon en août, c’est impossible.'},
+                'explicationFr': 'LuxRun le place au Parc de Bonnevoie tous les dimanches d’août : trois semaines au Japon en août, c’est impossible.',
+                # Montré seulement APRÈS la preuve : le montage de la photo « Kyoto ».
+                'revelation': {'piece': 'PIX_KYOTO', 'fr': 'Regarde mieux : six lanternes identiques, alignées au centimètre, et Milo collé devant le temple.'}},
       refusPieces={'PIX_KYOTO': L('Kuck! Dat ass Kyoto!', 'Regarde ! C’est Kyoto !')}),
  decl('MILO_COOK', 'cuisine',
       L('Ech kache gär fir meng Frënn.', 'J’aime cuisiner pour mes amis.'),
@@ -141,7 +151,7 @@ contenus = {
    'audit_regles': 'Vérifiée par Claude : conjugaison, règle du n, prépositions, accords (leçons). Relecture native à faire.',
    'a_verifier_lod': 'Mot ou tournure absent des leçons : à confirmer sur LOD.lu et par un locuteur.'},
  'publiables': ['lecon', 'lecon_modele', 'audit_regles', 'a_verifier_lod'],
- 'personnages': personnages, 'pieces': pieces, 'dossiers': dossiers,
+ 'personnages': personnages, 'figurants': figurants, 'pieces': pieces, 'dossiers': dossiers,
 }
 
 # Contrôle : une phrase marquée « lecon » doit être littéralement dans les leçons/examens.

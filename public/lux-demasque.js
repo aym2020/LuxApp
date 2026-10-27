@@ -12,7 +12,13 @@ const ld = {
   aideFr: true,
   verdict: null,          // dernier résultat d'objection affiché
   focusAvant: null,       // élément à refocaliser à la fermeture d'une fenêtre
-  app: 'pix'              // onglet ouvert dans les réseaux
+  app: 'pix',             // onglet ouvert dans les réseaux
+  promesse3d: null,       // moteur 3D partagé avec Lux Match (un seul WebGLRenderer)
+  rendu3d: null,
+  images: {},             // portraits et photos de preuves déjà rendus (dataURL)
+  preparation: null,      // promesse de rendu des images du dossier
+  emotionTimer: null,
+  fxTimer: null
 };
 const LD_APPS = { pix: 'Pix', pro: 'Pro', amis: 'Amis' };
 const LD_THEMES_FR = { travail: 'Travail', logement: 'Logement', sport: 'Sport', voyage: 'Voyage', cuisine: 'Cuisine', animal: 'Animal', famille: 'Famille', loisir: 'Loisir' };
@@ -53,6 +59,102 @@ function ldIcone(nom) {
   return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
 }
 
+// ─── 3D, images des preuves, émotions (lot D2) ─────────────────────────────
+// Moteur de Lux Match (public/lux-match-3d.js), chargé à la demande, instance partagée.
+function ldObtenir3D() {
+  if (!ld.promesse3d) {
+    ld.promesse3d = import('./lux-match-3d.js?v=10').then(() => window.LuxMatch3D.partage());
+    ld.promesse3d.then(m => { ld.rendu3d = m; }).catch(() => { ld.promesse3d = null; });
+  }
+  return ld.promesse3d;
+}
+function ldPersonne(qui) {
+  const c = ld.donnees;
+  return (c.personnages && c.personnages[qui]) || (c.figurants && c.figurants[qui]) || null;
+}
+// Toutes les images du dossier, une par une (le moteur n'a qu'un canvas).
+function ldPreparerImages() {
+  const p = ld.partie;
+  if (!p) return Promise.resolve();
+  const dossier = p.dossier, npc = p.npc, pieces = LuxDemasqueCore.piecesParId(p.contenus);
+  ld.preparation = ldObtenir3D().then(async m => {
+    const taches = [['portrait:' + npc.id, () => m.portrait(npc, 'Idle', '#3a2a55', 240, 300)],
+      ['portrait-defaite:' + npc.id, () => m.portrait(npc, 'Defeat', '#2a2438', 240, 300)]];
+    dossier.pieces.forEach(id => {
+      const v = pieces[id].visuel;
+      if (!v.scene) return;
+      const personnes = (v.personnes || []).map(x => Object.assign({}, x, { profil: ldPersonne(x.qui) })).filter(x => x.profil);
+      taches.push(['piece:' + id, () => m.photo(v.scene, personnes, 320, 240)]);
+    });
+    for (const [cle, faire] of taches) {
+      if (ld.images[cle]) continue;
+      try { ld.images[cle] = await faire(); ldPoserImage(cle); } catch (_) { /* repli : vignette CSS */ }
+    }
+  }).catch(() => {});
+  return ld.preparation;
+}
+// Remplace les emplacements en attente par l'image prête.
+function ldPoserImage(cle) {
+  document.querySelectorAll('#ld-jeu [data-ld-image="' + cle + '"]').forEach(el => {
+    el.style.backgroundImage = 'url(' + ld.images[cle] + ')';
+    el.classList.add('ld-image-prete');
+  });
+}
+function ldImage(cle, classe, alt) {
+  const url = ld.images[cle];
+  return '<span class="' + classe + (url ? ' ld-image-prete' : '') + '" data-ld-image="' + ldEchapper(cle) + '"' +
+    (url ? ' style="background-image:url(' + url + ')"' : '') + (alt ? ' role="img" aria-label="' + ldEchapper(alt) + '"' : ' aria-hidden="true"') + '></span>';
+}
+// Le prétendant en 3D derrière la déposition (repli : portrait 2D).
+function ldAttacherScene() {
+  const scene = document.getElementById('ld-scene');
+  if (!scene || !ld.partie) return;
+  const partie = ld.partie;
+  ldObtenir3D().then(m => {
+    if (ld.partie !== partie || !document.contains(scene)) return null;
+    return m.interrogatoire(scene, partie.npc);
+  }).then(ok => {
+    if (ok) { scene.classList.add('ld-scene-3d'); ldReagir('parle'); }
+  }).catch(() => { scene.classList.add('ld-scene-2d'); });
+}
+function ldReagir(type) { if (ld.rendu3d && ld.partie && ld.partie.phase === 'deposition') ld.rendu3d.reagir(type); }
+// Signe manga à côté de la tête (mêmes dessins que Lux Match : LM_SIGNES), jamais sur le visage.
+function ldEmotion(type, intensite) {
+  ldEffacerEmotion();
+  const calque = document.getElementById('ld-emotion');
+  if (!calque || typeof LM_SIGNES === 'undefined' || !LM_SIGNES[type]) return;
+  const point = (ld.rendu3d && ld.rendu3d.pointTete && ld.rendu3d.pointTete()) || { x: 0.66, y: 0.2 };
+  calque.style.left = (Math.max(0.12, Math.min(0.88, point.x)) * 100) + '%';
+  calque.style.top = (Math.max(0.1, Math.min(0.42, point.y)) * 100) + '%';
+  calque.className = 'ld-emotion ld-emotion-' + type + ' ld-emotion-' + (intensite || 'subtle');
+  calque.innerHTML = '<svg viewBox="0 0 64 64" aria-hidden="true">' + LM_SIGNES[type] + '</svg>';
+  ld.emotionTimer = setTimeout(ldEffacerEmotion, intensite === 'big' ? 1800 : 1300);
+}
+function ldEffacerEmotion() {
+  clearTimeout(ld.emotionTimer); ld.emotionTimer = null;
+  const calque = document.getElementById('ld-emotion');
+  if (calque) { calque.className = 'ld-emotion'; calque.innerHTML = ''; }
+}
+// « OBJECTION ! » plein écran : lignes de vitesse, cri, flash et secousse (réduit si
+// prefers-reduced-motion). Ne bloque rien : le verdict s'affiche à la fin.
+function ldEffetObjection(reussi, ensuite, pieceId) {
+  const depo = document.querySelector('#ld-jeu .ld-depo');
+  if (!depo) { ensuite(); return; }
+  clearTimeout(ld.fxTimer);
+  const ancien = depo.querySelector('.ld-fx'); if (ancien) ancien.remove();
+  const fx = document.createElement('div');
+  fx.className = 'ld-fx ' + (reussi ? 'ld-fx-ok' : 'ld-fx-non');
+  fx.setAttribute('aria-hidden', 'true');
+  // La pièce présentée est brandie sous le cri.
+  const piece = pieceId && ld.partie ? LuxDemasqueCore.piecesParId(ld.partie.contenus)[pieceId] : null;
+  const brandie = piece ? '<div class="ld-fx-piece">' + ldVisuel(piece, true) + '<span><small>' + LD_APPS[piece.source] + '</small><b>' + ldEchapper(piece.titre) + '</b></span></div>' : '';
+  fx.innerHTML = '<i class="ld-fx-lignes"></i><div class="ld-fx-centre"><b class="ld-fx-cri">OBJECTION !</b>' + brandie + '</div>' + (reussi ? '<i class="ld-fx-flash"></i>' : '');
+  depo.appendChild(fx);
+  depo.classList.remove('ld-secousse'); void depo.offsetWidth;
+  if (reussi) depo.classList.add('ld-secousse');
+  ld.fxTimer = setTimeout(() => { fx.remove(); depo.classList.remove('ld-secousse'); ensuite(); }, reussi ? 1300 : 700);
+}
+
 // ─── Carte du hub Jeux ─────────────────────────────────────────────────────
 function luxDemasqueCarteHub() {
   if (!luxDemasqueDisponible()) return '';
@@ -89,9 +191,13 @@ async function ouvrirLuxDemasque(dossierId) {
   ld.aideFr = ldLire('luxDemasqueAideFr', true);
   ld.partie = LuxDemasqueCore.nouvellePartie(ld.donnees, { dossierId: dossierId || ld.donnees.dossiers[0].id });
   ldRendre();
+  ldPreparerImages(); // portrait 3D et photos des preuves, pendant que le joueur lit la fiche
 }
 function luxDemasqueArreter() {
   ldFermerToutesFenetres();
+  ldEffacerEmotion();
+  clearTimeout(ld.fxTimer);
+  if (ld.rendu3d && document.querySelector('#ld-jeu .ld-scene-3d')) ld.rendu3d.detacher();
   ld.partie = null;
   ld.verdict = null;
 }
@@ -125,9 +231,10 @@ function ldRendre() {
   else if (p.phase === 'deposition') ldRendreDeposition(box);
   else ldRendreBilan(box);
 }
-function ldPortrait(classe) {
+function ldPortrait(classe, pose) {
   const n = ld.partie.npc;
-  return '<div class="ld-portrait ' + (classe || '') + '" aria-hidden="true"><span>' + ldEchapper(n.nom[0]) + '</span></div>';
+  return '<div class="ld-portrait ' + (classe || '') + '" aria-hidden="true"><span>' + ldEchapper(n.nom[0]) + '</span>' +
+    ldImage((pose === 'Defeat' ? 'portrait-defaite:' : 'portrait:') + n.id, 'ld-portrait-image') + '</div>';
 }
 function ldRendreRencontre(box) {
   const p = ld.partie, n = p.npc, d = p.dossier;
@@ -164,6 +271,7 @@ function ldRendreDeposition(box) {
         '<button type="button" class="ld-outil" onclick="ldCarnet()">' + ldIcone('carnet') + '<span>Carnet</span><b id="ld-carnet-nb"></b></button>' +
       '</div>' +
       '<div class="ld-scene" id="ld-scene">' + ldPortrait('ld-portrait-scene') + '</div>' +
+      '<div class="ld-emotion" id="ld-emotion" aria-hidden="true"></div>' +
       '<div class="ld-bas">' +
         '<div class="ld-declaration" id="ld-declaration"></div>' +
         '<div class="ld-dock">' +
@@ -173,6 +281,7 @@ function ldRendreDeposition(box) {
       '</div>' +
     '</div>';
   ldMajDeposition();
+  ldAttacherScene();
 }
 function ldMajDeposition() {
   const p = ld.partie, zone = document.getElementById('ld-declaration');
@@ -207,14 +316,16 @@ function ldMajDeposition() {
 function ldNaviguer(sens) {
   const p = ld.partie;
   if (!p || p.phase !== 'deposition') return;
+  const avant = p.index;
   LuxDemasqueCore.allerA(p, p.index + sens);
   ldMajDeposition();
+  if (p.index !== avant) ldReagir('parle');
 }
 function ldPreciser() {
   const p = ld.partie;
   if (!p || p.phase !== 'deposition') return;
   const r = LuxDemasqueCore.preciser(p);
-  if (r && r.nouvelle) ldToast('Précision ajoutée au carnet');
+  if (r && r.nouvelle) { ldToast('Précision ajoutée au carnet'); ldReagir('parle'); }
   ldMajDeposition();
 }
 
@@ -293,8 +404,11 @@ function ldVignette(piece, vue) {
 // Visuel d'une pièce (le texte décisif est toujours aussi dans la transcription).
 function ldVisuel(piece, mini) {
   const v = piece.visuel, classe = 'ld-visuel ld-visuel-' + v.type + (mini ? ' ld-mini' : '');
-  if (v.type === 'photo') return '<span class="' + classe + ' ld-photo-' + v.scene + '" role="img" aria-label="' + ldEchapper(piece.transcription) + '"><i></i></span>';
-  if (v.type === 'post') return '<span class="' + classe + ' ld-post-' + v.image + '" aria-hidden="true"><i></i></span>';
+  if (v.type === 'photo' || v.type === 'post') {
+    const fond = v.type === 'photo' ? ' ld-photo-' + v.scene : ' ld-post-' + v.image;
+    return '<span class="' + classe + fond + '"' + (mini ? ' aria-hidden="true"' : ' role="img" aria-label="' + ldEchapper(piece.transcription) + '"') + '>' +
+      ldImage('piece:' + piece.id, 'ld-photo-image') + '</span>';
+  }
   const lignes = (v.lignes || []).map(l => '<span><b>' + ldEchapper(l[0]) + '</b>' + (l[1] ? '<em>' + ldEchapper(l[1]) + '</em>' : '') + '</span>').join('');
   return '<span class="' + classe + '"' + (mini ? ' aria-hidden="true"' : '') + '>' + (mini ? '<span><b>' + ldEchapper(piece.auteur) + '</b></span>' : lignes) + '</span>';
 }
@@ -363,8 +477,14 @@ function ldPresenter(pieceId) {
   if (r.resultat === 'invalide' || r.resultat === 'deja') return;
   ldFermerCalque('ld-objection');
   ld.verdict = r;
-  ldAfficherVerdict(r);
   ldMajDeposition();
+  const reussi = r.resultat === 'demasque';
+  ldEffetObjection(reussi, () => {
+    if (!ld.partie || ld.verdict !== r) return;
+    if (reussi) { ldReagir('zoom'); ldEmotion('stunned', 'big'); }
+    else { ldReagir('rire'); ldEmotion('delighted', 'subtle'); }
+    ldAfficherVerdict(r);
+  }, r.piece && r.piece.indexOf(':') < 0 ? r.piece : null);
 }
 function ldAfficherVerdict(r) {
   const p = ld.partie, reussi = r.resultat === 'demasque';
@@ -372,14 +492,23 @@ function ldAfficherVerdict(r) {
     (reussi ? '<p class="ld-cri" aria-hidden="true">OBJECTION !</p><p class="ld-verdict-titre">Disquette démasquée ! <b>' + r.trouvees + ' / ' + r.total + '</b></p>'
             : '<p class="ld-verdict-titre ld-rate">Objection rejetée <b>−' + LuxDemasqueCore.PENALITE_ERREUR + '</b></p>') +
     '<div class="ld-verdict-parole"><span class="ld-locuteur">' + ldEchapper(p.npc.nom) + '</span>' + ldReplique(r.reponse) + '</div>' +
+    (reussi ? ldRevelation(r) : '') +
     (reussi && r.aveuFr ? '<p class="ld-aveu">' + ldEchapper(r.aveuFr) + '</p>' : '') +
     (!reussi && r.raison === 'precision_manquante' ? '<p class="ld-indice">Il joue sur les mots : fais-lui d’abord préciser sa phrase.</p>' : '') +
     '<button type="button" class="ld-btn ld-btn-or" onclick="ldFermerVerdict()">' + (reussi && r.complet ? 'Voir le bilan' : 'Continuer') + '</button>');
+}
+// Révélation éventuelle, après la preuve (le montage de la photo « Kyoto »).
+function ldRevelation(r) {
+  const pieces = LuxDemasqueCore.piecesParId(ld.partie.contenus);
+  if (!r.revelation || !pieces[r.revelation.piece]) return '';
+  return '<div class="ld-revelation"><span class="ld-revelation-photo">' + ldVisuel(pieces[r.revelation.piece], false) + '<b>MONTAGE</b></span>' +
+    '<p>' + ldEchapper(r.revelation.fr) + '</p></div>';
 }
 function ldFermerVerdict() {
   const r = ld.verdict;
   ldFermerCalque('ld-verdict');
   ld.verdict = null;
+  if (r && r.resultat === 'demasque') { ldReagir('deception'); setTimeout(() => ldEmotion('awkward', 'medium'), 250); }
   if (r && r.complet) ldConclure(true);
 }
 
@@ -406,6 +535,8 @@ function ldConclure(confirme) {
   const fin = LuxDemasqueCore.conclure(p);
   if (fin.score > ldLire('luxDemasqueRecord', 0)) { ldEcrire('luxDemasqueRecord', fin.score); p.nouveauRecord = true; }
   ldFermerToutesFenetres();
+  ldEffacerEmotion();
+  if (ld.rendu3d) ld.rendu3d.detacher();
   ldRendre();
 }
 
@@ -416,7 +547,7 @@ function ldRendreBilan(box) {
   box.innerHTML = ldEntete({ menu: false }) +
     '<div class="ld-bilan">' +
       '<p class="ld-bilan-titre' + (fin.complet ? ' ld-complet' : '') + '">' + fin.trouvees + ' / ' + fin.total + '<span>disquette' + (fin.total > 1 ? 's' : '') + ' démasquée' + (fin.trouvees > 1 ? 's' : '') + '</span></p>' +
-      '<div class="ld-bilan-tete">' + ldPortrait('ld-portrait-bilan') +
+      '<div class="ld-bilan-tete">' + ldPortrait('ld-portrait-bilan', fin.complet ? 'Defeat' : 'Idle') +
         '<div class="ld-verdict-parole"><span class="ld-locuteur">' + ldEchapper(p.npc.nom) + '</span>' + ldReplique(fin.replique) + '</div></div>' +
       '<div class="ld-stats"><div><span>Objections ratées</span><b>' + fin.erreurs + '</b></div>' +
         '<div><span>Score</span><b>' + fin.score + '</b></div>' +

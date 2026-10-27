@@ -80,10 +80,22 @@ with sync_playwright() as p:
     assert pg.inner_text('.ld-outil:has-text("Carnet") b') == '8'
     ok('8 pièces consultées et au carnet, chacune avec sa transcription ; Retour ferme pièce puis réseaux')
 
+    # Avant toute preuve : aucune révélation (montage) visible nulle part.
+    assert pg.locator('.ld-revelation').count() == 0
     # Objections : une ratée (leurre) puis les trois bonnes.
     assert 'rejetée' in objecter(pg, 3, 'Photo : Kyoto')
     assert pg.evaluate("ld.partie.erreurs") == 1
-    assert 'démasquée' in objecter(pg, 3, 'LuxRun')
+    pg.evaluate(f"LuxDemasqueCore.allerA(ld.partie, 3); ldMajDeposition()")
+    pg.click('#ld-objecter')
+    pg.click("#ld-objection .ld-carnet-el:has-text('LuxRun')")
+    pg.wait_for_selector('.ld-fx-ok .ld-fx-cri')           # effet OBJECTION ! plein écran
+    assert 'LuxRun' in pg.inner_text('.ld-fx-piece')        # la pièce est brandie
+    pg.wait_for_selector('#ld-verdict')
+    assert pg.locator('.ld-fx').count() == 0
+    assert 'démasquée' in pg.inner_text('#ld-verdict .ld-verdict-titre')
+    assert 'MONTAGE' in pg.inner_text('#ld-verdict .ld-revelation')   # le montage, après la preuve
+    assert pg.evaluate("getComputedStyle(document.querySelector('#ld-verdict .ld-fenetre')).overflowY") == 'visible'
+    pg.click('#ld-verdict .ld-btn')
     assert pg.inner_text('#ld-compteur').strip().startswith('1/3')
     assert 'DÉMASQUÉE' in pg.inner_text('#ld-declaration') and pg.is_disabled('#ld-objecter')
     assert 'démasquée' in objecter(pg, 1, 'Profil de Sami')

@@ -186,7 +186,7 @@ const LuxDemasqueCore = (function () {
     noter(etat, { type: 'objection', declaration: d.id, piece: pieceId, ok, raison });
     if (!ok) { etat.erreurs++; return { resultat: 'refus', declaration: d.id, piece: pieceId, raison, reponse }; }
     etat.demasquees.push(d.id);
-    const resultat = { resultat: 'demasque', declaration: d.id, piece: pieceId, reponse, aveuFr: d.mensonge.aveuFr,
+    const resultat = { resultat: 'demasque', declaration: d.id, piece: pieceId, reponse, aveuFr: d.mensonge.aveuFr, revelation: d.mensonge.revelation || null,
       trouvees: etat.demasquees.length, total: totalMensonges(etat), complet: etat.demasquees.length === totalMensonges(etat) };
     return resultat;
   }

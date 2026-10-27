@@ -9,7 +9,11 @@
      apercu(conteneur, look)       → Alex qui tourne sur lui-même (écran LOOK) ;
      date(conteneur, profil, look) → scène du rendez-vous ;
      reagir(type)                  → animation de la partenaire (joie, déception, surprise…) ;
-     detacher()                    → arrête la boucle et retire le canvas. */
+     detacher()                    → arrête la boucle et retire le canvas.
+   Ajouts SPEC 110 (Lux Démasque), sans changer les services ci-dessus :
+     interrogatoire(conteneur, profil) → le prétendant seul, face au joueur, dans le café ;
+     photo(scene, personnes, l, h)     → « photo » de preuve dans un petit décor low-poly ;
+     partage()                         → une seule instance (un seul WebGLRenderer) pour les deux jeux. */
 import * as THREE from './vendor/three/three.module.min.js';
 import { GLTFLoader } from './vendor/three/GLTFLoader.js';
 
@@ -293,6 +297,88 @@ async function creer() {
       [-1.4, 1.4].forEach(x => g.add(boite(0.9, 1.3, 0.25, '#2f5f9a', x, 0.65, -0.6)));
     }
   };
+  // SPEC 110 — décors des pièces de Lux Démasque (primitives, aucun fichier).
+  const lanterne = () => { const g = new THREE.Group(); const corps = new THREE.Mesh(new THREE.SphereGeometry(0.16, 8, 6), lueur('#ff4a3a')); corps.scale.y = 1.25; g.add(corps, cylindre(0.1, 0.04, '#2a1a10', 0, 0.21, 0, 6), cylindre(0.1, 0.04, '#2a1a10', 0, -0.21, 0, 6)); return g; };
+  Object.assign(FABRIQUES, {
+    kyoto: g => {
+      g.add(plancher('#cbb79a'));
+      const ciel = boite(10, 4, 0.1, lueur('#f7a76a'), 0, 2, -4.2); g.add(ciel);
+      const temple = new THREE.Group();
+      temple.add(boite(3.2, 1.4, 1.6, '#5a2a22', 0, 0.7, 0), boite(3.8, 0.14, 2.1, '#2a1c20', 0, 1.5, 0), boite(2.4, 0.9, 1.2, '#6a3026', 0, 2.0, 0), boite(3.0, 0.12, 1.6, '#2a1c20', 0, 2.5, 0), boite(1.4, 0.6, 0.8, '#6a3026', 0, 2.85, 0), boite(1.9, 0.1, 1.1, '#2a1c20', 0, 3.2, 0));
+      temple.position.set(0.4, 0, -3.2); g.add(temple);
+      const torii = new THREE.Group();
+      [-0.9, 0.9].forEach(x => torii.add(cylindre(0.08, 2.1, '#d8343c', x, 1.05, 0)));
+      torii.add(boite(2.4, 0.14, 0.2, '#d8343c', 0, 2.05, 0), boite(2.0, 0.1, 0.16, '#2a1c20', 0, 2.2, 0), boite(2.0, 0.08, 0.14, '#d8343c', 0, 1.7, 0));
+      torii.position.set(-0.9, 0, -1.6); g.add(torii);
+      // Lanternes identiques, alignées à intervalles parfaits (le « montage » se voit après coup).
+      [-1.8, -1.0, -0.2, 0.6, 1.4, 2.2].forEach(x => { const l = lanterne(); l.position.set(x, 2.35, -2.3); g.add(l); });
+    },
+    canape: g => {
+      g.add(plancher('#5a3a2c'), boite(8, 3, 0.1, '#2c3450', 0, 1.5, -2.6));
+      const tele = boite(1.6, 0.95, 0.1, '#111', 0.2, 1.35, -2.45); g.add(tele);
+      g.add(boite(1.45, 0.8, 0.02, lueur('#3fa34a'), 0.2, 1.35, -2.39), boite(0.06, 0.6, 0.021, lueur('#ffffff'), 0.2, 1.35, -2.385));
+      g.add(boite(2.6, 0.45, 0.9, '#7a4a8a', 0, 0.35, 0.9), boite(2.6, 0.6, 0.25, '#6a3a7a', 0, 0.8, 1.3), boite(0.25, 0.6, 0.9, '#6a3a7a', -1.3, 0.6, 0.9), boite(0.25, 0.6, 0.9, '#6a3a7a', 1.3, 0.6, 0.9));
+    },
+    chat: g => {
+      g.add(plancher('#c9b391'), boite(8, 3, 0.1, '#e6d6bb', 0, 1.5, -1.6));
+      const coussin = cylindre(0.75, 0.22, '#7a3fc4', 0, 0.11, 0, 12); coussin.scale.z = 0.8; g.add(coussin);
+      const chat = new THREE.Group(), roux = '#e0832f', clair = '#f2b46a';
+      const corps = new THREE.Mesh(new THREE.SphereGeometry(0.42, 8, 6), mat(roux)); corps.scale.set(1.3, 0.62, 0.95); corps.position.y = 0.42; chat.add(corps);
+      const tete = new THREE.Mesh(new THREE.SphereGeometry(0.24, 8, 6), mat(roux)); tete.position.set(0.5, 0.42, 0.12); chat.add(tete);
+      [[0.42, 0.66, 0.02], [0.6, 0.66, 0.18]].forEach(([x, y, z]) => { const o = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.16, 4), mat(roux)); o.position.set(x, y, z); chat.add(o); });
+      const museau = new THREE.Mesh(new THREE.SphereGeometry(0.1, 6, 4), mat(clair)); museau.position.set(0.66, 0.36, 0.22); chat.add(museau);
+      [[0.56, 0.45, 0.3], [0.72, 0.45, 0.16]].forEach(([x, y, z]) => chat.add(boite(0.08, 0.015, 0.02, '#3a2010', x, y, z))); // yeux fermés
+      const queue = cylindre(0.06, 0.8, roux, -0.45, 0.3, 0.42, 6); queue.rotation.z = Math.PI / 2; queue.rotation.y = 0.6; chat.add(queue);
+      chat.position.set(-0.1, 0.12, 0); chat.rotation.y = -0.3; g.add(chat);
+    },
+    bureau: g => {
+      g.add(plancher('#4a4f5a'), boite(8, 3, 0.1, '#e9e4da', 0, 1.5, -2.2));
+      g.add(boite(1.4, 0.9, 0.04, '#2f6fd6', -1.2, 1.6, -2.14), boite(1.2, 0.2, 0.041, '#f2c230', -1.2, 1.35, -2.13)); // affiche de voyage
+      g.add(boite(2.2, 0.08, 0.9, '#7a5236', 0.7, 0.78, -1.2), boite(0.08, 0.76, 0.8, '#3a2a20', -0.3, 0.38, -1.2), boite(0.08, 0.76, 0.8, '#3a2a20', 1.7, 0.38, -1.2));
+      g.add(boite(0.6, 0.4, 0.05, '#1c1b20', 1.0, 1.05, -1.4), boite(0.56, 0.34, 0.051, lueur('#9fd0f0'), 1.0, 1.05, -1.37));
+      const valise = boite(0.5, 0.6, 0.25, '#d8343c', -0.9, 0.3, -0.4); g.add(valise, boite(0.2, 0.06, 0.04, '#1c1b20', -0.9, 0.63, -0.4));
+    },
+    pesto: g => {
+      g.add(plancher('#6a4a36'), boite(3.4, 0.08, 1.8, '#f1e6cf', 0, 0.8, 0), cylindre(0.08, 0.8, '#3a2a20', 0, 0.4, 0));
+      [[-0.55, 0.1], [0.6, -0.1]].forEach(([x, z]) => { g.add(cylindre(0.38, 0.04, '#ffffff', x, 0.86, z, 14)); const pates = cylindre(0.27, 0.07, '#5aa04a', x, 0.91, z, 10); g.add(pates); });
+      g.add(cylindre(0.07, 0.24, '#f4f0ff', 0.05, 0.96, 0.5, 8), cylindre(0.12, 0.3, '#2a6a3a', -0.1, 0.99, -0.55, 8));
+    }
+  });
+  // Photo de preuve : décor + jusqu'à deux personnes posées. Un modèle affiché à l'écran
+  // (interrogatoire en cours) est prêté le temps de la photo puis remis à sa place.
+  // personnes = [{ profil, pose, x, z, rotation }]
+  async function photo(nomScene, personnes, largeur, hauteur) {
+    const l = largeur || 320, h = hauteur || 240;
+    const liste = personnes || [];
+    const gltfs = await Promise.all(liste.map(p => charger(p.profil.apparence3d.modele)));
+    const pretes = [];
+    liste.forEach((p, i) => {
+      const racine = gltfs[i].scene;
+      const avant = racine.parent ? { parent: racine.parent, pos: racine.position.clone(), rot: racine.rotation.clone() } : null;
+      instancier(gltfs[i], teintesProfil(p.profil));
+      racine.userData.anim.poser(p.pose || 'Idle', p.pose && p.pose !== 'Idle' ? 0.55 : 0.4);
+      racine.position.set(p.x || 0, 0, p.z || 0); racine.rotation.y = p.rotation || 0;
+      scenePortrait.add(racine);
+      pretes.push({ racine, avant });
+    });
+    scenePortrait.background = new THREE.Color('#3a2a55');
+    const fondDecor = decor(nomScene);
+    if (fondDecor) scenePortrait.add(fondDecor);
+    camPortrait.aspect = l / h; camPortrait.updateProjectionMatrix();
+    camPortrait.position.set(0.3, 1.45, 5.4); camPortrait.lookAt(0.1, 1.05, -0.6);
+    const ancien = { l: canvas.width, h: canvas.height, ratio: renderer.getPixelRatio() };
+    renderer.setPixelRatio(1); renderer.setSize(l, h, false);
+    renderer.render(scenePortrait, camPortrait);
+    const url = canvas.toDataURL('image/webp', 0.86);
+    pretes.forEach(({ racine, avant }) => {
+      scenePortrait.remove(racine);
+      if (avant) { avant.parent.add(racine); racine.position.copy(avant.pos); racine.rotation.copy(avant.rot); racine.userData.anim.jouer('Idle'); }
+    });
+    if (fondDecor) scenePortrait.remove(fondDecor);
+    renderer.setPixelRatio(ancien.ratio); renderer.setSize(ancien.l / ancien.ratio, ancien.h / ancien.ratio, false);
+    if (rendu) redimensionner();
+    return url;
+  }
   const decors = {};
   function decor(nom) {
     if (!FABRIQUES[nom]) return null;
@@ -452,7 +538,13 @@ async function creer() {
   const VISEE_ZOOM = new THREE.Vector3(0.2, 1.4, -0.85); // zoom dramatique : sur son visage
   const viseeCourante = new THREE.Vector3();
   const POSE_CAM = new THREE.Vector3(-0.55, 1.7, 3.7);
-  const etatDate = { partenaire: null, alex: null, temps: 0, zoom: 0, secousse: 0, fige: 0, parle: 0, tete: null, geste: null, decalage: [0, 0, 0] };
+  // Cadrages : rendez-vous Lux Match (inchangé) et interrogatoire Lux Démasque (visage plus haut,
+  // au-dessus de la carte de déposition et des deux boutons).
+  const CADRAGE_DATE = { pose: POSE_CAM, visee: VISEE, viseeZoom: VISEE_ZOOM, poseZoom: new THREE.Vector3(0.1, 1.45, 0.6) };
+  const CADRAGE_INTERROGATOIRE = { pose: new THREE.Vector3(0.25, 1.6, 2.8), visee: new THREE.Vector3(0.2, 1.0, -0.85),
+    // Zoom : le visage reste dans le tiers haut (la feuille du verdict occupe le bas de l'écran).
+    viseeZoom: new THREE.Vector3(0.2, 1.12, -0.85), poseZoom: new THREE.Vector3(0.22, 1.62, 1.5) };
+  const etatDate = { partenaire: null, alex: null, temps: 0, zoom: 0, secousse: 0, fige: 0, parle: 0, tete: null, geste: null, decalage: [0, 0, 0], cadrage: CADRAGE_DATE };
   // Gestes sobres de la tête (SPEC §12.5) : ajoutés par-dessus l'animation Idle.
   // t va de 0 à 1 ; chaque geste renvoie [hocher (x), tourner (y), pencher (z)] en radians.
   const GESTES = {
@@ -486,7 +578,33 @@ async function creer() {
     if (etatDate.tete) { etatDate.tete.rotation.x -= etatDate.decalage[0]; etatDate.tete.rotation.y -= etatDate.decalage[1]; etatDate.tete.rotation.z -= etatDate.decalage[2]; }
     etatDate.decalage = [0, 0, 0];
     etatDate.tete = null; etatDate.geste = null; etatDate.zoom = 0; etatDate.fige = 0;
+    etatDate.cadrage = CADRAGE_DATE;
+    enseigne.visible = halo.visible = true;
     partenaire.traverse(o => { if (o.isBone && /^Head$/i.test(o.name)) etatDate.tete = o; });
+    attacher(cible, { scene: sceneDate, camera: camDate, avancer: avancerDate });
+    return true;
+  }
+  // SPEC 110 : le prétendant seul au café, face au joueur (aucun avatar joueur).
+  // Mêmes réactions que la partenaire de Lux Match (reagir, pointTete).
+  async function interrogatoire(cible, profil) {
+    const numero = ++demande;
+    const [gltf, cafe] = await Promise.all([charger(profil.apparence3d.modele), charger('cafe')]);
+    if (numero !== demande) return false;
+    const suspect = instancier(gltf, teintesProfil(profil));
+    meublerCafe(cafe);
+    [etatDate.partenaire, etatDate.alex].forEach(ancien => {
+      if (ancien && ancien !== suspect && ancien.parent === sceneDate) sceneDate.remove(ancien);
+    });
+    suspect.position.set(0.2, 0, -0.85); suspect.rotation.y = -0.1;
+    sceneDate.add(suspect);
+    suspect.userData.anim.jouer('Idle');
+    if (etatDate.tete) { etatDate.tete.rotation.x -= etatDate.decalage[0]; etatDate.tete.rotation.y -= etatDate.decalage[1]; etatDate.tete.rotation.z -= etatDate.decalage[2]; }
+    etatDate.decalage = [0, 0, 0];
+    etatDate.partenaire = suspect; etatDate.alex = null;
+    etatDate.tete = null; etatDate.geste = null; etatDate.zoom = 0; etatDate.fige = 0;
+    etatDate.cadrage = CADRAGE_INTERROGATOIRE;
+    enseigne.visible = halo.visible = false; // l'enseigne « LUX ♥ MATCH » appartient à l'autre jeu
+    suspect.traverse(o => { if (o.isBone && /^Head$/i.test(o.name)) etatDate.tete = o; });
     attacher(cible, { scene: sceneDate, camera: camDate, avancer: avancerDate });
     return true;
   }
@@ -514,10 +632,10 @@ async function creer() {
     e.zoom = Math.max(0, e.zoom - dt * 0.6);
     e.secousse = Math.max(0, e.secousse - dt);
     const z = Math.min(1, e.zoom);
-    camDate.position.lerpVectors(POSE_CAM, new THREE.Vector3(0.1, 1.45, 0.6), z * 0.85);
+    camDate.position.lerpVectors(e.cadrage.pose, e.cadrage.poseZoom, z * 0.85);
     camDate.position.x += Math.sin(e.temps * 0.5) * 0.03 + (e.secousse ? (Math.random() - 0.5) * 0.08 : 0);
     camDate.position.y += Math.sin(e.temps * 0.8) * 0.015;
-    camDate.lookAt(viseeCourante.lerpVectors(VISEE, VISEE_ZOOM, z));
+    camDate.lookAt(viseeCourante.lerpVectors(e.cadrage.visee, e.cadrage.viseeZoom, z));
     halo.material.opacity = 0.75 + Math.sin(e.temps * 3) * 0.15;
     guirlande.forEach((b, i) => { b.material.opacity = 0.75 + Math.sin(e.temps * 2 + i * 1.7) * 0.25; });
     if (vieEtincelles > 0) {
@@ -582,7 +700,13 @@ async function creer() {
   // Arrêt demandé par l'interface : annule aussi les scènes encore en chargement.
   function arreter() { demande++; detacher(); }
 
-  return { portrait, apercu, saluerApercu, date, reagir, detacher: arreter, diagnostic, pointTete };
+  return { portrait, apercu, saluerApercu, date, reagir, detacher: arreter, diagnostic, pointTete, interrogatoire, photo };
+}
+// Une seule instance pour toute l'appli (Lux Match et Lux Démasque) : un seul WebGLRenderer.
+let instance = null;
+function partage() {
+  if (!instance) { instance = creer(); instance.catch(() => { instance = null; }); }
+  return instance;
 }
 
 // Préchargement sans créer de contexte WebGL (depuis le hub Jeux) : animations + modèles.
@@ -590,4 +714,4 @@ function precharger(noms) {
   return Promise.all(['anims'].concat(noms || []).map(n => charger(n).catch(() => null)));
 }
 
-window.LuxMatch3D = { creer, precharger };
+window.LuxMatch3D = { creer, precharger, partage };
