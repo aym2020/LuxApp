@@ -1,0 +1,3275 @@
+{
+ "schemaVersion": 2,
+ "contentVersion": "lux-match-a11-v2",
+ "status": "demo_textes_lu_en_relecture",
+ "source": "docs/LUX-MATCH-BIBLE-EDITORIALE-A11.md (27/10/2026), auditée par Claude le 27/10/2026",
+ "reviewLegend": {
+  "lecon": "Phrase présente telle quelle dans les leçons (data/lecons) : vérifié automatiquement par les tests.",
+  "lecon_modele": "Même structure qu’une phrase de leçon, seul un nom, un nombre, un lieu ou une langue change (règle du n vérifiée).",
+  "audit_regles": "Vérifiée par Claude : conjugaison, règle du n, prépositions, accords (leçons + règles). Relecture native à faire.",
+  "a_verifier_lod": "Lexique ou tournure hors leçons (profession, adjectif, expression) : à confirmer sur LOD.lu et par un locuteur."
+ },
+ "persona": {
+  "id": "alex_v01",
+  "name": "Alex",
+  "age": 28,
+  "origin": "Frankräich",
+  "city": "Metz",
+  "job": "Banker",
+  "languages": [
+   "Franséisch"
+  ],
+  "nationality": "Fransous",
+  "football": false,
+  "morningCoffee": true,
+  "drawing": false,
+  "gaming": false,
+  "running": false,
+  "lignes": [
+   {
+    "lu": "Ech heeschen Alex.",
+    "fr": "Je m'appelle Alex.",
+    "review": "lecon_modele"
+   },
+   {
+    "lu": "Ech sinn aachtanzwanzeg Joer al.",
+    "fr": "J'ai 28 ans.",
+    "review": "lecon_modele"
+   },
+   {
+    "lu": "Ech kommen aus Frankräich.",
+    "fr": "Je viens de France.",
+    "review": "lecon"
+   },
+   {
+    "lu": "Ech wunnen zu Metz.",
+    "fr": "J'habite à Metz.",
+    "review": "lecon"
+   },
+   {
+    "lu": "Ech sinn e Banker.",
+    "fr": "Je suis banquier.",
+    "review": "lecon"
+   },
+   {
+    "lu": "Ech schwätze Franséisch.",
+    "fr": "Je parle français.",
+    "review": "lecon"
+   }
+  ],
+  "resumeFr": "Alex, 28 ans — Je viens de France, j’habite à Metz, je suis banquier et je parle français.",
+  "source": "Bible §4"
+ },
+ "profils": [
+  {
+   "id": "lena_r01",
+   "archetypeId": "sportive",
+   "name": "Léna",
+   "age": 27,
+   "city": "Metz",
+   "origin": "Frankräich",
+   "job": "Léierin",
+   "languages": [
+    "Franséisch",
+    "Lëtzebuergesch"
+   ],
+   "source": "P_LENA",
+   "voix": "sportive, directe, compétitive",
+   "apparence3d": {
+    "modele": "Casual3_Female",
+    "peau": "#e0a985",
+    "cheveux": "#5a3a22",
+    "haut": "#2f7be0",
+    "bas": "#1d2a4a"
+   },
+   "outfitSignal": {
+    "style": "sportif",
+    "color": "blo",
+    "explicit": true,
+    "clue": "AMIS_LENA_A01"
+   },
+   "phoneTolerance": "normal",
+   "humours": [
+    "direct",
+    "taquine"
+   ],
+   "tinder": {
+    "id": "TINDER.LENA.BIO",
+    "lu": "Ech wunnen zu Metz. Ech spille gär Fussball.",
+    "fr": "J'habite à Metz. J'aime jouer au football.",
+    "review": "lecon",
+    "tags": [
+     {
+      "lu": "Fussball",
+      "fr": "football",
+      "review": "lecon"
+     },
+     {
+      "lu": "Sport",
+      "fr": "sport",
+      "review": "lecon"
+     },
+     {
+      "lu": "Metz",
+      "fr": "Metz",
+      "review": "lecon"
+     }
+    ]
+   },
+   "pix": {
+    "private": false,
+    "followers": 840,
+    "bio": {
+     "id": "PIX.LENA.BIO",
+     "lu": "Fussball, Sport a Frënn.",
+     "fr": "Football, sport et amis.",
+     "review": "audit_regles"
+    },
+    "photos": [
+     {
+      "id": "PIX_LENA_P01",
+      "lu": "Moies am Park. Ech lafe gär.",
+      "fr": "Le matin au parc. J'aime courir.",
+      "review": "audit_regles",
+      "scene": "parc",
+      "pose": "Walk",
+      "jours": 2,
+      "likes": 64
+     },
+     {
+      "id": "PIX_LENA_P02",
+      "lu": "Ech spille gär Fussball.",
+      "fr": "J'aime jouer au football.",
+      "review": "lecon",
+      "scene": "foot",
+      "pose": "Jump",
+      "jours": 6,
+      "likes": 91
+     }
+    ]
+   },
+   "pro": {
+    "poste": "Enseignante",
+    "formation": "Université de Metz",
+    "ville": "Metz",
+    "langues": "Français, luxembourgeois",
+    "texte": {
+     "id": "PRO.LENA",
+     "lu": "Ech schaffen als Léierin. Ech wunnen zu Metz.",
+     "fr": "Je suis professeure. J’habite à Metz.",
+     "review": "lecon"
+    }
+   },
+   "amis": {
+    "bio": {
+     "lu": "Ech wunnen zu Metz.",
+     "fr": "J'habite à Metz.",
+     "review": "lecon"
+    },
+    "posts": [
+     {
+      "id": "AMIS_LENA_A01",
+      "lu": "Meng Liiblingsfaarf ass blo. Sportlech Kleeder si super.",
+      "fr": "Ma couleur préférée est le bleu. J'adore les tenues sportives.",
+      "review": "a_verifier_lod",
+      "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "AMIS_LENA_A02",
+      "lu": "Ech spille gär Fussball. Och freides!",
+      "fr": "J'aime jouer au foot. Même le vendredi !",
+      "review": "audit_regles",
+      "reveals": "football"
+     },
+     {
+      "id": "AMIS_LENA_A03",
+      "lu": "Eng Fro: Bass du och sportlech?",
+      "fr": "Une question : tu es sportif aussi ?",
+      "review": "audit_regles",
+      "reveals": "question_sport"
+     }
+    ]
+   },
+   "variantes": [
+    "VAR_LENA_COFFEE",
+    "VAR_LENA_EARLY"
+   ],
+   "agePrefPossible": true,
+   "exAlexPossible": false,
+   "repliques": {
+    "ville": {
+     "lu": "Ech wunnen zu Metz.",
+     "fr": "J'habite à Metz.",
+     "review": "lecon"
+    },
+    "metier": {
+     "lu": "Ech schaffen als Léierin.",
+     "fr": "Je suis professeure.",
+     "review": "lecon"
+    },
+    "age": {
+     "lu": "Ech si siwenanzwanzeg Joer al.",
+     "fr": "J'ai 27 ans.",
+     "review": "lecon"
+    }
+   },
+   "beats": [
+    "B10_FOOT",
+    "B06_CITY",
+    "B05_ORIGIN",
+    "B11_COFFEE",
+    "B21_ASK_HER",
+    "B08_PROFESSION"
+   ],
+   "beatsForts": [
+    "B10_FOOT"
+   ],
+   "reactions": {
+    "LOOK_OK": "Ah, du bleu et des baskets !",
+    "LOOK_DIFFERENT": "Tu viens courir en costume ? Ambitieux.",
+    "BLUFF": "Tu joues au foot ? Je note !",
+    "AVEU": "Bon, au moins tu ne mens plus sur ton niveau.",
+    "SINCERE": "Pas besoin d’aimer le foot pour être sympa."
+   },
+   "fins": {
+    "SUCCESS": {
+     "id": "FIN_LENA_SUCCESS",
+     "fr": "J’aime les gens qui tiennent parole. Un autre café après un match ?",
+     "garde": {
+      "aucunMensongeActif": true
+     }
+    },
+    "FUN": {
+     "id": "FIN_LENA_FUN",
+     "fr": "Tu as raté le ballon de trois mètres. C’était magnifique. Je veux une revanche.",
+     "garde": {
+      "choix": [
+       "EV_LENA_FOOT_C1"
+      ]
+     }
+    },
+    "NEUTRAL": {
+     "id": "FIN_LENA_NEUTRAL",
+     "fr": "On n’a pas les mêmes passions, mais j’ai aimé discuter."
+    },
+    "FAIL": {
+     "id": "FIN_LENA_FAIL",
+     "fr": "Tu as juré aimer le foot, puis tu as changé d’histoire. Ça fait beaucoup !",
+     "garde": {
+      "mensonge": "football"
+     }
+    }
+   }
+  },
+  {
+   "id": "claire_r01",
+   "archetypeId": "bc_bg",
+   "name": "Claire",
+   "age": 31,
+   "city": "Lëtzebuerg",
+   "origin": "Frankräich",
+   "job": "Bankerin",
+   "languages": [
+    "Franséisch",
+    "Englesch"
+   ],
+   "source": "P_CLAIRE",
+   "voix": "organisée, ironique, ponctuelle",
+   "apparence3d": {
+    "modele": "Suit_Female",
+    "peau": "#f0c3a0",
+    "cheveux": "#2a1d18",
+    "costume": "#18161c"
+   },
+   "outfitSignal": {
+    "style": "bcbg",
+    "color": "schwaarz",
+    "explicit": true,
+    "clue": "AMIS_CLAIRE_A01"
+   },
+   "phoneTolerance": "normal",
+   "humours": [
+    "ironique",
+    "franchise"
+   ],
+   "tinder": {
+    "id": "TINDER.CLAIRE.BIO",
+    "lu": "Ech wunnen zu Lëtzebuerg. Ech schaffen an enger Bank.",
+    "fr": "J'habite au Luxembourg. Je travaille dans une banque.",
+    "review": "lecon_modele",
+    "tags": [
+     {
+      "lu": "Lëtzebuerg",
+      "fr": "Luxembourg",
+      "review": "lecon"
+     },
+     {
+      "lu": "Bank",
+      "fr": "banque",
+      "review": "lecon"
+     },
+     {
+      "lu": "Reesen",
+      "fr": "voyages",
+      "review": "audit_regles"
+     }
+    ]
+   },
+   "pix": {
+    "private": false,
+    "followers": 510,
+    "bio": {
+     "id": "PIX.CLAIRE.BIO",
+     "lu": "Lëtzebuerg. Aarbecht. Reesen.",
+     "fr": "Luxembourg. Travail. Voyages.",
+     "review": "audit_regles"
+    },
+    "photos": [
+     {
+      "id": "PIX_CLAIRE_P01",
+      "lu": "Gudden Owend!",
+      "fr": "Bonsoir !",
+      "review": "lecon",
+      "scene": "reception",
+      "pose": "Victory",
+      "jours": 3,
+      "likes": 47
+     },
+     {
+      "id": "PIX_CLAIRE_P02",
+      "lu": "Lëtzebuerg owes.",
+      "fr": "Luxembourg le soir.",
+      "review": "audit_regles",
+      "scene": "ville_nuit",
+      "pose": "Idle",
+      "jours": 9,
+      "likes": 38
+     }
+    ]
+   },
+   "pro": {
+    "poste": "Banquière",
+    "formation": "Université du Luxembourg",
+    "ville": "Luxembourg",
+    "langues": "Français, anglais",
+    "texte": {
+     "id": "PRO.CLAIRE",
+     "lu": "Ech schaffen an enger Bank. Ech schwätze Franséisch an Englesch.",
+     "fr": "Je travaille dans une banque. Je parle français et anglais.",
+     "review": "lecon_modele"
+    }
+   },
+   "amis": {
+    "bio": {
+     "lu": "Ech wunnen zu Lëtzebuerg.",
+     "fr": "J'habite au Luxembourg.",
+     "review": "lecon"
+    },
+    "posts": [
+     {
+      "id": "AMIS_CLAIRE_A01",
+      "lu": "Meng Liiblingsfaarf ass schwaarz. Ech hunn elegant Kleeder gär.",
+      "fr": "Ma couleur préférée est le noir. J'aime les vêtements élégants.",
+      "review": "a_verifier_lod",
+      "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "AMIS_CLAIRE_A02",
+      "lu": "Ech sinn ëmmer pünktlech.",
+      "fr": "Je suis toujours à l’heure.",
+      "review": "a_verifier_lod",
+      "reveals": "ponctualite"
+     },
+     {
+      "id": "AMIS_CLAIRE_A03",
+      "lu": "Aacht Auer heescht aacht Auer.",
+      "fr": "Huit heures, c’est huit heures.",
+      "review": "audit_regles",
+      "reveals": "ponctualite"
+     }
+    ]
+   },
+   "variantes": [
+    "VAR_CLAIRE_TRAVEL"
+   ],
+   "agePrefPossible": true,
+   "exAlexPossible": true,
+   "repliques": {
+    "ville": {
+     "lu": "Ech wunnen zu Lëtzebuerg.",
+     "fr": "J'habite au Luxembourg.",
+     "review": "lecon"
+    },
+    "metier": {
+     "lu": "Ech schaffen an enger Bank.",
+     "fr": "Je travaille dans une banque.",
+     "review": "lecon_modele"
+    },
+    "age": {
+     "lu": "Ech sinn eenandrësseg Joer al.",
+     "fr": "J'ai 31 ans.",
+     "review": "lecon_modele"
+    }
+   },
+   "beats": [
+    "B08_PROFESSION",
+    "B09_WORKPLACE",
+    "B06_CITY",
+    "B07_LANGUAGE",
+    "B13_NATIONALITY",
+    "B21_ASK_HER"
+   ],
+   "beatsForts": [
+    "B08_PROFESSION"
+   ],
+   "reactions": {
+    "LOOK_OK": "C’est soigné. J’aime bien.",
+    "LOOK_DIFFERENT": "C’est… original pour un rendez-vous.",
+    "BLUFF": "Ah bon ? Et tu fais ça depuis quand ?",
+    "AVEU": "Merci pour la précision. C’est mieux.",
+    "SINCERE": "Au moins, ta réponse est claire."
+   },
+   "fins": {
+    "SUCCESS": {
+     "id": "FIN_CLAIRE_SUCCESS",
+     "fr": "Tu es agréable et intéressant. Je note un deuxième rendez-vous ?"
+    },
+    "FUN": {
+     "id": "FIN_CLAIRE_FUN",
+     "fr": "Médecin ou banquier ? J’ai deux métiers dans mon agenda. Lequel est le vrai ?",
+     "garde": {
+      "choix": [
+       "EV_CLAIRE_JOB_C1",
+       "EV_CLAIRE_JOB_C3"
+      ]
+     }
+    },
+    "NEUTRAL": {
+     "id": "FIN_CLAIRE_NEUTRAL",
+     "fr": "La conversation était agréable, mais je crois qu’on cherche autre chose."
+    },
+    "FAIL": {
+     "id": "FIN_CLAIRE_FAIL",
+     "fr": "Ton métier change selon la question… Je vais avoir besoin d’un CV plus clair.",
+     "garde": {
+      "mensonge": "job"
+     }
+    }
+   }
+  },
+  {
+   "id": "noemie_r01",
+   "archetypeId": "artiste",
+   "name": "Noémie",
+   "age": 25,
+   "city": "Esch",
+   "origin": "Belsch",
+   "job": "Illustratorin",
+   "languages": [
+    "Franséisch",
+    "Englesch"
+   ],
+   "source": "P_NOEMIE",
+   "voix": "créative, spontanée, taquine",
+   "apparence3d": {
+    "modele": "Casual2_Female",
+    "peau": "#c98a5f",
+    "cheveux": "#d2398f",
+    "haut": "#d8343c",
+    "bas": "#2b2340"
+   },
+   "outfitSignal": {
+    "style": "creatif",
+    "color": "rout",
+    "explicit": true,
+    "clue": "AMIS_NOEMIE_A01"
+   },
+   "phoneTolerance": "normal",
+   "humours": [
+    "absurde",
+    "franchise"
+   ],
+   "tinder": {
+    "id": "TINDER.NOEMIE.BIO",
+    "lu": "Ech wunnen zu Esch. Ech mole gär.",
+    "fr": "J'habite à Esch. J'aime dessiner.",
+    "review": "audit_regles",
+    "tags": [
+     {
+      "lu": "Molerei",
+      "fr": "dessin",
+      "review": "audit_regles"
+     },
+     {
+      "lu": "Musek",
+      "fr": "musique",
+      "review": "audit_regles"
+     },
+     {
+      "lu": "Esch",
+      "fr": "Esch",
+      "review": "lecon"
+     }
+    ]
+   },
+   "pix": {
+    "private": false,
+    "followers": 1760,
+    "bio": {
+     "id": "PIX.NOEMIE.BIO",
+     "lu": "Faarwen. Molerei. Musek.",
+     "fr": "Couleurs. Dessin. Musique.",
+     "review": "audit_regles"
+    },
+    "photos": [
+     {
+      "id": "PIX_NOEMIE_P01",
+      "lu": "Ech molen haut.",
+      "fr": "Je dessine aujourd'hui.",
+      "review": "audit_regles",
+      "scene": "carnet",
+      "pose": "PickUp",
+      "jours": 1,
+      "likes": 212
+     },
+     {
+      "id": "PIX_NOEMIE_P02",
+      "lu": "Rout a blo!",
+      "fr": "Rouge et bleu !",
+      "review": "lecon_modele",
+      "scene": "atelier",
+      "pose": "Victory",
+      "jours": 5,
+      "likes": 188
+     }
+    ]
+   },
+   "pro": {
+    "poste": "Illustratrice",
+    "formation": "École d’art",
+    "ville": "Esch",
+    "langues": "Français, anglais",
+    "texte": {
+     "id": "PRO.NOEMIE",
+     "lu": "Ech wunnen zu Esch. Ech schaffen als Illustratorin.",
+     "fr": "J'habite à Esch. Je travaille comme illustratrice.",
+     "review": "a_verifier_lod"
+    }
+   },
+   "amis": {
+    "bio": {
+     "lu": "Ech wunnen zu Esch.",
+     "fr": "J'habite à Esch.",
+     "review": "lecon"
+    },
+    "posts": [
+     {
+      "id": "AMIS_NOEMIE_A01",
+      "lu": "Meng Liiblingsfaarf ass rout. Ech hu faarweg Kleeder gär.",
+      "fr": "Ma couleur préférée est le rouge. J'aime les vêtements colorés.",
+      "review": "a_verifier_lod",
+      "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "AMIS_NOEMIE_A02",
+      "lu": "Ech mole gär. Awer net moies.",
+      "fr": "J'aime dessiner. Mais pas le matin.",
+      "review": "audit_regles",
+      "reveals": "dessin"
+     },
+     {
+      "id": "AMIS_NOEMIE_A03",
+      "lu": "Ech maache gär Musek.",
+      "fr": "J'aime faire de la musique.",
+      "review": "a_verifier_lod",
+      "reveals": "musique"
+     }
+    ]
+   },
+   "variantes": [
+    "VAR_NOEMIE_MUSIC",
+    "VAR_NOEMIE_MORNING"
+   ],
+   "agePrefPossible": true,
+   "exAlexPossible": false,
+   "repliques": {
+    "ville": {
+     "lu": "Ech wunnen zu Esch.",
+     "fr": "J'habite à Esch.",
+     "review": "lecon"
+    },
+    "metier": {
+     "lu": "Ech schaffen als Illustratorin.",
+     "fr": "Je travaille comme illustratrice.",
+     "review": "a_verifier_lod"
+    },
+    "age": {
+     "lu": "Ech si fënnefanzwanzeg Joer al.",
+     "fr": "J'ai 25 ans.",
+     "review": "lecon_modele"
+    }
+   },
+   "beats": [
+    "B_DRAW",
+    "B06_CITY",
+    "B05_ORIGIN",
+    "B07_LANGUAGE",
+    "B12_COFFEE_OFFER",
+    "B21_ASK_HER"
+   ],
+   "beatsForts": [
+    "B_DRAW"
+   ],
+   "reactions": {
+    "LOOK_OK": "Cette couleur te va bien !",
+    "LOOK_DIFFERENT": "Tu as choisi la sobriété. C’est un concept aussi.",
+    "BLUFF": "Sérieux ? Il faut que tu me montres !",
+    "AVEU": "La vérité, c’est aussi de l’art.",
+    "SINCERE": "J’aime les gens qui ont leurs propres goûts."
+   },
+   "fins": {
+    "SUCCESS": {
+     "id": "FIN_NOEMIE_SUCCESS",
+     "fr": "J’aime les gens qui assument leurs goûts. Un autre café ?"
+    },
+    "FUN": {
+     "id": "FIN_NOEMIE_FUN",
+     "fr": "J’ai gardé ton portrait sur serviette. Il est atroce. Je l’adore.",
+     "garde": {
+      "choix": [
+       "EV_NOEMIE_DRAW_C1",
+       "EV_NOEMIE_DRAW_C3"
+      ]
+     }
+    },
+    "NEUTRAL": {
+     "id": "FIN_NOEMIE_NEUTRAL",
+     "fr": "On a passé un moment sympa, sans déclic."
+    },
+    "FAIL": {
+     "id": "FIN_NOEMIE_FAIL",
+     "fr": "Tu as dit adorer dessiner, puis tu as fui devant un crayon. Dommage.",
+     "garde": {
+      "choix": [
+       "EV_NOEMIE_DRAW_C2"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "maya_r01",
+   "archetypeId": "geek",
+   "name": "Maya",
+   "age": 26,
+   "city": "Tréier",
+   "origin": "Däitschland",
+   "job": "Programméiererin",
+   "languages": [
+    "Däitsch",
+    "Englesch"
+   ],
+   "source": "P_MAYA",
+   "voix": "geek, calme, ironique",
+   "apparence3d": {
+    "modele": "Casual_Female",
+    "peau": "#8d5a3b",
+    "cheveux": "#151217",
+    "haut": "#2fa35a",
+    "bas": "#3a3430"
+   },
+   "outfitSignal": {
+    "style": "casual",
+    "color": "gréng",
+    "explicit": true,
+    "clue": "AMIS_MAYA_A01"
+   },
+   "phoneTolerance": "normal",
+   "humours": [
+    "ironique",
+    "absurde"
+   ],
+   "tinder": {
+    "id": "TINDER.MAYA.BIO",
+    "lu": "Ech wunnen zu Tréier. Ech spille gär Computerspiller.",
+    "fr": "J'habite à Trèves. J'aime jouer aux jeux vidéo.",
+    "review": "audit_regles",
+    "tags": [
+     {
+      "lu": "Computerspiller",
+      "fr": "jeux vidéo",
+      "review": "audit_regles"
+     },
+     {
+      "lu": "Kaffi",
+      "fr": "café",
+      "review": "lecon"
+     },
+     {
+      "lu": "Tréier",
+      "fr": "Trèves",
+      "review": "audit_regles"
+     }
+    ]
+   },
+   "pix": {
+    "private": true,
+    "followers": 0,
+    "bio": {
+     "id": "PIX.MAYA.BIO",
+     "lu": "Spiller a Kaffi.",
+     "fr": "Jeux et café.",
+     "review": "audit_regles"
+    },
+    "photos": []
+   },
+   "pro": {
+    "poste": "Développeuse",
+    "formation": "Informatique",
+    "ville": "Trèves",
+    "langues": "Allemand, anglais",
+    "texte": {
+     "id": "PRO.MAYA",
+     "lu": "Ech schaffen als Programméiererin. Ech schwätzen Däitsch an Englesch.",
+     "fr": "Je travaille comme développeuse. Je parle allemand et anglais.",
+     "review": "a_verifier_lod"
+    }
+   },
+   "amis": {
+    "bio": {
+     "lu": "Ech wunnen zu Tréier.",
+     "fr": "J'habite à Trèves.",
+     "review": "lecon"
+    },
+    "posts": [
+     {
+      "id": "AMIS_MAYA_A01",
+      "lu": "Meng Liiblingsfaarf ass gréng. Ech hunn einfach Kleeder gär.",
+      "fr": "Ma couleur préférée est le vert. J'aime les tenues simples.",
+      "review": "a_verifier_lod",
+      "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "AMIS_MAYA_A02",
+      "lu": "Ech spille gär Computerspiller.",
+      "fr": "J'aime les jeux vidéo.",
+      "review": "audit_regles",
+      "reveals": "gaming"
+     },
+     {
+      "id": "AMIS_MAYA_A03",
+      "lu": "Moies drénken ech Kaffi.",
+      "fr": "Le matin, je bois du café.",
+      "review": "lecon_modele",
+      "reveals": "cafe"
+     }
+    ]
+   },
+   "variantes": [
+    "VAR_MAYA_LANG",
+    "VAR_MAYA_READING"
+   ],
+   "agePrefPossible": true,
+   "exAlexPossible": false,
+   "repliques": {
+    "ville": {
+     "lu": "Ech wunnen zu Tréier.",
+     "fr": "J'habite à Trèves.",
+     "review": "lecon"
+    },
+    "metier": {
+     "lu": "Ech schaffen als Programméiererin.",
+     "fr": "Je travaille comme développeuse.",
+     "review": "a_verifier_lod"
+    },
+    "age": {
+     "lu": "Ech si sechsanzwanzeg Joer al.",
+     "fr": "J'ai 26 ans.",
+     "review": "lecon_modele"
+    }
+   },
+   "beats": [
+    "B_GAMING",
+    "B07_LANGUAGE",
+    "B06_CITY",
+    "B05_ORIGIN",
+    "B11_COFFEE",
+    "B21_ASK_HER"
+   ],
+   "beatsForts": [
+    "B_GAMING",
+    "B07_LANGUAGE"
+   ],
+   "reactions": {
+    "LOOK_OK": "Style validé. +1 en charisme.",
+    "LOOK_DIFFERENT": "Cette tenue est tirée au hasard, non ?",
+    "BLUFF": "Ah oui ? Alors on va voir ça !",
+    "AVEU": "Pas grave, on apprend tous au niveau un.",
+    "SINCERE": "Tu ne bluffes pas. C’est rare, ça."
+   },
+   "fins": {
+    "SUCCESS": {
+     "id": "FIN_MAYA_SUCCESS",
+     "fr": "Une belle partie, sans triche. J’accepte une deuxième manche.",
+     "garde": {
+      "aucunMensongeActif": true
+     }
+    },
+    "FUN": {
+     "id": "FIN_MAYA_FUN",
+     "fr": "Tu as perdu au premier niveau mais tu m’as fait rire. Bien joué.",
+     "garde": {
+      "choix": [
+       "EV_MAYA_RETRO_C1",
+       "EV_MAYA_RETRO_C3"
+      ]
+     }
+    },
+    "NEUTRAL": {
+     "id": "FIN_MAYA_NEUTRAL",
+     "fr": "On ne joue pas dans la même équipe, mais c’était agréable."
+    },
+    "FAIL": {
+     "id": "FIN_MAYA_FAIL",
+     "fr": "Tu prétends tout connaître, mais ton histoire change à chaque question. Game over.",
+     "garde": {
+      "contradiction": true
+     }
+    }
+   }
+  },
+  {
+   "id": "sofia_r01",
+   "archetypeId": "voyageuse",
+   "name": "Sofia",
+   "age": 29,
+   "city": "Metz",
+   "origin": "Portugal",
+   "job": "Guide",
+   "languages": [
+    "Portugisesch",
+    "Franséisch"
+   ],
+   "source": "P_SOFIA",
+   "voix": "curieuse, enthousiaste, langues",
+   "apparence3d": {
+    "modele": "Doctor_Female_Young",
+    "peau": "#b97d55",
+    "cheveux": "#3b2417",
+    "manteau": "#5c8fd6"
+   },
+   "outfitSignal": {
+    "style": "casual",
+    "color": "blo",
+    "explicit": true,
+    "clue": "AMIS_SOFIA_A01"
+   },
+   "phoneTolerance": "normal",
+   "humours": [
+    "enthousiaste",
+    "absurde"
+   ],
+   "tinder": {
+    "id": "TINDER.SOFIA.BIO",
+    "lu": "Ech kommen aus Portugal. Ech wunnen zu Metz.",
+    "fr": "Je viens du Portugal. J'habite à Metz.",
+    "review": "lecon",
+    "tags": [
+     {
+      "lu": "Reesen",
+      "fr": "voyages",
+      "review": "audit_regles"
+     },
+     {
+      "lu": "Sproochen",
+      "fr": "langues",
+      "review": "audit_regles"
+     },
+     {
+      "lu": "Portugal",
+      "fr": "Portugal",
+      "review": "lecon"
+     }
+    ]
+   },
+   "pix": {
+    "private": false,
+    "followers": 2140,
+    "bio": {
+     "id": "PIX.SOFIA.BIO",
+     "lu": "Reesen a Sproochen.",
+     "fr": "Voyages et langues.",
+     "review": "audit_regles"
+    },
+    "photos": [
+     {
+      "id": "PIX_SOFIA_P01",
+      "lu": "Lissabon. Ech kommen ëmmer gär zeréck.",
+      "fr": "Lisbonne. J'aime toujours y revenir.",
+      "review": "a_verifier_lod",
+      "scene": "lisbonne",
+      "pose": "Victory",
+      "jours": 4,
+      "likes": 320
+     },
+     {
+      "id": "PIX_SOFIA_P02",
+      "lu": "Mam Zuch ënnerwee.",
+      "fr": "En voyage en train.",
+      "review": "audit_regles",
+      "scene": "train",
+      "pose": "Idle",
+      "jours": 11,
+      "likes": 176
+     }
+    ]
+   },
+   "pro": {
+    "poste": "Guide touristique",
+    "formation": "Études de tourisme",
+    "ville": "Metz",
+    "langues": "Portugais, français",
+    "texte": {
+     "id": "PRO.SOFIA",
+     "lu": "Ech schwätze Portugisesch a Franséisch.",
+     "fr": "Je parle portugais et français.",
+     "review": "lecon_modele"
+    }
+   },
+   "amis": {
+    "bio": {
+     "lu": "Ech wunnen zu Metz.",
+     "fr": "J'habite à Metz.",
+     "review": "lecon"
+    },
+    "posts": [
+     {
+      "id": "AMIS_SOFIA_A01",
+      "lu": "Meng Liiblingsfaarf ass blo. Ech hunn e bequeme Look gär.",
+      "fr": "Ma couleur préférée est le bleu. J'aime les looks confortables.",
+      "review": "a_verifier_lod",
+      "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "AMIS_SOFIA_A02",
+      "lu": "Ech kommen aus Portugal. Ech wunnen zu Metz.",
+      "fr": "Je viens du Portugal. J'habite à Metz.",
+      "review": "lecon",
+      "reveals": "origine"
+     },
+     {
+      "id": "AMIS_SOFIA_A03",
+      "lu": "Ech schwätze Portugisesch a Franséisch.",
+      "fr": "Je parle portugais et français.",
+      "review": "lecon_modele",
+      "reveals": "langues"
+     }
+    ]
+   },
+   "variantes": [
+    "VAR_SOFIA_EARLY",
+    "VAR_SOFIA_COFFEE"
+   ],
+   "agePrefPossible": true,
+   "exAlexPossible": true,
+   "repliques": {
+    "ville": {
+     "lu": "Ech wunnen zu Metz.",
+     "fr": "J'habite à Metz.",
+     "review": "lecon"
+    },
+    "metier": {
+     "lu": "Ech schaffen als Guide.",
+     "fr": "Je travaille comme guide touristique.",
+     "review": "a_verifier_lod"
+    },
+    "age": {
+     "lu": "Ech sinn nénganzwanzeg Joer al.",
+     "fr": "J'ai 29 ans.",
+     "review": "lecon_modele"
+    }
+   },
+   "beats": [
+    "B05_ORIGIN",
+    "B07_LANGUAGE",
+    "B06_CITY",
+    "B13_NATIONALITY",
+    "B12_COFFEE_OFFER",
+    "B21_ASK_HER"
+   ],
+   "beatsForts": [
+    "B05_ORIGIN",
+    "B07_LANGUAGE"
+   ],
+   "reactions": {
+    "LOOK_OK": "J’adore cette couleur. Bon début.",
+    "LOOK_DIFFERENT": "Tu voyages toujours dans cette tenue ?",
+    "BLUFF": "Vraiment ? Je veux tout savoir !",
+    "AVEU": "Au moins, maintenant on se comprend.",
+    "SINCERE": "Super. Et tu aimes voyager ?"
+   },
+   "fins": {
+    "SUCCESS": {
+     "id": "FIN_SOFIA_SUCCESS",
+     "fr": "Merci pour cette soirée. Raconte-moi ta prochaine destination au prochain café !"
+    },
+    "FUN": {
+     "id": "FIN_SOFIA_FUN",
+     "fr": "La vache en portugais… Je m’en souviendrai longtemps. J’ai quand même bien ri.",
+     "garde": {
+      "choix": [
+       "vaca"
+      ]
+     }
+    },
+    "NEUTRAL": {
+     "id": "FIN_SOFIA_NEUTRAL",
+     "fr": "Nos routes se croisent ici. Bon voyage !"
+    },
+    "FAIL": {
+     "id": "FIN_SOFIA_FAIL",
+     "fr": "Portugal, France… je ne sais plus du tout d’où tu viens.",
+     "garde": {
+      "mensonge": "origin"
+     }
+    }
+   }
+  },
+  {
+   "id": "emma_r01",
+   "archetypeId": "chill",
+   "name": "Emma",
+   "age": 30,
+   "city": "Lëtzebuerg",
+   "origin": "Frankräich",
+   "job": "Libraire",
+   "languages": [
+    "Franséisch",
+    "Lëtzebuergesch"
+   ],
+   "source": "P_EMMA",
+   "voix": "calme, franche, attentive",
+   "apparence3d": {
+    "modele": "Casual2_Female",
+    "peau": "#f2c9a8",
+    "cheveux": "#d9b268",
+    "haut": "#d8c3a0",
+    "bas": "#6b5a4a"
+   },
+   "outfitSignal": {
+    "style": "loose",
+    "color": "beige",
+    "explicit": true,
+    "clue": "AMIS_EMMA_A01"
+   },
+   "phoneTolerance": "anti_phone",
+   "humours": [
+    "franchise",
+    "calme"
+   ],
+   "tinder": {
+    "id": "TINDER.EMMA.BIO",
+    "lu": "Ech wunnen zu Lëtzebuerg. Moies drénken ech Kaffi.",
+    "fr": "J'habite au Luxembourg. Le matin, je bois du café.",
+    "review": "lecon_modele",
+    "tags": [
+     {
+      "lu": "Kaffi",
+      "fr": "café",
+      "review": "lecon"
+     },
+     {
+      "lu": "Bicher",
+      "fr": "livres",
+      "review": "lecon"
+     },
+     {
+      "lu": "Lëtzebuerg",
+      "fr": "Luxembourg",
+      "review": "lecon"
+     }
+    ]
+   },
+   "pix": {
+    "private": true,
+    "followers": 0,
+    "bio": {
+     "id": "PIX.EMMA.BIO",
+     "lu": "Kaffi a Bicher.",
+     "fr": "Café et livres.",
+     "review": "lecon_modele"
+    },
+    "photos": []
+   },
+   "pro": {
+    "poste": "Libraire",
+    "formation": "Lettres",
+    "ville": "Luxembourg",
+    "langues": "Français, luxembourgeois",
+    "texte": {
+     "id": "PRO.EMMA",
+     "lu": "Ech schaffen an enger Librairie. Ech schwätze Franséisch a Lëtzebuergesch.",
+     "fr": "Je travaille dans une librairie. Je parle français et luxembourgeois.",
+     "review": "audit_regles"
+    }
+   },
+   "amis": {
+    "bio": {
+     "lu": "Ech wunnen zu Lëtzebuerg.",
+     "fr": "J'habite au Luxembourg.",
+     "review": "lecon"
+    },
+    "posts": [
+     {
+      "id": "AMIS_EMMA_A01",
+      "lu": "Meng Liiblingsfaarf ass beige. Ech hunn einfach Kleeder gär.",
+      "fr": "Ma couleur préférée est le beige. J'aime les tenues simples.",
+      "review": "a_verifier_lod",
+      "reveals": "style",
+      "obligatoire": true
+     },
+     {
+      "id": "AMIS_EMMA_A02",
+      "lu": "Beim Rendez-vous: keen Handy, w.e.g.",
+      "fr": "Pendant le rendez-vous : pas de téléphone, s’il te plaît.",
+      "review": "audit_regles",
+      "reveals": "anti_phone",
+      "obligatoire": true
+     },
+     {
+      "id": "AMIS_EMMA_A03",
+      "lu": "Moies drénken ech Kaffi. Owes liesen ech gär.",
+      "fr": "Le matin, je bois du café. Le soir, j'aime lire.",
+      "review": "lecon_modele",
+      "reveals": "cafe"
+     }
+    ]
+   },
+   "variantes": [
+    "VAR_EMMA_READING",
+    "VAR_EMMA_TIME"
+   ],
+   "agePrefPossible": true,
+   "exAlexPossible": true,
+   "repliques": {
+    "ville": {
+     "lu": "Ech wunnen zu Lëtzebuerg.",
+     "fr": "J'habite au Luxembourg.",
+     "review": "lecon"
+    },
+    "metier": {
+     "lu": "Ech schaffen an enger Librairie.",
+     "fr": "Je travaille dans une librairie.",
+     "review": "lecon"
+    },
+    "age": {
+     "lu": "Ech sinn drësseg Joer al.",
+     "fr": "J'ai 30 ans.",
+     "review": "lecon"
+    }
+   },
+   "beats": [
+    "EV_EMMA_COFFEE",
+    "B06_CITY",
+    "B08_PROFESSION",
+    "B07_LANGUAGE",
+    "B12_COFFEE_OFFER",
+    "B21_ASK_HER"
+   ],
+   "beatsForts": [
+    "EV_EMMA_COFFEE"
+   ],
+   "reactions": {
+    "LOOK_OK": "Ça te va bien. Simple, j’aime.",
+    "LOOK_DIFFERENT": "Tu t’es beaucoup préparé, non ?",
+    "BLUFF": "Hm. Tu es sûr de toi ?",
+    "AVEU": "Merci. Je préfère ça.",
+    "SINCERE": "On peut juste discuter, tu sais."
+   },
+   "fins": {
+    "SUCCESS": {
+     "id": "FIN_EMMA_SUCCESS",
+     "fr": "Parler sans écran, ça fait du bien. On reprend un café ensemble ?",
+     "garde": {
+      "telephoneJamaisOuvert": true
+     }
+    },
+    "FUN": {
+     "id": "FIN_EMMA_FUN",
+     "fr": "Ton téléphone est mort au milieu du rendez-vous. Au moins, il nous a laissés tranquilles !",
+     "garde": {
+      "batterieVide": true
+     }
+    },
+    "NEUTRAL": {
+     "id": "FIN_EMMA_NEUTRAL",
+     "fr": "C’était calme et agréable, mais je ne crois pas qu’on se reverra."
+    },
+    "FAIL": {
+     "id": "FIN_EMMA_FAIL",
+     "fr": "J’aurais préféré discuter avec toi plutôt qu’avec ton téléphone.",
+     "garde": {
+      "telephoneOuvert": true
+     }
+    }
+   }
+  }
+ ],
+ "variantes": {
+  "VAR_LENA_COFFEE": {
+   "profil": "lena_r01",
+   "lu": "Moies drénken ech Kaffi.",
+   "fr": "Le matin, je bois du café.",
+   "review": "lecon_modele",
+   "trait": "cafe"
+  },
+  "VAR_LENA_EARLY": {
+   "profil": "lena_r01",
+   "lu": "Ech gi moies fréi eraus.",
+   "fr": "Je sors tôt le matin.",
+   "review": "a_verifier_lod",
+   "trait": "matinale",
+   "beat": "EV_LENA_MORNING"
+  },
+  "VAR_CLAIRE_TRAVEL": {
+   "profil": "claire_r01",
+   "lu": "Ech reese gär.",
+   "fr": "J'aime voyager.",
+   "review": "audit_regles",
+   "trait": "voyage"
+  },
+  "VAR_NOEMIE_MUSIC": {
+   "profil": "noemie_r01",
+   "lu": "Ech hu Musek gär.",
+   "fr": "J'aime la musique.",
+   "review": "audit_regles",
+   "trait": "musique"
+  },
+  "VAR_NOEMIE_MORNING": {
+   "profil": "noemie_r01",
+   "lu": "Moies drénken ech Kaffi.",
+   "fr": "Le matin, je bois du café.",
+   "review": "lecon_modele",
+   "trait": "cafe"
+  },
+  "VAR_MAYA_LANG": {
+   "profil": "maya_r01",
+   "lu": "Ech schwätzen Däitsch an Englesch.",
+   "fr": "Je parle allemand et anglais.",
+   "review": "lecon_modele",
+   "trait": "langues"
+  },
+  "VAR_MAYA_READING": {
+   "profil": "maya_r01",
+   "lu": "Ech liese gär.",
+   "fr": "J'aime lire.",
+   "review": "lecon",
+   "trait": "lecture"
+  },
+  "VAR_SOFIA_EARLY": {
+   "profil": "sofia_r01",
+   "lu": "Moies fueren ech gär mam Zuch.",
+   "fr": "Le matin, j'aime prendre le train.",
+   "review": "audit_regles",
+   "trait": "train"
+  },
+  "VAR_SOFIA_COFFEE": {
+   "profil": "sofia_r01",
+   "lu": "Ech drénke gär Kaffi.",
+   "fr": "J'aime boire du café.",
+   "review": "lecon_modele",
+   "trait": "cafe"
+  },
+  "VAR_EMMA_READING": {
+   "profil": "emma_r01",
+   "lu": "Owes liesen ech gär.",
+   "fr": "Le soir, j'aime lire.",
+   "review": "lecon_modele",
+   "trait": "lecture"
+  },
+  "VAR_EMMA_TIME": {
+   "profil": "emma_r01",
+   "lu": "Ech hunn owes Zäit.",
+   "fr": "J'ai du temps le soir.",
+   "review": "audit_regles",
+   "trait": "soiree"
+  }
+ },
+ "preferences": {
+  "PREF_AGE_INDIFFERENT": {
+   "lu": "Mir ass den Alter net esou wichteg.",
+   "fr": "L'âge ne compte pas tant que ça pour moi.",
+   "review": "a_verifier_lod",
+   "agePreference": "indifferent"
+  },
+  "PREF_AGE_SIMILAR": {
+   "lu": "Ech hu léiwer een, deen ongeféier esou al ass wéi ech.",
+   "fr": "Je préfère quelqu'un d'à peu près mon âge.",
+   "review": "a_verifier_lod",
+   "agePreference": "prefers_similar"
+  },
+  "PREF_AGE_OLDER": {
+   "lu": "Ech hu léiwer eeler Leit.",
+   "fr": "Je préfère les personnes plus âgées.",
+   "review": "a_verifier_lod",
+   "agePreference": "prefers_older"
+  },
+  "PREF_AGE_YOUNGER": {
+   "lu": "Ech hu léiwer méi jonk Leit.",
+   "fr": "Je préfère les personnes plus jeunes.",
+   "review": "a_verifier_lod",
+   "agePreference": "prefers_younger"
+  },
+  "PREF_EX_ALEX": {
+   "lu": "Mäin Ex huet Alex geheescht. Dat ass nach ëmmer komesch fir mech.",
+   "fr": "Mon ex s'appelait Alex. Ça me fait encore drôle d'entendre ce prénom.",
+   "review": "a_verifier_lod",
+   "dislikedFirstName": "Alex"
+  }
+ },
+ "beats": {
+  "B01_SALUT": {
+   "acte": 1,
+   "type": "question",
+   "lessonIds": [
+    1
+   ],
+   "theme": "salutation",
+   "prompt": {
+    "lu": "Moien! Wéi geet et dir?",
+    "fr": "Salut ! Comment ça va ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP01_A",
+     "lu": "Mir geet et gutt, merci. An dir?",
+     "fr": "Je vais bien, merci. Et toi ?",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 6
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP01_B",
+     "lu": "Et geet.",
+     "fr": "Ça va.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 2
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP01_C",
+     "lu": "Äddi!",
+     "fr": "Au revoir !",
+     "truth": "error",
+     "languageCorrect": false,
+     "social": {
+      "affinity": -5
+     },
+     "correction": {
+      "lu": "Mir geet et gutt, merci. An dir?",
+      "fr": "Le rendez-vous commence : on répond à « Wéi geet et dir? », on ne dit pas au revoir.",
+      "review": "lecon"
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B02_SALUT_SOIR": {
+   "acte": 1,
+   "type": "question",
+   "lessonIds": [
+    1
+   ],
+   "theme": "salutation",
+   "prompt": {
+    "lu": "Gudden Owend!",
+    "fr": "Bonsoir !",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP02_A",
+     "lu": "Gudden Owend!",
+     "fr": "Bonsoir !",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 6
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP02_B",
+     "lu": "Moien!",
+     "fr": "Bonjour !",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 3
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP02_C",
+     "lu": "Gudde Moien!",
+     "fr": "Bonjour ! (le matin)",
+     "truth": "error",
+     "languageCorrect": false,
+     "social": {
+      "affinity": -3
+     },
+     "correction": {
+      "lu": "Gudden Owend!",
+      "fr": "« Gudde Moien » se dit le matin. Le soir : « Gudden Owend ».",
+      "review": "lecon"
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B03_NAME": {
+   "acte": 1,
+   "type": "question",
+   "lessonIds": [
+    1
+   ],
+   "theme": "prenom",
+   "prompt": {
+    "lu": "Wéi heeschs du?",
+    "fr": "Comment t'appelles-tu ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP03_A",
+     "lu": "Ech heeschen Alex.",
+     "fr": "Je m'appelle Alex.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "prenom": "Alex"
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP03_B",
+     "lu": "Ech heesche Max.",
+     "fr": "Je m'appelle Max.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "prenom": "Max"
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP03_C",
+     "lu": "Ech heesche James Bond.",
+     "fr": "Je m'appelle James Bond.",
+     "truth": "joke",
+     "languageCorrect": true,
+     "flags": [
+      "joke_prenom"
+     ],
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "B04_AGE": {
+   "acte": 1,
+   "type": "question",
+   "lessonIds": [
+    5,
+    14
+   ],
+   "theme": "age",
+   "troisChoix": true,
+   "prompt": {
+    "lu": "Wéi al bass du?",
+    "fr": "Quel âge as-tu ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP04_A",
+     "lu": "Ech sinn aachtanzwanzeg Joer al.",
+     "fr": "J'ai 28 ans.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "age": 28
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP04_B",
+     "lu": "Ech sinn drësseg Joer al.",
+     "fr": "J'ai 30 ans.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "age": 30
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP04_C",
+     "lu": "Ech sinn honnertzwanzeg Joer al.",
+     "fr": "J'ai 120 ans.",
+     "truth": "joke",
+     "languageCorrect": true,
+     "flags": [
+      "joke_age_120"
+     ],
+     "review": "lecon_modele"
+    }
+   ]
+  },
+  "B05_ORIGIN": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    7
+   ],
+   "theme": "origine",
+   "prompt": {
+    "lu": "Vu wou kënns du?",
+    "fr": "D'où viens-tu ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP05_A",
+     "lu": "Ech kommen aus Frankräich.",
+     "fr": "Je viens de France.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "origin": "Frankräich"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP05_B",
+     "lu": "Ech kommen aus Portugal.",
+     "fr": "Je viens du Portugal.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "origin": "Portugal"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP05_C",
+     "lu": "Ech kommen aus Däitschland.",
+     "fr": "Je viens d'Allemagne.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "origin": "Däitschland"
+     },
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "B06_CITY": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    10
+   ],
+   "theme": "ville",
+   "prompt": {
+    "lu": "Wou wunns du?",
+    "fr": "Où habites-tu ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP06_A",
+     "lu": "Ech wunnen zu Metz.",
+     "fr": "J'habite à Metz.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "city": "Metz"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP06_B",
+     "lu": "Ech wunnen zu Lëtzebuerg.",
+     "fr": "J'habite à Luxembourg-ville.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "city": "Lëtzebuerg"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP06_C",
+     "lu": "Ech wunnen zu Esch.",
+     "fr": "J'habite à Esch.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "city": "Esch"
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B07_LANGUAGE": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    9
+   ],
+   "theme": "langue",
+   "prompt": {
+    "lu": "Wat fir eng Sprooch schwätz du?",
+    "fr": "Quelle langue parles-tu ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP07_A",
+     "lu": "Ech schwätze Franséisch.",
+     "fr": "Je parle français.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "language": "Franséisch"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP07_B",
+     "lu": "Ech schwätze Portugisesch.",
+     "fr": "Je parle portugais.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "language": "Portugisesch"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP07_C",
+     "lu": "Ech schwätzen Däitsch.",
+     "fr": "Je parle allemand.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "language": "Däitsch"
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B08_PROFESSION": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    11
+   ],
+   "theme": "metier",
+   "prompt": {
+    "lu": "Wat schaffs du?",
+    "fr": "Que fais-tu comme travail ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP08_A",
+     "lu": "Ech sinn e Banker.",
+     "fr": "Je suis banquier.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "job": "Banker"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP08_B",
+     "lu": "Ech sinn en Dokter.",
+     "fr": "Je suis médecin.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "job": "Dokter"
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP08_C",
+     "lu": "Ech sinn e Polizist.",
+     "fr": "Je suis policier.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "job": "Polizist"
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B09_WORKPLACE": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    11,
+    10
+   ],
+   "theme": "travail",
+   "prompt": {
+    "lu": "Wou schaffs du?",
+    "fr": "Où travailles-tu ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP09_A",
+     "lu": "Ech schaffen an enger Bank.",
+     "fr": "Je travaille dans une banque.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "workplace": "Bank"
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP09_B",
+     "lu": "Ech schaffen an engem Spidol.",
+     "fr": "Je travaille dans un hôpital.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "workplace": "Spidol"
+     },
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "B10_FOOT": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    16
+   ],
+   "theme": "football",
+   "pedagogicalScoring": false,
+   "prompt": {
+    "lu": "Spills du gär Fussball?",
+    "fr": "Tu aimes jouer au football ?",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP10_A",
+     "lu": "Nee, ech spillen net gär Fussball.",
+     "fr": "Non, je n'aime pas jouer au football.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "football": false
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP10_B",
+     "lu": "Jo, ech spille gär Fussball.",
+     "fr": "Oui, j'aime jouer au football.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "football": true
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP10_C",
+     "lu": "Jo! Ech sinn e Fussballstar!",
+     "fr": "Oui ! Je suis une star du foot !",
+     "truth": "joke",
+     "languageCorrect": true,
+     "flags": [
+      "joke_foot"
+     ],
+     "review": "a_verifier_lod"
+    }
+   ]
+  },
+  "B11_COFFEE": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    16
+   ],
+   "theme": "cafe",
+   "prompt": {
+    "lu": "Drénks du moies Kaffi?",
+    "fr": "Tu bois du café le matin ?",
+    "review": "lecon_modele"
+   },
+   "choices": [
+    {
+     "id": "REP11_A",
+     "lu": "Jo, ech drénke moies Kaffi.",
+     "fr": "Oui, je bois du café le matin.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "morningCoffee": true
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP11_B",
+     "lu": "Nee, ech drénke moies kee Kaffi.",
+     "fr": "Non, je ne bois pas de café le matin.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "morningCoffee": false
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP11_C",
+     "lu": "Kaffi!",
+     "fr": "Café !",
+     "truth": "error",
+     "languageCorrect": false,
+     "social": {
+      "affinity": -1
+     },
+     "pragmatique": true,
+     "correction": {
+      "lu": "Jo, ech drénke moies Kaffi.",
+      "fr": "Pas faux, mais un peu sec : réponds avec une phrase complète.",
+      "review": "audit_regles"
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B12_COFFEE_OFFER": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    16
+   ],
+   "theme": "cafe_offre",
+   "prompt": {
+    "lu": "Drénks du Kaffi?",
+    "fr": "Tu bois du café ?",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "REP12_A",
+     "lu": "Jo, gär.",
+     "fr": "Oui, volontiers.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 5
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP12_B",
+     "lu": "Jo, merci.",
+     "fr": "Oui, merci.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 3
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP12_C",
+     "lu": "Nee, merci.",
+     "fr": "Non merci.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 1
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B13_NATIONALITY": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    8
+   ],
+   "theme": "nationalite",
+   "prompt": {
+    "lu": "Wat fir eng Nationalitéit hues du?",
+    "fr": "Quelle est ta nationalité ?",
+    "review": "lecon_modele"
+   },
+   "choices": [
+    {
+     "id": "REP13_A",
+     "lu": "Ech sinn e Fransous.",
+     "fr": "Je suis français.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "nationality": "Fransous"
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP13_B",
+     "lu": "Ech sinn e Portugis.",
+     "fr": "Je suis portugais.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "nationality": "Portugis"
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP13_C",
+     "lu": "Ech sinn e Lëtzebuerger.",
+     "fr": "Je suis luxembourgeois.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "nationality": "Lëtzebuerger"
+     },
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "B21_ASK_HER": {
+   "acte": 2,
+   "type": "demande",
+   "lessonIds": [
+    1,
+    10,
+    11
+   ],
+   "theme": "question_elle",
+   "pedagogicalScoring": false,
+   "prompt": {
+    "lu": "Elo bass du drun!",
+    "fr": "À toi de poser une question !",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "REP21_A",
+     "lu": "Wou wunns du?",
+     "fr": "Où habites-tu ?",
+     "truth": "question",
+     "languageCorrect": true,
+     "repond": "ville",
+     "social": {
+      "affinity": 3
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP21_B",
+     "lu": "Wat schaffs du?",
+     "fr": "Quel est ton métier ?",
+     "truth": "question",
+     "languageCorrect": true,
+     "repond": "metier",
+     "social": {
+      "affinity": 3
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP21_C",
+     "lu": "Wéi al bass du?",
+     "fr": "Quel âge as-tu ?",
+     "truth": "question",
+     "languageCorrect": true,
+     "repond": "age",
+     "social": {
+      "affinity": 1
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B_DRAW": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [],
+   "theme": "dessin",
+   "pedagogicalScoring": false,
+   "prompt": {
+    "lu": "Mols du gär?",
+    "fr": "Tu aimes dessiner ?",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "B_DRAW_NO",
+     "lu": "Nee, ech molen net gär.",
+     "fr": "Non, je n'aime pas dessiner.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "drawing": false
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "B_DRAW_YES",
+     "lu": "Jo, ech mole gär.",
+     "fr": "Oui, j'aime dessiner.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "drawing": true
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "B_DRAW_JOKE",
+     "lu": "Ech sinn e grousse Kënschtler!",
+     "fr": "Je suis un grand artiste !",
+     "truth": "joke",
+     "languageCorrect": true,
+     "flags": [
+      "joke_art"
+     ],
+     "review": "a_verifier_lod"
+    }
+   ]
+  },
+  "B_GAMING": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [],
+   "theme": "gaming",
+   "pedagogicalScoring": false,
+   "prompt": {
+    "lu": "Spills du gär Computerspiller?",
+    "fr": "Tu aimes les jeux vidéo ?",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "B_GAMING_NO",
+     "lu": "Nee, ech spillen net gär Computerspiller.",
+     "fr": "Non, je n'aime pas les jeux vidéo.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "gaming": false
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "B_GAMING_YES",
+     "lu": "Jo, ech spille gär Computerspiller.",
+     "fr": "Oui, j'aime les jeux vidéo.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "gaming": true
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "B_GAMING_JOKE",
+     "lu": "Ech sinn de Champion!",
+     "fr": "Je suis le champion !",
+     "truth": "joke",
+     "languageCorrect": true,
+     "flags": [
+      "joke_gaming"
+     ],
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_LENA_MORNING": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    16
+   ],
+   "theme": "routine",
+   "profil": "lena_r01",
+   "requiresVariant": "VAR_LENA_EARLY",
+   "prompt": {
+    "lu": "Wat méchs du moies?",
+    "fr": "Tu fais quoi le matin ?",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_LENA_MORNING_C1",
+     "lu": "Moies drénken ech Kaffi.",
+     "fr": "Le matin, je bois du café.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "morningCoffee": true
+     },
+     "reactionFr": "Elle rit : « Ce n’est pas vraiment un échauffement ! »",
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_LENA_MORNING_C2",
+     "lu": "Moies ginn ech lafen.",
+     "fr": "Le matin, je vais courir.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "running": true
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_LENA_MORNING_C3",
+     "lu": "Ech ginn op d'Aarbecht.",
+     "fr": "Je pars au travail.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 2
+     },
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_EMMA_COFFEE": {
+   "acte": 2,
+   "type": "question",
+   "lessonIds": [
+    16
+   ],
+   "theme": "cafe",
+   "profil": "emma_r01",
+   "prompt": {
+    "lu": "Drénks du moies Kaffi?",
+    "fr": "Tu bois du café le matin ?",
+    "review": "lecon_modele"
+   },
+   "choices": [
+    {
+     "id": "EV_EMMA_COFFEE_C1",
+     "lu": "Jo, ech drénke moies Kaffi.",
+     "fr": "Oui, je bois du café le matin.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "claims": {
+      "morningCoffee": true
+     },
+     "social": {
+      "affinity": 7
+     },
+     "reactionFr": "Elle sourit : un point commun.",
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_EMMA_COFFEE_C2",
+     "lu": "Nee, ech drénke moies kee Kaffi.",
+     "fr": "Non, je ne bois pas de café le matin.",
+     "truth": "lie",
+     "languageCorrect": true,
+     "claims": {
+      "morningCoffee": false
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_EMMA_COFFEE_C3",
+     "lu": "Ech sinn e Kaffi!",
+     "fr": "Je suis un café !",
+     "truth": "joke",
+     "languageCorrect": true,
+     "flags": [
+      "joke_cafe"
+     ],
+     "review": "audit_regles"
+    }
+   ]
+  }
+ },
+ "rappels": {
+  "B15_NAME_RECALL": {
+   "attribut": "prenom",
+   "lessonIds": [
+    1
+   ],
+   "prompt": {
+    "lu": "Wéi heeschs du nach eng Kéier?",
+    "fr": "Tu t'appelles comment, déjà ?",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "REP15_A",
+     "lu": "Ech heeschen Alex.",
+     "fr": "Je m'appelle Alex.",
+     "valeur": "Alex",
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP15_B",
+     "lu": "Ech heesche Max.",
+     "fr": "Je m'appelle Max.",
+     "valeur": "Max",
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP15_C",
+     "lu": "Ech heesche James Bond.",
+     "fr": "Je m'appelle James Bond.",
+     "valeur": "blague",
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "B16_AGE_RECALL": {
+   "attribut": "age",
+   "lessonIds": [
+    5,
+    14
+   ],
+   "prompt": {
+    "lu": "Wéi al bass du nach eng Kéier?",
+    "fr": "Tu as quel âge, déjà ?",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "REP16_A",
+     "lu": "Ech sinn aachtanzwanzeg Joer al.",
+     "fr": "J'ai 28 ans.",
+     "valeur": 28,
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP16_B",
+     "lu": "Ech sinn drësseg Joer al.",
+     "fr": "J'ai 30 ans.",
+     "valeur": 30,
+     "review": "lecon"
+    },
+    {
+     "id": "REP16_C",
+     "lu": "Dat war e Witz!",
+     "fr": "C'était une blague !",
+     "valeur": "blague",
+     "review": "a_verifier_lod"
+    }
+   ]
+  },
+  "B17_CITY_RECALL": {
+   "attribut": "city",
+   "lessonIds": [
+    10
+   ],
+   "prompt": {
+    "lu": "Wou wunns du nach eng Kéier?",
+    "fr": "Tu habites où, déjà ?",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "REP17_A",
+     "lu": "Ech wunnen zu Metz.",
+     "fr": "J'habite à Metz.",
+     "valeur": "Metz",
+     "review": "lecon"
+    },
+    {
+     "id": "REP17_B",
+     "lu": "Ech wunnen zu Lëtzebuerg.",
+     "fr": "J'habite au Luxembourg.",
+     "valeur": "Lëtzebuerg",
+     "review": "lecon"
+    },
+    {
+     "id": "REP17_C",
+     "lu": "Ech wunnen zu Esch.",
+     "fr": "J'habite à Esch.",
+     "valeur": "Esch",
+     "review": "lecon"
+    }
+   ]
+  },
+  "RAPPEL_ORIGINE": {
+   "attribut": "origin",
+   "lessonIds": [
+    7
+   ],
+   "prompt": {
+    "lu": "Vu wou kënns du nach eng Kéier?",
+    "fr": "Tu viens d'où, déjà ?",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "RAPPEL_ORIGINE_FR",
+     "lu": "Ech kommen aus Frankräich.",
+     "fr": "Je viens de France.",
+     "valeur": "Frankräich",
+     "review": "lecon"
+    },
+    {
+     "id": "RAPPEL_ORIGINE_PT",
+     "lu": "Ech kommen aus Portugal.",
+     "fr": "Je viens du Portugal.",
+     "valeur": "Portugal",
+     "review": "lecon"
+    },
+    {
+     "id": "RAPPEL_ORIGINE_DE",
+     "lu": "Ech kommen aus Däitschland.",
+     "fr": "Je viens d'Allemagne.",
+     "valeur": "Däitschland",
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "RAPPEL_METIER": {
+   "attribut": "job",
+   "lessonIds": [
+    11
+   ],
+   "prompt": {
+    "lu": "Wat schaffs du nach eng Kéier?",
+    "fr": "Tu fais quoi comme travail, déjà ?",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "RAPPEL_METIER_BANKER",
+     "lu": "Ech sinn e Banker.",
+     "fr": "Je suis banquier.",
+     "valeur": "Banker",
+     "review": "lecon"
+    },
+    {
+     "id": "RAPPEL_METIER_DOKTER",
+     "lu": "Ech sinn en Dokter.",
+     "fr": "Je suis médecin.",
+     "valeur": "Dokter",
+     "review": "lecon"
+    },
+    {
+     "id": "RAPPEL_METIER_POLIZIST",
+     "lu": "Ech sinn e Polizist.",
+     "fr": "Je suis policier.",
+     "valeur": "Polizist",
+     "review": "lecon"
+    }
+   ]
+  }
+ },
+ "clotures": {
+  "B18_END": {
+   "lessonIds": [
+    1
+   ],
+   "prompt": {
+    "lu": "Äddi!",
+    "fr": "Au revoir !",
+    "review": "lecon"
+   },
+   "choices": [
+    {
+     "id": "REP18_A",
+     "lu": "Äddi!",
+     "fr": "Au revoir !",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 4
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP18_B",
+     "lu": "Schéinen Owend nach!",
+     "fr": "Bonne soirée !",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 6
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP18_C",
+     "lu": "Moien!",
+     "fr": "Bonjour !",
+     "truth": "error",
+     "languageCorrect": false,
+     "social": {
+      "affinity": -3
+     },
+     "correction": {
+      "lu": "Äddi!",
+      "fr": "On se quitte : « Äddi! » ou « Schéinen Owend nach! », pas « Moien! ».",
+      "review": "lecon"
+     },
+     "review": "lecon"
+    }
+   ]
+  },
+  "B26_DATE_FAREWELL": {
+   "lessonIds": [
+    1
+   ],
+   "pedagogicalScoring": false,
+   "prompt": {
+    "lu": "Et war flott!",
+    "fr": "C'était sympa !",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "REP26_A",
+     "lu": "Merci, et war flott.",
+     "fr": "Merci, c'était sympa.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 5
+     },
+     "review": "a_verifier_lod"
+    },
+    {
+     "id": "REP26_B",
+     "lu": "Äddi!",
+     "fr": "Au revoir !",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 2
+     },
+     "review": "lecon"
+    },
+    {
+     "id": "REP26_C",
+     "lu": "Bis geschwënn!",
+     "fr": "À bientôt !",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 4
+     },
+     "review": "a_verifier_lod"
+    }
+   ]
+  },
+  "B24_TOMORROW": {
+   "lessonIds": [
+    15,
+    16
+   ],
+   "pedagogicalScoring": false,
+   "traductionVisible": true,
+   "positiveSeulement": true,
+   "prompt": {
+    "lu": "Hues du muer Zäit?",
+    "fr": "Tu as du temps demain ?",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "REP24_A",
+     "lu": "Jo, gär!",
+     "fr": "Oui, volontiers !",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 4
+     },
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP24_B",
+     "lu": "Nee, leider net.",
+     "fr": "Non, malheureusement.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": -2
+     },
+     "review": "a_verifier_lod"
+    },
+    {
+     "id": "REP24_C",
+     "lu": "Dat weess ech nach net.",
+     "fr": "Je ne sais pas encore.",
+     "truth": "honest",
+     "languageCorrect": true,
+     "social": {
+      "affinity": 0
+     },
+     "review": "a_verifier_lod"
+    }
+   ]
+  }
+ },
+ "evenements": {
+  "EV_LENA_FOOT": {
+   "profil": "lena_r01",
+   "taille": "gros",
+   "declencheur": {
+    "mensonge": {
+     "football": true
+    }
+   },
+   "npc": {
+    "lu": "Du spills gär Fussball? Super, da komm, mir spillen!",
+    "fr": "Tu joues au foot ? Super, viens, on fait quelques passes !",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_LENA_FOOT_C1",
+     "fr": "Oui, avec plaisir !",
+     "social": {
+      "affinity": 5,
+      "suspicion": 8
+     },
+     "reactionFr": "Tu rates le ballon de trois mètres. Elle éclate de rire.",
+     "lu": "Jo, gär!",
+     "visuel": "rire",
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_LENA_FOOT_C2",
+     "fr": "Non, en fait je n’aime pas le foot.",
+     "social": {
+      "affinity": 1,
+      "suspicion": -6
+     },
+     "reactionFr": "Elle apprécie un aveu un peu tardif.",
+     "lu": "Nee, ech spillen net gär Fussball.",
+     "visuel": "hoche",
+     "aveu": true,
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_LENA_FOOT_C3",
+     "fr": "Je suis une star du foot !",
+     "social": {
+      "affinity": 2,
+      "suspicion": 6
+     },
+     "reactionFr": "Elle te met au défi, avec un sourire incrédule.",
+     "lu": "Ech sinn e Fussballstar!",
+     "visuel": "sourcil",
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_CLAIRE_JOB": {
+   "profil": "claire_r01",
+   "taille": "petit",
+   "declencheur": {
+    "mensonge": {
+     "job": "Dokter"
+    }
+   },
+   "npc": {
+    "lu": "Du bass Dokter? Wou schaffs du?",
+    "fr": "Tu es médecin ? Tu travailles où ?",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_CLAIRE_JOB_C1",
+     "fr": "Je travaille à l’hôpital.",
+     "social": {
+      "affinity": 2,
+      "suspicion": 12
+     },
+     "reactionFr": "Elle lève un sourcil. Ton bluff devient fragile.",
+     "lu": "Ech schaffen am Spidol.",
+     "visuel": "sourcil",
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_CLAIRE_JOB_C2",
+     "fr": "Non, en fait je suis banquier.",
+     "social": {
+      "affinity": 1,
+      "suspicion": -6
+     },
+     "reactionFr": "Elle sourit : « Pourquoi m’inventer un hôpital ? »",
+     "lu": "Nee, ech sinn e Banker.",
+     "visuel": "hoche",
+     "aveu": true,
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_CLAIRE_JOB_C3",
+     "fr": "C’était une blague !",
+     "social": {
+      "affinity": -2,
+      "suspicion": 4
+     },
+     "reactionFr": "Elle trouve ton sens de l’humour très discutable.",
+     "lu": "Dat war e Witz!",
+     "visuel": "sourcil",
+     "aveu": true,
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_NOEMIE_DRAW": {
+   "profil": "noemie_r01",
+   "taille": "gros",
+   "declencheur": {
+    "mensonge": {
+     "drawing": true
+    }
+   },
+   "npc": {
+    "lu": "Kanns du mech molen?",
+    "fr": "Tu peux me dessiner ?",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_NOEMIE_DRAW_C1",
+     "fr": "Oui, volontiers.",
+     "social": {
+      "affinity": 6,
+      "suspicion": 4
+     },
+     "reactionFr": "Ton portrait sur la serviette ressemble à une patate. Elle explose de rire.",
+     "lu": "Jo, gär!",
+     "visuel": "rire",
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_NOEMIE_DRAW_C2",
+     "fr": "Non, je ne sais pas dessiner.",
+     "social": {
+      "affinity": 1,
+      "suspicion": -4
+     },
+     "reactionFr": "Elle te tend quand même le crayon.",
+     "lu": "Nee, ech kann net molen.",
+     "visuel": "hoche",
+     "aveu": true,
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_NOEMIE_DRAW_C3",
+     "fr": "C’est de l’art !",
+     "social": {
+      "affinity": 4,
+      "suspicion": 2
+     },
+     "reactionFr": "Elle contemple le gribouillis et en fait une critique très sérieuse.",
+     "lu": "Dat ass Konscht!",
+     "visuel": "rire",
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_NOEMIE_COLOR": {
+   "profil": "noemie_r01",
+   "taille": "petit",
+   "declencheur": {
+    "look": {
+     "style": "creatif",
+     "color": "rout"
+    }
+   },
+   "npc": {
+    "lu": "Ech hu gär Faarwen!",
+    "fr": "J'aime les couleurs !",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_NOEMIE_COLOR_C1",
+     "fr": "Merci !",
+     "social": {
+      "affinity": 3
+     },
+     "reactionFr": "Elle remarque ton effort.",
+     "lu": "Merci!",
+     "visuel": "hoche",
+     "review": "lecon"
+    },
+    {
+     "id": "EV_NOEMIE_COLOR_C2",
+     "fr": "Le rouge est ma couleur préférée.",
+     "social": {
+      "affinity": 4
+     },
+     "reactionFr": "Elle apprécie le point commun.",
+     "lu": "Rout ass meng Liiblingsfaarf.",
+     "visuel": "hoche",
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_NOEMIE_COLOR_C3",
+     "fr": "Je suis une œuvre d’art !",
+     "social": {
+      "affinity": 2
+     },
+     "reactionFr": "Elle rit de bon cœur.",
+     "lu": "Ech sinn e Konschtwierk!",
+     "visuel": "rire",
+     "review": "a_verifier_lod"
+    }
+   ]
+  },
+  "EV_MAYA_RETRO": {
+   "profil": "maya_r01",
+   "taille": "gros",
+   "declencheur": {
+    "mensonge": {
+     "gaming": true
+    }
+   },
+   "npc": {
+    "lu": "Du spills gär Computerspiller? Da probéier dat!",
+    "fr": "Tu aimes les jeux vidéo ? Alors essaie ma console !",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_MAYA_RETRO_C1",
+     "fr": "Oui !",
+     "social": {
+      "affinity": 5,
+      "suspicion": 5
+     },
+     "reactionFr": "Tu perds en quatre secondes. Elle te propose une revanche.",
+     "lu": "Jo!",
+     "visuel": "rire",
+     "review": "lecon"
+    },
+    {
+     "id": "EV_MAYA_RETRO_C2",
+     "fr": "Non, je ne connais pas ce jeu.",
+     "social": {
+      "affinity": 3,
+      "suspicion": -5
+     },
+     "reactionFr": "Ravie, elle t’explique son jeu préféré.",
+     "lu": "Nee, ech kennen dat Spill net.",
+     "visuel": "hoche",
+     "aveu": true,
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_MAYA_RETRO_C3",
+     "fr": "Je suis le champion !",
+     "social": {
+      "affinity": 2,
+      "suspicion": 6
+     },
+     "reactionFr": "Défaite comique immédiate.",
+     "lu": "Ech sinn de Champion!",
+     "visuel": "rire",
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_MAYA_GERMAN": {
+   "profil": "maya_r01",
+   "taille": "petit",
+   "declencheur": {
+    "mensonge": {
+     "language": "Däitsch"
+    }
+   },
+   "npc": {
+    "lu": "Du schwätz Däitsch? Super!",
+    "fr": "Tu parles allemand ? Super !",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_MAYA_GERMAN_C1",
+     "fr": "En fait, je ne parle pas allemand.",
+     "social": {
+      "affinity": 2,
+      "suspicion": -6
+     },
+     "reactionFr": "Elle rit : « Tu fais aussi des CV mensongers ? »",
+     "lu": "Ech schwätzen net Däitsch.",
+     "visuel": "rire",
+     "aveu": true,
+     "review": "lecon"
+    },
+    {
+     "id": "EV_MAYA_GERMAN_C2",
+     "fr": "Je parle français.",
+     "social": {
+      "affinity": 1,
+      "suspicion": -3
+     },
+     "reactionFr": "Réaction détendue.",
+     "lu": "Ech schwätze Franséisch.",
+     "visuel": "hoche",
+     "aveu": true,
+     "review": "lecon"
+    },
+    {
+     "id": "EV_MAYA_GERMAN_C3",
+     "fr": "Oui, je parle allemand.",
+     "social": {
+      "affinity": 0,
+      "suspicion": 8
+     },
+     "reactionFr": "Elle garde un doute.",
+     "lu": "Jo, ech schwätzen Däitsch.",
+     "visuel": "sourcil",
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_SOFIA_PORTUGAL": {
+   "profil": "sofia_r01",
+   "taille": "gros",
+   "declencheur": {
+    "mensonge": {
+     "origin": "Portugal",
+     "language": "Portugisesch"
+    },
+    "unSuffit": true
+   },
+   "npc": {
+    "lu": "Du kënns aus Portugal? Wat fir en Déier sinn ech? Op Portugisesch!",
+    "fr": "Tu viens du Portugal ? Alors, à quel animal je ressemble ? Réponds en portugais !",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "vaca",
+     "fr": "Vaca (vache)",
+     "social": {
+      "affinity": -12,
+      "suspicion": 14
+     },
+     "reactionFr": "« UNE VACHE ?! » Disque rayé. Grand silence.",
+     "visuel": "scratch",
+     "texte": "Vaca",
+     "langue": "pt"
+    },
+    {
+     "id": "hipopotamo",
+     "fr": "Hipopótamo (hippopotame)",
+     "social": {
+      "affinity": -14,
+      "suspicion": 14
+     },
+     "reactionFr": "« UN HIPPOPOTAME ?! »",
+     "visuel": "zoom",
+     "texte": "Hipopótamo",
+     "langue": "pt"
+    },
+    {
+     "id": "gata",
+     "fr": "Gata (chatte, l’animal)",
+     "social": {
+      "affinity": 6
+     },
+     "reactionFr": "« Un chat ? C’est mignon ! »",
+     "visuel": "joie",
+     "texte": "Gata",
+     "langue": "pt"
+    },
+    {
+     "id": "aveu",
+     "fr": "En fait, je ne parle pas portugais.",
+     "social": {
+      "affinity": 2,
+      "suspicion": -8
+     },
+     "reactionFr": "Elle rit et accepte ton aveu.",
+     "lu": "Ech schwätzen net Portugisesch.",
+     "visuel": "rire",
+     "aveu": true,
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_EMMA_PHONE": {
+   "profil": "emma_r01",
+   "taille": "petit",
+   "declencheur": {
+    "telephone": true
+   },
+   "npc": {
+    "lu": "Bass du ëmmer um Handy?",
+    "fr": "Tu es toujours sur ton téléphone ?",
+    "review": "audit_regles"
+   },
+   "choices": [
+    {
+     "id": "EV_EMMA_PHONE_C1",
+     "fr": "Pardon, je range le téléphone.",
+     "social": {
+      "affinity": -4
+     },
+     "reactionFr": "Elle reprend calmement la discussion.",
+     "lu": "Entschëllegt. Ech leeën den Handy ewech.",
+     "visuel": "hoche",
+     "review": "a_verifier_lod"
+    },
+    {
+     "id": "EV_EMMA_PHONE_C2",
+     "fr": "Je regarde juste un instant.",
+     "social": {
+      "affinity": -8
+     },
+     "reactionFr": "Elle attend en silence.",
+     "lu": "Ech kucken just kuerz.",
+     "visuel": "froid",
+     "review": "a_verifier_lod"
+    },
+    {
+     "id": "EV_EMMA_PHONE_C3",
+     "fr": "Oui.",
+     "social": {
+      "affinity": -12,
+      "suspicion": 4
+     },
+     "reactionFr": "Elle regarde sa montre sans rien dire.",
+     "lu": "Jo.",
+     "visuel": "froid",
+     "review": "lecon"
+    }
+   ]
+  },
+  "EV_EX_ALEX": {
+   "profil": "tous",
+   "taille": "petit",
+   "declencheur": {
+    "trait": "exAlex",
+    "claim": {
+     "prenom": "Alex"
+    }
+   },
+   "npc": {
+    "lu": "Alex? Mäin Ex huet och Alex geheescht.",
+    "fr": "Alex ? Mon ex s’appelait Alex aussi…",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "EV_EX_ALEX_C1",
+     "fr": "Je m’appelle Alex.",
+     "social": {
+      "affinity": 2
+     },
+     "reactionFr": "Elle souffle : « Bon, tu n’es pas lui. »",
+     "lu": "Ech heeschen Alex.",
+     "visuel": "hoche",
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_EX_ALEX_C2",
+     "fr": "Je m’appelle Max.",
+     "social": {
+      "affinity": 1,
+      "suspicion": 6
+     },
+     "reactionFr": "Elle hausse un sourcil. Ce prénom, il faudra t’en souvenir.",
+     "lu": "Ech heesche Max.",
+     "visuel": "sourcil",
+     "claims": {
+      "prenom": "Max"
+     },
+     "remplace": true,
+     "mensonge": true,
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_EX_ALEX_C3",
+     "fr": "Je m’appelle James Bond.",
+     "social": {
+      "affinity": 0
+     },
+     "reactionFr": "Elle hésite entre rire et soupirer.",
+     "lu": "Ech heesche James Bond.",
+     "visuel": "sourcil",
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "EV_AGE_PREF": {
+   "profil": "tous",
+   "taille": "petit",
+   "declencheur": {
+    "trait": "agePrefPositive30",
+    "mensonge": {
+     "age": 30
+    }
+   },
+   "npc": {
+    "lu": "Du bass drësseg? Interessant!",
+    "fr": "Ah, tu as trente ans ? Intéressant.",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "EV_AGE_PREF_C1",
+     "fr": "Oui.",
+     "social": {
+      "affinity": 3,
+      "suspicion": 2
+     },
+     "reactionFr": "Elle sourit, convaincue… pour l’instant.",
+     "lu": "Jo.",
+     "visuel": "hoche",
+     "review": "lecon"
+    },
+    {
+     "id": "EV_AGE_PREF_C2",
+     "fr": "En fait, j’ai vingt-huit ans.",
+     "social": {
+      "affinity": 0,
+      "suspicion": -4
+     },
+     "reactionFr": "Elle apprécie la correction.",
+     "lu": "Ech sinn aachtanzwanzeg Joer al.",
+     "visuel": "hoche",
+     "aveu": true,
+     "review": "audit_regles"
+    },
+    {
+     "id": "EV_AGE_PREF_C3",
+     "fr": "C’était une blague !",
+     "social": {
+      "affinity": -1,
+      "suspicion": -2
+     },
+     "reactionFr": "Elle lève les yeux au ciel, amusée.",
+     "lu": "Dat war e Witz!",
+     "visuel": "sourcil",
+     "aveu": true,
+     "review": "audit_regles"
+    }
+   ]
+  },
+  "B25_TRUTH_REPAIR": {
+   "profil": "tous",
+   "taille": "petit",
+   "traductionVisible": true,
+   "declencheur": {
+    "contradiction": true
+   },
+   "npc": {
+    "lu": "Ass dat wouer?",
+    "fr": "C’est vrai ?",
+    "review": "a_verifier_lod"
+   },
+   "choices": [
+    {
+     "id": "REP25_A",
+     "fr": "Non, c’était une blague.",
+     "social": {
+      "affinity": 0,
+      "suspicion": -3
+     },
+     "reactionFr": "Elle hésite, puis sourit à moitié.",
+     "lu": "Nee, dat war e Witz.",
+     "visuel": "sourcil",
+     "review": "audit_regles"
+    },
+    {
+     "id": "REP25_B",
+     "fr": "Pardon, j’ai menti.",
+     "social": {
+      "affinity": 2,
+      "suspicion": -8
+     },
+     "reactionFr": "Elle apprécie la franchise.",
+     "lu": "Entschëllegt, ech hu gelunn.",
+     "visuel": "hoche",
+     "aveu": true,
+     "review": "a_verifier_lod"
+    },
+    {
+     "id": "REP25_C",
+     "fr": "Oui.",
+     "social": {
+      "affinity": -2,
+      "suspicion": 6
+     },
+     "reactionFr": "Elle n’a pas l’air convaincue.",
+     "lu": "Jo.",
+     "visuel": "sourcil",
+     "review": "lecon"
+    }
+   ]
+  }
+ },
+ "nonIntegres": [
+  {
+   "id": "B14_TIME",
+   "raison": "Heure du rendez-vous ambiguë (7 h / 19 h) : aucune formulation non ambiguë validée (Bible §6.28)."
+  },
+  {
+   "id": "EV_CLAIRE_TIME",
+   "raison": "Dépend de B14 (heure canonique non validée)."
+  },
+  {
+   "id": "EV_SOFIA_TRAIN",
+   "raison": "Dépend d’un horaire visible sur un billet Pix et de B14."
+  },
+  {
+   "id": "B19_PARTNER_NAME",
+   "raison": "Redondant avec B21 (Alex pose une question)."
+  },
+  {
+   "id": "B20_PARTNER_CITY / B22_ASK_HER_LANG",
+   "raison": "Répliques de la partenaire : intégrées comme réponses canoniques de B21 (profils[].repliques), jamais comme boutons."
+  },
+  {
+   "id": "B23_STYLE_REACTION",
+   "raison": "Remplacé par la première impression REACT_*_LOOK_* (FR), « Deng Faarf » à valider."
+  },
+  {
+   "id": "REP09_C « Ech schaffen doheem »",
+   "raison": "Persona sans mode de travail : ni vérité ni mensonge (Bible §6.28)."
+  },
+  {
+   "id": "REACT_* (LU §11)",
+   "raison": "Répliques LU candidates non affichées : les réactions sont montrées en FR (feedback social), comme prévu si l’audit n’est pas fait."
+  },
+  {
+   "id": "PIX/AMIS « Blo. », « Rout. », « Gréng. »",
+   "raison": "Fragments v01 remplacés par les posts complets de la Bible."
+  }
+ ],
+ "correctionsAudit": [
+  {
+   "avant": "Ech heeschen Max. / Ech heeschen James Bond.",
+   "apres": "Ech heesche Max. / Ech heesche James Bond.",
+   "regle": "Règle du n (Eifeler Regel) : le n tombe devant M, J (leçon 1 : « Ech heesche Paul »)."
+  },
+  {
+   "avant": "Ech schwätzen Franséisch / Portugisesch",
+   "apres": "Ech schwätze Franséisch / Portugisesch",
+   "regle": "Le n tombe devant F et P (leçon 9 : « Ech schwätze Franséisch »)."
+  },
+  {
+   "avant": "Ech molen gär",
+   "apres": "Ech mole gär",
+   "regle": "Le n tombe devant g."
+  },
+  {
+   "avant": "Nee, ech spille net gär …",
+   "apres": "Nee, ech spillen net gär …",
+   "regle": "Le n reste devant n."
+  },
+  {
+   "avant": "Ech hunn Musek gär",
+   "apres": "Ech hu Musek gär",
+   "regle": "Le n tombe devant M."
+  },
+  {
+   "avant": "Ech ginn moies fréi eraus",
+   "apres": "Ech gi moies fréi eraus",
+   "regle": "Le n tombe devant m."
+  },
+  {
+   "avant": "Beim Rendez-vous: kee Telefon",
+   "apres": "Beim Rendez-vous: keen Handy",
+   "regle": "keen garde le n devant t et h (leçons : « keen Telefon », « keen Handy ») ; « Handy » comme dans EV_EMMA_PHONE."
+  },
+  {
+   "avant": "Nee, ech drénke moies keen Kaffi. (B11, EV_EMMA_COFFEE)",
+   "apres": "Nee, ech drénke moies kee Kaffi.",
+   "regle": "Le n de keen tombe devant K (leçons : « kee Buch », « kee Portugis »)."
+  },
+  {
+   "avant": "Ech spille gär Fussball. E Freideg och!",
+   "apres": "Ech spille gär Fussball. Och freides!",
+   "regle": "« freides » = le vendredi (habitude)."
+  },
+  {
+   "avant": "Ech spille gär Musek",
+   "apres": "Ech maache gär Musek",
+   "regle": "« Musek maachen » = faire de la musique."
+  },
+  {
+   "avant": "Ech schaffen als Buchhändlerin",
+   "apres": "Ech schaffen an enger Librairie",
+   "regle": "« Buchhändlerin » est allemand ; « schaffen an enger Librairie » figure dans les leçons."
+  },
+  {
+   "avant": "Ech sinn eng Konschtfigur! / Jo! Ech sinn de Messi!",
+   "apres": "Ech sinn e Konschtwierk! / Jo! Ech sinn e Fussballstar!",
+   "regle": "Mot plus naturel ; pas de personne réelle citée."
+  },
+  {
+   "avant": "Ech si/sinn + âges des partenaires",
+   "apres": "Ech si siwenanzwanzeg / fënnefanzwanzeg / sechsanzwanzeg ; Ech sinn eenandrësseg / nénganzwanzeg / drësseg",
+   "regle": "Règle du n (leçon 5 : « Ech si siwenanzwanzeg Joer al »)."
+  }
+ ],
+ "finsAdaptees": [
+  {
+   "id": "FIN_LENA_FAIL",
+   "bible": "… tu as changé d’histoire trois fois.",
+   "raison": "Le nombre de changements n’est pas compté : « trois fois » retiré."
+  },
+  {
+   "id": "FIN_CLAIRE_SUCCESS",
+   "bible": "Tu es ponctuel et intéressant.",
+   "raison": "La ponctualité n’est pas jouée (B14 non intégré) : « agréable » à la place."
+  },
+  {
+   "id": "FIN_CLAIRE_FUN",
+   "bible": "J’ai trois métiers différents dans mon agenda.",
+   "raison": "Un run ne permet que deux métiers (Banker + mensonge Dokter)."
+  },
+  {
+   "id": "FIN_CLAIRE_FAIL",
+   "bible": "Médecin, banquier, policier…",
+   "raison": "Idem : seuls les métiers réellement annoncés peuvent être cités."
+  },
+  {
+   "id": "FIN_NOEMIE_FAIL",
+   "bible": "Tu as affirmé être peintre…",
+   "raison": "Le joueur dit aimer dessiner (B_DRAW), pas être peintre."
+  },
+  {
+   "id": "FIN_SOFIA_FAIL",
+   "bible": "Portugal, France, Allemagne…",
+   "raison": "Texte générique sur l’origine, quelle que soit la combinaison réellement annoncée."
+  }
+ ]
+}

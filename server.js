@@ -186,10 +186,11 @@ app.get('/api/lecons', (req, res) => {
   res.json(lecons);
 });
 
-// SPEC 109 — Lux Match (démo) : profils et dialogues (brouillons signalés dans le jeu).
+// SPEC 109 — Lux Match (démo) : contenus de la bible A1.1 (profils, réseaux, identité d'Alex)
+// + dialogues v01 (brouillons signalés dans le jeu).
 app.get('/api/jeux/lux-match', (req, res) => {
   const lire = f => JSON.parse(fs.readFileSync(path.join(__dirname, 'data/jeux/lux-match', f), 'utf8'));
-  res.json({ archetypes: lire('archetypes-v01.json'), dialogues: lire('dialogues-a11-v01.json') });
+  res.json({ contenus: lire('contenus-v02.json'), archetypes: lire('archetypes-v01.json'), dialogues: lire('dialogues-a11-v01.json') });
 });
 
 // Sujets d'examen : même principe que les leçons, un dossier par niveau.

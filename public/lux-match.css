@@ -23,7 +23,7 @@
 /* ── Barre du haut */
 #view-luxmatch .lm-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px}
 #view-luxmatch .lm-retour{display:flex;align-items:center;gap:6px;min-height:44px;padding:0;border:0;background:none;color:#bbb1a2;font-size:14px;font-weight:650;cursor:pointer}
-#view-luxmatch .lm-logo{font:10px/1 var(--lm-pixel);letter-spacing:.06em;color:#ffd1f4;text-shadow:0 0 10px rgba(255,79,216,.6)}
+#view-luxmatch .lm-logo{white-space:nowrap;font:10px/1 var(--lm-pixel);letter-spacing:.06em;color:#ffd1f4;text-shadow:0 0 10px rgba(255,79,216,.6)}
 #view-luxmatch .lm-logo i{font-style:normal;color:var(--lm-rose)}
 #view-luxmatch .lm-logo small{margin-left:6px;padding:3px 5px 2px;font:7px/1 var(--lm-pixel);color:#0f0e0c;background:var(--accent)}
 #view-luxmatch .lm-icone-btn{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--lm-bord);border-radius:14px;background:var(--lm-verre);color:#ece4f6;cursor:pointer}
@@ -31,6 +31,24 @@
 #view-luxmatch .lm-section{margin:6px 0 0;font:800 13px/1.3 var(--font);letter-spacing:.08em;text-transform:uppercase;color:#cbb8f2}
 #view-luxmatch .lm-aide-fr{align-self:center;min-height:36px;padding:0 14px;border:1px solid var(--lm-bord);border-radius:99px;background:transparent;color:#bdb0d6;font-size:12px;font-weight:700;cursor:pointer}
 #view-luxmatch .lm-aide-fr.lm-actif{border-color:var(--lm-violet);color:#e7dcff;background:rgba(107,63,209,.18)}
+
+#view-luxmatch .lm-top-outils{display:flex;gap:6px}
+#view-luxmatch .lm-fr-btn{font:800 13px/1 var(--font);color:#a99cc4}
+#view-luxmatch .lm-fr-btn.lm-actif{border-color:var(--lm-violet);color:#e7dcff;background:rgba(107,63,209,.28)}
+#view-luxmatch .lm-note{margin:0;font-size:12.5px;line-height:1.4;color:#a99cc4;text-align:center}
+#view-luxmatch .lm-note svg{width:14px;height:14px;vertical-align:-2px}
+
+/* ── TON PROFIL (fiche d'Alex) */
+#view-luxmatch .lm-profil{display:flex;flex-direction:column;gap:12px}
+#view-luxmatch .lm-titre-pixel{margin:6px 0 0;text-align:center;font:18px/1.3 var(--lm-pixel);font-weight:400;color:#ffd84a;-webkit-font-smoothing:none;text-shadow:0 3px 0 #c0399e,3px 3px 0 #2a0b26}
+#view-luxmatch .lm-fiche{display:flex;gap:14px;align-items:center;padding:12px;border-radius:20px;background:var(--lm-verre);border:1px solid var(--lm-bord)}
+#view-luxmatch .lm-fiche-photo{flex:none;width:92px;height:116px;border-radius:16px;object-fit:cover;image-rendering:pixelated;border:2px solid var(--lm-rose)}
+#view-luxmatch .lm-fiche-photo.lm-image-attente span{font-size:36px}
+#view-luxmatch .lm-fiche-texte h2{margin:0 0 6px;font:800 22px/1.1 var(--font)} #view-luxmatch .lm-fiche-texte h2 span{font-weight:500}
+#view-luxmatch .lm-fiche-resume{margin:0;font-size:13.5px;line-height:1.4;color:#e1d8ef}
+#view-luxmatch .lm-fiche-lignes{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+#view-luxmatch .lm-fiche-lignes li{padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
+#view-luxmatch .lm-fiche-lignes .lm-lu{font-size:15px}
 
 /* ── Boutons */
 #view-luxmatch .lm-actions{display:flex;flex-direction:column;gap:8px}
@@ -64,7 +82,8 @@
 #view-luxmatch .lm-carte-infos h2{margin:0 0 6px;font:800 26px/1.1 var(--font);color:#fff}
 #view-luxmatch .lm-carte-infos h2 span{font-weight:500}
 #view-luxmatch .lm-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-#view-luxmatch .lm-tags span{padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.14);font-size:12px;font-weight:700}
+#view-luxmatch .lm-tags span{display:flex;flex-direction:column;padding:4px 10px;border-radius:12px;background:rgba(255,255,255,.14);font-size:12px;line-height:1.25}
+#view-luxmatch .lm-tags small{font-size:10.5px;color:#d6cbe8}
 #view-luxmatch .lm-tampon{position:absolute;top:22px;padding:6px 10px;font:14px/1 var(--lm-pixel);border:3px solid;border-radius:6px;opacity:0;transition:opacity .1s}
 #view-luxmatch .lm-tampon-oui{left:16px;color:#5df0a6;transform:rotate(-14deg)}
 #view-luxmatch .lm-tampon-non{right:16px;color:#ff6b6b;transform:rotate(14deg)}
@@ -106,10 +125,17 @@
 #view-luxmatch .lm-pix-tete small{display:block;color:#a99cc4;font-size:12px;margin:2px 0 4px}
 #view-luxmatch .lm-avatar{flex:none;width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--lm-rose)}
 #view-luxmatch .lm-avatar.lm-image-attente span{font-size:24px}
-#view-luxmatch .lm-pix-grille{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-#view-luxmatch .lm-pix-grille figure{margin:0}
-#view-luxmatch .lm-pix-photo{width:100%;aspect-ratio:4/5;border-radius:10px;object-fit:cover;image-rendering:pixelated;display:block}
-#view-luxmatch .lm-pix-grille figcaption{margin-top:4px;font-size:11px;color:#cbbfe0;line-height:1.3}
+#view-luxmatch .lm-pix-compteurs{display:flex;gap:12px;margin:3px 0 5px;font-size:12px;color:#a99cc4} #view-luxmatch .lm-pix-compteurs b{color:#fff}
+#view-luxmatch .lm-pix-fil{display:flex;flex-direction:column;gap:14px}
+#view-luxmatch .lm-pix-post{margin:0;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04)}
+#view-luxmatch .lm-pix-photo{width:100%;aspect-ratio:4/5;object-fit:cover;image-rendering:pixelated;display:block}
+#view-luxmatch .lm-pix-post figcaption{padding:8px 10px 10px}
+#view-luxmatch .lm-pix-post .lm-lu{font-size:14.5px}
+#view-luxmatch .lm-pix-meta{display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px;font-weight:700;color:#ff9be8}
+#view-luxmatch .lm-pix-meta span+span{color:#a99cc4;font-weight:500}
+#view-luxmatch .lm-fin-fil{margin:14px 0 4px;text-align:center;font-size:12px;color:#8f84a6}
+#view-luxmatch .lm-vu{position:absolute;top:6px;right:10px;font-style:normal;font-size:11px;font-weight:900;color:#5df0a6}
+#view-luxmatch .lm-app-icone{position:relative}
 #view-luxmatch .lm-prive{display:flex;flex-direction:column;align-items:center;gap:6px;padding:26px 10px;border:1px dashed var(--lm-bord);border-radius:14px;text-align:center;color:#bdb0d6;font-size:13px}
 #view-luxmatch .lm-prive svg{width:30px;height:30px}
 #view-luxmatch .lm-pro{text-align:center}
@@ -119,6 +145,13 @@
 #view-luxmatch .lm-pro dl{margin:0;text-align:left;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14px}
 #view-luxmatch .lm-pro dt{color:#a99cc4} #view-luxmatch .lm-pro dd{margin:0;font-weight:700}
 #view-luxmatch .lm-post{margin-top:10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.05)}
+#view-luxmatch .lm-post-tete{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+#view-luxmatch .lm-post-tete span{display:flex;flex-direction:column;font-size:13px} #view-luxmatch .lm-post-tete small{color:#a99cc4;font-size:11px}
+#view-luxmatch .lm-avatar-mini{width:30px;height:30px;border-width:1px}
+#view-luxmatch .lm-avatar-mini.lm-image-attente span{font-size:13px}
+#view-luxmatch .lm-post-pied{display:flex;gap:14px;margin-top:8px;font-size:12px;color:#a99cc4}
+#view-luxmatch .lm-pro-bloc{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(47,111,214,.12);text-align:left}
+#view-luxmatch .lm-pro-bloc h4{margin:0 0 4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9fc0ff}
 #view-luxmatch .lm-fr-seul{color:#e9e1f6;font-size:14px}
 
 /* ── Look */
@@ -197,11 +230,13 @@
 #view-luxmatch .lm-panneau>.lm-btn{align-self:center;width:min(100%,340px)}
 #view-luxmatch .lm-moi-carte{align-self:center;width:min(100%,340px);padding:18px;border-radius:20px;background:#1a1426;border:1px solid var(--lm-bord)}
 #view-luxmatch .lm-moi-carte h3{margin:0 0 10px;font:12px/1.3 var(--lm-pixel);color:#ffd84a}
-#view-luxmatch .lm-moi-carte ul{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:7px}
-#view-luxmatch .lm-moi-carte li{display:flex;justify-content:space-between;gap:10px;font-size:14px}
-#view-luxmatch .lm-moi-carte li span{color:#a99cc4}
-#view-luxmatch .lm-moi-carte p{margin:0 0 12px;font-size:13px;color:#cbbfe0}
-#view-luxmatch .lm-moi-carte .lm-btn{width:100%}
+#view-luxmatch .lm-moi{position:fixed;z-index:30;justify-content:flex-start;overflow-y:auto;padding:max(16px,env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom))}
+#view-luxmatch .lm-moi-carte{margin:auto 0}
+#view-luxmatch .lm-moi-carte .lm-note{margin:10px 0 0}
+#view-luxmatch .lm-moi-boutons{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+#view-luxmatch .lm-moi-boutons .lm-btn{width:100%}
+#view-luxmatch .lm-moi-btn{width:52px;height:52px;gap:1px;align-content:center}
+#view-luxmatch .lm-moi-btn span{font:7px/1 var(--lm-pixel)}
 #view-luxmatch .lm-toast{position:fixed;z-index:20;left:50%;bottom:calc(140px + env(safe-area-inset-bottom));transform:translateX(-50%);max-width:88vw;padding:10px 16px;border-radius:12px;
   background:#2a1d3e;border:1px solid var(--lm-violet);color:#fff;font-size:14px;font-weight:700;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 
@@ -242,6 +277,9 @@
   #view-luxmatch .lm-tel-btn.lm-faible,#view-luxmatch .lm-tel-date-barre.lm-faible,#view-luxmatch .lm-tel-faible .lm-tel-ecran{animation:none}
   #view-luxmatch .lm-feedback.lm-visible{opacity:1}
   #view-luxmatch .lm-carte{transition:none}
+}
+@media(max-width:419px){
+  #view-luxmatch .lm-retour span{display:none}
 }
 @media(max-width:359px){
   #view-luxmatch .lm-styles{grid-template-columns:repeat(3,1fr)}

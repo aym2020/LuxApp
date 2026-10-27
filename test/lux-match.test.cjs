@@ -4,11 +4,12 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const Core = require('../public/lux-match-core.js');
 const lire = p => JSON.parse(fs.readFileSync(path.join(__dirname, '..', p), 'utf8'));
-const donnees = { archetypes: lire('data/jeux/lux-match/archetypes-v01.json'), dialogues: lire('data/jeux/lux-match/dialogues-a11-v01.json') };
+const donnees = { contenus: lire('data/jeux/lux-match/contenus-v02.json'), archetypes: lire('data/jeux/lux-match/archetypes-v01.json'), dialogues: lire('data/jeux/lux-match/dialogues-a11-v01.json') };
 
 // Partie arrêtée au profil voulu, prête pour le date.
 function partieAvec(profilId, options) {
   const etat = Core.nouvellePartie(donnees, Object.assign({ graine: 7, parties: 5 }, options || {}));
+  Core.commencerSwipes(etat);
   etat.paquet = [profilId]; etat.indexCarte = 0; etat.likesAvantMatch = 1;
   assert.equal(Core.swiper(etat, true), 'match');
   Core.apresMatch(etat, 'date');
@@ -23,7 +24,7 @@ test('Données : références croisées valides', () => {
   const ids = new Set(donnees.dialogues.sharedDialogueNodes.map(n => n.id));
   donnees.dialogues.archetypeFlows.forEach(f => f.flow.forEach(id => assert.ok(ids.has(id), f.id + ' → ' + id)));
   const archetypes = new Set(donnees.archetypes.archetypes.map(a => a.id));
-  donnees.archetypes.profiles.forEach(p => {
+  donnees.contenus.profils.forEach(p => {
     assert.ok(archetypes.has(p.archetypeId)); assert.ok(p.age >= 21);
     assert.ok(p.apparence3d && p.apparence3d.modele, p.id);
     assert.ok(fs.existsSync(path.join(__dirname, '..', 'public/lux-match', p.apparence3d.modele + '.glb')));
@@ -34,12 +35,14 @@ test('Données : références croisées valides', () => {
 test('Swipe : match borné après 1 ou 2 « j’aime », jamais bloqué', () => {
   for (let graine = 1; graine < 40; graine++) {
     const etat = Core.nouvellePartie(donnees, { graine });
+    assert.equal(etat.phase, 'profil'); Core.commencerSwipes(etat); assert.equal(etat.phase, 'swipe');
     assert.ok(etat.paquet.length >= 4 && etat.paquet.length <= 6);
     let resultat, tours = 0;
     do { resultat = Core.swiper(etat, true); tours++; } while (resultat !== 'match' && tours < 10);
     assert.equal(resultat, 'match'); assert.ok(tours <= 2); assert.ok(etat.profil);
   }
   const etat = Core.nouvellePartie(donnees, { graine: 3 });
+  Core.commencerSwipes(etat);
   const n = etat.paquet.length;
   for (let i = 0; i < n - 1; i++) Core.swiper(etat, false);
   assert.equal(Core.swiper(etat, false), 'recommence'); // tout refusé : nouveau paquet

@@ -15,12 +15,12 @@ const LM_COULEURS = [
   { id: 'blo', fr: 'bleu', hex: '#2f6fd6' }, { id: 'gréng', fr: 'vert', hex: '#2fa35a' },
   { id: 'rout', fr: 'rouge', hex: '#d8343c' }, { id: 'beige', fr: 'beige', hex: '#d9c3a0' }
 ];
-// Pose et fond des « photos » Pix selon leur sujet (rendues en 3D avec le personnage).
-const LM_PHOTOS = {
-  running: ['Walk', '#2d6b4f'], football: ['Jump', '#2f7a3a'], style_bcbg: ['Victory', '#4a3a1c'],
-  urban: ['Idle', '#2a3550'], art: ['PickUp', '#6a2c4a'], color: ['Victory', '#8a2233'],
-  voyage: ['Victory', '#2a5f86'], transport: ['Walk', '#4a4060']
+// Fond des « photos » Pix selon la scène décrite dans la bible (le personnage est rendu en 3D).
+const LM_SCENES = {
+  parc: '#2d6b4f', foot: '#2f7a3a', reception: '#4a3a1c', ville_nuit: '#2a3550',
+  carnet: '#6a2c4a', atelier: '#8a2233', lisbonne: '#2a5f86', train: '#4a4060'
 };
+const LM_FONDS = { carte: '#3a2a55', pro: '#2a3550', amis: '#2d4a3a', alex: '#2a3550' };
 const LM_ISSUES = {
   nouveau_rdv: { titre: 'NOUVEAU RDV !', texte: 'Elle veut te revoir. Le courant passe… et ton histoire tient la route.' },
   gene_drole: { titre: 'GÊNANT… MAIS DRÔLE', texte: 'Tes inventions t’ont rattrapé, mais vous avez bien ri.' },
@@ -153,7 +153,7 @@ async function ouvrirLuxMatch() {
   lm.partie = partie;
   lmEcranChargement(40, 'Recherche de profils à proximité…');
   // On attend la 3D et les deux premières photos, 6 s au plus (sinon les initiales s'affichent).
-  const premieres = partie.paquet.slice(0, 2).map(id => [LuxMatchCore.profilParId(partie, id), 'Idle', '#3a2a55']);
+  const premieres = [['alex', 'Idle', LM_FONDS.alex]].concat(partie.paquet.slice(0, 2).map(id => [LuxMatchCore.profilParId(partie, id), 'Idle', LM_FONDS.carte]));
   const pret = lmObtenir3D().then(() => { lmEcranChargement(75, 'Préparation des photos…'); return lmPreparerImages(premieres); });
   await Promise.race([pret.catch(() => {}), new Promise(r => setTimeout(r, 6000))]);
   if (lm.partie !== partie || !lmVueActive()) return; // l'utilisateur est reparti
@@ -183,17 +183,30 @@ function lmEntete() {
   const son = LuxMatchSon.actif();
   return '<div class="lm-top"><button type="button" class="lm-retour" onclick="lmQuitter()">' + lmIcone('retour') + '<span>Jeux</span></button>' +
     '<span class="lm-logo">LUX <i>♥</i> MATCH <small>DÉMO</small></span>' +
-    '<button type="button" class="lm-icone-btn" onclick="lmBasculerSon()" aria-label="' + (son ? 'Couper le son' : 'Activer le son') + '">' + lmIcone(son ? 'son' : 'muet') + '</button></div>';
+    '<div class="lm-top-outils">' +
+      '<button type="button" class="lm-icone-btn lm-fr-btn' + (lm.aideFr ? ' lm-actif' : '') + '" onclick="lmBasculerAide()" aria-pressed="' + lm.aideFr + '" aria-label="' + (lm.aideFr ? 'Aide FR activée' : 'Aide FR désactivée') + '">FR</button>' +
+      (lm.partie && lm.partie.phase !== 'profil' ? '<button type="button" class="lm-icone-btn" onclick="lmMoi(true)" aria-label="Ma vraie identité">' + lmIcone('moi') + '</button>' : '') +
+      '<button type="button" class="lm-icone-btn" onclick="lmBasculerSon()" aria-label="' + (son ? 'Couper le son' : 'Activer le son') + '">' + lmIcone(son ? 'son' : 'muet') + '</button>' +
+    '</div></div>';
 }
 function lmQuitter() { luxMatchArreter(); if (typeof ouvrirJeux === 'function') ouvrirJeux(); }
 function lmBasculerSon() { lmEcrire('luxMatchSon', !LuxMatchSon.actif()); const t = document.querySelector('#lm-jeu .lm-top'); if (t) t.outerHTML = lmEntete(); }
+// Traduction française : seulement si l'aide est activée (jamais dans le flux luxembourgeois).
+function lmFr(texte, classe) {
+  return lm.aideFr && texte ? '<p class="lm-fr' + (classe ? ' ' + classe : '') + '">' + lmEchapper(texte) + '</p>' : '';
+}
+function lmLu(texte, classe) {
+  return '<p class="lm-lu' + (classe ? ' ' + classe : '') + '" lang="lb">' + lmEchapper(texte) + '</p>';
+}
 
 function lmRendre() {
   const p = lm.partie, box = lmBox();
   if (!p || !box) return;
+  if (lm.ecran !== p.phase) window.scrollTo(0, 0); // nouvel écran : on repart du haut
   lm.ecran = p.phase;
   if (p.phase !== 'date' && lm.rendu3d && p.phase !== 'look') lm.rendu3d.detacher();
-  if (p.phase === 'swipe') lmRendreSwipe(box);
+  if (p.phase === 'profil') lmRendreProfil(box);
+  else if (p.phase === 'swipe') lmRendreSwipe(box);
   else if (p.phase === 'match') lmRendreMatch(box);
   else if (p.phase === 'reseaux') lmRendreReseaux(box);
   else if (p.phase === 'look') lmRendreLook(box);
@@ -209,9 +222,9 @@ function lmTelephone(contenu, classe) {
 }
 
 // Portraits rendus en 3D (mis en cache) ; repli : initiale sur dégradé.
-function lmCleImage(profil, pose) { return (profil === 'alex' ? 'alex' : profil.id) + ':' + (pose || 'Idle'); }
+function lmCleImage(profil, pose, fond) { return (profil === 'alex' ? 'alex' : profil.id) + ':' + (pose || 'Idle') + ':' + (fond || ''); }
 function lmImage(profil, pose, fond, classe) {
-  const cle = lmCleImage(profil, pose);
+  const cle = lmCleImage(profil, pose, fond);
   const url = lm.portraits[cle];
   const nom = profil === 'alex' ? 'Alex' : profil.name;
   if (url) return '<img class="' + classe + '" src="' + url + '" alt="">';
@@ -223,8 +236,8 @@ async function lmPreparerImages(liste) {
   try { moteur = await lmObtenir3D(); } catch (_) { return; }
   for (const [profil, pose, fond] of liste) {
     // Plus de portraits une fois l'aperçu 3D ou le rendez-vous affiché (même modèles).
-    if (!lm.partie || ['swipe', 'match', 'reseaux', 'resultats'].indexOf(lm.partie.phase) < 0) return;
-    const cle = lmCleImage(profil, pose);
+    if (!lm.partie || ['profil', 'swipe', 'match', 'reseaux', 'resultats'].indexOf(lm.partie.phase) < 0) return;
+    const cle = lmCleImage(profil, pose, fond);
     if (lm.portraits[cle]) continue;
     try {
       lm.portraits[cle] = await moteur.portrait(profil, pose === 'Idle' ? 'Idle' : pose, fond);
@@ -238,33 +251,60 @@ async function lmPreparerImages(liste) {
   }
 }
 
+// ── TON PROFIL (avant les swipes) : la vraie identité d'Alex.
+function lmFicheAlex() {
+  const a = lm.partie.persona;
+  return '<div class="lm-fiche">' + lmImage('alex', 'Idle', LM_FONDS.alex, 'lm-fiche-photo') +
+    '<div class="lm-fiche-texte"><h2>' + lmEchapper(a.name) + ', <span>' + a.age + '</span></h2>' +
+    '<p class="lm-fiche-resume">' + lmEchapper(a.resumeFr.replace(/^[^—]*—\s*/, '')) + '</p></div></div>' +
+    '<ul class="lm-fiche-lignes">' + a.lignes.map(l => '<li>' + lmLu(l.lu) + lmFr(l.fr) + '</li>').join('') + '</ul>';
+}
+function lmRendreProfil(box) {
+  box.innerHTML = lmEntete() +
+    '<div class="lm-profil"><h1 class="lm-titre-pixel">TON PROFIL</h1>' +
+    '<p class="lm-consigne">Voilà qui tu es. Ce que tu raconteras ensuite, c’est une autre histoire.</p>' +
+    lmFicheAlex() +
+    '<p class="lm-note">Tes mensonges ne modifieront pas cette fiche. Tu peux la revoir à tout moment avec le bouton ' + lmIcone('moi') + '.</p>' +
+    '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmCommencerSwipes()">Commencer les swipes</button></div></div>';
+  lmPreparerImages([['alex', 'Idle', LM_FONDS.alex]].concat(lm.partie.paquet.slice(0, 2).map(id => [LuxMatchCore.profilParId(lm.partie, id), 'Idle', LM_FONDS.carte])));
+}
+function lmCommencerSwipes() {
+  LuxMatchCore.commencerSwipes(lm.partie);
+  LuxMatchSon.jouer('like');
+  lmRendre();
+}
+
 // ── SWIPE
 function lmRendreSwipe(box) {
   const p = lm.partie, profil = LuxMatchCore.carteCourante(p);
   const reste = p.paquet.length - p.indexCarte;
+  const t = profil.tinder;
   const carte = '<div class="lm-carte" id="lm-carte">' +
-      lmImage(profil, 'Idle', '#3a2a55', 'lm-carte-photo') +
+      lmImage(profil, 'Idle', LM_FONDS.carte, 'lm-carte-photo') +
       '<div class="lm-carte-infos"><h2>' + lmEchapper(profil.name) + ', <span>' + profil.age + '</span></h2>' +
-      '<p class="lm-lu" lang="lb">' + lmEchapper(profil.amis.bioLu) + '</p>' +
-      (lm.aideFr ? '<p class="lm-fr">' + lmEchapper(profil.amis.bioFr) + '</p>' : '') +
-      '<div class="lm-tags">' + profil.pix.bioLu.split(/[ .]+/).filter(m => m.length > 2).slice(0, 3).map(t => '<span lang="lb">' + lmEchapper(t) + '</span>').join('') + '</div>' +
+      lmLu(t.lu) + lmFr(t.fr) +
+      '<div class="lm-tags">' + t.tags.map(tag => '<span><b lang="lb">' + lmEchapper(tag.lu) + '</b>' + (lm.aideFr && tag.fr !== tag.lu ? '<small>' + lmEchapper(tag.fr) + '</small>' : '') + '</span>').join('') + '</div>' +
       '</div><div class="lm-tampon lm-tampon-oui">OUI</div><div class="lm-tampon lm-tampon-non">NON</div></div>';
   box.innerHTML = lmEntete() +
-    '<p class="lm-consigne">Swipe à droite si elle te plaît. ' + reste + ' profil' + (reste > 1 ? 's' : '') + ' à proximité.</p>' +
+    '<p class="lm-consigne">' + (p.indexCarte === 0 && !p.aimes.length ? 'Glisse à droite pour aimer, à gauche pour passer.' : reste + ' profil' + (reste > 1 ? 's' : '') + ' à proximité.') + '</p>' +
     lmTelephone('<div class="lm-app-match"><div class="lm-app-titre">lux<b>♥</b>match</div>' + carte +
       '<div class="lm-swipe-boutons"><button type="button" class="lm-rond lm-non" onclick="lmSwiper(false)" aria-label="Passer">' + lmIcone('croix') + '</button>' +
-      '<button type="button" class="lm-rond lm-oui" onclick="lmSwiper(true)" aria-label="J’aime">' + lmIcone('coeur') + '</button></div></div>') +
-    lmBoutonAide();
+      '<button type="button" class="lm-rond lm-oui" onclick="lmSwiper(true)" aria-label="J’aime">' + lmIcone('coeur') + '</button></div></div>');
   lmBrancherSwipe(document.getElementById('lm-carte'));
-  lmPreparerImages(p.paquet.slice(p.indexCarte).map(id => [LuxMatchCore.profilParId(p, id), 'Idle', '#3a2a55']));
+  lmPreparerImages(p.paquet.slice(p.indexCarte).map(id => [LuxMatchCore.profilParId(p, id), 'Idle', LM_FONDS.carte]));
 }
 function lmBoutonAide() {
   return '<button type="button" class="lm-aide-fr' + (lm.aideFr ? ' lm-actif' : '') + '" onclick="lmBasculerAide()" aria-pressed="' + lm.aideFr + '">Aide FR ' + (lm.aideFr ? 'activée' : 'désactivée') + '</button>';
 }
+// Le changement d'aide ne fait jamais perdre l'état affiché (lecture en cours, téléphone ouvert).
 function lmBasculerAide() {
   lm.aideFr = !lm.aideFr; lmEcrire('luxMatchAideFr', lm.aideFr);
-  if (lm.ecran === 'date') { lmMajDialogue(); const b = document.querySelector('#lm-jeu .lm-aide-fr'); if (b) b.outerHTML = lmBoutonAide(); }
-  else lmRendre();
+  if (lm.ecran !== 'date') { const moiOuvert = !!document.getElementById('lm-moi'); lmRendre(); if (moiOuvert) lmMoi(true); return; }
+  document.querySelectorAll('#lm-jeu .lm-aide-fr').forEach(b => { b.outerHTML = lmBoutonAide(); });
+  if (lm.attente === 'lecture' && lm.dernierResultat) lmAfficherResultat(lm.dernierResultat);
+  else if (!lm.attente) lmMajDialogue();
+  lmMajTelephoneDate();
+  lmMajMoi();
 }
 // Glisser la carte : au-delà de 90 px, la décision est prise.
 function lmBrancherSwipe(carte) {
@@ -295,7 +335,7 @@ function lmSwiper(aime) {
     const resultat = LuxMatchCore.swiper(lm.partie, aime);
     if (resultat === 'match') LuxMatchSon.jouer('match');
     lmRendre();
-    if (resultat === 'recommence') lmToast('Personne d’autre pour l’instant… on refait un tour !');
+    if (resultat === 'recommence') lmToast('Personne ne te plaît ? Une nouvelle série arrive.');
   }, 260);
 }
 
@@ -304,19 +344,18 @@ function lmRendreMatch(box) {
   const p = lm.partie, profil = p.profil;
   box.innerHTML = lmEntete() +
     '<div class="lm-match"><div class="lm-match-titre" aria-live="polite">IT’S A<br>MATCH!</div>' +
-    '<div class="lm-match-duo">' + lmImage('alex', 'Idle', '#2a3550', 'lm-match-photo lm-g') + '<span class="lm-match-coeur">♥</span>' +
-      lmImage(profil, 'Idle', '#3a2a55', 'lm-match-photo lm-d') + '</div>' +
-    '<p class="lm-match-texte">Toi et <b>' + lmEchapper(profil.name) + '</b>, rendez-vous ce soir au café.</p>' +
+    '<div class="lm-match-duo">' + lmImage('alex', 'Idle', LM_FONDS.alex, 'lm-match-photo lm-g') + '<span class="lm-match-coeur">♥</span>' +
+      lmImage(profil, 'Idle', LM_FONDS.carte, 'lm-match-photo lm-d') + '</div>' +
+    '<p class="lm-match-texte">Toi et <b>' + lmEchapper(profil.name) + '</b> : vous allez vous retrouver au café ce soir.</p>' +
     '<p class="lm-match-astuce">Tu peux y aller direct, ou d’abord jeter un œil à ses réseaux…</p>' +
-    '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmApresMatch(\'date\')">DATE</button>' +
-    '<button type="button" class="lm-btn lm-btn-violet" onclick="lmApresMatch(\'enqueter\')">ENQUÊTER</button></div></div>';
-  lmPreparerImages([['alex', 'Idle', '#2a3550'], [profil, 'Idle', '#3a2a55']].concat(lmListePhotos(profil)));
+    '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmApresMatch(\'date\')">Aller au date</button>' +
+    '<button type="button" class="lm-btn lm-btn-violet" onclick="lmApresMatch(\'enqueter\')">Enquêter</button></div></div>';
+  lmPreparerImages([['alex', 'Idle', LM_FONDS.alex], [profil, 'Idle', LM_FONDS.carte]].concat(lmListePhotos(profil)));
 }
+// Images d'une enquête : avatars des trois apps et photos Pix (si le compte est public).
 function lmListePhotos(profil) {
-  return (profil.pix.private ? [] : profil.pix.photos).map(ph => {
-    const [pose, fond] = LM_PHOTOS[ph.tag] || ['Idle', '#3a2a55'];
-    return [profil, pose, fond];
-  });
+  const photos = profil.pix.private ? [] : profil.pix.photos.map(ph => [profil, ph.pose, LM_SCENES[ph.scene] || LM_FONDS.carte]);
+  return [[profil, 'Idle', LM_FONDS.carte], [profil, 'Idle', LM_FONDS.pro], [profil, 'Idle', LM_FONDS.amis]].concat(photos);
 }
 function lmApresMatch(choix) {
   LuxMatchCore.apresMatch(lm.partie, choix);
@@ -325,40 +364,57 @@ function lmApresMatch(choix) {
 }
 
 // ── RÉSEAUX (préparation : consultation libre)
+// Petits chiffres d'ambiance stables (même post = mêmes réactions), sans hasard.
+function lmChiffre(texte, min, max) {
+  let h = 7;
+  for (let i = 0; i < texte.length; i++) h = (h * 31 + texte.charCodeAt(i)) % 9973;
+  return min + h % (max - min + 1);
+}
+function lmIlYa(jours) { return jours <= 0 ? 'aujourd’hui' : 'il y a ' + jours + ' j'; }
+function lmPseudo(profil) { return '@' + profil.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') + '.' + profil.city.toLowerCase().replace(/[^a-z]/g, '').slice(0, 4); }
+function lmPostsAmis(profil) {
+  // Posts de base + posts ajoutés par le scénario (variantes et préférences, lot 4).
+  return profil.amis.posts.concat((lm.partie && lm.partie.postsScenario) || []);
+}
 function lmContenuApps(profil, depuisDate) {
   if (!lm.app) {
-    return '<div class="lm-apps"><p class="lm-apps-titre">' + lmEchapper(profil.name) + ' sur les réseaux</p><div class="lm-apps-grille">' +
-      [['pix', 'Pix', 'photos'], ['pro', 'Pro', 'travail'], ['amis', 'Amis', 'perso']].map(([id, nom, sous]) =>
-        '<button type="button" class="lm-app-icone lm-app-' + id + '" onclick="lmOuvrirApp(\'' + id + '\')"><i>' + nom[0] + '</i><b>' + nom + '</b><small>' + sous + '</small></button>').join('') +
-      '</div>' + (depuisDate ? '' : '<p class="lm-apps-note">Réseaux fictifs. Une photo de voyage ne prouve pas une origine !</p>') + '</div>';
+    return '<div class="lm-apps"><p class="lm-apps-titre">Ses réseaux</p><div class="lm-apps-grille">' +
+      [['pix', 'Pix', 'Photos'], ['pro', 'Pro', 'Carrière'], ['amis', 'Amis', 'Vie perso']].map(([id, nom, sous]) =>
+        '<button type="button" class="lm-app-icone lm-app-' + id + '" onclick="lmOuvrirApp(\'' + id + '\')"><i>' + nom[0] + '</i><b>' + nom + '</b><small>' + sous + '</small>' +
+        (lm.partie.appsVues.indexOf(id) >= 0 ? '<em class="lm-vu" aria-label="déjà vu">✓</em>' : '') + '</button>').join('') +
+      '</div>' + (depuisDate ? '' : '<p class="lm-apps-note">Prends ton temps. La batterie ne se vide pas ici.</p>') + '</div>';
   }
-  const retour = '<button type="button" class="lm-app-retour" onclick="lmOuvrirApp(null)">' + lmIcone('retour') + ' Apps</button>';
-  const fr = texte => lm.aideFr && texte ? '<p class="lm-fr">' + lmEchapper(texte) + '</p>' : '';
+  const retour = '<button type="button" class="lm-app-retour" onclick="lmOuvrirApp(null)">' + lmIcone('retour') + ' Retour aux apps</button>';
   if (lm.app === 'pix') {
     const pix = profil.pix;
+    const tete = '<div class="lm-pix-tete">' + lmImage(profil, 'Idle', LM_FONDS.carte, 'lm-avatar') +
+      '<div><b>' + lmEchapper(lmPseudo(profil)) + '</b>' +
+      '<div class="lm-pix-compteurs"><span><b>' + (pix.private ? '—' : pix.photos.length) + '</b> posts</span><span><b>' + (pix.private ? '—' : pix.followers) + '</b> abonnés</span></div>' +
+      lmLu(pix.bio.lu) + lmFr(pix.bio.fr) + '</div></div>';
     if (pix.private) {
-      return retour + '<div class="lm-pix"><div class="lm-pix-tete">' + lmImage(profil, 'Idle', '#3a2a55', 'lm-avatar') +
-        '<div><b>@' + lmEchapper(profil.name.toLowerCase()) + '</b><p class="lm-lu" lang="lb">' + lmEchapper(pix.bioLu) + '</p>' + fr(pix.bioFr) + '</div></div>' +
-        '<div class="lm-prive">' + lmIcone('cadenas') + '<b>Compte privé</b><span>Ses photos ne sont visibles que par ses abonnés.</span></div></div>';
+      return retour + '<div class="lm-pix">' + tete + '<div class="lm-prive">' + lmIcone('cadenas') + '<b>Compte privé</b><span>Ses photos ne sont pas accessibles.</span></div></div>';
     }
-    return retour + '<div class="lm-pix"><div class="lm-pix-tete">' + lmImage(profil, 'Idle', '#3a2a55', 'lm-avatar') +
-      '<div><b>@' + lmEchapper(profil.name.toLowerCase()) + '</b><small>' + pix.followers + ' abonnés</small><p class="lm-lu" lang="lb">' + lmEchapper(pix.bioLu) + '</p>' + fr(pix.bioFr) + '</div></div>' +
-      '<div class="lm-pix-grille">' + pix.photos.map(ph => {
-        const [pose, fond] = LM_PHOTOS[ph.tag] || ['Idle', '#3a2a55'];
-        return '<figure>' + lmImage(profil, pose, fond, 'lm-pix-photo') + '<figcaption>' + lmEchapper(ph.captionFr) + '</figcaption></figure>';
-      }).join('') + '</div></div>';
+    return retour + '<div class="lm-pix">' + tete + '<div class="lm-pix-fil">' + pix.photos.map(ph =>
+      '<figure class="lm-pix-post">' + lmImage(profil, ph.pose, LM_SCENES[ph.scene] || LM_FONDS.carte, 'lm-pix-photo') +
+        '<figcaption><div class="lm-pix-meta"><span>♥ ' + ph.likes + '</span><span>' + lmIlYa(ph.jours) + '</span></div>' +
+        lmLu(ph.lu) + lmFr(ph.fr) + '</figcaption></figure>').join('') +
+      '<p class="lm-fin-fil">Fin des publications.</p></div></div>';
   }
   if (lm.app === 'pro') {
     const pro = profil.pro;
-    return retour + '<div class="lm-pro"><div class="lm-pro-banniere"></div>' + lmImage(profil, 'Idle', '#2a3550', 'lm-avatar lm-pro-avatar') +
-      '<h3>' + lmEchapper(profil.name) + '</h3><p class="lm-pro-poste">' + lmEchapper(pro.jobFr) + ' · ' + lmEchapper(pro.cityFr) + '</p>' +
-      '<dl><dt>Formation</dt><dd>' + lmEchapper(pro.educationFr) + '</dd><dt>Langues</dt><dd lang="lb">' + pro.langs.map(lmEchapper).join(', ') + '</dd></dl></div>';
+    return retour + '<div class="lm-pro"><div class="lm-pro-banniere"></div>' + lmImage(profil, 'Idle', LM_FONDS.pro, 'lm-avatar lm-pro-avatar') +
+      '<h3>' + lmEchapper(profil.name) + '</h3><p class="lm-pro-poste">' + lmEchapper(pro.poste) + ' · ' + lmEchapper(pro.ville) + '</p>' +
+      '<section class="lm-pro-bloc"><h4>À propos</h4>' + lmLu(pro.texte.lu) + lmFr(pro.texte.fr) + '</section>' +
+      '<dl><dt>Formation</dt><dd>' + lmEchapper(pro.formation) + '</dd><dt>Langues</dt><dd>' + lmEchapper(pro.langues) + '</dd></dl></div>';
   }
   const amis = profil.amis;
-  return retour + '<div class="lm-amis"><div class="lm-pix-tete">' + lmImage(profil, 'Idle', '#2d4a3a', 'lm-avatar') +
-    '<div><b>' + lmEchapper(profil.name) + '</b><p class="lm-lu" lang="lb">' + lmEchapper(amis.bioLu) + '</p>' + fr(amis.bioFr) + '</div></div>' +
-    amis.posts.map(post => '<article class="lm-post">' + (post.lu ? '<p class="lm-lu" lang="lb">' + lmEchapper(post.lu) + '</p>' : '') +
-      '<p class="lm-fr' + (post.lu ? '' : ' lm-fr-seul') + '">' + lmEchapper(post.fr) + '</p></article>').join('') + '</div>';
+  return retour + '<div class="lm-amis"><div class="lm-pix-tete">' + lmImage(profil, 'Idle', LM_FONDS.amis, 'lm-avatar') +
+    '<div><b>' + lmEchapper(profil.name) + '</b>' + lmLu(amis.bio.lu) + lmFr(amis.bio.fr) + '</div></div>' +
+    lmPostsAmis(profil).map((post, i) => '<article class="lm-post"><div class="lm-post-tete">' + lmImage(profil, 'Idle', LM_FONDS.amis, 'lm-avatar lm-avatar-mini') +
+      '<span><b>' + lmEchapper(profil.name) + '</b><small>' + lmIlYa(1 + i * 2) + '</small></span></div>' +
+      lmLu(post.lu) + lmFr(post.fr) +
+      '<div class="lm-post-pied"><span>♥ ' + lmChiffre(post.id, 3, 48) + '</span><span>' + lmChiffre(post.id + 'c', 1, 9) + ' commentaires</span></div></article>').join('') +
+    '<p class="lm-fin-fil">Fin des publications.</p></div>';
 }
 function lmOuvrirApp(app) {
   lm.app = app;
@@ -369,10 +425,10 @@ function lmOuvrirApp(app) {
 }
 function lmRendreReseaux(box) {
   const profil = lm.partie.profil;
-  box.innerHTML = lmEntete() + '<p class="lm-consigne">Enquête avant le rendez-vous : prends ton temps, ici la batterie ne baisse pas.</p>' +
+  box.innerHTML = lmEntete() + '<p class="lm-consigne">Enquête sur ' + lmEchapper(profil.name) + ' avant le rendez-vous.</p>' +
     lmTelephone('<div class="lm-tel-defile">' + lmContenuApps(profil, false) + '</div>') +
-    '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmAllerAuLook()">Choisir mon look →</button></div>' + lmBoutonAide();
-  lmPreparerImages([[profil, 'Idle', '#3a2a55'], [profil, 'Idle', '#2a3550'], [profil, 'Idle', '#2d4a3a']].concat(lmListePhotos(profil)));
+    '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmAllerAuLook()">Choisir mon look →</button></div>';
+  lmPreparerImages(lmListePhotos(profil));
 }
 function lmAllerAuLook() { lm.partie.phase = 'look'; lm.app = null; lmRendre(); }
 
@@ -382,14 +438,14 @@ function lmRendreLook(box) {
   lm.lookEnCours = look;
   box.innerHTML = lmEntete() +
     '<div class="lm-look"><div class="lm-apercu" id="lm-apercu"><span class="lm-apercu-attente">Alex se prépare…</span></div>' +
-    '<h2 class="lm-section">Ton look pour ' + lmEchapper(p.profil.name) + '</h2>' +
+    '<h2 class="lm-section">Quel look pour ce rendez-vous ?</h2>' +
     '<div class="lm-styles" role="radiogroup" aria-label="Style">' + LM_STYLES.map(s =>
       '<button type="button" role="radio" aria-checked="' + (look.style === s.id) + '" class="lm-choix' + (look.style === s.id ? ' lm-choisi' : '') + '" onclick="lmChoisirStyle(\'' + s.id + '\')">' + s.nom + '</button>').join('') + '</div>' +
     '<div class="lm-couleurs" role="radiogroup" aria-label="Couleur">' + LM_COULEURS.map(c =>
       '<button type="button" role="radio" aria-checked="' + (look.couleur === c.id) + '" class="lm-couleur' + (look.couleur === c.id ? ' lm-choisi' : '') + '" onclick="lmChoisirCouleur(\'' + c.id + '\')">' +
       '<i style="background:' + c.hex + '"></i><span lang="lb">' + lmEchapper(c.id) + '</span>' + (lm.aideFr ? '<small>' + c.fr + '</small>' : '') + '</button>').join('') + '</div>' +
     '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmCommencerDate(false)"' + (look.style && look.couleur ? '' : ' disabled') + '>Aller au rendez-vous</button>' +
-    '<button type="button" class="lm-btn lm-btn-lien" onclick="lmCommencerDate(true)">Passer (look actuel)</button></div>' +
+    '<button type="button" class="lm-btn lm-btn-lien" onclick="lmCommencerDate(true)">Garder cette tenue</button></div>' +
     '<button type="button" class="lm-btn lm-btn-lien lm-revoir" onclick="lmRevoirReseaux()">' + lmIcone('tel') + ' Revoir ses réseaux</button></div>';
   lmObtenir3D().then(m => m.apercu(document.getElementById('lm-apercu'), look)).then(() => {
     const t = document.querySelector('#lm-apercu .lm-apercu-attente'); if (t) t.remove();
@@ -435,7 +491,7 @@ function lmRendreDate(box) {
           '<div class="lm-jauge lm-jauge-aff"><span>' + lmIcone('coeur') + 'Affinité</span><b id="lm-aff-val">' + p.affinity + '</b><i><em id="lm-aff" style="width:' + p.affinity + '%"></em></i></div>' +
           '<div class="lm-jauge lm-jauge-sus"><span>' + lmIcone('oeil') + 'Suspicion</span><b id="lm-sus-val">' + p.suspicion + '</b><i><em id="lm-sus" style="width:' + p.suspicion + '%"></em></i></div>' +
         '</div>' +
-        '<button type="button" class="lm-icone-btn" onclick="lmMoi(true)" aria-label="Mon profil (Alex)">' + lmIcone('moi') + '</button>' +
+        '<button type="button" class="lm-icone-btn lm-moi-btn" onclick="lmMoi(true)" aria-label="Ma vraie identité">' + lmIcone('moi') + '<span>Moi</span></button>' +
         '<button type="button" class="lm-tel-btn" id="lm-tel-btn" onclick="lmOuvrirTelephoneDate()" aria-label="Ouvrir le téléphone">' + lmIcone('tel') + '<span id="lm-batterie">' + Math.ceil(p.battery) + '%</span></button>' +
       '</div>' +
       '<div class="lm-feedback" id="lm-feedback" aria-live="polite"></div>' +
@@ -445,7 +501,6 @@ function lmRendreDate(box) {
         '<div class="lm-bas-pied">' + lmBoutonAide() + '<span class="lm-demo">DÉMO · textes LU en relecture</span></div>' +
       '</div>' +
       '<div class="lm-panneau" id="lm-tel-date" hidden></div>' +
-      '<div class="lm-panneau lm-moi" id="lm-moi" hidden></div>' +
     '</div>';
   const scene = document.getElementById('lm-scene');
   lmObtenir3D().then(m => m.date(scene, p.profil, p.lookChoisi)).then(() => {
@@ -454,7 +509,7 @@ function lmRendreDate(box) {
   }).catch(() => {
     scene.classList.add('lm-scene-2d');
     const t = scene.querySelector('.lm-scene-attente');
-    if (t) t.innerHTML = lmImage(p.profil, 'Idle', '#3a2a55', 'lm-scene-portrait');
+    if (t) t.innerHTML = lmImage(p.profil, 'Idle', LM_FONDS.carte, 'lm-scene-portrait');
   });
   lmMajDialogue();
   if (lm.effetLookAAnnoncer) {
@@ -520,13 +575,19 @@ function lmRepondre(choixId) {
   if (lm.rendu3d && reaction) lm.rendu3d.reagir(reaction);
   LuxMatchSon.jouer(r.visuel === 'record_scratch' || r.contradiction ? 'scratch' : r.langue === false ? 'faux' : r.affinity > 0 ? 'bien' : 'bof');
   // Panneau à lire (correction de langue, réaction d'imprévu, contradiction) ou suite automatique.
-  const rep = document.getElementById('lm-reponses'), bulle = document.getElementById('lm-bulle');
   const aLire = r.correction || r.reaction || r.finAnticipee;
-  if (bulle) bulle.innerHTML = '<span class="lm-speaker">Toi</span><p class="lm-lu" lang="lb">' + lmEchapper(r.choix.lu || r.choix.luDraft || r.choix.text || r.choix.fr) + '</p>';
-  if (rep) rep.innerHTML = aLire ? lmHtmlLecture(r) : '';
-  if (aLire) { lm.attente = 'lecture'; return; }
-  lm.attente = 'auto';
-  lm.feedbackTimer = setTimeout(lmContinuer, 1300);
+  lm.dernierResultat = r;
+  lm.attente = aLire ? 'lecture' : 'auto';
+  lmAfficherResultat(r);
+  if (!aLire) lm.feedbackTimer = setTimeout(lmContinuer, 1300);
+}
+// Réponse d'Alex dans la bulle, puis panneau de lecture si nécessaire (réaffiché si l'aide FR change).
+function lmAfficherResultat(r) {
+  const rep = document.getElementById('lm-reponses'), bulle = document.getElementById('lm-bulle');
+  const texteLu = r.choix.lu || r.choix.luDraft || r.choix.text || '';
+  const texteFr = r.choix.fr || r.choix.meaningFr || '';
+  if (bulle) bulle.innerHTML = '<span class="lm-speaker">Toi</span>' + (texteLu ? lmLu(texteLu) + lmFr(texteFr) : '<p class="lm-fr">' + lmEchapper(texteFr) + '</p>');
+  if (rep) rep.innerHTML = lm.attente === 'lecture' ? lmHtmlLecture(r) : '';
 }
 function lmHtmlLecture(r) {
   let html = '<div class="lm-lecture">';
@@ -546,6 +607,7 @@ function lmHtmlLecture(r) {
 function lmContinuer() {
   clearTimeout(lm.feedbackTimer);
   lm.attente = null;
+  lm.dernierResultat = null;
   const p = lm.partie;
   if (!p || !lmVueActive()) return;
   LuxMatchCore.continuer(p);
@@ -614,19 +676,29 @@ function lmMajBatterie() {
   const btn = document.getElementById('lm-tel-btn'); if (btn) { btn.classList.toggle('lm-faible', niveau < 20); btn.classList.toggle('lm-vide', niveau <= 0); }
   const barre = document.querySelector('#lm-tel-date .lm-tel-date-barre'); if (barre) barre.classList.toggle('lm-faible', niveau < 20);
 }
-// Rappel de son propre profil (hors batterie) : la vérité, pas ce qu'on a raconté.
+// Vraie identité d'Alex (sans batterie), disponible sur tous les écrans :
+// la vérité, jamais ce qu'il a raconté pendant le rendez-vous.
 function lmMoi(ouvrir) {
+  let panneau = document.getElementById('lm-moi');
+  if (!ouvrir) { if (panneau) panneau.remove(); return; }
+  const box = lmBox();
+  if (!box || !lm.partie) return;
+  if (!panneau) {
+    panneau = document.createElement('div');
+    panneau.id = 'lm-moi'; panneau.className = 'lm-panneau lm-moi';
+    panneau.setAttribute('role', 'dialog'); panneau.setAttribute('aria-label', 'Ma vraie identité');
+    (box.querySelector('.lm-date') || box).appendChild(panneau);
+  }
+  lmMajMoi();
+  lmPreparerImages([['alex', 'Idle', LM_FONDS.alex]]);
+}
+function lmMajMoi() {
   const panneau = document.getElementById('lm-moi');
-  if (!panneau) return;
-  panneau.hidden = !ouvrir;
-  if (!ouvrir) return;
-  const a = lm.partie.persona;
-  panneau.innerHTML = '<div class="lm-moi-carte"><h3>Toi : ' + lmEchapper(a.name) + '</h3><ul>' +
-    '<li><span>Âge</span><b>' + a.age + ' ans</b></li><li><span>Origine</span><b lang="lb">' + lmEchapper(a.origin) + '</b></li>' +
-    '<li><span>Ville</span><b>' + lmEchapper(a.city) + '</b></li><li><span>Métier</span><b lang="lb">' + lmEchapper(a.job) + '</b></li>' +
-    '<li><span>Langue</span><b lang="lb">' + a.languages.map(lmEchapper).join(', ') + '</b></li></ul>' +
-    '<p>Ce que tu as raconté pendant le rendez-vous, à toi de t’en souvenir…</p>' +
-    '<button type="button" class="lm-btn lm-btn-or" onclick="lmMoi(false)">Fermer</button></div>';
+  if (!panneau || !lm.partie) return;
+  panneau.innerHTML = '<div class="lm-moi-carte"><h3>Ma vraie identité</h3>' + lmFicheAlex() +
+    '<p class="lm-note">Loisirs : un café le matin. Pas de foot, pas de dessin, pas de jeux vidéo.</p>' +
+    '<p class="lm-note">Tes mensonges ne modifieront pas cette fiche. Ce que tu as raconté, à toi de t’en souvenir…</p>' +
+    '<div class="lm-moi-boutons">' + lmBoutonAide() + '<button type="button" class="lm-btn lm-btn-or" onclick="lmMoi(false)">Fermer</button></div></div>';
 }
 function lmFermerPanneaux() { lmFermerTelephoneDate(); lmMoi(false); }
 

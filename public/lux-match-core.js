@@ -2,7 +2,8 @@
    Le même code tourne dans le navigateur (window.LuxMatchCore) et dans les tests Node.
 
    Une partie suit les phases :
-     swipe → match → (reseaux) → look → date → resultats
+     profil (vraie identité d'Alex) → swipe → match → (reseaux) → look → date → resultats
+   Profils, réseaux et identité d'Alex : data/jeux/lux-match/contenus-v02.json (bible A1.1).
    Le moteur ne fait que des calculs : l'interface lit l'état et appelle les fonctions
    (swiper, choisirLook, repondre, ouvrirTelephone, avancerTemps…).
 
@@ -46,19 +47,19 @@ const LuxMatchCore = (function () {
 
   // ─── Création d'une partie ────────────────────────────────────────────────
 
-  // donnees = { archetypes: <archetypes-v01.json>, dialogues: <dialogues-a11-v01.json> }
+  // donnees = { contenus: <contenus-v02.json>, archetypes: <archetypes-v01.json>, dialogues: <dialogues-a11-v01.json> }
   // options = { graine, parties (nombre de parties déjà jouées), accessible }
   function nouvellePartie(donnees, options) {
     const opt = options || {};
     const graine = opt.graine == null ? Math.floor(Math.random() * 1e9) : opt.graine;
     const hasard = creerHasard(graine);
-    const profils = donnees.archetypes.profiles;
+    const profils = donnees.contenus.profils;
     return {
       donnees, graine, hasard,
       parties: opt.parties || 0,
       accessible: !!opt.accessible,
-      persona: donnees.dialogues.pilotPlayerPersona,
-      phase: 'swipe',
+      persona: donnees.contenus.persona,
+      phase: 'profil',
       // Swipe : 4 à 6 cartes, match au 1er ou 2e « j'aime » (jamais de hasard frustrant).
       paquet: melanger(profils.map(p => p.id), hasard).slice(0, 4 + Math.floor(hasard() * 3)),
       indexCarte: 0,
@@ -91,7 +92,11 @@ const LuxMatchCore = (function () {
   }
 
   function profilParId(etat, id) {
-    return etat.donnees.archetypes.profiles.find(p => p.id === id) || null;
+    return etat.donnees.contenus.profils.find(p => p.id === id) || null;
+  }
+  // Après l'écran « TON PROFIL » : les swipes commencent.
+  function commencerSwipes(etat) {
+    if (etat.phase === 'profil') etat.phase = 'swipe';
   }
   function carteCourante(etat) {
     return etat.phase === 'swipe' ? profilParId(etat, etat.paquet[etat.indexCarte]) : null;
@@ -331,7 +336,7 @@ const LuxMatchCore = (function () {
     etat.telephoneOuvert = true;
     if (etat.phase !== 'date') return null;
     etat.ouverturesDate++;
-    const antiTelephone = etat.profil && etat.profil.phoneSignal && etat.profil.phoneSignal.trait === 'anti_phone';
+    const antiTelephone = etat.profil && etat.profil.phoneTolerance === 'anti_phone';
     if (!antiTelephone) return null;
     if (etat.ouverturesDate === 1) {
       // Piège annoncé dans le profil : joué après la réponse en cours (jamais au milieu).
@@ -386,7 +391,7 @@ const LuxMatchCore = (function () {
   }
 
   return {
-    nouvellePartie, carteCourante, swiper, apresMatch, noterApp,
+    nouvellePartie, commencerSwipes, carteCourante, swiper, apresMatch, noterApp,
     effetLook, choisirLook, commencerDate, repondre, continuer,
     ouvrirTelephone, fermerTelephone, avancerTemps, expressionsTravaillees,
     profilParId, creerHasard

@@ -14,7 +14,24 @@
 | `public/lux-match.js` + `.css` | Téléphone CSS (swipe glissé ou boutons), MATCH arcade, apps fictives Pix / Pro / Amis (compte privé respecté), LOOK 5 styles × 6 couleurs (noms LU), date : jauges, bulle LU + aide FR, réponses, corrections LU/FR, messages pixel, téléphone à batterie, fiche « Moi » hors batterie, résultats + expressions (question → bonne réponse, « à revoir » si faute). Sons Web Audio propres. Records `luxMatchRecord`, `luxMatchParties`, préférences `luxMatchAideFr`, `luxMatchSon` (par profil). Aucune écriture dans `luxProgress`. |
 | `public/lux-match-3d.js` | Module chargé à la demande : un renderer, rendu basse résolution « PS1 » (pixel ratio ×0,5, `image-rendering: pixelated`), portraits et « photos » Pix rendus en 3D (poses), aperçu du look qui tourne, café néon de nuit (Kenney Furniture), partenaire face caméra, Alex de dos, réactions (joie, déception, surprise, rire, zoom, disque rayé). Repli : portrait 2D si WebGL indisponible. |
 | `public/lux-match/` | GLB CC0 : 5 modèles de partenaires, 4 looks d'Alex, `anims.glb` (squelette commun), `cafe.glb` ; voir `CREDITS.md`. Régénération : `tools/lux-match/`. |
-| `server.js` | `GET /api/jeux/lux-match` → `{ archetypes, dialogues }` (copie hors ligne via SPEC 93). |
+| `server.js` | `GET /api/jeux/lux-match` → `{ contenus, archetypes, dialogues }` (copie hors ligne via SPEC 93). |
+| `data/jeux/lux-match/contenus-v02.json` | Contenus de la bible A1.1 structurés : `persona`, 6 `profils` (Tinder, Pix, Pro, Amis, répliques canoniques, réactions, fins), `variantes`, `preferences`, `beats`, `rappels`, `clotures`, `evenements`, `nonIntegres`, `correctionsAudit`, `finsAdaptees`. Chaque ligne LU porte `review` (voir ci-dessous). Généré par `tools/lux-match/contenus_v02.py`. |
+
+### Intégration de la bible éditoriale — suivi par lot
+
+| Lot | Statut | Contenu livré |
+|---|---|---|
+| 1 — Stabilité 3D | Fait | Teinture synchrone (Noémie/Emma partagent un modèle), scènes en chargement annulées à la sortie, aperçu du look face ↔ trois-quarts (±35°), badge DÉMO sous les réponses, `diagnostic()` (3 parties consécutives : 1 Alex en aperçu, 2 personnages au café). |
+| 2 — Profils et réseaux | Fait | Écran **TON PROFIL** avant les swipes (`phase: 'profil'`, `commencerSwipes`), bouton « Ma vraie identité » et bouton **FR** dans l'en-tête de tous les écrans, Tinder (bio + tags éditoriaux), Pix (pseudo, compteurs, fil de photos 3D, légendes LU, privé = aucune photo), Pro (À propos LU), Amis (posts LU avec indices de look/téléphone obligatoires). Aide FR : traduction **uniquement** si activée, partout (y compris fiche d'Alex, tags, posts, légendes). Le changement d'aide pendant une lecture ne bloque plus le rendez-vous. |
+
+**Statuts de relecture (`review`)** — aucun n'équivaut à une certification native :
+
+- `lecon` : phrase présente **telle quelle** dans `data/lecons` (vérifié par `test/lux-match-contenus.test.cjs`) ;
+- `lecon_modele` : même structure qu'une phrase de leçon, seul un nom, nombre, lieu ou une langue change ;
+- `audit_regles` : contrôlée par Claude (conjugaison, règle du n, prépositions, accords), hors leçons ;
+- `a_verifier_lod` : lexique ou tournure hors leçons (professions, adjectifs, expressions) à confirmer sur LOD.lu et par un locuteur.
+
+LOD.lu n'est pas joignable depuis l'environnement de Claude : **aucune ligne n'a été vérifiée sur LOD**. Les corrections appliquées à la bible (règle du n, « kee Kaffi », « keen Handy », « Librairie »…) sont listées dans `correctionsAudit`.
 
 **Ajouts de données (brouillons) :** `apparence3d` par profil ; `recallNodes`, `recallRules`, `contradictionReaction` ; corrections « Ech spille gär Fussball », « Wat fir en Déier sinn ech? », post anti-téléphone d'Emma en LU. **Tout reste à auditer sur LOD avant production.**
 
