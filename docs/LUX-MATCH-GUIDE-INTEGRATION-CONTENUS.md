@@ -282,3 +282,21 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 **Les textes LU nouveaux ne sont PAS livrés par § 21 ou Bible § 14** : ces documents livrent les **intentions et le mapping** des données. En tant que responsable d'intégration, Claude doit **d'abord rechercher les phrases LU réutilisables** dans la Bible, les leçons et `contenus-v02.json`, puis ne rédiger/faire valider que le nécessaire dans une banque JSON conforme. Toute phrase nouvelle doit passer par `grammaire_luxembourg.md`, les leçons et LOD.lu ; conserver `reviewStatus`. Ne pas prétendre qu'un brouillon a été certifié.
 
 **Aucune refonte** des modèles 3D, de la direction artistique, de la musique, du cloud, des scores de progression ou des autres jeux. **Livrer les lots par commits isolés sur `2.1`, avec tests et bilan honnête.**
+
+
+---
+
+## 17. Lot 13 — héros glandeur, questions clivantes et pièges vérifiables
+
+**NOUVELLE DIRECTION GAME DESIGN :** [SPEC 109 § 23](specs/SPEC-109.md#23-nouvelle-direction--dragueur-glandeur-choix-clivants-et-controles-de-bluff-27102026). **Décisions à implémenter, aucune modification du jeu par les commits documentaires.** Ce cadrage remplace la persona Alex banquier et affine §22 ; **mini-jeu arcade 3–5 min**, pas un RPG/chatbot ni un simulateur complet.
+
+**Brief Claude, dans cet ordre :**
+1. **Nom libre, fiche courte** : homme adulte par défaut ; seul le **prénom** est choisi ; persona fixe **sans emploi**, **pas sportif**, **loisir jeux vidéo**, glandeur comique. Conserver l'âge/origine canonique si nécessaire aux questions A1.1, mais ne pas obliger à remplir un formulaire. **Auditer les nombreuses dépendances d'Alex banquier** (`B08_PROFESSION`, `B09_WORKPLACE`, `EV_CLAIRE_JOB`, `lmFicheAlex`, modèles LU, scores, tests et gag « ex Alex ») avant toute migration. Générer les affichages du prénom depuis la valeur de partie, sans injection ni métadonnées répétées.
+2. **Questions clivantes** : elle peut **aimer ou détester** les chats, les voitures, les jeux, etc. ; « oui » n'est pas l'option positive universelle. Chaque grande sanction doit être fondée sur un **indice disponible en FR** ou un risque librement assumé dans la discussion. Surprise inconnue = punition légère/rattrapable, pas loterie à -15.
+3. **Vrais contrôles de bluff** : football/sport, lieux/monuments des pays, culture, films/jeux populaires ; un test n'existe **que si un claim antérieur le motive**, sa réponse factuelle est simple, durable et non ambiguë. Le joueur peut avouer/exagérer en plaisantant, avec une conséquence propre. Pas de culture générale rare et pas de malus **linguistique** pour une mauvaise réponse factuelle.
+4. **Rythme court** : 6–7 choix significatifs, 1 question posée par le joueur à la fille, 1–2 clivages, 1 test majeur si bluff testable, 1 gros gag au maximum, fin personnalisée. Réutiliser les scénarios et mécanismes existants plutôt qu'ajouter un nouveau moteur.
+5. **Récompenses visibles mais équilibrées** : une bonne lecture d'un indice ou rire vrai peut apporter un bonus important et bref, un bluff démasqué une sanction nette, **pas de -10/-15 caché pour une préférence imprévisible**. Montrer les variations près des jauges et le choc près du personnage sans cacher le visage.
+
+**Pilote recommandé** : Noémie (dessin/absurde) et Léna (sport/vanité) d'abord, puis quatre autres. Préciser les tables de préférences/faits `clueIds/claim/trigger/riskTier` dans les JSON et **rédiger/auditer le LU hors moteur**, avec `reviewStatus`. Tester 6 profils × 200 seeds après extension, français pour réseaux, LU au rendez-vous, 3 runs mobile et suite critique.
+
+**Hors périmètre** : LuxTrad, saisie libre, personnages féminins joueurs pour le moment, nouvel environnement, nouvelles filles, modèle d'IA runtime et toute modification de la progression des leçons.
