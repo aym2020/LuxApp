@@ -17,8 +17,8 @@ const LM_COULEURS = [
 ];
 // Fond des « photos » Pix selon la scène décrite dans la bible (le personnage est rendu en 3D).
 const LM_SCENES = {
-  parc: '#2d6b4f', foot: '#2f7a3a', reception: '#4a3a1c', ville_nuit: '#2a3550',
-  carnet: '#6a2c4a', atelier: '#8a2233', lisbonne: '#2a5f86', train: '#4a4060'
+  parc: '#8ec8e8', foot: '#1c2b4a', reception: '#2a1a22', ville_nuit: '#141a30',
+  carnet: '#3a2a24', atelier: '#c9b8a2', lisbonne: '#9fd0f0', train: '#4a4458'
 };
 const LM_FONDS = { carte: '#3a2a55', pro: '#2a3550', amis: '#2d4a3a', alex: '#2a3550' };
 // Titres de la bible (UI_RESULT_*) et textes génériques quand aucun fait personnalisé ne colle.
@@ -29,9 +29,10 @@ const LM_ISSUES = {
   malaise: { titre: 'MALAISE TOTAL', texte: 'Trop de contradictions : elle a préféré partir. Tes mensonges avaient une suite !' }
 };
 // Réaction 3D selon le visuel renvoyé par le moteur.
+// Gestes sobres par défaut ; grands effets (scratch, zoom) réservés aux gags rares.
 const LM_VISUELS = {
-  parle: 'parle', hoche: 'parle', sourire: 'parle', sourcil: 'surprise', rire: 'rire', froid: 'froid',
-  gene: 'deception', scratch: 'scratch', zoom: 'zoom', joie: 'joie'
+  parle: 'parle', hoche: 'hoche', sourire: 'sourire', sourcil: 'sourcil', rire: 'rire', froid: 'froid',
+  gene: 'gene', scratch: 'scratch', zoom: 'zoom', joie: 'joie'
 };
 
 const lm = {
@@ -118,7 +119,7 @@ async function lmChargerDonnees() {
 // Le moteur 3D est créé une seule fois (préchargé dès l'ouverture du jeu).
 function lmObtenir3D() {
   if (!lm.promesse3d) {
-    lm.promesse3d = import('./lux-match-3d.js?v=3').then(() => window.LuxMatch3D.creer());
+    lm.promesse3d = import('./lux-match-3d.js?v=4').then(() => window.LuxMatch3D.creer());
     lm.promesse3d.then(r => { lm.rendu3d = r; }).catch(() => { lm.promesse3d = null; });
   }
   return lm.promesse3d;
@@ -236,13 +237,13 @@ function lmImage(profil, pose, fond, classe) {
 async function lmPreparerImages(liste) {
   let moteur;
   try { moteur = await lmObtenir3D(); } catch (_) { return; }
-  for (const [profil, pose, fond] of liste) {
+  for (const [profil, pose, fond, nomScene] of liste) {
     // Plus de portraits une fois l'aperçu 3D ou le rendez-vous affiché (même modèles).
     if (!lm.partie || ['profil', 'swipe', 'match', 'reseaux', 'resultats'].indexOf(lm.partie.phase) < 0) return;
     const cle = lmCleImage(profil, pose, fond);
     if (lm.portraits[cle]) continue;
     try {
-      lm.portraits[cle] = await moteur.portrait(profil, pose === 'Idle' ? 'Idle' : pose, fond);
+      lm.portraits[cle] = await moteur.portrait(profil, pose === 'Idle' ? 'Idle' : pose, fond, nomScene ? 320 : 240, nomScene ? 400 : 300, nomScene);
     } catch (_) { continue; }
     document.querySelectorAll('#lm-jeu [data-image="' + cle.replace(/"/g, '') + '"]').forEach(el => {
       const img = document.createElement('img');
@@ -356,7 +357,7 @@ function lmRendreMatch(box) {
 }
 // Images d'une enquête : avatars des trois apps et photos Pix (si le compte est public).
 function lmListePhotos(profil) {
-  const photos = profil.pix.private ? [] : profil.pix.photos.map(ph => [profil, ph.pose, LM_SCENES[ph.scene] || LM_FONDS.carte]);
+  const photos = profil.pix.private ? [] : profil.pix.photos.map(ph => [profil, ph.pose, LM_SCENES[ph.scene] || LM_FONDS.carte, ph.scene]);
   return [[profil, 'Idle', LM_FONDS.carte], [profil, 'Idle', LM_FONDS.pro], [profil, 'Idle', LM_FONDS.amis]].concat(photos);
 }
 function lmApresMatch(choix) {
@@ -629,7 +630,7 @@ function lmOuvrirTelephoneDate() {
   const p = lm.partie;
   if (!p || p.phase !== 'date') return;
   const evenement = LuxMatchCore.ouvrirTelephone(p);
-  if (evenement === 'batterie_vide') { lmToast('Batterie vide : ton téléphone est éteint.'); LuxMatchSon.jouer('vide'); return; }
+  if (evenement === 'batterie_vide') { lmToast('Batterie à plat. Maintenant, improvise.'); LuxMatchSon.jouer('vide'); return; }
   LuxMatchSon.jouer('tel');
   if (evenement === 'piege_telephone') lmToast(p.profil.name + ' a remarqué ton téléphone…');
   if (evenement === 'malus_telephone') { lmFeedback([{ texte: '-5 ♥', classe: 'lm-moins' }]); lmMajJauges(); if (lm.rendu3d) lm.rendu3d.reagir('froid'); }
@@ -645,7 +646,7 @@ function lmMajTelephoneDate() {
   const niveau = Math.ceil(p.battery);
   panneau.innerHTML = '<div class="lm-tel-date-barre' + (niveau < 20 ? ' lm-faible' : '') + '"><span>Batterie <b id="lm-batterie-tel">' + niveau + '%</b></span><i><em id="lm-batterie-jauge" style="width:' + niveau + '%"></em></i></div>' +
     lmTelephone('<div class="lm-tel-defile">' + lmContenuApps(p.profil, true) + '</div>', niveau < 20 ? 'lm-tel-faible' : '') +
-    '<button type="button" class="lm-btn lm-btn-or" onclick="lmFermerTelephoneDate()">Ranger le téléphone</button>';
+    '<button type="button" class="lm-btn lm-btn-or" onclick="lmFermerTelephoneDate()">Revenir au rendez-vous</button>';
 }
 function lmFermerTelephoneDate() {
   const p = lm.partie;
@@ -667,9 +668,11 @@ function lmDemarrerBatterie() {
     if (LuxMatchCore.avancerTemps(p, dt) === 'batterie_vide') {
       LuxMatchSon.jouer('vide');
       lmFermerTelephoneDate();
-      lmToast('Plus de batterie ! Il faudra compter sur ta mémoire.');
+      lmToast('Batterie à plat. Maintenant, improvise.');
       return;
     }
+    // Alerte une seule fois par partie quand la batterie passe sous 20 %.
+    if (p.battery < 20 && !p.alerteBatterie) { p.alerteBatterie = true; lmToast('20 % ! Fais vite.'); LuxMatchSon.jouer('tel'); }
     lmMajBatterie();
   };
   lm.boucleBatterie = requestAnimationFrame(image);
@@ -718,7 +721,8 @@ function lmTerminer() {
   p.nouveauRecord = p.fin.score > record;
   if (p.nouveauRecord) lmEcrire('luxMatchRecord', p.fin.score);
   LuxMatchSon.jouer(p.fin.issue === 'nouveau_rdv' ? 'fin' : 'bof');
-  if (p.fin.issue === 'nouveau_rdv' && lm.rendu3d) lm.rendu3d.reagir('joie');
+  // Seuls moments « animation complète » : la fin heureuse (Victory) et le malaise (Defeat).
+  if (lm.rendu3d) lm.rendu3d.reagir(p.fin.issue === 'nouveau_rdv' ? 'joie' : p.fin.issue === 'malaise' ? 'deception' : 'hoche');
   setTimeout(() => { if (lm.partie === p && lmVueActive()) lmRendre(); }, 900);
 }
 function lmRendreResultats(box) {
@@ -754,7 +758,7 @@ let lmPrechargeLance = false;
 function lmPrecharger() {
   if (lmPrechargeLance) return;
   lmPrechargeLance = true;
-  const lancer = () => import('./lux-match-3d.js?v=3')
+  const lancer = () => import('./lux-match-3d.js?v=4')
     .then(() => window.LuxMatch3D.precharger(['Casual_Female', 'Casual2_Female', 'Casual3_Female', 'Suit_Female', 'Doctor_Female_Young', 'Casual_Male']))
     .catch(() => { lmPrechargeLance = false; });
   if (typeof requestIdleCallback === 'function') requestIdleCallback(lancer, { timeout: 2500 });

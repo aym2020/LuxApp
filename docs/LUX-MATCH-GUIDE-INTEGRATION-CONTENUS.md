@@ -1,6 +1,8 @@
 # Lux Match — Guide d'intégration des contenus pour Claude
 
-**Branche :** `2.1` · **Statut : DOCUMENT DE PASSATION, aucun code modifié** · **Date :** 27 octobre 2026 · **Responsable des textes :** bible éditoriale ci-dessous.
+**Branche :** `2.1` · **Statut : passation exécutée — bible intégrée le 27/10/2026 (lots 1–5)** · **Date :** 27 octobre 2026 · **Responsable des textes :** bible éditoriale ci-dessous.
+
+> **État réel (27/10/2026) :** les contenus de la bible sont structurés dans `data/jeux/lux-match/contenus-v02.json` (généré par `tools/lux-match/contenus_v02.py`, statut de relecture par ligne : `lecon`, `lecon_modele`, `audit_regles`, `a_verifier_lod`) et lus par `public/lux-match-core.js` ; les JSON v01 ne sont plus servis. Ce qui est fait, non intégré et encore ouvert : [SPEC 109 › Suivi par lot](specs/SPEC-109.md#intégration-de-la-bible-éditoriale--suivi-par-lot). Le reste de ce guide décrit la passation d'origine.
 
 > **Lis d'abord ce fichier, puis les sections de la bible qui concernent le lot.** Ne lis pas 1 000 lignes d'un seul bloc pour ensuite improviser. Tous les textes candidats sont déjà rédigés ; ton travail consiste à **auditer, structurer, raccorder et tester**, pas à inventer le scénario. Tant que la validation luxembourgeoise n'est pas obtenue, ces nouvelles répliques sont **des propositions, pas du contenu publiable**. Le moteur 3D en cours de correction par Claude est hors périmètre de cette passation.
 

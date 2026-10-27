@@ -221,8 +221,85 @@ async function creer() {
     if (!racine.userData.anim) racine.userData.anim = animateur(racine, clips);
     return racine;
   }
-  // Portrait : plan taille, pose figée, fond en dégradé.
-  async function portrait(profil, pose, fond, largeur, hauteur) {
+  // ── Décors des « photos » Pix (bible §5 : la photo montre ce que dit la légende).
+  // Petites scènes low-poly construites une fois, en primitives (aucun nouveau fichier).
+  const mat = couleur => new THREE.MeshLambertMaterial({ color: couleur, flatShading: true });
+  const lueur = couleur => new THREE.MeshBasicMaterial({ color: couleur, toneMapped: false });
+  function boite(l, h, p, couleur, x, y, z) { const m = new THREE.Mesh(new THREE.BoxGeometry(l, h, p), couleur.isMaterial ? couleur : mat(couleur)); m.position.set(x, y, z); return m; }
+  function cylindre(r, h, couleur, x, y, z, faces) { const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, faces || 8), mat(couleur)); m.position.set(x, y, z); return m; }
+  function plancher(couleur) { const m = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), mat(couleur)); m.rotation.x = -Math.PI / 2; return m; }
+  function arbre(x, z, h) {
+    const g = new THREE.Group();
+    g.add(cylindre(0.08, h * 0.4, '#6b4a2a', 0, h * 0.2, 0, 6));
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(h * 0.28, h * 0.75, 7), mat('#3f8f4a')); cone.position.y = h * 0.72; g.add(cone);
+    g.position.set(x, 0, z); return g;
+  }
+  function immeuble(x, z, l, h, couleur, fenetres) {
+    const g = new THREE.Group();
+    g.add(boite(l, h, 0.6, couleur, 0, h / 2, 0));
+    for (let i = 0; i < 3; i++) for (let j = 0; j < Math.floor(h / 0.5); j++) {
+      if ((i + j * 2) % 3 === 0) continue;
+      g.add(boite(l * 0.18, 0.2, 0.02, fenetres.isMaterial ? fenetres : mat(fenetres), -l * 0.3 + i * l * 0.3, 0.35 + j * 0.5, 0.31));
+    }
+    g.position.set(x, 0, z); return g;
+  }
+  const FABRIQUES = {
+    parc: g => { g.add(plancher('#4f8f4a'), boite(1.1, 0.01, 8, '#cdb98f', 0.2, 0.005, -2)); [[-1.6, -1.2, 2.2], [1.7, -1.6, 2.6], [-1.1, -3, 2.8], [1.2, -3.4, 2.4]].forEach(a => g.add(arbre(...a))); },
+    foot: g => {
+      g.add(plancher('#3f9a44'), boite(6, 0.01, 0.06, '#ffffff', 0, 0.01, -1.2));
+      [-1.1, 1.1].forEach(x => g.add(cylindre(0.04, 1.2, '#ffffff', x, 0.6, -2.6)));
+      g.add(boite(2.28, 0.08, 0.08, '#ffffff', 0, 1.2, -2.6));
+      const ballon = new THREE.Mesh(new THREE.IcosahedronGeometry(0.17, 0), mat('#f4f4f4')); ballon.position.set(0.55, 0.17, 0.5); g.add(ballon);
+    },
+    reception: g => {
+      g.add(plancher('#3a2a22'), boite(8, 3, 0.1, '#4a2e3a', 0, 1.5, -2.4));
+      for (let i = 0; i < 9; i++) { const b = new THREE.Mesh(new THREE.SphereGeometry(0.06, 6, 4), lueur('#ffd27a')); b.position.set(-2 + i * 0.5, 2.1 - Math.sin(i / 8 * Math.PI) * 0.2, -2.3); g.add(b); }
+      [[-1.2, -0.6], [1.3, -0.9]].forEach(([x, z]) => { g.add(cylindre(0.32, 0.04, '#e9e2d6', x, 1.05, z, 10), cylindre(0.04, 1.05, '#2a2433', x, 0.52, z)); g.add(cylindre(0.035, 0.16, '#f4f0ff', x + 0.1, 1.15, z)); });
+    },
+    ville_nuit: g => {
+      const allume = lueur('#ffd36a');
+      g.add(plancher('#1d2236'));
+      [[-1.8, -2.6, 1.1, 3.2, '#2b3557'], [-0.5, -3.2, 1.2, 4.2, '#323c63'], [0.9, -2.8, 1, 2.8, '#283252'], [2.1, -3.1, 1.2, 3.8, '#2f3a5e']].forEach(([x, z, l, h, c]) => g.add(immeuble(x, z, l, h, c, allume)));
+      const lune = new THREE.Mesh(new THREE.SphereGeometry(0.22, 10, 6), lueur('#f4f0d8')); lune.position.set(-1.6, 3.2, -3.5); g.add(lune);
+    },
+    carnet: g => {
+      g.add(plancher('#4a3428'), boite(2.2, 0.06, 0.9, '#7a5236', 0, 0.82, 0.55), cylindre(0.05, 0.8, '#3a2a20', 0, 0.4, 0.55));
+      g.add(boite(0.42, 0.03, 0.3, '#f6f1e6', -0.25, 0.87, 0.6), boite(0.42, 0.031, 0.3, '#f6f1e6', 0.2, 0.87, 0.6));
+      const stylo = cylindre(0.015, 0.28, '#d8343c', 0.45, 0.88, 0.55, 6); stylo.rotation.z = Math.PI / 2; stylo.rotation.y = 0.5; g.add(stylo);
+    },
+    atelier: g => {
+      g.add(plancher('#5a4436'), boite(8, 3, 0.1, '#e8dccb', 0, 1.5, -2.2));
+      const chevalet = new THREE.Group();
+      [-0.35, 0.35].forEach(x => { const pied = boite(0.05, 1.7, 0.05, '#8a6a46', x, 0.85, 0); pied.rotation.z = x > 0 ? -0.12 : 0.12; chevalet.add(pied); });
+      chevalet.add(boite(0.5, 0.65, 0.03, '#d8343c', -0.13, 1.25, 0.05), boite(0.26, 0.65, 0.031, '#2f6fd6', 0.25, 1.25, 0.05));
+      chevalet.position.set(1.15, 0, -0.6); chevalet.rotation.y = -0.4; g.add(chevalet);
+    },
+    lisbonne: g => {
+      g.add(plancher('#bfb3a0'));
+      [[-1.9, -3, 1.3, 2.6, '#f2a7b5'], [-0.5, -3.3, 1.2, 3.1, '#f2d27a'], [0.9, -3, 1.2, 2.4, '#9fd2e8'], [2.2, -3.2, 1.2, 2.9, '#f6ede0']].forEach(([x, z, l, h, c]) => g.add(immeuble(x, z, l, h, c, '#4a6f8a')));
+      const tram = new THREE.Group();
+      tram.add(boite(2.1, 0.9, 0.9, '#f2c230', 0, 0.75, 0), boite(2.1, 0.12, 0.9, '#fdfdfd', 0, 1.25, 0), boite(1.8, 0.3, 0.92, '#3a4a5a', 0, 0.95, 0));
+      tram.position.set(1.4, 0, -1.6); tram.rotation.y = -0.25; g.add(tram);
+    },
+    train: g => {
+      g.add(plancher('#3a3442'), boite(8, 3, 0.1, '#6a6476', 0, 1.5, -1.4));
+      const vitre = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.9), new THREE.MeshBasicMaterial({ map: textureCanvas(64, 24, (c, l, h) => {
+        c.fillStyle = '#9fd0f0'; c.fillRect(0, 0, l, h); c.fillStyle = '#5aa05a';
+        c.beginPath(); c.moveTo(0, h); for (let x = 0; x <= l; x += 8) c.lineTo(x, h * 0.55 + Math.sin(x / 9) * 3); c.lineTo(l, h); c.fill();
+      }), toneMapped: false }));
+      vitre.position.set(0, 1.55, -1.34); g.add(vitre);
+      [-1.4, 1.4].forEach(x => g.add(boite(0.9, 1.3, 0.25, '#2f5f9a', x, 0.65, -0.6)));
+    }
+  };
+  const decors = {};
+  function decor(nom) {
+    if (!FABRIQUES[nom]) return null;
+    if (!decors[nom]) { decors[nom] = new THREE.Group(); FABRIQUES[nom](decors[nom]); }
+    return decors[nom];
+  }
+
+  // Portrait : plan taille, pose figée, fond uni ; avec scene, plan large dans son décor.
+  async function portrait(profil, pose, fond, largeur, hauteur, nomScene) {
     const l = largeur || 240, h = hauteur || 300;
     const modele = profil === 'alex' ? STYLES.casual.modele : profil.apparence3d.modele;
     const gltf = await charger(modele);
@@ -234,15 +311,18 @@ async function creer() {
     scenePortrait.add(racine);
     racine.rotation.y = -0.25;
     scenePortrait.background = new THREE.Color(fond || '#3a2a55');
+    const fondDecor = decor(nomScene);
+    if (fondDecor) scenePortrait.add(fondDecor);
     camPortrait.aspect = l / h; camPortrait.updateProjectionMatrix();
-    const plein = nomPose !== 'Idle';
-    camPortrait.position.set(0.25, plein ? 1.05 : 1.32, plein ? 4.6 : 2.9);
-    camPortrait.lookAt(0, plein ? 0.9 : 1.22, 0);
+    const plein = nomPose !== 'Idle' || !!fondDecor;
+    if (fondDecor) { camPortrait.position.set(0.4, 1.35, 5.2); camPortrait.lookAt(0.15, 1.0, -0.6); }
+    else { camPortrait.position.set(0.25, plein ? 1.05 : 1.32, plein ? 4.6 : 2.9); camPortrait.lookAt(0, plein ? 0.9 : 1.22, 0); }
     const ancien = { l: canvas.width, h: canvas.height, ratio: renderer.getPixelRatio() };
     renderer.setPixelRatio(1); renderer.setSize(l, h, false);
     renderer.render(scenePortrait, camPortrait);
     const url = canvas.toDataURL('image/webp', 0.86);
     scenePortrait.remove(racine);
+    if (fondDecor) scenePortrait.remove(fondDecor);
     renderer.setPixelRatio(ancien.ratio); renderer.setSize(ancien.l / ancien.ratio, ancien.h / ancien.ratio, false);
     if (rendu) redimensionner();
     return url;
@@ -366,9 +446,21 @@ async function creer() {
   let vieEtincelles = 0;
 
   const camDate = new THREE.PerspectiveCamera(44, 1, 0.1, 40);
-  const VISEE = new THREE.Vector3(0.1, 1.0, -0.9);
-  const POSE_CAM = new THREE.Vector3(-0.85, 1.95, 3.3);
-  const etatDate = { partenaire: null, alex: null, temps: 0, zoom: 0, secousse: 0, fige: 0, parle: 0, tete: null };
+  const VISEE = new THREE.Vector3(0.1, 0.62, -0.9);   // visée basse : son visage reste au-dessus des réponses
+  const VISEE_ZOOM = new THREE.Vector3(0.2, 1.4, -0.85); // zoom dramatique : sur son visage
+  const viseeCourante = new THREE.Vector3();
+  const POSE_CAM = new THREE.Vector3(-0.55, 1.7, 3.7);
+  const etatDate = { partenaire: null, alex: null, temps: 0, zoom: 0, secousse: 0, fige: 0, parle: 0, tete: null, geste: null, decalage: [0, 0, 0] };
+  // Gestes sobres de la tête (SPEC §12.5) : ajoutés par-dessus l'animation Idle.
+  // t va de 0 à 1 ; chaque geste renvoie [hocher (x), tourner (y), pencher (z)] en radians.
+  const GESTES = {
+    hoche: { duree: 0.9, forme: t => [Math.sin(t * Math.PI * 4) * 0.16 * (1 - t), 0, 0] },
+    sourire: { duree: 1.1, forme: t => [-0.05 * Math.sin(t * Math.PI), 0, 0.14 * Math.sin(t * Math.PI)] },
+    sourcil: { duree: 1.5, forme: t => { const m = Math.min(1, t * 4) * Math.min(1, (1 - t) * 3); return [-0.12 * m, 0.12 * m, -0.18 * m]; } },
+    gene: { duree: 1.3, forme: t => { const m = Math.sin(t * Math.PI); return [0.28 * m, -0.1 * m, 0]; } },
+    froid: { duree: 1.8, forme: t => { const m = Math.min(1, t * 3) * Math.min(1, (1 - t) * 2); return [0.05 * m, 0.38 * m, 0]; } },
+    rire: { duree: 1.2, forme: t => [-0.2 * Math.sin(t * Math.PI) + Math.sin(t * Math.PI * 10) * 0.06 * (1 - t), 0, Math.sin(t * Math.PI * 5) * 0.05] }
+  };
 
   async function date(cible, profil, look) {
     const numero = ++demande;
@@ -385,11 +477,13 @@ async function creer() {
       if (ancien && ancien !== partenaire && ancien !== alex && ancien.parent === sceneDate) sceneDate.remove(ancien);
     });
     partenaire.position.set(0.2, 0, -0.85); partenaire.rotation.y = -0.18;
-    alex.position.set(-0.95, 0, 1.55); alex.rotation.y = Math.PI + 0.45;
+    alex.position.set(-1.2, 0, 1.45); alex.rotation.y = Math.PI + 0.55;
     sceneDate.add(partenaire); sceneDate.add(alex);
     partenaire.userData.anim.jouer('Idle'); alex.userData.anim.jouer('Idle');
     etatDate.partenaire = partenaire; etatDate.alex = alex;
-    etatDate.tete = null;
+    if (etatDate.tete) { etatDate.tete.rotation.x -= etatDate.decalage[0]; etatDate.tete.rotation.y -= etatDate.decalage[1]; etatDate.tete.rotation.z -= etatDate.decalage[2]; }
+    etatDate.decalage = [0, 0, 0];
+    etatDate.tete = null; etatDate.geste = null; etatDate.zoom = 0; etatDate.fige = 0;
     partenaire.traverse(o => { if (o.isBone && /^Head$/i.test(o.name)) etatDate.tete = o; });
     attacher(cible, { scene: sceneDate, camera: camDate, avancer: avancerDate });
     return true;
@@ -399,10 +493,21 @@ async function creer() {
     e.temps += dt;
     const ralenti = e.fige > 0 ? 0 : dt;
     e.fige = Math.max(0, e.fige - dt);
+    // On retire d'abord le décalage de tête de l'image précédente (l'Idle n'anime pas
+    // forcément la tête : sans cela, les gestes s'additionneraient d'image en image).
+    if (e.tete) { e.tete.rotation.x -= e.decalage[0]; e.tete.rotation.y -= e.decalage[1]; e.tete.rotation.z -= e.decalage[2]; }
     if (e.partenaire) e.partenaire.userData.anim.avancer(ralenti);
     if (e.alex) e.alex.userData.anim.avancer(ralenti);
-    // Elle « parle » : petits hochements de tête après chaque nouvelle réplique.
-    if (e.tete && e.parle > 0) { e.parle -= dt; e.tete.rotation.x += Math.sin(e.temps * 14) * 0.012; }
+    // Nouveau décalage : elle « parle » (petits hochements) + geste en cours (sourcil, regard…).
+    const d = [0, 0, 0];
+    if (e.parle > 0) { e.parle -= dt; d[0] += Math.sin(e.temps * 14) * 0.05 * Math.min(1, e.parle); }
+    if (e.geste) {
+      e.geste.t += dt / e.geste.modele.duree;
+      if (e.geste.t >= 1) e.geste = null;
+      else { const f = e.geste.modele.forme(e.geste.t); d[0] += f[0]; d[1] += f[1]; d[2] += f[2]; }
+    }
+    if (e.tete) { e.tete.rotation.x += d[0]; e.tete.rotation.y += d[1]; e.tete.rotation.z += d[2]; }
+    e.decalage = d;
     // Caméra : légère respiration, zoom dramatique et secousse sur les réactions.
     e.zoom = Math.max(0, e.zoom - dt * 0.6);
     e.secousse = Math.max(0, e.secousse - dt);
@@ -410,7 +515,7 @@ async function creer() {
     camDate.position.lerpVectors(POSE_CAM, new THREE.Vector3(0.1, 1.45, 0.6), z * 0.85);
     camDate.position.x += Math.sin(e.temps * 0.5) * 0.03 + (e.secousse ? (Math.random() - 0.5) * 0.08 : 0);
     camDate.position.y += Math.sin(e.temps * 0.8) * 0.015;
-    camDate.lookAt(VISEE);
+    camDate.lookAt(viseeCourante.lerpVectors(VISEE, VISEE_ZOOM, z));
     halo.material.opacity = 0.75 + Math.sin(e.temps * 3) * 0.15;
     guirlande.forEach((b, i) => { b.material.opacity = 0.75 + Math.sin(e.temps * 2 + i * 1.7) * 0.25; });
     if (vieEtincelles > 0) {
@@ -432,12 +537,19 @@ async function creer() {
     }
     vieEtincelles = 1.3; etincelles.visible = true;
   }
-  // type : parle, joie, deception, surprise, rire, zoom, scratch, froid, pas_mal
+  // Réactions sobres (gestes de tête) : hoche, sourire, sourcil, gene, froid, rire.
+  // Grands effets réservés aux moments rares : joie (fin heureuse), scratch, zoom, deception (fin ratée).
   function reagir(type) {
     const e = etatDate;
     if (!e.partenaire) return;
     const anim = e.partenaire.userData.anim;
     if (type === 'parle') { e.parle = 1.1; return; }
+    if (GESTES[type]) {
+      e.geste = { modele: GESTES[type], t: 0 };
+      if (type === 'rire') eclater('#ffb3ff');
+      if (type === 'froid') e.zoom = Math.max(e.zoom, 0.35);
+      return;
+    }
     if (type === 'joie') { anim.jouer('Victory', true); eclater('#ffd27a'); }
     else if (type === 'pas_mal') { anim.jouer('Jump', true); }
     else if (type === 'rire') { anim.jouer('Jump', true); eclater('#ffb3ff'); }

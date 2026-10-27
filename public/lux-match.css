@@ -292,6 +292,18 @@
   #view-luxmatch .lm-feedback.lm-visible{opacity:1}
   #view-luxmatch .lm-carte{transition:none}
 }
+/* Petits écrans (320×640…) : le panneau du bas reste entier, défilable en dernier recours. */
+#view-luxmatch .lm-bas{max-height:72dvh;overflow-y:auto;overscroll-behavior:contain}
+@media(max-height:700px){
+  #view-luxmatch .lm-reponse{min-height:44px;padding:6px 12px}
+  #view-luxmatch .lm-reponses{gap:5px}
+  #view-luxmatch .lm-bulle{padding:9px 12px;min-height:0}
+  #view-luxmatch .lm-bulle .lm-lu{font-size:16px}
+  #view-luxmatch .lm-reponse .lm-lu{font-size:15px}
+  #view-luxmatch .lm-impression{margin-bottom:5px;padding:4px 8px;font-size:12px}
+  #view-luxmatch .lm-bas-pied .lm-demo{display:none}
+  #view-luxmatch .lm-aide-fr{min-height:34px}
+}
 @media(max-width:419px){
   #view-luxmatch .lm-retour span{display:none}
 }

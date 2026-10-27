@@ -1,5 +1,8 @@
 # LUX MATCH — Bible éditoriale A1.1 : profils, réseaux, dialogues, événements et fins
 
+
+> **Intégration (27/10/2026) :** ce corpus est repris, avec les corrections d’audit tracées (`correctionsAudit`, `finsAdaptees`), dans `data/jeux/lux-match/contenus-v02.json`. Le texte ci-dessous reste la référence d’auteur ; voir [SPEC 109 › Suivi par lot](specs/SPEC-109.md#intégration-de-la-bible-éditoriale--suivi-par-lot).
+
 **État : V1, contenu de conception à intégrer / relire, pas un jeu modifié.** Branche de référence : `2.1` · Date : 27/10/2026 · Liens : [SPEC 109](specs/SPEC-109.md) · [Profils existants](../data/jeux/lux-match/archetypes-v01.json) · [Dialogues existants](../data/jeux/lux-match/dialogues-a11-v01.json).
 
 > **Contrat pour Claude** — Ce document est le **corpus d'auteur**, pas un ordre de modifier immédiatement le moteur. Les identifiants des scènes, lignes et conditions sont destinés à être intégrés en données structurées après audit. **Ne pas copier/coller des phrases en production sans contrôle LOD/grammaire**, ni créer une deuxième source de vérité concurrente. Ne pas retoucher Lux Runner, le renderer Three.js, le cloud ou `luxProgress` avec ce lot.

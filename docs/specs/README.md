@@ -107,7 +107,7 @@ Ce répertoire contient **91 fiches de spécification présentes** sur la branch
 | 95 | [Dock d'action stable, correction minimale et scroll unique](./SPEC-95.md) | P0 UX | **Implémentée** (enveloppe à trois zones, `renderActionExercice`, correction légère) ; G01–G19, G21–G23 automatisés (`test_spec95_exercices.py`) ; **recette Samsung à faire** |
 | 96 | [Lux Runner : les trois portails](./SPEC-96.md) | — | V1.2 implémentée (voie conservée, rythme 4/3,5/3 s, son dédié, univers visuel violet) ; **prototype 3D opt-in** (`?runner3d=1`) — `test/runner.test.cjs` ; contrôle navigateur 360/430 ; **recette Samsung à faire** |
 | 101 | [Compte à rebours avant Survie et Lux Runner](./SPEC-101.md) | — | **Retirée** (26/10/2026) — décompte jugé insuffisant ; seule la synchro son/scène de Lux Runner est conservée |
-| 109 | [Lux Match : Double jeu](./SPEC-109.md) | — | **Démo jouable** (27/10/2026) — carte « DÉMO » dans Jeux, `test/lux-match.test.cjs` ; textes LU en brouillon à auditer (LOD) ; **recette Samsung à faire** |
+| 109 | [Lux Match : Double jeu](./SPEC-109.md) | — | **Démo jouable + bible intégrée** (27/10/2026, lots 1–5 : profil d'Alex, réseaux, conversations, événements, fins, générateur 1 000 graines) — `test/lux-match*.test.cjs` ; textes LU non certifiés LOD ; **recette Samsung à faire** |
 
 ## Précautions de lecture
 

@@ -250,3 +250,16 @@ test('3D : une instance par modèle, scènes annulables, aperçu face/trois-quar
   assert.match(src, /Math\.sin\(tempsApercu \* 0\.6\) \* 0\.6/);
   assert.match(src, /function diagnostic\(\)/);
 });
+
+test('3D : réactions sobres et photos Pix dans leur décor', () => {
+  const src3d = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match-3d.js'), 'utf8');
+  const ui = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match.js'), 'utf8');
+  // Gestes de tête pour les réponses ordinaires ; Victory seulement via « joie ».
+  ['hoche', 'sourire', 'sourcil', 'gene', 'froid', 'rire'].forEach(g => assert.match(src3d, new RegExp('\\b' + g + ': \\{ duree')));
+  assert.match(ui, /parle: 'parle', hoche: 'hoche', sourire: 'sourire', sourcil: 'sourcil'/);
+  const visuels = new Set();
+  JSON.stringify(C, (k, v) => { if (k === 'visuel') visuels.add(v); return v; });
+  visuels.forEach(v => assert.match(ui, new RegExp('\\b' + v + ": '"), 'visuel ' + v));
+  // Chaque scène Pix de la bible a un décor 3D (la photo montre ce que dit la légende).
+  C.profils.forEach(p => p.pix.photos.forEach(ph => assert.match(src3d, new RegExp('\\b' + ph.scene + ': g => \\{'), ph.id)));
+});

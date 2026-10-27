@@ -676,7 +676,7 @@ const LuxMatchCore = (function () {
 
   // « Ce qui s'est passé » : faits réels de la partie, en français (texte d'interface).
   const FAITS = {
-    prenom: v => 'tu t’appelles ' + v, age: v => 'tu as ' + v + ' ans', origin: v => 'tu viens de ' + ({ 'Frankräich': 'France', Portugal: 'Portugal', 'Däitschland': 'Allemagne' }[v] || v),
+    prenom: v => 'tu t’appelles ' + v, age: v => 'tu as ' + v + ' ans', origin: v => 'tu viens ' + ({ 'Frankräich': 'de France', Portugal: 'du Portugal', 'Däitschland': 'd’Allemagne' }[v] || 'de ' + v),
     city: v => 'tu habites à ' + (v === 'Lëtzebuerg' ? 'Luxembourg' : v), language: v => 'tu parles ' + ({ 'Franséisch': 'français', Portugisesch: 'portugais', 'Däitsch': 'allemand' }[v] || v),
     job: v => 'tu es ' + ({ Banker: 'banquier', Dokter: 'médecin', Polizist: 'policier' }[v] || v), workplace: v => 'tu travailles ' + ({ Bank: 'dans une banque', Spidol: 'dans un hôpital' }[v] || v),
     football: v => v ? 'tu aimes le foot' : 'tu n’aimes pas le foot', drawing: v => v ? 'tu aimes dessiner' : 'tu n’aimes pas dessiner',
