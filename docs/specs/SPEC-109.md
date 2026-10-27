@@ -441,3 +441,47 @@ Ne jamais déduire `dislikedFirstName` à partir de l'avatar, de la nationalité
 **Critère d'arrêt** : si le générateur produit des parties moins lisibles, des indices ambigus, des erreurs de luxembourgeois ou une complexité de maintenance disproportionnée, **revenir au scénario pré-écrit**. Un catalogue de **20–30 situations très bien écrites, recombinées sous contraintes**, est préférable à une fabrique de 10 000 scénarios sans sens.
 
 **Interdits maintenus** : pas de CUPID.EXE, pas de nouveaux lieux, pas de faux réseaux réels, pas de dialogue généré par LLM, pas de « difficulté » qui pénalise la vitesse de lecture, pas de rétroaction négative sur `luxProgress`, aucune refonte du renderer Runner.
+
+---
+
+## 14. Lisibilité du tempérament et compatibilité humoristique (retour joueur 27/10/2026)
+
+**Statut : retour de gameplay + décision de conception à implémenter ; pas de modification du moteur.**
+
+### 14.1. Problème réellement observé sur `2.1`
+
+Une partie contre Léna s'est terminée à **61 affinité / 0 suspicion / 83 % LU** après les réponses « James Bond », « star du foot » et « Kaffi! ». La cause spécifique est vérifiable : dans `data/jeux/lux-match/contenus-v02.json`, `lena_r01.humours = ["direct","taquine"]`, tandis que le moteur `aimeLAbsurde()` dans `public/lux-match-core.js` n'accepte comme humour positif **que** `humour === "absurde"`. Ces plaisanteries déclenchent donc un malus standard sans signe public suffisant pour anticiper le résultat. Le refus d'une blague **n'est pas** un bug en soi ; l'absence d'indice, si elle détermine une partie, est un défaut de lisibilité ludique.
+
+**Ne pas déduire** qu'un archétype sportif ou une profession implique d'être « coincée » : c'est un **trait de personnalité indépendant**, affiché ou suggéré dans ses publications, et éventuellement tiré comme variante cohérente.
+
+### 14.2. Règle de design : la personnalité doit se lire avant d'être testée
+
+1. Chaque partenaire révèle **au moins un signal de ton** accessible *avant le date* (bio Tinder ou mini-description) et **un indice plus explicite** dans Pix ou Amis pour les tolérances à l'humour ayant un malus significatif. Aucun avertissement « attention : -2 si tu dis James Bond », ni tag de score.
+2. Ne confondre **aime plaisanter** et **aime les mensonges absurdes**. Léna peut être **taquine et compétitive** mais trouver agaçante la *vantardise grossière*. Maya peut apprécier le sarcasme sans aimer les références hors jeu ; Claire peut manier l'ironie sans apprécier les impostures.
+3. La préférence s'applique au **genre de plaisanterie**, pas à tout `truth === "joke"`. Ajouter au contenu d'auteur `jokeKind` candidat : `autoderision`, `taquinerie`, `absurde`, `vantardise`. Une partenaire peut aimer certains genres et en détester d'autres, selon un petit catalogue borné.
+4. **Lisibilité du feedback** : si le joueur tente une plaisanterie et qu'elle tombe à plat, montrer une réaction crédible (regard perplexe, petit silence, réplique de premier degré) et un impact social modéré ; ne pas afficher une faute de **luxembourgeois** si la phrase était correctement formulée. Une fille froide n'est pas nécessairement « suspecte ».
+5. Le joueur qui **n'enquête pas** peut tout de même réussir. Enquêter aide à optimiser et à découvrir les traits fins ; les indices ne doivent pas former une énigme cachée dont la solution est obligatoire.
+
+### 14.3. Exemples d'indices (FR d'auteur ; version LU à auditer)
+
+| Partenaire | Signal dans Tinder (ton général) | Post Amis plus explicite | Conséquence cohérente |
+| --- | --- | --- | --- |
+| **Léna — taquine mais terre-à-terre** | « Compétitive, franche et pas très impressionnée par les grandes histoires. » | « J'adore chambrer les copains, mais ceux qui se prennent pour des stars, très peu pour moi. » | « Je suis une star du foot » tombe à plat ; une taquinerie sportive ou de l'autodérision peut lui plaire |
+| **Claire — humour sec** | « J'aime les gens qui savent ce qu'ils racontent. » | « L'ironie, oui. Les CV inventés, non. » | Bluff professionnel jugé sur sa crédibilité, pas sur la valeur du métier |
+| **Noémie — humour absurde** | « J'aime les gens qui osent être un peu bizarres. » | « Un dessin complètement raté peut être ma meilleure rencontre de la semaine. » | Le dessin en patate ou une absurdité assumée peut faire rire |
+| **Maya — ironie geek** | « Jeux rétro et humour bizarre : bienvenue. » | « Si tu échoues au premier niveau et que tu en ris, on s'entendra bien. » | Autodérision appréciée davantage que vantardise de champion |
+| **Sofia — humour spontané** | « J'aime les histoires de voyage et les gens qui me font rire. » | « Les histoires invraisemblables sont les meilleures… quand on sait que c'est une blague. » | Une énorme histoire assumée comme gag fonctionne, l'imposture persistante non |
+| **Emma — humour doux** | « Un café, une vraie conversation, sans écran. » | « J'aime les petites plaisanteries, mais j'aime surtout qu'on m'écoute. » | Les blagues légères passent ; trop d'interruptions ou d'exagérations fatiguent |
+
+**Ces formulations françaises sont des propositions éditoriales**, pas une nouvelle bio LU déjà vérifiée. Leur traduction en luxembourgeois doit respecter les leçons et la revue LOD.
+
+### 14.4. Calibration et limites
+
+- **V1 minimale recommandée :** une seule dimension `jokeKind` par choix et une table simple `humorReactions` par profil/trait tiré ; ne pas créer une nouvelle jauge ou une simulation de personnalité complexe.
+- Pour `James Bond` : classification `vantardise` ou `absurde` selon mise en scène (réplique jouée sérieusement vs clin d'œil clair). `star du foot` : `vantardise`. `Kaffi!` : **réponse pragmatiquement incongrue**, pas un mensonge ni nécessairement une erreur de lexique ; séparer la qualité d'énoncé de la réaction sociale. La déduction linguistique éventuelle doit être fondée sur un objectif pédagogique explicite, non sur la susceptibilité du personnage.
+- Ne pas rendre la réponse « humour » toujours bonne : deux filles doivent pouvoir réagir différemment **au même texte**, et la même fille doit pouvoir aimer une plaisanterie tout en rejetant la vantardise.
+- Si le moteur tire des **variantes de tempérament**, le signal Tinder et le post Amis sont générés depuis le même `scenarioPlan`, sinon le trait reste fixe par personnage ; ne jamais présenter « humour débridé » à Léna si son scénario pénalise tous les gags.
+- **Tests** : pour chaque partenaire et chaque `jokeKind`, déterminer la réaction avant la partie depuis les indices ; vérifier ≥1 indice public, pas de contradiction entre bio et réaction, aucune pénalité linguistique sur choix LU grammaticalement correct, pas de suspicion créée automatiquement par une blague ; tester au moins 100 graines incluant variants de traits.
+- **Prérequis** : stabilisation des autres lots et relecture LU ; cet ajout est un travail de contenu/gameplay de faible priorité par rapport aux régressions 3D/UX.
+
+**Contenus source et mapping** : [Bible éditoriale — section 13](../LUX-MATCH-BIBLE-EDITORIALE-A11.md#13-signaux-de-temperament-et-style-dhumour--complements-de-dialogues) et [Guide pour Claude](../LUX-MATCH-GUIDE-INTEGRATION-CONTENUS.md).
