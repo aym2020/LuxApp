@@ -345,3 +345,19 @@ test('Lot 8 : signes manga déduits de la décision sociale, jamais d’une faut
   jouerJusquA(calme, () => false);
   assert.ok(calme.emotions.length <= 2, calme.emotions.join());
 });
+
+test('Lot 9 : deux boucles originales, un seul lecteur, musique pilotée par la phase', () => {
+  const ui = fs.readFileSync(path.join(__dirname, '..', 'public/lux-match.js'), 'utf8');
+  ['love-circuit', 'neon-cafe'].forEach(nom => ['ogg', 'mp3'].forEach(ext => {
+    const f = path.join(__dirname, '..', 'public/audio/lux-match', nom + '.' + ext);
+    assert.ok(fs.existsSync(f), nom + '.' + ext);
+    assert.ok(fs.statSync(f).size < 1024 * 1024, nom + '.' + ext + ' ≤ 1 Mo');
+  }));
+  assert.ok(fs.existsSync(path.join(__dirname, '..', 'tools/lux-match/musique.py')));   // composition reproductible
+  assert.equal((ui.match(/new \(window\.AudioContext/g) || []).length, 1);                 // un seul AudioContext
+  assert.match(ui, /lmSynchroMusique\(\); \/\/ même piste = rien ne redémarre/);            // suit la phase, pas le rendu
+  assert.match(ui, /function luxMatchArreter\(\) \{\n  LuxMatchSon\.musique\(null\);/);    // quitter = silence
+  assert.match(ui, /if \(courante && courante\.nom === voulue\) return;/);                 // pas de relance
+  assert.match(ui, /lmLire\('luxMatchMusique', true\)/);                                   // musique coupable seule
+  assert.match(ui, /document\.hidden\) audio\.suspend\(\)/);                               // arrière-plan
+});

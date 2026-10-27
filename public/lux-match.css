@@ -427,3 +427,4 @@
 @keyframes lm-choc{0%{opacity:0;scale:2}10%{opacity:1;scale:1}15%{translate:-3px 0}20%{translate:3px 0}25%{translate:-2px 0}30%{translate:0 0}85%{opacity:1}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){#view-luxmatch .lm-emotion svg{animation:lm-fondu 1.3s linear forwards!important}}
 @keyframes lm-fondu{0%,85%{opacity:1}100%{opacity:0}}
+#view-luxmatch .lm-menu-ligne:disabled{opacity:.45;cursor:default}

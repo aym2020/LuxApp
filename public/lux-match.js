@@ -65,7 +65,7 @@ function lmIcone(nom) {
     tel: '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>', moi: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 3.8-5.4 7-5.4s5.8 1.8 7 5.4"/>',
     son: '<path d="M4 10v4h4l5 4V6L8 10H4z"/><path d="M16 9a4 4 0 0 1 0 6"/>', muet: '<path d="M4 10v4h4l5 4V6L8 10H4z"/><path d="M17 9l4 6M21 9l-4 6"/>',
     cadenas: '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
-    menu: '<path d="M5 7h14M5 12h14M5 17h14"/>', fermer: '<path d="M6 6l12 12M18 6L6 18"/>',
+    menu: '<path d="M5 7h14M5 12h14M5 17h14"/>', note: '<path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="16" r="2"/>', fermer: '<path d="M6 6l12 12M18 6L6 18"/>',
     dossier: '<path d="M4 6h6l2 2h8v10H4z"/><path d="M9 13h6"/>'
   }[nom] || '';
   return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
@@ -121,12 +121,20 @@ function lmPicto(nom) {
 
 // ─── Sons (Web Audio, propres au jeu) ───────────────────────────────────────
 
+// Un seul AudioContext pour tout Lux Match : deux bus (effets, musique) vers la sortie.
+// Musique (SPEC §16) : une seule boucle active, « Love Circuit » avant le date,
+// « Neon Café » au café ; fondus, silence comique, arrêt en quittant ou en arrière-plan.
 const LuxMatchSon = (function () {
-  let audio = null;
+  let audio = null, busEffets = null, busMusique = null;
   const actif = () => lmLire('luxMatchSon', true);
+  const musiqueActive = () => lmLire('luxMatchMusique', true);
   function preparer() {
-    if (!audio) { try { audio = new (window.AudioContext || window.webkitAudioContext)(); } catch (_) { return null; } }
-    if (audio.state === 'suspended') audio.resume();
+    if (!audio) {
+      try { audio = new (window.AudioContext || window.webkitAudioContext)(); } catch (_) { return null; }
+      busEffets = audio.createGain(); busEffets.connect(audio.destination);
+      busMusique = audio.createGain(); busMusique.connect(audio.destination);
+    }
+    if (audio.state === 'suspended' && !document.hidden) audio.resume();
     return audio;
   }
   function note(f, debut, duree, volume, forme, fin) {
@@ -134,7 +142,7 @@ const LuxMatchSon = (function () {
     o.type = forme || 'square'; o.frequency.setValueAtTime(f, t);
     if (fin) o.frequency.exponentialRampToValueAtTime(fin, t + duree);
     g.gain.setValueAtTime(volume, t); g.gain.linearRampToValueAtTime(0, t + duree);
-    o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + duree + 0.02);
+    o.connect(g); g.connect(busEffets); o.start(t); o.stop(t + duree + 0.02);
   }
   const sons = {
     swipe: () => note(500, 0, 0.08, 0.05, 'triangle', 260),
@@ -152,8 +160,75 @@ const LuxMatchSon = (function () {
     if (!actif() || !preparer() || !sons[nom]) return;
     try { sons[nom](); } catch (_) { /* le son est un bonus */ }
   }
-  return { jouer, preparer, actif };
+
+  // ── Musique
+  const PISTES = { pre: 'audio/lux-match/love-circuit', date: 'audio/lux-match/neon-cafe' };
+  const VOLUME_MUSIQUE = 0.32;   // bas : la musique reste sous les effets et la lecture
+  const tampons = {};            // pistes décodées (une seule fois)
+  let voulue = null, courante = null, demande = 0;
+  function extension() {
+    try { return new Audio().canPlayType('audio/ogg; codecs="vorbis"') ? '.ogg' : '.mp3'; } catch (_) { return '.mp3'; }
+  }
+  function charger(nom) {
+    if (!tampons[nom]) {
+      tampons[nom] = fetch(PISTES[nom] + extension() + '?v=1')
+        .then(r => { if (!r.ok) throw new Error('musique'); return r.arrayBuffer(); })
+        .then(octets => new Promise((ok, ko) => audio.decodeAudioData(octets, ok, ko)));
+      tampons[nom].catch(() => { delete tampons[nom]; });
+    }
+    return tampons[nom];
+  }
+  function fondre(piste, duree) {
+    const t = audio.currentTime, g = piste.gain.gain;
+    g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(0, t + duree);
+    try { piste.source.stop(t + duree + 0.05); } catch (_) { /* déjà arrêtée */ }
+  }
+  // nom : 'pre', 'date' ou null. Rappeler avec la même piste ne la relance jamais.
+  function musique(nom) {
+    voulue = nom && actif() && musiqueActive() ? nom : null;
+    if (courante && courante.nom === voulue) return;
+    demande++;
+    if (courante && audio) { fondre(courante, voulue ? 0.8 : 0.4); courante = null; }
+    if (!voulue || !preparer()) return;
+    const numero = demande, cible = voulue;
+    charger(cible).then(tampon => {
+      if (numero !== demande || voulue !== cible || courante) return; // demande dépassée
+      const t = audio.currentTime;
+      const source = audio.createBufferSource(), gain = audio.createGain();
+      source.buffer = tampon; source.loop = true;
+      gain.gain.setValueAtTime(0, t); gain.gain.linearRampToValueAtTime(VOLUME_MUSIQUE, t + 1.0);
+      source.connect(gain); gain.connect(busMusique);
+      source.start(t);
+      courante = { nom: cible, source, gain };
+    }).catch(() => { /* fichier absent ou décodage impossible : le jeu continue en silence */ });
+  }
+  // Gros gag : la musique se tait brièvement puis revient en fondu.
+  function silenceComique(duree) {
+    if (!audio || !courante) return;
+    const t = audio.currentTime, g = busMusique.gain;
+    g.cancelScheduledValues(t); g.setValueAtTime(g.value, t);
+    g.linearRampToValueAtTime(0.0001, t + 0.05); g.setValueAtTime(0.0001, t + duree); g.linearRampToValueAtTime(1, t + duree + 0.6);
+  }
+  // Pour une lecture vocale en luxembourgeois (prête, aucune voix dans Lux Match pour l'instant).
+  function baisser() { if (audio) { const t = audio.currentTime; busMusique.gain.cancelScheduledValues(t); busMusique.gain.setTargetAtTime(0.3, t, 0.05); } }
+  function remonter() { if (audio) { const t = audio.currentTime; busMusique.gain.cancelScheduledValues(t); busMusique.gain.setTargetAtTime(1, t, 0.15); } }
+  function pistEnCours() { return courante ? courante.nom : null; }
+  // Prépare la piste suivante à l'avance (ex. le café pendant le dressing) : transition sans trou.
+  function prechargerMusique(nom) { if (actif() && musiqueActive() && preparer()) charger(nom).catch(() => {}); }
+  // Arrière-plan : tout s'arrête ; au retour, seulement si Lux Match est encore à l'écran.
+  document.addEventListener('visibilitychange', () => {
+    if (!audio) return;
+    if (document.hidden) audio.suspend();
+    else if (lmVueActive() && actif()) audio.resume();
+  });
+  return { jouer, preparer, actif, musiqueActive, musique, silenceComique, baisser, remonter, pistEnCours, prechargerMusique };
 })();
+// Piste selon la phase : avant le date « pre », au café « date », résultats en silence.
+function lmSynchroMusique() {
+  const p = lm.partie;
+  if (!p || !lmVueActive()) { LuxMatchSon.musique(null); return; }
+  LuxMatchSon.musique(p.phase === 'date' ? 'date' : p.phase === 'resultats' ? null : 'pre');
+}
 
 // ─── Entrée / sortie ────────────────────────────────────────────────────────
 
@@ -224,6 +299,7 @@ function lmNouvellePartie() {
   lmRendre();
 }
 function luxMatchArreter() {
+  LuxMatchSon.musique(null);
   lmArreterBatterie();
   lmEffacerEmotion();
   lmFermerCalque('lm-menu'); lmFermerCalque('lm-moi');
@@ -248,7 +324,15 @@ function lmEntete(options) {
     '</div></div>';
 }
 function lmQuitter() { luxMatchArreter(); if (typeof ouvrirJeux === 'function') ouvrirJeux(); }
-function lmBasculerSon() { lmEcrire('luxMatchSon', !LuxMatchSon.actif()); lmMajMenu(); }
+function lmBasculerSon() { lmEcrire('luxMatchSon', !LuxMatchSon.actif()); lmSynchroMusique(); lmMajMenu(); }
+function lmBasculerMusique() { lmEcrire('luxMatchMusique', !LuxMatchSon.musiqueActive()); lmSynchroMusique(); lmMajMenu(); }
+// Lux Match quitté par la navigation de l'appli (barre du bas, retour) : la musique s'arrête.
+(function () {
+  const vue = document.getElementById('view-luxmatch');
+  if (!vue || typeof MutationObserver === 'undefined') return;
+  new MutationObserver(() => { if (!vue.classList.contains('active')) LuxMatchSon.musique(null); })
+    .observe(vue, { attributes: true, attributeFilter: ['class'] });
+})();
 
 // ─── Menu (pause) et superpositions ────────────────────────────────────────
 // Un seul calque à la fois au-dessus du jeu : menu ou dossier. Fermeture par le bouton,
@@ -286,11 +370,12 @@ function lmMenu(ouvrir) {
 function lmMajMenu() {
   const menu = document.getElementById('lm-menu');
   if (!menu || !lm.partie) return;
-  const son = LuxMatchSon.actif();
+  const son = LuxMatchSon.actif(), musique = LuxMatchSon.musiqueActive();
   menu.innerHTML = '<div class="lm-menu-carte"><div class="lm-calque-tete"><h2>PAUSE</h2>' +
       '<button type="button" class="lm-icone-btn" onclick="lmMenu(false)" aria-label="Fermer">' + lmIcone('fermer') + '</button></div>' +
     (lm.partie.phase !== 'profil' ? '<button type="button" class="lm-menu-ligne" onclick="lmMoi(true)">' + lmIcone('dossier') + '<span>Dossier Alex</span></button>' : '') +
     '<button type="button" class="lm-menu-ligne" onclick="lmBasculerSon()" aria-pressed="' + son + '">' + lmIcone(son ? 'son' : 'muet') + '<span>Son</span><b>' + (son ? 'OUI' : 'NON') + '</b></button>' +
+    '<button type="button" class="lm-menu-ligne" onclick="lmBasculerMusique()" aria-pressed="' + (son && musique) + '"' + (son ? '' : ' disabled') + '>' + lmIcone('note') + '<span>Musique</span><b>' + (son && musique ? 'OUI' : 'NON') + '</b></button>' +
     '<button type="button" class="lm-menu-ligne lm-menu-quitter" onclick="lmQuitter()">' + lmIcone('retour') + '<span>Quitter Lux Match</span></button>' +
     '<button type="button" class="lm-btn lm-btn-or" onclick="lmMenu(false)">Reprendre</button></div>';
 }
@@ -321,6 +406,7 @@ function lmRendre() {
   if (!p || !box) return;
   if (lm.ecran !== p.phase) window.scrollTo(0, 0); // nouvel écran : on repart du haut
   lm.ecran = p.phase;
+  lmSynchroMusique(); // même piste = rien ne redémarre (aide FR, apps, retours)
   if (p.phase !== 'date' && lm.rendu3d && p.phase !== 'look') lm.rendu3d.detacher();
   if (p.phase === 'profil') lmRendreProfil(box);
   else if (p.phase === 'swipe') lmRendreSwipe(box);
@@ -575,6 +661,7 @@ function lmNomCouleur(look) {
   return c ? '<b lang="lb">' + lmEchapper(c.id) + '</b>' + (lm.aideFr ? ' · ' + c.fr : '') : '';
 }
 function lmRendreLook(box) {
+  LuxMatchSon.prechargerMusique('date');
   const look = lm.lookEnCours || { style: null, couleur: null };
   lm.lookEnCours = look;
   box.innerHTML = lmEntete() +
@@ -732,6 +819,7 @@ function lmRepondre(choixId) {
   const reaction = LM_VISUELS[r.visuel] || null;
   if (lm.rendu3d && reaction) lm.rendu3d.reagir(reaction);
   lmEmotion(r.emotion);
+  if (r.emotion && r.emotion.intensite === 'big') LuxMatchSon.silenceComique(0.7);
   LuxMatchSon.jouer(r.visuel === 'scratch' || r.contradiction ? 'scratch' : r.langue === false ? 'faux' : r.affinity > 0 ? 'bien' : 'bof');
   // Panneau à lire (correction de langue, réaction d'imprévu, contradiction) ou suite automatique.
   const aLire = r.correction || r.reaction || r.reponseElle || r.finAnticipee;
@@ -865,6 +953,7 @@ function lmTerminer() {
   const record = lmLire('luxMatchRecord', 0);
   p.nouveauRecord = p.fin.score > record;
   if (p.nouveauRecord) lmEcrire('luxMatchRecord', p.fin.score);
+  LuxMatchSon.musique(null); // la boucle du café s'éteint, le jingle de fin reste seul
   LuxMatchSon.jouer(p.fin.issue === 'nouveau_rdv' ? 'fin' : 'bof');
   // Seuls moments « animation complète » : la fin heureuse (Victory) et le malaise (Defeat).
   if (lm.rendu3d) lm.rendu3d.reagir(p.fin.issue === 'nouveau_rdv' ? 'joie' : p.fin.issue === 'malaise' ? 'deception' : 'hoche');

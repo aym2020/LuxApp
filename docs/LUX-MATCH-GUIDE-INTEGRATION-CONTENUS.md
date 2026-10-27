@@ -124,6 +124,8 @@ Ne pas demander une nouvelle « bible » à un générateur de texte ; elle exis
 
 ## 9. Complément gameplay — signaler le tempérament avant de juger l'humour
 
+> **Implémenté le 27/10/2026 (lot 7)** — voir SPEC 109 › Suivi par lot.
+
 **Source :** [SPEC 109 § 14](specs/SPEC-109.md#14-lisibilite-du-temperament-et-compatibilite-humoristique-retour-joueur-27102026) et [Bible § 13](LUX-MATCH-BIBLE-EDITORIALE-A11.md#13-signaux-de-temperament-et-style-dhumour--complements-de-dialogues). **Évolution documentaire, pas code livré.**
 
 ### Diagnostic sur la démo actuelle
@@ -144,6 +146,8 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 
 ## 10. Réactions visuelles type manga — émotions lisibles sans visage 3D expressif
 
+> **Implémenté le 27/10/2026 (lot 8)** — voir SPEC 109 › Suivi par lot.
+
 **Nouvel arbitrage UX :** [SPEC 109 §15](specs/SPEC-109.md#15-reactions-emotionnelles-manga-en-surimpression-2d-27102026). Ce guide ajoute les instructions d'implémentation **sans changer les contenus JSON ni le moteur de jeu**.
 
 **Brief de réalisation :** six petits sprites originaux / SVG locaux (goutte de gêne, veine de colère, interrogation de doute, étincelles d'amusement, cœur rare d'attirance, choc « !! ») affichés **près de la tête** en calque HTML/CSS au-dessus du café 3D. Maintenir les personnages et `r.visuel` existants, synchroniser l'effet 2D avec le résultat social et la réaction 3D ; limiter à un signe à la fois et ne pas masquer HUD, sous-titres, options ni téléphone.
@@ -159,6 +163,8 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 ---
 
 ## 11. Ambiance musicale arcade — deux pistes et comportement de lecture
+
+> **Implémenté le 27/10/2026 (lot 9)** : deux boucles composées par Claude (`tools/lux-match/musique.py`), à valider à l'oreille — voir SPEC 109 › Suivi par lot.
 
 **Source de référence :** [SPEC 109 §16](specs/SPEC-109.md#16-direction-musicale-et-orchestration-audio--deux-boucles-arcade-retro-27102026). Ceci est une **passation à Claude**, pas une bande-son livrée ni une modification de code.
 
@@ -176,6 +182,8 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 ---
 
 ## 12. Refonte UX pré-date — hub des réseaux, dossier Alex, dressing
+
+> **Implémenté le 27/10/2026 (lot 6)** — voir SPEC 109 › Suivi par lot.
 
 **Instruction de passation :** [SPEC 109 § 17](specs/SPEC-109.md#17-refonte-des-ecrans-pre-date--telephone-dossier-alex-et-dressing-arcade-27102026) est le **cahier des charges précis** pour la dernière série de captures Android du 27/10/2026. Statut **à implémenter**, pas déjà livré par la documentation.
 
