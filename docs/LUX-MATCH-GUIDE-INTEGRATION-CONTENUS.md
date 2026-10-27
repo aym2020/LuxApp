@@ -172,3 +172,17 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 5. Android/PWA : démarrer après geste utilisateur autorisant l'audio, couper/pause quand l'app est masquée/quittée, reprendre proprement, annuler les fondues en cours, ne jamais superposer des pistes sur trois runs. En cas de fichier absent ou refus d'autoplay, **fallback silencieux**, jeu toujours utilisable.
 
 **Critères de recette :** deux pistes bouclent 5 fois sans clic/silence ; 3 runs successives sans superposition ; son désactivé = silence total ; au date le bouton audio reste accessible (≥44 px) ; les voix sont intelligibles, le téléphone/batterie ne redémarre pas la piste, bascule de vue ne relance pas la musique ; tests Android réel et tests existants Lux Match. **Ne pas annoncer deux musiques ajoutées tant que les fichiers n'existent pas et ne sont pas audibles en jeu.**
+
+---
+
+## 12. Refonte UX pré-date — hub des réseaux, dossier Alex, dressing
+
+**Instruction de passation :** [SPEC 109 § 17](specs/SPEC-109.md#17-refonte-des-ecrans-pre-date--telephone-dossier-alex-et-dressing-arcade-27102026) est le **cahier des charges précis** pour la dernière série de captures Android du 27/10/2026. Statut **à implémenter**, pas déjà livré par la documentation.
+
+- **Réseaux** : éliminer les doublons de titres et toute phrase « Prends ton temps, la batterie ne se vide pas ici », désencombrer l'entête, convertir le hub en **faux OS rétro Pix/Pro/Amis** compact et lisible, conserver les 3 apps et leurs vrais contenus et états (dont Pix privé). Ne pas inventer de compteurs d'indices.
+- **Dossier Alex** : déplacer vers un format compact **dossier de personnage** et pas un tuto : portrait, faits canoniques, phrases LU utiles ; supprimer le bouton **Aide FR à l'intérieur de la fiche**, les messages sur les mensonges et les explications méta ; préserver l'accessibilité pendant le date **sans batterie**.
+- **Dressing** : présenter l'avatar 3D bien cadré de face/3/4, cinq styles sur grille mobile adaptative, six couleurs en pastilles lisibles, retours visuels discrets, **un CTA « Aller au rendez-vous » même avec la tenue par défaut**, le secondaire « Garder cette tenue » devient inutile ; retour réseaux préservant les choix.
+- **Entête** : retirer l'icône **haut-parleur permanente**, mais ne pas casser la musique nouvelle de SPEC §16 ni le mute : déplacer ce dernier dans un contrôle audio/pause discret, accessible aussi pendant le date, en respectant la préférence actuelle `luxMatchSon`. Aide FR sur contenus pédagogiques, pas sur la fiche perso.
+- **Recette** : 320/360/393/430 px ; captures comparatives de chaque écran, pas de blocage scroll ni scroll horizontal, CTA toujours accessible, 3 runs successives, suite `test/lux-match.test.cjs` et `tools/critique.sh`. Ne pas certifier la compatibilité Samsung sans test matériel.
+
+**Éviter toute refonte des autres jeux, nouvelles villes ou nouveaux personnages.** Les modifications code ne sont pas incluses dans cette passation documentaire.
