@@ -557,3 +557,217 @@ Les 26 beats suivants **ne remplacent pas automatiquement les dialogues existant
 - **Age 120** : orthographe « honnertzwanzeg » est **à vérifier** malgré sa construction lexicale plausible ; si non validée, ne pas l'utiliser comme distracteur pédagogique.
 - **Prénom « James Bond »** : blague, nom de personnage de fiction en réplique courte ; ne pas en faire un visage, une image, une citation ou un atout officiel et éviter toute représentation de marque sous licence.
 
+
+
+---
+
+## 7. Événements dialogués et gags — 14 fiches conditionnelles
+
+**État : À_AUDITER pour toute réplique LU nouvelle.** Aucun événement n'est ajouté automatiquement : conditions + trait public + conséquence. Maximum deux par date dont un grand gag visuel. Les réponses en portugais sont une blague et ne sont pas notées comme luxembourgeois.
+
+### EV_LENA_FOOT · Léna
+
+**Déclenchement :** mensonge confirmé football=true ; sport présent dans son profil.
+
+**Réplique LU candidate :** « Du spills gär Fussball? Super, da komm, mir spillen! » → *Tu joues au foot ? Viens, on fait trois passes !*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_LENA_FOOT_C1` (Accepter) | « Jo, gär! » → *Oui, avec plaisir !* | Alex rate un ballon à deux mètres, elle rit. |
+| `EV_LENA_FOOT_C2` (Avouer) | « Nee, ech spillen net gär Fussball. » → *Non, en fait je n'aime pas le foot.* | Elle apprécie un aveu un peu tardif. |
+| `EV_LENA_FOOT_C3` (Fanfarons) | « Ech sinn de Messi! » → *Je suis Messi !* | Elle le met au défi avec un sourire incrédule. |
+
+**Mise en scène / garde-fou :** Ballon et animation courte ; pas de vrai mini-jeu ; pas de score de football.
+
+### EV_LENA_MORNING · Léna
+
+**Déclenchement :** trait secondaire matinale présent sur Amis ; L16.
+
+**Réplique LU candidate :** « Wat méchs du moies? » → *Tu fais quoi le matin ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_LENA_MORNING_C1` (Café) | « Moies drénken ech Kaffi. » → *Le matin je bois du café.* | Elle répond que ce n'est pas vraiment un échauffement. |
+| `EV_LENA_MORNING_C2` (Courir) | « Moies ginn ech lafen. » → *Je vais courir le matin.* | Bluff de routine, à pouvoir rappeler si joueur ment. |
+| `EV_LENA_MORNING_C3` (Travail) | « Ech ginn op d'Aarbecht. » → *Je pars au travail.* | Réponse sincère si emploi compatible, pas de malus. |
+
+**Mise en scène / garde-fou :** Rebondir sur routine, sans imposer une activité hors programme.
+
+### EV_CLAIRE_JOB · Claire
+
+**Déclenchement :** Alex s'est faussement présenté comme Dokter.
+
+**Réplique LU candidate :** « Du bass Dokter? Wou schaffs du? » → *Tu es médecin ? Tu travailles où ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_CLAIRE_JOB_C1` (Bluff) | « Ech schaffen am Spidol. » → *Je travaille à l'hôpital.* | Elle interroge d'un sourcil levé. Pas de quiz médical. |
+| `EV_CLAIRE_JOB_C2` (Aveu) | « Nee, ech sinn e Banker. » → *Non, en fait je suis banquier.* | Elle sourit : « Pourquoi m'inventer un hôpital ? » |
+| `EV_CLAIRE_JOB_C3` (Blague) | « Dat war e Witz! » → *C'était une blague !* | Elle trouve le sens de l'humour très discutable. |
+
+**Mise en scène / garde-fou :** Zoom subtil/silence ; aucune profession supposée supérieure.
+
+### EV_CLAIRE_TIME · Claire
+
+**Déclenchement :** horaire canonique et post de ponctualité activés ; L15.
+
+**Réplique LU candidate :** « Um wéi vill Auer ass eise Rendez-vous? » → *Notre rendez-vous, c'était à quelle heure ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_CLAIRE_TIME_C1` (À l'heure) | « Um siwen Auer. » → *À sept heures.* | Bon si scénario indique 19 h ce soir et contexte explicite. |
+| `EV_CLAIRE_TIME_C2` (En retard) | « Um aacht Auer. » → *À huit heures.* | Elle pointe son agenda : « Tu fais ton propre fuseau ? » |
+| `EV_CLAIRE_TIME_C3` (Demi-heure) | « Um hallwer aacht. » → *À sept heures et demie.* | Elle sourit jaune : il est toujours 19 h. |
+
+**Mise en scène / garde-fou :** Visuel agenda, 7h/19h à lever par contexte, pas de devinette illégitime.
+
+### EV_NOEMIE_DRAW · Noémie
+
+**Déclenchement :** Alex a affirmé savoir dessiner sans le savoir.
+
+**Réplique LU candidate :** « Kanns du mech molen? » → *Tu peux me dessiner ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_NOEMIE_DRAW_C1` (Essayer) | « Jo, gär! » → *Oui, volontiers.* | Portrait en patate, elle explose de rire. |
+| `EV_NOEMIE_DRAW_C2` (Avouer) | « Nee, ech kann net molen. » → *Non, je ne sais pas dessiner.* | Elle lui passe quand même le crayon. |
+| `EV_NOEMIE_DRAW_C3` (Blague) | « Dat ass Konscht! » → *C'est de l'art !* | Elle contemple le gribouillis et fait une critique ironique. |
+
+**Mise en scène / garde-fou :** Dessin sur une serviette, événement non noté artistiquement.
+
+### EV_NOEMIE_COLOR · Noémie
+
+**Déclenchement :** préférence créatif/rouge déclarée, look choisi.
+
+**Réplique LU candidate :** « Ech hu gär Faarwen! » → *J'aime les couleurs !*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_NOEMIE_COLOR_C1` (Poli) | « Merci! » → *Merci !* | Si look rouge créatif, elle remarque ton effort. |
+| `EV_NOEMIE_COLOR_C2` (Complice) | « Rout ass meng Liiblingsfaarf. » → *Le rouge est ma couleur préférée.* | Elle apprécie, sans nouveau mensonge déterminé automatiquement. |
+| `EV_NOEMIE_COLOR_C3` (Absurde) | « Ech sinn eng Konschtfigur! » → *Je suis une œuvre d'art !* | Elle rit si elle aime l'humour absurde. |
+
+**Mise en scène / garde-fou :** Petite réaction de première impression, pas de note de peinture.
+
+### EV_MAYA_RETRO · Maya
+
+**Déclenchement :** Alex a bluffé aimer les jeux rétro.
+
+**Réplique LU candidate :** « Du spills gär Computerspiller? Da probéier dat! » → *Tu aimes jouer aux jeux vidéo ? Essaye ma console !*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_MAYA_RETRO_C1` (Essayer) | « Jo! » → *Oui !* | Il perd en quatre secondes, elle lui propose la revanche. |
+| `EV_MAYA_RETRO_C2` (Honnête) | « Nee, ech kennen dat Spill net. » → *Non, je ne connais pas ce jeu.* | Elle est ravie de le lui faire découvrir. |
+| `EV_MAYA_RETRO_C3` (Bluff total) | « Ech sinn de Champion! » → *Je suis le champion !* | Défaite comique immédiate. |
+
+**Mise en scène / garde-fou :** Petit accessoire console en scène café ; aucune nouvelle mécanique.
+
+### EV_MAYA_GERMAN · Maya
+
+**Déclenchement :** Alex affirme faussement parler allemand ; Pro indique que Maya le parle.
+
+**Réplique LU candidate :** « Du schwätz Däitsch? Super! » → *Tu parles allemand ? Super !*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_MAYA_GERMAN_C1` (Rectifier) | « Ech schwätzen net Däitsch. » → *En fait je ne parle pas allemand.* | Elle rit : « Tu fais aussi des CV mensongers ? » |
+| `EV_MAYA_GERMAN_C2` (Revenir au réel) | « Ech schwätzen Franséisch. » → *Je parle français.* | Réaction détendue. |
+| `EV_MAYA_GERMAN_C3` (Continuer) | « Jo, ech schwätzen Däitsch. » → *Oui, je parle allemand.* | Elle garde un doute ; aucun quiz d'allemand noté. |
+
+**Mise en scène / garde-fou :** Question de cohérence, pas de test hors luxembourgeois.
+
+### EV_SOFIA_PORTUGAL · Sofia
+
+**Déclenchement :** mensonge sur origin=Portugal OU language=Portugisesch (au plus une fois).
+
+**Réplique LU candidate :** « Du kënns aus Portugal? Wat fir en Déier sinn ech? Op Portugisesch! » → *Tu viens du Portugal ? Alors à quel animal je ressemble en portugais ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_SOFIA_PORTUGAL_C1` (Vache) | « Vaca » → *Vache* | « UNE VACHE ?! » Disque rayé, grand silence. |
+| `EV_SOFIA_PORTUGAL_C2` (Hippopotame) | « Hipopótamo » → *Hippopotame* | « UN HIPPOPOTAME ?! » Zoom dramatique. |
+| `EV_SOFIA_PORTUGAL_C3` (Chatte animale) | « Gata » → *Chatte, animal femelle* | « Un chat ? C'est mignon ! » |
+| `EV_SOFIA_PORTUGAL_C4` (Aveu) | « Ech schwätzen net Portugisesch. » → *En fait je ne parle pas portugais.* | Elle rit et accepte l'aveu, confiance restaurée. |
+
+**Mise en scène / garde-fou :** Gag non noté PT, aveu toujours disponible, relecture portugaise requise.
+
+### EV_SOFIA_TRAIN · Sofia
+
+**Déclenchement :** billet avec horaire véritable indiqué sur Pix, L15 débloquée.
+
+**Réplique LU candidate :** « Um wéi vill Auer fiert den Zuch? » → *À quelle heure part le train ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_SOFIA_TRAIN_C1` (7 h) | « Um siwen Auer. » → *À sept heures.* | Correct seulement si billet 07:00 ou situation équivalente. |
+| `EV_SOFIA_TRAIN_C2` (7 h 30) | « Um hallwer aacht. » → *À sept heures et demie.* | Correct seulement si billet 07:30. |
+| `EV_SOFIA_TRAIN_C3` (8 h) | « Um aacht Auer. » → *À huit heures.* | Correct seulement si billet 08:00. |
+
+**Mise en scène / garde-fou :** Épreuve de mémoire/heure contextuelle, pas de bonus si billet inaccessible.
+
+### EV_EMMA_PHONE · Emma
+
+**Déclenchement :** trait anti_phone + post public + téléphone ouvert pendant le date.
+
+**Réplique LU candidate :** « Bass du ëmmer um Handy? » → *Tu es toujours sur ton téléphone ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_EMMA_PHONE_C1` (Ranger) | « Entschëllegt. Ech leeën den Handy ewech. » → *Pardon, je range le téléphone.* | Elle reprend calmement la discussion. |
+| `EV_EMMA_PHONE_C2` (Minimiser) | « Ech kucken just kuerz. » → *Je regarde juste un instant.* | Elle attend en silence, affinité modérément réduite. |
+| `EV_EMMA_PHONE_C3` (Mauvaise idée) | « Jo. » → *Oui.* | Elle regarde sa montre sans rien dire. |
+
+**Mise en scène / garde-fou :** Déclenché une seule fois par consultation ; pas de double malus par frame.
+
+### EV_EMMA_COFFEE · Emma
+
+**Déclenchement :** partenaire aime café, Alex aussi ; L16.
+
+**Réplique LU candidate :** « Drénks du moies Kaffi? » → *Tu bois du café le matin ?*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_EMMA_COFFEE_C1` (Vérité) | « Jo, ech drénke moies Kaffi. » → *Oui, je bois du café le matin.* | Elle sourit, point commun. |
+| `EV_EMMA_COFFEE_C2` (Mentir) | « Nee, ech drénke moies kee Kaffi. » → *Non, je n'en bois pas.* | Possible rappel de routine plus tard. |
+| `EV_EMMA_COFFEE_C3` (Absurde) | « Ech sinn e Kaffi! » → *Je suis un café !* | Selon humour, rire ou long silence. |
+
+**Mise en scène / garde-fou :** Blague absurde correct LU à auditer, ne pas sanctionner en langue.
+
+### EV_EX_ALEX · Tous, trait rare
+
+**Déclenchement :** dislikedFirstName=Alex + indice Amis visible AVANT date + prenom annoncé.
+
+**Réplique LU candidate :** « Alex? Mäin Ex huet och Alex geheescht. » → *Alex ? Mon ex s'appelait Alex. Quelle coïncidence…*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_EX_ALEX_C1` (Vrai) | « Ech heeschen Alex. » → *Je m'appelle Alex.* | Elle souffle : « Bon, tu n'es pas lui. » |
+| `EV_EX_ALEX_C2` (Bluffer) | « Ech heeschen Max. » → *Je m'appelle Max.* | Mensonge mémorisé ; rappel prénom possible. |
+| `EV_EX_ALEX_C3` (Absurde) | « Ech heeschen James Bond. » → *Je m'appelle James Bond.* | Une réaction humoristique selon tempérament. |
+
+**Mise en scène / garde-fou :** Rare, jamais échec automatique ; ne pas traiter un vécu traumatique comme gag.
+
+### EV_AGE_PREF · Tous, trait optionnel
+
+**Déclenchement :** agePreference tirée ET indice Amis, jamais pour indifférente.
+
+**Réplique LU candidate :** « Du bass drësseg? Interessant! » → *Ah, tu as trente ans ? Intéressant.*.
+
+| Choix | Texte LU / PT → FR | Réaction FR_JEU |
+|---|---|---|
+| `EV_AGE_PREF_C1` (Assumer) | « Jo. » → *Oui.* | Effet seulement si la préférence existe et a été annoncée. |
+| `EV_AGE_PREF_C2` (Rétablir 28) | « Ech sinn aachtanzwanzeg Joer al. » → *En fait, j'ai vingt-huit ans.* | Réparation d'un mensonge, baisse éventuelle de suspicion. |
+| `EV_AGE_PREF_C3` (Plaisanter) | « Dat war e Witz! » → *C'était une blague !* | Si âge absurde 120, traiter la réponse comme plaisanterie, pas vraie identité. |
+
+**Mise en scène / garde-fou :** Préférence nulle pour certaines partenaires ; aucune discrimination arbitraire.
+
+
+### 7.1. Ordre de déclenchement
+
+- Un événement lié à un mensonge doit être introduit **après** le choix qui crée `claims` / `mensonges`, et jamais deux fois.
+- Les événements anti-téléphone et prénom rare sont **publics avant le date**. Si le trait n'a pas été publié dans le scénario courant, ne pas le sélectionner.
+- Les événements de vérification hors programme (dessin, gaming, animal portugais) sont narratifs, `pedagogicalScoring=false`, et ne diminuent jamais le score LU.
+- Si l'âge « 120 ans » était une plaisanterie, stocker `joke.age=120` plutôt que `claims.age=120`, à moins que le joueur ne réaffirme réellement ce mensonge en contexte.
+- La scène au café n'est **jamais remplacée** : console, serviette, agenda, ballon imaginaire peuvent être des accessoires ou animations très courts.
+
