@@ -262,11 +262,11 @@ beats = {
     C('B_GAMING_NO', 'Nee, ech spillen net gär Computerspiller.', "Non, je n'aime pas les jeux vidéo.", 'honest', claims={'gaming': False}),
     C('B_GAMING_YES', 'Jo, ech spille gär Computerspiller.', "Oui, j'aime les jeux vidéo.", 'lie', claims={'gaming': True}),
     C('B_GAMING_JOKE', 'Ech sinn de Champion!', 'Je suis le champion !', 'joke', flags=['joke_gaming'])]},
- 'EV_LENA_MORNING': {'acte': 2, 'type': 'question', 'lessonIds': [16], 'theme': 'routine', 'profil': 'lena_r01', 'requiresVariant': 'VAR_LENA_EARLY', 'prompt': L('Wat méchs du moies?', 'Tu fais quoi le matin ?'), 'choices': [
+ 'EV_LENA_MORNING': {'titreFr': 'la routine du matin de Léna', 'acte': 2, 'type': 'question', 'lessonIds': [16], 'theme': 'routine', 'profil': 'lena_r01', 'requiresVariant': 'VAR_LENA_EARLY', 'prompt': L('Wat méchs du moies?', 'Tu fais quoi le matin ?'), 'choices': [
     C('EV_LENA_MORNING_C1', 'Moies drénken ech Kaffi.', 'Le matin, je bois du café.', 'honest', claims={'morningCoffee': True}, reactionFr='Elle rit : « Ce n’est pas vraiment un échauffement ! »'),
     C('EV_LENA_MORNING_C2', 'Moies ginn ech lafen.', 'Le matin, je vais courir.', 'lie', claims={'running': True}),
     C('EV_LENA_MORNING_C3', "Ech ginn op d'Aarbecht.", 'Je pars au travail.', 'honest', social={'affinity': 2})]},
- 'EV_EMMA_COFFEE': {'acte': 2, 'type': 'question', 'lessonIds': [16], 'theme': 'cafe', 'profil': 'emma_r01', 'prompt': L('Drénks du moies Kaffi?', 'Tu bois du café le matin ?', 'lecon'), 'choices': [
+ 'EV_EMMA_COFFEE': {'titreFr': 'le café du matin, votre point commun', 'acte': 2, 'type': 'question', 'lessonIds': [16], 'theme': 'cafe', 'profil': 'emma_r01', 'prompt': L('Drénks du moies Kaffi?', 'Tu bois du café le matin ?', 'lecon'), 'choices': [
     C('EV_EMMA_COFFEE_C1', 'Jo, ech drénke moies Kaffi.', 'Oui, je bois du café le matin.', 'honest', claims={'morningCoffee': True}, social={'affinity': 7}, reactionFr='Elle sourit : un point commun.'),
     C('EV_EMMA_COFFEE_C2', 'Nee, ech drénke moies kee Kaffi.', 'Non, je ne bois pas de café le matin.', 'lie', claims={'morningCoffee': False}),
     C('EV_EMMA_COFFEE_C3', 'Ech sinn e Kaffi!', 'Je suis un café !', 'joke', flags=['joke_cafe'])]},
@@ -309,6 +309,23 @@ clotures = {
     C('REP24_C', 'Dat weess ech nach net.', 'Je ne sais pas encore.', 'honest', social={'affinity': 0}, review='a_verifier_lod')]},
 }
 
+# Douze parcours pilotes (bible §10). Les EV_* conditionnels sont déclenchés par le moteur,
+# B15–B17 désignent l'emplacement du rappel, B18 la clôture.
+plans = [
+ {'id': 'P01', 'profil': 'lena_r01', 'sequence': ['B01_SALUT', 'B03_NAME', 'B10_FOOT', 'EV_LENA_FOOT', 'B06_CITY', 'B15_NAME_RECALL', 'B18_END'], 'particularite': 'mensonge football → gaffe ou aveu'},
+ {'id': 'P02', 'profil': 'lena_r01', 'sequence': ['B02_SALUT_SOIR', 'B03_NAME', 'B11_COFFEE', 'EV_LENA_MORNING', 'B05_ORIGIN', 'B21_ASK_HER', 'B18_END'], 'particularite': 'routine matinale → pas de bluff imposé', 'variante': 'VAR_LENA_EARLY'},
+ {'id': 'P03', 'profil': 'claire_r01', 'sequence': ['B02_SALUT_SOIR', 'B03_NAME', 'B08_PROFESSION', 'EV_CLAIRE_JOB', 'B06_CITY', 'B17_CITY_RECALL', 'B18_END'], 'particularite': 'faux métier → contrôle cohérent'},
+ {'id': 'P04', 'profil': 'claire_r01', 'valide': False, 'raison': 'B14_TIME et EV_CLAIRE_TIME non intégrés (heure ambiguë).', 'sequence': ['B01_SALUT', 'B03_NAME', 'B04_AGE', 'B14_TIME', 'EV_CLAIRE_TIME', 'B07_LANGUAGE', 'B18_END'], 'particularite': 'horaire public → rappel d’heure'},
+ {'id': 'P05', 'profil': 'noemie_r01', 'sequence': ['B01_SALUT', 'B03_NAME', 'B06_CITY', 'B_DRAW', 'EV_NOEMIE_DRAW', 'B07_LANGUAGE', 'B18_END'], 'particularite': 'dessin'},
+ {'id': 'P06', 'profil': 'noemie_r01', 'sequence': ['B02_SALUT_SOIR', 'B03_NAME', 'B05_ORIGIN', 'B12_COFFEE_OFFER', 'EV_NOEMIE_COLOR', 'B21_ASK_HER', 'B18_END'], 'particularite': 'couleur/look et café'},
+ {'id': 'P07', 'profil': 'maya_r01', 'sequence': ['B01_SALUT', 'B03_NAME', 'B07_LANGUAGE', 'B_GAMING', 'EV_MAYA_RETRO', 'B05_ORIGIN', 'B18_END'], 'particularite': 'console'},
+ {'id': 'P08', 'profil': 'maya_r01', 'sequence': ['B02_SALUT_SOIR', 'B03_NAME', 'B07_LANGUAGE', 'EV_MAYA_GERMAN', 'B06_CITY', 'B21_ASK_HER', 'B18_END'], 'particularite': 'bluff sur l’allemand, hors score allemand'},
+ {'id': 'P09', 'profil': 'sofia_r01', 'sequence': ['B02_SALUT_SOIR', 'B03_NAME', 'B05_ORIGIN', 'EV_SOFIA_PORTUGAL', 'B07_LANGUAGE', 'B15_NAME_RECALL', 'B18_END'], 'particularite': 'mensonge Portugal → chat/vache/aveu'},
+ {'id': 'P10', 'profil': 'sofia_r01', 'valide': False, 'raison': 'B14_TIME et EV_SOFIA_TRAIN non intégrés (heure ambiguë).', 'sequence': ['B01_SALUT', 'B03_NAME', 'B06_CITY', 'B14_TIME', 'EV_SOFIA_TRAIN', 'B21_ASK_HER', 'B18_END'], 'particularite': 'horaire de train'},
+ {'id': 'P11', 'profil': 'emma_r01', 'sequence': ['B01_SALUT', 'B03_NAME', 'B11_COFFEE', 'B06_CITY', 'EV_EMMA_PHONE', 'B15_NAME_RECALL', 'B18_END'], 'particularite': 'téléphone consulté et trait déclaré'},
+ {'id': 'P12', 'profil': 'emma_r01', 'sequence': ['B02_SALUT_SOIR', 'B03_NAME', 'EV_EMMA_COFFEE', 'B07_LANGUAGE', 'B21_ASK_HER', 'B18_END'], 'particularite': 'conversation détendue sans téléphone'},
+]
+
 def E(**k): return k
 def EC(id, fr, social, reactionFr, lu=None, visuel=None, **k):
     d = {'id': id, 'fr': fr, 'social': social, 'reactionFr': reactionFr}
@@ -316,48 +333,48 @@ def EC(id, fr, social, reactionFr, lu=None, visuel=None, **k):
     if visuel: d['visuel'] = visuel
     d.update(k); return d
 evenements = {
- 'EV_LENA_FOOT': E(profil='lena_r01', taille='gros', declencheur={'mensonge': {'football': True}}, npc=L('Du spills gär Fussball? Super, da komm, mir spillen!', 'Tu joues au foot ? Super, viens, on fait quelques passes !'), choices=[
+ 'EV_LENA_FOOT': E(titreFr='les passes de foot avec Léna', profil='lena_r01', taille='gros', declencheur={'mensonge': {'football': True}}, npc=L('Du spills gär Fussball? Super, da komm, mir spillen!', 'Tu joues au foot ? Super, viens, on fait quelques passes !'), choices=[
     EC('EV_LENA_FOOT_C1', 'Oui, avec plaisir !', {'affinity': 5, 'suspicion': 8}, 'Tu rates le ballon de trois mètres. Elle éclate de rire.', lu='Jo, gär!', visuel='rire'),
     EC('EV_LENA_FOOT_C2', 'Non, en fait je n’aime pas le foot.', {'affinity': 1, 'suspicion': -6}, 'Elle apprécie un aveu un peu tardif.', lu='Nee, ech spillen net gär Fussball.', aveu=True, visuel='hoche'),
     EC('EV_LENA_FOOT_C3', 'Je suis une star du foot !', {'affinity': 2, 'suspicion': 6}, 'Elle te met au défi, avec un sourire incrédule.', lu='Ech sinn e Fussballstar!', visuel='sourcil')]),
- 'EV_CLAIRE_JOB': E(profil='claire_r01', taille='petit', declencheur={'mensonge': {'job': 'Dokter'}}, npc=L('Du bass Dokter? Wou schaffs du?', 'Tu es médecin ? Tu travailles où ?'), choices=[
+ 'EV_CLAIRE_JOB': E(titreFr='Claire t’interroge sur ton « hôpital »', profil='claire_r01', taille='petit', declencheur={'mensonge': {'job': 'Dokter'}}, npc=L('Du bass Dokter? Wou schaffs du?', 'Tu es médecin ? Tu travailles où ?'), choices=[
     EC('EV_CLAIRE_JOB_C1', 'Je travaille à l’hôpital.', {'affinity': 2, 'suspicion': 12}, 'Elle lève un sourcil. Ton bluff devient fragile.', lu='Ech schaffen am Spidol.', visuel='sourcil'),
     EC('EV_CLAIRE_JOB_C2', 'Non, en fait je suis banquier.', {'affinity': 1, 'suspicion': -6}, 'Elle sourit : « Pourquoi m’inventer un hôpital ? »', lu='Nee, ech sinn e Banker.', aveu=True, visuel='hoche'),
     EC('EV_CLAIRE_JOB_C3', 'C’était une blague !', {'affinity': -2, 'suspicion': 4}, 'Elle trouve ton sens de l’humour très discutable.', lu='Dat war e Witz!', aveu=True, visuel='sourcil')]),
- 'EV_NOEMIE_DRAW': E(profil='noemie_r01', taille='gros', declencheur={'mensonge': {'drawing': True}}, npc=L('Kanns du mech molen?', 'Tu peux me dessiner ?'), choices=[
+ 'EV_NOEMIE_DRAW': E(titreFr='le portrait sur la serviette', profil='noemie_r01', taille='gros', declencheur={'mensonge': {'drawing': True}}, npc=L('Kanns du mech molen?', 'Tu peux me dessiner ?'), choices=[
     EC('EV_NOEMIE_DRAW_C1', 'Oui, volontiers.', {'affinity': 6, 'suspicion': 4}, 'Ton portrait sur la serviette ressemble à une patate. Elle explose de rire.', lu='Jo, gär!', visuel='rire'),
     EC('EV_NOEMIE_DRAW_C2', 'Non, je ne sais pas dessiner.', {'affinity': 1, 'suspicion': -4}, 'Elle te tend quand même le crayon.', lu='Nee, ech kann net molen.', aveu=True, visuel='hoche'),
     EC('EV_NOEMIE_DRAW_C3', 'C’est de l’art !', {'affinity': 4, 'suspicion': 2}, 'Elle contemple le gribouillis et en fait une critique très sérieuse.', lu='Dat ass Konscht!', visuel='rire')]),
- 'EV_NOEMIE_COLOR': E(profil='noemie_r01', taille='petit', declencheur={'look': {'style': 'creatif', 'color': 'rout'}}, npc=L('Ech hu gär Faarwen!', "J'aime les couleurs !"), choices=[
+ 'EV_NOEMIE_COLOR': E(titreFr='Noémie remarque tes couleurs', profil='noemie_r01', taille='petit', declencheur={'look': {'style': 'creatif', 'color': 'rout'}}, npc=L('Ech hu gär Faarwen!', "J'aime les couleurs !"), choices=[
     EC('EV_NOEMIE_COLOR_C1', 'Merci !', {'affinity': 3}, 'Elle remarque ton effort.', lu='Merci!', visuel='hoche'),
     EC('EV_NOEMIE_COLOR_C2', 'Le rouge est ma couleur préférée.', {'affinity': 4}, 'Elle apprécie le point commun.', lu='Rout ass meng Liiblingsfaarf.', visuel='hoche'),
     EC('EV_NOEMIE_COLOR_C3', 'Je suis une œuvre d’art !', {'affinity': 2}, 'Elle rit de bon cœur.', lu='Ech sinn e Konschtwierk!', visuel='rire', review='a_verifier_lod')]),
- 'EV_MAYA_RETRO': E(profil='maya_r01', taille='gros', declencheur={'mensonge': {'gaming': True}}, npc=L('Du spills gär Computerspiller? Da probéier dat!', 'Tu aimes les jeux vidéo ? Alors essaie ma console !'), choices=[
+ 'EV_MAYA_RETRO': E(titreFr='la console rétro de Maya', profil='maya_r01', taille='gros', declencheur={'mensonge': {'gaming': True}}, npc=L('Du spills gär Computerspiller? Da probéier dat!', 'Tu aimes les jeux vidéo ? Alors essaie ma console !'), choices=[
     EC('EV_MAYA_RETRO_C1', 'Oui !', {'affinity': 5, 'suspicion': 5}, 'Tu perds en quatre secondes. Elle te propose une revanche.', lu='Jo!', visuel='rire'),
     EC('EV_MAYA_RETRO_C2', 'Non, je ne connais pas ce jeu.', {'affinity': 3, 'suspicion': -5}, 'Ravie, elle t’explique son jeu préféré.', lu='Nee, ech kennen dat Spill net.', aveu=True, visuel='hoche'),
     EC('EV_MAYA_RETRO_C3', 'Je suis le champion !', {'affinity': 2, 'suspicion': 6}, 'Défaite comique immédiate.', lu='Ech sinn de Champion!', visuel='rire')]),
- 'EV_MAYA_GERMAN': E(profil='maya_r01', taille='petit', declencheur={'mensonge': {'language': 'Däitsch'}}, npc=L('Du schwätz Däitsch? Super!', 'Tu parles allemand ? Super !'), choices=[
+ 'EV_MAYA_GERMAN': E(titreFr='Maya veut parler allemand', profil='maya_r01', taille='petit', declencheur={'mensonge': {'language': 'Däitsch'}}, npc=L('Du schwätz Däitsch? Super!', 'Tu parles allemand ? Super !'), choices=[
     EC('EV_MAYA_GERMAN_C1', 'En fait, je ne parle pas allemand.', {'affinity': 2, 'suspicion': -6}, 'Elle rit : « Tu fais aussi des CV mensongers ? »', lu='Ech schwätzen net Däitsch.', aveu=True, visuel='rire'),
     EC('EV_MAYA_GERMAN_C2', 'Je parle français.', {'affinity': 1, 'suspicion': -3}, 'Réaction détendue.', lu='Ech schwätze Franséisch.', aveu=True, visuel='hoche'),
     EC('EV_MAYA_GERMAN_C3', 'Oui, je parle allemand.', {'affinity': 0, 'suspicion': 8}, 'Elle garde un doute.', lu='Jo, ech schwätzen Däitsch.', visuel='sourcil')]),
- 'EV_SOFIA_PORTUGAL': E(profil='sofia_r01', taille='gros', declencheur={'mensonge': {'origin': 'Portugal', 'language': 'Portugisesch'}, 'unSuffit': True}, npc=L('Du kënns aus Portugal? Wat fir en Déier sinn ech? Op Portugisesch!', 'Tu viens du Portugal ? Alors, à quel animal je ressemble ? Réponds en portugais !'), choices=[
+ 'EV_SOFIA_PORTUGAL': E(titreFr='le quiz des animaux en portugais', profil='sofia_r01', taille='gros', declencheur={'mensonge': {'origin': 'Portugal', 'language': 'Portugisesch'}, 'unSuffit': True}, npc=L('Du kënns aus Portugal? Wat fir en Déier sinn ech? Op Portugisesch!', 'Tu viens du Portugal ? Alors, à quel animal je ressemble ? Réponds en portugais !'), choices=[
     EC('vaca', 'Vaca (vache)', {'affinity': -12, 'suspicion': 14}, '« UNE VACHE ?! » Disque rayé. Grand silence.', texte='Vaca', langue='pt', visuel='scratch'),
     EC('hipopotamo', 'Hipopótamo (hippopotame)', {'affinity': -14, 'suspicion': 14}, '« UN HIPPOPOTAME ?! »', texte='Hipopótamo', langue='pt', visuel='zoom'),
     EC('gata', 'Gata (chatte, l’animal)', {'affinity': 6}, '« Un chat ? C’est mignon ! »', texte='Gata', langue='pt', visuel='joie'),
     EC('aveu', 'En fait, je ne parle pas portugais.', {'affinity': 2, 'suspicion': -8}, 'Elle rit et accepte ton aveu.', lu='Ech schwätzen net Portugisesch.', aveu=True, visuel='rire')]),
- 'EV_EMMA_PHONE': E(profil='emma_r01', taille='petit', declencheur={'telephone': True}, npc=L('Bass du ëmmer um Handy?', 'Tu es toujours sur ton téléphone ?', 'audit_regles'), choices=[
+ 'EV_EMMA_PHONE': E(titreFr='Emma remarque ton téléphone', profil='emma_r01', taille='petit', declencheur={'telephone': True}, npc=L('Bass du ëmmer um Handy?', 'Tu es toujours sur ton téléphone ?', 'audit_regles'), choices=[
     EC('EV_EMMA_PHONE_C1', 'Pardon, je range le téléphone.', {'affinity': -4}, 'Elle reprend calmement la discussion.', lu='Entschëllegt. Ech leeën den Handy ewech.', visuel='hoche', review='a_verifier_lod'),
     EC('EV_EMMA_PHONE_C2', 'Je regarde juste un instant.', {'affinity': -8}, 'Elle attend en silence.', lu='Ech kucken just kuerz.', visuel='froid', review='a_verifier_lod'),
     EC('EV_EMMA_PHONE_C3', 'Oui.', {'affinity': -12, 'suspicion': 4}, 'Elle regarde sa montre sans rien dire.', lu='Jo.', visuel='froid')]),
- 'EV_EX_ALEX': E(profil='tous', taille='petit', declencheur={'trait': 'exAlex', 'claim': {'prenom': 'Alex'}}, npc=L('Alex? Mäin Ex huet och Alex geheescht.', 'Alex ? Mon ex s’appelait Alex aussi…', 'a_verifier_lod'), choices=[
+ 'EV_EX_ALEX': E(titreFr='l’ex de ta partenaire s’appelait Alex', profil='tous', taille='petit', declencheur={'trait': 'exAlex', 'claim': {'prenom': 'Alex'}}, npc=L('Alex? Mäin Ex huet och Alex geheescht.', 'Alex ? Mon ex s’appelait Alex aussi…', 'a_verifier_lod'), choices=[
     EC('EV_EX_ALEX_C1', 'Je m’appelle Alex.', {'affinity': 2}, 'Elle souffle : « Bon, tu n’es pas lui. »', lu='Ech heeschen Alex.', visuel='hoche'),
     EC('EV_EX_ALEX_C2', 'Je m’appelle Max.', {'affinity': 1, 'suspicion': 6}, 'Elle hausse un sourcil. Ce prénom, il faudra t’en souvenir.', lu='Ech heesche Max.', claims={'prenom': 'Max'}, remplace=True, mensonge=True, visuel='sourcil'),
     EC('EV_EX_ALEX_C3', 'Je m’appelle James Bond.', {'affinity': 0}, 'Elle hésite entre rire et soupirer.', lu='Ech heesche James Bond.', visuel='sourcil')]),
- 'EV_AGE_PREF': E(profil='tous', taille='petit', declencheur={'trait': 'agePrefPositive30', 'mensonge': {'age': 30}}, npc=L('Du bass drësseg? Interessant!', 'Ah, tu as trente ans ? Intéressant.', 'a_verifier_lod'), choices=[
+ 'EV_AGE_PREF': E(titreFr='tes « trente ans » l’intéressent', profil='tous', taille='petit', declencheur={'trait': 'agePrefPositive30', 'mensonge': {'age': 30}}, npc=L('Du bass drësseg? Interessant!', 'Ah, tu as trente ans ? Intéressant.', 'a_verifier_lod'), choices=[
     EC('EV_AGE_PREF_C1', 'Oui.', {'affinity': 3, 'suspicion': 2}, 'Elle sourit, convaincue… pour l’instant.', lu='Jo.', visuel='hoche'),
     EC('EV_AGE_PREF_C2', 'En fait, j’ai vingt-huit ans.', {'affinity': 0, 'suspicion': -4}, 'Elle apprécie la correction.', lu='Ech sinn aachtanzwanzeg Joer al.', aveu=True, visuel='hoche'),
     EC('EV_AGE_PREF_C3', 'C’était une blague !', {'affinity': -1, 'suspicion': -2}, 'Elle lève les yeux au ciel, amusée.', lu='Dat war e Witz!', aveu=True, visuel='sourcil')]),
- 'B25_TRUTH_REPAIR': E(profil='tous', taille='petit', traductionVisible=True, declencheur={'contradiction': True}, npc=L('Ass dat wouer?', 'C’est vrai ?', 'a_verifier_lod'), choices=[
+ 'B25_TRUTH_REPAIR': E(titreFr='tu as dû t’expliquer', profil='tous', taille='petit', traductionVisible=True, declencheur={'contradiction': True}, npc=L('Ass dat wouer?', 'C’est vrai ?', 'a_verifier_lod'), choices=[
     EC('REP25_A', 'Non, c’était une blague.', {'affinity': 0, 'suspicion': -3}, 'Elle hésite, puis sourit à moitié.', lu='Nee, dat war e Witz.', visuel='sourcil'),
     EC('REP25_B', 'Pardon, j’ai menti.', {'affinity': 2, 'suspicion': -8}, 'Elle apprécie la franchise.', lu='Entschëllegt, ech hu gelunn.', aveu=True, visuel='hoche', review='a_verifier_lod'),
     EC('REP25_C', 'Oui.', {'affinity': -2, 'suspicion': 6}, 'Elle n’a pas l’air convaincue.', lu='Jo.', visuel='sourcil')]),
@@ -399,7 +416,7 @@ contenus = {
    'audit_regles': 'Vérifiée par Claude : conjugaison, règle du n, prépositions, accords (leçons + règles). Relecture native à faire.',
    'a_verifier_lod': 'Lexique ou tournure hors leçons (profession, adjectif, expression) : à confirmer sur LOD.lu et par un locuteur.'},
  'persona': persona, 'profils': profils, 'variantes': variantes, 'preferences': preferences,
- 'beats': beats, 'rappels': rappels, 'clotures': clotures, 'evenements': evenements,
+ 'plans': plans, 'beats': beats, 'rappels': rappels, 'clotures': clotures, 'evenements': evenements,
  'nonIntegres': non_integres, 'correctionsAudit': corrections,
  'finsAdaptees': [
   {'id': 'FIN_LENA_FAIL', 'bible': '… tu as changé d’histoire trois fois.', 'raison': 'Le nombre de changements n’est pas compté : « trois fois » retiré.'},

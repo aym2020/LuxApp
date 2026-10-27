@@ -21,17 +21,17 @@ const LM_SCENES = {
   carnet: '#6a2c4a', atelier: '#8a2233', lisbonne: '#2a5f86', train: '#4a4060'
 };
 const LM_FONDS = { carte: '#3a2a55', pro: '#2a3550', amis: '#2d4a3a', alex: '#2a3550' };
+// Titres de la bible (UI_RESULT_*) et textes génériques quand aucun fait personnalisé ne colle.
 const LM_ISSUES = {
   nouveau_rdv: { titre: 'NOUVEAU RDV !', texte: 'Elle veut te revoir. Le courant passe… et ton histoire tient la route.' },
   gene_drole: { titre: 'GÊNANT… MAIS DRÔLE', texte: 'Tes inventions t’ont rattrapé, mais vous avez bien ri.' },
   pas_colle: { titre: 'ÇA NE COLLE PAS', texte: 'Sympa, sans plus. Une autre personne, un autre style ?' },
-  malaise: { titre: 'MALAISE…', texte: 'Trop de contradictions : elle a préféré partir. Tes mensonges avaient une suite !' }
+  malaise: { titre: 'MALAISE TOTAL', texte: 'Trop de contradictions : elle a préféré partir. Tes mensonges avaient une suite !' }
 };
-// Effet visuel 3D selon la réaction d'un piège (data : choices[].visual).
+// Réaction 3D selon le visuel renvoyé par le moteur.
 const LM_VISUELS = {
-  record_scratch: 'scratch', dramatic_zoom: 'zoom', sparkles: 'joie', laugh: 'rire', miss_ball: 'rire',
-  suspicious_eyebrow: 'surprise', shrug: 'pas_mal', draw_potato: 'rire', retro_fail: 'rire', teach: 'pas_mal',
-  phone_down: 'pas_mal', cold_look: 'froid'
+  parle: 'parle', hoche: 'parle', sourire: 'parle', sourcil: 'surprise', rire: 'rire', froid: 'froid',
+  gene: 'deception', scratch: 'scratch', zoom: 'zoom', joie: 'joie'
 };
 
 const lm = {
@@ -110,7 +110,9 @@ async function lmChargerDonnees() {
   if (lm.donnees) return lm.donnees;
   const r = await fetch('/api/jeux/lux-match');
   if (!r.ok) throw new Error('donnees');
-  lm.donnees = await r.json();
+  const json = await r.json();
+  if (!json.contenus) throw new Error('donnees');
+  lm.donnees = json;
   return lm.donnees;
 }
 // Le moteur 3D est créé une seule fois (préchargé dès l'ouverture du jeu).
@@ -476,6 +478,7 @@ function lmCommencerDate(passer) {
   lm.lookEnCours = null;
   LuxMatchCore.commencerDate(p);
   lm.effetLookAAnnoncer = passer ? null : effet;
+  lm.impressionAAfficher = p.impression;
   lmRendre();
 }
 
@@ -518,24 +521,27 @@ function lmRendreDate(box) {
   }
 }
 function lmNomSpeaker() { return lm.partie.profil.name; }
+const LM_ETIQUETTES = { evenement: 'imprévu !', rappel: 'elle vérifie…', demande: 'à toi !' };
+// Texte d'un choix : luxembourgeois (ou portugais pour le gag de Sofia), traduction si aide.
+function lmTexteChoix(c) {
+  if (c.lu) return '<span class="lm-lu" lang="lb">' + lmEchapper(c.lu) + '</span>' + (lm.aideFr && c.fr ? '<span class="lm-fr">' + lmEchapper(c.fr) + '</span>' : '');
+  if (c.texte) return '<span class="lm-lu" lang="' + (c.langue || 'pt') + '">' + lmEchapper(c.texte) + '</span>' + (lm.aideFr ? '<span class="lm-fr">' + lmEchapper(c.fr.replace(/^[^(]*\(|\)$/g, '')) + '</span>' : '');
+  return '<span class="lm-fr">' + lmEchapper(c.fr) + '</span>';
+}
 function lmMajDialogue() {
   const p = lm.partie, bulle = document.getElementById('lm-bulle'), rep = document.getElementById('lm-reponses');
   if (!bulle || !rep) return;
   const e = p.courant;
   if (!e) { bulle.innerHTML = ''; rep.innerHTML = ''; return; }
-  const lu = e.prompt.lu, fr = e.prompt.fr;
-  bulle.innerHTML = '<span class="lm-speaker">' + lmEchapper(lmNomSpeaker()) + (e.type === 'piege' ? ' <em>· imprévu !</em>' : e.type === 'rappel' ? ' <em>· elle vérifie…</em>' : '') + '</span>' +
-    (lu ? '<p class="lm-lu" lang="lb">' + lmEchapper(lu) + '</p>' : '') +
-    ((lm.aideFr || !lu) ? '<p class="lm-fr">' + lmEchapper(fr) + '</p>' : '');
-  rep.innerHTML = e.choix.map(c => {
-    const texteLu = c.lu || c.luDraft || c.text || '';
-    const texteFr = c.fr || c.meaningFr || '';
-    const action = !texteLu;
-    return '<button type="button" class="lm-reponse' + (action ? ' lm-action' : '') + '" onclick="lmRepondre(\'' + lmEchapper(c.id) + '\')">' +
-      (action ? '<span class="lm-fr">' + lmEchapper(texteFr) + '</span>'
-        : '<span class="lm-lu" lang="' + (c.text ? 'pt' : 'lb') + '">' + lmEchapper(texteLu) + '</span>' + (lm.aideFr && texteFr ? '<span class="lm-fr">' + lmEchapper(texteFr) + '</span>' : '')) +
-      '</button>';
-  }).join('');
+  // Expressions hors A1.1 (B24, B25) : traduction toujours visible (bible §6.28).
+  const traduire = lm.aideFr || e.source.traductionVisible;
+  const impression = lm.impressionAAfficher;
+  lm.impressionAAfficher = null;
+  bulle.innerHTML = (impression ? '<p class="lm-impression' + (impression.positive ? ' lm-positive' : '') + '">« ' + lmEchapper(impression.fr) + ' »</p>' : '') +
+    '<span class="lm-speaker">' + lmEchapper(lmNomSpeaker()) + (LM_ETIQUETTES[e.type] ? ' <em>· ' + LM_ETIQUETTES[e.type] + '</em>' : '') + '</span>' +
+    (e.prompt.lu ? lmLu(e.prompt.lu) : '') + (traduire || !e.prompt.lu ? '<p class="lm-fr">' + lmEchapper(e.prompt.fr) + '</p>' : '');
+  rep.innerHTML = e.choix.map(c => '<button type="button" class="lm-reponse" onclick="lmRepondre(\'' + lmEchapper(c.id) + '\')">' +
+    (e.source.traductionVisible && !lm.aideFr && c.lu ? lmTexteChoix(c) + '<span class="lm-fr">' + lmEchapper(c.fr) + '</span>' : lmTexteChoix(c)) + '</button>').join('');
 }
 function lmMajJauges() {
   const p = lm.partie;
@@ -562,20 +568,23 @@ function lmRepondre(choixId) {
   const r = LuxMatchCore.repondre(p, choixId);
   if (!r) return;
   lmMajJauges();
-  // Messages : affinité, suspicion, contradiction.
+  // Messages arcade (textes UI_FEED_* de la bible) puis jauges.
   const lignes = [];
   if (r.contradiction) lignes.push({ texte: 'CONTRADICTION !', classe: 'lm-alerte' });
+  else if (r.aveu) lignes.push({ texte: 'SAUVÉ… DE JUSTESSE !', classe: 'lm-plus' });
+  else if (r.bluff) lignes.push({ texte: 'BLUFF !', classe: 'lm-sus' });
+  else if (r.langue === false || r.visuel === 'gene' || r.visuel === 'froid') lignes.push({ texte: 'GÊNANT…', classe: 'lm-moins' });
+  else if (r.reaction && r.reaction.cle === 'RAPPEL') lignes.push({ texte: 'ELLE S’EN SOUVIENT…', classe: 'lm-plus' });
   if (r.affinity) lignes.push({ texte: (r.affinity > 0 ? '+' : '') + r.affinity + ' ♥', classe: r.affinity > 0 ? 'lm-plus' : 'lm-moins' });
   if (r.suspicion > 0) lignes.push({ texte: 'SUSPICION +' + r.suspicion, classe: 'lm-sus' });
   if (r.suspicion < 0) lignes.push({ texte: 'SUSPICION ' + r.suspicion, classe: 'lm-plus' });
   if (lignes.length) lmFeedback(lignes);
   // Réaction 3D et son.
-  let reaction = r.visuel ? LM_VISUELS[r.visuel] : null;
-  if (!reaction) reaction = r.contradiction ? 'surprise' : r.affinity >= 6 ? 'joie' : r.affinity > 0 ? 'pas_mal' : r.affinity <= -3 ? 'deception' : null;
+  const reaction = LM_VISUELS[r.visuel] || null;
   if (lm.rendu3d && reaction) lm.rendu3d.reagir(reaction);
-  LuxMatchSon.jouer(r.visuel === 'record_scratch' || r.contradiction ? 'scratch' : r.langue === false ? 'faux' : r.affinity > 0 ? 'bien' : 'bof');
+  LuxMatchSon.jouer(r.visuel === 'scratch' || r.contradiction ? 'scratch' : r.langue === false ? 'faux' : r.affinity > 0 ? 'bien' : 'bof');
   // Panneau à lire (correction de langue, réaction d'imprévu, contradiction) ou suite automatique.
-  const aLire = r.correction || r.reaction || r.finAnticipee;
+  const aLire = r.correction || r.reaction || r.reponseElle || r.finAnticipee;
   lm.dernierResultat = r;
   lm.attente = aLire ? 'lecture' : 'auto';
   lmAfficherResultat(r);
@@ -584,23 +593,22 @@ function lmRepondre(choixId) {
 // Réponse d'Alex dans la bulle, puis panneau de lecture si nécessaire (réaffiché si l'aide FR change).
 function lmAfficherResultat(r) {
   const rep = document.getElementById('lm-reponses'), bulle = document.getElementById('lm-bulle');
-  const texteLu = r.choix.lu || r.choix.luDraft || r.choix.text || '';
-  const texteFr = r.choix.fr || r.choix.meaningFr || '';
-  if (bulle) bulle.innerHTML = '<span class="lm-speaker">Toi</span>' + (texteLu ? lmLu(texteLu) + lmFr(texteFr) : '<p class="lm-fr">' + lmEchapper(texteFr) + '</p>');
+  if (bulle) bulle.innerHTML = '<span class="lm-speaker">Toi</span><p class="lm-toi">' + lmTexteChoix(r.choix) + '</p>';
   if (rep) rep.innerHTML = lm.attente === 'lecture' ? lmHtmlLecture(r) : '';
 }
 function lmHtmlLecture(r) {
   let html = '<div class="lm-lecture">';
   if (r.correction) {
-    html += '<p class="lm-correction-titre">Petite faute de luxembourgeois</p>' +
+    html += '<p class="lm-correction-titre">Expression à retenir</p>' +
       '<p class="lm-faux" lang="lb">✗ ' + lmEchapper(r.choix.lu) + '</p>' +
       (r.correction.lu ? '<p class="lm-juste" lang="lb">✓ ' + lmEchapper(r.correction.lu) + '</p>' : '') +
       '<p class="lm-fr">' + lmEchapper(r.correction.fr) + '</p>';
   }
-  if (r.reaction) {
-    const reac = typeof r.reaction === 'string' ? { fr: r.reaction } : r.reaction;
-    html += '<p class="lm-reaction">' + (reac.lu ? '<span lang="lb">' + lmEchapper(reac.lu) + '</span>' : '') + '<span class="lm-fr">' + lmEchapper(reac.fr) + '</span></p>';
+  if (r.reponseElle) {
+    // Sa réponse canonique (même information que sur ses réseaux).
+    html += '<div class="lm-reponse-elle"><span class="lm-speaker">' + lmEchapper(lm.partie.profil.name) + '</span>' + lmLu(r.reponseElle.lu) + lmFr(r.reponseElle.fr) + '</div>';
   }
+  if (r.reaction && r.reaction.fr) html += '<p class="lm-reaction"><span class="lm-fr">' + lmEchapper(r.reaction.fr) + '</span></p>';
   if (r.finAnticipee) html += '<p class="lm-reaction"><span class="lm-fr">' + lmEchapper(lm.partie.profil.name) + ' se lève et prend son manteau…</span></p>';
   return html + '<button type="button" class="lm-btn lm-btn-or" onclick="lmContinuer()">Continuer ▸</button></div>';
 }
@@ -720,12 +728,16 @@ function lmRendreResultats(box) {
     '<div class="lm-resultats">' +
       '<div class="lm-res-titre lm-res-' + p.fin.issue + '">' + issue.titre + '</div>' +
       lmImage(p.profil, p.fin.issue === 'nouveau_rdv' ? 'Victory' : 'Idle', p.fin.issue === 'nouveau_rdv' ? '#5a2a55' : '#2a2438', 'lm-res-photo') +
-      '<p class="lm-res-texte">' + lmEchapper(issue.texte) + '</p>' +
+      // Conclusion de la bible si son fait a vraiment eu lieu, sinon texte générique.
+      (p.fin.texte ? '<blockquote class="lm-res-citation"><p>« ' + lmEchapper(p.fin.texte.fr) + ' »</p><cite>— ' + lmEchapper(p.profil.name) + '</cite></blockquote>'
+        : '<p class="lm-res-texte">' + lmEchapper(issue.texte) + '</p>') +
       '<div class="lm-res-stats">' +
         '<div><span>Affinité</span><b>' + p.affinity + '</b></div><div><span>Suspicion</span><b>' + p.suspicion + '</b></div>' +
         '<div><span>Luxembourgeois</span><b>' + p.fin.langue + ' %</b></div></div>' +
       '<div class="lm-res-score"><span>SCORE</span><b>' + p.fin.score + '</b>' + (p.nouveauRecord ? '<em>NOUVEAU RECORD</em>' : '<small>Record ' + lmLire('luxMatchRecord', 0) + '</small>') + '</div>' +
-      (expressions.length ? '<h2 class="lm-section">Expressions du rendez-vous</h2><ul class="lm-expressions">' +
+      '<h2 class="lm-section">Ce qui s’est passé</h2><ul class="lm-resume">' +
+        p.fin.resume.map(l => '<li class="lm-resume-' + l.type + '">' + lmEchapper(l.fr) + '</li>').join('') + '</ul>' +
+      (expressions.length ? '<h2 class="lm-section">Tes expressions en luxembourgeois</h2><ul class="lm-expressions">' +
         expressions.map(e => '<li' + (e.faute ? ' class="lm-a-revoir"' : '') + '><span class="lm-q" lang="lb">' + lmEchapper(e.question.lu) + '</span>' +
           '<b lang="lb">' + lmEchapper(e.reponse.lu) + '</b><span>' + lmEchapper(e.reponse.fr) + (e.faute ? ' · <em>à revoir</em>' : '') + '</span></li>').join('') + '</ul>' : '') +
       '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmNouvellePartie()">Nouveau match</button>' +

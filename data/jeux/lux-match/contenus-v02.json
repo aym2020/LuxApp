@@ -1332,6 +1332,180 @@
    "dislikedFirstName": "Alex"
   }
  },
+ "plans": [
+  {
+   "id": "P01",
+   "profil": "lena_r01",
+   "sequence": [
+    "B01_SALUT",
+    "B03_NAME",
+    "B10_FOOT",
+    "EV_LENA_FOOT",
+    "B06_CITY",
+    "B15_NAME_RECALL",
+    "B18_END"
+   ],
+   "particularite": "mensonge football → gaffe ou aveu"
+  },
+  {
+   "id": "P02",
+   "profil": "lena_r01",
+   "sequence": [
+    "B02_SALUT_SOIR",
+    "B03_NAME",
+    "B11_COFFEE",
+    "EV_LENA_MORNING",
+    "B05_ORIGIN",
+    "B21_ASK_HER",
+    "B18_END"
+   ],
+   "particularite": "routine matinale → pas de bluff imposé",
+   "variante": "VAR_LENA_EARLY"
+  },
+  {
+   "id": "P03",
+   "profil": "claire_r01",
+   "sequence": [
+    "B02_SALUT_SOIR",
+    "B03_NAME",
+    "B08_PROFESSION",
+    "EV_CLAIRE_JOB",
+    "B06_CITY",
+    "B17_CITY_RECALL",
+    "B18_END"
+   ],
+   "particularite": "faux métier → contrôle cohérent"
+  },
+  {
+   "id": "P04",
+   "profil": "claire_r01",
+   "valide": false,
+   "raison": "B14_TIME et EV_CLAIRE_TIME non intégrés (heure ambiguë).",
+   "sequence": [
+    "B01_SALUT",
+    "B03_NAME",
+    "B04_AGE",
+    "B14_TIME",
+    "EV_CLAIRE_TIME",
+    "B07_LANGUAGE",
+    "B18_END"
+   ],
+   "particularite": "horaire public → rappel d’heure"
+  },
+  {
+   "id": "P05",
+   "profil": "noemie_r01",
+   "sequence": [
+    "B01_SALUT",
+    "B03_NAME",
+    "B06_CITY",
+    "B_DRAW",
+    "EV_NOEMIE_DRAW",
+    "B07_LANGUAGE",
+    "B18_END"
+   ],
+   "particularite": "dessin"
+  },
+  {
+   "id": "P06",
+   "profil": "noemie_r01",
+   "sequence": [
+    "B02_SALUT_SOIR",
+    "B03_NAME",
+    "B05_ORIGIN",
+    "B12_COFFEE_OFFER",
+    "EV_NOEMIE_COLOR",
+    "B21_ASK_HER",
+    "B18_END"
+   ],
+   "particularite": "couleur/look et café"
+  },
+  {
+   "id": "P07",
+   "profil": "maya_r01",
+   "sequence": [
+    "B01_SALUT",
+    "B03_NAME",
+    "B07_LANGUAGE",
+    "B_GAMING",
+    "EV_MAYA_RETRO",
+    "B05_ORIGIN",
+    "B18_END"
+   ],
+   "particularite": "console"
+  },
+  {
+   "id": "P08",
+   "profil": "maya_r01",
+   "sequence": [
+    "B02_SALUT_SOIR",
+    "B03_NAME",
+    "B07_LANGUAGE",
+    "EV_MAYA_GERMAN",
+    "B06_CITY",
+    "B21_ASK_HER",
+    "B18_END"
+   ],
+   "particularite": "bluff sur l’allemand, hors score allemand"
+  },
+  {
+   "id": "P09",
+   "profil": "sofia_r01",
+   "sequence": [
+    "B02_SALUT_SOIR",
+    "B03_NAME",
+    "B05_ORIGIN",
+    "EV_SOFIA_PORTUGAL",
+    "B07_LANGUAGE",
+    "B15_NAME_RECALL",
+    "B18_END"
+   ],
+   "particularite": "mensonge Portugal → chat/vache/aveu"
+  },
+  {
+   "id": "P10",
+   "profil": "sofia_r01",
+   "valide": false,
+   "raison": "B14_TIME et EV_SOFIA_TRAIN non intégrés (heure ambiguë).",
+   "sequence": [
+    "B01_SALUT",
+    "B03_NAME",
+    "B06_CITY",
+    "B14_TIME",
+    "EV_SOFIA_TRAIN",
+    "B21_ASK_HER",
+    "B18_END"
+   ],
+   "particularite": "horaire de train"
+  },
+  {
+   "id": "P11",
+   "profil": "emma_r01",
+   "sequence": [
+    "B01_SALUT",
+    "B03_NAME",
+    "B11_COFFEE",
+    "B06_CITY",
+    "EV_EMMA_PHONE",
+    "B15_NAME_RECALL",
+    "B18_END"
+   ],
+   "particularite": "téléphone consulté et trait déclaré"
+  },
+  {
+   "id": "P12",
+   "profil": "emma_r01",
+   "sequence": [
+    "B02_SALUT_SOIR",
+    "B03_NAME",
+    "EV_EMMA_COFFEE",
+    "B07_LANGUAGE",
+    "B21_ASK_HER",
+    "B18_END"
+   ],
+   "particularite": "conversation détendue sans téléphone"
+  }
+ ],
  "beats": {
   "B01_SALUT": {
    "acte": 1,
@@ -2115,6 +2289,7 @@
    ]
   },
   "EV_LENA_MORNING": {
+   "titreFr": "la routine du matin de Léna",
    "acte": 2,
    "type": "question",
    "lessonIds": [
@@ -2166,6 +2341,7 @@
    ]
   },
   "EV_EMMA_COFFEE": {
+   "titreFr": "le café du matin, votre point commun",
    "acte": 2,
    "type": "question",
    "lessonIds": [
@@ -2541,6 +2717,7 @@
  },
  "evenements": {
   "EV_LENA_FOOT": {
+   "titreFr": "les passes de foot avec Léna",
    "profil": "lena_r01",
    "taille": "gros",
    "declencheur": {
@@ -2594,6 +2771,7 @@
    ]
   },
   "EV_CLAIRE_JOB": {
+   "titreFr": "Claire t’interroge sur ton « hôpital »",
    "profil": "claire_r01",
    "taille": "petit",
    "declencheur": {
@@ -2648,6 +2826,7 @@
    ]
   },
   "EV_NOEMIE_DRAW": {
+   "titreFr": "le portrait sur la serviette",
    "profil": "noemie_r01",
    "taille": "gros",
    "declencheur": {
@@ -2701,6 +2880,7 @@
    ]
   },
   "EV_NOEMIE_COLOR": {
+   "titreFr": "Noémie remarque tes couleurs",
    "profil": "noemie_r01",
    "taille": "petit",
    "declencheur": {
@@ -2751,6 +2931,7 @@
    ]
   },
   "EV_MAYA_RETRO": {
+   "titreFr": "la console rétro de Maya",
    "profil": "maya_r01",
    "taille": "gros",
    "declencheur": {
@@ -2804,6 +2985,7 @@
    ]
   },
   "EV_MAYA_GERMAN": {
+   "titreFr": "Maya veut parler allemand",
    "profil": "maya_r01",
    "taille": "petit",
    "declencheur": {
@@ -2858,6 +3040,7 @@
    ]
   },
   "EV_SOFIA_PORTUGAL": {
+   "titreFr": "le quiz des animaux en portugais",
    "profil": "sofia_r01",
    "taille": "gros",
    "declencheur": {
@@ -2924,6 +3107,7 @@
    ]
   },
   "EV_EMMA_PHONE": {
+   "titreFr": "Emma remarque ton téléphone",
    "profil": "emma_r01",
    "taille": "petit",
    "declencheur": {
@@ -2972,6 +3156,7 @@
    ]
   },
   "EV_EX_ALEX": {
+   "titreFr": "l’ex de ta partenaire s’appelait Alex",
    "profil": "tous",
    "taille": "petit",
    "declencheur": {
@@ -3028,6 +3213,7 @@
    ]
   },
   "EV_AGE_PREF": {
+   "titreFr": "tes « trente ans » l’intéressent",
    "profil": "tous",
    "taille": "petit",
    "declencheur": {
@@ -3083,6 +3269,7 @@
    ]
   },
   "B25_TRUTH_REPAIR": {
+   "titreFr": "tu as dû t’expliquer",
    "profil": "tous",
    "taille": "petit",
    "traductionVisible": true,
