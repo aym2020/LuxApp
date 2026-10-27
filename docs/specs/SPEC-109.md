@@ -175,36 +175,36 @@ Nœuds prioritaires : `salutation` (L1), `age` (L5/L14), `origine` (L7), `nation
 
 ### 12.2. P0/P1 — Présenter le personnage joueur AVANT le premier swipe
 
-- Première vue au lancement d'une partie : **carte « TON PROFIL »** cohérente avec le faux smartphone (avatar 3D/portrait existant, prénom **Alex**, **28 ans**, France/Frankräich, **Metz**, **Banker** / banquier, **Franséisch** / français). Ajouter les informations canoniques du \`pilotPlayerPersona\` si utiles ; ne pas inventer de renseignements personnels.
+- Première vue au lancement d'une partie : **carte « TON PROFIL »** cohérente avec le faux smartphone (avatar 3D/portrait existant, prénom **Alex**, **28 ans**, France/Frankräich, **Metz**, **Banker** / banquier, **Franséisch** / français). Ajouter les informations canoniques du `pilotPlayerPersona` si utiles ; ne pas inventer de renseignements personnels.
 - CTA principal explicite **« Commencer les swipes »** ; pas de nouveaux formulaires, de personnalisation de l'identité ou de retouche de progression. **Option pour revoir la fiche avant le date** et bouton « Moi » pendant le date, déjà existant, à conserver.
-- Cette carte présente la **vérité**. Pendant le date, les fausses affirmations du joueur sont stockées dans \`claims\`/historique **séparément** : ne jamais réécrire son profil réel, ne jamais lui afficher automatiquement le détail de ses mensonges pour résoudre les défis à sa place.
+- Cette carte présente la **vérité**. Pendant le date, les fausses affirmations du joueur sont stockées dans `claims`/historique **séparément** : ne jamais réécrire son profil réel, ne jamais lui afficher automatiquement le détail de ses mensonges pour résoudre les défis à sa place.
 - Le profil peut changer dans de futures versions, mais **ne PAS implémenter de génération de personas joueurs** dans ce lot ; respecter les traductions des champs à leur affichage.
 
 ### 12.3. P1 — Trois réponses à la question d'âge, toutes grammaticalement correctes
 
-Pour le nœud \`age\` (et seulement là où ce modèle de choix sert réellement au game design), présenter **exactement trois réponses en luxembourgeois**, dans un ordre mélangé, sans étiquette qui révèle leur type :
+Pour le nœud `age` (et seulement là où ce modèle de choix sert réellement au game design), présenter **exactement trois réponses en luxembourgeois**, dans un ordre mélangé, sans étiquette qui révèle leur type :
 
 1. **Vérité** : âge canonique du personnage joueur (pilote : 28).
 2. **Mensonge crédible** : autre âge adulte proche (pilote : 30).
 3. **Mensonge aberrant** : âge volontairement absurde (pilote : 120) ; c'est une **blague assumée**, pas nécessairement une erreur linguistique.
 
-**Important :** les trois phrases doivent être **linguistiquement correctes** : pas de distracteur grammatical « Ech bass… », pas de « 28 / 30 / 120 » brut en interface finalisée si les leçons requièrent les nombres en lettres. Vérifier formes des nombres au LOD et dans la grammaire. Séparer les évaluations : \`linguisticCorrect=true\` pour les trois ; \`truthType=honest|plausible_lie|absurd_joke\` pour les conséquences sociales. Aucune faute de langue induite par la seule absurdité d'un chiffre.
+**Important :** les trois phrases doivent être **linguistiquement correctes** : pas de distracteur grammatical « Ech bass… », pas de « 28 / 30 / 120 » brut en interface finalisée si les leçons requièrent les nombres en lettres. Vérifier formes des nombres au LOD et dans la grammaire. Séparer les évaluations : `linguisticCorrect=true` pour les trois ; `truthType=honest|plausible_lie|absurd_joke` pour les conséquences sociales. Aucune faute de langue induite par la seule absurdité d'un chiffre.
 
-La **préférence d'âge** d'une partenaire est une variable de profil **optionnelle et indépendante de l'archétype**, parmi \`indifferent\`, \`prefers_similar\`, \`prefers_older\`, \`prefers_younger\` (tous adultes), éventuellement une plage raisonnable explicitement affichée. Certaines partenaires **s'en moquent totalement** : dans ces cas aucun bonus/malus ne doit dépendre de 28 vs 30. Un critère ayant un effet significatif doit pouvoir être découvert dans ses informations publiques. Les réactions aux blagues varient par personnalité (humour apprécié / réaction glaciale / sourire), mais restent cohérentes et compréhensibles. Aucune préférence d'âge supposée d'après son métier ou son origine.
+La **préférence d'âge** d'une partenaire est une variable de profil **optionnelle et indépendante de l'archétype**, parmi `indifferent`, `prefers_similar`, `prefers_older`, `prefers_younger` (tous adultes), éventuellement une plage raisonnable explicitement affichée. Certaines partenaires **s'en moquent totalement** : dans ces cas aucun bonus/malus ne doit dépendre de 28 vs 30. Un critère ayant un effet significatif doit pouvoir être découvert dans ses informations publiques. Les réactions aux blagues varient par personnalité (humour apprécié / réaction glaciale / sourire), mais restent cohérentes et compréhensibles. Aucune préférence d'âge supposée d'après son métier ou son origine.
 
 **Ne jamais donner automatiquement +8 à un mensonge** ; les scores dépendent du contexte. Les conséquences immédiates ne doivent pas effacer la possibilité de relance de cohérence plus tard. Les choix « 120 ans » restent disponibles sans rendre une fin agréable impossible à cause d'un unique gag.
 
 ### 12.4. P1 — Événements rares liés au prénom : l'ex d'Alex
 
-- Ajouter au plus **1 trait rare** dans la banque des partenaires, par exemple \`dislikedFirstName: 'Alex'\`, associé à une raison comique **fictive** (prénom d'un ex qui lui a laissé un mauvais souvenir). Éviter de forcer le mot « toxique » ou une histoire lourde dans la conversation A1.1 ; humour léger.
-- **Indice accessible AVANT le date** : une publication personnelle \`Amis\`, une bio ou une remarque explicite. Ne jamais punir le joueur sans possibilité de découvrir l'information.
-- À « **Wéi heeschs du?** » le vrai \`Alex\` peut déclencher une surprise/réplique gênée, mais **pas un échec instantané**. Un autre prénom \`Max\` est un bluff linguistiquement valide, mémorisé comme tel et exposé à une **question de rappel** plus tard. Un prénom décalé peut donner lieu à une réaction humoristique si la banque de contenu permet une phrase LU validée. Les effets ne doivent pas être une règle universelle de tous les archétypes.
-- Cas limite : si \`dislikedFirstName\` n'est pas celui du persona courant, aucun effet. Pas de prénom interdit « universel » ni de hasard injuste.
+- Ajouter au plus **1 trait rare** dans la banque des partenaires, par exemple `dislikedFirstName: 'Alex'`, associé à une raison comique **fictive** (prénom d'un ex qui lui a laissé un mauvais souvenir). Éviter de forcer le mot « toxique » ou une histoire lourde dans la conversation A1.1 ; humour léger.
+- **Indice accessible AVANT le date** : une publication personnelle `Amis`, une bio ou une remarque explicite. Ne jamais punir le joueur sans possibilité de découvrir l'information.
+- À « **Wéi heeschs du?** » le vrai `Alex` peut déclencher une surprise/réplique gênée, mais **pas un échec instantané**. Un autre prénom `Max` est un bluff linguistiquement valide, mémorisé comme tel et exposé à une **question de rappel** plus tard. Un prénom décalé peut donner lieu à une réaction humoristique si la banque de contenu permet une phrase LU validée. Les effets ne doivent pas être une règle universelle de tous les archétypes.
+- Cas limite : si `dislikedFirstName` n'est pas celui du persona courant, aucun effet. Pas de prénom interdit « universel » ni de hasard injuste.
 
 ### 12.5. P0 — Corrections d'ergonomie constatées sur captures Android (27/10)
 
-- **Aide FR** : lorsque l'option est « désactivée », ne **jamais** afficher les traductions dans les posts Amis ou les légendes Pix, à moins que le contenu soit explicitement un élément de décor non évalué. À l'activation, la traduction apparaît sous le texte LU partout, y compris bio, légendes, posts, réponses. **Audit contenu obligatoire** : les \`captionFr\` actuels et posts « Blo. », « Rout. », « Gréng. » sont insuffisants ; **ne pas masquer des textes français bruts sans les remplacer par des phrases LU validées**.
-- **Tags sur swipe** : la bio « Sport a Fussball » ne doit pas être découpée automatiquement en \`Sport\`, \`a\`, \`Fussball\`. Introduire une banque de **tags éditoriaux**, chacun autonome et vérifié ; pas de jeton grammatical isolé.
+- **Aide FR** : lorsque l'option est « désactivée », ne **jamais** afficher les traductions dans les posts Amis ou les légendes Pix, à moins que le contenu soit explicitement un élément de décor non évalué. À l'activation, la traduction apparaît sous le texte LU partout, y compris bio, légendes, posts, réponses. **Audit contenu obligatoire** : les `captionFr` actuels et posts « Blo. », « Rout. », « Gréng. » sont insuffisants ; **ne pas masquer des textes français bruts sans les remplacer par des phrases LU validées**.
+- **Tags sur swipe** : la bio « Sport a Fussball » ne doit pas être découpée automatiquement en `Sport`, `a`, `Fussball`. Introduire une banque de **tags éditoriaux**, chacun autonome et vérifié ; pas de jeton grammatical isolé.
 - **Photos Pix** : une légende ne doit pas expliciter les règles du jeu (« pays d'origine confirmé dans Amis ») ; la photo doit représenter visuellement son sujet. Enrichir les mini-scènes 3D uniquement si le renderer stabilisé le permet ; sinon images/poses spécifiques réutilisables à coût faible. Les comptes privés restent fermés.
 - **LOOK** : avant validation, l'avatar doit être vu **de face / trois quarts**, et un changement de style/couleur doit actualiser visiblement sa tenue ; éviter que l'avatar en rotation libre présente son dos au moment de décider. Faire ressortir la silhouette propre à chaque style et préserver les gros boutons sur mobile. Un look cohérent peut déclencher une **réplique brève de première impression**, sans bonus disproportionné.
 - **DATE HUD** : préserver la lisibilité des jauges, des sous-titres LU et des choix, sans badge DÉMO chevauchant l'enseigne. Le badge d'état linguistique peut être déplacé en entrée/sortie du jeu. Limiter les **animations « Victory/Jump »** aux gros événements ; salutation = réaction subtile, mensonge suspect = regard/sourcil levé, gêne = pause/zoom, blague exceptionnelle = grand effet. Ne pas introduire de nouvelles dépendances lourdes en animation pour ce lot.
@@ -214,13 +214,13 @@ La **préférence d'âge** d'une partenaire est une variable de profil **optionn
 
 - Chaque date de 6–8 tours suit un rythme léger : **briser la glace** (salutations/âge), **faire connaissance** (ville, origine, métier, langues, routine), **moment de vérité** (rappel de mensonge ou piège **conditionnel**, puis conclusion). Garder 0–2 relances max et respecter les leçons A1.1 effectivement accessibles quand ce filtrage sera activé.
 - **Ne pas généraliser** trois types de réponse à tous les nœuds : à l'âge, toujours 3 types ci-dessus ; ailleurs, proposer parfois plusieurs réponses **toutes correctes en LU** mais socialement différentes ; garder quelques erreurs linguistiques explicites pour réviser, jamais de fausse « mauvaise » réponse ambiguë.
-- Affinité et Suspicion restent les **deux seules jauges sociales visibles** ; \`languageScore\` reste **indépendant** des préférences, plaisanteries, mensonges plausibles et des échecs de dating. Aucun gros bonus automatique parce que « la fille aime son métier » ou « son origine ».
+- Affinité et Suspicion restent les **deux seules jauges sociales visibles** ; `languageScore` reste **indépendant** des préférences, plaisanteries, mensonges plausibles et des échecs de dating. Aucun gros bonus automatique parce que « la fille aime son métier » ou « son origine ».
 - Chaque archétype doit avoir 1 préférence dominante visible, 1 trait secondaire, 1 petite contradiction légère/personnalité marquée, **1 type de relance drôle réalisable**. Une situation peut être une animation seule (elle rit du portrait catastrophique) sans ajouter une quatrième jauge ni nouveau lieu.
 - Les **fins personnalisées** combinent le résultat social et au maximum 1–2 faits du run (ex. téléphone consulté devant Emma ; nationalité inventée devant Sofia ; mensonge sur le prénom). Pas besoin de dizaines de branches de dialogues ou de texte généré librement : utiliser des **templates vérifiés** avec garde-fous, faits et priorités clairs.
 
 ### 12.7. Ordre et critères pour Claude (NE PAS pousser tout en un seul lot)
 
-**Pré-requis :** consulter derniers commits de \`2.1\`, \`PLAYBOOK.md\`, \`AGENTS.md\`, le présent document, \`docs/CHARTE_UI_2.1.md\` et code réel \`public/lux-match*.js/css\` avant toute intervention. **Ne pas écraser les commits de stabilisation 3D de Claude.** Faire les changements sur \`2.1\` par lots séparés avec tests.
+**Pré-requis :** consulter derniers commits de `2.1`, `PLAYBOOK.md`, `AGENTS.md`, le présent document, `docs/CHARTE_UI_2.1.md` et code réel `public/lux-match*.js/css` avant toute intervention. **Ne pas écraser les commits de stabilisation 3D de Claude.** Faire les changements sur `2.1` par lots séparés avec tests.
 
 1. **Lot A — P0 qualité de la démo** : laisser finir et tester la correction seconde partie WebGL ; corriger aide FR, tags, contenus bruts/phrases fragmentaires ; audit et traçabilité LU. Tester sur Android réel. Ne pas prétendre que les nouvelles phrases sont validées avant LOD.
 2. **Lot B — P1 onboarding et gameplay** : écran profil d'Alex **avant swipe**, âge à 3 options (vraie/plausible/absurde), variables de préférences d'âge et prénom avec **indices visibles**, relances sur mensonges, sans nouvelles erreurs de grammaire.
@@ -230,13 +230,13 @@ La **préférence d'âge** d'une partenaire est une variable de profil **optionn
 **Critères d'acceptation automatiques + Samsung :**
 
 - Une nouvelle partie ouvre **d'abord** sur Alex et sa fiche ; continuer mène au swipe. Retour et relecture du profil sans batterie, pas de fuite entre profils utilisateurs.
-- \`age\` offre toujours **exactement 3 choix** de phrases LU *correctes* avec variation d'ordre ; vrai 28, plausible 30, absurde 120 dans le pilote, trois évaluations linguistiques positives. Variation selon partenaire sensible/indifférente ; jamais de bonus universel au bluff.
+- `age` offre toujours **exactement 3 choix** de phrases LU *correctes* avec variation d'ordre ; vrai 28, plausible 30, absurde 120 dans le pilote, trois évaluations linguistiques positives. Variation selon partenaire sensible/indifférente ; jamais de bonus universel au bluff.
 - Préférence/prénom explicitement lisibles depuis profil avant date ; une partenaire indifférente ne juge pas l'âge, un autre prénom ne déclenche rien si pas de correspondance, un mensonge peut produire une relance ultérieure ; sincérité toujours jouable.
-- Aide FR off = **aucune traduction des contenus pédagogiques** Pix/Amis/Pro/Dialogues ; aide on = traduction de chaque item muni de \`fr\`, au bon endroit. Les textes à auditer sont signalés hors production, pas affichés comme s'ils étaient corrects.
+- Aide FR off = **aucune traduction des contenus pédagogiques** Pix/Amis/Pro/Dialogues ; aide on = traduction de chaque item muni de `fr`, au bon endroit. Les textes à auditer sont signalés hors production, pas affichés comme s'ils étaient corrects.
 - Texte long / smartphone 320×640, 360×740, 430×932 : aucune option cachée sous barre Android, interactions ≥44px, réponses et boutons sans scroll coincé, portrait lisible, look front visible.
 - Batterie baisse **uniquement** quand téléphone date ouvert, y compris si défilement dans Pix/Pro/Amis, jamais dans profil « Moi » ; fermeture/onglet masqué/retour Android suspend ; batterie nulle → retour scène date possible.
-- Rejouer 3 fois avec diverses filles : pas de doublon de modèles/canvas, pas de disparition de scènes, pas de timers/RAF orphelins, pas d'altération de Lux Runner ni \`luxProgress\`.
-- \`node --test test/lux-match.test.cjs\` + suite critique \`bash tools/critique.sh rapide\` puis \`bash tools/critique.sh\` ; rapporter l'état des tests et les éventuels échecs préexistants, sans affirmer « validé sur Samsung » sans recette sur appareil.
+- Rejouer 3 fois avec diverses filles : pas de doublon de modèles/canvas, pas de disparition de scènes, pas de timers/RAF orphelins, pas d'altération de Lux Runner ni `luxProgress`.
+- `node --test test/lux-match.test.cjs` + suite critique `bash tools/critique.sh rapide` puis `bash tools/critique.sh` ; rapporter l'état des tests et les éventuels échecs préexistants, sans affirmer « validé sur Samsung » sans recette sur appareil.
 
 **Suivi :** cocher les lots dans une note de recette/commit détaillé **après** validation ; ne pas réécrire cette spec en feignant que toutes les fonctions sont livrées. Les données JSON et traductions validées sont une livraison distincte de cette décision documentaire.
 
@@ -249,7 +249,7 @@ La **préférence d'âge** d'une partenaire est une variable de profil **optionn
 
 ### 13.1. Positionnement game design : générer une histoire cohérente, pas des cases aléatoires
 
-La démo actuelle possède déjà **une graine** reproductible (\`creerHasard\`), un paquet de profils mélangés, des réponses mélangées, un moteur de \`claims\`/\`mensonges\`, des \`archetypeFlows\` statiques, des \`conditionalTrapEvents\` et des \`recallNodes\`. **Ne pas refaire ce moteur**. Ce qui manque est un **planificateur de situations** : profils sociaux et dialogues restent essentiellement pré-écrits et peu variables d'une rencontre à l'autre.
+La démo actuelle possède déjà **une graine** reproductible (`creerHasard`), un paquet de profils mélangés, des réponses mélangées, un moteur de `claims`/`mensonges`, des `archetypeFlows` statiques, des `conditionalTrapEvents` et des `recallNodes`. **Ne pas refaire ce moteur**. Ce qui manque est un **planificateur de situations** : profils sociaux et dialogues restent essentiellement pré-écrits et peu variables d'une rencontre à l'autre.
 
 **Promesse V1 :** avec les mêmes six personnages visuellement identifiables et le même café, enchaîner plusieurs dates sans retomber toujours sur les mêmes révélations, mêmes looks, mêmes questions et mêmes pièges. Le joueur doit pouvoir raconter « avec Emma elle n'aimait pas le téléphone » ou « cette fois Emma plaisantait sur mon prénom » sans que l'archétype chill devienne incohérent.
 
@@ -266,22 +266,22 @@ La démo actuelle possède déjà **une graine** reproductible (\`creerHasard\`)
 | Couche | Génère / décide | Doit rester stable |
 | --- | --- | --- |
 | **Personnage** | choisir 1 des 6 profils de base et, éventuellement, une variante visuelle déjà packagée (sans nouvelle génération d'assets) | prénom, avatar, âge et métier : constants **dans la partie** ; archétype principal stable |
-| **Traits sociaux** | 1 préférence dominante, 0–1 préférence secondaire, \`agePreference\` optionnel, sens de l'humour, \`dislikedFirstName\` très rare, tolérance téléphone ; tirages parmi options par archétype | goûts annoncés par les réseaux, absence de contradiction entre applis |
-| **Indices publics** | sélection de 2–4 posts / scènes Pix disponibles, fiche Pro crédible, 1–3 posts Amis ; répartition d'indices pour âge/look/téléphone/prénom | même \`facts\` et mêmes \`preferences\` sur toutes les surfaces ; si Pix privé, photos non visibles |
+| **Traits sociaux** | 1 préférence dominante, 0–1 préférence secondaire, `agePreference` optionnel, sens de l'humour, `dislikedFirstName` très rare, tolérance téléphone ; tirages parmi options par archétype | goûts annoncés par les réseaux, absence de contradiction entre applis |
+| **Indices publics** | sélection de 2–4 posts / scènes Pix disponibles, fiche Pro crédible, 1–3 posts Amis ; répartition d'indices pour âge/look/téléphone/prénom | même `facts` et mêmes `preferences` sur toutes les surfaces ; si Pix privé, photos non visibles |
 | **Rendez-vous** | organiser 3 actes à partir d'un pool de **beats** conversationnels validés, avec variantes par traits et compétences débloquées | début/fin crédibles, diversité thématique, borne de tours, options LU autorisées |
-| **Conséquences** | évaluer \`claims\`, \`flags\`, préférences et actions ; déclencher **au maximum deux** pièges éligibles ; choisir un rappel et une conclusion récapitulant 1–2 événements réellement survenus | les points linguistiques et sociaux séparés, mêmes règles pour tous |
+| **Conséquences** | évaluer `claims`, `flags`, préférences et actions ; déclencher **au maximum deux** pièges éligibles ; choisir un rappel et une conclusion récapitulant 1–2 événements réellement survenus | les points linguistiques et sociaux séparés, mêmes règles pour tous |
 
-Ne pas construire une grammaire procédurale complète, un moteur de graphes générique ou un « story engine » ambitieux. **Un plan de rendez-vous structuré, des pools finis, un résolveur de contraintes et le \`core\` existant suffisent.**
+Ne pas construire une grammaire procédurale complète, un moteur de graphes générique ou un « story engine » ambitieux. **Un plan de rendez-vous structuré, des pools finis, un résolveur de contraintes et le `core` existant suffisent.**
 
-### 13.3. Le cœur : générer un \`scenarioPlan\` UNE FOIS par match
+### 13.3. Le cœur : générer un `scenarioPlan` UNE FOIS par match
 
-Nouvelle fonction pure proposée : \`composerScenario({ seed, profileBase, personaJoueur, leconsDebloquees, catalogue }) → { scenarioPlan, diagnostics }\`.
+Nouvelle fonction pure proposée : `composerScenario({ seed, profileBase, personaJoueur, leconsDebloquees, catalogue }) → { scenarioPlan, diagnostics }`.
 
-Le \`scenarioPlan\` est généré **au moment du match** ; il sert ensuite de source canonique pour les réseaux, le LOOK et le date. Il **ne doit jamais se régénérer** lorsqu'on ouvre une app, recule, écoute une phrase, recharge une vue ou consulte son téléphone. Le plan peut être sérialisé pour reproduire exactement un bug.
+Le `scenarioPlan` est généré **au moment du match** ; il sert ensuite de source canonique pour les réseaux, le LOOK et le date. Il **ne doit jamais se régénérer** lorsqu'on ouvre une app, recule, écoute une phrase, recharge une vue ou consulte son téléphone. Le plan peut être sérialisé pour reproduire exactement un bug.
 
 Exemple de **contrat conceptuel**, non encore un fichier réel et **sans contenu linguistique non vérifié** :
 
-\`\`\`json
+```json
 {
   "schemaVersion": 1,
   "seed": 27102026,
@@ -315,11 +315,11 @@ Exemple de **contrat conceptuel**, non encore un fichier réel et **sans contenu
   "eligibleEventPool": ["trap_portugal", "small_talk_voyage"],
   "endingTemplates": ["date_reussi_voyage", "bluff_decouvert", "fin_neutre"]
 }
-\`\`\`
+```
 
-**Important :** \`eligibleEventPool\` ne force pas les événements. \`trap_portugal\` n'est déclenché que si **l'affirmation du joueur** remplit sa condition, et une option d'aveu doit rester disponible. \`beats\` peut contenir des **intentions** ou des nœuds de pool ; le texte LU affiché provient **d'IDs de répliques validées**, pas d'une concaténation arbitraire.
+**Important :** `eligibleEventPool` ne force pas les événements. `trap_portugal` n'est déclenché que si **l'affirmation du joueur** remplit sa condition, et une option d'aveu doit rester disponible. `beats` peut contenir des **intentions** ou des nœuds de pool ; le texte LU affiché provient **d'IDs de répliques validées**, pas d'une concaténation arbitraire.
 
-L'état **mutable** de partie (\`claims\`, \`mensonges\`, \`flags\`, batterie, jauges, réponse courante) reste dans \`lux-match-core.js\`. Ne jamais le confondre avec le \`scenarioPlan\` immuable : une réponse fait évoluer le **jeu**, pas les faits déjà publiés.
+L'état **mutable** de partie (`claims`, `mensonges`, `flags`, batterie, jauges, réponse courante) reste dans `lux-match-core.js`. Ne jamais le confondre avec le `scenarioPlan` immuable : une réponse fait évoluer le **jeu**, pas les faits déjà publiés.
 
 ### 13.4. Génération sous contraintes : un pipeline court et déterministe
 
@@ -328,49 +328,49 @@ Algorithme de référence :
 1. Tirer la **partenaire** selon le swipe actuel ; conserver les six noms et les modèles 3D. Si l'archétype est sélectionné, tirer une variante **secondaire** parmi ses combinaisons autorisées (la personnalité principale ne se retourne pas).
 2. Construire une **fiche canonique cohérente** pour le run : prénom/âge (adultes 21+), ville, origine, profession, langues, traits et goûts. **V1 : garder les faits d'identité des six profils existants**, ne varier que goûts secondaires et situations, tant que les tables de déclinaisons LU ne sont pas auditéees. Ne pas faire changer l'âge ou le prénom d'un profil entre écrans.
 3. Choisir au plus **1 levier social fort** (ex. anti-téléphone, prénom de l'ex, préférence d'âge) + au plus 1 trait secondaire (couleur/loisir/humour). Éviter la multiplication de deux pièges de même nature ou une partenaire qui punit absolument tout.
-4. Allouer à chaque levier déterminant au moins **1 indice public** (\`clueId\` avec \`reveals\`) dans Pix, Pro ou Amis, disponible avant LOOK/date ; pour le style, garantir au moins 1 indice explicite même si le réseau photo est privé. Ne pas rendre une origine déductible uniquement par une photo de vacances.
-5. Constituer une **file de 3 actes** : salutation/prénom ; 3–4 thèmes A1.1 variés ; rappel ou piège conditionnel si éligible ; sortie. Filtrer par \`lessonIds\` débloqués, taille de texte et disponibilité des variantes de réponse. Réutiliser les nœuds actuels si aucun candidat sûr ; ne pas inventer une ligne.
+4. Allouer à chaque levier déterminant au moins **1 indice public** (`clueId` avec `reveals`) dans Pix, Pro ou Amis, disponible avant LOOK/date ; pour le style, garantir au moins 1 indice explicite même si le réseau photo est privé. Ne pas rendre une origine déductible uniquement par une photo de vacances.
+5. Constituer une **file de 3 actes** : salutation/prénom ; 3–4 thèmes A1.1 variés ; rappel ou piège conditionnel si éligible ; sortie. Filtrer par `lessonIds` débloqués, taille de texte et disponibilité des variantes de réponse. Réutiliser les nœuds actuels si aucun candidat sûr ; ne pas inventer une ligne.
 6. **Planifier les opportunités de conséquence** : un bluff doit pouvoir revenir plus tard, mais **ne pas garantir** une sanction ; un mensonge crédible crée un risque, pas une défaite. Pour 6–8 tours, sélectionner les nœuds qui permettent au moins une relance compatible avec les choix disponibles.
 7. Valider le scénario : indices présents, réponses produisibles, pas de double dialogue identique, piège conditionnel atteignable, difficulté A1.1 adaptée, fin accessible, ≤2 événements, ≤8 tours principaux, informations cohérentes. **Si validation échoue, retenter une variante bornée ; puis fallback fixe** sur le parcours actuel et log d'un diagnostic sans interrompre le joueur.
-8. Geler \`scenarioPlan\`. UI Pix/Pro/Amis, LOOK, date et écran final consultent **le même objet**, sans nouveau tirage au changement d'écran.
+8. Geler `scenarioPlan`. UI Pix/Pro/Amis, LOOK, date et écran final consultent **le même objet**, sans nouveau tirage au changement d'écran.
 
-**RNG :** séparer au moins \`rngScenario\` et \`rngPresentation\` dérivés de \`seed\` ; changer l'ordre d'une animation, l'ouverture du téléphone ou le tirage de réponses ne doit **pas** changer la personnalité ou les indices. Introduire \`contentVersion\` pour reproduire les bugs de seed et ne pas casser la recette si les pools changent.
+**RNG :** séparer au moins `rngScenario` et `rngPresentation` dérivés de `seed` ; changer l'ordre d'une animation, l'ouverture du téléphone ou le tirage de réponses ne doit **pas** changer la personnalité ou les indices. Introduire `contentVersion` pour reproduire les bugs de seed et ne pas casser la recette si les pools changent.
 
 **Contraintes fortes (validation)** > **règles d'équilibrage** > **variété** > **tirage aléatoire**. Ne pas générer des dizaines d'essais en continu : la composition doit être très légère (petits tableaux en mémoire, synchrones / temps négligeable).
 
 ### 13.5. Le directeur de partie (« drama director »), sans intelligence artificielle
 
-Pas de LLM ou d'agent qui invente l'histoire. Un **sélecteur d'événements à poids** choisit parmi des beats *écrits, testés et compatibles avec l'état*. On ne tire jamais un événement dans l'absolu : d'abord \`prerequisites\`, puis \`eligible\`, puis \`weight\`.
+Pas de LLM ou d'agent qui invente l'histoire. Un **sélecteur d'événements à poids** choisit parmi des beats *écrits, testés et compatibles avec l'état*. On ne tire jamais un événement dans l'absolu : d'abord `prerequisites`, puis `eligible`, puis `weight`.
 
 - **Rythme** : Acte 1 pas de gros piège ; acte 2 possibilité de bluff et d'information personnelle ; acte 3 maximum un grand twist + un rappel déjà préparé.
 - **Budget d'impact** : maximum **2 événements comiques** par date, dont au plus **1 gros événement animé** (les réactions de type souris/regarde ne comptent pas). Jamais deux punitions consécutives et jamais de piège pendant la lecture d'un texte LU.
-- **Poids et rareté de départ À CALIBRER par tests** : \`dislikedFirstName\` environ **10 % des scénarios compatibles** ; \`agePreference\` explicite environ **35 %** ; \`anti_phone\` selon traits compatibles ; \`noMajorTwist\` doit rester possible. Ce sont des objectifs de conception, **pas des statistiques réalisées**.
+- **Poids et rareté de départ À CALIBRER par tests** : `dislikedFirstName` environ **10 % des scénarios compatibles** ; `agePreference` explicite environ **35 %** ; `anti_phone` selon traits compatibles ; `noMajorTwist` doit rester possible. Ce sont des objectifs de conception, **pas des statistiques réalisées**.
 - **Garanties** : une erreur de langue n'est pas un déclencheur gratuit de gag narratif ; le téléphone qui se vide est une difficulté d'enquête, pas une loterie ; aucun événement exige une connaissance de portugais pour obtenir un score de luxembourgeois.
 - **Adaptation de difficulté** : seules la longueur, la syntaxe et les leçons débloquées changent ; ne pas faire dépendre les **préférences intimes** ou les conséquences sociales de la performance linguistique du joueur. Le jeu doit rester prévisible.
-- **Anti-répétition optionnelle** : garder en local seulement les IDs de beats récemment utilisés (ex. 3 dernières parties) pour minorer leurs poids, **sans jamais** supprimer une scène fondamentale ou exiger un nouveau système cloud. Une même \`seed\` explicite doit produire le même scénario quel que soit cet historique (historique transmis explicitement comme entrée si utilisé).
+- **Anti-répétition optionnelle** : garder en local seulement les IDs de beats récemment utilisés (ex. 3 dernières parties) pour minorer leurs poids, **sans jamais** supprimer une scène fondamentale ou exiger un nouveau système cloud. Une même `seed` explicite doit produire le même scénario quel que soit cet historique (historique transmis explicitement comme entrée si utilisé).
 
 ### 13.6. Contrat « texte luxembourgeois sûr » : pas de combinatoire grammaticale libre
 
 **La génération porte sur le choix des contenus et les faits, pas sur la syntaxe.**
 
-- Tout texte LU/FR jouable est une **réplique entière auditée**, identifiée \`lineId\` + \`grammarReviewStatus: validated\` + \`lessonIds\` ; les brouillons existants restent \`draft\`.
-- Une variable n'est interpolée que si le champ possède une **liste de variantes entièrement validées**. Pour pays/prépositions, métiers et nationalités, privilégier des *phrases complètes validées par valeur* plutôt qu'un moteur de déclinaison, notamment pour les exceptions (\`aus Portugal\` / \`aus der Belsch\` / \`vu Lëtzebuerg\`).
-- Les âges \`28 / 30 / 120\` : trois réponses **grammaticalement correctes**, la troisième relève de l'humour ; prévoir les formes luxembourgeoises **vérifiées et affichables**, sans transformer 120 en simple chiffre si le but pédagogique est le nombre.
-- Type pédagogique de choix **orthogonal** au type social : \`languageCorrect\` (booléen), \`truthKind\` (\`honest\`/\`plausibleLie\`/\`absurdJoke\`), \`socialEffects\` conditionnels au profil ; une blague correcte ne pénalise pas le score linguistique.
+- Tout texte LU/FR jouable est une **réplique entière auditée**, identifiée `lineId` + `grammarReviewStatus: validated` + `lessonIds` ; les brouillons existants restent `draft`.
+- Une variable n'est interpolée que si le champ possède une **liste de variantes entièrement validées**. Pour pays/prépositions, métiers et nationalités, privilégier des *phrases complètes validées par valeur* plutôt qu'un moteur de déclinaison, notamment pour les exceptions (`aus Portugal` / `aus der Belsch` / `vu Lëtzebuerg`).
+- Les âges `28 / 30 / 120` : trois réponses **grammaticalement correctes**, la troisième relève de l'humour ; prévoir les formes luxembourgeoises **vérifiées et affichables**, sans transformer 120 en simple chiffre si le but pédagogique est le nombre.
+- Type pédagogique de choix **orthogonal** au type social : `languageCorrect` (booléen), `truthKind` (`honest`/`plausibleLie`/`absurdJoke`), `socialEffects` conditionnels au profil ; une blague correcte ne pénalise pas le score linguistique.
 - Posts Pix/Amis/Pro et leurs traductions suivent exactement le réglage d'aide FR. Tags éditoriaux autonomes ; pas de « Blo. » isolé accompagné d'une traduction détaillée fabriquée.
 - Avant intégration runtime : vérification de la **grammaire_luxembourg.md**, LOD.lu, audit du cours/JSON source, et relecture pédagogique. Les nœuds non audités ne sont **jamais** mis dans un pool publiable.
-- Chaque pool est étiqueté \`learningObjective\` et au moins un lien de leçon. Les gags hors programme sont \`pedagogicalScoring:false\`, textes LU également à auditer avant publication.
+- Chaque pool est étiqueté `learningObjective` et au moins un lien de leçon. Les gags hors programme sont `pedagogicalScoring:false`, textes LU également à auditer avant publication.
 
 ### 13.7. Données d'auteur : préférer quelques pools riches à un JSON monstre
 
 En conception, nouveaux champs / petits fichiers éventuels (À APPROUVER après audit de l'existant) :
-- \`data/jeux/lux-match/scenario-pools-v01.json\` : variantes de traits autorisées **par archétype**, indices édités (posts, légendes, photos disponibles, préférence explicitement affichée), événements et conditions, poids/raretés.
-- \`data/jeux/lux-match/dialogue-beats-v01.json\` : nœuds conversationnels **avec variantes de réponse validées**, actes possibles, \`lessonIds\`, \`prerequisites\`, \`consequences\`, liens de \`claims\`, priorités. Peut au départ être une **extension des JSON déjà chargés** pour éviter doublon.
-- \`public/lux-match-generator.js\` : une petite **fonction pure** de composition et de validation du plan ; optionnel si une fonction intégrée dans \`lux-match-core.js\` est plus simple. La logique de conversation et des jauges reste dans le core, la vue dans \`lux-match.js\`, la 3D dans \`lux-match-3d.js\`. **Aucune nouvelle dépendance npm / aucun réseau externe / aucune génération IA à l'exécution.**
+- `data/jeux/lux-match/scenario-pools-v01.json` : variantes de traits autorisées **par archétype**, indices édités (posts, légendes, photos disponibles, préférence explicitement affichée), événements et conditions, poids/raretés.
+- `data/jeux/lux-match/dialogue-beats-v01.json` : nœuds conversationnels **avec variantes de réponse validées**, actes possibles, `lessonIds`, `prerequisites`, `consequences`, liens de `claims`, priorités. Peut au départ être une **extension des JSON déjà chargés** pour éviter doublon.
+- `public/lux-match-generator.js` : une petite **fonction pure** de composition et de validation du plan ; optionnel si une fonction intégrée dans `lux-match-core.js` est plus simple. La logique de conversation et des jauges reste dans le core, la vue dans `lux-match.js`, la 3D dans `lux-match-3d.js`. **Aucune nouvelle dépendance npm / aucun réseau externe / aucune génération IA à l'exécution.**
 
-**Exemple mini-pool conceptuel** (\`textId\` doit pointer vers des textes réellement validés, pas des strings libres) :
+**Exemple mini-pool conceptuel** (`textId` doit pointer vers des textes réellement validés, pas des strings libres) :
 
-\`\`\`json
+```json
 {
   "id": "name_ex_alex",
   "archetypes": ["chill", "bc_bg", "voyageuse"],
@@ -381,9 +381,9 @@ En conception, nouveaux champs / petits fichiers éventuels (À APPROUVER après
   "optionalResponseEvent": "surprise_ex",
   "scoring": {"learning": "unchanged", "social": "conditional"}
 }
-\`\`\`
+```
 
-Ne jamais déduire \`dislikedFirstName\` à partir de l'avatar, de la nationalité ou du métier. **Un trait rare est facultatif**, et l'absence de cette complication fait partie de la variété.
+Ne jamais déduire `dislikedFirstName` à partir de l'avatar, de la nationalité ou du métier. **Un trait rare est facultatif**, et l'absence de cette complication fait partie de la variété.
 
 ### 13.8. Rejouabilité MESURABLE, pas multiplication marketing
 
@@ -393,20 +393,20 @@ Ne jamais déduire \`dislikedFirstName\` à partir de l'avatar, de la nationalit
 - Sur **20 parties** couvrant les six profils, les situations visibles présentent plusieurs combinaisons de traits secondaires/indices ; il doit y avoir de vraies différences de beats, de relances et de conclusions, **pas seulement l'ordre des choix**.
 - Un joueur peut identifier la préférence majeure à partir d'au moins **un indice accessible et compréhensible**. Les phrases particulières des variantes sont compatibles avec les leçons étudiées.
 - Chaque mensonge déclenchant un piège a une **réponse de réparation** ; une partie sincère sans enquête peut toujours atteindre une fin positive ou neutre, y compris avec partenaire anti-téléphone.
-- Un résultat de fin a **une cause traçable** (\`lastMeaningfulEventIds\`, \`truthKind\`, \`affinity\`, \`suspicion\`) ; éviter le même texte final générique après des événements opposés.
+- Un résultat de fin a **une cause traçable** (`lastMeaningfulEventIds`, `truthKind`, `affinity`, `suspicion`) ; éviter le même texte final générique après des événements opposés.
 - Des tests génératifs de **1 000 graines reproductibles** vérifient : profils majeurs, indices de tous les critères à effet fort, absence de contradictions entre réseaux, ≤2 traps, 6–8 tours, aucune boucle morte, toutes les options ouvrables, zéro fuite de posts privés, ≥1 trajectoire jouable honnête, taux d'échec de génération nul (fallback inclus). Ce n'est **pas** une exigence de 1 000 textes écrits.
-- Tests *property based* (Node natif, pas forcément de dépendance externe) : \`compose(seed,catalogue)\` = même JSON deux fois ; changer \`rngPresentation\` seul ne change pas \`scenarioPlan\` ; rejouer exactement un log de choix produit le même historique/jauges/fin ; \`lookup\` d'un indice ne régénère pas un autre indice.
+- Tests *property based* (Node natif, pas forcément de dépendance externe) : `compose(seed,catalogue)` = même JSON deux fois ; changer `rngPresentation` seul ne change pas `scenarioPlan` ; rejouer exactement un log de choix produit le même historique/jauges/fin ; `lookup` d'un indice ne régénère pas un autre indice.
 - Test parcours Android réel après intégration : pause/reprise/téléphone à 0 %, retours vers les trois apps, 3 runs successives avec réutilisation d'assets sans doublons WebGL, latence imperceptible, UI sans texte masqué sur 320–430 px. Évaluer les causes de frustration, pas seulement les tests verts.
 
 ### 13.9. Priorités et limites pour Claude
 
 **NE PAS démarrer ce développement en même temps que les bugs 3D / lots A–C section 12.** Ce document sert de cible de design pour éviter d'écrire maintenant des dialogues trop statiques et incompatibles avec le futur générateur.
 
-1. **Étape 0 — Audit des contenus** : inventorier précisément les permutations actuelles, comparer six profils et \`archetypeFlows\`, repérer les champs immuables, vérifier les répliques LU disponibles, estimer la **variété réellement visible** et les manques. Mettre ce bilan à côté de la spec.
+1. **Étape 0 — Audit des contenus** : inventorier précisément les permutations actuelles, comparer six profils et `archetypeFlows`, repérer les champs immuables, vérifier les répliques LU disponibles, estimer la **variété réellement visible** et les manques. Mettre ce bilan à côté de la spec.
 2. **Étape 1 — Prototype de pur générateur, sans UI** : conserver six personnages et leurs faits d'identité, varier un trait secondaire + un indice, organiser 3 actes à partir des beats actuels, garantir les préconditions et la reproductibilité. Ajouter tests sur 1 000 seeds et logs de diagnostics. **Ne pas modifier le moteur 3D**.
-3. **Étape 2 — Intégration contrôlée** : un seul \`scenarioPlan\` choisi par match ; les trois fausses apps et les dialogues **lisent le même scénario** ; aucune copie d'état séparée susceptible de diverger ; reprise/replay et fallback des anciens parcours. Tester en démo.
+3. **Étape 2 — Intégration contrôlée** : un seul `scenarioPlan` choisi par match ; les trois fausses apps et les dialogues **lisent le même scénario** ; aucune copie d'état séparée susceptible de diverger ; reprise/replay et fallback des anciens parcours. Tester en démo.
 4. **Étape 3 — Enrichissement éditorial** : ajouter de **petits lots** de posts LU complets, d'options de dialogue, de variantes de réaction et de pièges, après audit LOD. Mesurer la nouveauté perçue et corriger les poids. Une nouvelle mécanique n'est ajoutée que si elle améliore le jeu et reste explicable.
 
 **Critère d'arrêt** : si le générateur produit des parties moins lisibles, des indices ambigus, des erreurs de luxembourgeois ou une complexité de maintenance disproportionnée, **revenir au scénario pré-écrit**. Un catalogue de **20–30 situations très bien écrites, recombinées sous contraintes**, est préférable à une fabrique de 10 000 scénarios sans sens.
 
-**Interdits maintenus** : pas de CUPID.EXE, pas de nouveaux lieux, pas de faux réseaux réels, pas de dialogue généré par LLM, pas de « difficulté » qui pénalise la vitesse de lecture, pas de rétroaction négative sur \`luxProgress\`, aucune refonte du renderer Runner.
+**Interdits maintenus** : pas de CUPID.EXE, pas de nouveaux lieux, pas de faux réseaux réels, pas de dialogue généré par LLM, pas de « difficulté » qui pénalise la vitesse de lecture, pas de rétroaction négative sur `luxProgress`, aucune refonte du renderer Runner.
