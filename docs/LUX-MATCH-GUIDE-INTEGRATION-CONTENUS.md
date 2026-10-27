@@ -241,3 +241,18 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 **Tests indispensables** : pointerdown/move vers droite puis **pointercancel clientX=0** (aucun NON), geste gauche réel (NON), droit réel (OUI), geste vertical, multi-touch, seuil, double clic, glisses rapides, plusieurs profils, trois runs Samsung. Ajouter tests DOM/browser, car `test/lux-match.test.cjs` teste le moteur pur `Core.swiper()` mais pas les événements tactiles. Ne marquer corrigé qu'après tests, ne pas annoncer la reproduction comme certaine.
 
 **Livraison :** commit isolé, tests et note de vérification de la SPEC 109 § 19 ; aucune modification du 3D, musique, progression ou autres jeux.
+
+
+---
+
+## 15. Lot 11 — blagues vraiment gratifiantes et enquête socialement utile
+
+**À faire après les lots 10A/10B/10C** : [SPEC 109 § 20](specs/SPEC-109.md#20-complicite-recompensee-et-enquete-utile-pendant-le-date-retour-joueur-27102026) contient le **diagnostic et les règles d'acceptation**. À l'audit GitHub `2.1`, HEAD `1eeb55b5`, le joueur a obtenu deux sourires polis de Claire pour « James Bond » et « 120 ans » sans +affinité, et constate que lire Pix/Pro/Amis ne sert presque pas aux conversations.
+
+**Lot 11A :** `EFFET_GOUT` = `aime:+4`, `neutre:0`, `n_aime_pas:-3`; Claire est `neutre` à `absurde`, les deux réponses `REP03_C`/`REP04_C` sont `jokeKind:absurde`. Corriger la lisibilité de la **réaction polie ≠ amusement réel**, ajouter **des options réellement plaisantes** pour Claire (autodérision, taquinerie), diversifier la seconde blague. Ne pas rendre Claire fan de l'absurde ni offrir un bonus à chaque sourire. Distinguer récompense sociale et correction LU.
+
+**Lot 11B :** enrichir la **bible éditoriale** d'au moins **12 scènes A1.1 contextualisées** (2 pour chacun des 6 personnages) fondées sur de **vrais faits des réseaux existants**. Les proposer comme situations conversationnelles naturelles (travail de Claire / dessins de Noémie / voyage de Sofia / jeux de Maya / sport de Léna / livres d'Emma), **pas comme « quelle est ma couleur préférée ? » répété ou test de mémorisation des posts**. Chaque réponse personnalisée utile rapporte idéalement +3 à +5 selon équilibre, réponses honnêtes génériques restent jouables et petites blagues adaptées peuvent réussir. Tous textes LU soumis aux leçons, grammaire et LOD avant publication. Mapping `sourceClueIds` vers les mêmes `facts` du `scenarioPlan` ; 2 opportunités significatives par date de 6–8 tours si contenu validé.
+
+**Lot 11C :** vérifier que le téléphone **a une valeur stratégique**, notamment en cours de date pendant les **20 s de batterie**. Les mêmes indices restent disponibles gratuitement AVANT le date, sans consultation forcée pendant le café. Emma anti-téléphone : enquête préalable avantageuse mais absence d'enquête ne rend pas le date impossible. Pas de score pour « avoir ouvert l'app », seulement pour le fait utilisé à bon escient. Tests seedés des six filles : joue sans enquête, avec enquête, avec consultation au café ; éviter double événement et fuite de batterie, conserver l'accessibilité mobile.
+
+**Ne pas commencer en créant 12 scènes entièrement nouvelles sans revoir les sources** : inventorier la bible et `contenus-v02.json` pour réutiliser les répliques existantes, rédiger uniquement le manque, documenter `reviewStatus` et les tests avant toute publication. Aucun besoin de retoucher les modèles 3D, le rendu café, le lecteur musical, le hub global ni `luxProgress`.
