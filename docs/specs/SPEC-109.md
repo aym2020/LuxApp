@@ -2,6 +2,8 @@
 
 **Dépôt :** aym2020/LuxApp · **Branche cible :** `2.1` · **Statut :** **démo jouable implémentée le 27/10/2026** (prototypes A + B réunis), contenus LU **toujours en brouillon**, recette Samsung à faire · **Date :** 26 octobre 2026 · **État documentaire :** démo jouable et contenus JSON existants ; section 12 = nouvelles décisions produit à implémenter, non livrées.
 
+> **Banque textuelle unique à exploiter lors des prochains lots :** [Bible éditoriale Lux Match A1.1](../LUX-MATCH-BIBLE-EDITORIALE-A11.md) — personnages, réseaux, 28 scènes candidates, événements, réactions et conclusions, avec identifiants et garde-fous linguistiques. Ce contenu est un **brouillon documenté**, distinct des JSON runtime et **ne remplace pas le code** ; consulter la section 12 pour les priorités et la section 13 pour le planificateur procédural.
+
 ## Démo implémentée (27/10/2026)
 
 **Accès :** Jeux › carte « Lux Match · DÉMO » (`ouvrirLuxMatch()`), vue `view-luxmatch`, non restaurée après actualisation (retour au hub). Badge « DÉMO · textes LU en relecture » en jeu et note sur l'écran de fin.
