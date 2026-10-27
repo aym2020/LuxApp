@@ -157,8 +157,10 @@ async function creer() {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: false });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NeutralToneMapping;
-  const [anims, cafe] = await Promise.all([charger('anims'), charger('cafe')]);
+  // Seules les animations sont nécessaires tout de suite (portraits) ; le café se charge au rendez-vous.
+  const anims = await charger('anims');
   const clips = anims.animations;
+  charger('cafe').catch(() => {});
 
   // Scène de portrait (fond uni, lumière douce).
   const scenePortrait = new THREE.Scene();
@@ -220,8 +222,11 @@ async function creer() {
   // Portrait : plan taille, pose figée, fond en dégradé.
   async function portrait(profil, pose, fond, largeur, hauteur) {
     const l = largeur || 240, h = hauteur || 300;
-    const racine = profil === 'alex' ? await personnage(STYLES[(pose && pose.look && pose.look.style) || 'casual'].modele, teintesAlex(pose && pose.look))
-      : await personnage(profil.apparence3d.modele, teintesProfil(profil));
+    const modele = profil === 'alex' ? STYLES.casual.modele : profil.apparence3d.modele;
+    // Modèle affiché à l'écran (aperçu du look ou rendez-vous en cours) : jamais déplacé pour un portrait.
+    const gltf = await charger(modele);
+    if (rendu && gltf.scene.parent === rendu.scene) throw new Error('modele_occupe');
+    const racine = await personnage(modele, profil === 'alex' ? teintesAlex(null) : teintesProfil(profil));
     const nomPose = typeof pose === 'string' ? pose : 'Idle';
     racine.userData.anim.poser(nomPose, nomPose === 'Idle' ? 0.4 : 0.55);
     scenePortrait.add(racine);
@@ -250,9 +255,17 @@ async function creer() {
   socle.position.y = -0.04; sceneApercu.add(socle);
   const camApercu = new THREE.PerspectiveCamera(32, 1, 0.1, 30);
   camApercu.position.set(0, 1.15, 4.3); camApercu.lookAt(0, 0.85, 0);
-  let alexApercu = null;
+  let alexApercu = null, demandeApercu = 0;
   async function apercu(cible, look) {
-    alexApercu = await personnage(STYLES[(look && look.style) || 'casual'].modele, teintesAlex(look));
+    // Plusieurs clics rapides : seule la dernière demande est affichée.
+    const numero = ++demandeApercu;
+    const nouveau = await personnage(STYLES[(look && look.style) || 'casual'].modele, teintesAlex(look));
+    if (numero !== demandeApercu) return false;
+    // Un seul Alex sur le socle : l'ancien modèle (autre style) est retiré.
+    if (alexApercu && alexApercu !== nouveau && alexApercu.parent === sceneApercu) sceneApercu.remove(alexApercu);
+    const angle = alexApercu ? alexApercu.rotation.y : 0;
+    alexApercu = nouveau;
+    alexApercu.rotation.y = angle;
     sceneApercu.add(alexApercu);
     alexApercu.userData.anim.jouer('Idle');
     if (!rendu || rendu.scene !== sceneApercu || conteneur !== cible) {
@@ -278,7 +291,12 @@ async function creer() {
   const sol = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshLambertMaterial({ map: textureSol() }));
   sol.rotation.x = -Math.PI / 2; sceneDate.add(sol);
   const pieces = {};
-  // Meubles Kenney : matériaux mats, assombris pour l'ambiance de nuit.
+  let cafeMeuble = false;
+  // Meubles Kenney, posés au premier rendez-vous (chargés en arrière-plan).
+  function meublerCafe(cafe) {
+  if (cafeMeuble) return;
+  cafeMeuble = true;
+  // Matériaux mats, assombris pour l'ambiance de nuit.
   cafe.scene.traverse(o => {
     if (!o.isMesh) return;
     o.material = [].concat(o.material).map(m => new THREE.MeshLambertMaterial({ color: m.color.clone().multiplyScalar(0.55), flatShading: true }));
@@ -312,6 +330,7 @@ async function creer() {
   meuble('tableCloth', 2.2, -1.4, -0.4);
   meuble('chairCushion', 2.7, -0.6, Math.PI);
   meuble('rugRound', -0.85, 0.15);
+  }
   // Table haute (mange-debout) entre les deux personnages, et deux tasses.
   const bois = new THREE.MeshLambertMaterial({ color: 0x5a3a2a, flatShading: true });
   const metal = new THREE.MeshLambertMaterial({ color: 0x2a2433, flatShading: true });
@@ -350,10 +369,16 @@ async function creer() {
   const etatDate = { partenaire: null, alex: null, temps: 0, zoom: 0, secousse: 0, fige: 0, parle: 0, tete: null };
 
   async function date(cible, profil, look) {
-    const [partenaire, alex] = await Promise.all([
+    const [partenaire, alex, cafe] = await Promise.all([
       personnage(profil.apparence3d.modele, teintesProfil(profil)),
-      personnage(STYLES[(look && look.style) || 'casual'].modele, teintesAlex(look))
+      personnage(STYLES[(look && look.style) || 'casual'].modele, teintesAlex(look)),
+      charger('cafe')
     ]);
+    meublerCafe(cafe);
+    // Partie précédente : ses personnages quittent le café (jamais deux partenaires à la fois).
+    [etatDate.partenaire, etatDate.alex].forEach(ancien => {
+      if (ancien && ancien !== partenaire && ancien !== alex && ancien.parent === sceneDate) sceneDate.remove(ancien);
+    });
     partenaire.position.set(0.2, 0, -0.85); partenaire.rotation.y = -0.18;
     alex.position.set(-0.95, 0, 1.55); alex.rotation.y = Math.PI + 0.45;
     sceneDate.add(partenaire); sceneDate.add(alex);
@@ -421,4 +446,9 @@ async function creer() {
   return { portrait, apercu, saluerApercu, date, reagir, detacher };
 }
 
-window.LuxMatch3D = { creer };
+// Préchargement sans créer de contexte WebGL (depuis le hub Jeux) : animations + modèles.
+function precharger(noms) {
+  return Promise.all(['anims'].concat(noms || []).map(n => charger(n).catch(() => null)));
+}
+
+window.LuxMatch3D = { creer, precharger };

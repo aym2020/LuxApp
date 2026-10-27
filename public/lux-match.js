@@ -116,7 +116,7 @@ async function lmChargerDonnees() {
 // Le moteur 3D est créé une seule fois (préchargé dès l'ouverture du jeu).
 function lmObtenir3D() {
   if (!lm.promesse3d) {
-    lm.promesse3d = import('./lux-match-3d.js?v=1').then(() => window.LuxMatch3D.creer());
+    lm.promesse3d = import('./lux-match-3d.js?v=2').then(() => window.LuxMatch3D.creer());
     lm.promesse3d.then(r => { lm.rendu3d = r; }).catch(() => { lm.promesse3d = null; });
   }
   return lm.promesse3d;
@@ -194,6 +194,8 @@ async function lmPreparerImages(liste) {
   let moteur;
   try { moteur = await lmObtenir3D(); } catch (_) { return; }
   for (const [profil, pose, fond] of liste) {
+    // Plus de portraits une fois l'aperçu 3D ou le rendez-vous affiché (même modèles).
+    if (!lm.partie || ['swipe', 'match', 'reseaux', 'resultats'].indexOf(lm.partie.phase) < 0) return;
     const cle = lmCleImage(profil, pose);
     if (lm.portraits[cle]) continue;
     try {
@@ -226,7 +228,7 @@ function lmRendreSwipe(box) {
       '<button type="button" class="lm-rond lm-oui" onclick="lmSwiper(true)" aria-label="J’aime">' + lmIcone('coeur') + '</button></div></div>') +
     lmBoutonAide();
   lmBrancherSwipe(document.getElementById('lm-carte'));
-  lmPreparerImages(p.paquet.slice(p.indexCarte, p.indexCarte + 2).map(id => [LuxMatchCore.profilParId(p, id), 'Idle', '#3a2a55']));
+  lmPreparerImages(p.paquet.slice(p.indexCarte).map(id => [LuxMatchCore.profilParId(p, id), 'Idle', '#3a2a55']));
 }
 function lmBoutonAide() {
   return '<button type="button" class="lm-aide-fr' + (lm.aideFr ? ' lm-actif' : '') + '" onclick="lmBasculerAide()" aria-pressed="' + lm.aideFr + '">Aide FR ' + (lm.aideFr ? 'activée' : 'désactivée') + '</button>';
@@ -636,7 +638,19 @@ function lmRendreResultats(box) {
 
 // ─── Carte du hub Jeux ─────────────────────────────────────────────────────
 
+// Préchargement discret depuis le hub : code 3D, animations et modèles des profils.
+let lmPrechargeLance = false;
+function lmPrecharger() {
+  if (lmPrechargeLance) return;
+  lmPrechargeLance = true;
+  const lancer = () => import('./lux-match-3d.js?v=2')
+    .then(() => window.LuxMatch3D.precharger(['Casual_Female', 'Casual2_Female', 'Casual3_Female', 'Suit_Female', 'Doctor_Female_Young', 'Casual_Male']))
+    .catch(() => { lmPrechargeLance = false; });
+  if (typeof requestIdleCallback === 'function') requestIdleCallback(lancer, { timeout: 2500 });
+  else setTimeout(lancer, 800);
+}
 function luxMatchCarteHub() {
+  lmPrecharger();
   return '<section class="jeux-carte lm-carte-hub" aria-labelledby="jeux-lm-titre">' +
     '<div class="jeux-decor lm-decor" aria-hidden="true"><span class="lm-decor-tel"></span><span class="lm-decor-coeur">♥</span></div>' +
     '<div class="jeux-carte-titre"><h2 id="jeux-lm-titre">Lux Match</h2><span class="jeux-etat lm-etat-demo">DÉMO</span></div>' +
