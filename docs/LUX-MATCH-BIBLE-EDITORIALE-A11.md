@@ -1093,3 +1093,73 @@ La bio Tinder fournit un indice **général** visible sans enquête. Le post Ami
 **Les trois répliques LU restent à rédiger et à valider**, ce bonus est facultatif et **ne doit pas** bloquer l'intégration des premiers indices publics. Si utilisé, il remplace un événement de l'acte 3 et respecte le budget maximum de deux surprises.
 
 **Priorité :** ajouter d'abord les **indices**, puis distinguer `jokeKind` lors du calcul des réactions. Aucun nouveau décor, personnage ou système global.
+
+
+---
+
+## 14. Amorces éditoriales V2 — curiosité, questions d'Alex, traduction, écriture (27/10/2026)
+
+**Statut : intentions et scénarios FR_JEU d'auteur préparés pour intégration future selon [SPEC 109 §21](specs/SPEC-109.md#21-boucle-de-gameplay-v2--conversation-active-luxtrad-et-micro-ecriture-27102026). AUCUN texte LU nouveau n'est déclaré validé.** À ne pas utiliser en production avant rédaction des lignes LU complètes, audit grammaire/LOD, cohérence pédagogique et validation de la mécanique. Les faits listés sont issus des profils actuels de `contenus-v02.json`, pas des informations fictives ajoutées pour faciliter le dialogue.
+
+### 14.1. Douze cellules narratives candidates, deux par fille
+
+**Contrat par cellule :** `id`, `profileId`, `sourceClueIds[]`, `theme`, `npcLu/npcFr`, `options[]` avec `lu/fr`, `truthCategory` ou `socialIntent`, `reactionByIntent`, `callbackKey`, `lessonIds`, `reviewStatus`. Le champ `sourceClueIds` pointe **vers un fait réellement visible sur l'app** (Pro/Pix/Amis) et disponible dans le plan tiré ; ne pas réécrire les bios pour justifier rétroactivement une scène.
+
+| ID cellule | Sources canoniques actuelles | Intention FR_JEU de la scène / de la question posée par Alex | Réactions possibles, sans automatisme gagnant |
+| --- | --- | --- | --- |
+| `V2_LENA_ASK` | `AMIS_LENA_A02` (foot), `AMIS_LENA_A03` (sport) | Après une remarque sur le sport, **Alex choisit** s'il lui demande ce qu'elle aime dans le foot, quand elle joue ou quelle est son activité préférée. | Elle peut être enthousiaste si on s'intéresse au sport **sans se vanter** ; une question sincère est toujours acceptable. |
+| `V2_LENA_CALLBACK` | `TONE_LENA_AMIS`, `AMIS_LENA_A02` | Elle demande ensuite si Alex compte **venir jouer** après qu'il a affirmé aimer le foot ; s'il s'est vanté, l'occasion de rire de soi est offerte. | Autodérision : elle rit vraiment ; mensonge maintenu : elle propose une suite comique ; aucun bluff : petite complicité. |
+| `V2_CLAIRE_ASK` | `PRO.CLAIRE` (banque), `AMIS_CLAIRE_A02` (ponctualité) | Elle parle d'une grosse journée. Alex lui demande plutôt **ce qui s'est passé à la banque**, ce qu'elle aime dans son travail, ou un sujet plus ouvert. | La question contextualisée crée de l'attention ; elle n'est pas une validation de la fiche professionnelle. |
+| `V2_CLAIRE_CALLBACK` | `TONE_CLAIRE_AMIS`, `AMIS_CLAIRE_A03` | Plus tard, un trait d'esprit léger sur les horaires / la ponctualité **sans dénigrement** ; elle peut rendre la pique, ou sourire poliment si Alex exagère. | Taquinerie fine appréciée, bonus modéré ; James Bond/120 ans peuvent rester de simples sourires polis, **sans faux effet d'affinité**. |
+| `V2_NOEMIE_ASK` | `AMIS_NOEMIE_A02` (dessin), Pix (croquis existants) | Alex peut choisir de lui demander **ce qu'elle aime dessiner**, d'où viennent ses idées, ou ce qu'elle prépare en ce moment. | Un intérêt sincère lui plaît ; la première question doit être accessible sans être allée sur Pix. |
+| `V2_NOEMIE_CALLBACK` | `TONE_NOEMIE_AMIS`, `AMIS_NOEMIE_A01` | Elle revient à son dessin et propose une interprétation absurde d'Alex ; lui peut jouer le jeu ou demander plus sérieusement. | Humour absurde apprécié, possibilité d'une vraie réaction 2D/3D ludique ; pas de quiz sur sa couleur. |
+| `V2_MAYA_ASK` | `AMIS_MAYA_A02` (jeux), `PRO.MAYA` (développement), Pix privé | Alex lui demande **à quoi elle joue en ce moment**, ce qu'elle aime dans les jeux anciens ou en quoi consiste son métier. | Elle répond et donne un fait ; Pix privé ne crée pas d'impasse. |
+| `V2_MAYA_CALLBACK` | `TONE_MAYA_AMIS`, `AMIS_MAYA_A03` | Alex révèle qu'il n'y connaît rien ou qu'il a déjà raté une partie ; Maya peut le taquiner comme au « premier niveau ». | Autodérision reconnue, vantardise peu crédible moins bien accueillie ; la scène reste un échange entre personnes, pas une question de connaissances gaming. |
+| `V2_SOFIA_ASK` | `AMIS_SOFIA_A02` (Portugal), Pix (voyages existants), `PRO.SOFIA` (portugais/français) | Alex choisit de demander **un souvenir de voyage, un endroit qu'elle a aimé ou quelle langue elle parle au quotidien**. | Une réponse adaptée au post peut créer un lien ; pas besoin d'avoir prétendu être portugais pour lui parler. |
+| `V2_SOFIA_CALLBACK` | `AMIS_SOFIA_A03`, `TONE_SOFIA_AMIS` | Si Alex a dit parler portugais, elle **peut** le challenger de façon légère (quiz animaux existant) ; sinon elle reprend l'anecdote de voyage racontée. | Piège seulement après un claim effectif ; réponse « hippopotame » = gag social, pas erreur de LU ; promesse de voyage seulement si narrativement méritée. |
+| `V2_EMMA_ASK` | `PRO.EMMA` (librairie), `AMIS_EMMA_A03` (lecture/café), Pix privé | Alex choisit de lui demander **quel type de livres elle préfère**, comment se passe sa journée à la librairie ou si elle préfère lire le matin ou le soir. | Petite complicité calme ; la question ne doit pas nécessiter de téléphone au café. |
+| `V2_EMMA_CALLBACK` | `AMIS_EMMA_A02` (anti-téléphone), `TONE_EMMA_AMIS` | Emma revient spontanément sur le livre ou le café dont elle a parlé ; si Alex écoute il rebondit, s'il sort régulièrement son téléphone elle peut être blessée par le manque d'attention. | Attention sincère récompensée ; téléphone déprécié **seulement selon son tempérament annoncé**, ne pas récompenser « pas de téléphone » si aucune connexion. |
+
+**Principe de richesse narrative :** ce tableau ne doit pas se transformer en « sélectionner le métier/couleur correct » ; les choix servent à **poser des questions, faire vivre la réponse de la fille puis rebondir**. Chaque cellule peut réutiliser plusieurs contenus existants. Deux cellules par fille constituent une **base d'intégration**, pas une promesse de douze nouveaux dialogues entiers si des combinaisons existantes fonctionnent déjà.
+
+### 14.2. Trois patrons d'échanges — intentions FR prêtes à décliner
+
+**Patron A : « Je m'intéresse vraiment à toi »**
+- Fille : elle introduit une activité/émotion à elle (pas une question d'identité sur Alex).
+- Alex : 3 questions possibles, pertinentes ou plus ouvertes ; aucune option absurde imposée.
+- Fille : **réponse concrète** liée au thème choisi ; elle ne se contente pas d'un « oui » générique.
+- Plus tard : l'activité évoquée revient dans un propos / conclusion **seulement si l'échange a eu lieu**.
+
+**Patron B : « Tu bluffes, elle rebondit »**
+- Fille : pose une question qui révèle un goût ou demande le métier/la langue.
+- Alex : peut mentir ou choisir une exagération visiblement humoristique.
+- Fille : réaction selon humeur et capacité de vérifier ; bonus si elle rit **réellement**, zéro si simple sourire de politesse.
+- Plus tard : un test logique ou une taquinerie **appuyée sur le propos exact**, avec aveu possible. Départager clairement blague, mensonge et contradiction.
+
+**Patron C : « Je m'exprime en LU »**
+- Fille : lance un sujet simple A1.1 ; l'utilisateur peut **écrire une petite phrase** ou choisir une proposition.
+- Saisie reconnue : elle répond de manière vivante et adaptée au sens, sans bonus artificiel pour le clavier.
+- Saisie inconnue : **aucune pénalité**, proposition de reformulation ou de QCM ; le jeu ne prétend pas que toute formulation hors liste est fautive.
+
+### 14.3. Banque de micro-écriture V1 : objectifs FR (pas de réponses LU inventées)
+
+Le jeu doit sélectionner **une tâche de saisie courte parmi** :
+1. **Se présenter** en une phrase simple, si l'étape précédente ne portait pas déjà exactement sur le prénom.
+2. **Dire un goût personnel** simple correspondant à un sujet réellement lancé (sport, dessin, jeux, livres, café).
+3. **Poser une question courte à la fille** en reprenant la structure d'une question apprise, sans doublon avec ce qui vient d'être demandé.
+
+**Pour chaque tâche** : `inputPrompt`, `acceptedLu[]` **avec variantes revues et sens non contradictoires**, `semanticIntent`, `responseByIntent`, `reviewStatus`, `fallBackChoiceIds[]`. **Plusieurs réponses LU peuvent être linguistiquement bonnes** ; seules celles couvertes par la banque sont `recognized`, les autres restent `unrecognized` et **non pénalisées**. Laisser l'écriture optionnelle et toujours autoriser le QCM.
+
+### 14.4. LuxTrad — graines de glossaire à extraire et auditer
+
+**Sources privilégiées** : prompts et options des beats existants `B03_NAME`, `B04_AGE`, `B05_ORIGIN`, `B07_LANGUAGE`, `B08_PROFESSION`, `B11_COFFEE`, `B21_ASK_HER` + scènes personnalisées validées. Chaque entrée lexicale porte `lu`, `fr`, `surfaceForms`, `lessonId`, `reviewStatus`; un mot de la question courante doit être retrouvable **sans clavier pendant le date**.
+
+**À couvrir en priorité dans le glossaire** : questions « comment », « où », « quel âge », « métier », « langue », « d'où » et verbes courants déjà utilisés ; ne pas décomposer arbitrairement une forme déclinée ou conjuguée en fragments trompeurs. LOD.lu et cours comme sources de vérification avant gel JSON. **LuxTrad** n'est pas une nouvelle plateforme sociale et ne doit pas promettre la traduction universelle.
+
+### 14.5. Acceptation éditoriale
+
+- Au moins une vraie question posée par Alex et un fait appris **sur elle** par rencontre ; une relance liée à ce fait seulement si cet échange a été joué.
+- Deux possibilités de connexion par date de 6–8 tours, dont au moins une ne nécessite pas d'avoir ouvert Pix/Pro/Amis.
+- Les dialogues d'un profil précis ne doivent pas s'appliquer à un autre de manière incohérente ; ne pas créer du contenu private-only pour Maya/Emma.
+- Les réactions « sourire poli / rire / complicité » doivent être **cohérentes avec le delta social**, et les transitions restent naturelles.
+- Aucun texte LU nouveau ne peut être marqué `lecon` ou `valide_lod` sans véritable preuve d'audit. **Ce catalogue FR est un livrable éditorial de cadrage, non une banque bilingue déployable.**
