@@ -200,6 +200,8 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 
 ## 13. Recette Android des deux salves : corrections P0/P1 et scroll
 
+**État au 27/10/2026 :** lots **10A** (journal claim/contradiction/aveu, bilan « Tes réponses » / « Phrases modèles ») et **10B** (suspicion perceptible, diversité d'état civil, rappel espacé, confrontation « X oder Y? », au revoir selon l'ambiance) **implémentés**, détail dans le tableau « Suivi par lot » de SPEC 109 ; lot 10C en cours. Nouvelle phrase LU : uniquement le modèle « {a} oder {b}? » (`audit_regles`, « oder » attesté dans l'examen A1.1 n° 1) rempli par des valeurs déjà dites ; « maintenir » répète la phrase du joueur. **Recette Samsung à faire.**
+
 **Commencer par [SPEC 109 § 18](specs/SPEC-109.md#18-recette-android--deux-salves-emma-fidelite-narrative-et-ecrans-sans-scroll-inutile-27102026).** La section 18 est la **liste complète de recette Android** après les lots 6–9 et constitue la **passation pour les lots 10A, 10B, 10C**. Ne pas prendre les demandes ci-dessous pour du code déjà livré.
 
 **Ce que le joueur a montré :** deux salves partielles d'un date avec Emma, fin « Ça ne colle pas » à **44 affinité / 41 suspicion / 100 % langue**, score 850, `G0` graine `693698638` ; l'âge 30, origine Portugal, nationalité luxembourgeoise, retour à France au rappel, puis « Jo. » lors de la demande de clarification. **Les screenshots sont incomplets : toute reconstruction est partielle.**
@@ -228,7 +230,7 @@ Dans `data/jeux/lux-match/contenus-v02.json`, Léna a `humours: ["direct","taqui
 
 ## 14. Bug tactile intermittent : glisse droite déclenchant « NON »
 
-**Nouveau signalement Android du 27/10/2026 — P0 d'interaction**. Diagnostic complet et tests dans [SPEC 109 § 19](specs/SPEC-109.md#19-bug-tactile-android--swipe-droite-interprete-comme--non--27102026).
+**Corrigé le 27/10/2026** (`tests/test_lux_match_swipe.py`, 12 cas, dans la suite critique) ; **recette Samsung à faire**. **Nouveau signalement Android du 27/10/2026 — P0 d'interaction**. Diagnostic complet et tests dans [SPEC 109 § 19](specs/SPEC-109.md#19-bug-tactile-android--swipe-droite-interprete-comme--non--27102026).
 
 **Symptôme** : en glissant vers la droite sur Tinder, le joueur observe parfois très brièvement « NON » et la carte est refusée ; phénomène difficile à reproduire.
 

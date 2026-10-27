@@ -398,8 +398,28 @@ evenements = {
  'B25_TRUTH_REPAIR': E(titreFr='tu as dû t’expliquer', profil='tous', taille='petit', traductionVisible=True, declencheur={'contradiction': True}, npc=L('Ass dat wouer?', 'C’est vrai ?', 'a_verifier_lod'), choices=[
     EC('REP25_A', 'Non, c’était une blague.', {'affinity': 0, 'suspicion': -3}, 'Elle hésite, puis sourit à moitié.', lu='Nee, dat war e Witz.', explication='blague', visuel='sourcil'),
     EC('REP25_B', 'Pardon, j’ai menti.', {'affinity': 2, 'suspicion': -8}, 'Elle apprécie la franchise.', lu='Entschëllegt, ech hu gelunn.', aveu=True, visuel='hoche', review='a_verifier_lod'),
-    EC('REP25_C', 'Oui.', {'affinity': -2, 'suspicion': 6}, 'Elle n’a pas l’air convaincue.', lu='Jo.', visuel='sourcil', explication='maintien')]),
+    EC('REP25_C', 'Oui.', {'affinity': -2, 'suspicion': 6}, 'Elle n’a pas l’air convaincue.', lu='Jo.', visuel='sourcil', explication='maintien')],
+   # SPEC §18.4 (lot 10B) : confrontation propre à la contradiction (« Portugal oder Frankräich? »).
+   # Seules des valeurs déjà dites (noms, nombres, langues des leçons) remplacent {a} et {b} : aucune
+   # grammaire générée. « Maintenir » reprend mot pour mot la phrase que le joueur vient de dire.
+   # Repli : « Ass dat wouer? » (contradiction croisée métier/lieu, origine/nationalité, oui/non).
+   confrontation={
+    'modele': {'lu': '{a} oder {b}?', 'fr': '{a} ou {b} ?', 'review': 'audit_regles',
+               'source': '« oder » : examen A1.1 n° 1 (« richteg oder falsch? », « Deng Famill oder meng Famill? »), LOD « oder ».'},
+    'valeurs': {
+     'prenom': {'Alex': ['Alex', 'Alex'], 'Max': ['Max', 'Max']},
+     'age': {'28': ['aachtanzwanzeg', '28 ans'], '30': ['drësseg', '30 ans']},
+     'origin': {'Frankräich': ['Frankräich', 'la France'], 'Portugal': ['Portugal', 'le Portugal'], 'Däitschland': ['Däitschland', 'l’Allemagne']},
+     'city': {'Metz': ['Metz', 'Metz'], 'Lëtzebuerg': ['Lëtzebuerg', 'Luxembourg'], 'Esch': ['Esch', 'Esch']},
+     'workplace': {'Bank': ['Bank', 'une banque'], 'Spidol': ['Spidol', 'un hôpital']},
+     'job': {'Banker': ['Banker', 'banquier'], 'Dokter': ['Dokter', 'médecin'], 'Polizist': ['Polizist', 'policier']},
+     'language': {'Franséisch': ['Franséisch', 'le français'], 'Portugisesch': ['Portugisesch', 'le portugais'], 'Däitsch': ['Däitsch', 'l’allemand']},
+     'nationality': {'Fransous': ['Fransous', 'français'], 'Portugis': ['Portugis', 'portugais'], 'Lëtzebuerger': ['Lëtzebuerger', 'luxembourgeois']}}}),
 }
+# Transition FR avant l'au revoir quand l'ambiance s'est tendue (SPEC §18.4) : pas de « Et war flott! » après une dispute.
+transitions_cloture = {
+ 'tendue': 'Un petit silence s’installe. Elle finit son café et attrape son sac.',
+ 'froide': 'Elle regarde l’heure, puis se lève poliment.'}
 non_integres = [
  {'id': 'B14_TIME', 'raison': 'Heure du rendez-vous ambiguë (7 h / 19 h) : aucune formulation non ambiguë validée (Bible §6.28).'},
  {'id': 'EV_CLAIRE_TIME', 'raison': 'Dépend de B14 (heure canonique non validée).'},
@@ -443,6 +463,7 @@ contenus = {
    'a_verifier_lod': 'Lexique ou tournure hors leçons (profession, adjectif, expression) : à confirmer sur LOD.lu et par un locuteur.'},
  'persona': persona, 'profils': profils, 'variantes': variantes, 'preferences': preferences,
  'plans': plans, 'beats': beats, 'rappels': rappels, 'clotures': clotures, 'evenements': evenements,
+ 'transitionsCloture': transitions_cloture,
  'nonIntegres': non_integres, 'correctionsAudit': corrections,
  'finsAdaptees': [
   {'id': 'FIN_LENA_FAIL', 'bible': '… tu as changé d’histoire trois fois.', 'raison': 'Le nombre de changements n’est pas compté : « trois fois » retiré.'},

@@ -29,6 +29,8 @@ const LuxMatchCore = (function () {
   const SEUIL_FAIL = 60;
   const SEUIL_SUCCES = { affinity: 65, suspicion: 40 };
   const REPARATION = 'B25_TRUTH_REPAIR';
+  const SUSPICION_SUJET_FORT = 6;   // bluff sur le sujet qu'elle connaît bien
+  const SUSPICION_TROP_BEAU = 5;    // 3e bluff actif : histoire peu crédible (+3 par bluff suivant)
 
   // Nombres pseudo-aléatoires reproductibles (même graine = même partie).
   function creerHasard(graine) {
@@ -105,6 +107,7 @@ const LuxMatchCore = (function () {
       contradictions: 0,
       aveux: 0,
       etapes: {},                 // rappel, « à demain ? » et clôture déjà placés
+      ambianceFin: null,          // bonne, calme, tendue ou froide, fixée avant l'au revoir
       file: [],                   // scènes restantes
       enAttente: [],              // événements à jouer juste après la réponse en cours
       courant: null,              // échange affiché
@@ -176,6 +179,29 @@ const LuxMatchCore = (function () {
   // Thèmes de l'acte 2 ouverts à toutes ; les scènes propres à une partenaire viennent de profil.beats.
   const THEMES_COMMUNS = ['B05_ORIGIN', 'B06_CITY', 'B07_LANGUAGE', 'B08_PROFESSION', 'B09_WORKPLACE', 'B11_COFFEE', 'B12_COFFEE_OFFER', 'B13_NATIONALITY', 'B21_ASK_HER'];
   const CAFE = ['B11_COFFEE', 'B12_COFFEE_OFFER', 'EV_EMMA_COFFEE'];   // un seul sujet « café » par rendez-vous
+  // Questions « d'état civil » (SPEC §18.4) : jamais deux à la suite quand une autre scène peut
+  // s'intercaler, et une seule parmi origine / nationalité. Le reste (passions, café, routine,
+  // question à elle) fait la conversation. Emma n'est pas une agente KYC.
+  const ETAT_CIVIL = ['B03_NAME', 'B04_AGE', 'B05_ORIGIN', 'B06_CITY', 'B13_NATIONALITY'];
+  const IDENTITE = ['B05_ORIGIN', 'B13_NATIONALITY'];
+  const estEtatCivil = id => ETAT_CIVIL.indexOf(id) >= 0;
+  // Réordonne sans rien retirer : après une question d'état civil, on prend d'abord une autre scène.
+  function espacer(ordre, precedentEtatCivil) {
+    const reste = ordre.slice(), resultat = [];
+    let avant = precedentEtatCivil;
+    while (reste.length) {
+      // La question d'Alex à elle (B21) n'ouvre jamais l'acte 2 : on commence par un vrai sujet.
+      let i = avant ? reste.findIndex(id => !estEtatCivil(id) && !(resultat.length === 0 && id === 'B21_ASK_HER')) : 0;
+      if (i < 0) i = 0;
+      if (reste[i] === 'B09_WORKPLACE' && reste.indexOf('B08_PROFESSION') >= 0) i = reste.indexOf('B08_PROFESSION');
+      const id = reste.splice(i, 1)[0];
+      resultat.push(id);
+      // Le lieu de travail suit toujours le métier.
+      if (id === 'B08_PROFESSION' && reste.indexOf('B09_WORKPLACE') >= 0) resultat.push(reste.splice(reste.indexOf('B09_WORKPLACE'), 1)[0]);
+      avant = estEtatCivil(resultat[resultat.length - 1]);
+    }
+    return resultat;
+  }
 
   function tirerPondere(liste, poids, hasard) {
     const total = liste.reduce((t, x) => t + poids(x), 0);
@@ -218,6 +244,7 @@ const LuxMatchCore = (function () {
     if (b.requiresVariant && b.requiresVariant !== variante) return false;
     if (CAFE.indexOf(id) >= 0 && choisis.some(x => CAFE.indexOf(x) >= 0)) return false;
     if (id === 'B09_WORKPLACE' && choisis.indexOf('B08_PROFESSION') < 0) return false;  // le lieu de travail suit le métier
+    if (IDENTITE.indexOf(id) >= 0 && choisis.some(x => IDENTITE.indexOf(x) >= 0)) return false;  // origine OU nationalité
     return true;
   }
   function tirerActe2(c, profil, variante, hasard) {
@@ -231,15 +258,22 @@ const LuxMatchCore = (function () {
     while (choisis.length < nombre && essais++ < 30) {
       const possibles = candidats.filter(id => themePossible(c, profil, id, variante, choisis));
       if (!possibles.length) break;
-      choisis.push(tirerPondere(possibles, id => propres.indexOf(id) >= 0 ? 3 : 1, hasard));
+      // Ses scènes pèsent 3 fois plus ; l'état civil commun ne pèse que moitié.
+      choisis.push(tirerPondere(possibles, id => propres.indexOf(id) >= 0 ? 3 : estEtatCivil(id) ? 0.5 : 1, hasard));
     }
-    // Ordre : mélangé, puis B09 après B08 et la question d'Alex jamais en premier.
-    let ordre = melanger(choisis, hasard);
+    // Ordre : mélangé et espacé (l'acte 1 finit par le prénom ou l'âge), puis B09 après B08
+    // et la question d'Alex jamais en premier.
+    let ordre = espacer(melanger(choisis, hasard), true);
     if (ordre.indexOf('B09_WORKPLACE') >= 0 && ordre.indexOf('B09_WORKPLACE') < ordre.indexOf('B08_PROFESSION')) {
       ordre = ordre.filter(id => id !== 'B09_WORKPLACE');
       ordre.splice(ordre.indexOf('B08_PROFESSION') + 1, 0, 'B09_WORKPLACE');
     }
-    if (ordre[0] === 'B21_ASK_HER' && ordre.length > 1) { ordre.shift(); ordre.splice(1, 0, 'B21_ASK_HER'); }
+    if (ordre[0] === 'B21_ASK_HER' && ordre.length > 1) {
+      ordre.shift();
+      // Elle s'intercale après la première scène, ou plus loin pour séparer deux questions d'état civil.
+      let i = ordre.findIndex((id, k) => k >= 1 && estEtatCivil(id) && estEtatCivil(ordre[k - 1]));
+      ordre.splice(i < 0 ? 1 : i, 0, 'B21_ASK_HER');
+    }
     return ordre;
   }
 
@@ -363,6 +397,7 @@ const LuxMatchCore = (function () {
   }
   function echange(etat, id) {
     const c = contenus(etat);
+    if (id === REPARATION) return echangeReparation(etat, c.evenements[id]);
     if (c.evenements[id]) return { type: 'evenement', id, prompt: c.evenements[id].npc, choix: c.evenements[id].choices.slice(), source: c.evenements[id] };
     if (c.rappels[id]) return { type: 'rappel', id, prompt: c.rappels[id].prompt, choix: melanger(c.rappels[id].choices, etat.hasard), source: c.rappels[id] };
     const source = scene(etat, id);
@@ -406,15 +441,33 @@ const LuxMatchCore = (function () {
         if (etat.affinity >= SEUIL_SUCCES.affinity && etat.suspicion < SEUIL_SUCCES.suspicion) etat.file.push('B24_TOMORROW');
       } else if (!etat.etapes.cloture) {
         etat.etapes.cloture = true;
-        etat.file.push(etat.plan.cloture);
+        // « Et war flott! » seulement si l'ambiance est bonne ; sinon un au revoir sobre, amené.
+        const humeur = ambiance(etat);
+        etat.ambianceFin = humeur;
+        etat.file.push(humeur !== 'bonne' && etat.plan.cloture === 'B26_DATE_FAREWELL' ? 'B18_END' : etat.plan.cloture);
       } else { terminer(etat); return; }
       if (!etat.file.length) { suivant(etat); return; }
     }
     etat.courant = echange(etat, etat.file.shift());
+    if (contenus(etat).clotures[etat.courant.id] && etat.ambianceFin && etat.ambianceFin !== 'bonne' && etat.ambianceFin !== 'calme') {
+      const t = (contenus(etat).transitionsCloture || {})[etat.ambianceFin];
+      if (t) etat.courant.transition = { fr: t };
+    }
+  }
+  // Ambiance avant l'au revoir : bonne, calme, tendue (contradiction non avouée, doute fort) ou froide.
+  function ambiance(etat) {
+    const derniere = etat.journal.map(j => j.type).lastIndexOf('contradiction');
+    const avoueDepuis = derniere >= 0 && etat.journal.slice(derniere).some(j => j.type === 'aveu');
+    if ((derniere >= 0 && !avoueDepuis) || etat.suspicion >= 40) return 'tendue';
+    if (etat.affinity < 35) return 'froide';
+    if (etat.affinity >= SEUIL_SUCCES.affinity && etat.suspicion < SEUIL_SUCCES.suspicion) return 'bonne';
+    return 'calme';
   }
 
-  // Un seul rappel, sur un attribut réellement affirmé (mensonges en priorité),
-  // jamais sur un attribut qui vient d'avoir son événement.
+  // Un seul rappel, sur un propos réellement tenu, jamais sur un attribut qui vient d'avoir
+  // son événement, ni sur ce qui vient d'être dit aux deux derniers tours (SPEC §18.4).
+  // Elle ne lit pas le dossier d'Alex : un bluff est un peu plus souvent rappelé (il a surpris),
+  // pas systématiquement.
   function choisirRappel(etat) {
     if (!etat.plan.rappel) return null;
     const rappels = contenus(etat).rappels;
@@ -422,8 +475,11 @@ const LuxMatchCore = (function () {
     etat.evenements.forEach(id => { if (estEvenement(etat, id)) Object.keys(clesDeclencheur(contenus(etat).evenements[id])).forEach(k => { dejaTraites[k] = true; }); });
     const possibles = Object.keys(rappels).filter(id => etat.claims[rappels[id].attribut] !== undefined && !dejaTraites[rappels[id].attribut]);
     if (!possibles.length) return null;
-    const menteurs = possibles.filter(id => etat.mensonges[rappels[id].attribut]);
-    return choisirUn(menteurs.length ? menteurs : possibles, etat.hasard);
+    const recents = etat.historique.slice(-2).map(h => h.id);
+    const ditRecemment = id => etat.journal.some(j => j.type === 'claim' && j.attribut === rappels[id].attribut && recents.indexOf(j.scene) >= 0);
+    const espaces = possibles.filter(id => !ditRecemment(id));
+    const liste = espaces.length ? espaces : possibles;
+    return tirerPondere(liste, id => etat.mensonges[rappels[id].attribut] ? 2 : 1, etat.hasard);
   }
 
   // ─── Événements conditionnels ─────────────────────────────────────────────
@@ -472,12 +528,13 @@ const LuxMatchCore = (function () {
   }
   // Enregistre une affirmation ; renvoie true si elle contredit la précédente.
   // Une affirmation redevenue vraie n'est PAS un aveu : seul le mensonge « actif » cesse.
-  function affirmer(etat, cle, valeur) {
+  function affirmer(etat, cle, valeur, choix) {
     const avant = etat.claims[cle];
     const vrai = valeur === valeurPersona(etat.persona, cle);
     etat.claims[cle] = valeur;
     if (!vrai) { etat.mensonges[cle] = true; etat.dejaMenti[cle] = true; } else delete etat.mensonges[cle];
-    etat.journal.push({ type: 'claim', attribut: cle, valeur, vrai, scene: etat.courant ? etat.courant.id : null });
+    etat.journal.push({ type: 'claim', attribut: cle, valeur, vrai, scene: etat.courant ? etat.courant.id : null,
+      lu: choix && choix.lu || null, fr: choix && choix.fr || null });
     return avant !== undefined && avant !== valeur;
   }
   // Aveu explicite : le bluff sur ces attributs est reconnu, elle connaît la vérité.
@@ -533,6 +590,36 @@ const LuxMatchCore = (function () {
   }
   function reaction(etat, cle) { return etat.profil.reactions[cle] ? { cle, fr: etat.profil.reactions[cle] } : null; }
 
+  // Ce qu'elle a entendu sur un attribut : les deux dernières valeurs différentes.
+  function deuxVersions(etat, cle) {
+    const dits = etat.journal.filter(j => j.type === 'claim' && j.attribut === cle);
+    const apres = dits[dits.length - 1];
+    const avant = dits.slice(0, -1).reverse().find(j => j.valeur !== apres.valeur);
+    return avant ? { avant, apres } : null;
+  }
+  // Réaction FR précise : elle cite la contradiction qu'elle vient d'entendre (SPEC §18.4).
+  function phraseContradiction(etat, cles) {
+    const fait = (cle, v) => FAITS[cle] ? FAITS[cle](v) : String(v);
+    const v = cles.length === 1 ? deuxVersions(etat, cles[0]) : null;
+    if (v) return 'Elle fronce les sourcils : d’abord ' + fait(cles[0], v.avant.valeur) + ', et maintenant ' + fait(cles[0], v.apres.valeur) + ' ?';
+    if (cles.length === 2 && cles.every(c => etat.claims[c] !== undefined)) return 'Elle fronce les sourcils : ' + fait(cles[0], etat.claims[cles[0]]) + ' et ' + fait(cles[1], etat.claims[cles[1]]) + ' ?';
+    return 'Elle fronce les sourcils : ce n’est pas ce que tu as dit tout à l’heure…';
+  }
+  // B25 contextualisée : « Portugal oder Frankräich? » ; « maintenir » répète la phrase qu'il vient de dire.
+  function echangeReparation(etat, ev) {
+    const ech = { type: 'evenement', id: REPARATION, prompt: ev.npc, choix: ev.choices.slice(), source: ev };
+    const cles = etat.derniereContradiction;
+    const conf = ev.confrontation;
+    const v = cles.length === 1 ? deuxVersions(etat, cles[0]) : null;
+    const mots = conf && v && conf.valeurs[cles[0]];
+    const a = mots && mots[String(v.avant.valeur)], b = mots && mots[String(v.apres.valeur)];
+    const majuscule = t => t.charAt(0).toUpperCase() + t.slice(1);
+    if (a && b) ech.prompt = { lu: majuscule(conf.modele.lu.replace('{a}', a[0]).replace('{b}', b[0])), fr: majuscule(conf.modele.fr.replace('{a}', a[1]).replace('{b}', b[1])), review: conf.modele.review };
+    const dernier = etat.journal.slice().reverse().find(j => j.type === 'claim' && cles.indexOf(j.attribut) >= 0 && j.lu);
+    if (dernier) ech.choix = ech.choix.map(c => c.explication === 'maintien' ? Object.assign({}, c, { lu: dernier.lu, fr: dernier.fr || c.fr, maintient: dernier.attribut }) : c);
+    return ech;
+  }
+
   // Le joueur répond à l'échange courant. Renvoie un résumé pour l'interface.
   function repondre(etat, choixId) {
     if (etat.phase !== 'date' || !etat.courant) return null;
@@ -547,7 +634,7 @@ const LuxMatchCore = (function () {
     const contredits = [];
     const contredire = cles => cles.forEach(cle => { if (contredits.indexOf(cle) < 0) contredits.push(cle); });
     const affirmerChoix = () => Object.keys(choix.claims || {}).forEach(cle => {
-      if (affirmer(etat, cle, choix.claims[cle]) && !choix.remplace) { r.contradiction = true; contredire([cle]); }
+      if (affirmer(etat, cle, choix.claims[cle], choix) && !choix.remplace) { r.contradiction = true; contredire([cle]); }
       const paire = incoherent(etat, cle);
       if (paire) { r.contradiction = true; contredire(paire); }
     });
@@ -569,13 +656,17 @@ const LuxMatchCore = (function () {
         if (fort) r.reaction = reaction(etat, 'SINCERE');
         if (choix.reactionFr) r.reaction = { fr: choix.reactionFr };
       } else if (choix.truth === 'lie') {
-        // Le bluff plaît… pour l'instant, mais il est mémorisé. Plus les mensonges
-        // s'accumulent, plus elle doute ; mentir sur SON sujet favori se remarque.
+        // Elle ne connaît pas le vrai Alex (SPEC §18.4) : un bluff plausible ne se voit pas.
+        // Le doute vient de ce qu'elle PEUT percevoir : son sujet favori (elle s'y connaît)
+        // ou un portrait qui devient trop beau pour être vrai (3e bluff encore actif).
+        // Le vrai risque reste la mémoire : rappels, contradictions et pièges.
         const dejaActifs = Object.keys(etat.mensonges).filter(k => !(choix.claims && k in choix.claims)).length;
-        ajouter(social.affinity !== undefined ? social.affinity : 2, Math.min(12, 2 + 3 * dejaActifs) + (fort ? 4 : 0));
+        const tropBeau = dejaActifs >= 2;
+        ajouter(social.affinity !== undefined ? social.affinity : 2, (fort ? SUSPICION_SUJET_FORT : 0) + (tropBeau ? SUSPICION_TROP_BEAU + 3 * (dejaActifs - 2) : 0));
         r.bluff = true;
         r.visuel = 'sourire';
         if (fort) { r.reaction = reaction(etat, 'BLUFF'); r.visuel = 'sourcil'; }
+        else if (tropBeau) { r.reaction = { cle: 'TROP_BEAU', fr: 'Elle te regarde un peu plus attentivement.' }; r.visuel = 'sourcil'; }
       } else if (choix.truth === 'joke') {
         const genre = choix.jokeKind || 'absurde';
         etat.genresBlague[genre] = true;
@@ -627,7 +718,7 @@ const LuxMatchCore = (function () {
         r.visuel = 'hoche';
         r.reaction = { cle: 'RAPPEL', fr: 'Elle hoche la tête : « Ah oui, c’est ça. »' };
       } else {
-        affirmer(etat, attribut, choix.valeur);
+        affirmer(etat, attribut, choix.valeur, choix);
         r.contradiction = true;
         contredire([attribut]);
       }
@@ -639,7 +730,7 @@ const LuxMatchCore = (function () {
       r.attributsContredits = contredits.slice();
       ajouter(CONTRADICTION.affinity, CONTRADICTION.suspicion);
       r.visuel = 'sourcil';
-      r.reaction = { cle: 'CONTRADICTION', fr: 'Elle fronce les sourcils : ce n’est pas ce que tu as dit tout à l’heure…' };
+      r.reaction = { cle: 'CONTRADICTION', fr: phraseContradiction(etat, contredits) };
       // Une seule chance de s'expliquer (« Ass dat wouer? »).
       if (evenementEligible(etat, REPARATION)) { etat.enAttente.unshift(REPARATION); etat.evenements.push(REPARATION); }
     }
@@ -670,7 +761,7 @@ const LuxMatchCore = (function () {
     if (r.contradiction) e = { type: 'stunned', intensite: 'medium' };
     else if (r.reaction && r.reaction.cle === 'DECALE') e = r.reaction.gout === 'n_aime_pas' ? { type: 'awkward', intensite: 'medium', delai: 300 } : { type: 'delighted', intensite: 'subtle' };
     else if (r.reaction && r.reaction.cle === 'HUMOUR') e = r.reaction.gout === 'aime' ? { type: 'delighted', intensite: 'subtle' } : r.reaction.gout === 'n_aime_pas' ? { type: 'doubt', intensite: 'subtle' } : null;
-    else if (r.reaction && r.reaction.cle === 'BLUFF') e = { type: 'doubt', intensite: 'subtle' };
+    else if (r.reaction && (r.reaction.cle === 'BLUFF' || r.reaction.cle === 'TROP_BEAU')) e = { type: 'doubt', intensite: 'subtle' };
     else if (ech.type === 'evenement') {
       const type = EMOTION_VISUEL[choix.visuel];
       if (type) e = { type, intensite: type === 'stunned' ? 'big' : type === 'annoyed' ? 'medium' : 'subtle' };

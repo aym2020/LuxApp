@@ -805,6 +805,8 @@ function lmMajDialogue() {
   const impression = lm.impressionAAfficher;
   lm.impressionAAfficher = null;
   bulle.innerHTML = (impression ? '<p class="lm-impression' + (impression.positive ? ' lm-positive' : '') + '">« ' + lmEchapper(impression.fr) + ' »</p>' : '') +
+    // Transition narrative avant un au revoir tendu (SPEC §18.4) : jamais de saut brusque.
+    (e.transition ? '<p class="lm-impression lm-transition">' + lmEchapper(e.transition.fr) + '</p>' : '') +
     '<span class="lm-speaker">' + lmEchapper(lmNomSpeaker()) + (LM_ETIQUETTES[e.type] ? ' <em>· ' + LM_ETIQUETTES[e.type] + '</em>' : '') + '</span>' +
     (e.prompt.lu ? lmLu(e.prompt.lu) : '') + (traduire || !e.prompt.lu ? '<p class="lm-fr">' + lmEchapper(e.prompt.fr) + '</p>' : '');
   rep.innerHTML = e.choix.map(c => '<button type="button" class="lm-reponse" onclick="lmRepondre(\'' + lmEchapper(c.id) + '\')">' +

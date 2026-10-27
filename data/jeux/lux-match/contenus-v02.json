@@ -3632,8 +3632,122 @@
      "explication": "maintien",
      "review": "lecon"
     }
-   ]
+   ],
+   "confrontation": {
+    "modele": {
+     "lu": "{a} oder {b}?",
+     "fr": "{a} ou {b} ?",
+     "review": "audit_regles",
+     "source": "« oder » : examen A1.1 n° 1 (« richteg oder falsch? », « Deng Famill oder meng Famill? »), LOD « oder »."
+    },
+    "valeurs": {
+     "prenom": {
+      "Alex": [
+       "Alex",
+       "Alex"
+      ],
+      "Max": [
+       "Max",
+       "Max"
+      ]
+     },
+     "age": {
+      "28": [
+       "aachtanzwanzeg",
+       "28 ans"
+      ],
+      "30": [
+       "drësseg",
+       "30 ans"
+      ]
+     },
+     "origin": {
+      "Frankräich": [
+       "Frankräich",
+       "la France"
+      ],
+      "Portugal": [
+       "Portugal",
+       "le Portugal"
+      ],
+      "Däitschland": [
+       "Däitschland",
+       "l’Allemagne"
+      ]
+     },
+     "city": {
+      "Metz": [
+       "Metz",
+       "Metz"
+      ],
+      "Lëtzebuerg": [
+       "Lëtzebuerg",
+       "Luxembourg"
+      ],
+      "Esch": [
+       "Esch",
+       "Esch"
+      ]
+     },
+     "workplace": {
+      "Bank": [
+       "Bank",
+       "une banque"
+      ],
+      "Spidol": [
+       "Spidol",
+       "un hôpital"
+      ]
+     },
+     "job": {
+      "Banker": [
+       "Banker",
+       "banquier"
+      ],
+      "Dokter": [
+       "Dokter",
+       "médecin"
+      ],
+      "Polizist": [
+       "Polizist",
+       "policier"
+      ]
+     },
+     "language": {
+      "Franséisch": [
+       "Franséisch",
+       "le français"
+      ],
+      "Portugisesch": [
+       "Portugisesch",
+       "le portugais"
+      ],
+      "Däitsch": [
+       "Däitsch",
+       "l’allemand"
+      ]
+     },
+     "nationality": {
+      "Fransous": [
+       "Fransous",
+       "français"
+      ],
+      "Portugis": [
+       "Portugis",
+       "portugais"
+      ],
+      "Lëtzebuerger": [
+       "Lëtzebuerger",
+       "luxembourgeois"
+      ]
+     }
+    }
+   }
   }
+ },
+ "transitionsCloture": {
+  "tendue": "Un petit silence s’installe. Elle finit son café et attrape son sac.",
+  "froide": "Elle regarde l’heure, puis se lève poliment."
  },
  "nonIntegres": [
   {

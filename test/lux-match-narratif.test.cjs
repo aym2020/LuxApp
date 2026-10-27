@@ -137,7 +137,9 @@ test('Bilan : « Tes réponses » = choix réellement joués ; phrases modèles 
   const lu = reponses.map(r => r.reponse.lu);
   assert.ok(lu.includes('Ech sinn drësseg Joer al.'), 'l’âge joué (30 ans) apparaît');
   assert.ok(!lu.includes('Ech sinn aachtanzwanzeg Joer al.'), 'jamais remplacé par 28 ans');
-  assert.ok(lu.includes('Ech kommen aus Portugal.') && lu.includes('Ech sinn e Lëtzebuerger.') && lu.includes('Jo.'));
+  assert.ok(lu.includes('Ech kommen aus Portugal.') && lu.includes('Ech sinn e Lëtzebuerger.'));
+  // Rappel puis B25 « maintenir » : la même phrase, dite deux fois.
+  assert.equal(lu.filter(x => x === 'Ech kommen aus Frankräich.').length, 2);
   assert.equal(reponses.find(r => r.reponse.lu === 'Ech sinn drësseg Joer al.').truth, 'lie');
   // Ordre réel conservé.
   assert.ok(lu.indexOf('Ech sinn drësseg Joer al.') < lu.indexOf('Ech kommen aus Portugal.'));
