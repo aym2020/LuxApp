@@ -940,3 +940,119 @@ Les informations doivent être :
 4. Sur 20 parties de recette couvrant six profils, un observateur doit pouvoir raconter **au moins deux choses précises sur la partenaire qui ont effectivement changé le dialogue ou l'issue sociale** ; testeur qui ignore les apps peut quand même jouer de façon satisfaisante.
 
 **Périmètre :** garder les six filles, un café, le faux téléphone, la batterie et les voix/3D actuelles ; ne pas toucher au cloud, progression, Lux Runner, autres jeux ou système de musique. **La banque de nouvelles scènes et les traductions LU doivent passer par la bible éditoriale et la relecture linguistique avant toute intégration.**
+
+
+---
+
+## 21. Boucle de gameplay V2 : conversation active, LuxTrad et micro-écriture (27/10/2026)
+
+**Statut : arbitrages et cahier des charges game design à implémenter APRÈS les lots 10A–10C. Aucun code du jeu modifié par cette section.** Ce cadrage prolonge **§20 (complicité et enquête utiles)** ; ne pas refaire un second moteur narratif. Retour de parties réelles : (1) Claire semble sourire aux blagues James Bond / 120 ans sans gain d'affinité ; (2) Sofia a fait l'objet de plusieurs bluffs cohérents (métier policier, origine Portugal, langue portugaise), avec quiz des animaux, mais la majeure partie de la partie reste un enchaînement de questions sur Alex ; (3) le joueur a aimé **pouvoir poser des questions à la fille**, et souhaite un **traducteur dans le faux téléphone** ainsi qu'une possibilité **d'écrire** en luxembourgeois. **La qualité ludique prime sur le nombre artificiel de scènes.**
+
+### 21.1. Nouvelle promesse de jeu : « je la connais, je lui parle, elle s'en souvient »
+
+**Actuelle** : lire des profils → choisir une tenue → répondre surtout à des questions sur sa propre identité → un éventuel rappel/piège → fin.
+
+**Cible** : lire des indices facultatifs → choisir un look → **échanger et prendre l'initiative** → **écouter sa réponse et rebondir** → choisir sincérité/humour/bluff selon son tempérament → utiliser éventuellement téléphone/traducteur → voir une **conséquence personnalisée** qui tient compte des deux participants → conclusion issue des événements réellement joués.
+
+Les décisions doivent répondre aux quatre axes suivants (sans quatre nouvelles jauges UI) :
+1. **Langue** : comprend-il le LU ? peut-il formuler sa pensée ? score pédagogique séparé, phrases correctes même si socialement étranges.
+2. **Connexion** : a-t-il montré un intérêt adapté à cette fille, eu une interaction amusante, écouté une réponse, fait preuve d'attention ? -> affinité sociale.
+3. **Cohérence sociale** : bluff / vantardise / contradiction / aveu, **seulement en fonction de ce qu'elle peut observer** -> suspicion et interactions.
+4. **Curiosité** : **ce que le joueur a réellement demandé et ce que la fille lui a répondu** doit pouvoir devenir une mémoire de scène ; ne pas récompenser l'ouverture mécanique de Pix/Pro/Amis.
+
+**Le plaisir n'est pas seulement de séduire** : un rendez-vous grotesque peut être un souvenir mémorable. Échec voulu et réussite drôle doivent tous deux donner une conclusion spécifique. Les filles ont leurs propres préférences et ne sont pas des machines à « choisir la réponse honnête ».
+
+### 21.2. Architecture d'un rendez-vous compact mais vivant
+
+**Conserver globalement 6–8 échanges principaux**, avec max 1–2 imprévus selon les règles actuelles. **Ne pas ajouter** systématiquement traduction, question à elle, micro-écriture et pièges **comme quatre tours supplémentaires**.
+
+| Fonction dramatique | Exemple d'action du joueur | Principe de composition |
+| --- | --- | --- |
+| Entrée / première impression | Saluer, se présenter, tenter une première plaisanterie | Phase courte ; un seul échange obligatoire de pure présentation suffit |
+| Connexion 1 : elle parle | Elle raconte un détail sur une activité ou journée réelle ; Alex rebondit | Le fait est présent dans Pix/Pro/Amis ou dans une réponse qu'elle vient de donner |
+| **Initiative d'Alex** | Alex **choisit la question qu'il veut lui poser** parmi des thèmes pertinents ; elle répond | **Un vrai échange réciproque**, pas une question décorative, puis une possibilité de relance ou souvenir |
+| Connexion 2 : choix de ton | Sincérité, taquinerie, autodérision, intérêt contextualisé ou bluff crédible | Réactions sociale et linguistique indépendantes ; humour cohérent avec la personnalité |
+| Retombée / rebond | Elle fait référence à un détail mentionné ou demandé, ou teste une affirmation | **Callback** vérifiable dans l'historique, pas une question répétée arbitrairement |
+| Dénouement | Excuse, complicité, téléphone remarqué, petit malentendu, séparation | Événement rare motivé ; sortie alignée sur ambiance et actes réels |
+
+**Arbitrage anti-KYC :** prénom/âge/métier/nationalité/origine ne doivent pas former l'essentiel d'une conversation ; un date honnête et un date avec un seul bluff doivent être aussi intéressants qu'un date de mythomane. Les scènes sur soi peuvent rester comme apprentissage A1.1, mais sont **alternées avec de vraies scènes sur elle**.
+
+**Défaut reproduisible d'auteur :** dans le bilan Sofia, `B08_PROFESSION` « Wat schaffs du? » peut être suivi de `B21_ASK_HER` « Elo bass du drun! » avec choix « Wat schaffs du? ». Ce n'est pas faux en LU, mais **la répétition textuelle immédiate sonne robotique**. Le compositeur doit surveiller **thème ET question exacte** lors du choix des questions proposées à Alex. Si l'interrogation est réciproque intentionnellement, créer une réplique naturelle de transition (« Et toi ? ») **validée en LU**, pas la même question copiée sans contexte.
+
+### 21.3. Faire de « À toi de poser une question ! » une mécanique centrale
+
+**V1 : un vrai moment d'initiative par date**, distinct des interrogations qu'elle pose. La mécanique `B21_ASK_HER` actuelle existe, mais ses trois choix portent toujours sur ville, métier ou âge, et `r.reponseElle` affiche une réponse canonique sans proposer de rebond significatif.
+
+**Étendre sa banque sans refonte** :
+- Offrir 3 questions **grammaticalement correctes**, choisies dans une banque spécifique à la personnalité **et au contexte de la scène précédente**, pas toujours ville/métier/âge.
+- Exemples **d'intentions FR** : Claire (métier, ponctualité, ce qui lui plaît pendant ses journées), Léna (foot, entraînement, plaisir hors compétition), Noémie (dessin, couleur, inspiration), Maya (jeux rétro, métier de développeuse), Sofia (voyage, Lisbonne, langues), Emma (livres, librairie, café). Les formulations LU restent à écrire/auditer selon la Bible.
+- Les trois questions **ne doivent pas** correspondre artificiellement à « +5 / 0 / -5 » selon une clé de quiz ; elles ouvrent plutôt des **réponses différentes de la fille**, ses goûts ou son humeur. Certaines peuvent la toucher davantage selon ce que le joueur sait.
+- Après sa réponse, un **rebond contextualisé court** doit être possible si cela tient dans le budget (soit une nouvelle proposition, soit un choix réactionnel déjà intégré au tour suivant). Exemple : on apprend qu'Emma adore lire le soir ; une relance sur sa librairie ou les livres peut créer un point commun. **Ne pas présenter comme découvert** un fait que le joueur n'a pas écouté.
+- L'initiative doit être **éventuellement disponible sans enquête**, afin que tout joueur soit naturellement curieux. Mais un indice Pix/Pro/Amis permet de **choisir un sujet mieux adapté**, non de révéler un bouton gagnant gratuit.
+- Dédupliquer les thèmes de questions sur les deux sens (elle→Alex et Alex→elle), sauf réciprocité délibérée avec réplique scénarisée. Ajouter au planificateur la mémoire des thèmes déjà abordés.
+
+### 21.4. LuxTrad : outil de compréhension dans le faux téléphone, pas une béquille externe incontrôlée
+
+**Choix recommandé :** une **petite utilité fictive « LuxTrad » (LU ⇄ FR)** inspirée d'un traducteur mobile, **pas une intégration native obligatoire de Google Translate**. Le faux OS possède les trois réseaux Pix/Pro/Amis ; ajouter LuxTrad dans un **dock « Outils » séparé**, sans la présenter comme quatrième réseau social et sans rendre le hub plus large/long. Icône originale dictionnaire / double flèche, typographie rétro, pas de marque Google empruntée.
+
+**Fonctions MVP** :
+1. À partir de la question LU affichée, le téléphone ouvre une **fiche contextuelle préchargée** : 1–3 mots importants, leur sens FR validé, éventuellement un exemple LU déjà enseigné. Navigation simple : « question actuelle » → « mots difficiles » → retour au date. **Le traducteur ne surligne pas la meilleure réponse sociale et ne révèle pas le caractère de la fille.**
+2. Un onglet de recherche **facultatif avant le date** accepte du vocabulaire appartenant à un **glossaire approuvé** et une courte liste de phrases de la Bible. Ne pas prétendre traduire librement tout Internet ou toute phrase tapée. Si entrée inconnue, afficher un message simple « Ce mot n'est pas encore dans le dictionnaire », sans inventer.
+3. **Pendant le date**, privilégier des **boutons à consultation instantanée** sur les mots de la question courante, **pas de saisie clavier** qui consommerait toute la batterie. L'utilisateur peut pré-consulter LuxTrad sans coût pendant l'enquête.
+4. **Aide FR existante** : FR ON conserve l'affichage explicite des traductions ; FR OFF conserve l'immersion, LuxTrad permet **une aide lexicale ponctuelle** que le joueur demande activement. Ne pas retirer l'aide FR pour forcer l'usage du téléphone ; ce n'est pas un paywall de compréhension.
+5. **Batterie du téléphone inchangée à ce stade : 5 %/s lorsqu'il est ouvert pendant le date**. Toutes les applications, LuxTrad inclus, partagent cette batterie. Fermeture et retour retrouvent **exactement la question et les choix**. Le timer se suspend en arrière-plan selon le code actuel ; pas de cooldown artificiel ni de drain quand le téléphone est fermé. **Tester l'équité d'un adulte débutant lisant lentement** : ouvrir un lexique une fois ne doit pas épuiser une partie par latence de chargement. Si le coût réel est trop punitif en recette, proposer une évolution chiffrée séparée plutôt qu'abandonner la mécanique.
+6. Le lexique est **éditorialement validé** : `questionId`, `tokenKey` / entrée `headword`, `lu`, `fr`, `example`, `lessonId`, `reviewStatus`. Pas de traduction libre générée en production, pas d'appel tiers obligatoire, jeu fonctionnel **hors ligne et sans requête réseau**. Les formes fléchies/conjuguées doivent être explicitement couvertes, pas traduites par un `split(' ')` naïf.
+7. **Accessibilité** : cible ≥44 px, libellés accessibles, sortie Android Back, pas de re-rendu de la 3D, animations sobres, même état à la fermeture. **La traduction d'un gag portugais de Sofia n'est PAS un test de compétence LU** ; garder sa logique humoristique et ne pas publier un indice qui révèle par avance la bonne chute.
+
+**Pourquoi pas brancher directement Google Translate ?** Bien que les solutions Google annoncent le luxembourgeois dans leurs listes de langues, la documentation **Cloud Translation** marque le LU `lb` en **support expérimental pour Translation LLM** ; l'exactitude pédagogique des réponses libres ne peut pas être garantie par ce service. Une future API serait une décision produit distincte (contrats/coûts/réseau/confidentialité, qualité à auditer), sans faire de Google une source de vérité pédagogique. **LuxTrad MVP = mini-dictionnaire contrôlé, jouable hors ligne.**
+
+### 21.5. Micro-écriture : une action expressive, facultative, jamais une dictée-piège
+
+**Oui à l'écriture, mais PAS « écris n'importe quoi et l'IA évaluera ta séduction ».** Un champ libre non borné crée faux négatifs, incertitude linguistique A1.1, complexité clavier et notation opaque.
+
+**MVP recommandé : une seule opportunité d'écriture courte par date, optionnelle**, à la place d'une question QCM pertinente :
+- Le joueur voit une question/personnage et peut choisir **« Écrire ma réponse »** ou **« Choisir parmi trois réponses »**. Le clavier **ne surgit jamais automatiquement**.
+- L'invite appelle une **micro-phrase A1.1** (ex. se présenter, dire une préférence simple, poser une question courte liée au sujet), **pas un paragraphe**. Max visuel ≈80 caractères, avec exemples accessibles à la demande, mais sans dévoiler automatiquement la réponse.
+- **Evaluation locale déterministe** : banque de variantes `acceptedLu[]` **rédigées et auditées** + normalisation prudente des espaces, ponctuation, capitalisation et Unicode ; **ne pas effacer les accents/signes du LU par défaut** car ils peuvent porter du sens. Distinguer `recognized` (variante approuvée), `unrecognized` (aucun verdict grammatical possible) et `empty`. **Ne jamais déclarer une réponse fausse simplement parce qu'elle n'est pas dans la banque.**
+- Si reconnue : affichage d'une réaction de la fille adaptée au sens/contexte, score linguistique approprié, **un crédit social comparable aux options QCM**, pas un bonus automatique « écrit = +5 ». Si non reconnue : message honnête **« Je ne peux pas vérifier cette formulation. Essaie autrement ou choisis une proposition. »**, sans malus d'affinité/suspicion/langue, avec option QCM sans perdre la scène. Si vide : pas d'avancement.
+- Les réponses libres ne doivent **pas** être stockées dans un backend ni envoyées à un prestataire ; limiter leur persistance à l'état de la partie quand utile au résumé. Une expression non reconnue ne devient pas un fait canonique, n'alimente pas les `claims` et ne déclenche pas de contradiction.
+- **Mobile Android** : clavier Samsung/Gboard, `visualViewport`, scroll interne vers l'input uniquement quand il a le focus, bouton envoyer/retour visibles au-dessus du clavier, aucun scroll de page prisonnier, prévention des doubles soumissions, conservation du texte si l'utilisateur ouvre/ferme le téléphone ou revient au jeu ; **le téléphone de date reste fermé pendant la saisie**, donc aucune décharge de batterie. Visuel et score inchangés en arrière-plan, aucun timer de saisie.
+- Après recette positive, éventuelle V2 : **construction d'une phrase par fragments** puis écriture libre complète sur des situations où l'ensemble des variantes valides est suffisamment couvert. **Pas de correction automatique par LLM au runtime** dans l'A1.1.
+
+### 21.6. Scoring, mémoire et récompenses : renforcer le sens plutôt que multiplier les points
+
+- **Une interaction personnalisée réellement pertinente** d'après un fait découvert/écouté : petit gain visible (ordre de grandeur **+3 à +5**) ; attention générale sincère : positif faible / neutre ; enthousiasme partagé / humour réussi : bonus contextuel léger. Tous les deltas sont calibrés pour préserver un vrai défi autour du seuil 65, pas rendre n'importe quelle réponse gagnante.
+- Les **réponses écrites reconnues** gagnent selon le sens, pas le mode de saisie ; la validation LU et l'affinité restent deux calculs indépendants.
+- Les **callbacks mémorisent** un fait entendu par le joueur (question posée à la fille), un fait affirmé par Alex ou une réaction déjà jouée ; pas de scène finale qui prétend une conversation jamais eue.
+- Un joueur peut obtenir un second date **sans consulter le téléphone pendant le date**, grâce à l'enquête préalable ou à l'écoute. Un joueur qui n'enquête pas doit pouvoir réussir par des choix naturels ; sans cela, le système devient un contrôle de lecture déguisé.
+- **Ne pas gamifier le mensonge par défaut** : trois bluffs choisis par Alex (policier, Portugal, portugais) ne se transforment pas automatiquement en preuve qu'elle a tout détecté. Des rappels et pièges narrativement crédibles peuvent fragiliser le bluff ; même un mythomane qui n'est pas découvert peut produire une conclusion drôle, pas un message générique.
+- **Ne pas confondre un mot enseigné et une réponse adaptée à la scène** : dire « Moien! » au lieu d'« Äddi! » peut légitimement être à revoir dans la compétence d'usage, mais le feedback doit expliquer brièvement **la fonction de la salutation** ; ne pas punir socialement en plus sans motif.
+
+### 21.7. Parcours de référence : deux variantes d'une même rencontre
+
+**Claire, sans enquête** (intentions FR uniquement) : elle évoque une journée de travail ; Alex choisit de lui demander comment cela s'est passé, tente une plaisanterie James Bond → sourire poli sans bonus. Il lui pose une question sur ses centres d'intérêt ; elle répond, il rebondit de façon attentionnée ; petit gain de connexion et dénouement possible sans lecture préalable des réseaux.
+
+**Claire, avec enquête** : Alex a vu sur Pro qu'elle travaille dans une banque, et sur Amis qu'elle apprécie l'ironie. Pendant le date, elle évoque une journée intense : Alex pose une question précise **sur la banque**, puis fait une taquinerie subtile adaptée à son humour → vrais sourires et bonus modéré. S'il oublie un mot LU, il consulte **LuxTrad** pendant quelques secondes de batterie. Il peut, facultativement, **écrire une très courte question** dont plusieurs formulations ont été validées. Plus tard, Claire fait une allusion naturelle à leur discussion. **Les deux parcours peuvent aboutir à un bon rendez-vous ; le second est plus personnel, pas mécaniquement obligatoire.**
+
+**Sofia, bluff portugais** : le jeu respecte les trois affirmations distinctes sur le métier, l'origine et la langue ; si elles sont cohérentes et jamais vérifiées, elle n'accuse pas gratuitement Alex. Le quiz des animaux est un **imprévu social motivé par la langue déclarée** ; sa réaction dépend de la réponse et de l'aveu éventuel, sans faire d'un mot portugais une faute de LU. Conserver la possibilité d'un échec grotesque savoureux.
+
+### 21.8. Livraison, migration et recette reproductible
+
+**Lot 12A — Initiative et anti-répétition (P0 design)** : faire de `B21_ASK_HER` une banque contextualisée (elle répond et une relance a une conséquence) ; garantir qu'aucune question identique n'est jouée à la suite des deux côtés, et que les sujets diffèrent selon la fille. Reprendre les contenus existants de §20/Bible avant toute nouvelle rédaction. **Ne pas toucher à la batterie ni au modèle 3D.**
+
+**Lot 12B — Mini-dictionnaire LuxTrad (P1)** : glisser la petite utilité LU/FR dans le dock du faux téléphone et proposer le glossaire contextuel validé, hors ligne ; vérifier le timer existant et la réouverture exacte du dialogue. Aide FR et LuxTrad sont complémentaires. Pas d'API Google obligatoire.
+
+**Lot 12C — Micro-écriture facultative (P1, derrière recette mobile)** : intégrer un seul prompt court comme alternative aux choix, évaluateur local **à trois issues reconnue / non reconnue / vide**, aucun malus injustifié, acceptation de plusieurs formulations, fallback QCM et clavier Android fiable. **Ne pas intégrer sans banque de variantes revues.**
+
+**Lot 12D — Profilage procédural et tuning (P1)** : vérifier que le nouveau compositeur réalise **au moins deux opportunités de connexion par date** (dont une question posée à elle), même pour des parties honnêtes, que l'enquête aide sans conditionner la réussite et que les fins utilisent les interactions. Ne pas promettre une infinité de scènes à partir d'une faible banque éditoriale.
+
+**Tests d'acceptation minimaux** :
+1. Pour 6 personnages × ≥200 graines avec plan généré déterministe : **6–8 tours**, diversité des thèmes, **au moins 1 initiative Alex→fille**, **2 moments de connexion pertinents** si banque validée suffisante, aucun doublon « Wat schaffs du? » immédiat, aucun fait hors profil, scènes fallback correctes.
+2. Pour Claire : James Bond et 120 ans restent `neutre/0` si réplique réellement polie ; des **choix différents** lui permettent de rire et **gagner de l'affinité** ; mêmes règles pour les 6 tempéraments, sans bonus universel pour « blague ».
+3. LuxTrad : FR OFF, consultation d'un mot de la question en cours, changement d'app, fermeture/réouverture, retour Android, ouverture 5 secondes = environ **25 %** consommés, **pas de batterie vidée par le réseau** ; mode offline, mot absent et accents testés.
+4. Écriture : vocabulaire reconnu / paraphrase approuvée / faute évidente non reconnue / phrase valide hors banque (ne **pas** la qualifier de fausse) / texte vide / très long / Unicode / clavier Samsung / switch QCM / double entrée / interruption, 3 runs sans fuite d'état.
+5. Équilibrage : comparer mêmes seeds avec/sans enquête et avec/sans téléphone ; le joueur **n'a pas besoin de téléphone pour gagner**, le téléphone peut **réellement aider** un novice, et les dialogues varient sans devenir des quiz de fiche.
+6. Audit éditorial obligatoire : `docs/LUX-MATCH-BIBLE-EDITORIALE-A11.md`, `grammaire_luxembourg.md`, leçons A1.1 pertinentes et **LOD.lu**. Conserver `reviewStatus` explicite, ne pas déclarer des phrases générées « validées » par défaut.
+7. Suite `node --test test/lux-match.test.cjs` + tests critiques du PLAYBOOK ; screenshots 320×640, 360×740, 393×852, 430×932 et recettage Android **réel** avant d'annoncer la compatibilité Samsung.
+
+**Contraintes :** six filles existantes, **un seul café**, Pix/Pro/Amis inchangés dans leur rôle, LuxTrad seulement comme utilité du téléphone, **pas** de CUPID.EXE/nouveau lore/personnages, pas de backend/LLM runtime, pas de migration risquée de progression. Des commits distincts sur `2.1` et statuts réels dans la SPEC ; cette section est **uniquement un cahier des charges**.
