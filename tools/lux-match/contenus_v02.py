@@ -355,7 +355,7 @@ evenements = {
  'EV_CLAIRE_JOB': E(titreFr='Claire t’interroge sur ton « hôpital »', profil='claire_r01', taille='petit', declencheur={'mensonge': {'job': 'Dokter'}}, npc=L('Du bass Dokter? Wou schaffs du?', 'Tu es médecin ? Tu travailles où ?'), choices=[
     EC('EV_CLAIRE_JOB_C1', 'Je travaille à l’hôpital.', {'affinity': 2, 'suspicion': 12}, 'Elle lève un sourcil. Ton bluff devient fragile.', lu='Ech schaffen am Spidol.', visuel='sourcil'),
     EC('EV_CLAIRE_JOB_C2', 'Non, en fait je suis banquier.', {'affinity': 1, 'suspicion': -6}, 'Elle sourit : « Pourquoi m’inventer un hôpital ? »', lu='Nee, ech sinn e Banker.', aveu=True, visuel='hoche'),
-    EC('EV_CLAIRE_JOB_C3', 'C’était une blague !', {'affinity': -2, 'suspicion': 4}, 'Elle trouve ton sens de l’humour très discutable.', lu='Dat war e Witz!', aveu=True, visuel='sourcil')]),
+    EC('EV_CLAIRE_JOB_C3', 'C’était une blague !', {'affinity': -2, 'suspicion': 4}, 'Elle trouve ton sens de l’humour très discutable.', lu='Dat war e Witz!', explication='blague', visuel='sourcil')]),
  'EV_NOEMIE_DRAW': E(titreFr='le portrait sur la serviette', profil='noemie_r01', taille='gros', declencheur={'mensonge': {'drawing': True}}, npc=L('Kanns du mech molen?', 'Tu peux me dessiner ?'), choices=[
     EC('EV_NOEMIE_DRAW_C1', 'Oui, volontiers.', {'affinity': 6, 'suspicion': 4}, 'Ton portrait sur la serviette ressemble à une patate. Elle explose de rire.', lu='Jo, gär!', visuel='rire'),
     EC('EV_NOEMIE_DRAW_C2', 'Non, je ne sais pas dessiner.', {'affinity': 1, 'suspicion': -4}, 'Elle te tend quand même le crayon.', lu='Nee, ech kann net molen.', aveu=True, visuel='hoche'),
@@ -388,7 +388,7 @@ evenements = {
  'EV_AGE_PREF': E(titreFr='tes « trente ans » l’intéressent', profil='tous', taille='petit', declencheur={'trait': 'agePrefPositive30', 'mensonge': {'age': 30}}, npc=L('Du bass drësseg? Interessant!', 'Ah, tu as trente ans ? Intéressant.', 'a_verifier_lod'), choices=[
     EC('EV_AGE_PREF_C1', 'Oui.', {'affinity': 3, 'suspicion': 2}, 'Elle sourit, convaincue… pour l’instant.', lu='Jo.', visuel='hoche'),
     EC('EV_AGE_PREF_C2', 'En fait, j’ai vingt-huit ans.', {'affinity': 0, 'suspicion': -4}, 'Elle apprécie la correction.', lu='Ech sinn aachtanzwanzeg Joer al.', aveu=True, visuel='hoche'),
-    EC('EV_AGE_PREF_C3', 'C’était une blague !', {'affinity': -1, 'suspicion': -2}, 'Elle lève les yeux au ciel, amusée.', lu='Dat war e Witz!', aveu=True, visuel='sourcil')]),
+    EC('EV_AGE_PREF_C3', 'C’était une blague !', {'affinity': -1, 'suspicion': -2}, 'Elle lève les yeux au ciel, amusée.', lu='Dat war e Witz!', explication='blague', visuel='sourcil')]),
  # Bible §13.4 : scène bonus, textes FR d'auteur (répliques LU à rédiger) — non notée.
  'EV_LENA_TONE_CHECK': E(titreFr='Léna se demande si tu plaisantes', profil='lena_r01', taille='petit', pedagogicalScoring=False, declencheur={'blague': 'vantardise'},
    npc={'fr': 'Tu plaisantes ou tu es sérieux ?', 'luARediger': True}, choices=[
@@ -396,9 +396,9 @@ evenements = {
     EC('EV_LENA_TONE_BRAG', 'Non, je suis vraiment une superstar.', {'affinity': -3}, 'Elle soupire et regarde ailleurs.', visuel='froid', jokeKind='vantardise'),
     EC('EV_LENA_TONE_HONEST', 'D’accord, j’en fais un peu trop.', {'affinity': 2}, 'Elle sourit et revient à une conversation simple.', visuel='sourire')]),
  'B25_TRUTH_REPAIR': E(titreFr='tu as dû t’expliquer', profil='tous', taille='petit', traductionVisible=True, declencheur={'contradiction': True}, npc=L('Ass dat wouer?', 'C’est vrai ?', 'a_verifier_lod'), choices=[
-    EC('REP25_A', 'Non, c’était une blague.', {'affinity': 0, 'suspicion': -3}, 'Elle hésite, puis sourit à moitié.', lu='Nee, dat war e Witz.', visuel='sourcil'),
+    EC('REP25_A', 'Non, c’était une blague.', {'affinity': 0, 'suspicion': -3}, 'Elle hésite, puis sourit à moitié.', lu='Nee, dat war e Witz.', explication='blague', visuel='sourcil'),
     EC('REP25_B', 'Pardon, j’ai menti.', {'affinity': 2, 'suspicion': -8}, 'Elle apprécie la franchise.', lu='Entschëllegt, ech hu gelunn.', aveu=True, visuel='hoche', review='a_verifier_lod'),
-    EC('REP25_C', 'Oui.', {'affinity': -2, 'suspicion': 6}, 'Elle n’a pas l’air convaincue.', lu='Jo.', visuel='sourcil')]),
+    EC('REP25_C', 'Oui.', {'affinity': -2, 'suspicion': 6}, 'Elle n’a pas l’air convaincue.', lu='Jo.', visuel='sourcil', explication='maintien')]),
 }
 non_integres = [
  {'id': 'B14_TIME', 'raison': 'Heure du rendez-vous ambiguë (7 h / 19 h) : aucune formulation non ambiguë validée (Bible §6.28).'},

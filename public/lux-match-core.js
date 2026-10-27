@@ -93,7 +93,13 @@ const LuxMatchCore = (function () {
       dejaMenti: {},              // attributs sur lesquels il a menti au moins une fois
       blagues: {},                // plaisanteries (ex. 120 ans) : jamais des affirmations
       genresBlague: {},
-      emotions: [],               // signes manga affichés (type:intensité), pour le bilan et les tests           // genres de blague tentés : absurde, vantardise, autoderision, taquinerie
+      emotions: [],               // signes manga affichés (type:intensité), pour le bilan et les tests
+      // Journal append-only de ce qui s'est réellement dit (SPEC §18.2) :
+      // claim, contradiction, aveu, blague_assumee, maintenu. Le bilan en est dérivé.
+      journal: [],
+      avoues: {},                 // attributs dont le bluff a été avoué EXPLICITEMENT
+      blaguesAssumees: {},        // bluffs rattrapés par « c'était une blague » (pas un aveu)
+      derniereContradiction: [],  // attributs de la dernière contradiction (cible de B25)
       choixFaits: [],             // identifiants de tous les choix du rendez-vous
       evenements: [],             // événements joués ou programmés
       contradictions: 0,
@@ -465,21 +471,43 @@ const LuxMatchCore = (function () {
     return persona[cle];
   }
   // Enregistre une affirmation ; renvoie true si elle contredit la précédente.
+  // Une affirmation redevenue vraie n'est PAS un aveu : seul le mensonge « actif » cesse.
   function affirmer(etat, cle, valeur) {
     const avant = etat.claims[cle];
+    const vrai = valeur === valeurPersona(etat.persona, cle);
     etat.claims[cle] = valeur;
-    if (valeur !== valeurPersona(etat.persona, cle)) { etat.mensonges[cle] = true; etat.dejaMenti[cle] = true; } else delete etat.mensonges[cle];
+    if (!vrai) { etat.mensonges[cle] = true; etat.dejaMenti[cle] = true; } else delete etat.mensonges[cle];
+    etat.journal.push({ type: 'claim', attribut: cle, valeur, vrai, scene: etat.courant ? etat.courant.id : null });
     return avant !== undefined && avant !== valeur;
+  }
+  // Aveu explicite : le bluff sur ces attributs est reconnu, elle connaît la vérité.
+  function avouer(etat, cles) {
+    const avoues = cles.filter(cle => etat.dejaMenti[cle]);
+    avoues.forEach(cle => {
+      etat.avoues[cle] = true;
+      etat.claims[cle] = valeurPersona(etat.persona, cle);
+      delete etat.mensonges[cle];
+    });
+    etat.journal.push({ type: 'aveu', attributs: avoues, scene: etat.courant ? etat.courant.id : null });
+  }
+  // « C'était une blague » : le bluff est retiré, mais ce n'est pas un aveu.
+  function assumerBlague(etat, cles) {
+    const concernes = cles.filter(cle => etat.dejaMenti[cle]);
+    concernes.forEach(cle => {
+      etat.blaguesAssumees[cle] = true;
+      if (etat.mensonges[cle]) { delete etat.mensonges[cle]; delete etat.claims[cle]; }
+    });
+    etat.journal.push({ type: 'blague_assumee', attributs: concernes, scene: etat.courant ? etat.courant.id : null });
   }
   // Deux affirmations différentes qui ne vont pas ensemble (bible B09, B13).
   const METIER_LIEU = { Banker: 'Bank', Dokter: 'Spidol' };
   const ORIGINE_NATIONALITE = { 'Frankräich': 'Fransous', Portugal: 'Portugis' };
   function incoherent(etat, cle) {
     const c = etat.claims;
-    if ((cle === 'job' || cle === 'workplace') && c.job && c.workplace && METIER_LIEU[c.job] && METIER_LIEU[c.job] !== c.workplace) return true;
+    if ((cle === 'job' || cle === 'workplace') && c.job && c.workplace && METIER_LIEU[c.job] && METIER_LIEU[c.job] !== c.workplace) return ['job', 'workplace'];
     if ((cle === 'origin' || cle === 'nationality') && c.origin && c.nationality && ORIGINE_NATIONALITE[c.origin] &&
-      c.nationality !== 'Lëtzebuerger' && ORIGINE_NATIONALITE[c.origin] !== c.nationality) return true;
-    return false;
+      c.nationality !== 'Lëtzebuerger' && ORIGINE_NATIONALITE[c.origin] !== c.nationality) return ['origin', 'nationality'];
+    return null;
   }
   // Préférence d'âge publiée par le scénario : petit effet, jamais bloquant.
   function effetAge(etat, age) {
@@ -516,9 +544,12 @@ const LuxMatchCore = (function () {
     const social = choix.social || {};
     etat.choixFaits.push(choix.id);
     // Affirmations portées par le choix (un « remplace » est un nouveau bluff, pas une contradiction).
+    const contredits = [];
+    const contredire = cles => cles.forEach(cle => { if (contredits.indexOf(cle) < 0) contredits.push(cle); });
     const affirmerChoix = () => Object.keys(choix.claims || {}).forEach(cle => {
-      if (affirmer(etat, cle, choix.claims[cle]) && !choix.remplace) r.contradiction = true;
-      if (incoherent(etat, cle)) r.contradiction = true;
+      if (affirmer(etat, cle, choix.claims[cle]) && !choix.remplace) { r.contradiction = true; contredire([cle]); }
+      const paire = incoherent(etat, cle);
+      if (paire) { r.contradiction = true; contredire(paire); }
     });
 
     if (ech.type === 'question') {
@@ -573,16 +604,17 @@ const LuxMatchCore = (function () {
       r.visuel = choix.visuel || null;
       if (choix.jokeKind) { etat.genresBlague[choix.jokeKind] = true; r.reaction.genre = choix.jokeKind; }
       affirmerChoix();
+      // Attributs visés : ceux de la contradiction (B25) ou ceux qui ont déclenché l'événement.
+      const cibles = ech.id === REPARATION ? etat.derniereContradiction.slice() : Object.keys(clesDeclencheur(ech.source));
       if (choix.aveu) {
-        // Avouer : les mensonges liés à CET événement sont réparés, sans pénalité.
         r.aveu = true; etat.aveux++;
-        const cles = Object.keys(clesDeclencheur(ech.source));
-        (cles.length ? cles : Object.keys(etat.mensonges)).forEach(cle => {
-          if (!etat.mensonges[cle]) return;
-          etat.claims[cle] = valeurPersona(etat.persona, cle);
-          delete etat.mensonges[cle];
-        });
+        avouer(etat, cibles.length ? cibles : Object.keys(etat.mensonges));
         if (ech.id !== REPARATION && etat.profil.reactions.AVEU) r.reaction = { cle: 'AVEU', fr: choix.reactionFr + ' « ' + etat.profil.reactions.AVEU + ' »' };
+      } else if (choix.explication === 'blague') {
+        r.blagueAssumee = true;
+        assumerBlague(etat, cibles);
+      } else if (choix.explication === 'maintien') {
+        etat.journal.push({ type: 'maintenu', attributs: cibles, scene: ech.id });
       }
     } else if (ech.type === 'rappel') {
       const attribut = ech.source.attribut;
@@ -597,10 +629,14 @@ const LuxMatchCore = (function () {
       } else {
         affirmer(etat, attribut, choix.valeur);
         r.contradiction = true;
+        contredire([attribut]);
       }
     }
     if (r.contradiction) {
       etat.contradictions++;
+      etat.derniereContradiction = contredits.slice();
+      etat.journal.push({ type: 'contradiction', attributs: contredits.slice(), scene: ech.id });
+      r.attributsContredits = contredits.slice();
       ajouter(CONTRADICTION.affinity, CONTRADICTION.suspicion);
       r.visuel = 'sourcil';
       r.reaction = { cle: 'CONTRADICTION', fr: 'Elle fronce les sourcils : ce n’est pas ce que tu as dit tout à l’heure…' };
@@ -733,15 +769,25 @@ const LuxMatchCore = (function () {
     const ev = contenus(etat).evenements[id] || contenus(etat).beats[id];
     return ev && ev.titreFr ? ev.titreFr : id;
   }
+  // Premier mensonge prononcé sur un attribut, d'après le journal.
+  function premierMensonge(etat, cle) {
+    const e = etat.journal.find(j => j.type === 'claim' && j.attribut === cle && !j.vrai);
+    return e ? e.valeur : etat.claims[cle];
+  }
   function resumer(etat) {
     const lignes = [];
     const fait = (cle, v) => FAITS[cle] ? FAITS[cle](v) : cle;
     Object.keys(etat.dejaMenti).forEach(cle => {
-      if (etat.mensonges[cle]) lignes.push({ type: 'mensonge', fr: 'Bluff jamais avoué : ' + fait(cle, etat.claims[cle]) + '.' });
-      else lignes.push({ type: 'aveu', fr: 'Bluff réparé : maintenant elle sait que ' + fait(cle, valeurPersona(etat.persona, cle)) + '.' });
+      const bluff = fait(cle, premierMensonge(etat, cle));
+      if (etat.avoues[cle]) lignes.push({ type: 'aveu', fr: 'Bluff avoué (' + bluff + ') : elle connaît maintenant la vérité.' });
+      else if (etat.blaguesAssumees[cle]) lignes.push({ type: 'blague', fr: 'Bluff (' + bluff + ') rattrapé en « c’était une blague » : ce n’est pas un aveu.' });
+      else if (etat.mensonges[cle]) lignes.push({ type: 'mensonge', fr: 'Bluff jamais avoué : ' + fait(cle, etat.claims[cle]) + '.' });
+      // L'affirmation est redevenue vraie sans aveu : un changement de version, rien de plus.
+      else lignes.push({ type: 'mensonge', fr: 'Changement de version sans aveu : d’abord ' + bluff + ', puis ' + fait(cle, etat.claims[cle]) + '.' });
     });
     if (etat.blagues.joke_age_120) lignes.push({ type: 'blague', fr: 'Tu as prétendu avoir 120 ans.' });
     if (etat.contradictions) lignes.push({ type: 'contradiction', fr: (etat.contradictions > 1 ? etat.contradictions + ' contradictions' : 'Une contradiction') + ' : elle l’a remarqué.' });
+    if (etat.journal.some(j => j.type === 'maintenu')) lignes.push({ type: 'contradiction', fr: 'Face à ses doutes, tu as maintenu ta version.' });
     const joues = etat.historique.map(h => h.id);
     etat.evenements.forEach(id => { if (id !== REPARATION && joues.indexOf(id) >= 0) lignes.push({ type: 'evenement', fr: 'Imprévu : ' + titreEvenement(etat, id) + '.' }); });
     if (etat.ouverturesDate) lignes.push({ type: 'telephone', fr: 'Téléphone consulté ' + etat.ouverturesDate + ' fois pendant le rendez-vous' + (etat.batterieVide ? ', jusqu’à la batterie à plat.' : '.') });
@@ -750,15 +796,30 @@ const LuxMatchCore = (function () {
     return lignes;
   }
 
-  // Expressions à retenir : chaque question posée et sa réponse vraie.
-  function expressionsTravaillees(etat) {
+  // Bilan, deux listes distinctes (SPEC §18.3) :
+  // 1. ce que le joueur a VRAIMENT répondu, dans l'ordre ;
+  // 2. les phrases modèles de référence (réponse honnête de la leçon), pour réviser.
+  function reponsesJouees(etat) {
+    return etat.historique.filter(h => h.choix.lu && h.prompt && h.prompt.lu).map(h => {
+      return {
+        question: h.prompt,
+        reponse: { lu: h.choix.lu, fr: h.choix.fr },
+        truth: h.choix.truth,
+        faute: h.langue === false,
+        // Réponse vraie et correcte d'une question notée : c'est déjà une phrase modèle.
+        modele: h.type === 'question' && h.choix.truth === 'honest' && h.langue === true
+      };
+    });
+  }
+  function phrasesModeles(etat) {
     const liste = [];
     etat.historique.forEach(h => {
       if (h.type !== 'question') return;
       const source = scene(etat, h.id);
       if (!source || source.pedagogicalScoring === false) return;
       const vraie = source.choices.find(c => c.truth === 'honest');
-      if (vraie && vraie.lu) liste.push({ question: source.prompt, reponse: { lu: vraie.lu, fr: vraie.fr }, faute: h.langue === false });
+      if (!vraie || !vraie.lu) return;
+      liste.push({ question: source.prompt, reponse: { lu: vraie.lu, fr: vraie.fr }, dejaJouee: h.choix.truth === 'honest' && h.langue === true });
     });
     return liste;
   }
@@ -766,7 +827,7 @@ const LuxMatchCore = (function () {
   return {
     nouvellePartie, commencerSwipes, carteCourante, swiper, apresMatch, noterApp,
     effetLook, choisirLook, commencerDate, repondre, continuer,
-    ouvrirTelephone, fermerTelephone, avancerTemps, expressionsTravaillees,
+    ouvrirTelephone, fermerTelephone, avancerTemps, reponsesJouees, phrasesModeles,
     profilParId, creerHasard, composerScenario, validerScenario, gardeOk
   };
 })();

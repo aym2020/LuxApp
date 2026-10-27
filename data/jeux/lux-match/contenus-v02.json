@@ -3087,7 +3087,7 @@
      "reactionFr": "Elle trouve ton sens de l’humour très discutable.",
      "lu": "Dat war e Witz!",
      "visuel": "sourcil",
-     "aveu": true,
+     "explication": "blague",
      "review": "audit_regles"
     }
    ]
@@ -3530,7 +3530,7 @@
      "reactionFr": "Elle lève les yeux au ciel, amusée.",
      "lu": "Dat war e Witz!",
      "visuel": "sourcil",
-     "aveu": true,
+     "explication": "blague",
      "review": "audit_regles"
     }
    ]
@@ -3603,6 +3603,7 @@
      "reactionFr": "Elle hésite, puis sourit à moitié.",
      "lu": "Nee, dat war e Witz.",
      "visuel": "sourcil",
+     "explication": "blague",
      "review": "audit_regles"
     },
     {
@@ -3628,6 +3629,7 @@
      "reactionFr": "Elle n’a pas l’air convaincue.",
      "lu": "Jo.",
      "visuel": "sourcil",
+     "explication": "maintien",
      "review": "lecon"
     }
    ]

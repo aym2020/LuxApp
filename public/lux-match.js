@@ -990,9 +990,29 @@ function lmTerminer() {
   if (lm.rendu3d) lm.rendu3d.reagir(p.fin.issue === 'nouveau_rdv' ? 'joie' : p.fin.issue === 'malaise' ? 'deception' : 'hoche');
   setTimeout(() => { if (lm.partie === p && lmVueActive()) lmRendre(); }, 900);
 }
+// Bilan (SPEC §18.3) : ce que TU as répondu, puis les phrases modèles. Jamais mélangés.
+const LM_TAG_VERITE = { lie: 'bluff', joke: 'blague', decale: 'décalé' };
+function lmBilanReponses(reponses) {
+  if (!reponses.length) return '';
+  return '<h2 class="lm-section">Tes réponses pendant le date</h2><ul class="lm-expressions lm-reponses">' +
+    reponses.map(e => {
+      const tag = e.faute ? '<em>à revoir</em>' : e.modele ? '<em class="lm-tag-modele">phrase modèle</em>' : LM_TAG_VERITE[e.truth] ? '<em class="lm-tag-' + e.truth + '">' + LM_TAG_VERITE[e.truth] + '</em>' : '';
+      return '<li' + (e.faute ? ' class="lm-a-revoir"' : '') + '><span class="lm-q" lang="lb">' + lmEchapper(e.question.lu) + '</span>' +
+        '<b lang="lb">' + lmEchapper(e.reponse.lu) + '</b><span>' + lmEchapper(e.reponse.fr) + (tag ? ' · ' + tag : '') + '</span></li>';
+    }).join('') + '</ul>';
+}
+function lmBilanModeles(modeles) {
+  if (!modeles.length) return '';
+  return '<h2 class="lm-section">Phrases modèles à retenir</h2><p class="lm-bilan-aide">Les réponses de référence du cours, là où ta réponse était différente.</p>' +
+    '<ul class="lm-expressions lm-modeles">' +
+    modeles.map(e => '<li><span class="lm-q" lang="lb">' + lmEchapper(e.question.lu) + '</span>' +
+      '<b lang="lb">' + lmEchapper(e.reponse.lu) + '</b><span>' + lmEchapper(e.reponse.fr) + '</span></li>').join('') + '</ul>';
+}
+
 function lmRendreResultats(box) {
   const p = lm.partie, issue = LM_ISSUES[p.fin.issue];
-  const expressions = LuxMatchCore.expressionsTravaillees(p);
+  const reponses = LuxMatchCore.reponsesJouees(p);
+  const modeles = LuxMatchCore.phrasesModeles(p).filter(m => !m.dejaJouee);
   box.innerHTML = lmEntete({ fr: false }) +
     '<div class="lm-resultats">' +
       '<div class="lm-res-titre lm-res-' + p.fin.issue + '">' + issue.titre + '</div>' +
@@ -1006,9 +1026,7 @@ function lmRendreResultats(box) {
       '<div class="lm-res-score"><span>SCORE</span><b>' + p.fin.score + '</b>' + (p.nouveauRecord ? '<em>NOUVEAU RECORD</em>' : '<small>Record ' + lmLire('luxMatchRecord', 0) + '</small>') + '</div>' +
       '<h2 class="lm-section">Ce qui s’est passé</h2><ul class="lm-resume">' +
         p.fin.resume.map(l => '<li class="lm-resume-' + l.type + '">' + lmEchapper(l.fr) + '</li>').join('') + '</ul>' +
-      (expressions.length ? '<h2 class="lm-section">Tes expressions en luxembourgeois</h2><ul class="lm-expressions">' +
-        expressions.map(e => '<li' + (e.faute ? ' class="lm-a-revoir"' : '') + '><span class="lm-q" lang="lb">' + lmEchapper(e.question.lu) + '</span>' +
-          '<b lang="lb">' + lmEchapper(e.reponse.lu) + '</b><span>' + lmEchapper(e.reponse.fr) + (e.faute ? ' · <em>à revoir</em>' : '') + '</span></li>').join('') + '</ul>' : '') +
+      lmBilanReponses(reponses) + lmBilanModeles(modeles) +
       '<div class="lm-actions"><button type="button" class="lm-btn lm-btn-or" onclick="lmNouvellePartie()">Nouveau match</button>' +
       '<button type="button" class="lm-btn lm-btn-lien" onclick="lmQuitter()">Retour aux jeux</button></div>' +
       '<p class="lm-demo-note">Démo : les répliques luxembourgeoises sont des brouillons en cours de vérification (LOD). Ta progression des leçons n’est pas modifiée.<br>Scénario ' + lmEchapper(p.plan.id) + ' · graine ' + p.graine + '</p>' +

@@ -80,7 +80,8 @@ test('Parcours sincère (12 plans) : 6–8 tours, langue 100 %, aucun événemen
     assert.ok(tours >= 6 && tours <= 9, plan.id + ' : ' + tours + ' tours');
     assert.equal(etat.fin.langue, 100, plan.id);
     assert.equal(etat.contradictions, 0);
-    assert.ok(Core.expressionsTravaillees(etat).length >= 3);
+    assert.ok(Core.reponsesJouees(etat).length >= 3);
+    assert.ok(Core.phrasesModeles(etat).every(m => m.dejaJouee));
     assert.ok(etat.fin.resume.some(l => l.type === 'sincere'));
     // Deux salutations ne se suivent jamais ; aucune question posée deux fois.
     const ids = etat.historique.map(h => h.id);

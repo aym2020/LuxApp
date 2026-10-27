@@ -221,6 +221,8 @@
 #view-luxmatch .lm-expressions b{font-size:15px} #view-luxmatch .lm-expressions span{font-size:13px;color:#bdb0d6}
 #view-luxmatch .lm-expressions .lm-q{font-size:12px;font-weight:700;color:#cbb8f2;margin-bottom:2px}
 #view-luxmatch .lm-expressions .lm-a-revoir{box-shadow:inset 3px 0 0 #ffb347} #view-luxmatch .lm-expressions em{font-style:normal;color:#ffb347;font-weight:800}
+#view-luxmatch .lm-expressions em.lm-tag-modele{color:#7ee0a8} #view-luxmatch .lm-expressions em.lm-tag-lie{color:#ff8fb8} #view-luxmatch .lm-expressions em.lm-tag-joke,#view-luxmatch .lm-expressions em.lm-tag-decale{color:#c9a7ff}
+#view-luxmatch .lm-modeles li{box-shadow:inset 3px 0 0 #7ee0a8} #view-luxmatch .lm-bilan-aide{margin:-4px 0 4px;font-size:12px;color:#bdb0d6;text-align:left;width:100%}
 #view-luxmatch .lm-resultats .lm-actions{width:100%}
 #view-luxmatch .lm-res-citation{margin:0;padding:12px 16px;border-radius:16px;background:var(--lm-verre);border:1px solid var(--lm-bord);text-align:left}
 #view-luxmatch .lm-res-citation p{margin:0;font-size:16px;line-height:1.4;font-weight:650;color:#fff}
