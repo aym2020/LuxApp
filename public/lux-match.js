@@ -514,32 +514,63 @@ function lmBasculerAide() {
   lmMajTelephoneDate();
   lmMajMoi();
 }
-// Glisser la carte : au-delà de 90 px, la décision est prise.
+// Glisser la carte (SPEC §19) : au-delà de 90 px à l'horizontale, la décision est prise.
+// - un seul doigt suivi (pointerId), les autres sont ignorés ;
+// - pointercancel / lostpointercapture = geste ABANDONNÉ : la carte revient, aucune décision ;
+// - la direction vient du dernier déplacement vérifié (jamais des coordonnées d'un cancel) ;
+// - un geste d'abord vertical laisse la page défiler et ne décide rien.
+const LM_SEUIL_SWIPE = 90;   // px horizontaux pour décider
+const LM_SEUIL_SENS = 12;    // px avant de savoir si le geste est horizontal ou vertical
 function lmBrancherSwipe(carte) {
   if (!carte) return;
-  let depart = null;
-  carte.addEventListener('pointerdown', e => { depart = e.clientX; carte.setPointerCapture(e.pointerId); carte.classList.add('lm-tire'); });
+  let geste = null; // { id, x0, y0, dx, sens: null | 'h' | 'v' }
+  const remettre = () => {
+    carte.style.transform = '';
+    carte.classList.remove('lm-tire', 'lm-penche-oui', 'lm-penche-non');
+  };
+  const liberer = () => {
+    if (geste) { try { if (carte.hasPointerCapture(geste.id)) carte.releasePointerCapture(geste.id); } catch (_) { /* carte retirée */ } }
+    geste = null;
+  };
+  const annuler = e => { if (!geste || (e && e.pointerId !== geste.id)) return; liberer(); remettre(); };
+  carte.addEventListener('pointerdown', e => {
+    if (geste || !e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0) || carte.classList.contains('lm-sortie')) return;
+    geste = { id: e.pointerId, x0: e.clientX, y0: e.clientY, dx: 0, sens: null };
+    try { carte.setPointerCapture(e.pointerId); } catch (_) { /* capture facultative */ }
+  });
   carte.addEventListener('pointermove', e => {
-    if (depart === null) return;
-    const dx = e.clientX - depart;
+    if (!geste || e.pointerId !== geste.id) return;
+    const dx = e.clientX - geste.x0, dy = e.clientY - geste.y0;
+    if (!geste.sens) {
+      if (Math.abs(dx) < LM_SEUIL_SENS && Math.abs(dy) < LM_SEUIL_SENS) return;
+      geste.sens = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
+      if (geste.sens === 'v') { annuler(e); return; } // défilement vertical : pas de swipe
+      carte.classList.add('lm-tire');
+    }
+    geste.dx = dx;
     carte.style.transform = 'translateX(' + dx + 'px) rotate(' + dx / 14 + 'deg)';
     carte.classList.toggle('lm-penche-oui', dx > 40); carte.classList.toggle('lm-penche-non', dx < -40);
   });
-  const fin = e => {
-    if (depart === null) return;
-    const dx = e.clientX - depart; depart = null;
-    carte.classList.remove('lm-tire');
-    if (Math.abs(dx) > 90) lmSwiper(dx > 0);
-    else { carte.style.transform = ''; carte.classList.remove('lm-penche-oui', 'lm-penche-non'); }
-  };
-  carte.addEventListener('pointerup', fin); carte.addEventListener('pointercancel', fin);
+  carte.addEventListener('pointerup', e => {
+    if (!geste || e.pointerId !== geste.id) return;
+    const { dx, sens } = geste;
+    liberer();
+    if (sens === 'h' && Math.abs(dx) > LM_SEUIL_SWIPE) { carte.classList.remove('lm-tire'); lmSwiper(dx > 0); }
+    else remettre();
+  });
+  carte.addEventListener('pointercancel', annuler);
+  carte.addEventListener('lostpointercapture', annuler);
 }
 function lmSwiper(aime) {
   const carte = document.getElementById('lm-carte');
-  if (!lm.partie || lm.partie.phase !== 'swipe' || (carte && carte.classList.contains('lm-sortie'))) return;
+  // Une seule décision par carte (bouton + geste, double appui, rebond tactile).
+  if (!lm.partie || lm.partie.phase !== 'swipe' || lm.swipeEnCours || (carte && carte.classList.contains('lm-sortie'))) return;
+  lm.swipeEnCours = true;
   LuxMatchSon.jouer(aime ? 'like' : 'swipe');
   if (carte) { carte.classList.add('lm-sortie', aime ? 'lm-sortie-oui' : 'lm-sortie-non'); }
   setTimeout(() => {
+    lm.swipeEnCours = false;
+    if (!lm.partie || lm.partie.phase !== 'swipe') return;
     const resultat = LuxMatchCore.swiper(lm.partie, aime);
     if (resultat === 'match') LuxMatchSon.jouer('match');
     lmRendre();
