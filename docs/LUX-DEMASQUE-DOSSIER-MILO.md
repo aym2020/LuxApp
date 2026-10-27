@@ -1,7 +1,7 @@
 # Lux Démasque — Dossier Milo : audit du prototype et matrice logique (lot D0)
 
 **Branche :** `2.1` · **Date :** 27/10/2026 · **Référence :** [SPEC 110](specs/SPEC-110.md) §2–§4, §10 (lot D0).
-**Statut : conception logique validée par l'auteur (Claude) ; à faire relire par un testeur extérieur (SPEC 110 §3 « tester chaque preuve avec un lecteur extérieur »). Les phrases LU arrivent au lot D1 avec leur statut de relecture.**
+**Statut : implémenté au lot D1 (voir SPEC 110 § 12) ; logique à faire relire par un testeur extérieur (SPEC 110 §3). Phrases LU et statuts de relecture : `data/jeux/lux-demasque/contenus-v01.json` (source : `tools/lux-demasque/contenus.py`).**
 
 ## 1. Prototype HTML : ce qui est vérifiable
 
@@ -72,3 +72,7 @@ Les déclarations et précisions entendues entrent aussi dans le carnet (« extr
 3. Chaque preuve est accessible sans action irréversible : profils Pix/Pro/Amis toujours consultables, précisions toujours disponibles.
 4. Aucune preuve ne trahit un autre mensonge : LUXRUN_AOUT ne dit rien du logement ; AMIS_SAMI ne dit rien du voyage ; PRO_PROFIL ne dit rien du logement ni du Japon.
 5. Dates identiques partout : fin de contrat **juin 2026** (Pro, aveu, bilan), dimanches d'août (LuxRun), publication Kyoto **31 août** (après le dernier dimanche couru).
+
+## 8. Phrases luxembourgeoises à confirmer sur LOD.lu (lot D1)
+
+Statut `a_verifier_lod` (mot ou tournure absent des leçons) : *Tourismus* (am Tourismus), *Equipe* (eng Equipe), *gesot* (Ech hunn … gesot), *Gesäis du?*, *wierklech*, *just* (= seulement), *Nuddelen* (Nuddele mat Pesto), genre de *Pesto* (mäi Pesto), *gewonnen* (Du hues gewonnen), *gelunn* (Ech hunn net gelunn). Toutes les autres répliques suivent des structures des leçons (`lecon`, `lecon_modele`, `audit_regles`). Note pédagogique affichée avec l'aide FR : *Kaz* est féminin, on dit « si » même pour le chat Pixel.

@@ -331,6 +331,7 @@ async function rouvrirEcran(etat, l) {
     case 'view-survie': ouvrirJeux(); return true; // partie chronométrée non restaurée
     case 'view-runner': ouvrirJeux(); return true; // SPEC 96 : course non restaurée
     case 'view-luxmatch': ouvrirJeux(); return true; // SPEC 109 : partie non restaurée
+    case 'view-luxdemasque': ouvrirJeux(); return true; // SPEC 110 : dossier non restauré
     case 'view-lexique': openLexique(); return true;
     case 'view-pieges': openPieges(); return true;
     case 'view-reglages': openReglages(); return true;
@@ -404,6 +405,7 @@ function remettreScroll(y) {
 // ─── BOUTON RETOUR DU TÉLÉPHONE (API History) ───────────────────────────────
 function superpositionOuverte() {
   if (typeof luxMatchSuperposition === 'function' && luxMatchSuperposition()) return true; // SPEC 109 (menu, dossier, téléphone)
+  if (typeof luxDemasqueSuperposition === 'function' && luxDemasqueSuperposition()) return true; // SPEC 110 (réseaux, pièce, carnet…)
   if (typeof infoInviteEstOuverte === 'function' && infoInviteEstOuverte()) return true; // SPEC 76
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) return true; // SPEC 66
   if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) return true; // SPEC 66
@@ -417,6 +419,7 @@ function superpositionOuverte() {
 // Ferme le panneau ouvert, s'il y en a un. Renvoie true si quelque chose a été fermé.
 function fermerSuperposition() {
   if (typeof luxMatchFermerSuperposition === 'function' && luxMatchFermerSuperposition()) return true; // SPEC 109
+  if (typeof luxDemasqueFermerSuperposition === 'function' && luxDemasqueFermerSuperposition()) return true; // SPEC 110
   if (typeof fermerInfoInvite === 'function' && fermerInfoInvite()) return true; // SPEC 76
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) { fermerDialogue(false); return true; }
   // SPEC 66 : inscription ou connexion → retour à la bienvenue.

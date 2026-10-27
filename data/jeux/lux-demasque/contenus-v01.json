@@ -1,0 +1,475 @@
+{
+ "schemaVersion": 1,
+ "contentVersion": "demasque-v1",
+ "status": "demo_textes_lu_en_relecture",
+ "source": "SPEC 110 §3 + docs/LUX-DEMASQUE-DOSSIER-MILO.md (matrice D0), rédaction LU Claude 27/10/2026",
+ "reviewLegend": {
+  "lecon": "Phrase présente telle quelle dans les leçons ou examens (vérifié automatiquement par le générateur et les tests).",
+  "lecon_modele": "Même structure qu’une phrase de leçon, seul un nom, un nombre ou un lieu change.",
+  "audit_regles": "Vérifiée par Claude : conjugaison, règle du n, prépositions, accords (leçons). Relecture native à faire.",
+  "a_verifier_lod": "Mot ou tournure absent des leçons : à confirmer sur LOD.lu et par un locuteur."
+ },
+ "publiables": [
+  "lecon",
+  "lecon_modele",
+  "audit_regles",
+  "a_verifier_lod"
+ ],
+ "personnages": {
+  "milo": {
+   "id": "milo",
+   "nom": "Milo",
+   "age": 30,
+   "villeFr": "Bonnevoie (Luxembourg)",
+   "modele3d": "Casual_Male",
+   "couleurs": {
+    "haut": "#3a6fb0",
+    "bas": "#2b2b38"
+   },
+   "accrocheFr": "Voyageur, chef d’équipe, amoureux des chats. Cherche quelqu’un qui aime les belles histoires.",
+   "salut": {
+    "lu": "Moien! Ech sinn de Milo.",
+    "fr": "Salut ! Moi, c’est Milo.",
+    "review": "lecon_modele"
+   },
+   "reseaux": {
+    "pix": {
+     "pseudo": "@milo.explore",
+     "bioFr": "Voyages · chat · pesto",
+     "pieces": [
+      "PIX_KYOTO",
+      "PIX_CANAPE",
+      "PIX_PIXEL"
+     ]
+    },
+    "pro": {
+     "pseudo": "Milo R.",
+     "bioFr": "Tourisme · voyages · gestion d’équipe",
+     "pieces": [
+      "PRO_PROFIL",
+      "PRO_EQUIPE"
+     ]
+    },
+    "amis": {
+     "pseudo": "Milo",
+     "bioFr": "Bonnevoie ❤️",
+     "pieces": [
+      "AMIS_SAMI",
+      "LUXRUN_AOUT",
+      "AMIS_LEA"
+     ]
+    }
+   }
+  }
+ },
+ "pieces": [
+  {
+   "id": "PRO_PROFIL",
+   "source": "pro",
+   "auteur": "Milo R.",
+   "dateFr": null,
+   "titre": "Profil Pro de Milo",
+   "transcription": "Milo R., 30 ans · Tourisme · voyages · gestion d’équipe. Expérience : chef d’équipe chez Horizon Voyages (Luxembourg), mars 2021 – juin 2026. Formation : BTS Tourisme, 2017.",
+   "visuel": {
+    "type": "profil",
+    "lignes": [
+     [
+      "Chef d’équipe · Horizon Voyages",
+      "mars 2021 – juin 2026"
+     ],
+     [
+      "BTS Tourisme",
+      "2017"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "PRO_EQUIPE",
+   "source": "pro",
+   "auteur": "Milo R.",
+   "dateFr": "14 avril 2026",
+   "titre": "Publication : mon équipe",
+   "transcription": "« Fier de mon équipe chez Horizon Voyages ! 🧳 Cinq ans déjà. »",
+   "visuel": {
+    "type": "post",
+    "image": "equipe"
+   }
+  },
+  {
+   "id": "AMIS_SAMI",
+   "source": "amis",
+   "auteur": "Sami K.",
+   "dateFr": null,
+   "titre": "Profil de Sami (ami de Milo)",
+   "transcription": "Sami K. · Graphiste · Coloc à Bonnevoie avec Milo (et Pixel 🐈).",
+   "visuel": {
+    "type": "profil",
+    "lignes": [
+     [
+      "Graphiste",
+      ""
+     ],
+     [
+      "Coloc à Bonnevoie avec Milo (et Pixel 🐈)",
+      ""
+     ]
+    ]
+   }
+  },
+  {
+   "id": "PIX_CANAPE",
+   "source": "pix",
+   "auteur": "Milo",
+   "dateFr": "4 octobre 2026",
+   "titre": "Photo : soirée match",
+   "transcription": "Photo : deux amis sur un canapé devant un match. Légende : « Sami est passé voir le match 📺 ».",
+   "visuel": {
+    "type": "photo",
+    "scene": "canape"
+   }
+  },
+  {
+   "id": "LUXRUN_AOUT",
+   "source": "amis",
+   "auteur": "Milo",
+   "dateFr": "31 août 2026",
+   "titre": "Capture LuxRun partagée par Milo",
+   "transcription": "Appli LuxRun — Août 2026 : 5 courses, les dimanches 2, 9, 16, 23 et 30 août, Parc de Bonnevoie, 10 minutes chacune. Message de Milo : « Régulier ! 💪 »",
+   "visuel": {
+    "type": "appli",
+    "lignes": [
+     [
+      "dim. 2 août",
+      "Parc de Bonnevoie · 10 min"
+     ],
+     [
+      "dim. 9 août",
+      "Parc de Bonnevoie · 10 min"
+     ],
+     [
+      "dim. 16 août",
+      "Parc de Bonnevoie · 10 min"
+     ],
+     [
+      "dim. 23 août",
+      "Parc de Bonnevoie · 10 min"
+     ],
+     [
+      "dim. 30 août",
+      "Parc de Bonnevoie · 10 min"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "PIX_KYOTO",
+   "source": "pix",
+   "auteur": "Milo",
+   "dateFr": "31 août 2026",
+   "titre": "Photo : Kyoto",
+   "transcription": "Photo : un temple et des lanternes rouges. Légende : « Kyoto ✨ 3 semaines inoubliables ».",
+   "visuel": {
+    "type": "photo",
+    "scene": "kyoto"
+   }
+  },
+  {
+   "id": "AMIS_LEA",
+   "source": "amis",
+   "auteur": "Léa M.",
+   "dateFr": "12 septembre 2026",
+   "titre": "Publication de Léa : le pesto",
+   "transcription": "« Merci Milo pour le pesto de samedi ! 🍝 »",
+   "visuel": {
+    "type": "post",
+    "image": "pesto"
+   }
+  },
+  {
+   "id": "PIX_PIXEL",
+   "source": "pix",
+   "auteur": "Milo",
+   "dateFr": "2 octobre 2026",
+   "titre": "Photo : Pixel",
+   "transcription": "Photo : un chat roux endormi. Légende : « Pixel, champion de sieste ».",
+   "visuel": {
+    "type": "photo",
+    "scene": "chat"
+   }
+  }
+ ],
+ "dossiers": [
+  {
+   "id": "MILO_001",
+   "numero": "001",
+   "npc": "milo",
+   "difficulte": "pilote",
+   "dateFr": "samedi 24 octobre 2026",
+   "lieuFr": "au café",
+   "declarations": [
+    {
+     "id": "MILO_JOB",
+     "theme": "travail",
+     "base": {
+      "lu": "Ech schaffen am Tourismus. Ech hunn eng Equipe.",
+      "fr": "Je travaille dans le tourisme. J’ai une équipe.",
+      "review": "a_verifier_lod"
+     },
+     "press": {
+      "question": {
+       "lu": "Wou schaffs du?",
+       "fr": "Tu travailles où ?",
+       "review": "lecon"
+      },
+      "reponse": {
+       "lu": "Bei Horizon Voyages. Ech sinn all Dag am Büro.",
+       "fr": "Chez Horizon Voyages. Je suis au bureau tous les jours.",
+       "review": "audit_regles"
+      }
+     },
+     "refus": {
+      "lu": "Nee, nee. Ech schaffen am Tourismus!",
+      "fr": "Non, non. Je travaille dans le tourisme !",
+      "review": "a_verifier_lod"
+     },
+     "vrai": false,
+     "mensonge": {
+      "id": "MILO_JOB_LIE",
+      "preuves": [
+       [
+        "PRO_PROFIL"
+       ]
+      ],
+      "exigePrecision": true,
+      "refusSansPrecision": {
+       "lu": "Wéi? Ech hunn « Tourismus » gesot, net Horizon!",
+       "fr": "Quoi ? J’ai dit « tourisme », pas Horizon !",
+       "review": "a_verifier_lod"
+      },
+      "justification": {
+       "lu": "Bis Juni, jo. Elo sichen ech eng nei Aarbecht.",
+       "fr": "Jusqu’en juin, oui. Maintenant, je cherche un nouveau travail.",
+       "review": "audit_regles"
+      },
+      "aveuFr": "Il baisse les yeux : « Je voulais juste faire bonne impression… »",
+      "motivationFr": "Paraître stable pendant qu’il cherche un nouvel emploi.",
+      "explicationFr": "Son profil Pro arrête Horizon Voyages en juin 2026. Or il t’a dit y être « tous les jours », en octobre."
+     },
+     "refusPieces": {
+      "PRO_EQUIPE": {
+       "lu": "Gesäis du? Dat ass meng Equipe!",
+       "fr": "Tu vois ? C’est mon équipe !",
+       "review": "a_verifier_lod"
+      }
+     }
+    },
+    {
+     "id": "MILO_FLAT",
+     "theme": "logement",
+     "base": {
+      "lu": "Ech wunnen eleng. Ech hunn en Appartement zu Bonnevoie.",
+      "fr": "J’habite seul. J’ai un appartement à Bonnevoie.",
+      "review": "audit_regles"
+     },
+     "press": {
+      "question": {
+       "lu": "Wunns du eleng?",
+       "fr": "Tu habites seul ?",
+       "review": "audit_regles"
+      },
+      "reponse": {
+       "lu": "Jo, eleng. Mat menger Kaz.",
+       "fr": "Oui, seul. Avec mon chat.",
+       "review": "audit_regles"
+      }
+     },
+     "refus": {
+      "lu": "Nee! Ech wunne wierklech eleng.",
+      "fr": "Non ! J’habite vraiment seul.",
+      "review": "a_verifier_lod"
+     },
+     "vrai": false,
+     "mensonge": {
+      "id": "MILO_FLAT_LIE",
+      "preuves": [
+       [
+        "AMIS_SAMI"
+       ]
+      ],
+      "justification": {
+       "lu": "Okay, ech wunne mam Sami. Mee ech hu mäin Zëmmer!",
+       "fr": "Bon, j’habite avec Sami. Mais j’ai ma chambre !",
+       "review": "audit_regles"
+      },
+      "aveuFr": "« …Enfin, quand Sami ne squatte pas la cuisine. »",
+      "motivationFr": "Paraître autonome.",
+      "explicationFr": "Sami se présente lui-même comme son coloc à Bonnevoie : Milo n’habite pas seul."
+     },
+     "refusPieces": {
+      "PIX_CANAPE": {
+       "lu": "De Sami war just fir de Match do!",
+       "fr": "Sami était juste là pour le match !",
+       "review": "a_verifier_lod"
+      }
+     }
+    },
+    {
+     "id": "MILO_RUN",
+     "theme": "sport",
+     "base": {
+      "lu": "Ech gi Sonndes moies lafen.",
+      "fr": "Je vais courir le dimanche matin.",
+      "review": "lecon_modele"
+     },
+     "press": {
+      "question": {
+       "lu": "Wéi laang?",
+       "fr": "Combien de temps ?",
+       "review": "audit_regles"
+      },
+      "reponse": {
+       "lu": "Zéng Minutten. Mee ech gi lafen!",
+       "fr": "Dix minutes. Mais je vais courir !",
+       "review": "audit_regles"
+      }
+     },
+     "refus": {
+      "lu": "Zéng Minutte sinn och Sport!",
+      "fr": "Dix minutes, c’est aussi du sport !",
+      "review": "audit_regles"
+     },
+     "vrai": true
+    },
+    {
+     "id": "MILO_JAPAN",
+     "theme": "voyage",
+     "base": {
+      "lu": "Am August war ech dräi Wochen a Japan.",
+      "fr": "En août, j’étais trois semaines au Japon.",
+      "review": "audit_regles"
+     },
+     "press": {
+      "question": {
+       "lu": "Wat hues du do gemaach?",
+       "fr": "Qu’est-ce que tu as fait là-bas ?",
+       "review": "lecon_modele"
+      },
+      "reponse": {
+       "lu": "Ech hu vill Fotoe gemaach!",
+       "fr": "J’ai pris plein de photos !",
+       "review": "audit_regles"
+      }
+     },
+     "refus": {
+      "lu": "Ech war a Japan, wierklech!",
+      "fr": "J’étais au Japon, vraiment !",
+      "review": "a_verifier_lod"
+     },
+     "vrai": false,
+     "mensonge": {
+      "id": "MILO_JAPAN_LIE",
+      "preuves": [
+       [
+        "LUXRUN_AOUT"
+       ]
+      ],
+      "justification": {
+       "lu": "Ech war net a Japan. Ech war doheem.",
+       "fr": "Je n’étais pas au Japon. J’étais à la maison.",
+       "review": "lecon_modele"
+      },
+      "aveuFr": "« Kyoto vu de mon canapé. J’ai même ajouté les lanternes ! »",
+      "motivationFr": "Paraître aventureux.",
+      "explicationFr": "LuxRun le place au Parc de Bonnevoie tous les dimanches d’août : trois semaines au Japon en août, c’est impossible."
+     },
+     "refusPieces": {
+      "PIX_KYOTO": {
+       "lu": "Kuck! Dat ass Kyoto!",
+       "fr": "Regarde ! C’est Kyoto !",
+       "review": "audit_regles"
+      }
+     }
+    },
+    {
+     "id": "MILO_COOK",
+     "theme": "cuisine",
+     "base": {
+      "lu": "Ech kache gär fir meng Frënn.",
+      "fr": "J’aime cuisiner pour mes amis.",
+      "review": "audit_regles"
+     },
+     "press": {
+      "question": {
+       "lu": "Wat kachs du?",
+       "fr": "Qu’est-ce que tu cuisines ?",
+       "review": "audit_regles"
+      },
+      "reponse": {
+       "lu": "Nuddele mat Pesto. Ëmmer!",
+       "fr": "Des pâtes au pesto. Toujours !",
+       "review": "a_verifier_lod"
+      }
+     },
+     "refus": {
+      "lu": "Hues du mäi Pesto net gär?",
+      "fr": "Tu n’aimes pas mon pesto ?",
+      "review": "a_verifier_lod"
+     },
+     "vrai": true
+    },
+    {
+     "id": "MILO_CAT",
+     "theme": "animal",
+     "base": {
+      "lu": "Ech hunn eng Kaz. Si heescht Pixel.",
+      "fr": "J’ai un chat. Il s’appelle Pixel.",
+      "review": "audit_regles",
+      "noteFr": "Kaz est féminin : on dit « si », même pour un chat."
+     },
+     "press": {
+      "question": {
+       "lu": "Wou ass deng Kaz?",
+       "fr": "Il est où, ton chat ?",
+       "review": "audit_regles"
+      },
+      "reponse": {
+       "lu": "Doheem. Si schléift.",
+       "fr": "À la maison. Il dort.",
+       "review": "lecon"
+      }
+     },
+     "refus": {
+      "lu": "Nee! Dat ass wierklech meng Kaz!",
+      "fr": "Non ! C’est vraiment mon chat !",
+      "review": "a_verifier_lod"
+     },
+     "vrai": true
+    }
+   ],
+   "pieces": [
+    "PRO_PROFIL",
+    "PRO_EQUIPE",
+    "AMIS_SAMI",
+    "PIX_CANAPE",
+    "LUXRUN_AOUT",
+    "PIX_KYOTO",
+    "AMIS_LEA",
+    "PIX_PIXEL"
+   ],
+   "fin": {
+    "complet": {
+     "lu": "Okay… Du hues gewonnen.",
+     "fr": "Bon… Tu as gagné.",
+     "review": "a_verifier_lod"
+    },
+    "partiel": {
+     "lu": "Gesäis du? Ech hunn net gelunn!",
+     "fr": "Tu vois ? Je n’ai pas menti !",
+     "review": "a_verifier_lod"
+    }
+   },
+   "reviewStatus": "lu_audit_claude"
+  }
+ ]
+}

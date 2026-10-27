@@ -1,0 +1,196 @@
+/* SPEC 110 — Lux Démasque. Styles limités à #view-luxdemasque et à sa carte du hub Jeux.
+   DA arcade rétro de LuxApp (violet, or, rose) + signalétique « dossier » : kraft, tampons,
+   rouge d'objection. Police pixel Press Start 2P (déclarée dans runner.css) pour les cris. */
+#view-luxdemasque,#view-jeux{--ld-or:#ffd84a;--ld-rose:#ff4fd8;--ld-rouge:#ff4d5e;--ld-kraft:#d8b070;--ld-violet:#b18cf0;
+  --ld-bord:#4f3f72;--ld-verre:rgba(22,19,28,.88);--ld-pixel:'Press Start 2P',ui-monospace,monospace}
+#view-luxdemasque{width:100%;min-height:100dvh;color:#f6f1e9;
+  background:radial-gradient(120% 60% at 50% 0%,#2b1a36 0%,#16101d 55%,#0f0e0c 85%) #0f0e0c}
+#view-luxdemasque .ld-jeu{position:relative;width:100%;max-width:560px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;gap:12px;
+  padding:10px 16px calc(16px + env(safe-area-inset-bottom))}
+#view-luxdemasque button{font-family:var(--font)}
+#view-luxdemasque button:focus-visible,#view-luxdemasque summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#view-luxdemasque svg{width:20px;height:20px;flex:none}
+#view-luxdemasque .ld-chargement{margin:40vh auto 0;color:#bdb0d6;text-align:center}
+#view-luxdemasque .ld-lu{margin:0;font:700 17px/1.35 var(--font);color:#fff}
+#view-luxdemasque .ld-fr{margin:3px 0 0;font:500 13.5px/1.35 var(--font);color:#c3b6dc}
+#view-luxdemasque .ld-fr em{font-style:normal;color:#a99cc4}
+
+/* En-tête */
+#view-luxdemasque .ld-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px}
+#view-luxdemasque .ld-logo{font:10px/1.2 var(--ld-pixel);letter-spacing:.06em;color:#ffe9a8;-webkit-font-smoothing:none;text-align:center}
+#view-luxdemasque .ld-logo i{font-style:normal;color:var(--ld-rouge);text-shadow:0 0 10px rgba(255,77,94,.6)}
+#view-luxdemasque .ld-top-outils{display:flex;gap:6px}
+#view-luxdemasque .ld-icone-btn{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--ld-bord);border-radius:14px;background:var(--ld-verre);color:#ece4f6;cursor:pointer}
+#view-luxdemasque .ld-fr-btn{font:800 13px/1 var(--font);color:#a99cc4}
+#view-luxdemasque .ld-fr-btn.ld-actif{border-color:var(--ld-violet);color:#e7dcff;background:rgba(107,63,209,.28)}
+
+/* Boutons */
+#view-luxdemasque .ld-actions{display:flex;flex-direction:column;gap:8px;width:100%}
+#view-luxdemasque .ld-btn{min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:0 16px;font-size:16px;font-weight:800;cursor:pointer}
+#view-luxdemasque .ld-btn:disabled{opacity:.45;cursor:default}
+#view-luxdemasque .ld-btn-or{background:var(--accent);color:#251b0d;box-shadow:0 4px 0 #b08a1d}
+#view-luxdemasque .ld-btn-sombre{background:#2a2238;color:#f2ecfa;border:1px solid var(--ld-bord)}
+#view-luxdemasque .ld-btn-lien{min-height:44px;background:none;color:#cbbfe0;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* Portrait (remplacé par le personnage 3D au lot D2) */
+#view-luxdemasque .ld-portrait{display:grid;place-items:center;border-radius:20px;border:3px solid #fff;
+  background:radial-gradient(70% 60% at 50% 35%,#5a3a7a,#24183a);image-rendering:pixelated}
+#view-luxdemasque .ld-portrait span{font:28px/1 var(--ld-pixel);color:#ffe9a8;-webkit-font-smoothing:none}
+#view-luxdemasque .ld-portrait-fiche{width:112px;height:140px;flex:none}
+
+/* Rencontre */
+#view-luxdemasque .ld-rencontre{display:flex;flex-direction:column;gap:14px}
+#view-luxdemasque .ld-tampon{align-self:center;margin:4px 0 0;padding:7px 12px 6px;border:2px solid var(--ld-kraft);border-radius:4px;transform:rotate(-2deg);
+  font:11px/1 var(--ld-pixel);letter-spacing:.08em;color:var(--ld-kraft);-webkit-font-smoothing:none}
+#view-luxdemasque .ld-fiche{display:flex;gap:14px;align-items:center;padding:14px;border-radius:18px;background:linear-gradient(160deg,#2c2140,#1a1424);border:1px solid var(--ld-bord)}
+#view-luxdemasque .ld-fiche h1{margin:0;font:800 22px/1.2 var(--font)}
+#view-luxdemasque .ld-fiche-ville{margin:4px 0 0;color:#cbbfe0;font-size:14px}
+#view-luxdemasque .ld-fiche-accroche{margin:8px 0 0;font-size:14px;line-height:1.4;font-style:italic;color:#e9e1f6}
+#view-luxdemasque .ld-rdv{margin:0;text-align:center;color:#cbbfe0;font-size:14px}
+#view-luxdemasque .ld-regles{margin:0;padding:12px 14px 12px 32px;border-radius:14px;background:rgba(216,176,112,.08);border:1px dashed rgba(216,176,112,.5);
+  font-size:14px;line-height:1.45;color:#efe6d6;display:flex;flex-direction:column;gap:4px}
+
+/* Déposition : écran fixe, rien ne défile sauf la carte si le texte est long */
+#view-luxdemasque .ld-jeu[data-ecran="deposition"]{padding:0;max-width:600px}
+#view-luxdemasque .ld-depo{position:relative;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+#view-luxdemasque .ld-depo>.ld-top{position:relative;z-index:2;padding:10px 12px 0}
+#view-luxdemasque .ld-hud{position:relative;z-index:2;display:flex;align-items:center;gap:6px;padding:8px 12px 0}
+#view-luxdemasque .ld-compteur{flex:1;display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap;font-size:12px;font-weight:700;color:#cbbfe0}
+#view-luxdemasque .ld-compteur svg{color:var(--ld-or)}
+#view-luxdemasque .ld-compteur b{font:11px/1 var(--ld-pixel);color:var(--ld-or)}
+#view-luxdemasque .ld-outil{position:relative;min-height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 12px;border:1px solid var(--ld-bord);border-radius:14px;
+  background:var(--ld-verre);color:#ece4f6;font-size:13px;font-weight:800;cursor:pointer}
+#view-luxdemasque .ld-outil b{min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--ld-or);color:#251b0d;font-size:11px;line-height:18px}
+#view-luxdemasque .ld-outil b:empty{display:none}
+#view-luxdemasque .ld-scene{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(80% 60% at 50% 30%,#3a2350,#150f20)}
+#view-luxdemasque .ld-portrait-scene{width:150px;height:190px;margin-bottom:34dvh}
+#view-luxdemasque .ld-bas{position:relative;z-index:2;margin-top:auto;display:flex;flex-direction:column;gap:8px;padding:0 12px calc(12px + env(safe-area-inset-bottom))}
+#view-luxdemasque .ld-declaration{position:relative;max-height:48dvh;overflow-y:auto;overscroll-behavior:contain;padding:10px 14px 14px;border-radius:18px;
+  background:rgba(20,15,30,.93);border:1px solid var(--ld-bord);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+#view-luxdemasque .ld-declaration.ld-demasquee{border-color:var(--ld-or)}
+#view-luxdemasque .ld-decl-tete{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:-4px -6px 2px}
+#view-luxdemasque .ld-decl-num{font:9px/1.4 var(--ld-pixel);letter-spacing:.06em;color:var(--ld-rose);-webkit-font-smoothing:none}
+#view-luxdemasque .ld-nav{width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:12px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer}
+#view-luxdemasque .ld-nav:disabled{opacity:.25;cursor:default}
+#view-luxdemasque .ld-points{display:flex;justify-content:center;gap:6px;margin:0 0 8px}
+#view-luxdemasque .ld-points i{width:8px;height:8px;border-radius:2px;background:rgba(255,255,255,.18)}
+#view-luxdemasque .ld-points i.ld-point-entendu{background:#8f7bb8}
+#view-luxdemasque .ld-points i.ld-point-demasque{background:var(--ld-or)}
+#view-luxdemasque .ld-points i.ld-ici{outline:2px solid #fff;outline-offset:1px}
+#view-luxdemasque .ld-lu-base{font-size:19px}
+#view-luxdemasque .ld-precision{margin-top:10px;padding-top:9px;border-top:1px dashed rgba(255,255,255,.16)}
+#view-luxdemasque .ld-question{margin:0 0 4px;font:700 14px/1.35 var(--font);color:#cbb8f2}
+#view-luxdemasque .ld-question span{color:#a99cc4;font-weight:600}
+#view-luxdemasque .ld-precision .ld-lu{font-size:16px}
+#view-luxdemasque .ld-tampon-demasque{position:absolute;right:12px;bottom:10px;padding:6px 8px 5px;border:3px solid var(--ld-or);border-radius:4px;transform:rotate(-8deg);
+  font:10px/1 var(--ld-pixel);color:var(--ld-or);background:rgba(20,15,30,.85);-webkit-font-smoothing:none;pointer-events:none}
+#view-luxdemasque .ld-dock{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#view-luxdemasque .ld-btn-preciser{background:#2a2238;color:#f2ecfa;border:1px solid var(--ld-bord);font-size:15px}
+#view-luxdemasque .ld-btn-objection{background:linear-gradient(180deg,#ff6a77,#e0293d);color:#fff;font:11px/1 var(--ld-pixel);letter-spacing:.02em;white-space:nowrap;padding:0 8px;
+  box-shadow:0 4px 0 #8e1b2a;text-shadow:2px 2px 0 #6b0f1c;-webkit-font-smoothing:none}
+
+/* Fenêtres */
+#view-luxdemasque .ld-calque{position:fixed;z-index:30;inset:0;display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(8,6,12,.66);overscroll-behavior:contain}
+#view-luxdemasque .ld-fenetre{position:relative;width:min(100%,560px);max-height:92dvh;overflow-y:auto;overscroll-behavior:contain;
+  padding:18px 16px calc(18px + env(safe-area-inset-bottom));border-radius:22px 22px 0 0;background:#1b1524;border:1px solid var(--ld-bord);border-bottom:0;
+  display:flex;flex-direction:column;gap:12px}
+#view-luxdemasque .ld-fermer{position:absolute;right:10px;top:10px;width:44px;height:44px;border:0;border-radius:12px;background:rgba(255,255,255,.06);color:#fff;font-size:16px;cursor:pointer}
+#view-luxdemasque .ld-fen-titre{margin:0;padding-right:48px;font:800 18px/1.25 var(--font)}
+#view-luxdemasque .ld-sous-titre{margin:4px 0 0;font:800 12px/1.3 var(--font);letter-spacing:.08em;text-transform:uppercase;color:#cbb8f2}
+#view-luxdemasque .ld-vide,#view-luxdemasque .ld-texte{margin:0;color:#bdb0d6;font-size:14px;line-height:1.4}
+#view-luxdemasque .ld-onglets{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+#view-luxdemasque .ld-onglet{min-height:44px;border:1px solid var(--ld-bord);border-radius:12px;background:transparent;color:#cbbfe0;font-weight:800;cursor:pointer}
+#view-luxdemasque .ld-onglet.ld-actif{background:var(--ld-violet);border-color:var(--ld-violet);color:#170f22}
+#view-luxdemasque .ld-app-tete{display:flex;flex-direction:column;gap:2px;margin-bottom:10px}
+#view-luxdemasque .ld-app-tete span{color:#bdb0d6;font-size:13px}
+#view-luxdemasque .ld-flux{display:flex;flex-direction:column;gap:8px}
+#view-luxdemasque .ld-vignette{position:relative;display:flex;align-items:center;gap:12px;min-height:64px;padding:8px;border:1px solid rgba(255,255,255,.12);border-radius:14px;
+  background:rgba(255,255,255,.04);color:#f6f1e9;text-align:left;cursor:pointer}
+#view-luxdemasque .ld-vignette.ld-vue{border-color:rgba(255,216,74,.4)}
+#view-luxdemasque .ld-vignette-texte{display:flex;flex-direction:column;gap:2px;min-width:0}
+#view-luxdemasque .ld-vignette-texte small{color:#a99cc4}
+#view-luxdemasque .ld-vue-badge{margin-left:auto;padding:3px 6px;border-radius:6px;background:rgba(255,216,74,.16);color:var(--ld-or);font-size:11px;font-weight:800;white-space:nowrap}
+
+/* Visuels des pièces (D1 : vignettes CSS ; D2 : photos rendues depuis la scène 3D) */
+#view-luxdemasque .ld-visuel{position:relative;display:flex;flex-direction:column;gap:6px;border-radius:12px;overflow:hidden}
+#view-luxdemasque .ld-visuel.ld-mini{width:52px;height:52px;flex:none;gap:0;justify-content:center;align-items:center;font-size:10px}
+#view-luxdemasque .ld-visuel-photo,#view-luxdemasque .ld-visuel-post{min-height:150px;background:#2a2040}
+#view-luxdemasque .ld-visuel-photo.ld-mini,#view-luxdemasque .ld-visuel-post.ld-mini{min-height:0}
+#view-luxdemasque .ld-photo-kyoto{background:linear-gradient(180deg,#f4a46a 0%,#e06a52 45%,#3a2340 46%,#2a1a30 100%)}
+#view-luxdemasque .ld-photo-canape{background:linear-gradient(180deg,#26324a 0%,#26324a 55%,#7a4a3a 56%,#5a3428 100%)}
+#view-luxdemasque .ld-photo-chat{background:radial-gradient(40% 30% at 50% 62%,#e08a3a 0 98%,transparent 100%),linear-gradient(180deg,#d9c9b0,#bfa98a)}
+#view-luxdemasque .ld-post-equipe{background:linear-gradient(135deg,#2f5fa0,#1d3a66)}
+#view-luxdemasque .ld-post-pesto{background:radial-gradient(45% 35% at 50% 55%,#5aa04a 0 98%,transparent 100%),#f1e6cf}
+#view-luxdemasque .ld-visuel-profil,#view-luxdemasque .ld-visuel-appli{padding:10px 12px;background:#f2eee6;color:#1d1726}
+#view-luxdemasque .ld-visuel-appli{background:#0f2a24;color:#d8fff0}
+#view-luxdemasque .ld-visuel-profil>span,#view-luxdemasque .ld-visuel-appli>span{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;line-height:1.3}
+#view-luxdemasque .ld-visuel-profil em,#view-luxdemasque .ld-visuel-appli em{font-style:normal;font-weight:700;text-align:right}
+#view-luxdemasque .ld-visuel.ld-mini>span{font-size:9px;text-align:center}
+#view-luxdemasque .ld-piece-source{margin:0;color:#a99cc4;font-size:13px;font-weight:700}
+#view-luxdemasque .ld-transcription{margin:0;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05);font-size:14.5px;line-height:1.45;color:#f2ecfa}
+#view-luxdemasque .ld-piece-note{margin:0;color:var(--ld-or);font-size:13px;font-weight:700}
+
+/* Carnet et choix de preuve */
+#view-luxdemasque .ld-carnet-liste{display:flex;flex-direction:column;gap:8px}
+#view-luxdemasque .ld-carnet-el{display:flex;align-items:flex-start;gap:10px;width:100%;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:14px;
+  background:rgba(255,255,255,.04);color:#f6f1e9;text-align:left}
+#view-luxdemasque button.ld-carnet-el{cursor:pointer;min-height:56px}
+#view-luxdemasque .ld-carnet-el>span{display:flex;flex-direction:column;gap:3px;min-width:0}
+#view-luxdemasque .ld-carnet-el small{color:#a99cc4;font-size:12px;font-weight:700}
+#view-luxdemasque .ld-carnet-el b{font-size:15px}
+#view-luxdemasque .ld-carnet-el em{font-style:normal;color:#c3b6dc;font-size:13px;line-height:1.35}
+#view-luxdemasque .ld-carnet-parole{border-style:dashed}
+#view-luxdemasque .ld-objection-kicker{margin:0;font:10px/1 var(--ld-pixel);color:var(--ld-rouge);-webkit-font-smoothing:none}
+#view-luxdemasque .ld-cible{margin:0;padding:10px 12px;border-left:4px solid var(--ld-rouge);border-radius:8px;background:rgba(255,77,94,.08)}
+
+/* Verdict */
+#view-luxdemasque .ld-calque-verdict{align-items:center}
+#view-luxdemasque .ld-calque-verdict .ld-fenetre{border-radius:22px;border-bottom:1px solid var(--ld-bord);margin:0 12px;text-align:left}
+#view-luxdemasque .ld-cri{margin:-4px 0 0;text-align:center;font:24px/1.2 var(--ld-pixel);color:#fff;-webkit-font-smoothing:none;
+  text-shadow:0 4px 0 #c0182c,4px 4px 0 #3a0610;animation:ld-cri .5s steps(5,end)}
+@keyframes ld-cri{0%{transform:scale(2.2) rotate(-8deg);opacity:0}40%{transform:scale(.92) rotate(2deg);opacity:1}100%{transform:none}}
+#view-luxdemasque .ld-verdict-titre{margin:0;text-align:center;font:800 16px/1.3 var(--font);color:var(--ld-or)}
+#view-luxdemasque .ld-verdict-titre b{font-family:var(--ld-pixel);font-size:12px;margin-left:6px}
+#view-luxdemasque .ld-verdict-titre.ld-rate{color:#9fb0ff}
+#view-luxdemasque .ld-verdict-parole{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.05)}
+#view-luxdemasque .ld-locuteur{display:block;margin-bottom:3px;font:9px/1.3 var(--ld-pixel);color:var(--ld-rose);-webkit-font-smoothing:none}
+#view-luxdemasque .ld-aveu{margin:0;font-size:14px;font-style:italic;color:#e3d9f5}
+#view-luxdemasque .ld-indice{margin:0;padding:8px 10px;border-radius:10px;background:rgba(159,176,255,.1);color:#d6ddff;font-size:13.5px}
+@media(prefers-reduced-motion:reduce){#view-luxdemasque .ld-cri{animation:none}}
+
+/* Bilan */
+#view-luxdemasque .ld-bilan{display:flex;flex-direction:column;gap:12px}
+#view-luxdemasque .ld-bilan-titre{margin:0;text-align:center;font:30px/1.2 var(--ld-pixel);color:#9fb0ff;-webkit-font-smoothing:none;text-shadow:0 4px 0 #2a3a8a,4px 4px 0 #000}
+#view-luxdemasque .ld-bilan-titre span{display:block;margin-top:6px;font:800 14px/1.3 var(--font);letter-spacing:.06em;text-transform:uppercase;text-shadow:none;color:#cbbfe0}
+#view-luxdemasque .ld-bilan-titre.ld-complet{color:var(--ld-or);text-shadow:0 4px 0 #c06a12,4px 4px 0 #2a1204}
+#view-luxdemasque .ld-bilan-tete{display:flex;gap:12px;align-items:center}
+#view-luxdemasque .ld-portrait-bilan{width:96px;height:120px;flex:none}
+#view-luxdemasque .ld-bilan-tete .ld-verdict-parole{flex:1;min-width:0}
+#view-luxdemasque .ld-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#view-luxdemasque .ld-stats div{padding:8px 4px;border-radius:14px;background:var(--ld-verre);border:1px solid var(--ld-bord);text-align:center}
+#view-luxdemasque .ld-stats span{display:block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#a99cc4}
+#view-luxdemasque .ld-stats b{font:13px/1.8 var(--ld-pixel)}
+#view-luxdemasque .ld-sans-faute{margin:0;text-align:center;font:11px/1 var(--ld-pixel);color:#5df0a6;-webkit-font-smoothing:none}
+#view-luxdemasque .ld-details{border-radius:14px;background:var(--ld-verre);border:1px solid var(--ld-bord)}
+#view-luxdemasque .ld-details>summary{min-height:48px;display:flex;align-items:center;padding:0 14px;cursor:pointer;font:800 13px/1.2 var(--font);letter-spacing:.05em;text-transform:uppercase;color:#cbb8f2}
+#view-luxdemasque .ld-details>:not(summary){margin:0 10px 10px}
+#view-luxdemasque .ld-liste-bilan{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+#view-luxdemasque .ld-liste-bilan li{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05);font-size:13.5px;color:#d8cfe8}
+#view-luxdemasque .ld-liste-bilan li.ld-ok{box-shadow:inset 3px 0 0 var(--ld-or)} #view-luxdemasque .ld-liste-bilan li.ld-rate{box-shadow:inset 3px 0 0 #9fb0ff}
+#view-luxdemasque .ld-liste-bilan small{font-weight:800;color:#a99cc4}
+#view-luxdemasque .ld-liste-bilan b{font-size:15px;color:#fff}
+#view-luxdemasque .ld-motif{color:#ffd1f4} #view-luxdemasque .ld-preuve{color:#ffe9a8}
+#view-luxdemasque .ld-diag>summary{min-height:44px;font-size:11px;color:#8f84a6}
+#view-luxdemasque .ld-demo-note{margin:0;text-align:center;font-size:11px;color:#8f84a6}
+#view-luxdemasque .ld-toast{position:fixed;z-index:40;left:50%;top:calc(110px + env(safe-area-inset-top));transform:translateX(-50%);padding:10px 14px;border-radius:12px;
+  background:#2a2238;border:1px solid var(--ld-or);color:#fff;font-size:13px;font-weight:700;white-space:nowrap;pointer-events:none}
+
+/* Carte du hub Jeux */
+#view-jeux .jeux-carte.ld-carte-hub{border-color:rgba(255,77,94,.4);
+  background:radial-gradient(ellipse 70% 60% at 100% 18%,rgba(255,77,94,.22),transparent 76%),linear-gradient(126deg,#2a1a28 0%,#211722 53%,#141117 100%)}
+#view-jeux .ld-decor-dossier{position:absolute;right:8%;top:10%;width:70px;height:52px;border-radius:4px 10px 4px 4px;background:linear-gradient(180deg,#d8b070,#b88a48);transform:rotate(-8deg);box-shadow:0 6px 14px rgba(0,0,0,.35)}
+#view-jeux .ld-decor-cri{position:absolute;right:calc(8% + 22px);top:calc(10% + 8px);font:26px/1 'Press Start 2P',monospace;color:#ff4d5e;text-shadow:2px 2px 0 #3a0610;transform:rotate(-8deg)}
+#view-jeux .ld-etat-demo{background:#ff4d5e;color:#fff}
+@media(max-width:419px){#view-luxdemasque .ld-compteur span{display:none}}
+@media(max-width:359px){#view-luxdemasque .ld-outil span{display:none} #view-luxdemasque .ld-btn-objection{font-size:10px}}

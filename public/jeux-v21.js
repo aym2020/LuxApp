@@ -5,7 +5,7 @@
 // carte dans Jeux, ni préchargement, ni ouverture possible ; ses fichiers, ses données
 // sauvegardées (records, préférences) et ses tests restent intacts. Survie et Lux Runner
 // sont toujours disponibles. Pour réactiver Lux Match : luxMatch: true.
-const JEUX_DISPONIBLES = { luxMatch: false };
+const JEUX_DISPONIBLES = { luxMatch: false, luxDemasque: true };
 function jeuDisponible(id) { return JEUX_DISPONIBLES[id] === true; }
 let surviePartie = null;
 const SURVIE_DUREE = 30;
@@ -174,6 +174,7 @@ function ouvrirJeux() {
   survieArreter();
   if(typeof runnerArreter==='function')runnerArreter(); // SPEC 96
   if(typeof luxMatchArreter==='function')luxMatchArreter(); // SPEC 109
+  if(typeof luxDemasqueArreter==='function')luxDemasqueArreter(); // SPEC 110
   renderJeuxHub();
   showView('view-jeux');
 }
@@ -210,6 +211,7 @@ function renderJeuxHub() {
         '<button class="jeux-jouer" type="button" onclick="demarrerSurvie()">Jouer <span aria-hidden="true">→</span></button>')+
     '</section>'+
     (typeof runnerCarteHub==='function'?runnerCarteHub():'')+
+    (typeof luxDemasqueCarteHub==='function'?luxDemasqueCarteHub():'')+ // SPEC 110
     (typeof luxMatchCarteHub==='function'?luxMatchCarteHub():'')+'</div>'; // SPEC 104 : cartes responsive, 2 colonnes sur ordinateur
 }
 function survieChoisirMot(partie) {

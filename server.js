@@ -116,7 +116,7 @@ function construireManifeste() {
   }
   const hDonnees = donnees.digest('hex').slice(0, 12);
   // API publiques des contenus pédagogiques (même empreinte que data/).
-  ['/api/lecons', '/api/examens', '/api/ecriture', '/api/jeux/lux-match'].forEach(u => fichiers.push({ u, h: hDonnees }));
+  ['/api/lecons', '/api/examens', '/api/ecriture', '/api/jeux/lux-match', '/api/jeux/lux-demasque'].forEach(u => fichiers.push({ u, h: hDonnees }));
   const fichiersAudio = audios.map(f => ({ u: '/' + f, t: fs.statSync(path.join(__dirname, 'public', f)).size }));
   const empreinteAudio = crypto.createHash('sha1').update(audios.join('\n')).digest('hex').slice(0, 12);
   // Scripts et feuilles externes de la page (SDK Firebase, polices Google).
@@ -191,6 +191,11 @@ app.get('/api/lecons', (req, res) => {
 app.get('/api/jeux/lux-match', (req, res) => {
   const lire = f => JSON.parse(fs.readFileSync(path.join(__dirname, 'data/jeux/lux-match', f), 'utf8'));
   res.json({ contenus: lire('contenus-v02.json') });
+});
+
+// SPEC 110 — Lux Démasque : personnages, dossiers et pièces (data/jeux/lux-demasque).
+app.get('/api/jeux/lux-demasque', (req, res) => {
+  res.json({ contenus: JSON.parse(fs.readFileSync(path.join(__dirname, 'data/jeux/lux-demasque/contenus-v01.json'), 'utf8')) });
 });
 
 // Sujets d'examen : même principe que les leçons, un dossier par niveau.
