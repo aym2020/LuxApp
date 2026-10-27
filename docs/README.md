@@ -54,6 +54,8 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 [**SPEC 109 — Lux Match : Double jeu**](specs/SPEC-109.md) : proposition de dating arcade PS1, smartphone à batterie limitée durant le rendez-vous, 6 archétypes fictifs et dialogues conditionnels. Banques de conception : [archétypes et profils](../data/jeux/lux-match/archetypes-v01.json) · [dialogues A1.1 et pièges](../data/jeux/lux-match/dialogues-a11-v01.json). **Démo jouable sur `2.1` (26-27/10/2026) : carte « Lux Match · DÉMO » dans Jeux. Dialogues LU encore à auditer (signalé dans le jeu).** Fichiers : `public/lux-match-core.js` (moteur pur), `public/lux-match.js` + `.css` (interface), `public/lux-match-3d.js` (café 3D), `public/lux-match/` (GLB CC0), `test/lux-match.test.cjs`.
 
+**Bible textuelle à intégrer (27/10/2026) :** [LUX-MATCH-BIBLE-EDITORIALE-A11.md](LUX-MATCH-BIBLE-EDITORIALE-A11.md) — 6 profils et leurs faux réseaux, textes de l'interface, 28 beats de dialogue (26 principaux + 2 amorces), 14 événements conditionnels, 24 conclusions, 30 réactions, 12 plans de partie et règles d'audit. **Document éditorial uniquement, phrases LU proposées à valider ; aucun code de production modifié par ce lot.**
+
 ## Recherche, maquettes, prototypes et archives
 
 | Répertoire | Utilisation |
