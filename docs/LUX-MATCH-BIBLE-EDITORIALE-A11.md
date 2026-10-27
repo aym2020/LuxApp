@@ -4,6 +4,8 @@
 
 > **Contrat pour Claude** — Ce document est le **corpus d'auteur**, pas un ordre de modifier immédiatement le moteur. Les identifiants des scènes, lignes et conditions sont destinés à être intégrés en données structurées après audit. **Ne pas copier/coller des phrases en production sans contrôle LOD/grammaire**, ni créer une deuxième source de vérité concurrente. Ne pas retoucher Lux Runner, le renderer Three.js, le cloud ou `luxProgress` avec ce lot.
 
+> **Pour Claude :** commencer par le [guide d'intégration des contenus](LUX-MATCH-GUIDE-INTEGRATION-CONTENUS.md), puis consulter uniquement la section de cette bible correspondant au lot à implémenter. Les IDs présents ici sont éditoriaux et non nécessairement des identifiants runtime. Les phrases LU nouvelles restent candidates à auditer.
+
 ## 1. Contenu source et décisions figées
 
 **Source de vérité consultée :** `PLAYBOOK.md`, `docs/specs/SPEC-109.md` (§§12–13), `docs/CHARTE_UI_2.1.md`, `public/lux-match.js`, `public/lux-match-core.js`, les deux JSON Lux Match de `2.1`, `data/missions/README.md` et le vocabulaire des leçons A1.1 **1, 3, 4, 5, 7, 8, 9, 10, 11, 13, 14, 15, 16**. Référence de règles : `grammaire_luxembourg.md` (phrases V2, conjugaison, prépositions de pays/villes, heures). Dictionnaire officiel [LOD.lu](https://lod.lu) pour revue finale. Le LOD a été consulté ponctuellement (dont l'entrée [spillen](https://lod.lu/artikel/SPILLEN1)), **pas une certification ligne par ligne**. Les missions conversationnelles existantes restent des **brouillons pédagogiques**, et ne servent pas de preuve de validation complète.
