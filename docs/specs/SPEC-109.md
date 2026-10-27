@@ -791,3 +791,49 @@ Six émotions de base, avec un effet **déterminé par la réaction de la scène
 6. Lancer `node --test test/lux-match.test.cjs`, `bash tools/critique.sh rapide` puis suite critique complète `bash tools/critique.sh` selon PLAYBOOK ; signaler les erreurs préexistantes, ne jamais revendiquer une validation Samsung sans vrai test.
 
 **Contraintes de livraison :** consulter HEAD, `PLAYBOOK.md`, SPEC 109 et code actuel avant chaque lot ; commits distincts et testés sur `2.1`, pas de refonte supplémentaire, pas de nouveaux personnages/lieux, pas de LLM runtime, pas de changement au cloud/progression ou autres jeux. **La présente section sert de passation : elle ne vaut ni patch, ni preuve de recette des corrections.**
+
+
+---
+
+## 19. Bug tactile Android — swipe droite interprété comme « NON » (27/10/2026)
+
+**Statut : signalement utilisateur P0/P1 d'interaction (refus non voulu), diagnostic code probant pour une cause potentielle, NON corrigé ni reproduit sur appareil par cette section.** Branche auditée `2.1` HEAD `726e8599`. Symptôme rapporté sur Android Samsung : « en allant vers la droite, il arrive qu'un NON apparaisse brièvement et que la carte parte immédiatement en refus ; difficile à reproduire ». **Ne pas annoncer une reproduction confirmée** sans test tactile.
+
+### 19.1. Cause probable vérifiée dans le code
+
+Dans `public/lux-match.js`, `lmBrancherSwipe(carte)` (autour des lignes 518–536 à l'audit) :
+- `pointerdown` pose `depart = e.clientX` et `setPointerCapture(e.pointerId)`.
+- `pointermove` déplace la carte via `dx = e.clientX - depart` et affiche `lm-penche-oui` (`dx > 40`) / `lm-penche-non` (`dx < -40`).
+- **Un même gestionnaire `fin` est enregistré sur `pointerup` ET `pointercancel`**, et **appelle `lmSwiper(dx > 0)` si `abs(dx) > 90`**. **C'est le défaut de conception certain : un `pointercancel` ne doit jamais valider une décision.**
+- La carte CSS emploie `touch-action: pan-y` : lors d'un léger mouvement vertical ou d'une prise de contrôle du navigateur/scroll, **`pointercancel` peut être émis sur mobile**. Ses coordonnées de fin ne constituent pas une validation fiable du geste ; elles peuvent être inattendues/vides selon le contexte. Exemple de scénario à vérifier : `depart=280` → un `pointercancel` portant `clientX=0` calcule `dx=-280` → le code valide `lmSwiper(false)` = « NON », même après mouvement initial vers la droite.
+- L'implémentation ne mémorise **pas le `pointerId` actif**, et ne vérifie ni `e.isPrimary` ni `e.pointerId` lors du move/up. Un second contact ou des événements d'un pointeur différent peuvent également fausser la direction. Il n'y a pas de verrou explicite « un swipe traité une fois » hors la classe `lm-sortie`.
+
+**Il existe aussi des causes possibles à investiguer** (saccades, scroll vertical de la page, double événement clic/tactile, rerender pendant l'animation, seconde touche), mais aucune n'est démontrée par les captures. Priorité à corriger l'annulation puis instrumenter si le problème subsiste.
+
+### 19.2. Comportement cible : zéro refus involontaire
+
+1. **Séparer impérativement `pointerup` et `pointercancel` :** `pointercancel` = **abandon sans décision**, réinitialisation de `depart`/`pointerId`, du transform, des classes de direction et de la capture ; la carte revient à sa position. Aucun appel à `lmSwiper()`, aucune avancée `indexCarte`, aucun signal « NON » ou « OUI » persistant.
+2. Sur `pointerup`, valider seulement **le pointeur actif et primaire**, avec un échantillon fiable du déplacement horizontal et un seuil clair. Vérifier `e.pointerId` et ignorer les autres pointeurs. Utiliser si pertinent **la dernière position vérifiée dans `pointermove`**, sans accepter une coordonnée nulle aberrante de l'événement de terminaison. Un déplacement inférieur au seuil revient en place.
+3. Départurer le geste **seulement sur la carte**, pas sur ses boutons ni un contrôle interactif. Protéger la capture `setPointerCapture` et `releasePointerCapture` si le DOM est retiré, avec garde `isConnected`/exceptions si nécessaire. Écouter également `lostpointercapture` pour nettoyer l'état **sans valider** ; le changement de carte ou phase détruit les anciens handlers.
+4. **Arbitrer glisse horizontale vs scroll vertical** : tant que la direction du geste n'est pas déterminée, une intention verticale doit laisser scroller normalement (ou réinitialiser la carte), pas aboutir à un NON. Dès que la glisse horizontale est établie, aucun petit y parasite ne doit inverser la décision. CSS `touch-action: pan-y` à conserver **si cohérent avec le correctif**, ne pas mettre `touch-action:none` globalement au détriment de la navigation Android.
+5. **La décision vient du sens final de la glisse réelle** : geste droit → `OUI` ; gauche → `NON`, sans état transitoire opposé causé par un `pointercancel`. Si le geste revient au point de départ ou est annulé → **aucune décision**. Ne pas utiliser `Math.abs(dx)` sur des coordonnées suspectes.
+6. Le déclenchement (un seul swipe par carte) doit être **idempotent** : pas de double `lmSwiper()` par pointerup+click, rebond tactile, multi-touch ou ancien événement après changement de carte ; conserver l'animation de sortie et le match garanti après 1–2 likes. Les boutons croix/cœur restent **une alternative tactile accessible**.
+
+### 19.3. Tests de reproduction et anti-régression obligatoires
+
+**Tests DOM/Playwright (le moteur pur Node actuel vérifie `Core.swiper()`, mais PAS la gestuelle `lmBrancherSwipe()`) :**
+
+- `pointerdown x=250`, `pointermove x=365`, `pointerup x=365` → **OUI exactement une fois** ;
+- `pointerdown x=300`, `pointermove x=160`, `pointerup x=160` → **NON exactement une fois** ;
+- `pointerdown x=280`, `pointermove x=330`, **`pointercancel x=0`** → **aucun swipe, index inchangé, carte remise au centre** ;
+- `pointerdown x=280`, `pointermove x=375`, **`pointercancel x=0`** (le geste a franchi le seuil OUI) → **aucun swipe**, quel que soit l'état du badge « OUI » ;
+- mouvement majoritairement vertical / scroll de page → **aucune décision**, aucun « NON » furtif ;
+- micro-glisse horizontale inférieure au seuil → retour au centre ;
+- un second doigt / `pointerId` incorrect pendant le geste → ne change pas la décision ;
+- événement `lostpointercapture` ou destruction/rerender de la carte → reset neutre, aucun swipe ;
+- `pointerup` répété après swipe, double tap sur cœur/croix, nouveaux profils très rapides, dix swipes successifs → pas de refus supplémentaire ni saut de carte ;
+- sur le **Samsung réel**, essayer pouce droit/gauche lent et rapide, départ près du bord, glisse diagonale et verticale, scroll involontaire, changement d'orientation, retour Android, trois nouvelles parties. Vérifier que l'indicateur « OUI/NON » et la carte partent **dans la même direction**.
+
+**Instrumentation facultative uniquement en debug** : enregistrer `type`, `pointerId`, `clientX`, `dx`, `cancelReason` si disponible, numéro de carte et décision **sans données personnelles**, et sans bruit en production. Une vidéo ralentie ou un enregistrement des `pointercancel` sur Samsung aiderait à confirmer la cause si le défaut survit au correctif.
+
+**Priorité pour Claude : corriger cette perte de contrôle utilisateur AVANT ou en parallèle des lots 10A/10B, avec commit isolé et tests de gestes.** Ne pas modifier le jeu par la seule rédaction de la SPEC ; préserver le faux smartphone, la DA, l'accessibilité et les transitions musicales.
