@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Lux Démasqué — suite dédiée. Voir docs/LUX-DEMASQUE-TESTS.md.
 #   bash tools/test-lux-demasque.sh rapide       # moteur, générateur, syntaxe
-#   bash tools/test-lux-demasque.sh complet      # + 5 parcours Playwright
-#   bash tools/test-lux-demasque.sh acceptation  # + contrat LD-034 (rouge tant que non corrigé)
+#   bash tools/test-lux-demasque.sh complet      # + 6 parcours Playwright, dont LD-034
+#   bash tools/test-lux-demasque.sh acceptation  # tests de base + contrat ciblé LD-034
 set -u
 cd "$(dirname "$0")/.." || exit 1
 
@@ -82,11 +82,12 @@ if [ "$MODE" != "rapide" ]; then
       echo "ECHEC   serveur non disponible ou sans LUX_TESTS=1 : $LUX_URL"
       ECHECS=$((ECHECS + 1))
     else
-      for nom in test_lux_demasque test_lux_demasque_3d test_lux_demasque_audio test_lux_demasque_parcours test_lux_demasque_mobile; do
-        executer "$nom" python3 "tests/$nom.py"
-      done
       if [ "$MODE" = "acceptation" ]; then
         executer contrat-LD-034 python3 tests/test_lux_demasque_acceptation.py
+      else
+        for nom in test_lux_demasque test_lux_demasque_3d test_lux_demasque_audio test_lux_demasque_parcours test_lux_demasque_mobile test_lux_demasque_acceptation; do
+          executer "$nom" python3 "tests/$nom.py"
+        done
       fi
     fi
   fi
