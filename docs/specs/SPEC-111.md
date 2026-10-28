@@ -1,7 +1,7 @@
 # SPEC 111 — Lux Match : refonte UI/UX du swipe des profils (mobile-first)
 
 **Projet :** LuxApp 2.1 · **Jeu :** Lux Match · **Écran :** `phase: 'swipe'` uniquement  
-**Statut :** **PROPOSITION DE DESIGN — À VALIDER, NON IMPLÉMENTÉE**  
+**Statut :** **CODE INTÉGRÉ SUR `2.1` — EN ATTENTE DE VALIDATION VISUELLE SAMSUNG**  
 **Date :** 28 octobre 2026 · **Branche de référence :** `2.1`  
 **Dépendances :** [SPEC 109](SPEC-109.md), [CHARTE UI 2.1](../CHARTE_UI_2.1.md), [Design System](../DESIGN_SYSTEM.md) et [test swipe](../../tests/test_lux_match_swipe.py).
 
@@ -135,3 +135,11 @@ Afficher **une carte active** au premier plan et, si les mesures le permettent, 
 Sont **exclus** : sélection par swipe d'affaires de Lux Démasqué, nouveaux profils, nouvelles photos ou modèles 3D, réécriture des dialogues ou du luxembourgeois, rééquilibrage du match, publication de Lux Match, redesign des réseaux/date/écrans de fin, vibrations ou nouveaux effets sonores, simulation de classement ou récompenses artificielles.
 
 **Statut de livraison :** cette SPEC définit une cible UX/UI ; **elle n'est ni une maquette approuvée ni une fonctionnalité codée**. Attendre l'accord produit sur cette direction et les captures du premier lot avant d'étendre la refonte.
+
+## 9. Implémentation SPEC 111 — 28 octobre 2026
+
+**Lot effectivement codé :** composition et hiérarchie de l'écran `swipe`, portrait 3D conservé, panneau de lecture LU/FR/ton/tags, unique logo Lux Match, jauge « PROFIL x / n », boutons Passer/J'aime étiquetés, pile décorative CSS et tampons progressifs. Les mouvements sont désormais bornés à ±12° mais **le seuil de décision reste strictement supérieur à 90 px** ; `pointercancel`, multi-touch et verrouillage des décisions sont préservés. Le swipe par geste relâché supprime son `transform` inline avant la classe de sortie afin que la transition CSS reste effective.
+
+**Fichiers :** `public/lux-match.js`, `public/lux-match.css`, cache-busters de `public/index.html`. Tests ajoutés : `test/lux-match-swipe-ui.test.cjs` (invariants DOM et CSS) et `tests/test_lux_match_swipe_ui.py` (géométrie, FR, boutons, scroll, portraits), exécution des gestes existants `tests/test_lux_match_swipe.py`. Workflow dédié : `.github/workflows/lux-match-swipe.yml`, avec captures PNG 360 × 740 et 393 × 852 en état original et après modification. **Aucune modification de** `lux-match-core.js`, du contenu, des sauvegardes ou de la visibilité publique.
+
+**Critère de sortie :** tests et captures Chromium analysés, puis captures sur Samsung transmises au produit pour approbation. L'implémentation n'équivaut pas à une validation produit ou au lancement public du jeu.

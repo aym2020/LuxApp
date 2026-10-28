@@ -500,5 +500,155 @@
 #view-luxmatch .lm-copier{min-height:44px;font-size:13px}
 #view-luxmatch .lm-demo-note{font-size:11px}
 
+
+/* SPEC 111 — carte swipe Lux Match ; tous les sélecteurs ciblent CET écran.
+   Pas de changement des autres panneaux, des règles ou de la coque LUXNET. */
+#view-luxmatch .lm-jeu[data-ecran="swipe"] {
+  gap:8px;
+  padding-bottom:calc(12px + env(safe-area-inset-bottom));
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-intro {
+  display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-progression {
+  color:#f3c5ec;font:8px/1.35 var(--lm-pixel);
+  letter-spacing:.04em;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-consigne-mini {
+  max-width:340px;font-size:12px;line-height:1.35;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-tel-swipe {
+  margin-block:0;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-app {
+  min-height:0;padding:9px 12px 12px;gap:12px;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-pile {
+  position:relative;isolation:isolate;min-width:0;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-pile-suivante::before {
+  content:"";position:absolute;inset:7px 8px -7px;
+  border:1px solid rgba(255,121,217,.32);border-radius:20px;
+  background:#322144;transform:rotate(1.6deg);pointer-events:none;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte {
+  display:flex;flex-direction:column;flex:none;min-height:0;
+  border:1px solid rgba(233,201,255,.2);border-radius:19px;
+  background:#1b1525;overflow:hidden;touch-action:pan-y;
+  box-shadow:0 8px 24px rgba(0,0,0,.42);
+  transition:transform .22s ease,opacity .22s ease;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte.lm-tire {
+  transition:none;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-visuel {
+  position:relative;flex:none;height:clamp(180px,34dvh,275px);
+  overflow:hidden;background:linear-gradient(150deg,#5c397d,#29203e 72%);
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-photo {
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 30%;
+  image-rendering:pixelated;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-visuel-lueur {
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(240,84,195,.06),transparent 35%,rgba(19,10,31,.35));
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-infos {
+  position:relative;inset:auto;display:flex;flex-direction:column;gap:6px;
+  padding:12px 14px 14px;background:linear-gradient(160deg,#251a35,#171220);
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-infos h2 {
+  margin:0 0 2px;font-size:clamp(24px,6vw,28px);line-height:1.15;
+  overflow-wrap:anywhere;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-infos .lm-lu {
+  font-size:16px;line-height:1.4;font-weight:650;overflow-wrap:anywhere;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-infos .lm-fr {
+  font-size:12.5px;line-height:1.4;margin:0;color:#d4c6e8;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-ton {
+  display:flex;flex-direction:column;gap:3px;
+  margin-top:2px;padding-left:10px;border-left:2px solid #df69c4;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-ton .lm-lu {
+  font-size:14px;line-height:1.4;font-weight:550;color:#f1e8f8;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-tags {
+  gap:6px;margin-top:3px;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-tags span {
+  border:1px solid rgba(210,173,239,.24);
+  border-radius:8px;padding:5px 9px;
+  background:rgba(156,100,201,.14);font-size:12px;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-tags small {
+  margin-top:2px;color:#dfd3ed;font-size:11px;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-tampon {
+  z-index:2;top:18px;font-size:11px;padding:9px 8px;
+  pointer-events:none;opacity:0;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-tampon-oui {
+  color:#ff94dd;border-color:#ff94dd;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-tampon-non {
+  color:#ff8c94;border-color:#ff8c94;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-penche-oui .lm-tampon-oui,
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-penche-non .lm-tampon-non {
+  opacity:var(--lm-swipe-progress,0);
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-sortie-oui .lm-tampon-oui,
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-sortie-non .lm-tampon-non {
+  opacity:1;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-boutons {
+  gap:36px;align-items:center;justify-content:center;padding-top:1px;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-boutons .lm-rond {
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;width:90px;height:auto;min-height:89px;padding:1px 0;
+  border:0;border-radius:12px;background:transparent;
+  box-shadow:none;touch-action:manipulation;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-rond-icone {
+  display:grid;place-items:center;width:62px;height:62px;
+  border:2px solid currentColor;border-radius:50%;background:#1b1426;
+  box-shadow:0 4px 0 rgba(0,0,0,.32);
+  transition:transform .15s ease,background-color .15s ease;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-rond:active .lm-rond-icone {
+  transform:scale(.94);background:#35213e;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-rond-texte {
+  color:#f4eaf9;font-size:11px;font-weight:800;letter-spacing:.08em;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-non .lm-rond-icone {
+  color:#ff8c94;
+}
+#view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-oui .lm-rond-icone {
+  color:#ff70cf;box-shadow:0 4px 0 rgba(0,0,0,.32),0 0 20px rgba(255,79,216,.18);
+}
+@media(max-width:359px) {
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] { padding-inline:10px; }
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-app { padding-inline:10px; }
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-visuel { height:clamp(150px,30dvh,230px); }
+}
+@media(max-height:690px) {
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-visuel { height:clamp(150px,30dvh,235px); }
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-app { gap:8px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte,
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-rond-icone {
+    transition:none;
+  }
+  #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-pile-suivante::before {
+    transform:none;
+  }
+}
+
 /* Politique de scroll (SPEC §18.6) : swipe et accueil des réseaux tiennent dans l'écran. */
 #view-luxmatch .lm-jeu[data-ecran="swipe"],#view-luxmatch .lm-jeu[data-ecran="reseaux"]{gap:8px}

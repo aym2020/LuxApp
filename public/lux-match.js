@@ -491,20 +491,33 @@ function lmCommencerSwipes() {
 // ── SWIPE
 function lmRendreSwipe(box) {
   const p = lm.partie, profil = LuxMatchCore.carteCourante(p);
-  const reste = p.paquet.length - p.indexCarte;
-  const t = profil.tinder;
-  const carte = '<div class="lm-carte" id="lm-carte">' +
-      lmImage(profil, 'Idle', LM_FONDS.carte, 'lm-carte-photo') +
+  const t = profil.tinder, total = p.paquet.length, numero = p.indexCarte + 1;
+  // La pile arrière est une forme CSS, jamais un deuxième portrait / renderer 3D.
+  const pile = p.indexCarte < total - 1 ? ' lm-carte-pile-suivante' : '';
+  const carte = '<div class="lm-carte-pile' + pile + '">' +
+    '<div class="lm-carte" id="lm-carte" role="group" aria-label="Profil de ' + lmEchapper(profil.name) + ', ' + profil.age + ' ans">' +
+      '<div class="lm-carte-visuel">' + lmImage(profil, 'Idle', LM_FONDS.carte, 'lm-carte-photo') +
+        '<span class="lm-visuel-lueur" aria-hidden="true"></span></div>' +
       '<div class="lm-carte-infos"><h2>' + lmEchapper(profil.name) + ', <span>' + profil.age + '</span></h2>' +
-      lmLu(t.lu) + lmFr(t.fr) +
-      (profil.ton ? '<p class="lm-lu lm-ton" lang="lb">' + lmEchapper(profil.ton.lu) + '</p>' + lmFr(profil.ton.fr) : '') +
-      '<div class="lm-tags">' + t.tags.map(tag => '<span><b lang="lb">' + lmEchapper(tag.lu) + '</b>' + (lm.aideFr && tag.fr !== tag.lu ? '<small>' + lmEchapper(tag.fr) + '</small>' : '') + '</span>').join('') + '</div>' +
-      '</div><div class="lm-tampon lm-tampon-oui">OUI</div><div class="lm-tampon lm-tampon-non">NON</div></div>';
+        lmLu(t.lu) + lmFr(t.fr) +
+        (profil.ton ? '<div class="lm-carte-ton"><p class="lm-lu lm-ton" lang="lb">' + lmEchapper(profil.ton.lu) + '</p>' + lmFr(profil.ton.fr) + '</div>' : '') +
+        '<div class="lm-tags">' + t.tags.map(tag =>
+          '<span><b lang="lb">' + lmEchapper(tag.lu) + '</b>' +
+          (lm.aideFr && tag.fr !== tag.lu ? '<small>' + lmEchapper(tag.fr) + '</small>' : '') + '</span>').join('') + '</div>' +
+      '</div><div class="lm-tampon lm-tampon-oui">J’AIME</div><div class="lm-tampon lm-tampon-non">PASSER</div>' +
+    '</div></div>';
   box.innerHTML = lmEntete() +
-    '<p class="lm-consigne lm-consigne-mini">' + (p.indexCarte === 0 && !p.aimes.length ? 'Glisse à droite pour aimer, à gauche pour passer.' : reste + ' profil' + (reste > 1 ? 's' : '') + ' à proximité') + '</p>' +
-    lmTelephone('<div class="lm-app-match"><div class="lm-app-titre">lux<b>♥</b>match</div>' + carte +
-      '<div class="lm-swipe-boutons"><button type="button" class="lm-rond lm-non" onclick="lmSwiper(false)" aria-label="Passer">' + lmIcone('croix') + '</button>' +
-      '<button type="button" class="lm-rond lm-oui" onclick="lmSwiper(true)" aria-label="J’aime">' + lmIcone('coeur') + '</button></div></div>');
+    '<div class="lm-swipe-intro"><span class="lm-swipe-progression" aria-live="polite">PROFIL ' + numero + ' / ' + total + '</span>' +
+      '<p class="lm-consigne lm-consigne-mini">' +
+        (numero === 1 ? 'Glisse à droite pour aimer, à gauche pour passer.' : 'Glisse ou utilise les boutons pour choisir.') +
+      '</p></div>' +
+    lmTelephone('<div class="lm-app-match lm-swipe-app">' + carte +
+      '<div class="lm-swipe-boutons" aria-label="Choisir ce profil">' +
+        '<button type="button" class="lm-rond lm-non" onclick="lmSwiper(false)" aria-label="Passer">' +
+          '<span class="lm-rond-icone">' + lmIcone('croix') + '</span><span class="lm-rond-texte">PASSER</span></button>' +
+        '<button type="button" class="lm-rond lm-oui" onclick="lmSwiper(true)" aria-label="J’aime">' +
+          '<span class="lm-rond-icone">' + lmIcone('coeur') + '</span><span class="lm-rond-texte">J’AIME</span></button>' +
+      '</div></div>', 'lm-tel-swipe');
   lmBrancherSwipe(document.getElementById('lm-carte'));
   lmPreparerImages(p.paquet.slice(p.indexCarte).map(id => [LuxMatchCore.profilParId(p, id), 'Idle', LM_FONDS.carte]));
 }
@@ -534,6 +547,7 @@ function lmBrancherSwipe(carte) {
   const remettre = () => {
     carte.style.transform = '';
     carte.classList.remove('lm-tire', 'lm-penche-oui', 'lm-penche-non');
+    carte.style.removeProperty('--lm-swipe-progress');
   };
   const liberer = () => {
     if (geste) { try { if (carte.hasPointerCapture(geste.id)) carte.releasePointerCapture(geste.id); } catch (_) { /* carte retirée */ } }
@@ -555,14 +569,20 @@ function lmBrancherSwipe(carte) {
       carte.classList.add('lm-tire');
     }
     geste.dx = dx;
-    carte.style.transform = 'translateX(' + dx + 'px) rotate(' + dx / 14 + 'deg)';
+    const angle = Math.max(-12, Math.min(12, dx / 14));
+    carte.style.transform = 'translateX(' + dx + 'px) rotate(' + angle + 'deg)';
+    carte.style.setProperty('--lm-swipe-progress', Math.min(1, Math.max(0, (Math.abs(dx) - 18) / 90)).toFixed(2));
     carte.classList.toggle('lm-penche-oui', dx > 40); carte.classList.toggle('lm-penche-non', dx < -40);
   });
   carte.addEventListener('pointerup', e => {
     if (!geste || e.pointerId !== geste.id) return;
     const { dx, sens } = geste;
     liberer();
-    if (sens === 'h' && Math.abs(dx) > LM_SEUIL_SWIPE) { carte.classList.remove('lm-tire'); lmSwiper(dx > 0); }
+    if (sens === 'h' && Math.abs(dx) > LM_SEUIL_SWIPE) {
+      carte.classList.remove('lm-tire');
+      carte.style.transform = ''; // la classe de sortie conserve l'autorité visuelle
+      lmSwiper(dx > 0);
+    }
     else remettre();
   });
   carte.addEventListener('pointercancel', annuler);
