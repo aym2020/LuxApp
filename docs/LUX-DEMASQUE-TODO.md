@@ -74,7 +74,7 @@
 
 ## Lot 5 — Pause, navigation et bilan (LD-034 à LD-043)
 
-- [ ] **LD-034 · P0 — « Nouveau dossier » réellement nouveau.** Corriger `ldNouveauDossier`/`ldChoisirDossier` : après 1/3 sur Milo, « Nouveau dossier » ne doit pas rouvrir Milo. **Validé si :** Noah (ou autre dossier différent) s'ouvre, tandis que Milo non résolu reste rejouable ; test Node/DOM et Back Android.
+- [ ] **LD-034 · P0 — « Nouveau dossier » réellement nouveau.** **Code et tests poussés sur `2.1` le 28/10/2026**, mais **validation navigateur/Samsung à faire**, donc case ouverte. Correction dans `ldNouveauDossier` : après 1/3 sur Milo, « Nouveau dossier » ouvre Noah ; progression ensuite vers Tom puis un généré, sans marquer Milo résolu. **Validé si :** le contrat `tests/test_lux_demasque_acceptation.py` et la suite `complet` passent réellement, et Back Android/rejeu sont validés. Références : [`1734b52`](https://github.com/aym2020/LuxApp/commit/1734b52f792353b8e482438c4aa94f061507614e), [guide des tests](https://github.com/aym2020/LuxApp/blob/2.1/docs/LUX-DEMASQUE-TESTS.md).
 - [ ] **LD-035 · P0 — Rejouabilité des dossiers partiels.** Préserver l'accès à Milo et au même seed généré après une fin incomplète, sans marquer le dossier « résolu ». **Validé si :** « Rejouer » reproduit le même dossier et « Nouveau » en ouvre un différent.
 - [ ] **LD-036 · P1 — Menu Pause hiérarchisé.** Mettre « Reprendre » en CTA prioritaire ; « Conclure » reste secondaire. **Validé si :** l'action par défaut n'encourage pas l'abandon.
 - [ ] **LD-037 · P1 — Confirmation de conclusion.** Conserver l'avertissement « objections restantes perdues », les deux choix et le comportement Retour. **Validé si :** aucune fin accidentelle.
@@ -98,5 +98,6 @@
 |---|---|---|---|---|
 | 2026-10-28 | LD-001 à LD-047 | Backlog créé, **aucune tâche cochée** | — | Retour utilisateur et screenshots ; pas d'implémentation de la V1.1 |
 | 2026-10-28 | LD-000 | Banc de tests et guide **livrés, exécution réelle encore à faire** | `3c30dd3`, `e87033e`, `7894c7c`, `91834e9`, `bcaf8c5` (branche `2.1`) | Runner rapide/complet/acceptation ; smoke mobile, contrat rouge LD-034, tests existants raccordés à la suite critique ; impossible de lancer les tests dans l'environnement de cette session (GitHub non clonable, pas de serveur exécuté). LD-000 reste ouverte jusqu'à vérification. |
+| 2026-10-28 | LD-034 | **Code, contrat et documentation poussés ; recette navigateur et Samsung en attente** | `1734b52` (fix), `5eed60b` (Playwright), `14a8ef7` (runner), `f10bd60` (critique), `c1841bc` (guide) | Compilation JS complète réussie ; 8/8 scénarios de sélection simulés réussis ; Playwright/Node complet non exécutés faute de clone/serveur local GitHub. LD-034 reste `[ ]` jusqu'au passage réel de `acceptation`, `complet` et contrôle Android. |
 
 **Règle :** après validation d'un ID, cocher la case correspondante et écrire une ligne datée ici. Mettre à jour le compteur de l'en-tête et la `PROCHAINE ACTION`. Les entrées antérieures ne sont pas effacées.
