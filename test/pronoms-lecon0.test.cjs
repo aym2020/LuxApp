@@ -53,3 +53,21 @@ test('Scores isolés, textes UI et scripts versionnés',()=>{
  assert.match(st,/unitesCoeur\(l\)\.length \+ ' unités préparées/);
  assert.match(read('public/index.html'),/src="decouverte\.js\?v=pronoms02"/);
 });
+
+test('Tous les pronoms du lexique ont un vrai MP3 LOD ou Mia',()=>{
+ const lod=JSON.parse(read('public/audio/lod.json'));
+ const mia=JSON.parse(read('public/audio/mia.json'));
+ const words=l.cours.find(x=>x.unite===3&&x.rubrique==='lexique').items.map(x=>x[0]);
+ assert.equal(words.length,7);
+ for(const word of words){
+   const file=lod[word]||mia[word]||mia[word.toLowerCase()];
+   assert.ok(file,word+' sans audio indexé');
+   assert.match(file,/^(?:lod\/[A-Za-z0-9_-]+|mia\/[a-f0-9]{24})\.mp3$/);
+   assert.ok(fs.statSync(path.join(__dirname,'../public/audio',file)).size>500,word+' fichier absent/vide');
+ }
+});
+test('Les anciennes références Mia ne disparaissent pas lors de la génération',()=>{
+ const mia=JSON.parse(read('public/audio/mia.json'));
+ for(const word of ['Awar, Léa! Schéinen Dag!','Awar, Paul!','Wollekekrazer','e Wollekekrazer','kee Bus'])
+   assert.ok(mia[word],word+' référence historique perdue');
+});

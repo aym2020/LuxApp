@@ -31,3 +31,7 @@ Les unités 1–2, leurs 20 écoutes LOD, 15 choix avec/sans N et la mission à 
 `node --test test/pronoms-lecon0.test.cjs`, `node tests/test_spec79.js`, `node tests/test_spec82_studio.js`, `node tools/valider-lecons.js` ; tests audio, navigateur 320–430 px puis validation tactile Samsung. Rejouer l'unité 3 après mise à jour pour découvrir le contenu simplifié. Le test CI n'atteste pas de la prononciation à l'oreille.
 
 Références : LLO sur les pronoms personnels, `https://sproo.lu/fr/conjugaison/sinn`, `docs/audio-mia.md`.
+
+## Livraison audio vérifiée
+
+Génération Mia terminée sur `2.1` (commit audio `ab76d57`) : fichiers physiques et index vérifiés pour **hien**, **hatt** et **Dir** ; les sept entrées du lexique ont désormais un fichier LOD ou Mia. Un audit complémentaire a identifié cinq références historiques omises de la nouvelle version de l'index ; elles ont été restaurées, et la fonction `save()` fusionne dorénavant les anciennes entrées afin de préserver la bibliothèque lors des générations futures. Deux tests protègent cette conservation et la couverture complète des pronoms.

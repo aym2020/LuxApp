@@ -54,7 +54,11 @@ function plan(voice='mia') {
 function save(voice, index) {
   fs.mkdirSync(audioDir,{recursive:true});
   const file = path.join(audioDir,voice+'.json');
-  fs.writeFileSync(file+'.tmp', JSON.stringify(Object.fromEntries(Object.entries(index).sort()), null, 2) + '\n');
+  // Conserver les fichiers historiques (parties archivées et révisions)
+  // même s'ils ne figurent plus dans le contenu courant.
+  const historique = read(file);
+  const complet = Object.assign({}, historique, index);
+  fs.writeFileSync(file+'.tmp', JSON.stringify(Object.fromEntries(Object.entries(complet).sort()), null, 2) + '\n');
   fs.renameSync(file+'.tmp', file);
 }
 async function toMp3(wav, destination) {
