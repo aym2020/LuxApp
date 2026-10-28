@@ -17,7 +17,7 @@ jobs:
       - name: Test du rendu et des liens de l'accueil
         run: node --test test/accueil-v21.test.cjs test/exercices-v21.test.cjs test/exercices-etats-v21.test.cjs
       - name: Leçon 0 — pronoms et compatibilité historique
-        run: node --test test/pronoms-lecon0.test.cjs && node tests/test_spec79.js && node tests/test_spec82_studio.js
+        run: node --test test/pronoms-lecon0.test.cjs && node tests/test_spec79.js && node tests/test_spec82_studio.js && node tools/valider-lecons.js
       - name: Pré-requis lexicaux — leçon 7 (Mot caché avant exercices)
         run: node tools/audit-lexique-unites.cjs --lesson 7 --strict && node --test test/lexique-unites-07.test.cjs
       - name: PWA — bandeau non bloquant, mise à jour et report
