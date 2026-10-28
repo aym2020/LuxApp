@@ -1,5 +1,9 @@
 # PLAYBOOK — LuxembourgishApp
 
+## Référence permanente — Lux Démasqué V1.1
+
+**TODO canonique (47 tâches et prochaine action) :** [docs/LUX-DEMASQUE-TODO.md](docs/LUX-DEMASQUE-TODO.md), **sur `main`**. Pour toute demande concernant l'avancement, la prochaine tâche, une refonte ou une tâche terminée de **Lux Démasqué**, lire cette TODO sur GitHub avant de répondre. Après chaque livraison vérifiée, mettre à jour la case, le journal, le compteur et la prochaine action **dans la même intervention**. La version jouable et les modifications de code du jeu sont sur **`2.1`** : consulter son PLAYBOOK, sa SPEC 110 et son code courant avant de modifier quoi que ce soit. Ne pas maintenir de copie concurrente de la TODO sur `2.1`.
+
 Mémo des méthodes et techniques pour résoudre les problèmes récurrents du projet.
 But : arrêter de re-réfléchir à des trucs déjà résolus.
 
