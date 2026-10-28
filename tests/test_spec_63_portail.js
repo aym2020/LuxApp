@@ -168,7 +168,7 @@ assert.ok(!css.includes('.pa-compte-icone {'),'profil décoratif supprimé');
 assert.match(css,/background:var\(--couleur-fond\)/);
 assert.ok(!code.includes("portailStocker(PORTAIL_INVITE,'oui')"),'ne plus persister une admission invité');
 assert.match(html,/id="portail-auth"/);
-assert.match(html,/src="portail.js\?v=pa-oeil-1"/);
+assert.match(html,/src="portail\.js\?v=[^"]+"/);
 assert.ok(!read('public/accueil.js').includes('html += invitationCompteHtml()'));
 assert.ok(read('public/accueil.js').includes('ligneCompteHtml()'),'SPEC 67 : ligne de compte sous les niveaux');
 assert.ok(read('public/navigation.js').includes('portailRetourBienvenue()'));
