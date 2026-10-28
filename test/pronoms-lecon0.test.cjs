@@ -33,7 +33,7 @@ test('Les huit pronoms sont vus avant les huit questions',()=>{
 });
 test('Découverte guidée : du premier pronom aux quiz',()=>{
  const el=new Map(),elem=id=>{if(!el.has(id))el.set(id,{textContent:'',innerHTML:'',style:{},disabled:false});return el.get(id)};
- const ctx={pLecon:l,document:{getElementById:elem},escHtml:x=>String(x),arreterAudio(){},fermerClavier(){},showView(){},boutonEcouterHtml:(w)=>'<button>Écouter '+w+'</button>',startUnite(id,mode,filtre,meta,apres){ctx.start={id,mode,apres}}};
+ const ctx={pLecon:l,document:{getElementById:elem},escHtml:x=>String(x),attrHtml:x=>String(x),ICONE_ECOUTER:'<svg></svg>',arreterAudio(){},fermerClavier(){},showView(){},boutonEcouterHtml:(w)=>'<button>Écouter '+w+'</button>',startUnite(id,mode,filtre,meta,apres){ctx.start={id,mode,apres}}};
  vm.createContext(ctx);vm.runInContext(read('public/decouverte.js'),ctx);
  vm.runInContext('demarrerDecouverte(3)',ctx);
  assert.match(elem('dc-contenu').innerHTML,/dc-pronom/);
