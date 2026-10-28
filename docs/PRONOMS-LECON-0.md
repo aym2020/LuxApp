@@ -1,24 +1,33 @@
-# Leçon 0 — Unité 3 « Les pronoms personnels »
+# Leçon 0 — unité 3 : pronoms personnels (28 octobre 2026)
 
-**28 octobre 2026 — branche 2.1.** Les pronoms sujets sont introduits une seule fois dans « Les bases », après « Prononciation » et « United Zoha », pour éviter de surcharger la leçon 1.
+## Pédagogie
 
-## Objectif et contenu
+La leçon enseigne **vous = Dir** une seule fois, sans distinguer le pluriel et la politesse. Découverte guidée : **8 cartes**, suivies de **8 quiz**. Les autres leçons peuvent réutiliser les pronoms sans les réintroduire.
 
-L'apprenant doit savoir que **il = hien** avant « D'où vient-il ? » en leçon 7. L'unité 3 contient neuf cartes de découverte non notées, puis neuf questions de reconnaissance (un quiz unique, pas de mot caché ni d'écriture libre). Formes : *ech* (je), *du* (tu), *hien* (il), *si* (elle / ils / elles), *hatt* (notamment « elle » avec un prénom féminin), *mir* (nous), *dir* (vous pluriel familier) et *Dir* (vous de politesse). Les deux emplois de *si* sont illustrés séparément.
+L'onglet Règles présente un tableau à deux colonnes utilisant le verbe **sinn (être)** avec l'adverbe « do » (là) :
 
-La différence *hien / hie* est raccordée à United Zoha : **Hie kënnt.**, mais **Vu wou kënnt hien?**. La forme *hatt* n'est pas présentée comme le seul équivalent de « elle » : elle dépend du genre grammatical, notamment avec les prénoms féminins.
+| Français | Luxembourgeois · Exemple |
+|---|---|
+| Je | ech · Ech sinn do. |
+| Tu | du · Du bass do. |
+| Il | hien · Hien ass do. |
+| Elle | si / hatt · Si ass do. |
+| Nous | mir · Mir sinn do. |
+| Vous | Dir · Dir sidd do. |
+| Ils / Elles | si · Si sinn do. |
+
+La règle du N se rappelle simplement : **Hie kënnt.** / **Vu wou kënnt hien?**. *si* peut aussi signifier « ils / elles » ; *hatt* s'emploie notamment pour une personne désignée par un prénom féminin.
+
+## Audio
+
+Avant ce correctif, LOD : **si** ; Mia : **ech, du, mir**. Il manquait **hien, hatt, Dir** : le bouton partagé `boutonEcouterHtml` masque une icône sans fichier audio indexé. La découverte réutilise maintenant ce bouton. Un workflow GitHub Actions génère avec la voix Mia existante les trois MP3 manquants, les enregistre dans `public/audio/mia/` et actualise `public/audio/mia.json`. Aucun MP3 LOD n'est remplacé. Si la génération échoue, les nouveaux sons ne sont pas considérés livrés.
 
 ## Compatibilité
 
-Conservation stricte des unités 1–2, de leurs 20 écoutes LOD, 15 choix sur le N, de leurs IDs et du studio radio à huit défis. Nouveaux IDs **3221–3229**. Clé de progression isolée **0-pronoms-v1** ; les clés **0-ecoute-v2** et **0-n-v2** restent intactes. L'interface du studio précise désormais trois unités préparatoires sans modifier la mission.
+Les unités 1–2, leurs 20 écoutes LOD, 15 choix avec/sans N et la mission à huit défis restent inchangés. L'ID 3227 (seconde distinction de « vous ») est retiré et jamais réaffecté ; l'ID 3228 reste « Vous » et attend « Dir ». Les autres IDs et la clé `0-pronoms-v1` sont conservés : aucun effacement des données historiques.
 
-## Validation
+## Vérifications
 
-- `node --test test/pronoms-lecon0.test.cjs`
-- `node tests/test_spec79.js`
-- `node tests/test_spec82_studio.js`
-- `node tools/valider-lecons.js`
+`node --test test/pronoms-lecon0.test.cjs`, `node tests/test_spec79.js`, `node tests/test_spec82_studio.js`, `node tools/valider-lecons.js` ; tests audio, navigateur 320–430 px puis validation tactile Samsung. Rejouer l'unité 3 après mise à jour pour découvrir le contenu simplifié. Le test CI n'atteste pas de la prononciation à l'oreille.
 
-Vérification tactile Samsung encore requise : largeur 320–430 px, textes agrandis, découverte, retour Android, quiz, reprise, anciens scores.
-
-Sources linguistiques : LLO « Personalpronomen: Nominativ » et grammaire du projet.
+Références : LLO sur les pronoms personnels, `https://sproo.lu/fr/conjugaison/sinn`, `docs/audio-mia.md`.

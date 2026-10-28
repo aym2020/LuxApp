@@ -47,7 +47,7 @@ function afficherDecouverte() {
   document.getElementById('dc-progression').style.width = Math.round((i + 1) / items.length * 100) + '%';
   document.getElementById('dc-retour').disabled = i === 0;
   document.getElementById('dc-suite').textContent =
-    i === items.length - 1 ? (sons ? 'Passer aux 20 écoutes →' : pronoms ? 'Passer aux 9 questions →' : 'Passer aux 15 exercices →') : 'Continuer →';
+    i === items.length - 1 ? (sons ? 'Passer aux 20 écoutes →' : pronoms ? 'Passer aux 8 questions →' : 'Passer aux 15 exercices →') : 'Continuer →';
 
   let html;
   if (sons) {
@@ -62,7 +62,8 @@ function afficherDecouverte() {
       '<p class="dc-note">Tu peux réécouter et continuer quand tu veux.</p>';
   } else if (pronoms) {
     html = '<div class="dc-mini">EN LUXEMBOURGEOIS</div>' +
-      '<div class="dc-pronom" lang="lb">' + escHtml(ex.pronom) + '</div>' +
+      '<div class="dc-pronom-ligne"><div class="dc-pronom" lang="lb">' + escHtml(ex.pronom) + '</div>' +
+      boutonEcouterHtml(ex.pronom, true) + '</div>' +
       '<div class="dc-traduction">' + escHtml(ex.fr) + '</div>' +
       '<div class="dc-mini">EXEMPLE</div>' +
       '<div class="dc-exemple" lang="lb">' + escHtml(ex.exemple) + '</div>' +

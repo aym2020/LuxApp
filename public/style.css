@@ -3428,7 +3428,9 @@ body.pi-bloque { overflow:hidden; }
 #view-decouverte .dc-indice { font-size:14px; line-height:1.4; color:#d5c8a9; margin:11px 0 28px; }
 #view-decouverte .dc-mot { font-size:29px; font-weight:800; letter-spacing:-.6px; color:#f5f3eb; margin:0 0 19px; }
 /* Leçon 0, unité 3 : un pronom, sa traduction et un exemple. */
-#view-decouverte .dc-pronom { font-size:clamp(51px,15vw,76px); font-weight:800; line-height:1.1; color:#f5f3ed; margin:12px 0 4px; }
+#view-decouverte .dc-pronom-ligne { display:flex; align-items:center; gap:12px; min-width:0; margin:12px 0 4px; }
+#view-decouverte .dc-pronom-ligne .bouton-ecouter { flex:none; min-width:44px; min-height:44px; }
+#view-decouverte .dc-pronom { font-size:clamp(51px,15vw,76px); font-weight:800; line-height:1.1; color:#f5f3ed; min-width:0; }
 #view-decouverte .dc-traduction { font-size:clamp(20px,5vw,25px); font-weight:650; color:#e8c86c; margin:0 0 25px; }
 #view-decouverte .dc-exemple { font-size:clamp(18px,5vw,23px); font-weight:650; line-height:1.4; color:#f5f3ed; overflow-wrap:break-word; margin:10px 0 0; }
 #view-decouverte .dc-ecouter { border:1px solid #7b6635; color:#f2d278; background:#302a1c;

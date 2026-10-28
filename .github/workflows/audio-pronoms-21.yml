@@ -1,0 +1,55 @@
+name: Audio pronoms leçon 0 (2.1)
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - 'data/lecons/A1.1/lecon-00.json'
+      - 'tools/audio-mia.js'
+      - '.github/workflows/audio-pronoms-21.yml'
+permissions:
+  contents: write
+concurrency:
+  group: audio-pronoms-21
+  cancel-in-progress: false
+jobs:
+  voix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 2.1
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installer le moteur Mia existant
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+      - name: Synthétiser les trois pronoms manquants
+        run: node tools/audio-mia.js --voice=mia --only=hien,hatt,Dir
+      - name: Contrôler les fichiers MP3 indexés
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),path=require('path');
+          const j=JSON.parse(fs.readFileSync('public/audio/mia.json','utf8'));
+          for (const mot of ['hien','hatt','Dir']) {
+            const cle=Object.keys(j).find(x=>x.toLowerCase()===mot.toLowerCase());
+            if (!cle || !/^mia\/[a-f0-9]{24}\.mp3$/.test(j[cle]) ||
+                fs.statSync(path.join('public/audio',j[cle])).size<500)
+              throw Error('MP3 absent : '+mot);
+          }
+          NODE
+      - name: Versionner les sons sans modifier le code
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/audio/mia.json public/audio/mia/
+          if ! git diff --cached --quiet; then
+            git commit -m 'audio: pronoms hien hatt Dir pour leçon 0'
+            git pull --rebase origin 2.1
+            git push origin HEAD:2.1
+          fi

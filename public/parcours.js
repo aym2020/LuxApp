@@ -576,7 +576,7 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   if (mots.length > 4) apercu += ' · +' + (mots.length - 4);
   if (l.id === 0 && u.id === 1) apercu = '9 sons à découvrir · 20 écoutes LOD';
   if (l.id === 0 && u.id === 2) apercu = '6 exemples guidés · 15 exercices sur le N';
-  if (l.id === 0 && u.id === 3) apercu = '9 pronoms à découvrir · 9 questions';
+  if (l.id === 0 && u.id === 3) apercu = '8 pronoms à découvrir · 8 questions';
 
   const label = u.bonus ? 'BONUS' : 'UNITÉ ' + u.id;
   const estProchaine = !!(prochaine && prochaine.id === u.id);
@@ -729,7 +729,7 @@ function openIntro(uniteId) {
   const activiteUnique = studioActif(pLecon) && u.activiteUnique;
   const nbDecouverte = decouvertePour(pLecon, uniteId).length;
   const resumeCompact = studioActif(pLecon) && nbDecouverte
-    ? (uniteId === 1 ? '9 sons à découvrir · 20 écoutes' : uniteId === 2 ? '6 exemples · 15 choix sur le N' : '9 pronoms · 9 questions')
+    ? (uniteId === 1 ? '9 sons à découvrir · 20 écoutes' : uniteId === 2 ? '6 exemples · 15 choix sur le N' : '8 pronoms · 8 questions')
     : null;
   html += '<div class="pi-bas"><div class="pi-duree">' +
     (resumeCompact || (

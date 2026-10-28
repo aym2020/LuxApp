@@ -144,8 +144,8 @@ function verifierV2(f, l) {
       erreur(f, 'leçon 0 unité 2 : uniquement 15 choix de N');
     const u3 = t => (l[t] || []).filter(x => x.unite === 3).length;
     if (!l.unites.some(u => u.id === 3 && u.activiteUnique === 'quiz') ||
-        u3('quiz') !== 9 || u3('flashcards') || u3('trous') || u3('ecriture'))
-      erreur(f, 'leçon 0 unité 3 : 9 quiz de pronoms uniquement');
+        u3('quiz') !== 8 || u3('flashcards') || u3('trous') || u3('ecriture'))
+      erreur(f, 'leçon 0 unité 3 : 8 quiz de pronoms uniquement');
   }
 
   // Contenu de chaque type.

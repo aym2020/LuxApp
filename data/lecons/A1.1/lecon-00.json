@@ -5,7 +5,7 @@
   "couleur": "#a3cc52",
   "instructions": {
     "flashcards": "Cette leçon ne comporte pas de flashcards à mémoriser. Commence par la découverte guidée : 9 sons enregistrés LOD, sans score, à ton rythme.",
-    "quiz": "Unité 1 : observe et écoute 9 exemples LOD, puis reconnais 20 mots entendus. Aucun mot à traduire ou mémoriser. Unité 3 : découvre les pronoms sujets, puis choisis leur traduction dans 9 questions.",
+    "quiz": "Unité 1 : observe et écoute 9 exemples LOD, puis reconnais 20 mots entendus. Aucun mot à traduire ou mémoriser. Unité 3 : découvre les pronoms sujets, puis choisis leur traduction dans 8 questions.",
     "trous": "Unité 2 : découvre librement 6 exemples avec ou sans N, puis choisis la bonne forme dans 15 phrases. L'article et la lettre suivante sont indiqués.",
     "ecriture": "Aucune écriture libre dans la leçon 0 : prononciation, United Zoha et reconnaissance des pronoms."
   },
@@ -137,69 +137,63 @@
       "titre": "Les pronoms personnels",
       "activiteUnique": "quiz",
       "phrase": [
-        "Hie kënnt.",
-        "Il vient."
+        "Hien ass do.",
+        "Il est là."
       ],
-      "regle": "Les pronoms sujets disent <b>qui</b> fait l'action : <b>ech</b> = je, <b>du</b> = tu, <b>hien</b> = il, <b>si</b> = elle / ils / elles, <b>mir</b> = nous, <b>dir</b> = vous (pluriel), <b>Dir</b> = vous (politesse).",
-      "exemple": "Pour un prénom féminin, on emploie souvent <b>hatt</b>. Avec United Zoha : <b>Hie kënnt.</b> mais <b>Vu wou kënnt hien?</b>",
+      "regle": "Les pronoms sujets disent <b>qui</b> fait l'action : <b>ech</b> = je · <b>du</b> = tu · <b>hien</b> = il · <b>si / hatt</b> = elle · <b>mir</b> = nous · <b>Dir</b> = vous · <b>si</b> = ils / elles.",
+      "exemple": "Avec <b>sinn</b> (être) : <b>Ech sinn do.</b> = Je suis là · <b>Du bass do.</b> = Tu es là · <b>Hien ass do.</b> = Il est là.",
       "pieges": [
-        "<b>si</b> peut signifier « elle » ou « ils / elles » : le contexte permet de les distinguer.",
-        "<b>Dir</b> avec une majuscule indique la politesse ; <b>dir</b> sans majuscule désigne plusieurs personnes familièrement."
+        "<b>si</b> peut signifier « elle » ou « ils / elles » ; <b>hatt</b> s'emploie notamment avec un prénom féminin.",
+        "Avec United Zoha : <b>Hie kënnt.</b> mais <b>Vu wou kënnt hien?</b> (n conservé en fin de phrase)."
       ],
       "decouverte": [
         {
           "pronom": "ech",
           "fr": "je",
-          "exemple": "Ech kommen.",
-          "explication": "La personne qui parle : je."
+          "exemple": "Ech sinn do.",
+          "explication": "Je suis là."
         },
         {
           "pronom": "du",
           "fr": "tu",
-          "exemple": "Vu wou kënns du?",
-          "explication": "La personne à qui tu parles familièrement."
+          "exemple": "Du bass do.",
+          "explication": "Tu es là."
         },
         {
           "pronom": "hien",
           "fr": "il",
-          "exemple": "Hie kënnt. · Vu wou kënnt hien?",
-          "explication": "« Il » = hien. Devant « kënnt », le n tombe : hie. En fin de phrase, il reste : hien."
+          "exemple": "Hien ass do.",
+          "explication": "Il est là. Devant K, hien devient hie : Hie kënnt."
         },
         {
           "pronom": "si",
           "fr": "elle (nom féminin)",
-          "exemple": "Si kënnt.",
-          "explication": "Le pronom si reprend un nom féminin, par exemple « d'Fra ». Il sert aussi pour « ils / elles »."
+          "exemple": "Si ass do.",
+          "explication": "Elle est là. Pour reprendre un nom féminin."
         },
         {
           "pronom": "hatt",
           "fr": "elle (prénom féminin)",
-          "exemple": "Hatt heescht Anna.",
-          "explication": "On emploie souvent hatt pour une femme désignée par son prénom."
+          "exemple": "Hatt ass do.",
+          "explication": "Elle est là, notamment pour parler d'Anna."
         },
         {
           "pronom": "mir",
           "fr": "nous",
-          "exemple": "Mir kommen.",
-          "explication": "Nous : plusieurs personnes dont toi."
-        },
-        {
-          "pronom": "dir",
-          "fr": "vous (pluriel familier)",
-          "exemple": "Wou wunnt dir?",
-          "explication": "Vous, pour plusieurs personnes à qui tu t'adresses familièrement."
+          "exemple": "Mir sinn do.",
+          "explication": "Nous sommes là."
         },
         {
           "pronom": "Dir",
-          "fr": "vous (politesse)",
-          "exemple": "Vu wou kommt Dir?",
-          "explication": "Vous poli, pour une ou plusieurs personnes : majuscule."
+          "fr": "vous",
+          "exemple": "Dir sidd do.",
+          "explication": "Vous êtes là."
         },
         {
           "pronom": "si",
           "fr": "ils / elles",
-          "exemple": "Si kommen.",
-          "explication": "Le même mot qu'« elle » : le verbe et le contexte indiquent ici le pluriel."
+          "exemple": "Si sinn do.",
+          "explication": "Ils / Elles sont là."
         }
       ]
     }
@@ -581,29 +575,16 @@
       "label": "CHOISIS LE PRONOM"
     },
     {
-      "id": 3227,
+      "id": 3228,
       "unite": 3,
-      "question": "Vous (plusieurs, familier)",
-      "reponse": "dir",
+      "question": "Vous",
+      "reponse": "Dir",
       "distracteurs": [
         "du",
         "mir",
         "hien"
       ],
       "label": "CHOISIS LE PRONOM"
-    },
-    {
-      "id": 3228,
-      "unite": 3,
-      "question": "Vous (politesse)",
-      "reponse": "Dir",
-      "distracteurs": [
-        "dir",
-        "mir",
-        "du"
-      ],
-      "label": "CHOISIS LE PRONOM",
-      "attention": "La majuscule de <b>Dir</b> indique la politesse."
     },
     {
       "id": 3229,
@@ -1056,14 +1037,53 @@
       ]
     },
     {
+      "type": "tableau",
+      "unite": 3,
+      "rubrique": "regles",
+      "titre": "Les pronoms avec « sinn » (être)",
+      "entetes": [
+        "Français",
+        "Luxembourgeois · Exemple"
+      ],
+      "lignes": [
+        [
+          "Je",
+          "<b>ech</b> · Ech sinn do."
+        ],
+        [
+          "Tu",
+          "<b>du</b> · Du bass do."
+        ],
+        [
+          "Il",
+          "<b>hien</b> · Hien ass do."
+        ],
+        [
+          "Elle",
+          "<b>si / hatt</b> · Si ass do."
+        ],
+        [
+          "Nous",
+          "<b>mir</b> · Mir sinn do."
+        ],
+        [
+          "Vous",
+          "<b>Dir</b> · Dir sidd do."
+        ],
+        [
+          "Ils / Elles",
+          "<b>si</b> · Si sinn do."
+        ]
+      ]
+    },
+    {
       "type": "callout",
       "unite": 3,
       "rubrique": "regles",
-      "titre": "Les pronoms sujets",
+      "titre": "Deux détails à retenir",
       "lignes": [
-        "<b>ech</b> = je · <b>du</b> = tu · <b>hien</b> = il · <b>si</b> = elle / ils / elles.",
-        "<b>mir</b> = nous · <b>dir</b> = vous (pluriel familier) · <b>Dir</b> = vous (politesse).",
-        "<b>hatt</b> s'emploie notamment avec un prénom féminin. Avec United Zoha : <b>Hie kënnt.</b> mais <b>Vu wou kënnt hien?</b>"
+        "<b>si</b> = elle ou ils / elles ; <b>hatt</b> s'emploie notamment avec un prénom féminin.",
+        "Avec United Zoha : <b>Hie kënnt.</b> mais <b>Vu wou kënnt hien?</b>."
       ]
     },
     {
@@ -1097,12 +1117,8 @@
           "nous"
         ],
         [
-          "dir",
-          "vous (pluriel familier)"
-        ],
-        [
           "Dir",
-          "vous (politesse)"
+          "vous"
         ]
       ]
     },
@@ -1113,40 +1129,36 @@
       "titre": "Les pronoms en contexte",
       "items": [
         [
-          "Ech kommen.",
-          "Je viens."
+          "Ech sinn do.",
+          "Je suis là."
         ],
         [
-          "Vu wou kënns du?",
-          "D'où viens-tu ?"
+          "Du bass do.",
+          "Tu es là."
         ],
         [
-          "Hie kënnt.",
-          "Il vient."
+          "Hien ass do.",
+          "Il est là."
         ],
         [
-          "Vu wou kënnt hien?",
-          "D'où vient-il ?"
+          "Si ass do.",
+          "Elle est là."
         ],
         [
-          "Si kënnt.",
-          "Elle vient."
+          "Hatt ass do.",
+          "Elle est là (prénom féminin)."
         ],
         [
-          "Hatt heescht Anna.",
-          "Elle s'appelle Anna."
+          "Mir sinn do.",
+          "Nous sommes là."
         ],
         [
-          "Mir kommen.",
-          "Nous venons."
+          "Dir sidd do.",
+          "Vous êtes là."
         ],
         [
-          "Vu wou kommt Dir?",
-          "D'où venez-vous ? (politesse)"
-        ],
-        [
-          "Si kommen.",
-          "Ils / Elles viennent."
+          "Si sinn do.",
+          "Ils / Elles sont là."
         ]
       ]
     }

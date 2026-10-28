@@ -74,10 +74,24 @@ async function toMp3(wav, destination) {
 }
 async function main() {
   const args = process.argv.slice(2);
-  if (args.some(x => !/^--(?:voice=(mia|mil)|limit=\d+|dry-run)$/.test(x))) throw new Error('Option invalide');
+  if (args.some(x => !/^--(?:voice=(mia|mil)|limit=\d+|only=[A-Za-zÀ-ÿ,]+|dry-run)$/.test(x))) throw new Error('Option invalide');
   const voice = (args.find(x => x.startsWith('--voice=')) || '--voice=mia').split('=')[1];
   const limit = Number((args.find(x => x.startsWith('--limit=')) || '--limit=0').split('=')[1]);
   const state = plan(voice);
+  // Génération ciblée sans remplacement des MP3 ni perte du reste de l'index.
+  const option = args.find(x => x.startsWith('--only='));
+  const filtre = option ? new Set(option.slice(7).split(',').map(phraseCle)) : null;
+  if (filtre) {
+    const connus = new Set(state.items.map(x => phraseCle(x.t)));
+    for (const mot of option.slice(7).split(',')) {
+      const cle = phraseCle(mot);
+      if (!connus.has(cle) && !fs.existsSync(path.join(audioDir, outputFile(mot,voice)))) {
+        state.items.push({t:mot,file:outputFile(mot,voice)});
+        connus.add(cle);
+      }
+    }
+    state.items = state.items.filter(x => filtre.has(phraseCle(x.t)));
+  }
   console.log(state.total+' textes ; '+state.original+' LOD conservés ; '+state.generated+
     ' déjà synthétisés ; '+state.items.length+' MP3 restants.');
   if (args.includes('--dry-run') || !state.items.length) return;

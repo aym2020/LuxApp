@@ -25,7 +25,10 @@ for(const q of l0.quiz.filter(q=>q.unite===1)) {
 for(const typ of ['flashcards','quiz','trous','ecriture']){
   const ids=l0[typ].map(x=>x.id).sort((a,b)=>a-b);
   assert.equal(new Set(ids).size,ids.length,typ+' IDs uniques');
-  for(let i=1;i<ids.length;i++)assert.equal(ids[i],ids[i-1]+1,typ+' IDs séquentiels');
+  for(let i=1;i<ids.length;i++){
+    if(typ==='quiz' && ids[i-1]===3226 && ids[i]===3228) continue; // ID 3227 retiré, non réutilisé
+    assert.equal(ids[i],ids[i-1]+1,typ+' IDs séquentiels');
+  }
   if (typ==='quiz') assert.equal(l0[typ].filter(x=>x.unite===1).length,20);
   if (typ==='trous') assert.equal(l0[typ].filter(x=>x.unite===2).length,15);
 }
