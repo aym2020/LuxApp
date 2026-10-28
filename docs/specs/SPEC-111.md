@@ -145,3 +145,13 @@ Sont **exclus** : sélection par swipe d'affaires de Lux Démasqué, nouveaux pr
 **Critère de sortie :** tests et captures Chromium analysés, puis captures sur Samsung transmises au produit pour approbation. L'implémentation n'équivaut pas à une validation produit ou au lancement public du jeu.
 
 **Ajustement issu de l'inspection des captures :** au format 360 × 740 avec aide FR activée, la première version plaçait le dernier bouton légèrement sous le viewport. La carte réduit désormais **sa seule zone portrait** lorsque la hauteur est au plus 790 px et qu'une traduction est présente (CSS `:has(.lm-carte-infos .lm-fr)`). Les textes/tags ne sont pas tronqués, la cible tactile demeure identique. Un test navigateur vérifie la visibilité des deux commandes avant défilement dans ce format. Les écrans plus hauts et FR désactivé gardent le portrait plus grand.
+
+## 10. Recette et preuves de la livraison
+
+- **Commit d'implémentation :** [`bf617d3`](https://github.com/aym2020/LuxApp/commit/bf617d395af955fb7c6c45004c54af8d69611339), puis **correction d'affichage FR** [`64e28a7`](https://github.com/aym2020/LuxApp/commit/64e28a77fa6a6b8d94cfc53ac49d5e5f6f5756ac).
+- **CI ciblée réussie :** [GitHub Actions #40779802768](https://github.com/aym2020/LuxApp/actions/runs/40779802768) — syntaxe, tests Node du moteur et des contenus, gestes tactiles réels, annulations, multi-touch, boutons, dimensions 320/360/393/430/720 px, FR on/off, petite hauteur et mode mouvement réduit.
+- **Comparatifs visuels :** [artifact `lux-match-swipe-spec111`](https://github.com/aym2020/LuxApp/actions/runs/40779802768/artifacts/12856795650) (avant/après 360 × 740 et 393 × 852, après FR activée). L'ancienne version est capturée en chargeant les véritables ressources JS/CSS du commit de départ, et non par imitation visuelle.
+- **Contrôle visuel de la capture 360 × 740 FR activée :** portrait présent, texte LU/FR et tags complets, deux commandes étiquetées et visibles ; aucune coupure observée sur cette capture Chromium. La recette mobile automatisée valide aussi leurs dimensions et l'absence de débordement horizontal.
+- **Autres écrans, données et sauvegardes :** ni `lux-match-core.js` ni les JSON de contenus, ni `lux-match-3d.js`, ni la visibilité de `JEUX_DISPONIBLES.luxMatch = false` n'ont été modifiés.
+
+**À valider par le produit, sans cocher prématurément les critères :** essai tactile sur **Samsung Android**, lecture des six portraits sur différentes hauteurs et en aide FR, contraste, confort du pouce, feedback en mouvement et éventuelles retouches. Tests CI et captures Chromium ne remplacent pas cette acceptation.
