@@ -63,9 +63,11 @@ with sync_playwright() as p:
     pg.evaluate("ld.partie.dossier.pieces.forEach(x => LuxDemasqueCore.consulter(ld.partie, x)); for (let i = 0; i < 6; i++) LuxDemasqueCore.allerA(ld.partie, i); LuxDemasqueCore.allerA(ld.partie, 3); ldMajDeposition()")
     pg.evaluate("ldPresenter('PIX_KYOTO')"); pg.wait_for_selector('#ld-verdict'); pg.click('#ld-verdict .ld-btn')
     pg.evaluate("ldPresenter('LUXRUN_AOUT')"); pg.wait_for_selector('#ld-verdict'); pg.wait_for_timeout(600)
-    durees = sorted(round(s['duree'], 1) for s in pg.evaluate("window.__audio.sources").__getitem__(slice(avant, None)) if not s['boucle'])
-    for d in (0.7, 0.9, 1.7, 5.5):  # indice (0,75 s), raté, objection, percée
-        assert d in durees, (d, durees)
+    # Comparer les durées réelles avec tolérance : 0,75 s s'arrondit à 0,8 s
+    # en Python, donc une égalité à 0,7 s produit un faux négatif.
+    durees = sorted(s['duree'] for s in pg.evaluate("window.__audio.sources")[avant:] if not s['boucle'])
+    for d in (0.75, 0.9, 1.7, 5.5):  # indice, raté, objection, percée
+        assert any(abs(mesuree - d) <= 0.06 for mesuree in durees), (d, durees)
     assert pg.evaluate(ACTIVES) == 1
     ok('accents : indice (précision), raté, objection + percée ; la boucle continue dessous')
     pg.click('#ld-verdict .ld-btn')
