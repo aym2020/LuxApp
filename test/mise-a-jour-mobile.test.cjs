@@ -97,7 +97,7 @@ test('Plus tard : masque la ligne sans activer ni perdre le contrôle depuis Ré
   s.contexte.api.horsLigneBandeauMaj(s.reg);
   assert.equal(s.nav.children.length, 1, 'une mise à jour reportée ne réouvre pas le bandeau');
   s.contexte.api.horsLigneAppliquerMaj();
-  assert.deepEqual(s.messages[0], { type: 'activer' });
+  assert.equal(s.messages[0].type, 'activer'); // objet provenant du contexte VM
   assert.equal(s.boutons.reglages.disabled, true);
   assert.equal(s.recharges(), 0, 'rechargement uniquement au controllerchange');
 });
