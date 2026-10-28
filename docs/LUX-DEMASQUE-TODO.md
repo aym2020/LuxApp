@@ -2,7 +2,7 @@
 
 **Source de vérité du suivi :** `aym2020/LuxApp` · **branche `main`** · `docs/LUX-DEMASQUE-TODO.md`  
 **Branche du jeu :** `2.1` (ne pas confondre avec `main`, qui ne contient pas encore la version jouable).  
-**Création :** 28 octobre 2026 · **Statut :** 3/48 tâches validées (LD-000, LD-001 et LD-034). La suite de tests dédiée est verte ; les vérifications mobiles des futures refontes restent prévues dans leurs tâches propres. Les fonctions déjà implémentées en D0–D5 sont à améliorer, pas à reconstruire.  
+**Création :** 28 octobre 2026 · **Statut :** 3/49 tâches validées (LD-000, LD-001 et LD-034). La suite de tests dédiée est verte ; les vérifications mobiles des futures refontes restent prévues dans leurs tâches propres. Les fonctions déjà implémentées en D0–D5 sont à améliorer, pas à reconstruire.  
 **PROCHAINE ACTION : `LD-002.01` — RENCONTRE.** Refonte arcade **écran par écran**, une seule livraison puis **validation explicite du joueur** avant de passer à l'écran suivant. Les 12 sous-étapes sont ci-dessous. **LD-000, LD-001 et LD-034 sont validées.**
 
 > **But produit :** jeu d'enquête exigeant, arcade rétro old-school 16/32 bits, un peu pixel art, personnages 3D low-poly PS1, expressions/effets manga, interface cohérente et fluide sur Android. **Ne pas abaisser la difficulté logique** : préserver les vraies déclarations, les leurres, les indices datés, les précisions indispensables et les objections à preuve suffisante. Supprimer les traductions françaises systématiques des dialogues luxembourgeois ; créer un dictionnaire consultable, sans donner les solutions.
@@ -111,6 +111,10 @@
 - [ ] **LD-046 · P0 — Recette Android / responsive.** Tester 320, 360, 393, 430 px, hauteurs courtes, texte agrandi, clavier du Dico, Back, audio, GPU et touches ≥44 px. **Validé si :** aucune troncature, scroll parasite ni perte d'état observée sur vrai Samsung.
 - [ ] **LD-047 · P0 — Tests anti-régression.** Exécuter tests Node/Playwright dédiés, `bash tools/critique.sh rapide` et `bash tools/critique.sh` ; contrôler Lux Match, leçons, progression et cloud. **Validé si :** pas de nouvelle régression et résultats consignés.
 
+## Ajout demandé par le produit — entrée par choix d'affaire (LD-048)
+
+- [ ] **LD-048 · P1 — Choisir une affaire par swipe avant la rencontre.** **Code poussé sur `2.1`, en attente de validation visuelle/tactile du joueur.** À l'entrée depuis le hub Jeux, afficher les trois dossiers rédigés (Milo, Noah, Tom) et une affaire inédite, avec portraits PS1, accès par swipe gauche/droite ou flèches, et bouton explicite « Ouvrir ce dossier ». Navigation **sans création de partie** ; conserver dossiers résolus, moteur, score, sauvegardes et ouverture explicite historique. **Références :** [SPEC 112](https://github.com/aym2020/LuxApp/blob/2.1/docs/specs/SPEC-112.md) · [commit rollback Lux Match](https://github.com/aym2020/LuxApp/commit/c3952c39f449a2e7d63a69487a798552cbb1decd) · [code sélecteur](https://github.com/aym2020/LuxApp/blob/2.1/public/lux-demasque.js) · [CI dédiée](https://github.com/aym2020/LuxApp/actions/runs/40782977156). La suite rapide et complète (10 blocs dont le nouveau test de sélection) sont passées sur ce dernier commit de test ; captures sur Chromium et essai Samsung requis avant de cocher. **La prochaine action officielle LD-002.01 reste inchangée** tant que sa rencontre n'a pas été validée explicitement.
+
 ## Journal d'exécution
 
 | Date | Tâche | Statut | Commit de code sur `2.1` | Tests / recette / réserves |
@@ -127,8 +131,11 @@
 
 | 2026-10-28 | LD-001 | **VALIDÉ — captures archivées et audit UX reproductible** | `4b4ad69` (script captures), `f0f9af6` (workflow), `a8a1068` (mesures + audit), `d1ed547` (index), branche `2.1` | [CI 40648859830](https://github.com/aym2020/LuxApp/actions/runs/40648859830) verte (rapide 3/3, complet 9/9, captures 32/32). [PNG + manifeste](https://github.com/aym2020/LuxApp/actions/runs/40648859830/artifacts/12799130743) : 360/393, 16 états chacun. Audit du code et comparaison visuelle des PNG/Samsung ; 0 overflow horizontal, 0 contrôle actif <44 px ; saturation verticale/DA détaillées dans [rapport LD-001](https://github.com/aym2020/LuxApp/blob/2.1/docs/LUX-DEMASQUE-AUDIT-UI-LD001.md). **Aucune modification gameplay/UI de production** ; corrections à venir par lots. |
 
-| 2026-10-28 | LD-002.01–12 | **Plan de refonte par écran enregistré, 0/12 sous-étapes acceptées** | `f3d1d47` (procédure `2.1`) | Décision produit : une seule livraison d'écran à la fois ; captures avant/après + CI, puis validation explicite par le joueur. Prochaine action LD-002.01 Rencontre. Parent LD-002 et LD-003/004 ouverts, progression globale inchangée à 3/48. |
+| 2026-10-28 | LD-002.01–12 | **Plan de refonte par écran enregistré, 0/12 sous-étapes acceptées** | `f3d1d47` (procédure `2.1`) | Décision produit : une seule livraison d'écran à la fois ; captures avant/après + CI, puis validation explicite par le joueur. Prochaine action LD-002.01 Rencontre. Parent LD-002 et LD-003/004 ouverts, progression globale ajustée à 3/49 (LD-048 ajouté, non validé). |
 
 | 2026-10-28 | LD-002.01 | **Livré sur `2.1` — en attente de validation produit** | `7e56b92` (JS), `567709e` (CSS), `4305684` (test), `3540d00` (rapport) | [Run 40652975646](https://github.com/aym2020/LuxApp/actions/runs/40652975646) vert : rapide/complet + 32 captures. Rencontre 360×740 tient désormais dans 740 px (775 avant), CTA visible et contrôles mobiles passés. Montages avant/après présentés au joueur ; ne pas commencer LD-002.02 avant approbation. |
+
+
+| 2026-10-28 | LD-048 | **Sélecteur d'affaires codé — validation produit en attente** | `c3952c3` (annulation Lux Match), `cbf647d`, `d21f953` (parcours/tests), `e07cbfc` (capturer 3D) | [CI complète verte 40782977156](https://github.com/aym2020/LuxApp/actions/runs/40782977156) ; écran Milo/Noah/Tom + inédit, images mobiles ; avant/après et essai Samsung restent à valider. Sous-étapes LD-002 inchangées. |
 
 **Règle :** après validation d'un ID, cocher la case correspondante et écrire une ligne datée ici. Mettre à jour le compteur de l'en-tête et la `PROCHAINE ACTION`. Les entrées antérieures ne sont pas effacées.
