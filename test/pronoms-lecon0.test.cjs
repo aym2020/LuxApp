@@ -48,10 +48,16 @@ test('Découverte guidée : du premier pronom aux quiz',()=>{
    'le mot et la traduction doivent être centrés indépendamment du bouton audio');
  assert.ok(!markup.includes('dc-pronom-ligne'), 'pas de bouton à côté du mot');
  assert.match(elem('dc-titre').textContent,/pronoms/);
+ assert.equal(elem('dc-compteur').hidden,true,'compteur droit masqué seulement pour les pronoms');
+ assert.equal(elem('dc-etape').textContent,'PRONOM 1 SUR 8');
  for(let i=0;i<8;i++)vm.runInContext('suivantDecouverte()',ctx);
  assert.equal(ctx.start.id,3);
  assert.equal(ctx.start.mode,'unite');
  assert.equal(ctx.start.apres,true);
+ vm.runInContext('demarrerDecouverte(2)',ctx);
+ assert.equal(elem('dc-compteur').hidden,false,'compteur droit conservé dans United Zoha');
+ vm.runInContext('demarrerDecouverte(1)',ctx);
+ assert.equal(elem('dc-compteur').hidden,false,'compteur droit conservé dans la découverte des sons');
 });
 test('Scores isolés, textes UI et scripts versionnés',()=>{
  const p=read('public/progress.js'),pc=read('public/parcours.js'),st=read('public/studio.js');
@@ -59,7 +65,7 @@ test('Scores isolés, textes UI et scripts versionnés',()=>{
  assert.match(pc,/Découvrir les pronoms/);
  assert.match(pc,/8 pronoms à découvrir/);
  assert.match(st,/unitesCoeur\(l\)\.length \+ ' unités préparées/);
- assert.match(read('public/index.html'),/src="decouverte\.js\?v=pronoms03"/);
+ assert.match(read('public/index.html'),/src="decouverte\.js\?v=pronoms04"/);
 });
 
 test('Tous les pronoms du lexique ont un vrai MP3 LOD ou Mia',()=>{
@@ -88,4 +94,16 @@ test('Découverte : bouton audio centré sur sa propre ligne, sans décaler le p
  assert.match(css,/#view-decouverte \.dc-pronom-audio \.bouton-ecouter\.compact\s*\{[^}]*min-width:44px; min-height:44px/);
  assert.doesNotMatch(css,/#view-decouverte \.dc-pronom-ligne/);
  assert.match(read('public/index.html'),/href="style\.css\?v=pronoms03"/);
+});
+
+test('Finitions mobiles : espacement audio, en-tête compact et compteur non redondant',()=>{
+ const css=read('public/pronoms-decouverte.css'),html=read('public/index.html');
+ const js=read('public/decouverte.js');
+ assert.match(js,/compteur\.hidden = pronoms/);
+ assert.match(css,/#view-decouverte \.dc-pronom-audio\s*\{\s*margin-bottom:16px/);
+ assert.match(css,/#view-decouverte #dc-compteur\[hidden\]\s*\{\s*display:none/);
+ assert.match(css,/@media\s*\(max-width:600px\)\s*\{[\s\S]*\.dc-contenant:has\(\.dc-pronom\)\s*\{\s*padding-top:14px/);
+ assert.match(css,/\.dc-contenant:has\(\.dc-pronom\) \.dc-ligne\s*\{\s*margin-top:14px/);
+ assert.match(html,/href="pronoms-decouverte\.css\?v=1"/);
+ assert.match(html,/src="decouverte\.js\?v=pronoms04"/);
 });
