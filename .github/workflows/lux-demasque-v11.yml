@@ -11,6 +11,7 @@ on:
       - 'data/jeux/lux-demasque/**'
       - 'test/lux-demasque*.test.cjs'
       - 'tests/test_lux_demasque*.py'
+      - 'tests/capture_lux_demasque_ld001.py'
       - 'tools/test-lux-demasque.sh'
       - 'tools/critique.sh'
   workflow_dispatch:
@@ -40,6 +41,22 @@ jobs:
         run: bash tools/test-lux-demasque.sh rapide
       - name: Tests complets navigateur et LD-034
         run: bash tools/test-lux-demasque.sh complet
+      - name: Captures de référence LD-001 (360 et 393 px)
+        run: |
+          LUX_TESTS=1 PORT=3456 node server.js > /tmp/lux-ld001-server.log 2>&1 &
+          for n in $(seq 1 50); do
+            curl -fsS http://127.0.0.1:3456/config.js | grep -q 'APP_CONFIG.TESTS = true' && break
+            sleep 0.2
+          done
+          python3 tests/capture_lux_demasque_ld001.py
+      - name: Archiver les captures LD-001
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lux-demasque-ld001
+          path: artifacts/lux-demasque-ld001/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Conserver le contexte du test en cas d'échec
         if: failure()
         run: |
