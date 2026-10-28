@@ -1,0 +1,7 @@
+/* Ajustements du parcours des pronoms sur téléphone : ne touche pas aux exercices. */
+#view-decouverte .dc-pronom-audio { margin-bottom:16px; }
+#view-decouverte #dc-compteur[hidden] { display:none; }
+@media (max-width:600px) {
+  #view-decouverte .dc-contenant:has(.dc-pronom) { padding-top:14px; }
+  #view-decouverte .dc-contenant:has(.dc-pronom) .dc-ligne { margin-top:14px; }
+}
