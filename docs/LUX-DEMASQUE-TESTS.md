@@ -3,7 +3,7 @@
 **Dépôt :** `aym2020/LuxApp` · **Code et tests : branche `2.1`**.  
 **Backlog canonique :** [TODO V1.1 sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md).  
 **Références :** [SPEC 110](specs/SPEC-110.md) · [PLAYBOOK](../PLAYBOOK.md) · [AGENTS](../AGENTS.md).  
-**État au 28/10/2026 :** suite dédiée et contrat LD-034 intégrés aux tests complets. **Correctif LD-034 poussé sur `2.1`** ; huit scénarios de la fonction de navigation ont été exécutés avec des dépendances simulées et réussis (validation ciblée de logique). Les tests Node complets et Chromium/Playwright n'ont pas été exécutés sur le dépôt : ne pas les déclarer verts avant une recette réelle.
+**État au 28/10/2026 :** **suite dédiée VALIDÉE sur GitHub Actions** — [exécution réelle verte n°40648161245](https://github.com/aym2020/LuxApp/actions/runs/40648161245), branche `2.1`, commit `6397a82421a7c343c4c977a78aed67b990475097`. Mode `rapide` : **3/3 blocs verts** ; mode `complet` : **9/9 blocs verts**, dont les **6 parcours Chromium/Playwright** et le contrat LD-034. Le bouton a également été confirmé sur Samsung par l'utilisateur (Milo 0/3 → Noah). Ces tests Chromium n'équivalent **pas** à une certification complète du rendu/performance sur un GPU Samsung.
 
 ## 1. Commandes canoniques
 
@@ -50,12 +50,12 @@ Par défaut, le runner utilise le port **3456** et `LUX_URL=http://127.0.0.1:345
 
 **Correction :** `ldNouveauDossier()` conserve le parcours de jeu en cours le temps de choisir la suite : prochain dossier **rédigé non résolu situé après le courant** dans la rotation, ou **dossier généré** lorsque la rotation est épuisée. Si le courant est généré, une nouvelle graine est tirée ; une collision avec la graine actuelle est corrigée. L'appel explicite `ldRejouer()` et l'entrée depuis le hub `ldChoisirDossier()` restent inchangés. Aucun dossier partiel n'est enregistré dans `luxDemasqueResolus` par « Nouveau dossier ».
 
-**Cas de test :** Milo 1/3 → Noah ; Noah 0/3 → Tom ; Tom 0/3 → généré ; généré 0/3 → rejeu de même seed ; « Nouveau » → seed différente ; sortie vers le hub → Milo toujours disponible. Les scénarios ciblés sur la fonction source ont été vérifiés avec des dépendances simulées (8/8 réussis), mais **le parcours Playwright complet reste à exécuter**.
+**Cas de test :** Milo 1/3 → Noah ; Noah 0/3 → Tom ; Tom 0/3 → généré ; généré 0/3 → rejeu de même seed ; « Nouveau » → seed différente ; sortie vers le hub → Milo toujours disponible. Les scénarios ciblés de fonction ont réussi (8/8) **et le parcours Playwright complet a réussi sur GitHub Actions** (28/10, run 40648161245).
 
 - `bash tools/test-lux-demasque.sh complet` comprend désormais le contrat LD-034.
 - `bash tools/test-lux-demasque.sh acceptation` exécute les tests de base puis **seulement le parcours navigateur LD-034**, pour accélérer les itérations.
 - `bash tools/critique.sh` comprend ce test dans les régressions navigateur.
-- **Validation finale en attente :** exécuter réellement `rapide`, `complet`, et le contrat `acceptation` dans un clone de `2.1`, puis contrôler le bouton sur Samsung. Garder LD-034 ouverte dans la TODO canonique jusqu'à la recette requise.
+- **Validation LD-034 : TERMINÉE.** Les suites `rapide` et `complet` ont été exécutées sur un vrai checkout de `2.1` par GitHub Actions ; le contrat `acceptation` est compris dans `complet` et vert. Le joueur a confirmé Milo 0/3 → Noah sur Samsung. LD-034 est cochée dans la TODO canonique.
 
 Cela évite de « faire passer » le test en vérifiant simplement l'ancien comportement incorrect.
 
@@ -102,7 +102,7 @@ Cela évite de « faire passer » le test en vérifiant simplement l'ancien comp
 
 **Intégration :** `tools/critique.sh` exécute les deux tests Node en mode `rapide` et les contrôles navigateur, dont le smoke mobile et le contrat LD-034, en mode complet. Le runner dédié exécute aussi LD-034 en mode `complet` ou seul côté navigateur en mode `acceptation`.
 
-**Exécution réelle :** tests ciblés de logique exécutés (8/8 passés) sur la version extraite de `2.1` dans un environnement JS isolé ; pas d'exécution Node/Playwright ni de recette Samsung sur le code du dépôt dans cette session. **Prochaine vérification :** exécuter `rapide`, `acceptation` et `complet` depuis un clone de `2.1`, conserver les logs et traiter tout échec avant validation de LD-000 et LD-034.
+**Exécution réelle :** `rapide` et `complet` lancés sur un checkout de `2.1` dans GitHub Actions, **3/3 et 9/9 blocs réussis**, tous les six parcours Playwright verts, dont LD-034. Les cas simulés 8/8 et la confirmation Samsung LD-034 sont aussi archivés. **LD-000 et LD-034 validées.** La suite globale `tools/critique.sh` et les tests manuels exhaustifs d'ergonomie GPU/audio Samsung ne sont pas couverts par ce run dédié.
 
 
 ## 8. Journal LD-034 (28 octobre 2026)
@@ -112,3 +112,17 @@ Cela évite de « faire passer » le test en vérifiant simplement l'ancien comp
 - **Exécution automatisée raccordée :** `tools/test-lux-demasque.sh` (`14a8ef77`) et `tools/critique.sh` (`f10bd609`).
 - **Vérification faite :** compilation JS de la source complète et simulation des huit scénarios de navigation (Milo/Noah/Tom, dossiers déjà résolus, graine identique, entrée sans partie) : 8/8.
 - **Réserve :** suites réelles du dépôt et interactions Android non exécutées dans cette intervention ; cases de la TODO non cochées tant que leur recette n'est pas disponible.
+
+
+## 9. Qualification effective LD-000 — GitHub Actions, 28 octobre 2026
+
+**Workflow versionné :** [`.github/workflows/lux-demasque-v11.yml`](https://github.com/aym2020/LuxApp/blob/2.1/.github/workflows/lux-demasque-v11.yml). Lancé automatiquement sur push affectant le jeu, ses tests et le runner, ou manuellement par `workflow_dispatch` ; il utilise `actions/checkout@v4`, Node 22, Python 3.12, Playwright 1.56.0 et Chromium sur Ubuntu GitHub Actions.
+
+| Exécution | Révision du code | Résultat | Détail |
+|---|---|---|---|
+| [`40647907515`](https://github.com/aym2020/LuxApp/actions/runs/40647907515) | `c4ca9320` | **Échec identifié** | Rapide 3/3, navigateur 5/6 : ancien test audio comparait 0,75 s après `round(..., 1)` à 0,7 s, alors que Python arrondit à 0,8 s |
+| [`40648161245`](https://github.com/aym2020/LuxApp/actions/runs/40648161245) | `6397a824` | **Succès — 9/9 blocs complets** | Syntaxe JS/Python, moteur + générateur, `test_lux_demasque.py`, `test_lux_demasque_3d.py`, `test_lux_demasque_audio.py`, `test_lux_demasque_parcours.py`, `test_lux_demasque_mobile.py`, `test_lux_demasque_acceptation.py` |
+
+**Correction du test audio, sans changer les ressources sonores :** [commit `6397a824`](https://github.com/aym2020/LuxApp/commit/6397a82421a7c343c4c977a78aed67b990475097) — comparer les durées brutes à 0,75/0,9/1,7/5,5 s avec tolérance 0,06 s au lieu de comparer des décimales arrondies à une mauvaise valeur.
+
+**Limites clairement séparées :** ces tests ont été **réellement exécutés par GitHub Actions**, contrairement aux simulations isolées antérieures. Ils ne démontrent pas l'absence de régressions dans **toute** LuxApp : la suite critique transversale complète (`bash tools/critique.sh`) reste un contrôle de livraison séparé. Chromium en CI ne remplace pas l'observation tactile et graphique sur un Samsung réel lors des refontes UI futures.
