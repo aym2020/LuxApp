@@ -1,0 +1,33 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const js=read('public/lux-demasque.js'),css=read('public/lux-demasque.css');
+test('SPEC112 : le hub ouvre la sélection, pas une rencontre automatique',()=>{
+ assert.match(js,/onclick="ldOuvrirSelection\(\)">Jouer/);
+ assert.match(js,/async function ldOuvrirSelection\(\)/);
+ assert.match(js,/function ldRendreSelection\(\)/);
+ assert.match(js,/ld\.donnees\.dossiers\.concat\(ld\.donnees\.dossiersRediges \|\| \[\]\)/);
+ assert.match(js,/AFFAIRE MYSTÈRE/);
+ assert.match(js,/DÉJÀ RÉSOLU/);
+ assert.match(js,/ldEchapper\(npc\.accrocheFr\)/);
+ assert.match(js,/onclick="ldSelectionConfirmer\(\)"/);
+});
+test('SPEC112 : swiper ne crée pas de partie et preserve la génération existante',()=>{
+ const section=js.slice(js.indexOf('function ldSelectionChanger('),js.indexOf('async function ouvrirLuxDemasque('));
+ assert.ok(section.length>1400);
+ assert.match(section,/Math\.abs\(dx\) > 65/);
+ assert.match(section,/pointercancel/);
+ assert.match(section,/lostpointercapture/);
+ assert.match(section,/!e\.isPrimary/);
+ assert.doesNotMatch(section,/LuxDemasqueCore\.nouvellePartie/);
+ assert.match(js,/LuxDemasqueCore\.nouvellePartie\(ld\.donnees, ldChoisirDossier\(dossierId\)\)/);
+ assert.match(js,/function ldNouveauDossier\(\)/);
+});
+test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
+ assert.match(css,/\.ld-jeu\[data-ecran="selection"\]/);
+ assert.match(css,/touch-action:pan-y/);
+ assert.match(css,/prefers-reduced-motion:reduce/);
+ const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
+ for(const x of ['lux-demasque.css?v=11','lux-demasque.js?v=11','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
+});

@@ -54,7 +54,7 @@ executer() {
 echo "Lux Démasqué — $MODE"
 executer syntaxe-js sh -c 'node --check public/lux-demasque-core.js && node --check public/lux-demasque.js && node --check public/lux-demasque-audio.js'
 executer syntaxe-python python3 -c 'import ast, pathlib; paths = [pathlib.Path("tests") / (name + ".py") for name in ("test_lux_demasque", "test_lux_demasque_3d", "test_lux_demasque_audio", "test_lux_demasque_parcours", "test_lux_demasque_mobile", "test_lux_demasque_acceptation")]; [ast.parse(p.read_text(encoding="utf-8"), filename=str(p)) for p in paths]'
-executer moteur-et-generateur node --test test/lux-demasque.test.cjs test/lux-demasque-generateur.test.cjs
+executer moteur-et-generateur node --test test/lux-demasque.test.cjs test/lux-demasque-generateur.test.cjs test/lux-demasque-selection.test.cjs
 
 if [ "$MODE" != "rapide" ]; then
   exiger curl
@@ -85,7 +85,7 @@ if [ "$MODE" != "rapide" ]; then
       if [ "$MODE" = "acceptation" ]; then
         executer contrat-LD-034 python3 tests/test_lux_demasque_acceptation.py
       else
-        for nom in test_lux_demasque test_lux_demasque_3d test_lux_demasque_audio test_lux_demasque_parcours test_lux_demasque_mobile test_lux_demasque_acceptation; do
+        for nom in test_lux_demasque test_lux_demasque_3d test_lux_demasque_audio test_lux_demasque_parcours test_lux_demasque_mobile test_lux_demasque_selection test_lux_demasque_acceptation; do
           executer "$nom" python3 "tests/$nom.py"
         done
       fi
