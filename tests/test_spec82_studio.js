@@ -17,7 +17,7 @@ for(const exemple of l.unites[1].decouverte){
  assert.ok(exemple.forme && exemple.suivant && typeof exemple.garderN === 'boolean');
 }
 assert.match(read('public/parcours.js'),/demarrerDecouverte\(uniteId\)/);
-assert.match(read('public/index.html'),/src="decouverte\.js"/);
+assert.match(read('public/index.html'),/src="decouverte\.js(?:\?v=[^"]+)?"/);
 assert.match(read('public/navigation.js'),/case 'view-decouverte'/);
 assert.equal(l.quiz.filter(q=>q.unite===1).length,20);
 assert.equal(l.quiz.filter(q=>q.unite===3).length,9);
@@ -41,7 +41,7 @@ for(const d of l.mission.defis.filter(d=>d.type==='audio')){
 }
 const script=read('public/studio.js'),mission=read('public/mission.js'),
  parcours=read('public/parcours.js'),html=read('public/index.html');
-assert.match(html,/src="studio\.js"/);
+assert.match(html,/src="studio\.js(?:\?v=[^"]+)?"/);
 assert.ok(html.indexOf('src="mission.js"')<html.indexOf('src="studio.js"'));
 assert.match(mission,/if \(studioActif\(pLecon\)\) return studioOpenMission\(tentative\)/);
 assert.match(parcours,/activiteUnique/);
