@@ -4,8 +4,6 @@
 
 **Dépôt :** aym2020/LuxApp · **Branche cible :** `2.1` · **Statut :** **démo jouable ; bible éditoriale intégrée le 27/10/2026 (lots 1–5, voir « Suivi par lot »)**, textes LU **audités par règles et leçons, non certifiés LOD/natif**, recette Samsung à faire · **Date :** 26 octobre 2026 · **État documentaire :** les sections 12 et 13 sont implémentées dans la mesure décrite au tableau de suivi ; les écarts et points ouverts y sont listés.
 
-> **Proposition UI/UX ciblée :** [SPEC 111 — Refonte du swipe des profils](SPEC-111.md), **implémentée sur `2.1`, validation Samsung en attente** ; conserve les règles de match et les tests gestuels de cette SPEC 109.
-
 > **Banque textuelle unique à exploiter lors des prochains lots :** [Bible éditoriale Lux Match A1.1](../LUX-MATCH-BIBLE-EDITORIALE-A11.md) — personnages, réseaux, 28 scènes candidates, événements, réactions et conclusions, avec identifiants et garde-fous linguistiques. Ce contenu est un **brouillon documenté**, distinct des JSON runtime et **ne remplace pas le code** ; consulter la section 12 pour les priorités et la section 13 pour le planificateur procédural.
 
 ## Démo implémentée (27/10/2026)
