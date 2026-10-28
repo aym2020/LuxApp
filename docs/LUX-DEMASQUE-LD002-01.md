@@ -36,4 +36,21 @@ Sur les références à 360 × 740 et 393 × 852, l'écran Rencontre ressemble d
 - [Test mobile `2.1`](https://github.com/aym2020/LuxApp/blob/2.1/tests/test_lux_demasque_mobile.py)
 - [Exécution CI](https://github.com/aym2020/LuxApp/actions/workflows/lux-demasque-v11.yml)
 
-**Décision produit : en attente.** À mettre à jour dans la TODO après retour utilisateur, avec les éventuelles retouches et captures.
+## Résultats réellement vérifiés en CI
+
+[**GitHub Actions run 40652975646 — succès**](https://github.com/aym2020/LuxApp/actions/runs/40652975646) : tests rapides, tests complets Playwright Chromium et génération des 32 captures (16 états à 360/393) **verts**. [Artifact PNG + manifeste avant/après disponibles](https://github.com/aym2020/LuxApp/actions/runs/40652975646/artifacts/12800002783) pendant leur période de rétention.
+
+| Mesure | Avant LD-001 | Après LD-002.01 | Lecture |
+|---|---:|---:|---|
+| Document à 360 × 740 | 775 px | **740 px** | Fini le dépassement vertical sur ce format |
+| Fiche personnage 360 px | 208 px | **162 px** | −46 px sans couper l'accroche |
+| Début du CTA 360 px | y = 655 | **y = 524** | Accessible dès l'ouverture |
+| Fiche personnage 393 px | 170 px | **163 px** | Cohérence de densité |
+| Début du CTA 393 px | y = 596 | **y = 507** | CTA plus haut |
+| Débordement horizontal | aucun | **aucun** | Vérifié sur les deux captures |
+
+**Revue des visuels :** portrait Milo présent, nom/âge/ville et accroche lisibles, salut LU/FR conservé (suppression des sous-titres prévue plus tard), rendez-vous daté, règles condensées, CTA et accès réseaux présents. Contraste arcade et arrondis rectangulaires appliqués uniquement à la rencontre. Ne pas confondre émulation Chromium et validation tactile sur Samsung ; l'appréciation esthétique finale appartient au joueur.
+
+**Commits :** [HTML JS `7e56b92`](https://github.com/aym2020/LuxApp/commit/7e56b928f3a5a0c7473a5b038d5fced2d87db1f9), [CSS `567709e`](https://github.com/aym2020/LuxApp/commit/567709ee306c0a9c65cf06e54d1ec4f1186d27e3), [test mobile `4305684`](https://github.com/aym2020/LuxApp/commit/430568448fe7c4abdf08d157e4bb7691eb557c34).
+
+**Décision produit : en attente de validation explicite.** Tant que l'utilisateur n'a pas approuvé le rendu, la TODO conserve LD-002.01 non cochée comme prochaine action.
