@@ -43,7 +43,10 @@ function afficherDecouverte() {
   document.getElementById('dc-titre').textContent = titre;
   document.getElementById('dc-soustitre').textContent = phrase;
   document.getElementById('dc-etape').textContent = (sons ? 'SON ' : pronoms ? 'PRONOM ' : 'EXEMPLE ') + (i + 1) + ' SUR ' + items.length;
-  document.getElementById('dc-compteur').textContent = (i + 1) + ' / ' + items.length;
+  const compteur = document.getElementById('dc-compteur');
+  compteur.textContent = (i + 1) + ' / ' + items.length;
+  // Pas de doublon pour les pronoms ; compteur conservé sur les unités 1 et 2.
+  compteur.hidden = pronoms;
   document.getElementById('dc-progression').style.width = Math.round((i + 1) / items.length * 100) + '%';
   document.getElementById('dc-retour').disabled = i === 0;
   document.getElementById('dc-suite').textContent =
