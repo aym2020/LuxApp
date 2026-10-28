@@ -2,8 +2,8 @@
 
 **Source de vérité du suivi :** `aym2020/LuxApp` · **branche `main`** · `docs/LUX-DEMASQUE-TODO.md`  
 **Branche du jeu :** `2.1` (ne pas confondre avec `main`, qui ne contient pas encore la version jouable).  
-**Création :** 28 octobre 2026 · **Statut :** 0/47 tâches validées dans ce backlog. Les fonctions déjà implémentées en D0–D5 sont à améliorer, pas à reconstruire.  
-**PROCHAINE ACTION : `LD-034`** — corriger « Nouveau dossier » après une fin partielle. Ensuite `LD-001`, puis suivre les lots ci-dessous.
+**Création :** 28 octobre 2026 · **Statut :** 0/48 tâches validées dans ce backlog (nouvelle tâche préalable LD-000, validation de la suite de tests). Les fonctions déjà implémentées en D0–D5 sont à améliorer, pas à reconstruire.  
+**PROCHAINE ACTION : `LD-000`** — exécuter et valider la nouvelle suite de tests dédiée sur `2.1`. Ensuite `LD-034`, puis `LD-001` et les lots suivants.
 
 > **But produit :** jeu d'enquête exigeant, arcade rétro old-school 16/32 bits, un peu pixel art, personnages 3D low-poly PS1, expressions/effets manga, interface cohérente et fluide sur Android. **Ne pas abaisser la difficulté logique** : préserver les vraies déclarations, les leurres, les indices datés, les précisions indispensables et les objections à preuve suffisante. Supprimer les traductions françaises systématiques des dialogues luxembourgeois ; créer un dictionnaire consultable, sans donner les solutions.
 
@@ -13,12 +13,16 @@
 
 1. **Lire ce fichier directement sur GitHub, branche `main`, avant de répondre** ; ne pas utiliser le souvenir d'une conversation ou un fichier joint comme statut de référence. Lire aussi `2.1/PLAYBOOK.md`, `2.1/docs/specs/SPEC-110.md` et le code actuel de `2.1` avant toute modification.
 2. Une case `[ ]` = **à faire / pas encore vérifiée** ; `[x]` = **livrée ET vérifiée**. Une CI verte seule ne vaut pas validation Android. Si le code a été modifié par un autre agent, comparer au résultat actuel et faire la recette prévue avant de cocher.
-3. **Ordre de traitement :** d'abord `LD-034` (anomalie fonctionnelle confirmée), ensuite `LD-001` à `LD-033`, puis `LD-035` à `LD-047`, en respectant les dépendances et en repriorisant explicitement tout nouveau défaut bloquant. **La prochaine action est la première tâche non cochée de cet ordre**, sauf blocage documenté. Une tâche importante découverte ultérieurement reçoit un nouvel ID, jamais le recyclage d'un ID.
+3. **Ordre de traitement :** d'abord `LD-000` (validation du banc de tests), puis `LD-034` (anomalie fonctionnelle confirmée), ensuite `LD-001` à `LD-033`, puis `LD-035` à `LD-047`, en respectant les dépendances et en repriorisant explicitement tout nouveau défaut bloquant. **La prochaine action est la première tâche non cochée de cet ordre**, sauf blocage documenté. Une tâche importante découverte ultérieurement reçoit un nouvel ID, jamais le recyclage d'un ID.
 4. Pour chaque tâche réalisée par l'assistant : modifier uniquement les fichiers nécessaires de `2.1`, tester, vérifier l'interface concernée, **puis mettre à jour ce fichier sur `main` dans la même intervention**. Ajouter une ligne au journal avec la date, l'ID, le commit de code, les tests réellement effectués et les vérifications restantes. Si non validée : laisser `[ ]` et noter le blocage.
 5. Ne pas cocher une tâche simplement parce qu'un autre agent dit l'avoir faite. Vérifier les fichiers et tests sur GitHub. Préserver Lux Match, les leçons, le cloud et la progression. Ne pas modifier le moteur de vérité/contradiction pour un simple chantier d'interface.
 6. **Pas de suivi autonome en arrière-plan :** l'actualisation est faite lorsqu'une intervention ou une demande dans la conversation permet de vérifier l'état. Cette TODO est l'index persistant entre conversations.
 
 **Références :** [SPEC 110 (`2.1`)](https://github.com/aym2020/LuxApp/blob/2.1/docs/specs/SPEC-110.md) · [documentation (`2.1`)](https://github.com/aym2020/LuxApp/blob/2.1/docs/README.md) · [moteur](https://github.com/aym2020/LuxApp/blob/2.1/public/lux-demasque-core.js) · [interface](https://github.com/aym2020/LuxApp/blob/2.1/public/lux-demasque.js) · [styles](https://github.com/aym2020/LuxApp/blob/2.1/public/lux-demasque.css) · [contenus](https://github.com/aym2020/LuxApp/blob/2.1/data/jeux/lux-demasque/contenus-v01.json).
+
+## Préalable — Tests avant refonte (LD-000)
+
+- [ ] **LD-000 · P0 — Qualifier la suite de tests Lux Démasqué.** Les scripts de test, le runner dédié et le guide sont enregistrés sur `2.1` : [documentation et commandes](https://github.com/aym2020/LuxApp/blob/2.1/docs/LUX-DEMASQUE-TESTS.md). **À faire :** exécuter réellement `bash tools/test-lux-demasque.sh rapide` puis `bash tools/test-lux-demasque.sh complet` sur un clone actuel de `2.1`, corriger les éventuels échecs de la suite, consigner les résultats et vérifier que la suite critique intègre les tests. **Validé si :** les contrôles réellement exécutés passent, les échecs éventuels sont expliqués, et les limites Chromium vs Samsung sont documentées. Le contrat `bash tools/test-lux-demasque.sh acceptation` est attendu rouge jusqu'à la correction de LD-034 et ne bloque pas LD-000.
 
 ## Lot 0 — Socle de direction artistique (LD-001 à LD-004)
 
@@ -93,5 +97,6 @@
 | Date | Tâche | Statut | Commit de code sur `2.1` | Tests / recette / réserves |
 |---|---|---|---|---|
 | 2026-10-28 | LD-001 à LD-047 | Backlog créé, **aucune tâche cochée** | — | Retour utilisateur et screenshots ; pas d'implémentation de la V1.1 |
+| 2026-10-28 | LD-000 | Banc de tests et guide **livrés, exécution réelle encore à faire** | `3c30dd3`, `e87033e`, `7894c7c`, `91834e9`, `bcaf8c5` (branche `2.1`) | Runner rapide/complet/acceptation ; smoke mobile, contrat rouge LD-034, tests existants raccordés à la suite critique ; impossible de lancer les tests dans l'environnement de cette session (GitHub non clonable, pas de serveur exécuté). LD-000 reste ouverte jusqu'à vérification. |
 
 **Règle :** après validation d'un ID, cocher la case correspondante et écrire une ligne datée ici. Mettre à jour le compteur de l'en-tête et la `PROCHAINE ACTION`. Les entrées antérieures ne sont pas effacées.
