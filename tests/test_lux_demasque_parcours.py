@@ -56,6 +56,8 @@ with sync_playwright() as p:
     b, pg, erreurs_js = ouvrir(p, mobile=True)
     pg.evaluate("ouvrirJeux()")
     pg.click('.ld-jouer-hub')
+    pg.wait_for_selector('#ld-selection-carte')
+    pg.click('.ld-selection-actions .ld-btn-or')
 
     # ── 0 / 3 : conclure tout de suite ──────────────────────────────────────
     commencer(pg, 'Milo, 30 ans')

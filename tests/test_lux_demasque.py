@@ -13,6 +13,8 @@ def ouvrir_dossier(pg):
     pg.evaluate("ouvrirJeux()")
     pg.wait_for_selector('.ld-jouer-hub')
     pg.click('.ld-jouer-hub')
+    pg.wait_for_selector('#ld-selection-carte')
+    pg.click('.ld-selection-actions .ld-btn-or')
     pg.wait_for_selector('.ld-rencontre')
 
 
