@@ -239,7 +239,26 @@ function ldChoisirDossier(dossierId) {
   const dossier = LuxDemasqueCore.composerDossier(ld.donnees, { graine: 1 + Math.floor(Math.random() * 999999) });
   return dossier ? { dossier } : { dossierId: ld.donnees.dossiers[0].id };
 }
-function ldNouveauDossier() { ouvrirLuxDemasque(); }
+// « Nouveau dossier » avance dans la rotation, même si le dossier courant est incomplet.
+// Les dossiers partiellement résolus restent accessibles via « Rejouer » et à la
+// prochaine entrée par le hub : on ne modifie jamais luxDemasqueResolus ici.
+function ldNouveauDossier() {
+  const actuel = ld.partie && ld.partie.dossier;
+  if (!actuel) { ouvrirLuxDemasque(); return; }
+  const ids = ldDossiersRediges();
+  const position = ids.indexOf(actuel.id);
+  if (position >= 0) {
+    const resolus = ldLire('luxDemasqueResolus', []);
+    const suivant = ids.slice(position + 1).find(id => !resolus.includes(id));
+    if (suivant) { ouvrirLuxDemasque(suivant); return; }
+  }
+  // Après le dernier dossier rédigé (ou depuis un dossier généré), créer
+  // une nouvelle graine, différente de l'actuelle même en cas de collision.
+  const maxGraine = 999999;
+  let graine = 1 + Math.floor(Math.random() * maxGraine);
+  if (actuel.genere && graine === actuel.graine) graine = (graine % maxGraine) + 1;
+  ouvrirLuxDemasque(graine);
+}
 function ldRejouer() { const d = ld.partie && ld.partie.dossier; ouvrirLuxDemasque(d && d.genere ? d.graine : d && d.id); }
 
 // ─── Rendu par écran ───────────────────────────────────────────────────────
