@@ -302,17 +302,26 @@ function ldRendreRencontre(box) {
   const p = ld.partie, n = p.npc, d = p.dossier;
   box.innerHTML = ldEntete({ menu: false }) +
     '<div class="ld-rencontre">' +
-      '<p class="ld-tampon">DOSSIER N°' + ldEchapper(d.numero) + (d.genere ? ' · INÉDIT' : '') + '</p>' +
-      '<div class="ld-fiche">' + ldPortrait('ld-portrait-fiche') +
-        '<div class="ld-fiche-texte"><h1>' + ldEchapper(n.nom) + ', ' + n.age + ' ans</h1>' +
+      '<div class="ld-rencontre-entete">' +
+        '<p class="ld-tampon">DOSSIER N°' + ldEchapper(d.numero) + (d.genere ? ' · INÉDIT' : '') + '</p>' +
+        '<span class="ld-rencontre-statut">RENDEZ-VOUS</span>' +
+      '</div>' +
+      '<section class="ld-fiche" aria-label="Profil de ' + ldEchapper(n.nom) + '">' +
+        ldPortrait('ld-portrait-fiche') +
+        '<div class="ld-fiche-texte">' +
+          '<p class="ld-fiche-kicker">À INTERROGER</p>' +
+          '<h1>' + ldEchapper(n.nom) + ', ' + n.age + ' ans</h1>' +
           '<p class="ld-fiche-ville">' + ldEchapper(n.villeFr) + '</p>' +
-          '<p class="ld-fiche-accroche">« ' + ldEchapper(n.accrocheFr) + ' »</p></div></div>' +
+          '<p class="ld-fiche-accroche">« ' + ldEchapper(n.accrocheFr) + ' »</p>' +
+        '</div>' +
+      '</section>' +
       (n.salut ? '<div class="ld-salut"><span class="ld-locuteur">' + ldEchapper(n.nom) + '</span>' + ldReplique(n.salut) + '</div>' : '') +
-      '<p class="ld-rdv">Rendez-vous ' + ldEchapper(d.lieuFr) + ' · <b>' + ldEchapper(d.dateFr) + '</b></p>' +
-      '<ul class="ld-regles">' +
-        '<li><b>Il ment</b> pour t’impressionner… mais pas sur tout.</li>' +
-        '<li>Écoute ses phrases, <b>fais-le préciser</b>, fouille ses <b>réseaux</b>.</li>' +
-        '<li><b>Objection !</b> : choisis la pièce qui contredit sa phrase.</li></ul>' +
+      '<p class="ld-rdv"><span>RENCONTRE</span> ' + ldEchapper(d.lieuFr) + ' <b>' + ldEchapper(d.dateFr) + '</b></p>' +
+      '<section class="ld-briefing" aria-label="Règles de l’enquête">' +
+        '<h2>TA MISSION</h2>' +
+        '<p>Il ment pour t’impressionner… mais pas sur tout.</p>' +
+        '<p>Écoute, fais-le préciser, fouille ses réseaux. Pour une <b>OBJECTION !</b>, choisis une preuve.</p>' +
+      '</section>' +
       '<div class="ld-actions"><button type="button" class="ld-btn ld-btn-or" onclick="ldCommencer()">Commencer le rendez-vous</button>' +
       '<button type="button" class="ld-btn ld-btn-lien" onclick="ldReseaux(\'pix\')">' + ldIcone('reseaux') + ' Voir ses réseaux d’abord</button></div>' +
     '</div>';
