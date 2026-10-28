@@ -39,6 +39,8 @@ test('SPEC111 : CSS limité au swipe et lecture accessible',()=>{
   assert.match(section,/touch-action:pan-y/);
   assert.match(section,/font-size:16px/);
   assert.match(section,/prefers-reduced-motion:reduce/);
+  assert.match(section,/max-height:790px/);
+  assert.match(section,/\.lm-jeu\[data-ecran="swipe"\]:has\(\.lm-carte-infos \.lm-fr\)/);
   assert.match(section,/\.lm-tel-swipe/);
   assert.match(html,/lux-match\.css\?v=22/);
   assert.match(html,/lux-match\.js\?v=29/);

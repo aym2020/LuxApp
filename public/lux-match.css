@@ -640,6 +640,13 @@
   #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte-visuel { height:clamp(150px,30dvh,235px); }
   #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-swipe-app { gap:8px; }
 }
+/* En 360×740 avec l'aide FR, l'image cède un peu de hauteur à la lecture :
+   les deux choix restent visibles, sans supprimer une traduction ni un tag. */
+@media(max-height:790px) {
+  #view-luxmatch .lm-jeu[data-ecran="swipe"]:has(.lm-carte-infos .lm-fr) .lm-carte-visuel {
+    height:clamp(165px,26dvh,225px);
+  }
+}
 @media(prefers-reduced-motion:reduce) {
   #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-carte,
   #view-luxmatch .lm-jeu[data-ecran="swipe"] .lm-rond-icone {

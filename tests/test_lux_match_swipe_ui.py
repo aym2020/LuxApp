@@ -64,6 +64,10 @@ with sync_playwright() as p:
     ctx,page,errors=ouvrir_carte(browser,360,740,fr=True)
     assert page.locator('.lm-carte-infos .lm-fr').count()>=2
     assert page.locator('.lm-carte-infos .lm-tags small').count()>=1
+    # Le contenu FR occupe la place nécessaire mais ne doit pas repousser
+    # les commandes sous le premier écran 360×740 en taille de texte normale.
+    fr_buttons_end=page.evaluate("Math.max(...[...document.querySelectorAll('.lm-swipe-boutons button')].map(e=>e.getBoundingClientRect().bottom))")
+    assert fr_buttons_end<=740+3,fr_buttons_end
     page.screenshot(path=str(DIR/'after-360x740-fr-on.png'),full_page=True)
     before=page.evaluate('lm.partie.indexCarte')
     page.evaluate('lmBasculerAide()')
