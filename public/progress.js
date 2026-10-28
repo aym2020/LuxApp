@@ -342,6 +342,7 @@ function cleUniteVersionnee(leconId, uniteId) {
   // Conserver sans écraser les anciens scores sous leurs clés numériques.
   if (Number(leconId) === 0 && Number(uniteId) === 1) return '0-ecoute-v2';
   if (Number(leconId) === 0 && Number(uniteId) === 2) return '0-n-v2';
+  if (Number(leconId) === 0 && Number(uniteId) === 3) return '0-pronoms-v1';
   return Number(leconId) === 2 && Number(uniteId) === 2 ? '2-definis-v1' : uniteId;
 }
 function getUnitBest(leconId, uniteId) {

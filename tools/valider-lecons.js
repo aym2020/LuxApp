@@ -134,7 +134,7 @@ function verifierV2(f, l) {
     });
   });
 
-  // SPEC 82 : les deux unités sont des activités uniques, jamais du vocabulaire à écrire.
+  // SPEC 82 : les unités de la leçon 0 sont des activités uniques (sans écriture libre).
   if (l.id === 0) {
     const u1 = t => (l[t] || []).filter(x => x.unite === 1).length;
     const u2 = t => (l[t] || []).filter(x => x.unite === 2).length;
@@ -142,6 +142,10 @@ function verifierV2(f, l) {
       erreur(f, 'leçon 0 unité 1 : uniquement 20 quiz audio');
     if (u2('trous') !== 15 || u2('flashcards') || u2('quiz') || u2('ecriture'))
       erreur(f, 'leçon 0 unité 2 : uniquement 15 choix de N');
+    const u3 = t => (l[t] || []).filter(x => x.unite === 3).length;
+    if (!l.unites.some(u => u.id === 3 && u.activiteUnique === 'quiz') ||
+        u3('quiz') !== 9 || u3('flashcards') || u3('trous') || u3('ecriture'))
+      erreur(f, 'leçon 0 unité 3 : 9 quiz de pronoms uniquement');
   }
 
   // Contenu de chaque type.

@@ -576,6 +576,7 @@ function carteUniteHtml(l, u, runIci, prochaine, revision) {
   if (mots.length > 4) apercu += ' · +' + (mots.length - 4);
   if (l.id === 0 && u.id === 1) apercu = '9 sons à découvrir · 20 écoutes LOD';
   if (l.id === 0 && u.id === 2) apercu = '6 exemples guidés · 15 exercices sur le N';
+  if (l.id === 0 && u.id === 3) apercu = '9 pronoms à découvrir · 9 questions';
 
   const label = u.bonus ? 'BONUS' : 'UNITÉ ' + u.id;
   const estProchaine = !!(prochaine && prochaine.id === u.id);
@@ -728,7 +729,7 @@ function openIntro(uniteId) {
   const activiteUnique = studioActif(pLecon) && u.activiteUnique;
   const nbDecouverte = decouvertePour(pLecon, uniteId).length;
   const resumeCompact = studioActif(pLecon) && nbDecouverte
-    ? (uniteId === 1 ? '9 sons à découvrir · 20 écoutes' : '6 exemples · 15 choix sur le N')
+    ? (uniteId === 1 ? '9 sons à découvrir · 20 écoutes' : uniteId === 2 ? '6 exemples · 15 choix sur le N' : '9 pronoms · 9 questions')
     : null;
   html += '<div class="pi-bas"><div class="pi-duree">' +
     (resumeCompact || (
@@ -742,7 +743,7 @@ function openIntro(uniteId) {
   document.getElementById('pi-cta').innerHTML =
     '<button class="pc-btn primary wide big" id="pi-commencer" onclick="startUnite(' + u.id + ')">' +
     (decouvertePour(pLecon,u.id).length
-      ? (u.id === 1 ? 'Découvrir les sons →' : 'Découvrir la règle →')
+      ? (u.id === 1 ? 'Découvrir les sons →' : u.id === 2 ? 'Découvrir la règle →' : 'Découvrir les pronoms →')
       : 'Commencer →') + '</button>';
   showView('view-pintro');
   // L'introduction a son propre conteneur scrollable : window.scrollTo(0,0)

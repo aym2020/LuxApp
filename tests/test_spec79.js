@@ -15,7 +15,7 @@ assert.equal(l0.ecriture.length,0,'pas de traduction écrite');
 assert.equal(l0.quiz.filter(q=>q.unite===2).length,0);
 assert.equal(l0.trous.filter(q=>q.unite===1).length,0);
 assert.equal(l0.trous.filter(q=>q.unite===2).length,15);
-for(const q of l0.quiz) {
+for(const q of l0.quiz.filter(q=>q.unite===1)) {
   assert.equal(q.audioMot,q.reponse);
   assert.ok(audio[q.audioMot],q.audioMot+' dans le dictionnaire LOD');
   assert.ok(fs.existsSync(path.join(root,'public/audio',audio[q.audioMot])),q.audioMot+' : MP3 physique');
@@ -135,6 +135,7 @@ assert.equal(rendu,"d'Mapp",'article élidé sans espace');
 const versionner = new Function('return '+fonction('cleUniteVersionnee')+';')();
 assert.equal(versionner(0,1),'0-ecoute-v2');
 assert.equal(versionner(0,2),'0-n-v2');
+assert.equal(versionner(0,3),'0-pronoms-v1');
 assert.equal(versionner(2,2),'2-definis-v1');
 const ouvrir0 = new Function('localStorage','cleRun','lecons',
   parcoursSource.slice(runStart,runEnd+1)+';return loadRun;'

@@ -14,7 +14,7 @@ function studioMissionHtml(l, conseillee) {
     '<div class="ms-carte-haut"><div class="pc-mini-label pc-gold">' + etiquetteMission(l) +
     '</div><span class="ms-etat">' + escHtml(etatPreparationMission(l)) + '</span></div>' +
     '<div class="ms-titre">' + escHtml(l.mission.titre) + '</div>' +
-    '<div class="ms-bas">' + faites + ' / 2 unités préparées · 8 défis : 3 sons, 3 scripts, 2 formes à compléter</div>' +
+    '<div class="ms-bas">' + faites + ' / ' + unitesCoeur(l).length + ' unités préparées · 8 défis : 3 sons, 3 scripts, 2 formes à compléter</div>' +
     '<div class="ms-actions"><button class="pc-chip" onclick="voirScenario()">Voir les défis</button>' +
     '<button class="pc-chip ms-jouer' + (conseillee && best == null ? ' conseille' : '') +
     '" onclick="openMission()">' + (best != null ? 'Rejouer la mission' : 'Jouer la mission') +
@@ -42,8 +42,8 @@ function studioRenderIntroMission() {
     '<p class="msi-contexte msi-in">' + escHtml(l.mission.contexte) + '</p></div>' +
     '<div class="msi-objectif msi-in"><div class="msi-objectif-titre">À la fin, tu sauras :</div>' +
     '<div class="msi-objectif-txt">' + ICONES.coche + '<span>' + escHtml(l.mission.objectif) + '</span></div></div>' +
-    '<div class="msi-bas msi-in"><div class="msi-info">2 activités pour te préparer (20 écoutes LOD puis 15 choix avec/sans N), ' +
-    'ensuite 8 défis en studio radio. Pas de traduction.</div>' +
+    '<div class="msi-bas msi-in"><div class="msi-info">3 activités pour te préparer : ' +
+    'prononciation, United Zoha et pronoms personnels. Ensuite 8 défis en studio radio.</div>' +
     '<button class="pc-btn primary wide big" onclick="confirmerIntroMission()">Compris · Commencer →</button>' +
     '<button class="pc-btn ghost wide" onclick="voirUnitesDepuisIntro()">Voir les unités</button>' +
     '<button class="pc-btn ghost wide msi-tenter" onclick="tenterDepuisIntro()">Tenter directement les 8 défis</button></div>';

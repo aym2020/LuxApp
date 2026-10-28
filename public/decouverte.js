@@ -1,5 +1,5 @@
 // SPEC 83 — Leçon 0 : découverte libre avant chaque activité, sans note ni autoplay.
-// Unité 1 : 9 graphies + 9 MP3 LOD ; unité 2 : 6 exemples contrastés United Zoha.
+// Unité 1 : sons LOD ; unité 2 : United Zoha ; unité 3 : pronoms personnels.
 // Les exercices et le score n'existent pas encore pendant cette découverte.
 'use strict';
 
@@ -34,18 +34,20 @@ function afficherDecouverte() {
   const ex = items[i];
   if (!ex) return;
   const sons = uniteId === 1;
-  const titre = sons ? 'Découvre les sons' : 'Observe la règle du N';
+  const pronoms = uniteId === 3;
+  const titre = sons ? 'Découvre les sons' : pronoms ? 'Apprends les pronoms' : 'Observe la règle du N';
   const phrase = sons
     ? 'Écoute le son et son exemple. Aucun mot à mémoriser.'
+    : pronoms ? 'Découvre ces petits mots avant de les retrouver dans les prochaines leçons.'
     : 'Compare les formes avec et sans N. Aucun mot à deviner.';
   document.getElementById('dc-titre').textContent = titre;
   document.getElementById('dc-soustitre').textContent = phrase;
-  document.getElementById('dc-etape').textContent = (sons ? 'SON ' : 'EXEMPLE ') + (i + 1) + ' SUR ' + items.length;
+  document.getElementById('dc-etape').textContent = (sons ? 'SON ' : pronoms ? 'PRONOM ' : 'EXEMPLE ') + (i + 1) + ' SUR ' + items.length;
   document.getElementById('dc-compteur').textContent = (i + 1) + ' / ' + items.length;
   document.getElementById('dc-progression').style.width = Math.round((i + 1) / items.length * 100) + '%';
   document.getElementById('dc-retour').disabled = i === 0;
   document.getElementById('dc-suite').textContent =
-    i === items.length - 1 ? (sons ? 'Passer aux 20 écoutes →' : 'Passer aux 15 exercices →') : 'Continuer →';
+    i === items.length - 1 ? (sons ? 'Passer aux 20 écoutes →' : pronoms ? 'Passer aux 9 questions →' : 'Passer aux 15 exercices →') : 'Continuer →';
 
   let html;
   if (sons) {
@@ -58,6 +60,13 @@ function afficherDecouverte() {
         'aria-label="Écouter la prononciation du mot ' + attrHtml(ex.mot) + '">' +
         ICONE_ECOUTER + '<span>Écouter le mot</span></button>' +
       '<p class="dc-note">Tu peux réécouter et continuer quand tu veux.</p>';
+  } else if (pronoms) {
+    html = '<div class="dc-mini">EN LUXEMBOURGEOIS</div>' +
+      '<div class="dc-pronom" lang="lb">' + escHtml(ex.pronom) + '</div>' +
+      '<div class="dc-traduction">' + escHtml(ex.fr) + '</div>' +
+      '<div class="dc-mini">EXEMPLE</div>' +
+      '<div class="dc-exemple" lang="lb">' + escHtml(ex.exemple) + '</div>' +
+      '<p class="dc-explication">' + escHtml(ex.explication) + '</p>';
   } else {
     const espace = ex.forme.indexOf(' ');
     const prefixe = ex.forme.slice(0, espace);

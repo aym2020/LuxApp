@@ -5,9 +5,9 @@
   "couleur": "#a3cc52",
   "instructions": {
     "flashcards": "Cette leçon ne comporte pas de flashcards à mémoriser. Commence par la découverte guidée : 9 sons enregistrés LOD, sans score, à ton rythme.",
-    "quiz": "Unité 1 : observe et écoute 9 exemples LOD, puis reconnais 20 mots entendus. Aucun mot à traduire ou mémoriser.",
+    "quiz": "Unité 1 : observe et écoute 9 exemples LOD, puis reconnais 20 mots entendus. Aucun mot à traduire ou mémoriser. Unité 3 : découvre les pronoms sujets, puis choisis leur traduction dans 9 questions.",
     "trous": "Unité 2 : découvre librement 6 exemples avec ou sans N, puis choisis la bonne forme dans 15 phrases. L'article et la lettre suivante sont indiqués.",
-    "ecriture": "Aucune traduction ni écriture exigée dans la leçon 0. Les découvertes sont libres, les activités suivantes sont des choix multiples."
+    "ecriture": "Aucune écriture libre dans la leçon 0 : prononciation, United Zoha et reconnaissance des pronoms."
   },
   "unites": [
     {
@@ -129,6 +129,77 @@
           "type": "Article défini masculin",
           "garderN": true,
           "explication": "A est une voyelle : le N reste."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titre": "Les pronoms personnels",
+      "activiteUnique": "quiz",
+      "phrase": [
+        "Hie kënnt.",
+        "Il vient."
+      ],
+      "regle": "Les pronoms sujets disent <b>qui</b> fait l'action : <b>ech</b> = je, <b>du</b> = tu, <b>hien</b> = il, <b>si</b> = elle / ils / elles, <b>mir</b> = nous, <b>dir</b> = vous (pluriel), <b>Dir</b> = vous (politesse).",
+      "exemple": "Pour un prénom féminin, on emploie souvent <b>hatt</b>. Avec United Zoha : <b>Hie kënnt.</b> mais <b>Vu wou kënnt hien?</b>",
+      "pieges": [
+        "<b>si</b> peut signifier « elle » ou « ils / elles » : le contexte permet de les distinguer.",
+        "<b>Dir</b> avec une majuscule indique la politesse ; <b>dir</b> sans majuscule désigne plusieurs personnes familièrement."
+      ],
+      "decouverte": [
+        {
+          "pronom": "ech",
+          "fr": "je",
+          "exemple": "Ech kommen.",
+          "explication": "La personne qui parle : je."
+        },
+        {
+          "pronom": "du",
+          "fr": "tu",
+          "exemple": "Vu wou kënns du?",
+          "explication": "La personne à qui tu parles familièrement."
+        },
+        {
+          "pronom": "hien",
+          "fr": "il",
+          "exemple": "Hie kënnt. · Vu wou kënnt hien?",
+          "explication": "« Il » = hien. Devant « kënnt », le n tombe : hie. En fin de phrase, il reste : hien."
+        },
+        {
+          "pronom": "si",
+          "fr": "elle (nom féminin)",
+          "exemple": "Si kënnt.",
+          "explication": "Le pronom si reprend un nom féminin, par exemple « d'Fra ». Il sert aussi pour « ils / elles »."
+        },
+        {
+          "pronom": "hatt",
+          "fr": "elle (prénom féminin)",
+          "exemple": "Hatt heescht Anna.",
+          "explication": "On emploie souvent hatt pour une femme désignée par son prénom."
+        },
+        {
+          "pronom": "mir",
+          "fr": "nous",
+          "exemple": "Mir kommen.",
+          "explication": "Nous : plusieurs personnes dont toi."
+        },
+        {
+          "pronom": "dir",
+          "fr": "vous (pluriel familier)",
+          "exemple": "Wou wunnt dir?",
+          "explication": "Vous, pour plusieurs personnes à qui tu t'adresses familièrement."
+        },
+        {
+          "pronom": "Dir",
+          "fr": "vous (politesse)",
+          "exemple": "Vu wou kommt Dir?",
+          "explication": "Vous poli, pour une ou plusieurs personnes : majuscule."
+        },
+        {
+          "pronom": "si",
+          "fr": "ils / elles",
+          "exemple": "Si kommen.",
+          "explication": "Le même mot qu'« elle » : le verbe et le contexte indiquent ici le pluriel."
         }
       ]
     }
@@ -434,6 +505,117 @@
       "label": "ÉCOUTE ET RECONNAIS",
       "attention": "Son étudié : ZW initial. Aucune traduction à retenir.",
       "audioFichier": "lod/ZWEE2.mp3"
+    },
+    {
+      "id": 3221,
+      "unite": 3,
+      "question": "Je",
+      "reponse": "ech",
+      "distracteurs": [
+        "du",
+        "mir",
+        "si"
+      ],
+      "label": "CHOISIS LE PRONOM"
+    },
+    {
+      "id": 3222,
+      "unite": 3,
+      "question": "Tu",
+      "reponse": "du",
+      "distracteurs": [
+        "ech",
+        "dir",
+        "hien"
+      ],
+      "label": "CHOISIS LE PRONOM"
+    },
+    {
+      "id": 3223,
+      "unite": 3,
+      "question": "Il",
+      "reponse": "hien",
+      "distracteurs": [
+        "du",
+        "hatt",
+        "mir"
+      ],
+      "label": "CHOISIS LE PRONOM",
+      "attention": "« Il » = <b>hien</b>. Devant « kënnt », le n tombe : <b>hie</b>."
+    },
+    {
+      "id": 3224,
+      "unite": 3,
+      "question": "Elle (nom féminin)",
+      "reponse": "si",
+      "distracteurs": [
+        "hien",
+        "mir",
+        "du"
+      ],
+      "label": "CHOISIS LE PRONOM"
+    },
+    {
+      "id": 3225,
+      "unite": 3,
+      "question": "Elle (prénom féminin)",
+      "reponse": "hatt",
+      "distracteurs": [
+        "hien",
+        "ech",
+        "du"
+      ],
+      "label": "CHOISIS LE PRONOM",
+      "attention": "<b>hatt</b> s'emploie notamment pour une personne désignée par un prénom féminin."
+    },
+    {
+      "id": 3226,
+      "unite": 3,
+      "question": "Nous",
+      "reponse": "mir",
+      "distracteurs": [
+        "ech",
+        "du",
+        "dir"
+      ],
+      "label": "CHOISIS LE PRONOM"
+    },
+    {
+      "id": 3227,
+      "unite": 3,
+      "question": "Vous (plusieurs, familier)",
+      "reponse": "dir",
+      "distracteurs": [
+        "du",
+        "mir",
+        "hien"
+      ],
+      "label": "CHOISIS LE PRONOM"
+    },
+    {
+      "id": 3228,
+      "unite": 3,
+      "question": "Vous (politesse)",
+      "reponse": "Dir",
+      "distracteurs": [
+        "dir",
+        "mir",
+        "du"
+      ],
+      "label": "CHOISIS LE PRONOM",
+      "attention": "La majuscule de <b>Dir</b> indique la politesse."
+    },
+    {
+      "id": 3229,
+      "unite": 3,
+      "question": "Ils / Elles",
+      "reponse": "si",
+      "distracteurs": [
+        "hatt",
+        "hien",
+        "dir"
+      ],
+      "label": "CHOISIS LE PRONOM"
     }
   ],
   "trous": [
@@ -870,6 +1052,101 @@
         [
           "Dat ass den Auto.",
           "Avec N devant A."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "unite": 3,
+      "rubrique": "regles",
+      "titre": "Les pronoms sujets",
+      "lignes": [
+        "<b>ech</b> = je · <b>du</b> = tu · <b>hien</b> = il · <b>si</b> = elle / ils / elles.",
+        "<b>mir</b> = nous · <b>dir</b> = vous (pluriel familier) · <b>Dir</b> = vous (politesse).",
+        "<b>hatt</b> s'emploie notamment avec un prénom féminin. Avec United Zoha : <b>Hie kënnt.</b> mais <b>Vu wou kënnt hien?</b>"
+      ]
+    },
+    {
+      "type": "vocab",
+      "unite": 3,
+      "rubrique": "lexique",
+      "titre": "Pronoms personnels",
+      "items": [
+        [
+          "ech",
+          "je"
+        ],
+        [
+          "du",
+          "tu"
+        ],
+        [
+          "hien",
+          "il"
+        ],
+        [
+          "si",
+          "elle / ils / elles"
+        ],
+        [
+          "hatt",
+          "elle (prénom féminin)"
+        ],
+        [
+          "mir",
+          "nous"
+        ],
+        [
+          "dir",
+          "vous (pluriel familier)"
+        ],
+        [
+          "Dir",
+          "vous (politesse)"
+        ]
+      ]
+    },
+    {
+      "type": "phrases",
+      "unite": 3,
+      "rubrique": "phrases",
+      "titre": "Les pronoms en contexte",
+      "items": [
+        [
+          "Ech kommen.",
+          "Je viens."
+        ],
+        [
+          "Vu wou kënns du?",
+          "D'où viens-tu ?"
+        ],
+        [
+          "Hie kënnt.",
+          "Il vient."
+        ],
+        [
+          "Vu wou kënnt hien?",
+          "D'où vient-il ?"
+        ],
+        [
+          "Si kënnt.",
+          "Elle vient."
+        ],
+        [
+          "Hatt heescht Anna.",
+          "Elle s'appelle Anna."
+        ],
+        [
+          "Mir kommen.",
+          "Nous venons."
+        ],
+        [
+          "Vu wou kommt Dir?",
+          "D'où venez-vous ? (politesse)"
+        ],
+        [
+          "Si kommen.",
+          "Ils / Elles viennent."
         ]
       ]
     }
