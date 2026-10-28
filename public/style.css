@@ -1284,11 +1284,48 @@ body.no-scroll { overflow: hidden; }
 .hl-bouton { align-self: flex-start; min-height: var(--toucher); padding: 0 var(--sp-4); border-radius: var(--r); border: 1px solid var(--accent);
   background: transparent; color: var(--accent); font: 700 var(--fs-sec) var(--font); cursor: pointer; }
 .hl-bouton:disabled { border-color: var(--bord-1); color: var(--muted); cursor: default; }
-.hl-maj { position: fixed; z-index: 10000; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom)); transform: translateX(-50%);
-  display: flex; align-items: center; gap: 10px; width: max-content; max-width: calc(100vw - 24px); padding: 8px 8px 8px 14px;
-  border-radius: 99px; background: var(--surface-1); border: 1px solid var(--accent); box-shadow: 0 8px 24px rgba(0,0,0,.45);
-  font: 600 13px var(--font); color: var(--text, #f5f0e8); }
-.hl-maj button { min-height: 36px; padding: 0 14px; border: 0; border-radius: 99px; background: var(--accent); color: #251b0d; font: 800 13px var(--font); cursor: pointer; }
+/* Mise à jour PWA : ligne intégrée dans la nav, jamais superposée au contenu.
+   La hauteur mesurée inclut le cas du texte à 200 % / écran 320 px. */
+body.avec-nav.hl-maj-visible {
+  padding-bottom: calc(76px + env(safe-area-inset-bottom) + var(--hl-maj-hauteur, 60px));
+}
+.nav-bas .hl-maj {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 6px;
+  min-width: 0; min-height: 54px; padding: 3px 2px 7px;
+  border-bottom: 1px solid var(--bord-1); color: var(--text, #f5f0e8);
+}
+.nav-bas .hl-maj-texte {
+  flex: 1; min-width: 0; font: 600 13px/1.25 var(--font);
+  color: var(--muted-strong); overflow-wrap: normal;
+}
+.nav-bas .hl-maj button {
+  flex: none; min-height: 44px; font-family: var(--font); cursor: pointer;
+}
+.nav-bas .hl-maj .hl-maj-action {
+  padding: 0 11px; border: 1px solid var(--accent); border-radius: 12px;
+  background: rgba(245,207,77,.09); color: var(--accent);
+  font-size: 13px; font-weight: 750; white-space: nowrap;
+}
+.nav-bas .hl-maj .hl-maj-fermer {
+  width: 44px; padding: 0; background: transparent; border: 0;
+  color: var(--muted-strong); font-size: 24px; line-height: 1;
+}
+.nav-bas .hl-maj button:focus-visible, .hl-version button:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.nav-bas .hl-maj button:disabled, .hl-version button:disabled { opacity: .5; cursor: default; }
+.hl-version[hidden] { display: none; }
+.hl-version {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 14px; padding: 10px 12px; border-radius: 12px;
+  background: var(--surface-1); border: 1px solid var(--bord-1);
+}
+.hl-version span { flex: 1; min-width: 110px; color: var(--muted-strong); font-size: 13px; }
+.hl-version button {
+  flex: none; min-height: 44px; padding: 0 12px; border-radius: 10px;
+  border: 1px solid var(--accent); background: transparent; color: var(--accent);
+  font: 700 13px var(--font); cursor: pointer;
+}
 
 /* ── MISSION LISIBLE (S4) ─────────────────────────────────────────────────── */
 .ms-bulle-tete { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); }

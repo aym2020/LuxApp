@@ -45,23 +45,66 @@ function horsLigneEnregistrer() {
   });
 }
 
-// Bandeau « Nouvelle version » : la mise à jour ne s'applique qu'à la demande
-// (ou au prochain lancement), jamais au milieu d'une leçon ou d'une partie.
+// Nouvelle version prête : une ligne DANS la navigation basse, pas un
+// panneau flottant au-dessus des leçons ou des boutons d'exercice.
+// « Plus tard » masque la ligne pour cette ouverture ; l'action reste dans
+// Réglages > Hors ligne. Aucun changement de progression ni de logique SW.
 let horsLigneMajDemandee = false;
+let horsLigneMajRegistration = null;
+let horsLigneMajMasquee = false;
+
+function horsLigneAppliquerMaj() {
+  if (!horsLigneMajRegistration || horsLigneMajDemandee) return;
+  horsLigneMajDemandee = true;
+  ['hl-maj-action', 'hl-version-bouton'].forEach(id => {
+    const bouton = document.getElementById(id);
+    if (bouton) bouton.disabled = true;
+  });
+  if (horsLigneMajRegistration.waiting) {
+    horsLigneMajRegistration.waiting.postMessage({ type: 'activer' });
+  } else {
+    location.reload();
+  }
+}
+
 function horsLigneBandeauMaj(reg) {
-  if (document.getElementById('hl-maj')) return;
+  horsLigneMajRegistration = reg;
+  // Un report ne doit jamais faire perdre l'accès à la mise à jour.
+  const reglage = document.getElementById('hl-version');
+  if (reglage) reglage.hidden = false;
+  if (horsLigneMajMasquee || document.getElementById('hl-maj')) return;
+  const nav = document.getElementById('nav-bas');
+  if (!nav) return;
   const bandeau = document.createElement('div');
   bandeau.id = 'hl-maj';
   bandeau.className = 'hl-maj';
   bandeau.setAttribute('role', 'status');
-  bandeau.innerHTML = '<span>Nouvelle version de LuxApp prête</span><button type="button">Mettre à jour</button>';
-  bandeau.querySelector('button').addEventListener('click', () => {
-    horsLigneMajDemandee = true;
-    bandeau.querySelector('button').disabled = true;
-    if (reg.waiting) reg.waiting.postMessage({ type: 'activer' });
-    else location.reload();
+  bandeau.innerHTML = '<span class="hl-maj-texte">Nouvelle version prête</span>' +
+    '<button id="hl-maj-action" class="hl-maj-action" type="button">Mettre à jour</button>' +
+    '<button class="hl-maj-fermer" type="button" aria-label="Plus tard" title="Plus tard">×</button>';
+  bandeau.querySelector('.hl-maj-action').addEventListener('click', horsLigneAppliquerMaj);
+
+  let observateur = null;
+  bandeau.querySelector('.hl-maj-fermer').addEventListener('click', () => {
+    horsLigneMajMasquee = true;
+    if (observateur) observateur.disconnect();
+    bandeau.remove();
+    document.body.classList.remove('hl-maj-visible');
+    document.body.style.removeProperty('--hl-maj-hauteur');
   });
-  document.body.appendChild(bandeau);
+  nav.prepend(bandeau);
+  document.body.classList.add('hl-maj-visible');
+  // À 320 px ou avec une police agrandie, la ligne peut grandir :
+  // réserver sa hauteur réelle sous le contenu défilant.
+  const ajuster = () => {
+    const h = Math.ceil(bandeau.getBoundingClientRect().height);
+    if (h > 0) document.body.style.setProperty('--hl-maj-hauteur', h + 'px');
+  };
+  if (typeof ResizeObserver === 'function') {
+    observateur = new ResizeObserver(ajuster);
+    observateur.observe(bandeau);
+  }
+  ajuster();
 }
 
 function horsLigneLireEtat() {

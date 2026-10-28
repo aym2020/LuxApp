@@ -18,6 +18,8 @@ jobs:
         run: node --test test/accueil-v21.test.cjs test/exercices-v21.test.cjs test/exercices-etats-v21.test.cjs
       - name: Pré-requis lexicaux — leçon 7 (Mot caché avant exercices)
         run: node tools/audit-lexique-unites.cjs --lesson 7 --strict && node --test test/lexique-unites-07.test.cjs
+      - name: PWA — bandeau non bloquant, mise à jour et report
+        run: node --test test/mise-a-jour-mobile.test.cjs test/hors-ligne.test.cjs
       - name: Deux textes A1.2 expression écrite — structure et correction
         run: node --test test/expression-ecrite-v21.test.cjs
       - name: Portail connexion — affichage du mot de passe et navigation
