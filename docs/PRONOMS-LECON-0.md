@@ -39,3 +39,13 @@ Génération Mia terminée sur `2.1` (commit audio `ab76d57`) : fichiers physiqu
 ## Alignement de la découverte guidée — 28 octobre 2026
 
 Sur les captures Samsung, la disposition initiale `[hien] [haut-parleur]` centrait **le groupe entier**, et donc déplaçait chaque pronom selon sa longueur. Le mot et sa traduction sont désormais deux lignes centrées autonomes. Le bouton de prononciation commun est placé dans **une troisième ligne centrée sous la traduction**, avant « EXEMPLE », avec une cible tactile de **44 × 44 px** et un style secondaire discret. Aucun changement de moteur audio, de prononciation, de données ou de progression. La disposition garde la même largeur même si un son est indisponible ; la cible laisse la place à la typographie agrandie. Recette à refaire sur Samsung pour les huit cartes, notamment **hien / Dir / si**, police agrandie et retour arrière. Tests Node dans `test/pronoms-lecon0.test.cjs` exécutés par la CI.
+
+## Finitions UX de la découverte (28 octobre 2026)
+
+Après la validation visuelle de l'alignement du mot, trois retouches ciblées ont été apportées à l'unité 3 :
+
+- **Compteur unique** : seule la mention « PRONOM 1 SUR 8 » est affichée ; « 1 / 8 » est masqué sans modifier la valeur ni la barre de progression. Les unités 1 et 2 conservent leur double affichage actuel.
+- **Respiration de l'exemple** : le bouton audio reste sous la traduction, avec sa cible tactile inchangée de 44 × 44 px, et possède désormais 16 px d'espace inférieur au lieu de 4 px.
+- **En-tête mobile allégé** : sur une largeur maximale de 600 px, la zone qui contient un pronom réduit sa marge supérieure et l'espace avant le compteur à 14 px. Le sélecteur :has(.dc-pronom) évite de modifier les écrans Sons et United Zoha.
+
+Ces deux derniers ajustements sont regroupés dans `public/pronoms-decouverte.css`, chargé après `style.css`, pour éviter d'étendre les surcharges de la feuille générale. Le cache du script `decouverte.js` est incrémenté. Les fichiers audio, le score, le retour et le CTA ne sont pas modifiés. Tests statiques/DOM dans `test/pronoms-lecon0.test.cjs` via GitHub Actions ; validation visuelle Samsung à renouveler, notamment à 320 px et avec police système agrandie.
