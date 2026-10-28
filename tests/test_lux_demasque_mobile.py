@@ -47,6 +47,14 @@ with sync_playwright() as p:
         pg.wait_for_selector('.ld-rencontre')
         sans_debordement(pg, 'rencontre')
         zone_tactile(pg, '.ld-rencontre .ld-btn-or', 'rencontre')
+        # LD-002.01 : la fiche et les règles restent disponibles, sans tronquer
+        # le bouton principal aux deux formats ciblés pour la revue produit.
+        assert pg.locator('.ld-rencontre .ld-fiche-kicker').count() == 1
+        assert pg.locator('.ld-rencontre .ld-briefing').count() == 1
+        if largeur in (360, 393):
+            bas_cta = pg.locator('.ld-rencontre .ld-btn-or').bounding_box()
+            assert bas_cta['y'] + bas_cta['height'] <= hauteur - 10, (
+                'CTA hors champ', largeur, hauteur, bas_cta)
         # Une introduction peut défiler naturellement ; le démarrage doit rester atteignable.
         pg.click('.ld-rencontre .ld-btn-or')
         pg.wait_for_selector('#ld-declaration')
