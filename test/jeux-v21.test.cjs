@@ -495,7 +495,8 @@ test('Jeux : blocage explicite, progression 0/4 puis 3/4, une leçon à commence
  ctx.lecons[0].flashcards.push(card('boîte','Këscht'));
  vm.runInContext('renderJeuxHub()',ctx);
  code=element('jeux-hub').innerHTML;
- assert.match(code,/4 mots disponibles/);
+ // Tester le texte visible (le nombre est encadré de <strong>), et non le HTML brut.
+ assert.match(code.replace(/<[^>]*>/g,''),/4 mots disponibles/);
  assert.match(code,/onclick="demarrerSurvie\(\)"/);
  assert.doesNotMatch(code,/jeux-deblocage-barre/);
 });
