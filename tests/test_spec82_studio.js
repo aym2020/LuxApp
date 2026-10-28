@@ -54,7 +54,7 @@ assert.match(read('public/progress.js'),/0-n-v2/);
 const elements=new Map();
 function el(id){
  if(!elements.has(id))elements.set(id,{
-  innerHTML:'',textContent:'',style:{},scrollTop:0,
+  innerHTML:'',textContent:'',style:{},scrollTop:0,querySelector(){return null;},
   classList:{add(){},remove(){}},
   insertAdjacentHTML(_,value){this.innerHTML+=value;}
  });
