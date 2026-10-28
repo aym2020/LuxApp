@@ -61,6 +61,8 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 ## Jeu — Lux Démasque (SPEC 110, implémenté sur 2.1)
 
+**Refonte graphique arcade écran par écran (LD-002)** : [procédure de validation produit](LUX-DEMASQUE-VALIDATION-ECRANS.md) — 12 sous-étapes, une seule livraison visuelle à la fois, captures avant/après et accord utilisateur explicite avant de passer à la suivante. La [TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) est l'unique source des statuts ; prochaine action LD-002.01 (Rencontre).
+
 
 **Tests de Lux Démasqué V1.1 :** [suite dédiée, commandes et procédure Android](LUX-DEMASQUE-TESTS.md) — `bash tools/test-lux-demasque.sh rapide|complet|acceptation` ; **CI réelle verte le 28/10/2026** (3/3 rapide, 9/9 complet, dont LD-034). **Audit de référence LD-001 :** [diagnostic visuel et mesures 360/393 px](LUX-DEMASQUE-AUDIT-UI-LD001.md) ; [32 captures Chromium archivées dans GitHub Actions](https://github.com/aym2020/LuxApp/actions/runs/40648859830/artifacts/12799130743).
 
