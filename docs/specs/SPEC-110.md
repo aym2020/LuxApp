@@ -10,6 +10,9 @@
 > **Séparation obligatoire :** Lux Démasque est un **mini-jeu distinct de Lux Match** (SPEC 109), même si l'on mutualise des briques techniques. Lux Match reste jouable et sa progression, ses données, ses dialogues et ses parcours ne doivent pas être altérés par ce nouveau jeu. Les propositions abandonnées de Lux Match (LuxTrad, saisie libre, nouveaux personnages joueurs) ne sont pas des dépendances de Lux Démasque.
 
 ## 1. Vision : « tous les prétendants sont des disquetteurs »
+**Suite de tests V1.1 :** [guide et matrice de couverture](../LUX-DEMASQUE-TESTS.md). Lancer `bash tools/test-lux-demasque.sh rapide` puis `complet` avant chaque refonte ; `acceptation` porte le contrat LD-034 actuellement non conforme. Ne pas déclarer la suite validée sans exécution réelle.
+
+
 
 **Pitch :** tu rencontres un homme fictif qui cherche à t'impressionner. Il déroule une courte déposition en luxembourgeois. Ses réseaux en français, les questions que tu lui poses et ses propres affirmations renferment les éléments pour prouver ses **disquettes** — des mensonges crédibles, motivés, et pas de simples erreurs de culture générale. Tu peux réécouter ses phrases, lui demander des précisions et déclencher une objection avec **la bonne preuve**. À la fin, tu dois avoir retrouvé **tous** ses mensonges.
 
