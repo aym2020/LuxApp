@@ -2,8 +2,8 @@
 
 **Source de vérité du suivi :** `aym2020/LuxApp` · **branche `main`** · `docs/LUX-DEMASQUE-TODO.md`  
 **Branche du jeu :** `2.1` (ne pas confondre avec `main`, qui ne contient pas encore la version jouable).  
-**Création :** 28 octobre 2026 · **Statut :** 1/48 tâches validées (LD-034). LD-000, qualification des tests automatisés, reste une responsabilité technique distincte. Les fonctions déjà implémentées en D0–D5 sont à améliorer, pas à reconstruire.  
-**PROCHAINE ACTION : `LD-000`** — exécuter et qualifier nous-mêmes la suite de tests sur `2.1` (aucune action du joueur requise). Ensuite `LD-001`, puis les lots suivants. **LD-034 est validée.**
+**Création :** 28 octobre 2026 · **Statut :** 2/48 tâches validées (LD-000 et LD-034). La suite de tests dédiée est verte ; les vérifications mobiles des futures refontes restent prévues dans leurs tâches propres. Les fonctions déjà implémentées en D0–D5 sont à améliorer, pas à reconstruire.  
+**PROCHAINE ACTION : `LD-001`** — audit visuel des écrans de Lux Démasqué pour préparer la refonte arcade old-school/pixel art. **LD-000 et LD-034 sont validées.**
 
 > **But produit :** jeu d'enquête exigeant, arcade rétro old-school 16/32 bits, un peu pixel art, personnages 3D low-poly PS1, expressions/effets manga, interface cohérente et fluide sur Android. **Ne pas abaisser la difficulté logique** : préserver les vraies déclarations, les leurres, les indices datés, les précisions indispensables et les objections à preuve suffisante. Supprimer les traductions françaises systématiques des dialogues luxembourgeois ; créer un dictionnaire consultable, sans donner les solutions.
 
@@ -13,7 +13,7 @@
 
 1. **Lire ce fichier directement sur GitHub, branche `main`, avant de répondre** ; ne pas utiliser le souvenir d'une conversation ou un fichier joint comme statut de référence. Lire aussi `2.1/PLAYBOOK.md`, `2.1/docs/specs/SPEC-110.md` et le code actuel de `2.1` avant toute modification.
 2. Une case `[ ]` = **à faire / pas encore vérifiée** ; `[x]` = **livrée ET vérifiée**. Une CI verte seule ne vaut pas validation Android. Si le code a été modifié par un autre agent, comparer au résultat actuel et faire la recette prévue avant de cocher.
-3. **Ordre de traitement :** `LD-034` est **validée**. Prochaine étape technique `LD-000` (exécution du banc de tests par l'assistant), puis `LD-001` à `LD-033`, puis `LD-035` à `LD-047`, en respectant les dépendances et en repriorisant explicitement tout nouveau défaut bloquant. **La prochaine action est la première tâche non cochée de cet ordre**, sauf blocage documenté. Une tâche importante découverte ultérieurement reçoit un nouvel ID, jamais le recyclage d'un ID.
+3. **Ordre de traitement :** `LD-000` et `LD-034` sont **validées** (CI dédiée verte, confirmation Samsung du correctif LD-034). Continuer par `LD-001` à `LD-033`, puis `LD-035` à `LD-047`, en respectant les dépendances et en repriorisant explicitement tout nouveau défaut bloquant. **La prochaine action est la première tâche non cochée de cet ordre**, sauf blocage documenté. Une tâche importante découverte ultérieurement reçoit un nouvel ID, jamais le recyclage d'un ID.
 4. Pour chaque tâche réalisée par l'assistant : modifier uniquement les fichiers nécessaires de `2.1`, tester, vérifier l'interface concernée, **puis mettre à jour ce fichier sur `main` dans la même intervention**. Ajouter une ligne au journal avec la date, l'ID, le commit de code, les tests réellement effectués et les vérifications restantes. Si non validée : laisser `[ ]` et noter le blocage.
 5. Ne pas cocher une tâche simplement parce qu'un autre agent dit l'avoir faite. Vérifier les fichiers et tests sur GitHub. Préserver Lux Match, les leçons, le cloud et la progression. Ne pas modifier le moteur de vérité/contradiction pour un simple chantier d'interface.
 6. **Pas de suivi autonome en arrière-plan :** l'actualisation est faite lorsqu'une intervention ou une demande dans la conversation permet de vérifier l'état. Cette TODO est l'index persistant entre conversations.
@@ -22,7 +22,7 @@
 
 ## Préalable — Tests avant refonte (LD-000)
 
-- [ ] **LD-000 · P0 — Qualifier la suite de tests Lux Démasqué.** Les scripts de test, le runner dédié et le guide sont enregistrés sur `2.1` : [documentation et commandes](https://github.com/aym2020/LuxApp/blob/2.1/docs/LUX-DEMASQUE-TESTS.md). **À faire :** exécuter réellement `bash tools/test-lux-demasque.sh rapide` puis `bash tools/test-lux-demasque.sh complet` sur un clone actuel de `2.1`, corriger les éventuels échecs de la suite, consigner les résultats et vérifier que la suite critique intègre les tests. **Validé si :** les contrôles réellement exécutés passent, les échecs éventuels sont expliqués, et les limites Chromium vs Samsung sont documentées. Le contrat `bash tools/test-lux-demasque.sh acceptation` est attendu rouge jusqu'à la correction de LD-034 et ne bloque pas LD-000.
+- [x] **LD-000 · P0 — Qualifier la suite de tests Lux Démasqué.** **VALIDÉ le 28/10/2026 par exécution réelle GitHub Actions** : `rapide` **3/3 blocs verts**, `complet` **9/9 blocs verts**, dont six parcours Playwright Chromium, le moteur + 1 000 graines et le contrat LD-034. Premier run : échec de test audio dû à un arrondi incorrect, corrigé dans [`6397a824`](https://github.com/aym2020/LuxApp/commit/6397a82421a7c343c4c977a78aed67b990475097) sans modifier l'audio du jeu. Preuve : [run `40648161245`](https://github.com/aym2020/LuxApp/actions/runs/40648161245). Les tests Android graphiques/tactiles de chaque future refonte et la suite critique transversale restent des contrôles distincts.
 
 ## Lot 0 — Socle de direction artistique (LD-001 à LD-004)
 
@@ -103,5 +103,7 @@
 | 2026-10-28 | LD-034 | **Recette manuelle Samsung : 0/3 → Noah confirmé par l'utilisateur et captures** ; validation globale toujours en attente | `1734b52` (`2.1`) | Capture du bilan Milo 0/3, puis capture de la rencontre Noah, dossier n°002 ; bouton « Nouveau dossier » fonctionne pour ce chemin réel. Pas de preuve visuelle du parcours 1/3, du rejeu, du retour Android, ni de résultats complets Playwright. Case `[ ]` conservée jusqu'aux critères restants. |
 
 | 2026-10-28 | LD-034 | **VALIDÉ côté produit et case cochée** | `1734b52` (`2.1`) | Confirmation utilisateur Samsung (Milo 0/3 → Noah dossier 002) ; 8/8 scénarios ciblés JS simulés ; pas de suite Playwright exécutée. Les suites automatisées restent à qualifier sous LD-000 **sans nouvelle action demandée au joueur**. |
+
+| 2026-10-28 | LD-000 | **VALIDÉ — CI dédiée verte** | `c4ca932` (workflow), `6397a824` (assertion audio), `946df5b` (doc), branche `2.1` | [Run 40648161245](https://github.com/aym2020/LuxApp/actions/runs/40648161245) : `rapide` **3/3 OK**, `complet` **9/9 OK** dont 6 Playwright Chromium et contrat LD-034. Première exécution rouge : arrondi 0,75 s vs 0,7 s dans test audio ; test fiabilisé sans modifier le son. Aucun test Samsung supplémentaire demandé ; la suite critique globale se valide séparément. |
 
 **Règle :** après validation d'un ID, cocher la case correspondante et écrire une ligne datée ici. Mettre à jour le compteur de l'en-tête et la `PROCHAINE ACTION`. Les entrées antérieures ne sont pas effacées.
