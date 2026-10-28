@@ -9,6 +9,8 @@
 const ld = {
   donnees: null,
   partie: null,
+  selection: null, // sélection d'affaires avant la création d'une partie
+  selectionPortraitEnCours: null, // sériel WebGL partagé
   aideFr: true,
   verdict: null,          // dernier résultat d'objection affiché
   focusAvant: null,       // élément à refocaliser à la fermeture d'une fenêtre
@@ -78,7 +80,8 @@ function ldPreparerImages() {
   const p = ld.partie;
   if (!p) return Promise.resolve();
   const dossier = p.dossier, npc = p.npc, pieces = LuxDemasqueCore.pieces(p);
-  ld.preparation = ldObtenir3D().then(async m => {
+  // Le même WebGLRenderer prépare la sélection puis les images du dossier.
+  ld.preparation = Promise.resolve(ld.selectionPortraitEnCours).catch(() => {}).then(() => ldObtenir3D()).then(async m => {
     const taches = [['portrait:' + npc.id, () => m.portrait(npc, 'Idle', '#3a2a55', 240, 300)],
       ['portrait-defaite:' + npc.id, () => m.portrait(npc, 'Defeat', '#2a2438', 240, 300)]];
     dossier.pieces.forEach(id => {
@@ -174,7 +177,7 @@ function luxDemasqueCarteHub() {
     '<div class="jeux-carte-titre"><h2 id="jeux-ld-titre">Lux Démasque</h2><span class="jeux-etat ld-etat-demo">NOUVEAU</span></div>' +
     '<p>Il te raconte sa vie en luxembourgeois. Fouille ses réseaux et démasque ses disquettes !</p>' +
     '<div class="jeux-meta"><span><strong>≈ 5 min</strong> · A1.1–A1.2</span><span>Record <b>' + ldLire('luxDemasqueRecord', 0) + '</b></span></div>' +
-    '<button class="jeux-jouer ld-jouer-hub" type="button" onclick="ouvrirLuxDemasque()">Jouer <span aria-hidden="true">→</span></button>' +
+    '<button class="jeux-jouer ld-jouer-hub" type="button" onclick="ldOuvrirSelection()">Jouer <span aria-hidden="true">→</span></button>' +
     '</section>';
 }
 
@@ -188,6 +191,136 @@ async function ldChargerDonnees() {
   ld.donnees = json.contenus;
   return ld.donnees;
 }
+// ── Sélection des affaires (SPEC 112). Aucune partie créée avant confirmation.
+async function ldOuvrirSelection() {
+  if (!luxDemasqueDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
+  luxDemasqueArreter();
+  if (typeof LuxMatchSon !== 'undefined') LuxMatchSon.musique(null);
+  if (typeof LuxDemasqueSon !== 'undefined') { LuxDemasqueSon.preparer(); LuxDemasqueSon.precharger(); }
+  showView('view-luxdemasque');
+  const box = ldBox();
+  if (box) box.innerHTML = '<p class="ld-chargement">Préparation des affaires…</p>';
+  try { await ldChargerDonnees(); } catch (_) {
+    if (ldVueActive() && box) box.innerHTML = ldEntete({fr:false,menu:false}) +
+      '<p class="ld-chargement">Impossible de charger les affaires. Vérifie ta connexion.</p>';
+    return;
+  }
+  if (!ldVueActive()) return;
+  const dossiers = ld.donnees.dossiers.concat(ld.donnees.dossiersRediges || []);
+  const items = dossiers.map(d => ({id:d.id,numero:d.numero,npc:ldPersonne(d.npc),genere:false}));
+  if ((ld.donnees.affaires || []).length) {
+    // Même graine sur chaque carte : l'inédit est créé seulement si on le choisit.
+    items.push({id:null,numero:'???',npc:null,genere:true,graine:1+Math.floor(Math.random()*999999)});
+  }
+  const resolus = ldLire('luxDemasqueResolus', []);
+  const premier = items.findIndex(d => !d.genere && !resolus.includes(d.id));
+  ld.selection = {items,index:Math.max(0,premier)};
+  ldRendreSelection();
+}
+function ldRendreSelection() {
+  const sel = ld.selection, box = ldBox();
+  if (!sel || !box) return;
+  const affaire = sel.items[sel.index], npc = affaire.npc, index = sel.index + 1;
+  const resolu = !affaire.genere && ldLire('luxDemasqueResolus',[]).includes(affaire.id);
+  box.dataset.ecran = 'selection';
+  const portrait = npc
+    ? '<div class="ld-selection-portrait" aria-hidden="true">' +
+        ldImage('portrait:'+npc.id, 'ld-selection-image') +
+        '<span class="ld-selection-initiale">' + ldEchapper(npc.nom.slice(0,1)) + '</span></div>'
+    : '<div class="ld-selection-portrait ld-selection-mystere" aria-hidden="true"><span>?</span></div>';
+  box.innerHTML = ldEntete({fr:false,menu:false}) +
+    '<main class="ld-selection">' +
+      '<div class="ld-selection-intro"><p class="ld-selection-kicker">BUREAU DES ENQUÊTES</p>' +
+        '<h1>Choisis ton affaire</h1><p>Feuillette les dossiers et choisis qui interroger.</p></div>' +
+      '<div class="ld-selection-nav">' +
+        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(-1)" aria-label="Affaire précédente">' + ldIcone('precedent') + '</button>' +
+        '<span class="ld-selection-compteur" aria-live="polite">AFFAIRE ' + index + ' / ' + sel.items.length + '</span>' +
+        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(1)" aria-label="Affaire suivante">' + ldIcone('suivant') + '</button></div>' +
+      '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
+        ldEchapper(affaire.genere ? 'Affaire inédite' : 'Dossier de ' + npc.nom) + '">' +
+        '<div class="ld-selection-image-zone">' + portrait +
+          '<span class="ld-selection-tampon">DOSSIER N°' + ldEchapper(affaire.numero) + '</span></div>' +
+        '<div class="ld-selection-infos"><span class="ld-selection-etat">' +
+          (affaire.genere ? 'AFFAIRE MYSTÈRE' : resolu ? '✓ DÉJÀ RÉSOLU' : '● À ENQUÊTER') + '</span>' +
+          '<h2>' + (affaire.genere ? 'Affaire inédite' : ldEchapper(npc.nom) + ', ' + npc.age + ' ans') + '</h2>' +
+          (affaire.genere
+            ? '<p class="ld-selection-ville">Un dossier inédit.</p><p class="ld-selection-description">Découvre le suspect et ses déclarations après ouverture.</p>'
+            : '<p class="ld-selection-ville">' + ldEchapper(npc.villeFr) + '</p><p class="ld-selection-description">« ' +
+              ldEchapper(npc.accrocheFr) + ' »</p>') +
+        '</div></article></div>' +
+      '<div class="ld-selection-actions"><button type="button" class="ld-btn ld-btn-or" onclick="ldSelectionConfirmer()">' +
+        (affaire.genere ? 'Découvrir cette affaire' : resolu ? 'Rejouer ce dossier' : 'Ouvrir ce dossier') +
+        ' <span aria-hidden="true">→</span></button>' +
+        '<p class="ld-selection-aide">Glisse à gauche ou à droite pour changer de dossier.</p></div>' +
+    '</main>';
+  ldBrancherSelection(document.getElementById('ld-selection-carte'));
+  if (npc) ldPreparerPortraitSelection(npc);
+}
+function ldPreparerPortraitSelection(npc) {
+  const key = 'portrait:' + npc.id;
+  if (ld.images[key]) { ldPoserImage(key); return; }
+  // Un seul rendu à la fois : Lux Démasqué partage le moteur 3D.
+  ld.selectionPortraitEnCours = Promise.resolve(ld.selectionPortraitEnCours).catch(() => {}).then(async () => {
+    if (!ld.selection || ld.images[key]) return;
+    const moteur = await ldObtenir3D();
+    if (!ld.selection) return;
+    ld.images[key] = await moteur.portrait(npc, 'Idle', '#3a2a55', 240, 300);
+    ldPoserImage(key);
+  }).catch(() => {});
+}
+function ldSelectionChanger(delta) {
+  const selection = ld.selection;
+  if (!selection || !Number.isInteger(delta) || !selection.items.length) return;
+  selection.index = (selection.index + delta + selection.items.length) % selection.items.length;
+  ldSon('nav');
+  ldRendreSelection();
+}
+function ldSelectionConfirmer() {
+  const selection = ld.selection;
+  if (!selection || selection.enCours) return;
+  selection.enCours = true;
+  const dossier = selection.items[selection.index];
+  // Naviguer au doigt ne démarre jamais le jeu ; seul ce bouton ouvre l'affaire.
+  ouvrirLuxDemasque(dossier.genere ? dossier.graine : dossier.id);
+}
+function ldBrancherSelection(carte) {
+  if (!carte) return;
+  let geste = null;
+  const annuler = () => {
+    if (!geste) return;
+    const id = geste.id; geste = null;
+    try { if (carte.hasPointerCapture(id)) carte.releasePointerCapture(id); } catch (_) {}
+    carte.style.transform = '';
+    carte.classList.remove('ld-selection-tire');
+  };
+  carte.addEventListener('pointerdown', e => {
+    if (geste || !e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    geste = {id:e.pointerId,x:e.clientX,y:e.clientY,direction:null,dx:0};
+    try { carte.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+  carte.addEventListener('pointermove', e => {
+    if (!geste || e.pointerId !== geste.id) return;
+    const dx = e.clientX - geste.x, dy = e.clientY - geste.y;
+    if (!geste.direction) {
+      if (Math.abs(dx) < 12 && Math.abs(dy) < 12) return;
+      geste.direction = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
+      if (geste.direction === 'v') { annuler(); return; }
+      carte.classList.add('ld-selection-tire');
+    }
+    geste.dx = dx;
+    carte.style.transform = 'translateX(' + dx + 'px) rotate(' +
+      Math.max(-9,Math.min(9,dx/22)) + 'deg)';
+  });
+  carte.addEventListener('pointerup', e => {
+    if (!geste || e.pointerId !== geste.id) return;
+    const dx = geste.dx, horizontal = geste.direction === 'h';
+    annuler();
+    if (horizontal && Math.abs(dx) > 65) ldSelectionChanger(dx < 0 ? 1 : -1);
+  });
+  carte.addEventListener('pointercancel', e => { if (geste && e.pointerId === geste.id) annuler(); });
+  carte.addEventListener('lostpointercapture', e => { if (geste && e.pointerId === geste.id) annuler(); });
+}
+
 async function ouvrirLuxDemasque(dossierId) {
   if (!luxDemasqueDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
   luxDemasqueArreter();
@@ -210,6 +343,7 @@ async function ouvrirLuxDemasque(dossierId) {
 function luxDemasqueArreter() {
   const partie = ld.partie;
   ld.partie = null; // d'abord : fermer les fenêtres ne relance aucune musique
+  ld.selection = null;
   if (typeof LuxDemasqueSon !== 'undefined') LuxDemasqueSon.musique(null);
   ldFermerToutesFenetres();
   ldEffacerEmotion();
