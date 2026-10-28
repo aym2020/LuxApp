@@ -26,8 +26,14 @@ with sync_playwright() as p:
   assert mesures['total']==4 and mesures['first']=='MILO_001',mesures
   assert mesures['overflow']<=1,mesures
   assert all(min(x)>=44 for x in mesures['buttons']),mesures
-  if w==360:page.screenshot(path=str(ART/'selection-360x740.png'),full_page=True)
-  if w==393:page.screenshot(path=str(ART/'selection-393x852.png'),full_page=True)
+  if w in (360,393):
+   # Le premier rendu WebGL est asynchrone ; capturer le portrait réel quand il est prêt.
+   # Si le GPU n'est pas disponible, le repli par initiale reste la recette attendue.
+   try:
+    page.locator('#ld-selection-carte .ld-selection-image.ld-image-prete').wait_for(timeout=14000)
+   except Exception:
+    pass
+   page.screenshot(path=str(ART/f'selection-{w}x{h}.png'),full_page=True)
   page.get_by_role('button',name='Affaire suivante').click()
   assert page.evaluate('ld.selection.items[ld.selection.index].id')=='NOAH_001'
   assert page.evaluate('ld.partie') is None
