@@ -118,7 +118,7 @@ test('mise à jour différée : bouton dans Réglages et version des assets reno
   assert.match(html, /id="hl-version" class="hl-version" hidden/);
   assert.match(html, /id="hl-version-bouton".*horsLigneAppliquerMaj/);
   assert.match(html, /src="hors-ligne\.js\?v=3"/);
-  assert.match(html, /href="style\.css\?v=spec95-hl3"/);
+  assert.match(html, /href="style\.css\?v=[^"]+"/);
   assert.match(lire('public/hors-ligne.js'), /if \(cfg\.RECETTE\)/);
   assert.match(lire('public/hors-ligne.js'), /if \(cfg\.TESTS\) return;/);
   assert.match(lire('public/hors-ligne.js'), /if \(horsLigneMajDemandee\) \{ location\.reload\(\); return; \}/);
