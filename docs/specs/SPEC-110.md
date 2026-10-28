@@ -1,6 +1,6 @@
 # SPEC 110 — Lux Démasque : dépositions, preuves et objections en luxembourgeois
 
-> **Suivi actif de la refonte V1.1 :** [TODO Lux Démasqué, branche `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) — 47 tâches, prochaine action, critères de validation et journal. **Consulter et mettre à jour cette TODO lors de chaque intervention ; ne pas déduire son statut des anciens lots D0–D5 décrits plus bas.** Le code du jeu reste sur `2.1`.
+> **Suivi actif de la refonte V1.1 :** [TODO Lux Démasqué, branche `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) — 48 tâches (dont LD-000 pour les tests), prochaine action, critères de validation et journal. **Consulter et mettre à jour cette TODO lors de chaque intervention ; ne pas déduire son statut des anciens lots D0–D5 décrits plus bas.** Le code du jeu reste sur `2.1`.
 
 **Dépôt :** `aym2020/LuxApp` · **Branche cible :** `2.1` · **Date de conception :** 27 octobre 2026  
 **Statut : IMPLÉMENTÉE SUR `2.1` (lots D0 → D5, 28 octobre 2026) — RECETTE SUR APPAREIL SAMSUNG, ÉCOUTE DE LA MUSIQUE, RELECTURE LU NATIVE/LOD ET TESTEUR EXTÉRIEUR ENCORE À FAIRE.** Lux Match est masqué, pas supprimé (§ 12, D0).  
@@ -10,7 +10,7 @@
 > **Séparation obligatoire :** Lux Démasque est un **mini-jeu distinct de Lux Match** (SPEC 109), même si l'on mutualise des briques techniques. Lux Match reste jouable et sa progression, ses données, ses dialogues et ses parcours ne doivent pas être altérés par ce nouveau jeu. Les propositions abandonnées de Lux Match (LuxTrad, saisie libre, nouveaux personnages joueurs) ne sont pas des dépendances de Lux Démasque.
 
 ## 1. Vision : « tous les prétendants sont des disquetteurs »
-**Suite de tests V1.1 :** [guide et matrice de couverture](../LUX-DEMASQUE-TESTS.md). Lancer `bash tools/test-lux-demasque.sh rapide` puis `complet` avant chaque refonte ; `acceptation` porte le contrat LD-034 actuellement non conforme. Ne pas déclarer la suite validée sans exécution réelle.
+**Suite de tests V1.1 :** [guide et matrice de couverture](../LUX-DEMASQUE-TESTS.md). Lancer `bash tools/test-lux-demasque.sh rapide` puis `complet` avant chaque refonte. **CI dédiée verte le 28/10/2026** : [GitHub Actions 40648161245](https://github.com/aym2020/LuxApp/actions/runs/40648161245) (3/3 rapide, 9/9 complet, dont LD-034). La recette d'un nouveau changement doit être rejouée après celui-ci ; Chromium ne remplace pas un contrôle graphique Samsung.
 
 
 
