@@ -158,6 +158,6 @@ test('Tuile Jeux : halo radial supprime, identite violette conservee', () => {
   assert.ok(!css.includes('radial-gradient(circle at 50% 34%'));
   assert.ok(css.includes('drop-shadow(0 0 2px rgba(177,140,240,.16))'));
   assert.ok(css.includes('.ac-btn.jeux > b{color:var(--violet'));
-  assert.ok(html.includes('jeux-univers.css?v=6'));
+  assert.match(html, /href="jeux-univers\.css\?v=\d+"/);
   assert.match(contexte().accesHtml({etat:'rien'}), /ouvrirJeux/);
 });
