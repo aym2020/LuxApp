@@ -3,7 +3,7 @@
 **Dépôt :** `aym2020/LuxApp` · **Code et tests : branche `2.1`**.  
 **Backlog canonique :** [TODO V1.1 sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md).  
 **Références :** [SPEC 110](specs/SPEC-110.md) · [PLAYBOOK](../PLAYBOOK.md) · [AGENTS](../AGENTS.md).  
-**État au 28/10/2026 :** suite dédiée installée et intégration statique réalisée. **Pas de résultat de tests exécutés certifié dans cette livraison : environnement d'exécution GitHub inaccessible depuis la session de création**. Ne pas écrire « suite verte » avant exécution réelle.
+**État au 28/10/2026 :** suite dédiée et contrat LD-034 intégrés aux tests complets. **Correctif LD-034 poussé sur `2.1`** ; huit scénarios de la fonction de navigation ont été exécutés avec des dépendances simulées et réussis (validation ciblée de logique). Les tests Node complets et Chromium/Playwright n'ont pas été exécutés sur le dépôt : ne pas les déclarer verts avant une recette réelle.
 
 ## 1. Commandes canoniques
 
@@ -16,7 +16,7 @@ bash tools/test-lux-demasque.sh rapide
 # Base + parcours Chromium/Playwright + écran mobile (serveur local LUX_TESTS=1).
 bash tools/test-lux-demasque.sh complet
 
-# Base + navigateur + contrat futur LD-034 (actuellement ROUGE attendu).
+# Base + test navigateur ciblé LD-034 (rejeu et rotation).
 bash tools/test-lux-demasque.sh acceptation
 
 # Régression transversale LuxApp 2.1 (inclut maintenant les tests de base du jeu).
@@ -40,17 +40,22 @@ Par défaut, le runner utilise le port **3456** et `LUX_URL=http://127.0.0.1:345
 | Audio | `tests/test_lux_demasque_audio.py` | Boucle unique, changement de thème, réglages, arrière-plan, extinction, fichier indisponible |
 | Parcours et accessibilité | `tests/test_lux_demasque_parcours.py` | 0/3 à 3/3, fin anticipée, score, précis répétées, objection bloquante/passable, Retour/Échap, focus, WebGL, reduced motion |
 | **Smoke mobile V1.1** | **`tests/test_lux_demasque_mobile.py`** | Rencontre, déposition, réseaux, pièce, carnet, objection, pause et bilan aux 4 tailles, pas de débordement horizontal, contrôles essentiels ≥44 px |
-| **Contrat P0 LD-034** | **`tests/test_lux_demasque_acceptation.py`** | Après 1/3 sur Milo, « Nouveau dossier » doit ouvrir un **autre** dossier ; Milo reste non résolu. Test volontairement exclu de `complet` jusqu'au correctif. |
+| **Contrat P0 LD-034** | **`tests/test_lux_demasque_acceptation.py`** | Milo 1/3 → Noah ; Noah 0/3 → Tom ; Tom → dossier généré ; `Rejouer` conserve ID/graine ; `Nouveau` régénère une graine différente ; retour via hub → Milo encore non résolu. Inclus dans `complet` et la suite critique. |
 
 **Note de compatibilité :** les scénarios existants sur la traduction `FR` reflètent le comportement actuel. Lors des tâches LD-005–LD-011, **mettre à jour leurs attentes et créer des tests du Dico au même commit** ; ne pas désactiver ou supprimer silencieusement les tests pour faire passer la refonte.
 
-## 3. Contrat rouge connu LD-034 (test « failing first »)
+## 3. LD-034 — Rotation distincte après fin partielle (correctif poussé)
 
-À la date de création, `ldChoisirDossier()` sélectionne le premier dossier non résolu. Après une conclusion partielle de Milo, « Nouveau dossier » rouvre donc Milo. Le nouveau test d'acceptation formalise le comportement **voulu** : un identifiant de dossier différent, tout en gardant Milo disponible au rejeu.
+**Cause initiale :** `ldNouveauDossier()` appelait simplement `ouvrirLuxDemasque()`. Cette entrée utilise `ldChoisirDossier()` qui sélectionne le premier dossier non résolu ; après Milo 1/3, « Nouveau dossier » redémarrait donc Milo.
 
-- `bash tools/test-lux-demasque.sh complet` **n'inclut pas ce test tant que LD-034 est ouvert**. Il ne doit pas être bloqué par cette anomalie connue.
-- `bash tools/test-lux-demasque.sh acceptation` **l'inclut** : échec attendu avant correctif, puis succès exigé après implémentation.
-- Quand LD-034 est corrigé : intégrer `test_lux_demasque_acceptation` à `complet` **et** à `tools/critique.sh` (liste navigateur). Ne cocher LD-034 dans la TODO qu'après réussite réelle du scénario.
+**Correction :** `ldNouveauDossier()` conserve le parcours de jeu en cours le temps de choisir la suite : prochain dossier **rédigé non résolu situé après le courant** dans la rotation, ou **dossier généré** lorsque la rotation est épuisée. Si le courant est généré, une nouvelle graine est tirée ; une collision avec la graine actuelle est corrigée. L'appel explicite `ldRejouer()` et l'entrée depuis le hub `ldChoisirDossier()` restent inchangés. Aucun dossier partiel n'est enregistré dans `luxDemasqueResolus` par « Nouveau dossier ».
+
+**Cas de test :** Milo 1/3 → Noah ; Noah 0/3 → Tom ; Tom 0/3 → généré ; généré 0/3 → rejeu de même seed ; « Nouveau » → seed différente ; sortie vers le hub → Milo toujours disponible. Les scénarios ciblés sur la fonction source ont été vérifiés avec des dépendances simulées (8/8 réussis), mais **le parcours Playwright complet reste à exécuter**.
+
+- `bash tools/test-lux-demasque.sh complet` comprend désormais le contrat LD-034.
+- `bash tools/test-lux-demasque.sh acceptation` exécute les tests de base puis **seulement le parcours navigateur LD-034**, pour accélérer les itérations.
+- `bash tools/critique.sh` comprend ce test dans les régressions navigateur.
+- **Validation finale en attente :** exécuter réellement `rapide`, `complet`, et le contrat `acceptation` dans un clone de `2.1`, puis contrôler le bouton sur Samsung. Garder LD-034 ouverte dans la TODO canonique jusqu'à la recette requise.
 
 Cela évite de « faire passer » le test en vérifiant simplement l'ancien comportement incorrect.
 
@@ -95,6 +100,15 @@ Cela évite de « faire passer » le test en vérifiant simplement l'ancien comp
 
 **Fichiers ajoutés :** `tools/test-lux-demasque.sh`, `tests/test_lux_demasque_mobile.py`, `tests/test_lux_demasque_acceptation.py`.
 
-**Intégration :** `tools/critique.sh` exécute maintenant les deux tests Node du jeu en mode `rapide` et le smoke mobile dans le parcours complet.
+**Intégration :** `tools/critique.sh` exécute les deux tests Node en mode `rapide` et les contrôles navigateur, dont le smoke mobile et le contrat LD-034, en mode complet. Le runner dédié exécute aussi LD-034 en mode `complet` ou seul côté navigateur en mode `acceptation`.
 
-**Exécution réelle :** non effectuée depuis la session de livraison, faute d'accès réseau Git/serveur de test et d'environnement Chromium reposant sur le code courant. Les tests existants ne sont pas déclarés verts sur la seule base de leur présence. **Prochaine vérification : exécuter `rapide` et `complet` dans un clone de `2.1`, archiver les logs, corriger toute erreur du runner avant de valider LD-000.** Le mode `acceptation` est destiné à montrer le défaut LD-034 tant que non corrigé.
+**Exécution réelle :** tests ciblés de logique exécutés (8/8 passés) sur la version extraite de `2.1` dans un environnement JS isolé ; pas d'exécution Node/Playwright ni de recette Samsung sur le code du dépôt dans cette session. **Prochaine vérification :** exécuter `rapide`, `acceptation` et `complet` depuis un clone de `2.1`, conserver les logs et traiter tout échec avant validation de LD-000 et LD-034.
+
+
+## 8. Journal LD-034 (28 octobre 2026)
+
+- **Source corrigée :** `public/lux-demasque.js`, commit `1734b52f792353b8e482438c4aa94f061507614e` (`2.1`).
+- **Test navigateur enrichi :** `tests/test_lux_demasque_acceptation.py`, commit `5eed60b12fa05002ca2d492e8abdd26abb072ac0`.
+- **Exécution automatisée raccordée :** `tools/test-lux-demasque.sh` (`14a8ef77`) et `tools/critique.sh` (`f10bd609`).
+- **Vérification faite :** compilation JS de la source complète et simulation des huit scénarios de navigation (Milo/Noah/Tom, dossiers déjà résolus, graine identique, entrée sans partie) : 8/8.
+- **Réserve :** suites réelles du dépôt et interactions Android non exécutées dans cette intervention ; cases de la TODO non cochées tant que leur recette n'est pas disponible.
