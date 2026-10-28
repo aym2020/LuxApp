@@ -15,6 +15,7 @@ Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour
 | **Nouvelle structure des exercices / CTA fixe** | [SPEC 95](specs/SPEC-95.md) | **Implémentée ; visuels/sons acceptés sur Samsung le 25/10** : trois zones DOM, CTA stable ; clavier ouvert, zoom et TalkBack à valider |
 | Dimensions PC/mobile existantes | [AUDIT-DIMENSIONS-2.1.md](AUDIT-DIMENSIONS-2.1.md) | **Diagnostic statique**, pas preuve de validation visuelle |
 | Priorités à livrer | [TODO.md](../TODO.md) | Backlog et critères d'acceptation |
+| **Lux Démasqué — prochaine action et suivi des 47 tâches V1.1** | [TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) | **Source de vérité du statut**, cases à cocher, ordre, journal de validation ; code du jeu sur `2.1` |
 | Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel** : LuxApp TEST autonome, authentification et isolation ; pas de raccourci dans le Plus normal |
 | Choisir les scénarios de test | [RECETTES-2.1.md](RECETTES-2.1.md) | Catalogue des scénarios et validations |
 | Incident des exercices | [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](POSTMORTEM-EXERCICES-2.1-2026-10-21.md) | Incidents et procédure obligatoire anti-régression |
