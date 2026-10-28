@@ -50,6 +50,61 @@
 #view-luxdemasque .ld-regles{margin:0;padding:12px 14px 12px 32px;border-radius:14px;background:rgba(216,176,112,.08);border:1px dashed rgba(216,176,112,.5);
   font-size:14px;line-height:1.45;color:#efe6d6;display:flex;flex-direction:column;gap:4px}
 
+/* LD-002.01 — Rencontre : fiche d'arcade 16/32-bit, sans incidence sur les autres écrans.
+   Le portrait 3D existant, les textes du dossier, la traduction FR actuelle et les
+   actions restent inchangés. Sous-titres/dictionnaire : tâches LD-005 à LD-011. */
+#view-luxdemasque .ld-jeu[data-ecran="rencontre"]{gap:9px;padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+#view-luxdemasque .ld-rencontre{gap:10px;flex:1;min-width:0;padding-bottom:2px}
+#view-luxdemasque .ld-rencontre-entete{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:36px;padding:2px 3px 0}
+#view-luxdemasque .ld-rencontre .ld-tampon{margin:0;align-self:auto;padding:8px 10px 7px;flex:none;border:2px solid #e7b76a;border-radius:3px;
+  background:#201725;color:#f0c681;box-shadow:3px 3px 0 #51344b;transform:rotate(-2deg);
+  font:9px/1.15 var(--ld-pixel);letter-spacing:0;white-space:nowrap}
+#view-luxdemasque .ld-rencontre-statut{color:#ef93be;font:8px/1.4 var(--ld-pixel);letter-spacing:0;white-space:nowrap}
+#view-luxdemasque .ld-rencontre .ld-fiche{position:relative;display:flex;align-items:center;gap:12px;padding:11px;
+  background:linear-gradient(145deg,#302142 0%,#22162d 65%,#1b1629 100%);
+  border:2px solid #68517e;border-radius:8px;box-shadow:4px 4px 0 #0b0910,inset 0 0 0 1px rgba(255,255,255,.07)}
+#view-luxdemasque .ld-rencontre .ld-fiche::before{content:"";position:absolute;top:-2px;left:22px;width:38px;height:3px;background:var(--ld-rose)}
+#view-luxdemasque .ld-rencontre .ld-portrait-fiche{width:96px;height:124px;flex:none;border:3px solid #f4eafc;border-radius:7px;
+  background:linear-gradient(165deg,#574072,#271c3d);box-shadow:3px 3px 0 #130c20}
+#view-luxdemasque .ld-rencontre .ld-fiche-texte{flex:1;min-width:0}
+#view-luxdemasque .ld-rencontre .ld-fiche-kicker{margin:0 0 5px;color:#ff89d7;font:8px/1.4 var(--ld-pixel);letter-spacing:.02em}
+#view-luxdemasque .ld-rencontre .ld-fiche h1{margin:0;font:800 clamp(18px,4.8vw,23px)/1.2 var(--font);color:#fff}
+#view-luxdemasque .ld-rencontre .ld-fiche-ville{margin:3px 0 0;font-size:13px;line-height:1.3;color:#cbbde3}
+#view-luxdemasque .ld-rencontre .ld-fiche-accroche{margin:7px 0 0;font-size:13px;line-height:1.37;
+  font-style:italic;color:#ede4f5;overflow-wrap:anywhere}
+#view-luxdemasque .ld-rencontre .ld-salut{padding:9px 12px;background:#1a1523;border:1px solid #544068;border-left:4px solid var(--ld-rose);
+  border-radius:6px;box-shadow:2px 2px 0 #100d16}
+#view-luxdemasque .ld-rencontre .ld-salut .ld-locuteur{margin-bottom:2px;color:#ff88d6}
+#view-luxdemasque .ld-rencontre .ld-salut .ld-lu{font-size:16px;line-height:1.3}
+#view-luxdemasque .ld-rencontre .ld-salut .ld-fr{font-size:12.5px;line-height:1.3}
+#view-luxdemasque .ld-rencontre .ld-rdv{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 7px;text-align:left;
+  padding:3px 1px;color:#cbbde3;font-size:12.5px;line-height:1.35}
+#view-luxdemasque .ld-rencontre .ld-rdv span{font:8px/1.4 var(--ld-pixel);color:var(--ld-kraft);margin-right:3px}
+#view-luxdemasque .ld-rencontre .ld-rdv b{color:#eee4fb;font-weight:700}
+#view-luxdemasque .ld-briefing{position:relative;padding:10px 12px;background:#201b20;
+  border:1px solid #776047;border-left:4px solid #d8b070;border-radius:5px}
+#view-luxdemasque .ld-briefing h2{margin:0 0 5px;color:#f4cc82;font:9px/1.4 var(--ld-pixel)}
+#view-luxdemasque .ld-briefing p{margin:0;font-size:13px;line-height:1.36;color:#f0e7db}
+#view-luxdemasque .ld-briefing p+p{margin-top:4px}
+#view-luxdemasque .ld-briefing b{color:#ffe3a4}
+#view-luxdemasque .ld-rencontre .ld-actions{gap:8px;margin-top:2px}
+#view-luxdemasque .ld-rencontre .ld-btn-or{min-height:56px;border-radius:6px;font-size:15px;
+  background:var(--accent);border:2px solid #ffdf78;box-shadow:0 5px 0 #a0781c,0 7px 0 #21170a}
+#view-luxdemasque .ld-rencontre .ld-btn-lien{min-height:44px;border-radius:6px;font-size:13.5px}
+#view-luxdemasque .ld-rencontre .ld-btn-or:active{transform:translateY(2px);box-shadow:0 2px 0 #a0781c,0 3px 0 #21170a}
+@media(max-width:359px){
+  #view-luxdemasque .ld-rencontre .ld-fiche{gap:9px;padding:9px}
+  #view-luxdemasque .ld-rencontre .ld-portrait-fiche{width:83px;height:112px}
+  #view-luxdemasque .ld-rencontre-statut{font-size:7px}
+  #view-luxdemasque .ld-rencontre .ld-fiche-accroche{font-size:12.5px}
+  #view-luxdemasque .ld-rencontre .ld-fiche h1{font-size:18px}
+  #view-luxdemasque .ld-rencontre .ld-tampon{font-size:8px}
+  #view-luxdemasque .ld-rencontre .ld-btn-or{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-luxdemasque .ld-rencontre .ld-btn-or:active{transform:none}
+}
+
 /* Déposition : écran fixe, rien ne défile sauf la carte si le texte est long */
 #view-luxdemasque .ld-jeu[data-ecran="deposition"]{padding:0;max-width:600px}
 #view-luxdemasque .ld-depo{position:relative;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
