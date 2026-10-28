@@ -2,6 +2,8 @@
 
 **Index de référence :** [docs/README.md](docs/README.md) (charte UI, spécifications, recettes, audits, archives et statut des documents).
 
+> **SUIVI LUX DÉMASQUÉ — à consulter spontanément :** [TODO V1.1 canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). Pour « prochaine action », bilan d'avancement ou intervention sur Lux Démasqué : **lire le fichier actuel sur GitHub avant de répondre**. Le code du jeu reste sur `2.1`. Après une tâche livrée et vérifiée, cocher son ID et renseigner commit/tests/journal/étape suivante **sur `main`** ; ne jamais copier la checklist dans `2.1` ni la mettre à jour sur simple déclaration de réussite.
+
 Mémo des méthodes et techniques pour résoudre les problèmes récurrents du projet.
 But : arrêter de re-réfléchir à des trucs déjà résolus.
 
