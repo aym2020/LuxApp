@@ -61,6 +61,9 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 ## Jeu — Lux Démasque (SPEC 110, implémenté sur 2.1)
 
+
+**Tests de Lux Démasqué V1.1 :** [suite dédiée, commandes et procédure Android](LUX-DEMASQUE-TESTS.md) — `bash tools/test-lux-demasque.sh rapide|complet|acceptation` ; scripts Playwright, test LD-034 en échec attendu jusqu'au correctif. Cette suite est le préalable obligatoire aux modifications du jeu.
+
 [**SPEC 110 — Lux Démasque : dépositions, preuves, objections et dossiers générés**](specs/SPEC-110.md) : mini-jeu de déduction indépendant de Lux Match. Le joueur interroge des prétendants **toujours menteurs**, mais dont plusieurs déclarations sont vraies ; il cherche **toutes les disquettes**, avec les indices de Pix/Pro/Amis en **français**, des dépositions/questions en **luxembourgeois**, des objections appuyées sur des preuves **visuelles**, un moteur de dossiers **semi-procédural contraint**, le café/personnages **3D low-poly** et une **musique arcade d'enquête originale**. **Statut : implémenté sur 2.1 (lots D0–D5, suivi en SPEC 110 § 12) ; recette sur appareil et relecture LU native à faire ; ne pas confondre avec Lux Match (masqué, réactivable par `JEUX_DISPONIBLES.luxMatch`).** Dossier pilote : [LUX-DEMASQUE-DOSSIER-MILO.md](LUX-DEMASQUE-DOSSIER-MILO.md). Affaires atomiques et générateur : [LUX-DEMASQUE-AFFAIRES.md](LUX-DEMASQUE-AFFAIRES.md). Pour développer : moteur `public/lux-demasque-core.js`, contenus `tools/lux-demasque/contenus.py`, tests `test/lux-demasque*.cjs` et `tests/test_lux_demasque*.py` ; tester sans régression de Lux Match.
 
 ## Recherche, maquettes, prototypes et archives
