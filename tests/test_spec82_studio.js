@@ -42,7 +42,7 @@ for(const d of l.mission.defis.filter(d=>d.type==='audio')){
 const script=read('public/studio.js'),mission=read('public/mission.js'),
  parcours=read('public/parcours.js'),html=read('public/index.html');
 assert.match(html,/src="studio\.js(?:\?v=[^"]+)?"/);
-assert.ok(html.indexOf('src="mission.js"')<html.indexOf('src="studio.js"'));
+assert.ok(html.indexOf('src="mission.js"')<html.indexOf('src="studio.js'));
 assert.match(mission,/if \(studioActif\(pLecon\)\) return studioOpenMission\(tentative\)/);
 assert.match(parcours,/activiteUnique/);
 assert.match(parcours,/const audioDirect = q\.audioFichier/,'le bouton audio est visible sans attendre le lexique');
