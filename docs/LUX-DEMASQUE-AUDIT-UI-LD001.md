@@ -81,7 +81,28 @@ Trois niveaux de preuve, à **ne pas confondre** :
 - Chaque lot de refonte devra produire son **avant/après** avec les mêmes 360 × 740 / 393 × 852, plus test 320/430 et Android tactile quand pertinent.
 - **Le prochain lot LD-002 porte sur les tokens de couleur**, pas sur un redessin global simultané.
 
-## 6. Traçabilité des fichiers et statut
+## 6. Mesures réelles de la baseline Chromium (28 octobre 2026)
+
+**Exécution complète réussie :** [GitHub Actions n°40648859830](https://github.com/aym2020/LuxApp/actions/runs/40648859830) sur `2.1`, code `f0f9af6`. **Artifact :** [`lux-demasque-ld001` (32 PNG + `manifest.json`)](https://github.com/aym2020/LuxApp/actions/runs/40648859830/artifacts/12799130743). Ce snapshot est conservé **30 jours** ; le script de génération et les mesures résumées dans ce document demeurent versionnés pour une régénération ultérieure. Le test complet du jeu (Node/Playwright) a également été **vert** lors de cette exécution. Le manifeste est la source de mesure, pas une estimation à partir des screenshots.
+
+| Mesure | 360 × 740 | 393 × 852 | Interprétation |
+|---|---:|---:|---|
+| Hauteur de page rencontre | **775 px** | **852 px** | À 360 px, **35 px hors du viewport** : l'action secondaire descend ; le démarrage principal reste à y=655 |
+| Carte `ld-fiche` rencontre | 208 px | 170 px | La densité explose dès que l'accroche passe sur davantage de lignes |
+| Règles de rencontre | 156 px | 156 px | Trois consignes prennent une zone significative du premier écran |
+| Carte déposition sans précision | 157 px | 157 px | Gabarit stable |
+| Carte déposition avec précision | **300 px** | **300 px** | Près du double, occulte davantage le personnage |
+| Feuille carnet (visible / contenu total) | **681 / 1399 px** | **784 / 1346 px** | Carnet long, défilement important ; une preuve peut exiger beaucoup de navigation |
+| Feuille choix d'objection (visible / contenu total) | **681 / 1220 px** | **784 / 1149 px** | Liste de preuves dense, cible de la phrase éloignée après défilement |
+| Hauteur totale bilan | **1545 px** | **1464 px** | **2,09×** et **1,72×** le viewport, respectivement ; refonte progressive utile |
+| Débordements horizontaux (16 états) | **0 / 16** | **0 / 16** | Baseline positive : préserver ce résultat dans les lots suivants |
+| Boutons visibles actifs sous 44 px (capture script) | **0** | **0** | Baseline positive aux tailles et états mesurés ; ne vaut pas un audit WCAG exhaustif |
+
+**Vérification visuelle de la planche 16 × 2 par inspection des PNG :** identité reconnaissable grâce à la 3D PS1, tampons, logo et cri ; beaucoup de cartes et de feuilles arrondies avec bordures, apparition des réseaux en feuilles du bas ; écran des preuves textuelles plus dense que l'écran de dialogue ; grand panneau de bilan à détails ouverts et nombreuses traductions FR ; comparaison 360/393 illustrant le saut de hauteur de la fiche. Ces observations se retrouvent également dans les captures Samsung fournies par le joueur.
+
+**Éléments à ne pas surinterpréter :** aucune erreur de scroll **horizontal** n'a été mesurée, mais cela ne signifie pas que l'ergonomie verticale est bonne ; le carnet et le bilan sont volontairement défilants. Les captures ont été faites en émulation Chromium avec réduction des animations, **pas** en test réel de GPU Samsung. Le script ne teste pas le texte à 150 %, TalkBack ni le clavier du futur dictionnaire : à couvrir lors de l'implémentation des lots concernés. Les snapshots présentent un toast « Précision ajoutée au carnet » car l'état de référence prévoit cette action ; ce n'est pas un élément permanent du HUD.
+
+## 7. Traçabilité des fichiers et statut
 
 - Code inspecté : [`lux-demasque.js`](../public/lux-demasque.js), [`lux-demasque.css`](../public/lux-demasque.css).
 - Capture automatisée : [`tests/capture_lux_demasque_ld001.py`](../tests/capture_lux_demasque_ld001.py), exécution dans [CI dédiée](../.github/workflows/lux-demasque-v11.yml).
