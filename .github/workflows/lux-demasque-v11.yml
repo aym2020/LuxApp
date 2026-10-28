@@ -1,0 +1,48 @@
+name: Lux Démasqué — tests dédiés
+
+on:
+  push:
+    branches: ['2.1']
+    paths:
+      - '.github/workflows/lux-demasque-v11.yml'
+      - 'public/lux-demasque*.js'
+      - 'public/lux-demasque*.css'
+      - 'public/lux-match-3d.js'
+      - 'data/jeux/lux-demasque/**'
+      - 'test/lux-demasque*.test.cjs'
+      - 'tests/test_lux_demasque*.py'
+      - 'tools/test-lux-demasque.sh'
+      - 'tools/critique.sh'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  jeu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer les dépendances de LuxApp
+        run: npm ci --no-audit --no-fund
+      - name: Installer Playwright et Chromium
+        run: |
+          python -m pip install 'playwright==1.56.0'
+          python -m playwright install --with-deps chromium
+      - name: Tests rapides (syntaxe, moteur et 1 000 seeds)
+        run: bash tools/test-lux-demasque.sh rapide
+      - name: Tests complets navigateur et LD-034
+        run: bash tools/test-lux-demasque.sh complet
+      - name: Conserver le contexte du test en cas d'échec
+        if: failure()
+        run: |
+          node --version
+          python --version
+          git rev-parse HEAD
