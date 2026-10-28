@@ -1,5 +1,7 @@
 # SPEC 110 — Lux Démasque : dépositions, preuves et objections en luxembourgeois
 
+> **Suivi actif de la refonte V1.1 :** [TODO Lux Démasqué, branche `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) — 47 tâches, prochaine action, critères de validation et journal. **Consulter et mettre à jour cette TODO lors de chaque intervention ; ne pas déduire son statut des anciens lots D0–D5 décrits plus bas.** Le code du jeu reste sur `2.1`.
+
 **Dépôt :** `aym2020/LuxApp` · **Branche cible :** `2.1` · **Date de conception :** 27 octobre 2026  
 **Statut : IMPLÉMENTÉE SUR `2.1` (lots D0 → D5, 28 octobre 2026) — RECETTE SUR APPAREIL SAMSUNG, ÉCOUTE DE LA MUSIQUE, RELECTURE LU NATIVE/LOD ET TESTEUR EXTÉRIEUR ENCORE À FAIRE.** Lux Match est masqué, pas supprimé (§ 12, D0).  
 **Suivi d'implémentation :** voir § 12 (lots D0 → D5).  
