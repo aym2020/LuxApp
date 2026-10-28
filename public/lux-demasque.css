@@ -105,6 +105,50 @@
   #view-luxdemasque .ld-rencontre .ld-btn-or:active{transform:none}
 }
 
+/* SPEC 112 — choix des affaires, scoped : aucun style sur Lux Match/les enquêtes. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"]{gap:10px;max-width:480px;padding:10px 16px calc(16px + env(safe-area-inset-bottom))}
+#view-luxdemasque .ld-selection{width:100%;min-width:0;flex:1;display:flex;flex-direction:column;align-items:center;gap:12px}
+#view-luxdemasque .ld-selection-intro{width:100%;display:grid;gap:5px;text-align:center}
+#view-luxdemasque .ld-selection-kicker{margin:0;color:#f4c477;font:8px/1.5 var(--ld-pixel);letter-spacing:.06em}
+#view-luxdemasque .ld-selection-intro h1{margin:0;font:900 clamp(23px,6vw,30px)/1.15 var(--font);color:#faf3ed}
+#view-luxdemasque .ld-selection-intro>p:last-child{margin:0 auto;max-width:330px;color:#cbbde2;font-size:13px;line-height:1.4}
+#view-luxdemasque .ld-selection-nav{width:min(100%,338px);display:flex;align-items:center;justify-content:space-between;gap:8px}
+#view-luxdemasque .ld-selection-fleche{width:48px;height:48px;flex:none;display:grid;place-items:center;background:#291c38;border:1px solid #765780;border-radius:13px;color:#f6e8ff;cursor:pointer}
+#view-luxdemasque .ld-selection-compteur{font:9px/1.4 var(--ld-pixel);color:#e9bdf3;text-align:center}
+#view-luxdemasque .ld-selection-pile{position:relative;isolation:isolate;width:min(100%,338px);min-width:0}
+#view-luxdemasque .ld-selection-pile::before{content:"";position:absolute;inset:6px 7px -6px;border:1px solid #765780;border-radius:13px;background:#33223f;transform:rotate(1.4deg);pointer-events:none}
+#view-luxdemasque .ld-selection-carte{position:relative;display:flex;flex-direction:column;overflow:hidden;min-width:0;background:#1d1628;border:2px solid #6a507d;border-radius:13px;box-shadow:0 10px 27px #090710a8;touch-action:pan-y;user-select:none;cursor:grab;transition:transform .2s ease}
+#view-luxdemasque .ld-selection-carte.ld-selection-tire{transition:none;cursor:grabbing}
+#view-luxdemasque .ld-selection-image-zone{height:clamp(185px,33dvh,280px);position:relative;overflow:hidden;background:radial-gradient(70% 55% at 50% 40%,#634276,#2b203e)}
+#view-luxdemasque .ld-selection-portrait{position:absolute;inset:0;display:grid;place-items:center}
+#view-luxdemasque .ld-selection-image{position:absolute;inset:0;background-size:cover;background-position:center 35%;image-rendering:pixelated;z-index:1}
+#view-luxdemasque .ld-selection-initiale{font:66px/1 var(--ld-pixel);color:#ccb7e1;opacity:.45}
+#view-luxdemasque .ld-selection-image.ld-image-prete+.ld-selection-initiale{display:none}
+#view-luxdemasque .ld-selection-mystere span{font:100px/1 var(--ld-pixel);color:#ffd87c;text-shadow:5px 5px 0 #492044}
+#view-luxdemasque .ld-selection-image-zone::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,transparent 68%,#1d1628a0)}
+#view-luxdemasque .ld-selection-tampon{position:absolute;z-index:3;top:13px;left:12px;padding:7px 9px;background:#251925dd;border:2px solid #ead096;border-radius:3px;transform:rotate(-3deg);font:9px/1.2 var(--ld-pixel);color:#ffe0a0}
+#view-luxdemasque .ld-selection-infos{padding:12px 15px 15px;display:grid;gap:6px;min-width:0}
+#view-luxdemasque .ld-selection-etat{font:8px/1.4 var(--ld-pixel);color:#f4b5d4}
+#view-luxdemasque .ld-selection-infos h2{margin:0;font:800 clamp(23px,6vw,28px)/1.18 var(--font);overflow-wrap:anywhere}
+#view-luxdemasque .ld-selection-ville{margin:0;font-size:13px;color:#cfbee2}
+#view-luxdemasque .ld-selection-description{margin:0;font-size:14px;line-height:1.4;color:#f6eefa;overflow-wrap:anywhere}
+#view-luxdemasque .ld-selection-actions{width:min(100%,338px);margin-top:2px;display:grid;gap:10px}
+#view-luxdemasque .ld-selection-actions .ld-btn-or{min-height:56px;border-radius:8px;border:1px solid #ffdf7a}
+#view-luxdemasque .ld-selection-aide{margin:0;text-align:center;font-size:12px;line-height:1.3;color:#bdadd4}
+@media(max-height:700px){
+  #view-luxdemasque .ld-jeu[data-ecran="selection"]{gap:7px;padding-top:7px}
+  #view-luxdemasque .ld-selection{gap:8px}
+  #view-luxdemasque .ld-selection-image-zone{height:clamp(155px,26dvh,205px)}
+}
+@media(max-width:350px){
+  #view-luxdemasque .ld-jeu[data-ecran="selection"]{padding-inline:10px}
+  #view-luxdemasque .ld-selection-image-zone{height:clamp(155px,29dvh,215px)}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-luxdemasque .ld-selection-pile::before{transform:none}
+  #view-luxdemasque .ld-selection-carte{transition:none}
+}
+
 /* Déposition : écran fixe, rien ne défile sauf la carte si le texte est long */
 #view-luxdemasque .ld-jeu[data-ecran="deposition"]{padding:0;max-width:600px}
 #view-luxdemasque .ld-depo{position:relative;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
