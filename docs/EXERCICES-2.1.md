@@ -100,3 +100,46 @@ Retour Samsung après la maquette v10 : l'apparition du rouge déplaçait encore
 
 
 **Test supplémentaire :** à 320×700, le troisième échec affichait « Voir la réponse » sous les boutons et déplaçait encore les cases de 13 px. Cette action est maintenant présente **dans le dialogue « Voir l’aide » uniquement à partir du 3e échec**. La révélation passe toujours par `mcVoirReponse()` avec score nul et rappel ; le dialogue se ferme automatiquement et « Continuer » s’affiche. Le test navigateur vérifie également cette transition.
+
+
+## Alignement pédagogique du lexique par unité (28 octobre 2026)
+
+**Contrat :** aucun exercice ne demande de produire ou reconnaître un pays/mot
+avant sa découverte dans le parcours guidé. Dans une unité, l’ordre reste
+**Mot caché → Quiz → Trous → Écriture**. Le Mot caché est l’introduction
+orthographique de référence ; le cours de l’unité doit également fournir la
+règle et le vocabulaire nécessaires.
+
+- Un exercice du **cœur** (`plus` absent) peut réemployer le lexique du cœur
+  de son unité et celui des unités précédentes déjà enseignées. Il ne doit
+  pas dépendre d’un Mot caché marqué `plus: true`, ni d’une unité future.
+- Un exercice **« + »** peut employer le lexique supplémentaire de sa propre
+  unité, découvert pendant l’étape Mot caché « + », ainsi que les acquis
+  précédents. L’introduction d’un mot nouveau doit précéder son évaluation.
+- Les phrases de cours rattachées à une unité suivent le même périmètre.
+  Le bloc commun (`unite: 0`) demeure une référence pour toute la leçon.
+- **Les IDs des exercices ne changent pas** : suivi, historique, étoiles et
+  progression restent compatibles. Les anciennes parties déjà enregistrées
+  conservent leurs files ; les nouvelles parties utilisent les affectations
+  corrigées. Une reprise historique mérite donc une vérification spécifique.
+
+**Correctif leçon 7 :** « Cap Vert » et six exercices de pays particuliers
+quittent l’écriture de l’unité 1 pour celle de l’unité 2 ; les quiz et trous
+utilisant des mots du « + » sont maintenant eux-mêmes facultatifs. L’exemple
+« Hie kënnt vum Cap Vert » de l’unité 1 est remplacé par « Hie kënnt aus
+Italien » (déjà enseigné). « Hierkonft », demandé dans l’écriture « + », est
+introduit dans le Mot caché « + » et son lexique. Aucun changement de
+réponse attendue, de moteur, de barème, de traduction des autres exercices
+ou d’ID existant.
+
+**Vérification reproductible :**
+`node tools/audit-lexique-unites.cjs --lesson 7 --strict` puis
+`node --test test/lexique-unites-07.test.cjs` et
+`node tools/valider-lecons.js`.
+
+L’audit `node tools/audit-lexique-unites.cjs --all` est volontairement
+**diagnostique** : d’autres leçons préexistantes présentent des références
+entre unités ou entre cœur et « + » ; certaines sont permises par le
+vocabulaire de leçons antérieures. Elles doivent être revues pédagogiquement
+avant de rendre ce contrôle bloquant pour l’ensemble des niveaux. Ce correctif
+ne prétend pas avoir assaini toutes les leçons.

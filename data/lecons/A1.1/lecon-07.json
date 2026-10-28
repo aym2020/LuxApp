@@ -328,6 +328,14 @@
       "lu": "Iran",
       "fr": "Iran",
       "note": "aus dem Iran (masc. avec article)"
+    },
+    {
+      "id": 2021,
+      "unite": 1,
+      "lu": "Hierkonft",
+      "fr": "Origine / Provenance",
+      "note": "L’origine de quelqu’un",
+      "plus": true
     }
   ],
   "quiz": [
@@ -351,7 +359,8 @@
         "Englänner",
         "Englesch",
         "Engeland"
-      ]
+      ],
+      "plus": true
     },
     {
       "id": 2003,
@@ -373,7 +382,8 @@
         "Australier",
         "Englesch",
         "Australiën"
-      ]
+      ],
+      "plus": true
     },
     {
       "id": 2005,
@@ -396,7 +406,8 @@
         "Amerikaner",
         "Englesch",
         "America"
-      ]
+      ],
+      "plus": true
     },
     {
       "id": 2007,
@@ -752,7 +763,8 @@
         "aus der",
         "vum"
       ],
-      "note": "Holland → aus"
+      "note": "Holland → aus",
+      "plus": true
     },
     {
       "id": 2014,
@@ -767,7 +779,8 @@
         "aus der",
         "aus dem"
       ],
-      "note": "Australien → aus"
+      "note": "Australien → aus",
+      "plus": true
     },
     {
       "id": 2015,
@@ -826,21 +839,21 @@
     },
     {
       "id": 2004,
-      "unite": 1,
+      "unite": 2,
       "fr": "Luxembourg",
       "lu": "Lëtzebuerg",
       "plus": true
     },
     {
       "id": 2005,
-      "unite": 1,
+      "unite": 2,
       "fr": "Belgique",
       "lu": "Belsch",
       "plus": true
     },
     {
       "id": 2006,
-      "unite": 1,
+      "unite": 2,
       "fr": "Suisse",
       "lu": "Schwäiz",
       "plus": true
@@ -917,21 +930,21 @@
     },
     {
       "id": 2017,
-      "unite": 1,
+      "unite": 2,
       "fr": "Ukraine",
       "lu": "Ukrain",
       "plus": true
     },
     {
       "id": 2018,
-      "unite": 1,
+      "unite": 2,
       "fr": "Cap-Vert",
       "lu": "Cap Vert",
       "plus": true
     },
     {
       "id": 2019,
-      "unite": 1,
+      "unite": 2,
       "fr": "Iran",
       "lu": "Iran",
       "plus": true
@@ -963,7 +976,7 @@
     },
     {
       "id": 2024,
-      "unite": 1,
+      "unite": 2,
       "fr": "Il vient du Cap-Vert.",
       "lu": "Hie kënnt vum Cap Vert."
     },
@@ -1188,6 +1201,10 @@
         [
           "Holland",
           "Pays-Bas"
+        ],
+        [
+          "Hierkonft",
+          "Origine / Provenance"
         ]
       ],
       "rubrique": "lexique"
@@ -1203,8 +1220,8 @@
           "Ronaldo vient du Portugal."
         ],
         [
-          "Hie kënnt vum Cap Vert.",
-          "Il vient du Cap-Vert."
+          "Hie kënnt aus Italien.",
+          "Il vient d’Italie."
         ],
         [
           "Den Emmanuel kënnt aus Frankräich.",
