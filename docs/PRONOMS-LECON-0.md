@@ -35,3 +35,7 @@ Références : LLO sur les pronoms personnels, `https://sproo.lu/fr/conjugaison/
 ## Livraison audio vérifiée
 
 Génération Mia terminée sur `2.1` (commit audio `ab76d57`) : fichiers physiques et index vérifiés pour **hien**, **hatt** et **Dir** ; les sept entrées du lexique ont désormais un fichier LOD ou Mia. Un audit complémentaire a identifié cinq références historiques omises de la nouvelle version de l'index ; elles ont été restaurées, et la fonction `save()` fusionne dorénavant les anciennes entrées afin de préserver la bibliothèque lors des générations futures. Deux tests protègent cette conservation et la couverture complète des pronoms.
+
+## Alignement de la découverte guidée — 28 octobre 2026
+
+Sur les captures Samsung, la disposition initiale `[hien] [haut-parleur]` centrait **le groupe entier**, et donc déplaçait chaque pronom selon sa longueur. Le mot et sa traduction sont désormais deux lignes centrées autonomes. Le bouton de prononciation commun est placé dans **une troisième ligne centrée sous la traduction**, avant « EXEMPLE », avec une cible tactile de **44 × 44 px** et un style secondaire discret. Aucun changement de moteur audio, de prononciation, de données ou de progression. La disposition garde la même largeur même si un son est indisponible ; la cible laisse la place à la typographie agrandie. Recette à refaire sur Samsung pour les huit cartes, notamment **hien / Dir / si**, police agrandie et retour arrière. Tests Node dans `test/pronoms-lecon0.test.cjs` exécutés par la CI.

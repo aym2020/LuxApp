@@ -3428,10 +3428,16 @@ body.pi-bloque { overflow:hidden; }
 #view-decouverte .dc-indice { font-size:14px; line-height:1.4; color:#d5c8a9; margin:11px 0 28px; }
 #view-decouverte .dc-mot { font-size:29px; font-weight:800; letter-spacing:-.6px; color:#f5f3eb; margin:0 0 19px; }
 /* Leçon 0, unité 3 : un pronom, sa traduction et un exemple. */
-#view-decouverte .dc-pronom-ligne { display:flex; align-items:center; gap:12px; min-width:0; margin:12px 0 4px; }
-#view-decouverte .dc-pronom-ligne .bouton-ecouter { flex:none; min-width:44px; min-height:44px; }
-#view-decouverte .dc-pronom { font-size:clamp(51px,15vw,76px); font-weight:800; line-height:1.1; color:#f5f3ed; min-width:0; }
-#view-decouverte .dc-traduction { font-size:clamp(20px,5vw,25px); font-weight:650; color:#e8c86c; margin:0 0 25px; }
+/* La prononciation est sur une ligne dédiée : pas de décalage du mot selon
+   sa longueur (hien/Dir/si). Les dimensions tactiles restent >= 44px. */
+#view-decouverte .dc-pronom { font-size:clamp(51px,15vw,76px); font-weight:800; line-height:1.1; color:#f5f3ed; min-width:0; margin:12px 0 4px; max-width:100%; overflow-wrap:anywhere; }
+#view-decouverte .dc-traduction { font-size:clamp(20px,5vw,25px); font-weight:650; color:#e8c86c; margin:0; }
+#view-decouverte .dc-pronom-audio { display:flex; align-items:center; justify-content:center; width:100%; min-height:44px; margin:1px 0 4px; }
+#view-decouverte .dc-pronom-audio .bouton-ecouter.compact {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; min-width:44px; min-height:44px; margin:0; padding:0;
+  border:1px solid rgba(245,207,77,.26); border-radius:50%; background:rgba(245,207,77,.07);
+}
 #view-decouverte .dc-exemple { font-size:clamp(18px,5vw,23px); font-weight:650; line-height:1.4; color:#f5f3ed; overflow-wrap:break-word; margin:10px 0 0; }
 #view-decouverte .dc-ecouter { border:1px solid #7b6635; color:#f2d278; background:#302a1c;
   border-radius:30px; min-height:49px; min-width:180px; padding:10px 22px; display:inline-flex;

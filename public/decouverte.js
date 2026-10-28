@@ -61,10 +61,12 @@ function afficherDecouverte() {
         ICONE_ECOUTER + '<span>Écouter le mot</span></button>' +
       '<p class="dc-note">Tu peux réécouter et continuer quand tu veux.</p>';
   } else if (pronoms) {
+    // Le mot, sa traduction et le bouton audio occupent des lignes indépendantes :
+    // la longueur du pronom ne déplace jamais son centre optique.
     html = '<div class="dc-mini">EN LUXEMBOURGEOIS</div>' +
-      '<div class="dc-pronom-ligne"><div class="dc-pronom" lang="lb">' + escHtml(ex.pronom) + '</div>' +
-      boutonEcouterHtml(ex.pronom, true) + '</div>' +
+      '<div class="dc-pronom" lang="lb">' + escHtml(ex.pronom) + '</div>' +
       '<div class="dc-traduction">' + escHtml(ex.fr) + '</div>' +
+      '<div class="dc-pronom-audio">' + boutonEcouterHtml(ex.pronom, true) + '</div>' +
       '<div class="dc-mini">EXEMPLE</div>' +
       '<div class="dc-exemple" lang="lb">' + escHtml(ex.exemple) + '</div>' +
       '<p class="dc-explication">' + escHtml(ex.explication) + '</p>';
