@@ -12,7 +12,9 @@ on:
       - 'test/lux-demasque*.test.cjs'
       - 'tests/test_lux_demasque*.py'
       - 'tests/capture_lux_demasque_ld001.py'
+      - 'tests/capture_cringr_spec113.py'
       - 'tests/test_lux_demasque_selection.py'
+      - 'public/fonts/vt323-*'
       - 'tools/test-lux-demasque.sh'
       - 'tools/critique.sh'
   workflow_dispatch:
@@ -50,6 +52,15 @@ jobs:
             sleep 0.2
           done
           python3 tests/capture_lux_demasque_ld001.py
+          python3 tests/capture_cringr_spec113.py
+      - name: Archiver les captures et mesures SPEC 113
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cringr-spec-113
+          path: artifacts/spec-113/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Archiver les captures du choix des affaires
         if: always()
         uses: actions/upload-artifact@v4

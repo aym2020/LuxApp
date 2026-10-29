@@ -10,6 +10,7 @@ const ld = {
   donnees: null,
   partie: null,
   selection: null, // sélection d'affaires avant la création d'une partie
+  ouverture: 0, // invalide un chargement si le joueur quitte ou ouvre un autre profil
   selectionPortraitEnCours: null, // sériel WebGL partagé
   aideFr: true,
   verdict: null,          // dernier résultat d'objection affiché
@@ -191,21 +192,26 @@ async function ldChargerDonnees() {
   ld.donnees = json.contenus;
   return ld.donnees;
 }
-// ── Sélection des affaires (SPEC 112). Aucune partie créée avant confirmation.
+// ── Sélecteur Cringr (SPEC 113). Aucune partie créée avant LIKE / le cœur.
 async function ldOuvrirSelection() {
   if (!luxDemasqueDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
   luxDemasqueArreter();
+  const ouverture = ld.ouverture;
   if (typeof LuxMatchSon !== 'undefined') LuxMatchSon.musique(null);
   if (typeof LuxDemasqueSon !== 'undefined') { LuxDemasqueSon.preparer(); LuxDemasqueSon.precharger(); }
   showView('view-luxdemasque');
   const box = ldBox();
-  if (box) box.innerHTML = '<p class="ld-chargement">Chargement des profils…</p>';
+  if (box) {
+    box.dataset.ecran = 'selection';
+    box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) + '<p class="ld-chargement" role="status">Chargement des profils…</p>';
+  }
   try { await ldChargerDonnees(); } catch (_) {
-    if (ldVueActive() && box) box.innerHTML = ldEntete({fr:false,menu:false}) +
-      '<p class="ld-chargement">Impossible de charger les profils. Vérifie ta connexion.</p>';
+    if (ld.ouverture === ouverture && ldVueActive() && box) box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
+      '<p class="ld-chargement" role="alert">Impossible de charger les profils. Vérifie ta connexion.</p>' +
+      '<button type="button" class="ld-selection-reessayer" onclick="ldOuvrirSelection()">Réessayer</button>';
     return;
   }
-  if (!ldVueActive()) return;
+  if (ld.ouverture !== ouverture || !ldVueActive()) return;
   const dossiers = ld.donnees.dossiers.concat(ld.donnees.dossiersRediges || []);
   const items = dossiers.map(d => ({id:d.id,numero:d.numero,npc:ldPersonne(d.npc),genere:false}));
   if ((ld.donnees.affaires || []).length) {
@@ -220,6 +226,11 @@ async function ldOuvrirSelection() {
 function ldRendreSelection() {
   const sel = ld.selection, box = ldBox();
   if (!sel || !box) return;
+  if (!sel.items.length) {
+    box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
+      '<p class="ld-chargement" role="status">Aucun profil disponible pour le moment.</p>';
+    return;
+  }
   const affaire = sel.items[sel.index], npc = affaire.npc, index = sel.index + 1;
   const resolu = !affaire.genere && ldLire('luxDemasqueResolus',[]).includes(affaire.id);
   box.dataset.ecran = 'selection';
@@ -239,25 +250,27 @@ function ldRendreSelection() {
           '<div class="ld-dating-appbar"><span class="ld-dating-brand">cringr<span>♥</span></span>' +
             '<span class="ld-dating-counter" aria-live="polite">PROFIL ' + index + ' / ' + sel.items.length + '</span></div>' +
           '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
-            ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '">' +
+            ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '" tabindex="0" aria-describedby="ld-selection-commandes" aria-keyshortcuts="ArrowLeft ArrowRight Enter Space">' +
             '<div class="ld-selection-image-zone ld-photo-scene ld-photo-' + (npc ? ldEchapper(npc.id) : 'mystere') + '">' + portrait + '</div>' +
             '<div class="ld-selection-infos">' +
-              '<span class="ld-selection-etat">' +
-                (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
               '<h2>' + (affaire.genere ? 'Nouveau profil' : ldEchapper(npc.nom) + ', <span>' + npc.age + '</span>') + '</h2>' +
               (affaire.genere
                 ? '<p class="ld-selection-ville">Une rencontre inédite.</p>' +
                   '<p class="ld-selection-description">Une nouvelle rencontre t’attend.</p>'
                 : '<p class="ld-selection-ville">' + ldEchapper(npc.villeFr) + '</p>' +
                   '<p class="ld-selection-description">« ' + ldEchapper(npc.accrocheFr) + ' »</p>') +
+              '<span class="ld-selection-etat">' +
+                (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
             '</div></article></div>' +
           '<div class="ld-dating-controls">' +
             '<button type="button" class="ld-dating-meet" onclick="ldSelectionConfirmer()" aria-label="' +
               (affaire.genere ? 'Découvrir le profil' : resolu ? 'Revoir le profil' : 'Voir le profil') + '">' +
-              '<span aria-hidden="true">♥</span><span class="ld-rencontre-label">' +
+              '<svg viewBox="0 0 16 14" fill="currentColor" aria-hidden="true"><path d="M2 0h4v2h4V0h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2V8H0V2h2z"/></svg><span class="ld-rencontre-label">' +
               (affaire.genere ? 'DÉCOUVRIR' : resolu ? 'REVOIR' : 'RENCONTRER') + '</span></button>' +
+            '<button type="button" class="ld-selection-passer" onclick="ldSelectionChanger(1)" aria-label="Passer au profil suivant">Passer</button>' +
           '</div>' +
-          '' +
+          '<p id="ld-selection-commandes" class="ld-selection-sr">Flèche gauche : passer au profil suivant. Flèche droite, Entrée ou Espace : rencontrer ce profil.</p>' +
+          (sel.erreur ? '<p class="ld-selection-erreur" role="alert">' + ldEchapper(sel.erreur) + '</p>' : '') +
         '</div>' +
       '</section>' +
     '</main>';
@@ -314,22 +327,35 @@ function ldPreparerPortraitSelection(npc) {
 }
 function ldSelectionChanger(delta) {
   const selection = ld.selection;
-  if (!selection || !Number.isInteger(delta) || !selection.items.length) return;
+  if (!selection || selection.enCours || !Number.isInteger(delta) || !selection.items.length) return;
+  const actif = document.activeElement;
+  const focus = actif && (actif.id === 'ld-selection-carte' ? '#ld-selection-carte' :
+    actif.classList.contains('ld-selection-passer') ? '.ld-selection-passer' : null);
   selection.index = (selection.index + delta + selection.items.length) % selection.items.length;
+  selection.erreur = null;
   ldSon('nav');
   ldRendreSelection();
+  if (focus) document.querySelector(focus).focus({preventScroll:true});
 }
-function ldSelectionConfirmer() {
+async function ldSelectionConfirmer() {
   const selection = ld.selection;
-  if (!selection || selection.enCours) return;
+  if (!selection || selection.enCours || !selection.items.length) return;
   selection.enCours = true;
   const dossier = selection.items[selection.index];
+  const ouverture = ld.ouverture + 1; // ouvrirLuxDemasque appelle luxDemasqueArreter
   // Le swipe droit et le coeur sont deux entrées vers la même rencontre.
-  ouvrirLuxDemasque(dossier.genere ? dossier.graine : dossier.id);
+  try { await ouvrirLuxDemasque(dossier.genere ? dossier.graine : dossier.id); } catch (_) { /* réessai ci-dessous */ }
+  if (ld.ouverture !== ouverture || !ldVueActive() || ld.partie) return;
+  // Un échec de chargement ne doit ni verrouiller le cœur ni perdre la graine choisie.
+  selection.enCours = false;
+  selection.erreur = 'Impossible d’ouvrir ce profil. Réessaie ou choisis une autre rencontre.';
+  ld.selection = selection;
+  ldRendreSelection();
+  document.querySelector('.ld-dating-meet').focus({preventScroll:true});
 }
 function ldSelectionCoachmark() {
   const carte = document.getElementById('ld-selection-carte');
-  if (!carte || !ld.selection || ld.selection.index !== 0) return;
+  if (!carte || !ld.selection) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   try {
     if (localStorage.getItem('ldSwipeVu') === '1') return;
@@ -340,16 +366,27 @@ function ldSelectionCoachmark() {
 }
 function ldBrancherSelection(carte) {
   if (!carte) return;
+  carte.addEventListener('keydown', e => {
+    if (!['ArrowLeft','ArrowRight','Enter',' '].includes(e.key)) return;
+    e.preventDefault();
+    e.stopPropagation(); // le raccourci global Entrée ne doit pas valider une seconde fois
+    if (e.repeat) return;
+    carte.classList.remove('ld-swipe-demo');
+    if (e.key === 'ArrowLeft') ldSelectionChanger(1);
+    else ldSelectionConfirmer();
+  });
   let geste = null;
   const annuler = () => {
     if (!geste) return;
     const id = geste.id; geste = null;
     try { if (carte.hasPointerCapture(id)) carte.releasePointerCapture(id); } catch (_) {}
     carte.style.transform = '';
+    carte.style.removeProperty('--ld-swipe-force');
     carte.classList.remove('ld-selection-tire','ld-glisse-suivant','ld-glisse-precedent');
   };
   carte.addEventListener('pointerdown', e => {
-    if (geste || !e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    if (geste || !ld.selection || ld.selection.enCours || !e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    carte.classList.remove('ld-swipe-demo');
     geste = {id:e.pointerId,x:e.clientX,y:e.clientY,direction:null,dx:0};
     try { carte.setPointerCapture(e.pointerId); } catch (_) {}
   });
@@ -363,10 +400,12 @@ function ldBrancherSelection(carte) {
       carte.classList.add('ld-selection-tire');
     }
     geste.dx = dx;
+    const reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     carte.style.transform = 'translateX(' + dx + 'px) rotate(' +
-      Math.max(-9,Math.min(9,dx/22)) + 'deg)';
-    carte.classList.toggle('ld-glisse-suivant', dx < -25);
-    carte.classList.toggle('ld-glisse-precedent', dx > 25);
+      (reduit ? 0 : Math.max(-9,Math.min(9,dx/22))) + 'deg)';
+    carte.style.setProperty('--ld-swipe-force', Math.min(1,Math.abs(dx)/65));
+    carte.classList.toggle('ld-glisse-suivant', dx < 0);
+    carte.classList.toggle('ld-glisse-precedent', dx > 0);
   });
   carte.addEventListener('pointerup', e => {
     if (!geste || e.pointerId !== geste.id) return;
@@ -384,6 +423,7 @@ function ldBrancherSelection(carte) {
 async function ouvrirLuxDemasque(dossierId) {
   if (!luxDemasqueDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
   luxDemasqueArreter();
+  const ouverture = ld.ouverture;
   // Geste de l'utilisateur : le son peut démarrer (autoplay mobile) ; Lux Match se tait.
   if (typeof LuxMatchSon !== 'undefined') LuxMatchSon.musique(null);
   if (typeof LuxDemasqueSon !== 'undefined') { LuxDemasqueSon.preparer(); LuxDemasqueSon.precharger(); }
@@ -391,16 +431,17 @@ async function ouvrirLuxDemasque(dossierId) {
   const box = ldBox();
   if (box) box.innerHTML = '<p class="ld-chargement">Ouverture du dossier…</p>';
   try { await ldChargerDonnees(); } catch (_) {
-    if (box) box.innerHTML = ldEntete() + '<p class="ld-chargement">Impossible de charger Red Flag. Vérifie ta connexion.</p>';
+    if (ld.ouverture === ouverture && ldVueActive() && box) box.innerHTML = ldEntete() + '<p class="ld-chargement">Impossible de charger Red Flag. Vérifie ta connexion.</p>';
     return;
   }
-  if (!ldVueActive()) return; // l'utilisateur est reparti pendant le chargement
+  if (ld.ouverture !== ouverture || !ldVueActive()) return; // le joueur est reparti / a choisi un autre profil
   ld.aideFr = ldLire('luxDemasqueAideFr', true);
   ld.partie = LuxDemasqueCore.nouvellePartie(ld.donnees, ldChoisirDossier(dossierId));
   ldRendre();
   ldPreparerImages(); // portrait 3D et photos des preuves, pendant que le joueur lit la fiche
 }
 function luxDemasqueArreter() {
+  ld.ouverture++;
   const partie = ld.partie;
   ld.partie = null; // d'abord : fermer les fenêtres ne relance aucune musique
   ld.selection = null;
@@ -417,7 +458,7 @@ function luxDemasqueArreter() {
 (function () {
   const vue = document.getElementById('view-luxdemasque');
   if (!vue || typeof MutationObserver === 'undefined') return;
-  new MutationObserver(() => { if (!vue.classList.contains('active') && ld.partie) luxDemasqueArreter(); })
+  new MutationObserver(() => { if (!vue.classList.contains('active') && (ld.partie || ld.selection)) luxDemasqueArreter(); })
     .observe(vue, { attributes: true, attributeFilter: ['class'] });
 })();
 function ldQuitter() { luxDemasqueArreter(); if (typeof ouvrirJeux === 'function') ouvrirJeux(); }

@@ -9,6 +9,8 @@
 
 **Avant tout changement de ce jeu :** [suite de tests et recette](docs/LUX-DEMASQUE-TESTS.md) — exécuter `bash tools/test-lux-demasque.sh rapide` puis `complet`. Le mode `acceptation` contient le contrat LD-034 initialement rouge. Ne pas cocher de tâches sur seule lecture de CI.
 
+**SPEC 113 — Cringr (29/10/2026) :** [contrat](docs/specs/SPEC-113.md) et [recette réelle](docs/CRINGR-SPEC-113-RECETTE.md). Sélecteur seulement : gauche = NOPE, droite/cœur = rencontre, seuil strict 65 px ; clavier et « Passer » accessibles. CSS unique, police rétro de lecture locale, garde des chargements et réessai. Rapide 3/3, complet 11/11 ; suite globale rouge sur échecs reproduits dans le checkout initial. **LD-048 non validée tant que le joueur n'a pas accepté sur Samsung.**
+
 Mémo des méthodes et techniques pour résoudre les problèmes récurrents du projet.
 But : arrêter de re-réfléchir à des trucs déjà résolus.
 

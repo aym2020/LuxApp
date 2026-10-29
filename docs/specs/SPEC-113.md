@@ -1,6 +1,6 @@
 # SPEC 113 — RED FLAG / CRINGR : contrat produit et recette du sélecteur
 
-**Date de décision :** 29 octobre 2026 · **Branche du code :** `2.1` · **Statut :** implémentation partielle poussée, **non validée** (tests fonctionnels, visuels et Samsung manquants).  
+**Date de décision :** 29 octobre 2026 · **Branche du code :** `2.1` · **Statut :** implémentée, suites dédiées et recette Chromium vérifiées le 29/10 ; **validation produit Samsung en attente**. La suite critique globale reste rouge sur des échecs reproduits dans la référence. Voir le [rapport de livraison et les réserves](../CRINGR-SPEC-113-RECETTE.md).
 **Suivi canonique :** `main/docs/LUX-DEMASQUE-TODO.md`, LD-048 ; ne pas cocher sans recette et accord explicite.  
 **Périmètre :** exclusivement `#view-luxdemasque .ld-jeu[data-ecran="selection"]`. Aucun changement de Lux Match ni du moteur de vérité.
 
@@ -52,7 +52,7 @@ La carte doit permettre une navigation **sans drag tactile** : équivalent clavi
 
 Tester : 1 seul profil si données partielles, 4 profils, profil déjà résolu, profil généré, retour du rendez-vous, swipe rapide, drag interrompu, multitouch, souris, clavier, portrait lent/échoué, texte long, rotation, rechargement, réduction des animations, absence de stockage local. Aucun geste ne doit corrompre la progression.
 
-## 5. État constaté dans le code du 29/10 (à recontrôler avant édition)
+## 5. État initial du 29/10, avant la recette ci-dessous (historique)
 
 - Le rendu `ldRendreSelection()` produit la coque Cringr, le compteur, la carte et le cœur ; aucun bouton précédent/suivant dans ce DOM.
 - `ldBrancherSelection()` : drag horizontal, seuil strict `Math.abs(dx) > 65`, droite → `ldSelectionConfirmer()`, gauche → `ldSelectionChanger(1)`. Geste vertical et annulation ont des chemins dédiés.
@@ -90,3 +90,9 @@ Ne pas considérer les commits précédents comme une validation. Vérifier le S
 | RF-10 | Appareil Samsung réel | Proportions, gestes, barres système, scroll et rendu approuvés | Validation produit |
 
 **Définition de terminé :** RF-01 à RF-09 vérifiés, tests rapides et complets verts, captures comparatives produites, puis RF-10 et accord explicite du joueur. En attendant : **À RETOUCHER / NON VALIDÉ**. Ne pas marquer « terminé » sur une simple CI verte.
+
+## 8. Implémentation et recette du 29 octobre 2026
+
+[Rapport complet](../CRINGR-SPEC-113-RECETTE.md) : consolidation des trois couches CSS du sélecteur ; police rétro de lecture auto-hébergée ; nom/ville/bio/statut réordonnés ; cœur pixel de 56 px ; alternative discrète « Passer » ; clavier et focus ; feedback gestuel progressif ; annulation des ouvertures périmées et réessai après échec sans perte de graine.
+
+Tests réels : `rapide` **3/3**, `complet` **11/11**, recette RF-01 à RF-08 sur Chromium avec gestes tactiles CDP, souris, clavier, portrait lent/absent, stockage refusé et texte 200 %. Captures avant/après aux quatre tailles. RF-09 : Lux Match, moteur, cloud et sauvegardes contrôlés ; les **19 échecs globaux** observés existent aussi dans le checkout initial `19c0cdb` (20 échecs dans cette référence, dont `test_actualisation` qui passe après). **Ne pas présenter la suite critique comme verte.** RF-10 non exécuté ; LD-048 reste ouverte jusqu'à accord explicite sur Samsung.

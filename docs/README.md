@@ -65,7 +65,7 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 ## Jeu — Lux Démasque (SPEC 110, implémenté sur 2.1)
 
-[**SPEC 112 — Red Flag / Cringr : swipe sans flèches**](specs/SPEC-112.md) : **nouvelle décision de marque et d'UX documentée le 29/10, non codée**. Le sélecteur V1 « dossiers/affaires » a été remplacé par les profils V2 ; les captures et la validation tactile Samsung restent à faire. Lux Match n'est pas concerné.
+[**SPEC 113 — Red Flag / Cringr : sélecteur et recette**](specs/SPEC-113.md) : référence normative du sélecteur, prioritaire sur [SPEC 112 (historique)](specs/SPEC-112.md). Gauche = NOPE, droite/cœur = rencontre, alternative « Passer » et clavier. [Implémentation, captures et résultats réels](CRINGR-SPEC-113-RECETTE.md) du 29/10 : suites dédiées vertes, échecs globaux préexistants comparés, Samsung et accord produit encore attendus. Lux Match préservé.
 
 **Refonte graphique arcade écran par écran (LD-002)** : [procédure de validation produit](LUX-DEMASQUE-VALIDATION-ECRANS.md) — 12 sous-étapes, une seule livraison visuelle à la fois, captures avant/après et accord utilisateur explicite avant de passer à la suivante. La [TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) est l'unique source des statuts ; prochaine action LD-002.01 (Rencontre).
 

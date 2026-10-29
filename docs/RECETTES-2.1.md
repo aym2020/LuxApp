@@ -12,6 +12,8 @@
 
 ## Lot 1 — P0-01, exercices (disponible dans 3001)
 
+**Jeu RED FLAG / Cringr — RF-01 à RF-10 (SPEC 113, 29/10/2026) :** préparation par les vraies fonctions **Jeux → Red Flag → Jouer** (`ldOuvrirSelection()`), puis gestes et cœur natifs. Tests `tests/test_lux_demasque_cringr.py` + `tests/test_lux_demasque_selection.py`, captures `tests/capture_cringr_spec113.py`. [Rapport, tailles, scénarios et limites](CRINGR-SPEC-113-RECETTE.md). RF-01 à RF-08 vérifiés dans Chromium ; régressions dédiées vertes, comparaison globale documentée. **RF-10 Samsung et accord explicite du joueur manquants : LD-048 reste ouverte.** Aucune fixture HTML ni modification des sauvegardes de production.
+
 | Recettes dans « Écran à tester » | Scénarios | Tests associés | État |
 |---|---|---|---|
 | **Mot caché** | MC-01 Découverte ; MC-02 Départ ; MC-03/04/05 1/2/3 erreurs ; MC-06 Indice ; MC-07 Réussite ; MC-08 Réponse révélée | `tests/test_motcache_cta_mobile.py`, `tests/test_motcache.py`, `test/exercices-etats-v21.test.cjs` | **validé visuellement sur Samsung les 23 et 25/10** (états de jeu, deux erreurs et réponse révélée) ; aide non montrée |

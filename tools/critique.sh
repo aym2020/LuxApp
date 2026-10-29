@@ -33,7 +33,7 @@ for t in "tools/valider-lecons.js" "tests/test_cloud.js" "tests/test_sync.js" "t
   if node "$t" >"$LOGS/node.log" 2>&1; then echo "OK      $t"; else echo "ECHEC   $t"; tail -8 "$LOGS/node.log"; echec=1; fi
 done
 # SPEC 95 : les tests Node des exercices (aussi lancés par la CI GitHub accueil-2.1).
-for t in "test/actions-unite-v21.test.cjs" "test/defis-v21.test.cjs" "test/exercices-v21.test.cjs" "test/exercices-etats-v21.test.cjs" "test/lux-demasque.test.cjs" "test/lux-demasque-generateur.test.cjs"; do
+for t in "test/actions-unite-v21.test.cjs" "test/defis-v21.test.cjs" "test/exercices-v21.test.cjs" "test/exercices-etats-v21.test.cjs" "test/lux-demasque.test.cjs" "test/lux-demasque-generateur.test.cjs" "test/lux-demasque-selection.test.cjs"; do
   if node --test "$t" >"$LOGS/node.log" 2>&1; then echo "OK      $t"; else echo "ECHEC   $t"; grep -A4 "^not ok" "$LOGS/node.log" | head -12; echec=1; fi
 done
 
@@ -41,7 +41,7 @@ if [ "$1" != "rapide" ]; then
   # 2. Tests navigateur, du plus long au plus court
   TESTS="test_actions_unite test_defis_chemin test_lecon_resumes test_retours test_retour_intro test_parcours test_rappels test_prerequis test_recette_visuelle test_acces_recette test_actualisation test_acquis_v1 test_chemin_cartes test_missions_10 test_mission_vies test_navigation
          test_lot2 test_lot3 test_motcache test_decouverte test_chemin_lignes test_seance
-         test_mission_validation test_lot1 test_libre test_examens test_contexte_audio test_retour_android test_spec87_session_mobile test_spec94_verdict test_spec94_feedback test_spec95_exercices test_lux_match_swipe test_lux_match_masque test_lux_demasque test_lux_demasque_3d test_lux_demasque_audio test_lux_demasque_parcours test_lux_demasque_mobile test_lux_demasque_acceptation"
+         test_mission_validation test_lot1 test_libre test_examens test_contexte_audio test_retour_android test_spec87_session_mobile test_spec94_verdict test_spec94_feedback test_spec95_exercices test_lux_match_swipe test_lux_match_masque test_lux_demasque test_lux_demasque_3d test_lux_demasque_audio test_lux_demasque_parcours test_lux_demasque_mobile test_lux_demasque_selection test_lux_demasque_cringr test_lux_demasque_acceptation"
   lancer() {
     debut=$(date +%s)
     if timeout 300 python3 "tests/$1.py" >"$2/$1.log" 2>&1; then r=OK; else r=ECHEC; fi
