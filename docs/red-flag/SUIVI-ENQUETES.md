@@ -28,6 +28,12 @@
 
 [Dossier SC-02](SC-02-GENIE-DE-LA-FINANCE-V2.md) : synthèse de conception FR poussée sur GitHub ; trois mensonges, trois vérités et trois mécaniques définis. **Non validé, non implémenté.** À poursuivre : rédaction complète des pièces et dialogues, exhaustivité des crédits NovaPay, vérification LU, recette mobile.
 
+## Dossiers SC-01 et SC-02 — V3
+
+- [SC-01 V3](SC-01-PRINCE-DU-LEASING-V3.md) : conception française complète pour revue, preuve de la transaction Porsche précisée.
+- [SC-02 V3](SC-02-GENIE-DE-LA-FINANCE-V3.md) : conception française complète pour revue, crédits NovaPay à rendre exhaustifs dans les pièces finales.
+- **Deux dossiers FR V3, zéro scénario intégré ou validé.** Suites : pièces, LU/LOD, recette moteur et Android.
+
 ## Registre des lots
 
 | Lot | IDs | Document | État | Prochain traitement |
