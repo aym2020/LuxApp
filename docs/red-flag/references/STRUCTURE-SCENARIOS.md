@@ -1,6 +1,6 @@
 # RED FLAG — Unité éditoriale : mensonge, enquête, scénario
 
-**Décision de cadrage (29 octobre 2026), branche `2.1` ; documentation uniquement, non implémentée.** À lire avec [SPEC 110](../specs/SPEC-110.md), [BIBLE-EDITORIALE.md](../BIBLE-EDITORIALE.md) et [OBJECTIONS-PROGRESSIVES.md](../OBJECTIONS-PROGRESSIVES.md).
+**Décision de cadrage (29 octobre 2026), branche `2.1` ; documentation uniquement, non implémentée.** À lire avec [SPEC 110](../../specs/SPEC-110.md), [BIBLE-EDITORIALE.md](../references/BIBLE-EDITORIALE.md) et [OBJECTIONS-PROGRESSIVES.md](../references/OBJECTIONS-PROGRESSIVES.md).
 
 ## Vocabulaire obligatoire
 
@@ -19,7 +19,7 @@ Exemple conceptuel (non validé) : **un** prétendant pourrait combiner trois me
 1. **Sélectionner trois mensonges complémentaires** : diversité des mécaniques, du registre émotionnel et de la difficulté ; éviter les preuves répétitives.
 2. **Créer un seul personnage** : motivation crédible reliant les trois mensonges, traits attachants, biographie, ton et portrait.
 3. **Ajouter les affirmations vraies** : crédibles, vérifiables et non contradictoires avec les mensonges ni avec les pièces.
-4. **Orchestrer la rencontre** : ordre des révélations, progression, leurres et accès plausible aux pièces ; un mensonge peut comporter une ou deux objections selon [la mécanique progressive](../OBJECTIONS-PROGRESSIVES.md).
+4. **Orchestrer la rencontre** : ordre des révélations, progression, leurres et accès plausible aux pièces ; un mensonge peut comporter une ou deux objections selon [la mécanique progressive](../references/OBJECTIONS-PROGRESSIVES.md).
 5. **Auditer les interactions croisées** : dates, adresses, emplois, comptes, relations, identité, provenance des preuves ; aucun indice ne doit résoudre involontairement une autre affaire ou contredire une vérité.
 6. **Préparer la pédagogie** : dialogues LU A1.1/A1.2 à rédiger et vérifier ; ne pas traduire automatiquement les documents complexes.
 7. **Vérifier le contrat technique avant implémentation** : SPEC 110, générateur, JSON, tests, sauvegarde et Android. Une fiche éditoriale ne vaut ni scénario jouable ni validation.
