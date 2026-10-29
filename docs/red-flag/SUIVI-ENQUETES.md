@@ -24,6 +24,10 @@
 
 [Dossier détaillé SC-01](SC-01-PRINCE-DU-LEASING-V2.md) : conception FR approfondie, non validée et non implémentée. Trois mensonges et trois vérités assemblés. **Blocage prioritaire : preuve finale de propriété de la Porsche, à rendre accessible et concluante.** Ensuite : contrôler le financement et le vol, rédiger le LU et tester. Aucun scénario jouable ajouté.
 
+## SC-02 — Avancement V2
+
+[Dossier SC-02](SC-02-GENIE-DE-LA-FINANCE-V2.md) : synthèse de conception FR poussée sur GitHub ; trois mensonges, trois vérités et trois mécaniques définis. **Non validé, non implémenté.** À poursuivre : rédaction complète des pièces et dialogues, exhaustivité des crédits NovaPay, vérification LU, recette mobile.
+
 ## Registre des lots
 
 | Lot | IDs | Document | État | Prochain traitement |
