@@ -1273,7 +1273,9 @@ body.no-scroll { overflow: hidden; }
   font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ── RÉGLAGES ─────────────────────────────────────────────────────────────── */
-.reglages { padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-4); }
+/* Réglages : espacement compact pour éviter un scroll inutile sur Android,
+   sans bloquer le défilement si le texte grossit ou si le clavier apparaît. */
+.reglages { padding: var(--sp-3) var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-3); }
 .reglages-carte { background: var(--surface-1); border: 1px solid var(--bord-1); border-radius: var(--r);
   padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-3); }
 .reglages-titre { font-size: var(--fs-corps); font-weight: 700; }
