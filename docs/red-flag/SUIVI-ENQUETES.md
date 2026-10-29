@@ -7,7 +7,7 @@
 - Catalogue original : **198** idées, conservées.
 - Présélection : **50** candidates dans [SELECTION-50.md](SELECTION-50.md).
 - Affaires pilotes P1 : **12** identifiées.
-- Fiches de conception FR développées : **3/50**.
+- Fiches de conception FR développées : **9/50**.
 - Fiches validées éditorialement par l'utilisateur : **0/50**.
 - Nouvelles affaires intégrées au jeu par ce chantier : **0**.
 - LU relu / LOD vérifié pour ce chantier : **0**.
