@@ -25,7 +25,7 @@ let horsLigneVerificationEnCours = false;
 function horsLignePointSur() {
   // Refuser tout écran autre que l'accueil : aucun exercice, formulaire ou jeu interrompu.
   const actif = document.querySelector('.view.active, .view.visible, .view:not([hidden]).actif');
-  return !!actif && actif.id === 'view-accueil' && !document.querySelector('input:focus,textarea:focus,[contenteditable="true"]:focus');
+  return !!actif && actif.id === 'view-dashboard' && !document.querySelector('input:focus,textarea:focus,[contenteditable="true"]:focus');
 }
 function horsLigneActivationSecurisee() {
   if (!horsLigneMajRegistration || !horsLigneMajRegistration.waiting || horsLigneMajDemandee) return;

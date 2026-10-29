@@ -353,7 +353,7 @@ async function ouvrirLuxDemasque(dossierId) {
   const box = ldBox();
   if (box) box.innerHTML = '<p class="ld-chargement">Ouverture du dossier…</p>';
   try { await ldChargerDonnees(); } catch (_) {
-    if (box) box.innerHTML = ldEntete() + '<p class="ld-chargement">Impossible de charger Lux Démasque. Vérifie ta connexion.</p>';
+    if (box) box.innerHTML = ldEntete() + '<p class="ld-chargement">Impossible de charger Red Flag. Vérifie ta connexion.</p>';
     return;
   }
   if (!ldVueActive()) return; // l'utilisateur est reparti pendant le chargement
@@ -753,7 +753,7 @@ function ldMenu() {
       (ld.partie && ld.partie.phase === 'deposition' ? '<button type="button" class="ld-btn ld-btn-or" onclick="ldFermerCalque(\'ld-menu\'); ldDemanderConclusion()">Conclure le dossier</button>' : '') +
       '<button type="button" class="ld-btn ld-btn-sombre" onclick="ldFermerCalque(\'ld-menu\')">Reprendre</button>' +
       ldReglage('Son', 'luxDemasqueSon', true) + ldReglage('Musique', 'luxDemasqueMusique', true) +
-      '<button type="button" class="ld-btn ld-btn-lien" onclick="ldQuitter()">Quitter Lux Démasque</button></div>');
+      '<button type="button" class="ld-btn ld-btn-lien" onclick="ldQuitter()">Quitter Red Flag</button></div>');
 }
 // Interrupteurs du menu : Son (tout) et Musique (garde les effets). Mémorisés.
 function ldReglage(libelle, cle, defaut) {
