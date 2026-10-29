@@ -97,6 +97,10 @@ Ne pas considérer les commits précédents comme une validation. Vérifier le S
 
 Tests réels : `rapide` **3/3**, `complet` **11/11**, recette RF-01 à RF-08 sur Chromium avec gestes tactiles CDP, souris, clavier, portrait lent/absent, stockage refusé et texte 200 %. Captures avant/après aux quatre tailles. RF-09 : Lux Match, moteur, cloud et sauvegardes contrôlés ; les **19 échecs globaux** observés existent aussi dans le checkout initial `19c0cdb` (20 échecs dans cette référence, dont `test_actualisation` qui passe après). **Ne pas présenter la suite critique comme verte.** RF-10 non exécuté ; LD-048 reste ouverte jusqu'à accord explicite sur Samsung.
 
+### Correction audio Cringr — 29 octobre 2026 (non validée sur Samsung)
+
+Le sélecteur est un écran **avant la création de la partie** : auparavant, `ldSynchroMusique()` imposait le silence quand `ld.partie` était nulle. Désormais, après l'affichage des profils, Cringr joue la **boucle d'enquête originale existante**, sans nouvelle piste ni nouveau contexte Audio. La boucle est conservée lors d'un NOPE/changement de profil, poursuivie lors d'un LIKE, coupée à la sortie et au bilan ; les préférences `luxDemasqueSon` et `luxDemasqueMusique` restent respectées. Une liste vide et le chargement restent silencieux. Voir `public/lux-demasque.js` et `tests/test_lux_demasque_audio.py`. **Tests automatisés ajoutés, non exécutés dans cette intervention ; écoute et validation Samsung à faire.**
+
 ## 9. Retour produit du 29 octobre 2026
 
 **Décision : conserver cette direction artistique comme base de RED FLAG et prévoir uniquement des finitions ciblées.** Retour transmis par le joueur, évoquant trois captures Samsung : composition cohérente, interactions compréhensibles et identité rétro convaincante. Cette note consigne une appréciation visuelle ; les pistes ci-dessous sont **à planifier, non implémentées dans cette intervention**.
