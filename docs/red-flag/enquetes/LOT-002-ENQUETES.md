@@ -1,6 +1,6 @@
 # RED FLAG — Lot 002 : trois enquêtes fictives
 
-**Statut : conception française, non implémentée, non validée.** Références : [sélection](../SELECTION-50.md), [méthode](../MATRICE-PREUVES.md), [affaires existantes](../LUX-DEMASQUE-AFFAIRES.md). Tous les personnages, pièces et faits sont inventés. LU A1.1/A1.2 à écrire et vérifier. Aucune donnée réelle.
+**Statut : conception française, non implémentée, non validée.** Références : [sélection](../catalogue/SELECTION-50.md), [méthode](../references/MATRICE-PREUVES.md), [affaires existantes](../../LUX-DEMASQUE-AFFAIRES.md). Tous les personnages, pièces et faits sont inventés. LU A1.1/A1.2 à écrire et vérifier. Aucune donnée réelle.
 
 ## RF-02-05 — Le trader en simulation
 
