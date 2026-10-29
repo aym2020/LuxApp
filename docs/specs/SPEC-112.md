@@ -1,5 +1,8 @@
 # SPEC 112 — Red Flag : sélection des profils dans l'app Cringr
 
+> ⚠️ **DOCUMENT HISTORIQUE — NE PAS IMPLÉMENTER TEL QUEL.** La [SPEC 113](SPEC-113.md) est la **seule référence normative actuelle** pour la sélection Cringr : swipe **gauche = NOPE / profil suivant**, **droite = LIKE / rencontre**, cœur = LIKE. Les prescriptions ci-dessous « swipe = précédent/suivant », « un swipe ne lance jamais la rencontre », « PRÉCÉDENT/SUIVANT », pile factice et hint SWIPE sont **obsolètes et explicitement annulées**. Le code actuel implémente une partie de SPEC 113 mais **n'a pas été validé par tests navigateur ni sur Samsung**. Conserver le reste de cette fiche pour l'historique, les données et les contraintes non contradictoires. Ne pas reprendre les anciens tests comme vérité produit sans les adapter.
+
+
 **Décision produit :** 29 octobre 2026 · **Branche de code cible :** `2.1` · **État : V2 IMPLÉMENTÉE SUR `2.1` — RECETTE ET APPROBATION SAMSUNG À CONFIRMER** · **Écran unique de ce lot :** sélecteur `data-ecran="selection"` · **Suivi canonique :** LD-048 dans `docs/LUX-DEMASQUE-TODO.md` sur `main`.
 
 > **Pivot explicite :** Lux Démasqué n'est **pas** une enquête policière présentée comme un interrogatoire : c'est **un date**, organisé dans un téléphone et une app de rencontre. Les incohérences, preuves et disquettes forment le gameplay sous-jacent, sans contaminer le vocabulaire et la présentation du choix initial. **Ne pas modifier Lux Match : il s'agit de Lux Démasqué.**
