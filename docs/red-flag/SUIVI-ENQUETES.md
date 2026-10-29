@@ -28,6 +28,13 @@
 
 [Dossier SC-02](SC-02-GENIE-DE-LA-FINANCE-V2.md) : synthèse de conception FR poussée sur GitHub ; trois mensonges, trois vérités et trois mécaniques définis. **Non validé, non implémenté.** À poursuivre : rédaction complète des pièces et dialogues, exhaustivité des crédits NovaPay, vérification LU, recette mobile.
 
+## Playtest simulé et révisions V4 — 29 octobre 2026
+
+- [SC-01 V4](SC-01-PRINCE-DU-LEASING-V4.md) : questions du joueur, accès volontaire et progressif aux preuves Porsche, objections O1/O2, vérifications plus actives pour berline et vol. **Conception FR révisée, non validée.**
+- [SC-02 V4](SC-02-GENIE-DE-LA-FINANCE-V4.md) : trois interactions distinctes (contexte du graphique, choix des sources, frise d'attribution NovaPay), humour et rythme renforcés. **Conception FR révisée, non validée.**
+- **Test effectué :** revue critique et simulation sur dossier, **pas** test du moteur ni Android. Cas de recette écrits dans chaque V4, non exécutés. **0 scénario intégré, 0 scénario validé.**
+- **Suites :** produire les pièces finales, tester à l'aveugle les chaînes de preuve, vérifier LU/LOD, puis JSON/moteur/mobile. V3 et V2 conservées.
+
 ## Dossiers SC-01 et SC-02 — V3
 
 - [SC-01 V3](SC-01-PRINCE-DU-LEASING-V3.md) : conception française complète pour revue, preuve de la transaction Porsche précisée.
