@@ -1,6 +1,6 @@
 # Documentation LuxApp — point d'entrée
 
-> **RED FLAG / CRINGR — bibliothèque éditoriale :** [docs/red-flag/README.md](red-flag/README.md) → [bible](red-flag/BIBLE-EDITORIALE.md), [catalogue de mensonges](red-flag/CATALOGUE-MENSONGES.md), [matrice de preuves](red-flag/MATRICE-PREUVES.md), [fiche personnage](red-flag/FICHE-PERSONNAGE.md). Banque d'idées **non implémentées** ; pour les règles techniques, consulter SPEC 110/113.
+> **RED FLAG / CRINGR — bibliothèque éditoriale :** [docs/red-flag/README.md](red-flag/README.md) → [bible](red-flag/references/BIBLE-EDITORIALE.md), [catalogue de mensonges](red-flag/catalogue/CATALOGUE-MENSONGES.md), [matrice de preuves](red-flag/references/MATRICE-PREUVES.md), [fiche personnage](red-flag/references/FICHE-PERSONNAGE.md). Banque d'idées **non implémentées** ; pour les règles techniques, consulter SPEC 110/113.
 
 
 **Dépôt :** `aym2020/LuxApp` · **Branche concernée :** `2.1` · **Dernière réorganisation :** 23 octobre 2026.
