@@ -1,0 +1,30 @@
+"""Relevé reproductible SPEC 114 : 24 vues réelles + panneaux/états de jeu."""
+import json
+import os
+import subprocess
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+from helpers import URL
+from layout114_scenarios import VUES, AUTRES, preparer, ouvrir, mesurer
+
+phase = os.environ.get('LUX_CAPTURE_PHASE', 'apres')
+sortie = Path('artifacts/spec-114')/phase
+sortie.mkdir(parents=True, exist_ok=True)
+mesures = []
+with sync_playwright() as p:
+    b = p.chromium.launch(args=['--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+    for w,h in [(390,844),(720,900),(1440,900)]:
+        ctx=b.new_context(viewport={'width':w,'height':h},reduced_motion='reduce')
+        pg=ctx.new_page()
+        preparer(pg,URL)
+        for nom in list(VUES)+list(AUTRES):
+            ouvrir(pg,nom,nom in AUTRES)
+            mesures.append(mesurer(pg,nom))
+            pg.screenshot(path=str(sortie/f'{nom}-{w}.png'),full_page=True)
+            (sortie/'mesures.json').write_text(json.dumps({'mesures':mesures},ensure_ascii=False,indent=2)+'\n')
+        ctx.close()
+        print(f'{phase} {w} : {len(VUES)} vues et {len(AUTRES)} états/panneaux mesurés et capturés',flush=True)
+    b.close()
+(sortie/'mesures.json').write_text(json.dumps({
+    'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+    'vues':len(VUES),'mesures':mesures},ensure_ascii=False,indent=2)+'\n')
