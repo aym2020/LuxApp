@@ -1,6 +1,6 @@
 # RED FLAG — transformer un mensonge en énigme prouvable
 
-**Rôle :** guide de conception, non modification du moteur. Lire [SPEC 110](../specs/SPEC-110.md) et [affaires actuelles](../LUX-DEMASQUE-AFFAIRES.md) pour les contraintes exactes de génération, d'IDs, de pièces et de précision.
+**Rôle :** guide de conception, non modification du moteur. Lire [SPEC 110](../../specs/SPEC-110.md) et [affaires actuelles](../../LUX-DEMASQUE-AFFAIRES.md) pour les contraintes exactes de génération, d'IDs, de pièces et de précision.
 
 ## Chaîne de preuve
 
@@ -56,11 +56,11 @@ Pour chaque proposition, écrire :
 
 ## Exemples d'adaptation des affaires existantes
 
-Les affaires actuelles incluent notamment `A_TRAVAIL_DOKTER`, `A_LOGEMENT_COLOC`, `A_VOYAGE_JAPON`, `A_SPORT_TOUSLESJOURS`, `A_LANGUE_DAITSCH` et `A_ANIMAL_HOND`. **Ne pas les remplacer** sans audit : elles ont des précisions, des leurres et des interactions déjà documentés dans [LUX-DEMASQUE-AFFAIRES.md](../LUX-DEMASQUE-AFFAIRES.md).
+Les affaires actuelles incluent notamment `A_TRAVAIL_DOKTER`, `A_LOGEMENT_COLOC`, `A_VOYAGE_JAPON`, `A_SPORT_TOUSLESJOURS`, `A_LANGUE_DAITSCH` et `A_ANIMAL_HOND`. **Ne pas les remplacer** sans audit : elles ont des précisions, des leurres et des interactions déjà documentés dans [LUX-DEMASQUE-AFFAIRES.md](../../LUX-DEMASQUE-AFFAIRES.md).
 
 ## Processus de passage en production
 
-1. Choisir une idée du catalogue ; remplir la [fiche personnage](../FICHE-PERSONNAGE.md).
+1. Choisir une idée du catalogue ; remplir la [fiche personnage](../references/FICHE-PERSONNAGE.md).
 2. Vérifier preuves, leurres, cohérence croisée et progressivité pédagogique.
 3. Vérifier la structure actuelle de `tools/lux-demasque/contenus.py` et le JSON généré avant toute édition.
 4. Rédiger et vérifier le LU via LOD.lu et la grammaire ; garder les traductions FR dans les espaces documentaires autorisés.
