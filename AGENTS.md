@@ -1,5 +1,8 @@
 # AGENTS.md — Consignes obligatoires pour coder LuxApp
 
+> **RED FLAG / CRINGR — contenu et personnages :** commencer par [docs/red-flag/README.md](docs/red-flag/README.md) et sa [banque de mensonges](docs/red-flag/CATALOGUE-MENSONGES.md). Pour toute implémentation, lire aussi SPEC 110/113, le code sur `2.1` et le TODO canonique sur `main`. Les idées éditoriales ne sont pas des affaires validées.
+
+
 Lire avant toute intervention : [PLAYBOOK.md](PLAYBOOK.md) (voir aussi l'[index documentaire](docs/README.md)), et pour la refonte `2.1`, [docs/CHARTE_UI_2.1.md](docs/CHARTE_UI_2.1.md) + [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md).
 
 ## Contrôle de parité UI (SPEC 94 et [SPEC 95](docs/specs/SPEC-95.md) implémentées)
