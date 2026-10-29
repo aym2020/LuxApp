@@ -32,7 +32,6 @@
    Survie : touches or / lettres en orbite.
    Lux Runner : arches violettes abstraites, jamais les couleurs M/F/N.
    Tous les vrais titres, statistiques et boutons restent du HTML. */
-#view-jeux{max-width:none}
 #view-jeux .jeux-cartes-grille{
   display:grid;
   grid-template-columns:minmax(0,1fr);
@@ -262,12 +261,7 @@
   z-index:1;
 }
 #view-jeux .jeux-carte .jeux-verrou{color:#edce87}
-@media(min-width:760px){
-  #view-jeux .jeux-hub{max-width:960px}
-  #view-jeux .jeux-cartes-grille{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-  #view-jeux .jeux-carte{min-height:395px}
-  #view-jeux .jeux-carte > p:not(.jeux-verrou){max-width:92%}
-}
+/* SPEC 114 : une colonne lisible dans le cadre commun de 640px. */
 @media(max-width:359px){
   #view-jeux .jeux-carte{padding:18px}
   #view-jeux .jeux-carte .jeux-meta{padding:8px;gap:6px}

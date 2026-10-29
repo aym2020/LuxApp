@@ -5,7 +5,7 @@
   --lm-pixel:'Press Start 2P',ui-monospace,monospace}
 #view-luxmatch{width:100%;min-height:100dvh;color:#f6f1e9;
   background:radial-gradient(120% 60% at 50% 0%,#2a1838 0%,#140f1a 50%,#0f0e0c 80%) #0f0e0c}
-#view-luxmatch .lm-jeu{position:relative;width:100%;max-width:500px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;gap:12px;
+#view-luxmatch .lm-jeu{position:relative;width:100%;max-width:var(--layout-focus);margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;gap:12px;
   padding:10px 16px calc(16px + env(safe-area-inset-bottom))}
 #view-luxmatch button{font-family:var(--font)}
 #view-luxmatch button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}

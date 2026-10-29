@@ -1,6 +1,8 @@
 /* SPEC 88 — Jeux, Survie : charte LuxApp 2.1, classes isolées. */
-#view-jeux,#view-survie{width:100%;max-width:720px;min-height:100dvh;background:#0f0e0c;color:#f5f0e8}
-#view-jeux .jeux-hub,#view-survie .survie-jeu{width:100%;max-width:470px;margin:0 auto;padding:clamp(16px,4vw,24px);padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+#view-jeux,#view-survie{width:100%;max-width:var(--layout-page,720px);min-height:100dvh;background:#0f0e0c;color:#f5f0e8}
+#view-jeux .jeux-hub,#view-survie .survie-jeu{width:100%;margin:0 auto;padding:clamp(16px,4vw,24px);padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+#view-jeux .jeux-hub{max-width:var(--layout-page,470px)}
+#view-survie .survie-jeu{max-width:470px}
 #view-jeux .jeux-retour,#view-survie .survie-top button{min-height:44px;border:0;background:transparent;color:#bbb1a2;font:650 14px var(--font);text-align:left;cursor:pointer}
 #view-jeux .jeux-entete{padding:42px 0 30px}
 #view-jeux .jeux-kicker,#view-survie .jeux-kicker{color:#afa494;letter-spacing:.16em;font:800 12px/1.4 var(--font)}
@@ -170,7 +172,7 @@
 /* SPEC 92 — Fin de partie cinématique (transition brève, aucune nouvelle surface permanente).
    Le rideau est déjà dans le HUD : un seul changement de classe, aucun reflow ni
    démontage du Canvas avant l'extinction. */
-#view-survie .survie-fin-rideau{display:none;position:fixed;inset:0;width:100%;max-width:720px;margin:0 auto;z-index:15;pointer-events:none;
+#view-survie .survie-fin-rideau{display:none;position:fixed;inset:0;width:100%;max-width:var(--layout-page,720px);margin:0 auto;z-index:15;pointer-events:none;
   background:rgba(15,14,12,.79);color:#f6f0e6;align-items:center;justify-content:center;
   flex-direction:column;text-align:center;padding:30px 18px calc(40px + env(safe-area-inset-bottom))}
 #view-survie .survie-fin-rideau-contenu{display:flex;align-items:center;flex-direction:column;gap:12px}
