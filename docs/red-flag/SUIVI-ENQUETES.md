@@ -7,7 +7,7 @@
 - Catalogue original : **198** idées, conservées.
 - Présélection : **50** candidates dans [SELECTION-50.md](SELECTION-50.md).
 - Affaires pilotes P1 : **12** identifiées.
-- Fiches de conception FR développées : **9/50**.
+- Fiches de conception FR développées : **12/50**.
 - Fiches validées éditorialement par l'utilisateur : **0/50**.
 - Nouvelles affaires intégrées au jeu par ce chantier : **0**.
 - LU relu / LOD vérifié pour ce chantier : **0**.
@@ -19,14 +19,18 @@
 | 001 | RF-01-07, RF-02-01, RF-02-03 | [LOT-001-ENQUETES.md](LOT-001-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue éditoriale, dédoublonnage avec affaires existantes, LU |
 | 002 | RF-02-05, RF-03-03, RF-04-01 | [LOT-002-ENQUETES.md](LOT-002-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue des preuves et LU |
 | 003 | RF-04-05, RF-05-12, RF-06-11 | [LOT-003-ENQUETES.md](LOT-003-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue des preuves, dédoublonnage et LU |
-| 004+ | Autres IDs de [SELECTION-50.md](SELECTION-50.md) | À créer | **Non commencé** | Lots suivants de trois |
+| 004 | RF-08-12, RF-10-01, RF-14-07 | [LOT-004-ENQUETES.md](LOT-004-ENQUETES.md) | **Conception FR rédigée ; non validée** | Contrôle de redondance, provenance des pièces, LU |
+| 005+ | Autres IDs de [SELECTION-50.md](SELECTION-50.md) | À créer | **Non commencé** | Prochain lot : RF-03-04, RF-04-07, RF-05-10 |
 
 ## Prochaines décisions à prendre
 
 1. **RF-01-07** : déjà couvert sur le fond par `A_LOGEMENT_COLOC` ; faut-il améliorer la preuve et les leurres existants plutôt que créer un doublon ?
 2. **RF-02-01** : poursuivre la piste du faux fondateur/CEO, en gardant les documents compréhensibles pour A1.1/A1.2.
 3. **RF-02-03** : déjà proche de `A_TRAVAIL_DOKTER` ; privilégier un audit et une amélioration de l'affaire existante.
-4. Après validation de la méthode, traiter le lot 002 : `RF-02-05`, `RF-03-03`, `RF-04-01`.
+4. **Lot 002** rédigé : trader et voiture GO conception, relation cachée sous réserve de provenance de preuve.
+5. **Lot 003** rédigé : application de rencontre (provenance), voyage (redondance), marathon (GO conception).
+6. **Lot 004** rédigé : concert (mécanique d'annulation proche du marathon), fils unique (parenté explicite), restaurant (historique exhaustif et accès à justifier).
+7. **Prochain lot 005 proposé** : RF-03-04 (voiture achetée comptant), RF-04-07 (exclusivité amoureuse), RF-05-10 (aurore boréale), sous réserve de diversité des preuves.
 
 ## Protocole de mise à jour
 
