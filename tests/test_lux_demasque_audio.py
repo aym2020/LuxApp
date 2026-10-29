@@ -44,6 +44,14 @@ with sync_playwright() as p:
     pg.route('**/*gstatic*/**', lambda r: r.abort()); pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL); pg.wait_for_selector('#today')
     pg.evaluate("ouvrirJeux()"); pg.click('.ld-jouer-hub'); pg.wait_for_selector('#ld-selection-carte')
+    # Cringr ne crée aucune partie avant LIKE, mais doit déjà diffuser la musique.
+    attendre_piste(pg, 'enquete')
+    assert pg.evaluate("ld.partie === null && ld.selection !== null")
+    assert pg.evaluate(ACTIVES) == 1
+    pg.click('.ld-selection-passer')
+    attendre_piste(pg, 'enquete')
+    assert pg.evaluate(ACTIVES) == 1, 'NOPE/Passer ne doit pas redémarrer la boucle'
+    ok('Cringr : musique sur le sélecteur avant LIKE, une seule boucle lors du changement de profil')
     pg.click('.ld-dating-meet'); pg.wait_for_selector('.ld-rencontre')
     attendre_piste(pg, 'enquete')
     pg.click('.ld-rencontre .ld-btn-or'); pg.wait_for_selector('#ld-declaration')
