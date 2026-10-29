@@ -9,7 +9,7 @@
   isolation: isolate;
   overflow: hidden;
   min-height: 188px;
-  padding: 30px 20px 17px;
+  padding: 30px var(--layout-inset,20px) 17px;
   gap: 7px;
   margin: 0;
   align-items: flex-start;
@@ -54,7 +54,7 @@
 
 /* La liste reste librement défilable et conserve tous les boutons d'origine. */
 #view-plecon .pl-units {
-  padding: 0 16px calc(30px + env(safe-area-inset-bottom));
+  padding: 0 var(--layout-inset,16px) calc(30px + env(safe-area-inset-bottom));
   gap: 11px;
 }
 #view-plecon .pl-unit,

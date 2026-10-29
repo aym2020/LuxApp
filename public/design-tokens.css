@@ -20,6 +20,13 @@
 @font-face { font-family: 'Atkinson Hyperlegible'; font-weight: 700; font-display: swap; src: url('fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2'); }
 
 :root {
+  /* SPEC 114 — plafonds communs ; les intérieurs gardent leur fonction. */
+  --layout-shell: 640px;
+  --layout-reading: 560px;
+  --layout-focus: 500px;
+  --layout-sheet: 640px;
+  --layout-dialog: 400px;
+  --layout-gutter: 16px;
   /* ── Fonds et surfaces (du plus sombre au plus clair) ── */
   --couleur-fond: #0f0e0c;
   --couleur-surface-1: #1a1916;   /* carte */
@@ -147,4 +154,16 @@
   --serif: var(--police-serif);
   --r: var(--rayon-moyen);
   --r-carte: var(--rayon-carte);
+}
+
+/* Les alias desktop sont volontairement absents sur mobile : chaque composant
+   conserve sa valeur de repli et donc sa géométrie approuvée jusqu'à 767 px. */
+@media (min-width: 768px) {
+  :root {
+    --layout-gutter: 24px;
+    --layout-page: var(--layout-shell);
+    --layout-panel: var(--layout-sheet);
+    --layout-text: var(--layout-reading);
+    --layout-inset: var(--layout-gutter);
+  }
 }

@@ -6,7 +6,7 @@
    leçons restent l'élément central. Le texte ne fait pas partie du WebP. */
 #view-lessons .chemin-page {
   gap: 0;
-  padding: 10px 14px calc(32px + env(safe-area-inset-bottom));
+  padding: 10px var(--layout-inset,14px) calc(32px + env(safe-area-inset-bottom));
 }
 /* L'en-tête ne doit pas réserver un grand blanc après l'avancement.
    On resserre la fin du hero tout en laissant les résumés de progression
@@ -14,8 +14,8 @@
 #view-lessons .chemin-tete {
   position: relative;
   isolation: isolate;
-  padding: 19px 14px 6px;
-  margin: -10px -14px 0;
+  padding: 19px var(--layout-inset,14px) 6px;
+  margin: -10px calc(-1 * var(--layout-inset,14px)) 0;
   min-height: 140px;
 }
 #view-lessons .chemin-tete::before {

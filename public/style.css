@@ -16,7 +16,7 @@ body {
 }
 
 /* ── VIEWS ───────────────────────────────────────────────────────────────── */
-.view { display: none; width: 100%; max-width: 720px; flex-direction: column; }
+.view { display: none; width: 100%; max-width: var(--layout-page,720px); flex-direction: column; }
 .view.active { display: flex; }
 
 /* ── HOME ────────────────────────────────────────────────────────────────── */
@@ -43,7 +43,7 @@ header {
 .niveau-btn:hover  { border-color: var(--accent); color: var(--accent); }
 .niveau-btn.active { background: var(--accent); border-color: var(--accent); color: #111; }
 
-.lecon-list { padding: 1rem 1rem 3rem 1rem; display: flex; flex-direction: column; gap: .7rem; }
+.lecon-list { padding: 1rem var(--layout-inset,1rem) 3rem; display: flex; flex-direction: column; gap: .7rem; }
 
 /* Sujets d'examen (spec 48) : surface neutre, texte secondaire sur une ligne,
    chevron en haut à droite ; le meilleur score en vert (réussi) ou rouge. */
@@ -342,7 +342,7 @@ header {
 .ecr-next-btn:hover { border-color: var(--accent); }
 
 /* ── COURS ──────────────────────────────────────────────────────────────── */
-.cours-content { width: 100%; padding-bottom: 2rem; }
+.cours-content { width: 100%; max-width:var(--layout-text,100%); margin-inline:auto; padding-bottom: 2rem; }
 
 .cours-intro {
   border: 1px solid; border-radius: var(--r);
@@ -910,7 +910,7 @@ body.no-scroll { overflow: hidden; }
 
 
 /* Barre du haut + segments de progression (un par étape) */
-.pc-topbar { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .7rem .75rem 0; }
+.pc-topbar { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .7rem var(--layout-inset,.75rem) 0; }
 .pc-steps { flex: 1; display: flex; gap: 4px; }
 .pc-seg { flex: 1; height: 6px; border-radius: 3px; background: #2a2823; overflow: hidden; }
 .pc-seg > div { height: 100%; background: var(--accent); transition: width .3s; }
@@ -935,7 +935,7 @@ body.no-scroll { overflow: hidden; }
 .pl-head { padding: .5rem 1.25rem 1.1rem; display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; }
 .pl-titre { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 10vw, 2.6rem); line-height: 1.05; overflow-wrap: anywhere; hyphens: auto; }
 .pl-sous { font-size: .95rem; color: var(--muted-strong); margin-bottom: .4rem; }
-.pl-units { padding: 0 1.25rem 2.5rem; display: flex; flex-direction: column; gap: .65rem; }
+.pl-units { padding: 0 var(--layout-inset,1.25rem) 2.5rem; display: flex; flex-direction: column; gap: .65rem; }
 .pl-unit { background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; gap: .75rem; }
 .pl-unit-top { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; }
 .pl-unit-titre { font-size: 1.05rem; font-weight: 600; margin-top: .1rem; }
@@ -947,7 +947,7 @@ body.no-scroll { overflow: hidden; }
 .pl-bilan.locked { opacity: .65; }
 
 /* Écran "Avant de commencer" */
-.pi-content { padding: .25rem 1.25rem calc(96px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: .5rem; }
+.pi-content { padding: .25rem var(--layout-inset,1.25rem) calc(96px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: .5rem; }
 .pi-titre { font-family: var(--serif); font-weight: 400; font-size: 2.1rem; line-height: 1.1; margin-bottom: .6rem; }
 .pi-regle { background: rgba(245,207,77,.08); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; gap: .35rem; margin-bottom: .6rem; }
 .pi-regle-txt { font-size: 1.1rem; font-weight: 600; }
@@ -1022,7 +1022,7 @@ body.no-scroll { overflow: hidden; }
 .pc-fb-rappel { margin-top: .4rem; } /* la phrase « reviendra » toujours sur sa ligne (spec 40) */
 
 /* Fin d'unité */
-.pf-content { padding: 2.2rem 1.25rem 1.75rem; display: flex; flex-direction: column; gap: 1.1rem; min-height: 100dvh; }
+.pf-content { padding: 2.2rem var(--layout-inset,1.25rem) 1.75rem; display: flex; flex-direction: column; gap: 1.1rem; min-height: 100dvh; }
 .pf-haut { display: flex; flex-direction: column; align-items: center; gap: .3rem; text-align: center; }
 .pf-stars { font-size: 2rem; letter-spacing: 3px; }
 .pf-score { font-family: var(--serif); font-size: 4.2rem; line-height: 1; }
@@ -1136,8 +1136,8 @@ body.no-scroll { overflow: hidden; }
 .session-action.primary { background: var(--accent); border-color: var(--accent); color: #0f0e0c; }
 
 /* Lexique */
-.lx-recherche { padding: .9rem 1rem .4rem; display: flex; flex-direction: column; gap: .35rem; }
-.lx-liste { padding: .4rem 1rem 3rem; display: flex; flex-direction: column; gap: .9rem; }
+.lx-recherche { padding: .9rem var(--layout-inset,1rem) .4rem; display: flex; flex-direction: column; gap: .35rem; }
+.lx-liste { padding: .4rem var(--layout-inset,1rem) 3rem; display: flex; flex-direction: column; gap: .9rem; }
 .lx-groupe { background: var(--surface); border-radius: 14px; padding: .2rem .9rem .4rem; }
 .lx-lecon {
   display: block; width: 100%; text-align: left; background: none; border: none; cursor: pointer;
@@ -1152,7 +1152,7 @@ body.no-scroll { overflow: hidden; }
 .lx-vide { color: var(--muted); text-align: center; padding: 2rem 1rem; line-height: 1.5; }
 
 /* Mes pièges */
-.pg-content { padding: 1rem 1rem 3rem; display: flex; flex-direction: column; gap: .7rem; }
+.pg-content { padding: 1rem var(--layout-inset,1rem) 3rem; display: flex; flex-direction: column; gap: .7rem; }
 .pg-carte { background: var(--surface); border-left: 3px solid var(--orange); border-radius: 12px; padding: .85rem 1rem; display: flex; flex-direction: column; gap: .35rem; }
 .pg-texte { font-size: .98rem; line-height: 1.45; }
 .pg-texte b { color: var(--orange); }
@@ -1694,7 +1694,7 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
    Statistiques en texte, puis UNE liste de navigation (pas huit cartes). */
 #view-plus .plus-page {
   width: 100%; max-width: 640px; min-width: 0; margin: 0 auto;
-  padding: 26px max(20px, env(safe-area-inset-left)) calc(24px + env(safe-area-inset-bottom));
+  padding: 26px max(var(--layout-inset,20px), env(safe-area-inset-left)) calc(24px + env(safe-area-inset-bottom));
   display: flex; flex-direction: column; gap: 0;
 }
 #view-plus .plus-entete { padding: 0 0 20px; }
@@ -1910,7 +1910,7 @@ div.carte-lecon:active { transform: none; }
 
 /* En-têtes des écrans secondaires (lexique, pièges, examens, réviser, réglages,
    séance, leçon classique) : même style que « Mon chemin ». */
-.lecon-header { border-bottom: 0; padding: 1rem max(16px, 1.25rem) .5rem; align-items: flex-start; }
+.lecon-header { border-bottom: 0; padding: 1rem var(--layout-inset,max(16px,1.25rem)) .5rem; align-items: flex-start; }
 .lecon-header .lecon-num { color: var(--couleur-texte-3); font-weight: 700; letter-spacing: .09em; } /* spec 48 : l'or = l'action */
 .lecon-header .lecon-titre { font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.2;
   white-space: normal; overflow: visible; text-wrap: balance; margin-top: 2px; }

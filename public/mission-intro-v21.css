@@ -2,7 +2,7 @@
    Hero unique pour la leçon « Aux objets trouvés ». Le reste du parcours,
    les actions, la progression et les introductions du studio sont inchangés. */
 #view-msintro .msi-content {
-  padding: 0 1.1rem calc(1.2rem + env(safe-area-inset-bottom));
+  padding: 0 var(--layout-inset,1.1rem) calc(1.2rem + env(safe-area-inset-bottom));
   gap: .85rem;
   align-content: start;
 }

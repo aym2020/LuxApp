@@ -8,7 +8,7 @@ body.avec-nav #view-review-setup.active {
 #view-review-setup .rs-v21-scroll {
   flex:1 1 auto; min-height:0; overflow-y:auto;
   overscroll-behavior-y:contain; -webkit-overflow-scrolling:touch;
-  padding:26px 22px 20px; display:flex; flex-direction:column; gap:0;
+  padding:26px var(--layout-inset,22px) 20px; display:flex; flex-direction:column; gap:0;
 }
 #view-review-setup .rs-v21-head { padding:0 0 22px; }
 #view-review-setup .rs-v21-eyebrow {

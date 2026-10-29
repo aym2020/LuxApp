@@ -21,7 +21,7 @@ test('Périmètre visuel isolé : header plus court et actions secondaires sobre
   assert.match(css,/url\("art\/hero-luxapp-mobile\.webp"\)/);
   const hero=entre(css,'#view-plecon .pl-head {','#view-plecon .pl-head::before');
   assert.match(hero,/min-height: 188px/);
-  assert.match(hero,/padding: 30px 20px 17px/);
+  assert.match(hero,/padding: 30px var\(--layout-inset,20px\) 17px/);
   assert.match(css,/#view-plecon .ms-carte.compacte \{\s*gap: 7px;\s*padding: 13px 15px 12px/);
   assert.match(css,/#view-plecon .pl-resume \{/);
   assert.doesNotMatch(css,/#view-dashboard|#view-msintro|#view-pintro|#view-parcours|#view-mission/);
