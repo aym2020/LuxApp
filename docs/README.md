@@ -61,7 +61,7 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 ## Jeu — Lux Démasque (SPEC 110, implémenté sur 2.1)
 
-[**SPEC 112 V2 — Profils à swiper dans une app de dating**](specs/SPEC-112.md) : **nouvelle direction produit du 29/10, spécifiée mais non codée**. Le sélecteur V1 « dossiers/affaires » existe encore sur `2.1` ; sa refonte attend implémentation et validation Samsung. Lux Match n'est pas concerné.
+[**SPEC 112 V2 — Profils à swiper dans une app de dating**](specs/SPEC-112.md) : **V2 dating implémentée sur `2.1` (commit `630eca4`), en attente de validation visuelle Samsung**. Le sélecteur V1 « dossiers/affaires » a été remplacé par les profils V2 ; les captures et la validation tactile Samsung restent à faire. Lux Match n'est pas concerné.
 
 **Refonte graphique arcade écran par écran (LD-002)** : [procédure de validation produit](LUX-DEMASQUE-VALIDATION-ECRANS.md) — 12 sous-étapes, une seule livraison visuelle à la fois, captures avant/après et accord utilisateur explicite avant de passer à la suivante. La [TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) est l'unique source des statuts ; prochaine action LD-002.01 (Rencontre).
 
