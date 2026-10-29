@@ -17,7 +17,7 @@ function extraction(s,begin,end){
   return s.slice(a,b);
 }
 test('Nouveautés est chargé et lié au menu Plus avec version 2.1',()=>{
- assert.match(html,/href="nouveautes-v21\.css\?v=3"/);
+ assert.match(html,/href="nouveautes-v21\.css\?v=4"/);
  assert.match(html,/src="nouveautes-v21\.js\?v=3"/);
  assert.match(accueil,/\[ICONES\.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2\.1', 'ouvrirNouveautes\(\)'\]/);
  assert.match(accueil,/<div class="plus-version">LuxApp <b>2\.1<\/b><\/div>/);

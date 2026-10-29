@@ -145,11 +145,11 @@ La structure HTML et les boutons du parcours restent fournis par `public/chemin.
 
 ## 6 bis. Référentiel de dimensions 2.1 — cible d'harmonisation
 
-**Statut : règles normatives pour les prochaines modifications de la branche `2.1`, non implémentées dans les CSS actuels.** Lire d'abord [l'audit des 20 vues et panneaux](AUDIT-DIMENSIONS-2.1.md) (état GitHub initial `ff6d6ee`). Les valeurs ci-dessous sont des **plafonds proposés et retenus comme cible de conception**, jamais des mesures DOM de tous les écrans.
+**Statut : gabarits implémentés sur `2.1` par [SPEC 114](specs/SPEC-114.md), mesures Chromium dans le [rapport de recette](SPEC-114-RECETTE.md) ; validation Samsung/Produit encore ouverte.** L'[audit statique initial](AUDIT-DIMENSIONS-2.1.md) décrit l'ancien état. Les plafonds normatifs ci-dessous ne remplacent pas les mesures DOM. Le mobile approuvé ≤600 px conserve les valeurs de repli historiques ; la référence 720 px est aussi contrôlée.
 
 ### 6 bis.1 — Un gabarit extérieur, des contenus adaptés
 
-| Rôle | Token à créer dans `design-tokens.css` | Maximum cible |
+| Rôle | Token dans `design-tokens.css` | Maximum cible |
 |---|---|---:|
 | Enveloppe commune des vues | `--layout-shell` | **640px** |
 | Zone de lecture : cours, lexique, corrections longues | `--layout-reading` | **560px** |
@@ -158,7 +158,7 @@ La structure HTML et les boutons du parcours restent fournis par `public/chemin.
 | Dialogue bref / confirmation | `--layout-dialog` | **400px** |
 | Gouttière latérale | `--layout-gutter` | **16px mobile / 24px PC** |
 
-**Ces tokens ne sont pas encore définis dans le code.** Les utiliser seulement lors du futur lot d'implémentation, avec `width:100%`, `max-width`, `min-width:0` quand nécessaire et centrage cohérent. Jamais de largeur minimale supérieure à celle d'un téléphone. Ne pas étirer les caractères des tuiles, les bulles de messagerie ni les titres courts pour « remplir » 640px.
+**Ces tokens sont définis dans `design-tokens.css`.** Les alias desktop sont activés à 768 px, avec `width:100%`, `max-width`, `min-width:0` quand nécessaire et centrage cohérent. Jamais de largeur minimale supérieure à celle d'un téléphone. Ne pas étirer les caractères des tuiles, les bulles de messagerie ni les titres courts pour « remplir » 640px.
 
 **Mobile prioritaire :** préserver l'accueil déjà validé et les compositions jusqu'à 600px ; l'harmonisation extérieure se manifeste principalement sur les grands écrans. Aucune modification de la disposition des leçons, de leur ordre, du clavier, des réponses, des couleurs de feedback ou de la progression n'est autorisée pour gagner de la largeur.
 

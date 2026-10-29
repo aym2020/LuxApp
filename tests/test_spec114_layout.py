@@ -34,6 +34,9 @@ with sync_playwright() as p:
                         # Le dock interne de Découverte garde la largeur de son parent.
                         assert r['width']<=642,(w,nom,sel,r)
                         assert abs(r['x']+r['width']/2-w/2)<=2,(w,nom,sel,'centrage',r)
+                for sel in ['.nav-bas','.cp-feuille','.rs-v21-sheet','.ld-jeu','.ld-fenetre']:
+                    for r in m['elements'].get(sel,[]):
+                        assert abs(r['width']-640)<=2,(w,nom,'rail principal',sel,r)
                 for sel in ['.accueil','.jeux-hub']:
                     for r in m['elements'].get(sel,[]):
                         assert abs(r['width']-640)<=2,(w,nom,'contenu resté étroit',sel,r)
@@ -69,4 +72,5 @@ with sync_playwright() as p:
             ctx.close();ok(f'SPEC114 zoom {int(facteur*100)} % : dix parcours')
     b.close()
 sortie=Path('artifacts/spec-114');sortie.mkdir(parents=True,exist_ok=True)
-(sortie/'tests-geometrie.json').write_text(json.dumps(mesures,ensure_ascii=False,indent=2)+'\n')
+nom_sortie='tests-geometrie-partiel.json' if FAMILLES else 'tests-geometrie.json'
+(sortie/nom_sortie).write_text(json.dumps(mesures,ensure_ascii=False,indent=2)+'\n')

@@ -50,7 +50,7 @@ function fixture() {
 }
 
 test('La feuille Cours est correctement chargée sur 2.1',()=>{
- assert.match(html,/href="cours-v21\.css\?v=2"/);
+ assert.match(html,/href="cours-v21\.css\?v=3"/);
  assert.match(html,/src="cours75\.js\?v=2"/);
  assert.match(html,/src="parcours\.js\?v=[^"]+"/);
  assert.match(html,/id="cours-panel"/);

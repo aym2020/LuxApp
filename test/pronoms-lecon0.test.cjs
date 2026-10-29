@@ -93,7 +93,7 @@ test('Découverte : bouton audio centré sur sa propre ligne, sans décaler le p
  assert.match(css,/#view-decouverte \.dc-pronom-audio\s*\{[^}]*justify-content:center/);
  assert.match(css,/#view-decouverte \.dc-pronom-audio \.bouton-ecouter\.compact\s*\{[^}]*min-width:44px; min-height:44px/);
  assert.doesNotMatch(css,/#view-decouverte \.dc-pronom-ligne/);
- assert.match(read('public/index.html'),/href="style\.css\?v=pronoms03"/);
+ assert.match(read('public/index.html'),/href="style\.css\?v=pronoms03-spec114"/);
 });
 
 test('Finitions mobiles : espacement audio, en-tête compact et compteur non redondant',()=>{

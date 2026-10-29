@@ -30,7 +30,7 @@ function renderFakeIntro(id, titre) {
 }
 
 test('Le visuel hero est un vrai asset WebP dédié à la mission correspondante',()=>{
-  assert.match(html,/href="mission-intro-v21\.css\?v=2"/);
+  assert.match(html,/href="mission-intro-v21\.css\?v=3"/);
   assert.match(css,/url\("art\/mission-objets-trouves-v21\.webp\?v=hd1024"\)/);
   assert.match(css,/#view-msintro \.msi-v21-hero/);
   const result=renderFakeIntro(3,'Aux objets trouvés');

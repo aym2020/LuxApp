@@ -56,7 +56,7 @@ function simulate(options = {}) {
   return {htmlContent,panel,dialogName};
 }
 test('Panneau immersif isolé et feuille CSS chargée après le style commun',()=>{
-  assert.match(html,/href="scenario-v21\.css"/);
+  assert.match(html,/href="scenario-v21\.css\?v=spec114-1"/);
   assert.match(css,/\.panneau\.ms-v21-dialogue\s*\{/);
   assert.doesNotMatch(css,/#view-mission|#view-plecon|\.panneau\.ms-debloque/);
   assert.match(css,/height: 100dvh/);

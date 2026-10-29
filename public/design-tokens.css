@@ -157,7 +157,7 @@
 }
 
 /* Les alias desktop sont volontairement absents sur mobile : chaque composant
-   conserve sa valeur de repli et donc sa géométrie approuvée jusqu'à 767 px. */
+   conserve sa valeur de repli pour le mobile approuvé (≤600px, référence à720px). */
 @media (min-width: 768px) {
   :root {
     --layout-gutter: 24px;

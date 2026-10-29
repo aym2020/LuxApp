@@ -670,7 +670,7 @@ header {
 /* Texte à lire ou à compléter. Interligne large : les trous sont des boutons. */
 .ex-text {
   background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: var(--r);
-  padding: 1rem 1.1rem; font-size: 1rem; line-height: 2.15;
+  padding: 1rem 1.1rem; font-size: 1rem; line-height: 2.15; overflow-wrap: anywhere;
 }
 .ex-line + .ex-line { margin-top: .5rem; }
 /* Texte seulement à lire (pas de trous) : interligne normal. */
@@ -704,6 +704,7 @@ header {
   padding: .9rem 1rem;
 }
 .ex-q-text { display: flex; gap: .6rem; font-size: .98rem; font-weight: 600; line-height: 1.45; }
+.ex-q-text > div { min-width: 0; overflow-wrap: anywhere; }
 .ex-q-num { margin-top: .12rem; }
 .ex-opts { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
 .ex-opts.stack { flex-direction: column; }
@@ -779,6 +780,7 @@ header {
 .ex-nav-btn.primary { flex: 2; }
 
 /* ── EXAMENS : RÉSULTAT + CORRECTION ────────────────────────────────────── */
+#view-examen-result .lecon-header { flex-wrap: wrap; }
 .exr-hero { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .6rem 0 .2rem; }
 .exr-ring {
   width: 150px; height: 150px; border-radius: 999px; padding: 11px;
@@ -807,12 +809,13 @@ header {
   background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: var(--r);
   padding: .9rem 1rem; display: flex; flex-direction: column; gap: .8rem;
 }
-.exr-row-top { display: flex; justify-content: space-between; align-items: baseline; font-size: .9rem; font-weight: 700; }
+.exr-row-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; font-size: .9rem; font-weight: 700; }
+.exr-row-top > span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
 .exr-row-top small { display: block; font-size: var(--fs-micro); font-weight: 500; color: var(--muted); }
 .exr-bar { height: 6px; margin-top: .4rem; background: var(--couleur-bord-1); border-radius: 999px; overflow: hidden; }
 .exr-bar div { height: 100%; border-radius: 999px; }
 
-.exr-filter { display: flex; gap: .4rem; background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: 999px; padding: .25rem; }
+.exr-filter { display: flex; flex-wrap: wrap; gap: .4rem; background: var(--surface); border: 1px solid var(--couleur-bord-1); border-radius: 999px; padding: .25rem; }
 .exr-filter button {
   flex: 1; min-height: 40px; border: none; border-radius: 999px; cursor: pointer;
   background: none; color: var(--muted-strong); font-family: var(--font); font-size: var(--fs-sec); font-weight: 700;
@@ -820,7 +823,8 @@ header {
 .exr-filter button.active { background: var(--accent); color: var(--couleur-sur-or); }
 
 .exr-part { display: flex; flex-direction: column; gap: .6rem; padding-top: .9rem; border-top: 1px solid var(--couleur-bord-1); }
-.exr-part-head { display: flex; justify-content: space-between; align-items: center; gap: .8rem; font-size: 1.1rem; font-weight: 800; }
+.exr-part-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem; font-size: 1.1rem; font-weight: 800; }
+.exr-part-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
 .exr-part-head small { display: block; font-size: var(--fs-micro); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--couleur-texte-3); }
 .exr-badge { flex-shrink: 0; font-size: var(--fs-sec); font-weight: 800; padding: .25rem .7rem; border: 1px solid; border-radius: 999px; }
 
@@ -854,7 +858,7 @@ header {
 
 /* Trou corrigé dans le texte */
 .ex-fix {
-  display: inline-flex; align-items: center; gap: .35rem; vertical-align: middle;
+  display: inline-flex; max-width: 100%; overflow-wrap: anywhere; align-items: center; gap: .35rem; vertical-align: middle;
   margin: 2px 2px; padding: .1rem .55rem .1rem .3rem; border-radius: 9px;
   font-weight: 700; font-size: .95rem; line-height: 1.5; border: 1px solid;
 }
@@ -890,12 +894,12 @@ header {
 }
 
 /* Choix dans la correction : non cliquables */
-.ex-opt.fixed { cursor: default; display: flex; justify-content: space-between; align-items: center; gap: .6rem; min-height: 42px; color: var(--muted); }
-.ex-opt.fixed small { font-size: var(--fs-micro); font-weight: 700; white-space: nowrap; }
+.ex-opt.fixed { cursor: default; display: flex; flex-wrap: wrap; min-width: 0; justify-content: space-between; align-items: center; gap: .6rem; min-height: 42px; color: var(--muted); }
+.ex-opt.fixed small { max-width: 100%; overflow-wrap: anywhere; font-size: var(--fs-micro); font-weight: 700; }
 .ex-opt.fixed.ok { border-color: var(--correct); background: rgba(84,224,173,.1); color: var(--correct); }
 .ex-opt.fixed.ko { border-color: var(--wrong); background: rgba(239,122,115,.1); color: var(--wrong); }
 .ex-opt.fixed.ko .ex-opt-txt > span { text-decoration: line-through; }
-.ex-opt-txt { text-align: left; }
+.ex-opt-txt { min-width: 0; overflow-wrap: anywhere; text-align: left; }
 
 /* ══ PARCOURS EN UNITÉS (leçons v2) ══════════════════════════════════════════ */
 /* Même palette que le reste de l'app. --lc = couleur de la leçon. */
@@ -910,7 +914,7 @@ body.no-scroll { overflow: hidden; }
 
 
 /* Barre du haut + segments de progression (un par étape) */
-.pc-topbar { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .7rem var(--layout-inset,.75rem) 0; }
+.pc-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; padding: .7rem var(--layout-inset,.75rem) 0; }
 .pc-steps { flex: 1; display: flex; gap: 4px; }
 .pc-seg { flex: 1; height: 6px; border-radius: 3px; background: #2a2823; overflow: hidden; }
 .pc-seg > div { height: 100%; background: var(--accent); transition: width .3s; }
@@ -1169,7 +1173,7 @@ body.no-scroll { overflow: hidden; }
   border: 1px solid rgba(245,207,77,.35); border-radius: 16px; padding: 1rem;
   display: flex; flex-direction: column; gap: .6rem;
 }
-.ms-titre { font-family: var(--serif); font-size: 1.6rem; line-height: 1.1; }
+.ms-titre { overflow-wrap: anywhere; font-family: var(--serif); font-size: 1.6rem; line-height: 1.1; }
 .ms-contexte { font-size: .9rem; color: var(--muted-strong); }
 .ms-objectif { font-size: .9rem; }
 .ms-objectif span { color: var(--accent); font-weight: 600; }
@@ -1354,19 +1358,19 @@ body.avec-nav.hl-maj-visible {
 svg.ic { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Barre du bas : place réservée en bas de page quand elle est affichée */
-body.avec-nav { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+body.avec-nav { padding-bottom: calc(max(76px,4rem) + env(safe-area-inset-bottom)); }
 /* Dans les écrans de navigation, la barre remplace le « ← Accueil » du haut */
 body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 
 .nav-bas {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
   max-width: var(--layout-page,720px); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(4, minmax(0,1fr));
   background: var(--surface-1); border-top: 1px solid var(--bord-1);
   padding: 6px max(8px, env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
 }
 .nav-bas button {
-  background: transparent; border: 0; min-height: 56px; cursor: pointer;
+  background: transparent; border: 0; min-width: 0; overflow-wrap: anywhere; min-height: 56px; cursor: pointer;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
   color: var(--muted); font-family: var(--font); font-size: var(--fs-micro); font-weight: 600;
 }
@@ -2300,7 +2304,7 @@ body.clavier-actif .ms-reponse { padding-bottom: 14px; } /* 14 px d'air au-dessu
 .pc-fb-score { margin-top: .35rem; font-size: var(--fs-sec); color: var(--muted-strong); }
 
 /* ══ FIN DE PARTIE (spec 20) : contenu qui défile, action principale fixe ═════ */
-.pf-content { min-height: 0; padding: 1.4rem 1.25rem calc(96px + env(safe-area-inset-bottom)); gap: .9rem; }
+.pf-content { min-height: 0; padding: 1.4rem var(--layout-inset,1.25rem) calc(96px + env(safe-area-inset-bottom)); gap: .9rem; }
 .pf-haut { gap: .15rem; }
 .pf-stars { font-size: 1.7rem; }
 .pf-score { font-family: var(--police); font-weight: 800; font-size: 3rem; letter-spacing: -.02em; }
@@ -2898,7 +2902,7 @@ body.portail-bloque { overflow:hidden; }
 .exv-retour svg { width:23px; height:23px; }
 .exv-tag { font-size:var(--fs-micro); font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--couleur-violet); }
 .exv-nom { margin-top:3px; font-size:19px; font-weight:800; letter-spacing:-.03em; }
-.exv-corps { flex:1; overflow-y:auto; padding:18px 18px calc(32px + env(safe-area-inset-bottom)); max-width:560px; width:100%; margin:0 auto; }
+.exv-corps { flex:1; overflow-y:auto; padding:18px 18px calc(32px + env(safe-area-inset-bottom)); max-width:var(--layout-text,560px); width:100%; margin:0 auto; }
 .exv-kicker { margin:4px 2px 8px; font-size:var(--fs-micro); font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--couleur-texte-3); }
 .exv-corps h2 { margin:2px 0 9px; font-size:25px; line-height:1.15; letter-spacing:-.04em; font-weight:850; }
 .exv-intro { margin:0 0 19px; font-size:var(--fs-sec); line-height:1.5; color:var(--couleur-texte-2); }

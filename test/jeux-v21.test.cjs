@@ -41,7 +41,7 @@ test('Accueil : quatre raccourcis, même rangée et même hauteur',()=>{
 });
 test('Pages Jeux et Survie, navigation native Android',()=>{
  for(const id of ['view-jeux','view-survie'])assert.ok(html.includes('id="'+id+'"'));
- assert.match(html,/jeux-v21.css\?v=13/);assert.match(html,/jeux-v21.js\?v=(1[4-9]|[2-9]\d)/);assert.match(html,/survie-vfx\.js\?v=\d+/);
+ assert.match(html,/jeux-v21.css\?v=14/);assert.match(html,/jeux-v21.js\?v=(1[4-9]|[2-9]\d)/);assert.match(html,/survie-vfx\.js\?v=\d+/);
  assert.match(nav,/'view-jeux': 1/);
  assert.match(nav,/else if \(e\.vue === 'view-jeux'\) renderJeuxHub\(\)/);
  assert.match(nav,/case 'view-jeux': ouvrirJeux\(\)/);
@@ -146,7 +146,7 @@ test('Survie : les lettres courtes et les dernières rangées sont centrées, sa
  assert.match(zone[1],/max-width:347px/);
  assert.doesNotMatch(zone[1],/grid-template-columns/);
  assert.match(styles,/#view-survie \.survie-tuile\{flex:0 0 clamp\(44px,13\.2vw,52px\)/);
- assert.match(html,/href="jeux-v21\.css\?v=13"/);
+ assert.match(html,/href="jeux-v21\.css\?v=14"/);
 });
 
 test('Survie : Atkinson Hyperlegible Bold sur les tuiles et cases, dimensions et gestes préservés',()=>{
@@ -162,7 +162,7 @@ test('Survie : Atkinson Hyperlegible Bold sur les tuiles et cases, dimensions et
  assert.match(tuile[1],/min-height:53px/);
  assert.match(tuile[1],/touch-action:manipulation/);
  assert.match(uneCase[1],/display:grid;place-items:center/);
- assert.match(html,/href="jeux-v21\.css\?v=13"/);
+ assert.match(html,/href="jeux-v21\.css\?v=14"/);
 });
 
 test('Combo arcade : paliers progressifs, étincelles, temps bonus et animation réduite',()=>{

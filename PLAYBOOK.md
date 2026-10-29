@@ -103,7 +103,7 @@ Pour toute tâche concernant le **design V2.1**, travailler sur la branche **`2.
 
 **Audit des dimensions 2.1 (23/10/2026) :** [inventaire des 20 vues et panneaux](docs/AUDIT-DIMENSIONS-2.1.md). La **norme cible** 640 / 560 / 500px et les exceptions sont dans [la charte UI § 6 bis](docs/CHARTE_UI_2.1.md). Aucun code changé par l'audit ; pour l'implémentation, préserver le mobile, les scrolls, le clavier et les contrôles fixes.
 
-**SPEC 114 — Harmonisation PC et jeux (29/10/2026) :** [contrat transverse](docs/specs/SPEC-114.md). Un seul shell desktop 640 px pour les **24 vues actuelles**, Jeux/Survie/Runner/Lux Match/RED FLAG inclus ; lecture 560 px, interactions 500 px et téléphone Cringr intérieur préservé. **Documentée seulement, non implémentée.** Mesurer le DOM et capturer les états avant code (TODO P1-38), puis réaliser P1-39/40/41 par lots avec recette PC/Samsung, sans régression mobile ni changement de progression.
+**SPEC 114 — Harmonisation PC et jeux (29/10/2026) :** [contrat transverse](docs/specs/SPEC-114.md). Un seul shell desktop 640 px pour les **24 vues actuelles**, Jeux/Survie/Runner/Lux Match/RED FLAG inclus ; lecture 560 px, interactions 500 px et téléphone Cringr intérieur préservé. **Implémentée et mesurée sous Chromium**, [rapport et limites](docs/SPEC-114-RECETTE.md) : référence réelle des 24 vues + 9 états avant code, lots de CSS distincts, matrice 320–1920 px et revue de parité SPEC 95. La suite critique reste rouge : échecs préexistants et retour après actualisation reproduit sur la référence, détails dans le rapport ; aucun moteur ni progression modifié. **Validation Samsung/Produit encore ouverte** pour clôturer P1-38/39/40/41.
 
 ## Règle prioritaire — Toujours suivre le vrai dépôt et la branche v2
 

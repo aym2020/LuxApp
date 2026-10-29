@@ -68,6 +68,10 @@ def ouvrir(page, nom, extras=False):
     if cible:
         page.locator(cible).last.wait_for(state='visible', timeout=10000)
     page.evaluate('document.fonts.ready')
+    if nom == 'luxdemasque':
+        # La photographie est composée de façon asynchrone : le placeholder M
+        # n'est pas un comparatif visuel suffisant du téléphone approuvé.
+        page.locator('#ld-selection-carte .ld-selection-image.ld-image-prete').wait_for(timeout=20000)
     # Les classes d'arrivée de l'accueil ont un délai : deux frames seules
     # peuvent photographier le hero encore transparent. Attendre les animations
     # finies sans bloquer sur les boucles décoratives ou le canvas des jeux.

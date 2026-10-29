@@ -1,0 +1,70 @@
+name: SPEC 114 — gabarits des 24 vues
+
+on:
+  push:
+    branches: ['2.1']
+    paths: ['public/**', 'tests/*114*', 'tests/fixtures/spec114-mobile.json', 'recette/recette.js', 'server.js', '.github/workflows/layout-114.yml']
+  pull_request:
+    branches: ['2.1']
+    paths: ['public/**', 'tests/*114*', 'tests/fixtures/spec114-mobile.json', 'recette/recette.js', 'server.js', '.github/workflows/layout-114.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: layout-114-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  geometrie:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      LUX_URL: http://127.0.0.1:3456/
+    steps:
+      - uses: actions/checkout@v4
+      - name: Référence fixe avant SPEC 114
+        uses: actions/checkout@v4
+        with:
+          ref: effbef3c0a1a4cc981605c8db80f16da0707a50d
+          path: .spec114-reference
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm ci --prefix .spec114-reference
+      - run: python3 -m pip install playwright==1.56.0
+      - run: python3 -m playwright install --with-deps chromium
+      - name: Géométrie, hauteurs et captures du vrai DOM
+        run: |
+          set -e
+          LUX_TESTS=1 PORT=3456 node server.js >/tmp/spec114-server.log 2>&1 &
+          spec114_server=$!
+          LUX_TESTS=1 PORT=3457 node .spec114-reference/server.js >/tmp/spec114-reference.log 2>&1 &
+          spec114_reference=$!
+          trap 'kill "$spec114_server" "$spec114_reference" 2>/dev/null || true' EXIT
+          for n in $(seq 1 50); do
+            curl -fsS "${LUX_URL}config.js" >/dev/null 2>&1 && break
+            sleep 0.2
+          done
+          python3 tests/test_spec114_layout.py
+          python3 tests/test_spec114_ergonomie.py
+          python3 tests/capture_spec114_layout.py
+          cd .spec114-reference
+          LUX_URL=http://127.0.0.1:3457/ LUX_CAPTURE_PHASE=avant python3 ../tests/capture_spec114_layout.py
+          cd ..
+          cp -R .spec114-reference/artifacts/spec-114/avant artifacts/spec-114/avant
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spec114-geometrie-captures
+          path: |
+            artifacts/spec-114/
+            tests/fixtures/spec114-mobile.json
+          if-no-files-found: error
+          retention-days: 14

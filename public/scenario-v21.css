@@ -70,6 +70,7 @@
   font-variant-numeric: tabular-nums;
 }
 .ms-v21-dialogue .ms-v21-lecture {
+  width:100%;max-width:var(--layout-text,100%);margin-inline:auto;
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;

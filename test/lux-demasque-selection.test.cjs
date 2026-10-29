@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=17','lux-demasque.js?v=17','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=18','lux-demasque.js?v=17','lux-match.css?v=22','lux-match.js?v=28']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 

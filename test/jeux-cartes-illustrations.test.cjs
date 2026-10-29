@@ -17,18 +17,18 @@ test('SPEC 104 : cartes sans images, harmonisées en violet nuit avec formes CSS
   assert.ok(css.includes('> :not(.jeux-decor)'),'contenu au-dessus du décor');
 });
 
-test('SPEC 104 : une grille mobile, deux colonnes desktop et boutons or',()=>{
+test('SPEC 104/114 : une colonne lisible dans le cadre commun et boutons or',()=>{
   const css=read('public/jeux-univers.css'),html=read('public/index.html');
   assert.ok(css.includes('grid-template-columns:minmax(0,1fr)'));
-  assert.ok(css.includes('@media(min-width:760px)'));
-  assert.ok(css.includes('grid-template-columns:repeat(2,minmax(0,1fr))'));
+  assert.ok(!css.includes('max-width:960px'),'le hub utilise le cadre SPEC 114');
+  assert.ok(!css.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),'cartes lisibles dans 640px');
   assert.ok(css.includes('@media(max-width:359px)'));
   assert.ok(css.includes('prefers-reduced-motion:reduce'));
   assert.ok(css.includes('forced-colors:active'));
   assert.ok(css.includes('background:var(--accent)'),'CTA or conservé');
   assert.ok(css.includes('min-height:56px'),'cible tactile confortable');
   assert.ok(css.includes('color:var(--accent)'),'record or conservé');
-  assert.ok(html.includes('jeux-univers.css?v=9'));
+  assert.ok(html.includes('jeux-univers.css?v=10'));
   assert.ok(Number((html.match(/jeux-v21\.js\?v=(\d+)/) || [])[1]) >= 17);
   assert.ok(Number((html.match(/runner\.js\?v=(\d+)/) || [])[1]) >= 19);
 });

@@ -1,7 +1,7 @@
 # SPEC 114 — Harmonisation des dimensions PC et des gabarits de LuxApp 2.1, jeux compris
 
 **Décision produit :** 29 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche cible :** `2.1`  
-**Statut : SPÉCIFIÉE — NON IMPLÉMENTÉE, NON TESTÉE EN NAVIGATEUR, NON VALIDÉE PRODUIT.** Aucun correctif CSS/JS n'est livré par cette fiche.  
+**Statut : IMPLÉMENTÉE ET TESTÉE SOUS CHROMIUM — VALIDATION SAMSUNG/PRODUIT EN ATTENTE.** Voir les [mesures, tests et limites](../SPEC-114-RECETTE.md).
 **Priorité :** P1 transverse, après stabilisation P0 ; correspond aux tâches `P1-38` à `P1-41` de [TODO.md](../../TODO.md).  
 **Périmètre :** toutes les vues de l'application, **y compris le hub Jeux, Survie, Lux Runner, Lux Match et RED FLAG**, les sous-écrans, les pieds d'action, la navigation, les feuilles contextuelles et les résultats.
 
@@ -11,7 +11,7 @@
 - [Design system](../DESIGN_SYSTEM.md), [PLAYBOOK](../../PLAYBOOK.md), [AGENTS](../../AGENTS.md) : tokens, contraintes UX et méthode de livraison.
 - [SPEC 95](SPEC-95.md) : dock d'action des exercices, [SPEC 96](SPEC-96.md) : Runner, [SPEC 109](SPEC-109.md) : Lux Match, [SPEC 110](SPEC-110.md) : enquête RED FLAG, [SPEC 113](SPEC-113.md) : sélecteur Cringr. Leurs comportements fonctionnels, contenus et directions artistiques restent prioritaires dans leur périmètre.
 
-> **Distinction impérative :** les chiffres de l'état actuel ci-dessous sont des `max-width` CSS vérifiés sur `2.1` le 29/10/2026, **pas** des mesures de `getBoundingClientRect()`. La cascade, les media queries, la fenêtre et le contenu peuvent donner des largeurs effectivement différentes. Mesurer avant d'écrire et avant de déclarer la conformité.
+> **Distinction impérative :** les chiffres de l'état initial ci-dessous sont des `max-width` CSS vérifiés sur `2.1` le 29/10/2026, **pas** des mesures de `getBoundingClientRect()`. La cascade, les media queries, la fenêtre et le contenu peuvent donner des largeurs effectivement différentes. Mesurer avant d'écrire et avant de déclarer la conformité.
 
 ## 1. Problème produit et résultat attendu
 
@@ -27,7 +27,7 @@ Sur PC, les écrans ont des largeurs visiblement différentes. Une transition Ac
 
 **Non-objectifs :** nouveau design graphique, nouvelles mécaniques, changement des données/JSON/son/score, alignement artificiel de toutes les hauteurs, modification du mobile déjà approuvé, création d'une grille desktop à plusieurs colonnes partout.
 
-## 2. État du code constaté le 29 octobre 2026 (branche `2.1`)
+## 2. État initial du code au commit `effbef3` (29 octobre 2026, branche `2.1`)
 
 | Vue ou composant | Plafonds CSS trouvés | Diagnostic / fichier |
 |---|---|---|
@@ -150,9 +150,11 @@ Chaque lot comporte un avant/après (captures + dimensions), ses tests ciblés e
 
 ## 9. Suivi et statut de livraison
 
-- **À faire :** lot 0, mesure réelle des 24 vues, états et panneaux ; compléter un relevé de dimensions et captures de référence.
-- **À faire :** implémentation des lots 1 à 4, par petits commits et tests.
-- **À faire :** recette PC + Samsung et validation Produit.
-- **Fait dans la présente livraison :** création de la SPEC et liens documentaires. **Aucun CSS, JavaScript, JSON, test automatisé ou réglage n'est modifié.**
+- **Fait — lot 0 :** 24 vues et 9 états/panneaux mesurés et capturés à 390/720/1440 px sur `effbef3`, avant modification des styles (99 relevés).
+- **Fait — lots 1 à 3 :** tokens, consultation, navigation, CTA, panneaux et quatre jeux harmonisés dans leurs feuilles propriétaires ; commits séparés. Shell PC 640 px ; intérieurs 560/500/420 px selon fonction. Aucun moteur JavaScript ni JSON pédagogique modifié.
+- **Lot 4 :** matrice DOM des 11 largeurs, hauteurs, texte agrandi, simulations de zoom, focus et retour des panneaux ; preuves et écarts dans le [rapport de recette](../SPEC-114-RECETTE.md). Des débordements hérités des résultats d'examen et de textes longs ont été diagnostiqués sur la référence et corrigés dans leurs règles de reflow.
+- **Revue indépendante :** agent `ui-parity-auditor`, SPEC 94/95, dock et header ; aucune duplication ou régression pédagogique identifiée. Clavier simulé testé, appareil Samsung non disponible.
+- **Suite critique globale :** premiers passages à 39 succès / 19 échecs communs ; dernier passage à 38 / 20 avec un échec de retour après actualisation reproduit aussi sur la référence. Voir le détail de recette ; la suite n'est pas déclarée verte.
+- **À faire :** recette Samsung réelle (clavier, retour, safe areas) et approbation explicite Produit. Les tâches P1-38 à P1-41 restent ouvertes jusqu'à cette revue.
 
 **Règle de clôture :** ne déclarer `SPEC 114 validée` et ne cocher les tâches de la TODO qu'après critères A/B/C vérifiés, preuve de recette et accord explicite. Ne pas clôturer les tâches RED FLAG de la TODO `main` par simple harmonisation du gabarit.

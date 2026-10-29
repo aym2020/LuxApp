@@ -94,6 +94,21 @@ Les boutons d'action utilisent `--cta-pression-echelle` (0,975), `--cta-pression
 - Les simples liens, réponses, tuiles, cartes descriptives et boutons de navigation ne reçoivent pas cette animation ; les autres feedbacks existants sont conservés.
 - Aucun JS supplémentaire, aucun retard du clic, aucune modification de la zone tactile ou des `pointer-events`.
 
+### Gabarits SPEC 114
+
+La [charte § 6 bis](CHARTE_UI_2.1.md) reste normative ; [SPEC 114](specs/SPEC-114.md) et son [rapport](SPEC-114-RECETTE.md) décrivent l'implémentation et la recette.
+
+| Token | Maximum / rôle |
+| --- | --- |
+| `--layout-shell` | 640 px, enveloppe PC dès 768 px |
+| `--layout-reading` | 560 px, lecture longue |
+| `--layout-focus` | 500 px, exercices et scènes compactes |
+| `--layout-sheet` | 640 px, feuille principale |
+| `--layout-dialog` | 400 px, confirmation |
+| `--layout-gutter` | 16 px mobile / 24 px PC |
+
+Les alias `--layout-page`, `--layout-panel`, `--layout-text` et `--layout-inset` sont définis uniquement dans la media query desktop. Les composants gardent leur valeur mobile de repli (gouttières historiques approuvées, parfois 12/20/22 px) ; ce lot n'impose pas une nouvelle gouttière uniforme sur Android. Le téléphone Cringr reste à 420 px et le plateau Survie à 470 px ; ce sont des intérieurs, pas des enveloppes de page. Header, corps et dock d'exercice utilisent le rail commun de 500 px. Samsung et validation Produit restent à faire.
+
 ## 4. Composants
 
 | Composant | Classe | Variantes / états |

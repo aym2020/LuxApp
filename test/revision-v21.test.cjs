@@ -13,7 +13,7 @@ const nav = fs.readFileSync(path.join(root, 'public/navigation.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'public/revision-v21.css'), 'utf8');
 
 test('le nouveau CSS est chargé et limité à Réviser', () => {
-  assert.match(html, /href="revision-v21\.css"/);
+  assert.match(html, /href="revision-v21\.css\?v=spec114-1"/);
   assert.match(css, /#view-review-setup \.rs-v21-section/);
   assert.doesNotMatch(css, /#view-dashboard|#view-lecon|#view-session/);
 });

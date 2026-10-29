@@ -115,6 +115,7 @@
   border-radius: 3px;
 }
 #cours-panel .cours75-resultats {
+  width:100%;max-width:var(--layout-text,100%);margin-inline:auto;
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;

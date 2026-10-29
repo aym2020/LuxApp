@@ -42,7 +42,7 @@ function preparer({ anciennes = [], terminees = [0], active = 1, parties = [0,1,
 }
 
 test('La composition 2.1 suit le chemin existant, sans ajouter de nouveau moteur', () => {
-  assert.match(index, /href="chemin-v21.css"/);
+  assert.match(index, /href="chemin-v21\.css\?v=defis-20261026-spec114"/);
   assert.match(styles, /#view-lessons \.chemin-tete/);
   assert.match(styles, /hero-luxapp-mobile\.webp/);
   assert.match(styles, /#view-lessons \.chemin \.pas/);
@@ -95,8 +95,8 @@ test('Le rendu garde ses protections mobile et la sémantique des couleurs', () 
 test('Le header ne réserve pas de grand espace vide entre avancement et leçon 0', () => {
   const rule = styles.match(/#view-lessons \.chemin-tete \{([\s\S]*?)\}/);
   assert.ok(rule, 'règle du hero du chemin présente');
-  assert.match(rule[1], /padding:\s*19px 14px 6px/);
-  assert.match(rule[1], /margin:\s*-10px -14px 0/);
+  assert.match(rule[1], /padding:\s*19px var\(--layout-inset,14px\) 6px/);
+  assert.match(rule[1], /margin:\s*-10px calc\(-1 \* var\(--layout-inset,14px\)\) 0/);
   assert.match(rule[1], /min-height:\s*140px/);
   assert.match(styles, /#view-lessons \.chemin \{/);
   assert.match(styles, /#view-lessons \.chemin \.pas/);
