@@ -103,6 +103,8 @@ Pour toute tâche concernant le **design V2.1**, travailler sur la branche **`2.
 
 **Audit des dimensions 2.1 (23/10/2026) :** [inventaire des 20 vues et panneaux](docs/AUDIT-DIMENSIONS-2.1.md). La **norme cible** 640 / 560 / 500px et les exceptions sont dans [la charte UI § 6 bis](docs/CHARTE_UI_2.1.md). Aucun code changé par l'audit ; pour l'implémentation, préserver le mobile, les scrolls, le clavier et les contrôles fixes.
 
+**SPEC 114 — Harmonisation PC et jeux (29/10/2026) :** [contrat transverse](docs/specs/SPEC-114.md). Un seul shell desktop 640 px pour les **24 vues actuelles**, Jeux/Survie/Runner/Lux Match/RED FLAG inclus ; lecture 560 px, interactions 500 px et téléphone Cringr intérieur préservé. **Documentée seulement, non implémentée.** Mesurer le DOM et capturer les états avant code (TODO P1-38), puis réaliser P1-39/40/41 par lots avec recette PC/Samsung, sans régression mobile ni changement de progression.
+
 ## Règle prioritaire — Toujours suivre le vrai dépôt et la branche v2
 
 **Incident du 19 octobre 2026 :** un examen A1.1 a été créé dans un HTML autonome et proposé sur une branche basée sur `main`, alors que LuxApp avait déjà un moteur d'examens et que la branche de travail était `v2`. Ne jamais reproduire cette erreur.
