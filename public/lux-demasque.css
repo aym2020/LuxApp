@@ -376,3 +376,24 @@
 #view-luxdemasque .ld-reglage[aria-checked="true"] b{color:var(--ld-or)}
 /* Lot D4 : salut du prétendant sur la fiche */
 #view-luxdemasque .ld-salut{padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--ld-bord)}
+
+/* SPEC 112 V2 : sélection dating (aucun impact sur la partie). */
+#view-luxdemasque .ld-top-selection{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:0;align-items:center}
+#view-luxdemasque .ld-top-selection .ld-icone-btn{width:48px;height:48px}
+#view-luxdemasque .ld-top-selection .ld-logo{justify-self:center;min-width:0;font-size:clamp(7px,2.15vw,10px);white-space:nowrap}
+#view-luxdemasque .ld-top-selection .ld-top-outils{width:48px;min-height:48px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"]{background:linear-gradient(180deg,#25172e,#120f20 65%,#110c19)}
+#view-luxdemasque .ld-selection{background:linear-gradient(160deg,#291836,#1b1428);border:1px solid rgba(237,124,205,.25);border-radius:24px;padding:14px 9px 18px;box-shadow:0 16px 35px #0b08145e}
+#view-luxdemasque .ld-selection-intro h1{font-size:clamp(22px,6vw,27px)}
+#view-luxdemasque .ld-selection-kicker{color:#ff91d9}
+#view-luxdemasque .ld-selection-pile::before{border-radius:23px;background:#382445;border-color:#995d97}
+#view-luxdemasque .ld-selection-carte{border-radius:22px;border-color:#945b99;background:#21152b}
+#view-luxdemasque .ld-selection-image-zone{height:clamp(205px,38dvh,310px);background:radial-gradient(70% 70% at 50% 25%,#894b91,#37214c)}
+#view-luxdemasque .ld-selection-infos{background:linear-gradient(180deg,#32203c,#21152b)}
+#view-luxdemasque .ld-selection-etat{color:#ff9bdd}
+#view-luxdemasque .ld-selection-actions .ld-btn-or{border-radius:15px}
+#view-luxdemasque .ld-selection-fleche{background:#34203f;border-color:#b066b4;border-radius:50%}
+#view-luxdemasque .ld-selection-compteur{color:#f8bfe8}
+#view-luxdemasque .ld-selection-tampon{display:none}
+@media(max-height:750px){#view-luxdemasque .ld-selection-image-zone{height:clamp(165px,29dvh,235px)}}
+@media(max-width:360px){#view-luxdemasque .ld-selection{padding-inline:6px}}

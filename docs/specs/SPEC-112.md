@@ -1,6 +1,6 @@
 # SPEC 112 V2 — Lux Démasqué : swipe de profils dans une app de dating
 
-**Décision produit :** 29 octobre 2026 · **Branche de code cible :** `2.1` · **État : SPEC VALIDÉE COMME DIRECTION, IMPLÉMENTATION V2 À FAIRE** · **Écran unique de ce lot :** sélecteur `data-ecran="selection"` · **Suivi canonique :** LD-048 dans `docs/LUX-DEMASQUE-TODO.md` sur `main`.
+**Décision produit :** 29 octobre 2026 · **Branche de code cible :** `2.1` · **État : V2 IMPLÉMENTÉE SUR `2.1` — RECETTE ET APPROBATION SAMSUNG À CONFIRMER** · **Écran unique de ce lot :** sélecteur `data-ecran="selection"` · **Suivi canonique :** LD-048 dans `docs/LUX-DEMASQUE-TODO.md` sur `main`.
 
 > **Pivot explicite :** Lux Démasqué n'est **pas** une enquête policière présentée comme un interrogatoire : c'est **un date**, organisé dans un téléphone et une app de rencontre. Les incohérences, preuves et disquettes forment le gameplay sous-jacent, sans contaminer le vocabulaire et la présentation du choix initial. **Ne pas modifier Lux Match : il s'agit de Lux Démasqué.**
 
@@ -140,3 +140,7 @@ Ces décisions cadrent les prochains écrans, mais **ne doivent pas être codée
 **V1 en production de branche (à remplacer visuellement) :** commits `cbf647d`, `d21f953`, `e07cbfc` ; preuve [CI dédiée](https://github.com/aym2020/LuxApp/actions/runs/40783142046) et [captures](https://github.com/aym2020/LuxApp/actions/runs/40783142046/artifacts/12857654477).
 
 **V2 :** ce document est **uniquement une spécification**, ni code ni maquette approuvée. Toute livraison de la V2 consignera ses commits, tests, captures et réserves ici. **Ne pas avancer LD-002.01**, dont la validation distincte reste ouverte.
+
+## 10. Livraison V2
+
+Écran de profils dating, grille d'en-tête symétrique, portrait PS1, textes et CTA dating, sans changement du moteur. Tests du sélecteur adaptés. Validation graphique Samsung et CI requises avant de clore LD-048.

@@ -7,8 +7,8 @@ test('SPEC112 : le hub ouvre la sélection, pas une rencontre automatique',()=>{
  assert.match(js,/async function ldOuvrirSelection\(\)/);
  assert.match(js,/function ldRendreSelection\(\)/);
  assert.match(js,/ld\.donnees\.dossiers\.concat\(ld\.donnees\.dossiersRediges \|\| \[\]\)/);
- assert.match(js,/AFFAIRE MYSTÈRE/);
- assert.match(js,/DÉJÀ RÉSOLU/);
+ assert.match(js,/NOUVEAU PROFIL/);
+ assert.match(js,/DÉJÀ DÉMASQUÉ/);
  assert.match(js,/ldEchapper\(npc\.accrocheFr\)/);
  assert.match(js,/onclick="ldSelectionConfirmer\(\)"/);
 });
@@ -28,6 +28,8 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=11','lux-demasque.js?v=11','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=12','lux-demasque.js?v=12','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
+
+test('SPEC 112 V2 : profil dating, titre centré et microcopy',()=>{const s=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));for(const w of ['BUREAU DES ENQUÊTES','Choisis ton affaire','DOSSIER N°','À ENQUÊTER','Ouvrir ce dossier','Affaire inédite'])assert.ok(!s.includes(w),w);for(const w of ['Découvre des profils','Voir le profil','DÉJÀ DÉMASQUÉ','Nouveau profil','Profil précédent'])assert.ok(s.includes(w),w);assert.match(js,/ld-top-selection/);assert.match(css,/grid-template-columns:48px minmax\(0,1fr\) 48px/)});

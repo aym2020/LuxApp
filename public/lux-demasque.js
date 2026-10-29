@@ -199,10 +199,10 @@ async function ldOuvrirSelection() {
   if (typeof LuxDemasqueSon !== 'undefined') { LuxDemasqueSon.preparer(); LuxDemasqueSon.precharger(); }
   showView('view-luxdemasque');
   const box = ldBox();
-  if (box) box.innerHTML = '<p class="ld-chargement">Préparation des affaires…</p>';
+  if (box) box.innerHTML = '<p class="ld-chargement">Chargement des profils…</p>';
   try { await ldChargerDonnees(); } catch (_) {
     if (ldVueActive() && box) box.innerHTML = ldEntete({fr:false,menu:false}) +
-      '<p class="ld-chargement">Impossible de charger les affaires. Vérifie ta connexion.</p>';
+      '<p class="ld-chargement">Impossible de charger les profils. Vérifie ta connexion.</p>';
     return;
   }
   if (!ldVueActive()) return;
@@ -228,30 +228,30 @@ function ldRendreSelection() {
         ldImage('portrait:'+npc.id, 'ld-selection-image') +
         '<span class="ld-selection-initiale">' + ldEchapper(npc.nom.slice(0,1)) + '</span></div>'
     : '<div class="ld-selection-portrait ld-selection-mystere" aria-hidden="true"><span>?</span></div>';
-  box.innerHTML = ldEntete({fr:false,menu:false}) +
+  box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
     '<main class="ld-selection">' +
-      '<div class="ld-selection-intro"><p class="ld-selection-kicker">BUREAU DES ENQUÊTES</p>' +
-        '<h1>Choisis ton affaire</h1><p>Feuillette les dossiers et choisis qui interroger.</p></div>' +
+      '<div class="ld-selection-intro"><p class="ld-selection-kicker">RENCONTRES</p>' +
+        '<h1>Découvre des profils</h1><p>Glisse pour découvrir les personnes disponibles.</p></div>' +
       '<div class="ld-selection-nav">' +
-        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(-1)" aria-label="Affaire précédente">' + ldIcone('precedent') + '</button>' +
-        '<span class="ld-selection-compteur" aria-live="polite">AFFAIRE ' + index + ' / ' + sel.items.length + '</span>' +
-        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(1)" aria-label="Affaire suivante">' + ldIcone('suivant') + '</button></div>' +
+        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(-1)" aria-label="Profil précédent">' + ldIcone('precedent') + '</button>' +
+        '<span class="ld-selection-compteur" aria-live="polite">PROFIL ' + index + ' / ' + sel.items.length + '</span>' +
+        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(1)" aria-label="Profil suivant">' + ldIcone('suivant') + '</button></div>' +
       '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
-        ldEchapper(affaire.genere ? 'Affaire inédite' : 'Dossier de ' + npc.nom) + '">' +
+        ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '">' +
         '<div class="ld-selection-image-zone">' + portrait +
-          '<span class="ld-selection-tampon">DOSSIER N°' + ldEchapper(affaire.numero) + '</span></div>' +
+          '</div>' +
         '<div class="ld-selection-infos"><span class="ld-selection-etat">' +
-          (affaire.genere ? 'AFFAIRE MYSTÈRE' : resolu ? '✓ DÉJÀ RÉSOLU' : '● À ENQUÊTER') + '</span>' +
-          '<h2>' + (affaire.genere ? 'Affaire inédite' : ldEchapper(npc.nom) + ', ' + npc.age + ' ans') + '</h2>' +
+          (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
+          '<h2>' + (affaire.genere ? 'Nouveau profil' : ldEchapper(npc.nom) + ', ' + npc.age + ' ans') + '</h2>' +
           (affaire.genere
-            ? '<p class="ld-selection-ville">Un dossier inédit.</p><p class="ld-selection-description">Découvre le suspect et ses déclarations après ouverture.</p>'
+            ? '<p class="ld-selection-ville">Une rencontre inédite.</p><p class="ld-selection-description">Une nouvelle rencontre t’attend.</p>'
             : '<p class="ld-selection-ville">' + ldEchapper(npc.villeFr) + '</p><p class="ld-selection-description">« ' +
               ldEchapper(npc.accrocheFr) + ' »</p>') +
         '</div></article></div>' +
       '<div class="ld-selection-actions"><button type="button" class="ld-btn ld-btn-or" onclick="ldSelectionConfirmer()">' +
-        (affaire.genere ? 'Découvrir cette affaire' : resolu ? 'Rejouer ce dossier' : 'Ouvrir ce dossier') +
+        (affaire.genere ? 'Découvrir le profil' : resolu ? 'Revoir le profil' : 'Voir le profil') +
         ' <span aria-hidden="true">→</span></button>' +
-        '<p class="ld-selection-aide">Glisse à gauche ou à droite pour changer de dossier.</p></div>' +
+        '<p class="ld-selection-aide">Glisse à gauche ou à droite.</p></div>' +
     '</main>';
   ldBrancherSelection(document.getElementById('ld-selection-carte'));
   if (npc) ldPreparerPortraitSelection(npc);
@@ -398,7 +398,7 @@ function ldRejouer() { const d = ld.partie && ld.partie.dossier; ouvrirLuxDemasq
 // ─── Rendu par écran ───────────────────────────────────────────────────────
 function ldEntete(options) {
   const o = options || {};
-  return '<div class="ld-top"><button type="button" class="ld-icone-btn" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '</button>' +
+  return '<div class="ld-top' + (o.selection ? ' ld-top-selection' : '') + '"><button type="button" class="ld-icone-btn" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '</button>' +
     '<span class="ld-logo">LUX <i>DÉMASQUE</i></span>' +
     '<div class="ld-top-outils">' +
       (o.fr === false ? '' : '<button type="button" class="ld-icone-btn ld-fr-btn' + (ld.aideFr ? ' ld-actif' : '') + '" onclick="ldBasculerAide()" aria-pressed="' + ld.aideFr + '" aria-label="' + (ld.aideFr ? 'Aide FR activée' : 'Aide FR désactivée') + '">FR</button>') +

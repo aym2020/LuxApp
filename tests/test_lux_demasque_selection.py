@@ -34,10 +34,10 @@ with sync_playwright() as p:
    except Exception:
     pass
    page.screenshot(path=str(ART/f'selection-{w}x{h}.png'),full_page=True)
-  page.get_by_role('button',name='Affaire suivante').click()
+  page.get_by_role('button',name='Profil suivant').click()
   assert page.evaluate('ld.selection.items[ld.selection.index].id')=='NOAH_001'
   assert page.evaluate('ld.partie') is None
-  page.get_by_role('button',name='Affaire précédente').click()
+  page.get_by_role('button',name='Profil précédent').click()
   assert page.evaluate('ld.selection.index')==0
   # Tactile natif : déplacement vers la gauche => prochain dossier, pas une ouverture.
   bb=page.locator('#ld-selection-carte').bounding_box()
@@ -50,7 +50,7 @@ with sync_playwright() as p:
   cdp.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
   page.wait_for_function('ld.selection && ld.selection.index===1')
   assert page.evaluate('ld.partie') is None
-  page.get_by_role('button',name='Ouvrir ce dossier').click()
+  page.get_by_role('button',name='Voir le profil').click()
   page.wait_for_selector('.ld-rencontre',timeout=40000)
   assert page.evaluate('ld.partie.dossier.id')=='NOAH_001'
   assert page.evaluate('ld.partie.phase')=='rencontre'
@@ -64,9 +64,9 @@ with sync_playwright() as p:
  page.wait_for_selector('#ld-selection-carte')
  assert page.evaluate('ld.selection.items[ld.selection.index].id')=='NOAH_001'
  page.evaluate('ldSelectionChanger(2)')
- assert page.locator('.ld-selection-etat').inner_text()=='AFFAIRE MYSTÈRE'
+ assert page.locator('.ld-selection-etat').inner_text()=='NOUVEAU PROFIL'
  assert page.evaluate('ld.partie') is None
- page.get_by_role('button',name='Découvrir cette affaire').click()
+ page.get_by_role('button',name='Découvrir le profil').click()
  page.wait_for_selector('.ld-rencontre',timeout=40000)
  assert page.evaluate('ld.partie.dossier.genere') is True
  ok('affaire générée, résolus conservés et non dévoilés')
