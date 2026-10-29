@@ -96,3 +96,37 @@ Ne pas considérer les commits précédents comme une validation. Vérifier le S
 [Rapport complet](../CRINGR-SPEC-113-RECETTE.md) : consolidation des trois couches CSS du sélecteur ; police rétro de lecture auto-hébergée ; nom/ville/bio/statut réordonnés ; cœur pixel de 56 px ; alternative discrète « Passer » ; clavier et focus ; feedback gestuel progressif ; annulation des ouvertures périmées et réessai après échec sans perte de graine.
 
 Tests réels : `rapide` **3/3**, `complet` **11/11**, recette RF-01 à RF-08 sur Chromium avec gestes tactiles CDP, souris, clavier, portrait lent/absent, stockage refusé et texte 200 %. Captures avant/après aux quatre tailles. RF-09 : Lux Match, moteur, cloud et sauvegardes contrôlés ; les **19 échecs globaux** observés existent aussi dans le checkout initial `19c0cdb` (20 échecs dans cette référence, dont `test_actualisation` qui passe après). **Ne pas présenter la suite critique comme verte.** RF-10 non exécuté ; LD-048 reste ouverte jusqu'à accord explicite sur Samsung.
+
+## 9. Retour produit du 29 octobre 2026
+
+**Décision : conserver cette direction artistique comme base de RED FLAG et prévoir uniquement des finitions ciblées.** Retour transmis par le joueur, évoquant trois captures Samsung : composition cohérente, interactions compréhensibles et identité rétro convaincante. Cette note consigne une appréciation visuelle ; les pistes ci-dessous sont **à planifier, non implémentées dans cette intervention**.
+
+### Éléments à préserver
+
+La carte de profil et son portrait dominant, le dégradé de contraste, l'ancrage des informations sans grand vide sous la bio, les tampons LIKE/NOPE et la manipulation de la carte (translation/rotation) constituent la base retenue. Préserver aussi la cohérence du téléphone fictif, de l'encoche, de la typographie bitmap, des contours violets et du cœur rose, ainsi que la séparation entre **RED FLAG** à l'extérieur et **Cringr** à l'intérieur. **Ne pas repartir sur une refonte générale ni retoucher systématiquement la carte et les animations de swipe.**
+
+### Améliorations futures, par ordre de priorité
+
+| Priorité | Retouche envisagée | Contraintes à conserver |
+|---|---|---|
+| 1 — principale | Remplacer le lien souligné « Passer », trop proche d'un lien web, par un petit bouton secondaire arcade à **croix pixel art**, au contour violet discret, **placé à gauche du cœur central**. | Le cœur reste dominant. La croix déclenche le même NOPE que le swipe gauche. Conserver cible tactile ≥48×48 px, libellé accessible explicite, focus visible et commandes clavier. Ne réintroduire ni grosses flèches ni navigation précédent/suivant. |
+| 2 | Raccourcir les bios publiques qui occupent quatre lignes et concurrencent le portrait. | Conserver la taille de police désormais lisible ; travailler d'abord le texte. Préserver les informations utiles au jeu et la cohérence du personnage, sans changer les preuves ni le moteur. |
+| 3 | Affiner légèrement le cadre et les doubles contours du téléphone pour rendre quelques pixels au contenu sur Android. | Retouche mesurée, sans perdre la silhouette du téléphone ni son identité rétro ; vérifier les petites largeurs. |
+| 4 — non urgente | Rendre « PROFIL 1 / 4 » plus discret ou étudier de petits indicateurs pixellisés plus immersifs. | Conserver une information de position compréhensible et accessible ; ne pas ajouter d'encombrement. |
+
+### Appréciation visuelle transmise
+
+| Critère | Note indicative |
+|---|---|
+| Direction artistique | 9/10 |
+| Cohérence graphique | 9/10 |
+| Composition mobile | 8,5/10 |
+| Lisibilité | 8/10 |
+| Feedback du swipe | 9/10 |
+| Hiérarchie des actions | 7/10 |
+
+**Appréciation globale : 8,5/10 sur les captures.** L'amélioration principale attendue porte sur l'harmonisation du contrôle « Passer » avec le cœur.
+
+### Portée de ce retour et suivi
+
+Ce retour apporte une appréciation visuelle positive sur Samsung, avec des finitions à prévoir ; il ne démontre pas à lui seul tous les cas fonctionnels mobiles de RF-10. **LD-048 reste ouverte** et aucune autre étape n'est avancée. Lors d'une future intervention autorisée, reprendre ces priorités, comparer le rendu avant/après et exécuter les contrôles prévus par la SPEC. **La présente intervention modifie uniquement la documentation ; aucun code, contenu ou test du jeu n'est modifié ou réexécuté.**
