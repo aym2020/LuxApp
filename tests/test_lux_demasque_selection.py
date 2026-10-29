@@ -18,9 +18,9 @@ with sync_playwright() as p:
    partie:ld.partie===null,etat:document.querySelector('#ld-jeu').dataset.ecran,
    total:ld.selection.items.length,first:ld.selection.items[0].id,
    overflow:document.documentElement.scrollWidth-innerWidth,
-   buttons:[...document.querySelectorAll('.ld-selection button')].map(x=>{
+   buttons:[...document.querySelectorAll('.ld-dating-controls button')].map(x=>{
      const r=x.getBoundingClientRect();return [r.width,r.height] }),
-   bottom:document.querySelector('.ld-selection-actions .ld-btn-or').getBoundingClientRect().bottom
+   bottom:document.querySelector('.ld-dating-meet').getBoundingClientRect().bottom
   })""")
   assert mesures['partie'] and mesures['etat']=='selection',mesures
   assert mesures['total']==4 and mesures['first']=='MILO_001',mesures

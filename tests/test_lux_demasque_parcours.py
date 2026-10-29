@@ -57,7 +57,7 @@ with sync_playwright() as p:
     pg.evaluate("ouvrirJeux()")
     pg.click('.ld-jouer-hub')
     pg.wait_for_selector('#ld-selection-carte')
-    pg.click('.ld-selection-actions .ld-btn-or')
+    pg.click('.ld-dating-meet')
 
     # ── 0 / 3 : conclure tout de suite ──────────────────────────────────────
     commencer(pg, 'Milo, 30 ans')

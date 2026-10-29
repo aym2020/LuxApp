@@ -32,7 +32,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
-test('SPEC 112 V2 : profil dating, titre centré et microcopy',()=>{const s=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));for(const w of ['BUREAU DES ENQUÊTES','Choisis ton affaire','DOSSIER N°','À ENQUÊTER','Ouvrir ce dossier','Affaire inédite'])assert.ok(!s.includes(w),w);for(const w of ['Découvre des profils','Voir le profil','DÉJÀ DÉMASQUÉ','Nouveau profil','Profil précédent'])assert.ok(s.includes(w),w);assert.match(js,/ld-top-selection/);assert.match(css,/grid-template-columns:48px minmax\(0,1fr\) 48px/)});
+test('SPEC 112 V2 : profil dating, titre centré et microcopy',()=>{const s=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));for(const w of ['BUREAU DES ENQUÊTES','Choisis ton affaire','DOSSIER N°','À ENQUÊTER','Ouvrir ce dossier','Affaire inédite'])assert.ok(!s.includes(w),w);for(const w of ['ld-dating-phone','Voir le profil','DÉJÀ DÉMASQUÉ','Nouveau profil','Profil précédent'])assert.ok(s.includes(w),w);assert.match(js,/ld-top-selection/);assert.match(css,/grid-template-columns:48px minmax\(0,1fr\) 48px/)});
 
 test('SPEC112 V3 : téléphone complet, carte immersive et CTA de rencontre',()=>{
  const view=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));

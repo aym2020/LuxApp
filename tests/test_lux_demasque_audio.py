@@ -44,7 +44,7 @@ with sync_playwright() as p:
     pg.route('**/*gstatic*/**', lambda r: r.abort()); pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL); pg.wait_for_selector('#today')
     pg.evaluate("ouvrirJeux()"); pg.click('.ld-jouer-hub'); pg.wait_for_selector('#ld-selection-carte')
-    pg.click('.ld-selection-actions .ld-btn-or'); pg.wait_for_selector('.ld-rencontre')
+    pg.click('.ld-dating-meet'); pg.wait_for_selector('.ld-rencontre')
     attendre_piste(pg, 'enquete')
     pg.click('.ld-rencontre .ld-btn-or'); pg.wait_for_selector('#ld-declaration')
     attendre_piste(pg, 'deposition')
