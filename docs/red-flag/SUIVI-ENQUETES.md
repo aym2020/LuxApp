@@ -20,6 +20,10 @@
 - [SCENARIOS-001-005.md](SCENARIOS-001-005.md) : **5 rencontres**, **15 emplacements de mensonges**, **3 affirmations vraies par rencontre** ; documents FR de conception uniquement, avec risques de preuve encore ouverts.
 - **0 scénario validé, 0 scénario intégré** ; ne pas additionner ces quinze emplacements aux 12 fiches de mensonges des lots, car certains IDs sont réutilisés.
 
+## SC-01 — Avancement V2
+
+[Dossier détaillé SC-01](SC-01-PRINCE-DU-LEASING-V2.md) : conception FR approfondie, non validée et non implémentée. Trois mensonges et trois vérités assemblés. **Blocage prioritaire : preuve finale de propriété de la Porsche, à rendre accessible et concluante.** Ensuite : contrôler le financement et le vol, rédiger le LU et tester. Aucun scénario jouable ajouté.
+
 ## Registre des lots
 
 | Lot | IDs | Document | État | Prochain traitement |
