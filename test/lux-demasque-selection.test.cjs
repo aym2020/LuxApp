@@ -80,3 +80,12 @@ test('Cringr : musique synchronisée dès le rendu des profils, sans partie', ()
  assert.match(synchro,/p\.phase === 'bilan'/);
  assert.match(js,/LuxDemasqueSon\.musique\(null\)/);
 });
+
+test('Fonds des jeux PC : halo sur le viewport, sans rectangle autour du shell',()=>{
+ const univers=read('public/jeux-univers.css'),html=read('public/index.html');
+ assert.match(html,/jeux-univers\.css\?v=11/);
+ assert.match(univers,/@media \(min-width:768px\) and \(forced-colors:none\)/);
+ for(const nom of ['jeux','runner','luxmatch','luxdemasque'])
+   assert.ok(univers.includes('body:has(#view-'+nom+'.active)'),'halo viewport '+nom);
+ assert.match(univers,/#view-jeux,#view-runner,#view-luxmatch,#view-luxdemasque\s*\{\s*background:transparent;/);
+});
