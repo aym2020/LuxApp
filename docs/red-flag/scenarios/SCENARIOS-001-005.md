@@ -1,6 +1,6 @@
 # RED FLAG — Cinq scénarios de rencontres (V1)
 
-**Statut : conception française non validée, non implémentée.** Références : [STRUCTURE-SCENARIOS.md](../STRUCTURE-SCENARIOS.md), [SELECTION-50.md](../SELECTION-50.md), [OBJECTIONS-PROGRESSIVES.md](../OBJECTIONS-PROGRESSIVES.md), lots 001–004 et SPEC 110. Chaque scénario regroupe **un personnage, trois mensonges candidats et trois affirmations vraies**. Les preuves sont à écrire, auditer et rendre accessibles dans l'univers du jeu. Aucun texte LU n'est validé.
+**Statut : conception française non validée, non implémentée.** Références : [STRUCTURE-SCENARIOS.md](../references/STRUCTURE-SCENARIOS.md), [SELECTION-50.md](../catalogue/SELECTION-50.md), [OBJECTIONS-PROGRESSIVES.md](../references/OBJECTIONS-PROGRESSIVES.md), lots 001–004 et SPEC 110. Chaque scénario regroupe **un personnage, trois mensonges candidats et trois affirmations vraies**. Les preuves sont à écrire, auditer et rendre accessibles dans l'univers du jeu. Aucun texte LU n'est validé.
 
 ## SC-01 — Théo, le prince du leasing
 
