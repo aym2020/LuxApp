@@ -45,6 +45,18 @@ with sync_playwright() as p:
                         assert r['width']<=502,(w,nom,'focus',sel,r)
                 for r in m['elements'].get('.ld-selection',[]):
                     assert r['width']<=422,(w,nom,'téléphone Cringr étiré',r)
+                # Les halos des jeux doivent être peints sur le viewport entier,
+                # pas sur le shell de 640px (sinon bordures verticales visibles).
+                if nom in ('jeux','runner','luxmatch','luxdemasque'):
+                    fond=pg.evaluate("""nom => {
+                        const vue=document.getElementById('view-'+nom);
+                        const b=getComputedStyle(document.body),v=getComputedStyle(vue);
+                        return {active:vue.classList.contains('active'),
+                            body:b.backgroundImage,view:v.backgroundImage,
+                            couleur:v.backgroundColor};
+                    }""",nom)
+                    assert fond['active'] and 'radial-gradient(' in fond['body'],(w,nom,'halo viewport',fond)
+                    assert fond['view']=='none' and fond['couleur']=='rgba(0, 0, 0, 0)',(w,nom,'bordure shell',fond)
             elif (nom,w) in MOBILE:
                 avant=MOBILE[(nom,w)]
                 assert abs(s['x']-avant['shell'][0])<=1 and abs(s['width']-avant['shell'][1])<=1,(w,nom,'mobile shell modifié')
