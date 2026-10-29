@@ -1,6 +1,6 @@
 # RED FLAG — Lot éditorial 001 : trois affaires pilotes
 
-**Statut : conception FR avancée, non implémentée, non validée en LU ni par test.** Branche `2.1`. Sélection : [SELECTION-50.md](../SELECTION-50.md). **Ordre de traitement :** RF-01-07 → RF-02-01 → RF-02-03. Les pièces et personnages sont entièrement fictifs. Le moteur et les affaires existantes restent inchangés.
+**Statut : conception FR avancée, non implémentée, non validée en LU ni par test.** Branche `2.1`. Sélection : [SELECTION-50.md](../catalogue/SELECTION-50.md). **Ordre de traitement :** RF-01-07 → RF-02-01 → RF-02-03. Les pièces et personnages sont entièrement fictifs. Le moteur et les affaires existantes restent inchangés.
 
 ## RF-01-07 — « Je vis seul » (colocation)
 
