@@ -1,6 +1,6 @@
 # RED FLAG — Sélection éditoriale des 50 situations prioritaires
 
-**Statut : présélection de conception, non implémentée, non validée.** Source : [catalogue original de 198 affirmations](../CATALOGUE-MENSONGES.md) et [matrice de préqualification](../MATRICE-EXHAUSTIVE.md). **Branche :** `2.1`. Ne pas supprimer ni modifier les 148 idées non retenues : elles restent disponibles comme pistes secondaires, dialogues ou leurres.
+**Statut : présélection de conception, non implémentée, non validée.** Source : [catalogue original de 198 affirmations](../catalogue/CATALOGUE-MENSONGES.md) et [matrice de préqualification](../catalogue/MATRICE-EXHAUSTIVE.md). **Branche :** `2.1`. Ne pas supprimer ni modifier les 148 idées non retenues : elles restent disponibles comme pistes secondaires, dialogues ou leurres.
 
 ## Méthode de tri
 
@@ -93,8 +93,8 @@ Critères, par ordre de priorité : (1) possibilité d'une **contradiction logiq
 
 ## Traçabilité du tri
 
-**198 propositions originales − 50 retenues = 148 non prioritaires.** Les 148 ne sont **pas supprimées** et ne sont pas qualifiées de fausses : elles restent dans [CATALOGUE-MENSONGES.md](../CATALOGUE-MENSONGES.md). Les identifiants sont dérivés de leur position dans le catalogue et conservés tels quels dans [MATRICE-EXHAUSTIVE.md](../MATRICE-EXHAUSTIVE.md). Aucun nouveau contenu LU ou JSON n'est créé par cette présélection.
+**198 propositions originales − 50 retenues = 148 non prioritaires.** Les 148 ne sont **pas supprimées** et ne sont pas qualifiées de fausses : elles restent dans [CATALOGUE-MENSONGES.md](../catalogue/CATALOGUE-MENSONGES.md). Les identifiants sont dérivés de leur position dans le catalogue et conservés tels quels dans [MATRICE-EXHAUSTIVE.md](../catalogue/MATRICE-EXHAUSTIVE.md). Aucun nouveau contenu LU ou JSON n'est créé par cette présélection.
 
 ## Prochaine étape pour Claude ou ChatGPT
 
-Prendre les **trois premiers pilotes P1**, un par un : reformulation naturelle lors du rendez-vous, précision, pièces nommées et datées, preuve réellement suffisante, deux contre-explications écartées, leurre, dialogue et objection LU A1.1/A1.2. **Ne pas pousser d'affaire jouable** tant que ces éléments et les tests existants ne sont pas validés. Revoir [MATRICE-PREUVES.md](../MATRICE-PREUVES.md), [FICHE-PERSONNAGE.md](../FICHE-PERSONNAGE.md), SPEC 110 et PLAYBOOK avant toute implémentation.
+Prendre les **trois premiers pilotes P1**, un par un : reformulation naturelle lors du rendez-vous, précision, pièces nommées et datées, preuve réellement suffisante, deux contre-explications écartées, leurre, dialogue et objection LU A1.1/A1.2. **Ne pas pousser d'affaire jouable** tant que ces éléments et les tests existants ne sont pas validés. Revoir [MATRICE-PREUVES.md](../references/MATRICE-PREUVES.md), [FICHE-PERSONNAGE.md](../references/FICHE-PERSONNAGE.md), SPEC 110 et PLAYBOOK avant toute implémentation.
