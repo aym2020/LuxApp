@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=18','lux-demasque.js?v=17','lux-match.css?v=22','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=18','lux-demasque.js?v=18','lux-match.css?v=22','lux-match.js?v=28']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -69,4 +69,14 @@ test('SPEC 113 : carte sans marge artificielle, texte bitmap, CTA arcade',()=>{
  const view=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldComposerPhotoProfil('));
  assert.doesNotMatch(view,/ld-photo-swipe|PRÉCÉDENT|SUIVANT/);
  assert.match(js,/if \(dx > 0\) ldSelectionConfirmer\(\)/);
+});
+
+// Cringr est un écran avant-partie : la musique ne doit pas attendre le LIKE.
+test('Cringr : musique synchronisée dès le rendu des profils, sans partie', () => {
+ const selection=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldComposerPhotoProfil('));
+ const synchro=js.slice(js.indexOf('function ldSynchroMusique()'),js.indexOf('function ldSon('));
+ assert.match(selection,/ldSynchroMusique\(\)/);
+ assert.match(synchro,/ld\.selection && ld\.selection\.items\.length \? 'enquete' : null/);
+ assert.match(synchro,/p\.phase === 'bilan'/);
+ assert.match(js,/LuxDemasqueSon\.musique\(null\)/);
 });
