@@ -113,7 +113,7 @@
 
 ## Ajout demandé par le produit — entrée par choix d'affaire (LD-048)
 
-- [ ] **LD-048 · P1 — Red Flag / Cringr : swipe dating sans flèches.** **Nouveaux noms et interaction documentés, non codés.** Jeu visible : **Red Flag** ; application fictive dans le téléphone : **Cringr**. Supprimer les flèches circulaires sous la carte, conserver le CTA central « Rencontrer », ajouter une pile visuelle et une courte démonstration du geste au premier accès, plus des repères contextuels PRÉCÉDENT / SUIVANT. Swipe = navigation uniquement. Préserver personnages, moteur, scores et sauvegardes. [SPEC 112 normative](https://github.com/aym2020/LuxApp/blob/2.1/docs/specs/SPEC-112.md). Captures et validation Samsung indispensables avant de cocher.
+- [ ] **LD-048 · P1 — Red Flag / Cringr : swipe dating sans flèches.** **Code poussé sur `2.1` : Red Flag, Cringr, swipe sans flèches ; validation Samsung en attente.** Jeu visible : **Red Flag** ; application fictive dans le téléphone : **Cringr**. Supprimer les flèches circulaires sous la carte, conserver le CTA central « Rencontrer », ajouter une pile visuelle et une courte démonstration du geste au premier accès, plus des repères contextuels PRÉCÉDENT / SUIVANT. Swipe = navigation uniquement. Préserver personnages, moteur, scores et sauvegardes. [SPEC 112 normative](https://github.com/aym2020/LuxApp/blob/2.1/docs/specs/SPEC-112.md). Captures et validation Samsung indispensables avant de cocher.
 
 ## Journal d'exécution
 
