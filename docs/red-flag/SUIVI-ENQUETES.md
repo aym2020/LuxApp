@@ -17,8 +17,9 @@
 | Lot | IDs | Document | État | Prochain traitement |
 |---|---|---|---|---|
 | 001 | RF-01-07, RF-02-01, RF-02-03 | [LOT-001-ENQUETES.md](LOT-001-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue éditoriale, dédoublonnage avec affaires existantes, LU |
-| 002 | RF-02-05, RF-03-03, RF-04-01 | À créer | **Non commencé** | Construire trois enquêtes, pièces et contre-explications |
-| 003+ | Autres IDs de [SELECTION-50.md](SELECTION-50.md) | À créer | **Non commencé** | Lots de trois selon priorité et diversité |
+| 002 | RF-02-05, RF-03-03, RF-04-01 | [LOT-002-ENQUETES.md](LOT-002-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue des preuves et LU |
+| 003 | RF-04-05, RF-05-12, RF-06-11 | [LOT-003-ENQUETES.md](LOT-003-ENQUETES.md) | **Conception discutée ; document incomplet** | Compléter le fichier, puis revue et LU |
+| 004+ | Autres IDs de [SELECTION-50.md](SELECTION-50.md) | À créer | **Non commencé** | Lots suivants de trois |
 
 ## Prochaines décisions à prendre
 
