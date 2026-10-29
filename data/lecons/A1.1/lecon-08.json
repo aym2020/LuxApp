@@ -24,9 +24,9 @@
     },
     {
       "id": 3,
-      "lu": "en Engländer / eng Engländerin",
+      "lu": "en Englänner / eng Englännerin",
       "fr": "Anglais / Anglaise",
-      "note": "England · M → en Engländer · F → eng Engländerin"
+      "note": "England · M → en Englänner · F → eng Englännerin"
     },
     {
       "id": 4,
@@ -1114,7 +1114,7 @@
     },
     {
       "fr": "Anglais (M)",
-      "lu": "Engländer"
+      "lu": "Englänner"
     },
     {
       "fr": "Argentin (M)",
@@ -1166,7 +1166,7 @@
     },
     {
       "fr": "Anglaise (F)",
-      "lu": "Engländerin"
+      "lu": "Englännerin"
     },
     {
       "fr": "Italien (M)",
@@ -1383,8 +1383,8 @@
           "espagnol·e"
         ],
         [
-          "en Engländer",
-          "eng Engländerin",
+          "en Englänner",
+          "eng Englännerin",
           "anglais·e"
         ],
         [
