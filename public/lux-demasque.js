@@ -277,6 +277,9 @@ function ldRendreSelection() {
   ldBrancherSelection(document.getElementById('ld-selection-carte'));
   ldSelectionCoachmark();
   if (npc) ldPreparerPortraitSelection(npc);
+  // Cringr est un écran jouable avant toute partie : sa musique doit démarrer
+  // au premier geste d'entrée depuis le hub, pas attendre le LIKE.
+  ldSynchroMusique();
 }
 // SPEC 112 : vraie silhouette issue du modèle 3D du date + décor statique narratif.
 // Ne jamais générer une autre identité : on détoure la photographie issue de m.portrait().
@@ -506,11 +509,18 @@ function ldEntete(options) {
       (o.menu === false ? '' : '<button type="button" class="ld-icone-btn" onclick="ldMenu()" aria-label="Menu" aria-haspopup="dialog">' + ldIcone('menu') + '</button>') +
     '</div></div>';
 }
-// Musique selon l'écran : enquête (fiche, réseaux, carnet), déposition, silence au bilan.
+// Cringr et la rencontre utilisent « enquête » ; déposition = sa propre boucle,
+// bilan et sortie = silence. Pas de deuxième AudioContext ni de piste concurrente.
 function ldSynchroMusique() {
   if (typeof LuxDemasqueSon === 'undefined') return;
   const p = ld.partie;
-  if (!p || !ldVueActive() || p.phase === 'bilan') { LuxDemasqueSon.musique(null); return; }
+  if (!ldVueActive() || (p && p.phase === 'bilan')) { LuxDemasqueSon.musique(null); return; }
+  if (!p) {
+    // Le sélecteur n'a pas encore de partie. Garder le silence pendant le
+    // chargement / si la liste est vide, mais jouer dès que Cringr est affiché.
+    LuxDemasqueSon.musique(ld.selection && ld.selection.items.length ? 'enquete' : null);
+    return;
+  }
   const fouille = !!document.querySelector('#ld-reseaux, #ld-carnet, #ld-piece');
   LuxDemasqueSon.musique(p.phase === 'rencontre' || fouille ? 'enquete' : 'deposition');
 }
