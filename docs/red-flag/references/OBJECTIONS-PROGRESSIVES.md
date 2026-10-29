@@ -1,6 +1,6 @@
 # RED FLAG — Objections progressives et défense du personnage
 
-**Statut : décision de conception validée sur le principe le 29 octobre 2026 ; non implémentée.** Branche documentaire `2.1`. Ce document complète [MATRICE-PREUVES.md](../MATRICE-PREUVES.md), les [lots 001 à 004](../SUIVI-ENQUETES.md) et [SPEC 110](../specs/SPEC-110.md), sans les remplacer. **Ne pas modifier le moteur ou le contrat de six déclarations sans analyse et validation spécifiques.**
+**Statut : décision de conception validée sur le principe le 29 octobre 2026 ; non implémentée.** Branche documentaire `2.1`. Ce document complète [MATRICE-PREUVES.md](../references/MATRICE-PREUVES.md), les [lots 001 à 004](../SUIVI-ENQUETES.md) et [SPEC 110](../../specs/SPEC-110.md), sans les remplacer. **Ne pas modifier le moteur ou le contrat de six déclarations sans analyse et validation spécifiques.**
 
 ## Intention
 
@@ -61,7 +61,7 @@ L'état de progression doit être distinct de la validation d'une accusation ; l
 
 ## Application aux lots 001–004
 
-**Candidat pilote prioritaire : RF-03-03, Porsche louée** ([lot 002](../LOT-002-ENQUETES.md)). Sa rédaction actuelle utilise une location d'octobre et un aveu anticipé ; il faudra la **réécrire** avec location en juillet, défense « essai puis achat en août », preuve E2 indépendante et objection finale. **Ne pas modifier rétroactivement la fiche du lot 002 sans une révision éditoriale explicite**, afin de conserver la trace de la version initiale.
+**Candidat pilote prioritaire : RF-03-03, Porsche louée** ([lot 002](../enquetes/LOT-002-ENQUETES.md)). Sa rédaction actuelle utilise une location d'octobre et un aveu anticipé ; il faudra la **réécrire** avec location en juillet, défense « essai puis achat en août », preuve E2 indépendante et objection finale. **Ne pas modifier rétroactivement la fiche du lot 002 sans une révision éditoriale explicite**, afin de conserver la trace de la version initiale.
 
 Autres candidats possibles après audit : RF-02-05 (trader en simulation), RF-14-07 (réservation). Les affaires faciles et les dossiers déjà redondants ne doivent pas être convertis automatiquement.
 
