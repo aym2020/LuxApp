@@ -15,6 +15,11 @@
 - Nouvelles affaires intégrées au jeu par ce chantier : **0**.
 - LU relu / LOD vérifié pour ce chantier : **0**.
 
+## Scénarios assemblés (non validés)
+
+- [SCENARIOS-001-005.md](SCENARIOS-001-005.md) : **5 rencontres**, **15 emplacements de mensonges**, **3 affirmations vraies par rencontre** ; documents FR de conception uniquement, avec risques de preuve encore ouverts.
+- **0 scénario validé, 0 scénario intégré** ; ne pas additionner ces quinze emplacements aux 12 fiches de mensonges des lots, car certains IDs sont réutilisés.
+
 ## Registre des lots
 
 | Lot | IDs | Document | État | Prochain traitement |
