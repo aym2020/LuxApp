@@ -1,6 +1,6 @@
 # PLAYBOOK — LuxembourgishApp
 
-> **RED FLAG / CRINGR — point d'entrée éditorial :** [docs/red-flag/README.md](docs/red-flag/README.md) (bible, catalogue de mensonges, preuves/leurres, modèle de personnage). Lire ce dossier pour toute création ou refonte narrative du jeu, en plus de SPEC 110/113 et du suivi `main/docs/LUX-DEMASQUE-TODO.md`. Les idées ne sont ni implémentées ni validées.
+> **RED FLAG / CRINGR — point d'entrée éditorial :** [docs/red-flag/README.md](docs/red-flag/README.md) (index des références, catalogue, preuves/leurres et scénarios actifs). Lire ce dossier pour toute création ou refonte narrative du jeu, en plus de SPEC 110/113 et du suivi `main/docs/LUX-DEMASQUE-TODO.md`. Les idées ne sont ni implémentées ni validées.
 
 
 **Index de référence :** [docs/README.md](docs/README.md) (charte UI, spécifications, recettes, audits, archives et statut des documents).
