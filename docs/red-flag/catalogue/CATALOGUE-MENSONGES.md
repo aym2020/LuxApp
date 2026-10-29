@@ -255,4 +255,4 @@
 
 Pour chaque idée, noter : **nature** (séduction/dissimulation/mythomanie), **gravité** (légère/modérée/forte), **comédie**, **précision nécessaire**, **source de preuve plausible**, **contre-explications**, **leurre**, **lexique LU A1.1/A1.2**, **risque de stéréotype**, **compatibilité avec les autres affaires**.
 
-**Ne pas traiter ce catalogue comme 150 mensonges déjà prouvés.** Certaines affirmations sont invérifiables, certaines pourraient être vraies, d'autres demanderaient des preuves intrusives ou un niveau linguistique excessif. Elles ne deviennent des affaires qu'après passage par [MATRICE-PREUVES.md](../MATRICE-PREUVES.md) et validation éditoriale.
+**Ne pas traiter ce catalogue comme 150 mensonges déjà prouvés.** Certaines affirmations sont invérifiables, certaines pourraient être vraies, d'autres demanderaient des preuves intrusives ou un niveau linguistique excessif. Elles ne deviennent des affaires qu'après passage par [MATRICE-PREUVES.md](../references/MATRICE-PREUVES.md) et validation éditoriale.
