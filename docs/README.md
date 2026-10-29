@@ -17,6 +17,7 @@ Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour
 | Correction, sons et parité de feedback | [SPEC 94](specs/SPEC-94.md) · [agent de vérification](../.claude/agents/ui-parity-auditor.md) | **Lots 1/2 codés** ; les bandeaux actuels seront remplacés visuellement selon SPEC 95 |
 | **Nouvelle structure des exercices / CTA fixe** | [SPEC 95](specs/SPEC-95.md) | **Implémentée ; visuels/sons acceptés sur Samsung le 25/10** : trois zones DOM, CTA stable ; clavier ouvert, zoom et TalkBack à valider |
 | Dimensions PC/mobile existantes | [AUDIT-DIMENSIONS-2.1.md](AUDIT-DIMENSIONS-2.1.md) | **Diagnostic statique**, pas preuve de validation visuelle |
+| **Uniformisation PC de toute l'app, jeux inclus** | **[SPEC 114](specs/SPEC-114.md)** | **Cible de livraison à implémenter** : shell 640 px, lecture 560 px, interactions 500 px, audit DOM des 24 vues, recette PC/Samsung ; précise la [charte § 6 bis](CHARTE_UI_2.1.md) |
 | Priorités à livrer | [TODO.md](../TODO.md) | Backlog et critères d'acceptation |
 | **Lux Démasqué — prochaine action et suivi des 48 tâches V1.1** | [TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) | **Source de vérité du statut**, cases à cocher, ordre, journal de validation ; code du jeu sur `2.1` |
 | Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel** : LuxApp TEST autonome, authentification et isolation ; pas de raccourci dans le Plus normal |
