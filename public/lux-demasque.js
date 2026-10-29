@@ -240,7 +240,7 @@ function ldRendreSelection() {
             '<span class="ld-dating-counter" aria-live="polite">PROFIL ' + index + ' / ' + sel.items.length + '</span></div>' +
           '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
             ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '">' +
-            '<div class="ld-selection-image-zone ld-photo-scene ld-photo-' + (npc ? ldEchapper(npc.id) : 'mystere') + '">' + portrait + '<div class="ld-photo-swipe">← SWIPE →</div></div>' +
+            '<div class="ld-selection-image-zone ld-photo-scene ld-photo-' + (npc ? ldEchapper(npc.id) : 'mystere') + '">' + portrait + '</div>' +
             '<div class="ld-selection-infos">' +
               '<span class="ld-selection-etat">' +
                 (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
@@ -324,7 +324,7 @@ function ldSelectionConfirmer() {
   if (!selection || selection.enCours) return;
   selection.enCours = true;
   const dossier = selection.items[selection.index];
-  // Naviguer au doigt ne démarre jamais le jeu ; seul ce bouton ouvre l'affaire.
+  // Le swipe droit et le coeur sont deux entrées vers la même rencontre.
   ouvrirLuxDemasque(dossier.genere ? dossier.graine : dossier.id);
 }
 function ldSelectionCoachmark() {
@@ -372,7 +372,10 @@ function ldBrancherSelection(carte) {
     if (!geste || e.pointerId !== geste.id) return;
     const dx = geste.dx, horizontal = geste.direction === 'h';
     annuler();
-    if (horizontal && Math.abs(dx) > 65) ldSelectionChanger(dx < 0 ? 1 : -1);
+    if (horizontal && Math.abs(dx) > 65) {
+      if (dx > 0) ldSelectionConfirmer(); // LIKE : même action que le coeur
+      else ldSelectionChanger(1); // NOPE : profil suivant, sans ouvrir de rencontre
+    }
   });
   carte.addEventListener('pointercancel', e => { if (geste && e.pointerId === geste.id) annuler(); });
   carte.addEventListener('lostpointercapture', e => { if (geste && e.pointerId === geste.id) annuler(); });
