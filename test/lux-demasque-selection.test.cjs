@@ -28,11 +28,11 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=15','lux-demasque.js?v=15','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=16','lux-demasque.js?v=16','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
-test('SPEC 112 V2 : profil dating, titre centré et microcopy',()=>{const s=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));for(const w of ['BUREAU DES ENQUÊTES','Choisis ton affaire','DOSSIER N°','À ENQUÊTER','Ouvrir ce dossier','Affaire inédite'])assert.ok(!s.includes(w),w);for(const w of ['ld-dating-phone','Voir le profil','DÉJÀ DÉMASQUÉ','Nouveau profil','ld-photo-swipe'])assert.ok(s.includes(w),w);assert.match(js,/ld-top-selection/);assert.match(css,/grid-template-columns:48px minmax\(0,1fr\) 48px/)});
+test('SPEC 112 V2 : profil dating, titre centré et microcopy',()=>{const s=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));for(const w of ['BUREAU DES ENQUÊTES','Choisis ton affaire','DOSSIER N°','À ENQUÊTER','Ouvrir ce dossier','Affaire inédite'])assert.ok(!s.includes(w),w);for(const w of ['ld-dating-phone','Voir le profil','DÉJÀ DÉMASQUÉ','Nouveau profil','ld-selection-carte'])assert.ok(s.includes(w),w);assert.match(js,/ld-top-selection/);assert.match(css,/grid-template-columns:48px minmax\(0,1fr\) 48px/)});
 
 test('SPEC112 V3 : téléphone complet, carte immersive et CTA de rencontre',()=>{
  const view=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));
@@ -54,4 +54,18 @@ test('Red Flag et Cringr, sans flèches de sélection',()=>{
  assert.match(css,/ld-swipe-demo/);
 });
 
-test('SPEC 112 portraits narratifs du vrai modèle de date',()=>{assert.match(js,/ldComposerPhotoProfil/);assert.match(js,/m\.portrait\(npc/);assert.match(js,/profil-photo:/);assert.match(js,/SWIPE/);for(const id of ['milo','noah','tom','ville'])assert.ok(read('public/art/cringr-'+id+'.svg').includes('<svg'));});
+test('SPEC 112 portraits narratifs du vrai modèle de date',()=>{assert.match(js,/ldComposerPhotoProfil/);assert.match(js,/m\.portrait\(npc/);assert.match(js,/profil-photo:/);assert.doesNotMatch(js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldComposerPhotoProfil(')),/ld-photo-swipe|SWIPE/);for(const id of ['milo','noah','tom','ville'])assert.ok(read('public/art/cringr-'+id+'.svg').includes('<svg'));});
+
+test('SPEC 113 : carte sans marge artificielle, texte bitmap, CTA arcade',()=>{
+ const section=css.slice(css.indexOf('/* SPEC 113 — Cringr'));
+ assert.ok(section.includes('justify-content:flex-end'));
+ assert.match(section,/\.ld-selection-infos\s*\{[^}]*margin:0/);
+ assert.doesNotMatch(section,/margin-top:clamp/);
+ assert.match(section,/\.ld-selection-description\s*\{[^}]*var\(--ld-pixel\)/);
+ assert.match(section,/\.ld-dating-meet\s*\{[^}]*border-radius:8px/);
+ assert.match(section,/content:"NOPE"/);
+ assert.match(section,/content:"LIKE"/);
+ const view=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldComposerPhotoProfil('));
+ assert.doesNotMatch(view,/ld-photo-swipe|PRÉCÉDENT|SUIVANT/);
+ assert.match(js,/if \(dx > 0\) ldSelectionConfirmer\(\)/);
+});
