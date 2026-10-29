@@ -1,42 +1,54 @@
-# RED FLAG — bibliothèque éditoriale et guide d'accès
+# RED FLAG / Cringr — documentation éditoriale
 
-**Jeu :** RED FLAG · **Application fictive :** Cringr · **Ancien nom technique/documentaire :** Lux Démasqué.  
-**Branche de travail :** `2.1` · **Backlog canonique :** [TODO sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md).
+**Branche de travail :** `2.1`. **Source normative technique :** [SPEC 110](../specs/SPEC-110.md) et [SPEC 113](../specs/SPEC-113.md). **Backlog canonique :** [TODO Lux Démasqué sur main](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). **Code et JSON actuels :** toujours consulter GitHub avant intégration.
 
-Ce dossier est **le point d'entrée éditorial** pour créer des personnages, mensonges, preuves, leurres et rencontres de RED FLAG. Il ne remplace **ni** les SPEC techniques, **ni** le moteur, **ni** les données validées.
+## Commencer ici
 
-**Structure des contenus :** [STRUCTURE-SCENARIOS.md](STRUCTURE-SCENARIOS.md) — mensonge, enquête atomique et scénario de trois mensonges ; les lots 001–004 ne sont pas quatre scénarios. Voir aussi [OBJECTIONS-PROGRESSIVES.md](OBJECTIONS-PROGRESSIVES.md).
+1. [SUIVI-ENQUETES.md](SUIVI-ENQUETES.md) : état réel, décisions ouvertes et prochaines étapes.
+2. [SC-01 — Le prince du leasing](scenarios/SC-01.md) et [SC-02 — Le génie de la finance](scenarios/SC-02.md) : **uniques versions actives** des deux dossiers français, non validés LU et non intégrés.
+3. [SCENARIOS-001-005.md](scenarios/SCENARIOS-001-005.md) : synopsis initial des cinq rencontres, **historique pour SC-01/SC-02**, non normatif face aux dossiers actifs.
+4. [BIBLE-EDITORIALE.md](references/BIBLE-EDITORIALE.md) et [STRUCTURE-SCENARIOS.md](references/STRUCTURE-SCENARIOS.md) : ton, personnage, unité mensonge/enquête/scénario.
+5. [MATRICE-PREUVES.md](references/MATRICE-PREUVES.md), [OBJECTIONS-PROGRESSIVES.md](references/OBJECTIONS-PROGRESSIVES.md) et [FICHE-PERSONNAGE.md](references/FICHE-PERSONNAGE.md) : contrôle des preuves et modèle de création.
 
-## Lecture recommandée pour Claude et ChatGPT
+## Arborescence
 
-1. [BIBLE-EDITORIALE.md](BIBLE-EDITORIALE.md) : ton, personnages, principes d'enquête, difficultés et pédagogie.
-2. [CATALOGUE-MENSONGES.md](CATALOGUE-MENSONGES.md) : banque de thèmes et affirmations (idées **non implémentées**, non vérifiées).
-3. [MATRICE-PREUVES.md](MATRICE-PREUVES.md) : transformer une idée en affaire jouable, avec précision, preuve suffisante, leurre et contre-exemples.
-4. [FICHE-PERSONNAGE.md](FICHE-PERSONNAGE.md) : modèle de conception et critères d'acceptation.
-5. **Références normatives hors de ce dossier :** [SPEC 110](../specs/SPEC-110.md) (moteur, données, LU), [SPEC 113](../specs/SPEC-113.md) (sélecteur Cringr, remplace les règles de swipe de SPEC 112), [affaires existantes](../LUX-DEMASQUE-AFFAIRES.md), [tests](../LUX-DEMASQUE-TESTS.md), [validation par écran](../LUX-DEMASQUE-VALIDATION-ECRANS.md).
+```text
+docs/red-flag/
+├── README.md
+├── SUIVI-ENQUETES.md
+├── references/
+│   ├── BIBLE-EDITORIALE.md
+│   ├── STRUCTURE-SCENARIOS.md
+│   ├── MATRICE-PREUVES.md
+│   ├── OBJECTIONS-PROGRESSIVES.md
+│   └── FICHE-PERSONNAGE.md
+├── catalogue/
+│   ├── CATALOGUE-MENSONGES.md
+│   ├── MATRICE-EXHAUSTIVE.md
+│   └── SELECTION-50.md
+├── enquetes/
+│   ├── LOT-001-ENQUETES.md
+│   ├── LOT-002-ENQUETES.md
+│   ├── LOT-003-ENQUETES.md
+│   └── LOT-004-ENQUETES.md
+├── scenarios/
+│   ├── SCENARIOS-001-005.md
+│   ├── SC-01.md
+│   └── SC-02.md
+└── archives/
+    ├── SC-01-V2.md
+    ├── SC-01-V3.md
+    ├── SC-02-V2.md
+    └── SC-02-V3.md
+```
 
+## Rôles, sans doublon fonctionnel
 
-## Reprise des enquêtes (Claude / ChatGPT)
+- **[Catalogue](catalogue/CATALOGUE-MENSONGES.md)** : 198 idées, non vérifiées ; [matrice exhaustive](catalogue/MATRICE-EXHAUSTIVE.md) : index et pistes de preuves ; [sélection 50](catalogue/SELECTION-50.md) : priorités éditoriales.
+- **[Lots d'enquêtes](enquetes/LOT-001-ENQUETES.md)** : fiches atomiques 001–004, **pas** des scénarios complets. Les autres lots : [002](enquetes/LOT-002-ENQUETES.md), [003](enquetes/LOT-003-ENQUETES.md), [004](enquetes/LOT-004-ENQUETES.md).
+- **[Scénarios](scenarios/SC-01.md)** : rencontres composées de trois mensonges et trois vérités ; les V2/V3 dans `archives/` servent uniquement à l'audit et ne doivent pas être utilisées pour implémenter.
+- **Suivi éditorial** : ce dossier ; **suivi technique** : TODO sur `main`. Ne pas mélanger.
 
-**Lire d'abord [SUIVI-ENQUETES.md](SUIVI-ENQUETES.md)** : état persistant, lots terminés en conception, décisions ouvertes et prochaine série. **[LOT-001-ENQUETES.md](LOT-001-ENQUETES.md)** : trois premières enquêtes rédigées (RF-01-07, RF-02-01, RF-02-03), non validées et non implémentées. Ne pas confondre ce suivi éditorial avec la TODO technique sur `main`.
+## Garde-fous
 
-## Sélection éditoriale actuelle
-
-**[SELECTION-50.md](SELECTION-50.md)** : 50 situations présélectionnées parmi les 198, avec 12 pilotes P1, critères de tri et garde-fous. **[MATRICE-EXHAUSTIVE.md](MATRICE-EXHAUSTIVE.md)** : index des 198 affirmations et pistes de preuve génériques, non validées. Les 148 autres idées restent dans le catalogue ; ne pas les supprimer.
-
-## Où est la source de vérité ?
-
-| Objet | Source | Statut |
-|---|---|---|
-| Intention et idées de mensonges | Ce dossier | **Brainstorming / conception**, pas contenu approuvé |
-| Comportement Cringr | `docs/specs/SPEC-113.md` | Décision normative, recette ouverte |
-| Format, moteur et génération | `docs/specs/SPEC-110.md` + code et JSON actuels | Contrat technique à vérifier avant intervention |
-| Affaires déjà écrites | `docs/LUX-DEMASQUE-AFFAIRES.md` et `tools/lux-demasque/contenus.py` | Contenu existant ; ne pas écraser |
-| Avancement / validation | `main/docs/LUX-DEMASQUE-TODO.md` | Backlog canonique |
-| Processus de développement | `PLAYBOOK.md` et `AGENTS.md` | Obligatoire |
-
-## Règle de contribution
-
-Une idée du catalogue n'est **jamais** une preuve. Ne pas créer directement des phrases LU, pièces JSON ou nouvelles affaires à partir de la banque. Vérifier les faits, dates et contraintes, construire un raisonnement sans ambiguïté, puis rédiger le luxembourgeois A1.1/A1.2 avec `grammaire_luxembourg.md` et LOD.lu. Relire les textes FR/LU, tester le générateur et les contradictions croisées, puis faire valider le résultat.
-
-**Convention de recherche :** mots-clés `RED FLAG`, `Cringr`, `Lux Démasqué`, `mensonges`, `affaires`, `preuves`, `leurres`. Les chemins internes `ld*`, les IDs et les clés de sauvegarde ne doivent pas être renommés pour des raisons de marque.
+Une idée n'est pas une preuve. Les dossiers SC-01/SC-02 sont des conceptions **françaises** : produire les pièces, tester les objections, vérifier le LU sur LOD.lu et `grammaire_luxembourg.md`, puis contrôler le contrat JSON, le moteur, la progression et Android. Ne pas déclarer jouable avant recette et validation. Les anciens chemins supprimés restent récupérables via l'historique Git.
