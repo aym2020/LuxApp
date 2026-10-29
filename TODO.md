@@ -85,6 +85,10 @@
 - [ ] **36 · Cadrer une éventuelle offre Sproochentest.** **Produit**. Bénéfices, programme, progression et modèle économique. **Fini si :** valeur pédagogique définie, A1 gratuit intact.
 - [ ] **37 · Finaliser la gouvernance documentaire et la publication.** **Dev**. **Déjà réalisé :** [README central](docs/README.md), déplacement des recherches/archives, clarification des recettes et index des **88 SPEC** (commits `e619f1f`, `68a4e67`). **Reste :** vérifier la cohérence des statuts de SPEC avec le code actuel, repérer les références historiques contradictoires restantes et rédiger/valider une procédure release/rollback pour `2.1`. **Fini si :** registre fiable, liens vérifiés, guide de livraison/restauration testé sans régression. Non coché tant que ce reste n'est pas livré.
 
+## Petites finitions UI — backlog léger (hors des 43 tâches prioritaires)
+
+- [ ] **UI-F01 · Rendre l’ascenseur de « S’entraîner » discret sur PC.** La scrollbar native claire et épaisse visible à droite du panneau défilant contraste avec le thème sombre (capture du 29/10/2026). Identifier le conteneur réellement scrollable (`#view-review-setup .rs-v21-scroll` ou son parent, selon le DOM rendu), puis harmoniser uniquement **l'apparence** : piste sombre, curseur fin mais visible, style Firefox/Chromium avec dégradation native. **À préserver :** défilement à la souris, molette, clavier et tactile, contraste/accessibilité, scrollbar utilisable, CTA « Commencer l’entraînement » toujours accessible, aucune régression Android ni débordement. **Fini si :** captures avant/après sur PC Chrome et Firefox et vérification de défilement, sans suppression du scroll. **Statut : à faire, aucun CSS modifié.**
+
 ---
 
 ## Mode opératoire
