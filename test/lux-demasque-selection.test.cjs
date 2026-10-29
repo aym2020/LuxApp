@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=14','lux-demasque.js?v=14','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=15','lux-demasque.js?v=15','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -53,3 +53,5 @@ test('Red Flag et Cringr, sans flèches de sélection',()=>{
  assert.match(js,/function ldSelectionCoachmark/);
  assert.match(css,/ld-swipe-demo/);
 });
+
+test('SPEC 112 portraits narratifs du vrai modèle de date',()=>{assert.match(js,/ldComposerPhotoProfil/);assert.match(js,/m\.portrait\(npc/);assert.match(js,/profil-photo:/);assert.match(js,/SWIPE/);for(const id of ['milo','noah','tom','ville'])assert.ok(read('public/art/cringr-'+id+'.svg').includes('<svg'));});

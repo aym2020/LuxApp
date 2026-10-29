@@ -225,7 +225,7 @@ function ldRendreSelection() {
   box.dataset.ecran = 'selection';
   const portrait = npc
     ? '<div class="ld-selection-portrait" aria-hidden="true">' +
-        ldImage('portrait:'+npc.id, 'ld-selection-image') +
+        ldImage('profil-photo:'+npc.id, 'ld-selection-image') +
         '<span class="ld-selection-initiale">' + ldEchapper(npc.nom.slice(0,1)) + '</span></div>'
     : '<div class="ld-selection-portrait ld-selection-mystere" aria-hidden="true"><span>?</span></div>';
   // L'app entière est contenue dans un unique téléphone fictif.
@@ -240,7 +240,7 @@ function ldRendreSelection() {
             '<span class="ld-dating-counter" aria-live="polite">PROFIL ' + index + ' / ' + sel.items.length + '</span></div>' +
           '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
             ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '">' +
-            '<div class="ld-selection-image-zone">' + portrait + '</div>' +
+            '<div class="ld-selection-image-zone ld-photo-scene ld-photo-' + (npc ? ldEchapper(npc.id) : 'mystere') + '">' + portrait + '<div class="ld-photo-swipe">← SWIPE →</div></div>' +
             '<div class="ld-selection-infos">' +
               '<span class="ld-selection-etat">' +
                 (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
@@ -254,10 +254,10 @@ function ldRendreSelection() {
           '<div class="ld-dating-controls">' +
             '<button type="button" class="ld-dating-meet" onclick="ldSelectionConfirmer()" aria-label="' +
               (affaire.genere ? 'Découvrir le profil' : resolu ? 'Revoir le profil' : 'Voir le profil') + '">' +
-              '<span aria-hidden="true">♥</span><span>' +
+              '<span aria-hidden="true">♥</span><span class="ld-rencontre-label">' +
               (affaire.genere ? 'DÉCOUVRIR' : resolu ? 'REVOIR' : 'RENCONTRER') + '</span></button>' +
           '</div>' +
-          '<p class="ld-dating-hint"><span aria-hidden="true">‹</span> Glisse pour découvrir <span aria-hidden="true">›</span></p>' +
+          '' +
         '</div>' +
       '</section>' +
     '</main>';
@@ -265,17 +265,52 @@ function ldRendreSelection() {
   ldSelectionCoachmark();
   if (npc) ldPreparerPortraitSelection(npc);
 }
+// SPEC 112 : vraie silhouette issue du modèle 3D du date + décor statique narratif.
+// Ne jamais générer une autre identité : on détoure la photographie issue de m.portrait().
+function ldComposerPhotoProfil(source, decor) {
+  return new Promise(resolve => {
+    const fond = new Image(), visage = new Image();
+    fond.onload = () => {
+      visage.onload = () => {
+        try {
+          const w=360,h=520, c=document.createElement('canvas');
+          c.width=w;c.height=h;
+          const ctx=c.getContext('2d',{willReadFrequently:true});
+          ctx.imageSmoothingEnabled=false;
+          ctx.drawImage(fond,0,0,w,h);
+          const layer=document.createElement('canvas');layer.width=visage.width;layer.height=visage.height;
+          const x=layer.getContext('2d',{willReadFrequently:true});
+          x.drawImage(visage,0,0);
+          const img=x.getImageData(0,0,layer.width,layer.height),d=img.data;
+          // Effacement connecté au bord : évite de faire disparaître des éléments internes du modèle.
+          const rw=layer.width,rh=layer.height,seen=new Uint8Array(rw*rh),stack=[];
+          const corner=[d[0],d[1],d[2]];
+          const valid=(i)=>Math.abs(d[i]-corner[0])+Math.abs(d[i+1]-corner[1])+Math.abs(d[i+2]-corner[2])<58;
+          const add=(px,py)=>{if(px<0||py<0||px>=rw||py>=rh)return;const k=py*rw+px;if(!seen[k]&&valid(k*4)){seen[k]=1;stack.push(k)}};
+          for(let xx=0;xx<rw;xx++){add(xx,0);add(xx,rh-1)}
+          for(let yy=0;yy<rh;yy++){add(0,yy);add(rw-1,yy)}
+          while(stack.length){const k=stack.pop();d[k*4+3]=0;const px=k%rw,py=(k/rw)|0;add(px-1,py);add(px+1,py);add(px,py-1);add(px,py+1)}
+          x.putImageData(img,0,0);
+          ctx.drawImage(layer,0,55,w,465);
+          resolve(c.toDataURL('image/webp',.88));
+        }catch(_){resolve(source)}
+      };
+      visage.onerror=()=>resolve(source);visage.src=source;
+    };
+    fond.onerror=()=>resolve(source);fond.src=decor;
+  });
+}
 function ldPreparerPortraitSelection(npc) {
-  const key = 'portrait:' + npc.id;
-  if (ld.images[key]) { ldPoserImage(key); return; }
-  // Un seul rendu à la fois : Lux Démasqué partage le moteur 3D.
-  ld.selectionPortraitEnCours = Promise.resolve(ld.selectionPortraitEnCours).catch(() => {}).then(async () => {
-    if (!ld.selection || ld.images[key]) return;
-    const moteur = await ldObtenir3D();
-    if (!ld.selection) return;
-    ld.images[key] = await moteur.portrait(npc, 'Idle', '#3a2a55', 240, 300);
+  const key='profil-photo:'+npc.id;
+  if(ld.images[key]){ldPoserImage(key);return}
+  ld.selectionPortraitEnCours=Promise.resolve(ld.selectionPortraitEnCours).catch(()=>{}).then(async()=>{
+    if(!ld.selection||ld.images[key])return;
+    const m=await ldObtenir3D();
+    const base=ld.images['portrait:'+npc.id]||await m.portrait(npc,'Idle','#3a2a55',240,300);
+    if(!ld.selection)return;
+    ld.images[key]=await ldComposerPhotoProfil(base,'/art/cringr-'+(['milo','noah','tom'].includes(npc.id)?npc.id:'ville')+'.svg');
     ldPoserImage(key);
-  }).catch(() => {});
+  }).catch(()=>{});
 }
 function ldSelectionChanger(delta) {
   const selection = ld.selection;

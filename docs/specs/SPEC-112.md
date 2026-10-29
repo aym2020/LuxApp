@@ -183,3 +183,7 @@ Le sélecteur V2 (simple fiche encadrée) a été rejeté sur les captures Samsu
 ## Mise en œuvre — 29 octobre 2026
 
 Noms visibles **Red Flag** et **Cringr**, retrait des boutons fléchés, pile de cartes renforcée, démonstration du geste au premier accès, tampons de direction. Les identifiants techniques du jeu sont conservés afin de préserver les sauvegardes. **Validation graphique Samsung encore attendue.**
+
+## Portraits narratifs V4 — implémentation
+
+Quatre décors SVG pixel-low-poly statiques, liés à des éléments publics des profils : voyage pour Milo, environnement urbain professionnel pour Noah, balade extérieure pour Tom, ville générique pour le profil surprise. La photo affichée utilise le vrai rendu `m.portrait()` du modèle 3D du date, détourage de la couleur connectée aux bords puis composition hors ligne dans un canvas 360×520. Le résultat est conservé en mémoire dans `ld.images['profil-photo:'+id]` ; pas de modèle alternatif inventé. Si composition impossible, utiliser le portrait 3D historique. Coque Cringr, texte SWIPE en haut au centre, suppression du fond uni et de la pile factice, CTA rond cœur. À valider sur Samsung (silhouettes, yeux, luminosité et bio). Cette approche génère les photos à la demande : elles ne sont pas des captures fixes préexportées.

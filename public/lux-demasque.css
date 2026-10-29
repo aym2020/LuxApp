@@ -529,3 +529,16 @@
 @keyframes ldSwipeGuide{0%,100%{transform:translateX(0)}35%{transform:translateX(-18px) rotate(-2deg)}65%{transform:translateX(12px) rotate(1deg)}}
 #view-luxdemasque .ld-selection-carte.ld-swipe-demo{animation:ldSwipeGuide 1.15s ease-in-out 1}
 @media(prefers-reduced-motion:reduce){#view-luxdemasque .ld-selection-carte.ld-swipe-demo{animation:none}}
+
+/* SPEC 112 mockup old-school : image narrative composite, une seule carte visible. */
+#view-luxdemasque .ld-dating-screen .ld-selection-pile::before{display:none}
+#view-luxdemasque .ld-dating-screen .ld-selection-carte{border:2px solid #c88ccf;box-shadow:0 10px 0 #2e193e,0 17px 28px #0008}
+#view-luxdemasque .ld-dating-screen .ld-selection-image-zone{background:#20132d}
+#view-luxdemasque .ld-dating-screen .ld-selection-image{background-position:center center;background-size:cover}
+#view-luxdemasque .ld-photo-swipe{position:absolute;z-index:4;top:17px;left:0;right:0;text-align:center;font:11px/1.4 var(--ld-pixel);color:#ff65c9;text-shadow:2px 2px #200b24,0 0 12px #fa4bd9}
+#view-luxdemasque .ld-dating-screen .ld-selection-infos{margin-top:clamp(240px,43dvh,390px)}
+#view-luxdemasque .ld-dating-meet{height:66px;width:66px;min-width:66px;border-radius:50%;background:linear-gradient(150deg,#ff72db,#ed2ba4);border:3px solid #ffd3f5;box-shadow:0 5px 0 #881d68,0 0 20px #ef42bc55;color:white}
+#view-luxdemasque .ld-dating-meet>span:first-child{font-size:34px}
+#view-luxdemasque .ld-rencontre-label{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap}
+#view-luxdemasque .ld-dating-screen{padding-bottom:20px}
+@media(max-height:760px){#view-luxdemasque .ld-dating-screen .ld-selection-infos{margin-top:clamp(195px,34dvh,280px)}}
