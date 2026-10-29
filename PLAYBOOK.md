@@ -1,5 +1,8 @@
 # PLAYBOOK — LuxembourgishApp
 
+> **RED FLAG / CRINGR — point d'entrée éditorial :** [docs/red-flag/README.md](docs/red-flag/README.md) (bible, catalogue de mensonges, preuves/leurres, modèle de personnage). Lire ce dossier pour toute création ou refonte narrative du jeu, en plus de SPEC 110/113 et du suivi `main/docs/LUX-DEMASQUE-TODO.md`. Les idées ne sont ni implémentées ni validées.
+
+
 **Index de référence :** [docs/README.md](docs/README.md) (charte UI, spécifications, recettes, audits, archives et statut des documents).
 
 > **SUIVI LUX DÉMASQUÉ — à consulter spontanément :** [TODO V1.1 canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). Pour « prochaine action », bilan d'avancement ou intervention sur Lux Démasqué : **lire le fichier actuel sur GitHub avant de répondre**. Le code du jeu reste sur `2.1`. Après une tâche livrée et vérifiée, cocher son ID et renseigner commit/tests/journal/étape suivante **sur `main`** ; ne jamais copier la checklist dans `2.1` ni la mettre à jour sur simple déclaration de réussite. **LD-002 — protocole validé de refonte arcade :** 12 sous-étapes par écran ([guide](docs/LUX-DEMASQUE-VALIDATION-ECRANS.md)) ; une seule livraison à la fois ; capture avant/après + CI puis **validation explicite de l'utilisateur**. Tant que non validé, garder la même prochaine action dans la TODO.
