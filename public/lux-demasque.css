@@ -542,3 +542,20 @@
 #view-luxdemasque .ld-rencontre-label{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap}
 #view-luxdemasque .ld-dating-screen{padding-bottom:20px}
 @media(max-height:760px){#view-luxdemasque .ld-dating-screen .ld-selection-infos{margin-top:clamp(195px,34dvh,280px)}}
+
+/* SPEC 113 — Cringr : langage pixel arcade, décisions Tinder-like (sélecteur uniquement). */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-brand,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos h2,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-ville,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-description{font-family:var(--ld-pixel);letter-spacing:0;line-height:1.65}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-brand{font-size:clamp(12px,3.6vw,17px)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos h2{font-size:clamp(13px,3.8vw,19px)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-ville,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-description{font-size:clamp(8px,2.25vw,11px);overflow-wrap:anywhere}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet{border-radius:8px;background:#ed2ba4;box-shadow:4px 5px 0 #881d68,0 0 0 2px #170d21}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:active{transform:translate(3px,4px);box-shadow:1px 1px 0 #881d68}
+#view-luxdemasque .ld-dating-screen .ld-selection-carte.ld-glisse-suivant::after{content:"NOPE";right:12px;left:auto;border-color:#ff786c;color:#ffb2a8;border-radius:0;transform:rotate(8deg)}
+#view-luxdemasque .ld-dating-screen .ld-selection-carte.ld-glisse-precedent::after{content:"LIKE";left:12px;right:auto;border-color:#80e5ac;color:#a7ffd0;border-radius:0;transform:rotate(-8deg)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen .ld-selection-carte{border-radius:8px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen .ld-selection-pile{min-height:0}
