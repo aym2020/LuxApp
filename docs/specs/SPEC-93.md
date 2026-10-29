@@ -130,3 +130,42 @@ La livraison sera refusée si un de ces scénarios échoue :
 ---
 
 **Cette SPEC autorise uniquement une conception future.** Aucun Service Worker, endpoint, cache offline, changement de synchronisation, migration de progression ou téléchargement audio n'est implémenté par la présente livraison documentaire.
+
+## Décision produit PWA du 29 octobre 2026 — mises à jour automatiques, hors ligne permanent
+
+**Statut : SPÉCIFIÉ, NON IMPLÉMENTÉ.** Ce chapitre **prime** sur le fonctionnement historique « bandeau Mettre à jour / activation manuelle » décrit ci-dessus. Le code actuel reste cache-first, avec bandeau après installation d'un worker en attente. Objectif : **l'utilisateur n'a jamais à demander une mise à jour quand il a Internet**, sans couper une activité en cours ni perdre l'accès hors ligne.
+
+### 1. Contrat utilisateur
+
+1. **En ligne :** démarrage immédiat depuis la dernière copie complète cohérente, puis vérification réseau non bloquante du Service Worker au lancement, au retour au premier plan (`visibilitychange` / `pageshow`), au retour de la connexion (`online`) et périodiquement pendant une longue session au premier plan (cadence indicative : 15 minutes, sans boucle en arrière-plan). Utiliser `registration.update()`, dédupliquer les vérifications et ralentir les tentatives en cas d'erreur réseau. Ne pas se fier exclusivement à `navigator.onLine` : une requête peut échouer malgré ce statut.
+2. **Téléchargement :** récupérer les seuls assets modifiés via le manifeste et ses empreintes, en conservant le cache de version active jusqu'à la fin d'une installation **entièrement réussie**. Installation en arrière-plan ; pas de mélange JS/CSS/JSON de deux versions dans une même session. En cas d'échec ou d'interruption, continuer à utiliser la version active et réessayer plus tard.
+3. **Activation :** dès qu'un worker mis à jour est prêt, **automatique** au prochain lancement ou à un point de navigation sûr (par exemple retour à l'accueil, en dehors d'une activité), sans bouton manuel. **Ne jamais recharger automatiquement** pendant un exercice, une découverte guidée, un examen, une mission, un jeu, une saisie, un formulaire non envoyé ou une synchronisation locale non consolidée. Ne pas considérer un simple changement d'onglet comme un point sûr. Conserver la version active pendant toute cette activité.
+4. **Rechargement :** si l'activation change le contrôleur, recharger **au maximum une fois**, seulement si l'écran est sûr et qu'aucun état volatile n'est à perdre. En cas contraire, différer le rechargement jusqu'au prochain point sûr (ou redémarrage), même si le worker est déjà actif. Vérifier spécifiquement la conservation de la progression locale et de la file de synchronisation.
+5. **Hors ligne :** lancer immédiatement la dernière copie complète disponible, sans réseau ni bandeau d'erreur de mise à jour ; conserver les résultats locaux et reprendre la synchronisation en ligne. La connexion retrouvée relance les vérifications. Les audios restent facultativement téléchargeables depuis Réglages : une mise à jour de l'app **ne doit pas vider** le cache `luxapp-audio`.
+6. **UI :** supprimer le bandeau « Mettre à jour / Plus tard » en usage normal. Réglages > Hors ligne affiche un état discret : « Application prête hors ligne », « Recherche de mise à jour », « Mise à jour téléchargée, appliquée après cette activité », ou « À jour » **uniquement si une vérification serveur réussie le confirme**. Ne pas promettre « À jour » simplement parce qu'un worker est enregistré. Aucun toast intrusif et aucun bouton obligatoire. Un éventuel recours de diagnostic pour update bloquée doit être réservé aux Réglages, sans restauration du bandeau permanent.
+
+### 2. Plan technique ciblé
+
+- `public/hors-ligne.js` : orchestrateur unique d'enregistrement, `registration.update()`, listeners `updatefound`, `statechange`, `visibilitychange`, `pageshow`, `online` ; déduplication, cadence et backoff ; état « prête / à activer / à recharger ». Remplacer la logique de bandeau manuel par une activation sécurisée, avec détection explicite des vues actives et des états en cours. Ne pas dupliquer les hooks de navigation existants.
+- `public/sw.js` : garder les caches `luxapp-app-<version>`, `luxapp-audio`, `luxapp-externe`, l'index d'empreintes et l'installation incrémentale. Activer uniquement à la demande de l'orchestrateur lorsque la session est sûre ; ne pas déclencher `skipWaiting()` simplement parce qu'un onglet vient de perdre le focus. Gérer le cas **multi-onglets / plusieurs clients** : pas de destruction du cache nécessaire à une autre session encore en cours ; définir une stratégie de coordination et de nettoyage différé avant implémentation.
+- `public/app.js` / navigation : exposer ou réutiliser un signal explicite « navigation sûre pour activation ». **Par défaut, considérer un écran comme non sûr** tant qu'il n'a pas été audité. Ne pas supprimer les états d'exercice ni réinitialiser la progression au changement de version.
+- `public/index.html` / `public/style.css` : retirer les contrôles manuels et réservations d'espace du bandeau devenu inutile, mettre à jour les cache-busters et le libellé Réglages de façon cohérente.
+- `server.js` : vérifier l'entête HTTP de `/sw.js` et le manifeste pour éviter le cache réseau intempestif ; utiliser `updateViaCache` adapté lors de l'enregistrement. **Ne pas** ajouter un polling serveur coûteux si `registration.update()` suffit.
+- Mode `RECETTE` et `TESTS` : conserver la désinscription / exclusion actuelles afin que la suite Playwright ne soit pas polluée par de vieux caches.
+
+### 3. Recette et critères bloquants
+
+- [ ] Publication d'une version : vérification déclenchée à l'ouverture, au retour au premier plan, au retour d'Internet et en session longue, sans attendre un bandeau.
+- [ ] Installation incrémentale terminée avant activation ; en cas de panne réseau ou de quota, **version précédente toujours utilisable**, aucune copie partielle servie.
+- [ ] Sur accueil sûr : mise à jour appliquée automatiquement sans clic ni double rechargement.
+- [ ] Sur leçon, exercice, clavier ouvert, mission, examen, jeu, formulaire ou synchronisation incertaine : **pas de rechargement intempestif**, même lors de `controllerchange`.
+- [ ] Retour vers accueil / lancement suivant : mise à jour appliquée et état de navigation cohérent, aucun score perdu.
+- [ ] Test **multi-onglets** : une session ancienne active ne perd pas son cache pendant la bascule d'une autre session.
+- [ ] Hors ligne froid après installation : accueil, contenus, exercices et assets téléchargés accessibles ; au retour réseau, reprise des vérifications et de la synchronisation.
+- [ ] Audios préalablement téléchargés : toujours présents après au moins deux publications.
+- [ ] Aucun bandeau de mise à jour ni espace mort dans la barre du bas ; état discret en Réglages, cibles tactiles et TalkBack adaptés.
+- [ ] Tests Node `test/hors-ligne.test.cjs`, `test/mise-a-jour-mobile.test.cjs` **adaptés au nouveau contrat** ; nouveaux tests navigateur avec Service Worker réellement actif, cache de deux versions, offline, réseau coupé/ralenti, activité en cours, plusieurs onglets ; CI verte et vérification Samsung.
+
+### 4. Limites techniques explicites
+
+La PWA ne peut pas garantir une installation immédiate pendant qu'elle est complètement fermée ni contourner l'ordonnancement des Service Workers par Android/Chrome. La promesse produit raisonnable est : **vérifier automatiquement dès que l'app est ouverte et connectée, télécharger sans gêner l'usage, appliquer sans intervention au premier moment sûr**. Hors connexion, la dernière version complète reste disponible. **Cette décision documentaire ne constitue pas un code livré.**

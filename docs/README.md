@@ -17,6 +17,7 @@ Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour
 | Priorités à livrer | [TODO.md](../TODO.md) | Backlog et critères d'acceptation |
 | **Lux Démasqué — prochaine action et suivi des 48 tâches V1.1** | [TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) | **Source de vérité du statut**, cases à cocher, ordre, journal de validation ; code du jeu sur `2.1` |
 | Recette privée (Render et PC / Samsung) | [RECETTE.md](RECETTE.md) | **Guide actuel** : LuxApp TEST autonome, authentification et isolation ; pas de raccourci dans le Plus normal |
+| **PWA : mises à jour automatiques et mode hors ligne** | [SPEC 93 — décision du 29/10](specs/SPEC-93.md#décision-produit-pwa-du-29-octobre-2026--mises-à-jour-automatiques-hors-ligne-permanent) | **À implémenter** : téléchargement automatique en ligne, activation sûre sans bandeau, conservation du hors ligne et de la progression | 
 | Choisir les scénarios de test | [RECETTES-2.1.md](RECETTES-2.1.md) | Catalogue des scénarios et validations |
 | Incident des exercices | [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](POSTMORTEM-EXERCICES-2.1-2026-10-21.md) | Incidents et procédure obligatoire anti-régression |
 | Comportement attendu et décisions produit | [specs/README.md](specs/README.md) | **Registre de 91 fiches** ; lire l'état de chaque SPEC |

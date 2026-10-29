@@ -138,3 +138,6 @@ Ce répertoire contient **91 fiches de spécification présentes** sur la branch
 Pour les règles actuellement implémentées, lire [SPEC 88](SPEC-88.md). Les [SPEC 89](SPEC-89.md) et [SPEC 90](SPEC-90.md) décrivent des projets non livrés dont une partie a été remplacée par [SPEC 92](SPEC-92.md). Le simulateur indépendant est documenté dans [SPEC 91](SPEC-91.md). **Ne jamais confondre une règle simulée et le jeu réel.**
 
 Retour à l'[index de la documentation](../README.md).
+
+
+**PWA — prochaine implémentation :** [SPEC 93 — activation automatique sûre, hors ligne préservé](SPEC-93.md) (décision du 29/10, non codée).
