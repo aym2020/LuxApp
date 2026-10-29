@@ -1,8 +1,8 @@
 # RED FLAG — Matrice exhaustive des 198 idées du catalogue
 
-**Source :** [CATALOGUE-MENSONGES.md](../CATALOGUE-MENSONGES.md), branche `2.1`. **Statut : préqualification éditoriale, non implémentée.** Une preuve décrite ici est une **pièce fictive à écrire**, jamais une preuve réelle déjà collectée. Une idée non testable ne devient pas une accusation gagnante.
+**Source :** [CATALOGUE-MENSONGES.md](../catalogue/CATALOGUE-MENSONGES.md), branche `2.1`. **Statut : préqualification éditoriale, non implémentée.** Une preuve décrite ici est une **pièce fictive à écrire**, jamais une preuve réelle déjà collectée. Une idée non testable ne devient pas une accusation gagnante.
 
-**Légende :** P = précision factuelle à obtenir ; E = famille de preuve contradictoire envisageable ; L = leurre ; F = faisabilité initiale (A favorable, B recoupement nécessaire, C souvent non prouvable). **Règle impérative :** une pièce n'est concluante que si elle exclut les explications alternatives. Vérifier systématiquement homonymie, ancienneté, publication différée, comptes partagés, sources incomplètes, pluralité de postes/biens, changement de situation et second degré. Les catégories E sont des pistes **non suffisantes à elles seules** ; la rédaction de chaque affaire doit produire une démonstration individuelle selon [MATRICE-PREUVES.md](../MATRICE-PREUVES.md).
+**Légende :** P = précision factuelle à obtenir ; E = famille de preuve contradictoire envisageable ; L = leurre ; F = faisabilité initiale (A favorable, B recoupement nécessaire, C souvent non prouvable). **Règle impérative :** une pièce n'est concluante que si elle exclut les explications alternatives. Vérifier systématiquement homonymie, ancienneté, publication différée, comptes partagés, sources incomplètes, pluralité de postes/biens, changement de situation et second degré. Les catégories E sont des pistes **non suffisantes à elles seules** ; la rédaction de chaque affaire doit produire une démonstration individuelle selon [MATRICE-PREUVES.md](../references/MATRICE-PREUVES.md).
 
 ## 01 — Identité et situation personnelle
 
