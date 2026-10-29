@@ -2,12 +2,12 @@
 
 **Objet :** suivi éditorial **distinct** de la TODO technique `main/docs/LUX-DEMASQUE-TODO.md`. Branche de travail `2.1`. Une case de conception cochée n'implique ni intégration JSON, ni validation linguistique, ni recette Android. Ce fichier doit être consulté et mis à jour à chaque nouveau lot d'enquêtes, pour que Claude et ChatGPT reprennent sans repartir de zéro.
 
-**Convention éditoriale :** [STRUCTURE-SCENARIOS.md](STRUCTURE-SCENARIOS.md) — les lots regroupent des mensonges candidats, pas des rencontres complètes. Cible de conception : trois mensonges par scénario, avec des vérités ; respecter les variantes techniques existantes avant toute implémentation. [Objections progressives](OBJECTIONS-PROGRESSIVES.md) : mécanique optionnelle pour une affaire.
+**Convention éditoriale :** [STRUCTURE-SCENARIOS.md](references/STRUCTURE-SCENARIOS.md) — les lots regroupent des mensonges candidats, pas des rencontres complètes. Cible de conception : trois mensonges par scénario, avec des vérités ; respecter les variantes techniques existantes avant toute implémentation. [Objections progressives](references/OBJECTIONS-PROGRESSIVES.md) : mécanique optionnelle pour une affaire.
 
 ## État au 29 octobre 2026
 
 - Catalogue original : **198** idées, conservées.
-- Présélection : **50** candidates dans [SELECTION-50.md](SELECTION-50.md).
+- Présélection : **50** candidates dans [SELECTION-50.md](catalogue/SELECTION-50.md).
 - Affaires pilotes P1 : **12** identifiées.
 - Mensonges candidats développés en FR : **12/50** (répartis dans quatre lots, pas quatre scénarios).
 - Scénarios complets assemblés et validés dans ce chantier : **0**.
@@ -17,39 +17,27 @@
 
 ## Scénarios assemblés (non validés)
 
-- [SCENARIOS-001-005.md](SCENARIOS-001-005.md) : **5 rencontres**, **15 emplacements de mensonges**, **3 affirmations vraies par rencontre** ; documents FR de conception uniquement, avec risques de preuve encore ouverts.
+- [SCENARIOS-001-005.md](scenarios/SCENARIOS-001-005.md) : **5 rencontres**, **15 emplacements de mensonges**, **3 affirmations vraies par rencontre** ; documents FR de conception uniquement, avec risques de preuve encore ouverts.
 - **0 scénario validé, 0 scénario intégré** ; ne pas additionner ces quinze emplacements aux 12 fiches de mensonges des lots, car certains IDs sont réutilisés.
 
-## SC-01 — Avancement V2
+## Scénarios actifs — source de vérité éditoriale
 
-[Dossier détaillé SC-01](SC-01-PRINCE-DU-LEASING-V2.md) : conception FR approfondie, non validée et non implémentée. Trois mensonges et trois vérités assemblés. **Blocage prioritaire : preuve finale de propriété de la Porsche, à rendre accessible et concluante.** Ensuite : contrôler le financement et le vol, rédiger le LU et tester. Aucun scénario jouable ajouté.
-
-## SC-02 — Avancement V2
-
-[Dossier SC-02](SC-02-GENIE-DE-LA-FINANCE-V2.md) : synthèse de conception FR poussée sur GitHub ; trois mensonges, trois vérités et trois mécaniques définis. **Non validé, non implémenté.** À poursuivre : rédaction complète des pièces et dialogues, exhaustivité des crédits NovaPay, vérification LU, recette mobile.
-
-## Playtest simulé et révisions V4 — 29 octobre 2026
-
-- [SC-01 V4](SC-01-PRINCE-DU-LEASING-V4.md) : questions du joueur, accès volontaire et progressif aux preuves Porsche, objections O1/O2, vérifications plus actives pour berline et vol. **Conception FR révisée, non validée.**
-- [SC-02 V4](SC-02-GENIE-DE-LA-FINANCE-V4.md) : trois interactions distinctes (contexte du graphique, choix des sources, frise d'attribution NovaPay), humour et rythme renforcés. **Conception FR révisée, non validée.**
-- **Test effectué :** revue critique et simulation sur dossier, **pas** test du moteur ni Android. Cas de recette écrits dans chaque V4, non exécutés. **0 scénario intégré, 0 scénario validé.**
-- **Suites :** produire les pièces finales, tester à l'aveugle les chaînes de preuve, vérifier LU/LOD, puis JSON/moteur/mobile. V3 et V2 conservées.
-
-## Dossiers SC-01 et SC-02 — V3
-
-- [SC-01 V3](SC-01-PRINCE-DU-LEASING-V3.md) : conception française complète pour revue, preuve de la transaction Porsche précisée.
-- [SC-02 V3](SC-02-GENIE-DE-LA-FINANCE-V3.md) : conception française complète pour revue, crédits NovaPay à rendre exhaustifs dans les pièces finales.
-- **Deux dossiers FR V3, zéro scénario intégré ou validé.** Suites : pièces, LU/LOD, recette moteur et Android.
+- [SC-01 — Le prince du leasing](scenarios/SC-01.md) : version active V4, objections progressives et accès crédible aux indices. **Conception FR révisée, non validée et non intégrée.**
+- [SC-02 — Le génie de la finance](scenarios/SC-02.md) : version active V4, interactions différenciées et frise de conception NovaPay. **Conception FR révisée, non validée et non intégrée.**
+- [Synopsis cinq rencontres](scenarios/SCENARIOS-001-005.md) : V1 historique, non normatif pour SC-01/SC-02.
+- [Archives SC-01 V2](archives/SC-01-V2.md), [V3](archives/SC-01-V3.md), [SC-02 V2](archives/SC-02-V2.md), [V3](archives/SC-02-V3.md) : uniquement audit, **ne pas utiliser comme scénario actif**.
+- **Playtest effectué :** simulation sur dossier ; aucune exécution du moteur ni recette Android. **0 scénario validé, 0 intégré.**
+- **Prochaine étape :** produire les pièces finales, vérifier la logique à l'aveugle, rédiger et contrôler LU/LOD, intégrer JSON puis tester moteur, progression et Android.
 
 ## Registre des lots
 
 | Lot | IDs | Document | État | Prochain traitement |
 |---|---|---|---|---|
-| 001 | RF-01-07, RF-02-01, RF-02-03 | [LOT-001-ENQUETES.md](LOT-001-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue éditoriale, dédoublonnage avec affaires existantes, LU |
-| 002 | RF-02-05, RF-03-03, RF-04-01 | [LOT-002-ENQUETES.md](LOT-002-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue des preuves et LU |
-| 003 | RF-04-05, RF-05-12, RF-06-11 | [LOT-003-ENQUETES.md](LOT-003-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue des preuves, dédoublonnage et LU |
-| 004 | RF-08-12, RF-10-01, RF-14-07 | [LOT-004-ENQUETES.md](LOT-004-ENQUETES.md) | **Conception FR rédigée ; non validée** | Contrôle de redondance, provenance des pièces, LU |
-| 005+ | Autres IDs de [SELECTION-50.md](SELECTION-50.md) | À créer | **Non commencé** | Prochain lot : RF-03-04, RF-04-07, RF-05-10 |
+| 001 | RF-01-07, RF-02-01, RF-02-03 | [LOT-001-ENQUETES.md](enquetes/LOT-001-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue éditoriale, dédoublonnage avec affaires existantes, LU |
+| 002 | RF-02-05, RF-03-03, RF-04-01 | [LOT-002-ENQUETES.md](enquetes/LOT-002-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue des preuves et LU |
+| 003 | RF-04-05, RF-05-12, RF-06-11 | [LOT-003-ENQUETES.md](enquetes/LOT-003-ENQUETES.md) | **Conception FR rédigée ; non validée** | Revue des preuves, dédoublonnage et LU |
+| 004 | RF-08-12, RF-10-01, RF-14-07 | [LOT-004-ENQUETES.md](enquetes/LOT-004-ENQUETES.md) | **Conception FR rédigée ; non validée** | Contrôle de redondance, provenance des pièces, LU |
+| 005+ | Autres IDs de [SELECTION-50.md](catalogue/SELECTION-50.md) | À créer | **Non commencé** | Prochain lot : RF-03-04, RF-04-07, RF-05-10 |
 
 ## Prochaines décisions à prendre
 
@@ -63,4 +51,4 @@
 
 ## Protocole de mise à jour
 
-Pour chaque lot : consulter GitHub (PLAYBOOK, SPEC 110, affaires actuelles, sélection), écrire les fiches individuelles, vérifier preuves et alternatives, créer `LOT-NNN-ENQUETES.md`, mettre à jour **ce suivi** avec IDs, état exact, liens et prochaine action. Ne jamais compter une fiche comme « jouable » tant que les textes LU, JSON, tests et validations produit ne sont pas achevés. Préserver les anciens lots pour audit. **Ne pas modifier la TODO technique sur `main` pour du brainstorming éditorial.**
+Pour chaque lot : consulter GitHub (PLAYBOOK, SPEC 110, affaires actuelles, sélection), écrire les fiches individuelles, vérifier preuves et alternatives, créer `enquetes/LOT-NNN-ENQUETES.md`, mettre à jour **ce suivi** avec IDs, état exact, liens et prochaine action. Ne jamais compter une fiche comme « jouable » tant que les textes LU, JSON, tests et validations produit ne sont pas achevés. Préserver les anciens lots pour audit. **Ne pas modifier la TODO technique sur `main` pour du brainstorming éditorial.**
