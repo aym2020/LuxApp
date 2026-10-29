@@ -5,14 +5,21 @@
 }
 /* La même surface de travail, centrée et scrollable sur petits écrans. */
 #view-parcours .pc-body, #view-session .session-body {
-  width:100%;max-width:500px;margin-inline:auto;
+  width:100%;max-width:var(--layout-focus);margin-inline:auto;
   padding:clamp(28px,5.5dvh,52px) 21px 0;
 }
 #view-parcours .pc-body {gap:0}
 #view-session .session-body {align-items:stretch;padding-top:10px}
-#view-session .lecon-header {width:100%;max-width:500px;margin-inline:auto;flex-shrink:0}
+#view-session .lecon-header {width:100%;max-width:var(--layout-focus);margin-inline:auto;flex-shrink:0}
 /* L'en-tête est un flex item : sans width:100%, il se rétrécit à son contenu
    et se centre, éloignant « ← S'entraîner » du bord gauche. */
+/* Sur PC, les repères de Leçon partagent le rail du corps et du dock.
+   Le placement mobile approuvé reste celui de la feuille historique. */
+@media (min-width:768px) {
+  #view-parcours .pc-topbar, #view-parcours .pc-sous-barre {
+    width:100%;max-width:var(--layout-focus);margin-inline:auto;padding-inline:21px;
+  }
+}
 /* Entraînement : entête compacte pour laisser place à la réponse et au clavier. */
 #view-session .lecon-header {align-items:center;justify-content:space-between;gap:10px;padding:12px 21px 9px}
 #view-session .lecon-header .back-btn {flex:none;margin:0;font-size:13px;min-height:42px;padding-inline:0}
@@ -20,7 +27,7 @@
 #view-session .lecon-header-info .lecon-num {font-size:10px;line-height:1.3;letter-spacing:.1em}
 #view-session .lecon-header-info .lecon-titre {font-size:18px;line-height:1.2;white-space:nowrap;margin-top:2px}
 /* SPEC 95 : la progression fait partie de l'en-tête (elle ne défile pas). */
-#view-session .session-progress {flex:none;width:100%;max-width:500px;margin:0 auto;padding:0 21px clamp(8px,1.6dvh,14px)}
+#view-session .session-progress {flex:none;width:100%;max-width:var(--layout-focus);margin:0 auto;padding:0 21px clamp(8px,1.6dvh,14px)}
 /* Plus de carte « question » en entraînement : elle redevient une composition typographique. */
 #view-session .question-card {background:none;border:0;box-shadow:none;border-radius:0;
   position:static;overflow:visible;padding:0;margin:0;text-align:center}
@@ -99,7 +106,7 @@
    les boutons sont dans le pied d'action (components.css). Ici, seulement
    l'EMPLACEMENT de la correction dans chaque vue. */
 /* Leçon : la correction suit la question, dans la zone qui défile. */
-#view-parcours #pc-feedback {width:100%;max-width:500px;margin:0 auto;padding:22px 21px 0}
+#view-parcours #pc-feedback {width:100%;max-width:var(--layout-focus);margin:0 auto;padding:22px 21px 0}
 /* S'entraîner : la correction est sous les choix, avant le champ (SPEC 59). */
 #view-session #session-feedback {width:100%;margin:22px 0 0}
 #view-session #session-feedback.essai {margin-top:16px}
@@ -130,7 +137,7 @@
    Question, champ et Valider tiennent ensemble ; les espaces non essentiels sont réduits. */
 body.clavier-actif #view-session.active {
   position:fixed;top:var(--clavier-vtop,0px);left:0;right:0;bottom:auto;
-  height:var(--clavier-vh,100dvh);min-height:0;max-width:720px;margin:0 auto;overflow:hidden;z-index:35}
+  height:var(--clavier-vh,100dvh);min-height:0;max-width:var(--layout-page,720px);margin:0 auto;overflow:hidden;z-index:35}
 body.clavier-actif #view-session.active .lecon-header {display:none}
 body.clavier-actif #view-session.active .session-body {padding:8px 16px 12px}
 /* .progress-wrap a un flex:1 historique : sans ce gel, il s'étire dans la hauteur fixe. */

@@ -14,7 +14,7 @@
 #cours-panel .cp-poignee { display: none; }
 #cours-panel .cp-head {
   flex: 0 0 auto;
-  padding: 18px 21px 9px 23px;
+  padding: 18px var(--layout-inset,21px) 9px var(--layout-inset,23px);
   border-bottom: 0;
   align-items: center;
   background: var(--couleur-fond);
@@ -59,7 +59,7 @@
   position: static;
   flex: 0 0 auto;
   margin: 0;
-  padding: 7px 23px 0;
+  padding: 7px var(--layout-inset,23px) 0;
   border-bottom: 1px solid var(--couleur-bord-1);
   background: var(--couleur-fond);
 }
@@ -120,7 +120,7 @@
   overflow-y: auto;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
-  padding: 8px 23px 30px;
+  padding: 8px var(--layout-inset,23px) 30px;
   scrollbar-width: thin;
   scrollbar-color: var(--couleur-bord-2) transparent;
 }
@@ -262,7 +262,7 @@
 /* Retour discret et fixe ; laisse une surface tactile confortable. */
 #cours-panel .cp-bas {
   flex: 0 0 auto;
-  padding: 12px 23px calc(14px + env(safe-area-inset-bottom));
+  padding: 12px var(--layout-inset,23px) calc(14px + env(safe-area-inset-bottom));
   background: var(--couleur-surface-1);
   border-top: 1px solid var(--couleur-bord-1);
 }

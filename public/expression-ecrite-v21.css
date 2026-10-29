@@ -38,7 +38,7 @@
 body.clavier-actif #view-examen.active {
   position: fixed; top: var(--clavier-vtop, 0px); left: 0; right: 0; bottom: auto;
   width: 100%; height: var(--clavier-vh, 100dvh); min-height: 0;
-  max-width: 720px; margin: 0 auto; overflow: hidden; z-index: 35;
+  max-width: var(--layout-page,720px); margin: 0 auto; overflow: hidden; z-index: 35;
 }
 body.clavier-actif #view-examen.active > .lecon-header { display: none; }
 body.clavier-actif #view-examen.active .ex-steps { padding: .45rem 1rem .2rem; }

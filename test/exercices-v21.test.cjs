@@ -63,7 +63,7 @@ test('une phrase complète reçoit un corps réduit, sans changer le texte',()=>
 });
 
 test('retour de S’entraîner collé au bord gauche comme les autres vues',()=>{
-  assert.match(css,/#view-session \.lecon-header \{width:100%;max-width:500px;margin-inline:auto;flex-shrink:0\}/);
+  assert.match(css,/#view-session \.lecon-header \{width:100%;max-width:var\(--layout-focus\);margin-inline:auto;flex-shrink:0\}/);
   assert.match(html,/<div id="view-session" class="view exo-shell">[\s\S]*?class="back-btn" data-retour onclick="retour\(\)"/);
 });
 

@@ -1048,7 +1048,7 @@ body.no-scroll { overflow: hidden; }
 .cp { position: fixed; inset: 0; z-index: 50; display: flex; justify-content: center; align-items: flex-end; }
 .cp-fond { position: absolute; inset: 0; background: rgba(0,0,0,.6); }
 .cp-feuille {
-  position: relative; width: 100%; max-width: 720px; max-height: 88dvh;
+  position: relative; width: 100%; max-width: var(--layout-page,720px); max-height: 88dvh;
   background: var(--surface); border-radius: 24px 24px 0 0;
   display: flex; flex-direction: column; overflow: hidden;
   animation: cp-monte .22s ease-out;
@@ -1360,7 +1360,7 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 
 .nav-bas {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-  max-width: 720px; margin: 0 auto;
+  max-width: var(--layout-page,720px); margin: 0 auto;
   display: grid; grid-template-columns: repeat(4, 1fr);
   background: var(--surface-1); border-top: 1px solid var(--bord-1);
   padding: 6px max(8px, env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
@@ -1782,10 +1782,10 @@ body.avec-nav .back-btn[onclick="goDashboard()"] { display: none; }
 /* ── Panneau qui monte du bas (aides, recette et confirmations) ──────────── */
 .voile { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, .55); animation: fondu .25s ease both; }
 .panneau {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 61; margin: 0 auto; max-width: 560px;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 61; margin: 0 auto; max-width: var(--layout-panel,560px);
   max-height: 85vh; overflow-y: auto;
   background: var(--surface-2); border: 1px solid var(--bord-2); border-bottom: 0; border-radius: 24px 24px 0 0;
-  padding: 10px max(20px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  padding: 10px max(var(--layout-inset,20px), env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(var(--layout-inset,20px), env(safe-area-inset-left));
   display: flex; flex-direction: column; gap: 8px;
   /* La feuille reste à sa position finale dès le premier frame : pas de
      translateY(100%) qui laisse le panneau en décalage lors de taps rapides. */
@@ -1972,7 +1972,7 @@ body.clavier-actif #view-mission.active {
   bottom: auto;
   height: var(--clavier-vh, 100dvh);
   min-height: 0;
-  max-width: 720px;
+  max-width: var(--layout-page,720px);
   margin: 0 auto;
   overflow: hidden;
   z-index: 35;
@@ -3061,7 +3061,7 @@ body.portail-bloque { overflow:hidden; }
 .dlg { position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; padding:var(--sp-5); }
 .dlg-voile { position:absolute; inset:0; background:rgba(0,0,0,.6); opacity:0;
   backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); transition:opacity .25s ease; }
-.dlg-carte { position:relative; width:min(100%,400px); padding:28px var(--sp-5) var(--sp-3); text-align:center;
+.dlg-carte { position:relative; width:min(100%,var(--layout-dialog)); padding:28px var(--sp-5) var(--sp-3); text-align:center;
   border:1px solid var(--couleur-bord-2); border-radius:24px; background:var(--couleur-surface-1);
   box-shadow:0 24px 60px rgba(0,0,0,.55); opacity:0; transform:scale(.94);
   transition:opacity .25s ease, transform .25s cubic-bezier(.2,.8,.2,1); }

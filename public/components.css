@@ -95,8 +95,8 @@
 /* Bandeau fixe en bas : l'action principale toujours visible (zone de sécurité comprise) */
 .cta-fixe {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
-  max-width: 720px; margin: 0 auto;
-  padding: .7rem 1.25rem calc(.8rem + env(safe-area-inset-bottom));
+  max-width: var(--layout-page,720px); margin: 0 auto;
+  padding: .7rem var(--layout-inset,1.25rem) calc(.8rem + env(safe-area-inset-bottom));
   /* Fondu limité à la marge du haut : le bouton principal reste sur un fond
      plein, et ce qu'on voit à travers le fondu reste appuyable (spec 25 :
      « Accueil », à moitié caché, ouvrait l'action principale). */
@@ -114,7 +114,7 @@
    avec ou sans explication. Rempli par renderActionExercice (feedback-unifie.js). */
 .exo-action-dock {
   flex: none; display: flex; align-items: center; gap: var(--sp-2);
-  width: 100%; max-width: 500px; margin: 0 auto;
+  width: 100%; max-width: var(--layout-focus); margin: 0 auto;
   padding: var(--sp-3) 21px calc(var(--sp-4) + env(safe-area-inset-bottom));
   min-height: calc(var(--hauteur-cta) + var(--sp-3) + var(--sp-4) + env(safe-area-inset-bottom));
   background: var(--couleur-fond);

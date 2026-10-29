@@ -126,9 +126,9 @@ body.avec-nav #view-review-setup.active {
   border:0; background:rgba(0,0,0,.7); cursor:pointer;
 }
 #view-review-setup .rs-v21-sheet {
-  position:relative; width:100%; max-width:560px;
+  position:relative; width:100%; max-width:var(--layout-panel,560px);
   max-height:85dvh; display:flex; flex-direction:column;
-  padding:16px 20px calc(18px + env(safe-area-inset-bottom));
+  padding:16px var(--layout-inset,20px) calc(18px + env(safe-area-inset-bottom));
   border:1px solid var(--couleur-bord-2); border-radius:22px 22px 0 0;
   background:var(--couleur-surface-1);
   box-shadow:0 -10px 50px rgba(0,0,0,.4);

@@ -52,7 +52,7 @@ function fixture() {
 test('La feuille Cours est correctement chargée sur 2.1',()=>{
  assert.match(html,/href="cours-v21\.css\?v=2"/);
  assert.match(html,/src="cours75\.js\?v=2"/);
- assert.match(html,/src="parcours\.js\?v=2"/);
+ assert.match(html,/src="parcours\.js\?v=[^"]+"/);
  assert.match(html,/id="cours-panel"/);
 });
 
@@ -129,7 +129,7 @@ test('Aucun contenu ni état d’exercice modifié par la nouvelle feuille',()=>
 });
 
 test('Les filtres et les onglets se rapprochent, avec des cibles de 44 px',()=>{
- assert.match(rule('#cours-panel .cours75-navigation'),/padding: 7px 23px 0/);
+ assert.match(rule('#cours-panel .cours75-navigation'),/padding: 7px var\(--layout-inset,23px\) 0/);
  assert.match(rule('#cours-panel .cours75-portee'),/padding: 0 0 4px/);
  assert.match(rule('#cours-panel .cours75-onglet'),/min-height: 44px/);
  assert.match(rule('#cours-panel .cours75-chip'),/min-height: 44px/);

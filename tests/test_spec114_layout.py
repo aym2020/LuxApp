@@ -28,7 +28,7 @@ with sync_playwright() as p:
             assert abs(s['x']+s['width']/2-w/2)<=1,(w,nom,'centrage',s)
             if w>=768:
                 assert abs(s['width']-640)<=2,(w,nom,'shell',s)
-                rails=[] if FAMILLES else ['.nav-bas','.cta-fixe','.cp-feuille','.rs-v21-sheet','.panneau','.ld-jeu']
+                rails=['.nav-bas','.cta-fixe','.cp-feuille','.rs-v21-sheet','.panneau','.ld-jeu']
                 for sel in rails:
                     for r in m['elements'].get(sel,[]):
                         # Le dock interne de Découverte garde la largeur de son parent.

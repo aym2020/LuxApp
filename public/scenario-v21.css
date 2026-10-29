@@ -10,7 +10,7 @@
   width: 100%;
   height: 100dvh;
   min-height: 0;
-  max-width: 680px;
+  max-width: var(--layout-panel,680px);
   max-height: 100dvh;
   overflow: hidden;
   padding: 0;
@@ -28,7 +28,7 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: calc(18px + env(safe-area-inset-top)) 20px 15px;
+  padding: calc(18px + env(safe-area-inset-top)) var(--layout-inset,20px) 15px;
   border-bottom: 1px solid var(--couleur-bord-1);
   background: var(--couleur-fond);
 }
@@ -76,7 +76,7 @@
   overflow-x: hidden;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
-  padding: 14px 22px 28px;
+  padding: 14px var(--layout-inset,22px) 28px;
 }
 .ms-v21-dialogue .ms-v21-rappel {
   margin: 0 0 15px;
@@ -206,7 +206,7 @@
   flex: 0 0 auto;
   background: var(--couleur-fond);
   border-top: 1px solid var(--couleur-bord-1);
-  padding: 13px 20px calc(16px + env(safe-area-inset-bottom));
+  padding: 13px var(--layout-inset,20px) calc(16px + env(safe-area-inset-bottom));
 }
 .ms-v21-dialogue .ms-v21-pied .pc-btn.primary {
   width: 100%;
