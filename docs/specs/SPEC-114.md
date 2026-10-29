@@ -46,7 +46,7 @@ Sur PC, les écrans ont des largeurs visiblement différentes. Une transition Ac
 | Lecteur de scénario de mission `.ms-v21-dialogue` | 680 px | `public/scenario-v21.css` ; exception actuelle à étudier |
 | Plus `#view-plus .plus-page` | 640 px | `public/style.css` ; déjà proche de la cible |
 
-**Source de la liste des vues :** `public/index.html` contient actuellement **24 éléments `#view-*`**, dont quatre jeux individuels, RED FLAG et Lux Match. L'ancien audit de 20 vues ne couvre donc pas à lui seul le périmètre actuel. Vérifier également les overlays et pages hors `.view`.
+**Source de la liste des vues :** `public/index.html` contient actuellement **24 éléments `#view-*`**, dont le hub Jeux et quatre jeux individuels (Survie, Lux Runner, Lux Match et RED FLAG). L'ancien audit de 20 vues ne couvre donc pas à lui seul le périmètre actuel. Vérifier également les overlays et pages hors `.view`.
 
 ## 3. Gabarit cible — décision normative
 
