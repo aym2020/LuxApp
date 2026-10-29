@@ -397,3 +397,123 @@
 #view-luxdemasque .ld-selection-tampon{display:none}
 @media(max-height:750px){#view-luxdemasque .ld-selection-image-zone{height:clamp(165px,29dvh,235px)}}
 @media(max-width:360px){#view-luxdemasque .ld-selection{padding-inline:6px}}
+
+
+/* SPEC 112 V3 — véritable téléphone intradiégétique : une carte dating plein portrait.
+   Les anciennes règles de sélection sont écrasées ici, sans impact sur la rencontre. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"]{
+  max-width:560px;padding:8px 12px calc(14px + env(safe-area-inset-bottom));
+  gap:12px;background:radial-gradient(90% 55% at 50% 5%,#2e1c3b,#130f1b 84%);
+}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection{
+  width:100%;max-width:440px;align-self:center;min-height:48px;
+}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection{
+  display:block;flex:none;width:100%;max-width:440px;margin:0 auto;padding:0;
+  background:none;border:0;box-shadow:none;border-radius:0;
+}
+#view-luxdemasque .ld-dating-phone{
+  width:100%;padding:9px;border:3px solid #08070e;border-radius:44px;
+  background:linear-gradient(145deg,#534263,#251b30 70%);box-shadow:0 11px 0 #09070d,0 18px 32px #0009;
+}
+#view-luxdemasque .ld-dating-screen{
+  width:100%;min-width:0;display:flex;flex-direction:column;gap:11px;
+  padding:12px 12px 16px;border-radius:34px;background:#100d19;
+  border:1px solid #362744;overflow:hidden;
+}
+#view-luxdemasque .ld-dating-status{
+  display:grid;grid-template-columns:1fr 92px 1fr;align-items:center;
+  min-height:25px;font:700 12px/1 var(--font);color:#e8def4;padding:0 7px;
+}
+#view-luxdemasque .ld-dating-status>span:last-child{text-align:right}
+#view-luxdemasque .ld-dating-island{height:22px;background:#050409;border-radius:20px}
+#view-luxdemasque .ld-dating-appbar{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0;
+  padding:0 3px 3px;
+}
+#view-luxdemasque .ld-dating-brand{
+  color:#f4f0f7;font:900 clamp(19px,5.8vw,26px)/1 var(--font);letter-spacing:-.06em;
+  white-space:nowrap;
+}
+#view-luxdemasque .ld-dating-brand span{color:#ff4fd8;letter-spacing:0}
+#view-luxdemasque .ld-dating-counter{
+  font:7px/1.3 var(--ld-pixel);color:#d5b4e1;white-space:nowrap;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-pile{
+  width:100%;max-width:none;flex:none;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-pile::before{
+  inset:6px 5px -5px;border-radius:27px;background:#382644;border-color:#695176;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-carte{
+  position:relative;display:block;min-width:0;overflow:hidden;
+  border:0;border-radius:26px;background:#302443;
+  min-height:clamp(405px,68dvh,630px);
+  box-shadow:0 6px 19px #0009;touch-action:pan-y;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-image-zone{
+  position:absolute;inset:0;width:100%;height:100%;
+  background:radial-gradient(80% 70% at 50% 30%,#6e4586,#24172e);
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-portrait,
+#view-luxdemasque .ld-dating-screen .ld-selection-image{
+  inset:0;width:100%;height:100%;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-image{
+  background-size:cover;background-position:center 27%;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-image-zone::after{
+  background:linear-gradient(180deg,transparent 33%,rgba(14,8,20,.2) 54%,#100d19ef 83%,#100d19 100%);
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-infos{
+  position:relative;z-index:3;display:flex;flex-direction:column;gap:7px;
+  margin-top:clamp(215px,39dvh,365px);padding:0 16px 17px;
+  color:white;background:none;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-infos h2{
+  font:850 clamp(27px,7vw,36px)/1.1 var(--font);color:#fff;letter-spacing:-.03em;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-infos h2 span{font-weight:500}
+#view-luxdemasque .ld-dating-screen .ld-selection-etat{
+  font:8px/1.3 var(--ld-pixel);color:#ffa7e3;
+}
+#view-luxdemasque .ld-dating-screen .ld-selection-ville{font-size:13px;color:#e7d6f0}
+#view-luxdemasque .ld-dating-screen .ld-selection-description{
+  font-size:clamp(13px,3.4vw,15px);line-height:1.4;color:#f2ebf5;
+}
+#view-luxdemasque .ld-dating-controls{
+  display:flex;align-items:center;justify-content:center;gap:clamp(17px,5vw,30px);
+  width:100%;padding:5px 0 0;
+}
+#view-luxdemasque .ld-dating-round,
+#view-luxdemasque .ld-dating-meet{
+  display:grid;place-items:center;flex:none;min-width:56px;min-height:56px;
+  border:2px solid #ad83c5;background:#22182f;border-radius:50%;color:#ead8fa;
+  box-shadow:0 3px 0 #080611;cursor:pointer;
+}
+#view-luxdemasque .ld-dating-meet{
+  width:clamp(102px,29vw,142px);height:64px;border-radius:35px;
+  display:flex;gap:6px;justify-content:center;padding:0 9px;border-color:#ff58d3;
+  box-shadow:0 0 18px #ed41b542,0 4px 0 #09060f;color:#ff75d8;
+}
+#view-luxdemasque .ld-dating-meet>span:first-child{font-size:20px}
+#view-luxdemasque .ld-dating-meet>span:last-child{font:700 10px/1 var(--font)}
+#view-luxdemasque .ld-dating-hint{
+  margin:0;text-align:center;color:#aa96c3;font-size:11px;line-height:1.2;
+}
+@media(max-height:760px){
+  #view-luxdemasque .ld-dating-screen .ld-selection-carte{min-height:clamp(360px,59dvh,490px)}
+  #view-luxdemasque .ld-dating-screen .ld-selection-infos{margin-top:clamp(185px,33dvh,275px)}
+  #view-luxdemasque .ld-dating-screen{gap:8px;padding:8px 10px 12px}
+}
+@media(max-width:350px){
+  #view-luxdemasque .ld-jeu[data-ecran="selection"]{padding-inline:6px}
+  #view-luxdemasque .ld-dating-phone{padding:6px;border-radius:34px}
+  #view-luxdemasque .ld-dating-screen{border-radius:25px;padding-inline:8px}
+  #view-luxdemasque .ld-dating-status{grid-template-columns:1fr 60px 1fr}
+  #view-luxdemasque .ld-dating-brand{font-size:18px}
+  #view-luxdemasque .ld-dating-counter{font-size:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-luxdemasque .ld-dating-screen .ld-selection-carte{transition:none}
+}

@@ -144,3 +144,7 @@ Ces décisions cadrent les prochains écrans, mais **ne doivent pas être codée
 ## 10. Livraison V2
 
 Écran de profils dating, grille d'en-tête symétrique, portrait PS1, textes et CTA dating, sans changement du moteur. Tests du sélecteur adaptés. Validation graphique Samsung et CI requises avant de clore LD-048.
+
+## 11. Refonte structurelle V3 — téléphone réellement intégré
+
+Le sélecteur V2 (simple fiche encadrée) a été rejeté sur les captures Samsung. La V3 remplace le DOM du sélecteur par **un téléphone fictif complet** : coque, faux statut mobile, encoche, barre d'app de dating, carte portrait immersive avec texte en overlay sur dégradé, trois contrôles bas intégrés (précédent / rencontrer / suivant), compteur et aide discrets. Aucune carte d'affaire, aucun gros bouton jaune sous le portrait. Le seul CTA qui ouvre la partie est au centre du téléphone, via `ldSelectionConfirmer()`. Le swipe gauche/droite continue seulement de changer le profil. Aucune modification du moteur, des contenus, des scores ou de Lux Match. **Reste : tests navigateur, images comparatives et validation Samsung.**

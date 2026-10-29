@@ -228,30 +228,42 @@ function ldRendreSelection() {
         ldImage('portrait:'+npc.id, 'ld-selection-image') +
         '<span class="ld-selection-initiale">' + ldEchapper(npc.nom.slice(0,1)) + '</span></div>'
     : '<div class="ld-selection-portrait ld-selection-mystere" aria-hidden="true"><span>?</span></div>';
+  // L'app entière est contenue dans un unique téléphone fictif.
+  // Les données de rencontre et le moteur restent strictement ceux de SPEC 110.
   box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
     '<main class="ld-selection">' +
-      '<div class="ld-selection-intro"><p class="ld-selection-kicker">RENCONTRES</p>' +
-        '<h1>Découvre des profils</h1><p>Glisse pour découvrir les personnes disponibles.</p></div>' +
-      '<div class="ld-selection-nav">' +
-        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(-1)" aria-label="Profil précédent">' + ldIcone('precedent') + '</button>' +
-        '<span class="ld-selection-compteur" aria-live="polite">PROFIL ' + index + ' / ' + sel.items.length + '</span>' +
-        '<button type="button" class="ld-selection-fleche" onclick="ldSelectionChanger(1)" aria-label="Profil suivant">' + ldIcone('suivant') + '</button></div>' +
-      '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
-        ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '">' +
-        '<div class="ld-selection-image-zone">' + portrait +
+      '<section class="ld-dating-phone" aria-label="Application de rencontre Lux Démasqué">' +
+        '<div class="ld-dating-screen">' +
+          '<div class="ld-dating-status" aria-hidden="true"><span>21:30</span>' +
+            '<span class="ld-dating-island"></span><span>5G ▮▮▮</span></div>' +
+          '<div class="ld-dating-appbar"><span class="ld-dating-brand">lux<span>♥</span>démasqué</span>' +
+            '<span class="ld-dating-counter" aria-live="polite">PROFIL ' + index + ' / ' + sel.items.length + '</span></div>' +
+          '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
+            ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '">' +
+            '<div class="ld-selection-image-zone">' + portrait + '</div>' +
+            '<div class="ld-selection-infos">' +
+              '<span class="ld-selection-etat">' +
+                (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
+              '<h2>' + (affaire.genere ? 'Nouveau profil' : ldEchapper(npc.nom) + ', <span>' + npc.age + '</span>') + '</h2>' +
+              (affaire.genere
+                ? '<p class="ld-selection-ville">Une rencontre inédite.</p>' +
+                  '<p class="ld-selection-description">Une nouvelle rencontre t’attend.</p>'
+                : '<p class="ld-selection-ville">' + ldEchapper(npc.villeFr) + '</p>' +
+                  '<p class="ld-selection-description">« ' + ldEchapper(npc.accrocheFr) + ' »</p>') +
+            '</div></article></div>' +
+          '<div class="ld-dating-controls">' +
+            '<button type="button" class="ld-dating-round ld-dating-prev" onclick="ldSelectionChanger(-1)" aria-label="Profil précédent">' +
+              ldIcone('precedent') + '</button>' +
+            '<button type="button" class="ld-dating-meet" onclick="ldSelectionConfirmer()" aria-label="' +
+              (affaire.genere ? 'Découvrir le profil' : resolu ? 'Revoir le profil' : 'Voir le profil') + '">' +
+              '<span aria-hidden="true">♥</span><span>' +
+              (affaire.genere ? 'DÉCOUVRIR' : resolu ? 'REVOIR' : 'RENCONTRER') + '</span></button>' +
+            '<button type="button" class="ld-dating-round ld-dating-next" onclick="ldSelectionChanger(1)" aria-label="Profil suivant">' +
+              ldIcone('suivant') + '</button>' +
           '</div>' +
-        '<div class="ld-selection-infos"><span class="ld-selection-etat">' +
-          (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
-          '<h2>' + (affaire.genere ? 'Nouveau profil' : ldEchapper(npc.nom) + ', ' + npc.age + ' ans') + '</h2>' +
-          (affaire.genere
-            ? '<p class="ld-selection-ville">Une rencontre inédite.</p><p class="ld-selection-description">Une nouvelle rencontre t’attend.</p>'
-            : '<p class="ld-selection-ville">' + ldEchapper(npc.villeFr) + '</p><p class="ld-selection-description">« ' +
-              ldEchapper(npc.accrocheFr) + ' »</p>') +
-        '</div></article></div>' +
-      '<div class="ld-selection-actions"><button type="button" class="ld-btn ld-btn-or" onclick="ldSelectionConfirmer()">' +
-        (affaire.genere ? 'Découvrir le profil' : resolu ? 'Revoir le profil' : 'Voir le profil') +
-        ' <span aria-hidden="true">→</span></button>' +
-        '<p class="ld-selection-aide">Glisse à gauche ou à droite.</p></div>' +
+          '<p class="ld-dating-hint">Glisse pour parcourir les profils</p>' +
+        '</div>' +
+      '</section>' +
     '</main>';
   ldBrancherSelection(document.getElementById('ld-selection-carte'));
   if (npc) ldPreparerPortraitSelection(npc);

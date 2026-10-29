@@ -28,8 +28,17 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=12','lux-demasque.js?v=12','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=13','lux-demasque.js?v=13','lux-match.css?v=21','lux-match.js?v=28']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
 test('SPEC 112 V2 : profil dating, titre centré et microcopy',()=>{const s=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));for(const w of ['BUREAU DES ENQUÊTES','Choisis ton affaire','DOSSIER N°','À ENQUÊTER','Ouvrir ce dossier','Affaire inédite'])assert.ok(!s.includes(w),w);for(const w of ['Découvre des profils','Voir le profil','DÉJÀ DÉMASQUÉ','Nouveau profil','Profil précédent'])assert.ok(s.includes(w),w);assert.match(js,/ld-top-selection/);assert.match(css,/grid-template-columns:48px minmax\(0,1fr\) 48px/)});
+
+test('SPEC112 V3 : téléphone complet, carte immersive et CTA de rencontre',()=>{
+ const view=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));
+ for(const x of ['ld-dating-phone','ld-dating-screen','ld-dating-status','ld-dating-island','ld-dating-appbar','ld-dating-brand','ld-dating-controls','ld-dating-meet','ld-dating-round'])assert.ok(view.includes(x),x);
+ assert.ok(view.includes('ld-selection-carte'), 'le swipe d’origine est conservé');
+ assert.ok(!view.includes('ld-selection-intro')&&!view.includes('ld-btn-or'),'aucune fiche ni CTA jaune externe');
+ assert.match(css,/\.ld-dating-screen \.ld-selection-image-zone\s*\{[\s\S]*?position:absolute/);
+ assert.match(css,/\.ld-dating-screen \.ld-selection-infos\s*\{[\s\S]*?position:relative/);
+});
