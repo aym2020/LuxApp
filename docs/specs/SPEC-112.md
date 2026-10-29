@@ -1,8 +1,39 @@
-# SPEC 112 V2 — Lux Démasqué : swipe de profils dans une app de dating
+# SPEC 112 — Red Flag : sélection des profils dans l'app Cringr
 
 **Décision produit :** 29 octobre 2026 · **Branche de code cible :** `2.1` · **État : V2 IMPLÉMENTÉE SUR `2.1` — RECETTE ET APPROBATION SAMSUNG À CONFIRMER** · **Écran unique de ce lot :** sélecteur `data-ecran="selection"` · **Suivi canonique :** LD-048 dans `docs/LUX-DEMASQUE-TODO.md` sur `main`.
 
 > **Pivot explicite :** Lux Démasqué n'est **pas** une enquête policière présentée comme un interrogatoire : c'est **un date**, organisé dans un téléphone et une app de rencontre. Les incohérences, preuves et disquettes forment le gameplay sous-jacent, sans contaminer le vocabulaire et la présentation du choix initial. **Ne pas modifier Lux Match : il s'agit de Lux Démasqué.**
+
+## DÉCISION PRODUIT FINALE — 29 octobre 2026 (normative, prévaut sur les anciennes sections)
+
+**Nom définitif du jeu : RED FLAG.** **Nom de l'application fictive de rencontre, à l'intérieur du téléphone : CRINGR.** Ne jamais afficher le nom du jeu à l'intérieur de l'application, et ne pas afficher Cringr comme nom du jeu dans le hub.
+
+**Statut de cette décision : DOCUMENTATION UNIQUEMENT, PAS ENCORE CODÉE.** Le code actuel sur `2.1` affiche encore « Lux Démasqué » / `lux♥démasqué` et les flèches. La capture Samsung de 08:12 a confirmé la bonne direction de la coque téléphone, mais rejeté ces éléments. La structure et les comportements existants restent la baseline technique.
+
+### Résultat visuel exigé
+
+- **À l'extérieur du téléphone :** titre de jeu **RED FLAG**, centré horizontalement de façon indépendante du bouton Retour. Sur le hub Jeux, carte **Red Flag**. Les titres des autres étapes de jeu doivent à terme reprendre le nom Red Flag ; l'implémentation de l'identité globale sera inventoriée sans changer les IDs internes.
+- **À l'intérieur :** marque d'application **Cringr** en haut, par exemple `cringr` avec petit cœur rose dans le logo si le rendu reste lisible. **Pas « Lux Démasqué », « Red Flag », ni « lux♥démasqué » dans le faux téléphone.** Barre d'état 21:30, encoche et coque déjà en place conservées.
+- **Carte :** portrait PS1 immersif, prénom, âge, ville, bio et statut de progression ; conserver Milo/Noah/Tom + profil inédit. Dégradé de contraste et hauteur responsive conservés, sans tronquer les textes.
+- **Bas du téléphone :** **supprimer complètement les deux grosses flèches circulaires** précédent/suivant ; ne conserver que le **CTA central de rencontre** avec cible tactile ≥ 48 px, suffisamment distinct du geste de navigation. Un swipe ne doit jamais lancer la rencontre.
+- **Affordance du swipe :** montrer visuellement une **carte suivante derrière** (débord de 6–10 px et léger décalage, purement CSS, sans autre portrait WebGL). Si la carte est unique/dernière, rendre la pile cohérente avec le retour circulaire existant. Ajouter un **coachmark au premier accès** : carte qui se décale délicatement de 12–20 px puis revient, **une seule fois par installation / sauvegarde de préférence locale**, jamais à chaque retour ou à chaque profil. Alternative texte persistante, non répétitive : **« Glisse pour découvrir »**, accompagnée d'une icône gestuelle discrète. Pas de main fantôme permanente.
+- **Pendant le glissement :** afficher progressivement des repères neutres **« PRÉCÉDENT »** vers la droite et **« SUIVANT »** vers la gauche ; **pas « MATCHER » ou « PASSER »**, car dans ce jeu un swipe parcourt les profils, il ne les accepte ni ne les rejette. Après relâchement trop court, retour au centre ; au-delà du seuil actuel, profil suivant/précédent, avec transition lisible et sans écran blanc.
+- **Sans geste tactile :** prévoir l'équivalent **clavier gauche/droite** pour accessibilité, et une action de navigation secondaire non dominante si nécessaire pour les utilisateurs qui ne peuvent pas swiper. Ne pas remettre deux gros boutons de navigation dans le bas du téléphone.
+- **Respect du mouvement réduit :** désactiver la démonstration animée et les rotations décoratives si `prefers-reduced-motion: reduce`, sans supprimer l'indication textuelle du geste.
+
+### Contrat technique (prochaine implémentation)
+
+**Fichiers à inventorier avant édition :** `public/lux-demasque.js` (sélecteur, en-tête et hub), `public/lux-demasque.css`, `public/jeux-v21.js` (nom affiché sur la carte de jeu), `public/index.html` (versions des assets), autres références affichées « Lux Démasqué » dans les vues et textes publics. **Ne pas** renommer les fonctions `ld*`, les clés persistées (`luxDemasqueResolus`, etc.), IDs JSON ou le chemin des modules simplement pour des raisons de marque : une migration technique risquerait d'effacer la progression.
+
+**Comportement conservé :** `ldSelectionChanger(delta)`, `ldBrancherSelection()`, seuil strict de 65 px, wrap des 4 profils, séquence WebGL, `ldSelectionConfirmer()` seule action ouvrant la rencontre, sélection/résolus/records inchangés. Aucun changement de Lux Match ni de son application `lux♥match`.
+
+**Tests requis :** statique (aucun branding historique dans l'écran de sélection, absence des deux flèches de bas, présence d'une pile et du coachmark), navigateur Playwright sur 320×600 / 360×740 / 393×852 / 430×932, swipe dans les deux sens, retour après geste incomplet, pointeurs annulés/secondaires, coachmark une seule fois et absent avec mouvement réduit, navigation clavier, accessibilité CTA, pas de débordement horizontal, sauvegarde inchangée ; captures avant/après et validation tactile Samsung explicite. **LD-048 reste ouverte jusqu'à validation.**
+
+**Recommandation de titre pour la prochaine PR :** `feat(red-flag): Cringr et affordance de swipe sans flèches`.
+
+> **Nota historique :** toutes les mentions « Lux Démasqué », « flèches gauche/droite » ou « V2 à implémenter » dans les sections archivées ci-dessous décrivent les versions antérieures ; cette décision finale prime pour la prochaine livraison. Le nom « Red Flag » est une décision de marque, distincte du concept pédagogique « red flags ».
+
+---
 
 ## 1. Historique et périmètre exact
 
