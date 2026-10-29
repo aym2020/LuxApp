@@ -5,6 +5,8 @@
 
 Ce dossier est **le point d'entrée éditorial** pour créer des personnages, mensonges, preuves, leurres et rencontres de RED FLAG. Il ne remplace **ni** les SPEC techniques, **ni** le moteur, **ni** les données validées.
 
+**Structure des contenus :** [STRUCTURE-SCENARIOS.md](STRUCTURE-SCENARIOS.md) — mensonge, enquête atomique et scénario de trois mensonges ; les lots 001–004 ne sont pas quatre scénarios. Voir aussi [OBJECTIONS-PROGRESSIVES.md](OBJECTIONS-PROGRESSIVES.md).
+
 ## Lecture recommandée pour Claude et ChatGPT
 
 1. [BIBLE-EDITORIALE.md](BIBLE-EDITORIALE.md) : ton, personnages, principes d'enquête, difficultés et pédagogie.
