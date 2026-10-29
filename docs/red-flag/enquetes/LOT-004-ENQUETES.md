@@ -1,6 +1,6 @@
 # RED FLAG — Lot éditorial 004 : concert, famille, réservation
 
-**Statut : conception FR rédigée ; non validée, non implémentée.** Branche `2.1`. Sélection : [SELECTION-50.md](../SELECTION-50.md). Règles : [MATRICE-PREUVES.md](../MATRICE-PREUVES.md), [FICHE-PERSONNAGE.md](../FICHE-PERSONNAGE.md), [SPEC 110](../specs/SPEC-110.md). Toutes les personnes, organisations, adresses, dates de manifestations et pièces sont **fictives**. Aucune preuve n'est tirée de données privées réelles. Pas de LU inventé sans vérification LOD/grammaire. Les trois cas sont indépendants et ne modifient pas les affaires existantes.
+**Statut : conception FR rédigée ; non validée, non implémentée.** Branche `2.1`. Sélection : [SELECTION-50.md](../catalogue/SELECTION-50.md). Règles : [MATRICE-PREUVES.md](../references/MATRICE-PREUVES.md), [FICHE-PERSONNAGE.md](../references/FICHE-PERSONNAGE.md), [SPEC 110](../../specs/SPEC-110.md). Toutes les personnes, organisations, adresses, dates de manifestations et pièces sont **fictives**. Aucune preuve n'est tirée de données privées réelles. Pas de LU inventé sans vérification LOD/grammaire. Les trois cas sont indépendants et ne modifient pas les affaires existantes.
 
 ## RF-08-12 — « J'étais au concert »
 
