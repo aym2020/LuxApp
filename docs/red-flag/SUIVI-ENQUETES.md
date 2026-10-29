@@ -2,12 +2,15 @@
 
 **Objet :** suivi éditorial **distinct** de la TODO technique `main/docs/LUX-DEMASQUE-TODO.md`. Branche de travail `2.1`. Une case de conception cochée n'implique ni intégration JSON, ni validation linguistique, ni recette Android. Ce fichier doit être consulté et mis à jour à chaque nouveau lot d'enquêtes, pour que Claude et ChatGPT reprennent sans repartir de zéro.
 
+**Convention éditoriale :** [STRUCTURE-SCENARIOS.md](STRUCTURE-SCENARIOS.md) — les lots regroupent des mensonges candidats, pas des rencontres complètes. Cible de conception : trois mensonges par scénario, avec des vérités ; respecter les variantes techniques existantes avant toute implémentation. [Objections progressives](OBJECTIONS-PROGRESSIVES.md) : mécanique optionnelle pour une affaire.
+
 ## État au 29 octobre 2026
 
 - Catalogue original : **198** idées, conservées.
 - Présélection : **50** candidates dans [SELECTION-50.md](SELECTION-50.md).
 - Affaires pilotes P1 : **12** identifiées.
-- Fiches de conception FR développées : **12/50**.
+- Mensonges candidats développés en FR : **12/50** (répartis dans quatre lots, pas quatre scénarios).
+- Scénarios complets assemblés et validés dans ce chantier : **0**.
 - Fiches validées éditorialement par l'utilisateur : **0/50**.
 - Nouvelles affaires intégrées au jeu par ce chantier : **0**.
 - LU relu / LOD vérifié pour ce chantier : **0**.
