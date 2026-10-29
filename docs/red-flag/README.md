@@ -13,6 +13,11 @@ Ce dossier est **le point d'entrée éditorial** pour créer des personnages, me
 4. [FICHE-PERSONNAGE.md](FICHE-PERSONNAGE.md) : modèle de conception et critères d'acceptation.
 5. **Références normatives hors de ce dossier :** [SPEC 110](../specs/SPEC-110.md) (moteur, données, LU), [SPEC 113](../specs/SPEC-113.md) (sélecteur Cringr, remplace les règles de swipe de SPEC 112), [affaires existantes](../LUX-DEMASQUE-AFFAIRES.md), [tests](../LUX-DEMASQUE-TESTS.md), [validation par écran](../LUX-DEMASQUE-VALIDATION-ECRANS.md).
 
+
+## Sélection éditoriale actuelle
+
+**[SELECTION-50.md](SELECTION-50.md)** : 50 situations présélectionnées parmi les 198, avec 12 pilotes P1, critères de tri et garde-fous. **[MATRICE-EXHAUSTIVE.md](MATRICE-EXHAUSTIVE.md)** : index des 198 affirmations et pistes de preuve génériques, non validées. Les 148 autres idées restent dans le catalogue ; ne pas les supprimer.
+
 ## Où est la source de vérité ?
 
 | Objet | Source | Statut |
