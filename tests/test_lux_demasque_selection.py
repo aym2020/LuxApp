@@ -34,10 +34,10 @@ with sync_playwright() as p:
    except Exception:
     pass
    page.screenshot(path=str(ART/f'selection-{w}x{h}.png'),full_page=True)
-  page.get_by_role('button',name='Profil suivant').click()
+  page.evaluate('ldSelectionChanger(1)')
   assert page.evaluate('ld.selection.items[ld.selection.index].id')=='NOAH_001'
   assert page.evaluate('ld.partie') is None
-  page.get_by_role('button',name='Profil précédent').click()
+  page.evaluate('ldSelectionChanger(-1)')
   assert page.evaluate('ld.selection.index')==0
   # Tactile natif : déplacement vers la gauche => prochain dossier, pas une ouverture.
   bb=page.locator('#ld-selection-carte').bounding_box()

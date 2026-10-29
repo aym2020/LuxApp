@@ -179,3 +179,7 @@ Ces décisions cadrent les prochains écrans, mais **ne doivent pas être codée
 ## 11. Refonte structurelle V3 — téléphone réellement intégré
 
 Le sélecteur V2 (simple fiche encadrée) a été rejeté sur les captures Samsung. La V3 remplace le DOM du sélecteur par **un téléphone fictif complet** : coque, faux statut mobile, encoche, barre d'app de dating, carte portrait immersive avec texte en overlay sur dégradé, trois contrôles bas intégrés (précédent / rencontrer / suivant), compteur et aide discrets. Aucune carte d'affaire, aucun gros bouton jaune sous le portrait. Le seul CTA qui ouvre la partie est au centre du téléphone, via `ldSelectionConfirmer()`. Le swipe gauche/droite continue seulement de changer le profil. Aucune modification du moteur, des contenus, des scores ou de Lux Match. **Reste : tests navigateur, images comparatives et validation Samsung.**
+
+## Mise en œuvre — 29 octobre 2026
+
+Noms visibles **Red Flag** et **Cringr**, retrait des boutons fléchés, pile de cartes renforcée, démonstration du geste au premier accès, tampons de direction. Les identifiants techniques du jeu sont conservés afin de préserver les sauvegardes. **Validation graphique Samsung encore attendue.**

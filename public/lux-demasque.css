@@ -517,3 +517,15 @@
 @media(prefers-reduced-motion:reduce){
   #view-luxdemasque .ld-dating-screen .ld-selection-carte{transition:none}
 }
+
+/* Red Flag / Cringr — gestes visuellement évidents, sans flèches de navigation. */
+#view-luxdemasque .ld-dating-controls{justify-content:center}
+#view-luxdemasque .ld-dating-meet{min-width:148px}
+#view-luxdemasque .ld-dating-screen .ld-selection-pile::before{inset:7px -7px -7px 7px;transform:rotate(2deg);border:2px solid #b879ba}
+#view-luxdemasque .ld-dating-screen .ld-selection-carte::after{position:absolute;z-index:5;top:26px;padding:10px;color:#fff;font:9px/1.2 var(--ld-pixel);border:2px solid #ff77d6;background:#24142cdd;border-radius:7px;opacity:0;pointer-events:none;transition:opacity .12s}
+#view-luxdemasque .ld-dating-screen .ld-selection-carte.ld-glisse-suivant::after{content:"SUIVANT";right:12px;opacity:1}
+#view-luxdemasque .ld-dating-screen .ld-selection-carte.ld-glisse-precedent::after{content:"PRÉCÉDENT";left:12px;opacity:1}
+#view-luxdemasque .ld-dating-hint span{font-size:20px;vertical-align:middle;color:#ff77d6}
+@keyframes ldSwipeGuide{0%,100%{transform:translateX(0)}35%{transform:translateX(-18px) rotate(-2deg)}65%{transform:translateX(12px) rotate(1deg)}}
+#view-luxdemasque .ld-selection-carte.ld-swipe-demo{animation:ldSwipeGuide 1.15s ease-in-out 1}
+@media(prefers-reduced-motion:reduce){#view-luxdemasque .ld-selection-carte.ld-swipe-demo{animation:none}}

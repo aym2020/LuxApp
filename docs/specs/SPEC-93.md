@@ -169,3 +169,7 @@ La livraison sera refusée si un de ces scénarios échoue :
 ### 4. Limites techniques explicites
 
 La PWA ne peut pas garantir une installation immédiate pendant qu'elle est complètement fermée ni contourner l'ordonnancement des Service Workers par Android/Chrome. La promesse produit raisonnable est : **vérifier automatiquement dès que l'app est ouverte et connectée, télécharger sans gêner l'usage, appliquer sans intervention au premier moment sûr**. Hors connexion, la dernière version complète reste disponible. **Cette décision documentaire ne constitue pas un code livré.**
+
+## Mise en œuvre — 29 octobre 2026
+
+Orchestrateur PWA de vérification au lancement, retour au premier plan, connexion retrouvée et minuteur au premier plan ; activation seulement sur accueil, sans bandeau manuel. Ancien cache applicatif conservé lors de l'activation pour ne pas détruire les ressources d'autres onglets ; cache audio inchangé. **Vérifier la recette complète avant de considérer cette implémentation fiable.**

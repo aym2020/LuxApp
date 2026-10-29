@@ -81,7 +81,9 @@ self.addEventListener('message', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const noms = await caches.keys();
-    await Promise.all(noms.filter(n => (n.startsWith('luxapp-app-') && n !== CACHE_APP) || n === 'luxapp-donnees').map(n => caches.delete(n)));
+    // Conserver temporairement l'ancien cache pour les autres onglets en cours.
+    // Il sera réutilisable tant qu'ils restent sous l'ancien contrôleur.
+    await Promise.all(noms.filter(n => n === 'luxapp-donnees').map(n => caches.delete(n)));
     await self.clients.claim();
   })());
 });

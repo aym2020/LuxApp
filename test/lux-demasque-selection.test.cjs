@@ -42,3 +42,14 @@ test('SPEC112 V3 : téléphone complet, carte immersive et CTA de rencontre',()=
  assert.match(css,/\.ld-dating-screen \.ld-selection-image-zone\s*\{[\s\S]*?position:absolute/);
  assert.match(css,/\.ld-dating-screen \.ld-selection-infos\s*\{[\s\S]*?position:relative/);
 });
+
+test('Red Flag et Cringr, sans flèches de sélection',()=>{
+ const section=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldPreparerPortraitSelection('));
+ assert.match(js,/<h2 id="jeux-ld-titre">Red Flag<\/h2>/);
+ assert.match(js,/RED <i>FLAG<\/i>/);
+ assert.match(section,/ld-dating-brand">cringr/);
+ assert.doesNotMatch(section,/ld-dating-round/);
+ assert.match(section,/ld-dating-meet/);
+ assert.match(js,/function ldSelectionCoachmark/);
+ assert.match(css,/ld-swipe-demo/);
+});

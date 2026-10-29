@@ -174,7 +174,7 @@ function luxDemasqueCarteHub() {
   if (!luxDemasqueDisponible()) return '';
   return '<section class="jeux-carte ld-carte-hub" aria-labelledby="jeux-ld-titre">' +
     '<div class="jeux-decor ld-decor" aria-hidden="true"><span class="ld-decor-dossier"></span><span class="ld-decor-cri">!</span></div>' +
-    '<div class="jeux-carte-titre"><h2 id="jeux-ld-titre">Lux Démasque</h2><span class="jeux-etat ld-etat-demo">NOUVEAU</span></div>' +
+    '<div class="jeux-carte-titre"><h2 id="jeux-ld-titre">Red Flag</h2><span class="jeux-etat ld-etat-demo">NOUVEAU</span></div>' +
     '<p>Il te raconte sa vie en luxembourgeois. Fouille ses réseaux et démasque ses disquettes !</p>' +
     '<div class="jeux-meta"><span><strong>≈ 5 min</strong> · A1.1–A1.2</span><span>Record <b>' + ldLire('luxDemasqueRecord', 0) + '</b></span></div>' +
     '<button class="jeux-jouer ld-jouer-hub" type="button" onclick="ldOuvrirSelection()">Jouer <span aria-hidden="true">→</span></button>' +
@@ -232,11 +232,11 @@ function ldRendreSelection() {
   // Les données de rencontre et le moteur restent strictement ceux de SPEC 110.
   box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
     '<main class="ld-selection">' +
-      '<section class="ld-dating-phone" aria-label="Application de rencontre Lux Démasqué">' +
+      '<section class="ld-dating-phone" aria-label="Application de rencontre Cringr">' +
         '<div class="ld-dating-screen">' +
           '<div class="ld-dating-status" aria-hidden="true"><span>21:30</span>' +
             '<span class="ld-dating-island"></span><span>5G ▮▮▮</span></div>' +
-          '<div class="ld-dating-appbar"><span class="ld-dating-brand">lux<span>♥</span>démasqué</span>' +
+          '<div class="ld-dating-appbar"><span class="ld-dating-brand">cringr<span>♥</span></span>' +
             '<span class="ld-dating-counter" aria-live="polite">PROFIL ' + index + ' / ' + sel.items.length + '</span></div>' +
           '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
             ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '">' +
@@ -252,20 +252,17 @@ function ldRendreSelection() {
                   '<p class="ld-selection-description">« ' + ldEchapper(npc.accrocheFr) + ' »</p>') +
             '</div></article></div>' +
           '<div class="ld-dating-controls">' +
-            '<button type="button" class="ld-dating-round ld-dating-prev" onclick="ldSelectionChanger(-1)" aria-label="Profil précédent">' +
-              ldIcone('precedent') + '</button>' +
             '<button type="button" class="ld-dating-meet" onclick="ldSelectionConfirmer()" aria-label="' +
               (affaire.genere ? 'Découvrir le profil' : resolu ? 'Revoir le profil' : 'Voir le profil') + '">' +
               '<span aria-hidden="true">♥</span><span>' +
               (affaire.genere ? 'DÉCOUVRIR' : resolu ? 'REVOIR' : 'RENCONTRER') + '</span></button>' +
-            '<button type="button" class="ld-dating-round ld-dating-next" onclick="ldSelectionChanger(1)" aria-label="Profil suivant">' +
-              ldIcone('suivant') + '</button>' +
           '</div>' +
-          '<p class="ld-dating-hint">Glisse pour parcourir les profils</p>' +
+          '<p class="ld-dating-hint"><span aria-hidden="true">‹</span> Glisse pour découvrir <span aria-hidden="true">›</span></p>' +
         '</div>' +
       '</section>' +
     '</main>';
   ldBrancherSelection(document.getElementById('ld-selection-carte'));
+  ldSelectionCoachmark();
   if (npc) ldPreparerPortraitSelection(npc);
 }
 function ldPreparerPortraitSelection(npc) {
@@ -295,6 +292,17 @@ function ldSelectionConfirmer() {
   // Naviguer au doigt ne démarre jamais le jeu ; seul ce bouton ouvre l'affaire.
   ouvrirLuxDemasque(dossier.genere ? dossier.graine : dossier.id);
 }
+function ldSelectionCoachmark() {
+  const carte = document.getElementById('ld-selection-carte');
+  if (!carte || !ld.selection || ld.selection.index !== 0) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  try {
+    if (localStorage.getItem('ldSwipeVu') === '1') return;
+    localStorage.setItem('ldSwipeVu', '1');
+  } catch (_) { return; }
+  carte.classList.add('ld-swipe-demo');
+  carte.addEventListener('animationend', () => carte.classList.remove('ld-swipe-demo'), {once:true});
+}
 function ldBrancherSelection(carte) {
   if (!carte) return;
   let geste = null;
@@ -303,7 +311,7 @@ function ldBrancherSelection(carte) {
     const id = geste.id; geste = null;
     try { if (carte.hasPointerCapture(id)) carte.releasePointerCapture(id); } catch (_) {}
     carte.style.transform = '';
-    carte.classList.remove('ld-selection-tire');
+    carte.classList.remove('ld-selection-tire','ld-glisse-suivant','ld-glisse-precedent');
   };
   carte.addEventListener('pointerdown', e => {
     if (geste || !e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
@@ -322,6 +330,8 @@ function ldBrancherSelection(carte) {
     geste.dx = dx;
     carte.style.transform = 'translateX(' + dx + 'px) rotate(' +
       Math.max(-9,Math.min(9,dx/22)) + 'deg)';
+    carte.classList.toggle('ld-glisse-suivant', dx < -25);
+    carte.classList.toggle('ld-glisse-precedent', dx > 25);
   });
   carte.addEventListener('pointerup', e => {
     if (!geste || e.pointerId !== geste.id) return;
@@ -411,7 +421,7 @@ function ldRejouer() { const d = ld.partie && ld.partie.dossier; ouvrirLuxDemasq
 function ldEntete(options) {
   const o = options || {};
   return '<div class="ld-top' + (o.selection ? ' ld-top-selection' : '') + '"><button type="button" class="ld-icone-btn" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '</button>' +
-    '<span class="ld-logo">LUX <i>DÉMASQUE</i></span>' +
+    '<span class="ld-logo">RED <i>FLAG</i></span>' +
     '<div class="ld-top-outils">' +
       (o.fr === false ? '' : '<button type="button" class="ld-icone-btn ld-fr-btn' + (ld.aideFr ? ' ld-actif' : '') + '" onclick="ldBasculerAide()" aria-pressed="' + ld.aideFr + '" aria-label="' + (ld.aideFr ? 'Aide FR activée' : 'Aide FR désactivée') + '">FR</button>') +
       (o.menu === false ? '' : '<button type="button" class="ld-icone-btn" onclick="ldMenu()" aria-label="Menu" aria-haspopup="dialog">' + ldIcone('menu') + '</button>') +

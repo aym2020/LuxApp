@@ -16,96 +16,77 @@ function horsLignePossible() {
   return typeof navigator !== 'undefined' && 'serviceWorker' in navigator && typeof caches !== 'undefined';
 }
 
+// Actualisation autonome, sans interruption des écrans de travail.
+let horsLigneMajRegistration = null;
+let horsLigneMajDemandee = false;
+let horsLigneMajControleur = false;
+let horsLigneDerniereVerification = 0;
+let horsLigneVerificationEnCours = false;
+function horsLignePointSur() {
+  // Refuser tout écran autre que l'accueil : aucun exercice, formulaire ou jeu interrompu.
+  const actif = document.querySelector('.view.active, .view.visible, .view:not([hidden]).actif');
+  return !!actif && actif.id === 'view-accueil' && !document.querySelector('input:focus,textarea:focus,[contenteditable="true"]:focus');
+}
+function horsLigneActivationSecurisee() {
+  if (!horsLigneMajRegistration || !horsLigneMajRegistration.waiting || horsLigneMajDemandee) return;
+  if (!horsLignePointSur()) return;
+  horsLigneMajDemandee = true;
+  horsLigneMajRegistration.waiting.postMessage({type:'activer'});
+}
+function horsLigneVerifierMaj() {
+  if (!horsLigneMajRegistration || horsLigneVerificationEnCours || navigator.onLine === false) return;
+  const now = Date.now();
+  if (now - horsLigneDerniereVerification < 30000) return;
+  horsLigneDerniereVerification = now;
+  horsLigneVerificationEnCours = true;
+  Promise.resolve(horsLigneMajRegistration.update()).catch(() => {}).finally(() => {
+    horsLigneVerificationEnCours = false;
+    horsLigneActivationSecurisee();
+  });
+}
 function horsLigneEnregistrer() {
   if (!horsLignePossible()) return;
   const cfg = window.APP_CONFIG || {};
   if (cfg.TESTS) return;
   if (cfg.RECETTE) {
-    // Recette : aucun cache hors ligne ; retire un éventuel ancien Service Worker.
     navigator.serviceWorker.getRegistrations().then(liste => liste.forEach(r => r.unregister())).catch(() => {});
     return;
   }
-  const enregistrer = () => navigator.serviceWorker.register('/sw.js').then(reg => {
+  const enregistrer = () => navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(reg => {
+    horsLigneMajRegistration = reg;
     horsLigneRendre();
-    // Nouvelle version téléchargée en arrière-plan : proposée par un bandeau discret.
-    if (reg.waiting && navigator.serviceWorker.controller) horsLigneBandeauMaj(reg);
+    horsLigneActivationSecurisee();
     reg.addEventListener('updatefound', () => {
-      const nouveau = reg.installing;
-      if (!nouveau) return;
-      nouveau.addEventListener('statechange', () => {
-        if (nouveau.state === 'installed' && navigator.serviceWorker.controller) horsLigneBandeauMaj(reg);
+      const worker = reg.installing;
+      if (worker) worker.addEventListener('statechange', () => {
+        if (worker.state === 'installed') horsLigneActivationSecurisee();
       });
     });
+    horsLigneVerifierMaj();
   }).catch(() => {});
   if (document.readyState === 'complete') enregistrer();
   else window.addEventListener('load', enregistrer);
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (horsLigneMajDemandee) { location.reload(); return; }
+    if (horsLigneMajDemandee && horsLignePointSur() && !horsLigneMajControleur) {
+      horsLigneMajControleur = true;
+      location.reload();
+      return;
+    }
     horsLigneRendre();
   });
-}
-
-// Nouvelle version prête : une ligne DANS la navigation basse, pas un
-// panneau flottant au-dessus des leçons ou des boutons d'exercice.
-// « Plus tard » masque la ligne pour cette ouverture ; l'action reste dans
-// Réglages > Hors ligne. Aucun changement de progression ni de logique SW.
-let horsLigneMajDemandee = false;
-let horsLigneMajRegistration = null;
-let horsLigneMajMasquee = false;
-
-function horsLigneAppliquerMaj() {
-  if (!horsLigneMajRegistration || horsLigneMajDemandee) return;
-  horsLigneMajDemandee = true;
-  ['hl-maj-action', 'hl-version-bouton'].forEach(id => {
-    const bouton = document.getElementById(id);
-    if (bouton) bouton.disabled = true;
+  window.addEventListener('online', () => { horsLigneDerniereVerification = 0; horsLigneVerifierMaj(); });
+  window.addEventListener('pageshow', horsLigneVerifierMaj);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) { horsLigneVerifierMaj(); horsLigneActivationSecurisee(); }
   });
-  if (horsLigneMajRegistration.waiting) {
-    horsLigneMajRegistration.waiting.postMessage({ type: 'activer' });
-  } else {
-    location.reload();
-  }
+  // Navigation au retour accueil : vérifie le point sûr sans surveiller les exercices.
+  window.setInterval(() => {
+    if (!document.hidden) { horsLigneVerifierMaj(); horsLigneActivationSecurisee(); }
+  }, 60000);
 }
-
-function horsLigneBandeauMaj(reg) {
-  horsLigneMajRegistration = reg;
-  // Un report ne doit jamais faire perdre l'accès à la mise à jour.
-  const reglage = document.getElementById('hl-version');
-  if (reglage) reglage.hidden = false;
-  if (horsLigneMajMasquee || document.getElementById('hl-maj')) return;
-  const nav = document.getElementById('nav-bas');
-  if (!nav) return;
-  const bandeau = document.createElement('div');
-  bandeau.id = 'hl-maj';
-  bandeau.className = 'hl-maj';
-  bandeau.setAttribute('role', 'status');
-  bandeau.innerHTML = '<span class="hl-maj-texte">Nouvelle version prête</span>' +
-    '<button id="hl-maj-action" class="hl-maj-action" type="button">Mettre à jour</button>' +
-    '<button class="hl-maj-fermer" type="button" aria-label="Plus tard" title="Plus tard">×</button>';
-  bandeau.querySelector('.hl-maj-action').addEventListener('click', horsLigneAppliquerMaj);
-
-  let observateur = null;
-  bandeau.querySelector('.hl-maj-fermer').addEventListener('click', () => {
-    horsLigneMajMasquee = true;
-    if (observateur) observateur.disconnect();
-    bandeau.remove();
-    document.body.classList.remove('hl-maj-visible');
-    document.body.style.removeProperty('--hl-maj-hauteur');
-  });
-  nav.prepend(bandeau);
-  document.body.classList.add('hl-maj-visible');
-  // À 320 px ou avec une police agrandie, la ligne peut grandir :
-  // réserver sa hauteur réelle sous le contenu défilant.
-  const ajuster = () => {
-    const h = Math.ceil(bandeau.getBoundingClientRect().height);
-    if (h > 0) document.body.style.setProperty('--hl-maj-hauteur', h + 'px');
-  };
-  if (typeof ResizeObserver === 'function') {
-    observateur = new ResizeObserver(ajuster);
-    observateur.observe(bandeau);
-  }
-  ajuster();
-}
+// Compatibilité du bouton de diagnostic ancien : pas de rechargement sans contrôle.
+function horsLigneAppliquerMaj() { horsLigneActivationSecurisee(); }
+function horsLigneBandeauMaj(reg) { horsLigneMajRegistration = reg; horsLigneActivationSecurisee(); }
 
 function horsLigneLireEtat() {
   try { return JSON.parse(localStorage.getItem(HORS_LIGNE_CLE)) || null; } catch (_) { return null; }
