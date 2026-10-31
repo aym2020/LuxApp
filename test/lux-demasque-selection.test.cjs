@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=23','lux-demasque.js?v=23','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=24','lux-demasque.js?v=24','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -112,8 +112,8 @@ test('SPEC 115 V2 : accueil fixe à chaque entrée, sans 3D ni prologue V1',()=>
  const entree=js.slice(js.indexOf('function ldEntrerRedFlag()'),js.indexOf('function ldRendreAccueil()'));
  assert.match(entree,/ldRendreAccueil\(\)/);
  assert.doesNotMatch(entree,/ldObtenir3D|PrologueVu|ldLire/,'aucune 3D, aucune mémoire « vu une fois »');
- for(const t of ['Ton prochain date sur <em>Cringr.</em>','Tu incarnes une femme qui rencontre des prétendants sur Cringr.',
-   'Ton objectif : découvrir leurs mensonges et les prouver.','Choisis','un profil','en luxembourgeois','Démasque','les mensonges','Commencer'])assert.ok(js.includes(t),t);
+ for(const t of ['<span>Ton prochain</span> <span>date sur</span> <em>Cringr.</em>','Tu incarnes une femme qui cherche un date.',
+   'Discute, trouve des preuves et démasque les mensonges.','Choisis','un profil','en luxembourgeois','Démasque','les mensonges','Commencer'])assert.ok(js.includes(t),t);
  for(const t of ['Revoir l’introduction','Passer l’intro','Ouvrir Cringr','ldDemarrerPrologue','ldTerminerPrologue','LD_HEROINE','ld.prologue'])assert.ok(!js.includes(t),'V1 retirée : '+t);
  assert.match(js,/function ldAccueilCommencer\(\) \{\n  const box = ldBox\(\);\n  if \(!box \|\| box\.dataset\.ecran !== 'accueil'\) return;\n  ldOuvrirSelection\(\{ focus: true \}\);/);
  assert.equal((js.match(/function ldCommencer\(\)/g)||[]).length,1,'aucune collision avec le début du rendez-vous');
@@ -134,4 +134,15 @@ test('SPEC 115 V3 : hero intégré sans redondance du kicker',()=>{
  assert.doesNotMatch(rendu,/TON PROCHAIN RENDEZ-VOUS/);
  assert.match(css,/\.ld-accueil-visuel\{[\s\S]*?position:absolute/);
  assert.match(css,/\.ld-accueil-visuel img\{[\s\S]*?image-rendering:auto/);
+});
+
+test('SPEC 115 V5 : titre à trois lignes volontaires, visage dégagé et capsules lisibles',()=>{
+ const rendu=js.slice(js.indexOf('function ldRendreAccueil()'),js.indexOf('function ldAccueilCommencer()'));
+ assert.match(rendu,/<span>Ton prochain<\/span> <span>date sur<\/span> <em>Cringr\.<\/em>/);
+ assert.match(rendu,/etape\('discute', 'Discute', 'en LU'\)/);
+ assert.match(rendu,/Luxembourgeois <small>· A1–A2<\/small>/);
+ assert.match(css,/\.ld-accueil-titre span,[\s\S]*?white-space:nowrap/);
+ assert.match(css,/\.ld-accueil-pitch::before\{[\s\S]*?linear-gradient/);
+ assert.match(css,/\.ld-accueil-tags span\{[\s\S]*?white-space:nowrap/);
+ assert.match(css,/@media\(max-width:350px\)/);
 });
