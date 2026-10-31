@@ -217,13 +217,16 @@ function ldRendreAccueil() {
     LD_ICONES_ACCUEIL[cle] + '</svg></span><b>' + verbe + '</b><span>' + suite + '</span></li>';
   box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
     '<main class="ld-accueil">' +
-      '<span class="ld-accueil-kicker">TON PROCHAIN RENDEZ-VOUS</span>' +
-      '<h1 class="ld-accueil-titre">Ton prochain date sur <em>Cringr</em>.</h1>' +
-      '<figure class="ld-accueil-visuel"><img src="art/redflag-accueil.webp?v=1" width="720" height="504" decoding="async" ' +
-        'alt="Une jeune femme, le soir chez elle, regarde une notification sur son téléphone." ' +
-        'onerror="this.parentNode.classList.add(\'ld-accueil-sans-image\')"></figure>' +
-      '<p class="ld-accueil-pitch">Tu incarnes une femme qui cherche un rendez-vous sur Cringr. ' +
-        'Discute en luxembourgeois, cherche des indices et démasque les mensonges.</p>' +
+      '<section class="ld-accueil-hero" aria-labelledby="ld-accueil-titre">' +
+        '<div class="ld-accueil-hero-texte">' +
+          '<h1 id="ld-accueil-titre" class="ld-accueil-titre">Ton prochain date sur <em>Cringr</em>.</h1>' +
+          '<p class="ld-accueil-pitch">Tu incarnes une femme qui cherche un date. ' +
+            'Discute en luxembourgeois, recueille des preuves et démasque les menteurs.</p>' +
+        '</div>' +
+        '<figure class="ld-accueil-visuel"><img src="art/redflag-accueil.webp?v=1" width="720" height="504" decoding="async" ' +
+          'alt="Une jeune femme chez elle, le soir, découvre un message sur son téléphone." ' +
+          'onerror="this.parentNode.classList.add(\'ld-accueil-sans-image\')"></figure>' +
+      '</section>' +
       '<ol class="ld-accueil-etapes" aria-label="Comment jouer">' +
         etape('choisis', 'Choisis', 'un profil') + etape('discute', 'Discute', 'en luxembourgeois') + etape('demasque', 'Démasque', 'les mensonges') +
       '</ol>' +
