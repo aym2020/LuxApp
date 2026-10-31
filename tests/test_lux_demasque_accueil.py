@@ -54,10 +54,11 @@ with sync_playwright() as p:
     pg.evaluate("document.querySelector('.ld-accueil-visuel img').decode()")
     e = etat(pg)
     assert e['ecran'] == 'accueil' and not e['partie'] and not e['selection'] and e['canvas'] == 0 and e['piste'] is None, e
-    assert pg.inner_text('.ld-accueil-titre') == 'Ton prochain date sur Cringr.'
+    assert ' '.join(pg.locator('.ld-accueil-titre').text_content().split()) == 'Ton prochain date sur Cringr.'
     assert pg.evaluate("getComputedStyle(document.querySelector('.ld-accueil-titre em')).color") == 'rgb(247, 106, 164)'
-    assert pg.inner_text('.ld-accueil-pitch') == ('Tu incarnes une femme qui rencontre des prétendants sur Cringr. '
-                                                   'Ton objectif : découvrir leurs mensonges et les prouver.')
+    assert pg.locator('.ld-accueil-pitch p').all_inner_texts() == [
+        'Tu incarnes une femme qui rencontre des prétendants sur Cringr.',
+        'Ton objectif : découvrir leurs mensonges et les prouver.']
     etapes = pg.evaluate("[...document.querySelectorAll('.ld-accueil-etapes li')].map(li => li.querySelector('b').textContent + ' ' + li.lastChild.textContent)")
     assert etapes == ['Choisis un profil', 'Discute en luxembourgeois', 'Démasque les mensonges'], etapes
     img = pg.evaluate("(() => { const i = document.querySelector('.ld-accueil-visuel img'); return [i.naturalWidth, i.alt]; })()")
