@@ -1,4 +1,4 @@
-# SPEC 115 — RED FLAG : écran d'accueil fixe, contexte narratif et entrée Cringr (V2)
+# SPEC 115 — RED FLAG : accueil narratif fixe, héroïne et entrée Cringr (V3)
 
 **Décision produit V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
 **Statut : V2 IMPLÉMENTÉE SUR `2.1` LE 31/10/2026 (voir § 11) — RECETTE CHROMIUM FIX-01 À FIX-10 VERTE ; VALIDATION SAMSUNG À FAIRE.** La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
@@ -129,6 +129,29 @@ Le titre peut être raccourci après recette Samsung si le visuel souffre, **san
 ## 10. Historique V1 — conservé pour traçabilité, non normatif
 
 Le 31/10/2026, la SPEC 115 V1 « Le téléphone vibre » a été implémentée sur la branche `2.1` (code `ea3f774`) et une recette Chromium PR-01 à PR-12 a été documentée. Elle montrait un téléphone vibrant, une héroïne trois-quarts animée via `PickUp`, un zoom vers les messages, puis un CTA « Ouvrir Cringr ». Elle utilisait `luxDemasquePrologueVuV1`, une option de skip et un fallback 2D. **Le produit a ensuite rejeté le rendu animé et choisi l'écran d'accueil statique V2.** Les tests et captures de V1 restent historiques ; aucune de leurs validations ne s'applique automatiquement à V2. **Le remplacement est livré (§ 11) : ces fonctions, la scène 3D, les bruitages et le test V1 ont été retirés du code.**
+
+## 12. Révision visuelle V3 — direction « illustration éditoriale » (31 octobre 2026)
+
+**Constat produit :** la V2 est fonctionnelle, mais le rendu Samsung avec une illustration rectangulaire indépendante, suivie d'un paragraphe et d'une grille, paraît plus pauvre que le mockup de référence. Le joueur préfère la **qualité visuelle, la chaleur, l'expressivité et l'intégration du personnage dans la composition du premier mockup**. La V3 conserve la simplicité fonctionnelle de la V2 ; **aucun retour à la cinématique**.
+
+### Décisions visuelles normatives
+
+1. **Un seul bloc héro narratif :** titre, pitch et illustration composent une scène continue, **pas** trois rectangles empilés. Le texte reste en **HTML**, au-dessus du visuel ; l'image est décorativement fondue dans le fond violet/noir. Sur grand écran, texte à gauche, héroïne à droite ; à 320–393 px, conserver un espace de lecture dégagé, sans chevauchement du visage.
+2. **Titre principal unique :** « Ton prochain date sur Cringr. » en serif ; Cringr en **rose**, sans kicker « TON PROCHAIN RENDEZ-VOUS » redondant. Le titre RED FLAG reste dans le bandeau de navigation.
+3. **Pitch en deux phrases courtes :** « Tu incarnes une femme qui cherche un date. Discute en luxembourgeois, recueille des preuves et démasque les menteurs. » Ne jamais remplacer « preuves » par une simple intuition : c'est la mécanique centrale du jeu.
+4. **Héroïne expressive :** visage féminin lisible, regard légèrement dubitatif ou amusé vers le téléphone, posture naturelle, tenue quotidienne. **Le rendu low-poly actuel n'est qu'un asset temporaire**, pas une validation de qualité artistique. Éviter les yeux blancs sans pupilles, la main incohérente et l'animation de prise de téléphone. Une illustration définitive de qualité comparable au mockup doit faire l'objet d'un **asset original autorisé**, optimisé (WebP), sans texte incrusté ni dépendance 3D au lancement.
+5. **Ambiance :** intérieur nocturne rose/violet, lumière chaude, téléphone et éventuellement tasse ; profondeur douce sans halo excessif ni bord droit/inférieur rectangulaire. Préserver l'identité PS1/pixel et la sobriété de LuxApp ; ne pas transformer l'écran en publicité ou en illustration hyperréaliste.
+6. **Conserver uniquement** les trois étapes simples « Choisis → Discute → Démasque » avec pictogrammes rétro, sans sous-cartes supplémentaires ou badges « A1–A2 » / « Dialogue et enquête ». **Un seul CTA or « Commencer »** ; pas de « Revoir l'intro ».
+7. **Responsive :** sur 320×600, 360×740, 393×852, 430×932 et desktop 768/1440, vérifier que texte et visage ne se chevauchent pas ; le CTA reste atteignable, pas de débordement ni texte tronqué à 130/200 %. Les ajustements mobile peuvent modifier l'alignement de l'image sans modifier le fond ni la taille des cibles tactiles.
+
+### Implémentation partielle poussée (code, non recette visuelle)
+
+- `public/lux-demasque.js` : `.ld-accueil-hero` regroupe titre, pitch et illustration ; suppression du kicker et copy plus courte.
+- `public/lux-demasque.css` : image positionnée et masquée en dégradé plutôt qu'isolée dans une vignette, texte à gauche et hiérarchie plus affirmée ; aucun changement des commandes ni du moteur.
+- `public/index.html` : nouvelles versions de cache `?v=22` pour JS/CSS.
+- Tests statiques et attentes Playwright de texte actualisés.
+
+**Réserve produit majeure :** l'illustration `public/art/redflag-accueil.webp` **n'a pas été remplacée** dans cette passe ; elle reste le rendu low-poly existant. L'amélioration de l'expression du personnage et la qualité artistique du visuel **ne sont pas closes**. Aucune capture Samsung post-modification, aucun test Playwright effectif ni validation produit ne sont revendiqués par cette note. **LD-049 reste ouverte** ; ne pas réutiliser la recette Chromium V2 comme preuve de conformité V3.
 
 ## 11. Implémentation V2 du 31 octobre 2026 (Chromium ; Samsung non exécuté)
 
