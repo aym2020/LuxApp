@@ -1,6 +1,6 @@
 # RED FLAG / Cringr — documentation éditoriale
 
-**Branche de travail :** `2.1`. **Source normative technique :** [SPEC 110](../specs/SPEC-110.md) et [SPEC 113](../specs/SPEC-113.md). **Backlog canonique :** [TODO Lux Démasqué sur main](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). **Code et JSON actuels :** toujours consulter GitHub avant intégration.
+**Branche de travail :** `2.1`. **Sources normatives techniques :** [SPEC 110 — gameplay](../specs/SPEC-110.md), [SPEC 113 — sélection Cringr](../specs/SPEC-113.md) ; **[SPEC 115 — prologue cinématique](../specs/SPEC-115.md)** est **spécifiée mais non implémentée**. **Backlog canonique :** [TODO Lux Démasqué sur main](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). **Code et JSON actuels :** toujours consulter GitHub avant intégration.
 
 ## Commencer ici
 
