@@ -1,6 +1,6 @@
 # RED FLAG / Cringr — documentation éditoriale
 
-**Branche de travail :** `2.1`. **Sources normatives techniques :** [SPEC 110 — gameplay](../specs/SPEC-110.md), [SPEC 113 — sélection Cringr](../specs/SPEC-113.md) ; **[SPEC 115 — prologue cinématique](../specs/SPEC-115.md)** est **implémentée sur `2.1` (LD-049), validation Samsung en attente**. **Backlog canonique :** [TODO Lux Démasqué sur main](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). **Code et JSON actuels :** toujours consulter GitHub avant intégration.
+**Branche de travail :** `2.1`. **Sources normatives techniques :** [SPEC 110 — gameplay](../specs/SPEC-110.md), [SPEC 113 — sélection Cringr](../specs/SPEC-113.md) et [SPEC 115 — accueil fixe V2](../specs/SPEC-115.md) (**spécifiée mais non implémentée** ; cinématique V1 rejetée, LD-049 ouverte). **Backlog canonique :** [TODO Lux Démasqué sur main](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). **Code et JSON actuels :** toujours consulter GitHub avant intégration.
 
 ## Commencer ici
 
