@@ -11,6 +11,8 @@
 
 **SPEC 113 — Cringr (29/10/2026) :** [contrat](docs/specs/SPEC-113.md) et [recette réelle](docs/CRINGR-SPEC-113-RECETTE.md). Sélecteur seulement : gauche = NOPE, droite/cœur = rencontre, seuil strict 65 px ; clavier et « Passer » accessibles. CSS unique, police rétro de lecture locale, garde des chargements et réessai. Rapide 3/3, complet 11/11 ; suite globale rouge sur échecs reproduits dans le checkout initial. **LD-048 non validée tant que le joueur n'a pas accepté sur Samsung.**
 
+**SPEC 115 — prologue RED FLAG (31/10/2026) :** [cinématique « Le téléphone vibre »](docs/specs/SPEC-115.md), **documentation seulement, non implémentée**. Avant Cringr, une protagoniste féminine récupère son téléphone par montage low-poly PS1 (sans animation réaliste de préhension), puis lecture de messages HTML et passage au sélecteur. Quatre secondes de plans automatiques, skip immédiat, vue seulement à la première entrée, relecture volontaire, fallback 2D et rendu WebGL partagé sans nouveau renderer. **Ne touche pas SPEC 113, LD-048 ni la prochaine action LD-002.01 ; créer/planifier son propre suivi dans la TODO sur `main` avant l'implémentation, sans cocher d'ancienne tâche.**
+
 Mémo des méthodes et techniques pour résoudre les problèmes récurrents du projet.
 But : arrêter de re-réfléchir à des trucs déjà résolus.
 
