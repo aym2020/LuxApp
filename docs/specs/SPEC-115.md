@@ -6,7 +6,7 @@
 
 > **Décision normative : ABANDONNER la cinématique 3D, le téléphone qui vibre, la prise en main, les messages intermédiaires, le zoom et le mécanisme « vu une fois ».** Les remplacer par **un seul écran de préparation statique**, dans l'esprit du lancement de **Lux Runner**, suivi immédiatement du sélecteur Cringr au clic sur **Commencer**. Ne pas créer de nouvelle SPEC.
 
-> **Priorité documentaire V4 :** les décisions et le contrat de recette du **§ 13** remplacent les descriptions visuelles des versions V2 (§ 2–8), V3 (§ 12) et leur statut historique. **Ne pas réintroduire** la cinématique V1. Les règles de gameplay, navigation et conservation des données restent inchangées.
+> **Priorité documentaire V5 :** les décisions du **§ 14** complètent et priment sur le contrat visuel V4 (§ 13) pour la typographie, les textes, les capsules et les espacements. Les descriptions V2 (§ 2–8), V3 (§ 12) et les tests historiques ne constituent pas la cible finale. **Ne pas réintroduire** la cinématique V1. Les règles de gameplay, navigation et conservation des données restent inchangées.
 
 ## 1. Objectif produit
 
