@@ -374,32 +374,62 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status>span:last-child{text-align:right}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-island{height:20px;background:#050409;border-radius:12px}
-/* SPEC 115 V2 — accueil fixe de RED FLAG (composition de l'écran de préparation de Lux Runner,
-   scopée à cet écran : aucun sélecteur partagé avec #view-runner). Or LuxApp réservé au CTA. */
+/* SPEC 115 V3 — hero narratif : la femme et les textes partagent la même scène.
+   Le fondu remplace le bloc-image rectangulaire, sans changer l'asset PS1 actuel. */
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil{
-  width:100%;max-width:420px;min-width:0;margin:0 auto;flex:1 1 auto;display:flex;flex-direction:column;gap:12px;padding:4px 0 0;
+  width:100%;max-width:420px;min-width:0;margin:0 auto;flex:1 1 auto;
+  display:flex;flex-direction:column;gap:16px;padding:6px 0 0;
 }
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-kicker{color:#bda7ea;letter-spacing:.16em;font:800 12px/1.4 var(--font)}
+#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{
+  position:relative;isolation:isolate;min-height:clamp(345px,49svh,440px);
+  display:flex;flex-direction:column;justify-content:flex-start;
+}
+#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero-texte{
+  position:relative;z-index:2;pointer-events:none;
+}
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{
-  margin:-4px 0 0;font:400 clamp(34px,10vw,46px)/1.04 'Instrument Serif',Georgia,serif;color:#f6f1e9;
-  text-shadow:0 0 28px rgba(177,140,240,.25);overflow-wrap:anywhere;
+  position:relative;max-width:94%;margin:0 0 24px;
+  font:400 clamp(38px,10.2vw,51px)/1.03 'Instrument Serif',Georgia,serif;
+  letter-spacing:-.025em;color:#f6f1e9;
+  text-shadow:0 2px 20px #130d1b;
 }
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre em{font-style:italic;color:var(--ld-rose)}
+#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre em{
+  display:block;font-style:normal;color:#f26ca4;
+}
+#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{
+  position:relative;max-width:55%;margin:0;padding-left:11px;
+  border-left:2px solid #b96cbf;
+  font:500 clamp(13px,3.55vw,15px)/1.43 var(--font);color:#f1e6ee;
+  text-shadow:0 1px 9px #100b15,0 1px 3px #100b15;
+}
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{
-  position:relative;margin:0;border-radius:16px;overflow:hidden;background:#140e1d;
-  height:clamp(150px,calc(100svh - 520px),294px); /* 294 px = 420 px de large au format de l’image : pas de recadrage excessif */
-  -webkit-mask-image:radial-gradient(120% 110% at 40% 45%,#000 62%,transparent 100%);
-  mask-image:radial-gradient(120% 110% at 40% 45%,#000 62%,transparent 100%);
+  position:absolute;z-index:0;inset:114px -16px 0 11%;margin:0;
+  overflow:hidden;background:transparent;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 12%,#000 76%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 12%,#000 76%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect;
 }
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel img{display:block;width:100%;height:100%;object-fit:cover;object-position:30% 35%}
-/* Image indisponible : nuit violette et téléphone rose dessinés en CSS, texte et CTA intacts. */
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image{background:radial-gradient(60% 55% at 35% 55%,#4a2350,#140e1d 80%)}
+#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel img{
+  display:block;width:100%;height:100%;object-fit:cover;
+  object-position:28% 42%;transform:scaleX(-1);image-rendering:pixelated;
+}
+#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image{
+  background:radial-gradient(ellipse at 78% 48%,#6b2a69 0%,#301636 37%,transparent 73%);
+}
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image img{display:none}
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image::after{
-  content:"";position:absolute;left:calc(35% - 22px);top:calc(50% - 38px);width:44px;height:76px;border:5px solid #0c0912;border-radius:9px;
-  background:#ff7fe6;box-shadow:0 0 34px rgba(255,79,216,.55);
+  content:"♥";position:absolute;right:19%;top:42%;font:40px/1 var(--ld-pixel);
+  color:#ff70ca;text-shadow:0 0 30px #be2f91;
 }
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{margin:0;font:500 16px/1.45 var(--font);color:#d9cfbf}
+@media(max-width:360px){
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:340px}
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{font-size:37px;margin-bottom:18px}
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{max-width:58%;font-size:12.5px}
+}
+@media(min-width:768px){
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:390px}
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{inset:102px -12px 0 12%}
+}
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes{
   list-style:none;margin:0;padding:12px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:4px;
   border-top:1px solid rgba(177,140,240,.22);border-bottom:1px solid rgba(177,140,240,.22);
