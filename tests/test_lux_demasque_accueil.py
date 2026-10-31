@@ -57,12 +57,14 @@ with sync_playwright() as p:
     assert ' '.join(pg.locator('.ld-accueil-titre').text_content().split()) == 'Ton prochain date sur Cringr.'
     assert pg.evaluate("getComputedStyle(document.querySelector('.ld-accueil-titre em')).color") == 'rgb(247, 106, 164)'
     assert pg.locator('.ld-accueil-pitch p').all_inner_texts() == [
-        'Tu incarnes une femme qui rencontre des prétendants sur Cringr.',
-        'Ton objectif : découvrir leurs mensonges et les prouver.']
+        'Tu incarnes une femme qui cherche un date.',
+        'Discute, trouve des preuves et démasque les mensonges.']
     etapes = pg.evaluate("[...document.querySelectorAll('.ld-accueil-etapes li')].map(li => li.querySelector('b').textContent + ' ' + li.lastChild.textContent)")
-    assert etapes == ['Choisis un profil', 'Discute en luxembourgeois', 'Démasque les mensonges'], etapes
+    assert etapes == ['Choisis un profil', 'Discute en LU', 'Démasque les mensonges'], etapes
     img = pg.evaluate("(() => { const i = document.querySelector('.ld-accueil-visuel img'); return [i.naturalWidth, i.alt]; })()")
     assert img[0] == 564 and 'femme' in img[1] and 'téléphone' in img[1], img
+    assert pg.locator('.ld-accueil-titre span').all_inner_texts() == ['Ton prochain', 'date sur']
+    assert pg.locator('.ld-accueil-tags span').first.inner_text().replace('\n', ' ') == 'Luxembourgeois · A1–A2'
     assert pg.get_by_role('button', name='Commencer').count() == 1
     for absent in ('Revoir', 'Passer', 'Ouvrir Cringr'):
         assert absent not in pg.inner_text('#ld-jeu'), absent
@@ -198,7 +200,7 @@ with sync_playwright() as p:
         capture(pg, f'fix06-{largeur}x{hauteur}')
         assert not pg.erreurs, pg.erreurs
         ctx.close()
-    ok('FIX-06/07 : 320×600 → 1440×900 : zéro débordement, CTA ≥ 48 px visible (défilement court à 320×600), contenu ≤ 420 px centré')
+    ok('FIX-06/07 : 320×600 → 1440×900 : pas de débordement, CTA ≥ 48 px, contenu ≤ 560 px centré')
 
     # ── FIX-10 : Lux Match (réactivé pour le test) puis RED FLAG : pas de 3D résiduelle ──
     ctx, pg = contexte(b)
