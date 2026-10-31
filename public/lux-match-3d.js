@@ -13,7 +13,9 @@
    Ajouts SPEC 110 (Lux Démasque), sans changer les services ci-dessus :
      interrogatoire(conteneur, profil) → le prétendant seul, face au joueur, dans le café ;
      photo(scene, personnes, l, h)     → « photo » de preuve dans un petit décor low-poly ;
-     partage()                         → une seule instance (un seul WebGLRenderer) pour les deux jeux. */
+     partage()                         → une seule instance (un seul WebGLRenderer) pour les deux jeux.
+   Ajout SPEC 115 (RED FLAG), sans changer les services ci-dessus :
+     prologue(conteneur, profil, rappels) → « le téléphone vibre » : trois plans, puis rappels.fin(). */
 import * as THREE from './vendor/three/three.module.min.js';
 import { GLTFLoader } from './vendor/three/GLTFLoader.js';
 
@@ -719,10 +721,114 @@ async function creer() {
     return { apercu: compter(sceneApercu), date: compter(sceneDate), portrait: compter(scenePortrait), attache: rendu ? (rendu.scene === sceneDate ? 'date' : 'apercu') : null };
   }
 
+  // ── SPEC 115 : prologue RED FLAG « Le téléphone vibre » (chambre de nuit low-poly).
+  // Trois plans montés comme au cinéma, sur l'horloge unique du renderer partagé :
+  //   1. 0–1,4 s  gros plan du téléphone posé sur la table, qui vibre deux fois ;
+  //   2. 1,4–2,8 s l'héroïne, de trois quarts, se penche vers lui (clip PickUp existant) ;
+  //   3. 2,8–4,0 s coupe : le téléphone, tenu vers la caméra, remplit l'écran.
+  // Aucune main ne touche l'objet : la coupe raconte la prise. rappels.plan(n), rappels.fin().
+  const PLANS_PROLOGUE = [0, 1.4, 2.8, 4.0];
+  let prologueScene = null;
+  function construirePrologue() {
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#150d21');
+    scene.add(new THREE.HemisphereLight(0x9a7cff, 0x1a1024, 1.25));
+    const lampe = new THREE.PointLight(0xffb070, 3, 4.5, 1.6); lampe.position.set(0.25, 1.25, -0.75); scene.add(lampe);
+    const neon = new THREE.PointLight(0xff4fd8, 3, 5, 1.6); neon.position.set(-1.6, 1.8, 0.6); scene.add(neon);
+    scene.add(plancher('#2a1f36'), boite(8, 3.2, 0.1, '#3a2950', 0, 1.6, -1.6), boite(0.1, 3.2, 6, '#33244a', -2.4, 1.6, 0.6));
+    // Fenêtre de nuit et lune (lueur), cadre sombre.
+    scene.add(boite(1.3, 1.0, 0.04, '#1b1430', -1.0, 1.75, -1.53), boite(1.1, 0.82, 0.02, lueur('#1d2a5c'), -1.0, 1.75, -1.5));
+    const lune = new THREE.Mesh(new THREE.CircleGeometry(0.12, 10), lueur('#f3e3b0')); lune.position.set(-0.72, 1.98, -1.48); scene.add(lune);
+    // Lit au fond (couette violette) : on comprend une chambre sans décor complexe.
+    scene.add(boite(1.5, 0.4, 2.0, '#5b3f86', -1.5, 0.2, -0.3), boite(1.5, 0.12, 0.5, '#e9dcf2', -1.5, 0.46, -1.0));
+    // Table de nuit + lampe.
+    scene.add(boite(0.8, 0.05, 0.55, '#7a5238', 0.45, 0.72, -0.75));
+    [[0.1, -0.52], [0.8, -0.52], [0.1, -0.98], [0.8, -0.98]].forEach(([x, z]) => scene.add(boite(0.05, 0.7, 0.05, '#5a3a28', x, 0.35, z)));
+    scene.add(cylindre(0.07, 0.04, '#2a2030', 0.2, 0.765, -0.85, 10), cylindre(0.015, 0.32, '#2a2030', 0.2, 0.94, -0.85, 6));
+    const abat = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.18, 10, 1, true), lueur('#ffcf8a')); abat.position.set(0.2, 1.16, -0.85); scene.add(abat);
+    // Téléphone : coque sombre, écran éteint puis allumé, halo et traits de vibration pixel.
+    const telephone = new THREE.Group();
+    telephone.add(boite(0.1, 0.014, 0.2, '#100c16', 0, 0, 0));
+    const ecran = boite(0.088, 0.003, 0.18, lueur('#1a1426'), 0, 0.0085, 0); telephone.add(ecran);
+    const notif = boite(0.07, 0.004, 0.03, lueur('#ff4fd8'), 0, 0.011, -0.055); notif.visible = false; telephone.add(notif);
+    // Plan 3 : l'écran montre déjà la messagerie (raccord avec l'interface HTML qui suit).
+    const bulles = [[-0.012, 0.0, '#4a3768', 0.055], [0.014, 0.035, '#db218f', 0.05]].map(([x, z, c, l]) => {
+      const b = boite(l, 0.004, 0.022, lueur(c), x, 0.011, z); b.visible = false; telephone.add(b); return b;
+    });
+    telephone.position.set(0.58, 0.752, -0.68); telephone.rotation.y = -0.35;
+    scene.add(telephone);
+    const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: textureLueur('rgba(255,90,220,0.9)'), depthWrite: false, toneMapped: false, transparent: true }));
+    halo.scale.set(0.5, 0.5, 1); halo.position.set(0.58, 0.8, -0.68); scene.add(halo);
+    const traits = [[-0.1, 0], [0.1, 0], [-0.085, 0.05], [0.085, 0.05], [-0.085, -0.05], [0.085, -0.05]].map(([x, z]) => {
+      const t = boite(0.035, 0.008, 0.008, lueur('#ffd3f5'), x, 0.01, z); t.visible = false; telephone.add(t); return t;
+    });
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.02, 30);
+    return { scene, telephone, ecran, notif, bulles, halo, traits, camera, heroine: null, temps: 0, plan: -1, fini: false, rappels: null, poseTel: telephone.position.clone(), rotTel: telephone.rotation.clone() };
+  }
+  const devant = new THREE.Vector3(), cibleTel = new THREE.Vector3();
+  function avancerPrologue(dt) {
+    const e = prologueScene, t = (e.temps += dt);
+    const plan = t < PLANS_PROLOGUE[1] ? 0 : t < PLANS_PROLOGUE[2] ? 1 : t < PLANS_PROLOGUE[3] ? 2 : 3;
+    if (plan !== e.plan) {
+      e.plan = plan;
+      // fin() détache la scène : jamais pendant l'image en cours (render suit avancer).
+      if (plan === 3) { if (!e.fini && e.rappels && e.rappels.fin) { e.fini = true; const fin = e.rappels.fin; Promise.resolve().then(fin); } }
+      else if (e.rappels && e.rappels.plan) e.rappels.plan(plan);
+    }
+    // Plan 2 : elle se tourne d'abord vers la caméra (visage lisible), puis tend le bras.
+    if (plan === 1 && !e.geste && t > PLANS_PROLOGUE[1] + 0.6 && e.heroine) { e.geste = true; e.heroine.userData.anim.jouer('PickUp', true); }
+    if (e.heroine) e.heroine.userData.anim.avancer(dt);
+    // Deux vibrations brèves (0,15–0,5 s et 0,7–1,05 s), écran allumé dès la première.
+    const vibre = (t > 0.15 && t < 0.5) || (t > 0.7 && t < 1.05);
+    const allume = t > 0.15;
+    e.ecran.material.color.set(plan >= 2 ? '#1b1428' : allume ? '#b89cff' : '#1a1426');
+    e.bulles.forEach(b => { b.visible = plan >= 2; });
+    e.notif.visible = allume;
+    e.traits.forEach((m, i) => { m.visible = vibre && ((Math.floor(t * 24) + i) % 2 === 0); });
+    e.halo.material.opacity = allume ? 0.55 + Math.sin(t * 9) * 0.25 : 0;
+    const cam = e.camera;
+    if (plan === 0) {
+      e.telephone.position.copy(e.poseTel); e.telephone.rotation.copy(e.rotTel);
+      if (vibre) { e.telephone.position.x += Math.sin(t * 95) * 0.004; e.telephone.rotation.y += Math.sin(t * 70) * 0.05; }
+      cam.position.set(0.98, 1.16, -0.12); cam.lookAt(0.48, 0.76, -0.72);
+    } else if (plan === 1) {
+      e.telephone.position.copy(e.poseTel); e.telephone.rotation.copy(e.rotTel);
+      const k = (t - PLANS_PROLOGUE[1]) / (PLANS_PROLOGUE[2] - PLANS_PROLOGUE[1]);
+      cam.position.set(1.6 - k * 0.12, 1.32, 1.65 - k * 0.15); cam.lookAt(-0.05, 1.02, -0.6);
+    } else {
+      // Plan 3 : le téléphone, tenu vers la caméra, s'approche jusqu'à remplir l'écran.
+      const k = Math.min(1, (t - PLANS_PROLOGUE[2]) / (PLANS_PROLOGUE[3] - PLANS_PROLOGUE[2]));
+      const lisse = k * k * (3 - 2 * k);
+      cam.position.set(0.4, 1.3, 0.55); cam.lookAt(0.4, 1.2, -0.5);
+      cam.getWorldDirection(devant);
+      cibleTel.copy(cam.position).addScaledVector(devant, 0.68 - lisse * 0.38);
+      e.telephone.position.copy(cibleTel); e.telephone.position.y -= 0.05 * (1 - lisse);
+      // L'écran (face +y) regarde la caméra, en portrait ; léger angle qui se redresse.
+      e.telephone.quaternion.copy(cam.quaternion); e.telephone.rotateX(Math.PI / 2);
+      e.telephone.rotateZ(0.22 * (1 - lisse)); e.telephone.rotateX(-0.3 * (1 - lisse));
+      e.halo.material.opacity = 0;
+    }
+  }
+  async function prologue(cible, profil, rappels) {
+    const numero = ++demande;
+    const gltf = await charger(profil.apparence3d.modele);
+    if (numero !== demande) return false;
+    if (!prologueScene) prologueScene = construirePrologue();
+    const e = prologueScene;
+    const heroine = instancier(gltf, teintesProfil(profil));
+    heroine.position.set(-0.3, 0, -0.62); heroine.rotation.y = 1.2; // trois quarts : vers la table et vers la caméra
+    e.scene.add(heroine);
+    heroine.userData.anim.jouer('Idle');
+    e.heroine = heroine; e.temps = 0; e.plan = -1; e.fini = false; e.geste = false; e.rappels = rappels || null;
+    attacher(cible, { scene: e.scene, camera: e.camera, avancer: avancerPrologue });
+    avancerPrologue(0);
+    return true;
+  }
+
   // Arrêt demandé par l'interface : annule aussi les scènes encore en chargement.
   function arreter() { demande++; detacher(); }
 
-  return { portrait, apercu, saluerApercu, date, reagir, detacher: arreter, diagnostic, pointTete, interrogatoire, photo };
+  return { portrait, apercu, saluerApercu, date, reagir, detacher: arreter, diagnostic, pointTete, interrogatoire, photo, prologue };
 }
 // Une seule instance pour toute l'appli (Lux Match et Lux Démasque) : un seul WebGLRenderer.
 let instance = null;

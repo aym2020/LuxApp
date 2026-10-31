@@ -43,7 +43,7 @@ with sync_playwright() as p:
     pg.on('pageerror', lambda e: erreurs.append(str(e)))
     pg.route('**/*gstatic*/**', lambda r: r.abort()); pg.route('**/fonts.googleapis.com/**', lambda r: r.abort())
     pg.goto(URL); pg.wait_for_selector('#today')
-    pg.evaluate("ouvrirJeux()"); pg.click('.ld-jouer-hub'); pg.wait_for_selector('#ld-selection-carte')
+    pg.evaluate("ldEcrire('luxDemasquePrologueVuV1', true); ouvrirJeux()"); pg.click('.ld-jouer-hub'); pg.wait_for_selector('#ld-selection-carte')  # prologue : test dédié
     # Cringr ne crée aucune partie avant LIKE, mais doit déjà diffuser la musique.
     attendre_piste(pg, 'enquete')
     assert pg.evaluate("ld.partie === null && ld.selection !== null")

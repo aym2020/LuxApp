@@ -3,8 +3,8 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const js=read('public/lux-demasque.js'),css=read('public/lux-demasque.css');
 test('SPEC112 : le hub ouvre la sélection, pas une rencontre automatique',()=>{
- assert.match(js,/onclick="ldOuvrirSelection\(\)">Jouer/);
- assert.match(js,/async function ldOuvrirSelection\(\)/);
+ assert.match(js,/onclick="ldEntrerRedFlag\(\)">Jouer/); // SPEC 115 : prologue la première fois, puis la sélection
+ assert.match(js,/async function ldOuvrirSelection\(options\)/);
  assert.match(js,/function ldRendreSelection\(\)/);
  assert.match(js,/ld\.donnees\.dossiers\.concat\(ld\.donnees\.dossiersRediges \|\| \[\]\)/);
  assert.match(js,/NOUVEAU PROFIL/);
@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=19','lux-demasque.js?v=19','lux-match.css?v=22','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=20','lux-demasque.js?v=20','lux-match.css?v=22','lux-match.js?v=29']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -104,4 +104,24 @@ test('LD-048 : croix NOPE secondaire à gauche du cœur, même action, cible 48 
  assert.match(css,/\.ld-dating-meet\{[^}]*width:56px;height:56px/,'cœur inchangé');
  assert.match(js,/if \(dx > 0\) ldSelectionConfirmer\(\)/);assert.match(js,/else ldSelectionChanger\(1\); \/\/ NOPE/);
  assert.match(js,/Math\.abs\(dx\) > 65/);
+});
+
+// SPEC 115 : prologue « Le téléphone vibre » avant Cringr (contrat statique ; parcours dans tests/test_lux_demasque_prologue.py).
+test('SPEC 115 : prologue une fois, passable, sur le renderer partagé, sans toucher au jeu',()=>{
+ const m3d=read('public/lux-match-3d.js'),audio=read('public/lux-demasque-audio.js');
+ assert.match(js,/function ldEntrerRedFlag\(\) \{ return ldOuvrirSelection\(ldPrologueVu\(\) \? undefined : \{ prologue: true \}\); \}/);
+ assert.match(js,/const LD_PROLOGUE_CLE = 'luxDemasquePrologueVuV1'/);
+ for(const cle of ['luxDemasqueResolus','luxDemasqueRecord','ldSwipeVu'])assert.notEqual(cle,'luxDemasquePrologueVuV1');
+ assert.match(js,/modele: 'Casual3_Female'/);
+ for(const t of ['Alors, prête pour ton date de ce soir ? 👀','Pas encore trouvé avec qui !','Ouvrir Cringr','Passer l’intro','Revoir l’introduction','De nouveaux profils t’attendent ♥'])assert.ok(js.includes(t),t);
+ assert.match(js,/n \+ ' profils à découvrir ♥'/,'chiffre réel, jamais « 4 » figé');
+ assert.doesNotMatch(js,/'4 profils/);
+ assert.match(js,/\(ld\.partie \|\| ld\.selection \|\| ld\.prologue\)\) luxDemasqueArreter\(\)/);
+ assert.equal((m3d.match(/new THREE\.WebGLRenderer/g)||[]).length,1,'aucun second renderer');
+ assert.match(m3d,/async function prologue\(cible, profil, rappels\)/);
+ assert.match(m3d,/Promise\.resolve\(\)\.then\(fin\)/,'fin() hors de l’image en cours');
+ assert.match(m3d,/return \{[^}]*prologue \}/);
+ assert.equal((audio.match(/new \(window\.AudioContext/g)||[]).length,1,'un seul AudioContext');
+ assert.match(audio,/vibre: \(\) =>/);assert.match(audio,/message: \(\) =>/);
+ assert.match(css,/\.ld-jeu\[data-ecran="prologue"\] \.ld-prologue-passer\{[^}]*min-height:48px/);
 });

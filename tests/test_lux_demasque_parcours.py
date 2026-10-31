@@ -54,7 +54,7 @@ def lire(pg, cle):
 
 with sync_playwright() as p:
     b, pg, erreurs_js = ouvrir(p, mobile=True)
-    pg.evaluate("ouvrirJeux()")
+    pg.evaluate("ldEcrire('luxDemasquePrologueVuV1', true); ouvrirJeux()")  # prologue SPEC 115 : test dédié
     pg.click('.ld-jouer-hub')
     pg.wait_for_selector('#ld-selection-carte')
     pg.click('.ld-dating-meet')

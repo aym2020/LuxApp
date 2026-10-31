@@ -337,51 +337,124 @@
    VT323 (OFL, auto-hébergée) garde une vraie typo rétro lisible dans les bios.
    Press Start 2P reste réservée aux marques et tampons courts. */
 @font-face{font-family:'VT323';src:url('fonts/vt323-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-#view-luxdemasque .ld-jeu[data-ecran="selection"]{
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]){
   --ld-lecture:'VT323',ui-monospace,monospace;
   max-width:var(--layout-page,480px);padding:8px 10px calc(16px + env(safe-area-inset-bottom));
   gap:8px;background:radial-gradient(90% 55% at 50% 5%,#2e1c3b,#130f1b 84%);
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] button{font-family:var(--ld-lecture)}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] :focus-visible{outline:3px solid #fff;outline-offset:3px}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-chargement{font:24px/1.2 var(--ld-lecture)}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) button{font-family:var(--ld-lecture)}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) :focus-visible{outline:3px solid #fff;outline-offset:3px}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-chargement{font:24px/1.2 var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-reessayer{
   align-self:center;min-height:48px;padding:8px 24px;border:2px solid #ecb4eb;
   border-radius:4px;background:#382244;color:#fff;font-size:24px;cursor:pointer;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection{
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-top-selection{
   width:100%;max-width:420px;align-self:center;min-height:48px;display:grid;
   grid-template-columns:48px minmax(0,1fr) 48px;gap:0;align-items:center;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-icone-btn{width:48px;height:48px;border-radius:8px}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-logo{justify-self:center;white-space:nowrap;font-size:12px}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-top-outils{width:48px;min-height:48px}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-top-selection .ld-icone-btn{width:48px;height:48px;border-radius:8px}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-top-selection .ld-logo{justify-self:center;white-space:nowrap;font-size:12px}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-top-selection .ld-top-outils{width:48px;min-height:48px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-revoir-icone{width:14px;height:14px;margin-left:3px;shape-rendering:crispEdges;color:#d5b4e1}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection{
   width:100%;max-width:420px;min-width:0;margin:0 auto;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone{
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-dating-phone{
   width:100%;padding:6px;border:3px solid #08070e;border-radius:32px;
   background:#4a3659;box-shadow:0 7px 0 #08060d,0 12px 0 #281b35;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen{
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-dating-screen{
   width:100%;min-width:0;display:flex;flex-direction:column;gap:8px;
   padding:10px;border-radius:24px;background:#100d19;
   border:1px solid #362744;overflow:hidden;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status{
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-dating-status{
   display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;
   min-height:22px;font:18px/1 var(--ld-lecture);color:#e8def4;padding:0 6px;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status>span:last-child{text-align:right}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-island{height:20px;background:#050409;border-radius:12px}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-dating-status>span:last-child{text-align:right}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-dating-island{height:20px;background:#050409;border-radius:12px}
+/* SPEC 115 — prologue « Le téléphone vibre » : même en-tête et même coque que Cringr. */
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue{
+  width:100%;max-width:420px;min-width:0;margin:0 auto;display:flex;flex-direction:column;gap:10px;flex:1 1 auto;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-plan{
+  position:relative;width:100%;height:clamp(340px,calc(100svh - 190px),600px);
+  border:3px solid #08070e;border-radius:28px;overflow:hidden;background:#150d21;
+  box-shadow:0 7px 0 #08060d,0 12px 0 #281b35;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-scene{position:absolute;inset:0;
+  background:radial-gradient(70% 45% at 70% 70%,#5a2a3a 0,#2a1a3a 55%,#150d21 100%)}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-scene .lm-canvas-3d{z-index:1}
+/* Repli 2D : le téléphone posé s'allume et vibre (aussi l'image d'attente avant la 3D). */
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli-tel{
+  position:absolute;left:50%;top:50%;width:96px;height:176px;margin:-88px 0 0 -48px;
+  border:6px solid #08070e;border-radius:16px;background:#08070e;box-shadow:6px 6px 0 #0a0610;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-3d .ld-prologue-repli-tel{display:none}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli-ecran{position:absolute;inset:4px;border-radius:8px;background:#1a1426}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli-ecran b{position:absolute;left:8px;right:8px;top:14px;height:18px;background:#ff4fd8;opacity:0}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-trait{position:absolute;top:50%;width:14px;height:4px;margin-top:-14px;background:#ffd3f5;opacity:0;
+  box-shadow:0 12px 0 #ffd3f5,0 24px 0 #ffd3f5}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-trait-g{left:-30px}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-trait-d{right:-30px}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli .ld-prologue-repli-tel{animation:ldPrologueVibre 1.05s steps(2,end) 1}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli .ld-prologue-repli-ecran{background:#b89cff;transition:background .15s steps(2,end)}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli .ld-prologue-repli-ecran b{opacity:1}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli .ld-prologue-trait{animation:ldPrologueTraits 1.05s steps(1,end) 1}
+@keyframes ldPrologueVibre{0%,30%,100%{transform:none}5%,15%,50%,60%{transform:translateX(-3px)}10%,20%,55%,65%{transform:translateX(3px)}}
+@keyframes ldPrologueTraits{0%,35%,45%,80%{opacity:1}30%,40%,75%,100%{opacity:0}}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-passer{
+  align-self:flex-end;min-width:48px;min-height:48px;padding:6px 14px;border:2px solid #8f63b8;border-radius:6px;
+  background:#1c1228;color:#e8d4f2;font-size:21px;line-height:1;cursor:pointer;box-shadow:3px 3px 0 #2e193e;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-passer:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #2e193e}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-sr{
+  position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;
+}
+/* Messages : bulles HTML lisibles (police VT323 de Cringr), notification et CTA. */
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-telephone .ld-dating-screen{min-height:clamp(340px,calc(100svh - 205px),585px);gap:12px}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-contact{
+  display:flex;align-items:center;gap:10px;padding:2px 4px 8px;border-bottom:1px solid #362744;font:22px/1 var(--ld-lecture);color:#fff;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-avatar{
+  display:grid;place-items:center;width:32px;height:32px;border:2px solid #c88ccf;border-radius:6px;background:#3a2a55;
+  font:12px/1 var(--ld-pixel);color:#ffd3f5;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-fil{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-bulle{
+  max-width:82%;padding:9px 12px;border:2px solid;border-radius:4px;font:22px/1.1 var(--ld-lecture);color:#fff;overflow-wrap:anywhere;
+  animation:ldBulle .28s steps(3,end) both;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-bulle-amie{align-self:flex-start;background:#3a2a55;border-color:#8f63b8;box-shadow:3px 3px 0 #1d1230}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-bulle-moi{align-self:flex-end;background:#db218f;border-color:#ffd3f5;box-shadow:3px 3px 0 #73134f;animation-delay:.55s}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-notif{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:auto;padding:10px 12px;border:2px solid #ff4fd8;border-radius:6px;
+  background:#24142c;font:21px/1.1 var(--ld-lecture);color:#ffd3f5;box-shadow:3px 3px 0 #4a1438;animation:ldBulle .28s steps(3,end) 1.1s both;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-ouvrir{
+  min-height:52px;padding:8px 16px;border:3px solid #ffd3f5;border-radius:8px;background:#db218f;color:#fff;
+  font:16px/1.2 var(--ld-pixel);cursor:pointer;box-shadow:4px 4px 0 #73134f;
+}
+#view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-ouvrir:active{transform:translate(2px,3px);box-shadow:2px 1px 0 #73134f}
+@keyframes ldBulle{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  #view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-bulle,
+  #view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-notif,
+  #view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli .ld-prologue-repli-tel,
+  #view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-repli .ld-prologue-trait{animation:none}
+  #view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-ouvrir:active,
+  #view-luxdemasque .ld-jeu[data-ecran="prologue"] .ld-prologue-passer:active{transform:none}
+}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-appbar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;min-width:0;
   min-height:28px;padding:0 2px;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-brand{
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-dating-brand{
   color:#f4f0f7;font:clamp(12px,3.4vw,16px)/1.5 var(--ld-pixel);white-space:nowrap;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-brand span{color:#ff4fd8}
+#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="prologue"]) .ld-dating-brand span{color:#ff4fd8}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-counter{
   font:18px/1.1 var(--ld-lecture);color:#d5b4e1;white-space:nowrap;
 }

@@ -22,7 +22,9 @@ const ld = {
   preparation: null,      // promesse de rendu des images du dossier
   emotionTimer: null,
   fxTimer: null,
-  fxFin: null   // fin de l’effet OBJECTION ! en cours (appui ou Retour pour le passer)
+  fxFin: null,  // fin de l’effet OBJECTION ! en cours (appui ou Retour pour le passer)
+  prologue: null,          // SPEC 115 : prologue « le téléphone vibre » en cours (avant Cringr)
+  prologueVuSession: false // mémoire volatile si le stockage local est refusé
 };
 const LD_APPS = { pix: 'Pix', pro: 'Pro', amis: 'Amis' };
 const LD_THEMES_FR = { travail: 'Travail', logement: 'Logement', sport: 'Sport', voyage: 'Voyage', cuisine: 'Cuisine', animal: 'Animal', famille: 'Famille', loisir: 'Loisir' };
@@ -67,7 +69,7 @@ function ldIcone(nom) {
 // Moteur de Lux Match (public/lux-match-3d.js), chargé à la demande, instance partagée.
 function ldObtenir3D() {
   if (!ld.promesse3d) {
-    ld.promesse3d = import('./lux-match-3d.js?v=12').then(() => window.LuxMatch3D.partage());
+    ld.promesse3d = import('./lux-match-3d.js?v=13').then(() => window.LuxMatch3D.partage());
     ld.promesse3d.then(m => { ld.rendu3d = m; }).catch(() => { ld.promesse3d = null; });
   }
   return ld.promesse3d;
@@ -178,7 +180,7 @@ function luxDemasqueCarteHub() {
     '<div class="jeux-carte-titre"><h2 id="jeux-ld-titre">Red Flag</h2><span class="jeux-etat ld-etat-demo">NOUVEAU</span></div>' +
     '<p>Il te raconte sa vie en luxembourgeois. Fouille ses réseaux et démasque ses disquettes !</p>' +
     '<div class="jeux-meta"><span><strong>≈ 5 min</strong> · A1.1–A1.2</span><span>Record <b>' + ldLire('luxDemasqueRecord', 0) + '</b></span></div>' +
-    '<button class="jeux-jouer ld-jouer-hub" type="button" onclick="ldOuvrirSelection()">Jouer <span aria-hidden="true">→</span></button>' +
+    '<button class="jeux-jouer ld-jouer-hub" type="button" onclick="ldEntrerRedFlag()">Jouer <span aria-hidden="true">→</span></button>' +
     '</section>';
 }
 
@@ -192,8 +194,18 @@ async function ldChargerDonnees() {
   ld.donnees = json.contenus;
   return ld.donnees;
 }
+// ── SPEC 115 : prologue joué une seule fois, au premier accès depuis Jeux. Il ne touche
+// ni aux résolus, ni aux records, ni aux graines : sa propre clé, distincte de tout le reste.
+const LD_PROLOGUE_CLE = 'luxDemasquePrologueVuV1';
+// L'héroïne (le joueur) : géométrie Quaternius partagée, teintes propres à RED FLAG.
+const LD_HEROINE = { id: 'heroine', nom: 'Toi', apparence3d: { modele: 'Casual3_Female', peau: '#d7a07a', cheveux: '#7a3424', haut: '#7a3fc4', bas: '#22202e' } };
+function ldPrologueVu() { return ld.prologueVuSession || ldLire(LD_PROLOGUE_CLE, false) === true; }
+function ldEntrerRedFlag() { return ldOuvrirSelection(ldPrologueVu() ? undefined : { prologue: true }); }
+function ldRevoirIntroduction() { return ldOuvrirSelection({ prologue: true }); }
+
 // ── Sélecteur Cringr (SPEC 113). Aucune partie créée avant LIKE / le cœur.
-async function ldOuvrirSelection() {
+// options.prologue : la cinématique SPEC 115 passe d'abord ; les profils se chargent pendant ce temps.
+async function ldOuvrirSelection(options) {
   if (!luxDemasqueDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
   luxDemasqueArreter();
   const ouverture = ld.ouverture;
@@ -201,11 +213,14 @@ async function ldOuvrirSelection() {
   if (typeof LuxDemasqueSon !== 'undefined') { LuxDemasqueSon.preparer(); LuxDemasqueSon.precharger(); }
   showView('view-luxdemasque');
   const box = ldBox();
-  if (box) {
+  if (options && options.prologue) ldDemarrerPrologue(ouverture);
+  else if (box) {
     box.dataset.ecran = 'selection';
     box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) + '<p class="ld-chargement" role="status">Chargement des profils…</p>';
   }
   try { await ldChargerDonnees(); } catch (_) {
+    // Pendant le prologue : rien n'est bloqué ; « Ouvrir Cringr » relancera le chargement.
+    if (ld.prologue && ld.prologue.ouverture === ouverture) { ld.prologue.echec = true; return; }
     if (ld.ouverture === ouverture && ldVueActive() && box) box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
       '<p class="ld-chargement" role="alert">Impossible de charger les profils. Vérifie ta connexion.</p>' +
       '<button type="button" class="ld-selection-reessayer" onclick="ldOuvrirSelection()">Réessayer</button>';
@@ -220,8 +235,121 @@ async function ldOuvrirSelection() {
   }
   const resolus = ldLire('luxDemasqueResolus', []);
   const premier = items.findIndex(d => !d.genere && !resolus.includes(d.id));
-  ld.selection = {items,index:Math.max(0,premier)};
+  const selection = {items,index:Math.max(0,premier)};
+  // Prologue encore affiché : la sélection attend « Ouvrir Cringr » (même premier profil, même graine).
+  if (ld.prologue && ld.prologue.ouverture === ouverture) { ld.prologue.selection = selection; ldMajNotificationPrologue(); return; }
+  ld.selection = selection;
   ldRendreSelection();
+}
+
+// ─── SPEC 115 : prologue « Le téléphone vibre » ─────────────────────────────
+// cinéma (3D partagée, ou repli 2D) → messages (HTML) → Cringr. Passable à tout moment.
+function ldDemarrerPrologue(ouverture) {
+  const pr = { phase: 'cinema', ouverture, selection: null, echec: false, minuteur: null, repli: false };
+  ld.prologue = pr;
+  ldRendrePrologue();
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { ldPrologueMessages(pr); return; }
+  // Chargement trop lent ou 3D impossible : image fixe du téléphone qui s'allume, puis messages.
+  pr.minuteur = setTimeout(() => ldPrologueRepli(pr), 3500);
+  ldObtenir3D().then(m => {
+    const scene = document.getElementById('ld-prologue-scene');
+    if (ld.prologue !== pr || pr.phase !== 'cinema' || pr.repli || !scene) return;
+    return m.prologue(scene, LD_HEROINE, {
+      plan: n => { if (ld.prologue === pr && n === 0) ldSon('vibre'); },
+      fin: () => { if (ld.prologue === pr) ldPrologueMessages(pr); }
+    }).then(ok => {
+      if (!ok) return;
+      // Prologue passé ou quitté pendant le chargement du modèle : pas de scène orpheline.
+      if (ld.prologue !== pr || pr.phase !== 'cinema' || pr.repli) { m.detacher(); return; }
+      clearTimeout(pr.minuteur);
+      scene.classList.add('ld-prologue-3d');
+    });
+  }).catch(() => ldPrologueRepli(pr));
+}
+function ldPrologueRepli(pr) {
+  if (ld.prologue !== pr || pr.phase !== 'cinema' || pr.repli) return;
+  pr.repli = true;
+  clearTimeout(pr.minuteur);
+  if (ld.rendu3d && document.querySelector('#ld-prologue-scene canvas')) ld.rendu3d.detacher();
+  const scene = document.getElementById('ld-prologue-scene');
+  if (scene) { scene.classList.remove('ld-prologue-3d'); scene.classList.add('ld-prologue-repli'); }
+  ldSon('vibre');
+  pr.minuteur = setTimeout(() => ldPrologueMessages(pr), 1800);
+}
+function ldPrologueMessages(pr) {
+  if (ld.prologue !== pr || pr.phase !== 'cinema') return;
+  pr.phase = 'messages';
+  clearTimeout(pr.minuteur);
+  if (ld.rendu3d && document.querySelector('#ld-prologue-scene canvas')) ld.rendu3d.detacher();
+  ldRendrePrologue();
+  ldSon('message');
+  const cta = document.querySelector('.ld-prologue-ouvrir');
+  if (cta) cta.focus({ preventScroll: true });
+}
+function ldTexteNotificationPrologue(pr) {
+  // Jamais de faux chiffre : générique tant que les profils ne sont pas chargés.
+  if (!pr || !pr.selection) return 'De nouveaux profils t’attendent ♥';
+  const n = pr.selection.items.length;
+  return n === 0 ? 'Aucun profil pour le moment' : n === 1 ? '1 profil à découvrir ♥' : n + ' profils à découvrir ♥';
+}
+function ldMajNotificationPrologue() {
+  const el = document.getElementById('ld-prologue-notif-texte');
+  if (el) el.textContent = ldTexteNotificationPrologue(ld.prologue);
+}
+function ldRendrePrologue() {
+  const pr = ld.prologue, box = ldBox();
+  if (!pr || !box) return;
+  box.dataset.ecran = 'prologue';
+  const passer = '<button type="button" class="ld-prologue-passer" onclick="ldTerminerPrologue()">Passer l’intro</button>';
+  const contenu = pr.phase === 'cinema'
+    ? '<section class="ld-prologue-plan" aria-label="Introduction : ton téléphone vibre">' +
+        '<div class="ld-prologue-scene" id="ld-prologue-scene" aria-hidden="true">' +
+          '<div class="ld-prologue-repli-tel"><span class="ld-prologue-repli-ecran"><b></b></span>' +
+            '<i class="ld-prologue-trait ld-prologue-trait-g"></i><i class="ld-prologue-trait ld-prologue-trait-d"></i></div>' +
+        '</div>' +
+        '<p class="ld-prologue-sr" role="status">Ton téléphone vibre. Un message t’attend.</p>' +
+      '</section>'
+    : '<section class="ld-dating-phone ld-prologue-telephone" aria-label="Messages de ton téléphone">' +
+        '<div class="ld-dating-screen">' +
+          '<div class="ld-dating-status" aria-hidden="true"><span>21:30</span><span class="ld-dating-island"></span><span>5G ▮▮▮</span></div>' +
+          '<div class="ld-prologue-contact"><span class="ld-prologue-avatar" aria-hidden="true">A</span><b>Amie</b></div>' +
+          '<ol class="ld-prologue-fil" aria-label="Conversation avec ton amie">' +
+            '<li class="ld-bulle ld-bulle-amie"><span class="ld-prologue-sr">Ton amie : </span>Alors, prête pour ton date de ce soir ? 👀</li>' +
+            '<li class="ld-bulle ld-bulle-moi"><span class="ld-prologue-sr">Toi : </span>Pas encore trouvé avec qui !</li>' +
+          '</ol>' +
+          '<div class="ld-prologue-notif" role="status"><span class="ld-dating-brand">cringr<span>♥</span></span>' +
+            '<span id="ld-prologue-notif-texte">' + ldEchapper(ldTexteNotificationPrologue(pr)) + '</span></div>' +
+          '<button type="button" class="ld-prologue-ouvrir" onclick="ldTerminerPrologue()">Ouvrir Cringr</button>' +
+        '</div>' +
+      '</section>';
+  box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
+    '<main class="ld-prologue ld-prologue-' + pr.phase + '">' + contenu + passer + '</main>';
+}
+// « Ouvrir Cringr » ou « Passer l'intro » : une seule transition, vers le même sélecteur
+// que sans prologue (premier profil et graine inchangés). Aucune partie, aucun LIKE.
+function ldTerminerPrologue() {
+  const pr = ld.prologue;
+  if (!pr || pr.ouverture !== ld.ouverture) return;
+  ld.prologue = null;
+  clearTimeout(pr.minuteur);
+  ld.prologueVuSession = true;
+  ldEcrire(LD_PROLOGUE_CLE, true);
+  if (ld.rendu3d && document.querySelector('#ld-prologue-scene canvas')) ld.rendu3d.detacher();
+  if (pr.echec) { ldOuvrirSelection(); return; } // relance le chargement (message d'erreur + Réessayer)
+  if (pr.selection) {
+    ld.selection = pr.selection;
+    ldSon('ouvrir');
+    ldRendreSelection();
+    const carte = document.getElementById('ld-selection-carte');
+    if (carte) carte.focus({ preventScroll: true });
+    return;
+  }
+  // Profils encore en chargement : ldOuvrirSelection les affichera dès leur arrivée.
+  const box = ldBox();
+  if (box) {
+    box.dataset.ecran = 'selection';
+    box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) + '<p class="ld-chargement" role="status">Chargement des profils…</p>';
+  }
 }
 function ldRendreSelection() {
   const sel = ld.selection, box = ldBox();
@@ -241,7 +369,7 @@ function ldRendreSelection() {
     : '<div class="ld-selection-portrait ld-selection-mystere" aria-hidden="true"><span>?</span></div>';
   // L'app entière est contenue dans un unique téléphone fictif.
   // Les données de rencontre et le moteur restent strictement ceux de SPEC 110.
-  box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
+  box.innerHTML = ldEntete({fr:false,menu:false,selection:true,revoir:true}) +
     '<main class="ld-selection">' +
       '<section class="ld-dating-phone" aria-label="Application de rencontre Cringr">' +
         '<div class="ld-dating-screen">' +
@@ -447,7 +575,9 @@ async function ouvrirLuxDemasque(dossierId) {
 }
 function luxDemasqueArreter() {
   ld.ouverture++;
-  const partie = ld.partie;
+  const partie = ld.partie, prologue = ld.prologue;
+  ld.prologue = null; // SPEC 115 : cinématique annulée (minuteur, scène 3D)
+  if (prologue) { clearTimeout(prologue.minuteur); if (ld.rendu3d) ld.rendu3d.detacher(); }
   ld.partie = null; // d'abord : fermer les fenêtres ne relance aucune musique
   ld.selection = null;
   if (typeof LuxDemasqueSon !== 'undefined') LuxDemasqueSon.musique(null);
@@ -463,7 +593,7 @@ function luxDemasqueArreter() {
 (function () {
   const vue = document.getElementById('view-luxdemasque');
   if (!vue || typeof MutationObserver === 'undefined') return;
-  new MutationObserver(() => { if (!vue.classList.contains('active') && (ld.partie || ld.selection)) luxDemasqueArreter(); })
+  new MutationObserver(() => { if (!vue.classList.contains('active') && (ld.partie || ld.selection || ld.prologue)) luxDemasqueArreter(); })
     .observe(vue, { attributes: true, attributeFilter: ['class'] });
 })();
 function ldQuitter() { luxDemasqueArreter(); if (typeof ouvrirJeux === 'function') ouvrirJeux(); }
@@ -509,6 +639,9 @@ function ldEntete(options) {
     '<div class="ld-top-outils">' +
       (o.fr === false ? '' : '<button type="button" class="ld-icone-btn ld-fr-btn' + (ld.aideFr ? ' ld-actif' : '') + '" onclick="ldBasculerAide()" aria-pressed="' + ld.aideFr + '" aria-label="' + (ld.aideFr ? 'Aide FR activée' : 'Aide FR désactivée') + '">FR</button>') +
       (o.menu === false ? '' : '<button type="button" class="ld-icone-btn" onclick="ldMenu()" aria-label="Menu" aria-haspopup="dialog">' + ldIcone('menu') + '</button>') +
+      // SPEC 115 : relecture volontaire du prologue, hors des actions du sélecteur.
+      (o.revoir ? '<button type="button" class="ld-icone-btn ld-revoir-intro" onclick="ldRevoirIntroduction()" aria-label="Revoir l’introduction" title="Revoir l’introduction">' +
+        '<svg class="ld-revoir-icone" viewBox="0 0 8 8" fill="currentColor" aria-hidden="true"><path d="M1 0h1v8H1zM2 1h1v6H2zM3 2h1v4H3zM4 3h1v2H4z"/></svg></button>' : '') +
     '</div></div>';
 }
 // Cringr et la rencontre utilisent « enquête » ; déposition = sa propre boucle,
@@ -528,7 +661,7 @@ function ldSynchroMusique() {
 }
 function ldSon(nom, options) {
   if (typeof LuxDemasqueSon === 'undefined') return;
-  if (nom === 'nav' || nom === 'page' || nom === 'ouvrir') LuxDemasqueSon.clic(nom); else LuxDemasqueSon.accent(nom, options);
+  if (['nav', 'page', 'ouvrir', 'vibre', 'message'].includes(nom)) LuxDemasqueSon.clic(nom); else LuxDemasqueSon.accent(nom, options);
 }
 function ldRendre() {
   const p = ld.partie, box = ldBox();

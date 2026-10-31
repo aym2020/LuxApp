@@ -1,6 +1,6 @@
 # SPEC 115 — RED FLAG / CRINGR : prologue cinématique « Le téléphone vibre »
 
-**Décision de conception :** 31 octobre 2026 · **Branche de travail :** `2.1` · **Statut : SPÉCIFIÉE — NON IMPLÉMENTÉE, NON TESTÉE, NON VALIDÉE SUR SAMSUNG.**  
+**Décision de conception :** 31 octobre 2026 · **Branche de travail :** `2.1` · **Statut : IMPLÉMENTÉE SUR `2.1` LE 31/10/2026 (voir § 9) — RECETTE CHROMIUM PR-01 À PR-12 EXÉCUTÉE ; NON VALIDÉE SUR SAMSUNG.**  
 **Priorité proposée :** P1 narratif / expérience d'entrée, à planifier sans bloquer les corrections et validations déjà ouvertes.  
 **Portée :** nouvelle introduction **avant** le sélecteur Cringr de RED FLAG, sans changer les rencontres, preuves, objections, dossiers, résultats ni le moteur d'apprentissage.  
 **Important :** la prochaine action canonique `LD-002.01 — Rencontre` reste inchangée dans [la TODO RED FLAG sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). Cette SPEC n'est **ni une réouverture de LD-048 ni un remplacement de SPEC 113**. Son ordonnancement devra être décidé dans le suivi avant implémentation.
@@ -147,6 +147,34 @@ Livrer **par incréments testables** plutôt qu'un chantier monolithique. En cas
 - **SPEC 113** : demeure **la référence du sélecteur Cringr**. Cette SPEC 115 ne modifie ni la carte, ni les boutons cœur/croix, ni les gestes.
 - **SPEC 114** et charte UI : géométrie PC/mobile et ergonomie inchangées.
 - **TODO canonique sur `main` :** suivre l'implémentation dans une tâche dédiée **à créer/planifier avant travaux**. Ne pas cocher `LD-048`, `LD-002.01` ou autre tâche comme « faite » au seul titre de cette SPEC.
-- **État de livraison de cette fiche :** rédaction et indexation documentaire uniquement. **Pas de code, asset, scène, musique ni test de l'application modifié ou exécuté.**
+- **État de livraison de cette fiche :** rédigée et indexée le 31/10, puis **implémentée le même jour** (§ 9). Suivi : **LD-049** dans la TODO sur `main`, non cochée avant accord Samsung.
 
 **Définition de terminé :** l'utilisateur reconnaît spontanément qu'il incarne une femme cherchant un date, la transition dans le téléphone paraît naturelle, l'introduction ne l'ennuie pas à la seconde partie, tous les cas PR-01 à PR-12 sont vérifiés et l'expérience est approuvée sur Samsung.
+
+## 9. Implémentation du 31 octobre 2026 (Chromium ; Samsung non exécuté)
+
+**Suivi :** LD-049 (TODO sur `main`), ouverte. LD-048, LD-002.01 et SPEC 113 inchangées : la carte, le cœur, la croix et les gestes du sélecteur ne sont pas modifiés.
+
+### Ce qui est codé
+
+- **Entrée :** le bouton « Jouer » du hub appelle `ldEntrerRedFlag()`. Premier accès → `ldOuvrirSelection({ prologue: true })` ; ensuite → `ldOuvrirSelection()` comme avant. Les profils se chargent **pendant** le prologue ; la sélection préparée (même premier profil, même graine de l'inédit) attend « Ouvrir Cringr ». Aucune partie n'est créée avant le LIKE.
+- **Mémoire :** clé dédiée `luxDemasquePrologueVuV1` (via `ldEcrire`/`ldCle`), écrite seulement sur « Ouvrir Cringr » ou « Passer l'intro » ; mémoire de session `ld.prologueVuSession` si le stockage est refusé. Résolus, records, graines, `ldSwipeVu` et préférences audio non touchés.
+- **Cinéma 3D** (`public/lux-match-3d.js`, service additif `prologue(conteneur, profil, rappels)`) : chambre de nuit en primitives (table, lampe, fenêtre et lune, lit), téléphone low-poly. Plan 1 (0–1,4 s) : gros plan, écran qui s'allume, deux vibrations, traits pixel et halo. Plan 2 (1,4–2,8 s) : l'héroïne de trois quarts, visage lisible, puis le clip **`PickUp` existant** (penchée vers la table) ; coupe avant tout contact. Plan 3 (2,8–4,0 s) : le téléphone, tenu vers la caméra, remplit l'écran qui montre déjà la messagerie ; puis `rappels.fin()` (différé hors de l'image en cours). **Même `WebGLRenderer` partagé**, horloge unique du renderer (suspendue onglet masqué), annulation par `detacher()`. `date()`, `interrogatoire()`, `apercu()`, `portrait()` et `photo()` inchangés.
+- **Héroïne :** `Casual3_Female` (Quaternius, CC0, déjà dans le dépôt), teintes propres à RED FLAG (cheveux auburn, haut violet) différentes de tous les profils Lux Match ; aucune donnée Lux Match modifiée.
+- **Messages** (HTML, coque Cringr partagée via `:is([data-ecran="selection"],[data-ecran="prologue"])`) : conversation exacte du § 2.2, notification **au nombre réel** de profils chargés (« 1 profil… », « N profils… », « Aucun profil pour le moment », générique tant que rien n'est chargé ou si le chargement échoue), CTA « Ouvrir Cringr » focalisé.
+- **« Passer l'intro »** visible dès la première image, en cinéma et en messages ; **« Revoir l'introduction »** : petite icône à droite du titre RED FLAG, sur l'écran Cringr uniquement.
+- **Replis :** module 3D ou WebGL indisponible, GLB en erreur, ou 3D non démarrée après **3,5 s** → téléphone 2D qui s'allume et vibre (CSS), puis messages après 1,8 s. Une 3D qui arrive après coup est détachée aussitôt. `prefers-reduced-motion` → messages directement, sans animation de bulles.
+- **Audio :** deux bruitages synthétisés originaux (« vibre », « message ») sur l'AudioContext existant, soumis à `luxDemasqueSon` ; aucune musique pendant le prologue ; la boucle d'enquête démarre à l'ouverture de Cringr comme avant.
+- **Arrêt :** `luxDemasqueArreter()` annule prologue, minuteurs et scène ; l'observateur de vue l'appelle aussi quand seul le prologue est actif (Retour, autre vue).
+
+### Recette exécutée (Chromium + SwiftShader)
+
+`tests/test_lux_demasque_prologue.py` : PR-01 à PR-12 (parcours complet, double appui, relecture, Retour en cinéma et en messages avec attente de 4,5 s, trois enchaînements intro → Cringr → LIKE → rencontre → retour, module 3D bloqué, GLB lent, stockage refusé, skip pendant le chargement, API en panne, 1 et 0 profil, Milo résolu, son coupé, mouvement réduit + Entrée, 320×600 → 1440×900). Tests existants qui passent par « Jouer » : prologue marqué vu (ils ciblent le sélecteur). Contrat statique ajouté dans `test/lux-demasque-selection.test.cjs`.
+
+### Non vérifié / limites
+
+- **Samsung réel non exécuté** : GPU, fluidité, vibration visuelle, audio, Retour système, barres Android (RF/PR-10 sur appareil).
+- Texte agrandi à 200 % non mesuré spécifiquement pour le prologue (les bulles utilisent des tailles fixes en px, comme Cringr).
+- Lecteur d'écran réel non testé (structure DOM, `role="status"` et libellés vérifiés).
+- Le plan 2 a été jugé sur captures Chromium : à confirmer à l'œil sur appareil ; si la pose `PickUp` déplaît, la consigne § 3 s'applique (recadrer ou repli 2D, pas de nouvel asset).
+

@@ -11,7 +11,7 @@ with sync_playwright() as p:
   page.on('pageerror',lambda e:errors.append(str(e)))
   page.route('**/fonts.googleapis.com/**',lambda r:r.abort())
   page.goto(URL);page.wait_for_selector('#today')
-  page.evaluate('ouvrirJeux()')
+  page.evaluate("ldEcrire('luxDemasquePrologueVuV1', true); ouvrirJeux()")  # prologue SPEC 115 : test dédié
   page.locator('.ld-carte-hub .ld-jouer-hub').click()
   page.wait_for_selector('#ld-selection-carte',timeout=40000)
   mesures=page.evaluate("""() => ({

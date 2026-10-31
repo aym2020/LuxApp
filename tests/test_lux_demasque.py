@@ -10,7 +10,7 @@ MESURE = "({ scroll: document.documentElement.scrollHeight - innerHeight, large:
 
 
 def ouvrir_dossier(pg):
-    pg.evaluate("ouvrirJeux()")
+    pg.evaluate("ldEcrire('luxDemasquePrologueVuV1', true); ouvrirJeux()")  # prologue SPEC 115 : test dédié
     pg.wait_for_selector('.ld-jouer-hub')
     pg.click('.ld-jouer-hub')
     pg.wait_for_selector('#ld-selection-carte')

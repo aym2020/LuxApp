@@ -6,6 +6,7 @@
      Objection et percée baissent la musique le temps de l'accent (ducking).
    - Arrière-plan : tout est suspendu ; reprise seulement si Lux Démasque est à l'écran.
    - Fichier absent ou décodage impossible : silence, le jeu continue.
+   SPEC 115 : clics « vibre » et « message » du prologue (synthèse, même AudioContext).
    Réglages : luxDemasqueSon (tout), luxDemasqueMusique (garde les effets). Compositions :
    tools/lux-demasque/musique.py (originales, aucun échantillon). */
 'use strict';
@@ -52,7 +53,10 @@ const LuxDemasqueSon = (function () {
   const CLICS = {
     nav: () => note(720, 0, 0.04, 0.035, 'triangle'),
     page: () => { note(880, 0, 0.04, 0.04); note(1320, 0.04, 0.06, 0.035); },
-    ouvrir: () => note(420, 0, 0.07, 0.04, 'triangle', 640)
+    ouvrir: () => note(420, 0, 0.07, 0.04, 'triangle', 640),
+    // SPEC 115 : deux vibrations sourdes (bourdonnement synthétisé) puis un « ding » de message.
+    vibre: () => { [0, 0.55].forEach(d => { note(92, d, 0.32, 0.05, 'square'); note(184, d, 0.32, 0.018, 'sawtooth'); }); },
+    message: () => { note(988, 0, 0.08, 0.035, 'triangle'); note(1319, 0.09, 0.12, 0.035, 'triangle'); }
   };
   function clic(nom) {
     if (!actif() || !preparer() || !CLICS[nom]) return;
