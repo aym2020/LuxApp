@@ -55,9 +55,9 @@ with sync_playwright() as p:
     e = etat(pg)
     assert e['ecran'] == 'accueil' and not e['partie'] and not e['selection'] and e['canvas'] == 0 and e['piste'] is None, e
     assert pg.inner_text('.ld-accueil-titre') == 'Ton prochain date sur Cringr.'
-    assert pg.evaluate("getComputedStyle(document.querySelector('.ld-accueil-titre em')).color") == 'rgb(255, 79, 216)'
-    assert pg.inner_text('.ld-accueil-pitch') == ('Tu incarnes une femme qui cherche un rendez-vous sur Cringr. '
-                                                   'Discute en luxembourgeois, cherche des indices et démasque les mensonges.')
+    assert pg.evaluate("getComputedStyle(document.querySelector('.ld-accueil-titre em')).color") == 'rgb(242, 108, 164)'
+    assert pg.inner_text('.ld-accueil-pitch') == ('Tu incarnes une femme qui cherche un date. '
+                                                   'Discute en luxembourgeois, recueille des preuves et démasque les menteurs.')
     etapes = pg.evaluate("[...document.querySelectorAll('.ld-accueil-etapes li')].map(li => li.querySelector('b').textContent + ' ' + li.lastChild.textContent)")
     assert etapes == ['Choisis un profil', 'Discute en luxembourgeois', 'Démasque les mensonges'], etapes
     img = pg.evaluate("(() => { const i = document.querySelector('.ld-accueil-visuel img'); return [i.naturalWidth, i.alt]; })()")
