@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=20','lux-demasque.js?v=20','lux-match.css?v=22','lux-match.js?v=29']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=21','lux-demasque.js?v=21','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -106,22 +106,21 @@ test('LD-048 : croix NOPE secondaire à gauche du cœur, même action, cible 48 
  assert.match(js,/Math\.abs\(dx\) > 65/);
 });
 
-// SPEC 115 : prologue « Le téléphone vibre » avant Cringr (contrat statique ; parcours dans tests/test_lux_demasque_prologue.py).
-test('SPEC 115 : prologue une fois, passable, sur le renderer partagé, sans toucher au jeu',()=>{
+// SPEC 115 V2 : écran d'accueil fixe avant Cringr (contrat statique ; parcours dans tests/test_lux_demasque_accueil.py).
+test('SPEC 115 V2 : accueil fixe à chaque entrée, sans 3D ni prologue V1',()=>{
  const m3d=read('public/lux-match-3d.js'),audio=read('public/lux-demasque-audio.js');
- assert.match(js,/function ldEntrerRedFlag\(\) \{ return ldOuvrirSelection\(ldPrologueVu\(\) \? undefined : \{ prologue: true \}\); \}/);
- assert.match(js,/const LD_PROLOGUE_CLE = 'luxDemasquePrologueVuV1'/);
- for(const cle of ['luxDemasqueResolus','luxDemasqueRecord','ldSwipeVu'])assert.notEqual(cle,'luxDemasquePrologueVuV1');
- assert.match(js,/modele: 'Casual3_Female'/);
- for(const t of ['Alors, prête pour ton date de ce soir ? 👀','Pas encore trouvé avec qui !','Ouvrir Cringr','Passer l’intro','Revoir l’introduction','De nouveaux profils t’attendent ♥'])assert.ok(js.includes(t),t);
- assert.match(js,/n \+ ' profils à découvrir ♥'/,'chiffre réel, jamais « 4 » figé');
- assert.doesNotMatch(js,/'4 profils/);
- assert.match(js,/\(ld\.partie \|\| ld\.selection \|\| ld\.prologue\)\) luxDemasqueArreter\(\)/);
- assert.equal((m3d.match(/new THREE\.WebGLRenderer/g)||[]).length,1,'aucun second renderer');
- assert.match(m3d,/async function prologue\(cible, profil, rappels\)/);
- assert.match(m3d,/Promise\.resolve\(\)\.then\(fin\)/,'fin() hors de l’image en cours');
- assert.match(m3d,/return \{[^}]*prologue \}/);
- assert.equal((audio.match(/new \(window\.AudioContext/g)||[]).length,1,'un seul AudioContext');
- assert.match(audio,/vibre: \(\) =>/);assert.match(audio,/message: \(\) =>/);
- assert.match(css,/\.ld-jeu\[data-ecran="prologue"\] \.ld-prologue-passer\{[^}]*min-height:48px/);
+ const entree=js.slice(js.indexOf('function ldEntrerRedFlag()'),js.indexOf('function ldRendreAccueil()'));
+ assert.match(entree,/ldRendreAccueil\(\)/);
+ assert.doesNotMatch(entree,/ldObtenir3D|PrologueVu|ldLire/,'aucune 3D, aucune mémoire « vu une fois »');
+ for(const t of ['TON PROCHAIN RENDEZ-VOUS','Ton prochain date sur <em>Cringr</em>.','Tu incarnes une femme qui cherche un rendez-vous sur Cringr. ',
+   'Discute en luxembourgeois, cherche des indices et démasque les mensonges.','Choisis','un profil','en luxembourgeois','Démasque','les mensonges','Commencer'])assert.ok(js.includes(t),t);
+ for(const t of ['Revoir l’introduction','Passer l’intro','Ouvrir Cringr','ldDemarrerPrologue','ldTerminerPrologue','LD_HEROINE','ld.prologue'])assert.ok(!js.includes(t),'V1 retirée : '+t);
+ assert.match(js,/function ldAccueilCommencer\(\) \{\n  const box = ldBox\(\);\n  if \(!box \|\| box\.dataset\.ecran !== 'accueil'\) return;\n  ldOuvrirSelection\(\{ focus: true \}\);/);
+ assert.equal((js.match(/function ldCommencer\(\)/g)||[]).length,1,'aucune collision avec le début du rendez-vous');
+ assert.ok(fs.statSync(path.join(root,'public/art/redflag-accueil.webp')).size<60000,'illustration légère');
+ assert.doesNotMatch(m3d,/prologue/i,'service 3D de la V1 retiré');
+ assert.doesNotMatch(audio,/vibre|message:/,'bruitages exclusifs à la V1 retirés');
+ assert.doesNotMatch(css,/ld-prologue|ld-revoir/);
+ assert.match(css,/\.ld-jeu\[data-ecran="accueil"\] \.ld-accueil-commencer\{[^}]*min-height:54px/);
+ assert.match(css,/\.ld-accueil-sans-image::after/,'repli si l’image manque');
 });

@@ -66,7 +66,7 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 ## Jeu — Lux Démasque (SPEC 110, implémenté sur 2.1)
 
-**[SPEC 115 — RED FLAG : accueil fixe avant Cringr (V2)](specs/SPEC-115.md)** : **nouvelle décision produit non implémentée**. Remplace le prologue cinématique V1 rejeté par un écran fixe type Lux Runner : héroïne féminine, contexte dating, trois étapes « Choisis → Discute → Démasque », CTA « Commencer » directement vers le sélecteur SPEC 113. LD-049 ouverte ; tests Chromium de V1 historiques seulement.
+**[SPEC 115 — RED FLAG : accueil fixe avant Cringr (V2)](specs/SPEC-115.md)** : **implémentée sur `2.1` le 31/10 (recette Chromium FIX-01–10, Samsung en attente)**. Remplace le prologue cinématique V1 rejeté par un écran fixe type Lux Runner : héroïne féminine, contexte dating, trois étapes « Choisis → Discute → Démasque », CTA « Commencer » directement vers le sélecteur SPEC 113. LD-049 ouverte ; la V1 est retirée du code.
 
 [**SPEC 113 — Red Flag / Cringr : sélecteur et recette**](specs/SPEC-113.md) : référence normative du sélecteur, prioritaire sur [SPEC 112 (historique)](specs/SPEC-112.md). Gauche = NOPE, droite/cœur = rencontre, alternative « Passer » et clavier. [Implémentation, captures et résultats réels](CRINGR-SPEC-113-RECETTE.md) du 29/10 : suites dédiées vertes, échecs globaux préexistants comparés, Samsung et accord produit encore attendus. Lux Match préservé.
 

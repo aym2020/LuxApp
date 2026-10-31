@@ -1,7 +1,7 @@
 # SPEC 115 — RED FLAG : écran d'accueil fixe, contexte narratif et entrée Cringr (V2)
 
 **Décision produit V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
-**Statut : V2 SPÉCIFIÉE — NON IMPLÉMENTÉE, NON TESTÉE, VALIDATION SAMSUNG À FAIRE.** La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
+**Statut : V2 IMPLÉMENTÉE SUR `2.1` LE 31/10/2026 (voir § 11) — RECETTE CHROMIUM FIX-01 À FIX-10 VERTE ; VALIDATION SAMSUNG À FAIRE.** La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
 **Suivi :** [LD-049 — TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). LD-048/SPEC 113 (sélecteur) et LD-002.01 (Rencontre) restent distinctes.
 
 > **Décision normative : ABANDONNER la cinématique 3D, le téléphone qui vibre, la prise en main, les messages intermédiaires, le zoom et le mécanisme « vu une fois ».** Les remplacer par **un seul écran de préparation statique**, dans l'esprit du lancement de **Lux Runner**, suivi immédiatement du sélecteur Cringr au clic sur **Commencer**. Ne pas créer de nouvelle SPEC.
@@ -124,8 +124,32 @@ Le titre peut être raccourci après recette Samsung si le visuel souffre, **san
 - **SPEC 110** = enquête : moteur, personnages, dialogues LU, preuves FR, objections et scores.
 - **SPEC 114 / charte UI §6 bis** = layout PC et compatibilité mobile.
 - **LD-049**, suivi sur `main`, reste **ouverte** jusqu'à validation V2 sur Samsung. **LD-048 et LD-002.01 restent ouvertes et indépendantes.**
-- La V2 est **une décision de remplacement** de l'implémentation V1 ; elle n'est pas encore codée, testée ni approuvée sur appareil.
+- La V2 est **une décision de remplacement** de l'implémentation V1 ; **codée et testée en Chromium le 31/10 (§ 11), pas encore approuvée sur appareil**.
 
 ## 10. Historique V1 — conservé pour traçabilité, non normatif
 
-Le 31/10/2026, la SPEC 115 V1 « Le téléphone vibre » a été implémentée sur la branche `2.1` (code `ea3f774`) et une recette Chromium PR-01 à PR-12 a été documentée. Elle montrait un téléphone vibrant, une héroïne trois-quarts animée via `PickUp`, un zoom vers les messages, puis un CTA « Ouvrir Cringr ». Elle utilisait `luxDemasquePrologueVuV1`, une option de skip et un fallback 2D. **Le produit a ensuite rejeté le rendu animé et choisi l'écran d'accueil statique V2.** Les tests et captures de V1 restent historiques ; aucune de leurs validations ne s'applique automatiquement à V2. Les fonctions et assets en question **existent encore dans le code tant que le remplacement n'est pas livré**.
+Le 31/10/2026, la SPEC 115 V1 « Le téléphone vibre » a été implémentée sur la branche `2.1` (code `ea3f774`) et une recette Chromium PR-01 à PR-12 a été documentée. Elle montrait un téléphone vibrant, une héroïne trois-quarts animée via `PickUp`, un zoom vers les messages, puis un CTA « Ouvrir Cringr ». Elle utilisait `luxDemasquePrologueVuV1`, une option de skip et un fallback 2D. **Le produit a ensuite rejeté le rendu animé et choisi l'écran d'accueil statique V2.** Les tests et captures de V1 restent historiques ; aucune de leurs validations ne s'applique automatiquement à V2. **Le remplacement est livré (§ 11) : ces fonctions, la scène 3D, les bruitages et le test V1 ont été retirés du code.**
+
+## 11. Implémentation V2 du 31 octobre 2026 (Chromium ; Samsung non exécuté)
+
+**Suivi :** LD-049 (TODO sur `main`), ouverte jusqu'à l'accord Samsung. SPEC 113 / LD-048 et LD-002.01 inchangées.
+
+### Ce qui est codé
+
+- **Entrée :** « Jouer » (hub) → `ldEntrerRedFlag()` → `ldRendreAccueil()`, **à chaque entrée**. Écran `data-ecran="accueil"` : en-tête commun (‹ Retour aux jeux, RED FLAG centré), kicker « TON PROCHAIN RENDEZ-VOUS », titre « Ton prochain date sur *Cringr*. » (serif, Cringr en rose), illustration, pitch exact du § 4, trois étapes **Choisis → Discute → Démasque** (pictogrammes pixel 8×8, chevrons décoratifs masqués aux lecteurs d'écran), CTA or **« Commencer → »** (54 px, en bas, comme Lux Runner). Aucun badge, « Revoir l'intro » ni réglage audio.
+- **Commencer :** `ldAccueilCommencer()` → `ldOuvrirSelection({ focus: true })` : sélecteur SPEC 113 inchangé, premier profil et graine générés comme avant, carte focalisée ; un double appui n'ouvre qu'une fois (garde sur l'écran courant). (Nom distinct de `ldCommencer()`, qui démarre déjà le rendez-vous.)
+- **Ressources :** l'accueil ne charge **ni 3D ni musique** ; il précharge seulement les profils (`ldChargerDonnees`). La boucle d'enquête démarre dans Cringr comme avant. Aucune mémoire « vu une fois » : `luxDemasquePrologueVuV1` peut rester stockée, elle n'est plus lue.
+- **Illustration :** `public/art/redflag-accueil.webp` (720×504, 14 Ko) : héroïne `Casual3_Female` (Quaternius, CC0, déjà dans le dépôt) aux teintes RED FLAG, téléphone rose allumé avec notification, chambre de nuit (fenêtre et lune, table, lampe, tasse). **Rendu hors ligne** par `tools/red-flag/rendre-accueil.py` + `accueil-heroine.html` (Three.js et GLB du dépôt), rendu 360×252 agrandi sans lissage (style PS1). Bords fondus dans le fond ; hauteur `clamp(150px, 100svh − 520px, 294px)`. **Repli** si l'image manque : nuit violette et téléphone rose en CSS, textes et CTA intacts.
+- **Retrait de la V1 :** `ldDemarrerPrologue`, `ldRendrePrologue`, `ldTerminerPrologue`, phases cinéma/messages, minuteurs, « Revoir l'introduction », état `ld.prologue`, service `prologue()` de `public/lux-match-3d.js`, bruitages « vibre »/« message » et CSS associés ; `tests/test_lux_demasque_prologue.py` remplacé par `tests/test_lux_demasque_accueil.py`. Services 3D partagés (Lux Match, interrogatoire, portraits, photos) et méthodes audio communes inchangés.
+- **Tests existants** passant par « Jouer » : ils touchent désormais « Commencer » ; `test_lux_demasque_audio` vérifie en plus que l'accueil est silencieux.
+
+### Recette exécutée (Chromium + SwiftShader)
+
+`tests/test_lux_demasque_accueil.py` : FIX-01 (contenu exact, image 720 px avec texte alternatif, aucune requête 3D, silence), FIX-02 (accueil après Retour, après une partie et après rechargement ; clé V1 sans effet), FIX-03 (double appui → une ouverture, un rendu, premier profil, musique d'enquête), FIX-04 (Retour Android/navigateur et bouton ‹ depuis l'accueil et Cringr), FIX-05 (image 404 → repli ; API 500 → « Réessayer » ; stockage refusé), FIX-06/07 (320×600, 360×740, 393×852, 430×932, 768×1024, 1024×768, 1440×900 : zéro débordement, CTA dans le premier écran dès 740 px de haut, court défilement à 320×600, police ≥ 12 px, étapes non coupées, contenu ≤ 420 px centré), FIX-08 (Tab jusqu'au CTA, focus visible, Entrée → carte focalisée, mouvement réduit, zoom 130 % et 200 %), FIX-09 (LIKE → rencontre Milo, sauvegardes intactes), FIX-10 (Lux Match → RED FLAG sans canvas résiduel). Contrat statique V2 dans `test/lux-demasque-selection.test.cjs`.
+
+### Non vérifié / limites
+
+- **Samsung réel non exécuté** (lisibilité de l'illustration, barres système, Retour, police système agrandie).
+- Lecteur d'écran réel non testé (structure DOM et textes alternatifs vérifiés).
+- L'illustration reste un rendu low-poly des modèles existants : si le produit veut une héroïne plus expressive, il faudra un asset dédié (amélioration séparée, § 6).
+
