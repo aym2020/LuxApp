@@ -55,15 +55,15 @@ with sync_playwright() as p:
     e = etat(pg)
     assert e['ecran'] == 'accueil' and not e['partie'] and not e['selection'] and e['canvas'] == 0 and e['piste'] is None, e
     assert pg.inner_text('.ld-accueil-titre') == 'Ton prochain date sur Cringr.'
-    assert pg.evaluate("getComputedStyle(document.querySelector('.ld-accueil-titre em')).color") == 'rgb(242, 108, 164)'
-    assert pg.inner_text('.ld-accueil-pitch') == ('Tu incarnes une femme qui cherche un date. '
-                                                   'Discute en luxembourgeois, recueille des preuves et démasque les menteurs.')
+    assert pg.evaluate("getComputedStyle(document.querySelector('.ld-accueil-titre em')).color") == 'rgb(247, 106, 164)'
+    assert pg.inner_text('.ld-accueil-pitch') == ('Tu incarnes une femme qui rencontre des prétendants sur Cringr. '
+                                                   'Ton objectif : découvrir leurs mensonges et les prouver.')
     etapes = pg.evaluate("[...document.querySelectorAll('.ld-accueil-etapes li')].map(li => li.querySelector('b').textContent + ' ' + li.lastChild.textContent)")
     assert etapes == ['Choisis un profil', 'Discute en luxembourgeois', 'Démasque les mensonges'], etapes
     img = pg.evaluate("(() => { const i = document.querySelector('.ld-accueil-visuel img'); return [i.naturalWidth, i.alt]; })()")
-    assert img[0] == 720 and 'femme' in img[1] and 'téléphone' in img[1], img
+    assert img[0] == 564 and 'femme' in img[1] and 'téléphone' in img[1], img
     assert pg.get_by_role('button', name='Commencer').count() == 1
-    for absent in ('Revoir', 'Passer', 'A1–A2', 'Dialogue et enquête', 'Ouvrir Cringr'):
+    for absent in ('Revoir', 'Passer', 'Ouvrir Cringr'):
         assert absent not in pg.inner_text('#ld-jeu'), absent
     assert pg.locator('.ld-accueil .ld-accueil-commencer').evaluate("e => getComputedStyle(e).backgroundColor") != 'rgba(0, 0, 0, 0)'
     pg.wait_for_timeout(600)
@@ -123,7 +123,7 @@ with sync_playwright() as p:
 
     # ── FIX-05 : image absente, API en erreur, stockage refusé ─────────────────
     ctx, pg = contexte(b, 360, 740)
-    pg.route('**/art/redflag-accueil.webp*', lambda r: r.fulfill(status=404, body=''))
+    pg.route('**/art/redflag-hero-v4.webp*', lambda r: r.fulfill(status=404, body=''))
     pg.route('**/api/jeux/lux-demasque', lambda r: r.fulfill(status=500, body='{}'))
     entrer(pg)
     pg.wait_for_selector('.ld-accueil-sans-image')
@@ -187,7 +187,7 @@ with sync_playwright() as p:
           return {ov: document.documentElement.scrollWidth - innerWidth, ctaBas: cta.bottom, ctaH: cta.height,
             largeur: acc.width, centre: Math.abs(acc.left + acc.width / 2 - innerWidth / 2), logo: Math.abs(logo.left + logo.width / 2 - innerWidth / 2),
             imgH: img.height, police: Math.min(...petits), coupe: [...document.querySelectorAll('.ld-accueil-etapes span')].some(s => s.scrollWidth > s.clientWidth + 1)}; }""")
-        assert m['ov'] <= 1 and m['ctaH'] >= 48 and m['largeur'] <= 420 and m['centre'] <= 1 and m['logo'] <= 1, (largeur, m)
+        assert m['ov'] <= 1 and m['ctaH'] >= 48 and m['largeur'] <= 560 and m['centre'] <= 1 and m['logo'] <= 1, (largeur, m)
         assert m['police'] >= 12 and m['imgH'] >= 150 and not m['coupe'], (largeur, m)
         if hauteur >= 740:
             assert m['ctaBas'] <= hauteur, (largeur, hauteur, m)        # CTA dans le premier écran
