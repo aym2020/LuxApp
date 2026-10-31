@@ -403,7 +403,7 @@
   text-shadow:0 1px 9px #100b15,0 1px 3px #100b15;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{
-  position:absolute;z-index:0;inset:114px -16px 0 11%;margin:0;
+  position:absolute;z-index:0;inset:114px 0 0 11%;margin:0;
   overflow:hidden;background:transparent;pointer-events:none;
   -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 12%,#000 76%,transparent 100%);
   mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 12%,#000 76%,transparent 100%);
@@ -428,7 +428,7 @@
 }
 @media(min-width:768px){
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:390px}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{inset:102px -12px 0 12%}
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{inset:102px 0 0 12%}
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes{
   list-style:none;margin:0;padding:12px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:4px;
