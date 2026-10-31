@@ -112,7 +112,7 @@ Ce registre a été constitué pour les fiches historiques 01–81 et 87–96, p
 | 112 | [Red Flag / Cringr : conception historique du sélecteur](./SPEC-112.md) | — | **Historique, remplacée pour le sélecteur par SPEC 113** ; ne pas implémenter les anciens swipes |
 | 113 | [RED FLAG / CRINGR : contrat UI/UX du sélecteur](./SPEC-113.md) | — | **Implémentée sur 2.1, tests Chromium documentés ; recette et validation Samsung encore nécessaires** |
 | **114** | **[Harmonisation des dimensions PC : enveloppe unique, jeux compris](./SPEC-114.md)** | **P1 transverse** | **À faire — spec documentée, aucun CSS/JS modifié ; baseline DOM + recette PC/Android exigées** |
-| **115** | **[RED FLAG / Cringr : prologue cinématique « Le téléphone vibre »](./SPEC-115.md)** | **P1 narratif (LD-049)** | **Implémentée sur `2.1` le 31/10, recette Chromium PR-01–12 ; Samsung en attente** : téléphone qui vibre, héroïne 3D, coupe caméra vers messages et Cringr ; skip/relecture, fallback 2D, accessibilité. N'avance pas LD-002.01 ni LD-048. |
+| **115** | **[RED FLAG : écran d'accueil fixe avant Cringr (V2)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **V2 spécifiée, NON implémentée** : remplace la cinématique V1 rejetée ; héroïne féminine, objectif et « Choisis → Discute → Démasque », CTA Commencer. Tests Chromium V1 historiques. |
 
 ## Précautions de lecture
 
