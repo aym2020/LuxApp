@@ -112,7 +112,7 @@ Ce registre a été constitué pour les fiches historiques 01–81 et 87–96, p
 | 112 | [Red Flag / Cringr : conception historique du sélecteur](./SPEC-112.md) | — | **Historique, remplacée pour le sélecteur par SPEC 113** ; ne pas implémenter les anciens swipes |
 | 113 | [RED FLAG / CRINGR : contrat UI/UX du sélecteur](./SPEC-113.md) | — | **Implémentée sur 2.1, tests Chromium documentés ; recette et validation Samsung encore nécessaires** |
 | **114** | **[Harmonisation des dimensions PC : enveloppe unique, jeux compris](./SPEC-114.md)** | **P1 transverse** | **À faire — spec documentée, aucun CSS/JS modifié ; baseline DOM + recette PC/Android exigées** |
-| **115** | **[RED FLAG : écran d'accueil fixe avant Cringr (V2)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **V2 implémentée sur `2.1` le 31/10, recette Chromium FIX-01–10 ; Samsung en attente** : remplace la cinématique V1 rejetée (retirée du code) ; héroïne féminine, « Choisis → Discute → Démasque », CTA Commencer. |
+| **115** | **[RED FLAG : accueil éditorial fixe (V3)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **V3 partiellement codée sur `2.1` :** titre et pitch intégrés au visuel, image fondue, kicker retiré. Illustration low-poly actuelle à améliorer ; tests et validation Samsung V3 en attente. |
 
 ## Précautions de lecture
 
