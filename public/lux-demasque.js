@@ -219,17 +219,20 @@ function ldRendreAccueil() {
     '<main class="ld-accueil">' +
       '<section class="ld-accueil-hero" aria-labelledby="ld-accueil-titre">' +
         '<div class="ld-accueil-hero-texte">' +
-          '<h1 id="ld-accueil-titre" class="ld-accueil-titre">Ton prochain date sur <em>Cringr</em>.</h1>' +
-          '<p class="ld-accueil-pitch">Tu incarnes une femme qui cherche un date. ' +
-            'Discute en luxembourgeois, recueille des preuves et démasque les menteurs.</p>' +
+          '<h1 id="ld-accueil-titre" class="ld-accueil-titre">Ton prochain date sur <em>Cringr.</em></h1>' +
+          '<div class="ld-accueil-pitch">' +
+            '<p>Tu incarnes une femme qui rencontre des prétendants sur Cringr.</p>' +
+            '<p>Ton objectif : découvrir leurs mensonges et les prouver.</p>' +
+          '</div>' +
         '</div>' +
-        '<figure class="ld-accueil-visuel"><img src="art/redflag-accueil.webp?v=1" width="720" height="504" decoding="async" ' +
-          'alt="Une jeune femme chez elle, le soir, découvre un message sur son téléphone." ' +
+        '<figure class="ld-accueil-visuel"><img src="art/redflag-hero-v4.webp?v=1" width="564" height="563" decoding="async" ' +
+          'alt="Une jeune femme au regard dubitatif, assise le soir avec un téléphone sur la table." ' +
           'onerror="this.parentNode.classList.add(\'ld-accueil-sans-image\')"></figure>' +
       '</section>' +
       '<ol class="ld-accueil-etapes" aria-label="Comment jouer">' +
         etape('choisis', 'Choisis', 'un profil') + etape('discute', 'Discute', 'en luxembourgeois') + etape('demasque', 'Démasque', 'les mensonges') +
       '</ol>' +
+      '<div class="ld-accueil-tags" aria-label="Format du jeu"><span>En luxembourgeois <small>A1–A2</small></span><span>Dialogue et enquête</span></div>' +
       '<button type="button" class="ld-accueil-commencer" onclick="ldAccueilCommencer()">Commencer ' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>' +
     '</main>';
