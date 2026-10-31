@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=21','lux-demasque.js?v=21','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=22','lux-demasque.js?v=22','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -112,8 +112,8 @@ test('SPEC 115 V2 : accueil fixe à chaque entrée, sans 3D ni prologue V1',()=>
  const entree=js.slice(js.indexOf('function ldEntrerRedFlag()'),js.indexOf('function ldRendreAccueil()'));
  assert.match(entree,/ldRendreAccueil\(\)/);
  assert.doesNotMatch(entree,/ldObtenir3D|PrologueVu|ldLire/,'aucune 3D, aucune mémoire « vu une fois »');
- for(const t of ['TON PROCHAIN RENDEZ-VOUS','Ton prochain date sur <em>Cringr</em>.','Tu incarnes une femme qui cherche un rendez-vous sur Cringr. ',
-   'Discute en luxembourgeois, cherche des indices et démasque les mensonges.','Choisis','un profil','en luxembourgeois','Démasque','les mensonges','Commencer'])assert.ok(js.includes(t),t);
+ for(const t of ['Ton prochain date sur <em>Cringr</em>.','Tu incarnes une femme qui cherche un date. ',
+   'Discute en luxembourgeois, recueille des preuves et démasque les menteurs.','Choisis','un profil','en luxembourgeois','Démasque','les mensonges','Commencer'])assert.ok(js.includes(t),t);
  for(const t of ['Revoir l’introduction','Passer l’intro','Ouvrir Cringr','ldDemarrerPrologue','ldTerminerPrologue','LD_HEROINE','ld.prologue'])assert.ok(!js.includes(t),'V1 retirée : '+t);
  assert.match(js,/function ldAccueilCommencer\(\) \{\n  const box = ldBox\(\);\n  if \(!box \|\| box\.dataset\.ecran !== 'accueil'\) return;\n  ldOuvrirSelection\(\{ focus: true \}\);/);
  assert.equal((js.match(/function ldCommencer\(\)/g)||[]).length,1,'aucune collision avec le début du rendez-vous');
@@ -123,4 +123,13 @@ test('SPEC 115 V2 : accueil fixe à chaque entrée, sans 3D ni prologue V1',()=>
  assert.doesNotMatch(css,/ld-prologue|ld-revoir/);
  assert.match(css,/\.ld-jeu\[data-ecran="accueil"\] \.ld-accueil-commencer\{[^}]*min-height:54px/);
  assert.match(css,/\.ld-accueil-sans-image::after/,'repli si l’image manque');
+});
+
+test('SPEC 115 V3 : hero intégré sans redondance du kicker',()=>{
+ const rendu=js.slice(js.indexOf('function ldRendreAccueil()'),js.indexOf('function ldAccueilCommencer()'));
+ assert.match(rendu,/ld-accueil-hero/);
+ assert.match(rendu,/ld-accueil-hero-texte/);
+ assert.doesNotMatch(rendu,/TON PROCHAIN RENDEZ-VOUS/);
+ assert.match(css,/\.ld-accueil-visuel\{[\s\S]*?position:absolute/);
+ assert.match(css,/\.ld-accueil-visuel img\{[\s\S]*?image-rendering:pixelated/);
 });
