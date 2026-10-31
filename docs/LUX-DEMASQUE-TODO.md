@@ -123,10 +123,10 @@
 
 ## Journal d'exécution
 
-| 2026-10-31 | LD-049 / SPEC 115 V2 | **Nouvelle direction produit : cinématique V1 rejetée, écran fixe V2 documenté ; non implémenté** | Documentation sur `2.1` : SPEC V2 `0862200` + index et PLAYBOOK | Référence : mockup épuré et écran de lancement Lux Runner. Aucune modification de code ni exécution de tests pour la V2. La CI et les tests PR-01–PR-12 de V1 restent historiques. LD-049 ouverte jusqu'à livraison, captures réelles et validation Samsung. |
 
 | Date | Tâche | Statut | Commit de code sur `2.1` | Tests / recette / réserves |
 |---|---|---|---|---|
+| 2026-10-31 | LD-049 / SPEC 115 V2 | **Nouvelle direction produit : cinématique V1 rejetée, écran fixe V2 documenté ; non implémenté** | Documentation sur `2.1` : SPEC V2 `0862200` + index et PLAYBOOK | Référence : mockup épuré et écran de lancement Lux Runner. Aucune modification de code ni exécution de tests pour la V2. La CI et les tests PR-01–PR-12 de V1 restent historiques. LD-049 ouverte jusqu'à livraison, captures réelles et validation Samsung. |
 | 2026-10-28 | LD-001 à LD-047 | Backlog créé, **aucune tâche cochée** | — | Retour utilisateur et screenshots ; pas d'implémentation de la V1.1 |
 | 2026-10-28 | LD-000 | Banc de tests et guide **livrés, exécution réelle encore à faire** | `3c30dd3`, `e87033e`, `7894c7c`, `91834e9`, `bcaf8c5` (branche `2.1`) | Runner rapide/complet/acceptation ; smoke mobile, contrat rouge LD-034, tests existants raccordés à la suite critique ; impossible de lancer les tests dans l'environnement de cette session (GitHub non clonable, pas de serveur exécuté). LD-000 reste ouverte jusqu'à vérification. |
 | 2026-10-28 | LD-034 | **Code, contrat et documentation poussés ; recette navigateur et Samsung en attente** | `1734b52` (fix), `5eed60b` (Playwright), `14a8ef7` (runner), `f10bd60` (critique), `c1841bc` (guide) | Compilation JS complète réussie ; 8/8 scénarios de sélection simulés réussis ; Playwright/Node complet non exécutés faute de clone/serveur local GitHub. LD-034 reste `[ ]` jusqu'au passage réel de `acceptation`, `complet` et contrôle Android. |
