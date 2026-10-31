@@ -444,11 +444,21 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet svg{width:28px;height:25px;shape-rendering:crispEdges}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:active{transform:translate(2px,3px);box-shadow:2px 1px 0 #73134f}
+/* NOPE secondaire : cible 48×48, petite tuile arcade visible de 38 px, plus discrète que le cœur. */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer{
-  grid-column:3;justify-self:end;min-width:64px;min-height:48px;padding:6px 4px;
-  border:0;background:none;color:#ddbedf;font-size:21px;text-decoration:underline;text-underline-offset:4px;cursor:pointer;
+  grid-column:1;grid-row:1;justify-self:end;position:relative;display:grid;place-items:center;
+  width:48px;height:48px;padding:0;border:0;background:none;color:#d5b4e1;cursor:pointer;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active{color:#fff}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer::before{
+  content:"";position:absolute;inset:5px;border:2px solid #8f63b8;border-radius:6px;
+  background:#1c1228;box-shadow:3px 3px 0 #2e193e;
+}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer svg{position:relative;width:16px;height:16px;shape-rendering:crispEdges}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:hover{color:#fff}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:hover::before{border-color:#c88ccf}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active{transform:translate(2px,2px);color:#fff}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active::before{box-shadow:1px 1px 0 #2e193e}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:focus-visible{outline-offset:-1px}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-erreur{margin:0;color:#ffd3d3;font:21px/1.15 var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-rencontre-label,
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-sr{
@@ -475,5 +485,6 @@
 @media(prefers-reduced-motion:reduce){
   #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte{animation:none;transition:none}
   #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte::after,
-  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:active{transform:none}
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:active,
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active{transform:none}
 }

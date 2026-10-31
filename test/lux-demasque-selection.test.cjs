@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=18','lux-demasque.js?v=18','lux-match.css?v=22','lux-match.js?v=28']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=19','lux-demasque.js?v=19','lux-match.css?v=22','lux-match.js?v=28']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -88,4 +88,20 @@ test('Fonds des jeux PC : halo sur le viewport, sans rectangle autour du shell',
  for(const nom of ['jeux','runner','luxmatch','luxdemasque'])
    assert.ok(univers.includes('body:has(#view-'+nom+'.active)'),'halo viewport '+nom);
  assert.match(univers,/#view-jeux,#view-runner,#view-luxmatch,#view-luxdemasque\s*\{\s*background:transparent;/);
+});
+
+// LD-048 / SPEC 113 §9 : « Passer » devient une petite croix arcade à gauche du cœur.
+test('LD-048 : croix NOPE secondaire à gauche du cœur, même action, cible 48 px',()=>{
+ const vue=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldComposerPhotoProfil('));
+ const croix=vue.indexOf('class="ld-selection-passer"'),coeur=vue.indexOf('class="ld-dating-meet"');
+ assert.ok(croix>0&&coeur>croix,'croix avant le cœur : ordre clavier gauche → droite');
+ assert.match(vue,/class="ld-selection-passer" onclick="ldSelectionChanger\(1\)" aria-label="Passer au profil suivant"/);
+ const svg=vue.indexOf('<svg viewBox="0 0 8 8"');assert.ok(svg>croix&&svg<coeur,'croix pixel 8×8 dans le bouton NOPE');
+ assert.doesNotMatch(vue,/>Passer<\/button>/,'plus de lien texte « Passer »');
+ const regle=css.match(/\.ld-selection-passer\{([^}]*)\}/)[1];
+ assert.match(regle,/grid-column:1/);assert.match(regle,/width:48px;height:48px/);
+ assert.doesNotMatch(regle,/underline/);
+ assert.match(css,/\.ld-dating-meet\{[^}]*width:56px;height:56px/,'cœur inchangé');
+ assert.match(js,/if \(dx > 0\) ldSelectionConfirmer\(\)/);assert.match(js,/else ldSelectionChanger\(1\); \/\/ NOPE/);
+ assert.match(js,/Math\.abs\(dx\) > 65/);
 });

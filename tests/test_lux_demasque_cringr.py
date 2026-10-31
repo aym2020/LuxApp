@@ -72,6 +72,16 @@ with sync_playwright() as p:
         assert mesures['bottom'] <= h-8 and mesures['gap'] <= 3, mesures
         assert mesures['taille'] >= 22 and mesures['retro'] and mesures['texte'], mesures
         assert mesures['nomPremier'] and not mesures['coupe'] and min(mesures['cibles']) >= 48, mesures
+        # LD-048 : croix NOPE à gauche du cœur, cœur centré sous la carte et dominant (56 px).
+        cmd = pg.evaluate("""() => { const r = s => document.querySelector(s).getBoundingClientRect();
+            const c = r('.ld-dating-meet'), x = r('.ld-selection-passer'), carte = r('#ld-selection-carte');
+            return {coeur: [c.width, c.height], croix: [x.width, x.height], ecart: c.left - x.right,
+                centre: Math.abs(c.left + c.width/2 - (carte.left + carte.width/2)), aligne: Math.abs((c.top + c.bottom)/2 - (x.top + x.bottom)/2),
+                souligne: getComputedStyle(document.querySelector('.ld-selection-passer')).textDecorationLine,
+                texte: document.querySelector('.ld-selection-passer').innerText.trim()}; }""")
+        assert cmd['coeur'] == [56, 56] and cmd['croix'] == [48, 48], cmd
+        assert 0 <= cmd['ecart'] <= 16 and cmd['centre'] <= 1 and cmd['aligne'] <= 1, cmd
+        assert cmd['souligne'] == 'none' and cmd['texte'] == '', cmd
         # Les quatre vrais profils, pas seulement la carte Milo : texte et cœur accessibles.
         for _ in range(4):
             assert pg.locator('.ld-selection-description').evaluate('e=>e.scrollHeight<=e.clientHeight+1')
@@ -122,8 +132,14 @@ with sync_playwright() as p:
 
     selection(pg)
     graine = pg.evaluate('ld.selection.items[3].graine')
+    avant_croix = sauvegarde(pg)
     pg.get_by_role('button', name='Passer au profil suivant').click()
     assert index(pg) == 1 and pg.locator('.ld-selection-passer').evaluate('e=>e===document.activeElement')
+    # LD-048 : la croix = NOPE seul (aucune partie, aucune sauvegarde) ; Tab va ensuite au cœur, à sa droite.
+    assert pg.evaluate('ld.partie') is None and sauvegarde(pg) == avant_croix
+    pg.keyboard.press('Tab')
+    assert pg.locator('.ld-dating-meet').evaluate('e=>e===document.activeElement') and index(pg) == 1
+    assert pg.locator('.ld-dating-meet').evaluate('e=>getComputedStyle(e).outlineStyle') != 'none'
     pg.locator('#ld-selection-carte').focus()
     pg.keyboard.press('ArrowLeft')
     assert index(pg) == 2 and pg.locator('#ld-selection-carte').evaluate('e=>e===document.activeElement')

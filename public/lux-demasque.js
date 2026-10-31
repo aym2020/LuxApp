@@ -263,11 +263,13 @@ function ldRendreSelection() {
                 (affaire.genere ? 'NOUVEAU PROFIL' : resolu ? 'DÉJÀ DÉMASQUÉ' : 'À DÉCOUVRIR') + '</span>' +
             '</div></article></div>' +
           '<div class="ld-dating-controls">' +
+            // NOPE secondaire (SPEC 113 §9) : petite croix arcade à gauche du cœur, même action que le swipe gauche.
+            '<button type="button" class="ld-selection-passer" onclick="ldSelectionChanger(1)" aria-label="Passer au profil suivant" title="Passer">' +
+              '<svg viewBox="0 0 8 8" fill="currentColor" aria-hidden="true"><path d="M0 0h2v1H0zM6 0h2v1H6zM1 1h2v1H1zM5 1h2v1H5zM2 2h4v1H2zM3 3h2v2H3zM2 5h4v1H2zM1 6h2v1H1zM5 6h2v1H5zM0 7h2v1H0zM6 7h2v1H6z"/></svg></button>' +
             '<button type="button" class="ld-dating-meet" onclick="ldSelectionConfirmer()" aria-label="' +
               (affaire.genere ? 'Découvrir le profil' : resolu ? 'Revoir le profil' : 'Voir le profil') + '">' +
               '<svg viewBox="0 0 16 14" fill="currentColor" aria-hidden="true"><path d="M2 0h4v2h4V0h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2V8H0V2h2z"/></svg><span class="ld-rencontre-label">' +
               (affaire.genere ? 'DÉCOUVRIR' : resolu ? 'REVOIR' : 'RENCONTRER') + '</span></button>' +
-            '<button type="button" class="ld-selection-passer" onclick="ldSelectionChanger(1)" aria-label="Passer au profil suivant">Passer</button>' +
           '</div>' +
           '<p id="ld-selection-commandes" class="ld-selection-sr">Flèche gauche : passer au profil suivant. Flèche droite, Entrée ou Espace : rencontrer ce profil.</p>' +
           (sel.erreur ? '<p class="ld-selection-erreur" role="alert">' + ldEchapper(sel.erreur) + '</p>' : '') +
