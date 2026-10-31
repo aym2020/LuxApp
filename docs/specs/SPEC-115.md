@@ -1,7 +1,7 @@
-# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V4)
+# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V5)
 
 **Décision initiale V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
-**Statut courant : V4 CODE + NOUVEL ASSET POUSSÉS SUR `2.1` — CONTRÔLES STATIQUES EN COURS ; RECETTE NAVIGATEUR ET VALIDATION SAMSUNG V4 À FAIRE.** La V2 a été testée sur Chromium (historique, voir § 11), sans valider la V4. La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
+**Statut courant : V5 FINITIONS UI CODÉES SUR `2.1` ; RECETTE NAVIGATEUR ET VALIDATION SAMSUNG V5 À FAIRE.** La V2 a été testée sur Chromium (historique, voir § 11), sans valider la V4. La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
 **Suivi :** [LD-049 — TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). LD-048/SPEC 113 (sélecteur) et LD-002.01 (Rencontre) restent distinctes.
 
 > **Décision normative : ABANDONNER la cinématique 3D, le téléphone qui vibre, la prise en main, les messages intermédiaires, le zoom et le mécanisme « vu une fois ».** Les remplacer par **un seul écran de préparation statique**, dans l'esprit du lancement de **Lux Runner**, suivi immédiatement du sélecteur Cringr au clic sur **Commencer**. Ne pas créer de nouvelle SPEC.
@@ -220,3 +220,17 @@ Le joueur a explicitement rejeté le rendu Samsung V3 : la femme low-poly aux ye
 - Exécuter `bash tools/test-lux-demasque.sh rapide`, `complet`, les tests Node ciblés et la suite critique du PLAYBOOK ; archiver les captures et **obtenir une validation explicite sur Samsung** avant de cocher LD-049.
 
 **Statut réel à ce stade : code, illustration et documentation poussés ; verdict visuel Android et résultat des tests automatisés non revendiqués.**
+
+## 14. V5 — Finitions de lisibilité sur Samsung (1er novembre 2026)
+
+**Décision produit : conserver intégralement l'illustration V4 et la direction artistique.** La capture Samsung 393 px révèle cinq défauts de composition ; la V5 ne modifie ni l'asset, ni le sélecteur Cringr, ni le moteur de jeu.
+
+1. **Titre sur trois lignes stables** : « Ton prochain » / « date sur » / « Cringr. ». Trois éléments inline HTML rendus chacun en ligne autonome, point dans le mot rose. La mise en forme doit éviter la ligne isolée « sur », sans tronquer à 320 px ni à zoom 200 %. Ne pas demander à l'illustration de fournir le titre.
+2. **Visage dégagé** : pitch plus court sur deux paragraphes : « Tu incarnes une femme qui cherche un date. » et « Discute, trouve des preuves et démasque les mensonges. » Colonne de texte limitée à 47 % (48 % à 320–360, 43 % sur PC) et **léger fondu sombre derrière les paragraphes**. Les yeux ne doivent pas être couverts par les textes ; conserver le visage expressif, la tasse et le téléphone.
+3. **Capsules rééquilibrées** : « Luxembourgeois · A1–A2 » / « Dialogue et enquête ». Conserver deux capsules équilibrées et centrées, sans retour « A1– / A2 » ; si la largeur est inférieure à 350 px, les disposer verticalement. N'ajouter aucun troisième badge.
+4. **Panneau des étapes affiné** : conserver « Choisis / Discute / Démasque » mais réduire le padding vertical et les pictogrammes de 46 à 42 px. Sous-libellés « un profil » / « en LU » / « les mensonges » ; l'information « luxembourgeois » est déjà explicitement donnée dans le pitch et la capsule.
+5. **CTA préservé** : rester en bas avec 54 px minimum de cible tactile et un léger dégagement inférieur (0–10 px selon hauteur), sans saut de layout, animation ni nouveau bouton.
+
+**Implementation** : `public/lux-demasque.js` (titre structuré, microcopy, étapes et capsules), `public/lux-demasque.css` (largeurs, dégradé de protection, taille du panneau, fallback ≤350 px, espacement CTA), `public/index.html` (CSS/JS `v=24`), tests Node `test/lux-demasque-selection.test.cjs` et Playwright `tests/test_lux_demasque_accueil.py` mis à jour.
+
+**Critères spécifiques V5** : à 320, 360, 393, 430 px et PC, vérifier absence de chevauchement visage/texte, sous-libellés sans mots isolés, capsules lisibles, largeur et centrage cohérents, CTA atteignable et accessible ; avec texte agrandi 130/200 %, éviter tout débordement. Tests à exécuter et validation Samsung **non revendiqués avant confirmation effective**. LD-049 reste ouverte.
