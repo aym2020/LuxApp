@@ -1,10 +1,12 @@
-# SPEC 115 — RED FLAG : accueil narratif fixe, héroïne et entrée Cringr (V3)
+# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V4)
 
-**Décision produit V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
-**Statut : V2 IMPLÉMENTÉE SUR `2.1` LE 31/10/2026 (voir § 11) — RECETTE CHROMIUM FIX-01 À FIX-10 VERTE ; VALIDATION SAMSUNG À FAIRE.** La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
+**Décision initiale V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
+**Statut courant : V4 CODE + NOUVEL ASSET POUSSÉS SUR `2.1` — CONTRÔLES STATIQUES EN COURS ; RECETTE NAVIGATEUR ET VALIDATION SAMSUNG V4 À FAIRE.** La V2 a été testée sur Chromium (historique, voir § 11), sans valider la V4. La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
 **Suivi :** [LD-049 — TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). LD-048/SPEC 113 (sélecteur) et LD-002.01 (Rencontre) restent distinctes.
 
 > **Décision normative : ABANDONNER la cinématique 3D, le téléphone qui vibre, la prise en main, les messages intermédiaires, le zoom et le mécanisme « vu une fois ».** Les remplacer par **un seul écran de préparation statique**, dans l'esprit du lancement de **Lux Runner**, suivi immédiatement du sélecteur Cringr au clic sur **Commencer**. Ne pas créer de nouvelle SPEC.
+
+> **Priorité documentaire V4 :** les décisions et le contrat de recette du **§ 13** remplacent les descriptions visuelles des versions V2 (§ 2–8), V3 (§ 12) et leur statut historique. **Ne pas réintroduire** la cinématique V1. Les règles de gameplay, navigation et conservation des données restent inchangées.
 
 ## 1. Objectif produit
 
@@ -176,3 +178,45 @@ Le 31/10/2026, la SPEC 115 V1 « Le téléphone vibre » a été implémentée s
 - Lecteur d'écran réel non testé (structure DOM et textes alternatifs vérifiés).
 - L'illustration reste un rendu low-poly des modèles existants : si le produit veut une héroïne plus expressive, il faudra un asset dédié (amélioration séparée, § 6).
 
+
+## 13. V4 — Asset artistique original et composition proche du mockup (1er novembre 2026)
+
+### Décision produit
+
+Le joueur a explicitement rejeté le rendu Samsung V3 : la femme low-poly aux yeux blancs, la pièce vide, les grandes zones noires et le pitch plaqué sur le personnage. La référence est le **premier mockup produit**, avec héroïne adulte expressive, cheveux bruns attachés, pose dubitative accoudée à la table, lumière chaude et fenêtre donnant sur la ville nocturne. L'écran doit paraître conçu comme un **jeu narratif premium**, non comme une démonstration 3D de modèles existants.
+
+**La V4 est normative pour l'art et la composition.** Ses fichiers sont implémentés mais le résultat doit encore être contrôlé en navigateur et sur Samsung : la qualité visuelle ne peut être déduite du seul CSS.
+
+### Asset livré
+
+- **Image autonome :** `public/art/redflag-hero-v4.webp`, **564 × 563 px**, WebP optimisé (**8,6 Ko**), créée pour LuxApp à partir du style visuel approuvé, avec une femme adulte, une tasse, un smartphone à cœur rose et une chambre de nuit ; **aucun mot, aucune icône UI ni bouton incrusté**. Blob Git : `b96e02a831905ec1ba499bb686dac5fb1a8c4cf6`. Le précédent rendu `redflag-accueil.webp` reste conservé pour traçabilité, mais n'est plus chargé sur l'accueil.
+- La résolution intrinsèque **n'est pas du Full HD** : l'illustration fonctionne comme un élément pixel art de taille contrôlée (max ~400 px CSS mobile et PC). **Ne pas annoncer une illustration HD native pour un affichage plein écran**. Le portrait et ses contours doivent rester propres à la taille d'affichage réelle ; une variante 2× dédiée sera nécessaire si les tests DPI révèlent une perte de netteté sur Samsung à fort DPR ou une extension desktop au-delà de la largeur prévue.
+- **Pas d'affiche complète** : titres, explications, étapes, badges de format et bouton sont des éléments DOM réactifs et accessibles ; l'image ne contient que le décor et l'héroïne.
+- Respecter la licence des éléments internes déjà présents (les modèles Quaternius sont des références de moteur, mais cet asset a été généré comme nouvelle illustration ; ne pas prétendre qu'il est un export exact du GLB).
+
+### Composition normative
+
+1. **Header** : retour et titre RED FLAG pixel centré ; aucun nouveau bandeau.
+2. **Héro** : gros titre serif « Ton prochain date sur *Cringr.* » ; le point doit être **à l'intérieur du `<em>` rose** pour ne jamais se retrouver seul à la ligne. Texte à gauche, portrait à droite, image masquée en fondu sur les côtés et le bas. Le visage reste visible, même sur 320–360 px.
+3. **Copy court en deux encarts** : « Tu incarnes une femme qui rencontre des prétendants sur Cringr. » et « Ton objectif : découvrir leurs mensonges et les prouver. » Le texte ne doit pas cacher ses yeux ; l'ombre et le fondu servent le contraste, pas l'effet décoratif gratuit.
+4. **Trois gestes** : « Choisis → Discute → Démasque », pictos arcade sur un **panneau unique** à contour violet discret. Sous-libellés existants conservés. Ne pas encombrer l'écran avec des cartes supplémentaires.
+5. **Deux informations compactes** : « En luxembourgeois A1–A2 » et « Dialogue et enquête » sur de petites capsules ; elles peuvent disparaître à hauteur mobile courte pour préserver l'action.
+6. **Un seul CTA** : bouton or « Commencer → », large et accessible. Pas de « Revoir l'intro », pas d'animation automatique, pas de 3D temps réel sur ce screen.
+7. **PC** : enveloppe extérieure **640 px** selon SPEC 114, contenu de préparation centré à **560 px** maximum ; illustration bornée, sans image plein écran étirée ni rupture de fond.
+
+### Fichiers et impacts
+
+- `public/lux-demasque.js` : asset `redflag-hero-v4.webp?v=1`, deux paragraphes HTML, ponctuation et capsules ; la commande `ldAccueilCommencer` ouvre toujours Cringr.
+- `public/lux-demasque.css` : composition portrait/texte, dégradés, étapes réunies en panneau, responsive, texte ≥12 px et suppression des capsules sur les fenêtres très courtes.
+- `public/index.html` : cache `lux-demasque.css?v=23` et `lux-demasque.js?v=23`.
+- Contrat Node et parcours Chromium `tests/test_lux_demasque_accueil.py` adaptés à la V4.
+- Aucun changement des contenus des dossiers, du moteur de preuve, des scores, des sauvegardes ni de la navigation SPEC 113.
+
+### Critères d'acceptation V4 (à vérifier, pas encore validés)
+
+- Captures visuelles **320 × 600, 360 × 740, 393 × 852, 430 × 932, 768 × 1024 et 1440 × 900** : visage, titre et encarts lisibles, **aucun élément texte sur les yeux**, aucun débordement horizontal et CTA facilement atteignable.
+- Affichage @2×/@3×, zoom du texte à 130 et 200 %, réduction des animations, contraste des encarts et lecture clavier/écran ; le titre ne peut pas isoler le point final.
+- Vérifier les variantes d'image échouée / sans stockage / connexion en erreur, le bouton Commencer, le retour Android, les préférences audio, les profils générés, les scores et le renderer partagé.
+- Exécuter `bash tools/test-lux-demasque.sh rapide`, `complet`, les tests Node ciblés et la suite critique du PLAYBOOK ; archiver les captures et **obtenir une validation explicite sur Samsung** avant de cocher LD-049.
+
+**Statut réel à ce stade : code, illustration et documentation poussés ; verdict visuel Android et résultat des tests automatisés non revendiqués.**
