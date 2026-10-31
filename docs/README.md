@@ -66,6 +66,8 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 ## Jeu — Lux Démasque (SPEC 110, implémenté sur 2.1)
 
+**[SPEC 115 — RED FLAG : prologue cinématique « Le téléphone vibre »](specs/SPEC-115.md)** : conception du premier lancement, héroïne féminine low-poly, téléphone qui vibre, prise suggérée par montage, zoom vers une messagerie HTML et entrée Cringr. **Documentation uniquement — non implémentée, tests non réalisés**, à planifier distinctement des chantiers LD-048 (sélecteur) et LD-002.01 (Rencontre). Privilégie les assets 3D existants et prévoit skip, relecture, fallback 2D et accessibilité.
+
 [**SPEC 113 — Red Flag / Cringr : sélecteur et recette**](specs/SPEC-113.md) : référence normative du sélecteur, prioritaire sur [SPEC 112 (historique)](specs/SPEC-112.md). Gauche = NOPE, droite/cœur = rencontre, alternative « Passer » et clavier. [Implémentation, captures et résultats réels](CRINGR-SPEC-113-RECETTE.md) du 29/10 : suites dédiées vertes, échecs globaux préexistants comparés, Samsung et accord produit encore attendus. Lux Match préservé.
 
 **Refonte graphique arcade écran par écran (LD-002)** : [procédure de validation produit](LUX-DEMASQUE-VALIDATION-ECRANS.md) — 12 sous-étapes, une seule livraison visuelle à la fois, captures avant/après et accord utilisateur explicite avant de passer à la suivante. La [TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md) est l'unique source des statuts ; prochaine action LD-002.01 (Rencontre).
