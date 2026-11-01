@@ -1,4 +1,4 @@
-"""SPEC 115 V7 : composition naturelle, CTA proche et captures avant/après."""
+"""SPEC 115 V8 : CTA bas comme Lux Runner, fond continu, captures et mesures."""
 import json
 import os
 from pathlib import Path
@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from helpers import URL
 
 reference = os.environ.get('LD_ACCUEIL_REFERENCE') == '1'
-sortie = Path('artifacts/redflag-v7') / ('avant' if reference else 'apres')
+sortie = Path('artifacts/redflag-v8') / ('avant' if reference else 'apres')
 sortie.mkdir(parents=True, exist_ok=True)
 mesures = []
 with sync_playwright() as p:
@@ -26,6 +26,8 @@ with sync_playwright() as p:
           const c=r('.ld-accueil-commencer'),e=r('.ld-accueil-etapes');
           return {viewport:[innerWidth,innerHeight],shell:r('.view.active'),hero:r('.ld-accueil-hero'),etapes:e,cta:c,
             gap:c.y-e.b,overflow:document.documentElement.scrollWidth-innerWidth,
+            bottomGap:innerHeight-c.b,screenBg:getComputedStyle(document.querySelector('#view-luxdemasque')).backgroundImage,
+            localBg:getComputedStyle(document.querySelector('.ld-accueil')).backgroundImage,
             image:document.querySelector('.ld-accueil-visuel img').getAttribute('src')};
         }''')
         mesures.append(m)
@@ -33,7 +35,9 @@ with sync_playwright() as p:
         pg.screenshot(path=str(sortie/f'{w}x{h}.png'),full_page=True)
         if not reference:
             assert m['overflow']<=1,m
-            assert 12<=m['gap']<=24,m
+            assert m['gap']>=12,m
+            if h>=740:assert 0<=m['bottomGap']<=40,m
+            assert m['localBg']=='none',m
             assert m['cta']['h']>=54,m
             assert abs(m['cta']['w']-m['etapes']['w'])<=1,m
             if w>=768:assert abs(m['shell']['w']-640)<=1,m
