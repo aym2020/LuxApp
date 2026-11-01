@@ -42,6 +42,14 @@ Captures réelles de la même entrée depuis Jeux ; conversion WebP pour la docu
 
 Samsung réel, lecteur d'écran réel et réglages de police système **non testés**. LD-049 reste ouverte pour approbation Produit ; LD-002.01 reste la prochaine action. Le correctif d'introduction n'est pas une clôture des autres écrans.
 
+## Vérification GitHub Actions après push
+
+Sur le code [`f1bea1c`](https://github.com/aym2020/LuxApp/commit/f1bea1c74e38c8f2d86ccda8ffa6b841e5716e72), les CI **Interface**, **Gabarits SPEC 114**, Boutons révision, Mot caché, Défis et Recettes P0-01 sont vertes. [Gabarits et captures avant/après](https://github.com/aym2020/LuxApp/actions/runs/41306141873).
+
+La CI RED FLAG confirme **12/13 blocs**, avec `test_lux_demasque_accueil` et `test_lux_demasque_accueil_v7` verts ; seul l'audio mentionné ci-dessus échoue. Les [captures V7 sont archivées](https://github.com/aym2020/LuxApp/actions/runs/41306141947/artifacts/13083715489).
+
+Le contrôle CI **Œil du mot de passe** échoue aussi (bascule au clavier, `test_portail_mdp_mobile.py:64`), y compris après une relance. Sa fixture charge uniquement `design-tokens.css`, `components.css`, `style.css` et `portail.js` : **aucun de ces fichiers ni le test n'a changé dans ce diff**. Relecture locale sur la référence `6feb2db` et la V7 : **les cinq tailles passent dans les deux versions**. Cette divergence CI reste ouverte ; aucune correction du portail n'est glissée dans la retouche RED FLAG. La CI globale n'est pas présentée comme entièrement verte.
+
 ## Illustration et provenance
 
 Asset intégré : [redflag-hero-v7.webp](../../public/art/redflag-hero-v7.webp), **1254×1254 px, 73 890 octets**. Générateur d'images intégré (skill `imagegen`), édition depuis l'asset V4 ; conversion WebP qualité 88, méthode 6. La tasse est régénérée avec une céramique unie, sans cache SVG ; le cœur rose du téléphone est conservé. L'image n'embarque aucun texte d'interface.
