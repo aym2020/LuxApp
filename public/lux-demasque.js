@@ -225,7 +225,7 @@ function ldRendreAccueil() {
             '<p>Discute, trouve des preuves et démasque les mensonges.</p>' +
           '</div>' +
         '</div>' +
-        '<figure class="ld-accueil-visuel"><img src="art/redflag-hero-v4.webp?v=1" width="564" height="563" decoding="async" ' +
+        '<figure class="ld-accueil-visuel"><img src="art/redflag-hero-v6.svg?v=1" width="564" height="563" decoding="async" ' +
           'alt="Une jeune femme au regard dubitatif, assise le soir avec un téléphone sur la table." ' +
           'onerror="this.parentNode.classList.add(\'ld-accueil-sans-image\')"></figure>' +
       '</section>' +
