@@ -1,7 +1,7 @@
-# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V5)
+# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V6)
 
 **Décision initiale V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
-**Statut courant : V5 FINITIONS UI CODÉES SUR `2.1` ; RECETTE NAVIGATEUR ET VALIDATION SAMSUNG V5 À FAIRE.** La V2 a été testée sur Chromium (historique, voir § 11), sans valider la V4. La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
+**Statut courant : V6 CODE ET COMPOSITION VISUELLE POUSSÉS SUR `2.1` ; RECETTE NAVIGATEUR ET VALIDATION SAMSUNG V6 À FAIRE.** La V2 a été testée sur Chromium (historique, voir § 11), sans valider la V4. La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
 **Suivi :** [LD-049 — TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). LD-048/SPEC 113 (sélecteur) et LD-002.01 (Rencontre) restent distinctes.
 
 > **Décision normative : ABANDONNER la cinématique 3D, le téléphone qui vibre, la prise en main, les messages intermédiaires, le zoom et le mécanisme « vu une fois ».** Les remplacer par **un seul écran de préparation statique**, dans l'esprit du lancement de **Lux Runner**, suivi immédiatement du sélecteur Cringr au clic sur **Commencer**. Ne pas créer de nouvelle SPEC.
@@ -234,3 +234,19 @@ Le joueur a explicitement rejeté le rendu Samsung V3 : la femme low-poly aux ye
 **Implementation** : `public/lux-demasque.js` (titre structuré, microcopy, étapes et capsules), `public/lux-demasque.css` (largeurs, dégradé de protection, taille du panneau, fallback ≤350 px, espacement CTA), `public/index.html` (CSS/JS `v=24`), tests Node `test/lux-demasque-selection.test.cjs` et Playwright `tests/test_lux_demasque_accueil.py` mis à jour.
 
 **Critères spécifiques V5** : à 320, 360, 393, 430 px et PC, vérifier absence de chevauchement visage/texte, sous-libellés sans mots isolés, capsules lisibles, largeur et centrage cohérents, CTA atteignable et accessible ; avec texte agrandi 130/200 %, éviter tout débordement. Tests à exécuter et validation Samsung **non revendiqués avant confirmation effective**. LD-049 reste ouverte.
+
+## 15. V6 — Simplification éditoriale et illustration nettoyée (1er novembre 2026)
+
+**Décision produit :** supprimer les informations répétitives au lieu de les déplacer. La V6 complète et prime sur V5 (§14), sans changer le titre, les deux paragraphes, la scène, le sélecteur ni le moteur.
+
+- **Supprimer totalement les deux capsules** « Luxembourgeois · A1–A2 » et « Dialogue et enquête » : ne les afficher ni sur mobile ni sur PC, même lorsque la hauteur permettrait de les conserver. Les trois étapes portent déjà l'objectif du jeu.
+- **Conserver l'illustration V4 d'origine** comme référence artistique, mais **masquer le cœur décoratif sur la tasse uniquement**. Le cœur du téléphone doit rester visible. L'asset de présentation `public/art/redflag-hero-v6.svg` réutilise en embarqué l'image WebP de V4 et ajoute une retouche localisée aux couleurs de la céramique ; il ne remplace pas l'héroïne, ne change pas ses expressions et ne fait aucun appel réseau externe. L'original `redflag-hero-v4.webp` reste disponible pour comparaison. Ce montage SVG doit être **testé sur navigateur Samsung / PWA** avant clôture, notamment la prise en charge de l'image WebP embarquée, la propreté de la retouche et la compatibilité du mode image. Une conversion du composite vers un WebP final reste préférable si l'intégration révèle des défauts.
+- **Remplacer le fond découpé derrière les paragraphes** : supprimer `.ld-accueil-pitch::before` et poser un seul dégradé sombre **sur toute la scène** (`.ld-accueil-hero::after`), progressif de gauche à droite. Ce voile se superpose au visuel, mais passe derrière les textes, sans bande horizontale ni rectangle opaque. Garantir le contraste du texte à gauche et la visibilité du visage à droite.
+- **Rééquilibrer verticalement sans nouveaux composants** : la zone héro prend une hauteur flexible `clamp(350px, 50svh, 455px)` (335 px à ≤360 px et 430 px sur desktop) ; les trois étapes et le CTA « Commencer » restent présents, espacés dans la colonne. Aucun nouveau badge, carte, bouton ou tutoriel.
+- **Garder les règles existantes** : écran d'accueil à chaque entrée, `Commencer` vers Cringr, pas d'animation 3D, pas d'écriture de scores/progression, navigation Android et accessibilité inchangées.
+
+### Modifications et recette
+
+Fichiers : `public/lux-demasque.js` (suppression capsules + image V6), `public/lux-demasque.css` (fondu global, retrait du CSS des badges, hauteur de la scène), `public/art/redflag-hero-v6.svg`, `public/index.html` (cache `?v=25`), `test/lux-demasque-selection.test.cjs` et `tests/test_lux_demasque_accueil.py`. Le WebP V4 reste conservé intact.
+
+**Recette obligatoire avant validation LD-049** : captures 320×600 / 360×740 / 393×852 / 430×932, plus 768×1024 et 1440×900 ; aucune capsule, aucun fond rectangulaire derrière le pitch, tasse unie sans cœur (le téléphone conserve le sien), visuel complet, CTA accessible, pas de débordement au zoom 130/200 %. Tester une image bloquée pour le fallback. Exécuter les tests Node/Playwright et la suite dédiée, sans déclarer verte une recette non passée. **Validation manuelle Samsung nécessaire** pour l'intégration SVG et la finesse de la retouche.
