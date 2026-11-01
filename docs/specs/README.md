@@ -112,7 +112,7 @@ Ce registre a été constitué pour les fiches historiques 01–81 et 87–96, p
 | 112 | [Red Flag / Cringr : conception historique du sélecteur](./SPEC-112.md) | — | **Historique, remplacée pour le sélecteur par SPEC 113** ; ne pas implémenter les anciens swipes |
 | 113 | [RED FLAG / CRINGR : contrat UI/UX du sélecteur](./SPEC-113.md) | — | **Implémentée sur 2.1, tests Chromium documentés ; recette et validation Samsung encore nécessaires** |
 | **114** | **[Harmonisation des dimensions PC : enveloppe unique, jeux compris](./SPEC-114.md)** | **P1 transverse** | **À faire — spec documentée, aucun CSS/JS modifié ; baseline DOM + recette PC/Android exigées** |
-| **115** | **[RED FLAG : accueil illustré et CTA en bas (V8)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **V8 codée** : footer Commencer en bas comme Lux Runner, fond violet/noir continu sans halo local ; illustration V7 préservée, recette Samsung en attente. |
+| **115** | **[RED FLAG : accueil aligné sur Lux Runner (V9)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **V9 poussée** : « ← Jeux » sans cadre, titre RED FLAG à droite et fond PC plein viewport sans couture ; CTA bas, Cringr et héroïne inchangés. Recette Samsung/PC à confirmer. |
 
 ## Précautions de lecture
 
