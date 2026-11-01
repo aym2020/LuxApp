@@ -1,4 +1,4 @@
-# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V8)
+# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V9)
 
 **Décision initiale V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
 **Statut courant : V7 implémentée et testée sous Chromium ; validation Samsung/Produit en attente.** La V7 (§16) remplace les règles de hauteur, de fondu et d'illustration V6. [Recette, mesures et captures](../red-flag/SPEC-115-V7-RECETTE.md). L'ancienne cinématique reste abandonnée.
@@ -293,3 +293,16 @@ CSS/JS `v=26` ; changements limités au layout d'accueil et à sa référence d'
 - `test/lux-demasque-selection.test.cjs` : contrat statique V8 ; `tests/test_lux_demasque_accueil_v7.py` : assertions V8 sur l'alignement du footer et l'absence de halo local (fichier historique conservé pour éviter de casser les appels existants).
 
 **État : code/documentation poussés, recette visuelle Samsung non validée.** Ne pas réutiliser l'assertion d'écart V7 comme référence de validation V8. LD-049 reste ouverte jusqu'à validation produit.
+
+## 18. V9 — Alignement structurel avec Lux Runner et disparition de la couture PC (1er novembre 2026)
+
+**Décision produit :** l'écran d'accueil RED FLAG et la préparation de Lux Runner doivent avoir **la même structure d'en-tête** et une ambiance continue sur PC. La V9 complète la V8 et remplace le bandeau de préparation RED FLAG uniquement. Le sélecteur Cringr de SPEC 113 ne change pas.
+
+1. **Retour / en-tête :** sur l'accueil RED FLAG, afficher exactement le paradigme Lux Runner : à gauche, **flèche simple et texte « Jeux »**, sans carré ni contour ; à droite, label discret **RED FLAG**. Flex `justify-content:space-between`, hauteur minimale 44 px, mêmes espacements, police et teinte que `runner-top/runner-retour`. Le label RED FLAG conserve les mots de son identité, mais adopte la hiérarchie sobre de Lux Runner. **Ne pas imposer cette variante au sélecteur Cringr** (téléphone, navigation, styles existants inchangés).
+2. **Fond desktop sans démarcation :** peindre un **unique fond violet/noir sur le `body`** quand `#view-luxdemasque` est actif, couvrant tout le viewport ; sur PC le conteneur `#view-luxdemasque` et le shell de l'accueil restent transparents. Le dégradé ne doit pas s'arrêter aux bords du shell central (640 px). Sur mobile, conserver le fond de la vue pleine largeur. Le masque de l'illustration est distinct, fondu et sans rectangle opaque.
+3. **CTA :** conserver la règle V8 : `Commencer` ancré au pied de l'écran par flex/marge automatique, comme Lux Runner. Ne pas le rapprocher artificiellement des étapes. Sur petites hauteurs, autoriser le scroll.
+4. **Périmètre :** aucun changement de l'héroïne WebP V7, du pitch, des trois étapes, des profils, scores, données, sons ou sauvegardes.
+
+**Livraison code :** `public/lux-demasque.js` (entête de préparation dédiée `accueil:true`), `public/lux-demasque.css` (style partagé visuellement avec Runner et sans bouton carré), `public/jeux-univers.css` (fond radial couvrant `body` desktop), `public/index.html` (caches JS/CSS `v=28`, univers `v=12`). Tests statiques et assertions navigateur de l'en-tête actualisés.
+
+**Recette** : PC 768/1024/1440/1920 px, vérifier absence de couture latérale et en-tête Jeux/RED FLAG aligné sur Lux Runner ; Android 320/360/393/430 px, retour tactile ≥44 px, aucun débordement, CTA au bas du viewport si la hauteur le permet, niveau de contraste et zoom à 200 %. Validation Samsung requise avant de fermer LD-049.
