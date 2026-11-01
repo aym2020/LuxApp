@@ -232,7 +232,6 @@ function ldRendreAccueil() {
       '<ol class="ld-accueil-etapes" aria-label="Comment jouer">' +
         etape('choisis', 'Choisis', 'un profil') + etape('discute', 'Discute', 'en LU') + etape('demasque', 'Démasque', 'les mensonges') +
       '</ol>' +
-      '<div class="ld-accueil-tags" aria-label="Format du jeu"><span>Luxembourgeois <small>· A1–A2</small></span><span>Dialogue et enquête</span></div>' +
       '<button type="button" class="ld-accueil-commencer" onclick="ldAccueilCommencer()">Commencer ' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>' +
     '</main>';
