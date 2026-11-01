@@ -156,6 +156,23 @@ app.use(express.static('public', RECETTE ? {
 } : {}));
 app.use(express.json());
 
+// Id (7 caractères) du dernier commit déployé, affiché dans Plus.
+// Render le fournit dans RENDER_GIT_COMMIT ; en local on le lit avec git.
+function lireCommit() {
+  const variable = process.env.RENDER_GIT_COMMIT || process.env.GIT_COMMIT || process.env.SOURCE_VERSION;
+  if (variable) return variable.slice(0, 7);
+  try {
+    return require('child_process').execSync('git rev-parse --short=7 HEAD', { cwd: __dirname, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+  } catch (e) {
+    return null; // pas de git (ni variable) : l'app n'affiche pas d'id
+  }
+}
+const COMMIT = lireCommit();
+app.get('/api/version', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.json({ commit: COMMIT });
+});
+
 app.get('/api/ecriture', (req, res) => {
   const raw = fs.readFileSync(path.join(__dirname, 'data/ecriture.json'), 'utf8');
   res.json(JSON.parse(raw));

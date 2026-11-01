@@ -94,11 +94,11 @@ try:
             assert pg.is_visible('#view-plus.active')
             noms = pg.evaluate("[...document.querySelectorAll('#plus-page .plus-ligne b')].map(b => b.textContent)")
             assert 'Outils de test' not in noms, (uid, noms)
-            for attendu in ('Lexique', 'Mes pièges', 'Nouveautés', 'Réglages'):
+            for attendu in ('Lexique', 'Mes pièges', 'Réglages'):
                 assert attendu in noms, (attendu, noms)
             assert pg.locator('#plus-sons').count() == 1, 'interrupteur Sons des exercices conservé'
         assert erreurs == [], erreurs
-        ok('Plus normal : aucun Outils de test, quatre menus et réglage Sons conservés pour tout UID')
+        ok('Plus normal : aucun Outils de test, trois menus et réglage Sons conservés pour tout UID')
         b.close()
 finally:
     arreter(proc)

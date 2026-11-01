@@ -300,6 +300,8 @@ Sur `view-pintro`, « LA RÈGLE » perd son fond brun et devient une section typ
 
 ## Nouveautés et identification de version — 21 octobre 2026
 
+> **Mise à jour du 01/11/2026 :** l'entrée « Nouveautés » est retirée de Plus ; la version affiche désormais l'id du commit (`LuxApp 2.1 · dfd8418`, route `/api/version`). Voir [NOUVEAUTES-2.1.md](NOUVEAUTES-2.1.md).
+
 Dans le menu **Plus**, une entrée « Nouveautés » ouvre sur la branche `2.1` une page éditoriale autonome avec hero local, six thèmes de changements et leurs mini-aperçus en HTML/CSS. Ce n'est pas une liste brute de commits : chaque thème renvoie vers un commit réel et une sortie vers l'historique GitHub complet est disponible en bas. La version reste visible dans Plus, sobrement : **LuxApp 2.1** (branche `2.1`) et **LuxApp 2.0** (branche `v2`). La branche `v2` ne reçoit aucun des éléments 2.1.
 
 Correctifs annexes : le conteneur défilant `#pi-content` est réinitialisé sur chaque nouvelle ouverture d'introduction ; dans le scénario, les repères UNITÉ deviennent plus discrets que les noms d'interlocuteurs, `TOI` conservant le jaune. Le contenu pédagogique est inchangé. Voir [NOUVEAUTES-2.1.md](NOUVEAUTES-2.1.md) pour les commits, les fichiers et la recette mobile.

@@ -90,3 +90,10 @@ Contrôle : les tests vérifient la classe initiale sur les panneaux spéciaux e
 ## Mise à jour — panneau Cours (21 octobre 2026)
 
 La rubrique « COURS » rejoint les six thèmes initiaux : la page Nouveautés présente désormais **sept évolutions** majeures. Elle montre un petit aperçu de Règles / Lexique / Phrases et renvoie vers le commit de la refonte du panneau Cours. La rubrique reste statique et éditoriale : elle n'est pas alimentée automatiquement depuis GitHub. Le code de la nouvelle vue est décrit dans [COURS-2.1.md](COURS-2.1.md).
+
+## Mise à jour du 01/11/2026 — ligne retirée, id du commit affiché
+
+- La ligne « Nouveautés » est **retirée du menu Plus** (`public/accueil.js`). Le panneau (`nouveautes-v21.js/.css`) reste dans le code et s'ouvre toujours par `ouvrirNouveautes()` ; rien n'y mène pour l'instant.
+- Sous la version, Plus affiche l'**id du dernier commit déployé** : `LuxApp 2.1 · dfd8418`. Le serveur le donne par la route `GET /api/version` (`{ "commit": "dfd8418" }`) : variable `RENDER_GIT_COMMIT` sur Render (`GIT_COMMIT` ou `SOURCE_VERSION` en secours), sinon `git rev-parse` en local. Sans id ni réseau, Plus affiche `LuxApp 2.1` seul.
+- Test : `tests/test_plus_version.py` (ligne absente, version avec id, route indisponible).
+

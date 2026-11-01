@@ -19,8 +19,11 @@ function extraction(s,begin,end){
 test('Nouveautés est chargé et lié au menu Plus avec version 2.1',()=>{
  assert.match(html,/href="nouveautes-v21\.css\?v=4"/);
  assert.match(html,/src="nouveautes-v21\.js\?v=3"/);
- assert.match(accueil,/\[ICONES\.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2\.1', 'ouvrirNouveautes\(\)'\]/);
- assert.match(accueil,/<div class="plus-version">LuxApp <b>2\.1<\/b><\/div>/);
+ // La ligne « Nouveautés » a été retirée du menu Plus (01/11) ; le panneau reste ouvrable par ouvrirNouveautes().
+ assert.doesNotMatch(accueil,/'Nouveautés'/);
+ // Version affichée avec l'id du dernier commit fourni par /api/version.
+ assert.match(accueil,/'LuxApp <b>2\.1<\/b>' \+ \(commitVersion \? ' · ' \+ escHtml\(commitVersion\) : ''\)/);
+ assert.match(accueil,/fetch\('\/api\/version', \{ cache: 'no-store' \}\)/);
 });
 test('Sept thèmes issus de vrais commits : écran éditorial, pas un changelog brut',()=>{
  assert.match(source,/const LUXAPP_VERSION_21 = '2\.1'/);

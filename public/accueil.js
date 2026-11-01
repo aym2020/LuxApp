@@ -321,7 +321,6 @@ function renderPlusPage() {
   const lignes = [
     [ICONES.loupe, 'Lexique', 'Tous les mots du niveau', 'openLexique()'],
     [ICONES.alerte, 'Mes pièges', 'Les points où tu t\'es trompé', 'openPieges()'],
-    [ICONES.livre, 'Nouveautés', 'Ce qui change avec LuxApp 2.1', 'ouvrirNouveautes()'],
     [ICONES.reglages, 'Réglages', etat ? etat.texte : 'Compte, synchronisation, remise à zéro', 'openReglages()']
   ];
   const html = '<header class="plus-entete">' +
@@ -337,9 +336,29 @@ function renderPlusPage() {
         '>' + escHtml(x[2]) + '</small></span></button>').join('') +
       ligneSonsHtml() +
       '</div></section>' +
-    '<div class="plus-version">LuxApp <b>2.1</b></div>';
+    '<div class="plus-version">' + versionHtml() + '</div>';
   const cible = document.getElementById('plus-page');
   if (cible) cible.innerHTML = html;
+  chargerCommitVersion();
+}
+
+// Version affichée en bas de Plus : « LuxApp 2.1 · dfd8418 » (id du dernier commit déployé).
+let commitVersion = null;
+function versionHtml() {
+  return 'LuxApp <b>2.1</b>' + (commitVersion ? ' · ' + escHtml(commitVersion) : '');
+}
+// Le serveur donne l'id du commit (route /api/version). Sans réseau : la version seule reste affichée.
+function chargerCommitVersion() {
+  if (commitVersion || typeof fetch !== 'function') return;
+  fetch('/api/version', { cache: 'no-store' })
+    .then(r => r.json())
+    .then(v => {
+      if (!v || !v.commit) return;
+      commitVersion = v.commit;
+      const zone = document.querySelector('#plus-page .plus-version');
+      if (zone) zone.innerHTML = versionHtml();
+    })
+    .catch(() => {});
 }
 
 // SPEC 94 (2E) : « Sons des exercices ». Même réglage que le bouton Son de
