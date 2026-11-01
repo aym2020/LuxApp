@@ -52,7 +52,7 @@ Le contrôle CI **Œil du mot de passe** échoue aussi (bascule au clavier, `tes
 
 ## Illustration et provenance
 
-Asset intégré : [redflag-hero-v7.webp](../../public/art/redflag-hero-v7.webp), **1254×1254 px, 73 890 octets**. Générateur d'images intégré (skill `imagegen`), édition depuis l'asset V4 ; conversion WebP qualité 88, méthode 6. La tasse est régénérée avec une céramique unie, sans cache SVG ; le cœur rose du téléphone est conservé. L'image n'embarque aucun texte d'interface.
+Asset intégré : [redflag-hero-v7.webp](../../tools/red-flag/sources/redflag-hero-v7.webp) *(déplacée hors de `public/` le 01/11 : source du recadrage SPEC 117 `public/art/jeux/redflag-presentation.webp`)*, **1254×1254 px, 73 890 octets**. Générateur d'images intégré (skill `imagegen`), édition depuis l'asset V4 ; conversion WebP qualité 88, méthode 6. La tasse est régénérée avec une céramique unie, sans cache SVG ; le cœur rose du téléphone est conservé. L'image n'embarque aucun texte d'interface.
 
 Prompt utilisé :
 

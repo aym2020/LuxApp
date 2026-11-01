@@ -56,7 +56,7 @@ with sync_playwright() as p:
     b, pg, erreurs_js = ouvrir(p, mobile=True)
     pg.evaluate("ouvrirJeux()")
     pg.click('.ld-jouer-hub')
-    pg.click('.ld-accueil-commencer')  # SPEC 115 V2 : accueil fixe à chaque entrée
+    pg.click('.game-intro-primaire')  # SPEC 115 V2 : accueil commun SPEC 116/117 à chaque entrée
     pg.wait_for_selector('#ld-selection-carte')
     pg.click('.ld-dating-meet')
 

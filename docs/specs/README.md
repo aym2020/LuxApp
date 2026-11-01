@@ -114,6 +114,7 @@ Ce registre a été constitué pour les fiches historiques 01–81 et 87–96, p
 | **114** | **[Harmonisation des dimensions PC : enveloppe unique, jeux compris](./SPEC-114.md)** | **P1 transverse** | **À faire — spec documentée, aucun CSS/JS modifié ; baseline DOM + recette PC/Android exigées** |
 | **115** | **[RED FLAG : accueil aligné sur Lux Runner (V9)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **V9 poussée** : « ← Jeux » sans cadre, titre RED FLAG à droite et fond PC plein viewport sans couture ; CTA bas, Cringr et héroïne inchangés. Recette Samsung/PC à confirmer. |
 | **116** | **[Présentation universelle des mini-jeux — Lux Runner mobile comme référence](./SPEC-116.md)** | **P1 transverse UI/UX** | **Spécifiée, non implémentée** : en-tête, position des titres, zone image, informations et footer CTA identiques pour tous les jeux ; Lux Runner étalon (géométrie mesurée § 2 bis), contenus de tous les jeux dans un **registre unique** `JEUX_PRESENTATIONS` (§ 5 bis), RED FLAG à migrer, Survie sans préparation actuellement, Lux Match masqué. |
+| **117** | **[RED FLAG : présentation intégrée à la structure Lux Runner](./SPEC-117.md)** | **P1 UI/UX (LD-049)** | **Implémentée sur `2.1` le 01/11, conformité à Lux Runner testée sur 8 tailles ; Samsung en attente** : premier écran sur le composant commun SPEC 116 (`public/game-intro.*`, registre `JEUX_PRESENTATIONS`) ; titre « Red Flag. », illustration recadrée, étapes à filets. |
 
 ## Précautions de lecture
 

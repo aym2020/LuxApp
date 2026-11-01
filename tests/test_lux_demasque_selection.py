@@ -13,7 +13,7 @@ with sync_playwright() as p:
   page.goto(URL);page.wait_for_selector('#today')
   page.evaluate('ouvrirJeux()')
   page.locator('.ld-carte-hub .ld-jouer-hub').click()
-  page.locator('.ld-accueil-commencer').click()  # SPEC 115 V2 : accueil fixe à chaque entrée
+  page.locator('.game-intro-primaire').click()  # SPEC 115 V2 : accueil commun SPEC 116/117 à chaque entrée
   page.wait_for_selector('#ld-selection-carte',timeout=40000)
   mesures=page.evaluate("""() => ({
    partie:ld.partie===null,etat:document.querySelector('#ld-jeu').dataset.ecran,

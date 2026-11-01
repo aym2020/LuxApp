@@ -13,7 +13,7 @@ def ouvrir_dossier(pg):
     pg.evaluate("ouvrirJeux()")
     pg.wait_for_selector('.ld-jouer-hub')
     pg.click('.ld-jouer-hub')
-    pg.click('.ld-accueil-commencer')  # SPEC 115 V2 : accueil fixe à chaque entrée
+    pg.click('.game-intro-primaire')  # SPEC 115 V2 : accueil commun SPEC 116/117 à chaque entrée
     pg.wait_for_selector('#ld-selection-carte')
     pg.click('.ld-dating-meet')
     pg.wait_for_selector('.ld-rencontre')

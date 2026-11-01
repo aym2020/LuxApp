@@ -15,7 +15,9 @@ on:
       - 'tests/capture_cringr_spec113.py'
       - 'tests/test_lux_demasque_selection.py'
       - 'public/fonts/vt323-*'
-      - 'public/art/redflag-hero-*'
+      - 'public/art/jeux/**'
+      - 'public/game-intro.*'
+      - 'tests/test_game_intro_conformite.py'
       - 'tools/test-lux-demasque.sh'
       - 'tools/critique.sh'
   workflow_dispatch:
@@ -54,12 +56,12 @@ jobs:
           done
           python3 tests/capture_lux_demasque_ld001.py
           python3 tests/capture_cringr_spec113.py
-      - name: Archiver la composition V7
+      - name: Archiver la conformité de la présentation (SPEC 116/117)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: redflag-intro-v7
-          path: artifacts/redflag-v7/
+          name: redflag-presentation-spec117
+          path: artifacts/game-intro/
           if-no-files-found: warn
           retention-days: 30
       - name: Archiver les captures et mesures SPEC 113

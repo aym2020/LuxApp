@@ -195,11 +195,6 @@ async function ldChargerDonnees() {
 // ── SPEC 115 V2 : écran d'accueil fixe, affiché à chaque entrée depuis Jeux (comme Lux Runner).
 // Aucune 3D, aucun minuteur, aucune mémoire « vu une fois » : un écran statique puis Cringr.
 // (L'ancienne clé luxDemasquePrologueVuV1 de la V1 reste stockée mais n'est plus lue.)
-const LD_ICONES_ACCUEIL = {
-  choisis: '<path d="M1 1h2v1h1V1h2v1h1v2H6v1H5v1H4v1H3V6H2V5H1V4H0V2h1z"/>',
-  discute: '<path d="M1 0h6v1h1v4H7v1H3v1H2v1H1V6H0V1h1zM2 2v1h1V2zm2 0v1h1V2z" fill-rule="evenodd"/>',
-  demasque: '<path d="M2 0h3v1h1v1h1v3H6v1h1v1h1v1H7V7H6V6H5v1H2V6H1V5H0V2h1V1h1zm0 2v3h3V2z" fill-rule="evenodd"/>'
-};
 function ldEntrerRedFlag() {
   if (!luxDemasqueDisponible()) { if (typeof ouvrirJeux === 'function') ouvrirJeux(); return; }
   luxDemasqueArreter();
@@ -208,33 +203,14 @@ function ldEntrerRedFlag() {
   ldRendreAccueil();
   ldChargerDonnees().catch(() => {}); // profils prêts pour « Commencer » (rien d'autre n'est chargé)
 }
+// SPEC 117 : la présentation RED FLAG est l'écran commun SPEC 116 (structure Lux Runner).
+// Contenus (titre, accroche, image, étapes, bouton) : registre JEUX_PRESENTATIONS, game-intro.js.
 function ldRendreAccueil() {
   const box = ldBox();
   if (!box) return;
   box.dataset.ecran = 'accueil';
   window.scrollTo(0, 0);
-  const etape = (cle, verbe, suite) => '<li><span class="ld-accueil-icone" aria-hidden="true"><svg viewBox="0 0 8 8" fill="currentColor">' +
-    LD_ICONES_ACCUEIL[cle] + '</svg></span><b>' + verbe + '</b><span>' + suite + '</span></li>';
-  box.innerHTML = ldEntete({fr:false,menu:false,accueil:true}) +
-    '<main class="ld-accueil">' +
-      '<section class="ld-accueil-hero" aria-labelledby="ld-accueil-titre">' +
-        '<div class="ld-accueil-hero-texte">' +
-          '<h1 id="ld-accueil-titre" class="ld-accueil-titre"><span>Ton prochain</span> <span>date sur</span> <em>Cringr.</em></h1>' +
-          '<div class="ld-accueil-pitch">' +
-            '<p>Tu incarnes une femme qui cherche un date.</p>' +
-            '<p>Discute, trouve des preuves et démasque les mensonges.</p>' +
-          '</div>' +
-        '</div>' +
-        '<figure class="ld-accueil-visuel"><img src="art/redflag-hero-v7.webp?v=1" width="1254" height="1254" decoding="async" ' +
-          'alt="Une jeune femme au regard dubitatif, assise le soir avec un téléphone sur la table." ' +
-          'onerror="this.parentNode.classList.add(\'ld-accueil-sans-image\')"></figure>' +
-      '</section>' +
-      '<ol class="ld-accueil-etapes" aria-label="Comment jouer">' +
-        etape('choisis', 'Choisis', 'un profil') + etape('discute', 'Discute', 'en LU') + etape('demasque', 'Démasque', 'les mensonges') +
-      '</ol>' +
-      '<button type="button" class="ld-accueil-commencer" onclick="ldAccueilCommencer()">Commencer ' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>' +
-    '</main>';
+  box.innerHTML = renderGameIntro('redflag');
   ldSynchroMusique(); // silence : la boucle d'enquête démarre dans Cringr
 }
 // « Commencer » : directement le sélecteur SPEC 113. Un double appui n'ouvre qu'une fois.
@@ -560,7 +536,6 @@ function ldRejouer() { const d = ld.partie && ld.partie.dossier; ouvrirLuxDemasq
 // ─── Rendu par écran ───────────────────────────────────────────────────────
 function ldEntete(options) {
   const o = options || {};
-  if (o.accueil) return '<div class="ld-top ld-top-accueil"><button type="button" class="ld-icone-btn ld-retour-accueil" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '<span>Jeux</span></button><span class="ld-logo">RED <i>FLAG</i></span></div>';
   return '<div class="ld-top' + (o.selection ? ' ld-top-selection' : '') + '"><button type="button" class="ld-icone-btn" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '</button>' +
     '<span class="ld-logo">RED <i>FLAG</i></span>' +
     '<div class="ld-top-outils">' +

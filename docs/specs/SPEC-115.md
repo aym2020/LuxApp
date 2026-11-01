@@ -3,6 +3,7 @@
 **Décision initiale V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
 **Statut courant : V7 implémentée et testée sous Chromium ; validation Samsung/Produit en attente.** La V7 (§16) remplace les règles de hauteur, de fondu et d'illustration V6. [Recette, mesures et captures](../red-flag/SPEC-115-V7-RECETTE.md). L'ancienne cinématique reste abandonnée.
 **Suivi :** [LD-049 — TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). LD-048/SPEC 113 (sélecteur) et LD-002.01 (Rencontre) restent distinctes.
+**Mise en page (01/11) :** l'accueil est désormais l'écran commun [SPEC 116](SPEC-116.md) appliqué par **[SPEC 117](SPEC-117.md)** (titre « Red Flag. », kicker « TON PROCHAIN DATE », illustration recadrée sous l'accroche, étapes à filets, CTA en bas). Les passages de cette fiche qui décrivent une autre disposition (V3 à V9) sont historiques ; le comportement (§ 5) reste normatif.  
 
 > **Décision normative : ABANDONNER la cinématique 3D, le téléphone qui vibre, la prise en main, les messages intermédiaires, le zoom et le mécanisme « vu une fois ».** Les remplacer par **un seul écran de préparation statique**, dans l'esprit du lancement de **Lux Runner**, suivi immédiatement du sélecteur Cringr au clic sur **Commencer**. Ne pas créer de nouvelle SPEC.
 

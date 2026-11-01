@@ -1,7 +1,7 @@
 # SPEC 116 — Mini-jeux : écran de présentation universel (référence Lux Runner mobile)
 
 **Décision produit :** 1er novembre 2026 · **Branche de travail :** `2.1` · **Priorité : P1 transverse UI/UX**  
-**Statut : SPÉCIFIÉE — NON IMPLÉMENTÉE COMME COMPOSANT COMMUN, NON TESTÉE.** Cette fiche fixe désormais le **contrat obligatoire** de tous les écrans de présentation des mini-jeux LuxApp. Elle ne modifie aucun moteur de jeu, ne ferme aucune tâche et n'atteste aucune recette.  
+**Statut : COMPOSANT COMMUN CRÉÉ ET APPLIQUÉ À RED FLAG LE 01/11 ([SPEC 117](SPEC-117.md), conformité à Lux Runner testée en Chromium) — LUX RUNNER (LOT 1), SURVIE (LOT 3) ET LUX MATCH (LOT 4) RESTENT À MIGRER ; SAMSUNG À FAIRE.** Cette fiche fixe désormais le **contrat obligatoire** de tous les écrans de présentation des mini-jeux LuxApp. Elle ne modifie aucun moteur de jeu, ne ferme aucune tâche et n'atteste aucune recette.  
 **Compléments du 1er novembre 2026 (après-midi) :** inventaire **mesuré** de Lux Runner tel qu'il est codé (§ 2 bis), correction du rail et des gouttières pour qu'ils correspondent réellement à Lux Runner (§ 3), et **registre unique des contenus** — titre, texte, image, étapes, boutons de chaque jeu au même endroit (§ 5 bis). Documentation seulement.  
 **Référence visuelle impérative :** **écran de préparation mobile de Lux Runner** (capture de référence utilisateur du 1er novembre 2026), confirmé par `public/runner.js` (`runnerRendrePreparation()`) et `public/runner.css`. En cas de divergence visuelle entre une maquette RED FLAG et Lux Runner, **Lux Runner prévaut sur la structure** ; l'illustration et l'identité éditoriale RED FLAG restent spécifiques.
 
@@ -172,7 +172,7 @@ L'existence de ces chemins est **une proposition d'architecture**, pas un fichie
 
 **Objectif :** modifier le titre, le texte, l'image, les étapes ou les boutons d'un jeu **sans toucher à sa mise en page**, et créer la présentation d'un nouveau jeu **en ajoutant une entrée**, pas un écran. La structure vit dans le composant commun ; les contenus vivent dans **un seul fichier**.
 
-### Fichiers (à créer au lot 1)
+### Fichiers (créés le 01/11 avec [SPEC 117](SPEC-117.md) ; l'entrée `runner` reste à ajouter au lot 1)
 
 | Fichier | Contenu | Interdit |
 |---|---|---|

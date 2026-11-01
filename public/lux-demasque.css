@@ -337,45 +337,25 @@
    VT323 (OFL, auto-hébergée) garde une vraie typo rétro lisible dans les bios.
    Press Start 2P reste réservée aux marques et tampons courts. */
 @font-face{font-family:'VT323';src:url('fonts/vt323-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="accueil"]){
+#view-luxdemasque .ld-jeu[data-ecran="selection"]{
   --ld-lecture:'VT323',ui-monospace,monospace;
   max-width:var(--layout-page,480px);padding:8px 10px calc(16px + env(safe-area-inset-bottom));
   gap:8px;background:radial-gradient(90% 55% at 50% 5%,#2e1c3b,#130f1b 84%);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] button{font-family:var(--ld-lecture)}
-#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="accueil"]) :focus-visible{outline:3px solid #fff;outline-offset:3px}
-#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="accueil"]) .ld-chargement{font:24px/1.2 var(--ld-lecture)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] :focus-visible{outline:3px solid #fff;outline-offset:3px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-chargement{font:24px/1.2 var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-reessayer{
   align-self:center;min-height:48px;padding:8px 24px;border:2px solid #ecb4eb;
   border-radius:4px;background:#382244;color:#fff;font-size:24px;cursor:pointer;
 }
-#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="accueil"]) .ld-top-selection{
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection{
   width:100%;max-width:420px;align-self:center;min-height:48px;display:grid;
   grid-template-columns:48px minmax(0,1fr) 48px;gap:0;align-items:center;
 }
-#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="accueil"]) .ld-top-selection .ld-icone-btn{width:48px;height:48px;border-radius:8px}
-#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="accueil"]) .ld-top-selection .ld-logo{justify-self:center;white-space:nowrap;font-size:12px}
-#view-luxdemasque .ld-jeu:is([data-ecran="selection"],[data-ecran="accueil"]) .ld-top-selection .ld-top-outils{width:48px;min-height:48px}
-/* SPEC 115 V9 — en-tête de préparation aligné sur Lux Runner.
-   La sélection Cringr conserve son propre bandeau et ses contrôles. */
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-top-accueil{
-  width:100%;max-width:560px;align-self:center;min-height:44px;
-  display:flex;justify-content:space-between;align-items:center;gap:8px;
-  color:#b3a899;font:800 11px/1.4 var(--font);letter-spacing:.12em;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-top-accueil .ld-retour-accueil{
-  display:flex;align-items:center;justify-content:flex-start;gap:6px;
-  width:auto;min-width:70px;min-height:44px;height:auto;padding:0;
-  border:0;border-radius:0;background:transparent;box-shadow:none;
-  color:#bbb1a2;font:650 14px/1.4 var(--font);letter-spacing:0;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-retour-accueil svg{width:20px;height:20px}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-top-accueil .ld-logo{
-  font:800 11px/1.4 var(--font);letter-spacing:.12em;color:#b9a8d8;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-top-accueil .ld-logo i{
-  color:#b9a8d8;text-shadow:none;font-style:normal;
-}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-icone-btn{width:48px;height:48px;border-radius:8px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-logo{justify-self:center;white-space:nowrap;font-size:12px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-top-outils{width:48px;min-height:48px}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection{
   width:100%;max-width:420px;min-width:0;margin:0 auto;
 }
@@ -394,126 +374,10 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status>span:last-child{text-align:right}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-island{height:20px;background:#050409;border-radius:12px}
-/* SPEC 115 V7 — composition continue RED FLAG. Image générée SANS typographie :
-   texte, étapes et CTA restent HTML. L'illustration est décorative, sur un
-   calque redimensionnable, sans carte rectangulaire ni reflet indésirable. */
-/* SPEC 115 V8 — Accueil : le footer s'ancre en bas du viewport comme Lux Runner.
-   Un fond unique sur #view-luxdemasque (et sur body en desktop via jeux-univers.css)
-   évite la démarcation d'un halo indépendant entre illustration et footer. */
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil{
-  width:100%;max-width:560px;min-width:0;margin:0 auto;flex:1 1 auto;
-  position:relative;isolation:isolate;display:flex;flex-direction:column;gap:16px;padding:4px 0 0;
-  background:transparent;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{
-  position:relative;isolation:isolate;flex:none;min-height:clamp(350px,50svh,455px);
-  display:flex;flex-direction:column;justify-content:flex-start;
-  background:transparent;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero::after{
-  content:"";position:absolute;inset:0 0 -48px;z-index:1;pointer-events:none;
-  -webkit-mask-image:linear-gradient(transparent,#000 8%,#000 58%,transparent 100%);
-  mask-image:linear-gradient(transparent,#000 8%,#000 58%,transparent 100%);
-  /* Un seul voile latéral sur la scène : aucune bande derrière les paragraphes. */
-  background:linear-gradient(90deg,rgba(19,12,27,.82) 0%,rgba(19,12,27,.61) 24%,rgba(19,12,27,.23) 45%,transparent 65%);
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero-texte{
-  position:relative;z-index:2;width:100%;pointer-events:none;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{
-  max-width:70%;margin:0 0 19px;
-  font:400 clamp(37px,9.6vw,54px)/1.04 'Instrument Serif',Georgia,serif;
-  letter-spacing:-.02em;color:#fff1ec;text-shadow:0 2px 18px rgba(11,7,18,.8);
-  overflow-wrap:normal;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre span,
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre em{
-  display:block;white-space:nowrap;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre em{
-  font-style:normal;color:#f76aa4;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{
-  display:flex;flex-direction:column;gap:13px;max-width:47%;
-  position:relative;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch p{
-  margin:0;padding-left:11px;border-left:2px solid #bc6fcb;
-  font:500 clamp(12px,3.4vw,16px)/1.43 var(--font);
-  color:#f1e9ed;text-shadow:0 2px 12px #130c19,0 0 4px #130c19;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{
-  position:absolute;z-index:0;right:0;top:46px;bottom:-48px;width:74%;margin:0;
-  overflow:hidden;pointer-events:none;
-  background:transparent;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 19%,#000 37%,#000 88%,transparent 100%),
-                     linear-gradient(to bottom,transparent 0%,#000 10%,#000 68%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 19%,#000 37%,#000 88%,transparent 100%),
-             linear-gradient(to bottom,transparent 0%,#000 10%,#000 68%,transparent 100%);
-  -webkit-mask-composite:source-in;mask-composite:intersect;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel img{
-  display:block;width:100%;height:100%;object-fit:cover;object-position:25% 47%;
-  image-rendering:auto;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image{
-  background:radial-gradient(ellipse at 73% 44%,#643361 0%,#25152e 40%,transparent 75%);
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image img{display:none}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image::after{
-  content:"♥";position:absolute;right:24%;top:40%;
-  font:36px/1 var(--ld-pixel);color:#ff8acb;text-shadow:0 0 20px #ac317f;
-}
-@media(max-width:360px){
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:335px}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{font-size:36px;margin-bottom:16px}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{max-width:48%;gap:10px}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch p{font-size:12px}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{width:75%;top:58px}
-}
-@media(min-width:768px){
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:450px}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{top:36px;width:69%}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{max-width:61%}
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{max-width:43%}
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes{
-  position:relative;z-index:2;list-style:none;margin:0;padding:12px 9px;display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;
-  border:1px solid rgba(179,96,189,.58);border-radius:18px;
-  background:linear-gradient(180deg,rgba(45,24,56,.64),rgba(27,17,35,.88));box-shadow:inset 0 1px rgba(221,163,233,.06);
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes li{
-  position:relative;display:flex;flex-direction:column;align-items:center;
-  gap:3px;text-align:center;min-width:0;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes li+li::before{
-  content:"›" / "";position:absolute;left:-8px;top:15px;
-  font:700 22px/1 var(--font);color:#a26aba;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-icone{
-  display:grid;place-items:center;width:42px;height:42px;margin-bottom:2px;
-  border:1px solid #9967bc;border-radius:9px;
-  background:linear-gradient(140deg,#51306a,#291733);
-  color:#f99fdb;box-shadow:2px 3px 0 #301739;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-icone svg{
-  width:23px;height:23px;shape-rendering:crispEdges;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes b{
-  font:800 clamp(13px,3.7vw,16px)/1.25 var(--font);color:#fff3f6;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes span:last-child{
-  font:500 12px/1.28 var(--font);color:#c6aad1;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer{
-  display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:54px;flex:none;
-  margin:auto 0 0;
-  border:0;border-radius:12px;background:var(--accent);color:#251b0d;font:800 16px var(--font);cursor:pointer;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer svg{width:18px;height:18px}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer:active{transform:translateY(1px)}
-@media(prefers-reduced-motion:reduce){#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer:active{transform:none}}
+/* SPEC 117 — accueil RED FLAG = écran commun SPEC 116 (public/game-intro.css).
+   Ici seulement : le conteneur du jeu s'efface pour laisser .game-intro poser
+   la géométrie de Lux Runner, et le fond reste celui de la vue (aucun halo local). */
+#view-luxdemasque .ld-jeu[data-ecran="accueil"]{max-width:none;padding:0;gap:0;background:transparent}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-appbar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;min-width:0;
   min-height:28px;padding:0 2px;

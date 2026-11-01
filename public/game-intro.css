@@ -1,0 +1,56 @@
+/* SPEC 116 — écran de présentation commun des mini-jeux (géométrie unique).
+   Valeurs reprises de la préparation Lux Runner telle que mesurée (SPEC 116 § 2 bis) :
+   conteneur --layout-focus (500 px) avec 16 px de marge, header 44 px à 12 px du haut,
+   main centré verticalement, titre serif clamp(48px,14vw,64px), actions hors de main.
+   Aucun jeu ne redéfinit ces règles : un jeu n'apporte que du contenu (registre
+   JEUX_PRESENTATIONS dans game-intro.js) et, au besoin, ses couleurs d'ambiance. */
+.game-intro{
+  --gi-violet:var(--jeu-violet,#b18cf0);
+  --gi-violet-bord:var(--jeu-violet-bord,#4f3f72);
+  position:relative;width:100%;max-width:var(--layout-focus,500px);margin:0 auto;min-height:100dvh;
+  display:flex;flex-direction:column;padding:12px 16px calc(14px + env(safe-area-inset-bottom));
+  color:#f6f1e9;
+}
+/* Header : « ← Jeux » à gauche, marque du jeu à droite. */
+.game-intro-header{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:44px;
+  color:#b3a899;font:800 11px/1.4 var(--font);letter-spacing:.12em}
+.game-intro-marque{color:#b9a8d8}
+.game-intro-retour{display:flex;align-items:center;gap:6px;min-height:44px;border:0;background:transparent;
+  color:#bbb1a2;font:650 14px var(--font);letter-spacing:0;cursor:pointer;padding:0}
+/* Main : bloc centré verticalement dans la hauteur disponible (comme .runner-prepa). */
+.game-intro-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0;min-width:0}
+.game-intro-kicker{color:var(--gi-violet);letter-spacing:.16em;font:800 12px/1.4 var(--font)}
+.game-intro-titre{font:400 clamp(48px,14vw,64px)/1.05 'Instrument Serif',Georgia,serif;margin:10px 0 16px;
+  text-shadow:0 0 28px rgba(177,140,240,.25);overflow-wrap:anywhere}
+.game-intro-titre span{color:var(--accent)}
+.game-intro-accroche{font:700 15px/1.4 var(--font);color:#d9cfbf;margin:0 0 22px}
+/* Visuel : même emplacement pour tous les jeux, sous l'accroche, sur le rail entier. */
+.game-intro-visuel{margin:0 0 22px}
+.game-intro-visuel-image{position:relative;overflow:hidden;border-radius:16px;background:#1a1322;border:1px solid rgba(177,140,240,.22);
+  aspect-ratio:var(--gi-ratio,4/3);max-height:min(32svh,300px);width:100%}
+.game-intro-visuel-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--gi-cadrage,center)}
+/* Image absente : zone sobre, textes et CTA intacts. */
+.game-intro-visuel-vide img{display:none}
+/* Détails : même rythme que les records de Lux Runner (filets haut et bas, trois colonnes). */
+.game-intro-etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid rgba(177,140,240,.22);border-bottom:1px solid rgba(177,140,240,.22)}
+.game-intro-etapes li{padding:12px 4px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.game-intro-etapes li+li{border-left:1px solid rgba(177,140,240,.14);padding-left:12px}
+.game-intro-etapes .game-intro-picto{display:grid;place-items:center;width:28px;height:28px;margin-bottom:2px;border-radius:8px;
+  background:var(--jeu-violet-fonce,#2a2040);border:1px solid var(--gi-violet-bord);color:var(--gi-picto,#e2d4ff)}
+.game-intro-etapes .game-intro-picto svg{shape-rendering:crispEdges}
+.game-intro-etapes b{font:800 15px/1.2 var(--font);color:#f6f1e9}
+.game-intro-etapes span:last-child{font:600 13px/1.3 var(--font);color:#b4a6cf}
+.game-intro-regles{margin:2px 0 14px;padding:0;list-style:none;counter-reset:gi-regle;display:flex;flex-direction:column;gap:12px}
+.game-intro-regles li{counter-increment:gi-regle;display:flex;align-items:center;gap:12px;font:600 15px/1.4 var(--font);color:#ece4d6}
+.game-intro-regles li::before{content:counter(gi-regle);flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;
+  background:var(--jeu-violet-fonce,#2a2040);border:1px solid var(--gi-violet-bord);color:#e2d4ff;font:800 13px var(--font)}
+.game-intro-note{font:500 13px/1.5 var(--font);color:#a99f90;margin:6px 0 0}
+/* Actions : hors de main, ancrées en bas par le flex de .game-intro. */
+.game-intro-actions{display:flex;flex-direction:column;gap:8px;padding-top:12px}
+.game-intro-primaire{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:54px;background:var(--accent);
+  border:0;border-radius:12px;color:#251b0d;font:800 16px var(--font);cursor:pointer}
+.game-intro-secondaire{width:100%;min-height:48px;border:1px solid var(--gi-violet-bord);border-radius:12px;background:rgba(42,32,64,.35);
+  color:#ece4f6;font:700 15px var(--font);cursor:pointer}
+.game-intro-lien{min-height:44px;border:0;background:transparent;color:#bcb2a3;font:650 14px var(--font);cursor:pointer}
+.game-intro button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
