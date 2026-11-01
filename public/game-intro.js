@@ -60,8 +60,7 @@ function gameIntroAppel(action, args) {
 function gameIntroVisuel(v) {
   if (!v) return '';
   if (v.type === 'image') {
-    return '<figure class="game-intro-visuel game-intro-visuel-image" style="--gi-ratio:' + v.largeur + '/' + v.hauteur +
-      ';--gi-cadrage:' + gameIntroEchapper(v.cadrage || 'center') + '">' +
+    return '<figure class="game-intro-visuel game-intro-visuel-image" style="--gi-cadrage:' + gameIntroEchapper(v.cadrage || 'center') + '">' +
       '<img src="' + gameIntroEchapper(v.src) + '" width="' + v.largeur + '" height="' + v.hauteur + '" alt="' + gameIntroEchapper(v.alt) +
       '" decoding="async" onerror="this.parentNode.classList.add(\'game-intro-visuel-vide\')"></figure>';
   }

@@ -12,7 +12,7 @@ from helpers import URL, ok
 
 SORTIE = Path('artifacts/game-intro')
 SORTIE.mkdir(parents=True, exist_ok=True)
-TAILLES = [(320, 600), (360, 740), (393, 852), (430, 932), (768, 1024), (1024, 768), (1440, 900), (1920, 1080)]
+TAILLES = [(320, 600), (360, 640), (360, 740), (393, 763), (393, 852), (412, 780), (430, 932), (768, 1024), (1024, 768), (1440, 900), (1920, 1080)]
 ZONES_RUNNER = {'header': '.runner-top', 'retour': '.runner-retour', 'marque': '.runner-top > span', 'main': '.runner-prepa',
                 'kicker': '.jeux-kicker', 'titre': '.runner-prepa h1', 'actions': '.runner-actions', 'cta': '.runner-actions .jeux-jouer'}
 ZONES_RF = {'header': '.game-intro-header', 'retour': '.game-intro-retour', 'marque': '.game-intro-marque', 'main': '.game-intro-main',
@@ -82,9 +82,11 @@ with sync_playwright() as p:
             assert proche(rf[k]['x'], rf['titre']['x']) and proche(rf[k]['w'], rf['titre']['w']), (w, h, k)
         assert rf['titre']['y'] < rf['accroche']['y'] < rf['visuel']['y'] < rf['details']['y'] < rf['actions']['y'], (w, h, 'ordre')
         assert rf['ov'] <= 1, (w, h, rf['ov'])
-        if h >= 740:
+        # Visuel élastique (SPEC 116 § 3 bis) : entre 140 et 300 px, il absorbe la hauteur disponible.
+        assert 139.5 <= rf['visuel']['h'] <= 300.5, (w, h, rf['visuel'])
+        if h >= 640 and w >= 360:                                  # téléphones courants (dont Samsung ~393×763)
             assert rf['scroll'] <= 0 and rf['cta']['b'] <= h, (w, h, rf['scroll'])
         print(f'  {w}×{h} : header, retour, marque, titre, rail et CTA = Lux Runner (±2 px)', flush=True)
     (SORTIE / 'mesures.json').write_text(json.dumps(rapport, indent=1) + '\n')
     b.close()
-ok('SPEC 116/117 : présentation RED FLAG conforme à Lux Runner sur 8 tailles (mobile et PC)')
+ok('SPEC 116/117 : présentation RED FLAG conforme à Lux Runner sur 11 tailles, sans défilement dès 360×640')

@@ -194,7 +194,7 @@ with sync_playwright() as p:
             largeur: acc.width, centre: Math.abs(acc.left + acc.width / 2 - innerWidth / 2), logoDroite: Math.abs(logo.right-top.right),
             imgH: img.height, police: Math.min(...petits), coupe: [...document.querySelectorAll('.game-intro-etapes span')].some(s => s.scrollWidth > s.clientWidth + 1)}; }""")
         assert m['ov'] <= 1 and m['ctaH'] >= 48 and m['largeur'] <= 468 and m['centre'] <= 1 and m['logoDroite'] <= 1, (largeur, m)
-        assert m['police'] >= 12 and m['imgH'] >= 150 and not m['coupe'], (largeur, m)
+        assert m['police'] >= 12 and m['imgH'] >= 139.5 and not m['coupe'], (largeur, m)
         if hauteur >= 740:
             assert m['ctaBas'] <= hauteur, (largeur, hauteur, m)        # CTA dans le premier écran
         else:

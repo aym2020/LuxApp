@@ -152,10 +152,18 @@ test('SPEC 117 : accueil RED FLAG rendu par le composant commun et le registre u
  assert.equal(G.renderGameIntro('essai').includes('onclick="f()"'),true);delete G.JEUX_PRESENTATIONS.essai;
  // Géométrie unique reprise de Lux Runner (SPEC 116 § 2 bis).
  assert.match(gcss,/\.game-intro\{[\s\S]*?max-width:var\(--layout-focus,500px\)[\s\S]*?padding:12px 16px calc\(14px \+ env\(safe-area-inset-bottom\)\)/);
- assert.match(gcss,/\.game-intro-main\{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0/);
+ assert.match(gcss,/\.game-intro-main\{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;padding:24px 0;min-width:0;min-height:0\}/);
+ // Tenir dans l'écran : conteneur à la hauteur de l'écran, visuel image élastique (140–300 px), défilement seulement en dernier recours.
+ assert.match(gcss,/\.game-intro\{[\s\S]*?height:100dvh;min-height:min-content;/);
+ assert.match(gcss,/\.game-intro-visuel-image\{[^}]*flex:1 1 0;min-height:140px;max-height:300px/);
+ assert.match(gcss,/@media\(max-width:379px\)\{\s*\.game-intro-etapes li\{grid-template-columns:minmax\(0,1fr\)\}/);
  assert.match(gcss,/\.game-intro-titre\{font:400 clamp\(48px,14vw,64px\)\/1\.05 'Instrument Serif'/);
  assert.match(gcss,/\.game-intro-primaire\{[^}]*min-height:54px[^}]*border-radius:12px/);
- assert.match(html,/game-intro\.css\?v=1/);assert.ok(html.indexOf('game-intro.js?v=1')<html.indexOf('lux-demasque.js?v='),'registre chargé avant RED FLAG');
+ assert.match(html,/game-intro\.css\?v=\d+/);assert.ok(html.indexOf('game-intro.js?v=')<html.indexOf('lux-demasque.js?v='),'registre chargé avant RED FLAG');
+ // Retour au hub : recentrage sur la carte du jeu quitté (SPEC 116 § 9).
+ const jeux=read('public/jeux-v21.js');
+ assert.match(jeux,/let jeuxCarteQuittee = null;/);assert.match(jeux,/function jeuxRecentrerSurCarte\(\)/);
+ assert.match(jeux,/closest\('#jeux-hub \.jeux-carte'\)/);
  const univers=read('public/jeux-univers.css');
  assert.match(univers,/body:has\(#view-luxdemasque\.active\)[\s\S]*?radial-gradient/);
 });

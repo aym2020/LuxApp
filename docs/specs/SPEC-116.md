@@ -124,6 +124,16 @@ Références normatives : [SPEC 114](SPEC-114.md), [charte UI §6 bis](../CHARTE
 
 **Important :** le contrat doit être rendu par de **vrais composants/variables partagés**. Les chiffres ci-dessus reproduisent les références actuelles, mais doivent être factorisés dans le CSS commun lors de l'implémentation. Éviter de maintenir quatre copies divergentes de `clamp()`, paddings et hauteurs. Ne pas utiliser `transform:scale()` ou `zoom` pour simuler une conformité.
 
+## 3 bis. Tenir dans l'écran du téléphone : le visuel image est la zone élastique (01/11/2026)
+
+**Constat Samsung (01/11, ~393 × 763 px utiles) :** avec un visuel image de hauteur fixe, la présentation RED FLAG dépassait l'écran et obligeait à défiler. **Règle :** sur téléphone courant (dès 360 × 640), une présentation **tient dans l'écran sans défiler**.
+
+- Le conteneur `.game-intro` mesure **exactement la hauteur de l'écran** (`height:100dvh`), mais peut grandir si même le contenu minimal ne tient pas (`min-height:min-content`) : on défile alors naturellement, jamais de contenu coupé.
+- `main` peut rétrécir (`flex:1 1 auto; min-height:0`) ; **seul le visuel de type image** absorbe la place : `flex:1 1 0; min-height:140px; max-height:300px`, image en `object-fit:cover` avec le `cadrage` du registre. Header, kicker, titre, accroche, détails et actions **gardent la géométrie de Lux Runner**.
+- Un visuel HTML (portails de Lux Runner) garde sa hauteur naturelle.
+- Détails « étapes » compacts : pictogramme et verbe sur une ligne, complément dessous ; **sous 380 px de large**, pictogramme au-dessus du verbe (un verbe long comme « Démasque » doit tenir).
+- Mesures (Chromium, RED FLAG) : aucun défilement à 360×640, 360×740, 393×763, 393×852, 412×780, 430×932 et sur PC ; visuel 152 px à 360×640, 300 px dès 393×763. À 320×600, 26 px de défilement (Lux Runner défile aussi à cette taille) ; à 320×568, 58 px.
+
 ## 4. Contenu par jeu : mêmes emplacements, liberté contrôlée
 
 | Zone commune | Lux Runner (référence) | RED FLAG | Survie (futur écran) | Lux Match (si réactivé) |
@@ -301,3 +311,12 @@ Mesurer avec `getBoundingClientRect()` les zones **header/retour/marque**, **tit
 - Lorsqu'un nouveau jeu est conçu, commencer **automatiquement** par cette page de présentation : pas de nouvelle disposition sans exception explicite approuvée et documentée dans cette SPEC.
 
 **Définition du terminé :** passer de l'écran de présentation Lux Runner à RED FLAG ou à Survie ne déplace visuellement aucun repère structurel — seuls les titres, images, descriptions, métriques pertinentes et actions réellement offertes changent. **La norme est documentée dans cette livraison ; son implémentation reste à réaliser et tester.**
+
+## 9. Retour au hub Jeux : recentrer sur la carte du jeu quitté (01/11/2026)
+
+En revenant d'un jeu vers le hub (« ← Jeux » de la présentation, bouton Retour Android ou navigateur), la page **se recale sur la carte du jeu dont on vient**, centrée dans l'écran (si la page ne peut plus défiler, la carte est collée au bas de page ; si elle est plus haute que l'écran, son haut reste visible).
+
+- **Implémentation** (`public/jeux-v21.js`) : un écouteur de clic en phase de capture note la carte (`aria-labelledby`) dont un bouton est touché ; quand `#view-jeux` redevient active, `jeuxRecentrerSurCarte()` place la carte une seule fois, après le placement de la navigation, puis aux replacements différés (polices, 400 ms), **sauf si l'utilisateur a déjà touché l'écran**. Rien n'est stocké.
+- **Valable pour tous les jeux** sans code propre à chacun (Survie, Lux Runner, RED FLAG, Lux Match s'il revient), puisque toute carte du hub est une `.jeux-carte` avec `aria-labelledby`.
+- Ouvrir Jeux sans venir d'un jeu ne déclenche aucun recentrage.
+- Test : `tests/test_jeux_retour_carte.py` (RED FLAG et Lux Runner, 393×763 et 360×640, Retour et « ← Jeux »).

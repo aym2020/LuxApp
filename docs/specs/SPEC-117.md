@@ -59,3 +59,13 @@ Mesures après correction (393×852) : header [16, 12, 361, 44] et titre 55 px �
 - Le texte de l'accroche fait 3 lignes sur téléphone (contenu SPEC 115 conservé) ; si le produit veut la légèreté d'une ligne comme « 60 secondes · 3 vies », raccourcir **dans le registre** sans toucher à la mise en page.
 - À 320×600, l'écran défile d'environ 90 px (Lux Runner défile aussi à cette taille) ; le CTA reste atteignable.
 - Couleur du point final : or, comme Lux Runner (règle SPEC 116 § 5 bis) ; une variation par jeu n'est pas prévue.
+
+## 6. Retour Samsung du 01/11 (16 h) et correctifs
+
+**Retour :** « très bien », mais la page **défilait** sur le téléphone (~393 × 763 px utiles), et au retour vers Jeux la page ne revenait pas sur la carte RED FLAG.
+
+- **Hauteur** : le visuel image devient la zone élastique de l'écran commun (SPEC 116 § 3 bis) — entre 140 et 300 px selon la place, header, titre, rail et actions toujours identiques à Lux Runner. Étapes compactes (pictogramme et verbe sur une ligne ; empilés sous 380 px). Résultat Chromium : plus de défilement dès 360×640 (dont 393×763) ; à 320×600, 26 px.
+- **Retour au hub** : recentrage sur la carte du jeu quitté, pour tous les jeux (SPEC 116 § 9).
+- Tests ajoutés ou étendus : `tests/test_game_intro_conformite.py` (11 tailles, dont 360×640, 393×763 et 412×780 ; visuel entre 140 et 300 px ; aucun défilement dès 360×640), `tests/test_jeux_retour_carte.py` (nouveau), contrat Node (hauteur élastique, recentrage).
+- **Non vérifié** : Samsung réel après correctif (la police système peut ajouter quelques pixels : le visuel les absorbe tant qu'il reste au-dessus de 140 px).
+

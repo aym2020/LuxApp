@@ -170,6 +170,46 @@ function survieEnregistrer(record) {
     localStorage.setItem(key,JSON.stringify({record,maj:Date.now()}));
   } catch (_) { /* stockage facultatif */ }
 }
+// SPEC 116 § 9 — Retour au hub : la page se recale sur la carte du jeu qu'on vient de quitter.
+// La carte est notée au clic sur un de ses boutons (Jouer…), quel que soit le jeu ; au retour
+// (« ← Jeux », Retour Android ou navigateur), le hub la centre une seule fois. Rien n'est stocké.
+let jeuxCarteQuittee = null;
+// (Gardes : les tests Node chargent ce fichier avec un faux document minimal.)
+if (typeof document !== 'undefined' && typeof document.addEventListener === 'function') {
+  document.addEventListener('click', e => {
+    const carte = e.target.closest && e.target.closest('#jeux-hub .jeux-carte');
+    if (carte && e.target.closest('button')) jeuxCarteQuittee = carte.getAttribute('aria-labelledby');
+  }, true);
+}
+function jeuxRecentrerSurCarte() {
+  const id = jeuxCarteQuittee;
+  jeuxCarteQuittee = null;
+  const carte = id && document.querySelector('#jeux-hub .jeux-carte[aria-labelledby="' + id + '"]');
+  if (!carte) return false;
+  let touche = false;
+  const stop = () => { touche = true; };
+  ['pointerdown', 'wheel', 'touchmove', 'keydown'].forEach(n => window.addEventListener(n, stop, { once: true, passive: true, capture: true }));
+  // Carte centrée dans l'écran ; si elle est plus haute que l'écran, son haut reste visible.
+  const placer = () => {
+    if (touche || !carte.isConnected) return;
+    const r = carte.getBoundingClientRect();
+    const marge = Math.max(12, (window.innerHeight - r.height) / 2);
+    window.scrollTo(0, Math.max(0, window.scrollY + r.top - marge));
+  };
+  placer();
+  requestAnimationFrame(() => requestAnimationFrame(placer));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placer);
+  setTimeout(placer, 400);
+  return true;
+}
+// Déclenché quand la vue Jeux redevient active, après le placement de la navigation (microtâche).
+(function () {
+  if (typeof document === 'undefined' || typeof document.getElementById !== 'function') return;
+  const vue = document.getElementById('view-jeux');
+  if (!vue || typeof MutationObserver === 'undefined') return;
+  new MutationObserver(() => { if (vue.classList.contains('active') && jeuxCarteQuittee) jeuxRecentrerSurCarte(); })
+    .observe(vue, { attributes: true, attributeFilter: ['class'] });
+})();
 function ouvrirJeux() {
   survieArreter();
   if(typeof runnerArreter==='function')runnerArreter(); // SPEC 96
