@@ -131,7 +131,7 @@ Références normatives : [SPEC 114](SPEC-114.md), [charte UI §6 bis](../CHARTE
 - Le conteneur `.game-intro` mesure **exactement la hauteur de l'écran** (`height:100dvh`), mais peut grandir si même le contenu minimal ne tient pas (`min-height:min-content`) : on défile alors naturellement, jamais de contenu coupé.
 - `main` peut rétrécir (`flex:1 1 auto; min-height:0`) ; **seul le visuel de type image** absorbe la place : `flex:1 1 0; min-height:140px; max-height:300px`, image en `object-fit:cover` avec le `cadrage` du registre. Header, kicker, titre, accroche, détails et actions **gardent la géométrie de Lux Runner**.
 - Un visuel HTML (portails de Lux Runner) garde sa hauteur naturelle.
-- Détails « étapes » compacts : pictogramme et verbe sur une ligne, complément dessous ; **sous 380 px de large**, pictogramme au-dessus du verbe (un verbe long comme « Démasque » doit tenir).
+- Détails « étapes » (SPEC 117 § 7) : **une seule disposition à toutes les largeurs** — pictogramme 28 px, verbe, complément, empilés et alignés en haut dans trois colonnes égales ; le complément peut passer sur 2 lignes (`text-wrap:balance`) sans décaler les pictogrammes ni les verbes des autres colonnes.
 - Mesures (Chromium, RED FLAG) : aucun défilement à 360×640, 360×740, 393×763, 393×852, 412×780, 430×932 et sur PC ; visuel 152 px à 360×640, 300 px dès 393×763. À 320×600, 26 px de défilement (Lux Runner défile aussi à cette taille) ; à 320×568, 58 px.
 
 ## 4. Contenu par jeu : mêmes emplacements, liberté contrôlée

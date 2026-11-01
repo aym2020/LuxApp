@@ -71,7 +71,7 @@ function gameIntroDetails(d) {
   if (!d) return '';
   if (d.type === 'etapes') {
     return '<ol class="game-intro-details game-intro-etapes" aria-label="Comment jouer">' + d.items.map(e =>
-      '<li><span class="game-intro-picto" aria-hidden="true"><svg style="width:14px;height:14px;flex:none" viewBox="0 0 8 8" fill="currentColor">' + (GAME_INTRO_PICTOS[e.picto] || '') + '</svg></span>' +
+      '<li><span class="game-intro-picto" aria-hidden="true"><svg style="width:16px;height:16px;flex:none" viewBox="0 0 8 8" fill="currentColor">' + (GAME_INTRO_PICTOS[e.picto] || '') + '</svg></span>' +
       '<b>' + gameIntroEchapper(e.verbe) + '</b><span>' + gameIntroEchapper(e.suite) + '</span></li>').join('') + '</ol>';
   }
   if (d.type === 'regles') {

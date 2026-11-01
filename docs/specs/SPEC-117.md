@@ -69,3 +69,19 @@ Mesures après correction (393×852) : header [16, 12, 361, 44] et titre 55 px �
 - Tests ajoutés ou étendus : `tests/test_game_intro_conformite.py` (11 tailles, dont 360×640, 393×763 et 412×780 ; visuel entre 140 et 300 px ; aucun défilement dès 360×640), `tests/test_jeux_retour_carte.py` (nouveau), contrat Node (hauteur élastique, recentrage).
 - **Non vérifié** : Samsung réel après correctif (la police système peut ajouter quelques pixels : le visuel les absorbe tant qu'il reste au-dessus de 140 px).
 
+## 7. Harmonisation de la zone « Choisis / Discute / Démasque » (01/11/2026, soir)
+
+**Retour :** les pictos plaisent, mais le rendu des trois étapes n'est « pas harmonieux » : espacements bizarres.
+
+**Constat mesuré (355 px de large, téléphone du produit) :** « les mensonges » passait sur 2 lignes dans la 3ᵉ colonne ; les colonnes étaient centrées verticalement, donc le picto et le verbe de « Démasque » étaient décalés de 3 px et 9 px par rapport aux deux autres. Le premier picto avait en plus 4 px de retrait par rapport au titre et à l'image, et la disposition changeait sous 380 px (picto à gauche du verbe au-dessus, empilés en dessous).
+
+**Correctif (`public/game-intro.css`, `game-intro.js`) :**
+- une seule disposition à toutes les largeurs : pictogramme (28 px, icône 16 px = 2× la grille 8×8), verbe, complément, empilés et alignés **en haut** (plus de centrage vertical) ; media query `max-width:379px` supprimée ;
+- première colonne sans retrait : le picto s'aligne sur le bord gauche du titre et de l'image ; colonnes suivantes : filet puis 10 px de marge ;
+- complément en `text-wrap:balance` : « les / mensonges » se coupe proprement quand la colonne est étroite ;
+- espacements verticaux resserrés (10 px haut, 8 px bas, 4 px sous le picto) pour garder le visuel élastique au-dessus de 140 px.
+
+**Recette exécutée (Chromium, 01/11) :** pictogrammes et verbes à la même ordonnée dans les trois colonnes à 320, 355, 360, 393, 430 et 1440 px (nouvelle assertion dans `tests/test_lux_demasque_accueil.py`, aucun verbe ni complément coupé) ; `test_game_intro_conformite.py` (11 tailles, aucun défilement dès 360×640) et `test_jeux_retour_carte.py` verts ; Node 301/5 (les 5 échecs connus inchangés).
+
+**Limite :** à 320×600 le défilement passe d'environ 26 à 32 px (visuel déjà au minimum de 140 px ; le CTA reste atteignable). **Recette Samsung à faire.**
+

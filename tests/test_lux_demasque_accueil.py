@@ -192,9 +192,13 @@ with sync_playwright() as p:
             .map(e => parseFloat(getComputedStyle(e).fontSize));
           return {ov: document.documentElement.scrollWidth - innerWidth, ctaBas: cta.bottom, ctaH: cta.height,
             largeur: acc.width, centre: Math.abs(acc.left + acc.width / 2 - innerWidth / 2), logoDroite: Math.abs(logo.right-top.right),
-            imgH: img.height, police: Math.min(...petits), coupe: [...document.querySelectorAll('.game-intro-etapes span')].some(s => s.scrollWidth > s.clientWidth + 1)}; }""")
+            imgH: img.height, police: Math.min(...petits), coupe: [...document.querySelectorAll('.game-intro-etapes span, .game-intro-etapes b')].some(s => s.scrollWidth > s.clientWidth + 1),
+            // Harmonie des étapes : pictogrammes et verbes à la même hauteur dans les trois colonnes.
+            picto: new Set([...document.querySelectorAll('.game-intro-picto')].map(e => Math.round(e.getBoundingClientRect().top))).size,
+            verbe: new Set([...document.querySelectorAll('.game-intro-etapes b')].map(e => Math.round(e.getBoundingClientRect().top))).size}; }""")
         assert m['ov'] <= 1 and m['ctaH'] >= 48 and m['largeur'] <= 468 and m['centre'] <= 1 and m['logoDroite'] <= 1, (largeur, m)
         assert m['police'] >= 12 and m['imgH'] >= 139.5 and not m['coupe'], (largeur, m)
+        assert m['picto'] == 1 and m['verbe'] == 1, (largeur, m)   # étapes alignées (SPEC 117 §7)
         if hauteur >= 740:
             assert m['ctaBas'] <= hauteur, (largeur, hauteur, m)        # CTA dans le premier écran
         else:

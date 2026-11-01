@@ -39,18 +39,16 @@
 /* Détails : même rythme que les records de Lux Runner (filets haut et bas, trois colonnes). */
 .game-intro-etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   border-top:1px solid rgba(177,140,240,.22);border-bottom:1px solid rgba(177,140,240,.22)}
-.game-intro-etapes li{padding:10px 4px;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:6px;row-gap:2px;min-width:0}
-.game-intro-etapes li+li{border-left:1px solid rgba(177,140,240,.14);padding-left:12px}
-.game-intro-etapes .game-intro-picto{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;
+/* Chaque étape : pictogramme, verbe, complément, empilés et alignés en haut (même grille à toutes les largeurs).
+   Le complément peut passer sur 2 lignes sans décaler le pictogramme ni le verbe des autres colonnes. */
+.game-intro-etapes li{padding:10px 10px 8px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.game-intro-etapes li:first-child{padding-left:0}
+.game-intro-etapes li+li{border-left:1px solid rgba(177,140,240,.14)}
+.game-intro-etapes .game-intro-picto{display:grid;place-items:center;width:28px;height:28px;margin-bottom:4px;border-radius:8px;
   background:var(--jeu-violet-fonce,#2a2040);border:1px solid var(--gi-violet-bord);color:var(--gi-picto,#e2d4ff)}
 .game-intro-etapes .game-intro-picto svg{shape-rendering:crispEdges}
 .game-intro-etapes b{font:800 15px/1.2 var(--font);color:#f6f1e9}
-.game-intro-etapes span:last-child{grid-column:1 / -1;font:600 13px/1.3 var(--font);color:#b4a6cf}
-/* Écran étroit : pictogramme au-dessus du verbe, pour qu'un verbe long (« Démasque ») tienne. */
-@media(max-width:379px){
-  .game-intro-etapes li{grid-template-columns:minmax(0,1fr)}
-  .game-intro-etapes b,.game-intro-etapes span:last-child{grid-column:1}
-}
+.game-intro-etapes span:last-child{font:600 13px/1.3 var(--font);color:#b4a6cf;text-wrap:balance}
 .game-intro-regles{margin:2px 0 14px;padding:0;list-style:none;counter-reset:gi-regle;display:flex;flex-direction:column;gap:12px}
 .game-intro-regles li{counter-increment:gi-regle;display:flex;align-items:center;gap:12px;font:600 15px/1.4 var(--font);color:#ece4d6}
 .game-intro-regles li::before{content:counter(gi-regle);flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;

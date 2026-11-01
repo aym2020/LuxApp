@@ -156,7 +156,9 @@ test('SPEC 117 : accueil RED FLAG rendu par le composant commun et le registre u
  // Tenir dans l'écran : conteneur à la hauteur de l'écran, visuel image élastique (140–300 px), défilement seulement en dernier recours.
  assert.match(gcss,/\.game-intro\{[\s\S]*?height:100dvh;min-height:min-content;/);
  assert.match(gcss,/\.game-intro-visuel-image\{[^}]*flex:1 1 0;min-height:140px;max-height:300px/);
- assert.match(gcss,/@media\(max-width:379px\)\{\s*\.game-intro-etapes li\{grid-template-columns:minmax\(0,1fr\)\}/);
+ // Étapes : pictogramme, verbe et complément empilés et alignés en haut, une seule disposition à toutes les largeurs.
+ assert.match(gcss,/\.game-intro-etapes li\{[^}]*display:flex;flex-direction:column;align-items:flex-start/);
+ assert.doesNotMatch(gcss,/game-intro-etapes li\{grid-template-columns/);
  assert.match(gcss,/\.game-intro-titre\{font:400 clamp\(48px,14vw,64px\)\/1\.05 'Instrument Serif'/);
  assert.match(gcss,/\.game-intro-primaire\{[^}]*min-height:54px[^}]*border-radius:12px/);
  assert.match(html,/game-intro\.css\?v=\d+/);assert.ok(html.indexOf('game-intro.js?v=')<html.indexOf('lux-demasque.js?v='),'registre chargé avant RED FLAG');
