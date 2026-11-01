@@ -335,77 +335,102 @@
 
 /* SPEC 113 — Cringr : une seule composition, limitée au sélecteur.
    VT323 (OFL, auto-hébergée) garde une vraie typo rétro lisible dans les bios.
-   Press Start 2P reste réservée aux marques et tampons courts. */
+   Press Start 2P reste réservée aux marques et tampons courts.
+   SPEC 118 (V3) : palette nuit chaude (prune, rose Cringr, ambre), un seul cadre de téléphone,
+   portrait dominant et carte qui prend la hauteur disponible (aucune hauteur magique). */
 @font-face{font-family:'VT323';src:url('fonts/vt323-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@media(max-width:767px){
+  #view-luxdemasque:has(.ld-jeu[data-ecran="selection"]){background:radial-gradient(120% 60% at 50% 0%,#2e1a38 0%,#1c1124 55%,#17101f 85%) #17101f}
+}
 #view-luxdemasque .ld-jeu[data-ecran="selection"]{
   --ld-lecture:'VT323',ui-monospace,monospace;
-  max-width:var(--layout-page,480px);padding:8px 10px calc(16px + env(safe-area-inset-bottom));
-  gap:8px;background:radial-gradient(90% 55% at 50% 5%,#2e1c3b,#130f1b 84%);
+  --cr-nuit:#17101f;--cr-surface:#302039;--cr-surface-2:#432a46;--cr-rose:#e74791;--cr-ambre:#d99b70;
+  --cr-creme:#f6e9dd;--cr-lavande:#c9b5d6;--cr-ombre:#0c0811;
+  max-width:var(--layout-page,480px);padding:8px 10px calc(12px + env(safe-area-inset-bottom));gap:8px;
+  /* Tenir dans l'écran : hauteur de l'écran, la carte rétrécit jusqu'à son contenu (jamais tronqué). */
+  height:100dvh;min-height:0;
+  background:radial-gradient(48% 34% at 50% 40%,rgba(231,71,145,.16),transparent),
+    radial-gradient(48% 24% at 50% 98%,rgba(217,155,112,.10),transparent);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] button{font-family:var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] :focus-visible{outline:3px solid #fff;outline-offset:3px}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-chargement{font:24px/1.2 var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-reessayer{
-  align-self:center;min-height:48px;padding:8px 24px;border:2px solid #ecb4eb;
-  border-radius:4px;background:#382244;color:#fff;font-size:24px;cursor:pointer;
+  align-self:center;min-height:48px;padding:8px 24px;border:2px solid var(--cr-rose);
+  border-radius:4px;background:var(--cr-surface);color:var(--cr-creme);font-size:24px;cursor:pointer;box-shadow:3px 3px 0 var(--cr-ombre);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection{
-  width:100%;max-width:420px;align-self:center;min-height:48px;display:grid;
+  width:100%;max-width:420px;align-self:center;min-height:48px;display:grid;flex:none;
   grid-template-columns:48px minmax(0,1fr) 48px;gap:0;align-items:center;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-icone-btn{width:48px;height:48px;border-radius:8px}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-logo{justify-self:center;white-space:nowrap;font-size:12px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-logo{justify-self:center;white-space:nowrap;font-size:12px;color:var(--cr-creme)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-logo i{color:var(--cr-rose);text-shadow:0 0 10px rgba(231,71,145,.5)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-top-outils{width:48px;min-height:48px}
+/* Chaîne flexible : page → téléphone → écran → pile → carte. Rien ne grandit au-delà de 560 px de carte ;
+   les conteneurs peuvent rétrécir (min-height:0), la carte s'arrête à son contenu (portrait 96–120 px + textes). */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection{
-  width:100%;max-width:420px;min-width:0;margin:0 auto;
+  width:100%;max-width:420px;min-width:0;min-height:0;margin:auto;display:flex;flex-direction:column;flex:0 1 auto;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone{
-  width:100%;padding:6px;border:3px solid #08070e;border-radius:32px;
-  background:#4a3659;box-shadow:0 7px 0 #08060d,0 12px 0 #281b35;
+  width:100%;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;padding:5px;
+  border:2px solid var(--cr-ombre);border-radius:30px;background:var(--cr-surface);
+  box-shadow:0 6px 0 var(--cr-ombre),0 26px 40px -22px rgba(231,71,145,.45);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen{
-  width:100%;min-width:0;display:flex;flex-direction:column;gap:8px;
-  padding:10px;border-radius:24px;background:#100d19;
-  border:1px solid #362744;overflow:hidden;
+  width:100%;min-width:0;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;gap:8px;
+  padding:8px 8px 10px;border-radius:25px;
+  background:radial-gradient(120% 45% at 50% 0%,#2a1a33,var(--cr-nuit) 70%);
+  /* Coupe le glissement horizontal de la carte ; en hauteur, rien n'est jamais masqué. */
+  overflow:hidden;overflow-x:clip;overflow-y:visible;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status{
-  display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;
-  min-height:22px;font:18px/1 var(--ld-lecture);color:#e8def4;padding:0 6px;
+  display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;flex:none;
+  min-height:22px;font:18px/1 var(--ld-lecture);color:var(--cr-lavande);padding:0 8px;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status>span:last-child{text-align:right}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-island{height:20px;background:#050409;border-radius:12px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-island{height:20px;background:var(--cr-ombre);border-radius:12px}
 /* SPEC 117 — accueil RED FLAG = écran commun SPEC 116 (public/game-intro.css).
    Ici seulement : le conteneur du jeu s'efface pour laisser .game-intro poser
    la géométrie de Lux Runner, et le fond reste celui de la vue (aucun halo local). */
 #view-luxdemasque .ld-jeu[data-ecran="accueil"]{max-width:none;padding:0;gap:0;background:transparent}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-appbar{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;min-width:0;
-  min-height:28px;padding:0 2px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;min-width:0;flex:none;
+  min-height:28px;padding:0 4px;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-brand{
-  color:#f4f0f7;font:clamp(12px,3.4vw,16px)/1.5 var(--ld-pixel);white-space:nowrap;
+  color:var(--cr-creme);font:clamp(12px,3.4vw,16px)/1.5 var(--ld-pixel);white-space:nowrap;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-brand span{color:#ff4fd8}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-brand span{color:var(--cr-rose)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-counter{
-  font:18px/1.1 var(--ld-lecture);color:#d5b4e1;white-space:nowrap;
+  font:18px/1.1 var(--ld-lecture);color:var(--cr-lavande);white-space:nowrap;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-pile{
-  position:relative;width:100%;min-width:0;
+  position:relative;width:100%;min-width:0;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte{
   position:relative;display:flex;flex-direction:column;justify-content:flex-end;
-  min-width:0;overflow:hidden;border:2px solid #c88ccf;border-radius:8px;
-  background:#302443;isolation:isolate;min-height:clamp(320px,calc(100svh - 250px),550px);
-  box-shadow:0 5px 0 #2e193e;touch-action:pan-y;user-select:none;
+  /* overflow:clip (et non hidden) : la hauteur minimale automatique reste celle du contenu. */
+  flex:0 1 560px;min-width:0;overflow:hidden;overflow:clip;
+  border:2px solid #573a5a;border-radius:8px;background:var(--cr-surface);isolation:isolate;
+  box-shadow:0 4px 0 var(--cr-ombre);touch-action:pan-y;user-select:none;
   cursor:grab;transition:transform .18s ease;
 }
+/* Place réservée au portrait au-dessus des informations (le portrait reste visible même sur 320×600). */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte::before{
-  content:"";flex:1 0 140px;pointer-events:none;
+  content:"";flex:1 0 120px;pointer-events:none;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-selection-tire{transition:none;cursor:grabbing}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-image-zone{
   position:absolute;inset:0;width:100%;height:100%;
-  background:#20132d;overflow:hidden;
+  background:#24162f;overflow:hidden;
+}
+/* Lumière d'ambiance : halo rose au niveau du visage, ambre en haut, vignette douce sur les bords. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-image-zone::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(55% 40% at 50% 34%,rgba(231,71,145,.12),transparent 70%),
+    linear-gradient(180deg,rgba(217,155,112,.10),transparent 35%);
+  box-shadow:inset 0 0 36px rgba(23,16,31,.6);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-portrait,
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-image{
@@ -416,52 +441,62 @@
   background-size:cover;background-position:center calc(50% - 32px);image-rendering:pixelated;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-initiale{
-  align-self:start;margin-top:60px;font:60px/1 var(--ld-pixel);color:#cbb7df;
+  align-self:start;margin-top:60px;font:60px/1 var(--ld-pixel);color:var(--cr-lavande);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-image.ld-image-prete+.ld-selection-initiale{display:none}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-mystere{align-items:start;padding-top:45px;font:80px/1 var(--ld-pixel);color:#fbc5ed}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-mystere{align-items:start;padding-top:45px;font:80px/1 var(--ld-pixel);color:#ffc6e1}
+/* Profil généré : même décor de ville que son portrait, pas une carte vide. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-photo-mystere{background:#24162f url('art/cringr-ville.svg') center/cover no-repeat}
+/* Informations sur un dégradé prune progressif (pas un aplat noir) : le décor reste visible derrière. */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos{
-  position:relative;z-index:3;display:flex;flex-direction:column;gap:5px;
-  margin:0;padding:18px 12px 12px;min-width:0;color:#fff;
-  background:linear-gradient(180deg,transparent,#100d19f2 18%,#100d19 100%);
+  position:relative;z-index:3;display:flex;flex-direction:column;gap:4px;
+  margin:0;padding:34px 12px 12px;min-width:0;color:var(--cr-creme);
+  background:linear-gradient(180deg,rgba(23,16,31,0) 0,rgba(48,32,57,.6) 24%,rgba(23,16,31,.88) 55%,rgba(23,16,31,.96) 100%);
+  text-shadow:0 2px 0 var(--cr-nuit);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos h2{
-  margin:0;font:clamp(28px,8vw,34px)/1 var(--ld-lecture);color:#fff;overflow-wrap:anywhere;
+  margin:0;font:clamp(30px,9vw,38px)/1 var(--ld-lecture);color:var(--cr-creme);overflow-wrap:anywhere;
 }
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos h2 span{font-weight:inherit}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos h2 span{font-weight:inherit;color:var(--cr-ambre)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-ville{
-  margin:0;font:20px/1.05 var(--ld-lecture);color:#e4c9f0;overflow-wrap:anywhere;
+  margin:0;font:20px/1.05 var(--ld-lecture);color:var(--cr-lavande);overflow-wrap:anywhere;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-description{
-  margin:0;font:22px/1.1 var(--ld-lecture);color:#fff;overflow-wrap:anywhere;
+  margin:2px 0 0;font:22px/1.1 var(--ld-lecture);color:var(--cr-creme);overflow-wrap:anywhere;
 }
+/* Statut : petit badge arcade rose. */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-etat{
-  margin-top:3px;font:17px/1 var(--ld-lecture);color:#ffa7e3;
+  align-self:flex-start;margin-top:5px;padding:3px 7px 2px;border:2px solid var(--cr-rose);border-radius:3px;
+  font:16px/1 var(--ld-lecture);color:#ffc6e1;background:rgba(231,71,145,.14);text-shadow:none;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-controls{
-  display:grid;grid-template-columns:1fr 56px 1fr;align-items:center;gap:8px;width:100%;padding-top:4px;
+  display:grid;grid-template-columns:1fr 56px 1fr;align-items:center;gap:10px;width:100%;padding-top:2px;flex:none;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet{
   grid-column:2;display:grid;place-items:center;position:relative;
-  width:56px;height:56px;padding:0;border:3px solid #ffd3f5;border-radius:8px;
-  background:#db218f;color:#fff;cursor:pointer;box-shadow:4px 4px 0 #73134f;
+  width:56px;height:56px;padding:0;border:3px solid var(--cr-ombre);border-radius:8px;
+  background:var(--cr-rose);color:#fff;cursor:pointer;
+  box-shadow:4px 4px 0 #8a2457,inset 0 3px 0 rgba(255,255,255,.24),inset 0 -3px 0 rgba(23,16,31,.22);
+  transition:transform .06s,box-shadow .06s;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet svg{width:28px;height:25px;shape-rendering:crispEdges}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:active{transform:translate(2px,3px);box-shadow:2px 1px 0 #73134f}
-/* NOPE secondaire : cible 48×48, petite tuile arcade visible de 38 px, plus discrète que le cœur. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:hover{background:#ee5b9f}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:active{transform:translate(2px,3px);box-shadow:2px 1px 0 #8a2457,inset 0 3px 0 rgba(255,255,255,.24)}
+/* NOPE secondaire : cible 48×48, petite tuile arcade sombre de 38 px, plus discrète que le cœur. */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer{
   grid-column:1;grid-row:1;justify-self:end;position:relative;display:grid;place-items:center;
-  width:48px;height:48px;padding:0;border:0;background:none;color:#d5b4e1;cursor:pointer;
+  width:48px;height:48px;padding:0;border:0;background:none;color:var(--cr-lavande);cursor:pointer;
+  transition:transform .06s;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer::before{
-  content:"";position:absolute;inset:5px;border:2px solid #8f63b8;border-radius:6px;
-  background:#1c1228;box-shadow:3px 3px 0 #2e193e;
+  content:"";position:absolute;inset:5px;border:2px solid #6d4a76;border-radius:6px;
+  background:var(--cr-surface);box-shadow:3px 3px 0 var(--cr-ombre);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer svg{position:relative;width:16px;height:16px;shape-rendering:crispEdges}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:hover{color:#fff}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:hover::before{border-color:#c88ccf}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:hover::before{border-color:var(--cr-lavande)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active{transform:translate(2px,2px);color:#fff}
-#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active::before{box-shadow:1px 1px 0 #2e193e}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active::before{box-shadow:1px 1px 0 var(--cr-ombre)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:focus-visible{outline-offset:-1px}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-erreur{margin:0;color:#ffd3d3;font:21px/1.15 var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-rencontre-label,
@@ -469,16 +504,22 @@
   position:absolute;width:1px;height:1px;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;
 }
+/* Tampons : LIKE rose Cringr, NOPE lavande. */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte::after{
   position:absolute;z-index:5;top:22px;padding:10px;
-  font:12px/1.2 var(--ld-pixel);border:3px solid;background:#24142cf0;
-  opacity:0;pointer-events:none;
+  font:12px/1.2 var(--ld-pixel);border:3px solid;background:rgba(23,16,31,.9);
+  box-shadow:3px 3px 0 var(--cr-ombre);opacity:0;pointer-events:none;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-glisse-suivant::after{
-  content:"NOPE";right:12px;color:#ffb2a8;border-color:#ff786c;opacity:var(--ld-swipe-force,0);transform:rotate(8deg);
+  content:"NOPE";right:12px;color:var(--cr-lavande);border-color:var(--cr-lavande);opacity:var(--ld-swipe-force,0);transform:rotate(8deg);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-glisse-precedent::after{
-  content:"LIKE";left:12px;color:#a7ffd0;border-color:#80e5ac;opacity:var(--ld-swipe-force,0);transform:rotate(-8deg);
+  content:"LIKE";left:12px;color:#ffc6e1;border-color:var(--cr-rose);opacity:var(--ld-swipe-force,0);transform:rotate(-8deg);
+}
+/* Petits écrans en hauteur : marges un peu plus serrées pour laisser le visage visible (bio toujours ≥ 22 px, SPEC 113). */
+@media(max-height:700px){
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos{gap:3px;padding:28px 10px 10px}
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte::before{flex-basis:96px}
 }
 @keyframes ldSwipeGuide{
   0%,100%{transform:translateX(0)}
