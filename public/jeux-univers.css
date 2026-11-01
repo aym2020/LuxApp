@@ -50,12 +50,21 @@
       radial-gradient(ellipse 525px 480px at 50% 135px,rgba(98,49,135,.28),transparent 100%),
       var(--couleur-fond);
   }
+  /* RED FLAG : un seul fond sur le body entier, sans rectangle de vue à 640 px.
+     Le fondu reprend les tons prune du hero puis descend vers le noir. */
   body:has(#view-luxdemasque.active) {
     background:
-      radial-gradient(ellipse 525px 480px at 50% 135px,rgba(101,52,133,.29),transparent 100%),
-      var(--couleur-fond);
+      radial-gradient(ellipse min(95vw,1100px) 820px at 50% 90px,
+        rgba(81,41,100,.45) 0%,rgba(46,27,58,.35) 42%,transparent 100%),
+      #120f18;
   }
   #view-jeux,#view-runner,#view-luxmatch,#view-luxdemasque {
+    background:transparent;
+  }
+  /* Le shell RED FLAG ne doit jamais repeindre un fond différent de celui
+     du body : c'était la couture verticale visible sur les côtés PC. */
+  body:has(#view-luxdemasque.active) #view-luxdemasque,
+  body:has(#view-luxdemasque.active) #view-luxdemasque .ld-jeu[data-ecran="accueil"] {
     background:transparent;
   }
 }
