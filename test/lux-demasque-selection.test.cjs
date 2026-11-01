@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=26','lux-demasque.js?v=26','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=27','lux-demasque.js?v=26','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -154,4 +154,11 @@ test('SPEC 115 V7 : illustration WebP régénérée, sans composite SVG',()=>{
  assert.equal(asset.toString('ascii',8,12),'WEBP');
  assert.match(js,/art\/redflag-hero-v7\.webp\?v=1/);
  assert.doesNotMatch(js,/redflag-hero-v6\.svg/);
+});
+
+test('SPEC 115 V8 : CTA bas de viewport et dégradé uni sans halo local',()=>{
+ assert.match(css,/\.ld-accueil\{[\s\S]*?flex:1 1 auto/);
+ assert.match(css,/\.ld-accueil\{[\s\S]*?background:transparent;/);
+ assert.match(css,/\.ld-accueil-commencer\{[\s\S]*?margin:auto 0 0;/);
+ assert.match(css,/#view-luxdemasque\{[^}]*background:radial-gradient/);
 });
