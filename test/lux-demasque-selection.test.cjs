@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=27','lux-demasque.js?v=26','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=28','lux-demasque.js?v=28','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -161,4 +161,18 @@ test('SPEC 115 V8 : CTA bas de viewport et dégradé uni sans halo local',()=>{
  assert.match(css,/\.ld-accueil\{[\s\S]*?background:transparent;/);
  assert.match(css,/\.ld-accueil-commencer\{[\s\S]*?margin:auto 0 0;/);
  assert.match(css,/#view-luxdemasque\{[^}]*background:radial-gradient/);
+});
+
+test('SPEC 115 V9 : en-tête Lux Runner et fond PC sans couture',()=>{
+ const accueil=js.slice(js.indexOf('function ldRendreAccueil()'),js.indexOf('function ldAccueilCommencer()'));
+ assert.match(accueil,/ldEntete\(\{fr:false,menu:false,accueil:true\}\)/);
+ assert.match(js,/ld-top-accueil/);
+ assert.match(js,/ld-retour-accueil/);
+ assert.match(js,/<span>Jeux<\/span>/);
+ assert.match(css,/\.ld-top-accueil[\s\S]*?justify-content:space-between/);
+ assert.match(css,/\.ld-retour-accueil\{[\s\S]*?background:transparent/);
+ const univers=read('public/jeux-univers.css');
+ assert.match(univers,/body:has\(#view-luxdemasque\.active\)[\s\S]*?radial-gradient/);
+ assert.match(univers,/body:has\(#view-luxdemasque\.active\) #view-luxdemasque/);
+ assert.match(html,/jeux-univers\.css\?v=12/);
 });
