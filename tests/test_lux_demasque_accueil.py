@@ -64,7 +64,7 @@ with sync_playwright() as p:
     img = pg.evaluate("(() => { const i = document.querySelector('.ld-accueil-visuel img'); return [i.naturalWidth, i.alt]; })()")
     assert img[0] == 564 and 'femme' in img[1] and 'téléphone' in img[1], img
     assert pg.locator('.ld-accueil-titre span').all_inner_texts() == ['Ton prochain', 'date sur']
-    assert pg.locator('.ld-accueil-tags span').first.inner_text().replace('\n', ' ') == 'Luxembourgeois · A1–A2'
+    assert pg.locator('.ld-accueil-tags').count() == 0  # V6 : aucune capsule redondante
     assert pg.get_by_role('button', name='Commencer').count() == 1
     for absent in ('Revoir', 'Passer', 'Ouvrir Cringr'):
         assert absent not in pg.inner_text('#ld-jeu'), absent
@@ -126,7 +126,7 @@ with sync_playwright() as p:
 
     # ── FIX-05 : image absente, API en erreur, stockage refusé ─────────────────
     ctx, pg = contexte(b, 360, 740)
-    pg.route('**/art/redflag-hero-v4.webp*', lambda r: r.fulfill(status=404, body=''))
+    pg.route('**/art/redflag-hero-v6.svg*', lambda r: r.fulfill(status=404, body=''))
     pg.route('**/api/jeux/lux-demasque', lambda r: r.fulfill(status=500, body='{}'))
     entrer(pg)
     pg.wait_for_selector('.ld-accueil-sans-image')
