@@ -191,6 +191,16 @@ Mesurer avant et après via `getBoundingClientRect()` (vues, axes des en-têtes,
 
 ---
 
+## 6 ter. Écrans de présentation des mini-jeux — standard unique SPEC 116
+
+**Source normative transverse : [SPEC 116 — Présentation universelle des mini-jeux](specs/SPEC-116.md).** Lux Runner **mobile** est le modèle de référence : sur chaque écran **avant de jouer**, même en-tête (« ← Jeux » à gauche / nom du jeu discret à droite), même axe et typographie du grand titre, même position dans le flux de la zone illustration, même zone d'informations facultatives, même rail et ancrage bas des boutons. **Seul le contenu propre au jeu change.**
+
+C'est un **contrat de structure** à implémenter par un composant CSS/HTML partagé, pas l'obligation d'utiliser les portails de Lux Runner comme illustration. Même silhouette de page sur Samsung et PC, avec un **fond dégradé continu sans couture** au niveau du shell desktop. Les scènes de gameplay, tutoriels interactifs et résultats restent régis par leurs propres SPEC.
+
+**Périmètre à migrer :** Lux Runner étalon (ne pas dégrader), RED FLAG à aligner (SPEC 115 régit ses contenus et son art, **SPEC 116 prime sur leur placement**), Survie à doter d'une préparation sans démarrer son timer, Lux Match uniquement si réactivé. Ne pas cocher une tâche en raison de cette seule documentation ; captures comparatives réelles, mesures DOM et recette Samsung avant validation.
+
+---
+
 ## 7. Stratégie d'implémentation — une harmonisation en plusieurs lots
 
 ### Lot 0 — Audit visuel, avant modification
