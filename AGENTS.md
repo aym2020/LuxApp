@@ -5,6 +5,8 @@
 
 Lire avant toute intervention : [PLAYBOOK.md](PLAYBOOK.md) (voir aussi l'[index documentaire](docs/README.md)), et pour la refonte `2.1`, [docs/CHARTE_UI_2.1.md](docs/CHARTE_UI_2.1.md) + [POSTMORTEM-EXERCICES-2.1-2026-10-21.md](docs/POSTMORTEM-EXERCICES-2.1-2026-10-21.md).
 
+> **Écran de présentation d'un mini-jeu (existant ou nouveau) :** [SPEC 116](docs/specs/SPEC-116.md). Une seule mise en page (référence : Lux Runner mesuré, § 2 bis) ; les contenus (titre, accroche, image, détails, boutons) s'écrivent **uniquement** dans le registre `JEUX_PRESENTATIONS` (§ 5 bis), jamais dans un gabarit propre au jeu.
+
 ## Contrôle de parité UI (SPEC 94 et [SPEC 95](docs/specs/SPEC-95.md) implémentées)
 
 **Écran d'exercice (SPEC 95, codée)** : Leçon et S'entraîner ont trois zones — en-tête, `.exo-scroll` (seule zone qui défile : question, réponses, correction) et `.exo-action-dock` (seul emplacement des boutons). Tout bouton d'exercice passe par `renderActionExercice(dock, config)` : **un seul bouton primaire, même nœud, même place** (Valider → Réessayer → Continuer) ; toute correction par `renderFeedbackCommun()` (**aucun bouton**, pas de fond ni de carte) ; tout son par `jouerFeedbackSon()` au moment de la réponse. Interdit : bouton dans `#pc-feedback` / `#session-feedback` ou dans le contenu, `position:fixed`/`sticky` pour la correction, `window.scrollBy` après une réponse, changement de libellé du bouton sans passer par `renderActionExercice` (la garde de double appui en dépend). Tests : `tests/test_spec95_exercices.py` (G01–G23). Écarts documentés dans SPEC 95 « Implémentation ».

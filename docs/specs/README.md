@@ -113,7 +113,7 @@ Ce registre a été constitué pour les fiches historiques 01–81 et 87–96, p
 | 113 | [RED FLAG / CRINGR : contrat UI/UX du sélecteur](./SPEC-113.md) | — | **Implémentée sur 2.1, tests Chromium documentés ; recette et validation Samsung encore nécessaires** |
 | **114** | **[Harmonisation des dimensions PC : enveloppe unique, jeux compris](./SPEC-114.md)** | **P1 transverse** | **À faire — spec documentée, aucun CSS/JS modifié ; baseline DOM + recette PC/Android exigées** |
 | **115** | **[RED FLAG : accueil aligné sur Lux Runner (V9)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **V9 poussée** : « ← Jeux » sans cadre, titre RED FLAG à droite et fond PC plein viewport sans couture ; CTA bas, Cringr et héroïne inchangés. Recette Samsung/PC à confirmer. |
-| **116** | **[Présentation universelle des mini-jeux — Lux Runner mobile comme référence](./SPEC-116.md)** | **P1 transverse UI/UX** | **Spécifiée, non implémentée** : en-tête, position des titres, zone image, informations et footer CTA identiques pour tous les jeux ; Lux Runner étalon, RED FLAG à migrer, Survie sans préparation actuellement, Lux Match masqué. |
+| **116** | **[Présentation universelle des mini-jeux — Lux Runner mobile comme référence](./SPEC-116.md)** | **P1 transverse UI/UX** | **Spécifiée, non implémentée** : en-tête, position des titres, zone image, informations et footer CTA identiques pour tous les jeux ; Lux Runner étalon (géométrie mesurée § 2 bis), contenus de tous les jeux dans un **registre unique** `JEUX_PRESENTATIONS` (§ 5 bis), RED FLAG à migrer, Survie sans préparation actuellement, Lux Match masqué. |
 
 ## Précautions de lecture
 

@@ -2,6 +2,7 @@
 
 **Décision produit :** 1er novembre 2026 · **Branche de travail :** `2.1` · **Priorité : P1 transverse UI/UX**  
 **Statut : SPÉCIFIÉE — NON IMPLÉMENTÉE COMME COMPOSANT COMMUN, NON TESTÉE.** Cette fiche fixe désormais le **contrat obligatoire** de tous les écrans de présentation des mini-jeux LuxApp. Elle ne modifie aucun moteur de jeu, ne ferme aucune tâche et n'atteste aucune recette.  
+**Compléments du 1er novembre 2026 (après-midi) :** inventaire **mesuré** de Lux Runner tel qu'il est codé (§ 2 bis), correction du rail et des gouttières pour qu'ils correspondent réellement à Lux Runner (§ 3), et **registre unique des contenus** — titre, texte, image, étapes, boutons de chaque jeu au même endroit (§ 5 bis). Documentation seulement.  
 **Référence visuelle impérative :** **écran de préparation mobile de Lux Runner** (capture de référence utilisateur du 1er novembre 2026), confirmé par `public/runner.js` (`runnerRendrePreparation()`) et `public/runner.css`. En cas de divergence visuelle entre une maquette RED FLAG et Lux Runner, **Lux Runner prévaut sur la structure** ; l'illustration et l'identité éditoriale RED FLAG restent spécifiques.
 
 > **Règle fondamentale : une même page de présentation pour tous les jeux ; seul le contenu change.** Même ordre DOM, mêmes axes, mêmes retraits, même position des titres, même emplacement réservé au visuel, même largeur et même ancrage du CTA, même logique de fond et de scroll. **Pas** de layout « personnalisé » par mini-jeu au seul motif qu'il possède un joli asset. Les couleurs, l'image et les contenus restent propres à chaque jeu.
@@ -58,6 +59,49 @@ VIEW DE JEU — fond plein écran continu (mobile et desktop)
 
 **Footer :** actions **hors du MAIN**, comme `.runner-actions`, alignées sur ses bords gauche/droit. Le bouton primaire **or, plein rail**, au minimum 54 px de hauteur, rayon **12 px**, typographie commune, icône flèche à droite ; ancré en pied de viewport par **flex**, pas `position:fixed`, ni `position:absolute`. Il peut s'appeler « Jouer » ou « Commencer » selon le parcours ; **la position, la forme, la couleur et le comportement ne varient pas**. Actions secondaires admises uniquement pour un mode réellement disponible (entraînement, tutoriel), en suivant le modèle Lux Runner, **sans bouton factice pour aligner artificiellement les pages**.
 
+## 2 bis. Référence mesurée : Lux Runner tel qu'il est codé (01/11/2026, `2.1`)
+
+**Sources :** `runnerRendrePreparation()` dans `public/runner.js`, règles `#view-runner` de `public/runner.css`. Mesures `getBoundingClientRect()` en Chromium (`is_mobile`), polices Google bloquées (repli Georgia pour le titre : ±2 px possibles avec Instrument Serif chargée). **Ces valeurs sont l'étalon des tests UNI (§ 7).**
+
+### Arbre DOM de référence → zone commune
+
+| Zone SPEC 116 | Lux Runner aujourd'hui | Rôle |
+|---|---|---|
+| Conteneur de vue | `#runner-jeu.runner-jeu.runner-ecran-preparation` | `max-width:var(--layout-focus)` (500 px), `padding:12px 16px calc(14px + safe-area)`, `min-height:100dvh`, colonne flex |
+| Header | `.runner-top` → `button.runner-retour` (icône 20 px + « Jeux ») + `span` (marque) | 44 px ; retour 14 px/650 `#bbb1a2` ; marque 11 px/800, `letter-spacing:.12em`, `#b9a8d8` |
+| Main | `main.runner-prepa` | `flex:1`, colonne, **`justify-content:center`**, `padding:24px 0` |
+| Kicker | `span.jeux-kicker` | 12 px/800, `letter-spacing:.16em`, violet `--jeu-violet` |
+| Titre | `h1` « Lux Runner<span>.</span> » | Instrument Serif 400, `clamp(48px,14vw,64px)/1.05`, `margin:10px 0 16px`, point final or (`--accent`) |
+| Accroche | `p.runner-prepa-format` « 60 secondes · 3 vies » | 15 px/700 `#d9cfbf`, `margin:0 0 22px` |
+| Visuel | `div.runner-apercu` (trois arches HTML, `aria-hidden`) | 80 px de haut, `margin-bottom:22px` |
+| Détails | variante normale : `.runner-prepa-records` (3 colonnes Record / Meilleure série / Parties) + `.runner-sons` (Musique, Effets) ; première visite : `ol.runner-regles` (3 règles numérotées) + `p.runner-prepa-note` | contenus différents, **même emplacement** |
+| Actions | `div.runner-actions` hors de `main` : `button.jeux-jouer` (or, 54 px, rayon 12, flèche 18 px) + `button.runner-secondaire` (48 px, bord violet) + `button.runner-lien` (44 px, texte) | `padding-top:12px`, `gap:8px` |
+
+**Deux variantes, un seul gabarit :** première visite (« Commencer » + « Passer le tutoriel », règles numérotées) et visite normale (« Jouer » + « S'entraîner » + « Revoir le tutoriel », records et son). Seul le **contenu** des zones change : c'est exactement ce que le registre du § 5 bis doit exprimer.
+
+### Géométrie mesurée de Lux Runner (variante normale) — `[x, y, largeur, hauteur]` en px
+
+| Viewport | Header | Titre (taille) | Accroche | Visuel | Détails (records) | Son | CTA « Jouer » |
+|---|---|---|---|---|---|---|---|
+| 320×600 | [16, 12, 288, 44] | [16, 107, 288, 50] (48 px) | [16, 173, 288, 19] | [16, 214, 288, 80] | [16, 316, 288, 81] | [16, 413, 288, 44] | [16, 493, 288, 54] |
+| 360×740 | [16, 12, 328, 44] | [16, 141, 328, 53] (50,4 px) | [16, 210, 328, 19] | [16, 251, 328, 80] | [16, 353, 328, 81] | [16, 450, 328, 44] | [16, 564, 328, 54] |
+| 393×852 | [16, 12, 361, 44] | [16, 195, 361, 58] (55 px) | [16, 268, 361, 19] | [16, 309, 361, 80] | [16, 411, 361, 81] | [16, 508, 361, 44] | [16, 676, 361, 54] |
+| 430×932 | [16, 12, 398, 44] | [16, 239, 398, 63] (60,2 px) | [16, 318, 398, 19] | [16, 359, 398, 80] | [16, 461, 398, 66] | [16, 544, 398, 44] | [16, 756, 398, 54] |
+| 1440×900 | [486, 12, 468, 44] | [486, 221, 468, 67] (64 px) | [486, 304, 468, 19] | [486, 345, 468, 80] | [486, 447, 468, 66] | [486, 530, 468, 44] | [486, 724, 468, 54] |
+
+**Lecture :** rail = largeur du viewport − 2 × 16 px sur téléphone, **468 px sur PC** (500 − 2 × 16) ; header toujours à **y = 12** ; le bloc kicker → détails est **centré verticalement** dans `main`, donc son `y` varie avec la hauteur d'écran (c'est voulu) ; les actions restent en bas. À 320×600, la pile d'actions (3 boutons) dépasse de 55 px : défilement naturel, accepté.
+
+### Écart mesuré de RED FLAG (`ldRendreAccueil()`, même jour) — à corriger au lot 2
+
+| Point | Lux Runner (393×852) | RED FLAG actuel (393×852) |
+|---|---|---|
+| Gouttière / rail | 16 px / 361 px | 10 px / 373 px (PC : 560 px au lieu de 468) |
+| Header | y = 12 | y = 8 |
+| Titre | « Lux Runner. » 55 px, pleine largeur, centré dans le flux | « Ton prochain date sur Cringr. » 37,7 px sur 3 lignes, 261 px de large, **superposé à l'image** |
+| Visuel | sous l'accroche, rail entier | héros composite à droite (276×428), sous le titre et le texte |
+| Détails | sous le visuel, sans cadre | étapes dans une carte encadrée |
+| Actions | `div` d'actions hors de `main` | CTA dans `main`, ancré en bas |
+
 ## 3. Géométrie et design tokens : ne pas inventer un quatrième shell
 
 Références normatives : [SPEC 114](SPEC-114.md), [charte UI §6 bis](../CHARTE_UI_2.1.md), [Design System](../DESIGN_SYSTEM.md) et `runner.css`.
@@ -65,8 +109,8 @@ Références normatives : [SPEC 114](SPEC-114.md), [charte UI §6 bis](../CHARTE
 | Élément | Contrat obligatoire |
 |---|---|
 | Enveloppe de la vue PC | **640 px maximum** avec `--layout-shell` ; centrée, sans dégradé coupé aux bords de la vue |
-| Rail de présentation | **560 px max** avec `--layout-reading` ; **même rail pour header, titre, visuel, contenu et CTA**, sauf zone interne spécialement justifiée |
-| Gouttières | **16 px sur téléphone / 24 px sur PC** via `--layout-gutter` ; ne pas dupliquer les 16 px dans parent + enfant |
+| Rail de présentation | **Comme Lux Runner : conteneur `max-width:var(--layout-focus)` (500 px) avec 16 px de marge interne, soit un rail de 468 px sur PC** ; **même rail pour header, titre, visuel, contenu et CTA**. *(Correction du 01/11 : la première rédaction indiquait 560 px via `--layout-reading`, ce que Lux Runner n'utilise pas ; la référence mesurée du § 2 bis prévaut.)* |
+| Gouttières | **16 px à toutes les tailles**, comme `.runner-jeu` ; une seule fois (pas parent + enfant). *(Correction du 01/11 : pas de 24 px sur PC, Lux Runner ne les applique pas.)* |
 | En-tête | **44 px minimum** de hauteur ; retour à gauche, identifiant jeu à droite, centrage vertical |
 | Grand titre | **`clamp(48px,14vw,64px)` / `line-height:1.05`** comme Lux Runner ; réduire seulement en cas de problème de débordement démontré, **dans le composant partagé** |
 | Visuel | Même **emplacement sous le titre et l'accroche**, alignement et espacement uniformes ; taille contrôlée par une zone de visuel commune. Contenu `object-fit:contain` ou cadrage `cover` **à l'intérieur du bloc** si approprié |
@@ -124,13 +168,102 @@ L'existence de ces chemins est **une proposition d'architecture**, pas un fichie
 
 **Anti-patterns interdits :** reconstruire un en-tête spécifique à chaque jeu ; placer le titre dans l'image ; cacher des textes avec `overflow:hidden` ; ajouter de faux badges pour combler le vide ; créer un CTA dans MAIN seulement sur un jeu ; déplacer le bouton via `position:absolute` ; pousser la même règle CSS dans trois feuilles avec des sélecteurs plus spécifiques ; présenter un écran de gameplay comme préparation sans état explicite.
 
+## 5 bis. Un seul endroit pour les contenus : registre `JEUX_PRESENTATIONS`
+
+**Objectif :** modifier le titre, le texte, l'image, les étapes ou les boutons d'un jeu **sans toucher à sa mise en page**, et créer la présentation d'un nouveau jeu **en ajoutant une entrée**, pas un écran. La structure vit dans le composant commun ; les contenus vivent dans **un seul fichier**.
+
+### Fichiers (à créer au lot 1)
+
+| Fichier | Contenu | Interdit |
+|---|---|---|
+| `public/game-intro.js` | **le registre `JEUX_PRESENTATIONS`** (contenus de tous les jeux) + la fabrique `renderGameIntro(id, options)` | toute règle de jeu, tout accès aux scores en dur |
+| `public/game-intro.css` | **la seule géométrie** : conteneur, header, main centré, titre, accroche, zone visuel, zone détails, actions — valeurs du § 2 bis | une règle propre à un jeu pour déplacer une zone |
+| `public/art/jeux/<id>-presentation.webp` | l'image de présentation de chaque jeu qui en a une (ex. `redflag-presentation.webp`) | texte incrusté dans l'image |
+
+Chaque jeu garde sa vue, ses identifiants et sa navigation : `runnerRendrePreparation()` et `ldRendreAccueil()` deviennent un appel à `renderGameIntro('runner', …)` / `renderGameIntro('redflag')` dans leur conteneur.
+
+### Schéma d'une entrée
+
+```js
+const JEUX_PRESENTATIONS = {
+  runner: {
+    marque: 'LUX RUNNER',                        // header, à droite (petites capitales)
+    retour: 'quitterRunner',                     // fonction appelée par « ← Jeux »
+    kicker: 'LES TROIS PORTAILS',                // facultatif : null = zone absente, sans hauteur
+    titre: 'Lux Runner', ponctuation: '.',       // titre serif ; ponctuation en or
+    accroche: '60 secondes · 3 vies',            // 1 ou 2 phrases courtes
+    visuel: { type: 'html', rendu: 'runnerApercuPortails' },   // ou type 'image' (ci-dessous)
+    details: { type: 'fonction', rendu: 'runnerDetailsPreparation' }, // records + son, données vivantes
+    actions: [
+      { role: 'primaire',   libelle: 'Jouer',              action: 'demarrerRunner', args: ['sprint'] },
+      { role: 'secondaire', libelle: 'S’entraîner',        action: 'demarrerRunner', args: ['entrainement'] },
+      { role: 'lien',       libelle: 'Revoir le tutoriel', action: 'demarrerRunner', args: ['tuto'] }
+    ],
+    variantes: {                                 // même gabarit, contenus remplacés champ par champ
+      premiereVisite: {
+        accroche: null,
+        details: { type: 'regles', items: ['Un mot apparaît.', 'Choisis masculin, féminin ou neutre.', 'Traverse le bon portail avant qu’il n’arrive !'], note: 'Trois mots pour essayer, sans chrono.' },
+        actions: [
+          { role: 'primaire', libelle: 'Commencer', action: 'demarrerRunner', args: ['tuto'] },
+          { role: 'lien', libelle: 'Passer le tutoriel', action: 'runnerPasserTuto' }
+        ]
+      },
+      apresTuto: { kicker: 'TU ES PRÊT' }
+    }
+  },
+  redflag: {
+    marque: 'RED FLAG', retour: 'ldQuitter',
+    kicker: null,                                // à trancher par le produit
+    titre: 'Red Flag', ponctuation: '.',         // § 4 : le nom du jeu prend la place du titre
+    // Proposition à valider : reprend les deux phrases actuelles de l'accueil (SPEC 115).
+    accroche: 'Tu incarnes une femme qui cherche un date sur Cringr. Discute, trouve des preuves et démasque les mensonges.',
+    visuel: { type: 'image', src: 'art/jeux/redflag-presentation.webp', largeur: 1254, hauteur: 1254,
+              alt: 'Une jeune femme au regard dubitatif, assise le soir avec un téléphone sur la table.', cadrage: 'center 30%' },
+    details: { type: 'etapes', items: [['Choisis', 'un profil'], ['Discute', 'en LU'], ['Démasque', 'les mensonges']] },
+    actions: [{ role: 'primaire', libelle: 'Commencer', action: 'ldAccueilCommencer' }]
+  },
+  survie:   { /* lot 3 : textes et visuel À VALIDER par le produit avant code ; « Jouer » ne démarre le chrono qu'au clic */ },
+  luxmatch: { /* lot 4 : uniquement si le jeu est réactivé ; aucune entrée visible tant que JEUX_DISPONIBLES.luxMatch est faux */ }
+};
+```
+
+### Règles du registre
+
+| Champ | Obligatoire | Règle |
+|---|---|---|
+| `marque`, `titre`, `retour`, `actions` (≥ 1 `primaire`) | oui | un seul bouton `primaire` ; libellés courts (« Jouer » ou « Commencer ») |
+| `ponctuation` | non | un caractère, affiché en or comme le « . » de Lux Runner |
+| `kicker` | non | ≤ 28 caractères, capitales ; `null` = zone absente (pas de hauteur vide) |
+| `accroche` | non | ≤ 2 phrases, ≤ 140 caractères ; jamais posée sur l'image |
+| `visuel` | non | `image` : `src` dans `public/art/jeux/`, **largeur, hauteur et `alt` obligatoires**, `cadrage` = `object-position` ; WebP ≤ 150 Ko ; aucun texte dans l'image. `html` : nom d'une fonction du jeu qui renvoie un HTML décoratif (`aria-hidden`). Repli commun si l'image échoue : zone sobre, textes et CTA intacts |
+| `details` | non | types fermés : `regles` (liste numérotée + `note`), `etapes` (pictogramme + verbe + complément), `fonction` (HTML fourni par le jeu pour des **données vivantes** : records, son). Pas de faux record, pas de badge décoratif |
+| `actions` | oui | `role` ∈ `primaire` (or, 54 px), `secondaire` (48 px, bord violet), `lien` (44 px) ; `action` = **nom** d'une fonction globale existante + `args` ; seulement des modes réellement disponibles |
+| `variantes` | non | surcharge **champ par champ** ; une variante ne peut pas ajouter de zone ni changer l'ordre |
+
+**Tous les textes visibles d'une présentation sont dans ce registre**, en français, en vrai texte DOM. Les données dynamiques (records, état du son) restent calculées par le jeu et injectées par `details.type = 'fonction'`.
+
+### Fabrique commune `renderGameIntro(id, { variante, conteneur })`
+
+Elle produit **toujours** le même DOM, avec les classes du § 5 : `header` (retour + marque), `main` (kicker?, titre, accroche?, visuel?, détails?) et le bloc d'actions **hors de `main`**. Elle ignore les zones absentes sans laisser d'espace. Elle n'appelle ni chronomètre, ni moteur, ni sauvegarde : un clic n'exécute que l'`action` déclarée. Les sons et réglages restent ceux du jeu.
+
+### Ajouter la présentation d'un nouveau jeu
+
+1. Ajouter son entrée dans `JEUX_PRESENTATIONS` (et l'image dans `public/art/jeux/`).
+2. Appeler `renderGameIntro('<id>')` dans sa vue à l'ouverture depuis Jeux.
+3. Lancer le test de contrat du registre et la recette UNI (§ 7) : mêmes zones, mêmes positions que Lux Runner (±2 px).
+
+### Tests à créer avec le composant
+
+- **Contrat Node :** chaque entrée a les champs obligatoires, un seul `primaire`, des `action` qui existent, des images présentes avec dimensions et `alt`, aucune variante qui ajoute une zone ; chaque écran de préparation appelle `renderGameIntro` ; aucune feuille de style de jeu ne redéfinit la géométrie des classes `game-intro-*`.
+- **Navigateur :** mesures UNI-01 à UNI-05 de chaque jeu **comparées automatiquement** à celles de Lux Runner (tableau du § 2 bis) ; Lux Runner lui-même doit rester identique à ce tableau après extraction (lot 1).
+
 ## 6. Plan de migration sans régression
 
 **Lot 0 — Baseline.** Capturer sur Samsung et PC **la préparation de Lux Runner** (avec/sans tutoriel), l'accueil RED FLAG, l'entrée de Survie et la démo Lux Match masquée ; mesurer la taille et les positions réelles. Archiver les captures/mesures. Sans ces valeurs, aucun « pixel perfect » revendiqué.
 
-**Lot 1 — Composant partagé + Lux Runner.** Extraire le squelette du CSS/HTML de Lux Runner dans des classes communes **à rendu identique** ; exécuter tests et captures avant/après. Lux Runner est l'étalon : si son mobile change de forme ou de position, le lot échoue.
+**Lot 1 — Composant partagé + Lux Runner.** Extraire le squelette du CSS/HTML de Lux Runner dans des classes communes **à rendu identique**, créer le registre `JEUX_PRESENTATIONS` (§ 5 bis) avec l'entrée `runner` et ses deux variantes ; exécuter tests et captures avant/après. Lux Runner est l'étalon : si une mesure du § 2 bis bouge de plus de 2 px, le lot échoue.
 
-**Lot 2 — RED FLAG.** Appliquer ce composant au seul écran d'accueil, en préservant l'illustration déjà approuvée, les règles de narration, le CTA et la logique de `ldEntrerRedFlag()`. Vérifier particulièrement la place du visage, la visibilité du titre, la continuité du fond, le footer et l'absence de texte recouvrant les yeux. **Ne pas modifier la sélection SPEC 113.**
+**Lot 2 — RED FLAG.** Ajouter l'entrée `redflag` au registre et appliquer ce composant au seul écran d'accueil (déplacer l'illustration dans `public/art/jeux/`), en préservant l'illustration déjà approuvée, les règles de narration, le CTA et la logique de `ldEntrerRedFlag()`. Vérifier particulièrement la place du visage, la visibilité du titre, la continuité du fond, le footer et l'absence de texte recouvrant les yeux. **Ne pas modifier la sélection SPEC 113.**
 
 **Lot 3 — Survie.** Ajouter une préparation du même gabarit **sans activer le temps avant Jouer** ; vérifier explicitement l'entrée, retour, reprises et effets audio, avec un arbitrage produit sur le parcours. Ne pas toucher au HUD ni aux animations du jeu sans besoin démontré.
 
@@ -146,7 +279,7 @@ Mesurer avec `getBoundingClientRect()` les zones **header/retour/marque**, **tit
 |---|---|---|
 | UNI-01 | 320×600, 360×740, 393×852, 430×932 Android | Retour, marque, titre, visuel et CTA aux **mêmes rails et ordre** que Lux Runner ; aucune troncature ni scroll horizontal |
 | UNI-02 | Mobile à hauteur normale | En-tête à 44 px minimum ; CTA 54 px minimum, ancré en bas (safe area) ; les secondaires éventuels restent au-dessus ou sous le CTA selon le modèle Runner |
-| UNI-03 | 768×1024, 1024×768, 1440×900, 1920×1080 PC | Enveloppe 640 px et rail 560 px ; **aucune couture entre body et vue** ; CTA bas, centre visuel équilibré |
+| UNI-03 | 768×1024, 1024×768, 1440×900, 1920×1080 PC | Enveloppe 640 px et **rail 468 px comme Lux Runner** (conteneur `--layout-focus`) ; **aucune couture entre body et vue** ; CTA bas, centre visuel équilibré |
 | UNI-04 | Géométrie header | Flèche + « Jeux » alignés exactement ; identifiant à droite, même typographie/taille et padding sur toutes les présentations |
 | UNI-05 | Géométrie titre et artwork | Même taille de titre/ligne/position et même emplacement du bloc image sous le pitch ; pas de héros en superposition qui change le squelette |
 | UNI-06 | Jeux sans métriques ni seconde action | Aucun placeholder vide, fausse métrique, bouton inerte ; les zones sans contenu disparaissent sans désaligner les autres zones |
@@ -162,7 +295,7 @@ Mesurer avec `getBoundingClientRect()` les zones **header/retour/marque**, **tit
 ## 8. Sources, arbitrages et gouvernance
 
 - **SPEC 116 prime** sur les anciennes règles de présentation spécifiques **pour la structure**. Les parties normatives de [SPEC 115](SPEC-115.md) qui placent différemment le titre, l'image ou les étapes de RED FLAG doivent être interprétées comme **historiques** ou **subordonnées** à cette SPEC. Son contenu éditorial, ses illustrations et son suivi LD-049 restent utilisables.
-- [SPEC 114](SPEC-114.md) fixe le shell global 640 / lecture 560 / concentration 500. **SPEC 116 ne les remplace pas** ; elle précise la structure de présentation des mini-jeux à l'intérieur du shell.
+- [SPEC 114](SPEC-114.md) fixe le shell global 640 / lecture 560 / concentration 500. **SPEC 116 ne les remplace pas** ; elle précise la structure de présentation des mini-jeux à l'intérieur du shell, sur la **largeur de concentration (500 px)** déjà utilisée par Lux Runner.
 - [SPEC 96](SPEC-96.md) reste normative pour les modes et mécaniques de Lux Runner ; [SPEC 110](SPEC-110.md) et [SPEC 113](SPEC-113.md) pour l'enquête/Cringr. Les SPEC Survie continuent de régir la partie.
 - **SOURCE DE VÉRITÉ :** le code actuel `main` pour les décisions communes et `2.1` pour les jeux en cours de développement ; ne pas prétendre que cette SPEC a uniformisé le code par sa seule rédaction. **Ne pas cocher LD-049 ou une autre tâche avant recette et validation**.
 - Lorsqu'un nouveau jeu est conçu, commencer **automatiquement** par cette page de présentation : pas de nouvelle disposition sans exception explicite approuvée et documentée dans cette SPEC.
