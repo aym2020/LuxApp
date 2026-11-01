@@ -1,4 +1,4 @@
-# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V7)
+# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V8)
 
 **Décision initiale V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
 **Statut courant : V7 implémentée et testée sous Chromium ; validation Samsung/Produit en attente.** La V7 (§16) remplace les règles de hauteur, de fondu et d'illustration V6. [Recette, mesures et captures](../red-flag/SPEC-115-V7-RECETTE.md). L'ancienne cinématique reste abandonnée.
@@ -273,3 +273,23 @@ Fichiers : `public/lux-demasque.js` (suppression capsules + image V6), `public/l
 CSS/JS `v=26` ; changements limités au layout d'accueil et à sa référence d'image. Mesure avant/après sur huit tailles : **16 px** de séparation étapes/CTA au lieu de **12 à 385 px**. Tests statiques, navigateur fonctionnel, mouvement réduit, focus, erreurs et image 404 exécutés. La suite dédiée complète passe **12 blocs sur 13** : l'échec audio `PIX_KYOTO` est reproduit sur la référence `6feb2db`. Détails dans la [recette](../red-flag/SPEC-115-V7-RECETTE.md).
 
 **LD-049 reste ouverte jusqu'à revue réelle Samsung et accord Produit.** LD-048, Rencontre/LD-002.01, audio, preuves, scores, graines et sauvegardes restent hors du changement. Ne pas déduire une validation du jeu complet du seul passage de la composition V7.
+
+## 17. V8 — CTA en bas comme Lux Runner, ambiance unifiée (1er novembre 2026)
+
+**Décision produit (capture PC RED FLAG/Lux Runner)** : revenir à l'ancrage en bas du bouton principal, **comme Lux Runner**, et ne conserver qu'un dégradé de fond continu jusqu'au pied de l'écran. Cette décision **remplace la règle V7** « 12–24 px entre étapes et CTA » : le grand intervalle entre étapes et footer est désormais **intentionnel**, à condition que le CTA soit aligné en bas comme sur l'autre jeu.
+
+### Règles normatives
+
+1. **Structure** : `#view-luxdemasque .ld-jeu` reste le shell flex vertical plein viewport ; la section `.ld-accueil` reprend `flex:1 1 auto`, et le seul CTA `.ld-accueil-commencer` utilise `margin-top:auto` (avec marge horizontale/basse nulle). Sa position basse découle de la mise en page, **sans `position:fixed` ou `absolute`**. Sur un petit écran où le contenu dépasse, conserver un défilement naturel, sans chevauchement.
+2. **Fond unique** : le fond violet/noir appartient à la vue RED FLAG `#view-luxdemasque` sur mobile, et au `body` plein viewport sur PC via `jeux-univers.css` (les règles existantes restent intactes). Le halo local `background:radial-gradient(...)` de `.ld-accueil` est **supprimé** : `background:transparent`. Les fondus du portrait et le voile de lisibilité des textes restent progressifs et **ne constituent plus un cadre autonome autour des sections**.
+3. **Constance** : illustration V7, titre, pitch, panneau Choisis/Discute/Démasque et CTA or conservés tels quels. Aucune carte, capsule ni action nouvelle. Le sélecteur SPEC 113 et les données utilisateurs restent inchangés.
+4. **Écrans** : sur 360×740, 393×852, 430×932, 768×1024, 1440×900 et 1920×1080, le bas du CTA doit se situer dans les **40 px du bas du viewport** lorsqu'il n'y a pas de scroll et sa cible tactile rester ≥54 px. À 320×600 et au zoom 130/200 %, le scroll naturel est admis ; ne jamais couper les textes ou le bouton. Le contenu horizontal reste dans les enveloppes SPEC 114 (PC 640 px, intérieur ≤560 px).
+5. **Non-régression** : retour Android, accueil réaffiché, navigation clavier/focus, son, scores, sauvegardes, portraits et swipe Cringr inchangés.
+
+### Code et contrôle
+
+- `public/lux-demasque.css` : croissance flex de l'accueil, retour de la marge automatique sur Commencer, suppression du fond local ; conserve le dégradé global de la vue.
+- `public/index.html` : `lux-demasque.css?v=27` pour invalider le cache.
+- `test/lux-demasque-selection.test.cjs` : contrat statique V8 ; `tests/test_lux_demasque_accueil_v7.py` : assertions V8 sur l'alignement du footer et l'absence de halo local (fichier historique conservé pour éviter de casser les appels existants).
+
+**État : code/documentation poussés, recette visuelle Samsung non validée.** Ne pas réutiliser l'assertion d'écart V7 comme référence de validation V8. LD-049 reste ouverte jusqu'à validation produit.
