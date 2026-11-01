@@ -66,7 +66,7 @@ La [SPEC 73](specs/SPEC-73.md) gouverne les décisions de correspondances LOD. L
 
 ## Jeu — Lux Démasque (SPEC 110, implémenté sur 2.1)
 
-**[SPEC 115 — RED FLAG : accueil illustré narratif V5](specs/SPEC-115.md)** : héroïne expressive V4 conservée, titre à trois lignes et copy raccourcie, dégradé de protection, étapes et capsules affinées, CTA « Commencer » inchangé. **Code et tests mis à jour sur `2.1`, recette Samsung V5 en attente** ; LD-049 ouverte.
+**[SPEC 115 — RED FLAG : accueil épuré V6](specs/SPEC-115.md)** : héroïne V4 préservée, tasse retouchée dans un composite SVG, suppression des capsules inutiles, dégradé latéral continu et rééquilibrage vertical sans nouveaux éléments. **Code poussé sur `2.1` ; résultat visuel Samsung à valider**, LD-049 ouverte.
 
 [**SPEC 113 — Red Flag / Cringr : sélecteur et recette**](specs/SPEC-113.md) : référence normative du sélecteur, prioritaire sur [SPEC 112 (historique)](specs/SPEC-112.md). Gauche = NOPE, droite/cœur = rencontre, alternative « Passer » et clavier. [Implémentation, captures et résultats réels](CRINGR-SPEC-113-RECETTE.md) du 29/10 : suites dédiées vertes, échecs globaux préexistants comparés, Samsung et accord produit encore attendus. Lux Match préservé.
 
