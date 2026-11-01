@@ -382,9 +382,14 @@
   display:flex;flex-direction:column;gap:12px;padding:4px 0 0;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{
-  position:relative;isolation:isolate;flex:none;min-height:clamp(330px,44svh,400px);
+  position:relative;isolation:isolate;flex:none;min-height:clamp(350px,50svh,455px);
   display:flex;flex-direction:column;justify-content:flex-start;
   background:radial-gradient(ellipse 80% 65% at 78% 48%,rgba(103,37,112,.22),transparent 78%);
+}
+#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  /* Un seul voile latéral sur la scène : aucune bande derrière les paragraphes. */
+  background:linear-gradient(90deg,rgba(19,12,27,.82) 0%,rgba(19,12,27,.61) 24%,rgba(19,12,27,.23) 45%,transparent 65%);
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero-texte{
   position:relative;z-index:2;width:100%;pointer-events:none;
@@ -404,12 +409,7 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{
   display:flex;flex-direction:column;gap:13px;max-width:47%;
-  position:relative;isolation:isolate;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch::before{
-  content:"";position:absolute;z-index:-1;inset:-10px -20px -10px -10px;
-  background:linear-gradient(90deg,rgba(20,11,30,.88),rgba(20,11,30,.6) 72%,transparent);
-  pointer-events:none;
+  position:relative;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch p{
   margin:0;padding-left:11px;border-left:2px solid #bc6fcb;
@@ -417,7 +417,7 @@
   color:#f1e9ed;text-shadow:0 2px 12px #130c19,0 0 4px #130c19;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{
-  position:absolute;z-index:1;right:0;top:46px;bottom:0;width:74%;margin:0;
+  position:absolute;z-index:0;right:0;top:46px;bottom:0;width:74%;margin:0;
   overflow:hidden;pointer-events:none;
   background:transparent;
   -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 19%,#000 37%),
@@ -439,14 +439,14 @@
   font:36px/1 var(--ld-pixel);color:#ff8acb;text-shadow:0 0 20px #ac317f;
 }
 @media(max-width:360px){
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:330px}
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:335px}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{font-size:36px;margin-bottom:16px}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{max-width:48%;gap:10px}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch p{font-size:12px}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{width:75%;top:58px}
 }
 @media(min-width:768px){
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:395px}
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:430px}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{top:36px;width:69%}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{max-width:61%}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{max-width:43%}
@@ -479,30 +479,6 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes span:last-child{
   font:500 12px/1.28 var(--font);color:#c6aad1;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-tags{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
-  padding:0 8px;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-tags span{
-  display:flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap;
-  min-height:36px;padding:5px 6px;border:1px solid rgba(175,105,189,.6);
-  border-radius:999px;background:rgba(56,24,68,.3);
-  color:#e4d2eb;font:600 12px/1.2 var(--font);text-align:center;
-}
-#view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-tags small{
-  font-size:inherit;color:#bc9aca;white-space:nowrap;
-}
-@media(max-width:350px){
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-tags{
-    grid-template-columns:1fr;gap:6px;
-  }
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-tags span{
-    white-space:normal;
-  }
-}
-@media(max-height:650px){
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-tags{display:none}
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer{
   display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:54px;margin-top:auto;margin-bottom:clamp(0px,1svh,10px);
