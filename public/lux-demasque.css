@@ -377,10 +377,13 @@
 /* SPEC 115 V7 — composition continue RED FLAG. Image générée SANS typographie :
    texte, étapes et CTA restent HTML. L'illustration est décorative, sur un
    calque redimensionnable, sans carte rectangulaire ni reflet indésirable. */
+/* SPEC 115 V8 — Accueil : le footer s'ancre en bas du viewport comme Lux Runner.
+   Un fond unique sur #view-luxdemasque (et sur body en desktop via jeux-univers.css)
+   évite la démarcation d'un halo indépendant entre illustration et footer. */
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil{
-  width:100%;max-width:560px;min-width:0;margin:0 auto;flex:0 0 auto;
+  width:100%;max-width:560px;min-width:0;margin:0 auto;flex:1 1 auto;
   position:relative;isolation:isolate;display:flex;flex-direction:column;gap:16px;padding:4px 0 0;
-  background:radial-gradient(ellipse 85% 62% at 84% 36%,rgba(103,37,112,.18),transparent 82%);
+  background:transparent;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{
   position:relative;isolation:isolate;flex:none;min-height:clamp(350px,50svh,455px);
@@ -484,7 +487,8 @@
   font:500 12px/1.28 var(--font);color:#c6aad1;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer{
-  display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:54px;flex:none;margin:0;
+  display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:54px;flex:none;
+  margin:auto 0 0;
   border:0;border-radius:12px;background:var(--accent);color:#251b0d;font:800 16px var(--font);cursor:pointer;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer svg{width:18px;height:18px}
