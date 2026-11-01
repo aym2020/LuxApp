@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=30','lux-demasque.js?v=29','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=31','lux-demasque.js?v=30','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -104,6 +104,27 @@ test('LD-048 : croix NOPE secondaire à gauche du cœur, même action, cible 48 
  assert.match(css,/\.ld-dating-meet\{[^}]*width:56px;height:56px/,'cœur inchangé');
  assert.match(js,/if \(dx > 0\) ldSelectionConfirmer\(\)/);assert.match(js,/else ldSelectionChanger\(1\); \/\/ NOPE/);
  assert.match(js,/Math\.abs\(dx\) > 65/);
+});
+
+// SPEC 118 §7 : repère de glisse pixel art, croix « quitter » discrète et fenêtre de confirmation.
+test('SPEC 118 §7 : croix quitter + confirmation, repère de glisse, retour sur la carte du jeu',()=>{
+ const vue=js.slice(js.indexOf('function ldRendreSelection()'),js.indexOf('function ldComposerPhotoProfil('));
+ const entete=js.slice(js.indexOf('function ldEntete('),js.indexOf('function ldSynchroMusique()'));
+ // Cringr : croix qui ouvre la confirmation ; les autres écrans gardent la flèche de retour directe.
+ assert.match(entete,/o\.selection\s*\?[\s\S]*onclick="ldDemanderQuitter\(\)" aria-label="Quitter la partie"/);
+ assert.match(entete,/onclick="ldQuitter\(\)" aria-label="Retour aux jeux"/);
+ const demande=js.slice(js.indexOf('function ldDemanderQuitter()'),js.indexOf('// Rotation des dossiers'));
+ assert.match(demande,/ldCalque\('ld-quitter'/);assert.match(demande,/Quitter la partie \?/);
+ assert.match(demande,/ld-quitter-oui" onclick="ldFermerCalque\(\\'ld-quitter\\'\); ldQuitter\(\)"/);
+ assert.match(demande,/ld-quitter-non" onclick="ldFermerCalque\(\\'ld-quitter\\'\)">Rester/);
+ // Repère de glisse : décoratif, dans la carte, avant les infos.
+ assert.ok(vue.indexOf('LD_GESTE_GLISSE')>vue.indexOf('ld-selection-image-zone')&&vue.indexOf('LD_GESTE_GLISSE')<vue.indexOf('ld-selection-infos'));
+ assert.match(js,/ld-selection-geste" aria-hidden="true"/);
+ assert.match(css,/\.ld-selection-geste\{[^}]*top:12px;left:50%[^}]*pointer-events:none/);
+ assert.match(css,/\.ld-geste-doigt\{animation:none\}/,'mouvement réduit : repère fixe');
+ assert.match(css,/\.ld-quitter-croix\{[^}]*border:0;background:none/);
+ // Le hub se recale sur la carte quittée quel que soit le chemin de sortie (ldQuitter → ouvrirJeux).
+ assert.match(js,/function ldQuitter\(\) \{ luxDemasqueArreter\(\); if \(typeof ouvrirJeux === 'function'\) ouvrirJeux\(\); \}/);
 });
 
 // SPEC 115 (comportement) + SPEC 116/117 (structure) : l'accueil RED FLAG est l'écran commun

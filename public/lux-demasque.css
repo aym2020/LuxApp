@@ -516,6 +516,42 @@
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-glisse-precedent::after{
   content:"LIKE";left:12px;color:#ffc6e1;border-color:var(--cr-rose);opacity:var(--ld-swipe-force,0);transform:rotate(-8deg);
 }
+/* Croix « quitter » : discrète, sans tuile (la tuile appartient au NOPE) ; cible tactile 48×48. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-quitter-croix{border:0;background:none;color:var(--cr-lavande);opacity:.7;transition:opacity .12s,transform .06s}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-quitter-croix svg{width:14px;height:14px;shape-rendering:crispEdges}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-quitter-croix:hover{opacity:1}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-quitter-croix:active{opacity:1;transform:translate(1px,1px)}
+/* Repère de glisse : petite tuile arcade sombre, centrée en haut de la carte, au-dessus du portrait. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-geste{position:absolute;z-index:4;top:12px;left:50%;transform:translateX(-50%);
+  padding:7px 10px;border:2px solid #573a5a;border-radius:6px;background:rgba(23,16,31,.62);box-shadow:2px 2px 0 var(--cr-ombre);
+  pointer-events:none;transition:opacity .12s}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-geste svg{display:block;width:60px;height:16px;overflow:visible}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-geste-fleche{fill:var(--cr-lavande)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-geste-doigt{fill:var(--cr-rose);animation:ldGesteDoigt 1.8s steps(1,end) 3 .4s}
+@keyframes ldGesteDoigt{
+  0%,100%{transform:translateX(0)} 12%{transform:translateX(-3px)} 24%{transform:translateX(-6px)} 36%{transform:translateX(-3px)}
+  48%{transform:translateX(0)} 60%{transform:translateX(3px)} 72%{transform:translateX(6px)} 84%{transform:translateX(3px)}}
+/* Le repère s'efface dès que le doigt tire la carte ou que le tampon LIKE / NOPE apparaît. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-selection-tire .ld-selection-geste,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-glisse-suivant .ld-selection-geste,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-glisse-precedent .ld-selection-geste{opacity:0}
+/* Fenêtre « Quitter la partie ? » : même DA que Cringr (tuile aubergine, contour net, ombre décalée, VT323). */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-calque-quitter{align-items:center;padding:16px;background:rgba(12,8,17,.74)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-calque-quitter .ld-fenetre{width:min(100%,320px);align-items:center;gap:8px;padding:18px 16px 16px;text-align:center;
+  border:3px solid var(--cr-ombre);border-radius:8px;background:var(--cr-surface);
+  box-shadow:inset 0 0 0 2px #573a5a,5px 5px 0 var(--cr-ombre)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-drapeau{display:grid;place-items:center;width:44px;height:44px;border:2px solid #573a5a;border-radius:6px;background:var(--cr-nuit);color:var(--cr-rose)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-drapeau svg{width:24px;height:24px;shape-rendering:crispEdges}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-calque-quitter .ld-fen-titre{padding:0;font:30px/1 var(--ld-lecture);color:var(--cr-creme)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-calque-quitter .ld-texte{font:21px/1.1 var(--ld-lecture);color:var(--cr-lavande);text-wrap:balance}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-top:6px}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-actions button{min-height:52px;padding:0 8px;border:3px solid var(--cr-ombre);border-radius:8px;font:26px/1 var(--ld-lecture);cursor:pointer;
+  transition:transform .06s,box-shadow .06s}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-non{background:var(--cr-rose);color:#fff;box-shadow:4px 4px 0 #8a2457,inset 0 3px 0 rgba(255,255,255,.24),inset 0 -3px 0 rgba(23,16,31,.22)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-oui{background:var(--cr-nuit);color:var(--cr-lavande);border-color:#6d4a76;box-shadow:4px 4px 0 var(--cr-ombre)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-actions button:active{transform:translate(2px,3px)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-non:active{box-shadow:2px 1px 0 #8a2457}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-oui:active{box-shadow:2px 1px 0 var(--cr-ombre)}
 /* Petits écrans en hauteur : marges un peu plus serrées pour laisser le visage visible (bio toujours ≥ 22 px, SPEC 113). */
 @media(max-height:700px){
   #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos{gap:3px;padding:28px 10px 10px}
@@ -529,6 +565,9 @@
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte.ld-swipe-demo{animation:ldSwipeGuide 1.15s ease-in-out 1}
 @media(prefers-reduced-motion:reduce){
   #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte{animation:none;transition:none}
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-geste-doigt{animation:none}
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-quitter-actions button:active,
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-top-selection .ld-quitter-croix:active{transform:none}
   #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-carte::after,
   #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-meet:active,
   #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-passer:active{transform:none}

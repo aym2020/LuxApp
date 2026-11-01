@@ -45,3 +45,18 @@ Moteur, données et textes des profils ; portraits issus de `m.portrait()` et `l
 - Sur grand écran (430×932, PC), la carte plafonne à 560 px et le téléphone est centré verticalement (marges égales au-dessus et en dessous).
 - `overflow: clip` est utilisé pour que la carte garde sa hauteur de contenu ; un navigateur très ancien sans `clip` retombe sur `hidden` (comportement d'avant).
 - Le cahier des charges cite un « suivi canonique sur `main` » : conformément à la consigne produit du 01/11 (aucun push sur `main`), le suivi est consigné ici, sur `2.1`.
+
+## 7. Suite du 02/11 (retour produit) : repère de glisse, croix « quitter », confirmation
+
+**Demande :** un petit repère en pixel art, en haut et centré, qui dit au joueur de glisser ; la flèche en haut à gauche remplacée par une croix discrète ; une fenêtre « Veux-tu vraiment quitter la partie ? » dans la même DA ; à la sortie, retour sur la carte du jeu quitté dans le hub Jeux.
+
+- **Repère de glisse** (`.ld-selection-geste`) : petite tuile arcade sombre centrée en haut de la carte, au-dessus du ciel du portrait (jamais sur le visage). Pixel art 30×8 : flèche gauche, doigt (rond rose), flèche droite, affiché à 2×. Le doigt se déplace par pas de 3 px trois fois à l'arrivée, puis le repère reste fixe et discret. Il s'efface pendant le tirage de la carte et quand un tampon LIKE / NOPE apparaît ; `pointer-events:none`, `aria-hidden` (les commandes restent décrites dans `#ld-selection-commandes`) ; sans animation avec `prefers-reduced-motion`. **Il remplace la règle de SPEC 113 « pas de hint permanent » sur demande du produit** ; l'animation de découverte de la carte (une seule fois) est conservée.
+- **Croix « quitter »** : sur Cringr seulement, la flèche de retour devient une croix pixel 14 px, sans tuile ni bordure (la tuile reste réservée au NOPE), lavande à 70 %, cible tactile 48×48, nom accessible « Quitter la partie ». Les autres écrans (rencontre, déposition…) gardent leur flèche.
+- **Fenêtre « Quitter la partie ? »** (`ldDemanderQuitter()`, via le système de calques existant) : tuile aubergine à contour net et ombre décalée, drapeau pixel rose, VT323, deux boutons ≥ 52 px : **Rester** (rose, action par défaut, focus à l'ouverture) et **Quitter**. Clic hors fenêtre, Échap et Retour Android ferment la fenêtre et laissent le joueur sur Cringr. **Quitter** appelle `ldQuitter()` (arrêt de la partie et de la musique) puis ouvre le hub Jeux.
+- **Retour au hub** : réutilise SPEC 116 §9 (le hub se recale sur la carte du jeu d'où l'on vient). Vérifié depuis Cringr : à 393×763 et 360×640, la carte RED FLAG (dernière du hub) retrouve sa position d'avant l'entrée, aux quatre tailles de référence elle reste visible.
+- **Inchangé** : Retour Android ou navigateur *depuis l'écran Cringr sans fenêtre* quitte toujours directement vers le hub (comportement SPEC 113, testé), sans confirmation.
+
+**Fichiers :** `public/lux-demasque.js` (`ldEntete`, `ldDemanderQuitter`, `LD_GESTE_GLISSE`), `public/lux-demasque.css`, `public/index.html` (`lux-demasque.css?v=31`, `lux-demasque.js?v=30`), `test/lux-demasque-selection.test.cjs`, `tests/test_cringr_quitter.py` (nouveau, ajouté à `tools/test-lux-demasque.sh` et `tools/critique.sh`).
+
+**Recette exécutée :** `test_cringr_quitter` à 320×600, 360×740, 393×763 et 430×932 (croix 48 px sans tuile, repère centré dans la carte et effacé pendant le tirage, fenêtre dans l'écran, Rester / Échap / Retour = on reste, Quitter = hub recalé, partie et sélection arrêtées, mouvement réduit). **Non vérifié : Samsung réel.**
+

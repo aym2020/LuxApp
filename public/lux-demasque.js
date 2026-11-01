@@ -255,6 +255,11 @@ async function ldOuvrirSelection(options) {
   if (carte) carte.focus({preventScroll:true});
 }
 
+// Repère « glisse » : doigt entre deux flèches, en pixel art, centré en haut de la carte (décoratif : les commandes sont lues dans #ld-selection-commandes).
+const LD_GESTE_GLISSE = '<span class="ld-selection-geste" aria-hidden="true"><svg viewBox="0 0 30 8" shape-rendering="crispEdges">' +
+  '<path class="ld-geste-fleche" d="M3 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM0 3h4v1h-4zM0 4h4v1h-4zM1 5h3v1h-3zM2 6h2v1h-2zM3 7h1v1h-1z"/>' +
+  '<path class="ld-geste-fleche" d="M26 0h1v1h-1zM26 1h2v1h-2zM26 2h3v1h-3zM26 3h4v1h-4zM26 4h4v1h-4zM26 5h3v1h-3zM26 6h2v1h-2zM26 7h1v1h-1z"/>' +
+  '<path class="ld-geste-doigt" d="M13 0h4v1h-4zM12 1h6v1h-6zM11 2h8v1h-8zM11 3h8v1h-8zM11 4h8v1h-8zM11 5h8v1h-8zM12 6h6v1h-6zM13 7h4v1h-4z"/></svg></span>';
 function ldRendreSelection() {
   const sel = ld.selection, box = ldBox();
   if (!sel || !box) return;
@@ -284,6 +289,7 @@ function ldRendreSelection() {
           '<div class="ld-selection-pile"><article class="ld-selection-carte" id="ld-selection-carte" role="group" aria-label="' +
             ldEchapper(affaire.genere ? 'Nouveau profil' : 'Profil de ' + npc.nom) + '" tabindex="0" aria-describedby="ld-selection-commandes" aria-keyshortcuts="ArrowLeft ArrowRight Enter Space">' +
             '<div class="ld-selection-image-zone ld-photo-scene ld-photo-' + (npc ? ldEchapper(npc.id) : 'mystere') + '">' + portrait + '</div>' +
+            LD_GESTE_GLISSE +
             '<div class="ld-selection-infos">' +
               '<h2>' + (affaire.genere ? 'Nouveau profil' : ldEchapper(npc.nom) + ', <span>' + npc.age + '</span>') + '</h2>' +
               (affaire.genere
@@ -499,6 +505,17 @@ function luxDemasqueArreter() {
     .observe(vue, { attributes: true, attributeFilter: ['class'] });
 })();
 function ldQuitter() { luxDemasqueArreter(); if (typeof ouvrirJeux === 'function') ouvrirJeux(); }
+// Quitter depuis Cringr : confirmation dans la même DA. « Rester » ferme la fenêtre ; « Quitter » revient au hub
+// Jeux, qui se recale sur la carte RED FLAG (SPEC 116 § 9). Retour Android / Échap ferment la fenêtre (on reste).
+const LD_CROIX_QUITTER = '<svg viewBox="0 0 8 8" fill="currentColor" aria-hidden="true"><path d="M0 0h2v1H0zM6 0h2v1H6zM1 1h2v1H1zM5 1h2v1H5zM2 2h4v1H2zM3 3h2v2H3zM2 5h4v1H2zM1 6h2v1H1zM5 6h2v1H5zM0 7h2v1H0zM6 7h2v1H6z"/></svg>';
+const LD_DRAPEAU = '<svg viewBox="0 0 8 8" fill="currentColor" aria-hidden="true"><path d="M1 0h1v8H1zM2 0h5v1H2zM2 1h6v1H2zM2 2h5v1H2zM2 3h3v1H2z"/></svg>';
+function ldDemanderQuitter() {
+  ldCalque('ld-quitter', 'ld-calque-quitter', 'Quitter la partie', '<span class="ld-quitter-drapeau" aria-hidden="true">' + LD_DRAPEAU + '</span>' +
+    '<h2 class="ld-fen-titre">Quitter la partie ?</h2>' +
+    '<p class="ld-texte">Tu retournes à la sélection des jeux.</p>' +
+    '<div class="ld-quitter-actions"><button type="button" class="ld-quitter-oui" onclick="ldFermerCalque(\'ld-quitter\'); ldQuitter()">Quitter</button>' +
+    '<button type="button" class="ld-quitter-non" onclick="ldFermerCalque(\'ld-quitter\')">Rester</button></div>');
+}
 // Rotation des dossiers : d'abord les dossiers rédigés pas encore résolus (Milo, Noah, Tom),
 // puis des dossiers générés (graine aléatoire, rejouable telle quelle depuis le diagnostic).
 function ldDossiersRediges() { return ld.donnees.dossiers.map(d => d.id).concat((ld.donnees.dossiersRediges || []).map(d => d.id)); }
@@ -536,7 +553,11 @@ function ldRejouer() { const d = ld.partie && ld.partie.dossier; ouvrirLuxDemasq
 // ─── Rendu par écran ───────────────────────────────────────────────────────
 function ldEntete(options) {
   const o = options || {};
-  return '<div class="ld-top' + (o.selection ? ' ld-top-selection' : '') + '"><button type="button" class="ld-icone-btn" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '</button>' +
+  // Cringr : croix discrète (pixel art) qui demande confirmation ; ailleurs, la flèche de retour habituelle.
+  const retour = o.selection
+    ? '<button type="button" class="ld-icone-btn ld-quitter-croix" onclick="ldDemanderQuitter()" aria-label="Quitter la partie">' + LD_CROIX_QUITTER + '</button>'
+    : '<button type="button" class="ld-icone-btn" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '</button>';
+  return '<div class="ld-top' + (o.selection ? ' ld-top-selection' : '') + '">' + retour +
     '<span class="ld-logo">RED <i>FLAG</i></span>' +
     '<div class="ld-top-outils">' +
       (o.fr === false ? '' : '<button type="button" class="ld-icone-btn ld-fr-btn' + (ld.aideFr ? ' ld-actif' : '') + '" onclick="ldBasculerAide()" aria-pressed="' + ld.aideFr + '" aria-label="' + (ld.aideFr ? 'Aide FR activée' : 'Aide FR désactivée') + '">FR</button>') +
