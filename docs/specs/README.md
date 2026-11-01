@@ -112,7 +112,7 @@ Ce registre a été constitué pour les fiches historiques 01–81 et 87–96, p
 | 112 | [Red Flag / Cringr : conception historique du sélecteur](./SPEC-112.md) | — | **Historique, remplacée pour le sélecteur par SPEC 113** ; ne pas implémenter les anciens swipes |
 | 113 | [RED FLAG / CRINGR : contrat UI/UX du sélecteur](./SPEC-113.md) | — | **Implémentée sur 2.1, tests Chromium documentés ; recette et validation Samsung encore nécessaires** |
 | **114** | **[Harmonisation des dimensions PC : enveloppe unique, jeux compris](./SPEC-114.md)** | **P1 transverse** | **À faire — spec documentée, aucun CSS/JS modifié ; baseline DOM + recette PC/Android exigées** |
-| **115** | **[RED FLAG : accueil narratif illustré (V5)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **Finitions V5 codées** : titre trois lignes, texte raccourci et dégradé derrière les encarts, étapes compactées, capsules équilibrées, image V4 inchangée. Recette PC/Samsung V5 à valider. |
+| **115** | **[RED FLAG : accueil narratif épuré (V6)](./SPEC-115.md)** | **P1 narratif (LD-049)** | **Code V6 poussé sur `2.1`** : suppression des capsules, dégradé continu, scène mieux équilibrée, tasse sans cœur via composite SVG de la V4. Recette PC/Samsung et qualité du composite à valider. |
 
 ## Précautions de lecture
 
