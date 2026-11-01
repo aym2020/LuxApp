@@ -15,6 +15,7 @@ on:
       - 'tests/capture_cringr_spec113.py'
       - 'tests/test_lux_demasque_selection.py'
       - 'public/fonts/vt323-*'
+      - 'public/art/redflag-hero-*'
       - 'tools/test-lux-demasque.sh'
       - 'tools/critique.sh'
   workflow_dispatch:
@@ -53,6 +54,14 @@ jobs:
           done
           python3 tests/capture_lux_demasque_ld001.py
           python3 tests/capture_cringr_spec113.py
+      - name: Archiver la composition V7
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redflag-intro-v7
+          path: artifacts/redflag-v7/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Archiver les captures et mesures SPEC 113
         if: always()
         uses: actions/upload-artifact@v4

@@ -1,12 +1,12 @@
-# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V6)
+# SPEC 115 — RED FLAG : accueil illustré Cringr, héroïne et lancement (V7)
 
 **Décision initiale V2 :** 31 octobre 2026 · **Dépôt :** `aym2020/LuxApp` · **Branche de code :** `2.1`  
-**Statut courant : V6 CODE ET COMPOSITION VISUELLE POUSSÉS SUR `2.1` ; RECETTE NAVIGATEUR ET VALIDATION SAMSUNG V6 À FAIRE.** La V2 a été testée sur Chromium (historique, voir § 11), sans valider la V4. La V1 cinématique a été implémentée (commit `ea3f774` ; voir § 10), mais **rejetée visuellement par le produit**. Ne pas présenter l'ancienne CI verte comme une recette de la V2.  
+**Statut courant : V7 implémentée et testée sous Chromium ; validation Samsung/Produit en attente.** La V7 (§16) remplace les règles de hauteur, de fondu et d'illustration V6. [Recette, mesures et captures](../red-flag/SPEC-115-V7-RECETTE.md). L'ancienne cinématique reste abandonnée.
 **Suivi :** [LD-049 — TODO canonique sur `main`](https://github.com/aym2020/LuxApp/blob/main/docs/LUX-DEMASQUE-TODO.md). LD-048/SPEC 113 (sélecteur) et LD-002.01 (Rencontre) restent distinctes.
 
 > **Décision normative : ABANDONNER la cinématique 3D, le téléphone qui vibre, la prise en main, les messages intermédiaires, le zoom et le mécanisme « vu une fois ».** Les remplacer par **un seul écran de préparation statique**, dans l'esprit du lancement de **Lux Runner**, suivi immédiatement du sélecteur Cringr au clic sur **Commencer**. Ne pas créer de nouvelle SPEC.
 
-> **Priorité documentaire V5 :** les décisions du **§ 14** complètent et priment sur le contrat visuel V4 (§ 13) pour la typographie, les textes, les capsules et les espacements. Les descriptions V2 (§ 2–8), V3 (§ 12) et les tests historiques ne constituent pas la cible finale. **Ne pas réintroduire** la cinématique V1. Les règles de gameplay, navigation et conservation des données restent inchangées.
+> **Priorité documentaire V7 :** le **§16** prime sur les versions précédentes pour la composition, le placement du CTA et l'asset. Conserver le titre, les deux paragraphes, le panneau des trois étapes et le bouton unique. Aucun nouveau composant, aucune modification de gameplay.
 
 ## 1. Objectif produit
 
@@ -250,3 +250,26 @@ Le joueur a explicitement rejeté le rendu Samsung V3 : la femme low-poly aux ye
 Fichiers : `public/lux-demasque.js` (suppression capsules + image V6), `public/lux-demasque.css` (fondu global, retrait du CSS des badges, hauteur de la scène), `public/art/redflag-hero-v6.svg`, `public/index.html` (cache `?v=25`), `test/lux-demasque-selection.test.cjs` et `tests/test_lux_demasque_accueil.py`. Le WebP V4 reste conservé intact.
 
 **Recette obligatoire avant validation LD-049** : captures 320×600 / 360×740 / 393×852 / 430×932, plus 768×1024 et 1440×900 ; aucune capsule, aucun fond rectangulaire derrière le pitch, tasse unie sans cœur (le téléphone conserve le sien), visuel complet, CTA accessible, pas de débordement au zoom 130/200 %. Tester une image bloquée pour le fallback. Exécuter les tests Node/Playwright et la suite dédiée, sans déclarer verte une recette non passée. **Validation manuelle Samsung nécessaire** pour l'intégration SVG et la finesse de la retouche.
+
+
+## 16. V7 — Composition verticale continue et tasse régénérée (1er novembre 2026)
+
+**Décision produit : réduire le vide structurel et supprimer les démarcations restantes.** Conserver l'identité artistique, les textes et les composants. Cette passe remplace la retouche SVG V6 par une vraie régénération de l'image, avec tasse unie et cœur du téléphone conservé.
+
+### Contrat de composition
+
+1. **Une hauteur guidée par le contenu.** `.ld-accueil` ne doit plus remplir artificiellement le viewport ; retirer sa croissance flex et la marge automatique du CTA. En grand écran comme sur mobile, conserver **16 px entre le panneau étapes et Commencer**, tolérance de recette 12–24 px. Les trois blocs se suivent dans le flux ; aucun CTA fixe ou absolu.
+2. **Une ambiance continue.** Le halo appartient à l'ensemble de la composition, pas à un rectangle héro. Le voile latéral de protection du texte se dissout verticalement ; le visuel se prolonge de 48 px derrière le début des étapes. Masques progressifs sur les côtés et le bas : aucune bordure droite ou fin de fond opaque derrière les paragraphes.
+3. **Un pont visuel.** Conserver l'unique panneau « Choisis / Discute / Démasque », avec un padding vertical de 12 px et une surface violette discrète. Aucune sous-carte, capsule ou information supplémentaire.
+4. **PC.** Shell 640 px, contenu 560 px ; héro de 450 px, puis étapes et CTA proches. L'espace résiduel se situe après le groupe complet, sans isoler son bouton au bas d'un écran de 1080 px.
+5. **Petits écrans et accessibilité.** Cibles ≥54 px pour Commencer ; défilement naturel autorisé à 320×600 ; bouton dans le premier viewport aux tailles usuelles dès 740 px de hauteur. Textes entiers, image manquante sans blocage, clavier et zoom 130/200 % vérifiés en navigateur. La police système et l'IME Samsung ne sont pas validés par cette simulation.
+
+### Illustration de production
+
+`public/art/redflag-hero-v7.webp` : **1254×1254 px, 73 890 octets**, régénérée avec le générateur d'images intégré depuis la V4, puis encodée WebP (qualité 88). Même scène, héroïne, expression, lumière et téléphone ; **tasse sans cœur**, téléphone avec cœur rose. Aucun texte ni bouton dans l'image, aucun cache céramique en SVG à l'exécution. Les assets V4/V6 restent historiques et ne sont plus chargés par cet écran. [Provenance et prompt](../red-flag/SPEC-115-V7-RECETTE.md#illustration-et-provenance).
+
+### Livraison et limites
+
+CSS/JS `v=26` ; changements limités au layout d'accueil et à sa référence d'image. Mesure avant/après sur huit tailles : **16 px** de séparation étapes/CTA au lieu de **12 à 385 px**. Tests statiques, navigateur fonctionnel, mouvement réduit, focus, erreurs et image 404 exécutés. La suite dédiée complète passe **12 blocs sur 13** : l'échec audio `PIX_KYOTO` est reproduit sur la référence `6feb2db`. Détails dans la [recette](../red-flag/SPEC-115-V7-RECETTE.md).
+
+**LD-049 reste ouverte jusqu'à revue réelle Samsung et accord Produit.** LD-048, Rencontre/LD-002.01, audio, preuves, scores, graines et sauvegardes restent hors du changement. Ne pas déduire une validation du jeu complet du seul passage de la composition V7.

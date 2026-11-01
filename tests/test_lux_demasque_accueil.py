@@ -62,7 +62,7 @@ with sync_playwright() as p:
     etapes = pg.evaluate("[...document.querySelectorAll('.ld-accueil-etapes li')].map(li => li.querySelector('b').textContent + ' ' + li.lastChild.textContent)")
     assert etapes == ['Choisis un profil', 'Discute en LU', 'Démasque les mensonges'], etapes
     img = pg.evaluate("(() => { const i = document.querySelector('.ld-accueil-visuel img'); return [i.naturalWidth, i.alt]; })()")
-    assert img[0] == 564 and 'femme' in img[1] and 'téléphone' in img[1], img
+    assert img[0] == 1254 and 'femme' in img[1] and 'téléphone' in img[1], img
     assert pg.locator('.ld-accueil-titre span').all_inner_texts() == ['Ton prochain', 'date sur']
     assert pg.locator('.ld-accueil-tags').count() == 0  # V6 : aucune capsule redondante
     assert pg.get_by_role('button', name='Commencer').count() == 1
@@ -126,11 +126,11 @@ with sync_playwright() as p:
 
     # ── FIX-05 : image absente, API en erreur, stockage refusé ─────────────────
     ctx, pg = contexte(b, 360, 740)
-    pg.route('**/art/redflag-hero-v6.svg*', lambda r: r.fulfill(status=404, body=''))
+    pg.route('**/art/redflag-hero-v7.webp*', lambda r: r.fulfill(status=404, body=''))
     pg.route('**/api/jeux/lux-demasque', lambda r: r.fulfill(status=500, body='{}'))
     entrer(pg)
     pg.wait_for_selector('.ld-accueil-sans-image')
-    assert pg.locator('.ld-accueil-commencer').is_visible() and pg.inner_text('.ld-accueil-titre').startswith('Ton prochain date')
+    assert pg.locator('.ld-accueil-commencer').is_visible() and ' '.join(pg.inner_text('.ld-accueil-titre').split()).startswith('Ton prochain date')
     capture(pg, 'fix05-sans-image')
     pg.click('.ld-accueil-commencer')
     pg.wait_for_selector('.ld-selection-reessayer')

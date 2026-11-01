@@ -374,20 +374,23 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status>span:last-child{text-align:right}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-island{height:20px;background:#050409;border-radius:12px}
-/* SPEC 115 V4 — identité visuelle RED FLAG. Image générée SANS typographie :
+/* SPEC 115 V7 — composition continue RED FLAG. Image générée SANS typographie :
    texte, étapes et CTA restent HTML. L'illustration est décorative, sur un
    calque redimensionnable, sans carte rectangulaire ni reflet indésirable. */
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil{
-  width:100%;max-width:560px;min-width:0;margin:0 auto;flex:1 1 auto;
-  display:flex;flex-direction:column;gap:12px;padding:4px 0 0;
+  width:100%;max-width:560px;min-width:0;margin:0 auto;flex:0 0 auto;
+  position:relative;isolation:isolate;display:flex;flex-direction:column;gap:16px;padding:4px 0 0;
+  background:radial-gradient(ellipse 85% 62% at 84% 36%,rgba(103,37,112,.18),transparent 82%);
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{
   position:relative;isolation:isolate;flex:none;min-height:clamp(350px,50svh,455px);
   display:flex;flex-direction:column;justify-content:flex-start;
-  background:radial-gradient(ellipse 80% 65% at 78% 48%,rgba(103,37,112,.22),transparent 78%);
+  background:transparent;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero::after{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  content:"";position:absolute;inset:0 0 -48px;z-index:1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(transparent,#000 8%,#000 58%,transparent 100%);
+  mask-image:linear-gradient(transparent,#000 8%,#000 58%,transparent 100%);
   /* Un seul voile latéral sur la scène : aucune bande derrière les paragraphes. */
   background:linear-gradient(90deg,rgba(19,12,27,.82) 0%,rgba(19,12,27,.61) 24%,rgba(19,12,27,.23) 45%,transparent 65%);
 }
@@ -417,17 +420,17 @@
   color:#f1e9ed;text-shadow:0 2px 12px #130c19,0 0 4px #130c19;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{
-  position:absolute;z-index:0;right:0;top:46px;bottom:0;width:74%;margin:0;
+  position:absolute;z-index:0;right:0;top:46px;bottom:-48px;width:74%;margin:0;
   overflow:hidden;pointer-events:none;
   background:transparent;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 19%,#000 37%),
-                     linear-gradient(to bottom,transparent 0%,#000 10%,#000 79%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 19%,#000 37%),
-             linear-gradient(to bottom,transparent 0%,#000 10%,#000 79%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 19%,#000 37%,#000 88%,transparent 100%),
+                     linear-gradient(to bottom,transparent 0%,#000 10%,#000 68%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 19%,#000 37%,#000 88%,transparent 100%),
+             linear-gradient(to bottom,transparent 0%,#000 10%,#000 68%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel img{
-  display:block;width:100%;height:100%;object-fit:cover;object-position:55% 47%;
+  display:block;width:100%;height:100%;object-fit:cover;object-position:25% 47%;
   image-rendering:auto;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-sans-image{
@@ -446,16 +449,16 @@
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{width:75%;top:58px}
 }
 @media(min-width:768px){
-  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:430px}
+  #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-hero{min-height:450px}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-visuel{top:36px;width:69%}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-titre{max-width:61%}
   #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-pitch{max-width:43%}
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes{
-  list-style:none;margin:0;padding:9px 7px;display:grid;
+  position:relative;z-index:2;list-style:none;margin:0;padding:12px 9px;display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;
   border:1px solid rgba(179,96,189,.58);border-radius:18px;
-  background:rgba(27,14,37,.56);box-shadow:inset 0 0 22px rgba(117,53,151,.07);
+  background:linear-gradient(180deg,rgba(45,24,56,.64),rgba(27,17,35,.88));box-shadow:inset 0 1px rgba(221,163,233,.06);
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-etapes li{
   position:relative;display:flex;flex-direction:column;align-items:center;
@@ -481,7 +484,7 @@
   font:500 12px/1.28 var(--font);color:#c6aad1;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer{
-  display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:54px;margin-top:auto;margin-bottom:clamp(0px,1svh,10px);
+  display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:54px;flex:none;margin:0;
   border:0;border-radius:12px;background:var(--accent);color:#251b0d;font:800 16px var(--font);cursor:pointer;
 }
 #view-luxdemasque .ld-jeu[data-ecran="accueil"] .ld-accueil-commencer svg{width:18px;height:18px}

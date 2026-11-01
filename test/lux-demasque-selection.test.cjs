@@ -28,7 +28,7 @@ test('SPEC112 : CSS scope, scripts versions et Lux Match restauré',()=>{
  assert.match(css,/touch-action:pan-y/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  const html=read('public/index.html'),jeux=read('public/jeux-v21.js');
- for(const x of ['lux-demasque.css?v=25','lux-demasque.js?v=25','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
+ for(const x of ['lux-demasque.css?v=26','lux-demasque.js?v=26','lux-match.css?v=22','lux-match.js?v=30']) assert.ok(html.includes(x),x);
  assert.match(jeux,/luxMatch:\s*false,\s*luxDemasque:\s*true/);
 });
 
@@ -117,13 +117,13 @@ test('SPEC 115 V2 : accueil fixe à chaque entrée, sans 3D ni prologue V1',()=>
  for(const t of ['Revoir l’introduction','Passer l’intro','Ouvrir Cringr','ldDemarrerPrologue','ldTerminerPrologue','LD_HEROINE','ld.prologue'])assert.ok(!js.includes(t),'V1 retirée : '+t);
  assert.match(js,/function ldAccueilCommencer\(\) \{\n  const box = ldBox\(\);\n  if \(!box \|\| box\.dataset\.ecran !== 'accueil'\) return;\n  ldOuvrirSelection\(\{ focus: true \}\);/);
  assert.equal((js.match(/function ldCommencer\(\)/g)||[]).length,1,'aucune collision avec le début du rendez-vous');
- assert.ok(fs.statSync(path.join(root,'public/art/redflag-hero-v6.svg')).size<30000,'illustration composite légère');
+ assert.ok(fs.statSync(path.join(root,'public/art/redflag-hero-v7.webp')).size<180000,'illustration WebP optimisée');
  assert.doesNotMatch(m3d,/prologue/i,'service 3D de la V1 retiré');
  assert.doesNotMatch(audio,/vibre|message:/,'bruitages exclusifs à la V1 retirés');
  assert.doesNotMatch(css,/ld-prologue|ld-revoir/);
  assert.match(css,/\.ld-jeu\[data-ecran="accueil"\] \.ld-accueil-commencer\{[^}]*min-height:54px/);
  assert.match(css,/\.ld-accueil-sans-image::after/,'repli si l’image manque');
- assert.match(js,/art\/redflag-hero-v6\.svg\?v=1/);
+ assert.match(js,/art\/redflag-hero-v7\.webp\?v=1/);
  assert.doesNotMatch(js,/ld-accueil-tags/);
 });
 
@@ -136,7 +136,7 @@ test('SPEC 115 V3 : hero intégré sans redondance du kicker',()=>{
  assert.match(css,/\.ld-accueil-visuel img\{[\s\S]*?image-rendering:auto/);
 });
 
-test('SPEC 115 V5 : titre à trois lignes volontaires, visage dégagé et capsules lisibles',()=>{
+test('SPEC 115 V7 : titre à trois lignes, visage dégagé et aucune capsule',()=>{
  const rendu=js.slice(js.indexOf('function ldRendreAccueil()'),js.indexOf('function ldAccueilCommencer()'));
  assert.match(rendu,/<span>Ton prochain<\/span> <span>date sur<\/span> <em>Cringr\.<\/em>/);
  assert.match(rendu,/etape\('discute', 'Discute', 'en LU'\)/);
@@ -145,14 +145,13 @@ test('SPEC 115 V5 : titre à trois lignes volontaires, visage dégagé et capsul
  assert.match(css,/\.ld-accueil-hero::after\{[\s\S]*?linear-gradient/);
  assert.doesNotMatch(css,/\.ld-accueil-pitch::before/);
  assert.doesNotMatch(css,/\.ld-accueil-tags/);
- assert.match(css,/@media\(max-width:350px\)/);
+ assert.match(css,/@media\(max-width:360px\)/);
 });
 
-test('SPEC 115 V6 : tasse sans cœur, téléphone et illustration originale conservés',()=>{
- const svg=read('public/art/redflag-hero-v6.svg');
- assert.match(svg,/data:image\/webp;base64,/);
- assert.match(svg,/Localized ceramic-colored correction/);
- assert.match(svg,/id="ceramic"/);
- assert.match(svg,/fill="url\(#ceramic\)"/);
- assert.match(js,/art\/redflag-hero-v6\.svg\?v=1/);
+test('SPEC 115 V7 : illustration WebP régénérée, sans composite SVG',()=>{
+ const asset=fs.readFileSync(path.join(root,'public/art/redflag-hero-v7.webp'));
+ assert.equal(asset.toString('ascii',0,4),'RIFF');
+ assert.equal(asset.toString('ascii',8,12),'WEBP');
+ assert.match(js,/art\/redflag-hero-v7\.webp\?v=1/);
+ assert.doesNotMatch(js,/redflag-hero-v6\.svg/);
 });
