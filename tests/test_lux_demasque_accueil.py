@@ -99,7 +99,7 @@ with sync_playwright() as p:
     pg.wait_for_function("document.getElementById('view-jeux').classList.contains('active')")
     pg.click('.ld-jouer-hub')
     pg.wait_for_selector('.ld-accueil')
-    pg.click('.ld-top-selection [aria-label="Retour aux jeux"]')
+    pg.click('.ld-top-accueil [aria-label="Retour aux jeux"]')
     pg.wait_for_function("document.getElementById('view-jeux').classList.contains('active')")
     ok('FIX-02/04 : Retour Android/navigateur et bouton ‹ → Jeux ; l’accueil revient à chaque entrée, clé V1 ignorée')
 
@@ -184,13 +184,13 @@ with sync_playwright() as p:
         entrer(pg)
         pg.evaluate("document.querySelector('.ld-accueil-visuel img').decode()")
         m = pg.evaluate("""() => { const r = s => document.querySelector(s).getBoundingClientRect();
-          const cta = r('.ld-accueil-commencer'), logo = r('.ld-top-selection .ld-logo'), acc = r('.ld-accueil'), img = r('.ld-accueil-visuel');
+          const cta = r('.ld-accueil-commencer'), logo = r('.ld-top-accueil .ld-logo'), top = r('.ld-top-accueil'), acc = r('.ld-accueil'), img = r('.ld-accueil-visuel');
           const petits = [...document.querySelectorAll('.ld-accueil *')].filter(e => e.children.length === 0 && e.textContent.trim())
             .map(e => parseFloat(getComputedStyle(e).fontSize));
           return {ov: document.documentElement.scrollWidth - innerWidth, ctaBas: cta.bottom, ctaH: cta.height,
-            largeur: acc.width, centre: Math.abs(acc.left + acc.width / 2 - innerWidth / 2), logo: Math.abs(logo.left + logo.width / 2 - innerWidth / 2),
+            largeur: acc.width, centre: Math.abs(acc.left + acc.width / 2 - innerWidth / 2), logoDroite: Math.abs(logo.right-top.right),
             imgH: img.height, police: Math.min(...petits), coupe: [...document.querySelectorAll('.ld-accueil-etapes span')].some(s => s.scrollWidth > s.clientWidth + 1)}; }""")
-        assert m['ov'] <= 1 and m['ctaH'] >= 48 and m['largeur'] <= 560 and m['centre'] <= 1 and m['logo'] <= 1, (largeur, m)
+        assert m['ov'] <= 1 and m['ctaH'] >= 48 and m['largeur'] <= 560 and m['centre'] <= 1 and m['logoDroite'] <= 1, (largeur, m)
         assert m['police'] >= 12 and m['imgH'] >= 150 and not m['coupe'], (largeur, m)
         if hauteur >= 740:
             assert m['ctaBas'] <= hauteur, (largeur, hauteur, m)        # CTA dans le premier écran
