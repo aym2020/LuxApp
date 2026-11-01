@@ -215,7 +215,7 @@ function ldRendreAccueil() {
   window.scrollTo(0, 0);
   const etape = (cle, verbe, suite) => '<li><span class="ld-accueil-icone" aria-hidden="true"><svg viewBox="0 0 8 8" fill="currentColor">' +
     LD_ICONES_ACCUEIL[cle] + '</svg></span><b>' + verbe + '</b><span>' + suite + '</span></li>';
-  box.innerHTML = ldEntete({fr:false,menu:false,selection:true}) +
+  box.innerHTML = ldEntete({fr:false,menu:false,accueil:true}) +
     '<main class="ld-accueil">' +
       '<section class="ld-accueil-hero" aria-labelledby="ld-accueil-titre">' +
         '<div class="ld-accueil-hero-texte">' +
@@ -560,6 +560,7 @@ function ldRejouer() { const d = ld.partie && ld.partie.dossier; ouvrirLuxDemasq
 // ─── Rendu par écran ───────────────────────────────────────────────────────
 function ldEntete(options) {
   const o = options || {};
+  if (o.accueil) return '<div class="ld-top ld-top-accueil"><button type="button" class="ld-icone-btn ld-retour-accueil" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '<span>Jeux</span></button><span class="ld-logo">RED <i>FLAG</i></span></div>';
   return '<div class="ld-top' + (o.selection ? ' ld-top-selection' : '') + '"><button type="button" class="ld-icone-btn" onclick="ldQuitter()" aria-label="Retour aux jeux">' + ldIcone('retour') + '</button>' +
     '<span class="ld-logo">RED <i>FLAG</i></span>' +
     '<div class="ld-top-outils">' +
