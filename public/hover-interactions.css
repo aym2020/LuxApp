@@ -45,9 +45,9 @@
   :is(.ux-hover-link,.ux-hover-lift) .ux-hover-arrow {
     transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
   }
-  .ux-hover-tile:hover:not(:active) > .ux-hover-glyph {transform:translateY(-3px) scale(1.07);}
-  .ux-hover-icon:hover:not(:active) > .ux-hover-glyph {transform:rotate(15deg);}
-  :is(.ux-hover-link,.ux-hover-lift):hover:not(:active) .ux-hover-arrow {transform:translateX(5px);}
+  .ux-hover-tile:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph {transform:translateY(-3px) scale(1.07);}
+  .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph {transform:rotate(15deg);}
+  :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow {transform:translateX(5px);}
 
   /* Accueil validé : seuls ses états hover changent, aucune dimension au repos. */
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
@@ -68,10 +68,10 @@
   #view-dashboard .wf-accueil .puce-niv {
     transition:background-color 160ms ease,box-shadow 160ms ease;
   }
-  #view-dashboard .wf-accueil .puce-niv:not([aria-pressed="true"]):hover:not(:active) {
+  #view-dashboard .wf-accueil .puce-niv:not([aria-pressed="true"]):hover:not(:active):not(:disabled) {
     background-color:rgba(247,233,194,.20);box-shadow:0 0 0 1px rgba(247,233,194,.44);
   }
-  #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"]:hover:not(:active) {
+  #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"]:hover:not(:active):not(:disabled) {
     background-color:var(--ux-hover-red);box-shadow:0 0 0 2px rgba(242,36,33,.26);
   }
 
@@ -85,7 +85,7 @@
   #view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child {
     transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
   }
-  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active) > .ic:first-child {
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ic:first-child {
     transform:translateY(-3px) scale(1.075);
   }
 
@@ -106,8 +106,8 @@
     text-decoration:underline;text-decoration-color:var(--wf-red,#f22421);
     text-decoration-thickness:2px;text-underline-offset:4px;
   }
-  .wf-niveaux-dialog .wf-sheet-level:not(.is-current):hover:not(:active) {background-color:var(--ux-hover-wash);}
-  .wf-niveaux-dialog .wf-sheet-level.is-current:hover:not(:active) {background-color:var(--ux-hover-red);}
+  .wf-niveaux-dialog .wf-sheet-level:not(.is-current):hover:not(:active):not(:disabled) {background-color:var(--ux-hover-wash);}
+  .wf-niveaux-dialog .wf-sheet-level.is-current:hover:not(:active):not(:disabled) {background-color:var(--ux-hover-red);}
 }
 
 /* Le clavier bénéficie du même repère accessible que les boutons Watfir existants. */
@@ -128,12 +128,12 @@
   #view-dashboard .wf-accueil .ac-menu .ic {transition:none!important;}
   @media (hover:hover) and (pointer:fine) {
     :where(.pc-btn,.btn-jaune,.pc-chip,.pc-icon-btn,.back-btn,.exo-cta,.exo-secondaire,.ux-hover-lift):hover:not(:active),
-    .ux-hover-tile:hover:not(:active) > .ux-hover-glyph,
-    .ux-hover-icon:hover:not(:active) > .ux-hover-glyph,
-    :is(.ux-hover-link,.ux-hover-lift):hover:not(:active) .ux-hover-arrow,
+    .ux-hover-tile:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph,
+    .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph,
+    :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow,
     #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active),
     #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active) .cs-rond .ic,
-    #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active) > .ic:first-child,
+    #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ic:first-child,
     #view-dashboard .wf-accueil .ac-v21-journey:hover:not(:active) > .ic:last-child,
     #view-dashboard .wf-accueil .ac-menu:hover:not(:active) .ic {transform:none!important;}
   }
