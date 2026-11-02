@@ -316,7 +316,7 @@
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
   flex:none; width:calc(66 * var(--k)); height:calc(66 * var(--k));
   /* Chevron dégagé des bandes du coin : correction mobile et PC, sans JS. */
-  margin:calc(8 * var(--k)) calc(24 * var(--k)) 0 calc(8 * var(--k));
+  margin:calc(8 * var(--k)) calc(24 * var(--k)) 0 calc(16 * var(--k));
   color:var(--wf-bg); background:transparent; border:0; z-index:1;
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic { width:100%; height:100%; stroke-width:2; }
