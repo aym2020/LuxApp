@@ -12,7 +12,7 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-1';
+  const link='hover-interactions.css?v=watfir-hover-2';
   assert.ok(html.includes(link),'stylesheet présent');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
@@ -39,8 +39,31 @@ test('Recettes partagées, sans recoloration des états pédagogiques',()=>{
 test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=>{
   for(const x of ['carte-suite.ac-v21-cta:hover','puce-niv:not([aria-pressed="true"]):hover','puce-niv[aria-pressed="true"]:hover','ac-acces .ac-btn:hover','ac-v21-journey:hover','ac-menu:hover','ac-v21-guest:hover'])
     assert.ok(css.includes(x),'hover : '+x);
-  assert.match(css,/translateY\(-3px\)/);
-  assert.match(css,/box-shadow:0 12px 28px/);
+  assert.match(css,/--ux-hover-cyan-wash:\s*rgba\(2,197,231,\.18\)/);
+  assert.match(css,/--ux-hover-cta-gold:\s*#ffe0aa/);
+});
+
+test('CTA : crème doré uniquement, sans effet flottant ni dégradation des bandes',()=>{
+  const section=css.split('/* CTA : remplacement couleur crème')[1].split('/* Pastilles')[0];
+  assert.match(css,/@property --wf-cta-surface\s*\{/);
+  assert.match(section,/--wf-cta-surface:#fbebc5/);
+  assert.match(section,/var\(--wf-cta-surface\) calc\(100% - 51\.6 \* var\(--k\)\)/);
+  assert.match(section,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/);
+  assert.match(section,/var\(--wf-cyan\) 0/);
+  assert.match(section,/--wf-cta-surface:var\(--ux-hover-cta-gold\)/);
+  assert.match(section,/transform:none;filter:none;box-shadow:none/);
+  assert.doesNotMatch(section,/translateY\(|brightness\(|12px 28px/);
+  assert.match(section,/color:var\(--wf-red\)/);
+});
+
+test('Quatre raccourcis : cyan au hover, crème au repos, sans changement de layout',()=>{
+  const section=css.split('#view-dashboard .wf-accueil .ac-acces .ac-btn {')[1]
+    .split('/* Bas de page')[0];
+  assert.match(section,/background-color:var\(--ux-hover-cyan-wash\)/);
+  assert.match(section,/box-shadow:inset 0 -2px 0 var\(--ux-hover-cyan\)/);
+  assert.match(section,/\.ac-btn\.jeux:hover[^}]+> \.ic:first-child\s*\{/);
+  assert.match(section,/color:var\(--ux-hover-cyan\)/);
+  assert.doesNotMatch(section,/grid-template|padding:|width:|height:/);
 });
 
 test('Jeux devient crème et garde son épaisseur de trait validée',()=>{
