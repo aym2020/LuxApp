@@ -252,7 +252,7 @@ test('Hauteur : cinq blocs et intervalles souples, page défilante en secours',(
   const bloc=css.match(/#view-dashboard \.accueil\.wf-accueil \{([^}]*)\}/)[1];
   assert.match(bloc,/display:grid/);
   assert.equal((bloc.match(/max-content/g)||[]).length,5,'cinq blocs jamais écrasés');
-  assert.equal((bloc.match(/minmax\(/g)||[]).length,7,'six intervalles plafonnés (+ la colonne)');
+  assert.equal((bloc.match(/minmax\(/g)||[]).length,6,'cinq intervalles plafonnés (+ la colonne)');
   assert.match(bloc,/align-content:safe center/);
   assert.match(bloc,/min-height:100%/);
   assert.doesNotMatch(bloc,/overflow:hidden/);
