@@ -1,0 +1,17 @@
+/* Tirer pour actualiser (actualiser.js) : petit rond crème qui descend du haut. */
+.actualiser-indicateur {
+  position:fixed; top:0; left:50%; z-index:400;
+  display:grid; place-items:center; width:40px; height:40px; border-radius:50%;
+  background:#f7e9c2; color:#080808; box-shadow:0 4px 14px rgba(0,0,0,.45);
+  transform:translate(-50%, -48px); opacity:0; pointer-events:none;
+  transition:opacity .15s ease, background-color .15s ease;
+}
+.actualiser-indicateur .ic { width:22px; height:22px; stroke:currentColor; stroke-width:2.4; fill:none; }
+/* Seuil atteint : relâcher pour actualiser. */
+.actualiser-indicateur.pret { background:#f22421; color:#f7e9c2; }
+.actualiser-indicateur.tourne { transition:transform .2s ease; }
+.actualiser-indicateur.tourne .ic { animation:actualiser-tour .8s linear infinite; }
+@keyframes actualiser-tour { to { transform:rotate(360deg); } }
+@media (prefers-reduced-motion:reduce) {
+  .actualiser-indicateur.tourne .ic { animation:none; }
+}
