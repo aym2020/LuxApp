@@ -287,15 +287,16 @@
     0 7px 0 #aa8954, 0 16px 22px rgba(0,0,0,.48),
     inset 0 2px 0 rgba(255,255,255,.78), inset 0 -2px 0 rgba(126,87,39,.20);
   transform:translateY(0);
-  transition:transform 160ms cubic-bezier(.22,1,.36,1),
-             box-shadow 160ms ease;
+  transition:transform 115ms cubic-bezier(.22,1,.36,1),
+             box-shadow 115ms ease;
 }
 /* Le CTA 3D ne dessine plus de contour au hover ou au toucher :
    on conserve uniquement son relief et son enfoncement physique. */
 #view-dashboard .wf-accueil .carte-suite.ac-v21-cta::before,
 #view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after { content:none; }
 /* Touch Android : la tranche se comprime tant que le doigt reste appuyé. */
-#view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]) {
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]),
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta.wf-pressing {
   transform:translateY(6px);
   filter:none;
   box-shadow:0 1px 0 #aa8954, 0 5px 10px rgba(0,0,0,.35),
@@ -365,7 +366,7 @@
   transform:translateY(0);
   touch-action:manipulation;
   -webkit-tap-highlight-color:transparent;
-  transition:background-color 170ms ease, transform 155ms cubic-bezier(.22,1,.36,1),box-shadow 155ms ease;
+  transition:background-color 170ms ease, transform 115ms cubic-bezier(.22,1,.36,1),box-shadow 115ms ease;
 }
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite-jouer {
   --wf-face:var(--wf-play);
@@ -383,7 +384,8 @@
   font:800 clamp(18px,calc(52 * var(--k)),26px)/1.1 var(--wf-sans);
   letter-spacing:-.025em; white-space:nowrap;
 }
-#view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]) {
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]),
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite.wf-pressing {
   transform:translateY(4px); filter:none;
   box-shadow:0 1px 0 var(--wf-side),0 3px 5px rgba(0,0,0,.3),inset 0 2px 4px rgba(0,0,0,.16);
 }
@@ -473,9 +475,11 @@ body.wf-sheet-open { overflow:hidden; }
   #view-dashboard .wf-accueil .puce-niv:active:not(:disabled):not([aria-disabled="true"]) { transform:none; }
   /* Garder le feedback tactile par changement d'ombre, sans déplacement. */
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta { transition:none; }
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]) { transform:none; }
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]),
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta.wf-pressing { transform:none; }
   #view-dashboard .wf-accueil .wf-choix-activite .wf-activite { transition:none; }
-  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]) { transform:none; }
+  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]),
+  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite.wf-pressing { transform:none; }
   .wf-etudier-dialog .wf-etudier-option { transition:none; }
   .wf-niveaux-dialog, .wf-niveaux-dialog[open] { transform:none; transition:none; }
   .wf-niveaux-dialog::backdrop { transition:none; }
