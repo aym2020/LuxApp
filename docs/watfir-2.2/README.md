@@ -1,8 +1,8 @@
 # Watfir — direction artistique 2.2 (Retro 1984)
 
 **Branche :** `2.2` (créée depuis `2.1`, le 2 novembre 2026).  
-**Statut :** **concept V4 retenu comme base visuelle, non implémenté et non validé sur appareil**.  
-**Périmètre de cette livraison :** documentation et assets source seulement. Aucun changement des écrans, styles chargés, moteurs, JSON, routes, sauvegarde, audio ou mini-jeux.
+**Statut :** **accueil V4 intégré au code réel de la branche `2.2`**, à valider visuellement sur Samsung et en navigateur. Les autres vues restent inchangées.  
+**Périmètre de cette livraison :** surcouches `public/accueil-watfir.js` / `.css`, deux SVG publics, inclusion dans `public/index.html`, tests, documentation. Aucune modification des moteurs, JSON, routes, sauvegardes, audio ou mini-jeux.
 
 ## Commencer ici
 
@@ -21,7 +21,7 @@
 - [Proposition de sélecteur — SVG](assets/niveaux-sheet.svg) : maquette explicative non interactive.
 - [Tokens proposés — CSS](assets/watfir-tokens.css) : **référence non importée par l'application**.
 
-Les fichiers SVG sont des **constructions vectorielles originales**, éditables et scalables. Ils ne sont pas des vectorisations pixel à pixel des maquettes générées. Les chiffres affichés dans les maquettes (6 %, 0 jour, 28 questions) sont des **données d'exemple**, jamais des valeurs à coder en dur.
+Les fichiers SVG sont des **constructions vectorielles originales**, éditables et scalables. Les versions utilisées par l'accueil sont copiées dans `public/art/watfir-mark.svg` et `public/art/watfir-hero.svg`. Ils ne sont pas des vectorisations pixel à pixel des maquettes générées. Les chiffres affichés dans les maquettes (6 %, 0 jour, 28 questions) sont des **données d'exemple**, jamais des valeurs à coder en dur.
 
 ## Invariants applicatifs
 
@@ -33,9 +33,13 @@ La 2.2 hérite des contraintes fonctionnelles de la 2.1 : lire [PLAYBOOK](../../
 
 - **Validé comme intention de design** : noir + beige crème + rouge + cyan ; hero géométrique compact ; « Moien! » expressif ; CTA crème unique ; raccourcis regroupés ; sans soleil et sans détails superflus.
 - **V4 conceptuelle** : deux niveaux de la famille courante visibles et une flèche pour ouvrir tous les niveaux disponibles. La popup doit devenir un **bottom sheet accessible** dans une version fonctionnelle.
-- **Non validé** : fidélité du mockup généré au rendu HTML réel, exactitude chromatique de tous les pixels, dessins finaux des glyphes, visuels des écrans hors accueil, tests Android TalkBack / grandes polices / très petits écrans.
+- **Non validé** : fidélité du mockup généré au rendu HTML réel (capture réelle non encore prise), exactitude chromatique de tous les pixels, dessins finaux des glyphes, visuels des écrans hors accueil, tests Android TalkBack / grandes polices / très petits écrans.
 - **Écart volontaire avec 2.1** : l'or `#f5cf4d` du CTA 2.1 est remplacé **dans le concept 2.2** par le crème, tandis que le rouge/cyan servent d'ornement de marque. Les couleurs sémantiques de succès, erreur, information et révision **ne doivent pas être rebaptisées par des couleurs décoratives**.
 
 ## Méthode d'intégration
 
-Déployer sur un lot UI isolé avec capture avant/après, puis contrôles navigateur 320/360/393/430/720 px, clavier/zoom et recette Samsung avant validation. Un écran à la fois. Ne jamais présenter les assets de ce dossier comme déjà actifs sur l'application.
+L'accueil est déjà branché sur la 2.2 ; avant de valider la livraison visuelle, contrôler sur un lot UI isolé avec capture avant/après, puis contrôles navigateur 320/360/393/430/720 px, clavier/zoom et recette Samsung avant validation. Un écran à la fois. Les SVG de `public/art` sont actifs dans le nouvel accueil, ceux de `docs` restent des sources de travail. Ne pas présenter les autres écrans comme migrés.
+
+## Implémentation V4 (02/11/2026)
+
+Voir [IMPLEMENTATION.md](IMPLEMENTATION.md) pour les fichiers actifs, événements, compatibilité avec le moteur 2.1, points de validation et retour arrière ciblé.
