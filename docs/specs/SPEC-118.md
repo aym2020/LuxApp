@@ -60,3 +60,16 @@ Moteur, données et textes des profils ; portraits issus de `m.portrait()` et `l
 
 **Recette exécutée :** `test_cringr_quitter` à 320×600, 360×740, 393×763 et 430×932 (croix 48 px sans tuile, repère centré dans la carte et effacé pendant le tirage, fenêtre dans l'écran, Rester / Échap / Retour = on reste, Quitter = hub recalé, partie et sélection arrêtées, mouvement réduit). **Non vérifié : Samsung réel.**
 
+
+## 8. Réchauffement de l'écran de sélection (css v32)
+
+Constat produit : l'écran de présentation (lampe ambrée) paraissait plus chaleureux que l'écran du téléphone Cringr, plus froid et violet.
+
+Correctif, couleurs uniquement, aucune dimension modifiée :
+- coque du téléphone : aubergine plus chaude `#3b2335`, liseré ambre intérieur et lueur ambre sous le téléphone ;
+- écran : lumière ambrée qui monte du bas, haut légèrement rosé ;
+- carte : filet `#7a4a58`, lumière ambre au bas du portrait, bloc d'infos teinté chaud ;
+- fond de page : halo ambre du bas plus présent.
+
+Vérifié en Chromium à 320×600, 360×740, 393×763, 430×932 : aucun défilement, aucune erreur JS. Tests Node 302 réussis / 5 échecs connus (référence inchangée), tests Cringr, quitter, sélection et conformité de présentation OK.
+Non vérifié : rendu sur le Samsung. Le réchauffement n'est pas validé tant que le joueur ne l'a pas approuvé visuellement.

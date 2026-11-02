@@ -340,7 +340,7 @@
    portrait dominant et carte qui prend la hauteur disponible (aucune hauteur magique). */
 @font-face{font-family:'VT323';src:url('fonts/vt323-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 @media(max-width:767px){
-  #view-luxdemasque:has(.ld-jeu[data-ecran="selection"]){background:radial-gradient(120% 60% at 50% 0%,#2e1a38 0%,#1c1124 55%,#17101f 85%) #17101f}
+  #view-luxdemasque:has(.ld-jeu[data-ecran="selection"]){background:radial-gradient(120% 60% at 50% 0%,#33192f 0%,#1f1120 55%,#17101f 85%) #17101f}
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"]{
   --ld-lecture:'VT323',ui-monospace,monospace;
@@ -350,7 +350,7 @@
   /* Tenir dans l'écran : hauteur de l'écran, la carte rétrécit jusqu'à son contenu (jamais tronqué). */
   height:100dvh;min-height:0;
   background:radial-gradient(48% 34% at 50% 40%,rgba(231,71,145,.16),transparent),
-    radial-gradient(48% 24% at 50% 98%,rgba(217,155,112,.10),transparent);
+    radial-gradient(70% 30% at 50% 100%,rgba(240,162,111,.20),transparent);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] button{font-family:var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] :focus-visible{outline:3px solid #fff;outline-offset:3px}
@@ -374,13 +374,14 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone{
   width:100%;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;padding:5px;
-  border:2px solid var(--cr-ombre);border-radius:30px;background:var(--cr-surface);
-  box-shadow:0 6px 0 var(--cr-ombre),0 26px 40px -22px rgba(231,71,145,.45);
+  border:2px solid var(--cr-ombre);border-radius:30px;background:#3b2335;
+  box-shadow:inset 0 0 0 1px rgba(240,162,111,.38),0 6px 0 var(--cr-ombre),0 26px 44px -20px rgba(240,162,111,.45);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen{
   width:100%;min-width:0;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;gap:8px;
   padding:8px 8px 10px;border-radius:25px;
-  background:radial-gradient(120% 45% at 50% 0%,#2a1a33,var(--cr-nuit) 70%);
+  background:radial-gradient(100% 40% at 50% 100%,rgba(240,162,111,.18),transparent),
+    radial-gradient(120% 45% at 50% 0%,#2f1a30,#1b1019 70%);
   /* Coupe le glissement horizontal de la carte ; en hauteur, rien n'est jamais masqué. */
   overflow:hidden;overflow-x:clip;overflow-y:visible;
 }
@@ -412,7 +413,7 @@
   position:relative;display:flex;flex-direction:column;justify-content:flex-end;
   /* overflow:clip (et non hidden) : la hauteur minimale automatique reste celle du contenu. */
   flex:0 1 560px;min-width:0;overflow:hidden;overflow:clip;
-  border:2px solid #573a5a;border-radius:8px;background:var(--cr-surface);isolation:isolate;
+  border:2px solid #7a4a58;border-radius:8px;background:var(--cr-surface);isolation:isolate;
   box-shadow:0 4px 0 var(--cr-ombre);touch-action:pan-y;user-select:none;
   cursor:grab;transition:transform .18s ease;
 }
@@ -428,7 +429,8 @@
 /* Lumière d'ambiance : halo rose au niveau du visage, ambre en haut, vignette douce sur les bords. */
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-image-zone::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(55% 40% at 50% 34%,rgba(231,71,145,.12),transparent 70%),
+  background:radial-gradient(55% 40% at 50% 34%,rgba(231,71,145,.10),transparent 70%),
+    radial-gradient(90% 50% at 50% 100%,rgba(240,162,111,.28),transparent 75%),
     linear-gradient(180deg,rgba(217,155,112,.10),transparent 35%);
   box-shadow:inset 0 0 36px rgba(23,16,31,.6);
 }
@@ -451,7 +453,7 @@
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos{
   position:relative;z-index:3;display:flex;flex-direction:column;gap:4px;
   margin:0;padding:34px 12px 12px;min-width:0;color:var(--cr-creme);
-  background:linear-gradient(180deg,rgba(23,16,31,0) 0,rgba(48,32,57,.6) 24%,rgba(23,16,31,.88) 55%,rgba(23,16,31,.96) 100%);
+  background:linear-gradient(180deg,rgba(23,16,31,0) 0,rgba(62,34,52,.6) 24%,rgba(30,17,26,.88) 55%,rgba(27,16,25,.96) 100%);
   text-shadow:0 2px 0 var(--cr-nuit);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-selection-infos h2{
