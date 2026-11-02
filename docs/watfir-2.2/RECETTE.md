@@ -1,6 +1,6 @@
 # Recette de la direction artistique Watfir 2.2
 
-**Statut initial : aucun test fonctionnel 2.2 exécuté ; documentation et assets seulement.** La présente checklist est un plan de recette, et **aucune case n'est considérée validée**.
+**Statut : intégration V4 effectuée sur `2.2` ; validations logiques limitées dans le contexte d'édition, et tests Node dédiés ajoutés sous `test/watfir-home.test.cjs`. Ni navigateur réel ni Samsung ne sont encore validés.** La présente checklist est un plan de recette, et **aucune case n'est considérée validée**.
 
 ## A. Vérifications des assets (possibles sans implémentation)
 
