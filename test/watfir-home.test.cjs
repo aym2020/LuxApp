@@ -51,7 +51,9 @@ function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
     const element={getAttribute(k){return k==='data-wf-niveau'?option:null}};
     d.handler({target:{closest(selector){
       if(selector==='#view-dashboard .wf-niveau-ouvrir')return className==='open'?element:null;
-      return className==='level'?element:null;
+      if(selector==='#view-dashboard .wf-niveau-btn, #wf-niveaux-dialog .wf-sheet-level')
+        return className==='level'?element:null;
+      return null;
     }}});
   }
   return {ctx,d,list,click};
