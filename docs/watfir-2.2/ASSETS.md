@@ -2,7 +2,7 @@
 
 ## 1. Niveau de confiance
 
-Tous les assets de ce répertoire sont des **ressources de conception** et non des ressources de production livrées dans `public/`. Ils constituent une **première reconstruction vectorielle originale** de la V4 approuvée comme direction, pas une vectorisation identique de la capture.
+Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux copies optimisées sont **désormais intégrées dans `public/art/watfir-mark.svg` et `public/art/watfir-hero.svg`** sur `2.2` ; les autres restent documentaires. Ils constituent une **première reconstruction vectorielle originale** de la V4 approuvée comme direction, pas une vectorisation identique de la capture.
 
 | Asset | Type | Usage | Statut |
 | --- | --- | --- | --- |
