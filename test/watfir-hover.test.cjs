@@ -12,7 +12,7 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-6';
+  const link='hover-interactions.css?v=watfir-hover-7';
   assert.ok(html.includes(link),'stylesheet présent');
   assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-10'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
@@ -38,7 +38,7 @@ test('Recettes partagées, sans recoloration des états pédagogiques',()=>{
 });
 
 test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=>{
-  for(const x of ['carte-suite.ac-v21-cta:hover','puce-niv:not([aria-pressed="true"]):hover','puce-niv[aria-pressed="true"]:hover','ac-acces .ac-btn:hover','ac-v21-journey:hover','ac-menu:hover','ac-v21-guest:hover'])
+  for(const x of ['carte-suite.ac-v21-cta:hover','puce-niv:not([aria-pressed="true"]):hover','puce-niv[aria-pressed="true"]:hover','wf-activite:hover','ac-menu:hover','ac-v21-guest:hover'])
     assert.ok(css.includes(x),'hover : '+x);
   assert.match(css,/--ux-hover-cyan-wash:\s*rgba\(2,197,231,\.18\)/);
   assert.doesNotMatch(css,/@property --wf-cta-outline/,'plus de contour rouge');
@@ -96,20 +96,18 @@ test('Header : le survol préserve la tranche et la couleur pendant le clic main
     'les hovers ne suppriment jamais les ombres 3D pendant le clic');
 });
 
-test('Quatre raccourcis : cyan au hover, crème au repos, sans changement de layout',()=>{
-  const section=css.split('#view-dashboard .wf-accueil .ac-acces .ac-btn {')[1]
-    .split('/* Bas de page')[0];
-  assert.match(section,/background-color:var\(--ux-hover-cyan-wash\)/);
-  assert.match(section,/box-shadow:inset 0 -2px 0 var\(--ux-hover-cyan\)/);
-  assert.match(section,/\.ac-btn\.jeux:hover[^}]+> \.ic:first-child\s*\{/);
-  assert.match(section,/color:var\(--ux-hover-cyan\)/);
-  assert.doesNotMatch(section,/grid-template|padding:|width:|height:/);
-});
-
-test('Jeux devient crème et garde son épaisseur de trait validée',()=>{
-  assert.match(watfir,/\.ac-btn\.jeux > \.ic:first-child\s*\{[^}]*stroke-width:1\.8/s);
-  assert.match(css,/\.ac-btn\.jeux > \.ic:first-child\s*\{[^}]*color:var\(--wf-cream,#f7e9c2\)/s);
-  assert.ok(css.indexOf('color:var(--wf-cream,#f7e9c2)')<css.indexOf('@media (hover:hover)'),'crème également sur mobile');
+test('Étudier/Jouer : hover léger = fond seul éclairci, 3D et crème inchangés',()=>{
+  const section=css.split('/* Deux boutons :')[1].split('#view-dashboard .wf-accueil .ac-menu .ic {')[0];
+  assert.match(section,/\.wf-choix-activite \.wf-activite:hover:not\(:active\)/);
+  assert.match(section,/background-color:var\(--wf-face-hover\)/);
+  assert.doesNotMatch(section,/box-shadow:|transform:|filter:|stroke:|color:/,
+    'pas d\'élévation ou de filet cyan en hover');
+  assert.doesNotMatch(css,/\.ac-v21-journey:hover/,'ancien lien supprimé des hovers');
+  assert.doesNotMatch(css,/\.ac-acces \.ac-btn\.jeux:hover/,'ancien raccourci remplacé');
+  assert.match(watfir,/--wf-study-hover:#ed3640/);
+  assert.match(watfir,/--wf-play-hover:#0b8fb5/);
+  assert.match(watfir,/\.wf-choix-activite \.wf-activite > b \{[^}]*color:var\(--wf-cream\)/);
+  assert.match(watfir,/\.wf-choix-activite \.wf-activite:active/);
 });
 
 test('Accessibilité clavier et mouvement réduit conservés',()=>{
