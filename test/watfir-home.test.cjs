@@ -257,8 +257,8 @@ test('Étudier : ouverture, destinations réelles et Retour Android sans perdre 
   }
 });
 
-test('Press animation : 3 actions tiennent 160ms avant leur clic réel, mobile et PC',()=>{
-  for (const type of ['commencer','etudier','jouer']) {
+test('Press animation : 6 boutons tiennent 160ms avant leur clic réel, mobile et PC',()=>{
+  for (const type of ['commencer','etudier','jouer','A1.1','A1.2','selecteur']) {
     const {d}=setup();
     const classes=new Set();
     let clicks=0,prevented=0,stopped=0;
@@ -271,7 +271,9 @@ test('Press animation : 3 actions tiennent 160ms avant leur clic réel, mobile e
     const event={
       isTrusted:true,
       target:{closest(selector){
-        const expected=type==='commencer'?'carte-suite.ac-v21-cta':'.wf-choix-activite .wf-activite';
+        const expected=type==='commencer'?'carte-suite.ac-v21-cta':
+          ['A1.1','A1.2','selecteur'].includes(type)?'.puces-niveau .puce-niv':
+          '.wf-choix-activite .wf-activite';
         return selector.includes(expected)?button:null;
       }},
       preventDefault(){prevented++},
@@ -293,6 +295,39 @@ test('Press animation : 3 actions tiennent 160ms avant leur clic réel, mobile e
     const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
     assert.match(css,/\.carte-suite\.ac-v21-cta\.wf-pressing \{/);
     assert.match(css,/\.wf-activite\.wf-pressing \{/);
+    assert.match(css,/\.puce-niv\.wf-pressing \{/,'pastilles incluses dans le relief 3D');
+  }
+});
+
+test('Header : le clic après enfoncement sélectionne A1.2 ou ouvre les niveaux',()=>{
+  for(const type of ['A1.1','A1.2','selecteur']){
+    const {ctx,d,click}=setup();
+    const classes=new Set();
+    let replayCount=0;
+    const button={
+      disabled:false,isConnected:true,
+      classList:{add(c){classes.add(c)},remove(c){classes.delete(c)}},
+      getAttribute(){return null},
+      click(){
+        replayCount++;
+        if(type==='selecteur')click('open');
+        else click('level',type);
+      }
+    };
+    const event={isTrusted:true,target:{closest(selector){
+      return selector.includes('.puces-niveau .puce-niv')?button:null;
+    }},preventDefault(){},stopPropagation(){}};
+    d.pressHandler(event);
+    assert.equal(ctx.changes.length,0,'aucun changement de niveau avant feedback');
+    assert.equal(d.dialog,null,'pas de feuille avant feedback');
+    assert.equal(d.timers[0].ms,160);
+    assert.ok(classes.has('wf-pressing'));
+    d.timers[0].fn();
+    assert.equal(replayCount,1,'clic d’origine rejoué une seule fois');
+    assert.ok(!classes.has('wf-pressing'));
+    if(type==='selecteur')assert.equal(d.dialog.open,true,'choix de niveaux ouvert après feedback');
+    else if(type==='A1.2')assert.deepEqual(ctx.changes,['A1.2'],'niveau modifié après feedback');
+    else assert.deepEqual(ctx.changes,[],'niveau actif inchangé après feedback');
   }
 });
 
