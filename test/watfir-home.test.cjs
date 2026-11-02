@@ -37,6 +37,8 @@ function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
   const ctx={
     document, niveauActif:'A1.1', niveauxDisponibles:()=>levels,
     enteteAccueilHtml:()=>'',renderAccueil:()=>{},chiffresHtml:()=>'<div>Aujourd’hui</div><div>6<span class="ac-v21-bilan-unite"> %</span></div><span class="ac-v21-bilan-unite"> jours</span>',
+    carteSuiteHtml:()=>'<button class="carte-suite"><span class="cs-ic"><svg></svg></span><span class="cs-txt">Commencer</span></button>',
+    accesHtml:()=>'',
     accrocheHtml:()=>'', ligneCompteHtml:()=>'<div>invite</div>',
     etatSynchro:()=>null,libelleMenuSynchro:()=> 'Menu',pastilleSynchroHtml:()=> '',
     aDejaPratique:()=>false,
@@ -147,32 +149,46 @@ test('Mode invité lisible : 11 px minimum, sans point, ligne unique tenue dès 
   assert.match(etroit,/\.ac-menu \{ margin-left:calc\(21 \* var\(--k\)\); --cible-g:calc\(-16 \* var\(--k\)\); \}/);
   assert.match(css,/\.wf-entete-compte > \.ac-menu:first-child \{ --cible-g:calc\(-40 \* var\(--k\)\); \}/,'connecté : roue plus large');
 });
-test('Grande police : rien de coupé, la page défile en secours',()=>{
+test('Grande police : page défilante de secours et deux labels lisibles',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
-  assert.match(css,/#view-dashboard \.accueil\.wf-accueil \{[^}]*align-content:safe center/,'jamais coupé en haut');
-  assert.match(css,/\.ac-hero-surtitre \{[^}]*white-space:normal/,'surtitre à la ligne');
-  assert.match(css,/\.ac-v21-bilan #serie \{[^}]*min-height:calc\(76 \* var\(--k\)\);\s*flex-wrap:wrap/,'série à la ligne');
-  assert.match(css,/\.ac-v21-bilan-legende \{[^}]*white-space:normal/,'légendes à la ligne');
-  assert.match(css,/\.ac-acces \.ac-btn > b,[^{]*\{[^}]*margin-inline:-6px;[^}]*overflow-wrap:anywhere/,'libellés coupés plutôt que superposés');
+  assert.match(css,/#view-dashboard \.accueil\.wf-accueil \{[^}]*align-content:safe center/,'haut non coupé');
+  assert.match(css,/\.ac-hero-surtitre \{[^}]*white-space:normal/,'surtitre retourne à la ligne');
+  assert.match(css,/\.ac-v21-bilan #serie \{[^}]*min-height:calc\(76 \* var\(--k\)\);\s*flex-wrap:wrap/);
+  assert.match(css,/\.ac-v21-bilan-legende \{[^}]*white-space:normal/);
+  assert.match(css,/\.wf-activite > b \{[^}]*white-space:nowrap/,'libellés courts Étudier et Jouer');
+  assert.match(css,/\.wf-choix-activite \.wf-activite \{[^}]*min-height:clamp\(76px/,'cibles tactiles');
 });
-test('Pictogrammes : même épaisseur de trait affichée, libellés alignés',()=>{
+
+test('Watfir : Commencer sans doublon livre et deux activités centrées',()=>{
+  const {ctx}=setup();
+  const html=ctx.carteSuiteHtml({},true);
+  assert.match(html,/Commencer/);
+  assert.doesNotMatch(html,/class="cs-ic"/,'livre retiré uniquement de Watfir');
+  const actions=ctx.accesHtml();
+  assert.match(actions,/aria-label="Choisir une activité"/);
+  assert.match(actions,/>Étudier<\/b>/);
+  assert.match(actions,/>Jouer<\/b>/);
+  assert.match(actions,/onclick="ouvrirJeux\(\)"/,'Jouer garde le moteur existant');
+  assert.match(actions,/aria-haspopup="dialog"/,'Étudier ouvre un sous-menu accessible');
+  assert.doesNotMatch(actions,/Voir mon chemin|boutonAcces\(|ac-v21-journey/,'plus de barre à quatre raccourcis');
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
-  const regle=cls=>{
-    const base=css.match(/\.ac-acces \.ac-btn > \.ic:first-child \{([^}]*)\}/)[1];
-    const propre=(css.match(new RegExp('\\.ac-acces \\.ac-btn\\.'+cls+' > \\.ic:first-child \\{([^}]*)\\}'))||[])[1]||'';
-    const taille=+((propre.match(/width:calc\(([\d.]+)/)||base.match(/width:calc\(([\d.]+)/))[1]);
-    const trait=+((propre.match(/stroke-width:([\d.]+)/)||base.match(/stroke-width:([\d.]+)/))[1]);
-    const marges=(propre.match(/margin:calc\((-?[\d.]+) \* var\(--k\)\) 0(?: calc\((-?[\d.]+) \* var\(--k\)\))?/)||[]);
-    const haut=marges[1]?+marges[1]:0, bas=marges[2]!==undefined?+marges[2]:haut;
-    return {taille,trait:taille/24*trait,place:taille+haut+bas};
-  };
-  const t={rev:regle('rev'),exa:regle('exa'),err:regle('err'),jeux:regle('jeux')};
-  assert.equal(t.jeux.taille,66); assert.equal(t.exa.taille,68);
-  for (const [n,v] of Object.entries(t)) {
-    assert.ok(v.trait>=4.8&&v.trait<=5.5,n+' : trait affiché '+v.trait.toFixed(2)+' px maquette');
-    assert.ok(Math.abs(v.place-58)<0.01,n+' : 58 px de haut dans la mise en page');
-  }
-  assert.match(css,/\.ac-btn\.jeux > \.ic:first-child \{[^}]*color:var\(--wf-cyan\)/,'Jeux reste cyan');
+  assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(css,/width:min\(100%,calc\(860 \* var\(--k\)\)\)/);
+  assert.match(css,/--wf-study:#d3232b/);
+  assert.match(css,/--wf-play:#087496/);
+  assert.match(css,/color:var\(--wf-cream\)/);
+});
+
+test('Sous-menu Étudier : révisions et examens conservés, Retour Android géré',()=>{
+  assert.match(watfir,/lecons: \(\) => goLessons\(\)/);
+  assert.match(watfir,/entrainer: \(\) => openReviewSetup\(\)/);
+  assert.match(watfir,/examens: \(\) => openExamens\(\)/);
+  assert.match(watfir,/erreurs: \(\) => startSession\('errors'\)/);
+  assert.match(watfir,/function wfEtudierOuvert\(\)/);
+  assert.match(watfir,/function wfFermerEtudier\(\)/);
+  const nav=fs.readFileSync(path.join(root,'public/navigation.js'),'utf8');
+  assert.match(nav,/function superpositionOuverte\(\) \{[\s\S]*wfEtudierOuvert\(\)/);
+  assert.match(nav,/function fermerSuperposition\(\) \{[\s\S]*wfFermerEtudier\(\)/);
 });
 test('Interactions : retour d\'appui, feuille fermée par Retour, mouvement réduit',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
@@ -231,15 +247,15 @@ test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune h
   assert.match(css,/flex-wrap:wrap/,'repli sur deux lignes si la police grandit');
   assert.doesNotMatch(css,/italic 700/,'pas de gras synthétique');
 });
-test('Hauteur : grille à six blocs et intervalles souples, page défilante en secours',()=>{
+test('Hauteur : cinq blocs et intervalles souples, page défilante en secours',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const bloc=css.match(/#view-dashboard \.accueil\.wf-accueil \{([^}]*)\}/)[1];
   assert.match(bloc,/display:grid/);
-  assert.equal((bloc.match(/max-content/g)||[]).length,6,'six blocs jamais écrasés');
+  assert.equal((bloc.match(/max-content/g)||[]).length,5,'cinq blocs jamais écrasés');
   assert.equal((bloc.match(/minmax\(/g)||[]).length,7,'six intervalles plafonnés (+ la colonne)');
   assert.match(bloc,/align-content:safe center/);
   assert.match(bloc,/min-height:100%/);
   assert.doesNotMatch(bloc,/overflow:hidden/);
-  for (const [sel,row] of [['> .ac-ent',1],['> .ac-hero',3],['> .ac-chiffres',5],['> #today',7],['> .ac-acces',9],['> .ac-v21-journey',11]])
+  for (const [sel,row] of [['> .ac-ent',1],['> .ac-hero',3],['> .ac-chiffres',5],['> #today',7],['.ac-v21-actions > .ac-acces',9]])
     assert.match(css,new RegExp(sel.replace(/[.#>]/g,m=>'\\'+m)+' \\{ grid-row:'+row+'; \\}'),sel);
 });
