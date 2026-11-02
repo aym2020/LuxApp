@@ -12,7 +12,7 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-2';
+  const link='hover-interactions.css?v=watfir-hover-3';
   assert.ok(html.includes(link),'stylesheet présent');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
@@ -40,20 +40,34 @@ test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=
   for(const x of ['carte-suite.ac-v21-cta:hover','puce-niv:not([aria-pressed="true"]):hover','puce-niv[aria-pressed="true"]:hover','ac-acces .ac-btn:hover','ac-v21-journey:hover','ac-menu:hover','ac-v21-guest:hover'])
     assert.ok(css.includes(x),'hover : '+x);
   assert.match(css,/--ux-hover-cyan-wash:\s*rgba\(2,197,231,\.18\)/);
-  assert.match(css,/--ux-hover-cta-gold:\s*#ffe0aa/);
+  assert.match(css,/@property --wf-cta-outline\s*\{/);
 });
 
-test('CTA : crème doré uniquement, sans effet flottant ni dégradation des bandes',()=>{
-  const section=css.split('/* CTA : remplacement couleur crème')[1].split('  #view-dashboard .wf-accueil .puce-niv {')[0];
-  assert.match(css,/@property --wf-cta-surface\s*\{/);
-  assert.match(section,/--wf-cta-surface:#fbebc5/);
-  assert.match(section,/var\(--wf-cta-surface\) calc\(100% - 51\.6 \* var\(--k\)\)/);
-  assert.match(section,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/);
-  assert.match(section,/var\(--wf-cyan\) 0/);
-  assert.match(section,/--wf-cta-surface:var\(--ux-hover-cta-gold\)/);
-  assert.match(section,/transform:none;filter:none;box-shadow:none/);
-  assert.doesNotMatch(section,/translateY\(|brightness\(|12px 28px/);
-  assert.match(section,/color:var\(--wf-red\)/);
+test('CTA 3D : relief au repos, chevron éloigné du motif et bandes intactes',()=>{
+  const block=watfir.split('/* ── CTA crème')[1].split('/* ── Quatre raccourcis')[0];
+  assert.match(block,/0 7px 0 #aa8954/,'tranche visible au repos');
+  assert.match(block,/inset 0 2px 0 rgba\(255,255,255,\.78\)/,'lumière de surface');
+  assert.match(block,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'bande rouge inchangée');
+  assert.match(block,/var\(--wf-cyan\) 0/,'bande cyan inchangée');
+  assert.match(block,/\.cs-rond \{[^}]*margin:calc\(8 \* var\(--k\)\) calc\(24 \* var\(--k\)\) 0 calc\(8 \* var\(--k\)\)/,'chevron recentré à gauche du coin');
+  assert.match(block,/\.carte-suite\.ac-v21-cta:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)/,'retour tactile au maintien');
+  assert.match(block,/transform:translateY\(6px\)/,'enfoncement physique');
+  assert.match(block,/pointer-events:none/,'contour non interactif');
+  assert.match(block,/mask-composite:exclude/,'bordure annulaire');
+  assert.match(block,/--wf-cta-outline:359deg/,'angle compatible conic-gradient');
+  assert.doesNotMatch(block,/min-height:[1-9][0-9]*px/,'aucune hauteur imposée en CSS');
+});
+
+test('CTA hover : liseré rouge progressif maintenu pendant active, sans fond doré',()=>{
+  const rule=css.split('/* CTA Watfir :')[1].split('  #view-dashboard .wf-accueil .puce-niv {')[0];
+  assert.match(css,/@property --wf-cta-outline\s*\{[^}]*inherits:\s*true/,'la valeur animée atteint ::after');
+  assert.match(rule,/\.carte-suite\.ac-v21-cta:hover:not\(:disabled\):not\(\[aria-disabled="true"\]\)\s*\{/,'hover valable aussi pendant active');
+  assert.match(rule,/--wf-cta-outline:359deg/,'contour affiché');
+  assert.match(rule,/\.carte-suite\.ac-v21-cta:hover:not\(:active\)/,'élévation seulement hors appui');
+  assert.match(rule,/transform:translateY\(-2px\)/);
+  assert.doesNotMatch(rule,/cta-gold|cta-surface|#ffe0aa|brightness\(/,'fond crème stable');
+  assert.match(watfir,/@media \(prefers-reduced-motion:reduce\) \{/);
+  assert.match(css,/#view-dashboard \.wf-accueil \.carte-suite\.ac-v21-cta:active/,'mobile : chevron coloré au press');
 });
 
 test('Quatre raccourcis : cyan au hover, crème au repos, sans changement de layout',()=>{
