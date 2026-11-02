@@ -7,7 +7,7 @@
 
 Bienvenue dans la documentation du projet d'apprentissage du luxembourgeois pour francophones. Cet index indique **quel document lire**, son rôle et son niveau de fiabilité. Commencer toujours par le **code actuel sur GitHub** et le [PLAYBOOK](../PLAYBOOK.md) ; les anciens documents, maquettes et captures ne supplantent jamais le code ni les règles approuvées.
 
-> **NOUVELLE DA (branche `2.2`, concept non intégré) :** [Watfir Retro 1984 — index](watfir-2.2/README.md), [charte détaillée](watfir-2.2/CHARTE-DA.md), [accueil V4 et switch extensible](watfir-2.2/ACCUEIL-V4.md), [assets sources](watfir-2.2/ASSETS.md) et [prototype autonome](watfir-2.2/prototypes/accueil-v4.html). La charte `2.1` continue de s'appliquer au code actif tant que la nouvelle DA n'est pas intégrée et validée.
+> **NOUVELLE DA (branche `2.2`, accueil V4 intégré ; validation Android à faire) :** [Watfir Retro 1984 — index](watfir-2.2/README.md), [charte détaillée](watfir-2.2/CHARTE-DA.md), [accueil V4 et switch extensible](watfir-2.2/ACCUEIL-V4.md), [assets sources](watfir-2.2/ASSETS.md) et [prototype autonome](watfir-2.2/prototypes/accueil-v4.html). La charte `2.1` continue de s'appliquer aux autres écrans ; l'accueil `2.2` charge sa surcouche Watfir et reste à valider sur appareil.
 
 ## Par où commencer ?
 
