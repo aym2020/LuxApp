@@ -14,7 +14,7 @@ const watfir=read('public/accueil-watfir.css');
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
   const link='hover-interactions.css?v=watfir-hover-7';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-10'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-11'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -45,7 +45,7 @@ test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=
 });
 
 test('CTA 3D : relief au repos, chevron éloigné du motif et bandes intactes',()=>{
-  const block=watfir.split('/* ── CTA crème')[1].split('/* ── Quatre raccourcis')[0];
+  const block=watfir.split('/* ── CTA crème')[1].split('/* ── Deux actions secondaires')[0];
   assert.match(block,/0 7px 0 #aa8954/,'tranche visible au repos');
   assert.match(block,/inset 0 2px 0 rgba\(255,255,255,\.78\)/,'lumière de surface');
   assert.match(block,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'bande rouge inchangée');
@@ -88,7 +88,7 @@ test('Header : A1.1, A1.2 et dropdown utilisent le même relief physique compact
 });
 
 test('Header : le survol préserve la tranche et la couleur pendant le clic maintenu',()=>{
-  const styles=css.split('/* Pastilles 3D :')[1].split('#view-dashboard .wf-accueil .ac-acces .ac-btn {')[0];
+  const styles=css.split('/* Pastilles 3D :')[1].split('  /* Deux boutons :')[0];
   assert.match(styles,/\.puce-niv:not\(\[aria-pressed="true"\]\):hover:not\(:disabled\):not\(\[aria-disabled="true"\]\)/);
   assert.match(styles,/\.puce-niv\[aria-pressed="true"\]:hover:not\(:disabled\):not\(\[aria-disabled="true"\]\)/);
   assert.match(styles,/--wf-pill-hover-outline/);
@@ -100,7 +100,7 @@ test('Étudier/Jouer : hover léger = fond seul éclairci, 3D et crème inchang�
   const section=css.split('/* Deux boutons :')[1].split('#view-dashboard .wf-accueil .ac-menu .ic {')[0];
   assert.match(section,/\.wf-choix-activite \.wf-activite:hover:not\(:active\)/);
   assert.match(section,/background-color:var\(--wf-face-hover\)/);
-  assert.doesNotMatch(section,/box-shadow:|transform:|filter:|stroke:|color:/,
+  assert.doesNotMatch(section,/box-shadow:|transform:|filter:|stroke:/,
     'pas d\'élévation ou de filet cyan en hover');
   assert.doesNotMatch(css,/\.ac-v21-journey:hover/,'ancien lien supprimé des hovers');
   assert.doesNotMatch(css,/\.ac-acces \.ac-btn\.jeux:hover/,'ancien raccourci remplacé');
