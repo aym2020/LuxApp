@@ -57,7 +57,7 @@
         '<h2>Moien<span class="ac-hero-exclamation">!</span></h2>' +
         '<p>' + phrase + '</p>' +
       '</div>' +
-      '<img class="wf-hero-art" src="art/watfir-hero-v4.svg?v=1" alt="" aria-hidden="true" width="864" height="265">' +
+      '<img class="wf-hero-art" src="art/watfir-hero-v4.svg?v=2" alt="" aria-hidden="true" width="864" height="265">' +
     '</section>';
   };
 
