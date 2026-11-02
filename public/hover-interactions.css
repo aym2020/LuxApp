@@ -1,0 +1,140 @@
+/* Watfir 2.2 — interactions souris communes. Voir docs/watfir-2.2/HOVER-SYSTEM.md.
+   Chargement après les CSS d'écrans. Pas de mutation JS ni de changement de layout. */
+:root {
+  --ux-hover-duration: 190ms;
+  --ux-hover-easing: cubic-bezier(.22,1,.36,1);
+  --ux-hover-wash: rgba(247,233,194,.17);
+  --ux-hover-bright: #fff4da;
+  --ux-hover-red: #ff4038;
+}
+
+/* Alignement de marque, sur PC ET mobile : Jeux cesse d'être le seul pictogramme cyan. */
+#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child {
+  color:var(--wf-cream,#f7e9c2);
+}
+
+/* Les recettes .ux-hover-* sont opt-in pour les futurs écrans Watfir.
+   Les composants 2.1 partagés reçoivent seulement une élévation neutre, sans
+   changement de couleur métier (correct, wrong, info, examens). */
+@media (hover:hover) and (pointer:fine) {
+  :where(.pc-btn,.btn-jaune,.pc-chip,.pc-icon-btn,.back-btn,.exo-cta,.exo-secondaire,.ux-hover-lift):not(:disabled):not([aria-disabled="true"]) {
+    transition:transform var(--ux-hover-duration) var(--ux-hover-easing),
+               filter var(--ux-hover-duration) ease,background-color var(--ux-hover-duration) ease;
+  }
+  :where(.pc-btn,.btn-jaune,.pc-chip,.pc-icon-btn,.back-btn,.exo-cta,.exo-secondaire,.ux-hover-lift):not(:disabled):not([aria-disabled="true"]):hover:not(:active) {
+    transform:translateY(-2px);filter:brightness(1.10);
+  }
+  :where(.pc-chip,.pc-icon-btn,.back-btn):not(:disabled):not([aria-disabled="true"]):hover:not(:active) {
+    background-color:rgba(247,233,194,.10);
+  }
+
+  .ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon {
+    transition:background-color var(--ux-hover-duration) ease,
+               box-shadow var(--ux-hover-duration) ease,color var(--ux-hover-duration) ease;
+  }
+  .ux-hover-tile:not(:disabled):not([aria-disabled="true"]):hover:not(:active) {
+    background-color:var(--ux-hover-wash);box-shadow:inset 0 -2px 0 rgba(247,233,194,.62);
+  }
+  :is(.ux-hover-chip,.ux-hover-icon):not(:disabled):not([aria-disabled="true"]):hover:not(:active) {
+    background-color:var(--ux-hover-wash);
+  }
+  .ux-hover-link:not(:disabled):not([aria-disabled="true"]):hover:not(:active) {
+    color:var(--ux-hover-bright);text-decoration:underline;text-underline-offset:.25em;
+  }
+  :is(.ux-hover-tile,.ux-hover-icon) > .ux-hover-glyph,
+  :is(.ux-hover-link,.ux-hover-lift) .ux-hover-arrow {
+    transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
+  }
+  .ux-hover-tile:hover:not(:active) > .ux-hover-glyph {transform:translateY(-3px) scale(1.07);}
+  .ux-hover-icon:hover:not(:active) > .ux-hover-glyph {transform:rotate(15deg);}
+  :is(.ux-hover-link,.ux-hover-lift):hover:not(:active) .ux-hover-arrow {transform:translateX(5px);}
+
+  /* Accueil validé : seuls ses états hover changent, aucune dimension au repos. */
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
+    transition:transform var(--ux-hover-duration) var(--ux-hover-easing),
+               filter var(--ux-hover-duration) ease,box-shadow var(--ux-hover-duration) ease;
+  }
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not([aria-disabled="true"]) {
+    transform:translateY(-3px);filter:brightness(1.075);
+    box-shadow:0 12px 28px rgba(0,0,0,.42),0 4px 22px rgba(247,233,194,.25);
+  }
+  #view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic {
+    transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
+  }
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active) .cs-rond .ic {
+    transform:translateX(5px);
+  }
+
+  #view-dashboard .wf-accueil .puce-niv {
+    transition:background-color 160ms ease,box-shadow 160ms ease;
+  }
+  #view-dashboard .wf-accueil .puce-niv:not([aria-pressed="true"]):hover:not(:active) {
+    background-color:rgba(247,233,194,.20);box-shadow:0 0 0 1px rgba(247,233,194,.44);
+  }
+  #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"]:hover:not(:active) {
+    background-color:var(--ux-hover-red);box-shadow:0 0 0 2px rgba(242,36,33,.26);
+  }
+
+  #view-dashboard .wf-accueil .ac-acces .ac-btn {
+    transition:background-color 170ms ease,box-shadow 170ms ease;
+  }
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not([aria-disabled="true"]) {
+    background-color:var(--ux-hover-wash);
+    box-shadow:inset 0 -2px 0 rgba(247,233,194,.64);
+  }
+  #view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child {
+    transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
+  }
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active) > .ic:first-child {
+    transform:translateY(-3px) scale(1.075);
+  }
+
+  #view-dashboard .wf-accueil .ac-v21-journey > b,
+  #view-dashboard .wf-accueil .ac-v21-journey > .ic:last-child {
+    transition:color var(--ux-hover-duration) ease,transform var(--ux-hover-duration) var(--ux-hover-easing);
+  }
+  #view-dashboard .wf-accueil .ac-v21-journey:hover:not(:active) > b {
+    color:var(--ux-hover-bright);text-decoration:underline;
+    text-decoration-thickness:1px;text-underline-offset:.27em;
+  }
+  #view-dashboard .wf-accueil .ac-v21-journey:hover:not(:active) > .ic:last-child {transform:translateX(6px);}
+  #view-dashboard .wf-accueil .ac-menu .ic {
+    transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
+  }
+  #view-dashboard .wf-accueil .ac-menu:hover:not(:active) .ic {transform:rotate(15deg);}
+  #view-dashboard .wf-accueil .ac-v21-guest:hover:not(:active) b {
+    text-decoration:underline;text-decoration-color:var(--wf-red,#f22421);
+    text-decoration-thickness:2px;text-underline-offset:4px;
+  }
+  .wf-niveaux-dialog .wf-sheet-level:not(.is-current):hover:not(:active) {background-color:var(--ux-hover-wash);}
+  .wf-niveaux-dialog .wf-sheet-level.is-current:hover:not(:active) {background-color:var(--ux-hover-red);}
+}
+
+/* Le clavier bénéficie du même repère accessible que les boutons Watfir existants. */
+:where(.ux-hover-lift,.ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon):focus-visible {
+  outline:3px solid var(--wf-cyan,#02c5e7);outline-offset:3px;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  :where(.pc-btn,.btn-jaune,.pc-chip,.pc-icon-btn,.back-btn,.exo-cta,.exo-secondaire,
+         .ux-hover-lift,.ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon,
+         .ux-hover-glyph,.ux-hover-arrow),
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
+  #view-dashboard .wf-accueil .cs-rond .ic,
+  #view-dashboard .wf-accueil .puce-niv,
+  #view-dashboard .wf-accueil .ac-acces .ac-btn,
+  #view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child,
+  #view-dashboard .wf-accueil .ac-v21-journey > .ic:last-child,
+  #view-dashboard .wf-accueil .ac-menu .ic {transition:none!important;}
+  @media (hover:hover) and (pointer:fine) {
+    :where(.pc-btn,.btn-jaune,.pc-chip,.pc-icon-btn,.back-btn,.exo-cta,.exo-secondaire,.ux-hover-lift):hover:not(:active),
+    .ux-hover-tile:hover:not(:active) > .ux-hover-glyph,
+    .ux-hover-icon:hover:not(:active) > .ux-hover-glyph,
+    :is(.ux-hover-link,.ux-hover-lift):hover:not(:active) .ux-hover-arrow,
+    #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active),
+    #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active) .cs-rond .ic,
+    #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active) > .ic:first-child,
+    #view-dashboard .wf-accueil .ac-v21-journey:hover:not(:active) > .ic:last-child,
+    #view-dashboard .wf-accueil .ac-menu:hover:not(:active) .ic {transform:none!important;}
+  }
+}
