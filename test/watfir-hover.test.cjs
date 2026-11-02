@@ -12,7 +12,7 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-3';
+  const link='hover-interactions.css?v=watfir-hover-4';
   assert.ok(html.includes(link),'stylesheet présent');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
@@ -40,7 +40,7 @@ test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=
   for(const x of ['carte-suite.ac-v21-cta:hover','puce-niv:not([aria-pressed="true"]):hover','puce-niv[aria-pressed="true"]:hover','ac-acces .ac-btn:hover','ac-v21-journey:hover','ac-menu:hover','ac-v21-guest:hover'])
     assert.ok(css.includes(x),'hover : '+x);
   assert.match(css,/--ux-hover-cyan-wash:\s*rgba\(2,197,231,\.18\)/);
-  assert.match(css,/@property --wf-cta-outline\s*\{/);
+  assert.doesNotMatch(css,/@property --wf-cta-outline/,'plus de contour rouge');
 });
 
 test('CTA 3D : relief au repos, chevron éloigné du motif et bandes intactes',()=>{
@@ -52,24 +52,21 @@ test('CTA 3D : relief au repos, chevron éloigné du motif et bandes intactes',(
   assert.match(block,/\.cs-rond \{[^}]*margin:calc\(8 \* var\(--k\)\) calc\(24 \* var\(--k\)\) 0 calc\(16 \* var\(--k\)\)/,'chevron recentré à gauche du coin');
   assert.match(block,/\.carte-suite\.ac-v21-cta:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)/,'retour tactile au maintien');
   assert.match(block,/transform:translateY\(6px\)/,'enfoncement physique');
-  assert.match(block,/pointer-events:none/,'contour non interactif');
-  assert.match(block,/mask-composite:exclude/,'bordure annulaire');
-  assert.match(block,/--wf-cta-outline:359deg/,'angle compatible conic-gradient');
+  assert.match(block,/\.carte-suite\.ac-v21-cta::after \{ content:none; \}/,'aucun calque de contour');
+  assert.doesNotMatch(block,/conic-gradient|mask-composite|wf-cta-outline/,'aucun effet de bordure animé');
   assert.doesNotMatch(block,/min-height:[1-9][0-9]*px/,'aucune hauteur imposée en CSS');
 });
 
-test('CTA hover : liseré rouge progressif maintenu pendant active, sans fond doré',()=>{
-  const rule=css.split('/* CTA Watfir :')[1].split('  #view-dashboard .wf-accueil .puce-niv {')[0];
-  assert.match(css,/@property --wf-cta-outline\s*\{[^}]*inherits:\s*true/,'la valeur animée atteint ::after');
-  assert.match(rule,/\.carte-suite\.ac-v21-cta:hover:not\(:disabled\):not\(\[aria-disabled="true"\]\)\s*\{/,'hover valable aussi pendant active');
-  assert.match(rule,/--wf-cta-outline:359deg/,'contour affiché');
-  assert.match(rule,/\.carte-suite\.ac-v21-cta:hover:not\(:active\)/,'élévation seulement hors appui');
-  assert.match(rule,/transform:translateY\(-2px\)/);
-  assert.doesNotMatch(rule,/cta-gold|cta-surface|#ffe0aa|brightness\(/,'fond crème stable');
+test('CTA hover : effet physique seul, sans contour rouge ni recoloration',()=>{
+  const section=css.split('/* CTA Watfir :')[1].split('  #view-dashboard .wf-accueil .puce-niv {')[0];
+  assert.match(section,/\.carte-suite\.ac-v21-cta:hover:not\(:active\)/,'survol uniquement hors appui');
+  assert.match(section,/transform:translateY\(-2px\)/,'léger soulèvement');
+  assert.match(section,/0 9px 0 #aa8954/,'tranche beige conservée');
+  assert.doesNotMatch(section,/wf-cta-outline|::after|color:var\(--wf-red\)|#ffe0aa|brightness\(/,'aucun contour ni effet doré');
+  assert.doesNotMatch(css,/@property --wf-cta-outline/);
   assert.match(watfir,/@media \(prefers-reduced-motion:reduce\) \{/);
-  assert.match(css,/#view-dashboard \.wf-accueil \.carte-suite\.ac-v21-cta:active/,'mobile : chevron coloré au press');
+  assert.doesNotMatch(css,/\.carte-suite\.ac-v21-cta:active[^{}]*\{[^}]*color:var\(--wf-red\)/,'chevron inchangé au press');
 });
-
 test('Quatre raccourcis : cyan au hover, crème au repos, sans changement de layout',()=>{
   const section=css.split('#view-dashboard .wf-accueil .ac-acces .ac-btn {')[1]
     .split('/* Bas de page')[0];
