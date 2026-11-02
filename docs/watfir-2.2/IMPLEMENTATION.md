@@ -242,3 +242,20 @@ Niveaux et navigation (Chromium, toucher simulé, 320 et 360) : A1.1 → A1.2 �
 ## 13. Retour arrière ciblé
 
 Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `accueil-watfir.js` de `public/index.html`. Le rendu 2.1 reprend alors sans toucher au moteur, à la progression ni aux jeux. Ne jamais supprimer les clés de stockage.
+
+
+## 14. Refonte validée du bas de l'accueil — Étudier / Jouer (03/11/2026)
+
+**Décision UI :** remplacer les quatre tuiles `S'entraîner / Examens / Erreurs / Jeux` et le lien `Voir mon chemin` par **deux boutons de poids égal, centrés**, sans surtitre. Un bouton **Étudier** rouge profond (`#d3232b`), un bouton **Jouer** bleu profond (`#087496`), tous deux avec pictogramme et texte crème `#f7e9c2`. Relief physique de 5 px et enfoncement de 4 px sur mobile/PC. **Hover PC : seule la couleur de la face s'éclaircit** (rouge `#ed3640`, bleu `#0b8fb5`) ; ni mouvement, ni contour, ni glow, ni modification de l'ombre.
+
+**CTA principal :** suppression du livre injecté par la surcouche V21 `carteSuiteHtml`, sans toucher à la génération de l'action ou du libellé du moteur. Le bouton conserve le chevron noir et son relief de 7 px. Les stops du coin **rouge/cyan** demeurent `51.6 * --k` et `31.8 * --k`, avec exactement les couleurs `--wf-red` / `--wf-cyan` de l'original. Aucune modification des largeurs relatives du motif.
+
+**Parcours :**
+- **Jouer** : action `ouvrirJeux()` existante, sans intermédiaire ;
+- **Étudier** : bottom sheet natif accessible (`<dialog>`) avec `Les leçons → goLessons()`, `S'entraîner → openReviewSetup()`, `Examens → openExamens()`, `Mes erreurs → startSession('errors')`. Tous les parcours anciennement visibles restent donc disponibles. Échap, bouton de fermeture et Retour Android ferment le sheet ; la garde d'historique réutilise `programmerGarde`.
+
+**Intégration sans régression :** `public/accueil-watfir.js` surcharge uniquement `carteSuiteHtml` et `accesHtml` après V21 ; aucun changement du moteur de progression, des JSON, des leçons, des routes des jeux ou des clés de stockage. `public/accueil-watfir.css` passe la grille de **six blocs à cinq**, enlève la ligne vide de l'ancien `Voir mon chemin` et adopte des surfaces 3D compactes à hauteur minimale 76 px. `public/hover-interactions.css` conserve sa place après les styles d'écran ; les anciens hovers cyan de la barre à quatre cellules ont été supprimés. `public/navigation.js` intègre seulement les deux hooks de fermeture du nouveau dialogue. Les versions CSS/JS de `index.html` ont été incrémentées.
+
+**Validation disponible :** contrats `test/watfir-home.test.cjs` et `test/watfir-hover.test.cjs` adaptés, 26/26 assertions réussies dans le harnais JS de contrôle des sources GitHub. Vérification des sélecteurs, transitions, cinq rangées de contenu, URLs de cache et routes conservées. **Non validé dans cette livraison :** capture Chromium du site complet après intégration, tactile Samsung physique, zoom 200 % et restauration d'historique sur navigateur mobile réel. Ces tests d'acceptation restent à effectuer avant de qualifier définitivement la version.
+
+**Rollback ciblé :** restaurer les sections du CTA/actions de `accueil-watfir.js` et la grille/action de `accueil-watfir.css`, les hover de `hover-interactions.css`, les deux hooks `wfEtudier*` de `navigation.js`, ainsi que les versions de cache dans `index.html`. Ne pas changer `accueil-v21.js`, les moteurs ou la progression.
