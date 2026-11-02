@@ -10,16 +10,6 @@
   --ux-hover-red: #ff4038;
 }
 
-/* Contour du CTA : propriété enregistrée pour interpolation de l'angle.
-   Important : inherits:true transmet la valeur du bouton à son ::after.
-   La valeur finale 359deg évite la normalisation à 0deg dans conic-gradient.
-   Sans @property le bouton reste 3D et cliquable, seul le dessin animé disparaît. */
-@property --wf-cta-outline {
-  syntax: '<angle>';
-  inherits: true;
-  initial-value: 0deg;
-}
-
 /* Alignement de marque, sur PC ET mobile : Jeux cesse d'être le seul pictogramme cyan. */
 #view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child {
   color:var(--wf-cream,#f7e9c2);
@@ -65,28 +55,14 @@
   .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph {transform:rotate(15deg);}
   :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow {transform:translateX(5px);}
 
-  /* CTA Watfir : léger soulèvement sur souris et tracé rouge progressif.
-     La tranche beige est permanente (accueil-watfir.css). Aucun fond doré.
-     :hover ne retire jamais le contour pendant que :active est maintenu. */
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:disabled):not([aria-disabled="true"]) {
-    --wf-cta-outline:359deg;
-  }
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:disabled):not([aria-disabled="true"])::after {
-    opacity:1;
-  }
+  /* CTA Watfir : relief beige permanent et soulèvement physique discret.
+     Aucun contour, changement de fond ou pictogramme rouge au survol. */
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not(:disabled):not([aria-disabled="true"]) {
     transform:translateY(-2px);
     box-shadow:0 9px 0 #aa8954,0 20px 24px rgba(0,0,0,.50),
                inset 0 2px 0 rgba(255,255,255,.78),
                inset 0 -2px 0 rgba(126,87,39,.20);
   }
-  #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
-    transition:color 170ms ease;
-  }
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:disabled):not([aria-disabled="true"]) .cs-rond {
-    color:var(--wf-red);
-  }
-
   #view-dashboard .wf-accueil .puce-niv {
     transition:background-color 160ms ease,box-shadow 160ms ease;
   }
@@ -143,11 +119,6 @@
   .wf-niveaux-dialog .wf-sheet-level.is-current:hover:not(:active):not(:disabled) {background-color:var(--ux-hover-red);}
 }
 
-/* Touch Android : le chevron prend la couleur d'action au maintien du doigt. */
-#view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]) .cs-rond {
-  color:var(--wf-red);
-}
-
 /* Le clavier bénéficie du même repère accessible que les boutons Watfir existants. */
 :where(.ux-hover-lift,.ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon):focus-visible {
   outline:3px solid var(--wf-cyan,#02c5e7);outline-offset:3px;
@@ -158,8 +129,6 @@
          .ux-hover-lift,.ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon,
          .ux-hover-glyph,.ux-hover-arrow),
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after,
-  #view-dashboard .wf-accueil .ac-v21-cta .cs-rond,
   #view-dashboard .wf-accueil .puce-niv,
   #view-dashboard .wf-accueil .ac-acces .ac-btn,
   #view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child,
