@@ -52,35 +52,26 @@ Le test `node --test test/watfir-home.test.cjs` a été ajouté au dépôt comme
 5. Exécuter `node --test test/watfir-home.test.cjs` + la suite critique 2.1, comparer les échecs préexistants.
 6. Reproduire la capture réelle pour comparaison avec la V4 approuvée et ajuster exclusivement les styles d'accueil.
 
-## 7. Correctif « compacité et fidélité V4 » (02/11/2026)
+## 7. Reproduction de la maquette V4 (02/11/2026)
 
-Capture Samsung (Brave, largeur 360 px, ~593 px utiles) : accueil 711 px de haut, 118 px de défilement, monument rogné, bandes épaisses, « Moien! » trop fin.
+La maquette de référence (image 941×1672, conversation du 02/11) est désormais reproduite à l'échelle. Un premier correctif du même jour, fait sans la maquette, est remplacé.
 
-**Causes racines**
+**Méthode**
 
-1. Hero à hauteur imposée (`clamp(207px,57vw,280px)` + `min-height:207px`) et dessin en `position:absolute` élargi à 110 % sous 380 px : rognage gauche/droite (14 et 22 px) et grand vide sous le texte.
-2. SVG 980×330 : pont de 395×95 u (40 % de la largeur), bandes de 25 u, partant à x=25.
-3. `Instrument Serif` n'existe qu'en graisse 400 : `italic 700` sur « Watfir » donnait un gras synthétique ; « Moien! » restait fin.
-4. Hauteurs cumulées : CTA `min-height:112px` + padding 17 px, raccourcis 13 px de padding + boutons 63 px, marges 13–19 px, header 113 px. Règles 2.1 actives en parallèle (`ac-nouveau-invite` : CTA `min-height:108px`, `gap:7px` ; hero 2.1 `flex:1 1 258px`).
+- Toutes les mesures CSS viennent de la maquette : une seule unité `--k = min(100vw, 520px) / 941`. `calc(54 * var(--k))` = 54 px de la maquette. L'accueil garde les proportions de la maquette de 320 à 520 px, centré au-delà.
+- Positions vérifiées par superposition : rendu à 941 px avec `--k:1px`, boîtes d'encre comparées à la maquette (écart ≤ 5 px maquette, soit ≤ 2 px réels à 360 px, sauf glyphes propres aux polices).
 
-**Corrections**
+**Éléments**
 
-- Hero en flux : texte, puis dessin (`width:100%`, `aspect-ratio:400/160`, `margin-top:clamp(-120px,-25%,0px)`). Le dessin remonte sous le texte en proportion de la largeur ; si le texte grandit, il descend avec lui. Aucun rognage, aucune hauteur fixe.
-- `public/art/watfir-hero.svg` redessiné (viewBox 400×160) : bandes 7 u (−30 %), courbe plus longue et parallèle, fin alignée sur le bord du pont ; pont fin à trois arches ; tour élancée (socle, fût, corniche, clocheton, flèche) ; aucune fenêtre, aucun soleil. Source copiée dans `docs/watfir-2.2/assets/`.
-- « Watfir » et « Moien! » : `DM Serif Display` italique (OFL, `public/fonts/`, préchargée), nom CSS `Watfir Display`, sans gras synthétique.
-- Une grille verticale `--wf-gap` (12 px ; 8 px si hauteur ≤ 660 px ; 16 px si hauteur ≥ 820 px), CTA et raccourcis compactés, séparateurs courts à 20 % d'opacité, règles 2.1 concurrentes neutralisées explicitement (`gap`, `min-height`).
+- Header sur une ligne : emblème, « Watfir » (Fraunces 900 italique), « Lëtzebuergesch » (Roboto Condensed), A1.1/A1.2/chevron, filet, « Mode invité · Connexion », réglages. Zones de toucher agrandies par `::after` (~44 px de haut) ; repli sur deux lignes si la police système grandit.
+- « Moien! » : Playfair Display 800 italique, point rouge.
+- `public/art/watfir-hero.svg` en coordonnées de la maquette (viewBox `38 322 870 276`) : bandes de 21 px qui se croisent dans le virage, coupe en biais à gauche, église à flèche et trois fenêtres détachée par un liseré noir, toit en long, pont à culée arrondie et trois arches. `watfir-mark.svg` redessiné de même.
+- Progression : « 6% » sans espace, filet vertical, flamme rouge, barre épaisse ; CTA crème avec coin rouge/cyan à 45° (dégradé à arêtes nettes) ; raccourcis aux colonnes de la maquette ; « Voir mon chemin » centré.
+- Polices auto-hébergées sous licence OFL (`public/fonts/`), préchargées.
 
-**Mesures Chromium (invité, leçon 0)**
+**Mesures Chromium (invité, leçon 0)** : contenu de 450 px à 320×568, 501 px à 360×593 (Brave Samsung : plus aucun défilement, contre 118 px avant), 545 px à 393×760, 594 px à 430×932. Aucun débordement horizontal ; police ×1,3 : header sur deux lignes, défilement naturel.
 
-| Viewport | Header | Hero | Stats | CTA | Raccourcis + chemin | Contenu | Défilement |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 360×593 avant | 107 | 205 | 90 | 112 | 148 | 711 | 118 |
-| 360×593 après | 94 | 164 | 78 | 87 | 120 | 584 | 0 |
-| 320×568 après | 94 | 154 | 78 | 86 | 120 | 573 | 5 |
-| 393×760 après | 98 | 188 | 87 | 93 | 128 | 653 | 0 |
-| 430×932 après | 98 | 199 | 90 | 94 | 128 | 692 | 0 |
-
-Titre de leçon long : 2–3 lignes sans troncature (CTA 112–125 px). Police ×1,3 (approximation par zoom) : défilement naturel, aucun débordement horizontal. **Validation Samsung réelle encore nécessaire.**
+**Écarts assumés** : textes de 9 à 12 px à 360 px (proportions de la maquette, sous la règle « ≥ 12 px » de la charte) ; pastilles de niveau visuellement de 23 px (zone de toucher agrandie) ; la barre de progression suit la vraie valeur (la maquette exagère 6 %). **Validation Samsung réelle encore nécessaire.**
 
 ## 8. Retour arrière ciblé
 

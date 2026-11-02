@@ -1,25 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="160" viewBox="0 0 400 160" role="img" aria-labelledby="title desc">
-<title id="title">Watfir — monument géométrique</title>
-<desc id="desc">Deux fines bandes cyan et rouge montent en douceur vers une tour élancée posée sur un pont à trois arches.</desc>
-<!-- Bandes : tracées en premier, elles passent derrière la tour et s'arrêtent au bord droit du pont. -->
-<g fill="none" stroke-width="7">
-<path d="M0 126H168C214 126 220 64 266 64H392" stroke="#02C5E7"/>
-<path d="M0 139H163C209 139 215 77 261 77H392" stroke="#F22421"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="870" height="276" viewBox="38 322 870 276" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — monument et bandes</title>
+<desc id="desc">Une bande rouge et une bande cyan montent vers une église à flèche posée sur un pont à trois arches.</desc>
+<!-- Coordonnées = pixels de la maquette V4 (941 px de large). -->
+<defs>
+<!-- Coupe en biais du départ des bandes, à gauche. -->
+<clipPath id="wf-coupe"><path d="M39 598L87 530H200V322H908V598z"/></clipPath>
+</defs>
+<g clip-path="url(#wf-coupe)" fill="none" stroke-width="21">
+<!-- Le cyan est tracé en premier : il passe derrière le rouge dans le virage du bas. -->
+<path d="M20 584.75H445C518 584.75 532 402.25 668 402.25H905" stroke="#02C5E7"/>
+<path d="M20 557H480C557 557 545 433.5 676 433.5H905" stroke="#F22421"/>
 </g>
+<!-- Église : un liseré noir la détache des bandes. -->
+<path fill="#F7E9C2" stroke="#080808" stroke-width="28" stroke-linejoin="round" paint-order="stroke" d="M738.5 326L742.5 364L748.5 370L744 375L747 403L757 409L768.5 426V504H713.5V426L719 420L724 408L730 403L733 375L728.5 370L734.5 364z"/>
 <g fill="#F7E9C2">
-<!-- Pont : tablier fin, trois arches -->
-<path d="M228 122H392V160H228z"/>
-<!-- Tour : socle évasé, fût, corniche, clocheton, flèche -->
-<path d="M290 122L298 113H322L330 122z"/>
-<path d="M302 58H318V114H302z"/>
-<path d="M298 53H322V59H298z"/>
-<path d="M304 35H316V54H304z"/>
-<path d="M303 36L310 8L317 36z"/>
-<path d="M309.2 2H310.8V10H309.2z"/>
+<path d="M644 503.5H839.5L849 494.5L859 502L862 504L882 521H583L589 515.5H628.5z"/>
+<path d="M738.5 326L742.5 364L748.5 370L744 375L747 403L757 409L768.5 426V505H713.5V426L719 420L724 408L730 403L733 375L728.5 370L734.5 364z"/>
+<path d="M510 595.5C512 562 548 536 600 536H898V595.5z"/>
 </g>
 <g fill="#080808">
-<path d="M236 160V152A22 20 0 0 1 280 152V160z"/>
-<path d="M288 160V152A22 20 0 0 1 332 152V160z"/>
-<path d="M340 160V152A22 20 0 0 1 384 152V160z"/>
+<path d="M723 447V431Q723 429 725 429H728Q730 429 730 431V447z"/>
+<path d="M737 447V431Q737 429 739 429H743Q745 429 745 431V447z"/>
+<path d="M751 447V431Q751 429 753 429H756Q758 429 758 431V447z"/>
+<path d="M548 596A46 42.5 0 0 1 640 596z"/>
+<path d="M664 596A47.5 42.5 0 0 1 759 596z"/>
+<path d="M784 596A46 42.5 0 0 1 876 596z"/>
 </g>
 </svg>

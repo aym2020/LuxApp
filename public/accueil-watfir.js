@@ -15,6 +15,7 @@
     return proches.slice(Math.min(index, proches.length - 2), Math.min(index, proches.length - 2) + 2);
   }
 
+  // Maquette V4 : une seule ligne — marque, niveaux, séparateur, compte invité, réglages.
   enteteAccueilHtml = function () {
     const sync = etatSynchro();
     const compteInvite = !!ligneCompteHtml();
@@ -22,26 +23,25 @@
       '<button type="button" class="puce-niv wf-niveau-btn" data-wf-niveau="' + escHtml(n) +
       '" aria-pressed="' + (n === niveauActif) + '">' + escHtml(n) + '</button>'
     ).join('');
-    return '<div class="ac-ent entre">' +
+    return '<div class="ac-ent wf-entete entre">' +
       '<div class="ac-marque">' +
-        '<img class="ac-marque-symbole" src="art/watfir-mark.svg" alt="" width="40" height="40">' +
-        '<div><h1 class="ac-titre">Watfir</h1><span class="ac-marque-sous">Lëtzebuergesch</span></div>' +
+        '<img class="ac-marque-symbole" src="art/watfir-mark.svg?v=3" alt="" width="80" height="96">' +
+        '<div class="wf-marque-texte"><h1 class="ac-titre">Watfir</h1><span class="ac-marque-sous">Lëtzebuergesch</span></div>' +
       '</div>' +
-      '<button type="button" class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(sync)) +
-        '" onclick="ouvrirPlus()">' + ICONES.reglages +
-        '<span class="ac-sync-slot" aria-hidden="true">' + pastilleSynchroHtml(sync) + '</span></button>' +
-    '</div>' +
-    '<div class="ac-v21-controls entre">' +
       '<div class="puces-niveau" role="group" aria-label="Niveau actif">' +
         boutons +
         '<button type="button" class="puce-niv wf-niveau-ouvrir" aria-label="Choisir un niveau" ' +
           'aria-haspopup="dialog" aria-expanded="false">' + ICONES.chevron + '</button>' +
       '</div>' +
       (compteInvite
-        ? '<button type="button" class="ac-v21-guest" onclick="ouvrirCompteDepuisAccueil(\'signin\')" ' +
+        ? '<span class="wf-entete-sep" aria-hidden="true"></span>' +
+          '<button type="button" class="ac-v21-guest" onclick="ouvrirCompteDepuisAccueil(\'signin\')" ' +
           'aria-label="Mode invité : se connecter"><span class="wf-invite-mode">Mode invité ·</span>' +
           '<b>Connexion</b></button>'
         : '') +
+      '<button type="button" class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(sync)) +
+        '" onclick="ouvrirPlus()">' + ICONES.reglages +
+        '<span class="ac-sync-slot" aria-hidden="true">' + pastilleSynchroHtml(sync) + '</span></button>' +
     '</div>';
   };
 
@@ -57,12 +57,14 @@
         '<h2>Moien<span class="ac-hero-exclamation">!</span></h2>' +
         '<p>' + phrase + '</p>' +
       '</div>' +
-      '<img class="wf-hero-art" src="art/watfir-hero.svg?v=2" alt="" aria-hidden="true" width="400" height="160">' +
+      '<img class="wf-hero-art" src="art/watfir-hero.svg?v=3" alt="" aria-hidden="true" width="870" height="276">' +
     '</section>';
   };
 
+  // Maquette : « 6% » sans espace avant le signe.
   chiffresHtml = function () {
-    return bilanV21().replace('Aujourd’hui', 'Ta progression');
+    return bilanV21().replace('Aujourd’hui', 'Ta progression')
+      .replace('<span class="ac-v21-bilan-unite"> %</span>', '<span class="ac-v21-bilan-unite">%</span>');
   };
 
   // V21 calcule les mêmes vrais KPI et le même prochain pas.

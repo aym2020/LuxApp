@@ -1,13 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" role="img" aria-labelledby="title desc">
-<title id="title">Watfir — emblème architectural</title>
-<desc id="desc">Une tour ivoire simplifiée encadrée par un toit et deux bandes horizontales rouge et cyan sur fond noir.</desc>
-<rect width="192" height="192" rx="32" fill="#080808"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="96" viewBox="47 96 80 96" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — emblème</title>
+<desc id="desc">Une petite église à flèche entre deux pentes de toit, au-dessus d'une bande rouge et d'une bande cyan.</desc>
+<!-- Coordonnées = pixels de la maquette V4 (941 px de large). -->
 <g fill="#F7E9C2">
-<path d="M89 25 96 9 103 25v20h7v52h-28V45h7z"/>
-<path d="M85 44h22L96 26z" fill="#080808"/>
-<path d="M30 92h53v-9H65l-8 8H30zM109 92h53l-8-9h-45z"/>
-<rect x="90" y="56" width="5" height="13" rx="2"/><rect x="98" y="56" width="5" height="13" rx="2"/>
+<path d="M97 97L98.5 113L105.5 123.7V158.7H88.3V123.7L95.5 113z"/>
+<path d="M50 158.7L61.6 142.8H88.3V146.2H63.3L54 158.7z"/>
+<path d="M124.2 158.7L116.6 146.2H105.5V142.8H118.4L128 158.7z"/>
 </g>
-<path d="M30 112H162" stroke="#F22421" stroke-width="13"/>
-<path d="M30 134H162" stroke="#02C5E7" stroke-width="13"/>
+<g fill="#080808">
+<rect x="91.7" y="129.5" width="3.3" height="6.7" rx=".8"/>
+<rect x="97.5" y="129.5" width="3.3" height="6.7" rx=".8"/>
+</g>
+<path fill="#F22421" d="M47.5 164.8H126.3V175.3H47.5z"/>
+<path fill="#02C5E7" d="M47.5 181.2H126.3V191.7H47.5z"/>
 </svg>

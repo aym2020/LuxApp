@@ -36,7 +36,7 @@ function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
   document.body.appendChild=()=>{};
   const ctx={
     document, niveauActif:'A1.1', niveauxDisponibles:()=>levels,
-    enteteAccueilHtml:()=>'',renderAccueil:()=>{},chiffresHtml:()=>'<div>Aujourd’hui</div>',
+    enteteAccueilHtml:()=>'',renderAccueil:()=>{},chiffresHtml:()=>'<div>Aujourd’hui</div><div>6<span class="ac-v21-bilan-unite"> %</span></div><span class="ac-v21-bilan-unite"> jours</span>',
     accrocheHtml:()=>'', ligneCompteHtml:()=>'<div>invite</div>',
     etatSynchro:()=>null,libelleMenuSynchro:()=> 'Menu',pastilleSynchroHtml:()=> '',
     aDejaPratique:()=>false,
@@ -74,6 +74,8 @@ test('Live levels select the existing 2.1 navigation function',()=>{
   click('level','B2.1'); // not in real lessons: must do nothing
   assert.deepEqual(ctx.changes,['A1.2']);
   assert.match(ctx.chiffresHtml(),/Ta progression/);
+  assert.match(ctx.chiffresHtml(),/6<span class="ac-v21-bilan-unite">%<\/span>/,'« 6% » sans espace');
+  assert.match(ctx.chiffresHtml(),/"ac-v21-bilan-unite"> jours/,'« 0 jours » garde son espace');
   assert.match(ctx.accrocheHtml(false),/watfir-hero\.svg/);
 });
 test('Bottom sheet filters available levels, closes and restores focus',()=>{
@@ -100,32 +102,44 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   const {ctx}=setup();
   const h=ctx.accrocheHtml(true);
   assert.ok(h.indexOf('ac-hero-texte')<h.indexOf('wf-hero-art'),'le dessin suit le texte');
-  assert.match(h,/width="400" height="160"/);
+  assert.match(h,/width="870" height="276"/);
   assert.match(h,/Une nouvelle langue commence ici\./);
   assert.match(ctx.accrocheHtml(false),/Prêt pour quelques minutes/);
 });
-test('SVG du monument : viewBox 400×160, sans soleil ni façade, tout dans le cadre',()=>{
-  const svg=fs.readFileSync(path.join(root,'public/art/watfir-hero.svg'),'utf8');
-  assert.match(svg,/viewBox="0 0 400 160"/);
-  assert.doesNotMatch(svg,/<circle|<rect/,'ni soleil ni fenêtres');
-  assert.equal((svg.match(/A22 20/g)||[]).length,3,'trois arches');
-  const nombres=[...svg.matchAll(/\sd="([^"]+)"/g)].flatMap(m=>m[1].match(/-?\d+(\.\d+)?/g).map(Number));
-  assert.ok(nombres.every(n=>n>=0&&n<=400),'aucune coordonnée hors du cadre');
-  const traits=[...svg.matchAll(/stroke-width="(\d+)"/g)].map(m=>Number(m[1]));
-  assert.deepEqual(traits,[7],'bandes fines (7 u sur 400)');
+test('Header V4 sur une ligne : marque, niveaux, séparateur, invité, réglages',()=>{
+  const {ctx}=setup();
+  const h=ctx.enteteAccueilHtml();
+  const ordre=['ac-marque','puces-niveau','wf-entete-sep','ac-v21-guest','ac-menu'].map(c=>h.indexOf(c));
+  assert.ok(ordre.every(i=>i>0),'tous les éléments sont présents');
+  assert.deepEqual([...ordre].sort((a,b)=>a-b),ordre,'ordre de la maquette');
+  assert.doesNotMatch(h,/ac-v21-controls/,'plus de deuxième ligne');
+  ctx.ligneCompteHtml=()=> '';
+  assert.doesNotMatch(ctx.enteteAccueilHtml(),/wf-entete-sep|ac-v21-guest/,'compte connecté : ni séparateur ni lien');
 });
-test('CSS : hero sans hauteur fixe, police display auto-hébergée, compactage par paliers',()=>{
+test('SVG : coordonnées de la maquette, église et pont à trois arches, sans soleil',()=>{
+  const svg=fs.readFileSync(path.join(root,'public/art/watfir-hero.svg'),'utf8');
+  assert.match(svg,/viewBox="38 322 870 276"/);
+  assert.doesNotMatch(svg,/<circle/,'pas de soleil');
+  assert.equal((svg.match(/A4[67](\.5)? 42\.5/g)||[]).length,3,'trois arches');
+  assert.equal((svg.match(/stroke-width="21"/g)||[]).length,1,'bandes de 21 px maquette');
+  assert.match(svg,/paint-order="stroke"/,'liseré noir autour de l’église');
+  const mark=fs.readFileSync(path.join(root,'public/art/watfir-mark.svg'),'utf8');
+  assert.match(mark,/viewBox="47 96 80 96"/);
+});
+test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune hauteur fixe de hero',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
-  assert.ok(fs.existsSync(path.join(root,'public/fonts/dm-serif-display-latin-400-italic.woff2')));
-  assert.ok(fs.existsSync(path.join(root,'public/fonts/DM-SERIF-DISPLAY-OFL.txt')));
-  assert.match(css,/@font-face\s*\{[^}]*Watfir Display[^}]*font-style:italic/);
-  assert.match(html,/rel="preload" href="fonts\/dm-serif-display-latin-400-italic\.woff2"/);
+  assert.match(css,/--k:calc\(min\(100vw, 520px\) \/ 941\)/);
+  for (const f of ['playfair-display-latin-800-italic','fraunces-latin-900-italic','roboto-condensed-latin-400-normal']) {
+    assert.ok(fs.existsSync(path.join(root,'public/fonts/'+f+'.woff2')),f);
+    assert.match(html,new RegExp('rel="preload" href="fonts/'+f+'\\.woff2"'));
+  }
+  for (const l of ['PLAYFAIR-DISPLAY','FRAUNCES','ROBOTO-CONDENSED']) assert.ok(fs.existsSync(path.join(root,'public/fonts/'+l+'-OFL.txt')));
   const hero=css.match(/\.wf-accueil \.ac-hero \{([^}]*)\}/)[1];
   assert.match(hero,/height:auto/);
-  assert.doesNotMatch(hero,/height:clamp|min-height:2\d\dpx/);
-  assert.match(css,/\.wf-hero-art \{[^}]*margin-top:clamp\(-120px,-25%,0px\)/);
-  assert.match(css,/max-height:660px/);
+  assert.match(css,/\.wf-hero-art \{[^}]*margin:calc\(-194 \* var\(--k\)\)/);
+  assert.match(css,/\.puce-niv::after \{ content:""; position:absolute; inset:-11px/,'zone de toucher agrandie');
+  assert.match(css,/\.ac-menu::after \{ content:""; position:absolute; inset:-12px/);
+  assert.match(css,/flex-wrap:wrap/,'repli sur deux lignes si la police grandit');
   assert.doesNotMatch(css,/italic 700/,'pas de gras synthétique');
-  assert.match(css,/\.carte-suite\.ac-v21-cta \{[^}]*min-height:0/,'neutralise le min-height 2.1');
 });
