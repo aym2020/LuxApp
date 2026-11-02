@@ -10,7 +10,8 @@
 2. [ACCUEIL-V4.md](ACCUEIL-V4.md) — description écran par écran de la référence V4, contraintes responsive et **sélecteur de niveaux évolutif**.
 3. [ASSETS.md](ASSETS.md) — inventaire, provenance, usage et conditions de remplacement des sources.
 4. [RECETTE.md](RECETTE.md) — plan d'implémentation graduelle, tests et critères de validation.
-5. [Prototype interactif V4](prototypes/accueil-v4.html) — accueil autonome, démonstration du changement A1/A2/B1 et de la feuille de niveaux, **sans lien avec la vraie progression**.
+5. [HOVER-SYSTEM.md](HOVER-SYSTEM.md) — système partagé des interactions souris : composants, tokens, adoption progressive, garde-fous mobile et accessibilité.
+6. [Prototype interactif V4](prototypes/accueil-v4.html) — accueil autonome, démonstration du changement A1/A2/B1 et de la feuille de niveaux, **sans lien avec la vraie progression**.
 
 ### Assets disponibles dans cette branche
 
@@ -49,3 +50,7 @@ Voir [IMPLEMENTATION.md](IMPLEMENTATION.md) pour les fichiers actifs, événemen
 **02/11/2026, finitions** (IMPLEMENTATION § 10) : SVG V4 fournis intégrés tels quels (`watfir-logo-v4.svg`, `watfir-hero-v4.svg`), barre à 0 % vide, zones de toucher de 48 px de haut sans chevauchement.
 
 **02/11/2026, gel** (IMPLEMENTATION § 12) : recette finale Chromium 320–1440 px, polices agrandies, invité/connecté ; « Mode invité » ≥ 11 px, repli du header sous 360 px, zones de toucher vérifiées au toucher. Accueil déclaré terminé.
+
+## Interactions desktop communes (02/11/2026)
+
+Un fichier actif autonome, [`public/hover-interactions.css`](../../public/hover-interactions.css), est chargé en dernier dans `index.html`. Sur souris/trackpad uniquement, il rend le hover plus perceptible (élévation, aplat crème, soulignements, animation des pictogrammes), sans déplacer le layout au repos ni concurrencer l'appui tactile. Les composants 2.1 communs reçoivent un feedback neutre ; l'accueil Watfir possède des variantes plus affirmées. Jeux prend la même couleur crème que les autres raccourcis, y compris sur mobile. Voir [HOVER-SYSTEM.md](HOVER-SYSTEM.md) et `node --test test/watfir-hover.test.cjs`. Les autres écrans ne sont pas déclarés harmonisés visuellement.
