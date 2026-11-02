@@ -39,7 +39,7 @@ Le CTA utilise `@property --wf-cta-outline` (type `<angle>`, **`inherits:true`**
 
 **Règle importante : ne pas utiliser `:hover:not(:active)` pour la couleur / le contour d'action.** Le contour doit persister pendant le maintien du clic. `:hover:not(:active)` peut toutefois décrire la **seule élévation** : lors de `:active`, la face s'enfonce. Sur écran tactile, seule la pression (`:active`) déclenche l'animation physique et le liseré, sans état hover bloqué.
 
-Les tracés des bandes rouge/cyan du coin sont intacts ; seule la **marge droite du chevron** a été corrigée (de `-23 × --k` à `+24 × --k`, marge gauche de `16` à `8 × --k`) pour l'éloigner du motif, sans nouvelle largeur ni hauteur de CTA.
+Les tracés des bandes rouge/cyan du coin sont intacts ; seule la **marge droite du chevron** a été corrigée (de `-23 × --k` à `+24 × --k`, marge gauche maintenue à `16 × --k`) pour l'éloigner du motif, sans nouvelle largeur ni hauteur de CTA.
 
 Pour les nouveaux écrans, adopter les classes **explicitement** :
 
