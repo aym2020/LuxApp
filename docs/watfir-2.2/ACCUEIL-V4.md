@@ -1,6 +1,6 @@
 # Accueil Watfir — SPEC visuelle V4
 
-**Référence** : mockup V4 de la conversation du 2 novembre 2026. **Ce n'est pas une capture du produit exécuté.** La V3 est la base formelle ; V4 ajoute uniquement un moyen de changer de famille de niveaux. Le reste doit rester stable.
+**Référence visuelle** : mockup V4 de la conversation du 2 novembre 2026. **L'accueil V4 est désormais intégré sur `2.2` ; le mockup n'est pas une capture d'exécution.** La V3 est la base formelle ; V4 ajoute uniquement un moyen de changer de famille de niveaux. Le reste doit rester stable.
 
 ## 1. Inventaire de l'écran (haut → bas)
 
