@@ -323,7 +323,56 @@ function ldRendreSelection() {
 }
 // SPEC 112 : vraie silhouette issue du modèle 3D du date + décor statique narratif.
 // Ne jamais générer une autre identité : on détoure la photographie issue de m.portrait().
-function ldComposerPhotoProfil(source, decor) {
+// SPEC 118 §9 : lumière de chaque décor (côté du soleil ou de la lune, couleur du liseré, teinte).
+const LD_LUMIERE_DECOR = {
+  milo:  { cote: 1,  liseré: [255, 176, 104], teinte: [1.06, 1, 0.9] },
+  noah:  { cote: 1,  liseré: [214, 196, 255], teinte: [0.98, 0.98, 1.06] },
+  tom:   { cote: -1, liseré: [255, 176, 104], teinte: [1.06, 1, 0.9] },
+  ville: { cote: 1,  liseré: [255, 120, 176], teinte: [1.04, 0.98, 1] }
+};
+// Le portrait 3D est éclairé à plat : on lui donne la lumière du décor.
+// Couleurs plus vives, contraste, côté éclairé plus clair, bas du buste dans l'ombre,
+// liseré de lumière au bord et contour sombre façon pixel art.
+function ldEclairerPortrait(img, lumiere) {
+  const d = img.data, w = img.width, h = img.height;
+  const alpha = new Uint8Array(w * h);
+  for (let k = 0; k < w * h; k++) alpha[k] = d[k * 4 + 3];
+  const plein = (x, y) => x >= 0 && y >= 0 && x < w && y < h && alpha[y * w + x] > 0;
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const k = y * w + x, i = k * 4;
+      if (!alpha[k]) {
+        // Contour sombre : pixel vide qui touche la silhouette.
+        if (plein(x - 1, y) || plein(x + 1, y) || plein(x, y - 1) || plein(x, y + 1)) {
+          d[i] = 26; d[i + 1] = 14; d[i + 2] = 24; d[i + 3] = 255;
+        }
+        continue;
+      }
+      let rgb = [d[i], d[i + 1], d[i + 2]];
+      const gris = 0.3 * rgb[0] + 0.59 * rgb[1] + 0.11 * rgb[2];
+      const cote = (x / w - 0.5) * 2 * lumiere.cote;   // -1 côté ombre, +1 côté lumière
+      const bas = Math.max(0, (y / h - 0.45) / 0.55);  // 0 jusqu'au cou, 1 en bas
+      const force = 1 + 0.16 * cote - 0.5 * bas;
+      const bord = bas < 0.7 && (!plein(x + lumiere.cote, y) || !plein(x + 2 * lumiere.cote, y));
+      for (let c = 0; c < 3; c++) {
+        let v = gris + (rgb[c] - gris) * 1.2;    // couleurs plus vives
+        v = (v - 110) * 1.25 + 110;              // contraste
+        v = v * force * lumiere.teinte[c];       // lumière du décor
+        if (bord) v = v * 0.35 + lumiere.liseré[c] * 0.65;
+        d[i + c] = v;
+      }
+    }
+  }
+}
+// Décor : contraste léger pour creuser les ombres (le ciel et le soleil restent lumineux).
+function ldAssombrirDecor(ctx, w, h) {
+  const img = ctx.getImageData(0, 0, w, h), d = img.data;
+  for (let i = 0; i < d.length; i += 4) {
+    for (let c = 0; c < 3; c++) d[i + c] = (d[i + c] - 70) * 1.15 + 62;
+  }
+  ctx.putImageData(img, 0, 0);
+}
+function ldComposerPhotoProfil(source, decor, lumiere) {
   return new Promise(resolve => {
     const fond = new Image(), visage = new Image();
     fond.onload = () => {
@@ -334,6 +383,7 @@ function ldComposerPhotoProfil(source, decor) {
           const ctx=c.getContext('2d',{willReadFrequently:true});
           ctx.imageSmoothingEnabled=false;
           ctx.drawImage(fond,0,0,w,h);
+          if(lumiere)ldAssombrirDecor(ctx,w,h);
           const layer=document.createElement('canvas');layer.width=visage.width;layer.height=visage.height;
           const x=layer.getContext('2d',{willReadFrequently:true});
           x.drawImage(visage,0,0);
@@ -346,6 +396,7 @@ function ldComposerPhotoProfil(source, decor) {
           for(let xx=0;xx<rw;xx++){add(xx,0);add(xx,rh-1)}
           for(let yy=0;yy<rh;yy++){add(0,yy);add(rw-1,yy)}
           while(stack.length){const k=stack.pop();d[k*4+3]=0;const px=k%rw,py=(k/rw)|0;add(px-1,py);add(px+1,py);add(px,py-1);add(px,py+1)}
+          if(lumiere)ldEclairerPortrait(img,lumiere);
           x.putImageData(img,0,0);
           ctx.drawImage(layer,0,55,w,465);
           resolve(c.toDataURL('image/webp',.88));
@@ -364,7 +415,8 @@ function ldPreparerPortraitSelection(npc) {
     const m=await ldObtenir3D();
     const base=ld.images['portrait:'+npc.id]||await m.portrait(npc,'Idle','#3a2a55',240,300);
     if(!ld.selection)return;
-    ld.images[key]=await ldComposerPhotoProfil(base,'/art/cringr-'+(['milo','noah','tom'].includes(npc.id)?npc.id:'ville')+'.svg');
+    const decor=['milo','noah','tom'].includes(npc.id)?npc.id:'ville';
+    ld.images[key]=await ldComposerPhotoProfil(base,'/art/cringr-'+decor+'.svg',LD_LUMIERE_DECOR[decor]);
     ldPoserImage(key);
   }).catch(()=>{});
 }

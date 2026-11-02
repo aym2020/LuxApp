@@ -73,3 +73,18 @@ Correctif, couleurs uniquement, aucune dimension modifiée :
 
 Vérifié en Chromium à 320×600, 360×740, 393×763, 430×932 : aucun défilement, aucune erreur JS. Tests Node 302 réussis / 5 échecs connus (référence inchangée), tests Cringr, quitter, sélection et conformité de présentation OK.
 Non vérifié : rendu sur le Samsung. Le réchauffement n'est pas validé tant que le joueur ne l'a pas approuvé visuellement.
+
+## 9. Contraste du portrait (css v33, js v31)
+
+Retour produit sur Samsung : avec le §8, Milo et la carte paraissaient pâles et délavés. Le portrait 3D est rendu avec une lumière plate (blanche et forte, sans ombre), et les voiles clairs du §8 l'éclaircissaient encore.
+
+Correctif :
+- `ldEclairerPortrait()` retravaille la photo de profil après le détourage, à la composition : couleurs plus vives, contraste, côté éclairé plus clair, bas du buste dans l'ombre, liseré de lumière au bord du côté de la source et contour sombre d'un pixel ;
+- `LD_LUMIERE_DECOR` donne la lumière de chaque décor : Milo, soleil à droite (ambre) ; Noah, lune à droite (lavande froide) ; Tom, soleil à gauche (ambre) ; ville, néon rose ;
+- `ldAssombrirDecor()` creuse légèrement les ombres du décor ;
+- le voile rose et ambre posé sur la photo est remplacé par une simple vignette sombre.
+
+Le moteur 3D, les portraits des autres écrans et l'identité des personnages ne changent pas : seule la composition de la photo Cringr est concernée.
+
+Vérifié en Chromium : quatre profils à 393×763, sélection à 320×600, 393×763 et 430×932 sans défilement. Tests Node : 302 réussis, 5 échecs connus. `test-lux-demasque.sh complet` : seul `test_lux_demasque_audio` échoue, comme avant.
+Non vérifié : Samsung.
