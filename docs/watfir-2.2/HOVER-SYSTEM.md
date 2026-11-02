@@ -1,28 +1,30 @@
 # Système d'interactions au survol — LuxApp / Watfir 2.2
 
-**Date :** 2 novembre 2026 · **Mise à jour :** 3 novembre 2026 (survol CTA)
+**Date :** 2 novembre 2026 · **Mise à jour :** 3 novembre 2026 (navigation Étudier / Jouer)
 **Périmètre :** états repos / souris / appui tactile du CTA Watfir, plus survol du shell et des composants HTML. Aucune animation de gameplay, aucune modification des moteurs, de la progression ou des JSON.  
 **Fichier actif :** `public/hover-interactions.css`, chargé **après** les styles d'écrans par `public/index.html`.
 
 ## 1. Intention et hiérarchie
 
-L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. Le CTA Commencer / Continuer conserve son relief physique au repos sur mobile et PC (tranche beige et lumière en `box-shadow`, hors flux). **Au survol souris, seule sa face crème s'éclaircit de `#fbebc5` à `#fff4da` : aucun soulèvement, renforcement de l'ombre, contour ou changement de chevron.** Le coin rouge/cyan reste identique ; au clic, la face s'enfonce de 6 px comme avant. Les raccourcis restent cyan au survol, les niveaux rouges. Aucun glow permanent ni animation en boucle.
+L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. Le CTA Commencer / Continuer conserve son relief physique au repos sur mobile et PC (tranche beige et lumière en `box-shadow`, hors flux). **Au survol souris, seule sa face crème s'éclaircit de `#fbebc5` à `#fff4da` : aucun soulèvement, renforcement de l'ombre, contour ou changement de chevron.** Le coin rouge/cyan reste identique ; au clic, la face s'enfonce de 6 px comme avant. La navigation secondaire se résume désormais à **Étudier (rouge assombri) et Jouer (bleu profond)**, deux boutons centrés. Leur survol PC éclaire uniquement la couleur de fond, sans déplacement ni changement d'ombre ; les niveaux restent rouges. Aucun glow permanent ni animation en boucle.
 
 | Rôle | Interaction | Durée |
 | --- | --- | --- |
 | **CTA au repos (mobile et PC)** | Fond crème `#fbebc5` inchangé, tranche beige de **7 px** (`#aa8954`), ombre portée et reflet intérieur ; chevron éloigné du motif rouge/cyan | permanent |
 | **CTA hover (souris)** | Face crème `#fbebc5` → `#fff4da` uniquement ; ni déplacement, ni nouvelle ombre, ni contour, ni recoloration du chevron ou des bandes | instantané |
 | **CTA appuyé (tactile et souris)** | Enfoncement **6 px** et tranche abaissée à 1 px ; retour naturel au relâchement, sans contour coloré | 160 ms |
-| **Choix secondaire (raccourcis)** | Fond **cyan 18 %**, filet cyan intérieur 2 px, pictogramme crème → cyan et remontée limitée à 2 px ; les quatre cellules réagissent pareil | 175 ms |
+| **Étudier (repos)** | Bouton rouge `#d3232b`, texte/picto crème `#f7e9c2`, tranche rouge sombre `#861c18` de 5 px | permanent |
+| **Jouer (repos)** | Bouton bleu profond `#087496`, texte/picto crème `#f7e9c2`, tranche bleu foncé `#054860` de 5 px | permanent |
+| **Étudier / Jouer (survol PC)** | Éclaircissement simple de la face (rouge `#ed3640` / bleu `#0b8fb5`), **sans transform, filtre, filet ou changement d'ombre** | 170 ms |
+| **Étudier / Jouer (appui)** | Enfoncement de 4 px ; tranche comprimée à 1 px, retour fluide | 155 ms |
 | **A1.1 / A1.2 / sélecteur (repos, mobile et PC)** | Tranche 3D de **2 à 4 px** proportionnelle à `--k`, beige foncé `#75644c` en inactif, rouge foncé `#991a17` pour le niveau actif. Bordure crème et dimensions inchangées | permanent |
 | **Niveaux au survol (souris)** | Fond crème 20 % + contour doux en inactif ; niveau courant rouge `#F22421` → `#FF4038`. La tranche et sa couleur restent en place, même en clic maintenu | 160 ms |
 | **Niveaux appuyés (tactile et souris)** | La face descend de la hauteur de tranche moins 1 px, ombre compressée à 1 px ; retour en 140 ms au relâchement | 140 ms |
-| **Lien de chemin** | Soulignement crème et chevron **cyan** +6 px, sans fond ni déplacement du bloc | 190 ms |
 | **Réglages** | Rotation de 15° du pictogramme | 190 ms |
 | **Connexion** | Soulignement rouge de 2 px | immédiat |
 | **Contrôles 2.1 partagés** | Élévation neutre de 2 px + luminosité ×1,10, aucune nouvelle couleur métier | 190 ms |
 
-La convention iconographique est explicite : **les quatre pictogrammes de l'accueil, y compris Jeux, sont crème au repos et cyan au survol souris**. Le cyan reste réservé aux bandes graphiques, aux états de hover, au focus accessible et aux accents réellement utiles. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
+Les deux pictogrammes de la navigation secondaire sont dessinés dans le même style de trait : **livre = Étudier**, **manette = Jouer**, tous deux crème dans tous les états. Le CTA « Commencer / Continuer » n'a plus de livre pour éviter le doublon ; il conserve son texte, sa cible, sa flèche noire et surtout les **mêmes bandes rouge/cyan (stops 51,6 / 31,8 × --k)**. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
 
 ### Pastilles 3D du header
 
@@ -31,6 +33,14 @@ La règle `#view-dashboard .wf-accueil .puce-niv` s'applique **aux trois boutons
 Les tokens `--wf-pill-depth`, `--wf-pill-side` et `--wf-pill-hover-outline` centralisent la tranche, sa couleur et le retour visuel souris. `:active` remplace le `scale(.97)` générique de 2.1 par un léger enfoncement physique. Le hover change uniquement la teinte de fond et l'outline via une variable : pas de nouveau `box-shadow` dans la feuille commune, car cela supprimerait la tranche. Sur `prefers-reduced-motion: reduce`, aucun déplacement n'a lieu mais l'ombre d'appui reste visible.
 
 **Périmètre limité aux pastilles encadrées :** le logo, « Mode invité », « Connexion » et l'icône Réglages restent inchangés. L'objectif n'est pas de créer une rangée de boutons épais mais un relief discret cohérent avec le grand CTA.
+
+### Navigation secondaire et sous-menu Étudier
+
+`public/accueil-watfir.js` surcouche uniquement les fonctions de présentation de `accueil-v21.js`. La grille est passée de quatre raccourcis + « Voir mon chemin » à deux boutons de largeur égale, centrés (`wf-choix-activite`) et sans surtitre. La grille verticale n'a plus que **cinq blocs réels** et cinq intervalles souples ; pas de ligne fantôme ni d'espace réservé à l'ancien lien.
+
+**Étudier** ouvre un dialogue natif avec « Les leçons » (`goLessons`), « S’entraîner » (`openReviewSetup`), « Examens » (`openExamens`) et « Mes erreurs » (`startSession('errors')`). Le dialogue est accessible au clavier et à Retour Android via `wfEtudierOuvert` / `wfFermerEtudier` dans `navigation.js`, sur le même principe que le sélecteur de niveaux. **Jouer** utilise directement `ouvrirJeux()`. Aucune progression, clé de sauvegarde ni moteur n'a été modifié.
+
+**CSS** : `accueil-watfir.css` gère dimensions, couleur, relief et pression (hors flux) ; `hover-interactions.css`, chargé en dernier, ne change que `background-color:var(--wf-face-hover)` sous `@media (hover:hover) and (pointer:fine)`. Le fond utilise un léger gradient de lumière constant, ce qui permet de **faire varier uniquement la couleur de base** par transition CSS. `prefers-reduced-motion: reduce` neutralise les déplacements tout en conservant la couleur et le retour d'appui.
 
 ## 2. Recettes réutilisables
 
@@ -86,7 +96,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 - **Le CTA Watfir est l'exception physique** : relief au repos via `box-shadow` (hors flux), survol crème `#fff4da` sans translation ni nouvelle ombre, appui de +6 px. Pas de filtre `brightness`, de liseré rouge, de glow ou d'animation infinie. La marge du chevron évite l'intersection avec l'angle bicolore ; aucune nouvelle dimension de grille.
 - Les couleurs sémantiques de réussite, erreur, information ou interdiction demeurent celles des composants métiers, jamais remplacées par le rouge/cyan de marque.
 
-**Règle de cascade :** `hover-interactions.css` est chargé en dernier dans le `<head>`. L'intégration n'exige pas de modifier `accueil-watfir.js`, `components.css`, `style.css` ou les moteurs.
+**Règle de cascade :** `hover-interactions.css` est chargé en dernier dans le `<head>`. `accueil-watfir.js` ne change que la présentation et les destinations accessibles depuis le menu ; `components.css`, `style.css`, les JSON et les moteurs restent inchangés.
 
 ## 4. Adoption progressive dans l'application
 
@@ -97,10 +107,10 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 
 ## 5. Vérification et recette
 
-Contrat automatisable : `node --test test/watfir-hover.test.cjs`. Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les quatre raccourcis cyan au hover.
+Contrat automatisable : `node --test test/watfir-hover.test.cjs`. Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les **deux boutons Étudier/Jouer** au hover.
 
-**Avant validation finale**, faire sur Chromium/PC : capture survol CTA, A1.2, S'entraîner, Jeux, Voir mon chemin, Connexion et roue ; comparer avec le repos. Vérifier aussi le press/relâchement, navigation clavier et un viewport mobile tactile simulé. La recette sur smartphone physique et le rendu réel après déploiement restent distincts d'une inspection statique du CSS.
+**Avant validation finale**, faire sur Chromium/PC : capture survol CTA, A1.2, Étudier et Jouer, Connexion et roue ; puis test du dialogue Étudier ; comparer avec le repos. Vérifier aussi le press/relâchement, navigation clavier et un viewport mobile tactile simulé. La recette sur smartphone physique et le rendu réel après déploiement restent distincts d'une inspection statique du CSS.
 
 ## 6. Rollback sans perte de données
 
-Pour revenir au CTA plat, restaurer **uniquement la règle CTA et la position du chevron** dans `public/accueil-watfir.css`, puis la section CTA de `public/hover-interactions.css` (avec les versions de cache correspondantes dans `index.html`). Retirer seulement le lien hover désactive les hovers, mais **ne supprime pas le relief permanent** ; ce n'est donc pas un rollback complet. Aucun stockage utilisateur n'est affecté.
+Pour revenir à la barre de quatre raccourcis : restaurer les surcouches `accesHtml` et `carteSuiteHtml` précédentes dans `public/accueil-watfir.js`, la grille/raccourcis dans `public/accueil-watfir.css`, et les hovers de la barre dans `public/hover-interactions.css` ; retirer les deux hooks Étudier de `navigation.js`, puis incrémenter les caches CSS/JS dans `index.html`. La restauration ciblée ne touche ni la progression ni les moteurs. Pour revenir au CTA plat, son relief doit être modifié séparément dans `accueil-watfir.css`.
