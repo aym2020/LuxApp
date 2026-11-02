@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 100" width="96" height="100" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — pictogramme du monument, reproduction vectorielle de la V4</title>
+<desc id="desc">La tour et sa flèche ivoire au-dessus d'une toiture simplifiée, soulignées de deux bandes rouge et cyan.</desc>
+<g id="architecture" fill="#F7E9C2">
+  <!-- Forme maîtresse ajustée spécifiquement à la taille icône. -->
+  <path id="tour-et-toiture" fill-rule="evenodd" d="M 11,64 L 26,44 H 49 V 29 L 53,22 L 56,3 L 59,22 L 64,29 V 44 H 75 L 87,64 H 80 L 72,51 H 64 V 64 H 49 L 44,51 H 30 L 18,64 Z M 53,35 h 4 v 10 h -4 Z M 60,35 h 4 v 10 h -4 Z" />
+</g>
+<g id="lignes-signature">
+  <path d="M 8 72 H 89 V 82 H 8 Z" fill="#F22421" />
+  <path d="M 8 87 H 89 V 97 H 8 Z" fill="#02C5E7" />
+</g>
+</svg>
