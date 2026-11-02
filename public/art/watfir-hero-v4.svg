@@ -1,32 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864 265" width="864" height="265" role="img" aria-labelledby="title desc">
-  <title id="title">Watfir — pont et tour rétro</title>
-  <desc id="desc">Deux rubans rouge et cyan se croisent en une courbe fluide derrière une tour ivoire et un pont aux trois arches ajourées.</desc>
-  <!-- Conçu pour le hero Watfir V4. Fond transparent ; gabarit 864 × 265 inchangé. -->
+  <title id="title">Watfir — rubans rétro, tour et pont</title>
+  <desc id="desc">Deux bandes continues, rouge et cyan, s'entrecroisent en une courbe fluide derrière une tour crème et un pont à trois arches évidées.</desc>
+  <!-- Révision V4 : même gabarit 864 × 265 et fond transparent. Le croisement cyan-sur-rouge est volontaire. -->
   <g id="rubans" fill="none" stroke-linecap="butt" stroke-linejoin="round">
-    <!-- Les deux rubans conservent une épaisseur constante, y compris dans la courbe.
-         Un fin liseré noir les sépare visuellement lorsqu'ils se croisent. -->
-    <path id="ruban-rouge-contour" d="M 48,226 H 470 C 518,226 521,139 564,123 C 578,116 589,113 604,113 H 833" stroke="#080808" stroke-width="27"/>
-    <path id="ruban-rouge" d="M 48,226 H 470 C 518,226 521,139 564,123 C 578,116 589,113 604,113 H 833" stroke="#F22421" stroke-width="19"/>
-    <path id="ruban-cyan-contour" d="M 42,249 H 416 C 433,249 438,205 469,172 C 512,112 554,88 604,88 H 833" stroke="#080808" stroke-width="27"/>
-    <path id="ruban-cyan" d="M 42,249 H 416 C 433,249 438,205 469,172 C 512,112 554,88 604,88 H 833" stroke="#02C5E7" stroke-width="19"/>
+    <!-- Rouge : ligne supérieure à gauche, inférieure à droite. -->
+    <path id="ruban-rouge-detourage" d="M 46,225 H 390 C 444,225 473,173 514,143 C 540,124 564,119 596,119 H 833" stroke="#080808" stroke-width="23"/>
+    <path id="ruban-rouge" d="M 46,225 H 390 C 444,225 473,173 514,143 C 540,124 564,119 596,119 H 833" stroke="#F22421" stroke-width="18"/>
+    <!-- Cyan : ligne inférieure à gauche, supérieure à droite ; passage au-dessus du rouge. -->
+    <path id="ruban-cyan-detourage" d="M 40,248 H 425 C 465,248 494,179 533,128 C 552,103 575,93 600,93 H 833" stroke="#080808" stroke-width="23"/>
+    <path id="ruban-cyan" d="M 40,248 H 425 C 465,248 494,179 533,128 C 552,103 575,93 600,93 H 833" stroke="#02C5E7" stroke-width="18"/>
   </g>
-  <g id="monument">
-    <!-- Le contour noir n'affecte que le périmètre de la tour.
-         Les fenêtres sont de véritables ajours indépendants. -->
-    <path id="tour-contour" fill="none" stroke="#080808" stroke-width="8" stroke-linejoin="round"
-      d="M 527,195 L 547,183 H 574 L 594,174 H 652 V 126 L 662,118 L 665,104 L 674,98 L 678,64 L 673,57 L 678,47 L 682,6 L 687,47 L 694,57 L 688,65 L 690,98 L 700,104 L 703,118 L 712,126 V 174 H 763 L 779,164 L 814,195 Z"/>
-    <path id="toiture-et-tour" fill="#F7E9C2" fill-rule="evenodd"
-      d="M 527,195 L 547,183 H 574 L 594,174 H 652 V 126 L 662,118 L 665,104 L 674,98 L 678,64 L 673,57 L 678,47 L 682,6 L 687,47 L 694,57 L 688,65 L 690,98 L 700,104 L 703,118 L 712,126 V 174 H 763 L 779,164 L 814,195 Z
-         M 664,133 H 670 V 150 H 664 Z
-         M 679,133 H 685 V 150 H 679 Z
-         M 694,133 H 700 V 150 H 694 Z"/>
-    <!-- Trois arches véritablement évidées, sans rectangles noirs de simulation. -->
-    <path id="pont-contour" fill="none" stroke="#080808" stroke-width="6" stroke-linejoin="round"
-      d="M 470,260 C 474,233 488,215 519,207 C 528,205 539,204 551,204 H 828 V 260 H 470 Z"/>
-    <path id="pont-trois-arches" fill="#F7E9C2" fill-rule="evenodd"
-      d="M 470,260 C 474,233 488,215 519,207 C 528,205 539,204 551,204 H 828 V 260 H 470 Z
-         M 499,260 C 499,237 514,220 538,220 C 563,220 581,239 581,260 Z
-         M 607,260 C 607,237 624,220 649,220 C 674,220 691,238 691,260 Z
-         M 716,260 C 716,238 733,220 758,220 C 784,220 803,239 803,260 Z"/>
+  <g id="monument" stroke-linejoin="round">
+    <!-- Toit/tour : liseré sombre qui masque les rubans et les sépare de la pierre. -->
+    <path id="silhouette-detourage" d="M 533,195 L 547,185 H 574 L 595,175 H 654 V 126 L 663,119 L 666,105 L 674,99 L 678,64 L 673,56 L 678,46 L 682,5 L 687,46 L 692,56 L 687,64 L 691,99 L 699,105 L 702,119 L 711,126 V 175 H 765 L 778,165 L 814,195 Z" fill="none" stroke="#080808" stroke-width="9"/>
+    <path id="silhouette-ivoire" d="M 533,195 L 547,185 H 574 L 595,175 H 654 V 126 L 663,119 L 666,105 L 674,99 L 678,64 L 673,56 L 678,46 L 682,5 L 687,46 L 692,56 L 687,64 L 691,99 L 699,105 L 702,119 L 711,126 V 175 H 765 L 778,165 L 814,195 Z M 663,134 H 670 V 150 H 663 Z M 679,134 H 686 V 150 H 679 Z M 695,134 H 702 V 150 H 695 Z" fill="#F7E9C2" fill-rule="evenodd"/>
+    <!-- Pont : contour continu autour des arches, découpes traversantes et sans rectangles noirs. -->
+    <path id="pont-detourage" d="M 464,261 C 470,232 490,211 521,205 C 532,203 542,202 553,202 H 827 V 261 H 801 C 801,238 786,221 759,221 C 733,221 717,237 717,261 H 691 C 691,238 676,221 652,221 C 627,221 609,237 609,261 H 581 C 581,239 567,221 543,221 C 517,221 499,239 499,261 Z" fill="none" stroke="#080808" stroke-width="7"/>
+    <path id="pont-ivoire" d="M 464,261 C 470,232 490,211 521,205 C 532,203 542,202 553,202 H 827 V 261 H 801 C 801,238 786,221 759,221 C 733,221 717,237 717,261 H 691 C 691,238 676,221 652,221 C 627,221 609,237 609,261 H 581 C 581,239 567,221 543,221 C 517,221 499,239 499,261 Z" fill="#F7E9C2"/>
   </g>
 </svg>
