@@ -12,11 +12,11 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | --- | --- | --- |
 | **CTA au repos (mobile et PC)** | Fond crème `#fbebc5` inchangé, tranche beige de **7 px** (`#aa8954`), ombre portée et reflet intérieur ; chevron éloigné du motif rouge/cyan | permanent |
 | **CTA hover (souris)** | Face crème `#fbebc5` → `#fff4da` uniquement ; ni déplacement, ni nouvelle ombre, ni contour, ni recoloration du chevron ou des bandes | instantané |
-| **CTA appuyé (tactile et souris)** | Enfoncement **6 px** et tranche abaissée à 1 px ; retour naturel au relâchement, sans contour coloré | 160 ms |
+| **CTA appuyé (tactile et souris)** | Enfoncement **6 px** et tranche abaissée à 1 px ; appui visible pendant 160 ms avant la navigation, sans contour coloré | 115 ms de transition + maintien 160 ms |
 | **Étudier (repos)** | Bouton rouge `#d3232b`, texte/picto crème `#f7e9c2`, tranche rouge sombre `#861c18` de 5 px | permanent |
 | **Jouer (repos)** | Bouton bleu profond `#087496`, texte/picto crème `#f7e9c2`, tranche bleu foncé `#054860` de 5 px | permanent |
 | **Étudier / Jouer (survol PC)** | Éclaircissement simple de la face (rouge `#ed3640` / bleu `#0b8fb5`), **sans transform, filtre, filet ou changement d'ombre** | 170 ms |
-| **Étudier / Jouer (appui)** | Enfoncement de 4 px ; tranche comprimée à 1 px, retour fluide | 155 ms |
+| **Étudier / Jouer (appui)** | Enfoncement de 4 px ; tranche comprimée à 1 px, affichée 160 ms avant le sous-menu ou la navigation | 115 ms de transition + maintien 160 ms |
 | **A1.1 / A1.2 / sélecteur (repos, mobile et PC)** | Tranche 3D de **2 à 4 px** proportionnelle à `--k`, beige foncé `#75644c` en inactif, rouge foncé `#991a17` pour le niveau actif. Bordure crème et dimensions inchangées | permanent |
 | **Niveaux au survol (souris)** | Fond crème 20 % + contour doux en inactif ; niveau courant rouge `#F22421` → `#FF4038`. La tranche et sa couleur restent en place, même en clic maintenu | 160 ms |
 | **Niveaux appuyés (tactile et souris)** | La face descend de la hauteur de tranche moins 1 px, ombre compressée à 1 px ; retour en 140 ms au relâchement | 140 ms |
@@ -33,6 +33,14 @@ La règle `#view-dashboard .wf-accueil .puce-niv` s'applique **aux trois boutons
 Les tokens `--wf-pill-depth`, `--wf-pill-side` et `--wf-pill-hover-outline` centralisent la tranche, sa couleur et le retour visuel souris. `:active` remplace le `scale(.97)` générique de 2.1 par un léger enfoncement physique. Le hover change uniquement la teinte de fond et l'outline via une variable : pas de nouveau `box-shadow` dans la feuille commune, car cela supprimerait la tranche. Sur `prefers-reduced-motion: reduce`, aucun déplacement n'a lieu mais l'ombre d'appui reste visible.
 
 **Périmètre limité aux pastilles encadrées :** le logo, « Mode invité », « Connexion » et l'icône Réglages restent inchangés. L'objectif n'est pas de créer une rangée de boutons épais mais un relief discret cohérent avec le grand CTA.
+
+### Enfoncement visible au clic — trois boutons principaux
+
+Le CSS `:active` seul ne suffit pas à montrer l'appui sur un clic rapide : `Commencer` et `Jouer` changent de vue dans le même événement ; `Étudier` affiche immédiatement un dialogue. `public/accueil-watfir.js` intercepte donc **seulement les clics utilisateur** (`isTrusted`), sur les trois boutons, par un écouteur `click` en **capture** sur `document`. L'état `.wf-pressing` garde le relief enfoncé pendant **160 ms**, puis le code appelle `button.click()` pour exécuter l'**action existante** et restitue la classe. Les clics de replay synthétiques (`isTrusted === false`) ne sont pas interceptés : aucune récursion. Les doubles activations pendant l'appui sont ignorées ; les boutons désactivés sont respectés.
+
+L'appui réel au doigt/souris reste immédiatement perceptible par `:active`. La transition `transform` / `box-shadow` dure **115 ms** ; l'état persiste suffisamment après relâchement pour être visible avant changement d'écran. Les taps clavier (Entrée/Espace) bénéficient du même mécanisme. **`prefers-reduced-motion: reduce` : pas de maintien ni de délai de navigation**, et aucun déplacement CSS. Les appels programmatiques de l'application ne sont pas différés non plus.
+
+Aucun moteur, aucun `onclick`, aucun état de progression n'est remplacé. Les bandes rouge/cyan du CTA ne sont jamais animées et le hover souris continue d'éclaircir seulement la face.
 
 ### Navigation secondaire et sous-menu Étudier
 
@@ -107,7 +115,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 
 ## 5. Vérification et recette
 
-Contrat automatisable : `node --test test/watfir-hover.test.cjs`. Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les **deux boutons Étudier/Jouer** au hover.
+Contrats automatisables : `node --test test/watfir-hover.test.cjs` et `node --test test/watfir-home.test.cjs` (maintien 160 ms, double clic, mouvement réduit, et replay de l'action d'origine). Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les **deux boutons Étudier/Jouer** au hover.
 
 **Avant validation finale**, faire sur Chromium/PC : capture survol CTA, A1.2, Étudier et Jouer, Connexion et roue ; puis test du dialogue Étudier ; comparer avec le repos. Vérifier aussi le press/relâchement, navigation clavier et un viewport mobile tactile simulé. La recette sur smartphone physique et le rendu réel après déploiement restent distincts d'une inspection statique du CSS.
 
