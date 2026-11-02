@@ -1,0 +1,27 @@
+/* Watfir 2.2 — document de tokens, NON inclus dans public/index.html.
+   Les variables sont des propositions, pas des remplacements globaux du Design System 2.1. */
+:root {
+  --wf-bg: #080808;
+  --wf-cream: #f7e9c2;
+  --wf-red: #f22421;
+  --wf-cyan: #02c5e7;
+  --wf-secondary: #beb6a6;
+  --wf-track: #3c3934;
+  --wf-ink: #080808;
+  --wf-success: #54e0ad;
+  --wf-error: #ef7a73;
+  --wf-info: #6fb0f2;
+  --wf-space-1: 4px;
+  --wf-space-2: 8px;
+  --wf-space-3: 12px;
+  --wf-space-4: 16px;
+  --wf-space-6: 24px;
+  --wf-space-8: 32px;
+  --wf-radius-cta: 20px;
+  --wf-radius-pill: 16px;
+  --wf-border-muted: rgba(247,233,194,.28);
+  --wf-font-ui: "Inter", system-ui, sans-serif;
+  --wf-font-display: "Instrument Serif", Georgia, serif;
+}
+/* Le rouge identité ne remplace PAS --couleur-erreur / les succès et états pédagogiques.
+   À intégrer uniquement après revue, création de tokens contextuels et validation Android. */
