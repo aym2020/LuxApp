@@ -15,7 +15,9 @@
     return proches.slice(Math.min(index, proches.length - 2), Math.min(index, proches.length - 2) + 2);
   }
 
-  // Maquette V4 : une seule ligne — marque, niveaux, séparateur, compte invité, réglages.
+  // Maquette V4 : une seule ligne — marque, niveaux, puis le groupe compte (séparateur,
+  // compte invité, réglages). Le groupe compte reste d'un bloc : si la ligne ne tient
+  // plus (petit écran, grande police), il passe ensemble à la ligne (voir CSS).
   enteteAccueilHtml = function () {
     const sync = etatSynchro();
     const compteInvite = !!ligneCompteHtml();
@@ -33,15 +35,17 @@
         '<button type="button" class="puce-niv wf-niveau-ouvrir" aria-label="Choisir un niveau" ' +
           'aria-haspopup="dialog" aria-expanded="false">' + ICONES.chevron + '</button>' +
       '</div>' +
-      (compteInvite
-        ? '<span class="wf-entete-sep" aria-hidden="true"></span>' +
-          '<button type="button" class="ac-v21-guest" onclick="ouvrirCompteDepuisAccueil(\'signin\')" ' +
-          'aria-label="Mode invité : se connecter"><span class="wf-invite-mode">Mode invité ·</span>' +
-          '<b>Connexion</b></button>'
-        : '') +
-      '<button type="button" class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(sync)) +
-        '" onclick="ouvrirPlus()">' + ICONES.reglages +
-        '<span class="ac-sync-slot" aria-hidden="true">' + pastilleSynchroHtml(sync) + '</span></button>' +
+      '<div class="wf-entete-compte">' +
+        (compteInvite
+          ? '<span class="wf-entete-sep" aria-hidden="true"></span>' +
+            '<button type="button" class="ac-v21-guest" onclick="ouvrirCompteDepuisAccueil(\'signin\')" ' +
+            'aria-label="Mode invité : se connecter"><span class="wf-invite-mode">Mode invité ·</span>' +
+            '<b>Connexion</b></button>'
+          : '') +
+        '<button type="button" class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(sync)) +
+          '" onclick="ouvrirPlus()">' + ICONES.reglages +
+          '<span class="ac-sync-slot" aria-hidden="true">' + pastilleSynchroHtml(sync) + '</span></button>' +
+      '</div>' +
     '</div>';
   };
 
@@ -103,6 +107,7 @@
       document.body.classList.remove('wf-sheet-open');
       const bouton = document.querySelector('#view-dashboard .wf-niveau-ouvrir');
       if (bouton) { bouton.setAttribute('aria-expanded', 'false'); bouton.focus(); }
+      if (typeof programmerGarde === 'function') programmerGarde(); // plus de feuille à fermer
     });
     document.body.appendChild(dialog);
     return dialog;
@@ -130,6 +135,9 @@
     const bouton = document.querySelector('#view-dashboard .wf-niveau-ouvrir');
     if (bouton) bouton.setAttribute('aria-expanded', 'true');
     dialog.querySelector('.wf-sheet-close').focus();
+    // Bouton Retour du téléphone : une entrée d'historique permet de fermer la feuille
+    // sans quitter l'accueil (navigation.js appelle wfFermerNiveaux).
+    if (typeof programmerGarde === 'function') programmerGarde();
   }
 
   // Délégation : renderAccueil() reconstruit le DOM après chaque changement de niveau.
@@ -145,3 +153,14 @@
     if (niveau !== niveauActif) changerNiveauAccueil(niveau);
   });
 })();
+
+// Utilisés par navigation.js : le bouton Retour du téléphone ferme d'abord la feuille des niveaux.
+function wfNiveauxOuverts() {
+  const dialog = document.getElementById('wf-niveaux-dialog');
+  return !!(dialog && dialog.open);
+}
+function wfFermerNiveaux() {
+  if (!wfNiveauxOuverts()) return false;
+  document.getElementById('wf-niveaux-dialog').close();
+  return true;
+}

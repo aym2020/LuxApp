@@ -407,6 +407,7 @@ function superpositionOuverte() {
   if (typeof luxMatchSuperposition === 'function' && luxMatchSuperposition()) return true; // SPEC 109 (menu, dossier, téléphone)
   if (typeof luxDemasqueSuperposition === 'function' && luxDemasqueSuperposition()) return true; // SPEC 110 (réseaux, pièce, carnet…)
   if (typeof infoInviteEstOuverte === 'function' && infoInviteEstOuverte()) return true; // SPEC 76
+  if (typeof wfNiveauxOuverts === 'function' && wfNiveauxOuverts()) return true; // Watfir 2.2 : choix du niveau
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) return true; // SPEC 66
   if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) return true; // SPEC 66
   if (typeof bulleContexteOuverte === 'function' && (bulleContexteOuverte() || exemplesOuverts())) return true; // SPEC 71
@@ -421,6 +422,7 @@ function fermerSuperposition() {
   if (typeof luxMatchFermerSuperposition === 'function' && luxMatchFermerSuperposition()) return true; // SPEC 109
   if (typeof luxDemasqueFermerSuperposition === 'function' && luxDemasqueFermerSuperposition()) return true; // SPEC 110
   if (typeof fermerInfoInvite === 'function' && fermerInfoInvite()) return true; // SPEC 76
+  if (typeof wfFermerNiveaux === 'function' && wfFermerNiveaux()) return true; // Watfir 2.2 : choix du niveau
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) { fermerDialogue(false); return true; }
   // SPEC 66 : inscription ou connexion → retour à la bienvenue.
   if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) { portailRetourBienvenue(); return true; }

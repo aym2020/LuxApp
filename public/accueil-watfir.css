@@ -60,9 +60,13 @@
 #view-dashboard .wf-accueil .ac-v21-actions > .ac-v21-journey { grid-row:11; }
 
 /* ── Header : une seule ligne (maquette y 97–193) ─────────────────────── */
-/* Repli : si la police système agrandit le texte, la ligne passe sur deux lignes au lieu de déborder. */
+/* Trois blocs : marque, niveaux, compte. Si la ligne ne tient plus (grande police),
+   le bloc compte passe entier à la ligne, à droite ; rien ne déborde ni n'est masqué.
+   row-gap ne joue qu'après un passage à la ligne : il écarte assez les deux rangées
+   pour que leurs zones de toucher (48 px de haut) ne se chevauchent pas. */
 #view-dashboard .wf-accueil .ac-ent.wf-entete {
-  display:flex; flex-wrap:wrap; align-items:center; gap:16px 0; min-height:calc(96 * var(--k)); height:auto; flex-shrink:0;
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:24px 0;
+  min-height:calc(96 * var(--k)); height:auto; flex-shrink:0;
 }
 #view-dashboard .wf-accueil .ac-marque { display:flex; align-items:center; gap:calc(9 * var(--k)); min-width:0; margin-left:0; }
 /* Logo V4 (viewBox 96×100) à l'échelle 0,985 : bandes calées sur la maquette (x 47–126, y 97–192). */
@@ -76,38 +80,52 @@
   display:block; margin:calc(10 * var(--k)) 0 0 calc(5 * var(--k)); color:var(--wf-cream); letter-spacing:0;
   font:400 max(9px, calc(25 * var(--k)))/1.05 'Watfir Etroite', 'Arial Narrow', sans-serif;
 }
-#view-dashboard .wf-accueil .puces-niveau {
-  display:flex; flex-wrap:nowrap; align-items:center; gap:calc(10 * var(--k)); margin:calc(20 * var(--k)) calc(20 * var(--k)) 0 calc(18 * var(--k));
-}
-/* Pastilles visuellement fines comme la maquette. Zone de toucher : un ::after de 48 px de haut,
-   élargi jusqu'au milieu de l'espace voisin (jamais de chevauchement entre deux boutons). */
-#view-dashboard .wf-accueil .puce-niv {
-  --bord:max(1px, calc(3.5 * var(--k)));
-  --cible-g:calc(-5 * var(--k) - var(--bord)); --cible-d:calc(-5 * var(--k) - var(--bord)); /* moitié de l'espace entre pastilles */
-  position:relative; width:auto; min-width:calc(102 * var(--k)); min-height:0; height:calc(61 * var(--k)); padding:0 calc(8 * var(--k));
-  font:700 calc(32 * var(--k))/1 var(--wf-sans); letter-spacing:0;
-  color:var(--wf-cream); background:transparent; box-shadow:none;
-  border:var(--bord) solid var(--wf-cream); border-radius:calc(18 * var(--k));
-}
+
+/* Zones de toucher : chaque bouton garde sa taille visuelle (maquette) et reçoit un ::after
+   de 48 px de haut, élargi jusqu'au milieu de l'espace qui le sépare de son voisin :
+   les zones se touchent sans jamais se recouvrir. */
 #view-dashboard .wf-accueil .puce-niv::after,
 #view-dashboard .wf-accueil .ac-v21-guest::after,
 #view-dashboard .wf-accueil .ac-menu::after {
   content:""; position:absolute; top:50%; height:48px; transform:translateY(-50%);
   left:var(--cible-g); right:var(--cible-d);
 }
-#view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-18 * var(--k) - var(--bord)); }   /* jusqu'au nom Watfir */
-#view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] { background:var(--wf-red); border-color:var(--wf-cream); color:var(--wf-cream); }
+/* Écart entre pastilles 14 (maquette 10) et marge avant le filet 14 (au lieu de 20) :
+   même largeur totale, mais A1.2 et le chevron atteignent 44 px de toucher à 360 px. */
+#view-dashboard .wf-accueil .puces-niveau {
+  --ecart:calc(14 * var(--k));
+  display:flex; flex-wrap:nowrap; align-items:center; gap:var(--ecart);
+  margin:calc(20 * var(--k)) calc(14 * var(--k)) 0 calc(18 * var(--k));
+}
+/* Le contour est dessiné par ::before (et non par border) : le ::after se mesure alors
+   depuis le bord extérieur de la pastille, sans erreur d'arrondi de l'épaisseur du trait. */
+#view-dashboard .wf-accueil .puce-niv {
+  --cible-g:calc(var(--ecart) / -2); --cible-d:calc(var(--ecart) / -2);
+  position:relative; width:auto; min-width:calc(102 * var(--k)); min-height:0; height:calc(61 * var(--k)); padding:0 calc(8 * var(--k));
+  font:700 calc(32 * var(--k))/1 var(--wf-sans); letter-spacing:0;
+  color:var(--wf-cream); background:transparent; box-shadow:none;
+  border:0; border-radius:calc(18 * var(--k));
+}
+#view-dashboard .wf-accueil .puce-niv::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  border:max(1px, calc(3.5 * var(--k))) solid var(--wf-cream); border-radius:inherit;
+}
+#view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-18 * var(--k)); }  /* jusqu'au nom Watfir */
+#view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] { background:var(--wf-red); color:var(--wf-cream); }
 #view-dashboard .wf-accueil .wf-niveau-ouvrir {
-  --cible-d:calc(-44 * var(--k) - var(--bord)); /* au-delà du filet, presque jusqu'à « Mode invité » */
+  --cible-d:calc(-45 * var(--k)); /* par-dessus le filet, jusqu'au texte « Mode invité » */
   width:calc(64 * var(--k)); min-width:0; padding:0; display:grid; place-items:center;
 }
 #view-dashboard .wf-accueil .wf-niveau-ouvrir .ic { width:calc(40 * var(--k)); height:calc(40 * var(--k)); stroke:var(--wf-cream); stroke-width:3; }
+
+/* Bloc compte, poussé à droite. Connecté : seule la roue reste. */
+#view-dashboard .wf-accueil .wf-entete-compte { display:flex; align-items:center; flex:none; margin-left:auto; }
 #view-dashboard .wf-accueil .wf-entete-sep {
   flex:none; width:max(1px, calc(2 * var(--k))); height:calc(71 * var(--k));
-  margin:calc(18 * var(--k)) 0 0 auto; background:rgba(247,233,194,.45);
+  margin:calc(18 * var(--k)) 0 0 0; background:rgba(247,233,194,.45);
 }
 #view-dashboard .wf-accueil .ac-v21-guest {
-  --cible-g:calc(-6 * var(--k)); --cible-d:calc(-16.5 * var(--k));
+  --cible-g:0px; --cible-d:calc(-5 * var(--k));
   position:relative; flex:none; min-height:0; margin:calc(15 * var(--k)) 0 0 calc(29 * var(--k)); padding:0;
   border:0; background:none; text-align:left; white-space:nowrap; cursor:pointer;
   font:400 max(9px, calc(24.4 * var(--k)))/1.3 var(--wf-sans); color:var(--wf-cream);
@@ -117,21 +135,22 @@
   display:block; color:var(--wf-cream); font:700 max(10px, calc(28 * var(--k)))/1.15 var(--wf-sans); margin-top:calc(2 * var(--k));
 }
 #view-dashboard .wf-accueil .ac-menu {
-  --cible-g:calc(-16.5 * var(--k)); --cible-d:calc(-40 * var(--k)); /* à droite : jusqu'au bord de l'écran */
+  --cible-g:calc(-28 * var(--k)); --cible-d:calc(-40 * var(--k)); /* à droite : jusqu'au bord de l'écran */
   position:relative; flex:none; width:calc(60 * var(--k)); min-width:0; height:calc(60 * var(--k)); min-height:0;
   margin:calc(20 * var(--k)) 0 0 calc(33 * var(--k)); padding:0; color:var(--wf-cream);
 }
 #view-dashboard .wf-accueil .ac-menu .ic { width:100%; height:100%; stroke-width:1.9; }
-/* Très petits écrans (≤ 340 px) : polices plancher plus larges que la maquette, on resserre
-   l'écart minimal avant le filet pour garder le header sur une ligne. */
+
+/* Repli ≤ 340 px : la ligne unique ne laisse pas 44 px de toucher aux niveaux.
+   Marque et compte en haut, niveaux sur leur propre rangée dessous, plus espacés.
+   Les deux rangées ne se recouvrent pas horizontalement : leurs zones restent séparées. */
 @media (max-width:340px) {
-  #view-dashboard .wf-accueil .puces-niveau { margin-right:0; }
-  #view-dashboard .wf-accueil .ac-v21-guest { margin-left:calc(24 * var(--k)); --cible-g:calc(-2 * var(--k)); }
-  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:calc(-20 * var(--k) - var(--bord)); }
+  #view-dashboard .wf-accueil .ac-ent.wf-entete { row-gap:12px; }
+  #view-dashboard .wf-accueil .wf-entete-compte { order:1; }
+  #view-dashboard .wf-accueil .puces-niveau { order:2; flex-basis:100%; --ecart:12px; margin:0; }
+  #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-40 * var(--k)); } /* jusqu'au bord de l'écran */
+  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:-18px; }
 }
-/* Compte connecté (ni filet ni « Connexion ») : la roue reste à droite ; l'espace libre
-   (≥ 100 px maquette) suffit aux zones de toucher du chevron et de la roue. */
-#view-dashboard .wf-accueil .puces-niveau + .ac-menu { margin-left:auto; }
 
 /* ── Hero : texte en flux, dessin remonté sous le texte ───────────────── */
 #view-dashboard .wf-accueil .ac-hero {
@@ -264,11 +283,23 @@
   content:""; position:absolute; left:0; top:calc(25 * var(--k)); bottom:calc(25 * var(--k));
   width:max(1px, calc(2 * var(--k))); background:rgba(247,233,194,.45); pointer-events:none;
 }
+/* Pictogrammes : une seule famille. Le trait affiché vaut taille/24 × stroke-width ;
+   il est ramené à ≈ 5 px maquette pour les quatre (la cible et la manette, plus chargées,
+   un peu moins). Chaque pictogramme occupe 58 px de haut dans la mise en page (marges
+   négatives pour les plus grands) : les quatre libellés restent alignés. */
 #view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child {
-  width:calc(58 * var(--k)); height:calc(58 * var(--k)); color:var(--wf-cream); stroke-width:2.4; filter:none;
+  width:calc(58 * var(--k)); height:calc(58 * var(--k)); color:var(--wf-cream); stroke-width:2.2; filter:none;
 }
-#view-dashboard .wf-accueil .ac-acces .ac-btn.exa > .ic:first-child { width:calc(78 * var(--k)); height:calc(78 * var(--k)); margin:calc(-10 * var(--k)) 0; }
-#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child { width:calc(82 * var(--k)); height:calc(82 * var(--k)); margin:calc(-12 * var(--k)) 0; color:var(--wf-cyan); }
+#view-dashboard .wf-accueil .ac-acces .ac-btn.err > .ic:first-child { stroke-width:2.05; }
+#view-dashboard .wf-accueil .ac-acces .ac-btn.exa > .ic:first-child {
+  width:calc(68 * var(--k)); height:calc(68 * var(--k)); margin:calc(-5 * var(--k)) 0; stroke-width:1.9;
+}
+/* Manette : son dessin est bas dans sa grille (y 9–19 sur 24) ; elle remonte de 5,5 pour
+   que son centre optique s'aligne sur celui des trois autres. */
+#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child {
+  width:calc(66 * var(--k)); height:calc(66 * var(--k)); margin:calc(-9.5 * var(--k)) 0 calc(1.5 * var(--k));
+  stroke-width:1.8; color:var(--wf-cyan);
+}
 #view-dashboard .wf-accueil .ac-acces .ac-btn > b,
 #view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > b {
   color:var(--wf-cream); white-space:nowrap; letter-spacing:0;
@@ -289,11 +320,19 @@
 #view-dashboard .wf-accueil .ac-menu:focus-visible,
 #view-dashboard .wf-accueil .ac-v21-guest:focus-visible { outline:3px solid var(--wf-cyan); outline-offset:3px; }
 
-@media (prefers-reduced-motion:reduce) {
-  #view-dashboard .wf-accueil .ac-piste i { transition:none; }
-}
+/* ── Retour d'appui ──────────────────────────────────────────────────────
+   CTA, raccourcis et « Voir mon chemin » : effet commun SPEC 57 (components.css).
+   Pastilles : légère réduction (style.css). Les boutons sans fond (Connexion, réglages)
+   s'atténuent dès le toucher, sans délai, et reviennent en 150 ms au relâchement. */
+#view-dashboard .wf-accueil .ac-v21-guest,
+#view-dashboard .wf-accueil .ac-menu { touch-action:manipulation; transition:opacity 150ms ease-out; }
+#view-dashboard .wf-accueil .ac-v21-guest:active,
+#view-dashboard .wf-accueil .ac-menu:active { opacity:.6; transition-duration:0s; }
 
-/* ── Bottom sheet natif : le retour Android ferme la feuille ──────────── */
+/* ── Bottom sheet natif ───────────────────────────────────────────────────
+   Fermeture : « Fermer », toucher le voile, Échap ou le bouton Retour du téléphone
+   (navigation.js). La feuille monte du bas et y redescend par le même chemin, sans
+   rebond ; mouvement réduit : elle apparaît et disparaît sans glisser. */
 body.wf-sheet-open { overflow:hidden; }
 .wf-niveaux-dialog {
   --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-bg:#080808; --wf-cyan:#02c5e7;
@@ -302,8 +341,17 @@ body.wf-sheet-open { overflow:hidden; }
   background:#141210; color:var(--wf-cream);
   border:1px solid #595248; border-bottom:0; border-radius:22px 22px 0 0;
   padding:0; overflow-y:auto; overscroll-behavior:contain;
+  transform:translateY(100%);
+  transition:transform 240ms cubic-bezier(.32,.72,0,1), overlay 240ms allow-discrete, display 240ms allow-discrete;
 }
-.wf-niveaux-dialog::backdrop { background:rgba(0,0,0,.73); }
+.wf-niveaux-dialog[open] { transform:none; }
+@starting-style { .wf-niveaux-dialog[open] { transform:translateY(100%); } }
+.wf-niveaux-dialog::backdrop {
+  background:rgba(0,0,0,0);
+  transition:background-color 240ms ease-out, overlay 240ms allow-discrete, display 240ms allow-discrete;
+}
+.wf-niveaux-dialog[open]::backdrop { background:rgba(0,0,0,.73); }
+@starting-style { .wf-niveaux-dialog[open]::backdrop { background:rgba(0,0,0,0); } }
 .wf-niveaux-dialog .wf-sheet-content { padding:14px 20px calc(23px + env(safe-area-inset-bottom)); }
 .wf-niveaux-dialog .wf-sheet-handle { width:62px; height:5px; background:#6a6156; border-radius:8px; margin:0 auto 16px; }
 .wf-niveaux-dialog .wf-sheet-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:15px; }
@@ -318,4 +366,14 @@ body.wf-sheet-open { overflow:hidden; }
   font:800 16px Inter,system-ui,sans-serif;
 }
 .wf-niveaux-dialog .wf-sheet-level.is-current { background:var(--wf-red); }
+.wf-niveaux-dialog button { touch-action:manipulation; transition:transform 100ms ease-out, opacity 150ms ease-out; }
+.wf-niveaux-dialog .wf-sheet-level:active { transform:scale(.97); }
+.wf-niveaux-dialog .wf-sheet-close:active { opacity:.6; transition-duration:0s; }
 .wf-niveaux-dialog button:focus-visible { outline:3px solid var(--wf-cyan); outline-offset:3px; }
+
+@media (prefers-reduced-motion:reduce) {
+  .wf-niveaux-dialog, .wf-niveaux-dialog[open] { transform:none; transition:none; }
+  .wf-niveaux-dialog::backdrop { transition:none; }
+  .wf-niveaux-dialog button, #view-dashboard .wf-accueil .ac-v21-guest, #view-dashboard .wf-accueil .ac-menu { transition:none; }
+  .wf-niveaux-dialog .wf-sheet-level:active { transform:none; opacity:.7; }
+}

@@ -115,6 +115,59 @@ test('Header V4 sur une ligne : marque, niveaux, séparateur, invité, réglages
   assert.doesNotMatch(h,/ac-v21-controls/,'plus de deuxième ligne');
   ctx.ligneCompteHtml=()=> '';
   assert.doesNotMatch(ctx.enteteAccueilHtml(),/wf-entete-sep|ac-v21-guest/,'compte connecté : ni séparateur ni lien');
+  assert.match(ctx.enteteAccueilHtml(),/<div class="wf-entete-compte"><button type="button" class="ac-menu"/,'connecté : la roue seule dans le bloc compte');
+});
+test('Header : le bloc compte passe à la ligne d\'un seul tenant ; repli ≤ 340 px',()=>{
+  const {ctx}=setup();
+  const h=ctx.enteteAccueilHtml();
+  const compte=h.slice(h.indexOf('wf-entete-compte'));
+  for (const c of ['wf-entete-sep','ac-v21-guest','ac-menu']) assert.ok(compte.includes(c),c+' dans le bloc compte');
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  assert.match(css,/\.wf-entete-compte \{[^}]*margin-left:auto/);
+  const repli=css.slice(css.indexOf('@media (max-width:340px)'));
+  assert.match(repli,/\.puces-niveau \{[^}]*order:2; flex-basis:100%/,'niveaux sur leur propre rangée');
+  // Contour des pastilles par ::before : la zone de toucher se calcule depuis le bord extérieur.
+  assert.match(css,/\.puce-niv \{[^}]*border:0;/);
+  assert.match(css,/\.puce-niv::before \{[^}]*border:max\(1px, calc\(3\.5 \* var\(--k\)\)\) solid/);
+  assert.match(css,/--cible-g:calc\(var\(--ecart\) \/ -2\); --cible-d:calc\(var\(--ecart\) \/ -2\)/,'moitié de l\'écart de chaque côté');
+});
+test('Pictogrammes : même épaisseur de trait affichée, libellés alignés',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const regle=cls=>{
+    const base=css.match(/\.ac-acces \.ac-btn > \.ic:first-child \{([^}]*)\}/)[1];
+    const propre=(css.match(new RegExp('\\.ac-acces \\.ac-btn\\.'+cls+' > \\.ic:first-child \\{([^}]*)\\}'))||[])[1]||'';
+    const taille=+((propre.match(/width:calc\(([\d.]+)/)||base.match(/width:calc\(([\d.]+)/))[1]);
+    const trait=+((propre.match(/stroke-width:([\d.]+)/)||base.match(/stroke-width:([\d.]+)/))[1]);
+    const marges=(propre.match(/margin:calc\((-?[\d.]+) \* var\(--k\)\) 0(?: calc\((-?[\d.]+) \* var\(--k\)\))?/)||[]);
+    const haut=marges[1]?+marges[1]:0, bas=marges[2]!==undefined?+marges[2]:haut;
+    return {taille,trait:taille/24*trait,place:taille+haut+bas};
+  };
+  const t={rev:regle('rev'),exa:regle('exa'),err:regle('err'),jeux:regle('jeux')};
+  assert.equal(t.jeux.taille,66); assert.equal(t.exa.taille,68);
+  for (const [n,v] of Object.entries(t)) {
+    assert.ok(v.trait>=4.8&&v.trait<=5.5,n+' : trait affiché '+v.trait.toFixed(2)+' px maquette');
+    assert.ok(Math.abs(v.place-58)<0.01,n+' : 58 px de haut dans la mise en page');
+  }
+  assert.match(css,/\.ac-btn\.jeux > \.ic:first-child \{[^}]*color:var\(--wf-cyan\)/,'Jeux reste cyan');
+});
+test('Interactions : retour d\'appui, feuille fermée par Retour, mouvement réduit',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  assert.match(css,/\.ac-v21-guest:active,\s*#view-dashboard \.wf-accueil \.ac-menu:active \{ opacity:\.6; transition-duration:0s; \}/);
+  assert.match(css,/\.wf-sheet-level:active \{ transform:scale\(\.97\); \}/);
+  const reduit=css.slice(css.lastIndexOf('@media (prefers-reduced-motion:reduce)'));
+  assert.match(reduit,/\.wf-niveaux-dialog, \.wf-niveaux-dialog\[open\] \{ transform:none; transition:none; \}/);
+  const nav=fs.readFileSync(path.join(root,'public/navigation.js'),'utf8');
+  assert.match(nav,/function superpositionOuverte\(\) \{[\s\S]*?wfNiveauxOuverts\(\)[\s\S]*?\n\}/);
+  assert.match(nav,/function fermerSuperposition\(\) \{[\s\S]*?wfFermerNiveaux\(\)[\s\S]*?\n\}/);
+  // Ouverture puis Retour (navigation.js) : la feuille se ferme et rend le focus au chevron.
+  const {ctx,d,click}=setup();
+  let gardes=0; ctx.programmerGarde=()=>{gardes++};
+  click('open');
+  assert.equal(ctx.wfNiveauxOuverts(),true);
+  assert.equal(ctx.wfFermerNiveaux(),true);
+  assert.equal(d.dialog.open,false);
+  assert.equal(ctx.wfFermerNiveaux(),false,'rien à fermer');
+  assert.equal(gardes,2,'garde d\'historique posée à l\'ouverture, retirée à la fermeture');
 });
 test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',()=>{
   const hero=fs.readFileSync(path.join(root,'public/art/watfir-hero-v4.svg'),'utf8');
@@ -124,7 +177,8 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
   for (const svg of [hero,logo]) {
     assert.doesNotMatch(svg,/<rect[^>]*width="100%"|<circle/,'fond transparent, pas de soleil');
     const couleurs=new Set((svg.match(/#[0-9A-Fa-f]{6}/g)||[]).map(c=>c.toUpperCase()));
-    for (const c of couleurs) assert.ok(['#02C5E7','#F22421','#F7E9C2'].includes(c),c);
+    // Palette Watfir : cyan, rouge, crème et le noir du fond (contours du hero corrigé).
+    for (const c of couleurs) assert.ok(['#02C5E7','#F22421','#F7E9C2','#080808'].includes(c),c);
   }
   const {ctx}=setup();
   assert.match(ctx.enteteAccueilHtml(),/src="art\/watfir-logo-v4\.svg\?v=\d+"[^>]*width="96" height="100"/);

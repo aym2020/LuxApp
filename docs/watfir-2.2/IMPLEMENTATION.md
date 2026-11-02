@@ -33,7 +33,7 @@ Les sources supplémentaires dans `docs/watfir-2.2/assets/` servent à retravail
 
 - Boutons directs : niveau actif et, si disponible, autre sous-niveau de la famille courante (maximum deux visibles).
 - Flèche : ouvre `<dialog>` natif en panneau bas, listes A1/A2/B1… alimentées par les niveaux réels.
-- Fermer, Échap, bouton Retour Android (comportement natif du dialogue), clic sur le fond ; restitution du focus au nouveau chevron.
+- Fermer, Échap, bouton Retour Android, clic sur le fond ; restitution du focus au nouveau chevron. Le Retour passe par `navigation.js` (`wfNiveauxOuverts` / `wfFermerNiveaux`, voir § 11), plus seulement par le comportement natif du dialogue.
 - Si une famille n'a qu'un niveau, une seule puce est visible. Si elle en a plus de deux, l'actif et son plus proche voisin restent visibles.
 - Les niveaux absents des leçons ne sont jamais proposés ni acceptés.
 
@@ -126,8 +126,52 @@ Aucun défilement vertical ni horizontal à ces tailles ; police ×1,3 : interva
 | 393 | 52×48 | 46×48 | 49×48 | 71×48 | 49×48 |
 | 430 | 58×48 | 52×48 | 54×48 | 78×48 | 54×48 |
 
+*(Tableau remplacé par celui du § 11.)*
+
 Limite : sous 360 px, A1.2 et le chevron restent sous 44 px de large (l'espacement des pastilles de la maquette ne le permet pas sans chevauchement) ; tous dépassent le minimum WCAG 2.2 AA de 24 px. Header sur une ligne de 320 à 1920 px (≤ 340 px : écart minimal avant le filet réduit), deux lignes seulement avec police agrandie.
 
-## 11. Retour arrière ciblé
+## 11. Finition finale avant gel (02/11/2026)
+
+Passe guidée par le skill `apple-design` (Emil Kowalski) : retour d'appui immédiat, chemin d'entrée/sortie symétrique de la feuille, mouvement réduit, cohérence optique. Identité Watfir, SVG, palette, typographies, hero, CTA, textes et données inchangés.
+
+**Pictogrammes** (`.ac-acces`) : une seule famille. Trait affiché = taille/24 × `stroke-width`, ramené à ≈ 5 px maquette pour les quatre (avant : 5,8 / 7,8 / 5,8 / 8,2).
+
+| Raccourci | Taille (px maquette) | stroke-width | Trait affiché |
+| --- | --- | --- | --- |
+| S'entraîner | 58 | 2,2 | 5,3 |
+| Examens | 68 (avant 78) | 1,9 | 5,4 |
+| Erreurs | 58 | 2,05 | 5,0 |
+| Jeux (cyan) | 66 (avant 82) | 1,8 | 4,9 |
+
+Chaque pictogramme occupe 58 px de haut dans la mise en page (marges négatives) : libellés alignés au pixel. La manette, dessinée bas dans sa grille (y 9–19), remonte de 5,5 px maquette : les quatre centres optiques sont à 55–56 px du haut de la case (mesuré).
+
+**Header** :
+- Bloc compte `.wf-entete-compte` (filet, Connexion, réglages) : poussé à droite ; s'il ne tient plus (grande police), il passe à la ligne d'un seul tenant, à droite. `row-gap` de 24 px : les zones de toucher des deux rangées ne se recouvrent pas.
+- Contour des pastilles dessiné par `::before` (et non `border`) : le `::after` de toucher se calcule depuis le bord extérieur, sans erreur d'arrondi (l'ancienne version se recouvrait de 0,7 à 1,4 px selon l'écran).
+- Écart entre pastilles 14 (maquette 10) et marge avant le filet 14 (au lieu de 20) : même largeur totale à 360 px, différence visuelle ≈ 1 px.
+- Repli ≤ 340 px : marque et compte en haut, niveaux sur leur propre rangée (écart 12 px). Hauteur du header 65 px à 320 px, accueil toujours sans défilement en 320×568.
+- « Mode invité » : non agrandi. À 360 px, le header n'a plus que ≈ 1 px de marge ; toute hausse de taille ferait passer le bloc compte à la ligne ou réduirait les zones de toucher sous 44 px. Il reste à 9,3 px à 360 px (10,2 px à 393, 11,1 px à 430).
+
+Zones de toucher mesurées (largeur × hauteur, px CSS, balayage `elementFromPoint`), aucun chevauchement à toutes les largeurs, invité et connecté :
+
+| Largeur | A1.1 | A1.2 | Chevron | Connexion | Réglages | Header |
+| --- | --- | --- | --- | --- | --- | --- |
+| 320 | 54×48 | 47×48 | 46×48 | 57×48 | 44×48 | 2 rangées |
+| 360 | 49×48 | 45×48 | 45×48 | 59×48 | 50×48 | 1 ligne |
+| 393 | 53×48 | 49×48 | 49×48 | 64×48 | 54×48 | 1 ligne |
+| 430 | 58×48 | 53×48 | 54×48 | 70×48 | 59×48 | 1 ligne |
+| 1440 | 71×48 | 65×48 | 65×48 | 84×48 | 72×48 | 1 ligne |
+
+**Interactions** :
+- Connexion et réglages s'atténuent (opacité 0,6) dès le toucher, sans transition à l'appui, et reviennent en 150 ms. CTA, raccourcis et « Voir mon chemin » gardent l'effet commun SPEC 57 ; pastilles : réduction 0,97 (style.css).
+- Feuille des niveaux : monte du bas et y redescend (240 ms, sans rebond), voile en fondu ; niveaux réduits à 0,97 à l'appui. `prefers-reduced-motion` : ni glissement ni transition.
+- Bouton Retour du téléphone : la feuille est déclarée à `navigation.js` (`superpositionOuverte` / `fermerSuperposition`). Une garde d'historique est posée à l'ouverture et retirée à la fermeture (`programmerGarde`) : Retour ferme la feuille et reste sur l'accueil, y compris là où le dialogue natif ne réagit pas au Retour.
+- Focus visible (contour cyan 3 px) vérifié au clavier sur les 11 boutons de l'accueil.
+
+**CSS consolidé** : règle « connecté » `.puces-niveau + .ac-menu` supprimée (remplacée par le bloc compte), doublon `prefers-reduced-motion` de la barre retiré (déjà dans `accueil-v21.css`), surcharges ≤ 340 px remplacées par le repli. `justify-content:flex-start` explicite sur le header (style.css impose `space-between`). Versions `watfir-v4-5`.
+
+**Tests** : `test/watfir-home.test.cjs` passe de 9 à 12 tests (bloc compte et repli, trait des pictogrammes, retour d'appui / Retour / mouvement réduit). Le test SVG accepte le noir `#080808` de la palette, introduit par la correction du hero (commit 26611e1) qui faisait échouer ce test.
+
+## 12. Retour arrière ciblé
 
 Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `accueil-watfir.js` de `public/index.html`. Le rendu 2.1 reprend alors sans toucher au moteur, à la progression ni aux jeux. Ne jamais supprimer les clés de stockage.
