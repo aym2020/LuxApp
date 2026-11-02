@@ -124,6 +124,21 @@ Use case: game UI overlay asset. Painterly pixel-art game style, exactly matchin
 ### Intégration prévue (dès réception des images)
 
 1. Détourage du vert si besoin, recadrage serré, réduction aux tailles d'affichage ×2 (doigts environ 150×260 px, pouce environ 180×320 px), WebP avec transparence, moins de 40 Ko chacune, dans `public/art/` (`cringr-main-doigts.webp`, `cringr-main-pouce.webp`).
-2. Pose par `.ld-dating-phone::before` et `::after`, en `pointer-events:none`. Les doigts entrent par le bord gauche de l'écran, le pouce et la paume sortent par le bas à droite.
+2. Pose par des pseudo-éléments de `.ld-selection` (ceux de `.ld-dating-phone` dessinent les boutons latéraux depuis le §12), en `pointer-events:none`. Les doigts entrent par le bord gauche de l'écran, le pouce et la paume sortent par le bas à droite.
 3. La main ne recouvre ni la bio, ni le badge, ni les boutons. Elle n'est affichée que sur mobile (moins de 768 px).
 4. Captures à 320×600, 360×740, 393×763, 393×852 et 430×932 ; tests Cringr et suite RED FLAG ; validation visuelle sur Samsung.
+
+## 12. Téléphone réaliste : écran à plat, vitre, lumière (css v36)
+
+Retour produit sur Samsung : l'écran paraissait encore en relief, le téléphone n'était pas assez vivant ni tangible.
+
+Correctif, CSS seulement, aucune dimension de contenu modifiée :
+- écran noir uni d'application (`#0d080e`, comme un écran OLED) : plus de dégradés prune ni de bande ambrée ;
+- photo de profil posée à plat dans l'appli : coins arrondis à 16 px, sans filet ni ombre portée ;
+- vitre (`.ld-dating-screen::after`, non interactive) : reflet diagonal très léger et bord d'écran enfoncé sous le verre ;
+- tranche métallique d'un pixel autour du verre noir, boutons de volume à gauche et de verrouillage à droite (`.ld-dating-phone::before` et `::after`) ;
+- lumière de l'écran qui éclaire la pièce sombre, à la couleur du profil affiché (ambre pour Milo et Tom, lavande pour Noah, rose pour le profil généré), avec un fondu au changement de profil ;
+- l'heure 21:30 reste figée : c'est l'heure du récit (soirée du rendez-vous), commune avec Lux Match.
+
+Vérifié en Chromium à 320×600, 393×763 et 430×932 sans défilement, fenêtre « Quitter » comprise. Tests Node : 302 réussis, 5 échecs connus. `test-lux-demasque.sh complet` : seul `test_lux_demasque_audio` échoue, comme avant.
+Non vérifié : Samsung.

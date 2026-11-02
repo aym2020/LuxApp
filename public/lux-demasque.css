@@ -371,16 +371,33 @@
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone{
   position:relative;width:100%;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;padding:7px;
-  /* Bordure plate et noire d'un vrai téléphone : aucun relief, aucune ombre. */
-  border:1px solid #2b2130;border-radius:32px;background:#09070a;box-shadow:none;
+  /* SPEC 118 §12 : vrai téléphone. Verre noir, tranche métallique d'un pixel, lumière de l'écran
+     qui éclaire la pièce (couleur du profil affiché). Aucun relief en escalier. */
+  --cr-lueur:rgba(214,120,170,.30);
+  border:1px solid #4a3d4c;border-radius:34px;background:#050406;
+  box-shadow:0 0 0 1px #120d13,0 0 70px -6px var(--cr-lueur),0 0 160px -30px var(--cr-lueur);
+  transition:box-shadow .5s ease;
 }
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone:has(.ld-photo-milo),#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone:has(.ld-photo-tom){--cr-lueur:rgba(240,150,90,.30)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone:has(.ld-photo-noah){--cr-lueur:rgba(150,130,230,.32)}
+/* Boutons latéraux : volume à gauche, verrouillage à droite (tranche, pas de relief). */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::before,#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::after{
+  content:"";position:absolute;width:3px;border-radius:2px;background:#3a2f3c;pointer-events:none;
+}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::before{left:-4px;top:110px;height:58px;
+  background:linear-gradient(#3a2f3c 0 24px,transparent 24px 32px,#3a2f3c 32px)}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::after{right:-4px;top:132px;height:44px}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen{
   width:100%;min-width:0;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;gap:8px;
-  padding:8px 8px 10px;border-radius:25px;
-  background:radial-gradient(100% 40% at 50% 100%,rgba(240,162,111,.18),transparent),
-    radial-gradient(120% 45% at 50% 0%,#2f1a30,#1b1019 70%);
+  position:relative;padding:8px 6px 10px;border-radius:27px;background:#0d080e;
   /* Coupe le glissement horizontal de la carte ; en hauteur, rien n'est jamais masqué. */
   overflow:hidden;overflow-x:clip;overflow-y:visible;
+}
+/* Vitre : reflet diagonal très léger et bord d'écran enfoncé sous le verre (rien ne dépasse). */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen::after{
+  content:"";position:absolute;inset:0;z-index:7;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(118deg,rgba(255,255,255,.07) 0,rgba(255,255,255,.025) 32%,transparent 32.2%,transparent 100%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.7),inset 0 0 18px rgba(0,0,0,.5);
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-status{
   display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;flex:none;
@@ -410,8 +427,8 @@
   position:relative;display:flex;flex-direction:column;justify-content:flex-end;
   /* overflow:clip (et non hidden) : la hauteur minimale automatique reste celle du contenu. */
   flex:0 1 560px;min-width:0;overflow:hidden;overflow:clip;
-  border:2px solid #7a4a58;border-radius:8px;background:var(--cr-surface);isolation:isolate;
-  box-shadow:0 4px 0 var(--cr-ombre);touch-action:pan-y;user-select:none;
+  border:0;border-radius:16px;background:var(--cr-surface);isolation:isolate;
+  box-shadow:none;touch-action:pan-y;user-select:none;
   cursor:grab;transition:transform .18s ease;
 }
 /* Place réservée au portrait au-dessus des informations (le portrait reste visible même sur 320×600). */
