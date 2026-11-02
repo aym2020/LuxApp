@@ -10,7 +10,7 @@ L'accueil Watfir reste gelé **au repos** : mêmes dimensions, même grille, mê
 
 | Rôle | Interaction | Durée |
 | --- | --- | --- |
-| **Action primaire** | Fond crème `#FB EBC5` (sans espace : `#fbebc5`) → **crème doré `#ffe0aa`** ; chevron noir → rouge Watfir ; **aucun déplacement, aucun glow ou ombre** ; bandes d'angle préservées | 175 ms |
+| **Action primaire** | Fond crème `#fbebc5` → **crème doré `#ffe0aa`** ; chevron noir → rouge Watfir ; **aucun déplacement, aucun glow ou ombre** ; bandes d'angle préservées | 175 ms |
 | **Choix secondaire (raccourcis)** | Fond **cyan 18 %**, filet cyan intérieur 2 px, pictogramme crème → cyan et remontée limitée à 2 px ; les quatre cellules réagissent pareil | 175 ms |
 | **Niveau inactif** | Fond crème 20 % + contour très léger | 160 ms |
 | **Niveau courant** | Rouge `#F22421` → `#FF4038` | 160 ms |
