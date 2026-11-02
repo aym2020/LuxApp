@@ -1,5 +1,7 @@
 # PLAYBOOK — LuxembourgishApp
 
+> **BRANCHE 2.2 / NOUVELLE DA WATFIR (02/11/2026) :** [docs/watfir-2.2/README.md](docs/watfir-2.2/README.md) — charte Retro 1984, accueil V4, assets vectoriels et prototype autonome. **Documentation uniquement, pas d'intégration au produit ni de validation Samsung.** Pour une intervention UI sur `2.2`, lire ce dossier ET les garde-fous existants `2.1`, respecter la source de vérité GitHub. Ne modifier `main` ou `2.1` pour cette DA que sur instruction expresse.
+
 > **RED FLAG / CRINGR — point d'entrée éditorial :** [docs/red-flag/README.md](docs/red-flag/README.md) (index des références, catalogue, preuves/leurres et scénarios actifs). Lire ce dossier pour toute création ou refonte narrative du jeu, en plus de SPEC 110/113 et du suivi `main/docs/LUX-DEMASQUE-TODO.md`. Les idées ne sont ni implémentées ni validées.
 
 
