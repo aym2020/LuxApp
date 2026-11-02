@@ -6,18 +6,18 @@
   --ux-hover-wash: rgba(247,233,194,.17);
   --ux-hover-cyan-wash: rgba(2,197,231,.18);
   --ux-hover-cyan: #02c5e7;
-  --ux-hover-cta-gold: #ffe0aa;
   --ux-hover-bright: #fff4da;
   --ux-hover-red: #ff4038;
 }
 
-/* La teinte du CTA est enregistrée pour animer le premier aplat du gradient,
-   sans faire fondre ses bandes rouge/cyan, changer son ombre ou déplacer la carte.
-   Navigateurs sans @property : le hover reste utilisable, la teinte change sans fondu. */
-@property --wf-cta-surface {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: #fbebc5;
+/* Contour du CTA : propriété enregistrée pour interpolation de l'angle.
+   Important : inherits:true transmet la valeur du bouton à son ::after.
+   La valeur finale 359deg évite la normalisation à 0deg dans conic-gradient.
+   Sans @property le bouton reste 3D et cliquable, seul le dessin animé disparaît. */
+@property --wf-cta-outline {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
 }
 
 /* Alignement de marque, sur PC ET mobile : Jeux cesse d'être le seul pictogramme cyan. */
@@ -65,25 +65,25 @@
   .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph {transform:rotate(15deg);}
   :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow {transform:translateX(5px);}
 
-  /* CTA : remplacement couleur crème → crème doré, SANS élévation ni glow.
-     Gradient identique au CSS d'accueil : seul le 1er stop est animé.
-     Les angles rouges et cyan sont strictement préservés. */
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
-    --wf-cta-surface:#fbebc5;
-    background:linear-gradient(135deg,
-      var(--wf-cta-surface) calc(100% - 51.6 * var(--k)),
-      var(--wf-red) 0 calc(100% - 31.8 * var(--k)),
-      var(--wf-cyan) 0);
-    transition:--wf-cta-surface 175ms ease;
+  /* CTA Watfir : léger soulèvement sur souris et tracé rouge progressif.
+     La tranche beige est permanente (accueil-watfir.css). Aucun fond doré.
+     :hover ne retire jamais le contour pendant que :active est maintenu. */
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:disabled):not([aria-disabled="true"]) {
+    --wf-cta-outline:359deg;
   }
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not([aria-disabled="true"]) {
-    --wf-cta-surface:var(--ux-hover-cta-gold);
-    transform:none;filter:none;box-shadow:none;
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:disabled):not([aria-disabled="true"])::after {
+    opacity:1;
+  }
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not(:disabled):not([aria-disabled="true"]) {
+    transform:translateY(-2px);
+    box-shadow:0 9px 0 #aa8954,0 20px 24px rgba(0,0,0,.50),
+               inset 0 2px 0 rgba(255,255,255,.78),
+               inset 0 -2px 0 rgba(126,87,39,.20);
   }
   #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
-    transition:color 175ms ease;
+    transition:color 170ms ease;
   }
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not([aria-disabled="true"]) .cs-rond {
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:disabled):not([aria-disabled="true"]) .cs-rond {
     color:var(--wf-red);
   }
 
@@ -143,6 +143,11 @@
   .wf-niveaux-dialog .wf-sheet-level.is-current:hover:not(:active):not(:disabled) {background-color:var(--ux-hover-red);}
 }
 
+/* Touch Android : le chevron prend la couleur d'action au maintien du doigt. */
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]) .cs-rond {
+  color:var(--wf-red);
+}
+
 /* Le clavier bénéficie du même repère accessible que les boutons Watfir existants. */
 :where(.ux-hover-lift,.ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon):focus-visible {
   outline:3px solid var(--wf-cyan,#02c5e7);outline-offset:3px;
@@ -153,6 +158,7 @@
          .ux-hover-lift,.ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon,
          .ux-hover-glyph,.ux-hover-arrow),
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after,
   #view-dashboard .wf-accueil .ac-v21-cta .cs-rond,
   #view-dashboard .wf-accueil .puce-niv,
   #view-dashboard .wf-accueil .ac-acces .ac-btn,
