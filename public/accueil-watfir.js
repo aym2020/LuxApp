@@ -216,8 +216,9 @@
     erreurs: () => startSession('errors')
   };
 
-  // Les trois actions changent de vue (ou ouvrent un dialogue) immédiatement :
-  // un tap bref ne laisse sinon jamais le temps de voir :active. Intercepter
+  // Les trois actions de contenu et les trois pastilles de niveau peuvent
+  // changer de vue, re-render l'accueil ou ouvrir un dialogue immédiatement.
+  // Un tap bref ne laisse sinon jamais le temps de voir :active. Intercepter
   // UNIQUEMENT le click utilisateur en capture, maintenir le creux 160 ms, puis
   // rejouer le vrai clic natif : les onclick et routes 2.1 restent inchangés.
   // Le replay non fiable (isTrusted=false) traverse sans délai ni récursion.
@@ -227,7 +228,8 @@
     if (event.isTrusted === false) return;
     const button = event.target.closest(
       '#view-dashboard .wf-accueil .carte-suite.ac-v21-cta,' +
-      '#view-dashboard .wf-accueil .wf-choix-activite .wf-activite'
+      '#view-dashboard .wf-accueil .wf-choix-activite .wf-activite,' +
+      '#view-dashboard .wf-accueil .puces-niveau .puce-niv'
     );
     if (!button || button.disabled || button.getAttribute('aria-disabled') === 'true') return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
