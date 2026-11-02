@@ -1,6 +1,6 @@
 # Système d'interactions au survol — LuxApp / Watfir 2.2
 
-**Date :** 2 novembre 2026 · **Mise à jour :** 3 novembre 2026 (navigation Étudier / Jouer)
+**Date :** 2 novembre 2026 · **Mise à jour :** 3 novembre 2026 (six boutons avec appui 3D)
 **Périmètre :** états repos / souris / appui tactile du CTA Watfir, plus survol du shell et des composants HTML. Aucune animation de gameplay, aucune modification des moteurs, de la progression ou des JSON.  
 **Fichier actif :** `public/hover-interactions.css`, chargé **après** les styles d'écrans par `public/index.html`.
 
@@ -19,7 +19,7 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | **Étudier / Jouer (appui)** | Enfoncement de 4 px ; tranche comprimée à 1 px, affichée 160 ms avant le sous-menu ou la navigation | 115 ms de transition + maintien 160 ms |
 | **A1.1 / A1.2 / sélecteur (repos, mobile et PC)** | Tranche 3D de **2 à 4 px** proportionnelle à `--k`, beige foncé `#75644c` en inactif, rouge foncé `#991a17` pour le niveau actif. Bordure crème et dimensions inchangées | permanent |
 | **Niveaux au survol (souris)** | Fond crème 20 % + contour doux en inactif ; niveau courant rouge `#F22421` → `#FF4038`. La tranche et sa couleur restent en place, même en clic maintenu | 160 ms |
-| **Niveaux appuyés (tactile et souris)** | La face descend de la hauteur de tranche moins 1 px, ombre compressée à 1 px ; retour en 140 ms au relâchement | 140 ms |
+| **Niveaux appuyés (tactile et souris)** | Les deux niveaux affichés et le chevron descendent de `--wf-pill-depth - 1px` (2–4 px moins 1) ; tranche comprimée à 1 px ; **maintien 160 ms avant sélection / ouverture du sheet**, même après un tap bref | 115 ms de transition + maintien 160 ms |
 | **Réglages** | Rotation de 15° du pictogramme | 190 ms |
 | **Connexion** | Soulignement rouge de 2 px | immédiat |
 | **Contrôles 2.1 partagés** | Élévation neutre de 2 px + luminosité ×1,10, aucune nouvelle couleur métier | 190 ms |
@@ -30,13 +30,13 @@ Les deux pictogrammes de la navigation secondaire sont dessinés dans le même s
 
 La règle `#view-dashboard .wf-accueil .puce-niv` s'applique **aux trois boutons du header** (`A1.1`, `A1.2` et `wf-niveau-ouvrir`). Le relief est une ombre externe, sans changement de `height`, `padding`, `border-radius`, `gap` ou position du groupe. La bordure crème demeure gérée par `::before`. L'élément `::after`, qui élargit les zones tactiles à 48 px, est **préservé** et ne doit jamais être utilisé pour le relief.
 
-Les tokens `--wf-pill-depth`, `--wf-pill-side` et `--wf-pill-hover-outline` centralisent la tranche, sa couleur et le retour visuel souris. `:active` remplace le `scale(.97)` générique de 2.1 par un léger enfoncement physique. Le hover change uniquement la teinte de fond et l'outline via une variable : pas de nouveau `box-shadow` dans la feuille commune, car cela supprimerait la tranche. Sur `prefers-reduced-motion: reduce`, aucun déplacement n'a lieu mais l'ombre d'appui reste visible.
+Les tokens `--wf-pill-depth`, `--wf-pill-side` et `--wf-pill-hover-outline` centralisent la tranche, sa couleur et le retour visuel souris. `:active` et **`.wf-pressing`** partagent exactement la même règle de compression : le clic rapide garde la pastille enfoncée **160 ms avant l'action**, comme le CTA principal et Étudier/Jouer. Les transitions physiques durent 115 ms. Le hover change uniquement la teinte de fond et l'outline via une variable : pas de nouveau `box-shadow` dans la feuille commune, car cela supprimerait la tranche. Sur `prefers-reduced-motion: reduce`, aucun déplacement ni délai de sélection n'a lieu, mais le retour visuel d'ombre reste disponible.
 
 **Périmètre limité aux pastilles encadrées :** le logo, « Mode invité », « Connexion » et l'icône Réglages restent inchangés. L'objectif n'est pas de créer une rangée de boutons épais mais un relief discret cohérent avec le grand CTA.
 
-### Enfoncement visible au clic — trois boutons principaux
+### Enfoncement visible au clic — six boutons 3D de l'accueil
 
-Le CSS `:active` seul ne suffit pas à montrer l'appui sur un clic rapide : `Commencer` et `Jouer` changent de vue dans le même événement ; `Étudier` affiche immédiatement un dialogue. `public/accueil-watfir.js` intercepte donc **seulement les clics utilisateur** (`isTrusted`), sur les trois boutons, par un écouteur `click` en **capture** sur `document`. L'état `.wf-pressing` garde le relief enfoncé pendant **160 ms**, puis le code appelle `button.click()` pour exécuter l'**action existante** et restitue la classe. Les clics de replay synthétiques (`isTrusted === false`) ne sont pas interceptés : aucune récursion. Les doubles activations pendant l'appui sont ignorées ; les boutons désactivés sont respectés.
+Le CSS `:active` seul ne suffit pas à montrer l'appui sur un clic rapide : `Commencer` et `Jouer` changent de vue immédiatement ; `Étudier` et le chevron ouvrent un dialogue ; `A1.1` / `A1.2` peuvent re-render l'accueil. `public/accueil-watfir.js` intercepte donc **seulement les clics utilisateur** (`isTrusted`), sur **les six boutons 3D**, par un écouteur `click` en **capture** sur `document`. L'état `.wf-pressing` garde le relief enfoncé pendant **160 ms**, puis le code appelle `button.click()` pour exécuter l'**action existante** et restitue la classe. Les clics de replay synthétiques (`isTrusted === false`) ne sont pas interceptés : aucune récursion. Les doubles activations pendant l'appui sont ignorées ; les boutons désactivés sont respectés. Le sélecteur de niveaux et les deux pastilles utilisent la **même mécanique**, sans changement de destination ou de code de progression.
 
 L'appui réel au doigt/souris reste immédiatement perceptible par `:active`. La transition `transform` / `box-shadow` dure **115 ms** ; l'état persiste suffisamment après relâchement pour être visible avant changement d'écran. Les taps clavier (Entrée/Espace) bénéficient du même mécanisme. **`prefers-reduced-motion: reduce` : pas de maintien ni de délai de navigation**, et aucun déplacement CSS. Les appels programmatiques de l'application ne sont pas différés non plus.
 
@@ -49,6 +49,8 @@ Aucun moteur, aucun `onclick`, aucun état de progression n'est remplacé. Les b
 **Étudier** ouvre un dialogue natif avec « Les leçons » (`goLessons`), « S’entraîner » (`openReviewSetup`), « Examens » (`openExamens`) et « Mes erreurs » (`startSession('errors')`). Le dialogue est accessible au clavier et à Retour Android via `wfEtudierOuvert` / `wfFermerEtudier` dans `navigation.js`, sur le même principe que le sélecteur de niveaux. **Jouer** utilise directement `ouvrirJeux()`. Aucune progression, clé de sauvegarde ni moteur n'a été modifié.
 
 **CSS** : `accueil-watfir.css` gère dimensions, couleur, relief et pression (hors flux) ; `hover-interactions.css`, chargé en dernier, ne change que `background-color:var(--wf-face-hover)` sous `@media (hover:hover) and (pointer:fine)`. Le fond utilise un léger gradient de lumière constant, ce qui permet de **faire varier uniquement la couleur de base** par transition CSS. `prefers-reduced-motion: reduce` neutralise les déplacements tout en conservant la couleur et le retour d'appui.
+
+**Référence normative pour les prochaines migrations : [BOUTONS-3D.md](BOUTONS-3D.md)** (tokens, épaisseurs par rôle, conventions de hover, press/replay, respect des cibles 48 px, cas limites Android et règles à ne pas propager dans les jeux). Le présent fichier reste centré sur les hovers et la compatibilité CSS du shell.
 
 ## 2. Recettes réutilisables
 
@@ -115,7 +117,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 
 ## 5. Vérification et recette
 
-Contrats automatisables : `node --test test/watfir-hover.test.cjs` et `node --test test/watfir-home.test.cjs` (maintien 160 ms, double clic, mouvement réduit, et replay de l'action d'origine). Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les **deux boutons Étudier/Jouer** au hover.
+Contrats automatisables : `node --test test/watfir-hover.test.cjs` et `node --test test/watfir-home.test.cjs` (maintien 160 ms sur les **six contrôles**, double clic, mouvement réduit, sélection A1.2, ouverture du chevron et replay de l'action d'origine). Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les **deux boutons Étudier/Jouer** au hover.
 
 **Avant validation finale**, faire sur Chromium/PC : capture survol CTA, A1.2, Étudier et Jouer, Connexion et roue ; puis test du dialogue Étudier ; comparer avec le repos. Vérifier aussi le press/relâchement, navigation clavier et un viewport mobile tactile simulé. La recette sur smartphone physique et le rendu réel après déploiement restent distincts d'une inspection statique du CSS.
 
