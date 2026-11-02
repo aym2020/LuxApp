@@ -259,3 +259,16 @@ Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `a
 **Validation disponible :** contrats `test/watfir-home.test.cjs` et `test/watfir-hover.test.cjs` adaptés, 26/26 assertions réussies dans le harnais JS de contrôle des sources GitHub. Vérification des sélecteurs, transitions, cinq rangées de contenu, URLs de cache et routes conservées. **Non validé dans cette livraison :** capture Chromium du site complet après intégration, tactile Samsung physique, zoom 200 % et restauration d'historique sur navigateur mobile réel. Ces tests d'acceptation restent à effectuer avant de qualifier définitivement la version.
 
 **Rollback ciblé :** restaurer les sections du CTA/actions de `accueil-watfir.js` et la grille/action de `accueil-watfir.css`, les hover de `hover-interactions.css`, les deux hooks `wfEtudier*` de `navigation.js`, ainsi que les versions de cache dans `index.html`. Ne pas changer `accueil-v21.js`, les moteurs ou la progression.
+ 
+
+## 15. Appui 3D perceptible avant navigation — trois boutons (03/11/2026)
+
+**Problème concret :** les styles CSS `:active` étaient bien présents, mais le clic déclenchait aussitôt une nouvelle vue (`Commencer`, `Jouer`) ou la feuille native (`Étudier`). Sur les taps rapides, l'utilisateur ne voyait pas la profondeur s'enfoncer avant le changement d'écran.
+
+**Correction ciblée :** les trois boutons partagent désormais un écouteur délégué `click` en phase capture dans `public/accueil-watfir.js`. Pour un clic humain (`event.isTrusted`), celui-ci empêche provisoirement le comportement de navigation, ajoute `.wf-pressing`, puis après **160 ms** retire la classe et appelle `button.click()`. Le replay programmatique (`isTrusted === false`) déclenche **exactement le `onclick` préexistant** ou le gestionnaire délégué Étudier sans être intercepté de nouveau. Une activation déjà en cours empêche la double navigation. Aucun `onclick` n'est remplacé, aucune fonction d'exercice ni de stockage modifiée.
+
+**Rendu :** `:active` et `.wf-pressing` partagent la même compression visuelle : **6 px** sur Commencer, **4 px** sur Étudier/Jouer, transition `transform/box-shadow` de **115 ms**. L'appui s'affiche immédiatement sous le doigt ou la souris, demeure visible après relâchement, puis la destination est ouverte. Sur PC, le hover conserve uniquement son éclaircissement de couleur ; les bandes d'angle rouge/cyan du CTA et leurs stops demeurent inchangés.
+
+**Accessibilité et cas limites :** clic Entrée/Espace pris en charge, double tap bloqué pendant les 160 ms, composants `disabled` et `aria-disabled` respectés. `prefers-reduced-motion: reduce` désactive le déplacement et le délai ; les clics programmatiques ne sont jamais ralentis. Bouton retiré du DOM pendant le délai : le replay est abandonné pour éviter une activation obsolète.
+
+**Recette automatisée :** `test/watfir-home.test.cjs` couvre la durée, le maintien de classe, les trois sélecteurs, le double tap, le mouvement réduit, le clic programmatique et le bouton désactivé ; `test/watfir-hover.test.cjs` conserve le contrôle des bandes et des hovers. **29/29 assertions passent dans le harnais JS exécutant les sources GitHub.** Contrôles d'acceptation à réaliser sur Samsung et sur navigateur desktop réel : impression tactile et latence subjective, deux activations rapides, Retour Android après ouverture du sous-menu.
