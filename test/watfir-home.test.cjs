@@ -10,27 +10,34 @@ const root=path.join(__dirname,'..');
 const watfir=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
 
 function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
-  const d = {handler:null,dialog:null,focusCount:0};
+  const d = {handler:null,dialog:null,studyDialog:null,focusCount:0,studyFocus:0};
   const trigger = {setAttribute(){},focus(){d.focusCount++}};
+  const studyTrigger = {attributes:{},setAttribute(k,v){this.attributes[k]=v},focus(){d.studyFocus++}};
   const close = {focus(){},addEventListener(t,fn){this.listener=fn}};
   const list = {innerHTML:''};
   const body = {classList:{add(){},remove(){}}};
   const document={
     body,
     addEventListener(type,fn){if(type==='click')d.handler=fn},
-    querySelector(s){return s==='#view-dashboard .wf-niveau-ouvrir'?trigger:null},
-    getElementById(id){return id==='wf-niveaux-dialog'?d.dialog:null},
+    querySelector(s){return s==='#view-dashboard .wf-niveau-ouvrir'?trigger:s==='#view-dashboard .wf-etudier-trigger'?studyTrigger:null},
+    getElementById(id){return id==='wf-niveaux-dialog'?d.dialog:id==='wf-etudier-dialog'?d.studyDialog:null},
     createElement(tag){
       assert.equal(tag,'dialog');
-      d.dialog={
+      const dialog={
         open:false,innerHTML:'',listeners:{},attributes:{},
+        set id(v){this._id=v;if(v==='wf-niveaux-dialog')d.dialog=this;else if(v==='wf-etudier-dialog')d.studyDialog=this},
+        get id(){return this._id},
         setAttribute(k,v){this.attributes[k]=v},
         addEventListener(k,fn){this.listeners[k]=fn},
-        querySelector(s){return s==='.wf-sheet-close'?close:s==='.wf-sheet-levels'?list:null},
+        querySelector(s){
+          return s==='.wf-sheet-close'?close:
+            s==='.wf-sheet-levels'?list:
+            s==='[data-wf-etude="lecons"]'?{focus(){d.studyFocus++}}:null;
+        },
         showModal(){this.open=true},
         close(){this.open=false;if(this.listeners.close)this.listeners.close()},
       };
-      return d.dialog;
+      return dialog;
     },
   };
   document.body.appendChild=()=>{};
@@ -44,12 +51,18 @@ function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
     aDejaPratique:()=>false,
     escHtml:t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),
     ICONES:{reglages:'<svg></svg>',chevron:'<svg></svg>'},
-    changerNiveauAccueil(n){ctx.niveauActif=n;ctx.changes.push(n)},changes:[]
+    changerNiveauAccueil(n){ctx.niveauActif=n;ctx.changes.push(n)},changes:[],routes:[],
+    goLessons(){ctx.routes.push('lecons')},
+    openReviewSetup(){ctx.routes.push('entrainer')},
+    openExamens(){ctx.routes.push('examens')},
+    startSession(mode){ctx.routes.push(mode)}
   };
   vm.runInNewContext(watfir,ctx,{filename:'accueil-watfir.js'});
   function click(className,option){
-    const element={getAttribute(k){return k==='data-wf-niveau'?option:null}};
+    const element={getAttribute(k){return k==='data-wf-niveau'||k==='data-wf-etude'?option:null}};
     d.handler({target:{closest(selector){
+      if(selector==='#view-dashboard .wf-etudier-trigger')return className==='study'?element:null;
+      if(selector==='#wf-etudier-dialog [data-wf-etude]')return className==='route'?element:null;
       if(selector==='#view-dashboard .wf-niveau-ouvrir')return className==='open'?element:null;
       if(selector==='#view-dashboard .wf-niveau-btn, #wf-niveaux-dialog .wf-sheet-level')
         return className==='level'?element:null;
@@ -211,6 +224,29 @@ test('Interactions : retour d\'appui, feuille fermée par Retour, mouvement réd
   assert.equal(ctx.wfFermerNiveaux(),false,'rien à fermer');
   assert.equal(gardes,2,'garde d\'historique posée à l\'ouverture, retirée à la fermeture');
 });
+test('Étudier : ouverture, destinations réelles et Retour Android sans perdre le focus',()=>{
+  for(const [action,destination] of [['lecons','lecons'],['entrainer','entrainer'],['examens','examens'],['erreurs','errors']]){
+    const {ctx,d,click}=setup();
+    let guards=0;
+    ctx.programmerGarde=()=>{guards++};
+    click('study');
+    assert.equal(d.studyDialog.open,true,'feuille ouverte');
+    assert.equal(ctx.wfEtudierOuvert(),true);
+    assert.ok(d.studyDialog.innerHTML.includes('data-wf-etude="'+action+'"'));
+    assert.equal(d.studyFocus,1,'première option reçoit le focus');
+    click('route',action);
+    assert.equal(d.studyDialog.open,false,'feuille refermée avant navigation');
+    assert.equal(ctx.wfEtudierOuvert(),false);
+    assert.deepEqual(ctx.routes,[destination],'moteur de destination intact : '+action);
+    assert.equal(guards,2,'garde à l’ouverture et à la fermeture');
+    assert.equal(d.studyTrigger,undefined); // aucun état de dialogue persistant sur le mock
+    assert.ok(d.studyFocus>=2,'focus restitué au bouton Étudier');
+    click('study');
+    assert.equal(ctx.wfFermerEtudier(),true,'Retour ferme le sheet');
+    assert.equal(ctx.wfFermerEtudier(),false,'Retour ne ferme rien après la fermeture');
+  }
+});
+
 test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',()=>{
   const hero=fs.readFileSync(path.join(root,'public/art/watfir-hero-v4.svg'),'utf8');
   const logo=fs.readFileSync(path.join(root,'public/art/watfir-logo-v4.svg'),'utf8');
