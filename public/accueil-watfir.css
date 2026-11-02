@@ -20,15 +20,44 @@
 #view-dashboard { --wf-bg:#080808; --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-cyan:#02c5e7;
   --wf-muted:#beb6a6; --wf-line:#4b4338; background:var(--wf-bg); }
 
-/* ── Conteneur ─────────────────────────────────────────────────────────── */
+/* ── Conteneur : grille verticale ─────────────────────────────────────────
+   --k règle la LARGEUR (proportions de la maquette). La HAUTEUR est gérée à part :
+   six blocs (lignes « max-content » : jamais plus petites que leur contenu) séparés par six intervalles souples minmax(min, max).
+   La grille occupe toute la hauteur utile de l'écran (#view-dashboard = 100dvh,
+   barres du navigateur déduites). L'espace libre est réparti à parts égales entre les
+   intervalles, chacun plafonné à son max ; s'il en reste (grand écran PC), la
+   composition est centrée. Écran trop court ou grande police : les intervalles
+   reviennent à leur min, puis la page défile normalement (rien n'est masqué). */
 #view-dashboard .accueil.wf-accueil {
   --k:calc(min(100vw, 520px) / 941);
   --wf-sans:Inter, system-ui, sans-serif;
+  display:grid; grid-template-columns:minmax(0, 1fr);
+  grid-template-rows:
+    max-content                                                  /* 1  header */
+    minmax(calc(52 * var(--k)), calc(160 * var(--k)))            /* 2  → hero */
+    max-content                                                  /* 3  hero */
+    minmax(calc(36 * var(--k)), calc(170 * var(--k)))            /* 4  → progression (sous les bandes) */
+    max-content                                                  /* 5  progression */
+    minmax(calc(32 * var(--k)), calc(120 * var(--k)))            /* 6  → CTA */
+    max-content                                                  /* 7  CTA */
+    minmax(calc(25 * var(--k)), calc(100 * var(--k)))            /* 8  → raccourcis */
+    max-content                                                  /* 9  raccourcis */
+    minmax(max(0px, calc(50 * var(--k) - 22px)), calc(120 * var(--k))) /* 10 → chemin (zone de 44 px) */
+    max-content                                                  /* 11 Voir mon chemin */
+    minmax(calc(24 * var(--k)), calc(140 * var(--k)));           /* 12 → bas de l'écran */
+  align-content:center; gap:0;
   width:100%; max-width:calc(941 * var(--k)); margin:0 auto;
-  height:auto; min-height:100%; gap:0;
-  padding:calc(27 * var(--k)) calc(40 * var(--k)) calc(40 * var(--k) + env(safe-area-inset-bottom));
+  height:auto; min-height:100%;
+  padding:calc(27 * var(--k)) calc(40 * var(--k)) env(safe-area-inset-bottom);
   background:var(--wf-bg); color:var(--wf-cream); overflow:visible;
 }
+#view-dashboard .wf-accueil > .ac-ent { grid-row:1; }
+#view-dashboard .wf-accueil > .ac-hero { grid-row:3; }
+#view-dashboard .wf-accueil > .ac-chiffres { grid-row:5; }
+#view-dashboard .wf-accueil > #today { grid-row:7; }
+#view-dashboard .wf-accueil > .ac-v21-actions { display:contents; }
+#view-dashboard .wf-accueil .ac-v21-actions > .ac-acces { grid-row:9; }
+#view-dashboard .wf-accueil .ac-v21-actions > .ac-v21-journey { grid-row:11; }
 
 /* ── Header : une seule ligne (maquette y 97–193) ─────────────────────── */
 /* Repli : si la police système agrandit le texte, la ligne passe sur deux lignes au lieu de déborder. */
@@ -88,7 +117,7 @@
 #view-dashboard .wf-accueil .ac-hero {
   display:block; position:relative; flex:0 0 auto;
   height:auto; min-height:0; max-height:none; padding:0; overflow:visible;
-  margin:calc(65 * var(--k)) 0 0; border:0; border-radius:0; isolation:isolate;
+  margin:0; border:0; border-radius:0; isolation:isolate;
 }
 #view-dashboard .wf-accueil .ac-hero-texte { position:relative; z-index:1; max-width:none; padding:0 0 0 calc(10 * var(--k)); }
 #view-dashboard .wf-accueil .ac-hero-surtitre {
@@ -107,12 +136,12 @@
 /* Le dessin (viewBox 38–908 × 322–598 de la maquette) remonte jusqu'à la flèche, au niveau de « Moien! ». */
 #view-dashboard .wf-accueil .wf-hero-art {
   position:relative; z-index:0; display:block; pointer-events:none;
-  width:calc(870 * var(--k)); max-width:none; height:auto; aspect-ratio:870 / 276;
+  width:calc(870 * var(--k)); max-width:none; height:calc(276 * var(--k));
   margin:calc(-194 * var(--k)) 0 0 calc(-2 * var(--k));
 }
 
 /* ── Progression (vraies valeurs) ─────────────────────────────────────── */
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan { margin:calc(40 * var(--k)) 0 0; padding:0; color:var(--wf-cream); flex-shrink:0; }
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan { margin:0; padding:0; color:var(--wf-cream); flex-shrink:0; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-titre {
   margin:0 0 0 calc(11 * var(--k)); color:var(--wf-cream); white-space:nowrap;
   font:800 max(9px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em;
@@ -161,7 +190,7 @@
 
 /* ── CTA crème (maquette y 860–1101) ──────────────────────────────────── */
 /* Coin bicolore : deux bandes à 45° dans le coin bas-droit (dégradé à arêtes nettes). */
-#view-dashboard .wf-accueil #today { margin-top:calc(40 * var(--k)); }
+#view-dashboard .wf-accueil #today { margin:0; }
 #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
   position:relative; overflow:hidden; display:flex; align-items:center; gap:0;
   min-height:0; padding:calc(24 * var(--k)) calc(42 * var(--k)) calc(40 * var(--k));
@@ -200,7 +229,6 @@
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic { width:100%; height:100%; stroke-width:2; }
 
 /* ── Quatre raccourcis (maquette y 1132–1295) ─────────────────────────── */
-#view-dashboard .wf-accueil .ac-v21-actions { margin-top:calc(31 * var(--k)); flex-shrink:0; }
 #view-dashboard .wf-accueil .ac-acces {
   display:grid; grid-template-columns:228fr 215fr 208fr 209fr; gap:0; padding:0;
   background:transparent; box-shadow:none; overflow:visible;
@@ -228,7 +256,7 @@
 
 /* ── Voir mon chemin ─────────────────────────────────────────────────── */
 #view-dashboard .wf-accueil .ac-btn.ac-v21-journey {
-  min-height:44px; margin-top:calc(63.5 * var(--k) - 22px); padding:0 0 0 calc(18 * var(--k)); gap:calc(30 * var(--k)); color:var(--wf-cream);
+  min-height:44px; margin:0; padding:0 0 0 calc(18 * var(--k)); gap:calc(30 * var(--k)); color:var(--wf-cream);
 }
 #view-dashboard .wf-accueil .ac-v21-journey > b { font:700 calc(32.6 * var(--k))/1.2 var(--wf-sans); letter-spacing:0; }
 #view-dashboard .wf-accueil .ac-v21-journey > .ic:first-child { width:calc(50 * var(--k)); height:calc(50 * var(--k)); stroke-width:2; }

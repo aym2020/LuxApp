@@ -143,3 +143,15 @@ test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune h
   assert.match(css,/flex-wrap:wrap/,'repli sur deux lignes si la police grandit');
   assert.doesNotMatch(css,/italic 700/,'pas de gras synthétique');
 });
+test('Hauteur : grille à six blocs et intervalles souples, page défilante en secours',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const bloc=css.match(/#view-dashboard \.accueil\.wf-accueil \{([^}]*)\}/)[1];
+  assert.match(bloc,/display:grid/);
+  assert.equal((bloc.match(/max-content/g)||[]).length,6,'six blocs jamais écrasés');
+  assert.equal((bloc.match(/minmax\(/g)||[]).length,7,'six intervalles plafonnés (+ la colonne)');
+  assert.match(bloc,/align-content:center/);
+  assert.match(bloc,/min-height:100%/);
+  assert.doesNotMatch(bloc,/overflow:hidden/);
+  for (const [sel,row] of [['> .ac-ent',1],['> .ac-hero',3],['> .ac-chiffres',5],['> #today',7],['> .ac-acces',9],['> .ac-v21-journey',11]])
+    assert.match(css,new RegExp(sel.replace(/[.#>]/g,m=>'\\'+m)+' \\{ grid-row:'+row+'; \\}'),sel);
+});

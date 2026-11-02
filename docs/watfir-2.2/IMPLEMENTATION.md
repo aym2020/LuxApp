@@ -84,6 +84,29 @@ La maquette de référence (image 941×1672, conversation du 02/11) est désorma
 - L'écouteur `touchmove` non passif n'existe que pendant le geste.
 - Tests : `test/actualiser.test.cjs` ; gestes simulés en Chromium (accueil, chemin, jeux, exercice, mission, petit geste, glissé horizontal, page défilée). **À valider sur Samsung, app installée et Brave.**
 
-## 9. Retour arrière ciblé
+## 9. Répartition verticale (02/11/2026)
+
+`--k` (largeur / 941) ne règle plus que les **dimensions** ; la **hauteur** est gérée par une grille sur `#accueil` :
+
+- six blocs en lignes `max-content` (header, hero, progression, CTA, raccourcis, « Voir mon chemin ») — jamais écrasés ;
+- six intervalles `minmax(min, max)` en unités `--k` : min = espacement serré (≈ 0,8 × maquette), max = respiration maximale (hero et zone sous les bandes plus généreux) ;
+- la grille fait au moins la hauteur utile (`#view-dashboard` = 100dvh, barres du navigateur déduites) ; l'espace libre est réparti à parts égales entre les intervalles jusqu'à leur plafond, le reste éventuel centre la composition (PC) ;
+- `.ac-v21-actions` en `display:contents` pour séparer raccourcis et « Voir mon chemin » ; marges verticales des blocs supprimées.
+
+Mesures Chromium (invité, leçon 0) — hauteur utile / contenu / écarts header→hero, hero→progression, progression→CTA, CTA→raccourcis, raccourcis→chemin / bas :
+
+| Écran | Avant | Après |
+| --- | --- | --- |
+| 360×593 (Brave Samsung) | 593 / 491 / 25·15·15·12·2 / vide 92 | 593 / 557 / 36·30·28·26·16 / 25 |
+| 360×640 | vide 139 | 640 / 597 / 44·38·36·34·24 / 33 |
+| 393×760 | vide 215 | 760 / 700 / 60·54·50·42·39 / 49 |
+| 393×850 | vide 305 | 850 / 736 / 67·71·50·42·50 / 81 |
+| 430×932 | vide 338 | 932 / 801 / 73·78·55·46·55 / 92 |
+| 1440×900 | vide 187 | 900 / 839 / 62·53·51·47·39 / 46 |
+| 1920×1080 | vide 367 | 1080 / 958 / 88·94·66·55·66 / 92 |
+
+Aucun défilement vertical ni horizontal à ces tailles ; police ×1,3 : intervalles au minimum, toujours sans défilement à 360×640. Les nouveaux SVG `watfir_hero_v4.svg` / `watfir_logo_v4.svg` annoncés n'ont pas encore été fournis : les assets actuels restent en place.
+
+## 10. Retour arrière ciblé
 
 Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `accueil-watfir.js` de `public/index.html`. Le rendu 2.1 reprend alors sans toucher au moteur, à la progression ni aux jeux. Ne jamais supprimer les clés de stockage.
