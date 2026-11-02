@@ -1,0 +1,215 @@
+/* WATFIR 2.2 — V4 : seuls les composants de #view-dashboard sont restylés.
+   Aucune règle de moteur, données, contenu pédagogique ou mini-jeu. */
+#view-dashboard { --wf-bg:#080808; --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-cyan:#02c5e7;
+  --wf-muted:#beb6a6; --wf-line:#3c3934; background:var(--wf-bg); }
+#view-dashboard .accueil.wf-accueil {
+  --ac-stack-gap:12px; width:100%; max-width:var(--layout-page,640px);
+  padding:clamp(14px,3vw,24px) var(--layout-inset,22px) calc(18px + env(safe-area-inset-bottom));
+  background:var(--wf-bg); overflow:visible;
+}
+/* Marque + réglages : même architecture fonctionnelle qu'en 2.1. */
+#view-dashboard .wf-accueil .ac-ent { display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;flex-shrink:0; }
+#view-dashboard .wf-accueil .ac-marque { align-items:center;gap:9px;min-width:0; }
+#view-dashboard .wf-accueil .ac-marque-symbole { width:52px;height:52px;object-fit:contain;flex:none;color:var(--wf-cream); }
+#view-dashboard .wf-accueil .ac-titre {
+  font:italic 700 clamp(29px,7vw,39px)/.95 'Instrument Serif',Georgia,serif;
+  color:var(--wf-cream);letter-spacing:-.025em;margin:0;
+}
+#view-dashboard .wf-accueil .ac-marque-sous {display:block;margin-top:5px;font:400 clamp(12px,3vw,15px)/1.1 var(--font);color:var(--wf-cream);letter-spacing:0;}
+#view-dashboard .wf-accueil .ac-menu { width:48px;min-width:48px;height:48px;min-height:48px;color:var(--wf-cream); }
+#view-dashboard .wf-accueil .ac-menu .ic {width:29px;height:29px;}
+#view-dashboard .wf-accueil .ac-v21-controls {
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 12px;
+  margin-top:13px;min-height:48px;flex-shrink:0;
+}
+#view-dashboard .wf-accueil .puces-niveau { display:flex;flex-wrap:nowrap;align-items:center;gap:6px;margin:0; }
+#view-dashboard .wf-accueil .puce-niv {
+  min-width:64px;min-height:46px;padding:0 10px;
+  font:800 clamp(13px,3.6vw,17px)/1 var(--font);border:2px solid var(--wf-cream);
+  border-radius:14px;color:var(--wf-cream);background:transparent;box-shadow:none;
+}
+#view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] {
+  background:var(--wf-red);border-color:var(--wf-cream);color:var(--wf-cream);
+}
+#view-dashboard .wf-accueil .wf-niveau-ouvrir { width:46px;min-width:46px;padding:0;display:grid;place-items:center; }
+#view-dashboard .wf-accueil .wf-niveau-ouvrir .ic {width:23px;height:23px;stroke:var(--wf-cream);}
+#view-dashboard .wf-accueil .ac-v21-guest {
+  min-height:44px;flex:0 0 auto;text-align:right;white-space:normal;
+  padding:2px 0;font:400 11px/1.25 var(--font);color:var(--wf-muted);
+}
+#view-dashboard .wf-accueil .wf-invite-mode {display:block;color:var(--wf-muted);}
+#view-dashboard .wf-accueil .ac-v21-guest b {display:block;color:var(--wf-cream);font-size:14px;font-weight:750;}
+/* Hero SVG composé avec le vrai titre HTML ; bandes et monument sont une seule image vectorielle. */
+#view-dashboard .wf-accueil .ac-hero {
+  height:clamp(207px,57vw,280px);min-height:207px;max-height:none;flex:0 0 auto;
+  position:relative;isolation:isolate;overflow:hidden;
+  margin:19px calc(-1 * var(--layout-inset,22px)) 14px;border:0;border-radius:0;
+}
+#view-dashboard .wf-accueil .wf-hero-art {
+  position:absolute;left:0;right:0;bottom:0;display:block;
+  width:100%;height:auto;z-index:0;pointer-events:none;object-fit:contain;
+}
+#view-dashboard .wf-accueil .ac-hero-texte {position:relative;z-index:1;max-width:none;padding:3px var(--layout-inset,22px) 0;}
+#view-dashboard .wf-accueil .ac-hero-surtitre {
+  display:block;font:800 clamp(11px,2.8vw,14px)/1.3 var(--font);
+  color:var(--wf-cream);letter-spacing:.17em;margin:0 0 15px;text-transform:uppercase;
+}
+#view-dashboard .wf-accueil .ac-hero h2 {
+  font:italic 400 clamp(66px,16vw,97px)/.9 'Instrument Serif',Georgia,serif;
+  letter-spacing:-.045em;color:var(--wf-cream);margin:0 0 12px;
+}
+#view-dashboard .wf-accueil .ac-hero-exclamation {color:var(--wf-red);}
+#view-dashboard .wf-accueil .ac-hero p {max-width:min(48%,250px);font:400 clamp(13px,3.25vw,17px)/1.32 var(--font);color:var(--wf-cream);margin:0;}
+/* Vraie progression, pas de chiffres codés en dur. */
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan {
+  margin:0 2px 12px;padding:0;color:var(--wf-cream);flex-shrink:0;
+}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-titre {
+  margin:0 0 11px;color:var(--wf-cream);font:800 12px/1.3 var(--font);letter-spacing:.17em;
+}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-ligne {
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;
+}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-serie-mesure {
+  border-left:1px solid rgba(247,233,194,.38);padding-left:18px;
+}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-chiffre {
+  color:var(--wf-cream);font:800 clamp(30px,8vw,40px)/1 var(--font);letter-spacing:-.04em;
+}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-unite {color:var(--wf-cream);font-size:clamp(16px,4.7vw,23px);font-weight:750;}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-legende {
+  color:var(--wf-muted);margin-top:5px;font:400 clamp(11px,3vw,13px)/1.25 var(--font);
+}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste {
+  height:5px;margin-top:10px;background:var(--wf-line);border-radius:8px;
+}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste i {background:var(--wf-red);}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-flamme {color:var(--wf-red);}
+/* CTA unique en crème, titre de leçon jamais tronqué. */
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
+  background:var(--wf-cream);border:0;color:var(--wf-bg);
+  border-radius:19px;min-height:112px;padding:17px 18px;gap:12px;
+  position:relative;overflow:hidden;box-shadow:none;
+}
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after,
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::before {
+  content:"";position:absolute;right:-27px;bottom:6px;width:90px;height:11px;
+  transform:rotate(-48deg);background:var(--wf-red);pointer-events:none;
+}
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after {bottom:-10px;background:var(--wf-cyan);}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-ic,
+#view-dashboard .wf-accueil .ac-v21-cta .cs-rond {color:var(--wf-bg);}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-ic .ic {width:40px;height:40px;}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-txt {flex:1;min-width:0;}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-kicker,
+#view-dashboard .wf-accueil .ac-v21-cta .cs-txt > b {
+  color:var(--wf-bg);font:850 clamp(23px,5.6vw,30px)/1.1 var(--font);margin:0 0 5px;
+}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-titre,
+#view-dashboard .wf-accueil .ac-v21-cta .cs-txt > span:not(.cs-kicker) {
+  color:var(--wf-bg);display:block;font:750 clamp(13px,3.4vw,17px)/1.22 var(--font);
+  white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;
+}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-etape,
+#view-dashboard .wf-accueil .ac-v21-cta .cs-txt > small {
+  color:#554f42;font:400 clamp(11px,2.8vw,13px)/1.3 var(--font);
+  white-space:normal;overflow:visible;text-overflow:clip;margin-top:5px;
+}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-rond {width:23px;height:32px;z-index:1;}
+/* Secondaires en 4 colonnes, un filet et un alignement optique homogène. */
+#view-dashboard .wf-accueil .ac-v21-actions {margin-top:12px;flex-shrink:0;}
+#view-dashboard .wf-accueil .ac-acces {
+  background:transparent;border:1px solid rgba(247,233,194,.70);
+  border-radius:18px;padding:13px 2px;box-shadow:none;
+}
+#view-dashboard .wf-accueil .ac-acces .ac-btn {
+  min-height:63px;padding:5px 3px;gap:6px;color:var(--wf-cream);
+}
+#view-dashboard .wf-accueil .ac-acces .ac-btn + .ac-btn {border-left:1px solid rgba(247,233,194,.30);}
+#view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child {
+  width:25px;height:25px;color:var(--wf-cream);stroke-width:1.9;
+}
+#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child {color:var(--wf-cyan);}
+#view-dashboard .wf-accueil .ac-acces .ac-btn > b,
+#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > b {
+  color:var(--wf-cream);font:700 clamp(11px,2.9vw,14px)/1.25 var(--font);
+  letter-spacing:-.02em;white-space:normal;
+}
+#view-dashboard .wf-accueil .ac-btn.ac-v21-journey {
+  color:var(--wf-cream);margin-top:13px;min-height:44px;gap:11px;
+}
+#view-dashboard .wf-accueil .ac-v21-journey > b {font:700 clamp(13px,3.4vw,16px)/1.25 var(--font);}
+#view-dashboard .wf-accueil .ac-v21-journey > .ic {width:20px;height:20px;}
+#view-dashboard .wf-accueil .carte-suite:focus-visible,
+#view-dashboard .wf-accueil .puce-niv:focus-visible,
+#view-dashboard .wf-accueil .ac-btn:focus-visible,
+#view-dashboard .wf-accueil .ac-menu:focus-visible,
+#view-dashboard .wf-accueil .ac-v21-guest:focus-visible {
+  outline:3px solid var(--wf-cyan);outline-offset:3px;
+}
+/* Niveau étroit / police système agrandie : ne jamais sacrifier les zones tactiles. */
+@media(max-width:380px) {
+  #view-dashboard .accueil.wf-accueil {padding-inline:17px;}
+  #view-dashboard .wf-accueil .ac-hero {margin-left:-17px;margin-right:-17px;min-height:205px;}
+  #view-dashboard .wf-accueil .ac-hero-texte {padding-inline:17px;}
+  #view-dashboard .wf-accueil .wf-hero-art {width:110%;left:-4%;}
+  #view-dashboard .wf-accueil .ac-hero p {max-width:52%;}
+  #view-dashboard .wf-accueil .ac-v21-guest b {font-size:12px;}
+  #view-dashboard .wf-accueil .ac-v21-cta .cs-ic .ic {width:33px;height:33px;}
+}
+@media(max-width:335px) {
+  #view-dashboard .wf-accueil .ac-v21-controls {align-items:flex-start;gap:8px;}
+  #view-dashboard .wf-accueil .puce-niv {min-width:58px;padding:0 8px;}
+  #view-dashboard .wf-accueil .wf-niveau-ouvrir {min-width:44px;width:44px;}
+  #view-dashboard .wf-accueil .ac-hero p {max-width:54%;}
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {padding:15px 12px;gap:8px;}
+  #view-dashboard .wf-accueil .ac-acces {grid-template-columns:repeat(2,minmax(0,1fr));}
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:nth-child(3) {border-left:0;border-top:1px solid rgba(247,233,194,.3);}
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:nth-child(4) {border-top:1px solid rgba(247,233,194,.3);}
+}
+@media(max-width:600px) {
+  #view-dashboard .accueil.wf-accueil {height:auto;min-height:100%; }
+  #view-dashboard .wf-accueil .ac-hero {flex:0 0 auto;height:clamp(205px,53vw,257px);max-height:none;}
+}
+@media(max-height:730px) and (max-width:600px) {
+  #view-dashboard .accueil.wf-accueil {padding-top:9px;padding-bottom:calc(10px + env(safe-area-inset-bottom));}
+  #view-dashboard .wf-accueil .ac-v21-controls {margin-top:7px;}
+  #view-dashboard .wf-accueil .ac-hero {margin-top:12px;margin-bottom:10px;height:205px;min-height:0;}
+  #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan {margin-bottom:9px;}
+  #view-dashboard .wf-accueil .ac-v21-actions {margin-top:9px;}
+}
+@media(max-width:600px) and (min-height:850px) {
+  #view-dashboard .accueil.wf-accueil {min-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));}
+}
+@media(max-width:440px) and (min-resolution:1dppx) {
+  #view-dashboard .wf-accueil .ac-marque-symbole {width:47px;height:47px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  #view-dashboard .wf-accueil .ac-piste i {transition:none;}
+}
+/* Bottom sheet natif : l'UI reste dans le même navigateur et le retour Android fonctionne. */
+body.wf-sheet-open {overflow:hidden;}
+.wf-niveaux-dialog {
+  --wf-cream:#f7e9c2;--wf-red:#f22421;--wf-bg:#080808;--wf-cyan:#02c5e7;
+  position:fixed;inset:auto 0 0;width:min(100%,640px);max-width:100%;
+  max-height:min(80dvh,680px);margin:0 auto;
+  background:#141210;color:var(--wf-cream);
+  border:1px solid #595248;border-bottom:0;border-radius:22px 22px 0 0;
+  padding:0;overflow-y:auto;overscroll-behavior:contain;
+}
+.wf-niveaux-dialog::backdrop {background:rgba(0,0,0,.73);}
+.wf-niveaux-dialog .wf-sheet-content {padding:14px 20px calc(23px + env(safe-area-inset-bottom));}
+.wf-niveaux-dialog .wf-sheet-handle {width:62px;height:5px;background:#6a6156;border-radius:8px;margin:0 auto 16px;}
+.wf-niveaux-dialog .wf-sheet-head {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px;}
+.wf-niveaux-dialog h2 {font:800 20px/1.2 Inter,system-ui,sans-serif;margin:0;}
+.wf-niveaux-dialog .wf-sheet-close {min-height:44px;min-width:60px;border:0;background:none;color:var(--wf-cream);font:700 14px Inter,system-ui,sans-serif;}
+.wf-niveaux-dialog .wf-sheet-row {display:flex;align-items:center;gap:15px;padding:11px 0;border-top:1px solid #3a352e;}
+.wf-niveaux-dialog .wf-sheet-family {width:36px;min-width:36px;font:800 17px Inter,system-ui,sans-serif;}
+.wf-niveaux-dialog .wf-sheet-options {display:flex;flex-wrap:wrap;gap:8px;}
+.wf-niveaux-dialog .wf-sheet-level {
+  min-width:72px;min-height:46px;padding:8px 12px;
+  border:2px solid var(--wf-cream);border-radius:14px;background:transparent;color:var(--wf-cream);
+  font:800 16px Inter,system-ui,sans-serif;
+}
+.wf-niveaux-dialog .wf-sheet-level.is-current {background:var(--wf-red);}
+.wf-niveaux-dialog button:focus-visible {outline:3px solid var(--wf-cyan);outline-offset:3px;}
