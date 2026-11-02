@@ -407,6 +407,7 @@ function superpositionOuverte() {
   if (typeof luxMatchSuperposition === 'function' && luxMatchSuperposition()) return true; // SPEC 109 (menu, dossier, téléphone)
   if (typeof luxDemasqueSuperposition === 'function' && luxDemasqueSuperposition()) return true; // SPEC 110 (réseaux, pièce, carnet…)
   if (typeof infoInviteEstOuverte === 'function' && infoInviteEstOuverte()) return true; // SPEC 76
+  if (typeof wfEtudierOuvert === 'function' && wfEtudierOuvert()) return true; // Watfir 2.2 : menu Étudier
   if (typeof wfNiveauxOuverts === 'function' && wfNiveauxOuverts()) return true; // Watfir 2.2 : choix du niveau
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) return true; // SPEC 66
   if (typeof portailFormulaireOuvert === 'function' && portailFormulaireOuvert()) return true; // SPEC 66
@@ -422,6 +423,7 @@ function fermerSuperposition() {
   if (typeof luxMatchFermerSuperposition === 'function' && luxMatchFermerSuperposition()) return true; // SPEC 109
   if (typeof luxDemasqueFermerSuperposition === 'function' && luxDemasqueFermerSuperposition()) return true; // SPEC 110
   if (typeof fermerInfoInvite === 'function' && fermerInfoInvite()) return true; // SPEC 76
+  if (typeof wfFermerEtudier === 'function' && wfFermerEtudier()) return true; // Watfir 2.2 : menu Étudier
   if (typeof wfFermerNiveaux === 'function' && wfFermerNiveaux()) return true; // Watfir 2.2 : choix du niveau
   if (typeof dialogueEstOuvert === 'function' && dialogueEstOuvert()) { fermerDialogue(false); return true; }
   // SPEC 66 : inscription ou connexion → retour à la bienvenue.
