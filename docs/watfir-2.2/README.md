@@ -43,3 +43,5 @@ L'accueil est déjà branché sur la 2.2 ; avant de valider la livraison visuell
 ## Implémentation V4 (02/11/2026)
 
 Voir [IMPLEMENTATION.md](IMPLEMENTATION.md) pour les fichiers actifs, événements, compatibilité avec le moteur 2.1, points de validation et retour arrière ciblé.
+
+**Correctif du 02/11/2026** (IMPLEMENTATION § 7) : hero en flux sans hauteur fixe, monument et bandes redessinés, lettrage `DM Serif Display` italique auto-hébergé, grille d'espacement unique. Accueil entier visible à 360×593 (Brave) en Chromium ; validation Samsung réelle à faire.

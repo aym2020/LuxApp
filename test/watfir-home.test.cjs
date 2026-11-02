@@ -96,4 +96,36 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-accueil/);
   assert.match(css,/white-space:normal/);
+});test('Hero V4 : texte puis dessin dans le flux, dimensions intrinsèques déclarées',()=>{
+  const {ctx}=setup();
+  const h=ctx.accrocheHtml(true);
+  assert.ok(h.indexOf('ac-hero-texte')<h.indexOf('wf-hero-art'),'le dessin suit le texte');
+  assert.match(h,/width="400" height="160"/);
+  assert.match(h,/Une nouvelle langue commence ici\./);
+  assert.match(ctx.accrocheHtml(false),/Prêt pour quelques minutes/);
+});
+test('SVG du monument : viewBox 400×160, sans soleil ni façade, tout dans le cadre',()=>{
+  const svg=fs.readFileSync(path.join(root,'public/art/watfir-hero.svg'),'utf8');
+  assert.match(svg,/viewBox="0 0 400 160"/);
+  assert.doesNotMatch(svg,/<circle|<rect/,'ni soleil ni fenêtres');
+  assert.equal((svg.match(/A22 20/g)||[]).length,3,'trois arches');
+  const nombres=[...svg.matchAll(/\sd="([^"]+)"/g)].flatMap(m=>m[1].match(/-?\d+(\.\d+)?/g).map(Number));
+  assert.ok(nombres.every(n=>n>=0&&n<=400),'aucune coordonnée hors du cadre');
+  const traits=[...svg.matchAll(/stroke-width="(\d+)"/g)].map(m=>Number(m[1]));
+  assert.deepEqual(traits,[7],'bandes fines (7 u sur 400)');
+});
+test('CSS : hero sans hauteur fixe, police display auto-hébergée, compactage par paliers',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
+  assert.ok(fs.existsSync(path.join(root,'public/fonts/dm-serif-display-latin-400-italic.woff2')));
+  assert.ok(fs.existsSync(path.join(root,'public/fonts/DM-SERIF-DISPLAY-OFL.txt')));
+  assert.match(css,/@font-face\s*\{[^}]*Watfir Display[^}]*font-style:italic/);
+  assert.match(html,/rel="preload" href="fonts\/dm-serif-display-latin-400-italic\.woff2"/);
+  const hero=css.match(/\.wf-accueil \.ac-hero \{([^}]*)\}/)[1];
+  assert.match(hero,/height:auto/);
+  assert.doesNotMatch(hero,/height:clamp|min-height:2\d\dpx/);
+  assert.match(css,/\.wf-hero-art \{[^}]*margin-top:clamp\(-120px,-25%,0px\)/);
+  assert.match(css,/max-height:660px/);
+  assert.doesNotMatch(css,/italic 700/,'pas de gras synthétique');
+  assert.match(css,/\.carte-suite\.ac-v21-cta \{[^}]*min-height:0/,'neutralise le min-height 2.1');
 });

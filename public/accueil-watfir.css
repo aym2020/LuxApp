@@ -1,215 +1,257 @@
 /* WATFIR 2.2 — V4 : seuls les composants de #view-dashboard sont restylés.
-   Aucune règle de moteur, données, contenu pédagogique ou mini-jeu. */
+   Aucune règle de moteur, données, contenu pédagogique ou mini-jeu.
+
+   Organisation (correctif du 02/11/2026) :
+   1. une seule grille verticale : --wf-gap entre les blocs, aucune hauteur fixe ;
+   2. le hero suit son contenu : le texte, puis le dessin qui remonte sous le texte
+      (marge négative en % de la largeur) → ni rognage, ni hauteur à deviner ;
+   3. trois paliers seulement : standard, écran court (≤ 660 px de haut), écran haut.
+   Les règles 2.1 (accueil-v21.css, style.css SPEC 77 « ac-nouveau-invite ») sont
+   neutralisées ici explicitement : gap, min-height du CTA, hauteur du hero. */
+
+/* Lettrage « Watfir » et « Moien! » : serif italique affirmée, auto-hébergée (OFL). */
+@font-face {
+  font-family:'Watfir Display'; font-style:italic; font-weight:400; font-display:swap;
+  src:url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2');
+}
+
 #view-dashboard { --wf-bg:#080808; --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-cyan:#02c5e7;
   --wf-muted:#beb6a6; --wf-line:#3c3934; background:var(--wf-bg); }
+
+/* ── Conteneur ─────────────────────────────────────────────────────────── */
 #view-dashboard .accueil.wf-accueil {
-  --ac-stack-gap:12px; width:100%; max-width:var(--layout-page,640px);
-  padding:clamp(14px,3vw,24px) var(--layout-inset,22px) calc(18px + env(safe-area-inset-bottom));
+  --wf-gap:12px;
+  --wf-display:'Watfir Display','Instrument Serif',Georgia,serif;
+  width:100%; max-width:var(--layout-page,640px);
+  height:auto; min-height:100%; gap:0;
+  padding:8px var(--layout-inset,22px) calc(10px + env(safe-area-inset-bottom));
   background:var(--wf-bg); overflow:visible;
 }
-/* Marque + réglages : même architecture fonctionnelle qu'en 2.1. */
-#view-dashboard .wf-accueil .ac-ent { display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;flex-shrink:0; }
-#view-dashboard .wf-accueil .ac-marque { align-items:center;gap:9px;min-width:0; }
-#view-dashboard .wf-accueil .ac-marque-symbole { width:52px;height:52px;object-fit:contain;flex:none;color:var(--wf-cream); }
+
+/* ── Header : marque + réglages, puis niveaux + compte ────────────────── */
+#view-dashboard .wf-accueil .ac-ent {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  min-height:44px; flex-shrink:0;
+}
+#view-dashboard .wf-accueil .ac-marque { align-items:center; gap:10px; min-width:0; }
+#view-dashboard .wf-accueil .ac-marque-symbole { width:40px; height:40px; object-fit:contain; flex:none; }
 #view-dashboard .wf-accueil .ac-titre {
-  font:italic 700 clamp(29px,7vw,39px)/.95 'Instrument Serif',Georgia,serif;
-  color:var(--wf-cream);letter-spacing:-.025em;margin:0;
+  margin:0; color:var(--wf-cream);
+  font:italic 400 30px/1 var(--wf-display); letter-spacing:-.01em;
 }
-#view-dashboard .wf-accueil .ac-marque-sous {display:block;margin-top:5px;font:400 clamp(12px,3vw,15px)/1.1 var(--font);color:var(--wf-cream);letter-spacing:0;}
-#view-dashboard .wf-accueil .ac-menu { width:48px;min-width:48px;height:48px;min-height:48px;color:var(--wf-cream); }
-#view-dashboard .wf-accueil .ac-menu .ic {width:29px;height:29px;}
+#view-dashboard .wf-accueil .ac-marque-sous {
+  display:block; margin-top:2px; color:var(--wf-cream);
+  font:400 12px/1.2 var(--font); letter-spacing:0;
+}
+#view-dashboard .wf-accueil .ac-menu { width:44px; min-width:44px; height:44px; min-height:44px; color:var(--wf-cream); }
+#view-dashboard .wf-accueil .ac-menu .ic { width:26px; height:26px; }
+
 #view-dashboard .wf-accueil .ac-v21-controls {
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 12px;
-  margin-top:13px;min-height:48px;flex-shrink:0;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  gap:6px 12px; margin-top:8px; min-height:44px; flex-shrink:0;
 }
-#view-dashboard .wf-accueil .puces-niveau { display:flex;flex-wrap:nowrap;align-items:center;gap:6px;margin:0; }
+#view-dashboard .wf-accueil .puces-niveau { display:flex; flex-wrap:nowrap; align-items:center; gap:6px; margin:0; }
 #view-dashboard .wf-accueil .puce-niv {
-  min-width:64px;min-height:46px;padding:0 10px;
-  font:800 clamp(13px,3.6vw,17px)/1 var(--font);border:2px solid var(--wf-cream);
-  border-radius:14px;color:var(--wf-cream);background:transparent;box-shadow:none;
+  min-width:58px; min-height:44px; padding:0 10px;
+  font:800 15px/1 var(--font); color:var(--wf-cream); background:transparent;
+  border:2px solid var(--wf-cream); border-radius:13px; box-shadow:none;
 }
-#view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] {
-  background:var(--wf-red);border-color:var(--wf-cream);color:var(--wf-cream);
-}
-#view-dashboard .wf-accueil .wf-niveau-ouvrir { width:46px;min-width:46px;padding:0;display:grid;place-items:center; }
-#view-dashboard .wf-accueil .wf-niveau-ouvrir .ic {width:23px;height:23px;stroke:var(--wf-cream);}
+#view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] { background:var(--wf-red); border-color:var(--wf-cream); color:var(--wf-cream); }
+#view-dashboard .wf-accueil .wf-niveau-ouvrir { width:44px; min-width:44px; padding:0; display:grid; place-items:center; }
+#view-dashboard .wf-accueil .wf-niveau-ouvrir .ic { width:22px; height:22px; stroke:var(--wf-cream); }
 #view-dashboard .wf-accueil .ac-v21-guest {
-  min-height:44px;flex:0 0 auto;text-align:right;white-space:normal;
-  padding:2px 0;font:400 11px/1.25 var(--font);color:var(--wf-muted);
+  flex:0 0 auto; min-height:44px; padding:2px 0; text-align:right; white-space:normal;
+  font:400 12px/1.25 var(--font); color:var(--wf-muted);
 }
-#view-dashboard .wf-accueil .wf-invite-mode {display:block;color:var(--wf-muted);}
-#view-dashboard .wf-accueil .ac-v21-guest b {display:block;color:var(--wf-cream);font-size:14px;font-weight:750;}
-/* Hero SVG composé avec le vrai titre HTML ; bandes et monument sont une seule image vectorielle. */
+#view-dashboard .wf-accueil .wf-invite-mode { display:block; color:var(--wf-muted); }
+#view-dashboard .wf-accueil .ac-v21-guest b { display:block; color:var(--wf-cream); font-size:14px; font-weight:750; }
+
+/* ── Hero : texte en flux, dessin en flux juste dessous ────────────────
+   La marge négative (en % de la largeur) fait remonter le dessin sous le texte :
+   la tour occupe le coin haut-droit vide, les bandes passent sous la phrase.
+   Si le texte grandit (police système, phrase longue), le dessin descend avec lui. */
 #view-dashboard .wf-accueil .ac-hero {
-  height:clamp(207px,57vw,280px);min-height:207px;max-height:none;flex:0 0 auto;
-  position:relative;isolation:isolate;overflow:hidden;
-  margin:19px calc(-1 * var(--layout-inset,22px)) 14px;border:0;border-radius:0;
+  display:block; position:relative; flex:0 0 auto;
+  height:auto; min-height:0; max-height:none; padding:0; overflow:visible;
+  margin:14px calc(-1 * var(--layout-inset,22px)) var(--wf-gap);
+  border:0; border-radius:0; isolation:isolate;
 }
-#view-dashboard .wf-accueil .wf-hero-art {
-  position:absolute;left:0;right:0;bottom:0;display:block;
-  width:100%;height:auto;z-index:0;pointer-events:none;object-fit:contain;
+#view-dashboard .wf-accueil .ac-hero-texte {
+  position:relative; z-index:1; max-width:none; padding:0 var(--layout-inset,22px);
 }
-#view-dashboard .wf-accueil .ac-hero-texte {position:relative;z-index:1;max-width:none;padding:3px var(--layout-inset,22px) 0;}
 #view-dashboard .wf-accueil .ac-hero-surtitre {
-  display:block;font:800 clamp(11px,2.8vw,14px)/1.3 var(--font);
-  color:var(--wf-cream);letter-spacing:.17em;margin:0 0 15px;text-transform:uppercase;
+  display:block; margin:0 0 6px; color:var(--wf-cream);
+  font:800 12px/1.25 var(--font); letter-spacing:.16em; text-transform:uppercase;
 }
 #view-dashboard .wf-accueil .ac-hero h2 {
-  font:italic 400 clamp(66px,16vw,97px)/.9 'Instrument Serif',Georgia,serif;
-  letter-spacing:-.045em;color:var(--wf-cream);margin:0 0 12px;
+  margin:0 0 4px; color:var(--wf-cream);
+  font:italic 400 clamp(56px,17vw,78px)/.95 var(--wf-display); letter-spacing:-.02em;
 }
-#view-dashboard .wf-accueil .ac-hero-exclamation {color:var(--wf-red);}
-#view-dashboard .wf-accueil .ac-hero p {max-width:min(48%,250px);font:400 clamp(13px,3.25vw,17px)/1.32 var(--font);color:var(--wf-cream);margin:0;}
-/* Vraie progression, pas de chiffres codés en dur. */
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan {
-  margin:0 2px 12px;padding:0;color:var(--wf-cream);flex-shrink:0;
+#view-dashboard .wf-accueil .ac-hero-exclamation { color:var(--wf-red); }
+#view-dashboard .wf-accueil .ac-hero p {
+  max-width:44%; margin:0; color:var(--wf-cream);
+  font:400 clamp(13px,3.9vw,15px)/1.35 var(--font); text-wrap:pretty;
 }
+#view-dashboard .wf-accueil .wf-hero-art {
+  position:relative; z-index:0; display:block;
+  width:100%; height:auto; aspect-ratio:400 / 160;
+  margin-top:clamp(-120px,-25%,0px); pointer-events:none;
+}
+
+/* ── Progression (vraies valeurs) ─────────────────────────────────────── */
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan { margin:0 2px; padding:0; color:var(--wf-cream); flex-shrink:0; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-titre {
-  margin:0 0 11px;color:var(--wf-cream);font:800 12px/1.3 var(--font);letter-spacing:.17em;
+  margin:0 0 8px; color:var(--wf-cream); font:800 12px/1.25 var(--font); letter-spacing:.16em;
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-ligne {
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;
-}
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-serie-mesure {
-  border-left:1px solid rgba(247,233,194,.38);padding-left:18px;
-}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-ligne { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-serie-mesure { border-left:1px solid rgba(247,233,194,.30); padding-left:18px; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-chiffre {
-  color:var(--wf-cream);font:800 clamp(30px,8vw,40px)/1 var(--font);letter-spacing:-.04em;
+  color:var(--wf-cream); font:800 clamp(30px,8.4vw,36px)/1 var(--font); letter-spacing:-.04em;
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-unite {color:var(--wf-cream);font-size:clamp(16px,4.7vw,23px);font-weight:750;}
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-unite { color:var(--wf-cream); font-size:clamp(16px,4.5vw,20px); font-weight:750; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-legende {
-  color:var(--wf-muted);margin-top:5px;font:400 clamp(11px,3vw,13px)/1.25 var(--font);
+  margin-top:4px; color:var(--wf-muted); font:400 12px/1.25 var(--font);
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste {
-  height:5px;margin-top:10px;background:var(--wf-line);border-radius:8px;
-}
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste i {background:var(--wf-red);}
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-flamme {color:var(--wf-red);}
-/* CTA unique en crème, titre de leçon jamais tronqué. */
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste { height:4px; margin-top:8px; background:var(--wf-line); border-radius:8px; }
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste i { background:var(--wf-red); }
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-flamme { color:var(--wf-red); }
+
+/* ── CTA crème : vraie prochaine activité, titre jamais tronqué ─────── */
+#view-dashboard .wf-accueil #today { margin-top:var(--wf-gap); }
 #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
-  background:var(--wf-cream);border:0;color:var(--wf-bg);
-  border-radius:19px;min-height:112px;padding:17px 18px;gap:12px;
-  position:relative;overflow:hidden;box-shadow:none;
+  position:relative; overflow:hidden; display:flex; align-items:center; gap:12px;
+  min-height:0; padding:12px 16px 12px 14px;
+  background:var(--wf-cream); color:var(--wf-bg); border:0; border-radius:18px; box-shadow:none;
 }
-#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after,
-#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::before {
-  content:"";position:absolute;right:-27px;bottom:6px;width:90px;height:11px;
-  transform:rotate(-48deg);background:var(--wf-red);pointer-events:none;
+/* Coin bicolore discret. */
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::before,
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after {
+  content:""; position:absolute; right:-22px; bottom:5px; width:66px; height:7px;
+  transform:rotate(-48deg); background:var(--wf-red); pointer-events:none;
 }
-#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after {bottom:-10px;background:var(--wf-cyan);}
+#view-dashboard .wf-accueil .carte-suite.ac-v21-cta::after { bottom:-6px; background:var(--wf-cyan); }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-ic,
-#view-dashboard .wf-accueil .ac-v21-cta .cs-rond {color:var(--wf-bg);}
-#view-dashboard .wf-accueil .ac-v21-cta .cs-ic .ic {width:40px;height:40px;}
-#view-dashboard .wf-accueil .ac-v21-cta .cs-txt {flex:1;min-width:0;}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-rond { color:var(--wf-bg); }
+#view-dashboard .wf-accueil .ac-v21-cta .cs-ic .ic { width:32px; height:32px; }
+#view-dashboard .wf-accueil .ac-v21-cta .cs-txt { flex:1; min-width:0; }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-kicker,
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > b {
-  color:var(--wf-bg);font:850 clamp(23px,5.6vw,30px)/1.1 var(--font);margin:0 0 5px;
+  margin:0 0 2px; color:var(--wf-bg); font:850 clamp(21px,6vw,24px)/1.1 var(--font); letter-spacing:-.02em;
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-titre,
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > span:not(.cs-kicker) {
-  color:var(--wf-bg);display:block;font:750 clamp(13px,3.4vw,17px)/1.22 var(--font);
-  white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;
+  display:block; color:var(--wf-bg); font:750 15px/1.25 var(--font);
+  white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:break-word;
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-etape,
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > small {
-  color:#554f42;font:400 clamp(11px,2.8vw,13px)/1.3 var(--font);
-  white-space:normal;overflow:visible;text-overflow:clip;margin-top:5px;
+  margin-top:3px; color:#554f42; font:400 12px/1.3 var(--font);
+  white-space:normal; overflow:visible; text-overflow:clip;
 }
-#view-dashboard .wf-accueil .ac-v21-cta .cs-rond {width:23px;height:32px;z-index:1;}
-/* Secondaires en 4 colonnes, un filet et un alignement optique homogène. */
-#view-dashboard .wf-accueil .ac-v21-actions {margin-top:12px;flex-shrink:0;}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-rond { width:22px; height:28px; z-index:1; }
+
+/* ── Quatre raccourcis : une surface, séparateurs courts et légers ──── */
+#view-dashboard .wf-accueil .ac-v21-actions { margin-top:var(--wf-gap); flex-shrink:0; }
 #view-dashboard .wf-accueil .ac-acces {
-  background:transparent;border:1px solid rgba(247,233,194,.70);
-  border-radius:18px;padding:13px 2px;box-shadow:none;
+  gap:0; padding:8px 0; background:transparent; box-shadow:none;
+  border:1px solid rgba(247,233,194,.42); border-radius:16px;
 }
 #view-dashboard .wf-accueil .ac-acces .ac-btn {
-  min-height:63px;padding:5px 3px;gap:6px;color:var(--wf-cream);
+  position:relative; min-height:60px; padding:4px 2px; gap:5px; color:var(--wf-cream);
 }
-#view-dashboard .wf-accueil .ac-acces .ac-btn + .ac-btn {border-left:1px solid rgba(247,233,194,.30);}
-#view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child {
-  width:25px;height:25px;color:var(--wf-cream);stroke-width:1.9;
+#view-dashboard .wf-accueil .ac-acces .ac-btn + .ac-btn { border-left:0; }
+#view-dashboard .wf-accueil .ac-acces .ac-btn + .ac-btn::before {
+  content:""; position:absolute; left:0; top:20%; bottom:20%; width:1px;
+  background:rgba(247,233,194,.20); pointer-events:none;
 }
-#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child {color:var(--wf-cyan);}
+#view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child { width:22px; height:22px; color:var(--wf-cream); stroke-width:1.9; filter:none; }
+#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child { color:var(--wf-cyan); }
 #view-dashboard .wf-accueil .ac-acces .ac-btn > b,
 #view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > b {
-  color:var(--wf-cream);font:700 clamp(11px,2.9vw,14px)/1.25 var(--font);
-  letter-spacing:-.02em;white-space:normal;
+  color:var(--wf-cream); font:700 12px/1.2 var(--font); letter-spacing:-.01em; white-space:normal;
 }
-#view-dashboard .wf-accueil .ac-btn.ac-v21-journey {
-  color:var(--wf-cream);margin-top:13px;min-height:44px;gap:11px;
-}
-#view-dashboard .wf-accueil .ac-v21-journey > b {font:700 clamp(13px,3.4vw,16px)/1.25 var(--font);}
-#view-dashboard .wf-accueil .ac-v21-journey > .ic {width:20px;height:20px;}
+
+/* ── Voir mon chemin : secondaire ─────────────────────────────────────── */
+#view-dashboard .wf-accueil .ac-btn.ac-v21-journey { min-height:44px; margin-top:6px; gap:10px; color:var(--wf-cream); }
+#view-dashboard .wf-accueil .ac-v21-journey > b { font:700 14px/1.25 var(--font); }
+#view-dashboard .wf-accueil .ac-v21-journey > .ic { width:19px; height:19px; }
+
 #view-dashboard .wf-accueil .carte-suite:focus-visible,
 #view-dashboard .wf-accueil .puce-niv:focus-visible,
 #view-dashboard .wf-accueil .ac-btn:focus-visible,
 #view-dashboard .wf-accueil .ac-menu:focus-visible,
-#view-dashboard .wf-accueil .ac-v21-guest:focus-visible {
-  outline:3px solid var(--wf-cyan);outline-offset:3px;
+#view-dashboard .wf-accueil .ac-v21-guest:focus-visible { outline:3px solid var(--wf-cyan); outline-offset:3px; }
+
+/* ── Largeur étroite : marges réduites, zones tactiles intactes ──────── */
+@media (max-width:380px) {
+  #view-dashboard .accueil.wf-accueil { padding-inline:17px; }
+  #view-dashboard .wf-accueil .ac-hero { margin-inline:-17px; }
+  #view-dashboard .wf-accueil .ac-hero-texte { padding-inline:17px; }
+  #view-dashboard .wf-accueil .ac-v21-guest b { font-size:13px; }
+  #view-dashboard .wf-accueil .ac-v21-cta .cs-ic .ic { width:28px; height:28px; }
 }
-/* Niveau étroit / police système agrandie : ne jamais sacrifier les zones tactiles. */
-@media(max-width:380px) {
-  #view-dashboard .accueil.wf-accueil {padding-inline:17px;}
-  #view-dashboard .wf-accueil .ac-hero {margin-left:-17px;margin-right:-17px;min-height:205px;}
-  #view-dashboard .wf-accueil .ac-hero-texte {padding-inline:17px;}
-  #view-dashboard .wf-accueil .wf-hero-art {width:110%;left:-4%;}
-  #view-dashboard .wf-accueil .ac-hero p {max-width:52%;}
-  #view-dashboard .wf-accueil .ac-v21-guest b {font-size:12px;}
-  #view-dashboard .wf-accueil .ac-v21-cta .cs-ic .ic {width:33px;height:33px;}
+@media (max-width:335px) {
+  #view-dashboard .wf-accueil .ac-v21-controls { align-items:flex-start; gap:6px 8px; }
+  #view-dashboard .wf-accueil .puce-niv { min-width:54px; padding:0 8px; }
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta { padding:11px 12px; gap:8px; }
 }
-@media(max-width:335px) {
-  #view-dashboard .wf-accueil .ac-v21-controls {align-items:flex-start;gap:8px;}
-  #view-dashboard .wf-accueil .puce-niv {min-width:58px;padding:0 8px;}
-  #view-dashboard .wf-accueil .wf-niveau-ouvrir {min-width:44px;width:44px;}
-  #view-dashboard .wf-accueil .ac-hero p {max-width:54%;}
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {padding:15px 12px;gap:8px;}
-  #view-dashboard .wf-accueil .ac-acces {grid-template-columns:repeat(2,minmax(0,1fr));}
-  #view-dashboard .wf-accueil .ac-acces .ac-btn:nth-child(3) {border-left:0;border-top:1px solid rgba(247,233,194,.3);}
-  #view-dashboard .wf-accueil .ac-acces .ac-btn:nth-child(4) {border-top:1px solid rgba(247,233,194,.3);}
+/* Police système très agrandie : 2×2 plutôt que des libellés superposés. */
+@media (max-width:300px) {
+  #view-dashboard .wf-accueil .ac-acces { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:nth-child(3)::before { display:none; }
 }
-@media(max-width:600px) {
-  #view-dashboard .accueil.wf-accueil {height:auto;min-height:100%; }
-  #view-dashboard .wf-accueil .ac-hero {flex:0 0 auto;height:clamp(205px,53vw,257px);max-height:none;}
+
+/* ── Écran court (Brave/Chrome avec barres, 360×593) : on resserre la grille ── */
+@media (max-width:600px) and (max-height:660px) {
+  #view-dashboard .accueil.wf-accueil { --wf-gap:8px; padding-top:6px; padding-bottom:calc(6px + env(safe-area-inset-bottom)); }
+  #view-dashboard .wf-accueil .ac-ent { min-height:42px; }
+  #view-dashboard .wf-accueil .ac-marque-symbole { width:36px; height:36px; }
+  #view-dashboard .wf-accueil .ac-titre { font-size:28px; }
+  #view-dashboard .wf-accueil .ac-v21-controls { margin-top:6px; }
+  #view-dashboard .wf-accueil .ac-hero { margin-top:10px; }
+  #view-dashboard .wf-accueil .ac-hero-surtitre { margin-bottom:4px; }
+  #view-dashboard .wf-accueil .ac-hero h2 { font-size:clamp(52px,15.5vw,62px); margin-bottom:3px; }
+  #view-dashboard .wf-accueil .ac-hero p { font-size:13px; }
+  #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-titre { margin-bottom:6px; }
+  #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-chiffre { font-size:28px; }
+  #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste { margin-top:6px; }
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta { padding-block:10px; }
+  #view-dashboard .wf-accueil .ac-acces { padding-block:6px; }
+  #view-dashboard .wf-accueil .ac-btn.ac-v21-journey { margin-top:2px; }
 }
-@media(max-height:730px) and (max-width:600px) {
-  #view-dashboard .accueil.wf-accueil {padding-top:9px;padding-bottom:calc(10px + env(safe-area-inset-bottom));}
-  #view-dashboard .wf-accueil .ac-v21-controls {margin-top:7px;}
-  #view-dashboard .wf-accueil .ac-hero {margin-top:12px;margin-bottom:10px;height:205px;min-height:0;}
-  #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan {margin-bottom:9px;}
-  #view-dashboard .wf-accueil .ac-v21-actions {margin-top:9px;}
+/* ── Écran haut : un peu plus d'air, même composition ─────────────────── */
+@media (min-height:820px) {
+  #view-dashboard .accueil.wf-accueil { --wf-gap:16px; padding-top:14px; }
+  #view-dashboard .wf-accueil .ac-hero { margin-top:20px; }
 }
-@media(max-width:600px) and (min-height:850px) {
-  #view-dashboard .accueil.wf-accueil {min-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));}
+
+@media (prefers-reduced-motion:reduce) {
+  #view-dashboard .wf-accueil .ac-piste i { transition:none; }
 }
-@media(max-width:440px) and (min-resolution:1dppx) {
-  #view-dashboard .wf-accueil .ac-marque-symbole {width:47px;height:47px;}
-}
-@media(prefers-reduced-motion:reduce) {
-  #view-dashboard .wf-accueil .ac-piste i {transition:none;}
-}
-/* Bottom sheet natif : l'UI reste dans le même navigateur et le retour Android fonctionne. */
-body.wf-sheet-open {overflow:hidden;}
+
+/* ── Bottom sheet natif : le retour Android ferme la feuille ──────────── */
+body.wf-sheet-open { overflow:hidden; }
 .wf-niveaux-dialog {
-  --wf-cream:#f7e9c2;--wf-red:#f22421;--wf-bg:#080808;--wf-cyan:#02c5e7;
-  position:fixed;inset:auto 0 0;width:min(100%,640px);max-width:100%;
-  max-height:min(80dvh,680px);margin:0 auto;
-  background:#141210;color:var(--wf-cream);
-  border:1px solid #595248;border-bottom:0;border-radius:22px 22px 0 0;
-  padding:0;overflow-y:auto;overscroll-behavior:contain;
+  --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-bg:#080808; --wf-cyan:#02c5e7;
+  position:fixed; inset:auto 0 0; width:min(100%,640px); max-width:100%;
+  max-height:min(80dvh,680px); margin:0 auto;
+  background:#141210; color:var(--wf-cream);
+  border:1px solid #595248; border-bottom:0; border-radius:22px 22px 0 0;
+  padding:0; overflow-y:auto; overscroll-behavior:contain;
 }
-.wf-niveaux-dialog::backdrop {background:rgba(0,0,0,.73);}
-.wf-niveaux-dialog .wf-sheet-content {padding:14px 20px calc(23px + env(safe-area-inset-bottom));}
-.wf-niveaux-dialog .wf-sheet-handle {width:62px;height:5px;background:#6a6156;border-radius:8px;margin:0 auto 16px;}
-.wf-niveaux-dialog .wf-sheet-head {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px;}
-.wf-niveaux-dialog h2 {font:800 20px/1.2 Inter,system-ui,sans-serif;margin:0;}
-.wf-niveaux-dialog .wf-sheet-close {min-height:44px;min-width:60px;border:0;background:none;color:var(--wf-cream);font:700 14px Inter,system-ui,sans-serif;}
-.wf-niveaux-dialog .wf-sheet-row {display:flex;align-items:center;gap:15px;padding:11px 0;border-top:1px solid #3a352e;}
-.wf-niveaux-dialog .wf-sheet-family {width:36px;min-width:36px;font:800 17px Inter,system-ui,sans-serif;}
-.wf-niveaux-dialog .wf-sheet-options {display:flex;flex-wrap:wrap;gap:8px;}
+.wf-niveaux-dialog::backdrop { background:rgba(0,0,0,.73); }
+.wf-niveaux-dialog .wf-sheet-content { padding:14px 20px calc(23px + env(safe-area-inset-bottom)); }
+.wf-niveaux-dialog .wf-sheet-handle { width:62px; height:5px; background:#6a6156; border-radius:8px; margin:0 auto 16px; }
+.wf-niveaux-dialog .wf-sheet-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:15px; }
+.wf-niveaux-dialog h2 { font:800 20px/1.2 Inter,system-ui,sans-serif; margin:0; }
+.wf-niveaux-dialog .wf-sheet-close { min-height:44px; min-width:60px; border:0; background:none; color:var(--wf-cream); font:700 14px Inter,system-ui,sans-serif; }
+.wf-niveaux-dialog .wf-sheet-row { display:flex; align-items:center; gap:15px; padding:11px 0; border-top:1px solid #3a352e; }
+.wf-niveaux-dialog .wf-sheet-family { width:36px; min-width:36px; font:800 17px Inter,system-ui,sans-serif; }
+.wf-niveaux-dialog .wf-sheet-options { display:flex; flex-wrap:wrap; gap:8px; }
 .wf-niveaux-dialog .wf-sheet-level {
-  min-width:72px;min-height:46px;padding:8px 12px;
-  border:2px solid var(--wf-cream);border-radius:14px;background:transparent;color:var(--wf-cream);
+  min-width:72px; min-height:46px; padding:8px 12px;
+  border:2px solid var(--wf-cream); border-radius:14px; background:transparent; color:var(--wf-cream);
   font:800 16px Inter,system-ui,sans-serif;
 }
-.wf-niveaux-dialog .wf-sheet-level.is-current {background:var(--wf-red);}
-.wf-niveaux-dialog button:focus-visible {outline:3px solid var(--wf-cyan);outline-offset:3px;}
+.wf-niveaux-dialog .wf-sheet-level.is-current { background:var(--wf-red); }
+.wf-niveaux-dialog button:focus-visible { outline:3px solid var(--wf-cyan); outline-offset:3px; }

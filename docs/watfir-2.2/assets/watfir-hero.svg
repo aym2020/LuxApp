@@ -1,22 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="330" viewBox="0 0 980 330" role="img" aria-labelledby="title desc">
-<title id="title">Watfir — skyline géométrique de Luxembourg</title>
-<desc id="desc">Deux rubans cyan et rouge montent vers une tour beige sur une arche de pont à trois ouvertures.</desc>
-<g fill="none" stroke-width="25" stroke-linejoin="round">
-<path d="M8 250H476C547 250 562 76 659 76H972" stroke="#02C5E7"/>
-<path d="M8 287H485C555 287 574 113 665 113H972" stroke="#F22421"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="160" viewBox="0 0 400 160" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — monument géométrique</title>
+<desc id="desc">Deux fines bandes cyan et rouge montent en douceur vers une tour élancée posée sur un pont à trois arches.</desc>
+<!-- Bandes : tracées en premier, elles passent derrière la tour et s'arrêtent au bord droit du pont. -->
+<g fill="none" stroke-width="7">
+<path d="M0 126H168C214 126 220 64 266 64H392" stroke="#02C5E7"/>
+<path d="M0 139H163C209 139 215 77 261 77H392" stroke="#F22421"/>
 </g>
 <g fill="#F7E9C2">
-<path d="M568 219H963V314H568z"/>
-<path d="M625 211l20-20h142l16 20z"/>
-<path d="M708 213v-96h-10l8-13h5V76l14-42 14 42v28h5l8 13h-10v96z"/>
-<path d="M725 34l-5 11h10z"/>
+<!-- Pont : tablier fin, trois arches -->
+<path d="M228 122H392V160H228z"/>
+<!-- Tour : socle évasé, fût, corniche, clocheton, flèche -->
+<path d="M290 122L298 113H322L330 122z"/>
+<path d="M302 58H318V114H302z"/>
+<path d="M298 53H322V59H298z"/>
+<path d="M304 35H316V54H304z"/>
+<path d="M303 36L310 8L317 36z"/>
+<path d="M309.2 2H310.8V10H309.2z"/>
 </g>
 <g fill="#080808">
-<path d="M588 314c0-37 29-57 58-57s58 20 58 57z"/>
-<path d="M708 314c0-37 29-57 58-57s58 20 58 57z"/>
-<path d="M828 314c0-37 29-57 58-57s58 20 58 57z"/>
-<rect x="714" y="129" width="6" height="17" rx="2"/>
-<rect x="725" y="129" width="6" height="17" rx="2"/>
-<rect x="736" y="129" width="6" height="17" rx="2"/>
+<path d="M236 160V152A22 20 0 0 1 280 152V160z"/>
+<path d="M288 160V152A22 20 0 0 1 332 152V160z"/>
+<path d="M340 160V152A22 20 0 0 1 384 152V160z"/>
 </g>
 </svg>

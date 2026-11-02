@@ -52,6 +52,36 @@ Le test `node --test test/watfir-home.test.cjs` a été ajouté au dépôt comme
 5. Exécuter `node --test test/watfir-home.test.cjs` + la suite critique 2.1, comparer les échecs préexistants.
 6. Reproduire la capture réelle pour comparaison avec la V4 approuvée et ajuster exclusivement les styles d'accueil.
 
-## 7. Retour arrière ciblé
+## 7. Correctif « compacité et fidélité V4 » (02/11/2026)
+
+Capture Samsung (Brave, largeur 360 px, ~593 px utiles) : accueil 711 px de haut, 118 px de défilement, monument rogné, bandes épaisses, « Moien! » trop fin.
+
+**Causes racines**
+
+1. Hero à hauteur imposée (`clamp(207px,57vw,280px)` + `min-height:207px`) et dessin en `position:absolute` élargi à 110 % sous 380 px : rognage gauche/droite (14 et 22 px) et grand vide sous le texte.
+2. SVG 980×330 : pont de 395×95 u (40 % de la largeur), bandes de 25 u, partant à x=25.
+3. `Instrument Serif` n'existe qu'en graisse 400 : `italic 700` sur « Watfir » donnait un gras synthétique ; « Moien! » restait fin.
+4. Hauteurs cumulées : CTA `min-height:112px` + padding 17 px, raccourcis 13 px de padding + boutons 63 px, marges 13–19 px, header 113 px. Règles 2.1 actives en parallèle (`ac-nouveau-invite` : CTA `min-height:108px`, `gap:7px` ; hero 2.1 `flex:1 1 258px`).
+
+**Corrections**
+
+- Hero en flux : texte, puis dessin (`width:100%`, `aspect-ratio:400/160`, `margin-top:clamp(-120px,-25%,0px)`). Le dessin remonte sous le texte en proportion de la largeur ; si le texte grandit, il descend avec lui. Aucun rognage, aucune hauteur fixe.
+- `public/art/watfir-hero.svg` redessiné (viewBox 400×160) : bandes 7 u (−30 %), courbe plus longue et parallèle, fin alignée sur le bord du pont ; pont fin à trois arches ; tour élancée (socle, fût, corniche, clocheton, flèche) ; aucune fenêtre, aucun soleil. Source copiée dans `docs/watfir-2.2/assets/`.
+- « Watfir » et « Moien! » : `DM Serif Display` italique (OFL, `public/fonts/`, préchargée), nom CSS `Watfir Display`, sans gras synthétique.
+- Une grille verticale `--wf-gap` (12 px ; 8 px si hauteur ≤ 660 px ; 16 px si hauteur ≥ 820 px), CTA et raccourcis compactés, séparateurs courts à 20 % d'opacité, règles 2.1 concurrentes neutralisées explicitement (`gap`, `min-height`).
+
+**Mesures Chromium (invité, leçon 0)**
+
+| Viewport | Header | Hero | Stats | CTA | Raccourcis + chemin | Contenu | Défilement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 360×593 avant | 107 | 205 | 90 | 112 | 148 | 711 | 118 |
+| 360×593 après | 94 | 164 | 78 | 87 | 120 | 584 | 0 |
+| 320×568 après | 94 | 154 | 78 | 86 | 120 | 573 | 5 |
+| 393×760 après | 98 | 188 | 87 | 93 | 128 | 653 | 0 |
+| 430×932 après | 98 | 199 | 90 | 94 | 128 | 692 | 0 |
+
+Titre de leçon long : 2–3 lignes sans troncature (CTA 112–125 px). Police ×1,3 (approximation par zoom) : défilement naturel, aucun débordement horizontal. **Validation Samsung réelle encore nécessaire.**
+
+## 8. Retour arrière ciblé
 
 Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `accueil-watfir.js` de `public/index.html`. Le rendu 2.1 reprend alors sans toucher au moteur, à la progression ni aux jeux. Ne jamais supprimer les clés de stockage.

@@ -7,7 +7,7 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 | Asset | Type | Usage | Statut |
 | --- | --- | --- | --- |
 | [`watfir-mark.svg`](assets/watfir-mark.svg) | SVG compact | Emblème de marque, app icon de travail | Prototype |
-| [`watfir-hero.svg`](assets/watfir-hero.svg) | SVG horizontal | Illustration du hero, arches et bandes intégrées | Prototype |
+| [`watfir-hero.svg`](assets/watfir-hero.svg) | SVG 400×160 | Illustration du hero : bandes 7 u, pont à trois arches, tour élancée (redessiné le 02/11/2026) | Actif dans `public/art`, à valider Samsung |
 | [`watfir-stripes.svg`](assets/watfir-stripes.svg) | SVG motif | Bandes identitaires autonomes | Prototype |
 | [`watfir-palette.svg`](assets/watfir-palette.svg) | SVG planche | Contrôle visuel des tokens | Documentaire |
 | [`niveaux-sheet.svg`](assets/niveaux-sheet.svg) | SVG schéma | Sélecteur V4 et feuille de choix | Documentaire |
@@ -24,7 +24,7 @@ La **référence visuelle V4** est le mockup généré dans la conversation, ave
 - **Motif** : ne pas dupliquer les bandes dans les composants secondaires ; éviter répétition décorative.
 - **Couleurs** : consommer les variables sémantiques CSS pour la vraie UI, pas recopier les codes sur chaque élément.
 - **Rasters** : si des images de référence sont exportées, créer une version haute définition d'archive et un aperçu WebP optimisé ; jamais intégrer une capture entière comme interface cliquable.
-- **Fonts** : aucun fichier de police intégré. Les titres typographiques des maquettes sont des approximations jusqu'au choix et à la licence d'une police réelle.
+- **Fonts** : `public/fonts/dm-serif-display-latin-400-italic.woff2` (DM Serif Display italique, SIL OFL 1.1, licence `DM-SERIF-DISPLAY-OFL.txt`) pour « Watfir » et « Moien! » uniquement. Le reste de l'interface garde Inter.
 - **Originalité** : s'inspirer des règles historiques (courbes, géométrie, composition typographique) ; ne pas réutiliser les logos de villes ou marques de tiers.
 
 ## 4. Critères de promotion en production

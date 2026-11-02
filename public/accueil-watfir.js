@@ -24,7 +24,7 @@
     ).join('');
     return '<div class="ac-ent entre">' +
       '<div class="ac-marque">' +
-        '<img class="ac-marque-symbole" src="art/watfir-mark.svg" alt="" width="52" height="52">' +
+        '<img class="ac-marque-symbole" src="art/watfir-mark.svg" alt="" width="40" height="40">' +
         '<div><h1 class="ac-titre">Watfir</h1><span class="ac-marque-sous">Lëtzebuergesch</span></div>' +
       '</div>' +
       '<button type="button" class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(sync)) +
@@ -50,13 +50,15 @@
     const phrase = nouveau
       ? 'Une nouvelle langue commence ici.'
       : 'Prêt pour quelques minutes de Lëtzebuergesch ?';
+    // Le dessin suit le texte dans le flux : il remonte dessous par une marge négative (CSS).
     return '<section class="ac-hero entre-2" aria-label="Bienvenue">' +
-      '<img class="wf-hero-art" src="art/watfir-hero.svg" alt="" aria-hidden="true">' +
       '<div class="ac-hero-texte">' +
         '<span class="ac-hero-surtitre">Le luxembourgeois, pas à pas</span>' +
         '<h2>Moien<span class="ac-hero-exclamation">!</span></h2>' +
         '<p>' + phrase + '</p>' +
-      '</div></section>';
+      '</div>' +
+      '<img class="wf-hero-art" src="art/watfir-hero.svg?v=2" alt="" aria-hidden="true" width="400" height="160">' +
+    '</section>';
   };
 
   chiffresHtml = function () {

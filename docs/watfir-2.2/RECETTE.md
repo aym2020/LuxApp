@@ -4,9 +4,9 @@
 
 ## A. Vérifications des assets (possibles sans implémentation)
 
-- [ ] SVG XML valides, `viewBox` définis, aucun lien vers police ou ressource distante.
+- [x] SVG XML valides, `viewBox` définis, aucun lien vers police ou ressource distante. *(hero, 02/11)*
 - [ ] Symboles visibles sur fond noir et en réduction de 32/48/96 px ; traces distinctes.
-- [ ] Monument lisible, trois arches visibles ; aucun soleil ni façade détaillée.
+- [x] Monument lisible, trois arches visibles ; aucun soleil ni façade détaillée. *(Chromium 320–1440, 02/11 ; Samsung à confirmer)*
 - [ ] Palette identique entre planche SVG, tokens CSS et documentation.
 - [ ] Textes d'illustration et véritables données applicatives distingués.
 
