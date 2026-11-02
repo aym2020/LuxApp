@@ -22,7 +22,7 @@
 
 /* ── Conteneur : grille verticale ─────────────────────────────────────────
    --k règle la LARGEUR (proportions de la maquette). La HAUTEUR est gérée à part :
-   six blocs (lignes « max-content » : jamais plus petites que leur contenu) séparés par six intervalles souples minmax(min, max).
+   cinq blocs (lignes « max-content » : jamais plus petites que leur contenu) séparés par cinq intervalles souples minmax(min, max).
    La grille occupe toute la hauteur utile de l'écran (#view-dashboard = 100dvh,
    barres du navigateur déduites). L'espace libre est réparti à parts égales entre les
    intervalles, chacun plafonné à son max ; s'il en reste (grand écran PC), la
@@ -40,11 +40,9 @@
     max-content                                                  /* 5  progression */
     minmax(calc(32 * var(--k)), calc(120 * var(--k)))            /* 6  → CTA */
     max-content                                                  /* 7  CTA */
-    minmax(calc(25 * var(--k)), calc(100 * var(--k)))            /* 8  → raccourcis */
-    max-content                                                  /* 9  raccourcis */
-    minmax(max(0px, calc(50 * var(--k) - 22px)), calc(120 * var(--k))) /* 10 → chemin (zone de 44 px) */
-    max-content                                                  /* 11 Voir mon chemin */
-    minmax(calc(24 * var(--k)), calc(140 * var(--k)));           /* 12 → bas de l'écran */
+    minmax(calc(30 * var(--k)), calc(110 * var(--k)))            /* 8  → Étudier / Jouer */
+    max-content                                                  /* 9  les deux boutons centrés */
+    minmax(calc(24 * var(--k)), calc(140 * var(--k)));           /* 10 → bas de l'écran */
   align-content:safe center; gap:0; /* « safe » : si le contenu dépasse, il défile au lieu d'être coupé en haut */
   width:100%; max-width:calc(941 * var(--k)); margin:0 auto;
   height:auto; min-height:100%;
@@ -57,7 +55,6 @@
 #view-dashboard .wf-accueil > #today { grid-row:7; }
 #view-dashboard .wf-accueil > .ac-v21-actions { display:contents; }
 #view-dashboard .wf-accueil .ac-v21-actions > .ac-acces { grid-row:9; }
-#view-dashboard .wf-accueil .ac-v21-actions > .ac-v21-journey { grid-row:11; }
 
 /* ── Header : une seule ligne (maquette y 97–193) ─────────────────────── */
 /* Trois blocs : marque, niveaux, compte. Si la ligne ne tient plus (grande police),
@@ -332,53 +329,86 @@
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic { width:100%; height:100%; stroke-width:2; }
 
-/* ── Quatre raccourcis (maquette y 1132–1295) ─────────────────────────── */
-#view-dashboard .wf-accueil .ac-acces {
-  display:grid; grid-template-columns:228fr 215fr 208fr 209fr; gap:0; padding:0;
-  background:transparent; box-shadow:none; overflow:visible;
-  border:max(1px, calc(2.5 * var(--k))) solid var(--wf-cream); border-radius:calc(26 * var(--k));
+/* ── Deux actions secondaires : Étudier / Jouer ──────────────────────────
+   Maquette validée : deux boutons centrés, texte/icônes crème. Le rouge et le
+   bleu de ces faces sont assombris pour le contraste ; les bandes du CTA
+   Commencer (WF red/cyan et stops 51.6/31.8 * --k) restent INTACTES.
+   Ombres hors flux, dimensions tactiles >= 76px. */
+#view-dashboard .wf-accueil .ac-acces.wf-choix-activite {
+  --wf-study:#d3232b;
+  --wf-study-hover:#ed3640;
+  --wf-study-side:#861c18;
+  --wf-play:#087496;
+  --wf-play-hover:#0b8fb5;
+  --wf-play-side:#054860;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(10px,calc(30 * var(--k)),18px);
+  width:min(100%,calc(860 * var(--k)));
+  margin:0 auto; padding:0; border:0; border-radius:0;
+  background:none; box-shadow:none; overflow:visible;
 }
-#view-dashboard .wf-accueil .ac-acces .ac-btn {
-  position:relative; min-height:calc(158 * var(--k)); padding:0; gap:calc(12 * var(--k));
-  justify-content:center; color:var(--wf-cream); background:none; border:0;
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite {
+  --wf-face:var(--wf-study);
+  --wf-face-hover:var(--wf-study-hover);
+  --wf-side:var(--wf-study-side);
+  appearance:none; position:relative; display:flex; flex-direction:row;
+  align-items:center; justify-content:center; flex-wrap:nowrap;
+  gap:clamp(8px,calc(24 * var(--k)),13px);
+  width:100%; min-width:0; min-height:clamp(76px,calc(170 * var(--k)),96px);
+  padding:12px 8px;
+  border:1px solid rgba(247,233,194,.16);
+  border-radius:clamp(12px,calc(28 * var(--k)),16px);
+  background-color:var(--wf-face);
+  background-image:linear-gradient(160deg,rgba(255,255,255,.08),transparent 56%,rgba(0,0,0,.08));
+  color:var(--wf-cream); text-align:center; cursor:pointer;
+  box-shadow:0 5px 0 var(--wf-side),0 9px 12px rgba(0,0,0,.40),inset 0 1px 0 rgba(255,255,255,.23);
+  transform:translateY(0);
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  transition:background-color 170ms ease, transform 155ms cubic-bezier(.22,1,.36,1),box-shadow 155ms ease;
 }
-#view-dashboard .wf-accueil .ac-acces .ac-btn + .ac-btn { border-left:0; }
-#view-dashboard .wf-accueil .ac-acces .ac-btn + .ac-btn::before {
-  content:""; position:absolute; left:0; top:calc(25 * var(--k)); bottom:calc(25 * var(--k));
-  width:max(1px, calc(2 * var(--k))); background:rgba(247,233,194,.45); pointer-events:none;
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite-jouer {
+  --wf-face:var(--wf-play);
+  --wf-face-hover:var(--wf-play-hover);
+  --wf-side:var(--wf-play-side);
 }
-/* Pictogrammes : une seule famille. Le trait affiché vaut taille/24 × stroke-width ;
-   il est ramené à ≈ 5 px maquette pour les quatre (la cible et la manette, plus chargées,
-   un peu moins). Chaque pictogramme occupe 58 px de haut dans la mise en page (marges
-   négatives pour les plus grands) : les quatre libellés restent alignés. */
-#view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child {
-  width:calc(58 * var(--k)); height:calc(58 * var(--k)); color:var(--wf-cream); stroke-width:2.2; filter:none;
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite > .ic:first-child {
+  flex:none; width:clamp(27px,calc(65 * var(--k)),35px);
+  height:clamp(27px,calc(65 * var(--k)),35px);
+  margin:0; color:var(--wf-cream); stroke:currentColor; stroke-width:2.2;
+  fill:none; filter:none;
 }
-#view-dashboard .wf-accueil .ac-acces .ac-btn.err > .ic:first-child { stroke-width:2.05; }
-#view-dashboard .wf-accueil .ac-acces .ac-btn.exa > .ic:first-child {
-  width:calc(68 * var(--k)); height:calc(68 * var(--k)); margin:calc(-5 * var(--k)) 0; stroke-width:1.9;
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite > b {
+  min-width:0; margin:0; color:var(--wf-cream);
+  font:800 clamp(18px,calc(52 * var(--k)),26px)/1.1 var(--wf-sans);
+  letter-spacing:-.025em; white-space:nowrap;
 }
-/* Manette : son dessin est bas dans sa grille (y 9–19 sur 24) ; elle remonte de 5,5 pour
-   que son centre optique s'aligne sur celui des trois autres. */
-#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > .ic:first-child {
-  width:calc(66 * var(--k)); height:calc(66 * var(--k)); margin:calc(-9.5 * var(--k)) 0 calc(1.5 * var(--k));
-  stroke-width:1.8; color:var(--wf-cyan);
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]) {
+  transform:translateY(4px); filter:none;
+  box-shadow:0 1px 0 var(--wf-side),0 3px 5px rgba(0,0,0,.3),inset 0 2px 4px rgba(0,0,0,.16);
 }
-#view-dashboard .wf-accueil .ac-acces .ac-btn > b,
-#view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > b {
-  /* Très grande police : le libellé peut déborder de 6 px de chaque côté de sa case,
-     puis passe à la ligne plutôt que de chevaucher son voisin. */
-  margin-inline:-6px; color:var(--wf-cream); letter-spacing:0; white-space:normal; overflow-wrap:anywhere;
-  font:600 calc(28.6 * var(--k))/1.2 var(--wf-sans);
+@media (max-width:350px) {
+  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite {
+    gap:7px; padding-inline:5px;
+  }
 }
 
-/* ── Voir mon chemin ─────────────────────────────────────────────────── */
-#view-dashboard .wf-accueil .ac-btn.ac-v21-journey {
-  min-height:44px; margin:0; padding:0 0 0 calc(18 * var(--k)); gap:calc(30 * var(--k)); color:var(--wf-cream);
+/* ── Sous-menu Étudier : sans raccourcis perdus ────────────────────────── */
+.wf-etudier-dialog .wf-etudier-options { display:grid; gap:9px; }
+.wf-etudier-dialog .wf-etudier-option {
+  display:flex; flex-direction:column; align-items:flex-start;
+  width:100%; min-height:62px; padding:12px 17px; gap:5px;
+  border:1px solid #5d5140; border-radius:13px;
+  background:#211c16; color:var(--wf-cream); text-align:left;
+  transition:background-color 170ms ease;
 }
-#view-dashboard .wf-accueil .ac-v21-journey > b { font:700 calc(32.6 * var(--k))/1.2 var(--wf-sans); letter-spacing:0; }
-#view-dashboard .wf-accueil .ac-v21-journey > .ic:first-child { width:calc(50 * var(--k)); height:calc(50 * var(--k)); stroke-width:2; }
-#view-dashboard .wf-accueil .ac-v21-journey > .ic:last-child { width:calc(36 * var(--k)); height:calc(36 * var(--k)); stroke-width:2.6; margin-left:calc(-7 * var(--k)); }
+.wf-etudier-dialog .wf-etudier-option > b { font:750 16px/1.1 Inter,system-ui,sans-serif; }
+.wf-etudier-dialog .wf-etudier-option > small { font:400 12px/1.2 Inter,system-ui,sans-serif; color:#c3b49b; }
+.wf-etudier-dialog .wf-etudier-option:active { background:#382d23; }
+.wf-etudier-dialog .wf-etudier-option:focus-visible { outline:3px solid var(--wf-cyan); outline-offset:2px; }
+@media (hover:hover) and (pointer:fine) {
+  .wf-etudier-dialog .wf-etudier-option:hover:not(:active) { background:#31281f; }
+}
 
 #view-dashboard .wf-accueil .carte-suite:focus-visible,
 #view-dashboard .wf-accueil .puce-niv:focus-visible,
@@ -444,6 +474,9 @@ body.wf-sheet-open { overflow:hidden; }
   /* Garder le feedback tactile par changement d'ombre, sans déplacement. */
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta { transition:none; }
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]) { transform:none; }
+  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite { transition:none; }
+  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]) { transform:none; }
+  .wf-etudier-dialog .wf-etudier-option { transition:none; }
   .wf-niveaux-dialog, .wf-niveaux-dialog[open] { transform:none; transition:none; }
   .wf-niveaux-dialog::backdrop { transition:none; }
   .wf-niveaux-dialog button, #view-dashboard .wf-accueil .ac-v21-guest, #view-dashboard .wf-accueil .ac-menu { transition:none; }
