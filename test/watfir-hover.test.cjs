@@ -44,7 +44,7 @@ test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=
 });
 
 test('CTA : crème doré uniquement, sans effet flottant ni dégradation des bandes',()=>{
-  const section=css.split('/* CTA : remplacement couleur crème')[1].split('/* Pastilles')[0];
+  const section=css.split('/* CTA : remplacement couleur crème')[1].split('  #view-dashboard .wf-accueil .puce-niv {')[0];
   assert.match(css,/@property --wf-cta-surface\s*\{/);
   assert.match(section,/--wf-cta-surface:#fbebc5/);
   assert.match(section,/var\(--wf-cta-surface\) calc\(100% - 51\.6 \* var\(--k\)\)/);
