@@ -1,19 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864 265" width="864" height="265" role="img" aria-labelledby="title desc">
-<title id="title">Watfir — monument et rubans, d'après la maquette V4</title>
-<desc id="desc">Deux rubans rouge et bleu se croisent en une courbe, encadrant une tour élancée sur une toiture basse et un pont à trois arches ouvertes.</desc>
-<!-- SVG entièrement vectoriel ; fond transparent ; coordonnées de référence : art de la V4, largeur 864. -->
-<g id="rubans">
-  <!-- Le ruban cyan inférieur remonte derrière le rouge, exactement comme dans la référence. -->
-  <path id="cyan-inferieur" fill="#02C5E7" d="M 49,242 H 430 C 467,242 473,221 489,199 L 512,184 C 488,232 472,263 433,263 H 38 Z"/>
-  <!-- Ruban rouge : partie gauche horizontale, courbe ascendante, puis partie haute. -->
-  <path id="rouge" fill="#F22421" d="M 56,219 H 430 C 474,219 492,175 520,138 C 545,106 564,102 590,102 H 832 V 125 H 590 C 560,125 543,145 519,179 C 489,219 475,242 431,242 H 43 Z"/>
-  <!-- Ruban cyan supérieur, à pointe naissante à gauche et terminé derrière la tour. -->
-  <path id="cyan-superieur" fill="#02C5E7" d="M 426,219 C 467,205 486,159 513,119 C 542,82 566,74 597,74 H 832 V 96 H 597 C 568,96 551,109 526,145 C 497,187 480,215 426,219 Z"/>
-</g>
-<g id="monument" fill="#F7E9C2">
-  <!-- Toit et tour : une seule silhouette pour éviter les joints visibles à l'export. -->
-  <path id="toit-et-tour" fill-rule="evenodd" d="M 532,197 L 546,187 H 576 L 593,178 H 654 V 124 L 660,119 L 665,104 L 674,100 L 677,63 L 671,56 L 675,43 L 680,3 L 685,43 L 691,56 L 685,63 L 687,100 L 696,104 L 702,119 L 706,124 V 178 H 768 L 780,168 L 812,197 Z M665,133 h7 v17 h-7 Z M680,133 h7 v17 h-7 Z M695,133 h7 v17 h-7 Z" />
-  <path id="pont-trois-arches" d="M 469,262 C 474,234 487,214 521,207 C 532,206 539,206 547,206 H 826 V 262 H 806 C 806,237 791,223 763,223 C 736,223 720,239 720,262 H 698 C 698,237 682,223 654,223 C 628,223 610,238 610,262 H 588 C 588,237 571,223 544,223 C 519,223 500,239 500,262 Z" />
-</g>
-
+  <title id="title">Watfir — pont et tour rétro</title>
+  <desc id="desc">Deux rubans rouge et cyan se croisent en une courbe fluide derrière une tour ivoire et un pont aux trois arches ajourées.</desc>
+  <!-- Conçu pour le hero Watfir V4. Fond transparent ; gabarit 864 × 265 inchangé. -->
+  <g id="rubans" fill="none" stroke-linecap="butt" stroke-linejoin="round">
+    <!-- Les deux rubans conservent une épaisseur constante, y compris dans la courbe.
+         Un fin liseré noir les sépare visuellement lorsqu'ils se croisent. -->
+    <path id="ruban-rouge-contour" d="M 48,226 H 470 C 518,226 521,139 564,123 C 578,116 589,113 604,113 H 833" stroke="#080808" stroke-width="27"/>
+    <path id="ruban-rouge" d="M 48,226 H 470 C 518,226 521,139 564,123 C 578,116 589,113 604,113 H 833" stroke="#F22421" stroke-width="19"/>
+    <path id="ruban-cyan-contour" d="M 42,249 H 416 C 433,249 438,205 469,172 C 512,112 554,88 604,88 H 833" stroke="#080808" stroke-width="27"/>
+    <path id="ruban-cyan" d="M 42,249 H 416 C 433,249 438,205 469,172 C 512,112 554,88 604,88 H 833" stroke="#02C5E7" stroke-width="19"/>
+  </g>
+  <g id="monument">
+    <!-- Le contour noir n'affecte que le périmètre de la tour.
+         Les fenêtres sont de véritables ajours indépendants. -->
+    <path id="tour-contour" fill="none" stroke="#080808" stroke-width="8" stroke-linejoin="round"
+      d="M 527,195 L 547,183 H 574 L 594,174 H 652 V 126 L 662,118 L 665,104 L 674,98 L 678,64 L 673,57 L 678,47 L 682,6 L 687,47 L 694,57 L 688,65 L 690,98 L 700,104 L 703,118 L 712,126 V 174 H 763 L 779,164 L 814,195 Z"/>
+    <path id="toiture-et-tour" fill="#F7E9C2" fill-rule="evenodd"
+      d="M 527,195 L 547,183 H 574 L 594,174 H 652 V 126 L 662,118 L 665,104 L 674,98 L 678,64 L 673,57 L 678,47 L 682,6 L 687,47 L 694,57 L 688,65 L 690,98 L 700,104 L 703,118 L 712,126 V 174 H 763 L 779,164 L 814,195 Z
+         M 664,133 H 670 V 150 H 664 Z
+         M 679,133 H 685 V 150 H 679 Z
+         M 694,133 H 700 V 150 H 694 Z"/>
+    <!-- Trois arches véritablement évidées, sans rectangles noirs de simulation. -->
+    <path id="pont-contour" fill="none" stroke="#080808" stroke-width="6" stroke-linejoin="round"
+      d="M 470,260 C 474,233 488,215 519,207 C 528,205 539,204 551,204 H 828 V 260 H 470 Z"/>
+    <path id="pont-trois-arches" fill="#F7E9C2" fill-rule="evenodd"
+      d="M 470,260 C 474,233 488,215 519,207 C 528,205 539,204 551,204 H 828 V 260 H 470 Z
+         M 499,260 C 499,237 514,220 538,220 C 563,220 581,239 581,260 Z
+         M 607,260 C 607,237 624,220 649,220 C 674,220 691,238 691,260 Z
+         M 716,260 C 716,238 733,220 758,220 C 784,220 803,239 803,260 Z"/>
+  </g>
 </svg>
