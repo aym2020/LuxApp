@@ -88,3 +88,18 @@ Le moteur 3D, les portraits des autres écrans et l'identité des personnages ne
 
 Vérifié en Chromium : quatre profils à 393×763, sélection à 320×600, 393×763 et 430×932 sans défilement. Tests Node : 302 réussis, 5 échecs connus. `test-lux-demasque.sh complet` : seul `test_lux_demasque_audio` échoue, comme avant.
 Non vérifié : Samsung.
+
+## 10. Téléphone tenu en main (css v34)
+
+Retour produit sur Samsung : le fond autour du téléphone doit être aussi sombre que celui de la présentation, la bordure ne doit pas avoir de relief, et l'on doit avoir l'impression de regarder à travers un téléphone tenu par la main d'une femme.
+
+Correctif :
+- le fond de la sélection est celui de la vue, comme sur la présentation : plus de halos ni de fond prune sur mobile ;
+- la bordure du téléphone est plate et noire (`#09070a`, filet d'un pixel), sans ombre ni liseré ;
+- une main en pixel art est posée par `::before` (bouts des doigts sur le coin bas gauche) et `::after` (pouce et paume en bas à droite) de `.ld-dating-phone`, avec les fichiers `public/art/cringr-doigts.svg` et `cringr-pouce.svg`, générés par `tools/cringr-main-pixel.py` ;
+- la main ne capte aucun geste (`pointer-events:none`) et ne recouvre ni le texte, ni le badge, ni les boutons ;
+- elle n'apparaît que sous 768 px de large : sur PC, elle serait coupée dans le vide ;
+- la marge latérale de la page passe de 10 à 16 px pour laisser voir la main.
+
+Vérifié en Chromium à 320×600, 393×763 et 430×932 sans défilement, plus 1440×900 (sans main). Tests Node : 302 réussis, 5 échecs connus. `test-lux-demasque.sh complet` : seul `test_lux_demasque_audio` échoue, comme avant. `test_cringr_quitter` passe.
+Non vérifié : Samsung.

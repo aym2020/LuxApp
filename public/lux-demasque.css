@@ -339,18 +339,15 @@
    SPEC 118 (V3) : palette nuit chaude (prune, rose Cringr, ambre), un seul cadre de téléphone,
    portrait dominant et carte qui prend la hauteur disponible (aucune hauteur magique). */
 @font-face{font-family:'VT323';src:url('fonts/vt323-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@media(max-width:767px){
-  #view-luxdemasque:has(.ld-jeu[data-ecran="selection"]){background:radial-gradient(120% 60% at 50% 0%,#33192f 0%,#1f1120 55%,#17101f 85%) #17101f}
-}
 #view-luxdemasque .ld-jeu[data-ecran="selection"]{
   --ld-lecture:'VT323',ui-monospace,monospace;
   --cr-nuit:#17101f;--cr-surface:#302039;--cr-surface-2:#432a46;--cr-rose:#e74791;--cr-ambre:#d99b70;
   --cr-creme:#f6e9dd;--cr-lavande:#c9b5d6;--cr-ombre:#0c0811;
-  max-width:var(--layout-page,480px);padding:8px 10px calc(12px + env(safe-area-inset-bottom));gap:8px;
+  max-width:var(--layout-page,480px);padding:8px 16px calc(12px + env(safe-area-inset-bottom));gap:8px;
   /* Tenir dans l'écran : hauteur de l'écran, la carte rétrécit jusqu'à son contenu (jamais tronqué). */
   height:100dvh;min-height:0;
-  background:radial-gradient(48% 34% at 50% 40%,rgba(231,71,145,.16),transparent),
-    radial-gradient(70% 30% at 50% 100%,rgba(240,162,111,.20),transparent);
+  /* SPEC 118 §10 : même fond sombre que la présentation (celui de la vue) ; la main peut dépasser sur les côtés. */
+  background:transparent;overflow-x:clip;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] button{font-family:var(--ld-lecture)}
 #view-luxdemasque .ld-jeu[data-ecran="selection"] :focus-visible{outline:3px solid #fff;outline-offset:3px}
@@ -373,9 +370,29 @@
   width:100%;max-width:420px;min-width:0;min-height:0;margin:auto;display:flex;flex-direction:column;flex:0 1 auto;
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone{
-  width:100%;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;padding:5px;
-  border:2px solid var(--cr-ombre);border-radius:30px;background:#3b2335;
-  box-shadow:inset 0 0 0 1px rgba(240,162,111,.38),0 6px 0 var(--cr-ombre),0 26px 44px -20px rgba(240,162,111,.45);
+  position:relative;width:100%;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;padding:7px;
+  /* Bordure plate et noire d'un vrai téléphone : aucun relief, aucune ombre. */
+  border:1px solid #2b2130;border-radius:32px;background:#09070a;box-shadow:none;
+}
+/* Main de la joueuse (pixel art) : bouts des doigts sur le bord gauche, pouce et paume à droite.
+   Décor seul : ne capte aucun geste et ne recouvre que la bordure et la marge de l'écran. */
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::before,
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::after{
+  content:"";position:absolute;z-index:6;pointer-events:none;
+  background:center/100% 100% no-repeat;image-rendering:pixelated;
+}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::before{
+  left:-38px;bottom:-12px;width:72px;height:132px;background-image:url('art/cringr-doigts.svg');
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px);mask-image:linear-gradient(90deg,transparent,#000 16px);
+}
+#view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::after{
+  right:-52px;bottom:-12px;width:90px;height:162px;background-image:url('art/cringr-pouce.svg');
+  -webkit-mask-image:linear-gradient(180deg,#000 75%,transparent);mask-image:linear-gradient(180deg,#000 75%,transparent);
+}
+/* Sur grand écran, la main serait coupée dans le vide : elle n'apparaît que sur mobile. */
+@media(min-width:768px){
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::before,
+  #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-phone::after{display:none}
 }
 #view-luxdemasque .ld-jeu[data-ecran="selection"] .ld-dating-screen{
   width:100%;min-width:0;min-height:0;display:flex;flex-direction:column;flex:0 1 auto;gap:8px;
