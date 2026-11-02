@@ -14,14 +14,23 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | **CTA hover (souris)** | Léger soulèvement **2 px**, ombre beige adaptée ; aucun contour, fond ou chevron rouge | 160 ms |
 | **CTA appuyé (tactile et souris)** | Enfoncement **6 px** et tranche abaissée à 1 px ; retour naturel au relâchement, sans contour coloré | 160 ms |
 | **Choix secondaire (raccourcis)** | Fond **cyan 18 %**, filet cyan intérieur 2 px, pictogramme crème → cyan et remontée limitée à 2 px ; les quatre cellules réagissent pareil | 175 ms |
-| **Niveau inactif** | Fond crème 20 % + contour très léger | 160 ms |
-| **Niveau courant** | Rouge `#F22421` → `#FF4038` | 160 ms |
+| **A1.1 / A1.2 / sélecteur (repos, mobile et PC)** | Tranche 3D de **2 à 4 px** proportionnelle à `--k`, beige foncé `#75644c` en inactif, rouge foncé `#991a17` pour le niveau actif. Bordure crème et dimensions inchangées | permanent |
+| **Niveaux au survol (souris)** | Fond crème 20 % + contour doux en inactif ; niveau courant rouge `#F22421` → `#FF4038`. La tranche et sa couleur restent en place, même en clic maintenu | 160 ms |
+| **Niveaux appuyés (tactile et souris)** | La face descend de la hauteur de tranche moins 1 px, ombre compressée à 1 px ; retour en 140 ms au relâchement | 140 ms |
 | **Lien de chemin** | Soulignement crème et chevron **cyan** +6 px, sans fond ni déplacement du bloc | 190 ms |
 | **Réglages** | Rotation de 15° du pictogramme | 190 ms |
 | **Connexion** | Soulignement rouge de 2 px | immédiat |
 | **Contrôles 2.1 partagés** | Élévation neutre de 2 px + luminosité ×1,10, aucune nouvelle couleur métier | 190 ms |
 
 La convention iconographique est explicite : **les quatre pictogrammes de l'accueil, y compris Jeux, sont crème au repos et cyan au survol souris**. Le cyan reste réservé aux bandes graphiques, aux états de hover, au focus accessible et aux accents réellement utiles. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
+
+### Pastilles 3D du header
+
+La règle `#view-dashboard .wf-accueil .puce-niv` s'applique **aux trois boutons du header** (`A1.1`, `A1.2` et `wf-niveau-ouvrir`). Le relief est une ombre externe, sans changement de `height`, `padding`, `border-radius`, `gap` ou position du groupe. La bordure crème demeure gérée par `::before`. L'élément `::after`, qui élargit les zones tactiles à 48 px, est **préservé** et ne doit jamais être utilisé pour le relief.
+
+Les tokens `--wf-pill-depth`, `--wf-pill-side` et `--wf-pill-hover-outline` centralisent la tranche, sa couleur et le retour visuel souris. `:active` remplace le `scale(.97)` générique de 2.1 par un léger enfoncement physique. Le hover change uniquement la teinte de fond et l'outline via une variable : pas de nouveau `box-shadow` dans la feuille commune, car cela supprimerait la tranche. Sur `prefers-reduced-motion: reduce`, aucun déplacement n'a lieu mais l'ombre d'appui reste visible.
+
+**Périmètre limité aux pastilles encadrées :** le logo, « Mode invité », « Connexion » et l'icône Réglages restent inchangés. L'objectif n'est pas de créer une rangée de boutons épais mais un relief discret cohérent avec le grand CTA.
 
 ## 2. Recettes réutilisables
 
@@ -88,7 +97,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 
 ## 5. Vérification et recette
 
-Contrat automatisable : `node --test test/watfir-hover.test.cjs`. Il vérifie les imports, les règles partagées, le gating desktop, les états disabled/active, le reduced motion, le CTA 3D au repos, l'enfoncement au clic, les bandes d'angle inchangées, le chevron repositionné, les quatre raccourcis cyan au hover et l'icône Jeux crème au repos.
+Contrat automatisable : `node --test test/watfir-hover.test.cjs`. Il vérifie les imports, les règles partagées, le gating desktop, les états disabled/active, le reduced motion, le CTA 3D au repos, l'enfoncement au clic, les bandes d'angle inchangées, le chevron repositionné, les **trois pastilles 3D du header**, les quatre raccourcis cyan au hover et l'icône Jeux crème au repos.
 
 **Avant validation finale**, faire sur Chromium/PC : capture survol CTA, A1.2, S'entraîner, Jeux, Voir mon chemin, Connexion et roue ; comparer avec le repos. Vérifier aussi le press/relâchement, navigation clavier et un viewport mobile tactile simulé. La recette sur smartphone physique et le rendu réel après déploiement restent distincts d'une inspection statique du CSS.
 
