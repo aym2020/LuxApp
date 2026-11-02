@@ -39,7 +39,7 @@
         (compteInvite
           ? '<span class="wf-entete-sep" aria-hidden="true"></span>' +
             '<button type="button" class="ac-v21-guest" onclick="ouvrirCompteDepuisAccueil(\'signin\')" ' +
-            'aria-label="Mode invité : se connecter"><span class="wf-invite-mode">Mode invité ·</span>' +
+            'aria-label="Mode invité : se connecter"><span class="wf-invite-mode">Mode invité</span>' +
             '<b>Connexion</b></button>'
           : '') +
         '<button type="button" class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(sync)) +

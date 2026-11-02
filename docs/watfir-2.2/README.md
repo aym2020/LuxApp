@@ -1,7 +1,7 @@
 # Watfir — direction artistique 2.2 (Retro 1984)
 
 **Branche :** `2.2` (créée depuis `2.1`, le 2 novembre 2026).  
-**Statut :** **accueil V4 intégré au code réel de la branche `2.2`**, à valider visuellement sur Samsung et en navigateur. Les autres vues restent inchangées.  
+**Statut :** **accueil Watfir V2.2 terminé et gelé** (02/11/2026, [IMPLEMENTATION § 12](IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026)) : plus aucune modification esthétique de l'accueil sans défaut concret identifié. Étape suivante : harmonisation des autres écrans de LuxApp, qui restent inchangés.  
 **Périmètre de cette livraison :** surcouches `public/accueil-watfir.js` / `.css`, deux SVG publics, inclusion dans `public/index.html`, tests, documentation. Aucune modification des moteurs, JSON, routes, sauvegardes, audio ou mini-jeux.
 
 ## Commencer ici
@@ -47,3 +47,5 @@ Voir [IMPLEMENTATION.md](IMPLEMENTATION.md) pour les fichiers actifs, événemen
 **02/11/2026** (IMPLEMENTATION § 7) : accueil reproduit à l'échelle de la maquette V4 (unité `--k`, polices Playfair Display / Fraunces / Roboto Condensed auto-hébergées, SVG en coordonnées de la maquette). Validation Samsung réelle à faire.
 
 **02/11/2026, finitions** (IMPLEMENTATION § 10) : SVG V4 fournis intégrés tels quels (`watfir-logo-v4.svg`, `watfir-hero-v4.svg`), barre à 0 % vide, zones de toucher de 48 px de haut sans chevauchement.
+
+**02/11/2026, gel** (IMPLEMENTATION § 12) : recette finale Chromium 320–1440 px, polices agrandies, invité/connecté ; « Mode invité » ≥ 11 px, repli du header sous 360 px, zones de toucher vérifiées au toucher. Accueil déclaré terminé.

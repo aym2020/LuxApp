@@ -1,6 +1,6 @@
 # Recette de la direction artistique Watfir 2.2
 
-**Statut : intégration V4 effectuée sur `2.2` ; validations logiques limitées dans le contexte d'édition, et tests Node dédiés ajoutés sous `test/watfir-home.test.cjs`. Ni navigateur réel ni Samsung ne sont encore validés.** La présente checklist est un plan de recette, et **aucune case n'est considérée validée**.
+**Statut (02/11/2026) : accueil terminé et gelé.** Recette Chromium détaillée dans [IMPLEMENTATION § 12](IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026) (dimensions, polices agrandies, zones de toucher, niveaux, Retour). Les cases ci-dessous restent le plan pour les **autres écrans** et pour le contrôle Samsung réel, non effectué par l'agent.
 
 ## A. Vérifications des assets (possibles sans implémentation)
 

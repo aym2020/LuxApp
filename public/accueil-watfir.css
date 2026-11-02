@@ -45,7 +45,7 @@
     minmax(max(0px, calc(50 * var(--k) - 22px)), calc(120 * var(--k))) /* 10 → chemin (zone de 44 px) */
     max-content                                                  /* 11 Voir mon chemin */
     minmax(calc(24 * var(--k)), calc(140 * var(--k)));           /* 12 → bas de l'écran */
-  align-content:center; gap:0;
+  align-content:safe center; gap:0; /* « safe » : si le contenu dépasse, il défile au lieu d'être coupé en haut */
   width:100%; max-width:calc(941 * var(--k)); margin:0 auto;
   height:auto; min-height:100%;
   padding:calc(27 * var(--k)) calc(40 * var(--k)) env(safe-area-inset-bottom);
@@ -124,15 +124,19 @@
   flex:none; width:max(1px, calc(2 * var(--k))); height:calc(71 * var(--k));
   margin:calc(18 * var(--k)) 0 0 0; background:rgba(247,233,194,.45);
 }
+/* Lisibilité : « Mode invité » jamais sous 11 px, « Connexion » jamais sous 11,5 px
+   (au-delà de 425 px de large, les proportions de la maquette donnent déjà plus).
+   Les deux mots sont l'un sous l'autre : le point « · » de la maquette est retiré,
+   il ne sépare plus rien et sa place sert à agrandir le texte. */
 #view-dashboard .wf-accueil .ac-v21-guest {
   --cible-g:0px; --cible-d:calc(-5 * var(--k));
   position:relative; flex:none; min-height:0; margin:calc(15 * var(--k)) 0 0 calc(29 * var(--k)); padding:0;
   border:0; background:none; text-align:left; white-space:nowrap; cursor:pointer;
-  font:400 max(9px, calc(24.4 * var(--k)))/1.3 var(--wf-sans); color:var(--wf-cream);
+  font:400 max(11px, calc(24.4 * var(--k)))/1.3 var(--wf-sans); color:var(--wf-cream);
 }
 #view-dashboard .wf-accueil .wf-invite-mode { display:block; color:var(--wf-cream); }
 #view-dashboard .wf-accueil .ac-v21-guest b {
-  display:block; color:var(--wf-cream); font:700 max(10px, calc(28 * var(--k)))/1.15 var(--wf-sans); margin-top:calc(2 * var(--k));
+  display:block; color:var(--wf-cream); font:700 max(11.5px, calc(28 * var(--k)))/1.15 var(--wf-sans); margin-top:calc(2 * var(--k));
 }
 #view-dashboard .wf-accueil .ac-menu {
   --cible-g:calc(-28 * var(--k)); --cible-d:calc(-40 * var(--k)); /* à droite : jusqu'au bord de l'écran */
@@ -141,16 +145,30 @@
 }
 #view-dashboard .wf-accueil .ac-menu .ic { width:100%; height:100%; stroke-width:1.9; }
 
-/* Repli ≤ 340 px : la ligne unique ne laisse pas 44 px de toucher aux niveaux.
-   Marque et compte en haut, niveaux sur leur propre rangée dessous, plus espacés.
-   Les deux rangées ne se recouvrent pas horizontalement : leurs zones restent séparées. */
-@media (max-width:340px) {
-  #view-dashboard .wf-accueil .ac-ent.wf-entete { row-gap:12px; }
-  #view-dashboard .wf-accueil .wf-entete-compte { order:1; }
-  #view-dashboard .wf-accueil .puces-niveau { order:2; flex-basis:100%; --ecart:12px; margin:0; }
-  #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-40 * var(--k)); } /* jusqu'au bord de l'écran */
-  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:-18px; }
+/* 360–389 px (Samsung) : le texte invité agrandi prend jusqu'à 4 px ; la roue se rapproche
+   d'autant pour que la ligne unique tienne. Sa zone de toucher reste ≥ 44 px. */
+@media (max-width:389px) {
+  #view-dashboard .wf-accueil .ac-menu { margin-left:calc(21 * var(--k)); --cible-g:calc(-16 * var(--k)); }
 }
+/* Repli < 360 px (petit écran, ou police Android agrandie : Chrome réduit alors la largeur
+   de la page). Marque et compte en haut, niveaux sur leur propre rangée dessous :
+   toutes les zones de toucher atteignent 48 px. Les deux rangées ne se recouvrent pas
+   horizontalement : leurs zones restent séparées. */
+@media (max-width:359px) {
+  #view-dashboard .wf-accueil .ac-ent.wf-entete { row-gap:24px; }
+  #view-dashboard .wf-accueil .wf-entete-compte { order:1; }
+  #view-dashboard .wf-accueil .puces-niveau { order:2; flex-basis:100%; --ecart:16px; margin:0; }
+  #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-40 * var(--k)); } /* jusqu'au bord de l'écran */
+  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:-20px; }
+  #view-dashboard .wf-accueil .ac-v21-guest { --cible-d:0px; }
+  #view-dashboard .wf-accueil .ac-menu { margin-left:16px; --cible-g:-16px; }
+  /* Zones des niveaux : 12 px au-dessus de la pastille, le reste dessous. Avec 24 px entre
+     les rangées, elles ne touchent jamais celles de Connexion et de la roue, même quand une
+     police très grande rapproche les deux rangées horizontalement. */
+  #view-dashboard .wf-accueil .puce-niv::after { top:-12px; transform:none; }
+}
+/* Connecté : la roue est seule dans son bloc, sa zone s'étend dans l'espace libre à sa gauche. */
+#view-dashboard .wf-accueil .wf-entete-compte > .ac-menu:first-child { --cible-g:calc(-40 * var(--k)); }
 
 /* ── Hero : texte en flux, dessin remonté sous le texte ───────────────── */
 #view-dashboard .wf-accueil .ac-hero {
@@ -160,7 +178,7 @@
 }
 #view-dashboard .wf-accueil .ac-hero-texte { position:relative; z-index:1; max-width:none; padding:0 0 0 calc(10 * var(--k)); }
 #view-dashboard .wf-accueil .ac-hero-surtitre {
-  display:block; margin:0; color:var(--wf-cream); text-transform:uppercase; white-space:nowrap;
+  display:block; margin:0; color:var(--wf-cream); text-transform:uppercase; white-space:normal; /* passe à la ligne si la police grandit */
   font:800 max(9px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em;
 }
 #view-dashboard .wf-accueil .ac-hero h2 {
@@ -207,7 +225,8 @@
 }
 /* Série : « 0 jours » sur une même taille, flamme rouge à gauche. */
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan #serie {
-  flex-direction:row; align-items:center; gap:0; font:800 calc(49 * var(--k))/1 var(--wf-sans); height:calc(76 * var(--k));
+  flex-direction:row; align-items:center; gap:0; font:800 calc(49 * var(--k))/1 var(--wf-sans); min-height:calc(76 * var(--k));
+  flex-wrap:wrap; white-space:normal; /* très grande police : « jours » passe dessous au lieu de sortir de l'écran */
 }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan #serie .ac-v21-bilan-nombre,
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan #serie .ac-v21-bilan-unite {
@@ -219,7 +238,7 @@
 }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-flamme .ic { width:100%; height:100%; stroke-width:2.4; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-legende {
-  display:block; margin-top:calc(-4 * var(--k)); color:var(--wf-cream); white-space:nowrap;
+  display:block; margin-top:calc(-4 * var(--k)); color:var(--wf-cream); white-space:normal; /* très grande police : à la ligne */
   font:400 calc(30 * var(--k))/1.2 var(--wf-sans);
 }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste {
@@ -302,7 +321,9 @@
 }
 #view-dashboard .wf-accueil .ac-acces .ac-btn > b,
 #view-dashboard .wf-accueil .ac-acces .ac-btn.jeux > b {
-  color:var(--wf-cream); white-space:nowrap; letter-spacing:0;
+  /* Très grande police : le libellé peut déborder de 6 px de chaque côté de sa case,
+     puis passe à la ligne plutôt que de chevaucher son voisin. */
+  margin-inline:-6px; color:var(--wf-cream); letter-spacing:0; white-space:normal; overflow-wrap:anywhere;
   font:600 calc(28.6 * var(--k))/1.2 var(--wf-sans);
 }
 

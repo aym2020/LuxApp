@@ -1,7 +1,7 @@
 # Watfir V4 — implémentation effective sur `2.2`
 
 **Date :** 2 novembre 2026  
-**Statut :** accueil codé et chargé, tests de logique ciblés effectués, **capture navigateur / Android Samsung encore nécessaires**.
+**Statut (02/11/2026) :** **accueil Watfir V2.2 terminé et gelé** (§ 12). Recette Chromium complète effectuée ; aucun défaut bloquant constaté. Contrôle sur le Samsung physique non effectué par l'agent (voir § 12, « Non vérifié »).
 
 ## 1. Base de travail
 
@@ -149,10 +149,10 @@ Chaque pictogramme occupe 58 px de haut dans la mise en page (marges négatives)
 - Bloc compte `.wf-entete-compte` (filet, Connexion, réglages) : poussé à droite ; s'il ne tient plus (grande police), il passe à la ligne d'un seul tenant, à droite. `row-gap` de 24 px : les zones de toucher des deux rangées ne se recouvrent pas.
 - Contour des pastilles dessiné par `::before` (et non `border`) : le `::after` de toucher se calcule depuis le bord extérieur, sans erreur d'arrondi (l'ancienne version se recouvrait de 0,7 à 1,4 px selon l'écran).
 - Écart entre pastilles 14 (maquette 10) et marge avant le filet 14 (au lieu de 20) : même largeur totale à 360 px, différence visuelle ≈ 1 px.
-- Repli ≤ 340 px : marque et compte en haut, niveaux sur leur propre rangée (écart 12 px). Hauteur du header 65 px à 320 px, accueil toujours sans défilement en 320×568.
+- *(Remplacé par § 12 : repli < 360 px, « Mode invité » agrandi.)* Repli ≤ 340 px : marque et compte en haut, niveaux sur leur propre rangée (écart 12 px). Hauteur du header 65 px à 320 px, accueil toujours sans défilement en 320×568.
 - « Mode invité » : non agrandi. À 360 px, le header n'a plus que ≈ 1 px de marge ; toute hausse de taille ferait passer le bloc compte à la ligne ou réduirait les zones de toucher sous 44 px. Il reste à 9,3 px à 360 px (10,2 px à 393, 11,1 px à 430).
 
-Zones de toucher mesurées (largeur × hauteur, px CSS, balayage `elementFromPoint`), aucun chevauchement à toutes les largeurs, invité et connecté :
+Zones de toucher mesurées (largeur × hauteur, px CSS, balayage `elementFromPoint`), aucun chevauchement à toutes les largeurs, invité et connecté *(valeurs à jour au § 12)* :
 
 | Largeur | A1.1 | A1.2 | Chevron | Connexion | Réglages | Header |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -172,6 +172,73 @@ Zones de toucher mesurées (largeur × hauteur, px CSS, balayage `elementFromPoi
 
 **Tests** : `test/watfir-home.test.cjs` passe de 9 à 12 tests (bloc compte et repli, trait des pictogrammes, retour d'appui / Retour / mouvement réduit). Le test SVG accepte le noir `#080808` de la palette, introduit par la correction du hero (commit 26611e1) qui faisait échouer ce test.
 
-## 12. Retour arrière ciblé
+## 12. Recette finale et gel de l'accueil (02/11/2026)
+
+### Statut : accueil Watfir V2.2 terminé — gelé
+
+Tests concluants, aucun défaut bloquant constaté en Chromium. **Règle à partir de maintenant : aucune modification esthétique de l'accueil sans défaut concret identifié** (mesure ou capture qui le reproduit). L'étape suivante est l'harmonisation des autres écrans de LuxApp.
+
+**Figés :** les deux SVG (`watfir-logo-v4.svg`, `watfir-hero-v4.svg`), le monument et ses bandes rouge/cyan, typographies, palette et « Moien! », dimensions et style du CTA, composition générale et intervalles verticaux, les quatre pictogrammes (manette Jeux comprise), le style de « Voir mon chemin », la barre de progression (0 % = vide).
+
+### Défauts reproduits et corrections
+
+Chaque correction n'agit que là où le défaut est mesuré. À 100 % de police, la différence pixel avant/après se limite au bloc « Mode invité / Connexion » du header (360–1440 px ; état connecté : aucun pixel changé) ; seul le header à 320 px change (repli, voir ci-dessous).
+
+| Défaut mesuré (avant) | Correction |
+| --- | --- |
+| « Mode invité » à 9 px (320), 9,3 px (360), 10,2 px (393) ; « Connexion » à 10–10,7 px | `max(11px, …)` et `max(11.5px, …)`. Au-delà de 425 px, les proportions de la maquette donnent déjà plus. Le point « · » est retiré : les deux mots sont empilés, il ne séparait plus rien, et sa place (≈ 6 px) sert au texte agrandi. |
+| Ligne unique à 360 px : ≈ 1 px de marge ; le texte agrandi la ferait passer à la ligne | 360–389 px : la roue se rapproche de 33 à 21 px maquette (zone de toucher 45 px, au lieu de 50). La ligne unique tient de 360 à 1920 px (marge restante 1,1 px à 360, 0,8 px à 393). |
+| < 360 px : A1.2 47 px, chevron 46 px, roue 44 px | Repli dès 359 px (au lieu de 340) : marque et compte en haut, niveaux dessous, écart 16 px. Toutes les zones ≥ 48 px de large. |
+| Police Android agrandie (zoom Chrome) : zones chevron/Connexion superposées (0,9 px à 200 %, jusqu'à 38 px avec le nouveau repli) | Repli : 24 px entre rangées ; zones des niveaux 12 px au-dessus de la pastille, le reste dessous. Plus aucun chevauchement de 114 % à 200 %. |
+| Grande police : surtitre « Le luxembourgeois, pas à pas » coupé à droite | Passe à la ligne (`white-space:normal`). |
+| Zoom Chrome 200 % sur 320/360 px : haut de l'accueil (« Watfir ») coupé, impossible à atteindre en défilant | `align-content:safe center` : si le contenu dépasse, il défile au lieu d'être coupé en haut. |
+| Texte ×2 : « 0 jours » et « Série actuelle » sortent de l'écran ; dès ×1,75 les libellés des raccourcis se superposent | Série et légendes passent à la ligne ; libellés : 6 px de débord permis de chaque côté, puis retour à la ligne plutôt que superposition. |
+| Connecté : la roue seule gardait la zone réduite du mode invité | Zone étendue dans l'espace libre (54 px à 360). |
+
+### Mesures après correction (Chromium, invité sauf mention)
+
+Zones de toucher réelles (balayage `elementFromPoint`, px CSS), puis **vrai toucher** (`touchscreen.tap`) à 2 px de chaque bord de chaque zone : le bon bouton répond partout, et aucun voisin ne capte la surface visible d'un bouton. Aucun chevauchement de zones.
+
+| Largeur | A1.1 | A1.2 | Chevron | Connexion | Réglages | Header |
+| --- | --- | --- | --- | --- | --- | --- |
+| 320 | 56×49 | 51×49 | 50×49 | 61×48 | 51×48 | 2 rangées |
+| 360 | 49×48 | 45×48 | 45×48 | 63×48 | 45×48 (connecté 54) | 1 ligne |
+| 393 | 53×48 | 49×48 | 50×48 | 63×48 | 54×48 | 1 ligne |
+| 430 | 58×48 | 53×48 | 54×48 | 69×48 | 59×48 | 1 ligne |
+| 1440 | 71×48 | 65×48 | 65×48 | 84×48 | 72×48 | 1 ligne |
+
+À 360 px, A1.2, chevron et roue restent à 45 px de large : la ligne unique de la maquette ne laisse pas plus (48 px imposeraient deux rangées sur le Samsung). C'est au-dessus des 44 px Apple / WCAG AAA, sous l'objectif Android de 48.
+
+Espaces (intervalles header→hero, hero→progression, progression→CTA, CTA→raccourcis, raccourcis→chemin ; libre sous « Voir mon chemin ») — aucun défilement, aucun débordement horizontal, aucun bloc superposé, aucun libellé hors de sa case, invité comme connecté :
+
+| Écran | Intervalles (px) | Libre en bas |
+| --- | --- | --- |
+| 320×568 | 30 · 25 · 23 · 21 · 13 | 21 |
+| 360×593 (Brave Samsung) | 36 · 30 · 28 · 26 · 16 | 25 |
+| 360×640 | 44 · 38 · 36 · 34 · 24 | 33 |
+| 393×760 | 60 · 54 · 50 · 42 · 39 | 49 |
+| 393×850 | 67 · 71 · 50 · 42 · 50 | 81 |
+| 430×932 | 73 · 78 · 55 · 46 · 55 | 92 |
+| 1440×900 | 62 · 53 · 51 · 47 · 39 | 46 |
+
+Titre de leçon long : deux lignes, sans défilement (360 et 393). Progression réelle (fonctions de l'app) : 13 %, « Continuer ».
+
+**Police Android agrandie — deux modèles testés.** Chrome Android (depuis M113) applique la taille de police du système comme un *zoom de page* : la largeur CSS diminue (360 px à 130 % → 277 px). L'accueil étant proportionnel à la largeur (`--k`), il garde la même taille physique et passe au header en deux rangées. Mesuré de 114 % à 200 % sur 320, 360 et 393 : rien de coupé ni superposé ; défilement de secours de 14 à 82 px seulement à 175–200 % sur 320/360. Les navigateurs qui agrandissent seulement le texte ont été simulés (chaque texte × 1,15 à × 2) : sans défilement jusqu'à × 1,3 ; × 1,5 à 360 : 18 px de défilement ; × 2 : défilement, tout reste visible sauf le « ! » de « Moien! », rogné de 3 px (titre figé).
+
+Niveaux et navigation (Chromium, toucher simulé, 320 et 360) : A1.1 → A1.2 → A1.1 garde les progressions (13 % / 0 % / 13 %) ; seules `luxNiveau` et `luxChoix` changent dans le stockage, aucune clé de progression. Choix dans la feuille, rechargement : A1.2 conservé. Feuille fermée par Fermer, voile, Échap et Retour (`history.back()`) : on reste sur l'accueil, focus rendu au chevron, garde d'historique retirée. Destinations des raccourcis, du CTA, de la roue et de Connexion inchangées.
+
+### Tests
+
+- `node --test test/watfir-home.test.cjs` : 14/14 (2 nouveaux tests et 2 mis à jour ; les nouveaux contrôles échouent sur l'ancien code).
+- `node --test test/*.cjs` : 320/325 ; les 5 échecs (79, 92, 223–225) existaient avant cette passe.
+- `bash tools/critique.sh` : 22 échecs, les 21 de la référence plus `test_actualisation`. Ce test est instable sur les deux versions (relancé seul : référence 1 échec sur 3, après 2 sur 3, toujours à la même étape, la sortie de l'app par Retour depuis l'accueil). Cette passe ne touche ni l'historique ni la navigation.
+
+### Non vérifié
+
+- **Samsung physique** : aucun contrôle sur l'appareil. Toutes les mesures viennent de Chromium (émulation mobile et toucher simulé), pas de Brave Android, de l'app installée, de la gestuelle Retour, de TalkBack ni du vrai réglage de police Samsung.
+- Marge de la ligne unique à 360 px : 1,1 px. Avec une police de remplacement (Inter non chargée), le texte est plus étroit. Si le header passait à la ligne sur l'appareil, le bloc compte irait d'un seul tenant sous la ligne, sans chevauchement ; à signaler avec une capture.
+- Connexion réelle (Firebase) : état connecté simulé en masquant le lien invité.
+
+## 13. Retour arrière ciblé
 
 Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `accueil-watfir.js` de `public/index.html`. Le rendu 2.1 reprend alors sans toucher au moteur, à la progression ni aux jeux. Ne jamais supprimer les clés de stockage.

@@ -117,19 +117,43 @@ test('Header V4 sur une ligne : marque, niveaux, séparateur, invité, réglages
   assert.doesNotMatch(ctx.enteteAccueilHtml(),/wf-entete-sep|ac-v21-guest/,'compte connecté : ni séparateur ni lien');
   assert.match(ctx.enteteAccueilHtml(),/<div class="wf-entete-compte"><button type="button" class="ac-menu"/,'connecté : la roue seule dans le bloc compte');
 });
-test('Header : le bloc compte passe à la ligne d\'un seul tenant ; repli ≤ 340 px',()=>{
+test('Header : le bloc compte passe à la ligne d\'un seul tenant ; repli < 360 px',()=>{
   const {ctx}=setup();
   const h=ctx.enteteAccueilHtml();
   const compte=h.slice(h.indexOf('wf-entete-compte'));
   for (const c of ['wf-entete-sep','ac-v21-guest','ac-menu']) assert.ok(compte.includes(c),c+' dans le bloc compte');
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-entete-compte \{[^}]*margin-left:auto/);
-  const repli=css.slice(css.indexOf('@media (max-width:340px)'));
-  assert.match(repli,/\.puces-niveau \{[^}]*order:2; flex-basis:100%/,'niveaux sur leur propre rangée');
+  assert.ok(css.includes('@media (max-width:359px)'),'repli dès que la ligne unique ne tient plus');
+  const repli=css.slice(css.indexOf('@media (max-width:359px)'));
+  assert.match(repli,/\.puces-niveau \{[^}]*order:2; flex-basis:100%; --ecart:16px/,'niveaux sur leur propre rangée, plus espacés');
+  // Les zones des deux rangées ne se touchent pas : 24 px entre rangées, zones des niveaux à 12 px au-dessus.
+  assert.match(repli,/\.ac-ent\.wf-entete \{ row-gap:24px; \}/);
+  assert.match(repli,/\.puce-niv::after \{ top:-12px; transform:none; \}/);
   // Contour des pastilles par ::before : la zone de toucher se calcule depuis le bord extérieur.
   assert.match(css,/\.puce-niv \{[^}]*border:0;/);
   assert.match(css,/\.puce-niv::before \{[^}]*border:max\(1px, calc\(3\.5 \* var\(--k\)\)\) solid/);
   assert.match(css,/--cible-g:calc\(var\(--ecart\) \/ -2\); --cible-d:calc\(var\(--ecart\) \/ -2\)/,'moitié de l\'écart de chaque côté');
+});
+test('Mode invité lisible : 11 px minimum, sans point, ligne unique tenue dès 360 px',()=>{
+  const {ctx}=setup();
+  const h=ctx.enteteAccueilHtml();
+  assert.match(h,/<span class="wf-invite-mode">Mode invité<\/span><b>Connexion<\/b>/,'deux mots empilés, sans « · »');
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  assert.match(css,/\.ac-v21-guest \{[^}]*font:400 max\(11px, calc\(24\.4 \* var\(--k\)\)\)/,'Mode invité ≥ 11 px');
+  assert.match(css,/\.ac-v21-guest b \{[^}]*font:700 max\(11\.5px, calc\(28 \* var\(--k\)\)\)/,'Connexion ≥ 11,5 px');
+  // 360–389 px : la roue se rapproche de ce que le texte a gagné, pour garder la ligne unique.
+  const etroit=css.slice(css.indexOf('@media (max-width:389px)'));
+  assert.match(etroit,/\.ac-menu \{ margin-left:calc\(21 \* var\(--k\)\); --cible-g:calc\(-16 \* var\(--k\)\); \}/);
+  assert.match(css,/\.wf-entete-compte > \.ac-menu:first-child \{ --cible-g:calc\(-40 \* var\(--k\)\); \}/,'connecté : roue plus large');
+});
+test('Grande police : rien de coupé, la page défile en secours',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  assert.match(css,/#view-dashboard \.accueil\.wf-accueil \{[^}]*align-content:safe center/,'jamais coupé en haut');
+  assert.match(css,/\.ac-hero-surtitre \{[^}]*white-space:normal/,'surtitre à la ligne');
+  assert.match(css,/\.ac-v21-bilan #serie \{[^}]*min-height:calc\(76 \* var\(--k\)\);\s*flex-wrap:wrap/,'série à la ligne');
+  assert.match(css,/\.ac-v21-bilan-legende \{[^}]*white-space:normal/,'légendes à la ligne');
+  assert.match(css,/\.ac-acces \.ac-btn > b,[^{]*\{[^}]*margin-inline:-6px;[^}]*overflow-wrap:anywhere/,'libellés coupés plutôt que superposés');
 });
 test('Pictogrammes : même épaisseur de trait affichée, libellés alignés',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
@@ -213,7 +237,7 @@ test('Hauteur : grille à six blocs et intervalles souples, page défilante en s
   assert.match(bloc,/display:grid/);
   assert.equal((bloc.match(/max-content/g)||[]).length,6,'six blocs jamais écrasés');
   assert.equal((bloc.match(/minmax\(/g)||[]).length,7,'six intervalles plafonnés (+ la colonne)');
-  assert.match(bloc,/align-content:center/);
+  assert.match(bloc,/align-content:safe center/);
   assert.match(bloc,/min-height:100%/);
   assert.doesNotMatch(bloc,/overflow:hidden/);
   for (const [sel,row] of [['> .ac-ent',1],['> .ac-hero',3],['> .ac-chiffres',5],['> #today',7],['> .ac-acces',9],['> .ac-v21-journey',11]])
