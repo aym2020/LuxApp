@@ -55,13 +55,10 @@
   .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph {transform:rotate(15deg);}
   :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow {transform:translateX(5px);}
 
-  /* CTA Watfir : relief beige permanent et soulèvement physique discret.
-     Aucun contour, changement de fond ou pictogramme rouge au survol. */
+  /* CTA Watfir : seule la face crème s'éclaircit au survol souris.
+     Aucun soulèvement ni changement d'ombre ; relief au repos et appui conservés. */
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not(:disabled):not([aria-disabled="true"]) {
-    transform:translateY(-2px);
-    box-shadow:0 9px 0 #aa8954,0 20px 24px rgba(0,0,0,.50),
-               inset 0 2px 0 rgba(255,255,255,.78),
-               inset 0 -2px 0 rgba(126,87,39,.20);
+    --wf-cta-cream:var(--ux-hover-bright);
   }
   /* Pastilles 3D : seule la couleur change au survol ; la tranche physique
      reste contrôlée par accueil-watfir.css. Maintenir la couleur pendant :active. */

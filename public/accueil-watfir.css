@@ -279,8 +279,9 @@
   position:relative; overflow:hidden; display:flex; align-items:center; gap:0;
   min-height:0; padding:calc(24 * var(--k)) calc(42 * var(--k)) calc(40 * var(--k));
   color:var(--wf-bg); border:0; border-radius:calc(30 * var(--k));
+  --wf-cta-cream:#fbebc5; /* Face claire : seul ce ton varie au survol PC. */
   background:linear-gradient(135deg,
-    #fbebc5 calc(100% - 51.6 * var(--k)),
+    var(--wf-cta-cream) calc(100% - 51.6 * var(--k)),
     var(--wf-red) 0 calc(100% - 31.8 * var(--k)),
     var(--wf-cyan) 0);
   /* 3D physique au repos (mobile ET PC) : tranche 7px, lumière discrète, ombre.

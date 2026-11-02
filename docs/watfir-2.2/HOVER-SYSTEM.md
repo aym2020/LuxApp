@@ -1,17 +1,17 @@
 # Système d'interactions au survol — LuxApp / Watfir 2.2
 
-**Date :** 2 novembre 2026  
+**Date :** 2 novembre 2026 · **Mise à jour :** 3 novembre 2026 (survol CTA)
 **Périmètre :** états repos / souris / appui tactile du CTA Watfir, plus survol du shell et des composants HTML. Aucune animation de gameplay, aucune modification des moteurs, de la progression ou des JSON.  
 **Fichier actif :** `public/hover-interactions.css`, chargé **après** les styles d'écrans par `public/index.html`.
 
 ## 1. Intention et hiérarchie
 
-L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. **Exception demandée et validée : le CTA Commencer / Continuer gagne un véritable relief physique au repos sur mobile et PC**, car la carte plate manquait de caractère cliquable. La tranche beige et la lumière sont **des box-shadows, hors flux**. Le hover du CTA reste volontairement **neutre : aucun contour rouge, aucun changement de fond ni de couleur du chevron**. Il soulève seulement la face de 2 px, sans altérer le crème ni les bandes bicolores. Les raccourcis restent cyan au survol, les niveaux rouges. Aucun glow permanent ni animation en boucle.
+L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. Le CTA Commencer / Continuer conserve son relief physique au repos sur mobile et PC (tranche beige et lumière en `box-shadow`, hors flux). **Au survol souris, seule sa face crème s'éclaircit de `#fbebc5` à `#fff4da` : aucun soulèvement, renforcement de l'ombre, contour ou changement de chevron.** Le coin rouge/cyan reste identique ; au clic, la face s'enfonce de 6 px comme avant. Les raccourcis restent cyan au survol, les niveaux rouges. Aucun glow permanent ni animation en boucle.
 
 | Rôle | Interaction | Durée |
 | --- | --- | --- |
 | **CTA au repos (mobile et PC)** | Fond crème `#fbebc5` inchangé, tranche beige de **7 px** (`#aa8954`), ombre portée et reflet intérieur ; chevron éloigné du motif rouge/cyan | permanent |
-| **CTA hover (souris)** | Léger soulèvement **2 px**, ombre beige adaptée ; aucun contour, fond ou chevron rouge | 160 ms |
+| **CTA hover (souris)** | Face crème `#fbebc5` → `#fff4da` uniquement ; ni déplacement, ni nouvelle ombre, ni contour, ni recoloration du chevron ou des bandes | instantané |
 | **CTA appuyé (tactile et souris)** | Enfoncement **6 px** et tranche abaissée à 1 px ; retour naturel au relâchement, sans contour coloré | 160 ms |
 | **Choix secondaire (raccourcis)** | Fond **cyan 18 %**, filet cyan intérieur 2 px, pictogramme crème → cyan et remontée limitée à 2 px ; les quatre cellules réagissent pareil | 175 ms |
 | **A1.1 / A1.2 / sélecteur (repos, mobile et PC)** | Tranche 3D de **2 à 4 px** proportionnelle à `--k`, beige foncé `#75644c` en inactif, rouge foncé `#991a17` pour le niveau actif. Bordure crème et dimensions inchangées | permanent |
@@ -46,7 +46,7 @@ Toutes les transitions passent par les tokens CSS :
 
 **Le contour animé rouge a été retiré à la demande**, sur PC comme sur mobile. Les pseudo-éléments `::before` et `::after` du CTA sont désactivés (`content:none`) ; aucune propriété CSS `--wf-cta-outline`, `@property`, `conic-gradient` ou `mask-composite` n'est utilisée pour ce bouton.
 
-Sur PC, `:hover:not(:active)` produit uniquement le soulèvement de 2 px et une ombre physique ajustée. Sur Android et au clic souris, `:active` enfonce la face de 6 px sans changer le fond crème ni la flèche noire. **Pas de rouge de survol** : les seules bandes rouge/cyan restent celles du coin inférieur droit.
+Sur PC, `:hover:not(:active)` change uniquement la variable `--wf-cta-cream`, utilisée pour la première couleur du dégradé : la face s'éclaircit sans modifier les deux bandes d'angle, le chevron noir, la position ni l'ombre. Sur Android et au clic souris, `:active` enfonce la face de 6 px ; le hover n'interfère pas avec l'appui. **Pas de rouge de survol** : les seules bandes rouge/cyan restent celles du coin inférieur droit.
 
 Les tracés des bandes rouge/cyan du coin sont intacts ; seule la **marge droite du chevron** a été corrigée (de `-23 × --k` à `+24 × --k`, marge gauche maintenue à `16 × --k`) pour l'éloigner du motif, sans nouvelle largeur ni hauteur de CTA.
 
@@ -83,7 +83,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 - `:disabled` et `[aria-disabled=true]` : ne jamais animer un contrôle indisponible.
 - `:focus-visible` : contour cyan de 3 px pour les classes réutilisables. L'accueil conserve ses règles de focus déjà validées.
 - `prefers-reduced-motion: reduce` : les transitions et transformations de déplacement au survol sont neutralisées ; le changement de couleur instantané reste possible.
-- **Le CTA Watfir est l'exception physique** : relief au repos via box-shadow (sans hauteur ajoutée), survol de -2 px et appui de +6 px ; **sans liseré rouge ni recoloration du chevron**. Pas de `filter`, de glow néon ni d'animation infinie. La marge du seul chevron a été corrigée pour éviter l'intersection avec l'angle bicolore ; aucune nouvelle dimension de grille.
+- **Le CTA Watfir est l'exception physique** : relief au repos via `box-shadow` (hors flux), survol crème `#fff4da` sans translation ni nouvelle ombre, appui de +6 px. Pas de filtre `brightness`, de liseré rouge, de glow ou d'animation infinie. La marge du chevron évite l'intersection avec l'angle bicolore ; aucune nouvelle dimension de grille.
 - Les couleurs sémantiques de réussite, erreur, information ou interdiction demeurent celles des composants métiers, jamais remplacées par le rouge/cyan de marque.
 
 **Règle de cascade :** `hover-interactions.css` est chargé en dernier dans le `<head>`. L'intégration n'exige pas de modifier `accueil-watfir.js`, `components.css`, `style.css` ou les moteurs.
@@ -97,7 +97,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 
 ## 5. Vérification et recette
 
-Contrat automatisable : `node --test test/watfir-hover.test.cjs`. Il vérifie les imports, les règles partagées, le gating desktop, les états disabled/active, le reduced motion, le CTA 3D au repos, l'enfoncement au clic, les bandes d'angle inchangées, le chevron repositionné, les **trois pastilles 3D du header**, les quatre raccourcis cyan au hover et l'icône Jeux crème au repos.
+Contrat automatisable : `node --test test/watfir-hover.test.cjs`. Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les quatre raccourcis cyan au hover.
 
 **Avant validation finale**, faire sur Chromium/PC : capture survol CTA, A1.2, S'entraîner, Jeux, Voir mon chemin, Connexion et roue ; comparer avec le repos. Vérifier aussi le press/relâchement, navigation clavier et un viewport mobile tactile simulé. La recette sur smartphone physique et le rendu réel après déploiement restent distincts d'une inspection statique du CSS.
 

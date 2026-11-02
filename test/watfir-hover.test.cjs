@@ -12,8 +12,9 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-5';
+  const link='hover-interactions.css?v=watfir-hover-6';
   assert.ok(html.includes(link),'stylesheet présent');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-10'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -57,15 +58,20 @@ test('CTA 3D : relief au repos, chevron éloigné du motif et bandes intactes',(
   assert.doesNotMatch(block,/min-height:[1-9][0-9]*px/,'aucune hauteur imposée en CSS');
 });
 
-test('CTA hover : effet physique seul, sans contour rouge ni recoloration',()=>{
-  const section=css.split('/* CTA Watfir :')[1].split('  #view-dashboard .wf-accueil .puce-niv {')[0];
-  assert.match(section,/\.carte-suite\.ac-v21-cta:hover:not\(:active\)/,'survol uniquement hors appui');
-  assert.match(section,/transform:translateY\(-2px\)/,'léger soulèvement');
-  assert.match(section,/0 9px 0 #aa8954/,'tranche beige conservée');
-  assert.doesNotMatch(section,/wf-cta-outline|::after|color:var\(--wf-red\)|#ffe0aa|brightness\(/,'aucun contour ni effet doré');
-  assert.doesNotMatch(css,/@property --wf-cta-outline/);
+test('CTA hover : crème plus clair uniquement, sans soulèvement ni changement du relief',()=>{
+  const section=css.split('/* CTA Watfir :')[1].split('  /* Pastilles 3D')[0];
+  assert.match(section,/\.carte-suite\.ac-v21-cta:hover:not\(:active\):not\(:disabled\):not\(\[aria-disabled="true"\]\)/,
+    'survol souris hors appui et boutons désactivés');
+  assert.match(section,/--wf-cta-cream:var\(--ux-hover-bright\)/,'face crème éclaircie');
+  assert.match(css,/--ux-hover-bright:\s*#fff4da/,'teinte du hover');
+  assert.match(watfir,/--wf-cta-cream:#fbebc5/,'crème initial conservé');
+  assert.match(watfir,/var\(--wf-cta-cream\) calc\(100% - 51\.6 \* var\(--k\)\)/,
+    'seule la première bande du dégradé reçoit la couleur variable');
+  assert.doesNotMatch(section,/transform:|box-shadow:|filter:|wf-cta-outline|::after|brightness\(/,
+    'ni déplacement, ni variation d\'ombre, ni filtre sur les bandes ou le texte');
   assert.match(watfir,/@media \(prefers-reduced-motion:reduce\) \{/);
-  assert.doesNotMatch(css,/\.carte-suite\.ac-v21-cta:active[^{}]*\{[^}]*color:var\(--wf-red\)/,'chevron inchangé au press');
+  assert.doesNotMatch(css,/\.carte-suite\.ac-v21-cta:active[^{}]*\{[^}]*color:var\(--wf-red\)/,
+    'chevron inchangé au press');
 });
 test('Header : A1.1, A1.2 et dropdown utilisent le même relief physique compact',()=>{
   const header=watfir.split('/* ── Header :')[1].split('/* ── Hero :')[0];
