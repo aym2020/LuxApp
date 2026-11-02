@@ -49,7 +49,7 @@ test('CTA 3D : relief au repos, chevron éloigné du motif et bandes intactes',(
   assert.match(block,/inset 0 2px 0 rgba\(255,255,255,\.78\)/,'lumière de surface');
   assert.match(block,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'bande rouge inchangée');
   assert.match(block,/var\(--wf-cyan\) 0/,'bande cyan inchangée');
-  assert.match(block,/\.cs-rond \{[^}]*margin:calc\(8 \* var\(--k\)\) calc\(24 \* var\(--k\)\) 0 calc\(8 \* var\(--k\)\)/,'chevron recentré à gauche du coin');
+  assert.match(block,/\.cs-rond \{[^}]*margin:calc\(8 \* var\(--k\)\) calc\(24 \* var\(--k\)\) 0 calc\(16 \* var\(--k\)\)/,'chevron recentré à gauche du coin');
   assert.match(block,/\.carte-suite\.ac-v21-cta:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)/,'retour tactile au maintien');
   assert.match(block,/transform:translateY\(6px\)/,'enfoncement physique');
   assert.match(block,/pointer-events:none/,'contour non interactif');
