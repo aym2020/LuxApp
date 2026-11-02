@@ -1,6 +1,6 @@
 # Charte de direction artistique — Watfir / LuxApp 2.2
 
-**Version** 1.0 · 2026-11-02 · **Statut** : proposition détaillée, V4 de l'accueil comme référence visuelle, non déployée.
+**Version** 1.1 · 2026-11-03 · **Statut** : DA Watfir **active sur l'accueil de la branche `2.2`**, non généralisée aux autres écrans. Référence d'implémentation des boutons : [BOUTONS-3D.md](BOUTONS-3D.md). Les tests Samsung physique restent à effectuer.
 
 ## 1. Intention
 
@@ -16,7 +16,7 @@ Précision éditoriale : les premiers essais « carte postale synthwave », mult
 
 ## 2. Palette et rôle des couleurs
 
-Les valeurs suivantes sont des **tokens de travail fidèles à l'intention des captures**, pas un prélèvement colorimétrique certifié. La recette peut calibrer les valeurs après test sur smartphone.
+Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis dans `public/accueil-watfir.css`. Les surfaces Étudier/Jouer utilisent des variantes plus sombres afin que le texte et les pictogrammes crème restent lisibles ; leur détail est documenté dans [BOUTONS-3D.md](BOUTONS-3D.md).
 
 | Token 2.2 | Hex | Rôle |
 | --- | --- | --- |
@@ -31,19 +31,19 @@ Les valeurs suivantes sont des **tokens de travail fidèles à l'intention des c
 | `--wf-error` | `#EF7A73` | Correction erreur / alerte sémantique |
 | `--wf-info` | `#6FB0F2` | Informations pédagogiques et examen |
 
-**Répartition visuelle sur accueil** : ~80 % noir, ~15 % crème/ivoire et ~5 % rouge/cyan (ordre de grandeur, non une mesure). Le rouge/cyan **ne doivent pas être partout** : une occurrence forte dans le hero, un éventuel micro-détail sur CTA, des accents de navigation strictement utiles.
+**Répartition visuelle sur l'accueil** : le noir domine, le crème structure la lecture et le CTA principal. Le rouge et le cyan restent des **signes identitaires dans le hero et dans le coin du CTA** ; les deux seules grandes surfaces secondaires colorées sont « Étudier » (rouge plus profond `#d3232b`) et « Jouer » (bleu plus profond `#087496`). Cette hiérarchie n'autorise pas à colorer tous les boutons de tous les écrans.
 
 Le rouge de marque `--wf-red` n'est pas le rouge d'erreur `--wf-error`. Un état d'erreur exige un libellé/icône et un contraste explicite. Ne jamais coder uniquement par la couleur.
 
 ## 3. Typographie
 
-- **Wordmark « Watfir »** : serif italique éditoriale à contraste marqué. Le mockup ne constitue pas une fonte identifiée ou une licence. Première piste techniquement compatible : `Instrument Serif` (déjà présent en 2.1), à ajuster par tests d'impression / antialiasing. Ne pas affirmer que le mockup utilise exactement cette fonte.
-- **Titre « Moien! »** : grand, en serif italique crème, ponctuation rouge. En CSS : `clamp(3rem, 11vw, 5.5rem)` comme point de départ *à calibrer* (pas une valeur finale imposée).
+- **Wordmark « Watfir »** : Fraunces 900 italic auto-hébergée sur l'accueil V4. La fonte est chargée sous `Watfir Logo` dans `accueil-watfir.css`.
+- **Titre « Moien! »** : Playfair Display 800 italic auto-hébergée (`Watfir Titre`), crème avec ponctuation rouge. Ses dimensions effectives sont celles du CSS V4, adaptées par `--k`.
 - **Navigation, niveaux, boutons, questions, métriques** : `Inter` existant / sans-serif. Chiffres lisibles, pas de serif pour des statistiques opérationnelles.
 - **Kicker « LE LUXEMBOURGEOIS, PAS À PAS »** : capitales avec chasse étendue, taille petite mais lisible ; ne jamais abaisser sous 12px sur mobile.
 - **Contenu pédagogique** : police nette, contraste WCAG adapté. Aucune texture CRT, aberration chromatique ou flou sur les textes fonctionnels.
 
-Ne pas intégrer des polices propriétaires non licenciées. Les SVG de référence utilisent des fontes de repli système : **ces glyphes ne sont pas des dessins finaux figés**.
+Ne pas intégrer de polices propriétaires non licenciées. Les SVG de marque et de monument déjà validés sont figés ; ne pas redessiner leurs traits pour harmoniser des boutons.
 
 ## 4. Géométrie et iconographie
 
@@ -53,13 +53,13 @@ Ne pas intégrer des polices propriétaires non licenciées. Les SVG de référe
 
 **Bandes** : deux traits continus de même logique, arrondis contrôlés ; aucun éclatement en sept couleurs, aucune répétition systématique dans les cartes. Leurs extrémités doivent être totalement visibles et **ne pas sembler coupées par accident**.
 
-**Icônes de navigation** : tracé constant (~2 px dans une grille 24 px), taille optique cohérente, couleurs crème ; Jeux peut recevoir le cyan, mais pas une icône 30 % plus volumineuse que les autres. Cibles tactiles de 44–48 px min.
+**Icônes de navigation** : trait de poids optique cohérent, SVG au trait crème pour Étudier (livre) et Jouer (manette). Le bouton principal Commencer/Continuer n'a **pas** de livre : son texte et sa flèche suffisent. L'icône ne change pas de couleur au hover. Cibles tactiles d'au moins 44–48 px, sans chevauchement.
 
-**Surfaces** : préserver des fonds sans cadre ; regrouper quatre raccourcis dans une seule surface à filet crème discret. Pas de cartes imbriquées, double contour ni ombre massive sous chaque élément. Le CTA crème doit former un bloc simple au rayon maîtrisé.
+**Surfaces** : fond noir libre autour des composants ; un CTA crème de premier niveau et deux boutons secondaires centrés (Étudier rouge / Jouer bleu). Les reliefs sont de véritables **tranches d'ombre hors flux**, pas des doubles cartes. Pas de contour animé rouge, ni d'ombre néon. Le CTA crème garde son coin à deux bandes rouge/cyan **sans changement d'épaisseur**.
 
 ## 5. Rythme, densité et hiérarchie
 
-Ordre de lecture attendu : **marque + niveau** → **accroche + illustration** → **progression réelle** → **reprise de la prochaine activité** → **raccourcis** → **voir mon chemin**.
+Ordre de lecture actif sur l'accueil : **marque + niveau** → **accroche + illustration** → **progression réelle** → **Commencer/Continuer** → **Étudier et Jouer**. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non plus comme quatre boutons concurrents sur l'accueil.
 
 Une seule action dominante à l'écran. Le hero est expressif mais **ne doit pas repousser le CTA hors de l'écran à cause d'une illustration à hauteur fixe**. La réduction visuelle recherchée depuis V2 est de l'ordre de 10–15 % sur la partie hero, mais le bon critère est la place effective disponible sur différents appareils.
 
@@ -69,11 +69,11 @@ Une seule action dominante à l'écran. Le hero est expressif mais **ne doit pas
 
 ### 6.1 Bouton principal
 
-Fond crème uni, texte noir et icône noire, rayon modéré, contraste élevé, forme cliquable d'au moins 48 px de haut. Le **coin bicolore** est un petit accent facultatif à l'extrémité droite (jamais un grand contour rouge/cyan autour du bouton). Afficher le titre réel de la leçon sur **deux lignes au besoin** ; ellipsis seulement pour les informations secondaires et avec solution pour lire le titre complet.
+Fond crème `#fbebc5`, texte noir, flèche noire, **sans livre**. Tranche beige de 7 px, enfoncement 6 px, état visiblement maintenu 160 ms avant une navigation déclenchée par clic utilisateur ; hover PC : face crème `#fff4da` **sans soulèvement**. Les deux bandes du coin gardent leur couleur marque `#f22421` / `#02c5e7` et leur largeur inchangée. Afficher le vrai titre de la leçon sur **deux lignes au besoin** ; pas de troncature d'information critique.
 
 ### 6.2 Niveaux A1.1/A1.2 et familles futures
 
-Deux pills maximum dans le header courant, actif rouge/crème et inactif fond noir/bord crème ; chevron discret, troisième commande. Pour A2.1/A2.2, B1.1/B1.2, etc., le chevron ouvre un **bottom sheet** groupé par familles et limité aux niveaux réellement disponibles. Ne pas comprimer le nom de marque, la connexion et les niveaux sur une seule ligne à 320px.
+Deux pastilles maximum dans le header courant, actif rouge/crème et inactif fond noir/filet crème ; le chevron est la troisième commande 3D. Relief de **2 à 4 px** selon `--k`, tranche beige sombre ou rouge sombre, enfoncement de `depth - 1px` et maintien **160 ms** avant sélection ou ouverture de la feuille. Leur filet `::before` et leurs cibles tactiles `::after` sont préservés. Pour A2.1/A2.2, B1.1/B1.2, etc., le chevron ouvre un **bottom sheet** groupé par familles et limité aux niveaux disponibles. Sous 360 px, le header peut se replier sur deux rangées sans compresser la marque.
 
 ### 6.3 Progression
 
@@ -81,7 +81,7 @@ En-tête « TA PROGRESSION », pourcentage du **niveau actif** et série globale
 
 ### 6.4 Accès secondaires
 
-Raccourcis regroupés : S'entraîner, Examens, Erreurs, Jeux. Même axe, labels lisibles. 4 colonnes sur écran suffisamment large ; en très petite largeur ou zoom fort, réorganiser en 2×2 si nécessaire, sans créer de boutons <44px.
+Deux boutons **centrés, côte à côte**, sans titre inutile : **Étudier** (`#d3232b`, tranche `#861c18`) et **Jouer** (`#087496`, tranche `#054860`). Les deux ont texte/pictogramme crème, relief 5 px et enfoncement 4 px maintenu 160 ms avant activation ; au hover PC, seule leur face s'éclaircit. Étudier ouvre un bottom sheet avec **Les leçons / S'entraîner / Examens / Mes erreurs**, sans perte de fonctionnalités. Jouer ouvre directement les mini-jeux. Cibles tactiles d'au moins 76 px de hauteur. Voir [BOUTONS-3D.md](BOUTONS-3D.md).
 
 ### 6.5 États
 
@@ -89,13 +89,13 @@ Définir au minimum : chargement, progression nulle, aucune leçon reprenable, n
 
 ## 7. Rapport à LuxApp 2.1
 
-Le code 2.1 utilise `public/design-tokens.css`, `public/components.css`, `public/accueil-v21.css` et des modules d'apprentissage/jeux. Les invariants fonctionnels et pédagogiques restent prioritaires. La **palette Watfir est une proposition de remplacement visuel**, pas une autorisation pour repeindre toutes les variables sémantiques ou changer les jeux.
+Le code 2.1 utilise `public/design-tokens.css`, `public/components.css`, `public/accueil-v21.css` et des modules d'apprentissage/jeux. Les invariants fonctionnels et pédagogiques restent prioritaires. La **palette Watfir est déployée sur l'accueil `2.2` uniquement**, pas une autorisation pour repeindre toutes les variables sémantiques ou changer les jeux.
 
 Faire évoluer les composants existants plutôt que dupliquer leurs fonctions. Les nouvelles classes temporaires doivent être préfixées `wf-` pour éviter les collisions ; ne pas multiplier des styles globaux pour écraser 2.1. La référence 2.1, qui considérait l'or comme CTA principal, reste historique pour les vues non migrées jusqu'à validation explicite.
 
 ## 8. Mouvement et rendu
 
-Transitions 120–220ms sur éléments interactifs, avec débrayage `prefers-reduced-motion`. Aucun filtre VHS permanent, aucun scintillement de texte, aucun glow sur les réponses. Sur supports HDR, vérifier que le rouge et le cyan ne brûlent pas. Les formes sont d'abord vectorielles, les effets analogiques éventuels étant strictement décoratifs.
+Pour les **boutons 3D de l'accueil**, la transition physique `transform/box-shadow` dure **115 ms**, le fond change sur **160–170 ms** et, pour une activation utilisateur susceptible de masquer l'animation, la classe `.wf-pressing` conserve le creux **160 ms** avant le clic rejoué. Sur `prefers-reduced-motion:reduce` : aucun déplacement ni délai. Les hovers sont réservés à `(hover:hover) and (pointer:fine)`, sans animation de gameplay. Aucun filtre VHS permanent, scintillement ni glow. Sur écran HDR, vérifier les rouges et le cyan. Les formes sont vectorielles, les effets analogiques strictement décoratifs.
 
 ## 9. Conditions de livraison
 
