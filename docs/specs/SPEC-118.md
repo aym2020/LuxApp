@@ -96,10 +96,34 @@ Retour produit sur Samsung : le fond autour du téléphone doit être aussi somb
 Correctif :
 - le fond de la sélection est celui de la vue, comme sur la présentation : plus de halos ni de fond prune sur mobile ;
 - la bordure du téléphone est plate et noire (`#09070a`, filet d'un pixel), sans ombre ni liseré ;
-- une main en pixel art est posée par `::before` (bouts des doigts sur le coin bas gauche) et `::after` (pouce et paume en bas à droite) de `.ld-dating-phone`, avec les fichiers `public/art/cringr-doigts.svg` et `cringr-pouce.svg`, générés par `tools/cringr-main-pixel.py` ;
-- la main ne capte aucun geste (`pointer-events:none`) et ne recouvre ni le texte, ni le badge, ni les boutons ;
-- elle n'apparaît que sous 768 px de large : sur PC, elle serait coupée dans le vide ;
-- la marge latérale de la page passe de 10 à 16 px pour laisser voir la main.
+- une main en pixel art dessinée en SVG a été essayée (commit `b9b3882`), puis **retirée** (css v35) : jugée laide sur Samsung. Voir §11.
 
 Vérifié en Chromium à 320×600, 393×763 et 430×932 sans défilement, plus 1440×900 (sans main). Tests Node : 302 réussis, 5 échecs connus. `test-lux-demasque.sh complet` : seul `test_lux_demasque_audio` échoue, comme avant. `test_cringr_quitter` passe.
 Non vérifié : Samsung.
+
+## 11. Main de la joueuse : image générée (à produire)
+
+Décision produit du 02/11 : la main en SVG dessiné à la main est abandonnée. La main sera une **image générée**, dans le style de l'illustration de présentation (`tools/red-flag/sources/redflag-hero-v7.webp`, générateur d'images intégré, voir SPEC-115-V7-RECETTE). Cette session n'a pas de générateur d'images : les deux images sont à produire avec le même outil que l'illustration héros, puis à déposer dans `tools/red-flag/sources/`.
+
+### Pourquoi deux images et pas une photo « main + téléphone »
+
+Le téléphone et son écran restent en CSS : leur hauteur s'adapte de 320×600 à 430×932 sans défilement. Une image unique de téléphone tenu en main imposerait un écran au format fixe et réduirait la carte. Les deux images ne font que **border** le téléphone : doigts sur le bord gauche, pouce et paume en bas à droite.
+
+### Prompt A — doigts (bord gauche)
+
+```text
+Use case: game UI overlay asset. Painterly pixel-art game style, exactly matching the supplied RED FLAG illustration (same adult woman: warm light-tan skin, soft natural shading, cream knit sweater). First-person view: the woman holds a smartphone in her right hand, seen from the front. Draw ONLY her four fingertips (index, middle, ring, little finger) curling around the LEFT edge of the phone from behind: the fingers enter from the left border of the image, stacked vertically, tips pointing right, the little finger lowest and slightly tucked under. Short natural nails with soft pink polish (#e74791 family), visible on the fingertips. Lighting: warm orange lamp light from the right, cool purple night ambient shadow on the left. Do NOT draw the phone, screen, any text or UI. Isolated on a fully transparent background (if transparency is unavailable: perfectly flat pure green #00FF00 background, no shadow on it). Portrait 1024x1536, the fingers fill the left 70% of the width and the lower 60% of the height. Clean pixel edges, no blur, no outline glow.
+```
+
+### Prompt B — pouce et paume (bas droite)
+
+```text
+Use case: game UI overlay asset. Painterly pixel-art game style, exactly matching the supplied RED FLAG illustration (same adult woman: warm light-tan skin, soft natural shading, cream knit sweater). First-person view: the woman holds a smartphone in her right hand, seen from the front. Draw ONLY her right thumb resting along the RIGHT edge of the phone, pointing up, with the heel of the palm and the cream knit sweater cuff entering from the bottom-right corner of the image. Short natural thumbnail with soft pink polish (#e74791 family). Lighting: warm orange lamp light from the right, cool purple night ambient. Do NOT draw the phone, screen, any text or UI. Isolated on a fully transparent background (if transparency is unavailable: perfectly flat pure green #00FF00 background, no shadow on it). Portrait 1024x1536, the thumb tip in the upper third, palm and cuff leaving the image at the bottom and right borders. Clean pixel edges, no blur, no outline glow.
+```
+
+### Intégration prévue (dès réception des images)
+
+1. Détourage du vert si besoin, recadrage serré, réduction aux tailles d'affichage ×2 (doigts environ 150×260 px, pouce environ 180×320 px), WebP avec transparence, moins de 40 Ko chacune, dans `public/art/` (`cringr-main-doigts.webp`, `cringr-main-pouce.webp`).
+2. Pose par `.ld-dating-phone::before` et `::after`, en `pointer-events:none`. Les doigts entrent par le bord gauche de l'écran, le pouce et la paume sortent par le bas à droite.
+3. La main ne recouvre ni la bio, ni le badge, ni les boutons. Elle n'est affichée que sur mobile (moins de 768 px).
+4. Captures à 320×600, 360×740, 393×763, 393×852 et 430×932 ; tests Cringr et suite RED FLAG ; validation visuelle sur Samsung.
