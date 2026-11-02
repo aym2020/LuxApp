@@ -80,10 +80,10 @@ test('Header : A1.1, A1.2 et dropdown utilisent le même relief physique compact
   assert.match(header,/\.puce-niv\[aria-pressed="true"\]\s*\{[^}]*--wf-pill-side:#991a17/s,
     'tranche rouge sombre pour le niveau actif');
   assert.match(header,/\.wf-niveau-ouvrir\s*\{/,'le chevron reprend la classe de pastille');
-  assert.match(header,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)\s*\{[^}]*transform:translateY\(calc\(var\(--wf-pill-depth\) - 1px\)\)/s,
+  assert.match(header,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\),\s*[^{}]*\.puce-niv\.wf-pressing\s*\{[^}]*transform:translateY\(calc\(var\(--wf-pill-depth\) - 1px\)\)/s,
     'un appui physique remplace le scale');
   assert.match(header,/\.puce-niv::after[^}]*height:48px/s,'grandes cibles tactiles conservées');
-  assert.match(watfir,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)\s*\{ transform:none; \}/,
+  assert.match(watfir,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\),\s*[^{}]*\.puce-niv\.wf-pressing \{ transform:none; \}/,
     'respect de reduced-motion');
 });
 
