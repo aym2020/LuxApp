@@ -2,6 +2,8 @@
 
 > **BRANCHE 2.2 / NOUVELLE DA WATFIR (02/11/2026) :** [docs/watfir-2.2/README.md](docs/watfir-2.2/README.md) — charte Retro 1984, accueil V4, assets vectoriels et prototype autonome. **Accueil V4 implémenté sur `2.2` via `public/accueil-watfir.js/.css`, deux SVG et imports dans `index.html`. Accueil terminé et gelé le 02/11/2026 ([IMPLEMENTATION § 12](docs/watfir-2.2/IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026)) : aucune modification esthétique sans défaut concret identifié ; étape suivante, harmoniser les autres écrans.** Pour une intervention UI sur `2.2`, lire ce dossier ET les garde-fous existants `2.1`, respecter la source de vérité GitHub. Ne modifier `main` ou `2.1` pour cette DA que sur instruction expresse.
 
+> **HOVER DESKTOP PARTAGÉ — branche 2.2 (02/11/2026) :** [contrat et adoption](docs/watfir-2.2/HOVER-SYSTEM.md), CSS actif `public/hover-interactions.css` importé après les CSS des écrans. Hovers plus lisibles sur PC (`hover:hover`, `pointer:fine`), pressions tactiles SPEC 57 et mouvements réduits préservés, manette Jeux crème. Les composants 2.1 partagés reçoivent un feedback neutre ; variantes Watfir fortes limitées à l'accueil, autres écrans à migrer un par un après recette. **Gel de l'accueil au repos maintenu.**
+
 > **RED FLAG / CRINGR — point d'entrée éditorial :** [docs/red-flag/README.md](docs/red-flag/README.md) (index des références, catalogue, preuves/leurres et scénarios actifs). Lire ce dossier pour toute création ou refonte narrative du jeu, en plus de SPEC 110/113 et du suivi `main/docs/LUX-DEMASQUE-TODO.md`. Les idées ne sont ni implémentées ni validées.
 
 
