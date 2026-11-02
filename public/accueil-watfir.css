@@ -114,8 +114,8 @@
     0 0 0 1px var(--wf-pill-hover-outline);
   transform:translateY(0);
   touch-action:manipulation;
-  transition:transform 140ms cubic-bezier(.22,1,.36,1),
-             box-shadow 140ms ease, background-color 160ms ease;
+  transition:transform 115ms cubic-bezier(.22,1,.36,1),
+             box-shadow 115ms ease, background-color 160ms ease;
 }
 #view-dashboard .wf-accueil .puce-niv::before {
   content:""; position:absolute; inset:0; pointer-events:none;
@@ -126,8 +126,11 @@
   --wf-pill-side:#991a17; /* tranche rouge sombre sous la face rouge */
   background:var(--wf-red); color:var(--wf-cream);
 }
-/* Enfoncement physique au doigt ou à la souris : remplace scale(.97) de 2.1. */
-#view-dashboard .wf-accueil .puce-niv:active:not(:disabled):not([aria-disabled="true"]) {
+/* Enfoncement physique doigt/souris + maintien 160 ms après clic rapide.
+   Même règle pour les niveaux A1.x et le sélecteur, sans toucher aux ::before
+   (contour crème) ni ::after (cible tactile élargie). */
+#view-dashboard .wf-accueil .puce-niv:active:not(:disabled):not([aria-disabled="true"]),
+#view-dashboard .wf-accueil .puce-niv.wf-pressing {
   transform:translateY(calc(var(--wf-pill-depth) - 1px));
   box-shadow:
     0 1px 0 var(--wf-pill-side), 0 3px 4px rgba(0,0,0,.22),
@@ -472,7 +475,8 @@ body.wf-sheet-open { overflow:hidden; }
 @media (prefers-reduced-motion:reduce) {
   /* Le relief reste visible, mais aucun déplacement de pastille. */
   #view-dashboard .wf-accueil .puce-niv { transition:none; }
-  #view-dashboard .wf-accueil .puce-niv:active:not(:disabled):not([aria-disabled="true"]) { transform:none; }
+  #view-dashboard .wf-accueil .puce-niv:active:not(:disabled):not([aria-disabled="true"]),
+  #view-dashboard .wf-accueil .puce-niv.wf-pressing { transform:none; }
   /* Garder le feedback tactile par changement d'ombre, sans déplacement. */
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta { transition:none; }
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]),
