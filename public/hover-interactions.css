@@ -63,14 +63,15 @@
                inset 0 2px 0 rgba(255,255,255,.78),
                inset 0 -2px 0 rgba(126,87,39,.20);
   }
-  #view-dashboard .wf-accueil .puce-niv {
-    transition:background-color 160ms ease,box-shadow 160ms ease;
+  /* Pastilles 3D : seule la couleur change au survol ; la tranche physique
+     reste contrôlée par accueil-watfir.css. Maintenir la couleur pendant :active. */
+  #view-dashboard .wf-accueil .puce-niv:not([aria-pressed="true"]):hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color:rgba(247,233,194,.20);
+    --wf-pill-hover-outline:rgba(247,233,194,.44);
   }
-  #view-dashboard .wf-accueil .puce-niv:not([aria-pressed="true"]):hover:not(:active):not(:disabled) {
-    background-color:rgba(247,233,194,.20);box-shadow:0 0 0 1px rgba(247,233,194,.44);
-  }
-  #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"]:hover:not(:active):not(:disabled) {
-    background-color:var(--ux-hover-red);box-shadow:0 0 0 2px rgba(242,36,33,.26);
+  #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"]:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color:var(--ux-hover-red);
+    --wf-pill-hover-outline:rgba(242,36,33,.26);
   }
 
   #view-dashboard .wf-accueil .ac-acces .ac-btn {
