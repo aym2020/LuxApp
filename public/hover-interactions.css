@@ -4,8 +4,20 @@
   --ux-hover-duration: 190ms;
   --ux-hover-easing: cubic-bezier(.22,1,.36,1);
   --ux-hover-wash: rgba(247,233,194,.17);
+  --ux-hover-cyan-wash: rgba(2,197,231,.18);
+  --ux-hover-cyan: #02c5e7;
+  --ux-hover-cta-gold: #ffe0aa;
   --ux-hover-bright: #fff4da;
   --ux-hover-red: #ff4038;
+}
+
+/* La teinte du CTA est enregistrée pour animer le premier aplat du gradient,
+   sans faire fondre ses bandes rouge/cyan, changer son ombre ou déplacer la carte.
+   Navigateurs sans @property : le hover reste utilisable, la teinte change sans fondu. */
+@property --wf-cta-surface {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #fbebc5;
 }
 
 /* Alignement de marque, sur PC ET mobile : Jeux cesse d'être le seul pictogramme cyan. */
@@ -33,7 +45,8 @@
                box-shadow var(--ux-hover-duration) ease,color var(--ux-hover-duration) ease;
   }
   .ux-hover-tile:not(:disabled):not([aria-disabled="true"]):hover:not(:active) {
-    background-color:var(--ux-hover-wash);box-shadow:inset 0 -2px 0 rgba(247,233,194,.62);
+    background-color:var(--ux-hover-cyan-wash);
+    box-shadow:inset 0 -2px 0 var(--ux-hover-cyan);
   }
   :is(.ux-hover-chip,.ux-hover-icon):not(:disabled):not([aria-disabled="true"]):hover:not(:active) {
     background-color:var(--ux-hover-wash);
@@ -49,20 +62,26 @@
   .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph {transform:rotate(15deg);}
   :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow {transform:translateX(5px);}
 
-  /* Accueil validé : seuls ses états hover changent, aucune dimension au repos. */
+  /* CTA : remplacement couleur crème → crème doré, SANS élévation ni glow.
+     Gradient identique au CSS d'accueil : seul le 1er stop est animé.
+     Les angles rouges et cyan sont strictement préservés. */
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
-    transition:transform var(--ux-hover-duration) var(--ux-hover-easing),
-               filter var(--ux-hover-duration) ease,box-shadow var(--ux-hover-duration) ease;
+    --wf-cta-surface:#fbebc5;
+    background:linear-gradient(135deg,
+      var(--wf-cta-surface) calc(100% - 51.6 * var(--k)),
+      var(--wf-red) 0 calc(100% - 31.8 * var(--k)),
+      var(--wf-cyan) 0);
+    transition:--wf-cta-surface 175ms ease;
   }
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not([aria-disabled="true"]) {
-    transform:translateY(-3px);filter:brightness(1.075);
-    box-shadow:0 12px 28px rgba(0,0,0,.42),0 4px 22px rgba(247,233,194,.25);
+    --wf-cta-surface:var(--ux-hover-cta-gold);
+    transform:none;filter:none;box-shadow:none;
   }
-  #view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic {
-    transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
+  #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
+    transition:color 175ms ease;
   }
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active) .cs-rond .ic {
-    transform:translateX(5px);
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active):not([aria-disabled="true"]) .cs-rond {
+    color:var(--wf-red);
   }
 
   #view-dashboard .wf-accueil .puce-niv {
@@ -76,17 +95,26 @@
   }
 
   #view-dashboard .wf-accueil .ac-acces .ac-btn {
-    transition:background-color 170ms ease,box-shadow 170ms ease;
+    transition:background-color 175ms ease,box-shadow 175ms ease;
   }
-  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not([aria-disabled="true"]) {
-    background-color:var(--ux-hover-wash);
-    box-shadow:inset 0 -2px 0 rgba(247,233,194,.64);
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not(:disabled):not([aria-disabled="true"]) {
+    background-color:var(--ux-hover-cyan-wash);
+    box-shadow:inset 0 -2px 0 var(--ux-hover-cyan);
+  }
+  /* L'aplat coloré doit épouser les coins extérieurs de la barre. */
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:first-child:hover:not(:active) {
+    border-radius:calc(24 * var(--k)) 0 0 calc(24 * var(--k));
+  }
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:last-child:hover:not(:active) {
+    border-radius:0 calc(24 * var(--k)) calc(24 * var(--k)) 0;
   }
   #view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child {
-    transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
+    transition:transform 175ms var(--ux-hover-easing),color 175ms ease;
   }
-  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ic:first-child {
-    transform:translateY(-3px) scale(1.075);
+  #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ic:first-child,
+  #view-dashboard .wf-accueil .ac-acces .ac-btn.jeux:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ic:first-child {
+    color:var(--ux-hover-cyan);
+    transform:translateY(-2px);
   }
 
   #view-dashboard .wf-accueil .ac-v21-journey > b,
@@ -97,7 +125,9 @@
     color:var(--ux-hover-bright);text-decoration:underline;
     text-decoration-thickness:1px;text-underline-offset:.27em;
   }
-  #view-dashboard .wf-accueil .ac-v21-journey:hover:not(:active) > .ic:last-child {transform:translateX(6px);}
+  #view-dashboard .wf-accueil .ac-v21-journey:hover:not(:active) > .ic:last-child {
+    color:var(--ux-hover-cyan);transform:translateX(6px);
+  }
   #view-dashboard .wf-accueil .ac-menu .ic {
     transition:transform var(--ux-hover-duration) var(--ux-hover-easing);
   }
@@ -120,7 +150,7 @@
          .ux-hover-lift,.ux-hover-tile,.ux-hover-chip,.ux-hover-link,.ux-hover-icon,
          .ux-hover-glyph,.ux-hover-arrow),
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
-  #view-dashboard .wf-accueil .cs-rond .ic,
+  #view-dashboard .wf-accueil .ac-v21-cta .cs-rond,
   #view-dashboard .wf-accueil .puce-niv,
   #view-dashboard .wf-accueil .ac-acces .ac-btn,
   #view-dashboard .wf-accueil .ac-acces .ac-btn > .ic:first-child,
@@ -132,7 +162,6 @@
     .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph,
     :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow,
     #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active),
-    #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active) .cs-rond .ic,
     #view-dashboard .wf-accueil .ac-acces .ac-btn:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ic:first-child,
     #view-dashboard .wf-accueil .ac-v21-journey:hover:not(:active) > .ic:last-child,
     #view-dashboard .wf-accueil .ac-menu:hover:not(:active) .ic {transform:none!important;}
