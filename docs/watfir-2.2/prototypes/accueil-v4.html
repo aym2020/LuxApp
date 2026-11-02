@@ -93,7 +93,7 @@ const dialog=document.querySelector("#sheet");
 const groups=document.querySelector("#levelList");
 let trigger=null;
 function familyOf(v){return v.replace(/\.\d+$/,"")}
-function switchLevel(v){if(!available.includes(v))return;current=v;renderTabs();document.querySelector("#progressLabel").textContent="Progression "+v;if(dialog.open)dialog.close()}
+function switchLevel(v){if(!available.includes(v))return;current=v;renderTabs();trigger=tabs.querySelector(".level.arrow");document.querySelector("#progressLabel").textContent="Progression "+v;if(dialog.open)dialog.close()}
 function makeButton(value,container){const b=document.createElement("button");b.className="level"+(current===value?" on":"");b.textContent=value;b.type="button";b.setAttribute("aria-pressed",String(current===value));b.addEventListener("click",()=>switchLevel(value));container.append(b)}
 function renderTabs(){tabs.replaceChildren();available.filter(n=>familyOf(n)===familyOf(current)).forEach(n=>makeButton(n,tabs));const b=document.createElement("button");b.type="button";b.className="level arrow";b.textContent="⌄";b.setAttribute("aria-label","Choisir un autre niveau");b.setAttribute("aria-haspopup","dialog");b.setAttribute("aria-expanded",String(dialog.open));b.addEventListener("click",()=>{trigger=b;renderList();dialog.showModal();b.setAttribute("aria-expanded","true");document.querySelector("#closeSheet").focus()});tabs.append(b)}
 function renderList(){groups.replaceChildren();[...new Set(available.map(familyOf))].forEach(f=>{const row=document.createElement("div");row.className="sheet-group";const lab=document.createElement("label");lab.textContent=f;row.append(lab);available.filter(n=>familyOf(n)===f).forEach(n=>makeButton(n,row));groups.append(row)})}
