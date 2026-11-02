@@ -10,7 +10,7 @@ const root=path.join(__dirname,'..');
 const watfir=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
 
 function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
-  const d = {handler:null,dialog:null,studyDialog:null,focusCount:0,studyFocus:0};
+  const d = {handler:null,pressHandler:null,timers:[],dialog:null,studyDialog:null,focusCount:0,studyFocus:0,reducedMotion:false};
   const trigger = {setAttribute(){},focus(){d.focusCount++}};
   const studyTrigger = {attributes:{},setAttribute(k,v){this.attributes[k]=v},focus(){d.studyFocus++}};
   const close = {focus(){},addEventListener(t,fn){this.listener=fn}};
@@ -18,7 +18,12 @@ function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
   const body = {classList:{add(){},remove(){}}};
   const document={
     body,
-    addEventListener(type,fn){if(type==='click')d.handler=fn},
+    addEventListener(type,fn,capture){
+      if(type==='click') {
+        if(capture === true) d.pressHandler=fn;
+        else d.handler=fn;
+      }
+    },
     querySelector(s){return s==='#view-dashboard .wf-niveau-ouvrir'?trigger:s==='#view-dashboard .wf-etudier-trigger'?studyTrigger:null},
     getElementById(id){return id==='wf-niveaux-dialog'?d.dialog:id==='wf-etudier-dialog'?d.studyDialog:null},
     createElement(tag){
@@ -42,7 +47,12 @@ function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1']) {
   };
   document.body.appendChild=()=>{};
   const ctx={
-    document, niveauActif:'A1.1', niveauxDisponibles:()=>levels,
+    document,
+    window:{
+      matchMedia(){return {matches:d.reducedMotion}},
+      setTimeout(fn,ms){d.timers.push({fn,ms});}
+    },
+    niveauActif:'A1.1', niveauxDisponibles:()=>levels,
     enteteAccueilHtml:()=>'',renderAccueil:()=>{},chiffresHtml:()=>'<div>Aujourd’hui</div><div>6<span class="ac-v21-bilan-unite"> %</span></div><span class="ac-v21-bilan-unite"> jours</span>',
     carteSuiteHtml:()=>'<button class="carte-suite"><span class="cs-ic"><svg></svg></span><span class="cs-txt">Commencer</span></button>',
     accesHtml:()=>'',
@@ -245,6 +255,66 @@ test('Étudier : ouverture, destinations réelles et Retour Android sans perdre 
     assert.equal(ctx.wfFermerEtudier(),true,'Retour ferme le sheet');
     assert.equal(ctx.wfFermerEtudier(),false,'Retour ne ferme rien après la fermeture');
   }
+});
+
+test('Press animation : 3 actions tiennent 160ms avant leur clic réel, mobile et PC',()=>{
+  for (const type of ['commencer','etudier','jouer']) {
+    const {d}=setup();
+    const classes=new Set();
+    let clicks=0,prevented=0,stopped=0;
+    const button={
+      disabled:false,isConnected:true,
+      classList:{add(c){classes.add(c)},remove(c){classes.delete(c)}},
+      getAttribute(){return null},
+      click(){clicks++}
+    };
+    const event={
+      isTrusted:true,
+      target:{closest(selector){
+        const expected=type==='commencer'?'carte-suite.ac-v21-cta':'.wf-choix-activite .wf-activite';
+        return selector.includes(expected)?button:null;
+      }},
+      preventDefault(){prevented++},
+      stopPropagation(){stopped++}
+    };
+    assert.equal(typeof d.pressHandler,'function','handler capture installé');
+    d.pressHandler(event);
+    assert.equal(prevented,1,'navigation originale suspendue');
+    assert.equal(stopped,1,'onclick natif différé');
+    assert.ok(classes.has('wf-pressing'),'le bouton reste physiquement enfoncé');
+    assert.equal(clicks,0,'aucune navigation pendant le press');
+    assert.equal(d.timers.length,1);
+    assert.equal(d.timers[0].ms,160,'durée courte et identique sur les trois actions');
+    d.pressHandler(event);
+    assert.equal(d.timers.length,1,'double tap ignoré');
+    d.timers[0].fn();
+    assert.equal(clicks,1,'un seul clic natif rejoué après la pression');
+    assert.ok(!classes.has('wf-pressing'),'état nettoyé');
+    const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+    assert.match(css,/\.carte-suite\.ac-v21-cta\.wf-pressing \{/);
+    assert.match(css,/\.wf-activite\.wf-pressing \{/);
+  }
+});
+
+test('Press : reduced-motion, clic programmatique et bouton désactivé non différés',()=>{
+  const {d}=setup();
+  const classes=new Set();
+  const button={
+    disabled:false,isConnected:true,
+    classList:{add(c){classes.add(c)},remove(c){classes.delete(c)}},
+    getAttribute(){return null},click(){throw Error('aucun replay attendu')}
+  };
+  let blocked=0;
+  const event={isTrusted:true,target:{closest(){return button}},
+    preventDefault(){blocked++},stopPropagation(){}};
+  d.reducedMotion=true;d.pressHandler(event);
+  assert.equal(blocked,0);
+  d.reducedMotion=false;event.isTrusted=false;d.pressHandler(event);
+  assert.equal(blocked,0,'replay synthétique non intercepté');
+  event.isTrusted=true;button.disabled=true;d.pressHandler(event);
+  assert.equal(blocked,0,'disabled non intercepté');
+  assert.equal(d.timers.length,0);
+  assert.equal(classes.size,0);
 });
 
 test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',()=>{
