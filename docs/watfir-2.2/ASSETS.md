@@ -6,8 +6,10 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 
 | Asset | Type | Usage | Statut |
 | --- | --- | --- | --- |
-| [`watfir-mark.svg`](assets/watfir-mark.svg) | SVG 80×96 | Emblème du header, coordonnées de la maquette V4 | Actif dans `public/art` |
-| [`watfir-hero.svg`](assets/watfir-hero.svg) | SVG 870×276 | Hero : bandes croisées, église, pont à trois arches — coordonnées de la maquette V4 | Actif dans `public/art`, à valider Samsung |
+| [`watfir-logo-v4.svg`](../../public/art/watfir-logo-v4.svg) | SVG 96×100 | Logo du header (source V4 fournie, utilisée telle quelle) | Actif |
+| [`watfir-mark.svg`](assets/watfir-mark.svg) | SVG 80×96 | Ancien emblème (coordonnées maquette) | Archivé |
+| [`watfir-hero-v4.svg`](../../public/art/watfir-hero-v4.svg) | SVG 864×265 | Hero (source V4 fournie, utilisée telle quelle) | Actif |
+| [`watfir-hero.svg`](assets/watfir-hero.svg) | SVG 870×276 | Ancien hero (coordonnées maquette) | Archivé |
 | [`watfir-stripes.svg`](assets/watfir-stripes.svg) | SVG motif | Bandes identitaires autonomes | Prototype |
 | [`watfir-palette.svg`](assets/watfir-palette.svg) | SVG planche | Contrôle visuel des tokens | Documentaire |
 | [`niveaux-sheet.svg`](assets/niveaux-sheet.svg) | SVG schéma | Sélecteur V4 et feuille de choix | Documentaire |

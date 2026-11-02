@@ -45,3 +45,5 @@ L'accueil est déjà branché sur la 2.2 ; avant de valider la livraison visuell
 Voir [IMPLEMENTATION.md](IMPLEMENTATION.md) pour les fichiers actifs, événements, compatibilité avec le moteur 2.1, points de validation et retour arrière ciblé.
 
 **02/11/2026** (IMPLEMENTATION § 7) : accueil reproduit à l'échelle de la maquette V4 (unité `--k`, polices Playfair Display / Fraunces / Roboto Condensed auto-hébergées, SVG en coordonnées de la maquette). Validation Samsung réelle à faire.
+
+**02/11/2026, finitions** (IMPLEMENTATION § 10) : SVG V4 fournis intégrés tels quels (`watfir-logo-v4.svg`, `watfir-hero-v4.svg`), barre à 0 % vide, zones de toucher de 48 px de haut sans chevauchement.

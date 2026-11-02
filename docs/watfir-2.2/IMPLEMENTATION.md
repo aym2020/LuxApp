@@ -105,8 +105,29 @@ Mesures Chromium (invité, leçon 0) — hauteur utile / contenu / écarts heade
 | 1440×900 | vide 187 | 900 / 839 / 62·53·51·47·39 / 46 |
 | 1920×1080 | vide 367 | 1080 / 958 / 88·94·66·55·66 / 92 |
 
-Aucun défilement vertical ni horizontal à ces tailles ; police ×1,3 : intervalles au minimum, toujours sans défilement à 360×640. Les nouveaux SVG `watfir_hero_v4.svg` / `watfir_logo_v4.svg` annoncés n'ont pas encore été fournis : les assets actuels restent en place.
+Aucun défilement vertical ni horizontal à ces tailles ; police ×1,3 : intervalles au minimum, toujours sans défilement à 360×640. 
 
-## 10. Retour arrière ciblé
+## 10. SVG V4 et finitions (02/11/2026)
+
+**Assets** : l'accueil utilise désormais les sources V4 fournies, sans modification : `public/art/watfir-logo-v4.svg` (viewBox 96×100) et `public/art/watfir-hero-v4.svg` (viewBox 864×265). Les anciens `watfir-mark.svg` / `watfir-hero.svg` sont retirés de `public/` (copies conservées dans `docs/watfir-2.2/assets/`). Références versionnées `?v=1`, CSS/JS en `watfir-v4-4` ; la copie hors ligne (service worker) reprend les nouveaux fichiers via le manifeste, qui liste `public/`.
+
+- Logo : échelle uniforme 0,985 (94,6×98,5 px maquette), bandes calées sur la maquette (écart ≤ 2 px maquette).
+- Hero : échelle uniforme 276/265 (900×276 px maquette), flèche alignée sur « Moien! » (x 738), bas du pont y 597. Aucun étirement (rapport largeur/hauteur testé).
+- **Écarts propres aux sources V4** (non corrigés, les fichiers sont utilisés tels quels) : pas de liseré noir entre la tour et les bandes ; les bandes démarrent ≈ 25–30 px maquette plus à droite ; flèche ≈ 15 px plus courte.
+
+**Progression** : `min-width` retiré du remplissage — 0 % n'affiche plus rien (largeur mesurée 0 px).
+
+**Zones de toucher du header** : un seul `::after` de 48 px de haut par bouton, élargi jusqu'au milieu de l'espace voisin (variables `--cible-g` / `--cible-d`), jamais de chevauchement. Mesures (largeur × hauteur, px CSS) :
+
+| Largeur | A1.1 | A1.2 | Chevron | Connexion | Réglages |
+| --- | --- | --- | --- | --- | --- |
+| 320 | 42×48 | 38×48 | 31×48 | 60×48 | 40×48 |
+| 360 | 48×48 | 43×48 | 45×48 | 65×48 | 45×48 |
+| 393 | 52×48 | 46×48 | 49×48 | 71×48 | 49×48 |
+| 430 | 58×48 | 52×48 | 54×48 | 78×48 | 54×48 |
+
+Limite : sous 360 px, A1.2 et le chevron restent sous 44 px de large (l'espacement des pastilles de la maquette ne le permet pas sans chevauchement) ; tous dépassent le minimum WCAG 2.2 AA de 24 px. Header sur une ligne de 320 à 1920 px (≤ 340 px : écart minimal avant le filet réduit), deux lignes seulement avec police agrandie.
+
+## 11. Retour arrière ciblé
 
 Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `accueil-watfir.js` de `public/index.html`. Le rendu 2.1 reprend alors sans toucher au moteur, à la progression ni aux jeux. Ne jamais supprimer les clés de stockage.

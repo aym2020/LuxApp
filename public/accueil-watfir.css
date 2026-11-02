@@ -62,10 +62,11 @@
 /* ── Header : une seule ligne (maquette y 97–193) ─────────────────────── */
 /* Repli : si la police système agrandit le texte, la ligne passe sur deux lignes au lieu de déborder. */
 #view-dashboard .wf-accueil .ac-ent.wf-entete {
-  display:flex; flex-wrap:wrap; align-items:center; gap:8px 0; min-height:calc(96 * var(--k)); height:auto; flex-shrink:0;
+  display:flex; flex-wrap:wrap; align-items:center; gap:16px 0; min-height:calc(96 * var(--k)); height:auto; flex-shrink:0;
 }
-#view-dashboard .wf-accueil .ac-marque { display:flex; align-items:center; gap:calc(16 * var(--k)); min-width:0; margin-left:calc(7 * var(--k)); }
-#view-dashboard .wf-accueil .ac-marque-symbole { width:calc(80 * var(--k)); height:calc(96 * var(--k)); flex:none; object-fit:contain; }
+#view-dashboard .wf-accueil .ac-marque { display:flex; align-items:center; gap:calc(9 * var(--k)); min-width:0; margin-left:0; }
+/* Logo V4 (viewBox 96×100) à l'échelle 0,985 : bandes calées sur la maquette (x 47–126, y 97–192). */
+#view-dashboard .wf-accueil .ac-marque-symbole { width:calc(94.6 * var(--k)); height:calc(98.5 * var(--k)); margin:calc(-1.25 * var(--k)) 0; flex:none; object-fit:contain; }
 #view-dashboard .wf-accueil .wf-marque-texte { display:flex; flex-direction:column; margin:calc(-4 * var(--k)) 0 0 calc(-5 * var(--k)); }
 #view-dashboard .wf-accueil .ac-titre {
   margin:0; color:var(--wf-cream); letter-spacing:0;
@@ -76,41 +77,60 @@
   font:400 max(9px, calc(25 * var(--k)))/1.05 'Watfir Etroite', 'Arial Narrow', sans-serif;
 }
 #view-dashboard .wf-accueil .puces-niveau {
-  display:flex; flex-wrap:nowrap; align-items:center; gap:calc(10 * var(--k)); margin:calc(20 * var(--k)) 0 0 calc(18 * var(--k));
+  display:flex; flex-wrap:nowrap; align-items:center; gap:calc(10 * var(--k)); margin:calc(20 * var(--k)) calc(20 * var(--k)) 0 calc(18 * var(--k));
 }
-/* Pastilles visuellement fines comme la maquette ; la zone de toucher est agrandie (::after). */
+/* Pastilles visuellement fines comme la maquette. Zone de toucher : un ::after de 48 px de haut,
+   élargi jusqu'au milieu de l'espace voisin (jamais de chevauchement entre deux boutons). */
 #view-dashboard .wf-accueil .puce-niv {
+  --bord:max(1px, calc(3.5 * var(--k)));
+  --cible-g:calc(-5 * var(--k) - var(--bord)); --cible-d:calc(-5 * var(--k) - var(--bord)); /* moitié de l'espace entre pastilles */
   position:relative; width:auto; min-width:calc(102 * var(--k)); min-height:0; height:calc(61 * var(--k)); padding:0 calc(8 * var(--k));
   font:700 calc(32 * var(--k))/1 var(--wf-sans); letter-spacing:0;
   color:var(--wf-cream); background:transparent; box-shadow:none;
-  border:max(1px, calc(3.5 * var(--k))) solid var(--wf-cream); border-radius:calc(18 * var(--k));
+  border:var(--bord) solid var(--wf-cream); border-radius:calc(18 * var(--k));
 }
-#view-dashboard .wf-accueil .puce-niv::after { content:""; position:absolute; inset:-11px calc(-5 * var(--k)); }
-#view-dashboard .wf-accueil .wf-niveau-ouvrir::after { right:-9px; }
+#view-dashboard .wf-accueil .puce-niv::after,
+#view-dashboard .wf-accueil .ac-v21-guest::after,
+#view-dashboard .wf-accueil .ac-menu::after {
+  content:""; position:absolute; top:50%; height:48px; transform:translateY(-50%);
+  left:var(--cible-g); right:var(--cible-d);
+}
+#view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-18 * var(--k) - var(--bord)); }   /* jusqu'au nom Watfir */
 #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] { background:var(--wf-red); border-color:var(--wf-cream); color:var(--wf-cream); }
-#view-dashboard .wf-accueil .wf-niveau-ouvrir { width:calc(64 * var(--k)); min-width:0; padding:0; display:grid; place-items:center; }
+#view-dashboard .wf-accueil .wf-niveau-ouvrir {
+  --cible-d:calc(-44 * var(--k) - var(--bord)); /* au-delà du filet, presque jusqu'à « Mode invité » */
+  width:calc(64 * var(--k)); min-width:0; padding:0; display:grid; place-items:center;
+}
 #view-dashboard .wf-accueil .wf-niveau-ouvrir .ic { width:calc(40 * var(--k)); height:calc(40 * var(--k)); stroke:var(--wf-cream); stroke-width:3; }
 #view-dashboard .wf-accueil .wf-entete-sep {
   flex:none; width:max(1px, calc(2 * var(--k))); height:calc(71 * var(--k));
   margin:calc(18 * var(--k)) 0 0 auto; background:rgba(247,233,194,.45);
 }
 #view-dashboard .wf-accueil .ac-v21-guest {
+  --cible-g:calc(-6 * var(--k)); --cible-d:calc(-16.5 * var(--k));
   position:relative; flex:none; min-height:0; margin:calc(15 * var(--k)) 0 0 calc(29 * var(--k)); padding:0;
   border:0; background:none; text-align:left; white-space:nowrap; cursor:pointer;
   font:400 max(9px, calc(24.4 * var(--k)))/1.3 var(--wf-sans); color:var(--wf-cream);
 }
-#view-dashboard .wf-accueil .ac-v21-guest::after { content:""; position:absolute; inset:-11px -4px; }
 #view-dashboard .wf-accueil .wf-invite-mode { display:block; color:var(--wf-cream); }
 #view-dashboard .wf-accueil .ac-v21-guest b {
   display:block; color:var(--wf-cream); font:700 max(10px, calc(28 * var(--k)))/1.15 var(--wf-sans); margin-top:calc(2 * var(--k));
 }
 #view-dashboard .wf-accueil .ac-menu {
+  --cible-g:calc(-16.5 * var(--k)); --cible-d:calc(-40 * var(--k)); /* à droite : jusqu'au bord de l'écran */
   position:relative; flex:none; width:calc(60 * var(--k)); min-width:0; height:calc(60 * var(--k)); min-height:0;
   margin:calc(20 * var(--k)) 0 0 calc(33 * var(--k)); padding:0; color:var(--wf-cream);
 }
-#view-dashboard .wf-accueil .ac-menu::after { content:""; position:absolute; inset:-12px; }
 #view-dashboard .wf-accueil .ac-menu .ic { width:100%; height:100%; stroke-width:1.9; }
-/* Sans compte invité, la roue reste à droite. */
+/* Très petits écrans (≤ 340 px) : polices plancher plus larges que la maquette, on resserre
+   l'écart minimal avant le filet pour garder le header sur une ligne. */
+@media (max-width:340px) {
+  #view-dashboard .wf-accueil .puces-niveau { margin-right:0; }
+  #view-dashboard .wf-accueil .ac-v21-guest { margin-left:calc(24 * var(--k)); --cible-g:calc(-2 * var(--k)); }
+  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:calc(-20 * var(--k) - var(--bord)); }
+}
+/* Compte connecté (ni filet ni « Connexion ») : la roue reste à droite ; l'espace libre
+   (≥ 100 px maquette) suffit aux zones de toucher du chevron et de la roue. */
 #view-dashboard .wf-accueil .puces-niveau + .ac-menu { margin-left:auto; }
 
 /* ── Hero : texte en flux, dessin remonté sous le texte ───────────────── */
@@ -133,11 +153,12 @@
   max-width:calc(470 * var(--k)); margin:calc(12 * var(--k)) 0 0 0; color:var(--wf-cream);
   font:400 calc(31 * var(--k))/1.2 var(--wf-sans); text-wrap:pretty;
 }
-/* Le dessin (viewBox 38–908 × 322–598 de la maquette) remonte jusqu'à la flèche, au niveau de « Moien! ». */
+/* Hero V4 (viewBox 864×265) à l'échelle 276/265 : 900×276 px maquette. Calage sur la maquette :
+   flèche au niveau de « Moien! » (x 738), bas du pont y 597, bandes jusqu'à x 897. Pas d'étirement. */
 #view-dashboard .wf-accueil .wf-hero-art {
   position:relative; z-index:0; display:block; pointer-events:none;
-  width:calc(870 * var(--k)); max-width:none; height:calc(276 * var(--k));
-  margin:calc(-194 * var(--k)) 0 0 calc(-2 * var(--k));
+  width:calc(900 * var(--k)); max-width:none; height:calc(276 * var(--k));
+  margin:calc(-196 * var(--k)) 0 0 calc(-9.7 * var(--k));
 }
 
 /* ── Progression (vraies valeurs) ─────────────────────────────────────── */
@@ -186,7 +207,7 @@
   width:calc(400 * var(--k)); height:calc(13 * var(--k)); margin:calc(14 * var(--k)) 0 0 calc(-3 * var(--k));
   background:var(--wf-line); border-radius:99px;
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste i { background:var(--wf-red); min-width:calc(13 * var(--k)); }
+#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste i { background:var(--wf-red); min-width:0; } /* 0 % = rien de visible */
 
 /* ── CTA crème (maquette y 860–1101) ──────────────────────────────────── */
 /* Coin bicolore : deux bandes à 45° dans le coin bas-droit (dégradé à arêtes nettes). */

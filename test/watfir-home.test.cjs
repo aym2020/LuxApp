@@ -76,7 +76,7 @@ test('Live levels select the existing 2.1 navigation function',()=>{
   assert.match(ctx.chiffresHtml(),/Ta progression/);
   assert.match(ctx.chiffresHtml(),/6<span class="ac-v21-bilan-unite">%<\/span>/,'« 6% » sans espace');
   assert.match(ctx.chiffresHtml(),/"ac-v21-bilan-unite"> jours/,'« 0 jours » garde son espace');
-  assert.match(ctx.accrocheHtml(false),/watfir-hero\.svg/);
+  assert.match(ctx.accrocheHtml(false),/watfir-hero-v4\.svg/);
 });
 test('Bottom sheet filters available levels, closes and restores focus',()=>{
   const {ctx,d,list,click}=setup();
@@ -93,8 +93,8 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
   assert.ok(html.indexOf('accueil-v21.js')<html.indexOf('accueil-watfir.js'));
   assert.ok(html.indexOf('accueil-v21.css')<html.indexOf('accueil-watfir.css'));
-  assert.ok(fs.existsSync(path.join(root,'public/art/watfir-hero.svg')));
-  assert.ok(fs.existsSync(path.join(root,'public/art/watfir-mark.svg')));
+  assert.ok(fs.existsSync(path.join(root,'public/art/watfir-hero-v4.svg')));
+  assert.ok(fs.existsSync(path.join(root,'public/art/watfir-logo-v4.svg')));
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-accueil/);
   assert.match(css,/white-space:normal/);
@@ -102,7 +102,7 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   const {ctx}=setup();
   const h=ctx.accrocheHtml(true);
   assert.ok(h.indexOf('ac-hero-texte')<h.indexOf('wf-hero-art'),'le dessin suit le texte');
-  assert.match(h,/width="870" height="276"/);
+  assert.match(h,/src="art\/watfir-hero-v4\.svg\?v=\d+"[^>]*width="864" height="265"/);
   assert.match(h,/Une nouvelle langue commence ici\./);
   assert.match(ctx.accrocheHtml(false),/Prêt pour quelques minutes/);
 });
@@ -116,15 +116,25 @@ test('Header V4 sur une ligne : marque, niveaux, séparateur, invité, réglages
   ctx.ligneCompteHtml=()=> '';
   assert.doesNotMatch(ctx.enteteAccueilHtml(),/wf-entete-sep|ac-v21-guest/,'compte connecté : ni séparateur ni lien');
 });
-test('SVG : coordonnées de la maquette, église et pont à trois arches, sans soleil',()=>{
-  const svg=fs.readFileSync(path.join(root,'public/art/watfir-hero.svg'),'utf8');
-  assert.match(svg,/viewBox="38 322 870 276"/);
-  assert.doesNotMatch(svg,/<circle/,'pas de soleil');
-  assert.equal((svg.match(/A4[67](\.5)? 42\.5/g)||[]).length,3,'trois arches');
-  assert.equal((svg.match(/stroke-width="21"/g)||[]).length,1,'bandes de 21 px maquette');
-  assert.match(svg,/paint-order="stroke"/,'liseré noir autour de l’église');
-  const mark=fs.readFileSync(path.join(root,'public/art/watfir-mark.svg'),'utf8');
-  assert.match(mark,/viewBox="47 96 80 96"/);
+test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',()=>{
+  const hero=fs.readFileSync(path.join(root,'public/art/watfir-hero-v4.svg'),'utf8');
+  const logo=fs.readFileSync(path.join(root,'public/art/watfir-logo-v4.svg'),'utf8');
+  assert.match(hero,/viewBox="0 0 864 265"/);
+  assert.match(logo,/viewBox="0 0 96 100"/);
+  for (const svg of [hero,logo]) {
+    assert.doesNotMatch(svg,/<rect[^>]*width="100%"|<circle/,'fond transparent, pas de soleil');
+    const couleurs=new Set((svg.match(/#[0-9A-Fa-f]{6}/g)||[]).map(c=>c.toUpperCase()));
+    for (const c of couleurs) assert.ok(['#02C5E7','#F22421','#F7E9C2'].includes(c),c);
+  }
+  const {ctx}=setup();
+  assert.match(ctx.enteteAccueilHtml(),/src="art\/watfir-logo-v4\.svg\?v=\d+"[^>]*width="96" height="100"/);
+  assert.ok(!fs.existsSync(path.join(root,'public/art/watfir-hero.svg')),'ancien hero retiré');
+  // Pas d'étirement : le rapport largeur/hauteur CSS respecte le viewBox.
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const art=css.match(/\.wf-hero-art \{[^}]*width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)[^}]*height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
+  assert.ok(Math.abs(art[1]/art[2]-864/265)<0.01,'hero non étiré');
+  const lg=css.match(/\.ac-marque-symbole \{ width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\); height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
+  assert.ok(Math.abs(lg[1]/lg[2]-96/100)<0.01,'logo non étiré');
 });
 test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune hauteur fixe de hero',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
@@ -137,9 +147,9 @@ test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune h
   for (const l of ['PLAYFAIR-DISPLAY','FRAUNCES','ROBOTO-CONDENSED']) assert.ok(fs.existsSync(path.join(root,'public/fonts/'+l+'-OFL.txt')));
   const hero=css.match(/\.wf-accueil \.ac-hero \{([^}]*)\}/)[1];
   assert.match(hero,/height:auto/);
-  assert.match(css,/\.wf-hero-art \{[^}]*margin:calc\(-194 \* var\(--k\)\)/);
-  assert.match(css,/\.puce-niv::after \{ content:""; position:absolute; inset:-11px/,'zone de toucher agrandie');
-  assert.match(css,/\.ac-menu::after \{ content:""; position:absolute; inset:-12px/);
+  assert.match(css,/\.wf-hero-art \{[^}]*margin:calc\(-196 \* var\(--k\)\)/);
+  assert.match(css,/::after \{\s*content:""; position:absolute; top:50%; height:48px;/,'zones de toucher de 48 px');
+  assert.match(css,/\.ac-piste i \{[^}]*min-width:0/,'0 % = aucun remplissage');
   assert.match(css,/flex-wrap:wrap/,'repli sur deux lignes si la police grandit');
   assert.doesNotMatch(css,/italic 700/,'pas de gras synthétique');
 });
