@@ -12,7 +12,7 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-4';
+  const link='hover-interactions.css?v=watfir-hover-5';
   assert.ok(html.includes(link),'stylesheet présent');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
@@ -67,6 +67,29 @@ test('CTA hover : effet physique seul, sans contour rouge ni recoloration',()=>{
   assert.match(watfir,/@media \(prefers-reduced-motion:reduce\) \{/);
   assert.doesNotMatch(css,/\.carte-suite\.ac-v21-cta:active[^{}]*\{[^}]*color:var\(--wf-red\)/,'chevron inchangé au press');
 });
+test('Header : A1.1, A1.2 et dropdown utilisent le même relief physique compact',()=>{
+  const header=watfir.split('/* ── Header :')[1].split('/* ── Hero :')[0];
+  assert.match(header,/\.puce-niv \{[^}]*--wf-pill-depth:clamp\(2px, calc\(6 \* var\(--k\)\), 4px\)/s);
+  assert.match(header,/0 var\(--wf-pill-depth\) 0 var\(--wf-pill-side\)/);
+  assert.match(header,/\.puce-niv\[aria-pressed="true"\]\s*\{[^}]*--wf-pill-side:#991a17/s,
+    'tranche rouge sombre pour le niveau actif');
+  assert.match(header,/\.wf-niveau-ouvrir\s*\{/,'le chevron reprend la classe de pastille');
+  assert.match(header,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)\s*\{[^}]*transform:translateY\(calc\(var\(--wf-pill-depth\) - 1px\)\)/s,
+    'un appui physique remplace le scale');
+  assert.match(header,/\.puce-niv::after[^}]*height:48px/s,'grandes cibles tactiles conservées');
+  assert.match(watfir,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)\s*\{ transform:none; \}/,
+    'respect de reduced-motion');
+});
+
+test('Header : le survol préserve la tranche et la couleur pendant le clic maintenu',()=>{
+  const styles=css.split('/* Pastilles 3D :')[1].split('#view-dashboard .wf-accueil .ac-acces .ac-btn {')[0];
+  assert.match(styles,/\.puce-niv:not\(\[aria-pressed="true"\]\):hover:not\(:disabled\):not\(\[aria-disabled="true"\]\)/);
+  assert.match(styles,/\.puce-niv\[aria-pressed="true"\]:hover:not\(:disabled\):not\(\[aria-disabled="true"\]\)/);
+  assert.match(styles,/--wf-pill-hover-outline/);
+  assert.doesNotMatch(styles,/box-shadow:|hover:not\(:active\)/,
+    'les hovers ne suppriment jamais les ombres 3D pendant le clic');
+});
+
 test('Quatre raccourcis : cyan au hover, crème au repos, sans changement de layout',()=>{
   const section=css.split('#view-dashboard .wf-accueil .ac-acces .ac-btn {')[1]
     .split('/* Bas de page')[0];
