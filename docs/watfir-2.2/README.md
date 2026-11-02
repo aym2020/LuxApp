@@ -10,6 +10,7 @@
 2. [ACCUEIL-V4.md](ACCUEIL-V4.md) — description écran par écran de la référence V4, contraintes responsive et **sélecteur de niveaux évolutif**.
 3. [ASSETS.md](ASSETS.md) — inventaire, provenance, usage et conditions de remplacement des sources.
 4. [RECETTE.md](RECETTE.md) — plan d'implémentation graduelle, tests et critères de validation.
+5. [Prototype interactif V4](prototypes/accueil-v4.html) — accueil autonome, démonstration du changement A1/A2/B1 et de la feuille de niveaux, **sans lien avec la vraie progression**.
 
 ### Assets disponibles dans cette branche
 
