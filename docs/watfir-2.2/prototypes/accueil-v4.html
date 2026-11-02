@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watfir — Prototype documentaire V4</title>
+<style>
+:root{--noir:#080808;--creme:#f7e9c2;--rouge:#f22421;--cyan:#02c5e7;--muted:#beb6a6;--line:#3c3934;font-family:Inter,system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;background:var(--noir);color:var(--creme)}
+button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+main{width:min(100%,640px);margin:auto;padding:clamp(14px,4vw,28px);padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(32px,env(safe-area-inset-bottom));}
+header{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand img{width:48px;height:48px;flex:none}.brand b{display:block;font-family:Georgia,serif;font-style:italic;font-size:clamp(30px,7vw,38px);letter-spacing:-1.3px;line-height:1}.brand small{display:block;color:var(--muted);font-size:12px}
+.iconbtn{height:48px;width:48px;display:grid;place-items:center;background:transparent;border:0;color:var(--creme);font-size:30px}
+.level-row{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:15px}
+.levels{display:flex;gap:6px;align-items:center;flex-shrink:0}.level{min-width:64px;min-height:46px;border:2px solid var(--creme);border-radius:14px;color:var(--creme);background:transparent;font-weight:800;font-size:16px;padding:5px 10px}.level.on{background:var(--rouge)}.level.arrow{min-width:45px;width:45px;font-size:25px;line-height:1}
+.account{font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}.account b{color:var(--creme);font-size:14px;display:block}
+.hero{margin-top:32px;position:relative;min-height:265px;overflow:hidden}.kicker{font-size:clamp(11px,2.4vw,14px);font-weight:800;letter-spacing:.19em;position:relative;z-index:2}
+.hero h1{font:italic clamp(60px,15vw,97px)/.95 Georgia,serif;letter-spacing:-.055em;margin:15px 0 10px;position:relative;z-index:2;font-weight:700}
+.hero h1 span{color:var(--rouge)}.hero p{position:relative;z-index:2;color:#e7dfcd;max-width:235px;font-size:clamp(14px,3.6vw,19px);line-height:1.35;margin:0}
+.hero .art{position:absolute;bottom:0;right:-24px;width:min(120%,730px);max-width:none;pointer-events:none;z-index:1}
+.hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(8,8,8,.55),transparent 50%)}
+.label{font-size:13px;letter-spacing:.18em;font-weight:800}.stats{margin-top:23px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat b{font-size:40px;line-height:1.1;display:block}.stat small{display:block;color:var(--muted);font-size:14px}.stat:not(:first-child){border-left:1px solid #5a5047;padding-left:22px}.flame{color:var(--rouge)}
+.progress{height:5px;background:var(--line);border-radius:20px;overflow:hidden;margin-top:11px;width:100%}.progress i{display:block;background:var(--rouge);width:6%;height:100%}
+.cta{width:100%;margin-top:23px;padding:19px 20px;min-height:130px;background:var(--creme);color:var(--noir);border:0;border-radius:20px;display:grid;grid-template-columns:46px 1fr 18px;align-items:center;gap:12px;text-align:left;position:relative;overflow:hidden}
+.cta:after{content:'';position:absolute;bottom:-24px;right:-35px;transform:rotate(-48deg);height:17px;width:105px;background:var(--rouge);box-shadow:0 24px 0 var(--cyan)}
+.cta-title{font-weight:900;font-size:clamp(21px,5.5vw,28px);line-height:1.1}.cta-lesson{font-weight:800;font-size:clamp(13px,3.4vw,17px);line-height:1.25;margin:5px 0 4px}.cta-small{font-size:12px;color:#655d4f}.cta svg{width:42px;height:42px}
+.shortcut-box{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #958a77;border-radius:18px;padding:12px 0;margin-top:17px}
+.shortcut{border:0;background:transparent;color:var(--creme);min-height:69px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-size:12px;font-weight:700}
+.shortcut:not(:last-child){border-right:1px solid #63584d}.shortcut svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.shortcut:last-child svg{stroke:var(--cyan)}
+.path{display:block;text-align:center;margin:23px auto 8px;color:var(--creme);text-decoration:none;font-weight:700}.path span{padding:0 10px}
+.note{text-align:center;font-size:10px;color:#777069;margin-top:30px}
+dialog{border:1px solid #65594a;background:#14120f;color:var(--creme);padding:0;border-radius:22px 22px 0 0;box-shadow:0 -20px 50px #000b;position:fixed;inset:auto 0 0;width:min(100%,640px);max-width:100%;max-height:min(85dvh,650px);margin:0 auto;overflow:auto;padding-bottom:env(safe-area-inset-bottom)}
+dialog::backdrop{background:#000b}.sheet{padding:15px 22px 25px}.handle{width:72px;height:5px;background:#716759;border-radius:20px;margin:0 auto 15px}.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.sheet-head h2{font-size:21px;margin:0}.close{background:transparent;border:0;color:var(--creme);min-height:44px;padding:5px 10px}
+.sheet-group{display:flex;align-items:center;gap:12px;margin:22px 0}.sheet-group label{font-weight:800;min-width:35px}.sheet-group .level{min-width:72px}
+@media(max-width:365px){main{padding-inline:13px}.level{min-width:58px;padding:5px 8px;font-size:14px}.level.arrow{width:43px;min-width:43px}.hero{min-height:255px}.hero .art{right:-42px;width:140%}.account{font-size:11px}.account b{font-size:12px}.stats{gap:8px}.stat:not(:first-child){padding-left:12px}.cta{grid-template-columns:34px 1fr 16px;gap:10px;padding:16px 12px}.cta svg{width:34px;height:34px}}
+@media(max-width:330px){.level-row{flex-wrap:wrap}.account{text-align:left}.hero p{max-width:200px}}
+@media(min-width:550px){.hero{min-height:330px}.hero .art{width:110%}}
+@media(max-width:340px),(prefers-reduced-motion:reduce){.shortcut{transition:none}}
+@media (prefers-reduced-motion:no-preference){button{transition:filter .15s,transform .15s}button:active{transform:scale(.98)}}
+@media (min-resolution:2dppx){.hero .art{image-rendering:auto}}
+</style>
+</head>
+<body>
+<main>
+ <header>
+  <div class="brand"><img src="../assets/watfir-mark.svg" alt=""><div><b>Watfir</b><small>Lëtzebuergesch</small></div></div>
+  <button class="iconbtn" aria-label="Paramètres (démo)" title="Paramètres">⚙</button>
+ </header>
+ <div class="level-row">
+  <nav id="levelTabs" class="levels" aria-label="Niveaux de la famille courante"></nav>
+  <div class="account">Mode invité · <b>Connexion</b></div>
+ </div>
+ <section class="hero" aria-label="Bienvenue sur Watfir">
+  <div class="kicker">LE LUXEMBOURGEOIS, PAS À PAS</div>
+  <h1>Moien<span>!</span></h1>
+  <p>Prêt pour quelques minutes de Lëtzebuergesch ?</p>
+  <img class="art" src="../assets/watfir-hero.svg" alt="">
+ </section>
+ <section aria-label="Progression" class="progress-section">
+  <div class="label">TA PROGRESSION</div>
+  <div class="stats">
+   <div class="stat"><b>6%</b><small id="progressLabel">Progression A1.1</small><div class="progress"><i></i></div></div>
+   <div class="stat"><b><span class="flame">♨</span> 0 jours</b><small>Série actuelle</small></div>
+  </div>
+ </section>
+ <button class="cta" type="button" aria-label="Continuer — leçon 1 — Salutations et comment se présenter (démo)">
+  <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 12C18 7 12 7 4 9v28c7-2 14 0 20 5m0-30c6-5 12-5 20-3v28c-7-2-14 0-20 5m0-30v30" fill="none" stroke="#080808" stroke-width="2.7"/></svg>
+  <div><div class="cta-title">Continuer</div><div class="cta-lesson">Leçon 1 · Salutations et comment se présenter</div><div class="cta-small">Mot caché · 28 questions restantes</div></div>
+  <span aria-hidden="true" style="font-size:32px">›</span>
+ </button>
+ <nav class="shortcut-box" aria-label="Raccourcis d'apprentissage">
+  <button class="shortcut"><svg viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M5.5 9a7 7 0 0 1 12-2l2.5 5M18.5 15a7 7 0 0 1-12 2L4 12"/></svg>S'entraîner</button>
+  <button class="shortcut"><svg viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5zm4 2v6c3 3 9 3 12 0v-6M21 10v8"/></svg>Examens</button>
+  <button class="shortcut"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>Erreurs</button>
+  <button class="shortcut"><svg viewBox="0 0 24 24"><path d="M7 8h10c3 0 4 3 5 8 .5 3-2 4-4 2l-2-2H8l-2 2c-2 2-4 .8-4-2 1-5 2-8 5-8ZM7 12h4m-2-2v4m7-2h1m2 2h1"/></svg>Jeux</button>
+ </nav>
+ <a class="path" href="#" onclick="event.preventDefault()">▢ <span>Voir mon chemin</span> ›</a>
+ <p class="note">PROTOTYPE DOCUMENTAIRE — DONNÉES D'ILLUSTRATION, AUCUNE SAUVEGARDE</p>
+</main>
+<dialog id="sheet" aria-labelledby="sheetTitle" aria-modal="true">
+ <div class="sheet"><div class="handle"></div><div class="sheet-head"><h2 id="sheetTitle">Choisir un niveau</h2><button class="close" id="closeSheet" type="button">Fermer ×</button></div><div id="levelList"></div></div>
+</dialog>
+<script>
+"use strict";
+// Pure demo: none of these extra levels claim to exist on LuxApp or write localStorage.
+const available=["A1.1","A1.2","A2.1","A2.2","B1.1"];
+let current="A1.1";
+const tabs=document.querySelector("#levelTabs");
+const dialog=document.querySelector("#sheet");
+const groups=document.querySelector("#levelList");
+let trigger=null;
+function familyOf(v){return v.replace(/\.\d+$/,"")}
+function switchLevel(v){if(!available.includes(v))return;current=v;renderTabs();document.querySelector("#progressLabel").textContent="Progression "+v;if(dialog.open)dialog.close()}
+function makeButton(value,container){const b=document.createElement("button");b.className="level"+(current===value?" on":"");b.textContent=value;b.type="button";b.setAttribute("aria-pressed",String(current===value));b.addEventListener("click",()=>switchLevel(value));container.append(b)}
+function renderTabs(){tabs.replaceChildren();available.filter(n=>familyOf(n)===familyOf(current)).forEach(n=>makeButton(n,tabs));const b=document.createElement("button");b.type="button";b.className="level arrow";b.textContent="⌄";b.setAttribute("aria-label","Choisir un autre niveau");b.setAttribute("aria-haspopup","dialog");b.setAttribute("aria-expanded",String(dialog.open));b.addEventListener("click",()=>{trigger=b;renderList();dialog.showModal();b.setAttribute("aria-expanded","true");document.querySelector("#closeSheet").focus()});tabs.append(b)}
+function renderList(){groups.replaceChildren();[...new Set(available.map(familyOf))].forEach(f=>{const row=document.createElement("div");row.className="sheet-group";const lab=document.createElement("label");lab.textContent=f;row.append(lab);available.filter(n=>familyOf(n)===f).forEach(n=>makeButton(n,row));groups.append(row)})}
+document.querySelector("#closeSheet").addEventListener("click",()=>dialog.close());
+dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
+dialog.addEventListener("close",()=>{if(trigger){trigger.setAttribute("aria-expanded","false");trigger.focus()}});
+renderTabs();
+</script>
+</body>
+</html>
