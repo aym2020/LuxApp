@@ -272,3 +272,18 @@ Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `a
 **Accessibilité et cas limites :** clic Entrée/Espace pris en charge, double tap bloqué pendant les 160 ms, composants `disabled` et `aria-disabled` respectés. `prefers-reduced-motion: reduce` désactive le déplacement et le délai ; les clics programmatiques ne sont jamais ralentis. Bouton retiré du DOM pendant le délai : le replay est abandonné pour éviter une activation obsolète.
 
 **Recette automatisée :** `test/watfir-home.test.cjs` couvre la durée, le maintien de classe, les trois sélecteurs, le double tap, le mouvement réduit, le clic programmatique et le bouton désactivé ; `test/watfir-hover.test.cjs` conserve le contrôle des bandes et des hovers. **29/29 assertions passent dans le harnais JS exécutant les sources GitHub.** Contrôles d'acceptation à réaliser sur Samsung et sur navigateur desktop réel : impression tactile et latence subjective, deux activations rapides, Retour Android après ouverture du sous-menu.
+
+
+## 16. Harmonisation des trois pastilles 3D du header (03/11/2026)
+
+**Périmètre :** les deux niveaux visibles (`A1.1` / `A1.2` aujourd'hui, puis toute autre famille réellement disponible) et le chevron « Choisir un niveau ». Ces trois boutons avaient déjà une tranche physique de **2–4 px**, mais la sélection d'un autre niveau re-rend immédiatement l'accueil, tandis que le chevron affiche aussitôt sa feuille : un tap court n'avait pas le temps de montrer l'enfoncement.
+
+**Correction :** le sélecteur délégué en capture de `public/accueil-watfir.js` comprend désormais `#view-dashboard .wf-accueil .puces-niveau .puce-niv` en plus des trois CTA. Le `click` humain reçoit `.wf-pressing` pendant **160 ms**, puis son `button.click()` synthétique réexécute l'action existante (sélection si le niveau diffère, ou ouverture du dialogue). L'état `:active` reste instantané au contact. Un clic de niveau déjà actif est également pressé sans modifier la progression.
+
+**CSS :** l'appui de `.puce-niv.wf-pressing` et `:active` est exactement le même : translation `calc(var(--wf-pill-depth) - 1px)`, ombre latérale comprimée à 1 px, transition **115 ms**. La feuille de niveaux, le filet crème `::before`, la cible 48 px `::after`, les états `aria-pressed`, les couleurs et les dimensions du header ne changent pas. En mouvement réduit, aucun déplacement ni délai ; le retour d'ombre reste possible.
+
+**Design system :** [BOUTONS-3D.md](BOUTONS-3D.md) est la référence pour les nouvelles vues. [CHARTE-DA.md](CHARTE-DA.md) décrit désormais la composition active à deux boutons Étudier/Jouer et les six boutons physiques ; [HOVER-SYSTEM.md](HOVER-SYSTEM.md) conserve le contrat de hover. **Le système ne doit pas être propagé automatiquement aux réponses notées ou aux contrôles de gameplay.**
+
+**Recette de contrat :** `test/watfir-home.test.cjs` vérifie l'appui et le replay sur **six** types de boutons, y compris la sélection de `A1.2`, l'absence de changement pour `A1.1` déjà actif, la feuille de niveaux, le double clic et le mouvement réduit. `test/watfir-hover.test.cjs` protège les tranches, les hovers et les états CSS. **30/30 tests de contrat réussis dans le harnais JS fondé sur les fichiers GitHub.** Non validé ici : rendu et timing sur Samsung physique ou vrai Chromium connecté au site déployé.
+
+**Retour arrière ciblé :** retirer seulement `.puces-niveau .puce-niv` de la liste des sélecteurs en capture, le sélecteur `.puce-niv.wf-pressing` des états CSS, les tests correspondants et actualiser les versions CSS/JS. Les fonctions `changerNiveauAccueil` et `ouvrirNiveaux` ne doivent pas être modifiées.
