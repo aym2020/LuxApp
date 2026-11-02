@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — emblème architectural</title>
+<desc id="desc">Une tour ivoire simplifiée encadrée par un toit et deux bandes horizontales rouge et cyan sur fond noir.</desc>
+<rect width="192" height="192" rx="32" fill="#080808"/>
+<g fill="#F7E9C2">
+<path d="M89 25 96 9 103 25v20h7v52h-28V45h7z"/>
+<path d="M85 44h22L96 26z" fill="#080808"/>
+<path d="M30 92h53v-9H65l-8 8H30zM109 92h53l-8-9h-45z"/>
+<rect x="90" y="56" width="5" height="13" rx="2"/><rect x="98" y="56" width="5" height="13" rx="2"/>
+</g>
+<path d="M30 112H162" stroke="#F22421" stroke-width="13"/>
+<path d="M30 134H162" stroke="#02C5E7" stroke-width="13"/>
+</svg>
