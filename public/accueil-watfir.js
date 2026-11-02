@@ -216,6 +216,34 @@
     erreurs: () => startSession('errors')
   };
 
+  // Les trois actions changent de vue (ou ouvrent un dialogue) immédiatement :
+  // un tap bref ne laisse sinon jamais le temps de voir :active. Intercepter
+  // UNIQUEMENT le click utilisateur en capture, maintenir le creux 160 ms, puis
+  // rejouer le vrai clic natif : les onclick et routes 2.1 restent inchangés.
+  // Le replay non fiable (isTrusted=false) traverse sans délai ni récursion.
+  // Les clics programmatiques et les préférences de mouvement réduit restent immédiats.
+  let pressionEnCours = false;
+  document.addEventListener('click', function (event) {
+    if (event.isTrusted === false) return;
+    const button = event.target.closest(
+      '#view-dashboard .wf-accueil .carte-suite.ac-v21-cta,' +
+      '#view-dashboard .wf-accueil .wf-choix-activite .wf-activite'
+    );
+    if (!button || button.disabled || button.getAttribute('aria-disabled') === 'true') return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    if (pressionEnCours) return; // double tap / double clic : une seule navigation
+    pressionEnCours = true;
+    button.classList.add('wf-pressing');
+    window.setTimeout(function () {
+      button.classList.remove('wf-pressing');
+      pressionEnCours = false;
+      if (button.isConnected) button.click(); // le click synthétique conserve l'action originale
+    }, 160);
+  }, true);
+
   // Délégation : renderAccueil() reconstruit le DOM après chaque changement de niveau.
   document.addEventListener('click', function (event) {
     const etudier = event.target.closest('#view-dashboard .wf-etudier-trigger');
