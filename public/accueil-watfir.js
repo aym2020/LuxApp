@@ -4,6 +4,7 @@
   'use strict';
   const renduV21 = renderAccueil;
   const bilanV21 = chiffresHtml;
+  const carteV21 = carteSuiteHtml;
 
   function familleNiveau(n) { return String(n).split('.')[0]; }
   function niveauxFamille() {
@@ -69,6 +70,31 @@
   chiffresHtml = function () {
     return bilanV21().replace('Aujourd’hui', 'Ta progression')
       .replace('<span class="ac-v21-bilan-unite"> %</span>', '<span class="ac-v21-bilan-unite">%</span>');
+  };
+
+  // Le moteur 2.1 conserve la leçon cible et son clic. En 2.2, le livre dans
+  // « Commencer » ferait doublon avec le bouton Étudier : retirer son seul wrapper.
+  carteSuiteHtml = function (pas, nouveau) {
+    return carteV21(pas, nouveau).replace(/<span class="cs-ic">[\s\S]*?<\/span>/, '');
+  };
+
+  // Deux destinations au lieu des quatre raccourcis + « Voir mon chemin ».
+  // Étudier ouvre un menu dédié ; Jouer garde la destination 2.1 (ouvrirJeux).
+  accesHtml = function () {
+    return '<div class="ac-v21-actions">' +
+      '<nav class="ac-acces wf-choix-activite entre-3" aria-label="Choisir une activité">' +
+        '<button type="button" class="ac-btn wf-activite wf-activite-etudier wf-etudier-trigger" ' +
+          'aria-haspopup="dialog" aria-expanded="false" aria-controls="wf-etudier-dialog">' +
+          '<svg class="ic" viewBox="0 0 40 40" aria-hidden="true" fill="none">' +
+            '<path d="M20 10C15 7 9 7 4 9v24c6-2 11-1 16 3 5-4 10-5 16-3V9c-5-2-11-2-16 1Z"/>' +
+            '<path d="M20 10v26"/>' +
+          '</svg><b>Étudier</b></button>' +
+        '<button type="button" class="ac-btn wf-activite wf-activite-jouer" onclick="ouvrirJeux()">' +
+          '<svg class="ic" viewBox="0 0 40 40" aria-hidden="true" fill="none">' +
+            '<path d="M11 12h18c4 0 6 3 7 7l1.5 7c1 4-3 6-6 3.5L27 26H13l-4.5 3.5C5.5 32 1.5 30 2.5 26L4 19c1-4 3-7 7-7Z"/>' +
+            '<path d="M13 16v8m-4-4h8M28 18h.1M31 23h.1"/>' +
+          '</svg><b>Jouer</b></button>' +
+      '</nav></div>';
   };
 
   // V21 calcule les mêmes vrais KPI et le même prochain pas.
@@ -140,8 +166,69 @@
     if (typeof programmerGarde === 'function') programmerGarde();
   }
 
+  // Menu Étudier : les quatre fonctionnalités restent accessibles sans
+  // encombrer la home. Même bottom sheet natif et même garde Android que les niveaux.
+  function feuilleEtudier() {
+    let dialog = document.getElementById('wf-etudier-dialog');
+    if (dialog) return dialog;
+    dialog = document.createElement('dialog');
+    dialog.id = 'wf-etudier-dialog';
+    dialog.className = 'wf-niveaux-dialog wf-etudier-dialog';
+    dialog.setAttribute('aria-labelledby', 'wf-etudier-titre');
+    dialog.innerHTML =
+      '<div class="wf-sheet-content">' +
+        '<div class="wf-sheet-handle" aria-hidden="true"></div>' +
+        '<div class="wf-sheet-head"><h2 id="wf-etudier-titre">Étudier</h2>' +
+          '<button type="button" class="wf-sheet-close" aria-label="Fermer le menu Étudier">Fermer ×</button></div>' +
+        '<nav class="wf-etudier-options" aria-label="Activités d’étude">' +
+          '<button type="button" class="wf-etudier-option" data-wf-etude="lecons"><b>Les leçons</b><small>Mon parcours et mes unités</small></button>' +
+          '<button type="button" class="wf-etudier-option" data-wf-etude="entrainer"><b>S’entraîner</b><small>Révisions libres</small></button>' +
+          '<button type="button" class="wf-etudier-option" data-wf-etude="examens"><b>Examens</b><small>Sujets d’évaluation</small></button>' +
+          '<button type="button" class="wf-etudier-option" data-wf-etude="erreurs"><b>Mes erreurs</b><small>Revoir les réponses à améliorer</small></button>' +
+        '</nav></div>';
+    dialog.querySelector('.wf-sheet-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => {
+      document.body.classList.remove('wf-sheet-open');
+      const bouton = document.querySelector('#view-dashboard .wf-etudier-trigger');
+      if (bouton) { bouton.setAttribute('aria-expanded', 'false'); bouton.focus(); }
+      if (typeof programmerGarde === 'function') programmerGarde();
+    });
+    document.body.appendChild(dialog);
+    return dialog;
+  }
+
+  function ouvrirEtudier() {
+    const dialog = feuilleEtudier();
+    if (dialog.open) return;
+    dialog.showModal();
+    document.body.classList.add('wf-sheet-open');
+    const bouton = document.querySelector('#view-dashboard .wf-etudier-trigger');
+    if (bouton) bouton.setAttribute('aria-expanded', 'true');
+    dialog.querySelector('[data-wf-etude="lecons"]').focus();
+    if (typeof programmerGarde === 'function') programmerGarde();
+  }
+
+  const actionsEtudier = {
+    lecons: () => goLessons(),
+    entrainer: () => openReviewSetup(),
+    examens: () => openExamens(),
+    erreurs: () => startSession('errors')
+  };
+
   // Délégation : renderAccueil() reconstruit le DOM après chaque changement de niveau.
   document.addEventListener('click', function (event) {
+    const etudier = event.target.closest('#view-dashboard .wf-etudier-trigger');
+    if (etudier) { ouvrirEtudier(); return; }
+    const action = event.target.closest('#wf-etudier-dialog [data-wf-etude]');
+    if (action) {
+      const fn = actionsEtudier[action.getAttribute('data-wf-etude')];
+      if (!fn) return;
+      const dialogEtude = document.getElementById('wf-etudier-dialog');
+      if (dialogEtude && dialogEtude.open) dialogEtude.close();
+      fn();
+      return;
+    }
     const ouverture = event.target.closest('#view-dashboard .wf-niveau-ouvrir');
     if (ouverture) { ouvrirNiveaux(); return; }
     const option = event.target.closest('#view-dashboard .wf-niveau-btn, #wf-niveaux-dialog .wf-sheet-level');
@@ -162,5 +249,16 @@ function wfNiveauxOuverts() {
 function wfFermerNiveaux() {
   if (!wfNiveauxOuverts()) return false;
   document.getElementById('wf-niveaux-dialog').close();
+  return true;
+}
+
+/* Navigation Android : la feuille Étudier intercepte Retour avant de quitter l'accueil. */
+function wfEtudierOuvert() {
+  const dialog = document.getElementById('wf-etudier-dialog');
+  return !!(dialog && dialog.open);
+}
+function wfFermerEtudier() {
+  if (!wfEtudierOuvert()) return false;
+  document.getElementById('wf-etudier-dialog').close();
   return true;
 }
