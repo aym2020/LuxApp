@@ -1,21 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-<title id="title">Watfir — étude 02 du symbole pour icône</title>
-<desc id="desc">Monument crème à trois arches avec ruban rouge et ruban cyan sur fond noir.</desc>
-<rect width="512" height="512" rx="118" fill="#080808"/>
-<g transform="translate(22 25) scale(1.10)"><g id="emblem">
- <path id="ribbon-red" d="M56 252 C36 215 70 160 154 135 C212 117 286 104 363 117 C413 128 427 158 408 203 C406 166 378 155 329 164 C239 180 166 221 82 279 Z" fill="#F22421"/>
- <path id="ribbon-red-shade" d="M76 254 C160 205 247 171 338 159 C380 153 405 166 409 201 C419 228 400 241 393 239 C404 198 368 185 319 194 C219 210 145 246 76 274 Z" fill="#A91C20" opacity=".68"/>
- <g id="monument" fill="#F7E9C2" stroke="#080808" stroke-width="8" stroke-linejoin="round">
-  <path d="M96 294 L113 251 L224 251 L224 191 L236 178 L232 166 L241 147 L250 55 L259 147 L269 166 L264 178 L277 191 L277 251 L368 251 L392 294 L96 294 Z"/>
-  <path d="M94 296 H396 V370 H94 Z"/>
- </g>
- <g id="arch-cutouts" fill="#080808">
-  <path d="M122 371 V343 C122 319 141 308 161 308 C181 308 199 319 199 343 V371 Z"/>
-  <path d="M208 371 V343 C208 319 227 308 247 308 C267 308 285 319 285 343 V371 Z"/>
-  <path d="M294 371 V343 C294 319 313 308 333 308 C353 308 371 319 371 343 V371 Z"/>
-  <path d="M234 211 H244 V234 H234 Z M251 211 H261 V234 H251 Z M270 211 H277 V234 H270 Z"/>
- </g>
- <path id="ribbon-cyan" d="M78 392 C115 361 166 358 251 350 C314 343 376 334 406 305 C412 342 373 374 292 389 C216 403 153 405 117 423 C93 437 85 431 78 412 Z" fill="#02C5E7"/>
- <path id="ribbon-cyan-shade" d="M79 391 C160 366 305 362 382 331 C390 325 398 315 406 305 C402 339 351 354 262 366 C180 377 117 383 79 405 Z" fill="#009BB9" opacity=".55"/>
-</g></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-labelledby="title description">
+  <title id="title">Watfir — icône d'application, proposition 2</title>
+  <desc id="description">Sur fond noir aux coins arrondis et liseré crème, un monument luxembourgeois crème à trois arches, avec une haute flèche, devant deux bandes montantes rouge et cyan.</desc>
+  <!-- Dessin vectoriel basé sur la proposition 2 retenue, sans image incorporée. -->
+  <g transform="translate(-39.8 -5.8) scale(.948 1.014)">
+    <rect x="100" y="60" width="1150" height="1077" rx="160" fill="#050505" stroke="#F7E9C2" stroke-width="17"/>
+    <g id="red-ribbon" fill="#F22421">
+      <path d="M104 814 H143 C222 814 272 738 332 651 C350 625 366 611 376 604 C345 648 335 688 320 716 C268 810 218 868 132 868 H104 Z"/>
+      <path d="M426 659 C473 581 509 566 570 565 H722 V619 H566 C505 619 464 633 426 659 Z"/>
+      <path d="M953 566 H1157 V619 H953 Z"/>
+    </g>
+    <g id="cyan-ribbon" fill="#02C5E7">
+      <path d="M104 892 H163 C242 892 274 828 337 723 C410 591 453 481 571 480 H753 L741 537 H578 C479 537 444 625 391 722 C326 843 274 946 162 946 H104 Z"/>
+      <path d="M920 481 H1157 V536 H953 L932 518 Z"/>
+    </g>
+    <g id="monument" fill="#F7E9C2">
+      <path d="M452 765 L492 735 H549 L606 704 H747 V558 Q747 545 761 534 L774 523 L781 485 L802 460 L810 377 L805 360 Q802 350 808 341 L822 322 L838 186 L853 322 L867 341 Q875 351 868 362 L862 377 L873 462 L896 487 L904 524 L919 534 Q931 544 931 558 V704 H1068 L1143 765 Z"/>
+      <path d="M784 583 H807 V637 H784 Z M829 583 H852 V637 H829 Z M874 583 H897 V637 H874 Z" fill="#050505"/>
+      <path d="M256 947 L332 851 Q392 792 458 792 H1157 V947 H1098 V932 C1098 880 1059 845 1006 845 C953 845 911 881 911 932 V947 H849 V932 C849 879 809 845 752 845 C697 845 655 880 655 932 V947 H592 V932 C592 879 554 845 498 845 C441 845 399 880 399 932 V947 Z"/>
+    </g>
+  </g>
 </svg>
