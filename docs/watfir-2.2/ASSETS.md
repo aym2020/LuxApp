@@ -17,6 +17,12 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 | [`niveaux-sheet.svg`](assets/niveaux-sheet.svg) | SVG schéma | Sélecteur V4 et feuille de choix | Documentaire |
 | [`watfir-tokens.css`](assets/watfir-tokens.css) | CSS | Tokens expérimentation, **non importés** | Documentaire |
 
+### Variante 02 — correction des arches (04/11/2026)
+
+Les SVG `watfir-header-concept-02.svg` et `watfir-icon-concept-02.svg` ont été **redessinés suite au défaut visible sur la référence** : l'arche gauche n'était pas nette et les bandes placées à l'arrière traversaient les évidements. Les **trois arches disposent désormais de la même géométrie** (largeur 94 unités, couronne y=338, ressort y=385), avec un **fond noir propre derrière la façade**, tandis que les bandes rouge et cyan restent distinctes de la maçonnerie. Les fenêtres, la toiture, la flèche et la courbure des rubans sont de vrais tracés vectoriels.
+
+Les fichiers du dossier de conception restent **des propositions non actives** ; le manifest PWA, les icônes Android installées et le logo du header ne sont pas remplacés.
+
 ### Variante 02 — portée et provenance (04/11/2026)
 
 La **deuxième proposition graphique générée dans la conversation était une image PNG**, pas un fichier vectoriel natif. Le logo horizontal reste une réinterprétation vectorielle éditable. **L'icône carrée a été redessinée depuis la capture de référence explicite du 04/11/2026**, en paths SVG sans raster incorporé (rubans, tour, arches et cadre), puis son rendu a été vérifié à **1024 px et 96 px**. Il s'agit d'une reproduction vectorielle approximative fidèle aux formes, et non d'un calque pixel à pixel. Leur typographie utilise des polices de repli ; il faudra vérifier le rendu au format réel du header et, si la direction est retenue, figer la police ou convertir la signature typographique en tracés.
