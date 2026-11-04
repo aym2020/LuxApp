@@ -7,6 +7,8 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 | Asset | Type | Usage | Statut |
 | --- | --- | --- | --- |
 | [`watfir-logo-v4.svg`](../../public/art/watfir-logo-v4.svg) | SVG 96×100 | Logo du header (source V4 fournie, utilisée telle quelle) | Actif |
+| [`watfir-header-concept-02.svg`](assets/watfir-header-concept-02.svg) | SVG vectoriel 1320×470 | **Variante 02** du logo horizontal pour un éventuel futur header, inspirée du concept généré (tour, rubans rouge/cyan et wordmark) | **Proposition, non intégrée** |
+| [`watfir-icon-concept-02.svg`](assets/watfir-icon-concept-02.svg) | SVG vectoriel 512×512 | **Variante 02** du symbole isolé sur carré arrondi ; point de départ possible pour une nouvelle icône Android/PWA | **Proposition, non intégrée** |
 | [`watfir-mark.svg`](assets/watfir-mark.svg) | SVG 80×96 | Ancien emblème (coordonnées maquette) | Archivé |
 | [`watfir-hero-v4.svg`](../../public/art/watfir-hero-v4.svg) | SVG 864×265 | Hero (source V4 fournie, utilisée telle quelle) | Actif |
 | [`watfir-hero.svg`](assets/watfir-hero.svg) | SVG 870×276 | Ancien hero (coordonnées maquette) | Archivé |
@@ -14,6 +16,15 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 | [`watfir-palette.svg`](assets/watfir-palette.svg) | SVG planche | Contrôle visuel des tokens | Documentaire |
 | [`niveaux-sheet.svg`](assets/niveaux-sheet.svg) | SVG schéma | Sélecteur V4 et feuille de choix | Documentaire |
 | [`watfir-tokens.css`](assets/watfir-tokens.css) | CSS | Tokens expérimentation, **non importés** | Documentaire |
+
+### Variante 02 — portée et provenance (04/11/2026)
+
+La **deuxième proposition graphique générée dans la conversation était une image PNG**, pas un fichier vectoriel natif. Les deux SVG ci-dessus en sont une **réinterprétation vectorielle éditable**, pas une vectorisation pixel à pixel. Leur typographie utilise des polices de repli ; il faudra vérifier le rendu au format réel du header et, si la direction est retenue, figer la police ou convertir la signature typographique en tracés.
+
+**Ne pas confondre les supports** :
+- Logo du header : `public/art/watfir-logo-v4.svg` (actif), non remplacé.
+- Icône installée sur Android/PWA : fichiers PNG sous `public/icons/`, déclarés dans `public/manifest.json` (`icon-192.png`, `icon-512.png`, variantes maskable). Le favicon et l'icône Apple ont aussi leurs propres références dans `public/index.html`. **Aucun de ces fichiers actifs n'a été modifié.**
+- La variante SVG 02 n'est **pas encore un remplacement validé** pour l'icône installée. Une icône PWA finale doit être simplifiée, lisible à 48–72 px, cadrée avec une safe zone `maskable`, puis exportée en PNG 192/512 + favicon et Apple touch après validation visuelle.
 
 ## 2. Référence visuelle vs source déployable
 
