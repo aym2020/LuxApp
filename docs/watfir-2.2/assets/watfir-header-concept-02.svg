@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 470" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — concept de logo alternatif 02</title>
+<desc id="desc">Monument crème à trois arches avec flèche, rubans rouge et cyan en mouvement, signature typographique Watfir crème et sous-titre Lëtzebuergesch.</desc>
+<g id="emblem">
+ <path id="ribbon-red" d="M56 252 C36 215 70 160 154 135 C212 117 286 104 363 117 C413 128 427 158 408 203 C406 166 378 155 329 164 C239 180 166 221 82 279 Z" fill="#F22421"/>
+ <path id="ribbon-red-shade" d="M76 254 C160 205 247 171 338 159 C380 153 405 166 409 201 C419 228 400 241 393 239 C404 198 368 185 319 194 C219 210 145 246 76 274 Z" fill="#A91C20" opacity=".68"/>
+ <g id="monument" fill="#F7E9C2" stroke="#080808" stroke-width="8" stroke-linejoin="round">
+  <path d="M96 294 L113 251 L224 251 L224 191 L236 178 L232 166 L241 147 L250 55 L259 147 L269 166 L264 178 L277 191 L277 251 L368 251 L392 294 L96 294 Z"/>
+  <path d="M94 296 H396 V370 H94 Z"/>
+ </g>
+ <g id="arch-cutouts" fill="#080808">
+  <path d="M122 371 V343 C122 319 141 308 161 308 C181 308 199 319 199 343 V371 Z"/>
+  <path d="M208 371 V343 C208 319 227 308 247 308 C267 308 285 319 285 343 V371 Z"/>
+  <path d="M294 371 V343 C294 319 313 308 333 308 C353 308 371 319 371 343 V371 Z"/>
+  <path d="M234 211 H244 V234 H234 Z M251 211 H261 V234 H251 Z M270 211 H277 V234 H270 Z"/>
+ </g>
+ <path id="ribbon-cyan" d="M78 392 C115 361 166 358 251 350 C314 343 376 334 406 305 C412 342 373 374 292 389 C216 403 153 405 117 423 C93 437 85 431 78 412 Z" fill="#02C5E7"/>
+ <path id="ribbon-cyan-shade" d="M79 391 C160 366 305 362 382 331 C390 325 398 315 406 305 C402 339 351 354 262 366 C180 377 117 383 79 405 Z" fill="#009BB9" opacity=".55"/>
+</g>
+<text x="464" y="238" font-family="Georgia, 'Times New Roman', serif" font-size="182" font-weight="900" font-style="italic" letter-spacing="-6" fill="#F7E9C2" stroke="#080808" stroke-width="3" paint-order="stroke fill">Watfir</text>
+<rect x="476" y="304" width="35" height="11" rx="5.5" fill="#F22421"/>
+<text x="523" y="332" font-family="Inter, Arial, sans-serif" font-size="53" font-weight="700" letter-spacing="-.9" fill="#F7E9C2">Lëtzebuergesch</text>
+<rect x="1262" y="304" width="35" height="11" rx="5.5" fill="#02C5E7"/>
+</svg>
