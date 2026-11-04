@@ -22,7 +22,8 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 | --- | --- | --- |
 | `--wf-bg` | `#080808` | Fond quasi noir, continu, sans faux panneaux |
 | `--wf-cream` | `#F7E9C2` | Marque, titres, icônes neutres, **CTA principal** |
-| `--wf-red` | `#F22421` | Bande identitaire, ponctuation de « Moien! », sélection de niveau |
+| `--wf-red` | `#F22421` | Bande identitaire, ponctuation de « Moien! », barre de progression. **Jamais sous un texte crème** (3,44:1) |
+| `--wf-red-texte` | `#C81E1B` | Face rouge portant un texte crème : niveau actif du header et de la feuille (4,75:1, WCAG AA) |
 | `--wf-cyan` | `#02C5E7` | Bande identitaire, détail secondaire exceptionnel, rubrique Jeux si pertinent |
 | `--wf-secondary` | `#BEB6A6` | Texte explicatif non essentiel |
 | `--wf-track` | `#3C3934` | Barre de progression inactive, filets discrets |
@@ -40,7 +41,7 @@ Le rouge de marque `--wf-red` n'est pas le rouge d'erreur `--wf-error`. Un état
 - **Wordmark « Watfir »** : Fraunces 900 italic auto-hébergée sur l'accueil V4. La fonte est chargée sous `Watfir Logo` dans `accueil-watfir.css`.
 - **Titre « Moien! »** : Playfair Display 800 italic auto-hébergée (`Watfir Titre`), crème avec ponctuation rouge. Ses dimensions effectives sont celles du CSS V4, adaptées par `--k`.
 - **Navigation, niveaux, boutons, questions, métriques** : `Inter` existant / sans-serif. Chiffres lisibles, pas de serif pour des statistiques opérationnelles.
-- **Kicker « LE LUXEMBOURGEOIS, PAS À PAS »** : capitales avec chasse étendue, taille petite mais lisible ; ne jamais abaisser sous 12px sur mobile.
+- **Kicker « LE LUXEMBOURGEOIS, PAS À PAS »** : capitales avec chasse étendue, taille petite mais lisible ; ne jamais abaisser sous 12px sur mobile. Même plancher de **12 px** pour « TA PROGRESSION », l'accroche, les légendes, le titre et l'étape du CTA et les niveaux (`max(12px, …)`). Exceptions mesurées : le sous-titre du logotype « Lëtzebuergesch » et le bloc « Mode invité / Connexion » (11–11,5 px), qui feraient passer le header sur deux lignes à 360 px.
 - **Contenu pédagogique** : police nette, contraste WCAG adapté. Aucune texture CRT, aberration chromatique ou flou sur les textes fonctionnels.
 
 Ne pas intégrer de polices propriétaires non licenciées. Les SVG de marque et de monument déjà validés sont figés ; ne pas redessiner leurs traits pour harmoniser des boutons.
@@ -73,7 +74,7 @@ Fond crème `#fbebc5`, texte noir, flèche noire, **sans livre**. Tranche beige 
 
 ### 6.2 Niveaux A1.1/A1.2 et familles futures
 
-Deux pastilles maximum dans le header courant, actif rouge/crème et inactif fond noir/filet crème ; le chevron est la troisième commande 3D. Relief de **2 à 4 px** selon `--k`, tranche beige sombre ou rouge sombre, enfoncement de `depth - 1px` et maintien **160 ms** avant sélection ou ouverture de la feuille. Leur filet `::before` et leurs cibles tactiles `::after` sont préservés. Pour A2.1/A2.2, B1.1/B1.2, etc., le chevron ouvre un **bottom sheet** groupé par familles et limité aux niveaux disponibles. Sous 360 px, le header peut se replier sur deux rangées sans compresser la marque.
+Deux pastilles maximum dans le header courant, actif rouge profond `#c81e1b`/crème et inactif fond noir/filet crème ; le chevron est la troisième commande 3D. Relief de **2 à 4 px** selon `--k`, tranche beige sombre ou rouge sombre, enfoncement de `depth - 1px` et maintien **160 ms** avant sélection ou ouverture de la feuille. Leur filet `::before` et leurs cibles tactiles `::after` sont préservés. Pour A2.1/A2.2, B1.1/B1.2, etc., le chevron ouvre un **bottom sheet** groupé par familles et limité aux niveaux disponibles. Sous 360 px, le header peut se replier sur deux rangées sans compresser la marque.
 
 ### 6.3 Progression
 

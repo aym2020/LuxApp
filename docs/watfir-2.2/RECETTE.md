@@ -1,6 +1,6 @@
 # Recette de la direction artistique Watfir 2.2
 
-**Statut (02/11/2026) : accueil terminé et gelé.** Recette Chromium détaillée dans [IMPLEMENTATION § 12](IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026) (dimensions, polices agrandies, zones de toucher, niveaux, Retour). Les cases ci-dessous restent le plan pour les **autres écrans** et pour le contrôle Samsung réel, non effectué par l'agent.
+**Statut (02/11/2026) : accueil terminé et gelé.** Recette Chromium détaillée dans [IMPLEMENTATION § 12](IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026) (dimensions, polices agrandies, zones de toucher, niveaux, Retour). Correctifs d'accessibilité du 04/11/2026 (contraste, textes ≥ 12 px, noms accessibles) : [IMPLEMENTATION § 17](IMPLEMENTATION.md#17-correctifs-de-laudit-ui-de-laccueil-04112026). Les cases ci-dessous restent le plan pour les **autres écrans** et pour le contrôle Samsung réel, non effectué par l'agent.
 
 ## A. Vérifications des assets (possibles sans implémentation)
 

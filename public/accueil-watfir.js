@@ -40,7 +40,8 @@
         (compteInvite
           ? '<span class="wf-entete-sep" aria-hidden="true"></span>' +
             '<button type="button" class="ac-v21-guest" onclick="ouvrirCompteDepuisAccueil(\'signin\')" ' +
-            'aria-label="Mode invité : se connecter"><span class="wf-invite-mode">Mode invité</span>' +
+            // Le nom lu commence par le mot affiché « Connexion » (commande vocale, WCAG 2.5.3).
+            'aria-label="Connexion, mode invité"><span class="wf-invite-mode">Mode invité</span>' +
             '<b>Connexion</b></button>'
           : '') +
         '<button type="button" class="ac-menu" aria-label="' + escHtml(libelleMenuSynchro(sync)) +
@@ -81,10 +82,13 @@
   // Deux destinations au lieu des quatre raccourcis + « Voir mon chemin ».
   // Étudier ouvre un menu dédié ; Jouer garde la destination 2.1 (ouvrirJeux).
   accesHtml = function () {
+    // aria-controls seulement si la feuille existe déjà (elle est créée à la première ouverture) :
+    // un attribut qui vise un id absent est invalide pour les lecteurs d'écran.
+    const controle = document.getElementById('wf-etudier-dialog') ? ' aria-controls="wf-etudier-dialog"' : '';
     return '<div class="ac-v21-actions">' +
       '<nav class="ac-acces wf-choix-activite entre-3" aria-label="Choisir une activité">' +
         '<button type="button" class="ac-btn wf-activite wf-activite-etudier wf-etudier-trigger" ' +
-          'aria-haspopup="dialog" aria-expanded="false" aria-controls="wf-etudier-dialog">' +
+          'aria-haspopup="dialog" aria-expanded="false"' + controle + '>' +
           '<svg class="ic" viewBox="0 0 40 40" aria-hidden="true" fill="none">' +
             '<path d="M20 10C15 7 9 7 4 9v24c6-2 11-1 16 3 5-4 10-5 16-3V9c-5-2-11-2-16 1Z"/>' +
             '<path d="M20 10v26"/>' +
@@ -204,7 +208,7 @@
     dialog.showModal();
     document.body.classList.add('wf-sheet-open');
     const bouton = document.querySelector('#view-dashboard .wf-etudier-trigger');
-    if (bouton) bouton.setAttribute('aria-expanded', 'true');
+    if (bouton) { bouton.setAttribute('aria-controls', 'wf-etudier-dialog'); bouton.setAttribute('aria-expanded', 'true'); }
     dialog.querySelector('[data-wf-etude="lecons"]').focus();
     if (typeof programmerGarde === 'function') programmerGarde();
   }

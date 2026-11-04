@@ -66,8 +66,9 @@
     background-color:rgba(247,233,194,.20);
     --wf-pill-hover-outline:rgba(247,233,194,.44);
   }
+  /* Niveau actif : la face ne s'éclaircit pas (un rouge plus clair ferait passer le texte
+     crème sous 4,5:1) ; seul le contour discret signale le survol. */
   #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"]:hover:not(:disabled):not([aria-disabled="true"]) {
-    background-color:var(--ux-hover-red);
     --wf-pill-hover-outline:rgba(242,36,33,.26);
   }
 
@@ -85,7 +86,6 @@
     text-decoration-thickness:2px;text-underline-offset:4px;
   }
   .wf-niveaux-dialog .wf-sheet-level:not(.is-current):hover:not(:active):not(:disabled) {background-color:var(--ux-hover-wash);}
-  .wf-niveaux-dialog .wf-sheet-level.is-current:hover:not(:active):not(:disabled) {background-color:var(--ux-hover-red);}
 }
 
 /* Le clavier bénéficie du même repère accessible que les boutons Watfir existants. */

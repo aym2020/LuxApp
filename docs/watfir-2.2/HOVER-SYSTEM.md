@@ -62,7 +62,7 @@ Toutes les transitions passent par les tokens CSS :
 - `--ux-hover-cyan-wash: rgba(2,197,231,.18)` (tuiles et raccourcis Watfir)
 - `--ux-hover-cyan: #02c5e7` (filet, pictogramme, chevron)
 - `--ux-hover-bright: #fff4da`
-- `--ux-hover-red: #ff4038`
+- `--ux-hover-red: #ff4038` — **jamais sous un texte crème** (2,88:1). Depuis le 04/11/2026, le niveau actif ne s'éclaircit plus au survol : seul son contour discret change ([IMPLEMENTATION § 17](IMPLEMENTATION.md#17-correctifs-de-laudit-ui-de-laccueil-04112026)).
 
 **Le contour animé rouge a été retiré à la demande**, sur PC comme sur mobile. Les pseudo-éléments `::before` et `::after` du CTA sont désactivés (`content:none`) ; aucune propriété CSS `--wf-cta-outline`, `@property`, `conic-gradient` ou `mask-composite` n'est utilisée pour ce bouton.
 

@@ -17,8 +17,12 @@
 @font-face { font-family:'Watfir Etroite'; font-style:normal; font-weight:400; font-display:swap;
   src:url('fonts/roboto-condensed-latin-400-normal.woff2') format('woff2'); }
 
-#view-dashboard { --wf-bg:#080808; --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-cyan:#02c5e7;
+/* --wf-red reste le rouge des ornements (bandes, « ! », barre). Sous un texte crème,
+   on utilise --wf-red-texte, plus profond : 4,75:1 au lieu de 3,44:1 (WCAG AA). */
+#view-dashboard { --wf-bg:#080808; --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-red-texte:#c81e1b; --wf-cyan:#02c5e7;
   --wf-muted:#beb6a6; --wf-line:#4b4338; background:var(--wf-bg); }
+/* PC : le fond autour de la colonne de 520 px est le même noir que l'accueil (pas de faux panneau). */
+body:has(#view-dashboard.active) { background:#080808; }
 
 /* ── Conteneur : grille verticale ─────────────────────────────────────────
    --k règle la LARGEUR (proportions de la maquette). La HAUTEUR est gérée à part :
@@ -104,7 +108,7 @@
   --wf-pill-side:#75644c;
   --wf-pill-hover-outline:transparent;
   position:relative; width:auto; min-width:calc(102 * var(--k)); min-height:0; height:calc(61 * var(--k)); padding:0 calc(8 * var(--k));
-  font:700 calc(32 * var(--k))/1 var(--wf-sans); letter-spacing:0;
+  font:700 max(12px, calc(32 * var(--k)))/1 var(--wf-sans); letter-spacing:0; /* 12 px min. (repli < 360 px) */
   color:var(--wf-cream); background:transparent;
   border:0; border-radius:calc(18 * var(--k));
   box-shadow:
@@ -124,7 +128,7 @@
 #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-18 * var(--k)); }  /* jusqu'au nom Watfir */
 #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] {
   --wf-pill-side:#991a17; /* tranche rouge sombre sous la face rouge */
-  background:var(--wf-red); color:var(--wf-cream);
+  background:var(--wf-red-texte); color:var(--wf-cream); /* texte crème lisible : 4,75:1 */
 }
 /* Enfoncement physique doigt/souris + maintien 160 ms après clic rapide.
    Même règle pour les niveaux A1.x et le sélecteur, sans toucher aux ::before
@@ -204,7 +208,7 @@
 #view-dashboard .wf-accueil .ac-hero-texte { position:relative; z-index:1; max-width:none; padding:0 0 0 calc(10 * var(--k)); }
 #view-dashboard .wf-accueil .ac-hero-surtitre {
   display:block; margin:0; color:var(--wf-cream); text-transform:uppercase; white-space:normal; /* passe à la ligne si la police grandit */
-  font:800 max(9px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em;
+  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em; /* charte : jamais sous 12 px */
 }
 #view-dashboard .wf-accueil .ac-hero h2 {
   margin:calc(25 * var(--k)) 0 0 calc(2 * var(--k)); color:var(--wf-cream); letter-spacing:0;
@@ -213,7 +217,7 @@
 #view-dashboard .wf-accueil .ac-hero-exclamation { color:var(--wf-red); margin-left:calc(-5 * var(--k)); }
 #view-dashboard .wf-accueil .ac-hero p {
   max-width:calc(470 * var(--k)); margin:calc(12 * var(--k)) 0 0 0; color:var(--wf-cream);
-  font:400 calc(31 * var(--k))/1.2 var(--wf-sans); text-wrap:pretty;
+  font:400 max(12px, calc(31 * var(--k)))/1.2 var(--wf-sans); text-wrap:pretty;
 }
 /* Hero V4 (viewBox 864×265) à l'échelle 276/265 : 900×276 px maquette. Calage sur la maquette :
    flèche au niveau de « Moien! » (x 738), bas du pont y 597, bandes jusqu'à x 897. Pas d'étirement. */
@@ -227,7 +231,7 @@
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan { margin:0; padding:0; color:var(--wf-cream); flex-shrink:0; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-titre {
   margin:0 0 0 calc(11 * var(--k)); color:var(--wf-cream); white-space:nowrap;
-  font:800 max(9px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em;
+  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em;
 }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-ligne {
   display:grid; grid-template-columns:calc(454 * var(--k)) minmax(0,1fr); gap:0; margin-top:calc(12 * var(--k)); align-items:start;
@@ -264,7 +268,7 @@
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-flamme .ic { width:100%; height:100%; stroke-width:2.4; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-legende {
   display:block; margin-top:calc(-4 * var(--k)); color:var(--wf-cream); white-space:normal; /* très grande police : à la ligne */
-  font:400 calc(30 * var(--k))/1.2 var(--wf-sans);
+  font:400 max(12px, calc(30 * var(--k)))/1.2 var(--wf-sans);
 }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste {
   width:calc(400 * var(--k)); height:calc(13 * var(--k)); margin:calc(14 * var(--k)) 0 0 calc(-3 * var(--k));
@@ -316,13 +320,13 @@
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-titre,
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > span:not(.cs-kicker) {
   display:block; margin-top:calc(8.4 * var(--k)); color:var(--wf-bg); letter-spacing:0;
-  font:700 calc(34 * var(--k))/1.03 var(--wf-sans);
+  font:700 max(12px, calc(34 * var(--k)))/1.03 var(--wf-sans);
   white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:break-word;
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-etape,
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > small {
   display:block; margin-top:calc(9.5 * var(--k)); color:#2a2620; letter-spacing:0;
-  font:400 calc(28.8 * var(--k))/1.25 var(--wf-sans);
+  font:400 max(12px, calc(28.8 * var(--k)))/1.25 var(--wf-sans);
   white-space:normal; overflow:visible; text-overflow:clip;
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
@@ -384,7 +388,8 @@
 }
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite > b {
   min-width:0; margin:0; color:var(--wf-cream);
-  font:800 clamp(18px,calc(52 * var(--k)),26px)/1.1 var(--wf-sans);
+  /* 19 px min. : « grand texte » WCAG (≥ 18,66 px gras), donc 3:1 suffit (4,3:1 et 4,4:1 mesurés). */
+  font:800 clamp(19px,calc(52 * var(--k)),26px)/1.1 var(--wf-sans);
   letter-spacing:-.025em; white-space:nowrap;
 }
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]),
@@ -436,7 +441,7 @@
    rebond ; mouvement réduit : elle apparaît et disparaît sans glisser. */
 body.wf-sheet-open { overflow:hidden; }
 .wf-niveaux-dialog {
-  --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-bg:#080808; --wf-cyan:#02c5e7;
+  --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-red-texte:#c81e1b; --wf-bg:#080808; --wf-cyan:#02c5e7;
   position:fixed; inset:auto 0 0; width:min(100%,640px); max-width:100%;
   max-height:min(80dvh,680px); margin:0 auto;
   background:#141210; color:var(--wf-cream);
@@ -466,7 +471,7 @@ body.wf-sheet-open { overflow:hidden; }
   border:2px solid var(--wf-cream); border-radius:14px; background:transparent; color:var(--wf-cream);
   font:800 16px Inter,system-ui,sans-serif;
 }
-.wf-niveaux-dialog .wf-sheet-level.is-current { background:var(--wf-red); }
+.wf-niveaux-dialog .wf-sheet-level.is-current { background:var(--wf-red-texte); } /* crème sur rouge profond : 4,75:1 */
 .wf-niveaux-dialog button { touch-action:manipulation; transition:transform 100ms ease-out, opacity 150ms ease-out; }
 .wf-niveaux-dialog .wf-sheet-level:active { transform:scale(.97); }
 .wf-niveaux-dialog .wf-sheet-close:active { opacity:.6; transition-duration:0s; }

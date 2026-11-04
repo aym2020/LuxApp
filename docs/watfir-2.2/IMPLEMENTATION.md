@@ -287,3 +287,25 @@ Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `a
 **Recette de contrat :** `test/watfir-home.test.cjs` vérifie l'appui et le replay sur **six** types de boutons, y compris la sélection de `A1.2`, l'absence de changement pour `A1.1` déjà actif, la feuille de niveaux, le double clic et le mouvement réduit. `test/watfir-hover.test.cjs` protège les tranches, les hovers et les états CSS. **30/30 tests de contrat réussis dans le harnais JS fondé sur les fichiers GitHub.** Non validé ici : rendu et timing sur Samsung physique ou vrai Chromium connecté au site déployé.
 
 **Retour arrière ciblé :** retirer seulement `.puces-niveau .puce-niv` de la liste des sélecteurs en capture, le sélecteur `.puce-niv.wf-pressing` des états CSS, les tests correspondants et actualiser les versions CSS/JS. Les fonctions `changerNiveauAccueil` et `ouvrirNiveaux` ne doivent pas être modifiées.
+
+
+## 17. Correctifs de l'audit UI de l'accueil (04/11/2026)
+
+**Origine :** audit de l'accueil 2.2 (commit `a1cf16c`) dans Chromium, avec mesures réelles, axe-core 4.10 et contrôle WCAG 2.2. Le gel autorise ces changements : chaque point est un défaut mesuré (contraste, règle de la charte, accessibilité), pas un changement esthétique. Aucune nouvelle page, feuille ou fonctionnalité n'est créée.
+
+| # | Défaut mesuré | Correction |
+| --- | --- | --- |
+| 1 | Niveau actif crème sur `#f22421` : **3,44:1** (A1.1 à 12 px, feuille à 16 px) ; survol `#ff4038` : 2,88:1 | Face `--wf-red-texte` `#c81e1b` (**4,75:1**) pour le niveau actif du header et de la feuille. Le survol ne change plus la face, seulement le contour. `--wf-red` reste sur les bandes, le « ! » et la barre |
+| 2 | Kicker et « TA PROGRESSION » à 9–10,7 px, accroche 10,5 px, légendes 10,2–11,5 px, titre/étape du CTA 9,8–11,6 px, niveaux 10,9 px (sous 360 px) | Plancher `max(12px, …)` sur ces textes (charte § 3). Au-delà de ~400 px de large, la taille de la maquette est déjà plus grande : rien ne change |
+| 3 | Bouton invité : on voit « Connexion », il est lu « Mode invité : se connecter » (WCAG 2.5.3) | `aria-label="Connexion, mode invité"` |
+| 4 | `aria-controls` d'Étudier vise `wf-etudier-dialog` avant sa création (axe : `aria-valid-attr-value`) | Attribut ajouté seulement quand la feuille existe (à l'ouverture, puis aux rendus suivants). La feuille n'est pas créée à l'avance |
+| 5 | PC : côtés `#0f0e0c` autour de la colonne `#080808` (faux panneau) | `body:has(#view-dashboard.active) { background:#080808; }` |
+| 6 | Étudier/Jouer à 18 px sous 338 px de large : 4,3:1 et 4,4:1, sous le seuil de 4,5:1 des textes normaux | Libellé `clamp(19px, …)` : grand texte WCAG, 3:1 suffit |
+
+**Mesures après correction (Chromium, invité) :** aucun défilement ni débordement à 320×568, 360×640, 360×780, 393×852, 412×915, 430×932 et 1440×900. Place libre en bas : 24 px (320×568, au lieu de 28), 43 px (360×640, au lieu de 45). Zones de toucher inchangées. axe-core : 0 violation sur l'accueil, la feuille Étudier et la feuille des niveaux (avant : 2 contrastes et un `aria-controls` invalide). Feuille Étudier : focus sur « Les leçons », Retour la ferme et rend le focus. Commencer ouvre sa destination en ~220 ms. Accroche des habitués et titre long : deux lignes à 320 px, sans défilement. Textes encore sous 12 px : « Lëtzebuergesch » (9–11,4 px) et « Mode invité / Connexion » (11–11,7 px), exceptions documentées dans la charte.
+
+**Non corrigé volontairement :** `theme-color` reste `#0f0e0c`, couleur de fond des autres écrans ; la passer à `#080808` déplacerait l'écart vers ces écrans. À revoir lors de leur harmonisation. Focus perdu (sur `body`) après un choix dans la feuille Étudier : comportement de navigation commun à l'app, hors périmètre.
+
+**Tests :** `test/watfir-home.test.cjs` + `test/watfir-hover.test.cjs` : 32/32, dont 2 nouveaux tests qui échouent sur l'ancien code. `node --test test/*.cjs` : 338/343, les 5 échecs (79, 92, 223–225) existaient déjà. Non vérifié : Samsung physique, Brave Android, TalkBack, commande vocale réelle.
+
+**Retour arrière ciblé :** remettre `background:var(--wf-red)` sur les deux niveaux actifs et le survol `--ux-hover-red`, retirer les `max(12px, …)`, l'`aria-label` et l'`aria-controls` conditionnel, la règle `body:has(...)`, puis actualiser les versions de cache.

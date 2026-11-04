@@ -184,6 +184,35 @@ test('Grande police : page défilante de secours et deux labels lisibles',()=>{
   assert.match(css,/\.wf-choix-activite \.wf-activite \{[^}]*min-height:clamp\(76px/,'cibles tactiles');
 });
 
+test('Audit 04/11 : niveau actif lisible, textes ≥ 12 px, fond PC continu',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const hover=fs.readFileSync(path.join(root,'public/hover-interactions.css'),'utf8');
+  // Crème sur #c81e1b = 4,75:1 (AA). Le rouge de marque #f22421 reste pour les ornements.
+  assert.match(css,/--wf-red:#f22421; --wf-red-texte:#c81e1b;/);
+  assert.match(css,/\.puce-niv\[aria-pressed="true"\] \{[^}]*background:var\(--wf-red-texte\)/);
+  assert.match(css,/\.wf-sheet-level\.is-current \{ background:var\(--wf-red-texte\); \}/);
+  assert.doesNotMatch(hover,/--ux-hover-red\)/,'le niveau actif ne s\'éclaircit plus au survol');
+  assert.match(css,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'bandes du CTA inchangées');
+  // Charte § 3 : aucun texte utile de l'accueil sous 12 px (sauf logotype et compte du header).
+  for (const [bloc, taille] of [['ac-hero-surtitre','800 max(12px, calc(24.5'],['ac-v21-bilan-titre','800 max(12px, calc(24.5'],
+    ['ac-hero p','400 max(12px, calc(31'],['ac-v21-bilan-legende','400 max(12px, calc(30'],
+    ['cs-etape','400 max(12px, calc(28.8'],['cs-titre','700 max(12px, calc(34'],['puce-niv','700 max(12px, calc(32']])
+    assert.ok(css.slice(css.indexOf(bloc)).includes('font:'+taille),bloc+' ≥ 12 px');
+  assert.match(css,/\.wf-activite > b \{[^}]*font:800 clamp\(19px,/,'Étudier / Jouer en grand texte WCAG');
+  assert.match(css,/body:has\(#view-dashboard\.active\) \{ background:#080808; \}/,'pas de faux panneau sur PC');
+});
+
+test('Audit 04/11 : nom accessible de Connexion et aria-controls valide',()=>{
+  const {ctx,d}=setup();
+  assert.match(ctx.enteteAccueilHtml(),/aria-label="Connexion, mode invité"/,'le nom lu commence par le mot affiché');
+  assert.doesNotMatch(ctx.accesHtml(),/aria-controls/,'pas de référence à une feuille encore absente');
+  const trigger={attributes:{},setAttribute(k,v){this.attributes[k]=v},focus(){}};
+  ctx.document.querySelector=s=>s==='#view-dashboard .wf-etudier-trigger'?trigger:null;
+  d.handler({target:{closest:s=>s==='#view-dashboard .wf-etudier-trigger'?{}:null}});
+  assert.equal(trigger.attributes['aria-controls'],'wf-etudier-dialog','relié à la feuille dès son ouverture');
+  assert.match(ctx.accesHtml(),/aria-controls="wf-etudier-dialog"/,'rendu suivant : la feuille existe');
+});
+
 test('Watfir : Commencer sans doublon livre et deux activités centrées',()=>{
   const {ctx}=setup();
   const html=ctx.carteSuiteHtml({},true);
