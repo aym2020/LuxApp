@@ -1,22 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-labelledby="title description">
-  <title id="title">Watfir — icône d'application, proposition 2</title>
-  <desc id="description">Sur fond noir aux coins arrondis et liseré crème, un monument luxembourgeois crème à trois arches, avec une haute flèche, devant deux bandes montantes rouge et cyan.</desc>
-  <!-- Dessin vectoriel basé sur la proposition 2 retenue, sans image incorporée. -->
-  <g transform="translate(-39.8 -5.8) scale(.948 1.014)">
-    <rect x="100" y="60" width="1150" height="1077" rx="160" fill="#050505" stroke="#F7E9C2" stroke-width="17"/>
-    <g id="red-ribbon" fill="#F22421">
-      <path d="M104 814 H143 C222 814 272 738 332 651 C350 625 366 611 376 604 C345 648 335 688 320 716 C268 810 218 868 132 868 H104 Z"/>
-      <path d="M426 659 C473 581 509 566 570 565 H722 V619 H566 C505 619 464 633 426 659 Z"/>
-      <path d="M953 566 H1157 V619 H953 Z"/>
-    </g>
-    <g id="cyan-ribbon" fill="#02C5E7">
-      <path d="M104 892 H163 C242 892 274 828 337 723 C410 591 453 481 571 480 H753 L741 537 H578 C479 537 444 625 391 722 C326 843 274 946 162 946 H104 Z"/>
-      <path d="M920 481 H1157 V536 H953 L932 518 Z"/>
-    </g>
-    <g id="monument" fill="#F7E9C2">
-      <path d="M452 765 L492 735 H549 L606 704 H747 V558 Q747 545 761 534 L774 523 L781 485 L802 460 L810 377 L805 360 Q802 350 808 341 L822 322 L838 186 L853 322 L867 341 Q875 351 868 362 L862 377 L873 462 L896 487 L904 524 L919 534 Q931 544 931 558 V704 H1068 L1143 765 Z"/>
-      <path d="M784 583 H807 V637 H784 Z M829 583 H852 V637 H829 Z M874 583 H897 V637 H874 Z" fill="#050505"/>
-      <path d="M256 947 L332 851 Q392 792 458 792 H1157 V947 H1098 V932 C1098 880 1059 845 1006 845 C953 845 911 881 911 932 V947 H849 V932 C849 879 809 845 752 845 C697 845 655 880 655 932 V947 H592 V932 C592 879 554 845 498 845 C441 845 399 880 399 932 V947 Z"/>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — proposition 2, arches corrigées</title>
+<desc id="desc">Icône noire arrondie au bord crème avec la tour, trois arches régulières et les rubans rouge et cyan.</desc>
+<rect x="17" y="17" width="526" height="526" rx="111" fill="#050505" stroke="#F7E9C2" stroke-width="10"/>
+<g transform="translate(40 32) scale(.94)">  <g id="embleme">
+    <defs>
+      <linearGradient id="ruban-rouge" x1="0" y1="0" x2="1" y2=".75"><stop offset="0" stop-color="#F22421"/><stop offset="1" stop-color="#DF1C24"/></linearGradient>
+      <linearGradient id="ruban-cyan" x1="0" y1="0" x2="1" y2=".75"><stop offset="0" stop-color="#02C5E7"/><stop offset="1" stop-color="#009FBE"/></linearGradient>
+    </defs>
+    <path id="rouge-arriere" d="M20 319 C82 321 110 251 157 214 C225 165 319 151 393 166 C452 180 478 209 466 262 C458 241 438 223 398 223 C290 220 226 275 164 335 C105 392 52 380 20 371Z" fill="url(#ruban-rouge)"/>
+    <path d="M382 220 C438 216 463 240 466 262 C462 287 452 292 445 295 C446 263 424 244 396 247Z" fill="#A51B22" opacity=".85"/>
+    <path id="cyan-arriere" d="M25 410 C98 410 141 328 194 249 C255 164 292 177 343 177 H480 V218 H345 C273 218 248 271 222 313 C163 410 125 454 53 454 H25Z" fill="url(#ruban-cyan)"/>
+    <path id="toiture" d="M99 313 L123 284 H245 L262 269 H380 L401 284 H442 L468 313Z" fill="#F7E9C2" stroke="#080808" stroke-width="7" stroke-linejoin="round"/>
+    <path id="tour-et-fleche" d="M285 284 V215 L298 204 L301 177 L311 161 L307 148 L316 134 L324 48 L333 134 L341 148 L336 161 L349 177 L352 204 L364 215 V284Z" fill="#F7E9C2" stroke="#080808" stroke-width="8" stroke-linejoin="round"/>
+    <path id="fenetres" d="M300 225 h10 v24 h-10Z M319 225 h10 v24 h-10Z M338 225 h10 v24 h-10Z" fill="#080808"/>
+    <!-- Underlay opaque : les rubans ne traversent plus l'arche gauche. -->
+    <rect id="fond-arches" x="73" y="317" width="407" height="113" fill="#080808"/>
+    <!-- Trois évidements strictement identiques : largeur 94, sommet y338, pied y430. -->
+    <path id="trois-arches" fill="#F7E9C2" fill-rule="evenodd" d="M73 317 H480 V430 H73Z M101 431 V385 C101 357 126 338 148 338 C170 338 195 357 195 385 V431Z M227 431 V385 C227 357 252 338 274 338 C296 338 321 357 321 385 V431Z M353 431 V385 C353 357 378 338 400 338 C422 338 447 357 447 385 V431Z"/>
+    <path d="M77 315 H480" stroke="#080808" stroke-width="10" stroke-linecap="square" fill="none"/>
+    <path id="cyan-avant" d="M33 454 C117 428 218 435 317 426 C400 419 457 392 481 378 C486 408 463 436 429 445 C330 476 217 475 131 489 C88 496 53 513 37 500 C24 488 24 469 33 454Z" fill="url(#ruban-cyan)"/>
+  </g></g>
 </svg>
