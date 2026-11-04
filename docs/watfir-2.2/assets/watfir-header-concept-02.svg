@@ -1,24 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 470" role="img" aria-labelledby="title desc">
-<title id="title">Watfir — concept de logo alternatif 02</title>
-<desc id="desc">Monument crème à trois arches avec flèche, rubans rouge et cyan en mouvement, signature typographique Watfir crème et sous-titre Lëtzebuergesch.</desc>
-<g id="emblem">
- <path id="ribbon-red" d="M56 252 C36 215 70 160 154 135 C212 117 286 104 363 117 C413 128 427 158 408 203 C406 166 378 155 329 164 C239 180 166 221 82 279 Z" fill="#F22421"/>
- <path id="ribbon-red-shade" d="M76 254 C160 205 247 171 338 159 C380 153 405 166 409 201 C419 228 400 241 393 239 C404 198 368 185 319 194 C219 210 145 246 76 274 Z" fill="#A91C20" opacity=".68"/>
- <g id="monument" fill="#F7E9C2" stroke="#080808" stroke-width="8" stroke-linejoin="round">
-  <path d="M96 294 L113 251 L224 251 L224 191 L236 178 L232 166 L241 147 L250 55 L259 147 L269 166 L264 178 L277 191 L277 251 L368 251 L392 294 L96 294 Z"/>
-  <path d="M94 296 H396 V370 H94 Z"/>
- </g>
- <g id="arch-cutouts" fill="#080808">
-  <path d="M122 371 V343 C122 319 141 308 161 308 C181 308 199 319 199 343 V371 Z"/>
-  <path d="M208 371 V343 C208 319 227 308 247 308 C267 308 285 319 285 343 V371 Z"/>
-  <path d="M294 371 V343 C294 319 313 308 333 308 C353 308 371 319 371 343 V371 Z"/>
-  <path d="M234 211 H244 V234 H234 Z M251 211 H261 V234 H251 Z M270 211 H277 V234 H270 Z"/>
- </g>
- <path id="ribbon-cyan" d="M78 392 C115 361 166 358 251 350 C314 343 376 334 406 305 C412 342 373 374 292 389 C216 403 153 405 117 423 C93 437 85 431 78 412 Z" fill="#02C5E7"/>
- <path id="ribbon-cyan-shade" d="M79 391 C160 366 305 362 382 331 C390 325 398 315 406 305 C402 339 351 354 262 366 C180 377 117 383 79 405 Z" fill="#009BB9" opacity=".55"/>
-</g>
-<text x="464" y="238" font-family="Georgia, 'Times New Roman', serif" font-size="182" font-weight="900" font-style="italic" letter-spacing="-6" fill="#F7E9C2" stroke="#080808" stroke-width="3" paint-order="stroke fill">Watfir</text>
-<rect x="476" y="304" width="35" height="11" rx="5.5" fill="#F22421"/>
-<text x="523" y="332" font-family="Inter, Arial, sans-serif" font-size="53" font-weight="700" letter-spacing="-.9" fill="#F7E9C2">Lëtzebuergesch</text>
-<rect x="1262" y="304" width="35" height="11" rx="5.5" fill="#02C5E7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1580 540" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — logo horizontal, arches corrigées</title>
+<desc id="desc">Tour crème et pont à trois arches identiques, rubans rouge et cyan, inscription Watfir Lëtzebuergesch.</desc>
+  <g id="embleme">
+    <defs>
+      <linearGradient id="ruban-rouge" x1="0" y1="0" x2="1" y2=".75"><stop offset="0" stop-color="#F22421"/><stop offset="1" stop-color="#DF1C24"/></linearGradient>
+      <linearGradient id="ruban-cyan" x1="0" y1="0" x2="1" y2=".75"><stop offset="0" stop-color="#02C5E7"/><stop offset="1" stop-color="#009FBE"/></linearGradient>
+    </defs>
+    <path id="rouge-arriere" d="M20 319 C82 321 110 251 157 214 C225 165 319 151 393 166 C452 180 478 209 466 262 C458 241 438 223 398 223 C290 220 226 275 164 335 C105 392 52 380 20 371Z" fill="url(#ruban-rouge)"/>
+    <path d="M382 220 C438 216 463 240 466 262 C462 287 452 292 445 295 C446 263 424 244 396 247Z" fill="#A51B22" opacity=".85"/>
+    <path id="cyan-arriere" d="M25 410 C98 410 141 328 194 249 C255 164 292 177 343 177 H480 V218 H345 C273 218 248 271 222 313 C163 410 125 454 53 454 H25Z" fill="url(#ruban-cyan)"/>
+    <path id="toiture" d="M99 313 L123 284 H245 L262 269 H380 L401 284 H442 L468 313Z" fill="#F7E9C2" stroke="#080808" stroke-width="7" stroke-linejoin="round"/>
+    <path id="tour-et-fleche" d="M285 284 V215 L298 204 L301 177 L311 161 L307 148 L316 134 L324 48 L333 134 L341 148 L336 161 L349 177 L352 204 L364 215 V284Z" fill="#F7E9C2" stroke="#080808" stroke-width="8" stroke-linejoin="round"/>
+    <path id="fenetres" d="M300 225 h10 v24 h-10Z M319 225 h10 v24 h-10Z M338 225 h10 v24 h-10Z" fill="#080808"/>
+    <!-- Underlay opaque : les rubans ne traversent plus l'arche gauche. -->
+    <rect id="fond-arches" x="73" y="317" width="407" height="113" fill="#080808"/>
+    <!-- Trois évidements strictement identiques : largeur 94, sommet y338, pied y430. -->
+    <path id="trois-arches" fill="#F7E9C2" fill-rule="evenodd" d="M73 317 H480 V430 H73Z M101 431 V385 C101 357 126 338 148 338 C170 338 195 357 195 385 V431Z M227 431 V385 C227 357 252 338 274 338 C296 338 321 357 321 385 V431Z M353 431 V385 C353 357 378 338 400 338 C422 338 447 357 447 385 V431Z"/>
+    <path d="M77 315 H480" stroke="#080808" stroke-width="10" stroke-linecap="square" fill="none"/>
+    <path id="cyan-avant" d="M33 454 C117 428 218 435 317 426 C400 419 457 392 481 378 C486 408 463 436 429 445 C330 476 217 475 131 489 C88 496 53 513 37 500 C24 488 24 469 33 454Z" fill="url(#ruban-cyan)"/>
+  </g>
+<text x="542" y="327" font-family="URW Bookman, Georgia, serif" font-weight="900" font-style="italic" font-size="226" letter-spacing="-5" fill="#F7E9C2" stroke="#080808" stroke-width="4" paint-order="stroke fill">Watfir</text>
+<rect x="584" y="386" width="44" height="13" rx="6.5" fill="#F22421"/>
+<text x="645" y="415" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="-.4" fill="#F7E9C2">Lëtzebuergesch</text>
+<rect x="1268" y="386" width="44" height="13" rx="6.5" fill="#02C5E7"/>
 </svg>
