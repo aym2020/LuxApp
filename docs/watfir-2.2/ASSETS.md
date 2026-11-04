@@ -8,7 +8,7 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 | --- | --- | --- | --- |
 | [`watfir-logo-v4.svg`](../../public/art/watfir-logo-v4.svg) | SVG 96×100 | Logo du header (source V4 fournie, utilisée telle quelle) | Actif |
 | [`watfir-header-concept-02.svg`](assets/watfir-header-concept-02.svg) | SVG vectoriel 1320×470 | **Variante 02** du logo horizontal pour un éventuel futur header, inspirée du concept généré (tour, rubans rouge/cyan et wordmark) | **Proposition, non intégrée** |
-| [`watfir-icon-concept-02.svg`](assets/watfir-icon-concept-02.svg) | SVG vectoriel 512×512 | **Variante 02** du symbole isolé sur carré arrondi ; point de départ possible pour une nouvelle icône Android/PWA | **Proposition, non intégrée** |
+| [`watfir-icon-concept-02.svg`](assets/watfir-icon-concept-02.svg) | SVG vectoriel 1200×1200 | **Proposition 02 redessinée depuis la capture validée** : cadre crème arrondi, fond noir, rubans cyan/rouge en S et monument à trois arches | **Proposition, non intégrée** |
 | [`watfir-mark.svg`](assets/watfir-mark.svg) | SVG 80×96 | Ancien emblème (coordonnées maquette) | Archivé |
 | [`watfir-hero-v4.svg`](../../public/art/watfir-hero-v4.svg) | SVG 864×265 | Hero (source V4 fournie, utilisée telle quelle) | Actif |
 | [`watfir-hero.svg`](assets/watfir-hero.svg) | SVG 870×276 | Ancien hero (coordonnées maquette) | Archivé |
@@ -19,7 +19,7 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 
 ### Variante 02 — portée et provenance (04/11/2026)
 
-La **deuxième proposition graphique générée dans la conversation était une image PNG**, pas un fichier vectoriel natif. Les deux SVG ci-dessus en sont une **réinterprétation vectorielle éditable**, pas une vectorisation pixel à pixel. Leur typographie utilise des polices de repli ; il faudra vérifier le rendu au format réel du header et, si la direction est retenue, figer la police ou convertir la signature typographique en tracés.
+La **deuxième proposition graphique générée dans la conversation était une image PNG**, pas un fichier vectoriel natif. Le logo horizontal reste une réinterprétation vectorielle éditable. **L'icône carrée a été redessinée depuis la capture de référence explicite du 04/11/2026**, en paths SVG sans raster incorporé (rubans, tour, arches et cadre), puis son rendu a été vérifié à **1024 px et 96 px**. Il s'agit d'une reproduction vectorielle approximative fidèle aux formes, et non d'un calque pixel à pixel. Leur typographie utilise des polices de repli ; il faudra vérifier le rendu au format réel du header et, si la direction est retenue, figer la police ou convertir la signature typographique en tracés.
 
 **Ne pas confondre les supports** :
 - Logo du header : `public/art/watfir-logo-v4.svg` (actif), non remplacé.
