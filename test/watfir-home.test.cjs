@@ -385,7 +385,7 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
   const hero=fs.readFileSync(path.join(root,'public/art/watfir-hero-v4.svg'),'utf8');
   const logo=fs.readFileSync(path.join(root,'public/art/watfir-logo-v4.svg'),'utf8');
   assert.match(hero,/viewBox="0 0 864 265"/);
-  assert.match(logo,/viewBox="0 0 96 100"/);
+  assert.match(logo,/viewBox="0 0 80 100"/);
   for (const svg of [hero,logo]) {
     assert.doesNotMatch(svg,/<rect[^>]*width="100%"|<circle/,'fond transparent, pas de soleil');
     const couleurs=new Set((svg.match(/#[0-9A-Fa-f]{6}/g)||[]).map(c=>c.toUpperCase()));
@@ -393,14 +393,14 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
     for (const c of couleurs) assert.ok(['#02C5E7','#F22421','#F7E9C2','#080808'].includes(c),c);
   }
   const {ctx}=setup();
-  assert.match(ctx.enteteAccueilHtml(),/src="art\/watfir-logo-v4\.svg\?v=\d+"[^>]*width="96" height="100"/);
+  assert.match(ctx.enteteAccueilHtml(),/src="art\/watfir-logo-v4\.svg\?v=\d+"[^>]*width="80" height="100"/);
   assert.ok(!fs.existsSync(path.join(root,'public/art/watfir-hero.svg')),'ancien hero retiré');
   // Pas d'étirement : le rapport largeur/hauteur CSS respecte le viewBox.
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const art=css.match(/\.wf-hero-art \{[^}]*width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)[^}]*height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
   assert.ok(Math.abs(art[1]/art[2]-864/265)<0.01,'hero non étiré');
   const lg=css.match(/\.ac-marque-symbole \{ width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\); height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
-  assert.ok(Math.abs(lg[1]/lg[2]-96/100)<0.01,'logo non étiré');
+  assert.ok(Math.abs(lg[1]/lg[2]-80/100)<0.01,'logo non étiré');
 });
 test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune hauteur fixe de hero',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');

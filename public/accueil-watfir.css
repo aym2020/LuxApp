@@ -69,16 +69,18 @@ body:has(#view-dashboard.active) { background:#080808; }
   display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:24px 0;
   min-height:calc(96 * var(--k)); height:auto; flex-shrink:0;
 }
-#view-dashboard .wf-accueil .ac-marque { display:flex; align-items:center; gap:calc(9 * var(--k)); min-width:0; margin-left:0; }
-/* Logo V4 (viewBox 96×100) à l'échelle 0,985 : bandes calées sur la maquette (x 47–126, y 97–192). */
-#view-dashboard .wf-accueil .ac-marque-symbole { width:calc(94.6 * var(--k)); height:calc(98.5 * var(--k)); margin:calc(-1.25 * var(--k)) 0; flex:none; object-fit:contain; }
-#view-dashboard .wf-accueil .wf-marque-texte { display:flex; flex-direction:column; margin:calc(-4 * var(--k)) 0 0 calc(-5 * var(--k)); }
+#view-dashboard .wf-accueil .ac-marque { display:flex; align-items:center; gap:calc(16 * var(--k)); min-width:0; margin-left:0; }
+/* Emblème V5 (viewBox 80×100, monument de l'icône) : même hauteur que la ligne du header,
+   plus étroit que l'ancien logo, ce qui libère l'espace entre l'emblème et le texte. */
+#view-dashboard .wf-accueil .ac-marque-symbole { width:calc(76.8 * var(--k)); height:calc(96 * var(--k)); margin:0; flex:none; object-fit:contain; }
+#view-dashboard .wf-accueil .wf-marque-texte { display:flex; flex-direction:column; justify-content:center; margin:0; }
 #view-dashboard .wf-accueil .ac-titre {
   margin:0; color:var(--wf-cream); letter-spacing:0;
   font:italic 900 calc(43 * var(--k))/1 'Watfir Logo', Georgia, serif;
 }
+/* Sous-titre en crème atténué et légèrement espacé : il se lit comme une légende sous « Watfir ». */
 #view-dashboard .wf-accueil .ac-marque-sous {
-  display:block; margin:calc(10 * var(--k)) 0 0 calc(5 * var(--k)); color:var(--wf-cream); letter-spacing:0;
+  display:block; margin:calc(9 * var(--k)) 0 0 calc(2 * var(--k)); color:var(--wf-muted); letter-spacing:.02em;
   font:400 max(9px, calc(25 * var(--k)))/1.05 'Watfir Etroite', 'Arial Narrow', sans-serif;
 }
 

@@ -28,7 +28,7 @@
     ).join('');
     return '<div class="ac-ent wf-entete entre">' +
       '<div class="ac-marque">' +
-        '<img class="ac-marque-symbole" src="art/watfir-logo-v4.svg?v=1" alt="" width="96" height="100">' +
+        '<img class="ac-marque-symbole" src="art/watfir-logo-v4.svg?v=2" alt="" width="80" height="100">' +
         '<div class="wf-marque-texte"><h1 class="ac-titre">Watfir</h1><span class="ac-marque-sous">Lëtzebuergesch</span></div>' +
       '</div>' +
       '<div class="puces-niveau" role="group" aria-label="Niveau actif">' +

@@ -6,7 +6,7 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 
 | Asset | Type | Usage | Statut |
 | --- | --- | --- | --- |
-| [`watfir-logo-v4.svg`](../../public/art/watfir-logo-v4.svg) | SVG 96×100 | Logo du header (source V4 fournie, utilisée telle quelle) | Actif |
+| [`watfir-logo-v4.svg`](../../public/art/watfir-logo-v4.svg) | SVG 80×100 | Emblème du header V5 (05/11/2026) : tour et flèche de l'icône de l'app, bandes cyan/rouge derrière la tour, toiture et pont à trois arches régulières | Actif |
 | [`watfir-header-concept-02.svg`](assets/watfir-header-concept-02.svg) | SVG vectoriel 1320×470 | **Variante 02** du logo horizontal pour un éventuel futur header, inspirée du concept généré (tour, rubans rouge/cyan et wordmark) | **Proposition, non intégrée** |
 | [`watfir-icon-concept-02.svg`](assets/watfir-icon-concept-02.svg) | SVG vectoriel 1200×1200 | **Proposition 02 redessinée depuis la capture validée** : cadre crème arrondi, fond noir, rubans cyan/rouge en S et monument à trois arches | **Proposition, non intégrée** |
 | [`watfir-mark.svg`](assets/watfir-mark.svg) | SVG 80×96 | Ancien emblème (coordonnées maquette) | Archivé |
@@ -28,7 +28,7 @@ Les fichiers du dossier de conception restent **des propositions non actives** ;
 La **deuxième proposition graphique générée dans la conversation était une image PNG**, pas un fichier vectoriel natif. Le logo horizontal reste une réinterprétation vectorielle éditable. **L'icône carrée a été redessinée depuis la capture de référence explicite du 04/11/2026**, en paths SVG sans raster incorporé (rubans, tour, arches et cadre), puis son rendu a été vérifié à **1024 px et 96 px**. Il s'agit d'une reproduction vectorielle approximative fidèle aux formes, et non d'un calque pixel à pixel. Leur typographie utilise des polices de repli ; il faudra vérifier le rendu au format réel du header et, si la direction est retenue, figer la police ou convertir la signature typographique en tracés.
 
 **Ne pas confondre les supports** :
-- Logo du header : `public/art/watfir-logo-v4.svg` (actif), non remplacé.
+- Logo du header : `public/art/watfir-logo-v4.svg` (actif), remplacé le 05/11/2026 par l'emblème V5 (nom de fichier conservé, `?v=2`).
 - Icône installée sur Android/PWA (**active depuis le 05/11/2026 sur `2.2`**) : PNG sous `public/icons/` déclarés dans `public/manifest.json` (`?v=3`).
   - `icon-192.png` / `icon-512.png` (`any`) : export de [`watfir-icon-app.svg`](assets/watfir-icon-app.svg), proposition 2 validée avec l'arche gauche rendue symétrique (cadre crème, coins transparents).
   - `icon-maskable-192.png` / `icon-maskable-512.png` : export de [`watfir-icon-app-maskable.svg`](assets/watfir-icon-app-maskable.svg) — fond noir plein, sans cadre, dessin réduit dans la zone sûre de 80 %, rubans gauches prolongés jusqu'au bord. C'est cette variante qu'Android affiche.

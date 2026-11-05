@@ -1,12 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 100" width="96" height="100" role="img" aria-labelledby="title desc">
-<title id="title">Watfir — pictogramme du monument, reproduction vectorielle de la V4</title>
-<desc id="desc">La tour et sa flèche ivoire au-dessus d'une toiture simplifiée, soulignées de deux bandes rouge et cyan.</desc>
-<g id="architecture" fill="#F7E9C2">
-  <!-- Forme maîtresse ajustée spécifiquement à la taille icône. -->
-  <path id="tour-et-toiture" fill-rule="evenodd" d="M 11,64 L 26,44 H 49 V 29 L 53,22 L 56,3 L 59,22 L 64,29 V 44 H 75 L 87,64 H 80 L 72,51 H 64 V 64 H 49 L 44,51 H 30 L 18,64 Z M 53,35 h 4 v 10 h -4 Z M 60,35 h 4 v 10 h -4 Z" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" width="80" height="100" role="img" aria-labelledby="title desc">
+<title id="title">Watfir — emblème du monument</title>
+<desc id="desc">La tour à flèche crème de l'icône, devant deux bandes cyan et rouge, au-dessus d'une toiture et d'un pont à trois arches régulières.</desc>
+<!-- Emblème V5 : géométrie reprise de l'icône de l'app et du hero, simplifiée pour 40 px. -->
+<g id="bandes">
+  <path d="M0 43.59 H80 V51.35 H0 Z" fill="#02C5E7"/>
+  <path d="M0 55.44 H80 V63.05 H0 Z" fill="#F22421"/>
 </g>
-<g id="lignes-signature">
-  <path d="M 8 72 H 89 V 82 H 8 Z" fill="#F22421" />
-  <path d="M 8 87 H 89 V 97 H 8 Z" fill="#02C5E7" />
+<g id="monument" fill="#F7E9C2" stroke-linejoin="round">
+  <path id="tour-detourage" d="M 27.03,75.04 V 54.45 Q 27.03,52.62 29,51.07 L 30.84,49.52 L 31.82,44.16 L 34.78,40.63 L 35.91,28.93 L 35.21,26.53 Q 34.78,25.12 35.63,23.85 L 37.6,21.18 L 39.86,2 L 41.97,21.18 L 43.95,23.85 Q 45.08,25.26 44.09,26.82 L 43.24,28.93 L 44.79,40.92 L 48.04,44.44 L 49.16,49.66 L 51.28,51.07 Q 52.97,52.48 52.97,54.45 V 75.04 Z" fill="none" stroke="#080808" stroke-width="5"/>
+  <path id="tour" d="M 27.03,75.04 V 54.45 Q 27.03,52.62 29,51.07 L 30.84,49.52 L 31.82,44.16 L 34.78,40.63 L 35.91,28.93 L 35.21,26.53 Q 34.78,25.12 35.63,23.85 L 37.6,21.18 L 39.86,2 L 41.97,21.18 L 43.95,23.85 Q 45.08,25.26 44.09,26.82 L 43.24,28.93 L 44.79,40.92 L 48.04,44.44 L 49.16,49.66 L 51.28,51.07 Q 52.97,52.48 52.97,54.45 V 75.04 Z"/>
+  <path id="fenetres" d="M31.5,57.98 h4 v8 h-4 Z M38,57.98 h4 v8 h-4 Z M44.5,57.98 h4 v8 h-4 Z" fill="#080808"/>
+  <path id="toiture" d="M0,84.04 L9,75.04 H71 L80,84.04 Z"/>
+  <path id="pont" d="M0,100 V88 H80 V100 H74.5 C74.5,94.5 70.5,92 65,92 C59.5,92 55.5,94.5 55.5,100 H49.5 C49.5,94.5 45.5,92 40,92 C34.5,92 30.5,94.5 30.5,100 H24.5 C24.5,94.5 20.5,92 15,92 C9.5,92 5.5,94.5 5.5,100 Z"/>
 </g>
 </svg>
