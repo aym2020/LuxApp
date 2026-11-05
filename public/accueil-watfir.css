@@ -296,8 +296,10 @@ body:has(#view-dashboard.active) { background:#080808; }
     0 7px 0 #aa8954, 0 16px 22px rgba(0,0,0,.48),
     inset 0 2px 0 rgba(255,255,255,.78), inset 0 -2px 0 rgba(126,87,39,.20);
   transform:translateY(0);
+  /* Même courbe pour le déplacement et la tranche : le bas du bouton (face + tranche)
+     reste fixe pendant toute l'animation, seule la face descend. */
   transition:transform 115ms cubic-bezier(.22,1,.36,1),
-             box-shadow 115ms ease;
+             box-shadow 115ms cubic-bezier(.22,1,.36,1);
 }
 /* Le CTA 3D ne dessine plus de contour au hover ou au toucher :
    on conserve uniquement son relief et son enfoncement physique. */
@@ -308,7 +310,8 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .carte-suite.ac-v21-cta.wf-pressing {
   transform:translateY(6px);
   filter:none;
-  box-shadow:0 1px 0 #aa8954, 0 5px 10px rgba(0,0,0,.35),
+  /* Ombre portée plus courte : le bouton est plus près du sol. */
+  box-shadow:0 1px 0 #aa8954, 0 10px 16px rgba(0,0,0,.42),
              inset 0 1px 2px rgba(120,77,36,.32);
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-ic { display:flex; flex:none; color:var(--wf-bg); margin:calc(-4 * var(--k)) calc(42 * var(--k)) 0 calc(-6 * var(--k)); }
@@ -375,7 +378,7 @@ body:has(#view-dashboard.active) { background:#080808; }
   transform:translateY(0);
   touch-action:manipulation;
   -webkit-tap-highlight-color:transparent;
-  transition:background-color 170ms ease, transform 115ms cubic-bezier(.22,1,.36,1),box-shadow 115ms ease;
+  transition:background-color 170ms ease, transform 115ms cubic-bezier(.22,1,.36,1),box-shadow 115ms cubic-bezier(.22,1,.36,1);
 }
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite-jouer {
   --wf-face:var(--wf-play);
