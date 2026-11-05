@@ -29,8 +29,11 @@ La **deuxième proposition graphique générée dans la conversation était une 
 
 **Ne pas confondre les supports** :
 - Logo du header : `public/art/watfir-logo-v4.svg` (actif), non remplacé.
-- Icône installée sur Android/PWA : fichiers PNG sous `public/icons/`, déclarés dans `public/manifest.json` (`icon-192.png`, `icon-512.png`, variantes maskable). Le favicon et l'icône Apple ont aussi leurs propres références dans `public/index.html`. **Aucun de ces fichiers actifs n'a été modifié.**
-- La variante SVG 02 n'est **pas encore un remplacement validé** pour l'icône installée. Une icône PWA finale doit être simplifiée, lisible à 48–72 px, cadrée avec une safe zone `maskable`, puis exportée en PNG 192/512 + favicon et Apple touch après validation visuelle.
+- Icône installée sur Android/PWA (**active depuis le 05/11/2026 sur `2.2`**) : PNG sous `public/icons/` déclarés dans `public/manifest.json` (`?v=3`).
+  - `icon-192.png` / `icon-512.png` (`any`) : export de [`watfir-icon-app.svg`](assets/watfir-icon-app.svg), proposition 2 validée avec l'arche gauche rendue symétrique (cadre crème, coins transparents).
+  - `icon-maskable-192.png` / `icon-maskable-512.png` : export de [`watfir-icon-app-maskable.svg`](assets/watfir-icon-app-maskable.svg) — fond noir plein, sans cadre, dessin réduit dans la zone sûre de 80 %, rubans gauches prolongés jusqu'au bord. C'est cette variante qu'Android affiche.
+  - Export : `rsvg-convert -w 512 -h 512 <svg> -o <png>`.
+- Le favicon et l'icône Apple (`public/index.html`) **n'ont pas été modifiés**.
 
 ## 2. Référence visuelle vs source déployable
 
