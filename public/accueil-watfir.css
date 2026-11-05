@@ -235,7 +235,7 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .wf-hero-ecouter:focus-visible { outline:3px solid var(--wf-cream); outline-offset:3px; }
 #view-dashboard .wf-accueil .wf-hero-rubans {
   display:block; pointer-events:none;
-  width:calc(941 * var(--k)); max-width:none; height:calc(146 * var(--k));
+  width:calc(941 * var(--k)); max-width:none; height:calc(98 * var(--k));
   margin:calc(18 * var(--k)) calc(-40 * var(--k)) 0;
 }
 #view-dashboard .wf-accueil .ac-hero p {

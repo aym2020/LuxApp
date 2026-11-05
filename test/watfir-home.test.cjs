@@ -402,7 +402,7 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
   // Pas d'étirement : le rapport largeur/hauteur CSS respecte le viewBox.
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const art=css.match(/\.wf-hero-rubans \{[^}]*width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)[^}]*height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
-  assert.ok(Math.abs(art[1]/art[2]-941/146)<0.01,'rubans non étirés');
+  assert.ok(Math.abs(art[1]/art[2]-941/98)<0.01,'rubans non étirés');
   const lg=css.match(/\.ac-marque-symbole \{ width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\); height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
   assert.ok(Math.abs(lg[1]/lg[2]-80/100)<0.01,'logo non étiré');
 });

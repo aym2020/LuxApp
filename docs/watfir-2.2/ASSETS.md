@@ -30,10 +30,13 @@ La **deuxième proposition graphique générée dans la conversation était une 
 **Ne pas confondre les supports** :
 - Logo du header : `public/art/watfir-logo-v4.svg` (actif), remplacé le 05/11/2026 par l'emblème V5 (nom de fichier conservé, `?v=2`).
 - Icône installée sur Android/PWA (**active depuis le 05/11/2026 sur `2.2`**) : PNG sous `public/icons/` déclarés dans `public/manifest.json` (`?v=3`).
-  - `icon-192.png` / `icon-512.png` (`any`) : export de [`watfir-icon-app.svg`](assets/watfir-icon-app.svg), proposition 2 validée avec l'arche gauche rendue symétrique (cadre crème, coins transparents).
-  - `icon-maskable-192.png` / `icon-maskable-512.png` : export de [`watfir-icon-app-maskable.svg`](assets/watfir-icon-app-maskable.svg) — fond noir plein, sans cadre, dessin réduit dans la zone sûre de 80 %, rubans gauches prolongés jusqu'au bord. C'est cette variante qu'Android affiche.
-  - Export : `rsvg-convert -w 512 -h 512 <svg> -o <png>`.
-- Le favicon et l'icône Apple (`public/index.html`) **n'ont pas été modifiés**.
+  - **Depuis le 05/11/2026 (2ᵉ version), l'icône reprend l'emblème du header** (`public/art/watfir-logo-v4.svg`) : un seul dessin du monument dans toute l'app.
+  - `icon-192.png` / `icon-512.png` (`any`) : export de [`watfir-icon-app.svg`](assets/watfir-icon-app.svg) — carré arrondi noir au liseré crème, emblème centré, bandes cyan/rouge jusqu'au cadre.
+  - `icon-maskable-192.png` / `icon-maskable-512.png` et `apple-touch-icon.png` (180) : export de [`watfir-icon-app-maskable.svg`](assets/watfir-icon-app-maskable.svg) — fond noir plein, emblème dans la zone sûre de 80 %, bandes bord à bord. C'est cette variante qu'Android affiche.
+  - `public/favicon.ico` (16/32/48) : export de la variante `any`.
+  - Versions : `manifest.json` en `?v=4`, liens favicon / Apple en `?v=2` dans `index.html`.
+  - Export : `rsvg-convert -w 512 -h 512 <svg> -o <png>` ; les deux SVG sont générés depuis le logo (emblème 80×100 mis à l'échelle, bandes prolongées).
+- La 1ʳᵉ icône Watfir du 05/11/2026 (proposition 2 dessinée à part) est remplacée.
 
 ## 2. Référence visuelle vs source déployable
 

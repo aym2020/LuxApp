@@ -69,8 +69,8 @@
           '</button>' +
         '</div>' +
       '</div>' +
-      // Rubans signature : du bord gauche, sous le mot, puis remontée vers la droite.
-      '<svg class="wf-hero-rubans" viewBox="0 0 941 146" aria-hidden="true" focusable="false">' +
+      // Rubans signature : du bord gauche, sous le mot, puis remontée vers la droite. viewBox rogné au ras des rubans.
+      '<svg class="wf-hero-rubans" viewBox="0 0 941 98" aria-hidden="true" focusable="false">' +
         '<path d="M0 41 H539 C667 41 713 14 804 14 H941" fill="none" stroke="#F22421" stroke-width="23"/>' +
         '<path d="M0 78 H566 C694 78 740 50 831 50 H941" fill="none" stroke="#080808" stroke-width="37"/>' +
         '<path d="M0 78 H566 C694 78 740 50 831 50 H941" fill="none" stroke="#02C5E7" stroke-width="23"/>' +
