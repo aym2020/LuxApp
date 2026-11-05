@@ -12,7 +12,7 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-8';
+  const link='hover-interactions.css?v=watfir-hover-9';
   assert.ok(html.includes(link),'stylesheet présent');
   assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-16'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');

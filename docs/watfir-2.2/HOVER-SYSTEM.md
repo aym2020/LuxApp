@@ -20,8 +20,9 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | **A1.1 / A1.2 / sélecteur (repos, mobile et PC)** | Tranche 3D de **2 à 4 px** proportionnelle à `--k`, beige foncé `#75644c` en inactif, rouge foncé `#991a17` pour le niveau actif. Bordure crème et dimensions inchangées | permanent |
 | **Niveaux au survol (souris)** | Fond crème 20 % + contour doux en inactif ; niveau courant rouge `#F22421` → `#FF4038`. La tranche et sa couleur restent en place, même en clic maintenu | 160 ms |
 | **Niveaux appuyés (tactile et souris)** | Les deux niveaux affichés et le chevron descendent de `--wf-pill-depth - 1px` (2–4 px moins 1) ; tranche comprimée à 1 px ; **maintien 160 ms avant sélection / ouverture du sheet**, même après un tap bref | 115 ms de transition + maintien 160 ms |
-| **Réglages** | Rotation de 15° du pictogramme | 190 ms |
-| **Connexion** | Soulignement rouge de 2 px | immédiat |
+| **Réglages** | Quart de tour (90°) du pictogramme avec léger rebond, passage au cyan | 450 ms |
+| **Connexion** | Le mot « Connexion » passe au cyan (soulignement rouge retiré le 05/11/2026) | 190 ms |
+| **Écouter « Moien! » (hero)** | Face cyan éclaircie `#5ad9f0`, triangle agrandi ×1,15 ; appui : enfoncement de 4 px, tranche comprimée | 190 ms |
 | **Contrôles 2.1 partagés** | Élévation neutre de 2 px + luminosité ×1,10, aucune nouvelle couleur métier | 190 ms |
 
 Les deux pictogrammes de la navigation secondaire sont dessinés dans le même style de trait : **livre = Étudier**, **manette = Jouer**, tous deux crème dans tous les états. Le CTA « Commencer / Continuer » n'a plus de livre pour éviter le doublon ; il conserve son texte, sa cible, sa flèche noire et surtout les **mêmes bandes rouge/cyan (stops 51,6 / 31,8 × --k)**. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
