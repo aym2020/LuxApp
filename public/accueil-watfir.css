@@ -5,7 +5,8 @@
    MÉTHODE : toutes les mesures viennent de la maquette V4 (image de 941 px de large).
    Une seule unité : --k = largeur de l'écran / 941. « calc(54 * var(--k)) » veut donc
    dire « 54 px de la maquette ». L'écran entier garde ainsi les proportions de la maquette,
-   de 320 px à 520 px de large (au-delà, l'accueil reste centré à 520 px).
+   de 320 px à 640 px de large (au-delà, l'accueil reste centré à 640 px, comme toutes
+   les autres pages sur PC : --layout-shell de design-tokens.css).
    Les règles 2.1 (accueil-v21.css, style.css « ac-nouveau-invite ») sont neutralisées
    explicitement : min-height, gap, hauteurs du hero. */
 
@@ -21,7 +22,7 @@
    on utilise --wf-red-texte, plus profond : 4,75:1 au lieu de 3,44:1 (WCAG AA). */
 #view-dashboard { --wf-bg:#080808; --wf-cream:#f7e9c2; --wf-red:#f22421; --wf-red-texte:#c81e1b; --wf-cyan:#02c5e7;
   --wf-muted:#beb6a6; --wf-line:#4b4338; background:var(--wf-bg); }
-/* PC : le fond autour de la colonne de 520 px est le même noir que l'accueil (pas de faux panneau). */
+/* PC : le fond autour de la colonne de 640 px est le même noir que l'accueil (pas de faux panneau). */
 body:has(#view-dashboard.active) { background:#080808; }
 
 /* ── Conteneur : grille verticale ─────────────────────────────────────────
@@ -33,7 +34,7 @@ body:has(#view-dashboard.active) { background:#080808; }
    composition est centrée. Écran trop court ou grande police : les intervalles
    reviennent à leur min, puis la page défile normalement (rien n'est masqué). */
 #view-dashboard .accueil.wf-accueil {
-  --k:calc(min(100vw, 520px) / 941);
+  --k:calc(min(100vw, var(--layout-shell, 640px)) / 941);
   --wf-sans:Inter, system-ui, sans-serif;
   display:grid; grid-template-columns:minmax(0, 1fr);
   grid-template-rows:

@@ -58,7 +58,7 @@ La maquette de référence (image 941×1672, conversation du 02/11) est désorma
 
 **Méthode**
 
-- Toutes les mesures CSS viennent de la maquette : une seule unité `--k = min(100vw, 520px) / 941`. `calc(54 * var(--k))` = 54 px de la maquette. L'accueil garde les proportions de la maquette de 320 à 520 px, centré au-delà.
+- Toutes les mesures CSS viennent de la maquette : une seule unité `--k = min(100vw, var(--layout-shell, 640px)) / 941` (520 px jusqu'au 05/11/2026). `calc(54 * var(--k))` = 54 px de la maquette. L'accueil garde les proportions de la maquette de 320 à 640 px, centré au-delà, comme les autres pages.
 - Positions vérifiées par superposition : rendu à 941 px avec `--k:1px`, boîtes d'encre comparées à la maquette (écart ≤ 5 px maquette, soit ≤ 2 px réels à 360 px, sauf glyphes propres aux polices).
 
 **Éléments**
@@ -322,3 +322,4 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 - **Retour arrière** : revenir sur les commits `feat(watfir)` / `fix(watfir)` du 05/11/2026 sur `2.2`.
 - **Survols PC (05/11/2026)** : Connexion passe au cyan (fin du soulignement rouge), roue des réglages en quart de tour cyan avec rebond, bouton Écouter éclairci. `hover-interactions.css?v=watfir-hover-9`. Appui Commencer / Étudier / Jouer revérifié sur PC (1440 px, souris) : bas immobile (7 px / 5 px) pendant tout l'appui ; un bas qui remonte venait d'une version précédente encore en cache (service worker : la mise à jour s'applique au lancement suivant ou via « Mettre à jour »).
 - **Appui en « animations réduites » (05/11/2026)** : sur un PC/téléphone où le système demande de réduire les animations (`prefers-reduced-motion: reduce`), Commencer, Étudier/Jouer et les pastilles annulaient la descente de la face mais écrasaient la tranche : le bas remontait et disparaissait. Désormais l'appui y est instantané et complet (face descendue, bas fixe), sans animation. Pastilles : face et tranche sur la même courbe (fin d'un léger rebond). Mesuré au pixel sur Chromium 1440 px, dans les deux modes.
+- **Largeur PC (05/11/2026)** : l'accueil était une colonne de 520 px alors que toutes les autres pages (Leçons, S'entraîner, Examens…) font 640 px (`--layout-shell`). `--k` est désormais plafonné par `--layout-shell` : même largeur partout sur PC, proportions identiques (tout est 23 % plus grand qu'avant sur PC). Mobile inchangé. Contrepartie : sous ~850 px de hauteur utile (portable 1366×768), l'accueil défile d'environ 70 px pour atteindre Étudier / Jouer, comme les autres pages qui défilent déjà.

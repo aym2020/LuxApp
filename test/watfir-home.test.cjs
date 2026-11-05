@@ -409,7 +409,8 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
 test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune hauteur fixe de hero',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
-  assert.match(css,/--k:calc\(min\(100vw, 520px\) \/ 941\)/);
+  // PC : même largeur que les autres pages (--layout-shell = 640 px).
+  assert.match(css,/--k:calc\(min\(100vw, var\(--layout-shell, 640px\)\) \/ 941\)/);
   for (const f of ['playfair-display-latin-800-italic','fraunces-latin-900-italic','roboto-condensed-latin-400-normal']) {
     assert.ok(fs.existsSync(path.join(root,'public/fonts/'+f+'.woff2')),f);
     assert.match(html,new RegExp('rel="preload" href="fonts/'+f+'\\.woff2"'));
