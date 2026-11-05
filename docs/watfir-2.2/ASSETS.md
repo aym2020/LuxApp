@@ -10,7 +10,7 @@ Les assets de **ce répertoire `docs/`** sont des sources de conception. Deux co
 | [`watfir-header-concept-02.svg`](assets/watfir-header-concept-02.svg) | SVG vectoriel 1320×470 | **Variante 02** du logo horizontal pour un éventuel futur header, inspirée du concept généré (tour, rubans rouge/cyan et wordmark) | **Proposition, non intégrée** |
 | [`watfir-icon-concept-02.svg`](assets/watfir-icon-concept-02.svg) | SVG vectoriel 1200×1200 | **Proposition 02 redessinée depuis la capture validée** : cadre crème arrondi, fond noir, rubans cyan/rouge en S et monument à trois arches | **Proposition, non intégrée** |
 | [`watfir-mark.svg`](assets/watfir-mark.svg) | SVG 80×96 | Ancien emblème (coordonnées maquette) | Archivé |
-| [`watfir-hero-v4.svg`](../../public/art/watfir-hero-v4.svg) | SVG 864×265 | Hero (source V4 fournie, utilisée telle quelle) | Actif |
+| [`watfir-hero-v4.svg`](../../public/art/watfir-hero-v4.svg) | SVG 864×265 | Hero V5 (05/11/2026) : monument repris de l'icône de l'app (flèche, tour, toiture), trois arches identiques, rubans droits au niveau de la tour | Actif |
 | [`watfir-hero.svg`](assets/watfir-hero.svg) | SVG 870×276 | Ancien hero (coordonnées maquette) | Archivé |
 | [`watfir-stripes.svg`](assets/watfir-stripes.svg) | SVG motif | Bandes identitaires autonomes | Prototype |
 | [`watfir-palette.svg`](assets/watfir-palette.svg) | SVG planche | Contrôle visuel des tokens | Documentaire |
