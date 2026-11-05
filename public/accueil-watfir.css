@@ -201,7 +201,9 @@ body:has(#view-dashboard.active) { background:#080808; }
 /* Connecté : la roue est seule dans son bloc, sa zone s'étend dans l'espace libre à sa gauche. */
 #view-dashboard .wf-accueil .wf-entete-compte > .ac-menu:first-child { --cible-g:calc(-40 * var(--k)); }
 
-/* ── Hero : texte en flux, dessin remonté sous le texte ───────────────── */
+/* ── Hero : « Moien! », bouton Écouter, rubans signature ───────────────── */
+/* V5 (05/11/2026) : plus de dessin du monument ici, il est déjà dans le logo du header.
+   Les rubans débordent jusqu'aux bords de l'écran (marges négatives = padding de la page). */
 #view-dashboard .wf-accueil .ac-hero {
   display:block; position:relative; flex:0 0 auto;
   height:auto; min-height:0; max-height:none; padding:0; overflow:visible;
@@ -212,21 +214,37 @@ body:has(#view-dashboard.active) { background:#080808; }
   display:block; margin:0; color:var(--wf-cream); text-transform:uppercase; white-space:normal; /* passe à la ligne si la police grandit */
   font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em; /* charte : jamais sous 12 px */
 }
+#view-dashboard .wf-accueil .wf-hero-ligne { display:flex; align-items:center; gap:calc(32 * var(--k)); margin-top:calc(14 * var(--k)); }
 #view-dashboard .wf-accueil .ac-hero h2 {
-  margin:calc(25 * var(--k)) 0 0 calc(2 * var(--k)); color:var(--wf-cream); letter-spacing:0;
-  font:italic 800 calc(140 * var(--k))/.86 'Watfir Titre', Georgia, serif;
+  margin:0 0 0 calc(2 * var(--k)); color:var(--wf-cream); letter-spacing:0;
+  font:italic 800 calc(192 * var(--k))/.9 'Watfir Titre', Georgia, serif;
 }
 #view-dashboard .wf-accueil .ac-hero-exclamation { color:var(--wf-red); margin-left:calc(-5 * var(--k)); }
-#view-dashboard .wf-accueil .ac-hero p {
-  max-width:calc(470 * var(--k)); margin:calc(12 * var(--k)) 0 0 0; color:var(--wf-cream);
-  font:400 max(12px, calc(31 * var(--k)))/1.2 var(--wf-sans); text-wrap:pretty;
+/* Bouton Écouter : rond cyan en relief (même logique 3D que les autres boutons), 44 px minimum. */
+#view-dashboard .wf-accueil .wf-hero-ecouter {
+  flex:none; display:grid; place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
+  width:max(44px, calc(123 * var(--k))); height:max(44px, calc(123 * var(--k)));
+  margin-top:calc(10 * var(--k));
+  background:var(--wf-cyan); color:var(--wf-bg);
+  box-shadow:0 5px 0 #087496; transform:translateY(0);
+  transition:transform 115ms cubic-bezier(.22,1,.36,1), box-shadow 115ms cubic-bezier(.22,1,.36,1);
 }
-/* Hero V4 (viewBox 864×265) à l'échelle 276/265 : 900×276 px maquette. Calage sur la maquette :
-   flèche au niveau de « Moien! » (x 738), bas du pont y 597, bandes jusqu'à x 897. Pas d'étirement. */
-#view-dashboard .wf-accueil .wf-hero-art {
-  position:relative; z-index:0; display:block; pointer-events:none;
-  width:calc(900 * var(--k)); max-width:none; height:calc(276 * var(--k));
-  margin:calc(-196 * var(--k)) 0 0 calc(-9.7 * var(--k));
+#view-dashboard .wf-accueil .wf-hero-ecouter svg { width:45%; height:45%; margin-left:6%; fill:currentColor; }
+#view-dashboard .wf-accueil .wf-hero-ecouter:active { transform:translateY(4px); box-shadow:0 1px 0 #087496; }
+#view-dashboard .wf-accueil .wf-hero-ecouter.joue { background:var(--wf-cream); }
+#view-dashboard .wf-accueil .wf-hero-ecouter:focus-visible { outline:3px solid var(--wf-cream); outline-offset:3px; }
+#view-dashboard .wf-accueil .wf-hero-rubans {
+  display:block; pointer-events:none;
+  width:calc(941 * var(--k)); max-width:none; height:calc(146 * var(--k));
+  margin:calc(18 * var(--k)) calc(-40 * var(--k)) 0;
+}
+#view-dashboard .wf-accueil .ac-hero p {
+  max-width:calc(640 * var(--k)); margin:calc(22 * var(--k)) 0 0 calc(10 * var(--k)); color:var(--wf-muted);
+  font:400 max(12px, calc(31 * var(--k)))/1.35 var(--wf-sans); text-wrap:pretty;
+}
+#view-dashboard .wf-accueil .ac-hero p b { color:var(--wf-cream); font-weight:700; }
+@media (prefers-reduced-motion:reduce) {
+  #view-dashboard .wf-accueil .wf-hero-ecouter { transition:none; }
 }
 
 /* ── Progression (vraies valeurs) ─────────────────────────────────────── */

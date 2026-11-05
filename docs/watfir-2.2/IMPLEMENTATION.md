@@ -309,3 +309,15 @@ Si l'écran V4 échoue : retirer uniquement les liens `accueil-watfir.css` et `a
 **Tests :** `test/watfir-home.test.cjs` + `test/watfir-hover.test.cjs` : 32/32, dont 2 nouveaux tests qui échouent sur l'ancien code. `node --test test/*.cjs` : 338/343, les 5 échecs (79, 92, 223–225) existaient déjà. Non vérifié : Samsung physique, Brave Android, TalkBack, commande vocale réelle.
 
 **Retour arrière ciblé :** remettre `background:var(--wf-red)` sur les deux niveaux actifs et le survol `--ux-hover-red`, retirer les `max(12px, …)`, l'`aria-label` et l'`aria-controls` conditionnel, la règle `body:has(...)`, puis actualiser les versions de cache.
+
+## 18. Icône, logo, hero V5 et appui du CTA (05/11/2026)
+
+Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'animation d'appui changent.
+
+- **Icône PWA** : icône Watfir (proposition 2, arche gauche symétrique) dans `public/icons/` (`any` + `maskable` à fond plein dans la zone sûre), `manifest.json` en `?v=3`. Sources : `docs/watfir-2.2/assets/watfir-icon-app*.svg`.
+- **Logo du header** : emblème 80×100 repris du monument de l'icône (tour, flèche, bandes derrière la tour, pont à trois arches) ; marque aérée (plus de marges négatives, sous-titre crème atténué). Largeur de la marque inchangée.
+- **Appui des boutons 3D** : déplacement de la face et tranche sur la même courbe ; le bas de Commencer, Étudier et Jouer reste immobile pendant l'appui.
+- **Hero V5** : le monument n'apparaît plus qu'une fois (dans le logo). Le hero = surtitre, « Moien! » en grand avec un bouton rond cyan **Écouter** (`jouerAudio('moien.mp3', this)`, son LOD, jamais lu automatiquement), puis les deux rubans signature en SVG inline qui partent du bord gauche et remontent vers la droite (`.wf-hero-rubans`, viewBox 941×146, bord à bord), puis « **Bonjour**, ton premier mot. Une nouvelle langue commence ici. » (utilisateur régulier : « **Bonjour** ! Prêt pour quelques minutes de Lëtzebuergesch ? »). `watfir-hero-v4.svg` est archivé dans `docs/watfir-2.2/assets/`.
+- **Vérifié** : `node --test test/watfir-home.test.cjs test/watfir-hover.test.cjs` (32/32) ; rendu Chromium 412, 360 et 320 px sans défilement horizontal ; bouton Écouter ≥ 44 px, clic → `/audio/moien.mp3`, aucune erreur JS. **À vérifier** : rendu et son sur le Samsung.
+- **Retour arrière** : revenir sur les commits `feat(watfir)` / `fix(watfir)` du 05/11/2026 sur `2.2`.
+

@@ -103,7 +103,7 @@ test('Live levels select the existing 2.1 navigation function',()=>{
   assert.match(ctx.chiffresHtml(),/Ta progression/);
   assert.match(ctx.chiffresHtml(),/6<span class="ac-v21-bilan-unite">%<\/span>/,'« 6% » sans espace');
   assert.match(ctx.chiffresHtml(),/"ac-v21-bilan-unite"> jours/,'« 0 jours » garde son espace');
-  assert.match(ctx.accrocheHtml(false),/watfir-hero-v4\.svg/);
+  assert.match(ctx.accrocheHtml(false),/wf-hero-ecouter/);
 });
 test('Bottom sheet filters available levels, closes and restores focus',()=>{
   const {ctx,d,list,click}=setup();
@@ -120,18 +120,22 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
   assert.ok(html.indexOf('accueil-v21.js')<html.indexOf('accueil-watfir.js'));
   assert.ok(html.indexOf('accueil-v21.css')<html.indexOf('accueil-watfir.css'));
-  assert.ok(fs.existsSync(path.join(root,'public/art/watfir-hero-v4.svg')));
+  assert.ok(!fs.existsSync(path.join(root,'public/art/watfir-hero-v4.svg')),'hero V5 sans dessin du monument');
   assert.ok(fs.existsSync(path.join(root,'public/art/watfir-logo-v4.svg')));
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-accueil/);
   assert.match(css,/white-space:normal/);
-});test('Hero V4 : texte puis dessin dans le flux, dimensions intrinsèques déclarées',()=>{
+});test('Hero V5 : « Moien! », bouton Écouter (son LOD au clic) puis rubans, sans monument',()=>{
   const {ctx}=setup();
   const h=ctx.accrocheHtml(true);
-  assert.ok(h.indexOf('ac-hero-texte')<h.indexOf('wf-hero-art'),'le dessin suit le texte');
-  assert.match(h,/src="art\/watfir-hero-v4\.svg\?v=\d+"[^>]*width="864" height="265"/);
+  assert.doesNotMatch(h,/<img/,'plus de dessin du monument dans le hero');
+  assert.ok(h.indexOf('Moien')<h.indexOf('wf-hero-ecouter'),'le bouton suit le mot');
+  assert.ok(h.indexOf('wf-hero-ecouter')<h.indexOf('wf-hero-rubans'),'les rubans suivent la ligne du titre');
+  assert.match(h,/onclick="jouerAudio\('moien\.mp3', this\)"/,'son LOD, jamais lu automatiquement');
+  assert.match(h,/aria-label="Écouter « Moien! »"/);
   assert.match(h,/Une nouvelle langue commence ici\./);
   assert.match(ctx.accrocheHtml(false),/Prêt pour quelques minutes/);
+  assert.ok(fs.existsSync(path.join(root,'public/audio/moien.mp3')));
 });
 test('Header V4 sur une ligne : marque, niveaux, séparateur, invité, réglages',()=>{
   const {ctx}=setup();
@@ -382,7 +386,7 @@ test('Press : reduced-motion, clic programmatique et bouton désactivé non diff
 });
 
 test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',()=>{
-  const hero=fs.readFileSync(path.join(root,'public/art/watfir-hero-v4.svg'),'utf8');
+  const hero=fs.readFileSync(path.join(root,'docs/watfir-2.2/assets/watfir-hero-v4.svg'),'utf8'); // archivé (hero V5 sans dessin)
   const logo=fs.readFileSync(path.join(root,'public/art/watfir-logo-v4.svg'),'utf8');
   assert.match(hero,/viewBox="0 0 864 265"/);
   assert.match(logo,/viewBox="0 0 80 100"/);
@@ -397,8 +401,8 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
   assert.ok(!fs.existsSync(path.join(root,'public/art/watfir-hero.svg')),'ancien hero retiré');
   // Pas d'étirement : le rapport largeur/hauteur CSS respecte le viewBox.
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
-  const art=css.match(/\.wf-hero-art \{[^}]*width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)[^}]*height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
-  assert.ok(Math.abs(art[1]/art[2]-864/265)<0.01,'hero non étiré');
+  const art=css.match(/\.wf-hero-rubans \{[^}]*width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)[^}]*height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
+  assert.ok(Math.abs(art[1]/art[2]-941/146)<0.01,'rubans non étirés');
   const lg=css.match(/\.ac-marque-symbole \{ width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\); height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
   assert.ok(Math.abs(lg[1]/lg[2]-80/100)<0.01,'logo non étiré');
 });
@@ -413,7 +417,7 @@ test('CSS : une unité --k (maquette 941 px), polices auto-hébergées, aucune h
   for (const l of ['PLAYFAIR-DISPLAY','FRAUNCES','ROBOTO-CONDENSED']) assert.ok(fs.existsSync(path.join(root,'public/fonts/'+l+'-OFL.txt')));
   const hero=css.match(/\.wf-accueil \.ac-hero \{([^}]*)\}/)[1];
   assert.match(hero,/height:auto/);
-  assert.match(css,/\.wf-hero-art \{[^}]*margin:calc\(-196 \* var\(--k\)\)/);
+  assert.match(css,/\.wf-hero-rubans \{[^}]*margin:calc\(18 \* var\(--k\)\) calc\(-40 \* var\(--k\)\) 0/,'rubans jusqu\'aux bords de l\'écran');
   assert.match(css,/::after \{\s*content:""; position:absolute; top:50%; height:48px;/,'zones de toucher de 48 px');
   assert.match(css,/\.ac-piste i \{[^}]*min-width:0/,'0 % = aucun remplissage');
   assert.match(css,/flex-wrap:wrap/,'repli sur deux lignes si la police grandit');
