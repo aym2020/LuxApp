@@ -14,7 +14,7 @@ const watfir=read('public/accueil-watfir.css');
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
   const link='hover-interactions.css?v=watfir-hover-9';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-18'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-19'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -107,8 +107,8 @@ test('Étudier/Jouer : hover léger = fond seul éclairci, 3D et crème inchang�
     'pas d\'élévation ou de filet cyan en hover');
   assert.doesNotMatch(css,/\.ac-v21-journey:hover/,'ancien lien supprimé des hovers');
   assert.doesNotMatch(css,/\.ac-acces \.ac-btn\.jeux:hover/,'ancien raccourci remplacé');
-  assert.match(watfir,/--wf-study-hover:#ed3640/);
-  assert.match(watfir,/--wf-play-hover:#0b8fb5/);
+  assert.match(watfir,/--wf-study-hover:#ff2f2a/);
+  assert.match(watfir,/--wf-play-hover:#3fd6f0/);
   assert.match(watfir,/\.wf-choix-activite \.wf-activite > b \{[^}]*color:var\(--wf-cream\)/);
   assert.match(watfir,/\.wf-choix-activite \.wf-activite:active/);
 });

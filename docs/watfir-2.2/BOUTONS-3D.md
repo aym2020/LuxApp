@@ -19,12 +19,12 @@ Un bouton 3D de Watfir possède **une face, une tranche plus sombre, une ombre p
 | Rôle | Face / texte | Tranche 3D | Appui | Hover PC |
 | --- | --- | --- | --- | --- |
 | **Commencer / Continuer** | Crème `#fbebc5` / noir `#080808` | 7 px, beige `#aa8954` | Translation 6 px | Crème `#fff4da`, sans changer le motif |
-| **Étudier** | Rouge `#d3232b` / crème `#f7e9c2` | 5 px, rouge foncé `#861c18` | Translation 4 px | Rouge `#ed3640` |
-| **Jouer** | Bleu `#087496` / crème `#f7e9c2` | 5 px, bleu sombre `#054860` | Translation 4 px | Bleu `#0b8fb5` |
-| **Pastille active de niveau** | Rouge profond `--wf-red-texte` `#c81e1b` / crème (4,75:1) | `--wf-pill-depth` = 2–4 px, `#991a17` | `depth - 1px` | Face inchangée, contour discret seulement |
+| **Étudier** | Rouge vif `#f22421` (celui des rubans) / crème `#f7e9c2` | 5 px, rouge foncé `#8f1712` | Translation 4 px | Rouge `#ff2f2a` (reste ≥ 3:1) |
+| **Jouer** | Cyan `#02c5e7` (celui des rubans et du bouton Écouter) / texte et picto noirs `#080808` (9,7:1) | 5 px, bleu `#087496` | Translation 4 px | Cyan `#3fd6f0` |
+| **Pastille active de niveau** | Rouge vif `--wf-red` `#f22421` / crème (3,44:1, choix assumé le 06/11/2026) | `--wf-pill-depth` = 2–4 px, `#991a17` | `depth - 1px` | Face inchangée, contour discret seulement |
 | **Pastille inactive / chevron** | Fond noir / crème et filet crème | `--wf-pill-depth` = 2–4 px, `#75644c` | `depth - 1px` | Lavis crème 20 %, contour discret |
 
-**Contraste (04/11/2026) :** une face qui porte un texte crème doit atteindre **4,5:1**, ou **3:1** pour un texte d'au moins 18,66 px gras. Le rouge de marque `#f22421` (3,44:1 avec le crème) reste réservé aux ornements ; sous un texte, utiliser `--wf-red-texte` `#c81e1b`. Étudier/Jouer (4,3:1 et 4,4:1) gardent un libellé d'au moins **19 px** pour rester des « grands textes ». Un survol ne doit jamais faire passer un texte sous ces seuils.
+**Contraste (04/11/2026) :** une face qui porte un texte crème doit atteindre **4,5:1**, ou **3:1** pour un texte d'au moins 18,66 px gras. **06/11/2026 : un seul rouge et un seul bleu à l'écran.** Étudier et la pastille active prennent le rouge vif `#f22421` (crème 3,44:1) : Étudier reste conforme grâce à son libellé d'au moins **19 px** (grand texte, seuil 3:1) ; la pastille active (14 px) passe sous 4,5:1, écart assumé par Clayton. Jouer prend le cyan `#02c5e7` avec texte noir (9,7:1). `--wf-red-texte` `#c81e1b` ne sert plus qu'au niveau courant de la feuille des niveaux. Un survol ne doit jamais faire passer un texte sous ces seuils.
 
 **Important : les bandes du coin de Commencer ne sont PAS les surfaces des boutons Étudier/Jouer.** Elles restent `--wf-red:#f22421` et `--wf-cyan:#02c5e7`, aux stops `51.6 * --k` et `31.8 * --k`. Aucun éclaircissement hover ne doit changer leur largeur, leur couleur ni le chevron noir.
 

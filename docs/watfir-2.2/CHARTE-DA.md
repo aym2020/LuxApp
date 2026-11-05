@@ -23,7 +23,7 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 | `--wf-bg` | `#080808` | Fond quasi noir, continu, sans faux panneaux |
 | `--wf-cream` | `#F7E9C2` | Marque, titres, icônes neutres, **CTA principal** |
 | `--wf-red` | `#F22421` | Bande identitaire, ponctuation de « Moien! », barre de progression. **Jamais sous un texte crème** (3,44:1) |
-| `--wf-red-texte` | `#C81E1B` | Face rouge portant un texte crème : niveau actif du header et de la feuille (4,75:1, WCAG AA) |
+| `--wf-red-texte` | `#C81E1B` | Niveau courant dans la feuille des niveaux (4,75:1). Depuis le 06/11/2026, la pastille active du header utilise `--wf-red`. |
 | `--wf-cyan` | `#02C5E7` | Bande identitaire, détail secondaire exceptionnel, rubrique Jeux si pertinent |
 | `--wf-secondary` | `#BEB6A6` | Texte explicatif non essentiel |
 | `--wf-track` | `#3C3934` | Barre de progression inactive, filets discrets |
@@ -32,7 +32,7 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 | `--wf-error` | `#EF7A73` | Correction erreur / alerte sémantique |
 | `--wf-info` | `#6FB0F2` | Informations pédagogiques et examen |
 
-**Répartition visuelle sur l'accueil** : le noir domine, le crème structure la lecture et le CTA principal. Le rouge et le cyan restent des **signes identitaires dans le hero et dans le coin du CTA** ; les deux seules grandes surfaces secondaires colorées sont « Étudier » (rouge plus profond `#d3232b`) et « Jouer » (bleu plus profond `#087496`). Cette hiérarchie n'autorise pas à colorer tous les boutons de tous les écrans.
+**Répartition visuelle sur l'accueil** : le noir domine, le crème structure la lecture et le CTA principal. Le rouge et le cyan restent des **signes identitaires dans le hero et dans le coin du CTA** ; les deux seules grandes surfaces secondaires colorées sont « Étudier » (rouge vif `#f22421`) et « Jouer » (cyan `#02c5e7`, texte noir). **Règle depuis le 06/11/2026 : un seul rouge et un seul bleu à l'écran.** Cette hiérarchie n'autorise pas à colorer tous les boutons de tous les écrans.
 
 Le rouge de marque `--wf-red` n'est pas le rouge d'erreur `--wf-error`. Un état d'erreur exige un libellé/icône et un contraste explicite. Ne jamais coder uniquement par la couleur.
 
@@ -74,7 +74,7 @@ Fond crème `#fbebc5`, texte noir, flèche noire, **sans livre**. Tranche beige 
 
 ### 6.2 Niveaux A1.1/A1.2 et familles futures
 
-Deux pastilles maximum dans le header courant, actif rouge profond `#c81e1b`/crème et inactif fond noir/filet crème ; le chevron est la troisième commande 3D. Relief de **2 à 4 px** selon `--k`, tranche beige sombre ou rouge sombre, enfoncement de `depth - 1px` et maintien **160 ms** avant sélection ou ouverture de la feuille. Leur filet `::before` et leurs cibles tactiles `::after` sont préservés. Pour A2.1/A2.2, B1.1/B1.2, etc., le chevron ouvre un **bottom sheet** groupé par familles et limité aux niveaux disponibles. Sous 360 px, le header peut se replier sur deux rangées sans compresser la marque.
+Deux pastilles maximum dans le header courant, actif rouge vif `#f22421`/crème et inactif fond noir/filet crème ; le chevron est la troisième commande 3D. Relief de **2 à 4 px** selon `--k`, tranche beige sombre ou rouge sombre, enfoncement de `depth - 1px` et maintien **160 ms** avant sélection ou ouverture de la feuille. Leur filet `::before` et leurs cibles tactiles `::after` sont préservés. Pour A2.1/A2.2, B1.1/B1.2, etc., le chevron ouvre un **bottom sheet** groupé par familles et limité aux niveaux disponibles. Sous 360 px, le header peut se replier sur deux rangées sans compresser la marque.
 
 ### 6.3 Progression
 
@@ -82,7 +82,7 @@ En-tête « TA PROGRESSION », pourcentage du **niveau actif** et série globale
 
 ### 6.4 Accès secondaires
 
-Deux boutons **centrés, côte à côte**, sans titre inutile : **Étudier** (`#d3232b`, tranche `#861c18`) et **Jouer** (`#087496`, tranche `#054860`). Les deux ont texte/pictogramme crème, relief 5 px et enfoncement 4 px maintenu 160 ms avant activation ; au hover PC, seule leur face s'éclaircit. Étudier ouvre un bottom sheet avec **Les leçons / S'entraîner / Examens / Mes erreurs**, sans perte de fonctionnalités. Jouer ouvre directement les mini-jeux. Cibles tactiles d'au moins 76 px de hauteur. Voir [BOUTONS-3D.md](BOUTONS-3D.md).
+Deux boutons **centrés, côte à côte**, sans titre inutile : **Étudier** (`#f22421`, tranche `#8f1712`, texte/pictogramme crème) et **Jouer** (`#02c5e7`, tranche `#087496`, texte/pictogramme noirs). Les deux ont relief 5 px et enfoncement 4 px maintenu 160 ms avant activation ; au hover PC, seule leur face s'éclaircit. Étudier ouvre un bottom sheet avec **Les leçons / S'entraîner / Examens / Mes erreurs**, sans perte de fonctionnalités. Jouer ouvre directement les mini-jeux. Cibles tactiles d'au moins 76 px de hauteur. Voir [BOUTONS-3D.md](BOUTONS-3D.md).
 
 ### 6.5 États
 

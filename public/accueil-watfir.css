@@ -132,7 +132,9 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-18 * var(--k)); }  /* jusqu'au nom Watfir */
 #view-dashboard .wf-accueil .puce-niv[aria-pressed="true"] {
   --wf-pill-side:#991a17; /* tranche rouge sombre sous la face rouge */
-  background:var(--wf-red-texte); color:var(--wf-cream); /* texte crème lisible : 4,75:1 */
+  /* 06/11/2026 : même rouge vif que les rubans, le « ! » et Étudier (un seul rouge à l'écran).
+     Crème sur #f22421 = 3,44:1 (sous AA 4,5:1 pour ce corps de texte) : choix assumé. */
+  background:var(--wf-red); color:var(--wf-cream);
 }
 /* Enfoncement physique doigt/souris + maintien 160 ms après clic rapide.
    Même règle pour les niveaux A1.x et le sélecteur, sans toucher aux ::before
@@ -368,12 +370,16 @@ body:has(#view-dashboard.active) { background:#080808; }
    Commencer (WF red/cyan et stops 51.6/31.8 * --k) restent INTACTES.
    Ombres hors flux, dimensions tactiles >= 76px. */
 #view-dashboard .wf-accueil .ac-acces.wf-choix-activite {
-  --wf-study:#d3232b;
-  --wf-study-hover:#ed3640;
-  --wf-study-side:#861c18;
-  --wf-play:#087496;
-  --wf-play-hover:#0b8fb5;
-  --wf-play-side:#054860;
+  /* 06/11/2026 : un seul rouge et un seul bleu à l'écran.
+     Étudier = rouge vif des rubans (crème 3,44:1, grand texte : seuil 3:1) ;
+     survol #ff2f2a (3,06:1) pour ne jamais passer sous 3:1.
+     Jouer = cyan du bouton Écouter et des rubans, texte et picto noirs (9,7:1). */
+  --wf-study:#f22421;
+  --wf-study-hover:#ff2f2a;
+  --wf-study-side:#8f1712;
+  --wf-play:#02c5e7;
+  --wf-play-hover:#3fd6f0;
+  --wf-play-side:#087496;
   display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(10px,calc(30 * var(--k)),18px);
   width:min(100%,calc(860 * var(--k)));
@@ -417,6 +423,9 @@ body:has(#view-dashboard.active) { background:#080808; }
   font:800 clamp(19px,calc(52 * var(--k)),26px)/1.1 var(--wf-sans);
   letter-spacing:-.025em; white-space:nowrap;
 }
+/* Jouer : texte et pictogramme noirs sur le cyan (9,7:1). */
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite-jouer > .ic:first-child,
+#view-dashboard .wf-accueil .wf-choix-activite .wf-activite-jouer > b { color:var(--wf-bg); }
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]),
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite.wf-pressing {
   transform:translateY(4px); filter:none;

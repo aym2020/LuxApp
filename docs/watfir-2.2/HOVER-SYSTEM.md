@@ -13,9 +13,9 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | **CTA au repos (mobile et PC)** | Fond crème `#fbebc5` inchangé, tranche beige de **7 px** (`#aa8954`), ombre portée et reflet intérieur ; chevron éloigné du motif rouge/cyan | permanent |
 | **CTA hover (souris)** | Face crème `#fbebc5` → `#fff4da` uniquement ; ni déplacement, ni nouvelle ombre, ni contour, ni recoloration du chevron ou des bandes | instantané |
 | **CTA appuyé (tactile et souris)** | Enfoncement **6 px** et tranche abaissée à 1 px ; appui visible pendant 160 ms avant la navigation, sans contour coloré | 115 ms de transition + maintien 160 ms |
-| **Étudier (repos)** | Bouton rouge `#d3232b`, texte/picto crème `#f7e9c2`, tranche rouge sombre `#861c18` de 5 px | permanent |
-| **Jouer (repos)** | Bouton bleu profond `#087496`, texte/picto crème `#f7e9c2`, tranche bleu foncé `#054860` de 5 px | permanent |
-| **Étudier / Jouer (survol PC)** | Éclaircissement simple de la face (rouge `#ed3640` / bleu `#0b8fb5`), **sans transform, filtre, filet ou changement d'ombre** | 170 ms |
+| **Étudier (repos)** | Bouton rouge vif `#f22421`, texte/picto crème `#f7e9c2`, tranche rouge sombre `#8f1712` de 5 px | permanent |
+| **Jouer (repos)** | Bouton cyan `#02c5e7`, texte/picto noirs `#080808`, tranche bleue `#087496` de 5 px | permanent |
+| **Étudier / Jouer (survol PC)** | Éclaircissement simple de la face (rouge `#ff2f2a` / cyan `#3fd6f0`), **sans transform, filtre, filet ou changement d'ombre** | 170 ms |
 | **Étudier / Jouer (appui)** | Enfoncement de 4 px ; tranche comprimée à 1 px, affichée 160 ms avant le sous-menu ou la navigation | 115 ms de transition + maintien 160 ms |
 | **A1.1 / A1.2 / sélecteur (repos, mobile et PC)** | Tranche 3D de **2 à 4 px** proportionnelle à `--k`, beige foncé `#75644c` en inactif, rouge foncé `#991a17` pour le niveau actif. Bordure crème et dimensions inchangées | permanent |
 | **Niveaux au survol (souris)** | Fond crème 20 % + contour doux en inactif ; niveau courant rouge `#F22421` → `#FF4038`. La tranche et sa couleur restent en place, même en clic maintenu | 160 ms |

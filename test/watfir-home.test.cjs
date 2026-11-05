@@ -193,7 +193,8 @@ test('Audit 04/11 : niveau actif lisible, textes ≥ 12 px, fond PC continu',()=
   const hover=fs.readFileSync(path.join(root,'public/hover-interactions.css'),'utf8');
   // Crème sur #c81e1b = 4,75:1 (AA). Le rouge de marque #f22421 reste pour les ornements.
   assert.match(css,/--wf-red:#f22421; --wf-red-texte:#c81e1b;/);
-  assert.match(css,/\.puce-niv\[aria-pressed="true"\] \{[^}]*background:var\(--wf-red-texte\)/);
+  // 06/11/2026 : niveau actif au rouge vif (un seul rouge à l'écran, choix de Clayton).
+  assert.match(css,/\.puce-niv\[aria-pressed="true"\] \{[^}]*background:var\(--wf-red\)/);
   assert.match(css,/\.wf-sheet-level\.is-current \{ background:var\(--wf-red-texte\); \}/);
   assert.doesNotMatch(hover,/--ux-hover-red\)/,'le niveau actif ne s\'éclaircit plus au survol');
   assert.match(css,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'bandes du CTA inchangées');
@@ -232,8 +233,9 @@ test('Watfir : Commencer sans doublon livre et deux activités centrées',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
   assert.match(css,/width:min\(100%,calc\(860 \* var\(--k\)\)\)/);
-  assert.match(css,/--wf-study:#d3232b/);
-  assert.match(css,/--wf-play:#087496/);
+  assert.match(css,/--wf-study:#f22421/);
+  assert.match(css,/--wf-play:#02c5e7/);
+  assert.match(css,/\.wf-activite-jouer > b \{ color:var\(--wf-bg\); \}/,'texte noir sur cyan');
   assert.match(css,/color:var\(--wf-cream\)/);
 });
 
