@@ -34,7 +34,8 @@ La **deuxième proposition graphique générée dans la conversation était une 
   - `icon-192.png` / `icon-512.png` (`any`) : export de [`watfir-icon-app.svg`](assets/watfir-icon-app.svg) — carré arrondi noir au liseré crème, emblème centré, bandes cyan/rouge jusqu'au cadre.
   - `icon-maskable-192.png` / `icon-maskable-512.png` et `apple-touch-icon.png` (180) : export de [`watfir-icon-app-maskable.svg`](assets/watfir-icon-app-maskable.svg) — fond noir plein, emblème dans la zone sûre de 80 %, bandes bord à bord. C'est cette variante qu'Android affiche.
   - `public/favicon.ico` (16/32/48) : export de la variante `any`.
-  - Versions : `manifest.json` en `?v=4`, liens favicon / Apple en `?v=2` dans `index.html`.
+  - Bandes de l'icône plus épaisses que dans le logo (≈ 12 unités de l'emblème au lieu de 7,7) et monument agrandi (`any` : 78 % de la hauteur ; `maskable` : 66 %, centré légèrement haut pour rester dans la zone sûre).
+  - Versions : `manifest.json` en `?v=5`, liens favicon / Apple en `?v=3` dans `index.html`.
   - Export : `rsvg-convert -w 512 -h 512 <svg> -o <png>` ; les deux SVG sont générés depuis le logo (emblème 80×100 mis à l'échelle, bandes prolongées).
 - La 1ʳᵉ icône Watfir du 05/11/2026 (proposition 2 dessinée à part) est remplacée.
 
