@@ -120,8 +120,9 @@ body:has(#view-dashboard.active) { background:#080808; }
     0 0 0 1px var(--wf-pill-hover-outline);
   transform:translateY(0);
   touch-action:manipulation;
+  /* Même courbe pour la face et la tranche : le bas de la pastille reste fixe à l'appui. */
   transition:transform 115ms cubic-bezier(.22,1,.36,1),
-             box-shadow 115ms ease, background-color 160ms ease;
+             box-shadow 115ms cubic-bezier(.22,1,.36,1), background-color 160ms ease;
 }
 #view-dashboard .wf-accueil .puce-niv::before {
   content:""; position:absolute; inset:0; pointer-events:none;
@@ -501,17 +502,12 @@ body.wf-sheet-open { overflow:hidden; }
 .wf-niveaux-dialog button:focus-visible { outline:3px solid var(--wf-cyan); outline-offset:3px; }
 
 @media (prefers-reduced-motion:reduce) {
-  /* Le relief reste visible, mais aucun déplacement de pastille. */
-  #view-dashboard .wf-accueil .puce-niv { transition:none; }
-  #view-dashboard .wf-accueil .puce-niv:active:not(:disabled):not([aria-disabled="true"]),
-  #view-dashboard .wf-accueil .puce-niv.wf-pressing { transform:none; }
-  /* Garder le feedback tactile par changement d'ombre, sans déplacement. */
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta { transition:none; }
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:active:not(:disabled):not([aria-disabled="true"]),
-  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta.wf-pressing { transform:none; }
+  /* Boutons 3D (pastilles, Commencer, Étudier/Jouer) : appui instantané, sans animation.
+     La face descend quand même de la hauteur de la tranche : sinon seule la tranche
+     s'écrase et le bas du bouton remonte (défaut vu sur PC « animations réduites »). */
+  #view-dashboard .wf-accueil .puce-niv,
+  #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
   #view-dashboard .wf-accueil .wf-choix-activite .wf-activite { transition:none; }
-  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite:active:not(:disabled):not([aria-disabled="true"]),
-  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite.wf-pressing { transform:none; }
   .wf-etudier-dialog .wf-etudier-option { transition:none; }
   .wf-niveaux-dialog, .wf-niveaux-dialog[open] { transform:none; transition:none; }
   .wf-niveaux-dialog::backdrop { transition:none; }

@@ -14,7 +14,7 @@ const watfir=read('public/accueil-watfir.css');
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
   const link='hover-interactions.css?v=watfir-hover-9';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-16'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-17'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -83,8 +83,11 @@ test('Header : A1.1, A1.2 et dropdown utilisent le même relief physique compact
   assert.match(header,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\),\s*[^{}]*\.puce-niv\.wf-pressing\s*\{[^}]*transform:translateY\(calc\(var\(--wf-pill-depth\) - 1px\)\)/s,
     'un appui physique remplace le scale');
   assert.match(header,/\.puce-niv::after[^}]*height:48px/s,'grandes cibles tactiles conservées');
-  assert.match(watfir,/\.puce-niv:active:not\(:disabled\):not\(\[aria-disabled="true"\]\),\s*[^{}]*\.puce-niv\.wf-pressing \{ transform:none; \}/,
+  // Mouvement réduit : pas d'animation, mais la face descend toujours (sinon le bas remonte).
+  const reduitW=watfir.slice(watfir.lastIndexOf('@media (prefers-reduced-motion:reduce)'));
+  assert.match(reduitW,/\.puce-niv,\s*[^{}]*\.carte-suite\.ac-v21-cta,\s*[^{}]*\.wf-activite \{ transition:none; \}/,
     'respect de reduced-motion');
+  assert.doesNotMatch(reduitW,/wf-pressing \{ transform:none; \}/,'la face descend aussi en mouvement réduit');
 });
 
 test('Header : le survol préserve la tranche et la couleur pendant le clic maintenu',()=>{
