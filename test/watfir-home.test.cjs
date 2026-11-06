@@ -241,6 +241,26 @@ test('Watfir : Commencer sans doublon livre et deux activités centrées',()=>{
   assert.match(css,/color:var\(--wf-cream\)/);
 });
 
+test('Watfir 2.2 : rayons harmonisés sans modifier la géométrie des commandes',()=>{
+  const home=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const portal=fs.readFileSync(path.join(root,'public/portail-watfir.css'),'utf8');
+  const cta=home.match(/#view-dashboard \.wf-accueil \.carte-suite\.ac-v21-cta \{([^}]+)\}/);
+  const activities=home.match(/#view-dashboard \.wf-accueil \.wf-choix-activite \.wf-activite \{([^}]+)\}/);
+  assert.ok(cta&&activities,'sélecteurs actuels présents');
+  assert.match(cta[1],/border-radius:17px;/,'Commencer accueil = grands CTA portail');
+  assert.match(activities[1],/border-radius:14px;/,'Étudier et Jouer = actions secondaires');
+  assert.match(activities[1],/min-height:clamp\(76px/,'cibles tactiles conservées');
+  assert.match(cta[1],/0 7px 0 #aa8954/,'relief CTA inchangé');
+  assert.match(activities[1],/0 5px 0 var\(--wf-side\)/,'relief activités inchangé');
+  for(const selector of ['\\.pa-bouton\\.or\\.wf-portail-demarrer','\\.pa-bouton\\.sombre\\.wf-portail-creer']) {
+    const rule=portal.match(new RegExp(selector+' \\{([^}]+)\\}'));
+    assert.ok(rule,'bouton portail existant');
+    assert.match(rule[1],/border-radius:17px;/,'grand CTA portail = 17px');
+  }
+  assert.match(home,/\.puce-niv \{[^}]*border-radius:calc\(18 \* var\(--k\)\)/,
+    'pastilles niveaux compactes conservées');
+});
+
 test('Sous-menu Étudier : révisions et examens conservés, Retour Android géré',()=>{
   assert.match(watfir,/lecons: \(\) => goLessons\(\)/);
   assert.match(watfir,/entrainer: \(\) => openReviewSetup\(\)/);
