@@ -374,3 +374,16 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Recette :** trois fichiers `test/watfir-home.test.cjs`, `test/watfir-hover.test.cjs` et `test/watfir-portail.test.cjs` : **45/45 tests de contrat réussis** dans un harnais JS basé sur les dernières sources GitHub `2.2`. Assertions renforcées sur les tranches, les reflets, la compression, les couleurs, les rubans et les cache-busters. Cette recette **ne vaut pas validation visuelle sur un vrai Samsung / PC** ; elle doit encore être comparée aux captures de référence après déploiement.
 
 **Rollback isolé :** restaurer uniquement les valeurs `border` et `box-shadow` des boutons concernés dans les deux CSS, puis actualiser les numéros de cache. Aucun composant JavaScript ni donnée métier n'a besoin d'être restauré.
+
+
+## 22. Harmonisation des rayons des boutons (06/11/2026)
+
+**Défaut observé sur captures Samsung :** malgré les faces et tranches 3D harmonisées, le CTA Commencer/Continuer de l'accueil utilisait `border-radius:calc(30 * var(--k))` (environ 12–13 px sur mobile), contre `17px` pour les grands CTA du portail. Étudier/Jouer suivaient `clamp(12px,calc(28 * var(--k)),16px)` ; l'absence de rayon de référence rendait la géométrie moins régulière entre les deux écrans.
+
+**Correction ciblée, branche `2.2` :** dans `public/accueil-watfir.css`, le rayon du CTA de leçon passe à **17 px**, comme « Commencer » et « Créer un compte » du portail. Les boutons « Étudier » et « Jouer » passent à **14 px** tous deux. `public/portail-watfir.css` reste inchangé : les deux CTA y avaient déjà 17 px. Le bouton Écouter demeure rond et les pastilles A1.1/A1.2/chevron gardent leur rayon proportionnel. Aucun autre composant ne change de géométrie.
+
+**Non-régression :** seules deux déclarations `border-radius` de l'accueil sont modifiées ; les hauteurs, paddings, libellés, couleurs, reflets, tranches 3D, animations de 160 ms, routes, Firebase, stockage, progression et rubans restent identiques. Le cache-buster d'`accueil-watfir.css` est augmenté de `watfir-v4-21` à `watfir-v4-22` dans `public/index.html`, et le contrat correspondant est ajusté dans `test/watfir-hover.test.cjs`. Un test de régression dans `test/watfir-home.test.cjs` vérifie les trois rayons communs aux deux écrans, les hauteurs minimales et les tranches conservées.
+
+**Contrôles disponibles dans cette intervention :** compilation syntaxique des deux fichiers de test modifiés et assertions statiques sur le CSS récupéré depuis GitHub, OK. **Non exécutés dans un vrai runtime Node / navigateur :** `node --test test/watfir-home.test.cjs test/watfir-hover.test.cjs test/watfir-portail.test.cjs`, recette tactile Samsung 320/360/412 px, et contrôle PC. Ces validations restent à faire sur la branche déployée ; ne pas les présenter comme réussies.
+
+**Retour arrière :** restaurer uniquement les deux rayons de `public/accueil-watfir.css`, la version CSS du lien dans `index.html` et les deux contrats de test adaptés. Pas de migration de données.
