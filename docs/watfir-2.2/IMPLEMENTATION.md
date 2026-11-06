@@ -429,3 +429,20 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Recette :** CSS équilibré, assertions sources et syntaxe des deux tests modifiés vérifiées. En complément, **fixture HTML représentatif du header** testé dans Chromium headless à 320, 360, 375, 384, 393, 412, 430, 540 et 541 px : pas de chevauchement horizontal entre les groupes, ni sous-titre tronqué dans cette simulation. Cette fixture n'est **pas** le DOM complet du site et ne remplace ni les tests Node du dépôt, ni la recette Samsung physique. Ces deux dernières validations restent nécessaires. Le cache `accueil-watfir.css?v=watfir-v4-25` et les contrats `test/watfir-home.test.cjs` / `test/watfir-hover.test.cjs` sont alignés.
 
 **Contrainte de non-régression :** conserver le hero Mission V6, Fraunces + Inter, les rayons 17/14 px, les tranches 3D, les cibles tactiles, les boutons Étudier/Jouer et la progression V21. Aucun JS métier, PWA, audio pédagogique, JSON ou donnée utilisateur n'a été changé. Le correctif §25 **remplace**, sans les cumuler, les règles mobiles de §24. Retour arrière : restaurer uniquement le bloc responsive du header et le cache CSS.
+
+
+## 26. Header mobile : une ligne, de l'espace après les niveaux (06/11/2026)
+
+**Décision UX de référence :** conserver une seule rangée sur Samsung, sans comprimer le bloc « Mode invité / Connexion / réglages ». L'espace disponible à côté des boutons de niveaux doit servir à aérer le bloc compte ; ne pas placer les niveaux sur une deuxième rangée. Les corrections §24–25 sont historiques : la solution ci-dessous les remplace.
+
+**Cause du problème :** la précédente grille `minmax(0,1fr) auto auto` allouait l'espace libre *avant* les niveaux et collait niveaux + compte à droite. Le mode invité et la roue semblaient compressés, malgré une page plus large à gauche.
+
+**Correction actuelle (CSS seul, branche `2.2`) :** entre 360 et 540 px de largeur CSS, grille `max-content max-content minmax(0,1fr)` avec zones `"marque niveaux compte"`. La dernière colonne reçoit la largeur restante, et le bloc compte est aligné à son bord droit. L'espace supplémentaire se retrouve donc **entre les niveaux et le compte**. Les interstices sont harmonisés (10–16 px entre groupes, 7–10 px entre pastilles, 10–14 px entre Connexion et la roue). Le petit sous-titre « Lëtzebuergesch » du header mobile est masqué pour libérer la largeur sans réduire les commandes ; le hero identifie déjà la langue. Il reste présent dans le portail et en dehors du breakpoint mobile. Le séparateur vertical décoratif reste masqué.
+
+**Très petites largeurs :** sous 360 px, seule la pastille du niveau actif et la flèche sont visibles, sur **la même ligne** que le logo et le compte. Les autres niveaux restent accessibles par la feuille `Choisir un niveau` ; aucune option de navigation n'est supprimée du moteur. Sous 260 px (zoom Android extrême), repli de sécurité en trois rangées pour éviter tout chevauchement.
+
+**Invariants :** aucun changement au JavaScript, à l'authentification, à la progression, aux routes, aux cibles d'apprentissage ou aux sauvegardes. Les interactions des six boutons 3D, leurs couleurs, leurs tranches, les rayons 17/14 px, les rubans et Mission V6 restent inchangés. Cache `accueil-watfir.css?v=watfir-v4-26`. Tests de contrat et de cache mis à jour.
+
+**Contrôles :** simulation représentative du header en Chromium aux largeurs 280, 300, 320, 340, 359, 360, 375, 384, 393, 412, 430 et 540 px, sans débordement horizontal, avec séparation visible des groupes. Le test concerne le composant de header isolé et **ne constitue pas une recette du site complet ni une validation physique sur Samsung**. Les tests Node complets du dépôt restent à exécuter dans un environnement de travail disposant du dépôt complet.
+
+**Retour arrière :** restaurer uniquement le bloc CSS responsive du header, son cache-buster et les assertions associées. Aucune migration de données.
