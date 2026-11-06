@@ -7,7 +7,7 @@
 Un bouton 3D de Watfir possède **une face, une tranche plus sombre, une ombre portée et un reflet léger**. La tranche est dessinée par `box-shadow`, sans div supplémentaire, sans `height` ajouté et sans modifier la grille. Au toucher ou au clic souris, la face **descend** tandis que la tranche se comprime à **1 px**. Le retour se fait en douceur. Pas de `scale(.97)` pour ce type de bouton, pas de contour rouge animé, de glow, de rebond ou de néon.
 
 - **Au repos** : relief visible sur mobile et PC.
-- **Au survol PC** : simple éclaircissement de la couleur de face ; pas de déplacement, ni de nouvelle ombre. Le CTA crème change seulement `--wf-cta-cream`, ce qui préserve ses bandes rouge/cyan ; Étudier/Jouer changent uniquement `background-color`. Les niveaux changent discrètement leur fond et leur repère de contour, sans toucher à la tranche.
+- **Au survol PC** : simple éclaircissement de la couleur de face ; pas de déplacement, ni de nouvelle ombre. Le CTA crème uni change seulement `--wf-cta-cream`, sans dégradé de coin ; Étudier/Jouer changent uniquement `background-color`. Les niveaux changent discrètement leur fond et leur repère de contour, sans toucher à la tranche.
 - **Pendant l'appui** : règle `:active` immédiatement visible sous le doigt ; pour les boutons qui changent de vue ou ouvrent une feuille, la classe `.wf-pressing` conserve le même rendu pendant **160 ms avant l'action** afin qu'un tap bref ne masque pas l'enfoncement.
 - **Au clavier** : activation par Entrée/Espace d'un vrai `button`, même feedback. Le `:focus-visible` reste indépendant du hover et visible.
 - **Mouvement réduit** : `prefers-reduced-motion: reduce` supprime le déplacement, les transitions et l'attente ; la navigation reste immédiate. Les clics programmatiques restent immédiats. Rien n'est différé pour `disabled` ou `aria-disabled="true"`.
@@ -18,7 +18,9 @@ Un bouton 3D de Watfir possède **une face, une tranche plus sombre, une ombre p
 
 | Rôle | Face / texte | Tranche 3D | Appui | Hover PC |
 | --- | --- | --- | --- | --- |
-| **Commencer / Continuer** | Crème `#fbebc5` / noir `#080808` | 7 px, beige `#aa8954` | Translation 6 px | Crème `#fff4da`, sans changer le motif |
+| **Commencer / Continuer (accueil)** | Crème **unie** `#fbebc5` / noir `#080808` | 7 px, beige `#aa8954` | Translation 6 px | Crème `#fff4da` uniquement |
+| **Commencer (portail)** | Crème **unie** `#fbebc5` / noir `#080808` | 6 px, beige `#ac8d5b` | Translation 5 px | Crème `#fff4da` uniquement |
+| **Créer un compte (portail)** | Fond sombre `#11100e`, texte crème et filet `#c3b08b` | 6 px, beige sombre `#796646` | Translation 5 px | Face légèrement éclaircie `#27221b` |
 | **Étudier** | Rouge vif `#f22421` (celui des rubans) / crème `#f7e9c2` | 5 px, rouge foncé `#8f1712` | Translation 4 px | Rouge `#ff2f2a` (reste ≥ 3:1) |
 | **Jouer** | Cyan `#02c5e7` (celui des rubans et du bouton Écouter) / texte et picto noirs `#080808` (9,7:1) | 5 px, bleu `#087496` | Translation 4 px | Cyan `#3fd6f0` |
 | **Pastille active de niveau** | Rouge vif `--wf-red` `#f22421` / crème (3,44:1, choix assumé le 06/11/2026) | `--wf-pill-depth` = 2–4 px, `#991a17` | `depth - 1px` | Face inchangée, contour discret seulement |
@@ -26,7 +28,7 @@ Un bouton 3D de Watfir possède **une face, une tranche plus sombre, une ombre p
 
 **Contraste (04/11/2026) :** une face qui porte un texte crème doit atteindre **4,5:1**, ou **3:1** pour un texte d'au moins 18,66 px gras. **06/11/2026 : un seul rouge et un seul bleu à l'écran.** Étudier et la pastille active prennent le rouge vif `#f22421` (crème 3,44:1) : Étudier reste conforme grâce à son libellé d'au moins **19 px** (grand texte, seuil 3:1) ; la pastille active (14 px) passe sous 4,5:1, écart assumé par Clayton. Jouer prend le cyan `#02c5e7` avec texte noir (9,7:1). `--wf-red-texte` `#c81e1b` ne sert plus qu'au niveau courant de la feuille des niveaux. Un survol ne doit jamais faire passer un texte sous ces seuils.
 
-**Important : les bandes du coin de Commencer ne sont PAS les surfaces des boutons Étudier/Jouer.** Elles restent `--wf-red:#f22421` et `--wf-cyan:#02c5e7`, aux stops `51.6 * --k` et `31.8 * --k`. Aucun éclaircissement hover ne doit changer leur largeur, leur couleur ni le chevron noir.
+**Règle de composition : les bandes rouge/cyan appartiennent aux héros, pas aux CTA crème.** Le portail et l'accueil gardent leurs rubans SVG avec `--wf-red:#f22421` et `--wf-cyan:#02c5e7` ; les deux boutons « Commencer » ont une face crème unie, sans dégradé de coin. Leurs différences de hauteur sont fonctionnelles (l'accueil présente également le titre de la leçon), pas décoratives. Sur le portail, Commencer et Créer un compte partagent 70 px de hauteur minimale, un rayon de 17 px et une tranche de 6 px (64 px sous 360 px).
 
 Les pictogrammes Étudier/Jouer sont des SVG au trait crème ; le CTA principal n'a plus de pictogramme livre. La décoration des pastilles est assurée par `::before` (filet crème). Leur `::after` reste réservé à l'élargissement des **cibles tactiles à 48 px** : ne pas le réutiliser pour de la 3D.
 
@@ -65,6 +67,6 @@ Le sélecteur `.puce-niv` couvre **les deux niveaux affichés et le chevron**, e
 
 ## 5. Recette et limites
 
-`test/watfir-home.test.cjs` vérifie le maintien, les six sélecteurs, le clic rejoué, la sélection de niveau, l'ouverture de la feuille, le double clic et le mouvement réduit. `test/watfir-hover.test.cjs` protège le CSS, les hovers et les bandes du coin. Les tests de contrat peuvent être exécutés par `node --test test/watfir-home.test.cjs test/watfir-hover.test.cjs`.
+`test/watfir-home.test.cjs` vérifie le maintien, les six sélecteurs, le clic rejoué, la sélection de niveau, l'ouverture de la feuille, le double clic et le mouvement réduit. `test/watfir-hover.test.cjs` protège le CSS, les hovers et **l'absence de bandes sur le CTA tout en conservant le hero**. `test/watfir-portail.test.cjs` vérifie les deux boutons 3D du portail, le maintien 160 ms et les routes invité/inscription. Les tests de contrat peuvent être exécutés par `node --test test/watfir-home.test.cjs test/watfir-hover.test.cjs`.
 
 **Non couvert par ces contrats statiques :** rendu réel Samsung/Brave, latence subjective, zoom système, talkback, comportement natif du clic sous tous les moteurs de navigateur. Une recette sur appareils reste requise avant généralisation de la DA.
