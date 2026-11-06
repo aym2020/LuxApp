@@ -127,7 +127,7 @@ test('Entrée invité : même navigation et aucune modification des clés de pro
   ctx.portailAction('guest');
   assert.equal(calls.dashboard,1);
   assert.ok(calls.audio>=1,'la fermeture arrête un éventuel son précédent');
-  assert.match(source,/afficherInfoInvite\(\);/,'l'information invité est toujours prévue');
+  assert.match(source,/afficherInfoInvite\(\);/,"l'information invité est toujours prévue");
   assert.equal(storage.get('luxPortailCompteConnuV1'),undefined);
   assert.equal(storage.has('luxPortailInviteV1'),false);
 });
