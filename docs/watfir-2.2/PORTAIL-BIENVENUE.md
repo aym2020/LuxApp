@@ -7,7 +7,7 @@
 L'écran d'entrée est une **affiche de marque**, et non un tutoriel. Le concept retenu est **A — Affiche rétro**, après suppression explicite du slogan « Le luxembourgeois, autrement. ».
 
 Composition, de haut en bas :
-1. **Grand logotype typographique `Watfir`**, crème, Fraunces italique 900 auto-hébergée (déjà chargée par `accueil-watfir.css`). Aucun autre slogan, claim, pré-titre, liste de fonctionnalités, trois étapes ou pictogramme gratuit.
+1. **Grand logotype typographique `Watfir`**, crème, Fraunces italique 900 auto-hébergée (déjà chargée par `accueil-watfir.css`). Le mot-symbole du portail reprend désormais l’**espacement naturel `letter-spacing:0` du header**, avec `font-kerning:normal` et **sans `text-shadow`** : l'ancien `-0.075em` faisait fusionner visuellement « tfir » sur les smartphones. Aucun autre slogan, claim, pré-titre, liste de fonctionnalités, trois étapes ou pictogramme gratuit.
 2. **Deux rubans** SVG inline : rouge `#F22421`, cyan `#02C5E7`, sur fond noir `#080808`. Le dessin est géométrique et éditable, sans PNG ni téléchargement distant ; il reprend les couleurs de l'accueil sans reproduire l'interaction « Moien! ».
 3. **`Lëtzebuergesch`**, descripteur de la langue en petites capitales espacées. Ce mot identifie le sujet : ce n'est pas un slogan marketing.
 4. **Actions**, dans cet ordre : **Commencer** (CTA crème `#FBebc5`, texte noir, chevron, coin rouge/cyan et tranche 3D beige de 6 px), **Créer un compte** (bouton sombre bord crème), **Se connecter** (lien secondaire). Survol PC : simple éclaircissement. L'appui du CTA s'enfonce de 5 px, y compris au clavier ; maintien de 160 ms sur clic utilisateur avant navigation immédiate vers l'accueil invité. Le mode `prefers-reduced-motion: reduce` conserve l'appui physique instantané sans retard.
@@ -20,6 +20,8 @@ Composition, de haut en bas :
 `public/portail.js` conserve sans changement les fonctions `portailAction('guest')`, `portailAction('signup')`, `portailAction('signin')`, les formulaires Firebase, les messages d'erreur, le stockage invité local, l'option de sauvegarde des progrès, l'écran d'information invité affiché une fois et la navigation Retour Android.
 
 Seule la branche `mode === 'welcome'` de `portailContenu` produit désormais l'affiche. Les anciennes fonctions `portailCarte`, `portailAtouts` et `portailEcouter` restent dans le module à titre de compatibilité, mais **ne sont plus appelées par l'écran de bienvenue**. Aucun changement sur la pédagogie, les données ou l'audio de l'accueil.
+
+**Netteté typographique (06/11/2026)** : le retour utilisateur sur Samsung a mis en évidence un logo trop serré, perçu comme « baveux ». Correction minimale : `letter-spacing:-.075em` → `0` et suppression de l’ombre de texte, sans remplacer Fraunces ni modifier sa graisse ou les autres éléments. Test de contrat associé dans `test/watfir-portail.test.cjs`. La vérification d’antialiasing sur le navigateur réel reste nécessaire.
 
 **CSS scindé et strictement isolé** : `public/portail-watfir.css` contient exclusivement des règles sous `#portail-auth .wf-portail-bienvenue` (et un parent `:has()` pour la toile de fond). Il est importé après `style.css` et `accueil-watfir.css`. **Ne pas modifier globalement** `.pa-bouton`, `.pa-reconnexion`, `#pa-form` ou les composants des exercices.
 
