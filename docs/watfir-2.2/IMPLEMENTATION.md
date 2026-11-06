@@ -340,3 +340,20 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Tests ciblés :** `test/watfir-portail.test.cjs`, neuf scénarios : absence de slogan/gimmicks, bonne présence du logotype et des bandes, trois routes, absence cloud, formulaires inchangés, entrée invité avec notice déjà lue, état 3D 160 ms, double clic/mouvement réduit et sélecteurs CSS isolés. **9/9 réussis dans le harnais JavaScript exécutant le code actuel GitHub.** Impossible d'exécuter la commande réelle `node --test` depuis la session de livraison : le container de test ne peut pas résoudre `github.com`. Recette visuelle Android/PC et inscription Firebase réelle **non effectuées** ici.
 
 **Documentation de référence :** [PORTAIL-BIENVENUE.md](PORTAIL-BIENVENUE.md), [CHARTE-DA.md](CHARTE-DA.md) § 6.8 et [README.md](README.md). **Rollback :** restaurer la branche `welcome` de `portailContenu`, retirer la feuille CSS dédiée et l'écouteur `portailInstallerAppuiBienvenue`, puis actualiser le cache. Les formulaires et la progression n'ont pas à être touchés.
+
+
+## 20. Harmonisation finale des CTA crème et de l'inscription (06/11/2026)
+
+**Demande :** conserver les **rubans rouge/cyan du grand visuel de marque** (portail et hero « Moien! »), retirer uniquement les bandes d'angle des boutons « Commencer » pour éviter deux variantes incohérentes, puis donner un véritable relief 3D à « Créer un compte » sur la première page. Les rubans SVG, le logo, les couleurs des jeux et les actions ne changent pas.
+
+**Code livré :**
+- `public/portail-watfir.css` : `Commencer` passe d'un `linear-gradient` crème/rouge/cyan à **`background:var(--wf-p-cta-face)`**, crème uni. `Créer un compte` prend une face sombre `#11100e`, bord crème `#c3b08b`, tranche beige foncé `#796646` de **6 px** et enfoncement de **5 px**. Les deux grands CTA partagent **70 px de hauteur minimale et 17 px de rayon**, réduits uniformément à 64 px sous 360 px. Leurs hovers n'éclaircissent que la face ; le lien « Se connecter » reste secondaire.
+- `public/portail.js` : le même écouteur `click` capturant cible aussi `.wf-portail-creer`. Le maintien de l'enfoncement pendant **160 ms** précède le `button.click()` d'origine pour les actions `guest` et `signup`. Clic programmatique, `disabled` et mouvement réduit : aucun délai. Aucune modification des formulaires.
+- `public/accueil-watfir.css` : le CTA `Commencer/Continuer` devient **crème uni** avec `background:var(--wf-cta-cream)` ; relief beige 7 px, appui 6 px, chevron et géométrie inchangés. **Les rubans SVG du hero restent intacts**, et Étudier/Jouer ne changent pas.
+- `public/index.html` : cache-busters `accueil-watfir.css?v=watfir-v4-20`, `portail-watfir.css?v=wf-poster-3`, `portail.js?v=wf-poster-2`.
+
+**Règle de DA :** bandes rouge/cyan = **illustration et identité** (hero, marque), **jamais coins de CTA crème**. La hiérarchie passe par le contraste des faces, les tranches 3D et les libellés, pas par la répétition de rubans décoratifs sur chaque bouton. La différence de hauteur du CTA de l'accueil est fonctionnelle : il contient les informations de leçon, à l'inverse de l'entrée du portail.
+
+**Tests :** les trois fichiers `test/watfir-portail.test.cjs`, `test/watfir-home.test.cjs` et `test/watfir-hover.test.cjs` ont été exécutés dans le harnais JS alimenté par les sources GitHub : **44 tests de contrat réussis**. Ils couvrent présence des rubans, absence de coin bicolore sur les CTA, géométrie et pression des deux boutons du portail, routes préservées, et non-régression des six boutons de l'accueil. **Non validé ici :** captures Chromium et tests tactiles Samsung du site déployé. Ne pas considérer ces tests statiques comme une recette visuelle complète.
+
+**Rollback ciblé :** restaurer les deux règles de background des CTA crème et l'ancienne règle sombre plate de `portail-watfir.css`, revenir au sélecteur de clic limité au seul `wf-portail-demarrer` dans `portail.js`, puis actualiser les versions de cache `index.html`. Les rubans, le logo, le moteur pédagogique et la progression n'ont jamais été modifiés.
