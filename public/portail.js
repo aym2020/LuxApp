@@ -234,9 +234,9 @@ function portailContenu(mode) {
         '</svg>'+
         '<p class="wf-portail-langue" lang="lb">Lëtzebuergesch</p>'+
       '</div>'+
-      (!cloud?'<p class="pa-indispo wf-portail-indispo" role="status">Connexion momentanément indisponible. Tu peux essayer sans compte.</p>':'')+
+      (!cloud?'<p class="pa-indispo wf-portail-indispo" role="status">Connexion momentanément indisponible. Tu peux commencer sans compte.</p>':'')+
       '<div class="pa-actions wf-portail-actions pa-anim" style="--d:1">'+
-        portailBouton('<strong>Essayer sans compte</strong>','guest','or wf-portail-demarrer')+
+        portailBouton('<strong>C’est parti</strong>','guest','or wf-portail-demarrer')+
         (cloud?portailBouton('Créer un compte','signup','sombre wf-portail-creer')+
           portailBouton('J’ai déjà un compte','signin','texte wf-portail-connexion'):'')+
       '</div></div></main>';
@@ -268,7 +268,7 @@ function portailContenu(mode) {
       (importable?'<label class="pa-import"><input type="checkbox" id="pa-import"> Ajouter mes progrès de cet appareil à mon compte</label>':'')+
       '<button class="pa-bouton or" id="pa-envoyer" type="submit">'+(creation?'Créer mon compte':'Me connecter')+'</button>'+
       '<p id="pa-message" class="pa-message" role="status" aria-live="polite"></p></form>':
-      '<p class="pa-indispo" role="status">Connexion momentanément indisponible. Tu peux essayer sans compte.</p>')+
+      '<p class="pa-indispo" role="status">Connexion momentanément indisponible. Tu peux commencer sans compte.</p>')+
     '<div class="pa-actions pa-autres">'+
       '<p class="pa-switch">'+(creation?'Déjà un compte ?':'Pas encore de compte ?')+
       ' <button type="button" onclick="portailAction(&quot;'+

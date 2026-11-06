@@ -81,7 +81,7 @@ test('Affiche de bienvenue : un grand Watfir, deux rubans, aucune promesse ni gi
 test('CTA de bienvenue : trois destinations métier et mêmes fonctions 2.1',()=>{
   const {ctx}=setup();
   const out=ctx.portailContenu('welcome');
-  assert.match(out,/>Essayer sans compte<\/strong>/);
+  assert.match(out,/>C’est parti<\/strong>/);
   assert.match(out,/>J’ai déjà un compte</);
   assert.match(out,/wf-portail-demarrer/);
   assert.match(out,/wf-portail-creer/);
@@ -259,6 +259,6 @@ test('Wordmark mobile : espacement naturel, pas d’ombre qui épaissit les lett
 
 test('Charge CSS et JS du portail 2.2 à versions de cache explicites',()=>{
   assert.match(html,/portail-watfir\.css\?v=wf-poster-5/);
-  assert.match(html,/portail\.js\?v=wf-poster-3/);
+  assert.match(html,/portail\.js\?v=wf-poster-4/);
   assert.ok(html.indexOf('style.css')<html.indexOf('portail-watfir.css'));
 });
