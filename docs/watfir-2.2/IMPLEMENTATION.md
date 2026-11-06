@@ -387,3 +387,19 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Contrôles disponibles dans cette intervention :** compilation syntaxique des deux fichiers de test modifiés et assertions statiques sur le CSS récupéré depuis GitHub, OK. **Non exécutés dans un vrai runtime Node / navigateur :** `node --test test/watfir-home.test.cjs test/watfir-hover.test.cjs test/watfir-portail.test.cjs`, recette tactile Samsung 320/360/412 px, et contrôle PC. Ces validations restent à faire sur la branche déployée ; ne pas les présenter comme réussies.
 
 **Retour arrière :** restaurer uniquement les deux rayons de `public/accueil-watfir.css`, la version CSS du lien dans `index.html` et les deux contrats de test adaptés. Pas de migration de données.
+
+
+## 23. Hero Mission V6 et harmonisation des polices (06/11/2026)
+
+**Objectif :** tester une nouvelle hiérarchie sur l'accueil : remplacer « Moien! » et la commande audio par **MISSION + niveau réel**, conserver les rubans de marque et rapprocher la progression du hero. Réduire à **deux familles** les polices des deux premiers écrans de Watfir.
+
+**Code actif sur la branche `2.2` :**
+- `public/accueil-watfir.js` : `accrocheHtml()` rend « MISSION » + `escHtml(niveauActif)` (niveau dynamique et sécurisé), les deux **mêmes chemins SVG** rouge/cyan, mais ni « Moien! », ni `jouerAudio()`, ni phrase générique. `chiffresHtml()` continue d'appeler `bilanV21()`, dont seul le titre passe de « Aujourd’hui » à « Ton objectif actuel ». Pourcentage, série, progressbar ARIA, CTA de reprise, niveau sélectionné et sauvegardes ne sont pas recalculés.
+- `public/accueil-watfir.css` : Fraunces réservée à Watfir ; « Lëtzebuergesch » du header et le nouveau titre Mission en Inter ; Playfair Display et Roboto Condensed retirées des règles de l'accueil. MISSION en Inter 800 crème avec niveau Inter 800 rouge, `clamp(30px, calc(90 * var(--k)), 62px)` et retour à la ligne. Surtitres espacés à `.18em`. La grille de cinq blocs reste intacte ; seul l'intervalle hero → objectif est resserré, sans hauteur fixe. Rayons 17 px/14 px, reliefs, états pressés et zones tactiles inchangés.
+- `public/hover-interactions.css` : retrait des hovers obsolètes de la commande audio. Tous les hovers CTA, niveaux, Étudier/Jouer, connexion et réglages sont conservés.
+- `public/index.html` : versions CSS/JS actualisées, `accueil-watfir.js?v=watfir-v4-13`, `accueil-watfir.css?v=watfir-v4-23` et `hover-interactions.css?v=watfir-hover-10` ; seul Fraunces est préchargé pour le couple portail/accueil. Les fichiers audio et fontes historiques ne sont pas supprimés du dépôt ; aucun autre écran ne doit régresser.
+- `test/watfir-home.test.cjs`, `test/watfir-hover.test.cjs` : contrat révisé (Mission A1.1/A1.2/A2.2/B1.1, texte échappé, rubans présents, audio absent sur l'accueil, polices et caches). Les tests 3D des boutons demeurent.
+
+**Vérifications et limites :** parsing JS et vérification structurelle CSS réussis avant push ; contrôle de cohérence avec le code GitHub courant. La machine locale ne peut pas résoudre `github.com` pour cloner le dépôt complet ; **l'exécution réelle des tests Node, du navigateur Chromium et la recette tactile Samsung ne sont pas attestées par ces seuls contrôles**. L'essai doit être inspecté sur le rendu déployé (320/360/412/430 px et PC ; invité/connecté ; niveaux A1.1/A1.2 ; faible progression/100 % ; zoom texte et Retour Android). Cette modification est une **version d'essai visuel**, pas une validation de recette Samsung.
+
+**Rollback ciblé :** restaurer les précédentes révisions des trois fichiers de présentation, les liens versionnés d'`index.html`, puis les tests et la charte. Aucune migration des données, des JSON ou des routes.
