@@ -120,11 +120,14 @@ test('Formulaires existants préservés : email, mot de passe, reset, création'
 
 test('Entrée invité : même navigation et aucune modification des clés de progression',()=>{
   const {ctx,calls,storage}=setup();
+  // SPEC 76 : la fenêtre d'information a déjà été vue sur cet appareil.
+  // La route guest doit fonctionner sans remonter cette fenêtre.
+  storage.set('luxInfoInviteVueV2','oui');
   ctx.portailOuvrir('welcome');
   ctx.portailAction('guest');
   assert.equal(calls.dashboard,1);
-  assert.equal(calls.info,1);
-  assert.ok(calls.audio>=1,'le portail peut arrêter un audio existant à la fermeture');
+  assert.ok(calls.audio>=1,'la fermeture arrête un éventuel son précédent');
+  assert.match(source,/afficherInfoInvite\(\);/,'l'information invité est toujours prévue');
   assert.equal(storage.get('luxPortailCompteConnuV1'),undefined);
   assert.equal(storage.has('luxPortailInviteV1'),false);
 });
