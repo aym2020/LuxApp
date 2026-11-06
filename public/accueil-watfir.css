@@ -177,28 +177,58 @@ body:has(#view-dashboard.active) { background:#080808; }
 }
 #view-dashboard .wf-accueil .ac-menu .ic { width:100%; height:100%; stroke-width:1.9; }
 
-/* 360–389 px (Samsung) : le texte invité agrandi prend jusqu'à 4 px ; la roue se rapproche
-   d'autant pour que la ligne unique tienne. Sa zone de toucher reste ≥ 44 px. */
-@media (max-width:389px) {
-  #view-dashboard .wf-accueil .ac-menu { margin-left:calc(21 * var(--k)); --cible-g:calc(-16 * var(--k)); }
-}
-/* Repli < 360 px (petit écran, ou police Android agrandie : Chrome réduit alors la largeur
-   de la page). Marque et compte en haut, niveaux sur leur propre rangée dessous :
-   toutes les zones de toucher atteignent 48 px. Les deux rangées ne se recouvrent pas
-   horizontalement : leurs zones restent séparées. */
-@media (max-width:359px) {
-  #view-dashboard .wf-accueil .ac-ent.wf-entete { row-gap:24px; }
-  #view-dashboard .wf-accueil .wf-entete-compte { order:1; }
-  #view-dashboard .wf-accueil .puces-niveau { order:2; flex-basis:100%; --ecart:16px; margin:0; }
-  #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(-40 * var(--k)); } /* jusqu'au bord de l'écran */
-  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:-20px; }
-  #view-dashboard .wf-accueil .ac-v21-guest { --cible-d:0px; }
-  #view-dashboard .wf-accueil .ac-menu { margin-left:16px; --cible-g:-16px; }
-  /* Zones des niveaux : 12 px au-dessus de la pastille, le reste dessous. Avec 24 px entre
-     les rangées, elles ne touchent jamais celles de Connexion et de la roue, même quand une
-     police très grande rapproche les deux rangées horizontalement. */
+/* Samsung / mobile : éviter le flex-wrap implicite. Après le passage du sous-titre
+   à Inter, la marque est plus large et le bloc compte tombait seul sur une rangée.
+   Grille déterministe : marque et compte en première rangée, niveaux centrés dessous.
+   Les zones de toucher (48 px via ::after) restent séparées de 12 px au minimum. */
+@media (max-width:540px) {
+  #view-dashboard .wf-accueil .ac-ent.wf-entete {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"marque compte" "niveaux niveaux";
+    align-items:center;
+    column-gap:12px;
+    row-gap:24px;
+  }
+  #view-dashboard .wf-accueil .ac-marque {
+    grid-area:marque; min-width:0;
+  }
+  #view-dashboard .wf-accueil .wf-entete-compte {
+    grid-area:compte; justify-self:end; margin:0; align-items:center;
+  }
+  #view-dashboard .wf-accueil .puces-niveau {
+    grid-area:niveaux; justify-self:center; order:initial; flex-basis:auto;
+    --ecart:clamp(12px,calc(14 * var(--k)),16px);
+    margin:0;
+  }
+  /* Ne pas hériter des marges de la ligne unique : elles décalent le compte. */
+  #view-dashboard .wf-accueil .wf-entete-sep {
+    margin:0; height:clamp(24px,calc(71 * var(--k)),34px);
+  }
+  #view-dashboard .wf-accueil .ac-v21-guest {
+    margin:0 0 0 clamp(10px,calc(29 * var(--k)),16px);
+    --cible-d:0px;
+  }
+  #view-dashboard .wf-accueil .ac-menu {
+    margin:0 0 0 clamp(12px,calc(24 * var(--k)),18px);
+    --cible-g:calc(-16 * var(--k));
+  }
+  /* Les niveaux sont maintenant seuls sur leur rangée : pas de cible
+     débordant à droite jusqu'au compte ni au-dessus sur la première rangée. */
+  #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:-16px; }
+  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:-16px; }
   #view-dashboard .wf-accueil .puce-niv::after { top:-12px; transform:none; }
 }
+/* Zoom Android très élevé : aucune compétition pour la même colonne.
+   Le scroll naturel de l'accueil préserve toutes les actions. */
+@media (max-width:260px) {
+  #view-dashboard .wf-accueil .ac-ent.wf-entete {
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"marque" "compte" "niveaux";
+    row-gap:20px;
+  }
+}
+
 /* Connecté : la roue est seule dans son bloc, sa zone s'étend dans l'espace libre à sa gauche. */
 #view-dashboard .wf-accueil .wf-entete-compte > .ac-menu:first-child { --cible-g:calc(-40 * var(--k)); }
 
