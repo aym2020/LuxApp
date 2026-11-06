@@ -446,3 +446,21 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Contrôles :** simulation représentative du header en Chromium aux largeurs 280, 300, 320, 340, 359, 360, 375, 384, 393, 412, 430 et 540 px, sans débordement horizontal, avec séparation visible des groupes. Le test concerne le composant de header isolé et **ne constitue pas une recette du site complet ni une validation physique sur Samsung**. Les tests Node complets du dépôt restent à exécuter dans un environnement de travail disposant du dépôt complet.
 
 **Retour arrière :** restaurer uniquement le bloc CSS responsive du header, son cache-buster et les assertions associées. Aucune migration de données.
+
+
+## 27. Ancrage vertical du header Samsung après Mission V6 (06/11/2026)
+
+**Défaut réel sur capture utilisateur :** après le correctif horizontal §26, le header « Watfir / niveaux / compte » était correctement réparti sur une ligne, mais placé beaucoup trop bas. Une grande zone noire inutilisée apparaissait entre la barre système Android et le premier élément. La précédente réduction de hauteur du hero rendait la page moins haute ; or la grille principale utilisait toujours `align-content:safe center` et recentrait **la composition entière** dans la hauteur du viewport. Le problème ne venait pas du header ni de ses trois colonnes, mais de l'alignement vertical du dashboard.
+
+**Correction CSS ciblée sur mobile (≤ 540 px) :**
+- `#view-dashboard .accueil.wf-accueil` passe de `align-content:safe center` à **`align-content:safe start` uniquement dans le media query mobile**. Le header est donc ancré sous la barre système, quelle que soit la hauteur du téléphone.
+- Marge supérieure stable : `padding-top:clamp(18px,calc(52 * var(--k)),26px)`. La position n'est plus fonction de la place vide sous les boutons.
+- Les **cinq intervalles** de la grille verticale restent flexibles, avec des poids `.55fr / .45fr / .7fr / .7fr / 1.8fr` et les minimums proportionnels antérieurs. L'espace supplémentaire se répartit dans les respirations **et principalement en bas**, plutôt qu'au-dessus du header. Les cinq sections `max-content` ne sont jamais compressées, et les petits écrans peuvent toujours défiler.
+- **Aucun changement** à la grille horizontale §26 (`"marque niveaux compte"`), aux espacements du compte, à la politique de niveaux sous 360 px, aux boutons, à Mission V6, à la progression et à la navigation. Desktop au-delà de 540 px inchangé.
+- CSS versionné dans `public/index.html` en **`accueil-watfir.css?v=watfir-v4-27`** et contrats de cache/positionnement actualisés dans les tests Watfir.
+
+**Simulation de disposition :** un gabarit local représentatif de l'accueil a été rendu dans Chromium headless avec ses cinq sections et ses intervalles proportionnels. Sur un viewport **393 × 850 px CSS**, la position du header passe d'environ **111 px sous le haut de la zone web** (ancien centrage) à **22 px**, alors que les boutons Étudier/Jouer restent proches de leur emplacement précédent (début vers 591 px contre 608 px). Sur **360 × 740**, le header passe d'environ **71 px** à **22 px**. Un écran court **393 × 680** conserve le défilement et les hauteurs minimales des sections. Ces mesures sont des **estimations sur une fixture**, pas des mesures du site complet sur un Samsung physique.
+
+**Tests :** validations de syntaxe JS et structure CSS, assertions de source sur le nouveau `align-content`, le padding et les poids de grille, caches alignés. **La suite Node complète et la capture réelle du site sur Samsung ne sont pas encore attestées**. À vérifier en priorité à 360/393/412 px, sur écran court/haut, en mode invité/connecté, zoom texte, orientation et avec/sans barres du navigateur.
+
+**Retour arrière :** retirer uniquement les déclarations mobiles d'ancrage et restituer les anciennes rangées `minmax` ; remettre cache et tests correspondants. Aucun changement des données utilisateur.
