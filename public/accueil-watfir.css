@@ -10,13 +10,10 @@
    Les règles 2.1 (accueil-v21.css, style.css « ac-nouveau-invite ») sont neutralisées
    explicitement : min-height, gap, hauteurs du hero. */
 
-/* Polices de la maquette, auto-hébergées (licence SIL OFL, voir public/fonts). */
-@font-face { font-family:'Watfir Titre'; font-style:italic; font-weight:800; font-display:swap;
-  src:url('fonts/playfair-display-latin-800-italic.woff2') format('woff2'); }
+/* Deux familles : Fraunces pour Watfir, Inter pour l'interface.
+   Fraunces est auto-hébergée (SIL OFL) ; plus de police de titre concurrente. */
 @font-face { font-family:'Watfir Logo'; font-style:italic; font-weight:900; font-display:swap;
   src:url('fonts/fraunces-latin-900-italic.woff2') format('woff2'); }
-@font-face { font-family:'Watfir Etroite'; font-style:normal; font-weight:400; font-display:swap;
-  src:url('fonts/roboto-condensed-latin-400-normal.woff2') format('woff2'); }
 
 /* --wf-red reste le rouge des ornements (bandes, « ! », barre). Sous un texte crème,
    on utilise --wf-red-texte, plus profond : 4,75:1 au lieu de 3,44:1 (WCAG AA). */
@@ -41,7 +38,7 @@ body:has(#view-dashboard.active) { background:#080808; }
     max-content                                                  /* 1  header */
     minmax(calc(52 * var(--k)), calc(160 * var(--k)))            /* 2  → hero */
     max-content                                                  /* 3  hero */
-    minmax(calc(36 * var(--k)), calc(170 * var(--k)))            /* 4  → progression (sous les bandes) */
+    minmax(calc(22 * var(--k)), calc(85 * var(--k)))             /* 4  → objectif (rapproché de la mission) */
     max-content                                                  /* 5  progression */
     minmax(calc(32 * var(--k)), calc(120 * var(--k)))            /* 6  → CTA */
     max-content                                                  /* 7  CTA */
@@ -81,8 +78,8 @@ body:has(#view-dashboard.active) { background:#080808; }
 }
 /* Sous-titre en crème atténué et légèrement espacé : il se lit comme une légende sous « Watfir ». */
 #view-dashboard .wf-accueil .ac-marque-sous {
-  display:block; margin:calc(9 * var(--k)) 0 0 calc(2 * var(--k)); color:var(--wf-muted); letter-spacing:.02em;
-  font:400 max(9px, calc(25 * var(--k)))/1.05 'Watfir Etroite', 'Arial Narrow', sans-serif;
+  display:block; margin:calc(9 * var(--k)) 0 0 calc(2 * var(--k)); color:var(--wf-muted); letter-spacing:0;
+  font:400 max(9px, calc(24 * var(--k)))/1.05 var(--wf-sans);
 }
 
 /* Zones de toucher : chaque bouton garde sa taille visuelle (maquette) et reçoit un ::after
@@ -205,57 +202,40 @@ body:has(#view-dashboard.active) { background:#080808; }
 /* Connecté : la roue est seule dans son bloc, sa zone s'étend dans l'espace libre à sa gauche. */
 #view-dashboard .wf-accueil .wf-entete-compte > .ac-menu:first-child { --cible-g:calc(-40 * var(--k)); }
 
-/* ── Hero : « Moien! », bouton Écouter, rubans signature ───────────────── */
-/* V5 (05/11/2026) : plus de dessin du monument ici, il est déjà dans le logo du header.
-   Les rubans débordent jusqu'aux bords de l'écran (marges négatives = padding de la page). */
+/* ── Hero : Mission / niveau courant + rubans ────────────────────────── */
 #view-dashboard .wf-accueil .ac-hero {
   display:block; position:relative; flex:0 0 auto;
   height:auto; min-height:0; max-height:none; padding:0; overflow:visible;
   margin:0; border:0; border-radius:0; isolation:isolate;
 }
-#view-dashboard .wf-accueil .ac-hero-texte { position:relative; z-index:1; max-width:none; padding:0 0 0 calc(10 * var(--k)); }
+#view-dashboard .wf-accueil .ac-hero-texte {
+  position:relative; z-index:1; max-width:none; padding:0 0 0 calc(10 * var(--k));
+}
 #view-dashboard .wf-accueil .ac-hero-surtitre {
-  display:block; margin:0; color:var(--wf-cream); text-transform:uppercase; white-space:normal; /* passe à la ligne si la police grandit */
-  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em; /* charte : jamais sous 12 px */
+  display:block; margin:0; color:var(--wf-cream); text-transform:uppercase; white-space:normal;
+  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.18em;
 }
-#view-dashboard .wf-accueil .wf-hero-ligne { display:flex; align-items:center; gap:calc(32 * var(--k)); margin-top:calc(14 * var(--k)); }
-#view-dashboard .wf-accueil .ac-hero h2 {
-  margin:0 0 0 calc(2 * var(--k)); color:var(--wf-cream); letter-spacing:0;
-  font:italic 800 calc(192 * var(--k))/.9 'Watfir Titre', Georgia, serif;
+#view-dashboard .wf-accueil .wf-mission-titre {
+  display:flex; align-items:baseline; flex-wrap:wrap; gap:0 .22em;
+  margin:calc(18 * var(--k)) 0 0 calc(2 * var(--k));
+  color:var(--wf-cream);
+  font:800 clamp(30px, calc(90 * var(--k)), 62px)/1.05 var(--wf-sans);
+  letter-spacing:-.045em; text-transform:uppercase; overflow-wrap:anywhere;
 }
-#view-dashboard .wf-accueil .ac-hero-exclamation { color:var(--wf-red); margin-left:calc(-5 * var(--k)); }
-/* Bouton Écouter : rond cyan en relief (même logique 3D que les autres boutons), 44 px minimum. */
-#view-dashboard .wf-accueil .wf-hero-ecouter {
-  flex:none; display:grid; place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
-  width:max(44px, calc(123 * var(--k))); height:max(44px, calc(123 * var(--k)));
-  margin-top:calc(10 * var(--k));
-  background:var(--wf-cyan); color:var(--wf-bg);
-  box-shadow:0 5px 0 #087496; transform:translateY(0);
-  transition:transform 115ms cubic-bezier(.22,1,.36,1), box-shadow 115ms cubic-bezier(.22,1,.36,1);
+#view-dashboard .wf-accueil .wf-mission-niveau {
+  color:var(--wf-red); letter-spacing:-.035em;
 }
-#view-dashboard .wf-accueil .wf-hero-ecouter svg { width:45%; height:45%; margin-left:6%; fill:currentColor; }
-#view-dashboard .wf-accueil .wf-hero-ecouter:active { transform:translateY(4px); box-shadow:0 1px 0 #087496; }
-#view-dashboard .wf-accueil .wf-hero-ecouter.joue { background:var(--wf-cream); }
-#view-dashboard .wf-accueil .wf-hero-ecouter:focus-visible { outline:3px solid var(--wf-cream); outline-offset:3px; }
 #view-dashboard .wf-accueil .wf-hero-rubans {
   display:block; pointer-events:none;
   width:calc(941 * var(--k)); max-width:none; height:calc(98 * var(--k));
-  margin:calc(18 * var(--k)) calc(-40 * var(--k)) 0;
-}
-#view-dashboard .wf-accueil .ac-hero p {
-  max-width:calc(640 * var(--k)); margin:calc(22 * var(--k)) 0 0 calc(10 * var(--k)); color:var(--wf-muted);
-  font:400 max(12px, calc(31 * var(--k)))/1.35 var(--wf-sans); text-wrap:pretty;
-}
-#view-dashboard .wf-accueil .ac-hero p b { color:var(--wf-cream); font-weight:700; }
-@media (prefers-reduced-motion:reduce) {
-  #view-dashboard .wf-accueil .wf-hero-ecouter { transition:none; }
+  margin:calc(26 * var(--k)) calc(-40 * var(--k)) 0;
 }
 
 /* ── Progression (vraies valeurs) ─────────────────────────────────────── */
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan { margin:0; padding:0; color:var(--wf-cream); flex-shrink:0; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-titre {
   margin:0 0 0 calc(11 * var(--k)); color:var(--wf-cream); white-space:nowrap;
-  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.235em;
+  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.18em;
 }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-ligne {
   display:grid; grid-template-columns:calc(454 * var(--k)) minmax(0,1fr); gap:0; margin-top:calc(12 * var(--k)); align-items:start;
@@ -302,8 +282,7 @@ body:has(#view-dashboard.active) { background:#080808; }
 
 /* ── CTA crème (maquette y 860–1101) ──────────────────────────────────── */
 /* Bouton crème uni, même rayon de 17px que les deux grands CTA du portail.
-   Les rubans identitaires restent
-   dans le hero « Moien! », pas dans le coin de l'action principale. */
+   Les rubans identitaires restent dans le hero Mission, jamais sur le CTA. */
 #view-dashboard .wf-accueil #today { margin:0; }
 #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
   position:relative; overflow:hidden; display:flex; align-items:center; gap:0;
