@@ -2,6 +2,8 @@
 
 **Branche :** `2.2` (créée depuis `2.1`, le 2 novembre 2026).  
 **Statut :** **accueil Watfir V2.2 terminé et gelé** (02/11/2026, [IMPLEMENTATION § 12](IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026)) : plus aucune modification esthétique de l'accueil sans défaut concret identifié. Le portail de bienvenue a été harmonisé le 06/11/2026 ; les formulaires et les autres écrans de LuxApp restent à traiter séparément.  
+**Référence active — Mission V6 (06/11/2026) :** l'accueil affiche « MISSION » et le niveau réellement actif, puis « Ton objectif actuel » alimenté par le moteur 2.1. « Moien! », son bouton Écouter et le paragraphe de bienvenue ont été retirés **de l'accueil seulement**. Les deux rubans restent identiques. Deux familles sur les deux écrans : **Fraunces pour Watfir, Inter pour tous les autres textes**. Les descriptions V4/V5 ci-dessous sont historiques. Voir [charte active](CHARTE-DA.md) et [IMPLEMENTATION §23](IMPLEMENTATION.md#23-hero-mission-v6-et-harmonisation-des-polices-06112026).
+
 **Périmètre cumulé :** accueil Watfir via `public/accueil-watfir.js` / `.css`, portail de bienvenue via `public/portail.js` (mode `welcome`) et `public/portail-watfir.css`, imports dans `index.html`, tests et documentation. Moteurs, JSON, routes de compte, sauvegardes, audio et mini-jeux inchangés.
 
 ## Commencer ici
@@ -42,7 +44,7 @@ La 2.2 hérite des contraintes fonctionnelles de la 2.1 : lire [PLAYBOOK](../../
 
 ## Décisions et incertitudes
 
-- **Validé comme intention de design** : noir + beige crème + rouge + cyan ; hero géométrique compact ; « Moien! » expressif ; CTA crème unique ; raccourcis regroupés ; sans soleil et sans détails superflus.
+- **Direction actuelle à tester** : noir + crème + rouge + cyan ; hero « MISSION » dynamique ; CTA crème et deux accès Étudier/Jouer ; sans son ni mot luxembourgeois doublon sur l'accueil. Les paragraphes V4/V5 ci-dessous décrivent les essais antérieurs.
 - **V4 conceptuelle** : deux niveaux de la famille courante visibles et une flèche pour ouvrir tous les niveaux disponibles. La popup doit devenir un **bottom sheet accessible** dans une version fonctionnelle.
 - **Non validé** : fidélité du mockup généré au rendu HTML réel (capture réelle non encore prise), exactitude chromatique de tous les pixels, dessins finaux des glyphes, visuels des écrans hors accueil, tests Android TalkBack / grandes polices / très petits écrans.
 - **Écart volontaire avec 2.1** : l'or `#f5cf4d` du CTA 2.1 est remplacé **dans le concept 2.2** par le crème, tandis que le rouge/cyan servent d'ornement de marque. Les couleurs sémantiques de succès, erreur, information et révision **ne doivent pas être rebaptisées par des couleurs décoratives**.
