@@ -14,7 +14,7 @@ const watfir=read('public/accueil-watfir.css');
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
   const link='hover-interactions.css?v=watfir-hover-9';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-19'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-20'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -44,12 +44,13 @@ test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=
   assert.doesNotMatch(css,/@property --wf-cta-outline/,'plus de contour rouge');
 });
 
-test('CTA 3D : relief au repos, chevron éloigné du motif et bandes intactes',()=>{
+test('CTA 3D : crème uni, relief au repos et chevron conservé',()=>{
   const block=watfir.split('/* ── CTA crème')[1].split('/* ── Deux actions secondaires')[0];
   assert.match(block,/0 7px 0 #aa8954/,'tranche visible au repos');
   assert.match(block,/inset 0 2px 0 rgba\(255,255,255,\.78\)/,'lumière de surface');
-  assert.match(block,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'bande rouge inchangée');
-  assert.match(block,/var\(--wf-cyan\) 0/,'bande cyan inchangée');
+  assert.match(block,/background:var\(--wf-cta-cream\)/,'le bouton reste crème sans motif');
+  assert.doesNotMatch(block,/linear-gradient|calc\(100% - 31\.8|var\(--wf-cyan\) 0/,'pas de bande de coin');
+  assert.match(watfir,/\.wf-hero-rubans/,'rubans du hero inchangés');
   assert.match(block,/\.cs-rond \{[^}]*margin:calc\(8 \* var\(--k\)\) calc\(24 \* var\(--k\)\) 0 calc\(16 \* var\(--k\)\)/,'chevron recentré à gauche du coin');
   assert.match(block,/\.carte-suite\.ac-v21-cta:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)/,'retour tactile au maintien');
   assert.match(block,/transform:translateY\(6px\)/,'enfoncement physique');
@@ -65,10 +66,10 @@ test('CTA hover : crème plus clair uniquement, sans soulèvement ni changement 
   assert.match(section,/--wf-cta-cream:var\(--ux-hover-bright\)/,'face crème éclaircie');
   assert.match(css,/--ux-hover-bright:\s*#fff4da/,'teinte du hover');
   assert.match(watfir,/--wf-cta-cream:#fbebc5/,'crème initial conservé');
-  assert.match(watfir,/var\(--wf-cta-cream\) calc\(100% - 51\.6 \* var\(--k\)\)/,
-    'seule la première bande du dégradé reçoit la couleur variable');
+  assert.match(watfir,/background:var\(--wf-cta-cream\)/,
+    'la face crème unie reçoit directement la couleur au hover');
   assert.doesNotMatch(section,/transform:|box-shadow:|filter:|wf-cta-outline|::after|brightness\(/,
-    'ni déplacement, ni variation d\'ombre, ni filtre sur les bandes ou le texte');
+    'ni déplacement, ni variation d\'ombre, ni filtre sur le texte');
   assert.match(watfir,/@media \(prefers-reduced-motion:reduce\) \{/);
   assert.doesNotMatch(css,/\.carte-suite\.ac-v21-cta:active[^{}]*\{[^}]*color:var\(--wf-red\)/,
     'chevron inchangé au press');
