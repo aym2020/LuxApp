@@ -1,5 +1,8 @@
 # Accueil Watfir — SPEC visuelle V4
 
+> **Archive de la maquette V4 :** la branche `2.2` utilise désormais le hero **« MISSION » + niveau courant**, sans « Moien! » ni audio, avec Fraunces (Watfir) + Inter (interface). Ce document conserve la référence initiale pour l'historique ; consulter la [charte actuelle](CHARTE-DA.md) et [IMPLEMENTATION §23](IMPLEMENTATION.md#23-hero-mission-v6-et-harmonisation-des-polices-06112026) pour la version d'essai active.
+
+
 **Référence visuelle** : mockup V4 de la conversation du 2 novembre 2026. **L'accueil V4 est désormais intégré sur `2.2` ; le mockup n'est pas une capture d'exécution.** La V3 est la base formelle ; V4 ajoute uniquement un moyen de changer de famille de niveaux. Le reste doit rester stable.
 
 ## 1. Inventaire de l'écran (haut → bas)
