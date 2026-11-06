@@ -182,25 +182,26 @@ body:has(#view-dashboard.active) { background:#080808; }
    avant « Mode invité / Connexion / réglages ». Sur les petits écrans, le sous-
    titre du logo est redondant avec « Le luxembourgeois, pas à pas » dans le hero. */
 @media (max-width:540px) {
-  /* Le centrage global remontait/abaissait TOUT l'accueil selon la hauteur
-     disponible : après suppression de Moien, le header se retrouvait loin du
-     haut sur les Samsung hauts. Ancrer le haut ; répartir le surplus dans les
-     intervalles flexibles et surtout sous les actions, sans trou sous le hero.
-     Les blocs max-content restent non compressibles et la page peut défiler. */
+  /* Rythme vertical unique : le même espace entre les 5 grandes sections.
+     Les anciens poids .55/.45/.7/.7fr produisaient des intervalles aléatoires
+     suivant la hauteur du téléphone. svh reste stable quand les barres Android
+     apparaissent ou disparaissent, contrairement à dvh. Seule la dernière
+     rangée absorbe le surplus de hauteur. En petit écran, le flux défile. */
   #view-dashboard .accueil.wf-accueil {
+    --wf-section-space:clamp(28px,5.5svh,48px);
     align-content:safe start;
     padding-top:clamp(18px,calc(52 * var(--k)),26px);
     grid-template-rows:
-      max-content
-      minmax(calc(28 * var(--k)), .55fr)   /* header → mission */
-      max-content
-      minmax(calc(22 * var(--k)), .45fr)   /* mission → progression */
-      max-content
-      minmax(calc(32 * var(--k)), .7fr)    /* progression → Commencer */
-      max-content
-      minmax(calc(30 * var(--k)), .7fr)    /* Commencer → Étudier/Jouer */
-      max-content
-      minmax(calc(24 * var(--k)), 1.8fr);  /* espace bas, non au-dessus du header */
+      max-content                 /* header */
+      var(--wf-section-space)     /* header → mission */
+      max-content                 /* hero Mission */
+      var(--wf-section-space)     /* Mission → objectif */
+      max-content                 /* progression */
+      var(--wf-section-space)     /* objectif → Commencer */
+      max-content                 /* CTA Commencer */
+      var(--wf-section-space)     /* Commencer → Étudier/Jouer */
+      max-content                 /* Étudier / Jouer */
+      minmax(24px,1fr);           /* reliquat en bas, jamais entre blocs */
   }
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
