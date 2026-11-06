@@ -1,8 +1,8 @@
 # Watfir — direction artistique 2.2 (Retro 1984)
 
 **Branche :** `2.2` (créée depuis `2.1`, le 2 novembre 2026).  
-**Statut :** **accueil Watfir V2.2 terminé et gelé** (02/11/2026, [IMPLEMENTATION § 12](IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026)) : plus aucune modification esthétique de l'accueil sans défaut concret identifié. Étape suivante : harmonisation des autres écrans de LuxApp, qui restent inchangés.  
-**Périmètre de cette livraison :** surcouches `public/accueil-watfir.js` / `.css`, deux SVG publics, inclusion dans `public/index.html`, tests, documentation. Aucune modification des moteurs, JSON, routes, sauvegardes, audio ou mini-jeux.
+**Statut :** **accueil Watfir V2.2 terminé et gelé** (02/11/2026, [IMPLEMENTATION § 12](IMPLEMENTATION.md#12-recette-finale-et-gel-de-laccueil-02112026)) : plus aucune modification esthétique de l'accueil sans défaut concret identifié. Le portail de bienvenue a été harmonisé le 06/11/2026 ; les formulaires et les autres écrans de LuxApp restent à traiter séparément.  
+**Périmètre cumulé :** accueil Watfir via `public/accueil-watfir.js` / `.css`, portail de bienvenue via `public/portail.js` (mode `welcome`) et `public/portail-watfir.css`, imports dans `index.html`, tests et documentation. Moteurs, JSON, routes de compte, sauvegardes, audio et mini-jeux inchangés.
 
 ## Commencer ici
 
