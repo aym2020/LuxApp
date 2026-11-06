@@ -1,0 +1,228 @@
+/* Watfir 2.2 — écran de bienvenue « affiche rétro » (06/11/2026).
+   Portée STRICTEMENT limitée à .wf-portail-bienvenue :
+   formulaires de connexion/inscription, cloud et accueil #view-dashboard inchangés.
+   Deux rubans rouge/cyan et logotype typographique ; aucun slogan ni « Moien! ». */
+
+#portail-auth:has(.wf-portail-bienvenue) {
+  background:#080808;
+  color:#f7e9c2;
+}
+
+#portail-auth .pa-page.wf-portail-bienvenue {
+  --wf-p-bg:#080808;
+  --wf-p-cream:#f7e9c2;
+  --wf-p-cta:#fbebc5;
+  --wf-p-ink:#080808;
+  --wf-p-red:#f22421;
+  --wf-p-cyan:#02c5e7;
+  width:min(100%,640px);
+  min-height:100dvh;
+  padding:0 0 max(23px,env(safe-area-inset-bottom));
+  background:var(--wf-p-bg);
+  color:var(--wf-p-cream);
+  text-align:center;
+}
+
+/* Sur mobile, l'affiche occupe l'espace libre ; les commandes restent en bas.
+   Sur écran court ou police agrandie, min-height et overflow-y du portail
+   autorisent le défilement sans superposition des boutons. */
+#portail-auth .wf-portail-bienvenue .wf-portail-centre {
+  flex:1 0 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:stretch;
+  gap:0;
+  min-width:0;
+  width:100%;
+}
+
+#portail-auth .wf-portail-bienvenue .wf-portail-affiche {
+  flex:1 0 auto;
+  min-height:clamp(315px,49dvh,570px);
+  width:100%;
+  padding:clamp(32px,6dvh,72px) 0 clamp(18px,4dvh,48px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-width:0;
+  isolation:isolate;
+}
+#portail-auth .wf-portail-bienvenue .wf-portail-wordmark {
+  position:relative;
+  z-index:1;
+  max-width:100%;
+  margin:0;
+  padding:0 12px;
+  color:var(--wf-p-cream);
+  font:900 italic clamp(72px,21vw,126px)/1.1 'Watfir Logo',Georgia,serif;
+  letter-spacing:-.075em;
+  white-space:nowrap;
+  text-shadow:3px 4px 0 var(--wf-p-bg);
+}
+#portail-auth .wf-portail-bienvenue .wf-portail-rubans {
+  display:block;
+  flex:none;
+  width:100%;
+  height:clamp(115px,16dvh,154px);
+  margin:0;
+  overflow:hidden;
+}
+#portail-auth .wf-portail-bienvenue .wf-portail-rubans path {
+  fill:none;
+  stroke-width:20;
+  stroke-linecap:butt;
+  stroke-linejoin:round;
+}
+#portail-auth .wf-portail-bienvenue .wf-portail-ruban-rouge { stroke:var(--wf-p-red); }
+#portail-auth .wf-portail-bienvenue .wf-portail-ruban-cyan { stroke:var(--wf-p-cyan); }
+#portail-auth .wf-portail-bienvenue .wf-portail-langue {
+  margin:0;
+  padding:0 14px;
+  font:800 clamp(12px,3vw,16px)/1.2 Inter,system-ui,sans-serif;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--wf-p-cream);
+}
+
+/* Ordre inchangé dans les parcours métier : invité → inscription → connexion.
+   Pas de slogan ni d'autres entrées qui dilueraient la hiérarchie. */
+#portail-auth .wf-portail-bienvenue .wf-portail-actions {
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:13px;
+  margin:0 auto;
+  padding:0 clamp(19px,5vw,32px);
+  width:100%;
+  max-width:510px;
+}
+#portail-auth .wf-portail-bienvenue .pa-bouton {
+  width:100%;
+  flex:none;
+  font-family:Inter,system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+#portail-auth .wf-portail-bienvenue .pa-bouton.or.wf-portail-demarrer {
+  --wf-p-cta-face:var(--wf-p-cta);
+  min-height:70px;
+  padding:15px 23px;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  border:0;
+  border-radius:17px;
+  background:linear-gradient(135deg,
+    var(--wf-p-cta-face) calc(100% - 41px),
+    var(--wf-p-red) 0 calc(100% - 22px),
+    var(--wf-p-cyan) 0);
+  color:var(--wf-p-ink);
+  text-align:left;
+  box-shadow:0 6px 0 #ac8d5b,
+             0 12px 16px rgba(0,0,0,.30),
+             inset 0 1px 0 #fff6db;
+  transform:translateY(0);
+  transition:transform 115ms cubic-bezier(.22,1,.36,1),
+             box-shadow 115ms ease;
+}
+#portail-auth .wf-portail-bienvenue .wf-portail-demarrer strong {
+  color:var(--wf-p-ink);
+  font:850 clamp(20px,5.5vw,25px)/1.1 Inter,system-ui,sans-serif;
+  letter-spacing:-.035em;
+}
+#portail-auth .wf-portail-bienvenue .wf-portail-chevron {
+  flex:none;
+  width:22px;
+  height:22px;
+  margin-right:clamp(13px,4vw,25px);
+  fill:none;
+  stroke:var(--wf-p-ink);
+  stroke-width:2.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#portail-auth .wf-portail-bienvenue .pa-bouton.or.wf-portail-demarrer:active,
+#portail-auth .wf-portail-bienvenue .pa-bouton.or.wf-portail-demarrer.wf-pressing {
+  transform:translateY(5px);
+  box-shadow:0 1px 0 #ac8d5b,
+             0 3px 5px rgba(0,0,0,.28),
+             inset 0 2px 3px rgba(0,0,0,.13);
+}
+#portail-auth .wf-portail-bienvenue .pa-bouton.sombre.wf-portail-creer {
+  min-height:60px;
+  border:1px solid #a99a78;
+  border-radius:15px;
+  background:#11100e;
+  color:var(--wf-p-cream);
+  font-size:18px;
+  font-weight:750;
+  transition:background-color 160ms ease;
+}
+#portail-auth .wf-portail-bienvenue .pa-bouton.sombre.wf-portail-creer:active {
+  background:#30291e;
+  transform:none;
+}
+#portail-auth .wf-portail-bienvenue .pa-bouton.texte.wf-portail-connexion {
+  min-height:45px;
+  border:0;
+  background:none;
+  color:#c9bfae;
+  font-size:14px;
+  font-weight:700;
+  transform:none;
+  transition:color 160ms ease;
+}
+#portail-auth .wf-portail-bienvenue .pa-bouton:focus-visible {
+  outline:3px solid var(--wf-p-cyan);
+  outline-offset:4px;
+}
+#portail-auth .wf-portail-bienvenue .wf-portail-indispo {
+  width:min(calc(100% - 38px),450px);
+  margin:0 auto 16px;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  /* Le hover éclaircit la face, pas de déplacement ni de contour/glow. */
+  #portail-auth .wf-portail-bienvenue .wf-portail-demarrer:hover:not(:active) {
+    --wf-p-cta-face:#fff4da;
+  }
+  #portail-auth .wf-portail-bienvenue .wf-portail-creer:hover:not(:active) {
+    background-color:#27221b;
+  }
+  #portail-auth .wf-portail-bienvenue .wf-portail-connexion:hover:not(:active) {
+    color:var(--wf-p-cream);
+  }
+}
+
+@media (max-width:360px) {
+  #portail-auth .wf-portail-bienvenue .wf-portail-affiche {
+    min-height:295px;
+    padding-block:24px 14px;
+  }
+  #portail-auth .wf-portail-bienvenue .wf-portail-wordmark {
+    font-size:clamp(66px,20vw,76px);
+  }
+  #portail-auth .wf-portail-bienvenue .wf-portail-actions {
+    padding-inline:16px;
+  }
+  #portail-auth .wf-portail-bienvenue .pa-bouton.or.wf-portail-demarrer {
+    min-height:64px;
+    padding-inline:17px;
+  }
+}
+
+/* L'accessibilité prime sur la transition : press instantané, pas de délai JS
+   quand l'utilisateur a activé la réduction du mouvement. */
+@media (prefers-reduced-motion:reduce) {
+  #portail-auth .wf-portail-bienvenue .pa-bouton {
+    transition:none;
+  }
+  #portail-auth .wf-portail-bienvenue .pa-anim {
+    animation:none;
+  }
+}
