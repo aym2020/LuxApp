@@ -182,19 +182,25 @@ body:has(#view-dashboard.active) { background:#080808; }
    avant « Mode invité / Connexion / réglages ». Sur les petits écrans, le sous-
    titre du logo est redondant avec « Le luxembourgeois, pas à pas » dans le hero. */
 @media (max-width:540px) {
-  /* L'intervalle header → mission reste proportionné, sans grand trou. */
+  /* Le centrage global remontait/abaissait TOUT l'accueil selon la hauteur
+     disponible : après suppression de Moien, le header se retrouvait loin du
+     haut sur les Samsung hauts. Ancrer le haut ; répartir le surplus dans les
+     intervalles flexibles et surtout sous les actions, sans trou sous le hero.
+     Les blocs max-content restent non compressibles et la page peut défiler. */
   #view-dashboard .accueil.wf-accueil {
+    align-content:safe start;
+    padding-top:clamp(18px,calc(52 * var(--k)),26px);
     grid-template-rows:
       max-content
-      minmax(calc(28 * var(--k)), calc(72 * var(--k)))
+      minmax(calc(28 * var(--k)), .55fr)   /* header → mission */
       max-content
-      minmax(calc(22 * var(--k)), calc(85 * var(--k)))
+      minmax(calc(22 * var(--k)), .45fr)   /* mission → progression */
       max-content
-      minmax(calc(32 * var(--k)), calc(120 * var(--k)))
+      minmax(calc(32 * var(--k)), .7fr)    /* progression → Commencer */
       max-content
-      minmax(calc(30 * var(--k)), calc(110 * var(--k)))
+      minmax(calc(30 * var(--k)), .7fr)    /* Commencer → Étudier/Jouer */
       max-content
-      minmax(calc(24 * var(--k)), calc(140 * var(--k)));
+      minmax(calc(24 * var(--k)), 1.8fr);  /* espace bas, non au-dessus du header */
   }
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
