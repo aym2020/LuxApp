@@ -1,6 +1,6 @@
 # Charte de direction artistique — Watfir / LuxApp 2.2
 
-**Version** 1.2 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil de la branche `2.2`**, non généralisée aux autres écrans. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
+**Version** 1.3 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
 
 > **Changements de la version 1.2** : un seul dessin du monument (logo, icône, favicon) ; hero sans monument (« Moien! » + bouton Écouter + rubans) ; un seul rouge et un seul bleu à l'écran ; Étudier rouge vif et Jouer cyan à texte noir ; accueil PC à 640 px comme les autres pages ; appui des boutons 3D complet même en « animations réduites ».
 
@@ -129,7 +129,7 @@ Définir au minimum : chargement, progression nulle, aucune leçon reprenable, n
 
 ## 7. Rapport à LuxApp 2.1
 
-Le code 2.1 utilise `public/design-tokens.css`, `public/components.css`, `public/accueil-v21.css` et des modules d'apprentissage/jeux. Les invariants fonctionnels et pédagogiques restent prioritaires. La **palette Watfir est déployée sur l'accueil `2.2` uniquement**, pas une autorisation pour repeindre toutes les variables sémantiques ou changer les jeux. L'icône de l'app et le favicon Watfir, en revanche, s'appliquent à toute la PWA `2.2`.
+Le code 2.1 utilise `public/design-tokens.css`, `public/components.css`, `public/accueil-v21.css` et des modules d'apprentissage/jeux. Les invariants fonctionnels et pédagogiques restent prioritaires. La **palette Watfir est déployée sur l'accueil et le portail de bienvenue `2.2` uniquement**, pas une autorisation pour repeindre toutes les variables sémantiques ou changer les jeux. L'icône de l'app et le favicon Watfir, en revanche, s'appliquent à toute la PWA `2.2`.
 
 Faire évoluer les composants existants plutôt que dupliquer leurs fonctions. Les nouvelles classes doivent être préfixées `wf-` ; ne pas multiplier des styles globaux pour écraser 2.1. La référence 2.1, qui considérait l'or comme CTA principal, reste historique pour les vues non migrées jusqu'à validation explicite.
 
