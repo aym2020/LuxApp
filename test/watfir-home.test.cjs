@@ -89,7 +89,7 @@ test('Contrat 2.2 : Mission et cache CSS/JS, audios exclus du hero',()=>{
   assert.ok(js.includes('escHtml(niveauActif)'),'niveau dynamique échappé');
   assert.ok(!js.includes('jouerAudio')&&!js.includes('wf-hero-ecouter'),'pas de son dans l’accueil');
   assert.ok(!css.includes('.wf-hero-ecouter'),'aucun style audio obsolète');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-23','hover-interactions.css?v=watfir-hover-10'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-24','hover-interactions.css?v=watfir-hover-10'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 
@@ -156,46 +156,52 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   assert.ok(ctx.chiffresHtml().includes('Ton objectif actuel'),'réutilise les vrais KPI de 2.1');
 });
 
-test('Header V4 sur une ligne : marque, niveaux, séparateur, invité, réglages',()=>{
+test('Header V6 : groupes conservés, routes et navigation accessibles',()=>{
   const {ctx}=setup();
   const h=ctx.enteteAccueilHtml();
   const ordre=['ac-marque','puces-niveau','wf-entete-sep','ac-v21-guest','ac-menu'].map(c=>h.indexOf(c));
   assert.ok(ordre.every(i=>i>0),'tous les éléments sont présents');
   assert.deepEqual([...ordre].sort((a,b)=>a-b),ordre,'ordre de la maquette');
-  assert.doesNotMatch(h,/ac-v21-controls/,'plus de deuxième ligne');
+  assert.doesNotMatch(h,/ac-v21-controls/,'wrapper historique absent');
   ctx.ligneCompteHtml=()=> '';
   assert.doesNotMatch(ctx.enteteAccueilHtml(),/wf-entete-sep|ac-v21-guest/,'compte connecté : ni séparateur ni lien');
   assert.match(ctx.enteteAccueilHtml(),/<div class="wf-entete-compte"><button type="button" class="ac-menu"/,'connecté : la roue seule dans le bloc compte');
 });
-test('Header : le bloc compte passe à la ligne d\'un seul tenant ; repli < 360 px',()=>{
+test('Samsung : compte en haut à droite, niveaux centrés sur la seconde rangée',()=>{
   const {ctx}=setup();
-  const h=ctx.enteteAccueilHtml();
-  const compte=h.slice(h.indexOf('wf-entete-compte'));
-  for (const c of ['wf-entete-sep','ac-v21-guest','ac-menu']) assert.ok(compte.includes(c),c+' dans le bloc compte');
+  const header=ctx.enteteAccueilHtml();
+  const account=header.slice(header.indexOf('wf-entete-compte'));
+  for(const c of ['wf-entete-sep','ac-v21-guest','ac-menu'])
+    assert.ok(account.includes(c),'bloc compte intact : '+c);
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
-  assert.match(css,/\.wf-entete-compte \{[^}]*margin-left:auto/);
-  assert.ok(css.includes('@media (max-width:359px)'),'repli dès que la ligne unique ne tient plus');
-  const repli=css.slice(css.indexOf('@media (max-width:359px)'));
-  assert.match(repli,/\.puces-niveau \{[^}]*order:2; flex-basis:100%; --ecart:16px/,'niveaux sur leur propre rangée, plus espacés');
-  // Les zones des deux rangées ne se touchent pas : 24 px entre rangées, zones des niveaux à 12 px au-dessus.
-  assert.match(repli,/\.ac-ent\.wf-entete \{ row-gap:24px; \}/);
-  assert.match(repli,/\.puce-niv::after \{ top:-12px; transform:none; \}/);
-  // Contour des pastilles par ::before : la zone de toucher se calcule depuis le bord extérieur.
-  assert.match(css,/\.puce-niv \{[^}]*border:0;/);
-  assert.match(css,/\.puce-niv::before \{[^}]*border:max\(1px, calc\(3\.5 \* var\(--k\)\)\) solid/);
-  assert.match(css,/--cible-g:calc\(var\(--ecart\) \/ -2\); --cible-d:calc\(var\(--ecart\) \/ -2\)/,'moitié de l\'écart de chaque côté');
+  const mobile=css.slice(css.indexOf('@media (max-width:540px)'),css.indexOf('@media (max-width:260px)'));
+  assert.ok(mobile.includes('display:grid'),'header mobile en grille');
+  assert.ok(mobile.includes('grid-template-areas:"marque compte" "niveaux niveaux"'),
+    'compte à droite du logo, niveaux en deuxième rangée');
+  for(const fragment of ['grid-area:marque','grid-area:compte','grid-area:niveaux',
+    'justify-self:end','justify-self:center','row-gap:24px',
+    '.puce-niv::after { top:-12px; transform:none; }',
+    'margin:0; height:clamp(24px','margin:0 0 0 clamp(10px',
+    'margin:0 0 0 clamp(12px'])
+    assert.ok(mobile.includes(fragment),'règle mobile : '+fragment);
+  const zoom=css.slice(css.indexOf('@media (max-width:260px)'));
+  assert.ok(zoom.includes('grid-template-areas:"marque" "compte" "niveaux"'),
+    'zoom fort : trois rangées sans chevauchement');
+  assert.match(css,/\.puce-niv::after,[\s\S]*?height:48px/,'cibles de 48px conservées');
+  ctx.ligneCompteHtml=()=> '';
+  const connected=ctx.enteteAccueilHtml();
+  assert.ok(connected.includes('ac-menu')&&!connected.includes('ac-v21-guest'),
+    'connecté : la roue seule dans la zone compte');
 });
-test('Mode invité lisible : 11 px minimum, sans point, ligne unique tenue dès 360 px',()=>{
+test('Mode invité : taille lisible et labels intacts',()=>{
   const {ctx}=setup();
-  const h=ctx.enteteAccueilHtml();
-  assert.match(h,/<span class="wf-invite-mode">Mode invité<\/span><b>Connexion<\/b>/,'deux mots empilés, sans « · »');
+  const header=ctx.enteteAccueilHtml();
+  assert.match(header,/<span class="wf-invite-mode">Mode invité<\/span><b>Connexion<\/b>/);
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
-  assert.match(css,/\.ac-v21-guest \{[^}]*font:400 max\(11px, calc\(24\.4 \* var\(--k\)\)\)/,'Mode invité ≥ 11 px');
-  assert.match(css,/\.ac-v21-guest b \{[^}]*font:700 max\(11\.5px, calc\(28 \* var\(--k\)\)\)/,'Connexion ≥ 11,5 px');
-  // 360–389 px : la roue se rapproche de ce que le texte a gagné, pour garder la ligne unique.
-  const etroit=css.slice(css.indexOf('@media (max-width:389px)'));
-  assert.match(etroit,/\.ac-menu \{ margin-left:calc\(21 \* var\(--k\)\); --cible-g:calc\(-16 \* var\(--k\)\); \}/);
-  assert.match(css,/\.wf-entete-compte > \.ac-menu:first-child \{ --cible-g:calc\(-40 \* var\(--k\)\); \}/,'connecté : roue plus large');
+  assert.match(css,/\.ac-v21-guest \{[^}]*font:400 max\(11px, calc\(24\.4 \* var\(--k\)\)\)/);
+  assert.match(css,/\.ac-v21-guest b \{[^}]*font:700 max\(11\.5px, calc\(28 \* var\(--k\)\)\)/);
+  assert.match(css,/\.wf-entete-compte > \.ac-menu:first-child \{ --cible-g:calc\(-40 \* var\(--k\)\); \}/,
+    'roue connectée conserve une zone tactile large');
 });
 test('Grande police : page défilante de secours et deux labels lisibles',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
