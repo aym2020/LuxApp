@@ -267,6 +267,49 @@ body:has(#view-dashboard.active) { background:#080808; }
   #view-dashboard .wf-accueil .wf-entete-compte { justify-self:start; }
 }
 
+/* PC et tablette (au-delà de 540 px) — 06/11/2026.
+   Header : même grille « marque niveaux compte » que sur mobile, sur UNE ligne.
+   Avant, le bloc Mode invité / Connexion / roue passait à la ligne et creusait
+   un grand vide sous le header. Toutes les mesures suivent --k : la ligne garde
+   les mêmes proportions de 541 à 640 px. Le sous-titre « Lëtzebuergesch » reste visible.
+   Vertical : header ancré en haut, puis quatre espaces identiques entre les sections.
+   Le reste de la hauteur (grands écrans seulement) va sous Étudier/Jouer. */
+@media (min-width:541px) {
+  /* minmax(28px,72px) : les quatre espaces grandissent ensemble jusqu'à 72 px
+     si l'écran est haut, et descendent ensemble jusqu'à 28 px s'il est court
+     (ensuite la page défile). Ils restent donc toujours identiques. */
+  #view-dashboard .accueil.wf-accueil {
+    align-content:safe start;
+    grid-template-rows:
+      max-content            /* header */
+      minmax(28px,72px)      /* header → Mission */
+      max-content            /* hero Mission */
+      minmax(28px,72px)      /* Mission → objectif */
+      max-content            /* objectif */
+      minmax(28px,72px)      /* objectif → Commencer */
+      max-content            /* Commencer */
+      minmax(28px,72px)      /* Commencer → Étudier/Jouer */
+      max-content            /* Étudier / Jouer */
+      minmax(24px,1fr);      /* reste de la hauteur, en bas */
+  }
+  #view-dashboard .wf-accueil .ac-ent.wf-entete {
+    display:grid;
+    grid-template-columns:max-content max-content minmax(0,1fr);
+    grid-template-areas:"marque niveaux compte";
+    align-items:center;
+    column-gap:calc(22 * var(--k));
+    row-gap:0;
+  }
+  #view-dashboard .wf-accueil .ac-marque { grid-area:marque; }
+  #view-dashboard .wf-accueil .puces-niveau { grid-area:niveaux; margin:0; }
+  #view-dashboard .wf-accueil .wf-entete-compte {
+    grid-area:compte; justify-self:end; margin:0; gap:calc(22 * var(--k));
+  }
+  #view-dashboard .wf-accueil .wf-entete-sep { display:none; }
+  #view-dashboard .wf-accueil .ac-v21-guest { margin:0; }
+  #view-dashboard .wf-accueil .ac-menu { margin:0; }
+}
+
 /* Connecté : la roue est seule dans son bloc, sa zone s'étend dans l'espace libre à sa gauche. */
 #view-dashboard .wf-accueil .wf-entete-compte > .ac-menu:first-child { --cible-g:calc(-40 * var(--k)); }
 

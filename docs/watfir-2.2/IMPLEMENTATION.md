@@ -495,3 +495,28 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Fichiers concernés :** `public/accueil-watfir.css`, cache `accueil-watfir.css?v=watfir-v4-29` dans `public/index.html`, contrats `test/watfir-home.test.cjs` et `test/watfir-hover.test.cjs`. Règle §29 **prioritaire sur les historiques §27–28**. Le portail, les familles de polices, les rubans Mission, le pourcentage réel, les boutons 3D, les rayons 17/14 px, Firebase et le stockage utilisateur ne sont pas touchés. Vérifications de syntaxe et de structure réalisées ; la suite Node complète et la recette de l'application sur Samsung sont encore nécessaires.
 
 **Retour arrière :** restauration ciblée des déclarations de la grille verticale, du cache CSS et des assertions de contrat, sans migration de données.
+
+## 30. Header et espacements de l'accueil sur PC (06/11/2026)
+
+**Constat sur capture utilisateur (PC, mode invité) :** au-delà de 540 px, le header restait en `flex-wrap`. Avec « Lëtzebuergesch » visible, la ligne demandait environ 598 px pour 586 px disponibles : le bloc « Mode invité / Connexion / roue » passait sur une deuxième rangée, et le header mesurait 150 px. Les intervalles verticaux restaient ceux de la grille de base (63/42/49/48 px à 1920×950, sans règle commune).
+
+**Règle active §30 (`@media (min-width:541px)`, CSS seulement) :**
+- Header : même grille `"marque niveaux compte"` que sur mobile (`max-content max-content minmax(0,1fr)`), écarts `calc(22 * var(--k))`, marges des pastilles, de Connexion et de la roue remises à 0, filet vertical masqué comme sur mobile. Le sous-titre « Lëtzebuergesch » reste visible sur PC.
+- Vertical : header ancré en haut (`align-content:safe start`), quatre espaces identiques `minmax(28px,72px)`, reste de la hauteur en bas (`minmax(24px,1fr)`). Les quatre espaces grandissent ensemble jusqu'à 72 px et redescendent ensemble jusqu'à 28 px ; en dessous, la vue défile.
+- Le mobile (≤540 px, §29) n'est pas modifié.
+
+**Mesures Chromium (DOM réel, mode invité forcé) :**
+
+| Fenêtre | Header | 4 espaces | Bas |
+|---|---|---|---|
+| 1920×950 | 150 → **66 px** | 63/42/49/48 → **72/72/72/72** | 40 px |
+| 1440×800 | 150 → **66 px** | 36/15/22/21 → **38/39/38/39** | 24 px |
+| 1280×680 | 150 → **66 px** | 36/15/22/21 → **28/28/28/28** | défilement de 54 px |
+| 541×900 | 130 → **55 px** | 69/49/57/56 → **72/72/72/72** | 72 px |
+| 412 / 360 / 320 | inchangé | inchangé | inchangé |
+
+**Fichiers :** `public/accueil-watfir.css`, cache `accueil-watfir.css?v=watfir-v4-30` (`public/index.html` et deux tests), `test/watfir-home.test.cjs` (nouveau contrat PC ; le test « Live levels » attend désormais A1.2 après le clic sur A1.2, ce qui est le comportement réel).
+
+**Non testé :** écran PC physique, zoom navigateur à 125–150 %, état connecté sur PC (seule la roue, alignée à droite par la grille).
+
+**Retour arrière :** supprimer le bloc `@media (min-width:541px)` et revenir au cache v4-29.

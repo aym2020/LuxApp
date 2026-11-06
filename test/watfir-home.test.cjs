@@ -89,7 +89,7 @@ test('Contrat 2.2 : Mission et cache CSS/JS, audios exclus du hero',()=>{
   assert.ok(js.includes('escHtml(niveauActif)'),'niveau dynamique échappé');
   assert.ok(!js.includes('jouerAudio')&&!js.includes('wf-hero-ecouter'),'pas de son dans l’accueil');
   assert.ok(!css.includes('.wf-hero-ecouter'),'aucun style audio obsolète');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-29','hover-interactions.css?v=watfir-hover-10'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-30','hover-interactions.css?v=watfir-hover-10'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 
@@ -115,7 +115,8 @@ test('Live levels select the existing 2.1 navigation function',()=>{
   assert.ok(ctx.chiffresHtml().includes('Ton objectif actuel'));
   assert.match(ctx.chiffresHtml(),/6<span class="ac-v21-bilan-unite">%<\/span>/,'« 6% » sans espace');
   assert.match(ctx.chiffresHtml(),/"ac-v21-bilan-unite"> jours/,'« 0 jours » garde son espace');
-  assert.ok(ctx.accrocheHtml(false).includes('Mission <span class="wf-mission-niveau">A1.1</span>'));
+  // Après le clic sur A1.2, la Mission suit le niveau réellement sélectionné.
+  assert.ok(ctx.accrocheHtml(false).includes('Mission <span class="wf-mission-niveau">A1.2</span>'));
 });
 test('Bottom sheet filters available levels, closes and restores focus',()=>{
   const {ctx,d,list,click}=setup();
@@ -544,4 +545,20 @@ test('Hauteur : cinq blocs et intervalles souples, page défilante en secours',(
   assert.doesNotMatch(bloc,/overflow:hidden/);
   for (const [sel,row] of [['> .ac-ent',1],['> .ac-hero',3],['> .ac-chiffres',5],['> #today',7],['.ac-v21-actions > .ac-acces',9]])
     assert.match(css,new RegExp(sel.replace(/[.#>]/g,m=>'\\'+m)+' \\{ grid-row:'+row+'; \\}'),sel);
+});
+
+test('PC : header sur une ligne et quatre espaces verticaux identiques',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const debut=css.indexOf('@media (min-width:541px)');
+  assert.ok(debut>0,'règles PC/tablette présentes');
+  const pc=css.slice(debut,css.indexOf('\n}\n',debut));
+  assert.ok(pc.includes('grid-template-areas:"marque niveaux compte"'),'header PC : une seule ligne en grille');
+  assert.ok(pc.includes('row-gap:0'),'aucun passage du compte à la ligne');
+  assert.ok(pc.includes('.wf-entete-sep { display:none; }'),'filet retiré comme sur mobile');
+  assert.ok(!pc.includes('ac-marque-sous { display:none; }'),'« Lëtzebuergesch » reste visible sur PC');
+  const rangs=pc.match(/grid-template-rows:([\s\S]*?);/);
+  assert.ok(rangs,'grille verticale PC');
+  assert.equal((rangs[1].match(/minmax\(28px,72px\)/g)||[]).length,4,'quatre espaces identiques');
+  assert.equal((rangs[1].match(/max-content/g)||[]).length,5,'cinq sections à leur hauteur naturelle');
+  assert.ok(pc.includes('align-content:safe start'),'header ancré en haut sur PC');
 });
