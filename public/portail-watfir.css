@@ -116,7 +116,8 @@
   padding:15px 23px;
   display:flex;
   flex-direction:row;
-  justify-content:space-between;
+  /* Texte centré, comme « Créer un compte » juste dessous (06/11/2026). */
+  justify-content:center;
   align-items:center;
   gap:12px;
   border:0;
@@ -124,7 +125,7 @@
   /* Crème unie : les rubans sont réservés au visuel de marque. */
   background:var(--wf-p-cta-face);
   color:var(--wf-p-ink);
-  text-align:left;
+  text-align:center;
   /* Tranche du même beige foncé que le CTA de l'accueil ; reflet supérieur 1px. */
   box-shadow:0 6px 0 #aa8954,
              0 12px 16px rgba(0,0,0,.30),
@@ -137,17 +138,6 @@
   color:var(--wf-p-ink);
   font:850 clamp(20px,5.5vw,25px)/1.1 Inter,system-ui,sans-serif;
   letter-spacing:-.035em;
-}
-#portail-auth .wf-portail-bienvenue .wf-portail-chevron {
-  flex:none;
-  width:22px;
-  height:22px;
-  margin-right:clamp(13px,4vw,25px);
-  fill:none;
-  stroke:var(--wf-p-ink);
-  stroke-width:2.7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
 }
 #portail-auth .wf-portail-bienvenue .pa-bouton.or.wf-portail-demarrer:active,
 #portail-auth .wf-portail-bienvenue .pa-bouton.or.wf-portail-demarrer.wf-pressing {

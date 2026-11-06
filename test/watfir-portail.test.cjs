@@ -81,14 +81,15 @@ test('Affiche de bienvenue : un grand Watfir, deux rubans, aucune promesse ni gi
 test('CTA de bienvenue : trois destinations métier et mêmes fonctions 2.1',()=>{
   const {ctx}=setup();
   const out=ctx.portailContenu('welcome');
-  assert.match(out,/>Commencer<\/strong>/);
+  assert.match(out,/>Essayer sans compte<\/strong>/);
+  assert.match(out,/>J’ai déjà un compte</);
   assert.match(out,/wf-portail-demarrer/);
   assert.match(out,/wf-portail-creer/);
   assert.match(out,/wf-portail-connexion/);
   assert.match(out,/portailAction\(&quot;guest&quot;\)/);
   assert.match(out,/portailAction\(&quot;signup&quot;\)/);
   assert.match(out,/portailAction\(&quot;signin&quot;\)/);
-  assert.match(out,/wf-portail-chevron/);
+  assert.doesNotMatch(out,/wf-portail-chevron/,'texte centré sans chevron, comme Créer un compte');
   assert.ok(out.indexOf('wf-portail-demarrer')<out.indexOf('wf-portail-creer'));
   assert.ok(out.indexOf('wf-portail-creer')<out.indexOf('wf-portail-connexion'));
 });
@@ -257,7 +258,7 @@ test('Wordmark mobile : espacement naturel, pas d’ombre qui épaissit les lett
 });
 
 test('Charge CSS et JS du portail 2.2 à versions de cache explicites',()=>{
-  assert.match(html,/portail-watfir\.css\?v=wf-poster-4/);
-  assert.match(html,/portail\.js\?v=wf-poster-2/);
+  assert.match(html,/portail-watfir\.css\?v=wf-poster-5/);
+  assert.match(html,/portail\.js\?v=wf-poster-3/);
   assert.ok(html.indexOf('style.css')<html.indexOf('portail-watfir.css'));
 });
