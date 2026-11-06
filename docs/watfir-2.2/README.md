@@ -13,6 +13,11 @@
 5. [HOVER-SYSTEM.md](HOVER-SYSTEM.md) — système partagé des interactions souris : composants, tokens, adoption progressive, garde-fous mobile et accessibilité.
 6. **[BOUTONS-3D.md](BOUTONS-3D.md)** — design system réutilisable des boutons 3D, **six commandes**, couleurs, durées, appui tactile, clavier et règles de migration.
 7. [Prototype interactif V4](prototypes/accueil-v4.html) — accueil autonome, démonstration du changement A1/A2/B1 et de la feuille de niveaux, **sans lien avec la vraie progression**.
+8. **[PORTAIL-BIENVENUE.md](PORTAIL-BIENVENUE.md)** — page d'entrée Watfir « Affiche rétro » sans slogan, ni carte « Moien! », ni trois étapes ; contrat des trois actions et du CTA 3D.
+
+### Portail d'entrée — appliqué sur `2.2` (06/11/2026)
+
+La **première page avant connexion** est désormais une affiche Watfir, distincte de l'accueil pédagogique. **Un grand mot-symbole « Watfir », deux rubans rouge/cyan et « Lëtzebuergesch » ; aucun slogan, aucune carte « Moien! », aucun audio réutilisé ni fausse séquence en trois étapes.** Les CTA sont « Commencer » (crème en 3D), « Créer un compte » et « Se connecter ». Les destinations restent celles de `portailAction('guest'/'signup'/'signin')` ; les formulaires et la progression sont préservés. Code : `public/portail.js` (seule la branche welcome) + `public/portail-watfir.css` (règles strictement préfixées). Voir [le contrat dédié](PORTAIL-BIENVENUE.md).
 
 ### Assets disponibles dans cette branche
 
