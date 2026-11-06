@@ -89,7 +89,7 @@ test('Contrat 2.2 : Mission et cache CSS/JS, audios exclus du hero',()=>{
   assert.ok(js.includes('escHtml(niveauActif)'),'niveau dynamique échappé');
   assert.ok(!js.includes('jouerAudio')&&!js.includes('wf-hero-ecouter'),'pas de son dans l’accueil');
   assert.ok(!css.includes('.wf-hero-ecouter'),'aucun style audio obsolète');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-27','hover-interactions.css?v=watfir-hover-10'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-28','hover-interactions.css?v=watfir-hover-10'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 
@@ -196,12 +196,16 @@ test('Samsung : une seule ligne réellement aérée, espace flexible après les 
   assert.ok(mobile.includes('align-content:safe start'), 'header mobile ancré en haut');
   assert.ok(mobile.includes('padding-top:clamp(18px,calc(52 * var(--k)),26px)'),
     'marge supérieure mobile stable entre 18 et 26 px');
-  assert.ok(mobile.includes('minmax(calc(28 * var(--k)), .55fr)'),
-    'premier intervalle header → mission pondéré');
-  assert.ok(mobile.includes('minmax(calc(22 * var(--k)), .45fr)'),
-    'intervalle mission → progression pondéré');
-  assert.ok(mobile.includes('minmax(calc(24 * var(--k)), 1.8fr)'),
-    'le surplus de hauteur est poussé vers le bas');
+  assert.ok(mobile.includes('--wf-section-space:clamp(28px,5.5svh,48px)'),
+    'espacement unique borné, stable avec les barres mobiles');
+  const vertical=mobile.match(/grid-template-rows:([\s\S]*?)minmax\(24px,1fr\)/);
+  assert.ok(vertical,'grille verticale 5 sections et reste flexible');
+  assert.equal((vertical[1].match(/var\(--wf-section-space\)/g)||[]).length,4,
+    'les quatre intervalles entre sections ont exactement la même taille');
+  assert.ok(!/\.(?:55|45|7|8)fr/.test(vertical[1]),
+    'aucune pondération hétérogène entre les quatre sections');
+  assert.ok(mobile.includes('minmax(24px,1fr)'),
+    'seul le bas de page absorbe la hauteur restante');
   assert.ok(!mobile.includes('align-content:safe center'),
     'le centrage vertical global ne doit plus redescendre le header sur Samsung');
   const compact=css.slice(css.indexOf('@media (max-width:359px)'),css.indexOf('@media (max-width:260px)'));
@@ -227,19 +231,24 @@ test('Header : compte invité lisible, lien et focus préservés',()=>{
   assert.match(css,/\.ac-v21-guest b \{[^}]*font:700 max\(11\.5px, calc\(28 \* var\(--k\)\)\)/);
   assert.match(css,/\.wf-entete-compte > \.ac-menu:first-child \{ --cible-g:calc\(-40 \* var\(--k\)\); \}/);
 });
-test('Samsung grands écrans : le header reste en haut quelle que soit la hauteur du viewport',()=>{
+test('Samsung : header en haut, rythme constant entre les sections',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const mobile=css.slice(css.indexOf('@media (max-width:540px)'),css.indexOf('@media (max-width:359px)'));
   assert.ok(mobile.includes('align-content:safe start'), 'pas de centrage du dashboard en mobile');
   assert.ok(mobile.includes('padding-top:clamp(18px,calc(52 * var(--k)),26px)'),
     'ancrage physique constant sous la barre système Android');
-  for(const row of [
-    'minmax(calc(28 * var(--k)), .55fr)',
-    'minmax(calc(22 * var(--k)), .45fr)',
-    'minmax(calc(32 * var(--k)), .7fr)',
-    'minmax(calc(30 * var(--k)), .7fr)',
-    'minmax(calc(24 * var(--k)), 1.8fr)'
-  ]) assert.ok(mobile.includes(row),'répartition verticale de référence : '+row);
+  assert.ok(mobile.includes('--wf-section-space:clamp(28px,5.5svh,48px)'),
+    'un seul espacement responsive entre les cinq blocs');
+  const grid=mobile.match(/grid-template-rows:([\s\S]*?)minmax\(24px,1fr\)/);
+  assert.ok(grid,'grille mobile avec espace bas extensible');
+  assert.equal((grid[1].match(/var\(--wf-section-space\)/g)||[]).length,4,
+    'quatre espacements strictement identiques');
+  assert.ok(!grid[1].includes('fr'),
+    'aucune distribution au prorata du viewport entre les blocs');
+  assert.ok(mobile.includes('minmax(24px,1fr)'),
+    'uniquement le bas peut prendre le surplus de hauteur');
+  assert.ok(mobile.includes('align-content:safe start'),
+    'aucun recentrage vertical global sur Android');
   assert.ok(css.includes('grid-template-areas:"marque niveaux compte"'),
     'aucune modification à la rangée horizontale validée');
   assert.ok(css.includes('border-radius:17px;')&&css.includes('border-radius:14px;'),
