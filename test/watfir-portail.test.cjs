@@ -165,6 +165,53 @@ test('Bouton 3D : appui visible 160ms avant clic, replay et double clic protég�
   assert.equal(cl.has('wf-pressing'),false);
 });
 
+test('Créer un compte : même enfoncement 3D et clic original rejoué après 160 ms',()=>{
+  const {ctx,calls}=setup();
+  ctx.portailOuvrir('welcome');
+  const classes=new Set();
+  let opened=0;
+  const button={
+    disabled:false,isConnected:true,getAttribute(){return null},
+    classList:{add(k){classes.add(k)},remove(k){classes.delete(k)}},
+    click(){opened++;ctx.portailAction('signup')}
+  };
+  let prevented=0;
+  const event={
+    isTrusted:true,
+    target:{closest(selector){return selector.includes('.wf-portail-creer')?button:null}},
+    preventDefault(){prevented++},stopPropagation(){}
+  };
+  calls.pressListeners[0](event);
+  assert.equal(prevented,1);
+  assert.ok(classes.has('wf-pressing'));
+  assert.equal(opened,0);
+  assert.equal(calls.timers.length,1);
+  assert.equal(calls.timers[0].ms,160);
+  calls.timers[0].fn();
+  assert.equal(opened,1,'l’inscription s’ouvre après le relief, une seule fois');
+  assert.equal(classes.has('wf-pressing'),false);
+});
+
+test('Deux boutons 3D même géométrie : crème uni, sombre bord crème',()=>{
+  const cream=css.match(/#portail-auth \.wf-portail-bienvenue \.pa-bouton\.or\.wf-portail-demarrer \{([^}]+)\}/);
+  const dark=css.match(/#portail-auth \.wf-portail-bienvenue \.pa-bouton\.sombre\.wf-portail-creer \{([^}]+)\}/);
+  assert.ok(cream&&dark);
+  for (const rule of [cream[1],dark[1]]) {
+    assert.match(rule,/min-height:70px/);
+    assert.match(rule,/border-radius:17px/);
+    assert.match(rule,/0 6px 0 /,'même tranche 3D 6px');
+    assert.match(rule,/transform:translateY\(0\)/);
+  }
+  assert.match(cream[1],/background:var\(--wf-p-cta-face\)/);
+  assert.doesNotMatch(cream[1],/linear-gradient|--wf-p-red|--wf-p-cyan/,'aucune bande rouge ou cyan sur Commencer');
+  assert.match(dark[1],/border:1px solid #c3b08b/);
+  assert.match(dark[1],/background:#11100e/);
+  assert.match(css,/\.wf-portail-creer\.wf-pressing \{[^}]*transform:translateY\(5px\)/);
+  assert.match(css,/\.wf-portail-demarrer\.wf-pressing \{[^}]*transform:translateY\(5px\)/);
+  assert.match(css,/\.wf-portail-ruban-rouge \{ stroke:var\(--wf-p-red\)/);
+  assert.match(css,/\.wf-portail-ruban-cyan \{ stroke:var\(--wf-p-cyan\)/);
+});
+
 test('Appui : mouvement réduit, disabled et synthétique ne bloquent pas le clic',()=>{
   const {ctx,calls}=setup();
   ctx.portailOuvrir('welcome');
@@ -206,7 +253,7 @@ test('Wordmark mobile : espacement naturel, pas d’ombre qui épaissit les lett
 });
 
 test('Charge CSS et JS du portail 2.2 à versions de cache explicites',()=>{
-  assert.match(html,/portail-watfir\.css\?v=wf-poster-2/);
-  assert.match(html,/portail\.js\?v=wf-poster-1/);
+  assert.match(html,/portail-watfir\.css\?v=wf-poster-3/);
+  assert.match(html,/portail\.js\?v=wf-poster-2/);
   assert.ok(html.indexOf('style.css')<html.indexOf('portail-watfir.css'));
 });
