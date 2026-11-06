@@ -119,6 +119,14 @@ Deux boutons **centrés, côte à côte**, sans titre : **Étudier** (`#F22421`,
 
 Définir au minimum : chargement, progression nulle, aucune leçon reprenable, niveau indisponible, invité et connecté, série zéro, hors ligne, retour depuis chemin, message d'erreur. Aucun raccourci ne doit sembler disponible s'il ne fonctionne pas.
 
+### 6.8 Premier écran — portail de bienvenue (06/11/2026)
+
+**La page de bienvenue n'est pas une version simplifiée de l'accueil.** C'est une affiche éditoriale sans slogan, sans paragraphe marketing et sans succession de trois bénéfices numérotés. La marque **Watfir** est le seul titre, en Fraunces 900 italic crème, suivie des rubans rouge/cyan en SVG et de « Lëtzebuergesch » en petites capitales comme désignation de la langue. Pas de monument démesuré, pas de pictos génériques, pas de carte « Moien! » ni d'audio : cet apprentissage est réservé au hero de l'accueil.
+
+**Actions :** Commencer (CTA crème 3D, chevron noir, coin bicolore, tranche beige 6 px, appui 5 px maintenu 160 ms), Créer un compte (surface sombre bord crème), Se connecter (lien). Ces actions préservent `guest`, `signup` et `signin`, et les formulaires conservent les composants 2.1. Seule la présentation du mode `welcome` est migrée. La feuille `portail-watfir.css` est isolée sous `.wf-portail-bienvenue`; le fond noir remplace le dégradé doré sur cette seule vue.
+
+**Écrans courts, zoom et accessibilité :** l'affiche se réduit mais ne pousse pas les CTA hors d'une zone défilable ; 320–360 px et petits écrans Android doivent être vérifiés. Hover PC = éclaircissement sans glissement. En réduction des animations, le bouton reste physiquement enfonçable instantanément sans délai de navigation. Référence : [PORTAIL-BIENVENUE.md](PORTAIL-BIENVENUE.md).
+
 ## 7. Rapport à LuxApp 2.1
 
 Le code 2.1 utilise `public/design-tokens.css`, `public/components.css`, `public/accueil-v21.css` et des modules d'apprentissage/jeux. Les invariants fonctionnels et pédagogiques restent prioritaires. La **palette Watfir est déployée sur l'accueil `2.2` uniquement**, pas une autorisation pour repeindre toutes les variables sémantiques ou changer les jeux. L'icône de l'app et le favicon Watfir, en revanche, s'appliquent à toute la PWA `2.2`.
