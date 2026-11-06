@@ -8,9 +8,9 @@ L'écran d'entrée est une **affiche de marque**, et non un tutoriel. Le concept
 
 Composition, de haut en bas :
 1. **Grand logotype typographique `Watfir`**, crème, Fraunces italique 900 auto-hébergée (déjà chargée par `accueil-watfir.css`). Le mot-symbole du portail reprend désormais l’**espacement naturel `letter-spacing:0` du header**, avec `font-kerning:normal` et **sans `text-shadow`** : l'ancien `-0.075em` faisait fusionner visuellement « tfir » sur les smartphones. Aucun autre slogan, claim, pré-titre, liste de fonctionnalités, trois étapes ou pictogramme gratuit.
-2. **Deux rubans** SVG inline : rouge `#F22421`, cyan `#02C5E7`, sur fond noir `#080808`. Le dessin est géométrique et éditable, sans PNG ni téléchargement distant ; il reprend les couleurs de l'accueil sans reproduire l'interaction « Moien! ».
+2. **Deux rubans** SVG inline : rouge `#F22421`, cyan `#02C5E7`, sur fond noir `#080808`, **conservés dans le visuel, jamais dans le coin des boutons crème**. Le dessin est géométrique et éditable, sans PNG ni téléchargement distant ; il reprend les couleurs de l'accueil sans reproduire l'interaction « Moien! ».
 3. **`Lëtzebuergesch`**, descripteur de la langue en petites capitales espacées. Ce mot identifie le sujet : ce n'est pas un slogan marketing.
-4. **Actions**, dans cet ordre : **Commencer** (CTA crème `#FBebc5`, texte noir, chevron, coin rouge/cyan et tranche 3D beige de 6 px), **Créer un compte** (bouton sombre bord crème), **Se connecter** (lien secondaire). Survol PC : simple éclaircissement. L'appui du CTA s'enfonce de 5 px, y compris au clavier ; maintien de 160 ms sur clic utilisateur avant navigation immédiate vers l'accueil invité. Le mode `prefers-reduced-motion: reduce` conserve l'appui physique instantané sans retard.
+4. **Actions**, dans cet ordre : **Commencer** (face crème unie `#FBebc5`, texte noir, chevron noir et tranche beige de **6 px**, **sans coin rouge/cyan**), **Créer un compte** (face sombre `#11100e`, filet crème `#c3b08b`, tranche beige foncée de **6 px**), **Se connecter** (lien). Les **deux grands boutons ont la même hauteur minimum de 70 px, rayon de 17 px et appui de 5 px** (64 px chacun sous 360 px). Survol PC : éclaircissement de la face uniquement, sans déplacement ni glow ; appui 3D maintenu **160 ms** avant les routes invité/inscription, y compris au clavier. `prefers-reduced-motion: reduce` : appui instantané sans délai.
 5. En cas d'indisponibilité cloud, « Commencer » reste disponible ; seules les options de compte disparaissent et un message d'information apparaît.
 
 **Ne pas ajouter** sur ce portail : « Moien! », lecture de `moien.mp3`, carte à retourner, trois pictogrammes Leçons/Révisions/Examens, promesse longue, mini-parcours en trois points, animation sonore automatique. Le mot et son audio sont déjà proposés sur l'accueil principal, où ils ont leur place.
@@ -25,14 +25,16 @@ Seule la branche `mode === 'welcome'` de `portailContenu` produit désormais l'a
 
 **CSS scindé et strictement isolé** : `public/portail-watfir.css` contient exclusivement des règles sous `#portail-auth .wf-portail-bienvenue` (et un parent `:has()` pour la toile de fond). Il est importé après `style.css` et `accueil-watfir.css`. **Ne pas modifier globalement** `.pa-bouton`, `.pa-reconnexion`, `#pa-form` ou les composants des exercices.
 
-Un écouteur `click` capturant sur `#portail-auth` est installé une seule fois par `portailOuvrir` et ne cible que `.wf-portail-demarrer` dans le mode bienvenue. Il garde la classe `.wf-pressing` 160 ms, puis rejoue `button.click()` afin de conserver l'action `guest` existante. Les clics programmatiques, désactivés et le mouvement réduit passent immédiatement. Le double clic n'active pas deux fois l'entrée.
+Un écouteur `click` capturant sur `#portail-auth` est installé une seule fois par `portailOuvrir` et cible **`.wf-portail-demarrer` et `.wf-portail-creer`** exclusivement dans le mode bienvenue. Il garde la classe `.wf-pressing` 160 ms, puis rejoue `button.click()` afin de conserver les actions `guest` et `signup` existantes. Les clics programmatiques, désactivés et le mouvement réduit passent immédiatement. Le double clic n'active pas deux fois l'entrée.
 
 ## 3. Responsive et accessibilité
 
 - **Mobile-first** : affiche centrée dans l'espace disponible ; CTA dans la partie basse ; hauteur minimale et espacement adaptatifs. Le portail est déjà `overflow-y:auto` : sous 360 px, en landscape ou à grande police, laisser **défiler** au lieu de cacher des CTA.
 - **PC** : colonne maximale de 640 px, centrée sur fond noir, comme l'accueil. Aucun étirement du wordmark sur la largeur de l'écran.
-- Tous les CTA sont des **`button` natifs** ; `focus-visible` cyan ; zones tactiles de 45–70 px. Les rubans sont décoratifs (`aria-hidden`). Titre `h1` lisible « Watfir », `lang="lb"` sur le descripteur.
+- Tous les CTA sont des **`button` natifs** ; `focus-visible` cyan ; les deux boutons principaux font **70 px** de haut (64 px sur tout petit mobile), et « Se connecter » conserve une cible de 45 px. Les rubans sont décoratifs (`aria-hidden`). Titre `h1` lisible « Watfir », `lang="lb"` sur le descripteur.
 - **Réduction de mouvement** : supprime les transitions et l'entrée séquencée, pas la profondeur physique de l'appui. Aucun délai d'activation.
+
+**Décision de cohérence du 06/11/2026 :** conserver intégralement les **rubans identitaires du hero** (portail et page « Moien! »), mais utiliser la **même face crème unie** pour le CTA principal du portail et celui de l'accueil. Les coins rouge/cyan ne doivent pas réapparaître sur les boutons « Commencer ». « Créer un compte » reprend la même épaisseur physique pour que le duo ne mélange plus un bouton 3D et un bouton plat.
 
 ## 4. Recette
 
