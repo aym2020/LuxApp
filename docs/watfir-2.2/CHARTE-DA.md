@@ -79,6 +79,8 @@ Trait de poids optique cohérent. Étudier : livre au trait **crème** ; Jouer :
 
 Fond noir libre autour des composants ; un CTA crème de premier niveau et deux boutons secondaires centrés (Étudier rouge / Jouer cyan). Les reliefs sont de véritables **tranches d'ombre hors flux**, pas des doubles cartes. Pas de contour animé rouge, ni d'ombre néon. Le CTA crème est **uni, sans bandes d'angle** ; les rubans identitaires rouge/cyan restent exclusivement dans le hero et les emblèmes.
 
+**Finition 3D transverse (06/11/2026) :** la tranche est une nuance **plus foncée de la face**, jamais une bande blanche ou crème sous les faces rouge/cyan. Étudier : tranche bordeaux `#8F1712` ; Jouer : tranche bleu pétrole `#087496`. Les deux faces colorées reçoivent uniquement un **reflet supérieur de 1 px**, `inset 0 1px 0 rgba(255,255,255,.28)`, sans bordure crème décorative. Les deux « Commencer » conservent leur face crème unie et partagent la **même teinte de tranche beige `#AA8954`** (profondeur 7 px pour la carte de leçon, 6 px pour le portail). « Créer un compte » adopte une tranche beige sombre `#796646`, reflet crème léger de 1 px, hauteur et rayon identiques à « Commencer » sur le portail. La transition physique reste 115 ms et l'enfoncement perceptible 160 ms avant navigation ; ne pas ajouter de fausse semelle claire. Voir [BOUTONS-3D.md](BOUTONS-3D.md).
+
 ## 5. Rythme, densité et hiérarchie
 
 Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (kicker, « Moien! » + Écouter, rubans, phrase) → **progression réelle** → **Commencer/Continuer** → **Étudier et Jouer**. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
