@@ -6,7 +6,7 @@
 
 ## 1. Intention et hiérarchie
 
-L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. Le CTA Commencer / Continuer conserve son relief physique au repos sur mobile et PC (tranche beige et lumière en `box-shadow`, hors flux). **Au survol souris, seule sa face crème s'éclaircit de `#fbebc5` à `#fff4da` : aucun soulèvement, renforcement de l'ombre, contour ou changement de chevron.** Les rubans rouge/cyan restent dans le hero ; le CTA crème uni s'enfonce de 6 px au clic. La navigation secondaire se résume désormais à **Étudier (rouge assombri) et Jouer (bleu profond)**, deux boutons centrés. Leur survol PC éclaire uniquement la couleur de fond, sans déplacement ni changement d'ombre ; les niveaux restent rouges. Aucun glow permanent ni animation en boucle.
+L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. Le CTA Commencer / Continuer conserve son relief physique au repos sur mobile et PC (tranche beige et lumière en `box-shadow`, hors flux). **Au survol souris, seule sa face crème s'éclaircit de `#fbebc5` à `#fff4da` : aucun soulèvement, renforcement de l'ombre, contour ou changement de chevron.** Les rubans rouge/cyan restent dans le hero ; le CTA crème uni s'enfonce de 6 px au clic. La navigation secondaire se résume désormais à **Étudier (rouge vif) et Jouer (cyan)**, deux boutons centrés. Leur survol PC éclaire uniquement la couleur de fond, sans déplacement ni changement d'ombre ; les niveaux restent rouges. Aucun glow permanent ni animation en boucle.
 
 | Rôle | Interaction | Durée |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | **Écouter « Moien! » (hero)** | Face cyan éclaircie `#5ad9f0`, triangle agrandi ×1,15 ; appui : enfoncement de 4 px, tranche comprimée | 190 ms |
 | **Contrôles 2.1 partagés** | Élévation neutre de 2 px + luminosité ×1,10, aucune nouvelle couleur métier | 190 ms |
 
-Les deux pictogrammes de la navigation secondaire sont dessinés dans le même style de trait : **livre = Étudier**, **manette = Jouer**, tous deux crème dans tous les états. Le CTA « Commencer / Continuer » n'a plus de livre pour éviter le doublon ; il conserve son texte, sa cible, sa flèche noire et une **face crème unie sans bandes d'angle**. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
+Les deux pictogrammes de la navigation secondaire sont dessinés dans le même style de trait : **livre = Étudier**, **manette = Jouer**, crème sur Étudier et noirs sur Jouer, dans tous les états. Le CTA « Commencer / Continuer » n'a plus de livre pour éviter le doublon ; il conserve son texte, sa cible, sa flèche noire et une **face crème unie sans bandes d'angle**. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
 
 ### Pastilles 3D du header
 
