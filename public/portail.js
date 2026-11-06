@@ -191,17 +191,24 @@ function portailEcouter(bouton) {
 function portailContenu(mode) {
   const cloud = isCloudEnabled();
   if (mode === 'welcome') {
-    return '<main class="pa-page pa-bienvenue"><div class="pa-centre">'+
-      '<div class="pa-anim" style="--d:0">'+portailMarque()+'</div>'+
-      '<h1 class="pa-anim" style="--d:1">Le luxembourgeois, à ta portée.</h1>'+
-      '<p class="pa-intro pa-anim" style="--d:2">Quelques minutes par jour pour apprendre à parler luxembourgeois.</p>'+
-      portailCarte()+
-      portailAtouts()+
-      (!cloud?'<p class="pa-indispo" role="status">Connexion momentanément indisponible. Tu peux commencer sans compte.</p>':'')+
-      '<div class="pa-actions pa-anim" style="--d:5">'+
-        portailBouton('Commencer à apprendre <span aria-hidden="true">→</span>','guest','or')+
-        (cloud?portailBouton('Créer un compte','signup','sombre')+
-          portailBouton('J’ai déjà un compte','signin','texte'):'')+
+    // Watfir 2.2 — affiche rétro : la marque est le visuel.
+    // Ni slogan, ni carte « Moien! », ni audio ni trois étapes : ce moment
+    // pédagogique appartient désormais à l'accueil après l'entrée.
+    // Les actions guest / signup / signin et leurs gardes restent inchangées.
+    return '<main class="pa-page pa-bienvenue wf-portail-bienvenue"><div class="pa-centre wf-portail-centre">'+
+      '<div class="wf-portail-affiche pa-anim" style="--d:0">'+
+        '<h1 class="wf-portail-wordmark">Watfir</h1>'+
+        '<svg class="wf-portail-rubans" viewBox="0 0 420 145" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+
+          '<path d="M-30 43H180C255 43 259 76 324 66S412 30 457 30" class="wf-portail-ruban-rouge"/>'+
+          '<path d="M-30 78H180C255 78 259 111 324 101S412 65 457 65" class="wf-portail-ruban-cyan"/>'+
+        '</svg>'+
+        '<p class="wf-portail-langue" lang="lb">Lëtzebuergesch</p>'+
+      '</div>'+
+      (!cloud?'<p class="pa-indispo wf-portail-indispo" role="status">Connexion momentanément indisponible. Tu peux commencer sans compte.</p>':'')+
+      '<div class="pa-actions wf-portail-actions pa-anim" style="--d:1">'+
+        portailBouton('<strong>Commencer</strong><svg class="wf-portail-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 4 8 8-8 8"/></svg>','guest','or wf-portail-demarrer')+
+        (cloud?portailBouton('Créer un compte','signup','sombre wf-portail-creer')+
+          portailBouton('Se connecter','signin','texte wf-portail-connexion'):'')+
       '</div></div></main>';
   }
   const creation = mode === 'signup';
