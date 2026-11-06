@@ -3,7 +3,6 @@
 (function () {
   'use strict';
   const renduV21 = renderAccueil;
-  const bilanV21 = chiffresHtml;
   const carteV21 = carteSuiteHtml;
 
   function familleNiveau(n) { return String(n).split('.')[0]; }
@@ -102,7 +101,7 @@
     // Les prénoms longs réduisent le titre au lieu de déborder de l'écran.
     const taille = prenom.length > 14 ? ' wf-salut-xs' : prenom.length > 9 ? ' wf-salut-s' : '';
     const titre = prenom
-      ? '<span lang="lb">Moien,</span><span>' + escHtml(prenom) + '<span class="wf-salut-ex">!</span></span>'
+      ? '<span lang="lb">Moien,</span> <span>' + escHtml(prenom) + '<span class="wf-salut-ex">!</span></span>'
       : '<span><span lang="lb">Moien</span><span class="wf-salut-ex">!</span></span>';
     const bonjour = prenom ? 'Bonjour, ' + escHtml(prenom) + '.' : 'Bonjour.';
     const suite = premiereVisite ? 'Ton premier mot. Le reste commence ici.' : 'Prêt pour ta mission ?';
@@ -128,10 +127,51 @@
     '</section>';
   };
 
-  // Maquette : « 6% » sans espace avant le signe.
+  // ── État des lieux (§33) : série et niveau en bandes, comme les rubans ──
+  // Rouge = régularité (7 jours de la semaine), cyan = avancement (une bande par
+  // leçon du niveau). Données réelles 2.1 : semaineEnCours(), serieActuelle(),
+  // leconsDuNiveau(). --i fixe l'ordre de l'animation de remplissage.
+  const NOMS_JOURS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+  function etatJour(j) {
+    if (j.valeur === 2) return 'objectif atteint';
+    if (j.valeur === 1) return 'pratique commencée';
+    return j.futur ? 'à venir' : 'pas de pratique';
+  }
+  function etatLecon(l) {
+    if (leconTerminee(l) || acquiseAncienneVersion(l)) return 'ok';
+    return etapesFaites(l) > 0 ? 'demi' : '';
+  }
   chiffresHtml = function () {
-    return bilanV21().replace('Aujourd’hui', 'Ton objectif actuel')
-      .replace('<span class="ac-v21-bilan-unite"> %</span>', '<span class="ac-v21-bilan-unite">%</span>');
+    const serie = serieActuelle();
+    const semaine = semaineEnCours();
+    const lecons = leconsDuNiveau(niveauActif);
+    const etats = lecons.map(etatLecon);
+    const faites = etats.filter(e => e === 'ok').length;
+    const jours = serie > 1 ? 'jours' : 'jour';
+    const resume = 'Série de ' + serie + ' ' + jours + '. Cette semaine : ' + semaine.map((j, i) =>
+      NOMS_JOURS[i] + ' ' + etatJour(j) + (j.aujourdhui ? ' (aujourd’hui)' : '')).join(', ') + '.';
+    const bandesJours = semaine.map((j, i) =>
+      '<i class="' + (j.valeur === 2 ? 'ok' : j.valeur === 1 ? 'demi' : '') +
+      (j.aujourdhui ? ' auj' : '') + '" style="--i:' + i + '"></i>').join('');
+    const lettres = semaine.map(j => '<span' + (j.aujourdhui ? ' class="auj"' : '') + '>' + j.lettre + '</span>').join('');
+    const note = serie > 0 ? '' : '<p class="wf-etat-note">' +
+      (totalJours() > 0 ? 'Atteins l’objectif du jour pour relancer ta série.' : 'Termine ta première leçon pour lancer ta série.') + '</p>';
+    const bandesLecons = etats.map((e, i) => '<i class="' + e + '" style="--i:' + i + '"></i>').join('');
+    return '<section class="ac-chiffres wf-etat entre-2" aria-label="Ta progression">' +
+      '<div class="wf-etat-bloc">' +
+        '<div class="wf-etat-tete"><span class="wf-etat-lab">Série</span>' +
+          '<span id="serie" class="wf-etat-val">' + serie + '<small> ' + jours + '</small></span></div>' +
+        '<div class="wf-bandes wf-semaine" role="img" aria-label="' + escHtml(resume) + '">' + bandesJours + '</div>' +
+        '<div class="wf-jours" aria-hidden="true">' + lettres + '</div>' + note +
+      '</div>' +
+      '<div class="wf-etat-bloc">' +
+        '<div class="wf-etat-tete"><span class="wf-etat-lab">Niveau ' + escHtml(niveauActif) + '</span>' +
+          '<span class="wf-etat-val">' + faites + ' / ' + lecons.length + '<small> leçons</small></span></div>' +
+        '<div class="wf-bandes wf-lecons" role="progressbar" aria-label="Leçons terminées en ' + escHtml(niveauActif) + '" ' +
+          'aria-valuemin="0" aria-valuemax="' + lecons.length + '" aria-valuenow="' + faites + '" ' +
+          'style="--n:' + Math.max(1, lecons.length) + '">' + bandesLecons + '</div>' +
+      '</div>' +
+    '</section>';
   };
 
   // Le moteur 2.1 conserve la leçon cible et son clic. En 2.2, le livre dans
@@ -179,17 +219,18 @@
   };
 
   // V21 calcule les mêmes vrais KPI et le même prochain pas.
-  // Hero toujours AVANT le bilan. Premier accueil : pas de bilan (pas de « 0% · 0 jours ») ;
-  // la classe wf-sans-bilan resserre alors la grille (voir CSS).
+  // Hero toujours AVANT l'état des lieux ; au premier accueil, le moteur 2.1 ne
+  // l'affiche pas : on l'ajoute (bandes vides, série à lancer).
   renderAccueil = function (animer) {
     renduV21(animer);
     const box = document.getElementById('accueil');
     if (!box) return;
     box.classList.add('wf-accueil');
     const hero = box.querySelector('.ac-hero');
+    if (!hero) return;
     const bilan = box.querySelector('.ac-chiffres');
-    box.classList.toggle('wf-sans-bilan', !bilan);
-    if (hero && bilan && hero.nextElementSibling !== bilan) hero.after(bilan);
+    if (!bilan) hero.insertAdjacentHTML('afterend', chiffresHtml());
+    else if (hero.nextElementSibling !== bilan) hero.after(bilan);
   };
 
   function feuilleNiveaux() {

@@ -90,7 +90,7 @@ test('Contrat 2.2 : hero Moien, audio à la demande et cache CSS/JS',()=>{
   assert.ok(!css.includes('.wf-mission-titre')&&!js.includes('wf-mission-titre'),'hero « Mission A1.1 » retiré');
   assert.ok(js.includes("jouerAudio(\\'moien.mp3\\', this)"),'Moien écouté seulement sur appui');
   assert.ok(!/autoplay|\.play\(\)/.test(js),'jamais de lecture automatique');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-15','accueil-watfir.css?v=watfir-v4-32','hover-interactions.css?v=watfir-hover-11'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-16','accueil-watfir.css?v=watfir-v4-33','hover-interactions.css?v=watfir-hover-11'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 
@@ -113,9 +113,6 @@ test('Live levels select the existing 2.1 navigation function',()=>{
   assert.deepEqual(ctx.changes,['A1.2']);
   click('level','B2.1'); // not in real lessons: must do nothing
   assert.deepEqual(ctx.changes,['A1.2']);
-  assert.ok(ctx.chiffresHtml().includes('Ton objectif actuel'));
-  assert.match(ctx.chiffresHtml(),/6<span class="ac-v21-bilan-unite">%<\/span>/,'« 6% » sans espace');
-  assert.match(ctx.chiffresHtml(),/"ac-v21-bilan-unite"> jours/,'« 0 jours » garde son espace');
   // Le niveau sélectionné reste affiché par la pastille du header, plus dans le hero.
   assert.ok(!ctx.accrocheHtml(false).includes('A1.2'));
 });
@@ -163,7 +160,7 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   const choix={prenom:{valeur:'Clayton',maj:1}};
   ctx.getChoix=()=>choix;
   hero=ctx.accrocheHtml();
-  assert.match(hero,/<span lang="lb">Moien,<\/span><span>Clayton<span class="wf-salut-ex">!<\/span><\/span>/);
+  assert.match(hero,/<span lang="lb">Moien,<\/span> <span>Clayton<span class="wf-salut-ex">!<\/span><\/span>/,'espace : une ligne sur PC');
   assert.match(hero,/Bonjour, Clayton\./);
   choix.prenom.valeur='Jean-Christophe';
   assert.match(ctx.accrocheHtml(),/class="wf-salut wf-salut-xs"/,'prénom long : titre réduit');
@@ -172,7 +169,6 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   assert.ok(ctx.accrocheHtml().includes('&lt;img src=x&gt;'));
   choix.prenom.valeur='Abcdefghijklmnopqrstuvwxyz';
   assert.ok(ctx.accrocheHtml().includes('Abcdefghijklmnopqrst<'),'prénom limité à 20 caractères');
-  assert.ok(ctx.chiffresHtml().includes('Ton objectif actuel'),'réutilise les vrais KPI de 2.1');
 });
 
 test('Commencer allégé : une ligne, titre luxembourgeois et traduction, action 2.1 inchangée',()=>{
@@ -267,21 +263,19 @@ test('Header : compte invité lisible, lien et focus préservés',()=>{
   assert.match(css,/\.ac-v21-guest b \{[^}]*font:700 max\(11\.5px, calc\(28 \* var\(--k\)\)\)/);
   assert.match(css,/\.wf-entete-compte > \.ac-menu:first-child \{ --cible-g:calc\(-40 \* var\(--k\)\); \}/);
 });
-test('Mobile §31 : hero, objectif puis Commencer + Étudier/Jouer groupés en bas',()=>{
+test('Mobile §31/33 : hero, état des lieux puis Commencer + Étudier/Jouer groupés en bas',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const mobile=css.slice(css.indexOf('@media (max-width:540px)'),css.indexOf('@media (max-width:359px)'));
   assert.ok(mobile.includes('align-content:safe start'), 'header ancré en haut');
   assert.ok(mobile.includes('padding-top:clamp(18px,calc(52 * var(--k)),26px)'));
   assert.ok(mobile.includes('--wf-section-min:clamp(28px,4svh,36px)'));
   const grilles=[...mobile.matchAll(/grid-template-rows:([^;]*);/g)].map(m=>m[1].replace(/\/\*[^*]*\*\//g,'').replace(/\s+/g,' ').trim());
-  assert.equal(grilles.length,2,'grille normale + premier accueil');
+  assert.equal(grilles.length,1,'une seule grille : l’état des lieux est toujours affiché');
   assert.equal(grilles[0],'max-content minmax(var(--wf-section-min),.8fr) max-content minmax(var(--wf-section-min),1fr) max-content minmax(var(--wf-section-min),1fr) max-content 20px max-content clamp(28px,5svh,48px)');
-  assert.equal(grilles[1],'max-content minmax(var(--wf-section-min),.8fr) max-content 0 0 minmax(var(--wf-section-min),1fr) max-content 20px max-content clamp(28px,5svh,48px)');
-  assert.ok(mobile.includes('.accueil.wf-accueil.wf-sans-bilan {'),'premier accueil sans objectif');
   assert.ok(!mobile.includes('minmax(24px,1fr)'),'aucun grand vide sous Étudier/Jouer');
   const js=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
-  assert.ok(js.includes("box.classList.toggle('wf-sans-bilan', !bilan)"),'classe posée selon la présence de l’objectif');
-  assert.ok(!js.includes("insertAdjacentHTML('afterend', chiffresHtml())"),'plus de « 0% · 0 jours » imposé au premier accueil');
+  assert.ok(!js.includes('wf-sans-bilan')&&!css.includes('wf-sans-bilan'),'plus de grille sans état des lieux');
+  assert.ok(js.includes("if (!bilan) hero.insertAdjacentHTML('afterend', chiffresHtml());"),'état des lieux ajouté au premier accueil');
   assert.ok(css.includes('grid-template-areas:"marque niveaux compte"'));
   assert.ok(css.includes('border-radius:17px;')&&css.includes('border-radius:14px;'),'design 3D préservé');
 });
@@ -290,8 +284,7 @@ test('Grande police : page défilante de secours et deux labels lisibles',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/#view-dashboard \.accueil\.wf-accueil \{[^}]*align-content:safe center/,'haut non coupé');
   assert.match(css,/\.wf-salut \{[^}]*overflow-wrap:anywhere/,'un prénom très long passe à la ligne');
-  assert.match(css,/\.ac-v21-bilan #serie \{[^}]*min-height:calc\(76 \* var\(--k\)\);\s*flex-wrap:wrap/);
-  assert.match(css,/\.ac-v21-bilan-legende \{[^}]*white-space:normal/);
+  assert.match(css,/\.wf-etat-tete \{[^}]*gap:12px/,'libellé et valeur séparés même en grande police');
   assert.match(css,/\.wf-activite > b \{[^}]*white-space:nowrap/,'libellés courts Étudier et Jouer');
   assert.match(css,/\.wf-choix-activite \.wf-activite \{[^}]*min-height:58px/,'cibles tactiles ≥ 48 px');
 });
@@ -310,7 +303,7 @@ test('Audit 04/11 : niveau actif lisible, textes ≥ 12 px, fond PC continu',()=
   assert.match(css,/\.wf-hero-rubans/,'rubans du hero préservés');
   // Charte § 3 : aucun texte utile de l'accueil sous 12 px (sauf logotype et compte du header).
   for (const [bloc, taille] of [['wf-hero-trad b','700 max(15px, calc(38'],['wf-hero-trad small','400 max(13px, calc(31'],
-    ['ac-v21-bilan-titre','800 max(12px, calc(24.5'],['ac-v21-bilan-legende','400 max(12px, calc(30'],
+    ['wf-etat-val small','500 clamp(13px, calc(31'],['wf-etat-note','400 clamp(13px, calc(30'],
     ['cs-etape','400 max(12px, calc(28.8'],['cs-titre','700 max(13px, calc(38'],['puce-niv','700 max(12px, calc(32']])
     assert.ok(css.slice(css.indexOf(bloc)).includes('font:'+taille),bloc+' ≥ 12 px');
   assert.match(css,/\.wf-activite > b \{[^}]*font:800 clamp\(19px,/,'Étudier / Jouer en grand texte WCAG');
@@ -557,7 +550,7 @@ test('CSS : unité --k, deux polices et hero sans hauteur fixe',()=>{
   assert.match(hero,/height:auto/);
   assert.match(css,/\.wf-hero-rubans \{[^}]*margin:calc\(34 \* var\(--k\)\) calc\(-40 \* var\(--k\)\) 0/,'rubans jusqu\'aux bords de l\'écran');
   assert.match(css,/::after \{\s*content:""; position:absolute; top:50%; height:48px;/,'zones de toucher de 48 px');
-  assert.match(css,/\.ac-piste i \{[^}]*min-width:0/,'0 % = aucun remplissage');
+  assert.match(css,/\.wf-bandes i::before \{[^}]*transform:scaleX\(0\)/,'bande vide = aucun remplissage');
   assert.match(css,/flex-wrap:wrap/,'repli sur deux lignes si la police grandit');
   assert.doesNotMatch(css,/italic 700/,'pas de gras synthétique');
 });
@@ -585,6 +578,45 @@ test('PC : header sur une ligne et quatre espaces verticaux identiques',()=>{
   assert.ok(!pc.includes('ac-marque-sous { display:none; }'),'« Lëtzebuergesch » reste visible sur PC');
   const grilles=[...pc.matchAll(/grid-template-rows:([^;]*);/g)].map(m=>m[1].replace(/\/\*[^*]*\*\//g,'').replace(/\s+/g,' ').trim());
   assert.equal(grilles[0],'max-content minmax(28px,72px) max-content minmax(28px,72px) max-content minmax(28px,72px) max-content 20px max-content minmax(24px,1fr)','espaces égaux, Commencer + Étudier/Jouer groupés');
-  assert.equal(grilles[1],'max-content minmax(28px,72px) max-content 0 0 minmax(28px,72px) max-content 20px max-content minmax(24px,1fr)','premier accueil sans objectif');
+  assert.equal(grilles.length,1,'une seule grille PC');
   assert.ok(pc.includes('align-content:safe start'),'header ancré en haut sur PC');
+});
+
+test('État des lieux §33 : série en bandes rouges, niveau en bandes cyan, animé une fois',()=>{
+  const L=['L','M','M','J','V','S','D'];
+  const lecons=Array.from({length:18},(_,i)=>({i}));
+  const base={
+    serieActuelle:()=>4, totalJours:()=>9,
+    semaineEnCours:()=>[0,2,2,2,2,1,0].map((v,i)=>({lettre:L[i],valeur:v,aujourdhui:i===5,futur:i>5})),
+    leconsDuNiveau:()=>lecons, leconTerminee:l=>l.i<3, acquiseAncienneVersion:()=>false, etapesFaites:l=>l.i===3?2:0
+  };
+  const {ctx}=setup(undefined,base);
+  const h=ctx.chiffresHtml();
+  assert.match(h,/^<section class="ac-chiffres wf-etat entre-2" aria-label="Ta progression">/,'classe ac-chiffres gardée : le moteur 2.1 place le hero avant');
+  assert.match(h,/<span id="serie" class="wf-etat-val">4<small> jours<\/small><\/span>/,'#serie conservé pour la fête de l’objectif');
+  const semaine=h.slice(h.indexOf('wf-semaine'),h.indexOf('wf-jours'));
+  assert.equal((semaine.match(/<i class="ok" style="--i:\d"><\/i>/g)||[]).length,4,'4 jours objectif atteint');
+  assert.match(h,/<i class="demi auj" style="--i:5"><\/i>/,'aujourd’hui : pratique commencée');
+  assert.match(h,/aria-label="Série de 4 jours\. Cette semaine : lundi pas de pratique, mardi objectif atteint,[^"]*samedi pratique commencée \(aujourd’hui\), dimanche à venir\."/);
+  assert.match(h,/<span class="wf-etat-val">3 \/ 18<small> leçons<\/small><\/span>/);
+  assert.match(h,/role="progressbar"[^>]*aria-valuemax="18" aria-valuenow="3" style="--n:18"/);
+  assert.equal((h.match(/class="ok" style="--i:\d+"/g)||[]).length,4+3,'semaine + leçons terminées');
+  assert.match(h,/<i class="demi" style="--i:3"><\/i>/,'leçon commencée à moitié');
+  assert.ok(!h.includes('wf-etat-note'),'pas de note quand la série tourne');
+  const {ctx:neuf}=setup(undefined,Object.assign({},base,{serieActuelle:()=>0,totalJours:()=>0,
+    semaineEnCours:()=>L.map((l,i)=>({lettre:l,valeur:0,aujourdhui:i===5,futur:i>5})),leconTerminee:()=>false,etapesFaites:()=>0}));
+  const n=neuf.chiffresHtml();
+  assert.match(n,/0<small> jour<\/small>/,'singulier');
+  assert.match(n,/Termine ta première leçon pour lancer ta série\./);
+  const {ctx:retour}=setup(undefined,Object.assign({},base,{serieActuelle:()=>0}));
+  assert.match(retour.chiffresHtml(),/Atteins l’objectif du jour pour relancer ta série\./);
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  assert.match(css,/\.wf-semaine i::before \{ background:var\(--wf-red\); \}/);
+  assert.match(css,/\.wf-lecons i::before \{ background:var\(--wf-cyan\); \}/);
+  assert.match(css,/\.wf-accueil\.anime \.wf-semaine i\.ok::before,[\s\S]*?animation:wf-bande-remplit 520ms[^;]*calc\(300ms \+ var\(--i\) \* 90ms\) both;/,'remplissage jour par jour');
+  assert.match(css,/\.wf-accueil\.anime \.wf-lecons i\.ok::before,[\s\S]*?calc\(850ms \+ var\(--i\) \* 60ms\) both;/,'puis leçon par leçon');
+  assert.doesNotMatch(css,/wf-bande-remplit[^;]*infinite/,'jamais en boucle');
+  const reduit=css.slice(css.indexOf('@keyframes wf-bande-remplit'));
+  assert.match(reduit,/@media \(prefers-reduced-motion:reduce\) \{\s*#view-dashboard \.wf-accueil\.anime \.wf-bandes i::before,[^{]*\{ animation:none; \}/,'mouvement réduit respecté');
+  assert.doesNotMatch(css,/ac-v21-bilan/,'ancien bilan retiré');
 });

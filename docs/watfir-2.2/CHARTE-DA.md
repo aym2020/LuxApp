@@ -27,8 +27,8 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 | --- | --- | --- |
 | `--wf-bg` | `#080808` | Fond quasi noir, continu, sans faux panneaux. Texte et picto de Jouer. |
 | `--wf-cream` | `#F7E9C2` | Marque, titres, icônes neutres, **CTA principal**, texte sur rouge |
-| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, « ! » du salut, bouton Étudier, pastille de niveau actif, flamme de série |
-| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bouton Écouter, bouton Jouer, survols PC (Connexion, réglages) |
+| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, « ! » du salut, bandes de la **série** (régularité), bouton Étudier, pastille de niveau actif |
+| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bandes du **niveau** (avancement), bouton Écouter, bouton Jouer, survols PC (Connexion, réglages) |
 | `--wf-red-texte` | `#C81E1B` | Niveau courant dans la feuille des niveaux uniquement (4,75:1) |
 | `--wf-secondary` | `#BEB6A6` | Texte explicatif non essentiel, sous-titre « Lëtzebuergesch » du logo |
 | `--wf-track` | `#3C3934` | Barre de progression inactive, filets discrets |
@@ -52,7 +52,7 @@ Le rouge de marque `--wf-red` n'est pas le rouge d'erreur `--wf-error`. Un état
 
 - **Watfir (portail et header)** : Fraunces 900 italic auto-hébergée, famille CSS `Watfir Logo` ; le logo existant est conservé.
 - **Tous les autres textes des deux écrans** : Inter / system-ui / sans-serif. Le sous-titre « Lëtzebuergesch » du header quitte Roboto Condensed ; le portail utilisait déjà Inter. Boutons, progression, niveaux, navigation et descriptions ne changent pas de style.
-- **Salut du hero** : « Moien, » puis le prénom sur une seconde ligne, en Fraunces 900 italique crème (`clamp(48px, calc(150 * var(--k)), 72px)`), « ! » rouge `#F22421`. Prénom de 10 à 14 caractères : `.wf-salut-s` (max 60 px) ; 15 caractères et plus : `.wf-salut-xs` (max 46 px). Prénom limité à 20 caractères, échappé. Dessous : « Bonjour, prénom. » (Inter 700) et une phrase en crème atténué (Inter 400, 13 px min.). L'ancien titre « MISSION A1.1 » (Inter 800) est retiré.
+- **Salut du hero** : « Moien, » puis le prénom sur une seconde ligne, en Fraunces 900 italique crème (`clamp(48px, calc(150 * var(--k)), 72px)`), « ! » rouge `#F22421`. Prénom de 10 à 14 caractères : `.wf-salut-s` (max 60 px) ; 15 caractères et plus : `.wf-salut-xs` (max 46 px). Prénom limité à 20 caractères, échappé. Dessous : « Bonjour, prénom. » (Inter 700) et une phrase en crème atténué (Inter 400, 13 px min.). L'ancien titre « MISSION A1.1 » (Inter 800) est retiré. **Sur PC (§33)** : « Moien, Clayton! » tient sur une seule ligne (60 px max).
 - **Surtitres** : petites capitales avec `letter-spacing:.18em` et plancher de 12 px sur les textes utiles (« Ton objectif actuel »). Le hero n'a plus de surtitre. Exception : « Lëtzebuergesch » et connexion du header, réduits pour préserver la disposition Android.
 - **Anciennes fontes** : Playfair Display et Roboto Condensed ne sont plus chargées sur l'accueil ; leurs fichiers restent dans le dépôt à titre de compatibilité. Ce contrat ne concerne pas encore les jeux et écrans pédagogiques 2.1.
 
@@ -84,7 +84,7 @@ Fond noir libre autour des composants ; un CTA crème de premier niveau et deux 
 
 ## 5. Rythme, densité et hiérarchie
 
-Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (Moien + prénom, Écouter, rubans) → **objectif réel** (seulement après une première pratique) → **Commencer/Continuer** → **Étudier et Jouer**, ces deux derniers formant **un seul groupe** en bas de l'écran. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
+Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (Moien + prénom, Écouter, rubans) → **état des lieux** (série + niveau, toujours affiché) → **Commencer/Continuer** → **Étudier et Jouer**, ces deux derniers formant **un seul groupe** en bas de l'écran. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
 
 Une seule action dominante à l'écran. Le hero est expressif mais ne doit jamais repousser le CTA hors de l'écran à cause d'une hauteur fixe.
 
@@ -118,7 +118,7 @@ Deux pastilles maximum dans le header, **actif rouge vif `#F22421` / crème** et
 
 ### 6.5 Progression
 
-En-tête « TON OBJECTIF ACTUEL », pourcentage du **niveau actif** et série selon calcul réel. Barre très fine avec piste foncée. **Masqué au premier accueil** (aucune pratique) : on n'accueille pas avec « 0% · 0 jours ». Ne pas confondre progression du niveau et « Aujourd'hui ».
+**État des lieux (§33, 07/11/2026)** — remplace « Ton objectif actuel ». Pas de cadre : deux rangées de **bandes plates** posées sur le noir, même rouge, même cyan et bouts nets que les rubans. **Série** : libellé « SÉRIE » et « 4 jours » à droite ; 7 bandes du lundi au dimanche (rouge plein = objectif du jour atteint, moitié rouge = pratique commencée, gris `#24211D` = rien ou à venir), trait crème au-dessus du jour courant, lettres L M M J V S D dessous. **Niveau** : « NIVEAU A1.1 » et « 3 / 18 leçons » ; une bande cyan par leçon du niveau (moitié = leçon commencée). Toujours affiché, y compris au premier accueil (bandes vides + « Termine ta première leçon pour lancer ta série. ») ; série à zéro ensuite : « Atteins l’objectif du jour pour relancer ta série. ». **Animation** à l'arrivée sur l'accueil seulement (classe `.anime`) : les bandes rouges se remplissent de gauche à droite jour après jour (520 ms, +90 ms par jour), puis les bandes cyan leçon après leçon (+60 ms), puis le trait du jour se pose ; jamais en boucle, désactivée en mouvement réduit. Accessibilité : semaine en `role="img"` avec un résumé lu jour par jour, niveau en `role="progressbar"`. `#serie` reste sur la valeur pour la petite fête de l'objectif du jour.
 
 ### 6.6 Accès secondaires
 

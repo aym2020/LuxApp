@@ -186,7 +186,7 @@ body:has(#view-dashboard.active) { background:#080808; }
      header en haut ; hero ; objectif (seulement après une première pratique) ;
      puis Commencer + Étudier/Jouer groupés (20 px) en bas, près du pouce.
      Les espaces souples se partagent la hauteur ; la marge basse est fixe.
-     Premier accueil (.wf-sans-bilan) : les rangées de l'objectif valent 0. */
+     L'état des lieux (série + niveau) est toujours présent (§33). */
   #view-dashboard .accueil.wf-accueil {
     --wf-section-min:clamp(28px,4svh,36px);
     align-content:safe start;
@@ -195,19 +195,13 @@ body:has(#view-dashboard.active) { background:#080808; }
       max-content                              /* header */
       minmax(var(--wf-section-min),.8fr)       /* header → hero */
       max-content                              /* hero Moien */
-      minmax(var(--wf-section-min),1fr)        /* hero → objectif */
-      max-content                              /* objectif */
-      minmax(var(--wf-section-min),1fr)        /* objectif → Commencer */
+      minmax(var(--wf-section-min),1fr)        /* hero → état des lieux */
+      max-content                              /* état des lieux : série + niveau */
+      minmax(var(--wf-section-min),1fr)        /* état des lieux → Commencer */
       max-content                              /* Commencer */
       20px                                     /* Commencer + Étudier/Jouer : un groupe */
       max-content                              /* Étudier / Jouer */
       clamp(28px,5svh,48px);                   /* marge basse */
-  }
-  #view-dashboard .accueil.wf-accueil.wf-sans-bilan {
-    grid-template-rows:
-      max-content minmax(var(--wf-section-min),.8fr) max-content
-      0 0                                      /* pas d'objectif au premier accueil */
-      minmax(var(--wf-section-min),1fr) max-content 20px max-content clamp(28px,5svh,48px);
   }
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
@@ -291,18 +285,12 @@ body:has(#view-dashboard.active) { background:#080808; }
       minmax(28px,72px)      /* header → hero */
       max-content            /* hero Moien */
       minmax(28px,72px)      /* hero → objectif */
-      max-content            /* objectif */
+      max-content            /* état des lieux */
       minmax(28px,72px)      /* objectif → Commencer */
       max-content            /* Commencer */
       20px                   /* Commencer + Étudier/Jouer : un groupe */
       max-content            /* Étudier / Jouer */
       minmax(24px,1fr);      /* reste de la hauteur, en bas */
-  }
-  #view-dashboard .accueil.wf-accueil.wf-sans-bilan {
-    grid-template-rows:
-      max-content minmax(28px,72px) max-content
-      0 0                    /* pas d'objectif au premier accueil */
-      minmax(28px,72px) max-content 20px max-content minmax(24px,1fr);
   }
 
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
@@ -387,6 +375,10 @@ body:has(#view-dashboard.active) { background:#080808; }
    (30 × 0,68 ≈ 20 px, décalage 52 ≈ 35 px). La marge négative retire le vide
    laissé sous des rubans plus fins dans la même boîte. */
 @media (min-width:541px) {
+  /* PC : « Moien, Clayton! » sur une seule ligne quand il tient (60 px max) :
+     la page entière reste visible dans une fenêtre de 900 px de haut. */
+  #view-dashboard .wf-accueil .wf-salut { font-size:clamp(48px, calc(150 * var(--k)), 60px); }
+  #view-dashboard .wf-accueil .wf-salut > span { display:inline; }
   #view-dashboard .wf-accueil .wf-ruban-rouge,
   #view-dashboard .wf-accueil .wf-ruban-cyan { stroke-width:30; }
   #view-dashboard .wf-accueil .wf-ruban-filet { stroke-width:42; }
@@ -394,54 +386,81 @@ body:has(#view-dashboard.active) { background:#080808; }
   #view-dashboard .wf-accueil .wf-hero-rubans { margin-bottom:calc(-36 * var(--k)); }
 }
 
-/* ── Progression (vraies valeurs) ─────────────────────────────────────── */
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan { margin:0; padding:0; color:var(--wf-cream); flex-shrink:0; }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-titre {
-  margin:0 0 0 calc(11 * var(--k)); color:var(--wf-cream); white-space:nowrap;
-  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.18em;
+/* ── État des lieux (§33) : série et niveau en bandes ─────────────────── */
+/* Les bandes reprennent les rubans : même rouge, même cyan, bouts nets, sans cadre.
+   Rouge = série de la semaine (plein : objectif atteint, moitié : pratique commencée).
+   Cyan = une bande par leçon du niveau. Gris : rien encore. Trait crème au-dessus
+   du jour courant. Les classes de style.css « .ac-chiffres » (grille 3 colonnes,
+   filets, couleurs des span) sont neutralisées ici. */
+#view-dashboard .wf-accueil .ac-chiffres.wf-etat {
+  display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px, calc(52 * var(--k)), 28px);
+  margin:0; padding:0 0 0 calc(10 * var(--k)); text-align:left; color:var(--wf-cream);
+  --wf-bande-vide:#24211d;
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan > .ac-v21-bilan-ligne {
-  display:grid; grid-template-columns:calc(454 * var(--k)) minmax(0,1fr); gap:0; margin-top:calc(12 * var(--k)); align-items:start;
+#view-dashboard .wf-accueil .wf-etat > div { display:block; padding:0; border:0; min-width:0; }
+#view-dashboard .wf-accueil .wf-etat-tete {
+  display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:clamp(8px, calc(20 * var(--k)), 12px);
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-progress-mesure { padding-left:calc(14 * var(--k)); }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-serie-mesure {
-  position:relative; padding-left:calc(63 * var(--k)); border-left:0;
+#view-dashboard .wf-accueil .wf-etat .wf-etat-lab {
+  color:var(--wf-cream); font:800 12px/1.2 var(--wf-sans); letter-spacing:.18em; text-transform:uppercase;
 }
-/* Filet vertical : maquette x 494, y 698–797. */
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-serie-mesure::before {
-  content:""; position:absolute; left:0; top:calc(13 * var(--k)); height:calc(99 * var(--k));
-  width:max(1px, calc(2 * var(--k))); background:rgba(247,233,194,.45);
+#view-dashboard .wf-accueil .wf-etat .wf-etat-val {
+  display:inline-block; color:var(--wf-cream); white-space:nowrap;
+  font:800 clamp(18px, calc(46 * var(--k)), 24px)/1 var(--wf-sans); letter-spacing:-.01em;
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-chiffre {
-  display:flex; align-items:baseline; color:var(--wf-cream); letter-spacing:-.01em; white-space:nowrap;
-  font:800 calc(76 * var(--k))/1 var(--wf-sans);
+#view-dashboard .wf-accueil .wf-etat .wf-etat-val small {
+  color:var(--wf-muted); font:500 clamp(13px, calc(31 * var(--k)), 15px)/1 var(--wf-sans);
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-progress-mesure .ac-v21-bilan-unite {
-  color:var(--wf-cream); font:800 calc(68 * var(--k))/1 var(--wf-sans); letter-spacing:0;
+#view-dashboard .wf-accueil .wf-bandes { display:grid; gap:4px; }
+#view-dashboard .wf-accueil .wf-semaine { grid-template-columns:repeat(7, minmax(0,1fr)); }
+#view-dashboard .wf-accueil .wf-lecons { grid-template-columns:repeat(var(--n), minmax(0,1fr)); gap:3px; }
+#view-dashboard .wf-accueil .wf-bandes i {
+  position:relative; display:block; height:clamp(14px, calc(40 * var(--k)), 20px);
+  background:var(--wf-bande-vide); overflow:hidden;
 }
-/* Série : « 0 jours » sur une même taille, flamme rouge à gauche. */
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan #serie {
-  flex-direction:row; align-items:center; gap:0; font:800 calc(49 * var(--k))/1 var(--wf-sans); min-height:calc(76 * var(--k));
-  flex-wrap:wrap; white-space:normal; /* très grande police : « jours » passe dessous au lieu de sortir de l'écran */
+/* Le remplissage est un calque : la piste grise reste visible pendant l'animation. */
+#view-dashboard .wf-accueil .wf-bandes i::before {
+  content:""; position:absolute; inset:0; transform-origin:left center; transform:scaleX(0);
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan #serie .ac-v21-bilan-nombre,
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan #serie .ac-v21-bilan-unite {
-  color:var(--wf-cream); font:800 calc(49 * var(--k))/1 var(--wf-sans); letter-spacing:-.01em;
+#view-dashboard .wf-accueil .wf-bandes i.ok::before,
+#view-dashboard .wf-accueil .wf-bandes i.demi::before { transform:scaleX(1); }
+#view-dashboard .wf-accueil .wf-bandes i.demi::before { right:50%; }
+#view-dashboard .wf-accueil .wf-semaine i::before { background:var(--wf-red); }
+#view-dashboard .wf-accueil .wf-lecons i::before { background:var(--wf-cyan); }
+/* Jour courant : trait crème au-dessus de sa bande. */
+#view-dashboard .wf-accueil .wf-semaine i.auj { overflow:visible; }
+#view-dashboard .wf-accueil .wf-semaine i.auj::after {
+  content:""; position:absolute; left:0; right:0; top:-7px; height:3px; background:var(--wf-cream);
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan #serie .ac-v21-bilan-unite { margin-left:calc(14 * var(--k)); }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-flamme {
-  width:calc(70 * var(--k)); height:calc(70 * var(--k)); position:relative; top:calc(-7 * var(--k)); margin:0 calc(18 * var(--k)) 0 calc(-12 * var(--k)); color:var(--wf-red);
+#view-dashboard .wf-accueil .wf-jours {
+  display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:4px; margin-top:9px; text-align:center;
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-flamme .ic { width:100%; height:100%; stroke-width:2.4; }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-v21-bilan-legende {
-  display:block; margin-top:calc(-4 * var(--k)); color:var(--wf-cream); white-space:normal; /* très grande police : à la ligne */
-  font:400 max(12px, calc(30 * var(--k)))/1.2 var(--wf-sans);
+#view-dashboard .wf-accueil .wf-etat .wf-jours span { color:#8a8172; font:800 12px/1 var(--wf-sans); }
+#view-dashboard .wf-accueil .wf-etat .wf-jours span.auj { color:var(--wf-cream); }
+#view-dashboard .wf-accueil .wf-etat-note {
+  margin:12px 0 0; color:var(--wf-muted); font:400 clamp(13px, calc(30 * var(--k)), 15px)/1.3 var(--wf-sans);
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste {
-  width:calc(400 * var(--k)); height:calc(13 * var(--k)); margin:calc(14 * var(--k)) 0 0 calc(-3 * var(--k));
-  background:var(--wf-line); border-radius:99px;
+
+/* Animation d'arrivée sur l'accueil (classe .anime posée par le moteur) :
+   les bandes se remplissent de gauche à droite, la semaine puis les leçons,
+   et le trait du jour se pose en dernier. Une seule fois, jamais en boucle. */
+@keyframes wf-bande-remplit { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes wf-jour-pose { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+/* Délai dans la même déclaration : une règle animation-delay séparée serait
+   écrasée par ce raccourci plus spécifique. */
+#view-dashboard .wf-accueil.anime .wf-semaine i.ok::before,
+#view-dashboard .wf-accueil.anime .wf-semaine i.demi::before {
+  animation:wf-bande-remplit 520ms cubic-bezier(.25,.8,.3,1) calc(300ms + var(--i) * 90ms) both;
 }
-#view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste i { background:var(--wf-red); min-width:0; } /* 0 % = rien de visible */
+#view-dashboard .wf-accueil.anime .wf-lecons i.ok::before,
+#view-dashboard .wf-accueil.anime .wf-lecons i.demi::before {
+  animation:wf-bande-remplit 420ms cubic-bezier(.25,.8,.3,1) calc(850ms + var(--i) * 60ms) both;
+}
+#view-dashboard .wf-accueil.anime .wf-semaine i.auj::after { animation:wf-jour-pose 280ms ease-out 1100ms both; }
+@media (prefers-reduced-motion:reduce) {
+  #view-dashboard .wf-accueil.anime .wf-bandes i::before,
+  #view-dashboard .wf-accueil.anime .wf-semaine i.auj::after { animation:none; }
+}
 
 /* ── CTA crème (maquette y 860–1101) ──────────────────────────────────── */
 /* Bouton crème uni, même rayon de 17px que les deux grands CTA du portail.

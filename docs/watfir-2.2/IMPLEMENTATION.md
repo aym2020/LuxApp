@@ -557,3 +557,20 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Fichiers :** `public/accueil-watfir.js`, `public/accueil-watfir.css`, `public/index.html` (caches `watfir-v4-15` et `watfir-v4-32`), `test/watfir-home.test.cjs`, `test/watfir-hover.test.cjs`. Tests Watfir 50/50.
 
 **Non testé :** Samsung réel après correctif.
+
+## 33. État des lieux animé : série et niveau en bandes (07/11/2026)
+
+**Décision de Clayton :** le milieu de l'accueil doit faire l'état des lieux de la progression et de la série. Pistes étudiées : semaine posée sur le ruban, tableau d'affichage, carte poinçonnée (refusée : « ça dénote »), puis bandes plates (A) et deux grands chiffres (B). **A retenue, avec animation.**
+
+**Implémentation :**
+- `chiffresHtml` (Watfir) remplace le bilan 2.1 : `<section class="ac-chiffres wf-etat">` (la classe `ac-chiffres` est gardée car le moteur 2.1 place le hero avant elle). Données 2.1 uniquement : `serieActuelle()`, `semaineEnCours()` (0/1/2 par jour, aujourd'hui, futur), `totalJours()`, `leconsDuNiveau()`, `leconTerminee()`, `acquiseAncienneVersion()`, `etapesFaites()`. Aucune nouvelle clé de stockage.
+- `renderAccueil` ajoute l'état des lieux au premier accueil (le moteur 2.1 ne l'affiche qu'après une pratique) ; la grille `.wf-sans-bilan` de §31 est supprimée, une seule grille mobile et PC.
+- CSS : bandes `i` grises avec un calque `::before` rouge (semaine) ou cyan (leçons) mis à l'échelle (`scaleX`), moitié pour « commencé » ; trait crème du jour en `::after`. Les styles génériques `.ac-chiffres` de `style.css` sont neutralisés. Tailles plafonnées sur PC (bandes 14–20 px, valeurs 18–24 px). L'ancien bilan (`.ac-v21-bilan`, piste, flamme) est retiré de `accueil-watfir.css`.
+- Animation : `@keyframes wf-bande-remplit`, délai dans le raccourci `animation` (une règle `animation-delay` séparée était écrasée par le sélecteur plus spécifique) : semaine `calc(300ms + var(--i) * 90ms)`, leçons `calc(850ms + var(--i) * 60ms)`, trait du jour à 1 100 ms. Uniquement avec `.anime` (arrivée sur l'accueil), jamais en boucle, `animation:none` en mouvement réduit.
+- PC : « Moien, Clayton! » sur une ligne (60 px max, espace entre les deux spans) pour que la page tienne dans 900 px de haut.
+
+**Mesures Chromium (DOM réel, données simulées 4 jours de série / 3 leçons sur 18) :** 412×915 sans défilement (état des lieux 494–631, Commencer 693–791) ; 1440×900 sans défilement (actions jusqu'à 877) ; 360×640 et 320×568 : défilement de 70 à 95 px, prévu par la charte ; 1366×768 : défilement d'environ 110 px. Données réelles : nouvel invité « 0 jour · 0/18 », passage en A1.2 → 8 bandes, objectif du jour atteint → « 1 jour » et animation `bump` de `#serie` conservée. Aucune erreur JS.
+
+**Tests :** `test/watfir-home.test.cjs` (nouveau contrat §33, grilles), `test/watfir-hover.test.cjs` ; 51/51 avec le portail. Caches `accueil-watfir.js?v=watfir-v4-16`, `accueil-watfir.css?v=watfir-v4-33`.
+
+**Non testé :** Samsung réel, lecteur d'écran sur le résumé de semaine, semaine à cheval sur un changement d'heure.
