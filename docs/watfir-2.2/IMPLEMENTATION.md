@@ -574,3 +574,16 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Tests :** `test/watfir-home.test.cjs` (nouveau contrat §33, grilles), `test/watfir-hover.test.cjs` ; 51/51 avec le portail. Caches `accueil-watfir.js?v=watfir-v4-16`, `accueil-watfir.css?v=watfir-v4-33`.
 
 **Non testé :** Samsung réel, lecteur d'écran sur le résumé de semaine, semaine à cheval sur un changement d'heure.
+
+## 34. État des lieux : jour courant, phrase concrète, animation rejouée (07/11/2026)
+
+**Retour de Clayton sur Samsung :** le trait crème au-dessus du jour courant flottait et se lisait comme un tiret ; « Atteins l’objectif du jour » renvoyait à une notion absente de l'écran ; l'animation ne se jouait qu'à certaines arrivées.
+
+**Correctifs :**
+- Trait du jour courant supprimé (`.auj::after`, `@keyframes wf-jour-pose`) ; le jour reste repéré par sa lettre crème.
+- Série à zéro : « Termine une unité aujourd’hui pour lancer ta série. » (l'objectif du jour de `progress.js` = au moins une unité terminée dans la journée, plus les révisions dues).
+- `renderAccueil` (Watfir) pose `.wf-etat-anime` si l'accueil n'était pas encore affiché (`#view-dashboard` sans `.active` : menu, Retour Android, retour d'une leçon ou des Réglages) ou si `niveauActif` a changé depuis le dernier rendu. Une synchronisation qui réaffiche l'accueil déjà visible ne relance pas l'animation. Les règles CSS ciblent `.wf-etat-anime` au lieu de `.wf-accueil.anime`.
+
+**Vérification Chromium :** arrivée par `goDashboard()` → 5 animations ; `apresSynchro()` sur l'accueil visible → 0 ; passage en A1.2 → 5 ; Chemin puis `history.back()` → 5 ; Réglages puis « ← » → 5. Aucune erreur JS. Tests Watfir 51/51. Caches `watfir-v4-17` (JS) et `watfir-v4-34` (CSS).
+
+**Non testé :** Samsung réel.

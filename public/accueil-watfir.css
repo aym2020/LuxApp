@@ -389,8 +389,8 @@ body:has(#view-dashboard.active) { background:#080808; }
 /* ── État des lieux (§33) : série et niveau en bandes ─────────────────── */
 /* Les bandes reprennent les rubans : même rouge, même cyan, bouts nets, sans cadre.
    Rouge = série de la semaine (plein : objectif atteint, moitié : pratique commencée).
-   Cyan = une bande par leçon du niveau. Gris : rien encore. Trait crème au-dessus
-   du jour courant. Les classes de style.css « .ac-chiffres » (grille 3 colonnes,
+   Cyan = une bande par leçon du niveau. Gris : rien encore. Le jour courant est
+   repéré par sa lettre en crème (pas de trait : il se lisait comme un tiret). Les classes de style.css « .ac-chiffres » (grille 3 colonnes,
    filets, couleurs des span) sont neutralisées ici. */
 #view-dashboard .wf-accueil .ac-chiffres.wf-etat {
   display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px, calc(52 * var(--k)), 28px);
@@ -427,11 +427,6 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .wf-bandes i.demi::before { right:50%; }
 #view-dashboard .wf-accueil .wf-semaine i::before { background:var(--wf-red); }
 #view-dashboard .wf-accueil .wf-lecons i::before { background:var(--wf-cyan); }
-/* Jour courant : trait crème au-dessus de sa bande. */
-#view-dashboard .wf-accueil .wf-semaine i.auj { overflow:visible; }
-#view-dashboard .wf-accueil .wf-semaine i.auj::after {
-  content:""; position:absolute; left:0; right:0; top:-7px; height:3px; background:var(--wf-cream);
-}
 #view-dashboard .wf-accueil .wf-jours {
   display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:4px; margin-top:9px; text-align:center;
 }
@@ -441,25 +436,21 @@ body:has(#view-dashboard.active) { background:#080808; }
   margin:12px 0 0; color:var(--wf-muted); font:400 clamp(13px, calc(30 * var(--k)), 15px)/1.3 var(--wf-sans);
 }
 
-/* Animation d'arrivée sur l'accueil (classe .anime posée par le moteur) :
-   les bandes se remplissent de gauche à droite, la semaine puis les leçons,
-   et le trait du jour se pose en dernier. Une seule fois, jamais en boucle. */
+/* Animation des bandes (classe .wf-etat-anime posée par renderAccueil à chaque
+   arrivée sur l'accueil et à chaque changement de niveau) : la semaine se remplit
+   jour après jour, puis les leçons. Une seule fois par affichage, jamais en boucle.
+   Délai dans le même raccourci : une règle animation-delay séparée serait écrasée. */
 @keyframes wf-bande-remplit { from { transform:scaleX(0); } to { transform:scaleX(1); } }
-@keyframes wf-jour-pose { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
-/* Délai dans la même déclaration : une règle animation-delay séparée serait
-   écrasée par ce raccourci plus spécifique. */
-#view-dashboard .wf-accueil.anime .wf-semaine i.ok::before,
-#view-dashboard .wf-accueil.anime .wf-semaine i.demi::before {
+#view-dashboard .wf-accueil .wf-etat-anime .wf-semaine i.ok::before,
+#view-dashboard .wf-accueil .wf-etat-anime .wf-semaine i.demi::before {
   animation:wf-bande-remplit 520ms cubic-bezier(.25,.8,.3,1) calc(300ms + var(--i) * 90ms) both;
 }
-#view-dashboard .wf-accueil.anime .wf-lecons i.ok::before,
-#view-dashboard .wf-accueil.anime .wf-lecons i.demi::before {
+#view-dashboard .wf-accueil .wf-etat-anime .wf-lecons i.ok::before,
+#view-dashboard .wf-accueil .wf-etat-anime .wf-lecons i.demi::before {
   animation:wf-bande-remplit 420ms cubic-bezier(.25,.8,.3,1) calc(850ms + var(--i) * 60ms) both;
 }
-#view-dashboard .wf-accueil.anime .wf-semaine i.auj::after { animation:wf-jour-pose 280ms ease-out 1100ms both; }
 @media (prefers-reduced-motion:reduce) {
-  #view-dashboard .wf-accueil.anime .wf-bandes i::before,
-  #view-dashboard .wf-accueil.anime .wf-semaine i.auj::after { animation:none; }
+  #view-dashboard .wf-accueil .wf-etat-anime .wf-bandes i::before { animation:none; }
 }
 
 /* ── CTA crème (maquette y 860–1101) ──────────────────────────────────── */

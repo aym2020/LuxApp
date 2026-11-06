@@ -154,8 +154,8 @@
       '<i class="' + (j.valeur === 2 ? 'ok' : j.valeur === 1 ? 'demi' : '') +
       (j.aujourdhui ? ' auj' : '') + '" style="--i:' + i + '"></i>').join('');
     const lettres = semaine.map(j => '<span' + (j.aujourdhui ? ' class="auj"' : '') + '>' + j.lettre + '</span>').join('');
-    const note = serie > 0 ? '' : '<p class="wf-etat-note">' +
-      (totalJours() > 0 ? 'Atteins l’objectif du jour pour relancer ta série.' : 'Termine ta première leçon pour lancer ta série.') + '</p>';
+    // L'objectif du jour (progress.js) = au moins une unité terminée aujourd'hui.
+    const note = serie > 0 ? '' : '<p class="wf-etat-note">Termine une unité aujourd’hui pour lancer ta série.</p>';
     const bandesLecons = etats.map((e, i) => '<i class="' + e + '" style="--i:' + i + '"></i>').join('');
     return '<section class="ac-chiffres wf-etat entre-2" aria-label="Ta progression">' +
       '<div class="wf-etat-bloc">' +
@@ -221,7 +221,15 @@
   // V21 calcule les mêmes vrais KPI et le même prochain pas.
   // Hero toujours AVANT l'état des lieux ; au premier accueil, le moteur 2.1 ne
   // l'affiche pas : on l'ajoute (bandes vides, série à lancer).
+  // Animation des bandes : à chaque ARRIVÉE sur l'accueil (la vue n'est pas encore
+  // affichée : menu, bouton Retour, retour d'une leçon) et à chaque CHANGEMENT DE
+  // NIVEAU. Pas pendant une synchronisation qui réaffiche l'écran déjà visible.
+  let niveauAffiche = null;
   renderAccueil = function (animer) {
+    const vue = document.getElementById('view-dashboard');
+    const arrivee = !!animer || !vue || !vue.classList.contains('active');
+    const autreNiveau = niveauAffiche !== null && niveauAffiche !== niveauActif;
+    niveauAffiche = niveauActif;
     renduV21(animer);
     const box = document.getElementById('accueil');
     if (!box) return;
@@ -231,6 +239,8 @@
     const bilan = box.querySelector('.ac-chiffres');
     if (!bilan) hero.insertAdjacentHTML('afterend', chiffresHtml());
     else if (hero.nextElementSibling !== bilan) hero.after(bilan);
+    const etat = box.querySelector('.wf-etat');
+    if (etat && (arrivee || autreNiveau)) etat.classList.add('wf-etat-anime');
   };
 
   function feuilleNiveaux() {

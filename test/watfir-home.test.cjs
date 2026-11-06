@@ -90,7 +90,7 @@ test('Contrat 2.2 : hero Moien, audio à la demande et cache CSS/JS',()=>{
   assert.ok(!css.includes('.wf-mission-titre')&&!js.includes('wf-mission-titre'),'hero « Mission A1.1 » retiré');
   assert.ok(js.includes("jouerAudio(\\'moien.mp3\\', this)"),'Moien écouté seulement sur appui');
   assert.ok(!/autoplay|\.play\(\)/.test(js),'jamais de lecture automatique');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-16','accueil-watfir.css?v=watfir-v4-33','hover-interactions.css?v=watfir-hover-11'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-17','accueil-watfir.css?v=watfir-v4-34','hover-interactions.css?v=watfir-hover-11'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 
@@ -607,16 +607,23 @@ test('État des lieux §33 : série en bandes rouges, niveau en bandes cyan, ani
     semaineEnCours:()=>L.map((l,i)=>({lettre:l,valeur:0,aujourdhui:i===5,futur:i>5})),leconTerminee:()=>false,etapesFaites:()=>0}));
   const n=neuf.chiffresHtml();
   assert.match(n,/0<small> jour<\/small>/,'singulier');
-  assert.match(n,/Termine ta première leçon pour lancer ta série\./);
+  assert.match(n,/<p class="wf-etat-note">Termine une unité aujourd’hui pour lancer ta série\.<\/p>/,'objectif du jour dit concrètement');
   const {ctx:retour}=setup(undefined,Object.assign({},base,{serieActuelle:()=>0}));
-  assert.match(retour.chiffresHtml(),/Atteins l’objectif du jour pour relancer ta série\./);
+  assert.match(retour.chiffresHtml(),/Termine une unité aujourd’hui pour lancer ta série\./);
+  assert.doesNotMatch(n+retour.chiffresHtml(),/objectif du jour/,'aucune notion invisible à l’écran');
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-semaine i::before \{ background:var\(--wf-red\); \}/);
   assert.match(css,/\.wf-lecons i::before \{ background:var\(--wf-cyan\); \}/);
-  assert.match(css,/\.wf-accueil\.anime \.wf-semaine i\.ok::before,[\s\S]*?animation:wf-bande-remplit 520ms[^;]*calc\(300ms \+ var\(--i\) \* 90ms\) both;/,'remplissage jour par jour');
-  assert.match(css,/\.wf-accueil\.anime \.wf-lecons i\.ok::before,[\s\S]*?calc\(850ms \+ var\(--i\) \* 60ms\) both;/,'puis leçon par leçon');
+  assert.match(css,/\.wf-etat-anime \.wf-semaine i\.ok::before,[\s\S]*?animation:wf-bande-remplit 520ms[^;]*calc\(300ms \+ var\(--i\) \* 90ms\) both;/,'remplissage jour par jour');
+  assert.match(css,/\.wf-etat-anime \.wf-lecons i\.ok::before,[\s\S]*?calc\(850ms \+ var\(--i\) \* 60ms\) both;/,'puis leçon par leçon');
+  assert.doesNotMatch(css,/\.auj::after|wf-jour-pose/,'plus de trait au-dessus du jour courant');
+  assert.match(css,/\.wf-jours span\.auj \{ color:var\(--wf-cream\); \}/,'jour courant repéré par sa lettre');
   assert.doesNotMatch(css,/wf-bande-remplit[^;]*infinite/,'jamais en boucle');
   const reduit=css.slice(css.indexOf('@keyframes wf-bande-remplit'));
-  assert.match(reduit,/@media \(prefers-reduced-motion:reduce\) \{\s*#view-dashboard \.wf-accueil\.anime \.wf-bandes i::before,[^{]*\{ animation:none; \}/,'mouvement réduit respecté');
+  assert.match(reduit,/@media \(prefers-reduced-motion:reduce\) \{\s*#view-dashboard \.wf-accueil \.wf-etat-anime \.wf-bandes i::before \{ animation:none; \}/,'mouvement réduit respecté');
+  const js=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
+  assert.ok(js.includes("const arrivee = !!animer || !vue || !vue.classList.contains('active');"),'rejouée à chaque arrivée sur l’accueil');
+  assert.ok(js.includes("niveauAffiche !== null && niveauAffiche !== niveauActif"),'rejouée au changement de niveau');
+  assert.ok(js.includes("if (etat && (arrivee || autreNiveau)) etat.classList.add('wf-etat-anime');"));
   assert.doesNotMatch(css,/ac-v21-bilan/,'ancien bilan retiré');
 });
