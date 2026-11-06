@@ -301,17 +301,15 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .ac-chiffres.ac-v21-bilan .ac-piste i { background:var(--wf-red); min-width:0; } /* 0 % = rien de visible */
 
 /* ── CTA crème (maquette y 860–1101) ──────────────────────────────────── */
-/* Coin bicolore : deux bandes à 45° dans le coin bas-droit (dégradé à arêtes nettes). */
+/* Bouton crème uni, comme celui du portail. Les rubans identitaires restent
+   dans le hero « Moien! », pas dans le coin de l'action principale. */
 #view-dashboard .wf-accueil #today { margin:0; }
 #view-dashboard .wf-accueil .carte-suite.ac-v21-cta {
   position:relative; overflow:hidden; display:flex; align-items:center; gap:0;
   min-height:0; padding:calc(24 * var(--k)) calc(42 * var(--k)) calc(40 * var(--k));
   color:var(--wf-bg); border:0; border-radius:calc(30 * var(--k));
   --wf-cta-cream:#fbebc5; /* Face claire : seul ce ton varie au survol PC. */
-  background:linear-gradient(135deg,
-    var(--wf-cta-cream) calc(100% - 51.6 * var(--k)),
-    var(--wf-red) 0 calc(100% - 31.8 * var(--k)),
-    var(--wf-cyan) 0);
+  background:var(--wf-cta-cream);
   /* 3D physique au repos (mobile ET PC) : tranche 7px, lumière discrète, ombre.
      Le relief est entièrement hors flux : dimensions et grille Watfir inchangées. */
   box-shadow:
@@ -358,7 +356,7 @@ body:has(#view-dashboard.active) { background:#080808; }
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
   flex:none; width:calc(66 * var(--k)); height:calc(66 * var(--k));
-  /* Chevron dégagé des bandes du coin : correction mobile et PC, sans JS. */
+  /* Espacement équilibré du chevron à droite, inchangé côté navigation. */
   margin:calc(8 * var(--k)) calc(24 * var(--k)) 0 calc(16 * var(--k));
   color:var(--wf-bg); background:transparent; border:0; z-index:1;
 }
