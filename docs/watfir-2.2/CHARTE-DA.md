@@ -121,6 +121,8 @@ Définir au minimum : chargement, progression nulle, aucune leçon reprenable, n
 
 ### 6.8 Premier écran — portail de bienvenue (06/11/2026)
 
+**Typographie du mot-symbole :** Fraunces 900 italic (même fonte que le header), `font-kerning:normal`, **`letter-spacing:0`**, aucune ombre portée. Ne pas resserrer artificiellement les glyphes : à grande taille, `-0.075em` collait les lettres et donnait une impression de dessin « baveux » sur Android. La forme de la fonte est conservée. La lisibilité à l'écran prime sur une compaction décorative.
+
 **La page de bienvenue n'est pas une version simplifiée de l'accueil.** C'est une affiche éditoriale sans slogan, sans paragraphe marketing et sans succession de trois bénéfices numérotés. La marque **Watfir** est le seul titre, en Fraunces 900 italic crème, suivie des rubans rouge/cyan en SVG et de « Lëtzebuergesch » en petites capitales comme désignation de la langue. Pas de monument démesuré, pas de pictos génériques, pas de carte « Moien! » ni d'audio : cet apprentissage est réservé au hero de l'accueil.
 
 **Actions :** Commencer (CTA crème 3D, chevron noir, coin bicolore, tranche beige 6 px, appui 5 px maintenu 160 ms), Créer un compte (surface sombre bord crème), Se connecter (lien). Ces actions préservent `guest`, `signup` et `signin`, et les formulaires conservent les composants 2.1. Seule la présentation du mode `welcome` est migrée. La feuille `portail-watfir.css` est isolée sous `.wf-portail-bienvenue`; le fond noir remplace le dégradé doré sur cette seule vue.
