@@ -464,3 +464,19 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Tests :** validations de syntaxe JS et structure CSS, assertions de source sur le nouveau `align-content`, le padding et les poids de grille, caches alignés. **La suite Node complète et la capture réelle du site sur Samsung ne sont pas encore attestées**. À vérifier en priorité à 360/393/412 px, sur écran court/haut, en mode invité/connecté, zoom texte, orientation et avec/sans barres du navigateur.
 
 **Retour arrière :** retirer uniquement les déclarations mobiles d'ancrage et restituer les anciennes rangées `minmax` ; remettre cache et tests correspondants. Aucun changement des données utilisateur.
+
+
+## 28. Rythme vertical harmonisé sur l'accueil mobile (06/11/2026)
+
+**Défaut observé :** sur la capture Samsung du 06/11, les écarts entre le header, le hero Mission, la progression, « Commencer » et Étudier/Jouer n'étaient pas réguliers. La grille mobile appliquait quatre coefficients d'expansion distincts (`.55fr`, `.45fr`, `.7fr`, `.7fr`) ; les espacements changeaient différemment selon la hauteur disponible. Le dernier coefficient `1.8fr` absorbait la fin de page. Cette pondération pouvait maintenir le header en haut, mais ne définissait aucun rythme cohérent entre les sections.
+
+**Règle active (branche `2.2`, CSS uniquement) :**
+- Un **seul token** `--wf-section-space:clamp(28px,5.5svh,48px)` règle les **quatre intervalles identiques** : header → Mission, Mission → objectif actuel, objectif → Commencer, Commencer → Étudier/Jouer. Même valeur calculée au sein d'un viewport, sans exceptions ni poids par section.
+- `svh` (*small viewport height*) évite les variations des espacements lorsque la barre de navigation du navigateur mobile s'affiche ou disparaît. Minimum 28 px pour les petits appareils, maximum 48 px pour les écrans hauts.
+- La grille conserve les cinq sections intrinsèques `max-content`, `align-content:safe start` et la marge supérieure du header de 18–26 px. **Seule la dixième rangée `minmax(24px,1fr)` absorbe l'espace excédentaire**, sans déplacer le header ni modifier les écarts entre les sections. Un écran trop court garde les minimums et défile normalement.
+- Le header horizontal §26 (Watfir, niveaux, compte sur une ligne), Mission V6, les rubans, la progression V21, les CTA 3D et leurs rayons 17/14 px restent inchangés. La modification est limitée à `public/accueil-watfir.css` et au cache CSS `accueil-watfir.css?v=watfir-v4-28` dans `public/index.html` ; tests de contrat dans `test/watfir-home.test.cjs` et `test/watfir-hover.test.cjs`.
+- Le fonctionnement reste **mobile ≤540 px**. Les valeurs de la grille desktop ne sont pas modifiées. Cette règle §28 **remplace** la pondération de §27, qui reste documentée uniquement comme historique.
+
+**Contrôles Chromium du composant représentatif :** avec les cinq blocs d'une page d'accueil simplifiée et le même token CSS, intervalles effectivement mesurés de **46–47 px sur 393 × 850**, **35–36 px sur 360 × 640**, **40–41 px sur 360 × 740**, **37–38 px sur 393 × 680**, et **48 px sur 412 × 915 / 430 × 930**. Sur 360 × 640, le document conserve un scroll vertical. Il s'agit d'une fixture autonome et **non d'un test complet du véritable DOM de Watfir**, ni d'une recette physique Samsung. Syntaxe JS des tests, structure CSS et contrats de source vérifiés. La suite Node du dépôt et le déploiement sur téléphone restent à confirmer.
+
+**Retour arrière :** rétablir les anciennes lignes `grid-template-rows` mobiles, restaurer le cache et les contrats correspondants. Aucune donnée, progression, API ou route n'est touchée.
