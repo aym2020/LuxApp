@@ -14,7 +14,7 @@ const watfir=read('public/accueil-watfir.css');
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
   const link='hover-interactions.css?v=watfir-hover-9';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-20'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-21'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -47,7 +47,7 @@ test('Accueil Watfir : tous les contrôles prioritaires reçoivent un hover',()=
 test('CTA 3D : crème uni, relief au repos et chevron conservé',()=>{
   const block=watfir.split('/* ── CTA crème')[1].split('/* ── Deux actions secondaires')[0];
   assert.match(block,/0 7px 0 #aa8954/,'tranche visible au repos');
-  assert.match(block,/inset 0 2px 0 rgba\(255,255,255,\.78\)/,'lumière de surface');
+  assert.match(block,/inset 0 1px 0 rgba\(255,255,255,\.70\)/,'filet de lumière supérieur fin');
   assert.match(block,/background:var\(--wf-cta-cream\)/,'le bouton reste crème sans motif');
   assert.doesNotMatch(block,/linear-gradient|calc\(100% - 31\.8|var\(--wf-cyan\) 0/,'pas de bande de coin');
   assert.match(watfir,/\.wf-hero-rubans/,'rubans du hero inchangés');
@@ -112,6 +112,17 @@ test('Étudier/Jouer : hover léger = fond seul éclairci, 3D et crème inchang�
   assert.match(watfir,/--wf-play-hover:#3fd6f0/);
   assert.match(watfir,/\.wf-choix-activite \.wf-activite > b \{[^}]*color:var\(--wf-cream\)/);
   assert.match(watfir,/\.wf-choix-activite \.wf-activite:active/);
+});
+
+test('Étudier/Jouer : tranches sombres monochromes et filet de lumière limité au dessus',()=>{
+  assert.match(watfir,/--wf-study-side:#8f1712/,'rouge sombre sous la face rouge');
+  assert.match(watfir,/--wf-play-side:#087496/,'bleu pétrole sous la face cyan');
+  const section=watfir.split('/* ── Deux actions secondaires')[1].split('/* ── Sous-menu Étudier')[0];
+  assert.match(section,/box-shadow:0 5px 0 var\(--wf-side\)/,'tranche d’épaisseur 5 px');
+  assert.match(section,/inset 0 1px 0 rgba\(255,255,255,\.28\)/,'fin reflet supérieur, pas une tranche crème');
+  assert.match(section,/border:1px solid rgba\(255,255,255,\.10\)/,'filet neutre discret');
+  assert.doesNotMatch(section,/0 5px 0 (?:#f7e9c2|#fbebc5|white)/i,'aucune tranche blanche ou crème');
+  assert.match(section,/\.wf-activite:active[^{}]*\{[^}]*transform:translateY\(4px\)/s,'compression physique conservée');
 });
 
 test('Accessibilité clavier et mouvement réduit conservés',()=>{
