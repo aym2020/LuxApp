@@ -514,14 +514,15 @@ body:has(#view-dashboard.active) { background:#080808; }
 }
 /* font-size:inherit : neutralise « .cs-txt span » de style.css (16 px). */
 #view-dashboard .wf-accueil .ac-v21-cta .wf-cta-fr { font-size:inherit; line-height:inherit; font-weight:400; color:#2a2620; }
-/* Rond noir et chevron crème : le seul bouton « aller » de l'écran. */
+/* Rond discret (07/11/2026) : léger voile beige sur la face crème, chevron noir.
+   Il indique l'action sans concurrencer « Commencer » (l'ancien rond noir pesait trop). */
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
   flex:none; display:grid; place-items:center;
-  width:clamp(46px, calc(118 * var(--k)), 64px); height:clamp(46px, calc(118 * var(--k)), 64px);
+  width:clamp(40px, calc(100 * var(--k)), 52px); height:clamp(40px, calc(100 * var(--k)), 52px);
   margin:0 0 0 calc(20 * var(--k)); border-radius:50%;
-  color:var(--wf-cream); background:var(--wf-bg); border:0; z-index:1;
+  color:var(--wf-bg); background:rgba(122,90,46,.14); border:0; z-index:1;
 }
-#view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic { width:50%; height:50%; stroke-width:2.6; }
+#view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic { width:48%; height:48%; stroke-width:2.4; }
 
 /* ── Deux actions secondaires : Étudier / Jouer ──────────────────────────
    Rouge et cyan de marque, tranches dans une nuance plus sombre de leur propre

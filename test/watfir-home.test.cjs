@@ -90,7 +90,7 @@ test('Contrat 2.2 : hero Moien, audio à la demande et cache CSS/JS',()=>{
   assert.ok(!css.includes('.wf-mission-titre')&&!js.includes('wf-mission-titre'),'hero « Mission A1.1 » retiré');
   assert.ok(js.includes("jouerAudio(\\'moien.mp3\\', this)"),'Moien écouté seulement sur appui');
   assert.ok(!/autoplay|\.play\(\)/.test(js),'jamais de lecture automatique');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-17','accueil-watfir.css?v=watfir-v4-34','hover-interactions.css?v=watfir-hover-11'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-17','accueil-watfir.css?v=watfir-v4-35','hover-interactions.css?v=watfir-hover-11'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 

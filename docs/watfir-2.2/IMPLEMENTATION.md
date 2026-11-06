@@ -587,3 +587,7 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Vérification Chromium :** arrivée par `goDashboard()` → 5 animations ; `apresSynchro()` sur l'accueil visible → 0 ; passage en A1.2 → 5 ; Chemin puis `history.back()` → 5 ; Réglages puis « ← » → 5. Aucune erreur JS. Tests Watfir 51/51. Caches `watfir-v4-17` (JS) et `watfir-v4-34` (CSS).
 
 **Non testé :** Samsung réel.
+
+## 35. Rond de Commencer plus discret (07/11/2026)
+
+Demande de Clayton : le rond noir plein à droite de Commencer attirait trop l'œil. Il devient un voile beige `rgba(122,90,46,.14)` sur la face crème, chevron noir, 40–52 px (au lieu de 46–64 px). Zone cliquable inchangée (toute la carte). Cache `accueil-watfir.css?v=watfir-v4-35`. Tests Watfir 51/51.

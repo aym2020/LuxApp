@@ -14,7 +14,7 @@ const watfir=read('public/accueil-watfir.css');
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
   const link='hover-interactions.css?v=watfir-hover-11';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-34'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-35'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -51,7 +51,7 @@ test('CTA 3D : crème uni, relief au repos et chevron conservé',()=>{
   assert.match(block,/background:var\(--wf-cta-cream\)/,'le bouton reste crème sans motif');
   assert.doesNotMatch(block,/linear-gradient|calc\(100% - 31\.8|var\(--wf-cyan\) 0/,'pas de bande de coin');
   assert.match(watfir,/\.wf-hero-rubans/,'rubans du hero inchangés');
-  assert.match(block,/\.cs-rond \{[^}]*border-radius:50%;[^}]*color:var\(--wf-cream\); background:var\(--wf-bg\)/,'rond noir, chevron crème');
+  assert.match(block,/\.cs-rond \{[^}]*border-radius:50%;[^}]*color:var\(--wf-bg\); background:rgba\(122,90,46,\.14\)/,'rond discret : voile beige, chevron noir');
   assert.match(block,/\.carte-suite\.ac-v21-cta:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)/,'retour tactile au maintien');
   assert.match(block,/transform:translateY\(6px\)/,'enfoncement physique');
   assert.match(block,/\.carte-suite\.ac-v21-cta::after \{ content:none; \}/,'aucun calque de contour');
