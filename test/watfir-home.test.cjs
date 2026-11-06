@@ -197,7 +197,9 @@ test('Audit 04/11 : niveau actif lisible, textes ≥ 12 px, fond PC continu',()=
   assert.match(css,/\.puce-niv\[aria-pressed="true"\] \{[^}]*background:var\(--wf-red\)/);
   assert.match(css,/\.wf-sheet-level\.is-current \{ background:var\(--wf-red-texte\); \}/);
   assert.doesNotMatch(hover,/--ux-hover-red\)/,'le niveau actif ne s\'éclaircit plus au survol');
-  assert.match(css,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'bandes du CTA inchangées');
+  assert.match(css,/background:var\(--wf-cta-cream\)/,'CTA crème uni');
+  assert.doesNotMatch(css,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'plus de bande sur le bouton');
+  assert.match(css,/\.wf-hero-rubans/,'rubans du hero préservés');
   // Charte § 3 : aucun texte utile de l'accueil sous 12 px (sauf logotype et compte du header).
   for (const [bloc, taille] of [['ac-hero-surtitre','800 max(12px, calc(24.5'],['ac-v21-bilan-titre','800 max(12px, calc(24.5'],
     ['ac-hero p','400 max(12px, calc(31'],['ac-v21-bilan-legende','400 max(12px, calc(30'],
