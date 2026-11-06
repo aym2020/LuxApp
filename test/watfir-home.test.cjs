@@ -89,7 +89,7 @@ test('Contrat 2.2 : Mission et cache CSS/JS, audios exclus du hero',()=>{
   assert.ok(js.includes('escHtml(niveauActif)'),'niveau dynamique échappé');
   assert.ok(!js.includes('jouerAudio')&&!js.includes('wf-hero-ecouter'),'pas de son dans l’accueil');
   assert.ok(!css.includes('.wf-hero-ecouter'),'aucun style audio obsolète');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-25','hover-interactions.css?v=watfir-hover-10'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-13','accueil-watfir.css?v=watfir-v4-26','hover-interactions.css?v=watfir-hover-10'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 
@@ -167,44 +167,46 @@ test('Header V6 : groupes conservés, routes et navigation accessibles',()=>{
   assert.doesNotMatch(ctx.enteteAccueilHtml(),/wf-entete-sep|ac-v21-guest/,'compte connecté : ni séparateur ni lien');
   assert.match(ctx.enteteAccueilHtml(),/<div class="wf-entete-compte"><button type="button" class="ac-menu"/,'connecté : la roue seule dans le bloc compte');
 });
-test('Samsung 360–540 : header compact en une seule ligne sans wrap accidentel',()=>{
+test('Samsung : une seule ligne réellement aérée, espace flexible après les niveaux',()=>{
   const {ctx}=setup();
   const header=ctx.enteteAccueilHtml();
   const account=header.slice(header.indexOf('wf-entete-compte'));
   for(const c of ['wf-entete-sep','ac-v21-guest','ac-menu'])
-    assert.ok(account.includes(c),'action existante conservée : '+c);
+    assert.ok(account.includes(c),'bloc compte et actions inchangés : '+c);
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
-  const normal=css.slice(css.indexOf('@media (max-width:540px)'),css.indexOf('@media (max-width:359px)'));
-  assert.ok(normal.includes('display:grid'),'grille déterministe');
-  assert.ok(normal.includes('grid-template-areas:"marque niveaux compte"'),
-    'Watfir, niveaux et compte sur une seule rangée');
-  assert.ok(normal.includes('grid-template-columns:minmax(0,1fr) auto auto'),
-    'marque élastique, groupes interactifs non tronqués');
-  assert.ok(normal.includes('justify-self:end'),'groupes alignés sans flottement');
-  assert.ok(normal.includes('row-gap:0'),'pas de deuxième rangée sur Samsung');
-  assert.ok(normal.includes('grid-area:marque')&&normal.includes('grid-area:niveaux')&&normal.includes('grid-area:compte'));
-  assert.ok(normal.includes('--ecart:clamp(4px,calc(11 * var(--k)),6px)'),
-    'espacement des niveaux compact sans recouvrement');
-  assert.ok(normal.includes('.wf-entete-sep { display:none; }'),
-    'séparateur décoratif retiré pour libérer la largeur');
-  assert.ok(normal.includes('minmax(calc(28 * var(--k)), calc(72 * var(--k)))'),
-    'espace header-hero limité sans modifier les autres intervalles');
+  const mobile=css.slice(css.indexOf('@media (max-width:540px)'),css.indexOf('@media (max-width:359px)'));
+  assert.ok(mobile.includes('display:grid'),'header mobile déterministe');
+  assert.ok(mobile.includes('grid-template-areas:"marque niveaux compte"'));
+  assert.ok(mobile.includes('grid-template-columns:max-content max-content minmax(0,1fr)'),
+    'le vide disponible est ENTRE les niveaux et le compte, pas avant A1.1');
+  assert.ok(mobile.includes('column-gap:clamp(10px,calc(30 * var(--k)),16px)'),
+    'espacement minimum régulier entre les trois groupes');
+  assert.ok(mobile.includes('.ac-marque-sous { display:none; }'),
+    'sous-titre redondant masqué uniquement sur le header mobile');
+  assert.ok(mobile.includes('--ecart:clamp(7px,calc(18 * var(--k)),10px)'),
+    'pastilles suffisamment espacées');
+  assert.ok(mobile.includes('gap:clamp(10px,calc(25 * var(--k)),14px)'),
+    'respiration entre Connexion et la roue');
+  assert.ok(mobile.includes('--cible-d:-20px'),
+    'chevron avec une cible tactile élargie dans l’espace libre');
+  assert.ok(mobile.includes('grid-area:marque')&&mobile.includes('grid-area:niveaux')&&mobile.includes('grid-area:compte'));
+  assert.ok(mobile.includes('row-gap:0'),'aucun second rang en mobile courant');
   assert.ok(css.includes('height:48px; transform:translateY(-50%)'),
-    'cibles tactiles de 48 px inchangées');
-  const narrow=css.slice(css.indexOf('@media (max-width:359px)'),css.indexOf('@media (max-width:260px)'));
-  assert.ok(narrow.includes('grid-template-areas:"marque compte" "niveaux niveaux"'),
-    'repli réellement étroit : deux lignes compactes');
-  assert.ok(narrow.includes('justify-self:start'),'niveaux à gauche, pas flottants au milieu');
-  assert.ok(narrow.includes('row-gap:12px'),'espace vertical maîtrisé');
-  assert.ok(narrow.includes('.puce-niv::after { top:-12px; transform:none; }'),
-    'zones tactiles de la seconde rangée préservées');
+    'zones tactiles du header conservées');
+  assert.ok(mobile.includes('minmax(calc(28 * var(--k)), calc(72 * var(--k)))'),
+    'intervalle header → Mission limité sans régression sur les autres blocs');
+  const compact=css.slice(css.indexOf('@media (max-width:359px)'),css.indexOf('@media (max-width:260px)'));
+  assert.ok(compact.includes('puce-niv:not([aria-pressed="true"]):not(.wf-niveau-ouvrir)'),
+    'petit écran : seule l’option non active est masquée');
+  assert.ok(!compact.includes('grid-template-areas:"marque compte" "niveaux niveaux"'),
+    'pas de deuxième rangée flottante sur petits Android');
   const zoom=css.slice(css.indexOf('@media (max-width:260px)'));
   assert.ok(zoom.includes('grid-template-areas:"marque" "compte" "niveaux"'),
-    'zoom extrême : aucun chevauchement horizontal');
+    'zoom extrême : alternative accessible sans compression');
   ctx.ligneCompteHtml=()=> '';
   const connected=ctx.enteteAccueilHtml();
   assert.ok(connected.includes('ac-menu')&&!connected.includes('ac-v21-guest'),
-    'connecté : roue seule, pas de faux lien Connexion');
+    'connecté : le menu reste accessible sans faux lien de connexion');
 });
 test('Header : compte invité lisible, lien et focus préservés',()=>{
   const {ctx}=setup();
