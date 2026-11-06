@@ -202,6 +202,10 @@ test('Deux boutons 3D même géométrie : crème uni, sombre bord crème',()=>{
     assert.match(rule,/0 6px 0 /,'même tranche 3D 6px');
     assert.match(rule,/transform:translateY\(0\)/);
   }
+  assert.match(cream[1],/0 6px 0 #aa8954/,'beige de la tranche identique aux deux « Commencer »');
+  assert.match(cream[1],/inset 0 1px 0 rgba\(255,255,255,\.70\)/,'reflet crème supérieur de 1 px');
+  assert.match(dark[1],/0 6px 0 #796646/,'tranche sombre du bouton de compte');
+  assert.match(dark[1],/inset 0 1px 0 rgba\(247,233,194,\.22\)/,'reflet supérieur discret sur face sombre');
   assert.match(cream[1],/background:var\(--wf-p-cta-face\)/);
   assert.doesNotMatch(cream[1],/linear-gradient|--wf-p-red|--wf-p-cyan/,'aucune bande rouge ou cyan sur Commencer');
   assert.match(dark[1],/border:1px solid #c3b08b/);
@@ -253,7 +257,7 @@ test('Wordmark mobile : espacement naturel, pas d’ombre qui épaissit les lett
 });
 
 test('Charge CSS et JS du portail 2.2 à versions de cache explicites',()=>{
-  assert.match(html,/portail-watfir\.css\?v=wf-poster-3/);
+  assert.match(html,/portail-watfir\.css\?v=wf-poster-4/);
   assert.match(html,/portail\.js\?v=wf-poster-2/);
   assert.ok(html.indexOf('style.css')<html.indexOf('portail-watfir.css'));
 });
