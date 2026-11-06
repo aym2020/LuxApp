@@ -1,6 +1,6 @@
 # Charte de direction artistique — Watfir / LuxApp 2.2
 
-**Version** 1.5 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
+**Version** 1.6 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
 
 > **Historique de la version 1.2 (remplacé par Mission V6)** : un seul dessin du monument (logo, icône, favicon) ; hero sans monument (« Moien! » + bouton Écouter + rubans) ; un seul rouge et un seul bleu à l'écran ; Étudier rouge vif et Jouer cyan à texte noir ; accueil PC à 640 px comme les autres pages ; appui des boutons 3D complet même en « animations réduites ».
 
@@ -93,6 +93,8 @@ Une seule action dominante à l'écran. Le hero est expressif mais ne doit jamai
 ## 6. Composants et règles
 
 ### 6.1 Header
+
+**Adaptation Samsung validée dans le code (06/11/2026, recette visuelle à confirmer) :** jusqu'à 540 px CSS, le header utilise une grille explicite sur deux rangées : **marque en haut à gauche et compte/réglages en haut à droite, niveaux centrés dessous**. Plus de passage imprévisible du compte seul sur une deuxième ligne à cause du `flex-wrap` de la maquette. En dessous de 260 px CSS (zoom Android important), disposition en trois rangées pour éviter l'overlap. Les éléments actifs et les zones tactiles agrandies à 48 px sont maintenus. Voir [IMPLEMENTATION §24](IMPLEMENTATION.md#24-correction-du-header-sur-samsung-apres-mission-v6-06112026).
 
 Logo (emblème + « Watfir » + « Lëtzebuergesch ») avec un espace franc entre l'emblème et le texte (plus de marges négatives) ; largeur de la marque plafonnée pour que le header tienne sur une ligne à 412 px avec « Mode invité / Connexion ». Survol PC : « Connexion » passe au cyan ; la roue des réglages fait un quart de tour (90°) avec léger rebond et passe au cyan.
 
