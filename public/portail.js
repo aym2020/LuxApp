@@ -135,17 +135,21 @@ function portailFermer() {
 function portailBouton(texte,action,style) {
   return '<button type="button" class="pa-bouton '+style+'" onclick="portailAction(&quot;'+action+'&quot;)">'+texte+'</button>';
 }
-/* Le CTA d'entrée partage l'appui 3D Watfir : le portail disparaîtrait
-   immédiatement au clic « guest », masquant :active sur mobile. Conserver
-   l'enfoncement 160 ms puis exécuter le clic d'origine, sans toucher au moteur
-   d'authentification ni différer les clicks programmatiques. */
+/* Les deux CTA 3D du portail (Commencer et Créer un compte) partagent le
+   feedback Watfir. L'entrée invitée change de vue et l'inscription ouvre le
+   formulaire aussitôt : un tap bref masquerait :active. Conserver l'enfoncement
+   160 ms avant le clic original ; ne jamais toucher aux routes métier ni aux
+   appels programmatiques (isTrusted=false). */
 function portailInstallerAppuiBienvenue(portail) {
   if (portail._wfAppuiBienvenue) return;
   portail._wfAppuiBienvenue = true;
   let appuiEnCours = false;
   portail.addEventListener('click', function (event) {
     if (event.isTrusted === false || !event.target || !event.target.closest) return;
-    const button = event.target.closest('.wf-portail-bienvenue .wf-portail-demarrer');
+    const button = event.target.closest(
+      '.wf-portail-bienvenue .wf-portail-demarrer, ' +
+      '.wf-portail-bienvenue .wf-portail-creer'
+    );
     if (!button || button.disabled || button.getAttribute('aria-disabled') === 'true') return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     event.preventDefault();
