@@ -6,12 +6,12 @@
 
 ## 1. Intention et hiérarchie
 
-L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. Le CTA Commencer / Continuer conserve son relief physique au repos sur mobile et PC (tranche beige et lumière en `box-shadow`, hors flux). **Au survol souris, seule sa face crème s'éclaircit de `#fbebc5` à `#fff4da` : aucun soulèvement, renforcement de l'ombre, contour ou changement de chevron.** Le coin rouge/cyan reste identique ; au clic, la face s'enfonce de 6 px comme avant. La navigation secondaire se résume désormais à **Étudier (rouge assombri) et Jouer (bleu profond)**, deux boutons centrés. Leur survol PC éclaire uniquement la couleur de fond, sans déplacement ni changement d'ombre ; les niveaux restent rouges. Aucun glow permanent ni animation en boucle.
+L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palette. Le CTA Commencer / Continuer conserve son relief physique au repos sur mobile et PC (tranche beige et lumière en `box-shadow`, hors flux). **Au survol souris, seule sa face crème s'éclaircit de `#fbebc5` à `#fff4da` : aucun soulèvement, renforcement de l'ombre, contour ou changement de chevron.** Les rubans rouge/cyan restent dans le hero ; le CTA crème uni s'enfonce de 6 px au clic. La navigation secondaire se résume désormais à **Étudier (rouge assombri) et Jouer (bleu profond)**, deux boutons centrés. Leur survol PC éclaire uniquement la couleur de fond, sans déplacement ni changement d'ombre ; les niveaux restent rouges. Aucun glow permanent ni animation en boucle.
 
 | Rôle | Interaction | Durée |
 | --- | --- | --- |
-| **CTA au repos (mobile et PC)** | Fond crème `#fbebc5` inchangé, tranche beige de **7 px** (`#aa8954`), ombre portée et reflet intérieur ; chevron éloigné du motif rouge/cyan | permanent |
-| **CTA hover (souris)** | Face crème `#fbebc5` → `#fff4da` uniquement ; ni déplacement, ni nouvelle ombre, ni contour, ni recoloration du chevron ou des bandes | instantané |
+| **CTA au repos (mobile et PC)** | Fond crème `#fbebc5` inchangé, tranche beige de **7 px** (`#aa8954`), ombre portée et reflet intérieur ; chevron noir conservé | permanent |
+| **CTA hover (souris)** | Face crème `#fbebc5` → `#fff4da` uniquement ; ni déplacement, ni nouvelle ombre, ni contour, ni recoloration du chevron | instantané |
 | **CTA appuyé (tactile et souris)** | Enfoncement **6 px** et tranche abaissée à 1 px ; appui visible pendant 160 ms avant la navigation, sans contour coloré | 115 ms de transition + maintien 160 ms |
 | **Étudier (repos)** | Bouton rouge vif `#f22421`, texte/picto crème `#f7e9c2`, tranche rouge sombre `#8f1712` de 5 px | permanent |
 | **Jouer (repos)** | Bouton cyan `#02c5e7`, texte/picto noirs `#080808`, tranche bleue `#087496` de 5 px | permanent |
@@ -25,7 +25,7 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | **Écouter « Moien! » (hero)** | Face cyan éclaircie `#5ad9f0`, triangle agrandi ×1,15 ; appui : enfoncement de 4 px, tranche comprimée | 190 ms |
 | **Contrôles 2.1 partagés** | Élévation neutre de 2 px + luminosité ×1,10, aucune nouvelle couleur métier | 190 ms |
 
-Les deux pictogrammes de la navigation secondaire sont dessinés dans le même style de trait : **livre = Étudier**, **manette = Jouer**, tous deux crème dans tous les états. Le CTA « Commencer / Continuer » n'a plus de livre pour éviter le doublon ; il conserve son texte, sa cible, sa flèche noire et surtout les **mêmes bandes rouge/cyan (stops 51,6 / 31,8 × --k)**. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
+Les deux pictogrammes de la navigation secondaire sont dessinés dans le même style de trait : **livre = Étudier**, **manette = Jouer**, tous deux crème dans tous les états. Le CTA « Commencer / Continuer » n'a plus de livre pour éviter le doublon ; il conserve son texte, sa cible, sa flèche noire et une **face crème unie sans bandes d'angle**. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
 
 ### Pastilles 3D du header
 
@@ -41,7 +41,7 @@ Le CSS `:active` seul ne suffit pas à montrer l'appui sur un clic rapide : `Com
 
 L'appui réel au doigt/souris reste immédiatement perceptible par `:active`. La transition `transform` / `box-shadow` dure **115 ms** ; l'état persiste suffisamment après relâchement pour être visible avant changement d'écran. Les taps clavier (Entrée/Espace) bénéficient du même mécanisme. **`prefers-reduced-motion: reduce` : pas de maintien ni de délai de navigation, aucune animation** ; l'appui reste un enfoncement instantané (face + tranche), bas du bouton fixe. Les appels programmatiques de l'application ne sont pas différés non plus.
 
-Aucun moteur, aucun `onclick`, aucun état de progression n'est remplacé. Les bandes rouge/cyan du CTA ne sont jamais animées et le hover souris continue d'éclaircir seulement la face.
+Aucun moteur, aucun `onclick`, aucun état de progression n'est remplacé. Les rubans rouge/cyan restent dans le hero, sans motif coloré dans le CTA ; le hover souris n'éclaircit que la face crème.
 
 ### Navigation secondaire et sous-menu Étudier
 
@@ -67,9 +67,9 @@ Toutes les transitions passent par les tokens CSS :
 
 **Le contour animé rouge a été retiré à la demande**, sur PC comme sur mobile. Les pseudo-éléments `::before` et `::after` du CTA sont désactivés (`content:none`) ; aucune propriété CSS `--wf-cta-outline`, `@property`, `conic-gradient` ou `mask-composite` n'est utilisée pour ce bouton.
 
-Sur PC, `:hover:not(:active)` change uniquement la variable `--wf-cta-cream`, utilisée pour la première couleur du dégradé : la face s'éclaircit sans modifier les deux bandes d'angle, le chevron noir, la position ni l'ombre. Sur Android et au clic souris, `:active` enfonce la face de 6 px ; le hover n'interfère pas avec l'appui. **Pas de rouge de survol** : les seules bandes rouge/cyan restent celles du coin inférieur droit.
+Sur PC, `:hover:not(:active)` change uniquement la variable `--wf-cta-cream`, utilisée directement comme couleur de fond du CTA uni : la face s'éclaircit sans modifier le chevron noir, la position ni l'ombre. Sur Android et au clic souris, `:active` enfonce la face de 6 px ; le hover n'interfère pas avec l'appui. **Pas de rouge de survol** : le rouge/cyan est réservé aux rubans du hero et aux autres composants de marque.
 
-Les tracés des bandes rouge/cyan du coin sont intacts ; seule la **marge droite du chevron** a été corrigée (de `-23 × --k` à `+24 × --k`, marge gauche maintenue à `16 × --k`) pour l'éloigner du motif, sans nouvelle largeur ni hauteur de CTA.
+Le CTA est désormais crème uni. Le chevron conserve sa **marge droite** de `24 × --k` et sa marge gauche de `16 × --k` pour préserver la composition ; ni largeur ni hauteur de la carte n'ont changé.
 
 Pour les nouveaux écrans, adopter les classes **explicitement** :
 
@@ -104,7 +104,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 - `:disabled` et `[aria-disabled=true]` : ne jamais animer un contrôle indisponible.
 - `:focus-visible` : contour cyan de 3 px pour les classes réutilisables. L'accueil conserve ses règles de focus déjà validées.
 - `prefers-reduced-motion: reduce` : les transitions et transformations de déplacement au survol sont neutralisées ; le changement de couleur instantané reste possible.
-- **Le CTA Watfir est l'exception physique** : relief au repos via `box-shadow` (hors flux), survol crème `#fff4da` sans translation ni nouvelle ombre, appui de +6 px. Pas de filtre `brightness`, de liseré rouge, de glow ou d'animation infinie. La marge du chevron évite l'intersection avec l'angle bicolore ; aucune nouvelle dimension de grille.
+- **Le CTA Watfir est l'exception physique** : relief au repos via `box-shadow` (hors flux), survol crème `#fff4da` sans translation ni nouvelle ombre, appui de +6 px. Pas de filtre `brightness`, de liseré rouge, de glow ou d'animation infinie. Les marges du chevron et les dimensions de la grille restent inchangées.
 - Les couleurs sémantiques de réussite, erreur, information ou interdiction demeurent celles des composants métiers, jamais remplacées par le rouge/cyan de marque.
 
 **Règle de cascade :** `hover-interactions.css` est chargé en dernier dans le `<head>`. `accueil-watfir.js` ne change que la présentation et les destinations accessibles depuis le menu ; `components.css`, `style.css`, les JSON et les moteurs restent inchangés.
@@ -118,7 +118,7 @@ Les composants partagés existants `.pc-btn`, `.btn-jaune`, `.pc-chip`, `.pc-ico
 
 ## 5. Vérification et recette
 
-Contrats automatisables : `node --test test/watfir-hover.test.cjs` et `node --test test/watfir-home.test.cjs` (maintien 160 ms sur les **six contrôles**, double clic, mouvement réduit, sélection A1.2, ouverture du chevron et replay de l'action d'origine). Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, les bandes d'angle, le chevron, les trois pastilles 3D du header et les **deux boutons Étudier/Jouer** au hover.
+Contrats automatisables : `node --test test/watfir-hover.test.cjs` et `node --test test/watfir-home.test.cjs` (maintien 160 ms sur les **six contrôles**, double clic, mouvement réduit, sélection A1.2, ouverture du chevron et replay de l'action d'origine). Le test vérifie les imports versionnés, le gating souris, les états disabled/active et le mouvement réduit, ainsi que le crème normal `#fbebc5` / survol `#fff4da` **sans mouvement ni variation d'ombre**. Il protège également le relief au repos, l'enfoncement au clic, la face crème unie, le chevron, les trois pastilles 3D du header et les **deux boutons Étudier/Jouer** au hover.
 
 **Avant validation finale**, faire sur Chromium/PC : capture survol CTA, A1.2, Étudier et Jouer, Connexion et roue ; puis test du dialogue Étudier ; comparer avec le repos. Vérifier aussi le press/relâchement, navigation clavier et un viewport mobile tactile simulé. La recette sur smartphone physique et le rendu réel après déploiement restent distincts d'une inspection statique du CSS.
 
