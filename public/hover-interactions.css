@@ -85,10 +85,6 @@
   /* Connexion : seul le mot « Connexion » passe au cyan (plus de soulignement rouge). */
   #view-dashboard .wf-accueil .ac-v21-guest b { transition:color var(--ux-hover-duration) ease; }
   #view-dashboard .wf-accueil .ac-v21-guest:hover:not(:active) b { color:var(--ux-hover-cyan); }
-  /* Bouton Écouter « Moien! » : la face s'éclaircit et le triangle grossit légèrement. */
-  #view-dashboard .wf-accueil .wf-hero-ecouter svg { transition:transform var(--ux-hover-duration) var(--ux-hover-easing); }
-  #view-dashboard .wf-accueil .wf-hero-ecouter:hover:not(:active):not(.joue) { background:#5ad9f0; }
-  #view-dashboard .wf-accueil .wf-hero-ecouter:hover:not(:active) svg { transform:scale(1.15); }
   .wf-niveaux-dialog .wf-sheet-level:not(.is-current):hover:not(:active):not(:disabled) {background-color:var(--ux-hover-wash);}
 }
 
@@ -104,15 +100,13 @@
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
   #view-dashboard .wf-accueil .puce-niv,
   #view-dashboard .wf-accueil .wf-choix-activite .wf-activite,
-  #view-dashboard .wf-accueil .ac-menu .ic,
-  #view-dashboard .wf-accueil .wf-hero-ecouter svg {transition:none!important;}
+  #view-dashboard .wf-accueil .ac-menu .ic {transition:none!important;}
   @media (hover:hover) and (pointer:fine) {
     :where(.pc-btn,.btn-jaune,.pc-chip,.pc-icon-btn,.back-btn,.exo-cta,.exo-secondaire,.ux-hover-lift):hover:not(:active),
     .ux-hover-tile:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph,
     .ux-hover-icon:hover:not(:active):not(:disabled):not([aria-disabled="true"]) > .ux-hover-glyph,
     :is(.ux-hover-link,.ux-hover-lift):hover:not(:active):not(:disabled):not([aria-disabled="true"]) .ux-hover-arrow,
     #view-dashboard .wf-accueil .carte-suite.ac-v21-cta:hover:not(:active),
-    #view-dashboard .wf-accueil .ac-menu:hover:not(:active) .ic,
-    #view-dashboard .wf-accueil .wf-hero-ecouter:hover:not(:active) svg {transform:none!important;}
+    #view-dashboard .wf-accueil .ac-menu:hover:not(:active) .ic {transform:none!important;}
   }
 }
