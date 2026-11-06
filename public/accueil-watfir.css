@@ -182,26 +182,26 @@ body:has(#view-dashboard.active) { background:#080808; }
    avant « Mode invité / Connexion / réglages ». Sur les petits écrans, le sous-
    titre du logo est redondant avec « Le luxembourgeois, pas à pas » dans le hero. */
 @media (max-width:540px) {
-  /* Rythme vertical unique : le même espace entre les 5 grandes sections.
-     Les anciens poids .55/.45/.7/.7fr produisaient des intervalles aléatoires
-     suivant la hauteur du téléphone. svh reste stable quand les barres Android
-     apparaissent ou disparaissent, contrairement à dvh. Seule la dernière
-     rangée absorbe le surplus de hauteur. En petit écran, le flux défile. */
+  /* Composition verticale complète :
+     Quatre respirations égales ET un espace de fin pondéré à 65 % d'une
+     respiration. Ne jamais fixer quatre gaps puis envoyer toute la place
+     disponible en bas : cela laisse un grand trou sous Étudier/Jouer.
+     Les cinq blocs gardent leur hauteur naturelle. Un petit viewport défile. */
   #view-dashboard .accueil.wf-accueil {
-    --wf-section-space:clamp(28px,5.5svh,48px);
+    --wf-section-min:clamp(28px,4svh,36px);
     align-content:safe start;
     padding-top:clamp(18px,calc(52 * var(--k)),26px);
     grid-template-rows:
-      max-content                 /* header */
-      var(--wf-section-space)     /* header → mission */
-      max-content                 /* hero Mission */
-      var(--wf-section-space)     /* Mission → objectif */
-      max-content                 /* progression */
-      var(--wf-section-space)     /* objectif → Commencer */
-      max-content                 /* CTA Commencer */
-      var(--wf-section-space)     /* Commencer → Étudier/Jouer */
-      max-content                 /* Étudier / Jouer */
-      minmax(24px,1fr);           /* reliquat en bas, jamais entre blocs */
+      max-content                              /* header */
+      minmax(var(--wf-section-min),1fr)        /* header → mission */
+      max-content                              /* hero Mission */
+      minmax(var(--wf-section-min),1fr)        /* Mission → objectif */
+      max-content                              /* progression */
+      minmax(var(--wf-section-min),1fr)        /* objectif → Commencer */
+      max-content                              /* CTA Commencer */
+      minmax(var(--wf-section-min),1fr)        /* Commencer → Étudier/Jouer */
+      max-content                              /* Étudier / Jouer */
+      minmax(24px,.65fr);                      /* marge basse, proportionnée */
   }
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
