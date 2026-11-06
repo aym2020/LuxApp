@@ -6,6 +6,8 @@
 
 **Header mobile — correctif §26 (06/11/2026) :** une seule ligne à la largeur Samsung, avec la place libre **après A1.1/A1.2**, avant « Mode invité / Connexion / réglages » ; le sous-titre redondant du petit logo est masqué sur mobile. Sous 360 px CSS, niveau actif + chevron restent visibles, les autres niveaux étant accessibles via la feuille. Les solutions précédentes à deux lignes et la grille comprimée à droite sont obsolètes. Voir [IMPLEMENTATION §26](IMPLEMENTATION.md#26-header-mobile--une-ligne-de-lespace-apres-les-niveaux-06112026).
 
+**Position verticale du header mobile (§27, 06/11/2026) :** plus de centrage vertical de l'accueil entier : le header est ancré à 18–26 px du haut de la zone web ; les espaces entre sections sont flexibles et le surplus se répartit principalement vers le bas. La composition horizontale §26 reste strictement inchangée. Voir [IMPLEMENTATION §27](IMPLEMENTATION.md#27-ancrage-vertical-du-header-samsung-apres-mission-v6-06112026).
+
 **Périmètre cumulé :** accueil Watfir via `public/accueil-watfir.js` / `.css`, portail de bienvenue via `public/portail.js` (mode `welcome`) et `public/portail-watfir.css`, imports dans `index.html`, tests et documentation. Moteurs, JSON, routes de compte, sauvegardes, audio et mini-jeux inchangés.
 
 ## Commencer ici
