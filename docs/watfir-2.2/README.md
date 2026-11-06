@@ -8,7 +8,7 @@
 
 **Position verticale du header mobile (§27, 06/11/2026) :** plus de centrage vertical de l'accueil entier : le header est ancré à 18–26 px du haut de la zone web ; les espaces entre sections sont flexibles et le surplus se répartit principalement vers le bas. La composition horizontale §26 reste strictement inchangée. Voir [IMPLEMENTATION §27](IMPLEMENTATION.md#27-ancrage-vertical-du-header-samsung-apres-mission-v6-06112026).
 
-**Rythme vertical mobile (§28, 06/11/2026) :** quatre transitions, **un seul espacement** responsive `clamp(28px,5.5svh,48px)`. Le header reste ancré en haut ; la hauteur résiduelle est réservée au bas de l'accueil, et non redistribuée de façon différente entre les blocs. La pondération de §27 est remplacée. Aucun changement aux boutons ou à la progression. Voir [implémentation §28](IMPLEMENTATION.md#28-rythme-vertical-harmonisé-sur-laccueil-mobile-06112026).
+**Équilibre vertical global (§29, 06/11/2026) :** quatre espaces identiques et flexibles entre les cinq sections (`minmax(var(--wf-section-min),1fr)`), et une marge basse proportionnée à `.65fr` pour supprimer le grand trou sous Étudier/Jouer. Le header reste en haut et sur une ligne. Les réglages historiques §27–28 ne sont plus actifs ; [voir IMPLEMENTATION §29](IMPLEMENTATION.md#29-équilibrage-global-des-cinq-sections-sur-samsung-06112026).
 
 **Périmètre cumulé :** accueil Watfir via `public/accueil-watfir.js` / `.css`, portail de bienvenue via `public/portail.js` (mode `welcome`) et `public/portail-watfir.css`, imports dans `index.html`, tests et documentation. Moteurs, JSON, routes de compte, sauvegardes, audio et mini-jeux inchangés.
 
