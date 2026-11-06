@@ -15,6 +15,10 @@
 7. [Prototype interactif V4](prototypes/accueil-v4.html) — accueil autonome, démonstration du changement A1/A2/B1 et de la feuille de niveaux, **sans lien avec la vraie progression**.
 8. **[PORTAIL-BIENVENUE.md](PORTAIL-BIENVENUE.md)** — page d'entrée Watfir « Affiche rétro » sans slogan, ni carte « Moien! », ni trois étapes ; contrat des trois actions et du CTA 3D.
 
+### Finition 3D commune — accueil + portail (06/11/2026)
+
+Sur les **deux écrans**, tous les boutons 3D ont une tranche sombre et un reflet supérieur fin de **1 px** : crème/Commencer → beige foncé `#aa8954`, Étudier → bordeaux `#8f1712`, Jouer → bleu pétrole `#087496`, Créer un compte → beige foncé `#796646` sous face noire. Les couleurs de tranche ne sont jamais remplacées par du blanc/crème sous le rouge ou le cyan. La tranche s'écrase à 1 px lors de l'appui, et la validation conserve les 160 ms de feedback si elle masque immédiatement la vue. La carte de leçon Commencer/Continuer conserve sa hauteur informative différente ; sur le portail, les deux grands CTA restent de même hauteur. Rubans de marque, textes et navigation inchangés. Contrat détaillé dans [BOUTONS-3D.md](BOUTONS-3D.md).
+
 ### Portail d'entrée — appliqué sur `2.2` (06/11/2026)
 
 La **première page avant connexion** est désormais une affiche Watfir, distincte de l'accueil pédagogique. **Un grand mot-symbole « Watfir », deux rubans rouge/cyan et « Lëtzebuergesch » ; aucun slogan, aucune carte « Moien! », aucun audio réutilisé ni fausse séquence en trois étapes.** Les CTA sont « Commencer » (**crème uni en 3D, sans bandes dans le coin**), « Créer un compte » (**sombre bord crème, également en 3D et de même hauteur**) et « Se connecter » (lien). Les rubans rouge/cyan restent bien visibles dans le grand visuel de marque. Les destinations restent celles de `portailAction('guest'/'signup'/'signin')` ; les formulaires et la progression sont préservés. Code : `public/portail.js` (seule la branche welcome) + `public/portail-watfir.css` (règles strictement préfixées). Voir [le contrat dédié](PORTAIL-BIENVENUE.md).
