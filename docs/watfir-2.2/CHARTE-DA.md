@@ -25,8 +25,8 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 | --- | --- | --- |
 | `--wf-bg` | `#080808` | Fond quasi noir, continu, sans faux panneaux. Texte et picto de Jouer. |
 | `--wf-cream` | `#F7E9C2` | Marque, titres, icônes neutres, **CTA principal**, texte sur rouge |
-| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, « ! » de « Moien! », bouton Étudier, pastille de niveau actif, coin du CTA |
-| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bouton Écouter du hero, bouton Jouer, coin du CTA, survols PC (Connexion, réglages) |
+| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, « ! » de « Moien! », bouton Étudier, pastille de niveau actif |
+| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bouton Écouter du hero, bouton Jouer, survols PC (Connexion, réglages) |
 | `--wf-red-texte` | `#C81E1B` | Niveau courant dans la feuille des niveaux uniquement (4,75:1) |
 | `--wf-secondary` | `#BEB6A6` | Texte explicatif non essentiel, sous-titre « Lëtzebuergesch » du logo, phrase du hero |
 | `--wf-track` | `#3C3934` | Barre de progression inactive, filets discrets |
@@ -37,7 +37,7 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 
 **Règle « un rouge, un bleu » (06/11/2026)** : à l'écran, il n'existe qu'un rouge (`#F22421`) et qu'un bleu (`#02C5E7`), chacun accompagné de sa seule tranche plus sombre pour le relief (`#8F1712` sous le rouge, `#087496` sous le cyan). Aucune variante intermédiaire (anciens `#D3232B`, `#087496` en face, etc.).
 
-**Répartition visuelle sur l'accueil** : le noir domine, le crème structure la lecture et le CTA principal. Le rouge et le cyan sont les signes identitaires du hero et du coin du CTA ; les deux seules grandes surfaces colorées sont **Étudier** (rouge, texte crème) et **Jouer** (cyan, texte noir). Cette hiérarchie n'autorise pas à colorer tous les boutons de tous les écrans.
+**Répartition visuelle sur l'accueil** : le noir domine, le crème structure la lecture et le CTA principal. Le rouge et le cyan restent les signes identitaires du hero ; les deux seules grandes surfaces colorées sont **Étudier** (rouge, texte crème) et **Jouer** (cyan, texte noir). Cette hiérarchie n'autorise pas à colorer tous les boutons de tous les écrans.
 
 **Contraste** :
 - Crème sur rouge `#F22421` = **3,44:1** : conforme pour un grand texte (≥ 18,66 px gras, seuil 3:1), donc pour Étudier (libellé ≥ 19 px). Sur la pastille de niveau actif (14 px), c'est **sous** le seuil de 4,5:1 : écart assumé, à reconsidérer si l'accessibilité devient prioritaire (texte noir sur rouge = 4,8:1).
@@ -77,7 +77,7 @@ Trait de poids optique cohérent. Étudier : livre au trait **crème** ; Jouer :
 
 ### 4.4 Surfaces
 
-Fond noir libre autour des composants ; un CTA crème de premier niveau et deux boutons secondaires centrés (Étudier rouge / Jouer cyan). Les reliefs sont de véritables **tranches d'ombre hors flux**, pas des doubles cartes. Pas de contour animé rouge, ni d'ombre néon. Le CTA crème garde son coin à deux bandes rouge/cyan **sans changement d'épaisseur**.
+Fond noir libre autour des composants ; un CTA crème de premier niveau et deux boutons secondaires centrés (Étudier rouge / Jouer cyan). Les reliefs sont de véritables **tranches d'ombre hors flux**, pas des doubles cartes. Pas de contour animé rouge, ni d'ombre néon. Le CTA crème est **uni, sans bandes d'angle** ; les rubans identitaires rouge/cyan restent exclusivement dans le hero et les emblèmes.
 
 ## 5. Rythme, densité et hiérarchie
 
@@ -101,7 +101,7 @@ Kicker, puis « Moien! » en grand avec, à droite, le **bouton Écouter** : ron
 
 ### 6.3 Bouton principal
 
-Fond crème `#fbebc5`, texte noir, flèche noire, **sans livre**. Tranche beige de 7 px, enfoncement de 6 px, état maintenu 160 ms avant une navigation déclenchée par clic utilisateur ; survol PC : face crème `#fff4da` **sans soulèvement**. Les deux bandes du coin gardent `#F22421` / `#02C5E7` et leur largeur. Afficher le vrai titre de la leçon sur deux lignes au besoin ; pas de troncature d'information critique.
+Fond crème `#fbebc5`, texte noir, flèche noire, **sans livre**. Tranche beige de 7 px, enfoncement de 6 px, état maintenu 160 ms avant une navigation déclenchée par clic utilisateur ; survol PC : face crème `#fff4da` **sans soulèvement**. Aucune bande rouge/cyan dans le bouton : **face crème unie identique au portail**. Les rubans du hero restent inchangés. Afficher le vrai titre de la leçon sur deux lignes au besoin ; pas de troncature d'information critique.
 
 ### 6.4 Niveaux A1.1/A1.2 et familles futures
 
@@ -125,7 +125,7 @@ Définir au minimum : chargement, progression nulle, aucune leçon reprenable, n
 
 **La page de bienvenue n'est pas une version simplifiée de l'accueil.** C'est une affiche éditoriale sans slogan, sans paragraphe marketing et sans succession de trois bénéfices numérotés. La marque **Watfir** est le seul titre, en Fraunces 900 italic crème, suivie des rubans rouge/cyan en SVG et de « Lëtzebuergesch » en petites capitales comme désignation de la langue. Pas de monument démesuré, pas de pictos génériques, pas de carte « Moien! » ni d'audio : cet apprentissage est réservé au hero de l'accueil.
 
-**Actions :** Commencer (CTA crème 3D, chevron noir, coin bicolore, tranche beige 6 px, appui 5 px maintenu 160 ms), Créer un compte (surface sombre bord crème), Se connecter (lien). Ces actions préservent `guest`, `signup` et `signin`, et les formulaires conservent les composants 2.1. Seule la présentation du mode `welcome` est migrée. La feuille `portail-watfir.css` est isolée sous `.wf-portail-bienvenue`; le fond noir remplace le dégradé doré sur cette seule vue.
+**Actions :** Commencer (CTA **crème uni** 3D, chevron noir, sans bande de coin, tranche beige 6 px, appui 5 px maintenu 160 ms), Créer un compte (surface sombre, bord crème, **tranche 3D de 6 px, appui 5 px maintenu 160 ms**), Se connecter (lien). Les deux boutons 3D ont la même hauteur minimum (70 px), le même rayon (17 px) et la même géométrie. Ces actions préservent `guest`, `signup` et `signin`, et les formulaires conservent les composants 2.1. Seule la présentation du mode `welcome` est migrée. La feuille `portail-watfir.css` est isolée sous `.wf-portail-bienvenue`; le fond noir remplace le dégradé doré sur cette seule vue.
 
 **Écrans courts, zoom et accessibilité :** l'affiche se réduit mais ne pousse pas les CTA hors d'une zone défilable ; 320–360 px et petits écrans Android doivent être vérifiés. Hover PC = éclaircissement sans glissement. En réduction des animations, le bouton reste physiquement enfonçable instantanément sans délai de navigation. Référence : [PORTAIL-BIENVENUE.md](PORTAIL-BIENVENUE.md).
 
