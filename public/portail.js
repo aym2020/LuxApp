@@ -135,6 +135,32 @@ function portailFermer() {
 function portailBouton(texte,action,style) {
   return '<button type="button" class="pa-bouton '+style+'" onclick="portailAction(&quot;'+action+'&quot;)">'+texte+'</button>';
 }
+/* Le CTA d'entrée partage l'appui 3D Watfir : le portail disparaîtrait
+   immédiatement au clic « guest », masquant :active sur mobile. Conserver
+   l'enfoncement 160 ms puis exécuter le clic d'origine, sans toucher au moteur
+   d'authentification ni différer les clicks programmatiques. */
+function portailInstallerAppuiBienvenue(portail) {
+  if (portail._wfAppuiBienvenue) return;
+  portail._wfAppuiBienvenue = true;
+  let appuiEnCours = false;
+  portail.addEventListener('click', function (event) {
+    if (event.isTrusted === false || !event.target || !event.target.closest) return;
+    const button = event.target.closest('.wf-portail-bienvenue .wf-portail-demarrer');
+    if (!button || button.disabled || button.getAttribute('aria-disabled') === 'true') return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (appuiEnCours) return;
+    appuiEnCours = true;
+    button.classList.add('wf-pressing');
+    window.setTimeout(function () {
+      button.classList.remove('wf-pressing');
+      appuiEnCours = false;
+      if (button.isConnected) button.click();
+    }, 160);
+  }, true);
+}
+
 function portailMarque() { return '<div class="pa-marque">Lëtzebuergesch<span class="pa-point"></span></div>'; }
 
 // ─── BIENVENUE (SPEC 66) ────────────────────────────────────────────────────
@@ -252,6 +278,7 @@ function portailContenu(mode) {
 function portailOuvrir(mode, sens) {
   const el = document.getElementById('portail-auth');
   if (!el) return;
+  portailInstallerAppuiBienvenue(el);
   const champ = document.getElementById('pa-email');
   if (champ) portailEmail = champ.value.trim();
   portailMode = mode==='signin'||mode==='signup'?mode:'welcome';
