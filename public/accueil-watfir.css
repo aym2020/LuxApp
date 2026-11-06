@@ -177,12 +177,12 @@ body:has(#view-dashboard.active) { background:#080808; }
 }
 #view-dashboard .wf-accueil .ac-menu .ic { width:100%; height:100%; stroke-width:1.9; }
 
-/* Header mobile compact. À la largeur Samsung standard, tout tient sur UNE
-   ligne : marque / niveaux / compte. L'ancien flex-wrap + les grandes marges
-   créaient alternativement un compte ou des niveaux flottant au milieu.
-   Les cibles restent >=48 px par ::after ; conserver les actions JS existantes. */
+/* Header Watfir mobile : trois groupes sur UNE ligne, sans compression à droite.
+   La largeur libre reste APRÈS les niveaux (et non sous le logo) pour respirer
+   avant « Mode invité / Connexion / réglages ». Sur les petits écrans, le sous-
+   titre du logo est redondant avec « Le luxembourgeois, pas à pas » dans le hero. */
 @media (max-width:540px) {
-  /* Le hero suit le header, sans espace disproportionné sur un écran haut. */
+  /* L'intervalle header → mission reste proportionné, sans grand trou. */
   #view-dashboard .accueil.wf-accueil {
     grid-template-rows:
       max-content
@@ -198,59 +198,59 @@ body:has(#view-dashboard.active) { background:#080808; }
   }
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
-    grid-template-columns:minmax(0,1fr) auto auto;
+    grid-template-columns:max-content max-content minmax(0,1fr);
     grid-template-areas:"marque niveaux compte";
     align-items:center;
-    column-gap:clamp(3px,calc(10 * var(--k)),6px);
+    column-gap:clamp(10px,calc(30 * var(--k)),16px);
     row-gap:0;
   }
   #view-dashboard .wf-accueil .ac-marque {
     grid-area:marque; min-width:0; gap:calc(8 * var(--k));
   }
   #view-dashboard .wf-accueil .wf-marque-texte { min-width:0; }
-  #view-dashboard .wf-accueil .ac-marque-sous {
-    max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-    font-size:max(9px,calc(22 * var(--k))); letter-spacing:-.01em;
-  }
+  #view-dashboard .wf-accueil .ac-marque-sous { display:none; }
   #view-dashboard .wf-accueil .puces-niveau {
-    grid-area:niveaux; justify-self:end; flex-basis:auto; order:initial;
-    --ecart:clamp(4px,calc(11 * var(--k)),6px);
+    grid-area:niveaux; justify-self:start; flex-basis:auto; order:initial;
+    --ecart:clamp(7px,calc(18 * var(--k)),10px);
     margin:0;
   }
-  #view-dashboard .wf-accueil .wf-entete-compte {
-    grid-area:compte; justify-self:end; flex:none; margin:0;
+  #view-dashboard .wf-accueil .puce-niv {
+    min-width:clamp(40px,calc(96 * var(--k)),48px);
+    padding:0 calc(6 * var(--k));
   }
-  /* Le séparateur vertical consommait ~13 px sans information supplémentaire. */
+  #view-dashboard .wf-accueil .wf-niveau-ouvrir {
+    width:clamp(26px,calc(64 * var(--k)),34px); min-width:0;
+    --cible-d:-20px; /* cible tactile >= 48px, dans l'espace avant le compte */
+  }
+  #view-dashboard .wf-accueil .wf-entete-compte {
+    grid-area:compte; justify-self:end; flex:none;
+    margin:0; gap:clamp(10px,calc(25 * var(--k)),14px);
+  }
   #view-dashboard .wf-accueil .wf-entete-sep { display:none; }
   #view-dashboard .wf-accueil .ac-v21-guest {
     margin:0; --cible-g:0px; --cible-d:0px;
   }
   #view-dashboard .wf-accueil .ac-menu {
-    margin:0 0 0 clamp(6px,calc(15 * var(--k)),9px);
-    --cible-g:-4px;
+    width:clamp(27px,calc(60 * var(--k)),34px);
+    height:clamp(27px,calc(60 * var(--k)),34px);
+    margin:0; --cible-g:-5px;
   }
-  /* Chaque zone active se termine avant la zone du groupe voisin. */
-  #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:calc(var(--ecart) / -2); }
-  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:-2px; }
+  #view-dashboard .wf-accueil .puce-niv:first-child {
+    --cible-g:calc(var(--ecart) / -2);
+  }
 }
-/* Étroit / zoom Android : pas de compression des touches. Deux rangées réelles
-   et compactes : marque + compte en haut, niveaux alignés À GAUCHE dessous.
-   Aucun sous-menu ne flotte seul au milieu comme sur l'ancienne capture. */
+/* Sous 360px / zoom : on garde une ligne ET une vraie marge à droite.
+   L'option inactive est masquée visuellement, mais reste accessible via le
+   sélecteur de niveaux, sans changer les données ni la navigation. */
 @media (max-width:359px) {
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
-    grid-template-columns:minmax(0,1fr) auto;
-    grid-template-areas:"marque compte" "niveaux niveaux";
-    column-gap:8px; row-gap:12px;
+    column-gap:clamp(9px,calc(25 * var(--k)),12px);
   }
-  #view-dashboard .wf-accueil .puces-niveau {
-    justify-self:start; --ecart:12px;
+  #view-dashboard .wf-accueil .puces-niveau .puce-niv:not([aria-pressed="true"]):not(.wf-niveau-ouvrir) {
+    display:none;
   }
-  #view-dashboard .wf-accueil .puce-niv::after { top:-12px; transform:none; }
-  #view-dashboard .wf-accueil .puce-niv:first-child { --cible-g:-4px; }
-  #view-dashboard .wf-accueil .wf-niveau-ouvrir { --cible-d:-4px; }
 }
-/* Sous zoom extrême, préférer des contrôles sur 3 rangées plutôt que se
-   chevaucher horizontalement. Le scroll du dashboard reste opérationnel. */
+/* À zoom extrême, éviter tout chevauchement plutôt que miniaturiser les touches. */
 @media (max-width:260px) {
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     grid-template-columns:minmax(0,1fr);
