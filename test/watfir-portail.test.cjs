@@ -195,8 +195,18 @@ test('CSS isolé : aucune transformation des formulaires d’authentification',(
   assert.doesNotMatch(css,/\.pa-reconnexion|#pa-form/,'formulaires hors du nouveau design ciblé');
 });
 
+test('Wordmark mobile : espacement naturel, pas d’ombre qui épaissit les lettres',()=>{
+  const rule=css.match(/#portail-auth \.wf-portail-bienvenue \.wf-portail-wordmark \{([^}]+)\}/);
+  assert.ok(rule,'règle de marque isolée sur le portail');
+  assert.match(rule[1],/font-kerning:normal/);
+  assert.match(rule[1],/letter-spacing:0/,'plus de suivi négatif qui colle « tfir »');
+  assert.match(rule[1],/text-shadow:none/,'pas d’ombre baveuse sur fond noir');
+  assert.match(rule[1],/'Watfir Logo'/,'même police Fraunces que le header');
+  assert.match(css,/\.wf-portail-bienvenue \.wf-portail-wordmark/);
+});
+
 test('Charge CSS et JS du portail 2.2 à versions de cache explicites',()=>{
-  assert.match(html,/portail-watfir\.css\?v=wf-poster-1/);
+  assert.match(html,/portail-watfir\.css\?v=wf-poster-2/);
   assert.match(html,/portail\.js\?v=wf-poster-1/);
   assert.ok(html.indexOf('style.css')<html.indexOf('portail-watfir.css'));
 });
