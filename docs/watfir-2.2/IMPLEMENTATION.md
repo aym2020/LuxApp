@@ -544,3 +544,16 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Non testé :** Samsung réel, lecteur d'écran sur le salut, synchronisation du prénom entre deux appareils réels.
 
 **Retour arrière :** revenir aux fonctions `accrocheHtml`, `carteSuiteHtml` et `renderAccueil` de §28–30, retirer la carte « Ton prénom » ; la clé `choix.prenom` éventuellement enregistrée est simplement ignorée.
+
+## 32. Rubans du hero alignés sur le portail et Commencer allégé (06/11/2026)
+
+**Constat sur Samsung (captures de Clayton) :** les rubans du portail (« Watfir ») étaient environ deux fois plus épais que ceux de l'accueil (« Moien ») : 20 px contre 10,5 px à 412 px. La carte Commencer affichait trois lignes, la troisième coupée en deux.
+
+**Correctifs :**
+- **Rubans** : épaisseur et décalage passent en CSS (classes `wf-ruban-rouge`, `wf-ruban-filet`, `wf-ruban-cyan`, `wf-ruban-bas`), viewBox `0 -24 941 260`. Mobile : trait 46, décalage 81 → mesuré 20,1 px / 35,5 px à 412 px (portail 20,2 / 35,3), 17,6 px à 360 px (portail 17,2). PC : trait 30, décalage 52 → 20,4 px / 35,4 px (portail 19,9 / 34,8), marge basse `calc(-36 * var(--k))` pour retirer le vide de la boîte.
+- **Commencer** : deux lignes, « Commencer » puis « *Déi éischt Schrëtt* · Les bases » (traduction en Inter 400, `font-size:inherit` pour neutraliser `.cs-txt span` de `style.css`). Mission et étape retirées de l'affichage, conservées dans l'`aria-label` (« Commencer · Déi éischt Schrëtt · Les bases · Leçon 0 · Mission : Le studio radio · Unité 1 · Prononciation »). Une seule ligne à 320 px.
+- **Texte du hero** : `max-width:none` sur `.wf-hero-trad` ; la règle 2.1 `.ac-hero p { max-width:245px }` coupait « Ton premier mot. Le reste commence ici. » trop tôt (relevé de l'audit).
+
+**Fichiers :** `public/accueil-watfir.js`, `public/accueil-watfir.css`, `public/index.html` (caches `watfir-v4-15` et `watfir-v4-32`), `test/watfir-home.test.cjs`, `test/watfir-hover.test.cjs`. Tests Watfir 50/50.
+
+**Non testé :** Samsung réel après correctif.

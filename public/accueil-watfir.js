@@ -116,12 +116,13 @@
           '<p class="wf-hero-trad"><b>' + bonjour + '</b><small>' + suite + '</small></p>' +
         '</div>' +
       '</div>' +
-      // Rubans identitaires : le rouge plonge sous le texte puis remonte ; le cyan suit, décalé de 36.
-      '<svg class="wf-hero-rubans" viewBox="0 0 941 190" aria-hidden="true" focusable="false">' +
-        '<path d="' + RUBAN_PLONGEE + '" fill="none" stroke="#F22421" stroke-width="24"/>' +
-        '<g transform="translate(0 36)">' +
-          '<path d="' + RUBAN_PLONGEE + '" fill="none" stroke="#080808" stroke-width="38"/>' +
-          '<path d="' + RUBAN_PLONGEE + '" fill="none" stroke="#02C5E7" stroke-width="24"/>' +
+      // Rubans identitaires : le rouge plonge sous le texte puis remonte ; le cyan suit.
+      // Épaisseur et décalage en CSS : mêmes traits à l'écran que sur le portail.
+      '<svg class="wf-hero-rubans" viewBox="0 -24 941 260" aria-hidden="true" focusable="false">' +
+        '<path class="wf-ruban-rouge" d="' + RUBAN_PLONGEE + '"/>' +
+        '<g class="wf-ruban-bas">' +
+          '<path class="wf-ruban-filet" d="' + RUBAN_PLONGEE + '"/>' +
+          '<path class="wf-ruban-cyan" d="' + RUBAN_PLONGEE + '"/>' +
         '</g>' +
       '</svg>' +
     '</section>';
@@ -135,21 +136,23 @@
 
   // Le moteur 2.1 conserve la leçon cible et son clic. En 2.2, le livre dans
   // « Commencer » ferait doublon avec le bouton Étudier : retirer son seul wrapper.
-  // La carte montre la mission de la leçon et son titre luxembourgeois ;
-  // l'action (onclick) et l'étape calculées par 2.1 restent identiques.
+  // Carte allégée : « Commencer » + une seule ligne, titre luxembourgeois de la leçon
+  // et sa traduction. Mission et étape restent dans le nom accessible.
+  // L'action (onclick) calculée par 2.1 reste identique.
   carteSuiteHtml = function (pas, nouveau) {
     let html = carteV21(pas, nouveau).replace(/<span class="cs-ic">[\s\S]*?<\/span>/, '');
     const l = pas && pas.lecon;
     if (!l) return html; // niveau terminé : carte 2.1 inchangée
     const action = nouveau ? 'Commencer' : 'Continuer';
-    const leconFr = 'Leçon ' + numLecon(l) + ' · ' + titreCourt(l);
-    const ligne = l.mission && l.mission.titre ? 'Mission · ' + l.mission.titre : leconFr;
-    const etape = pas.type === 'mission' ? 'Jouer la mission' : detailPasCourt(pas);
-    const lux = l.titre ? '<i class="wf-cta-lux" lang="lb">' + escHtml(l.titre) + '</i> · ' : '';
-    const label = action + ' · ' + ligne + ' · ' + leconFr + ' · ' + detailPas(pas);
+    const fr = titreCourt(l);
+    const ligne = l.titre
+      ? '<i class="wf-cta-lux" lang="lb">' + escHtml(l.titre) + '</i> · <span class="wf-cta-fr">' + escHtml(fr) + '</span>'
+      : escHtml('Leçon ' + numLecon(l) + ' · ' + fr);
+    const mission = l.mission && l.mission.titre ? ' · Mission : ' + l.mission.titre : '';
+    const label = action + ' · ' + (l.titre ? l.titre + ' · ' : '') + fr + ' · Leçon ' + numLecon(l) + mission + ' · ' + detailPas(pas);
     return html
-      .replace(/<span class="cs-titre">[\s\S]*?<\/span>/, function () { return '<span class="cs-titre">' + escHtml(ligne) + '</span>'; })
-      .replace(/(<small class="cs-etape"[^>]*>)[\s\S]*?(<\/small>)/, function (m, a, b) { return a + lux + escHtml(etape) + b; })
+      .replace(/<span class="cs-titre">[\s\S]*?<\/span>/, function () { return '<span class="cs-titre">' + ligne + '</span>'; })
+      .replace(/<small class="cs-etape"[^>]*>[\s\S]*?<\/small>/, '')
       .replace(/aria-label="[^"]*"/, function () { return 'aria-label="' + escHtml(label) + '"'; });
   };
 

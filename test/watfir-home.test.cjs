@@ -90,7 +90,7 @@ test('Contrat 2.2 : hero Moien, audio à la demande et cache CSS/JS',()=>{
   assert.ok(!css.includes('.wf-mission-titre')&&!js.includes('wf-mission-titre'),'hero « Mission A1.1 » retiré');
   assert.ok(js.includes("jouerAudio(\\'moien.mp3\\', this)"),'Moien écouté seulement sur appui');
   assert.ok(!/autoplay|\.play\(\)/.test(js),'jamais de lecture automatique');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-14','accueil-watfir.css?v=watfir-v4-31','hover-interactions.css?v=watfir-hover-11'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-15','accueil-watfir.css?v=watfir-v4-32','hover-interactions.css?v=watfir-hover-11'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 
@@ -148,9 +148,17 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   assert.match(ctx.accrocheHtml(false),/Prêt pour ta mission \?/,'utilisateur actif');
   assert.match(hero,/class="wf-hero-ecouter" onclick="jouerAudio\('moien\.mp3', this\)" aria-label="Écouter « Moien »"/);
   assert.ok(hero.indexOf('wf-salut')<hero.indexOf('wf-hero-rubans'),'rubans après le salut');
-  assert.ok(hero.includes('#F22421')&&hero.includes('#02C5E7'),'rubans de marque');
-  assert.match(hero,/viewBox="0 0 941 190"/);
+  assert.match(hero,/<path class="wf-ruban-rouge"[^>]*\/><g class="wf-ruban-bas"><path class="wf-ruban-filet"[^>]*\/><path class="wf-ruban-cyan"/,'rouge, puis filet noir et cyan décalés');
+  assert.match(hero,/viewBox="0 -24 941 260"/);
   assert.equal((hero.match(/M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8/g)||[]).length,3,'rouge, filet noir et cyan suivent la même plongée');
+  // Même trait à l'écran que les rubans du portail (≈ 20 px à 412 px, décalage ≈ 35 px).
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  assert.match(css,/\.wf-ruban-rouge \{ stroke:var\(--wf-red\); stroke-width:46; \}/);
+  assert.match(css,/\.wf-ruban-cyan \{ stroke:var\(--wf-cyan\); stroke-width:46; \}/);
+  assert.match(css,/\.wf-ruban-bas \{ transform:translate\(0, 81px\); \}/);
+  const pc=css.slice(css.lastIndexOf('@media (min-width:541px)'));
+  assert.match(pc,/\.wf-ruban-cyan \{ stroke-width:30; \}/,'PC : ≈ 20 px comme le portail');
+  assert.match(pc,/\.wf-ruban-bas \{ transform:translate\(0, 52px\); \}/);
   // Avec prénom (rangé dans le choix synchronisé).
   const choix={prenom:{valeur:'Clayton',maj:1}};
   ctx.getChoix=()=>choix;
@@ -167,21 +175,27 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   assert.ok(ctx.chiffresHtml().includes('Ton objectif actuel'),'réutilise les vrais KPI de 2.1');
 });
 
-test('Commencer : mission, titre luxembourgeois et étape réelle, action 2.1 inchangée',()=>{
+test('Commencer allégé : une ligne, titre luxembourgeois et traduction, action 2.1 inchangée',()=>{
   const base='<section id="today"><button class="carte-suite ac-v21-cta" aria-label="ancien" onclick="commencer()">'+
     '<span class="cs-txt"><span class="cs-kicker">Commencer</span><span class="cs-titre">Leçon 0 · Les bases</span>'+
     '<small class="cs-etape" title="x">Unité 1 · Prononciation</small></span><span class="cs-rond"></span></button></section>';
   const {ctx:c2}=setup(undefined,{carteSuiteHtml:()=>base});
-  Object.assign(c2,{numLecon:()=>0,titreCourt:()=>'Les bases',detailPasCourt:()=>'Unité 1 · Prononciation',detailPas:()=>'Unité 1 · Prononciation'});
+  Object.assign(c2,{numLecon:()=>0,titreCourt:()=>'Les bases',detailPas:()=>'Unité 1 · Prononciation'});
   const pas={type:'unite',lecon:{titre:'Déi éischt Schrëtt',mission:{titre:'Le studio radio'}}};
   const html=c2.carteSuiteHtml(pas,true);
-  assert.match(html,/<span class="cs-titre">Mission · Le studio radio<\/span>/);
-  assert.match(html,/<i class="wf-cta-lux" lang="lb">Déi éischt Schrëtt<\/i> · Unité 1 · Prononciation<\/small>/);
-  assert.match(html,/aria-label="Commencer · Mission · Le studio radio · Leçon 0 · Les bases · Unité 1 · Prononciation"/);
+  assert.match(html,/<span class="cs-titre"><i class="wf-cta-lux" lang="lb">Déi éischt Schrëtt<\/i> · <span class="wf-cta-fr">Les bases<\/span><\/span>/);
+  assert.doesNotMatch(html,/cs-etape|Mission · /,'plus de troisième ligne ni de mission visible');
+  assert.match(html,/aria-label="Commencer · Déi éischt Schrëtt · Les bases · Leçon 0 · Mission : Le studio radio · Unité 1 · Prononciation"/,
+    'le nom accessible commence par le texte visible et garde mission et étape');
   assert.match(html,/onclick="commencer\(\)"/,'action 2.1 conservée');
-  const sansMission=c2.carteSuiteHtml({type:'unite',lecon:{titre:'X'}},false);
-  assert.match(sansMission,/<span class="cs-titre">Leçon 0 · Les bases<\/span>/,'repli sans mission');
+  const sansTitre=c2.carteSuiteHtml({type:'unite',lecon:{}},false);
+  assert.match(sansTitre,/<span class="cs-titre">Leçon 0 · Les bases<\/span>/,'repli sans titre luxembourgeois');
+  const injection=c2.carteSuiteHtml({type:'unite',lecon:{titre:'<img src=x>'}},true);
+  assert.ok(!injection.includes('<img'),'titre échappé');
   assert.equal(c2.carteSuiteHtml(null,false),base,'niveau terminé : carte 2.1 inchangée');
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  assert.match(css,/\.wf-cta-fr \{ font-size:inherit; line-height:inherit; font-weight:400;/,'traduction à la taille de la ligne');
+  assert.match(css,/\.wf-hero-trad \{ margin:0; min-width:0; max-width:none; \}/,'texte du hero non limité à 245 px');
 });
 
 test('Header V6 : groupes conservés, routes et navigation accessibles',()=>{
@@ -520,7 +534,7 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
   // Pas d'étirement : le rapport largeur/hauteur CSS respecte le viewBox.
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const art=css.match(/\.wf-hero-rubans \{[^}]*width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)[^}]*height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
-  assert.ok(Math.abs(art[1]/art[2]-941/190)<0.01,'rubans non étirés');
+  assert.ok(Math.abs(art[1]/art[2]-941/260)<0.01,'rubans non étirés');
   const lg=css.match(/\.ac-marque-symbole \{ width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\); height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
   assert.ok(Math.abs(lg[1]/lg[2]-80/100)<0.01,'logo non étiré');
 });

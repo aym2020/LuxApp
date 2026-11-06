@@ -68,7 +68,7 @@ Une tour à flèche allongée, trois fenêtres évidées, une toiture rectiligne
 
 ### 4.2 Rubans
 
-Deux bandes continues, rouge au-dessus et cyan en dessous, séparées par un fin filet noir, d'épaisseur identique (24 unités, viewBox 941 × 190). Forme **« plongée »** : `M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8`, le cyan suit exactement le rouge décalé de 36 unités. Elles partent du bord gauche de l'écran, plongent sous le salut et remontent jusqu'au bord droit ; sur PC, elles s'arrêtent aux bords de la colonne de 640 px. Rapport largeur/hauteur toujours conservé (pas d'étirement). Formes « vague » et « drapeau » étudiées et écartées (maquettes du 06/11/2026). Aucun éclatement en sept couleurs, aucune répétition dans les cartes.
+Deux bandes continues, rouge au-dessus et cyan en dessous, d'épaisseur identique, séparées par du noir. **Même trait à l'écran que les rubans du portail (§32)** : ≈ 20 px d'épaisseur et ≈ 35 px de décalage à 412 px (≈ 15 px de noir entre les deux), soit `stroke-width:46` et `translate(0, 81px)` dans le viewBox 941 × 260 de l'accueil ; sur PC, `stroke-width:30` et `translate(0, 52px)` (≈ 20 et 35 px, comme le portail plafonné). Forme **« plongée »** : `M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8`, le cyan suit exactement le rouge. Elles partent du bord gauche de l'écran, plongent sous le salut et remontent jusqu'au bord droit ; sur PC, elles s'arrêtent aux bords de la colonne de 640 px. Rapport largeur/hauteur toujours conservé. Formes « vague » et « drapeau » étudiées et écartées. Aucun éclatement en sept couleurs, aucune répétition dans les cartes.
 
 ### 4.3 Icônes
 
@@ -110,7 +110,7 @@ Logo (emblème + « Watfir » + « Lëtzebuergesch ») avec un espace franc entr
 
 ### 6.3 Bouton principal
 
-Fond crème `#fbebc5`, texte noir, **sans livre**. Contenu : « Commencer » ou « Continuer » (Inter 800, 34 px max.), puis **la mission de la leçon** (« Mission · Le studio radio », repli « Leçon N · titre » sans mission), puis le **titre luxembourgeois de la leçon** en Fraunces italique suivi de l'étape réelle (« Déi éischt Schrëtt · Unité 1 · Prononciation »). À droite, un **rond noir avec chevron crème** (46–64 px). L'action (`commencer()` / `suivreProchainPas()`) et l'étape restent celles de 2.1 ; le nom accessible reprend le texte visible. Tranche beige de 7 px, enfoncement de 6 px, état maintenu 160 ms avant une navigation déclenchée par clic utilisateur ; survol PC : face crème `#fff4da` **sans soulèvement**. Aucune bande rouge/cyan dans le bouton : **face crème unie identique au portail**.
+Fond crème `#fbebc5`, texte noir, **sans livre**. **Deux lignes seulement (§32)** : « Commencer » ou « Continuer » (Inter 800, 34 px max.), puis le **titre luxembourgeois de la leçon** en Fraunces italique suivi de sa traduction en Inter regular (« *Déi éischt Schrëtt* · Les bases » ; repli « Leçon N · titre »). La mission et l'étape ne sont plus affichées : elles restent dans le nom accessible, qui commence par le texte visible. À droite, un **rond noir avec chevron crème** (46–64 px). L'action (`commencer()` / `suivreProchainPas()`) et l'étape restent celles de 2.1 ; le nom accessible reprend le texte visible. Tranche beige de 7 px, enfoncement de 6 px, état maintenu 160 ms avant une navigation déclenchée par clic utilisateur ; survol PC : face crème `#fff4da` **sans soulèvement**. Aucune bande rouge/cyan dans le bouton : **face crème unie identique au portail**.
 
 ### 6.4 Niveaux A1.1/A1.2 et familles futures
 

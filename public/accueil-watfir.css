@@ -304,6 +304,7 @@ body:has(#view-dashboard.active) { background:#080808; }
       0 0                    /* pas d'objectif au premier accueil */
       minmax(28px,72px) max-content 20px max-content minmax(24px,1fr);
   }
+
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
     grid-template-columns:max-content max-content minmax(0,1fr);
@@ -361,18 +362,36 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .wf-hero-ecouter:active { transform:translateY(3px); box-shadow:0 1px 0 #087496; }
 #view-dashboard .wf-accueil .wf-hero-ecouter.joue { background:var(--wf-cream); }
 #view-dashboard .wf-accueil .wf-hero-ecouter:focus-visible { outline:3px solid var(--wf-cream); outline-offset:3px; }
-#view-dashboard .wf-accueil .wf-hero-trad { margin:0; min-width:0; }
+/* max-width:none : la règle 2.1 « .ac-hero p » limitait ce texte à 245 px (coupures prématurées). */
+#view-dashboard .wf-accueil .wf-hero-trad { margin:0; min-width:0; max-width:none; }
 #view-dashboard .wf-accueil .wf-hero-trad b {
   display:block; color:var(--wf-cream); font:700 max(15px, calc(38 * var(--k)))/1.25 var(--wf-sans);
 }
 #view-dashboard .wf-accueil .wf-hero-trad small {
   display:block; margin-top:2px; color:var(--wf-muted); font:400 max(13px, calc(31 * var(--k)))/1.3 var(--wf-sans);
 }
-/* Rubans : du bord gauche au bord droit de l'écran (marges négatives = padding de la page). */
+/* Rubans : du bord gauche au bord droit de l'écran (marges négatives = padding de la page).
+   Mêmes traits à l'écran que le portail : trait 46/941 de la largeur (≈ 20 px à 412 px),
+   décalage 81 (≈ 35 px), donc ≈ 15 px de noir entre rouge et cyan. */
 #view-dashboard .wf-accueil .wf-hero-rubans {
   display:block; pointer-events:none; overflow:visible;
-  width:calc(941 * var(--k)); max-width:none; height:calc(190 * var(--k));
+  width:calc(941 * var(--k)); max-width:none; height:calc(260 * var(--k));
   margin:calc(34 * var(--k)) calc(-40 * var(--k)) 0;
+}
+#view-dashboard .wf-accueil .wf-hero-rubans path { fill:none; stroke-linecap:butt; stroke-linejoin:round; }
+#view-dashboard .wf-accueil .wf-ruban-rouge { stroke:var(--wf-red); stroke-width:46; }
+#view-dashboard .wf-accueil .wf-ruban-cyan { stroke:var(--wf-cyan); stroke-width:46; }
+#view-dashboard .wf-accueil .wf-ruban-filet { stroke:var(--wf-bg); stroke-width:60; }
+#view-dashboard .wf-accueil .wf-ruban-bas { transform:translate(0, 81px); }
+/* PC : le portail plafonne ses traits à ≈ 20 px ; même chose ici
+   (30 × 0,68 ≈ 20 px, décalage 52 ≈ 35 px). La marge négative retire le vide
+   laissé sous des rubans plus fins dans la même boîte. */
+@media (min-width:541px) {
+  #view-dashboard .wf-accueil .wf-ruban-rouge,
+  #view-dashboard .wf-accueil .wf-ruban-cyan { stroke-width:30; }
+  #view-dashboard .wf-accueil .wf-ruban-filet { stroke-width:42; }
+  #view-dashboard .wf-accueil .wf-ruban-bas { transform:translate(0, 52px); }
+  #view-dashboard .wf-accueil .wf-hero-rubans { margin-bottom:calc(-36 * var(--k)); }
 }
 
 /* ── Progression (vraies valeurs) ─────────────────────────────────────── */
@@ -478,10 +497,13 @@ body:has(#view-dashboard.active) { background:#080808; }
   font:400 max(12px, calc(28.8 * var(--k)))/1.25 var(--wf-sans);
   white-space:normal; overflow:visible; text-overflow:clip;
 }
-/* Titre luxembourgeois de la leçon, en Fraunces italique comme les mots du hero. */
+/* Une seule ligne sous Commencer : titre luxembourgeois en Fraunces italique,
+   traduction en Inter regular (plus légère). */
 #view-dashboard .wf-accueil .ac-v21-cta .wf-cta-lux {
-  font:italic 900 1.08em/1 'Watfir Logo', Georgia, serif; color:var(--wf-bg); letter-spacing:0;
+  font:italic 900 1.12em/1 'Watfir Logo', Georgia, serif; color:var(--wf-bg); letter-spacing:0;
 }
+/* font-size:inherit : neutralise « .cs-txt span » de style.css (16 px). */
+#view-dashboard .wf-accueil .ac-v21-cta .wf-cta-fr { font-size:inherit; line-height:inherit; font-weight:400; color:#2a2620; }
 /* Rond noir et chevron crème : le seul bouton « aller » de l'écran. */
 #view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
   flex:none; display:grid; place-items:center;
