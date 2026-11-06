@@ -1,6 +1,6 @@
 # Charte de direction artistique — Watfir / LuxApp 2.2
 
-**Version** 1.8 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
+**Version** 1.9 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
 
 > **Historique de la version 1.2 (remplacé par Mission V6)** : un seul dessin du monument (logo, icône, favicon) ; hero sans monument (« Moien! » + bouton Écouter + rubans) ; un seul rouge et un seul bleu à l'écran ; Étudier rouge vif et Jouer cyan à texte noir ; accueil PC à 640 px comme les autres pages ; appui des boutons 3D complet même en « animations réduites ».
 
@@ -93,6 +93,8 @@ Une seule action dominante à l'écran. Le hero est expressif mais ne doit jamai
 ## 6. Composants et règles
 
 ### 6.1 Header
+
+**Position verticale mobile (§27, 06/11/2026) :** la grille principale **ne doit pas centrer l'ensemble de l'accueil** après la réduction du hero Mission. Sur ≤540 px CSS, le header est ancré en haut par `align-content:safe start` et une marge intérieure stable de 18–26 px. Les intervalles de sections absorbent le surplus de hauteur par des `fr` pondérés, principalement vers le bas. Ne pas repositionner le logo seul avec `transform` ; conserver les trois groupes du header sur une ligne conformément au contrat §26. [Implémentation §27](IMPLEMENTATION.md#27-ancrage-vertical-du-header-samsung-apres-mission-v6-06112026). Le rendu du site complet sur Samsung n'est pas encore validé.
 
 **Header mobile — règle en vigueur (§26, 06/11/2026) :** à largeur Samsung usuelle, **une seule rangée** avec Watfir, A1.1/A1.2/chevron et le compte. La grille utilise `max-content max-content minmax(0,1fr)` : toute la largeur souple se trouve **après les niveaux**, avant « Mode invité / Connexion / réglages ». Le lien Connexion et la roue disposent également d'un écart distinct. Le sous-titre « Lëtzebuergesch » du petit header est masqué sur mobile seulement, car redondant avec la présentation de la langue dans le hero ; le logo Watfir et les textes fonctionnels restent lisibles. Sous 360 px CSS, niveau actif et chevron restent visibles sur la même ligne ; les autres niveaux sont disponibles dans le sélecteur. Sous 260 px CSS (zoom très élevé), l'accessibilité prime et trois rangées sont permises. **Pas de deuxième rangée sur les Samsung courants ni de compression forcée des textes.** Voir [IMPLEMENTATION §26](IMPLEMENTATION.md#26-header-mobile--une-ligne-de-lespace-apres-les-niveaux-06112026). Contrôles de composant Chromium effectués ; recette sur Samsung réel encore nécessaire.
 
