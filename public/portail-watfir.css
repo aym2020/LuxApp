@@ -57,9 +57,12 @@
   padding:0 12px;
   color:var(--wf-p-cream);
   font:900 italic clamp(72px,21vw,126px)/1.1 'Watfir Logo',Georgia,serif;
-  letter-spacing:-.075em;
+  /* Même espacement naturel que le logo du header : le -0.075em fusionnait
+     visuellement les glyphes (surtout « tfir ») sur Android. */
+  font-kerning:normal;
+  letter-spacing:0;
   white-space:nowrap;
-  text-shadow:3px 4px 0 var(--wf-p-bg);
+  text-shadow:none;
 }
 #portail-auth .wf-portail-bienvenue .wf-portail-rubans {
   display:block;
