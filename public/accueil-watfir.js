@@ -51,37 +51,26 @@
     '</div>';
   };
 
-  accrocheHtml = function (nouveau) {
-    if (typeof nouveau !== 'boolean') nouveau = !aDejaPratique();
-    const phrase = nouveau
-      ? '<b>Bonjour</b>, ton premier mot. Une nouvelle langue commence ici.'
-      : '<b>Bonjour</b> ! Prêt pour quelques minutes de Lëtzebuergesch ?';
-    // Hero V5 : pas de monument (il est déjà dans le logo du header).
-    // « Moien! » + bouton Écouter (son LOD, jamais lu automatiquement), puis les deux rubans.
-    return '<section class="ac-hero entre-2" aria-label="Bienvenue">' +
+  // Mission du niveau réel ; aucune duplication de mini-leçon ni bouton audio.
+  accrocheHtml = function () {
+    return '<section class="ac-hero entre-2" aria-label="Mission du niveau">' +
       '<div class="ac-hero-texte">' +
         '<span class="ac-hero-surtitre">Le luxembourgeois, pas à pas</span>' +
-        '<div class="wf-hero-ligne">' +
-          '<h2>Moien<span class="ac-hero-exclamation">!</span></h2>' +
-          '<button type="button" class="wf-hero-ecouter" onclick="jouerAudio(\'moien.mp3\', this)" ' +
-            'aria-label="Écouter « Moien! »">' +
-            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>' +
-          '</button>' +
-        '</div>' +
+        '<h2 class="wf-mission-titre">Mission <span class="wf-mission-niveau">' +
+          escHtml(niveauActif) + '</span></h2>' +
       '</div>' +
-      // Rubans signature : du bord gauche, sous le mot, puis remontée vers la droite. viewBox rogné au ras des rubans.
+      // Rubans identitaires inchangés.
       '<svg class="wf-hero-rubans" viewBox="0 0 941 98" aria-hidden="true" focusable="false">' +
         '<path d="M0 41 H539 C667 41 713 14 804 14 H941" fill="none" stroke="#F22421" stroke-width="23"/>' +
         '<path d="M0 78 H566 C694 78 740 50 831 50 H941" fill="none" stroke="#080808" stroke-width="37"/>' +
         '<path d="M0 78 H566 C694 78 740 50 831 50 H941" fill="none" stroke="#02C5E7" stroke-width="23"/>' +
       '</svg>' +
-      '<p>' + phrase + '</p>' +
     '</section>';
   };
 
   // Maquette : « 6% » sans espace avant le signe.
   chiffresHtml = function () {
-    return bilanV21().replace('Aujourd’hui', 'Ta progression')
+    return bilanV21().replace('Aujourd’hui', 'Ton objectif actuel')
       .replace('<span class="ac-v21-bilan-unite"> %</span>', '<span class="ac-v21-bilan-unite">%</span>');
   };
 
