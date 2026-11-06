@@ -1290,6 +1290,14 @@ body.no-scroll { overflow: hidden; }
 .hl-bouton { align-self: flex-start; min-height: var(--toucher); padding: 0 var(--sp-4); border-radius: var(--r); border: 1px solid var(--accent);
   background: transparent; color: var(--accent); font: 700 var(--fs-sec) var(--font); cursor: pointer; }
 .hl-bouton:disabled { border-color: var(--bord-1); color: var(--muted); cursor: default; }
+/* Watfir 2.2 — prénom facultatif (accueil « Moien, prénom! »). */
+.reglages-prenom-ligne { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+.reglages-prenom-ligne input { flex: 1 1 12ch; min-width: 0; min-height: var(--toucher); padding: 0 var(--sp-3);
+  border: 1px solid var(--bord-1); border-radius: var(--r); background: var(--surface-2, transparent);
+  color: inherit; font: 500 var(--fs-corps) var(--font); }
+.reglages-prenom-ligne input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.reglages-prenom-ligne .hl-bouton { align-self: auto; }
+#reglage-prenom-statut:empty { display: none; }
 /* Mise à jour PWA : ligne intégrée dans la nav, jamais superposée au contenu.
    La hauteur mesurée inclut le cas du texte à 200 % / écran 320 px. */
 body.avec-nav.hl-maj-visible {

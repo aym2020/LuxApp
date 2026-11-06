@@ -12,9 +12,9 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-10';
+  const link='hover-interactions.css?v=watfir-hover-11';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-30'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-31'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -51,7 +51,7 @@ test('CTA 3D : crème uni, relief au repos et chevron conservé',()=>{
   assert.match(block,/background:var\(--wf-cta-cream\)/,'le bouton reste crème sans motif');
   assert.doesNotMatch(block,/linear-gradient|calc\(100% - 31\.8|var\(--wf-cyan\) 0/,'pas de bande de coin');
   assert.match(watfir,/\.wf-hero-rubans/,'rubans du hero inchangés');
-  assert.match(block,/\.cs-rond \{[^}]*margin:calc\(8 \* var\(--k\)\) calc\(24 \* var\(--k\)\) 0 calc\(16 \* var\(--k\)\)/,'chevron recentré à gauche du coin');
+  assert.match(block,/\.cs-rond \{[^}]*border-radius:50%;[^}]*color:var\(--wf-cream\); background:var\(--wf-bg\)/,'rond noir, chevron crème');
   assert.match(block,/\.carte-suite\.ac-v21-cta:active:not\(:disabled\):not\(\[aria-disabled="true"\]\)/,'retour tactile au maintien');
   assert.match(block,/transform:translateY\(6px\)/,'enfoncement physique');
   assert.match(block,/\.carte-suite\.ac-v21-cta::after \{ content:none; \}/,'aucun calque de contour');
@@ -86,7 +86,7 @@ test('Header : A1.1, A1.2 et dropdown utilisent le même relief physique compact
   assert.match(header,/\.puce-niv::after[^}]*height:48px/s,'grandes cibles tactiles conservées');
   // Mouvement réduit : pas d'animation, mais la face descend toujours (sinon le bas remonte).
   const reduitW=watfir.slice(watfir.lastIndexOf('@media (prefers-reduced-motion:reduce)'));
-  assert.match(reduitW,/\.puce-niv,\s*[^{}]*\.carte-suite\.ac-v21-cta,\s*[^{}]*\.wf-activite \{ transition:none; \}/,
+  assert.match(reduitW,/\.puce-niv,\s*[^{}]*\.carte-suite\.ac-v21-cta,\s*[^{}]*\.wf-activite,\s*[^{}]*\.wf-hero-ecouter \{ transition:none; \}/,
     'respect de reduced-motion');
   assert.doesNotMatch(reduitW,/wf-pressing \{ transform:none; \}/,'la face descend aussi en mouvement réduit');
 });

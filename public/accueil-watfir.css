@@ -182,26 +182,32 @@ body:has(#view-dashboard.active) { background:#080808; }
    avant « Mode invité / Connexion / réglages ». Sur les petits écrans, le sous-
    titre du logo est redondant avec « Le luxembourgeois, pas à pas » dans le hero. */
 @media (max-width:540px) {
-  /* Composition verticale complète :
-     Quatre respirations égales ET un espace de fin pondéré à 65 % d'une
-     respiration. Ne jamais fixer quatre gaps puis envoyer toute la place
-     disponible en bas : cela laisse un grand trou sous Étudier/Jouer.
-     Les cinq blocs gardent leur hauteur naturelle. Un petit viewport défile. */
+  /* Composition verticale (§31, 06/11/2026) :
+     header en haut ; hero ; objectif (seulement après une première pratique) ;
+     puis Commencer + Étudier/Jouer groupés (20 px) en bas, près du pouce.
+     Les espaces souples se partagent la hauteur ; la marge basse est fixe.
+     Premier accueil (.wf-sans-bilan) : les rangées de l'objectif valent 0. */
   #view-dashboard .accueil.wf-accueil {
     --wf-section-min:clamp(28px,4svh,36px);
     align-content:safe start;
     padding-top:clamp(18px,calc(52 * var(--k)),26px);
     grid-template-rows:
       max-content                              /* header */
-      minmax(var(--wf-section-min),1fr)        /* header → mission */
-      max-content                              /* hero Mission */
-      minmax(var(--wf-section-min),1fr)        /* Mission → objectif */
-      max-content                              /* progression */
+      minmax(var(--wf-section-min),.8fr)       /* header → hero */
+      max-content                              /* hero Moien */
+      minmax(var(--wf-section-min),1fr)        /* hero → objectif */
+      max-content                              /* objectif */
       minmax(var(--wf-section-min),1fr)        /* objectif → Commencer */
-      max-content                              /* CTA Commencer */
-      minmax(var(--wf-section-min),1fr)        /* Commencer → Étudier/Jouer */
+      max-content                              /* Commencer */
+      20px                                     /* Commencer + Étudier/Jouer : un groupe */
       max-content                              /* Étudier / Jouer */
-      minmax(24px,.65fr);                      /* marge basse, proportionnée */
+      clamp(28px,5svh,48px);                   /* marge basse */
+  }
+  #view-dashboard .accueil.wf-accueil.wf-sans-bilan {
+    grid-template-rows:
+      max-content minmax(var(--wf-section-min),.8fr) max-content
+      0 0                                      /* pas d'objectif au premier accueil */
+      minmax(var(--wf-section-min),1fr) max-content 20px max-content clamp(28px,5svh,48px);
   }
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
@@ -275,22 +281,28 @@ body:has(#view-dashboard.active) { background:#080808; }
    Vertical : header ancré en haut, puis quatre espaces identiques entre les sections.
    Le reste de la hauteur (grands écrans seulement) va sous Étudier/Jouer. */
 @media (min-width:541px) {
-  /* minmax(28px,72px) : les quatre espaces grandissent ensemble jusqu'à 72 px
-     si l'écran est haut, et descendent ensemble jusqu'à 28 px s'il est court
-     (ensuite la page défile). Ils restent donc toujours identiques. */
+  /* minmax(28px,72px) : les espaces entre sections grandissent ensemble jusqu'à
+     72 px si l'écran est haut, et descendent ensemble jusqu'à 28 px s'il est court
+     (ensuite la page défile). Commencer et Étudier/Jouer restent groupés (20 px). */
   #view-dashboard .accueil.wf-accueil {
     align-content:safe start;
     grid-template-rows:
       max-content            /* header */
-      minmax(28px,72px)      /* header → Mission */
-      max-content            /* hero Mission */
-      minmax(28px,72px)      /* Mission → objectif */
+      minmax(28px,72px)      /* header → hero */
+      max-content            /* hero Moien */
+      minmax(28px,72px)      /* hero → objectif */
       max-content            /* objectif */
       minmax(28px,72px)      /* objectif → Commencer */
       max-content            /* Commencer */
-      minmax(28px,72px)      /* Commencer → Étudier/Jouer */
+      20px                   /* Commencer + Étudier/Jouer : un groupe */
       max-content            /* Étudier / Jouer */
       minmax(24px,1fr);      /* reste de la hauteur, en bas */
+  }
+  #view-dashboard .accueil.wf-accueil.wf-sans-bilan {
+    grid-template-rows:
+      max-content minmax(28px,72px) max-content
+      0 0                    /* pas d'objectif au premier accueil */
+      minmax(28px,72px) max-content 20px max-content minmax(24px,1fr);
   }
   #view-dashboard .wf-accueil .ac-ent.wf-entete {
     display:grid;
@@ -313,7 +325,10 @@ body:has(#view-dashboard.active) { background:#080808; }
 /* Connecté : la roue est seule dans son bloc, sa zone s'étend dans l'espace libre à sa gauche. */
 #view-dashboard .wf-accueil .wf-entete-compte > .ac-menu:first-child { --cible-g:calc(-40 * var(--k)); }
 
-/* ── Hero : Mission / niveau courant + rubans ────────────────────────── */
+/* ── Hero : « Moien, prénom! », écoute, rubans en plongée (06/11/2026) ── */
+/* Le mot luxembourgeois est le visuel : Fraunces 900 italique (comme la marque),
+   le « ! » au rouge des rubans. Sans prénom : « Moien! ». Les prénoms longs
+   réduisent le titre (classes wf-salut-s / wf-salut-xs posées par le JS). */
 #view-dashboard .wf-accueil .ac-hero {
   display:block; position:relative; flex:0 0 auto;
   height:auto; min-height:0; max-height:none; padding:0; overflow:visible;
@@ -322,24 +337,42 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .ac-hero-texte {
   position:relative; z-index:1; max-width:none; padding:0 0 0 calc(10 * var(--k));
 }
-#view-dashboard .wf-accueil .ac-hero-surtitre {
-  display:block; margin:0; color:var(--wf-cream); text-transform:uppercase; white-space:normal;
-  font:800 max(12px, calc(24.5 * var(--k)))/1.2 var(--wf-sans); letter-spacing:.18em;
+#view-dashboard .wf-accueil .wf-salut {
+  margin:0; color:var(--wf-cream); letter-spacing:-.01em; overflow-wrap:anywhere;
+  font:italic 900 clamp(48px, calc(150 * var(--k)), 72px)/.98 'Watfir Logo', Georgia, serif;
 }
-#view-dashboard .wf-accueil .wf-mission-titre {
-  display:flex; align-items:baseline; flex-wrap:wrap; gap:0 .22em;
-  margin:calc(18 * var(--k)) 0 0 calc(2 * var(--k));
-  color:var(--wf-cream);
-  font:800 clamp(30px, calc(90 * var(--k)), 62px)/1.05 var(--wf-sans);
-  letter-spacing:-.045em; text-transform:uppercase; overflow-wrap:anywhere;
+#view-dashboard .wf-accueil .wf-salut > span { display:block; }
+#view-dashboard .wf-accueil .wf-salut.wf-salut-s { font-size:clamp(40px, calc(112 * var(--k)), 60px); }
+#view-dashboard .wf-accueil .wf-salut.wf-salut-xs { font-size:clamp(32px, calc(82 * var(--k)), 46px); }
+#view-dashboard .wf-accueil .wf-salut-ex { color:var(--wf-red); }
+#view-dashboard .wf-accueil .wf-hero-ecoute {
+  display:flex; align-items:center; gap:calc(32 * var(--k)); margin-top:calc(30 * var(--k));
 }
-#view-dashboard .wf-accueil .wf-mission-niveau {
-  color:var(--wf-red); letter-spacing:-.035em;
+/* Bouton Écouter : rond cyan en relief (même logique 3D que les autres boutons), 44 px minimum. */
+#view-dashboard .wf-accueil .wf-hero-ecouter {
+  flex:none; display:grid; place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
+  width:max(44px, calc(106 * var(--k))); height:max(44px, calc(106 * var(--k)));
+  background:var(--wf-cyan); color:var(--wf-bg);
+  box-shadow:0 4px 0 #087496; transform:translateY(0);
+  transition:transform 115ms cubic-bezier(.22,1,.36,1), box-shadow 115ms cubic-bezier(.22,1,.36,1);
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
 }
+#view-dashboard .wf-accueil .wf-hero-ecouter svg { width:44%; height:44%; margin-left:8%; fill:currentColor; }
+#view-dashboard .wf-accueil .wf-hero-ecouter:active { transform:translateY(3px); box-shadow:0 1px 0 #087496; }
+#view-dashboard .wf-accueil .wf-hero-ecouter.joue { background:var(--wf-cream); }
+#view-dashboard .wf-accueil .wf-hero-ecouter:focus-visible { outline:3px solid var(--wf-cream); outline-offset:3px; }
+#view-dashboard .wf-accueil .wf-hero-trad { margin:0; min-width:0; }
+#view-dashboard .wf-accueil .wf-hero-trad b {
+  display:block; color:var(--wf-cream); font:700 max(15px, calc(38 * var(--k)))/1.25 var(--wf-sans);
+}
+#view-dashboard .wf-accueil .wf-hero-trad small {
+  display:block; margin-top:2px; color:var(--wf-muted); font:400 max(13px, calc(31 * var(--k)))/1.3 var(--wf-sans);
+}
+/* Rubans : du bord gauche au bord droit de l'écran (marges négatives = padding de la page). */
 #view-dashboard .wf-accueil .wf-hero-rubans {
-  display:block; pointer-events:none;
-  width:calc(941 * var(--k)); max-width:none; height:calc(98 * var(--k));
-  margin:calc(26 * var(--k)) calc(-40 * var(--k)) 0;
+  display:block; pointer-events:none; overflow:visible;
+  width:calc(941 * var(--k)); max-width:none; height:calc(190 * var(--k));
+  margin:calc(34 * var(--k)) calc(-40 * var(--k)) 0;
 }
 
 /* ── Progression (vraies valeurs) ─────────────────────────────────────── */
@@ -431,12 +464,12 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-kicker,
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > b {
   display:block; margin:0; color:var(--wf-bg); letter-spacing:-.005em;
-  font:800 calc(55 * var(--k))/1 var(--wf-sans);
+  font:800 min(calc(62 * var(--k)), 34px)/1 var(--wf-sans);
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-titre,
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > span:not(.cs-kicker) {
-  display:block; margin-top:calc(8.4 * var(--k)); color:var(--wf-bg); letter-spacing:0;
-  font:700 max(12px, calc(34 * var(--k)))/1.03 var(--wf-sans);
+  display:block; margin-top:calc(10 * var(--k)); color:var(--wf-bg); letter-spacing:0;
+  font:700 max(13px, calc(38 * var(--k)))/1.15 var(--wf-sans);
   white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:break-word;
 }
 #view-dashboard .wf-accueil .ac-v21-cta .cs-txt > .cs-etape,
@@ -445,13 +478,18 @@ body:has(#view-dashboard.active) { background:#080808; }
   font:400 max(12px, calc(28.8 * var(--k)))/1.25 var(--wf-sans);
   white-space:normal; overflow:visible; text-overflow:clip;
 }
-#view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
-  flex:none; width:calc(66 * var(--k)); height:calc(66 * var(--k));
-  /* Espacement équilibré du chevron à droite, inchangé côté navigation. */
-  margin:calc(8 * var(--k)) calc(24 * var(--k)) 0 calc(16 * var(--k));
-  color:var(--wf-bg); background:transparent; border:0; z-index:1;
+/* Titre luxembourgeois de la leçon, en Fraunces italique comme les mots du hero. */
+#view-dashboard .wf-accueil .ac-v21-cta .wf-cta-lux {
+  font:italic 900 1.08em/1 'Watfir Logo', Georgia, serif; color:var(--wf-bg); letter-spacing:0;
 }
-#view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic { width:100%; height:100%; stroke-width:2; }
+/* Rond noir et chevron crème : le seul bouton « aller » de l'écran. */
+#view-dashboard .wf-accueil .ac-v21-cta .cs-rond {
+  flex:none; display:grid; place-items:center;
+  width:clamp(46px, calc(118 * var(--k)), 64px); height:clamp(46px, calc(118 * var(--k)), 64px);
+  margin:0 0 0 calc(20 * var(--k)); border-radius:50%;
+  color:var(--wf-cream); background:var(--wf-bg); border:0; z-index:1;
+}
+#view-dashboard .wf-accueil .ac-v21-cta .cs-rond .ic { width:50%; height:50%; stroke-width:2.6; }
 
 /* ── Deux actions secondaires : Étudier / Jouer ──────────────────────────
    Rouge et cyan de marque, tranches dans une nuance plus sombre de leur propre
@@ -482,8 +520,10 @@ body:has(#view-dashboard.active) { background:#080808; }
   appearance:none; position:relative; display:flex; flex-direction:row;
   align-items:center; justify-content:center; flex-wrap:nowrap;
   gap:clamp(8px,calc(24 * var(--k)),13px);
-  width:100%; min-width:0; min-height:clamp(76px,calc(170 * var(--k)),96px);
-  padding:12px 8px;
+  /* 06/11/2026 : couleurs gardées mais boutons plus bas (58 px) : Commencer,
+     plus grand, reste l'action principale. Cible tactile > 48 px. */
+  width:100%; min-width:0; min-height:58px;
+  padding:8px;
   /* Filet neutre presque invisible sur le pourtour ; la lumière est en haut. */
   border:1px solid rgba(255,255,255,.10);
   border-radius:14px;
@@ -504,15 +544,15 @@ body:has(#view-dashboard.active) { background:#080808; }
   --wf-side:var(--wf-play-side);
 }
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite > .ic:first-child {
-  flex:none; width:clamp(27px,calc(65 * var(--k)),35px);
-  height:clamp(27px,calc(65 * var(--k)),35px);
+  flex:none; width:clamp(24px,calc(52 * var(--k)),28px);
+  height:clamp(24px,calc(52 * var(--k)),28px);
   margin:0; color:var(--wf-cream); stroke:currentColor; stroke-width:2.2;
   fill:none; filter:none;
 }
 #view-dashboard .wf-accueil .wf-choix-activite .wf-activite > b {
   min-width:0; margin:0; color:var(--wf-cream);
   /* 19 px min. : « grand texte » WCAG (≥ 18,66 px gras), donc 3:1 suffit (4,3:1 et 4,4:1 mesurés). */
-  font:800 clamp(19px,calc(52 * var(--k)),26px)/1.1 var(--wf-sans);
+  font:800 clamp(19px,calc(44 * var(--k)),22px)/1.1 var(--wf-sans);
   letter-spacing:-.025em; white-space:nowrap;
 }
 /* Jouer : texte et pictogramme noirs sur le cyan (9,7:1). */
@@ -609,7 +649,8 @@ body.wf-sheet-open { overflow:hidden; }
      s'écrase et le bas du bouton remonte (défaut vu sur PC « animations réduites »). */
   #view-dashboard .wf-accueil .puce-niv,
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
-  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite { transition:none; }
+  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite,
+  #view-dashboard .wf-accueil .wf-hero-ecouter { transition:none; }
   .wf-etudier-dialog .wf-etudier-option { transition:none; }
   .wf-niveaux-dialog, .wf-niveaux-dialog[open] { transform:none; transition:none; }
   .wf-niveaux-dialog::backdrop { transition:none; }

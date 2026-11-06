@@ -520,3 +520,27 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 **Non testé :** écran PC physique, zoom navigateur à 125–150 %, état connecté sur PC (seule la roue, alignée à droite par la grille).
 
 **Retour arrière :** supprimer le bloc `@media (min-width:541px)` et revenir au cache v4-29.
+
+## 31. Hero « Moien, prénom! », rubans en plongée et groupe d'actions (06/11/2026)
+
+**Décision de Clayton (maquettes du 06/11/2026 soir) :** remplacer le hero « MISSION A1.1 » par « Moien, prénom! », rendre les rubans plus vivants (forme « plongée » retenue parmi vague / plongée / drapeau), garder Étudier et Jouer en couleur mais moins hauts pour que Commencer domine (option « couleur, plus bas » retenue parmi couleur / teinte profonde / pastille).
+
+**Règle active §31 :**
+- **Hero** (`accrocheHtml`) : `<h2 class="wf-salut">` « Moien, » + prénom (ou « Moien! »), « ! » rouge ; bouton `.wf-hero-ecouter` → `jouerAudio('moien.mp3', this)` sur appui uniquement ; « Bonjour, prénom. » + « Ton premier mot. Le reste commence ici. » (premier accueil, appel sans argument) ou « Prêt pour ta mission ? » (appel `accrocheHtml(false)` du moteur 2.1). Prénoms longs : `.wf-salut-s` (> 9 caractères) et `.wf-salut-xs` (> 14).
+- **Prénom** : facultatif, 20 caractères max., espaces réduits, échappé. Saisi dans la carte « Ton prénom » en tête de Réglages (`<form onsubmit="enregistrerPrenom(event)">`), rangé dans `choix.prenom = { valeur, maj }` : le payload cloud existant (`getChoix` / `mergeDernier`) le synchronise sans nouvelle clé. Vide = retiré. Le champ est pré-rempli à l'ouverture des Réglages (enveloppe d'`openReglages` posée au `DOMContentLoaded`, car `app.js` est chargé après).
+- **Rubans** : viewBox 941 × 190, chemin `M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8` pour le rouge, puis filet noir et cyan sur le même chemin décalé de 36. Hauteur CSS `calc(190 * var(--k))`, marges `calc(34 * var(--k)) calc(-40 * var(--k)) 0`.
+- **Commencer** (`carteSuiteHtml`) : le texte 2.1 est réécrit sans toucher à l'`onclick` : « Commencer/Continuer », « Mission · titre de la mission » (repli « Leçon N · titre »), puis `<i class="wf-cta-lux" lang="lb">titre luxembourgeois</i> · étape 2.1` (« Jouer la mission » pour l'étape mission). `aria-label` aligné sur ce texte. Rond noir 46–64 px, chevron crème. Titre plafonné à 34 px sur PC.
+- **Étudier / Jouer** : couleurs inchangées, `min-height:58px`, libellé `clamp(19px, calc(44 * var(--k)), 22px)`, picto 24–28 px.
+- **Objectif** : plus inséré au premier accueil ; `renderAccueil` pose `.wf-sans-bilan` quand il est absent.
+- **Grille mobile** : `max-content | minmax(min,.8fr) | hero | minmax(min,1fr) | objectif | minmax(min,1fr) | Commencer | 20px | Étudier/Jouer | clamp(28px,5svh,48px)` ; `.wf-sans-bilan` met les rangées de l'objectif à 0. **Grille PC** : espaces `minmax(28px,72px)`, 20 px entre Commencer et Étudier/Jouer, `minmax(24px,1fr)` en bas. Remplace §29 (mobile) et la partie verticale de §30.
+- **Survol PC** du bouton Écouter rétabli dans `hover-interactions.css` (cyan clair, triangle ×1,15, neutralisé en mouvement réduit).
+
+**Mesures Chromium (DOM réel, mode invité) :** 412×915 premier accueil : salut 66 px, Commencer 693–791, Étudier/Jouer 811–869 ; utilisateur actif : objectif 520–599, mêmes positions d'actions ; 320×568 : actions 482–540, sans défilement ni débordement horizontal ; 360×780 « Jean-Christophe » : 32 px, une ligne ; 1440×900 actif : actions 838–896. Formulaire Réglages vérifié de bout en bout (enregistrement, pré-remplissage, effacement, présence dans `getProgressPayload().choix`). Aucune erreur JS.
+
+**Tests :** `test/watfir-home.test.cjs` (hero, CTA, grilles mobile et PC), `test/watfir-hover.test.cjs` ; 50/50 avec `test/watfir-portail.test.cjs`. Suite critique complète comparée à une copie intacte de `origin/2.2` : mêmes échecs préexistants (audio LOD et tests navigateur 2.1) ; `test_lux_demasque_accueil` et `test_actualisation` ont échoué une fois chacun dans une seule des deux exécutions et passent seuls.
+
+**Fichiers :** `public/accueil-watfir.js`, `public/accueil-watfir.css`, `public/hover-interactions.css`, `public/style.css` (champ prénom), `public/index.html` (carte Réglages, caches `watfir-v4-14`, `watfir-v4-31`, `watfir-hover-11`, `style.css?v=pronoms03-spec114-prenom1`), tests.
+
+**Non testé :** Samsung réel, lecteur d'écran sur le salut, synchronisation du prénom entre deux appareils réels.
+
+**Retour arrière :** revenir aux fonctions `accrocheHtml`, `carteSuiteHtml` et `renderAccueil` de §28–30, retirer la carte « Ton prénom » ; la clé `choix.prenom` éventuellement enregistrée est simplement ignorée.

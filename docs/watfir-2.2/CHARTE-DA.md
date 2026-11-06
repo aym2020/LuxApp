@@ -1,8 +1,10 @@
 # Charte de direction artistique — Watfir / LuxApp 2.2
 
-**Version** 2.1 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
+**Version** 2.2 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
 
 > **Historique de la version 1.2 (remplacé par Mission V6)** : un seul dessin du monument (logo, icône, favicon) ; hero sans monument (« Moien! » + bouton Écouter + rubans) ; un seul rouge et un seul bleu à l'écran ; Étudier rouge vif et Jouer cyan à texte noir ; accueil PC à 640 px comme les autres pages ; appui des boutons 3D complet même en « animations réduites ».
+
+> **Version 2.2 (06/11/2026, soir) — Moien V7 (§31)** : le hero « Mission A1.1 » est remplacé par **« Moien, prénom! »** (prénom facultatif saisi dans Réglages, sinon « Moien! ») avec le bouton Écouter ; rubans en **plongée** plus vivants ; la mission de la leçon passe dans Commencer avec son titre luxembourgeois ; Étudier/Jouer gardent leurs couleurs mais sont plus bas (58 px) ; Commencer et Étudier/Jouer forment un groupe en bas ; « Ton objectif actuel » n'apparaît qu'après une première pratique.
 
 ## 1. Intention
 
@@ -12,8 +14,8 @@ Le langage graphique repose sur quatre idées complémentaires :
 
 1. **Des couleurs qui viennent du sujet** : noir, crème, rouge et cyan reprennent presque exactement le drapeau luxembourgeois (rouge, blanc, bleu ciel). Aucune couleur n'est décorative ou choisie au hasard.
 2. **Un repère géographique réduit à un signe, dessiné une seule fois** : une tour à flèche au-dessus d'un pont à trois arches. Ce même dessin sert au logo du header, à l'icône de l'app et au favicon ; il n'en existe pas de seconde version.
-3. **Des rubans identitaires rouge et cyan** : deux bandes d'épaisseur homogène qui partent du bord gauche de l'écran, passent sous le titre et remontent en courbe douce vers la droite. Elles donnent le rythme du hero.
-4. **Deux familles typographiques** : Fraunces 900 italic exclusivement pour la marque Watfir ; Inter pour le titre Mission, les niveaux et toute l'interface.
+3. **Des rubans identitaires rouge et cyan** : deux bandes d'épaisseur homogène qui partent du bord gauche de l'écran, plongent sous le salut puis remontent franchement vers la droite (forme « plongée »). Elles donnent le rythme du hero.
+4. **Deux familles typographiques** : Fraunces 900 italic pour la marque Watfir **et pour les mots luxembourgeois mis en avant** (« Moien », titre luxembourgeois de la leçon dans Commencer) ; Inter pour toute l'interface.
 
 Précision éditoriale : les essais « carte postale synthwave », coucher de soleil tranché, multiples bâtiments, néons excessifs, dégradés arc-en-ciel, pictogrammes décoratifs et monument géant dans le hero **ont été écartés**. La version cible est **épurée**.
 
@@ -25,8 +27,8 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 | --- | --- | --- |
 | `--wf-bg` | `#080808` | Fond quasi noir, continu, sans faux panneaux. Texte et picto de Jouer. |
 | `--wf-cream` | `#F7E9C2` | Marque, titres, icônes neutres, **CTA principal**, texte sur rouge |
-| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, niveau en rouge de « MISSION A1.1 », bouton Étudier, pastille de niveau actif |
-| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bouton Jouer, survols PC (Connexion, réglages) |
+| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, « ! » du salut, bouton Étudier, pastille de niveau actif, flamme de série |
+| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bouton Écouter, bouton Jouer, survols PC (Connexion, réglages) |
 | `--wf-red-texte` | `#C81E1B` | Niveau courant dans la feuille des niveaux uniquement (4,75:1) |
 | `--wf-secondary` | `#BEB6A6` | Texte explicatif non essentiel, sous-titre « Lëtzebuergesch » du logo |
 | `--wf-track` | `#3C3934` | Barre de progression inactive, filets discrets |
@@ -46,12 +48,12 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 
 Le rouge de marque `--wf-red` n'est pas le rouge d'erreur `--wf-error`. Un état d'erreur exige un libellé ou une icône et un contraste explicite. Ne jamais coder uniquement par la couleur.
 
-## 3. Typographie — version d'essai Mission V6
+## 3. Typographie — Moien V7
 
 - **Watfir (portail et header)** : Fraunces 900 italic auto-hébergée, famille CSS `Watfir Logo` ; le logo existant est conservé.
 - **Tous les autres textes des deux écrans** : Inter / system-ui / sans-serif. Le sous-titre « Lëtzebuergesch » du header quitte Roboto Condensed ; le portail utilisait déjà Inter. Boutons, progression, niveaux, navigation et descriptions ne changent pas de style.
-- **Mission du niveau** : `MISSION` en Inter 800 crème, et le niveau réel (`niveauActif`) en Inter 800 rouge `#F22421`. Taille responsive `clamp(30px, calc(90 * var(--k)), 62px)`, flex avec retour à la ligne et échappement HTML du niveau.
-- **Surtitres** : petites capitales avec `letter-spacing:.18em` et plancher de 12 px sur les textes utiles. Exception : « Lëtzebuergesch » et connexion du header, réduits pour préserver la disposition Android.
+- **Salut du hero** : « Moien, » puis le prénom sur une seconde ligne, en Fraunces 900 italique crème (`clamp(48px, calc(150 * var(--k)), 72px)`), « ! » rouge `#F22421`. Prénom de 10 à 14 caractères : `.wf-salut-s` (max 60 px) ; 15 caractères et plus : `.wf-salut-xs` (max 46 px). Prénom limité à 20 caractères, échappé. Dessous : « Bonjour, prénom. » (Inter 700) et une phrase en crème atténué (Inter 400, 13 px min.). L'ancien titre « MISSION A1.1 » (Inter 800) est retiré.
+- **Surtitres** : petites capitales avec `letter-spacing:.18em` et plancher de 12 px sur les textes utiles (« Ton objectif actuel »). Le hero n'a plus de surtitre. Exception : « Lëtzebuergesch » et connexion du header, réduits pour préserver la disposition Android.
 - **Anciennes fontes** : Playfair Display et Roboto Condensed ne sont plus chargées sur l'accueil ; leurs fichiers restent dans le dépôt à titre de compatibilité. Ce contrat ne concerne pas encore les jeux et écrans pédagogiques 2.1.
 
 ## 4. Géométrie et iconographie
@@ -66,7 +68,7 @@ Une tour à flèche allongée, trois fenêtres évidées, une toiture rectiligne
 
 ### 4.2 Rubans
 
-Deux bandes continues, rouge au-dessus et cyan en dessous, séparées par un fin filet noir, d'épaisseur identique. Dans le hero, elles partent du bord gauche de l'écran, passent sous « MISSION » et remontent vers la droite jusqu'au bord (SVG inline `.wf-hero-rubans`, viewBox 941 × 98 rogné au ras des rubans). Aucun éclatement en sept couleurs, aucune répétition systématique dans les cartes. Leurs extrémités doivent être nettes et ne pas sembler coupées par accident. Sur PC, elles s'arrêtent aux bords de la colonne de 640 px.
+Deux bandes continues, rouge au-dessus et cyan en dessous, séparées par un fin filet noir, d'épaisseur identique (24 unités, viewBox 941 × 190). Forme **« plongée »** : `M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8`, le cyan suit exactement le rouge décalé de 36 unités. Elles partent du bord gauche de l'écran, plongent sous le salut et remontent jusqu'au bord droit ; sur PC, elles s'arrêtent aux bords de la colonne de 640 px. Rapport largeur/hauteur toujours conservé (pas d'étirement). Formes « vague » et « drapeau » étudiées et écartées (maquettes du 06/11/2026). Aucun éclatement en sept couleurs, aucune répétition dans les cartes.
 
 ### 4.3 Icônes
 
@@ -82,7 +84,7 @@ Fond noir libre autour des composants ; un CTA crème de premier niveau et deux 
 
 ## 5. Rythme, densité et hiérarchie
 
-Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (surtitre, Mission + niveau, rubans) → **objectif réel** → **Commencer/Continuer** → **Étudier et Jouer**. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
+Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (Moien + prénom, Écouter, rubans) → **objectif réel** (seulement après une première pratique) → **Commencer/Continuer** → **Étudier et Jouer**, ces deux derniers formant **un seul groupe** en bas de l'écran. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
 
 Une seule action dominante à l'écran. Le hero est expressif mais ne doit jamais repousser le CTA hors de l'écran à cause d'une hauteur fixe.
 
@@ -94,21 +96,21 @@ Une seule action dominante à l'écran. Le hero est expressif mais ne doit jamai
 
 ### 6.1 Header
 
-**Équilibre vertical complet — règle active §29 (06/11/2026) :** l'accueil mobile contient cinq sections et **quatre espaces inter-sections égaux qui s'agrandissent avec la hauteur disponible**, au lieu d'être plafonnés à 48 px. Définition `--wf-section-min:clamp(28px,4svh,36px)`, puis quatre rangées `minmax(var(--wf-section-min),1fr)`. L'espace **sous Étudier/Jouer participe aussi à cette répartition**, avec `minmax(24px,.65fr)`, et ne doit plus récupérer à lui seul tout le surplus de hauteur. Header en haut, trois groupes sur une ligne, cinq blocs de hauteur naturelle et scroll sur petits écrans. Les essais historiques §27 (espaces pondérés différents) et §28 (espaces fixes, grand trou en bas) ne sont plus les références. Voir [IMPLEMENTATION §29](IMPLEMENTATION.md#29-équilibrage-global-des-cinq-sections-sur-samsung-06112026). La recette complète Samsung reste à confirmer.
+**Rythme vertical — règle active §31 (06/11/2026, remplace §29) :** header ancré en haut ; puis `minmax(var(--wf-section-min),.8fr)` avant le hero, `1fr` avant l'objectif et avant Commencer, **20 px fixes entre Commencer et Étudier/Jouer**, marge basse `clamp(28px,5svh,48px)`. Le groupe d'actions reste donc en bas, près du pouce, et la hauteur libre se répartit au-dessus. Premier accueil (`.wf-sans-bilan`, aucun objectif affiché) : les rangées de l'objectif valent 0. [Implémentation §31](IMPLEMENTATION.md#31-hero-moien-prénom-rubans-en-plongée-et-groupe-dactions-06112026).
 
 **Header mobile — règle en vigueur (§26, 06/11/2026) :** à largeur Samsung usuelle, **une seule rangée** avec Watfir, A1.1/A1.2/chevron et le compte. La grille utilise `max-content max-content minmax(0,1fr)` : toute la largeur souple se trouve **après les niveaux**, avant « Mode invité / Connexion / réglages ». Le lien Connexion et la roue disposent également d'un écart distinct. Le sous-titre « Lëtzebuergesch » du petit header est masqué sur mobile seulement, car redondant avec la présentation de la langue dans le hero ; le logo Watfir et les textes fonctionnels restent lisibles. Sous 360 px CSS, niveau actif et chevron restent visibles sur la même ligne ; les autres niveaux sont disponibles dans le sélecteur. Sous 260 px CSS (zoom très élevé), l'accessibilité prime et trois rangées sont permises. **Pas de deuxième rangée sur les Samsung courants ni de compression forcée des textes.** Voir [IMPLEMENTATION §26](IMPLEMENTATION.md#26-header-mobile--une-ligne-de-lespace-apres-les-niveaux-06112026). Contrôles de composant Chromium effectués ; recette sur Samsung réel encore nécessaire.
 
-**Header et rythme PC — règle en vigueur (§30, 06/11/2026) :** au-delà de 540 px, même grille à une ligne (`marque niveaux compte`), « Lëtzebuergesch » visible, filet masqué ; le compte invité ne passe jamais à la ligne. Verticalement : header en haut, **quatre espaces identiques `minmax(28px,72px)`**, reste de la hauteur sous Étudier/Jouer. [Implémentation §30](IMPLEMENTATION.md#30-header-et-espacements-de-laccueil-sur-pc-06112026).
+**Header et rythme PC — règle en vigueur (§30, rythme mis à jour §31) :** au-delà de 540 px, même grille à une ligne (`marque niveaux compte`), « Lëtzebuergesch » visible, filet masqué ; le compte invité ne passe jamais à la ligne. Verticalement : header en haut, espaces identiques `minmax(28px,72px)` entre header, hero, objectif et Commencer, puis **20 px entre Commencer et Étudier/Jouer**, reste de la hauteur en bas. [Implémentation §30](IMPLEMENTATION.md#30-header-et-espacements-de-laccueil-sur-pc-06112026).
 
 Logo (emblème + « Watfir » + « Lëtzebuergesch ») avec un espace franc entre l'emblème et le texte (plus de marges négatives) ; largeur de la marque plafonnée pour que le header tienne sur une ligne à 412 px avec « Mode invité / Connexion ». Survol PC : « Connexion » passe au cyan ; la roue des réglages fait un quart de tour (90°) avec léger rebond et passe au cyan.
 
 ### 6.2 Hero
 
-**Mission V6 :** surtitre « LE LUXEMBOURGEOIS, PAS À PAS », puis « MISSION » crème et niveau actif rouge (Inter 800). Les rubans de marque suivent. L'ancien « Moien! », le son et la phrase d'accueil sont supprimés ; le niveau est dynamique. Le monument reste uniquement dans le logo. Le hero est rapproché du bloc objectif sans figer la hauteur.
+**Moien V7 (§31) :** « Moien, Clayton! » sur deux lignes (ou « Moien! » sans prénom), bouton Écouter cyan 3D (`jouerAudio('moien.mp3')`, jamais en lecture automatique, 44 px min.), puis « Bonjour, prénom. » et une phrase : « Ton premier mot. Le reste commence ici. » au premier accueil, « Prêt pour ta mission ? » ensuite. Rubans en plongée dessous. Le **prénom** est facultatif : carte « Ton prénom » en tête des Réglages, rangé dans le choix synchronisé (`choix.prenom = { valeur, maj }`, fusion « le plus récent gagne »), vide = retiré. Le monument reste uniquement dans le logo. L'ancien hero « MISSION A1.1 » est retiré : le niveau reste visible dans la pastille du header.
 
 ### 6.3 Bouton principal
 
-Fond crème `#fbebc5`, texte noir, flèche noire, **sans livre**. Tranche beige de 7 px, enfoncement de 6 px, état maintenu 160 ms avant une navigation déclenchée par clic utilisateur ; survol PC : face crème `#fff4da` **sans soulèvement**. Aucune bande rouge/cyan dans le bouton : **face crème unie identique au portail**. Les rubans du hero restent inchangés. Afficher le vrai titre de la leçon sur deux lignes au besoin ; pas de troncature d'information critique.
+Fond crème `#fbebc5`, texte noir, **sans livre**. Contenu : « Commencer » ou « Continuer » (Inter 800, 34 px max.), puis **la mission de la leçon** (« Mission · Le studio radio », repli « Leçon N · titre » sans mission), puis le **titre luxembourgeois de la leçon** en Fraunces italique suivi de l'étape réelle (« Déi éischt Schrëtt · Unité 1 · Prononciation »). À droite, un **rond noir avec chevron crème** (46–64 px). L'action (`commencer()` / `suivreProchainPas()`) et l'étape restent celles de 2.1 ; le nom accessible reprend le texte visible. Tranche beige de 7 px, enfoncement de 6 px, état maintenu 160 ms avant une navigation déclenchée par clic utilisateur ; survol PC : face crème `#fff4da` **sans soulèvement**. Aucune bande rouge/cyan dans le bouton : **face crème unie identique au portail**.
 
 ### 6.4 Niveaux A1.1/A1.2 et familles futures
 
@@ -116,11 +118,11 @@ Deux pastilles maximum dans le header, **actif rouge vif `#F22421` / crème** et
 
 ### 6.5 Progression
 
-En-tête « TON OBJECTIF ACTUEL », pourcentage du **niveau actif** et série selon calcul réel. Barre très fine avec piste foncée. Ne pas confondre progression du niveau et « Aujourd'hui ».
+En-tête « TON OBJECTIF ACTUEL », pourcentage du **niveau actif** et série selon calcul réel. Barre très fine avec piste foncée. **Masqué au premier accueil** (aucune pratique) : on n'accueille pas avec « 0% · 0 jours ». Ne pas confondre progression du niveau et « Aujourd'hui ».
 
 ### 6.6 Accès secondaires
 
-Deux boutons **centrés, côte à côte**, sans titre : **Étudier** (`#F22421`, tranche `#8F1712`, texte et picto crème, survol `#FF2F2A`) et **Jouer** (`#02C5E7`, tranche `#087496`, texte et picto noirs, survol `#3FD6F0`). Relief 5 px, enfoncement 4 px maintenu 160 ms avant activation ; au survol PC, seule la face s'éclaircit. Étudier ouvre un bottom sheet **Les leçons / S'entraîner / Examens / Mes erreurs** ; Jouer ouvre les mini-jeux. Cibles tactiles d'au moins 76 px de hauteur. Voir [BOUTONS-3D.md](BOUTONS-3D.md).
+Deux boutons **centrés, côte à côte**, sans titre : **Étudier** (`#F22421`, tranche `#8F1712`, texte et picto crème, survol `#FF2F2A`) et **Jouer** (`#02C5E7`, tranche `#087496`, texte et picto noirs, survol `#3FD6F0`). Relief 5 px, enfoncement 4 px maintenu 160 ms avant activation ; au survol PC, seule la face s'éclaircit. Étudier ouvre un bottom sheet **Les leçons / S'entraîner / Examens / Mes erreurs** ; Jouer ouvre les mini-jeux. **Hauteur 58 px depuis §31** (au lieu de 76–96 px) : ils gardent leurs couleurs mais laissent la première place à Commencer ; cible tactile > 48 px, libellé 19–22 px. Voir [BOUTONS-3D.md](BOUTONS-3D.md).
 
 ### 6.7 États
 

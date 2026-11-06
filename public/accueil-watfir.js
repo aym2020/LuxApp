@@ -51,19 +51,78 @@
     '</div>';
   };
 
-  // Mission du niveau réel ; aucune duplication de mini-leçon ni bouton audio.
-  accrocheHtml = function () {
-    return '<section class="ac-hero entre-2" aria-label="Mission du niveau">' +
+  // ── Prénom facultatif (Réglages) ──────────────────────────────────────
+  // Rangé dans le « choix » déjà synchronisé (niveau.js / cloud.js) :
+  // { valeur, maj }, fusionné par « le plus récent gagne ». Aucune nouvelle clé cloud.
+  const PRENOM_MAX = 20;
+  function lirePrenom() {
+    const choix = typeof getChoix === 'function' ? getChoix() : {};
+    const p = choix && choix.prenom && choix.prenom.valeur;
+    return p ? String(p).trim().slice(0, PRENOM_MAX) : '';
+  }
+  globalThis.lirePrenom = lirePrenom;
+
+  // Formulaire des Réglages : enregistre (ou efface si vide), puis rafraîchit l'accueil.
+  globalThis.enregistrerPrenom = function (event) {
+    if (event && event.preventDefault) event.preventDefault();
+    const champ = document.getElementById('reglage-prenom');
+    if (!champ || typeof getChoix !== 'function' || typeof saveChoix !== 'function') return;
+    const valeur = String(champ.value || '').replace(/\s+/g, ' ').trim().slice(0, PRENOM_MAX);
+    const choix = getChoix();
+    choix.prenom = { valeur: valeur, maj: Date.now() };
+    saveChoix(choix);
+    if (typeof debounceCloudSave === 'function') debounceCloudSave();
+    const statut = document.getElementById('reglage-prenom-statut');
+    if (statut) statut.textContent = valeur ? 'Enregistré\u00a0: «\u00a0Moien, ' + valeur + '!\u00a0»' : 'Prénom retiré.';
+    if (typeof renderAccueil === 'function') renderAccueil(false);
+  };
+
+  // À l'ouverture des Réglages, le champ affiche le prénom enregistré.
+  // app.js (qui définit openReglages) est chargé APRÈS ce fichier : on l'enveloppe
+  // une fois toute la page chargée.
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof openReglages !== 'function') return;
+    const ouvrirReglagesV21 = openReglages;
+    openReglages = function () {
+      ouvrirReglagesV21.apply(this, arguments);
+      const champ = document.getElementById('reglage-prenom');
+      if (champ) champ.value = lirePrenom();
+      const statut = document.getElementById('reglage-prenom-statut');
+      if (statut) statut.textContent = '';
+    };
+  });
+
+  // ── Hero : « Moien, prénom! », écoute du mot, rubans en plongée ─────────
+  // nouveau : appelé sans argument par le moteur pour un premier accueil,
+  // avec false pour un utilisateur qui a déjà pratiqué.
+  const RUBAN_PLONGEE = 'M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8';
+  accrocheHtml = function (nouveau) {
+    const prenom = lirePrenom();
+    const premiereVisite = nouveau !== false;
+    // Les prénoms longs réduisent le titre au lieu de déborder de l'écran.
+    const taille = prenom.length > 14 ? ' wf-salut-xs' : prenom.length > 9 ? ' wf-salut-s' : '';
+    const titre = prenom
+      ? '<span lang="lb">Moien,</span><span>' + escHtml(prenom) + '<span class="wf-salut-ex">!</span></span>'
+      : '<span><span lang="lb">Moien</span><span class="wf-salut-ex">!</span></span>';
+    const bonjour = prenom ? 'Bonjour, ' + escHtml(prenom) + '.' : 'Bonjour.';
+    const suite = premiereVisite ? 'Ton premier mot. Le reste commence ici.' : 'Prêt pour ta mission ?';
+    return '<section class="ac-hero entre-2" aria-label="Bienvenue">' +
       '<div class="ac-hero-texte">' +
-        '<span class="ac-hero-surtitre">Le luxembourgeois, pas à pas</span>' +
-        '<h2 class="wf-mission-titre">Mission <span class="wf-mission-niveau">' +
-          escHtml(niveauActif) + '</span></h2>' +
+        '<h2 class="wf-salut' + taille + '">' + titre + '</h2>' +
+        '<div class="wf-hero-ecoute">' +
+          '<button type="button" class="wf-hero-ecouter" onclick="jouerAudio(\'moien.mp3\', this)" ' +
+            'aria-label="Écouter « Moien »">' +
+            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>' +
+          '<p class="wf-hero-trad"><b>' + bonjour + '</b><small>' + suite + '</small></p>' +
+        '</div>' +
       '</div>' +
-      // Rubans identitaires inchangés.
-      '<svg class="wf-hero-rubans" viewBox="0 0 941 98" aria-hidden="true" focusable="false">' +
-        '<path d="M0 41 H539 C667 41 713 14 804 14 H941" fill="none" stroke="#F22421" stroke-width="23"/>' +
-        '<path d="M0 78 H566 C694 78 740 50 831 50 H941" fill="none" stroke="#080808" stroke-width="37"/>' +
-        '<path d="M0 78 H566 C694 78 740 50 831 50 H941" fill="none" stroke="#02C5E7" stroke-width="23"/>' +
+      // Rubans identitaires : le rouge plonge sous le texte puis remonte ; le cyan suit, décalé de 36.
+      '<svg class="wf-hero-rubans" viewBox="0 0 941 190" aria-hidden="true" focusable="false">' +
+        '<path d="' + RUBAN_PLONGEE + '" fill="none" stroke="#F22421" stroke-width="24"/>' +
+        '<g transform="translate(0 36)">' +
+          '<path d="' + RUBAN_PLONGEE + '" fill="none" stroke="#080808" stroke-width="38"/>' +
+          '<path d="' + RUBAN_PLONGEE + '" fill="none" stroke="#02C5E7" stroke-width="24"/>' +
+        '</g>' +
       '</svg>' +
     '</section>';
   };
@@ -76,8 +135,22 @@
 
   // Le moteur 2.1 conserve la leçon cible et son clic. En 2.2, le livre dans
   // « Commencer » ferait doublon avec le bouton Étudier : retirer son seul wrapper.
+  // La carte montre la mission de la leçon et son titre luxembourgeois ;
+  // l'action (onclick) et l'étape calculées par 2.1 restent identiques.
   carteSuiteHtml = function (pas, nouveau) {
-    return carteV21(pas, nouveau).replace(/<span class="cs-ic">[\s\S]*?<\/span>/, '');
+    let html = carteV21(pas, nouveau).replace(/<span class="cs-ic">[\s\S]*?<\/span>/, '');
+    const l = pas && pas.lecon;
+    if (!l) return html; // niveau terminé : carte 2.1 inchangée
+    const action = nouveau ? 'Commencer' : 'Continuer';
+    const leconFr = 'Leçon ' + numLecon(l) + ' · ' + titreCourt(l);
+    const ligne = l.mission && l.mission.titre ? 'Mission · ' + l.mission.titre : leconFr;
+    const etape = pas.type === 'mission' ? 'Jouer la mission' : detailPasCourt(pas);
+    const lux = l.titre ? '<i class="wf-cta-lux" lang="lb">' + escHtml(l.titre) + '</i> · ' : '';
+    const label = action + ' · ' + ligne + ' · ' + leconFr + ' · ' + detailPas(pas);
+    return html
+      .replace(/<span class="cs-titre">[\s\S]*?<\/span>/, function () { return '<span class="cs-titre">' + escHtml(ligne) + '</span>'; })
+      .replace(/(<small class="cs-etape"[^>]*>)[\s\S]*?(<\/small>)/, function (m, a, b) { return a + lux + escHtml(etape) + b; })
+      .replace(/aria-label="[^"]*"/, function () { return 'aria-label="' + escHtml(label) + '"'; });
   };
 
   // Deux destinations au lieu des quatre raccourcis + « Voir mon chemin ».
@@ -103,21 +176,17 @@
   };
 
   // V21 calcule les mêmes vrais KPI et le même prochain pas.
-  // On place toujours le hero AVANT le bilan et on montre le bilan aux nouveaux.
+  // Hero toujours AVANT le bilan. Premier accueil : pas de bilan (pas de « 0% · 0 jours ») ;
+  // la classe wf-sans-bilan resserre alors la grille (voir CSS).
   renderAccueil = function (animer) {
     renduV21(animer);
     const box = document.getElementById('accueil');
     if (!box) return;
     box.classList.add('wf-accueil');
     const hero = box.querySelector('.ac-hero');
-    if (!hero) return;
-    let bilan = box.querySelector('.ac-chiffres');
-    if (!bilan) {
-      hero.insertAdjacentHTML('afterend', chiffresHtml());
-      bilan = box.querySelector('.ac-chiffres');
-    } else if (hero.nextElementSibling !== bilan) {
-      hero.after(bilan);
-    }
+    const bilan = box.querySelector('.ac-chiffres');
+    box.classList.toggle('wf-sans-bilan', !bilan);
+    if (hero && bilan && hero.nextElementSibling !== bilan) hero.after(bilan);
   };
 
   function feuilleNiveaux() {
