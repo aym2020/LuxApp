@@ -1,6 +1,8 @@
 # Système d'interactions au survol — LuxApp / Watfir 2.2
 
 **Date :** 2 novembre 2026 · **Mise à jour :** 3 novembre 2026 (six boutons avec appui 3D)
+> **État actif Mission V6 (06/11/2026) :** l'ancien bouton audio « Moien! » a été retiré de l'accueil, ainsi que son hover. Les six commandes 3D de navigation (CTA, Étudier, Jouer, A1.1, A1.2, sélecteur) gardent exactement leur contrat. Voir [implémentation §23](IMPLEMENTATION.md#23-hero-mission-v6-et-harmonisation-des-polices-06112026).
+
 **Périmètre :** états repos / souris / appui tactile du CTA Watfir, plus survol du shell et des composants HTML. Aucune animation de gameplay, aucune modification des moteurs, de la progression ou des JSON.  
 **Fichier actif :** `public/hover-interactions.css`, chargé **après** les styles d'écrans par `public/index.html`.
 
@@ -22,7 +24,6 @@ L'accueil Watfir reste figé pour ses dimensions, sa grille, ses SVG et sa palet
 | **Niveaux appuyés (tactile et souris)** | Les deux niveaux affichés et le chevron descendent de `--wf-pill-depth - 1px` (2–4 px moins 1) ; tranche comprimée à 1 px ; **maintien 160 ms avant sélection / ouverture du sheet**, même après un tap bref | 115 ms de transition + maintien 160 ms |
 | **Réglages** | Quart de tour (90°) du pictogramme avec léger rebond, passage au cyan | 450 ms |
 | **Connexion** | Le mot « Connexion » passe au cyan (soulignement rouge retiré le 05/11/2026) | 190 ms |
-| **Écouter « Moien! » (hero)** | Face cyan éclaircie `#5ad9f0`, triangle agrandi ×1,15 ; appui : enfoncement de 4 px, tranche comprimée | 190 ms |
 | **Contrôles 2.1 partagés** | Élévation neutre de 2 px + luminosité ×1,10, aucune nouvelle couleur métier | 190 ms |
 
 Les deux pictogrammes de la navigation secondaire sont dessinés dans le même style de trait : **livre = Étudier**, **manette = Jouer**, crème sur Étudier et noirs sur Jouer, dans tous les états. Le CTA « Commencer / Continuer » n'a plus de livre pour éviter le doublon ; il conserve son texte, sa cible, sa flèche noire et une **face crème unie sans bandes d'angle**. Les couleurs métier (erreur, réussite, info) ne sont pas réinterprétées.
