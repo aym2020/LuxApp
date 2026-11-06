@@ -1,8 +1,8 @@
 # Charte de direction artistique — Watfir / LuxApp 2.2
 
-**Version** 1.4 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
+**Version** 1.5 · 2026-11-06 · **Statut** : DA Watfir **active sur l'accueil et le portail de bienvenue de la branche `2.2`** ; formulaires de compte et autres écrans non encore harmonisés. Références d'implémentation : [BOUTONS-3D.md](BOUTONS-3D.md) (boutons), [HOVER-SYSTEM.md](HOVER-SYSTEM.md) (survols), [ASSETS.md](ASSETS.md) (fichiers graphiques), [IMPLEMENTATION.md](IMPLEMENTATION.md) § 18 (historique du 05–06/11/2026). Les tests Samsung physique restent à effectuer.
 
-> **Changements de la version 1.2** : un seul dessin du monument (logo, icône, favicon) ; hero sans monument (« Moien! » + bouton Écouter + rubans) ; un seul rouge et un seul bleu à l'écran ; Étudier rouge vif et Jouer cyan à texte noir ; accueil PC à 640 px comme les autres pages ; appui des boutons 3D complet même en « animations réduites ».
+> **Historique de la version 1.2 (remplacé par Mission V6)** : un seul dessin du monument (logo, icône, favicon) ; hero sans monument (« Moien! » + bouton Écouter + rubans) ; un seul rouge et un seul bleu à l'écran ; Étudier rouge vif et Jouer cyan à texte noir ; accueil PC à 640 px comme les autres pages ; appui des boutons 3D complet même en « animations réduites ».
 
 ## 1. Intention
 
@@ -13,7 +13,7 @@ Le langage graphique repose sur quatre idées complémentaires :
 1. **Des couleurs qui viennent du sujet** : noir, crème, rouge et cyan reprennent presque exactement le drapeau luxembourgeois (rouge, blanc, bleu ciel). Aucune couleur n'est décorative ou choisie au hasard.
 2. **Un repère géographique réduit à un signe, dessiné une seule fois** : une tour à flèche au-dessus d'un pont à trois arches. Ce même dessin sert au logo du header, à l'icône de l'app et au favicon ; il n'en existe pas de seconde version.
 3. **Des rubans identitaires rouge et cyan** : deux bandes d'épaisseur homogène qui partent du bord gauche de l'écran, passent sous le titre et remontent en courbe douce vers la droite. Elles donnent le rythme du hero.
-4. **Un contraste typographique** : « Moien! » expressif en grande serif italique, contre une interface de lecture sobre en sans-serif.
+4. **Deux familles typographiques** : Fraunces 900 italic exclusivement pour la marque Watfir ; Inter pour le titre Mission, les niveaux et toute l'interface.
 
 Précision éditoriale : les essais « carte postale synthwave », coucher de soleil tranché, multiples bâtiments, néons excessifs, dégradés arc-en-ciel, pictogrammes décoratifs et monument géant dans le hero **ont été écartés**. La version cible est **épurée**.
 
@@ -25,10 +25,10 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 | --- | --- | --- |
 | `--wf-bg` | `#080808` | Fond quasi noir, continu, sans faux panneaux. Texte et picto de Jouer. |
 | `--wf-cream` | `#F7E9C2` | Marque, titres, icônes neutres, **CTA principal**, texte sur rouge |
-| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, « ! » de « Moien! », bouton Étudier, pastille de niveau actif |
-| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bouton Écouter du hero, bouton Jouer, survols PC (Connexion, réglages) |
+| `--wf-red` | `#F22421` | **Le seul rouge** : ruban, niveau en rouge de « MISSION A1.1 », bouton Étudier, pastille de niveau actif |
+| `--wf-cyan` | `#02C5E7` | **Le seul bleu** : ruban, bouton Jouer, survols PC (Connexion, réglages) |
 | `--wf-red-texte` | `#C81E1B` | Niveau courant dans la feuille des niveaux uniquement (4,75:1) |
-| `--wf-secondary` | `#BEB6A6` | Texte explicatif non essentiel, sous-titre « Lëtzebuergesch » du logo, phrase du hero |
+| `--wf-secondary` | `#BEB6A6` | Texte explicatif non essentiel, sous-titre « Lëtzebuergesch » du logo |
 | `--wf-track` | `#3C3934` | Barre de progression inactive, filets discrets |
 | `--wf-ink` | `#080808` | Texte sur bouton crème |
 | `--wf-success` | `#54E0AD` | Succès pédagogique, **pas** bleu ou rouge |
@@ -41,21 +41,18 @@ Les valeurs suivantes sont les **tokens de marque de l'accueil `2.2`**, définis
 
 **Contraste** :
 - Crème sur rouge `#F22421` = **3,44:1** : conforme pour un grand texte (≥ 18,66 px gras, seuil 3:1), donc pour Étudier (libellé ≥ 19 px). Sur la pastille de niveau actif (14 px), c'est **sous** le seuil de 4,5:1 : écart assumé, à reconsidérer si l'accessibilité devient prioritaire (texte noir sur rouge = 4,8:1).
-- Noir sur cyan `#02C5E7` = **9,7:1** : Jouer et le bouton Écouter portent toujours du noir, jamais du crème.
+- Noir sur cyan `#02C5E7` = **9,7:1** : Jouer porte du noir, jamais du crème.
 - Un survol ne doit jamais faire passer un texte sous son seuil (survol d'Étudier `#FF2F2A` = 3,06:1).
 
 Le rouge de marque `--wf-red` n'est pas le rouge d'erreur `--wf-error`. Un état d'erreur exige un libellé ou une icône et un contraste explicite. Ne jamais coder uniquement par la couleur.
 
-## 3. Typographie
+## 3. Typographie — version d'essai Mission V6
 
-- **Wordmark « Watfir »** : Fraunces 900 italic auto-hébergée, chargée sous `Watfir Logo`.
-- **Sous-titre « Lëtzebuergesch »** : Roboto Condensed (`Watfir Etroite`), crème atténué `--wf-secondary`, légèrement espacé (0,02 em), pour se lire comme une légende sous « Watfir ».
-- **Titre « Moien! »** : Playfair Display 800 italic auto-hébergée (`Watfir Titre`), crème avec ponctuation rouge, environ 192 unités `--k` (≈ 84 px à 412 px de large).
-- **Navigation, niveaux, boutons, questions, métriques** : `Inter` / sans-serif. Chiffres lisibles, pas de serif pour des statistiques opérationnelles.
-- **Kicker « LE LUXEMBOURGEOIS, PAS À PAS »** : capitales à chasse étendue, jamais sous 12 px. Même plancher de **12 px** pour « TA PROGRESSION », la phrase du hero, les légendes, le titre et l'étape du CTA et les niveaux (`max(12px, …)`). Exceptions mesurées : le sous-titre du logo et le bloc « Mode invité / Connexion » (11–11,5 px), qui feraient sinon passer le header sur deux lignes à 360 px.
-- **Contenu pédagogique** : police nette, contraste WCAG adapté. Aucune texture CRT, aberration chromatique ou flou sur les textes fonctionnels.
-
-Ne pas intégrer de polices propriétaires non licenciées.
+- **Watfir (portail et header)** : Fraunces 900 italic auto-hébergée, famille CSS `Watfir Logo` ; le logo existant est conservé.
+- **Tous les autres textes des deux écrans** : Inter / system-ui / sans-serif. Le sous-titre « Lëtzebuergesch » du header quitte Roboto Condensed ; le portail utilisait déjà Inter. Boutons, progression, niveaux, navigation et descriptions ne changent pas de style.
+- **Mission du niveau** : `MISSION` en Inter 800 crème, et le niveau réel (`niveauActif`) en Inter 800 rouge `#F22421`. Taille responsive `clamp(30px, calc(90 * var(--k)), 62px)`, flex avec retour à la ligne et échappement HTML du niveau.
+- **Surtitres** : petites capitales avec `letter-spacing:.18em` et plancher de 12 px sur les textes utiles. Exception : « Lëtzebuergesch » et connexion du header, réduits pour préserver la disposition Android.
+- **Anciennes fontes** : Playfair Display et Roboto Condensed ne sont plus chargées sur l'accueil ; leurs fichiers restent dans le dépôt à titre de compatibilité. Ce contrat ne concerne pas encore les jeux et écrans pédagogiques 2.1.
 
 ## 4. Géométrie et iconographie
 
@@ -69,11 +66,11 @@ Une tour à flèche allongée, trois fenêtres évidées, une toiture rectiligne
 
 ### 4.2 Rubans
 
-Deux bandes continues, rouge au-dessus et cyan en dessous, séparées par un fin filet noir, d'épaisseur identique. Dans le hero, elles partent du bord gauche de l'écran, passent sous « Moien! » et remontent vers la droite jusqu'au bord (SVG inline `.wf-hero-rubans`, viewBox 941 × 98 rogné au ras des rubans). Aucun éclatement en sept couleurs, aucune répétition systématique dans les cartes. Leurs extrémités doivent être nettes et ne pas sembler coupées par accident. Sur PC, elles s'arrêtent aux bords de la colonne de 640 px.
+Deux bandes continues, rouge au-dessus et cyan en dessous, séparées par un fin filet noir, d'épaisseur identique. Dans le hero, elles partent du bord gauche de l'écran, passent sous « MISSION » et remontent vers la droite jusqu'au bord (SVG inline `.wf-hero-rubans`, viewBox 941 × 98 rogné au ras des rubans). Aucun éclatement en sept couleurs, aucune répétition systématique dans les cartes. Leurs extrémités doivent être nettes et ne pas sembler coupées par accident. Sur PC, elles s'arrêtent aux bords de la colonne de 640 px.
 
 ### 4.3 Icônes
 
-Trait de poids optique cohérent. Étudier : livre au trait **crème** ; Jouer : manette au trait **noir** (sur cyan). Le bouton principal Commencer/Continuer n'a **pas** de livre : son texte et sa flèche suffisent. Bouton Écouter du hero : triangle de lecture noir dans un rond cyan. Réglages : roue au trait crème. Cibles tactiles d'au moins 44–48 px, sans chevauchement.
+Trait de poids optique cohérent. Étudier : livre au trait **crème** ; Jouer : manette au trait **noir** (sur cyan). Le bouton principal Commencer/Continuer n'a **pas** de livre : son texte et sa flèche suffisent. Réglages : roue au trait crème. Cibles tactiles d'au moins 44–48 px, sans chevauchement.
 
 ### 4.4 Surfaces
 
@@ -81,11 +78,11 @@ Fond noir libre autour des composants ; un CTA crème de premier niveau et deux 
 
 **Finition 3D transverse (06/11/2026) :** la tranche est une nuance **plus foncée de la face**, jamais une bande blanche ou crème sous les faces rouge/cyan. Étudier : tranche bordeaux `#8F1712` ; Jouer : tranche bleu pétrole `#087496`. Les deux faces colorées reçoivent uniquement un **reflet supérieur de 1 px**, `inset 0 1px 0 rgba(255,255,255,.28)`, sans bordure crème décorative. Les deux « Commencer » conservent leur face crème unie et partagent la **même teinte de tranche beige `#AA8954`** (profondeur 7 px pour la carte de leçon, 6 px pour le portail). « Créer un compte » adopte une tranche beige sombre `#796646`, reflet crème léger de 1 px, hauteur et rayon identiques à « Commencer » sur le portail. La transition physique reste 115 ms et l'enfoncement perceptible 160 ms avant navigation ; ne pas ajouter de fausse semelle claire. Voir [BOUTONS-3D.md](BOUTONS-3D.md).
 
-**Rayons unifiés des actions de marque (06/11/2026, `2.2`) :** les grands boutons « Commencer / Continuer » de l'accueil et « Commencer / Créer un compte » du portail partagent désormais **17 px** de `border-radius`. Les deux choix « Étudier / Jouer » partagent **14 px**. Ce sont des valeurs fixes, identiques de 320 px à 640 px de largeur, pour éviter que la formule issue de la maquette (`--k`) produise des rayons différents sur les deux écrans. Les pastilles A1.1/A1.2/chevron et le bouton audio rond conservent leur géométrie spécifique. Ne changer ni dimensions, ni tranches 3D, ni appui, ni couleurs, ni cibles tactiles. CSS : `public/accueil-watfir.css`; le portail était déjà à 17 px. Voir [BOUTONS-3D.md](BOUTONS-3D.md) et [IMPLEMENTATION.md §22](IMPLEMENTATION.md#22-harmonisation-des-rayons-des-boutons-06112026).
+**Rayons unifiés des actions de marque (06/11/2026, `2.2`) :** les grands boutons « Commencer / Continuer » de l'accueil et « Commencer / Créer un compte » du portail partagent désormais **17 px** de `border-radius`. Les deux choix « Étudier / Jouer » partagent **14 px**. Ce sont des valeurs fixes, identiques de 320 px à 640 px de largeur, pour éviter que la formule issue de la maquette (`--k`) produise des rayons différents sur les deux écrans. Les pastilles A1.1/A1.2/chevron conservent leur géométrie spécifique ; l'ancien bouton audio a été retiré. Ne changer ni dimensions, ni tranches 3D, ni appui, ni couleurs, ni cibles tactiles. CSS : `public/accueil-watfir.css`; le portail était déjà à 17 px. Voir [BOUTONS-3D.md](BOUTONS-3D.md) et [IMPLEMENTATION.md §22](IMPLEMENTATION.md#22-harmonisation-des-rayons-des-boutons-06112026).
 
 ## 5. Rythme, densité et hiérarchie
 
-Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (kicker, « Moien! » + Écouter, rubans, phrase) → **progression réelle** → **Commencer/Continuer** → **Étudier et Jouer**. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
+Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (surtitre, Mission + niveau, rubans) → **objectif réel** → **Commencer/Continuer** → **Étudier et Jouer**. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
 
 Une seule action dominante à l'écran. Le hero est expressif mais ne doit jamais repousser le CTA hors de l'écran à cause d'une hauteur fixe.
 
@@ -101,7 +98,7 @@ Logo (emblème + « Watfir » + « Lëtzebuergesch ») avec un espace franc entr
 
 ### 6.2 Hero
 
-Kicker, puis « Moien! » en grand avec, à droite, le **bouton Écouter** : rond cyan en relief, triangle noir, `jouerAudio('moien.mp3', this)` — son LOD officiel, **jamais lu automatiquement**, 44 px minimum. Survol PC : cyan éclairci et triangle légèrement agrandi. Puis les rubans, puis la phrase : « **Bonjour**, ton premier mot. Une nouvelle langue commence ici. » (utilisateur régulier : « **Bonjour** ! Prêt pour quelques minutes de Lëtzebuergesch ? »). Pas de monument dans le hero.
+**Mission V6 :** surtitre « LE LUXEMBOURGEOIS, PAS À PAS », puis « MISSION » crème et niveau actif rouge (Inter 800). Les rubans de marque suivent. L'ancien « Moien! », le son et la phrase d'accueil sont supprimés ; le niveau est dynamique. Le monument reste uniquement dans le logo. Le hero est rapproché du bloc objectif sans figer la hauteur.
 
 ### 6.3 Bouton principal
 
@@ -113,7 +110,7 @@ Deux pastilles maximum dans le header, **actif rouge vif `#F22421` / crème** et
 
 ### 6.5 Progression
 
-En-tête « TA PROGRESSION », pourcentage du **niveau actif** et série selon calcul réel. Barre très fine avec piste foncée. Ne pas confondre progression du niveau et « Aujourd'hui ».
+En-tête « TON OBJECTIF ACTUEL », pourcentage du **niveau actif** et série selon calcul réel. Barre très fine avec piste foncée. Ne pas confondre progression du niveau et « Aujourd'hui ».
 
 ### 6.6 Accès secondaires
 
@@ -127,7 +124,7 @@ Définir au minimum : chargement, progression nulle, aucune leçon reprenable, n
 
 **Typographie du mot-symbole :** Fraunces 900 italic (même fonte que le header), `font-kerning:normal`, **`letter-spacing:0`**, aucune ombre portée. Ne pas resserrer artificiellement les glyphes : à grande taille, `-0.075em` collait les lettres et donnait une impression de dessin « baveux » sur Android. La forme de la fonte est conservée. La lisibilité à l'écran prime sur une compaction décorative.
 
-**La page de bienvenue n'est pas une version simplifiée de l'accueil.** C'est une affiche éditoriale sans slogan, sans paragraphe marketing et sans succession de trois bénéfices numérotés. La marque **Watfir** est le seul titre, en Fraunces 900 italic crème, suivie des rubans rouge/cyan en SVG et de « Lëtzebuergesch » en petites capitales comme désignation de la langue. Pas de monument démesuré, pas de pictos génériques, pas de carte « Moien! » ni d'audio : cet apprentissage est réservé au hero de l'accueil.
+**La page de bienvenue n'est pas une version simplifiée de l'accueil.** C'est une affiche éditoriale sans slogan, sans paragraphe marketing et sans succession de trois bénéfices numérotés. La marque **Watfir** est le seul titre, en Fraunces 900 italic crème, suivie des rubans rouge/cyan en SVG et de « Lëtzebuergesch » en petites capitales comme désignation de la langue. Pas de monument démesuré, pas de pictos génériques, pas de carte « Moien! » ni d'audio : l'accueil utilise désormais une mission de niveau plutôt qu'un mot à écouter.
 
 **Actions :** Commencer (CTA **crème uni** 3D, chevron noir, sans bande de coin, tranche beige 6 px, appui 5 px maintenu 160 ms), Créer un compte (surface sombre, bord crème, **tranche 3D de 6 px, appui 5 px maintenu 160 ms**), Se connecter (lien). Les deux boutons 3D ont la même hauteur minimum (70 px), le même rayon (17 px) et la même géométrie. Ces actions préservent `guest`, `signup` et `signin`, et les formulaires conservent les composants 2.1. Seule la présentation du mode `welcome` est migrée. La feuille `portail-watfir.css` est isolée sous `.wf-portail-bienvenue`; le fond noir remplace le dégradé doré sur cette seule vue.
 
@@ -141,9 +138,9 @@ Faire évoluer les composants existants plutôt que dupliquer leurs fonctions. L
 
 ## 8. Mouvement et rendu
 
-**Boutons 3D** (CTA, Étudier/Jouer, pastilles, bouton Écouter) : la face descend de la hauteur de la tranche pendant que la tranche s'écrase, **avec la même courbe pour les deux** (`transform` et `box-shadow` en `115 ms cubic-bezier(.22,1,.36,1)`) : le bas du bouton reste fixe pendant tout l'appui. Le fond change sur 160–170 ms. Pour une activation utilisateur susceptible de masquer l'animation, `.wf-pressing` conserve le creux 160 ms avant le clic rejoué.
+**Boutons 3D** (CTA, Étudier/Jouer, pastilles) : la face descend de la hauteur de la tranche pendant que la tranche s'écrase, **avec la même courbe pour les deux** (`transform` et `box-shadow` en `115 ms cubic-bezier(.22,1,.36,1)`) : le bas du bouton reste fixe pendant tout l'appui. Le fond change sur 160–170 ms. Pour une activation utilisateur susceptible de masquer l'animation, `.wf-pressing` conserve le creux 160 ms avant le clic rejoué.
 
-**`prefers-reduced-motion: reduce`** (fréquent sur PC) : aucune animation ni délai, mais l'appui reste **instantané et complet** (face descendue, bas fixe). Ne jamais annuler la descente de la face en gardant l'écrasement de la tranche : le bas remonterait. La roue et le triangle du bouton Écouter ne bougent pas au survol.
+**`prefers-reduced-motion: reduce`** (fréquent sur PC) : aucune animation ni délai, mais l'appui reste **instantané et complet** (face descendue, bas fixe). Ne jamais annuler la descente de la face en gardant l'écrasement de la tranche : le bas remonterait. La roue ne bouge pas au survol.
 
 Les survols sont réservés à `(hover:hover) and (pointer:fine)`, sans animation de gameplay. Aucun filtre VHS permanent, scintillement ni halo permanent. Sur écran HDR, vérifier les rouges et le cyan. Formes vectorielles, effets analogiques strictement décoratifs.
 
