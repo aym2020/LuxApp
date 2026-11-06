@@ -1,7 +1,8 @@
 /* Watfir 2.2 — écran de bienvenue « affiche rétro » (06/11/2026).
    Portée STRICTEMENT limitée à .wf-portail-bienvenue :
    formulaires de connexion/inscription, cloud et accueil #view-dashboard inchangés.
-   Deux rubans rouge/cyan et logotype typographique ; aucun slogan ni « Moien! ». */
+   Deux rubans rouge/cyan dans le hero (intacts), PAS sur le CTA crème ;
+   deux grands boutons de même géométrie et relief 3D cohérent. */
 
 #portail-auth:has(.wf-portail-bienvenue) {
   background:#080808;
@@ -120,10 +121,8 @@
   gap:12px;
   border:0;
   border-radius:17px;
-  background:linear-gradient(135deg,
-    var(--wf-p-cta-face) calc(100% - 41px),
-    var(--wf-p-red) 0 calc(100% - 22px),
-    var(--wf-p-cyan) 0);
+  /* Crème unie : les rubans sont réservés au visuel de marque. */
+  background:var(--wf-p-cta-face);
   color:var(--wf-p-ink);
   text-align:left;
   box-shadow:0 6px 0 #ac8d5b,
@@ -157,18 +156,29 @@
              inset 0 2px 3px rgba(0,0,0,.13);
 }
 #portail-auth .wf-portail-bienvenue .pa-bouton.sombre.wf-portail-creer {
-  min-height:60px;
-  border:1px solid #a99a78;
-  border-radius:15px;
+  /* Même hauteur, rayon et dynamique physique que Commencer ;
+     face sombre et filet crème = variante secondaire, pas un bouton plat. */
+  min-height:70px;
+  border:1px solid #c3b08b;
+  border-radius:17px;
   background:#11100e;
   color:var(--wf-p-cream);
   font-size:18px;
   font-weight:750;
-  transition:background-color 160ms ease;
+  box-shadow:0 6px 0 #796646,
+             0 12px 16px rgba(0,0,0,.30),
+             inset 0 1px 0 rgba(247,233,194,.14);
+  transform:translateY(0);
+  transition:background-color 160ms ease,
+             transform 115ms cubic-bezier(.22,1,.36,1),
+             box-shadow 115ms ease;
 }
-#portail-auth .wf-portail-bienvenue .pa-bouton.sombre.wf-portail-creer:active {
-  background:#30291e;
-  transform:none;
+#portail-auth .wf-portail-bienvenue .pa-bouton.sombre.wf-portail-creer:active,
+#portail-auth .wf-portail-bienvenue .pa-bouton.sombre.wf-portail-creer.wf-pressing {
+  transform:translateY(5px);
+  box-shadow:0 1px 0 #796646,
+             0 3px 5px rgba(0,0,0,.28),
+             inset 0 1px 3px rgba(0,0,0,.25);
 }
 #portail-auth .wf-portail-bienvenue .pa-bouton.texte.wf-portail-connexion {
   min-height:45px;
@@ -216,6 +226,9 @@
   #portail-auth .wf-portail-bienvenue .pa-bouton.or.wf-portail-demarrer {
     min-height:64px;
     padding-inline:17px;
+  }
+  #portail-auth .wf-portail-bienvenue .pa-bouton.sombre.wf-portail-creer {
+    min-height:64px;
   }
 }
 
