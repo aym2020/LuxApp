@@ -88,7 +88,7 @@ test('Contrat 2.2 §36 : rubans seuls en hero, sans Moien ni son, et cache CSS/J
   const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
   for (const absent of ['wf-salut','wf-hero-ecouter','wf-hero-trad','jouerAudio','Moien','reglage-prenom','enregistrerPrenom'])
     assert.ok(!css.includes(absent)&&!js.includes(absent)&&!html.includes(absent),'retiré : '+absent);
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-18','accueil-watfir.css?v=watfir-v4-36','hover-interactions.css?v=watfir-hover-12'])
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-18','accueil-watfir.css?v=watfir-v4-37','hover-interactions.css?v=watfir-hover-12'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
 test('Watfir shows only the active family and a chevron',()=>{
@@ -594,11 +594,34 @@ test('Progression §36 : série en bandes rouges, niveau en bandes cyan, animée
   const reduit=css.slice(css.indexOf('@keyframes wf-bande-remplit'));
   assert.match(reduit,/@media \(prefers-reduced-motion:reduce\) \{[^}]*\.wf-rejouer \.wf-bandes i::before \{ animation:none; \}/,'mouvement réduit respecté');
   assert.match(css,/\.wf-bandes i \{[^}]*transform:skewX\(-20deg\)/,'bandes en parallélogrammes, inclinées comme l’italique');
-  assert.match(css,/--wf-serie-vide:#5c1a19; --wf-lecon-vide:#2a2622; --wf-lecon-demi:#0c3b44;/,'jour vide en rouge sombre, leçon vide en gris');
+  assert.match(css,/--wf-serie-vide:#512523; --wf-lecon-vide:#2a2622; --wf-lecon-demi:#0c3b44;/,'jour vide en rouge sombre, leçon vide en gris');
   const js=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
   assert.ok(js.includes("const arrivee = !!animer || !vue || !vue.classList.contains('active');"),'rejouée à chaque arrivée sur l’accueil');
   assert.ok(js.includes("niveauAffiche !== null && niveauAffiche !== niveauActif"),'rejouée au changement de niveau');
   assert.ok(js.includes("box.classList.toggle('wf-rejouer', rejouer);"),'une classe sur le conteneur rejoue rubans, bandes et chiffres');
   assert.ok(js.includes('function compter(el, delai)')&&js.includes("prefers-reduced-motion: reduce"),'chiffres comptés, sauf mouvement réduit');
   assert.doesNotMatch(css,/ac-v21-bilan/,'ancien bilan retiré');
+});
+
+
+test('Progression §37 : titre relié à Série, indicateurs regroupés, rouge sourd conservé',()=>{
+  const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
+  const progression=css.slice(css.indexOf('/* ── Progression (§36)'),css.indexOf('/* Animations (classe .wf-rejouer'));
+  assert.match(progression,/\.ac-chiffres\.wf-etat \{[^}]*row-gap:0;/,
+    'plus de même grand intervalle entre titre/série et série/niveau');
+  assert.match(progression,/\.wf-etat \.wf-etat-titre \{[^}]*margin:0 0 clamp\(12px,1\.8svh,18px\)/,
+    'titre de section rapproché de la série');
+  assert.match(progression,/\.wf-etat-bloc \+ \.wf-etat-bloc \{[^}]*margin-top:clamp\(24px,2\.8svh,30px\)/,
+    'série et niveau forment un même bilan avec un intervalle dédié');
+  assert.match(progression,/--wf-serie-vide:#512523;/,
+    'jour non validé reste bordeaux et non gris');
+  assert.match(progression,/\.wf-semaine i::before \{ background:var\(--wf-red\); \}/,
+    'jours validés conservent le rouge vif');
+  assert.match(progression,/\.wf-lecons i::before \{ background:var\(--wf-cyan\); \}/,
+    'cyan des leçons conservé');
+  assert.match(progression,/transform:skewX\(-20deg\)/,'parallélogrammes conservés');
+  assert.ok(!progression.includes('gap:clamp(22px, 4.5svh, 44px)'),
+    'ancien espacement double supprimé');
+  assert.match(css,/\.wf-ruban-rouge \{ stroke:var\(--wf-red\); stroke-width:46; \}/,
+    'rubans de marque non modifiés');
 });
