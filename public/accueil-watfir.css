@@ -350,13 +350,18 @@ body:has(#view-dashboard.active) { background:#080808; }
    gris = à faire. Jour courant : lettre en crème. Les styles génériques
    « .ac-chiffres » de style.css (grille 3 colonnes, filets) sont neutralisés ici. */
 #view-dashboard .wf-accueil .ac-chiffres.wf-etat {
-  display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(22px, 4.5svh, 44px);
+  display:grid; grid-template-columns:minmax(0,1fr); row-gap:0;
   margin:0; padding:0 calc(6 * var(--k)) 0 calc(10 * var(--k)); text-align:left; color:var(--wf-cream);
-  --wf-serie-vide:#5c1a19; --wf-lecon-vide:#2a2622; --wf-lecon-demi:#0c3b44;
+  /* Bordeaux désaturé : présence de la marque sans confondre « jour vide » et « validé ». */
+  --wf-serie-vide:#512523; --wf-lecon-vide:#2a2622; --wf-lecon-demi:#0c3b44;
 }
 #view-dashboard .wf-accueil .wf-etat > div { display:block; padding:0; border:0; min-width:0; }
+/* Un titre près de sa série ; les deux indicateurs restent un même ensemble. */
+#view-dashboard .wf-accueil .wf-etat-bloc + .wf-etat-bloc {
+  margin-top:clamp(24px,2.8svh,30px);
+}
 #view-dashboard .wf-accueil .wf-etat .wf-etat-titre {
-  margin:0; color:var(--wf-cream); text-transform:uppercase; letter-spacing:.2em;
+  margin:0 0 clamp(12px,1.8svh,18px); color:var(--wf-cream); text-transform:uppercase; letter-spacing:.2em;
   font:800 clamp(15px, calc(38 * var(--k)), 18px)/1.2 var(--wf-sans);
 }
 #view-dashboard .wf-accueil .wf-etat-tete {
