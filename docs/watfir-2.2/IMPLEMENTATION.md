@@ -608,3 +608,20 @@ Demande de Clayton : le rond noir plein à droite de Commencer attirait trop l'�
 **Non testé :** Samsung réel, lecteur d'écran.
 
 **Retour arrière :** commit précédent `0ccf5e2` (hero Moien + état des lieux §33–35).
+
+
+## 37. Regroupement du bilan et rouge sourd des jours vides (07/11/2026)
+
+**Demande :** ajuster seulement les problèmes 2, 3 et 4 constatés sur la capture Samsung V8. « PROGRESSION » était trop loin de « SÉRIE », puis série et niveau trop distants. Les sept bandes vides étaient encore assez rouges pour pouvoir être perçues comme des jours validés ; toutefois **le rouge doit rester visible**, même avant validation. **Les rubans rouge/cyan du hero, leur position, leur forme et leur animation sont intouchables.**
+
+**Implémentation CSS ciblée dans `public/accueil-watfir.css` :**
+- Le `gap:clamp(22px,4.5svh,44px)` unique du conteneur `.ac-chiffres.wf-etat` est retiré (`row-gap:0`) : il ne doit plus imposer le même grand espace aux deux transitions de sens différent.
+- Le titre « PROGRESSION » reçoit une marge basse distincte de `clamp(12px,1.8svh,18px)` pour être visuellement solidaire de « SÉRIE ».
+- Le second bloc `.wf-etat-bloc + .wf-etat-bloc` reçoit une marge haute de `clamp(24px,2.8svh,30px)` pour réunir Série et Niveau en **un même état des lieux**, tout en les distinguant. La réduction de la hauteur intrinsèque du bilan laisse la grille mobile réallouer l'espace disponible **au-dessus et au-dessous** du bilan ; le bouton Continuer reste séparé de la zone d'information.
+- Le jour vide conserve un rouge bordeaux moins saturé, `--wf-serie-vide:#512523` (au lieu de `#5C1A19`). Les jours atteints conservent exactement `--wf-red:#F22421`, les demi-journées le calque rouge à mi-largeur, et les leçons terminées le cyan. La couleur n'est pas utilisée seule pour distinguer les états : les valeurs, les lettres du jour et les noms accessibles sont maintenus.
+
+**Périmètre exclu :** aucun changement des SVG/rubans, de la grille principale de l'accueil, des animations `.wf-rejouer`, du JavaScript, des données de progression, des nombres de leçons, du header, des CTA 3D, de leur taille ou des destinations. Les règles de mobile et PC partagent ce resserrement interne, avec des valeurs bornées en `svh`.
+
+**Tests et livraison :** le cache CSS passe à `accueil-watfir.css?v=watfir-v4-37` dans `public/index.html`, les contrats existants de couleur et de cache sont adaptés, et un test dédié verrouille les deux espacements, le rouge des jours vides, le rouge vif des jours validés, le cyan des leçons, les bandes inclinées et les rubans inchangés. Syntaxe JS et cohérence CSS vérifiées à la lecture des fichiers GitHub. **La suite Node intégrale et le rendu réel sur Samsung ne sont pas validés par ces seuls contrôles.**
+
+**Retour arrière :** revenir aux trois déclarations CSS et à la version de cache précédentes, puis adapter les assertions correspondantes. Aucun état utilisateur n'est modifié.
