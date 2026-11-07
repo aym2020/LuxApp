@@ -82,18 +82,15 @@ function setup(levels=['A1.1','A1.2','A2.1','A2.2','B1.1'], extra={}) {
   }
   return {ctx,d,list,click};
 }
-test('Contrat 2.2 : hero Moien, audio à la demande et cache CSS/JS',()=>{
+test('Contrat 2.2 §36 : rubans seuls en hero, sans Moien ni son, et cache CSS/JS',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const js=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
   const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
-  assert.ok(css.includes('.wf-salut {')&&css.includes('.wf-hero-ecouter {'));
-  assert.ok(!css.includes('.wf-mission-titre')&&!js.includes('wf-mission-titre'),'hero « Mission A1.1 » retiré');
-  assert.ok(js.includes("jouerAudio(\\'moien.mp3\\', this)"),'Moien écouté seulement sur appui');
-  assert.ok(!/autoplay|\.play\(\)/.test(js),'jamais de lecture automatique');
-  for(const cache of ['accueil-watfir.js?v=watfir-v4-17','accueil-watfir.css?v=watfir-v4-35','hover-interactions.css?v=watfir-hover-11'])
+  for (const absent of ['wf-salut','wf-hero-ecouter','wf-hero-trad','jouerAudio','Moien','reglage-prenom','enregistrerPrenom'])
+    assert.ok(!css.includes(absent)&&!js.includes(absent)&&!html.includes(absent),'retiré : '+absent);
+  for(const cache of ['accueil-watfir.js?v=watfir-v4-18','accueil-watfir.css?v=watfir-v4-36','hover-interactions.css?v=watfir-hover-12'])
     assert.ok(html.includes(cache),'cache : '+cache);
 });
-
 test('Watfir shows only the active family and a chevron',()=>{
   const {ctx}=setup();
   const h=ctx.enteteAccueilHtml();
@@ -136,41 +133,21 @@ test('The 2.1 frontend loads Watfir files after its existing overlays',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-accueil/);
   assert.match(css,/white-space:normal/);
-});test('Hero Moien : prénom facultatif échappé, audio sur appui, rubans en plongée',()=>{
+});test('Hero §36 : rubans décoratifs, même trait que le portail, tracé animé',()=>{
   const {ctx}=setup();
-  // Sans prénom : « Moien! »
-  let hero=ctx.accrocheHtml();
-  assert.match(hero,/<h2 class="wf-salut"><span><span lang="lb">Moien<\/span><span class="wf-salut-ex">!<\/span><\/span><\/h2>/);
-  assert.match(hero,/Ton premier mot\. Le reste commence ici\./,'premier accueil');
-  assert.match(ctx.accrocheHtml(false),/Prêt pour ta mission \?/,'utilisateur actif');
-  assert.match(hero,/class="wf-hero-ecouter" onclick="jouerAudio\('moien\.mp3', this\)" aria-label="Écouter « Moien »"/);
-  assert.ok(hero.indexOf('wf-salut')<hero.indexOf('wf-hero-rubans'),'rubans après le salut');
-  assert.match(hero,/<path class="wf-ruban-rouge"[^>]*\/><g class="wf-ruban-bas"><path class="wf-ruban-filet"[^>]*\/><path class="wf-ruban-cyan"/,'rouge, puis filet noir et cyan décalés');
-  assert.match(hero,/viewBox="0 -24 941 260"/);
-  assert.equal((hero.match(/M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8/g)||[]).length,3,'rouge, filet noir et cyan suivent la même plongée');
-  // Même trait à l'écran que les rubans du portail (≈ 20 px à 412 px, décalage ≈ 35 px).
+  const hero=ctx.accrocheHtml();
+  assert.ok(hero.startsWith('<section class="ac-hero entre-2" aria-hidden="true">'),'décoratif');
+  assert.match(hero,/viewBox="0 -24 941 232"/);
+  assert.match(hero,/<path class="wf-ruban-rouge"[^>]*pathLength="1"\/><g class="wf-ruban-bas"><path class="wf-ruban-filet"[^>]*\/><path class="wf-ruban-cyan"/);
+  assert.equal((hero.match(/M-20 30C170 30 300 100 480 100S790 60 961 0/g)||[]).length,3,'rouge, filet et cyan suivent le même chemin');
+  assert.equal(ctx.accrocheHtml(false),hero,'identique pour tous');
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-ruban-rouge \{ stroke:var\(--wf-red\); stroke-width:46; \}/);
-  assert.match(css,/\.wf-ruban-cyan \{ stroke:var\(--wf-cyan\); stroke-width:46; \}/);
   assert.match(css,/\.wf-ruban-bas \{ transform:translate\(0, 81px\); \}/);
-  const pc=css.slice(css.lastIndexOf('@media (min-width:541px)'));
-  assert.match(pc,/\.wf-ruban-cyan \{ stroke-width:30; \}/,'PC : ≈ 20 px comme le portail');
-  assert.match(pc,/\.wf-ruban-bas \{ transform:translate\(0, 52px\); \}/);
-  // Avec prénom (rangé dans le choix synchronisé).
-  const choix={prenom:{valeur:'Clayton',maj:1}};
-  ctx.getChoix=()=>choix;
-  hero=ctx.accrocheHtml();
-  assert.match(hero,/<span lang="lb">Moien,<\/span> <span>Clayton<span class="wf-salut-ex">!<\/span><\/span>/,'espace : une ligne sur PC');
-  assert.match(hero,/Bonjour, Clayton\./);
-  choix.prenom.valeur='Jean-Christophe';
-  assert.match(ctx.accrocheHtml(),/class="wf-salut wf-salut-xs"/,'prénom long : titre réduit');
-  choix.prenom.valeur='<img src=x>';
-  assert.ok(!ctx.accrocheHtml().includes('<img'),'pas d’injection HTML');
-  assert.ok(ctx.accrocheHtml().includes('&lt;img src=x&gt;'));
-  choix.prenom.valeur='Abcdefghijklmnopqrstuvwxyz';
-  assert.ok(ctx.accrocheHtml().includes('Abcdefghijklmnopqrst<'),'prénom limité à 20 caractères');
+  assert.match(css,/\.wf-ruban-cyan \{ stroke-width:30; \}/,'PC : ≈ 20 px comme le portail');
+  assert.match(css,/\.wf-rejouer \.wf-ruban-rouge \{\s*animation:wf-ruban-trace 900ms/,'les rubans se tracent');
+  assert.match(css,/\.wf-rejouer \.wf-ruban-bas path \{\s*animation:wf-ruban-trace 900ms [^;]* 120ms both;/);
 });
-
 test('Commencer allégé : une ligne, titre luxembourgeois et traduction, action 2.1 inchangée',()=>{
   const base='<section id="today"><button class="carte-suite ac-v21-cta" aria-label="ancien" onclick="commencer()">'+
     '<span class="cs-txt"><span class="cs-kicker">Commencer</span><span class="cs-titre">Leçon 0 · Les bases</span>'+
@@ -191,7 +168,6 @@ test('Commencer allégé : une ligne, titre luxembourgeois et traduction, action
   assert.equal(c2.carteSuiteHtml(null,false),base,'niveau terminé : carte 2.1 inchangée');
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-cta-fr \{ font-size:inherit; line-height:inherit; font-weight:400;/,'traduction à la taille de la ligne');
-  assert.match(css,/\.wf-hero-trad \{ margin:0; min-width:0; max-width:none; \}/,'texte du hero non limité à 245 px');
 });
 
 test('Header V6 : groupes conservés, routes et navigation accessibles',()=>{
@@ -263,7 +239,7 @@ test('Header : compte invité lisible, lien et focus préservés',()=>{
   assert.match(css,/\.ac-v21-guest b \{[^}]*font:700 max\(11\.5px, calc\(28 \* var\(--k\)\)\)/);
   assert.match(css,/\.wf-entete-compte > \.ac-menu:first-child \{ --cible-g:calc\(-40 \* var\(--k\)\); \}/);
 });
-test('Mobile §31/33 : hero, état des lieux puis Commencer + Étudier/Jouer groupés en bas',()=>{
+test('Mobile §36 : rubans, Progression puis Commencer + Étudier/Jouer groupés en bas',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const mobile=css.slice(css.indexOf('@media (max-width:540px)'),css.indexOf('@media (max-width:359px)'));
   assert.ok(mobile.includes('align-content:safe start'), 'header ancré en haut');
@@ -271,7 +247,7 @@ test('Mobile §31/33 : hero, état des lieux puis Commencer + Étudier/Jouer gro
   assert.ok(mobile.includes('--wf-section-min:clamp(28px,4svh,36px)'));
   const grilles=[...mobile.matchAll(/grid-template-rows:([^;]*);/g)].map(m=>m[1].replace(/\/\*[^*]*\*\//g,'').replace(/\s+/g,' ').trim());
   assert.equal(grilles.length,1,'une seule grille : l’état des lieux est toujours affiché');
-  assert.equal(grilles[0],'max-content minmax(var(--wf-section-min),.8fr) max-content minmax(var(--wf-section-min),1fr) max-content minmax(var(--wf-section-min),1fr) max-content 20px max-content clamp(28px,5svh,48px)');
+  assert.equal(grilles[0],'max-content clamp(16px,4svh,40px) max-content minmax(var(--wf-section-min),1fr) max-content minmax(var(--wf-section-min),1fr) max-content 20px max-content clamp(28px,5svh,48px)','rubans juste sous le header');
   assert.ok(!mobile.includes('minmax(24px,1fr)'),'aucun grand vide sous Étudier/Jouer');
   const js=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
   assert.ok(!js.includes('wf-sans-bilan')&&!css.includes('wf-sans-bilan'),'plus de grille sans état des lieux');
@@ -283,7 +259,6 @@ test('Mobile §31/33 : hero, état des lieux puis Commencer + Étudier/Jouer gro
 test('Grande police : page défilante de secours et deux labels lisibles',()=>{
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/#view-dashboard \.accueil\.wf-accueil \{[^}]*align-content:safe center/,'haut non coupé');
-  assert.match(css,/\.wf-salut \{[^}]*overflow-wrap:anywhere/,'un prénom très long passe à la ligne');
   assert.match(css,/\.wf-etat-tete \{[^}]*gap:12px/,'libellé et valeur séparés même en grande police');
   assert.match(css,/\.wf-activite > b \{[^}]*white-space:nowrap/,'libellés courts Étudier et Jouer');
   assert.match(css,/\.wf-choix-activite \.wf-activite \{[^}]*min-height:58px/,'cibles tactiles ≥ 48 px');
@@ -302,8 +277,8 @@ test('Audit 04/11 : niveau actif lisible, textes ≥ 12 px, fond PC continu',()=
   assert.doesNotMatch(css,/var\(--wf-red\) 0 calc\(100% - 31\.8 \* var\(--k\)\)/,'plus de bande sur le bouton');
   assert.match(css,/\.wf-hero-rubans/,'rubans du hero préservés');
   // Charte § 3 : aucun texte utile de l'accueil sous 12 px (sauf logotype et compte du header).
-  for (const [bloc, taille] of [['wf-hero-trad b','700 max(15px, calc(38'],['wf-hero-trad small','400 max(13px, calc(31'],
-    ['wf-etat-val small','500 clamp(13px, calc(31'],['wf-etat-note','400 clamp(13px, calc(30'],
+  for (const [bloc, taille] of [['wf-etat-titre','800 clamp(15px, calc(38'],['wf-etat-lab','800 clamp(13px, calc(31'],
+    ['wf-etat-val small','500 clamp(14px, calc(34'],['wf-jours span','800 clamp(12px, calc(30'],
     ['cs-etape','400 max(12px, calc(28.8'],['cs-titre','700 max(13px, calc(38'],['puce-niv','700 max(12px, calc(32']])
     assert.ok(css.slice(css.indexOf(bloc)).includes('font:'+taille),bloc+' ≥ 12 px');
   assert.match(css,/\.wf-activite > b \{[^}]*font:800 clamp\(19px,/,'Étudier / Jouer en grand texte WCAG');
@@ -527,7 +502,7 @@ test('SVG V4 fournis : utilisés tels quels, transparents, palette inchangée',(
   // Pas d'étirement : le rapport largeur/hauteur CSS respecte le viewBox.
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   const art=css.match(/\.wf-hero-rubans \{[^}]*width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)[^}]*height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
-  assert.ok(Math.abs(art[1]/art[2]-941/260)<0.01,'rubans non étirés');
+  assert.ok(Math.abs(art[1]/art[2]-941/232)<0.01,'rubans non étirés');
   const lg=css.match(/\.ac-marque-symbole \{ width:calc\((\d+(?:\.\d+)?) \* var\(--k\)\); height:calc\((\d+(?:\.\d+)?) \* var\(--k\)\)/);
   assert.ok(Math.abs(lg[1]/lg[2]-80/100)<0.01,'logo non étiré');
 });
@@ -543,12 +518,12 @@ test('CSS : unité --k, deux polices et hero sans hauteur fixe',()=>{
   assert.ok(!html.includes('rel="preload" href="fonts/playfair-display'),'plus de preload Playfair');
   assert.ok(!html.includes('rel="preload" href="fonts/roboto-condensed'),'plus de preload Roboto Condensed');
   assert.ok(!css.includes('Watfir Titre')&&!css.includes('Watfir Etroite'),'un seul style de marque Fraunces');
-  assert.match(css,/\.wf-salut \{[^}]*font:italic 900 clamp\(48px, calc\(150 \* var\(--k\)\), 72px\)\/\.98 'Watfir Logo'/,'Moien en Fraunces');
+
   assert.ok(css.includes('font:400 max(9px, calc(24 * var(--k)))/1.05 var(--wf-sans)'),
     'sous-titre Lëtzebuergesch en Inter');
   const hero=css.match(/\.wf-accueil \.ac-hero \{([^}]*)\}/)[1];
   assert.match(hero,/height:auto/);
-  assert.match(css,/\.wf-hero-rubans \{[^}]*margin:calc\(34 \* var\(--k\)\) calc\(-40 \* var\(--k\)\) 0/,'rubans jusqu\'aux bords de l\'écran');
+  assert.match(css,/\.wf-hero-rubans \{[^}]*margin:0 calc\(-40 \* var\(--k\)\);/,'rubans jusqu\'aux bords de l\'écran');
   assert.match(css,/::after \{\s*content:""; position:absolute; top:50%; height:48px;/,'zones de toucher de 48 px');
   assert.match(css,/\.wf-bandes i::before \{[^}]*transform:scaleX\(0\)/,'bande vide = aucun remplissage');
   assert.match(css,/flex-wrap:wrap/,'repli sur deux lignes si la police grandit');
@@ -577,12 +552,12 @@ test('PC : header sur une ligne et quatre espaces verticaux identiques',()=>{
   assert.ok(pc.includes('.wf-entete-sep { display:none; }'),'filet retiré comme sur mobile');
   assert.ok(!pc.includes('ac-marque-sous { display:none; }'),'« Lëtzebuergesch » reste visible sur PC');
   const grilles=[...pc.matchAll(/grid-template-rows:([^;]*);/g)].map(m=>m[1].replace(/\/\*[^*]*\*\//g,'').replace(/\s+/g,' ').trim());
-  assert.equal(grilles[0],'max-content minmax(28px,72px) max-content minmax(28px,72px) max-content minmax(28px,72px) max-content 20px max-content minmax(24px,1fr)','espaces égaux, Commencer + Étudier/Jouer groupés');
+  assert.equal(grilles[0],'max-content minmax(20px,36px) max-content minmax(28px,72px) max-content minmax(28px,72px) max-content 20px max-content minmax(24px,1fr)','rubans près du header, Commencer + Étudier/Jouer groupés');
   assert.equal(grilles.length,1,'une seule grille PC');
   assert.ok(pc.includes('align-content:safe start'),'header ancré en haut sur PC');
 });
 
-test('État des lieux §33 : série en bandes rouges, niveau en bandes cyan, animé une fois',()=>{
+test('Progression §36 : série en bandes rouges, niveau en bandes cyan, animée, sans phrase',()=>{
   const L=['L','M','M','J','V','S','D'];
   const lecons=Array.from({length:18},(_,i)=>({i}));
   const base={
@@ -592,38 +567,38 @@ test('État des lieux §33 : série en bandes rouges, niveau en bandes cyan, ani
   };
   const {ctx}=setup(undefined,base);
   const h=ctx.chiffresHtml();
-  assert.match(h,/^<section class="ac-chiffres wf-etat entre-2" aria-label="Ta progression">/,'classe ac-chiffres gardée : le moteur 2.1 place le hero avant');
-  assert.match(h,/<span id="serie" class="wf-etat-val">4<small> jours<\/small><\/span>/,'#serie conservé pour la fête de l’objectif');
+  assert.match(h,/^<section class="ac-chiffres wf-etat entre-2" aria-labelledby="wf-etat-titre"><h2 class="wf-etat-titre" id="wf-etat-titre">Progression<\/h2>/,'titre court ; classe ac-chiffres gardée pour le moteur 2.1');
+  assert.match(h,/<span id="serie" class="wf-etat-val"><b class="wf-compte" data-fin="4">4<\/b><small> jours<\/small><\/span>/,'#serie conservé pour la fête de l’objectif');
+  assert.match(h,/<b class="wf-compte" data-fin="3">3<\/b> \/ 18<small> leçons<\/small>/);
   const semaine=h.slice(h.indexOf('wf-semaine'),h.indexOf('wf-jours'));
   assert.equal((semaine.match(/<i class="ok" style="--i:\d"><\/i>/g)||[]).length,4,'4 jours objectif atteint');
   assert.match(h,/<i class="demi auj" style="--i:5"><\/i>/,'aujourd’hui : pratique commencée');
   assert.match(h,/aria-label="Série de 4 jours\. Cette semaine : lundi pas de pratique, mardi objectif atteint,[^"]*samedi pratique commencée \(aujourd’hui\), dimanche à venir\."/);
-  assert.match(h,/<span class="wf-etat-val">3 \/ 18<small> leçons<\/small><\/span>/);
   assert.match(h,/role="progressbar"[^>]*aria-valuemax="18" aria-valuenow="3" style="--n:18"/);
   assert.equal((h.match(/class="ok" style="--i:\d+"/g)||[]).length,4+3,'semaine + leçons terminées');
   assert.match(h,/<i class="demi" style="--i:3"><\/i>/,'leçon commencée à moitié');
-  assert.ok(!h.includes('wf-etat-note'),'pas de note quand la série tourne');
+  assert.ok(!/wf-etat-note|<p/.test(h),'aucune phrase');
   const {ctx:neuf}=setup(undefined,Object.assign({},base,{serieActuelle:()=>0,totalJours:()=>0,
     semaineEnCours:()=>L.map((l,i)=>({lettre:l,valeur:0,aujourdhui:i===5,futur:i>5})),leconTerminee:()=>false,etapesFaites:()=>0}));
   const n=neuf.chiffresHtml();
-  assert.match(n,/0<small> jour<\/small>/,'singulier');
-  assert.match(n,/<p class="wf-etat-note">Termine une unité aujourd’hui pour lancer ta série\.<\/p>/,'objectif du jour dit concrètement');
-  const {ctx:retour}=setup(undefined,Object.assign({},base,{serieActuelle:()=>0}));
-  assert.match(retour.chiffresHtml(),/Termine une unité aujourd’hui pour lancer ta série\./);
-  assert.doesNotMatch(n+retour.chiffresHtml(),/objectif du jour/,'aucune notion invisible à l’écran');
+  assert.match(n,/data-fin="0">0<\/b><small> jour<\/small>/,'singulier');
+  assert.ok(!/<p|Termine|objectif/.test(n),'série à zéro : aucune consigne, les bandes suffisent');
   const css=fs.readFileSync(path.join(root,'public/accueil-watfir.css'),'utf8');
   assert.match(css,/\.wf-semaine i::before \{ background:var\(--wf-red\); \}/);
   assert.match(css,/\.wf-lecons i::before \{ background:var\(--wf-cyan\); \}/);
-  assert.match(css,/\.wf-etat-anime \.wf-semaine i\.ok::before,[\s\S]*?animation:wf-bande-remplit 520ms[^;]*calc\(300ms \+ var\(--i\) \* 90ms\) both;/,'remplissage jour par jour');
-  assert.match(css,/\.wf-etat-anime \.wf-lecons i\.ok::before,[\s\S]*?calc\(850ms \+ var\(--i\) \* 60ms\) both;/,'puis leçon par leçon');
+  assert.match(css,/\.wf-rejouer \.wf-semaine i\.ok::before,[\s\S]*?animation:wf-bande-remplit 520ms[^;]*calc\(300ms \+ var\(--i\) \* 90ms\) both;/,'remplissage jour par jour');
+  assert.match(css,/\.wf-rejouer \.wf-lecons i\.ok::before,[\s\S]*?calc\(850ms \+ var\(--i\) \* 60ms\) both;/,'puis leçon par leçon');
   assert.doesNotMatch(css,/\.auj::after|wf-jour-pose/,'plus de trait au-dessus du jour courant');
   assert.match(css,/\.wf-jours span\.auj \{ color:var\(--wf-cream\); \}/,'jour courant repéré par sa lettre');
   assert.doesNotMatch(css,/wf-bande-remplit[^;]*infinite/,'jamais en boucle');
   const reduit=css.slice(css.indexOf('@keyframes wf-bande-remplit'));
-  assert.match(reduit,/@media \(prefers-reduced-motion:reduce\) \{\s*#view-dashboard \.wf-accueil \.wf-etat-anime \.wf-bandes i::before \{ animation:none; \}/,'mouvement réduit respecté');
+  assert.match(reduit,/@media \(prefers-reduced-motion:reduce\) \{[^}]*\.wf-rejouer \.wf-bandes i::before \{ animation:none; \}/,'mouvement réduit respecté');
+  assert.match(css,/\.wf-bandes i \{[^}]*transform:skewX\(-20deg\)/,'bandes en parallélogrammes, inclinées comme l’italique');
+  assert.match(css,/--wf-serie-vide:#5c1a19; --wf-lecon-vide:#2a2622; --wf-lecon-demi:#0c3b44;/,'jour vide en rouge sombre, leçon vide en gris');
   const js=fs.readFileSync(path.join(root,'public/accueil-watfir.js'),'utf8');
   assert.ok(js.includes("const arrivee = !!animer || !vue || !vue.classList.contains('active');"),'rejouée à chaque arrivée sur l’accueil');
   assert.ok(js.includes("niveauAffiche !== null && niveauAffiche !== niveauActif"),'rejouée au changement de niveau');
-  assert.ok(js.includes("if (etat && (arrivee || autreNiveau)) etat.classList.add('wf-etat-anime');"));
+  assert.ok(js.includes("box.classList.toggle('wf-rejouer', rejouer);"),'une classe sur le conteneur rejoue rubans, bandes et chiffres');
+  assert.ok(js.includes('function compter(el, delai)')&&js.includes("prefers-reduced-motion: reduce"),'chiffres comptés, sauf mouvement réduit');
   assert.doesNotMatch(css,/ac-v21-bilan/,'ancien bilan retiré');
 });

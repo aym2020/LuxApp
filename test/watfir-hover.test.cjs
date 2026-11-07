@@ -12,9 +12,9 @@ const html=read('public/index.html');
 const watfir=read('public/accueil-watfir.css');
 
 test('Le système commun est chargé après tous les styles applicatifs',()=>{
-  const link='hover-interactions.css?v=watfir-hover-11';
+  const link='hover-interactions.css?v=watfir-hover-12';
   assert.ok(html.includes(link),'stylesheet présent');
-  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-35'),'CSS de base du CTA versionné');
+  assert.ok(html.includes('accueil-watfir.css?v=watfir-v4-36'),'CSS de base du CTA versionné');
   assert.ok(html.indexOf(link)>html.indexOf('expression-ecrite-v21.css'),'en dernier dans les CSS des écrans');
   assert.ok(html.indexOf(link)<html.indexOf('</head>'),'dans le head');
 });
@@ -86,7 +86,7 @@ test('Header : A1.1, A1.2 et dropdown utilisent le même relief physique compact
   assert.match(header,/\.puce-niv::after[^}]*height:48px/s,'grandes cibles tactiles conservées');
   // Mouvement réduit : pas d'animation, mais la face descend toujours (sinon le bas remonte).
   const reduitW=watfir.slice(watfir.lastIndexOf('@media (prefers-reduced-motion:reduce)'));
-  assert.match(reduitW,/\.puce-niv,\s*[^{}]*\.carte-suite\.ac-v21-cta,\s*[^{}]*\.wf-activite,\s*[^{}]*\.wf-hero-ecouter \{ transition:none; \}/,
+  assert.match(reduitW,/\.puce-niv,\s*[^{}]*\.carte-suite\.ac-v21-cta,\s*[^{}]*\.wf-activite \{ transition:none; \}/,
     'respect de reduced-motion');
   assert.doesNotMatch(reduitW,/wf-pressing \{ transform:none; \}/,'la face descend aussi en mouvement réduit');
 });

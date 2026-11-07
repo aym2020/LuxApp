@@ -591,3 +591,20 @@ Dégel ciblé demandé par Clayton : seuls l'icône, le logo, le hero et l'anima
 ## 35. Rond de Commencer plus discret (07/11/2026)
 
 Demande de Clayton : le rond noir plein à droite de Commencer attirait trop l'œil. Il devient un voile beige `rgba(122,90,46,.14)` sur la face crème, chevron noir, 40–52 px (au lieu de 46–64 px). Zone cliquable inchangée (toute la carte). Cache `accueil-watfir.css?v=watfir-v4-35`. Tests Watfir 51/51.
+
+## 36. Progression V8 : rubans seuls et bandes inclinées (07/11/2026)
+
+**Décision de Clayton (maquette du 07/11) :** « Moien » et le bouton son sont de trop ; la série et le niveau dénotaient. Il faut trois intitulés courts, deux indicateurs et aucune phrase de remplissage : « PROGRESSION », « SÉRIE — 0 jour », « NIVEAU A1.2 — 2/8 leçons ». « Termine une unité aujourd'hui… » est supprimé.
+
+**Implémentation :**
+- `accrocheHtml` ne renvoie plus que les rubans (`aria-hidden`), chemin `M-20 30C170 30 300 100 480 100S790 60 961 0`, viewBox `0 -24 941 232`, `pathLength="1"` pour le tracé animé. Les fonctions et la carte Réglages du prénom (§31) sont retirées, ainsi que les styles du salut, du bouton Écouter (dont son survol PC) et du champ prénom dans `style.css`.
+- `chiffresHtml` : `<h2>Progression</h2>`, valeurs dans `<b class="wf-compte" data-fin>` ; aucune note.
+- `renderAccueil` pose `.wf-rejouer` sur `#accueil` (arrivée sur l'accueil ou changement de niveau, comme §34) et lance `compter()` sur les deux chiffres (600 ms, départ à 300 et 850 ms, ignoré en mouvement réduit ou pour 0).
+- CSS : bandes `skewX(-20deg)`, rayon 3 px, hauteur `clamp(14px, 2.3svh, 22px)` ; série vide `#5C1A19`, leçon vide `#2A2622`, leçon commencée `#0C3B44` + moitié cyan ; titre 15–18 px, intitulés 13–15 px, valeurs 20–26 px ; espacements internes en `svh` pour remplir les grands téléphones. Animations : `wf-ruban-trace` (rubans), `wf-bande-remplit` (bandes), sous `.wf-rejouer`, désactivées en mouvement réduit.
+- Grille mobile : `header | clamp(16px,4svh,40px) | rubans | 1fr | Progression | 1fr | Commencer | 20px | Étudier/Jouer | clamp(28px,5svh,48px)`. PC : `minmax(20px,36px)` entre header et rubans, puis `minmax(28px,72px)`.
+
+**Mesures Chromium (DOM réel, état de la capture : A1.2, série 0, 2 leçons + 1 commencée) :** 412×915 sans défilement (rubans 101–203, Progression 325–571, Commencer 692–791) ; 360×640 et 1440×900 sans défilement. Animations : arrivée 8, synchronisation 0, changement de niveau 8, Retour 8, retour des Réglages 8. Compteur série : 0 → 1 → 3. Aucune erreur JS. Tests Watfir 51/51 (`test/watfir-home.test.cjs`, `test/watfir-hover.test.cjs`). Caches `watfir-v4-18` (JS), `watfir-v4-36` (CSS), `watfir-hover-12`, `style.css?v=pronoms03-spec114-w36`.
+
+**Non testé :** Samsung réel, lecteur d'écran.
+
+**Retour arrière :** commit précédent `0ccf5e2` (hero Moien + état des lieux §33–35).

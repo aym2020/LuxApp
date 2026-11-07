@@ -182,22 +182,21 @@ body:has(#view-dashboard.active) { background:#080808; }
    avant « Mode invité / Connexion / réglages ». Sur les petits écrans, le sous-
    titre du logo est redondant avec « Le luxembourgeois, pas à pas » dans le hero. */
 @media (max-width:540px) {
-  /* Composition verticale (§31, 06/11/2026) :
-     header en haut ; hero ; objectif (seulement après une première pratique) ;
-     puis Commencer + Étudier/Jouer groupés (20 px) en bas, près du pouce.
-     Les espaces souples se partagent la hauteur ; la marge basse est fixe.
-     L'état des lieux (série + niveau) est toujours présent (§33). */
+  /* Composition verticale (§36, 07/11/2026) :
+     header en haut, rubans juste dessous (espace fixe court), puis Progression ;
+     Commencer + Étudier/Jouer groupés (20 px) en bas, près du pouce.
+     Les deux espaces souples se partagent la hauteur ; la marge basse est fixe. */
   #view-dashboard .accueil.wf-accueil {
     --wf-section-min:clamp(28px,4svh,36px);
     align-content:safe start;
     padding-top:clamp(18px,calc(52 * var(--k)),26px);
     grid-template-rows:
       max-content                              /* header */
-      minmax(var(--wf-section-min),.8fr)       /* header → hero */
-      max-content                              /* hero Moien */
-      minmax(var(--wf-section-min),1fr)        /* hero → état des lieux */
-      max-content                              /* état des lieux : série + niveau */
-      minmax(var(--wf-section-min),1fr)        /* état des lieux → Commencer */
+      clamp(16px,4svh,40px)                    /* header → rubans */
+      max-content                              /* rubans */
+      minmax(var(--wf-section-min),1fr)        /* rubans → Progression */
+      max-content                              /* Progression : série + niveau */
+      minmax(var(--wf-section-min),1fr)        /* Progression → Commencer */
       max-content                              /* Commencer */
       20px                                     /* Commencer + Étudier/Jouer : un groupe */
       max-content                              /* Étudier / Jouer */
@@ -282,11 +281,11 @@ body:has(#view-dashboard.active) { background:#080808; }
     align-content:safe start;
     grid-template-rows:
       max-content            /* header */
-      minmax(28px,72px)      /* header → hero */
-      max-content            /* hero Moien */
-      minmax(28px,72px)      /* hero → objectif */
-      max-content            /* état des lieux */
-      minmax(28px,72px)      /* objectif → Commencer */
+      minmax(20px,36px)      /* header → rubans */
+      max-content            /* rubans */
+      minmax(28px,72px)      /* rubans → Progression */
+      max-content            /* Progression */
+      minmax(28px,72px)      /* Progression → Commencer */
       max-content            /* Commencer */
       20px                   /* Commencer + Étudier/Jouer : un groupe */
       max-content            /* Étudier / Jouer */
@@ -314,111 +313,77 @@ body:has(#view-dashboard.active) { background:#080808; }
 /* Connecté : la roue est seule dans son bloc, sa zone s'étend dans l'espace libre à sa gauche. */
 #view-dashboard .wf-accueil .wf-entete-compte > .ac-menu:first-child { --cible-g:calc(-40 * var(--k)); }
 
-/* ── Hero : « Moien, prénom! », écoute, rubans en plongée (06/11/2026) ── */
-/* Le mot luxembourgeois est le visuel : Fraunces 900 italique (comme la marque),
-   le « ! » au rouge des rubans. Sans prénom : « Moien! ». Les prénoms longs
-   réduisent le titre (classes wf-salut-s / wf-salut-xs posées par le JS). */
+/* ── Hero (§36, 07/11/2026) : rubans seuls sous le header ──────────────── */
+/* Plus de salut luxembourgeois, de bouton son ni de phrase. Les rubans gardent le trait du
+   portail (≈ 20 px, décalage ≈ 35 px) et se tracent de gauche à droite à l'arrivée. */
 #view-dashboard .wf-accueil .ac-hero {
   display:block; position:relative; flex:0 0 auto;
   height:auto; min-height:0; max-height:none; padding:0; overflow:visible;
   margin:0; border:0; border-radius:0; isolation:isolate;
 }
-#view-dashboard .wf-accueil .ac-hero-texte {
-  position:relative; z-index:1; max-width:none; padding:0 0 0 calc(10 * var(--k));
-}
-#view-dashboard .wf-accueil .wf-salut {
-  margin:0; color:var(--wf-cream); letter-spacing:-.01em; overflow-wrap:anywhere;
-  font:italic 900 clamp(48px, calc(150 * var(--k)), 72px)/.98 'Watfir Logo', Georgia, serif;
-}
-#view-dashboard .wf-accueil .wf-salut > span { display:block; }
-#view-dashboard .wf-accueil .wf-salut.wf-salut-s { font-size:clamp(40px, calc(112 * var(--k)), 60px); }
-#view-dashboard .wf-accueil .wf-salut.wf-salut-xs { font-size:clamp(32px, calc(82 * var(--k)), 46px); }
-#view-dashboard .wf-accueil .wf-salut-ex { color:var(--wf-red); }
-#view-dashboard .wf-accueil .wf-hero-ecoute {
-  display:flex; align-items:center; gap:calc(32 * var(--k)); margin-top:calc(30 * var(--k));
-}
-/* Bouton Écouter : rond cyan en relief (même logique 3D que les autres boutons), 44 px minimum. */
-#view-dashboard .wf-accueil .wf-hero-ecouter {
-  flex:none; display:grid; place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
-  width:max(44px, calc(106 * var(--k))); height:max(44px, calc(106 * var(--k)));
-  background:var(--wf-cyan); color:var(--wf-bg);
-  box-shadow:0 4px 0 #087496; transform:translateY(0);
-  transition:transform 115ms cubic-bezier(.22,1,.36,1), box-shadow 115ms cubic-bezier(.22,1,.36,1);
-  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
-}
-#view-dashboard .wf-accueil .wf-hero-ecouter svg { width:44%; height:44%; margin-left:8%; fill:currentColor; }
-#view-dashboard .wf-accueil .wf-hero-ecouter:active { transform:translateY(3px); box-shadow:0 1px 0 #087496; }
-#view-dashboard .wf-accueil .wf-hero-ecouter.joue { background:var(--wf-cream); }
-#view-dashboard .wf-accueil .wf-hero-ecouter:focus-visible { outline:3px solid var(--wf-cream); outline-offset:3px; }
-/* max-width:none : la règle 2.1 « .ac-hero p » limitait ce texte à 245 px (coupures prématurées). */
-#view-dashboard .wf-accueil .wf-hero-trad { margin:0; min-width:0; max-width:none; }
-#view-dashboard .wf-accueil .wf-hero-trad b {
-  display:block; color:var(--wf-cream); font:700 max(15px, calc(38 * var(--k)))/1.25 var(--wf-sans);
-}
-#view-dashboard .wf-accueil .wf-hero-trad small {
-  display:block; margin-top:2px; color:var(--wf-muted); font:400 max(13px, calc(31 * var(--k)))/1.3 var(--wf-sans);
-}
-/* Rubans : du bord gauche au bord droit de l'écran (marges négatives = padding de la page).
-   Mêmes traits à l'écran que le portail : trait 46/941 de la largeur (≈ 20 px à 412 px),
-   décalage 81 (≈ 35 px), donc ≈ 15 px de noir entre rouge et cyan. */
+/* Du bord gauche au bord droit de l'écran (marges négatives = padding de la page). */
 #view-dashboard .wf-accueil .wf-hero-rubans {
   display:block; pointer-events:none; overflow:visible;
-  width:calc(941 * var(--k)); max-width:none; height:calc(260 * var(--k));
-  margin:calc(34 * var(--k)) calc(-40 * var(--k)) 0;
+  width:calc(941 * var(--k)); max-width:none; height:calc(232 * var(--k));
+  margin:0 calc(-40 * var(--k));
 }
 #view-dashboard .wf-accueil .wf-hero-rubans path { fill:none; stroke-linecap:butt; stroke-linejoin:round; }
 #view-dashboard .wf-accueil .wf-ruban-rouge { stroke:var(--wf-red); stroke-width:46; }
 #view-dashboard .wf-accueil .wf-ruban-cyan { stroke:var(--wf-cyan); stroke-width:46; }
 #view-dashboard .wf-accueil .wf-ruban-filet { stroke:var(--wf-bg); stroke-width:60; }
 #view-dashboard .wf-accueil .wf-ruban-bas { transform:translate(0, 81px); }
-/* PC : le portail plafonne ses traits à ≈ 20 px ; même chose ici
-   (30 × 0,68 ≈ 20 px, décalage 52 ≈ 35 px). La marge négative retire le vide
-   laissé sous des rubans plus fins dans la même boîte. */
+/* PC : traits plafonnés à ≈ 20 px comme le portail (30 × 0,68), décalage 52 ≈ 35 px.
+   La marge négative retire le vide laissé sous des rubans plus fins dans la même boîte. */
 @media (min-width:541px) {
-  /* PC : « Moien, Clayton! » sur une seule ligne quand il tient (60 px max) :
-     la page entière reste visible dans une fenêtre de 900 px de haut. */
-  #view-dashboard .wf-accueil .wf-salut { font-size:clamp(48px, calc(150 * var(--k)), 60px); }
-  #view-dashboard .wf-accueil .wf-salut > span { display:inline; }
   #view-dashboard .wf-accueil .wf-ruban-rouge,
   #view-dashboard .wf-accueil .wf-ruban-cyan { stroke-width:30; }
   #view-dashboard .wf-accueil .wf-ruban-filet { stroke-width:42; }
   #view-dashboard .wf-accueil .wf-ruban-bas { transform:translate(0, 52px); }
-  #view-dashboard .wf-accueil .wf-hero-rubans { margin-bottom:calc(-36 * var(--k)); }
+  #view-dashboard .wf-accueil .wf-hero-rubans { margin-bottom:calc(-28 * var(--k)); }
 }
 
-/* ── État des lieux (§33) : série et niveau en bandes ─────────────────── */
-/* Les bandes reprennent les rubans : même rouge, même cyan, bouts nets, sans cadre.
-   Rouge = série de la semaine (plein : objectif atteint, moitié : pratique commencée).
-   Cyan = une bande par leçon du niveau. Gris : rien encore. Le jour courant est
-   repéré par sa lettre en crème (pas de trait : il se lisait comme un tiret). Les classes de style.css « .ac-chiffres » (grille 3 colonnes,
-   filets, couleurs des span) sont neutralisées ici. */
+/* ── Progression (§36) : série et niveau ─────────────────────────────── */
+/* Trois intitulés courts, deux indicateurs, aucune phrase. Bandes en parallélogrammes
+   (même inclinaison que l'italique de la marque), sans cadre.
+   Série : 7 jours, rouge vif = objectif du jour atteint, moitié = commencé,
+   rouge sombre = rien. Niveau : une bande par leçon, cyan = terminée, moitié = commencée,
+   gris = à faire. Jour courant : lettre en crème. Les styles génériques
+   « .ac-chiffres » de style.css (grille 3 colonnes, filets) sont neutralisés ici. */
 #view-dashboard .wf-accueil .ac-chiffres.wf-etat {
-  display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px, calc(52 * var(--k)), 28px);
-  margin:0; padding:0 0 0 calc(10 * var(--k)); text-align:left; color:var(--wf-cream);
-  --wf-bande-vide:#24211d;
+  display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(22px, 4.5svh, 44px);
+  margin:0; padding:0 calc(6 * var(--k)) 0 calc(10 * var(--k)); text-align:left; color:var(--wf-cream);
+  --wf-serie-vide:#5c1a19; --wf-lecon-vide:#2a2622; --wf-lecon-demi:#0c3b44;
 }
 #view-dashboard .wf-accueil .wf-etat > div { display:block; padding:0; border:0; min-width:0; }
+#view-dashboard .wf-accueil .wf-etat .wf-etat-titre {
+  margin:0; color:var(--wf-cream); text-transform:uppercase; letter-spacing:.2em;
+  font:800 clamp(15px, calc(38 * var(--k)), 18px)/1.2 var(--wf-sans);
+}
 #view-dashboard .wf-accueil .wf-etat-tete {
-  display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:clamp(8px, calc(20 * var(--k)), 12px);
+  display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:clamp(10px, 1.8svh, 18px);
 }
 #view-dashboard .wf-accueil .wf-etat .wf-etat-lab {
-  color:var(--wf-cream); font:800 12px/1.2 var(--wf-sans); letter-spacing:.18em; text-transform:uppercase;
+  color:var(--wf-cream); font:800 clamp(13px, calc(31 * var(--k)), 15px)/1.2 var(--wf-sans); letter-spacing:.18em; text-transform:uppercase;
 }
 #view-dashboard .wf-accueil .wf-etat .wf-etat-val {
   display:inline-block; color:var(--wf-cream); white-space:nowrap;
-  font:800 clamp(18px, calc(46 * var(--k)), 24px)/1 var(--wf-sans); letter-spacing:-.01em;
+  font:800 clamp(20px, calc(50 * var(--k)), 26px)/1 var(--wf-sans); letter-spacing:-.01em;
 }
+#view-dashboard .wf-accueil .wf-etat .wf-etat-val b { font:inherit; color:inherit; font-variant-numeric:tabular-nums; }
 #view-dashboard .wf-accueil .wf-etat .wf-etat-val small {
-  color:var(--wf-muted); font:500 clamp(13px, calc(31 * var(--k)), 15px)/1 var(--wf-sans);
+  color:var(--wf-muted); font:500 clamp(14px, calc(34 * var(--k)), 16px)/1 var(--wf-sans);
 }
-#view-dashboard .wf-accueil .wf-bandes { display:grid; gap:4px; }
+#view-dashboard .wf-accueil .wf-bandes { display:grid; gap:clamp(4px, calc(10 * var(--k)), 6px); }
 #view-dashboard .wf-accueil .wf-semaine { grid-template-columns:repeat(7, minmax(0,1fr)); }
-#view-dashboard .wf-accueil .wf-lecons { grid-template-columns:repeat(var(--n), minmax(0,1fr)); gap:3px; }
+#view-dashboard .wf-accueil .wf-lecons { grid-template-columns:repeat(var(--n), minmax(0,1fr)); }
 #view-dashboard .wf-accueil .wf-bandes i {
-  position:relative; display:block; height:clamp(14px, calc(40 * var(--k)), 20px);
-  background:var(--wf-bande-vide); overflow:hidden;
+  position:relative; display:block; height:clamp(14px, 2.3svh, 22px);
+  border-radius:3px; transform:skewX(-20deg); overflow:hidden;
 }
-/* Le remplissage est un calque : la piste grise reste visible pendant l'animation. */
+#view-dashboard .wf-accueil .wf-semaine i { background:var(--wf-serie-vide); }
+#view-dashboard .wf-accueil .wf-lecons i { background:var(--wf-lecon-vide); }
+#view-dashboard .wf-accueil .wf-lecons i.demi { background:var(--wf-lecon-demi); }
+/* Le remplissage est un calque : la piste reste visible pendant l'animation. */
 #view-dashboard .wf-accueil .wf-bandes i::before {
   content:""; position:absolute; inset:0; transform-origin:left center; transform:scaleX(0);
 }
@@ -428,29 +393,38 @@ body:has(#view-dashboard.active) { background:#080808; }
 #view-dashboard .wf-accueil .wf-semaine i::before { background:var(--wf-red); }
 #view-dashboard .wf-accueil .wf-lecons i::before { background:var(--wf-cyan); }
 #view-dashboard .wf-accueil .wf-jours {
-  display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:4px; margin-top:9px; text-align:center;
+  display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:clamp(4px, calc(10 * var(--k)), 6px);
+  margin-top:clamp(10px, calc(26 * var(--k)), 14px); text-align:center;
 }
-#view-dashboard .wf-accueil .wf-etat .wf-jours span { color:#8a8172; font:800 12px/1 var(--wf-sans); }
+#view-dashboard .wf-accueil .wf-etat .wf-jours span { color:#b3aa9a; font:800 clamp(12px, calc(30 * var(--k)), 14px)/1 var(--wf-sans); }
 #view-dashboard .wf-accueil .wf-etat .wf-jours span.auj { color:var(--wf-cream); }
-#view-dashboard .wf-accueil .wf-etat-note {
-  margin:12px 0 0; color:var(--wf-muted); font:400 clamp(13px, calc(30 * var(--k)), 15px)/1.3 var(--wf-sans);
-}
 
-/* Animation des bandes (classe .wf-etat-anime posée par renderAccueil à chaque
-   arrivée sur l'accueil et à chaque changement de niveau) : la semaine se remplit
-   jour après jour, puis les leçons. Une seule fois par affichage, jamais en boucle.
-   Délai dans le même raccourci : une règle animation-delay séparée serait écrasée. */
+/* Animations (classe .wf-rejouer posée par renderAccueil à chaque arrivée sur
+   l'accueil et à chaque changement de niveau) : les rubans se tracent de gauche à
+   droite, les jours se remplissent un par un, puis les leçons ; les chiffres comptent
+   (JS). Une seule fois par affichage, jamais en boucle. Le délai est écrit dans le
+   raccourci : une règle animation-delay séparée serait écrasée. */
+@keyframes wf-ruban-trace { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } }
 @keyframes wf-bande-remplit { from { transform:scaleX(0); } to { transform:scaleX(1); } }
-#view-dashboard .wf-accueil .wf-etat-anime .wf-semaine i.ok::before,
-#view-dashboard .wf-accueil .wf-etat-anime .wf-semaine i.demi::before {
+#view-dashboard .wf-accueil.wf-rejouer .wf-hero-rubans path { stroke-dasharray:1; }
+#view-dashboard .wf-accueil.wf-rejouer .wf-ruban-rouge {
+  animation:wf-ruban-trace 900ms cubic-bezier(.25,.8,.3,1) both;
+}
+#view-dashboard .wf-accueil.wf-rejouer .wf-ruban-bas path {
+  animation:wf-ruban-trace 900ms cubic-bezier(.25,.8,.3,1) 120ms both;
+}
+#view-dashboard .wf-accueil.wf-rejouer .wf-semaine i.ok::before,
+#view-dashboard .wf-accueil.wf-rejouer .wf-semaine i.demi::before {
   animation:wf-bande-remplit 520ms cubic-bezier(.25,.8,.3,1) calc(300ms + var(--i) * 90ms) both;
 }
-#view-dashboard .wf-accueil .wf-etat-anime .wf-lecons i.ok::before,
-#view-dashboard .wf-accueil .wf-etat-anime .wf-lecons i.demi::before {
+#view-dashboard .wf-accueil.wf-rejouer .wf-lecons i.ok::before,
+#view-dashboard .wf-accueil.wf-rejouer .wf-lecons i.demi::before {
   animation:wf-bande-remplit 420ms cubic-bezier(.25,.8,.3,1) calc(850ms + var(--i) * 60ms) both;
 }
 @media (prefers-reduced-motion:reduce) {
-  #view-dashboard .wf-accueil .wf-etat-anime .wf-bandes i::before { animation:none; }
+  #view-dashboard .wf-accueil.wf-rejouer .wf-hero-rubans path,
+  #view-dashboard .wf-accueil.wf-rejouer .wf-bandes i::before { animation:none; }
+  #view-dashboard .wf-accueil.wf-rejouer .wf-hero-rubans path { stroke-dasharray:none; }
 }
 
 /* ── CTA crème (maquette y 860–1101) ──────────────────────────────────── */
@@ -682,8 +656,7 @@ body.wf-sheet-open { overflow:hidden; }
      s'écrase et le bas du bouton remonte (défaut vu sur PC « animations réduites »). */
   #view-dashboard .wf-accueil .puce-niv,
   #view-dashboard .wf-accueil .carte-suite.ac-v21-cta,
-  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite,
-  #view-dashboard .wf-accueil .wf-hero-ecouter { transition:none; }
+  #view-dashboard .wf-accueil .wf-choix-activite .wf-activite { transition:none; }
   .wf-etudier-dialog .wf-etudier-option { transition:none; }
   .wf-niveaux-dialog, .wf-niveaux-dialog[open] { transform:none; transition:none; }
   .wf-niveaux-dialog::backdrop { transition:none; }

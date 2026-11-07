@@ -6,6 +6,8 @@
 
 > **Version 2.2 (06/11/2026, soir) — Moien V7 (§31)** : le hero « Mission A1.1 » est remplacé par **« Moien, prénom! »** (prénom facultatif saisi dans Réglages, sinon « Moien! ») avec le bouton Écouter ; rubans en **plongée** plus vivants ; la mission de la leçon passe dans Commencer avec son titre luxembourgeois ; Étudier/Jouer gardent leurs couleurs mais sont plus bas (58 px) ; Commencer et Étudier/Jouer forment un groupe en bas ; « Ton objectif actuel » n'apparaît qu'après une première pratique.
 
+> **Version 2.3 (07/11/2026) — Progression V8 (§36)** : le hero ne contient plus que **les rubans**, sous le header (plus de « Moien », de bouton son ni de phrase ; plus de prénom dans les Réglages). Le milieu de l'accueil est **« PROGRESSION »** : « SÉRIE — 0 jour » avec 7 bandes, « NIVEAU A1.2 — 2 / 8 leçons » avec une bande par leçon. Bandes en **parallélogrammes** inclinés comme l'italique de la marque. Aucune phrase d'explication. Animation à chaque arrivée et changement de niveau : rubans tracés, bandes remplies, chiffres comptés.
+
 ## 1. Intention
 
 Créer une application d'apprentissage du luxembourgeois immédiatement identifiable : une esthétique d'identités télévisuelles et touristiques des années 1975–1985, **réinterprétée pour une interface moderne, mobile-first et très lisible**. Inspiration revendiquée : le travail de kxdgraphics (logos de lieux réimaginés en 1984 : fond noir, emblème simple, bandes de couleur, couleurs tirées du sujet). Le but n'est ni un jeu néon, ni une imitation littérale d'un logo existant, ni un filtre VHS sur toute l'application.
@@ -84,7 +86,7 @@ Fond noir libre autour des composants ; un CTA crème de premier niveau et deux 
 
 ## 5. Rythme, densité et hiérarchie
 
-Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **hero** (Moien + prénom, Écouter, rubans) → **état des lieux** (série + niveau, toujours affiché) → **Commencer/Continuer** → **Étudier et Jouer**, ces deux derniers formant **un seul groupe** en bas de l'écran. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
+Ordre de lecture sur l'accueil : **marque + niveaux + compte** → **rubans** → **Progression** (série + niveau, toujours affichée) → **Commencer/Continuer** → **Étudier et Jouer**, ces deux derniers formant **un seul groupe** en bas de l'écran. Le parcours, les révisions, les examens et les erreurs sont accessibles depuis la feuille « Étudier », et non comme quatre boutons concurrents.
 
 Une seule action dominante à l'écran. Le hero est expressif mais ne doit jamais repousser le CTA hors de l'écran à cause d'une hauteur fixe.
 
@@ -106,7 +108,7 @@ Logo (emblème + « Watfir » + « Lëtzebuergesch ») avec un espace franc entr
 
 ### 6.2 Hero
 
-**Moien V7 (§31) :** « Moien, Clayton! » sur deux lignes (ou « Moien! » sans prénom), bouton Écouter cyan 3D (`jouerAudio('moien.mp3')`, jamais en lecture automatique, 44 px min.), puis « Bonjour, prénom. » et une phrase : « Ton premier mot. Le reste commence ici. » au premier accueil, « Prêt pour ta mission ? » ensuite. Rubans en plongée dessous. Le **prénom** est facultatif : carte « Ton prénom » en tête des Réglages, rangé dans le choix synchronisé (`choix.prenom = { valeur, maj }`, fusion « le plus récent gagne »), vide = retiré. Le monument reste uniquement dans le logo. L'ancien hero « MISSION A1.1 » est retiré : le niveau reste visible dans la pastille du header.
+**Rubans seuls (§36, 07/11/2026) :** le hero se réduit aux deux rubans, placés juste sous le header (16–40 px), du bord gauche au bord droit, chemin `M-20 30C170 30 300 100 480 100S790 60 961 0`, viewBox 941 × 232, même trait que le portail. Décoratifs (`aria-hidden`). À l'arrivée, ils se tracent de gauche à droite (900 ms, cyan décalé de 120 ms). L'ancien hero « Moien, prénom! » + bouton Écouter (§31) et la carte « Ton prénom » des Réglages sont retirés ; la clé `choix.prenom` éventuellement enregistrée est ignorée.
 
 ### 6.3 Bouton principal
 
@@ -118,7 +120,7 @@ Deux pastilles maximum dans le header, **actif rouge vif `#F22421` / crème** et
 
 ### 6.5 Progression
 
-**État des lieux (§33, 07/11/2026)** — remplace « Ton objectif actuel ». Pas de cadre : deux rangées de **bandes plates** posées sur le noir, même rouge, même cyan et bouts nets que les rubans. **Série** : libellé « SÉRIE » et « 4 jours » à droite ; 7 bandes du lundi au dimanche (rouge plein = objectif du jour atteint, moitié rouge = pratique commencée, gris `#24211D` = rien ou à venir), lettres L M M J V S D dessous, **jour courant repéré par sa lettre en crème** (le trait au-dessus a été retiré le 07/11 : il se lisait comme un tiret). **Niveau** : « NIVEAU A1.1 » et « 3 / 18 leçons » ; une bande cyan par leçon du niveau (moitié = leçon commencée). Toujours affiché, y compris au premier accueil. Série à zéro : « Termine une unité aujourd’hui pour lancer ta série. » (l'objectif du jour n'apparaît nulle part à l'écran : on dit ce qu'il faut faire). **Animation** (classe `.wf-etat-anime`) **à chaque arrivée sur l'accueil** (menu, bouton Retour, retour d'une leçon ou des Réglages) **et à chaque changement de niveau**, pas lors d'une synchronisation qui réaffiche l'écran déjà visible : les bandes rouges se remplissent de gauche à droite jour après jour (520 ms, +90 ms par jour), puis les bandes cyan leçon après leçon (+60 ms) ; jamais en boucle, désactivée en mouvement réduit. Accessibilité : semaine en `role="img"` avec un résumé lu jour par jour, niveau en `role="progressbar"`. `#serie` reste sur la valeur pour la petite fête de l'objectif du jour.
+**Progression (§36, 07/11/2026)** — trois intitulés courts, deux indicateurs, **aucune phrase** : la progression doit se comprendre sans explication. « PROGRESSION » (titre, Inter 800 capitales espacées, 15–18 px). « SÉRIE » à gauche, « 0 jour » à droite, puis **7 bandes** L→D : rouge vif = objectif du jour atteint, moitié = commencé, **rouge sombre `#5C1A19`** = rien ; lettres dessous, jour courant en crème. « NIVEAU A1.2 » et « 2 / 8 leçons », puis **une bande par leçon** : cyan = terminée, moitié cyan sur bleu pétrole `#0C3B44` = commencée, gris `#2A2622` = à faire. Bandes en **parallélogrammes** (`skewX(-20deg)`, rayon 3 px), 14–22 px de haut selon l'écran. **Animation** (classe `.wf-rejouer` sur le conteneur, à chaque arrivée sur l'accueil et à chaque changement de niveau, jamais lors d'une synchronisation) : rubans tracés, jours remplis un par un (+90 ms), leçons ensuite (+60 ms), chiffres qui comptent de 0 à leur valeur ; rien en mouvement réduit. Accessibilité : titre `h2`, semaine en `role="img"` avec résumé jour par jour, niveau en `role="progressbar"` ; `#serie` conservé pour la fête de l'objectif du jour.
 
 ### 6.6 Accès secondaires
 

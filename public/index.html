@@ -14,11 +14,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="design-tokens.css?v=spec114-1" />
   <link rel="stylesheet" href="components.css?v=spec114-1" />
-  <link rel="stylesheet" href="style.css?v=pronoms03-spec114-prenom1" />
+  <link rel="stylesheet" href="style.css?v=pronoms03-spec114-w36" />
   <link rel="stylesheet" href="pronoms-decouverte.css?v=1" />
   <link rel="stylesheet" href="accueil-v21.css?v=jeux88-spec114" />
   <link rel="preload" href="fonts/fraunces-latin-900-italic.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="accueil-watfir.css?v=watfir-v4-35" />
+  <link rel="stylesheet" href="accueil-watfir.css?v=watfir-v4-36" />
   <!-- Watfir : affiche rétro du portail uniquement ; formulaires 2.1 inchangés. -->
   <link rel="stylesheet" href="portail-watfir.css?v=wf-poster-5" />
   <link rel="stylesheet" href="actualiser.css?v=1" />
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="feedback-unifie.css?v=2" />
   <link rel="stylesheet" href="expression-ecrite-v21.css?v=3" />
   <!-- Hovers desktop communs : après les CSS d’écrans (n’affecte pas les appuis tactiles) -->
-  <link rel="stylesheet" href="hover-interactions.css?v=watfir-hover-11" />
+  <link rel="stylesheet" href="hover-interactions.css?v=watfir-hover-12" />
 </head>
 <body>
   <!-- SPEC 63 : portail d'entrée, indépendant des écrans pédagogiques. -->
@@ -87,17 +87,6 @@
       </div>
     </div>
     <div class="reglages">
-      <!-- Watfir 2.2 : prénom facultatif affiché sur l'accueil (« Moien, Clayton! »). -->
-      <form class="reglages-carte reglages-prenom" onsubmit="enregistrerPrenom(event)">
-        <label class="reglages-titre" for="reglage-prenom">Ton prénom</label>
-        <p class="reglages-texte" id="reglage-prenom-aide">Facultatif. L’accueil te salue par ton prénom&nbsp;: «&nbsp;Moien, Clayton!&nbsp;». Laisse vide pour le retirer.</p>
-        <div class="reglages-prenom-ligne">
-          <input id="reglage-prenom" type="text" maxlength="20" autocomplete="given-name" autocapitalize="words"
-            spellcheck="false" aria-describedby="reglage-prenom-aide reglage-prenom-statut" />
-          <button class="hl-bouton" type="submit">Enregistrer</button>
-        </div>
-        <p class="reglages-texte" id="reglage-prenom-statut" role="status" aria-live="polite"></p>
-      </form>
       <div class="reglages-carte">
         <div class="reglages-titre">Compte et synchronisation</div>
         <div class="reglages-synchro" id="reglages-synchro" role="status" aria-live="polite"></div>
@@ -661,7 +650,7 @@
   <script src="revision.js"></script>
   <script src="accueil.js?v=sons-1"></script>
   <script src="accueil-v21.js?v=jeux88"></script>
-  <script src="accueil-watfir.js?v=watfir-v4-17"></script>
+  <script src="accueil-watfir.js?v=watfir-v4-18"></script>
   <script src="survie-vfx.js?v=5"></script>
   <script src="jeux-v21.js?v=21"></script>
   <script src="runner-mots.js?v=1"></script>

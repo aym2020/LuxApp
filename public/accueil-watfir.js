@@ -50,78 +50,18 @@
     '</div>';
   };
 
-  // ── Prénom facultatif (Réglages) ──────────────────────────────────────
-  // Rangé dans le « choix » déjà synchronisé (niveau.js / cloud.js) :
-  // { valeur, maj }, fusionné par « le plus récent gagne ». Aucune nouvelle clé cloud.
-  const PRENOM_MAX = 20;
-  function lirePrenom() {
-    const choix = typeof getChoix === 'function' ? getChoix() : {};
-    const p = choix && choix.prenom && choix.prenom.valeur;
-    return p ? String(p).trim().slice(0, PRENOM_MAX) : '';
-  }
-  globalThis.lirePrenom = lirePrenom;
-
-  // Formulaire des Réglages : enregistre (ou efface si vide), puis rafraîchit l'accueil.
-  globalThis.enregistrerPrenom = function (event) {
-    if (event && event.preventDefault) event.preventDefault();
-    const champ = document.getElementById('reglage-prenom');
-    if (!champ || typeof getChoix !== 'function' || typeof saveChoix !== 'function') return;
-    const valeur = String(champ.value || '').replace(/\s+/g, ' ').trim().slice(0, PRENOM_MAX);
-    const choix = getChoix();
-    choix.prenom = { valeur: valeur, maj: Date.now() };
-    saveChoix(choix);
-    if (typeof debounceCloudSave === 'function') debounceCloudSave();
-    const statut = document.getElementById('reglage-prenom-statut');
-    if (statut) statut.textContent = valeur ? 'Enregistré\u00a0: «\u00a0Moien, ' + valeur + '!\u00a0»' : 'Prénom retiré.';
-    if (typeof renderAccueil === 'function') renderAccueil(false);
-  };
-
-  // À l'ouverture des Réglages, le champ affiche le prénom enregistré.
-  // app.js (qui définit openReglages) est chargé APRÈS ce fichier : on l'enveloppe
-  // une fois toute la page chargée.
-  document.addEventListener('DOMContentLoaded', function () {
-    if (typeof openReglages !== 'function') return;
-    const ouvrirReglagesV21 = openReglages;
-    openReglages = function () {
-      ouvrirReglagesV21.apply(this, arguments);
-      const champ = document.getElementById('reglage-prenom');
-      if (champ) champ.value = lirePrenom();
-      const statut = document.getElementById('reglage-prenom-statut');
-      if (statut) statut.textContent = '';
-    };
-  });
-
-  // ── Hero : « Moien, prénom! », écoute du mot, rubans en plongée ─────────
-  // nouveau : appelé sans argument par le moteur pour un premier accueil,
-  // avec false pour un utilisateur qui a déjà pratiqué.
-  const RUBAN_PLONGEE = 'M-20 20C150 20 230 131 420 131S690 125 800 59S900 2 961 8';
-  accrocheHtml = function (nouveau) {
-    const prenom = lirePrenom();
-    const premiereVisite = nouveau !== false;
-    // Les prénoms longs réduisent le titre au lieu de déborder de l'écran.
-    const taille = prenom.length > 14 ? ' wf-salut-xs' : prenom.length > 9 ? ' wf-salut-s' : '';
-    const titre = prenom
-      ? '<span lang="lb">Moien,</span> <span>' + escHtml(prenom) + '<span class="wf-salut-ex">!</span></span>'
-      : '<span><span lang="lb">Moien</span><span class="wf-salut-ex">!</span></span>';
-    const bonjour = prenom ? 'Bonjour, ' + escHtml(prenom) + '.' : 'Bonjour.';
-    const suite = premiereVisite ? 'Ton premier mot. Le reste commence ici.' : 'Prêt pour ta mission ?';
-    return '<section class="ac-hero entre-2" aria-label="Bienvenue">' +
-      '<div class="ac-hero-texte">' +
-        '<h2 class="wf-salut' + taille + '">' + titre + '</h2>' +
-        '<div class="wf-hero-ecoute">' +
-          '<button type="button" class="wf-hero-ecouter" onclick="jouerAudio(\'moien.mp3\', this)" ' +
-            'aria-label="Écouter « Moien »">' +
-            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>' +
-          '<p class="wf-hero-trad"><b>' + bonjour + '</b><small>' + suite + '</small></p>' +
-        '</div>' +
-      '</div>' +
-      // Rubans identitaires : le rouge plonge sous le texte puis remonte ; le cyan suit.
-      // Épaisseur et décalage en CSS : mêmes traits à l'écran que sur le portail.
-      '<svg class="wf-hero-rubans" viewBox="0 -24 941 260" aria-hidden="true" focusable="false">' +
-        '<path class="wf-ruban-rouge" d="' + RUBAN_PLONGEE + '"/>' +
+  // ── Hero (§36) : rubans seuls sous le header ───────────────────────────
+  // Plus de salut luxembourgeois, de bouton son ni de phrase : la page raconte la progression.
+  // Les rubans sont décoratifs ; pathLength="1" sert à leur tracé animé (CSS).
+  const RUBAN = 'M-20 30C170 30 300 100 480 100S790 60 961 0';
+  accrocheHtml = function () {
+    const trace = '" pathLength="1"/>';
+    return '<section class="ac-hero entre-2" aria-hidden="true">' +
+      '<svg class="wf-hero-rubans" viewBox="0 -24 941 232" focusable="false">' +
+        '<path class="wf-ruban-rouge" d="' + RUBAN + trace +
         '<g class="wf-ruban-bas">' +
-          '<path class="wf-ruban-filet" d="' + RUBAN_PLONGEE + '"/>' +
-          '<path class="wf-ruban-cyan" d="' + RUBAN_PLONGEE + '"/>' +
+          '<path class="wf-ruban-filet" d="' + RUBAN + trace +
+          '<path class="wf-ruban-cyan" d="' + RUBAN + trace +
         '</g>' +
       '</svg>' +
     '</section>';
@@ -154,25 +94,43 @@
       '<i class="' + (j.valeur === 2 ? 'ok' : j.valeur === 1 ? 'demi' : '') +
       (j.aujourdhui ? ' auj' : '') + '" style="--i:' + i + '"></i>').join('');
     const lettres = semaine.map(j => '<span' + (j.aujourdhui ? ' class="auj"' : '') + '>' + j.lettre + '</span>').join('');
-    // L'objectif du jour (progress.js) = au moins une unité terminée aujourd'hui.
-    const note = serie > 0 ? '' : '<p class="wf-etat-note">Termine une unité aujourd’hui pour lancer ta série.</p>';
     const bandesLecons = etats.map((e, i) => '<i class="' + e + '" style="--i:' + i + '"></i>').join('');
-    return '<section class="ac-chiffres wf-etat entre-2" aria-label="Ta progression">' +
+    return '<section class="ac-chiffres wf-etat entre-2" aria-labelledby="wf-etat-titre">' +
+      '<h2 class="wf-etat-titre" id="wf-etat-titre">Progression</h2>' +
       '<div class="wf-etat-bloc">' +
         '<div class="wf-etat-tete"><span class="wf-etat-lab">Série</span>' +
-          '<span id="serie" class="wf-etat-val">' + serie + '<small> ' + jours + '</small></span></div>' +
+          '<span id="serie" class="wf-etat-val"><b class="wf-compte" data-fin="' + serie + '">' + serie + '</b>' +
+          '<small> ' + jours + '</small></span></div>' +
         '<div class="wf-bandes wf-semaine" role="img" aria-label="' + escHtml(resume) + '">' + bandesJours + '</div>' +
-        '<div class="wf-jours" aria-hidden="true">' + lettres + '</div>' + note +
+        '<div class="wf-jours" aria-hidden="true">' + lettres + '</div>' +
       '</div>' +
       '<div class="wf-etat-bloc">' +
         '<div class="wf-etat-tete"><span class="wf-etat-lab">Niveau ' + escHtml(niveauActif) + '</span>' +
-          '<span class="wf-etat-val">' + faites + ' / ' + lecons.length + '<small> leçons</small></span></div>' +
+          '<span class="wf-etat-val"><b class="wf-compte" data-fin="' + faites + '">' + faites + '</b> / ' + lecons.length +
+          '<small> leçons</small></span></div>' +
         '<div class="wf-bandes wf-lecons" role="progressbar" aria-label="Leçons terminées en ' + escHtml(niveauActif) + '" ' +
           'aria-valuemin="0" aria-valuemax="' + lecons.length + '" aria-valuenow="' + faites + '" ' +
           'style="--n:' + Math.max(1, lecons.length) + '">' + bandesLecons + '</div>' +
       '</div>' +
     '</section>';
   };
+
+  // Les chiffres de la série et du niveau comptent de 0 à leur valeur pendant
+  // que les bandes se remplissent. Rien en mouvement réduit ni pour une valeur 0.
+  function compter(el, delai) {
+    const fin = Number(el.getAttribute('data-fin')) || 0;
+    if (fin <= 0 || typeof requestAnimationFrame !== 'function') return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    el.textContent = '0';
+    window.setTimeout(function () {
+      const debut = performance.now();
+      requestAnimationFrame(function pas(t) {
+        const p = Math.min(1, Math.max(0, (t - debut) / 600));
+        el.textContent = String(Math.round(fin * p));
+        if (p < 1) requestAnimationFrame(pas);
+      });
+    }, delai);
+  }
 
   // Le moteur 2.1 conserve la leçon cible et son clic. En 2.2, le livre dans
   // « Commencer » ferait doublon avec le bouton Étudier : retirer son seul wrapper.
@@ -221,9 +179,9 @@
   // V21 calcule les mêmes vrais KPI et le même prochain pas.
   // Hero toujours AVANT l'état des lieux ; au premier accueil, le moteur 2.1 ne
   // l'affiche pas : on l'ajoute (bandes vides, série à lancer).
-  // Animation des bandes : à chaque ARRIVÉE sur l'accueil (la vue n'est pas encore
-  // affichée : menu, bouton Retour, retour d'une leçon) et à chaque CHANGEMENT DE
-  // NIVEAU. Pas pendant une synchronisation qui réaffiche l'écran déjà visible.
+  // Animations (rubans, bandes, chiffres) : à chaque ARRIVÉE sur l'accueil (la vue
+  // n'est pas encore affichée : menu, bouton Retour, retour d'une leçon) et à chaque
+  // CHANGEMENT DE NIVEAU. Pas pendant une synchronisation qui réaffiche l'écran visible.
   let niveauAffiche = null;
   renderAccueil = function (animer) {
     const vue = document.getElementById('view-dashboard');
@@ -239,8 +197,11 @@
     const bilan = box.querySelector('.ac-chiffres');
     if (!bilan) hero.insertAdjacentHTML('afterend', chiffresHtml());
     else if (hero.nextElementSibling !== bilan) hero.after(bilan);
-    const etat = box.querySelector('.wf-etat');
-    if (etat && (arrivee || autreNiveau)) etat.classList.add('wf-etat-anime');
+    // La classe vit sur le conteneur : rubans, bandes et chiffres sont recréés à
+    // chaque rendu, leurs animations ne partent donc que si elle est présente.
+    const rejouer = arrivee || autreNiveau;
+    box.classList.toggle('wf-rejouer', rejouer);
+    if (rejouer) box.querySelectorAll('.wf-etat .wf-compte').forEach((el, i) => compter(el, i === 0 ? 300 : 850));
   };
 
   function feuilleNiveaux() {
